@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0A25CC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:25:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB0DCC6B12
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:25:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D67B10E940;
-	Tue, 13 Oct 2026 15:25:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6B4F10E929;
+	Tue, 13 Oct 2026 15:25:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DF3510E929
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 15:24:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B960B10E929
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 15:24:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791905095; x=1823441095;
+ t=1791905100; x=1823441100;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Eq5i2COEgxPuGCUSgBIRzUEClnV5/X8AEi66fMy6Iho=;
- b=l2/R5/S0EK3AKX6oM2SBw7N/wm5jVD8M7WYDnOLKDxJovp1kkv6vxc7H
- aYcj3WCRSFuORw3R7w0MtYfUCB0pAQWo5Yd4qGtluHb+fUA1QXw85DRTD
- PiqBWqZLY+Q8DBNN28YDXd0iOs9W0bIhXojnRNgqUxfC1zBqwWyAmw33a
- cfEv2TRmo/jDjnqiJZEJLOb4eldhbXdiBc5ZHjn74eUjuryUXmfXTOPpk
- QXTZR8vjgWY+GPbA6+ZWvdMKD7+ogq0yAsEvQ2uvN2+xWMeHTqpDamYYH
- xbmr8SVBXk5dVfveZWpIQ3djNpOkLi9oUoutRjMkBcmfOCWv3rTzySfv/ g==;
-X-CSE-ConnectionGUID: yr/0SwltQ6iy0llZCNBQlw==
-X-CSE-MsgGUID: 0tVZYCseRo6DOXj3d2zP4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="621597"
+ bh=k5jwPbgKJZj9FnM5LeCjQTWJs9+/NJnaRMHmU8QUBJg=;
+ b=deOcXyyO1PT1gmXBmNn6DhAmpVSUOneUw3rWpGyeeKEsGFtngFkSB5vd
+ cmVusaP3eEfKd2PEvjfR0vKNuaDyZtF/ifZ0Z4hIDkTc6NYCTPutMd7Ww
+ Q7zlR8oKXllUCM4byDVZTRSBdphcr3xahQq0fP6X/XSPWN1rRZeOqTb3J
+ DP46nQKT9mCtrLdDBvahRj9sHtFUetS6fkmPl2Az+6faXZfJMSZv+3oPv
+ RfseZKU/waBV84g24zMbxUo22e7t2LS9A4pFP5TJex/TzHXdvuHmJknSD
+ CQ6e85FiGJrtnTd9vWM8iJbjMwY/ZG4DidhVA7y5vY4svOqzOSKMax/06 Q==;
+X-CSE-ConnectionGUID: cKwnjuaKR96qWiXaQgK1ew==
+X-CSE-MsgGUID: CdQMtl/JQ/6vGBK4OUJoIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="621601"
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="621597"
+   d="scan'208";a="621601"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 08:24:25 -0700
-X-CSE-ConnectionGUID: 8+gkRtk+SV2mZel4pT8C9g==
-X-CSE-MsgGUID: NbDk9PVfR7qtnjv/4X/7bQ==
+ 13 Oct 2026 08:24:27 -0700
+X-CSE-ConnectionGUID: CMTYxlwPTOKIrgrPo3FBiA==
+X-CSE-MsgGUID: ZJ8marozQ4GK9L+Q2bmpGg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="1116821"
+   d="scan'208";a="1116825"
 Received: from gsd-build.iind.intel.com ([10.190.229.108])
- by orviesa005.jf.intel.com with ESMTP; 13 Oct 2026 08:24:23 -0700
+ by orviesa005.jf.intel.com with ESMTP; 13 Oct 2026 08:24:24 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v7 2/3] drm/xe/guc: Protect timeout handling from device unplug
-Date: Tue, 13 Oct 2026 15:24:19 +0000
-Message-ID: <20261013152417.3189567-7-satyanarayana.k.v.p@intel.com>
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH v7 3/3] drm/xe/gt: Disable GT reset worker before engine
+ teardown
+Date: Tue, 13 Oct 2026 15:24:20 +0000
+Message-ID: <20261013152417.3189567-8-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261013152417.3189567-5-satyanarayana.k.v.p@intel.com>
 References: <20261013152417.3189567-5-satyanarayana.k.v.p@intel.com>
@@ -67,78 +69,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC scheduler timeout callback accesses device and GT state while
-handling a timed-out job. Guard the callback with drm_dev_enter() and
-drm_dev_exit() so device unplug waits for in-flight timeout handling.
-If unplug has already started, mark the job with -ENODEV and return it
-to the scheduler for cleanup.
+During tear-down process, a reset queued from Guc timeout handler can
+still access hwe after hwe is freed. Register a separate devm
+action that disables and drains the reset worker, so it runs before
+any engine is torn down.
 
-Fixes: 6eb2aad402cc ("drm/xe: Move hw_engine_fini to devm managed")
+Fixes: 09c452d1171f ("drm/xe/gt: Synchronize GT reset with device unbind")
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Assisted-by: LLM
+Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-V6 -> V7:
-- Move the drm_dev_enter() after testing DMA_FENCE_FLAG_SIGNALED_BIT bit
-(Matt B).
-
-V5 -> V6:
-- Return DRM_GPU_SCHED_STAT_NO_HANG instead of DRM_GPU_SCHED_STAT_ENODEV
-(Piotr).
-
-V4 -> V5:
-- Return DRM_GPU_SCHED_STAT_ENODEV instead of DRM_GPU_SCHED_STAT_NO_HANG
-  (Sashiko).
-
 V3 -> V4:
-- None.
-
-V2 -> V3:
-- Fixed race condition with guc_exec_queue_timedout_job(). (Sashiko).
+- Fix race condition reported by LLM (Sashiko).
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/xe/xe_gt.c | 29 ++++++++++++++++++++++-------
+ 1 file changed, 22 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 7ce73489c35f..e0a3ce6015e0 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1599,6 +1599,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	int err = -ETIME;
- 	pid_t pid = -1;
- 	bool wedged = false, wedge_device = false, skip_timeout_check;
-+	int idx;
- 
- 	xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q));
- 
-@@ -1614,6 +1615,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	    vf_recovery(guc))
- 		return DRM_GPU_SCHED_STAT_NO_HANG;
- 
-+	if (!drm_dev_enter(&xe->drm, &idx)) {
-+		xe_sched_job_set_error(job, -ENODEV);
-+		return DRM_GPU_SCHED_STAT_NO_HANG;
-+	}
-+
- 	/* Kill the run_job entry point */
- 	if (xe_exec_queue_is_multi_queue(q))
- 		xe_guc_exec_queue_group_stop(q);
-@@ -1786,6 +1792,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * We want the job added back to the pending list so it gets freed; this
- 	 * is what DRM_GPU_SCHED_STAT_NO_HANG does.
- 	 */
-+	drm_dev_exit(idx);
- 	return DRM_GPU_SCHED_STAT_NO_HANG;
- 
- rearm:
-@@ -1799,6 +1806,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	else
- 		xe_sched_submission_start(sched);
- handle_vf_resume:
-+	drm_dev_exit(idx);
- 	return DRM_GPU_SCHED_STAT_NO_HANG;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 775c826b68b4..bc9bf6f0b5a7 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -630,8 +630,21 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+ 	return 0;
  }
+ 
++static void gt_reset_worker_disable(void *arg)
++{
++	struct xe_gt *gt = arg;
++
++	if (disable_work_sync(&gt->reset.worker))
++		/*
++		 * If gt_reset_worker was halted from executing, take care of
++		 * releasing the rpm reference here.
++		 */
++		xe_pm_runtime_put(gt_to_xe(gt));
++}
++
+ static int gt_init_with_all_forcewake(struct xe_gt *gt)
+ {
++	struct xe_device *xe = gt_to_xe(gt);
+ 	int err;
+ 
+ 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+@@ -698,6 +711,11 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
+ 	if (IS_SRIOV_PF(gt_to_xe(gt)))
+ 		xe_gt_sriov_pf_init_hw(gt);
+ 
++	/* Last action registered here so devres drains resets before teardown */
++	err = devm_add_action_or_reset(xe->drm.dev, gt_reset_worker_disable, gt);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ 
+@@ -706,12 +724,7 @@ static void xe_gt_fini(void *arg)
+ 	struct xe_gt *gt = arg;
+ 	int i;
+ 
+-	if (disable_work_sync(&gt->reset.worker))
+-		/*
+-		 * If gt_reset_worker was halted from executing, take care of
+-		 * releasing the rpm reference here.
+-		 */
+-		xe_pm_runtime_put(gt_to_xe(gt));
++	gt_reset_worker_disable(gt);
+ 
+ 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+ 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+@@ -754,8 +767,10 @@ int xe_gt_init(struct xe_gt *gt)
+ 	xe_force_wake_init_engines(gt, gt_to_fw(gt));
+ 
+ 	err = gt_init_with_all_forcewake(gt);
+-	if (err)
++	if (err) {
++		gt_reset_worker_disable(gt);
+ 		return err;
++	}
+ 
+ 	xe_gt_record_user_engines(gt);
  
 -- 
 2.43.0
