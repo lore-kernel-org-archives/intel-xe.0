@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3A1FCC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 18:50:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B593DCC6B1A
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 18:50:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 955E310E401;
-	Tue, 13 Oct 2026 18:50:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F20810E5E5;
+	Tue, 13 Oct 2026 18:50:39 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43B0310E401
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 18:50:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE4CA10E7C2
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 18:50:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791917428; x=1823453428;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=szLNHfrZ0ghp9NbhD1oC7qyF85QM9pAObDnYqNkt5Io=;
- b=Hp6NFMoUWRjaCUOisvV2Rk5M1x4rbgrzXxQ+faEmbWGHfuCqGURvxUuZ
- vK0/3A4Rt4/ysutAM9Bf1FvnLp1s46UNZ2f4LF89lzXzALNWypDrib0D3
- Ck/51Bf8OJLITb+iFcPS7vaSN15ga5kNoX/qbEjo/KzsBNmugP0LnICqL
- rLjMPdZ8HjL0BGXJlyVeEvwmKhbfe8a3a4JAbuDFhaGHqz/0CnbRZ5/8W
- nE/f8tj4flywl8EnIUhvdQFx+6MQQinbMJTksmr6uVfjFm4fls+Rf8R5N
- nQrqIljLPutHjAgDFhp0KvDzz4TRwViv8LNrVNrackcons8xnhVcoCAfN Q==;
-X-CSE-ConnectionGUID: ebDlj67ZSq+oxACAO2Ug6w==
-X-CSE-MsgGUID: fcYlOdA5QYabr2/x5pn+Bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="545764"
+ t=1791917433; x=1823453433;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Gh24B+pYIRFjBFZmgjcWy2V+dkPgI2htEJfj20bMRWk=;
+ b=e7VpVBNTKoBpvj0IBqD3Z9+ulC/5Z+jLfhTK+iK7TYFfp8KSBIWlaT/D
+ XQVyn25EPd1IPG72ENYBKYA3eXeQbmOgrUUUBRc+1xgn3MObGD14gL+Qv
+ CsUDPvuaMBxo97Lw2Y3vtlH/8NgaERKeMWjJbuih9A3zqqzaDBbZzDfRb
+ 8KjGAG8XB4UCq7bbgtUgFS5WsQDYhheirJP6Eg3+OZXjadYkye4CJkv+R
+ UAFrIo+aAyhtPicPGIIK45eVOom4IjzhavtVAcyp3ctEs8mMCgMqXOMUP
+ J6PduHfbNkIpdaGMSp83VVmRxOVQoCIh+fc1DE0MrJwaXXmK/0VKgaRfC w==;
+X-CSE-ConnectionGUID: 4bu/1kHgSyKL9Ma8qB34aw==
+X-CSE-MsgGUID: Z0k5irsrTLG7MrBzPpUt0A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="545772"
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="545764"
+   d="scan'208";a="545772"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 11:50:28 -0700
-X-CSE-ConnectionGUID: XqmHkHTTRTqQ2uWs90AK2g==
-X-CSE-MsgGUID: BjmGBC+RReKBGwLJ7HO/WA==
+ 13 Oct 2026 11:50:32 -0700
+X-CSE-ConnectionGUID: h0/LjBTwR269qjNYXkc/ZA==
+X-CSE-MsgGUID: wZkSWeI8RN+fcvGiVi30jw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="1596099"
+   d="scan'208";a="1596114"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 11:50:26 -0700
+ 13 Oct 2026 11:50:31 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v12 00/16] drm/xe/hwmon: Update hwmon thermal mailbox
-Date: Wed, 14 Oct 2026 00:19:23 +0530
-Message-Id: <20261013184939.694945-1-karthik.poosa@intel.com>
+Subject: [PATCH v12 02/16] drm/xe/hwmon: Decode mailbox temperature as
+ sign-magnitude
+Date: Wed, 14 Oct 2026 00:19:25 +0530
+Message-Id: <20261013184939.694945-3-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20261013184939.694945-1-karthik.poosa@intel.com>
+References: <20261013184939.694945-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,112 +68,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+The mailbox temperature is an 8-bit sign-magnitude value (bit 7 sign,
+bits 6:0 magnitude, range -127..127), not two's-complement. Casting the
+raw byte to s8 decodes negative readings incorrectly.
 
-This series adds CRI-specific temperature sensor handling to the Xe
-hwmon implementation and fixes couple of hwmon issues.
+Add mbx_temp_decode(), store the raw byte as u8, and use it in
+get_mc_temp() and get_pcie_temp() so temperatures are decoded correctly.
 
-CRI platforms may report unavailable temperature sensors and support
-a variable number of VRAM temperature channels depending on platform
-configuration. This series adds the required sensor presence checks and
-uses platform-reported thermal configuration data to expose only valid
-temperature-related hwmon attributes.
+Fixes: 3a0cb885e111 ("drm/xe/hwmon: Expose memory controller temperature")
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hwmon.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-The series also corrects the telemetry group selection used for memory
-controller temperature reporting.
-
-v2:
- - Address review comments from Sashiko, Badal and Raag.
- - Enable IEEE 754 temperature decoding for MMIO temperature registers.
-  - Split sensor validity check into mailbox vs MMIO handling; add
-    is_temp_available() / is_temp_is_visible().
- - Temporarily disable memory controller and PCIe temperatures on CRI.
-
-v3:
-  - Detect unavailable temperature sensors: rephrase a debug log.
-  - Decode mailbox temperatures as 8-bit sign-magnitude values instead of
-    s8.
-  - Use VRAM temperature sensor count from thermal config on CRI: address
-    review comments from sashiko-bot@kernel.org and Rodrigo.
-  - Decode CRI temperature registers as IEEE-754: reject temperatures that
-    overflow long on 32-bit systems.
-
-v4:
-  - Address review comments and issues report from Rodrigo and
-    sashiko-bot@kernel.org.
-  - Decode mailbox temperatures as 8-bit sign-magnitude values.
-  - Cache sensor availability during registration.
-  - Enable memory controller and pcie sensors for CRI.
-  - Derive the VRAM channel count from the CRI MSU enable mask.
-  - Use CRI-specific package and VRAM temperature registers.
-  - Handle the CRI memory controller and pcie sensor offsets as per CRI.
-
-v5:
- - Remove the unintended IGT prefix from the patch titles.
-
-v6:
- - Address issues reported by sashiko-bot@kernel.org.
- - Add VRAM individual channel CRI_VRAM_TEMPERATURE_N register for CRI.
-
-v7:
- - Address review comments from Rodrigo.
-    - Use ret instead of count in patch 1.
-    - Return true for platforms without temperature sentinels support.
-    - Rename has_mbx_temp_sentinel to has_temp_sentinel.
-    - Add a info flag for pcie sensor offset.
-    - Simplify temperature channels config.
-
-v8:
- - Address review comment from Sashiko.
- - Revert the unconditional validation of temperature readings on
-   non-sentinel platforms.
-   This avoids creating spurious VRAM temperature channels when the
-   corresponding sensors are unavailable.
-a
-v9:
- - Address review comment from Rodrigo.
- - Use helper for pcie sensor offset instead of info field.
-
-v10:
- - Address review comments from sashiko.
-
-v11:
- - Add https://patchwork.freedesktop.org/series/175943/ part of this
-   series as patch 16. (Rodrigo)
- - Resubmit to get CI results as v10 didn't have it.
-
-v12:
- - Address review comments from sashiko.
-
-Karthik Poosa (16):
-  drm/xe/hwmon: Handle pcode read failures of
-    xe_hwmon_pcode_rmw_power_limit
-  drm/xe/hwmon: Decode mailbox temperature as sign-magnitude
-  drm/xe/hwmon: Fix thermal sensor data handling
-  drm/xe/hwmon: Add helpers to validate thermal sensor readings
-  drm/xe/hwmon: Handle unavailable memory controller sensors
-  drm/xe/hwmon: Detect unavailable PCIe thermal sensors
-  drm/xe/hwmon: Consolidate temperature sensor availability checks
-  drm/xe/hwmon: Cache temperature availability to reduce probe time
-  drm/xe/hwmon: use CRI-specific package and VRAM temperature registers
-  drm/xe/hwmon: Add platform-aware VRAM thermal channel support
-  drm/xe/hwmon: Decode CRI temperature registers as IEEE-754
-  drm/xe/hwmon: Update memory controller temperature offset for CRI
-  drm/xe/hwmon: add PCIe temperature support for CRI
-  drm/xe/hwmon: Simplify temperature channels config
-  drm/xe: Validate thermal sensor count before reads
-  drm/xe/hwmon: Propagate all hardware read errors
-
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h |   4 +
- drivers/gpu/drm/xe/xe_device_types.h    |   4 +
- drivers/gpu/drm/xe/xe_hwmon.c           | 565 ++++++++++++++++++------
- drivers/gpu/drm/xe/xe_pci.c             |   4 +
- drivers/gpu/drm/xe/xe_pci_types.h       |   2 +
- drivers/gpu/drm/xe/xe_pcode_api.h       |   2 -
- 6 files changed, 442 insertions(+), 139 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 0b46572bb3c8..86ae02cc3c3a 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -104,6 +104,10 @@ enum sensor_attr_power {
+ /* Index of memory controller in READ_THERMAL_DATA output */
+ #define TEMP_INDEX_MCTRL	2
+ 
++/* Mailbox temperature is sign-magnitude: bit 7 sign, bits 6:0 magnitude. */
++#define TEMP_MBX_SIGN		BIT(7)
++#define TEMP_MBX_MAG		GENMASK(6, 0)
++
+ /* Maximum characters in hwmon label name */
+ #define MAX_LABEL_SIZE		16
+ 
+@@ -139,8 +143,8 @@ struct xe_hwmon_thermal_info {
+ 	};
+ 	/** @count: no of temperature sensors available for the platform */
+ 	u8 count;
+-	/** @value: signed value from each sensor */
+-	s8 value[U8_MAX];
++	/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
++	u8 value[U8_MAX];
+ 	/** @vram_label: vram label names */
+ 	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
+ };
+@@ -816,6 +820,14 @@ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
+ 	return ret;
+ }
+ 
++/* Decode an 8-bit sign-magnitude mailbox temperature to degrees Celsius. */
++static int mbx_temp_decode(u8 value)
++{
++	int temp = value & TEMP_MBX_MAG;
++
++	return (value & TEMP_MBX_SIGN) ? -temp : temp;
++}
++
+ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ {
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+@@ -832,7 +844,7 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ 	}
+ 
+ 	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
+-		average += hwmon->temp.value[i];
++		average += mbx_temp_decode(hwmon->temp.value[i]);
+ 
+ 	average /= (hwmon->temp.count - TEMP_INDEX_MCTRL - 1);
+ 	*val = average * MILLIDEGREE_PER_DEGREE;
+@@ -855,7 +867,7 @@ static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
+ 		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
+ 
+ 	data = REG_FIELD_GET(TEMP_MASK, data);
+-	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
++	*val = mbx_temp_decode(data) * MILLIDEGREE_PER_DEGREE;
+ 
+ 	return 0;
+ }
 -- 
 2.25.1
 
