@@ -4,77 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3594ACC6B0E
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 07:17:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7106CC6B0F
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 07:18:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E723810E06A;
-	Tue, 13 Oct 2026 07:17:30 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 085FA10E06A;
- Tue, 13 Oct 2026 07:17:20 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72CF510F501;
+	Tue, 13 Oct 2026 07:18:08 +0000 (UTC)
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E59ED10F501;
+ Tue, 13 Oct 2026 07:17:56 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 9F7AE21FB2;
- Tue, 13 Oct 2026 07:17:18 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 736BB1F788;
+ Tue, 13 Oct 2026 07:17:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1791875838; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ t=1791875875; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9GRXjGXRt/q/HxuWkxPseQ4KtI+fT1Tq5zTQgNNZ9vY=;
- b=TGj7CUKDtlQdLASI640ZVyLewoboYsEUv4xinlalReMj5YNfCxFvRY/8DkPK6jaE/sn+KR
- 7cmv2I6EV0nA1M3rmxT0hu0pRoJjWG6q2DCspDfD2pFhAsxLayzgAzj4TDFsBBArA1ABYT
- KG30NEK2P5+iAWemrKXYoLSlzx5FT38=
+ bh=6LdaKbJxHh3w5tco5BvI0wrfqbELlAgnB3Y/NNN7uaE=;
+ b=dCNEVs8yZxb1mZVU7tJnIPzX6mSKMIM7l7FoGpdb2IGDyVENYqy4MkkoDMzje3329Z7GbE
+ cWpQaHFiQHXij/PPcsOO1nN+GEPafkYZ90tpfVtc7jokcbrbzTr08lmrpJ1C6zSZYWxy7N
+ u5ujPv6jsXHFOtdF3bLDPWel4G/Rwlg=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1791875838;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ s=susede2_ed25519; t=1791875875;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9GRXjGXRt/q/HxuWkxPseQ4KtI+fT1Tq5zTQgNNZ9vY=;
- b=N37FWVUBgsNarlEEBLOGT796YUCZ2FenpYnVP8TcsDdhaH5ECafa1HVKltRmugPJIOmd6y
- AwlCX7PAhGVRN3BA==
-Authentication-Results: smtp-out1.suse.de;
-	none
+ bh=6LdaKbJxHh3w5tco5BvI0wrfqbELlAgnB3Y/NNN7uaE=;
+ b=oAznGZNrG9Vk3NQfpJ3SkQTBTc45HvrtByiJOaCT7sYfOAD41/EZJOl8Kt0hsYB/cBRxbP
+ llOztH+cOk17MrBA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ww3QvrcE;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=77iwrg96
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1791875838; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ t=1791875874; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9GRXjGXRt/q/HxuWkxPseQ4KtI+fT1Tq5zTQgNNZ9vY=;
- b=TGj7CUKDtlQdLASI640ZVyLewoboYsEUv4xinlalReMj5YNfCxFvRY/8DkPK6jaE/sn+KR
- 7cmv2I6EV0nA1M3rmxT0hu0pRoJjWG6q2DCspDfD2pFhAsxLayzgAzj4TDFsBBArA1ABYT
- KG30NEK2P5+iAWemrKXYoLSlzx5FT38=
+ bh=6LdaKbJxHh3w5tco5BvI0wrfqbELlAgnB3Y/NNN7uaE=;
+ b=ww3QvrcECt0DHg23zB+7Zq0OpnyHlmm9QJZitaJZEOgIOL9guo3f4+nT7xcLDSPqBtmO/a
+ Agwd6zQoyKVVEa09D12lqmM8VhOGqwwOR0wEUd7clQt8jsu/99J4MHkXlVEJ+C6ciL/l64
+ zk+FGsr5xFjCWm2qwNovQYUYX76UhAg=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1791875838;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
+ s=susede2_ed25519; t=1791875874;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=9GRXjGXRt/q/HxuWkxPseQ4KtI+fT1Tq5zTQgNNZ9vY=;
- b=N37FWVUBgsNarlEEBLOGT796YUCZ2FenpYnVP8TcsDdhaH5ECafa1HVKltRmugPJIOmd6y
- AwlCX7PAhGVRN3BA==
+ bh=6LdaKbJxHh3w5tco5BvI0wrfqbELlAgnB3Y/NNN7uaE=;
+ b=77iwrg96yZhi/5tCD/5pWK+/e8SOnzyomnxVY8DsuUy3Kib9BeO7iiS3+sASP03uVgUWNK
+ CH0Z3ie4oDXuw9DA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 637001349D;
- Tue, 13 Oct 2026 07:17:18 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 304EC1349D;
+ Tue, 13 Oct 2026 07:17:54 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id VjHzA/7azWqSVAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 13 Oct 2026 07:17:18 +0000
-Message-ID: <d93fe93e-628c-4551-9907-9872c150e530@suse.de>
-Date: Tue, 13 Oct 2026 09:17:17 +0200
+ by imap1.dmz-prg2.suse.org with ESMTPSA id pOcYASLbzWpXVQAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 13 Oct 2026 07:17:54 +0000
+Message-ID: <ff266a33-2729-47b4-8a1e-ff96bb456782@suse.de>
+Date: Tue, 13 Oct 2026 09:17:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/6] drm: consolidate self-imported PRIME dma-buf
- detection
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- matthew.brost@intel.com
+Subject: Re: [PATCH v2 3/6] drm/gem: add drm_gem_prime_dma_buf_to_gem()
+ self-import helper
+To: Matthew Brost <matthew.brost@intel.com>,
+ Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 References: <20261013010614.1516799-8-niranjana.vishwanathapura@intel.com>
+ <20261013010614.1516799-11-niranjana.vishwanathapura@intel.com>
+ <as2LL7IIs6EcL6Pj@gsse-cloud1.jf.intel.com>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -101,21 +105,29 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20261013010614.1516799-8-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <as2LL7IIs6EcL6Pj@gsse-cloud1.jf.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.29 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-0.997];
- NEURAL_HAM_SHORT(-0.20)[-0.995]; MIME_GOOD(-0.10)[text/plain];
- XM_UA_NO_VERSION(0.01)[]; MIME_TRACE(0.00)[0:+];
- ARC_NA(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 736BB1F788
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-4.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
+ XM_UA_NO_VERSION(0.01)[]; MX_GOOD(-0.01)[];
+ RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
+ RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
+ RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
+ TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
+ MID_RHS_MATCH_FROM(0.00)[]; RCVD_TLS_ALL(0.00)[];
  DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[]; RCPT_COUNT_THREE(0.00)[4];
- TO_DN_SOME(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- RCVD_TLS_ALL(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- RCVD_VIA_SMTP_AUTH(0.00)[]; MID_RHS_MATCH_FROM(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email, imap1.dmz-prg2.suse.org:helo,
- suse.com:url]
+ FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
+ RCPT_COUNT_THREE(0.00)[4]; RCVD_COUNT_TWO(0.00)[2];
+ TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,suse.de:dkim,intel.com:email,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
+ DNSWL_BLOCKED(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ DKIM_TRACE(0.00)[suse.de:+]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -130,64 +142,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Hi
 
-I don't think we should merge this series.
+Am 13.10.26 um 03:36 schrieb Matthew Brost:
+> On Mon, Oct 12, 2026 at 06:06:15PM -0700, Niranjana Vishwanathapura wrote:
+>> drm_gem_is_prime_exported_dma_buf() is a bool predicate that open-codes
+>> the core PRIME self-import check. Its only caller, the shmem importer,
+>> then repeats the dma_buf->priv lookup and the reference get.
+>>
+>> Replace it with drm_gem_prime_dma_buf_to_gem(), a thin wrapper around
+>> drm_gem_prime_self_import() that returns the backing GEM object -- with
+>> a reference taken -- for a core-PRIME self-export, or NULL otherwise.
+>> This consolidates self-import handling onto drm_gem_prime_self_import()
+>> and lets drm_gem_shmem_prime_import_no_map() reuse the object directly.
+>>
+>> Unlike the removed predicate, the helper takes a reference on the
+>> returned object; the sole caller already wanted the referenced object.
+>>
+>> Assisted-by: GitHub-Copilot:claude-opus-4.8
+> Assisted-by: LLM
+>
+> I was going to suggest this last rev too as I noticed
+> drm_gem_shmem_prime_import_no_map called
+> drm_gem_is_prime_exported_dma_buf which should prefer the new helper but
+> shmem couldn't look at drm_gem_prime_dmabuf_ops.
+>
+> This is a good cleanup:
 
-Testing for the functions struct is a hack, which we do because it works 
-in practice. We don't any other good identifier for the source of the 
-imported dma_buf. We want to hide this from the outside world as much as 
-possible. Putting it into an exported interface goes in the wrong direction.
+No it's not. Please see my reply to the cover letter.
 
 Best regards
 Thomas
 
-
-Am 13.10.26 um 03:06 schrieb Niranjana Vishwanathapura:
-> Detecting that a PRIME dma-buf being imported was exported by the same
-> DRM device is a pattern currently open-coded in many drivers (compare
-> dma_buf->ops against the driver's own ops, check obj->dev == dev, then
-> return the GEM object with an extra reference). This series adds generic
-> helpers for it and converts several drivers to use them.
 >
-> Patch 1 adds drm_gem_prime_self_import(dev, dma_buf, ops): for a dma-buf
-> self-exported via the given ops, it returns the backing GEM object with
-> a reference, letting a driver short-circuit the generic PRIME import and
-> skip the extra dma-buf file reference. Patch 2 converts Xe to it.
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 >
-> Patch 3 adds drm_gem_prime_dma_buf_to_gem(), a thin wrapper that uses the
-> core PRIME ops, and replaces the drm_gem_is_prime_exported_dma_buf() bool
-> predicate with it so the shmem importer resolves the object directly
-> (the sole caller already wanted the referenced object).
->
-> Patches 4-6 convert panthor, panfrost and amdgpu to
-> drm_gem_prime_self_import(), removing the duplicated open-coded checks.
->
-> No intended functional change.
->
-> Assisted-by: GitHub-Copilot:claude-opus-4.8
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->
-> Farah Kassabri (2):
->    drm/gem: add helper to detect self-imported PRIME dma-bufs
->    drm/xe/dma-buf: Use drm helper to detect dma-buf self-import
->
-> Niranjana Vishwanathapura (4):
->    drm/gem: add drm_gem_prime_dma_buf_to_gem() self-import helper
->    drm/panthor: use drm_gem_prime_self_import() helper
->    drm/panfrost: use drm_gem_prime_self_import() helper
->    drm/amdgpu: use drm_gem_prime_self_import() helper
->
->   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 +---
->   drivers/gpu/drm/drm_gem_shmem_helper.c      | 14 ++--
->   drivers/gpu/drm/drm_prime.c                 | 74 +++++++++++++++------
->   drivers/gpu/drm/panfrost/panfrost_gem.c     | 10 +--
->   drivers/gpu/drm/panthor/panthor_gem.c       | 10 +--
->   drivers/gpu/drm/xe/xe_dma_buf.c             | 23 ++++---
->   drivers/gpu/drm/xe/xe_dma_buf.h             |  2 +
->   include/drm/drm_prime.h                     |  8 ++-
->   8 files changed, 91 insertions(+), 64 deletions(-)
->
+>> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+>> ---
+>>   drivers/gpu/drm/drm_gem_shmem_helper.c | 14 ++++++--------
+>>   drivers/gpu/drm/drm_prime.c            | 26 +++++++++++++++-----------
+>>   include/drm/drm_prime.h                |  4 ++--
+>>   3 files changed, 23 insertions(+), 21 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
+>> index d654a22a30de..a0e161f2333e 100644
+>> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
+>> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+>> @@ -954,15 +954,13 @@ struct drm_gem_object *drm_gem_shmem_prime_import_no_map(struct drm_device *dev,
+>>   	size_t size;
+>>   	int ret;
+>>   
+>> -	if (drm_gem_is_prime_exported_dma_buf(dev, dma_buf)) {
+>> -		/*
+>> -		 * Importing dmabuf exported from our own gem increases
+>> -		 * refcount on gem itself instead of f_count of dmabuf.
+>> -		 */
+>> -		obj = dma_buf->priv;
+>> -		drm_gem_object_get(obj);
+>> +	/*
+>> +	 * Importing a dmabuf exported from our own gem increases the refcount
+>> +	 * on the gem itself instead of the f_count of the dmabuf.
+>> +	 */
+>> +	obj = drm_gem_prime_dma_buf_to_gem(dev, dma_buf);
+>> +	if (obj)
+>>   		return obj;
+>> -	}
+>>   
+>>   	attach = dma_buf_attach(dma_buf, dev->dev);
+>>   	if (IS_ERR(attach))
+>> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
+>> index 588910c250b8..275c5661528d 100644
+>> --- a/drivers/gpu/drm/drm_prime.c
+>> +++ b/drivers/gpu/drm/drm_prime.c
+>> @@ -933,23 +933,27 @@ EXPORT_SYMBOL(drm_gem_prime_export);
+>>   
+>>   
+>>   /**
+>> - * drm_gem_is_prime_exported_dma_buf -
+>> - * checks if the DMA-BUF was exported from a GEM object belonging to @dev.
+>> + * drm_gem_prime_dma_buf_to_gem - GEM object backing a self-exported PRIME dma-buf
+>>    * @dev: drm_device to check against
+>>    * @dma_buf: dma-buf object to import
+>>    *
+>> - * Return: true if the DMA-BUF was exported from a GEM object belonging
+>> - * to @dev, false otherwise.
+>> + * If @dma_buf is a PRIME export of a GEM object that belongs to @dev and uses
+>> + * the core PRIME dma-buf ops, return that GEM object with an extra reference
+>> + * taken, so a self-import reuses the GEM object instead of referencing the
+>> + * dma-buf file. Returns NULL for a foreign dma-buf or one using driver-private
+>> + * ops; such drivers call drm_gem_prime_self_import() with their own ops.
+>> + *
+>> + * The returned object carries a reference the caller must drop with
+>> + * drm_gem_object_put().
+>> + *
+>> + * Return: the referenced GEM object on self-import, or NULL otherwise.
+>>    */
+>> -
+>> -bool drm_gem_is_prime_exported_dma_buf(struct drm_device *dev,
+>> -				       struct dma_buf *dma_buf)
+>> +struct drm_gem_object *drm_gem_prime_dma_buf_to_gem(struct drm_device *dev,
+>> +						    struct dma_buf *dma_buf)
+>>   {
+>> -	struct drm_gem_object *obj = dma_buf->priv;
+>> -
+>> -	return (dma_buf->ops == &drm_gem_prime_dmabuf_ops) && (obj->dev == dev);
+>> +	return drm_gem_prime_self_import(dev, dma_buf, &drm_gem_prime_dmabuf_ops);
+>>   }
+>> -EXPORT_SYMBOL(drm_gem_is_prime_exported_dma_buf);
+>> +EXPORT_SYMBOL(drm_gem_prime_dma_buf_to_gem);
+>>   
+>>   /**
+>>    * drm_gem_prime_import_dev - core implementation of the import callback
+>> diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
+>> index d378404f8ab4..02665205aed1 100644
+>> --- a/include/drm/drm_prime.h
+>> +++ b/include/drm/drm_prime.h
+>> @@ -101,8 +101,8 @@ struct dma_buf *drm_gem_prime_export(struct drm_gem_object *obj,
+>>   unsigned long drm_prime_get_contiguous_size(struct sg_table *sgt);
+>>   
+>>   /* helper functions for importing */
+>> -bool drm_gem_is_prime_exported_dma_buf(struct drm_device *dev,
+>> -				       struct dma_buf *dma_buf);
+>> +struct drm_gem_object *drm_gem_prime_dma_buf_to_gem(struct drm_device *dev,
+>> +						    struct dma_buf *dma_buf);
+>>   
+>>   struct drm_gem_object *drm_gem_prime_import_dev(struct drm_device *dev,
+>>   						struct dma_buf *dma_buf,
+>> -- 
+>> 2.43.0
+>>
 
 -- 
 --
