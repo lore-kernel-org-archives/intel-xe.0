@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2F30CC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 19:01:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16472CC6B12
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 19:03:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9054110E985;
-	Tue, 13 Oct 2026 19:01:18 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B456310E985
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 19:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD77F10E8B6;
+	Tue, 13 Oct 2026 19:03:18 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4D7D10E927
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 19:03:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D9AB1601FF;
- Tue, 13 Oct 2026 19:01:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 658311F000FF;
- Tue, 13 Oct 2026 19:01:10 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 68FB840543;
+ Tue, 13 Oct 2026 19:03:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4981F000FF;
+ Tue, 13 Oct 2026 19:03:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791918070;
- bh=eSx4ztfbDHr/cd/IGoW349WKIv+bwIWy7kUgFJL5Br4=;
+ s=k20260515; t=1791918192;
+ bh=+Z91hj4i4SUZngxZ5ds9PYtSLWwQSDTYm3YBbd/Sm/I=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=MMdsVytHagssvZmDAkicDpfCg0k3bitYmIxKp95xcdP5YbC/DAo7dMMrW5us+sa7H
- f9OzGrCwQD0Z4dKYOcvYmnX6A1jlqCpClsOuZBjZJVYWUpJrCsE/VMt8HFX9bNJJug
- gFqWK61BBP1SWEfN4ixt7NeiPHEzHSROQt19C6nLs+IN/Ld/PhbG+hST0z1LRhA5Uo
- 8m1XOGlowm0mkekIjVSJgzmWBNtd5PkVTuUCbUpA0m2mLIsNAnPPN9BRo1uVG8f1wf
- 6Kp9kQFADPPIMur4T2p+xaPK08h+FkLbGITpfqHsDOLJWb84syJZUNYa6E6yenRY7/
- gLTWm6aIGFfAg==
-Message-ID: <sashiko-outbox-170367@kernel.org>
+ b=MlUTryPgBDSs3T+B3BfpaOCPO6aD/G1HVicmeTrRGbU5eJRXKfNAx+vAEhrYhBF9a
+ uHha0HXzbmWBb0MFxGbBaU9Zfuxvwacw+oHU0zVhVESMDxiB0sU3Kc2YqJaeg3Zth0
+ LWKzWicDW9NL6UKli4jgV1EqDPW0vHZJcOBCYdu7c09UKD5on+UZ5lGDl1rEh3YFKB
+ hsviidslim4k2HBtJlQNHW3aCGPhgmqZujXI8FmJWpOKuzeRbv33WrgzmLbwZAL2jk
+ IJp6yhKs8fPaC5+nKibq2G30FL1BmtLk4FW/dzcBC/p6ex6ERvFtJjEIx+qBqqmvIJ
+ M1co/qVCoxLmA==
+Message-ID: <sashiko-outbox-170371@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 04/16] drm/xe/hwmon: Add helpers to validate thermal
- sensor readings
+Subject: Re: [PATCH v12 01/16] drm/xe/hwmon: Handle pcode read failures of
+ xe_hwmon_pcode_rmw_power_limit
 To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261013184939.694945-5-karthik.poosa@intel.com>
+In-Reply-To: <20261013184939.694945-2-karthik.poosa@intel.com>
 References: <20261013184939.694945-1-karthik.poosa@intel.com>
- <20261013184939.694945-5-karthik.poosa@intel.com>
+ <20261013184939.694945-2-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 13 Oct 2026 19:01:09 +0000
+Date: Tue, 13 Oct 2026 19:03:11 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,79 +55,110 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] hwmon: Validation helpers fail to filter U32_MAX/0xFF on pre-CRI=
- platforms
+- [High] drm/xe/hwmon: PCODE active configuration corruption due to power l=
+imit init short-circuit
 --
 
-commit 3734bfcfc0e55f578f66176481a816cff2820aea
+commit 96c45d5f8e540d8e962d44f94ea42a65f2c0cb61
 Author: Karthik Poosa <karthik.poosa@intel.com>
-drm/xe/hwmon: Add helpers to validate thermal sensor readings
 
-This commit adds mmio_temp_valid() and mbx_temp_valid() helpers to validate
-temperature sensor readings. It introduces has_temp_sentinel to use U32_MAX
-or 0xFF as invalid indicators on supported platforms, falling back to check=
-ing
-for 0 on other platforms.
+drm/xe/hwmon: Handle pcode read failures of xe_hwmon_pcode_rmw_power_limit
+
+This commit adds error handling for pcode read failures in
+xe_hwmon_pcode_rmw_power_limit(). It propagates the error codes back to
+callers, including an updated initialization sequence in
+xe_hwmon_get_preregistration_info().
 
 > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index b1d57f4910579..418e1c503eb5a 100644
+> index 5edeac961ec33..0b46572bb3c88 100644
 > --- a/drivers/gpu/drm/xe/xe_hwmon.c
 > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-
-[ ... ]
-
-> @@ -825,6 +828,23 @@ static int xe_hwmon_pcode_read_thermal_info(struct x=
-e_hwmon *hwmon)
->  	return ret;
->  }
+> @@ -232,9 +232,11 @@ static int xe_hwmon_pcode_rmw_power_limit(const stru=
+ct xe_hwmon *hwmon, u32 attr
+>  						  READ_PSYSGPU_POWER_LIMIT :
+>  						  READ_PACKAGE_POWER_LIMIT,
+>  						  prepare_power_limit_param2(hwmon)), &val0, &val1);
+> -	if (ret)
+> -		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, =
+ret %d\n",
+> +	if (ret) {
+> +		drm_err(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, =
+ret %d\n",
+>  			channel, val0, val1, ret);
+> +		return ret;
+> +	}
 > =20
-> +static inline bool mmio_temp_valid(const struct xe_hwmon *hwmon, u32 val=
-ue)
-> +{
-> +	/*
-> +	 * On platforms lacking temperature sentinel support, a value of 0 is t=
-reated
-> +	 * as invalid. While 0=C2=B0C is theoretically possible, it is highly u=
-nlikely for
-> +	 * a discrete GPU in normal environments, making it a reasonable fallba=
-ck
-> +	 * indicator for invalid or uninitialized temperature readings.
-> +	 */
-> +	return hwmon->xe->info.has_temp_sentinel ? value !=3D U32_MAX : value !=
-=3D 0;
-
-[Severity: Medium]
-Does this allow standard MMIO read failures (U32_MAX) to bypass the filter =
-on
-platforms lacking has_temp_sentinel?
-
-If a device on a platform before CRI encounters a PCI read failure returning
-U32_MAX, the ternary fallback (value !=3D 0) evaluates to true. Any userspa=
-ce
-read of the hwmon sysfs nodes during such conditions would expose bogus
-extreme temperatures instead of properly returning an error.
-
-> +}
+>  	if (attr =3D=3D PL1_HWMON_ATTR)
+>  		val0 =3D (val0 & ~clr) | set;
+[ ... ]
+> @@ -1510,23 +1518,29 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon=
+ *hwmon)
+>  				 "Failed to read power limits, check GPU firmware !\n");
+>  		} else {
+>  			drm_info(&hwmon->xe->drm, "Using mailbox commands for power limits\n"=
+);
+> -			/* Write default limits to read from pcode from now on. */
+> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
+> -						       CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
+> -						       hwmon->pl1_on_boot[CHANNEL_CARD]);
+> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
+> -						       CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
+> -						       hwmon->pl1_on_boot[CHANNEL_PKG]);
+> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
+> -						       CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
+> -						       hwmon->pl2_on_boot[CHANNEL_CARD]);
+> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
+> -						       CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
+> -						       hwmon->pl2_on_boot[CHANNEL_PKG]);
 > +
-> +/* Mailbox temperature is sign-magnitude (bit 7 sign, bits 6:0 magnitude=
-). */
-> +static inline bool mbx_temp_valid(const struct xe_hwmon *hwmon, u8 value)
-> +{
-> +	return hwmon->xe->info.has_temp_sentinel ? value !=3D TEMP_MBX_INVALID =
-: value !=3D 0;
+>  			hwmon->scl_shift_power =3D PWR_UNIT;
+>  			hwmon->scl_shift_energy =3D ENERGY_UNIT;
+>  			hwmon->scl_shift_time =3D TIME_UNIT;
+> -			hwmon->boot_power_limit_read =3D true;
+> +
+> +			/* Write default limits to read from pcode from now on. */
+> +			if (xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
+> +							   CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
+> +							   hwmon->pl1_on_boot[CHANNEL_CARD]) ||
+> +			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
+> +							   CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
+> +							   hwmon->pl1_on_boot[CHANNEL_PKG]) ||
+> +			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
+> +							   CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
+> +							   hwmon->pl2_on_boot[CHANNEL_CARD]) ||
+> +			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
+> +							   CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
+> +							   hwmon->pl2_on_boot[CHANNEL_PKG])) {
+> +				drm_warn(&hwmon->xe->drm,
+> +					 "Failed to set default power limits !\n");
+> +			} else {
+> +				hwmon->boot_power_limit_read =3D true;
+> +			}
 
-[Severity: Medium]
-Does this allow 0xFF (TEMP_MBX_INVALID) to be treated as a valid reading on
-platforms lacking has_temp_sentinel?
+[Severity: High]
+Does this code inadvertently leave power limit sysfs files exposed with
+boot_power_limit_read set to false when an error occurs?
 
-If a device reads an unpopulated or unavailable mailbox sensor returning 0x=
-FF,
-the fallback check (value !=3D 0) evaluates to true. This would bypass the =
-filter
-and erroneously decode the reading to -127 degrees Celsius.
+If any of the initializations fail, the logical OR short-circuits. This ski=
+ps
+the remaining initialization calls and leaves boot_power_limit_read as fals=
+e,
+but the driver continues loading.
 
-> +}
+When userspace later writes to a power limit via xe_hwmon_power_max_write()=
+, it
+calls xe_hwmon_pcode_rmw_power_limit(). Because boot_power_limit_read is fa=
+lse,
+the read phase fetches firmware defaults (READ_PL_FROM_FW) instead of active
+PCODE limits.
+
+However, the write phase targets the active PCODE registers
+(WRITE_PACKAGE_POWER_LIMIT). This asymmetrical read-modify-write silently
+overwrites the active PCODE register (including sibling power limit enables=
+ and
+time windows) with the firmware defaults, corrupting the active hardware
+configuration.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261013184939.6949=
-45-1-karthik.poosa@intel.com?part=3D4
+45-1-karthik.poosa@intel.com?part=3D1
