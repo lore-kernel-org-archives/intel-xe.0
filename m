@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFDADCA9EC5
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 02:18:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6922FCA9ED0
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 02:20:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 910D710E00B;
-	Tue, 13 Oct 2026 02:18:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59ACC10E00B
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 02:18:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D82F610F431;
+	Tue, 13 Oct 2026 02:20:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0667610E6F3
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 02:20:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791857894; x=1823393894;
+ t=1791858016; x=1823394016;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=+aYrv5Gzj6OFRwBcLz6L3rH6t89Kfz0kieSmPHN3UX0=;
- b=cjjxFzJkvUvnm9QzMcDtpYR/ONqK6lrCeyujG3Q1KSvywNT0OYM1R0Hx
- 98paXyjLLmzFXofpXLwJLUiA1pK26q2YYKpS8eroKV2dttLmt7sClRD5Z
- g+vowmkUEYG09Da1XPolvhawt6Mk6Rfdqea6HT+Ze7PHVbn41Mr6NUGG1
- p3uWad4U5PA4THwL9GL7huh6+O70Ws1G6Y3TodePqUdvlr6LIv3es+3tH
- T3RghANXVyO1wQaydJBMcScVpEjJJDcxPR/Napg0g08g4fA+PoodmhYcU
- ShO5+NEluGJjLhLHzvnsa11omm65ltNMLDHg5ysdLx5hv9vdvTUzwMYkP Q==;
-X-CSE-ConnectionGUID: vvVJs9rPSsWj6t4LV3GoAw==
-X-CSE-MsgGUID: 3bX0JMb3TF2Uw5gk5fthpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="459826"
+ bh=/4YWJn1/LZ+QvmWjuy/IIXWYRazM1l23iIzDBZDv3x8=;
+ b=IuIOVM0i1HAOMs7VExIbD0NEbWDa2JLnU1jkpNreAJjngZwMhjXnxGkd
+ GcNT5KC8S1sXBaBDj1EsXaIEs6ympP6p6y4xZNkeQqt/hqqkZ8xnctx7B
+ W6rEZ+ulCB7hOUX6jpaXj+4fQ4LQlUsoj+B8hXm8LGcjHDLwuhmWn7SOp
+ 2Ig9j4elXJE8QBWH4rKIchdODbR+ZAPzdAwgP/854kbpecPF2WTFNddQC
+ ZWe1ak+fpz2eplZUDTw9omHjyQ/ShzH062eDyEEKtywddLKZLLm2TPBWi
+ 5TIMrDQqYZABs8YN9z0Xn6BR5i/twUFuREL59IdY1JX7jGkBXc2bJNQWF A==;
+X-CSE-ConnectionGUID: m45Iv8YAQ5GmNxITmJE1BA==
+X-CSE-MsgGUID: 9yzXdouxQAuqTKF3+Ja17A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="579865"
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="459826"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 19:18:14 -0700
-X-CSE-ConnectionGUID: nK55dqFSQFKH3Rb6peW/WQ==
-X-CSE-MsgGUID: dPbDBUrSTiKX7rJij5fvVA==
+   d="scan'208";a="579865"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 19:20:16 -0700
+X-CSE-ConnectionGUID: /4D6f4MzTPmOjNiuxqyOVA==
+X-CSE-MsgGUID: Gy+sEoaIS0qsQtqWGvVi/w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="999435"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 19:18:14 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 12 Oct 2026 19:18:13 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+   d="scan'208";a="1363296"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2026 19:20:15 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 12 Oct 2026 19:18:13 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.69) by
+ 15.2.2562.49; Mon, 12 Oct 2026 19:20:14 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Mon, 12 Oct 2026 19:20:14 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.67) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 12 Oct 2026 19:18:13 -0700
+ 15.2.2562.49; Mon, 12 Oct 2026 19:20:14 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hLSAr+OPXyROt2fNixMd5kEl97DkP2TCLKVrxO/WEy7TF+KEFoYBForyClOTyrqp/SY3f4iGEqYZ8Y5vBiYA+qfrS4T5pcUm71yHIJt1RhKFZNSLzGlUvolkZ453VT5vV2CsUiGyjtfejkVKabe13G/gCIFliWh26Nia93t65iuVPhpoXkeJo/XwvU2HeT6UnkdAoKtAfpHW3RtiGcYFPARXnY5XiUg/MpvjoOM6tUY/uUQtOu02niu57Hc+n6IGuNPs37zOMXqCJXP0d331Bc0CRJB6mbjbx08CJwuBLCM9lUja6sH6QsBcv7ZZGAN8Mgt1EuRvIEXga13GMEPh+w==
+ b=bDAM1xCuFYLyC/CWrlH/lGLl+RZxLlaPY/2YU6GJRlxVAYbkRFwCIGhpdpevWsTG+wN5T4A6Vt5trhWdM+6PfM3UEA0uSHlQu0sQGBuyp7vGuDGrjaeebI2CfdsdwF+2D1xvhvRcSRLbvONHr0abwlXPrUFp8RpbejLw0oDoWijZX+CtsBdiZVOLOKg/jqJe6PvRBS3RGCRIyFhRyUnNlpckjOqOFVAiVGnLpPbuR38uRf5unag2Lvoz24P6C45Vyks1wz5FpoRu8ctl1R+tvz9BmOfX6DUmkK6uubfHExcys/qNoos44aXuyQ7VsJNw62N1VryYCNIl6RItUTh6/w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3ygQA+VT/cFyJlyX/yLnc0aOj4VOji8IKcZ96U4PPwU=;
- b=Z0hVBMAk+H3D3lp07w9uJlE6ah/lTSOTe5EhIsmapV05QQYMMS7jcSpQdhinQPZ1psUL1yi4NKomurAlCOCtSiJ8sEFtko3cwgV/ugiQuAUKI7d7t7i2eihiM7NRsheL+GbDWVdzSHSmmcremITeLsG97KCxQz/KfZkoTR9inhZFwc0FybjYWiXUnOHOrEaNPruyYH7E0XQ/Dkt8l4TvtO5BHk/7l16Gi3nHX2A/I2ELijsoAPF6Epf0r3vZwVH5eKKAveWoKeYEUrMVaMp4NUmaDXn2bLep1QDdWMKPOGnlom0qKCyxWvuwJqP8Skb9zhwieeTGH8DAz2SpGGkY3g==
+ bh=bL+GiJ8jTunAnvGflTvV6wGkNfqkdVqRMk3aWom8I4I=;
+ b=bdYRsvr5hkKESQuKkcIA7BGjOvfcJIOaK260ikRlLw9TzXOc+X8v7BbEpuk1QSTq3Q24vsMXhUEAv3lUZEN4CEz8Ph5E4e/pgjAbjRI3P66ifnBSxeejSfi6iuDrOKAg+VGj4BJ8n0RL1sr6X9wQCqIKAquBrif/IBttBlZzhlkdHQg48tuvPxTbFfaeCX62f78dFOjc2WLNkYbgqHB5HkuPeQUL0njSvjL3XiShGQPPM2Rx78lznK9DHdPGQNYQIQCBmnBpZR8VQINkZ/mHkEb/JWnD/MsJ6DFQE+Y42diNSkeiY4yJcrqtCz5WZh69WOztrT3USEYdzit/p+MUHw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,92 +68,92 @@ Received: from CH8PR11MB852307.namprd11.prod.outlook.com
  (2603:10b6:610:32c::22) by IA0PR11MB7282.namprd11.prod.outlook.com
  (2603:10b6:208:43a::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.25; Tue, 13 Oct
- 2026 02:18:07 +0000
+ 2026 02:20:11 +0000
 Received: from CH8PR11MB852307.namprd11.prod.outlook.com
  ([fe80::5f8e:c1ed:445a:a4b7]) by CH8PR11MB852307.namprd11.prod.outlook.com
  ([fe80::5f8e:c1ed:445a:a4b7%4]) with mapi id 15.21.0496.021; Tue, 13 Oct 2026
- 02:18:07 +0000
-Message-ID: <2dc5e3dd-afd4-43e3-8e3d-4c028c87ac3f@intel.com>
-Date: Tue, 13 Oct 2026 07:47:57 +0530
+ 02:20:11 +0000
+Message-ID: <56eaa11b-62e8-4f8d-a0e0-d31bf54bb3cb@intel.com>
+Date: Tue, 13 Oct 2026 07:50:03 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 00/16] drm/xe/hwmon: Update hwmon thermal mailbox
+Subject: Re: [PATCH] drm/xe/hwmon: Propagate all hardware read errors
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
  <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
  <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>,
  <soham.purkait@intel.com>
-References: <20261012130401.443473-1-karthik.poosa@intel.com>
- <as2B6WPZk4xsCo3_@intel.com>
+References: <20261012110648.253748-1-karthik.poosa@intel.com>
+ <as2Ci8Vy9iTAN9r4@intel.com>
 Content-Language: en-US
 From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <as2B6WPZk4xsCo3_@intel.com>
+In-Reply-To: <as2Ci8Vy9iTAN9r4@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0135.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d5::12) To CH8PR11MB852307.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0125.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d5::16) To CH8PR11MB852307.namprd11.prod.outlook.com
  (2603:10b6:610:32c::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CH8PR11MB852307:EE_|IA0PR11MB7282:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6e44af0-5b49-432b-97c4-08df28d03858
+X-MS-Office365-Filtering-Correlation-Id: 26dfe83c-19a8-42f9-0f27-08df28d0827e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|6133799003|18002099003|22082099003|10067099003|261009223027099003|11063799006|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: UV2Gn7DrDNMCD0tx1fgyC6cepVVFYA0Oaw8t979lmYSjDD8Rz6aAn8mT6nVFStmyJl/1yP/twLej0hO3eEKobmH9G4T3aA/7v3he8v6dfEE5XFCaLhZBA1oy39UbwpIxBL9zOTN8ksPE2DUvVYHxZhe3xMzxWY62vAoHAkyX7QVQTpyTsAXrT0dr1BEXOgcgHiI8viAV/Q1FdzTotjwzUzHoKyypQ9UM74sx9JubvP8+BXpZtQy1Cc5gwCtGXrZZ9JFlfYeBCVntnAzoIUuHNPJIT1UsjqQ9UhENvXWWL/BPsUWTNg6RF01Entzsrm+oApImBcDO+jlkqwxVakB63e6YofeBomARoPxwYtXCSYNvf11pvHgMm08pUOocNEvDHZ6fBDIxjPmMrqyi4KD48ZxylLV2jmTz8wClHe9Pbke21i4RgzCJj6oJdC2u/A/3wXkNhZtEtllLksbfJYFqDRgVNAgJwSLqNfc1hAJFd7jeaH5uSI0vqyZJ4tpjBujyQOZNQXRn6NGGq/LTckbIfvlHzc9XN4D1jvbt7koDQGoD5rM/fEsDe675WiUlbd7T00wONVTuCUfwKekiNIFR3yTM9CV3t7MhdD/7OSFNDD3Cgv2rq+bWGimF/hnu5cAr
+ ARA:13230040|23010399003|1800799024|366016|376014|18002099003|22082099003|10067099003|261009223027099003|11063799006|4143699003|56012099006;
+X-Microsoft-Antispam-Message-Info: CiyS4GjAsv2U+6DZUQOHKoteRspEC4zUxf0CWTw7EWccuz0pgEHqmn/Q1g9bPZQVusENiFWU9nJRS+mcbwkk1flKannIgvYkuJFqMiNBelUJY0FAa4mwNCLr0JdQVSouhIQyQCkZo1s63yjXlLklGX54P0QnDtRmJAAXMLHz4sX0E7HDSuvYmoA7t+A2pbSgzhRvoHnPzj4E5QfmVeXnF1/ybqaImOCTm2Mn99MP+AkzfP8tvwMi6ODRu7KHWyVDVXKteWYi6MIO2gfEwfgqZYrWJPY8j30OLGm7KhSo3Iyvxrlo8hlc9ky0dCA8G1q//e1xHka4nreJ2TpxypcP1UBMy2Xba1B95rSh/+iA3eS8VZqMilxoA1OwyII3IiKjncUgm+LOdT8hgLv900kwOUmwxvJD0s7MnYH92aQhXHGsHComEuj2DSlPYcR/mVlFg6d1q8pHxFQMdhrJylh02v1a2JwEt7Sah8BTjAmWtl6G0Db+ebTT1BEvc3alioUH89EtsnUb1wht5UNxodgCdcMee5whcFf7l4LVgseaGTiIwrk0P2LeJ/dLwQeuUGtmSO3RYWJlhE4rbhRyhlShhl9wUR/K/+rJWNx3FXdbGo8=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH8PR11MB852307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(6133799003)(18002099003)(22082099003)(10067099003)(261009223027099003)(11063799006)(4143699003)(56012099006);
+ SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(18002099003)(22082099003)(10067099003)(261009223027099003)(11063799006)(4143699003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEJVcTZJNllJNTRYMGNvVEp6RU1nOGgwanRoZXJtV1Zjb25uTE5GOEhGc2RZ?=
- =?utf-8?B?cjQyZ0ZCUWg3VzVpRmlaTmdGWmJrQzNDbnZKQWFpM01qQnpFSGFnV1JXOWVV?=
- =?utf-8?B?ZU5la09BUlViMDNNS2U4M0lGd1FvYXp0dTMzdWpCRzZtUG5iUjJWaEZaT011?=
- =?utf-8?B?NzNCeStaRVdxZlZScUMzY29JUUVpcmI0VzNrNnpwSjZmVmNiNVFCMnV2WE9o?=
- =?utf-8?B?RjBFY0ZQMWI2TElsOXdFb0JERWwzSlNGRVY5SXRFYmhmT3lBNGVOM2NKb3Zp?=
- =?utf-8?B?bkJWVkJsR0dieFVtUmNnRDJWYysweXcyQk1JNlFpT09iTDZTZUNTcGczZ0Zh?=
- =?utf-8?B?aS9XZkJYZmVSZUJzZkJrSEN5SW1jc09sQWg5WEpyaDJ3cXF6cUNVNXBmQ3JO?=
- =?utf-8?B?VFpHdHkwaDVlNXdpWWZENGNTNzcrUENCVWFqVVBRaURIb2Q0dlRtUlFocmlL?=
- =?utf-8?B?NVJaSituL2RPc2RYVHdFM3hoVzVjTXVnclJtSitobFQ0WWJMdlZIYldQU3A0?=
- =?utf-8?B?NXV1bEZCTmUvdHJvRE9jRERJUWdqM2tDa0k3TGl0UkFrcWVYMVRjNVJlMUxK?=
- =?utf-8?B?RmZ6WXZ6VXJhRTdtUk0yQUlLUjRWTHdnQ3kvMFRPUGxlR2ZGL0REcmRaTHdD?=
- =?utf-8?B?NHVFV0dqUjNGVzNiQnVKbkJ5Z1NIRjkrRXdDTmVLUWMrUjFXbU01MlFiRWVN?=
- =?utf-8?B?cFVvWGhrcHFRMDJkdlpTTDVhc01pRkQrVFlCV21aK3IvcDdmbG0zZndPcHhp?=
- =?utf-8?B?WHE2NjlQdUFSekpKV2FOSE1qWXJ2K1dndXoxVEdvQ1JMVXBwelFGTlNWbHlZ?=
- =?utf-8?B?UDBRVHQvWUpGNGJlS1U0bS9FeDM1QjR0T001WHYzb2dORW1xTFpUM0hLWmxs?=
- =?utf-8?B?ODhPdUh1NVpVcEo0ZnRPQ3UvMjYvN1hVRS9BVlhMK1pSZVdLcXhHbkoyVjJW?=
- =?utf-8?B?bEY4dlE4QnNDcmlmTzJJbEtBdW1WSWhaUTIwVTN1VEU3SXAzQlhscVNRdFY5?=
- =?utf-8?B?UkJCU2RMeEZxWlhTNGt6Q2JVOTRNSkVValJxaURYbkF5SVZhNGhNVlQ5RlA0?=
- =?utf-8?B?RGlsUml4ako1REZLQzVNNzJKaUpNbUNKTVV6MlFGbSt3bXFZcTNvSjFzSXo2?=
- =?utf-8?B?aGxWRFNXYlNNYWhvMFJVR1Npc2RsVXNIRld4anJ5V2xaNTFvUnNyZU4xNTY1?=
- =?utf-8?B?bUpnSDlGWThpY2pFOFVMc0VhSmxBTUhiZ1B1MjV2YjhCQWIwaGRoN0RLUFRl?=
- =?utf-8?B?TURLQmJUMmxEdXlWYldlS0R2Tk9OV2FUelZ0Mnh5ZDEzZ1ZRSi9odDNHQ3di?=
- =?utf-8?B?bzdyMU9SZzcyUjNIYmFkQjM0WXRHdDZWYnZxTldhZzc2VUMweHR5VkhrWkFI?=
- =?utf-8?B?cStiLzBnNmpDemJzUVdyT25GWVVqclBxaEJXK0NBS1p2RWFlMWt5ekh1bEdH?=
- =?utf-8?B?Q3lKc2xra3NZSXd1WjBUWmNha21QWkR3ZHpLNE5FdU1rZHpzNmluNDJoaTA4?=
- =?utf-8?B?dmZaUURsSnBPbnJ5TzVvdlJTWHlycmJkSFJoTS9FWnBHT041SnFaZUEwZ3ZV?=
- =?utf-8?B?dlBCV21hV1dWc3V3am1SdStlZHROb3djM3ZhTVZ2bG9BRUdSM3lPVkZscjln?=
- =?utf-8?B?Nk9LQjJYaWFycXRudXBnU1A3K2R5S3VoUU9haE85NHFNUkorL2RUbUlyY3pS?=
- =?utf-8?B?ZlR0T1J1akZqbEp3WENLd1ZidDVhdmtqS3hrN0RDd3FIaDRXMWxYRXpJZ2tT?=
- =?utf-8?B?S3ROTXAxVi9jYUhWWFVIRlBGNXJYY0Mza1NycXFXcFd2aE41eDdySkM3V1Fu?=
- =?utf-8?B?cHl6Q09ERy95a3NXYmZpQkxadTV1aVNURTdaQ25zb1FmUjVFTXZiL2FjY1gw?=
- =?utf-8?B?aFc0Z25ZUTJzdzF3TWtKSUZaRVJSTGdJQklnd0htMlQ1bGZoNE9XMlY4U3ll?=
- =?utf-8?B?L1JjTkU1d0NYWnNKdjlqTFhnQ04vOUdVTjJaRTc3Nm9DdG5qMFhTdUNXQ1pY?=
- =?utf-8?B?UzdySjl6R01OckpTaVg0ME5VTktkUXFrZE5tMlp0VUUwSXNzempuNktYZGox?=
- =?utf-8?B?d2hPL2hNQ3k2ZlhpVS9SUTFuV0JYYUhMVjYzWnZqenNmN1RFd09ORHc5OGxk?=
- =?utf-8?B?ZXI0NGFSZWNzbC9ZRUpEamY5YUpJOStNWXl1UVJRSWg4WmFpSWZkdTkzYUww?=
- =?utf-8?B?WEc1a0ZObnA4L01CdllVUkNRUG54ZDV1WEdvWThlWjJCeWQ2aVh1OGR0bEhl?=
- =?utf-8?B?L2t5b0UydE1OTGlBNTBhUTdMZ0VaaGtUWTlxTmZ3SGFCa3k1ak9WMDFOUTIy?=
- =?utf-8?B?Njdib1dkeDZjazNZK3BsM0p4ZXltQUFjTGwwVjB1YnNuSFRVUTZZdz09?=
-X-Exchange-RoutingPolicyChecked: KHdM0CaCF+2ZjMykQWIE27Tvq+rtz39N5Sh/t5FBcpMuF0pDizjoRhB75EBmCMPUDUgZ26noXtIGwRujBvrlzMBgVQs6tdHExbgWCEnZGputjPJJ+FR5LGJlhp7N/ofI0TTIQr6BxuNjX4jiAaR2ccv3SilEei6ILNYSTUSJuafKl4QfZGEnoqdvCpli9egSkwT/M0OrOLjbQ2OhGUEXEeSbCR/Mm7jfRhHkgrv2Iji7St3m+8O/mE5vRasX2qydJs/I+d8YUBXNT20LI3tuaKCkQpqNkTW8ar3Zkdq1lg/HLKp1k8Cf082Hm94b67otKaSef0R1gpp5BKg5nbzgdg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6e44af0-5b49-432b-97c4-08df28d03858
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dGNWTkdVK0oxdU9aSmpOM2JuTGNTZXdnS1ZwTUw5TjRqeVlBbFk0ejhYSjFL?=
+ =?utf-8?B?OFg5YTAwcnQrNWJJYWFRbHBCYndlVTlMTTVyUWc5UStDVDl3Q3lMd1I5U1Zl?=
+ =?utf-8?B?Tlg3M3VqZEdBWUgxRGpJMHB1S3NoclJYTHBldUpGTE1JSEZYR0VwRVNsYjU3?=
+ =?utf-8?B?Wk5oa0hUd3NoWlhRcVlZS1RjemR3YmtuVE5PckZCck5hUkJRaGtYYTAwOWU2?=
+ =?utf-8?B?V2Zuc3AxVDc1TXdONkppV2x5azZiUmZRTkNvMkFjK01aNGpLc1ZoS3IzbThE?=
+ =?utf-8?B?cVdrbFhvVyt0TE5NeG9OVW15cnJ5RmJCV0k2WGdFYjIxejF2TWtDejVpVGZE?=
+ =?utf-8?B?eDRyTXZ5Nm8zajhpUVlubGVPTmhWN2dBQnRXcTlYT3FvSG5FcFVOSWpwZCsz?=
+ =?utf-8?B?REFhVXV1NmhIOGl2RHVXUktMdmJ2SVppMGZHWWF2N0ZUZDRWRmtja0ZndURH?=
+ =?utf-8?B?ZTF2VkhiNkhESWNaYUMxOVdGTURQWkxuNkZKaVc4by9HcmFlMzhnSVlGdC9H?=
+ =?utf-8?B?blhPY0NuQ0U1QTFNKzJNeGd3b25FTVFDZ2hwQnhhWnhKckJ2dWZXWkF3LzR5?=
+ =?utf-8?B?RmRRRlh1K29WMHNmY2toTmJhZEJqVkgzMVFkMUxkd1dteUw0T1hveDlIQzI4?=
+ =?utf-8?B?L2pFMmF4U3FjbTVaeExxV3o3bEMvUW1CZHFud2x2RWw2K0laZzNnOGtBaFgv?=
+ =?utf-8?B?NUtwdXNZT3VIMWJoR1YwN2RCc042UEFEVFRpSEdNQ09WOWVoVUJJclNNRXZn?=
+ =?utf-8?B?cXFwOHp0OWVkVHpGU2xMUHp2NTFDWlpWM3hLNndFaWR4QlJMeDZyNHZzdHZl?=
+ =?utf-8?B?VG9udDR3cTQzUWd3OUxlU1N5YzFIajVQUVRMZTZDcWc4VkhZVDdDSlRXYy93?=
+ =?utf-8?B?cTZEcGpwOHN3clVrNzd2dUwrSHFCdzFKK29CWHIxVGNsNkFjMVUxYnJWeGJw?=
+ =?utf-8?B?dHR4TFd1dndZaGp0UmpoSGIyRkpFRjh2Q2FzNmhFUEZxQVhqeWlLVldhWElJ?=
+ =?utf-8?B?R1EwKytjdmhmcHpDQ1Z5TEs1K21INkJlcnV2cXhRQzAvRFBNSHhzMHBOdDJx?=
+ =?utf-8?B?S3QzbDFYZW8xb0EyYkdVUGZ0NU9iMjhCYUtUR3BtNVgrN0JsTndDaVVmSlQ3?=
+ =?utf-8?B?UnZDdE5XdGdJNnFRQ2hGNm81ZlNwSGpzNDNpU0JzV1dlQlB3WktVdjZxaWlp?=
+ =?utf-8?B?K0hBL3FPMGVIbmNFeHIvb0szck02QmVXdWhIVXExQjV1RUhGOXorWWVUUG1Y?=
+ =?utf-8?B?OW91ODl6NG8xUUVIalVselpFZ2NyWUxLWitVd1JFMnNjcUJtL3pKaWYwUGNE?=
+ =?utf-8?B?OXhnNkdTaUJWZGNLTXU1RnlXZ3lOeXZTd3lHdWI3OU9wZjlzeVpObVlqUWtk?=
+ =?utf-8?B?VTNBY2M1cFptZm8xK2Y0TlFjMGdBTEp2dEVDM3ZrNDBTLzdmTmVtdGZzbUFt?=
+ =?utf-8?B?ay9ZalFKcFBuZlNBUC9HM3JhMWFhbWxoV1c4RkdnYUJkSXVla1BUSTU0YU83?=
+ =?utf-8?B?N1ZGRmx2UUErdTNiNjdXQlNJazZiazQ1bEh2aG5CM25KejRPSXZnd1pyQzJw?=
+ =?utf-8?B?eVpxazl5OXRqRFh3dnBzMVhpQUlSeDlGZFhNa1JaUnhRQ29ybWNPc3pkaWln?=
+ =?utf-8?B?ZU55aDZqVFpvbS9ad2pwYjc4b25iQkJReHlPbXVZNTM0UE5tMENOTnV3S0JS?=
+ =?utf-8?B?QXJmUm9pUGtVUkVjL0ZQYnlYYThOTjVlRG1lbzJVN2h3Q1FzY28zMTZNN3E5?=
+ =?utf-8?B?Ym1mZ0k0S0FBQm5seGlQN2F3TSsvRTU4eWJvV1NNTWFjaWxmcGZZcmFvRjZx?=
+ =?utf-8?B?NHhnMEkrVWpRVW05aDljTnhRd0dKZjV2ZjJyVUsxZUIyUU9YNCthK2tndXZ6?=
+ =?utf-8?B?MEYybkhlM2NjVUsybXJaYWhTMWdUR2t3R1JzckdJUjNid2tuRW03NzRRcStD?=
+ =?utf-8?B?U2JROWxHOFMrZmcwTElaazVZL2JaMmhUNTVWRmdGZGsxczVpVDBobmhGUDZD?=
+ =?utf-8?B?blVrcFd0MDZ3cXc1TUVvZ1d1MUJUbThBTnYxNUUrRmEvcUFZcFdnSFUyY2kz?=
+ =?utf-8?B?L0NxL2Jrc3NGbjE0ZTZIZjJ5UlpIMWRUNlZTUnlQVk1acTdFTW1aV3lBRHIz?=
+ =?utf-8?B?WDRaOXUyQUdBdkdxbEVqSU5ZWThMcFRLd0NHc082bGNxcWxiZnEyWTJQWUsr?=
+ =?utf-8?B?Y2pSZ0RUYUExTTdFUy9ZcEJWL3I1UUU2dFdrNW50dkx3bGYwZUVSSnJFZGY0?=
+ =?utf-8?B?N2w1MVhHRy9IRFFjdjNhR3FCMWREZlVhRU95c0xDNS9Kd055b1d0VG5leVRr?=
+ =?utf-8?B?bEpJYnhRZktRdDNIWE4ySzEvOVAxTnJBWVRMYUo0WUJncHJGSllHUT09?=
+X-Exchange-RoutingPolicyChecked: qf/h8Fy5tM2GQRB+XPcBmFY13gWUuzYHgNAvwA/IHxCjffUf31PROHc40mNx25gTZ7UZzDllejhGfj3udIPo9zJG4TLFaSb8iOEpO6nWGWVkNYGpv/tdIGIVzNtpc6tkT3D2SfqPp02qV/jfA7STSXe8tKyQ69BqdJnec8bPTRsxxoJFpRJu9mLU0WxIGLb39gQghwCy9vNM85CUjJcXNa9d3uNkaL7gnUj5puPm4sXZ+ZH6ChGMtwXbx1a1qpHI0FuHBHcJCr8B2WM6SioxbxQDtv4ZO5cR/rrNUtIe05Wp74bzCDz7v6DCdAstnilTNzwSgMp8cf9/s2tAmnb3aQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26dfe83c-19a8-42f9-0f27-08df28d0827e
 X-MS-Exchange-CrossTenant-AuthSource: CH8PR11MB852307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 02:18:07.6754 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 02:20:11.8487 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u5WrRmi+9xP7RIEg1Ej0OfuUgR6syS9UkexK5trX69WAWtcRSnYusv6UxqvFSL5i6vYtweBMMBA7CBjyVaVX4g==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1BmdVcILhRoI7x0d7uvwXf6Y7DSOpg3gtXZDYdPWMkxEsZ0rHuCYKMRZsY6/6LdTddBvXfmD8GZD1HYWU3WMRQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7282
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -171,110 +171,191 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 13-10-2026 06:27, Rodrigo Vivi wrote:
-> On Mon, Oct 12, 2026 at 06:33:46PM +0530, Karthik Poosa wrote:
->> This series adds CRI-specific temperature sensor handling to the Xe
->> hwmon implementation and fixes couple of hwmon issues.
+On 13-10-2026 06:29, Rodrigo Vivi wrote:
+> On Mon, Oct 12, 2026 at 04:36:48PM +0530, Karthik Poosa wrote:
+>> Propagate all failures from pcode and mailbox accesses and fix missed
+>> return-value checks found by Sashiko in
+>> https://patchwork.freedesktop.org/patch/758843/?series=174898&rev=6.
 >>
->> CRI platforms may report unavailable temperature sensors and support
->> a variable number of VRAM temperature channels depending on platform
->> configuration. This series adds the required sensor presence checks and
->> uses platform-reported thermal configuration data to expose only valid
->> temperature-related hwmon attributes.
->>
->> The series also corrects the telemetry group selection used for memory
->> controller temperature reporting.
->>
->> v2:
->>   - Address review comments from Sashiko, Badal and Raag.
->>   - Enable IEEE 754 temperature decoding for MMIO temperature registers.
->>    - Split sensor validity check into mailbox vs MMIO handling; add
->>      is_temp_available() / is_temp_is_visible().
->>   - Temporarily disable memory controller and PCIe temperatures on CRI.
->>
->> v3:
->>    - Detect unavailable temperature sensors: rephrase a debug log.
->>    - Decode mailbox temperatures as 8-bit sign-magnitude values instead of
->>      s8.
->>    - Use VRAM temperature sensor count from thermal config on CRI: address
->>      review comments from sashiko-bot@kernel.org and Rodrigo.
->>    - Decode CRI temperature registers as IEEE-754: reject temperatures that
->>      overflow long on 32-bit systems.
->>
->> v4:
->>    - Address review comments and issues report from Rodrigo and
->>      sashiko-bot@kernel.org.
->>    - Decode mailbox temperatures as 8-bit sign-magnitude values.
->>    - Cache sensor availability during registration.
->>    - Enable memory controller and pcie sensors for CRI.
->>    - Derive the VRAM channel count from the CRI MSU enable mask.
->>    - Use CRI-specific package and VRAM temperature registers.
->>    - Handle the CRI memory controller and pcie sensor offsets as per CRI.
->>
->> v5:
->>   - Remove the unintended IGT prefix from the patch titles.
->>
->> v6:
->>   - Address issues reported by sashiko-bot@kernel.org.
->>   - Add VRAM individual channel CRI_VRAM_TEMPERATURE_N register for CRI.
->>
->> v7:
->>   - Address review comments from Rodrigo.
->>      - Use ret instead of count in patch 1.
->>      - Return true for platforms without temperature sentinels support.
->>      - Rename has_mbx_temp_sentinel to has_temp_sentinel.
->>      - Add a info flag for pcie sensor offset.
->>      - Simplify temperature channels config.
->>
->> v8:
->>   - Address review comment from Sashiko.
->>   - Revert the unconditional validation of temperature readings on
->>     non-sentinel platforms.
->>     This avoids creating spurious VRAM temperature channels when the
->>     corresponding sensors are unavailable.
->>
->> v9:
->>   - Address review comment from Rodrigo.
->>   - Use helper for pcie sensor offset instead of info field.
->>
->> v10:
->>   - Address review comments from sashiko.
-> for some reason I don't see CI results for this v10.
+>> Fixes: 7596d839f622 ("drm/xe/hwmon: Add support to manage power limits though mailbox")
+>> Fixes: 0c5405d3aa4ad ("drm/xe/hwmon: Read energy status from PMT")
+>> Fixes: 25e963a09e059 ("drm/xe/hwmon: Move card reactive critical power under channel card")
+>> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Please add this as part of your re-submission of the other v10 series for the CI
 >
-> Could you please resubmit it?
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Added it - 
+https://patchwork.freedesktop.org/patch/759632/?series=175993&rev=1
 >
-> Thanks,
-> Rodrigo.
-Patchwork has created new link for v11 - 
-https://patchwork.freedesktop.org/series/175993/
->
->> Karthik Poosa (16):
->>    drm/xe/hwmon: Handle pcode read failures of
->>      xe_hwmon_pcode_rmw_power_limit
->>    drm/xe/hwmon: Decode mailbox temperature as sign-magnitude
->>    drm/xe/hwmon: Fix thermal sensor data handling
->>    drm/xe/hwmon: Add helpers to validate thermal sensor readings
->>    drm/xe/hwmon: Handle unavailable memory controller sensors
->>    drm/xe/hwmon: Detect unavailable PCIe thermal sensors
->>    drm/xe/hwmon: Consolidate temperature sensor availability checks
->>    drm/xe/hwmon: Cache temperature availability to reduce probe time
->>    drm/xe/hwmon: use CRI-specific package and VRAM temperature registers
->>    drm/xe/hwmon: Add platform-aware VRAM thermal channel support
->>    drm/xe/hwmon: Decode CRI temperature registers as IEEE-754
->>    drm/xe/hwmon: Update memory controller temperature offset for CRI
->>    drm/xe/hwmon: add PCIe temperature support for CRI
->>    drm/xe/hwmon: Simplify temperature channels config
->>    drm/xe: Validate thermal sensor count  before reads
->>    drm/xe/hwmon: Propagate all hardware read errors
+>> ---
+>>   drivers/gpu/drm/xe/xe_hwmon.c | 47 +++++++++++++++++++++--------------
+>>   1 file changed, 29 insertions(+), 18 deletions(-)
 >>
->>   drivers/gpu/drm/xe/regs/xe_pcode_regs.h |   4 +
->>   drivers/gpu/drm/xe/xe_device_types.h    |   4 +
->>   drivers/gpu/drm/xe/xe_hwmon.c           | 525 ++++++++++++++++++------
->>   drivers/gpu/drm/xe/xe_pci.c             |   4 +
->>   drivers/gpu/drm/xe/xe_pci_types.h       |   2 +
->>   drivers/gpu/drm/xe/xe_pcode_api.h       |   2 -
->>   6 files changed, 416 insertions(+), 125 deletions(-)
->>
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+>> index 768566648bc8..fbcc04341e29 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>> @@ -381,17 +381,20 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
+>>    * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
+>>    * clamped values when read.
+>>    */
+>> -static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *value)
+>> +static int xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *value)
+>>   {
+>>   	u32 reg_val = 0;
+>>   	struct xe_device *xe = hwmon->xe;
+>>   	struct xe_reg rapl_limit, pkg_power_sku;
+>>   	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+>> +	int ret = 0;
+>>   
+>>   	mutex_lock(&hwmon->hwmon_lock);
+>>   
+>>   	if (hwmon->xe->info.has_mbx_power_limits) {
+>> -		xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
+>> +		ret = xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
+>> +		if (ret)
+>> +			goto unlock;
+>>   	} else {
+>>   		rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
+>>   		pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
+>> @@ -423,6 +426,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channe
+>>   	}
+>>   unlock:
+>>   	mutex_unlock(&hwmon->hwmon_lock);
+>> +	return ret;
+>>   }
+>>   
+>>   static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channel, long value)
+>> @@ -445,7 +449,9 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+>>   			ret = xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
+>>   			if (ret)
+>>   				goto unlock;
+>> -			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
+>> +			ret = xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
+>> +			if (ret)
+>> +				goto unlock;
+>>   		} else {
+>>   			reg_val = xe_mmio_rmw32(mmio, rapl_limit, PWR_LIM_EN, 0);
+>>   			reg_val = xe_mmio_read32(mmio, rapl_limit);
+>> @@ -502,15 +508,18 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
+>>   	return ret;
+>>   }
+>>   
+>> -static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int channel,
+>> -					  long *value)
+>> +static int xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int channel,
+>> +					 long *value)
+>>   {
+>>   	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>>   	u32 reg_val;
+>> +	int ret = 0;
+>>   
+>>   	if (hwmon->xe->info.has_mbx_power_limits) {
+>>   		/* PL1 is rated max if supported. */
+>> -		xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, channel, &reg_val);
+>> +		ret = xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, channel, &reg_val);
+>> +		if (ret)
+>> +			return ret;
+>>   	} else {
+>>   		/*
+>>   		 * This sysfs file won't be visible if REG_PKG_POWER_SKU is invalid, so valid check
+>> @@ -524,6 +533,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int
+>>   
+>>   	reg_val = REG_FIELD_GET(PKG_TDP, reg_val);
+>>   	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
+>> +	return ret;
+>>   }
+>>   
+>>   /*
+>> @@ -546,7 +556,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int
+>>    * hwmon->scl_shift_energy of 14 bits we have 57 (63 - 20 + 14) bits before
+>>    * energyN_input overflows. This at 1000 W is an overflow duration of 278 years.
+>>    */
+>> -static void
+>> +static int
+>>   xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+>>   {
+>>   	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>> @@ -557,7 +567,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+>>   	/* Energy is supported only for card and pkg */
+>>   	if (channel > CHANNEL_PKG) {
+>>   		*energy = 0;
+>> -		return;
+>> +		return 0;
+>>   	}
+>>   
+>>   	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
+>> @@ -569,7 +579,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+>>   		if (ret != sizeof(pmt_val)) {
+>>   			drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n", ret);
+>>   			*energy = 0;
+>> -			return;
+>> +			return ret < 0 ? ret : -EIO;
+>>   		}
+>>   
+>>   		if (channel == CHANNEL_PKG)
+>> @@ -586,6 +596,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+>>   
+>>   	*energy = mul_u64_u32_shr(ei->accum_energy, SF_ENERGY,
+>>   				  hwmon->scl_shift_energy);
+>> +	return 0;
+>>   }
+>>   
+>>   static ssize_t
+>> @@ -611,7 +622,8 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
+>>   			drm_err(&hwmon->xe->drm,
+>>   				"power interval read fail, ch %d, attr %d, val 0x%08x, ret %d\n",
+>>   				channel, power_attr, reg_val, ret);
+>> -			reg_val = 0;
+>> +			mutex_unlock(&hwmon->hwmon_lock);
+>> +			return ret;
+>>   		}
+>>   	} else {
+>>   		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
+>> @@ -1391,7 +1403,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>>   		}
+>>   	case hwmon_power_crit:
+>>   		if (channel == CHANNEL_CARD) {
+>> -			xe_hwmon_pcode_read_i1(hwmon, &uval);
+>> +			if (xe_hwmon_pcode_read_i1(hwmon, &uval))
+>> +				return 0;
+>>   			return (uval & POWER_SETUP_I1_WATTS) ? 0644 : 0;
+>>   		}
+>>   		break;
+>> @@ -1410,7 +1423,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>>   			}
+>>   		}
+>>   		if ((!(uval & PWR_LIM_EN)) && channel == CHANNEL_CARD) {
+>> -			xe_hwmon_pcode_read_i1(hwmon, &uval);
+>> +			if (xe_hwmon_pcode_read_i1(hwmon, &uval))
+>> +				return 0;
+>>   			return (uval & POWER_SETUP_I1_WATTS) ? 0444 : 0;
+>>   		}
+>>   		return (uval) ? 0444 : 0;
+>> @@ -1426,11 +1440,9 @@ xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>>   	switch (attr) {
+>>   	case hwmon_power_max:
+>>   	case hwmon_power_cap:
+>> -		xe_hwmon_power_max_read(hwmon, attr, channel, val);
+>> -		return 0;
+>> +		return xe_hwmon_power_max_read(hwmon, attr, channel, val);
+>>   	case hwmon_power_rated_max:
+>> -		xe_hwmon_power_rated_max_read(hwmon, attr, channel, val);
+>> -		return 0;
+>> +		return xe_hwmon_power_rated_max_read(hwmon, attr, channel, val);
+>>   	case hwmon_power_crit:
+>>   		return xe_hwmon_power_curr_crit_read(hwmon, channel, val, SF_POWER);
+>>   	default:
+>> @@ -1547,8 +1559,7 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>>   {
+>>   	switch (attr) {
+>>   	case hwmon_energy_input:
+>> -		xe_hwmon_energy_get(hwmon, channel, val);
+>> -		return 0;
+>> +		return xe_hwmon_energy_get(hwmon, channel, val);
+>>   	default:
+>>   		return -EOPNOTSUPP;
+>>   	}
 >> -- 
 >> 2.25.1
 >>
