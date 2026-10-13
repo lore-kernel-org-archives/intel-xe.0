@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85D3ACC6B0F
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 21:46:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EE19CC6B12
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 21:47:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E1C310E15D;
-	Tue, 13 Oct 2026 21:46:05 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9ACC410E0AD;
- Tue, 13 Oct 2026 21:46:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1985721677587705560=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B82FE10E2F8;
+	Tue, 13 Oct 2026 21:47:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05A5010E15D
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 21:47:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791928028; x=1823464028;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ihYhoyuEXQjgXvC2DCfAw9uaOcE9GsgzpGyLkeYOAZ8=;
+ b=JkeJDtLl5N5ehDPd6fEubMauFh6OtLMzNfHkCnFivA2wDK968PaIY7ec
+ Fcoegu6zL5kw4PTXcoX7PfodWg5hrijTzzrau6AnIP6bdib5WysM+fbUP
+ 4M5MJzQm08ESsHALotu0xAYjGZtPUFxhklr/PdR2jjQhhg2h6Nro/hfpD
+ CIgXa+3NpJIkc6xfRcs89RjcO40tKpn8BzQasrxY9Ct35R95SCdJiPz/r
+ seUhSJWCAZfHozBNF33GBGynsUh1KCYJ31c3O75r9gW5PjWuL0zudDkj0
+ tpJMmgBi66GXp6GFzQYWveU8exJzofFmAO6unXv51rRBGvZ06KHtuWjcU w==;
+X-CSE-ConnectionGUID: UVj+crqHQMCe1d8Iy/98bQ==
+X-CSE-MsgGUID: to1WhL+vRBKjvJDRBAO8cQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="565901"
+X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
+   d="scan'208";a="565901"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 14:47:07 -0700
+X-CSE-ConnectionGUID: MXE3Wu7OQTqyi4HzCRksMw==
+X-CSE-MsgGUID: CCLk2ME9SxigyazpBxCP4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
+   d="scan'208";a="1629820"
+Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 14:47:08 -0700
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
+ anoop.c.vijay@intel.com, badal.nilawar@intel.com,
+ matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
+Subject: [PATCH v12 00/21] Crescent Island PMT support
+Date: Tue, 13 Oct 2026 14:46:53 -0700
+Message-ID: <20261013214655.3502964-23-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_Reduce_overhead?=
- =?utf-8?q?_in_DC3CO_transitions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Oct 2026 21:46:04 -0000
-Message-ID: <179192796462.20765.18352856588947021784@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261013161131.2572279-4-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20261013161131.2572279-4-dibin.moolakadan.subrahmanian@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +64,153 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1985721677587705560==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The Crescent Island (CRI) GPU supports PMT via Xe driver
+registration.
 
-== Series Details ==
+The CRI PMT MMIO mapping is shared for each PMT feature and it is
+necessary to set an index register value to access the correct memory
+space.
 
-Series: drm/i915: Reduce overhead in DC3CO transitions
-URL   : https://patchwork.freedesktop.org/series/176062/
-State : success
+The PMT driver has a callback infrastructure to access data areas with
+driver specific access. It is does not support the PMT control access.
 
-== Summary ==
+CRI discovery/control spaces are part of the access window so a driver
+callback is necessary to allow for the correct window to be exposed.
 
-CI Bug Log - changes from xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614_BAT -> xe-pw-176062v1_BAT
-====================================================
+Add control path callback support to the PMT driver.
 
-Summary
--------
+Add CRI PMT discovery information.
 
-  **SUCCESS**
+Update the Xe driver to support the CRI PMT access.
 
-  No regressions found.
+The crashlog access needs to be done with power enabled (telem is only
+available when the device is powered).
 
-  
+Determine which access is requested, and do the appropriate power
+request.
 
-Participating hosts (15 -> 15)
-------------------------------
+CRI FW is loaded at device power.  Support the late-binding API to
+wait for FW readiness. (pending sysctl patch set implements the API).
 
-  No changes in participating hosts
+v2:
+  Address AI feedback:
+  - add missing entry->cb check
+  - address SRIOV VF concerns
+  - use xe_pm_runtime_put instead of _get in error path
 
-Known issues
-------------
+  Address review comments:
+  - redo power/lock sequencing
+  - support device hotplug events
 
-  Here are the changes found in xe-pw-176062v1_BAT that come from known issues:
+v3:
+  - cleanup power manangement flow
+  - fixed an out of order power management locking issue
+  - add a GUID caching mechanism, for GUID read
+  - removed unused parameter (mmio)
 
-### IGT changes ###
+v4:
+ - address various review comments
+ - refactor crashlog to allow for return values
+ - for callback usage, decouple PMT remap of data areas
+ - use IS_SRIOV_VF() rather than expose soc-remapper internals
+ - separate locking fixes intos distinct steps
+ - refactor define update patches to seperate BMG and CRI updates
+ - separate internal GUID into separate steps
 
-#### Issues hit ####
+v5:
+ - removed callback helpers
+ - do not return error message with sysfs
+ - fix missed return code check in trigger_store
+ - return error value not false
+ - use DEFINE_RES_MEM
+ - document when base is unused
+ - return error on invalid GUID request
 
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176062v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+v6:
+ - fix enabled/disabled inversion
+ - fix missing DOC reference
+ - change memcpy_to/fromio to readl/writel for register read
+ - guid cache comment and update on valid guid
 
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+v7:
+ - reordered to have BMG updates followed by CRI support
+ - separate base_offset usage for clarity
+ - added EAGAIN usage to block uninitialized use of the API
 
+v8:
+ - fix punit crashlog offset (should be 0xE60 not 0xE78)
+ - remove EAGAIN support and re-order probe steps to initialize
+   VSEC before other features use it
 
-Build changes
--------------
+v9:
+ - added appropriate reviewed-bys
+ - use dev_err instead of pr_err
+ - enforce defined base usage when callbacks are in plcace
+ - move SRIOV check to get_platform_info
+ - assert SRIOV for API check
+ - use scoped_guard() where possible
+ - update to use correct sysctrl helper
 
-  * Linux: xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614 -> xe-pw-176062v1
+v10:
+ - fix incorrect return type (broken in refactor, int -> bool)
+ - fix incorrectly documented error return values
+ - doc text cleanup
 
-  IGT_9143: 992e2bc5d5fcaef292ea89e3db5cb7a50b6edfc2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614: 3bb5625e4dccd61506ad2815da07ac082e1df614
-  xe-pw-176062v1: 176062v1
+v11:
+ - add reviewed-by
+ - fix minor checkpatch issue
+ - use xe_assert() for a consistent API check
 
-== Logs ==
+v12:
+ - add survivability mode support
+ - add reviewed-by
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176062v1/index.html
+Michael J. Ruhl (21):
+  platform/x86/intel/pmt: complete pcidev to device update
+  platform/x86/intel/pmt: refactor rmw with a return value
+  platform/x86/intel/pmt: refactor rc with a return value
+  platform/x86/intel/pmt: Add register access callbacks
+  platform/x86/intel/pmt: Do not remap when using callbacks
+  drm/xe/vsec: Do not register BMG PMT for VF
+  drm/xe/vsec: Correct locking order
+  drm/xe/vsec: Use correct pm state get
+  drm/xe/vsec: Add DOC text for VSEC
+  drm/xe/vsec: Support possible hotplug exit
+  drm/xe/vsec: Refactor BattleMage PMT defines
+  drm/xe/vsec: Update VSEC probe order
+  drm/xe/vsec: Add base_offset to allow for more flexibilty
+  drm/xe/vsec: Support Crescent Island PMT
+  drm/xe/vsec: Crescent Island PMT decode
+  drm/xe/vsec: Crescent Island PMT callbacks
+  drm/xe/vsec: Support late bind fw information
+  drm/xe/vsec: Add PMT GUID internal access
+  drm/xe/vsec: Update PMT internal access
+  drm/xe/vsec: Refactor platform check
+  drm/xe/vsec: Support survivability mode for CRI
 
---===============1985721677587705560==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ Documentation/gpu/xe/index.rst             |   1 +
+ Documentation/gpu/xe/xe_vsec.rst           |  14 +
+ drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
+ drivers/gpu/drm/xe/xe_debugfs.c            |  45 +-
+ drivers/gpu/drm/xe/xe_device.c             |   6 +-
+ drivers/gpu/drm/xe/xe_device_types.h       |   9 +
+ drivers/gpu/drm/xe/xe_hwmon.c              |  10 +-
+ drivers/gpu/drm/xe/xe_pcode.c              |  10 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c |   2 +
+ drivers/gpu/drm/xe/xe_vsec.c               | 584 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vsec.h               |   3 +-
+ drivers/platform/x86/intel/pmt/class.c     |  26 +-
+ drivers/platform/x86/intel/pmt/class.h     |   5 +-
+ drivers/platform/x86/intel/pmt/crashlog.c  | 235 ++++++---
+ drivers/platform/x86/intel/pmt/discovery.c |   2 +-
+ drivers/platform/x86/intel/pmt/telemetry.c |   3 +
+ include/linux/intel_vsec.h                 |  14 +-
+ 17 files changed, 815 insertions(+), 166 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_vsec.rst
 
+-- 
+2.43.0
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Reduce overhead in DC3CO transitions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176062/">https://patchwork.freedesktop.org/series/176062/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176062v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176062v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614_BAT -&gt; xe-pw-176062v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-176062v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176062v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614 -&gt; xe-pw-176062v1</li>
-</ul>
-<p>IGT_9143: 992e2bc5d5fcaef292ea89e3db5cb7a50b6edfc2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614: 3bb5625e4dccd61506ad2815da07ac082e1df614<br />
-  xe-pw-176062v1: 176062v1</p>
-
-</body>
-</html>
-
---===============1985721677587705560==--
