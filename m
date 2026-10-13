@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 696D8CC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 16:12:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9286CC6B0E
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 16:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB1DD10E8E7;
-	Tue, 13 Oct 2026 16:12:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B9310E8E9;
- Tue, 13 Oct 2026 16:12:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791907951; x=1823443951;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jpzVE95YACXHdk+5CAJUbBK2fD3J2nei38+hXi5KXEs=;
- b=K//bJCyyIA+hGHvDK+rqjDHsjoUk6s1avH6FBUq1SQe1jH4zd6Hkr/eP
- TtkuQ9qlBhl+4GuiH20t2gc4oJoO5WTgotd6uTgm5P+P9jHVeK/Q/W3ZP
- ba7624d9T2URs1pTbJxn3Rtv4UyjggfNcD4bcFGJuvV8B1dMKTTvTlcY+
- 8XPkYzTwHmD1msZfndKvFSjSNahZZMHnv2yD4TGascyWcKQPJsOs+jDBb
- u0O5vHLxxtHPozxnghyA9wQkcfxImU1/BJ34aGT+X+J6euaQjCxoOv80O
- TS/jvK9DO6nvtuOwyYOwsh5VM73U8m3/VkM2md4Fd/mup+30+cX/Bdc4V Q==;
-X-CSE-ConnectionGUID: 8fGq/zVbQg2tFBaI3ABgLA==
-X-CSE-MsgGUID: sRAbw6MzRDuaBg3kxEF+UQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="534512"
-X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="534512"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 09:12:30 -0700
-X-CSE-ConnectionGUID: gyTz3lzHSByrzqmO0ND9Tg==
-X-CSE-MsgGUID: YJBPYaBrRfG+9O5jChhYGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="1205091"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 09:12:30 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com,
-	imre.deak@intel.com
-Subject: [PATCH 2/2] drm/i915/dmc_wl: Avoid blocking on delayed wakelock
- release
-Date: Tue, 13 Oct 2026 21:41:34 +0530
-Message-ID: <20261013161131.2572279-6-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261013161131.2572279-4-dibin.moolakadan.subrahmanian@intel.com>
-References: <20261013161131.2572279-4-dibin.moolakadan.subrahmanian@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD4D10F4A8;
+	Tue, 13 Oct 2026 16:18:59 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7942210E8BA;
+ Tue, 13 Oct 2026 16:14:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8255207234260154294=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/guc=3A_Demote_uncor?=
+ =?utf-8?q?rectable_local_error_log_on_CRI?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Varun Gupta" <varun.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Oct 2026 16:14:27 -0000
+Message-ID: <179190806749.19083.481804499951385684@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261013033430.1885990-2-varun.gupta@intel.com>
+In-Reply-To: <20261013033430.1885990-2-varun.gupta@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,49 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dmc_wl_disable() flushes the pending wakelock release work,
-disables the wakelock mechanism and sets wl->enabled to false.
-It then clears DMC_WAKELOCK_CTL_REQ and sets wl->taken to false.
+--===============8255207234260154294==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Flushing the work forces it to run immediately and waits for completion.
-When the refcount is zero, the worker clears DMC_WAKELOCK_CTL_REQ and
-waits for ACK to clear. This adds workqueue scheduling and ACK polling
-to the DC-exit path, just before disable clears the request itself.
+== Series Details ==
 
-Since intel_dmc_wl_put() queues the release DMC_WAKELOCK_HOLD_TIME later
-and the DC-exit path reaches disable well before that, the work remains
-pending and is forced to run. This delays the POWER_DOMAIN_DC_OFF get
-in intel_atomic_commit_tail() for the DC3CO case, where DC3CO is entered
-and exited on every flip. On a 3840x2400@120 eDP panel, dropping the
-forced run reduced that get by roughly 330 us.
+Series: drm/xe/guc: Demote uncorrectable local error log on CRI
+URL   : https://patchwork.freedesktop.org/series/175997/
+State : failure
 
-Cancel the pending work instead, so it is dropped rather than run. Once
-wl->enabled is false, subsequent puts do not queue release work.
+== Summary ==
 
-Use the sync variant so that an already-running worker is still waited
-for, as it was with the flush.
+ERROR: The runconfig 'xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376_FULL' does not exist in the database
 
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc_wl.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Logs ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index ab4e0e9573df..3eae11900978 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -400,7 +400,7 @@ void intel_dmc_wl_disable(struct intel_display *display)
- 	if (!__intel_dmc_wl_supported(display))
- 		return;
- 
--	intel_dmc_wl_flush_release_work(display);
-+	cancel_delayed_work_sync(&wl->work);
- 
- 	spin_lock_irqsave(&wl->lock, flags);
- 
--- 
-2.43.0
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175997v1/index.html
 
+--===============8255207234260154294==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Demote uncorrectable local error log on CRI</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175997/">https://patchwork.freedesktop.org/series/175997/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175997v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175997v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============8255207234260154294==--
