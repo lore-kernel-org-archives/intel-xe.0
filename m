@@ -4,37 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B835CC6B0F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 901DECC6B12
 	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 21:47:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC2B10F1E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E21B10F251;
 	Tue, 13 Oct 2026 21:47:33 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB15710EA29
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 21:47:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADFAA10EA4B
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 21:47:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791928039; x=1823464039;
+ t=1791928043; x=1823464043;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=j0BnPlxq7JEVz6/6T9RbZkc1vLTA9xc7qG1Pv5i3+VE=;
- b=Zx8vRs4+M6UUkNtbXfFAxzx6CVOr5ejdD/ILXGFAbWqdJZlXcaWQS5WD
- a/EKvcW0kM29D6jGss//G519ztvoD3l24gq2ygI6jpDSZz5w9C/0ZBN3S
- CRTHTf00RJW3FyxLmOCuynekEyx64Bu1ohotaehIrSkX5sx+UTIvYqzzn
- vGFl1E2tmV4R8hK20wTxu9m+qty7ah8IkJrjZJzEPZdIyW5BtEi3XQelD
- NBukNFhXlpXOsgFMOAwpVKp6i1iyDmP4rtbTtbhAH8DW17tbxWMCrI6wz
- OKJaJkl8hZhVzbIIeWnpPgMHfscXDKQjNs3J8WWTfPoK3/Qi01/1Kz/D+ A==;
-X-CSE-ConnectionGUID: M3K92BvwQR+7r/lW3XrD8A==
-X-CSE-MsgGUID: qWn4LVYdQD6UIbvD70zC5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="565913"
-X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; d="scan'208,146";a="565913"
+ bh=gclHI+8mFYjSpGi/r8EeQ+/dKVX/u1SVbPQV6kNXGWY=;
+ b=LBWLb7hQ6tF6WftP3fEY7EG2HS/Bty/M/bjI4rc+lmoIUdKyK6t4bMBm
+ sTWOTe4OOwBbu9Tppdoh0JWaUIbVjC4aGKvV3zxQ9sFRbC+CnWNkcbFAi
+ tB/3xZ6JGQ5RwAMsZjFftxEe8iYhNNW9bkLV+n6MJz0j6qVC5AqBYJ8Pb
+ g3jwN93MOB9ybXyeGjUyWDmMgalLdj9SU0XwNGsZVEugzSKyuT9Q7OSNR
+ rw9K7JvzMeLwu5WRsscvvjGLZk6hvGmexylfloGd+CSd9jgQVY8DfIoGP
+ U2LxReqv1SAp3aJ9M4qayblXZQiT//p2Q9JlxbMdFC281MVSu0aiucfPU w==;
+X-CSE-ConnectionGUID: CM8rADXrQsWYPjMoc/f9Ew==
+X-CSE-MsgGUID: XbDIGJGFSWihCjtae7GKcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="565911"
+X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
+   d="scan'208";a="565911"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2026 14:47:07 -0700
-X-CSE-ConnectionGUID: lVduypw6R+WyAd9+EHQvLw==
-X-CSE-MsgGUID: BE//KoNSSIGFToH2Rqmebg==
+X-CSE-ConnectionGUID: Mj37e2n/S9SCrBoKeU83og==
+X-CSE-MsgGUID: OxqXYtW2RDisotCj1eMq9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; d="scan'208,146";a="1629838"
+X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
+   d="scan'208";a="1629835"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2026 14:47:08 -0700
@@ -45,9 +47,10 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com, karthik.poosa@intel.com
-Subject: [PATCH v12 06/21] drm/xe/vsec: Do not register BMG PMT for VF
-Date: Tue, 13 Oct 2026 14:46:59 -0700
-Message-ID: <20261013214655.3502964-29-michael.j.ruhl@intel.com>
+Subject: [PATCH v12 05/21] platform/x86/intel/pmt: Do not remap when using
+ callbacks
+Date: Tue, 13 Oct 2026 14:46:58 -0700
+Message-ID: <20261013214655.3502964-28-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261013214655.3502964-23-michael.j.ruhl@intel.com>
 References: <20261013214655.3502964-23-michael.j.ruhl@intel.com>
@@ -67,48 +70,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-BMG PMT is not supported for VF nodes.
+A callback indicates that the parent driver is responsible for accessing
+the data area.  Creating a PMT memory remap is redundant.
 
-If IS_SRIOV_VF() is true, do NOT register with PMT.
+If a read_telem callback has been provided, do not create a remap.
+
+Enforce API usage where necessary.
+
+Clean up open coded resource usage.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/platform/x86/intel/pmt/class.c     | 21 +++++++++++++--------
+ drivers/platform/x86/intel/pmt/class.h     |  2 +-
+ drivers/platform/x86/intel/pmt/telemetry.c |  3 +++
+ 3 files changed, 17 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index a9baf0bfe572..178f22db4046 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -149,6 +149,8 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 	u32 offset;
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/intel/pmt/class.c
+index 402d51df834a..1c7a372b4fc4 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -12,6 +12,7 @@
+ #include <linux/log2.h>
+ #include <linux/intel_vsec.h>
+ #include <linux/io-64-nonatomic-lo-hi.h>
++#include <linux/ioport.h>
+ #include <linux/minmax.h>
+ #include <linux/module.h>
+ #include <linux/mm.h>
+@@ -373,7 +374,6 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
+ 				  struct device *parent)
+ {
+ 	struct intel_vsec_device *ivdev = dev_to_ivdev(parent);
+-	struct resource res = {0};
+ 	struct device *dev;
  	int ret;
  
-+	xe_assert(xe, !IS_SRIOV_VF(xe));
+@@ -403,14 +403,19 @@ static int intel_pmt_dev_register(struct intel_pmt_entry *entry,
+ 	if (!entry->size)
+ 		return 0;
+ 
+-	res.start = entry->base_addr;
+-	res.end = res.start + entry->size - 1;
+-	res.flags = IORESOURCE_MEM;
++	/*
++	 * The read_telem callback is responsible for this mapping, and may have
++	 * different requirements for use. If the callback is present do not
++	 * create the map.
++	 */
++	if (!(entry->cb && entry->cb->read_telem)) {
++		struct resource res = DEFINE_RES_MEM(entry->base_addr, entry->size);
+ 
+-	entry->base = devm_ioremap_resource(dev, &res);
+-	if (IS_ERR(entry->base)) {
+-		ret = PTR_ERR(entry->base);
+-		goto fail_ioremap;
++		entry->base = devm_ioremap_resource(dev, &res);
++		if (IS_ERR(entry->base)) {
++			ret = PTR_ERR(entry->base);
++			goto fail_ioremap;
++		}
+ 	}
+ 
+ 	sysfs_bin_attr_init(&entry->pmt_bin_attr);
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/intel/pmt/class.h
+index 258cb460e61c..aeb04afb67cf 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -48,7 +48,7 @@ struct intel_pmt_entry {
+ 	const struct attribute_group *attr_grp;
+ 	struct kobject		*kobj;
+ 	void __iomem		*disc_table;
+-	void __iomem		*base;
++	void __iomem		*base;  /* unused if cb->read_telem is in use */
+ 	struct pmt_callbacks	*cb;
+ 	unsigned long		base_addr;
+ 	size_t			size;
+diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/x86/intel/pmt/telemetry.c
+index 953f35b6daec..5423a4dfce08 100644
+--- a/drivers/platform/x86/intel/pmt/telemetry.c
++++ b/drivers/platform/x86/intel/pmt/telemetry.c
+@@ -329,6 +329,9 @@ int pmt_telem_read32(struct telem_endpoint *ep, u32 id, u32 *data, u32 count)
+ 	if (!ep->present)
+ 		return -ENODEV;
+ 
++	if (!ep->base)
++		return -EIO;
 +
- 	ret = xe_guid_decode(guid, &mem_region, &offset);
- 	if (ret)
- 		return ret;
-@@ -157,9 +159,6 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 
- 	guard(mutex)(&xe->pmt.lock);
- 
--	if (!xe->soc_remapper.set_telem_region)
--		return -ENODEV;
--
- 	/* indicate that we are not at an appropriate power level */
- 	if (!xe_pm_runtime_get_if_active(xe))
- 		return -ENODATA;
-@@ -186,6 +185,9 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
- 	if (xe->info.platform > XE_BATTLEMAGE)
- 		return XE_VSEC_UNKNOWN;
- 
-+	if (IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE)
-+		return XE_VSEC_UNKNOWN;
-+
- 	return vsec_platforms[xe->info.platform];
- }
+ 	offset = SAMPLE_ID_OFFSET32(id);
+ 	size = ep->header.size;
  
 -- 
 2.43.0
