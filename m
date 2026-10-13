@@ -4,27 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B7A8CC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:40:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE5DBCC6B16
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:40:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE15210EE9C;
-	Tue, 13 Oct 2026 15:40:36 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D27410F8BF;
- Tue, 13 Oct 2026 15:40:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2551935843519425072=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_xe=5Fwedge_=28rev?=
- =?utf-8?q?4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 13 Oct 2026 15:40:36 -0000
-Message-ID: <179190603644.19039.6111861516708733778@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261013110439.181447-1-raag.jadav@intel.com>
-In-Reply-To: <20261013110439.181447-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F93410EE28;
+	Tue, 13 Oct 2026 15:40:47 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67DC010EE28
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 15:40:40 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 3094742AFC;
+ Tue, 13 Oct 2026 15:40:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF6B1F00898;
+ Tue, 13 Oct 2026 15:40:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791906040;
+ bh=lpzcbYeedvxGv5VuVMJDI59efXlj1s0mrPYMaZD2oFA=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=ARgh8lckjDH+sIlWE01UWt3MNc3/2glzeKxXjJ/VzM/5Z7l+J+jl48lkbZ+WGvulP
+ Jcn2OS1p2FT1jmI9VxnPQSczAJKfNAhgOrW/557/zg5nL7g9DMnPrCcCvFUcU0CmOT
+ cjzLSUjTk15DbG8j5Xr1flyhckDulcIHr+QWBXtnqIy+rSWjAU64+N9MckIPbkIix3
+ xA2wR8acZRx74p1SNo8YfRqeW0/uOeNuSjGdner9HTrp1ElfMTbjC23JuPSTkiGbtZ
+ XpU13WBe4y+TepYFhoeRXRj+H9FD+Qc/W70SEYsDCXuIRMQzlslrYVrBwDP5ffVyWJ
+ mciiNW0DB26pA==
+Message-ID: <sashiko-outbox-170033@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 2/3] drm/xe/guc: Protect timeout handling from device
+ unplug
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261013152417.3189567-7-satyanarayana.k.v.p@intel.com>
+References: <20261013152417.3189567-5-satyanarayana.k.v.p@intel.com>
+ <20261013152417.3189567-7-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 13 Oct 2026 15:40:39 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,172 +50,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2551935843519425072==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] drm/xe/guc: memory leak of xe_sched_job when timeout handler retur=
+ns NO_HANG
+--
 
-== Series Details ==
+commit 178ee20625b5c3cfd23b5dbaf2b17c6d37fd5010
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 
-Series: Introduce xe_wedge (rev4)
-URL   : https://patchwork.freedesktop.org/series/173011/
-State : success
+drm/xe/guc: Protect timeout handling from device unplug
 
-== Summary ==
+This commit guards the GuC scheduler timeout callback with drm_dev_enter()
+and drm_dev_exit() to ensure device unplug waits for in-flight timeout
+handling. If the unplug has already started, it sets the job error to
+-ENODEV and returns it to the scheduler for cleanup.
 
-CI Bug Log - changes from xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb_BAT -> xe-pw-173011v4_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index 7ce73489c35fc..e0a3ce6015e02 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+[ ... ]
+> @@ -1614,6 +1615,11 @@ guc_exec_queue_timedout_job(struct drm_sched_job *=
+drm_job)
+>  	    vf_recovery(guc))
+>  		return DRM_GPU_SCHED_STAT_NO_HANG;
+> =20
+> +	if (!drm_dev_enter(&xe->drm, &idx)) {
+> +		xe_sched_job_set_error(job, -ENODEV);
+> +		return DRM_GPU_SCHED_STAT_NO_HANG;
+> +	}
 
-Summary
--------
+[Severity: High]
+Does returning DRM_GPU_SCHED_STAT_NO_HANG here cause a permanent memory
+leak of the xe_sched_job?
 
-  **SUCCESS**
+When drm_dev_enter() fails, the timeout handler returns NO_HANG, which
+causes the DRM scheduler to reinsert the job into sched->pending_list.
+The unplug thread then destroys the queue, calling drm_sched_fini(),
+which cancels the asynchronous work_free_job using cancel_work_sync().
 
-  No regressions found.
+Because the Xe driver does not implement the cancel_job callback in its
+drm_sched_ops:
 
-  
+static const struct drm_sched_backend_ops drm_sched_ops =3D {
+        .run_job =3D guc_exec_queue_run_job,
+        .free_job =3D guc_exec_queue_free_job,
+        .timedout_job =3D guc_exec_queue_timedout_job,
+};
 
-Participating hosts (15 -> 15)
-------------------------------
+drm_sched_fini() does not free the remaining jobs in pending_list. The
+jobs are permanently leaked, accompanied by a "Tearing down scheduler
+while jobs are pending" warning.
 
-  No changes in participating hosts
+As a quick note, a use-after-free concern regarding job->q here would
+be structurally impossible, because guc_exec_queue_do_destroy() calls
+cancel_delayed_work_sync(&work_tdr), strictly serializing queue teardown
+against the timeout handler.
 
-New tests
----------
+> +
+>  	/* Kill the run_job entry point */
+>  	if (xe_exec_queue_is_multi_queue(q))
 
-  New tests have been introduced between xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb_BAT and xe-pw-173011v4_BAT:
-
-### New IGT tests (3) ###
-
-  * igt@xe_dma_buf_sync@export-dma-buf-once-read-write-sync:
-    - Statuses : 14 pass(s)
-    - Exec time: [0.01, 0.11] s
-
-  * igt@xe_dma_buf_sync@export-dma-buf-once-write-read-sync:
-    - Statuses : 14 pass(s)
-    - Exec time: [0.01, 0.11] s
-
-  * igt@xe_dma_buf_sync@export-dma-buf-once-write-sync:
-    - Statuses : 14 pass(s)
-    - Exec time: [0.02, 0.11] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-173011v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-
-
-Build changes
--------------
-
-  * Linux: xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb -> xe-pw-173011v4
-
-  IGT_9141: 272395cfec06bd5809c9b9c0a17a32f34c48799c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb: f70a5a920a49326b4b953fe6f756586c21e3fbeb
-  xe-pw-173011v4: 173011v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v4/index.html
-
---===============2551935843519425072==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce xe_wedge (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173011/">https://patchwork.freedesktop.org/series/173011/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb_BAT -&gt; xe-pw-173011v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>New tests</h2>
-<p>New tests have been introduced between xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb_BAT and xe-pw-173011v4_BAT:</p>
-<h3>New IGT tests (3)</h3>
-<ul>
-<li>
-<p>igt@xe_dma_buf_sync@export-dma-buf-once-read-write-sync:</p>
-<ul>
-<li>Statuses : 14 pass(s)</li>
-<li>Exec time: [0.01, 0.11] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_dma_buf_sync@export-dma-buf-once-write-read-sync:</p>
-<ul>
-<li>Statuses : 14 pass(s)</li>
-<li>Exec time: [0.01, 0.11] s</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_dma_buf_sync@export-dma-buf-once-write-sync:</p>
-<ul>
-<li>Statuses : 14 pass(s)</li>
-<li>Exec time: [0.02, 0.11] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-173011v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb -&gt; xe-pw-173011v4</li>
-</ul>
-<p>IGT_9141: 272395cfec06bd5809c9b9c0a17a32f34c48799c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5937-f70a5a920a49326b4b953fe6f756586c21e3fbeb: f70a5a920a49326b4b953fe6f756586c21e3fbeb<br />
-  xe-pw-173011v4: 173011v4</p>
-
-</body>
-</html>
-
---===============2551935843519425072==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261013152417.3189=
+567-5-satyanarayana.k.v.p@intel.com?part=3D2
