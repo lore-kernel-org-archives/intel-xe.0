@@ -4,106 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A4D1CC6B1A
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 17:49:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D170CC6B12
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 18:12:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 287AA10E93D;
-	Tue, 13 Oct 2026 17:49:16 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D85C10F92E
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:49:02 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id E9F684E4120F
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:49:00 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id BBC8A60362
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 17:49:00 +0000 (UTC)
-Received: by mail.galae.net (Postcow, from userid 0)
- id 3035C11D7188E; Tue, 13 Oct 2026 19:47:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1791913740; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=ZIV73b7Q2+CYNt0jdwC6/FZgWEToXjGAMk/b8ZhcwZw=;
- b=fjvCaW8MBKSRHwy4iIm+LWvv/Dv1dHsb/V/Is0As/0j2Yi0jINtj9gdNGcN4yjXF1NzM3I
- VtimHLy5ItvOQEaEJJ/o3T2TQCWTEgL2fvWA4sv/EwTy229orVFWnT11M+I08Bk1AUmBaE
- m0MxnAHlp7eionJWX2wIohr06lJzxtwbuUxeKG6iqQWlppEE5SszFQhUG7dM7yOCUB5fA5
- XJzWZRCAHqp+q5MkdcNI9EAW4p8QkFjezA8QG9W4DOsjdzgX7tl7yq3upanhM3PoZ0ZFvz
- NJ0+iwMDjy4ENOWbDKJMa8ST9GTKGDx2qDyI+JZVgntFeu39GywMgtwX9cuaiw==
-Authentication-Results: mail.galae.net;
-	none
-Received: from mail.galae.net ([172.22.1.253]) by 9e7fea892943 with LMTP
- id MPY6Err4zGoZhxEAtaWaaQ (envelope-from <kory.maincent@bootlin.com>)
- for <kory.maincent@bootlin.com>; Mon, 12 Oct 2026 17:11:54 +0200
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 91EA711D70C58; 
- Mon, 12 Oct 2026 17:11:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1791817908; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=ZIV73b7Q2+CYNt0jdwC6/FZgWEToXjGAMk/b8ZhcwZw=;
- b=DluiwoAp0TUr643sxOOPLZkVPfc9fojJ/BxODfB0f6kUQ0IpGVsY2sk3EDP4Pbs/PfsCKt
- jj8Zoa523Z3VsAXnbtzLHL6GAS0I1A5aXHqreHwdEY8n7qZ8M11t7yOVCAXKEufrRBARud
- lo7vBZfLMg2PSdgcbp4xsTxyCZnfxJqy5PMNlHsnxLHy9irQbXCvEbQDpxGjkxHLby8Z5X
- aU9YaSZU6acLlSgIZYuFBfj3ZsNBSMrxmjZrGXy+y/7HxGMrqYB4eVOMqoUlh8qXTl7JsE
- dVLWCimelUwPOFBpoomJdPTaFz6WfsXaHGrcSZC5BjhGgOdMxx32Qe5C4D89GA==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Mon, 12 Oct 2026 17:10:58 +0200
-Subject: [PATCH RFC v3 3/8] drm: Introduce DisplayPort link training
- capabilities and state helpers
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E744890EA;
+	Tue, 13 Oct 2026 18:12:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C27EA890EA
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 18:11:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791915114; x=1823451114;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=pjdfCi/NyYwE+8C17JZaW4BJ89kSw+Mw51IqBATFih4=;
+ b=eiVbmwFNCIh4ykt5nmZ9lMsV0nXaamqtPhUiRyLqSZnCqWIczNXLCrXc
+ E76UVJ9XhXi+sa30Nc9fwFJQyjQXtcfGEb4vvPlJCgYK4xYwu1yHtabia
+ /UCi5mhYqdlFYix40R78k1hBISEcxsBvlF++YD+JMx55+RduMK4X+to+W
+ szzpBsZhBWVL3RqZ2BBcYxVRPmKHU3MrtTZ7pRHvGkFGnwLaQzW4r7T84
+ EqEKlHqubHRXsSIz/dcMruKfRzieVaPNWQ3lkVSlMeGc3JZ20+VYO2sAG
+ uC+M7u/EyR0AnJ6ECb72GJVqqW0DTBDzmVIFOTKfT4Cfyvr9UQazQRdee A==;
+X-CSE-ConnectionGUID: MEUFQfzQSfqZuBAAk211Jg==
+X-CSE-MsgGUID: QzV01piPTCCoEWYwDFTUxw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="752599"
+X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
+   d="scan'208";a="752599"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 11:11:54 -0700
+X-CSE-ConnectionGUID: e0nRO6TNRVy9q+S12mj4GQ==
+X-CSE-MsgGUID: oi/CVIWqT1aN8zHwPaiLCg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
+   d="scan'208";a="1329905"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 11:11:53 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 11:11:52 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 11:11:52 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.54) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 11:11:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gGlR0CUGMdsXR0k3WbFODzjMYJH+z5r5DdfhNrHHNcVKVV3kDXrEetA6p5jcyildm0BvOwOR+2EpDaJbd6vyzL599s9qq6YwQsi+UWqqzTjx/lSkiIvPnCh7b4+Y4bvmn7Ob8AGoKVOy0oHz1EEtxiabPyC6AX4olrkPajS2p15wn2GLZmDZzf7YaZedX2RWuOgh1/jJad72wIRT3HLQzNG92/+ZWnK5WnAOpS8ViP162RXo28EqyxEzS9p7AlAFVcCNSWiiZs1sAvW5ORebYt6sz+yn07GpkWSTTnN+rzLK14c2atXmOSX5kppm9EuuKQ3yC7nGfc/O2ZAezG68PA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=udE8vE/R5bzPjty1pGlaWiuQ4ss9eLeZz3/c2kf+ZWI=;
+ b=bP1kiT02RUdbFlJ5/yx6OwTBJSLsTQb+Ge+3BbiWb4SjBZCQ241UxoMeWoRVsQcXh1unEStrtup/gtxhDrXLMeuK3w06Qh/8lDjxLE6ivMNLnC1RT2MhXxU4lAEbrkYUnzyOAIxTnZ5XqFqFx0AThLG1Qkn1ZZ6AWCuarxLz53ETGwwBm7HKQ7UuJUEzLIV/7QG9dBWMl8VWqfKkKzYdCt1FY9C99DqvGeK/Wcd4jkGIK0kqu/Ov9bEMZsX0o5oXv9f3SLr5FVbfw531Vv+/cMymj4maKnB0lnVeoIcxDCeuA1xYG23mAyfP6DLTDQuLE5cJjXtWNQCu7dnFbVghfw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5232.namprd11.prod.outlook.com (2603:10b6:5:38b::14)
+ by PH3PPF91320C45A.namprd11.prod.outlook.com (2603:10b6:518:1::d38) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.23; Tue, 13 Oct
+ 2026 18:11:50 +0000
+Received: from DM4PR11MB5232.namprd11.prod.outlook.com
+ ([fe80::2ddf:5a8a:8a8f:c429]) by DM4PR11MB5232.namprd11.prod.outlook.com
+ ([fe80::2ddf:5a8a:8a8f:c429%5]) with mapi id 15.21.0522.011; Tue, 13 Oct 2026
+ 18:11:50 +0000
+Message-ID: <c52f2c3a-eb26-4978-b479-a2934d0555cf@intel.com>
+Date: Tue, 13 Oct 2026 11:11:48 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] drm/xe: Synchronously wait for queue kill on FD close
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <x.wang@intnel.com>,
+ <jia.yao@intel.com>, <jonathan.cavitt@intel.com>
+References: <20261013023442.206915-1-daniel.charles@intel.com>
+ <20261013023442.206915-4-daniel.charles@intel.com>
+ <as2i2xPkEvDgAKFo@gsse-cloud1.jf.intel.com>
+Content-Language: en-US
+From: Daniel Charles <daniel.charles@intel.com>
+In-Reply-To: <as2i2xPkEvDgAKFo@gsse-cloud1.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261012-feat_link_cap-v3-3-7517f4aba0f3@bootlin.com>
-References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
-In-Reply-To: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
- Manasi Navare <navaremanasi@google.com>, 
- Drew Davenport <ddavenport@google.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-mediatek@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, 
- Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.16.1-dev-17221
-X-Last-TLS-Session-Version: TLSv1.3
-X-Last-TLS-Session-Version: None
-X-Rspamd-Queue-Id: 3035C11D7188E
-X-Spamd-Result: default: False [2.47 / 30.00]; SUSPICIOUS_RECIPS(1.50)[];
- DATE_IN_PAST(1.00)[26]; RCVD_NO_TLS_LAST(0.10)[];
- MIME_GOOD(-0.10)[text/plain]; BAYES_HAM(-0.03)[51.37%];
- BCC(0.00)[]; TAGGED_RCPT(0.00)[];
- DKIM_SIGNED(0.00)[bootlin.com:s=dkim];
- RCVD_VIA_SMTP_AUTH(0.00)[];
- FORWARDED(0.00)[kory.maincent@bootlin.com]; ARC_NA(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[35]; MIME_TRACE(0.00)[0:+];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com,pengutronix.de,collabora.com];
- MID_RHS_MATCH_FROM(0.00)[];
- PREVIOUSLY_DELIVERED(0.00)[kory.maincent@bootlin.com];
- TO_MATCH_ENVRCPT_SOME(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_DN_SOME(0.00)[];
- URIBL_BLOCKED(0.00)[localhost:rdns,localhost:helo,bootlin.com:mid,bootlin.com:email,lists.freedesktop.org:email];
- MAILCOW_DOMAIN_HEADER_FROM(0.00)[bootlin.com];
- RECEIVED_HELO_LOCALHOST(0.00)[]; NEURAL_HAM(-0.00)[-1.000];
- FROM_EQ_ENVFROM(0.00)[]
+X-ClientProxiedBy: MW4PR04CA0290.namprd04.prod.outlook.com
+ (2603:10b6:303:89::25) To DM4PR11MB5232.namprd11.prod.outlook.com
+ (2603:10b6:5:38b::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5232:EE_|PH3PPF91320C45A:EE_
+X-MS-Office365-Filtering-Correlation-Id: fd2f6024-09ae-49bd-f59e-08df295573a4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|366016|376014|56012099006|11063799006|4143699003|261009223027099003|18002099003|10067099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: u/pDe26ljVrsKp+TUPfZxeVpuAk1fEUuLVqcjTh4TSJVaeHd/Cp0rV0Eg0pyMw+xDxlSp4acuA4IwmaezTbrkvjcMKiXpyHic1vsqPejNDiu3jKZ5CbDSBwZNjTj8yBQU73bQ2ab2mLC7+ilGTmNGnSsX5yl41iPdpFqP2PRgMoN14gTaj2j7q26NCb61MQsVvJ4Y6CaQ40uDdcy8yjR4rR17yTS+E2MMSaovVUCf2iD8La9N3ZVtsXdP5oO8aVTHmKuK+ifiJq47lLy7sq0MmcW+K16yT4QXFCxGZQVnwOslL3S0sXyc0WpPZXDauHpnsJeMV9Fu7M6+4FtcUbnmwIIl87x58duCkkwp83zizUzcsEPNnb4n/aBJgx8jCceTCQv26XvF1gzMuL4CUYwhkcn0eLAFldHqL037R8OfTh8V9wZwX7Vioz0nbl0JiDH/CBlRFL+HfROU/SLckDioQ6Pa5QBFjvyqYHqcMME4Ybxokutg9kmkdgUbboyqxE+Z3d0kAyMq6BGZM286ziINCWQ5/9rPgpsDJjAJCXQOK2yWwS8qdxVkwefkSpIXfyAjyHatm1If750mUYkbjuxehOCQlI75omPb4eXA5rDXPm72/jzecPMzSL6U8BH0nSYQOrI32bAf6mS8CL8x2qmXYf6xwIZAKU+kASzesJeIW0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5232.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(56012099006)(11063799006)(4143699003)(261009223027099003)(18002099003)(10067099003)(22082099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bXpIbXBBV3lIejlQV3pNOTBWM1Z0czBlKzlGaGwyYkpHd1o4VjJrVkZ4L2Vz?=
+ =?utf-8?B?b2Rmd2VJVWVyUHh6eU10Q2pWbjVUM1hGQ3B6RWJWeThnWGV3VEQ5bVpjUDlB?=
+ =?utf-8?B?ZkZ1eXlvVHgzVzJYZTN1MjhoMnovV09oWDRidjhLbEJIYlpOUUtqZWxDSjRP?=
+ =?utf-8?B?OUlxU0J0S0djRE9zb0o1djhqZEx1L2tkUHNqVytUbkkwbUMzamVPYkxob1hz?=
+ =?utf-8?B?MHJocVhXMVJzc0dmY3kwVWJFU05CM2ZDZnYwT0JMajZwaWN5N3JndE8yRUpX?=
+ =?utf-8?B?RUh0ajgrcnFKNGlBWmIveDJFcWV1MDZoRDRHUEN1S0dLUWNhejJ5QlZnWnk2?=
+ =?utf-8?B?bHVQZHY0eWUwMkczblU2MjZ6RE5lOGxLTUtjdGwwM1RwbXJ0MXpZT0t5Tllz?=
+ =?utf-8?B?ZnVGd2lBYjN6ZmVrRkZ0Y3F4T0puTFh4YzNxcGxjQTJBRzdFTzFEZG1ZV2cy?=
+ =?utf-8?B?RHhTYkQxcEo1aVB1STJlZ3VxRWVQSkNpQnhWMzhvMVV3ZktIaC9abmRKWFN2?=
+ =?utf-8?B?enNZbkNiS0VuQzllT1FMb3RwdXJGOXR0L1Rzb1VvZ3NsRW8wb0F3VmFjd1Z0?=
+ =?utf-8?B?eWQxYXNLamhiTElxRGxBR3VxRTNScTdMNlBFRHFGTlB3emVHS3huNWRWU0c4?=
+ =?utf-8?B?VGk2elNZcnJ5YlRpTkVSeDVZOUNwTTJIcldnVURrY0lNL1lPMnhIMDV0TEVT?=
+ =?utf-8?B?Um5TeGJRRVM4T3REcmVsSVBqNmFDK0VCS0hHaEtHVzduMVc5cW9rQTVTaFZI?=
+ =?utf-8?B?T1hndk10ZWsyVGZiekpGeUFmcXdlTGhVN0E0Y1lqYjdDUmdmQ0Rld21sMGFi?=
+ =?utf-8?B?Ry8vYmNsTjdlYVc1YXc4Sk9YS2VIbFR0dGxiT3paTFpUV3ZQYi9aZitqWmtC?=
+ =?utf-8?B?TTRianJubDZyTzFJdnlDVnF5Wnk0aVVIZ0d1UTVqUm16SkVSeGVlL1YxNk5B?=
+ =?utf-8?B?MUp2Ky8reVBFL2pYand5QUZDYm43K21DbSsxcnNodDlCY2tKSlJNRk9vQStN?=
+ =?utf-8?B?UURRWWtMYkNvUllnZ01UcHcrOU50TXhWK3QxMG1ESlhya2RsVi8zTTRXbWRS?=
+ =?utf-8?B?MG5aTWgrZlIwYlhxMkEvMW0wVVQ0Q0FxUnlzT1hXT08zVGIyZEFlcHRkZkw5?=
+ =?utf-8?B?U2MxN3ordzhVQVRpNTVOZzFINFFqK3ZrbEtJb3BtS09wU21PTlAwSEhLR0xZ?=
+ =?utf-8?B?WWZqeTJFZE1DMUN2bFZiTUJ2aW94ejkyTXNrTW8zL0ovS3FuakdlTFdWMHpQ?=
+ =?utf-8?B?eTVpb0Qza2ZFVW0weGF1bE4xZWdiYVFmZFNCZXJiWng5bEREdFZkSytFUzFK?=
+ =?utf-8?B?S3NNRmpXblVRcXNENGYyZ0kzeTEwNGNjSzJ4aXdVZHJ4anV4S21BR3FNTzFw?=
+ =?utf-8?B?amg1UTFDY0tiTHBFWVZCd3A0cXplaFMxRnVyY1hnd3c2UkxiUzNuL3RER1Jy?=
+ =?utf-8?B?SjBjekhJSzRWVXdIUWZJZitaVmVwUDhGOSs3b2w2ZWM0UlVseGpkUXN6TTlN?=
+ =?utf-8?B?UHBYMHkvMmYrdmNnQlFCd3M1S00vcmNXd3ZzYytSeEl5OXdTSlpJa3dTMzI0?=
+ =?utf-8?B?OW5lWlJyVzZqenJpNTVxRDk3UncxR0ZYd2hDenlTQ3JWNGh3WHFTMDh0SWVB?=
+ =?utf-8?B?Q011b3E4RzVleHdiVW5wQXRGSnBDUlZzbkZSb1RkMi9waE5FT0lKVENJcmtB?=
+ =?utf-8?B?MEZmbjRWZ0RLMXExTmhEdkFtS1lGM2wxUUp1WklOTlpIZHRaS0VzOWFpdjJu?=
+ =?utf-8?B?TUlrM2xsbFkySWdrQzRYMlg4SXJPc2k5Y0FMM2puRDJ3WmJDR3d0elZjSGpk?=
+ =?utf-8?B?MUFsOFQ4RTZaVUJlVlFYQUtIRURPNGxpKzg2REJ3TjRDOHBmZjI2VzhVSFVO?=
+ =?utf-8?B?dGJiczhiYnIvanFoUC9RdEdvRlFJVGhwTEprVVZmNE9UM3QzVWExZjBHV05m?=
+ =?utf-8?B?QlVENFZyM0tvUHQvWUVUN2RDTGdWU2taWnlJeXNmSmxqRkJiTFJrZzFoUkdq?=
+ =?utf-8?B?c0FGOGhad1BEU3lEVXFsdHBZOTUyZVc4Wno5NENIdzRDV2lxQVV5N3FONXo5?=
+ =?utf-8?B?emxSQXY2UEFENFVoRENQai9SMG05Rit2bWlnS1pUWEJkMnoyVkFVY2dJdEVV?=
+ =?utf-8?B?QTBhRUNLRlk2UHh0Y0dLOGY3UzQrVzZSRXdCUVM4V0RKWHVXTnFuL3RDc292?=
+ =?utf-8?B?VHYza1JmRldWUHVsWlBaOEdwcFNIb1JQNUc4ekhITENXeU5qR3RqSjFMWU9S?=
+ =?utf-8?B?Wjh4MGZjMllqdWh0V3lSK2hvQnZpbU5lV1JwU1NtT0x2VlFKTWIyeEpDN2Nl?=
+ =?utf-8?B?aUVTMzJWd200a1l5ZEhKajVYbGh2a0M0NndMRlZNYmplUWYvUkszMG1KcXdW?=
+ =?utf-8?Q?D937LpwQ6wQkb+4E=3D?=
+X-Exchange-RoutingPolicyChecked: R3oyLqmy/vVZR7fq7w0JryqlH76vRaE/0BDN3Ze5UO+qRbbQ9WSa6RghIRxg2K55jg1AoL2TcvKDlZo0jBD/R8gKfpIEGsRznSCbLouvpPimAZuVXKsYXjLTpkXvAR5Gez12BakDOf9bNBMGNGJ/JDeQT0x2GpyUS3HksybmWwcTpSx5D6lVR5uhrmGp18Id0opMN26Omm51wxmAkqVWY5sPdzulNSUxsZO107DZMWQCMKbbEIIHXGy05ytNwv0VIbTt5pHs34VJ6EvyMEGjeStEhUaOLDo83R2uYSwI5yG3ebQ3Km1Tw9IO0N84HqnLNWGZL1Pr1Pbgc5LILvrG2w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd2f6024-09ae-49bd-f59e-08df295573a4
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5232.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 18:11:50.0612 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: NoDdLlJjHLPETKGLg7VN1pIM22Gg730tdtfe5a5MSZfPcRIVAkXtZM97UVH2q4tyjsScI/ixE8vZFyR19WT0H//Y7mz9oDyio3OG2yVSN0U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF91320C45A
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -118,792 +170,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add helpers to expose link training capabilities and state to userspace
-via sysfs attributes.
 
-Link rates are passed by the driver in deca-kbps, following the DRM
-convention, but exposed to sysfs userspace in kbps for clarity.
+On 10/12/2026 8:17 PM, Matthew Brost wrote:
+> On Mon, Oct 12, 2026 at 07:34:42PM -0700, Daniel Charles wrote:
+>
+> Thanks for taking a look here.
+>
+>> The early KILL message disables GuC scheduling outside the serialized
+>> TDR path, but xe_file_close() does not wait for it to complete before
+>> dropping queue references. GuC may still schedule contexts whose page
+>> tables are being torn down, producing CAT errors and engine resets.
+>>
+>> Split FD close teardown into two passes: first kill every queue so all
+>> KILL messages are queued in parallel, then call the new
+>> xe_exec_queue_kill_sync() for every queue before dropping references.
+>>
+>> The GuC backend implementation flushes the message worker while the
+>> static KILL message is pending, then waits for scheduling to be
+>> disabled with no pending enable/disable. The wait also completes when
+>> GuC submission is stopped, VF recovery is in progress, or the queue is
+>> wedged.
+>>
+>> Wake ct.wq waiters when a scheduling-disable SCHED_DONE is processed so
+>> the waiter is woken as soon as scheduling is disabled.
+>>
+>> Assisted-by: LLM
+>> Signed-off-by: Daniel Charles <daniel.charles@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_device.c           |  8 +++++-
+>>   drivers/gpu/drm/xe/xe_exec_queue.c       | 13 ++++++++++
+>>   drivers/gpu/drm/xe/xe_exec_queue.h       |  1 +
+>>   drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+>>   drivers/gpu/drm/xe/xe_guc_submit.c       | 32 ++++++++++++++++++++++++
+>>   5 files changed, 55 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index 8392c9fad3c48..ffee8951a7b4e 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -190,8 +190,14 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+>>   		if (q->vm && q->hwe->hw_engine_group)
+>>   			xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
+>>   		xe_exec_queue_kill(q);
+>> -		xe_exec_queue_put(q);
+>>   	}
+>> +
+>> +	xa_for_each(&xef->exec_queue.xa, idx, q)
+>> +		xe_exec_queue_kill_sync(q);
+>> +
+>> +	xa_for_each(&xef->exec_queue.xa, idx, q)
+>> +		xe_exec_queue_put(q);
+> You can do the put in the same loop as xe_exec_queue_kill_sync.
+Yes, I'll fix this in the next version.
+>
+>> +
+>>   	xa_for_each(&xef->vm.xa, idx, vm)
+>>   		xe_vm_close_and_put(vm);
+>>   
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> index 9a8efa2bf2bfb..8ba2cf45694dd 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> @@ -1622,6 +1622,19 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
+>>   	xe_vm_remove_compute_exec_queue(q->vm, q);
+>>   }
+>>   
+>> +/**
+>> + * xe_exec_queue_kill_sync() - Wait for queue scheduling to stop
+>> + * @q: The exec queue
+>> + *
+>> + * This function waits for the backend to finish stopping the queue after
+>> + * xe_exec_queue_kill(). It is safe to call multiple times.
+>> + */
+>> +void xe_exec_queue_kill_sync(struct xe_exec_queue *q)
+>> +{
+>> +	if (q->ops->kill_sync)
+>> +		q->ops->kill_sync(q);
+>> +}
+>> +
+>>   /**
+>>    * xe_exec_queue_destroy_ioctl() - Destroy an exec queue via IOCTL
+>>    * @dev: DRM device
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+>> index e8963f85cabd9..4be023b9a4c6c 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+>> @@ -119,6 +119,7 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
+>>   bool xe_exec_queue_is_idle(struct xe_exec_queue *q, int extra_jobs);
+>>   
+>>   void xe_exec_queue_kill(struct xe_exec_queue *q);
+>> +void xe_exec_queue_kill_sync(struct xe_exec_queue *q);
+>>   
+>>   int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+>>   			       struct drm_file *file);
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+>> index 48c05398b0168..4882eeccb9bd5 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+>> @@ -294,6 +294,8 @@ struct xe_exec_queue_ops {
+>>   	int (*init)(struct xe_exec_queue *q);
+>>   	/** @kill: Kill inflight submissions for backend */
+>>   	void (*kill)(struct xe_exec_queue *q);
+>> +	/** @kill_sync: Wait for the backend to stop queue scheduling */
+>> +	void (*kill_sync)(struct xe_exec_queue *q);
+>>   	/** @fini: Undoes the init() for submission backend */
+>>   	void (*fini)(struct xe_exec_queue *q);
+>>   	/**
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> index 609af66b343d5..36c8c3766f5fa 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+>> @@ -2267,6 +2267,34 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
+>>   	xe_guc_exec_queue_trigger_cleanup(q);
+>>   }
+>>   
+>> +static void guc_exec_queue_kill_sync(struct xe_exec_queue *q)
+>> +{
+>> +	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
+>> +	struct xe_guc *guc = exec_queue_to_guc(primary);
+>> +	struct xe_gpu_scheduler *sched = &q->guc->sched;
+>> +	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_KILL;
+>> +	bool pending;
+>> +
+>> +	if (!exec_queue_killed(q))
+> xe_assert(xe, exec_queue_killed(q))
+>
+> ^^^ This is a caller invarient.
+To be fixed in next version.
+>
+>> +		return;
+>> +
+>> +	do {
+>> +		flush_work(&sched->work_process_msg);
+>> +
+>> +		xe_sched_msg_lock(sched);
+>> +		pending = !list_empty(&msg->link);
+>> +		xe_sched_msg_unlock(sched);
+>> +	} while (pending && !drm_sched_is_stopped(&sched->base));
+> I'm honestly not quite following the logic above, and I don't think this
+> is necessary. At this point, we've already queued a kill message. It will
+> eventually run, or the TDR will fire, or a GT reset will occur. Any of
+> these paths should eventually clear the flags below.
+>
+> I can see that this was LLM-assisted, and it may well be smarter than me
+> here, but I don't understand why this change is needed.
 
-The aim of such development is to guide users to select the most suitable
-DisplayPort connector for their needs. For example, if you have a USB-C
-hub with lesser capabilities than your computer’s native DisplayPort
-connector (such as HBR2 versus HBR3 support), the system could recommend
-connecting high-resolution displays directly to the computer’s port
-instead of through the hub to ensure optimal performance.
+The loop was intended to ensure all queued KILL messages had been
+processed before tear down continued. As you point out, those
+messages should be handled through normal processing, TDR, or GT reset.
+I’ll remove the flush_work()/pending-message loop and bound the
+scheduling-state wait with wait_event_timeout().
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
-If the needs arise we can add sysfs files for sink and source common
-capabilities and hardware achievable capabilities. Let's begin with this
-for now.
-
-Changes in v3:
-- Use drm_connector_dp struct for source caps, sync caps and current link
-  information.
-- Remove drmm_connector_dp_init and use an helper instead to report
-  source capabilities.
-- Report all sink link rates capabilities instead of only the max link
-  rates.
-- Expose sysfs attributes only if nlanes is set.
-- Add a new mutex to protect sysfs read write access instead of using
-  the global connection_mutex.
-- Add documentation
-
-Changes in v2:
-- Remove voltage swing and pre-emphasis properties
-- Expose link training state via sysfs dp_link/ group instead of
-  connector properties
-- Rename variables from link_train to link as they relate directly to
-  the link capabilities
-- Add comprehensive sysfs attributes for both source and sink capabilities
-- Add separate helpers for managing sink capabilities and for current and
-  maximum link parameters
----
- Documentation/ABI/testing/sysfs-class-drm-dp |  85 ++++++++
- drivers/gpu/drm/display/drm_dp_helper.c      | 304 +++++++++++++++++++++++++++
- drivers/gpu/drm/drm_connector.c              |  11 +
- drivers/gpu/drm/drm_sysfs.c                  | 155 ++++++++++++++
- include/drm/display/drm_dp_helper.h          |  12 ++
- include/drm/drm_connector.h                  |  53 +++++
- include/drm/drm_sysfs.h                      |   1 +
- 7 files changed, 621 insertions(+)
-
-diff --git a/Documentation/ABI/testing/sysfs-class-drm-dp b/Documentation/ABI/testing/sysfs-class-drm-dp
-new file mode 100644
-index 0000000000000..21c95a1b8dce0
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-drm-dp
-@@ -0,0 +1,85 @@
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Directory of DisplayPort link attributes. It exists for
-+		DisplayPort and eDP connectors and is empty until the
-+		driver reports the source and the sink capabilities.
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/source_link_caps_nlanes
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Maximum number of DisplayPort lanes the source of this
-+		connector can drive.
-+
-+		Valid values: 1, 2 or 4
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/source_link_caps_link_rates
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Space-separated list of the DisplayPort link rates the
-+		source of this connector can drive, in kbps, sorted in
-+		ascending order.
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/source_link_caps_dsc
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Indicates whether the source of this connector supports
-+		Display Stream Compression (DSC).
-+
-+		Valid values: 0 (not supported), 1 (supported)
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/sink_link_caps_nlanes
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Maximum number of DisplayPort lanes supported by the
-+		connected sink, as reported by the sink capabilities.
-+
-+		Valid values: 1, 2 or 4
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/sink_link_caps_link_rates
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Space-separated list of the DisplayPort link rates
-+		supported by the connected sink, in kbps, sorted in
-+		ascending order. The list is empty if the sink link
-+		rates could not be read.
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/sink_link_caps_dsc
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Indicates whether the connected sink supports Display
-+		Stream Compression (DSC).
-+
-+		Valid values: 0 (not supported), 1 (supported)
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/cur_link_info_nlanes
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Number of lanes used by the currently trained DisplayPort
-+		link of this connector.
-+
-+		Valid values: 1, 2 or 4
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/cur_link_info_link_rate
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Link rate of the currently trained DisplayPort link of
-+		this connector, in kbps.
-+
-+What:		/sys/class/drm/card<X>-<connector>/dp_link/cur_link_info_dsc
-+Date:		October 2026
-+Contact:	dri-devel@lists.freedesktop.org
-+Description:
-+		Indicates whether Display Stream Compression (DSC) is
-+		active on the currently trained DisplayPort link.
-+
-+		Valid values: 0 (disabled), 1 (enabled)
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 93cf43d166c6e..c37826ad4d5a8 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -40,6 +40,7 @@
- #include <drm/drm_edid.h>
- #include <drm/drm_fixed.h>
- #include <drm/drm_print.h>
-+#include <drm/drm_sysfs.h>
- #include <drm/drm_vblank.h>
- #include <drm/drm_panel.h>
- 
-@@ -5118,6 +5119,30 @@ int drm_dp_read_dpcd_sink_rates(struct drm_dp_aux *aux,
- }
- EXPORT_SYMBOL_GPL(drm_dp_read_dpcd_sink_rates);
- 
-+/**
-+ * drm_dp_get_max_lane_count - Get the max lane count from DPCD and LTTPR
-+ *			       capabilities
-+ * @dpcd: DPCD receiver capabilities
-+ * @lttpr_common_caps: LTTPR common capabilities (NULL if no LTTPR supported)
-+ *
-+ * Returns: Number of max lane count
-+ */
-+int drm_dp_get_max_lane_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-+			      const u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE])
-+{
-+	int nlanes, lttpr_nlanes;
-+
-+	nlanes = dpcd[DP_MAX_LANE_COUNT] & DP_MAX_LANE_COUNT_MASK;
-+	if (lttpr_common_caps) {
-+		lttpr_nlanes = drm_dp_lttpr_max_lane_count(lttpr_common_caps);
-+		if (lttpr_nlanes)
-+			nlanes = min(nlanes, lttpr_nlanes);
-+	}
-+
-+	return nlanes;
-+}
-+EXPORT_SYMBOL_GPL(drm_dp_get_max_lane_count);
-+
- /**
-  * drm_dp_read_edp_sink_rates() - read the sink rates from the eDP DPCD
-  * @aux: DisplayPort AUX channel
-@@ -5179,3 +5204,282 @@ int drm_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
- 	return 0;
- }
- EXPORT_SYMBOL_GPL(drm_dp_read_dsc_dpcd);
-+
-+static int drm_dp_copy_caps(struct drm_connector_dp_link_caps *dest_caps,
-+			    const struct drm_connector_dp_link_caps *src_caps)
-+{
-+	int *link_rates = NULL;
-+	int nlink_rates = 0;
-+
-+	if (src_caps->link_rates && src_caps->nlink_rates > 0) {
-+		link_rates = kmemdup_array(src_caps->link_rates,
-+					   src_caps->nlink_rates,
-+					   sizeof(*src_caps->link_rates),
-+					   GFP_KERNEL);
-+		if (!link_rates)
-+			return -ENOMEM;
-+
-+		nlink_rates = src_caps->nlink_rates;
-+	}
-+
-+	kfree(dest_caps->link_rates);
-+
-+	dest_caps->nlanes = src_caps->nlanes;
-+	dest_caps->nlink_rates = nlink_rates;
-+	dest_caps->link_rates = link_rates;
-+	dest_caps->dsc = src_caps->dsc;
-+
-+	return 0;
-+}
-+
-+/**
-+ * drm_dp_source_set_caps - Set DisplayPort source capabilities
-+ * @connector: DisplayPort connector
-+ * @link_caps: DisplayPort link training capabilities. The link_rates pointer
-+ *	       is not kept by the DRM core
-+ *
-+ * This function sets the DisplayPort source link training capabilities
-+ * for the given connector. This function has to be called after
-+ * drm_connector_init() and before drm_dev_register().
-+ */
-+int drm_dp_source_set_caps(struct drm_connector *connector,
-+			   const struct drm_connector_dp_link_caps *link_caps)
-+{
-+	int ret;
-+
-+	if (!connector)
-+		return -ENODEV;
-+
-+	if (!(connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-+	      connector->connector_type == DRM_MODE_CONNECTOR_eDP))
-+		return -EINVAL;
-+
-+	WARN_ON(connector->dev->registered);
-+
-+	/* No need to take the dp mutex as the connector sysfs is not yet
-+	 * created
-+	 */
-+	ret = drm_dp_copy_caps(&connector->dp.source_link_caps, link_caps);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(drm_dp_source_set_caps);
-+
-+/**
-+ * drm_dp_sink_set_caps - Set DisplayPort sink link capabilities
-+ * @connector: DisplayPort connector
-+ * @link_caps: DisplayPort link training capabilities. The link_rates pointer
-+ *	       is not kept by the DRM core
-+ *
-+ * This function sets the DisplayPort sink (monitor) link training
-+ * capabilities for the given connector. This function lets the controller
-+ * driver read the DPCD on its own, to avoid too many read of the same
-+ * DPCD data.
-+ * This should be called when a sink is connected.
-+ *
-+ * Returns: 0 if the capabilities were set successfully, negative error code
-+ * otherwise.
-+ */
-+int drm_dp_sink_set_caps(struct drm_connector *connector,
-+			 const struct drm_connector_dp_link_caps *link_caps)
-+{
-+	int ret;
-+
-+	if (!connector)
-+		return -ENODEV;
-+
-+	drm_modeset_lock_assert_held(&connector->dev->mode_config.connection_mutex);
-+
-+	scoped_guard(mutex, &connector->dp.mutex) {
-+		ret = drm_dp_copy_caps(&connector->dp.sink_link_caps, link_caps);
-+		if (ret)
-+			return ret;
-+
-+		drm_sysfs_connector_dp_link_update(connector);
-+	}
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL_GPL(drm_dp_sink_set_caps);
-+
-+/**
-+ * drm_dp_sink_sync_caps - Fetch and set DisplayPort sink link capabilities
-+ * @connector: DisplayPort connector
-+ * @aux: DisplayPort AUX channel
-+ * @tunnel: Tunnel object (NULL if not supported)
-+ *
-+ * This function fetches the DisplayPort sink link capabilities from DPCD and
-+ * sets them for the given connector.
-+ * This should be called when a sink is connected.
-+ *
-+ * Returns: 0 if the capabilities were fetched and set successfully, negative
-+ * error code otherwise.
-+ */
-+int drm_dp_sink_sync_caps(struct drm_connector *connector, struct drm_dp_aux *aux,
-+			  const struct drm_dp_tunnel *tunnel)
-+{
-+	u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE] = {0};
-+	struct drm_connector_dp_link_caps link_caps;
-+	int sink_rates[DP_MAX_SUPPORTED_RATES] = {0};
-+	u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE] = {0};
-+	u8 dpcd_caps[DP_RECEIVER_CAP_SIZE] = {0};
-+	struct drm_dp_desc desc = {0};
-+	int num_sink_rates, ret;
-+	u8 edp_dpcd_rev = 0;
-+
-+	if (!connector)
-+		return -ENODEV;
-+
-+	drm_modeset_lock_assert_held(&connector->dev->mode_config.connection_mutex);
-+
-+	ret = drm_dp_read_dpcd_caps(aux, dpcd_caps);
-+	if (ret < 0) {
-+		drm_dbg_kms(aux->drm_dev, "%s: error reading DPCD capabilities (%d)\n",
-+			    aux->name, ret);
-+		return ret;
-+	}
-+
-+	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		ret = drm_dp_dpcd_read_byte(aux, DP_EDP_DPCD_REV, &edp_dpcd_rev);
-+		if (ret < 0)
-+			drm_dbg_kms(aux->drm_dev, "%s: No DPCD eDP revision found\n",
-+				    aux->name);
-+	}
-+
-+	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
-+	    dpcd_caps[DP_DPCD_REV] >= DP_DPCD_REV_13) {
-+		ret = drm_dp_read_lttpr_common_caps(aux, dpcd_caps, lttpr_common_caps);
-+		if (ret < 0) {
-+			drm_dbg_kms(aux->drm_dev,
-+				    "%s: error reading LTTPR caps, assuming no LTTPR (%d)\n",
-+				    aux->name, ret);
-+			/* LTTPR capabilities are read block by block. Clean the
-+			 * entire capabilities if the read fails to avoid
-+			 * partial garbage
-+			 */
-+			memset(lttpr_common_caps, 0, sizeof(lttpr_common_caps));
-+		}
-+	}
-+
-+	ret = drm_dp_read_desc(aux, &desc, drm_dp_is_branch(dpcd_caps));
-+	if (ret)
-+		drm_dbg_kms(aux->drm_dev, "%s: No DPCD descriptor found\n",
-+			    aux->name);
-+
-+	if (connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		num_sink_rates = drm_dp_read_edp_sink_rates(aux, edp_dpcd_rev,
-+							    sink_rates);
-+
-+		/*
-+		 * Use the rates of the DP_MAX_LINK_RATE and
-+		 * DP_128B132B_SUPPORTED_LINK_RATES registers if the sink does
-+		 * not support the DP_SUPPORTED_LINK_RATES register.
-+		 */
-+		if (num_sink_rates <= 0)
-+			num_sink_rates = drm_dp_read_dpcd_sink_rates(aux, dpcd_caps,
-+								     lttpr_common_caps,
-+								     &desc,
-+								     tunnel,
-+								     sink_rates);
-+	} else {
-+		num_sink_rates = drm_dp_read_dpcd_sink_rates(aux, dpcd_caps,
-+							     lttpr_common_caps,
-+							     &desc,
-+							     tunnel,
-+							     sink_rates);
-+	}
-+
-+	if ((connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
-+	     dpcd_caps[DP_DPCD_REV] >= DP_DPCD_REV_14) ||
-+	    (connector->connector_type == DRM_MODE_CONNECTOR_eDP &&
-+	     edp_dpcd_rev >= DP_EDP_14)) {
-+		ret = drm_dp_read_dsc_dpcd(aux, dsc_dpcd);
-+		if (ret < 0)
-+			drm_dbg_kms(aux->drm_dev,
-+				    "%s: error reading DPCD DSC capabilities (%d)\n",
-+				    aux->name, ret);
-+	}
-+
-+	link_caps.nlanes = drm_dp_get_max_lane_count(dpcd_caps, lttpr_common_caps);
-+	link_caps.nlink_rates = num_sink_rates;
-+	link_caps.link_rates = sink_rates;
-+	link_caps.dsc = drm_dp_sink_supports_dsc(dsc_dpcd);
-+
-+	return drm_dp_sink_set_caps(connector, &link_caps);
-+}
-+EXPORT_SYMBOL_GPL(drm_dp_sink_sync_caps);
-+
-+/**
-+ * drm_dp_set_cur_link_params - Set current DisplayPort link parameters
-+ * @connector: DisplayPort connector
-+ * @link_rate: Current link rate in deca-kbps
-+ * @lane_count: Current lane count
-+ * @dsc_en: Display Stream Compression enabled
-+ *
-+ * This function sets the current active DisplayPort link parameters after
-+ * link training has completed. These parameters represent the actual link
-+ * configuration being used for display output.
-+ */
-+void drm_dp_set_cur_link_params(struct drm_connector *connector,
-+				int link_rate, int lane_count, bool dsc_en)
-+{
-+	bool update = false;
-+	int *_link_rates;
-+
-+	if (!connector)
-+		return;
-+
-+	drm_modeset_lock_assert_held(&connector->dev->mode_config.connection_mutex);
-+
-+	scoped_guard(mutex, &connector->dp.mutex) {
-+		if (!connector->dp.cur_link_info.nlanes || !lane_count)
-+			update = true;
-+
-+		if (!connector->dp.cur_link_info.link_rates) {
-+			_link_rates = kzalloc_obj(*_link_rates);
-+			if (!_link_rates)
-+				return;
-+
-+			connector->dp.cur_link_info.link_rates = _link_rates;
-+			connector->dp.cur_link_info.nlink_rates = 1;
-+		}
-+
-+		*connector->dp.cur_link_info.link_rates = link_rate;
-+		connector->dp.cur_link_info.nlanes = lane_count;
-+		connector->dp.cur_link_info.dsc = dsc_en;
-+
-+		if (update)
-+			drm_sysfs_connector_dp_link_update(connector);
-+	}
-+}
-+EXPORT_SYMBOL_GPL(drm_dp_set_cur_link_params);
-+
-+/**
-+ * drm_dp_sink_reset_caps - Reset DisplayPort sink capabilities
-+ * @connector: DisplayPort connector
-+ *
-+ * This function clears all DisplayPort sink link capabilities and parameters.
-+ * This should be called when a sink is disconnected to clear stale
-+ * capability information.
-+ */
-+void drm_dp_sink_reset_caps(struct drm_connector *connector)
-+{
-+	struct drm_connector_dp_link_caps zero_caps = {0};
-+
-+	if (!connector)
-+		return;
-+
-+	drm_modeset_lock_assert_held(&connector->dev->mode_config.connection_mutex);
-+
-+	scoped_guard(mutex, &connector->dp.mutex) {
-+		kfree(connector->dp.cur_link_info.link_rates);
-+		memcpy(&connector->dp.cur_link_info, &zero_caps, sizeof(zero_caps));
-+		kfree(connector->dp.sink_link_caps.link_rates);
-+		memcpy(&connector->dp.sink_link_caps, &zero_caps, sizeof(zero_caps));
-+
-+		drm_sysfs_connector_dp_link_update(connector);
-+	}
-+}
-+EXPORT_SYMBOL_GPL(drm_dp_sink_reset_caps);
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 893716a9e4895..f9b780fb340b5 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -285,6 +285,7 @@ static int drm_connector_init_only(struct drm_device *dev,
- 	mutex_init(&connector->edid_override_mutex);
- 	mutex_init(&connector->hdmi.infoframes.lock);
- 	mutex_init(&connector->hdmi_audio.lock);
-+	mutex_init(&connector->dp.mutex);
- 	connector->edid_blob_ptr = NULL;
- 	connector->epoch_counter = 0;
- 	connector->tile_blob_ptr = NULL;
-@@ -941,6 +942,16 @@ void drm_connector_cleanup(struct drm_connector *connector)
- 		connector->tile_group = NULL;
- 	}
- 
-+	scoped_guard(mutex, &connector->dp.mutex) {
-+		kfree(connector->dp.source_link_caps.link_rates);
-+		connector->dp.source_link_caps.link_rates = NULL;
-+		kfree(connector->dp.sink_link_caps.link_rates);
-+		connector->dp.sink_link_caps.link_rates = NULL;
-+		kfree(connector->dp.cur_link_info.link_rates);
-+		connector->dp.cur_link_info.link_rates = NULL;
-+	}
-+	mutex_destroy(&connector->dp.mutex);
-+
- 	list_for_each_entry_safe(mode, t, &connector->probed_modes, head)
- 		drm_mode_remove(connector, mode);
- 
-diff --git a/drivers/gpu/drm/drm_sysfs.c b/drivers/gpu/drm/drm_sysfs.c
-index 7b16d32b6ff65..1949b46419c6d 100644
---- a/drivers/gpu/drm/drm_sysfs.c
-+++ b/drivers/gpu/drm/drm_sysfs.c
-@@ -340,6 +340,149 @@ static const struct attribute_group *connector_dev_groups[] = {
- 	NULL
- };
- 
-+static ssize_t drm_link_rates_show(int num_link_rates, const int *link_rates, char *buf)
-+{
-+	ssize_t size = 0;
-+
-+	if (!num_link_rates)
-+		return 0;
-+
-+	/* We are using deca-kbps in the kernel historically, due to
-+	 * calculation over the link rates that could overflow 32 bits.
-+	 * Report link rates in kbps to avoid confusing the user
-+	 */
-+	size += sysfs_emit_at(buf, size, "%d", link_rates[0] * 10);
-+	for (int i = 1; i < num_link_rates; i++)
-+		size += sysfs_emit_at(buf, size, " %d", link_rates[i] * 10);
-+
-+	size += sysfs_emit_at(buf, size, "\n");
-+	return size;
-+}
-+
-+#define DRM_CONNECTOR_DP_ATTR_SHOW_LINK_RATES_NESTED(_name)                    \
-+static ssize_t _name##_link_rates_show(struct device *device,                  \
-+			    struct device_attribute *attr,                     \
-+			    char *buf)                                         \
-+{                                                                              \
-+	struct drm_connector *connector = to_drm_connector(device);            \
-+	ssize_t size;                                                          \
-+	scoped_guard(mutex, &connector->dp.mutex)			       \
-+		size = drm_link_rates_show(connector->dp._name.nlink_rates,    \
-+					   connector->dp._name.link_rates, buf); \
-+	return size;                                                           \
-+}
-+
-+#define DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(_name, _info)                 \
-+static ssize_t _name##_##_info##_show(struct device *device,                   \
-+				   struct device_attribute *attr,              \
-+				   char *buf)                                  \
-+{                                                                              \
-+	struct drm_connector *connector = to_drm_connector(device);            \
-+	ssize_t size;                                                          \
-+	scoped_guard(mutex, &connector->dp.mutex)			       \
-+		size = sysfs_emit(buf, "%d\n", connector->dp._name._info);     \
-+	return size;                                                           \
-+}
-+
-+static ssize_t cur_link_info_link_rate_show(struct device *device,
-+					    struct device_attribute *attr,
-+					    char *buf)
-+{
-+	struct drm_connector *connector = to_drm_connector(device);
-+	ssize_t size;
-+
-+	scoped_guard(mutex, &connector->dp.mutex)
-+		size = drm_link_rates_show(connector->dp.cur_link_info.nlink_rates,
-+					   connector->dp.cur_link_info.link_rates, buf);
-+	return size;
-+}
-+
-+DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(source_link_caps, nlanes);
-+DRM_CONNECTOR_DP_ATTR_SHOW_LINK_RATES_NESTED(source_link_caps);
-+DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(source_link_caps, dsc);
-+DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(sink_link_caps, nlanes);
-+DRM_CONNECTOR_DP_ATTR_SHOW_LINK_RATES_NESTED(sink_link_caps);
-+DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(sink_link_caps, dsc);
-+DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(cur_link_info, nlanes);
-+DRM_CONNECTOR_DP_ATTR_SHOW_SIMPLE_NESTED(cur_link_info, dsc);
-+
-+static DEVICE_ATTR_RO(source_link_caps_nlanes);
-+static DEVICE_ATTR_RO(source_link_caps_link_rates);
-+static DEVICE_ATTR_RO(source_link_caps_dsc);
-+static DEVICE_ATTR_RO(sink_link_caps_nlanes);
-+static DEVICE_ATTR_RO(sink_link_caps_link_rates);
-+static DEVICE_ATTR_RO(sink_link_caps_dsc);
-+static DEVICE_ATTR_RO(cur_link_info_nlanes);
-+static DEVICE_ATTR_RO(cur_link_info_link_rate);
-+static DEVICE_ATTR_RO(cur_link_info_dsc);
-+
-+static struct attribute *connector_dp_link_attrs[] = {
-+	&dev_attr_source_link_caps_nlanes.attr,
-+	&dev_attr_source_link_caps_link_rates.attr,
-+	&dev_attr_source_link_caps_dsc.attr,
-+	&dev_attr_sink_link_caps_nlanes.attr,
-+	&dev_attr_sink_link_caps_link_rates.attr,
-+	&dev_attr_sink_link_caps_dsc.attr,
-+	&dev_attr_cur_link_info_nlanes.attr,
-+	&dev_attr_cur_link_info_link_rate.attr,
-+	&dev_attr_cur_link_info_dsc.attr,
-+	NULL
-+};
-+
-+static umode_t dp_link_attr_visible(struct kobject *kobj,
-+				    struct attribute *a, int n)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct drm_connector *connector = to_drm_connector(dev);
-+	struct drm_connector_dp_link_caps *caps;
-+
-+	if (a == &dev_attr_source_link_caps_nlanes.attr ||
-+	    a == &dev_attr_source_link_caps_link_rates.attr ||
-+	    a == &dev_attr_source_link_caps_dsc.attr)
-+		caps = &connector->dp.source_link_caps;
-+	else if (a == &dev_attr_sink_link_caps_nlanes.attr ||
-+		 a == &dev_attr_sink_link_caps_link_rates.attr ||
-+		 a == &dev_attr_sink_link_caps_dsc.attr)
-+		caps = &connector->dp.sink_link_caps;
-+	else
-+		caps = &connector->dp.cur_link_info;
-+
-+	/* Checking nlanes is enough to decide whether the attributes should
-+	 * be exposed: without lanes there is no working DisplayPort link
-+	 */
-+	return caps->nlanes ? a->mode : 0;
-+}
-+
-+static const struct attribute_group connector_dp_link_group = {
-+	.name = "dp_link",
-+	.attrs = connector_dp_link_attrs,
-+	.is_visible = dp_link_attr_visible,
-+};
-+
-+/**
-+ * drm_sysfs_connector_dp_link_update - Update the visibility of the DP link
-+ *                                      attributes
-+ * @connector: DisplayPort connector
-+ */
-+void drm_sysfs_connector_dp_link_update(struct drm_connector *connector)
-+{
-+	int ret;
-+
-+	if (!connector->kdev)
-+		return;
-+
-+	if (connector->connector_type != DRM_MODE_CONNECTOR_DisplayPort &&
-+	    connector->connector_type != DRM_MODE_CONNECTOR_eDP)
-+		return;
-+
-+	ret = sysfs_update_group(&connector->kdev->kobj,
-+				 &connector_dp_link_group);
-+	if (ret)
-+		drm_err(connector->dev,
-+			"failed to update DP link sysfs attributes: %d\n", ret);
-+}
-+EXPORT_SYMBOL_GPL(drm_sysfs_connector_dp_link_update);
-+
- int drm_sysfs_connector_add(struct drm_connector *connector)
- {
- 	struct drm_device *dev = connector->dev;
-@@ -376,6 +519,15 @@ int drm_sysfs_connector_add(struct drm_connector *connector)
- 
- 	connector->kdev = kdev;
- 
-+	if (connector->connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-+	    connector->connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		r = sysfs_create_group(&connector->kdev->kobj, &connector_dp_link_group);
-+		if (r) {
-+			drm_err(dev, "failed to create DP connector sysfs: %d\n", r);
-+			goto err_dp_sysfs;
-+		}
-+	}
-+
- 	if (dev_fwnode(kdev)) {
- 		r = component_add(kdev, &typec_connector_ops);
- 		if (r)
-@@ -384,6 +536,9 @@ int drm_sysfs_connector_add(struct drm_connector *connector)
- 
- 	return 0;
- 
-+err_dp_sysfs:
-+	connector->kdev = NULL;
-+	device_del(kdev);
- err_free:
- 	put_device(kdev);
- 	return r;
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 7bc3b36f38b82..ad899ac18bfd8 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -712,6 +712,8 @@ int drm_dp_read_dpcd_sink_rates(struct drm_dp_aux *aux,
- 				int sink_rates[DP_MAX_SUPPORTED_RATES]);
- int drm_dp_read_edp_sink_rates(struct drm_dp_aux *aux, u8 edp_dpcd_rev,
- 			       int sink_rates[DP_MAX_SUPPORTED_RATES]);
-+int drm_dp_get_max_lane_count(const u8 dpcd[DP_RECEIVER_CAP_SIZE],
-+			      const u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE]);
- 
- int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
- 				 u8 status[DP_LINK_STATUS_SIZE]);
-@@ -1051,4 +1053,14 @@ ssize_t drm_dp_vsc_sdp_pack(const struct drm_dp_vsc_sdp *vsc, struct dp_sdp *sdp
- int drm_dp_link_symbol_cycles(int lane_count, int pixels, int dsc_slice_count,
- 			      int bpp_x16, int symbol_size, bool is_mst);
- 
-+int drm_dp_source_set_caps(struct drm_connector *connector,
-+			   const struct drm_connector_dp_link_caps *link_caps);
-+int drm_dp_sink_sync_caps(struct drm_connector *connector, struct drm_dp_aux *aux,
-+			  const struct drm_dp_tunnel *tunnel);
-+int drm_dp_sink_set_caps(struct drm_connector *connector,
-+			 const struct drm_connector_dp_link_caps *link_caps);
-+void drm_dp_sink_reset_caps(struct drm_connector *connector);
-+void drm_dp_set_cur_link_params(struct drm_connector *connector, int link_rate,
-+				int lane_count, bool dsc_en);
-+
- #endif /* _DRM_DP_HELPER_H_ */
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index 2ee7c59329aae..415fa5652d3c4 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -2282,6 +2282,54 @@ struct drm_connector_cec {
- 	void *data;
- };
- 
-+/**
-+ * struct drm_connector_dp_link_caps - DRM DisplayPort link capabilities
-+ */
-+struct drm_connector_dp_link_caps {
-+	/**
-+	 * @nlanes: Maximum number of lanes number supported
-+	 */
-+	int nlanes;
-+
-+	/**
-+	 * @nlink_rates: Number of link rates supported
-+	 */
-+	int nlink_rates;
-+
-+	/**
-+	 * @link_rates: Array listing the supported link rates in deca-kbps
-+	 */
-+	int *link_rates;
-+
-+	/**
-+	 * @dsc: Display Stream Compression supported
-+	 */
-+	bool dsc;
-+};
-+
-+/**
-+ * struct drm_connector_dp - DRM Connector DisplayPort-related structure
-+ */
-+struct drm_connector_dp {
-+	/**
-+	 * @source_link_caps: Source link capabilities
-+	 */
-+	struct drm_connector_dp_link_caps source_link_caps;
-+	/**
-+	 * @sink_link_caps: Sink link capabilities
-+	 */
-+	struct drm_connector_dp_link_caps sink_link_caps;
-+	/**
-+	 * @cur_link_info: Current negotiated link information
-+	 */
-+	struct drm_connector_dp_link_caps cur_link_info;
-+
-+	/**
-+	 * @mutex: Lock to protect read write access
-+	 */
-+	struct mutex mutex;
-+};
-+
- /**
-  * struct drm_connector - central DRM connector control structure
-  *
-@@ -2714,6 +2762,11 @@ struct drm_connector {
- 	 * @cec: CEC-related data.
- 	 */
- 	struct drm_connector_cec cec;
-+
-+	/**
-+	 * @dp: DisplayPort-related variable and properties.
-+	 */
-+	struct drm_connector_dp dp;
- };
- 
- #define obj_to_connector(x) container_of(x, struct drm_connector, base)
-diff --git a/include/drm/drm_sysfs.h b/include/drm/drm_sysfs.h
-index 7695873a94565..366a02e27f366 100644
---- a/include/drm/drm_sysfs.h
-+++ b/include/drm/drm_sysfs.h
-@@ -10,4 +10,5 @@ void drm_sysfs_hotplug_event(struct drm_device *dev);
- void drm_sysfs_connector_hotplug_event(struct drm_connector *connector);
- void drm_sysfs_connector_property_event(struct drm_connector *connector,
- 					struct drm_property *property);
-+void drm_sysfs_connector_dp_link_update(struct drm_connector *connector);
- #endif
+>
+>> +
+>> +	wait_event(guc->ct.wq,
+> wait_event_timeout
+>
+> A GT reset saves on the GuC taking a nap but that is unbounded,
+> wait_event_timeout gives us a bound.
+What is the best action when this wait times out? We have no confirmation
+that GuC has stopped scheduling, yet xe_file_close() will continue
+tearing down the VM. Is it acceptable to continue teardown, or should 
+timeout
+trigger GT reset recovery? If so, should we queue it with 
+xe_gt_reset_async()
+or wait for it to complete with xe_gt_reset() before proceeding?
 
 -- 
-2.43.0
-
+Daniel.
+>
+> Matt
+>
+>> +		   (!exec_queue_enabled(primary) &&
+>> +		    !exec_queue_pending_disable(primary) &&
+>> +		    !exec_queue_pending_enable(primary)) ||
+>> +		   xe_guc_read_stopped(guc) ||
+>> +		   vf_recovery(guc) ||
+>> +		   exec_queue_wedged(primary));
+>> +}
+>> +
+>>   static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg *msg,
+>>   				   u32 opcode)
+>>   {
+>> @@ -2744,6 +2772,7 @@ static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
+>>   static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+>>   	.init = guc_exec_queue_init,
+>>   	.kill = guc_exec_queue_kill,
+>> +	.kill_sync = guc_exec_queue_kill_sync,
+>>   	.fini = guc_exec_queue_fini,
+>>   	.destroy = guc_exec_queue_destroy,
+>>   	.set_priority = guc_exec_queue_set_priority,
+>> @@ -3423,6 +3452,9 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
+>>   				clear_exec_queue_pending_disable(q);
+>>   			}
+>>   		}
+>> +		/* Publish the disabled state before waking kill_sync waiters. */
+>> +		smp_wmb();
+>> +		wake_up_all(&guc->ct.wq);
+>>   	}
+>>   }
+>>   
+>> -- 
+>> 2.43.0
+>>
