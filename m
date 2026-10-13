@@ -4,75 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4DC9CA9ED2
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 12:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36B19CC6B08
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 12:41:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FA0F10E514;
-	Tue, 13 Oct 2026 12:37:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4718E10E7EE
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 12:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB3610E7FC;
+	Tue, 13 Oct 2026 12:41:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B59BC10E805;
+ Tue, 13 Oct 2026 12:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791895016; x=1823431016;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=4tDSexQf2fi/8v5u8iOE1sYKrQ2ZjTNNwBwAriwHXRg=;
- b=gCdRYnWE4c5/gV1O/K4x9Co665nh6KrDeB55ZkuXBWAOLQDCnzwYqB9q
- 6d5cVZO+qf5LHpzbOoecxbQAEc9XB5HW6OnQ3y+z2VoRtpd5bC2dW9pNY
- 14dDKOsaCcYPm7KgjLpkL86hxg41GpwMUTn2IxKwuKaVS+bgKtN517kws
- av9+apfnIE4KJOsW8e+RbC90ESFZs7DuDMM97tQMrUyvSVx41FrMoQHLM
- R+lTWo4Ff6T5qkGqS2LX8JYzk3vX+5KvvDL54LqnxALmWo3kpkHiio2Cc
- ePbctVEYeBO8ZSX1Jp2ZL6M0BwvVwIDmekb+mRbFbUn7xFvLeoTUYqz07 Q==;
-X-CSE-ConnectionGUID: qpo+uL/IR7qw5buJfyiAuw==
-X-CSE-MsgGUID: XUcso+zvR/CyXs6rbfbing==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="622400"
+ t=1791895277; x=1823431277;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=e9UDLjNnRdl2+PGGOVUeDItUU68FiQ7wCC5iHJ0SGfc=;
+ b=lwSfmjKw9j0Az0HQZLCvF/IRpiRNT8R3q6tpnJ/jhj6pjsiwUB1uoE2S
+ 21HH/KpjGsF/UDxeL370LH1sCdBoMBmcXTlcXxqkEdVw1pcDtMBN08rMG
+ MJF+yvo5ItNc2ibvRYACKqsGnsEsD1VeTIG3Qd1C0ytFLj4dPWPnCkFmr
+ Y1KxBVa4PtqK8WDfvZWpBIaYFRErOxoz0mGzP9mtmdu4wyJCE/nq7fJsQ
+ 7wvSk8Wq7iwuUjQ4WTglz3OCp2XiDB2QxbYEROj/Nk6WoBeKeerorgHIG
+ uAdSnJWifWDJHFRppCyCytI9I/m00Jbz9+8ix/bm18xqO5EhebVM9/Tr7 w==;
+X-CSE-ConnectionGUID: IyDbw56KRwCjiLOGe0v8FQ==
+X-CSE-MsgGUID: dRaDvasLRECIj6hwl+Rxug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="515214"
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="622400"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 05:36:55 -0700
-X-CSE-ConnectionGUID: LpKqYIAaRTy8kJvFR73giA==
-X-CSE-MsgGUID: lxyKQ9l2STqk9kwSwFK27A==
+   d="scan'208";a="515214"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 05:41:17 -0700
+X-CSE-ConnectionGUID: B+/tB79RSGWAo8dkHaJ0/Q==
+X-CSE-MsgGUID: Zf5iloNRTwy/6lG9YuIPCg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="1081418"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.245.122])
- ([10.245.245.122])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 05:36:54 -0700
-Message-ID: <b025d829-0911-4b38-8a6b-8ddf5cbcd897@intel.com>
-Date: Tue, 13 Oct 2026 13:36:51 +0100
+   d="scan'208";a="1228481"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 05:41:16 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 05:41:15 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 05:41:15 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.51) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 05:41:15 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VCya1+jqqqlaA9DHKI5ECx+P13oYP8l6u5KeDsZ9Pg8iOfn6rLgvBAw9m8LcsZp3fLBPwFnmt4khh2LM/iu7rKici8Tk85wAC7Yk4c4x1gBrxACCJYy/mp19dX02IJT+08bSgrEPPxYBBYnSxdr6blKlBPTNCt31odhzCR+YHbPw2ClCrgl8yhRxT1xrywP+ttJ47BHmito9gv1+ZUjoKRW62zDYhU1XPpB6H+FzJGgSPVXwXAihNfa23b0FdAKUjxGHm+G+5vfSdOc2lLFTKum2L5WUjHV+XANsOfBqmCQOke7IXykH81NvEN3MHr3zVCBK94QTrYieS4RrLt1/2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=27lI5yvYjhGZmsuJMOkcrFg1/XI7d9Jg+E/6r6QAOgI=;
+ b=MVdADf3YbPqOGDlHhttZ9JIrpldlezJtIw/71cANDyg0a0VFS0VyB/rnoGeWNn9NIrdYmzgViYISrp3yEKfnhvXG72WR+6g/rjVnjNhJCLP8I7Sf4x7ss4Otx1YNBO2aUYGl9L9LviebcbSJFTvkeMhJk1X8WJxCVXf2xWJjgBMPuwMKqeAIgRsZU4YrBvxrpfKE6LSkBJ5kvsmPSi/VdpXK07s5IYC4vb2tWmLkXZB5dAAMtoPqIW9HjJUG2vAKGsdwQaSJXC8bq09OiMHyrZtheJxmYiLbo1NYabGD7Ii6GiQ+Yzipc8nJheKf8GgPrcYRolzp7YO/9oHOU//+5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by SA1PR11MB6662.namprd11.prod.outlook.com (2603:10b6:806:256::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.23; Tue, 13 Oct
+ 2026 12:41:02 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%6]) with mapi id 15.21.0496.021; Tue, 13 Oct 2026
+ 12:41:02 +0000
+Date: Tue, 13 Oct 2026 15:40:56 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 2/5] drm/i915/dpll: apply the PLL power save W/A to port
+ A only
+Message-ID: <as4m2CWYG-lUzfta@ideak-desk.lan>
+References: <20261009103552.1864818-1-mika.kahola@intel.com>
+ <20261009103552.1864818-3-mika.kahola@intel.com>
+ <as0Tgm77ARcfcHQI@ideak-desk.lan>
+ <DS4PPF69154114FE5A707C5339FD36A7CF2EF9E2@DS4PPF69154114F.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <DS4PPF69154114FE5A707C5339FD36A7CF2EF9E2@DS4PPF69154114F.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GV3P280CA0062.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:a::18) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe: skip p2p for suspected display buffers
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20261007153605.1743626-5-matthew.auld@intel.com>
- <20261007153605.1743626-8-matthew.auld@intel.com>
- <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
- <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
- <bc2f4d82-5a8e-4d1b-a921-ee819ca5cac2@amd.com>
- <992d57f0-7327-4c36-adf7-6dd72137fe73@intel.com>
- <31f7eb68-6dfa-4ea7-93a4-d4897fbe6a74@intel.com>
- <3579864a-0283-4f92-b895-5cf399c2ee69@amd.com>
- <16cfde6b-8881-4ffe-8068-9530286da72a@intel.com>
- <1a852df2-c2a4-48bb-84de-cdd4b98b95bb@amd.com>
- <d493d4d1-96d5-4194-bbae-5c1e5d54d91a@intel.com>
- <5545db90-3365-4d75-9fc0-77dda42b7000@intel.com>
- <2fcd10d5-c1f9-47be-9a68-422f9bbd6837@amd.com>
- <8d0eb215394e7a285813fe87def6bee358063431.camel@linux.intel.com>
- <f570087d-9d67-4199-b5db-959741379835@amd.com>
- <9ba9558a85e3df1bf50db7a2265ecb99d746cf9c.camel@linux.intel.com>
- <9a77cde3-641f-45b0-8c30-69184c0f1a4d@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <9a77cde3-641f-45b0-8c30-69184c0f1a4d@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|SA1PR11MB6662:EE_
+X-MS-Office365-Filtering-Correlation-Id: 34ea2d73-85a4-4145-91b1-08df29273d84
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|366016|376014|260925021311599003|260925022911599003|260925021911599003|10067099003|261009223027099003|11063799006|5023799004|4143699003|56012099006|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: x/eGDq8Td0T0IKgcvU5f+YdwVxkfIx6VK0OablDh7g3rxvWFvFbZ0hFu0l1/WNfV7L4fXRA4oCaFQN/1TEJUa7qeTZt0kL2ws/YdbaQXI7eL7H/m69jVN/VNs3mBvP5YD431kQZ+AVCAfq/z35AQvEsWoRmv6WsKMpEBHOmnhRQ2o4mzQZpmba2bVCGPfQOz+UxZwfwFAqlJGhK0rKDDBONj7xsh0VwTr9OuMFst/hsYgy9FQAPb2VPcbwS8KOL8vWWUNWjKe0POaJcvJ9cd2fiuv0xabFFYW7J2gKuqlZYYtx0UR+k6JOjwKjB+2wuNw3HY1Q+fNFCX3vCFiv9mHlxCTinZdIvr2Ry3BFi8zkVVl63THb9VSXi2y59+WzRj0bHGqI4Y+kUPppN3R/wDjiDhNNgWTOit9jS0vzTjIpy2WcA63D7Ve1IndSlOYQ6GFR8oRBfX11kW9oI4Ual8r0EVrNpx7okH+w2BcaXS+wnYWlun/Hko8ZITj13Jz35MTUJZ1xaE4Ak9uosu6/Thz9X5sf0X/SMrJ0blQxLyoJ/7d7lRJmmNsOJLC+2IqN69r9KEgv42q+5Pe94aakjpInrSX69+UxbcAmdJr2tkoSsm9+xa1+bV+5s+ip8CapbGgDXP75DHi7OG6jyDYYICHrLLGJ282lBETU7TQuh0qp8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(260925021311599003)(260925022911599003)(260925021911599003)(10067099003)(261009223027099003)(11063799006)(5023799004)(4143699003)(56012099006)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BFIHsf9ACCuQq6AkPnh/vw2x0u9t9Ry2wndaLRXZVTO4YZNVjxwPw/iTSPK0?=
+ =?us-ascii?Q?5j36YM/2OkGGJC0UsYt9vD8sRIOAeNIAAEywH/tyKYK26DJ1/VpQ4GMj/ZLe?=
+ =?us-ascii?Q?jAdGfAHIB2hRm5D22/iwT4rWcjS4ZviGKnw2HSH+ejN0hVuY2dzVAhRqBK0u?=
+ =?us-ascii?Q?LXrEIEc26oeBrDvK3Wnn+XkGUVyDSSeh6ePd7abSvKJZ2/1xS/gAC2NOadKB?=
+ =?us-ascii?Q?pEOvI67MUAVUZ7bpr4VDjQKi1VHGqcVZ/gaRZJeusaAxxEoxhY4C2jahFoFN?=
+ =?us-ascii?Q?T63hxk82GtFZeVBTGDQjY/gbNn2jdZmGAw2Nn3xg1j4wR79yltpgFEWT+hIO?=
+ =?us-ascii?Q?oygNt01+fYnQzWLekzX2CVqU6SakHJZX71BChODbu0MF/EX+oacNCWrJJX6f?=
+ =?us-ascii?Q?IM7PQK94Okh3U+OF1cS8KKPORqcjqYizYv7t3Y7nerwKmAap8hEB7EuUgZYB?=
+ =?us-ascii?Q?wyvf5ZCnk+QxCTjjqWZCKk749O5jAl/JxNsl8enNdi7RRivHOmT8m8ErcKOd?=
+ =?us-ascii?Q?OBjhkhTiBZLE18Xs75Ha8IEdj+R+OconhX6sd1dKd3JIfbFKoDLntWJFn4N1?=
+ =?us-ascii?Q?zjNGqKhc3FqezKaGgB3qvTqIVgjz3k4g9r1eyQzYdNNJcExpztSmvH8JNxxx?=
+ =?us-ascii?Q?whT4zs5DAa3tNZgLMuewUMqXmJGdrCiB4zlEnSvokzyEFm0DNoInNPtp3EVH?=
+ =?us-ascii?Q?9juU9l9H3Ni/wcblyaFT1g2MR04TCVR9xPYpjg+xq7UwFFNkfo2dOzwNa+pw?=
+ =?us-ascii?Q?UgdQ0ZCSd0SFzLOC9IbLrN0DNf4NdQwBdNST+6e+geZU07wdWU67yhTLoOP6?=
+ =?us-ascii?Q?Gy01O+2cxIg45A2YkyEt7xqGRbl97niRz/OmHjjAdYGu1ItDM5CpJJ4ywIR4?=
+ =?us-ascii?Q?ninBnMiUXL7I3gpT6EIRkI9EJ0DrAnzkZ1MQrVIlkQqVagYc8mZ9V0cMhIJJ?=
+ =?us-ascii?Q?SgT+ovqt6MPXBLC+yx5bmmiDjOsoHoTh+mmkpA2iCrKfctJoEhzMa/UYXi7M?=
+ =?us-ascii?Q?QeKsl2tyjBLL8UvjppJCJAHYDne9xXA7KwuXhi1OijHYbZPwaD3vLXrovK6q?=
+ =?us-ascii?Q?iu7pPlHJ3QMfUS+K4mQumMKVMSCBDfs91yJvxagRWAvZCGPi1pCi7NlaUO77?=
+ =?us-ascii?Q?ftJQrKI61wu+DdSInSIF1zawcBqAfLsT3dK4uFK11we/slhYjo9ZnowOTS94?=
+ =?us-ascii?Q?5+FXPdwFof98Q369jCSU8I7LMHc7f+TqQhIkwRqoaKaP4089JQ8fzLhbGVVI?=
+ =?us-ascii?Q?wjwi3w5ezuOEX+T/ASoG7f78q+xqDIsUdlEqtZch00k+ltGMwh+YaWEk8OZv?=
+ =?us-ascii?Q?L+qkzNHFx3eq7CI/D69GGmnY9SwCRi7NIh/ju2ltnG/yyBwWTEqpiI9xQbKM?=
+ =?us-ascii?Q?OEr9wNJGSHuV9JFscjxx2lOuVbsAYt047lnknOdyJ5vqihOAofysFB10U9T6?=
+ =?us-ascii?Q?DmVBKltGzwPqGYvXZ/PTfeJqx6nphrgdStXjgSiVU4CSD2OZO6uQ2uPPQiQs?=
+ =?us-ascii?Q?aR1S58hBqWwb+bL2M6z4HDOqBNsEeZNWrb4Yy1ZRKShg56iyjjcuILV5Ea63?=
+ =?us-ascii?Q?2t4291uzl2Bna1Fh1TwxkbfT8fr6CNL5RJI57K2k/HI7EbcdqvfzPIcAdVR+?=
+ =?us-ascii?Q?OFSnkbUrSqPgu9COTuPkHWjFAEO93pWjt8tp5TLBxFpeHhp/V454RmesXeKG?=
+ =?us-ascii?Q?Vvm4g7s2EX3i2566G8DjY4Ca3Y3lyoFEI6w/urFxq5rXnWpdPvtc4z2d+26/?=
+ =?us-ascii?Q?j+VfB6lH1w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: kll1kgt3Iec3luDazCYnmKsJec9oWyV5YW9oaFVyNTeXUaQqi8zAeRgfXhHdwMggUEeYbFZ3KkDKQE/h90s0VQRBCCkpUXFeqzoGpTb6EO7Q1Iw7WdKFBeM4w647osSdG/RSFgbjOtHv1mK+cX9TNHGiCTA3q/zJVSbA67HEbqVxXKseUPV45kMf6a/LmRW6SwIfJ0M2ZdQvy8ZQi/6RxIQU5zaVoYEC0347yI2VrRJObqPUo2428KKnOa2Oy5MCJLZhnPos5yGKPf0iV4QFrDwcLSfL4BLSG8tDWF7+/waEcvrZ8D1B6RkOmSgskd91m8UM+ohbAOpxm1SuloAZ4Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34ea2d73-85a4-4145-91b1-08df29273d84
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 12:41:02.4862 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5H6WCMn8SYLSNIWLpigqtiY97KehPM0K1rn9l1411+iR03dwvjOWTvp3TSI0ZAG7A7lHw7GmBJpte83AxvfNSg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6662
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,135 +159,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 13/10/2026 12:45, Christian König wrote:
-> On 10/13/26 12:16, Thomas Hellström wrote:
->> On Tue, 2026-10-13 at 11:55 +0200, Christian König wrote:
->>> On 10/13/26 11:18, Thomas Hellström wrote:
->>> ...
->>>>>>>>>>>> Ideas on how do that? Could we do something like
->>>>>>>>>>>> allow_peer2peer = false in
->>>>>>>>>>>> amdgpu_gem_prime_import() if
->>>>>>>>>>>> this is an APU device, or further check if the
->>>>>>>>>>>> exporter
->>>>>>>>>>>> side is not amdgpu, like APU + Xe?
->>>>>>>>>>>
->>>>>>>>>>> For example:
->>>>>>>>>>> https://gitlab.freedesktop.org/mwa/kernel/-/ commit/7
->>>>>>>>>>> ec86
->>>>>>>>>>> c68b42655b4bb85ee90af434a617e7bec8c
->>>>>>>>>>>
->>>>>>>>>>> Is that something you would accept?
->>>>>>>>>>
->>>>>>>>>> No, you misunderstood me. Enabling P2P is perfectly
->>>>>>>>>> fine
->>>>>>>>>> for APUs and mandatory for a couple of customer
->>>>>>>>>> projects.
->>>>>>>>>>
->>>>>>>>>> The buffer should just be rejected from scanout in the
->>>>>>>>>> display code and on the AMDGPU side we already do that
->>>>>>>>>> if
->>>>>>>>>> I'm not completely mistaken.
->>>>>>>>>
->>>>>>>>> Reporter confirmed seeing the issue in windowed mode
->>>>>>>>> also. So
->>>>>>>>> I don't think it's just a case of rejecting from scanout?
->>>>>>>>
->>>>>>>> Then I don't understand what the problem is.
->>>>>>>>
->>>>>>>> When the dGPU renders and the iGPU displays you have only
->>>>>>>> two
->>>>>>>> possibilities, either the dGPU pushes the frames over the
->>>>>>>> bus
->>>>>>>> or the iGPU pulls the frames over the bus. Both should be
->>>>>>>> equaly slow or fast, so what exactly is the expectation
->>>>>>>> here?
->>>>>>>
->>>>>>> I assume the AMD APU/iGPU is sampling/reading from the p2p
->>>>>>> window
->>>>>>> buffer every frame.
->>>>>
->>>>> That is not possible. The HW can't do this and because of this we
->>>>> should have a check for that in the DAL/DC code.
->>>>>
->>>> Couldn't the issue be that the compositor, running on the amd iGPU
->>>> blits from the dma-buf rather than scans out from it? And the
->>>> scanout
->>>> is not the shared buffer at all?
->>>
->>> Yeah that is possible, but that should only happen when there is some
->>> change.
->>>
->>> When the iGPU reads the buffer only once then that isn't really
->>> problematic, it's actually exactly what should happen.
->>>
->>> It only becomes problematic when the buffer is read multiple times to
->>> construct multiple frames, either because the compositor does
->>> something unexpected or we really start to scanout from the buffer.
->>
->> But in windowed mode (and perhaps even fullscreen?) the compositor
->> blits repeatedly over PCI each frame from the dma-buf?
+On Tue, Oct 13, 2026 at 03:31:01PM +0300, Kahola, Mika wrote:
+> > -----Original Message-----
+> > From: Deak, Imre <imre.deak@intel.com>
+> > Sent: Monday, 12 October 2026 20.06
+> > To: Kahola, Mika <mika.kahola@intel.com>
+> > Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > Subject: Re: [PATCH 2/5] drm/i915/dpll: apply the PLL power save W/A to port A only
+> > 
+> > On Fri, Oct 09, 2026 at 10:35:48AM +0000, Mika Kahola wrote:
+> > > W/A 14022081154 applies to port A,
+> > 
+> > Where is the above described? I only found that the WA is C10 PHY
+> > specific and can't see how the port/PHY A/B being used would matter. It
+> > seems more logical that the WA is needed whenever a C10 PHY is used, in
+> > which case it's being correctly applied in the WCL's C10 port/PHY B case
+> > atm.
 > 
-> It usually doesn't.
+> The BSpec: 74151 
 > 
-> In fullscreen mode using the buffer directly for scanout in an atomic commit should be rejected by the kernel because the HW can't do this.
-> 
-> The fallback path then copies the buffer content to a locally allocated buffer exactly once and then display that new buffer.
-> 
-> I'm not 100% sure what happens in windowed mode for the specific compositor the end user is using. What could be is that when the compositor gets buffers from multiple applications that it composes multiple times over PCIe, but it is unlikely that this will cause problems. You would need something like game/test running on dGPU and glxgears without vblank sync on the iGPU.
-> 
-> AMD uses basically exactly that setup in the Tesla infotainment system for example and it works perfectly fine there.
-> 
-> I have not the slightest idea what's going wrong here.
+> The title of the workaround only talks about phy on port A that needs
+> this additional programming.
 
-My rough mental model here (could be waaaay wrong), is that dgpu is 
-constantly rendering into a private VRAM buffer, and then copying that 
-to a linear buffer which is the window buffer exported to the 
-compositor. Display is plugged into the igpu. DRI_PRIME=1 is used for 
-the game (like GravityMark) to the do rendering on the dgpu.
+I think that LNL workaround wording only means that the workaround is to
+be applied on the C10 PHY, which on LNL can be only on port A. There is
+no PHY connected to port B or any other port on LNL.
 
-In windowed mode, every frame the compositor needs to somehow sample the 
-exported window/texture from a shader, like in mutter. In this flow the 
-igpu is still using native buffer for the actual scanout.
+> Hence, I think even with the WCL case we should limit this to port A.
 
-That exported window buffer is using a flexible placement, so it could 
-technically go in VRAM or system memory. But I don't think p2p was on 
-the bingo cards here for Intel. So if you suddenly negotiate p2p instead 
-of moving it, it now stays in VRAM. So igpu is now constantly reading 
-over pcie every frame, which is extremely slow it seems, for the user.
+I think the workaround should be applied on C10 PHYs always even if the
+PHY is connected to port B (or any other port if that would be
+possible).
 
-Other thing is that when I tried to repro this locally, I used xe igpu + 
-xe dgpu, and manually forcing p2p in the kernel. When I traced it with 
-bpf I just see the private VRAM buffer sitting there, and the exported 
-window buffer as system memory. So no p2p. There was also no ping-pong, 
-so it must mean that the exported window buffer is NOT flexible 
-placement in this multi-GPU setup.
-
-So it could potentially be specific to some cross-driver flow with 
-OpenGL, like with amd + intel, where you can end up with the flexible 
-placement for the exported window buffer on some multi-GPU setups. Not 
-100% sure though.
-
+> Thanks!
+> Mika 
 > 
-> Regards,
-> Christian.
-> 
-> 
-> 
->>
->> /Thomas
->>
->>
->>
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> /Thomas
->>>>
->>>>
-> 
-
+> > 
+> > > but intel_encoder_is_c10phy() also matches PHY B on WCL, so the W/A
+> > > ran on port B there. Filter on PHY_A.
+> > >
+> > > On PTL nothing changes, intel_encoder_is_c10phy() already matched port
+> > > A only. MTL and LNL are not affected either, the W/A is for PTL+.
+> > >
+> > > Assisted-by: Copilot:claude-opus-5
+> > > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 6 ++++--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > index e899b2eb0871..164fe7104545 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > > @@ -5226,8 +5226,7 @@ static void sanitize_dpll_state(struct intel_display *display,
+> > >   * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
+> > >   * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
+> > >   * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
+> > > - * power state to save power. For PTL the workaround is needed only for port A. Port B
+> > > - * is not connected.
+> > > + * power state to save power. The workaround is needed only for port A.
+> > >   *
+> > >   * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+> > >   *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
+> > > @@ -5245,6 +5244,9 @@ void intel_dpll_power_save_wa(struct intel_display *display)
+> > >  		if (!intel_encoder_is_dig_port(encoder))
+> > >  			continue;
+> > >
+> > > +		if (intel_encoder_to_phy(encoder) != PHY_A)
+> > > +			continue;
+> > > +
+> > >  		intel_cx0_pll_power_save_wa(encoder);
+> > >  	}
+> > >  }
+> > > --
+> > > 2.43.0
+> > >
