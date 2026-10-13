@@ -4,156 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A68CCC6B08
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 14:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7965CC6B19
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:07:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2B210F896;
-	Tue, 13 Oct 2026 14:55:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AF5210E8AB
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 14:55:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 652E510E88E;
+	Tue, 13 Oct 2026 15:07:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0D910E0E0;
+ Tue, 13 Oct 2026 15:06:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791903317; x=1823439317;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=UI9PTqnuWtvLJvL6gatcs/S63HJ9+GRpMNMZBFUs1IQ=;
- b=WiKycCLe8VRTkUC6+nv1JzFHprBC4obxYNCfKbwVMUqlL5aby0/me98R
- 4pqQHSoSyn47RwTpZi2h3IPhcwrj7M56N+FvNukg9IdAhkh9txBRwAvqn
- 4OV6SPfSItnkJzyQtUwmJRyUTft3GVTI+EyMROMjyeyqrT3chY+hlCRxI
- S62UQyaLGrl6GDa7ajH/mnY1nvcLmuc9SUCi7R2cjF4/Kdeo4RFwAbb1h
- LIOd9PaqODjzCSbsrIbtZ7TvgiMfkwvOFh5SWUQxPi8cZ3yR0FhMPa6Rs
- 5y9Q9mAIkoa7CqREHZam4OgMPf9siHNy5IyTv3vsyH3jymvG0FvwGFbAV A==;
-X-CSE-ConnectionGUID: HUeIyrYlRkeuDJ3MzzMyoQ==
-X-CSE-MsgGUID: lLFh9KxcRTejGe0qG5CtjA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="638224"
+ t=1791904015; x=1823440015;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/os/0OBmuHhN6vE59+UC0SPms0S9/erqW6koDWRjc6w=;
+ b=H0XaHOW2f1dm5AQGpzNEXSzsmhUkP6i6E+YRG00tjM4KOfvqb6MmJ01U
+ Ic0qD8OZuBMeAAWo4QbeIaVKXRFB0mU9qjd0G+zo4PqfwZyDZiA17rYob
+ WKAFG2GmXJy70nbNRyHu0w7Ahtw+KyBp8ZRQf/3h/uw3ArixvrLV4J5c8
+ PcDON3jTzTxDIr/lJmZMtRBg9tEkuHVvySm/8MLrTViBBo1Q3ThEq8sRj
+ rIgK0bIy5lAiETcRH/165ZcNGv0KicwKR4wUmRdGOVfTlg9JyYYF3KeLc
+ bWLpTWLDFLebsAp4Furw+bXZgEzSas57InxFDC4cUSz9PKVdDw65vdRGf g==;
+X-CSE-ConnectionGUID: QhaZXfePTX21mavHlqirwg==
+X-CSE-MsgGUID: W2cbebP5TZ23HpBAw8Q6ww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="517054"
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="638224"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 07:55:16 -0700
-X-CSE-ConnectionGUID: qsvM4lixQSK+6vUx6Ss1bA==
-X-CSE-MsgGUID: qir12uhuRQqFfivGlhQLIg==
+   d="scan'208";a="517054"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 08:06:54 -0700
+X-CSE-ConnectionGUID: zHruqfdYTJOCMJshHNjjjw==
+X-CSE-MsgGUID: dv6J0yrjRhS0gAUHICq6wQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="1267633"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 07:55:16 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 13 Oct 2026 07:55:15 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 07:55:15 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.53) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 13 Oct 2026 07:55:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FxsfdlQBPbQBtRq9bZB8UiYt4BqeogLJcXDon1bGNgvO6TVhKY8GvjbQHuBE19E3ID1SZoKo4r2Dd//5HhI4AywPtGn+EkuW6AqOaCxz/80EYjqzfpn/++EzjzJCfd8d89jtYxAlsvU5LOK3Jp17B8UlsZypRpHC2SJO7kccGk2tj1JuGCTgyZGzuo5j8F56DDBOPZVuqgOKjePpdbfFl+Fwue5x8KmTz+YtDdPPyzCI7dipwTeNRML7Riv3vOA4ne2ZC6D8rOtpJ/ZIR1kVPht2IOy+QbYwxVed6BatCWbJncfVDI3qsjyPpgKZsbBB6VLY2FbIJEjeZop2Txt5hQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1VWtHfkomVT5mRj9I5iNO1jg5EA51xxBP3VeFjMrhLk=;
- b=hG8pRNylYO5im4dxYAs3FOpHSNf2a/zF7DmlBTkSSJBk/oHsNwXQamNG3z61nezQfxvXAPN2ui/81eaUpU5eTS+9ZKe5zdrEtKS6iOmhX6drOXxeCW89wYqD4S0+nCAZ+jryERZiKTsdlKsCux7rSZXJddHPzVL1Mb5xbzmmZO9t8pDfWp/BNOdoLH69gxF6icmzg0UhhEiK2sz3t4z//SEv0cTJ/qzcH/o0xMHGZE72vgOgN4u8OPJP3CU7R3tp28jIrvAkHHIZC6NHm4Wy0oNwSprBHJ/UTPOTUf4b0lx3F2xFXZYPMMqWZR28s4FnxA7pk2FGWDXmiiDHsv2gCg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH8PR11MB852307.namprd11.prod.outlook.com
- (2603:10b6:610:32c::22) by DSSPR11MB9644.namprd11.prod.outlook.com
- (2603:10b6:8:374::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.23; Tue, 13 Oct
- 2026 14:55:02 +0000
-Received: from CH8PR11MB852307.namprd11.prod.outlook.com
- ([fe80::5f8e:c1ed:445a:a4b7]) by CH8PR11MB852307.namprd11.prod.outlook.com
- ([fe80::5f8e:c1ed:445a:a4b7%4]) with mapi id 15.21.0522.011; Tue, 13 Oct 2026
- 14:55:02 +0000
-Message-ID: <2afa1046-2520-4aee-9015-48aca9e27e83@intel.com>
-Date: Tue, 13 Oct 2026 20:24:53 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 04/16] drm/xe/hwmon: Add helpers to validate thermal
- sensor readings
-To: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
-References: <20261013020636.447620-1-karthik.poosa@intel.com>
- <20261013020636.447620-5-karthik.poosa@intel.com>
- <sashiko-outbox-168870@kernel.org>
-Content-Language: en-US
-From: "Poosa, Karthik" <karthik.poosa@intel.com>
-In-Reply-To: <sashiko-outbox-168870@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0020.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:179::8) To CH8PR11MB852307.namprd11.prod.outlook.com
- (2603:10b6:610:32c::22)
+   d="scan'208";a="1245491"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.245.122])
+ ([10.245.245.122])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 08:06:52 -0700
+Message-ID: <343cf7b2-6241-4e3c-8b37-2f0ea75c6723@intel.com>
+Date: Tue, 13 Oct 2026 16:06:50 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH8PR11MB852307:EE_|DSSPR11MB9644:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab464b5a-e8e4-4bdc-8a31-08df2939f563
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|18002099003|10067099003|22082099003|11063799006|4143699003|261009223027099003|56012099006;
-X-Microsoft-Antispam-Message-Info: SJQCKmNSFbeBTZ+NQi1GDrUTL6GgkfGz2DUvouv2ztAIfdoqug9Q2AkcwRr0VHFK26wY0Fq3Q74Zzu1kWih+/5koSbAC4gpI+zm2pxF+XFA1cBdOiWw9MgT3l72hEeRhZJ+FhuNB4s/hHL2pjr0s+E8B6lvMRT3vjKQAWucZJ7/3HoLL1Frv9PAfVP+gIuzCgL4gMHTLz8sY6F114GXltus3KkrUkqqcN0UOoCbhAYZ9J1OnV3//hc7i8bQbbaSYOwOUe/cnELgF8MBJQ883uv2cf0H8rUyJDPJI/Ub8JhuZ0Hg8ZRbrzWdpqvPajMSi4wFNJm9m7JGXa6rO0u3mfoy5SkDQfYFR6wdhYgz+4opvIcIL4d+Irk3msVc8kkWPOfl48Ric2buGrCGHeaVDECmNKnPMY4bOClmRtbHCAImahIdr+3FoMdaYgmgwz/kWO868UcH8MFRUkADqTiY7RTvrTms0UEF/czgvlFSG6b+vMovjKRGW/NDYvhA3YWvkUoNc1lYd/Mu62hGatIoWiHGfiSK6CslNis1m0nFAXxGWl8j++LpnS6O6DgtngCtpX6CoNXHgmZLKIH0fBjHsIQviWwJOxXV+5ng+yu2Y7osEixKdSMdKwnGxYPF5O6O7KDoaH7oB1iTnxBM6t0CknpGFFvZFQC77oBzQ1wP1IYM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH8PR11MB852307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(18002099003)(10067099003)(22082099003)(11063799006)(4143699003)(261009223027099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmRhaDFZWHBlR2twQklhWitxUmJCRG55NnI2blpyQkJlbElpYUQzVUdTVWww?=
- =?utf-8?B?M0tKWlNXNzJnL000RXIrVFMydkFQdDVkdU44S09CZlNkb2E4K3Jvb3k2bVlE?=
- =?utf-8?B?N0JMNGFZb1hic1NYbjlVODJJZUcvN003MVhpdkFNSitLa0pNcXNaMWVCWU9J?=
- =?utf-8?B?ZTZQaDBuWE5WaWxTektYZWpFU2RvaFV5MHE3bnZIZkNxV09VRkxqQlJ1SzFt?=
- =?utf-8?B?STlseHBHN0JIL29wSkorVlVoN1JYS2dkWGNjcm1yWkhHRGlrN3JVbVFMVGFY?=
- =?utf-8?B?ZzVkUlhvSHdza1d2ZE1teEFYS3JSa2VyQ0czTFRqSldTK3o5ZFFseHpYMzRr?=
- =?utf-8?B?UjlsV1kvN3cxM2tNbkQwckNFcUxZekFMaHhqeUYwd1RuemZDSitISkJ0Y1Mv?=
- =?utf-8?B?UUU4ak44UzV4dWJPT0d1S3l1Yy9WOUhYOUpDMGVKeTQvb0hjaHUwOHZhQW1T?=
- =?utf-8?B?S2xia3RPZ3pUUW4vRTFOY3RhckRmMFdUbGZZcFNXMGp5SFJpbGRSUzZ6cUh4?=
- =?utf-8?B?OVFoV1Zxb1RBWUg1eTV6c0t4eUVSK3cwQ2xQVVBGZ3dwd2FsVlRtVTV5RUpN?=
- =?utf-8?B?YjdtQzJJNFo2bDlrTDIwVkFnQkJsM1lEd2REM2FNRENRVXQ3eEtZNWJrZnJU?=
- =?utf-8?B?MlI3U1h2ZHM1TWN5UTZlZ0pqai9ZdWdaM3BnKzVVdlY0bDh2WitXQWN4UGdM?=
- =?utf-8?B?d1N3Y2xrejJndUczRkgxZEp1Y24rYlcrdktuM2VnM3h2WUZnK2FxakEyN0Nm?=
- =?utf-8?B?eHhyOEhRQjFrMXllMHhjNlQ5ZjdkYU1MR2xOZkV2cUpOTmgyeUNrMzNYcFVH?=
- =?utf-8?B?WFBpVjYyenUwSzhFbmdQT1djTHdyWFpqa01MQlFkcWtkZHczWnVMbDQvMklL?=
- =?utf-8?B?WW1jeFR4Ukt6OERGbndpVWxHdjZXUWVWeHFhYlQ5UHhPNTRuNVluOFpYaDBj?=
- =?utf-8?B?V0JuR01GK1pwTG4zSGNTZUNzWUt1OWRTNXlydEo4WXNoVHRBRkJSUDFxREta?=
- =?utf-8?B?VElFYnpybEd3czhZYmlVNE1uWDY1Y3NJZEkwVVR3ZDB3ZVFoaFRXS2VtT3lm?=
- =?utf-8?B?UTF0dER1M2d6bC8zNjBRNXlKSDVjNUFkRVpMMjgrQ0wzL1RHdDBxMDZ3YzBp?=
- =?utf-8?B?Ty9ycnQ1cEVlRTFWeTR5bHlzK3Y5UVlMeDRBOGMvdzBRc1FpM002Umhyd3Zp?=
- =?utf-8?B?dVJSNDMwSnk4SG5OK2ttMkpMUnJFT3hHeDNrZVcrc2cyVUU5elhrUUZ1VWlV?=
- =?utf-8?B?NHlOWVFYWXFoZXpQRmVYcWZBazhtcnhYQkU1WWFTMzZtUC9qaXhBbXhFb2lP?=
- =?utf-8?B?N3U2UGtPQXhkUHVJSElHUW5yaEh5dGFkajBaR1locDRadjRtL1lsNFJWY09I?=
- =?utf-8?B?bitBb2k2NWFrYWRZc0o3VXgrWVVYSy83ZEl2RlUrclRnY2xUdTdNUHNPOTV5?=
- =?utf-8?B?OFhTVE1VVnYrUTFFS0pFaFhQZVpPZktnNE9IZDVwUGsyNlEyMGt5N3NSOUxB?=
- =?utf-8?B?U21MOEJOWnVWdkhsSGZ2Smo5Qk8rY3IxdkE5R3h3VGR2alZtUHh1R0srU2VZ?=
- =?utf-8?B?MEo3aHA3VDM3TXNSNUh4bFVpMkI1OXJCbmZtc3Z3Nm94SGZmenhUa3RBNGxB?=
- =?utf-8?B?SU5CR3cwVExSclJ6cmdGdGpPNWtFVWVmMFZVemk4aVBLd3dMVGpPeWlSRGpX?=
- =?utf-8?B?WHozKzNBU3U5TlA3T0VEWFpjbU5mUjBkaURGc0xaK3poUnArcEM1a0lXaE9P?=
- =?utf-8?B?SUxxV1pyUWJaM1RTZ0dEUko2T3l5UGpFU1FlVDdobUx3MlRCVmpjQ2x4OUVw?=
- =?utf-8?B?aDJKTlRjTjA3UVE1RXU4dSt6UXk3SG8rOFIxWWg1ZnFEZUNiT0gwTXpTYlhm?=
- =?utf-8?B?V1YzZmE5OGY2RG9pVWRIU0tuVGEzVWNqSHovaEpsYmQwclVqWlBDV2t4emls?=
- =?utf-8?B?ZkFCbXQwdnNObnVrRGZaSCtscTdQNFh6QUlpbXVhVDdNK1BXYnhHYVNjMXo0?=
- =?utf-8?B?MVNNTWdDbFhZWTJBZG9PYi91WnNlT3lXcnYxenVtWU9GSVlTSG9tR0pVZWpY?=
- =?utf-8?B?Y0RkRm1jUkMzbmJOUWhkVmdWemdlajF0V2pnMG9naVNXelJOK29Db3A3blVE?=
- =?utf-8?B?UXRwYXZDYTJQQ003dEI3WmtRLy95SGk0RWxSSXhnYkcyTTlmSVhkdFE0Qk1v?=
- =?utf-8?B?OHZxRzJxYno0T3NjUHZnODFwdHUvQVg5LzdsVkZrcHlRa3o5Uy95b1BBd01X?=
- =?utf-8?B?ZEpxM01la2V3TGxYcVVWazdjSC9qZlNKbFd4L05pQmo2cE1obEdGaEZLQWtv?=
- =?utf-8?B?TW5oVnV6Wk5KVjlTbjFNK1FGbG9jbk5vY2lYcUw4dzJQdGRWOVRJdz09?=
-X-Exchange-RoutingPolicyChecked: YsSyH2TP2K04dj3WtRCZzSp+fasPTmyChJVRPqqtVsKRJnyU3KUa6rT6JZK8ic3WBf9DKd5LHOF6KALogXNUXW3oWuOJrGv9UiWX1TyjY7ooi3SRGGC/myQXJ7ZuBubREL9omYm/ymF76foQzzX7owcKfmXINazg3dRekNLfJspnEm0xzd8Up1RGWTIvIGk/NR7qFIiOS18mTRgf+rVfogdEerjoYaZSx79iQoby6cWjB0a9wLKu5Q0kIfcYfOn4YCRhUOaFeKcIZtVu4a74uVthXt1i7ecnZ4nkihl71HFKgH8i/Tchwp4JMcJy2CZr9/uEJ0IrCtP7wJdv0Z/siw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab464b5a-e8e4-4bdc-8a31-08df2939f563
-X-MS-Exchange-CrossTenant-AuthSource: CH8PR11MB852307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 14:55:02.0132 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /tUhQmYYBId00d//T5NaAFMea11dT8mOWuouF2+TckmXB3uphJDDMLF35U8PxpMa46j9IWD+eLoidj1/NzbTsw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSSPR11MB9644
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/3] gpu/buddy: restore two-pass clear/dirty guard for
+ range-biased allocation
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ Anand.Raghavendra@amd.com
+References: <20261009100546.1103622-1-arunpravin.paneerselvam@amd.com>
+ <3e16b7d9-b1d6-4d6c-8f58-f6716fff71a6@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <3e16b7d9-b1d6-4d6c-8f58-f6716fff71a6@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,69 +73,267 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hey,
 
-On 13-10-2026 07:54, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] hwmon: MMIO read errors (U32_MAX) are treated as valid temperatures on legacy platforms
-> --
->
-> commit 30c789d23390d6abf7d18b4ec4f037b60404f1b9
-> Author: Karthik Poosa <karthik.poosa@intel.com>
->
-> drm/xe/hwmon: Add helpers to validate thermal sensor readings
->
-> This commit introduces mmio_temp_valid() and mbx_temp_valid() to check
-> whether a temperature sensor reading is valid. It gates these checks behind
-> the has_temp_sentinel flag.
->
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
->> index 2d1fa9159c58b..712a21a996362 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> [ ... ]
->
->> @@ -825,6 +828,23 @@ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
->>   	return ret;
->>   }
->>   
->> +static inline bool mmio_temp_valid(const struct xe_hwmon *hwmon, u32 value)
+Yes, going to go through it now. Did you already look over the Sashiko 
+reports:
+https://sashiko.dev/#/patchset/20261009100546.1103622-1-arunpravin.paneerselvam%40amd.com
+
+Are they all false positive? I wanted to hold off reviewing if you were 
+going to re-spin.
+
+Also, on the "bugs" tab in Sashiko there was one open buddy issue, which 
+I sent a fix for:
+https://lore.kernel.org/intel-xe/20261006110706.1636971-2-matthew.auld@intel.com/
+
+Please take a look at that.
+
+On 13/10/2026 15:31, Arunpravin Paneer Selvam wrote:
+> Hi Matthew,
+> Could you please review the v4.
+> 
+> Thanks,
+> Arun.
+> 
+> On 10/9/2026 3:35 PM, Arunpravin Paneer Selvam wrote:
+>> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>>
+>> Range-restricted allocations (the visible-VRAM aperture) skip
+>> dirty_steer_window() and reach __alloc_range_bias() with no clear/dirty
+>> eligibility guard, so a dirty allocation freely splits clear extents (and
+>> vice versa), interleaving the two classes until no large same-class run
+>> survives and a 4K scanout pin fails with -ENOSPC. Use a two-pass range
+>> search instead: block_incompatible() rejects opposite-class blocks in the
+>> strict pass and relaxes only when the strict pass returns -ENOSPC, so a
+>> request still succeeds when only opposite-class space remains. A KUnit
+>> regression test covers the interleaving pattern and fails without the
+>> guard.
+>>
+>> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with 
+>> decoupled dirty tracker")
+>> Assisted-by: LLM
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/buddy.c                | 71 ++++++++++++++----------------
+>>   drivers/gpu/tests/gpu_buddy_test.c | 65 +++++++++++++++++++++++++++
+>>   2 files changed, 99 insertions(+), 37 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index 2f2aaadafe35..6566bad4fef1 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -1240,11 +1240,19 @@ static void __gpu_buddy_undo_splits(struct 
+>> gpu_buddy *mm,
+>>       }
+>>   }
+>> +static bool block_incompatible(struct gpu_buddy_block *block, 
+>> unsigned int flags)
 >> +{
->> +	/*
->> +	 * On platforms lacking temperature sentinel support, a value of 0 is treated
->> +	 * as invalid. While 0°C is theoretically possible, it is highly unlikely for
->> +	 * a discrete GPU in normal environments, making it a reasonable fallback
->> +	 * indicator for invalid or uninitialized temperature readings.
->> +	 */
->> +	return hwmon->xe->info.has_temp_sentinel ? value != U32_MAX : value != 0;
-> [Severity: Medium]
-> Does this inadvertently treat PCIe MMIO read errors as valid temperatures on
-> legacy platforms?
->
-> When a PCIe target abort or link failure occurs, xe_mmio_read32() returns
-> U32_MAX (0xFFFFFFFF). If the platform lacks has_temp_sentinel support, the
-> condition evaluates value != 0. Because 0xFFFFFFFF is not 0, this returns
-> true.
->
-> Later, in xe_hwmon_temp_read(), this U32_MAX value will be blindly decoded:
->
-> *val = (s32)REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val) *
->          (REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
->          MILLIDEGREE_PER_DEGREE;
->
-> This could result in absurd temperature readings like -8,388,607 or 255
-> instead of correctly propagating an error code when the hardware fails.
->
-> Should U32_MAX be universally treated as invalid, regardless of the
-> has_temp_sentinel flag?
-An all-ones read means the PCIe link has failed, which is a device-level
-condition handled outside hwmon. Once the device is unavailable,
-xe_mmio_read32() returns 0, which is already treated as invalid.
-
-mmio_temp_valid() is only used at probe, not in xe_hwmon_temp_read(). In the
-next version I'll can add the check to the MMIO read path and return 
--ENXIO, to
-match the mailbox sensors.
+>> +    bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
+>> +
+>> +    return needs_clear != gpu_buddy_block_is_clear(block);
 >> +}
 >> +
->> +/* Mailbox temperature is sign-magnitude (bit 7 sign, bits 6:0 magnitude). */
->> +static inline bool mbx_temp_valid(const struct xe_hwmon *hwmon, u8 value)
+>>   static struct gpu_buddy_block *
+>>   __alloc_range_bias(struct gpu_buddy *mm,
+>>              u64 start, u64 end,
+>>              unsigned int order,
+>> -           unsigned long flags)
+>> +           unsigned long flags,
+>> +           bool fallback)
+>>   {
+>>       u64 req_size = mm->chunk_size << order;
+>>       struct gpu_buddy_block *block;
+>> @@ -1258,9 +1266,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>        * This range-constrained search hands back the highest/right-most
+>>        * address that satisfies the request: the roots are seeded 
+>> high-to-low
+>>        * and the right (higher-address) child is descended first, making
+>> -     * top-down the default placement here. A non-top-down clear 
+>> request is
+>> -     * the only exception, where the descent is biased towards clear or
+>> -     * clear-containing subtrees to satisfy the clear preference.
+>> +     * top-down the default placement here.
+>>        */
+>>       for (i = mm->n_roots - 1; i >= 0; --i)
+>>           list_add_tail(&mm->roots[i]->tmp_link, &dfs);
+>> @@ -1298,6 +1304,9 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>                   continue;
+>>           }
+>> +        if (!fallback && block_incompatible(block, flags))
+>> +            continue;
+>> +
+>>           if (contains(start, end, block_start, block_end) &&
+>>               order == gpu_buddy_block_order(block)) {
+>>               /*
+>> @@ -1315,38 +1324,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>                   goto err_undo;
+>>           }
+>> -        /*
+>> -         * Top-down is a strict address-placement policy, so when it is
+>> -         * requested we ignore clear steering and simply descend the
+>> -         * right (higher-address) child first. Only a non-top-down clear
+>> -         * request biases the descent towards clear/has_clear subtrees.
+>> -         */
+>> -        if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
+>> -            !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
+>> -            struct gpu_buddy_block *prefer;
+>> -
+>> -            if (gpu_buddy_block_is_clear(block->right))
+>> -                prefer = block->right;
+>> -            else if (gpu_buddy_block_is_clear(block->left))
+>> -                prefer = block->left;
+>> -            else if (block->right->has_clear)
+>> -                prefer = block->right;
+>> -            else if (block->left->has_clear)
+>> -                prefer = block->left;
+>> -            else
+>> -                prefer = block->right;
+>> -
+>> -            if (prefer == block->right) {
+>> -                list_add(&block->left->tmp_link, &dfs);
+>> -                list_add(&block->right->tmp_link, &dfs);
+>> -            } else {
+>> -                list_add(&block->right->tmp_link, &dfs);
+>> -                list_add(&block->left->tmp_link, &dfs);
+>> -            }
+>> -        } else {
+>> -            list_add(&block->left->tmp_link, &dfs);
+>> -            list_add(&block->right->tmp_link, &dfs);
+>> -        }
+>> +        list_add(&block->left->tmp_link, &dfs);
+>> +        list_add(&block->right->tmp_link, &dfs);
+>>       } while (1);
+>>       return ERR_PTR(-ENOSPC);
+>> @@ -1361,6 +1340,24 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>       return ERR_PTR(err);
+>>   }
+>> +static struct gpu_buddy_block *
+>> +__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
+>> +                 u64 start, u64 end,
+>> +                 unsigned int order,
+>> +                 unsigned long flags)
+>> +{
+>> +    struct gpu_buddy_block *block;
+>> +    bool fallback = false;
+>> +
+>> +    block = __alloc_range_bias(mm, start, end, order,
+>> +                   flags, fallback);
+>> +    if (IS_ERR(block))
+>> +        return __alloc_range_bias(mm, start, end, order,
+>> +                      flags, !fallback);
+>> +
+>> +    return block;
+>> +}
+>> +
+>>   /* Return the highest-address free block of at least @order. */
+>>   static struct gpu_buddy_block *
+>>   get_maxblock(struct gpu_buddy *mm,
+>> @@ -1924,7 +1921,7 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>       if (flags & GPU_BUDDY_RANGE_ALLOCATION) {
+>>           /* Allocate traversing within the range */
+>> -        block = __alloc_range_bias(mm, start, end, order, flags);
+>> +        block = __gpu_buddy_alloc_range_bias(mm, start, end, order, 
+>> flags);
+>>           if (!IS_ERR(block) || !steered)
+>>               return block;
+>> diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/ 
+>> gpu_buddy_test.c
+>> index b75d32ca6ca0..3eaa261571bf 100644
+>> --- a/drivers/gpu/tests/gpu_buddy_test.c
+>> +++ b/drivers/gpu/tests/gpu_buddy_test.c
+>> @@ -1597,6 +1597,70 @@ static int gpu_buddy_suite_init(struct 
+>> kunit_suite *suite)
+>>       return 0;
+>>   }
+>> +static void gpu_test_buddy_alloc_range_clear_guard(struct kunit *test)
+>> +{
+>> +    const unsigned long chunk = SZ_1M, mm_size = SZ_4M;
+>> +    struct gpu_buddy_block *block;
+>> +    LIST_HEAD(high_clear_a);
+>> +    LIST_HEAD(high_clear_b);
+>> +    LIST_HEAD(low_dirty);
+>> +    struct gpu_buddy mm;
+>> +    LIST_HEAD(barrier);
+>> +    LIST_HEAD(result);
+>> +
+>> +    KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, chunk),
+>> +                   "buddy_init failed\n");
+>> +
+>> +    /*
+>> +     * Lay out a 4 MiB aperture as three regions:
+>> +     *
+>> +     *   [0,  1M)   dirty free
+>> +     *   [1M, 2M)   allocated  (barrier, keeps the two halves un- 
+>> mergeable)
+>> +     *   [2M, 4M)   clear free (one naturally aligned 2 MiB extent)
+>> +     *
+>> +     * A dirty (non-clear) range allocation must take the low dirty 
+>> block
+>> +     * and leave the large clear extent intact. Without the guard the
+>> +     * top-down search cuts the higher clear extent instead and 
+>> returns a
+>> +     * clear block -- the interleaving that fragments the aperture and
+>> +     * ultimately fails a large same-class scanout allocation.
+>> +     */
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 0, chunk, chunk, chunk,
+>> +                              &low_dirty, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [0, 1M) failed\n");
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, chunk, 2 * chunk, 
+>> chunk, chunk,
+>> +                              &barrier, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [1M, 2M) failed\n");
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 2 * chunk, 3 * chunk, 
+>> chunk, chunk,
+>> +                              &high_clear_a, 
+>> GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [2M, 3M) failed\n");
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 3 * chunk, 4 * chunk, 
+>> chunk, chunk,
+>> +                              &high_clear_b, 
+>> GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [3M, 4M) failed\n");
+>> +
+>> +    /* [2M, 4M) coalesces into one aligned clear extent; [0, 1M) 
+>> stays dirty. */
+>> +    gpu_buddy_free_list(&mm, &low_dirty, 0);
+>> +    gpu_buddy_free_list(&mm, &high_clear_a, GPU_BUDDY_CLEARED);
+>> +    gpu_buddy_free_list(&mm, &high_clear_b, GPU_BUDDY_CLEARED);
+>> +
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 0, mm_size, chunk, chunk,
+>> +                              &result, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "dirty range alloc failed\n");
+>> +
+>> +    block = list_first_entry(&result, struct gpu_buddy_block, link);
+>> +    KUNIT_EXPECT_FALSE_MSG(test, gpu_buddy_block_is_clear(block),
+>> +                   "dirty range alloc cut the clear extent 
+>> (offset=%llx)\n",
+>> +                   gpu_buddy_block_offset(block));
+>> +
+>> +    gpu_buddy_free_list(&mm, &result, 0);
+>> +    gpu_buddy_free_list(&mm, &barrier, 0);
+>> +    gpu_buddy_fini(&mm);
+>> +}
+>> +
+>>   static struct kunit_case gpu_buddy_tests[] = {
+>>       KUNIT_CASE(gpu_test_buddy_alloc_limit),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_optimistic),
+>> @@ -1606,6 +1670,7 @@ static struct kunit_case gpu_buddy_tests[] = {
+>>       KUNIT_CASE(gpu_test_buddy_alloc_clear),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_range),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
+>> +    KUNIT_CASE(gpu_test_buddy_alloc_range_clear_guard),
+>>       KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
+>>       KUNIT_CASE_SLOW(gpu_test_buddy_dirty_tracker_performance),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
+>>
+>> base-commit: f146c6086b792cb2c6b3ce5106f0cce62e408df8
+> 
+
