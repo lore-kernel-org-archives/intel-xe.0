@@ -4,47 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A1E5CC6B0F
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 12:05:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EB73CA9ED2
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 12:18:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D89A10F7BF;
-	Tue, 13 Oct 2026 12:05:23 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AD6810F7BF
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 12:05:16 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8D0DD600D1;
- Tue, 13 Oct 2026 12:05:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE94E1F000FF;
- Tue, 13 Oct 2026 12:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
- s=korg; t=1791893115;
- bh=irjDjW0J7cAcuWJLcOabD6ug5oidvFR9OdALDajTnSk=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=zrvRvYBKwjGDTh5oXLfSDpfLXxep0745v3kUIxUVBdfHxLFRPnNqr/FXqheVJ6MKi
- YMfSDH0qJmrG/mlkyT8gX97iq/e+Jn9ondkCQgzf9exP3h90RSSnLPVeL8I8zMv1RF
- KVrPgtJuvnmpMyC5Wj9rAC88AQgpgURZmL8r32nk=
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: stable@vger.kernel.org
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- Matthew Auld <matthew.auld@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH 6.18 119/621] drm/xe: Fix stale pinned_link entry when fb-pin
- performs the final unpin
-Date: Tue, 13 Oct 2026 13:31:54 +0200
-Message-ID: <20261013112923.683767048@linuxfoundation.org>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261013112920.855194808@linuxfoundation.org>
-References: <20261013112920.855194808@linuxfoundation.org>
-User-Agent: quilt/0.69
-X-stable: review
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D7510E7E7;
+	Tue, 13 Oct 2026 12:18:29 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EB1F10E7E7;
+ Tue, 13 Oct 2026 12:18:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1476785577195308199=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe=3A_don=27t_derefere?=
+ =?utf-8?q?nce_a_NULL_resource_in_xe=5Fevict=5Fflags=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Oct 2026 12:18:28 -0000
+Message-ID: <179189390857.17616.16354310103239236540@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261012215014.1495677-4-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20261012215014.1495677-4-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,125 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-6.18-stable review patch.  If anyone has any objections, please let me know.
+--===============1476785577195308199==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-------------------
+== Series Details ==
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Series: drm/xe: don't dereference a NULL resource in xe_evict_flags()
+URL   : https://patchwork.freedesktop.org/series/175986/
+State : failure
 
-commit cf238c067eaae1cbfb00738e29219b9568d2313e upstream.
+== Summary ==
 
-xe_bo_pin_external() and xe_bo_unpin_external() maintain the bo's
-pinned_link list membership in xe->pinned.late.external, based on
-whether the current call is the outermost pin or the final unpin.
-However, the same external bo's pin_count can also be raised and
-lowered directly by __xe_pin_fb_vma()/__xe_unpin_fb_vma(), which pin
-the bo as a display scanout buffer without going through
-xe_bo_pin_external()/xe_bo_unpin_external() at all, and have no
-notion of, or ownership over, pinned_link.
+ERROR: The runconfig 'xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376_FULL' does not exist in the database
 
-If a bo is pinned both externally (e.g. dma-buf export) and as an fb,
-and the external unpin happens first, xe_bo_unpin_external() correctly
-observes pin_count > 1 and leaves the bo on pinned_link. When the fb
-unpin later performs the true last unpin (pin_count 1 -> 0), it never
-touches pinned_link, leaving the bo linked on xe->pinned.late.external
-indefinitely. Once the bo is subsequently freed, this stale list entry
-points into freed memory, corrupting the list and risking a
-use-after-free the next time the list is walked or spliced.
+== Logs ==
 
-The backup object pin/unpin sites in xe_bo_notifier_prepare_pinned()/
-xe_bo_notifier_unprepare_pinned() have the same bypass characteristic,
-though they never add their bo to a pinned list, so are not affected
-by this particular list-corruption issue.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175986v1/index.html
 
-Move the pinned_link removal into xe_bo_account_unpin(), which already
-runs on every unpin path (kernel, external, framebuffer, backup
-object) right before the true 1 -> 0 pin_count transition. Since
-list_del_init() only operates on the node itself, this removal is
-list-agnostic and safe to perform regardless of which list (external
-or kernel_bo_present) the bo happens to be linked on, or which code
-path is performing the final unpin. Drop the now-redundant explicit
-list_del_init() calls in xe_bo_unpin_external() and xe_bo_unpin().
-
-v2:
-- New patch
-
-v3:
-- Rebased on changes to previous patch.
-
-Fixes: 44e694958b95 ("drm/xe/display: Implement display support")
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.8+
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Assisted-by: LLM
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Link: https://patch.msgid.link/20261002100830.12297-3-thomas.hellstrom@linux.intel.com
-(cherry picked from commit ca58d36a1f93af586ee93b340c9f9fd81312cc01)
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/gpu/drm/xe/xe_bo.c |   25 ++++++++++++++++---------
- 1 file changed, 16 insertions(+), 9 deletions(-)
-
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -466,12 +466,27 @@ static void xe_bo_account_pin(struct xe_
-  * ttm_bo_unpin(), so that the check against the true 1->0 transition sees
-  * the pin count that is about to be released. See xe_bo_account_pin() for
-  * why imported bos are excluded.
-+ *
-+ * On the true last unpin, also removes @bo from whichever pinned-bo list
-+ * (external or kernel_bo_present) it may currently be linked on, since a
-+ * bo's final unpin can happen through a pin path (e.g. framebuffer,
-+ * backup object) that has no notion of, or ownership over, that list.
-+ * This is safe and list-agnostic: list_del_init() only needs the node
-+ * itself, not knowledge of which list it is threaded through, and is a
-+ * no-op if @bo is not linked.
-  */
- static void xe_bo_account_unpin(struct xe_bo *bo)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
-+	bool last_unpin = bo->ttm.pin_count == 1;
-+
-+	if (last_unpin && !list_empty(&bo->pinned_link)) {
-+		spin_lock(&xe->pinned.lock);
-+		list_del_init(&bo->pinned_link);
-+		spin_unlock(&xe->pinned.lock);
-+	}
- 
--	if (bo->ttm.pin_count == 1 && bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm) &&
-+	if (last_unpin && bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm) &&
- 	    !xe_ttm_bo_is_imported(&bo->ttm))
- 		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
- }
-@@ -2940,11 +2955,6 @@ void xe_bo_unpin_external(struct xe_bo *
- 	xe_assert(xe, xe_bo_is_pinned(bo));
- 	xe_assert(xe, xe_bo_is_user(bo));
- 
--	spin_lock(&xe->pinned.lock);
--	if (bo->ttm.pin_count == 1 && !list_empty(&bo->pinned_link))
--		list_del_init(&bo->pinned_link);
--	spin_unlock(&xe->pinned.lock);
--
- 	xe_bo_unpin_account(bo);
- 
- 	/*
-@@ -2963,10 +2973,7 @@ void xe_bo_unpin(struct xe_bo *bo)
- 	xe_assert(xe, xe_bo_is_pinned(bo));
- 
- 	if (mem_type_is_vram(place->mem_type) || bo->flags & XE_BO_FLAG_GGTT) {
--		spin_lock(&xe->pinned.lock);
- 		xe_assert(xe, !list_empty(&bo->pinned_link));
--		list_del_init(&bo->pinned_link);
--		spin_unlock(&xe->pinned.lock);
- 
- 		if (bo->backup_obj) {
- 			if (xe_bo_is_pinned(bo->backup_obj))
+--===============1476785577195308199==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: don&#x27;t dereference a NULL resource in xe_evict_flags()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175986/">https://patchwork.freedesktop.org/series/175986/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175986v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175986v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============1476785577195308199==--
