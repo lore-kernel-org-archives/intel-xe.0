@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B88CECA9EC5
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 01:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB7F2CA9EC5
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 01:32:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48D5110E700;
-	Tue, 13 Oct 2026 01:06:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD6510E6F1;
- Tue, 13 Oct 2026 01:06:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791853607; x=1823389607;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Iwh7uOTx6HaYkcmFIfsKFTWjwAsFlKEZTYP8SOlXVas=;
- b=QhatGBhIIr182buQszmE42ZEQoh3wGyaAv+L80zQhmx6VE0eLTojEYkD
- xk3yY9+LZjwdwT/6Tukx6/uK5M1l9WIFMderZDUMyJNslCYKH0fllAxyd
- +abn/SPDLI8PsOkJBRq4iX56WUkd/c+DrdWRM5Rf0z/Pw6126QtW52dcU
- sR3fXJ8DkQ3rmVDk1BEB+2hOiUo83UqhonxMV+TbvxqwHNEWXdOq+T81m
- 5sAcvlRz5TzaBsLNqxLrAhE8dHpuXe+QVwP/ZX++IJ5KJOSi1r1sl0q0q
- 8xN7mzOOFO2ha2NtnHnqjRJjaNXD4/ioHGD2D17POzW1CEhgYJZMWTFek g==;
-X-CSE-ConnectionGUID: DFrk7nfnSSq/tyzCu7bXEw==
-X-CSE-MsgGUID: 0bk1K18nQraMbx0tGEBPaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="557201"
-X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="557201"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 18:06:36 -0700
-X-CSE-ConnectionGUID: aB7g1L9jRBCOe6niGIZqOQ==
-X-CSE-MsgGUID: RSHWKmYfQuirUvZqtfuJWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="1360819"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 18:06:19 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- matthew.brost@intel.com
-Subject: [PATCH v2 2/6] drm/xe/dma-buf: Use drm helper to detect dma-buf
- self-import
-Date: Mon, 12 Oct 2026 18:06:14 -0700
-Message-ID: <20261013010614.1516799-10-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261013010614.1516799-8-niranjana.vishwanathapura@intel.com>
-References: <20261013010614.1516799-8-niranjana.vishwanathapura@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B96010E1DE;
+	Tue, 13 Oct 2026 01:32:24 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4EF610E1DE;
+ Tue, 13 Oct 2026 01:32:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0269969538617764381=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_don=27t_dereferen?=
+ =?utf-8?q?ce_a_NULL_resource_in_xe=5Fevict=5Fflags=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Oct 2026 01:32:22 -0000
+Message-ID: <179185514273.15244.6931839023765653100@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261012191041.1492725-4-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20261012191041.1492725-4-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,79 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Farah Kassabri <farah.kassabri@intel.com>
+--===============0269969538617764381==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Instead of driver-specific code, use the new drm helper
-drm_gem_prime_self_import() to detect self-import of a dma-buf in Xe.
+== Series Details ==
 
-Expose the helper within Xe as xe_dma_buf_to_gem() for future use.
+Series: drm/xe: don't dereference a NULL resource in xe_evict_flags()
+URL   : https://patchwork.freedesktop.org/series/175982/
+State : success
 
-Signed-off-by: Farah Kassabri <farah.kassabri@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 23 +++++++++++++----------
- drivers/gpu/drm/xe/xe_dma_buf.h |  2 ++
- 2 files changed, 15 insertions(+), 10 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 6a85b292dee7..4e1b447f4235 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -239,6 +239,12 @@ static const struct dma_buf_ops xe_dmabuf_ops = {
- 	.vunmap = drm_gem_dmabuf_vunmap,
- };
- 
-+struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
-+					 struct dma_buf *dma_buf)
-+{
-+	return drm_gem_prime_self_import(dev, dma_buf, &xe_dmabuf_ops);
-+}
-+
- struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags)
- {
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
-@@ -372,17 +378,14 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
- 	struct dma_buf_attachment *attach;
- 	struct drm_gem_object *obj;
- 
--	if (dma_buf->ops == &xe_dmabuf_ops) {
--		obj = dma_buf->priv;
--		if (obj->dev == dev &&
--		    !XE_TEST_ONLY(test && test->force_different_devices)) {
--			/*
--			 * Importing dmabuf exported from out own gem increases
--			 * refcount on gem itself instead of f_count of dmabuf.
--			 */
--			drm_gem_object_get(obj);
-+	obj = xe_dma_buf_to_gem(dev, dma_buf);
-+	if (obj) {
-+		if (!XE_TEST_ONLY(test && test->force_different_devices))
- 			return obj;
--		}
-+
-+		/* Test only: force different devices */
-+		drm_gem_object_put(obj);
-+		obj = NULL;
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.h b/drivers/gpu/drm/xe/xe_dma_buf.h
-index 861dd28a862c..d0c7893a5a6f 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.h
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.h
-@@ -8,6 +8,8 @@
- 
- #include <drm/drm_gem.h>
- 
-+struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
-+					 struct dma_buf *dma_buf);
- struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags);
- struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
- 					   struct dma_buf *dma_buf);
--- 
-2.43.0
+CI Bug Log - changes from xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58_BAT -> xe-pw-175982v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-175982v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175982v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+
+
+Build changes
+-------------
+
+  * Linux: xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58 -> xe-pw-175982v1
+
+  IGT_9140: 3b0daa274edb520204660fa1e15424b66ce0aea0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58: dcbee9cfcd4097656a88dbaf196fbc5403764a58
+  xe-pw-175982v1: 175982v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175982v1/index.html
+
+--===============0269969538617764381==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: don&#x27;t dereference a NULL resource in xe_evict_flags()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175982/">https://patchwork.freedesktop.org/series/175982/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175982v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175982v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58_BAT -&gt; xe-pw-175982v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175982v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175982v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58 -&gt; xe-pw-175982v1</li>
+</ul>
+<p>IGT_9140: 3b0daa274edb520204660fa1e15424b66ce0aea0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5934-dcbee9cfcd4097656a88dbaf196fbc5403764a58: dcbee9cfcd4097656a88dbaf196fbc5403764a58<br />
+  xe-pw-175982v1: 175982v1</p>
+
+</body>
+</html>
+
+--===============0269969538617764381==--
