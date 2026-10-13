@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA450CC6B03
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 11:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7855CCA9ED2
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 11:20:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9893F10F776;
-	Tue, 13 Oct 2026 11:19:09 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B3D910F77A
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 11:19:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 367DE10F788;
+	Tue, 13 Oct 2026 11:20:38 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDD8310F78B
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 11:20:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id BF472403FC;
- Tue, 13 Oct 2026 11:19:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 824EF1F000FF;
- Tue, 13 Oct 2026 11:19:03 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 03B24600D1;
+ Tue, 13 Oct 2026 11:20:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8DC2F1F000FF;
+ Tue, 13 Oct 2026 11:20:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791890343;
- bh=fGwo524U3XuBdQorcuSJpvcCirymII0/C1GjA3FTeG4=;
+ s=k20260515; t=1791890430;
+ bh=KCUcYbvCmArABMXTLaYX5O+Lke8MaYI1WXf0yLKBpKY=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=Vc9Dh1Q7Tg2eP+54pFQcgMHWbvyPjlX9mQZlVmqrtVjNyV1wxrUwPNfV572x/ZwoC
- XeHAa+pLeqzDaKslc42I0RIznQGfI+mXjuHSGl4yfv7PSbP8L60kZsIbVYmclv5hCN
- sWFu4eKYael4lgSDQQu6z2wfyPEfRGam6LqfIIw0me4d2WgbVBYcCM9BEIkiRysa+E
- pCiClf6kONnWmA+YIo37MPqjvNoi1N9u0ICFD6IBehO+QlL7awysB5Zqa+uOXmn+A6
- 4EEuPVXOaNzhtR1SQ9XsBwTwDRVWAx1U2a9tjn7ct987pztbgh4AW72T7KYien9FqQ
- K+VMoxcwBkpZw==
-Message-ID: <sashiko-outbox-169604@kernel.org>
+ b=gjUSgLhOFS17gVrRdGti1eMgoTmv0jGFj0itbfnaIY6s1XjGjcyYU2bvIkaZCOiHm
+ pL3eoH3iJ6L+kxEaXjg/M3EhgXwl1BtUbJb+74kSwPxWV59r+FGKBkv+ZCAj68Rbfd
+ gRxF/AuXyzYrj9pXpl7psYjWi45bEcH0Jd9mjJIPsUZi3VtVDGQf/PPkDismI6OLIq
+ BLfOZKD3f6hse+cFoLSZEtCGUy3RU+BopR2TDsUJvmeMko44ciwrJ2h8YgSNzyq4ei
+ JkZyqZOhll+fNsXSMolqSZYGXiDiAuI1/NWi0efg657PLwlFcMXapBjA8l+rXkUkwG
+ GJZEpTFJHFYVA==
+Message-ID: <sashiko-outbox-169608@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/5] drm/xe/gt: Use GT ordered workqueue for wedging
+Subject: Re: [PATCH v5 2/5] drm/xe: Drop xe_device_set_wedged_method()
 To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261013110439.181447-2-raag.jadav@intel.com>
+In-Reply-To: <20261013110439.181447-3-raag.jadav@intel.com>
 References: <20261013110439.181447-1-raag.jadav@intel.com>
- <20261013110439.181447-2-raag.jadav@intel.com>
+ <20261013110439.181447-3-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 13 Oct 2026 11:19:03 +0000
+Date: Tue, 13 Oct 2026 11:20:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,122 +52,131 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] workqueue: self-deadlock in xe_gt_declare_wedged() when invoked fr=
-om ordered_wq workers
-- [High] xe: sleeping in atomic context via flush_work in xe_gt_declare_wed=
-ged
-- [High] drm/xe: missing memory barriers when publishing gt->initialized al=
-lows workqueue corruption
+- [High] drm/xe: sleeping in atomic context in xe_mert_irq_handler
+- [Low] drm/xe: Stale kernel-doc for xe_device_declare_wedged()
 --
 
-commit f7181376c2cff07d590f539fd01106cc19cb1c8f
+commit 92170b825df41bc94e7e282489a7558acba677d1
 Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe/gt: Use GT ordered workqueue for wedging
-   =20
-This commit introduces a worker for GT-specific wedge handling and queues it
-on the GT ordered workqueue to prevent disrupting the scheduler while jobs =
-are
-in-flight. It also introduces the for_each_initialized_gt() macro to avoid
-races during probe sequences.
+drm/xe: Drop xe_device_set_wedged_method()
 
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_devic=
-e.h
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -139,6 +139,10 @@ static inline bool xe_device_uc_enabled(struct xe_de=
-vice *xe)
->  	for_each_gt((gt__), (tile__)->xe, (id__)) \
->  		for_each_if((gt__)->tile =3D=3D (tile__))
+Commit 60439ac3f235 ("drm/xe: Add a helper function to set recovery
+method") introduced xe_device_set_wedged_method() helper to allow setting
+preferred recovery method before wedging the device, but also introduced
+a flaw where the previously set method can be overwritten by concurrent
+racing wedge call. This can result in unintended recovery method to be
+sent to userspace and possibly failed recovery.
+
+Drop xe_device_set_wedged_method() entirely and pass the recovery method
+as part of xe_device_declare_wedged() argument, which places the preferred
+recovery method on stack and avoids this issue.
+
+Fixes: 60439ac3f235 ("drm/xe: Add a helper function to set recovery method")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 014bc5b0216dd..5b98b35cdbe8a 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -1371,24 +1371,13 @@ u64 xe_device_uncanonicalize_addr(struct xe_devic=
+e *xe, u64 address)
+>   *   firmware and restore device to normal operation.
+>   */
 > =20
-> +#define for_each_initialized_gt(gt__, xe__, id__) \
-> +	for_each_gt((gt__), (xe__), (id__)) \
-> +		for_each_if(READ_ONCE((gt__)->initialized))
+> -/**
+> - * xe_device_set_wedged_method - Set wedged recovery method
+> - * @xe: xe device instance
+> - * @method: recovery method to set
+> - *
+> - * Set wedged recovery method to be sent in drm wedged uevent.
+> - */
+> -void xe_device_set_wedged_method(struct xe_device *xe, unsigned long met=
+hod)
+> -{
+> -	xe->wedged.method =3D method;
+> -}
+> -
+>  #define WEDGED_URL	"https://docs.kernel.org/gpu/drm-uapi.html#device-wed=
+ging"
+>  #define XE_BUG_URL	"https://gitlab.freedesktop.org/drm/xe/kernel/issues/=
+new"
+> =20
+>  /**
+>   * xe_device_declare_wedged - Declare device wedged
+>   * @xe: xe device instance
+> + * @method: method(s) to be used for recovery
+>   *
+>   * This is a final state that can only be cleared with the recovery meth=
+od
+>   * specified in the drm wedged uevent. The method can be set using
+
+[Severity: Low]
+Does this kernel-doc need to be updated to match the new behavior?
+
+The documentation block for xe_device_declare_wedged() still instructs
+developers to use the deleted xe_device_set_wedged_method() function and
+describes a removed fallback behavior.
+
+> @@ -1404,7 +1393,7 @@ void xe_device_set_wedged_method(struct xe_device *=
+xe, unsigned long method)
+>   * snapshot capture. In this mode, GT reset won't be attempted so the st=
+ate of
+>   * the issue is preserved for further debugging.
+>   */
+> -void xe_device_declare_wedged(struct xe_device *xe)
+> +void xe_device_declare_wedged(struct xe_device *xe, unsigned long method)
+>  {
+>  	struct xe_gt *gt;
+>  	u8 id;
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/xe/xe_mert.c b/drivers/gpu/drm/xe/xe_mert.c
+> index 32700c19a1df3..934be933d57f7 100644
+> --- a/drivers/gpu/drm/xe/xe_mert.c
+> +++ b/drivers/gpu/drm/xe/xe_mert.c
+> @@ -74,7 +74,8 @@ static void mert_handle_cat_error(struct xe_device *xe)
+>  		break;
+>  	case CATERR_UNMAPPED_GGTT:
+>  		xe_sriov_err(xe, "MERT: CAT_ERR: Access to an unmapped GGTT!\n");
+> -		xe_device_declare_wedged(xe);
+> +		xe_device_declare_wedged(xe,
+> +					 DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
 
 [Severity: High]
-Does this missing acquire memory barrier allow workqueue corruption?
+Does this code sleep in an atomic context?
 
-If a hardware error or AMC alert triggers device wedging on a different CPU
-concurrently with xe_gt_init(), the for_each_initialized_gt() macro checks
-this flag. However, READ_ONCE() does not emit memory barriers on all
-architectures.=20
+The mert_handle_cat_error() function is executed from the top-half hard IRQ
+handler xe_mert_irq_handler() (via dg1_irq_handler()).
 
-On weakly-ordered CPUs (like ARM64), a concurrent reader's speculative loads
-could be hoisted before the gt->initialized check completes, causing
-xe_gt_declare_wedged() to invoke queue_work() on an uninitialized workqueue=
- or
-work struct.
+When a CATERR_UNMAPPED_GGTT or unexpected error code is detected, it calls
+xe_device_declare_wedged(). This function performs synchronous wait
+operations by calling xe_gt_declare_wedged(), which blocks on
+flush_work(&gt->wedge.worker). It also allocates memory with GFP_KERNEL via
+drm_dev_wedged_event() -> kobject_uevent_env().
 
-Should this use smp_load_acquire() and smp_store_release() to guarantee
-proper ordering?
+Executing these blocking operations in a hardirq context triggers a
+BUG: scheduling while atomic panic.
 
-> +
->  static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
->  {
->  	return &gt->pm.fw;
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-
-[ ... ]
-
-> @@ -769,6 +773,8 @@ int xe_gt_init(struct xe_gt *gt)
->  			return err;
+>  		break;
+>  	case CATERR_LMTT_FAULT:
+>  		xe_sriov_dbg_ratelimited(xe, "MERT: CAT_ERR: VF%u LMTT fault!\n", vfid=
+);
+> @@ -82,7 +83,8 @@ static void mert_handle_cat_error(struct xe_device *xe)
+>  		break;
+>  	default:
+>  		xe_sriov_err(xe, "MERT: Unexpected CAT_ERR code=3D%#x!\n", code);
+> -		xe_device_declare_wedged(xe);
+> +		xe_device_declare_wedged(xe,
+> +					 DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
+>  		break;
 >  	}
-> =20
-> +	/* Must be last */
-> +	WRITE_ONCE(gt->initialized, true);
-
-[Severity: High]
-Similar to the read side, WRITE_ONCE() lacks a release memory barrier. The
-CPU could reorder this store before the INIT_WORK(&gt->wedge.worker) store
-earlier in xe_gt_init(). Replacing this with smp_store_release() would
-ensure the GT state initialization is visible before the flag is published.
-
->  	return 0;
->  }
-
-[ ... ]
-
-> @@ -1200,6 +1214,6 @@ void xe_gt_declare_wedged(struct xe_gt *gt)
->  {
->  	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
-> =20
-> -	xe_uc_declare_wedged(&gt->uc);
-> -	xe_tlb_inval_reset(&gt->tlb_inval);
-> +	queue_work(gt->ordered_wq, &gt->wedge.worker);
-> +	flush_work(&gt->wedge.worker);
-
-[Severity: High]
-Can this flush_work() call create a self-deadlock?
-
-If a worker thread already executing on gt->ordered_wq (such as
-gt_reset_worker() upon a reset failure) invokes xe_device_declare_wedged(),
-it will eventually call xe_gt_declare_wedged().
-
-Since gt->ordered_wq has a concurrency level of 1, queue_work() will place
-wedge.worker behind the currently executing worker. The executing worker
-will then block in flush_work(), waiting for wedge.worker to complete,
-resulting in an unresolvable circular dependency that hangs the workqueue.
-
-[Severity: High]
-Does this also introduce a sleeping in atomic context regression?
-
-xe_device_declare_wedged() can be called from mert_handle_cat_error(), which
-is executed by the xe_mert_irq_handler() in hardirq context (for example,
-directly from dg1_irq_handler()).
-
-The flush_work() function relies on might_sleep(). Calling a sleeping
-function from an atomic hardirq context will cause a 'scheduling while
-atomic' kernel panic.
-
 >  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261013110439.1814=
-47-1-raag.jadav@intel.com?part=3D1
+47-1-raag.jadav@intel.com?part=3D2
