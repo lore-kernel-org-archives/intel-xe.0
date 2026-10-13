@@ -4,134 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A379CC6B03
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 11:50:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61B95CC6B03
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 11:52:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 184D710E7BF;
-	Tue, 13 Oct 2026 11:50:25 +0000 (UTC)
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010061.outbound.protection.outlook.com [52.101.201.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C14B10E7BF
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 11:50:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=b9W+CRCq/PEFt99xeGu4PsHVwYNLoEJ79DXPTIp7CF2nyHpQRJ85eiwcpsCY4IfkeGDd6Dk7MqucHUBXVzbJOyEvSs1iamEtEqRxtv85HUVYqQ355V3SYm4ZuP0f9FFyHit0iYHC53Hq/ZXkQy3ZK9+6lNna4lSDMIXKSdVuyWVRSHwReJ2T1lCXgtHs2H+AFIrtVL0dyJ21qFElRbVI7V+iBFWCRIxWJsH8hiwcoDw97+YPS4g6mruQ6ro+NeMJEbg+oBWWMmhWXLktM1Mbm54n5Z1EKPKQSOoI0vTGIS8Piy3OhjLgQSxj8szQSECWhZcOTCYo7xGhtJkYCHLFSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=n+r0M8bBMNt4EqtRhPKqfSbz1kbTEYM5l/rmm5izcC4=;
- b=urKuUkuCUAFVVVZRvDNOKW7zviBnqE9QUC4WAVNwRUkXtqq6eRl3eYdDh5i3fdFLMoGWxMucTG4wIZdaxSWwSKwtn2Lw54J095ko9fkT8U9L8ib2JHvXo5idUFRGrpJY2CwWB3QsNxxmFhLKTYrmglU5lyQLbDgz1rZLZqDh155bFBDnozruxmX/b/jo0LSjRvSQKR1239NP0D14wiL8faTjSV9nwGlYZgPPeFZZbar5L7Di9h06wKKwIUEVFWgvRGM9zUAnMWYZJ1wk+sN9iXeuSQtfG58U1cH6opGSzlpcW0Q+AjtfiWZo1tJoOjU+uuU56gZqoZIdHR3wdjDLiw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=n+r0M8bBMNt4EqtRhPKqfSbz1kbTEYM5l/rmm5izcC4=;
- b=AOV2En00YwsKRa3MiByqFNfu8CJi5oHwa4IXFZxNlWIxyVduPytogGFqfqjkpuHVgC3MhnFjNk+g3Owsxk8DUdjmq8vDEfGItYnuslDew0hVvHYtd01S+//vtb9ewsWZEND7+lTsVJOGHNR/94Ee1EE0Gp08jgsE0U0aieDEGS4=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by FT1PR12MB748946.namprd12.prod.outlook.com (2603:10b6:170:31::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Tue, 13 Oct
- 2026 11:50:16 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0522.011; Tue, 13 Oct 2026
- 11:50:16 +0000
-Message-ID: <9facad8e-6866-493e-99d4-71a491efb630@amd.com>
-Date: Tue, 13 Oct 2026 13:50:12 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/xe: skip p2p for suspected display buffers
-To: Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>
-References: <20261007153605.1743626-5-matthew.auld@intel.com>
- <20261007153605.1743626-8-matthew.auld@intel.com>
- <2c6a97ac21c5ef161dbac279f9b971f383b6b944.camel@linux.intel.com>
- <dbabed4e-468d-4ecf-b295-f5d8c9c4b263@intel.com>
- <bc2f4d82-5a8e-4d1b-a921-ee819ca5cac2@amd.com>
- <992d57f0-7327-4c36-adf7-6dd72137fe73@intel.com>
- <31f7eb68-6dfa-4ea7-93a4-d4897fbe6a74@intel.com>
- <3579864a-0283-4f92-b895-5cf399c2ee69@amd.com>
- <16cfde6b-8881-4ffe-8068-9530286da72a@intel.com>
- <1a852df2-c2a4-48bb-84de-cdd4b98b95bb@amd.com>
- <d493d4d1-96d5-4194-bbae-5c1e5d54d91a@intel.com>
- <5545db90-3365-4d75-9fc0-77dda42b7000@intel.com>
- <2fcd10d5-c1f9-47be-9a68-422f9bbd6837@amd.com>
- <eaa812b3-d576-4d63-a9cb-c7c0ec24f19f@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <eaa812b3-d576-4d63-a9cb-c7c0ec24f19f@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2227210E7BF;
+	Tue, 13 Oct 2026 11:52:05 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8EE910E7BF
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 11:51:58 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id E9084602C3;
+ Tue, 13 Oct 2026 11:51:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2695E1F00893;
+ Tue, 13 Oct 2026 11:51:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+ s=korg; t=1791892317;
+ bh=jhitvR1pOG8hAofLnUBlNBEpBqGcW6oUmSeOH8+4uqo=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=O58EG+EQNbutjmkZjQdhaGSlt3xDYwXoP4pNZjqqDQr8KCvc+OUJLe+bEm0jqGR14
+ yu0W9nWIvruOgmrKFUNu0dKJ+JEQnFcWWjrBklgZdsr4zV2OMINkHdCUyutqNv/qyQ
+ NJnuXR41AgoiWxKDfhBJk7ghjBFF40y4Ws+gj35I=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Subject: [PATCH 7.2 134/281] drm/xe: Fix shrinker accounting
+ double-subtraction on nested external pins
+Date: Tue, 13 Oct 2026 13:37:30 +0200
+Message-ID: <20261013112858.403559927@linuxfoundation.org>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261013112855.045212108@linuxfoundation.org>
+References: <20261013112855.045212108@linuxfoundation.org>
+User-Agent: quilt/0.69
+X-stable: review
+X-Patchwork-Hint: ignore
+MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: IA1P220CA0014.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:208:464::8) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|FT1PR12MB748946:EE_
-X-MS-Office365-Filtering-Correlation-Id: d06e6d0e-6bf1-4761-0fa2-08df292025ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|56012099006|11063799006|4143699003|10067099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: oxQkW7G5Gh7mRWnG8Mn62mqxyWqrK6A25p5Kz6iiBJP0RldX9hc3LDOUOZhJJ0sp6nhRh2XkCkgFWioqqHiM/vZplzJb3piw0Y4LJiE7a38BgCGg9+Ecowkwc6S3XMTLI1m78LLYn41dwmIMAHKL/t9nwceKTzNVuZRGwqT2C2Bc824l5qQW13hJITJd8TAmGQDxoQzCjf+azpqjFIT6cGu0VLRWIzvKX+9iLbqLsFdUnzNBJ04or27+ldgEzPD84hp/m/UVjJhRUlOMZcF/GbwIznRRcX9Y02uYTBN3WCBfbUwn6IesbW+ydW7C/DIUVrjfHVaF346Lac6wpzrZextgexXnf6BtEvgtwqqC5EapJWAtqlHWy4UJYCIYqoaLbuMK42YmrG1tt71ifk4lxqrd/R06UMjal5pfVQMbe3cQzhUpohYHCCgv3ih+eEH4D6ou7Fs2aelljzOAztME2hrdRq/FuhIaY7mc1Ui1GObtPwnKQa8QFMpwX5JtGoTrP9fKoTPWfSK+oQcLHb6DwTbIwKbMu6RweOdoW7jlFVU//kAr/tG9ar0ByimbFk19eVCE3YNVNxTLuhh78Ci2Wx44TgonBHa9qSQ1wUgwPm4xxbHEwEzzaqLvTWO7tbAU5x+LBWpAPOUMa8YcuqTtFlbJ2Tf86e7NwfQjMmNEO5w=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(56012099006)(11063799006)(4143699003)(10067099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WGtnN1RjTWw1ZG9MTUdQejM4WFVwait5L1BVMUlBUUk5aDk2bUFITUhsRjNK?=
- =?utf-8?B?K1lKNFA1TWJFeGF6U0hFeWF6N1hPL3BKK05oQm9JbHBVdXNCU2FBaVRMN0I1?=
- =?utf-8?B?WE1UNEtHQzdjY3hOYmxWU0V4Rjl0d0RERXF5bHNyZHVKdHZCU3dWNllUWnhS?=
- =?utf-8?B?YktiOEZnTUlPempiM3JscDQrTVRoQjFMRDMwZG1hL3ZNQXhES2Y3YXdqSTk3?=
- =?utf-8?B?QVM1U3RqVFlUd2d4ZGwrdmVFMm5uRy95a3V6ekx2Rk1JY1Fsb1dHQUlic29B?=
- =?utf-8?B?NmsrWDQzR0JvYlFzMnFGUkVTZ0VucVZpYWVFczhWSjJES1dPMkUrd21GZ3JE?=
- =?utf-8?B?OE9MWVNtbmtBL2ZjeFZPZlNmWW5rMGo5NmE1bXloMk5mcnFZbnNFR1pSYldv?=
- =?utf-8?B?Y0F1SWd0dVVUUzBSbUxmWmRtM3ZmVzg5SVoweGh1ZGVMOWNaSlB1WGFFQkVX?=
- =?utf-8?B?WnIvSjB0OWhRUDBDZ0prSmtGeGpGN1BDYWFqcFlhUmdLR0NoYkFaVGZZZ1dn?=
- =?utf-8?B?NzRhNnZDUFhnOFVLMURiQ21VUU8vUkNWOFgxcjRVREl2bmM1MHdqKzNiL3hY?=
- =?utf-8?B?MnRBN3l4dmtSc2pXTWliUERCdVRzRVg3RW0wY2szSVhFSHpxTFZ6Y3BES3pX?=
- =?utf-8?B?WVZEVitXZzNuUUVWV3BWT0JNbG81cnViOGR5U3FnQm1ucVk4bmdaNFdFQ2pW?=
- =?utf-8?B?MHF0VUtvb2lOZ1QvSGZHY2FkNjNiWG5Lem9kYjF1K3N6K3FQclNhZFNBWmJz?=
- =?utf-8?B?WTc4aXN4NUYxN3NYYU1NTlhidHpQS29qT01hbzdrcnZhNWg1UmdLbWRjMXF1?=
- =?utf-8?B?T0c3azVLdGRjSUNZanZWUzFadUcwUHBjT0xUQ3lpY0Mra2dZL0VyZDdhcDJ6?=
- =?utf-8?B?RjVkVFNVZVA4UEd1V25GUEhiYnBqRHlyYmszSG5leDM2NUxya1RxeU9PcGNs?=
- =?utf-8?B?RkJkMFRpWlYwc1B1d3Vkc2E0dG9wZjRydkFvd3pJY1lIbjhxMHdkV3RvMGQ3?=
- =?utf-8?B?eGk4eitDcDVIU0dNZUJ1WGV4TkxxMDV0VGl2T1NDaDlEZW4rRFFUa1BadGlZ?=
- =?utf-8?B?NDN4a0lvbGZxRS9YclgybTZsUjJQM09VZ3ZLSEZNb2FteGF1RXRnbk1tSHFT?=
- =?utf-8?B?d2NBbW5rSU5OdmhqazRpWmVSVVNhb1lIUDdkVmhCRytsZUd2QzZpdTUyTXdm?=
- =?utf-8?B?eUFrdVUvU1lPYjJtUW92eFlFcEMweS9GWHhWb3RITHlGZGozdU9LKzdrbkxa?=
- =?utf-8?B?WVVOVmtpT3Zqa080dDNTbTdzaldRV3BtN2JZdTFHZ1ozQWJaVlBTQW5jUC9C?=
- =?utf-8?B?cWk3TUhVd1VsWUw0WDB3R3pucGtiK0NSZG1IYlFjc3d5NHNMUWNUWStGYkF2?=
- =?utf-8?B?LzdBQmMwUk14YlBDbEFZTWYrQ0MvbnQvUUJmNTVHVEJNR2ZQUVFXUkFDWXdq?=
- =?utf-8?B?ZkZoellQOEZ5Y2c0bVBueG5rUDNEaVk3anFMSVdVc2Vqbms1UjMyeXNRS3NC?=
- =?utf-8?B?SGdlWTk0VXpjcStqV2xmMHB4aDJ6UkJ1YnFxRGhkaUZGWWg3U2pzUXk2RVVm?=
- =?utf-8?B?VHR5dTVyb1lzUWRBMUZBT2JNU3VFQUdwY2xoK2IwdExmdDhFRTUzZE1RelJr?=
- =?utf-8?B?Nks4cGxVM0dnK1p0RzcvZE9DUGpkZjNMM3dLdnlZQi9Ic3U2NE9sTXhRR2F1?=
- =?utf-8?B?QTZBd01xNyszeG9vWkd1Ym9TbnZBOGlWQVdoRWEyR2lUOGFXbXVTelMrOEJl?=
- =?utf-8?B?dFpCMFI0M2xrQzc3V1c3ZU5LRFpvajlaWkZxdis2TUNJY2x5aWgyNnRwQTFF?=
- =?utf-8?B?QjhXd0lzTlhkV3MwR28xQXE1YmdTVnVrRGE5d0NsdGwvU2dYc0FMQWorb1ox?=
- =?utf-8?B?NER3MWdIVFZzSUplYjhVNE9NRVphL2JTZ1ZKK21JK1ZvUzV1VDNTSGZkUDNV?=
- =?utf-8?B?YjB4VzN2ajl1SjJ2WlNSVTZNYnBTT1Q5UDdTYUNSTzNjT3g1Zkc5RVZwWk5H?=
- =?utf-8?B?ZGZ2NEZOTUYzVXVoQWJvK21OYVcwcko0bVczVzBZakhReUtBR0c4RGdnZUIr?=
- =?utf-8?B?UWNLMU1wUHMwK1FlTml4dHNwbUU0NTVzekJhUTZtNldNSlJGWFBheGg1WXc2?=
- =?utf-8?B?VjRhTWJHT0pXdjZIdWtUR3g1eWpNN1h5b01sMThaeVFxdzRtWkJLR1BNN05i?=
- =?utf-8?B?UlNiRnMxYXE5YXQrRTJNckdwd0N3NDZPTmFsT0xyT25EZGNlL1d4RTl4Mk41?=
- =?utf-8?B?bi9nWXRNOW9CeERadGxVbGVmY09nbWZPVVR0S1ZMQ0VaK2lmMDVXUEs0Zndn?=
- =?utf-8?Q?E6/XVKRCJ2M3sjenga?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d06e6d0e-6bf1-4761-0fa2-08df292025ee
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 11:50:16.4163 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GomrIkGcumTvKv2sc8nJ5eNKcXr+PLiDB73/pcsHnIZsocN1ry/v+/hXIJN9Cxcn
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FT1PR12MB748946
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,38 +59,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/13/26 11:40, Matthew Auld wrote:
-...>>
->> It could be that this check doesn't work and because of low resolution and/or not busy PCIe it somehow works, but that would then clearly not be intended behavior.
->>
->> What could also be is that the frame is pulled over the PCIe bus using the SDMA multiple times, but that would then be a bug in userspace somewhere.
->>
->>>> Expectation is that buffer rather gets moved from VRAM to system memory when mapping the buffer with dma-buf, where it stays, and never negotiated to use p2p in the first place. I don't think p2p is really valid here.
->>
->> No, that is incorrect. When P2P is available it should be used, it's just that AMDs APUs can't scanout over P2P.
->>
->>>> What happened is that user updated their kernel and due to the MOVE_NOTIFY config getting removed and enabled by default on newer kernels this suddenly started negotiating p2p for things like the window buffer AFAICT, instead of moving it to system memory and keeping it there. On previous kernel versions the buffer would just get moved and pinned in system memory. From user pov this is a kernel regression, given the perf they are now getting.
->>>>
->>>> On AMD CPUs you allow p2p for everything. On Intel iGPUs we currently ban p2p. Maybe there is bigger question here for what is the story for p2p and iGPU? Should it really be blanket allowed like this? Should it not be opt-in with some userspace hints or something?
->>
->> Again no, P2P is mandatory for APUs. We have basically tons of customers using that with AMD dGPU and AMD iGPU and that works fine.
->>
->>>>
->>>> The other important part is that even when you move to system memory, it's no longer pinned (MOVE_NOTIFY) so can you now can also get violent ping-ponging, which is addressed in the first patch in this series.
->>
->> Yeah that is something which we have seen before as well. That should definately be prevented by the kernel.
->>
->> Does that patch help with the performance?
-> 
-> Mostly it's p2p that is the big killer. Series gives much as 10x FPS jump, if we stop negotiating p2p for the window buffer and prevent ping-ponging.
-> 
-> For example, in GravityMark,  we go from ~18 FPS -> ~180 FPS, which matches the previous performance the user was getting. The ping-ponging hurts, but from the reports it looked like it was only in some games and not as severe as p2p. User confirmed this with CONFIG_PCI_P2PDMA=n, and that fixed most of the workloads. Adding the ping-pong fix then fixes everything.
+7.2-stable review patch.  If anyone has any objections, please let me know.
 
-In that case I have not the slightest idea what going wrong here.
+------------------
 
-The only difference with P2P enabled I can see is that the buffer is pulled over the PCIe bus by the iGPU instead of pushed by the dGPU.
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-As I wrote in Thomas reply as well AMD uses exactly that setup with an dGPU and iGPU in the infotainment system found in Teslas and that works rather well as far as I know.
+commit 83d5acca1f4f6132038ea88c72c5844f62e42d44 upstream.
 
-Regards,
-Christian.
+xe_bo_pin_external() and xe_bo_unpin_external() support nested pins,
+since the underlying ttm_bo_pin()/ttm_bo_unpin() maintain a pin_count
+refcount rather than a boolean. However, the shrinker accounting calls
+xe_ttm_tt_account_subtract() and xe_ttm_tt_account_add() are invoked
+unconditionally on every pin_external()/unpin_external() call, instead
+of only on the transition into and out of the pinned state.
+
+An external BO (dma-buf) can be pinned more than once while already
+pinned, for example when it has multiple attachments/importers, each
+independently calling xe_bo_pin_external(). Each such nested pin
+subtracts the BO's pages from the shrinker's accounting again, even
+though the BO's pages were already removed from consideration by the
+first pin. Symmetrically, each nested unpin adds them back again
+before the BO is actually unpinned. This desynchronizes the
+shrinker's page and object counts from reality, and since they are
+declared as signed long but interpreted as unsigned long in
+xe_shrinker_count(), the underflow can turn into an enormous
+shrinkable/purgeable page count, causing the shrinker to be invoked
+excessively under memory pressure.
+
+Guard the accounting calls with the same pin-count transition checks
+already used to guard the pinned_link list maintenance, so accounting
+is only updated on the outermost pin and the final unpin.
+
+While centralizing this logic into xe_bo_account_pin()/
+xe_bo_account_unpin(), also close a second, related accounting gap
+affecting imported dma-bufs. For an imported bo's ttm_tt, xe's
+ttm_tt_populate hook (xe_ttm_tt_populate()) early-returns without
+calling xe_ttm_tt_account_add(), since TTM_TT_FLAG_EXTERNAL is set
+without TTM_TT_FLAG_EXTERNAL_MAPPABLE. However, TTM core's
+ttm_tt_populate() wrapper unconditionally marks the tt as populated
+on driver-hook success, so ttm_tt_is_populated() still reports true
+for it. xe_bo_account_pin()/xe_bo_account_unpin() trusted
+ttm_tt_is_populated() as a proxy for "these pages are accounted for
+by the shrinker", and would subtract/add pages for such a tt that
+were never added in the first place, again underflowing the
+shrinker's counts. This is reachable today via xe_bo_pin_external(),
+and would have become newly reachable via the fb-pin path once this
+patch routes __xe_pin_fb_vma() through xe_bo_pin_account() below, so
+fix it here rather than in a later patch, to avoid a commit in this
+series that introduces the regression before fixing it. Skip the
+accounting for imported bos, using the same EXTERNAL &&
+!EXTERNAL_MAPPABLE test xe_ttm_tt_populate()/xe_ttm_tt_unpopulate()
+use to decide whether to act, via a new xe_ttm_bo_is_imported()
+helper (hoisted up from its only prior use site).
+
+v2:
+- Fix the critical issue caught by Sashiko AI review: the pin-count
+  transition check introduced here was still bypassed by the fb-pin
+  path (__xe_pin_fb_vma()/__xe_unpin_fb_vma()), which could leave a
+  stale pinned_link entry and a permanent shrinker accounting leak
+  when the fb-unpin performed the true last unpin. Addressed in a
+  separate follow-up patch in this series rather than folded in here,
+  since it is a distinct bug with its own Fixes: tag.
+- Drop the unneeded local "last_unpin" variable in
+  xe_bo_unpin_external(), restoring the original inline
+  bo->ttm.pin_count == 1 check; it was a no-op rename not used by any
+  of the new accounting helpers, and was going to be deleted again by
+  the follow-up patch anyway.
+
+v3:
+- Exclude imported dma-bufs from the pin/unpin shrinker accounting,
+  fixing another underflow caught by Sashiko AI review.
+- Add a short comment on the backup-object pin site noting it's
+  already populated/accounted at pin time, addressing (as a
+  false-positive clarification, no code fix needed) a separate
+  Medium-severity accounting-leak concern also caught by Sashiko AI
+  review.
+
+Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: <stable@vger.kernel.org> # v6.15+
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Assisted-by: LLM
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Link: https://patch.msgid.link/20261002100830.12297-2-thomas.hellstrom@linux.intel.com
+(cherry picked from commit 6a117a2bb7ca657e3a19f83f4c06265d38dee06c)
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c |    6 -
+ drivers/gpu/drm/xe/xe_bo.c             |  116 +++++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_bo.h             |    2 
+ 3 files changed, 95 insertions(+), 29 deletions(-)
+
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -356,7 +356,7 @@ static struct i915_vma *__xe_pin_fb_vma(
+ 		drm_exec_retry_on_contention(&exec);
+ 		xe_validation_retry_on_oom(&ctx, &ret);
+ 		if (!ret)
+-			ttm_bo_pin(&bo->ttm);
++			xe_bo_pin_account(bo);
+ 	}
+ 	if (ret)
+ 		goto err;
+@@ -373,7 +373,7 @@ static struct i915_vma *__xe_pin_fb_vma(
+ 
+ err_unpin:
+ 	ttm_bo_reserve(&bo->ttm, false, false, NULL);
+-	ttm_bo_unpin(&bo->ttm);
++	xe_bo_unpin_account(bo);
+ 	ttm_bo_unreserve(&bo->ttm);
+ err:
+ 	kfree(vma);
+@@ -393,7 +393,7 @@ static void __xe_unpin_fb_vma(struct i91
+ 		xe_ggtt_node_remove(vma->node, false);
+ 
+ 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
+-	ttm_bo_unpin(&vma->bo->ttm);
++	xe_bo_unpin_account(vma->bo);
+ 	ttm_bo_unreserve(&vma->bo->ttm);
+ 	kfree(vma);
+ }
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -443,6 +443,85 @@ static void xe_ttm_tt_account_subtract(s
+ 		xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0);
+ }
+ 
++static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
++{
++	dma_resv_assert_held(tbo->base.resv);
++
++	return tbo->ttm &&
++		(tbo->ttm->page_flags & (TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE)) ==
++		TTM_TT_FLAG_EXTERNAL;
++}
++
++/*
++ * Account @bo's pages as pinned for the shrinker. Removes @bo's pages
++ * from the shrinker's shrinkable / purgeable counts on the transition
++ * from unpinned to pinned. Must be called with @bo's dma-resv held,
++ * after &ttm_buffer_object.pin_count has been incremented by
++ * ttm_bo_pin(). Safe to call unconditionally regardless of which pin
++ * path (kernel, external, framebuffer, backup object, ...) is pinning
++ * @bo, since it only acts on the true 0->1 pin_count transition.
++ *
++ * Imported bos (xe_ttm_bo_is_imported()) are excluded: for those,
++ * xe_ttm_tt_populate() never actually populates the tt or calls
++ * xe_ttm_tt_account_add(), but TTM core's ttm_tt_populate() still
++ * unconditionally marks the tt as populated on driver-hook success.
++ * Relying on ttm_tt_is_populated() for these would subtract pages that
++ * were never added, underflowing the shrinker's counts.
++ */
++static void xe_bo_account_pin(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++
++	if (bo->ttm.pin_count == 1 && bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm) &&
++	    !xe_ttm_bo_is_imported(&bo->ttm))
++		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
++}
++
++/*
++ * Counterpart to xe_bo_account_pin(). Must be called with @bo's dma-resv
++ * held, before &ttm_buffer_object.pin_count is decremented by
++ * ttm_bo_unpin(), so that the check against the true 1->0 transition sees
++ * the pin count that is about to be released. See xe_bo_account_pin() for
++ * why imported bos are excluded.
++ */
++static void xe_bo_account_unpin(struct xe_bo *bo)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++
++	if (bo->ttm.pin_count == 1 && bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm) &&
++	    !xe_ttm_bo_is_imported(&bo->ttm))
++		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
++}
++
++/**
++ * xe_bo_pin_account() - Pin a bo and account its pages for the shrinker
++ * @bo: The buffer object to pin.
++ *
++ * Pins @bo via ttm_bo_pin() and updates the shrinker's shrinkable /
++ * purgeable page accounting to match. Must be called with @bo's dma-resv
++ * held. Safe to call regardless of which pin path (kernel, external,
++ * framebuffer, backup object, ...) is pinning @bo.
++ */
++void xe_bo_pin_account(struct xe_bo *bo)
++{
++	ttm_bo_pin(&bo->ttm);
++	xe_bo_account_pin(bo);
++}
++
++/**
++ * xe_bo_unpin_account() - Unpin a bo and account its pages for the shrinker
++ * @bo: The buffer object to unpin.
++ *
++ * Counterpart to xe_bo_pin_account(). Updates the shrinker's shrinkable /
++ * purgeable page accounting to match, then unpins @bo via ttm_bo_unpin().
++ * Must be called with @bo's dma-resv held.
++ */
++void xe_bo_unpin_account(struct xe_bo *bo)
++{
++	xe_bo_account_unpin(bo);
++	ttm_bo_unpin(&bo->ttm);
++}
++
+ static void update_global_total_pages(struct ttm_device *ttm_dev,
+ 				      long num_pages)
+ {
+@@ -1377,7 +1456,8 @@ int xe_bo_notifier_prepare_pinned(struct
+ 		}
+ 
+ 		backup->parent_obj = xe_bo_get(bo); /* Released by bo_destroy */
+-		ttm_bo_pin(&backup->ttm);
++		/* Note: XE_BO_FLAG_SYSTEM resolves to XE_PL_TT so already populated. */
++		xe_bo_pin_account(backup);
+ 		bo->backup_obj = backup;
+ 	}
+ 
+@@ -1397,7 +1477,7 @@ int xe_bo_notifier_unprepare_pinned(stru
+ {
+ 	xe_bo_lock(bo, false);
+ 	if (bo->backup_obj) {
+-		ttm_bo_unpin(&bo->backup_obj->ttm);
++		xe_bo_unpin_account(bo->backup_obj);
+ 		xe_bo_put(bo->backup_obj);
+ 		bo->backup_obj = NULL;
+ 	}
+@@ -1608,7 +1688,7 @@ out_backup:
+ 	xe_bo_vunmap(backup);
+ 	if (!bo->backup_obj) {
+ 		if (xe_bo_is_pinned(backup))
+-			ttm_bo_unpin(&backup->ttm);
++			xe_bo_unpin_account(backup);
+ 		xe_bo_put(backup);
+ 	}
+ out_unlock_bo:
+@@ -2000,15 +2080,6 @@ static vm_fault_t xe_err_to_fault_t(int
+ 	return VM_FAULT_SIGBUS;
+ }
+ 
+-static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
+-{
+-	dma_resv_assert_held(tbo->base.resv);
+-
+-	return tbo->ttm &&
+-		(tbo->ttm->page_flags & (TTM_TT_FLAG_EXTERNAL | TTM_TT_FLAG_EXTERNAL_MAPPABLE)) ==
+-		TTM_TT_FLAG_EXTERNAL;
+-}
+-
+ static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_device *xe,
+ 					   struct xe_bo *bo, bool needs_rpm)
+ {
+@@ -2975,12 +3046,13 @@ uint64_t vram_region_gpu_offset(struct t
+ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
++	bool first_pin = !xe_bo_is_pinned(bo);
+ 	int err;
+ 
+ 	xe_assert(xe, !bo->vm);
+ 	xe_assert(xe, xe_bo_is_user(bo));
+ 
+-	if (!xe_bo_is_pinned(bo)) {
++	if (first_pin) {
+ 		if (!in_place) {
+ 			err = xe_bo_validate(bo, NULL, false, exec);
+ 			if (err)
+@@ -2992,9 +3064,7 @@ int xe_bo_pin_external(struct xe_bo *bo,
+ 		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+-	ttm_bo_pin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
++	xe_bo_pin_account(bo);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -3050,9 +3120,7 @@ int xe_bo_pin(struct xe_bo *bo, struct d
+ 		spin_unlock(&xe->pinned.lock);
+ 	}
+ 
+-	ttm_bo_pin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
++	xe_bo_pin_account(bo);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -3086,9 +3154,7 @@ void xe_bo_unpin_external(struct xe_bo *
+ 		list_del_init(&bo->pinned_link);
+ 	spin_unlock(&xe->pinned.lock);
+ 
+-	ttm_bo_unpin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
++	xe_bo_unpin_account(bo);
+ 
+ 	/*
+ 	 * FIXME: If we always use the reserve / unreserve functions for locking
+@@ -3113,14 +3179,12 @@ void xe_bo_unpin(struct xe_bo *bo)
+ 
+ 		if (bo->backup_obj) {
+ 			if (xe_bo_is_pinned(bo->backup_obj))
+-				ttm_bo_unpin(&bo->backup_obj->ttm);
++				xe_bo_unpin_account(bo->backup_obj);
+ 			xe_bo_put(bo->backup_obj);
+ 			bo->backup_obj = NULL;
+ 		}
+ 	}
+-	ttm_bo_unpin(&bo->ttm);
+-	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
+-		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
++	xe_bo_unpin_account(bo);
+ }
+ 
+ /**
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -228,6 +228,8 @@ int xe_bo_pin_external(struct xe_bo *bo,
+ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
+ void xe_bo_unpin_external(struct xe_bo *bo);
+ void xe_bo_unpin(struct xe_bo *bo);
++void xe_bo_pin_account(struct xe_bo *bo);
++void xe_bo_unpin_account(struct xe_bo *bo);
+ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
+ 		   struct drm_exec *exec);
+ 
+
+
