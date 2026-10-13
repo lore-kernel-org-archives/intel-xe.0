@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F6D2CC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 20:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 133BECC6B12
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 21:03:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4985210F9C5;
-	Tue, 13 Oct 2026 20:59:24 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59B9C10E58C;
- Tue, 13 Oct 2026 20:59:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CECE610EA38;
+	Tue, 13 Oct 2026 21:03:17 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47CBB10EA38
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 21:03:11 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id AD876601DB;
- Tue, 13 Oct 2026 20:59:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35AB01F000FF;
- Tue, 13 Oct 2026 20:59:17 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id F16F240E4B;
+ Tue, 13 Oct 2026 21:03:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B61411F00893;
+ Tue, 13 Oct 2026 21:03:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791925157;
- bh=2z8Z1czjbzB+Q6ROmS/4mSzbvCH5w3mBH88ANrCvAz0=;
+ s=k20260515; t=1791925390;
+ bh=2qktXRf+Txu5Jxa+o5y8UFynNvaS9tgap9IFOSABxwg=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=b9iHsjgUKSwb2rDPmifbIVcHEZ1CrFafcoj0Hxno0QuJLNP/c5iubMEQvK0z11+SI
- N81kcwhDCRb8UnVt5QD5s+y7jF+MvYmvMU5RfkC9FmvVmRFgz8HQ77HKwPcE7YiMvW
- z+ZQ36ZmFHYxNc12/+KEO9KQUyLOH9tLn/nNQmLGmXIjBzTWs/jDgbgK6BXbRpnINN
- HB63qzyPTFbXEYiDNUugEWvOoC4ihgj5k1oobbMpYinOazCCSIxELAxhEMNdzbGEkY
- TaR3mFYr+nCz4aJAueIFzw7c5boKOrlnrS1jpSDAv1NxFqVeo0y4WH2YlAzorq2pvg
- fNMftWnzXNDkw==
-Message-ID: <sashiko-outbox-170497@kernel.org>
+ b=FKoXTk7RDy11kcxeVdZtwstw3uWxlULpzpwyCl0JgFO/a7WOdyY9aCB0IBXxUdVNj
+ Up9db/QhJ8LftVTrdROIeuHkjQzXhZJGykZNNq7gVBUgik5aE3BAUZIdoVCKdR52Ts
+ cIA5m4VkW8+XwY9NYEqNzB49778VoXfzWq1oZJj0ZLkruRTlqY1nsS2Xyf+OFMkIF4
+ I7XSauNCZEPexNEOEXroD8XCHLaU/gdeOo0MKzPeqkSYqCqhnKWbb2EnuNDAfysRoK
+ celjZl6iM5/X/TkF+j2w6V9al4mSzUQI1bADi9PzA6PwcbNnBocMfkBFjyECBvmC0c
+ DJ64eT85m9rLQ==
+Message-ID: <sashiko-outbox-170505@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/5] drm/i915/3dlut: disable 3D LUT for pre-GLK
-To: =?utf-8?b?TWljaGHFgiBHcnplbGFr?= <michal.grzelak@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261013204705.1574475-3-michal.grzelak@linux.intel.com>
-References: <20261013204705.1574475-1-michal.grzelak@linux.intel.com>
- <20261013204705.1574475-3-michal.grzelak@linux.intel.com>
+Subject: Re: [PATCH v2 3/3] drm/xe: Synchronously wait for queue kill on FD
+ close
+To: "Daniel Charles" <daniel.charles@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261013201508.514480-4-daniel.charles@intel.com>
+References: <20261013201508.514480-1-daniel.charles@intel.com>
+ <20261013201508.514480-4-daniel.charles@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 13 Oct 2026 20:59:16 +0000
+Date: Tue, 13 Oct 2026 21:03:10 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,55 +55,79 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/i915: 3D LUT remains disabled for GLK/ICL due to unmodified =
-version check
+- [High] drm/xe: page table teardown races with async GT reset on timeout
 --
 
-commit 31c6b1070ace7be34ebe695316e80a7d65a5d1a7
-Author: Micha=C5=82 Grzelak <michal.grzelak@linux.intel.com>
-Subject: drm/i915/3dlut: disable 3D LUT for pre-GLK
+commit 7c6f890c53c2275179c96ad6d41beb44f5cd78ba
+Author: Daniel Charles <daniel.charles@intel.com>
 
-This commit adds a has_3dlut field to the display runtime info to indicate
-whether 3D LUT is enabled. It initializes the field to 1 for GLK and newer
-platforms, and adds a HAS_3DLUT macro to check for support.
+drm/xe: Synchronously wait for queue kill on FD close
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm=
-/i915/display/intel_color.c
-> index f1df0f9ba7624..95de75e1de984 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -4304,6 +4304,9 @@ intel_color_load_plane_luts(struct intel_dsb *dsb,
->  bool
->  intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe)
->  {
-> +	if (!HAS_3DLUT(display))
-> +		return false;
+This commit splits the FD close teardown into two passes, first killing
+every queue, then synchronously waiting for the queue scheduling to stop
+by calling xe_exec_queue_kill_sync(). In the GuC backend, this wait uses
+a 5-second timeout, after which it triggers an asynchronous GT reset if
+the GuC does not respond.
+
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 2ad5efec2bda1..1c5588eb9676b 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -190,8 +190,13 @@ static void xe_file_close(struct drm_device *dev, st=
+ruct drm_file *file)
+[ ... ]
+> +	xa_for_each(&xef->exec_queue.xa, idx, q) {
+> +		xe_exec_queue_kill_sync(q);
+>  		xe_exec_queue_put(q);
+>  	}
 > +
->  	if (DISPLAY_VER(display) >=3D 12)
->  		return pipe =3D=3D PIPE_A || pipe =3D=3D PIPE_B;
->  	else
->  		return false;
->  }
+>  	xa_for_each(&xef->vm.xa, idx, vm)
+>  		xe_vm_close_and_put(vm);
 
-[Severity: Medium]
-Will this still return false for GLK and ICL platforms even though they have
-the HAS_3DLUT flag set?
+[Severity: High]
+If the queue kill sync times out and triggers an asynchronous GT reset,
+this teardown sequence will proceed before the hardware is actually stopped.
 
-The commit message indicates 3D LUT is supported on GLK+ hardware, and the
-patch sets has_3dlut =3D 1 for GLK (DISPLAY_VER =3D 10) and ICL (DISPLAY_VE=
-R =3D 11).
-However, in intel_color_crtc_has_3dlut(), after the new HAS_3DLUT() check
-passes for these platforms, the function still evaluates:
+Since the GuC and hardware engines may still be actively executing the
+context, can tearing down the VM's page tables via xe_vm_close_and_put()
+here cause regressions like CAT errors and secondary engine resets?
 
-    if (DISPLAY_VER(display) >=3D 12)
-        ...
-    else
-        return false;
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index 609af66b343d5..353078e0c9e0b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -2267,6 +2267,28 @@ static void guc_exec_queue_kill(struct xe_exec_que=
+ue *q)
+[ ... ]
+> +static void guc_exec_queue_kill_sync(struct xe_exec_queue *q)
+> +{
+[ ... ]
+> +	ret =3D wait_event_timeout(guc->ct.wq,
+> +				 (!exec_queue_enabled(primary) &&
+> +				  !exec_queue_pending_disable(primary) &&
+> +				  !exec_queue_pending_enable(primary)) ||
+> +				 xe_guc_read_stopped(guc) ||
+> +				 vf_recovery(guc) ||
+> +				 exec_queue_wedged(primary), HZ * 5);
+> +	if (!ret) {
+> +		xe_gt_warn(q->gt, "Queue kill failed to respond, guc_id=3D%d\n",
+> +			   primary->guc->id);
+> +		xe_gt_reset_async(q->gt);
+> +	}
+> +}
 
-Doesn't this existing version check unconditionally return false for GLK and
-ICL, defeating the newly added flag and keeping 3D LUT disabled for these
-platforms?
+[Severity: High]
+Does triggering an asynchronous reset here fail to provide the necessary
+synchronization guarantee?
+
+By returning immediately while the reset is only queued, the caller
+xe_file_close() will proceed to tear down page tables while the hardware
+might still be running. Should this wait for the reset to complete to avoid
+introducing regressions during cleanup?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261013204705.1574=
-475-1-michal.grzelak@linux.intel.com?part=3D2
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261013201508.5144=
+80-1-daniel.charles@intel.com?part=3D3
