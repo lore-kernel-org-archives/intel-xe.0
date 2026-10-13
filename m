@@ -4,63 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73913CC6B1D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F2C7CC6B1A
 	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:44:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 347F710FDFC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5AB10FDFE;
 	Wed, 14 Oct 2026 13:44:03 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 015BE10E0C6;
- Tue, 13 Oct 2026 15:16:13 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id DCF69411B1;
- Tue, 13 Oct 2026 15:16:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BD253C2BCF4;
- Tue, 13 Oct 2026 15:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1791904572;
- bh=mK+BqIvO4TiLfSQXIr9kIsyfliszEQqMsnDO8JqFKpE=;
- h=From:Date:Subject:To:Cc:Reply-To:From;
- b=ZmYLtZWtZWQro1+dcF7R4dsSMw0tWWGHSCycSn/fQoOLWgXsZ/VUVf8y01baNVmOG
- eWaKxVonddQ1c7wg5pUy4lIcDziq3vjXlFlMiGQluUBQTkZgwm3K5NA2YPMBsod2Ke
- F2soUz5wdYMY5YIVWf8SGQ1l11jdpbqAH/F9ro91ODhF56Cjsj4/FsWqIUtgM0zZRA
- 1dGQiVCjS1m5jeD0butVT0jDJsrZiJBBEOsG52/fbZpFM+wqgVQKcGEwN7RPiNYiRE
- 8gWfh7HhtN2viLkzPQ1BdlougJo+q3kwzMxz1Xv9oHC1HHN+2KuDi2H8DHmQTrZrLs
- WganD5OVdW/DA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 90C98CC6B12;
- Tue, 13 Oct 2026 15:16:12 +0000 (UTC)
-From: Vladyslav Yamkovyi via B4 Relay <devnull+hex.aleph0.ai@kernel.org>
-Date: Tue, 13 Oct 2026 17:16:07 +0200
-Subject: [PATCH] drm/i915/psr: Send a frame change notification for async flips
+Received: from host3.o27bbn.ondsl.gr (host3.o27bbn.ondsl.gr [79.129.74.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F332B10E72F;
+ Tue, 13 Oct 2026 05:39:32 +0000 (UTC)
+Received: from mail.e-psn.eu (cluster-localnode [10.200.210.1])
+ by mail.e-psn.eu (Postfix) with ESMTPA id 8D800384259D;
+ Tue, 13 Oct 2026 05:39:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=e-psn.eu; s=default;
+ t=1791869970; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type; bh=2NpAp98+aDTsJD73ZxUrmQmFtE8jXYR7xPbn+CrA0qw=;
+ b=MxNgZ6NhpYABr0qVEcxcUSBwTXDQUsg9MK4umy7LHTu6i/7L19Vggs7ji+v3QR5XL5vsqz
+ 5CsWoM1lN76WPlQ4POpRtHNaqTHTcTAQaO52OuauvUZMygv1gH/hWJU9lbUevntcJ9z8ZT
+ U68fBbZmWJlb6+gzq1cvkHyiQNB/eGbasuGLSxbM/lcO66EZlMGV5Dj707jZ2iJvJPxoPF
+ 9lkQefvmmaZS6Q8KS+41oWuWzG0dJOeLQGYZ47KUxxsICnRTceaPr9TZf+2MWfjmYqyl+Q
+ fMrkH80j163VAG6LmtEJZMJ4n5FMTOQKikK8IygxkP2Zwx7JKqHmfVnTdef0dQ==
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261013-fix-psr-async-trans-push-v1-1-ee79bf31b66f@aleph0.ai>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/y2MwQrCMBBEf6Xs2cUk0hb8FfGQpFsTwRh206KU/
- ruJehreMPM2EOJIAuduA6Y1SnymCvrQgQ823QjjVBmMMoNW+oRzfGEWRivv5LGwTYJ5kYButkP
- fKzMqP0K9Z6a6/aov1x/L4u7kS/O1hbNC6KrBh1ZN/MAS8/GfsO8fv7BJdJ4AAAA=
-X-Change-ID: 20261013-fix-psr-async-trans-push-bfa6550270c7
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, 
- =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>, 
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org, Vladyslav Yamkovyi <hex@aleph0.ai>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1791904567; l=3338;
- i=hex@aleph0.ai; s=20261013; h=from:subject:message-id;
- bh=6OzSRSOPWRw5dMbojgR3kH8JziugVnnnlVANwZ+FMbg=;
- b=7JBBQ1l0eVLUQse6LiBcfstEJhvVF2lQK3NJy6s5xem1JCwHHrEd+peS8XqwjpYw5M9wbfkFM
- 7VyRBgJ/a7iBgLXdBJP/CTV1qHiP4Ok2925QSZ6IpSAU6X35x3fOhuz
-X-Developer-Key: i=hex@aleph0.ai; a=ed25519;
- pk=faUPQ+UBdMQ6ZcbVM9ytjGUZvrhV8mzf+ctgaoVsZy0=
-X-Endpoint-Received: by B4 Relay for hex@aleph0.ai/20261013 with auth_id=1170
-X-Original-From: Vladyslav Yamkovyi <hex@aleph0.ai>
+Date: Tue, 13 Oct 2026 08:39:30 +0300
+From: Constantinos Chalkias <cch@e-psn.eu>
+To: simon.richter@hogyros.de
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
+ force-wake
+Mail-Reply-To: cch@e-psn.eu
+Message-ID: <5b9625f2276630e1c8822c89c8f6288b@e-psn.eu>
+X-Sender: cch@e-psn.eu
+Organization: E-PSN
+Content-Type: multipart/alternative;
+ boundary="=_d5617720cf2e4688614326fcf48dd5cf"
+X-Rspamd-Flag-Threshold: 6
 X-Mailman-Approved-At: Wed, 14 Oct 2026 13:44:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,82 +50,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: hex@aleph0.ai
+Reply-To: cch@e-psn.eu
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vladyslav Yamkovyi <hex@aleph0.ai>
+--=_d5617720cf2e4688614326fcf48dd5cf
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 
-On platforms using TRANS_PUSH for PSR frame-change notifications,
-intel_pipe_update_end() exits early for asynchronous flips, before sending
-the push. The register-based notification is disabled on these platforms,
-and an ORIGIN_FLIP frontbuffer flush does not force PSR to exit.
+Hi Simon,
 
-This can leave an accepted async flip without a completion event after
-PSR2 enters DEEP_SLEEP. On Panther Lake, scanout freezes and the kernel
-reports "[CRTC:152:pipe A] flip_done timed out". Intel IGT kms_async_flips
-reproduces the failure with the compositor inactive when a 200 ms idle
-interval is inserted before an asynchronous atomic flip.
+For some context, I started investigating this because my Maxsun Arc Pro 
+B70 would latch the blower at very high speed after a long inference 
+workload and leave it there even when the node was otherwise idle. I had 
+previously dealt with a separate idle-power issue where continuous Intel 
+Level Zero Sysman/XPUM monitoring kept the card at elevated power with a 
+model resident; after removing that polling, the card could return to 
+low idle power normally. The persistent blower latch was the remaining 
+reproducible problem.
 
-Send the PSR frame-change notification after plane programming and before
-releasing the existing PSR lock. Restrict the push to CRTC states that use
-TRANS_PUSH for PSR, leaving other async flips and the synchronous and DSB
-paths unchanged.
+I did some more targeted testing based on your comments.
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9582
-Fixes: 129a4da11707 ("drm/i915/psr: Use TRANS_PUSH to trigger frame change event")
-Cc: stable@vger.kernel.org
-Assisted-by: LLM sparse smatch
-Signed-off-by: Vladyslav Yamkovyi <hex@aleph0.ai>
----
-Based on drm-tip (2026-10-13); also applies to v7.3-rc7.
+I restricted the workaround to CHANNEL_PKG only and disabled both hwmon 
+pollers so no other sensor reads could interfere.
 
-Runtime-tested on Panther Lake (xe, eDP-1, 2880x1800) with Ubuntu-based
-7.3.0-rc6 kernels, before and after this fix. IGT kms_async_flips,
-async-flip-with-page-flip-events-tiled-atomic, dynamic subtest
-pipe-A-eDP-1-4-rc-ccs, fails with Flip Timeout before the fix and passes
-afterwards. An LD_PRELOAD interposer inserts one 200 ms idle interval
-before the eighth async atomic commit without changing its request or
-flags. Both runs enter PSR2 Early Transport DEEP_SLEEP with selective
-fetch enabled before that commit.
+With a 500-1000 us settling interval, the package-only workaround was 
+not reliable. The physical blower could remain latched at high speed for 
+several minutes after the workload ended.
 
-Clang 23.1.2, W=1 builds and Sparse/Smatch checks of the CRTC, PSR and VRR
-translation units for i915 and Xe produced no new diagnostics.
+I then repeated the test with a package-only 3000-3500 us settling 
+interval. With monitoring disabled, the blower remained latched high for 
+more than five minutes after inference stopped. A single temp2_input 
+package-temperature read then immediately caused the blower to drop; the 
+read returned 36 C.
 
-OpenAI Codex (GPT-6-Astra) assisted diagnosis, reproducer and fix
-development, validation and patch preparation, following requests to
-reproduce the freeze independently, trace its driver cause and prepare a
-tested upstream fix. I take direct responsibility for this contribution,
-have carefully reviewed the change and ensured rigorous local testing.
----
- drivers/gpu/drm/i915/display/intel_crtc.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+So the workaround does not need to cover VRAM or individual VRAM-channel 
+reads. A package-only force-wake appears sufficient, provided the 
+settling interval is long enough.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index 10ed9bdfee76..8ef24cddbaa6 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -736,8 +736,16 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
- 
- 	drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
- 
--	if (new_crtc_state->do_async_flip)
-+	if (new_crtc_state->do_async_flip) {
-+		/*
-+		 * LNL+ uses TRANS_PUSH for PSR frame-change notifications.
-+		 * Async flips skip the vblank path below, but still need to
-+		 * notify PSR after programming the new surface address.
-+		 */
-+		if (intel_psr_use_trans_push(new_crtc_state))
-+			intel_vrr_send_push(NULL, new_crtc_state);
- 		goto out;
-+	}
- 
- 	trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
- 
+I also confirmed that fan1_input is a separate issue: it can report 
+implausibly low values while the physical blower is still running at 
+high speed.
 
----
-base-commit: eb1bf4700d3b25a1a1e670ef31cc06969fa08019
-change-id: 20261013-fix-psr-async-trans-push-bfa6550270c7
+This makes the v1 patch broader than necessary. I'll narrow v2 to the 
+package-temperature path and document the delay as an empirical 
+workaround rather than an architectural timing requirement.
 
+Thanks,
+Constantinos
+--=_d5617720cf2e4688614326fcf48dd5cf
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
+=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
+eva,sans-serif'>
+<p><span>Hi Simon,</span></p>
+<p><span>For some context, I started investigating this because my Maxsun A=
+rc Pro B70 would latch the blower at very high speed after a long inference=
+ workload and leave it there even when the node was otherwise idle. I had p=
+reviously dealt with a separate idle-power issue where continuous Intel Lev=
+el Zero Sysman/XPUM monitoring kept the card at elevated power with a model=
+ resident; after removing that polling, the card could return to low idle p=
+ower normally. The persistent blower latch was the remaining reproducible p=
+roblem.</span></p>
+<p><br /></p>
+<p><span>I did some more targeted testing based on your comments.</span></p>
+<p><span>I restricted the workaround to </span><code dir=3D"ltr">CHANNEL_PK=
+G</code><span> only and disabled both hwmon pollers so no other sensor read=
+s could interfere.</span></p>
+<p><span>With a 500-1000 us settling interval, the package-only workaround =
+was not reliable. The physical blower could remain latched at high speed fo=
+r several minutes after the workload ended.</span></p>
+<p><span>I then repeated the test with a package-only 3000-3500 us settling=
+ interval. With monitoring disabled, the blower remained latched high for m=
+ore than five minutes after inference stopped. A single </span><code dir=3D=
+"ltr">temp2_input</code><span> package-temperature read then immediately ca=
+used the blower to drop; the read returned 36 C.</span></p>
+<p><span>So the workaround does not need to cover VRAM or individual VRAM-c=
+hannel reads. A package-only force-wake appears sufficient, provided the se=
+ttling interval is long enough.</span></p>
+<p><span>I also confirmed that </span><code dir=3D"ltr">fan1_input</code><s=
+pan> is a separate issue: it can report implausibly low values while the ph=
+ysical blower is still running at high speed.</span></p>
+<p><span>This makes the v1 patch broader than necessary. I&rsquo;ll narrow =
+v2 to the package-temperature path and document the delay as an empirical w=
+orkaround rather than an architectural timing requirement.</span></p>
+<p><span>Thanks,</span><br /><span>Constantinos</span></p>
+</body></html>
+
+--=_d5617720cf2e4688614326fcf48dd5cf--
