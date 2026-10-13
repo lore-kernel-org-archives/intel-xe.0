@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48823CA9EC5
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 02:07:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F0CFCA9ED2
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 02:07:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF0A610E6F8;
-	Tue, 13 Oct 2026 02:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F37710E6F9;
+	Tue, 13 Oct 2026 02:07:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0B4D10E6F3
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 02:07:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 891B210E4D8
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 02:07:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791857250; x=1823393250;
+ t=1791857253; x=1823393253;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g6sFKhzBj6ErWLFoesPmCjFfQOwOJSpu07Fs6/TKiKY=;
- b=RgMQrhl5dygmM6wbYp0zFvS2/9H9DDwBtYy2Sney8uAEn5c/JVNJvTul
- Bx7GwkCDrF2kzWuqQbTbvDJgpYoZkw8S3lbBk0U5QbpI/V5u7uCETAH48
- psLTTQP5Pj4H7hsC8uqC4PmJjumAxx5i1OFCVMqoauUt/4gMmgipsrQgt
- 2RzALHIBrtEPNsQc0TnXB+t1a2tKH98JtEYKobjtf1imY4jNVyDQFSAcM
- SkxVVcLUqUpJfVbsukF1DXwWMmPeDz/Nd6aiyspBBB4HXc5LUPHKFYubR
- YFJV2HyGZONUmonW+tpbEr2xgye3q8DLR5OvqUAtQqQC+QcZJRkS5SnAS Q==;
-X-CSE-ConnectionGUID: z2TN/2BfSxK3cWPqkQZCfQ==
-X-CSE-MsgGUID: MAExgmoUTy+VrqmbeVPBoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="670182"
+ bh=RKKx5Rz3JTZ6D7BHbJX6FR5kAfunDEqs6UxhOfnXdms=;
+ b=ZWbADfvRbRSO9mgSBaIVvOO634XkY+2sFcTbMBQbweAjRKJWcbgDuFf2
+ 1Y5li+NAe0XrRF4QCjAMPPpNrqVKn7l73+ynSaxyT8u4qIG16JXQ8wd5d
+ /iw5Ge4iK5bBvjXHUb89s7BJyLhYRc+VA3PQ0KAkADTY4ShqOc0BHNiG/
+ 5wIKaQvgjdDzPpnOlAjBIHglc0ggZJq92mw9Jzn7+0IVb1L0U3xyg+NVu
+ Z1vl53NWmHEVIZ/FnKjUkR75cSIBBQd5i/dmXSte3Nh0u1/geo8HL4voa
+ 9ls8Z0mrZyMBTUHFiC+ahfc2PCh+5k+xPnEHKV4iTXUJbtQydowrBub41 A==;
+X-CSE-ConnectionGUID: 14znuDEhRG6YNNOED8PGsA==
+X-CSE-MsgGUID: kgzUgOqQQEyKOnhNROflSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11933"; a="670186"
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="670182"
+   d="scan'208";a="670186"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 19:07:30 -0700
-X-CSE-ConnectionGUID: TC+y72/LSL2HmJv4B37adA==
-X-CSE-MsgGUID: YZraktFoS1+xlLI+xGssdA==
+ 12 Oct 2026 19:07:32 -0700
+X-CSE-ConnectionGUID: NaruRzfqRmKbr2q/0dfZIA==
+X-CSE-MsgGUID: fowdqqJISwGDGPkfALRD2A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,154,1787036400"; 
-   d="scan'208";a="1369137"
+   d="scan'208";a="1369146"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2026 19:07:27 -0700
+ 12 Oct 2026 19:07:29 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v11 01/16] drm/xe/hwmon: Handle pcode read failures of
- xe_hwmon_pcode_rmw_power_limit
-Date: Tue, 13 Oct 2026 07:36:21 +0530
-Message-Id: <20261013020636.447620-2-karthik.poosa@intel.com>
+Subject: [PATCH v11 02/16] drm/xe/hwmon: Decode mailbox temperature as
+ sign-magnitude
+Date: Tue, 13 Oct 2026 07:36:22 +0530
+Message-Id: <20261013020636.447620-3-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261013020636.447620-1-karthik.poosa@intel.com>
 References: <20261013020636.447620-1-karthik.poosa@intel.com>
@@ -69,70 +69,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Return early when the pcode read operation fails in
-xe_hwmon_pcode_rmw_power_limit() and check the returned error in
-callers to avoid updating power limit settings with invalid data.
+The mailbox temperature is an 8-bit sign-magnitude value (bit 7 sign,
+bits 6:0 magnitude, range -127..127), not two's-complement. Casting the
+raw byte to s8 decodes negative readings incorrectly.
 
-Fixes: 8aa7306631f0 ("drm/xe/hwmon: Fix xe_hwmon_power_max_write")
+Add mbx_temp_decode(), store the raw byte as u8, and use it in
+get_mc_temp() and get_pcie_temp() so temperatures are decoded correctly.
+
+Fixes: 3a0cb885e111 ("drm/xe/hwmon: Expose memory controller temperature")
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 22 +++++++++++++++-------
- 1 file changed, 15 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 5edeac961ec3..9884e06f83e5 100644
+index 9884e06f83e5..c63aa708ab6f 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -232,9 +232,11 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
- 						  READ_PSYSGPU_POWER_LIMIT :
- 						  READ_PACKAGE_POWER_LIMIT,
- 						  prepare_power_limit_param2(hwmon)), &val0, &val1);
--	if (ret)
--		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
-+	if (ret) {
-+		drm_err(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
- 			channel, val0, val1, ret);
-+		return ret;
-+	}
+@@ -104,6 +104,10 @@ enum sensor_attr_power {
+ /* Index of memory controller in READ_THERMAL_DATA output */
+ #define TEMP_INDEX_MCTRL	2
  
- 	if (attr == PL1_HWMON_ATTR)
- 		val0 = (val0 & ~clr) | set;
-@@ -394,7 +396,9 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 		if (hwmon->xe->info.has_mbx_power_limits) {
- 			drm_dbg(&hwmon->xe->drm, "disabling %s on channel %d\n",
- 				PWR_ATTR_TO_STR(attr), channel);
--			xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
-+			ret = xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
-+			if (ret)
-+				goto unlock;
- 			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
- 		} else {
- 			reg_val = xe_mmio_rmw32(mmio, rapl_limit, PWR_LIM_EN, 0);
-@@ -679,15 +683,19 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
++/* Mailbox temperature is sign-magnitude: bit 7 sign, bits 6:0 magnitude. */
++#define TEMP_MBX_SIGN		BIT(7)
++#define TEMP_MBX_MAG		GENMASK(6, 0)
++
+ /* Maximum characters in hwmon label name */
+ #define MAX_LABEL_SIZE		16
  
- 	mutex_lock(&hwmon->hwmon_lock);
- 
--	if (hwmon->xe->info.has_mbx_power_limits)
--		xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
--	else
-+	ret = count;
-+	if (hwmon->xe->info.has_mbx_power_limits) {
-+		ret = xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
-+		if (!ret)
-+			ret = count;
-+	} else {
- 		r = xe_mmio_rmw32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel),
- 				  PWR_LIM_TIME, rxy);
-+	}
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
--	return count;
-+	return ret;
+@@ -139,8 +143,8 @@ struct xe_hwmon_thermal_info {
+ 	};
+ 	/** @count: no of temperature sensors available for the platform */
+ 	u8 count;
+-	/** @value: signed value from each sensor */
+-	s8 value[U8_MAX];
++	/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
++	u8 value[U8_MAX];
+ 	/** @vram_label: vram label names */
+ 	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
+ };
+@@ -816,6 +820,14 @@ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
+ 	return ret;
  }
  
- /* PSYS PL1 */
++/* Decode an 8-bit sign-magnitude mailbox temperature to degrees Celsius. */
++static int mbx_temp_decode(u8 value)
++{
++	int temp = value & TEMP_MBX_MAG;
++
++	return (value & TEMP_MBX_SIGN) ? -temp : temp;
++}
++
+ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ {
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+@@ -832,7 +844,7 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ 	}
+ 
+ 	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
+-		average += hwmon->temp.value[i];
++		average += mbx_temp_decode(hwmon->temp.value[i]);
+ 
+ 	average /= (hwmon->temp.count - TEMP_INDEX_MCTRL - 1);
+ 	*val = average * MILLIDEGREE_PER_DEGREE;
+@@ -855,7 +867,7 @@ static int get_pcie_temp(struct xe_hwmon *hwmon, long *val)
+ 		data = REG_FIELD_GET(PCIE_SENSOR_MASK, data);
+ 
+ 	data = REG_FIELD_GET(TEMP_MASK, data);
+-	*val = (s8)data * MILLIDEGREE_PER_DEGREE;
++	*val = mbx_temp_decode(data) * MILLIDEGREE_PER_DEGREE;
+ 
+ 	return 0;
+ }
 -- 
 2.25.1
 
