@@ -4,144 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 836B1CC6B12
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 18:53:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31048CC6B1C
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 18:57:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD0110E927;
-	Tue, 13 Oct 2026 18:52:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2DD210E927
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 18:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9DE310E8DC;
+	Tue, 13 Oct 2026 18:57:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB87810E8DC
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 18:56:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791917572; x=1823453572;
+ t=1791917818; x=1823453818;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=e1dBSe3iBzUOMumG2wsqswWRj3iWdQaInxInikK9ywE=;
- b=OECej0W02ttXjBfJfbGf1zkVtZcWM9BhP+Y23MkmcfqXrXdCbkaFV98a
- BimsKOKMXG5iltUpSMFuRq/kgg7DDafKqg+DJUx6piLv3WD0JlftEw1E8
- bjlS+av3HjqW0g0QjLYMcLtjoIMfbMQ2l5fPY0om/1nFR722VlNEKqRyS
- 0CuMyx6xnRCWq9aRq3YyZSWZbKNc6VUXN1vYnfV7JLFD0j7y648odc80+
- swHcW/rMuM+wHkUzKKl7XrWbKd1Lloen3JxGZMxR5+0OrjyRM77GgJXwC
- xGflYrFAe3HHHUr9aN1PqwWk2TiOS1V7r3zXGhq+uAxbU1U3FyfY0WnGK A==;
-X-CSE-ConnectionGUID: X3q7rcRwTmWzrHA8oRdSWw==
-X-CSE-MsgGUID: JkHVSJ3aTDSbLbAbmfaoyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="542188"
+ bh=xU+n+c3eoeTbo95d4SlIczzb8rr+h4ulBGzZIaEFZFI=;
+ b=mAAr6viJd09YPHTDhr+7fGtGJ5Gqi4ylF0A0qcblGO6a836doSfagS9K
+ 6y565aFiQlZ6HN+J9MiRzYJEySyfP7s4p76NXhCTsUgsWp51XrUdW9DOK
+ ech3xnokCJJOeIEivJr6Ql+A/W2OJxpuZZ4RZXmj8tCGwdVN5Drn9Knwh
+ Lc0AMAeYnpiKamLO+U4XKkR5qaRsbtU3kvdt2fXfoqxiXmdTrBnVZnKqF
+ uhY308qRkKbVk4qWLjRmBiOqk6FRNYBvXv2Uqv2XMiRd/FCf5Uu8rNqyJ
+ Sgu/xlMksoZcNfuRvwk0J4pOJu99ciegP2GxnS/qPVYNZDMZydjws1nIs g==;
+X-CSE-ConnectionGUID: HaVFFhBQQQO8ssvbG15agA==
+X-CSE-MsgGUID: N+3nRzmqSPC28szOTzNPxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="758566"
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="542188"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 11:52:51 -0700
-X-CSE-ConnectionGUID: zHye9kzhSfGNdCbaQ3YU3A==
-X-CSE-MsgGUID: rbmGLu8rT76Sp93SLHje3A==
+   d="scan'208";a="758566"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 11:56:58 -0700
+X-CSE-ConnectionGUID: GumAWMURTxW/YJMZwmqfmQ==
+X-CSE-MsgGUID: 4Cmm9y2JSTqibrT56KzKrA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="3075624"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 11:52:52 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+   d="scan'208";a="1338734"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 11:56:58 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 13 Oct 2026 11:52:50 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.49; Tue, 13 Oct 2026 11:56:57 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 11:52:50 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.3) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 11:56:57 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.54) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 13 Oct 2026 11:52:50 -0700
+ 15.2.2562.49; Tue, 13 Oct 2026 11:56:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PZuwrvw+mkGHCqkvNPcctJOQ/CSMGpqwuOLeDXA8e87hhJELZWAGjEh/VmBYAvS6U5bIhhShI2Ej+IEnepQsox2USuoNGqIyejzVUdoXC45oKEQhU0EAOQ+KxWLdBPa99XW6SVivBvjvTTtUulNU9sdSvjk+pybwx4WLl9v2vbQcDzXBDztLznDlI5YFS+W2Nuvldqx1BqBMoqqze+x6CzUf4Zc6ilNqP1cPUNOaLLXjRyp/CjyO8nVfpcDLQNGVh5rnRM5xiQ5dI42tNxPr644dGVPSzlT0RhUbCD02+LJrnNWqcS4ECxMIVogBY99BsL/j7kJFJCEo8X28szdh8w==
+ b=qnJkDNl8NlwaQ6FZrLiifJSUN90s6cnxFzI3qT+MvNfMzMODWildwFuCZsufuny5g/mD+KLY3FSHceqmBWm6+19YyUt7j8IloVWvOyCPJzYnMfCb6ILtmm0/oxKxM8r9nNivPdXB2CUnn8SuGXTA3QJHzzHH9isb3WQnrDeP3YLlgXXpzfSNK3adpYKnTC7auLwAwz/BmGTg1tNFm4zKpDdIfMSZzvG+KwCAme+D/1t8zPze/wwQVQVkkl8aW1CH3Cyro+gEOzo2k2iGVJXBiD7jvQElNKeW7ng3GCu8ZJmNAlrKRty77y1JoZAHDSuPgVnaM7dBJ8/dh5Hvqd/rQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MEkoKg/Dr34RtVS34Y/y1KBX8qkQfL2DO+Ny9Op8GhA=;
- b=AjZDUqECwgCE1Bt2JkoxbM0yFW76qrCRQAll6Syxlh60kn0/JRDCFLkDq2UZlaonHc5pvw2jvk4bxfTxXzMrUo5miR8b1JbQ7G7GMxFrz/BgehO9iNygDLeuB9v5NzkZBS0na1zABGxU1k1vRTpvn//NAOpz7maK3dz9kQK0uMBYmxXpPKO+jN5p3p3KXKq8atPoXxxRWqyQKkXelySMFOFqIOr9bIXQRBjZDZiHNyXbPkAe762mJ+zp/e/iz+u+WpV8CCgaMQoUSaaGQCaLes6ekjD0b1SSTbQ3wcw4mkBPYzHg5/Qe1WqKKnwx3qwO8nxsdZJ/xLa8nyYhM9Hbpg==
+ bh=/WN5ILgv+++UkF0YKAUYnKHQu/OAjdohSQTVkZi/8IA=;
+ b=zSn7YR155Y+W2Y/fbccsJBSn8pKIUeQ9Je2YiJY27VdhvAV4koDi89JhWaTJjuik0jFzaLHzDSSMDp34Y+hTgIJ+1BU8NuHzT2UHDadRhl/6lQiqBxW1CNEG9l5nTFSN0VZz5tHXOAW6PShcrk1yQZo+UCdQOP78znE9JuLhrTcQr0bvNxzVghw4Bt8CtBf83yiURif2ZlGLVImK542r2Ap5t6sGcPDnN1JWottTmEfVFZUfivIezjInn61tsxTB53smjgk6+z1NCKPJSdzEeYaWnXFOQ8g57pjOaWeq4Rvtddf+qs/PNq2NdxxMurdFwuF64a0rkjy2JxFMGIGdWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7192.namprd11.prod.outlook.com (2603:10b6:8:13a::22)
- by DS7PR11MB8826.namprd11.prod.outlook.com (2603:10b6:8:256::7) with
+ by PH7PR11MB7964.namprd11.prod.outlook.com (2603:10b6:510:247::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Tue, 13 Oct
- 2026 18:52:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.15; Tue, 13 Oct
+ 2026 18:56:53 +0000
 Received: from DS0PR11MB7192.namprd11.prod.outlook.com
  ([fe80::c747:a502:4a7f:f5bb]) by DS0PR11MB7192.namprd11.prod.outlook.com
  ([fe80::c747:a502:4a7f:f5bb%4]) with mapi id 15.21.0496.021; Tue, 13 Oct 2026
- 18:52:45 +0000
-Date: Tue, 13 Oct 2026 14:52:31 -0400
+ 18:56:51 +0000
+Date: Tue, 13 Oct 2026 14:56:38 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Zongyao Bai <zongyao.bai@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <jia.yao@intel.com>
-Subject: Re: [PATCH v10 0/4] drm/xe/forcewake: add delayed release and
- lifecycle handling
-Message-ID: <as597xuyHECbO4hZ@intel.com>
-References: <20260601213804.707256-1-zongyao.bai@intel.com>
- <20260930220820.2184643-1-zongyao.bai@intel.com>
+To: Soham Purkait <soham.purkait@intel.com>, "Michael J. Ruhl"
+ <michael.j.ruhl@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <matthew.d.roper@intel.com>,
+ <riana.tauro@intel.com>
+Subject: Re: [PATCH] drm/xe/survivability: Do not call xe_vsec_init() in boot
+ survivability path
+Message-ID: <as5-5v1r-oArbrZ2@intel.com>
+References: <20261007100259.2661003-2-soham.purkait@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260930220820.2184643-1-zongyao.bai@intel.com>
-X-ClientProxiedBy: SI2PR01CA0029.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::8) To DS0PR11MB7192.namprd11.prod.outlook.com
+In-Reply-To: <20261007100259.2661003-2-soham.purkait@intel.com>
+X-ClientProxiedBy: SI1PR02CA0033.apcprd02.prod.outlook.com
+ (2603:1096:4:1f6::14) To DS0PR11MB7192.namprd11.prod.outlook.com
  (2603:10b6:8:13a::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7192:EE_|DS7PR11MB8826:EE_
-X-MS-Office365-Filtering-Correlation-Id: 704de9fc-ab6e-4e63-3301-08df295b299b
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7192:EE_|PH7PR11MB7964:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5a76d5b8-4afd-42ae-b147-08df295bbd55
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|6133799003|10067099003|18002099003|22082099003|4143699003|11063799006|261009221727099003|261009220027099003|261009223027099003|261009221227099003|261009223327099003|56012099006;
-X-Microsoft-Antispam-Message-Info: JVk0he5CE9oax8NFtg7CLHItc6rubuWYV2K9pqjCDEov3S2lUI0OpbUxkaHRK86T2R/4baGHcMN6xc6lKY8RRfhg1X9qhrtUaPi4aoRfRvXS1ohVPq8B8GjRLm3lDf9eGFnyCAxvfXLsQUHk0e+CLU4Q6UhTz9vdEvi2NcI/t2lVNCoJJHht5NEOD4SFwBKsBso0oITTZu78+Mmje+fODfqRamUbCkjsrGUZq1YOzNAOin2uY+LQe/GlQeoCLa0tMB45vxQ/Jf/DWwpa3MJe7Ev/2G7bAJdVb8DhAoHPHaudYYqpZfRhVA3Ja42RqelB+SVsoPSHpwyXbFxyPTSEujA/co6Aqx7tu8RJ9rLPhbmAM5T4nTw9IefakmXlDpHwj55KzNgYdgJXPRzxTCxNvdxwvqUJvOVBnhZt0RKic7HVtuOirugzRS7y5EJsG5M0QC4c2gUmSUFfuHkyoE4SouV5vd/JNOkPIVNCGi2FI0Gq4ljErdISHOvm88Go3w8CRmFfV+JpgcyZPwjyWkX1GSQghhzCpcFjckvEBvI1ujt4FTOmKYzT3LzH+1B03ODVorM72GaxBRzfTmpE6ZyH4IQe8dAd4tepnLfR9s6XIX+9X7sNzsd6AoEUG0Z1t6Yg
+ ARA:13230040|376014|23010399003|1800799024|366016|10067099003|56012099006|22082099003|261009223027099003|18002099003|11063799006;
+X-Microsoft-Antispam-Message-Info: oesJP2c+K8uBwOL3684vqW07R0gVp8bH0R9/vFXb+ahU9WBWNzJQML02zOApns5PV6So+mFoS6oeLZKFwvumJL/vBjg9tU1+qryeZrafSL5SsTx8pPqJNIwv1mTg/GSgXyHkiQJ63FgKNxY2aktal+Ee7hOLFMTGyvZIeodTf/fgBrO1kIGGPuucTDeYPCfMWDFLOUzptJAVNHtruuoPz/JPtkffs9/Ild8zzdWHYB+l4L4tIyifBWGic8MbB4wDlfXVz0fdk5F8Ps0qruWltvEXOgL3jl40ZLa9bKXT0qIavSTiFi6z6kDSUw7h3YGlso3B/2N7hO7GPxBJH+DCyfBWl+me17k8fpQ4QD4jWrMPq6IXGns1SVEgTlzEWeBCHYeRqJbcQrxXdBAyU6txG+V3gmw4NEJWrlaKJIH8Vq1kIK/kNelw0Yxw51JioeZHSrot0CTkM7VilN/TV/PfI4pbdpGTAUp8oSmlRmgNfP5/uWUdPQVIa3pe8AhTyvT2cpsGL+BF/0VYhWMN6saK0VgKt1cICq14R/EZhs19jgmVY/q/kLFYFPV6Bz0+1p2kUU8YuzyjsmiX39bVrvxpj3lNL+Q/6W5YPMfe3QtR2VwL7Ua63vNRI3ABc3Tr66kK6m78h+Kx5VCMh+Sqoj4W0X7garebfr6iJXkep2ZrD8s=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7192.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(6133799003)(10067099003)(18002099003)(22082099003)(4143699003)(11063799006)(261009221727099003)(261009220027099003)(261009223027099003)(261009221227099003)(261009223327099003)(56012099006);
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(10067099003)(56012099006)(22082099003)(261009223027099003)(18002099003)(11063799006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Q8cNpN8FI+XHDZv7pXvp0N4UZkwNs1SQjK7BVsNBu2OPpKgF8/q7sEpfFcqK?=
- =?us-ascii?Q?wckUwn7u3CjXLN18scoYLNP1CDbM9nxIlHTbyMCpjuXtrtM13yralEle89yM?=
- =?us-ascii?Q?MLn2Osg1i9pqudyh62G1ncbdredOoSqybUz6ACQ7GjMHqLas8iHxWejH30NV?=
- =?us-ascii?Q?cSAqw99hMPHLvfoKmXH65PgtPuziWlbT1UxGLKqzbFfo+oPZxUvS30JMjXXH?=
- =?us-ascii?Q?c3c4ng+hulOo68t9tWwRlJCFDE0iPDl4Gm5H26aEzH8MxuodW0xn7sEZvS47?=
- =?us-ascii?Q?NZihhiLSFJy1fJ71NIPRl6rkxz+KZ2cTh4H6sTEaDLFH/2ojDdI5QzyeDR74?=
- =?us-ascii?Q?EYVbpDy2c2wlm8tMoHqTa0Qc/yNb6cn5bqRJdrNAAfLm+Jkk7LoVFfgYMXBo?=
- =?us-ascii?Q?bC/lOu7yScUmYgXVkLRxz9hMffVLxrkV1zA0d6hR0eB06q5XyDNV1QPr1r03?=
- =?us-ascii?Q?EnxCv2FuvzpjNTCFJNlbHEgxrdCOC+eFkUJPzW6+bPSi5F/Vefio1RfHY+zw?=
- =?us-ascii?Q?bgu0GcO4QFhDKNXYvoUhAC8ypaqGJwPov9Kk5QZ+Nf7/Niv6SR5NaG2t9T5Y?=
- =?us-ascii?Q?l2CeFZlSUWWUPL4E8TLH8XwdHHGNFu0w6lXqU1HjYb/17Va0nXyjWsUCRb9J?=
- =?us-ascii?Q?dIACvd7SDu9GM805+pbTi2sW5fmIchTVpB6f3lrxjpBmUdz+ONVwS7jXI6HP?=
- =?us-ascii?Q?39BdjSKUHsklQSs8Z/DFoICYcjEY0NrbGL0rMaW3gJ1zJFveJ5/ofkKQHaBK?=
- =?us-ascii?Q?Pn6r7x282iPw8xy6S/MSrpmUBcBNLSgZ5g7eq3nJif5sekn8eVh8Fw3ZT8z+?=
- =?us-ascii?Q?P0wFXIa8qJIUUJ+IfKKWcYk6pgBiGMgXj6q+O12OtoCivnbMZDVyAL54lFnF?=
- =?us-ascii?Q?3FcYpH0FHiTyJ58nFJ6o3hCnHfqLQTHLalkj7CszaREpS/oFjfonebxo7Qtl?=
- =?us-ascii?Q?dkc73xCv/C7tGXEg21fQZxmrLqmP8t+V2boqysWx70iuU+cJhlpPWE7fs7ey?=
- =?us-ascii?Q?8fzX6GVkFWGBkjKTQHM48UIBTsO+d1Cljw77vHn+Y0mFVg1j5EKFkrCeuAtQ?=
- =?us-ascii?Q?/yVJMoDiSxHz00tmS7FEJRYfGSDSg421J8y45/pncltVEuojiQL1oW9ev3uq?=
- =?us-ascii?Q?o1nQXYhDILu8TTmsKeJtMb9VQGuKvQQ4tUzPWn5ShJaPoFS85gx67kj70DDB?=
- =?us-ascii?Q?Tulc6Lpmxx6xFnM9g58u89OAFvAgVqLu4hvMcTwnEVj67GDj6bAKtDkMCged?=
- =?us-ascii?Q?tS1AalOAQCe2Ap7158Gf7oddugrwjfex/y1xzSlbu1J2TJW2QMyA44Q0l9Fr?=
- =?us-ascii?Q?PZFHWZRhnGMVyKDdX/6hO2AMKvHT6VKD/aC1mzce4mFRtyFC+e+A1QvpVCrZ?=
- =?us-ascii?Q?bel2CEVl2SZsjf47Eq3nISgTHngf24IaawXg4yqJBeXHGKZnDkUk7H+iIRge?=
- =?us-ascii?Q?CEYHzwCgsQfh3KVcgx7Bw8k01HZPXU9KiB7+2sBRUXg0ePMp9sY0hqFI0jGy?=
- =?us-ascii?Q?L77jLn+ERtsmtIiu9oQoTBrzyzfGEcsdkEWzU6bQ4QsZei2EFvyXLsEbbr/3?=
- =?us-ascii?Q?642bJSHYLXFP9b8qXr2WZMltVBzh+7LIgAmSJJwGQ3X6kvbmvBEB3H5rJ5H2?=
- =?us-ascii?Q?E1T62jRPEjinS+o1+aQw9xaVV2ZMw3jWtl4n9DAeKXmkFrQLpTmpJrFXXDlV?=
- =?us-ascii?Q?y5ryZvvz09UHINu/iezV5YfYo3aidFkZpVJjLD4/+ChHaaGvwhEigHlbvmb7?=
- =?us-ascii?Q?9e9V5xak+cfOE/BsPcVIq5b/nkzPGuU=3D?=
-X-Exchange-RoutingPolicyChecked: ELW8lpBOIQ8u6N61dmGw5mBNLlzzqAkyfPM4Rs6bIxISAVvyqJupOGZ5SwhcyA8ewQA6tKjL3LbLOAcPCuwDpH/4bgeR/18zKGRSTIqzmVe3UXf39ObKCpMoKNEswNsphe6ZfPyBxTwj6gMbn9Q2dHS3f9hHtllyHtKBksms1tVDTVFV9oDOqoWSXYk+mGUlwJqPDhqj3O2jFawGW665XPcZIwvv58DitvDhf0gKFZv3ceXzMzC+LfDOzq9QU+32JVeR2j52C5fIzKG9MwM+U0336gihcYHCDMud7/Ryii/POpxWY3fMVOqFdXLRiDA9k9AD7/eo7foUH8d/2vG5hA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 704de9fc-ab6e-4e63-3301-08df295b299b
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KdDT8zg3p1fi5nP8jnG4+d7lnQPjqQXshDdHm2WjD8cbxy2m9vKhqxCNZSVP?=
+ =?us-ascii?Q?VIH+G6PCayOdd5mHBEQaM2n37/TPYxvoPw0UBNFMzJnsQQY3/1j6E/uw/Xo9?=
+ =?us-ascii?Q?Kp81R/cfT3cTYNGw6xHNcg+MQtuWCRgS/HNuIgQ5IA95ulRZGDLU0auIE8qY?=
+ =?us-ascii?Q?3oRpad37U9q3EIp6i1ROCYNNn5v4+d63MZtWnYaWRI7A/R4H5AYOFxspiOsy?=
+ =?us-ascii?Q?ptwufMXEzFAjq+UmKPxpm7a6MQWlzET/daxYvqjMX2+Dx+0DDhcDV9yRGfnG?=
+ =?us-ascii?Q?n8bVIN5AoKkk/8Zmc1QLiKJ/46XiQRL2g3NPVAbedk7y16MWjcFSYuSiYniD?=
+ =?us-ascii?Q?7CZDGO8sktZcD5dJgRi/skSEMnemqWWh0IobM2EueSWBRMgsy1PRXF6oJr6x?=
+ =?us-ascii?Q?NQK1rzXThf5gxS+Aq/Acjp1uRjdmIZ1RwjsbDHtYTa8LYZ7j2kLx9lsjtRqy?=
+ =?us-ascii?Q?XQ9nNE+ioZnv9ZOWQnV8oPzn/3XUEFht76b9wu05OHl4a2qGJsbAwesTD+wt?=
+ =?us-ascii?Q?inYR/H24fhJUOP+QPrvZa6Glb+beUJVn1+4y8ipIR/2W/OoMGSIXI490i58n?=
+ =?us-ascii?Q?f4vzM0uRta0a6IrnKWdxuUxP05jLQD4oWKy6cBcC7oTAict4LyYqxxcCBWzt?=
+ =?us-ascii?Q?Del95WZoTOsnWnZ7oCeHqy9U8ygyNR7zH75p+AVA7h2YTN2g0EmEz63l19QN?=
+ =?us-ascii?Q?s8SCRj6W7wegNpLMQNELBuLo+ZdfbGDaVnJaGLVTO2XltybVphgv266rtWTy?=
+ =?us-ascii?Q?BOTCxJZlcSiLcoabPBVOXjKdS2Bs5C5OWDfsmxID6m9x1t7HbIjznlwPbNON?=
+ =?us-ascii?Q?1U1tXqRbY7u3n4xpsiS236jz5ox5AAZUVuYtiU5B7EotfrYBWKBt3/hm2lyA?=
+ =?us-ascii?Q?aZLmSM1sHfMamhgyof/cQ2E8bzpTQQQdd0gZ2UX6muodprcHI9CUa3dPP27f?=
+ =?us-ascii?Q?WQUGUdO1QA4iGCBO1WJDBeSkAmsCGpqtuG2+DGKejCZwgm/kehtFvljBy8qy?=
+ =?us-ascii?Q?LyyfTrEUhbc9xJDl1hG/CY+ixxR+KCbmhfJdxWwmitz50bHA5NwXQy0+oa8Y?=
+ =?us-ascii?Q?yRQgJjWdXxTBpvg8x/ig+r2kLyBS3weSzk/c+1PQEtd7Ly/IX2P6LYLhxYWO?=
+ =?us-ascii?Q?zF95cSDW+FGbjhEGzra3KZpOI20Kz7OAbmmBZHH1k6cIyeBPJMXZZluARsJE?=
+ =?us-ascii?Q?OkxPOjcGn3OwbjgmbjF49RpmNYSaz2Sr43ZrGADr1Ujxz4Ec6nm5KcUyiy/X?=
+ =?us-ascii?Q?dHX8I/5OEqSCSQegd2vglnxLmjNwdApVrbMOFu3T4JTw34jwLn8i+hUO/weK?=
+ =?us-ascii?Q?JeaWVNSwG5P9AGblQM3cbDCQontXeXKRYQ9wu3m3fvNhTsZTTjOfogd5r++I?=
+ =?us-ascii?Q?svIGpyiHtdKrRUXy+ptflTB0ZI3oOhfEzQwTMOFn+USceT6QjIOKGON+4EoB?=
+ =?us-ascii?Q?58DIlPLYztjt3J2BnoOs4yQTT4yrMfU66D64L+m4ipS2Tb8Nzay6Kq2+wWf1?=
+ =?us-ascii?Q?IQsRLiyX1U9dGWYkj5IFaGjwY5HaO4peKmjYU2sKWHzS1WxmshjeFN2xy8LQ?=
+ =?us-ascii?Q?F3mvoGX5CGuq7M9Jl0CgirqivoJ5QJHXMT+xuj2zunIhAAGLgsPrPpraE+mq?=
+ =?us-ascii?Q?PsUMjiNjkv5LC6KcPdWE5lpz413uTy8wJfun42w3JCRX3gwm9BhxbJLruEE/?=
+ =?us-ascii?Q?eLFllIDcj8GDZn7qQGEtZLubVwinzkT8QlOtrw+KF53B27uuX8BlaObvq/5D?=
+ =?us-ascii?Q?kAHRSNZlaH8zJTBO0ftbMPjT8Z3u2oU=3D?=
+X-Exchange-RoutingPolicyChecked: ezVx/hW/7Dvd3MG1EzzJZ2CALb2QOYjwfa/4eoXEEE8Xqqa4KkGc4CkJYtxXapnk67gBefeCnJbY4XY3mx7ZSpzxi0vMbXcEDT4CDC2NRoPchvI+n+25kKIJacsEnMWr0aPdJgdw67AtUhLtjUTyi0VlZ3vzj5TmqhoeVeDnyniKDPByAoxliblMgGnz71sGlBqSU92NtotvkMQv7izCaqc89ebrVg1YHXyRMtlPT8u7G51noX7mz4BP4RTO9i7nTZ69qqyjvHsATMqwBeCDKRBC7vYinR9vSKB1zXkD/dv5RgJQyu1BqB6BfhtrmWiqVv8N2MyiAPO1nVr241riBw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a76d5b8-4afd-42ae-b147-08df295bbd55
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7192.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 18:52:43.3446 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 18:56:50.9947 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Dmr6dlw0xiJ0I39N9LarSKNFrnCD9sPr71UoknDk13Du7fvYY3Di9oyx2Rj6+euwE1cgYS+ysM+ULfe3Wl9omA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB8826
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0+LdgM/w+OxZgIujIjLjs2QgNlkD2zYINxJKlwaKv6rm4MY/43rSwQxR9IN5nujF42tqUG/oC+s/e8VMYu0NCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7964
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,101 +159,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 30, 2026 at 03:08:16PM -0700, Zongyao Bai wrote:
-> From: "Bai, Zongyao" <zongyao.bai@intel.com>
+On Wed, Oct 07, 2026 at 03:33:00PM +0530, Soham Purkait wrote:
+> Boot survivability mode exists only for device recovery and firmware
+> flashing. It does not need PMT/telemetry. Since xe_vsec_init() only
+> sets up VSEC/PMT, there is no reason to call it on the boot survivability
+> path.
 > 
-> Engine-cycle queries used by profiling tools such as VTune and PTI can
-> arrive in bursts. Releasing forcewake immediately after every query makes
-> the next query issue another wake request and wait for its ACK.
-> 
-> Add an opt-in delayed-release path with a bind-time configurable hold
-> interval, defaulting to 100 us. When the final overlapping forcewake
-> reference is dropped after a delayed-release request, keep the domain awake
-> for that interval. A get for the same domain before expiry cancels the
-> pending release and reuses the awake domain without another wake request or
-> ACK wait.
-> 
-> Only engine-cycle queries request delayed release. Existing callers
-> continue to use the immediate-release API. Delayed-release state is per
-> domain, so a put that drops the final overlapping reference honors any
-> recorded delayed-release request.
-> 
-> Protect engine-cycle MMIO access with drm_dev_enter()/drm_dev_exit() so
-> drm_dev_unplug() waits for admitted queries to drop their forcewake
-> references before teardown. For system and runtime suspend, synchronously
-> drain delayed state while keeping delayed release available after resume.
-> 
-> For shutdown, removal, post-registration probe unwind, and devres teardown,
-> permanently disable new delayed releases and settle pending state with
-> xe_force_wake_stop(). Register the device-wide stop action after the
-> Driver-FLR action so reverse devres ordering settles delayed forcewake
-> state before Driver-FLR while MMIO is still valid. Keep the per-GT cleanup
-> as an idempotent fallback for earlier probe failures.
-> 
-> For PCI error recovery, use xe_force_wake_stop_nosettle() before
-> pci_disable_device() on reset and on paths returning
-> PCI_ERS_RESULT_DISCONNECT. It disables delayed release, cancels timers, and
-> discards delayed-release bookkeeping without accessing MMIO.
+> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
 
-I'm having a hard time reviewing this series. The patches seems to mix
-multiple stuff into one. And the solution looks a lot over-engineering.
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-why not using a simple histeresis timed put with a delayed queue?
 
+> ---
+>  drivers/gpu/drm/xe/xe_survivability_mode.c | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> v10:
->  - Please ignore v6~v9 in this series:
->    https://patchwork.freedesktop.org/series/167697
->    Those revisions used incorrect Root msg-id(s) by mistake.
->    Created v10 to clean up the threading mess in previous revisions.
->    No functional changes relative to v6.
->    Rebase onto drm-xe-next at fa8b3b6c4a4b.
-> 
-> v6:
->  - Add a permanent delayed-release disable state and clear stale recorded
->    requests on the immediate-release path.
->  - Keep flush for system/runtime suspend and use terminal stop for
->    shutdown, remove, probe unwind, and devres teardown.
->  - Order the device-wide stop before Driver-FLR while retaining per-GT
->    cleanup for earlier probe failures.
->  - Add a no-MMIO stop for PCI reset and disconnect handling.
->  - Use the configfs group lock when reading the hold interval.
->  - Document the per-domain drain and discard state transitions.
-> 
-> v5:
->  - Split the original patch into four patches: unplug synchronization,
->    delayed-release infrastructure, power-boundary flushing, and opt-in
->    enablement/configuration.
->  - Preserve a newer hold interval when an older timer callback is running,
->    and settle an outstanding sleep ACK before waking a domain again.
->    (Sashiko, Matt)
->  - Synchronously cancel delayed-release timers during forcewake cleanup.
->    (Sashiko, Matt)
->  - Flush delayed releases during shutdown, device removal, and
->    post-registration probe unwind in addition to system/runtime suspend.
->    (Matt)
-> 
-> Zongyao Bai (4):
->   drm/xe/forcewake: synchronize engine-cycle access with unplug
->   drm/xe/forcewake: add delayed-release state machine
->   drm/xe/forcewake: quiesce delayed release across PM and teardown
->   drm/xe/forcewake: enable configurable delayed forcewake release
-> 
->  drivers/gpu/drm/xe/xe_configfs.c         |  78 ++++++
->  drivers/gpu/drm/xe/xe_configfs.h         |   5 +
->  drivers/gpu/drm/xe/xe_defaults.h         |   1 +
->  drivers/gpu/drm/xe/xe_device.c           |  33 ++-
->  drivers/gpu/drm/xe/xe_device.h           |   1 +
->  drivers/gpu/drm/xe/xe_device_types.h     |   3 +
->  drivers/gpu/drm/xe/xe_force_wake.c       | 337 +++++++++++++++++++++--
->  drivers/gpu/drm/xe/xe_force_wake.h       |  48 +++-
->  drivers/gpu/drm/xe/xe_force_wake_types.h | 123 +++++++++
->  drivers/gpu/drm/xe/xe_gt.c               |  18 +-
->  drivers/gpu/drm/xe/xe_pci_error.c        |  23 +-
->  drivers/gpu/drm/xe/xe_query.c            |  81 ++++--
->  12 files changed, 696 insertions(+), 55 deletions(-)
-> 
-> 
-> base-commit: fa8b3b6c4a4b297bf95935065b63f8852cfc5481
+> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> index 45d44ebe288b..f5985938c60b 100644
+> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> @@ -351,8 +351,6 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
+>  
+>  	xe_heci_gsc_init(xe);
+>  
+> -	xe_vsec_init(xe);
+> -
+>  	if (survivability->fdo_mode) {
+>  		ret = xe_nvm_init(xe);
+>  		if (ret)
 > -- 
 > 2.43.0
+> 
