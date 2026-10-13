@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F328CC6B15
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 22:29:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BCBECC6B0F
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 22:29:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02A3910E15E;
-	Tue, 13 Oct 2026 22:28:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF2B610E959;
+	Tue, 13 Oct 2026 22:29:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2DD510E959
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 22:28:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 314FA10E15E
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 22:28:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1791930533; x=1823466533;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pkzCrOe/xiXVDyPZeSUkmGH4w5eg7w+haqhHVmE53oI=;
- b=j4fjCJocqDCLiCicbN8cp+zjOOnhN5mAQw0VRWNotNWmZkZmy4fN/LZQ
- ElYaLLr03Kpn5n2sEHr74rPOeGO7ECjPOutG96gCkcFi3HYRVHJLsa3PT
- NV3sXm+MqFBqOii7xUlpASuR3C8QKZw5HvNZsonQ2VDergnyv0HKK4IK3
- dniMsANsYBDm/TO9T6Wb8tbFoISK5u6P1IOU2oSar46cb/Rj2PHYuCTeE
- VwCrV2xMYW9e2KQX8Hu+IiywI5sBKT+eUMtPkLY+zrqHNB15VvwVmfK1t
- XutHm15OtvzA5SKk+eXhCRtLlLvd+0+DoprggNEM/4ToOaExAJhsqp95t w==;
-X-CSE-ConnectionGUID: +b12otUGSUiRAC5eDrLs7w==
-X-CSE-MsgGUID: WGJM8mN4QcWiZ7727k5xiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="555670"
+ bh=AZjtZ0GS7PCl2/rlhmx4hoHT7V+vIqPTL3nyZsNHB58=;
+ b=MuzhXLtYTxLeYLD4SGSdohyEtS1HO54PEoLe/3Iy3xlf3qtON57ENoX2
+ BOoBJX2LrQSVr2B3uSygoewO3j+VwKmPfCuQOD5xcia2XLTuGAvJdKFtQ
+ bTsWGJ35r64v9rV3FL3fOQr8F8qVlKf+HDg23n8kC31djfciXp7Icgt/C
+ nTd1RThsJbuIg/6307jRcFJtEZRqUtgIKcnQ4Be/0Pc1jptAwFhCVM/7J
+ BHfYjcOOd21UqlsAoC0tAA6QihU/ycShAZp5eZphEZVs/eycFEhPjJPoO
+ pIbVyO98rGr54+6BBwSJRNcvTLrdE5paKxQfnOOFiBt6Y0g5DF9HhDkxo w==;
+X-CSE-ConnectionGUID: gAatFuqXR/a4uOqtovaGFw==
+X-CSE-MsgGUID: Xoo3cMO8SNOxn8yIdRr9xg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="555675"
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="555670"
+   d="scan'208";a="555675"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 15:28:47 -0700
-X-CSE-ConnectionGUID: 8XVV2Gj3SJuZCMp7/mTFmw==
-X-CSE-MsgGUID: B1KIldgLT0ytdguaGIVmvw==
+ 13 Oct 2026 15:28:49 -0700
+X-CSE-ConnectionGUID: odEsOTqdR4CxWj3OMiOvRA==
+X-CSE-MsgGUID: pC16KbdmRqWrqYV3xMO5bQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="1163676"
+   d="scan'208";a="1163699"
 Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
- by orviesa007.jf.intel.com with ESMTP; 13 Oct 2026 15:28:48 -0700
+ by orviesa007.jf.intel.com with ESMTP; 13 Oct 2026 15:28:50 -0700
 From: Alan Previn <alan.previn.teres.alexis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
  julia.filipchuk@intel.com, matthew.brost@intel.com, rodrigo.vivi@intel.com,
  Zhanjun Dong <zhanjun.dong@intel.com>,
  =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v11 2/3] drm/xe/guc: Compress GuC log and CTB dump with zstd
-Date: Tue, 13 Oct 2026 15:28:46 -0700
-Message-ID: <20261013222846.308259-7-alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v11 3/3] drm/xe/guc: Add dump_cache to optimize GuC CT/Log
+ compression flow
+Date: Tue, 13 Oct 2026 15:28:47 -0700
+Message-ID: <20261013222846.308259-8-alan.previn.teres.alexis@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261013222846.308259-5-alan.previn.teres.alexis@intel.com>
 References: <20261013222846.308259-5-alan.previn.teres.alexis@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,403 +68,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Zhanjun Dong <zhanjun.dong@intel.com>
+During xe_devcoredump preparation, __xe_devcoredump_read is invoked
+multiple times, the first time just to get the output size.
+We should avoid time and energy waste of recompressing the
+GuC-log-event buffer and GuC-CT buffers repeatedly.
 
-With default settings, GuC log is 8MB in size and
-dumping the log is time-consuming. In debugging scenarios,
-dump-to-dmesg suffers truncation loss because CI's size limit is 2MB.
-Additionally, if also forwarded to serial console, it takes several
-minutes. In use-case of continuous error+log collection over extended
-period, we pressure CI's allocated storage. Thus, compress the
-GuC log data dump to address these issues and multiply any benefits
-from a future upgrade in CI's size limits.
+Thus, add a dump_cache structure into GuC CT and log snapshot
+structures to attempt and store a first pass at compressing
+these buffers for reuse on subsequent calls to __xe_devcoredump_read.
 
-Replace the raw ascii85 dumps of GuC log snapshots with a
-zstd-compressed ascii85 stream and reuse the same helper for CTB
-snapshot output.
+Also, ensure any failure of the first compression attempt will still
+fallback to store the raw dump without compression which is also
+required when CONFIG_DRM_XE_COMPRESS_DUMP is not enabled.
 
-Use zstd streaming with the default compression level of 3 and an
-estimated source size of 0 so the compression workspace stays bounded
-even for multi-megabyte logs.
-
-Add a new Kconfig option DRM_XE_COMPRESS_DUMP to control whether
-GuC log and CTB dumps are compressed with ZSTD. This allows users to
-choose between reduced dump sizes and lower memory usage.
-
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
+Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/Kconfig          |  15 +++
- drivers/gpu/drm/xe/xe_devcoredump.c |   4 +-
- drivers/gpu/drm/xe/xe_guc_ct.c      |  19 ++--
- drivers/gpu/drm/xe/xe_guc_ct.h      |   4 +-
- drivers/gpu/drm/xe/xe_guc_log.c     | 168 +++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_guc_log.h     |   9 +-
- 6 files changed, 190 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c        | 14 +++-
+ drivers/gpu/drm/xe/xe_guc_ct_types.h  |  3 +
+ drivers/gpu/drm/xe/xe_guc_log.c       | 96 +++++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_guc_log.h       |  4 +-
+ drivers/gpu/drm/xe/xe_guc_log_types.h | 20 ++++++
+ 5 files changed, 112 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 4d7dcaff2b91..0d87251c5d7c 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -101,6 +101,21 @@ config DRM_XE_PAGEMAP
- 
- 	  If in doubt say "Y".
- 
-+config DRM_XE_COMPRESS_DUMP
-+	bool "Enable ZSTD compression for error dumps"
-+	depends on DRM_XE
-+	default y
-+	select ZSTD_COMPRESS
-+	help
-+	  Enable this option to compress GuC log and CTB dumps with ZSTD
-+	  compression. This can significantly reduce the size of error dumps
-+	  but requires additional memory for compression workspace.
-+
-+	  Disable this option if you want to save memory or prefer uncompressed
-+	  error dumps for debugging.
-+
-+	  If in doubt say "Y".
-+
- config DRM_XE_FORCE_PROBE
- 	string "Force probe xe for selected Intel hardware IDs"
- 	depends on DRM_XE
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index ab681b148869..133cbe196d66 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -110,9 +110,9 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
- 	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
- 
- 	drm_puts(&p, "\n**** GuC Log ****\n");
--	xe_guc_log_snapshot_print(ss->guc.log, &p);
-+	xe_guc_log_snapshot_print(ss->guc.log, &p, ss->gt);
- 	drm_puts(&p, "\n**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(ss->guc.ct, &p);
-+	xe_guc_ct_snapshot_print(ss->guc.ct, &p, ss->gt);
- 
- 	drm_puts(&p, "\n**** Contexts ****\n");
- 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index da5ce97484b8..0d2464c72277 100644
+index 0d2464c72277..e865d50e8b77 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -2201,11 +2201,12 @@ struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct)
-  * xe_guc_ct_snapshot_print - Print out a given GuC CT snapshot.
-  * @snapshot: GuC CT snapshot object.
-  * @p: drm_printer where it will be printed out.
-+ * @gt: GT structure for error reporting
-  *
-  * This function prints out a given GuC CT snapshot object.
-  */
- void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
--			      struct drm_printer *p)
-+			      struct drm_printer *p, struct xe_gt *gt)
- {
- 	if (!snapshot)
- 		return;
-@@ -2219,11 +2220,10 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
- 		drm_printf(p, "\tg2h outstanding: %d\n",
- 			   snapshot->g2h_outstanding);
- 
--		if (snapshot->ctb) {
--			drm_printf(p, "[CTB].length: 0x%zx\n", snapshot->ctb_size);
--			xe_print_blob_ascii85(p, "[CTB].data", '\n',
--					      snapshot->ctb, 0, snapshot->ctb_size);
--		}
-+		if (snapshot->ctb)
-+			xe_guc_print_blob(gt, p, "[CTB]", "[CTB].data",
-+					  &snapshot->ctb, 1,
-+					  snapshot->ctb_size, snapshot->ctb_size);
+@@ -2223,7 +2223,8 @@ void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot,
+ 		if (snapshot->ctb)
+ 			xe_guc_print_blob(gt, p, "[CTB]", "[CTB].data",
+ 					  &snapshot->ctb, 1,
+-					  snapshot->ctb_size, snapshot->ctb_size);
++					  snapshot->ctb_size, snapshot->ctb_size,
++					  &snapshot->dump_cache);
  	} else {
  		drm_puts(p, "CT disabled\n");
  	}
-@@ -2257,9 +2257,10 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb)
+@@ -2241,6 +2242,7 @@ void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot)
+ 	if (!snapshot)
+ 		return;
+ 
++	xe_guc_dump_cache_fini(&snapshot->dump_cache);
+ 	kfree(snapshot->ctb);
+ 	kfree(snapshot);
+ }
+@@ -2369,6 +2371,8 @@ static void ct_dead_print(struct xe_dead_ct *dead)
+ static void ct_dead_worker_func(struct work_struct *w)
  {
- 	struct xe_guc_ct_snapshot *snapshot;
-+	struct xe_gt *gt = ct_to_gt(ct);
+ 	struct xe_guc_ct *ct = container_of(w, struct xe_guc_ct, dead.worker);
++	struct xe_guc_log_snapshot *snapshot_log;
++	struct xe_guc_ct_snapshot *snapshot_ct;
  
- 	snapshot = guc_ct_snapshot_capture(ct, false, want_ctb);
--	xe_guc_ct_snapshot_print(snapshot, p);
-+	xe_guc_ct_snapshot_print(snapshot, p, gt);
- 	xe_guc_ct_snapshot_free(snapshot);
+ 	if (!ct->dead.reported) {
+ 		ct->dead.reported = true;
+@@ -2377,9 +2381,9 @@ static void ct_dead_worker_func(struct work_struct *w)
+ 
+ 	spin_lock_irq(&ct->dead.lock);
+ 
+-	xe_guc_log_snapshot_free(ct->dead.snapshot_log);
++	snapshot_log = ct->dead.snapshot_log;
+ 	ct->dead.snapshot_log = NULL;
+-	xe_guc_ct_snapshot_free(ct->dead.snapshot_ct);
++	snapshot_ct = ct->dead.snapshot_ct;
+ 	ct->dead.snapshot_ct = NULL;
+ 
+ 	if (ct->dead.reason & (1 << CT_DEAD_STATE_REARM)) {
+@@ -2389,5 +2393,9 @@ static void ct_dead_worker_func(struct work_struct *w)
+ 	}
+ 
+ 	spin_unlock_irq(&ct->dead.lock);
++
++	/* Printing may have vmalloc'ed a compression cache; vfree() can sleep */
++	xe_guc_log_snapshot_free(snapshot_log);
++	xe_guc_ct_snapshot_free(snapshot_ct);
  }
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index f88e588af0d3..5e33f9fd4cb0 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -14,6 +14,7 @@
+ #include <linux/xarray.h>
  
-@@ -2357,10 +2358,10 @@ static void ct_dead_print(struct xe_dead_ct *dead)
- 	drm_printf(&lp, "\tTile: %d\n", gt->tile->id);
+ #include "abi/guc_communication_ctb_abi.h"
++#include "xe_guc_log_types.h"
  
- 	drm_puts(&lp, "**** GuC Log ****\n");
--	xe_guc_log_snapshot_print(dead->snapshot_log, &lp);
-+	xe_guc_log_snapshot_print(dead->snapshot_log, &lp, gt);
+ struct xe_bo;
  
- 	drm_puts(&lp, "**** GuC CT ****\n");
--	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp);
-+	xe_guc_ct_snapshot_print(dead->snapshot_ct, &lp, gt);
+@@ -75,6 +76,8 @@ struct xe_guc_ct_snapshot {
+ 	size_t ctb_size;
+ 	/** @ctb: snapshot of the entire CTB */
+ 	void *ctb;
++	/** @dump_cache: compressed copy of @ctb, built on first print */
++	struct xe_guc_dump_cache dump_cache;
+ };
  
- 	drm_puts(&lp, "Done.\n");
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index e2a33249d65d..f3af15c95c75 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -12,6 +12,7 @@
- 
- struct drm_printer;
- struct xe_device;
-+struct xe_gt;
- 
- int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct);
- int xe_guc_ct_init(struct xe_guc_ct *ct);
-@@ -26,7 +27,8 @@ void xe_guc_ct_flush_and_stop(struct xe_guc_ct *ct);
- void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
- 
- struct xe_guc_ct_snapshot *xe_guc_ct_snapshot_capture(struct xe_guc_ct *ct);
--void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p);
-+void xe_guc_ct_snapshot_print(struct xe_guc_ct_snapshot *snapshot, struct drm_printer *p,
-+			      struct xe_gt *gt);
- void xe_guc_ct_snapshot_free(struct xe_guc_ct_snapshot *snapshot);
- void xe_guc_ct_print(struct xe_guc_ct *ct, struct drm_printer *p, bool want_ctb);
- 
+ /**
 diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-index 7d006268ce91..47adaf70d5bf 100644
+index 47adaf70d5bf..90aeaccea596 100644
 --- a/drivers/gpu/drm/xe/xe_guc_log.c
 +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@ -6,6 +6,9 @@
- #include "xe_guc_log.h"
+@@ -178,6 +178,7 @@ void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot)
+ 		kfree(snapshot->copy);
+ 	}
  
- #include <linux/fault-inject.h>
-+#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-+#include <linux/zstd.h>
-+#endif
- 
- #include <linux/utsname.h>
- #include <drm/drm_managed.h>
-@@ -226,16 +229,155 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
- 	return snapshot;
++	xe_guc_dump_cache_fini(&snapshot->dump_cache);
+ 	kfree(snapshot);
  }
  
-+#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-+static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p,
-+					 const char *length_label, const char *data_label,
-+					 void **chunks, int num_chunks,
-+					 size_t chunk_size, size_t total_size)
-+{
-+	zstd_parameters params;
-+	zstd_cstream *cstream;
-+	zstd_out_buffer outbuf;
-+	size_t wksp_size, dst_size;
-+	size_t remain, ret;
-+	void *wksp = NULL;
-+	char *dst = NULL;
-+	int i;
+@@ -230,10 +231,9 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
+-static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p,
+-					 const char *length_label, const char *data_label,
+-					 void **chunks, int num_chunks,
+-					 size_t chunk_size, size_t total_size)
++static void xe_guc_compress_blob(struct xe_gt *gt, struct xe_guc_dump_cache *cache,
++				 void **chunks, int num_chunks,
++				 size_t chunk_size, size_t total_size)
+ {
+ 	zstd_parameters params;
+ 	zstd_cstream *cstream;
+@@ -244,6 +244,9 @@ static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p
+ 	char *dst = NULL;
+ 	int i;
+ 
++	/* One shot only: every later print replays whatever this pass produced. */
++	cache->attempted = true;
 +
-+	/*
-+	 * Pass 0 as estimated_src_size to use zstd level-3 defaults
-+	 * (windowLog=18, 256KB window). Passing the full total_size would
-+	 * cause zstd to inflate windowLog proportionally (e.g. windowLog=24
-+	 * for a 19MB log), making the workspace tens of MB.  With 0, the
-+	 * workspace stays ~1.5MB, well within kmalloc limits.
-+	 */
-+	params = zstd_get_params(3, 0);
-+
-+	wksp_size = zstd_cstream_workspace_bound(&params.cParams);
-+	wksp = kvzalloc(wksp_size, GFP_KERNEL);
-+	if (!wksp)
-+		goto err;
-+
-+	dst_size = zstd_compress_bound(total_size);
-+	/*
-+	 * zstd may only write dst_size bytes, but xe_print_blob_ascii85() reads
-+	 * the blob a u32 at a time and so touches up to three bytes past the
-+	 * last compressed byte. Round-up allocation to a u32 boundary rather than
-+	 * rely on dst_size happening to be aligned. kvzalloc() leaves that
-+	 * padding zeroed, which also keeps the encoded tail reproducible.
-+	 */
-+	dst = kvzalloc(round_up(dst_size, sizeof(u32)), GFP_KERNEL);
-+	if (!dst)
-+		goto err;
-+
-+	cstream = zstd_init_cstream(&params, 0, wksp, wksp_size);
-+	if (!cstream) {
-+		xe_gt_err(gt, "failed to init zstd cstream\n");
-+		goto err;
-+	}
-+
-+	outbuf.dst = dst;
-+	outbuf.size = dst_size;
-+	outbuf.pos = 0;
-+
-+	remain = total_size;
-+	for (i = 0; i < num_chunks && remain; i++) {
-+		size_t size = min(chunk_size, remain);
-+		zstd_in_buffer inbuf = { .src = chunks[i], .size = size, .pos = 0 };
-+
-+		while (inbuf.pos < inbuf.size) {
-+			ret = zstd_compress_stream(cstream, &outbuf, &inbuf);
-+			if (ZSTD_isError(ret)) {
-+				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
-+					  ZSTD_getErrorName(ret));
+ 	/*
+ 	 * Pass 0 as estimated_src_size to use zstd level-3 defaults
+ 	 * (windowLog=18, 256KB window). Passing the full total_size would
+@@ -286,6 +289,17 @@ static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p
+ 		zstd_in_buffer inbuf = { .src = chunks[i], .size = size, .pos = 0 };
+ 
+ 		while (inbuf.pos < inbuf.size) {
++			/*
++			 * zstd only guarantees forward progress while the output
++			 * buffer has room. zstd_compress_bound() sizes dst so that
++			 * a single frame always fits, but never risk spinning
++			 * forever in an error-dump path.
++			 */
++			if (outbuf.pos == outbuf.size) {
++				xe_gt_err(gt, "zstd output buffer exhausted\n");
 +				goto err;
 +			}
-+		}
-+		remain -= size;
-+	}
 +
-+	do {
-+		ret = zstd_end_stream(cstream, &outbuf);
-+		if (ZSTD_isError(ret)) {
-+			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
-+				  ZSTD_getErrorName(ret));
+ 			ret = zstd_compress_stream(cstream, &outbuf, &inbuf);
+ 			if (ZSTD_isError(ret)) {
+ 				xe_gt_err(gt, "zstd_compress_stream failed: %s\n",
+@@ -296,30 +310,48 @@ static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p
+ 		remain -= size;
+ 	}
+ 
++	/*
++	 * zstd_end_stream() must be called until it returns 0, otherwise the
++	 * frame epilogue is missing and no decompressor will accept the result.
++	 * Running out of output before that happens is a hard error, not a
++	 * reason to stop.
++	 */
+ 	do {
++		if (outbuf.pos == outbuf.size) {
++			xe_gt_err(gt, "zstd output buffer exhausted\n");
 +			goto err;
 +		}
-+	} while (ret > 0 && outbuf.pos < outbuf.size);
 +
-+	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
-+		   length_label, total_size, outbuf.pos);
-+	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
-+			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
-+	goto out;
-+
-+err:
-+	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
-+		   length_label, total_size);
-+out:
-+	kvfree(dst);
+ 		ret = zstd_end_stream(cstream, &outbuf);
+ 		if (ZSTD_isError(ret)) {
+ 			xe_gt_err(gt, "zstd_end_stream failed: %s\n",
+ 				  ZSTD_getErrorName(ret));
+ 			goto err;
+ 		}
+-	} while (ret > 0 && outbuf.pos < outbuf.size);
++	} while (ret);
+ 
+-	drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
+-		   length_label, total_size, outbuf.pos);
+-	xe_print_blob_ascii85(p, data_label, '\n', dst, 0,
+-			      DIV_ROUND_UP(outbuf.pos, sizeof(u32)) * sizeof(u32));
+-	goto out;
++	cache->data = dst;
++	cache->size = outbuf.pos;
 +	kvfree(wksp);
++	return;
+ 
+ err:
+-	drm_printf(p, "%s.length: 0x%zx Algo: ERROR (compression failed)\n",
+-		   length_label, total_size);
+-out:
+ 	kvfree(dst);
+ 	kvfree(wksp);
+ }
+ #endif
+ 
++/**
++ * xe_guc_dump_cache_fini - release a dump blob's compression cache
++ * @cache: cache embedded in the snapshot being freed
++ */
++void xe_guc_dump_cache_fini(struct xe_guc_dump_cache *cache)
++{
++	kvfree(cache->data);
++	cache->data = NULL;
++	cache->size = 0;
 +}
-+#endif
 +
  /**
-- * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-- * @snapshot: a snapshot of the GuC log
-- * @p: the printer object to output to
-+ * xe_guc_print_blob - Print binary data (compressed or uncompressed) as ascii85
-+ * @gt: GT structure for error reporting
-+ * @p: drm_printer for output
-+ * @length_label: label prefix for the length/metadata line (e.g. "[LOG]" or "[CTB]")
-+ * @data_label: label for the ascii85 blob (e.g. "[LOG].data" or "[CTB].data")
-+ * @chunks: array of pointers to source data chunks
-+ * @num_chunks: number of elements in @chunks
-+ * @chunk_size: nominal size of each chunk; the last chunk may hold fewer valid bytes
-+ * @total_size: total uncompressed byte count across all chunks
+  * xe_guc_print_blob - Print binary data (compressed or uncompressed) as ascii85
+  * @gt: GT structure for error reporting
+@@ -330,24 +362,46 @@ static void xe_guc_print_blob_compressed(struct xe_gt *gt, struct drm_printer *p
+  * @num_chunks: number of elements in @chunks
+  * @chunk_size: nominal size of each chunk; the last chunk may hold fewer valid bytes
+  * @total_size: total uncompressed byte count across all chunks
++ * @cache: per-snapshot compression cache, zeroed at capture time
+  *
+  * If CONFIG_DRM_XE_COMPRESS_DUMP is enabled, compresses @total_size bytes using
+  * zstd level-3 streaming compression and prints the result via @p using ascii85
+  * encoding. Otherwise, directly prints the uncompressed data.
+- * On failure the function returns without printing the data blob.
 + *
-+ * If CONFIG_DRM_XE_COMPRESS_DUMP is enabled, compresses @total_size bytes using
-+ * zstd level-3 streaming compression and prints the result via @p using ascii85
-+ * encoding. Otherwise, directly prints the uncompressed data.
-+ * On failure the function returns without printing the data blob.
++ * The compressed blob is produced once and kept in @cache, because a snapshot
++ * is printed repeatedly: __xe_devcoredump_read() measures the output before
++ * emitting it, and re-emits it a chunk at a time. Compressing per pass would
++ * let the measured size and the emitted bytes disagree.
++ *
++ * If compression fails the raw data is printed instead, so the dump is never
++ * lost. @cache->attempted latches that decision, so every later pass makes the same
++ * choice and produces byte-identical output.
   */
--void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p)
-+void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
-+		       const char *length_label, const char *data_label,
-+		       void **chunks, int num_chunks,
-+		       size_t chunk_size, size_t total_size)
+ void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
+ 		       const char *length_label, const char *data_label,
+ 		       void **chunks, int num_chunks,
+-		       size_t chunk_size, size_t total_size)
++		       size_t chunk_size, size_t total_size,
++		       struct xe_guc_dump_cache *cache __maybe_unused)
  {
-+#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
-+	xe_guc_print_blob_compressed(gt, p, length_label, data_label,
-+				     chunks, num_chunks, chunk_size, total_size);
-+#else
+-#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
+-	xe_guc_print_blob_compressed(gt, p, length_label, data_label,
+-				     chunks, num_chunks, chunk_size, total_size);
+-#else
  	size_t remain;
  	int i;
  
-+	drm_printf(p, "%s.length: 0x%zx Algo: RAW\n", length_label, total_size);
++#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
++	if (!cache->attempted)
++		xe_guc_compress_blob(gt, cache, chunks, num_chunks,
++				     chunk_size, total_size);
 +
-+	/*
-+	 * Print each chunk directly without merging into a single buffer.
-+	 * xe_print_blob_ascii85() supports multiple calls - use suffix=0
-+	 * for all but the last chunk to omit the newline between chunks.
-+	 */
-+	remain = total_size;
-+	for (i = 0; i < num_chunks && remain; i++) {
-+		size_t size = min(chunk_size, remain);
-+		const char *prefix = i ? NULL : data_label;
-+		/* Add suffix only on the last chunk */
-+		char suffix = (remain == size) ? '\n' : 0;
-+
-+		xe_print_blob_ascii85(p, prefix, suffix, chunks[i], 0,
-+				      DIV_ROUND_UP(size, sizeof(u32)) * sizeof(u32));
-+		remain -= size;
++	if (cache->data) {
++		drm_printf(p, "%s.length: 0x%zx -> 0x%zx Algo: ZSTD\n",
++			   length_label, total_size, cache->size);
++		xe_print_blob_ascii85(p, data_label, '\n', cache->data, 0,
++				      round_up(cache->size, sizeof(u32)));
++		return;
 +	}
-+#endif
-+}
 +
-+/**
-+ * xe_guc_log_snapshot_print - dump a previously saved copy of the GuC log to some useful location
-+ * @snapshot: a snapshot of the GuC log
-+ * @p: the printer object to output to
-+ * @gt: GT structure of the GuC log
-+ */
-+void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-+			       struct xe_gt *gt)
-+{
- 	if (!snapshot) {
- 		drm_printf(p, "GuC log snapshot not allocated!\n");
- 		return;
-@@ -249,16 +391,9 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
- 	drm_printf(p, "GuC timestamp: 0x%08llX [%llu]\n", snapshot->stamp, snapshot->stamp);
- 	drm_printf(p, "Log level: %u\n", snapshot->level);
++	/* Compression failed - fallback to emit the blob uncompressed. */
++#endif
++
+ 	drm_printf(p, "%s.length: 0x%zx Algo: RAW\n", length_label, total_size);
  
--	drm_printf(p, "[LOG].length: 0x%zx\n", snapshot->size);
--	remain = snapshot->size;
--	for (i = 0; i < snapshot->num_chunks; i++) {
--		size_t size = min(GUC_LOG_CHUNK_SIZE, remain);
--		const char *prefix = i ? NULL : "[LOG].data";
--		char suffix = i == snapshot->num_chunks - 1 ? '\n' : 0;
--
--		xe_print_blob_ascii85(p, prefix, suffix, snapshot->copy[i], 0, size);
--		remain -= size;
--	}
-+	xe_guc_print_blob(gt, p, "[LOG]", "[LOG].data",
-+			  snapshot->copy, snapshot->num_chunks,
-+			  GUC_LOG_CHUNK_SIZE, snapshot->size);
+ 	/*
+@@ -366,7 +420,6 @@ void xe_guc_print_blob(struct xe_gt *gt __maybe_unused, struct drm_printer *p,
+ 				      DIV_ROUND_UP(size, sizeof(u32)) * sizeof(u32));
+ 		remain -= size;
+ 	}
+-#endif
+ }
+ 
+ /**
+@@ -393,7 +446,8 @@ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_
+ 
+ 	xe_guc_print_blob(gt, p, "[LOG]", "[LOG].data",
+ 			  snapshot->copy, snapshot->num_chunks,
+-			  GUC_LOG_CHUNK_SIZE, snapshot->size);
++			  GUC_LOG_CHUNK_SIZE, snapshot->size,
++			  &snapshot->dump_cache);
  }
  
  static inline void lfd_output_binary(struct drm_printer *p, char *buf, int buf_size)
-@@ -599,12 +734,13 @@ void xe_guc_log_print_dmesg(struct xe_guc_log *log)
- void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
- {
- 	struct xe_guc_log_snapshot *snapshot;
-+	struct xe_gt *gt = log_to_gt(log);
- 
- 	drm_printf(p, "**** GuC Log ****\n");
- 
- 	snapshot = xe_guc_log_snapshot_capture(log, false);
--	drm_printf(p, "CS reference clock: %u\n", log_to_gt(log)->info.reference_clock);
--	xe_guc_log_snapshot_print(snapshot, p);
-+	drm_printf(p, "CS reference clock: %u\n", gt->info.reference_clock);
-+	xe_guc_log_snapshot_print(snapshot, p, gt);
- 	xe_guc_log_snapshot_free(snapshot);
- }
- 
 diff --git a/drivers/gpu/drm/xe/xe_guc_log.h b/drivers/gpu/drm/xe/xe_guc_log.h
-index 4649a260755e..3e97647ee8b5 100644
+index 3e97647ee8b5..bb6415271e5f 100644
 --- a/drivers/gpu/drm/xe/xe_guc_log.h
 +++ b/drivers/gpu/drm/xe/xe_guc_log.h
-@@ -11,6 +11,7 @@
+@@ -63,7 +63,9 @@ struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log,
  
- struct drm_printer;
- struct xe_device;
-+struct xe_gt;
+ void xe_guc_print_blob(struct xe_gt *gt, struct drm_printer *p, const char *length_label,
+ 		       const char *data_label, void **chunks, int num_chunks,
+-		       size_t chunk_size, size_t total_size);
++		       size_t chunk_size, size_t total_size,
++		       struct xe_guc_dump_cache *cache);
++void xe_guc_dump_cache_fini(struct xe_guc_dump_cache *cache);
  
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_GUC)
- #define XE_GUC_LOG_EVENT_DATA_BUFFER_SIZE	SZ_16M
-@@ -59,7 +60,13 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_lfd(struct xe_guc_log *log, struct drm_printer *p);
- void xe_guc_log_print_dmesg(struct xe_guc_log *log);
- struct xe_guc_log_snapshot *xe_guc_log_snapshot_capture(struct xe_guc_log *log, bool atomic);
--void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p);
+ void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
+ 			       struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_guc_log_types.h b/drivers/gpu/drm/xe/xe_guc_log_types.h
+index 02851b924aa4..a38e9619c95d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_log_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_log_types.h
+@@ -13,6 +13,24 @@
+ 
+ struct xe_bo;
+ 
++/**
++ * struct xe_guc_dump_cache - cached compressed copy of a dump blob
++ *
++ * A snapshot is printed more than once: __xe_devcoredump_read() walks it first
++ * with a NULL buffer to measure the output size, then again - once per chunk -
++ * to fill the user buffer. Compressing on every pass would be both wasteful and
++ * unsafe, as any difference between the measured size and the emitted bytes
++ * corrupts the dump. So compress at most once and replay the result.
++ */
++struct xe_guc_dump_cache {
++	/** @data: compressed bytes, allocation padded up to a u32 boundary */
++	char *data;
++	/** @size: number of valid compressed bytes in @data */
++	size_t size;
++	/** @attempted: compression has been attempted; @data is final either way */
++	bool attempted;
++};
 +
-+void xe_guc_print_blob(struct xe_gt *gt, struct drm_printer *p, const char *length_label,
-+		       const char *data_label, void **chunks, int num_chunks,
-+		       size_t chunk_size, size_t total_size);
-+
-+void xe_guc_log_snapshot_print(struct xe_guc_log_snapshot *snapshot, struct drm_printer *p,
-+			       struct xe_gt *gt);
- void xe_guc_log_snapshot_free(struct xe_guc_log_snapshot *snapshot);
+ /**
+  * struct xe_guc_log_snapshot:
+  * Capture of the GuC log plus various state useful for decoding the log
+@@ -36,6 +54,8 @@ struct xe_guc_log_snapshot {
+ 	struct xe_uc_fw_version ver_want;
+ 	/** @path: Path of GuC firmware blob */
+ 	const char *path;
++	/** @dump_cache: compressed copy of @copy, built on first print */
++	struct xe_guc_dump_cache dump_cache;
+ };
  
- static inline u32
+ /**
 -- 
 2.43.0
 
