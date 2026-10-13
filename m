@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFAA8CC6B19
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 20:48:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F58BCC6B1D
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 20:48:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F3B910EA23;
-	Tue, 13 Oct 2026 20:47:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB59910F9A3;
+	Tue, 13 Oct 2026 20:47:57 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6591210EA23;
- Tue, 13 Oct 2026 20:47:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E047610E93B;
+ Tue, 13 Oct 2026 20:47:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791924468; x=1823460468;
+ t=1791924467; x=1823460467;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Qar7yEwcZD3XdejP1OAGriEvHQ4qQBpgXzzDIuuuMx8=;
- b=fjcbvoPUfx4IcxwsSByOhlqq15oTQeeAvWSKNf2SN4kAImFcmQ13QpyO
- fuLkH1t2PmHx2uisE8wGkm6OYwD8AlcmTrt16Bo1g0kMNz9jND6Lf+WyN
- yvIcymnwI1lCQH0l2AF0zZEdR8Ip3j5H/nNAIa0ub/Ctm8KAbKRgZlAln
- ZbeQmk0m1IqdmK/71aU/oD0IHBs7JmlBubo4bmNG2z/evviEZKVriE/AE
- J+KqfNpmgAYo0DlNXnl9NZQNN5vZRgeykVUNGys4nlNa9BmNCuagsc0mc
- +wj1caJYzbuaVPhTzsglsGs17PAWphEZvZNFa/tyt1298jjjZtQvHXwUl w==;
-X-CSE-ConnectionGUID: J2rlGmtoRWapuA9aYhqXZg==
-X-CSE-MsgGUID: vJWutRf5SWuNg9myxjLqIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="539289"
+ bh=FwZoEe2O7U9d/UBaGsTCWBc9ie3w0wY7YKBXTe26gwU=;
+ b=nIQfO/IzN5tYD8HO8PvnmPV+m/cj+jLS3wQ3dleZgZUJUefklqqMukGD
+ 6E651KYDAnqVsDza30APEMhmc6n+c2Hx897hayvUhkzBbhntZvUNtiPg/
+ F3Ls1h1wjPULOgzNk1vCmF7YXFhR9i6wMsL7pU4+DN7p+gnyNcqOhkaF+
+ GaeRvMSP/lWKQ/HWgCoXT6OQJCUCPga6GyRx++xiAki8sgS/PrWUcgQkD
+ K/+XpXJRMafTWNnSYDkDigAPBjlzDr+D4YgfZ/hLcVh65A2GNzsVyZH+y
+ fLMXjwjE5pPcXDVAd+btIpuRLssfL8TvShFxJs4Jnow8Vm4JtpUb7LgOo w==;
+X-CSE-ConnectionGUID: g3960OlJQyu6tgxNTnGmqQ==
+X-CSE-MsgGUID: 6Fqvd0AJRK20Ndsuiu2exQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="539281"
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="539289"
+   d="scan'208";a="539281"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 13:47:48 -0700
-X-CSE-ConnectionGUID: ZAHRktPGQCeFkyqDjbmFGQ==
-X-CSE-MsgGUID: pciJiZo6Q9ObxyP/KX3WUA==
+ 13 Oct 2026 13:47:46 -0700
+X-CSE-ConnectionGUID: d5/ZIICARHitiF0w6BLRJw==
+X-CSE-MsgGUID: Lpu5d9z2SaubQvLJg5eOig==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,156,1787036400"; 
-   d="scan'208";a="1189034"
+   d="scan'208";a="1189024"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 13:47:47 -0700
+ 13 Oct 2026 13:47:46 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@linux.intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: [PATCH v4 2/5] drm/i915/3dlut: disable 3D LUT for pre-GLK
-Date: Tue, 13 Oct 2026 22:47:01 +0200
-Message-ID: <20261013204705.1574475-3-michal.grzelak@linux.intel.com>
+ Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v4 1/5] drm/i915/display: clean SKL_DSSM register macros
+Date: Tue, 13 Oct 2026 22:47:00 +0200
+Message-ID: <20261013204705.1574475-2-michal.grzelak@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20261013204705.1574475-1-michal.grzelak@linux.intel.com>
 References: <20261013204705.1574475-1-michal.grzelak@linux.intel.com>
@@ -70,106 +70,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GLK+ hardware supports 3D LUT. Disable the feature for pre-GLK
-platforms.
+Indent SKL_DSSM register macros. Define mask and register values with
+REG_GENMASK() and REG_FIELD_PREP() instead of bit shifts. No functional
+change.
 
-Add .has_3dlut field into display runtime info. Use the field to store
-whether 3D LUT is enabled. Initialize the field to 1 on GLK+.
-
-Add macro for checking 3D LUT's support. Use it while checking whether
-CRTC has 3D LUT enabled.
+v2->v3
+- s/fix/clean/ (Jani)
 
 v1->v2
-- use either runtime info flag or display version check (Jani)
-- don't initialize runtime info flag to 0 (Jani)
+- s/REG_GENMASK/REG_FIELD_PREP/ (Jani)
 
-Bspec: 15585
-Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c          | 3 +++
- drivers/gpu/drm/i915/display/intel_display_device.c | 5 +++++
- drivers/gpu/drm/i915/display/intel_display_device.h | 2 ++
- 3 files changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index f1df0f9ba762..95de75e1de98 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4304,6 +4304,9 @@ intel_color_load_plane_luts(struct intel_dsb *dsb,
- bool
- intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe)
- {
-+	if (!HAS_3DLUT(display))
-+		return false;
-+
- 	if (DISPLAY_VER(display) >= 12)
- 		return pipe == PIPE_A || pipe == PIPE_B;
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index f17fc2c68472..4c09f35644ba 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -864,6 +864,7 @@ static const struct platform_desc glk_desc = {
- 		GLK_COLORS,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 8251ec15190b..0b3991bc3aef 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1779,10 +1779,10 @@
+ #define   XE2LPD_DE_CAP_SCALER_SINGLE	1
  
- 		.__runtime_defaults.ip.ver = 10,
-+		.__runtime_defaults.has_3dlut = 1,
- 	},
- 	STEP_INFO(glk_steppings),
- };
-@@ -899,6 +900,7 @@ static const struct platform_desc glk_desc = {
- 	ICL_COLORS, \
- 	\
- 	.__runtime_defaults.ip.ver = 11, \
-+	.__runtime_defaults.has_3dlut = 1, \
- 	.__runtime_defaults.has_dmc = 1, \
- 	.__runtime_defaults.has_dsc = 1, \
- 	.__runtime_defaults.has_hdcp = 1, \
-@@ -990,6 +992,7 @@ static const struct platform_desc ehl_desc = {
- 	ICL_COLORS, \
- 	\
- 	.__runtime_defaults.ip.ver = 12, \
-+	.__runtime_defaults.has_3dlut = 1, \
- 	.__runtime_defaults.has_dmc = 1, \
- 	.__runtime_defaults.has_dsc = 1, \
- 	.__runtime_defaults.has_hdcp = 1, \
-@@ -1156,6 +1159,7 @@ static const struct platform_desc adl_s_desc = {
- 	TGL_CURSOR_OFFSETS,							\
- 										\
- 	.__runtime_defaults.ip.ver = 13,					\
-+	.__runtime_defaults.has_3dlut = 1,					\
- 	.__runtime_defaults.has_dmc = 1,					\
- 	.__runtime_defaults.has_dsc = 1,					\
- 	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),			\
-@@ -1335,6 +1339,7 @@ static const struct platform_desc dg2_desc = {
- 		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
- 		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
- 	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
-+	.__runtime_defaults.has_3dlut = 1,					\
- 	.__runtime_defaults.has_dmc = 1,					\
- 	.__runtime_defaults.has_dsc = 1,					\
- 	.__runtime_defaults.has_hdcp = 1,					\
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 7121e7cd9512..5300c6ab99e7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -147,6 +147,7 @@ struct intel_display_platforms {
+ #define SKL_DSSM				_MMIO(0x51004)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_MASK		(7 << 29)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_24MHz		(0 << 29)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	(1 << 29)
+-#define ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	(2 << 29)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_MASK	REG_GENMASK(31, 29)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_24MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 0)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_19_2MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 1)
++#define   ICL_DSSM_CDCLK_PLL_REFCLK_38_4MHz	REG_FIELD_PREP(ICL_DSSM_CDCLK_PLL_REFCLK_MASK, 2)
  
- #define HAS_128B_Y_TILING(__display)	(!(__display)->platform.i915g && !(__display)->platform.i915gm)
- #define HAS_2PPC(__display)		(DISPLAY_VER(__display) >= 10)
-+#define HAS_3DLUT(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_3dlut)
- #define HAS_4TILE(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
- #define HAS_ASYNC_FLIPS(__display)	(DISPLAY_VER(__display) >= 5)
- #define HAS_AS_SDP(__display)		(DISPLAY_VER(__display) >= 13)
-@@ -304,6 +305,7 @@ struct intel_display_runtime_info {
- 
- 	u8 fbc_mask;
- 
-+	bool has_3dlut;
- 	bool has_hdcp;
- 	bool has_dmc;
- 	bool has_dsc;
+ /*GEN11 chicken */
+ #define _PIPEA_CHICKEN				0x70038
 -- 
 2.45.2
 
