@@ -4,34 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00095CC6B03
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 03:50:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF9A0CA9ED0
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 04:03:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE35E10E51E;
-	Tue, 13 Oct 2026 03:50:19 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4E5310E51E
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 03:50:17 +0000 (UTC)
-Received: from dummy.faircode.eu (om126158158152.30.openmobile.ne.jp
- [126.158.158.152])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 9314E3F072
- for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 05:50:15 +0200 (CEST)
-Date: Tue, 13 Oct 2026 12:50:03 +0900
-From: Simon.Richter@hogyros.de
-To: intel-xe@lists.freedesktop.org
-Message-ID: <a9d1fc8c-4e13-4ef5-9495-d29e4713dd49@hogyros.de>
-In-Reply-To: <18cd0c49-b9fc-4bf2-8929-7bd64e587436@hogyros.de>
-References: <20261012104245.2108030-1-cch@e-psn.eu>
- <18cd0c49-b9fc-4bf2-8929-7bd64e587436@hogyros.de>
-Subject: Re: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry
- under force-wake
+	by gabe.freedesktop.org (Postfix) with ESMTP id 586B910E41D;
+	Tue, 13 Oct 2026 04:03:56 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0AA710E41D;
+ Tue, 13 Oct 2026 04:03:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0273753639593149735=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Correlation-ID: <a9d1fc8c-4e13-4ef5-9495-d29e4713dd49@hogyros.de>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/cri=3A_Implement_wor?=
+ =?utf-8?q?karound_Wa=5F15020021844?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 13 Oct 2026 04:03:54 -0000
+Message-ID: <179186423477.15815.3869058235033835806@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261012233035.1277288-2-matthew.d.roper@intel.com>
+In-Reply-To: <20261012233035.1277288-2-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,17 +36,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+--===============0273753639593149735==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-did a cursory test, it seems the *change* in forcewake state is what=20
-makes it poll the sensors once, and the "settling" time is not a power=20
-state transition, but the time needed until the new values arrive.
+== Series Details ==
 
-If forcewake is set all the time, the sensors are still stuck.
+Series: drm/xe/cri: Implement workaround Wa_15020021844
+URL   : https://patchwork.freedesktop.org/series/175989/
+State : success
 
-I wonder If there is something else we could be doing to poke that loop.
+== Summary ==
 
-=C2=A0=C2=A0 Simon
+CI Bug Log - changes from xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376_BAT -> xe-pw-175989v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-175989v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-nvls-1:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#8762] / [Intel XE#9069])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175989v1/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#8762]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762
+  [Intel XE#9069]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069
+
+
+Build changes
+-------------
+
+  * Linux: xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376 -> xe-pw-175989v1
+
+  IGT_9140: 3b0daa274edb520204660fa1e15424b66ce0aea0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376: 882b0f966d25236f00d6ec0c349f7948d2ed1376
+  xe-pw-175989v1: 175989v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175989v1/index.html
+
+--===============0273753639593149735==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/cri: Implement workaround Wa_15020021844</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175989/">https://patchwork.freedesktop.org/series/175989/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175989v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175989v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376_BAT -&gt; xe-pw-175989v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175989v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175989v1/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8762">Intel XE#8762</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9069">Intel XE#9069</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376 -&gt; xe-pw-175989v1</li>
+</ul>
+<p>IGT_9140: 3b0daa274edb520204660fa1e15424b66ce0aea0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5936-882b0f966d25236f00d6ec0c349f7948d2ed1376: 882b0f966d25236f00d6ec0c349f7948d2ed1376<br />
+  xe-pw-175989v1: 175989v1</p>
+
+</body>
+</html>
+
+--===============0273753639593149735==--
