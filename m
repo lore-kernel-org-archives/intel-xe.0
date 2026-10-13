@@ -4,123 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0CD3CC6B08
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 14:32:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96D8ECC6B0E
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 14:47:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD4310E8F8;
-	Tue, 13 Oct 2026 14:32:19 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013060.outbound.protection.outlook.com
- [40.93.196.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74F9810E812;
- Tue, 13 Oct 2026 14:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1DA10E8D3;
+	Tue, 13 Oct 2026 14:47:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C944D10E8EA
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 14:46:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791902819; x=1823438819;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=nXhw91WrX+lbIrFWyxrKQrGIcj25D2uXBzJ8hug4mTE=;
+ b=OsZ5N4CneaFl9u4YBuvE/ESM5zhtQTDmb0Rg42mBcOBg8ahPWcFGcdZk
+ bm4yN1xbdzx+8IFdzt8Gs4swC2aT0sNeAu82GIUzLkWouuOoE94yxYpwh
+ /vZeyQzVq9MTMb5095KhNLlrqmJCdYN6vH5scck25m0ABMZSF8dsvpQkK
+ SPUIESxK7sGqdYCKuOyf+Y7OIk6xHrjx3nbQzhvPhu9yH7J6OJytS3xY4
+ ziitTDL9ZIUruiXlMAMlcXIQ8y8NHDTFoPRaqbjj7gbQh7ubDSF4+Vn/L
+ X0GVtXtNmOmJK/s9Ylr3gXOHp9MKCKWcNs5HjzKip7Ni9GpIdn44FoxSI A==;
+X-CSE-ConnectionGUID: WzILwye5QIySauk+9OBcWg==
+X-CSE-MsgGUID: E8AhszXcQUuLTk31ytJo+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="624020"
+X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
+   d="scan'208";a="624020"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 07:46:58 -0700
+X-CSE-ConnectionGUID: XA/h6EHzTW6z6sc9Fm3+GQ==
+X-CSE-MsgGUID: w1AfAlSyQrm0qTONxAM1tQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
+   d="scan'208";a="1539781"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 07:46:58 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 07:46:57 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 07:46:57 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.22) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 07:46:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=th3vVSRLRZkdPPA8ZXe4b6inxUUQgN38lwLM7S+85JJi2onZGsGETQEu/EMflVVX7kjf0D5wZi+O0/PR11Iyh/FeSY7kJdUkA5aoXTbhCKUiyKPDmLbWTujr0vdxtMfXXRmTzTT3q9xmQoz8yHH9fdK63X9KaNOu/BXk727setNb3cf5168CjAf9linszgkSsw8tyBGOaWj1+JqYTFvbAC38RKah4uoAOYugexTqZ4A9aubyww8pntCb2HFk0+ANQU56ksgQ0cGy561ubuGFeYJEBQkihFe9fZ7qG/O2V5b0Y4+P/UJHX+/IYUmI/E4jpq9DgkSG3ncmJPJvCHj2vg==
+ b=e9BYXjnH56s4YSsJEQ9w9iLc9AGcNVn2SPYuzWjZdZ4UvE0pY+8pNpAlq0aJTM4E6oHUc4+0L0mdb6zG+oQwoDgVqGBEfchCljB1eNqFh4G7FGjvVLAh84i02novSD2jy6fYGhpP84fYu+lE2se9g2lwtHaEPVxEJnV70wqoKvpyAPq6QjaeF+86jiSbuWQzvjDLG9V68qc4EQKWUgYGHm2+ovYP3nUMeWFPscU1QzIj34jFjdNYgeQjDSJye4jrztv2EEU/Y2TeQmSJwVIOVZzQVJvV+/aNNKAFOXPO5gw3fshHUZZq/YvHe9dhmlEnRzgsfThobYi83DxCB+QEjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mRVtO5UxhRo6t5NffG/LKkGj3itFqu9iu6Y9+ZSeTuc=;
- b=SrgcnnaIsykKISsrS94I84wvN9UAvpx/NA9kuHVFqNP0+5/c74NU+M1b0J4IJa+W6Q/Ny8QMXdx8ATOUcPB2c17HhPY2GG5dmKIDQXushJPDwLl1L+Eq9AhjJ0RwnJ7CzB9YILBDsWzp3m9xJ2RKYlmOpzb08tZk/x+OdSP+PB8qrm6ProM4mn0Cip2R5s6HPaHj9FuoJ7CjmmYWXkrHdggaTmHheFXsqmUoo1Q//3A3uwX93UQ0GuPAztnlc9i/odKbyfifwksOIDkVb07ZRAaR8Z8Ls/5PpRH388JKz3vzGHx8Xcmp9wrE2FXcA/ixDz4TSgL2rkUCSGEvDkmDtQ==
+ bh=xOJfCI5XomjRGczXeCxxb+0JBAM3IyHjaci6QbYMoYY=;
+ b=uW5C35BJ3KzSjSZ3x+S32pkzJlp109SCO+0mdI12pvLoTHK9rzDH2pEPv+KKYulvhIohw5tCZhkT3xzbKMYC24vFXGk5dVWOTGLAPu4Zsbv5Jn0PHywmYIi1e7IaRLLNksYpJ91WYtlGtE/lKfr0igh31E+3+T7n/QNUnCxWl95wwlpxYMOq94ozpEZxFiYoKTwD50HNin/yGrvl3IM39Z6y7xWNj+spN3oACvaXx7YnLbAYCX/9oFNw15AH7FOei6nF8Xd1f2KaorNMRwGi8CIxTAVjyH+W38U1f2h+wBECT6LvTr6wAj1LlThkFOwXYdcp5w0/phkj3Kggn6Q0lg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mRVtO5UxhRo6t5NffG/LKkGj3itFqu9iu6Y9+ZSeTuc=;
- b=Xl4M3pdcqcZjElUdIPT7cbfoDPSM3QvQowZWS854H1UWVpIXyFm2kqtdwPXKOHJpCwcyYpfB0UjrsbhzmLuJPm5Nxc1jDrkZvL+pFgU62bI/tHZvJBRt3uCYsfAoUH+BTxYdRdvIRttWfsccw6B6SEjrAmU0H0St8CoB0E2LdWY=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
- by IA0PR12MB8424.namprd12.prod.outlook.com (2603:10b6:208:40c::15) with
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH0PR11MB5395.namprd11.prod.outlook.com (2603:10b6:610:ba::6)
+ by CYXPR11MB8709.namprd11.prod.outlook.com (2603:10b6:930:dd::21) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Tue, 13 Oct
- 2026 14:32:07 +0000
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0522.011; Tue, 13 Oct 2026
- 14:32:06 +0000
-Message-ID: <3e16b7d9-b1d6-4d6c-8f58-f6716fff71a6@amd.com>
-Date: Tue, 13 Oct 2026 20:01:53 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] gpu/buddy: restore two-pass clear/dirty guard for
- range-biased allocation
-To: matthew.auld@intel.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
- Anand.Raghavendra@amd.com
-References: <20261009100546.1103622-1-arunpravin.paneerselvam@amd.com>
+ 2026 14:46:52 +0000
+Received: from CH0PR11MB5395.namprd11.prod.outlook.com
+ ([fe80::2e5f:eb:b663:a490]) by CH0PR11MB5395.namprd11.prod.outlook.com
+ ([fe80::2e5f:eb:b663:a490%5]) with mapi id 15.21.0522.011; Tue, 13 Oct 2026
+ 14:46:52 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Charles, Daniel" <daniel.charles@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Brost,
+ Matthew" <matthew.brost@intel.com>
+CC: "x.wang@intnel.com" <x.wang@intnel.com>, "Yao, Jia" <jia.yao@intel.com>,
+ "Wang, X" <x.wang@intel.com>
+Subject: RE: [PATCH 2/3] drm/xe: Disable scheduling early on FD close to avoid
+ CAT error cascade
+Thread-Topic: [PATCH 2/3] drm/xe: Disable scheduling early on FD close to
+ avoid CAT error cascade
+Thread-Index: AQHdWrwb5SDSQgKtzU6fmDAj90Hir7b7jA6w
+Date: Tue, 13 Oct 2026 14:46:51 +0000
+Message-ID: <CH0PR11MB53954320E7C1D1870CB0ECD0E59E2@CH0PR11MB5395.namprd11.prod.outlook.com>
+References: <20261013023442.206915-1-daniel.charles@intel.com>
+ <20261013023442.206915-3-daniel.charles@intel.com>
+In-Reply-To: <20261013023442.206915-3-daniel.charles@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20261009100546.1103622-1-arunpravin.paneerselvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0286.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:21b::12) To DM4PR12MB5039.namprd12.prod.outlook.com
- (2603:10b6:5:38a::18)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|IA0PR12MB8424:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18a78013-45c8-4d08-5f86-08df2936c19a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|366016|1800799024|56012099006|11063799006|261009223027099003|10067099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: RdAwtimY+LXXPnHRzkPziTp8qSVt1Q+ydvyJR6hiFZC79yY1QOHW8tKReUi+K9XTky3cKaOQNNklTy0sum1g+AJHGja8W5JmGgy74aCpHKyAJ4aZWYw5yobdDXtl6VkpQ20A/58rPjY6mvHiGu/tHUdBPhyzfsxDXsD8YL3rz7Xk+E99ipUXj3gVWrpf5MhGg5qyZuVO3dZrTZA54rrAH+4vkzeAdPGVdvHKxeR0L678V7kuGVbVwwraR6xPrquo6Wy4vlMwiBmU6vT+j2gx8scL7q1kmz/oqr427a+T2Tf8J1Mp+2dr2QKFipP1mibyD8DXRUgJgrEuJ78sBvn9+U5miQw0qQJSdoNs9C/qpBl1GLovwfuQegevu3Zxu+KSNUrD7LgEyFE8/XChcNudBI4/oSW9K9jeJqGWTkeGEo/WOkOBcKSItiGt+ifiuSR3bFfW7c09a9jWpH8gks6C3hiOBt3RrQmMo3X1A7tBMt9rCDVD1rcg4EvbsDlkXqq2N4iGi+QAUNjOImjqxCIUsPtlodSNIaBqzm8AD8HU0rF9WGSRZFeA2w+kJdOVz1MvEX2nPZG6sPmD4xuE8vVxsKk96PIi0ZjpODNdl6RKcNnfNJp+hEwG3JmC3VX0CGJgjsuqE0xTWhqcsCFzRz31j7KkdWRc1262HMiSwrEI5Ws=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(56012099006)(11063799006)(261009223027099003)(10067099003)(22082099003)(18002099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5395:EE_|CYXPR11MB8709:EE_
+x-ms-office365-filtering-correlation-id: 7f9d5773-9440-4643-14ee-08df2938d18d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|366016|376014|1800799024|23010399003|38070700021|56012099006|11063799006|4143699003|261009223027099003|22082099003|10067099003|18002099003|6133799003;
+x-microsoft-antispam-message-info: 9GHc6+GJ1t2TBTW4pWHPPvE3L9POZjh6pD8eRxUVCMCCmrl7J6nKCGUCE6bXtnSW/mbQitlXhRXqb8sGm7N1OWNox5wZGLqPMOkKIhI5evLdhJijqeVaH7I8JI8yzNJ1Tzagm4P/0Lkm0jpTqWt/XES32yrdx9sTuPgiObY7VloEgzay9muqxb990D3L4dWiun7RC8OYOIMvOhagaFY8A9PdemMC2McFRr0kVsr0PXxjJ/4IfPVX/XXT1HeNF9z0mXuzq4kGtsJDtWsq+rB2vEn21D/o5mfowe6gZzqx23d1tORxZOoyFGVxHv0MOKQ4ZiKPGFykg3aZzmP87+QunXoDi+CHG7ShgjM3UlOMS31aVBgJXKiVvjbDCtHNx5QcTSpJMnePuDxiXQW5nGSAtvf/tnmPJhQr+oeT7oVBBBHTW7qMVxElsPsBIwhZSpOGUDGZDZ4CRQbsjzk1DpGGQBvET3aX5hBCeYo9AGui4aKnBGT3KSwc5Wqd6c9NhJWcElpTXYFhDxS+ZzHbHysG7U4dkrwV7l7Yz9jJYOH0zd2RLgjLPauzhCMZgfAMMZV/WwtigE9kz501N8+uNEZAkidgi1dn3voFHbC94lIx0zn9yxq4g2C0bbcS+Q0dJ1DkeQ49/w68jgF7L9472dfj4PbSOm8W/GuRJegaIeSd2WVY4Ie+gcXfBMYvlN8b1ujvik748+MmJe0+r2YEETJ4gyWauDWcvycdCAYf48vmL8Y=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5395.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(376014)(1800799024)(23010399003)(38070700021)(56012099006)(11063799006)(4143699003)(261009223027099003)(22082099003)(10067099003)(18002099003)(6133799003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V1pid2FnSS9SaGxYclBNTTF2c3dQa3UySGdaTVFqTG9DVW1Ga2VEYUhwalBi?=
- =?utf-8?B?K3hQQXNtM3dYb3E3S3RRU1hrNEl0VG9aeHlWbHhQZUZPUTM4OVI2VTFra2RV?=
- =?utf-8?B?M0NoeENiYzlnOUZOREJ6ZWRCUEdsajBqaFJXVy92bWtSSUhrckRqWlFNa01v?=
- =?utf-8?B?VkZhQU1IRXlabkt4bDlHczRQU0Z3VUNwbFRTbXJzTDNSelBUZXovazR6b2xl?=
- =?utf-8?B?aDNmaGU3aGNpZ1pYeDBRTTV3dndpL3NDa1p0eHh1Y2Q3cFM2S2dZRUw0QktO?=
- =?utf-8?B?SHB6enJzTVJHRmhFTitqWENmQXpFT1JFak5ZRFpkMDlRcFJJOVZZRmVSd1ln?=
- =?utf-8?B?RitpcGVBR3VCWU5mZlVhT2JpY1h3czFqQWw1Mm1iSTVScFdySDduVlpHVjNa?=
- =?utf-8?B?a2E4WGpTTHozdFBEV25EcDlBRHpxbXNqTDJWQXI4em9RdlVPRU5ITUJ4aUZV?=
- =?utf-8?B?a2ZNUWJYSmJITWlkcTdtTEhHUmpjeXhuaTNWVlA0UFBiLzliaUhNZWlua3lK?=
- =?utf-8?B?S2xyWkc5ckZHNjB6QlFXNnBlN0dMWUJKK25rc2toUWVWKzZQQk82SzlzTlFF?=
- =?utf-8?B?Mm1XWGFYeHZKek55NWZiUUM3Q3N6UWF0ajBmRVhkQUgwSFRWdUpwS1h0UHk2?=
- =?utf-8?B?UjQwNFdKTmtpMzVmdVV2dnJyVDVQTGxhWUIyaHM1R25IZDZqWnNGSjd4emV5?=
- =?utf-8?B?WDlyVmFWVGMyVnp4WElsWmxXU2huTjhDQll4UnlCRGFuTi9CMEpaRDZxK3Fm?=
- =?utf-8?B?SlJXejhyYkNNbzJsNk9Id3Qwdkw2NWlBUEI1ZE1ZTjZGRkFubVJyR2RXSGZX?=
- =?utf-8?B?R0tzR2hBYzFEMGtBa2xoSkxFK2JWcEdiemhCVE5KaURraG5DbzdybElYd1o1?=
- =?utf-8?B?aUI0QzBEdXBHaENPaFhBejA3YU5OWmlZV2VacERsOURLQkxKZ0h3UmFhRnJR?=
- =?utf-8?B?SEZ0eWxEL0dXWngvdnFnQkFOWXZrSitsNmJVQnpBTGJOOG5iSW5EaUN6Wmtm?=
- =?utf-8?B?T0V0RkIralhqalgyUnVCMjFWTXRsWlhEY25JTVk4MG4zdVN0eGF5Z1hWMFhz?=
- =?utf-8?B?ZVk2RU1sQWd6Ky9GaDNKdFNONkI3Yi9BTklMRGRWSXJ0bDF4NzA3b0JFRnV5?=
- =?utf-8?B?ckJvVjBrMkh1cVdmNGpqOVV3TjlIZTBzeUh0bXBTcVVCQ0NHNnpVZ2lVcTBy?=
- =?utf-8?B?MHlUVjNwQXBSNGZJZFRDekpWelkwc0QzSmMrRHBTNjVWMElpNytRMHpKRmE2?=
- =?utf-8?B?R2RLMHc2UVRzUkI2RTFXcVZIMXNNS3JSdGJoOGdtcngrcksrOXRFOWxjU3k2?=
- =?utf-8?B?Q0lNZ085SmdYUUdBOXZUN2VuN083QSswVlliTkZjY2NIMVFDK0xZcktvdTR5?=
- =?utf-8?B?VTdHTU1kd2hWR2p0eElzd0FrcXp2SjZwODV5cmQyNGNuTHpnUElvSk5GQ3NF?=
- =?utf-8?B?NThWN3grZnNGaW1Qb2x1U0tEMzFqcTZJR29MczdKeGJLMXk4Z1J1Zy95NitH?=
- =?utf-8?B?QXpGS2JPT0VuakgzWFhOajZ1c1F3KzA2ZlpBZnR3MjdzbXdSNlgybHhJamlz?=
- =?utf-8?B?WlJqbi9QSFBSd1JpS2FMcTFycG9LK2ZKanAyWStmZ29LZkRnZm92VmJWc3hp?=
- =?utf-8?B?WldoWTUzazlPYjdsZUQraVpSUkhqaTZOb2VTSVRSZXlLZllvdDB1akVrVEpN?=
- =?utf-8?B?Z2xiaCtodGljWFVycGxHa0hhelVmK08rMWJWQ2wzbFBscERScTkwSGNEMGx3?=
- =?utf-8?B?NFRSNWZlM1FCQitGZlhBMXM0OEMxSFJqZ2Z0TnlBSVNBQ0lLZW41dXI3eUVN?=
- =?utf-8?B?dW5DeVhQdVpUSFZEMml4Q0F5RzUxTytOVnJPVjVLcG5IMTEvc2JRWXFycHFK?=
- =?utf-8?B?a1FzSjFpWmdLQUd0NUdFVEVMaWNBTGpnRVZJc05veTZQQm1Cd004akozZlNo?=
- =?utf-8?B?MHdVcW9UdFpXaExIamtud0pWc3gyYjhvb0NlcXJnSEdOaXJ5TzV3VkoxSUFv?=
- =?utf-8?B?OHBiME5Jb016b0ZlYUFvMkhHcnJ5QzJFZ1hISnZoUTFyYzNpbjRta1Z5Z0NJ?=
- =?utf-8?B?S28wb05MUjhHWVlPRjRwckhHcnZ6VmVBMjNJMElZSzN5cU0rQkozdnNmWUZR?=
- =?utf-8?B?STdaenBudHY4MDZ3eDlBeUxwRXJwOGZDOWZOcXZhb3FRTnZYdUYwTGhxZWd4?=
- =?utf-8?B?WTFmOGlud3MzUGQ0NnVWdExlQWE2dWRHbTYzSDZmZW5mZkR1cGlMSzh6N3U4?=
- =?utf-8?B?RXBEWjRkL2VlWmFqZm5YWDFSaUNML2RZaElDRTdQOXVpcGhlY0NpYktZZ2la?=
- =?utf-8?Q?zSLs8ZNTDSO/kGMle2?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18a78013-45c8-4d08-5f86-08df2936c19a
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?/UuEwewXd/RmdF3tJZVfZrTgxkHHJgQQEqzpxO66H1Lsy0mJQal96d9MXZhO?=
+ =?us-ascii?Q?G+tHYcv5wubt0tKSuo1Pj2PGTfEp+NPIUmJV+8jUEQYhNZkPhvfUfK9rARms?=
+ =?us-ascii?Q?qR/p9AFlkxWwS22l5mv1KZEe+TP9jpazyU6HAYFaVD3A1cWGEz7zj7SLsvaf?=
+ =?us-ascii?Q?l16kSplh7Jb+qbnHG7uFYZS7lPyQLFLnfTI4C1osmadptMi+1sB+MdkwAdb4?=
+ =?us-ascii?Q?CXcrrw/dPIGiaSUfbH6LnE3cNQUcbys85cNAmTAQAGoDOY8xP+Yf3zNzMT7/?=
+ =?us-ascii?Q?8wQg7e4r039+IEVmuL7BTg/EH4TrDfNRXmZYIQEWiX2U+9TM7/qpQJ0kQ6i2?=
+ =?us-ascii?Q?WlimVEkOmm13kYFveiOB/Vuzc90CvURFsi0pk8plwQsv/QY/HzWPw9w0TsNU?=
+ =?us-ascii?Q?FaXlzhTX7s9bll2aeSf3YlMDT8XFTYVQnXBluepomYYPageKQ5d8nRxTlUnG?=
+ =?us-ascii?Q?7QfO1sVpv3BfEq45bDqSju3cclXf9TEtunS5Sa1W4P+05Jb8uYZ9QcDbclmd?=
+ =?us-ascii?Q?xcpbE4RHWeMwlIEU8S9mw/3MOMZYOYNYMJy+u/0iJtZDB1jjge/8gMszMqVb?=
+ =?us-ascii?Q?dHSaQWyE90vj86KuvhTjiDQpTKAN9DjiDR0j9/02pTNnOWSqsXD/SJ7PCEJ1?=
+ =?us-ascii?Q?OSek50aLLf0D+WpuApuuzp74leQtoyXAOSUn4wWp5tg3Ioug2YjlnhwUoMdm?=
+ =?us-ascii?Q?+NZ7KZKAh6/sc/1MTXzcPBOJW/KGMybeuYQv83nfZyQEk9XiTEq+0aJmq8CL?=
+ =?us-ascii?Q?vVSM3yA0rD5Hs2twsIImEaytotbwqo5+X37zUEKK2IJXdFmi6KVKbSnhliwa?=
+ =?us-ascii?Q?Ngo7oflq1E20tFzeQbysLS6QYSELsoajWWm3nuVxHb75TLfBbKetrM3XHYdr?=
+ =?us-ascii?Q?x3eU3GbWTWm0MhZ2JJDtca3J/ccppRXfDu/RGZw+U8aR7FpYb5YJH1aS5Ftm?=
+ =?us-ascii?Q?8w19mEIZEEPaarNX+EcRdzFD2U/pGMT6gehPF3NU0jDbBubwmrqn2AJ/qn7Z?=
+ =?us-ascii?Q?gjZp+Qqy873mKHOMKSvH83Zs6tX5Ip5iYFH2Ylu9xjWmqHcmMoT6RfHRfPq9?=
+ =?us-ascii?Q?rls/vgab/nMS04DFl1EKGV2leo/lK5AWVHc9rEjYBZeoLm5+y5zjLhgqhG4i?=
+ =?us-ascii?Q?ZrGrQMh0HABpJNaGFvJXCQ/Sr4Wq4+D/QtmmQIgn+Y/jWbfsZCYiW/8lVEpI?=
+ =?us-ascii?Q?WIrUr7DS040PYt5yus7zFxg/9T0DNddeWfClLMFMKYXZLYv5RFxEgHRvvadx?=
+ =?us-ascii?Q?MFfEoh4ci68h2Fi7ttRS8ULvIRH9xs19c+8LROvBy7bPb4DizWqssBv/3yH/?=
+ =?us-ascii?Q?ejX+YVbm2IOEWIuVAV3YacDVJJn2eyZwrCp3D18McAyvat7s6dwc16fWPM4h?=
+ =?us-ascii?Q?2NispkKR6LV4TwUHsXlq5YhGPpIjX07ovMvCNriOLpoUnRJdYiOPuom6LaaO?=
+ =?us-ascii?Q?2OuKQBLR7koJnCF2V6aR38NKkCQDGMxI8YJbRM0/0KVpw+5ieqjm48fkYlrd?=
+ =?us-ascii?Q?c6hwTYpaOutHDv69KLin0AkMKltTzj4MNmHJrqrpp3DNdRrvhLCF7TWW9N2U?=
+ =?us-ascii?Q?hyXoRLOAtB5sHo8TKXJCDER598aZdN0db/+2Sj2ni0/TNznCyurb4s9Yl5VU?=
+ =?us-ascii?Q?qI8mqPf2v/6F8HFg9VyOZuEHWix3JeggW59JWyVcbXI/qci8LSvTA5V7PySM?=
+ =?us-ascii?Q?l0mnBZPYT3ASQaSNKt8CGjrupqv7XRaszWNmNqxm718lVItviRhiqHSaknHH?=
+ =?us-ascii?Q?SzMRzFupWfXp2vOdbN4jsuFYEzJcYY/Af/WXnB8mT/DJ27IIMDXl+s30uYSD?=
+x-ms-exchange-antispam-messagedata-1: VogL+aVMwnAkFA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: jemI1f3mm8HrKttP9V01kXPWb/ttPMkp5B+R717Sog/PuNQfZasmI6FvKlj4ZbzP8/DeV91FNTfC/415LaKCqFtPn2A5QwfpGY0yC65IEMvu6LB89/XSmkBztLKnVCHimQKXqJFYfjZsB85kbu1ZE9t+hW9Bqo+tjUpAM/gZny2Xvz1HLj1Jwjm0I/49tpdfW8uG8q07mEw5H1kJX9gKuQZQD8r8EveX2fClRFaqB1ddQAa6OegaU0RN8cfPH6a4SIJKVqNrrcK4jd8mvvL6WHf8EX0sNeCUAHMtaSM5kLbj93mp3plO24ZwqpUT7hV+1MIzugaY18iWL2qKwXP4TA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 14:32:06.4148 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WyiBA+3sShK6Si86mY/Uad+VWjn0InEJTc6Wl3OwGw26TPJWqECKakr/YVH6yK94fl6rc8Z+9kVMlI6QSiXAUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8424
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5395.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f9d5773-9440-4643-14ee-08df2938d18d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Oct 2026 14:46:52.0113 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: VYDHfcNpW4+Cr1HJb5+E8hg5MGaubI8MVpQgEymkGHqOLVWd3u9G6brjziw3lxIAwZBFUYT8RnzsYf1ZiWyXS+CdxpNbxSsQQrDK7g16QyI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8709
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,240 +165,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
-Could you please review the v4.
+-----Original Message-----
+From: Charles, Daniel <daniel.charles@intel.com>=20
+Sent: Monday, October 12, 2026 7:35 PM
+To: intel-xe@lists.freedesktop.org
+Cc: x.wang@intnel.com; Yao, Jia <jia.yao@intel.com>; Cavitt, Jonathan <jona=
+than.cavitt@intel.com>; Brost, Matthew <matthew.brost@intel.com>; Wang, X <=
+x.wang@intel.com>
+Subject: [PATCH 2/3] drm/xe: Disable scheduling early on FD close to avoid =
+CAT error cascade
+>=20
+> From: Matthew Brost <matthew.brost@intel.com>
+>=20
+> When an FD is closed with many exec queues, teardown relies on the TDR
+> path to clean up scheduling. However, the TDR handling is serialized
+> (i.e., only one exec queue is processed at a time), which can make it
+> too slow compared to GuC scheduling activity.
+>=20
+> In this window, GuC may continue to schedule contexts backed by
+> invalid page tables, leading to a cascade of CAT errors and repeated
+> engine resets. This significantly increases recovery time and can
+> degrade system stability.
+>=20
+> To mitigate this, eagerly disable scheduling by sending a self-message
+> outside of the TDR path. This prevents further scheduling of invalid
+> contexts and avoids the CAT error/reset cascade.
+>=20
+> This change improves robustness and reduces recovery latency in
+> multiple queue teardown scenarios.
+>=20
+> Cc: Wang Xin <x.wang@intel.com>
+> Cc: Jia Yao <jia.yao@intel.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Tested-by: Jia Yao <jia.yao@intel.com>
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 
-Thanks,
-Arun.
+I think this patch was designed as a holdover for until exec_queue_kill_syn=
+c
+was implemented, and as such is unneeded in the series that introduces
+exec_queue_kill_sync.
 
-On 10/9/2026 3:35 PM, Arunpravin Paneer Selvam wrote:
-> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->
-> Range-restricted allocations (the visible-VRAM aperture) skip
-> dirty_steer_window() and reach __alloc_range_bias() with no clear/dirty
-> eligibility guard, so a dirty allocation freely splits clear extents (and
-> vice versa), interleaving the two classes until no large same-class run
-> survives and a 4K scanout pin fails with -ENOSPC. Use a two-pass range
-> search instead: block_incompatible() rejects opposite-class blocks in the
-> strict pass and relaxes only when the strict pass returns -ENOSPC, so a
-> request still succeeds when only opposite-class space remains. A KUnit
-> regression test covers the interleaving pattern and fails without the
-> guard.
->
-> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with decoupled dirty tracker")
-> Assisted-by: LLM
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Matt, is this correct?  Or does this patch serve a different purpose?
+
+I'm not blocking on this (yet), just want some clarification.
+-Jonathan Cavitt
+
 > ---
->   drivers/gpu/buddy.c                | 71 ++++++++++++++----------------
->   drivers/gpu/tests/gpu_buddy_test.c | 65 +++++++++++++++++++++++++++
->   2 files changed, 99 insertions(+), 37 deletions(-)
->
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index 2f2aaadafe35..6566bad4fef1 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -1240,11 +1240,19 @@ static void __gpu_buddy_undo_splits(struct gpu_buddy *mm,
->   	}
->   }
->   
-> +static bool block_incompatible(struct gpu_buddy_block *block, unsigned int flags)
+>  drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
+>  drivers/gpu/drm/xe/xe_guc_submit.c           | 46 ++++++++++++++++++--
+>  2 files changed, 43 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/d=
+rm/xe/xe_guc_exec_queue_types.h
+> index 74b711abe2572..89397e1e65465 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+> @@ -36,7 +36,7 @@ struct xe_guc_exec_queue {
+>  	 * a message needs to sent through the GPU scheduler but memory
+>  	 * allocations are not allowed.
+>  	 */
+> -#define MAX_STATIC_MSG_TYPE	4
+> +#define MAX_STATIC_MSG_TYPE	5
+>  	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+>  	/** @destroy_async: do final destroy async from this worker */
+>  	struct work_struct destroy_async;
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index c4ef3e9bf7a18..609af66b343d5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -2045,12 +2045,23 @@ static void __guc_exec_queue_process_msg_cgp_sync=
+(struct xe_sched_msg *msg,
+>  		guc_exec_queue_send_cgp_sync(q, 0);
+>  }
+> =20
+> +static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg,
+> +					      bool bound)
 > +{
-> +	bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
+> +	struct xe_exec_queue *q =3D msg->private_data;
+> +	struct xe_exec_queue *primary =3D xe_exec_queue_multi_queue_primary(q);
 > +
-> +	return needs_clear != gpu_buddy_block_is_clear(block);
+> +	if (exec_queue_enabled(primary) && bound)
+> +		disable_scheduling(primary, true);
 > +}
 > +
->   static struct gpu_buddy_block *
->   __alloc_range_bias(struct gpu_buddy *mm,
->   		   u64 start, u64 end,
->   		   unsigned int order,
-> -		   unsigned long flags)
-> +		   unsigned long flags,
-> +		   bool fallback)
->   {
->   	u64 req_size = mm->chunk_size << order;
->   	struct gpu_buddy_block *block;
-> @@ -1258,9 +1266,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
->   	 * This range-constrained search hands back the highest/right-most
->   	 * address that satisfies the request: the roots are seeded high-to-low
->   	 * and the right (higher-address) child is descended first, making
-> -	 * top-down the default placement here. A non-top-down clear request is
-> -	 * the only exception, where the descent is biased towards clear or
-> -	 * clear-containing subtrees to satisfy the clear preference.
-> +	 * top-down the default placement here.
->   	 */
->   	for (i = mm->n_roots - 1; i >= 0; --i)
->   		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
-> @@ -1298,6 +1304,9 @@ __alloc_range_bias(struct gpu_buddy *mm,
->   				continue;
->   		}
->   
-> +		if (!fallback && block_incompatible(block, flags))
-> +			continue;
+>  #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
+>  #define SET_SCHED_PROPS			2
+>  #define SUSPEND				3
+>  #define RESUME				4
+>  #define SET_MULTI_QUEUE_PRIORITY	5
+>  #define CGP_SYNC_MSG			6
+> +#define KILL				7
+>  #define OPCODE_MASK	0xf
+>  #define MSG_LOCKED	BIT(8)
+>  #define MSG_HEAD	BIT(9)
+> @@ -2085,6 +2096,9 @@ static void guc_exec_queue_process_msg(struct xe_sc=
+hed_msg *msg,
+>  	case CGP_SYNC_MSG:
+>  		__guc_exec_queue_process_msg_cgp_sync(msg, bound);
+>  		break;
+> +	case KILL:
+> +		__guc_exec_queue_process_msg_kill(msg, bound);
+> +		break;
+>  	default:
+>  		XE_WARN_ON("Unknown message type");
+>  	}
+> @@ -2211,8 +2225,19 @@ static int guc_exec_queue_init(struct xe_exec_queu=
+e *q)
+>  	return err;
+>  }
+> =20
+> +static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+> +				       struct xe_sched_msg *msg,
+> +				       u32 opcode);
 > +
->   		if (contains(start, end, block_start, block_end) &&
->   		    order == gpu_buddy_block_order(block)) {
->   			/*
-> @@ -1315,38 +1324,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
->   				goto err_undo;
->   		}
->   
-> -		/*
-> -		 * Top-down is a strict address-placement policy, so when it is
-> -		 * requested we ignore clear steering and simply descend the
-> -		 * right (higher-address) child first. Only a non-top-down clear
-> -		 * request biases the descent towards clear/has_clear subtrees.
-> -		 */
-> -		if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
-> -		    !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
-> -			struct gpu_buddy_block *prefer;
-> -
-> -			if (gpu_buddy_block_is_clear(block->right))
-> -				prefer = block->right;
-> -			else if (gpu_buddy_block_is_clear(block->left))
-> -				prefer = block->left;
-> -			else if (block->right->has_clear)
-> -				prefer = block->right;
-> -			else if (block->left->has_clear)
-> -				prefer = block->left;
-> -			else
-> -				prefer = block->right;
-> -
-> -			if (prefer == block->right) {
-> -				list_add(&block->left->tmp_link, &dfs);
-> -				list_add(&block->right->tmp_link, &dfs);
-> -			} else {
-> -				list_add(&block->right->tmp_link, &dfs);
-> -				list_add(&block->left->tmp_link, &dfs);
-> -			}
-> -		} else {
-> -			list_add(&block->left->tmp_link, &dfs);
-> -			list_add(&block->right->tmp_link, &dfs);
-> -		}
-> +		list_add(&block->left->tmp_link, &dfs);
-> +		list_add(&block->right->tmp_link, &dfs);
->   	} while (1);
->   
->   	return ERR_PTR(-ENOSPC);
-> @@ -1361,6 +1340,24 @@ __alloc_range_bias(struct gpu_buddy *mm,
->   	return ERR_PTR(err);
->   }
->   
-> +static struct gpu_buddy_block *
-> +__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
-> +			     u64 start, u64 end,
-> +			     unsigned int order,
-> +			     unsigned long flags)
-> +{
-> +	struct gpu_buddy_block *block;
-> +	bool fallback = false;
+> +#define STATIC_MSG_CLEANUP	0
+> +#define STATIC_MSG_SUSPEND	1
+> +#define STATIC_MSG_RESUME	2
+> +#define STATIC_MSG_CGP_SYNC	3
+> +#define STATIC_MSG_KILL		4
+>  static void guc_exec_queue_kill(struct xe_exec_queue *q)
+>  {
+> +	struct xe_sched_msg *msg =3D q->guc->static_msgs + STATIC_MSG_KILL;
 > +
-> +	block = __alloc_range_bias(mm, start, end, order,
-> +				   flags, fallback);
-> +	if (IS_ERR(block))
-> +		return __alloc_range_bias(mm, start, end, order,
-> +					  flags, !fallback);
-> +
-> +	return block;
-> +}
-> +
->   /* Return the highest-address free block of at least @order. */
->   static struct gpu_buddy_block *
->   get_maxblock(struct gpu_buddy *mm,
-> @@ -1924,7 +1921,7 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->   
->   	if (flags & GPU_BUDDY_RANGE_ALLOCATION) {
->   		/* Allocate traversing within the range */
-> -		block = __alloc_range_bias(mm, start, end, order, flags);
-> +		block = __gpu_buddy_alloc_range_bias(mm, start, end, order, flags);
->   		if (!IS_ERR(block) || !steered)
->   			return block;
->   
-> diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/gpu_buddy_test.c
-> index b75d32ca6ca0..3eaa261571bf 100644
-> --- a/drivers/gpu/tests/gpu_buddy_test.c
-> +++ b/drivers/gpu/tests/gpu_buddy_test.c
-> @@ -1597,6 +1597,70 @@ static int gpu_buddy_suite_init(struct kunit_suite *suite)
->   	return 0;
->   }
->   
-> +static void gpu_test_buddy_alloc_range_clear_guard(struct kunit *test)
-> +{
-> +	const unsigned long chunk = SZ_1M, mm_size = SZ_4M;
-> +	struct gpu_buddy_block *block;
-> +	LIST_HEAD(high_clear_a);
-> +	LIST_HEAD(high_clear_b);
-> +	LIST_HEAD(low_dirty);
-> +	struct gpu_buddy mm;
-> +	LIST_HEAD(barrier);
-> +	LIST_HEAD(result);
-> +
-> +	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, chunk),
-> +			       "buddy_init failed\n");
+>  	trace_xe_exec_queue_kill(q);
+>  	set_exec_queue_killed(q);
+>  	/*
+> @@ -2222,6 +2247,23 @@ static void guc_exec_queue_kill(struct xe_exec_que=
+ue *q)
+>  	 * stays set until the queue is torn down.
+>  	 */
+>  	suspend_wait_wake(q);
 > +
 > +	/*
-> +	 * Lay out a 4 MiB aperture as three regions:
-> +	 *
-> +	 *   [0,  1M)   dirty free
-> +	 *   [1M, 2M)   allocated  (barrier, keeps the two halves un-mergeable)
-> +	 *   [2M, 4M)   clear free (one naturally aligned 2 MiB extent)
-> +	 *
-> +	 * A dirty (non-clear) range allocation must take the low dirty block
-> +	 * and leave the large clear extent intact. Without the guard the
-> +	 * top-down search cuts the higher clear extent instead and returns a
-> +	 * clear block -- the interleaving that fragments the aperture and
-> +	 * ultimately fails a large same-class scanout allocation.
+> +	 * We eagerly send a message to ourselves to disable scheduling, as the
+> +	 * TDR is serialized (i.e., only one exec queue is processed at a time)=
+.
+> +	 * If an FD is closed with many exec queues, the TDR can be slower than
+> +	 * the GuC scheduling contexts with invalid page tables, creating a
+> +	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
+> +	 * this by immediately disabling scheduling outside of the TDR.
 > +	 */
-> +	KUNIT_ASSERT_FALSE_MSG(test,
-> +			       gpu_buddy_alloc_blocks(&mm, 0, chunk, chunk, chunk,
-> +						      &low_dirty, GPU_BUDDY_RANGE_ALLOCATION),
-> +			       "alloc [0, 1M) failed\n");
-> +	KUNIT_ASSERT_FALSE_MSG(test,
-> +			       gpu_buddy_alloc_blocks(&mm, chunk, 2 * chunk, chunk, chunk,
-> +						      &barrier, GPU_BUDDY_RANGE_ALLOCATION),
-> +			       "alloc [1M, 2M) failed\n");
-> +	KUNIT_ASSERT_FALSE_MSG(test,
-> +			       gpu_buddy_alloc_blocks(&mm, 2 * chunk, 3 * chunk, chunk, chunk,
-> +						      &high_clear_a, GPU_BUDDY_RANGE_ALLOCATION),
-> +			       "alloc [2M, 3M) failed\n");
-> +	KUNIT_ASSERT_FALSE_MSG(test,
-> +			       gpu_buddy_alloc_blocks(&mm, 3 * chunk, 4 * chunk, chunk, chunk,
-> +						      &high_clear_b, GPU_BUDDY_RANGE_ALLOCATION),
-> +			       "alloc [3M, 4M) failed\n");
+> +	if (kref_read(&q->refcount) && !exec_queue_wedged(q)) {
+> +		struct xe_gpu_scheduler *sched =3D &q->guc->sched;
 > +
-> +	/* [2M, 4M) coalesces into one aligned clear extent; [0, 1M) stays dirty. */
-> +	gpu_buddy_free_list(&mm, &low_dirty, 0);
-> +	gpu_buddy_free_list(&mm, &high_clear_a, GPU_BUDDY_CLEARED);
-> +	gpu_buddy_free_list(&mm, &high_clear_b, GPU_BUDDY_CLEARED);
+> +		xe_sched_msg_lock(sched);
+> +		guc_exec_queue_try_add_msg(q, msg, KILL);
+> +		xe_sched_msg_unlock(sched);
+> +	}
 > +
-> +	KUNIT_ASSERT_FALSE_MSG(test,
-> +			       gpu_buddy_alloc_blocks(&mm, 0, mm_size, chunk, chunk,
-> +						      &result, GPU_BUDDY_RANGE_ALLOCATION),
-> +			       "dirty range alloc failed\n");
-> +
-> +	block = list_first_entry(&result, struct gpu_buddy_block, link);
-> +	KUNIT_EXPECT_FALSE_MSG(test, gpu_buddy_block_is_clear(block),
-> +			       "dirty range alloc cut the clear extent (offset=%llx)\n",
-> +			       gpu_buddy_block_offset(block));
-> +
-> +	gpu_buddy_free_list(&mm, &result, 0);
-> +	gpu_buddy_free_list(&mm, &barrier, 0);
-> +	gpu_buddy_fini(&mm);
-> +}
-> +
->   static struct kunit_case gpu_buddy_tests[] = {
->   	KUNIT_CASE(gpu_test_buddy_alloc_limit),
->   	KUNIT_CASE(gpu_test_buddy_alloc_optimistic),
-> @@ -1606,6 +1670,7 @@ static struct kunit_case gpu_buddy_tests[] = {
->   	KUNIT_CASE(gpu_test_buddy_alloc_clear),
->   	KUNIT_CASE(gpu_test_buddy_alloc_range),
->   	KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
-> +	KUNIT_CASE(gpu_test_buddy_alloc_range_clear_guard),
->   	KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
->   	KUNIT_CASE_SLOW(gpu_test_buddy_dirty_tracker_performance),
->   	KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
->
-> base-commit: f146c6086b792cb2c6b3ce5106f0cce62e408df8
-
+>  	xe_guc_exec_queue_trigger_cleanup(q);
+>  }
+> =20
+> @@ -2274,10 +2316,6 @@ static bool guc_exec_queue_try_add_msg(struct xe_e=
+xec_queue *q,
+>  	return true;
+>  }
+> =20
+> -#define STATIC_MSG_CLEANUP	0
+> -#define STATIC_MSG_SUSPEND	1
+> -#define STATIC_MSG_RESUME	2
+> -#define STATIC_MSG_CGP_SYNC	3
+>  static void guc_exec_queue_destroy(struct xe_exec_queue *q)
+>  {
+>  	struct xe_sched_msg *msg =3D q->guc->static_msgs + STATIC_MSG_CLEANUP;
+> --=20
+> 2.43.0
+>=20
+>=20
