@@ -4,61 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7965CC6B19
-	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:07:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98404CC6B0E
+	for <intel-xe@archiver.kernel.org>; Tue, 13 Oct 2026 15:14:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 652E510E88E;
-	Tue, 13 Oct 2026 15:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F3CA10E933;
+	Tue, 13 Oct 2026 15:14:10 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0D910E0E0;
- Tue, 13 Oct 2026 15:06:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E55E10E8AA
+ for <intel-xe@lists.freedesktop.org>; Tue, 13 Oct 2026 15:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791904015; x=1823440015;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=/os/0OBmuHhN6vE59+UC0SPms0S9/erqW6koDWRjc6w=;
- b=H0XaHOW2f1dm5AQGpzNEXSzsmhUkP6i6E+YRG00tjM4KOfvqb6MmJ01U
- Ic0qD8OZuBMeAAWo4QbeIaVKXRFB0mU9qjd0G+zo4PqfwZyDZiA17rYob
- WKAFG2GmXJy70nbNRyHu0w7Ahtw+KyBp8ZRQf/3h/uw3ArixvrLV4J5c8
- PcDON3jTzTxDIr/lJmZMtRBg9tEkuHVvySm/8MLrTViBBo1Q3ThEq8sRj
- rIgK0bIy5lAiETcRH/165ZcNGv0KicwKR4wUmRdGOVfTlg9JyYYF3KeLc
- bWLpTWLDFLebsAp4Furw+bXZgEzSas57InxFDC4cUSz9PKVdDw65vdRGf g==;
-X-CSE-ConnectionGUID: QhaZXfePTX21mavHlqirwg==
-X-CSE-MsgGUID: W2cbebP5TZ23HpBAw8Q6ww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="517054"
+ t=1791904444; x=1823440444;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=JUazmeeQkbDJLf56lZp9HyWJS5VPkRL2l7dk8narXHo=;
+ b=NYbNmjjjN4dJslxLMb7IT03e9B1eanNc7F2H9v/istgzW8t9Fd8ovwBe
+ JHB0zB4QOLzGSFdC9K4LXku1yslI62wgtIZz1J+teDWPaRBsd2sOTrgex
+ yE3xu/G8iCDYv630t/V7zCqjy6uOen8RCMWi7lY2gEfjmN5rpdtlnG0DP
+ e6PcH/pwF7+I7Wzje6m6gswCpiTzmdJdom4hOn80HUfLmLZWYYFI64quu
+ FBG11Aa0d7SCPXRPmuO4HIlp688rZOkv9UR76jLNfcfI5Kx1/cntQDBeT
+ 0dhTNJG9myhvZlPHwj1zry6t6ia+Wec7llZDCW3LSEhBdrIPkfNFdd0cO w==;
+X-CSE-ConnectionGUID: t6BCOaRgT32eiTE3Tswtvw==
+X-CSE-MsgGUID: AoKbarXmTmmEv5xQU00gnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="518453"
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="517054"
+   d="scan'208";a="518453"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 08:06:54 -0700
-X-CSE-ConnectionGUID: zHruqfdYTJOCMJshHNjjjw==
-X-CSE-MsgGUID: dv6J0yrjRhS0gAUHICq6wQ==
+ 13 Oct 2026 08:13:52 -0700
+X-CSE-ConnectionGUID: BoLfw71zReWfI5WE0MohOQ==
+X-CSE-MsgGUID: Ct4E6kaPR4agN0xATPsL5w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,155,1787036400"; 
-   d="scan'208";a="1245491"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.245.122])
- ([10.245.245.122])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2026 08:06:52 -0700
-Message-ID: <343cf7b2-6241-4e3c-8b37-2f0ea75c6723@intel.com>
-Date: Tue, 13 Oct 2026 16:06:50 +0100
+   d="scan'208";a="1247736"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2026 08:13:51 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 08:13:50 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Tue, 13 Oct 2026 08:13:50 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.62) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 13 Oct 2026 08:13:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QK4ITaSu+hzEzZ3chTs2crOQt7B6cAoW9YrVkxJhYtie9s3TEZ5DkimnBtLEwLAkw7aAdLlFRlJV/JFF1DRFOC+mjvzSsAyaRkYQnWCk7/Yw+xijH0uoJ+GylL+kBvke+uDy/ZDlFtwJbZ0Nm1+jiSw5MqR3WqEz0AcWl0hGT+QBwjj93Zz7q2e4Nx5EZRPgFMpQ0VQezsH5d2CzqN5+ari42XKTERvubMAL1ham/8Zr27ON0vbhpaGPt7+JC0l+lTu1wMXg0jquACYvI8qTEedzFqDSJn+42/gyPvMz6/l/Vq/ns8kLLl4v8Jau4hEcCzebO+ceQvVm9Gx1Rwn9sQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X8gQZUh6G2Y0A1TTW/6WyAVjwB2w5BWxUNXoBtakZdg=;
+ b=BTXJq7ma1XcRrsmA15zU31+N3qmxI+S9NQr11tdAQiiGx5UPbgz/JSm85t0DIypyLNjNV/IgIliR1gCwvZbuUmGq8L6191Lud4r1dX7ZUUcYBeQHESVqHGPXjoKX3prPyYBk7pKt+DWwmvO5ssjnZncGvKwXtH9N5dxLfmLxT3MMCnHBZCOmzA9l+biggSpVQH1DqQ1in0DObsivkGLsWUMzPI1Hh6yE9vznkNoVo95rZW6rvcB2JLaawKy0zKX0knnphJeGLGTdYYsdueLTrAnOKDVD575NSTbrmmTfhf57xGc171mwRpRDRusO2SUQHnYHoMuEUsA3M5Sm3Jx+wA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by IA0PR11MB7329.namprd11.prod.outlook.com (2603:10b6:208:437::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.15; Tue, 13 Oct
+ 2026 15:13:46 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%6]) with mapi id 15.21.0496.021; Tue, 13 Oct 2026
+ 15:13:44 +0000
+Date: Tue, 13 Oct 2026 08:13:42 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+CC: "Tauro, Riana" <riana.tauro@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Vivekanandan, Balasubramani"
+ <balasubramani.vivekanandan@intel.com>
+Subject: Re: [PATCH] drm/xe/cri: Implement workaround Wa_15020021844
+Message-ID: <20261013151342.GA1329272@mdroper-desk1>
+References: <20261012233035.1277288-2-matthew.d.roper@intel.com>
+ <ad1c34ce-7481-4ba9-9cb7-662caed35528@intel.com>
+ <as3AGwcjolGc0hcf@black.igk.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <as3AGwcjolGc0hcf@black.igk.intel.com>
+X-ClientProxiedBy: BY3PR10CA0021.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::26) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] gpu/buddy: restore two-pass clear/dirty guard for
- range-biased allocation
-To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
- Anand.Raghavendra@amd.com
-References: <20261009100546.1103622-1-arunpravin.paneerselvam@amd.com>
- <3e16b7d9-b1d6-4d6c-8f58-f6716fff71a6@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <3e16b7d9-b1d6-4d6c-8f58-f6716fff71a6@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA0PR11MB7329:EE_
+X-MS-Office365-Filtering-Correlation-Id: 26efb393-5147-4b17-c60c-08df293c92b2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|23010399003|376014|261009223027099003|56012099006|4143699003|11063799006|260925022911599003|260925021311599003|260925021911599003|22082099003|10067099003|6133799003|18002099003;
+X-Microsoft-Antispam-Message-Info: Vu6FIlutf/mV4pfHiqBQns308YSjGvxfAZJOXsqalM4BrZOCWfq7BxFQorANwEgBn5iwe0e2qM0kK6OrYW7nCL406fNlAx2Bqom1KttjsX6IDYcUbC3Bg3+n6L7jNXWU9XUVqd8Tvv+NK6TAygT1gS1fUjJwtOeuxL5tPDmKFYmX/oRIpatlkP9hr4t2CKXEOmsz8r5CDcI2sV4sUBf045BNNUKJX7wxJLdJyDYQBymHvcmuKWBPy9YCeJfilU76XEigfqftqEdToS4sgr81EzWdoZqbUW76zLt5Vy79WETp0Beeh5L4TYHkBVTmUSWjoqmaRyAJLRDw50Njqrh7jflaps0eK6xWMM/V6VhN0CVSvpQ8sz1wXV/8rjlZProNfxKnM2yc6NUhWsni1C+Jad7r+HwIK9izDThcnSmAVPKDaCB3TwPCXa8VXEsnYlq2slCec+c4b5xNFjPLe9M5iC8WKKrvtH87FvGTxo7gEdg+ebK8p42CRpb7KFaG+U74v0DDCbJ2k/0HHVlouh8eFwbFlt2wQAMGlRS+mpBrzGAQy0ltKMXm6VhCkbEch5f0YVNE+MHHheOXA04a802WXUO0t8CJGrLvV9N6Sk4Emb17N6cHp4RVlOgjxegozzSr/dv23jFNWE0KPpKH91CRnC/RZLl30rmUyNnj7WWpJ8U=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(261009223027099003)(56012099006)(4143699003)(11063799006)(260925022911599003)(260925021311599003)(260925021911599003)(22082099003)(10067099003)(6133799003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wcnZAjYYDjGkMlWvFutrd3okt+yOFMPnZPnecjlU0LiZVQ8PNlaBXxcMhf/8?=
+ =?us-ascii?Q?P4Erp11zY3YUshseXeeK7NlzvOvuPimEu19F+puAFYoJffyGSYlrNfquBB3x?=
+ =?us-ascii?Q?T1e9aGyOEEdpz6jSPgImDMW5euYF7DryGJZbYrmHXLzwCNhjGFT34SW2AMP2?=
+ =?us-ascii?Q?zBCO0eJATeRDj3/0D1GB9G4JraZYACBwfr/wL71enHZHBGBFP5fLyOoymIv1?=
+ =?us-ascii?Q?f06hmsmSYGEnK4Eum7ket8mA4/q/nxvuVf5i7yZo4+d13tWdNOaksBVxO5lr?=
+ =?us-ascii?Q?SZqKvMT/twO8316LK4P3vb5W5o5O8fftZXzvz4TvG2s1jSk1qWW25HBs5QmZ?=
+ =?us-ascii?Q?7mjYvfVFarKD2lBE8QB4WagU/zmlgW61cMwN+1eR6KKx0G285ZgdT9VpBxqY?=
+ =?us-ascii?Q?I3XWT+v/zM9j3JUk1pVENF69mxVS7bc5ECE2XAvUNZL+nygPjZFjvYcn12QS?=
+ =?us-ascii?Q?K4k/xLMHsAnD6ZDrAs7EKTdzzG9dICXYxcRckmCEk4c/g72anFXjWBCKGDBI?=
+ =?us-ascii?Q?4LgA4K/NA2Mapu9cs0Jei6XUj7d4GipbV7HqZgk+M6Wu+p4+O5yVZJ6wNJ3C?=
+ =?us-ascii?Q?ZFENVDxxsImJ0fpli8jI0hAt+M8Fkw7H+7mLFAwczW/x3i0FUvfMGmvXzbPp?=
+ =?us-ascii?Q?o7j736ojlUIl/jexONnFlC/E0TMb/pTAsYYHvboBbXA7Fw4HBiu5JJTgbkve?=
+ =?us-ascii?Q?pgm3B8jyNISIZ5dyLNltv5W0JJ0BgaOImlJtqozVzLvceft4XYJBV+FY6Lqj?=
+ =?us-ascii?Q?Wo6/BBviV6+FVIUAaungXqhyaHhB/DAJzoqwTDBpfjwO4/JRJ27NySY/1pRb?=
+ =?us-ascii?Q?CDLuwo3N5NhMNG0x3T7Do4PzvMPD28XWgYyWVTb2/IhKuAYvc1SC4w8eBZcL?=
+ =?us-ascii?Q?vF96xV1BTlvFwsmQ1tdlDK4Vl/qXgWur5ZRpZdfBvY0uzMpTO3wRFOTgtOPg?=
+ =?us-ascii?Q?2AwRld1gLAURovTAwgpkau7OnueGYDN3ct06IuQp3vccpwTMD2kbwXhyEtcI?=
+ =?us-ascii?Q?K6P+lKrXWP/LGF/yk31Zr/XtlHuNTED8CucoDHt7z4OWIS0NTx52oEOiOHzs?=
+ =?us-ascii?Q?G3M79PqRKoP4etva60jUpvZr8rRHGb9E7Z3ChA8lydyBEmJBb28MucT5VWn/?=
+ =?us-ascii?Q?Ilt4dnrS6hXmWDjtCeU7+N/VFjVpQTkjdLperIawxNP7sqZn42KI3FmrmqFq?=
+ =?us-ascii?Q?wX/rahCizHMkzVNpH1XvYmDia74t0aJnxr3EMJ66M1JsHe08gSBMtSUPKOf1?=
+ =?us-ascii?Q?lBXZDZi1iIMz+683HHBO9ilmR21lhvwsxjuzZ6pPfoeff8bpY4cj+NZ7u1mP?=
+ =?us-ascii?Q?CDgy+YQ2jB1NJ+kxkMWPQ2di7JNCMfPhhT9BeLXHS5jaV2X/NodfRlliUfMW?=
+ =?us-ascii?Q?ZFrfwPVyGDoYXe3/PFRppNlZAs8FVsNa7e97oi3zMdo8wYkiArd0WV1FQ9bB?=
+ =?us-ascii?Q?6kiqS09TGpC1BscIha4cwlXh4ZTOjRKWZnI0QFWkE+/2/EnBsx7mkKDLbgW6?=
+ =?us-ascii?Q?3Vvq66JvG+DQIsoQ6PiaxtrCJ1gCpf6/I/s5Cq/owoKgftu7R6iMMdpa4ze4?=
+ =?us-ascii?Q?WzhpObeHeAeKpzN09Ed2b0uUJKg407+eDXACNjWTfyLSo83KauCp+ptRMkXt?=
+ =?us-ascii?Q?6/cvavDbICOwYtFzGlsfy0wq/OKFcJvY3uvaTCZhl9vphGPgbCAT4V7T46HX?=
+ =?us-ascii?Q?VHeDMTDXXEr1yjpfsn+S4UdVUC16LlhsPdLgod4Ue1eRI4mNYlzI9Jkefkdi?=
+ =?us-ascii?Q?pnKID0/0hL2/5Em4A4GZPcHXBS7k6oE=3D?=
+X-Exchange-RoutingPolicyChecked: nuQ5sZudZHruGWJN0hxAzn1zweLVRp96KyJtERSGGG8iGx5UGvO8bqRtrzFImbjARNn1ur8VitEx8g66OhUKBXdpEGA/HDMHaKeso3uQQgm5YB8409MovJwtv/0bANyrpdp86qvBm8FoxqtdrLMwuiIvkXOMH4p0ckD3RE+eUm97twviErNQ3UvAOt5q8OpBwytP/1cxejGvZYS0cD8yRHQphbJKty0VC6PQVaQWTdpPH+DJ3yPvNyMZMeJoD9lQexEXktR3+E0uVRlXuScz4Qtkrtys+gYOadJjMXub40bqSbqBgKCCi5vqmqfzKuEZziXAK6QV5JyRNCnNKYcdzA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 26efb393-5147-4b17-c60c-08df293c92b2
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2026 15:13:44.8349 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Sfuxh1jzcEZz+O1FeRU63JUHIGQUCWbiHeVZgKzdeoFwseZCSz2J4Lx9DmQ4hxWmKICycegta5AYOV7gOcQvTVSCKAZetqXACyZ+/nC7eY4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7329
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,267 +159,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
-
-Yes, going to go through it now. Did you already look over the Sashiko 
-reports:
-https://sashiko.dev/#/patchset/20261009100546.1103622-1-arunpravin.paneerselvam%40amd.com
-
-Are they all false positive? I wanted to hold off reviewing if you were 
-going to re-spin.
-
-Also, on the "bugs" tab in Sashiko there was one open buddy issue, which 
-I sent a fix for:
-https://lore.kernel.org/intel-xe/20261006110706.1636971-2-matthew.auld@intel.com/
-
-Please take a look at that.
-
-On 13/10/2026 15:31, Arunpravin Paneer Selvam wrote:
-> Hi Matthew,
-> Could you please review the v4.
+On Tue, Oct 13, 2026 at 07:22:35AM +0200, Raag Jadav wrote:
+> On Tue, Oct 13, 2026 at 10:19:29AM +0530, Tauro, Riana wrote:
+> > On 13-10-2026 05:00, Matt Roper wrote:
+> > > On Crescent Island platforms, the pcode is signaling "ready" to the
+> > > driver prematurely since one last sysctrl firmware initialization step
+> > > is still underway and not fully complete.  Since the driver's
+> > > initialization is racing with the end of the firmware's init, this can
+> > > lead to error messages like:
+> > > 
+> > >     xe 0000:be:00.0: [drm] *ERROR* sysctrl: Firmware error: 0x06
+> > >     xe 0000:be:00.0: [drm] *ERROR* sysctrl: Mailbox command failed: -EIO
+> > 
+> > i see boot survivability having failure codes for sysctrl. Shouldn't pcode
+> > ready be indicated
+> > only after the firmware is ready?
 > 
-> Thanks,
-> Arun.
-> 
-> On 10/9/2026 3:35 PM, Arunpravin Paneer Selvam wrote:
->> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->>
->> Range-restricted allocations (the visible-VRAM aperture) skip
->> dirty_steer_window() and reach __alloc_range_bias() with no clear/dirty
->> eligibility guard, so a dirty allocation freely splits clear extents (and
->> vice versa), interleaving the two classes until no large same-class run
->> survives and a 4K scanout pin fails with -ENOSPC. Use a two-pass range
->> search instead: block_incompatible() rejects opposite-class blocks in the
->> strict pass and relaxes only when the strict pass returns -ENOSPC, so a
->> request still succeeds when only opposite-class space remains. A KUnit
->> regression test covers the interleaving pattern and fails without the
->> guard.
->>
->> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with 
->> decoupled dirty tracker")
->> Assisted-by: LLM
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/buddy.c                | 71 ++++++++++++++----------------
->>   drivers/gpu/tests/gpu_buddy_test.c | 65 +++++++++++++++++++++++++++
->>   2 files changed, 99 insertions(+), 37 deletions(-)
->>
->> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
->> index 2f2aaadafe35..6566bad4fef1 100644
->> --- a/drivers/gpu/buddy.c
->> +++ b/drivers/gpu/buddy.c
->> @@ -1240,11 +1240,19 @@ static void __gpu_buddy_undo_splits(struct 
->> gpu_buddy *mm,
->>       }
->>   }
->> +static bool block_incompatible(struct gpu_buddy_block *block, 
->> unsigned int flags)
->> +{
->> +    bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
->> +
->> +    return needs_clear != gpu_buddy_block_is_clear(block);
->> +}
->> +
->>   static struct gpu_buddy_block *
->>   __alloc_range_bias(struct gpu_buddy *mm,
->>              u64 start, u64 end,
->>              unsigned int order,
->> -           unsigned long flags)
->> +           unsigned long flags,
->> +           bool fallback)
->>   {
->>       u64 req_size = mm->chunk_size << order;
->>       struct gpu_buddy_block *block;
->> @@ -1258,9 +1266,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>        * This range-constrained search hands back the highest/right-most
->>        * address that satisfies the request: the roots are seeded 
->> high-to-low
->>        * and the right (higher-address) child is descended first, making
->> -     * top-down the default placement here. A non-top-down clear 
->> request is
->> -     * the only exception, where the descent is biased towards clear or
->> -     * clear-containing subtrees to satisfy the clear preference.
->> +     * top-down the default placement here.
->>        */
->>       for (i = mm->n_roots - 1; i >= 0; --i)
->>           list_add_tail(&mm->roots[i]->tmp_link, &dfs);
->> @@ -1298,6 +1304,9 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>                   continue;
->>           }
->> +        if (!fallback && block_incompatible(block, flags))
->> +            continue;
->> +
->>           if (contains(start, end, block_start, block_end) &&
->>               order == gpu_buddy_block_order(block)) {
->>               /*
->> @@ -1315,38 +1324,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>                   goto err_undo;
->>           }
->> -        /*
->> -         * Top-down is a strict address-placement policy, so when it is
->> -         * requested we ignore clear steering and simply descend the
->> -         * right (higher-address) child first. Only a non-top-down clear
->> -         * request biases the descent towards clear/has_clear subtrees.
->> -         */
->> -        if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
->> -            !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
->> -            struct gpu_buddy_block *prefer;
->> -
->> -            if (gpu_buddy_block_is_clear(block->right))
->> -                prefer = block->right;
->> -            else if (gpu_buddy_block_is_clear(block->left))
->> -                prefer = block->left;
->> -            else if (block->right->has_clear)
->> -                prefer = block->right;
->> -            else if (block->left->has_clear)
->> -                prefer = block->left;
->> -            else
->> -                prefer = block->right;
->> -
->> -            if (prefer == block->right) {
->> -                list_add(&block->left->tmp_link, &dfs);
->> -                list_add(&block->right->tmp_link, &dfs);
->> -            } else {
->> -                list_add(&block->right->tmp_link, &dfs);
->> -                list_add(&block->left->tmp_link, &dfs);
->> -            }
->> -        } else {
->> -            list_add(&block->left->tmp_link, &dfs);
->> -            list_add(&block->right->tmp_link, &dfs);
->> -        }
->> +        list_add(&block->left->tmp_link, &dfs);
->> +        list_add(&block->right->tmp_link, &dfs);
->>       } while (1);
->>       return ERR_PTR(-ENOSPC);
->> @@ -1361,6 +1340,24 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>       return ERR_PTR(err);
->>   }
->> +static struct gpu_buddy_block *
->> +__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
->> +                 u64 start, u64 end,
->> +                 unsigned int order,
->> +                 unsigned long flags)
->> +{
->> +    struct gpu_buddy_block *block;
->> +    bool fallback = false;
->> +
->> +    block = __alloc_range_bias(mm, start, end, order,
->> +                   flags, fallback);
->> +    if (IS_ERR(block))
->> +        return __alloc_range_bias(mm, start, end, order,
->> +                      flags, !fallback);
->> +
->> +    return block;
->> +}
->> +
->>   /* Return the highest-address free block of at least @order. */
->>   static struct gpu_buddy_block *
->>   get_maxblock(struct gpu_buddy *mm,
->> @@ -1924,7 +1921,7 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->>       if (flags & GPU_BUDDY_RANGE_ALLOCATION) {
->>           /* Allocate traversing within the range */
->> -        block = __alloc_range_bias(mm, start, end, order, flags);
->> +        block = __gpu_buddy_alloc_range_bias(mm, start, end, order, 
->> flags);
->>           if (!IS_ERR(block) || !steered)
->>               return block;
->> diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/ 
->> gpu_buddy_test.c
->> index b75d32ca6ca0..3eaa261571bf 100644
->> --- a/drivers/gpu/tests/gpu_buddy_test.c
->> +++ b/drivers/gpu/tests/gpu_buddy_test.c
->> @@ -1597,6 +1597,70 @@ static int gpu_buddy_suite_init(struct 
->> kunit_suite *suite)
->>       return 0;
->>   }
->> +static void gpu_test_buddy_alloc_range_clear_guard(struct kunit *test)
->> +{
->> +    const unsigned long chunk = SZ_1M, mm_size = SZ_4M;
->> +    struct gpu_buddy_block *block;
->> +    LIST_HEAD(high_clear_a);
->> +    LIST_HEAD(high_clear_b);
->> +    LIST_HEAD(low_dirty);
->> +    struct gpu_buddy mm;
->> +    LIST_HEAD(barrier);
->> +    LIST_HEAD(result);
->> +
->> +    KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, chunk),
->> +                   "buddy_init failed\n");
->> +
->> +    /*
->> +     * Lay out a 4 MiB aperture as three regions:
->> +     *
->> +     *   [0,  1M)   dirty free
->> +     *   [1M, 2M)   allocated  (barrier, keeps the two halves un- 
->> mergeable)
->> +     *   [2M, 4M)   clear free (one naturally aligned 2 MiB extent)
->> +     *
->> +     * A dirty (non-clear) range allocation must take the low dirty 
->> block
->> +     * and leave the large clear extent intact. Without the guard the
->> +     * top-down search cuts the higher clear extent instead and 
->> returns a
->> +     * clear block -- the interleaving that fragments the aperture and
->> +     * ultimately fails a large same-class scanout allocation.
->> +     */
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 0, chunk, chunk, chunk,
->> +                              &low_dirty, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [0, 1M) failed\n");
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, chunk, 2 * chunk, 
->> chunk, chunk,
->> +                              &barrier, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [1M, 2M) failed\n");
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 2 * chunk, 3 * chunk, 
->> chunk, chunk,
->> +                              &high_clear_a, 
->> GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [2M, 3M) failed\n");
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 3 * chunk, 4 * chunk, 
->> chunk, chunk,
->> +                              &high_clear_b, 
->> GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [3M, 4M) failed\n");
->> +
->> +    /* [2M, 4M) coalesces into one aligned clear extent; [0, 1M) 
->> stays dirty. */
->> +    gpu_buddy_free_list(&mm, &low_dirty, 0);
->> +    gpu_buddy_free_list(&mm, &high_clear_a, GPU_BUDDY_CLEARED);
->> +    gpu_buddy_free_list(&mm, &high_clear_b, GPU_BUDDY_CLEARED);
->> +
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 0, mm_size, chunk, chunk,
->> +                              &result, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "dirty range alloc failed\n");
->> +
->> +    block = list_first_entry(&result, struct gpu_buddy_block, link);
->> +    KUNIT_EXPECT_FALSE_MSG(test, gpu_buddy_block_is_clear(block),
->> +                   "dirty range alloc cut the clear extent 
->> (offset=%llx)\n",
->> +                   gpu_buddy_block_offset(block));
->> +
->> +    gpu_buddy_free_list(&mm, &result, 0);
->> +    gpu_buddy_free_list(&mm, &barrier, 0);
->> +    gpu_buddy_fini(&mm);
->> +}
->> +
->>   static struct kunit_case gpu_buddy_tests[] = {
->>       KUNIT_CASE(gpu_test_buddy_alloc_limit),
->>       KUNIT_CASE(gpu_test_buddy_alloc_optimistic),
->> @@ -1606,6 +1670,7 @@ static struct kunit_case gpu_buddy_tests[] = {
->>       KUNIT_CASE(gpu_test_buddy_alloc_clear),
->>       KUNIT_CASE(gpu_test_buddy_alloc_range),
->>       KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
->> +    KUNIT_CASE(gpu_test_buddy_alloc_range_clear_guard),
->>       KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
->>       KUNIT_CASE_SLOW(gpu_test_buddy_dirty_tracker_performance),
->>       KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
->>
->> base-commit: f146c6086b792cb2c6b3ce5106f0cce62e408df8
-> 
+> +1. This loosk like we have no indication of firmware being ready and we'll
+> still end up with same failure in case sysctrl decides to have a bad day.
 
+Yes, I agree.  This is definitely a case where the firmware is really
+the source of the problem.  I was told verbally that this would be fixed
+for future post-CRI platforms, but for CRI specifically they want to
+take the "easy" path of having the XeKMD add a workaround/hack to avoid
+the problem.
+
+
+Matt
+
+> 
+> Raag
+> 
+> > > The current recommenedation to work around this is for the driver to
+> > > wait an additional 0.5 seconds after getting the "ready" response,
+> > > before moving on with other initialization tasks.
+> > > 
+> > > Note that the official definition of this workaround is still being
+> > > finalized, so "Wa_15020021844" is a bit of a placeholder/guess.  It's
+> > > possible that the actual number could still change, although the request
+> > > to wait the additional half second is pretty well set at this point.
+> > > 
+> > > Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> > > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_device_wa_oob.rules | 1 +
+> > >   drivers/gpu/drm/xe/xe_pcode.c             | 5 +++++
+> > >   2 files changed, 6 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+> > > index d8dc41851425c..0488a20461d81 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+> > > +++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
+> > > @@ -7,3 +7,4 @@
+> > >   14026633728	PLATFORM(CRESCENTISLAND)
+> > >   14026746987	PLATFORM(CRESCENTISLAND)
+> > >   14026779378	PLATFORM(CRESCENTISLAND)
+> > > +15020021844	PLATFORM(CRESCENTISLAND)
+> > > diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> > > index 266deecbb100a..897d44ecae42b 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pcode.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pcode.c
+> > > @@ -11,6 +11,7 @@
+> > >   #include <drm/drm_managed.h>
+> > > +#include "generated/xe_device_wa_oob.h"
+> > >   #include "regs/xe_pmt.h"
+> > >   #include "xe_assert.h"
+> > >   #include "xe_device.h"
+> > > @@ -20,6 +21,7 @@
+> > >   #include "xe_pm.h"
+> > >   #include "xe_printk.h"
+> > >   #include "xe_vsec.h"
+> > > +#include "xe_wa.h"
+> > >   /**
+> > >    * DOC: PCODE
+> > > @@ -320,6 +322,9 @@ int xe_pcode_ready(struct xe_device *xe, bool locked)
+> > >   		xe_log_err(tile, PCODE, ret, "initialization timedout after %ld seconds\n",
+> > >   			   timeout_us / USEC_PER_SEC);
+> > > +	if (!ret && XE_DEVICE_WA(xe, 15020021844))
+> > > +		msleep(500);
+> > > +
+> > >   	return ret;
+> > >   }
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
