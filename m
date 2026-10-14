@@ -4,50 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C1A9CC6B3C
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66769CC6B3D
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A564C10E18F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDAB710E24C;
 	Thu, 15 Oct 2026 12:15:41 +0000 (UTC)
-Received: from host3.o27bbn.ondsl.gr (host3.o27bbn.ondsl.gr [79.129.74.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0590210FFD1;
- Thu, 15 Oct 2026 00:37:34 +0000 (UTC)
-Received: from mail.e-psn.eu (cluster-localnode [10.200.210.1])
- by mail.e-psn.eu (Postfix) with ESMTPA id 8F3173A537AA;
- Thu, 15 Oct 2026 00:37:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=e-psn.eu; s=default;
- t=1792024651; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ingnB9AcWDf+xSzk/JYpaVyHALuYuvn8bSdf+q+dJRo=;
- b=ExdDwVWf3kjOzu1Sv0Gc27ZL7YUH8sgPj/EvPF1eEeE1KcxYQMaT0T5Y+zs4qQXb9b0Up6
- +lh11Kr724DOPQDjKaMOqjFfllPbE78DXNeajygFHNtvtDlFKhJwHTA5KxFdkq5hdT2UHl
- OhT+1taOwaz3L2EkxXsrRy8WWVNCwKA/cjf+1rsBmkTaeKJ/w6Mix7wQrgoowke9HCnzYq
- c7CrEfT7IhJDenNIP+wFSXBr32irsMTceqOt9M02E6cUKIfHyMk5zlvwRXA17X72hBSrPJ
- jnSiLU87Dansia8i1N4Oi/1OBkRw9UHAuy4OBETGNGDJt89s0ousKcAiRZuhtw==
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+ [209.85.208.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0610610EA9D
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 16:58:31 +0000 (UTC)
+Received: by mail-lj1-f170.google.com with SMTP id
+ 38308e7fff4ca-3aafbec15d6so2722611fa.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 09:58:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1791997110; cv=none;
+ d=google.com; s=arc-20260327;
+ b=f5Rykt4AeGeUFrYjTt4jQivRNjklnsYo49OEnIfpugxvJehQnmpYl+fZIlfniesyYr
+ CqwyHiXFtRmuNCGdYpOgqe3cbox88Qr+fl9aBsggl/XktxXKxr0SMWm0T2VrShPYDTYj
+ l/ForwvsDH/tdANRuEnF4/l67p8aO0eeeLAx5WjZGIfgl6Ry9VKjM8wbwmexZMKW0cuy
+ 2YObyWclAd/Xj649tqRTOttljFOcOF2Wtq858o6GodlXKmKJVD0AoMvAm9vNKJd5h41f
+ l6O4WLOvVNFY6dKAj+h0P7JTUEygbXlZTLxBoGdYdgr7f8oNsezpja2NoHApVayH+XBY
+ FMyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=PeoY0yWKZRmwA+3BQa6rH8gq2X5w0eejzi+aqnvivA0=;
+ fh=CiGrBvB3muDdtUxsTmogNpa59fMk5ZDG24j5csvIzpE=;
+ b=HrtH0dxkgutAIV2tonNS/R3XJqP8OrRBiCuW7QMLVS8IYD37E9pMVxzU/cZ3+mxGDm
+ GUIvuEfXuvr6H0z+bdV6huiBv+150cofABCGAjR5QuSjlIjshDAkO9Ukpr7DDl/xsEMR
+ xopVOFJq7/BhOjEkS52IuphARr3jYa2FUGCkVO1Zwt1IefmhW0OdzD3rS0D0jkMxRjhU
+ PQ2Jk49c54Ulnf3yxnryxeUN5B4ajtbovHNBwXHOFkwIrKldk6BpN9z0sJ44cUz7XeyV
+ EnlMRDoH8CQCAkLuWjlOIW+EWBtwDR1kqGcLALmrCX27lHN0o/y7vIwqKVge//FLQlm8
+ +9cw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=aleph0.ai; s=google; t=1791997110; x=1792601910; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=PeoY0yWKZRmwA+3BQa6rH8gq2X5w0eejzi+aqnvivA0=;
+ b=xo7Tz5d9bYCgLIP6QDQAWIz6bV/SqAXjftgJd1RcHnGlbaD04CfR2rD/42DP/N4D1I
+ eQv/Pgk+oDOI46RQekvblHZdbNYZedNlmfULBPOsk3AKJsU2k+87gbutvzTphTXb6L2T
+ 7P3dFb6CpkE9VY6GyappjPOm68/OkmYoAcUVwhZWk6NkQUFeQ9KjhDdGg0lUDTQcVqQ4
+ holMtgAnXG8NDi2G3YVecE6a1qK/grEGE4kxo3T13mT2vqb506g/CbMnFZwwMmOM4JyN
+ xq2wTjbCWjuMdtTv8MCV/R+3JKEsvX4tDzbqDqD5+qtIJzQ0WyIHJNUgtbxGdnCWIlVW
+ hD1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1791997110; x=1792601910;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=PeoY0yWKZRmwA+3BQa6rH8gq2X5w0eejzi+aqnvivA0=;
+ b=GOYrVRgDwhJF0FOR47Z1ER6dgqLdY6Q90yUBQlRQjZ17xTPMKK53Cpx9OU2MH4WPSi
+ eXOl3OCUpIpIwYbDXA4T9sEsnBHRhu1GFaGik4NQDvhS9j9lx7c/sGGSE+m+hMMF50YK
+ hootuMUydK2sXHK+dSJFKla6gIoYwuMssDT+SJkQ3dyt0QhvTM/Kyb+Cc1FOB9r+yYyY
+ qLbFaniUdov2W4BE8NZCOT74/NwKnb/JZE+okvM5AfGxhtYnLyNaA9BMrpZyvdJbl0wZ
+ pwQLthqgclE1SfRSdkaAjjhgN7Sejnhno2nnXLUGC1TUY/m1MXBl4W9Chq2UOE/2aBqD
+ wcnw==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBz7eXQ2vXf1kplAV64K/FC5XCOCvHYEqoWqhi+PUr37IZHRDTYHDs9PhtqvqS7phQZXcuVTfWDNgg==@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYLh7ilS08BwbzBzWncvxSAuI3YAO6uN7LKbK6mgz61mMsJSxJTM
+ brATzAQ3qcbJFLTyEgTdNBsjzyfLJRtTluQeKt99Utkb8SxBDzcjhAndtbwvqpwXvVonKfHuWcc
+ eZyyCaofjc7NMLIAbdGrxOP8b1wdy4zcbVEBynFqQ7A==
+X-Gm-Gg: AYBFou3hH3+KTh4wtBKUO+Em37IRFbEqexEcD9/xn1ki/e61ovg52Ax7cLhWWWZ9aNq
+ 5y4EGA6NG9xKU5Gbsf8cgYgLZrAcTRQlYSrh4IoTeqGhSOfu1Eo+WBI50uwBkhhiQkEjzpZRae5
+ wUTBIHO+A14bfGKmDezMRirHR6xGwXE35jh7XjamVjfz0N3lP4f2Cb6PMLDOh/+mXraHz06vhLf
+ +4TLFPizDhWnr0xAsAx2p+23rERKei07EWOkiP6HFe/5an95p6rOuWRLmidqf+6DkvNej+/uoGf
+ WpXH7PKxYDzjopGYst4JaWYmTbF0g6Xb+aIFNsbcgtNjgcC5b7joL0uttvTJKfzicqJ45hXxMXC
+ yWA7ir5dsa/XJJPWqkfzsyPL0tQ==
+X-Received: by 2002:a05:6512:3187:b0:5b8:bc5e:d0fe with SMTP id
+ 2adb3069b0e04-5bcde6d0062mr5550632e87.40.1791997109796; Wed, 14 Oct 2026
+ 09:58:29 -0700 (PDT)
 MIME-Version: 1.0
-Date: Thu, 15 Oct 2026 03:37:31 +0300
-From: Constantinos Chalkias <cch@e-psn.eu>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: =?UTF-8?Q?Bata_Roland_Kriszti=C3=A1n?= <batarolandkrisztian@gmail.com>,
- intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
- force-wake
-Mail-Reply-To: cch@e-psn.eu
-In-Reply-To: <as_iOd6A_Yncj8Gt@intel.com>
-References: <20261012104245.2108030-1-cch@e-psn.eu>
- <as_iOd6A_Yncj8Gt@intel.com>
-Message-ID: <046ad11178ef5ab04364e14a0211a68c@e-psn.eu>
-X-Sender: cch@e-psn.eu
-Organization: E-PSN
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Flag-Threshold: 6
+References: <20261013-fix-psr-async-trans-push-v1-1-ee79bf31b66f@aleph0.ai>
+ <as9lLU0VnFW6JLKf@intel.com>
+In-Reply-To: <as9lLU0VnFW6JLKf@intel.com>
+From: Vladyslav Yamkovyi <hex@aleph0.ai>
+Date: Wed, 14 Oct 2026 18:58:13 +0200
+X-Gm-Features: AclHuK9DejIsKpYNlJitvulcu8uweG4HpEyel77BVIQowt9vPUrR_69jHdifP7A
+Message-ID: <CAGkn_9h6TMgEk6e0JEROYx_O08Dtpn=_Jyd=T+HuiJZmyGynCA@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915/psr: Send a frame change notification for async
+ flips
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>, 
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Thu, 15 Oct 2026 12:15:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,186 +110,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: cch@e-psn.eu
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Rodrigo,
-Thanks for pointing this out. Yes, this appears to be the same issue, 
-and I agree we should avoid parallel fixes.
-My follow-up testing independently converged on a very similar result. I 
-narrowed the workaround to CHANNEL_PKG only. A 500-1000 us GT force-wake 
-interval was not reliable, while 3000-3500 us was.
-In the most controlled test I disabled both hwmon pollers, stopped the 
-inference workload, and the physical blower remained latched at high 
-speed for more than five minutes while the GPU was otherwise idle. A 
-single package-temperature read using XE_FW_GT with a 3000-3500 us 
-interval immediately caused the blower to return to normal.
-I also saw the later RFC follow-up showing that both GT-only and 
-RENDER-only longer pulses could refresh the telemetry and were followed 
-by fan slowdown, which seems consistent with this result.
-I won't send a competing v2. I'm happy to contribute these measurements 
-to the existing RFC effort and help test whatever implementation you 
-prefer to converge on.
-Thanks,
-Constantinos
+There was indeed an error in my testing. I ran a synthetic reproducer
+separately from my compositor work where I originally encountered
+the issue, but failed to enable VRR in that test. I do observe the
+errors now.
 
-On 2026-10-14 23:12, Rodrigo Vivi wrote:
-> On Mon, Oct 12, 2026 at 01:42:45PM +0300, Constantinos Chalkias wrote:
->> On Battlemage, thermal telemetry can remain stale after the GT returns
->> to RC6 following sustained workloads.
->> 
->> On an Intel Arc Pro B70, package and VRAM temperature telemetry may 
->> stop
->> refreshing after a long inference workload. Fan telemetry can also
->> become invalid while the physical blower remains elevated.
->> 
->> Acquire the GT force-wake domain around Battlemage thermal MMIO reads
->> and allow a short settling interval before reading the register. Route
->> package, VRAM and VRAM-channel availability reads through the helper.
->> 
->> Testing showed that an immediate read, as well as a 100-300 us delay,
->> could leave telemetry stale. A 500-1000 us delay recovered correctly
->> across repeated inference-to-idle cycles.
->> 
->> The change is restricted to Battlemage, where the behavior has been
->> reproduced and validated.
->> 
->> Signed-off-by: Constantinos Chalkias <cch@e-psn.eu>
-> 
-> Cc: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
-> 
-> https://lore.kernel.org/intel-xe/179041811564.526373.13204522833274380927.b70-hwmon-rfc@gmail.com/
-> 
-> I believe you guys are facing the same dificulties and arriving to 
-> similar
-> conclusions.
-> 
-> If the consensus is that we need this forcewake, let's do it.
-> 
-> Let's just avoid duplication of efforts in here.
-> 
-> And thank you all for the contributions.
-> 
->> ---
->>  drivers/gpu/drm/xe/xe_hwmon.c | 51 
->> ++++++++++++++++++++++++++++++-----
->>  1 file changed, 45 insertions(+), 6 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c 
->> b/drivers/gpu/drm/xe/xe_hwmon.c
->> index 5edeac961ec3..fee358ab9a6b 100644
->> --- a/drivers/gpu/drm/xe/xe_hwmon.c
->> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
->> @@ -3,6 +3,7 @@
->>   * Copyright © 2023 Intel Corporation
->>   */
->> 
->> +#include <linux/delay.h>
->>  #include <linux/hwmon-sysfs.h>
->>  #include <linux/hwmon.h>
->>  #include <linux/jiffies.h>
->> @@ -14,6 +15,7 @@
->>  #include "regs/xe_mchbar_regs.h"
->>  #include "regs/xe_pcode_regs.h"
->>  #include "xe_device.h"
->> +#include "xe_force_wake.h"
->>  #include "xe_hwmon.h"
->>  #include "xe_mmio.h"
->>  #include "xe_pcode.h"
->> @@ -946,14 +948,43 @@ static void xe_hwmon_get_voltage(struct xe_hwmon 
->> *hwmon, int channel, long *valu
->>  	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 
->> 2500, SF_VOLTAGE);
->>  }
->> 
->> -static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int 
->> channel)
->> +static int xe_hwmon_temp_mmio_read(struct xe_hwmon *hwmon,
->> +				   struct xe_reg reg, u32 *reg_val)
->>  {
->>  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
->> +
->> +	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
->> +		struct xe_gt *gt = xe_root_mmio_gt(hwmon->xe);
->> +
->> +		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
->> +
->> +		if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
->> +			return -ETIMEDOUT;
->> +
->> +		/*
->> +		 * Allow thermal telemetry to refresh after leaving RC6
->> +		 * before reading the temperature register.
->> +		 */
->> +		usleep_range(500, 1000);
->> +
->> +		*reg_val = xe_mmio_read32(mmio, reg);
->> +		return 0;
->> +	}
->> +
->> +	*reg_val = xe_mmio_read32(mmio, reg);
->> +
->> +	return 0;
->> +}
->> +
->> +static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int 
->> channel)
->> +{
->>  	int vram_id = channel - CHANNEL_VRAM_N;
->>  	struct xe_reg vram_reg;
->> +	u32 reg_val;
->> 
->>  	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
->> -	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
->> +	if (!xe_reg_is_valid(vram_reg) ||
->> +	    xe_hwmon_temp_mmio_read(hwmon, vram_reg, &reg_val) || !reg_val)
->>  		return false;
->> 
->>  	/* Create label only for available vram channel */
->> @@ -1025,15 +1056,19 @@ xe_hwmon_temp_is_visible(struct xe_hwmon 
->> *hwmon, u32 attr, int channel)
->>  static int
->>  xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, 
->> long *val)
->>  {
->> -	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
->> -	u64 reg_val;
->> +	u32 reg_val;
->> +	int ret;
->> 
->>  	switch (attr) {
->>  	case hwmon_temp_input:
->>  		switch (channel) {
->>  		case CHANNEL_PKG:
->>  		case CHANNEL_VRAM:
->> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, 
->> channel));
->> +			ret = xe_hwmon_temp_mmio_read(hwmon,
->> +						      xe_hwmon_get_reg(hwmon, REG_TEMP, channel),
->> +						      &reg_val);
->> +			if (ret)
->> +				return ret;
->> 
->>  			/* HW register value is in degrees Celsius, convert to 
->> millidegrees. */
->>  			*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
->> @@ -1043,7 +1078,11 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 
->> attr, int channel, long *val)
->>  		case CHANNEL_PCIE:
->>  			return get_pcie_temp(hwmon, val);
->>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
->> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, 
->> channel));
->> +			ret = xe_hwmon_temp_mmio_read(hwmon,
->> +						      xe_hwmon_get_reg(hwmon, REG_TEMP, channel),
->> +						      &reg_val);
->> +			if (ret)
->> +				return ret;
->>  			/*
->>  			 * This temperature format is 24 bit [31:8] signed integer and 8 
->> bit
->>  			 * [7:0] fraction.
->> --
->> 2.56.0
->> 
+I withdraw this patch. I will review the logic more thoroughly,
+particularly mentioned vblank evasion code, and try to investigate
+sending TRANS_PUSH consistently and if this is worth pursuing.
+If it will not inspire confidence, I will seek to reliably disable PSR
+trans push usage.
+
+--
+Vladyslav Yamkoyi
+
+On Wed, 14 Oct 2026 at 13:19, Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Tue, Oct 13, 2026 at 05:16:07PM +0200, Vladyslav Yamkovyi via B4 Relay=
+ wrote:
+> > From: Vladyslav Yamkovyi <hex@aleph0.ai>
+> >
+> > On platforms using TRANS_PUSH for PSR frame-change notifications,
+> > intel_pipe_update_end() exits early for asynchronous flips, before send=
+ing
+> > the push. The register-based notification is disabled on these platform=
+s,
+> > and an ORIGIN_FLIP frontbuffer flush does not force PSR to exit.
+> >
+> > This can leave an accepted async flip without a completion event after
+> > PSR2 enters DEEP_SLEEP. On Panther Lake, scanout freezes and the kernel
+> > reports "[CRTC:152:pipe A] flip_done timed out". Intel IGT kms_async_fl=
+ips
+> > reproduces the failure with the compositor inactive when a 200 ms idle
+> > interval is inserted before an asynchronous atomic flip.
+> >
+> > Send the PSR frame-change notification after plane programming and befo=
+re
+> > releasing the existing PSR lock. Restrict the push to CRTC states that =
+use
+> > TRANS_PUSH for PSR, leaving other async flips and the synchronous and D=
+SB
+> > paths unchanged.
+> >
+> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9582
+> > Fixes: 129a4da11707 ("drm/i915/psr: Use TRANS_PUSH to trigger frame cha=
+nge event")
+> > Cc: stable@vger.kernel.org
+> > Assisted-by: LLM sparse smatch
+> > Signed-off-by: Vladyslav Yamkovyi <hex@aleph0.ai>
+> > ---
+> > Based on drm-tip (2026-10-13); also applies to v7.3-rc7.
+> >
+> > Runtime-tested on Panther Lake (xe, eDP-1, 2880x1800) with Ubuntu-based
+> > 7.3.0-rc6 kernels, before and after this fix. IGT kms_async_flips,
+> > async-flip-with-page-flip-events-tiled-atomic, dynamic subtest
+> > pipe-A-eDP-1-4-rc-ccs, fails with Flip Timeout before the fix and passe=
+s
+> > afterwards. An LD_PRELOAD interposer inserts one 200 ms idle interval
+> > before the eighth async atomic commit without changing its request or
+> > flags. Both runs enter PSR2 Early Transport DEEP_SLEEP with selective
+> > fetch enabled before that commit.
+> >
+> > Clang 23.1.2, W=3D1 builds and Sparse/Smatch checks of the CRTC, PSR an=
+d VRR
+> > translation units for i915 and Xe produced no new diagnostics.
+> >
+> > OpenAI Codex (GPT-6-Astra) assisted diagnosis, reproducer and fix
+> > development, validation and patch preparation, following requests to
+> > reproduce the freeze independently, trace its driver cause and prepare =
+a
+> > tested upstream fix. I take direct responsibility for this contribution=
+,
+> > have carefully reviewed the change and ensured rigorous local testing.
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_crtc.c | 10 +++++++++-
+> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/dr=
+m/i915/display/intel_crtc.c
+> > index 10ed9bdfee76..8ef24cddbaa6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > @@ -736,8 +736,16 @@ void intel_pipe_update_end(struct intel_atomic_sta=
+te *state,
+> >
+> >       drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
+> >
+> > -     if (new_crtc_state->do_async_flip)
+> > +     if (new_crtc_state->do_async_flip) {
+> > +             /*
+> > +              * LNL+ uses TRANS_PUSH for PSR frame-change notification=
+s.
+> > +              * Async flips skip the vblank path below, but still need=
+ to
+> > +              * notify PSR after programming the new surface address.
+> > +              */
+> > +             if (intel_psr_use_trans_push(new_crtc_state))
+> > +                     intel_vrr_send_push(NULL, new_crtc_state);
+>
+> This will make the behaviour of async flips + VRR inconsistent
+> between platforms where trans push is used for PSR vs. platforms
+> where it's not used. We don't want that.
+>
+> So either we want to start doing trans pushes for all async
+> flips+VRR cases, or we want to disable the PSR trans push usage
+> when async flips are happening. The latter would be the safer
+> option since the mailboxy trans push usage this would cause
+> hasn't been done before. The vblank evasion code does try to
+> handle it, but it's not actually tested.
+>
+> >               goto out;
+> > +     }
+> >
+> >       trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
+> >
+> >
+> > ---
+> > base-commit: eb1bf4700d3b25a1a1e670ef31cc06969fa08019
+> > change-id: 20261013-fix-psr-async-trans-push-bfa6550270c7
+> >
+>
+> --
+> Ville Syrj=C3=A4l=C3=A4
+> Intel
