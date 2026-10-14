@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8F22CC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 11:59:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EC2CC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 11:59:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 806FA10FCF5;
-	Wed, 14 Oct 2026 11:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A54B710FD17;
+	Wed, 14 Oct 2026 11:59:13 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF4BB10FCF8
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 11:59:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BEF110FD07
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 11:59:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791979145; x=1823515145;
+ t=1791979147; x=1823515147;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cjgZMSsQyDNeixrj/JBLHbLaCU/i54stl6umpVDdYLk=;
- b=ARxlMCZdpztW2SdkThdS0LfP6qcPhLl3ZJTzsQ1ycI1HTS2/BbidI9yo
- PoDsF89u4tbVxpEgl+xWe1Y9m43z7PzDUbco1uHdHiIW2YLy4n6OjIQsv
- Kpeb0nR8qfhHo12YPtVuvgXDrT1vB7tc5fe9aUGyKBfXKfKmB6H1EjgRY
- IZmcQjbKJq/VfSmYlO6saCoWv/SMbfxdZ8RrMtgvk6I1+pkOQBrAe5GWQ
- bzEaxAUEgMW2K8Ne6sr81BQseSUi5ttznOY6BjaCvAAx2n/960CZxq/9/
- 1GNPkiRXh2sK2wdpUgrmVfTscWtBVOIfNZPxSIfry3c0sW1DFD19MsbG4 Q==;
-X-CSE-ConnectionGUID: t96CDSZxQt2M8/HCDxa4CA==
-X-CSE-MsgGUID: zjKVTSqiSU+Xc/mcl/SZag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="609560"
+ bh=LhqfoE7P0vctwAd0SSdv6GkAicAbdKtn68IhDKNg1QM=;
+ b=XDCpRL9Zy2fC9IPqBlrBIkLHbtmrS+oolO/QOWbqsM+tAgVMXmhXD5TS
+ x1v4LnPZEuoWM+KzdgVJ2UPBri3hNyMJC3fLMnD0oz2l9g8FiB40ADqNa
+ PrZbBDIbelrmengmBtAaO7Mh+84YQWvxdm7KPHBZFiDJi9umShT1FAme5
+ Giqwo8rFNR5PuuD/kQXRCtwYeeAHvmCXIpiysKUjw2sXLqXVbLfF3AYYg
+ eS9fbokS7eIuwnlRq5WN9TN1jCeiQt/FLb/Ca7sNqHVbaLvbajeELwMIu
+ cd8l1YWBIne0CBTYbodX/ivlb1HZC0T9K01ARIejTYiXkEPRZmssVe+Mi w==;
+X-CSE-ConnectionGUID: jup2ReP9SLuS9/45wf4kHQ==
+X-CSE-MsgGUID: 2yTw92GWTBOJeXnwMBSHew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="609565"
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="609560"
+   d="scan'208";a="609565"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 04:58:56 -0700
-X-CSE-ConnectionGUID: hnqG1hkTRRKtPCRwkcV/iA==
-X-CSE-MsgGUID: y3jMfWrMRGeH1dbii3EWmQ==
+ 14 Oct 2026 04:59:00 -0700
+X-CSE-ConnectionGUID: bVXI7Iz6RxipU4JaHsvzAQ==
+X-CSE-MsgGUID: D8ktDzgjQya8rY6fYHBb8w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1752130"
+   d="scan'208";a="1752142"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 04:58:53 -0700
+ 14 Oct 2026 04:58:57 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v13 01/16] drm/xe/hwmon: Fix pcode power limit handling
-Date: Wed, 14 Oct 2026 17:27:51 +0530
-Message-Id: <20261014115806.831459-2-karthik.poosa@intel.com>
+Subject: [PATCH v13 03/16] drm/xe/hwmon: Fix thermal sensor data handling
+Date: Wed, 14 Oct 2026 17:27:53 +0530
+Message-Id: <20261014115806.831459-4-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261014115806.831459-1-karthik.poosa@intel.com>
 References: <20261014115806.831459-1-karthik.poosa@intel.com>
@@ -67,188 +67,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Return early on pcode read failure in xe_hwmon_pcode_rmw_power_limit()
-and propagate errors to callers.
+Read all required thermal groups in get_mc_temp() and store them in a
+dword-aligned buffer, avoiding unaligned pcode accesses and ensuring
+correct memory controller temperature reporting.
 
-Replace boot_power_limit_read with per-channel
-read_power_limit_from_pcode[], set on the first successful pcode write,
-so reads and writes stay consistent even if the default limit write at
-boot fails.
+Store the pcode thermal data and thermal limit words as little-endian,
+so their per-byte views match the hardware layout on big-endian hosts.
 
-Also return PWR_LIM_EN for power label so card label visibility works.
-
-Fixes: 8aa7306631f0 ("drm/xe/hwmon: Fix xe_hwmon_power_max_write")
+Fixes: 3a0cb885e111 ("drm/xe/hwmon: Expose memory controller temperature")
+Fixes: c332fba805d6 ("drm/xe/hwmon: Expose temperature limits")
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
+v2: Protect the shared thermal data buffer while fetching and averaging
+memory controller temperatures.
 
-v2: Check return in xe_hwmon_get_preregistration_info() also. (Sashiko)
-v3: Track pcode limit updates per channel. (Sashiko)
-
- drivers/gpu/drm/xe/xe_hwmon.c | 77 +++++++++++++++++++++--------------
- 1 file changed, 47 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 33 +++++++++++++++++++++------------
+ 1 file changed, 21 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 5edeac961ec3..c7f936892512 100644
+index 382bf9625a8b..1b4efbf4ac99 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -165,8 +165,8 @@ struct xe_hwmon {
- 	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
- 	/** @fi: Fan info for fanN_input */
- 	struct xe_hwmon_fan_info fi[FAN_MAX];
--	/** @boot_power_limit_read: is boot power limits read */
--	bool boot_power_limit_read;
-+	/** @read_power_limit_from_pcode: pcode accepted power limits write for the channel */
-+	bool read_power_limit_from_pcode[CHANNEL_MAX];
- 	/** @pl1_on_boot: power limit PL1 on boot */
- 	u32 pl1_on_boot[CHANNEL_MAX];
- 	/** @pl2_on_boot: power limit PL2 on boot */
-@@ -175,9 +175,9 @@ struct xe_hwmon {
- 	struct xe_hwmon_thermal_info temp;
+@@ -138,13 +138,17 @@ struct xe_hwmon_thermal_info {
+ 	union {
+ 		/** @limit: temperatures limits */
+ 		u8 limit[TEMP_LIMIT_MAX];
+-		/** @data: temperature limits in dwords */
+-		u32 data[DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32))];
++		/** @data: temperature limits as little-endian dwords */
++		__le32 data[DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32))];
+ 	};
+ 	/** @count: no of temperature sensors available for the platform */
+ 	u8 count;
+-	/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
+-	u8 value[U8_MAX];
++	union {
++		/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
++		u8 value[U8_MAX + 1];
++		/** @dword: sensor values as little-endian dwords, u32-aligned for pcode reads */
++		__le32 dword[DIV_ROUND_UP(U8_MAX + 1, sizeof(u32))];
++	};
+ 	/** @vram_label: vram label names */
+ 	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
  };
- 
--static inline int prepare_power_limit_param2(const struct xe_hwmon *hwmon)
-+static inline int prepare_power_limit_param2(const struct xe_hwmon *hwmon, int channel)
- {
--	if (hwmon->boot_power_limit_read) {
-+	if (hwmon->read_power_limit_from_pcode[channel]) {
- 		if (hwmon->xe->info.platform >= XE_CRESCENTISLAND)
- 			return READ_PL_ACCEPTED;
- 		else
-@@ -198,7 +198,8 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
- 						  (channel == CHANNEL_CARD) ?
- 						  READ_PSYSGPU_POWER_LIMIT :
- 						  READ_PACKAGE_POWER_LIMIT,
--						  prepare_power_limit_param2(hwmon)), &val0, &val1);
-+						  prepare_power_limit_param2(hwmon, channel)),
-+			    &val0, &val1);
- 
- 	if (ret) {
- 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
-@@ -213,14 +214,14 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
- 	else if (attr == PL2_HWMON_ATTR)
- 		*uval = (val1 & PWR_LIM_EN) ? val1 : 0;
- 	else if (attr == hwmon_power_label)
--		*uval = (val0 & PWR_LIM_EN) ? 1 : (val1 & PWR_LIM_EN) ? 1 : 0;
-+		*uval = (val0 | val1) & PWR_LIM_EN;
- 	else
- 		*uval = 0;
- 
- 	return ret;
- }
- 
--static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr, u8 channel,
-+static int xe_hwmon_pcode_rmw_power_limit(struct xe_hwmon *hwmon, u32 attr, u8 channel,
- 					  u32 clr, u32 set)
+@@ -807,16 +811,17 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
+ static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
  {
  	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-@@ -231,10 +232,13 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
- 						  (channel == CHANNEL_CARD) ?
- 						  READ_PSYSGPU_POWER_LIMIT :
- 						  READ_PACKAGE_POWER_LIMIT,
--						  prepare_power_limit_param2(hwmon)), &val0, &val1);
--	if (ret)
--		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
-+						  prepare_power_limit_param2(hwmon, channel)),
-+			    &val0, &val1);
-+	if (ret) {
-+		drm_err(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
- 			channel, val0, val1, ret);
-+		return ret;
-+	}
+-	u32 config = 0;
++	u32 config = 0, data0 = 0, data1 = 0;
+ 	int ret;
  
- 	if (attr == PL1_HWMON_ATTR)
- 		val0 = (val0 & ~clr) | set;
-@@ -248,10 +252,17 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
- 							     WRITE_PSYSGPU_POWER_LIMIT :
- 							     WRITE_PACKAGE_POWER_LIMIT, 0),
- 							     val0, val1, PCODE_DEFAULT_TIMEOUT_MS);
--	if (ret)
-+	if (ret) {
- 		drm_dbg(&hwmon->xe->drm, "write failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
- 			channel, val0, val1, ret);
--	return ret;
-+		return ret;
-+	}
+ 	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_LIMITS, 0),
+-			    &hwmon->temp.data[0], &hwmon->temp.data[1]);
++			    &data0, &data1);
+ 	if (ret)
+ 		return ret;
+ 
+-	drm_dbg(&hwmon->xe->drm, "thermal info read val 0x%x val1 0x%x\n",
+-		hwmon->temp.data[0], hwmon->temp.data[1]);
++	drm_dbg(&hwmon->xe->drm, "thermal info read val 0x%x val1 0x%x\n", data0, data1);
++	hwmon->temp.data[0] = cpu_to_le32(data0);
++	hwmon->temp.data[1] = cpu_to_le32(data1);
+ 
+ 	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_CONFIG, 0),
+ 			    &config, NULL);
+@@ -840,16 +845,20 @@ static int mbx_temp_decode(u8 value)
+ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ {
+ 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+-	u32 *dword = (u32 *)hwmon->temp.value;
+ 	s32 average = 0;
+ 	int ret, i;
+ 
+-	for (i = 0; i < DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32)); i++) {
++	guard(mutex)(&hwmon->hwmon_lock);
 +
-+	/* Read from pcode once it holds a driver-written limit */
-+	if (!hwmon->read_power_limit_from_pcode[channel])
-+		hwmon->read_power_limit_from_pcode[channel] = true;
++	for (i = 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
++		u32 data = 0;
 +
-+	return 0;
- }
+ 		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
+-				    (dword + i), NULL);
++				    &data, NULL);
+ 		if (ret)
+ 			return ret;
+-		drm_dbg(&hwmon->xe->drm, "thermal data for group %d val 0x%x\n", i, dword[i]);
++		drm_dbg(&hwmon->xe->drm, "thermal data for group %d val 0x%x\n", i, data);
++		hwmon->temp.dword[i] = cpu_to_le32(data);
+ 	}
  
- static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
-@@ -394,7 +405,9 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 		if (hwmon->xe->info.has_mbx_power_limits) {
- 			drm_dbg(&hwmon->xe->drm, "disabling %s on channel %d\n",
- 				PWR_ATTR_TO_STR(attr), channel);
--			xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
-+			ret = xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
-+			if (ret)
-+				goto unlock;
- 			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
- 		} else {
- 			reg_val = xe_mmio_rmw32(mmio, rapl_limit, PWR_LIM_EN, 0);
-@@ -679,15 +692,19 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
--	if (hwmon->xe->info.has_mbx_power_limits)
--		xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
--	else
-+	ret = count;
-+	if (hwmon->xe->info.has_mbx_power_limits) {
-+		ret = xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
-+		if (!ret)
-+			ret = count;
-+	} else {
- 		r = xe_mmio_rmw32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel),
- 				  PWR_LIM_TIME, rxy);
-+	}
- 
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
--	return count;
-+	return ret;
- }
- 
- /* PSYS PL1 */
-@@ -1511,22 +1528,22 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
- 		} else {
- 			drm_info(&hwmon->xe->drm, "Using mailbox commands for power limits\n");
- 			/* Write default limits to read from pcode from now on. */
--			xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
--						       CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
--						       hwmon->pl1_on_boot[CHANNEL_CARD]);
--			xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
--						       CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
--						       hwmon->pl1_on_boot[CHANNEL_PKG]);
--			xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
--						       CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
--						       hwmon->pl2_on_boot[CHANNEL_CARD]);
--			xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
--						       CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
--						       hwmon->pl2_on_boot[CHANNEL_PKG]);
-+			if (xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
-+							   CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
-+							   hwmon->pl1_on_boot[CHANNEL_CARD]) |
-+			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
-+							   CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
-+							   hwmon->pl1_on_boot[CHANNEL_PKG]) |
-+			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
-+							   CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
-+							   hwmon->pl2_on_boot[CHANNEL_CARD]) |
-+			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
-+							   CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
-+							   hwmon->pl2_on_boot[CHANNEL_PKG]))
-+				drm_warn(&hwmon->xe->drm, "Failed to set default power limits\n");
- 			hwmon->scl_shift_power = PWR_UNIT;
- 			hwmon->scl_shift_energy = ENERGY_UNIT;
- 			hwmon->scl_shift_time = TIME_UNIT;
--			hwmon->boot_power_limit_read = true;
- 		}
- 	} else {
- 		drm_info(&hwmon->xe->drm, "Using register for power limits\n");
+ 	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++)
 -- 
 2.25.1
 
