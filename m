@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93588CC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:06:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC87CC6B1A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:06:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5535310FD1D;
-	Wed, 14 Oct 2026 12:06:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE29E10FD40;
- Wed, 14 Oct 2026 12:06:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD69A10FD48;
+	Wed, 14 Oct 2026 12:06:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13C4E10FD2E;
+ Wed, 14 Oct 2026 12:06:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791979565; x=1823515565;
+ t=1791979570; x=1823515570;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rEaXSvZR6mohSINKWxErJDUxTLW/qFScsHfceYQGhyU=;
- b=kjAOr/UymkqJXoAqnZuwSJySEA3qGeFcryzvdgnG7QOHC3aaV30YNYmk
- XT6nc9pnjnxRvnjQlKWJ/frteX3WsVoe5G4sXkCPb29/+rvgxagpV2k27
- cODUTZiDmwqXu6RncQPixVt7LW0zCz4SW5clNYmTum687ohHUB3SC218W
- 1DLnTLKDLQN+0ekhWA/J/JvPs/uHQuaE2QHECwSgkFruMyaW2V5erKk/1
- m2fgsEOAiy3l9F+vw3Doiogfe0f5A2ZjJEqArqVwPJt67Azc/maCf9UWj
- Y0hBsqgCxNClAuxrWlDjvbJh83VfkAblJ8YL+QzdnsDJkiTUjui86gp+g Q==;
-X-CSE-ConnectionGUID: IxhKB4uITSenrBJf42o2HQ==
-X-CSE-MsgGUID: vnHC1RJXS9ObLIDqjNbPZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="726975"
+ bh=p6+oHtJyxlg11NU5rFudE5VxoJKLuhsaZyZlxsO2oUE=;
+ b=MPZ14ShcaRhJwG+vYlgVCutZY1AfScyrqyEnp28bddLas5lej4CJqxly
+ X30DenucN9lCAGe4+8UPU19NFrU+GblhbS3nbiY/90PnR5pHZG2b8GNck
+ XcIJnscXxGqeIfQuAcQqCDkjIF4QSO/gbqEPbDSa8BtQlRXBy7cF0Zduz
+ CfiFbUhGSQSKUt0aa1HLW9g8NebUjzPydPT3/37oEYL7xa/Xvch8OTwEa
+ olCQkLWT5s1x3Cgki21Crt6l1DhG/VGVhLsDeQ6OlPZEBNX+hPTOHKGgH
+ Onk9o03jDyUqqxqb5IoZpr4OqCUEPnB90YYkfU/r+KgM4mn1X1PoCtaiu A==;
+X-CSE-ConnectionGUID: hixHrXBgT0agvsHWsiQ7aQ==
+X-CSE-MsgGUID: gW1LRS13SmKzXDg3+fZ26g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739801"
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="726975"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:06:05 -0700
-X-CSE-ConnectionGUID: +BoXiUWBRfaGAJJzP+xZrQ==
-X-CSE-MsgGUID: ND+aCU2QSze+HIUjOSeGqQ==
+   d="scan'208";a="739801"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 05:06:09 -0700
+X-CSE-ConnectionGUID: EcQzEccvQISpxzfZVGS1rA==
+X-CSE-MsgGUID: mGEf6Em8TTCFwixETGTDhA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1359301"
+   d="scan'208";a="1736827"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:06:03 -0700
+ 14 Oct 2026 05:06:07 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/6] drm/i915/de: Implement intel_de_posting_read() via
- intel_de_read()
-Date: Wed, 14 Oct 2026 15:05:41 +0300
-Message-ID: <20261014120542.29675-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 6/6] drm/xe: Remove unused uncore wrappers
+Date: Wed, 14 Oct 2026 15:05:42 +0300
+Message-ID: <20261014120542.29675-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
 References: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
@@ -72,36 +71,68 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Simplify the intel_de_posting_read() implementation by just
-calling intel_de_read(). The only difference between a normal
-read and posting read is the return value (u32 vs. void).
-
-This will reduce the uncore usage footprint of intel_de.h,
-which will help with cleaning up the final uncore i915 vs. xe
-mess.
+intel_uncore_read64_2x32(), intel_uncore_posting_read(),
+and intel_uncore_rmw() are no longer used by the display code.
+Nuke the wrappers.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.h | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ .../drm/xe/compat-i915-headers/intel_uncore.h | 35 -------------------
+ 1 file changed, 35 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 3339567496e9..5d3aeaf6a70f 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -50,11 +50,7 @@ intel_de_read64_2x32(struct intel_display *display, intel_reg_t reg)
- static inline void
- intel_de_posting_read(struct intel_display *display, intel_reg_t reg)
- {
--	intel_dmc_wl_get(display, reg);
--
--	intel_uncore_posting_read(__to_uncore(display), reg);
--
--	intel_dmc_wl_put(display, reg);
-+	intel_de_read(display, reg);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index b8ea8f5b22d1..2f198e2e2fec 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -55,33 +55,6 @@ static inline u16 intel_uncore_read16(struct intel_uncore *uncore,
+ 	return xe_mmio_read16(__compat_uncore_to_mmio(uncore), reg);
  }
  
- static inline void
+-static inline u64
+-intel_uncore_read64_2x32(struct intel_uncore *uncore,
+-			 i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
+-{
+-	struct xe_reg lower_reg = XE_REG(i915_mmio_reg_offset(i915_lower_reg));
+-	struct xe_reg upper_reg = XE_REG(i915_mmio_reg_offset(i915_upper_reg));
+-	u32 upper, lower, old_upper;
+-	int loop = 0;
+-
+-	upper = xe_mmio_read32(__compat_uncore_to_mmio(uncore), upper_reg);
+-	do {
+-		old_upper = upper;
+-		lower = xe_mmio_read32(__compat_uncore_to_mmio(uncore), lower_reg);
+-		upper = xe_mmio_read32(__compat_uncore_to_mmio(uncore), upper_reg);
+-	} while (upper != old_upper && loop++ < 2);
+-
+-	return (u64)upper << 32 | lower;
+-}
+-
+-static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
+-					     i915_reg_t i915_reg)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	xe_mmio_read32(__compat_uncore_to_mmio(uncore), reg);
+-}
+-
+ static inline void intel_uncore_write(struct intel_uncore *uncore,
+ 				      i915_reg_t i915_reg, u32 val)
+ {
+@@ -90,14 +63,6 @@ static inline void intel_uncore_write(struct intel_uncore *uncore,
+ 	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+ }
+ 
+-static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
+-				   i915_reg_t i915_reg, u32 clear, u32 set)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
+-}
+-
+ static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
+ 				       i915_reg_t i915_reg)
+ {
 -- 
 2.55.0
 
