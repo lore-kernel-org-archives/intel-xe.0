@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BB9CCC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:06:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C74F5CC6B1A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:06:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C89A810FD3A;
-	Wed, 14 Oct 2026 12:05:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 812BC10FD5A;
+	Wed, 14 Oct 2026 12:06:00 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84D9610FD2C;
- Wed, 14 Oct 2026 12:05:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB85110FD2E;
+ Wed, 14 Oct 2026 12:05:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791979551; x=1823515551;
+ t=1791979554; x=1823515554;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=REMPzTjXPdR/aGi72tB8l8UhqIznGteEg3e52Lq+67A=;
- b=lIUwFeKC54OkIyRKpWs9ShGSwd449jvtrbPB38ao3w8V6ZAQot2McGly
- Z/MhRdC77tmHJPlfSsBtdDEe6T9jnSGTOf2LY66ttTkGToZa9N74Dx96F
- fX8YK2V3K2bEV68ZCQt2jaHpH5cprCjc3RWEjFTHHNXzjo53/BZ0u+M3s
- ilU+fhhoC1nVXy/IV3odnzcd2nmybGiPWojEfbIbEApxrE+KwS1iDiUyW
- wAXg3P4WstTqRAc4CE9TP/ATvZ4RNpwwowVlw4d8Nn+naKo+3HIfHOI9/
- gmXH3uNkpzGxq3q/YynmRu3jpHjsRT7vYMwk+LdPoyCSIig4VDwdmW2fA g==;
-X-CSE-ConnectionGUID: H8IVtiFESOGTk5M0k4TyJA==
-X-CSE-MsgGUID: jcsoFIQIQ/2MoGPUQfzA+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739795"
+ bh=dDo8uHdtnyFD6ptbUBrafd3RaVJ+Jfw8sH1jCYrl2S0=;
+ b=XpkxvH2xOlD1htBLrRkyrZSmnEYAhi1+7i8vUZfVBRTmgEYkvDDtcXco
+ 5cx9yxT/LeQuQUgrBX42KDsaA32m7olL+tNcodXbA60AZ62A4CTnu88JE
+ u1GbsMfr45YpyxGGx0r6p/Kn5AkmJTLFjbni9FJRmJtArqznj+HC3BTIk
+ htQdRCuukQyetdVH5mYgJAigm/AZopdGlfC0jHS8fCBFn7ilkSBl8z/dX
+ yj0DNavHSI05QKflINmqDnReU7SwCYJhNWDUuFx2ISaykgzA9ndamS6l2
+ 5xoywWJ/Xw1XbObnoanQ/aEp3KD8egcFk6sgwC5SMHQqnGpZwwMu++scS g==;
+X-CSE-ConnectionGUID: Kd8AmBKeTwekiLmCIlt4DQ==
+X-CSE-MsgGUID: 2v+9XqGuTcaMWrms5IUXGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739796"
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="739795"
+   d="scan'208";a="739796"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:05:51 -0700
-X-CSE-ConnectionGUID: xvAE8EnNQ0S/vHZZ14rP5A==
-X-CSE-MsgGUID: EmTjhROrR2u/AAu0PVxtQQ==
+ 14 Oct 2026 05:05:54 -0700
+X-CSE-ConnectionGUID: kj0mrbpJQuWzwgJGlKhVWA==
+X-CSE-MsgGUID: nNkUAjmrTAmSd99s+1/trg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1736778"
+   d="scan'208";a="1736783"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:05:49 -0700
+ 14 Oct 2026 05:05:52 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/6] drm/i915: s/PIPEFRAME/PIPEFRAMEHIGH/
-Date: Wed, 14 Oct 2026 15:05:37 +0300
-Message-ID: <20261014120542.29675-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/6] drm/i915: Modernize PIPEFRAMEHIGH/PIPEFRAMEPIXEL bits
+Date: Wed, 14 Oct 2026 15:05:38 +0300
+Message-ID: <20261014120542.29675-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
 References: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
@@ -71,41 +71,78 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Rename PIPEFRAME to PIPEFRAMEHIGH to match the spec, and
-better convey what the register contains.
+Define the contents of PIPEFRAMEHIGH/PIPEFRAMEPIXEL using
+the modern REG_GENMASK() stuff.
+
+For the actual frame counter read we combine the registers
+into a single 64bit value and then extract the frame
+counter value from it, so we also need a combined 64bit
+PIPE_FRAME_MASK definition as well.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_regs.h | 2 +-
- drivers/gpu/drm/i915/display/intel_vblank.c       | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 12 ++++++------
+ drivers/gpu/drm/i915/display/intel_vblank.c       |  9 ++++++---
+ 2 files changed, 12 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 8251ec15190b..c868a71a5c9b 100644
+index c868a71a5c9b..2f509bd06557 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -1089,7 +1089,7 @@
-  *  frame = (high1 << 8) | low1;
+@@ -1090,15 +1090,15 @@
   */
  #define _PIPEAFRAMEHIGH          0x70040
--#define PIPEFRAME(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
-+#define PIPEFRAMEHIGH(dev_priv, pipe)	_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
- #define   PIPE_FRAME_HIGH_MASK    0x0000ffff
- #define   PIPE_FRAME_HIGH_SHIFT   0
+ #define PIPEFRAMEHIGH(dev_priv, pipe)	_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
+-#define   PIPE_FRAME_HIGH_MASK    0x0000ffff
+-#define   PIPE_FRAME_HIGH_SHIFT   0
++#define   PIPE_FRAME_HIGH_MASK	REG_GENMASK(15, 0)
  
+ #define _PIPEAFRAMEPIXEL         0x70044
+ #define PIPEFRAMEPIXEL(dev_priv, pipe)	_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEPIXEL)
+-#define   PIPE_FRAME_LOW_MASK     0xff000000
+-#define   PIPE_FRAME_LOW_SHIFT    24
+-#define   PIPE_PIXEL_MASK         0x00ffffff
+-#define   PIPE_PIXEL_SHIFT        0
++#define   PIPE_FRAME_LOW_MASK	REG_GENMASK(31, 24)
++#define   PIPE_PIXEL_MASK	REG_GENMASK(23, 0)
++
++/* frame counter mask for a combined 64bit value */
++#define   PIPE_FRAME_MASK	((u64)PIPE_FRAME_HIGH_MASK << 32 | PIPE_FRAME_LOW_MASK)
+ 
+ /* GM45+ just has to be different */
+ #define _PIPEA_FRMCOUNT_G4X	0x70040
 diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 28d81199792e..f16988cd5321 100644
+index f16988cd5321..a01be2e34bc9 100644
 --- a/drivers/gpu/drm/i915/display/intel_vblank.c
 +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -110,7 +110,7 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
- 	 * register.
- 	 */
+@@ -112,8 +112,8 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
  	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
--					      PIPEFRAME(display, pipe));
-+					      PIPEFRAMEHIGH(display, pipe));
+ 					      PIPEFRAMEHIGH(display, pipe));
  
- 	pixel = frame & PIPE_PIXEL_MASK;
- 	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
+-	pixel = frame & PIPE_PIXEL_MASK;
+-	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
++	pixel = REG_FIELD_GET(PIPE_PIXEL_MASK, frame);
++	frame = REG_FIELD_GET64(PIPE_FRAME_MASK, frame);
+ 
+ 	/*
+ 	 * The frame counter increments at beginning of active.
+@@ -388,12 +388,15 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 		 */
+ 		position = __intel_get_crtc_scanline(crtc);
+ 	} else {
++		u32 val;
++
+ 		/*
+ 		 * Have access to pixelcount since start of frame.
+ 		 * We can split this into vertical and horizontal
+ 		 * scanout position.
+ 		 */
+-		position = (intel_de_read_fw(display, PIPEFRAMEPIXEL(display, pipe)) & PIPE_PIXEL_MASK) >> PIPE_PIXEL_SHIFT;
++		val = intel_de_read_fw(display, PIPEFRAMEPIXEL(display, pipe));
++		position = REG_FIELD_GET(PIPE_PIXEL_MASK, val);
+ 
+ 		/* convert to pixel counts */
+ 		vbl_start *= htotal;
 -- 
 2.55.0
 
