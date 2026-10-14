@@ -4,57 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CC87CC6B1A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:06:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 394BFCC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:11:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD69A10FD48;
-	Wed, 14 Oct 2026 12:06:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C4E10FD2E;
- Wed, 14 Oct 2026 12:06:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791979570; x=1823515570;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=p6+oHtJyxlg11NU5rFudE5VxoJKLuhsaZyZlxsO2oUE=;
- b=MPZ14ShcaRhJwG+vYlgVCutZY1AfScyrqyEnp28bddLas5lej4CJqxly
- X30DenucN9lCAGe4+8UPU19NFrU+GblhbS3nbiY/90PnR5pHZG2b8GNck
- XcIJnscXxGqeIfQuAcQqCDkjIF4QSO/gbqEPbDSa8BtQlRXBy7cF0Zduz
- CfiFbUhGSQSKUt0aa1HLW9g8NebUjzPydPT3/37oEYL7xa/Xvch8OTwEa
- olCQkLWT5s1x3Cgki21Crt6l1DhG/VGVhLsDeQ6OlPZEBNX+hPTOHKGgH
- Onk9o03jDyUqqxqb5IoZpr4OqCUEPnB90YYkfU/r+KgM4mn1X1PoCtaiu A==;
-X-CSE-ConnectionGUID: hixHrXBgT0agvsHWsiQ7aQ==
-X-CSE-MsgGUID: gW1LRS13SmKzXDg3+fZ26g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739801"
-X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="739801"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:06:09 -0700
-X-CSE-ConnectionGUID: EcQzEccvQISpxzfZVGS1rA==
-X-CSE-MsgGUID: mGEf6Em8TTCFwixETGTDhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1736827"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.13])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:06:07 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/xe: Remove unused uncore wrappers
-Date: Wed, 14 Oct 2026 15:05:42 +0300
-Message-ID: <20261014120542.29675-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
-References: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4C7A10FD67;
+	Wed, 14 Oct 2026 12:11:31 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3406010FD67
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 12:11:26 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 5FB2A600DA;
+ Wed, 14 Oct 2026 12:11:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB7CF1F000FF;
+ Wed, 14 Oct 2026 12:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791979885;
+ bh=fGFheuKnjYk8Joefyd/+Np/ZgiBTT/VVqEBL75kNjiE=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=dy568fnQA4ZXSRhQk9Tf1ixzZ7lPXgf9jHNTdyA/pEsl3A0T4mA9Dx9u1znj1yYWc
+ zxTBwcjXBbgdd7vwlXbgJFsopPYJYHRxu5tesUT5G2A3jUuxnzJr1UC9zg0hvhdGul
+ 2t/kq9o24bnqNtT9prY/xikfOypBLwCWaQL1Jtzgu0TIJFU7Z40ZypmksuQ/rOFeyd
+ n8PVm81RMY2JPR4uTGcdHbnIqHjhyp0abz5eEPEmJhs3D+PZebhTzpdRS1qCM5gWxD
+ Jh2KhZZArfMjITBeBGPrSTpsovadgSL1RohFT4i4b12XNx5+6LfNXc7SXx1RDTrp8g
+ KfxDkBO1rd6tA==
+Message-ID: <sashiko-outbox-171241@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v13 04/16] drm/xe/hwmon: Add helpers to validate thermal
+ sensor readings
+To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261014115806.831459-5-karthik.poosa@intel.com>
+References: <20261014115806.831459-1-karthik.poosa@intel.com>
+ <20261014115806.831459-5-karthik.poosa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 14 Oct 2026 12:11:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,73 +49,70 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Low] drm/xe/hwmon: mbx_temp_valid() fails to reject 0x80 (-0=C2=B0C) as =
+invalid
+--
 
-intel_uncore_read64_2x32(), intel_uncore_posting_read(),
-and intel_uncore_rmw() are no longer used by the display code.
-Nuke the wrappers.
+commit cc835292455ece8a38adb02fe6e4c345fc3aa89a
+Author: Karthik Poosa <karthik.poosa@intel.com>
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- .../drm/xe/compat-i915-headers/intel_uncore.h | 35 -------------------
- 1 file changed, 35 deletions(-)
+drm/xe/hwmon: Add helpers to validate thermal sensor readings
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index b8ea8f5b22d1..2f198e2e2fec 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -55,33 +55,6 @@ static inline u16 intel_uncore_read16(struct intel_uncore *uncore,
- 	return xe_mmio_read16(__compat_uncore_to_mmio(uncore), reg);
- }
- 
--static inline u64
--intel_uncore_read64_2x32(struct intel_uncore *uncore,
--			 i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
--{
--	struct xe_reg lower_reg = XE_REG(i915_mmio_reg_offset(i915_lower_reg));
--	struct xe_reg upper_reg = XE_REG(i915_mmio_reg_offset(i915_upper_reg));
--	u32 upper, lower, old_upper;
--	int loop = 0;
--
--	upper = xe_mmio_read32(__compat_uncore_to_mmio(uncore), upper_reg);
--	do {
--		old_upper = upper;
--		lower = xe_mmio_read32(__compat_uncore_to_mmio(uncore), lower_reg);
--		upper = xe_mmio_read32(__compat_uncore_to_mmio(uncore), upper_reg);
--	} while (upper != old_upper && loop++ < 2);
--
--	return (u64)upper << 32 | lower;
--}
--
--static inline void intel_uncore_posting_read(struct intel_uncore *uncore,
--					     i915_reg_t i915_reg)
--{
--	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
--
--	xe_mmio_read32(__compat_uncore_to_mmio(uncore), reg);
--}
--
- static inline void intel_uncore_write(struct intel_uncore *uncore,
- 				      i915_reg_t i915_reg, u32 val)
- {
-@@ -90,14 +63,6 @@ static inline void intel_uncore_write(struct intel_uncore *uncore,
- 	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
- }
- 
--static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
--				   i915_reg_t i915_reg, u32 clear, u32 set)
--{
--	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
--
--	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
--}
--
- static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
- 				       i915_reg_t i915_reg)
- {
--- 
-2.55.0
+This commit adds mmio_temp_valid() and mbx_temp_valid() to validate
+temperature sensor readings. It uses the has_temp_sentinel flag to gate
+these checks and rejects 0xFF for mailbox and 0xFFFFFFFF for MMIO.
 
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 1b4efbf4ac999..883a0ae1d90e3 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+[ ... ]
+> @@ -834,6 +837,30 @@ static int xe_hwmon_pcode_read_thermal_info(struct x=
+e_hwmon *hwmon)
+>  	return ret;
+>  }
+[ ... ]
+> +/* Mailbox temperature is sign-magnitude (bit 7 sign, bits 6:0 magnitude=
+). */
+> +static inline bool mbx_temp_valid(const struct xe_hwmon *hwmon, u8 value)
+> +{
+> +	if (value =3D=3D TEMP_MBX_INVALID)
+> +		return false;
+> +
+> +	return hwmon->xe->info.has_temp_sentinel || value !=3D 0;
+
+[Severity: Low]
+Does this raw byte check fail to reject 0x80?
+
+Since 0x80 represents -0 degrees Celsius in the sign-magnitude format (sign
+bit 7 is set, magnitude bits 6:0 are zero), it evaluates to true here
+because 0x80 is not equal to 0.
+
+> +}
+> +
+> +/* Decode an 8-bit sign-magnitude mailbox temperature to degrees Celsius=
+. */
+> +static int mbx_temp_decode(u8 value)
+> +{
+> +	int temp =3D value & TEMP_MBX_MAG;
+> +
+> +	return (value & TEMP_MBX_SIGN) ? -temp : temp;
+
+If 0x80 is passed here, it decodes to 0 degrees Celsius.
+
+This means the fallback safety logic in mbx_temp_valid() intended to reject
+uninitialized 0 degrees Celsius readings can be bypassed if the hardware
+returns 0x80 instead of 0x00. This could fold invalid readings into the
+temperature average.
+
+> +}
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261014115806.8314=
+59-1-karthik.poosa@intel.com?part=3D4
