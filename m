@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84754CC6B2A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 23:06:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C496FCC6B2A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 23:09:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3826C10EB5D;
-	Wed, 14 Oct 2026 23:06:41 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B537D10E6A1;
- Wed, 14 Oct 2026 23:06:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7226272469506102671=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 857E010E6A1;
+	Wed, 14 Oct 2026 23:09:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF0D10E6A1;
+ Wed, 14 Oct 2026 23:09:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792019357; x=1823555357;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=OrtcZbcrtNsgq9mKxP4mO0S3UWMUQ5hc58zOZIiX8tA=;
+ b=fFBy28C5A1GzDiO3pGYemjJ84bKgaLco0qvp8GiLz+Qou0mn556EExY6
+ YEXch0+Z+flobFM/Um85WXzpdSFeRMUxZKxbnL2r2/zeqQPmuuWPFhdij
+ Vow0ZnqyJwQEmFa8EkBmm5cmK1BVt17awRp70n4a9zEvmkD5ribTp44H4
+ ZSERf6H+Gns9DNg3wjVu/4jYVsnnEUq3YVGT027f4cPgsoB0OZIq8RfxB
+ Ta73/VGQ9BGg+JlcQMd+E6gudqVXnbaUk6IrcPWPJPCImwABkWDMP2mcm
+ f+6ye/AlMlmuw0/VqJhHTA/tdY+zhTWh1zDCqHRqiM28E1y3lGJwofCyV A==;
+X-CSE-ConnectionGUID: 9+M8i6U9S+yUOjeWrSMhIQ==
+X-CSE-MsgGUID: jcF2lyzgTBCUShourIUYtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="784612"
+X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
+   d="scan'208";a="784612"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 16:09:17 -0700
+X-CSE-ConnectionGUID: qiNwdMLoTt2luNl9iD7Y1Q==
+X-CSE-MsgGUID: +dlLLQivTciQsB00vZkkFQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
+   d="scan'208";a="1650449"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+ by fmviesa002.fm.intel.com with ESMTP; 14 Oct 2026 16:09:15 -0700
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1xH85w-00000000FKd-0Q4c;
+ Wed, 14 Oct 2026 23:09:12 +0000
+Date: Thu, 15 Oct 2026 07:08:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ Matthew Auld <matthew.auld@intel.com>,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>
+Subject: Re: [PATCH 2/2] gpu/tests/buddy: Add range-bias pruning and
+ free-order tracking tests
+Message-ID: <202610150607.yXtmKb5N-lkp@intel.com>
+References: <20298d0d2eb7f62ed5f75c460710c4e13fc94aee.1791802549.git.sanjay.kumar.yadav@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Move_the_PLL_power_save_W/A?=
- =?utf-8?q?_to_the_display_W/A_framework_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 Oct 2026 23:06:40 -0000
-Message-ID: <179201920073.26307.15565896613021632339@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261014105306.2761683-1-mika.kahola@intel.com>
-In-Reply-To: <20261014105306.2761683-1-mika.kahola@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20298d0d2eb7f62ed5f75c460710c4e13fc94aee.1791802549.git.sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +69,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7226272469506102671==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Sanjay,
 
-== Series Details ==
+kernel test robot noticed the following build errors:
 
-Series: Move the PLL power save W/A to the display W/A framework (rev4)
-URL   : https://patchwork.freedesktop.org/series/175834/
-State : success
+[auto build test ERROR on drm-misc/drm-misc-next]
+[also build test ERROR on drm-tip/drm-tip next-20261012]
+[cannot apply to linus/master v7.3-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Sanjay-Yadav/gpu-buddy-Prune-exhausted-subtrees-in-range-biased-allocation/20261012-164046
+base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
+patch link:    https://lore.kernel.org/r/20298d0d2eb7f62ed5f75c460710c4e13fc94aee.1791802549.git.sanjay.kumar.yadav%40intel.com
+patch subject: [PATCH 2/2] gpu/tests/buddy: Add range-bias pruning and free-order tracking tests
+config: arm-randconfig-1003-20261013 (https://download.01.org/0day-ci/archive/20261015/202610150607.yXtmKb5N-lkp@intel.com/config)
+compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20261015/202610150607.yXtmKb5N-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-5948-e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e_BAT -> xe-pw-175834v4_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202610150607.yXtmKb5N-lkp@intel.com/
 
-Summary
--------
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-  **SUCCESS**
+>> ERROR: modpost: drivers/gpu/tests/gpu_buddy_tests.ko: symbol '__aeabi_uldivmod' undefined!
 
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5948-e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e -> xe-pw-175834v4
-
-  IGT_9146: 9e6040664f13f0767bb4d1028b422b7ee00425dc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5948-e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e: e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e
-  xe-pw-175834v4: 175834v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175834v4/index.html
-
---===============7226272469506102671==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Move the PLL power save W/A to the display W/A framework (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175834/">https://patchwork.freedesktop.org/series/175834/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175834v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175834v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5948-e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e_BAT -&gt; xe-pw-175834v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5948-e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e -&gt; xe-pw-175834v4</li>
-</ul>
-<p>IGT_9146: 9e6040664f13f0767bb4d1028b422b7ee00425dc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5948-e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e: e6ef773b81a0b833e4ee3cf4ccc4bc472397db7e<br />
-  xe-pw-175834v4: 175834v4</p>
-
-</body>
-</html>
-
---===============7226272469506102671==--
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
