@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F2C7CC6B1A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:44:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98ACBCC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:44:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A5AB10FDFE;
-	Wed, 14 Oct 2026 13:44:03 +0000 (UTC)
-Received: from host3.o27bbn.ondsl.gr (host3.o27bbn.ondsl.gr [79.129.74.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F332B10E72F;
- Tue, 13 Oct 2026 05:39:32 +0000 (UTC)
-Received: from mail.e-psn.eu (cluster-localnode [10.200.210.1])
- by mail.e-psn.eu (Postfix) with ESMTPA id 8D800384259D;
- Tue, 13 Oct 2026 05:39:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=e-psn.eu; s=default;
- t=1791869970; h=from:from:reply-to:reply-to:subject:subject:date:date:
- message-id:message-id:to:to:cc:cc:mime-version:mime-version:
- content-type:content-type; bh=2NpAp98+aDTsJD73ZxUrmQmFtE8jXYR7xPbn+CrA0qw=;
- b=MxNgZ6NhpYABr0qVEcxcUSBwTXDQUsg9MK4umy7LHTu6i/7L19Vggs7ji+v3QR5XL5vsqz
- 5CsWoM1lN76WPlQ4POpRtHNaqTHTcTAQaO52OuauvUZMygv1gH/hWJU9lbUevntcJ9z8ZT
- U68fBbZmWJlb6+gzq1cvkHyiQNB/eGbasuGLSxbM/lcO66EZlMGV5Dj707jZ2iJvJPxoPF
- 9lkQefvmmaZS6Q8KS+41oWuWzG0dJOeLQGYZ47KUxxsICnRTceaPr9TZf+2MWfjmYqyl+Q
- fMrkH80j163VAG6LmtEJZMJ4n5FMTOQKikK8IygxkP2Zwx7JKqHmfVnTdef0dQ==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F10A10FDFF;
+	Wed, 14 Oct 2026 13:44:06 +0000 (UTC)
+X-Greylist: delayed 1164 seconds by postgrey-1.36 at gabe;
+ Wed, 14 Oct 2026 10:14:47 UTC
+Received: from spark.kcore.it (spark.kcore.it [49.13.27.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1007110E371;
+ Wed, 14 Oct 2026 10:14:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kcore.it;
+ s=spark; h=References:In-Reply-To:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date;
+ bh=MGpHu0f14Q5TwLfq2LBRjQIPaF1PJLbbc1dVWU+dzmA=; b=iNIefWQf7xFRc0zmJwxJ8+qYN6
+ 6CkXohhpdC+Uy5pikF7FXbT6u4Fhu6gM6rGgCPSTo3FKXh7spNzdGHp3OFGYdhiwhsjQT8P7rDLOl
+ QgwL5wfR//J+6Ij6NTOanC2wiK5Ey6XlB0PN2Elfttar3JZP5PhM1RRC7YSje5G26b0c=;
+Received: from mnencia by spark.kcore.it with local (Exim 4.100.1)
+ (envelope-from <mnencia@kcore.it>) id 1xGvhf-00000000Jhp-0Hdn;
+ Wed, 14 Oct 2026 11:55:19 +0200
+Date: Wed, 14 Oct 2026 11:55:19 +0200
+From: Marco Nenciarini <mnencia@kcore.it>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com, jani.nikula@linux.intel.com, lyude@redhat.com,
+ xiaolu.xie@intel.com
+Subject: Re: [PATCH] drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS
+ off/on
+Message-ID: <as9Rh1Yt8Fkj6JpE@spark.kcore.it>
 MIME-Version: 1.0
-Date: Tue, 13 Oct 2026 08:39:30 +0300
-From: Constantinos Chalkias <cch@e-psn.eu>
-To: simon.richter@hogyros.de
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
- force-wake
-Mail-Reply-To: cch@e-psn.eu
-Message-ID: <5b9625f2276630e1c8822c89c8f6288b@e-psn.eu>
-X-Sender: cch@e-psn.eu
-Organization: E-PSN
-Content-Type: multipart/alternative;
- boundary="=_d5617720cf2e4688614326fcf48dd5cf"
-X-Rspamd-Flag-Threshold: 6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261014081448.2320363-1-xiaolu.xie@intel.com>
+References: <20261014081448.2320363-1-xiaolu.xie@intel.com>
 X-Mailman-Approved-At: Wed, 14 Oct 2026 13:44:02 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,94 +50,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: cch@e-psn.eu
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---=_d5617720cf2e4688614326fcf48dd5cf
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
 
-Hi Simon,
+Tested-by: Marco Nenciarini <mnencia@kcore.it>
 
-For some context, I started investigating this because my Maxsun Arc Pro 
-B70 would latch the blower at very high speed after a long inference 
-workload and leave it there even when the node was otherwise idle. I had 
-previously dealt with a separate idle-power issue where continuous Intel 
-Level Zero Sysman/XPUM monitoring kept the card at elevated power with a 
-model resident; after removing that polling, the card could return to 
-low idle power normally. The persistent blower latch was the remaining 
-reproducible problem.
+Tested on a Dell Pro Max 16 (Arrow Lake-P) with Debian 7.2.6 and a Dell
+WD19DC dock (Synaptics VMM5331 MST hub, fw 05.07.08) with two monitors
+behind it, i915 driving the dock over TBT-alt.
 
-I did some more targeted testing based on your comments.
+Without the patch, a DPMS off of more than about 6 s leaves both
+monitors black on wake: the link status of the sink behind the hub goes
+from 0x77 to 0x00 and the hub does not retrain it. With the patch,
+30 s, 60 s and 120 s DPMS off all kept the link and both monitors came
+back. The log shows MSTM_CTRL cleared before D3 and restored after D0,
+before POWER_UP_PHY, as intended. Details are in
+drm/i915/kernel#16901.
+-----BEGIN PGP SIGNATURE-----
 
-I restricted the workaround to CHANNEL_PKG only and disabled both hwmon 
-pollers so no other sensor reads could interfere.
-
-With a 500-1000 us settling interval, the package-only workaround was 
-not reliable. The physical blower could remain latched at high speed for 
-several minutes after the workload ended.
-
-I then repeated the test with a package-only 3000-3500 us settling 
-interval. With monitoring disabled, the blower remained latched high for 
-more than five minutes after inference stopped. A single temp2_input 
-package-temperature read then immediately caused the blower to drop; the 
-read returned 36 C.
-
-So the workaround does not need to cover VRAM or individual VRAM-channel 
-reads. A package-only force-wake appears sufficient, provided the 
-settling interval is long enough.
-
-I also confirmed that fan1_input is a separate issue: it can report 
-implausibly low values while the physical blower is still running at 
-high speed.
-
-This makes the v1 patch broader than necessary. I'll narrow v2 to the 
-package-temperature path and document the delay as an empirical 
-workaround rather than an architectural timing requirement.
-
-Thanks,
-Constantinos
---=_d5617720cf2e4688614326fcf48dd5cf
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; charset=
-=3DUTF-8" /></head><body style=3D'font-size: 10pt; font-family: Verdana,Gen=
-eva,sans-serif'>
-<p><span>Hi Simon,</span></p>
-<p><span>For some context, I started investigating this because my Maxsun A=
-rc Pro B70 would latch the blower at very high speed after a long inference=
- workload and leave it there even when the node was otherwise idle. I had p=
-reviously dealt with a separate idle-power issue where continuous Intel Lev=
-el Zero Sysman/XPUM monitoring kept the card at elevated power with a model=
- resident; after removing that polling, the card could return to low idle p=
-ower normally. The persistent blower latch was the remaining reproducible p=
-roblem.</span></p>
-<p><br /></p>
-<p><span>I did some more targeted testing based on your comments.</span></p>
-<p><span>I restricted the workaround to </span><code dir=3D"ltr">CHANNEL_PK=
-G</code><span> only and disabled both hwmon pollers so no other sensor read=
-s could interfere.</span></p>
-<p><span>With a 500-1000 us settling interval, the package-only workaround =
-was not reliable. The physical blower could remain latched at high speed fo=
-r several minutes after the workload ended.</span></p>
-<p><span>I then repeated the test with a package-only 3000-3500 us settling=
- interval. With monitoring disabled, the blower remained latched high for m=
-ore than five minutes after inference stopped. A single </span><code dir=3D=
-"ltr">temp2_input</code><span> package-temperature read then immediately ca=
-used the blower to drop; the read returned 36 C.</span></p>
-<p><span>So the workaround does not need to cover VRAM or individual VRAM-c=
-hannel reads. A package-only force-wake appears sufficient, provided the se=
-ttling interval is long enough.</span></p>
-<p><span>I also confirmed that </span><code dir=3D"ltr">fan1_input</code><s=
-pan> is a separate issue: it can report implausibly low values while the ph=
-ysical blower is still running at high speed.</span></p>
-<p><span>This makes the v1 patch broader than necessary. I&rsquo;ll narrow =
-v2 to the package-temperature path and document the delay as an empirical w=
-orkaround rather than an architectural timing requirement.</span></p>
-<p><span>Thanks,</span><br /><span>Constantinos</span></p>
-</body></html>
-
---=_d5617720cf2e4688614326fcf48dd5cf--
+iQIzBAEBCAAdFiEEfCO4BD5l0pgKIbbiWJ8D8BulUDgFAmrPUYUACgkQWJ8D8Bul
+UDimag/+L0A6aKYws/asUDWsKnx4DjKXbQtXjYCVXx8Sqv7wG7PgYvXOONOJzvD1
+dxUOxuWLDBx6sRBA6zLmtIdkkifPUHbWhADQLIOnmNqIGutzjg/Rg/TIqmtufy+w
+J4lxsmO6khoLa16dZZMp9p4CYgQMOd36NuWG/uSBNcNF96uxzZYjCoO5uXorCkg/
+7SCa2neKrIoXXwSEuamQC3FB83I0PXoaxP/FgzZmYDzN1IEUya4EkS78jIPCGmWC
+54gz9+hNz0yRT7IgfoluNzHVnP8GftLS7t2DPH1ClZVxw6bE+UnBwpJRQ9mpCkXd
+DX3RCZq9E176ESqIDKI/4d+nO8AKQp06aiOExDylNU38NlSNOpPH8iN4XqwYZ2hv
+WlpR33hPneA1zosdZ6oFOAPNDLvF1FFuUFtA+wVLJLNNoNTRAVseHGZsR/xdL7kh
+X0gIyu1h2SP4wfKySiuvUmgQVm0uFphr4x+FgKn1XoZ+P0CDyjxqoFVDvE8iplb4
+1IixcQAPvFasF7wq3pd2eAUh7n2zMcroi99cllGY2uPbxiOPhiWzcVV1NmQ7nHhq
+uFcyTlM8nV+TdZYYGCRLFkH7MHskzEGbKO+CQkYrayRPcZxZwnytnHY+CyqGr4sY
+732Djo9oELBZF/fYhSBiVi7cij0NFDdadvhV1gfThIT7BH+5qhs=
+=2SVO
+-----END PGP SIGNATURE-----
