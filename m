@@ -4,100 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66769CC6B3D
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B79CCC6B33
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BDAB710E24C;
-	Thu, 15 Oct 2026 12:15:41 +0000 (UTC)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
- [209.85.208.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0610610EA9D
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 16:58:31 +0000 (UTC)
-Received: by mail-lj1-f170.google.com with SMTP id
- 38308e7fff4ca-3aafbec15d6so2722611fa.0
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 09:58:31 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1791997110; cv=none;
- d=google.com; s=arc-20260327;
- b=f5Rykt4AeGeUFrYjTt4jQivRNjklnsYo49OEnIfpugxvJehQnmpYl+fZIlfniesyYr
- CqwyHiXFtRmuNCGdYpOgqe3cbox88Qr+fl9aBsggl/XktxXKxr0SMWm0T2VrShPYDTYj
- l/ForwvsDH/tdANRuEnF4/l67p8aO0eeeLAx5WjZGIfgl6Ry9VKjM8wbwmexZMKW0cuy
- 2YObyWclAd/Xj649tqRTOttljFOcOF2Wtq858o6GodlXKmKJVD0AoMvAm9vNKJd5h41f
- l6O4WLOvVNFY6dKAj+h0P7JTUEygbXlZTLxBoGdYdgr7f8oNsezpja2NoHApVayH+XBY
- FMyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=PeoY0yWKZRmwA+3BQa6rH8gq2X5w0eejzi+aqnvivA0=;
- fh=CiGrBvB3muDdtUxsTmogNpa59fMk5ZDG24j5csvIzpE=;
- b=HrtH0dxkgutAIV2tonNS/R3XJqP8OrRBiCuW7QMLVS8IYD37E9pMVxzU/cZ3+mxGDm
- GUIvuEfXuvr6H0z+bdV6huiBv+150cofABCGAjR5QuSjlIjshDAkO9Ukpr7DDl/xsEMR
- xopVOFJq7/BhOjEkS52IuphARr3jYa2FUGCkVO1Zwt1IefmhW0OdzD3rS0D0jkMxRjhU
- PQ2Jk49c54Ulnf3yxnryxeUN5B4ajtbovHNBwXHOFkwIrKldk6BpN9z0sJ44cUz7XeyV
- EnlMRDoH8CQCAkLuWjlOIW+EWBtwDR1kqGcLALmrCX27lHN0o/y7vIwqKVge//FLQlm8
- +9cw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=aleph0.ai; s=google; t=1791997110; x=1792601910; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=PeoY0yWKZRmwA+3BQa6rH8gq2X5w0eejzi+aqnvivA0=;
- b=xo7Tz5d9bYCgLIP6QDQAWIz6bV/SqAXjftgJd1RcHnGlbaD04CfR2rD/42DP/N4D1I
- eQv/Pgk+oDOI46RQekvblHZdbNYZedNlmfULBPOsk3AKJsU2k+87gbutvzTphTXb6L2T
- 7P3dFb6CpkE9VY6GyappjPOm68/OkmYoAcUVwhZWk6NkQUFeQ9KjhDdGg0lUDTQcVqQ4
- holMtgAnXG8NDi2G3YVecE6a1qK/grEGE4kxo3T13mT2vqb506g/CbMnFZwwMmOM4JyN
- xq2wTjbCWjuMdtTv8MCV/R+3JKEsvX4tDzbqDqD5+qtIJzQ0WyIHJNUgtbxGdnCWIlVW
- hD1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1791997110; x=1792601910;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=PeoY0yWKZRmwA+3BQa6rH8gq2X5w0eejzi+aqnvivA0=;
- b=GOYrVRgDwhJF0FOR47Z1ER6dgqLdY6Q90yUBQlRQjZ17xTPMKK53Cpx9OU2MH4WPSi
- eXOl3OCUpIpIwYbDXA4T9sEsnBHRhu1GFaGik4NQDvhS9j9lx7c/sGGSE+m+hMMF50YK
- hootuMUydK2sXHK+dSJFKla6gIoYwuMssDT+SJkQ3dyt0QhvTM/Kyb+Cc1FOB9r+yYyY
- qLbFaniUdov2W4BE8NZCOT74/NwKnb/JZE+okvM5AfGxhtYnLyNaA9BMrpZyvdJbl0wZ
- pwQLthqgclE1SfRSdkaAjjhgN7Sejnhno2nnXLUGC1TUY/m1MXBl4W9Chq2UOE/2aBqD
- wcnw==
-X-Forwarded-Encrypted: i=1;
- AKwUvBz7eXQ2vXf1kplAV64K/FC5XCOCvHYEqoWqhi+PUr37IZHRDTYHDs9PhtqvqS7phQZXcuVTfWDNgg==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYLh7ilS08BwbzBzWncvxSAuI3YAO6uN7LKbK6mgz61mMsJSxJTM
- brATzAQ3qcbJFLTyEgTdNBsjzyfLJRtTluQeKt99Utkb8SxBDzcjhAndtbwvqpwXvVonKfHuWcc
- eZyyCaofjc7NMLIAbdGrxOP8b1wdy4zcbVEBynFqQ7A==
-X-Gm-Gg: AYBFou3hH3+KTh4wtBKUO+Em37IRFbEqexEcD9/xn1ki/e61ovg52Ax7cLhWWWZ9aNq
- 5y4EGA6NG9xKU5Gbsf8cgYgLZrAcTRQlYSrh4IoTeqGhSOfu1Eo+WBI50uwBkhhiQkEjzpZRae5
- wUTBIHO+A14bfGKmDezMRirHR6xGwXE35jh7XjamVjfz0N3lP4f2Cb6PMLDOh/+mXraHz06vhLf
- +4TLFPizDhWnr0xAsAx2p+23rERKei07EWOkiP6HFe/5an95p6rOuWRLmidqf+6DkvNej+/uoGf
- WpXH7PKxYDzjopGYst4JaWYmTbF0g6Xb+aIFNsbcgtNjgcC5b7joL0uttvTJKfzicqJ45hXxMXC
- yWA7ir5dsa/XJJPWqkfzsyPL0tQ==
-X-Received: by 2002:a05:6512:3187:b0:5b8:bc5e:d0fe with SMTP id
- 2adb3069b0e04-5bcde6d0062mr5550632e87.40.1791997109796; Wed, 14 Oct 2026
- 09:58:29 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E608E10E2CE;
+	Thu, 15 Oct 2026 12:15:46 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAF2D10EB38;
+ Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 69EB841245;
+ Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 4AF15C2BCFD;
+ Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1792016813;
+ bh=rvBRZ/pnHi97CIywFxu45m9zRVSjoxtXT2pCkwknWAA=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
+ b=Oi1ywL5VvHjyd3zklZN7GIMOuY70wKPbIof+zj3ltrG0CLUmrdp/QJEjxkcUV+Mke
+ 2P7S5/o5uuH0G9QUoWPSNB5KAusojknpRRv0KOQidGZ00QSiRFpdRUwu8RDe8uOFHS
+ 4OYBGJ3/Gi44rfJ4dM+sikmrTXYYZx3R3oREQJh5E59wWdpDv5xZzztlhPLI9acJ4i
+ 1fBkOgMvw7vIYbkSZbge090MYNPQ9m5MH68pMvhClH/diCzhxrwvSlpwneWH+vlGh5
+ YmP/LJby75/B2s1c6n5KNZc9oIToy9z5vQjs4B8ODG9B8bREQWTH4oUUJokOTjfRJq
+ kAV5QFCnjbkhQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 2FB6FCC6B2D;
+ Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
+From: =?utf-8?q?Burak_G=C3=B6nc=C3=BC_via_B4_Relay?=
+ <devnull+burakgon12.gmail.com@kernel.org>
+Date: Thu, 15 Oct 2026 01:26:41 +0300
+Subject: [PATCH v2 2/2] drm/i915/cx0: request TCSS power for the non-TC C20
+ PHY on PTL port B
 MIME-Version: 1.0
-References: <20261013-fix-psr-async-trans-push-v1-1-ee79bf31b66f@aleph0.ai>
- <as9lLU0VnFW6JLKf@intel.com>
-In-Reply-To: <as9lLU0VnFW6JLKf@intel.com>
-From: Vladyslav Yamkovyi <hex@aleph0.ai>
-Date: Wed, 14 Oct 2026 18:58:13 +0200
-X-Gm-Features: AclHuK9DejIsKpYNlJitvulcu8uweG4HpEyel77BVIQowt9vPUrR_69jHdifP7A
-Message-ID: <CAGkn_9h6TMgEk6e0JEROYx_O08Dtpn=_Jyd=T+HuiJZmyGynCA@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/psr: Send a frame change notification for async
- flips
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>, 
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20261015-ptl-port-b-tcss-v2-2-e00ce882402d@gmail.com>
+References: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
+In-Reply-To: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>, 
+ Mika Kahola <mika.kahola@intel.com>, 
+ =?utf-8?q?Burak_G=C3=B6nc=C3=BC?= <burakgon12@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1792016806; l=6600;
+ i=burakgon12@gmail.com; s=20261006; h=from:subject:message-id;
+ bh=LTf+g2efpLrG86I/0jGNQb7VTykjWu5znTamnioz5Lo=;
+ b=B1vaJzEXwL+bfrGg911Wqe6oyDezhJdtqdLWxmZl4XHyCIz5rJP3Bp9a+dNefaHr1ZSwWWY+G
+ h3oR2hhKqavAbjd5oyP+CP59oGH8qg5b4dpm51k94I9CEhkyXCP5J7L
+X-Developer-Key: i=burakgon12@gmail.com; a=ed25519;
+ pk=qcexQajnoYGkNqFOy3eFqTzvqTOR/P++ksapi6qUbvw=
+X-Endpoint-Received: by B4 Relay for burakgon12@gmail.com/20261006 with
+ auth_id=1126
+X-Original-From: =?utf-8?q?Burak_G=C3=B6nc=C3=BC?= <burakgon12@gmail.com>
 X-Mailman-Approved-At: Thu, 15 Oct 2026 12:15:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -110,130 +70,166 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: burakgon12@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There was indeed an error in my testing. I ran a synthetic reproducer
-separately from my compositor work where I originally encountered
-the issue, but failed to enable VRR in that test. I do observe the
-errors now.
+From: Burak Göncü <burakgon12@gmail.com>
 
-I withdraw this patch. I will review the logic more thoroughly,
-particularly mentioned vblank evasion code, and try to investigate
-sending TRANS_PUSH consistently and if this is worth pursuing.
-If it will not inspire confidence, I will seek to reliably disable PSR
-trans push usage.
+On PTL, port B is driven by a C20 PHY that sits in the Type-C subsystem,
+but port B is not a TC port. The TC PHY code is what sets
+XELPDP_TCSS_POWER_REQUEST, so for port B nothing in the driver does.
 
---
-Vladyslav Yamkoyi
+The ASUS Zenbook Duo UX8407AA connects its second internal panel (eDP-2)
+to port B. The firmware lights that panel at power-on only when the
+detachable keyboard is not lying on it. After a power-on with the
+keyboard in place, the first enable of eDP-2 fails:
 
-On Wed, 14 Oct 2026 at 13:19, Ville Syrj=C3=A4l=C3=A4
-<ville.syrjala@linux.intel.com> wrote:
->
-> On Tue, Oct 13, 2026 at 05:16:07PM +0200, Vladyslav Yamkovyi via B4 Relay=
- wrote:
-> > From: Vladyslav Yamkovyi <hex@aleph0.ai>
-> >
-> > On platforms using TRANS_PUSH for PSR frame-change notifications,
-> > intel_pipe_update_end() exits early for asynchronous flips, before send=
-ing
-> > the push. The register-based notification is disabled on these platform=
-s,
-> > and an ORIGIN_FLIP frontbuffer flush does not force PSR to exit.
-> >
-> > This can leave an accepted async flip without a completion event after
-> > PSR2 enters DEEP_SLEEP. On Panther Lake, scanout freezes and the kernel
-> > reports "[CRTC:152:pipe A] flip_done timed out". Intel IGT kms_async_fl=
-ips
-> > reproduces the failure with the compositor inactive when a 200 ms idle
-> > interval is inserted before an asynchronous atomic flip.
-> >
-> > Send the PSR frame-change notification after plane programming and befo=
-re
-> > releasing the existing PSR lock. Restrict the push to CRTC states that =
-use
-> > TRANS_PUSH for PSR, leaving other async flips and the synchronous and D=
-SB
-> > paths unchanged.
-> >
-> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9582
-> > Fixes: 129a4da11707 ("drm/i915/psr: Use TRANS_PUSH to trigger frame cha=
-nge event")
-> > Cc: stable@vger.kernel.org
-> > Assisted-by: LLM sparse smatch
-> > Signed-off-by: Vladyslav Yamkovyi <hex@aleph0.ai>
-> > ---
-> > Based on drm-tip (2026-10-13); also applies to v7.3-rc7.
-> >
-> > Runtime-tested on Panther Lake (xe, eDP-1, 2880x1800) with Ubuntu-based
-> > 7.3.0-rc6 kernels, before and after this fix. IGT kms_async_flips,
-> > async-flip-with-page-flip-events-tiled-atomic, dynamic subtest
-> > pipe-A-eDP-1-4-rc-ccs, fails with Flip Timeout before the fix and passe=
-s
-> > afterwards. An LD_PRELOAD interposer inserts one 200 ms idle interval
-> > before the eighth async atomic commit without changing its request or
-> > flags. Both runs enter PSR2 Early Transport DEEP_SLEEP with selective
-> > fetch enabled before that commit.
-> >
-> > Clang 23.1.2, W=3D1 builds and Sparse/Smatch checks of the CRTC, PSR an=
-d VRR
-> > translation units for i915 and Xe produced no new diagnostics.
-> >
-> > OpenAI Codex (GPT-6-Astra) assisted diagnosis, reproducer and fix
-> > development, validation and patch preparation, following requests to
-> > reproduce the freeze independently, trace its driver cause and prepare =
-a
-> > tested upstream fix. I take direct responsibility for this contribution=
-,
-> > have carefully reviewed the change and ensured rigorous local testing.
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_crtc.c | 10 +++++++++-
-> >  1 file changed, 9 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/dr=
-m/i915/display/intel_crtc.c
-> > index 10ed9bdfee76..8ef24cddbaa6 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> > @@ -736,8 +736,16 @@ void intel_pipe_update_end(struct intel_atomic_sta=
-te *state,
-> >
-> >       drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
-> >
-> > -     if (new_crtc_state->do_async_flip)
-> > +     if (new_crtc_state->do_async_flip) {
-> > +             /*
-> > +              * LNL+ uses TRANS_PUSH for PSR frame-change notification=
-s.
-> > +              * Async flips skip the vblank path below, but still need=
- to
-> > +              * notify PSR after programming the new surface address.
-> > +              */
-> > +             if (intel_psr_use_trans_push(new_crtc_state))
-> > +                     intel_vrr_send_push(NULL, new_crtc_state);
->
-> This will make the behaviour of async flips + VRR inconsistent
-> between platforms where trans push is used for PSR vs. platforms
-> where it's not used. We don't want that.
->
-> So either we want to start doing trans pushes for all async
-> flips+VRR cases, or we want to disable the PSR trans push usage
-> when async flips are happening. The latter would be the safer
-> option since the mailboxy trans push usage this would cause
-> hasn't been done before. The vblank evasion code does try to
-> handle it, but it's not actually tested.
->
-> >               goto out;
-> > +     }
-> >
-> >       trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
-> >
-> >
-> > ---
-> > base-commit: eb1bf4700d3b25a1a1e670ef31cc06969fa08019
-> > change-id: 20261013-fix-psr-async-trans-push-bfa6550270c7
-> >
->
-> --
-> Ville Syrj=C3=A4l=C3=A4
-> Intel
+  PHY B failed to request refclk
+  PHY B failed to change powerdown state
+  PHY B failed to bring out of lane reset
+  Failed to bring PHY B to idle.
+  Port B PLL not locked
+  Timeout waiting for DDI BUF B to get active
+
+and every later commit on pipe B waits for the flip_done timeout, or the
+machine hangs. The state survives warm reboots until a full power cycle.
+
+In that state XELPDP_PORT_BUF_CTL1 of port B reads back with both
+XELPDP_TCSS_POWER_REQUEST and XELPDP_TCSS_POWER_STATE clear, and its
+XELPDP_PORT_CLOCK_CTL stays at 0xa0008400 where port A reaches
+0xf0008400. With the request set, the power state is acknowledged, the
+clock control reaches 0xf0008400 too and the panel comes up.
+
+Request TCSS power, including the PTL mailbox handshake the TC code
+uses (Wa_14020908590), before programming the PLL of a non-TC C20 PHY on
+PTL, and release the request once the PLL is disabled. Wait for the
+TCSS power state to follow the request in both directions, as the TC
+PHY code does for TC ports.
+
+The failure and the TCSS power request as its fix were first identified
+by the zenbook-duo26-Ubuntu26.04 project.
+
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/9196
+Link: https://github.com/therealarnold666/zenbook-duo26-Ubuntu26.04
+Assisted-by: LLM
+Signed-off-by: Burak Göncü <burakgon12@gmail.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 37 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_tc.c      | 23 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_tc.h      |  1 +
+ 3 files changed, 61 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index b83f0afaa..d4a9da843 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -54,6 +54,36 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
+ 	return false;
+ }
+ 
++/*
++ * On PTL, port B is driven by a C20 PHY inside the Type-C subsystem, but
++ * port B is not a TC port, so the TC PHY code never requests TCSS power
++ * for it. Unless the firmware has done so while lighting a display on the
++ * port at boot, the PHY then never acknowledges its refclk and PLL
++ * requests.
++ */
++static bool intel_cx0_needs_tcss_power(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++
++	return display->platform.pantherlake &&
++	       !intel_encoder_is_c10phy(encoder) &&
++	       !intel_encoder_is_tc(encoder);
++}
++
++static void intel_cx0_request_tcss_power(struct intel_encoder *encoder, bool enable)
++{
++	struct intel_display *display = to_intel_display(encoder);
++
++	intel_tc_request_tcss_power(encoder, enable);
++
++	/* Like the TC PHY code, wait for the power state in both directions. */
++	if (intel_de_wait_ms(display, XELPDP_PORT_BUF_CTL1(display, encoder->port),
++			     XELPDP_TCSS_POWER_STATE,
++			     enable ? XELPDP_TCSS_POWER_STATE : 0, 5, NULL))
++		drm_warn(display->drm, "Port %c: TCSS power %s not acknowledged\n",
++			 port_name(encoder->port), enable ? "request" : "release");
++}
++
+ static int lane_mask_to_lane(u8 lane_mask)
+ {
+ 	if (WARN_ON((lane_mask & ~INTEL_CX0_BOTH_LANES) ||
+@@ -3191,6 +3221,10 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
+ 	 */
+ 	drm_WARN_ON(display->drm, lane_reversal && intel_tc_port_in_dp_alt_mode(dig_port));
+ 
++	/* The PHY must be powered before its clocks are requested. */
++	if (intel_cx0_needs_tcss_power(encoder))
++		intel_cx0_request_tcss_power(encoder, true);
++
+ 	/*
+ 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
+ 	 * clock muxes, gating and SSC
+@@ -3536,6 +3570,9 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
+ 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
+ 
++	if (intel_cx0_needs_tcss_power(encoder))
++		intel_cx0_request_tcss_power(encoder, false);
++
+ 	intel_cx0_phy_transaction_end(encoder, wakeref);
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index 9285e70ef..baca7dac5 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -1094,6 +1094,29 @@ static void xelpdp_tc_power_request_wa(struct intel_display *display, bool enabl
+ 	mutex_unlock(&display->tc.mailbox_lock);
+ }
+ 
++/**
++ * intel_tc_request_tcss_power - request TCSS power for a non-TC port's PHY
++ * @encoder: encoder of a non-TC port whose PHY sits in the Type-C subsystem
++ * @enable: request or release the power
++ *
++ * TC ports get TCSS power from the TC PHY code. This is for a non-TC port
++ * whose PHY nevertheless needs it, like port B's C20 PHY on PTL.
++ */
++void intel_tc_request_tcss_power(struct intel_encoder *encoder, bool enable)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	intel_reg_t reg = XELPDP_PORT_BUF_CTL1(display, encoder->port);
++
++	if (!!(intel_de_read(display, reg) & XELPDP_TCSS_POWER_REQUEST) == enable)
++		return;
++
++	if (DISPLAY_VER(display) == 30)
++		xelpdp_tc_power_request_wa(display, enable);
++
++	intel_de_rmw(display, reg, XELPDP_TCSS_POWER_REQUEST,
++		     enable ? XELPDP_TCSS_POWER_REQUEST : 0);
++}
++
+ static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enable)
+ {
+ 	struct intel_display *display = to_intel_display(tc->dig_port);
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
+index 6719aea5b..b49a5b5c5 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.h
++++ b/drivers/gpu/drm/i915/display/intel_tc.h
+@@ -88,6 +88,7 @@ bool intel_tc_port_in_legacy_mode(struct intel_digital_port *dig_port);
+ bool intel_tc_port_handles_hpd_glitches(struct intel_digital_port *dig_port);
+ 
+ bool intel_tc_port_connected(struct intel_encoder *encoder);
++void intel_tc_request_tcss_power(struct intel_encoder *encoder, bool enable);
+ 
+ enum intel_tc_pin_assignment
+ intel_tc_port_get_pin_assignment(struct intel_digital_port *dig_port);
+
+-- 
+2.56.0
+
+
