@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FFBDCC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:05:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BB9CCC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:06:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA7A10FD1D;
-	Wed, 14 Oct 2026 12:05:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C89A810FD3A;
+	Wed, 14 Oct 2026 12:05:58 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F09E910E9BF;
- Wed, 14 Oct 2026 12:05:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84D9610FD2C;
+ Wed, 14 Oct 2026 12:05:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791979547; x=1823515547;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=x17OpzMlrJ6oPLDdW8euNk+6xMbipC5El2pPe+RivFk=;
- b=JJQDdEO2zQLZC0bwY6P1SyYTuF+jFE0EuGESYO5MeTP25WPkS0T2QJPH
- hYyV6RWFHo3VkQq38+pvwVN7wJ3wMkfT638FzG9XiyBhtGl5oeIlGeCmm
- 91ZCYb8y3CwZMyWUDg6aL3gW59ArLyu431bw15csgS/DQUSaZj1c6or+w
- XJcT0e6bNhWUWhBAmBE3U+aRaB4OcRoD6SUQQ24i6aqfyYU2n6EHiDF6r
- mApkcVxw19UhveerJ8QHsGk+j6NbLpLSOhwea7PG4IAApgKnL0rlGJD/w
- qQhZNRIg/JSQijpPIIW3+ZVGAuTvoWtnV6WWczLfIqyNTnw+cOir3Idb1 Q==;
-X-CSE-ConnectionGUID: 7wpe0+OrRZq2oswfoScpdw==
-X-CSE-MsgGUID: ec6tVQFNQLCWCg2NnO/zKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739790"
+ t=1791979551; x=1823515551;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=REMPzTjXPdR/aGi72tB8l8UhqIznGteEg3e52Lq+67A=;
+ b=lIUwFeKC54OkIyRKpWs9ShGSwd449jvtrbPB38ao3w8V6ZAQot2McGly
+ Z/MhRdC77tmHJPlfSsBtdDEe6T9jnSGTOf2LY66ttTkGToZa9N74Dx96F
+ fX8YK2V3K2bEV68ZCQt2jaHpH5cprCjc3RWEjFTHHNXzjo53/BZ0u+M3s
+ ilU+fhhoC1nVXy/IV3odnzcd2nmybGiPWojEfbIbEApxrE+KwS1iDiUyW
+ wAXg3P4WstTqRAc4CE9TP/ATvZ4RNpwwowVlw4d8Nn+naKo+3HIfHOI9/
+ gmXH3uNkpzGxq3q/YynmRu3jpHjsRT7vYMwk+LdPoyCSIig4VDwdmW2fA g==;
+X-CSE-ConnectionGUID: H8IVtiFESOGTk5M0k4TyJA==
+X-CSE-MsgGUID: jcsoFIQIQ/2MoGPUQfzA+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739795"
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="739790"
+   d="scan'208";a="739795"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:05:47 -0700
-X-CSE-ConnectionGUID: 2l4cVOM0QMyQySLHbQ7Qfw==
-X-CSE-MsgGUID: sLF1ofTwS4aO3ra3QVaCGg==
+ 14 Oct 2026 05:05:51 -0700
+X-CSE-ConnectionGUID: xvAE8EnNQ0S/vHZZ14rP5A==
+X-CSE-MsgGUID: EmTjhROrR2u/AAu0PVxtQQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1736774"
+   d="scan'208";a="1736778"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 05:05:45 -0700
+ 14 Oct 2026 05:05:49 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/6] drm/i915/de: Uncore reduction
-Date: Wed, 14 Oct 2026 15:05:36 +0300
-Message-ID: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/6] drm/i915: s/PIPEFRAME/PIPEFRAMEHIGH/
+Date: Wed, 14 Oct 2026 15:05:37 +0300
+Message-ID: <20261014120542.29675-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
+References: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -69,24 +71,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Tweak a bunch of stuff in intel_de.h to reduce the uncore
-footprint.
+Rename PIPEFRAME to PIPEFRAMEHIGH to match the spec, and
+better convey what the register contains.
 
-Ville Syrjälä (6):
-  drm/i915: s/PIPEFRAME/PIPEFRAMEHIGH/
-  drm/i915: Modernize PIPEFRAMEHIGH/PIPEFRAMEPIXEL bits
-  drm/i915/de: Convert intel_de_read64_2x32_volatile() to
-    intel_de_read64_2x32_volatile_fw()
-  drm/i915/de: Implement intel_de_rmw() by hand
-  drm/i915/de: Implement intel_de_posting_read() via intel_de_read()
-  drm/xe: Remove unused uncore wrappers
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c       | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_de.h       | 53 ++++++++-----------
- .../gpu/drm/i915/display/intel_display_regs.h | 14 ++---
- drivers/gpu/drm/i915/display/intel_vblank.c   | 13 +++--
- .../drm/xe/compat-i915-headers/intel_uncore.h | 35 ------------
- 4 files changed, 38 insertions(+), 77 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 8251ec15190b..c868a71a5c9b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1089,7 +1089,7 @@
+  *  frame = (high1 << 8) | low1;
+  */
+ #define _PIPEAFRAMEHIGH          0x70040
+-#define PIPEFRAME(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
++#define PIPEFRAMEHIGH(dev_priv, pipe)	_MMIO_PIPE2(dev_priv, pipe, _PIPEAFRAMEHIGH)
+ #define   PIPE_FRAME_HIGH_MASK    0x0000ffff
+ #define   PIPE_FRAME_HIGH_SHIFT   0
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 28d81199792e..f16988cd5321 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -110,7 +110,7 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
+ 	 * register.
+ 	 */
+ 	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
+-					      PIPEFRAME(display, pipe));
++					      PIPEFRAMEHIGH(display, pipe));
+ 
+ 	pixel = frame & PIPE_PIXEL_MASK;
+ 	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
 -- 
 2.55.0
 
