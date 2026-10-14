@@ -4,61 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D953CC6B1A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 17:54:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BDD2C3DA7A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 17:54:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFCAA10EA88;
-	Wed, 14 Oct 2026 17:54:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B9A210EA81;
+	Wed, 14 Oct 2026 17:54:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5503B10EA81
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 17:54:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF1F510EA81
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 17:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792000460; x=1823536460;
+ t=1792000466; x=1823536466;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=0z3ZXyjyt/YpAnHrR+w4EhWQreCsdxpBwqQ8xnMo2lY=;
- b=G2cFCAFqIatKE1nn7T21gOnCOrUQfQdZ6XoZepTnSjWzzZBkegB/8FSM
- qJOXYWqgF/VKmC73kfqrMs0X6Wfig7tHo7SXZeZhR1ftnPp3w8/BWLgcx
- oUmA4KXhnxGdmtboz1fOHgaiqQ1GzK2wb9XxoKceYHakdUudXZzsdF+I7
- SDNhBAm4mWME38Gj48WMkVXt5aNhDLNN9ZWtvHvZuwT6CnU2ZPVuLEOk7
- Hk2I8XcNSM0Y2DZmzxM2yXlr0NTAOEvEk1MlknyuPv+jB/gqpuzMch2X1
- Yr1tMFvnXo7zSM0FXXsvAK7xjUuc9M2K0h3EF0d7W0pekWoSl2bGENGBc Q==;
-X-CSE-ConnectionGUID: lNACML50RUSmW8SAXHP8Jg==
-X-CSE-MsgGUID: tnGHBFY+ThiuZQWfQmlfQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="760961"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=uh3eLJoLNjwNd51PWperAP7rv6V2+Oiwep9awxxTV4c=;
+ b=mut5Fe3hWmZ9xMzg1mQIIUDIztJgGqBigEia8hFqra5D7Xu+/2baK3h0
+ mIqhb4aMEk7Bw9kw/82wyWDePNxYOXZeGz+CcjWJqj7S82AA4U8FDD2PM
+ DNXq1kJXPJIlrZ3T8r8u8zTO9/ecf1BNnDmV9Ut5c8Kj41NvBO2IIs1V/
+ WVHB0Vnq767LsDGOSQXDYEir8KJgbX+T+c000q2kulxwRlaoVOgmUapxa
+ nJEbHg6/XCL8f2GGnlR1xjNG1pyyX7NKFL6zsSbf1+g+lGBV/68rqaw7C
+ H5haL7lWIB2jiDv/B5LCzn4sfAn7LHbzkSQyL0yS/z5sR4QxibfZcN0iQ w==;
+X-CSE-ConnectionGUID: vxbUA0tbQnm1tsdh+2Q07Q==
+X-CSE-MsgGUID: 2hGaIhFYRl+ltRYXe6ykEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="760962"
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="760961"
+   d="scan'208";a="760962"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2026 10:54:20 -0700
-X-CSE-ConnectionGUID: bug7pM7HSLetKa8AYfyrnQ==
-X-CSE-MsgGUID: PW5chIThSuuH+iNf59F/jw==
+X-CSE-ConnectionGUID: dLbB+UmKR6uzQL6Ej5HRQA==
+X-CSE-MsgGUID: gy0XlcbDRnW+tPns2JwWaA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="3235422"
+   d="scan'208";a="3235424"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 10:54:20 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ 14 Oct 2026 10:54:21 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 14 Oct 2026 10:54:19 -0700
+ 15.2.2562.49; Wed, 14 Oct 2026 10:54:20 -0700
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 14 Oct 2026 10:54:19 -0700
+ 15.2.2562.49 via Frontend Transport; Wed, 14 Oct 2026 10:54:20 -0700
 Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.45) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.2562.49; Wed, 14 Oct 2026 10:54:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ldaEhnt4Ie/4hKgIHuUOAdjiJoQ326RdToNFYopXjLnMWo7GyzhKS0zfLBGDkr1EuxWxYJJ0hIqQBGXApW2sAW201HV+4AMhAODyLvk+G/xaS1pcaYYVVqeowqoOLtL+w9UI7NywipYP1r1F1FLXMVpcJW/a9+UljsmbKg3diiig37WGi32fO6CulYjseMuI7MwLjK4D/k4UhGoL78u37BFjFPDSOyMuvll51sSeS7z3uRbZhE7RbIVc6WhE+kGjsHgpK4sYyhdTQw0+E9oJAuCzbwNca+YWXlS4FcwScwRfpddv1kq5Pl+W7Tv6wHRz102Ev1WPUBjlpSrzBfOIcA==
+ b=y1+cHq1l9uIDpTA208yoQsEiBn8f56ke5bFN0Ojd16662Xjy9OaVWC3MKCo7A3pr0/LOH0SpEzQgqVxx6aK8Rn3SOJpQWRkofEILaVOCshZqlV71cDcaXd9gtjjOReYzYIrFr2dADXVfOaCfl4Q86/J4Fk7N3mot6pNomuO1c9+3hlv8bmJKDpM4dyZ0268zpHxTbR/rYEMrQX2myb22LM1J0uzCIApS6/Zow+mVp4ZVd9rsxXpxWLOZXl+Q8emgb9tAUUIiHIdPpy/ASNwgo54pD1/PQSMjZAOj66EAULvWlDNVPjfKWEstCg2Jjk0MHC2XJFP5po/ovlxj7o9KDQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SldlHtajcP1sXCWetUMvFEOYqc1DOQMBadpgtPDw5fw=;
- b=fC6gd9F/S69kv3GOzd5R0z3IPzkJ7l0xg6LcTmyeXldcx538MtBz0PtCUa6ml52c3ecrjxefxVNOECcjIthGdAKShfn8eErxhdzFkX2eJxjHRTFJ2Ty4t0xlG7sG17Juhi3GfSDU4DqT6fV9WpWTiAb0B2Gv3byhghVGXy7gP81hLeQVl+tu2Mc8T8QtMs6/TyVXO2uzXKyxG8QUamkTqYBaggjd6xUhVmcUOsRElG2YUsAN2VjagAavHq0cH2qD8Ckyyx01feOPpRokSIK68n8q1L8FQsmemVecfZY7KAbIjT3YGWqT0/yuNBsypRWsAM4BA994nAhJbkvzwg1lsQ==
+ bh=ZvJ0QWxknaJpKQPOV5eAE4rnLzIvLYhcrXkWavUYm3w=;
+ b=e2cKwmLpLW7eNregzRVVsYjUpn3M610ghCk4l8mWIjIdqPW9BZezJnDc57zIZkpVudwk4e+8+nQBYNJu9vMtuGj/DM9iKPwK1Y2keEUbN8rjIhgox6XwtHY5fc75PLlOyqCRfRfnhI/KH8g/r91G+aN3aaYvU1jQ+naAlHoYBQApBzbS6WwEe5mZPLh9BTUpEQxoEs8LDxsiQFeViMdxAN+uVkNyjCMI/D948ydjUEHJsLYWRPapQUYkwB8Sy/3C0EVCZUtBGaECag44yzGmyOtyHT/JnKCJ4akLeMHSM4siM7NfqaXRVCehqoKBt0RfzaP3m4kNU5jxO88tIW8p2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,80 +68,82 @@ Received: from CH3PR11MB7180.namprd11.prod.outlook.com (2603:10b6:610:148::5)
  by SA3PR11MB097687.namprd11.prod.outlook.com (2603:10b6:806:595::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Wed, 14 Oct
- 2026 17:53:30 +0000
+ 2026 17:54:00 +0000
 Received: from CH3PR11MB7180.namprd11.prod.outlook.com
  ([fe80::70dc:90b2:50b4:31a8]) by CH3PR11MB7180.namprd11.prod.outlook.com
  ([fe80::70dc:90b2:50b4:31a8%7]) with mapi id 15.21.0496.021; Wed, 14 Oct 2026
- 17:53:30 +0000
-Date: Wed, 14 Oct 2026 13:53:25 -0400
+ 17:54:00 +0000
+Date: Wed, 14 Oct 2026 13:53:55 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Karthik Poosa <karthik.poosa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
  <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>
-Subject: Re: [PATCH v13 15/16] drm/xe: Validate thermal sensor count before
- reads
-Message-ID: <as_Ble4LoxNVp_2p@intel.com>
+Subject: Re: [PATCH v13 11/16] drm/xe/hwmon: Decode CRI temperature registers
+ as IEEE-754
+Message-ID: <as_Bs7PvYw04oQy_@intel.com>
 References: <20261014115806.831459-1-karthik.poosa@intel.com>
- <20261014115806.831459-16-karthik.poosa@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ <20261014115806.831459-12-karthik.poosa@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20261014115806.831459-16-karthik.poosa@intel.com>
-X-ClientProxiedBy: PH8P221CA0004.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:2d8::9) To CH3PR11MB7180.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261014115806.831459-12-karthik.poosa@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0051.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::26) To CH3PR11MB7180.namprd11.prod.outlook.com
  (2603:10b6:610:148::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|SA3PR11MB097687:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71c78f0c-e354-4981-d215-08df2a1c0e63
+X-MS-Office365-Filtering-Correlation-Id: d2a16062-05fc-4e28-2625-08df2a1c202d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|1800799024|376014|366016|23010399003|56012099006|261009223027099003|11063799006|4143699003|22082099003|10067099003|18002099003;
-X-Microsoft-Antispam-Message-Info: obWNTAb93dJX8+Es+zhUD8RLKWWPhG0svg4FDhOQrB1htPfg4AJ8VwJLLHU3+wlWU5+OhNJm34JlsXlcnXp4kIaRNFMEhnGiOUS+1wHtO4QWgZDMvVJukJNbm2yDXHKfas6vlAtfoqLN5CM7p2xfkrQbZFpxKX1mxDzZ5JPmmNsSb/1odHIbhdZ5zppMXbWXn4qR74ovGBOzavwe22oKadCZqTDA0QDhFfIn6NiyIp1t35rSU2luJbSSNxYYduZDOPoPN8P11dgGeiB5c9rarEIkNoFmm4SKlGwSk6IFZu+VHfPsJygvPbwj5gtMHC0HmaZ/Z3nHnq8nHdsN0NeCowiFB2fwC3h0dNjuqE9kUhyU2QFsjcgLmxVHD/qTRn2sLn11ZHqwzEAD5Hn73WRKu7+gq13FWh4+6UEqGpvMN5lE2CW8hSQLYBvDNuLOm1KyTwgZIw6FIAjXgVPpUk+QnRoijINx3rqw4pdksm3GeQl+ilLewrUmtZUVCWzx57U+LnyI88hob2LR4bebie4ZDGqQsBKjO7WDmS8wUAaR+JQdVA4loEJBjFnIGFNpSPyhbEg2IihLEg1+V/Kwbmc7orX5/dEyG+etOyGZjU6XbmthCtFWSIoduCJTcf54wWWq4pRDGAnUDenxFQ6M+pkRe/a7MjXpWpk1KiH7+SD+DDc=
+X-Microsoft-Antispam-Message-Info: n8s4kv7poJE7n/T5g1/lIByrfjI72uVFDtgDaM9dnaLo+gxwREPd1ymtwc5D6UzCgBxL9MQwKk5b6L5q4XmmlFo3xtU5kO8S+7I2Ewcw6ux+a+Nlaq9NiDIe5KA1o+H+VEH637mrj7LiYIFVxS71+RAFaPyBU7moZYCBNWPyQmuWCirRCqIUgX/6RhM4J6HZFpWBj3RDvTRRVUSk1cDfllDGpEhrUSbGL7uRz2zYBHUaEPBZfqwLuo8lbRzG+ZNTg6ra0iP1WFmQmpLs8anJGeRbJxy/S7d6oUf3HibKmkC9hQoIsDTRxrPp7kQOvePAMccEARTVWn5EnlC9rodQFrljPRXVYbzthMk+oJZ2a7A7o/Cpv7ratTqbITTFXhWyzTe0BvVa68CIDYVcH0P6ddBcfb46RbuMQoF9ex9WNVqtcereBVkJqQT+V2hNQ3i9hk6dFmfZxan5yI5c7ccszYsZIYVF6YVTTYai5iytByHUMHlGF3djHmmPRWiG1JkeShmqIoojfmtQSwd3Nvx26Nnht+d2e0ZTAgU0uX0M1RWUJyLq6qbfW2fCezr1gcVgzP1jyIc/JI9SKt9CdFaw2ecn8kBIjtEztgMFFvrbxC/uN7BCApEoV1Tu8NZQSMnibybDnkNwXSeMsS62aR902Hzda517e4QrWx/VGyHL7eM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB7180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(56012099006)(261009223027099003)(11063799006)(4143699003)(22082099003)(10067099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?s1QHxk4M7GHzZR0uAiWf0LxTUAfcwAkTCIFWT8rMKSSCAD4SOzIpcepGT/MB?=
- =?us-ascii?Q?0bfsZSS0J0oJf+/L4vwJ167s5Z+FmCpVu8ZSxMPJL8OpcnXr4gYWGy2o4YeP?=
- =?us-ascii?Q?RJX9xbURiv1XpXnJHYE1HghZcTYcLt6ISxav186iqEVQb/o8K91dzsivtW8Z?=
- =?us-ascii?Q?wAsWi6WmTnIlpkv7di7MtlMG4Y//8VVIcgjKsUs81pajhSFeaDy6GXUbaush?=
- =?us-ascii?Q?lxEKVIndJW28J24RQEOA6uFm6HDe5Vfa2Q/HRKeUcLPKokq9gpNgQFTQ246F?=
- =?us-ascii?Q?AZ7BoyRq0eMcPY2joNwIqvjuefB0q162pBLWGIqKo3ZOv2YVWEdGSg1rnT0+?=
- =?us-ascii?Q?d13Ih+ghHk68B/1RtD2FoR+wvDJHzEPa0Lbp0Om1aft60E3jsGsWVsqzwozI?=
- =?us-ascii?Q?gfRDhm8qffPYvu6+IREhdkhV14l33Cgvfkdbqz3WTXNtMEWx+MKzL39YYi6z?=
- =?us-ascii?Q?ciZ/RIzrwijN/81NXBoD1guwbOsV5sGpAtO/Ay0VmSMVAKvTJ5tyKkTR6Vas?=
- =?us-ascii?Q?wU6K5rItGFILLn8hQyca8lbJ5N73EVXtPH7eE4LsjOGQJwHfJJcF0K1XMtn2?=
- =?us-ascii?Q?DQilmiAlAu392g0wvhveiEpjX9ct6hb3bPNDlzQT6olbobDYjxT+GYhwwZmg?=
- =?us-ascii?Q?ZzBUhOWeaOTC7rphMRa3Mbc5OgDhF0jYnWFXyOIQLjJBizu7Ip9xnHqFUSQ2?=
- =?us-ascii?Q?KHYma8p6ElxXhZutawhupVxwo2ddpbNj2GMHSLRyBPrBMQWNg8fml1v+LFjr?=
- =?us-ascii?Q?RT78sfLKQXQ9yfDXMDgm9mkWE2Oe+MQGI77nY2vD9VJSk4qFIg/tWGXmarO7?=
- =?us-ascii?Q?w1MYvhFDlPxGexS+7+CAwAmmqMrVOdh37bqd4kXdx0iG46O1gbptbQ8pP8lK?=
- =?us-ascii?Q?PkdjaORT0i+UxQimgVMgF97m+F0ARVIhXGZAjUANITFZh2SOMp9el3VsD6d6?=
- =?us-ascii?Q?yupI3qOHJnDqynpYzc3BeifV9BdmvBGAmTKuJHeL7gYm4dwu6F88+J8xAPzr?=
- =?us-ascii?Q?EDO46W2D6yX8z85KrDZW3SBynNCS/Vwmes2hQeOw5axxDBJIlGk/ZIkvoPvb?=
- =?us-ascii?Q?l3IC504xgblbdl5vONTNIECeVcbtSVmO0vrdGuJglcS+5uhvgt3WIgVUE6a7?=
- =?us-ascii?Q?h6NGoyvhUcqedTE+SEiA2WAVL+qP1NOmJKjjidLIFlL3LxTLl57gPMurJdGk?=
- =?us-ascii?Q?naWXPKtWNGjWyk2Cxt/Z3it6iDrOQlqvWRAKM9B534gbvYtvwaWUis2YABrm?=
- =?us-ascii?Q?Wv6Ujqhry6niVzSCVr0Tcry37cd20geH5cl8GLZC82jgcwz+C+cPJrAldh4T?=
- =?us-ascii?Q?by4PR2gL3kCJgzFqvl/LhGgn3Wm9fOFe/PuNloIR8TG5uQRq/FU5dO489sKU?=
- =?us-ascii?Q?na2f2r/S1nra/r5rYOk+FXh7jdk9wepCaAEwpbtP0lSxstNtLtXiMc1X0xDS?=
- =?us-ascii?Q?xmXt4nv+UF84neuhB9rI8f2be4y6WzsG8EcIsWTGPqZan6YJ66uPccUDAfz4?=
- =?us-ascii?Q?FuhLVlWYnkoZW6EKZ7hPLP4Pgh9TufpsIFH3c0YhDChASyNR/voeDF66eUB/?=
- =?us-ascii?Q?vg2+xhOxfkfeX/TLvy2N1eBWwCHjCYV+A3QbslVUvVrvi/myXwKNpOLddcI0?=
- =?us-ascii?Q?HXUnCQbU30jxRYQ7awAM5kH2hrmLpFlynyb0r3EgcOTlSHHVIlGOeJY3V+b3?=
- =?us-ascii?Q?irJLDfiKlCbM5zRz+J4xYD3z+nf6Fird24jI0bzgptvwWl13jE+5QTRPAgjb?=
- =?us-ascii?Q?203Rp+bRrg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: ytRXgKM/CnLx2ZdpI+7zm0afEPxNXsy9086Kfl5QTE+dMgrAk+qjhMIj1io7sy/mxc3wzLe00at1cWzvgejtmrdsC+9UpiNX36rvErOPGcRnhFFoTZHDRX+qwEBDSuHidkMRJx5MnI+C+2HMYPqSeLqmq0tcFE5nAAHfGp10R7u8iTXgGzKVWxaMHtt9K1nzRlycP3Q9GuSuT7Kg5uW49QLM2u8N7EKdGj26g/5U+63veWcgOQd9p+a0ZOtN7/2Gzv5V0AoJeRqXDURUbCBKcRrjKX1CPF3isBme1ABssLTqVnhvnKLiD8NfZtiT5xm0wsL/WUw0Epn1hihKMnl73A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71c78f0c-e354-4981-d215-08df2a1c0e63
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?EWoJSkZnP9IG5pOjB/qJYskx0Tle7/tFR9x06AAa4R0h2XSychUsK0Ogwc?=
+ =?iso-8859-1?Q?zw573xGMH8IXINXqWtIdxGcn4molVaMWkFA5djcmYgUpMuwfXZdlcllTih?=
+ =?iso-8859-1?Q?0Qfq07GZSQByL3mP/VREcas90V4V042dv9qfpz6OaBSePmJZ52lUNQtdtk?=
+ =?iso-8859-1?Q?1Br9tiQf+CBpw0bITPDmBjQ+04hMoq4zD+IBNF48PnBvOdMoAz7ijNf/KD?=
+ =?iso-8859-1?Q?FlQsJd8wnB6t6gbdgPlP1jEXh2J2uivxsz2lZ892fd7ljzivkgvT8U042L?=
+ =?iso-8859-1?Q?D0wofjBVTAE8TFKOBU6xRzbL2jjMCJG/hrRyFNWRDcPqYzodbGDMRq0f0l?=
+ =?iso-8859-1?Q?EbLDDETiE39FxhYX4G2g5FBnuayU3iKxA0j2o4jawPAh+8NEpVaqYIvzge?=
+ =?iso-8859-1?Q?KfafPrSC+mcLL8EQ8lUTNPWQF4nSBj2+UTPUPmh5vxes9kTXEmGLRiXY/4?=
+ =?iso-8859-1?Q?W6HmzpJ9m2Yk9ZcmasSOmDmD8e7816rUbS1I++qeeayQt1TUqz32a9sRFb?=
+ =?iso-8859-1?Q?gm8tmBsPUgdMmIlTeE8APTxrjS/cgx/U2byvkMZnAmpTp+dKtCt9VWmAJZ?=
+ =?iso-8859-1?Q?7SuU4p/QraZiJ/UfZPn8IK+JfwCnSVztx9CZ4VxZRGRNMxqN46iGcab8zW?=
+ =?iso-8859-1?Q?TUOvoxYPMyxRwsbC9nuj8hWw7W5P7gx/9VvGKnUGUFNcAk+qo66b3pP9UO?=
+ =?iso-8859-1?Q?YY4rsq+pTbkJyPYdLUQMcPsQthQQIhQKBUtDkspoUURIYnUWPHnCxttlLY?=
+ =?iso-8859-1?Q?4feQN+pvWYFk4X25c8FtrtRBDaHXak6kVUq9vq7FmjpEPQI07sZzAXMk4x?=
+ =?iso-8859-1?Q?hoOmkQ/DWZ8a+5nzF6uJk9ZksSCkLtcQFuHx6jbWAKZf8MLkpIciqZyqVt?=
+ =?iso-8859-1?Q?91pOpy6vOa+H2LZLy8pTaSdrX6/ogbuidbSWWu9xJJGOlwkd2/dcC+krME?=
+ =?iso-8859-1?Q?6WPYaI7JXlyWq0LF8wfqQxkrDiUg0wYffmdCtp7igYQPHFT3i/T26GEL3o?=
+ =?iso-8859-1?Q?EHYsj7wZqwsTtw5nYfbHY0Ipi0o8dH2XRdJ1DjxN04fHIg0ogwp2lfsSOi?=
+ =?iso-8859-1?Q?Iwsn/FmcdcAn8jTctg+pdq6fCIJ/CyXK1wbldwCzQGl++5Y0Sse9lpxjbZ?=
+ =?iso-8859-1?Q?d4O+MJF4QBgH3dr7Z+NoXV29TzGlh7ldVxYMFGISy5J5KgImnNxhXwN6Lc?=
+ =?iso-8859-1?Q?EuCE88jcIZ4O6ZDQaT/MsNvi7YtEdOYGnB+ZPDtemIOzB6mZQpoOwpRXB0?=
+ =?iso-8859-1?Q?8fE/gdY+u//EvCnhQJjWRY6JWSQP5PMbqOTHX1EqpFeHVGR8QUDgIZJCDm?=
+ =?iso-8859-1?Q?iSDvfy1MHp7sBYkkgQy05JNo34pTtaTpr5+GrF3z+d0JEty9Ry680G+M8V?=
+ =?iso-8859-1?Q?4Eb2CDnlQO0AfqtycaYSM83Y6zOs/25AtYdub4XLzmrAdMYTwXpVNrwoP4?=
+ =?iso-8859-1?Q?ZD6TcfO+vHx/u9WB9txz4+89KviNkfIOfkhb7g26Jsp+td2DNGNsouGIWr?=
+ =?iso-8859-1?Q?z6tZgmf3km450kCybQsOqLCszMDwE5DLi4cV/imE+lK96XO68nG2CoMinK?=
+ =?iso-8859-1?Q?xW1edy/JM3lJU6eO34gK9W/8wbZTukQXc4xXmHCyIWrpNstM54XQj2POlc?=
+ =?iso-8859-1?Q?GVBXtejMYD9aTkhkMiyvlBIpjv3OvjiNwQ0cVUGSojLOgRiDcbYS72eFit?=
+ =?iso-8859-1?Q?mLy3vYkkXMyKVw3aq2pi4SLh9+F0zP2lDmDfSUj6Hrkm+pfz8ICmQ5ddMr?=
+ =?iso-8859-1?Q?YyWXUgCdEpi7FGhQfrzzAvGLsR5eUuOjNQkHuh0D4rh4YdtCKwBZH5GFSJ?=
+ =?iso-8859-1?Q?refjMaT4Wg=3D=3D?=
+X-Exchange-RoutingPolicyChecked: xn6gAOwt8swIZOXl82NKbnMIdk4GxP2jy7OUdPoWMrPp9pjxFSI2jtAnaleVVi5sScws3QO8KnWR4FGXZfVXtj7tGkBMeiwXJSDsFCRaU21Rkf3pp0+0te6REst+n9dfHxIRzzgtP/snVsmu4d65Yuq+RO20S3p4ZnYXOqzb4Qy+4iXHVlGE+HkgvwqTnpNGjZO+SQKW96+7L8A0TWLE0HGW8tnBakxqs9f17BjJckm4Oo4aRTKrKjexx6Vjl4iJsjzIvV11Qs7lBcWdk3xaz2ZRN6RZUVSVhuYnwZoWVvoqemm3i72beXiSKeGuz6/lU7IbGuaH/iVzlNbS5u2fjg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2a16062-05fc-4e28-2625-08df2a1c202d
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7180.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2026 17:53:30.0561 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2026 17:53:59.9447 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wM3ZeQ0VaKTJshQvGpDnuDBNIV4A3k7xPTCU87UK3p/rC5uTw3mzpQfUKtWrc8xx5Z9V4mkBM56+BUKRWNj3OA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5eD1wfCLX4O/agGzqSN3Le7fspH+5VdPO2k+tWdnnevsy/Jh9pAMXPPUTGBZuO4pNTLDn0fO+W7dUjdQiqHbAg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB097687
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -158,104 +160,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 14, 2026 at 05:28:05PM +0530, Karthik Poosa wrote:
-> Check that READ_THERMAL_CONFIG reports enough thermal entries for the
-> platform-specific MCTRL range and PCIe sensor index before reading
-> READ_THERMAL_DATA.
+On Wed, Oct 14, 2026 at 05:28:01PM +0530, Karthik Poosa wrote:
+> CRI temperature registers encode package and VRAM temperatures as
+> IEEE-754 floating-point values. Decode these values before exposing
+> them through hwmon.
+>  
+> Use integer-based IEEE-754 decoding since kernel code does not use
+> floating-point operations and hwmon reports integer temperatures.
 > 
 > Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+> Assisted-by: LLM
 > ---
 > 
-> v2:
-> - Cap the memory controller sensor range at the PCIe sensor index so the
->   PCIe temperature is not averaged into the memory controller temperature.
+> v2: Add missing description for parameter 'temperature' in
+>     xe_hwmon_temperature_decode().
+> 
+> v3: Add missing mmio_temp_valid() check in xe_hwmon_temp_read() for MMIO
+>     temperature register reads.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > 
->  drivers/gpu/drm/xe/xe_hwmon.c | 44 ++++++++++++++++++++++++-----------
->  1 file changed, 30 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/xe/xe_hwmon.c | 99 ++++++++++++++++++++++++++++++-----
+>  1 file changed, 85 insertions(+), 14 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 4249faf9fb39..4b9c18230ade 100644
+> index afcc80e34bfd..dad2397db141 100644
 > --- a/drivers/gpu/drm/xe/xe_hwmon.c
 > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -920,6 +920,17 @@ static int mbx_temp_decode(u8 value)
->  	return (value & TEMP_MBX_SIGN) ? -temp : temp;
+> @@ -1266,6 +1266,70 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  	}
 >  }
 >  
-> +static u8 xe_hwmon_pcie_temp_index(const struct xe_hwmon *hwmon)
+> +#define IEEE754_SIGN		REG_BIT(31)
+> +#define IEEE754_EXP_MASK	REG_GENMASK(30, 23)
+> +#define IEEE754_MANTISSA_MASK	REG_GENMASK(22, 0)
+> +#define IEEE754_EXP_BIAS	127 /* Exponent bias to obtain the actual exponent */
+> +#define IEEE754_MANTISSA_BITS	23 /* Mantissa width and implicit leading-1 bit position */
+> +#define IEEE754_EXP_SPECIAL	0xff /* reserved exponent value encoding infinity or NaN */
+> +
+> +/**
+> + * xe_hwmon_temperature_decode - Decode an IEEE-754 temperature register value
+> + * @reg_val: The raw register value to decode
+> + * @temperature: Pointer to store the decoded temperature in millidegrees Celsius.
+> + *
+> + * IEEE-754 single-precision format:
+> + *
+> + *  31 30                         23 22                         0
+> + * +--+-----------------------------+----------------------------+
+> + * | S|          exponent           |          fraction          |
+> + * +--+-----------------------------+----------------------------+
+> + *
+> + * value = (-1)^S * 1.fraction * 2^(exponent - 127)
+> + *
+> + * Return: 0 on success or an error if @reg_val is non-finite or cannot be
+> + * represented in millidegrees Celsius.
+> + */
+> +static int xe_hwmon_temperature_decode(u32 reg_val, long *temperature)
 > +{
-> +	if (hwmon->xe->info.platform == XE_CRESCENTISLAND)
-> +		return CRI_TEMP_INDEX_PCIE;
+> +	u32 exponent = REG_FIELD_GET(IEEE754_EXP_MASK, reg_val);
+> +	u32 mantissa = REG_FIELD_GET(IEEE754_MANTISSA_MASK, reg_val);
+> +	s64 value;
+> +	int shift;
 > +
-> +	if (hwmon->xe->info.subplatform == XE_SUBPLATFORM_BATTLEMAGE_G21)
-> +		return BMG_G21_TEMP_INDEX_PCIE;
+> +	/* Exponent 0xff encodes infinity or NaN. */
+> +	if (exponent == IEEE754_EXP_SPECIAL)
+> +		return -EINVAL;
 > +
-> +	return TEMP_INDEX_PCIE;
+> +	/* Subnormal values are smaller than one millidegree Celsius. */
+> +	if (!exponent) {
+> +		*temperature = 0;
+> +		return 0;
+> +	}
+> +
+> +	value = (s64)(mantissa | BIT(IEEE754_MANTISSA_BITS)) * MILLIDEGREE_PER_DEGREE;
+> +	shift = exponent - (IEEE754_EXP_BIAS + IEEE754_MANTISSA_BITS);
+> +	if (shift >= 0) {
+> +		if (shift >= BITS_PER_LONG || value > (LONG_MAX >> shift))
+> +			return -ERANGE;
+> +		value <<= shift;
+> +	} else if (shift > -64) {
+> +		value >>= -shift;
+> +	} else {
+> +		value = 0;
+> +	}
+> +
+> +	/* Ensure the magnitude fits in long, which is 32-bit on some arches. */
+> +	if (value > LONG_MAX)
+> +		return -ERANGE;
+> +
+> +	if (reg_val & IEEE754_SIGN)
+> +		value = -value;
+> +
+> +	*temperature = value;
+> +	return 0;
 > +}
 > +
->  static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+>  static int
+>  xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
 >  {
->  	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> @@ -935,7 +946,14 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
->  		end = CRI_TEMP_INDEX_MCTRL + CRI_TEMP_MCTRL_COUNT;
->  	} else {
->  		start = TEMP_INDEX_MCTRL;
-> -		end = hwmon->temp.count - 1;
-> +		end = min_t(int, hwmon->temp.count - 1, xe_hwmon_pcie_temp_index(hwmon));
-> +	}
-> +
-> +	if (end <= start || end > hwmon->temp.count) {
-> +		drm_warn(&hwmon->xe->drm,
-> +			 "memory controller range [%d, %d) is invalid for temperature count %d\n",
-> +			 start, end, hwmon->temp.count);
-> +		return -ENODATA;
->  	}
->  
->  	for (i = start / sizeof(u32); i < DIV_ROUND_UP(end, sizeof(u32)); i++) {
-> @@ -967,30 +985,28 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
->  	return 0;
->  }
->  
-> -static u8 xe_hwmon_pcie_temp_index(const struct xe_hwmon *hwmon)
-> -{
-> -	if (hwmon->xe->info.platform == XE_CRESCENTISLAND)
-> -		return CRI_TEMP_INDEX_PCIE;
+> @@ -1275,26 +1339,33 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  	switch (attr) {
+>  	case hwmon_temp_input:
+>  		switch (channel) {
+> -		case CHANNEL_PKG:
+> -		case CHANNEL_VRAM:
+> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
 > -
-> -	if (hwmon->xe->info.subplatform == XE_SUBPLATFORM_BATTLEMAGE_G21)
-> -		return BMG_G21_TEMP_INDEX_PCIE;
-> -
-> -	return TEMP_INDEX_PCIE;
-> -}
-> -
->  static int get_pcie_temp(const struct xe_hwmon *hwmon, long *val)
->  {
->  	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
->  	u32 data = 0;
-> +	int index;
->  	int ret;
->  
-> +	index = xe_hwmon_pcie_temp_index(hwmon);
-> +	if (index >= hwmon->temp.count) {
-> +		drm_warn(&hwmon->xe->drm,
-> +			 "PCIe temperature index %d out of range for temperature count %d\n",
-> +			 index, hwmon->temp.count);
-> +		return -ENODATA;
-> +	}
-> +
->  	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA,
-> -						  xe_hwmon_pcie_temp_index(hwmon) / sizeof(data)),
-> +						  index / sizeof(data)),
->  						  &data, NULL);
->  	if (ret)
->  		return ret;
->  
-> -	data >>= (xe_hwmon_pcie_temp_index(hwmon) % sizeof(data)) * BITS_PER_BYTE;
-> +	data >>= (index % sizeof(data)) * BITS_PER_BYTE;
->  	data = REG_FIELD_GET(TEMP_MASK, data);
->  	if (!mbx_temp_valid(hwmon, data)) {
->  		drm_dbg(&hwmon->xe->drm, "PCIe temperature not available\n");
+> -			/* HW register value is in degrees Celsius, convert to millidegrees. */
+> -			*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+> -			return 0;
+>  		case CHANNEL_MCTRL:
+>  			return get_mc_temp(hwmon, val);
+>  		case CHANNEL_PCIE:
+>  			return get_pcie_temp(hwmon, val);
+> +		case CHANNEL_PKG:
+> +		case CHANNEL_VRAM:
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>  			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
+> -			/*
+> -			 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+> -			 * [7:0] fraction.
+> -			 */
+> -			*val = (s32)(REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val)) *
+> -				(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
+> -				 MILLIDEGREE_PER_DEGREE;
+> +			if (!mmio_temp_valid(hwmon, reg_val)) {
+> +				drm_dbg(&hwmon->xe->drm,
+> +					"channel %d temperature invalid, val 0x%llx\n",
+> +					channel, reg_val);
+> +				return -ENXIO;
+> +			}
+> +			if (hwmon->xe->info.platform >= XE_CRESCENTISLAND) {
+> +				return xe_hwmon_temperature_decode((u32)reg_val, val);
+> +			} else if (channel >= CHANNEL_VRAM_N) {
+> +				/*
+> +				 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+> +				 * [7:0] fraction for platforms before CRI.
+> +				 */
+> +				*val = (s32)REG_FIELD_GET(TEMP_MASK_VRAM_N, reg_val) *
+> +					(REG_FIELD_GET(TEMP_SIGN_MASK, reg_val) ? -1 : 1) *
+> +					MILLIDEGREE_PER_DEGREE;
+> +			} else {
+> +				*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+> +			}
+>  			return 0;
+>  		default:
+>  			return -EOPNOTSUPP;
 > -- 
 > 2.25.1
 > 
