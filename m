@@ -4,55 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B79CCC6B33
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 675D5CC6B34
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E608E10E2CE;
-	Thu, 15 Oct 2026 12:15:46 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAF2D10EB38;
- Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFE9010E6F7;
+	Thu, 15 Oct 2026 12:15:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85D0710EB4A;
+ Wed, 14 Oct 2026 22:26:54 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 69EB841245;
+ by tor.source.kernel.org (Postfix) with ESMTP id 84AA66020C;
  Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 4AF15C2BCFD;
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 35577C2BCC7;
  Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
  s=k20201202; t=1792016813;
- bh=rvBRZ/pnHi97CIywFxu45m9zRVSjoxtXT2pCkwknWAA=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
- b=Oi1ywL5VvHjyd3zklZN7GIMOuY70wKPbIof+zj3ltrG0CLUmrdp/QJEjxkcUV+Mke
- 2P7S5/o5uuH0G9QUoWPSNB5KAusojknpRRv0KOQidGZ00QSiRFpdRUwu8RDe8uOFHS
- 4OYBGJ3/Gi44rfJ4dM+sikmrTXYYZx3R3oREQJh5E59wWdpDv5xZzztlhPLI9acJ4i
- 1fBkOgMvw7vIYbkSZbge090MYNPQ9m5MH68pMvhClH/diCzhxrwvSlpwneWH+vlGh5
- YmP/LJby75/B2s1c6n5KNZc9oIToy9z5vQjs4B8ODG9B8bREQWTH4oUUJokOTjfRJq
- kAV5QFCnjbkhQ==
+ bh=SZC/slVBzdiGwyNX2y2/FuFPqz2qwCdGx6MS51/RG4o=;
+ h=From:Subject:Date:To:Cc:Reply-To:From;
+ b=gYz3YjSYQl9zEu3IPWG7IrcnoWqPimdPnvvxMHGBCu54RT7k5T/T9XPYBmD6paijz
+ UkAuaX2jje/oeY8iDeblwZ0q/2SYSq/xx86iJxd1Z2fTZLgVFRLnD/3zQSquXuikUY
+ eRsQF6wdphBGQzZ3O/mtGeylm3oF/r5L3Tbq1NTHF+Wl9nGhMoM0wdoZSEqjQl+5le
+ nvLoIl4WKs1yNFxBK52lxhLGqUhsbPpV+vCqw7IQENt5mzfbZERniN4aCZjBZDIgas
+ n0QsFxYy5vss0XAa3UuGOe23fau4rTu8muDidvQYRT3ixuX0uc3ceqR2XtA1a/XZLH
+ xq4jgDkJWEJAg==
 Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
  (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 2FB6FCC6B2D;
+ by smtp.lore.kernel.org (Postfix) with ESMTP id 11FDDCC6B30;
  Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
 From: =?utf-8?q?Burak_G=C3=B6nc=C3=BC_via_B4_Relay?=
  <devnull+burakgon12.gmail.com@kernel.org>
-Date: Thu, 15 Oct 2026 01:26:41 +0300
-Subject: [PATCH v2 2/2] drm/i915/cx0: request TCSS power for the non-TC C20
- PHY on PTL port B
+Subject: [PATCH v2 0/2] drm/i915/cx0: TCSS power for the non-TC C20 PHY on
+ PTL port B
+Date: Thu, 15 Oct 2026 01:26:39 +0300
+Message-Id: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261015-ptl-port-b-tcss-v2-2-e00ce882402d@gmail.com>
-References: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
-In-Reply-To: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNQQ6CMBBFr0Jm7Zi2IKIr72FY0KHCGKCkU4mGc
+ HcB1y5f8v77M4gL7ASuyQzBTSzshxXMIQFqq6FxyPXKYJTJtVI5jrHD0YeIFiOJYGE1WTrVl8I
+ pWFdjcA9+78V7+WN52aejuGU2o2WJPnz2y0lv3v/6pFGjyVR+VmlmqE5vTV9xdyTfQ7ksyxcro
+ k0QwAAAAA==
+X-Change-ID: 20261006-ptl-port-b-tcss-8b1cbc5d98e0
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
  Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>, 
  Mika Kahola <mika.kahola@intel.com>, 
  =?utf-8?q?Burak_G=C3=B6nc=C3=BC?= <burakgon12@gmail.com>
 X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1792016806; l=6600;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1792016806; l=2674;
  i=burakgon12@gmail.com; s=20261006; h=from:subject:message-id;
- bh=LTf+g2efpLrG86I/0jGNQb7VTykjWu5znTamnioz5Lo=;
- b=B1vaJzEXwL+bfrGg911Wqe6oyDezhJdtqdLWxmZl4XHyCIz5rJP3Bp9a+dNefaHr1ZSwWWY+G
- h3oR2hhKqavAbjd5oyP+CP59oGH8qg5b4dpm51k94I9CEhkyXCP5J7L
+ bh=SZC/slVBzdiGwyNX2y2/FuFPqz2qwCdGx6MS51/RG4o=;
+ b=wxwZT4WiAlKRD0t3ezMCw88gnTXU+WGrWyaFowg3QlItaO1sa+Cugj4uiuok9EGxxjYrxzXte
+ eXS7Wc+p5Y7CS/R7xaJiVZgBdIT/qpowLyJEhn294ksPLaSWVRPJm48
 X-Developer-Key: i=burakgon12@gmail.com; a=ed25519;
  pk=qcexQajnoYGkNqFOy3eFqTzvqTOR/P++ksapi6qUbvw=
 X-Endpoint-Received: by B4 Relay for burakgon12@gmail.com/20261006 with
@@ -74,162 +77,64 @@ Reply-To: burakgon12@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Burak Göncü <burakgon12@gmail.com>
+On PTL, port B is driven by a C20 PHY that sits in the Type-C
+subsystem, but nothing in the driver requests TCSS power for it; only
+the firmware does, when it lights a display on the port at boot. The
+ASUS Zenbook Duo UX8407AA drives its second internal panel from port B.
+After a power-on with the detachable keyboard lying on that panel, the
+first enable of the panel fails and can hang the machine (gitlab issue
+9196).
 
-On PTL, port B is driven by a C20 PHY that sits in the Type-C subsystem,
-but port B is not a TC port. The TC PHY code is what sets
-XELPDP_TCSS_POWER_REQUEST, so for port B nothing in the driver does.
+Patch 2 requests TCSS power for such a PHY around its PLL enable and
+disable. Patch 1 first serializes the TCSS mailbox handshake of
+Wa_14020908590, which patch 2 reuses and which the TC ports could
+already race on.
 
-The ASUS Zenbook Duo UX8407AA connects its second internal panel (eDP-2)
-to port B. The firmware lights that panel at power-on only when the
-detachable keyboard is not lying on it. After a power-on with the
-keyboard in place, the first enable of eDP-2 fails:
+Two questions from v1 are still open:
 
-  PHY B failed to request refclk
-  PHY B failed to change powerdown state
-  PHY B failed to bring out of lane reset
-  Failed to bring PHY B to idle.
-  Port B PLL not locked
-  Timeout waiting for DDI BUF B to get active
+- Does port B's C20 PHY on PTL always need the TCSS power request when
+  it is used as a non-TC port, as this series assumes, or does this
+  belong in the port's power well / AUX handling, or in a board quirk?
+- Should the request be held for as long as the port is in use rather
+  than per PLL enable/disable? Releasing it while the panel is off puts
+  the hardware back into the state an unpatched kernel has; holding it
+  showed no measurable difference in package power or PC10/LPI
+  residency on this machine.
 
-and every later commit on pipe B waits for the flip_done timeout, or the
-machine hangs. The state survives warm reboots until a full power cycle.
+EDITME: v2 test results on the hardware.
 
-In that state XELPDP_PORT_BUF_CTL1 of port B reads back with both
-XELPDP_TCSS_POWER_REQUEST and XELPDP_TCSS_POWER_STATE clear, and its
-XELPDP_PORT_CLOCK_CTL stays at 0xa0008400 where port A reaches
-0xf0008400. With the request set, the power state is acknowledged, the
-clock control reaches 0xf0008400 too and the panel comes up.
+Compile-tested on drm-tip with W=1 for i915 and xe (clang). HDMI/DP on
+port B could not be tested, as this board only drives eDP there.
 
-Request TCSS power, including the PTL mailbox handshake the TC code
-uses (Wa_14020908590), before programming the PLL of a non-TC C20 PHY on
-PTL, and release the request once the PLL is disabled. Wait for the
-TCSS power state to follow the request in both directions, as the TC
-PHY code does for TC ports.
+An LLM-based assistant helped with the investigation and with writing
+the patches; I tested them on the hardware and reviewed them.
 
-The failure and the TCSS power request as its fix were first identified
-by the zenbook-duo26-Ubuntu26.04 project.
-
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/9196
-Link: https://github.com/therealarnold666/zenbook-duo26-Ubuntu26.04
-Assisted-by: LLM
-Signed-off-by: Burak Göncü <burakgon12@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 37 ++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.c      | 23 +++++++++++++++++
- drivers/gpu/drm/i915/display/intel_tc.h      |  1 +
- 3 files changed, 61 insertions(+)
+Changes in v2:
+- New patch 1: serialize the TCSS mailbox with a display-wide mutex; it
+  was covered only by each TC port's own lock (Sashiko review)
+- Patch 2: also wait for the TCSS power state to clear when the request
+  is released, as the TC PHY code does (Sashiko review)
+- Drop the RFC prefix
+- Link to v1: https://patch.msgid.link/20261006-ptl-port-b-tcss-v1-1-240670342cd3@gmail.com
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index b83f0afaa..d4a9da843 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -54,6 +54,36 @@ bool intel_encoder_is_c10phy(struct intel_encoder *encoder)
- 	return false;
- }
- 
-+/*
-+ * On PTL, port B is driven by a C20 PHY inside the Type-C subsystem, but
-+ * port B is not a TC port, so the TC PHY code never requests TCSS power
-+ * for it. Unless the firmware has done so while lighting a display on the
-+ * port at boot, the PHY then never acknowledges its refclk and PLL
-+ * requests.
-+ */
-+static bool intel_cx0_needs_tcss_power(struct intel_encoder *encoder)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+
-+	return display->platform.pantherlake &&
-+	       !intel_encoder_is_c10phy(encoder) &&
-+	       !intel_encoder_is_tc(encoder);
-+}
-+
-+static void intel_cx0_request_tcss_power(struct intel_encoder *encoder, bool enable)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+
-+	intel_tc_request_tcss_power(encoder, enable);
-+
-+	/* Like the TC PHY code, wait for the power state in both directions. */
-+	if (intel_de_wait_ms(display, XELPDP_PORT_BUF_CTL1(display, encoder->port),
-+			     XELPDP_TCSS_POWER_STATE,
-+			     enable ? XELPDP_TCSS_POWER_STATE : 0, 5, NULL))
-+		drm_warn(display->drm, "Port %c: TCSS power %s not acknowledged\n",
-+			 port_name(encoder->port), enable ? "request" : "release");
-+}
-+
- static int lane_mask_to_lane(u8 lane_mask)
- {
- 	if (WARN_ON((lane_mask & ~INTEL_CX0_BOTH_LANES) ||
-@@ -3191,6 +3221,10 @@ static void intel_cx0pll_enable(struct intel_encoder *encoder,
- 	 */
- 	drm_WARN_ON(display->drm, lane_reversal && intel_tc_port_in_dp_alt_mode(dig_port));
- 
-+	/* The PHY must be powered before its clocks are requested. */
-+	if (intel_cx0_needs_tcss_power(encoder))
-+		intel_cx0_request_tcss_power(encoder, true);
-+
- 	/*
- 	 * 1. Program PORT_CLOCK_CTL REGISTER to configure
- 	 * clock muxes, gating and SSC
-@@ -3536,6 +3570,9 @@ static void intel_cx0pll_disable(struct intel_encoder *encoder)
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
- 		     XELPDP_FORWARD_CLOCK_UNGATE, 0);
- 
-+	if (intel_cx0_needs_tcss_power(encoder))
-+		intel_cx0_request_tcss_power(encoder, false);
-+
- 	intel_cx0_phy_transaction_end(encoder, wakeref);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 9285e70ef..baca7dac5 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1094,6 +1094,29 @@ static void xelpdp_tc_power_request_wa(struct intel_display *display, bool enabl
- 	mutex_unlock(&display->tc.mailbox_lock);
- }
- 
-+/**
-+ * intel_tc_request_tcss_power - request TCSS power for a non-TC port's PHY
-+ * @encoder: encoder of a non-TC port whose PHY sits in the Type-C subsystem
-+ * @enable: request or release the power
-+ *
-+ * TC ports get TCSS power from the TC PHY code. This is for a non-TC port
-+ * whose PHY nevertheless needs it, like port B's C20 PHY on PTL.
-+ */
-+void intel_tc_request_tcss_power(struct intel_encoder *encoder, bool enable)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	intel_reg_t reg = XELPDP_PORT_BUF_CTL1(display, encoder->port);
-+
-+	if (!!(intel_de_read(display, reg) & XELPDP_TCSS_POWER_REQUEST) == enable)
-+		return;
-+
-+	if (DISPLAY_VER(display) == 30)
-+		xelpdp_tc_power_request_wa(display, enable);
-+
-+	intel_de_rmw(display, reg, XELPDP_TCSS_POWER_REQUEST,
-+		     enable ? XELPDP_TCSS_POWER_REQUEST : 0);
-+}
-+
- static void __xelpdp_tc_phy_enable_tcss_power(struct intel_tc_port *tc, bool enable)
- {
- 	struct intel_display *display = to_intel_display(tc->dig_port);
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index 6719aea5b..b49a5b5c5 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -88,6 +88,7 @@ bool intel_tc_port_in_legacy_mode(struct intel_digital_port *dig_port);
- bool intel_tc_port_handles_hpd_glitches(struct intel_digital_port *dig_port);
- 
- bool intel_tc_port_connected(struct intel_encoder *encoder);
-+void intel_tc_request_tcss_power(struct intel_encoder *encoder, bool enable);
- 
- enum intel_tc_pin_assignment
- intel_tc_port_get_pin_assignment(struct intel_digital_port *dig_port);
+---
+Burak Göncü (2):
+      drm/i915/tc: serialize the TCSS power request mailbox
+      drm/i915/cx0: request TCSS power for the non-TC C20 PHY on PTL port B
 
--- 
-2.56.0
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 37 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_display_core.h  |  5 +++
+ .../gpu/drm/i915/display/intel_display_driver.c    |  1 +
+ drivers/gpu/drm/i915/display/intel_tc.c            | 33 +++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_tc.h            |  1 +
+ 5 files changed, 74 insertions(+), 3 deletions(-)
+---
+base-commit: daeb062fc40f727fafefed080c6d12a5ad1d0d12
+change-id: 20261006-ptl-port-b-tcss-8b1cbc5d98e0
+
+Best regards,
+--  
+Burak Göncü <burakgon12@gmail.com>
 
 
