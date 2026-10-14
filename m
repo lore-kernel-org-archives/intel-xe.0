@@ -4,63 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 675D5CC6B34
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C122CC6B3C
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFE9010E6F7;
-	Thu, 15 Oct 2026 12:15:47 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85D0710EB4A;
- Wed, 14 Oct 2026 22:26:54 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 84AA66020C;
- Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 35577C2BCC7;
- Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1792016813;
- bh=SZC/slVBzdiGwyNX2y2/FuFPqz2qwCdGx6MS51/RG4o=;
- h=From:Subject:Date:To:Cc:Reply-To:From;
- b=gYz3YjSYQl9zEu3IPWG7IrcnoWqPimdPnvvxMHGBCu54RT7k5T/T9XPYBmD6paijz
- UkAuaX2jje/oeY8iDeblwZ0q/2SYSq/xx86iJxd1Z2fTZLgVFRLnD/3zQSquXuikUY
- eRsQF6wdphBGQzZ3O/mtGeylm3oF/r5L3Tbq1NTHF+Wl9nGhMoM0wdoZSEqjQl+5le
- nvLoIl4WKs1yNFxBK52lxhLGqUhsbPpV+vCqw7IQENt5mzfbZERniN4aCZjBZDIgas
- n0QsFxYy5vss0XAa3UuGOe23fau4rTu8muDidvQYRT3ixuX0uc3ceqR2XtA1a/XZLH
- xq4jgDkJWEJAg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
- (localhost.localdomain [127.0.0.1])
- by smtp.lore.kernel.org (Postfix) with ESMTP id 11FDDCC6B30;
- Wed, 14 Oct 2026 22:26:53 +0000 (UTC)
-From: =?utf-8?q?Burak_G=C3=B6nc=C3=BC_via_B4_Relay?=
- <devnull+burakgon12.gmail.com@kernel.org>
-Subject: [PATCH v2 0/2] drm/i915/cx0: TCSS power for the non-TC C20 PHY on
- PTL port B
-Date: Thu, 15 Oct 2026 01:26:39 +0300
-Message-Id: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1966310E3D2;
+	Thu, 15 Oct 2026 12:15:52 +0000 (UTC)
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com
+ [209.85.221.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 519D010E492
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 15:25:31 +0000 (UTC)
+Received: by mail-vk1-f172.google.com with SMTP id
+ 71dfb90a1353d-5db19e2ef99so223368e0c.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 08:25:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1791991530; x=1792596330; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=ByuDN4/B1x5JlHCJPQ+ueE1qolHJj9yRQEgaRjuCRjU=;
+ b=KuoyUyDqusk96FaKOHHwGZzt4fPAuh6WpvCC2d7gbd7Cdr2jdhIaClzMhiVzsHtzW8
+ ryJk1mjMqbKF7/Bjsw5RJabPWRw9rsZ+pNCgYkjSkO43OLg4sBv5F5DRzud6v+aS3VWV
+ 5Ep1hIZJDlhGBEWqaDVIykDqKUn1K6tsneGcrkuUmhmU/xym+39VnVf8uZov9BtghOXc
+ elB0HwBeqfzIgII/H5Xjhj4HiX7RwzQu0ERiz8LdU8iYw7MwhejYWXICqUOG0Adv6Wpq
+ bKy5bu08HxMna/0OfxKgmQlUEx7zcGjo5D+ZnUpw41zdThDKIshQka9IL7h4BLC8wCJX
+ M18g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1791991530; x=1792596330;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=ByuDN4/B1x5JlHCJPQ+ueE1qolHJj9yRQEgaRjuCRjU=;
+ b=Ew2a83B+Hw0U+FeWDTllPYKOMWfKYpZ3IsyQLBTSYJA0nbGG+swGlgpOZ70VppeNYN
+ /kBMLmfhCQrWJfzc2Kr3vOvR54zvsYTo3vTPPU8Bhb8zW2fvwguQBmexs2R7kI7yYVj7
+ 9xm/XuqTB3w3j4LNUyS9mXs8+pAPWQIll4B9dRBVyBOG0EI01mMBMH8901JGeh2N/NtE
+ MBRznuM1Q0d7cMdhD4cqxNOF8zb/TJoFHNmUBXlshiTa0/XHtKhl1xxbi0rSF8VEXct1
+ 8HnzRCAhRG1o84D9ykaxdjZgYayjAqptU+93cI8xnVhJOZzopVrbrufed7cxNa7YlsuS
+ sSYg==
+X-Gm-Message-State: AFq9FYJTvt39jeCzXsnWoyAhzUGoBEC2zfJcy2FIDkgGWgz/w1MKfgnj
+ mnmWhMzazbyATB9EKWC/qJGhUOS/LGqKwQr0Wc3T+aiHv8snCzjkr+fN
+X-Gm-Gg: AYBFou12930+qm14sSC+v1Xyu6iVpjNblhT8Cw0XPFDao/ohJ49Nrs/edW3BbFWWGpo
+ hVOYhjeFJYAQx1VPjXS7vmBgWPSvcn5VB9L37y+RL6RlKzGIaDUIl6s6QJW92zTjP+FeB4NThyG
+ hg2e8NF+xdOIt6Yu4rjwry/h4K847wRNJo6iL3nu4pqqVPV/GeuptcgP+G+bT+jB5dPbrK8TxHR
+ gPJRXtyp5A4VfvfHBGLe/at+fLA/Jww8FpZ9macXpgb5QiMC42GIamIjP2ye1xLF8MXhJPbHzmj
+ eVsqv8tk1ZhP+D23cwslBKJCjIgKWLrDH3k07Tkq6yaT2hZlZIvV8UQCDadEuhz954TV/lfWLYe
+ VQy0OtgdcFY213DL1Y/4uh3XD96r9tF64qMz3NDF/x88Vl6/IxWtWyCl1OjdZDn2Aj8/Ld/MZvo
+ TIF/k3BbkHHTmuxl2o50W5kWNPWvMpVkIF8MHQo1a6HdAna54i/QPU8m+TNeLBDdseaZfAmd1t4
+ lKZRsUT5hXUIcdhyFn0eMk/3NiikHeN2Ws5meaKRZhdPsydKPBMxdwub28tcXo7RLBG/XWrpEXE
+ oxRvPDjQ+sXXn2qQ1DDQRDgNslXHCsPIH8DLXVocnAsdS7Mx
+X-Received: by 2002:a05:6122:3b10:b0:5e9:484a:3499 with SMTP id
+ 71dfb90a1353d-5e9484a38e0mr2792831e0c.2.1791991529768; 
+ Wed, 14 Oct 2026 08:25:29 -0700 (PDT)
+Received: from debian-t14-gen1-fuhrysteve.ts.fuhry.app
+ (235.sub-75-230-129.myvzw.com. [75.230.129.235])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-91b97c39482sm54744986d6.45.2026.10.14.08.25.27
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 14 Oct 2026 08:25:29 -0700 (PDT)
+From: "Stephen J. Fuhry" <fuhrysteve@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Animesh Manna <animesh.manna@intel.com>,
+ "Stephen J. Fuhry" <fuhrysteve@gmail.com>
+Subject: [PATCH v2] drm/i915/display: guard intel_alpm_get_error() against
+ non-ALPM sinks
+Date: Wed, 14 Oct 2026 11:25:26 -0400
+Message-ID: <20261014152526.2523534-1-fuhrysteve@gmail.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNQQ6CMBBFr0Jm7Zi2IKIr72FY0KHCGKCkU4mGc
- HcB1y5f8v77M4gL7ASuyQzBTSzshxXMIQFqq6FxyPXKYJTJtVI5jrHD0YeIFiOJYGE1WTrVl8I
- pWFdjcA9+78V7+WN52aejuGU2o2WJPnz2y0lv3v/6pFGjyVR+VmlmqE5vTV9xdyTfQ7ksyxcro
- k0QwAAAAA==
-X-Change-ID: 20261006-ptl-port-b-tcss-8b1cbc5d98e0
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>, 
- Mika Kahola <mika.kahola@intel.com>, 
- =?utf-8?q?Burak_G=C3=B6nc=C3=BC?= <burakgon12@gmail.com>
-X-Mailer: b4 0.15.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1792016806; l=2674;
- i=burakgon12@gmail.com; s=20261006; h=from:subject:message-id;
- bh=SZC/slVBzdiGwyNX2y2/FuFPqz2qwCdGx6MS51/RG4o=;
- b=wxwZT4WiAlKRD0t3ezMCw88gnTXU+WGrWyaFowg3QlItaO1sa+Cugj4uiuok9EGxxjYrxzXte
- eXS7Wc+p5Y7CS/R7xaJiVZgBdIT/qpowLyJEhn294ksPLaSWVRPJm48
-X-Developer-Key: i=burakgon12@gmail.com; a=ed25519;
- pk=qcexQajnoYGkNqFOy3eFqTzvqTOR/P++ksapi6qUbvw=
-X-Endpoint-Received: by B4 Relay for burakgon12@gmail.com/20261006 with
- auth_id=1126
-X-Original-From: =?utf-8?q?Burak_G=C3=B6nc=C3=BC?= <burakgon12@gmail.com>
 X-Mailman-Approved-At: Thu, 15 Oct 2026 12:15:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,68 +87,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: burakgon12@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On PTL, port B is driven by a C20 PHY that sits in the Type-C
-subsystem, but nothing in the driver requests TCSS power for it; only
-the firmware does, when it lights a display on the port at boot. The
-ASUS Zenbook Duo UX8407AA drives its second internal panel from port B.
-After a power-on with the detachable keyboard lying on that panel, the
-first enable of the panel fails and can hang the machine (gitlab issue
-9196).
+intel_alpm_get_error() unconditionally reads DP_RECEIVER_ALPM_STATUS via
+AUX from any DP connection that receives a short-pulse interrupt.
+However, alpm_dpcd is only populated by intel_edp_init_dpcd(), so it is
+zero for all external (non-eDP) DP and DP-MST connections. On such
+connections the AUX read fails, producing a spurious
 
-Patch 2 requests TCSS power for such a PHY around its PLL enable and
-disable. Patch 1 first serializes the TCSS mailbox handshake of
-Wa_14020908590, which patch 2 reuses and which the TC ports could
-already race on.
+  [drm] *ERROR* Error reading ALPM status
 
-Two questions from v1 are still open:
+and setting sink_alpm_error = true, even on hardware that never enabled
+ALPM.
 
-- Does port B's C20 PHY on PTL always need the TCSS power request when
-  it is used as a non-TC port, as this series assumes, or does this
-  belong in the port's power well / AUX handling, or in a board quirk?
-- Should the request be held for as long as the port is in use rather
-  than per PLL enable/disable? Releasing it while the panel is off puts
-  the hardware back into the state an unpatched kernel has; holding it
-  showed no measurable difference in package power or PC10/LPI
-  residency on this machine.
+intel_alpm_disable() already returns early on !intel_dp->alpm_dpcd;
+apply the same check in intel_alpm_get_error() so it skips the AUX
+transaction when the sink does not support ALPM.
 
-EDITME: v2 test results on the hardware.
+Seen on a ThinkPad T14 Gen 3 (Alder Lake-P) docked through a Lenovo
+ThinkPad USB-C Dock Gen2 with two DP-MST monitors: the error fired once
+on the dock's upstream DP port on every DPMS wake.
 
-Compile-tested on drm-tip with W=1 for i915 and xe (clang). HDMI/DP on
-port B could not be tested, as this board only drives eDP there.
-
-An LLM-based assistant helped with the investigation and with writing
-the patches; I tested them on the hardware and reviewed them.
-
+Fixes: 2063174c22da ("drm/i915/lobf: Check for sink error and disable LOBF")
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Stephen J. Fuhry <fuhrysteve@gmail.com>
 ---
-Changes in v2:
-- New patch 1: serialize the TCSS mailbox with a display-wide mutex; it
-  was covered only by each TC port's own lock (Sashiko review)
-- Patch 2: also wait for the TCSS power state to clear when the request
-  is released, as the TC PHY code does (Sashiko review)
-- Drop the RFC prefix
-- Link to v1: https://patch.msgid.link/20261006-ptl-port-b-tcss-v1-1-240670342cd3@gmail.com
+v2:
+- Rebased onto drm-tip. intel_alpm_get_error() now uses
+  drm_dp_dpcd_read_byte(), so v1 no longer applied; the change itself
+  is the same three lines.
+- Carried Jouni's Reviewed-by from v1, since the logic is unchanged.
+- Corrected the hardware in the commit message: the machine is a T14
+  Gen 3 (Alder Lake-P), not a Gen 1.
+- The error was observed with a ThinkPad USB-C Dock Gen2 and has not been
+  retested since the move to a Thunderbolt 4 dock.
 
----
-Burak Göncü (2):
-      drm/i915/tc: serialize the TCSS power request mailbox
-      drm/i915/cx0: request TCSS power for the non-TC C20 PHY on PTL port B
+v1: https://lore.kernel.org/intel-gfx/20260611125408.676626-1-fuhrysteve@gmail.com/
 
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       | 37 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_display_core.h  |  5 +++
- .../gpu/drm/i915/display/intel_display_driver.c    |  1 +
- drivers/gpu/drm/i915/display/intel_tc.c            | 33 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_tc.h            |  1 +
- 5 files changed, 74 insertions(+), 3 deletions(-)
----
-base-commit: daeb062fc40f727fafefed080c6d12a5ad1d0d12
-change-id: 20261006-ptl-port-b-tcss-8b1cbc5d98e0
+ drivers/gpu/drm/i915/display/intel_alpm.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Best regards,
---  
-Burak Göncü <burakgon12@gmail.com>
-
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index f54b29e..059287d 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -754,6 +754,9 @@ bool intel_alpm_get_error(struct intel_dp *intel_dp)
+ 	int ret;
+ 	u8 val;
+ 
++	if (!intel_dp->alpm_dpcd)
++		return false;
++
+ 	ret = drm_dp_dpcd_read_byte(aux, DP_RECEIVER_ALPM_STATUS, &val);
+ 	if (ret < 0) {
+ 		drm_err(display->drm, "Error reading ALPM status (%pe)\n", ERR_PTR(ret));
+-- 
+2.47.3
 
