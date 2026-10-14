@@ -4,54 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20D23CC6B2C
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 11:59:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FFBDCC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 12:05:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D431710FD1B;
-	Wed, 14 Oct 2026 11:59:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBFE10FD10
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 11:59:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA7A10FD1D;
+	Wed, 14 Oct 2026 12:05:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F09E910E9BF;
+ Wed, 14 Oct 2026 12:05:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791979179; x=1823515179;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=AL7CEdrGnPQCI2w++xlIAG0issl+44QRah0QfqD573w=;
- b=UGIRNiEcLjrHf3L4m+xyotGW2Tote9U5S0RW8gWZmA0oiFlWqqdJm7bW
- 5WTCnMao1Inufx5x/qoFbPJ8jtReKQAX0eoNqeTFCfBgbip8fZ7Yy0d9d
- ZH+iO3pMZAbEB0yuxafP/zafHeuXKB2ES7gSk8RNDAZz2yy3bRf+PmvB8
- lul15XNArKcwTcwfqIPL8Rcf2NW4zul9ZZsNCBhQkp7RPcUuOFTIExtmD
- qgonPmCDVhdXT7H3plkhhu9ILvnrbvliOzfklbVeFmgAr2qTMoHzS44PC
- Tvhwww/RNr7uQM+FP71+qyZK6TggWFKkd4xRVKpio65lrU7cAEnq/bJKD w==;
-X-CSE-ConnectionGUID: qZ33VbSQTOGSlTeHJ8ZXBg==
-X-CSE-MsgGUID: Ef5KfEsGSpikgZIqfLllJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="609639"
+ t=1791979547; x=1823515547;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=x17OpzMlrJ6oPLDdW8euNk+6xMbipC5El2pPe+RivFk=;
+ b=JJQDdEO2zQLZC0bwY6P1SyYTuF+jFE0EuGESYO5MeTP25WPkS0T2QJPH
+ hYyV6RWFHo3VkQq38+pvwVN7wJ3wMkfT638FzG9XiyBhtGl5oeIlGeCmm
+ 91ZCYb8y3CwZMyWUDg6aL3gW59ArLyu431bw15csgS/DQUSaZj1c6or+w
+ XJcT0e6bNhWUWhBAmBE3U+aRaB4OcRoD6SUQQ24i6aqfyYU2n6EHiDF6r
+ mApkcVxw19UhveerJ8QHsGk+j6NbLpLSOhwea7PG4IAApgKnL0rlGJD/w
+ qQhZNRIg/JSQijpPIIW3+ZVGAuTvoWtnV6WWczLfIqyNTnw+cOir3Idb1 Q==;
+X-CSE-ConnectionGUID: 7wpe0+OrRZq2oswfoScpdw==
+X-CSE-MsgGUID: ec6tVQFNQLCWCg2NnO/zKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="739790"
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="609639"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 04:59:30 -0700
-X-CSE-ConnectionGUID: m+qz9BL8QRWPYKLrAHKaUA==
-X-CSE-MsgGUID: wjKqSXR2TYWUmO7wtjuQDw==
+   d="scan'208";a="739790"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 05:05:47 -0700
+X-CSE-ConnectionGUID: 2l4cVOM0QMyQySLHbQ7Qfw==
+X-CSE-MsgGUID: sLF1ofTwS4aO3ra3QVaCGg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1752221"
-Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+   d="scan'208";a="1736774"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 04:59:27 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, riana.tauro@intel.com,
- Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v13 16/16] drm/xe/hwmon: Propagate all hardware read errors
-Date: Wed, 14 Oct 2026 17:28:06 +0530
-Message-Id: <20261014115806.831459-17-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261014115806.831459-1-karthik.poosa@intel.com>
-References: <20261014115806.831459-1-karthik.poosa@intel.com>
+ 14 Oct 2026 05:05:45 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/6] drm/i915/de: Uncore reduction
+Date: Wed, 14 Oct 2026 15:05:36 +0300
+Message-ID: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.55.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,184 +67,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Propagate all failures from pcode and mailbox accesses and fix missed
-return-value checks found by Sashiko in
-https://patchwork.freedesktop.org/patch/758843/?series=174898&rev=6.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Fixes: 7596d839f622 ("drm/xe/hwmon: Add support to manage power limits though mailbox")
-Fixes: 0c5405d3aa4ad ("drm/xe/hwmon: Read energy status from PMT")
-Fixes: 25e963a09e059 ("drm/xe/hwmon: Move card reactive critical power under channel card")
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_hwmon.c | 47 +++++++++++++++++++++--------------
- 1 file changed, 29 insertions(+), 18 deletions(-)
+Tweak a bunch of stuff in intel_de.h to reduce the uncore
+footprint.
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 4b9c18230ade..286020d0c6ec 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -390,17 +390,20 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
-  * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
-  * clamped values when read.
-  */
--static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *value)
-+static int xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *value)
- {
- 	u32 reg_val = 0;
- 	struct xe_device *xe = hwmon->xe;
- 	struct xe_reg rapl_limit, pkg_power_sku;
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	int ret = 0;
- 
- 	mutex_lock(&hwmon->hwmon_lock);
- 
- 	if (hwmon->xe->info.has_mbx_power_limits) {
--		xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
-+		ret = xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
-+		if (ret)
-+			goto unlock;
- 	} else {
- 		rapl_limit = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel);
- 		pkg_power_sku = xe_hwmon_get_reg(hwmon, REG_PKG_POWER_SKU, channel);
-@@ -432,6 +435,7 @@ static void xe_hwmon_power_max_read(struct xe_hwmon *hwmon, u32 attr, int channe
- 	}
- unlock:
- 	mutex_unlock(&hwmon->hwmon_lock);
-+	return ret;
- }
- 
- static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channel, long value)
-@@ -454,7 +458,9 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 			ret = xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
- 			if (ret)
- 				goto unlock;
--			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
-+			ret = xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
-+			if (ret)
-+				goto unlock;
- 		} else {
- 			reg_val = xe_mmio_rmw32(mmio, rapl_limit, PWR_LIM_EN, 0);
- 			reg_val = xe_mmio_read32(mmio, rapl_limit);
-@@ -511,15 +517,18 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
- 	return ret;
- }
- 
--static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int channel,
--					  long *value)
-+static int xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int channel,
-+					 long *value)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	u32 reg_val;
-+	int ret = 0;
- 
- 	if (hwmon->xe->info.has_mbx_power_limits) {
- 		/* PL1 is rated max if supported. */
--		xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, channel, &reg_val);
-+		ret = xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, channel, &reg_val);
-+		if (ret)
-+			return ret;
- 	} else {
- 		/*
- 		 * This sysfs file won't be visible if REG_PKG_POWER_SKU is invalid, so valid check
-@@ -533,6 +542,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int
- 
- 	reg_val = REG_FIELD_GET(PKG_TDP, reg_val);
- 	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
-+	return ret;
- }
- 
- /*
-@@ -555,7 +565,7 @@ static void xe_hwmon_power_rated_max_read(struct xe_hwmon *hwmon, u32 attr, int
-  * hwmon->scl_shift_energy of 14 bits we have 57 (63 - 20 + 14) bits before
-  * energyN_input overflows. This at 1000 W is an overflow duration of 278 years.
-  */
--static void
-+static int
- xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
-@@ -566,7 +576,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- 	/* Energy is supported only for card and pkg */
- 	if (channel > CHANNEL_PKG) {
- 		*energy = 0;
--		return;
-+		return 0;
- 	}
- 
- 	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
-@@ -578,7 +588,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- 		if (ret != sizeof(pmt_val)) {
- 			drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n", ret);
- 			*energy = 0;
--			return;
-+			return ret < 0 ? ret : -EIO;
- 		}
- 
- 		if (channel == CHANNEL_PKG)
-@@ -595,6 +605,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
- 
- 	*energy = mul_u64_u32_shr(ei->accum_energy, SF_ENERGY,
- 				  hwmon->scl_shift_energy);
-+	return 0;
- }
- 
- static ssize_t
-@@ -620,7 +631,8 @@ xe_hwmon_power_max_interval_show(struct device *dev, struct device_attribute *at
- 			drm_err(&hwmon->xe->drm,
- 				"power interval read fail, ch %d, attr %d, val 0x%08x, ret %d\n",
- 				channel, power_attr, reg_val, ret);
--			reg_val = 0;
-+			mutex_unlock(&hwmon->hwmon_lock);
-+			return ret;
- 		}
- 	} else {
- 		reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT,
-@@ -1417,7 +1429,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 		}
- 	case hwmon_power_crit:
- 		if (channel == CHANNEL_CARD) {
--			xe_hwmon_pcode_read_i1(hwmon, &uval);
-+			if (xe_hwmon_pcode_read_i1(hwmon, &uval))
-+				return 0;
- 			return (uval & POWER_SETUP_I1_WATTS) ? 0644 : 0;
- 		}
- 		break;
-@@ -1436,7 +1449,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 			}
- 		}
- 		if ((!(uval & PWR_LIM_EN)) && channel == CHANNEL_CARD) {
--			xe_hwmon_pcode_read_i1(hwmon, &uval);
-+			if (xe_hwmon_pcode_read_i1(hwmon, &uval))
-+				return 0;
- 			return (uval & POWER_SETUP_I1_WATTS) ? 0444 : 0;
- 		}
- 		return (uval) ? 0444 : 0;
-@@ -1452,11 +1466,9 @@ xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 	switch (attr) {
- 	case hwmon_power_max:
- 	case hwmon_power_cap:
--		xe_hwmon_power_max_read(hwmon, attr, channel, val);
--		return 0;
-+		return xe_hwmon_power_max_read(hwmon, attr, channel, val);
- 	case hwmon_power_rated_max:
--		xe_hwmon_power_rated_max_read(hwmon, attr, channel, val);
--		return 0;
-+		return xe_hwmon_power_rated_max_read(hwmon, attr, channel, val);
- 	case hwmon_power_crit:
- 		return xe_hwmon_power_curr_crit_read(hwmon, channel, val, SF_POWER);
- 	default:
-@@ -1573,8 +1585,7 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- {
- 	switch (attr) {
- 	case hwmon_energy_input:
--		xe_hwmon_energy_get(hwmon, channel, val);
--		return 0;
-+		return xe_hwmon_energy_get(hwmon, channel, val);
- 	default:
- 		return -EOPNOTSUPP;
- 	}
+Ville Syrjälä (6):
+  drm/i915: s/PIPEFRAME/PIPEFRAMEHIGH/
+  drm/i915: Modernize PIPEFRAMEHIGH/PIPEFRAMEPIXEL bits
+  drm/i915/de: Convert intel_de_read64_2x32_volatile() to
+    intel_de_read64_2x32_volatile_fw()
+  drm/i915/de: Implement intel_de_rmw() by hand
+  drm/i915/de: Implement intel_de_posting_read() via intel_de_read()
+  drm/xe: Remove unused uncore wrappers
+
+ drivers/gpu/drm/i915/display/intel_de.h       | 53 ++++++++-----------
+ .../gpu/drm/i915/display/intel_display_regs.h | 14 ++---
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 13 +++--
+ .../drm/xe/compat-i915-headers/intel_uncore.h | 35 ------------
+ 4 files changed, 38 insertions(+), 77 deletions(-)
+
 -- 
-2.25.1
+2.55.0
 
