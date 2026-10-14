@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95AD1CC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 14:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD187CC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 14:41:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C12E10E32B;
-	Wed, 14 Oct 2026 14:36:42 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6DD510E32B
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 14:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70F5210FDC6;
+	Wed, 14 Oct 2026 14:41:54 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26F2310E9C0
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 14:41:48 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id EE15A60219;
- Wed, 14 Oct 2026 14:36:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 904211F000C4;
- Wed, 14 Oct 2026 14:36:34 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id D7A224020B;
+ Wed, 14 Oct 2026 14:41:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EAA01F000C4;
+ Wed, 14 Oct 2026 14:41:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791988594;
- bh=w6FcUKwwlWqOekyz+tgS8fXID02EQnekn6308oJfQy0=;
+ s=k20260515; t=1791988907;
+ bh=TBUk84xgwVt58I8i5YJ+v1oNkSy63xO8bjdS/KegdF8=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=CVla3YNspOCLHQB2LiQWsAEgLPQ0m0gkqYqbhECWscB67+rOctAIaHquWFlvVMzl2
- KSSpcHbqLAot9H9sTr+RoLQu8RvPwzyBJ+JG/uNB7OE7ltRaxT+wMkRCy2bsP+tPmN
- 084JF6wVg8NBHNxeOoReOHoiVIZhxlbdNFXM3r4X92PzLLNYxOWINsVgnOPSjOIhRR
- /f5RV9OOuGYr6VCvvGe77cpVA0wGpM9SsPhsp69SsnfWisFSHPO6nTs0otfjPEfo/V
- Nbo3xT1Ez4XQili90x9KFKXCUTVTF6yZiEl2LiC+pEU8ZAmjnSfuGmgEH9ca/2q4u/
- 9RvZxufau91Hg==
-Message-ID: <sashiko-outbox-171436@kernel.org>
+ b=DtQA/m3HHwG20EaMeG61+0pUWbz4JNQ8XjdeNc6KJzuwRckwCE/7faf4oQCyyaLU7
+ q/IbFOzm1fiCY9Vdg0RRsyDWhYjccJeE6CoHXbcbt/gtvkpvYsbXZncoy5An8s7/kQ
+ uB2S3g/eIsropjSh1rRMQ9Idq6e1aMzswAr96B3OzCnZOmUKc7kCgD3Nlt13t2qmdd
+ 6NOoIKK97AO7rWx/8w37dbS2WYmnZ79yJJtHpH8IRXHkUsRUslst6TcFicKysiXV82
+ A6bKmpIqbRiemuCOyEfX9KrEXIHUmXUXVGZrnLQ+FOm0T+2z1PJRp1U06Aw4S4w4DZ
+ BTNItjf6gcNKQ==
+Message-ID: <sashiko-outbox-171439@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 3/4] drm/xe/xe_migrate: Optimize unaligned
- access_memory copies
+Subject: Re: [PATCH v5 2/4] drm/xe/xe_migrate: Align MEM_COPY pitch with
+ destination address
 To: "Jan Maslak" <jan.maslak@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261014142706.598490-4-jan.maslak@intel.com>
+In-Reply-To: <20261014142706.598490-3-jan.maslak@intel.com>
 References: <20261014142706.598490-1-jan.maslak@intel.com>
- <20261014142706.598490-4-jan.maslak@intel.com>
+ <20261014142706.598490-3-jan.maslak@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 14 Oct 2026 14:36:34 +0000
+Date: Wed, 14 Oct 2026 14:41:47 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,99 +55,61 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/xe: Greedy alignment strategy forces pitch 1 fallback for sm=
-all chunks
+- [High] drm/xe: negative integer overflow in xe_migrate_access_memory leng=
+th chunking
 --
 
-commit 1f0d5ea5449a5c28cc6017cccf01d783b8426763
-Author: Jan Maslak <jan.maslak@intel.com>
-drm/xe/xe_migrate: Optimize unaligned access_memory copies
+commit 742737639ebd031db7d22e7a2865500651dcc226
+Author: Christoph Manszewski <c.manszewski@gmail.com>
 
-This commit introduces a multi-phase copy strategy in xe_migrate_access_mem=
-ory()
-to reduce the number of copy jobs. It attempts a short linear copy to reach=
- a
-favorable destination alignment, uses a matrix copy for the bulk of the dat=
-a,
-and falls back to a linear copy for remaining tail bytes.
+drm/xe/xe_migrate: Align MEM_COPY pitch with destination address
+
+This commit modifies xe_migrate_copy_pitch() to incorporate the destination
+address into pitch selection. It ensures the chosen pitch is aligned to both
+the copy length and the destination address to prevent memory corruption in
+MATRIX_COPY mode.
 
 > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
 ate.c
+> index 3711d4542ad3d..4b995c93fcea9 100644
 > --- a/drivers/gpu/drm/xe/xe_migrate.c
 > +++ b/drivers/gpu/drm/xe/xe_migrate.c
-
 [ ... ]
-
-> @@ -2532,7 +2612,6 @@ int xe_migrate_access_memory(struct xe_migrate *m, =
+> @@ -2535,7 +2540,9 @@ int xe_migrate_access_memory(struct xe_migrate *m, =
 struct xe_bo *bo,
->  		u64 vram_addr =3D vram_region_gpu_offset(bo->ttm.resource) +
->  			cursor.start;
->  		int current_bytes;
-> -		u32 pitch;
-> =20
->  		if (cursor.size > MAX_PREEMPTDISABLE_TRANSFER)
->  			current_bytes =3D min_t(int, bytes_left,
-> @@ -2540,15 +2619,62 @@ int xe_migrate_access_memory(struct xe_migrate *m=
-, struct xe_bo *bo,
 >  		else
 >  			current_bytes =3D min_t(int, bytes_left, cursor.size);
 > =20
-> -		pitch =3D xe_migrate_copy_pitch(xe, current_bytes,
-> -					      write ? vram_addr :
-> -					      (unsigned long)buf & ~PAGE_MASK);
-> -		if (xe->info.has_mem_copy_instr)
-> -			current_bytes =3D min_t(int, current_bytes, U16_MAX * pitch);
-> -		else
-> -			current_bytes =3D min_t(int, current_bytes,
-> -					      round_down(S16_MAX * pitch,
-> -							 XE_CACHELINE_BYTES));
-> +		{
-> +			/*
-> +			 * Optimized copy strategy to minimize number of jobs:
-> +			 * 1. Linear copy to align dst to best reachable alignment
-> +			 * 2. Matrix copy for bulk data copy
-> +			 * 3. Single linear copy for remaining bytes
-> +			 *
-> +			 * The phase logic controls transfer chunking; emit_copy() selects
-> +			 * MEM_COPY_CMD or XY_FAST_COPY_BLT based on hardware support.
-> +			 */
-> +			u64 dst_addr =3D write ? vram_addr :
-> +					       (unsigned long)buf & ~PAGE_MASK;
-> +			u32 max_linear =3D xe->info.has_mem_copy_instr ? U16_MAX :
-> +					 round_down(S16_MAX, XE_CACHELINE_BYTES);
+> -		pitch =3D xe_migrate_copy_pitch(xe, current_bytes);
+> +		pitch =3D xe_migrate_copy_pitch(xe, current_bytes,
+> +					      write ? vram_addr :
+> +					      (unsigned long)buf & ~PAGE_MASK);
+>  		if (xe->info.has_mem_copy_instr)
+>  			current_bytes =3D min_t(int, current_bytes, U16_MAX * pitch);
 
-[Severity: Medium]
-Does using max_linear instead of current_bytes here cause small unaligned
-chunks to fall back to a less efficient pitch 1 copy?
+[Severity: High]
+Does this code risk a negative integer overflow?
 
-If current_bytes is small (e.g., a fragmented 1000-byte chunk),
-xe_migrate_best_alignment() might return PAGE_SIZE because the distance to =
-the
-next page boundary is less than max_linear.=20
+The min_t macro casts both arguments to a signed int. On systems with a
+64KB PAGE_SIZE (e.g. ARM64 or PPC64), if pitch is PAGE_SIZE, U16_MAX * pitch
+evaluates to 4294901760 (0xFFFE0000). When cast to int, this becomes the
+negative number -131072.
 
-However, since that distance is greater than current_bytes, the Phase 1=20
-condition below (bytes_to_align <=3D current_bytes) will fail. The code then
-skips Phase 2 and falls back to a linear copy for the entire 1000 bytes.
+This would cause current_bytes to become negative. When this negative chunk
+size is passed down the call chain:
 
-Passing current_bytes instead of max_linear would scale the target alignmen=
-t,
-allowing it to reach intermediate boundaries (like SZ_256 or 4) and use a
-matrix copy for the bulk of the chunk.
+xe_migrate_access_memory()
+    ...
+    __fence =3D xe_migrate_vram(m, current_bytes, ...)
 
-> +			u32 best_align =3D xe_migrate_best_alignment(dst_addr, max_linear);
-> +			u32 bytes_to_align =3D best_align ?
-> +					     xe_migrate_bytes_to_align(dst_addr, best_align) : 0;
-> +
-> +			if (bytes_to_align > 0 && bytes_to_align <=3D (u32)current_bytes) {
-> +				/*
-> +				 * Phase 1: Linear copy to reach best alignment.
-> +				 * Copy just enough bytes to align dst_addr.
-> +				 */
-> +				current_bytes =3D min_t(int, bytes_to_align, max_linear);
-> +			} else if (IS_ALIGNED(dst_addr, 4)) {
+Inside xe_migrate_vram(), this negative length is implicitly cast to an
+unsigned long, becoming a massive value that either triggers a kernel panic
+via xe_assert(xe, npages * PAGE_SIZE <=3D MAX_PREEMPTDISABLE_TRANSFER), or
+causes the batch buffer allocation xe_bb_new() to fail with -ENOMEM.
 
-[ ... ]
+Note that follow-up Patch 3 in the series simply moves this broken min_t
+logic into a new block, failing to resolve the signed overflow.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261014142706.5984=
-90-1-jan.maslak@intel.com?part=3D3
+90-1-jan.maslak@intel.com?part=3D2
