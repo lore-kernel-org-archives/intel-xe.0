@@ -4,144 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9D6BC3DA7A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 17:46:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23557C3DA7A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 17:49:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D04210E1C5;
-	Wed, 14 Oct 2026 17:46:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D374D10E391;
+	Wed, 14 Oct 2026 17:49:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7020710E1C5
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 17:46:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE1E510E391
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 17:49:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792000008; x=1823536008;
+ t=1792000161; x=1823536161;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=y6/wCdc5Uri3Eehxh9ud5QcO1TjoaNbORkLtDhg3++4=;
- b=BxfrKiJBiKPijJOOeBenK21TZ5W5AFWOxfFcFiu5+06TEmA3tmS+1+l9
- Y/jPkcq9SEdrhRHqoZKaa7ALhHBNRNUDoe9dz8MHUFyyHI1DaxX1XaVDB
- p5XWN0JBj1qP3KjW3roUDjY9DZpynX5uNEYDnNaeQjva1/lSQvUhg1HoO
- rNfNwvz95uAVuZ/f0X5Ks3IWcgf06dxjHOl1jg8a7ShvlFKm9FB1ZgCJ6
- pydn0L2fpiH16msk0Iy9JXdARmZDPfFdgLMWQ1/ijzJzTNzvWhLpA2VHy
- rS9Wra5ljRlJ8nJjgvzlVJrfeQj4gqf2wr/0602ce3LAJ42spYNSNVxTI Q==;
-X-CSE-ConnectionGUID: VrNk6HJDT1ic3cEJt0hVHA==
-X-CSE-MsgGUID: RjDSGd6fRoChOYtoclNpgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="763206"
+ bh=3ltAaPSxhm17iffMUn97Cl+nc4StPUjjzVzYrw2C7iA=;
+ b=Jyt+XzLJRzu+GRL53oUICUjRBiTh+ZtCYJvLRiKEclw66wW4YpVD4w5m
+ Yq0mjlJQ8l4ecjp4ywYLhbuprowDtJ0RTWlGAwZPwV+5sf9YT1PnDiiWB
+ fs97oWGNySkhbmPoV3HasXxG9kZfuv3VL+x6smhJimF3Fl6Oq1q3AguH9
+ J0/0LT1C4uyIEdPokAlnhT5lOEXcDPYwpuzyg+VLBJg3ithEOjJ2xupwC
+ /HVTkRdoYyI3beShU3SvVZ4cVWbLwzlNQUF/PPdqDMqMThhFzHMlGzGIz
+ UhNBVOqkx8d7cB4dv36q8tU3D/GNGCf1gft0LVd9BOd6gizmT2/WpJIYP Q==;
+X-CSE-ConnectionGUID: si08zzF+SsaAcGnBByQrmg==
+X-CSE-MsgGUID: 8NdAnwf3T+WTuaFA7F/R6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="763420"
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="763206"
+   d="scan'208";a="763420"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 10:46:48 -0700
-X-CSE-ConnectionGUID: 0gKigf7XTye98SUK+wx98w==
-X-CSE-MsgGUID: 6Gu1rkfwQGOD6F5ASSLoFA==
+ 14 Oct 2026 10:49:20 -0700
+X-CSE-ConnectionGUID: Ytwz4O6HQYiXCE4ZKgRJxA==
+X-CSE-MsgGUID: 8aeFJh31RXumYFyTTwglVg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="1374116"
+   d="scan'208";a="1374740"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 10:46:48 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ 14 Oct 2026 10:49:20 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 14 Oct 2026 10:46:47 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.49; Wed, 14 Oct 2026 10:49:20 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 14 Oct 2026 10:46:47 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.22) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Wed, 14 Oct 2026 10:49:20 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.41) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 14 Oct 2026 10:46:47 -0700
+ 15.2.2562.49; Wed, 14 Oct 2026 10:49:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fNMXAMM2G2hmTtH8tcBKbYVVF9gvXaBff2EydHmz84Icl8r7y/DPHEaQ6yV4iX3R6aHoJYF4HoUXCjwtaqEOqh+NC6WEy34fe5Oc3fM8oa+/LjtVl+1ZplDzTb52sO/CTqQ12jYEXU9Rft6EbT3GJsgEhXnIPfWgxKk01nlc1yEMCGJ/k2DSE+gt+JRMTnQHfZcSzHT4TUybMMWSwb6rlSuu7GVFCNtjyoy5kUcZAhJqTNNzs2C3ZawYxkB9ZNaa5MAKb/YL1YSr03/8MeU2gZzNRB8ucOjJZMYrhzHVPjPPj21JMnkVhsFt5NCUrqFCRLIkwgrhigqfPXzFgxQ+dQ==
+ b=rvEh4uI9PjHDkj+aV/Rm8bqEjcWu8J6Fmk6PmTic5dftMy+mPbAqDinfzBnMzP/IZ5D4Git7itmuYSTPDRpHvlFK2JMlJjpt0h3Kd3zvheO1nuTR197BtpkYJ+CnMvLSf7iYCcE4L5f+e+qTZHDImdCw2pfpJq3NGVCdxmedLYTwrkHRr1QatYeEHWTU2SfWQuiENx/hj2IaUsMnw/qYyWhncVTeQqUrUKaK3YwhsZHhVjm09aqRGpk6EPQVDLanFp9pX3zRA1+4U1i0+WQ82CjUTJZIEDaYunchBKpKBjDfeuoJZlRpH/E9FHrJNaSnrrtIjKyPrhycWa+keeS9IA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U2t29sC0VF+5OcIzIJRmqy298X9TZvFsXDlXoRMZWEg=;
- b=zOM+9ZAPYY0hoD1cuNvecRNyP8yTc/PW9NRemnFEBX6jTClMfK8PCyw/NTYYLE3OEHqUYBocM1ywIdt3SxmKhB0V6qxHEelXc2e6HYtwBEOZePoj59Dk9yJUgPdp607kBzk9/cPNvvrGoQOyQFOEWdqliatlAJKP+Bn5uBrEfwVrK4jMukE+eSuGQjsSxWXusdVkO1Ne/7hdXT3pyNuJd3uSfpKhtENd55HIbRVyw5kvCQhmXEfJkNoG4aTSYOYswWUu8kd/AWxpTvNBaE4S0zSdPLziPOJCm09drx6t5Kk9hEko5hBohMO+3WCedrpukD+1twps280Z5BtGFNfrFA==
+ bh=gllYAmYKtKZqTD8dZrTbzF8hSxVOOQxuclaE7Ye5fF4=;
+ b=Qpy2clCYwDPc6Qf3PHucwg5AzN6MVzEazY6wPC6twA/MquNY222PQR7NbQq9zimLsVof/PT1M7Vov8ckJf5EFrOFZk8iJ/b0GGTsrwuCcPaDTjccRLvLE6rFhxLgms3CxqHuZXKSnBnm/rc3BPxyq7S1bRO4FMXFqSr7cGAW95id3TdqoCZD17MavGD1tgRDxkkUlemnBKDlHeT1bXyrHylyS//Qe+N31xTBUrptMFmq7LbRuU66kudv+87zb4wLU9YNTiUmLoFRhlZi65E22DsCkr37MGOrEHEo64A2NFjXYPdxJhKuniMlBQbU6oLuL33xEhynfrCAhzxgn4gNpg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB7180.namprd11.prod.outlook.com (2603:10b6:610:148::5)
- by SA3PR11MB097687.namprd11.prod.outlook.com (2603:10b6:806:595::18)
+ by BY1PR11MB8053.namprd11.prod.outlook.com (2603:10b6:a03:525::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Wed, 14 Oct
- 2026 17:46:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.19; Wed, 14 Oct
+ 2026 17:49:06 +0000
 Received: from CH3PR11MB7180.namprd11.prod.outlook.com
  ([fe80::70dc:90b2:50b4:31a8]) by CH3PR11MB7180.namprd11.prod.outlook.com
  ([fe80::70dc:90b2:50b4:31a8%7]) with mapi id 15.21.0496.021; Wed, 14 Oct 2026
- 17:46:39 +0000
-Date: Wed, 14 Oct 2026 13:46:35 -0400
+ 17:49:06 +0000
+Date: Wed, 14 Oct 2026 13:49:03 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>
-Subject: Re: [PATCH v13 01/16] drm/xe/hwmon: Fix pcode power limit handling
-Message-ID: <as-_-4ruLww5bioI@intel.com>
+To: "Poosa, Karthik" <karthik.poosa@intel.com>
+CC: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v13 03/16] drm/xe/hwmon: Fix thermal sensor data handling
+Message-ID: <as_AjwYamf1whGCy@intel.com>
 References: <20261014115806.831459-1-karthik.poosa@intel.com>
- <20261014115806.831459-2-karthik.poosa@intel.com>
+ <20261014115806.831459-4-karthik.poosa@intel.com>
+ <sashiko-outbox-171260@kernel.org>
+ <bcaceb82-a306-482b-875d-237e43e24644@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20261014115806.831459-2-karthik.poosa@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0051.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::26) To CH3PR11MB7180.namprd11.prod.outlook.com
+In-Reply-To: <bcaceb82-a306-482b-875d-237e43e24644@intel.com>
+X-ClientProxiedBy: BY3PR10CA0014.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::19) To CH3PR11MB7180.namprd11.prod.outlook.com
  (2603:10b6:610:148::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|SA3PR11MB097687:EE_
-X-MS-Office365-Filtering-Correlation-Id: 00ca25f7-6a4d-4d6c-cd01-08df2a1b1995
+X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|BY1PR11MB8053:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ea82586-f8f2-454d-7274-08df2a1b7156
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|18002099003|22082099003|10067099003|3023799007|11063799006|261009223027099003|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: x9MR6RPAFhLh17dezYTGRs/BV8XttxKJWXWNOu4VKKbBZ69uMtnhm18jVJL7/x/hgxk6UbIWUoAIfuze+Dt7kWmGOeKX1t63QaeqZrVyHbjSbqL1fWGrAumttXYVpNVnwNnlF3+Qa2SFGPNTFaQMy52H2EORktOmWYntE1lbOoqBK/Jx/G+TRPk2Gv6t8z7z/nUBBJroVOrSBWLfBE0Aa4HsLUcMoi9zQVdHuDccgQDwpjOohuSwy98zicOMLydl6ZBfH9uluUqhaQyQW+h5lrjIWHhoZpJEQM9B0PTYPkTcpcJ6fi0jeypCzGHwAhjrE54utMhNhxn6wsftiHptjn4j2rZjZqKOWLS2qk6Wt2PhMhAPe2gVbzh0iHXNvHqLqsGwuv985iV0zNVjO1Tg7FPiRuvy1i3Se3iuK24nDc+OCHGE98o6Romct4KPJ7MpixxiympIZQNdA7blDnsG1CBgZvziLUckIIUfhyVdrslIlmFw0Xml1anoQVYSU3Wx7inIzetpP7tI+kzXe8sWnozIHdd3h6r/EbnRx0qNqbZkS9uT+0pNNAzWrQcipAat2ZePN12uKi+T0e/SO+hbbDXrfA5IVLBqgvUn9OZ/GLRTnmABno5A3AddaFackNUht4tghQ/Ix9CVXXc2635yuu5IMMV7Cj4Hcr//jMOcxf0=
+ ARA:13230040|376014|23010399003|1800799024|366016|10067099003|56012099006|6133799003|4143699003|11063799006|22082099003|261009223027099003|18002099003;
+X-Microsoft-Antispam-Message-Info: ftd4ww0Nd2U5da3Lb5+jz0fLnIDWjQB/Oj9WKnZf7Zc0WgzRWkuDgOIrjKBhWKxRt6KzIVc55xzTpAFhgjOUXMcO3b61IFpEb4UPIBUiIzq5gYCxovVb1/ub5b33aKiD2QQJlwD+zo33HmZ3Ie43GJxmjaEDbCh7B0YN4YDXINhPVxahrVh05qr2pmp83Nnm+qvdwl2jW7SC8dHp3demedYwJ0gSfhgO6zF5tstReGA7q9t+v3TvHdu9MctpJSJCTHhqGnFwBw1wau4Ga1RJnNRSxL8DYRAc0BpvvVqbcIT+J43SmJASAk3DhvML2o1V8hiBYwoHSM93VsTTfWrilEyHfv1qF9DD42Vsb58R0S6O1jzrZc4WkiaIxOTo3nnXbSObsBZM0qvI/ogU3HFcKLVbYbVeE10fDEdjQrHCKWpHqq1NGog9X5ymIDQBY7PUmkK5BbizFiehy/OzzPvGZGjNnJQu7stSagOrWBjCGmKLjpyQlzwrdFd2CmdQrvKQIcRuRXK8RfIpDVvenFOXoC1ZkSuUJUO5jAZa/RZboZP3uYr3ka0WshsCntg4A9FqqQtYU/GQmps+Z9eOdcDB6hiEnkdbtpIoArbxX/76SbfYMcf4RTxd4Umu0zfJI0MwwixaayveyeH9hJO/BM7Ll1gvrX+qDnPzaOpPLCI9YLg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB7180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(18002099003)(22082099003)(10067099003)(3023799007)(11063799006)(261009223027099003)(4143699003)(56012099006);
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(10067099003)(56012099006)(6133799003)(4143699003)(11063799006)(22082099003)(261009223027099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+WYJzgWa/bScpJA5VywpVyhGPLaDQKX0xaIw7yKPECZIH7GP7FuYPBbXVdVo?=
- =?us-ascii?Q?kyQegFeEduyMGIsNkuaJxa6c1iUKDc670yadw8cPXpde4LdevU4EknAiKe9B?=
- =?us-ascii?Q?BwLQCbG6r9I3x6CTKTKELbZAX9VTsWfbXgSsMnokdAqITcXJquVgeKhgDjMB?=
- =?us-ascii?Q?jLAhj0gq0OKUdLE0rUcOXSiWJb77nGlTkH34G58u3ZoJPYeFNDoWCZ40QIUz?=
- =?us-ascii?Q?yDCpvJ7JRhZXW7xN0QuBHYGJ8prDWm4CpIyCVGUXsX8o7LrGGl5HyOg6FnNz?=
- =?us-ascii?Q?EobLXPLuxh8abPE6u9jwNcgLila5zqrzpJAUmIm+gjGu+YtBIx8P/7HxZpMe?=
- =?us-ascii?Q?BStHlhJ9Zab9IU43NpPs4DmDDtmXuFrkxt1vQwEJpRFNd5uouh96srdOpk4o?=
- =?us-ascii?Q?xcbJV8cQuSWYtZwdwqyPciSwZzqdJn5dKt+l0phXb3nHN5T9zBoum/uYjiwF?=
- =?us-ascii?Q?5Y9iwMG+ShnFjSXWCE9AQuIS0NJFMkw9LanrLwz2urBZERNsA1/zcQ1TtKDb?=
- =?us-ascii?Q?yhy81w0Uu9yBwykQgttgTdvZ3k7hdILe73miof3gHhzmGfyv3YGjdPgKnOak?=
- =?us-ascii?Q?yJygvt+D/f4tbfJCc8nqn2xCHTVmPRNLWz3Lfx0AJLoO1U2bWo+3wkzQbUVD?=
- =?us-ascii?Q?Ys3AtrjM7gCq9CgDZpK8WGu7S53PDprgUhtzOotspdApgBOlk06kwBbd24yV?=
- =?us-ascii?Q?ff8S4drcdg1WYkKbD/2u9PuC+NAdX5BLfYZzCOPUKDcxLRf57OnHA1VHuKHY?=
- =?us-ascii?Q?rmuE9DvXOBeHqrB3XuafbfLN70Il5sfM/XqDJV4XV69hre09aAXSVdTMSIjy?=
- =?us-ascii?Q?M7TkVyFd+jp6TqVyjVFYK+y9hR5erDFlnggynvSQ72DPUWvp/MHjYD0pzsOy?=
- =?us-ascii?Q?rmePNU1RaTgQYVDWo4eRfOodge7UoLoAxIEOm4yaGck5yOwmKLHoDTZyX9CF?=
- =?us-ascii?Q?L6VmMTr1q4XXzWW49FdWtmoQ5ETGqK4tsmq9x9QWF/CEJEnskTSGFZ7ayZE4?=
- =?us-ascii?Q?4W3Krxnp7SJ9Y3fieF2qFzWiT0lkz7Fh0M9SkhjXgAIyGm2k+APqFJX1R+WX?=
- =?us-ascii?Q?QhuqGwAvHZZVJQU5iSZc6CY8PWoX+n9czlB7Vs0MTIZKprQxvhNkOfEsXZ3j?=
- =?us-ascii?Q?EBHAFNtJNsHPL8yQ5poL4FJPwvpmEyWIr5lBxvhUHVrgYrXNO5MR3aUY+LR8?=
- =?us-ascii?Q?3UvWxbwsFiO4JJd1T31LH2PX5e1vvKjkYmTwC/nCd80CBBpoK3Zzfp/uP/Zs?=
- =?us-ascii?Q?vCZl0j8PwDyDEGOl9we8EzZvjBeJPf+4Yt0bL5N8nB/xVHzGRzqct/Ji3sWU?=
- =?us-ascii?Q?4e2z7wGaullTCW7zT6c8yYppj5B0nye/CY0hioeRsYdiwIOOC+I5sj+GqKHI?=
- =?us-ascii?Q?5qM/1D2AyOw5VXY7MMCkU40Ud+1BT79CGSCFyDDOBE8cmWArCdkQFu6j1BrV?=
- =?us-ascii?Q?oeVU766vp9HuQeYEBcT70hgGd3RRCfvJWLznL1X4mknB0ytKm9q6roHC28E9?=
- =?us-ascii?Q?+4ARo81PSnAbUOumSUPb0B9CCrXSkY75gCSn7USKvpHHRKOXRHMeq1mXao6U?=
- =?us-ascii?Q?UWWSR7790spSILZdOFeofAhtQK4CLD4dqcYLVGbQLZyVhKznagKYiADMX5ue?=
- =?us-ascii?Q?jBoPfUE7qKVnORKdCE4gsKWDRxRIrhkCNbkVjlgjxfYXL8R98atxkGPc6lfT?=
- =?us-ascii?Q?eOu/Eb36ywOnA/KbdxZgz6Md5LkfIa+7JDCQ+oL0n9W9SMOse30lyQ+ckusF?=
- =?us-ascii?Q?B8DNIsXHgg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: pyS/JSiVgcQ9i7D4cQLd//4mJQ7+IpQwvzGuaqvGK6PoqT3ZX+j7j1kgKDLHf9xaM1pE1Q3ZGsaEUNlV60UcbMquH3ehlT+0eP1sMT3m/usdEjBUSEqWKpTpI6IcduuDVKR8V3yqhg0cBVUfy6cDXdA20Hm+lZyKh/V2HwToMU+w+12eRB4ThvKO81YHHFJWLtF473dn9hurV58aNsAtvfVHrTlFtBd/yRGaYiIuVbvS95HRMqgMS4oD6yCa7dV/I0ZpT+yDjSUHOVvxKiiwpkvh0RnqinexDpL5zt/Ri2PcSau4sVa792Y8fs+G/EQ8TU8g6hrizXDGmCjT+wiPXg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00ca25f7-6a4d-4d6c-cd01-08df2a1b1995
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Xq8t7oZMAtI64JENHWkn/sWUd+/o7wU9jSjkOkH2XUoFW6YxWYhMvfAWm+PS?=
+ =?us-ascii?Q?gA3K65skut2tO4OkKJDaWgRpDbcKxK8CQZOtsE9clCA6N4bjOrMT3CgDiG+p?=
+ =?us-ascii?Q?Sw/MD4lL21HVDd0n06ebt3188kXHYUdhlfngYIRw9cxK9ZQZN35hdn1XVti0?=
+ =?us-ascii?Q?quu0KhX1hCSMe3oXX9NqgCq9UmNi5vYteKbGq9815HEcxjIiwc2vbpPmoAZu?=
+ =?us-ascii?Q?/xJt64IzsHX79GJFswP2Xz8ynQRYETorzJ3C/4nLYGEwGRouCqzgOzuuEjkj?=
+ =?us-ascii?Q?FDpdJhjxT0828wgU9ER84Gbd/MpJKGNA8nYGP3vhWGPILSbD0tNqyZCEhdG7?=
+ =?us-ascii?Q?5LLwi5uz4JXwcHr0JQRzs2ygC5TL8SKsGCgbSW3CGJ53Pz0H1HCf3q+UPft9?=
+ =?us-ascii?Q?RyZL82edt5XH72ikq9vj+T18Dp4/sQ+iBZl3RsdIzgpmCMs60rmYumUe52hS?=
+ =?us-ascii?Q?K1+pv8OiYUc1pKaAeBbPl3uMaw40vr8KxrwnnWZ92Srg0XuIVl4IL8CK7VF/?=
+ =?us-ascii?Q?vL5rR9ko421wSF232sDbBp0qUUNJuqfvrCfIrVVmwmdsASwYEI3uUCEXY8iz?=
+ =?us-ascii?Q?Ijr9xHUTSpcOZEf8IpAKgi22l5FAik+q9UMxsSyWeXKSBp+8C3XzEL9eG2kr?=
+ =?us-ascii?Q?rQBQTR5ShPp9i9yc2D9l2OxIsvzw8MShfxk1MxJTyzH7gLouHvIO+t5wubXe?=
+ =?us-ascii?Q?3d6aC+SRjo7WKnhETC4nVkITI2LNQiGy270ox9Sp6wNJ+lccUVZo7eB6Eo8q?=
+ =?us-ascii?Q?g9XekwvJUpxXFdSpH+EIfZLb+CSjtPCjpofDU1uUq0C2NPdCFfJXFUjMrppE?=
+ =?us-ascii?Q?DRuddoIWOqgnELBKa6YN3savJHMH8mOasgb/POXJfALAO1Xh4P5rd2fPbiFN?=
+ =?us-ascii?Q?qOsXhqEnwGRtJW473Y1j0ThZutYn1aiAIHqXxYD770R1HOAu1w4n+ngvoKDw?=
+ =?us-ascii?Q?/ZvH956TnsrLlivVL1GQ/9fHutXQzO0Kr3PJIlRuUw1FTwX/fjl/srLm/rLH?=
+ =?us-ascii?Q?dlhgc7EU7q11b67fhDnqKaztQi9VN98bIDlx5rJuwMp26NMLO4EIVKDPiZzV?=
+ =?us-ascii?Q?4ChZJJ795TpzObJm3lXGYPU0dn4bz7Un6O8X1HDDB2PU9AywmG0GMS7KIkPN?=
+ =?us-ascii?Q?Pz2UNiC4k7pJqbG98vZAEDW0y3jd0CF1pIQdNbv0qvdpRscNu2Y6OjgXZWsF?=
+ =?us-ascii?Q?uf0ZKrNodwYU/WtNHD5q9KmUV5IVkbHkby0nK4tVKgU4LsLaZFv+jPgcpq4h?=
+ =?us-ascii?Q?obLqRtMrlawLiWIwu0dIOk1fyzg5PaKQL1cGAIqN4GOXDcaVX9Lu56O7Kr2E?=
+ =?us-ascii?Q?Eiven9dJFJO0Zqy44sAh/G0ip7qpD/7N+d+WEe4VZiq+Nwt+ujyr+6W2WuPx?=
+ =?us-ascii?Q?Mz1NQflsCfPlZc1wdRgLSozXpbcpM8qdmxaW6zb9F8ApNAyIWQVYN3jKl2x0?=
+ =?us-ascii?Q?IGir0La6PL59sJcgRo7UdJqIVaK00uRDQ3cCbFucCvRU3ek6QaaX9K5Ehg14?=
+ =?us-ascii?Q?EQkncm0CzE2m0SJ289PB0J7Jcd6ATR1iLTFb6/GJWWGCJMo1+P+h5vxWmiQm?=
+ =?us-ascii?Q?TjTJGAjWgFnjE9fTCINdQAJ34jCXxhTtj5cosuxuSiA+Ne88vGl72ToZDKC8?=
+ =?us-ascii?Q?Dy4E8zb/VKheL8EH4Bzbk/JuKyZ/VfIZszBNMP7Xgj+Bn5mjfLFoKOtYMcl6?=
+ =?us-ascii?Q?Bd7H3EYxsfjeoXe/gC1eZkolmTvMlGDu5hAcMSQuFMUIPa36JUFSaCIz1vV5?=
+ =?us-ascii?Q?Pi/wekekag=3D=3D?=
+X-Exchange-RoutingPolicyChecked: rGdUEGJHtdTYO2r4YGoZo/h9zR6mRK4iIBL9ld8a6wQfW+yzJtoFMMN5iLoRjY0kb+1qPo3pU8SieUlHZMjJnRFiHZbkGbFfZe/ZL8dHMiAyr5gN7mbhRDnvHkHG3Nel9++mG1aSqidG2TI+m/HoTqhjyy9cvaKL0YERnZng7dPiHZVrjRILAnAa6lo80ZJlHT/ApoAfk0ZDSv7UaRD9zfGetdM8Kug1Pz3yOltHGHTqwJcYXnl1Ns7iEm4R/H5wRlyz7CbiIlTPNBOx+gIbCcMir+ANSWNycHArqNlRzjnJCwRWxZno6BUAIOvPwiyWFm0oN5AF+bRoiz3LUEXaWA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ea82586-f8f2-454d-7274-08df2a1b7156
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7180.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2026 17:46:39.4184 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2026 17:49:06.6318 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UBqDeXUSmwZ+jyK7KIeos31HJwYlmppqdJ6/uvFLwUgS9nuDH0tskQ07ArannSjjiS5Tv5dZaHW0Ljef0MMu0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB097687
+X-MS-Exchange-CrossTenant-UserPrincipalName: x5AnLEux0ohF4+k+EcTClCtB0PBBuhdEDNu3xBWABK4bxJ6JTSd3pKQVJ54C/47m6CIU0MPgm8sZSJpmx4Ug/Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8053
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,193 +158,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Oct 14, 2026 at 05:27:51PM +0530, Karthik Poosa wrote:
-> Return early on pcode read failure in xe_hwmon_pcode_rmw_power_limit()
-> and propagate errors to callers.
+On Wed, Oct 14, 2026 at 07:12:07PM +0530, Poosa, Karthik wrote:
 > 
-> Replace boot_power_limit_read with per-channel
-> read_power_limit_from_pcode[], set on the first successful pcode write,
-> so reads and writes stay consistent even if the default limit write at
-> boot fails.
+> On 14-10-2026 17:46, sashiko-bot@kernel.org wrote:
+> > Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> > - [Low] hwmon: Subsystem API Violation - Driver uses private custom mutex instead of hwmon_lock()
+> > --
+> > 
+> > commit 5b607ffd1e7d970e08aa24f25b6f029c27e76b6d
+> > Author: Karthik Poosa <karthik.poosa@intel.com>
+> > 
+> > drm/xe/hwmon: Fix thermal sensor data handling
+> > 
+> > This commit reads required thermal groups in get_mc_temp() and stores them
+> > in a dword-aligned buffer, avoiding unaligned pcode accesses. It also stores
+> > the pcode thermal data and thermal limit words as little-endian.
+> > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> > > index 382bf9625a8bd..1b4efbf4ac999 100644
+> > > --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> > > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> > [ ... ]
+> > > @@ -840,16 +845,20 @@ static int mbx_temp_decode(u8 value)
+> > >   static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+> > >   {
+> > >   	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
+> > > -	u32 *dword = (u32 *)hwmon->temp.value;
+> > >   	s32 average = 0;
+> > >   	int ret, i;
+> > > -	for (i = 0; i < DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32)); i++) {
+> > > +	guard(mutex)(&hwmon->hwmon_lock);
+> > [Severity: Low]
+> > Does this violate the hardware monitoring subsystem locking requirements?
+> > 
+> > The hwmon subsystem documentation states that drivers implementing locking
+> > required for interrupt handling or for attributes registered by any other
+> > means must use the hwmon_lock() and hwmon_unlock() APIs.
+> > 
+> > Can we use the hwmon subsystem's locking API here instead of the
+> > driver-specific hwmon_lock mutex?
 > 
-> Also return PWR_LIM_EN for power label so card label visibility works.
+> The mutex here protects driver-internal concurrent accesses and does not
+> provide synchronization required by the hwmon core callbacks.
 > 
-> Fixes: 8aa7306631f0 ("drm/xe/hwmon: Fix xe_hwmon_power_max_write")
-> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> ---
+> Therefore, I don't believe this falls under the case requiring hwmon_lock()
+> / hwmon_unlock().
 > 
-> v2: Check return in xe_hwmon_get_preregistration_info() also. (Sashiko)
-> v3: Track pcode limit updates per channel. (Sashiko)
-> 
->  drivers/gpu/drm/xe/xe_hwmon.c | 77 +++++++++++++++++++++--------------
->  1 file changed, 47 insertions(+), 30 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 5edeac961ec3..c7f936892512 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -165,8 +165,8 @@ struct xe_hwmon {
->  	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
->  	/** @fi: Fan info for fanN_input */
->  	struct xe_hwmon_fan_info fi[FAN_MAX];
-> -	/** @boot_power_limit_read: is boot power limits read */
-> -	bool boot_power_limit_read;
-> +	/** @read_power_limit_from_pcode: pcode accepted power limits write for the channel */
-> +	bool read_power_limit_from_pcode[CHANNEL_MAX];
->  	/** @pl1_on_boot: power limit PL1 on boot */
->  	u32 pl1_on_boot[CHANNEL_MAX];
->  	/** @pl2_on_boot: power limit PL2 on boot */
-> @@ -175,9 +175,9 @@ struct xe_hwmon {
->  	struct xe_hwmon_thermal_info temp;
->  };
->  
-> -static inline int prepare_power_limit_param2(const struct xe_hwmon *hwmon)
-> +static inline int prepare_power_limit_param2(const struct xe_hwmon *hwmon, int channel)
->  {
-> -	if (hwmon->boot_power_limit_read) {
-> +	if (hwmon->read_power_limit_from_pcode[channel]) {
->  		if (hwmon->xe->info.platform >= XE_CRESCENTISLAND)
->  			return READ_PL_ACCEPTED;
->  		else
-> @@ -198,7 +198,8 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
->  						  (channel == CHANNEL_CARD) ?
->  						  READ_PSYSGPU_POWER_LIMIT :
->  						  READ_PACKAGE_POWER_LIMIT,
-> -						  prepare_power_limit_param2(hwmon)), &val0, &val1);
-> +						  prepare_power_limit_param2(hwmon, channel)),
-> +			    &val0, &val1);
->  
->  	if (ret) {
->  		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
-> @@ -213,14 +214,14 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
->  	else if (attr == PL2_HWMON_ATTR)
->  		*uval = (val1 & PWR_LIM_EN) ? val1 : 0;
->  	else if (attr == hwmon_power_label)
-> -		*uval = (val0 & PWR_LIM_EN) ? 1 : (val1 & PWR_LIM_EN) ? 1 : 0;
-> +		*uval = (val0 | val1) & PWR_LIM_EN;
->  	else
->  		*uval = 0;
->  
->  	return ret;
->  }
->  
-> -static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr, u8 channel,
-> +static int xe_hwmon_pcode_rmw_power_limit(struct xe_hwmon *hwmon, u32 attr, u8 channel,
->  					  u32 clr, u32 set)
->  {
->  	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> @@ -231,10 +232,13 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
->  						  (channel == CHANNEL_CARD) ?
->  						  READ_PSYSGPU_POWER_LIMIT :
->  						  READ_PACKAGE_POWER_LIMIT,
-> -						  prepare_power_limit_param2(hwmon)), &val0, &val1);
-> -	if (ret)
-> -		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
-> +						  prepare_power_limit_param2(hwmon, channel)),
-> +			    &val0, &val1);
-> +	if (ret) {
-> +		drm_err(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
->  			channel, val0, val1, ret);
-> +		return ret;
-> +	}
->  
->  	if (attr == PL1_HWMON_ATTR)
->  		val0 = (val0 & ~clr) | set;
-> @@ -248,10 +252,17 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
->  							     WRITE_PSYSGPU_POWER_LIMIT :
->  							     WRITE_PACKAGE_POWER_LIMIT, 0),
->  							     val0, val1, PCODE_DEFAULT_TIMEOUT_MS);
-> -	if (ret)
-> +	if (ret) {
->  		drm_dbg(&hwmon->xe->drm, "write failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
->  			channel, val0, val1, ret);
-> -	return ret;
-> +		return ret;
-> +	}
-> +
-> +	/* Read from pcode once it holds a driver-written limit */
-> +	if (!hwmon->read_power_limit_from_pcode[channel])
-> +		hwmon->read_power_limit_from_pcode[channel] = true;
-> +
-> +	return 0;
->  }
->  
->  static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
-> @@ -394,7 +405,9 @@ static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, u32 attr, int channe
->  		if (hwmon->xe->info.has_mbx_power_limits) {
->  			drm_dbg(&hwmon->xe->drm, "disabling %s on channel %d\n",
->  				PWR_ATTR_TO_STR(attr), channel);
-> -			xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
-> +			ret = xe_hwmon_pcode_rmw_power_limit(hwmon, attr, channel, PWR_LIM_EN, 0);
-> +			if (ret)
-> +				goto unlock;
->  			xe_hwmon_pcode_read_power_limit(hwmon, attr, channel, &reg_val);
->  		} else {
->  			reg_val = xe_mmio_rmw32(mmio, rapl_limit, PWR_LIM_EN, 0);
-> @@ -679,15 +692,19 @@ xe_hwmon_power_max_interval_store(struct device *dev, struct device_attribute *a
->  
->  	mutex_lock(&hwmon->hwmon_lock);
->  
-> -	if (hwmon->xe->info.has_mbx_power_limits)
-> -		xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
-> -	else
-> +	ret = count;
-> +	if (hwmon->xe->info.has_mbx_power_limits) {
-> +		ret = xe_hwmon_pcode_rmw_power_limit(hwmon, power_attr, channel, PWR_LIM_TIME, rxy);
-> +		if (!ret)
-> +			ret = count;
-> +	} else {
->  		r = xe_mmio_rmw32(mmio, xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT, channel),
->  				  PWR_LIM_TIME, rxy);
-> +	}
->  
->  	mutex_unlock(&hwmon->hwmon_lock);
->  
-> -	return count;
-> +	return ret;
->  }
->  
->  /* PSYS PL1 */
-> @@ -1511,22 +1528,22 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
->  		} else {
->  			drm_info(&hwmon->xe->drm, "Using mailbox commands for power limits\n");
->  			/* Write default limits to read from pcode from now on. */
-> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
-> -						       CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
-> -						       hwmon->pl1_on_boot[CHANNEL_CARD]);
-> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
-> -						       CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
-> -						       hwmon->pl1_on_boot[CHANNEL_PKG]);
-> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
-> -						       CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
-> -						       hwmon->pl2_on_boot[CHANNEL_CARD]);
-> -			xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
-> -						       CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
-> -						       hwmon->pl2_on_boot[CHANNEL_PKG]);
-> +			if (xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
-> +							   CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
-> +							   hwmon->pl1_on_boot[CHANNEL_CARD]) |
-> +			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL1_HWMON_ATTR,
-> +							   CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
-> +							   hwmon->pl1_on_boot[CHANNEL_PKG]) |
-> +			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
-> +							   CHANNEL_CARD, PWR_LIM | PWR_LIM_TIME,
-> +							   hwmon->pl2_on_boot[CHANNEL_CARD]) |
-> +			    xe_hwmon_pcode_rmw_power_limit(hwmon, PL2_HWMON_ATTR,
-> +							   CHANNEL_PKG, PWR_LIM | PWR_LIM_TIME,
-> +							   hwmon->pl2_on_boot[CHANNEL_PKG]))
-> +				drm_warn(&hwmon->xe->drm, "Failed to set default power limits\n");
+> @rodrigo, can you share your comment on this.
 
-this is wrong and ugly, please move this to a function where you can combine
-the returns and handle it only once...j
+that's right. we need to protect our data, nor take care of any synchronization...
 
->  			hwmon->scl_shift_power = PWR_UNIT;
->  			hwmon->scl_shift_energy = ENERGY_UNIT;
->  			hwmon->scl_shift_time = TIME_UNIT;
-> -			hwmon->boot_power_limit_read = true;
->  		}
->  	} else {
->  		drm_info(&hwmon->xe->drm, "Using register for power limits\n");
-> -- 
-> 2.25.1
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > 
+> > > +
+> > > +	for (i = 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
