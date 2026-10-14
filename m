@@ -4,41 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98ACBCC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:44:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB95DCC6B1A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:44:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F10A10FDFF;
-	Wed, 14 Oct 2026 13:44:06 +0000 (UTC)
-X-Greylist: delayed 1164 seconds by postgrey-1.36 at gabe;
- Wed, 14 Oct 2026 10:14:47 UTC
-Received: from spark.kcore.it (spark.kcore.it [49.13.27.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1007110E371;
- Wed, 14 Oct 2026 10:14:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kcore.it;
- s=spark; h=References:In-Reply-To:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date;
- bh=MGpHu0f14Q5TwLfq2LBRjQIPaF1PJLbbc1dVWU+dzmA=; b=iNIefWQf7xFRc0zmJwxJ8+qYN6
- 6CkXohhpdC+Uy5pikF7FXbT6u4Fhu6gM6rGgCPSTo3FKXh7spNzdGHp3OFGYdhiwhsjQT8P7rDLOl
- QgwL5wfR//J+6Ij6NTOanC2wiK5Ey6XlB0PN2Elfttar3JZP5PhM1RRC7YSje5G26b0c=;
-Received: from mnencia by spark.kcore.it with local (Exim 4.100.1)
- (envelope-from <mnencia@kcore.it>) id 1xGvhf-00000000Jhp-0Hdn;
- Wed, 14 Oct 2026 11:55:19 +0200
-Date: Wed, 14 Oct 2026 11:55:19 +0200
-From: Marco Nenciarini <mnencia@kcore.it>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- imre.deak@intel.com, jani.nikula@linux.intel.com, lyude@redhat.com,
- xiaolu.xie@intel.com
-Subject: Re: [PATCH] drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS
- off/on
-Message-ID: <as9Rh1Yt8Fkj6JpE@spark.kcore.it>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9692310FE25;
+	Wed, 14 Oct 2026 13:44:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 782BB10F89E;
+ Wed, 14 Oct 2026 13:44:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791985472; x=1823521472;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/HwxuTlUJf2ChssGDVS/bxhO3FoByLiup66VRbnJ8As=;
+ b=FiTK/OZZ56+Kizfy9MmJiGp5/ilyyFcAbU4RELrcVU3kTKyTPHv1/ccK
+ L0bvayqrtcG5mwt8TYGiKaRs7cg94U0bIBqLniUJYyZ6KVYjMV4+vcHN8
+ /o+UyBt1OwQCnJ0FQKW2MnUx/A8YFSalQIVPYuqTUh3CEQlFUyLlyVzfO
+ rwuWtneGHoF06FakrhY0Cb09YZPSNVyLPwdgzfPNRzpxk+WLwUuxzp4yU
+ 5AGDcdQJtdaZODmUsoEJBOYPHCN7DgaPb04Tmxh9Sf57Kps0VuE48OHdS
+ iFLv8Dz5QZNsOoNqWJs2e5CWMdJMmMbKYbWTk84dexfMgjU0InHxVLEpR w==;
+X-CSE-ConnectionGUID: YikapULMSui9k+MG3tsBwg==
+X-CSE-MsgGUID: CKUTXO4zQSq/im8/EOV1fQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="722501"
+X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
+   d="scan'208";a="722501"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 06:44:31 -0700
+X-CSE-ConnectionGUID: B4XneFQmR6KKNzcK+G/Z8w==
+X-CSE-MsgGUID: Mbp9RIoYQhaOOCTTegrZqg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
+   d="scan'208";a="1506175"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa006.jf.intel.com with ESMTP; 14 Oct 2026 06:44:29 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v2 1/4] drm/i915/dpll: move the PLL power save W/A to the
+ display W/A framework
+Date: Wed, 14 Oct 2026 13:44:24 +0000
+Message-ID: <20261014134424.2845993-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261009103552.1864818-2-mika.kahola@intel.com>
+References: <20261009103552.1864818-2-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261014081448.2320363-1-xiaolu.xie@intel.com>
-References: <20261014081448.2320363-1-xiaolu.xie@intel.com>
-X-Mailman-Approved-At: Wed, 14 Oct 2026 13:44:02 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,35 +66,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA256
+The condition for W/A 14022081154 was open-coded as a DISPLAY_VER()
+check in intel_cx0_pll_power_save_wa(), which also walked the encoders
+itself. Neither is specific to the C10 PHY.
 
-Tested-by: Marco Nenciarini <mnencia@kcore.it>
+Add intel_dpll_power_save_wa(), holding the W/A condition as
+INTEL_DISPLAY_WA_14022081154 and the encoder walk, and leave
+intel_cx0_pll_power_save_wa() with only the C10 PHY sequence for a
+single encoder.
 
-Tested on a Dell Pro Max 16 (Arrow Lake-P) with Debian 7.2.6 and a Dell
-WD19DC dock (Synaptics VMM5331 MST hub, fw 05.07.08) with two monitors
-behind it, i915 driving the dock over TBT-alt.
+The spec lists the W/A for PTL+, so use DISPLAY_VER() >= 30 instead of
+the == 30 the code had. No functional change: the sequence is C10 PHY
+specific and intel_encoder_is_c10phy() is never true on display ver 35.
 
-Without the patch, a DPMS off of more than about 6 s leaves both
-monitors black on wake: the link status of the sink behind the hub goes
-from 0x77 to 0x00 and the hub does not retrain it. With the patch,
-30 s, 60 s and 120 s DPMS off all kept the link and both monitors came
-back. The log shows MSTM_CTRL cleared before D3 and restored after D0,
-before POWER_UP_PHY, as intended. Details are in
-drm/i915/kernel#16901.
------BEGIN PGP SIGNATURE-----
+While at it, let the drm_WARN_ON() on the table lookup check the return
+value.
 
-iQIzBAEBCAAdFiEEfCO4BD5l0pgKIbbiWJ8D8BulUDgFAmrPUYUACgkQWJ8D8Bul
-UDimag/+L0A6aKYws/asUDWsKnx4DjKXbQtXjYCVXx8Sqv7wG7PgYvXOONOJzvD1
-dxUOxuWLDBx6sRBA6zLmtIdkkifPUHbWhADQLIOnmNqIGutzjg/Rg/TIqmtufy+w
-J4lxsmO6khoLa16dZZMp9p4CYgQMOd36NuWG/uSBNcNF96uxzZYjCoO5uXorCkg/
-7SCa2neKrIoXXwSEuamQC3FB83I0PXoaxP/FgzZmYDzN1IEUya4EkS78jIPCGmWC
-54gz9+hNz0yRT7IgfoluNzHVnP8GftLS7t2DPH1ClZVxw6bE+UnBwpJRQ9mpCkXd
-DX3RCZq9E176ESqIDKI/4d+nO8AKQp06aiOExDylNU38NlSNOpPH8iN4XqwYZ2hv
-WlpR33hPneA1zosdZ6oFOAPNDLvF1FFuUFtA+wVLJLNNoNTRAVseHGZsR/xdL7kh
-X0gIyu1h2SP4wfKySiuvUmgQVm0uFphr4x+FgKn1XoZ+P0CDyjxqoFVDvE8iplb4
-1IixcQAPvFasF7wq3pd2eAUh7n2zMcroi99cllGY2uPbxiOPhiWzcVV1NmQ7nHhq
-uFcyTlM8nV+TdZYYGCRLFkH7MHskzEGbKO+CQkYrayRPcZxZwnytnHY+CyqGr4sY
-732Djo9oELBZF/fYhSBiVi7cij0NFDdadvhV1gfThIT7BH+5qhs=
-=2SVO
------END PGP SIGNATURE-----
+BSpec: 74151
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 59 ++++++-------------
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  2 +-
+ .../drm/i915/display/intel_display_reset.c    |  4 +-
+ .../gpu/drm/i915/display/intel_display_wa.c   |  2 +
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 34 ++++++++++-
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+ 7 files changed, 58 insertions(+), 45 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index b83f0afaa9b5..92cb370d724c 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -3700,54 +3700,31 @@ int intel_cx0pll_calc_port_clock(struct intel_encoder *encoder,
+ 
+ /*
+  * WA 14022081154
+- * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
+- * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
+- * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
+- * power state to save power. For PTL the workaround is needed only for port A. Port B
+- * is not connected.
+- *
+- * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
+- *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
+- *    to the Disable state.
+- * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
++ * C10 PHY part of the sequence, see intel_dpll_power_save_wa().
+  */
+-void intel_cx0_pll_power_save_wa(struct intel_display *display)
++void intel_cx0_pll_power_save_wa(struct intel_encoder *encoder)
+ {
+-	struct intel_encoder *encoder;
++	struct intel_display *display = to_intel_display(encoder);
++	struct intel_cx0pll_state pll_state = {};
++	int port_clock = 162000;
++	int lane_count = 4;
++	int err;
+ 
+-	if (DISPLAY_VER(display) != 30)
++	if (intel_cx0_pll_is_enabled(encoder))
+ 		return;
+ 
+-	for_each_intel_encoder(display->drm, encoder) {
+-		struct intel_cx0pll_state pll_state = {};
+-		int port_clock = 162000;
+-		int lane_count = 4;
+-
+-		if (!intel_encoder_is_dig_port(encoder))
+-			continue;
+-
+-		if (!intel_encoder_is_c10phy(encoder))
+-			continue;
+-
+-		if (intel_cx0_pll_is_enabled(encoder))
+-			continue;
+-
+-		if (intel_c10pll_calc_state_from_table(encoder,
+-						       mtl_c10_edp_tables,
+-						       true, port_clock, lane_count,
+-						       &pll_state) < 0) {
+-			drm_WARN_ON(display->drm,
+-				    "Unable to calc C10 state from the tables\n");
+-			continue;
+-		}
++	err = intel_c10pll_calc_state_from_table(encoder, mtl_c10_edp_tables,
++						 true, port_clock, lane_count,
++						 &pll_state);
++	if (drm_WARN_ON(display->drm, err))
++		return;
+ 
+-		drm_dbg_kms(display->drm,
+-			    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
+-			    encoder->base.base.id, encoder->base.name);
++	drm_dbg_kms(display->drm,
++		    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\n",
++		    encoder->base.base.id, encoder->base.name);
+ 
+-		intel_cx0pll_enable(encoder, &pll_state);
+-		intel_cx0pll_disable(encoder);
+-	}
++	intel_cx0pll_enable(encoder, &pll_state);
++	intel_cx0pll_disable(encoder);
+ }
+ 
+ static void intel_c10pll_verify_clock(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 95c20eb4b4b7..b63916bfeca7 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -78,7 +78,7 @@ bool intel_mtl_tbt_pll_readout_hw_state(struct intel_display *display,
+ int intel_mtl_tbt_calc_port_clock(struct intel_encoder *encoder);
+ 
+ void intel_cx0pll_verify_plls(struct intel_display *display);
+-void intel_cx0_pll_power_save_wa(struct intel_display *display);
++void intel_cx0_pll_power_save_wa(struct intel_encoder *encoder);
+ void intel_lnl_mac_transmit_lfps(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state);
+ void intel_mtl_tbt_pll_enable(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index 504ec7043cd9..375201798413 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -9,12 +9,12 @@
+ #include <drm/drm_print.h>
+ 
+ #include "intel_clock_gating.h"
+-#include "intel_cx0_phy.h"
+ #include "intel_display_core.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_reset.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
++#include "intel_dpll_mgr.h"
+ #include "intel_hotplug.h"
+ #include "intel_pps.h"
+ 
+@@ -100,7 +100,7 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ 		intel_pps_unlock_regs_wa(display);
+ 		intel_display_driver_init_hw(display);
+ 		intel_clock_gating_init(display->drm);
+-		intel_cx0_pll_power_save_wa(display);
++		intel_dpll_power_save_wa(display);
+ 		intel_hpd_init(display);
+ 
+ 		ret = __intel_display_driver_resume(display, state, ctx);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index 888676693f5e..eeddf10a4071 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -111,6 +111,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 		return DISPLAY_VERx100(display) == 3000 ||
+ 			DISPLAY_VERx100(display) == 2000 ||
+ 			DISPLAY_VERx100(display) == 1401;
++	case INTEL_DISPLAY_WA_14022081154:
++		return DISPLAY_VER(display) >= 30;
+ 	case INTEL_DISPLAY_WA_14025769978:
+ 		return DISPLAY_VER(display) == 35;
+ 	case INTEL_DISPLAY_WA_14026643300:
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index 425a300840aa..acb45fa59aef 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -33,6 +33,7 @@ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_14014143976,
+ 	INTEL_DISPLAY_WA_14016740474,
+ 	INTEL_DISPLAY_WA_14020863754,
++	INTEL_DISPLAY_WA_14022081154,
+ 	INTEL_DISPLAY_WA_14025769978,
+ 	INTEL_DISPLAY_WA_14026643300,
+ 	INTEL_DISPLAY_WA_15013987218,
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index bfd6f0a19725..65cc028a90da 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -33,6 +33,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
++#include "intel_display_wa.h"
+ #include "intel_dkl_phy.h"
+ #include "intel_dkl_phy_regs.h"
+ #include "intel_dpio_phy.h"
+@@ -5220,12 +5221,43 @@ static void sanitize_dpll_state(struct intel_display *display,
+ 	_intel_disable_shared_dpll(display, pll);
+ }
+ 
++/*
++ * WA 14022081154
++ * The dedicated display PHYs reset to a power state that blocks S0ix, increasing idle
++ * system power. After a system reset (cold boot, S3/4/5, warm reset) if a dedicated
++ * PHY is not being brought up shortly, use these steps to move the PHY to the lowest
++ * power state to save power. For PTL the workaround is needed only for port A. Port B
++ * is not connected.
++ *
++ * 1. Follow the PLL Enable Sequence, using any valid frequency such as DP 1.62 GHz.
++ *    This brings lanes out of reset and enables the PLL to allow powerdown to be moved
++ *    to the Disable state.
++ * 2. Follow PLL Disable Sequence. This moves powerdown to the Disable state and disables the PLL.
++ */
++void intel_dpll_power_save_wa(struct intel_display *display)
++{
++	struct intel_encoder *encoder;
++
++	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14022081154))
++		return;
++
++	for_each_intel_encoder(display->drm, encoder) {
++		if (!intel_encoder_is_dig_port(encoder))
++			continue;
++
++		if (!intel_encoder_is_c10phy(encoder))
++			continue;
++
++		intel_cx0_pll_power_save_wa(encoder);
++	}
++}
++
+ void intel_dpll_sanitize_state(struct intel_display *display)
+ {
+ 	struct intel_dpll *pll;
+ 	int i;
+ 
+-	intel_cx0_pll_power_save_wa(display);
++	intel_dpll_power_save_wa(display);
+ 
+ 	for_each_dpll(display, pll, i)
+ 		sanitize_dpll_state(display, pll);
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+index f4b84733a58c..0beb8d99fd5e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+@@ -461,6 +461,7 @@ void intel_dpll_swap_state(struct intel_atomic_state *state);
+ void intel_dpll_init(struct intel_display *display);
+ void intel_dpll_update_ref_clks(struct intel_display *display);
+ void intel_dpll_readout_hw_state(struct intel_display *display);
++void intel_dpll_power_save_wa(struct intel_display *display);
+ void intel_dpll_sanitize_state(struct intel_display *display);
+ 
+ void intel_dpll_dump_hw_state(struct intel_display *display,
+-- 
+2.43.0
+
