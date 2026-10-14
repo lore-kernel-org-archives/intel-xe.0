@@ -4,131 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D9C0CC6B24
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 07:22:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A519CCC6B24
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 07:27:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7A0210E4DF;
-	Wed, 14 Oct 2026 07:22:39 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C05210E74D;
- Wed, 14 Oct 2026 07:22:17 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id BD06322185;
- Wed, 14 Oct 2026 07:22:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1791962535; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=kMb2PUq7ja7EUiS+Q08ZX7s6AL5bu9ht7JoEhjzDB/Y=;
- b=OsZFwrhyCGP2CK9sIweImaTQVBlFQLjWJ2zDoS35N5fFD3RNZ/Hb74Mm/v0MRZmb3Sam/H
- ruFn6TMVGnvfqgDpqMRLqZCsNLrGGmgqqKWlCg6vhcqctaR3MZhmBaaYmtinrR0aPzTcZQ
- 6L6JOQzTHXM1G3BtgyLu9OkFWWpBZhk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1791962535;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=kMb2PUq7ja7EUiS+Q08ZX7s6AL5bu9ht7JoEhjzDB/Y=;
- b=DyivhN+l9TnVcDQJxLmGjHCiUEuoFAwmDGz7BNINi3WzCmyc3mQeIAI2KIyDQfCKKwAFQY
- 20MpBTXdFt90e5CQ==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=bSOT9hPB;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=S7dMPvNW
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1791962534; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=kMb2PUq7ja7EUiS+Q08ZX7s6AL5bu9ht7JoEhjzDB/Y=;
- b=bSOT9hPBWuS8oOM79pgTMvYI/6N3QzcsDHQvc0e3YU0R+4fXlap/nw/kJS9S5QvJnidrXu
- yzG0qBqSxPVHcWX6rjT3zvoLR9CBe1+60hlNbwZOYsYxLEfcbmlq+6rC24Ka+XLgMax0Gb
- iS1/laF14DHmohyoQMjMlnkT254bKgI=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1791962534;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=kMb2PUq7ja7EUiS+Q08ZX7s6AL5bu9ht7JoEhjzDB/Y=;
- b=S7dMPvNWeUge/CdyZT6sOdkHqSPaDSXLD1M/9oUBQRbl4utXt+iclO8RWkzkBU9m5mSbrv
- foseAulltNNZmQDg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 7909413726;
- Wed, 14 Oct 2026 07:22:14 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id Mr4wFKYtz2p/cwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Wed, 14 Oct 2026 07:22:14 +0000
-Message-ID: <d39bd8f3-0fe0-4537-bba5-8eba5bb36704@suse.de>
-Date: Wed, 14 Oct 2026 09:22:13 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66FD710FB80;
+	Wed, 14 Oct 2026 07:27:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB6A710FB7E
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 07:27:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791962833; x=1823498833;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zYsiwOhkD8jM7xgjJvBhaaFyOSRZg2Lw5LywWxZ09CM=;
+ b=b5YfEqO7RG/aHOUjMfBdSd2xZuu+MxbAwZiZgK8vv0adtuozBbolLLmr
+ RTvkYzzh4eZ5RI7OxYGXLoas7RGUppzJl7y7v88gpjuHV6xJRpopACH44
+ vOsS27GB4XroNQzzsFK0OlZgllH+EZ3/byZrjWV18JzEql9MKbeYh4n3L
+ RHL68M+khitFKafaPAgQ9fQjbYFrqQT94IR6XqMFHHiXHcX6iKGGPxzel
+ rWoKG28TvqXLXRlfLxkMsqfPStpP830L2fKMfM6+j00KHYWqdLeRZZJEh
+ k0kYPOlZrod0UHjAE0+9uQ+ZazWNIeKuOiMLX8I0KE59IOBfN/ADEsj57 g==;
+X-CSE-ConnectionGUID: XGtNGSyeToa7JAINdvRK+g==
+X-CSE-MsgGUID: a1mN/qJERN6crX8CMz9NwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="585702"
+X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
+   d="scan'208";a="585702"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 00:27:13 -0700
+X-CSE-ConnectionGUID: Z5tJAoAxQcWxy/kmdbiC8A==
+X-CSE-MsgGUID: miymjp8PSVWWMC7ejD27zg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
+   d="scan'208";a="1460871"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 00:27:10 -0700
+Date: Wed, 14 Oct 2026 09:27:06 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com, pravalika.gurram@intel.com
+Subject: Re: [PATCH v4 03/12] drm/xe/cper: Initialize Intel-specific error
+ section header
+Message-ID: <as8uythXLgwkWbrN@black.igk.intel.com>
+References: <20261009104602.1075405-14-badal.nilawar@intel.com>
+ <20261009104602.1075405-17-badal.nilawar@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/6] drm/gem: add drm_gem_prime_dma_buf_to_gem()
- self-import helper
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-References: <20261013010614.1516799-8-niranjana.vishwanathapura@intel.com>
- <20261013010614.1516799-11-niranjana.vishwanathapura@intel.com>
- <as2LL7IIs6EcL6Pj@gsse-cloud1.jf.intel.com>
- <ff266a33-2729-47b4-8a1e-ff96bb456782@suse.de>
- <as56X/w+CLUE2kQI@gsse-cloud1.jf.intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <as56X/w+CLUE2kQI@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.999]; MIME_GOOD(-0.10)[text/plain];
- XM_UA_NO_VERSION(0.01)[]; MX_GOOD(-0.01)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- TO_DN_SOME(0.00)[]; ARC_NA(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MIME_TRACE(0.00)[0:+]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RCVD_TLS_ALL(0.00)[]; RCPT_COUNT_THREE(0.00)[4];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[]; RCVD_COUNT_TWO(0.00)[2];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,intel.com:email,suse.de:dkim,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Queue-Id: BD06322185
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+In-Reply-To: <20261009104602.1075405-17-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,179 +73,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+On Fri, Oct 09, 2026 at 04:16:06PM +0530, Badal Nilawar wrote:
+> Define the Intel-specific CPER error section header and initialize it
 
-Am 13.10.26 um 20:37 schrieb Matthew Brost:
-> On Tue, Oct 13, 2026 at 09:17:53AM +0200, Thomas Zimmermann wrote:
->> Hi
->>
->> Am 13.10.26 um 03:36 schrieb Matthew Brost:
->>> On Mon, Oct 12, 2026 at 06:06:15PM -0700, Niranjana Vishwanathapura wrote:
->>>> drm_gem_is_prime_exported_dma_buf() is a bool predicate that open-codes
->>>> the core PRIME self-import check. Its only caller, the shmem importer,
->>>> then repeats the dma_buf->priv lookup and the reference get.
->>>>
->>>> Replace it with drm_gem_prime_dma_buf_to_gem(), a thin wrapper around
->>>> drm_gem_prime_self_import() that returns the backing GEM object -- with
->>>> a reference taken -- for a core-PRIME self-export, or NULL otherwise.
->>>> This consolidates self-import handling onto drm_gem_prime_self_import()
->>>> and lets drm_gem_shmem_prime_import_no_map() reuse the object directly.
->>>>
->>>> Unlike the removed predicate, the helper takes a reference on the
->>>> returned object; the sole caller already wanted the referenced object.
->>>>
->>>> Assisted-by: GitHub-Copilot:claude-opus-4.8
->>> Assisted-by: LLM
->>>
->>> I was going to suggest this last rev too as I noticed
->>> drm_gem_shmem_prime_import_no_map called
->>> drm_gem_is_prime_exported_dma_buf which should prefer the new helper but
->>> shmem couldn't look at drm_gem_prime_dmabuf_ops.
->>>
->>> This is a good cleanup:
->> No it's not. Please see my reply to the cover letter.
->>
-> Ok, I can't say I agree, but I'm not going to die on this hill. Still,
-> here's my two cents.
->
-> I'm not sure I agree that comparing a vfunc is a hack, but let's assume
-> it is. Is it better to have four drivers plus two cases in DRM core all
-> open-coding this logic, or to consolidate it in a single place so that
-> if we find a better approach later, we have a central point where it can
-> be changed?
+Nit: redundant 'error'.
 
-The helper leaks the prime implementation to the outside world. That 
-alone is a problem. In practice there's no real guarantee that it works 
-with drivers that do not fully use prime, such as amdgpu.
+> from the error counter record for Intel GPU hardware errors.
+> 
+> Assisted-by: Copilot:Claude-Opus-5.5
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+> v4:
+>  - Split from "drm/xe/cper: Prepare CPER record" (Raag)
+>  - Add dedicated struct xe_cper_error_class (Michal)
+>  - Drop empty fill_fw_id() stub, leave a TODO instead
+> v2:
+>  - Guard against NULL THIS_MODULE->srcversion (sashiko)
+> ---
+>  drivers/gpu/drm/xe/xe_cper.c       | 43 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_cper_types.h | 72 ++++++++++++++++++++++++++++++
+>  2 files changed, 115 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index 4f0ed5096aac..e7cae449b349 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -6,8 +6,10 @@
+>  #include <linux/err.h>
+>  #include <linux/kernel.h>
+>  #include <linux/minmax.h>
+> +#include <linux/pci.h>
+>  
+>  #include "xe_cper.h"
+> +#include "xe_cper_types.h"
+>  #include "xe_device.h"
+>  #include "xe_printk.h"
+>  #include "xe_ras.h"
+> @@ -18,9 +20,47 @@ static bool is_hw_sigid(enum xe_sigid sigid)
+>  	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
+>  }
+>  
+> +static void xe_cper_init_intel_err_hdr(struct xe_device *xe,
 
-The importer whats to know if it has exported the dma_buf, but there's 
-no clear unique identifier. So it checks the device pointer stored in 
-priv. Because it cannot know if priv contains a device pointer, it first 
-compares the vtable.  All of that really is a hack. A driver could use 
-different vtables for the exported dma-bufs, or also have multiple 
-memory managers that share the same vtable for exported dma-bufs.  
-Neither would work with the current workarounds.
+'err' is redundant. Let's not invent unnecessarily long names that warrant
+ugly wrapping.
 
-What the importer needs a  unique identifier for each dma-buf allocator. 
-That workaround is just the next best thing.
+> +				       const struct xe_ras_error_class *error_class,
 
-Best regards
-Thomas
+Ditto, 'counter'.
 
+> +				       u64 first_timestamp, u32 sig_id, u32 error_count,
+> +				       struct xe_cper_sec_intel_err_hdr *ihdr)
+> +{
+> +	ihdr->error_class.error_type = error_class->common.severity;
+> +	ihdr->error_class.error_component = error_class->common.component;
+> +	ihdr->error_class.tile = error_class->product.unit.tile;
+> +	ihdr->error_class.instance = error_class->product.unit.instance;
+> +	ihdr->error_class.cause = error_class->product.cause.cause;
+> +	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
+> +
+> +	if (first_timestamp) {
+> +		ihdr->first_timestamp = first_timestamp;
+> +		ihdr->validation_bits |= XE_CPER_VALID_FIRST_TIMESTAMP;
+> +	}
+> +
+> +	if (sig_id != U32_MAX) {
 
->
-> To me, the answer is obvious, but again, I'm fine with ignoring this.
->
-> Matt
->
->> Best regards
->> Thomas
->>
->>> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->>>
->>>> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/drm_gem_shmem_helper.c | 14 ++++++--------
->>>>    drivers/gpu/drm/drm_prime.c            | 26 +++++++++++++++-----------
->>>>    include/drm/drm_prime.h                |  4 ++--
->>>>    3 files changed, 23 insertions(+), 21 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/drm_gem_shmem_helper.c b/drivers/gpu/drm/drm_gem_shmem_helper.c
->>>> index d654a22a30de..a0e161f2333e 100644
->>>> --- a/drivers/gpu/drm/drm_gem_shmem_helper.c
->>>> +++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
->>>> @@ -954,15 +954,13 @@ struct drm_gem_object *drm_gem_shmem_prime_import_no_map(struct drm_device *dev,
->>>>    	size_t size;
->>>>    	int ret;
->>>> -	if (drm_gem_is_prime_exported_dma_buf(dev, dma_buf)) {
->>>> -		/*
->>>> -		 * Importing dmabuf exported from our own gem increases
->>>> -		 * refcount on gem itself instead of f_count of dmabuf.
->>>> -		 */
->>>> -		obj = dma_buf->priv;
->>>> -		drm_gem_object_get(obj);
->>>> +	/*
->>>> +	 * Importing a dmabuf exported from our own gem increases the refcount
->>>> +	 * on the gem itself instead of the f_count of the dmabuf.
->>>> +	 */
->>>> +	obj = drm_gem_prime_dma_buf_to_gem(dev, dma_buf);
->>>> +	if (obj)
->>>>    		return obj;
->>>> -	}
->>>>    	attach = dma_buf_attach(dma_buf, dev->dev);
->>>>    	if (IS_ERR(attach))
->>>> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
->>>> index 588910c250b8..275c5661528d 100644
->>>> --- a/drivers/gpu/drm/drm_prime.c
->>>> +++ b/drivers/gpu/drm/drm_prime.c
->>>> @@ -933,23 +933,27 @@ EXPORT_SYMBOL(drm_gem_prime_export);
->>>>    /**
->>>> - * drm_gem_is_prime_exported_dma_buf -
->>>> - * checks if the DMA-BUF was exported from a GEM object belonging to @dev.
->>>> + * drm_gem_prime_dma_buf_to_gem - GEM object backing a self-exported PRIME dma-buf
->>>>     * @dev: drm_device to check against
->>>>     * @dma_buf: dma-buf object to import
->>>>     *
->>>> - * Return: true if the DMA-BUF was exported from a GEM object belonging
->>>> - * to @dev, false otherwise.
->>>> + * If @dma_buf is a PRIME export of a GEM object that belongs to @dev and uses
->>>> + * the core PRIME dma-buf ops, return that GEM object with an extra reference
->>>> + * taken, so a self-import reuses the GEM object instead of referencing the
->>>> + * dma-buf file. Returns NULL for a foreign dma-buf or one using driver-private
->>>> + * ops; such drivers call drm_gem_prime_self_import() with their own ops.
->>>> + *
->>>> + * The returned object carries a reference the caller must drop with
->>>> + * drm_gem_object_put().
->>>> + *
->>>> + * Return: the referenced GEM object on self-import, or NULL otherwise.
->>>>     */
->>>> -
->>>> -bool drm_gem_is_prime_exported_dma_buf(struct drm_device *dev,
->>>> -				       struct dma_buf *dma_buf)
->>>> +struct drm_gem_object *drm_gem_prime_dma_buf_to_gem(struct drm_device *dev,
->>>> +						    struct dma_buf *dma_buf)
->>>>    {
->>>> -	struct drm_gem_object *obj = dma_buf->priv;
->>>> -
->>>> -	return (dma_buf->ops == &drm_gem_prime_dmabuf_ops) && (obj->dev == dev);
->>>> +	return drm_gem_prime_self_import(dev, dma_buf, &drm_gem_prime_dmabuf_ops);
->>>>    }
->>>> -EXPORT_SYMBOL(drm_gem_is_prime_exported_dma_buf);
->>>> +EXPORT_SYMBOL(drm_gem_prime_dma_buf_to_gem);
->>>>    /**
->>>>     * drm_gem_prime_import_dev - core implementation of the import callback
->>>> diff --git a/include/drm/drm_prime.h b/include/drm/drm_prime.h
->>>> index d378404f8ab4..02665205aed1 100644
->>>> --- a/include/drm/drm_prime.h
->>>> +++ b/include/drm/drm_prime.h
->>>> @@ -101,8 +101,8 @@ struct dma_buf *drm_gem_prime_export(struct drm_gem_object *obj,
->>>>    unsigned long drm_prime_get_contiguous_size(struct sg_table *sgt);
->>>>    /* helper functions for importing */
->>>> -bool drm_gem_is_prime_exported_dma_buf(struct drm_device *dev,
->>>> -				       struct dma_buf *dma_buf);
->>>> +struct drm_gem_object *drm_gem_prime_dma_buf_to_gem(struct drm_device *dev,
->>>> +						    struct dma_buf *dma_buf);
->>>>    struct drm_gem_object *drm_gem_prime_import_dev(struct drm_device *dev,
->>>>    						struct dma_buf *dma_buf,
->>>> -- 
->>>> 2.43.0
->>>>
->> -- 
->> --
->> Thomas Zimmermann
->> Graphics Driver Developer
->> SUSE Software Solutions Germany GmbH
->> Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
->> GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
->>
->>
+Shouldn't this be is_sigid_valid() or something?
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
+> +		ihdr->sig_id = sig_id;
+> +		ihdr->validation_bits |= XE_CPER_VALID_SIG_ID;
+> +	}
+> +
+> +	ihdr->error_count = error_count;
+> +
+> +	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->pci_bdf));
+> +	ihdr->validation_bits |= XE_CPER_VALID_PCI_BDF;
+> +
+> +#ifdef MODULE
+> +	if (THIS_MODULE->srcversion) {
+> +		strscpy(ihdr->drv_version, THIS_MODULE->srcversion, sizeof(ihdr->drv_version));
+> +		ihdr->validation_bits |= XE_CPER_VALID_DRV_VERSION;
+> +	}
+> +#endif
+> +
+> +	/* TODO: fill fw_id and set XE_CPER_VALID_FW_ID */
+> +}
+> +
+>  static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+>  				const struct xe_ras_error_class *error_class)
+>  {
+> +	struct xe_cper_sec_intel_err_hdr ihdr = {};
+>  	struct xe_ras_get_counter_response local_resp;
+>  
+>  	/* Fetching the counter sends a sysctrl command */
+> @@ -31,6 +71,9 @@ static void xe_cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigi
+>  		xe_err(xe, "CPER: failed to get counter, skipping record\n");
+>  		return;
+>  	}
+> +
+> +	xe_cper_init_intel_err_hdr(xe, error_class, local_resp.timestamp,
+> +				   sigid, local_resp.value, &ihdr);
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+> new file mode 100644
+> index 000000000000..74307e7f78a2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+> @@ -0,0 +1,72 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright � 2026 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_CPER_TYPES_H_
+> +#define _XE_CPER_TYPES_H_
+> +
+> +#include <linux/types.h>
+> +
+> +/*
+> + * Validation bits definition for validation_bits in struct
+> + * xe_cper_sec_intel_err_hdr. When set, corresponding fields in header
+> + * contains valid data
+> + */
+> +#define XE_CPER_VALID_LOCATION		0x0001
+> +#define XE_CPER_VALID_FIRST_TIMESTAMP	0x0002
+> +#define XE_CPER_VALID_SIG_ID		0x0004
+> +#define XE_CPER_VALID_PCI_BDF		0x0008
+> +#define XE_CPER_VALID_DRV_VERSION	0x0010
+> +#define XE_CPER_VALID_FW_ID		0x0020
 
+Introduce in the patch you actually use it.
 
+> +#pragma pack(push, 1)
+
+I'd rather use __packed for individual structs, so I know it's an ABI
+without fumbling through the header without my coffee :)
+
+Although the long term plan is to move all of them inside xe/abi directory,
+but only when they become stable.
+
+> +/**
+> + * struct xe_cper_error_class - Intel GPU CPER error classification
+> + */
+> +struct xe_cper_error_class {
+> +	/** @error_type: RAS error severity */
+> +	u8  error_type;
+> +	/** @error_component: IP block that raised the error */
+> +	u8  error_component;
+> +	/** @tile: Tile number */
+> +	u8  tile;
+> +	/** @instance: Instance within the tile */
+> +	u32 instance;
+> +	/** @cause: Error cause code */
+> +	u32 cause;
+> +	/** @reserved: Reserved, must be zero */
+> +	u8  reserved;
+> +};
+> +
+> +/**
+> + * struct xe_cper_sec_intel_err_hdr - Intel-specific CPER error section header
+> + *
+> + * Fixed-size header for the Intel GPU error section of a CPER record.
+> + * All multi-byte fields are little-endian; the structure is packed.
+> + */
+> +struct xe_cper_sec_intel_err_hdr {
+
+Same as above, drop the 'err'.
+
+> +	/** @error_class: Error classification (type, component, location, cause) */
+> +	struct xe_cper_error_class error_class;
+
+Why not just reuse struct xe_ras_error_class?
+
+Raag
+
+> +	/** @first_timestamp: First occurrence of this error class, in ticks */
+> +	u64 first_timestamp;
+> +	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
+> +	u32 sig_id;
+> +	/** @error_count: Number of times this error has been observed */
+> +	u32 error_count;
+> +	/** @validation_bits: Raw u16 view of all valid bits */
+> +	u16 validation_bits;
+> +	/** @pci_bdf: PCI location string, format "DDDD:bb:dd.f" */
+> +	char pci_bdf[16];
+> +	/** @drv_version: Driver source version string (THIS_MODULE->srcversion) */
+> +	char drv_version[25];
+> +	/** @fw_id: Firmware version string (GFSP+PCODE+CSC+GUC or MNG+NUC+RAS+GUC) */
+> +	char fw_id[256];
+> +	/** @reserved: Reserved for future use, must be zero */
+> +	u8 reserved[5];
+> +};
+> +
+> +#pragma pack(pop)
+> +
+> +#endif
+> -- 
+> 2.54.0
+> 
