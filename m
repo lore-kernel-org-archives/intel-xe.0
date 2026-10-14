@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF0E4CC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 14:27:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A55A6CC6B1A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 14:27:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 653E710E462;
-	Wed, 14 Oct 2026 14:27:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614E310E122;
+	Wed, 14 Oct 2026 14:27:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97D6010EEA0
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 14:27:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9988310E9C0
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 14:27:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791988043; x=1823524043;
+ t=1791988045; x=1823524045;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B6fgQ96JvYH0ZLlBFlZEy268kXTFYWwiVdnUwLDkABY=;
- b=Dqe4yfJAgw4/It2VuJCAK0gzViP+ckxYWXZUvKTOQQmjrSjwvuzrNRbL
- Ot+zfO+hlMhTjrqNmLKxUrhxgPpWv82CZ6SJCdaOj6J0yjY2OPsm48mZF
- kXrT70YTRSiHElf7rzrpo2EacPY1Qd8WJpAPuTxifceXAsVnPBWTyf7yq
- +Jjh+CAlVQg5nLEDou+BLEgGHf+z5ZKlMRSYPUIck30H5wqi0C3FAz4QK
- cgke39M+FyZhCf0f+pEahi0nX3YJmBgeFA4bUbNwLiAKHQ2DgSfClwnx+
- BogSA7Tj8iJSFIoF0GEusnXbsLhvOlAE4DGe9snVKQlDy8zo/+IqR2suy w==;
-X-CSE-ConnectionGUID: SHP4cRoiQj6dyVMNS9GJyA==
-X-CSE-MsgGUID: noGC1l/BSuK6dfYlKWrjQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="738964"
+ bh=h7MHhKa+rNNq5e6CVmYA1yHYLJjQrSYH2zUGMipr7Ag=;
+ b=nweXo/bM4T6WoMuxWcFf9XMrtuF3S6mFVVfmqgD80w7vcv6Zxe80b1uR
+ qpH5mF0HzQDU2OH+ze2VgK3UhhyggRRXKHaxSERSVU3aW2ZCTWDZQzjjU
+ GLnQ9IxYhFPNiyrJWwbk9euWxrM3UJaifLaHqC5DAjNkJeBN2lUVPyVLB
+ QGXu/+gftCclyc/nRzCc3f6PHtVA+g/4cWZIoeoF7V1onBbWgowy/Jww2
+ 61noqrjV1iTRCqisKbqaypGz4km5Wh/1Lo/as4kzr5E4zFcomeQ005b82
+ C8pRSzQmpzKsc93dZ85hF2F3jCIswSDb7+XqnNgv2R2aJYpXcjgkXNaON w==;
+X-CSE-ConnectionGUID: AKTKrf8KTO2xT+iZJ9Qy8g==
+X-CSE-MsgGUID: oCiOtVCVTIuxfO7wGoMU4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="738975"
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="738964"
+   d="scan'208";a="738975"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 07:27:23 -0700
-X-CSE-ConnectionGUID: GZmlHeaKRG+2IQ0NlP0PaQ==
-X-CSE-MsgGUID: o/QKP8+GT9WsUUjo0ge+1w==
+ 14 Oct 2026 07:27:25 -0700
+X-CSE-ConnectionGUID: hOxhj7lKSZud117XVaZSlg==
+X-CSE-MsgGUID: LiW/sFlbTNGBPOWez/e8Gg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="3203435"
+   d="scan'208";a="3203443"
 Received: from art-dev-395.igk.intel.com ([10.211.135.233])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 07:27:20 -0700
+ 14 Oct 2026 07:27:22 -0700
 From: Jan Maslak <jan.maslak@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  Christoph Manszewski <christoph.manszewski@intel.com>,
  Jan Maslak <jan.maslak@intel.com>
-Subject: [PATCH v5 1/4] drm/xe/xe_migrate: Fix page tracking in access_memory
-Date: Wed, 14 Oct 2026 16:27:03 +0200
-Message-ID: <20261014142706.598490-2-jan.maslak@intel.com>
+Subject: [PATCH v5 2/4] drm/xe/xe_migrate: Align MEM_COPY pitch with
+ destination address
+Date: Wed, 14 Oct 2026 16:27:04 +0200
+Message-ID: <20261014142706.598490-3-jan.maslak@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261014142706.598490-1-jan.maslak@intel.com>
 References: <20261014142706.598490-1-jan.maslak@intel.com>
@@ -70,32 +71,93 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-xe_migrate_access_memory() advances the pagemap cursor based on the
-current page in the CPU buffer.
+MEM_COPY_CMD can corrupt memory when MATRIX_COPY mode uses a pitch that
+is not aligned to the destination address.
 
-Include the initial page offset when recalculating current_page so
-subsequent iterations continue to index the mapped pages correctly.
+Fix this by incorporating the destination address into the pitch
+selection so the chosen pitch is aligned to both the copy length and the
+destination address.
 
 Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
 Signed-off-by: Jan Maslak <jan.maslak@intel.com>
 Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_migrate.c | 31 +++++++++++++++++++------------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index fffb3eb6c76e..3711d4542ad3 100644
+index 3711d4542ad3..4b995c93fcea 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -2563,7 +2563,7 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+@@ -2187,17 +2187,18 @@ static bool xe_migrate_vram_use_pde(struct drm_pagemap_addr *sram_addr,
+ #define XE_CACHELINE_BYTES	64ull
+ #define XE_CACHELINE_MASK	(XE_CACHELINE_BYTES - 1)
  
- 		buf += current_bytes;
- 		offset += current_bytes;
--		current_page = (int)(buf - orig_buf) / PAGE_SIZE;
-+		current_page = (int)(buf - orig_buf + page_offset) / PAGE_SIZE;
- 		bytes_left -= current_bytes;
- 		if (bytes_left)
- 			xe_res_next(&cursor, current_bytes);
+-static u32 xe_migrate_copy_pitch(struct xe_device *xe, u32 len)
++static u32 xe_migrate_copy_pitch(struct xe_device *xe, u32 len, u64 dst_addr)
+ {
++	u64 align_check = len | dst_addr;
+ 	u32 pitch;
+ 
+-	if (IS_ALIGNED(len, PAGE_SIZE))
++	if (IS_ALIGNED(align_check, PAGE_SIZE))
+ 		pitch = PAGE_SIZE;
+-	else if (IS_ALIGNED(len, SZ_4K))
++	else if (IS_ALIGNED(align_check, SZ_4K))
+ 		pitch = SZ_4K;
+-	else if (IS_ALIGNED(len, SZ_256))
++	else if (IS_ALIGNED(align_check, SZ_256))
+ 		pitch = SZ_256;
+-	else if (IS_ALIGNED(len, 4))
++	else if (IS_ALIGNED(align_check, 4))
+ 		pitch = 4;
+ 	else
+ 		pitch = 1;
+@@ -2224,16 +2225,11 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 	struct xe_bb *bb;
+ 	u32 update_idx, pt_slot = 0;
+ 	unsigned long npages = DIV_ROUND_UP(len + sram_offset, PAGE_SIZE);
+-	unsigned int pitch = xe_migrate_copy_pitch(xe, len);
++	unsigned int pitch;
+ 	int err;
+ 	unsigned long i, j;
+ 	bool use_pde = xe_migrate_vram_use_pde(sram_addr, len + sram_offset);
+ 
+-	if (!xe->info.has_mem_copy_instr &&
+-	    drm_WARN_ON(&xe->drm,
+-			(!IS_ALIGNED(len, pitch)) || (sram_offset | vram_addr) & XE_CACHELINE_MASK))
+-		return ERR_PTR(-EOPNOTSUPP);
+-
+ 	xe_assert(xe, npages * PAGE_SIZE <= MAX_PREEMPTDISABLE_TRANSFER);
+ 
+ 	batch_size += pte_update_cmd_size(npages << PAGE_SHIFT);
+@@ -2285,6 +2281,15 @@ static struct dma_fence *xe_migrate_vram(struct xe_migrate *m,
+ 			dst_L0_ofs = xe_migrate_vm_addr(pt_slot, 0) + sram_offset;
+ 	}
+ 
++	pitch = xe_migrate_copy_pitch(xe, len, dst_L0_ofs);
++	if (!xe->info.has_mem_copy_instr &&
++	    drm_WARN_ON(&xe->drm,
++			(!IS_ALIGNED(len, pitch)) ||
++			(sram_offset | vram_addr) & XE_CACHELINE_MASK)) {
++		err = -EOPNOTSUPP;
++		goto err;
++	}
++
+ 	bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 	update_idx = bb->len;
+ 
+@@ -2535,7 +2540,9 @@ int xe_migrate_access_memory(struct xe_migrate *m, struct xe_bo *bo,
+ 		else
+ 			current_bytes = min_t(int, bytes_left, cursor.size);
+ 
+-		pitch = xe_migrate_copy_pitch(xe, current_bytes);
++		pitch = xe_migrate_copy_pitch(xe, current_bytes,
++					      write ? vram_addr :
++					      (unsigned long)buf & ~PAGE_MASK);
+ 		if (xe->info.has_mem_copy_instr)
+ 			current_bytes = min_t(int, current_bytes, U16_MAX * pitch);
+ 		else
 -- 
 2.43.0
 
