@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4C2BCC6B1D
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 01:10:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7C9ECC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 02:10:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA9B410E12C;
-	Wed, 14 Oct 2026 01:10:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0CC110FA7B;
+	Wed, 14 Oct 2026 02:10:58 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 026FD10E12C;
- Wed, 14 Oct 2026 01:10:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4B4310FA7B;
+ Wed, 14 Oct 2026 02:10:57 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0881800862288327431=="
+ boundary="===============7876805932980694295=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/gmbus=3A_Add_bit-b?=
- =?utf-8?q?anging_debugfs_control_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_FD_close_cleanup_for_XE_=28?=
+ =?utf-8?q?rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Naladala Ramanaidu" <ramanaidu.naladala@intel.com>
+To: "Daniel Charles" <daniel.charles@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 14 Oct 2026 01:10:44 -0000
-Message-ID: <179194024498.21468.10651831978432655019@221881a7231d>
+Date: Wed, 14 Oct 2026 02:10:57 -0000
+Message-ID: <179194385779.21612.18089998551561746774@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261013190712.2092093-1-ramanaidu.naladala@intel.com>
-In-Reply-To: <20261013190712.2092093-1-ramanaidu.naladala@intel.com>
+References: <20261013201508.514480-1-daniel.charles@intel.com>
+In-Reply-To: <20261013201508.514480-1-daniel.charles@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0881800862288327431==
+--===============7876805932980694295==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/gmbus: Add bit-banging debugfs control (rev3)
-URL   : https://patchwork.freedesktop.org/series/174932/
+Series: FD close cleanup for XE (rev2)
+URL   : https://patchwork.freedesktop.org/series/175996/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614_BAT -> xe-pw-174932v3_BAT
+CI Bug Log - changes from xe-5941-4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2_BAT -> xe-pw-175996v2_BAT
 ====================================================
 
 Summary
@@ -80,17 +80,17 @@ Changes
 Build changes
 -------------
 
-  * Linux: xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614 -> xe-pw-174932v3
+  * Linux: xe-5941-4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2 -> xe-pw-175996v2
 
   IGT_9143: 992e2bc5d5fcaef292ea89e3db5cb7a50b6edfc2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614: 3bb5625e4dccd61506ad2815da07ac082e1df614
-  xe-pw-174932v3: 174932v3
+  xe-5941-4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2: 4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2
+  xe-pw-175996v2: 175996v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v3/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175996v2/index.html
 
---===============0881800862288327431==
+--===============7876805932980694295==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -110,16 +110,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/gmbus: Add bit-banging debugfs control (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174932/">https://patchwork.freedesktop.org/series/174932/</a></td></tr>
+<tr><td><b>Series:</b></td><td>FD close cleanup for XE (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175996/">https://patchwork.freedesktop.org/series/175996/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174932v3/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175996v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175996v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614_BAT -&gt; xe-pw-174932v3_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5941-4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2_BAT -&gt; xe-pw-175996v2_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -129,13 +129,13 @@ Content-Transfer-Encoding: 7bit
 <p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614 -&gt; xe-pw-174932v3</li>
+<li>Linux: xe-5941-4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2 -&gt; xe-pw-175996v2</li>
 </ul>
 <p>IGT_9143: 992e2bc5d5fcaef292ea89e3db5cb7a50b6edfc2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5940-3bb5625e4dccd61506ad2815da07ac082e1df614: 3bb5625e4dccd61506ad2815da07ac082e1df614<br />
-  xe-pw-174932v3: 174932v3</p>
+  xe-5941-4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2: 4aa2d36cd469ef301afa2cd8d66b3ab52b92c9e2<br />
+  xe-pw-175996v2: 175996v2</p>
 
 </body>
 </html>
 
---===============0881800862288327431==--
+--===============7876805932980694295==--
