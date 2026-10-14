@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB95DCC6B1A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:44:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C4CFCC6B1D
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 13:45:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9692310FE25;
-	Wed, 14 Oct 2026 13:44:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 782BB10F89E;
- Wed, 14 Oct 2026 13:44:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37C2F10FE2C;
+	Wed, 14 Oct 2026 13:45:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF12010FD9D;
+ Wed, 14 Oct 2026 13:45:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791985472; x=1823521472;
+ t=1791985521; x=1823521521;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
  bh=/HwxuTlUJf2ChssGDVS/bxhO3FoByLiup66VRbnJ8As=;
- b=FiTK/OZZ56+Kizfy9MmJiGp5/ilyyFcAbU4RELrcVU3kTKyTPHv1/ccK
- L0bvayqrtcG5mwt8TYGiKaRs7cg94U0bIBqLniUJYyZ6KVYjMV4+vcHN8
- /o+UyBt1OwQCnJ0FQKW2MnUx/A8YFSalQIVPYuqTUh3CEQlFUyLlyVzfO
- rwuWtneGHoF06FakrhY0Cb09YZPSNVyLPwdgzfPNRzpxk+WLwUuxzp4yU
- 5AGDcdQJtdaZODmUsoEJBOYPHCN7DgaPb04Tmxh9Sf57Kps0VuE48OHdS
- iFLv8Dz5QZNsOoNqWJs2e5CWMdJMmMbKYbWTk84dexfMgjU0InHxVLEpR w==;
-X-CSE-ConnectionGUID: YikapULMSui9k+MG3tsBwg==
-X-CSE-MsgGUID: CKUTXO4zQSq/im8/EOV1fQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="722501"
+ b=E1i/k7WfUWm9JrIJcn1WEWvmffC7IvAh5/9zMi3y9hix+GgTuas5HsCX
+ 3SyR3ih2hyFGlKZ5vNZGK5LJNNjhaB0omZejoSRa5FfPHusPPVE8/3LdQ
+ QuFjXIqoeoN2kb14816inNZaVqERu/qg9xotZQ6JalRHnVGClqIPCCBer
+ +AUH+LtotCykSqobefx8LtDIs30lZ6Ew38pnPllJUNH8xK3OUqxWAjFsg
+ iyjbrg3vLFUmyltxfoGnv25IqofAkfP6eB7HLHAcwrYkynDrtf0ePSTiE
+ m6KFkWl3VqmVi6R4XR5elJ5W5i1wq5RH7nhMPqdnS/Ap1ToWesP8hX2Fm w==;
+X-CSE-ConnectionGUID: zK/RdbqBSkCsyW9FzmJgmg==
+X-CSE-MsgGUID: R4w8pk74RcCzooQhMvyi8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="738547"
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="722501"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 06:44:31 -0700
-X-CSE-ConnectionGUID: B4XneFQmR6KKNzcK+G/Z8w==
-X-CSE-MsgGUID: Mbp9RIoYQhaOOCTTegrZqg==
+   d="scan'208";a="738547"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 06:45:21 -0700
+X-CSE-ConnectionGUID: jI4rsAxPROCCyFmIu3ZCWA==
+X-CSE-MsgGUID: df9qf9KMQnaX+94caDsFGg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1506175"
+   d="scan'208";a="1754776"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 14 Oct 2026 06:44:29 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 14 Oct 2026 06:45:20 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
 Subject: [PATCH v2 1/4] drm/i915/dpll: move the PLL power save W/A to the
  display W/A framework
-Date: Wed, 14 Oct 2026 13:44:24 +0000
-Message-ID: <20261014134424.2845993-1-mika.kahola@intel.com>
+Date: Wed, 14 Oct 2026 13:45:17 +0000
+Message-ID: <20261014134517.2846009-1-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261009103552.1864818-2-mika.kahola@intel.com>
-References: <20261009103552.1864818-2-mika.kahola@intel.com>
+In-Reply-To: <20261014105306.2761683-2-mika.kahola@intel.com>
+References: <20261014105306.2761683-2-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
