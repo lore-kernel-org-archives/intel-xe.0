@@ -4,147 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 492ADCC6B2C
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 20:02:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27C59CC6B2C
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 20:13:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F422A10EACD;
-	Wed, 14 Oct 2026 20:02:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 101F710EACD
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 20:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB4F410E2D1;
+	Wed, 14 Oct 2026 20:12:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3991210E1CA;
+ Wed, 14 Oct 2026 20:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792008121; x=1823544121;
+ t=1792008770; x=1823544770;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=uGKGFdkkhzsJqTpAXQrhUXkZVvolhvh+dl8Aa/Nl09c=;
- b=g3ky5claCJIu3c6Gf8gr3K6ReUvOJxecbY9hICGvYPdsJlgr/eYNf7Bw
- 3eJZmO+Sw6rRGtDHkqdVcKe2GbLPxGYVLTyicToRxU9M+pq1YkG5pf0qX
- kElheO/OOu8pDGjrcXvN27/I/uUPpAFEs768ygoGWJzYxz9ckjyngcSi8
- kz4lXsHhsXXRQeBJWbC0QPc0rECzMOp4ss9TqepHeLirH9YOh0HaOWM2B
- 1fVBqv+sfe+pGSL7KLidGeeiM7j7H+RY33spchECVxtmUXvNz/tzxWaJJ
- pKmsNuToCUqGy05vpZDgMIEe9CPEAUoj3DFG+CjFc9LIUNTjyI2pjaDOZ A==;
-X-CSE-ConnectionGUID: +fzy47q9R9mwgKzkZGuLuw==
-X-CSE-MsgGUID: GItKVqYbRM6T9SXOPXht0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="655825"
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=3TtRVDy/+gNFXdTibeAvqDr3Txvt/TkFHvXjNBwxyAs=;
+ b=E0k8FSvAOdjWy2aRYlLLGNpyPI8f1nmaTVIaIVagqztDjDJK7mBGP9/H
+ hJV3ci1wR5XnXxW3Z8J1kqRlaUqtyIXkkLKn7B5fcccmD4wEL6e7caFUC
+ aMkJ9AqNPfKMtiufQoNjPWiaXt5hBUOPMzC/QnvZj5adHgyruIEnat21d
+ QlAYgzmQdMNAjz6wLu1GuYpxML6CN8G2aNIOjG6bveULgHrMQdoqsQIaU
+ qkspwyaNP8NUA+90q3cJxQ1cHYUTqaNkGypKffMiiN1L5CUm2Xz4Xruo1
+ t5tYyVqKEthabYMAiLZ6z3X3pWcrbLFs4IoMeTzVMpaPgdE6zvpIJs8gu g==;
+X-CSE-ConnectionGUID: xWRC35+ES32rrA1l3URb1A==
+X-CSE-MsgGUID: Lh2pn4quRga/hUfzK4ooTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="665713"
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="655825"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 13:02:01 -0700
-X-CSE-ConnectionGUID: 0OV7MoxpRjC++aqOYPPQFQ==
-X-CSE-MsgGUID: Wgxg3WU3RxSOY7+jjVw/LQ==
+   d="scan'208";a="665713"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 13:12:49 -0700
+X-CSE-ConnectionGUID: KMueiIw0QSeQM+mXllwnww==
+X-CSE-MsgGUID: +j9wI3LUQt2U39u1ArOFdA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="1418526"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 13:02:01 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+   d="scan'208";a="1594498"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 13:12:49 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 14 Oct 2026 13:02:00 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.49; Wed, 14 Oct 2026 13:12:49 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 14 Oct 2026 13:02:00 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.61) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Wed, 14 Oct 2026 13:12:49 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.19) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 14 Oct 2026 13:02:00 -0700
+ 15.2.2562.49; Wed, 14 Oct 2026 13:12:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EFSahEhtwpn2kmpiC92mKEJvCffQv2Nh+4wOmpPHXjRGbrLSpsbsYvkMm/avUwrpS60eh6lw70wh5IVBavQSII3KJO8RkBuWvqVxcXBZr50fZdsVGzat9cZTAO24xl89RKBXkaRnc1V1kegFVX7hRksUCZy6TWMfmNOKBi9PYkQUoYdt+acb28lSUL1O4l6Z3uzXYpyptjEjZPdxXSqBdtPe8/JjSaX80MA9D3Fup69lolj59n+EMd7KzJes7fIlLS3Qfop7Ut6/rRUPs7KapjChjQb5gG+etKZvV5XVdbWlaU4PLy3ful8MlZCIUoHV0vxRatuwLVJHqpLIiRje1g==
+ b=NEWzOxv31J5AR7sBTLSuvp8eYPbYTpsdz4VI19JHn5KzafBPA0OMEaIw3X2KcX30k1mVZ0Zw7kX6SlsTVgdMB9Ygj9Ofp79n90MU8v1mLGO69WfYcFfROyrtaciW9ji/pr6LIZBdW795EVsA5PjRZml0lgKh5mL9cNEgpCn2F7yaBJDXZ15cAuLzBICSe+6IjtkBBEw0zm/KNu7rlpvcZRAn4iW6Lf9CynavZQPChLO7CMaADweYpZRYrSJlP4qc+qAqmz87myk1zns4LEnHHGoJEWNdClBlzedoLPR8NTDzALMFZuwC4s16cRXxbSA0vX61Keh+Yuz/tAZCai/YYQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bEZwgkdi1K6NrqLmPKsahzz8LKjDHNTL/HztGavFx70=;
- b=Q/oV8VlmZ8KaW0jaSbK/eGp2R2Yxoc29O9TxbCinSn54I6HQyJgjvTV9VRTpZLRB5h2cQkw/SJw285qJ5QJOKYmtucyb/4Y8MNUVQdVbI+kqEZfh8BpW4pL415MmBHIk83DgYJdxXTxEiRCyEdz7/st5FMixex1OdYz+l5+coUxApY8M6wMSXT1O9FYWChl2iqcLzQMhHYrAbQOjZC0VaoiL7b05wcM8K8AFPv4DKH5bXU+PfE2f9EQ1XHfnPbZlDPlObUR48wVJJw/QQ+igQ3PydikS5vu+vj2zPK8CZ3rDRvpP+/U+v4/0RB9gT/lcLP+GNqflfSXi8L/q4Z19mQ==
+ bh=JRYHNqgZxiL/1VJ2YbbcB0XXw+9JGjwIVyWqUGGxfC0=;
+ b=q6i7//6bn9NFCt9Wgj318zobxrsNmQqSOp+6u0PIs0EI5sN+HKQGxZE7L2R3pAICtWW9b7Nqzrrhd6mVVMyJgXOyHo/jhhr3EDsli9XJxkt7O7WAg+lchdL+uGQ+EICy/V3Ypc1BNYtQrHwZwTV9YPVltlLeFGNxU3pn7Wgn0Rf4rhgKBSK5Rj6LX6oKgHZrKJb1gkj5ms79e0AF+bxpu1UpHbPhTGpOgdtXMD8QwP3s9FVHLSMH7jq3c3wUP841mQ1y7V8C0TaPWqc/r2f3beWnr0FGSn8D6wweNa9OMRrROOkBwQQUXo5y5avgtRPjB3/+U4Rztx8oeKcgzsrcQA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CH3PR11MB7180.namprd11.prod.outlook.com (2603:10b6:610:148::5)
- by PH8PR11MB6563.namprd11.prod.outlook.com (2603:10b6:510:1c2::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.13; Wed, 14 Oct
- 2026 20:01:53 +0000
+ by SJ5PPF56FDAD370.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::82a) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Wed, 14 Oct
+ 2026 20:12:46 +0000
 Received: from CH3PR11MB7180.namprd11.prod.outlook.com
  ([fe80::70dc:90b2:50b4:31a8]) by CH3PR11MB7180.namprd11.prod.outlook.com
  ([fe80::70dc:90b2:50b4:31a8%7]) with mapi id 15.21.0496.021; Wed, 14 Oct 2026
- 20:01:52 +0000
-Date: Wed, 14 Oct 2026 16:01:48 -0400
+ 20:12:46 +0000
+Date: Wed, 14 Oct 2026 16:12:41 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Poosa, Karthik" <karthik.poosa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>
-Subject: Re: [PATCH v13 12/16] drm/xe/hwmon: Update memory controller
- temperature offset for CRI
-Message-ID: <as_frGsOPZa89Nq4@intel.com>
-References: <20261014115806.831459-1-karthik.poosa@intel.com>
- <20261014115806.831459-13-karthik.poosa@intel.com>
- <as_BTb-GDagB03do@intel.com>
- <e7e47f48-112f-48b3-898f-af2a4fc6788c@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Constantinos Chalkias <cch@e-psn.eu>, Bata Roland
+ =?iso-8859-1?Q?Kriszti=E1n?= <batarolandkrisztian@gmail.com>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.brost@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
+ force-wake
+Message-ID: <as_iOd6A_Yncj8Gt@intel.com>
+References: <20261012104245.2108030-1-cch@e-psn.eu>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <e7e47f48-112f-48b3-898f-af2a4fc6788c@intel.com>
-X-ClientProxiedBy: PH7P220CA0013.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:326::30) To CH3PR11MB7180.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261012104245.2108030-1-cch@e-psn.eu>
+X-ClientProxiedBy: SJ0PR03CA0066.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::11) To CH3PR11MB7180.namprd11.prod.outlook.com
  (2603:10b6:610:148::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|PH8PR11MB6563:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b9be444-c22e-46e2-a149-08df2a2dfd6c
+X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|SJ5PPF56FDAD370:EE_
+X-MS-Office365-Filtering-Correlation-Id: 042511c8-e07d-44d5-01fd-08df2a2f8313
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|366016|1800799024|56012099006|11063799006|4143699003|261009223027099003|10067099003|18002099003|22082099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: JLliBbJColorZQ+ji8dEv85+T0HMS1pdX5PgjDx+Fc0dOM92J2cbvDTdalMi5r77biH9tJIuGeeDJZbtEBkt6Dpb8RmDcx41Ouj5gcU3IHxvkYe0oCzN2xHpdpV6jCzow+fJuW24veMFU+9A2ULOUfCGl3VobGeKGdB5S3aAYEMJgjcbWw3bxYrle8e0PfootDAhwPxYomtychNlj6a3BArqLp9SvLYT1FHqZo4j/42R95uGICGaQiiFiWFITuXowq57oh36Y0MtlQwiDv9Ekr7xtS/eFK5i0LfYIkopXh+eCysROKPIio+nfuFGwaZSnzVJVgSNjHwy1Jm5Uln9knsWeAWrzgCVXMX55VVE+UoDPT7rt3woK/1Zs0qP4S0ILG2tC0FZ6eYBdENFP+636tv5sn/AA819HIf7BxujknCWKWTjEAzTPjfJVQomFD9TVj1X8tgfprLEPG/7uYcAc/3k3OC/haPOacTmlYgWokkFUmvwLC1F6KF9TATPEPQA9yM/WhLbXyj/PS6uib44kvQ5XTpMDX1nUbAiQng0+h85co8bR4vG7H+CZduW5U24Iix5SseqbCov/84WunBVmq6sAY26Ip7dBPqN79BsEyroq1w09UW4avDJ2CZDCVH+dgOEUN3DDCezF+bG7QFaMtusXdCKioviimM2WbK5Jfk=
+ ARA:13230040|23010399003|366016|1800799024|376014|18002099003|22082099003|10067099003|11063799006|261009223027099003|56012099006;
+X-Microsoft-Antispam-Message-Info: 1GOoYFVghdo+k/JOsAbrHovnwsjI5esRu7s+nEQzhEZG05GF59ohFJbr8gQLi+8KuMUWyd7kZfQzUWJqPf1XvkEljO5OejNQ0RT7mWh8jOqRfzuWR24pfKg/m4N9ApcI4CVMgIIZMmTeLoL3oxUTLC/5vHJJcmhQzDIlnSaZEhRY+W3UWZCZnjPOS/IO2cBIMemz7aPo/KuDx0gxY3hbInD2A/Mava/D+yDorUKoVjH6eKGqTJFx2YD9fUzcT6rp3S4FMadaB1HncgjC2pI/wNXC0UU8Lgxm8+qH7QvskReBhyhBDL7POhm71O+6bBMHkAW0FvGHF4HAez2qyZpz49EMkrmPzn4u+phgiZ1SsFIR97wTndQqXWJ2UnGtIMPvJEnBIa72h1v0Ps/96tKS5MH9aN7/Hn8lR0xZKWfPMCGHOONmVjlBlkCAgurj33XfbUdxxjWrYeachWeZKsDH7YK22PvMBX50hW6DcYH7Hsru3CItRaPTNzZhKg2uzx4dRvf0An/SRZcAG/t9rwjZgNqWTUBG6G8C+kYq1n+4TigRUmxVqZev0kxyier77SklNKC2V7s/IkfeAqAZKrdGNat+dAMnqx1QAIKTLieEMB+8OOmdoRYO58+JnTIMUA3c
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CH3PR11MB7180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(56012099006)(11063799006)(4143699003)(261009223027099003)(10067099003)(18002099003)(22082099003)(6133799003)(3023799007);
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(18002099003)(22082099003)(10067099003)(11063799006)(261009223027099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?kKn7O2jiwonpfQuSWUvE+Lg3HuG9xOO7keiMmBdK4BfKeMTRUNGWlBDRbo+1?=
- =?us-ascii?Q?oN4z7iwQHJXaHZYOJULFNmCgI9gaiNUbF+rE/zwscv87tTiJT3M1JohLqa30?=
- =?us-ascii?Q?MSwv4J+s16pNupcKSl8z3Pq/8G6nr7I+TeDWQLZISN8WIc8Ku/C++0tSzR44?=
- =?us-ascii?Q?L9DLP+z2snVq5Yo9Bz4Q8GZauVyWKZ9vpca5lmzVaqPP0LiZLGKzizsKmKRJ?=
- =?us-ascii?Q?yacyMCxxaajtg/tzFZof33boED5fYCfOGCdV3ifgv+gGxcRCfXrBZTmOklc5?=
- =?us-ascii?Q?xCB38jL1FxFvL80epgsUi7KMVlYRoJWHdKrRTz1jtySzlLiQF1AXCrqJpwlp?=
- =?us-ascii?Q?BZpbsH+HEpg/vwkShnMQi8ApZkdYZuoRwy19NCC1ixIve7LetbEEG99u4sUb?=
- =?us-ascii?Q?RzOw/mBBUJ3zaLLeqsU/3MWeo/Y5yqJe6DZ8K/MesSAHKJixsbZ5SMvGENPV?=
- =?us-ascii?Q?jzRW2wWbdyeFrnSola4E13ypn0uBB3RyF2WlPlytwSUvMXgK2E7ZKoWOkTBh?=
- =?us-ascii?Q?kCHi3bw5OiCLt5mIKwKoI54E13shPKNoNX1RsEhvSAGkfehweBeJupVbfTg+?=
- =?us-ascii?Q?eh/rTL7d14Ya9v/P08v9E32/T1pvvhYHwgAzDZLIiuW2K2dL1vfT6KKCXJXM?=
- =?us-ascii?Q?z9HXc4QdgUECct1XiOGLz9vMHWY2lclmAUeFeS2m2F78Zm6DHyUgEuylIOs8?=
- =?us-ascii?Q?3gxzoliddZN7LXa7yk993R9UZoZnumYl38b4ybULCWOWO5apxH7SnUY75dTz?=
- =?us-ascii?Q?liQyGGdmSslYq1cyH2h6AsYGyqnu2KrE362KwjQqeBNFEYO8dH4ZRePrABz6?=
- =?us-ascii?Q?0AHlkdRl1ILIc84Vl6bqUEuRKfsuRb6q9WgreL68KsjCrIl3lNnzpv663t2I?=
- =?us-ascii?Q?bJGjLrd8yp/ofF7riJ85W6ox5s9J/rNckkHpXY1cqfq5rYOwgqo+9Cr4uJ60?=
- =?us-ascii?Q?nIFq+/92a7gJH2zOo8uogeZQAnsycoTSaqOqfBO9Ii+tV0atQv1gWB7IFa1T?=
- =?us-ascii?Q?2jldWi7nrx9yzXf/hurR+kNblTSmyjDIf4Rt9x/wnS99wtNs/QD7Kzn/9yax?=
- =?us-ascii?Q?rqC5XbO2XkrgflMoEi2iDV2gxYGpsyLyxN3s9zbzAAMurjHerhcv1/dsrwJf?=
- =?us-ascii?Q?Y6Kcfne1s5uyxrpB2BYYqdZNjcWJ1wae1pO4+lK2KkiRlNyVI6lfmOkW2gpL?=
- =?us-ascii?Q?tWIfTNAhhwfjc61D0CH+tj+Q4BUpmqpRgzUwNgSMbanjrdyZqNwOqvzAtPBO?=
- =?us-ascii?Q?Z1NcRnigZSPKQy2f5kVMrQYnJ7KKPgPiA3VHyBQwU5SNDgsgL/zieM5xuY3v?=
- =?us-ascii?Q?ih77dH3JzjoECUoyXEQGUG9ZkOJYEpZ2UItUr4lyh/Al+bRFd5V9oTvWQnJ0?=
- =?us-ascii?Q?X8RpUwlVONbOnhzy9R/1jptuKt+i3ADXQGGbOMOv9YwAFghPgMiu9TMBabCy?=
- =?us-ascii?Q?kaKyG1c3kwRVP5jpEaI3BNu50MBmkexFc7Qj444A6z62sM+325ioUesmkFyJ?=
- =?us-ascii?Q?kEuIrw54ODBIJ2ybDt5taVV7ZlOjLKxO7aZ96dl4D2OZACXgX6KFKpsnBQo2?=
- =?us-ascii?Q?MXzeLoRRX+00OapYtEbPo3EEWSjPNjEKWX8Gh8bLto2wZKiWe4Z1KWQEwqdf?=
- =?us-ascii?Q?QXAF8yPOtu7a9o1FsOjx/lQ9IKYNXmiiCIzOZiry+S4fIpL+LzzBDiIO6KDq?=
- =?us-ascii?Q?Ltg2F8JVqIbTCj/32EbiM2SJ4iq9bQLdXPbWbgum21RetBkxoE4hCPCkqmAe?=
- =?us-ascii?Q?5yKpmCJ7Gg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: Wb6qkpZhPhvoyE1+6Mpd/2Dd0omm3xEE/5s078MS40k0O5kOWtIttWGTPAOQdCXqosHPJfL++B9wVh4hAjeTtdZsNdoot7ddeJv4nuPjaODyCDy4bOjGs4FS2xhKR15AziXudrozu0kX8+swEhYR67Ki4X3T54EH7eXzlwsE8EIFOfidR2rLT+G4AUpVZCST95xLE8ncXWmCw2lNSlLeA3ZXmVscWtWEHQ0SFBUI6QITC6eLNkYHDCl01sN/wBN/nG8yAU6DMqSeaI4v/U3dNVFPo7JcU69GwEKaft4ja15ae2Dzi/hhD/rcFU4BlT7a6XGlrZ8H0xYo6NP9d50/cg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b9be444-c22e-46e2-a149-08df2a2dfd6c
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?THCWiz2OeOtSvi+yjkl2NKvUwnJ43wsjBlGmtjukXH1R7uKCqbwaOARRcN?=
+ =?iso-8859-1?Q?sxT5fWOjFJIqjlPZYBSezzpkPLpVyd5z/VwTPALD0YZXDbzUGmPuDq/MRr?=
+ =?iso-8859-1?Q?PtWV12x1n3iZXuHhjizLy9vUUrTz1viA0JeIZH/Gr8+lhk/hLYTpyRcc63?=
+ =?iso-8859-1?Q?t3/MdIM4/BY4mZ+12hr+3OtgbgrlgfnzqaS3DvgY7Izr4siVM9m+amYGr5?=
+ =?iso-8859-1?Q?sgoRmGnp6rvPfZZaloR9LYrtjQYIph9WUkbOG0OqI5QmKKs0JlpSDelToG?=
+ =?iso-8859-1?Q?GZabi9KhjLSNgs456/HEmYbH3Ww0HRlpy2cgmf0D9CND6oTI52rQ9iO4zX?=
+ =?iso-8859-1?Q?kNdjCPGhFB6SdRvWPGn9X/tJ+eaC16L0DYlLdkB+YQ2SVZqvp061NZU5Nk?=
+ =?iso-8859-1?Q?q6en/P4xQy5sdOSFRKL+JkLeb7JktIRDW+HanLSZuJ66rFwhigQpETpgR8?=
+ =?iso-8859-1?Q?c1jlEeydvGSZM3eYXQlKo1vAB72fl/bvavOzOqWpaqmqis/XUj7n6NtE+H?=
+ =?iso-8859-1?Q?J3R5fh7YsE0RxaRgirrEZQ+EKDdb7B4JC0ywuxHwUW5A9mr+aOrQSs3coN?=
+ =?iso-8859-1?Q?QvicamyETAG12UikTfLfWNME1zOAWf7wTTi2jioZ7A2iV3bRHPaGEpcUNu?=
+ =?iso-8859-1?Q?5iK5knMExQ1IsWqsgLIDwOoye6hgVtYTtKT+Ya9Gx5Ue6a3yeZXyVyXkGk?=
+ =?iso-8859-1?Q?myGs1jQaLSkPcuT3aI/eJXVsirnH4fQSsUgYyKsaDZri1PaecnG+0waVm1?=
+ =?iso-8859-1?Q?H/QkfpLR9PVWF8R8zlNoJ51P1qXdT7ZTbSknEThYgaBBbs92EEH93ZASxr?=
+ =?iso-8859-1?Q?Vo+NdJIcpXDQw0R9Y2HbU/L56Kuqr/bUwyIe/0fsRIXnnzPfNttEH74LDM?=
+ =?iso-8859-1?Q?Y1QCYyrKRKQ2G8IVZyLO1Mt6rs81kvNQpXqJjetOpIgO4hlvpq1HuqfAxl?=
+ =?iso-8859-1?Q?0AEMzFSlokSYFlBjBi5fVlsS8q5KeSUy61Iy5pAfm+4tUALnNbE3ChuFj+?=
+ =?iso-8859-1?Q?1deV5DFjyEGaE6RAClsc6MmnjchkBv7qzJJM4IPr5MKcMxK31JzebpKHI3?=
+ =?iso-8859-1?Q?vJYoNWfGXX0vZzlEAOgsqW4xEF7sfnXr5t316jnCECbLXiEdLKOrH+qz8E?=
+ =?iso-8859-1?Q?uygkewvGd3YJmTtrtO0V4MKsWDqx4jV/5afLCvV8o+l8YM4daCsvnJwvwJ?=
+ =?iso-8859-1?Q?1KUqySyzYqzcMkbQLYgdcwZQ4OkCHrmhgdr2qM4TQBzSzNusJZ6XXcp/Vw?=
+ =?iso-8859-1?Q?qmi3uOGdP90umNe2r0GEpuO+HPXaGthy3zNbPfjt+q9pqeLXRJFOr0jwpQ?=
+ =?iso-8859-1?Q?6wi8XYFdWKKJzpbbC9Ry78QVdJBJFFT/ZJRqywVgdQAKPdmmp3xMY28EYv?=
+ =?iso-8859-1?Q?gyN0+Kp0k7Z3aNsiMUR3ubwPiIrXDs+gRhQfr4kLJ45gB7e/npVxLAOIXC?=
+ =?iso-8859-1?Q?LwioiykTndi/yH+13X3fM1sllCjiLB9l0CmpnGx1WDCMMd4qoImyxrzP37?=
+ =?iso-8859-1?Q?vloc8Xax29FDLcqPAPWDkF+BG9QxQeEReA7Re7FO78y+7v/AJl3u/HnDlP?=
+ =?iso-8859-1?Q?JI6O2Fmop6FmLMmj5DiKFGPFr6640pzALMGm4UPihtU7iegaz03DY3wTqE?=
+ =?iso-8859-1?Q?+LrPp7Dt1QRebnWQkyrDdLO81fbL1VNc3Fo9XMPrtPB8PIZ27cD8HPc7P6?=
+ =?iso-8859-1?Q?q1IbeKb2Bfzo1mxY7i/CDUH0LWQu4zRg2PKlPNxaazAc9qSIsRSEFu502T?=
+ =?iso-8859-1?Q?PzxRPtgx8FD70mm3rYf1BJGWfcBed5JMqOKw7/hvgg0Xzzmz4f4MqlIVyl?=
+ =?iso-8859-1?Q?XuitkBAKww=3D=3D?=
+X-Exchange-RoutingPolicyChecked: FJouS/ysoF25Sm2XAbEhUi3ry6u/yJzzsxUv8tdfR79DFDsY/z9ywqAwG3Og+TsBd1YFzAgjc5VWoz6VjtsCc3c0l/DvX3mtrhFEyQwMVYeN/TluwGOQ5fiTS5ABW96NqlZYWVx9ZxJnKvwpRbNTigXUKsZwtU5PABe7Z80nRvj5WI/MrJfwR0+rHu+iBomC6+4chv9ZnfaLwJR50rb5Z8EQXNTxPA4f97yzvxVnClH57Ykc+AfTnjJBlo3SVB+x5NzpSkRBNsKlfEbbNV/R3antbNdePqRxh1dkwh5IQ5I23MAfvXb7gDuqNI2BTpMiX5QxPQp4ZQldsDAWsQO9ag==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 042511c8-e07d-44d5-01fd-08df2a2f8313
 X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7180.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2026 20:01:52.8232 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2026 20:12:46.3060 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 376RhkHgcIJuHTjJj0jQkL6uYZIKpo8KPxdsFFIVKzd7/K541ptjgEuW6OnqbbfCYwGLWP6EENBPOt+id3YI8g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6563
+X-MS-Exchange-CrossTenant-UserPrincipalName: BoO9OQ4HtPYIBiW92FTQWNaNqKncMr1HkfGOkasLREwKcq4uAvM8pdbSMO2k99bKmpCg4i1kCbVJCUgUcKITJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF56FDAD370
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,93 +161,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 15, 2026 at 01:03:36AM +0530, Poosa, Karthik wrote:
+On Mon, Oct 12, 2026 at 01:42:45PM +0300, Constantinos Chalkias wrote:
+> On Battlemage, thermal telemetry can remain stale after the GT returns
+> to RC6 following sustained workloads.
 > 
-> On 14-10-2026 23:22, Rodrigo Vivi wrote:
-> > On Wed, Oct 14, 2026 at 05:28:02PM +0530, Karthik Poosa wrote:
-> > > On CRI the memory controller temperatures moved in the READ_THERMAL_DATA
-> > > output: they now occupy bytes 16..19 instead of starting at byte 2.
-> > > 
-> > > Read and average the CRI memory controller sensors from bytes 16..19,
-> > > keeping the existing byte 2..count-1 range for earlier platforms. Only
-> > > the group(s) covering the used bytes are fetched.
-> > > 
-> > > Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-> > > ---
-> > > 
-> > > v2: Use the CRI memory temperature mapping only on
-> > >      Crescent Island. (sashiko)
-> > > 
-> > >   drivers/gpu/drm/xe/xe_hwmon.c | 20 ++++++++++++++++----
-> > >   1 file changed, 16 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> > > index dad2397db141..eef6560569ce 100644
-> > > --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> > > +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> > > @@ -109,6 +109,10 @@ enum sensor_attr_power {
-> > >   /* Index of memory controller in READ_THERMAL_DATA output */
-> > >   #define TEMP_INDEX_MCTRL	2
-> > > +/* On CRI the memory controller temperatures are READ_THERMAL_DATA bytes 16..19. */
-> > > +#define CRI_TEMP_INDEX_MCTRL	16
-> > > +#define CRI_TEMP_MCTRL_COUNT	4
-> > > +
-> > >   /* Mailbox sentinel reported for an unavailable temperature sensor */
-> > >   #define TEMP_MBX_INVALID	0xFF
-> > > @@ -986,14 +990,22 @@ static int mbx_temp_decode(u8 value)
-> > >   static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
-> > >   {
-> > >   	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> > > -	int ret, i, count = 0;
-> > > +	int ret, i, start, end, count = 0;
-> > >   	s32 average = 0;
-> > > +	u32 data = 0;
-> > >   	guard(mutex)(&hwmon->hwmon_lock);
-> > > -	for (i = 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
-> > > -		u32 data = 0;
-> > > +	/* CRI relocated the memory controller temperatures to READ_THERMAL_DATA bytes 16..19. */
-> > > +	if (hwmon->xe->info.platform == XE_CRESCENTISLAND) {
-> > we need to be consistent... we either use >= cri everywhere or we use ==...
+> On an Intel Arc Pro B70, package and VRAM temperature telemetry may stop
+> refreshing after a long inference workload. Fan telemetry can also
+> become invalid while the physical blower remains elevated.
 > 
-> I used == explicitly here, as sensor mapping can change based on the
-> platform configuration.
+> Acquire the GT force-wake domain around Battlemage thermal MMIO reads
+> and allow a short settling interval before reading the register. Route
+> package, VRAM and VRAM-channel availability reads through the helper.
 > 
-> where as MMIO definitions and mailbox definitions are expected to be same in
-> future platforms.
-
-I'm afraid we cannot assure that. I just want us to be consistent,
-that's all.
-
+> Testing showed that an immediate read, as well as a 100-300 us delay,
+> could leave telemetry stale. A 500-1000 us delay recovered correctly
+> across repeated inference-to-idle cycles.
 > 
-> if those can change, I shall make all places == XE_CRESCENTISLAND
-
-probably better.
-with that:
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-and keep anywhere that is modified
-
+> The change is restricted to Battlemage, where the behavior has been
+> reproduced and validated.
 > 
-> > 
-> > > +		start = CRI_TEMP_INDEX_MCTRL;
-> > > +		end = CRI_TEMP_INDEX_MCTRL + CRI_TEMP_MCTRL_COUNT;
-> > > +	} else {
-> > > +		start = TEMP_INDEX_MCTRL;
-> > > +		end = hwmon->temp.count - 1;
-> > > +	}
-> > > +	for (i = start / sizeof(u32); i < DIV_ROUND_UP(end, sizeof(u32)); i++) {
-> > >   		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
-> > >   				    &data, NULL);
-> > >   		if (ret)
-> > > @@ -1002,7 +1014,7 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
-> > >   		hwmon->temp.dword[i] = cpu_to_le32(data);
-> > >   	}
-> > > -	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++) {
-> > > +	for (i = start; i < end; i++) {
-> > >   		if (!mbx_temp_valid(hwmon, hwmon->temp.value[i]))
-> > >   			continue;
-> > >   		average += mbx_temp_decode(hwmon->temp.value[i]);
-> > > -- 
-> > > 2.25.1
-> > > 
+> Signed-off-by: Constantinos Chalkias <cch@e-psn.eu>
+
+Cc: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
+
+https://lore.kernel.org/intel-xe/179041811564.526373.13204522833274380927.b70-hwmon-rfc@gmail.com/
+
+I believe you guys are facing the same dificulties and arriving to similar
+conclusions.
+
+If the consensus is that we need this forcewake, let's do it.
+
+Let's just avoid duplication of efforts in here.
+
+And thank you all for the contributions.
+
+> ---
+>  drivers/gpu/drm/xe/xe_hwmon.c | 51 ++++++++++++++++++++++++++++++-----
+>  1 file changed, 45 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 5edeac961ec3..fee358ab9a6b 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -3,6 +3,7 @@
+>   * Copyright © 2023 Intel Corporation
+>   */
+>  
+> +#include <linux/delay.h>
+>  #include <linux/hwmon-sysfs.h>
+>  #include <linux/hwmon.h>
+>  #include <linux/jiffies.h>
+> @@ -14,6 +15,7 @@
+>  #include "regs/xe_mchbar_regs.h"
+>  #include "regs/xe_pcode_regs.h"
+>  #include "xe_device.h"
+> +#include "xe_force_wake.h"
+>  #include "xe_hwmon.h"
+>  #include "xe_mmio.h"
+>  #include "xe_pcode.h"
+> @@ -946,14 +948,43 @@ static void xe_hwmon_get_voltage(struct xe_hwmon *hwmon, int channel, long *valu
+>  	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 2500, SF_VOLTAGE);
+>  }
+>  
+> -static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
+> +static int xe_hwmon_temp_mmio_read(struct xe_hwmon *hwmon,
+> +				   struct xe_reg reg, u32 *reg_val)
+>  {
+>  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+> +
+> +	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
+> +		struct xe_gt *gt = xe_root_mmio_gt(hwmon->xe);
+> +
+> +		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+> +
+> +		if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+> +			return -ETIMEDOUT;
+> +
+> +		/*
+> +		 * Allow thermal telemetry to refresh after leaving RC6
+> +		 * before reading the temperature register.
+> +		 */
+> +		usleep_range(500, 1000);
+> +
+> +		*reg_val = xe_mmio_read32(mmio, reg);
+> +		return 0;
+> +	}
+> +
+> +	*reg_val = xe_mmio_read32(mmio, reg);
+> +
+> +	return 0;
+> +}
+> +
+> +static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int channel)
+> +{
+>  	int vram_id = channel - CHANNEL_VRAM_N;
+>  	struct xe_reg vram_reg;
+> +	u32 reg_val;
+>  
+>  	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+> -	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
+> +	if (!xe_reg_is_valid(vram_reg) ||
+> +	    xe_hwmon_temp_mmio_read(hwmon, vram_reg, &reg_val) || !reg_val)
+>  		return false;
+>  
+>  	/* Create label only for available vram channel */
+> @@ -1025,15 +1056,19 @@ xe_hwmon_temp_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+>  static int
+>  xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  {
+> -	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+> -	u64 reg_val;
+> +	u32 reg_val;
+> +	int ret;
+>  
+>  	switch (attr) {
+>  	case hwmon_temp_input:
+>  		switch (channel) {
+>  		case CHANNEL_PKG:
+>  		case CHANNEL_VRAM:
+> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
+> +			ret = xe_hwmon_temp_mmio_read(hwmon,
+> +						      xe_hwmon_get_reg(hwmon, REG_TEMP, channel),
+> +						      &reg_val);
+> +			if (ret)
+> +				return ret;
+>  
+>  			/* HW register value is in degrees Celsius, convert to millidegrees. */
+>  			*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+> @@ -1043,7 +1078,11 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+>  		case CHANNEL_PCIE:
+>  			return get_pcie_temp(hwmon, val);
+>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, channel));
+> +			ret = xe_hwmon_temp_mmio_read(hwmon,
+> +						      xe_hwmon_get_reg(hwmon, REG_TEMP, channel),
+> +						      &reg_val);
+> +			if (ret)
+> +				return ret;
+>  			/*
+>  			 * This temperature format is 24 bit [31:8] signed integer and 8 bit
+>  			 * [7:0] fraction.
+> -- 
+> 2.56.0
+> 
