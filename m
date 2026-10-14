@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B06DCC6B19
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 06:13:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0036CC6B1A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 06:14:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB11410E3F5;
-	Wed, 14 Oct 2026 06:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F9A710E3F5;
+	Wed, 14 Oct 2026 06:14:47 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2375610E444
- for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 06:13:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1810310E3F5
+ for <intel-xe@lists.freedesktop.org>; Wed, 14 Oct 2026 06:14:41 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 6FF1F60213;
- Wed, 14 Oct 2026 06:13:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09A511F000FF;
- Wed, 14 Oct 2026 06:13:38 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 3BC5460213;
+ Wed, 14 Oct 2026 06:14:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEF901F000FF;
+ Wed, 14 Oct 2026 06:14:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791958419;
- bh=Mx9tA7v4CithGRRQiYu07VIuWyaqV5Bw6A1SsVEUXm4=;
+ s=k20260515; t=1791958479;
+ bh=rX3waMCSCdxkxV21qXFgj52KwKJjEPwhxgqxqo8zt34=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=RpKUBIvfm/uxs71zh7VMmJ8rlcxRcRZN1qZSfrighOHWo6gB03+MikZUkpf37h82Y
- eUc87MRQRiL55UhahOr38JxGG9/QFkSoiLMwNI1j1kj5gFd1t7T2C5/qQoFG3TZ1zM
- cRZhpba8TdhnYRmO4BcwLIjW5U286XwScstHKugK10PSQgkwp3sy65bQa/MLgQ0HNt
- hkELiFTofE2lvk3FUyQDNu1L5LddGP2rOfUF8K39v9CpPAH61mRaHBLhbVmS2pFNKI
- Gax4l2FfG1M9xwa0o/7/BYI5+do2CvYi3JJm5sY9DeaSl5KuU3g2FaQvK6lKG50gbx
- Sn9uCeTAGBqIQ==
-Message-ID: <sashiko-outbox-170854@kernel.org>
+ b=DEhMSHJ+ZXRKIn2jFHil4qX/LsNqWDk5zKXr8vPKAf5LHLh4ip4V6d5vCTIQz9nVT
+ 79Cii3QP3ZpKSsdv8xZzju7VPRkgWIRDWIwSthzGP4qU88mpZCUpUWqKDxI9rxxsNI
+ q08glvXTFHJTkYFQrgvH+Aii6e97ee8hk0dNa7opjdMF3iooiLIJD8eHyzfhBdwkw7
+ OHfveHZUwmU1eYr+N1AUcTPqDilg6/lSmrQ2mwSWjiu8C4hdSiFGCmcacQ+y8QWeov
+ 1UsnX8VuBnH3mDYDhiMeECwODnAvwcRvAZzXmCuAGPmfm8vdvUr7GQJtMqt4UUBYdE
+ GrVRnOApMrmNA==
+Message-ID: <sashiko-outbox-170855@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 4/7] drm/xe: Make xe_device_declare_wedged() IRQ safe
+Subject: Re: [PATCH v6 7/7] drm/xe/ras: Move xe_ras_process_errors() to xe_ras
 To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261014055215.330408-5-raag.jadav@intel.com>
+In-Reply-To: <20261014055215.330408-8-raag.jadav@intel.com>
 References: <20261014055215.330408-1-raag.jadav@intel.com>
- <20261014055215.330408-5-raag.jadav@intel.com>
+ <20261014055215.330408-8-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 14 Oct 2026 06:13:38 +0000
+Date: Wed, 14 Oct 2026 06:14:39 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,68 +52,102 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] pm: MMIO access on suspended device during async wedge
+- [High] drm/xe: early wedging causes probe failure and breaks survivabilit=
+y mode
+- [Medium] drm/xe/ras: fault injection bypassed on devices without sysctrl
 --
 
-commit bce18d1215504bf5f21999a5ea9ee776aca1fe38
+commit f19cf587dc3dbb4d3eeb0716be575b1dc0369223
 Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe: Make xe_device_declare_wedged() IRQ safe
+drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+   =20
+This patch moves xe_ras_process_errors() from xe_device_probe() to
+xe_ras_init(), reverting a previous commit that delayed ras error processin=
+g.
 
-This commit defers wedge handling to a dedicated worker, allowing
-xe_device_declare_wedged() to be safely called from IRQ contexts such as
-handling MERT CAT errors.
-
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
-e.c
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -1405,29 +1421,28 @@ void xe_device_declare_wedged(struct xe_device *x=
-e, unsigned long method)
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 922e5e793b135..8e399ffec9856 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -932,6 +932,13 @@ void xe_ras_init(struct xe_device *xe)
+>  	if (IS_ENABLED(CONFIG_PCIEAER))
+>  		ras_usp_aer_init(xe);
 > =20
->  	if (!atomic_xchg(&xe->wedged.flag, 1)) {
->  		xe->needs_flr_on_fini =3D true;
-> -		xe_pm_runtime_get_noresume(xe);
-> +		pm_runtime_get_noresume(xe->drm.dev);
+> +	/*
+> +	 * During probe, process and log any errors detected by firmware while =
+the driver was not
+> +	 * loaded. Critical errors such as Punit and CSC are reported through P=
+code init failure,
+> +	 * causing the driver to enter survivability mode.
+> +	 */
+> +	xe_ras_process_errors(xe);
+> +
 
 [Severity: High]
-Does this allow MMIO access on a suspended device when a wedge is triggered
-from an IRQ context?
+Does moving xe_ras_process_errors() here cause probe failure on boot-time
+errors?
 
-If a hardware error (like a MERT CAT error) triggers an IRQ while the
-device is in the RPM_SUSPENDED state, pm_runtime_get_noresume() will
-increment the usage counter but will not wake the device up.
+xe_ras_init() is called before xe_gt_init() during probe. If
+xe_ras_process_errors() detects a hardware error and wedges the device,
+subsequent calls in xe_device_probe() such as xe_gt_init() will fail.
 
-The GT wedge worker is then scheduled:
+For example, when xe_gt_init() calls into GuC CT:
 
->  		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
->  		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
->  			    "For recovery procedure, refer to %s\n"
->  			    "Please file a _new_ bug report at %s\n",
->  			    WEDGED_URL, XE_BUG_URL);
-> -	}
-> =20
-> -	for_each_initialized_gt(gt, xe, id)
-> -		xe_gt_declare_wedged(gt);
-> +		for_each_initialized_gt(gt, xe, id)
-> +			xe_gt_declare_wedged(gt);
+drivers/gpu/drm/xe/xe_guc_ct.c:__guc_ct_send_locked() {
+	if (xe_wedged(ct_to_xe(ct))) {
+		ret =3D -ENOTRECOVERABLE;
+		goto out;
+	}
+	...
+}
 
-And runs asynchronously without ensuring the device is resumed:
+This failure propagates up, causing the driver probe sequence to abort
+entirely instead of binding the device in a wedged state. This prevents
+access to the sysfs files required for userspace firmware recovery (Runtime
+Survivability Mode) and drops the WEDGED uevent.
 
-gt_wedge_worker()
-  xe_uc_declare_wedged()
-    xe_guc_declare_wedged()
-      xe_guc_submit_wedge()
-        xe_guc_softreset()
-          xe_guc_mmio_send()
+[Severity: Medium]
+Will this bypass the fault injection check on devices without a system
+controller?
 
-Since the device might still be suspended, this sequence can result in
-xe_guc_mmio_send() performing MMIO accesses on powered-down hardware,
-causing invalid register reads (e.g., returning 0xffffffff), hardware
-timeouts, or PCIe bus errors.
+Earlier in xe_ras_init(), there is an early return:
+
+drivers/gpu/drm/xe/xe_ras.c:xe_ras_init() {
+	...
+	if (!xe->info.has_sysctrl)
+		return;
+	...
+}
+
+Because of this early return, xe_ras_process_errors() will never be called
+on platforms where has_sysctrl is false.
+
+However, xe_ras_process_errors() checks for cold-reset fault injection
+before checking for has_sysctrl:
+
+drivers/gpu/drm/xe/xe_ras.c:xe_ras_process_errors() {
+	if (xe_fault_wedge_cold_reset()) {
+		xe_err(xe, "[RAS]: cold-reset wedge injected\n");
+		punit_error_handler(xe);
+		return XE_RAS_RECOVERY_ACTION_DISCONNECT;
+	}
+
+	if (!xe->info.has_sysctrl)
+		return XE_RAS_RECOVERY_ACTION_RESET;
+	...
+}
+
+Placing xe_ras_process_errors() after the has_sysctrl check in xe_ras_init()
+appears to silently break cold-reset fault injection during probe on these
+platforms.
+
+>  	ret =3D devm_device_add_group(xe->drm.dev, &gpu_health_group);
+>  	if (ret)
+>  		xe_err(xe, "Failed to create GPU health sysfs, err=3D%d\n", ret);
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261014055215.3304=
-08-1-raag.jadav@intel.com?part=3D4
+08-1-raag.jadav@intel.com?part=3D7
