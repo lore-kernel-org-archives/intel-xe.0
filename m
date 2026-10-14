@@ -4,41 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DEA52CC6B1A
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 11:10:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63D4CCC6B2A
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 11:19:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B94410FD01;
-	Wed, 14 Oct 2026 11:10:38 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B95110FD01;
- Wed, 14 Oct 2026 11:10:32 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id AF3346021D;
- Wed, 14 Oct 2026 11:10:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32AF51F000FF;
- Wed, 14 Oct 2026 11:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1791976231;
- bh=xHkzfIJyee4IkyeyFwuwn1ZIsD/0JoVIkdkQ/LN3mq8=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=nzYs6RBQGBU2bMQj9xoF4qsY6jDdefNxC3mTRajh9ojzSq6R5C4CQ/QkSo7o9ZhC0
- Qnrfp7+KH93iYaDAM73AZL3Lyh2zLaV3dUYNNAv/KsyOphESFS4GQgUNkhY6EdkH9a
- a+pppkyomUS+osGfnpng9NhC5Fz38nCeFbD0xJSR3ThK5hj17Jduj7TsKyTFZrNhqn
- 6hi6inzDl4AsFP9VAlqrSDpKJWV1GQOkmaEY6BBRQYTls1E1ONCSEhzLD1vmRpRINE
- 6vh4bpwkiKmxgDfTzqYJDOE6cUF6x4W98ZCfQJLf+CyhAUmgWxlyReW7CAShgbOmzL
- gnu1xHtcyUOHQ==
-Message-ID: <sashiko-outbox-171180@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/4] drm/i915/lt_phy: apply the PLL power save W/A on
- LT PHY platforms
-To: "Mika Kahola" <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261014105306.2761683-5-mika.kahola@intel.com>
-References: <20261014105306.2761683-1-mika.kahola@intel.com>
- <20261014105306.2761683-5-mika.kahola@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 14 Oct 2026 11:10:30 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8116A10E99C;
+	Wed, 14 Oct 2026 11:19:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 990CA10E541;
+ Wed, 14 Oct 2026 11:19:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1791976756; x=1823512756;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=mILDQ0beEHugYrDGAp7RHecafUChyKoMmsDB5orFUMU=;
+ b=JOv21v2NTgWdf1WF/zGHhlmTlevULcR5wEb77SQFe8zbWH+A1VE6OVe5
+ 9KJxsr83hvqbSjc4OC2NWu2kmi2R9Adi+yQgQbax5JrMYi4U4lFwizfuB
+ Zt1JJx138Kx49Lx/VWRt/PJg4SDfBQOxDvdv/MmM5CUB+P771fDyLq+9r
+ 88NPtSsGBAal5l2MCoXHfu5OtsBK4lyhZdLCMjmg35QWHH+OBnjKUfySn
+ 2IG/fRHp1Y2aPlP3hvWHHU4CFZGEjLC0R0mbBcj8QGZRyie0hxOBTSp84
+ 5GeRVt4G0qcAFso9XUMHgSalGx1dULxvvu7JiZm/RsYZww7+wlzO77D2c Q==;
+X-CSE-ConnectionGUID: /9/tpmKHSx2shiIbocPToQ==
+X-CSE-MsgGUID: QHl05FTORPKJStdRGIGVpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="622477"
+X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
+   d="scan'208";a="622477"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 04:19:16 -0700
+X-CSE-ConnectionGUID: zXUXL0ZSTwu5nDmhUHEoog==
+X-CSE-MsgGUID: AfkKKCLKQMqOSDGxji1TyQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
+   d="scan'208";a="1372069"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.13])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 04:19:11 -0700
+Date: Wed, 14 Oct 2026 14:19:09 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: hex@aleph0.ai
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/psr: Send a frame change notification for async
+ flips
+Message-ID: <as9lLU0VnFW6JLKf@intel.com>
+References: <20261013-fix-psr-async-trans-push-v1-1-ee79bf31b66f@aleph0.ai>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261013-fix-psr-async-trans-push-v1-1-ee79bf31b66f@aleph0.ai>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,100 +76,97 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] drm/i915/lt_phy: missing TBT alt mode check in power save W/A
---
+On Tue, Oct 13, 2026 at 05:16:07PM +0200, Vladyslav Yamkovyi via B4 Relay wrote:
+> From: Vladyslav Yamkovyi <hex@aleph0.ai>
+> 
+> On platforms using TRANS_PUSH for PSR frame-change notifications,
+> intel_pipe_update_end() exits early for asynchronous flips, before sending
+> the push. The register-based notification is disabled on these platforms,
+> and an ORIGIN_FLIP frontbuffer flush does not force PSR to exit.
+> 
+> This can leave an accepted async flip without a completion event after
+> PSR2 enters DEEP_SLEEP. On Panther Lake, scanout freezes and the kernel
+> reports "[CRTC:152:pipe A] flip_done timed out". Intel IGT kms_async_flips
+> reproduces the failure with the compositor inactive when a 200 ms idle
+> interval is inserted before an asynchronous atomic flip.
+> 
+> Send the PSR frame-change notification after plane programming and before
+> releasing the existing PSR lock. Restrict the push to CRTC states that use
+> TRANS_PUSH for PSR, leaving other async flips and the synchronous and DSB
+> paths unchanged.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9582
+> Fixes: 129a4da11707 ("drm/i915/psr: Use TRANS_PUSH to trigger frame change event")
+> Cc: stable@vger.kernel.org
+> Assisted-by: LLM sparse smatch
+> Signed-off-by: Vladyslav Yamkovyi <hex@aleph0.ai>
+> ---
+> Based on drm-tip (2026-10-13); also applies to v7.3-rc7.
+> 
+> Runtime-tested on Panther Lake (xe, eDP-1, 2880x1800) with Ubuntu-based
+> 7.3.0-rc6 kernels, before and after this fix. IGT kms_async_flips,
+> async-flip-with-page-flip-events-tiled-atomic, dynamic subtest
+> pipe-A-eDP-1-4-rc-ccs, fails with Flip Timeout before the fix and passes
+> afterwards. An LD_PRELOAD interposer inserts one 200 ms idle interval
+> before the eighth async atomic commit without changing its request or
+> flags. Both runs enter PSR2 Early Transport DEEP_SLEEP with selective
+> fetch enabled before that commit.
+> 
+> Clang 23.1.2, W=1 builds and Sparse/Smatch checks of the CRTC, PSR and VRR
+> translation units for i915 and Xe produced no new diagnostics.
+> 
+> OpenAI Codex (GPT-6-Astra) assisted diagnosis, reproducer and fix
+> development, validation and patch preparation, following requests to
+> reproduce the freeze independently, trace its driver cause and prepare a
+> tested upstream fix. I take direct responsibility for this contribution,
+> have carefully reviewed the change and ensured rigorous local testing.
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> index 10ed9bdfee76..8ef24cddbaa6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -736,8 +736,16 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+>  
+>  	drm_WARN_ON(display->drm, new_crtc_state->use_dsb);
+>  
+> -	if (new_crtc_state->do_async_flip)
+> +	if (new_crtc_state->do_async_flip) {
+> +		/*
+> +		 * LNL+ uses TRANS_PUSH for PSR frame-change notifications.
+> +		 * Async flips skip the vblank path below, but still need to
+> +		 * notify PSR after programming the new surface address.
+> +		 */
+> +		if (intel_psr_use_trans_push(new_crtc_state))
+> +			intel_vrr_send_push(NULL, new_crtc_state);
 
-commit 64f624396c6597f36365729f25b701c8533785f7
-Author: Mika Kahola <mika.kahola@intel.com>
+This will make the behaviour of async flips + VRR inconsistent
+between platforms where trans push is used for PSR vs. platforms
+where it's not used. We don't want that.
 
-drm/i915/lt_phy: apply the PLL power save W/A on LT PHY platforms
+So either we want to start doing trans pushes for all async
+flips+VRR cases, or we want to disable the PSR trans push usage
+when async flips are happening. The latter would be the safer
+option since the mailboxy trans push usage this would cause
+hasn't been done before. The vblank evasion code does try to
+handle it, but it's not actually tested.
 
-This commit adds the LT PHY sequence for the PLL power save workaround
-and dispatches based on the PHY type. The PLL state is calculated from the =
-eDP
-tables at RBR as the C10 sequence does.
+>  		goto out;
+> +	}
+>  
+>  	trace_intel_pipe_update_end(crtc, end_vbl_count, scanline_end);
+>  
+> 
+> ---
+> base-commit: eb1bf4700d3b25a1a1e670ef31cc06969fa08019
+> change-id: 20261013-fix-psr-async-trans-push-bfa6550270c7
+> 
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/=
-drm/i915/display/intel_dpll_mgr.c
-> index e899b2eb08711..9f34574775da2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -5245,7 +5245,10 @@ void intel_dpll_power_save_wa(struct intel_display=
- *display)
->  		if (!intel_encoder_is_dig_port(encoder))
->  			continue;
-> =20
-> -		intel_cx0_pll_power_save_wa(encoder);
-> +		if (HAS_LT_PHY(display))
-> +			intel_lt_phy_pll_power_save_wa(encoder);
-> +		else
-> +			intel_cx0_pll_power_save_wa(encoder);
-
-[Severity: High]
-Does this platform-wide dispatch route all digital ports to the LT PHY
-workaround on platforms with HAS_LT_PHY(display), including TC ports?
-
-It appears this checks the platform capability rather than the actual PHY t=
-ype
-of the encoder, which may lead to applying the LT PHY workaround unconditio=
-nally
-across different digital ports.
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/dr=
-m/i915/display/intel_lt_phy.c
-> index e05fd23b8a651..d286d33a03eae 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -2313,6 +2313,35 @@ void intel_xe3plpd_pll_disable(struct intel_encode=
-r *encoder)
-> =20
->  }
-> =20
-> +/*
-> + * WA 14022081154
-> + * LT PHY part of the sequence, see intel_dpll_power_save_wa().
-> + */
-> +void intel_lt_phy_pll_power_save_wa(struct intel_encoder *encoder)
-> +{
-
-[ ... ]
-
-> +	drm_dbg_kms(display->drm,
-> +		    "[ENCODER:%d:%s] Applying power saving workaround on disabled PLL\=
-n",
-> +		    encoder->base.base.id, encoder->base.name);
-> +
-> +	intel_lt_phy_pll_enable(encoder, &hw_state);
-> +	intel_lt_phy_pll_disable(encoder);
-
-[Severity: High]
-Can this bypass TBT alt mode checks and corrupt Thunderbolt-owned shared po=
-rt
-registers?
-
-During driver initialization and reset sequences (such as intel_display_res=
-et()
-calling intel_dpll_power_save_wa()), this executes automatically. If the sy=
-stem
-boots with an active TBT alt mode display, the LT PHY PLL is likely disabled
-since TBT uses a separate clocking path.=20
-
-This causes intel_lt_phy_pll_is_enabled(encoder) to return false, leading to
-blindly executing intel_lt_phy_pll_enable() and intel_lt_phy_pll_disable().
-Without the intel_tc_port_in_tbt_alt_mode() safety guard found in other
-functions like intel_xe3plpd_pll_disable(), this bypass might overwrite the
-port's clock select mask and assert MacCLK resets, potentially breaking act=
-ive
-TBT displays.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261014105306.2761=
-683-1-mika.kahola@intel.com?part=3D4
+-- 
+Ville Syrjälä
+Intel
