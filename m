@@ -4,54 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB4B9CC6B27
-	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 08:17:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44CECCC6B27
+	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 08:40:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A62A010FBE8;
-	Wed, 14 Oct 2026 08:17:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD25510FBEF;
- Wed, 14 Oct 2026 08:17:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1791965827; x=1823501827;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IhJ/XA9BS8b/F4VkAfBryr0zzYa4M6J+aQ0MEbY5cJw=;
- b=jkUdauFXfWUs2AuSvP8zRFHrXAabbjqsza65r2qTrQb8IF4pludOzPMo
- nzebX88hssUG7ejCnvmbpJL/xOT6utGup3NwA2zcnDPayj6rrB7z/ZJe8
- rdrZEibu+ubO9wLylYnuKZTGTO3kQo2cHCtuGjeow1154nLPEFMjoIfJf
- BbLBY725yHKn5/wfMIDJEZ9AJ5BiRex/Q62nNOQFRCJq4vi0e++w/Nsy4
- fhgMgdYy/6OLUHz+utISNcimt6PojspYsYodTHsHyCgqluikRm73aeQdN
- Wg5Fjbc4cBSCyFl5kVG+PJK1NxrdFyNsHdbHO9L1NkprA1INx6ZoVj1U0 A==;
-X-CSE-ConnectionGUID: 61y6sjGBRU2rL3UXiS2klA==
-X-CSE-MsgGUID: YDDyCtrERRaMpoFt3fKPCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11934"; a="584069"
-X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="584069"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 01:17:07 -0700
-X-CSE-ConnectionGUID: ysAE8+GIQh+TngSABg4hXA==
-X-CSE-MsgGUID: PMnoT73FTRSO4lovkGDGNw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,157,1787036400"; 
-   d="scan'208";a="1331687"
-Received: from xiaolu.sh.intel.com ([10.239.146.103])
- by orviesa001.jf.intel.com with ESMTP; 14 Oct 2026 01:17:04 -0700
-From: Xiao Lu <xiaolu.xie@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com,
- imre.deak@intel.com, jani.nikula@linux.intel.com, lyude@redhat.com,
- Xiao Lu <xiaolu.xie@intel.com>
-Subject: [PATCH] drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS
- off/on
-Date: Wed, 14 Oct 2026 16:14:48 +0800
-Message-ID: <20261014081448.2320363-1-xiaolu.xie@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDBA910FC28;
+	Wed, 14 Oct 2026 08:40:45 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB66D10FC28;
+ Wed, 14 Oct 2026 08:40:39 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0DEC960213;
+ Wed, 14 Oct 2026 08:40:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B94C1F000FF;
+ Wed, 14 Oct 2026 08:40:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1791967238;
+ bh=SlXHMx6hon0Cj1iTj1cb6JD1sfElX9hEVQ51/FVZ7PA=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=KOb9fMnstYgOE3YuRjY8VkcxwnxUZys7B7iRdSquMBbw4sjjfiC0LQ+cVPvEK6bZx
+ Z5r1FgYd968RE8xphsqZTRA1tTeXeG4gc/x5FH6r4TuouUGzMqL2uJ5rolis53FiMl
+ +LJ5zpTzVqolNFm/4shb2KHu4N454L7Eeqq9fkmP/huwDSuMq0Xlvf/Z0LDyd9mz60
+ pt+ShgLjfUPGeokXlmBIiYRTJviBnatOGkwbUJbX185fftO/0IpOhrl3xtD/pgxcI3
+ vItNNPIfBXajBqAS7iarFAyKE7MDZJG/B3xQNqe5VooQ6mZZzOpXCCemHUFLnE1fiO
+ IFiow1M8rvpSQ==
+Message-ID: <sashiko-outbox-171030@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/i915/dp: clear and restore MSTM_CTRL around MST
+ DPMS off/on
+To: "Xiao Lu" <xiaolu.xie@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+In-Reply-To: <20261014081448.2320363-1-xiaolu.xie@intel.com>
+References: <20261014081448.2320363-1-xiaolu.xie@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 14 Oct 2026 08:40:38 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,58 +50,96 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the last MST stream is disabled, i915 sends SET_POWER D3 to the
-MST trunk while MSTM_CTRL (DPCD 0x111) still has MST mode enabled.
-On re-enable, POWER_UP_PHY is sent before MSTM_CTRL is restored, so
-the hub may process the PHY power-up in an inconsistent state and
-fail to retrain its downstream links.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] drm/i915/dp: clearing DP_MSTM_CTRL on DPMS OFF breaks MST topology
+--
 
-Fix this by clearing MSTM_CTRL before sending D3 on the last stream
-disable, mirroring what drm_dp_mst_topology_mgr_set_mst() does on
-MST disconnect. On re-enable, restore MSTM_CTRL after writing D0 and
-before sending POWER_UP_PHY, so the hub is back in MST mode when it
-processes the PHY power-up and retrains its downstream links.
+commit 7efe593dfb9be6f1dddd0b7978cd417266811e58
+Author: Xiao Lu <xiaolu.xie@intel.com>
 
-Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c    | 2 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 6 +++++-
- 2 files changed, 7 insertions(+), 1 deletion(-)
+drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS off/on
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index a46ab5d3d..7e4e18345 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3163,6 +3163,8 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
- 	 * Power down sink before disabling the port, otherwise we end
- 	 * up getting interrupts from the sink on detecting link loss.
- 	 */
-+	if (is_mst)
-+		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL, 0);
- 	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
- 
- 	if (DISPLAY_VER(display) >= 12) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 7023619aa..4109bb928 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1270,8 +1270,12 @@ static void mst_stream_pre_enable(struct intel_atomic_state *state,
- 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 12 && first_mst_stream &&
- 		    !intel_dp_mst_is_master_trans(pipe_config));
- 
--	if (first_mst_stream)
-+	if (first_mst_stream) {
- 		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-+		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
-+				       DP_MST_EN | DP_UP_REQ_EN |
-+				       DP_UPSTREAM_IS_SRC);
-+	}
- 
- 	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, true);
- 
--- 
-2.43.0
+This commit modifies the MST stream disable path to clear MSTM_CTRL before
+sending D3, and restores it on re-enable. This is done so the hub is back
+in MST mode before processing the PHY power-up and retraining downstream
+links.
 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index a46ab5d3d70fc..7e4e18345ec17 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -3163,6 +3163,8 @@ static void intel_ddi_post_disable_dp(struct intel_=
+atomic_state *state,
+>  	 * Power down sink before disabling the port, otherwise we end
+>  	 * up getting interrupts from the sink on detecting link loss.
+>  	 */
+> +	if (is_mst)
+> +		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL, 0);
+
+[Severity: High]
+Does clearing DP_MSTM_CTRL to 0 here cause the entire MST topology to be
+torn down unexpectedly?
+
+By wiping the MST hardware state on the hub without notifying the software
+topology manager, if a user-space compositor or sysfs polls the connector
+during DPMS OFF, intel_dp_detect() will read DP_MSTM_CTRL as 0.
+
+In intel_dp_mst_verify_dpcd_state():
+	ret =3D drm_dp_dpcd_read_byte(intel_dp->mst.mgr.aux, DP_MSTM_CTRL, &val);
+
+	if (ret < 0 || val !=3D (DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC)) {
+		...
+
+This will return false, causing intel_dp_detect() to force a connector
+disconnect:
+
+	if (status !=3D connector_status_disconnected &&
+	    !intel_dp_mst_verify_dpcd_state(intel_dp))
+		...
+		status =3D connector_status_disconnected;
+
+>  	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
+> =20
+>  	if (DISPLAY_VER(display) >=3D 12) {
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
+m/i915/display/intel_dp_mst.c
+> index 7023619aaaba9..4109bb9284fd0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> @@ -1270,8 +1270,12 @@ static void mst_stream_pre_enable(struct intel_ato=
+mic_state *state,
+>  	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 12 && first_mst_str=
+eam &&
+>  		    !intel_dp_mst_is_master_trans(pipe_config));
+> =20
+> -	if (first_mst_stream)
+> +	if (first_mst_stream) {
+>  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
+> +		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
+> +				       DP_MST_EN | DP_UP_REQ_EN |
+> +				       DP_UPSTREAM_IS_SRC);
+> +	}
+> =20
+>  	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, t=
+rue);
+
+[Severity: High]
+Since DP_MSTM_CTRL is restored here on DPMS ON, the hardware returns to MST
+mode, but the software manager (drm_dp_mst_topology_mgr) is unaware of the
+reset and hasn't been prompted to send a LINK_ADDRESS broadcast.
+
+Will the immediate drm_dp_send_power_updown_phy() sideband message fail
+because the hub lacks downstream routing?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261014081448.2320=
+363-1-xiaolu.xie@intel.com?part=3D1
