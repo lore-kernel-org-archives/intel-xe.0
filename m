@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19AB8C3DA7A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D580CCC6B31
 	for <intel-xe@archiver.kernel.org>; Wed, 14 Oct 2026 19:34:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2423110EB0A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11E8E10EB09;
 	Wed, 14 Oct 2026 19:34:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0417A10EABD;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1206910EABC;
  Wed, 14 Oct 2026 19:34:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792006475; x=1823542475;
+ t=1792006474; x=1823542474;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hKUHWtuWX0t4EsYXN5iXg4yNlvHhbuUWHaJutwThhVE=;
- b=m4KHDPi2lNPUi6uJyi3m7mIxDkTAqU7U1r0SCsM/Tum6XalVmUaFBnYA
- QDVfPqmCx9WHb9PIvErZIxVSYixSuVW1+mfuHGrvKQZlVQ2MG1BUYXQXX
- zzHYI0PxSINQayEEVNTbKzxxHduGB/NQ0DLzAxeI5hPR7F1hmTyRnY3ZB
- dvs/llgqF6nyJKhkV9M2yTkT/lh3o4H8+5bYdeXIvgQiJbLND5XRzLIkI
- anPNxkKk+YpGTivVMQuQR3/gWA8a1oOANhLqfuiMOMKPozHXGqwfktK9F
- C/5sI+PnTAdQAQzNGcm/mt9f+HIkI7HssJj5EdvxsD0ZJwqc2I+0MBxvz A==;
-X-CSE-ConnectionGUID: OjWzCnlDSTm1RM9wnaaHuQ==
-X-CSE-MsgGUID: RCv64BUZTL6bZ83/PZBtGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="653864"
+ bh=Iwh7uOTx6HaYkcmFIfsKFTWjwAsFlKEZTYP8SOlXVas=;
+ b=CWzynazYrjl0ngbJWaAJhT+DIO7HNmml3dmZxfLWczJQNHdYJgPE7Krw
+ h992CcbXrSZFOr1nnqIkA15brptPRZ8d8Bb3ozvDcyoic1NIzSqTFV5he
+ pDGXXMJmVea0xW+Vsm8OUFXFFr1LS1dU49SLgOg/jY8a+MXoedLzh8Qj7
+ x++cI4BNVg0e752KwQU4Vjnm+cEqp/tE6BSivmj36OJP8eL8VmJ/Ysam9
+ 4s3FWhVAxcC4t/EMLvv0UkcLyYuGKw7Tn2d/wmxp95zcFKykXLEulaPP8
+ UbTAjdduOO0zdYeFw8QMLQxIcvqQ9DAVkg1AhSuetsMoZUAkQ0kJsKzNU Q==;
+X-CSE-ConnectionGUID: 5+3wlNDBSXup0/HN1mbbWw==
+X-CSE-MsgGUID: kdS8WPPhQ/uOrljojBW5nQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="653858"
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="653864"
+   d="scan'208";a="653858"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 12:34:29 -0700
-X-CSE-ConnectionGUID: Vf73ej3YQ/uqK+YSdtWJZQ==
-X-CSE-MsgGUID: 8idepjU9RPys9BznwpQHkA==
+ 14 Oct 2026 12:34:28 -0700
+X-CSE-ConnectionGUID: 8jJIwGtyQI6K7fq7++3sGw==
+X-CSE-MsgGUID: Xsv/dCAWS1eCM51y6M5Pmw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,158,1787036400"; 
-   d="scan'208";a="3270498"
+   d="scan'208";a="3270492"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2026 12:34:29 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  matthew.brost@intel.com, tzimmermann@suse.de
-Subject: [PATCH v4 04/12] drm/panthor: use drm_gem_prime_self_import() helper
-Date: Wed, 14 Oct 2026 12:34:24 -0700
-Message-ID: <20261014193421.1705112-18-niranjana.vishwanathapura@intel.com>
+Subject: [PATCH v4 02/12] drm/xe/dma-buf: Use drm helper to detect dma-buf
+ self-import
+Date: Wed, 14 Oct 2026 12:34:22 -0700
+Message-ID: <20261014193421.1705112-16-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261014193421.1705112-14-niranjana.vishwanathapura@intel.com>
 References: <20261014193421.1705112-14-niranjana.vishwanathapura@intel.com>
@@ -65,39 +66,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the open-coded self-import check with the drm core
-helper drm_gem_prime_self_import(), which performs the same ops and
-device match and returns the backing GEM object with a reference.
+From: Farah Kassabri <farah.kassabri@intel.com>
 
-Assisted-by: GitHub-Copilot:claude-opus-4.8
+Instead of driver-specific code, use the new drm helper
+drm_gem_prime_self_import() to detect self-import of a dma-buf in Xe.
+
+Expose the helper within Xe as xe_dma_buf_to_gem() for future use.
+
+Signed-off-by: Farah Kassabri <farah.kassabri@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/panthor/panthor_gem.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_dma_buf.c | 23 +++++++++++++----------
+ drivers/gpu/drm/xe/xe_dma_buf.h |  2 ++
+ 2 files changed, 15 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/panthor/panthor_gem.c b/drivers/gpu/drm/panthor/panthor_gem.c
-index 72908be5e144..7f713c5f19cb 100644
---- a/drivers/gpu/drm/panthor/panthor_gem.c
-+++ b/drivers/gpu/drm/panthor/panthor_gem.c
-@@ -584,15 +584,11 @@ struct drm_gem_object *
- panthor_gem_prime_import(struct drm_device *dev,
- 			 struct dma_buf *dma_buf)
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+index 6a85b292dee7..4e1b447f4235 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+@@ -239,6 +239,12 @@ static const struct dma_buf_ops xe_dmabuf_ops = {
+ 	.vunmap = drm_gem_dmabuf_vunmap,
+ };
+ 
++struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
++					 struct dma_buf *dma_buf)
++{
++	return drm_gem_prime_self_import(dev, dma_buf, &xe_dmabuf_ops);
++}
++
+ struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags)
  {
--	struct drm_gem_object *obj = dma_buf->priv;
-+	struct drm_gem_object *obj;
+ 	struct xe_bo *bo = gem_to_xe_bo(obj);
+@@ -372,17 +378,14 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
+ 	struct dma_buf_attachment *attach;
+ 	struct drm_gem_object *obj;
  
--	if (dma_buf->ops == &panthor_dma_buf_ops && obj->dev == dev) {
--		/* Importing dmabuf exported from our own gem increases
--		 * refcount on gem itself instead of f_count of dmabuf.
--		 */
--		drm_gem_object_get(obj);
-+	obj = drm_gem_prime_self_import(dev, dma_buf, &panthor_dma_buf_ops);
-+	if (obj)
- 		return obj;
--	}
+-	if (dma_buf->ops == &xe_dmabuf_ops) {
+-		obj = dma_buf->priv;
+-		if (obj->dev == dev &&
+-		    !XE_TEST_ONLY(test && test->force_different_devices)) {
+-			/*
+-			 * Importing dmabuf exported from out own gem increases
+-			 * refcount on gem itself instead of f_count of dmabuf.
+-			 */
+-			drm_gem_object_get(obj);
++	obj = xe_dma_buf_to_gem(dev, dma_buf);
++	if (obj) {
++		if (!XE_TEST_ONLY(test && test->force_different_devices))
+ 			return obj;
+-		}
++
++		/* Test only: force different devices */
++		drm_gem_object_put(obj);
++		obj = NULL;
+ 	}
  
- 	return drm_gem_prime_import(dev, dma_buf);
- }
+ 	/*
+diff --git a/drivers/gpu/drm/xe/xe_dma_buf.h b/drivers/gpu/drm/xe/xe_dma_buf.h
+index 861dd28a862c..d0c7893a5a6f 100644
+--- a/drivers/gpu/drm/xe/xe_dma_buf.h
++++ b/drivers/gpu/drm/xe/xe_dma_buf.h
+@@ -8,6 +8,8 @@
+ 
+ #include <drm/drm_gem.h>
+ 
++struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
++					 struct dma_buf *dma_buf);
+ struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags);
+ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
+ 					   struct dma_buf *dma_buf);
 -- 
 2.43.0
 
