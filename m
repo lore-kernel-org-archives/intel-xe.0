@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CC3ACCA464
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 19:09:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FEECCC6B38
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 19:09:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC91112463;
-	Thu, 15 Oct 2026 19:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 150A811244F;
+	Thu, 15 Oct 2026 19:09:10 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1631A112460
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 19:09:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E685F11244F
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 19:09:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792091341; x=1823627341;
+ t=1792091343; x=1823627343;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YIyH0Kx5Zb8XAB2sYbJ1QzDg4pYYGNoeywpHR37x3Wk=;
- b=WT3xGp7Pem7F4TcnHYQwd+vcRuySQW2G+wqSQnK2DEM+1bnu651u28zR
- 4zFOzh5VmmnsSkWSsktazvOECXCuUkMfD8JHSFq3tM8BZ7Kca9ZMoCHcF
- 99KAdPETme56YzFQ7RnKdu6olQxqS19uTLdssjhh9EyQhU8i4vjc5+uCb
- vHLQ4CHZYyWzHoiyse1CTAgXCMryFIzXKfTcDqTDg71id2BT6x2V53J3w
- j1v7eACUoTxBf8PRVyg+hYXfd/EyqQ9wYCH9Jd6ZBrAk+0R4TLY1pv2BI
- qf8+ZNhCOkBEtUiQ2QFfdMrq7UDmtl0gDXZ0svYqPscmm+rqPytRcfALF w==;
-X-CSE-ConnectionGUID: DK1AgaS8RwaVN46Ccyb4iA==
-X-CSE-MsgGUID: MGEfUYtWSs+A6c8hZoXW1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="770383"
+ bh=csxPAy4ponJcSkpzxhPRtI/jjblLnnjpbgW6gPcVnCw=;
+ b=lvcizLxDDWTyOgWv099VCLpSmGj7AKnnmNRGUHbZCNQR4MbvZS5vS4DH
+ yI45cJ+kvS5nmqXo0xKddBqSmmLewVmMjgTFTdF8uzig9mlBRBdbLWUxy
+ QQjQoL73aLnfctYTfbwFZ+sQvfE4ylz+dhK1rTY5kKWTFD/hoUr/TaN8v
+ OsKpGxXK85yepNjqzaqU9/y5wRSWKu1NdvwbGNoEyH3lFl0YoQckGaxZ7
+ fgnainPBWUwMEZBafcXsuG9SXDySjZwqc66O27gCq3/qNPvIi/ekeAz/Z
+ gMIYSEudY0VMz/cRRocAF8cGwpA8dl5amEYva21tsaeceEri9vPxBF7SR g==;
+X-CSE-ConnectionGUID: +5NTVg9TRgGi04BDGdmGjg==
+X-CSE-MsgGUID: Aw6vV1wYStqTJ9ldvSR3Yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="770384"
 X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="770383"
+   d="scan'208";a="770384"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 12:09:00 -0700
-X-CSE-ConnectionGUID: BKiOD6E1SmmypxBSeYBQLg==
-X-CSE-MsgGUID: C/vDeC8mSrWKtceVE6OoDg==
+ 15 Oct 2026 12:09:03 -0700
+X-CSE-ConnectionGUID: rGR3SBITTyGeUjo0XiJcNg==
+X-CSE-MsgGUID: 6sZCZWxhS+y6GcoVdEdOvA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="1835257"
+   d="scan'208";a="1835269"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 12:08:58 -0700
+ 15 Oct 2026 12:09:01 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v3 7/9] drm/xe/hwmon: Add kernel-doc for fan control
-Date: Fri, 16 Oct 2026 00:37:49 +0530
-Message-Id: <20261015190751.1268916-8-karthik.poosa@intel.com>
+Subject: [PATCH v3 8/9] drm/xe/hwmon: preserve fan user table across suspend
+ resume
+Date: Fri, 16 Oct 2026 00:37:50 +0530
+Message-Id: <20261015190751.1268916-9-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261015190751.1268916-1-karthik.poosa@intel.com>
 References: <20261015190751.1268916-1-karthik.poosa@intel.com>
@@ -68,76 +69,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add kernel-doc for xe hwmon fan control and describe the fan control
-model built around firmware stock tables and driver-managed user tables.
+Save and restore active fan user tables over suspend/resume via new
+xe_hwmon PM hooks, and run restore, only when d3cold is allowed.
 
-Document the exposed sysfs files for fan speed, maximum speed, pwm
-control, pwm mode selection, and per-point fan curve temperature/PWM
-programming.
-
-This makes the hwmon fan control userspace interface easier to discover
-and understand.
+v2: Use xe_pcode_read() instead of xe_pcode_read_timeout().
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 Assisted-by: LLM
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 43 +++++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+ drivers/gpu/drm/xe/xe_hwmon.c | 136 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hwmon.h |   4 +
+ drivers/gpu/drm/xe/xe_pm.c    |   9 +++
+ 3 files changed, 149 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index de2adb56d15b..aa3c921407b5 100644
+index aa3c921407b5..d9f6cc9c81f6 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -139,6 +139,49 @@ struct xe_hwmon_energy_info {
- 	long accum_energy;
+@@ -251,6 +251,8 @@ struct xe_hwmon_fan_info {
+ 	u8 pwm_enable_mode;
+ 	/** @is_full_speed: flag indicating if fan is in full speed */
+ 	bool is_full_speed;
++	/** @restore_user_table: restore user fan table on next resume */
++	bool restore_user_table;
  };
  
-+/**
-+ * DOC: Xe fan control
-+ *
-+ * Xe fan control is exposed through the hwmon pwm and fan interfaces when the
-+ * platform advertises PCODE-backed fan management support.
-+ *
-+ * The implementation tracks two fan tables per fan:
-+ *
-+ * - A stock table read from firmware through PCODE.
-+ * - A user table cached in the driver and programmed back through PCODE.
-+ *
-+ * The pwmN_enable sysfs mode selects how those tables are used:
-+ *
-+ * - ``XE_FAN_PWM_AUTO_STOCK_TABLE`` restores automatic control using the stock
-+ *   firmware table.
-+ * - ``XE_FAN_PWM_MANUAL_USER_TABLE`` enables the user table for manual control.
-+ * - ``XE_FAN_PWM_FULL_SPEED`` reuses the user table path but programs every
-+ *   point to 100 percent duty cycle as a full-speed override.
-+ *
-+ * The fan-control sysfs files are:
-+ *
-+ * - ``fanN_input`` reports the measured fan speed in RPM.
-+ * - ``fanN_max`` reports the maximum supported fan speed in RPM.
-+ * - ``pwmN`` reads or sets the manual PWM duty cycle in the hwmon 0..255
-+ *   range. Manual writes are accepted only while ``pwmN_enable`` is set to
-+ *   ``XE_FAN_PWM_MANUAL_USER_TABLE``.
-+ * - ``pwmN_enable`` selects stock automatic mode, manual user-table mode, or
-+ *   full-speed override.
-+ * - ``pwmN_auto_pointM_temp`` exposes the temperature threshold for user-table
-+ *   point ``M`` in millidegrees Celsius.
-+ * - ``pwmN_auto_pointM_pwm`` exposes the PWM value for user-table point ``M``
-+ *   in the hwmon 0..255 range.
-+ *
-+ * Writes to pwmN_auto_pointM_temp and pwmN_auto_pointM_pwm update the cached
-+ * user table entries. The driver commits the full user table once the last
-+ * point has both temperature and PWM values, which keeps intermediate sysfs
-+ * writes from pushing partially updated curves to firmware.
-+ *
-+ * Writes to pwmN provide a constant manual duty cycle by rewriting every point
-+ * in the active user table to the same PWM value, clamped against the minimum
-+ * duty cycle reported by firmware for that fan.
-+ */
+ /**
+@@ -3122,4 +3124,138 @@ int xe_hwmon_register(struct xe_device *xe)
+ 	xe->hwmon = NULL;
+ 	return ret;
+ }
 +
- enum xe_fan_pwm_enable_mode {
- 	/** @XE_FAN_PWM_FULL_SPEED: force all user table points to full speed */
- 	XE_FAN_PWM_FULL_SPEED = 0,
++/**
++ * xe_hwmon_suspend - Save hwmon state before suspend
++ * @xe: xe device instance
++ *
++ * Save any hwmon runtime state that must survive PM suspend transitions.
++ */
++void xe_hwmon_suspend(struct xe_device *xe)
++{
++	struct xe_hwmon *hwmon = xe->hwmon;
++	struct xe_tile *root_tile;
++	int fan;
++
++	if (!hwmon || !xe->info.has_fan_control)
++		return;
++
++	/*
++	 * User fan-table restore is limited to d3cold flows, so skip snapshot
++	 * work when d3cold is not allowed for this device.
++	 */
++	if (!xe->d3cold.allowed) {
++		xe_dbg(xe, "d3cold not allowed, skipping fan user-table snapshot\n");
++		return;
++	}
++
++	root_tile = xe_device_get_root_tile(hwmon->xe);
++
++	mutex_lock(&hwmon->hwmon_lock);
++
++	for (fan = 0; fan < FAN_MAX; fan++) {
++		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
++		struct fan_control_point points[MAX_FAN_CONTROL_POINTS];
++		u32 point_count = 0;
++		int point;
++		int ret;
++
++		if (!IS_FAN_ENABLED(fan))
++			continue;
++
++		fi->restore_user_table = false;
++		if (fi->pwm_enable_mode == XE_FAN_PWM_AUTO_STOCK_TABLE)
++			continue;
++
++		ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, USER_FAN_TABLE);
++		if (ret || point_count < MIN_FAN_CONTROL_POINTS) {
++			xe_warn(hwmon->xe,
++				"fan %d point count before suspend invalid, ret=%d, count=%u\n",
++				fan, ret, point_count);
++			continue;
++		}
++
++		for (point = 0; point < point_count; point++) {
++			u32 fcp = FCP_INDEX(USER_FAN_TABLE, point);
++
++			ret = xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
++								  FSC_READ_FAN_TABLE, fan),
++					    &fcp, NULL);
++			if (ret) {
++				xe_warn(hwmon->xe,
++					"fan %d user point %d before suspend failed, ret=%d\n",
++					fan, point, ret);
++				break;
++			}
++
++			points[point].temp =
++				REG_FIELD_GET(FAN_CONTROL_POINT_TEMP_MASK, fcp);
++			points[point].speed =
++				REG_FIELD_GET(FAN_CONTROL_POINT_SPEED_MASK, fcp);
++		}
++		if (ret)
++			continue;
++
++		memcpy(fi->fan_table[USER_FAN_TABLE].fcp, points,
++		       point_count * sizeof(points[0]));
++		fi->fan_table[USER_FAN_TABLE].point_count = point_count;
++		fi->restore_user_table = true;
++		xe_dbg(hwmon->xe,
++		       "fan %d user table snapshot taken before suspend, point_count=%u\n", fan,
++		       point_count);
++	}
++
++	mutex_unlock(&hwmon->hwmon_lock);
++}
++
++/**
++ * xe_hwmon_resume - Restore hwmon state after resume
++ * @xe: xe device instance
++ *
++ * Restore any hwmon runtime state that was saved across suspend.
++ */
++void xe_hwmon_resume(struct xe_device *xe)
++{
++	struct xe_hwmon *hwmon = xe->hwmon;
++	int fan;
++
++	if (!hwmon || !xe->info.has_fan_control)
++		return;
++
++	if (!xe->d3cold.allowed) {
++		xe_dbg(xe, "d3cold not allowed, skipping fan user-table restore\n");
++		return;
++	}
++
++	mutex_lock(&hwmon->hwmon_lock);
++
++	for (fan = 0; fan < FAN_MAX; fan++) {
++		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
++		int ret;
++
++		if (!IS_FAN_ENABLED(fan))
++			continue;
++
++		if (!fi->restore_user_table) {
++			xe_dbg(xe, "fan %d user table restore not required\n", fan);
++			continue;
++		}
++
++		/* Re-program cached user-table settings for fans active before suspend. */
++		ret = xe_hwmon_activate_user_fan_table(hwmon, fan,
++						       fi->is_full_speed,
++						       USER_FAN_TABLE);
++		if (ret) {
++			xe_warn(xe, "failed to restore fan %d user table after resume, ret=%d\n",
++				fan, ret);
++			continue;
++		}
++
++		xe_dbg(xe, "fan %d user table restored\n", fan);
++		fi->restore_user_table = false;
++	}
++
++	mutex_unlock(&hwmon->hwmon_lock);
++}
++
+ MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.h b/drivers/gpu/drm/xe/xe_hwmon.h
+index d02c1bfe8c0a..6c6f30208508 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.h
++++ b/drivers/gpu/drm/xe/xe_hwmon.h
+@@ -12,8 +12,12 @@ struct xe_device;
+ 
+ #if IS_REACHABLE(CONFIG_HWMON)
+ int xe_hwmon_register(struct xe_device *xe);
++void xe_hwmon_suspend(struct xe_device *xe);
++void xe_hwmon_resume(struct xe_device *xe);
+ #else
+ static inline int xe_hwmon_register(struct xe_device *xe) { return 0; };
++static inline void xe_hwmon_suspend(struct xe_device *xe) {}
++static inline void xe_hwmon_resume(struct xe_device *xe) {}
+ #endif
+ 
+ #endif /* _XE_HWMON_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 4a745c3a933b..e5697b3893af 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -23,6 +23,7 @@
+ #include "xe_i2c.h"
+ #include "xe_irq.h"
+ #include "xe_late_bind_fw.h"
++#include "xe_hwmon.h"
+ #include "xe_pcode.h"
+ #include "xe_printk.h"
+ #include "xe_pxp.h"
+@@ -189,6 +190,8 @@ int xe_pm_suspend(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_suspend_prepare(gt);
+ 
++	xe_hwmon_suspend(xe);
++
+ 	xe_display_pm_suspend(xe);
+ 
+ 	/* FIXME: Super racey... */
+@@ -290,6 +293,8 @@ int xe_pm_resume(struct xe_device *xe)
+ 
+ 	xe_late_bind_fw_load(&xe->late_bind);
+ 
++	xe_hwmon_resume(xe);
++
+ 	drm_dbg(&xe->drm, "Device resumed\n");
+ 	xe_pm_block_end_signalling();
+ 	return 0;
+@@ -615,6 +620,8 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
+ 	if (err)
+ 		goto out;
+ 
++	xe_hwmon_suspend(xe);
++
+ 	/*
+ 	 * Applying lock for entire list op as xe_ttm_bo_destroy and xe_bo_move_notify
+ 	 * also checks and deletes bo entry from user fault list.
+@@ -726,6 +733,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 
+ 	xe_pxp_pm_resume(xe->pxp);
+ 
++	xe_hwmon_resume(xe);
++
+ 	if (IS_VF_CCS_READY(xe))
+ 		xe_sriov_vf_ccs_register_context(xe);
+ 
 -- 
 2.25.1
 
