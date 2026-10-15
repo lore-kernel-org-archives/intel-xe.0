@@ -4,130 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAE4BCC6B34
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 07:27:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11273CC6B2F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 08:11:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 919651120C7;
-	Thu, 15 Oct 2026 07:27:22 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10CB71120B7;
- Thu, 15 Oct 2026 07:27:11 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 4A9F622350;
- Thu, 15 Oct 2026 07:27:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1792049229; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=OIYOF/+jeZy8xrIz7guVfovJL6fFQzoIoJBUsRPt2s4=;
- b=LT7i5skM4pCEwOjrtK1UYXEds36DgAYAOQofH3nOf3qSMNynXUIEGjuHsqz9FmI037vhYv
- ndYR6SI5EGuaF/rx+5bJi1lPdWB6snvVYN38EPo0Cfbz0nPhUyF/ZQ0M7D4f0ZlRM2Qq74
- 5ZaAoZOjFYUzCAL5WLNkmYTxUGGPiV8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1792049229;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=OIYOF/+jeZy8xrIz7guVfovJL6fFQzoIoJBUsRPt2s4=;
- b=W5przbQN/+WdgcbqWHMRpZHl/UteRjmx3cfZrtMSPhvdxtZE7LHcJfAKZ2KwEE5iSWRMGH
- AJ9Yjb2bNvplFOAg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=LT7i5skM;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=W5przbQN
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1792049229; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=OIYOF/+jeZy8xrIz7guVfovJL6fFQzoIoJBUsRPt2s4=;
- b=LT7i5skM4pCEwOjrtK1UYXEds36DgAYAOQofH3nOf3qSMNynXUIEGjuHsqz9FmI037vhYv
- ndYR6SI5EGuaF/rx+5bJi1lPdWB6snvVYN38EPo0Cfbz0nPhUyF/ZQ0M7D4f0ZlRM2Qq74
- 5ZaAoZOjFYUzCAL5WLNkmYTxUGGPiV8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1792049229;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=OIYOF/+jeZy8xrIz7guVfovJL6fFQzoIoJBUsRPt2s4=;
- b=W5przbQN/+WdgcbqWHMRpZHl/UteRjmx3cfZrtMSPhvdxtZE7LHcJfAKZ2KwEE5iSWRMGH
- AJ9Yjb2bNvplFOAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 06D001373D;
- Thu, 15 Oct 2026 07:27:08 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id R1mfMEyA0GodQAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 15 Oct 2026 07:27:08 +0000
-Message-ID: <af32a6f6-ccee-4265-96bf-d8508d0127b7@suse.de>
-Date: Thu, 15 Oct 2026 09:27:08 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2554112173;
+	Thu, 15 Oct 2026 08:11:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3096010EB9B
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 08:11:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792051872; x=1823587872;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PJBqT7+k5NZswYIxqLydzgpzZXbkfWtPVl03GgYiQog=;
+ b=AXAI83NalFE0Ct8UJnFAUkHkRnmQqmqT0k8fL0zSaq8iO5hTornj0w7D
+ aj7dmqHyV58dDJcq9k/Wvywgp/8dHEYOgEEabBFNvcNRR0O3/Zef8RKNr
+ tzm/YOPJaenAQQ+PAikPRtRAv2RnCs64psk0EJgbzknthD5nQBBF6Pmod
+ 9RYDrhXKLvvT66aDIiSL2Jlu3lYlIan1KWeRIcX0P4ID2WR9MU3VrOlx3
+ bVuibzJtP4JvQtBYDu6Sbwci8rW3dSdXo2ZY+eClXpIXQYqZIseri66Cl
+ 0yrVEQYtDq99HQe0OdCYm4LmE/6/70LyyABEdcMUGELQNVqBkwvPL8Y0B A==;
+X-CSE-ConnectionGUID: 8O5RXdqRR2227Yo3o/dvxw==
+X-CSE-MsgGUID: xMIEgHi3RreQFSTmaLFGow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="719081"
+X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
+   d="scan'208";a="719081"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2026 01:11:02 -0700
+X-CSE-ConnectionGUID: rI45GU22QCKpdw6Xm6VUJg==
+X-CSE-MsgGUID: EQ9gznG7SB6wdFTN4i8+Bw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
+   d="scan'208";a="1541481"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa005.jf.intel.com with ESMTP; 15 Oct 2026 01:11:00 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
+ matthew.d.roper@intel.com, matthew.brost@intel.com,
+ mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v8 1/7] drm/xe/gt: Use GT ordered workqueue for wedging
+Date: Thu, 15 Oct 2026 13:40:15 +0530
+Message-ID: <20261015081042.415942-2-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261015081042.415942-1-raag.jadav@intel.com>
+References: <20261015081042.415942-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] drm/gem: add helper to detect self-imported PRIME
- dma-bufs
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- matthew.brost@intel.com
-References: <20261014190200.1700470-8-niranjana.vishwanathapura@intel.com>
- <20261014190200.1700470-9-niranjana.vishwanathapura@intel.com>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20261014190200.1700470-9-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 4A9F622350
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-4.50 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-0.998]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; XM_UA_NO_VERSION(0.01)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- RCVD_VIA_SMTP_AUTH(0.00)[]; ARC_NA(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- TO_DN_SOME(0.00)[]; MIME_TRACE(0.00)[0:+];
- DWL_DNSWL_BLOCKED(0.00)[suse.de:dkim]; RCVD_TLS_ALL(0.00)[];
- RCPT_COUNT_THREE(0.00)[4]; RCVD_COUNT_TWO(0.00)[2];
- FROM_EQ_ENVFROM(0.00)[]; FROM_HAS_DN(0.00)[];
- MID_RHS_MATCH_FROM(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns,suse.de:dkim];
- DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
- TO_MATCH_ENVRCPT_ALL(0.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- DKIM_TRACE(0.00)[suse.de:+]
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -142,133 +67,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi
+Currently, xe_gt_declare_wedged() stops GuC CT and initiates exec queue
+teardown synchronously. This can result in tdr timeout in cases where
+the device is declared wedged while jobs are still in-flight.
 
-Am 14.10.26 um 21:02 schrieb Niranjana Vishwanathapura:
-> From: Farah Kassabri <farah.kassabri@intel.com>
->
-> Add drm_gem_prime_self_import() to detect and handle the case where a
-> PRIME dma-buf being imported was exported by the same DRM device.
->
-> When the dma-buf originates from the importing device and uses the
-> expected dma-buf ops, the helper returns the associated GEM object and
-> takes an extra reference on it. This allows drivers to bypass the
-> generic PRIME import path and avoid taking an additional reference on
-> the dma-buf file.
->
-> The helper simplifies self-import handling and avoids duplication of
-> this pattern across DRM drivers.
->
-> v2: Move drm_gem_prime_self_import() to drm_gem.h as a static inline
->      helper routine
+Introduce a worker for GT specific wedge handling and queue the teardown
+on GT ordered workqueue, so we don't disrupt the scheduler while jobs
+are still in-flight.
 
-Why even bother submitting this? It is the same series that I already 
-declined with a few cosmetic changes.
+While at it, introduce for_each_initialized_gt() macro and use it for
+wedging GT. This helps avoid races in case the device is declared wedged
+in probe sequence before GT is initialized.
 
-The abstract entry point for importing is drm_driver.gem_prime_import. 
-The implementation is driver specific. No need to over abstract. Keeping 
-drm_gem_object_get() separate from the test is a feature, not a bug BTW.
+Fixes: c9474b726b93 ("drm/xe: Wedge the entire device")
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+v2: Split fixes into separate patches (Rodrigo, Michal)
+v4: Introduce for_each_initialized_gt() (Michal)
+v5: Flush GT wedge worker to avoid races (Sashiko)
+v6: Move wedge worker initialization to xe_gt_init_early() (Rodrigo)
+    Don't flush GT wedge worker to avoid deadlock (Sashiko)
+v7: Guard GT wedge worker with runtime PM (Rodrigo)
+---
+ drivers/gpu/drm/xe/xe_device.c   |  2 +-
+ drivers/gpu/drm/xe/xe_device.h   |  4 ++++
+ drivers/gpu/drm/xe/xe_gt.c       | 17 +++++++++++++++--
+ drivers/gpu/drm/xe/xe_gt_types.h |  9 +++++++++
+ 4 files changed, 29 insertions(+), 3 deletions(-)
 
-If you want to improve the status quo, change dma-buf such that prime 
-works without relying on the vtable and ->priv. I outlined this in my 
-earlier replies.
-
-Best regards
-Thomas
-
-
-
->
-> Signed-off-by: Farah Kassabri <farah.kassabri@intel.com>
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/drm_prime.c | 10 ++-------
->   include/drm/drm_gem.h       | 42 +++++++++++++++++++++++++++++++++++++
->   2 files changed, 44 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_prime.c b/drivers/gpu/drm/drm_prime.c
-> index 9b44c78cd77f..7a15c29052eb 100644
-> --- a/drivers/gpu/drm/drm_prime.c
-> +++ b/drivers/gpu/drm/drm_prime.c
-> @@ -974,15 +974,9 @@ struct drm_gem_object *drm_gem_prime_import_dev(struct drm_device *dev,
->   	struct drm_gem_object *obj;
->   	int ret;
->   
-> -	if (drm_gem_is_prime_exported_dma_buf(dev, dma_buf)) {
-> -		/*
-> -		 * Importing dmabuf exported from our own gem increases
-> -		 * refcount on gem itself instead of f_count of dmabuf.
-> -		 */
-> -		obj = dma_buf->priv;
-> -		drm_gem_object_get(obj);
-> +	obj = drm_gem_prime_self_import(dev, dma_buf, &drm_gem_prime_dmabuf_ops);
-> +	if (obj)
->   		return obj;
-> -	}
->   
->   	if (!dev->driver->gem_prime_import_sg_table)
->   		return ERR_PTR(-EINVAL);
-> diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-> index 885244e375d3..238ec08f0d81 100644
-> --- a/include/drm/drm_gem.h
-> +++ b/include/drm/drm_gem.h
-> @@ -646,6 +646,48 @@ static inline bool drm_gem_is_imported(const struct drm_gem_object *obj)
->   	return !!obj->import_attach;
->   }
->   
-> +/**
-> + * drm_gem_prime_self_import - Attempt to import a dma-buf exported by this DRM device
-> + * @dev: DRM device performing the import
-> + * @dma_buf: dma-buf to import
-> + * @expected_ops: dma-buf ops used by this driver
-> + *
-> + * If @dma_buf was exported by this DRM device using @expected_ops, return the
-> + * corresponding GEM object and take an extra reference on it. In this case,
-> + * the import avoids taking a reference on the dma-buf file and instead bumps
-> + * the GEM object's refcount directly.
-> + *
-> + * Comparing @dma_buf->ops against @expected_ops is plumbing: dma-buf has no
-> + * first-class exporter identifier, so the ops pointer is used as a stand-in to
-> + * recognise a buffer this driver exported. A dedicated exporter identity would
-> + * let this be done without reaching into @dma_buf->ops.
-> + *
-> + * Returns:
-> + * A referenced GEM object on success, or %NULL if the dma-buf was not exported
-> + * by this device or does not match @expected_ops.
-> + */
-> +static inline struct drm_gem_object *
-> +drm_gem_prime_self_import(struct drm_device *dev, struct dma_buf *dma_buf,
-> +			  const struct dma_buf_ops *expected_ops)
-> +{
-> +	struct drm_gem_object *obj;
-> +
-> +	if (dma_buf->ops != expected_ops)
-> +		return NULL;
-> +
-> +	obj = dma_buf->priv;
-> +	if (obj->dev != dev)
-> +		return NULL;
-> +
-> +	/*
-> +	 * Importing dmabuf exported from the driver's own gem increases
-> +	 * refcount on gem itself instead of f_count of dmabuf.
-> +	 */
-> +	drm_gem_object_get(obj);
-> +
-> +	return obj;
-> +}
-> +
->   #ifdef CONFIG_LOCKDEP
->   #define drm_gem_gpuva_assert_lock_held(gpuvm, obj) \
->   	lockdep_assert(drm_gpuvm_immediate_mode(gpuvm) ? \
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index db0b883322ef..c7d8aea56f58 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1436,7 +1436,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 			    WEDGED_URL, XE_BUG_URL);
+ 	}
+ 
+-	for_each_gt(gt, xe, id)
++	for_each_initialized_gt(gt, xe, id)
+ 		xe_gt_declare_wedged(gt);
+ 
+ 	if (xe_device_wedged(xe)) {
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 83d6dafab53c..80bda9b548d5 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -139,6 +139,10 @@ static inline bool xe_device_uc_enabled(struct xe_device *xe)
+ 	for_each_gt((gt__), (tile__)->xe, (id__)) \
+ 		for_each_if((gt__)->tile == (tile__))
+ 
++#define for_each_initialized_gt(gt__, xe__, id__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if(READ_ONCE((gt__)->initialized))
++
+ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
+ {
+ 	return &gt->pm.fw;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index bc9bf6f0b5a7..d85406ba6f06 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -175,6 +175,7 @@ static void xe_gt_enable_comp_1wcoh(struct xe_gt *gt)
+ }
+ 
+ static void gt_reset_worker(struct work_struct *w);
++static void gt_wedge_worker(struct work_struct *w);
+ 
+ static int emit_job_sync(struct xe_exec_queue *q, struct xe_bb *bb,
+ 			 long timeout_jiffies, bool force_reset)
+@@ -546,6 +547,7 @@ int xe_gt_init_early(struct xe_gt *gt)
+ 	xe_gt_mcr_init_early(gt);
+ 	xe_pat_init(gt);
+ 
++	INIT_WORK(&gt->wedge.worker, gt_wedge_worker);
+ 	return 0;
+ }
+ 
+@@ -724,6 +726,7 @@ static void xe_gt_fini(void *arg)
+ 	struct xe_gt *gt = arg;
+ 	int i;
+ 
++	disable_work_sync(&gt->wedge.worker);
+ 	gt_reset_worker_disable(gt);
+ 
+ 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+@@ -784,6 +787,8 @@ int xe_gt_init(struct xe_gt *gt)
+ 			return err;
+ 	}
+ 
++	/* Must be last */
++	WRITE_ONCE(gt->initialized, true);
+ 	return 0;
+ }
+ 
+@@ -1204,6 +1209,15 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe_gt *gt)
+ 	return NULL;
+ }
+ 
++static void gt_wedge_worker(struct work_struct *w)
++{
++	struct xe_gt *gt = container_of(w, typeof(*gt), wedge.worker);
++
++	guard(xe_pm_runtime)(gt_to_xe(gt));
++	xe_uc_declare_wedged(&gt->uc);
++	xe_tlb_inval_reset(&gt->tlb_inval);
++}
++
+ /**
+  * xe_gt_declare_wedged() - Declare GT wedged
+  * @gt: the GT object
+@@ -1215,6 +1229,5 @@ void xe_gt_declare_wedged(struct xe_gt *gt)
+ {
+ 	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
+ 
+-	xe_uc_declare_wedged(&gt->uc);
+-	xe_tlb_inval_reset(&gt->tlb_inval);
++	queue_work(gt->ordered_wq, &gt->wedge.worker);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 628911346455..c00a7c171f80 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -233,6 +233,12 @@ struct xe_gt {
+ 		struct work_struct worker;
+ 	} reset;
+ 
++	/** @wedge: state for GT wedge */
++	struct {
++		/** @wedge.worker: worker for GT wedge to be done async */
++		struct work_struct worker;
++	} wedge;
++
+ 	/** @tlb_inval: TLB invalidation state */
+ 	struct xe_tlb_inval tlb_inval;
+ 
+@@ -419,6 +425,9 @@ struct xe_gt {
+ 
+ 	/** @eu_stall: EU stall counters subsystem per gt info */
+ 	struct xe_eu_stall_gt *eu_stall;
++
++	/** @initialized: GT is initialized */
++	bool initialized;
+ };
+ 
+ #endif
 -- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
-
+2.43.0
 
