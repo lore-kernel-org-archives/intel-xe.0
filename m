@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6929FCC6B2F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 05:06:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7043CC6B2F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 05:13:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0726410E7C7;
-	Thu, 15 Oct 2026 05:06:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC461120C2
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 05:06:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792040762; x=1823576762;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=7CSokdBXlIP84m0M3AokKaKxCb1Hfvo2cKltOWw1uNg=;
- b=amSXK5cRJIUy+a5raxzz0sqlOsKiUWxBL0zIcGrDltqMi+uSazQbZhpC
- 3ytcq1TuSgqOVGP+8gKP4oFpb5N3oDAfE6It0NCGlBJyv6FOWbvV4zdj7
- IPdLOYvilj+r/5L1Qc046yOoYD4akOU3/jUB0ThnOagLRv2yirjtXM6Im
- WlwN/2+atWUgT1Yoaro+l82tYE6ayWZ+m1dV8bEyMW8re/1bPbtnEsklZ
- rt9wgvqXZ/5dwGCMplBYD2Inp5RNebdBu81FdvPAnwiAvxM54VK3zYs5r
- Jsb3/PK+dyhhu2nZqZJLvB2MOLpMLX4lrtmlHWTH5wBUbMVFY2p0Ulf66 Q==;
-X-CSE-ConnectionGUID: pfj+OcCTS9SjEJWjYAvQGw==
-X-CSE-MsgGUID: r/3sIgIgTX6swdbsMFsNZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="687120"
-X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="687120"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Oct 2026 22:05:51 -0700
-X-CSE-ConnectionGUID: sE1fKoziT/G37IzFHzEU+w==
-X-CSE-MsgGUID: KjZNdud0SEKInKeEzL3LuA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="1525116"
-Received: from danielcm-desk1.jf.intel.com ([10.24.81.120])
- by orviesa009.jf.intel.com with ESMTP; 14 Oct 2026 22:05:52 -0700
-From: Daniel Charles <daniel.charles@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: x.wang@intel.com, jia.yao@intel.com, jonathan.cavitt@intel.com,
- matthew.brost@intel.com, Daniel Charles <daniel.charles@intel.com>
-Subject: [PATCH v3 3/3] drm/xe: Synchronously wait for queue kill on FD close
-Date: Wed, 14 Oct 2026 22:01:36 -0700
-Message-ID: <20261015050136.1069815-4-daniel.charles@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261015050136.1069815-1-daniel.charles@intel.com>
-References: <20261015050136.1069815-1-daniel.charles@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D56210E9D0;
+	Thu, 15 Oct 2026 05:13:14 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCD110E21D;
+ Thu, 15 Oct 2026 05:13:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_FD_close_cleanup_for_XE_?=
+ =?utf-8?q?=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniel Charles" <daniel.charles@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 15 Oct 2026 05:13:14 -0000
+Message-ID: <179204119411.27067.11278574194108134110@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261015050136.1069815-1-daniel.charles@intel.com>
+In-Reply-To: <20261015050136.1069815-1-daniel.charles@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,271 +36,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The early KILL message disables GuC scheduling outside the serialized
-TDR path, but xe_file_close() does not wait for it to complete before
-dropping queue references. GuC may still schedule contexts whose page
-tables are being torn down, producing CAT errors and engine resets.
+== Series Details ==
 
-Split FD close teardown into two passes: first kill every queue so all
-KILL messages are queued in parallel, then call the new
-xe_exec_queue_kill_sync() and drop the reference for each queue.
+Series: FD close cleanup for XE (rev3)
+URL   : https://patchwork.freedesktop.org/series/175996/
+State : warning
 
-The GuC backend implementation waits, with a timeout, for scheduling to
-be disabled with no pending enable/disable. The wait also completes when
-GuC submission is stopped, VF recovery is in progress, or the queue is
-wedged. If GuC does not respond within the timeout, a GT reset is
-triggered to stop GuC scheduling.
+== Summary ==
 
-The waiters sleep on a dedicated kill_wq rather than ct.wq. ct.wq is
-shared with every exec queue deregistration waiting for a pending
-enable/disable, and a workload destroying thousands of queues can have
-thousands of such waiters. Waking ct.wq for each scheduling-disable
-SCHED_DONE wakes all of them while the CT lock is held, stalling G2H
-processing until deregistration waits time out and trigger a GT reset.
-kill_wq is woken from SCHED_DONE handling, and on submission stop, wedge
-and VF migration recovery, only when it has sleepers.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e32633708ca9cd3a36b23d31455b8fa7bdcccd63
+Author: Daniel Charles <daniel.charles@intel.com>
+Date:   Wed Oct 14 22:01:36 2026 -0700
 
-v2:
- - Bound the wait with a timeout, GT reset on timeout (Sashiko, Matt B)
- - Drop the flush_work() loop (Matt B)
- - Use xe_assert() for the killed-queue check (Matt B)
- - Merge the put loop into the kill_sync loop (Matt B)
-v3:
- - Wait on a dedicated kill_wq instead of waking ct.wq on every
-   scheduling-disable SCHED_DONE (CI)
+    drm/xe: Synchronously wait for queue kill on FD close
+    
+    The early KILL message disables GuC scheduling outside the serialized
+    TDR path, but xe_file_close() does not wait for it to complete before
+    dropping queue references. GuC may still schedule contexts whose page
+    tables are being torn down, producing CAT errors and engine resets.
+    
+    Split FD close teardown into two passes: first kill every queue so all
+    KILL messages are queued in parallel, then call the new
+    xe_exec_queue_kill_sync() and drop the reference for each queue.
+    
+    The GuC backend implementation waits, with a timeout, for scheduling to
+    be disabled with no pending enable/disable. The wait also completes when
+    GuC submission is stopped, VF recovery is in progress, or the queue is
+    wedged. If GuC does not respond within the timeout, a GT reset is
+    triggered to stop GuC scheduling.
+    
+    The waiters sleep on a dedicated kill_wq rather than ct.wq. ct.wq is
+    shared with every exec queue deregistration waiting for a pending
+    enable/disable, and a workload destroying thousands of queues can have
+    thousands of such waiters. Waking ct.wq for each scheduling-disable
+    SCHED_DONE wakes all of them while the CT lock is held, stalling G2H
+    processing until deregistration waits time out and trigger a GT reset.
+    kill_wq is woken from SCHED_DONE handling, and on submission stop, wedge
+    and VF migration recovery, only when it has sleepers.
+    
+    v2:
+     - Bound the wait with a timeout, GT reset on timeout (Sashiko, Matt B)
+     - Drop the flush_work() loop (Matt B)
+     - Use xe_assert() for the killed-queue check (Matt B)
+     - Merge the put loop into the kill_sync loop (Matt B)
+    v3:
+     - Wait on a dedicated kill_wq instead of waking ct.wq on every
+       scheduling-disable SCHED_DONE (CI)
+    
+    Assisted-by: LLM
+    Signed-off-by: Daniel Charles <daniel.charles@intel.com>
++ /mt/dim checkpatch ea0d7e7169afc7f6dfdc72e2e5e44e8710dabda3 drm-intel
+b758437bb7be drm/xe: Read scheduler message opcode under lock
+-:12: WARNING:BAD_STABLE_ADDRESS_STYLE: Invalid email format for stable: 'stable <stable@kernel.org>', prefer 'stable@kernel.org'
+#12: 
+Cc: stable <stable@kernel.org>
 
-Assisted-by: LLM
-Signed-off-by: Daniel Charles <daniel.charles@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c           |  5 +++
- drivers/gpu/drm/xe/xe_exec_queue.c       | 13 +++++++
- drivers/gpu/drm/xe/xe_exec_queue.h       |  1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c      |  1 +
- drivers/gpu/drm/xe/xe_guc_submit.c       | 48 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h       |  1 +
- drivers/gpu/drm/xe/xe_guc_types.h        |  6 +++
- 8 files changed, 77 insertions(+)
+total: 0 errors, 1 warnings, 0 checks, 65 lines checked
+d34abd581c3c drm/xe: Disable scheduling early on FD close to avoid CAT error cascade
+e32633708ca9 drm/xe: Synchronously wait for queue kill on FD close
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8392c9fad3c48..cf75fa3b8fa4b 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -190,8 +190,13 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 		if (q->vm && q->hwe->hw_engine_group)
- 			xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
- 		xe_exec_queue_kill(q);
-+	}
-+
-+	xa_for_each(&xef->exec_queue.xa, idx, q) {
-+		xe_exec_queue_kill_sync(q);
- 		xe_exec_queue_put(q);
- 	}
-+
- 	xa_for_each(&xef->vm.xa, idx, vm)
- 		xe_vm_close_and_put(vm);
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 9a8efa2bf2bfb..8ba2cf45694dd 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1622,6 +1622,19 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
- 	xe_vm_remove_compute_exec_queue(q->vm, q);
- }
- 
-+/**
-+ * xe_exec_queue_kill_sync() - Wait for queue scheduling to stop
-+ * @q: The exec queue
-+ *
-+ * This function waits for the backend to finish stopping the queue after
-+ * xe_exec_queue_kill(). It is safe to call multiple times.
-+ */
-+void xe_exec_queue_kill_sync(struct xe_exec_queue *q)
-+{
-+	if (q->ops->kill_sync)
-+		q->ops->kill_sync(q);
-+}
-+
- /**
-  * xe_exec_queue_destroy_ioctl() - Destroy an exec queue via IOCTL
-  * @dev: DRM device
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index e8963f85cabd9..4be023b9a4c6c 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -119,6 +119,7 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
- bool xe_exec_queue_is_idle(struct xe_exec_queue *q, int extra_jobs);
- 
- void xe_exec_queue_kill(struct xe_exec_queue *q);
-+void xe_exec_queue_kill_sync(struct xe_exec_queue *q);
- 
- int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 			       struct drm_file *file);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 48c05398b0168..4882eeccb9bd5 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -294,6 +294,8 @@ struct xe_exec_queue_ops {
- 	int (*init)(struct xe_exec_queue *q);
- 	/** @kill: Kill inflight submissions for backend */
- 	void (*kill)(struct xe_exec_queue *q);
-+	/** @kill_sync: Wait for the backend to stop queue scheduling */
-+	void (*kill_sync)(struct xe_exec_queue *q);
- 	/** @fini: Undoes the init() for submission backend */
- 	void (*fini)(struct xe_exec_queue *q);
- 	/**
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 37899fcf5b227..bf41f80761f98 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -910,6 +910,7 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
- 		smp_wmb();	/* Ensure above writes visible before wake */
- 
- 		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
-+		xe_guc_submit_wake_kill_waiters(&gt->uc.guc);
- 
- 		started = queue_work(gt->ordered_wq, &gt->sriov.vf.migration.worker);
- 		xe_gt_sriov_info(gt, "VF migration recovery %s\n", started ?
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 609af66b343d5..559937e584aa3 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -316,6 +316,7 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
- 	gt->exec_queue_ops = &guc_exec_queue_ops;
- 
- 	xa_init(&guc->submission_state.exec_queue_lookup);
-+	init_waitqueue_head(&guc->submission_state.kill_wq);
- 
- 	primelockdep(guc);
- 
-@@ -551,6 +552,26 @@ static bool vf_recovery(struct xe_guc *guc)
- 	return xe_gt_recovery_pending(guc_to_gt(guc));
- }
- 
-+static void guc_wake_kill_waiters(struct xe_guc *guc)
-+{
-+	/* wq_has_sleeper() implies a full barrier, pairing with the waiter */
-+	if (wq_has_sleeper(&guc->submission_state.kill_wq))
-+		wake_up_all(&guc->submission_state.kill_wq);
-+}
-+
-+/**
-+ * xe_guc_submit_wake_kill_waiters() - Wake exec queue kill_sync waiters
-+ * @guc: the &xe_guc
-+ *
-+ * Wake any exec queue kill_sync waiters so they re-evaluate their wait
-+ * condition, e.g. after VF migration recovery has started.
-+ */
-+void xe_guc_submit_wake_kill_waiters(struct xe_guc *guc)
-+{
-+	if (guc->submission_state.initialized)
-+		guc_wake_kill_waiters(guc);
-+}
-+
- static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
- {
- 	struct xe_guc *guc = exec_queue_to_guc(q);
-@@ -1433,6 +1454,7 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 			if (xe_exec_queue_get_unless_zero(q))
- 				set_exec_queue_wedged(q);
- 		mutex_unlock(&guc->submission_state.lock);
-+		guc_wake_kill_waiters(guc);
- 	} else {
- 		/* Forcefully kill any remaining exec queues, signal fences */
- 		guc_submit_reset_prepare(guc);
-@@ -2267,6 +2289,28 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
- 	xe_guc_exec_queue_trigger_cleanup(q);
- }
- 
-+static void guc_exec_queue_kill_sync(struct xe_exec_queue *q)
-+{
-+	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
-+	struct xe_guc *guc = exec_queue_to_guc(primary);
-+	long ret;
-+
-+	xe_assert(guc_to_xe(guc), exec_queue_killed(q));
-+
-+	ret = wait_event_timeout(guc->submission_state.kill_wq,
-+				 (!exec_queue_enabled(primary) &&
-+				  !exec_queue_pending_disable(primary) &&
-+				  !exec_queue_pending_enable(primary)) ||
-+				 xe_guc_read_stopped(guc) ||
-+				 vf_recovery(guc) ||
-+				 exec_queue_wedged(primary), HZ * 5);
-+	if (!ret) {
-+		xe_gt_warn(q->gt, "Queue kill failed to respond, guc_id=%d\n",
-+			   primary->guc->id);
-+		xe_gt_reset_async(q->gt);
-+	}
-+}
-+
- static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg *msg,
- 				   u32 opcode)
- {
-@@ -2744,6 +2788,7 @@ static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
- static const struct xe_exec_queue_ops guc_exec_queue_ops = {
- 	.init = guc_exec_queue_init,
- 	.kill = guc_exec_queue_kill,
-+	.kill_sync = guc_exec_queue_kill_sync,
- 	.fini = guc_exec_queue_fini,
- 	.destroy = guc_exec_queue_destroy,
- 	.set_priority = guc_exec_queue_set_priority,
-@@ -2825,6 +2870,7 @@ static int guc_submit_reset_prepare(struct xe_guc *guc)
- 	ret = atomic_fetch_or(1, &guc->submission_state.stopped);
- 	smp_wmb();
- 	wake_up_all(&guc->ct.wq);
-+	guc_wake_kill_waiters(guc);
- 
- 	return ret;
- }
-@@ -3388,6 +3434,7 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 		clear_exec_queue_pending_enable(q);
- 		smp_wmb();
- 		wake_up_all(&guc->ct.wq);
-+		guc_wake_kill_waiters(guc);
- 	} else {
- 		bool was_pending;
- 
-@@ -3423,6 +3470,7 @@ static void handle_sched_done(struct xe_guc *guc, struct xe_exec_queue *q,
- 				clear_exec_queue_pending_disable(q);
- 			}
- 		}
-+		guc_wake_kill_waiters(guc);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index 29abf07d8f041..ab07d73b2b9e0 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -28,6 +28,7 @@ void xe_guc_submit_unpause(struct xe_guc *guc);
- void xe_guc_submit_unpause_vf(struct xe_guc *guc);
- void xe_guc_submit_unpause_prepare_vf(struct xe_guc *guc);
- void xe_guc_submit_wedge(struct xe_guc *guc);
-+void xe_guc_submit_wake_kill_waiters(struct xe_guc *guc);
- 
- int xe_guc_read_stopped(struct xe_guc *guc);
- int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 3dbcb1331690e..3f3138d6750d8 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -93,6 +93,12 @@ struct xe_guc {
- 		atomic_t reset_blocked;
- 		/** @submission_state.lock: protects submission state */
- 		struct mutex lock;
-+		/**
-+		 * @submission_state.kill_wq: wait queue for exec queue kill_sync
-+		 * waiters, kept separate from &xe_guc_ct.wq so that waking them
-+		 * from the G2H handler does not wake every CT waiter.
-+		 */
-+		wait_queue_head_t kill_wq;
- 		/** @submission_state.enabled: submission is enabled */
- 		bool enabled;
- 		/**
--- 
-2.43.0
 
