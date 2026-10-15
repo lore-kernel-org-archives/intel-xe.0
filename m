@@ -4,34 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EA90CC6B3A
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 13:56:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 578A8CC6B34
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 13:56:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 22AF2112260;
-	Thu, 15 Oct 2026 13:56:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A0D110E5AA;
+	Thu, 15 Oct 2026 13:56:37 +0000 (UTC)
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67B9E112260;
- Thu, 15 Oct 2026 13:56:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEE671122BE;
+ Thu, 15 Oct 2026 13:56:35 +0000 (UTC)
 Received: from 178-55-143-231.bb.dnainternet.fi ([178.55.143.231]
  helo=[192.168.101.127])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1xHLwB-00000004PEb-2n49; Thu, 15 Oct 2026 16:56:04 +0300
-Message-ID: <62e61323dcb28d33f0f951dc90e33be6be3a9c57.camel@coelho.fi>
+ id 1xHLwf-00000004PF2-19A3; Thu, 15 Oct 2026 16:56:33 +0300
+Message-ID: <a2c1aaf71fbb09e1a406de7ee67039e416bea703.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>, 
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 15 Oct 2026 16:56:17 +0300
-In-Reply-To: <20261014120542.29675-6-ville.syrjala@linux.intel.com>
+Date: Thu, 15 Oct 2026 16:56:46 +0300
+In-Reply-To: <20261014120542.29675-7-ville.syrjala@linux.intel.com>
 References: <20261014120542.29675-1-ville.syrjala@linux.intel.com>
- <20261014120542.29675-6-ville.syrjala@linux.intel.com>
+ <20261014120542.29675-7-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.2-10+b1 
 MIME-Version: 1.0
-Subject: Re: [PATCH 5/6] drm/i915/de: Implement intel_de_posting_read() via
- intel_de_read()
+Subject: Re: [PATCH 6/6] drm/xe: Remove unused uncore wrappers
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,40 +48,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Wed, 2026-10-14 at 15:05 +0300, Ville Syrjala wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >=20
-> Simplify the intel_de_posting_read() implementation by just
-> calling intel_de_read(). The only difference between a normal
-> read and posting read is the return value (u32 vs. void).
->=20
-> This will reduce the uncore usage footprint of intel_de.h,
-> which will help with cleaning up the final uncore i915 vs. xe
-> mess.
+> intel_uncore_read64_2x32(), intel_uncore_posting_read(),
+> and intel_uncore_rmw() are no longer used by the display code.
+> Nuke the wrappers.
 >=20
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_de.h | 6 +-----
->  1 file changed, 1 insertion(+), 5 deletions(-)
+>  .../drm/xe/compat-i915-headers/intel_uncore.h | 35 -------------------
+>  1 file changed, 35 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i9=
-15/display/intel_de.h
-> index 3339567496e9..5d3aeaf6a70f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -50,11 +50,7 @@ intel_de_read64_2x32(struct intel_display *display, in=
-tel_reg_t reg)
->  static inline void
->  intel_de_posting_read(struct intel_display *display, intel_reg_t reg)
->  {
-> -	intel_dmc_wl_get(display, reg);
-> -
-> -	intel_uncore_posting_read(__to_uncore(display), reg);
-> -
-> -	intel_dmc_wl_put(display, reg);
-> +	intel_de_read(display, reg);
+> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/driv=
+ers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> index b8ea8f5b22d1..2f198e2e2fec 100644
+> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+> @@ -55,33 +55,6 @@ static inline u16 intel_uncore_read16(struct intel_unc=
+ore *uncore,
+>  	return xe_mmio_read16(__compat_uncore_to_mmio(uncore), reg);
 >  }
 > =20
->  static inline void
+> -static inline u64
+> -intel_uncore_read64_2x32(struct intel_uncore *uncore,
+> -			 i915_reg_t i915_lower_reg, i915_reg_t i915_upper_reg)
+> -{
+> -	struct xe_reg lower_reg =3D XE_REG(i915_mmio_reg_offset(i915_lower_reg)=
+);
+> -	struct xe_reg upper_reg =3D XE_REG(i915_mmio_reg_offset(i915_upper_reg)=
+);
+> -	u32 upper, lower, old_upper;
+> -	int loop =3D 0;
+> -
+> -	upper =3D xe_mmio_read32(__compat_uncore_to_mmio(uncore), upper_reg);
+> -	do {
+> -		old_upper =3D upper;
+> -		lower =3D xe_mmio_read32(__compat_uncore_to_mmio(uncore), lower_reg);
+> -		upper =3D xe_mmio_read32(__compat_uncore_to_mmio(uncore), upper_reg);
+> -	} while (upper !=3D old_upper && loop++ < 2);
+> -
+> -	return (u64)upper << 32 | lower;
+> -}
+> -
+> -static inline void intel_uncore_posting_read(struct intel_uncore *uncore=
+,
+> -					     i915_reg_t i915_reg)
+> -{
+> -	struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
+> -
+> -	xe_mmio_read32(__compat_uncore_to_mmio(uncore), reg);
+> -}
+> -
+>  static inline void intel_uncore_write(struct intel_uncore *uncore,
+>  				      i915_reg_t i915_reg, u32 val)
+>  {
+> @@ -90,14 +63,6 @@ static inline void intel_uncore_write(struct intel_unc=
+ore *uncore,
+>  	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+>  }
+> =20
+> -static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
+> -				   i915_reg_t i915_reg, u32 clear, u32 set)
+> -{
+> -	struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
+> -
+> -	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
+> -}
+> -
+>  static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
+>  				       i915_reg_t i915_reg)
+>  {
 
-Reviwed-by: Luca Coelho <luciano.coelho@intel.com>
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
 --
 Cheers,
