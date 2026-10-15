@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1626CC6B39
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 15:46:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02A41CC6B39
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 15:46:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ACA6B10F3A6;
-	Thu, 15 Oct 2026 15:46:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4EE710F910;
+	Thu, 15 Oct 2026 15:46:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7349F10E57C
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 15:46:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FD2010E5CA
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 15:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792079169; x=1823615169;
+ t=1792079172; x=1823615172;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=enD6gKPjx/WDegRWXgavBSym/RXz3AvWAp1IQ3Ufe8g=;
- b=bvI7rthT4wc40iJDujXespTh2w2F2C/U0PsdFuTrcoRRyMJlx9WcZ/O9
- vBMmFTsX/jNsEZDMhi1v/2B1aTsfZBeV46dD1VuYQIaZj4xDOf5ID/Qd2
- 3OzkPnYxVrCK5Josfh5zo1OPMSIwO/5Yd84jtNGHILbNwXi6eZ+qyRI1x
- deyOUehYsX+K9p/S59ZnWg86D40sboibkZe9j7lHyYMs4wdHl3mb3OhYY
- O28vTa8OGTEnc0zW0U1ntu3+mS+uecLvyybgssfORUoeOd/IncXer6aR/
- dqT8atP1eWYWfCC3n+iH8KY0fQ6fOJbDPizGj8ZGivWJ5vTsenGXQpdcM Q==;
-X-CSE-ConnectionGUID: 2eqwP9hGRu+SmtCR3JAEPQ==
-X-CSE-MsgGUID: I74BMIzQRv60+yxAbRgwTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="849792"
+ bh=DPksY4x3jmyv6XioKG6N11ZPiLZ07Ow+ioeigu6V06A=;
+ b=N5BPJOQgADytbj0/g3wK8cyfoPpT96sWIgLrKZObzu8p/dZvdWfwUivV
+ /KmYFd/26DWt7JgsShF8SrtlbPbmgb3359WxHZ0BxY8et+eYkxolPiuFk
+ IoeOzUa+gWnAV0wWWpFSUH8OCCmhTZey0UTX+hOP9FuC48SPkN+MEH0ec
+ SLaxIp1qIs0Z/JyQO+zUQ01Mq+ECHdpdyNWGNkrkPIR+KiN8cWFxXWMoU
+ i04O88o59QgAsw/OGpaAZf0EVsviw40bQJPYnP2zWSfZY0Q/vesuYCnL7
+ 9kxOqgAwJO/w9yrc6byjVqlbs0Apk7yUgoZwT5clgt3z2t9Ph/3zkwT9t Q==;
+X-CSE-ConnectionGUID: PAT4FIg0SJao/L4yGOskfw==
+X-CSE-MsgGUID: 5GJEL5RHT7iBzHqgiNMcNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="849796"
 X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="849792"
+   d="scan'208";a="849796"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 08:46:09 -0700
-X-CSE-ConnectionGUID: 1JFn9YChSLK442rhe06o5g==
-X-CSE-MsgGUID: QgcCCdtiQNiz4RZTkngnnA==
+ 15 Oct 2026 08:46:10 -0700
+X-CSE-ConnectionGUID: 2iBLVQMzSZOIwKncCyABWQ==
+X-CSE-MsgGUID: LsY+iw0YQo6+/d05Hf4Jww==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="3474824"
+   d="scan'208";a="3474831"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.143])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 08:46:08 -0700
+ 15 Oct 2026 08:46:10 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH v2 2/3] drm/xe: revamp hw reserved PAT index checking
-Date: Thu, 15 Oct 2026 16:45:56 +0100
-Message-ID: <20261015154553.483229-7-matthew.auld@intel.com>
+Subject: [PATCH v2 3/3] drm/xe/pat: always check is_valid() when querying an
+ index
+Date: Thu, 15 Oct 2026 16:45:57 +0100
+Message-ID: <20261015154553.483229-8-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261015154553.483229-5-matthew.auld@intel.com>
 References: <20261015154553.483229-5-matthew.auld@intel.com>
@@ -67,128 +68,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This came up recently, where the current code uses the following to
-check for hw reserved/invalid:
+Make the bevaviour consistent. If trying to extract comp or l3 on an
+unknown index, just treat as a programmer error, like we already do for
+coh_mode (implicit).
 
-   if (XE_IOCTL_DBG(xe, !coh_mode))
-
-This works, but is actually confusing since coh_mode being zero is valid
-from the spec pov, but here coh_mode is some driver defined value and
-not the value from the spec.
-
-To avoid any confusion, revamp this to just to pat.valid directly.
-
-v2 (Tejas):
-  - Update the kernel-doc for get_coh_mode() to reflect the updated
-    behavior.
-
-Assisted-by: LLM
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pat.c        |  8 ++++++++
- drivers/gpu/drm/xe/xe_pat.h        | 11 ++++++++++-
- drivers/gpu/drm/xe/xe_vm.c         | 10 +++-------
- drivers/gpu/drm/xe/xe_vm_madvise.c |  8 ++------
- 4 files changed, 23 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_pat.c | 6 +++---
+ drivers/gpu/drm/xe/xe_pat.h | 3 ++-
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index d1ba2325d9e2..d239693b803b 100644
+index d239693b803b..1189d7255c12 100644
 --- a/drivers/gpu/drm/xe/xe_pat.c
 +++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -295,9 +295,17 @@ static const struct xe_pat_table_entry xe3p_lpg_pat_table[] = {
- 	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
- };
+@@ -303,7 +303,7 @@ bool xe_pat_index_is_valid(struct xe_device *xe, u16 pat_index)
  
-+bool xe_pat_index_is_valid(struct xe_device *xe, u16 pat_index)
-+{
-+	WARN_ON(pat_index >= xe->pat.n_entries);
-+	return xe->pat.table[pat_index].valid;
-+}
-+
  u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
  {
- 	WARN_ON(pat_index >= xe->pat.n_entries);
-+	WARN_ON(!xe->pat.table[pat_index].coh_mode ||
-+		xe->pat.table[pat_index].coh_mode > XE_COH_2WAY);
+-	WARN_ON(pat_index >= xe->pat.n_entries);
++	WARN_ON(!xe_pat_index_is_valid(xe, pat_index));
+ 	WARN_ON(!xe->pat.table[pat_index].coh_mode ||
+ 		xe->pat.table[pat_index].coh_mode > XE_COH_2WAY);
  	return xe->pat.table[pat_index].coh_mode;
+@@ -311,13 +311,13 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
+ 
+ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
+ {
+-	WARN_ON(pat_index >= xe->pat.n_entries);
++	WARN_ON(!xe_pat_index_is_valid(xe, pat_index));
+ 	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
  }
  
+ u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index)
+ {
+-	WARN_ON(pat_index >= xe->pat.n_entries);
++	WARN_ON(!xe_pat_index_is_valid(xe, pat_index));
+ 
+ 	return REG_FIELD_GET(XE2_L3_POLICY, xe->pat.table[pat_index].value);
+ }
 diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 6398c3ab4805..f6b0fac2000a 100644
+index f6b0fac2000a..de4d57ef9a4e 100644
 --- a/drivers/gpu/drm/xe/xe_pat.h
 +++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -56,9 +56,18 @@ void xe_pat_init(struct xe_gt *gt);
- int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
- int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p);
+@@ -75,7 +75,7 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
  
-+/**
-+ * xe_pat_index_is_valid - Check whether the given pat_index is valid.
-+ * @xe: xe device
-+ * @pat_index: The pat_index to query
-+ *
-+ * Return: true if the pat_index entry is valid, false if reserved.
-+ */
-+bool xe_pat_index_is_valid(struct xe_device *xe, u16 pat_index);
-+
  /**
-  * xe_pat_index_get_coh_mode - Extract the coherency mode for the given
-- * pat_index.
-+ * pat_index. Index must be valid for the hw.
+  * xe_pat_index_get_comp_en - Extract the compression enable flag for
+- * the given pat_index.
++ * the given pat_index. Index must be valid for the hw.
+  * @xe: xe device
+  * @pat_index: The pat_index to query
+  *
+@@ -88,6 +88,7 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index);
+ #define XE_L3_POLICY_UC		3 /* Uncached */
+ /**
+  * xe_pat_index_get_l3_policy - Extract the L3 policy for the given pat_index.
++ * Index must be valid for the hw.
   * @xe: xe device
   * @pat_index: The pat_index to query
   */
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 095f762bbb6f..320bcb7013d2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3811,17 +3811,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 
- 		pat_index = array_index_nospec(pat_index, xe->pat.n_entries);
- 		(*bind_ops)[i].pat_index = pat_index;
--		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
--		comp_en = xe_pat_index_get_comp_en(xe, pat_index);
--		if (XE_IOCTL_DBG(xe, !coh_mode)) { /* hw reserved */
-+		if (XE_IOCTL_DBG(xe, !xe_pat_index_is_valid(xe, pat_index))) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_WARN_ON(coh_mode > XE_COH_2WAY)) {
--			err = -EINVAL;
--			goto free_bind_ops;
--		}
-+		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-+		comp_en = xe_pat_index_get_comp_en(xe, pat_index);
- 
- 		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 5c7aefc641ee..f2c70657460c 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -393,17 +393,13 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
- 		break;
- 	case DRM_XE_MEM_RANGE_ATTR_PAT:
- 	{
--		u16 pat_index, coh_mode;
-+		u16 pat_index;
- 
- 		if (XE_IOCTL_DBG(xe, args->pat_index.val >= xe->pat.n_entries))
- 			return false;
- 
- 		pat_index = array_index_nospec(args->pat_index.val, xe->pat.n_entries);
--		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
--		if (XE_IOCTL_DBG(xe, !coh_mode))
--			return false;
--
--		if (XE_WARN_ON(coh_mode > XE_COH_2WAY))
-+		if (XE_IOCTL_DBG(xe, !xe_pat_index_is_valid(xe, pat_index)))
- 			return false;
- 
- 		if (XE_IOCTL_DBG(xe, args->pat_index.pad))
 -- 
 2.56.0
 
