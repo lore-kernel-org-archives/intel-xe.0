@@ -4,50 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41AF0CC6B33
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 09:15:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7FCCC6B33
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 09:46:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8430112241;
-	Thu, 15 Oct 2026 09:15:36 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC501112255;
- Thu, 15 Oct 2026 09:15:21 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C31306022A;
- Thu, 15 Oct 2026 09:15:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0BC01F000C4;
- Thu, 15 Oct 2026 09:15:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792055720;
- bh=6Tu5/t0+Q+Ocoy+vScQeHJhL4YXkcQqIYk8EY62cZUY=;
- h=Date:From:To:Cc:Subject;
- b=hzthE7ypCgW8ui4eXUgy3hwua8/wgbc3JMV8TI49mPT1niKRieUFUWnG1Qvm9yfPW
- NboeQRZgJTqfbPPvRlmEVQTG10oXptd0tzGvb6vx3CsT+qsQb4vUz6S2nkzUduew+J
- WkG4maRwRMZX5kNoQOvlA3o0LLFXBSrSmNl9pPg6edyS1mNJRakCpaEGNDa55r3Nq8
- 6Kz4crjPVWBH/1ZkoaQ8mci9BdsyU9G+FFtquAC4gwgNKvQiJbqhNhgZA5UeifJsJ2
- 3LZmd+ghVJp7g5aOyOf+UdKeTxgSsQ18syDILrfRDjVJh0hRfSie07kGNsB/ySP2id
- P323IUgMuHO9g==
-Date: Thu, 15 Oct 2026 11:15:15 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <atCZfcTvshZx6mcA@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F00310E247;
+	Thu, 15 Oct 2026 09:46:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00DC4112282
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 09:45:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792057558; x=1823593558;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=W29oPGDGfFR4guBQpgOoUnUMS39Ytynog1JO+e1BpoQ=;
+ b=Uv6cWQ36L0SQsc1OQOO1YNW9HFu9RsHUM5CbmcsKEF0B0MX94n9/XZip
+ ygvmdQQQ8AcDjOTfPBN4TTD49PgiMo4KtvNPMy4NXh3d8sHjIv7eiFLIR
+ Qt+TNKj1Z2i2vhNn0NU3lBn4Z1fLCmQ3gwTOP+nSCl06zoFhzvIgLwiv8
+ QsXxpHcHU73mOgWrZrIm4/Y3PJl/TcIxQj4UWLJm4FgkgWqITAXdHCmCL
+ MCUvnLs8cnRGtFKB0QEI50462PY+0gqeCXDWVaBaJ1WVL3pURijxrx76F
+ uFFl2UFr1WEkVuatAwn/l3jDAMUiyyjHu6zt/wiABHgALdL0ofrHrxJFk Q==;
+X-CSE-ConnectionGUID: 6Jb0WDP0Rr25XU3+FWK2Rg==
+X-CSE-MsgGUID: uN0cC+vnSBmz9KYe898waQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="823559"
+X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
+   d="scan'208";a="823559"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2026 02:45:57 -0700
+X-CSE-ConnectionGUID: p1/fhwqcRX+9NVQHC7srug==
+X-CSE-MsgGUID: deIYahvASHWcGpw8qj25zA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
+   d="scan'208";a="1563356"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2026 02:45:53 -0700
+Date: Thu, 15 Oct 2026 11:45:51 +0200
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com, pravalika.gurram@intel.com
+Subject: Re: [PATCH v4 06/12] drm/xe/cper: Prepare Intel CPER error info
+ records
+Message-ID: <atCgz0lfetLrUyao@black.igk.intel.com>
+References: <20261009104602.1075405-14-badal.nilawar@intel.com>
+ <20261009104602.1075405-20-badal.nilawar@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="mmtizqyengsviu7m"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <20261009104602.1075405-20-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,111 +72,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, Oct 09, 2026 at 04:16:09PM +0530, Badal Nilawar wrote:
+> Prepare xe_cper_sec_intel_error_info records from RAS info queue data.
+> Depending on the error class type, detail or aggregate, one or more error
+> info records may be generated and embedded in the CPER record.
+> 
+> Assisted-by: Copilot:Claude-Opus-5.5
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+> v4:
+>  - Move struct xe_cper_einfo_entry to xe_cper_types.h (Raag)
+>  - Use kzalloc_flex()/kzalloc_objs() (Raag)
+>  - Allocate info queue buffer from reported total size (Raag)
+> ---
+>  drivers/gpu/drm/xe/xe_cper.c       | 247 +++++++++++++++++++++++++++--
+>  drivers/gpu/drm/xe/xe_cper_types.h |  54 ++++++-
+>  2 files changed, 290 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index 1000c78b41e9..7acb503efd11 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -78,16 +78,22 @@ static u64 cper_timestamp_now(void)
+>  	return ts;
+>  }
+>  
+> +static void fill_cper_error_class(struct xe_cper_error_class *dst,
+> +				  const struct xe_ras_error_class *src)
+> +{
+> +	dst->error_type = src->common.severity;
+> +	dst->error_component = src->common.component;
+> +	dst->tile = src->product.unit.tile;
+> +	dst->instance = src->product.unit.instance;
+> +	dst->cause = src->product.cause.cause;
+> +}
 
---mmtizqyengsviu7m
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
+No needless refactoring, please introduce this function in the original
+patch. Assuming you'll reuse struct xe_ras_error_class here, this can
+simply be a memcpy().
 
-Hi Dave, Sima,
+...
 
-Here's this week drm-misc-fixes PR
+> +/**
+> + * struct xe_cper_sec_intel_error_info - Variable-length Intel GPU error payload
 
-Maxime
+Do we really need to add 'error' everywhere?
 
-drm-misc-fixes-2026-10-15:
-A revert for the blend mode property patch being applied twice and a
-patch to reset the device when frozen in virtio, a power state fix for
-vc4, a Kconfig fix for amdxdna, an error handling, reference counting,
-and a null pointer dereference fix for rocket, a revert for dma-buf for
-a commit introducing a dangling reference, a locking fix for exec, and a
-fix for panthor to handle 10-core GPUs.
-The following changes since commit 6ccf996a0dec1852dab94ad865f27b4904750e12:
+> + * Appended after &xe_cper_sec_intel_err_hdr when detailed per-event data
+> + * is available. The @event_queue flexible array holds @event_queue_count
+> + * packed &xe_intel_priv_event_entry records.
+> + */
+> +struct xe_cper_sec_intel_error_info {
+> +	/** @error_class: Error classification */
+> +	struct xe_cper_error_class error_class;
 
-  drm/nouveau: Skip the Turing CE workaround object for non-GR channels (20=
-26-10-08 18:14:46 -0400)
+'counter'
 
-are available in the Git repository at:
+> +	/** @error_count: Total number of errors recorded */
+> +	u32 error_count;
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
-26-10-15
+'count'
 
-for you to fetch changes up to c347fef5f8f8927985bd67835331ce4cf7ff43a4:
+> +	/** @event_queue_length: Total byte size of the @event_queue array */
+> +	u32 event_queue_length;
 
-  drm/panthor: fix immortalis condition (2026-10-14 16:57:52 +0100)
+'queue_length'
 
-----------------------------------------------------------------
-A revert for the blend mode property patch being applied twice and a
-patch to reset the device when frozen in virtio, a power state fix for
-vc4, a Kconfig fix for amdxdna, an error handling, reference counting,
-and a null pointer dereference fix for rocket, a revert for dma-buf for
-a commit introducing a dangling reference, a locking fix for exec, and a
-fix for panthor to handle 10-core GPUs.
+> +	/** @event_queue_count: Number of entries in @event_queue */
+> +	u32 event_queue_count;
 
-----------------------------------------------------------------
-Andy Yan (1):
-      MAINTAINERS: update my email address
+'queue_count'
 
-Christian K=F6nig (1):
-      drm/exec: don't immediately add prelocked obj to array of locked objs
+> +	/** @event_queue: Packed array of &xe_intel_priv_event_entry records */
+> +	u8 event_queue[];
 
-Dave Stevenson (1):
-      drm/vc4: hdmi: Move packet RAM enable to PM runtime
+'queue'
 
-Dmitry Osipenko (1):
-      Revert "drm/virtio: Add pixel blend mode property to cursor plane"
+> +};
+> +
+> +/**
+> + * struct xe_intel_priv_event_entry - Single error event in the event queue
 
-Erik Faye-Lund (1):
-      drm/panthor: fix immortalis condition
+All cper struct must contain 'cper' naming. Also, redundant 'event'.
 
-Guangshuo Li (1):
-      accel/rocket: clear rdev on device init failure
+> + * Each entry is variable-length; @entry_length gives the byte size of
+> + * @metadata only (not including @entry_length or @timestamp).
+> + */
+> +struct xe_intel_priv_event_entry {
+> +	/** @entry_length: Byte length of the @metadata payload */
+> +	u32 entry_length;
 
-Heiko Stuebner (1):
-      MAINTAINERS: Add myself as reviewer for the Rocket NPU driver
+'length'
 
-Igor Paunovic (2):
-      accel/rocket: search every core slot when a core is removed
-      accel/rocket: search every core slot when looking up a scheduler
+> +	/** @timestamp: Timestamp of this event, in firmware ticks */
+> +	u64 timestamp;
+> +	/** @metadata: Event-specific payload bytes */
+> +	u8  metadata[];
 
-Jianfeng Liu (1):
-      Revert "dma-buf: Make DMABUF_DEBUG default to y on DEBUG_KERNEL kerne=
-ls"
+Nit: Fix the spacing.
 
-Liam R. Howlett (1):
-      accel/amdxdna: Fix Kconfig invalid configuration
+> +};
+> +
+>  /**
+>   * struct xe_cper_nonstd_record - Intel GPU CPER record
+>   *
+>   * Contains the standard CPER record header, section descriptor, and the
+> - * Intel error section header.
+> + * Intel error section header. A &xe_cper_sec_intel_error_info payload
+> + * may be appended dynamically.
+>   */
+>  struct xe_cper_nonstd_record {
+>  	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
+> @@ -122,4 +160,18 @@ struct xe_platform_id_entry {
+>  	guid_t    platform_id;
+>  };
+>  
+> +/**
+> + * struct xe_cper_einfo_entry - One CPER error info payload and its source counter
+> + */
+> +struct xe_cper_einfo_entry {
+> +	/** @hdr: Error class and counter value used for the CPER section header */
+> +	struct xe_ras_info_queue_dynamic_counter_hdr hdr;
+> +	/** @einfo: Allocated error info payload, NULL if none */
+> +	struct xe_cper_sec_intel_error_info *einfo;
+> +	/** @einfo_size: Byte size of @einfo including the event queue */
+> +	u32 einfo_size;
 
-Yuho Choi (1):
-      drm/virtio: Reset device before deleting virtqueues on freeze
+You're using length and size interchangeably. Whatever your preference,
+please use consistent naming for the terminology (in all places where
+applicable).
 
- MAINTAINERS                            |  7 ++--
- drivers/accel/amdxdna/Kconfig          |  1 +
- drivers/accel/rocket/rocket_device.c   |  2 +
- drivers/accel/rocket/rocket_device.h   |  1 +
- drivers/accel/rocket/rocket_drv.c      |  7 +++-
- drivers/accel/rocket/rocket_job.c      |  2 +-
- drivers/dma-buf/Kconfig                |  2 +-
- drivers/gpu/drm/drm_exec.c             | 77 ++++++++++++++++++++----------=
-----
- drivers/gpu/drm/panthor/panthor_hw.c   |  2 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c         | 20 +++++----
- drivers/gpu/drm/virtio/virtgpu_drv.c   |  1 +
- drivers/gpu/drm/virtio/virtgpu_plane.c | 13 ------
- include/drm/drm_exec.h                 | 15 ++++---
- 13 files changed, 82 insertions(+), 68 deletions(-)
+Raag
 
---mmtizqyengsviu7m
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCatCZowAKCRAnX84Zoj2+
-dpxEAX0T5vyY7D63mEFBgwsxq0l/adl4E5xKoREeaagSWhqzBA/jxlAvNsjZZVzv
-uZ8uRJwBgMhtRTyyUzQRSW7207tJ+4OGwHORHvN7jub9Fae5IdQFLwvMCP8CkXh/
-2j71M24Peg==
-=KcGx
------END PGP SIGNATURE-----
-
---mmtizqyengsviu7m--
+> +	/** @timestamp: Timestamp of the first occurrence of this error class */
+> +	u64 timestamp;
+> +};
+> +
+>  #endif
+> -- 
+> 2.54.0
+> 
