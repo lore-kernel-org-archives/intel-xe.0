@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11273CC6B2F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 08:11:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D073CC6B34
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 08:11:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2554112173;
-	Thu, 15 Oct 2026 08:11:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25DE81121A8;
+	Thu, 15 Oct 2026 08:11:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3096010EB9B
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 08:11:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E67010EB9D
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 08:11:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792051872; x=1823587872;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PJBqT7+k5NZswYIxqLydzgpzZXbkfWtPVl03GgYiQog=;
- b=AXAI83NalFE0Ct8UJnFAUkHkRnmQqmqT0k8fL0zSaq8iO5hTornj0w7D
- aj7dmqHyV58dDJcq9k/Wvywgp/8dHEYOgEEabBFNvcNRR0O3/Zef8RKNr
- tzm/YOPJaenAQQ+PAikPRtRAv2RnCs64psk0EJgbzknthD5nQBBF6Pmod
- 9RYDrhXKLvvT66aDIiSL2Jlu3lYlIan1KWeRIcX0P4ID2WR9MU3VrOlx3
- bVuibzJtP4JvQtBYDu6Sbwci8rW3dSdXo2ZY+eClXpIXQYqZIseri66Cl
- 0yrVEQYtDq99HQe0OdCYm4LmE/6/70LyyABEdcMUGELQNVqBkwvPL8Y0B A==;
-X-CSE-ConnectionGUID: 8O5RXdqRR2227Yo3o/dvxw==
-X-CSE-MsgGUID: xMIEgHi3RreQFSTmaLFGow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="719081"
+ t=1792051875; x=1823587875;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hjFMcg1i7XfCxBkLJQtxv91+yH0rqkQ39tgXzvByeYM=;
+ b=jwYa54TNOgJdhvIKpXrqTS2Hyv/UVgsSQGbGvgciFUilYEzB8V9bS3Tr
+ +OOsOM/6w2O9kELJFqkYcttO5HPDeb++LU1DRG/x9dsYA07cmBQxVmeQC
+ rz9CDFXkh7p93x/9pRMaLxWKgEmVPcdT2oE3fDBKa2gpPgJNW69i31Rpb
+ KNEyheKZBKHJH7cXpRVr/0rDmLvdqxcfV9CAeUSZvnRgJxUdhM0qoiV11
+ BqMf/mgYsKMM3urwrvMexOic18MA8hKv20XCl+R/cInOI8RSQX8et73f/
+ 4XssfdabNY6/DNxJ1HqZv3bSQj/VeJlj+Ganb6PKvGh6p+hsCRQvLS4OX g==;
+X-CSE-ConnectionGUID: vD/yxfCURYiy7CEkbqQYxg==
+X-CSE-MsgGUID: DXPkYJQIS6+RmWJoo7gWkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="719078"
 X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="719081"
+   d="scan'208";a="719078"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 01:11:02 -0700
-X-CSE-ConnectionGUID: rI45GU22QCKpdw6Xm6VUJg==
-X-CSE-MsgGUID: EQ9gznG7SB6wdFTN4i8+Bw==
+ 15 Oct 2026 01:10:59 -0700
+X-CSE-ConnectionGUID: 9OhEqTrCTq64mpAEogFu2Q==
+X-CSE-MsgGUID: TPBlHwChR+CYNwdV3Kq+ig==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="1541481"
+   d="scan'208";a="1541473"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa005.jf.intel.com with ESMTP; 15 Oct 2026 01:11:00 -0700
+ by orviesa005.jf.intel.com with ESMTP; 15 Oct 2026 01:10:58 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
  matthew.d.roper@intel.com, matthew.brost@intel.com,
  mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v8 1/7] drm/xe/gt: Use GT ordered workqueue for wedging
-Date: Thu, 15 Oct 2026 13:40:15 +0530
-Message-ID: <20261015081042.415942-2-raag.jadav@intel.com>
+Subject: [PATCH v8 0/7] Introduce xe_wedge
+Date: Thu, 15 Oct 2026 13:40:14 +0530
+Message-ID: <20261015081042.415942-1-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261015081042.415942-1-raag.jadav@intel.com>
-References: <20261015081042.415942-1-raag.jadav@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,151 +65,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, xe_gt_declare_wedged() stops GuC CT and initiates exec queue
-teardown synchronously. This can result in tdr timeout in cases where
-the device is declared wedged while jobs are still in-flight.
+In the history of xe technical debt, this series takes one more step and
+consolidates all wedging implementation into a dedicated xe_wedge component.
 
-Introduce a worker for GT specific wedge handling and queue the teardown
-on GT ordered workqueue, so we don't disrupt the scheduler while jobs
-are still in-flight.
+While at it, this fixes a few pre-existing issues related to wedge handling.
+Detailed description in commit message.
 
-While at it, introduce for_each_initialized_gt() macro and use it for
-wedging GT. This helps avoid races in case the device is declared wedged
-in probe sequence before GT is initialized.
+v1: https://patchwork.freedesktop.org/series/172727/
 
-Fixes: c9474b726b93 ("drm/xe: Wedge the entire device")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
 v2: Split fixes into separate patches (Rodrigo, Michal)
+    Also move struct xe_wedge and wedged_mode debt to xe_wedge (Lukasz, Michal)
+    Naming and aesthetic adjustments (Lukasz, Michal)
+
+v3: Respect the component namespace (Rodrigo)
+    Avoid chaining header includes (Rodrigo)
+    Squash debugfs changes with xe_wedge patch (Lukasz)
+
 v4: Introduce for_each_initialized_gt() (Michal)
+    Include xe_sriov.h (Rodrigo)
+
 v5: Flush GT wedge worker to avoid races (Sashiko)
+    Drop IRQ safe wedging for its flawed design
+
 v6: Move wedge worker initialization to xe_gt_init_early() (Rodrigo)
     Don't flush GT wedge worker to avoid deadlock (Sashiko)
-v7: Guard GT wedge worker with runtime PM (Rodrigo)
----
- drivers/gpu/drm/xe/xe_device.c   |  2 +-
- drivers/gpu/drm/xe/xe_device.h   |  4 ++++
- drivers/gpu/drm/xe/xe_gt.c       | 17 +++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_types.h |  9 +++++++++
- 4 files changed, 29 insertions(+), 3 deletions(-)
+    Include IRQ safe wedging with redesign
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index db0b883322ef..c7d8aea56f58 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1436,7 +1436,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 			    WEDGED_URL, XE_BUG_URL);
- 	}
- 
--	for_each_gt(gt, xe, id)
-+	for_each_initialized_gt(gt, xe, id)
- 		xe_gt_declare_wedged(gt);
- 
- 	if (xe_device_wedged(xe)) {
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 83d6dafab53c..80bda9b548d5 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -139,6 +139,10 @@ static inline bool xe_device_uc_enabled(struct xe_device *xe)
- 	for_each_gt((gt__), (tile__)->xe, (id__)) \
- 		for_each_if((gt__)->tile == (tile__))
- 
-+#define for_each_initialized_gt(gt__, xe__, id__) \
-+	for_each_gt((gt__), (xe__), (id__)) \
-+		for_each_if(READ_ONCE((gt__)->initialized))
-+
- static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
- {
- 	return &gt->pm.fw;
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index bc9bf6f0b5a7..d85406ba6f06 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -175,6 +175,7 @@ static void xe_gt_enable_comp_1wcoh(struct xe_gt *gt)
- }
- 
- static void gt_reset_worker(struct work_struct *w);
-+static void gt_wedge_worker(struct work_struct *w);
- 
- static int emit_job_sync(struct xe_exec_queue *q, struct xe_bb *bb,
- 			 long timeout_jiffies, bool force_reset)
-@@ -546,6 +547,7 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	xe_gt_mcr_init_early(gt);
- 	xe_pat_init(gt);
- 
-+	INIT_WORK(&gt->wedge.worker, gt_wedge_worker);
- 	return 0;
- }
- 
-@@ -724,6 +726,7 @@ static void xe_gt_fini(void *arg)
- 	struct xe_gt *gt = arg;
- 	int i;
- 
-+	disable_work_sync(&gt->wedge.worker);
- 	gt_reset_worker_disable(gt);
- 
- 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
-@@ -784,6 +787,8 @@ int xe_gt_init(struct xe_gt *gt)
- 			return err;
- 	}
- 
-+	/* Must be last */
-+	WRITE_ONCE(gt->initialized, true);
- 	return 0;
- }
- 
-@@ -1204,6 +1209,15 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe_gt *gt)
- 	return NULL;
- }
- 
-+static void gt_wedge_worker(struct work_struct *w)
-+{
-+	struct xe_gt *gt = container_of(w, typeof(*gt), wedge.worker);
-+
-+	guard(xe_pm_runtime)(gt_to_xe(gt));
-+	xe_uc_declare_wedged(&gt->uc);
-+	xe_tlb_inval_reset(&gt->tlb_inval);
-+}
-+
- /**
-  * xe_gt_declare_wedged() - Declare GT wedged
-  * @gt: the GT object
-@@ -1215,6 +1229,5 @@ void xe_gt_declare_wedged(struct xe_gt *gt)
- {
- 	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
- 
--	xe_uc_declare_wedged(&gt->uc);
--	xe_tlb_inval_reset(&gt->tlb_inval);
-+	queue_work(gt->ordered_wq, &gt->wedge.worker);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 628911346455..c00a7c171f80 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -233,6 +233,12 @@ struct xe_gt {
- 		struct work_struct worker;
- 	} reset;
- 
-+	/** @wedge: state for GT wedge */
-+	struct {
-+		/** @wedge.worker: worker for GT wedge to be done async */
-+		struct work_struct worker;
-+	} wedge;
-+
- 	/** @tlb_inval: TLB invalidation state */
- 	struct xe_tlb_inval tlb_inval;
- 
-@@ -419,6 +425,9 @@ struct xe_gt {
- 
- 	/** @eu_stall: EU stall counters subsystem per gt info */
- 	struct xe_eu_stall_gt *eu_stall;
-+
-+	/** @initialized: GT is initialized */
-+	bool initialized;
- };
- 
- #endif
+v7: Guard GT wedge worker with runtime PM (Rodrigo)
+    Retain xe_pm_runtime_get_noresume() in IRQ context (Rodrigo)
+
+v8: Rebase
+
+Raag Jadav (7):
+  drm/xe/gt: Use GT ordered workqueue for wedging
+  drm/xe: Drop xe_device_set_wedged_method()
+  drm/xe: Move xe_device_wedged_fini() registration to
+    xe_device_probe_early()
+  drm/xe: Make xe_device_declare_wedged() IRQ safe
+  drm/xe/pci_error: Flush GT wedge worker before bus reset
+  drm/xe: Introduce xe_wedge
+  drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
+ Documentation/gpu/xe/xe_device.rst          |   2 +-
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   3 +-
+ drivers/gpu/drm/xe/xe_amc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_debugfs.c             |  66 +----
+ drivers/gpu/drm/xe/xe_device.c              | 190 +-------------
+ drivers/gpu/drm/xe/xe_device.h              |  14 +-
+ drivers/gpu/drm/xe/xe_device_types.h        |  28 +--
+ drivers/gpu/drm/xe/xe_gsc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |  26 +-
+ drivers/gpu/drm/xe/xe_gt.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |   3 +-
+ drivers/gpu/drm/xe/xe_gt_types.h            |   9 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_guc.h                 |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   7 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  11 +-
+ drivers/gpu/drm/xe/xe_guc_rc.c              |   5 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  14 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c       |   3 +-
+ drivers/gpu/drm/xe/xe_mert.c                |   5 +-
+ drivers/gpu/drm/xe/xe_pci_error.c           |  13 +-
+ drivers/gpu/drm/xe/xe_ras.c                 |  11 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c            |   3 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |   4 +-
+ drivers/gpu/drm/xe/xe_uc.c                  |   6 +-
+ drivers/gpu/drm/xe/xe_uc.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_wedge.c               | 262 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wedge.h               |  24 ++
+ drivers/gpu/drm/xe/xe_wedge_types.h         |  44 ++++
+ 31 files changed, 444 insertions(+), 331 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
+
 -- 
 2.43.0
 
