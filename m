@@ -4,56 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFAD2CCA464
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 19:02:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8BD8CC6B38
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 19:02:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A83C8112450;
-	Thu, 15 Oct 2026 19:02:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4122112450
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 19:02:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792090938; x=1823626938;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CKTjPiavFJZSbrS+eapy+2bFXbt4VaXvnJEoa4rN144=;
- b=gmuIAdrxChfRM6aYPFSZnst7svGKJgw0NLpxNiMg/v2a6Pbhm+oQxYz/
- dURVNVSxEFdaLRnMHoFYytQCGVJOdCB/V2ftz1UAsxriBem7WftgTzyfh
- nBGf+P0myXBnWuNSXp6MjSASYm/O8X//D2leVc0AdKz5BZjOwtX1qcTYL
- son7HFTW/BOs9r6m8htwqbOsm8eVUVKr3+g7y+fl4rye4CnAs2QrbRDcn
- 5g6pnW/j9oQ6Vd5K1gGlq0MTYbdKZ0ixtvHLfJKmZpjHOZEyLvmHo0fv9
- HF9tSOq6NmZJrOhh0kIIUB+dlMjxZi9AoalTnUjDDZZrOx/Mq1UKM89yM w==;
-X-CSE-ConnectionGUID: EIM0RY3vRvC1e7gSYzlf1w==
-X-CSE-MsgGUID: 7agg6iTbRNKhr+q0hSp4bw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="751514"
-X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="751514"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 12:02:17 -0700
-X-CSE-ConnectionGUID: T8VZhpSoSUWc1uN+1y5MuQ==
-X-CSE-MsgGUID: GYx0yE94TsCnm8tQJtp1FA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="1774606"
-Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 12:02:14 -0700
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v3 5/9] drm/xe/hwmon: expose pwm[1-3]_enable
-Date: Fri, 16 Oct 2026 00:31:08 +0530
-Message-Id: <20261015190113.1268522-6-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261015190113.1268522-1-karthik.poosa@intel.com>
-References: <20261015190113.1268522-1-karthik.poosa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 796D511244F;
+	Thu, 15 Oct 2026 19:02:27 +0000 (UTC)
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2848B112453;
+ Thu, 15 Oct 2026 19:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:Cc:To:From:Subject:
+ MIME-Version:Date:Message-ID:From:Reply-To;
+ bh=SVb+7cS4dcSiUQsKIl7RV5VD7PexHKN03R6fUwZpIk0=; b=gccOHAY1JcCI24BGwBXiec02gh
+ TqvS0KynGbvZRKEnWC+i3WOcwlLxgm/XXzdJU3GyW5ovcBrn58SG9ep2CecI0HR0GuWGIIyPsxIRB
+ vZd4GcEAEYZurBHv+LTqDzV29wQp5YmXCrkPT6Y8kxnFunD9vWBU3R8vkVfPzwLrsBYlFHPuYuUNo
+ LKkOWdZQFeoyaK/yLfgovsi0Ct4pbTKmb74/DyKARva6SfrvfOmByIKRSU2SgrnQD5eV/VfwubK9W
+ wOZD3FdEM3njyAJWksGpEpuoymAnuLqnn8VQsVyq8QopYRfg1IjtGHXe8U442ERTrBbphGbC7vkHS
+ cRDzngTg==;
+Received: from [179.190.179.102] (helo=[192.168.1.27])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1xHQiQ-000h6O-TL; Thu, 15 Oct 2026 21:02:11 +0200
+Message-ID: <73185e9c-bcf6-42ba-b003-75f1adc41c86@igalia.com>
+Date: Thu, 15 Oct 2026 16:02:03 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe/lrc: Restore CTX_CS_INDIRECT_CTX_OFFSET
+ programming for ADL
+From: Helen Koike <koike@igalia.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: rodrigo.vivi@intel.com, demarchi@kernel.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ tvrtko.ursulin@igalia.com, linux-kernel@vger.kernel.org,
+ kernel-dev@igalia.com
+References: <20260930170434.317671-1-koike@igalia.com>
+ <20260930232937.GQ730887@mdroper-desk1.amr.corp.intel.com>
+ <be2b367a-870b-4b93-84dc-eb36542fee82@igalia.com>
+Content-Language: en-US
+In-Reply-To: <be2b367a-870b-4b93-84dc-eb36542fee82@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,310 +59,284 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose pwm[1-3]_enable to control the fan operating mode through
-the hwmon interface.
- 
-Mode 0 forces the fan to run at full speed.
-Mode 1 enables user fan-table control.
-Mode 2 restores firmware-controlled fan management.
- 
-Document pwm[1-3]_enable in the Xe hwmon ABI.
 
-v2:
- - Use xe helpers for dmesg logs.
- - Update kernel version in Xe hwmon documentation.
- - Correct level of some dmesg logs.
 
-v3:
- - Each pwm_enable mode now sets its own state; drop the redundant
-   post-switch pwm_enable_mode/is_full_speed update. (Badal)
- - Fix misindented dead assignment in the stock-table branch.
- - Make error handling consistent across pwm_enable modes. (Badal)
- - Document the pwm[1-3] manual-mode write precondition in the ABI. (Badal)
- - Use xe_pcode_write() instead of the timeout variant api as it is not
-   needed.
+On 10/1/26 11:17 AM, Helen Koike wrote:
+> Hi Matt,
+> 
+> Thank you for your reply, please see my comments below.
+> 
+> On 9/30/26 8:29 PM, Matt Roper wrote:
+>> On Wed, Sep 30, 2026 at 02:04:30PM -0300, Helen Koike wrote:
+>>> CTX_CS_INDIRECT_CTX_OFFSET default value is not retrieved from the GPU
+>>> by inhibit+context save mechanism since it is not part of the Engine
+>>> Context. Thus, at restore, 0x0 is programed back to the GPU, which is
+>>> an invalid value according to the PRM.
+>>
+>> I don't follow this explanation, but I don't think this is quite right.
+>> For example, CS_INDIRECT_CTX_OFFSET definitely is part of the in-memory
+>> context image (the CTX_CS_INDIRECT_CTX_OFFSET is the offet into that
+>> context image where it's found). Let me try to explain the relevant
+>> flows here.
+>>
+>> When hardware first comes up, it contains "hardware default" values for
+>> various registers.  For CS_INDIRECT_CTX_OFFSET, the hardware's default
+>> value is 0xD, so that's the value the register will have when the
+>> hardware first wakes up or powers on.
+>>
+>> For registers that are part of an engine's LRC, whenever a regular
+>> context switch happens, the current copy of the register gets written
+>> out to memory in the outgoing context's LRC image, and a new value is
+>> loaded from memory into the register from the incoming context's LRC
+>> image.
+>  >> "Restore inhibit" is a special case that gets used at one place during
+>> initial driver startup where we tell the hardware "switch to this
+>> context but do *not* load any register values from memory for the
+>> context that we're switching into."  When restore inhibit is used, the
+>> currently-present register values remain unchanged by the context
+>> switch and the only thing that changes is the hardware's idea of which
+>> context is currently "active."
+> 
+> 
+> The problem is that CTX_CS_INDIRECT_CTX_OFFSET is not inhibit by Restore 
+> inhibit.
+> 
+> If you check the documentation on https://www.intel.com/content/www/us/ 
+> en/docs/graphics-for-linux/developer-reference/1-0/tiger-lake.html , you 
+> can find:
+> 
+> PRM Vol 8:
+> 
+> "When a context is submitted for the first time for execution, SW can 
+> inhibit engine from restoring engine context by setting the "Engine 
+> Context Restore Inhibit" bit in CTXT_SR_CTL register of the
+> logical ring context. This will avoid software from populating the 
+> Engine Context. Software must program all the state required to 
+> initialize the engine in the ring buffer which would initialize the
+> hardware state. On a subsequent context save engine will populate the 
+> engine context with appropriate values."
+> 
+> And also:
+> 
+> ""INDIRECT_CTX" and "INDIRECT_CTX_OFFSET" registers are part of the 
+> context image and gets restored as part of the given
+> context's context restore flow, these registers are part of the ring 
+> context image which are prior to
+> engine context restore and hence the requirement of the offset being in 
+> engine context restore."
+> 
+> In other words: "INDIRECT_CTX_OFFSET" is not part of the Engine Context 
+> (see table on page 49 of the pdf from Vol 8, Engine Context is marked in 
+> dark blue), it is part of the Ring Context, so Restore Inhibit doesn't 
+> afect this register, which means it programs 0x0 back to the GPU, which 
+> is invalid.
+> 
+> 
+> Without this patch I get the following:
+> 
+> :/ # cat /sys/kernel/debug/dri/0000:00:02.0/tile0/gt0/default_lrc_rcs
+> [0x00000000] MI_NOOP (1 dwords)
+> [0x11081019] MI_LOAD_REGISTER_IMM: 13 regs
+>   - 0x2244 = 0xffff0008
+>   - 0x2034 = 0x000000a8
+>   - 0x2030 = 0x000000a8
+>   - 0x2038 = 0x00530000
+>   - 0x203c = 0x00003001
+>   - 0x2168 = 0x00000000
+>   - 0x2140 = 0x00200094
+>   - 0x2110 = 0x00000000
+>   - 0x21c0 = 0x00543001
+>   - 0x21c4 = 0x00542001
+>   - 0x21c8 = 0x00000000 ---> Zeroed
+>   - 0x2180 = 0x00000080
+>   - 0x22b4 = 0x00000000
+> 
+> 
+>>
+>> So the overall flow for initialization is:
+>>
+>>   * Hardware powers up / comes out of reset; INDIRECT_CTX_OFFSET should
+>>     be 0xD.
+>>
+>>   * Driver allocates memory to serve as the storage space for the
+>>     "default LRC" (aka "golden context"); once initialization is
+>>     complete, this will be the template that is copied to create new
+>>     LRCs.  The registers/state in the default_lrc should be a copy of the
+>>     hardware default values, with various adjustments the driver makes
+>>     for things that we want modified for every context by default (e.g.,
+>>     register changes requested by various hardware workarounds).
+>  > >   * Driver writes (with CPU) a basic LRI with the early register 
+> offsets
+>>     (but not their values) into the LRC storage space.  This is just so
+>>     that the hardware says "yep, this looks like an LRC" when we hand it
+>>     over for a context switch.  Although we're only filling in register
+>>     offsets and not values, this doesn't actually mean that registers are
+>>     being set to 0 or anything like that.  Honestly I'm not sure if the
+>>     hardware even truly needs us to do this anymore on modern hardware.
+>>
+>>   * Driver submits the default LRC to the hardware with the "restore
+>>     inhibit" flag.  This means that the hardware does *not* load any
+>>     register values from memory like it usually would (i.e., live
+>>     INDIRECT_CTX_OFFSET remains at 0xD)....
+> This is not true for INDIRECT_CTX_OFFSET as stated above (unless I 
+> missed something).
+> 
+>>     ...The batch buffer submitted on
+>>     the context adjusts various registers away from their hardware
+>>     defaults if there are non-default settings we want present on every
+>>     context in the future (e.g., settings requested by various hardware
+>>     workarounds).
+>>
+>>   * The batch buffer finishes executing, so the live register values are
+>>     now the hardware default values, with a handful of modifications.
+>>     Since we don't have any workarounds that adjust INDIRECT_CTX_OFFSET
+>>     today, it's still sitting at its default value of 0xD.
+> 
+> This is not true for INDIRECT_CTX_OFFSET as stated above (unless I 
+> missed something).
+> 
+>>
+>>   * The driver submits a second context to the hardware with a noop
+>>     batch buffer.  This context switch causes the live register values
+>>     (including 0xD in INDIRECT_CTX_OFFSET) to get written out to the
+>>     the first context (default_lrc)'s memory storage.
+>>
+>>   * ...driver finishes initialization and user starts running real
+>>     programs...
+>>
+>>   * When a userspace process creates a new context, the "default_lrc"
+>>     snapshot is copied as the starting point for the new context.  After
+>>     that, various registers in the LRC are updated with unique
+>>     context-specific values as necessary.  So every context created on
+>>     the system should have INDIRECT_CTX_OFFSET set to 0xD.
+>>
+> 
+> This is not true for INDIRECT_CTX_OFFSET as stated above (unless I 
+> missed something).
+> 
+>>
+>> So I don't see any way that CTX_CS_INDIRECT_CTX_OFFSET could become 0.
+>> Unless there's a hardware bug, the hardware should come up with a value
+>> of 0xD, that value winds up getting recorded in the default_lrc
+>> snapshot, and then every context we make later on down the road inherits
+>> that value.  While we could change it to another value if we wanted the
+>> indirect context batchbuffer to run at a different point during the
+>> context save/restore process, we don't have a need to do that.
+>>
+>> If you're seeing problems related to this register, I'd have a few
+>> questions to try to narrow down what's going on:
+>>
+>>   * Are you seeing problems on all engines or just a specific one?
+> 
+> I understand gt_engine_needs_indirect_ctx() returns true for Alder Lake 
+> only on XE_ENGINE_CLASS_RENDER, so this is the only one I tested.
+> 
+>>
+>>   * Can you provide the contents of
+>>     /sys/kernel/debug/dri/0/gt0/default_lrc_* ; the value of this
+>>     register should be at dword offset (0x16 + 1), so we can see if it is
+>>     getting stored in memory correctly or not.
+>>
+> 
+> pasted above.
+> 
+>>
+>> Do note that Xe1 platforms like ADL aren't officially supported by the
+>> Xe driver, so it's quite possible that there might be some hardware
+>> workarounds for ADL that we just never implemented on Xe that could be
+>> causing a problem.  Xe's force_probe support is just for usage by KMD
+>> driver developers, so it was never expected to be fully stable or usable
+>> for general end-user use cases.
+> 
+> I see, thanks for the note.
+> 
+> Even so, I believe that writting a default value in the beggining to 
+> make ADL happy should't be a problem.
+> 
+> Please let me know if you think I'm missinterpreting things, and thank 
+> you again for your review/reply.
+> 
+> Helen
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
-Assisted-by: LLM
----
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  15 ++
- drivers/gpu/drm/xe/xe_hwmon.c                 | 156 +++++++++++++++++-
- 2 files changed, 168 insertions(+), 3 deletions(-)
+Hi,
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index ce17e9ca3ed8..92c91c57b3f2 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -329,4 +329,19 @@ Contact:        intel-xe@lists.freedesktop.org
- Description:    RW. Target fan PWM duty value in the range 0..255. 0 is zero
-                 fan speed and 255 is 100% fan speed.
- 
-+                Writing requires the corresponding pwm[1-3]_enable to be set to
-+                1 (manual user-table mode) first; otherwise the write is
-+                rejected with -EINVAL.
-+
-                 Only supported for particular Intel Xe graphics platforms.
-+
-+What:          /sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/pwm[1-3]_enable
-+Date:          September 2026
-+KernelVersion: 7.3
-+Contact:       intel-xe@lists.freedesktop.org
-+Description:   RW. Fan control mode selector.
-+
-+               Use value 0 to run fans at full speed. Use value 1 to enable
-+               user table control and value 2 to use firmware default behavior.
-+
-+               Only supported for particular Intel Xe graphics platforms.
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index a86ed741feb3..c3d5c682768d 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -139,6 +139,15 @@ struct xe_hwmon_energy_info {
- 	long accum_energy;
- };
- 
-+enum xe_fan_pwm_enable_mode {
-+	/** @XE_FAN_PWM_FULL_SPEED: force all user table points to full speed */
-+	XE_FAN_PWM_FULL_SPEED = 0,
-+	/** @XE_FAN_PWM_MANUAL_USER_TABLE: use the driver-managed user table */
-+	XE_FAN_PWM_MANUAL_USER_TABLE = 1,
-+	/** @XE_FAN_PWM_AUTO_STOCK_TABLE: use the firmware stock table */
-+	XE_FAN_PWM_AUTO_STOCK_TABLE = 2,
-+};
-+
- enum fan_table_type {
- 	/** @STOCK_FAN_TABLE: firmware-provided fan table */
- 	STOCK_FAN_TABLE,
-@@ -189,6 +198,10 @@ struct xe_hwmon_fan_info {
- 	u32 max_rps;
- 	/** @min_pwm: minimum fan PWM */
- 	u32 min_pwm;
-+	/** @pwm_enable_mode: current xe_fan_pwm_enable_mode */
-+	u8 pwm_enable_mode;
-+	/** @is_full_speed: flag indicating if fan is in full speed */
-+	bool is_full_speed;
- };
- 
- /**
-@@ -917,7 +930,9 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
- 	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_MAX, HWMON_F_INPUT | HWMON_F_MAX,
- 			   HWMON_F_INPUT | HWMON_F_MAX),
--	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT, HWMON_PWM_INPUT, HWMON_PWM_INPUT),
-+	HWMON_CHANNEL_INFO(pwm, HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-+			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE,
-+			   HWMON_PWM_INPUT | HWMON_PWM_ENABLE),
- 	NULL
- };
- 
-@@ -1185,10 +1200,80 @@ static int xe_hwmon_get_fan_point_count(struct xe_hwmon *hwmon, u8 fan, u32 *poi
- 	return 0;
- }
- 
-+static int xe_hwmon_activate_user_fan_table(struct xe_hwmon *hwmon, u8 fan,
-+					    bool is_full_speed, enum fan_table_type table_source)
-+{
-+	struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
-+	struct xe_pcode_write writes[MAX_FAN_CONTROL_POINTS + 1];
-+	u32 point_count;
-+	int ret;
-+	int point;
-+	struct fan_table *source_table = &fi->fan_table[table_source];
-+
-+	xe_dbg(hwmon->xe, "activating fan %d user table from %s table\n", fan,
-+	       (table_source == USER_FAN_TABLE) ? "user" : "stock");
-+
-+	point_count = source_table->point_count;
-+	if (!point_count || point_count > MAX_FAN_CONTROL_POINTS) {
-+		xe_err(hwmon->xe,
-+		       "fan %d %s table point count %d is invalid, cannot activate user table\n",
-+		       fan, (table_source == USER_FAN_TABLE) ? "user" : "stock", point_count);
-+		return -EINVAL;
-+	}
-+
-+	for (point = 0; point < point_count; point++) {
-+		u8 temp = source_table->fcp[point].temp;
-+		u8 speed = is_full_speed ? 100 : max_t(u8, source_table->fcp[point].speed,
-+					    min_t(u32, fi->min_pwm, U8_MAX));
-+
-+		writes[point].mbox = PCODE_MBOX(FAN_SPEED_CONTROL, FSC_WRITE_FAN_TABLE, fan);
-+		writes[point].data = FIELD_PREP(FAN_CONTROL_POINT_TEMP_MASK, temp) |
-+					FIELD_PREP(FAN_CONTROL_POINT_SPEED_MASK, speed);
-+	}
-+
-+	writes[point_count].mbox = PCODE_MBOX(FAN_SPEED_CONTROL, FSC_WRITE_NUM_FAN_CONTROL_POINTS,
-+					      fan);
-+	writes[point_count].data = point_count;
-+	ret = xe_pcode_write_batch(xe_device_get_root_tile(hwmon->xe), writes, point_count + 1);
-+	if (ret) {
-+		xe_dbg(hwmon->xe, "failed to write fan %d user table, ret=%d\n", fan, ret);
-+		return ret;
-+	}
-+
-+	/* Verify if all the user points are set */
-+	ret = xe_hwmon_get_fan_point_count(hwmon, fan, &point_count, USER_FAN_TABLE);
-+	if (ret) {
-+		xe_err(hwmon->xe,
-+		       "failed to read fan %d user table point count, ret=%d\n", fan, ret);
-+		return ret;
-+	}
-+	if (point_count != source_table->point_count) {
-+		xe_err(hwmon->xe, "fan %d user table point count mismatch, expected %u, got %u\n",
-+		       fan, source_table->point_count, point_count);
-+		return -EIO;
-+	}
-+
-+	if (table_source == STOCK_FAN_TABLE) {
-+		for (point = 0; point < point_count; point++) {
-+			fi->fan_table[USER_FAN_TABLE].fcp[point].temp =
-+				source_table->fcp[point].temp;
-+			fi->fan_table[USER_FAN_TABLE].fcp[point].speed =
-+				is_full_speed ? 100 : max_t(u8, source_table->fcp[point].speed,
-+							    min_t(u32, fi->min_pwm, U8_MAX));
-+		}
-+	}
-+
-+	fi->fan_table[USER_FAN_TABLE].point_count = point_count;
-+	fi->pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
-+	fi->is_full_speed = is_full_speed;
-+
-+	return 0;
-+}
-+
- /* Temperature to set when setting the fan PWM with pwmN. */
- #define FIXED_PWM_TEMP	(1)
- 
--static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
-+static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm, bool full_speed)
- {
- 	struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
- 	struct xe_pcode_write writes[MIN_FAN_CONTROL_POINTS + 1];
-@@ -1196,6 +1281,11 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
- 	u8 clamped_pwm;
- 	int ret, i;
- 
-+	if (!full_speed && fi->pwm_enable_mode != XE_FAN_PWM_MANUAL_USER_TABLE) {
-+		xe_dbg(hwmon->xe, "fan %d manual mode is not active, cannot set pwm\n", fan);
-+		return -EINVAL;
-+	}
-+
- 	pwm = DIV_ROUND_CLOSEST(pwm * 100, U8_MAX);
- 	clamped_pwm = max_t(u8, pwm, min_t(u32, fi->min_pwm, U8_MAX));
- 
-@@ -1239,6 +1329,8 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hwmon *hwmon, u8 fan, u8 pwm)
- 	}
- 	fi->fan_table[USER_FAN_TABLE].point_count = MIN_FAN_CONTROL_POINTS;
- 
-+	fi->pwm_enable_mode = XE_FAN_PWM_MANUAL_USER_TABLE;
-+	fi->is_full_speed = full_speed;
- 	return 0;
- }
- 
-@@ -1303,6 +1395,9 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
- 			       fi->fan_table[STOCK_FAN_TABLE].fcp[point].speed);
- 		}
- 
-+		/* Set PWM enable mode to automatic i.e stock table in use. */
-+		fi->pwm_enable_mode = XE_FAN_PWM_AUTO_STOCK_TABLE;
-+
- 		/* Read minimum fan PWM */
- 		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_MIN_PWM, fan,
- 						      &fi->min_pwm);
-@@ -1870,6 +1965,7 @@ xe_hwmon_pwm_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 
- 	switch (attr) {
- 	case hwmon_pwm_input:
-+	case hwmon_pwm_enable:
- 		return 0644;
- 	default:
- 		return 0;
-@@ -1954,6 +2050,9 @@ xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 		*val = DIV_ROUND_CLOSEST(fi->fan_table[USER_FAN_TABLE].fcp[0].speed * U8_MAX, 100);
- 		xe_dbg(hwmon->xe, "pwm read for fan %d: %ld\n", channel, *val);
- 		break;
-+	case hwmon_pwm_enable:
-+		*val = fi->pwm_enable_mode;
-+		break;
- 	default:
- 		ret = -EOPNOTSUPP;
- 		break;
-@@ -1967,11 +2066,15 @@ xe_hwmon_pwm_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- static int
- xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
- {
-+	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-+	struct xe_hwmon_fan_info *fi;
- 	int ret = 0;
- 
- 	if (channel < 0 || channel >= FAN_MAX)
- 		return -EINVAL;
- 
-+	fi = &hwmon->fi[channel];
-+
- 	mutex_lock(&hwmon->hwmon_lock);
- 
- 	switch (attr) {
-@@ -1980,12 +2083,59 @@ xe_hwmon_pwm_write(struct xe_hwmon *hwmon, u32 attr, int channel, long val)
- 			ret = -EINVAL;
- 			break;
- 		}
--		ret = xe_hwmon_set_user_fan_pwm(hwmon, channel, (u8)val);
-+		ret = xe_hwmon_set_user_fan_pwm(hwmon, channel, (u8)val, false);
-+		break;
-+	case hwmon_pwm_enable:
-+		if (val == XE_FAN_PWM_FULL_SPEED) {
-+			ret = xe_hwmon_set_user_fan_pwm(hwmon, channel, U8_MAX, true);
-+			if (ret) {
-+				xe_warn(hwmon->xe,
-+					"full speed enable for fan %d failed, ret=%d\n",
-+					channel, ret);
-+				break;
-+			}
-+		} else if (val == XE_FAN_PWM_MANUAL_USER_TABLE) {
-+			enum fan_table_type source = fi->fan_table[USER_FAN_TABLE].point_count ?
-+				USER_FAN_TABLE : STOCK_FAN_TABLE;
-+
-+			/*
-+			 * Manual fan speed control using user fan table.
-+			 * If user fan table is not programmed, it would be initialized with
-+			 * clamped stock points which allows manual control with some
-+			 * default points.
-+			 */
-+			ret = xe_hwmon_activate_user_fan_table(hwmon, channel, false, source);
-+			if (ret) {
-+				xe_warn(hwmon->xe,
-+					"failed to activate user fan table for fan %d, ret=%d\n",
-+					channel, ret);
-+				break;
-+			}
-+		} else if (val == XE_FAN_PWM_AUTO_STOCK_TABLE) {
-+			/* Switch to stock table specifying the user points to 0. */
-+			ret = xe_pcode_write(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
-+								   FSC_WRITE_NUM_FAN_CONTROL_POINTS,
-+								   channel), 0);
-+			if (ret) {
-+				xe_warn(hwmon->xe,
-+					"failed to disable user fan table for fan %d, ret=%d\n",
-+					channel, ret);
-+				break;
-+			}
-+			xe_dbg(hwmon->xe,
-+			       "automatic control enabled for fan %d using stock table\n",
-+			       channel);
-+			fi->pwm_enable_mode = XE_FAN_PWM_AUTO_STOCK_TABLE;
-+			fi->is_full_speed = false;
-+		} else {
-+			ret = -EINVAL;
-+		}
- 		break;
- 	default:
- 		ret = -EOPNOTSUPP;
- 		break;
- 	}
-+
- 	mutex_unlock(&hwmon->hwmon_lock);
- 
- 	return ret;
--- 
-2.25.1
+Please let me know your thoughts about my previous email.
+
+Helen
+
+> 
+>>
+>>
+>> Matt
+>>
+>>
+>>>
+>>> This causes sporadic hangs on Alder Lake when executing test
+>>> IntelAngleEnd2EndTestCases (error VK_DEVICE_LOST).
+>>>
+>>> Fix it by partially reverting commit c9dfd66cb91e ("drm/xe/lrc: Allow
+>>> INDIRECT_CTX for more engine classes"). Re-add the programming of
+>>> CTX_CS_INDIRECT_CTX_OFFSET for Alder Lake.
+>>>
+>>> Fixes: c9dfd66cb91e ("drm/xe/lrc: Allow INDIRECT_CTX for more engine 
+>>> classes")
+>>> Suggested-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>>> Signed-off-by: Helen Koike <koike@igalia.com>
+>>>
+>>> ---
+>>> v2:
+>>>    - according to intel CI results, it seems that this default is not 
+>>> valid for
+>>>      LNL and BMG platforms, so limit the change only to ADL.
+>>>    - program the default only on ADL.
+>>>    - restore the comment, but add note with exception for ADL.
+>>>    - update the commit title/message with "for ADL".
+>>> ---
+>>>   drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 3 +++
+>>>   drivers/gpu/drm/xe/xe_lrc.c             | 7 ++++++-
+>>>   2 files changed, 9 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/ 
+>>> drm/xe/regs/xe_lrc_layout.h
+>>> index 4ab86fc369fd..e4c7c3549735 100644
+>>> --- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>>> +++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
+>>> @@ -43,4 +43,7 @@
+>>>   #define INDIRECT_CTX_RING_START_UDW    (0x08 + 1)
+>>>   #define INDIRECT_CTX_RING_CTL        (0x0a + 1)
+>>> +#define CTX_INDIRECT_CTX_OFFSET_MASK    REG_GENMASK(15, 6)
+>>> +#define CTX_INDIRECT_CTX_OFFSET_DEFAULT    
+>>> REG_FIELD_PREP(CTX_INDIRECT_CTX_OFFSET_MASK, 0xd)
+>>> +
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>>> index 35b4e8289b5f..923bc1ddc851 100644
+>>> --- a/drivers/gpu/drm/xe/xe_lrc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+>>> @@ -1451,13 +1451,18 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct 
+>>> xe_hw_engine *hwe)
+>>>       /*
+>>>        * Enable INDIRECT_CTX leaving INDIRECT_CTX_OFFSET at its 
+>>> default: it
+>>> -     * varies per engine class, but the default is good enough
+>>> +     * varies per engine class, but the default is good enough, 
+>>> except on
+>>> +     * Alder Lake.
+>>>        */
+>>>       xe_lrc_write_ctx_reg(lrc,
+>>>                    CTX_CS_INDIRECT_CTX,
+>>>                    (xe_bo_ggtt_addr(lrc->bo) + state.offset) |
+>>>                    /* Size in CLs. */
+>>>                    (state.written * sizeof(u32) / 64));
+>>> +    if (GRAPHICS_VER(lrc_to_xe(lrc)) < 20)
+>>> +        xe_lrc_write_ctx_reg(lrc,
+>>> +                     CTX_CS_INDIRECT_CTX_OFFSET,
+>>> +                     CTX_INDIRECT_CTX_OFFSET_DEFAULT);
+>>>       return 0;
+>>>   }
+>>> -- 
+>>> 2.54.0
+>>>
+>>
+> 
 
