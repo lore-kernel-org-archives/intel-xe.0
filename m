@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E46B8CCA465
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 19:02:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15315CCA464
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 19:08:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A15FB10E3AA;
-	Thu, 15 Oct 2026 19:02:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF14112447
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 19:02:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C95C2112458;
+	Thu, 15 Oct 2026 19:08:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A93611244C
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 19:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792090953; x=1823626953;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qe1osRcVIHX/90JCHkQ0loE9zjZHUunuv9MjBxTgGWg=;
- b=LKsllCd7LPSr/YUXCI1gFdkUox/klySzEtj8fOKOhd+An9v57u28Y8Ey
- IK5zQ3XefqSazeZA00XD4Lbfg0eza8vXvzvh13H868tlVfVaRUc4oZfkR
- NI5in2365D0qTZ0FQ9b7SF7C/VR9BI+3neprd6uUzEn0H+6Uy1jSAorhN
- lpbR8rn0gpjcFM1OeoM3hk1kvB3/BpP4+nDtcVhSU8kb5jDLhVPm77dvZ
- cp7T06EwK0O61PJMFU1JBpucZpbi0i/pWajsFykOFDnDudr24BdJ1iZq4
- P7p8ru/qhbyY1MS4h0w7AltasqFx8wu6Y9q7kMoSS3xYQw9mb+lnZ1Obw g==;
-X-CSE-ConnectionGUID: NV2OIh/ZSYSFkBXilNTd0w==
-X-CSE-MsgGUID: Y1u9sW7RT4CSpmLKRttiHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="751533"
+ t=1792091321; x=1823627321;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0vlGo4lLXtqgOHSrMk1+tgH7xemsHfrpDPUzAtB9B2M=;
+ b=ghuTujtsNXLMKrJRm1xSpyi06MqSpNEL2FyzB9hXO9Eu99J1IUg0nzm4
+ MCfAgFWAvuz/aVlU9WCebV7rbgZQf/EIOzyHMe4t3ssVpqRWwGfDtzA+7
+ 6nu1B5uIOSzgh50ck1nxOvF/HIO2OeBXGlmowtJsbobz//io55Sh8kc4T
+ qiM4M9hIKTahMCgTUKh+prmiu2h9uixfz5Hf2/H97l3FE7JkXkm3gWxMu
+ LSRW5Ie6KdOyxyXrAbww5WgLzbLwxUUoSWbgM/8dSod7ol8Zf6QkrdO7o
+ Qf5W6YmvWeHvHWWgI0xnzbem4x7dimtZ0093XFiPbSIY3dGsGJ8WKPVJP A==;
+X-CSE-ConnectionGUID: tGZBjiGpTMi+QkC6RkSfVg==
+X-CSE-MsgGUID: vvvwglEZTA6ajqfePg4Wug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="770343"
 X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="751533"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 12:02:33 -0700
-X-CSE-ConnectionGUID: 8Pgqbz+NTFSZbAMQ0yudqg==
-X-CSE-MsgGUID: uX7aAVd2RYOos0Hzdu2nOA==
+   d="scan'208";a="770343"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2026 12:08:41 -0700
+X-CSE-ConnectionGUID: zjSfH4/wRRW6doAcZt5ZoQ==
+X-CSE-MsgGUID: gm+X9sMET3evWcDceTsZxQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,160,1787036400"; 
-   d="scan'208";a="1774660"
+   d="scan'208";a="1835205"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 12:02:30 -0700
+ 15 Oct 2026 12:08:37 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH] drm/xe/hwmon: Enable fan support for CRI
-Date: Fri, 16 Oct 2026 00:31:13 +0530
-Message-Id: <20261015190113.1268522-11-karthik.poosa@intel.com>
+Subject: [PATCH v3 0/9] Add fan control support
+Date: Fri, 16 Oct 2026 00:37:42 +0530
+Message-Id: <20261015190751.1268916-1-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20261015190113.1268522-1-karthik.poosa@intel.com>
-References: <20261015190113.1268522-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,54 +67,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable fan control support for CRI.
-Use new fan 3 speed register offset for CRI.
+This series adds Intel Xe fan control support through the hwmon sysfs ABI,
+including fan maximum reporting, direct PWM control, mode control, and
+programmable fan-curve points on supported platforms, BMG as of now.
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h | 1 +
- drivers/gpu/drm/xe/xe_hwmon.c           | 3 ++-
- drivers/gpu/drm/xe/xe_pci.c             | 1 +
- 3 files changed, 4 insertions(+), 1 deletion(-)
+The patch set is ordered from backend enablement to user-visible controls
+and full curve programming support.
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-index d9e4847dd68e..23f21e9e425d 100644
---- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-@@ -28,6 +28,7 @@
- #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
- 
- #define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-+#define CRI_FAN_3_SPEED                         XE_REG(0x138174)
- #define CRI_MSU_VRAM_ENABLE			XE_REG(0x138340)
- #define CRI_PACKAGE_TEMPERATURE			XE_REG(0x138344)
- #define CRI_VRAM_TEMPERATURE			XE_REG(0x138348)
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index a61520dc4295..507bf5dac002 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -503,7 +503,8 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
- 		else if (channel == FAN_2)
- 			return BMG_FAN_2_SPEED;
- 		else if (channel == FAN_3)
--			return BMG_FAN_3_SPEED;
-+			return (xe->info.platform == XE_CRESCENTISLAND) ? CRI_FAN_3_SPEED :
-+				BMG_FAN_3_SPEED;
- 		break;
- 	default:
- 		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 605c452a9c33..bce590b4ed34 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -476,6 +476,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_display = false,
- 	.has_device_uid = true,
- 	.has_drm_ras = true,
-+	.has_fan_control = true,
- 	.has_flat_ccs = false,
- 	.has_gsc_nvm = 1,
- 	.has_i2c = true,
+Series overview
+
+drm/xe/hwmon: initialize fan-control backend and runtime state
+Initializes the fan-control backend and runtime state needed to safely
+expose fan controls through hwmon.
+
+drm/xe/hwmon: expose fanN_max
+Adds fan maximum RPM reporting through fan1_max, fan2_max, and fan3_max.
+
+drm/xe/hwmon: expose pwm1-3
+Adds direct PWM duty control through pwm1-3 with hwmon-compatible 0..255
+scaling.
+
+drm/xe/hwmon: expose pwm1-3_enable
+Adds PWM mode control through pwm1-3_enable:
+0 = full speed
+1 = manual user control
+2 = firmware automatic control
+
+drm/xe/hwmon: enable fan curve control support
+Adds programmable per-fan curve points through:
+pwm1-3_auto_point1-10_temp
+pwm1-3_auto_point1-10_pwm
+
+ABI updates are included in
+Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon, with implementation
+in drivers/gpu/drm/xe/xe_hwmon.c.
+
+Sysfs nodes and usage
+
+Read fan speed and max RPM:
+cat /sys/class/hwmon/hwmonX/fan1_input
+cat /sys/class/hwmon/hwmonX/fan1_max
+
+Set manual mode and direct PWM:
+echo 1 > /sys/class/hwmon/hwmonX/pwm1_enable
+echo 120 > /sys/class/hwmon/hwmonX/pwm1
+
+Return to firmware automatic control:
+echo 2 > /sys/class/hwmon/hwmonX/pwm1_enable
+
+Program a fan curve:
+echo 1 > /sys/class/hwmon/hwmonX/pwm1_enable
+echo 30000 > /sys/class/hwmon/hwmonX/pwm1_auto_point1_temp
+echo 20 > /sys/class/hwmon/hwmonX/pwm1_auto_point1_pwm
+...
+echo 85000 > /sys/class/hwmon/hwmonX/pwm1_auto_point10_temp
+echo 200 > /sys/class/hwmon/hwmonX/pwm1_auto_point10_pwm
+
+Note:
+
+Package temperature (temp2_input) is used as the temperature reference for
+fan table control.
+For hardware acceptance, fan-curve temperatures must be strictly
+increasing.
+The user fan table is committed to hardware only after the last curve point
+is written.
+Fan curve currently supports only 10 fan curve points.
+
+v2:
+
+ - Added kernel-doc for fan control flow and sysfs behavior.
+ - Added save/restore support for user fan table across suspend/resume.
+ - Added late-binding handling to refresh fan information after late
+   binding completes.
+ - Preserved user-selected PWM mode across late-binding updates (do not
+   force auto mode).
+ - Fan curve points show stock table points when pwmX_enable=2.
+
+v3:
+ - Address review comments of v2.
+ - Add an ordered PCODE write-batch helper for programming fan tables.
+ - Support variable fan curve points.
+ - Add missing failure checks.
+ - Use only 2 fan curve points while setting pwmN.
+
+Karthik Poosa (9):
+  drm/xe/hwmon: initialize fan-control backend and table cache
+  drm/xe/hwmon: expose fanN_max
+  drm/xe/pcode: add ordered write batch helper
+  drm/xe/hwmon: expose pwm[1-3]
+  drm/xe/hwmon: expose pwm[1-3]_enable
+  drm/xe/hwmon: Enable fan curve control support
+  drm/xe/hwmon: Add kernel-doc for fan control
+  drm/xe/hwmon: preserve fan user table across suspend resume
+  drm/xe/hwmon: Update fan info after late binding
+
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |   32 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 1407 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hwmon.h                 |    6 +
+ drivers/gpu/drm/xe/xe_late_bind_fw.c          |    3 +
+ drivers/gpu/drm/xe/xe_pcode.c                 |   20 +
+ drivers/gpu/drm/xe/xe_pcode.h                 |    7 +
+ drivers/gpu/drm/xe/xe_pcode_api.h             |    9 +
+ drivers/gpu/drm/xe/xe_pm.c                    |    9 +
+ 8 files changed, 1478 insertions(+), 15 deletions(-)
+
 -- 
 2.25.1
 
