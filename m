@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E83BACC6B2F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 07:16:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B10ECC6B39
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 07:16:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ACA11120E2;
-	Thu, 15 Oct 2026 07:16:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B94301120EE;
+	Thu, 15 Oct 2026 07:16:10 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF631120C7
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 07:16:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A651120F8
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 07:16:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792048560; x=1823584560;
+ t=1792048565; x=1823584565;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lsPrghxjceNC+ltUuY7y7EJIO20mKsHhbwemvN8qjOQ=;
- b=EgpH4odqq9Yh0h+zNhyMLuac0JfhvdKMvesMArFNGjhHLDD4Dz4xLhfB
- fCJOfTuQ+uLDfYRLMlRZlrnQGP+uPFAIwoH/0oujP52VncLgkKngIqxvI
- lo9A82mqI2ssmlqmrTuFo41JCmDY4ocCWkVfhgxXtf2oOdm4OrLdHO+Nf
- AFqJNyQQKyj1JSVDVPvud2CIj08WUMfg3ii6rjymehKPPGbqMrZW2pfnz
- YsVgcz273fKfuqVetA6azHBheuQmBNBc1FhBi96amCzQRBv8p9iKKMAS8
- 8WX7qpkfFizpnNaGSpPY67f0rH8wQYMn80c2X/vUzN5lJ5YXNssCKF5iu Q==;
-X-CSE-ConnectionGUID: 7yXMVUWTSFaIVcCKh1Yyfw==
-X-CSE-MsgGUID: Dd2tmd2URDyWwRwc8uhFxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="707176"
+ bh=I9w2hn9xlvFQr0NPU2dk+TxEgCqQAwny9bclB+mJMZE=;
+ b=oHnlrVsulqZim54+GWFtsGatI/HYdCfa9RPaoEQtaUywidpe5JZ8IvX8
+ uJs2CZNAshFdIWxwgazzVjRSsmizM48/ACiW1ddICIsKVO2MdMgkcLmkv
+ t3CmzOvHIBuP9DSjegORJD6kVvZEiIb3qgGD4G4cUNkeL7DI53JqidVwN
+ jS6yMdaqGHaUTL06cv+Z3HFZmF3Bylv2DbTLgHsTa8V7Eg5rRWKp0ty91
+ B+pQIiLe0AkhB+c0M/QapV0UlxWD3wkLs3OkfCe+UEwImjLMPLUij9EUX
+ PFjGhQvX/thdV80AnPclG0TuhPZPDDsb0TkNUBrYJ6LJd/wmNAyJUAYny Q==;
+X-CSE-ConnectionGUID: KnAa1BqmQdmbKvgNvZB90w==
+X-CSE-MsgGUID: lEkPiKBRTCOGycd7HzJc7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="707179"
 X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="707176"
+   d="scan'208";a="707179"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 00:16:00 -0700
-X-CSE-ConnectionGUID: kZtLkGhZR56ejcr45oz1ZA==
-X-CSE-MsgGUID: 9Z4Y82yDT2q5OnbjGNV0WQ==
+ 15 Oct 2026 00:16:04 -0700
+X-CSE-ConnectionGUID: 4B7sQqsyRryr1+PXTBd3cw==
+X-CSE-MsgGUID: B1/ZO4HrR8ePsNQ6lJfHcw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="1509005"
+   d="scan'208";a="1509029"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 00:15:58 -0700
+ 15 Oct 2026 00:16:02 -0700
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com,
  Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v14 10/16] drm/xe/hwmon: Add platform-aware VRAM thermal
- channel support
-Date: Thu, 15 Oct 2026 12:44:28 +0530
-Message-Id: <20261015071434.1063785-11-karthik.poosa@intel.com>
+Subject: [PATCH v14 12/16] drm/xe/hwmon: Update memory controller temperature
+ offset for CRI
+Date: Thu, 15 Oct 2026 12:44:30 +0530
+Message-Id: <20261015071434.1063785-13-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20261015071434.1063785-1-karthik.poosa@intel.com>
 References: <20261015071434.1063785-1-karthik.poosa@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,390 +68,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On CRI, derive the number of available VRAM temperature channels from the
-CRI_MSU_VRAM_ENABLE register, where each enabled MSU contributes
-VRAM_CHANNELS_PER_MSU channels.
- 
-Increase the maximum supported VRAM channel count to 80 and use the
-derived count to control VRAM sensor enumeration, channel access, and
-VRAM label allocation. Add a has_fixed_vram_channels platform flag to
-preserve the existing fixed-channel behavior on non-CRI platforms.
+On CRI the memory controller temperatures moved in the READ_THERMAL_DATA
+output: they now occupy bytes 16..19 instead of starting at byte 2.
+
+Read and average the CRI memory controller sensors from bytes 16..19,
+keeping the existing byte 2..count-1 range for earlier platforms. Only
+the group(s) covering the used bytes are fetched.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h |   1 +
- drivers/gpu/drm/xe/xe_device_types.h    |   2 +
- drivers/gpu/drm/xe/xe_hwmon.c           | 168 +++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_pci.c             |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h       |   1 +
- 5 files changed, 155 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/xe/xe_hwmon.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-index a969661f0c95..d9e4847dd68e 100644
---- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-@@ -28,6 +28,7 @@
- #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
- 
- #define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-+#define CRI_MSU_VRAM_ENABLE			XE_REG(0x138340)
- #define CRI_PACKAGE_TEMPERATURE			XE_REG(0x138344)
- #define CRI_VRAM_TEMPERATURE			XE_REG(0x138348)
- #define CRI_PLATFORM_ENERGY_STATUS		XE_REG(0x138458)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 9480ec102007..5553415afeaf 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -186,6 +186,8 @@ struct xe_device {
- 		u8 has_drm_ras:1;
- 		/** @info.has_fan_control: Device supports fan control */
- 		u8 has_fan_control:1;
-+		/** @info.has_fixed_vram_channels: Device has fixed VRAM temperature channels */
-+		u8 has_fixed_vram_channels:1;
- 		/** @info.has_flat_ccs: Whether flat CCS metadata is used */
- 		u8 has_flat_ccs:1;
- 		/** @info.has_gsc_nvm: Device has gsc non-volatile memory */
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 45b08d053940..cf0cd5df792e 100644
+index 4b168d96ac64..97d298786073 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -40,7 +40,11 @@ enum xe_hwmon_reg_operation {
- 	REG_READ64,
- };
+@@ -110,6 +110,10 @@ enum sensor_attr_power {
+ /* Index of memory controller in READ_THERMAL_DATA output */
+ #define TEMP_INDEX_MCTRL	2
  
--#define MAX_VRAM_CHANNELS      (16)
-+#define MAX_VRAM_CHANNELS	80
-+#define FIXED_VRAM_CHANNELS	16
++/* On CRI the memory controller temperatures are READ_THERMAL_DATA bytes 16..19. */
++#define CRI_TEMP_INDEX_MCTRL	16
++#define CRI_TEMP_MCTRL_COUNT	4
 +
-+/* Each MSU enable bit maps to one VRAM subsystem of 4 channels. */
-+#define VRAM_CHANNELS_PER_MSU	4
+ /* Mailbox sentinel reported for an unavailable temperature sensor */
+ #define TEMP_MBX_INVALID	0xFF
  
- enum xe_hwmon_channel {
- 	CHANNEL_CARD,
-@@ -49,6 +53,7 @@ enum xe_hwmon_channel {
- 	CHANNEL_MCTRL,
- 	CHANNEL_PCIE,
- 	CHANNEL_VRAM_N,
-+	/* Compile-time upper bound; actual channel count is hwmon->temp.vram_count */
- 	CHANNEL_VRAM_N_MAX = CHANNEL_VRAM_N + MAX_VRAM_CHANNELS - 1,
- 	CHANNEL_MAX,
- };
-@@ -145,18 +150,22 @@ struct xe_hwmon_thermal_info {
- 		/** @data: temperature limits as little-endian dwords */
- 		__le32 data[DIV_ROUND_UP(TEMP_LIMIT_MAX, sizeof(u32))];
- 	};
--	/** @count: no of temperature sensors available for the platform */
-+	/** @count: temperature sensors count from READ_THERMAL_CONFIG */
- 	u8 count;
-+	/** @vram_count: exclusive upper bound for VRAM temperature channel indices */
-+	u8 vram_count;
- 	/** @available: temperature sensor availability cached at registration */
- 	bool available[CHANNEL_MAX];
-+	/** @msu_mask: VRAM subsystem enable mask read from MMIO */
-+	u32 msu_mask;
- 	union {
- 		/** @value: per-sensor raw mailbox temperature; bit7=sign, bits6:0=magnitude */
- 		u8 value[U8_MAX + 1];
- 		/** @dword: sensor values as little-endian dwords, u32-aligned for pcode reads */
- 		__le32 dword[DIV_ROUND_UP(U8_MAX + 1, sizeof(u32))];
- 	};
--	/** @vram_label: vram label names */
--	char vram_label[MAX_VRAM_CHANNELS][MAX_LABEL_SIZE];
-+	/** @vram_label: vram label names, dynamically allocated based on vram_count */
-+	char (*vram_label)[MAX_LABEL_SIZE];
- };
- 
- /**
-@@ -299,6 +308,14 @@ static int xe_hwmon_pcode_set_default_power_limits(struct xe_hwmon *hwmon)
- 	return ret;
- }
- 
-+static bool xe_hwmon_vram_channel_enabled(const struct xe_hwmon *hwmon, int index)
-+{
-+	if (hwmon->xe->info.platform == XE_CRESCENTISLAND)
-+		return hwmon->temp.msu_mask & BIT(index / VRAM_CHANNELS_PER_MSU);
-+
-+	return true;
-+}
-+
- static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
- 				      int channel)
- {
-@@ -311,14 +328,16 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
- 				return CRI_PACKAGE_TEMPERATURE;
- 			else if (channel == CHANNEL_VRAM)
- 				return CRI_VRAM_TEMPERATURE;
--			else if (in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
-+			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count) &&
-+				 xe_hwmon_vram_channel_enabled(hwmon, channel - CHANNEL_VRAM_N))
- 				return CRI_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
- 		} else if (xe->info.platform == XE_BATTLEMAGE) {
- 			if (channel == CHANNEL_PKG)
- 				return BMG_PACKAGE_TEMPERATURE;
- 			else if (channel == CHANNEL_VRAM)
- 				return BMG_VRAM_TEMPERATURE;
--			else if (in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
-+			else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count) &&
-+				 xe_hwmon_vram_channel_enabled(hwmon, channel - CHANNEL_VRAM_N))
- 				return BMG_VRAM_TEMPERATURE_N(channel - CHANNEL_VRAM_N);
- 		} else if (xe->info.platform == XE_DG2) {
- 			if (channel == CHANNEL_PKG)
-@@ -830,6 +849,70 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- 			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
- 			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
- 			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
-+			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL,
- 			   HWMON_T_CRIT | HWMON_T_EMERGENCY | HWMON_T_INPUT | HWMON_T_LABEL),
- 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
- 			   HWMON_P_CAP,
-@@ -844,9 +927,31 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- static int xe_hwmon_pcode_read_thermal_info(struct xe_hwmon *hwmon)
+@@ -1007,14 +1011,22 @@ static int mbx_temp_decode(u8 value)
+ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
  {
  	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-+	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
- 	u32 config = 0, data0 = 0, data1 = 0;
- 	int ret;
+-	int ret, i, count = 0;
++	int ret, i, start, end, count = 0;
+ 	s32 average = 0;
++	u32 data = 0;
  
-+	/*
-+	 * Only CRI reports dynamic VRAM channel state. Fixed-channel platforms
-+	 * set the count up front so those sensors stay visible even if the thermal
-+	 * mailbox reads below fail.
-+	 */
-+	if (hwmon->xe->info.has_fixed_vram_channels)
-+		hwmon->temp.vram_count = FIXED_VRAM_CHANNELS;
-+
+ 	guard(mutex)(&hwmon->hwmon_lock);
+ 
+-	for (i = 0; i < DIV_ROUND_UP(hwmon->temp.count, sizeof(u32)); i++) {
+-		u32 data = 0;
++	/* CRI relocated the memory controller temperatures to READ_THERMAL_DATA bytes 16..19. */
 +	if (hwmon->xe->info.platform == XE_CRESCENTISLAND) {
-+		hwmon->temp.msu_mask = xe_mmio_read32(mmio, CRI_MSU_VRAM_ENABLE);
-+		hwmon->temp.vram_count = fls(hwmon->temp.msu_mask) * VRAM_CHANNELS_PER_MSU;
-+		drm_dbg(&hwmon->xe->drm, "MSU VRAM enable mask 0x%x, VRAM channel bound %d\n",
-+			hwmon->temp.msu_mask, hwmon->temp.vram_count);
-+		if (hwmon->temp.vram_count > MAX_VRAM_CHANNELS) {
-+			drm_warn(&hwmon->xe->drm,
-+				 "VRAM channel bound %d exceeds max %d, clamping\n",
-+				 hwmon->temp.vram_count, MAX_VRAM_CHANNELS);
-+			hwmon->temp.vram_count = MAX_VRAM_CHANNELS;
-+		}
++		start = CRI_TEMP_INDEX_MCTRL;
++		end = CRI_TEMP_INDEX_MCTRL + CRI_TEMP_MCTRL_COUNT;
++	} else {
++		start = TEMP_INDEX_MCTRL;
++		end = hwmon->temp.count - 1;
 +	}
-+
- 	ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_LIMITS, 0),
- 			    &data0, &data1);
- 	if (ret)
-@@ -1073,6 +1178,14 @@ static bool xe_hwmon_temp_probe(struct xe_hwmon *hwmon, int channel)
- 		if (!xe_reg_is_valid(reg))
- 			return false;
  
-+		/*
-+		 * On CRI, VRAM channel presence comes from the MSU enable mask
-+		 * (applied in xe_hwmon_get_reg()); the temperature register's
-+		 * 0xffffffff sentinel is not reliable for VRAM channels.
-+		 */
-+		if (hwmon->xe->info.platform == XE_CRESCENTISLAND && channel >= CHANNEL_VRAM_N)
-+			return true;
-+
- 		reg_val = xe_mmio_read32(mmio, reg);
- 		if (!mmio_temp_valid(hwmon, reg_val)) {
- 			drm_dbg(&hwmon->xe->drm,
-@@ -1090,20 +1203,31 @@ static bool xe_hwmon_temp_probe(struct xe_hwmon *hwmon, int channel)
- 	}
- }
- 
--static void xe_hwmon_init_temp_info(struct xe_hwmon *hwmon)
-+static int xe_hwmon_init_temp_info(struct xe_hwmon *hwmon)
- {
-+	struct device *dev = hwmon->xe->drm.dev;
- 	int channel;
- 
- 	if (hwmon->xe->info.has_mbx_thermal_info && xe_hwmon_pcode_read_thermal_info(hwmon))
- 		drm_warn(&hwmon->xe->drm, "Thermal mailbox not supported by card firmware\n");
- 
-+	/* vram_count is known only after reading thermal info above. */
-+	if (hwmon->temp.vram_count) {
-+		hwmon->temp.vram_label = devm_kcalloc(dev, hwmon->temp.vram_count,
-+						      MAX_LABEL_SIZE, GFP_KERNEL);
-+		if (!hwmon->temp.vram_label)
-+			return -ENOMEM;
-+	}
-+
- 	for (channel = 0; channel < CHANNEL_MAX; channel++) {
- 		hwmon->temp.available[channel] = xe_hwmon_temp_probe(hwmon, channel);
--		if (hwmon->temp.available[channel] &&
--		    in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
-+		if (hwmon->temp.available[channel] && hwmon->temp.vram_label &&
-+		    in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count))
- 			snprintf(hwmon->temp.vram_label[channel - CHANNEL_VRAM_N], MAX_LABEL_SIZE,
- 				 "vram_ch_%d", channel - CHANNEL_VRAM_N);
- 	}
-+
-+	return 0;
- }
- 
- static umode_t
-@@ -1599,8 +1723,10 @@ static int xe_hwmon_read_label(struct device *dev,
- 			*str = "mctrl";
- 		else if (channel == CHANNEL_PCIE)
- 			*str = "pcie";
--		else if (in_range(channel, CHANNEL_VRAM_N, MAX_VRAM_CHANNELS))
-+		else if (in_range(channel, CHANNEL_VRAM_N, hwmon->temp.vram_count))
- 			*str = hwmon->temp.vram_label[channel - CHANNEL_VRAM_N];
-+		else
-+			return -EOPNOTSUPP;
- 		return 0;
- 	case hwmon_power:
- 	case hwmon_energy:
-@@ -1628,7 +1754,7 @@ static const struct hwmon_chip_info hwmon_chip_info = {
- 	.info = hwmon_info,
- };
- 
--static void
-+static int
- xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
-@@ -1685,14 +1811,14 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
- 		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
- 			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
- 
--	xe_hwmon_init_temp_info(hwmon);
-+	return xe_hwmon_init_temp_info(hwmon);
- }
- 
- int xe_hwmon_register(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
- 	struct xe_hwmon *hwmon;
--	int ret, err;
-+	int ret;
- 
- 	/* hwmon is available only for dGfx */
- 	if (!IS_DGFX(xe))
-@@ -1714,7 +1840,9 @@ int xe_hwmon_register(struct xe_device *xe)
- 	hwmon->xe = xe;
- 	xe->hwmon = hwmon;
- 
--	xe_hwmon_get_preregistration_info(hwmon);
-+	ret = xe_hwmon_get_preregistration_info(hwmon);
-+	if (ret)
-+		goto err_null_hwmon;
- 
- 	drm_dbg(&xe->drm, "Register xe hwmon interface\n");
- 
-@@ -1723,13 +1851,15 @@ int xe_hwmon_register(struct xe_device *xe)
- 								&hwmon_chip_info,
- 								hwmon_groups);
- 	if (IS_ERR(hwmon->hwmon_dev)) {
--		err = PTR_ERR(hwmon->hwmon_dev);
--		xe_log_err(xe, HWMON, err,
--			   "Failed to register xe hwmon\n");
--		xe->hwmon = NULL;
--		return err;
-+		ret = PTR_ERR(hwmon->hwmon_dev);
-+		xe_log_err(xe, HWMON, ret, "Failed to register xe hwmon\n");
-+		goto err_null_hwmon;
++	for (i = start / sizeof(u32); i < DIV_ROUND_UP(end, sizeof(u32)); i++) {
+ 		ret = xe_pcode_read(root_tile, PCODE_MBOX(PCODE_THERMAL_INFO, READ_THERMAL_DATA, i),
+ 				    &data, NULL);
+ 		if (ret)
+@@ -1023,7 +1035,7 @@ static int get_mc_temp(struct xe_hwmon *hwmon, long *val)
+ 		hwmon->temp.dword[i] = cpu_to_le32(data);
  	}
  
- 	return 0;
-+
-+err_null_hwmon:
-+	xe->hwmon = NULL;
-+	return ret;
- }
- MODULE_IMPORT_NS("INTEL_PMT_TELEMETRY");
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 4e58ff14eaee..605c452a9c33 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -417,6 +417,7 @@ static const struct xe_device_desc bmg_desc = {
- 	.dma_mask_size = 46,
- 	.has_display = true,
- 	.has_fan_control = true,
-+	.has_fixed_vram_channels = true,
- 	.has_flat_ccs = 1,
- 	.has_mbx_power_limits = true,
- 	.has_mbx_thermal_info = true,
-@@ -800,6 +801,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_device_uid = desc->has_device_uid;
- 	xe->info.has_drm_ras = desc->has_drm_ras;
- 	xe->info.has_fan_control = desc->has_fan_control;
-+	xe->info.has_fixed_vram_channels = desc->has_fixed_vram_channels;
- 	/* runtime fusing may force flat_ccs to disabled later */
- 	xe->info.has_flat_ccs = desc->has_flat_ccs;
- 	xe->info.has_mbx_power_limits = desc->has_mbx_power_limits;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 15eedac8467a..ce0b0f6c5b18 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -43,6 +43,7 @@ struct xe_device_desc {
- 	u8 has_device_uid:1;
- 	u8 has_drm_ras:1;
- 	u8 has_fan_control:1;
-+	u8 has_fixed_vram_channels:1;
- 	u8 has_flat_ccs:1;
- 	u8 has_gsc_nvm:1;
- 	u8 has_heci_gscfi:1;
+-	for (i = TEMP_INDEX_MCTRL; i < hwmon->temp.count - 1; i++) {
++	for (i = start; i < end; i++) {
+ 		if (!mbx_temp_valid(hwmon, hwmon->temp.value[i]))
+ 			continue;
+ 		average += mbx_temp_decode(hwmon->temp.value[i]);
 -- 
 2.25.1
 
