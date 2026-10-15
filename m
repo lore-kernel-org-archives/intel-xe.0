@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07B8ECC6B34
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 08:12:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E637CC6B34
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 08:18:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE5C10E9FD;
-	Thu, 15 Oct 2026 08:12:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B09010E9EF;
- Thu, 15 Oct 2026 08:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792051939; x=1823587939;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=EUwSWHVoqi7SpNUSsFx8wmyipmYlk9bShSAnWyQM2iA=;
- b=ASZa6hk2Jrz9Il6/L+cCGi8U6Ck5yho8PPTW7VKUNBWL+RzKkQougWwr
- f70ai78nYTnX5B+8E/BWv86pfHSdSzNyOwaMAmdyA+1egk2nqhFe5t7Zz
- fULkuJt8Hf3z64PdIhasXVKy20NxXgcwvlZrQ67ubVwaW8z9CapioVCm+
- dTMOZjwG+RWHSoZsVICTNnAhxZ3jCp8hTk0LCJ2ge8pJdkp0itmje+WwD
- vfhfqqdDMwxlD9s2kNOExL4FJi4Y8RT6GaQRgFQBRsCd2FNJL9FPyNRSy
- zjf3k8+W7S2H3UE8QQnZdVMaFvOhCQ7eJ/Kre1nKY9GjrBdX26pVtBhjR g==;
-X-CSE-ConnectionGUID: EnHuslDwQ5eZkpZU7yh1Pw==
-X-CSE-MsgGUID: iGWqi03SSYCOLW52+IKNkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="917100"
-X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="917100"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 01:12:18 -0700
-X-CSE-ConnectionGUID: iZ4w6FFDT+mLNk9dzTsEJg==
-X-CSE-MsgGUID: ZKe06ZHSQI65q5soKhkrHw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="3466829"
-Received: from dev-417.igk.intel.com (HELO dev-417) ([10.91.214.181])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 01:12:16 -0700
-Date: Thu, 15 Oct 2026 10:12:10 +0200
-From: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@linux.intel.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Subject: Re: [PATCH v4 2/5] drm/i915/3dlut: disable 3D LUT for pre-GLK
-Message-ID: <urarshuqsxwfwjbsdcnzuvj7i5xpcmtjmn2ny5kjvbafqj354k@ka7oucqstwfo>
-References: <20261013204705.1574475-1-michal.grzelak@linux.intel.com>
- <20261013204705.1574475-3-michal.grzelak@linux.intel.com>
- <sashiko-outbox-170497@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E07610E9FD;
+	Thu, 15 Oct 2026 08:18:29 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9468C10E9FD;
+ Thu, 15 Oct 2026 08:18:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <sashiko-outbox-170497@kernel.org>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_xe=5Fwedge_=28r?=
+ =?utf-8?q?ev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 15 Oct 2026 08:18:27 -0000
+Message-ID: <179205230760.27530.4844137264245122862@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261015081042.415942-1-raag.jadav@intel.com>
+In-Reply-To: <20261015081042.415942-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,64 +36,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 13, 2026 at 08:59:16PM GMT, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] drm/i915: 3D LUT remains disabled for GLK/ICL due to unmodified version check
-> --
-> 
-> commit 31c6b1070ace7be34ebe695316e80a7d65a5d1a7
-> Author: Michał Grzelak <michal.grzelak@linux.intel.com>
-> Subject: drm/i915/3dlut: disable 3D LUT for pre-GLK
-> 
-> This commit adds a has_3dlut field to the display runtime info to indicate
-> whether 3D LUT is enabled. It initializes the field to 1 for GLK and newer
-> platforms, and adds a HAS_3DLUT macro to check for support.
-> 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> > index f1df0f9ba7624..95de75e1de984 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_color.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> > @@ -4304,6 +4304,9 @@ intel_color_load_plane_luts(struct intel_dsb *dsb,
-> >  bool
-> >  intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe)
-> >  {
-> > +	if (!HAS_3DLUT(display))
-> > +		return false;
-> > +
-> >  	if (DISPLAY_VER(display) >= 12)
-> >  		return pipe == PIPE_A || pipe == PIPE_B;
-> >  	else
-> >  		return false;
-> >  }
-> 
-> [Severity: Medium]
-> Will this still return false for GLK and ICL platforms even though they have
-> the HAS_3DLUT flag set?
-> 
-> The commit message indicates 3D LUT is supported on GLK+ hardware, and the
-> patch sets has_3dlut = 1 for GLK (DISPLAY_VER = 10) and ICL (DISPLAY_VER = 11).
-> However, in intel_color_crtc_has_3dlut(), after the new HAS_3DLUT() check
-> passes for these platforms, the function still evaluates:
-> 
->     if (DISPLAY_VER(display) >= 12)
->         ...
->     else
->         return false;
-> 
-> Doesn't this existing version check unconditionally return false for GLK and
-> ICL, defeating the newly added flag and keeping 3D LUT disabled for these
-> platforms?
+== Series Details ==
 
-Those platforms are currently not supporting 3D LUT. Purpose of
-has_3dlut is to fuse off 3D LUT support when the flag is reset, which is
-introduced in later patches. It does not force to use 3D LUT when it is
-set.
+Series: Introduce xe_wedge (rev7)
+URL   : https://patchwork.freedesktop.org/series/173011/
+State : warning
 
-BR,
-Michał
+== Summary ==
 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20261013204705.1574475-1-michal.grzelak@linux.intel.com?part=2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 428a56858773a68e6be0a6552d43c00174c7908f
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Thu Oct 15 13:40:21 2026 +0530
+
+    drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+    
+    With xe_wedge_fini() now moved to xe_wedge and registered as part of
+    xe_device_probe_early(), it is safe to move xe_ras_process_errors() back
+    to xe_ras where it belongs. This essentially reverts commit 20bc4883c7c0
+    ("drm/xe/ras: Fix boot-time ras error processing"), which was added to
+    prevent PM reference leak in case of early wedging in probe sequence.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch d0f854d04f85e2bd88bce0b7bd153e5a67957a5b drm-intel
+f60c9250e8f0 drm/xe/gt: Use GT ordered workqueue for wedging
+-:43: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#43: FILE: drivers/gpu/drm/xe/xe_device.h:142:
++#define for_each_initialized_gt(gt__, xe__, id__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if(READ_ONCE((gt__)->initialized))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt__' - possible side-effects?
+#43: FILE: drivers/gpu/drm/xe/xe_device.h:142:
++#define for_each_initialized_gt(gt__, xe__, id__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if(READ_ONCE((gt__)->initialized))
+
+total: 1 errors, 0 warnings, 1 checks, 90 lines checked
+49b4472e3033 drm/xe: Drop xe_device_set_wedged_method()
+87d9aefb10b1 drm/xe: Move xe_device_wedged_fini() registration to xe_device_probe_early()
+a83f47b192cc drm/xe: Make xe_device_declare_wedged() IRQ safe
+24bc107b487c drm/xe/pci_error: Flush GT wedge worker before bus reset
+f1cf52d4e79b drm/xe: Introduce xe_wedge
+-:1069: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1069: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1201 lines checked
+428a56858773 drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
+
