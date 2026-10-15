@@ -4,73 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EC24CC6B33
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C1A9CC6B3C
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 12:15:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADB8010E1E4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A564C10E18F;
 	Thu, 15 Oct 2026 12:15:41 +0000 (UTC)
-Received: from mail-dy1-f180.google.com (mail-dy1-f180.google.com
- [74.125.82.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECAF710EBC1
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 10:25:45 +0000 (UTC)
-Received: by mail-dy1-f180.google.com with SMTP id
- 5a478bee46e88-354ba08cfd1so8512192eec.1
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 03:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1792059945; x=1792664745; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=F9+8qJXYIs+6iS8q/9Zgf4xjmHf09yWUVJ++iLRt+bQ=;
- b=XTDRVg17Zhc/ELWBbGTsnEqoyOvp8OfsD0f+iZeZQK+nFU4ggDxumdmjo7bOGK7bEF
- uFqnFiig77r1fvtWiesDv6V9QqnZa2BsiJbL9nWSqDutnSvWGAYUlVrkH0E0sJzJ1+Mm
- bRYw4CT+tcYBy1h+E+cLzquzdciVKPiia7N+RzEl1GZfhxDwCw/OAfEK0ZvFgDGKlch2
- RnEOpEn0ngCMw66SyeetPZM7GRTuYCKCmwLcLfp7m6IsBEUtnWY1eK2bdJIvjtTY4Fxm
- MHvqqFNiquWKVgQ65Kbtl0hMAoDFWGqYOT+JS9kNY6ZALhi2WphYi5gIxue/FP8xjQ6x
- WCqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1792059945; x=1792664745;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=F9+8qJXYIs+6iS8q/9Zgf4xjmHf09yWUVJ++iLRt+bQ=;
- b=laeqO0iNnVRyzEFh49sUaI5icKMwvOjsGppJqQxBVGg6YIsGo/3fuoY8r6W5G80Pf7
- XaSLUGPZlvI7YcvKALLAcxRU+hMdSadQG2fj4fYA9qwlrYX1gHMGNefmSE2Hosuuq1/E
- V0OAWX3La+jmyNn0PFTuXnOy9r7w+IpwLTAddUyb4PHCOm/o4E5CEZ+RseZjvlIXryS6
- e7RjvDJlpehjr/q9OLuA8POVhRQUw5KJQ4gJxfJhBOh6KPYl/FUv8tn6PMttW3f14Gb9
- x8Hk7uv41Ix9ikvbqi0CKl/cc6r0Gt/mydpVIE97zKrww2fgzowpJ6Hw9Z5uN+0ph4EA
- 75Dw==
-X-Gm-Message-State: AFq9FYIaoD8cWqpTN0n+q45DzShac+dIKKqpUN87y46C7A89Kv1WscJ8
- WQqUbaQo3u4HfsTWLSL/98It6uRvcAAOCgJxhv5txvPmila6dmX+UU5a
-X-Gm-Gg: AYBFou0SfPQ0UVSgq3KgKCo8Q7Nl40Nu5BDrUfdY1bKXJckPxIO3bbDBgfV9wJxwyxX
- FrOegVn+jV8LOHWoORE89I6cLE93WXepZip8vpOH2KIrsEJDpv251cPU5YmteaSJpu5fjlhYBQs
- qvU0duzYzsjapLdeFy4C8h1AjVqtDvXQ7NlEp9zZ2Pr1e6I1/ikQmT75HarTQHHFnGoMGLwwIzJ
- VJie4W+US2RDd0AEls8MnrSmXwIws3an2mLirZgC87gGJXK2JDYzlcaxLdxErKF8QIzIU9q03KU
- a7hWA9AVmNjM6rxDUm68uvJSVR6y5/ApKJ74d77tSPkLx/O21fSpmUT6M8uwt1tPDx+ZwlEGXKk
- i0pbHuDWlKCkkqIQTBk7rCNZzr0NIGYr4CID49aF4HPV5hi+5xJ2mdVtKr1WTN1/T1HHo+n/aI/
- SZo7iYeMKRtSHo0ecKB0/dTlOhbj7ZQv+ewvzhXI50/8xMxTSuljzOI6ah/U5Rfjkf3nB1JeZJB
- mDE5PdeyK9D
-X-Received: by 2002:a05:701b:2086:20b0:149:1b5b:1f25 with SMTP id
- a92af1059eb24-16a5adfc081mr26042391c88.15.1792059944864; 
- Thu, 15 Oct 2026 03:25:44 -0700 (PDT)
-Received: from ex-b560m-v5 ([2804:10f8:4586:e200:6d46:b07e:caa4:4492])
- by smtp.gmail.com with ESMTPSA id
- a92af1059eb24-16997c21ff3sm54274363c88.2.2026.10.15.03.25.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 15 Oct 2026 03:25:44 -0700 (PDT)
-From: Victor Ferreira <dev.victorferreira@gmail.com>
-To: Karthik Poosa <karthik.poosa@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Badal Nilawar <badal.nilawar@intel.com>,
- Soham Purkait <soham.purkait@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH v2 0/9] Add fan control support
-Date: Thu, 15 Oct 2026 07:25:21 -0300
-Message-ID: <20261015102521.74468-1-dev.victorferreira@gmail.com>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260717041757.2759084-1-karthik.poosa@intel.com>
-References: <20260717041757.2759084-1-karthik.poosa@intel.com>
+Received: from host3.o27bbn.ondsl.gr (host3.o27bbn.ondsl.gr [79.129.74.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0590210FFD1;
+ Thu, 15 Oct 2026 00:37:34 +0000 (UTC)
+Received: from mail.e-psn.eu (cluster-localnode [10.200.210.1])
+ by mail.e-psn.eu (Postfix) with ESMTPA id 8F3173A537AA;
+ Thu, 15 Oct 2026 00:37:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=e-psn.eu; s=default;
+ t=1792024651; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ingnB9AcWDf+xSzk/JYpaVyHALuYuvn8bSdf+q+dJRo=;
+ b=ExdDwVWf3kjOzu1Sv0Gc27ZL7YUH8sgPj/EvPF1eEeE1KcxYQMaT0T5Y+zs4qQXb9b0Up6
+ +lh11Kr724DOPQDjKaMOqjFfllPbE78DXNeajygFHNtvtDlFKhJwHTA5KxFdkq5hdT2UHl
+ OhT+1taOwaz3L2EkxXsrRy8WWVNCwKA/cjf+1rsBmkTaeKJ/w6Mix7wQrgoowke9HCnzYq
+ c7CrEfT7IhJDenNIP+wFSXBr32irsMTceqOt9M02E6cUKIfHyMk5zlvwRXA17X72hBSrPJ
+ jnSiLU87Dansia8i1N4Oi/1OBkRw9UHAuy4OBETGNGDJt89s0ousKcAiRZuhtw==
 MIME-Version: 1.0
+Date: Thu, 15 Oct 2026 03:37:31 +0300
+From: Constantinos Chalkias <cch@e-psn.eu>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: =?UTF-8?Q?Bata_Roland_Kriszti=C3=A1n?= <batarolandkrisztian@gmail.com>,
+ intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
+ force-wake
+Mail-Reply-To: cch@e-psn.eu
+In-Reply-To: <as_iOd6A_Yncj8Gt@intel.com>
+References: <20261012104245.2108030-1-cch@e-psn.eu>
+ <as_iOd6A_Yncj8Gt@intel.com>
+Message-ID: <046ad11178ef5ab04364e14a0211a68c@e-psn.eu>
+X-Sender: cch@e-psn.eu
+Organization: E-PSN
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Flag-Threshold: 6
 X-Mailman-Approved-At: Thu, 15 Oct 2026 12:15:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,64 +60,186 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: cch@e-psn.eu
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Tested v2 on a consumer Battlemage part. The testing I could find for this
-series was on an Arc Pro B60 (8086:e211, G31), so here is a data point from the
-consumer side of the lineup.
+Hi Rodrigo,
+Thanks for pointing this out. Yes, this appears to be the same issue, 
+and I agree we should avoid parallel fixes.
+My follow-up testing independently converged on a very similar result. I 
+narrowed the workaround to CHANNEL_PKG only. A 500-1000 us GT force-wake 
+interval was not reliable, while 3000-3500 us was.
+In the most controlled test I disabled both hwmon pollers, stopped the 
+inference workload, and the physical blower remained latched at high 
+speed for more than five minutes while the GPU was otherwise idle. A 
+single package-temperature read using XE_FW_GT with a 3000-3500 us 
+interval immediately caused the blower to return to normal.
+I also saw the later RFC follow-up showing that both GT-only and 
+RENDER-only longer pulses could refresh the telemetry and were followed 
+by fan slowdown, which seems consistent with this result.
+I won't send a competing v2. I'm happy to contribute these measurements 
+to the existing RFC effort and help test whatever implementation you 
+prefer to converge on.
+Thanks,
+Constantinos
 
-Hardware:  ASRock Arc B580 Steel Legend 12GB OC
-           8086:e20b, subsystem 1849:6020, BMG G21
-Kernel:    7.2.9 with this series (v2, all 9 patches) applied, no other changes
-Userspace: NixOS, xe driver, no lockdown LSM
-
-The PCODE FAN_SPEED_CONTROL mailbox answers on this SKU. Reading proves it
-before any write happens: with pwm1_enable=2 the driver pulls the card's own
-stock table off the hardware, and the values are sane rather than zeros.
-
-  point  1   10 C -> 26      point  6   80 C -> 153
-  point  2   50 C -> 26      point  7   85 C -> 179
-  point  3   55 C -> 51      point  8   90 C -> 204
-  point  4   70 C -> 77      point  9   95 C -> 230
-  point  5   75 C -> 102     point 10  100 C -> 255
-
-Manual control works across the full range. Starting from a fan held at 0 RPM
-(pwm1_enable=1, pwm1=0) for eight seconds:
-
-  echo 0 > pwm1_enable    365 -> 2053 -> 3805 RPM within six seconds,
-                          holding around 3870 RPM for the full minute
-  same minute             package 51 C -> 35 C, vram 56 C -> 40 C
-
-The temperature falling is the part that does not depend on trusting the
-tachometer. pwm1_enable=2 hands the card back to its stock curve. pwm1 writes
-are correctly refused unless the mode is already 1, and a duty written as 200
-reads back as 199, which is the round trip through the percent conversion
-rather than a defect. The same measurements on v1 gave the same picture, so
-nothing regressed between revisions on this card.
-
-A few observations, offered in case they are useful for the ABI documentation:
-
-- fan1_max reads 3600 on this card while the fan holds around 3870 RPM under
-  pwm1_enable=0 (one reading reached 4187). Anything computing a percentage
-  from fan1_max will exceed 100 on this SKU.
-
-- pwm1_auto_point*_pwm reflect the ACTIVE table. With a userspace controller
-  holding pwm1_enable=1, they read back as that controller's current flat duty,
-  not as the stock curve, which is easy to mistake for a broken stock table.
-  Only mode 2 shows the stock values above.
-
-- This board has no late binding fan control firmware and is unlikely to get
-  one: lb_fan_control_version is empty, and linux-firmware currently ships only
-  fan_control_8086_e20b_8086_1100.bin, which is for Intel's own board. Manual
-  control works regardless, since it goes through PCODE rather than that blob.
-  This seems worth stating explicitly somewhere, because the missing firmware is
-  widely assumed to be a prerequisite for any fan control at all.
-
-- Taking the fan manual loses the card's own zero RPM behaviour. Under the stock
-  table this card idles with the fan stopped at duty 26, while the same duty
-  written manually spins it at roughly 530 RPM. With the fan deliberately
-  stopped the card settles at 60-62 C core and 66 C vram and stays there, so
-  nothing runs away, but a userspace curve has to pick its own stop threshold.
-
-Tested-by: Victor Ferreira <dev.victorferreira@gmail.com>
+On 2026-10-14 23:12, Rodrigo Vivi wrote:
+> On Mon, Oct 12, 2026 at 01:42:45PM +0300, Constantinos Chalkias wrote:
+>> On Battlemage, thermal telemetry can remain stale after the GT returns
+>> to RC6 following sustained workloads.
+>> 
+>> On an Intel Arc Pro B70, package and VRAM temperature telemetry may 
+>> stop
+>> refreshing after a long inference workload. Fan telemetry can also
+>> become invalid while the physical blower remains elevated.
+>> 
+>> Acquire the GT force-wake domain around Battlemage thermal MMIO reads
+>> and allow a short settling interval before reading the register. Route
+>> package, VRAM and VRAM-channel availability reads through the helper.
+>> 
+>> Testing showed that an immediate read, as well as a 100-300 us delay,
+>> could leave telemetry stale. A 500-1000 us delay recovered correctly
+>> across repeated inference-to-idle cycles.
+>> 
+>> The change is restricted to Battlemage, where the behavior has been
+>> reproduced and validated.
+>> 
+>> Signed-off-by: Constantinos Chalkias <cch@e-psn.eu>
+> 
+> Cc: Bata Roland Krisztián <batarolandkrisztian@gmail.com>
+> 
+> https://lore.kernel.org/intel-xe/179041811564.526373.13204522833274380927.b70-hwmon-rfc@gmail.com/
+> 
+> I believe you guys are facing the same dificulties and arriving to 
+> similar
+> conclusions.
+> 
+> If the consensus is that we need this forcewake, let's do it.
+> 
+> Let's just avoid duplication of efforts in here.
+> 
+> And thank you all for the contributions.
+> 
+>> ---
+>>  drivers/gpu/drm/xe/xe_hwmon.c | 51 
+>> ++++++++++++++++++++++++++++++-----
+>>  1 file changed, 45 insertions(+), 6 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c 
+>> b/drivers/gpu/drm/xe/xe_hwmon.c
+>> index 5edeac961ec3..fee358ab9a6b 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>> @@ -3,6 +3,7 @@
+>>   * Copyright © 2023 Intel Corporation
+>>   */
+>> 
+>> +#include <linux/delay.h>
+>>  #include <linux/hwmon-sysfs.h>
+>>  #include <linux/hwmon.h>
+>>  #include <linux/jiffies.h>
+>> @@ -14,6 +15,7 @@
+>>  #include "regs/xe_mchbar_regs.h"
+>>  #include "regs/xe_pcode_regs.h"
+>>  #include "xe_device.h"
+>> +#include "xe_force_wake.h"
+>>  #include "xe_hwmon.h"
+>>  #include "xe_mmio.h"
+>>  #include "xe_pcode.h"
+>> @@ -946,14 +948,43 @@ static void xe_hwmon_get_voltage(struct xe_hwmon 
+>> *hwmon, int channel, long *valu
+>>  	*value = DIV_ROUND_CLOSEST(REG_FIELD_GET(VOLTAGE_MASK, reg_val) * 
+>> 2500, SF_VOLTAGE);
+>>  }
+>> 
+>> -static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int 
+>> channel)
+>> +static int xe_hwmon_temp_mmio_read(struct xe_hwmon *hwmon,
+>> +				   struct xe_reg reg, u32 *reg_val)
+>>  {
+>>  	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>> +
+>> +	if (hwmon->xe->info.platform == XE_BATTLEMAGE) {
+>> +		struct xe_gt *gt = xe_root_mmio_gt(hwmon->xe);
+>> +
+>> +		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GT);
+>> +
+>> +		if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FW_GT))
+>> +			return -ETIMEDOUT;
+>> +
+>> +		/*
+>> +		 * Allow thermal telemetry to refresh after leaving RC6
+>> +		 * before reading the temperature register.
+>> +		 */
+>> +		usleep_range(500, 1000);
+>> +
+>> +		*reg_val = xe_mmio_read32(mmio, reg);
+>> +		return 0;
+>> +	}
+>> +
+>> +	*reg_val = xe_mmio_read32(mmio, reg);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static inline bool is_vram_ch_available(struct xe_hwmon *hwmon, int 
+>> channel)
+>> +{
+>>  	int vram_id = channel - CHANNEL_VRAM_N;
+>>  	struct xe_reg vram_reg;
+>> +	u32 reg_val;
+>> 
+>>  	vram_reg = xe_hwmon_get_reg(hwmon, REG_TEMP, channel);
+>> -	if (!xe_reg_is_valid(vram_reg) || !xe_mmio_read32(mmio, vram_reg))
+>> +	if (!xe_reg_is_valid(vram_reg) ||
+>> +	    xe_hwmon_temp_mmio_read(hwmon, vram_reg, &reg_val) || !reg_val)
+>>  		return false;
+>> 
+>>  	/* Create label only for available vram channel */
+>> @@ -1025,15 +1056,19 @@ xe_hwmon_temp_is_visible(struct xe_hwmon 
+>> *hwmon, u32 attr, int channel)
+>>  static int
+>>  xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 attr, int channel, 
+>> long *val)
+>>  {
+>> -	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
+>> -	u64 reg_val;
+>> +	u32 reg_val;
+>> +	int ret;
+>> 
+>>  	switch (attr) {
+>>  	case hwmon_temp_input:
+>>  		switch (channel) {
+>>  		case CHANNEL_PKG:
+>>  		case CHANNEL_VRAM:
+>> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, 
+>> channel));
+>> +			ret = xe_hwmon_temp_mmio_read(hwmon,
+>> +						      xe_hwmon_get_reg(hwmon, REG_TEMP, channel),
+>> +						      &reg_val);
+>> +			if (ret)
+>> +				return ret;
+>> 
+>>  			/* HW register value is in degrees Celsius, convert to 
+>> millidegrees. */
+>>  			*val = REG_FIELD_GET(TEMP_MASK, reg_val) * MILLIDEGREE_PER_DEGREE;
+>> @@ -1043,7 +1078,11 @@ xe_hwmon_temp_read(struct xe_hwmon *hwmon, u32 
+>> attr, int channel, long *val)
+>>  		case CHANNEL_PCIE:
+>>  			return get_pcie_temp(hwmon, val);
+>>  		case CHANNEL_VRAM_N...CHANNEL_VRAM_N_MAX:
+>> -			reg_val = xe_mmio_read32(mmio, xe_hwmon_get_reg(hwmon, REG_TEMP, 
+>> channel));
+>> +			ret = xe_hwmon_temp_mmio_read(hwmon,
+>> +						      xe_hwmon_get_reg(hwmon, REG_TEMP, channel),
+>> +						      &reg_val);
+>> +			if (ret)
+>> +				return ret;
+>>  			/*
+>>  			 * This temperature format is 24 bit [31:8] signed integer and 8 
+>> bit
+>>  			 * [7:0] fraction.
+>> --
+>> 2.56.0
+>> 
