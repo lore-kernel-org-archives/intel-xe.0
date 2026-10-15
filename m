@@ -4,40 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0874CC6B2E
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 05:28:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40ACECC6B38
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 05:57:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FCF110E9D0;
-	Thu, 15 Oct 2026 05:28:42 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CEDE10E9E3
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 05:28:36 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2819143F04;
- Thu, 15 Oct 2026 05:28:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF2FF1F000C4;
- Thu, 15 Oct 2026 05:28:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792042116;
- bh=CXbtvKU2u8F5aSY85YBoC5XuoYVPK0fA4z1yTZ99PPU=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=SwqOg8driMReg16zcKL+GowX3UfU0m+KL+1rEMKoZhnfkzlnsdVP1idBmy+KaSKtC
- X09pMse58O+YQWJBKbq1LYPifpmVRrrIhJ3CjVapJIWFkLoxq1zOJazTzsT2reYtjM
- uGF4tybde04hVYyc+3rC4WMbBbB05cfqyGC9yVfpNfHk9pm1GUIeZc8BL1D52aVyOj
- Hri3T4uO8cTNo1hqYyhxU9NnWx/HA74qmP/y6++Cim+U2vYCXtS/ykgU/LSJTNUtu+
- +vonUsfunVbwJnZ1PS3GHtIb7Lab9AV89VxQCkNvYFu2D/ZQ7cMZsZL+GA7lrAmOcc
- C6mW0gDE7eqdg==
-Message-ID: <sashiko-outbox-172307@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 3/3] drm/xe: Synchronously wait for queue kill on FD
- close
-To: "Daniel Charles" <daniel.charles@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261015050136.1069815-4-daniel.charles@intel.com>
-References: <20261015050136.1069815-1-daniel.charles@intel.com>
- <20261015050136.1069815-4-daniel.charles@intel.com>
-Content-Type: text/plain; charset=utf-8
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6FFD10E9E6;
+	Thu, 15 Oct 2026 05:57:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6D1A10E9D0;
+ Thu, 15 Oct 2026 05:56:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792043819; x=1823579819;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=H0yGTdjJ3j8ZW4Un8Y3pRDeqFWIg3Espzw1E9R1TXXE=;
+ b=i/VAIXv2zTE7T/tu8J171Yg2dTf5ar3tgsjSNRnpOmjcXvMcZW5/cDJx
+ mTOww4+C4iVaB+9BH+y51SVAhYAGj1QmMz8Eg62q3TaGcrfbOzrDXFr9g
+ f5AElg/SIDRJN8sp3IgHUarLN0dIDxiF3zwGj1eWZ5qQ09r/tXPIMhbIH
+ G17DUu8vAK67AlHpSLIoIvvKTq6YcTfCHntX37xBxVt7S/ss4TNfazeV1
+ vKcaSFZeI0daxGlGB2MF3s/OjziWNzXRvahWnbgbDngFNf998JSFGv7wS
+ USDLLIdtEtWxxaNjJEI3lcKiOeIm3JQQQxl4iiEHFIlfql8O94RMzqWae Q==;
+X-CSE-ConnectionGUID: ieJpV6uLSb+KuiZig1jj2g==
+X-CSE-MsgGUID: MHGSeiXTTuenaL/cY1xnEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="700567"
+X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
+   d="scan'208";a="700567"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 22:56:58 -0700
+X-CSE-ConnectionGUID: 8s2xpkr1TSGhJINCjBG16w==
+X-CSE-MsgGUID: cK9b6afTQLOiLVoNuUIxsw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
+   d="scan'208";a="3444097"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.93])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2026 22:56:57 -0700
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 15 Oct 2026 05:28:35 +0000
+In-Reply-To: <as-mReJ7rAGinlgY@intel.com>
+References: <20261007222314.5714-1-ville.syrjala@linux.intel.com>
+ <20261007222314.5714-5-ville.syrjala@linux.intel.com>
+ <179199289730.125250.2949692993509316966@jlahtine-mobl>
+ <as-mReJ7rAGinlgY@intel.com>
+Subject: Re: [PATCH 4/5] drm/i915/gmbus: Fix i2c bit banging for PTL+
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Ville =?utf-8?b?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Date: Thu, 15 Oct 2026 08:56:54 +0300
+Message-ID: <179204381410.12289.4840592736864360@jlahtine-mobl>
+User-Agent: alot/0.13.dev2+g40c57d620
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,115 +68,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/xe/guc: async reset on kill timeout causes page table UAF
-- [High] drm/xe: missing queue kill_sync in xe_exec_queue_destroy_ioctl
---
+Quoting Ville Syrj=C3=A4l=C3=A4 (2026-10-14 18:56:53)
+> On Wed, Oct 14, 2026 at 06:48:17PM +0300, Joonas Lahtinen wrote:
+> > Hi,
+> >=20
+> > This didn't cherry pick cleanly into drm-intel-fixes.
+> >=20
+> > Do we still want to send this into v7.3 given how fresh and
+> > relatively non-trivial it is and we're past -rc7 already?
+>=20
+> Should be fine to let this sit in -next for a while. The code
+> tries the gmbus path first (which should usually work), and bit
+> banging is just a fallback.
 
-commit 50edeb4bbee349d41ce073d20f8d55dc6152900b
-Author: Daniel Charles <daniel.charles@intel.com>
+Thanks for a quick reply. I won't pick it for -fixes or -next-fixes,
+so we can then pick it up for -fixes for v7.4.
 
-    drm/xe: Synchronously wait for queue kill on FD close
-   =20
-    The early KILL message disables GuC scheduling outside the serialized
-    TDR path, but xe_file_close() does not wait for it to complete before
-    dropping queue references. GuC may still schedule contexts whose page
-    tables are being torn down, producing CAT errors and engine resets.
-
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_e=
-xec_queue.c
-> index 7ade915c59a85..af5d9e8f0b16e 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -1623,6 +1623,19 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
->  	xe_vm_remove_compute_exec_queue(q->vm, q);
->  }
-> =20
-> +/**
-> + * xe_exec_queue_kill_sync() - Wait for queue scheduling to stop
-> + * @q: The exec queue
-> + *
-> + * This function waits for the backend to finish stopping the queue after
-> + * xe_exec_queue_kill(). It is safe to call multiple times.
-> + */
-> +void xe_exec_queue_kill_sync(struct xe_exec_queue *q)
-> +{
-> +	if (q->ops->kill_sync)
-> +		q->ops->kill_sync(q);
-> +}
-
-[Severity: High]
-Does this same fix need to be applied to xe_exec_queue_destroy_ioctl()?
-
-If userspace calls the queue destruction ioctl to destroy an exec queue,
-followed immediately by the VM destruction ioctl to destroy the associated
-VM, xe_exec_queue_destroy_ioctl() calls xe_exec_queue_kill() which
-decrements vm->preempt.num_exec_queues to 0, but it returns without waiting.
-
-The subsequent VM destruction ioctl then succeeds and synchronously frees t=
-he
-VM's page tables while GuC may still be actively scheduling the queue on
-those tables. Will this lead to the same CAT errors and engine resets this
-patch is trying to fix?
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> index 609af66b343d5..559937e584aa3 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-[ ... ]
-> @@ -2267,6 +2289,28 @@ static void guc_exec_queue_kill(struct xe_exec_que=
-ue *q)
->  	xe_guc_exec_queue_trigger_cleanup(q);
->  }
-> =20
-> +static void guc_exec_queue_kill_sync(struct xe_exec_queue *q)
-> +{
-> +	struct xe_exec_queue *primary =3D xe_exec_queue_multi_queue_primary(q);
-> +	struct xe_guc *guc =3D exec_queue_to_guc(primary);
-> +	long ret;
-> +
-> +	xe_assert(guc_to_xe(guc), exec_queue_killed(q));
-> +
-> +	ret =3D wait_event_timeout(guc->submission_state.kill_wq,
-> +				 (!exec_queue_enabled(primary) &&
-> +				  !exec_queue_pending_disable(primary) &&
-> +				  !exec_queue_pending_enable(primary)) ||
-> +				 xe_guc_read_stopped(guc) ||
-> +				 vf_recovery(guc) ||
-> +				 exec_queue_wedged(primary), HZ * 5);
-> +	if (!ret) {
-> +		xe_gt_warn(q->gt, "Queue kill failed to respond, guc_id=3D%d\n",
-> +			   primary->guc->id);
-> +		xe_gt_reset_async(q->gt);
-> +	}
-
-[Severity: High]
-Can this timeout handling cause a use-after-free of page tables?
-
-If wait_event_timeout() expires because GuC fails to respond, we queue an
-asynchronous GT reset via xe_gt_reset_async() and return immediately.
-
-Because the reset is processed asynchronously by a worker, the GuC hardware
-remains active. By returning immediately, the caller (xe_file_close()) will
-proceed to drop queue references and synchronously destroy the VM's page
-tables via xe_vm_close_and_put().
-
-Since the GuC hardware is not halted before the page tables are freed, could
-the hardware page walker access the freed page table memory? Should this
-path either halt the hardware synchronously or wait for the reset to comple=
-te
-before returning?
-
-> +}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261015050136.1069=
-815-1-daniel.charles@intel.com?part=3D3
+Regards, Joonas
