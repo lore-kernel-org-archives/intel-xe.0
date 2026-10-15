@@ -4,47 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FE7ACC6B33
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 13:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E8D0CC6B34
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 13:10:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34C5910EBBA;
-	Thu, 15 Oct 2026 13:03:51 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A77410EBAE
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 13:03:45 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B24274341D;
- Thu, 15 Oct 2026 13:03:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6171B1F000C4;
- Thu, 15 Oct 2026 13:03:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792069424;
- bh=bunlwajOetrmnYf9ny1hT1imCQsIXnS2QyI1vpqiq1w=;
- h=Date:From:To:Cc:Subject;
- b=Tqsdf07X9753O1QUzh+kv8KBS/cPQyZDV2pjmmXigiYrQmHsa1oTnwuFimJNJ/5BF
- j0+vvjn9txn9d1T5AMY/Mkd3BQEb6obFayftHXamtcrHbJvh1SFaSx/H/Bx60GBPev
- pUhEXU/RHvMh8ulQkgA3bFnIk+4QooEmWkRSCxTD6zM0MDn3Y2uKuVxKcbVFbFlU4e
- +IxSLb5Bn/Gqut6i9rXEVuPzXn06LF5FqXrJVxFgUZjcEp1eleY/2/ne5oXpQghCBL
- 5VBl3UJR43uWQ5TtAq4CriH4lVAvyAqI59Xa2Yo1WhSZzfaKrgsZG1k5w7VMVYwDEz
- OQ+glv61gXNBQ==
-Date: Thu, 15 Oct 2026 14:03:39 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Luis Chamberlain <mcgrof@kernel.org>, Petr Pavlu <petr.pavlu@suse.com>,
- Sami Tolvanen <samitolvanen@google.com>,
- Daniel Gomez <da.gomez@samsung.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: linux-next: manual merge of the modules tree with the drm-xe tree
-Message-ID: <atDPK3Tz7cNWdtDA@sirena.org.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 457F210EBBA;
+	Thu, 15 Oct 2026 13:10:00 +0000 (UTC)
+Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D589610EBBA;
+ Thu, 15 Oct 2026 13:09:58 +0000 (UTC)
+Received: from [IPV6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40] (unknown
+ [IPv6:2400:2410:b120:f200:9e5c:8eff:fec0:ee40])
+ (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (Client did not present a certificate)
+ by psionic.psi5.com (Postfix) with ESMTPSA id A23D73F072;
+ Thu, 15 Oct 2026 15:09:45 +0200 (CEST)
+Message-ID: <55218956-0520-4c26-b238-11747ba5ea9e@hogyros.de>
+Date: Thu, 15 Oct 2026 22:09:28 +0900
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="voOosfS5jhpgDEb8"
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
+ force-wake
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, karthik.poosa@intel.com,
+ Zongyao Bai <zongyao.bai@intel.com>, anshuman.gupta@intel.com
+Cc: Constantinos Chalkias <cch@e-psn.eu>,
+ =?UTF-8?Q?Bata_Roland_Kriszti=C3=A1n?= <batarolandkrisztian@gmail.com>,
+ intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20261012104245.2108030-1-cch@e-psn.eu>
+ <as_iOd6A_Yncj8Gt@intel.com>
+ <55cba965-208a-44cd-a644-e664410af8a5@hogyros.de>
+ <atDLRDvuDES7u00Q@intel.com>
+Content-Language: en-US
+From: Simon Richter <Simon.Richter@hogyros.de>
+In-Reply-To: <atDLRDvuDES7u00Q@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------AJGqKuh09DWkZ2cOqjycczmr"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,66 +56,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------AJGqKuh09DWkZ2cOqjycczmr
+Content-Type: multipart/mixed; boundary="------------UxeokOPhNA9QHJ4YWd1LtkFA";
+ protected-headers="v1"
+From: Simon Richter <Simon.Richter@hogyros.de>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, karthik.poosa@intel.com,
+ Zongyao Bai <zongyao.bai@intel.com>, anshuman.gupta@intel.com
+Cc: Constantinos Chalkias <cch@e-psn.eu>,
+ =?UTF-8?Q?Bata_Roland_Kriszti=C3=A1n?= <batarolandkrisztian@gmail.com>,
+ intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Message-ID: <55218956-0520-4c26-b238-11747ba5ea9e@hogyros.de>
+Subject: Re: [PATCH] drm/xe/hwmon: refresh Battlemage thermal telemetry under
+ force-wake
+References: <20261012104245.2108030-1-cch@e-psn.eu>
+ <as_iOd6A_Yncj8Gt@intel.com>
+ <55cba965-208a-44cd-a644-e664410af8a5@hogyros.de>
+ <atDLRDvuDES7u00Q@intel.com>
+In-Reply-To: <atDLRDvuDES7u00Q@intel.com>
 
---voOosfS5jhpgDEb8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+--------------UxeokOPhNA9QHJ4YWd1LtkFA
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Hi all,
+SGksDQoNCk9uIDEwLzE1LzI2IDIxOjQ3LCBSb2RyaWdvIFZpdmkgd3JvdGU6DQoNCj4gRG8g
+d2UgaGF2ZSBhIGdpdGxhYiBpc3N1ZSBmaWxlZCBvbiB0aGlzIGFscmVhZHk/IEl0IHNob3Vs
+ZCBiZSBnb29kIHRvDQo+IGNvbnNvbGlkYXRlIGFsbCB0aGUgdmlldyB0aGVyZS4gRnVydGhl
+cm1vcmUsIHBlcmhhcHMgd2UgY2FuIGdldCBzb21lIGludGVybmFsDQo+IGhlbHAgZnJvbSBG
+VyB0ZWFtcyB0byBhc3Npc3QgaW4gaGVyZS4NCg0KWWVzLCBodHRwczovL2dpdGxhYi5mcmVl
+ZGVza3RvcC5vcmcvZHJtL3hlL2tlcm5lbC8tL3dvcmtfaXRlbXMvNDU2MA0KDQogICAgU2lt
+b24NCg==
 
-Today's linux-next merge of the modules tree got a conflict in:
+--------------UxeokOPhNA9QHJ4YWd1LtkFA--
 
-  drivers/gpu/drm/xe/xe_guc_log.c
-
-between commit:
-
-  149f81d8a73ea ("drm/xe/guc: Compress GuC log and CTB dump with zstd")
-
-=66rom the drm-xe tree and commit:
-
-  291a8fe5d999c ("drm/xe: Include error-injection.h for ALLOW_ERROR_INJECTI=
-ON()")
-
-=66rom the modules tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --cc drivers/gpu/drm/xe/xe_guc_log.c
-index 90aeaccea596c,6f0739204d9e2..0000000000000
---- a/drivers/gpu/drm/xe/xe_guc_log.c
-+++ b/drivers/gpu/drm/xe/xe_guc_log.c
-@@@ -5,10 -5,7 +5,10 @@@
- =20
-  #include "xe_guc_log.h"
- =20
-- #include <linux/fault-inject.h>
-+ #include <linux/error-injection.h>
- +#if IS_ENABLED(CONFIG_DRM_XE_COMPRESS_DUMP)
- +#include <linux/zstd.h>
- +#endif
- =20
-  #include <linux/utsname.h>
-  #include <drm/drm_managed.h>
-
---voOosfS5jhpgDEb8
-Content-Type: application/pgp-signature; name="signature.asc"
+--------------AJGqKuh09DWkZ2cOqjycczmr
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmrQzysACgkQJNaLcl1U
-h9DZfggAg7Qc6hNRbd/owvc1n0nx24w/nGSMUKsrBni0a6RCgAdP7z1V0+IjxjgL
-++LsePYhSEXNyvDEpn716iICad5GVLklF2hF5Ir/bE60bk+VjhEzBZLfvjLTmHem
-cupuSVKNh9+vqO/du+5oARnslXvb8DeSEYB3AMwJwL1tplAFUPq0Ze5fIWp8V3+M
-avQZF8+s0nHanCAHxW4ETsA/oZd63VUqULma7bM+fboezhxxFEkliNY5rJg+VlcB
-8CPvAOz/cj5K9gxItDTBZBaX3PQkj/zeGP/iKDomxJ/axyRJSbLriTCsQbYZSJDZ
-MdrBTa+gX61fVSdzS3deh2ftEGApCw==
-=gwOq
+iQEzBAEBCgAdFiEEtjuqOJSXmNjSiX3Tfr04e7CZCBEFAmrQ0JMACgkQfr04e7CZ
+CBEXGAf/XBBpS2sO4gmzGdVzb9m3KGs03e1hFEjwiaCzxlwexmFFYf9NTLtRp13h
+NGwKrgxR0XWf+g6GGJ+yejsu8IPTwBBsngLvlfjUiL/Si/d7evAhpfqoSC+Xifx8
+R3wuaefXw6WE/vPRbIL/yDd6zzM8WYIn8Sbf6rbNMqssZopt8T6RqBjk2vkIKXcc
+gwmnDv5nBmBBdxJh0IiK2Igj5TmRFX/HLUl5yhG6lAPsHsgwqrKinJqhUBhlwR0+
+v5ecThavBk5mSGZCN7SdXsjuBy7NJsihdoOaqnsZa2oP2jodeCnHtkupTaPGNgf1
+XrEOLTtF/Fn7U+TvJtkGP+vQSLs3WA==
+=sWty
 -----END PGP SIGNATURE-----
 
---voOosfS5jhpgDEb8--
+--------------AJGqKuh09DWkZ2cOqjycczmr--
