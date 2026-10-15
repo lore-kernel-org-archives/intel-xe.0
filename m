@@ -4,49 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B1D5CC6B2F
-	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 05:06:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6090DCC6B2F
+	for <intel-xe@archiver.kernel.org>; Thu, 15 Oct 2026 05:06:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA18110E9D0;
-	Thu, 15 Oct 2026 05:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F18ED11209F;
+	Thu, 15 Oct 2026 05:06:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D246E10E9D0
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 05:05:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26D4110E7C7
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 05:05:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792040752; x=1823576752;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=B6R6gFd+JgbFmQOuRVugtjYm9ptTmxhYvIQ0nKMCEkQ=;
- b=NntVJJFZbv1aHxIZjiJ5DSwnew+uaM3N4aSQ157J3+gg20fqP+KgEABN
- 9PDnEaplaGnSN7BLGyFYnQY5sC35Yh6BvdaAzcrGfR4S0KvZ5uQWcIgvE
- 2NNHbe/J3b59laQjKyuo3JzDx7J3KA8tmgRdEVJwRI+FrTepqfMyx3j6c
- //U5izz9AxWtecsK+XmZzGbHWTLucwP+8uy8bPwSHdwkhqDkPehN+ElhO
- tDWSL4bXGrHsh+f+I7vOUNNT340o2AhSCeUMYBtHq6337odScCZVtp+PW
- QVRLAlEyuiSyevASwW2EOZ9nU4SslcozhVn2V0PQJD1FWenZMrV4poXCp w==;
-X-CSE-ConnectionGUID: 8WLDgkDySsqYcu++8emAzw==
-X-CSE-MsgGUID: MIc1aSGWQC204tOTejo2Cw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="687116"
+ t=1792040757; x=1823576757;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fT5UWy+djWgLi1wR9BALTr8AeXs58L7drgM42mFw0ss=;
+ b=MFEM/Ea6/rlan0gHYnrQy+DeE76YLrjA96q9jH3PzJ5Mzxi0gCuRqaF4
+ QOfejsSphzuzzeMI3yqdwYOsSRqXqG6MxyRaE2Wu2lGIV4L4/M3tpPakT
+ 3xU6IvlYU7xvBWWRtMxoYjkxNJMbq55Mr7QNYnd3vxSgxmimESX/XLrRn
+ C6ugp616A2NFwaR7RFk6keHAbPEQuS3sT+hqi/mzxiu3jpnWOIWvU9dUi
+ Hq6iesJO9L/4MI7jTTGgzYE3hgAMUxR5jeo3jecPTDRgmJ+ygQXhbNY0G
+ 2YiXMLH0MtUqnL1CjpvKDAldnExIDAxLmAc8OvTA2IiFttUXPG6lSrcdE w==;
+X-CSE-ConnectionGUID: bnlfPjgbQ86b3lBl7no/LA==
+X-CSE-MsgGUID: jv17PWgqRAekm2WlJwomBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11935"; a="687119"
 X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="687116"
+   d="scan'208";a="687119"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Oct 2026 22:05:51 -0700
-X-CSE-ConnectionGUID: vjDBH5VUS5eKkcPUnxPkZA==
-X-CSE-MsgGUID: oTLUuP8BTNSf3+8aZFViTw==
+X-CSE-ConnectionGUID: FSxYV8NxSnqqRnKn88tPwg==
+X-CSE-MsgGUID: xIS3ugaqQhe6N7Ewnsqauw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,159,1787036400"; 
-   d="scan'208";a="1525107"
+   d="scan'208";a="1525113"
 Received: from danielcm-desk1.jf.intel.com ([10.24.81.120])
- by orviesa009.jf.intel.com with ESMTP; 14 Oct 2026 22:05:51 -0700
+ by orviesa009.jf.intel.com with ESMTP; 14 Oct 2026 22:05:52 -0700
 From: Daniel Charles <daniel.charles@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: x.wang@intel.com, jia.yao@intel.com, jonathan.cavitt@intel.com,
- matthew.brost@intel.com, Daniel Charles <daniel.charles@intel.com>
-Subject: [PATCH v3 0/3] FD close cleanup for XE
-Date: Wed, 14 Oct 2026 22:01:33 -0700
-Message-ID: <20261015050136.1069815-1-daniel.charles@intel.com>
+ matthew.brost@intel.com
+Subject: [PATCH v3 2/3] drm/xe: Disable scheduling early on FD close to avoid
+ CAT error cascade
+Date: Wed, 14 Oct 2026 22:01:35 -0700
+Message-ID: <20261015050136.1069815-3-daniel.charles@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261015050136.1069815-1-daniel.charles@intel.com>
+References: <20261015050136.1069815-1-daniel.charles@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,42 +66,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series adds the suggested logic to synchronously wait for the queue
-kill to complete on FD close. This is needed to avoid a race condition
-where the scheduler may still be processing messages for a queue that
-has been closed, which can lead to errors.
+From: Matthew Brost <matthew.brost@intel.com>
 
-v3:
-    - Patch 3 only, fix GT reset seen in CI (xe_create@create-contexts).
-      See the patch 3 changelog for details.
+When an FD is closed with many exec queues, teardown relies on the TDR
+path to clean up scheduling. However, the TDR handling is serialized
+(i.e., only one exec queue is processed at a time), which can make it
+too slow compared to GuC scheduling activity.
 
-v2:
-    - Bound the wait with a timeout, GT reset on timeout (Sashiko, Matt B)
-    - Drop the flush_work() loop (Matt B)
-    - Use xe_assert() for the killed-queue check (Matt B)
-    - Merge the put loop into the kill_sync loop (Matt B)
+In this window, GuC may continue to schedule contexts backed by
+invalid page tables, leading to a cascade of CAT errors and repeated
+engine resets. This significantly increases recovery time and can
+degrade system stability.
 
-Daniel Charles (1):
-  drm/xe: Synchronously wait for queue kill on FD close
+To mitigate this, eagerly disable scheduling by sending a self-message
+outside of the TDR path. This prevents further scheduling of invalid
+contexts and avoids the CAT error/reset cascade.
 
-Matthew Brost (2):
-  drm/xe: Read scheduler message opcode under lock
-  drm/xe: Disable scheduling early on FD close to avoid CAT error
-    cascade
+This change improves robustness and reduces recovery latency in
+multiple queue teardown scenarios.
 
- drivers/gpu/drm/xe/xe_device.c               |   5 +
- drivers/gpu/drm/xe/xe_exec_queue.c           |  13 +++
- drivers/gpu/drm/xe/xe_exec_queue.h           |   1 +
- drivers/gpu/drm/xe/xe_exec_queue_types.h     |   2 +
- drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  13 ++-
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |   2 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c          |   1 +
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   2 +-
- drivers/gpu/drm/xe/xe_guc_submit.c           | 101 +++++++++++++++++--
- drivers/gpu/drm/xe/xe_guc_submit.h           |   1 +
- drivers/gpu/drm/xe/xe_guc_types.h            |   6 ++
- 11 files changed, 134 insertions(+), 13 deletions(-)
+Cc: Wang Xin <x.wang@intel.com>
+Cc: Jia Yao <jia.yao@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Tested-by: Jia Yao <jia.yao@intel.com>
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c           | 46 ++++++++++++++++++--
+ 2 files changed, 43 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+index 74b711abe2572..89397e1e65465 100644
+--- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
+@@ -36,7 +36,7 @@ struct xe_guc_exec_queue {
+ 	 * a message needs to sent through the GPU scheduler but memory
+ 	 * allocations are not allowed.
+ 	 */
+-#define MAX_STATIC_MSG_TYPE	4
++#define MAX_STATIC_MSG_TYPE	5
+ 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
+ 	/** @destroy_async: do final destroy async from this worker */
+ 	struct work_struct destroy_async;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index c4ef3e9bf7a18..609af66b343d5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2045,12 +2045,23 @@ static void __guc_exec_queue_process_msg_cgp_sync(struct xe_sched_msg *msg,
+ 		guc_exec_queue_send_cgp_sync(q, 0);
+ }
+ 
++static void __guc_exec_queue_process_msg_kill(struct xe_sched_msg *msg,
++					      bool bound)
++{
++	struct xe_exec_queue *q = msg->private_data;
++	struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++
++	if (exec_queue_enabled(primary) && bound)
++		disable_scheduling(primary, true);
++}
++
+ #define CLEANUP				1	/* Non-zero values to catch uninitialized msg */
+ #define SET_SCHED_PROPS			2
+ #define SUSPEND				3
+ #define RESUME				4
+ #define SET_MULTI_QUEUE_PRIORITY	5
+ #define CGP_SYNC_MSG			6
++#define KILL				7
+ #define OPCODE_MASK	0xf
+ #define MSG_LOCKED	BIT(8)
+ #define MSG_HEAD	BIT(9)
+@@ -2085,6 +2096,9 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg,
+ 	case CGP_SYNC_MSG:
+ 		__guc_exec_queue_process_msg_cgp_sync(msg, bound);
+ 		break;
++	case KILL:
++		__guc_exec_queue_process_msg_kill(msg, bound);
++		break;
+ 	default:
+ 		XE_WARN_ON("Unknown message type");
+ 	}
+@@ -2211,8 +2225,19 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+ 	return err;
+ }
+ 
++static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
++				       struct xe_sched_msg *msg,
++				       u32 opcode);
++
++#define STATIC_MSG_CLEANUP	0
++#define STATIC_MSG_SUSPEND	1
++#define STATIC_MSG_RESUME	2
++#define STATIC_MSG_CGP_SYNC	3
++#define STATIC_MSG_KILL		4
+ static void guc_exec_queue_kill(struct xe_exec_queue *q)
+ {
++	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_KILL;
++
+ 	trace_xe_exec_queue_kill(q);
+ 	set_exec_queue_killed(q);
+ 	/*
+@@ -2222,6 +2247,23 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
+ 	 * stays set until the queue is torn down.
+ 	 */
+ 	suspend_wait_wake(q);
++
++	/*
++	 * We eagerly send a message to ourselves to disable scheduling, as the
++	 * TDR is serialized (i.e., only one exec queue is processed at a time).
++	 * If an FD is closed with many exec queues, the TDR can be slower than
++	 * the GuC scheduling contexts with invalid page tables, creating a
++	 * cascade of CAT errors and engine resets, which is quite slow. Avoid
++	 * this by immediately disabling scheduling outside of the TDR.
++	 */
++	if (kref_read(&q->refcount) && !exec_queue_wedged(q)) {
++		struct xe_gpu_scheduler *sched = &q->guc->sched;
++
++		xe_sched_msg_lock(sched);
++		guc_exec_queue_try_add_msg(q, msg, KILL);
++		xe_sched_msg_unlock(sched);
++	}
++
+ 	xe_guc_exec_queue_trigger_cleanup(q);
+ }
+ 
+@@ -2274,10 +2316,6 @@ static bool guc_exec_queue_try_add_msg(struct xe_exec_queue *q,
+ 	return true;
+ }
+ 
+-#define STATIC_MSG_CLEANUP	0
+-#define STATIC_MSG_SUSPEND	1
+-#define STATIC_MSG_RESUME	2
+-#define STATIC_MSG_CGP_SYNC	3
+ static void guc_exec_queue_destroy(struct xe_exec_queue *q)
+ {
+ 	struct xe_sched_msg *msg = q->guc->static_msgs + STATIC_MSG_CLEANUP;
 -- 
 2.43.0
 
