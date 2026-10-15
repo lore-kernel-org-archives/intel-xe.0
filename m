@@ -4,54 +4,108 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBD8CCCF2D6
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:34:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 250D8CCF2E3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7709F10EC47;
-	Mon, 19 Oct 2026 11:34:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EBCE10EC37;
- Mon, 19 Oct 2026 11:34:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792409649; x=1823945649;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ihfiDfoieI6RGkGQq9OLZlprHMM8mG9TsCU0BGiOO2g=;
- b=gImAsGa6HZLMEAt2z6b5lvFyNxoSo/Lr1FMO29gI2zVxlaKBn6rd4ML7
- fUipkUcCDSuKQhDnYf+2bHYeNeLuLXiidNB3b3x3I9cGPKxIpPaZYMxbh
- EqC4fUyhukySQU8rLl6NN08mavFcjwILnR8G7vY1DV7RKubQ3Ki06xb1O
- RFG7I7a7DnMlrEhVux2pYOy++i+RbCykny4ib9Cum3Dz5NE99gxl2aL4u
- j5bi9IfOPszWcCxLHKBeyOdRninBBq4QWC5+ksZDC2h+u0CALpphrKRc5
- SFSL/SvOSdF3xWuoAcLDuzko+Stq+/kvQJ/ZJ/oIYTgJD2kPhwfN7PhdK A==;
-X-CSE-ConnectionGUID: z1TL/5j7RSyLQMYfbaDa6g==
-X-CSE-MsgGUID: zvk6SiZlQ/uYuRyGDHisCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="1109789"
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="1109789"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 04:34:09 -0700
-X-CSE-ConnectionGUID: 6gtdcHEYQTag4WgzELjoUg==
-X-CSE-MsgGUID: oIrclKQpRk+D+1Xr14KPGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2930791"
-Received: from xiaolu.sh.intel.com ([10.239.146.103])
- by orviesa010.jf.intel.com with ESMTP; 19 Oct 2026 04:34:07 -0700
-From: Xiao Lu <xiaolu.xie@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
- imre.deak@intel.com, jouni.hogander@intel.com,
- Xiao Lu <xiaolu.xie@intel.com>, stable@vger.kernel.org
-Subject: [PATCH] drm/i915/dp: Fail the DSC slice config if the minimum slice
- count is 0
-Date: Mon, 19 Oct 2026 19:31:51 +0800
-Message-ID: <20261019113151.2258239-1-xiaolu.xie@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id E04A110EC64;
+	Mon, 19 Oct 2026 11:42:17 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="boGXDps6";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IyCELeOP";
+	dkim-atps=neutral
+X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
+ Thu, 15 Oct 2026 20:34:06 UTC
+Received: from fhigh-b3-smtp.messagingengine.com
+ (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC4310E84F
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 20:34:06 +0000 (UTC)
+Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id E0EDC7A00CC
+ for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 16:26:19 -0400 (EDT)
+Received: from phl-frontend-04 ([10.202.2.163])
+ by phl-compute-01.internal (MEProxy); Thu, 15 Oct 2026 16:26:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm1; t=1792095978;
+ x=1792182378; bh=2RRIztZOszEgtU5KRM+EoAHa0heTyt/EU7Fc7IB6D2g=; b=
+ boGXDps6z9yIfkCo6VBFj1kB192C1skTP3WndE/BRQm36ETwiSnLg6cRPj7mu2OS
+ pRLqpd7r1yNY6PUaRKD64hi2tAC/98B0mf6lQHlNo2MNsud13MtIQ6v5eC+05kYH
+ dq9mYRm9lp+hkfQ45R8KBWFdBsgZm476d7lDSAg5o2UG2UzR+fRNh5JNgWkrE8Iz
+ CBFapBsoxgYM2nFevj5Kn2r+fkBKH26ucFmILiAnFJoOeNpLZdERRx50271vcPGx
+ Nw17UfCHzS4ERg1XmwnU6zF0ncYzpIyZFhgwv948+SYySrKleZqIrlXYuOn/FDbx
+ BoXf3qh1ec7mdcP7EIKlbA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1792095978; x=
+ 1792182378; bh=2RRIztZOszEgtU5KRM+EoAHa0heTyt/EU7Fc7IB6D2g=; b=I
+ yCELeOPCiDRkoOwUTJPxmfeqH8oGbOIq7U4l7Ii73g+rpVMUybKqJG/dFX+kYant
+ rVBPOmXQnE6/eXA1kwK4FWZLz30aUkYLlYIxazuKLqZwIEsgkOACwcFqYUOMMy1a
+ plHJLFVpYXn5NKspWMIX0q24Lm8n7lMu8qwU9haDmnhxGJgB7jZtH7/26T2x6ahz
+ hDiC0Y2fARcIwfvYCdZIZy8DpcZ5hQPh4Gjmd2g5sfJCNjsXW5eLrEvEwALtBKaJ
+ YNQqR8uppr8URDjQBgQASLajhmat9oDWHlpR0CesW1wRQCnmScnx4l3iDjUnWsmL
+ hqracyR2Ea7B2OblZZLUA==
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-06;
+ repo=github.com/dkim2wg/interop; date=2026-10-08; sw=lmtpprox;
+ action=sign d=shazbot.org a=rsa-sha256;
+DKIM2-Signature: i=1; m=1; t=1792095978; d=shazbot.org;
+ mf=PGFsZXhAc2hhemJvdC5vcmc+;
+ rt=PGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4=;
+ s=fm1:rsa-sha256:L8oTZxkXPc5vBUXUue4M65YPFRzvbFLNBdR6WtG/J+sODNN
+ 9oKns80jrLWd34i13V+0l6TM+384Cv6jwLPGZlS/oj0T4374piss/lBCVK/6wdCb
+ 2c7SyfYUbe0iGcwxcdBIjew7AF6XUpCZc6ggj8V7sfwIdZCkEOZpnVQlotBopefE
+ BVrj2IRm/R0h6sPLjj6LcEWyZiZY0jJEKLByBjHDoE6JwYx5l/rgTg7/6+JC8/M4
+ R/2nDh7suidjs5Qu3A4jSOsdfSnO7Su4cSmHAyUI+Bf4FeJtkfdjhbKQmCx2So/H
+ 0ljDDMOxzFSy7rrV0I5TWWnDAFrfdayjAOb0nkw==;
+X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-06;
+ repo=github.com/dkim2wg/interop; date=2026-10-08; sw=lmtpprox;
+ action=mi-m=1; hc=12;
+ hn=cc,content-transfer-encoding,content-type,date,feedback-id,
+ from,in-reply-to,message-id,mime-version,references,subject,to;
+Message-Instance: m=1;
+ h=sha256:5d27a61I+Y3ZQRIEAgtTeNjwfjhCV+RAkyi02Z1AxqQ=:x7QwnD24yRUaqKk60dVJEyM7aNVWVX1BjN/KEWCUOus=;
+X-ME-Sender: <xms:6jbRana52w3L7o3zJF3Ge9ttQSQEQo3Z2-y0NVVBM-pjHRVtqNIiDA>
+ <xme:6jbRasZy-HRBwQyyuY7PRo4gwS0z5ASIiYNxSqMEikO1qr3NeAFkZVbsrf_MpqOXl
+ 0-c_kATvnBRAAbXpr8YnbZvkOQGRcUSB9cNuuAFoBSmzn8JoxZvtAc>
+X-ME-Received: <xmr:6jbRakwrLxupMOBm86kbOPch3OcWna0aAVIWBezHqBxQX-OvsCMdDOCmHztvzQ>
+X-ME-Proxy-Cause: dmFkZTE1b+N8kGGpUk13ieyPlVE5FAmIlfPgy+YxTXBBm9ekOGZjEXT6yIuYwplMn2dscS
+ WLp1YY5w7dgFcPnlXnKeiMRT6HKE8tpI7sfYrftO5G3NK+ZYEHbWgK3C0IuhTPI1vnEHKo
+ iHPqsRhiJbD4Vd921Kqyh7t+IybxtF6YFY2CRYEIx3ABwEIwJIzDSdKkBlRJ4qqsDtFgbM
+ wkinftxPmJ+5Db7uJy7rxBfKbXhCGIIB0P6CLtvQw1/ilyQAlywhsxZb4vJvpRANnXeOqG
+ Ck0Y2N75AJWwe2bj9j7VGyMaG2Y+dwqlXqUDJd3USnV9F0paO2lDDHSE9qEnW4OUdOAhqV
+ WVvbyfotMt2ED7PhEO8sjZZPn0bgik8tKTTIV8zEr44vIFoVy9AMrZzuPVmDpRl0ahjjv6
+ d7mwjZVMTbRZ0MuKtUDwulmFU9woGU79l5Z7WsBl/dkKkKJTr7opGj0cv4lPtP1jmGhbZJ
+ XviqULnYkfff+mgVerf6RVILnMVVVBWnEdmW3i6nuao1k8hjzUKIk6jUOmGDqLDsJkMNcK
+ 6ioQg6d6NuVN0b764YCSJaIACUjuolDXB76PT/fRH9599KTTgDduyzTxd+pqMwRtmfO0W8
+ KkYXsjB+J8t6vjLvVPcYEl2umQ5cUDiz5xCueRuJ6FithsAxHtYZ3FTCLp1w
+X-ME-Proxy: <xmx:6jbRagfIfYiydrtja_z5x-8GUX2AWR7gFhRdzhRVhW8tvkPZGnza3g>
+ <xmx:6jbRah43MyFseVVH6uqpjenLRG3UpDy28mDWWKd9JZ1mMKw-U-bYHA>
+ <xmx:6jbRatLxc1ynLzIERu5IL5va_Ji6LBk02Yub-r8hzqV9NQYHMBBkYQ>
+ <xmx:6jbRahzmholD6nmakHVjxCeicEe28Dzo7WaGpND3CU2mhaF3BEid-Q>
+ <xmx:6jbRakI1kB02K5nqhaDs6o7cIwH1aMwXqr_aRzslAfk6-B5n4eQKJmSd>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 15 Oct 2026 16:26:17 -0400 (EDT)
+Date: Thu, 15 Oct 2026 14:26:16 -0600
+From: Alex Williamson <alex@shazbot.org>
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Cc: kvm@vger.kernel.org, =?UTF-8?B?TWljaGHFgg==?= Winiarski
+ <michal.winiarski@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
+ <yishaih@nvidia.com>, Shameer Kolothum <skolothumtho@nvidia.com>, Kevin
+ Tian <kevin.tian@intel.com>, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, alex@shazbot.org
+Subject: Re: [PATCH] vfio/xe: Add CRI and NVL device IDs
+Message-ID: <20261015142616.2811a3a7@shazbot.org>
+In-Reply-To: <20261014131849.157593-2-satyanarayana.k.v.p@intel.com>
+References: <20261014131849.157593-2-satyanarayana.k.v.p@intel.com>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,54 +120,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_dp_dsc_min_slice_count() returns 0 if DSC can't be used for the
-given mode: if the mode's pixel clock or hdisplay exceeds the maximum
-overall throughput or line width reported by a DSC branch device, or if
-the sink's maximum slice width is invalid.
+On Wed, 14 Oct 2026 18:48:50 +0530
+Satyanarayana K V P <satyanarayana.k.v.p@intel.com> wrote:
 
-Before commit 15f908bce5d9 ("drm/i915/dp: Factor out
-intel_dp_dsc_min_slice_count()"), these checks returned 0 from
-intel_dp_dsc_get_slice_count(), which its callers treat as DSC not being
-possible. After the refactor, intel_dp_dsc_get_slice_config() uses the
-returned value as a lower bound and since 0 is less than any slice
-count, it selects the smallest slice config supported by the source and
-the sink instead of failing.
+> Crescent Island (CRI), Nova Lake-S (NVL-S) and Nova Lake-P (NVL-P)
+> support SR-IOV in the Xe driver. Add their PCI IDs to the xe-vfio-pci
+> device table, so that the generated vfio_pci module aliases allow
+> userspace to select this variant driver for their VFs.
+>=20
+> Also reordered the table entries.
+>=20
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Yishai Hadas <yishaih@nvidia.com>
+> Cc: Shameer Kolothum <skolothumtho@nvidia.com>
+> Cc: Kevin Tian <kevin.tian@intel.com>
+> Cc: Alex Williamson <alex@shazbot.org>
+> Cc: kvm@vger.kernel.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: linux-kernel@vger.kernel.org
+> ---
+>  drivers/vfio/pci/xe/main.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
+> index cbff5af385ef..8f1237751d51 100644
+> --- a/drivers/vfio/pci/xe/main.c
+> +++ b/drivers/vfio/pci/xe/main.c
+> @@ -574,9 +574,12 @@ static void xe_vfio_pci_remove(struct pci_dev *pdev)
+>  }
+> =20
+>  static const struct pci_device_id xe_vfio_pci_table[] =3D {
+> +	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
+> +	INTEL_CRI_IDS(INTEL_PCI_VFIO_DEVICE),
+> +	INTEL_NVLS_IDS(INTEL_PCI_VFIO_DEVICE),
+> +	INTEL_NVLP_IDS(INTEL_PCI_VFIO_DEVICE),
+>  	INTEL_PTL_IDS(INTEL_PCI_VFIO_DEVICE),
+>  	INTEL_WCL_IDS(INTEL_PCI_VFIO_DEVICE),
+> -	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(pci, xe_vfio_pci_table);
 
-This was seen with a Synaptics SST branch device (OUI 90-cc-24, dev-ID
-SYNAR) in a USB4 dock, which reports the same 340 MP/s per-slice DSC
-throughput as the monitor behind it. For 3840x2160@240Hz (2315950 kHz
-pixel clock) the minimum slice count computation bailed out due to the
-branch device's overall throughput limit, so the mode was not pruned and
-was enabled with 4 slices on two joined pipes, ie. ~579 MP/s per slice,
-resulting in a garbled image. With the monitor connected directly, the
-same mode is enabled with 8 slices.
+LGTM.  Micha=C5=82?  Thanks,
 
-Fail the slice config computation if the minimum slice count is 0, so
-that such modes are rejected as before the above refactor.
-
-Fixes: 15f908bce5d9 ("drm/i915/dp: Factor out intel_dp_dsc_min_slice_count()")
-Cc: Imre Deak <imre.deak@intel.com>
-Cc: <stable@vger.kernel.org> # v7.1+
-Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d8c0d9381..404839a2a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -910,6 +910,10 @@ intel_dp_dsc_get_slice_config(const struct intel_connector *connector,
- 		drm_dp_dsc_sink_slice_count_mask(connector->dp.dsc_dpcd, is_edp);
- 	int slices_per_pipe;
- 
-+	/* A 0 minimum slice count means DSC isn't supported for the mode. */
-+	if (!min_slice_count)
-+		return false;
-+
- 	/*
- 	 * Find the closest match to the valid slice count values
- 	 *
--- 
-2.43.0
-
+Alex
