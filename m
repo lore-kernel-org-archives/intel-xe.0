@@ -4,41 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82267CC6B38
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 13:53:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8794CCA462
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 13:56:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4560A10E043;
-	Fri, 16 Oct 2026 13:53:54 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE5B10E043
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:53:47 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C0E89600AA;
- Fri, 16 Oct 2026 13:53:46 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AAC41F000C4;
- Fri, 16 Oct 2026 13:53:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792158826;
- bh=WlylBtbOKWETmRXjVfjU1tu1cv9Psn90DOx9X7fHdTE=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=kb/o3XI4ba64Q8Ay8k2i5u7KVU+KcR7G6+Bn09vBGH8iYqf2r/gMQipTmyJUgvrmb
- 3CsxrtTx5AiDsZaYE2pJwG6zOqpu42CoUjpc0jnbM7WRO+/qoC84re44YULepZeYJ4
- Fy7l96QeDxMuaWLm7h40bDnyh+Zpfol+5DBR1WUcixbqVkm1nFlIzxSQ3mkatg+SQJ
- xAW7TrsK2DpgL2OYHj6cqjePkfLHfv7Tamt7bFqa8ReVPvjahTfeIs2esfmxRpiRIH
- pZ6vopj5jfj9ABT5kw1RoP8OZ6rcefpZ6RvMP6ehw+m3+iG8Yf3Pgy3Cm3nejqRzxV
- JgtjWid6XE1lw==
-Message-ID: <sashiko-outbox-174414@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 3/4] drm/xe: Split the bo shrinker into purgeable and
- non-purgeable shrinkers
-To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261016133523.3622-4-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A855711283C;
+	Fri, 16 Oct 2026 13:56:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3F7C10E301
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:55:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792158959; x=1823694959;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=KpS41h4Lde7SPRJ7TA3aEGhf3PN+s1QSR2fwrDzTPHY=;
+ b=RUYlO7iHypvWWmKDWGvNtpbFQbpADYW8Pjn6UJK6thGaxEAfr2DW81hh
+ ZWY4xiV/OpHU4veo6n9DBCO598g6McfsDAHk1LrMZIC30z4xPug1kj7jE
+ V38ciw+mWVSMOcOXlz/ltCF7YcpPEV9RtGWJIPGQxHkfW8a9oaab9LzGA
+ DmFvG6BIvJYeBxs3O5JiOGqb0obo8Zn0w/y2yNdUTyEK3+GJaKOym7hKi
+ +nUz9W8w3aR2Z5ihmkXoxz71AUwkK559YoZWFJhK4+BRhque6elieu95W
+ oy2tgJXQspZSqcd8fddVerP+dEDWSXnimvci4NyJguy3GLtI8QqzuhtnY Q==;
+X-CSE-ConnectionGUID: cGdggcNzQ6CSUl6u13grhg==
+X-CSE-MsgGUID: XbErKKDXTHSgcobJcNn0BA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="820925"
+X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
+   d="scan'208";a="820925"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 06:55:58 -0700
+X-CSE-ConnectionGUID: i/kig+FQTfKi67XxcCbknw==
+X-CSE-MsgGUID: aSCYN1mjSdO3cn1pRmLDQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
+   d="scan'208";a="2308010"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 06:55:59 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Fri, 16 Oct 2026 06:55:57 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Fri, 16 Oct 2026 06:55:57 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.28) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Fri, 16 Oct 2026 06:55:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cd7VkDOVuGmm4W3Yk0Br6toKCrDIoy+OwCiu68tXACuGv5DRwutwEGVqsc+xrQiAZ4YquRNOq5jWye0/GeCBZbnOWM/ks9GSy/8tvZvhWfALdq6/8hWgjXt61lG/xSRCHHbkHkqrPIM6AZyBXMiAveUPNHqScE1+bcnc5igLc1B4zwqhwqMRKe4kEX4sTHmXr8a9dXaGEC5332bExahTb6/2eYvdPrPLgrOofNkoKFvO6KPSB8rxsAJtmNI19LOHiCdSBGRX9QD3cEBmIggLYkjSGuK/MOkeVS8s3jGcfBuJ6QPi55rRT9VKLznc9wPp2HG+s4C74Mn+z67RCd4gpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=VeaYfcqger3UyMnwOlqg2me0ebY+3w8L+aXMvaegmVw=;
+ b=YQJUL9ExtOT7/ebKviOuCedHG9t5O3pS3i0/VgfruomePmzTV9e92Wjmcr77NIUU1wHtsLhKg/sntaHLvYQJhZtk5LKr8Bjf573lb974ymutcLcoytr6lZBwozRcShPF74YlhQEdJ+5KBQBKW5v1r5Teatsrudww21E8LbFZJV4fg3GkMW8VE28hwc/R+fZ/RYvzHiUh918BxC9X7Rd8XtccYqn1QCkSF5vlDtpzeZ9XLb+pcWZG6lJWHQO1PjGTFbS7U5c1PKMi19aWU3pWJaTCr3zSFEGDEC9YDjR8aXhJzyLJtEhFGNHQRaOdlIyX1Em/Rv6kzTNCF0QHDxucpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by PH3PPFE26A71A1E.namprd11.prod.outlook.com (2603:10b6:518:1::d58)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.12; Fri, 16 Oct
+ 2026 13:55:55 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0522.013; Fri, 16 Oct 2026
+ 13:55:54 +0000
+Date: Fri, 16 Oct 2026 06:55:53 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Christian =?iso-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ <stable@vger.kernel.org>, Matthew Auld <matthew.auld@intel.com>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v4 1/4] drm/xe: Don't abort the shrinker walk on -EBUSY
+Message-ID: <atIs6ZAvUQMnU/aJ@gsse-cloud1.jf.intel.com>
 References: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
- <20261016133523.3622-4-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 16 Oct 2026 13:53:46 +0000
+ <20261016133523.3622-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261016133523.3622-2-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: MW4PR03CA0329.namprd03.prod.outlook.com
+ (2603:10b6:303:dd::34) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|PH3PPFE26A71A1E:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f7db6af-dcf3-405b-bdc6-08df2b8d326d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|366016|261009223027099003|10067099003|11063799006|4143699003|22082099003|56012099006|18002099003;
+X-Microsoft-Antispam-Message-Info: IIX6Dz0OWOk95B+3n+KIfJPJERSwsE9akXOy9viRGiXmd3PnT3d8OhZWQFbUL2GTibfh9D+0mreucURaE4dG5C8ZX4qLDlsSZdd30C/W8t9KbGCfuvjZY5wuDfzBdPunFoxuLV54VQvlAcNd43v2eaQ60Ow+WHLTPWLw/b31ve44Cwgy/MFor7BoSXy9k+qGC+sEtZYnwkRnB5u3gRxPLS++U2jRXYZ6slWTIr89umd4IMrCrHwPm3IDJjv1Ph/QBj/Ii2832B6op1rnG/bEeGT049KVxZsKhDogqDrCJBfTmBA9Sn7wwwFwGGkI73g95WhDx3zaOVzrHSM3Egqhg9YfYCJd37TW3w8fd2ooUerRzc5w8uQ6Rl7AZyo/3xD6OkMPwRjHBkJS/xnfe0tWOydEyGUMNphZ1L/2JmaNM02SaeifznLQr1AnpIBqFMhKOcDRapqjo29UPdFOi/FBBhkqKwt6+Yp+fEhG4p2OQN6xmwCZs6WCT9bBicCsFicpcp9E99zF9DeeiMVMfMzCte3zwuu0Cgu6gYttvan0z1Y9PXRvIUbtUwRywNu0yGBPHzoXVBztAXDULfOJ0YQAsB/2YcjIyPgPZmqWyUoPVIIm7cHiekFT95jxCp9/HoZCvsS7oCXCns3TQmVg0kMCf7DxE7ieD/BrLwyjoHWouo4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(261009223027099003)(10067099003)(11063799006)(4143699003)(22082099003)(56012099006)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?RB3QC1ZOrqr4BbOPDhBa4UZCZ6AZxZpRDv+nP9WhoV6F3zty8HPf8lQ39x?=
+ =?iso-8859-1?Q?u2jZMGFQZl5U163K77w9rB4MJ8VUVdRfIW7xVXw819CZTOTJr7pltRWRTP?=
+ =?iso-8859-1?Q?9BQWoLcd8Tkmornb0VILug2I8c2C+SiJ/YVk84j83BuFursGN9EGWrV6Mx?=
+ =?iso-8859-1?Q?hKkkcroQEBF4gQRndEfq4OchIgJBx7JhN5ZZZoO0cAQOlWb0Ki5P83t4QI?=
+ =?iso-8859-1?Q?4tVLY+3vmfrJo5FUUFPEAzzvmn7/rT75JK4U+54evA0akiq6cQEtdZF8ra?=
+ =?iso-8859-1?Q?YlD7cpMSAgfIyth7n7NSQytBLgrMjMaW4rrv9tFowwPL7n4Nfr69qXaF2f?=
+ =?iso-8859-1?Q?0WN8m0GoeEd3Ig2VPfoKotXquNbktOlByuTuqAutv6HOL3OohjokkrzJHt?=
+ =?iso-8859-1?Q?ZMSud339vkvCjKWDkv85eCSJwDcazyzEUq0ixXNIXVZluBw8VnCZxbdysK?=
+ =?iso-8859-1?Q?1brA74d8Pp4LxKkKBiaardrpik9PZpg5M4EeyehyheEYzD/hKuCIQQnWkE?=
+ =?iso-8859-1?Q?4W8LVLZDg5LLHHV6zf7rf0gyCcltRcDmqhXlXILcjEg/lgK8jx1y4eS97u?=
+ =?iso-8859-1?Q?FK1tUFFSt4y5RyI8ER902c8E3k2MZHxhPZSJ7U42sBmvpj30hjgfp3XodT?=
+ =?iso-8859-1?Q?9z8Y69syFxQ/IWqQhhNEmqQPuBm2fpB2lqFRs/wgYQqL559tWF68eCC9KL?=
+ =?iso-8859-1?Q?3c/WaEJpqv5LvkoC7hXxiHLLltk99beez+AIYA4DqvH1DfAklUL4mzJGWf?=
+ =?iso-8859-1?Q?Ho7OpqGs6wO3dvIxnMyeBWULVV6XcfzlqxmsZdsKgHdcl2XerI4MBIV3T0?=
+ =?iso-8859-1?Q?q4gKEwcLXQ9rqmyBEWETS6jT9QmMKDQ7AvMsRbmJXcv2C83qGACSQEFxzH?=
+ =?iso-8859-1?Q?s9n/kEdyMy6IH34mxv+0Pjzo0By3kKyhjudR8Tcsif7IztwtmGE+RCm7U7?=
+ =?iso-8859-1?Q?oGxyhv1g4WTtUncptvWQifez1tiBGhENhrb2nmyWog+0+JjW0ZjvgzkbVM?=
+ =?iso-8859-1?Q?OubZPdWfEkCsOPp9qvhfG/Ft8D/pcjOJp2VEk73YYaUcYQYZxz/qXlWPJK?=
+ =?iso-8859-1?Q?5WxvJD/QqFZjy/7FseBA9+NFeB0hdjIyCoZxJzbMKBJ/HgKkdaqj5+vlxX?=
+ =?iso-8859-1?Q?bd9xsDk+egRnu+pGDeOFiC5cNhjHYWnm6t1ZyOgAleXE6dLMGUsf1z3Tht?=
+ =?iso-8859-1?Q?xFuHmFqOUG37fUruMyVnWouHD/Ad0FjvnChjryOJQyJYBEY2RiWbVF/PtV?=
+ =?iso-8859-1?Q?Zoq/yKRMsAxudbr4ojfeVoSsbVK1lyh2duw87TcgISYD1u/JSKBYHhgq4E?=
+ =?iso-8859-1?Q?tmYzBhJC4Kq+FSgf4RzHtBeKnokThjnQI0jPNF6JsRsIYZFlFfsgawtG1G?=
+ =?iso-8859-1?Q?hmMiCn+jqTPj6LycdECZb87y3cnlyRzA5wHC1NfFeMX6OcF57esLcWIdIV?=
+ =?iso-8859-1?Q?wKxOB6UAuRBwGMWuvm/rWjHidlZ6bXxFyPWQ3ryugi8kqrfz6CRfTkwz5+?=
+ =?iso-8859-1?Q?CLHhKKrUxOC0mIhdAztI4LVGZKRTeh5w5JgpnxHlYuQ42W0zzJ0Kn9bykH?=
+ =?iso-8859-1?Q?yZv7WwcH10zOpozON64N4QW4SyFiMlFRc2rn0RAL/WFOerBcjBKSRwWyWD?=
+ =?iso-8859-1?Q?uHlsQr1WbW3fXPlL77yQI3FFHn+pNACstY7VKpNu60y4exjLBfN5IpVOHS?=
+ =?iso-8859-1?Q?AG0iRjXMtJVUOmVgfUlgWY/7W7ZWqjxJIfT+iUZ4oid3fSdtZH2gjvW2L3?=
+ =?iso-8859-1?Q?Z42gyJ1rCSjT4jm+WaxL7C14+pcSU1jD5G5bO1sBEh8Y/sVkW84aswnaD/?=
+ =?iso-8859-1?Q?U/1r5ICJ9Q=3D=3D?=
+X-Exchange-RoutingPolicyChecked: N/XeUQKJcP17uLGzthJ7pJv3uW015EewEdyxfDQWUDiA0usXDEIXRMV/EnzFcJe4lRyRFh2n0atMLJazjwhyb11PLfvw4TBO37tvOv9K6CYUkA2dl8/jV+HlzaJpfe4vN0Jk0TcvYMtgBas8+b3TSKUNeFcoLcrrT/J/xKp3psgB9ltttxGHZLCktioiGzyI/+kAnewtgBDr1c4Svdoklxt+Uj9vcLV19rn7fdpp9kwVR85qtYELMLkCK9CwE3IOMaoR/t1cKUo2tBXn07GK13C3fUKaT+KO3smq7wpiuvfJvvzFnwMxpooD9mNgtrQSXwvjIo14iCi5a2TM0HuTqw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f7db6af-dcf3-405b-bdc6-08df2b8d326d
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2026 13:55:54.8500 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: C/YG2rZlOncGfOHhc8QS9uA6nnWTrM6GIobWP1wAaUBWWsN3+00SOxNlHEG/MPXVlIM0tlbwX42g5G5FSf3UUg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFE26A71A1E
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,159 +158,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/xe: Use-After-Free of shrinker during DRM device teardown
-- [High] drm/xe: O(N^2) CPU lockup in purgeable shrinker due to uncounted L=
-RU skips
---
+On Fri, Oct 16, 2026 at 03:35:20PM +0200, Thomas Hellström wrote:
+> xe_bo_shrink() returns -EBUSY for bos that can't currently be shrunk,
+> for example imported dma-bufs, bos whose vm is currently validating,
+> bos that are still busy after the wait timeout, or bos whose backup
+> fails. The shrinker LRU walk treats any negative return value as
+> fatal and aborts, which also skips the remaining shrinker passes.
+> 
+> As a result, a single such bo, like an imported dma-buf on the
+> XE_PL_TT LRU, prevents reclaim of all bos behind it on the LRU.
+> 
+> Skip bos for which xe_bo_shrink() returns -EBUSY and continue the
+> walk, like the TTM LRU walk does.
+> 
+> v4:
+> - Patch introduced.
+> 
+> Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-commit 1e9348c2fe4768de2cf24e4dd9b6188400c84043
-Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+I noticed this on as well.
 
-drm/xe: Split the bo shrinker into purgeable and non-purgeable shrinkers
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>`
 
-This commit splits the single xe_shrinker into two independent shrinker
-instances: one for purgeable objects and another for non-purgeable
-(shrinkable) objects. This allows the shrinker core to apply different
-reclaim pressures based on the varying costs of reclaiming these object
-types.
-
-> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shr=
-inker.c
-> index 378022c37a57c..8e3fe675e0f34 100644
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.15+
+> Assisted-by: LLM
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_shrinker.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+> index deb4378c1ec1..4e4da76936f4 100644
 > --- a/drivers/gpu/drm/xe/xe_shrinker.c
 > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-
-[ ... ]
-
-> @@ -216,63 +238,52 @@ static bool xe_shrinker_runtime_pm_get(struct xe_sh=
-rinker *shrinker, bool force,
-
-[ ... ]
-
-> -static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct sh=
-rink_control *sc)
-> +static unsigned long xe_shrinker_scan_purgeable(struct shrinker *shrink,
-> +						struct shrink_control *sc)
->  {
->  	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
->  	struct ttm_operation_ctx ctx =3D {
->  		.interruptible =3D false,
->  		.no_wait_gpu =3D ttm_bo_shrink_avoid_wait(),
->  	};
-> -	unsigned long nr_to_scan, nr_scanned =3D 0, freed =3D 0;
-> +	unsigned long nr_to_scan =3D sc->nr_to_scan, nr_scanned =3D 0, freed =
-=3D 0;
->  	struct xe_bo_shrink_flags shrink_flags =3D {
->  		.purge =3D true,
-> -		/* Don't request writeback without __GFP_IO. */
-> -		.writeback =3D !ctx.no_wait_gpu && (sc->gfp_mask & __GFP_IO),
->  	};
-> -	bool runtime_pm;
-> -	bool purgeable;
-> -	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
-> -
-> -	nr_to_scan =3D sc->nr_to_scan;
-> -
-> -	read_lock(&shrinker->lock);
-> -	purgeable =3D !!shrinker->purgeable_pages;
-> -	read_unlock(&shrinker->lock);
-> =20
-> -	/* Might need runtime PM. Try to wake early if it looks like it. */
-> -	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker, false, nr_to_scan, =
-can_backup);
-> -
-> -	if (purgeable && nr_scanned < nr_to_scan)
-> -		xe_shrinker_walk(shrinker, &ctx, shrink_flags,
-> -				 nr_to_scan, &nr_scanned, &freed);
-> +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned,=
- &freed);
-> =20
->  	sc->nr_scanned =3D nr_scanned;
-
-[Severity: High]
-Can this cause an O(N^2) CPU lockup in the purgeable shrinker?
-
-When the memory reclaim core (do_shrink_slab) calls this purgeable scan
-routine under memory pressure, xe_shrinker_walk() iterates the LRU list.
-
-However, non-purgeable BOs return -EBUSY and are skipped without advancing
-the scanned counter:
-
-drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
-    ...
-    if (!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
-        (flags.purge && !xe_tt->purgeable))
-        return -EBUSY;
-    ...
-}
-
-drivers/gpu/drm/xe/xe_shrinker.c:__xe_shrinker_walk() {
-    ...
-            lret =3D xe_bo_shrink(ctx, ttm_bo, flags, scanned);
-            /* Like the TTM LRU walk, skip bos we can't shrink now. */
-            if (lret =3D=3D -EBUSY)
-                continue;
-    ...
-}
-
-Since the LRU cursor is initialized locally on each call and non-purgeable
-BOs do not increment nr_scanned, every batch rescans all leading
-non-purgeable BOs without significantly advancing sc->nr_scanned.
-
-Will this force the shrinker core to repeatedly call this function,
-processing the same leading non-purgeable BOs over and over again?
-
-> -	if (nr_scanned >=3D nr_to_scan || !can_backup)
-> -		goto out;
-> =20
-> -	/* If we didn't wake before, try to do it now if needed. */
-> -	if (!runtime_pm)
-> -		runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker, true, 0, can_backu=
-p);
-> +	return nr_scanned ? freed : SHRINK_STOP;
-> +}
-
-[ ... ]
-
-> @@ -294,6 +305,7 @@ static void xe_shrinker_fini(struct drm_device *drm, =
-void *arg)
->  	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
->  	xe_assert(shrinker->xe, !shrinker->populated_tts);
->  	shrinker_free(shrinker->shrink);
-> +	shrinker_free(shrinker->purge_shrink);
->  	flush_work(&shrinker->pm_worker);
->  	kfree(shrinker);
->  }
-
-[Severity: High]
-Does this kfree(shrinker) leave xe->mem.shrinker as a dangling pointer?
-
-Because drmm actions execute in LIFO order upon device release,
-xe_shrinker_fini() is called before xe_device_destroy().=20
-
-Later, xe_device_destroy() runs and calls xe_bo_dev_fini() which flushes
-the async_free workqueue. Pending BOs in the workqueue will have their
-final references dropped, leading to xe_ttm_tt_account_subtract():
-
-drivers/gpu/drm/xe/xe_bo.c:xe_ttm_tt_account_subtract() {
-    ...
-    if (xe_tt->purgeable)
-        xe_shrinker_mod_pages(xe->mem.shrinker, 0, -(long)tt->num_pages, -1=
-);
-    else
-        xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0, -1=
-);
-    ...
-}
-
-Can this lead to a use-after-free and memory corruption when driver unloads?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261016133523.3622=
--1-thomas.hellstrom@linux.intel.com?part=3D3
+> @@ -113,6 +113,9 @@ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
+>  				continue;
+>  
+>  			lret = xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+> +			/* Like the TTM LRU walk, skip bos we can't shrink now. */
+> +			if (lret == -EBUSY)
+> +				continue;
+>  			if (lret < 0) {
+>  				ret = lret;
+>  				goto out;
+> -- 
+> 2.56.0
+> 
