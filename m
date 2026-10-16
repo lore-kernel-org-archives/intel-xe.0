@@ -4,59 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C54CCF2C1
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 13:36:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83E06CCA462
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 13:44:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA6210E25F;
-	Fri, 16 Oct 2026 13:36:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51D3810E0B7
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792157764; x=1823693764;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Da9WsmUX677iK+5NyOWTP3lFaWTo4mTnrhQdycKlgp0=;
- b=lnfWlMuVg3kC+tfWsivlL/VglzVBwcts+sNsqzKqewcitVbjDeV/CtS+
- /zKwWOwvtQvQoqlTQC+x2QB8IAnb7AhCwftrlb5yF+3fArOfbLsS226ZP
- Ql7q7Bu67Z+KFC8M+oCy0pOnRNSIda/1OcM4Pfg9rNc49yIeaKx5Fvkio
- 6/WtkKMxIP9EIz33mlQJqnOC2dNmqdcqLY4tIRMY1QTHeHyogd+n2oF8/
- bKA6Yox0TVrJMELalz2CbhIgPN5ajPb1uKIOb+MVqfM8PJrMXtt7+5DGq
- WApzhZb8Jp8xsZu1CqN0QQcLZuu9eT93qOgSpoSIwdLV9CzbVekQ86Pbo A==;
-X-CSE-ConnectionGUID: fvZzmaAURWOAB6s6RGh+ug==
-X-CSE-MsgGUID: ObxMeCYQRdeO6cgzxCBdnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="831463"
-X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="831463"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 06:36:03 -0700
-X-CSE-ConnectionGUID: RJjjyFlPSV6uKdUVnXN//w==
-X-CSE-MsgGUID: 3bUw1YJ+Tge0WUw8XVSFWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="2273506"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO fedora)
- ([10.245.245.54])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 06:36:01 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v4 4/4] drm/xe: Update non-purgeable shrinker batch size based
- on average BO size
-Date: Fri, 16 Oct 2026 15:35:23 +0200
-Message-ID: <20261016133523.3622-5-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DB810E10E;
+	Fri, 16 Oct 2026 13:44:21 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CCBF10E10E
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:44:14 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 16BA860008;
+ Fri, 16 Oct 2026 13:44:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A26F91F000C5;
+ Fri, 16 Oct 2026 13:44:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1792158252;
+ bh=tv4amlGVv035dSO5QR5eM0WQ8j1X5siSQ7kwMqbofIk=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=nU/PRvsDxEpYl4kDbasBqqIwa4/0pDUluIkdRvJiyHUgw4YDrQjJDHaKQtilSN0v5
+ fWkwWHWtvQ+tLVa9WvxggqRiwuzl8zWpC3KGr8Uvrrd9tyqeRu+IXyxDWwNzIFOums
+ /7jxU7AWpTdVs7wjb+WDGn2u0RGLBPEymntGIDkPM/qV27PtVoVd8rgwYye8+xUKzP
+ cnULkpZ37EWug8VRHPcr3edgLIYCcN85dpqZbSwztaJjR1vlEsYQjR2zEDPEWclnpU
+ NdLs0ECZBn4utXCnpv12wn9dwpjCykaflgbe1481bVw8wTaaj98QoUjRxn+OOfuc8H
+ remmqLkuASGZg==
+Message-ID: <sashiko-outbox-174395@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 1/4] drm/xe: Don't abort the shrinker walk on -EBUSY
+To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261016133523.3622-2-thomas.hellstrom@linux.intel.com>
 References: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+ <20261016133523.3622-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 16 Oct 2026 13:44:12 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,126 +49,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update our preferred vmscan batch size for the non-purgeable shrinker
-on count passes that allow backup (__GFP_FS), to avoid invoking
-scan_objects() for requests too small to free even a single
-average-sized GEM object. Our rough estimate for an effective batch
-is twice the average number of pages per populated ttm_tt across
-the full shrinkable and purgeable population. The factor of two
-provides headroom so that most scan invocations can free at least one
-GEM object despite variability in object sizes.
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [Medium] xe: loop termination check bypassed on -EBUSY causing unbounded =
+shrinker scan
+--
 
-The batch value is updated as an exponential moving average,
-(old_batch + avg) / 2, to smooth out sudden changes in the object
-population. It is floored at 128 pages, the kernel default
-SHRINK_BATCH, to ensure the shrinker remains responsive when there
-are very few objects.
+commit a9661e97694161cd803806ccc4ad309e99a9f298
+Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-The populated_tts counter introduced in an earlier commit provides the
-object count needed for the average. We inherit the same justification
-as the analogous mechanism in i915: shrinking a GEM object has
-non-trivial per-object overhead, so firing the shrinker for requests
-smaller than a single object is wasteful.
+drm/xe: Don't abort the shrinker walk on -EBUSY
 
-This is only applied to the non-purgeable shrinker: purgeable objects
-are reclaimed without writeback or GPU idling, so they're cheap enough
-that the core default batch size is fine for them.
+xe_bo_shrink() returns -EBUSY for bos that can't currently be shrunk.
+The shrinker LRU walk treated any negative return value as fatal and
+aborted. This commit changes it to skip bos for which xe_bo_shrink()
+returns -EBUSY and continues the walk.
 
-v3:
-- Original patch reworked on top of shrinker split (Matt Brost)
+> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shr=
+inker.c
+> index deb4378c1ec15..4e4da76936f49 100644
+> --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+> @@ -113,6 +113,9 @@ static int __xe_shrinker_walk(struct xe_shrinker *shr=
+inker,
+>  				continue;
+> =20
+>  			lret =3D xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+> +			/* Like the TTM LRU walk, skip bos we can't shrink now. */
+> +			if (lret =3D=3D -EBUSY)
+> +				continue;
 
-Assisted-by: LLM
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_shrinker.c | 48 ++++++++++++++++++++++++++++----
- 1 file changed, 42 insertions(+), 6 deletions(-)
+[Severity: Medium]
+Does this continue statement inadvertently bypass the loop termination chec=
+k?
 
-diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 8e3fe675e0f3..955908b3bdf3 100644
---- a/drivers/gpu/drm/xe/xe_shrinker.c
-+++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -30,6 +30,8 @@
-  * @shrinkable_pages: Number of pages that are currently shrinkable.
-  * @purgeable_pages: Number of pages that are currently purgeable.
-  * @populated_tts: Number of populated ttm_tts currently shrinkable or purgeable.
-+ * @batch_avg: Exponential moving average of the preferred non-purgeable
-+ * batch size, based on the average populated ttm_tt size.
-  * @shrink: Pointer to the mm shrinker handling non-purgeable (shrinkable) objects.
-  * @purge_shrink: Pointer to the mm shrinker handling purgeable objects.
-  * @pm_worker: Worker to wake up the device if required.
-@@ -40,6 +42,7 @@ struct xe_shrinker {
- 	long shrinkable_pages;
- 	long purgeable_pages;
- 	long populated_tts;
-+	long batch_avg;
- 	struct shrinker *shrink;
- 	struct shrinker *purge_shrink;
- 	struct work_struct pm_worker;
-@@ -203,6 +206,28 @@ xe_shrinker_count_purgeable(struct shrinker *shrink, struct shrink_control *sc)
- 	return num_pages ? num_pages : SHRINK_EMPTY;
- }
- 
-+/**
-+ * DOC: Batch size calculation
-+ *
-+ * Update our preferred vmscan batch size for the non-purgeable shrinker
-+ * on count passes that allow backup (__GFP_FS), to avoid invoking
-+ * scan_objects() for requests too small to free even a single
-+ * average-sized GEM object. Our rough estimate for an effective batch
-+ * is twice the average number of pages per populated ttm_tt across
-+ * the full shrinkable and purgeable population. The factor of two
-+ * provides headroom so that most scan invocations can free at least one
-+ * GEM object despite variability in object sizes.
-+ *
-+ * The batch value is updated as an exponential moving average,
-+ * (old_batch + avg) / 2, to smooth out sudden changes in the object
-+ * population. It is floored at 128 pages, the kernel default
-+ * SHRINK_BATCH, to ensure the shrinker remains responsive when there
-+ * are very few objects.
-+ *
-+ * We only do this for the non-purgeable shrinker: purgeable objects are
-+ * reclaimed without writeback or GPU idling, so shrinking them is cheap
-+ * enough that the core default batch size is fine.
-+ */
- static unsigned long
- xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
- {
-@@ -210,15 +235,26 @@ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
- 	unsigned long num_pages;
- 	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
- 
-+	if (!can_backup)
-+		return SHRINK_EMPTY;
-+
- 	num_pages = ttm_backup_bytes_avail() >> PAGE_SHIFT;
--	read_lock(&shrinker->lock);
-+	/* Consistently use write_lock() for simplicity. */
-+	write_lock(&shrinker->lock);
- 
--	if (can_backup)
--		num_pages = min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
--	else
--		num_pages = 0;
-+	num_pages = min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
- 
--	read_unlock(&shrinker->lock);
-+	if (shrinker->populated_tts) {
-+		unsigned long avg = 2 * (shrinker->shrinkable_pages +
-+					 shrinker->purgeable_pages) /
-+				     shrinker->populated_tts;
-+
-+		shrinker->batch_avg = max((shrinker->batch_avg + (long)avg) >> 1,
-+					  128L /* default SHRINK_BATCH */);
-+		WRITE_ONCE(shrink->batch, shrinker->batch_avg);
-+	}
-+
-+	write_unlock(&shrinker->lock);
- 
- 	return num_pages ? num_pages : SHRINK_EMPTY;
- }
--- 
-2.56.0
+In xe_bo_shrink(), the scanned counter is incremented before potentially
+returning -EBUSY:
 
+xe_bo_shrink() {
+	...
+	*scanned +=3D tt->num_pages;
+	lret =3D ttm_bo_shrink(ctx, bo, ...);
+	...
+	return lret;
+}
+
+If a sequence of buffer objects return -EBUSY from ttm_bo_shrink(), could
+this introduce a regression where the shrinker performs an unbounded scan
+over the list because the *scanned >=3D to_scan check at the bottom of the
+loop body is bypassed?
+
+>  			if (lret < 0) {
+>  				ret =3D lret;
+>  				goto out;
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261016133523.3622=
+-1-thomas.hellstrom@linux.intel.com?part=3D1
