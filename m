@@ -4,39 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F65ECCF2C4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52D13CCF2C7
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 20:44:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 079641129D7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CB5E1129DC;
 	Fri, 16 Oct 2026 20:44:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7161129D0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45E721129CC
  for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 20:44:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1792183449; x=1823719449;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UTrSBJqfPnNgIwtaLE/tfbIwD+Q2bTsXMpFwnTY/QT0=;
- b=Y214evqGH6VtoZnhRGp0hR9JOpw+R7jaA34tVFZswOc3oF6xLvpF1N3T
- Dki5+0ziN+cBJqX+D0c7dvK5EsnLF7fdnzHs/GW4/BexwdUM2EAJwYnA3
- cnrIMtkrcRlX3q/D1kzxo77sfKi45QyProTwIUFiqxExbH+Fv2mh+VdPh
- 9aleopLTyMs5xVNFgIlPMaAXAy/+aMjzMiRW+1cJfK3OX+L6oWcLLqRU0
- sMT/D/8Hidhbr1DsqS6G5DIk0fdfXKXU70x4ISxOyxRwViWsjPMY7LLKt
- L6+rajN7YJjX3scISb2eYKT+4IU8FWN/Ae96KB3F0BZs6XDJ69f4E9tTG w==;
-X-CSE-ConnectionGUID: qtnTNzWsTLeazM6lYbkdbQ==
-X-CSE-MsgGUID: /ZDxrSGOTt2JKn6jN6mN5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11937"; a="1074533"
+ bh=sA1o/iGQky6L4CkUF4SEY/l9YlzQOGQoTlMDzmuXvlA=;
+ b=UPiL7yZ2VIiDqEzd9dqzXfZ6bIPzXnMWynDIb+PpbjREwo4PZOKMC39n
+ QI8aaNUlcLMATSWDDQ9Q7yxUB++H8lkPBjc+j70TEHmrqLxDnRcIeeb/j
+ dqv//ExBGVHBwuuSjjUYU74A3tpedQ6qjdB++2jRd1dWY7f3QNASjAlGl
+ ZwOZW3d487kx1uq5GPSo3idAsV9dBXkFOz1IhramLxtf1T131HopqTbtN
+ qqTce6hJbO2DiRKC49KVUCD6uXbanqGSxWAO3N3sAE3kCVGbpywL4Ta/g
+ keW5ZSXiAZvFFEQIR0PUBIhy3Qn3Wa8g0teLLLVFLqd0VeK9iQzW/4ZBc g==;
+X-CSE-ConnectionGUID: 0oNhdICWRp+fM6t4DDtm0w==
+X-CSE-MsgGUID: pohHLZE8Q1yf0KHYh8vhCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11937"; a="1074530"
 X-IronPort-AV: E=Sophos;i="6.27,162,1787036400"; 
-   d="scan'208";a="1074533"
+   d="scan'208";a="1074530"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Oct 2026 13:44:04 -0700
-X-CSE-ConnectionGUID: 5ReDVs2kSt2cHrtyalzKTw==
-X-CSE-MsgGUID: Zqpa+GKvSEqWdMwbJ9D1hA==
+X-CSE-ConnectionGUID: gq8OQv56SPuxcB0hgJTQYg==
+X-CSE-MsgGUID: i/BVhyGrQFeP1p8OV7up3w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,162,1787036400"; 
-   d="scan'208";a="3784141"
+   d="scan'208";a="3784138"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Oct 2026 13:44:04 -0700
@@ -44,10 +44,10 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: daniele.ceraolospurio@intel.com, dnyaneshwar.bhadane@intel.com,
  michal.wajdeczko@intel.com, jesus.narvaez@intel.com
-Subject: [PATCH v8 3/7] drm/xe/guc: Make ct_dead_capture available on
- non-debug config
-Date: Fri, 16 Oct 2026 13:43:58 -0700
-Message-ID: <20261016204354.364846-12-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v8 2/7] drm/xe/guc: Handle CRASH and EXCEPTION G2H with
+ separate helpers
+Date: Fri, 16 Oct 2026 13:43:57 -0700
+Message-ID: <20261016204354.364846-11-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261016204354.364846-9-umesh.nerlige.ramappa@intel.com>
 References: <20261016204354.364846-9-umesh.nerlige.ramappa@intel.com>
@@ -67,95 +67,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define ct_dead_capture for non-debug as well to simplify future
-refactor. Rename it to process_ct_dead since non-debug mode does not
-capture anything.
+guc_crash_process_msg() handles both crash and exception notifications
+from GuC, but ends up rechecking the type of notification. It also has
+an else case that is not reachable.
 
+Since notification type is already known by the caller, remove
+guc_crash_process_msg() and handle the CRASH and EXCEPTION G2H
+separately, so the duplicate check is avaoided.
+
+Suggested-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
-v2: Fix CI build failure
+v2: (Sashiko)
+- Don't process the return from the helpers
+- Remove unused action parameter
 
 v3: (Daniele)
-- Reorder defines
-- s/ct_id/ct_error_id/
-- s/ct_dead_capture/process_ct_dead/
-
-v4: Resolve rebase conflict (Dnyaneshwar)
+- Add 'why' to commit message (Daniele)
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 25 ++++++++++++-------------
- 1 file changed, 12 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 24 +++++++++++-------------
+ 1 file changed, 11 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 41c940a42d7f..8cc220a0a207 100644
+index e865d50e8b77..41c940a42d7f 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -59,7 +59,6 @@ static struct xe_device *ct_to_xe(struct xe_guc_ct *ct)
- 	return gt_to_xe(ct_to_gt(ct));
+@@ -1568,22 +1568,18 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	return 0;
  }
  
--#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- enum {
- 	/* Internal states, not error conditions */
- 	CT_DEAD_STATE_REARM,			/* 0x0001 */
-@@ -82,8 +81,12 @@ enum {
- 	CT_DEAD_CRASH,				/* 0x8000 */
- };
- 
-+#define ct_error_id(reason_code)  CT_DEAD_##reason_code
-+static void process_ct_dead(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
-+#define CT_DEAD(ct, ctb, reason_code)	process_ct_dead((ct), (ctb), ct_error_id(reason_code))
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
- static void ct_dead_worker_func(struct work_struct *w);
--static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code);
- 
- static void ct_dead_fini(struct xe_guc_ct *ct)
+-static int guc_crash_process_msg(struct xe_guc_ct *ct, u32 action)
++static void guc_handle_crash_dump_msg(struct xe_guc_ct *ct)
  {
-@@ -162,9 +165,6 @@ static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action)
- 	ct->fast_req[slot].fence = fence;
- 	ct->fast_req[slot].action = action;
- }
+-	struct xe_gt *gt = ct_to_gt(ct);
 -
--#define CT_DEAD(ct, ctb, reason_code)	ct_dead_capture((ct), (ctb), CT_DEAD_##reason_code)
+-	if (action == XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED)
+-		xe_gt_err(gt, "GuC Crash dump notification\n");
+-	else if (action == XE_GUC_ACTION_NOTIFY_EXCEPTION)
+-		xe_gt_err(gt, "GuC Exception notification\n");
+-	else
+-		xe_gt_err(gt, "Unknown GuC crash notification: 0x%04X\n", action);
 -
- #else
- 
- static void ct_dead_fini(struct xe_guc_ct *ct) { }
-@@ -173,13 +173,6 @@ static void ct_dead_init(struct xe_guc_ct *ct) { }
- static void fast_req_report(struct xe_guc_ct *ct, u16 fence) { }
- static void fast_req_track(struct xe_guc_ct *ct, u16 fence, u16 action) { }
- 
--#define CT_DEAD(ct, ctb, reason)			\
--	do {						\
--		struct guc_ctb *_ctb = (ctb);		\
--		if (_ctb)				\
--			_ctb->info.broken = true;	\
--	} while (0)
++	xe_gt_err(ct_to_gt(ct), "GuC Crash dump notification\n");
+ 	CT_DEAD(ct, NULL, CRASH);
 -
- #endif
- 
- /* Used when a CT send wants to block and / or receive data */
-@@ -2283,7 +2276,7 @@ ALLOW_ERROR_INJECTION(xe_is_injection_active, ERRNO);
- int xe_is_injection_active(void) { return 0; }
- #endif
- 
--static void ct_dead_capture(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
-+static void process_ct_dead(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
- {
- 	struct xe_guc_log_snapshot *snapshot_log;
- 	struct xe_guc_ct_snapshot *snapshot_ct;
-@@ -2396,4 +2389,10 @@ static void ct_dead_worker_func(struct work_struct *w)
- 	xe_guc_log_snapshot_free(snapshot_log);
- 	xe_guc_ct_snapshot_free(snapshot_ct);
- }
-+#else
-+static void process_ct_dead(struct xe_guc_ct *ct, struct guc_ctb *ctb, u32 reason_code)
-+{
-+	if (ctb)
-+		ctb->info.broken = true;
+ 	kick_reset(ct);
 +}
- #endif
+ 
+-	return 0;
++static void guc_handle_exception_msg(struct xe_guc_ct *ct)
++{
++	xe_gt_err(ct_to_gt(ct), "GuC Exception notification\n");
++	CT_DEAD(ct, NULL, CRASH);
++	kick_reset(ct);
+ }
+ 
+ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+@@ -1787,8 +1783,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_gt_sriov_pf_monitor_process_guc2pf(gt, hxg, hxg_len);
+ 		break;
+ 	case XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED:
++		guc_handle_crash_dump_msg(ct);
++		break;
+ 	case XE_GUC_ACTION_NOTIFY_EXCEPTION:
+-		ret = guc_crash_process_msg(ct, action);
++		guc_handle_exception_msg(ct);
+ 		break;
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ 	case XE_GUC_ACTION_TEST_G2G_RECV:
 -- 
 2.55.0
 
