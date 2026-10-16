@@ -4,77 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73103CCF2D6
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13FBBCCF2E3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36BCF10EC74;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD12F10EC6F;
 	Mon, 19 Oct 2026 11:42:46 +0000 (UTC)
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
- [209.85.221.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D42B112992
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 18:59:13 +0000 (UTC)
-Received: by mail-wr1-f51.google.com with SMTP id
- ffacd0b85a97d-48c4d870d54so101687f8f.2
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 11:59:13 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com
+ [209.85.208.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01C6010E39B
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 19:05:00 +0000 (UTC)
+Received: by mail-lj1-f180.google.com with SMTP id
+ 38308e7fff4ca-3a5a26c8412so1613701fa.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 12:05:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792177499; cv=none;
+ d=google.com; s=arc-20260327;
+ b=OCcmFSuMvZnlMiKWCJCQfej7dISVbGsoTvOEsumJwUSyHyacyg0eUIP0GkMEMCoWc9
+ byG7eq4cXIW+otHqO8WPRnd6IruS47g0Yvap8JZPFc5/kCx/tutIYXkUrmPehuaij1Ba
+ xMVoiRUdCYUcSvWIV6+LqfgGtXnmZpa1JdAKNeE6Uf8U4JtzzEsRB53FhQYqyvfRiIuO
+ ykleBL5NDp7evypLCBFHCYs17Y6NYkaq9hmt1KVzs4pBA7MBoa+lAFPut4Lzfo+A/mz8
+ pxMx2feEOmXVz/DtGtIPTkOTfdOMiLQUHBjt0vRPkQ0YK9VWuIKGT+kqzsgzgOb+pPbr
+ WZxA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=cc:to:subject:message-id:date:from:references:in-reply-to
+ :mime-version:dkim-signature;
+ bh=hCVnPtqFe9PPLGclN/Sfiz1pW+NWRfIeY6a06sFRlb0=;
+ fh=OK5W32kx3H9VO2XMYbN3RU3l+Y/m/BQNik6CJv4eAfg=;
+ b=htQCT/txqumOUu+mVaJWabU1fbuLypeGs5NVQjYGuoGNJj90LB9M9BVMjFSCcItFae
+ uCM/BhHgiW33kP+cqQ1Vu/I1KKKqk1rsAGhVFpkaZeAweBB4j8pggMtj+5Ha059PY349
+ OO1d23x+x1bQIWE7j0t8G/t7/BY5CL0mww0oKgL/HgLEy7OpITICIBfAK4FhAlAiykbz
+ p2Wq4OT4y4Kvq2Yw1IkvsiPv7UoWjBznPjF3pUKh9LSG0bO0j1cnU43Q660xbUVBwexh
+ nMmObehcksEdskEpPtxG2twyx+cTRqg4EpSdsQrbPWeeE7gjVz0eZuJGAYk4qkWXgP6B
+ cn2Q==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1792177152; x=1792781952; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=ZYcImaxwIvQa5x7FpuhK9EiFT4uMMl80YsgtPQP3AL4=;
- b=ZUhHJ9ADK4vlj2JKgvP3k6lqH9Cx2HbSRR3/Dkkv+3k2+ALdgz0biVQuUPMp7/jAls
- 9knZMdroO245Wh6sT1QjiU0+DlH55R/TC2jjntLvgKxLrqX5DvsjrMana8BBwlFsiF83
- JJe5cyA0gesby7KhDtYNzS+N1Frm5cfMkKzCj7ZrgP5o2TmEMnzIdLMzPgLyI1dnOB2S
- 1SrB0PkomgpMJ9hFwpm20qcAIt647IbzwtQb+Ywfxb5Tb+ZbjVBlW5zHBySzDG0Bcqwg
- 9nwELwVkuqYCNQzhYqhXHU/INfmO7TUFe7zzYr5ctKwtyd8aoOAo1ZA16TtoaS5quIjs
- Sp+g==
+ d=gmail.com; s=20251104; t=1792177499; x=1792782299; darn=lists.freedesktop.org;
+ h=content-type:cc:to:subject:message-id:date:from:references
+ :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+ :reply-to:content-type;
+ bh=hCVnPtqFe9PPLGclN/Sfiz1pW+NWRfIeY6a06sFRlb0=;
+ b=hoQ4t8bQflssOd7Rr+pcVtFtjgdlheXlPB2W88bqvx2Nf64/JsSDYCUFHj22zFNZIG
+ XG7zr5fmmXSdc0Ii3qqDjlJUJg34fsiafBIAdbEUZXqeaAAHXBAEc9S3nc2E+Ai+6APZ
+ nQQyCW2YgP8zuQ0IiiEa/u0DYyBdNRe5STjzMdM3dXGrpL7v//zFDZGBMiE8gOWSszJX
+ H+aueac/0M8GCdPLcdTAop3buIffJsRrushoFQbMq9Mqp1/KbsrGucRB4uwZ1utrl6zi
+ nt6H11z0gvV7gmi5RXRu5wMMCgVRngmv5Ker1KZxbCRUIxTrYbwJs8A/XtTaOXybTS6x
+ LLQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1792177152; x=1792781952;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=ZYcImaxwIvQa5x7FpuhK9EiFT4uMMl80YsgtPQP3AL4=;
- b=xnWjydfqMBrR5pTjuwNj5xjjoeTlmlN36Ey045d45g7CB9rzl0j2S4btsmM4X0UpZC
- XH5G5MfxVCRTh4nc3MEP6oKSgN9HoPwVO2qUdEYbRGNkhn7jJIRSuP57Ik4TyYq0NkoQ
- 4zckn8Fjls9NWD7SRyI6hD204dWRaFbXmfq2D25wlcS+p0VTEZwiJHuslD6ejQSjZRxD
- +/+HrebAdOrcNET7e3VphXGmSdr7lEvs35admq+SJ7IBkZvEgyA9An13objif+4VTmiD
- ud2wlk9U2+8kNPIQ28CSxr6CD322F4N9/37Hpcbi1rTExddKxMR8QvKhQFh/7A6qELkB
- bBgQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvByqH+OrRCxBBUFccctUfmfM8NWizZM6PhWaxXP9ks1DioFBdyL41LCEb/n6t2GDfU3qkMbl2Uqs6g==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYLjgYv5WcJuaFT8j0V1xsvR1z7gCp2JF2Vi4bFW+5OBNHaLA3Nh
- pClEOukXNWIGoEHAQkNbNzXpemTRbfS/rGLcjSPju3gb5REQF0nn5nfC
-X-Gm-Gg: AYBFou2q7zLc3BPFWsu3WpPpW1QRF40uMcuw3bSBLp8asHlVczi/UjKM2TCbeMKGddo
- XX6idppGs+iFmE5tmXj3RK9gGJy6Q6yskRKNmOFYJ/U6mm76W5mbi3bcZe3e4eeJPKJL/Osu4oa
- K8kh+Gt9UceTueovFjzQ1cQ1KIZaB/J7vmue1ttTDx2VsTBCP3hppbwPsEKE54PtsLYuMrdyGKa
- j+b8QP2V4VmqBba/PYRe2CJbcpYKTshAkM9Ybhfufx+OXNGDSaelqcDFHYcxkKUQ/cTJXOAlw6e
- Dj1y+tgfBr9lI2f2iyhK1s2mLWDh8vT+hjEWwoeGLaW9TVrxbLacE/87JEhc7b915nd5jx4ko2t
- waES4OvOTw/ts4MDWilxkxrurvOkSOTKaiN9iSXqe8hLWlvdZfF19XwBAFS8ukw5DWD9/nj7QSg
- EVdn2XuGxunjUp3kDdYFDK5KGwzYOLL4ckjVOhuNEjUvhiBoaMdEdnV000mNk6nxvZqQ==
-X-Received: by 2002:a05:6000:470f:b0:48b:efb:4a66 with SMTP id
- ffacd0b85a97d-48e07978c74mr1088295f8f.6.1792177151597; 
- Fri, 16 Oct 2026 11:59:11 -0700 (PDT)
-Received: from burakgon ([88.230.126.16]) by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-48dfd4d4dddsm6907711f8f.22.2026.10.16.11.59.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 16 Oct 2026 11:59:10 -0700 (PDT)
-From: =?UTF-8?q?Burak=20G=C3=B6nc=C3=BC?= <burakgon12@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Imre Deak <imre.deak@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
-Subject: Re: [PATCH v2 0/2] drm/i915/cx0: TCSS power for the non-TC C20 PHY on
- PTL port B
-Date: Fri, 16 Oct 2026 21:57:09 +0300
-Message-ID: <20261016185713.40065-1-burakgon12@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
-References: <20261015-ptl-port-b-tcss-v2-0-e00ce882402d@gmail.com>
+ d=1e100.net; s=20260707; t=1792177499; x=1792782299;
+ h=content-type:cc:to:subject:message-id:date:from:references
+ :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=hCVnPtqFe9PPLGclN/Sfiz1pW+NWRfIeY6a06sFRlb0=;
+ b=gRLHLjM6U5rDGCXS8bwypKziuvnlhpi6/Uc3sYYCv4Gr9TSyQAA4OKtwLeYlJ5Ofm1
+ jUPZmqb6sMkQ4AIt+WXuvnyDLoNf44xbyHCHxhkzeBtbJ4E8fsH0kpwiPhRwTRPxBYVS
+ gTLaQ9UVyWrp8mFzOqkYCPitA5AhKaWMRC1OZ7TtAx3j3uQ5kY76pZUnQHTqzCoRyyWj
+ 9bYnU8GCTk29g2O7jdQ/tIYh7flOTC4VWGgDTJaCbfo2H6cMBOJAemk+CRjkBqQ4EOG1
+ NQDjERNT5E3TF97023c25yX9mry85Mw4lO8+4dLd+FOFPxH0hV61Gaba4AkxDsFIDes5
+ PUfA==
+X-Gm-Message-State: AFq9FYIjtul6FweRCrPS6294nnjBjc4NQIGlMU8sWJjw0jE+5R+BmjUp
+ nShe5qwYDNDNhszzYxqXO//6tFSpIN20QlLOs+zcL5ZN3JVl6gDDeswWksa5QEo+UPFXTg1KnQZ
+ /L2xGOQOnAV5vdxZx7LsRIRjPLONtTMOPq02asIw=
+X-Gm-Gg: AYBFou2QQYbz4vfHgpcypju9jcSZYAhFbrtRp9zYWdFbA4NbRgIeMw8586pS/DtYpm9
+ DdJHS7ibbfNUDnSq4mF4ojheQxHwZtBOU1GP4VKkvzynKP6t3qQ5gF91Tpl77lhKx8zZXKwM5rR
+ lwCpPa9s5v69zIPjkyCy7mGO7FbT5q3LiD07HaHyVwZwsmnVbP6xSRsZQSdQVVpoa2xgSuBoDYF
+ BdeQ61pNc1kqM2CzUCrkLRibA7qyVaNHeXdJKgA9bw9V3nI0AGR5rm5Qo9bXnxoMEB9WEfDvqAz
+ e7cVIBZcc6m6TVm76B93tZGSwmYp4zpUC/5v57wzsgvJTFqBRy4IrcuToCHgdtWNHA==
+X-Received: by 2002:a05:6512:33c7:b0:5ba:cdbb:41af with SMTP id
+ 2adb3069b0e04-5be5099764cmr189189e87.0.1792177498937; Fri, 16 Oct 2026
+ 12:04:58 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Fri, 16 Oct 2026 22:04:57 +0300
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Fri, 16 Oct 2026 22:04:57 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
+References: <CAN52AYstOLqaX_=_HBLEGKvcEmY+VGwKSbRRRyQbG4ytr6FD_A@mail.gmail.com>
+ <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
+From: Jame Jao <jaojame6@gmail.com>
+Date: Fri, 16 Oct 2026 22:04:57 +0300
+X-Gm-Features: AclHuK9Q9k_W0_l4F3dNiy0XIQ0Kg9TzCTZ1PdBZ584Iuo1XtWhcgL1kK4uJmt4
+Message-ID: <CAN52AYvQvbPAjpsq9GJDP0QNKKM=H02AVjp9r9TcKSxfnz5VSw@mail.gmail.com>
+Subject: Re: [RESEND PATCH 0/5] platform/x86: bitland-mifs-wmi: MIFS v2
+ firmware support, Xiaomi Book Pro 14 2026 - filed as drm/xe #9602
+To: jani.nikula@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ rodrigo.vivi@intel.com
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,20 +105,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 15, 2026 at 01:26:39AM +0300, Burak Göncü wrote:
-> EDITME: v2 test results on the hardware.
+Hi Jani,
 
-Sorry, I sent this with a placeholder left in. The v2 test results:
+The bug is filed:
 
-Tested on an ASUS Zenbook Duo UX8407AA (BIOS 310) running 7.2.9 with
-this series applied as is:
+  https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/9602
 
-- Power-on with the keyboard docked, then lifting it: the panel on
-  port B comes up, with no PHY B errors.
-- Turning the panel off and on again from userspace, twice: the TCSS
-  power state in XELPDP_PORT_BUF_CTL1 of port B follows the request in
-  both directions, and neither wait times out.
-- s2idle with the panel on: it resumes with the request and the power
-  state set, again without errors.
+Attachments on the issue:
 
-Burak
+  vbt.bin.gz            1460 bytes, 7680 bytes after gunzip, first bytes
+                        "$VBT PANTHERLAKE", read from
+                        /sys/kernel/debug/dri/0/i915_vbt on 2026-10-17,
+                        sha256 (vbt.bin) 1a0a08b81c48977efbf3f4ea0cc547d6
+                        bdf44569f95d88662c5593f24a5e2e4d
+  kernel-boot-log.txt.gz  full kernel journal of that boot, from boot to
+                        the moment it was captured, with storage UUIDs, MAC
+                        addresses and serial numbers removed and nothing else
+                        edited
+
+Worth knowing when you triage it: the kernel in that log is a downstream
+Arch linux-zen build carrying one local change that touches only
+bitland-mifs-wmi suspend/resume error handling. Graphics and input code are
+unmodified, but it is not an upstream kernel, and the journal was collected
+without drm.debug=0xe log_buf_len=4M ignore_loglevel. I have not reproduced
+this on mainline or drm-tip yet. I will add a mainline/drm-tip run with the
+requested debug options to the issue and reply here once it exists.
+
+One limitation on my side: the account is new, so I could not apply labels
+to the issue ("BUG", "platform: PTL"). If you want them set, they need to
+come from someone with the right permissions on drm/xe/kernel.
+
+Thanks,
+Eason
+
+
+On Wed, 07 Oct 2026 15:19:13 +0300, Jani Nikula
+<jani.nikula@linux.intel.com> wrote:
+> On Wed, 07 Oct 2026, Jame Jao <jaojame6@gmail.com> wrote:
+> > I would like to report a WARNING that appears on every boot on a Panther
+> > Lake laptop, and that is also visible on screen (before the desktop comes
+> > up) when resuming from hibernation.
+>
+> Please file a bug as described at [1]. Please include the VBT.
+>
+> Thanks,
+> Jani.
+>
+> [1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+>
+> --
+> Jani Nikula, Intel
