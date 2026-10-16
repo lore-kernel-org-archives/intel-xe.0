@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA2F9CCA462
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:26:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 118ADCC6B38
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:27:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D71E112629;
-	Fri, 16 Oct 2026 07:26:09 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66A1E112629;
- Fri, 16 Oct 2026 07:26:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C604E112619;
+	Fri, 16 Oct 2026 07:27:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CEA8112602
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:27:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792135622; x=1823671622;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NcACwqbm0kci6i8Z1DGl9+dYScQFZ9UXjkKRZSZbn3g=;
+ b=cgjgKmNDMGH4TPv0ApoDsNczDdGjbkxF2DmgsgVwQETYKhInzEVoGehN
+ hOAP2t5EbUzx8vs6iUhiYGg7y+rZgseuw1kd/gsbKXIgpCDlrXhGj1LFO
+ gYwZPEyWlQNo0dGjt8xN3NsYm4CwcNtbtSjZHEVLrvRRVNcMipp4BtW5j
+ lorMqH1Ydnr+Tyx5LLfJouFp+wruv+Dr0YB1771Pkk5B6nNFylQjr1Z+C
+ JozVm+fdngpvdmCwXc4Hpw9XjZYCSGAiqE/bvSdHsb+PVry1YJgptcPHb
+ ehS92ghHEk3YTAgKyn2DtDssQklhm9uSICZuw+VeuSsUUQ71candWW992 g==;
+X-CSE-ConnectionGUID: LUa/PBZwRwiNKG62lWljYQ==
+X-CSE-MsgGUID: 0XbP4/fAQ1Sjaf6qPAIHmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="806115"
+X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
+   d="scan'208";a="806115"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 00:27:02 -0700
+X-CSE-ConnectionGUID: aT+xu/1MRByVoEp9rPYZDQ==
+X-CSE-MsgGUID: DL8cy4BhTAiZ1b8+CTmiVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
+   d="scan'208";a="3673843"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa013.fm.intel.com with ESMTP; 16 Oct 2026 00:26:58 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
+ matthew.d.roper@intel.com, matthew.brost@intel.com,
+ mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v10 0/9] Introduce xe_wedge
+Date: Fri, 16 Oct 2026 12:55:54 +0530
+Message-ID: <20261016072623.457392-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Isolate_permane?=
- =?utf-8?q?ntly_wedged_devices?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Oct 2026 07:26:08 -0000
-Message-ID: <179213556841.33768.4011332726976202068@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261016071832.222574-1-arvind.yadav@intel.com>
-In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,83 +62,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+In the history of xe technical debt, this series takes one more step and
+consolidates all wedging implementation into a dedicated xe_wedge component.
 
-Series: drm/xe: Isolate permanently wedged devices
-URL   : https://patchwork.freedesktop.org/series/176267/
-State : warning
+While at it, this fixes a few pre-existing issues related to wedge handling.
+Detailed description in commit message.
 
-== Summary ==
+ v1: https://patchwork.freedesktop.org/series/172727/
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 8bd802f76eb2bc2f4150b31fd9f71c8ec5d5b1a5
-Author: Arvind Yadav <arvind.yadav@intel.com>
-Date:   Fri Oct 16 12:48:28 2026 +0530
+ v2: Split fixes into separate patches (Rodrigo, Michal)
+     Also move struct xe_wedge and wedged_mode debt to xe_wedge (Lukasz, Michal)
+     Naming and aesthetic adjustments (Lukasz, Michal)
 
-    drm/xe: Block BO VM access when device I/O is unavailable
-    
-    DO NOT REVIEW
-    
-    xe_bo_vm_access() may acquire a runtime PM reference and access a BO
-    during PCI error recovery, after a permanent wedge or during device
-    unplug.
-    
-    Use xe_device_io_get() to protect against unplug, PCI error recovery and
-    permanent wedging. Keep the device I/O gate held until the runtime
-    PM reference has been released.
-    
-    Return -EIO for a permanent wedge, -ECANCELED during PCI error recovery
-    and -ENODEV after device unplug.
-    
-    v2:
-     - Replace the runtime-PM scoped guard with explicit get/put calls
-       to avoid mixing scope-based and goto-based cleanup. (Sashiko)
-     - Replace the private VRAM SRCU lock with the common device I/O gate.
-     - Preserve -EIO for BO access after a permanent wedge.
-    
-    v3:
-     - Combine unplug and blocked-device protection through the common DRM
-       device SRCU helper.
-     - Return -ENODEV after unplug and -ECANCELED during PCI recovery, while
-       preserving -EIO for a permanent wedge.
-    
-    Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
-+ /mt/dim checkpatch 25ac2be14e483405af697f32d04950fe737db1a9 drm-intel
-ec1852ea8999 drm/xe/irq: Always free requested IRQs on uninstall
-f4b4fbecd679 drm/drv: Export drm_dev_srcu_synchronize()
-2f5b3b0c9445 drm/xe: Separate AER reset state from device wedging
-0faad7c8b42e drm/xe: Protect device I/O with DRM device SRCU
--:252: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#252: FILE: drivers/gpu/drm/xe/xe_guc_tlb_inval.c:92:
-+			CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt),
-+						    XE_FW_GT);
+ v3: Respect the component namespace (Rodrigo)
+     Avoid chaining header includes (Rodrigo)
+     Squash debugfs changes with xe_wedge patch (Lukasz)
 
-total: 0 errors, 0 warnings, 1 checks, 219 lines checked
-6d41bc4090f4 drm/xe: Keep software waits outside the device I/O gate
-02082f91e61f drm/xe: Drop queued page faults when device I/O is blocked
-c34892eecc4a drm/xe: Stop VM work when device I/O is blocked
-498054a320c8 drm/xe/ggtt: Skip GGTT updates on a wedged device
-6c3f6a02c651 drm/xe: Skip VM close hardware access when device I/O is blocked
-0789643f63b9 drm/xe: Send wedged notification from a worker
-9d61ef534bc4 drm/xe: Reuse one dummy page per BO after wedge
-89731e987648 drm/xe: Invalidate existing VRAM mappings on wedge
-8391ab6ff322 drm/xe/irq: Protect IRQ state during wedge isolation
-2aaa5e628310 drm/xe: Isolate a wedged device before notifying userspace
-477ea635e5c7 drm/xe/ttm: Reject VRAM allocations on wedged devices
-402bcb02d93d drm/xe/guc: Skip timeout recovery on a wedged device
-d4e7b9b6db83 drm/xe: Skip PM notifier preparation when device I/O is blocked
-8bd802f76eb2 drm/xe: Block BO VM access when device I/O is unavailable
+ v4: Introduce for_each_initialized_gt() (Michal)
+     Include xe_sriov.h (Rodrigo)
 
+ v5: Flush GT wedge worker to avoid races (Sashiko)
+     Drop IRQ safe wedging for its flawed design
+
+ v6: Move wedge worker initialization to xe_gt_init_early() (Rodrigo)
+     Don't flush GT wedge worker to avoid deadlock (Sashiko)
+     Include IRQ safe wedging with redesign
+
+ v7: Guard GT wedge worker with runtime PM (Rodrigo)
+     Retain xe_pm_runtime_get_noresume() in IRQ context (Rodrigo)
+
+ v8: Rebase
+
+ v9: Drop runtime PM guard from GT wedge worker (Matthew Brost)
+
+v10: Guard wedge callers with runtime PM (Sashiko)
+
+Raag Jadav (9):
+  drm/xe/gt: Use GT ordered workqueue for wedging
+  drm/xe: Drop xe_device_set_wedged_method()
+  drm/xe/hw_error: Guard csc_hw_error_work() with runtime PM
+  drm/xe: Move xe_device_wedged_fini() registration to
+    xe_device_probe_early()
+  drm/xe: Make xe_device_declare_wedged() IRQ safe
+  drm/xe/pci_error: Flush GT wedge worker before bus reset
+  drm/xe/amc: Guard xe_amc_work() with runtime PM
+  drm/xe: Introduce xe_wedge
+  drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
+ Documentation/gpu/xe/xe_device.rst          |   2 +-
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   3 +-
+ drivers/gpu/drm/xe/xe_amc.c                 |   6 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_debugfs.c             |  66 +----
+ drivers/gpu/drm/xe/xe_device.c              | 190 +-------------
+ drivers/gpu/drm/xe/xe_device.h              |  14 +-
+ drivers/gpu/drm/xe/xe_device_types.h        |  28 +--
+ drivers/gpu/drm/xe/xe_gsc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |  26 +-
+ drivers/gpu/drm/xe/xe_gt.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |   3 +-
+ drivers/gpu/drm/xe/xe_gt_types.h            |   9 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_guc.h                 |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   7 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  11 +-
+ drivers/gpu/drm/xe/xe_guc_rc.c              |   5 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  14 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c       |   3 +-
+ drivers/gpu/drm/xe/xe_hw_error.c            |   1 +
+ drivers/gpu/drm/xe/xe_mert.c                |   5 +-
+ drivers/gpu/drm/xe/xe_pci_error.c           |  13 +-
+ drivers/gpu/drm/xe/xe_ras.c                 |  11 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c            |   3 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |   4 +-
+ drivers/gpu/drm/xe/xe_uc.c                  |   6 +-
+ drivers/gpu/drm/xe/xe_uc.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_wedge.c               | 262 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wedge.h               |  24 ++
+ drivers/gpu/drm/xe/xe_wedge_types.h         |  44 ++++
+ 32 files changed, 447 insertions(+), 331 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
+
+-- 
+2.43.0
 
