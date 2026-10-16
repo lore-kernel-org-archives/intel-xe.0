@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 654E2CC6B38
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 10:33:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45775CCA464
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 10:33:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 059EA112743;
-	Fri, 16 Oct 2026 10:33:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 03F6A10E219;
+	Fri, 16 Oct 2026 10:33:28 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B3C210E1E1;
- Fri, 16 Oct 2026 10:33:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 094FC1124D8;
+ Fri, 16 Oct 2026 10:33:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792146799; x=1823682799;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=w+u2467kNCBKVIFmIwaQzyJSrvkTzGB5qKEoStlzKJY=;
- b=f/bb4fXKwiqHdJlMkFClGBteA2RPOthHb2ZKRQEiFYlIiJiUVW1lU3jA
- 0G2sGa9AWl/nbxZsm5PtmAN5LiXrl2OHs1uvyMquoske9cr8BC9CKEMYr
- 6Uhnx3tm8Y1NHOpQrF6D37mJsMXXjG6AVOcBbVAzAnqn/1uh2vLrpXKU4
- ik67ey2Ca3ux+aYkV74GWk2aaOm1w4tY6itMaAZQyA08jlGZt2rx0/A+v
- OoKbwquAreIiGA7Q5FF77dlfjW+AM54t6HssodoZW0c58MIlUPuKSd2Q+
- XdifOZANtlmjUwOgDmeaBM9MQBp2kt+Y4XFZt/Dfp0hCDNfUH94Xw7soE g==;
-X-CSE-ConnectionGUID: dDZsv1JET1CiJY3Fth3cCQ==
-X-CSE-MsgGUID: 2fCkjMJ+Sgi+95aYUlAkEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="930907"
+ t=1792146801; x=1823682801;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=IGLi2s4B57jsORoIpOrJkutf6m7ByT90Urjly//0rxQ=;
+ b=XsxhI3pzS010Xr0s8hUefIuPPmJJ8bTa9VxEMlbK8LHqBy3XehYyf8jg
+ WE62zovlzyxUjYqfNk6G9c9VIhUxRwd19PoMvNLA17In3XaP2vjpYFD1E
+ oJMZubjwv/1bEX6d+eudrJNcgpmVsjClHvMtzih03YwvphttWZiFibATy
+ ps9N0QYoXrUv+ZjrglpL9oQBDE+OTck2/BWDWukLUffdeT3yys5ZYxeso
+ 2LHqmgLgAUQatoEEVfteRFFDbtYJlqeGv9sS2EgLaZDroaQPWzRSNzjPX
+ KXs757u+MaStXzyEAfLGzlApWPAGhe3rW2bfBSyR8IKxWFctm9ze6749k g==;
+X-CSE-ConnectionGUID: I9WCDDh6Th65bEIJaK5QkQ==
+X-CSE-MsgGUID: NNjM9T9lT+yEVryxjFi3LA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="930909"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="930907"
+   d="scan'208";a="930909"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 03:33:19 -0700
-X-CSE-ConnectionGUID: IprljVF+SquKSUtP1aecdA==
-X-CSE-MsgGUID: 72dKXW1zTzugUFywzScE5w==
+ 16 Oct 2026 03:33:20 -0700
+X-CSE-ConnectionGUID: NkXLnaj4RRWNxf98eRj9UA==
+X-CSE-MsgGUID: xOiq6lcyTRu9oletPWZkBw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="1872395"
+   d="scan'208";a="1872403"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 03:33:17 -0700
+ 16 Oct 2026 03:33:19 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/2] drm/i915/dsc: Fix QP, RC parameters issues
-Date: Fri, 16 Oct 2026 15:47:11 +0530
-Message-ID: <20261016101713.230013-1-ankit.k.nautiyal@intel.com>
+Cc: suraj.kandpal@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Sui Jingfeng <suijingfeng@loongson.cn>, stable@vger.kernel.org
+Subject: [PATCH 1/2] drm/i915/dsc: Fix QP table index calculation for bpp
+ selection
+Date: Fri, 16 Oct 2026 15:47:12 +0530
+Message-ID: <20261016101713.230013-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20261016101713.230013-1-ankit.k.nautiyal@intel.com>
+References: <20261016101713.230013-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,22 +68,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series fixes some mistakes in helpers to calculate DSC
-range_bpg_offset and  QP index selections. Due to these, there are
-corruption seen with few panels [1].
+Fix the typo in the QP index selection for a given bpp.
 
-Thanks for the Reporter, Ivan Aslamov to find out the typos/mistakes and
-root cause the issue.
+The QP table rows increment in steps of 0.5 bpp, meaning each integer
+bpp step corresponds to 2 rows in the table. While refactoring the index
+calculation to support fractional bpp, the multiplier of 2 was dropped
+for the integer bpp portion.
 
-[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9247
+Restore the missing factor of 2 in the integer part of the bpp calculation
+to correctly align the QP selection with the table layout.
 
-Ankit Nautiyal (2):
-  drm/i915/dsc: Fix QP table index calculation for bpp selection
-  drm/i915/dsc: Fix the helper range_bpg_offset()
+Fixes: 2df50cb46a4c ("drm/i915/dsc/mtl: Add support for fractional bpp")
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Sui Jingfeng <suijingfeng@loongson.cn>
+Cc: <stable@vger.kernel.org> # v6.8+
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_vdsc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 8f06c3a4d56d..7a573c2b6a7d 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -261,7 +261,7 @@ calculate_rc_params(struct drm_dsc_config *vdsc_cfg)
+ 		 * and so on.
+ 		 * 0.5 fractional part with 4 decimal precision becomes 5000
+ 		 */
+-		bpp_i  = ((bpp - 6) + (fractional_bits < 5000 ? 0 : 1));
++		bpp_i  = (2 * (bpp - 6) + (fractional_bits < 5000 ? 0 : 1));
+ 
+ 		for (buf_i = 0; buf_i < DSC_NUM_BUF_RANGES; buf_i++) {
+ 			u8 range_bpg_offset;
 -- 
 2.50.1
 
