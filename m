@@ -4,128 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 542F6CCF2D6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD1E1CCF2E3
 	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12CC310EC65;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E4C310EC6C;
 	Mon, 19 Oct 2026 11:42:18 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35F6B10E144;
- Fri, 16 Oct 2026 15:07:01 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 56861601FF;
- Fri, 16 Oct 2026 15:07:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C15781F000C4;
- Fri, 16 Oct 2026 15:06:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792163220;
- bh=qgiGef4Ohy6VRaPUYC6AlFmNRyKjxhooP4OqvSap8is=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=eV18hT0GJUaQWHwp7Ud3PDO7D6hZRb8bZhmXgdps3B8BS6n8oNJ0JGllQiOIL5tDP
- Sm/steBjr2D+Yo32uchtTymDOoEIcPaq4VI6WSikDzpGouECjbWUVLW7w9yFeVcsgN
- 02VFgdWQOgAJ5by5jdKCTaA2WhUV2wFYDSyfDULQTbvubLT8hniX199/Slm0vXbZR2
- IQZm0/IZz7DZlUj5ENSfYBHMLo8QtFx+/3Njn/IvMWTwBJYMk/0rkA4a76NRnaV3YZ
- uopDBKWTIAyxKjcdyOUu7Z1DGoMj7Z2ldUbBCAWjfTtDyVPCr1XX9oKF9XIN6QoIXc
- wR5wn+tLG2xuQ==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Joel Stanley <joel@jms.id.au>, Dave Airlie <airlied@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Peter Senna Tschudin <peter.senna@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
- Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
- Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
- Long Li <longli@microsoft.com>,
- Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org,
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
- Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
- Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
- Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-renesas-soc@vger.kernel.org,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Iker Pedrosa <ikerpedrosam@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>,
- linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
- Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
- LiangCheng Wang <zaq14760@gmail.com>,
- Alex Lanzano <lanzano.alex@gmail.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Chia-I Wu <olvaffe@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Melissa Wen <melissa.srw@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Magnus Damm <magnus.damm@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
-Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-Date: Fri, 16 Oct 2026 17:06:53 +0200
-Message-ID: <179216309041.2383329.5085571920107795525.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-References: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com
+ [209.85.167.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71C3B10E354
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 18:47:01 +0000 (UTC)
+Received: by mail-lf1-f43.google.com with SMTP id
+ 2adb3069b0e04-5be47aa555cso261625e87.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 11:47:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792176420; cv=none;
+ d=google.com; s=arc-20260327;
+ b=Dp2jpozOSHlL2kqz4F9hlMuRBo9LQOPxQj2gKeBbtoqMU46Ekg6XEvS3+uVHWrqyO0
+ pEtAnRSOn8CkV/yiovgg051S3yU6t0NcDcTLsVmD+IyqHeJqtTKywQssWljFDIVRSS2P
+ G0yut8oniLhSzLrTLJQvHr2M8OcT7Eyz8HpcK7nCU5Nf/HZ/6wIihjp+gByXDxjVsK02
+ FwNmduh2ZLP96G6Kwaa9Ci8QfZybV2DZMCxvA2FShYeIYHExhfw68fh0HMKkmb1acZqK
+ gvSGodFLDn2jH51ylqXPg+mKmDqUppuDDj/V6Auk25OUW9znq2/N55l9Tu7PoAqOX/Yp
+ Mugg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=cc:to:subject:message-id:date:from:mime-version:dkim-signature;
+ bh=mSPXHuvKLNPYV1P/709MuLB8q36LY6Wla3TpvRYhc5w=;
+ fh=OK5W32kx3H9VO2XMYbN3RU3l+Y/m/BQNik6CJv4eAfg=;
+ b=dyqzpyM4xau0z4i1yNJXPXCFIeUHA+1IAfzcWy9CY4oLaQnQFf+GAkJqImBMjBRWHN
+ GCLWWmW5Lxx1Nr3UIUL3SYkaaGqRB8lhsRxaQoentvRrK82M+F408KYBVy7nhtd/KpOt
+ DPdcgCZbhW2+uukAO6Ja5twU8uxH6gdcS8scLrC5/KrTBj56Thotazr70zUwnA59ipF2
+ iORG2Pd05MOJlPwhtxST4tpHNEuIjRVrBVsOz6yEf9lCWXtLf9pnRoREbguOomVsdqai
+ +MLSz2v9lOisWuYL40TpNtIXbeI2sFxMm4M7W9TxfTsKUK1/+iJtWVGYHfc60GAtBWZ0
+ hC4g==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1792176420; x=1792781220; darn=lists.freedesktop.org;
+ h=content-type:cc:to:subject:message-id:date:from:mime-version:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=mSPXHuvKLNPYV1P/709MuLB8q36LY6Wla3TpvRYhc5w=;
+ b=FVGCl8A8aYYs6K1q8zs7mMSrSzsPheP+qOlaEiDBJ+COY3zRM9IJ6AOHQ8pnyK09Wf
+ oRaBMgJQ49QNsH8PXyy6Q4Lk6DX/F49YttNPafCUy9HF+q25cPP+zL982BMP46LKtkl1
+ J3x6eA9IpyfRzzdGFtbfJe60YnVxAwmSH2yPFniVba0QSZCoCqX8sTtY3BBCWQCKgUa8
+ cRLBeqYaAXjtZLKJd84Myv41H86KhDC/rcX8KPC/RD9juHvI9/B46J9LYkwUcq8ke3cB
+ 32KPtdBo3BkzAqx0O+5oteiNLdflLqOPYwC0iSBD5JKt7xPpvW3FcMBsoZ7nq4x13HF/
+ F4Og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1792176420; x=1792781220;
+ h=content-type:cc:to:subject:message-id:date:from:mime-version
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to:content-type;
+ bh=mSPXHuvKLNPYV1P/709MuLB8q36LY6Wla3TpvRYhc5w=;
+ b=V10Casr4Ul7k4nQwjI/BFaXcg6jDx5sKNwb/cMLkcWH8xsKzWvGFMtmBwbnBAuVncI
+ RDPKxt6f056x099yMscHE9U8d3btv3Kizqk3Zo5Q+bq3d+Hmq6Z9IXDb2L0FmYShECZG
+ t5MDD129RPxcrUJglOpZh7Pd0Ht2Ly45+3LSr7FroPeLhu1jvsw0nbFHVKNGO7hB/mVg
+ m9x1Ox8jVBkH59Wh5zkMRdJEKwlqnVQfPPJKxO6VHNveD1MKAldOrq9c4/Sxdn++dsWc
+ bIBc6E6pA46URYgIAdFJ7w66c1lxvd7tZFD8z+ZUVt4LMHikOHb2upMW5Xp3Llmjemo3
+ 6jZQ==
+X-Gm-Message-State: AFq9FYJNBh23oK+xZIjh4FZbgHjqr/Nv+axGHWkfBbEiRhs9umVz0i7+
+ p2xoOgazZpfLRwp++YW4pfWgnz3HUtaywAygpyN+0VBVLCADFcF+awyMNzOx1UXGll3ZwNn3Qt9
+ h6e/rzoBsPjqch2Y33jyGhbbaPkRSMTtCmdUJ
+X-Gm-Gg: AYBFou2GWTUn5aDcEVkOQjvdnKJCOuxOzny5RUFNElQwX5qd48sY3n24fxjdgqpSu23
+ J0Oih0Fmqokb1ov5X0ZLhs5wvD3dKSOh08djyfM0YCDByOk5YTOafjHXJEl2ZeYbbPvqD7SY6ab
+ Z3fH4evINmDn1u53RIzvdpheaopo/UUn3EHs7Q2jo7xDYoWjXWbcCf7gmtWaG0Y6l4GP3gDm7tG
+ coTisdlFVnnUX5RkGJdq52NceIuE5HkM4kD7Z95EnnSBgdo39yAmVLIbDbIwUP7YI7rNfdYP11G
+ f8gNNjeucXL/7DhlFyGMmc615uCV49jiGMTDkheRLtz7TCLAcCsysjFn7olT5xNYOg==
+X-Received: by 2002:a05:6512:3d19:b0:5be:4f73:d48f with SMTP id
+ 2adb3069b0e04-5be50a66f38mr142769e87.16.1792176419333; Fri, 16 Oct 2026
+ 11:46:59 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Fri, 16 Oct 2026 11:46:56 -0700
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Fri, 16 Oct 2026 11:46:56 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+From: Jame Jao <jaojame6@gmail.com>
+Date: Fri, 16 Oct 2026 11:46:56 -0700
+X-Gm-Features: AclHuK-AWBrqjxTyZ2yktg4XGAtZxGZHrAUNyKlBOKVN419STkDg5w2ORhE5pkA
+Message-ID: <CAN52AYuD6E=DCJ6sLpbd_i-tNJDNtsw_K-pkT=bfnVwwF7WFRw@mail.gmail.com>
+Subject: Re: [RESEND PATCH 0/5] platform/x86: bitland-mifs-wmi: MIFS v2
+ firmware support, Xiaomi Book Pro 14 2026 - VBT attached
+To: jani.nikula@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ rodrigo.vivi@intel.com
+Content-Type: multipart/mixed; boundary="000000000000d988ec065df996a1"
 X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -141,38 +100,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
-> 
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
-> 
-> [...]
+--000000000000d988ec065df996a1
+Content-Type: text/plain; charset="UTF-8"
 
-Applied to misc/kernel.git (drm-misc-next)
+Sorry for the extra message: my previous reply went out without the file.
 
-[05/75] drm/arm: komeda: Switch to drm_atomic_helper_connector_create_state
-        commit: 849b1119cb1f429667bf3e79cba86ad397087ab7
-[11/75] drm/bridge: lontium-lt8912b: Switch to drm_atomic_helper_connector_create_state
-        commit: 80512a4f295c52caf1394677d9c80738b68c8831
-[12/75] drm/bridge: megachips: Switch to drm_atomic_helper_connector_create_state
-        commit: 9a4a55df74880acf7c2b954d6011aab579db5f5e
-[24/75] drm/hyperv: Switch to drm_atomic_helper_connector_create_state
-        commit: 7b9c28149a291451ada4c3e9fc7fd2ae13f36bc5
-[25/75] drm/imx: ipuv3: Switch to drm_atomic_helper_connector_create_state
-        commit: 75da1ba5a3c36dca76206ec8e90bebcfc3641c64
-[35/75] drm/solomon: ssd130x: Switch to drm_atomic_helper_connector_create_state
-        commit: 9ec42580ccceb54bd8e0b044729a98e4f345b522
-[39/75] drm/sysfb: Switch to drm_atomic_helper_connector_create_state
-        commit: af36b2313c54e10b832298033b8be2fd50746c96
-[51/75] drm/vc4: Switch to drm_atomic_helper_connector_create_state
-        commit: c81e4d88c3ed73483a99a90f56cc80c80eebc863
-[67/75] drm/malidp: Convert to atomic_create_state
-        commit: 8b32d0652db9bb6b01055311e1cce5e3c4b70137
+The VBT dump is attached here.
 
-Thanks!
-Maxime
+  File        vbt.bin
+  Source      /sys/kernel/debug/dri/0/i915_vbt (raw dump, read 2026-10-17)
+  Size        7680 bytes
+  First bytes "$VBT PANTHERLAKE"
+  sha256      1a0a08b81c48977efbf3f4ea0cc547d6bdf44569f95d88662c5593f24a5e2e4d
+
+Machine for this dump: XIAOMI REDMI Book Pro 14 2026, board TM2426,
+BIOS RMAPT4B0P0909 (2026-05-21), Panther Lake / Arc B370 (8086:b081 rev 04),
+kernel 7.2.9-zen1-1.1-zen with one local bitland-mifs-wmi suspend/resume
+change only.
+
+Thanks,
+Eason
+
+--000000000000d988ec065df996a1
+Content-Type: application/octet-stream; name="vbt.bin"
+Content-Disposition: attachment; filename="vbt.bin"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: 25415b88672685c_0.1
+
+JFZCVCBQQU5USEVSTEFLRSAgICBkADAA3xwwADAAAAAAAAAAAAAAAAAAAAAAAAAAQklPU19EQVRB
+X0JMT0NLIAoBFgCuHP7qAABkAQEZDDAwNjFJbnRlbChSKSBNb2JpbGUvRGVza3RvcCBQQ0kgQWNj
+ZWxlcmF0ZWQgU1ZHQSBCSU9TDQpCdWlsZCBOdW1iZXI6IDEwMDAgUEMgMTQuMzQgIDI3LzAzLzIw
+MTUgMTA6MTY6NTkNCkRFQ09NUElMQVRJT04gT1IgRElTQVNTRU1CTFkgUFJPSElCSVRFRA0KAAAA
+AAAAAAAAAAAAAENvcHlyaWdodCAoQykgMjAwMC0yMDE1IEludGVsIENvcnAuIEFsbCBSaWdodHMg
+UmVzZXJ2ZWQuDQoNCgAAwAAIBAEAAAEKAA9AAAEoAAAAAAD9QgAQAAgAAAAEAAAAQAAAACAAAAAQ
+AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACvQECBAAALAgA
+BhgAAAAAAAAAAAAAAAAKAAADAAAA4ABAACAAAAAAAAAAAAAgAP4AAAAAgAAAAAAAAAAAAAAAAAAA
+AAcAAAAAAADAABAAIAAAAAAAAAAAACAA/gAAAAAEAMZoABAQAP8bEAAAAAAADQAAAwAAAMAAYAEg
+AQAAAAADAAAAAAD+AAAAAEAA0mAAEBAAGxwQAAAAAAAQAAAEAAAAwAAAASABAAAAAAAAAAAAAP4A
+AAAAIADGaAAQEAA3HBAAAAAAABEAAAUAAADAAIABIAEAAAAAAwAAAAAA/gAAAAAQAMZoABAQAFMc
+EAAAAAAAEwAABgAAAMAAkAEgAQAAAAADAAAAAAD+AAAAAAIAAAAAEBAAbxwQAAAAAAAKAAABAAAA
+wABAASABAAAAAAAAAAAAAP4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAA/gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD+AAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/HoAAAABAAAAAAAAAQABAQEB
+AQAAFQFAAAAAAAAAAAAAAAAAAAAAAAD9A8gAAAAAAAAAAAAAAAAAAAAAAI0FCgCXBQoAoQUKAKsF
+CgC1BQoAvwUKAMkFCgDTBQoA3QUKAOcFCgDxBQoA+wUKAAUGCgAPBgoAGQYKACMGCgAJZAAAAQIA
+AgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAA
+AQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgAAAQIAAgD/////CssACgAAAAAAAAAA//8AAAAA
+AAAAAP//AAAAAAAAAAD//wAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAAAAD//wAAAAAAAAAA//8A
+AAAAAAAAAP//AAAAAAAAAAD//wAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAAAAD//wAAAAAAAAAA
+//8AAAAAAAAAAP//AAAAAAAAAAD//wAAAAAAAAAA//8AAAAAAAAAAP//AAAAAAAAAAD//wAAAAAA
+AAAA//8AAAAAAAAAAP//AAAMEwBKAAQAAwg8hBwAAAAAAFUAAP+fFKoABhwGAEALCAcAPAAAAAAA
+AAAAAAAAAAAAAAAAAHgAAAAAAAAAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAPAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADwAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAbXgPQBwoA0Af0AYgT0AcK
+ANAH9AGIE9AHCgDQB/QBiBPQBwoA0Af0AYgT0AcKANAH9AGIE9AHCgDQB/QBiBPQBwoA0Af0AYgT
+0AcKANAH9AGIE9AHCgDQB/QBiBPQBwoA0Af0AYgT0AcKANAH9AGIE9AHCgDQB/QBiBPQBwoA0Af0
+AYgT0AcKANAH9AGIE9AHCgDQB/QBiBPQBwoA0Af0AYgTAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP//AAAAAAAAAAAgAAAAKCIAAgMz
+AAAAAAD//wAAAAAAAKqqqqqqqqqqAAAAAAAAAAAAACpmBYAC4AGAEQ4AAAMAAAhyDADQB1gCDHIM
+ANAH9AEQcgwABQ8nAP//1gmAkCDgHRAIYCIAAAAAAAAeNn8BAAEAAAAADCADWAKAEQ4AAAMAAAhy
+DADQB1gCDHIMANAH9AEQcgwABQ8nAP//oA8gADFYHCAogBQAAAAAAAAeNn8CAAIAAAAADEALCAeA
+EQ4AAAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//ZBkAQEEAJjAYiDYAAAAAAAAYNn8DAAMA
+AAAADAAFAASAEQ4APAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//MCoAmFEAMEAwcBMAAAAA
+AAAeNn8FAAQAAAAADHgFGgSAEQ4APAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//MCp4IFEa
+EEAQcBMAAAAAAAAeNn8BkAUAAAAADHgFGgSAEQ4APAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8n
+AP//qC944FEaJkBYmBMAAAAAAAAeNn8BkAYAAAAADEAGsASAEQ4APAMAAAhyDADQB1gCDHIMANAH
+9AEQcgwABQ8nAP//SD9AMGKwMkBAwBMAAAAAAAAeNn8GAAcAAAAADFYFAAOAEQ4AAAMAAAhyDADQ
+B1gCDHIMANAH9AEQcgwABQ8nAP//ZiFWqlEAHjBGkBQAAAAAAAAYNn8DkAgAAAAAAZAGGgSAEQ4A
+PAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//fC6QoGAaHkAwIDYAAAAAAAAeNn8EkAkAAAAA
+DIAHsASAEQ4APAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//KDyAoHCwI0AwICoAAAAAAAAe
+Nn8FkAoAAAAADKAFhAOAEQ4AAAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//mimg0FGEIjBQ
+mRcAAAAAAAAeNn8DAAsAAAAADEAGhAOAEQ4AAAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//
+MCpAyGCEZDAYUQQAAAAAAAAeNn8DAAwAAAAADAAEAAOAEQ4AAAMAAAhyDADQB1gCDHIMANAH9AEQ
+cgwABQ8nAP//ZBkAQEEAJjAYiDYAAAAAAAAeNn8DAA0AAAAADAAFIAOAEQ4AAAMAAAhyDADQB1gC
+DHIMANAH9AEQcgwABQ8nAP//6hoAoFAgFzAMMEMAAAAAAAAeNn8DkA4AAAAADIAHOASAEQ4AAAMA
+AAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//AjqAGHE4LUBYLTYAAAAAAAAeNn8DAA8AAAAADAAI
+AAaAEQ4APAMAAAhyDADQB1gCDHIMANAH9AEQcgwABQ8nAP//KUAAYIAAE2AQEBEAAAAAAAAeNn8D
+ABAAAAAADExGUF9QYW5lbE5hbWVMRlBfUGFuZWxOYW1lTEZQX1BhbmVsTmFtZUxGUF9QYW5lbE5h
+bWVMRlBfUGFuZWxOYW1lTEZQX1BhbmVsTmFtZUxGUF9QYW5lbE5hbWVMRlBfUGFuZWxOYW1lTEZQ
+X1BhbmVsTmFtZUxGUF9QYW5lbE5hbWVMRlBfUGFuZWxOYW1lTEZQX1BhbmVsTmFtZUxGUF9QYW5l
+bE5hbWVMRlBfUGFuZWxOYW1lTEZQX1BhbmVsTmFtZUxGUF9QYW5lbE5hbWUAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//8AAAAAAAAAAAAAAAAAAAAAKzEBBkrIAAZY
+qkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrI
+AAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqkrIAAZYqv////////////////////8CAgISAgIC
+AgICAgICAgIC/wAAAP8AAAB/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA
+/wAAAP8AAAD/AAAA/wAAAAYAAAAGAAAAAwAAAAYAAAAGAAAABgAAAAYAAAAGAAAABgAAAAYAAAAG
+AAAABgAAAAYAAAAGAAAABgAAAAYAAAAICAgICAgICAgICAgICAgIAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAsiADsRgAAAEkACgBVAFAAZAAsAZYA6AMA////////+/8AAP/////7/xIS
+EhISEhISEhISEhISEhIAAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAD//wAAYmJiYmJiYmJiYmJiYmJiYgAALjABAIiIiIiIiIiIiIgAiIiI
+iIiIiIiIiACIiIiIiIiIiIiIAIiIiIiIiIiIiIgAiIiIiIiIiIiIiACIiIiIiIiIiIiIAIiIiIiI
+iIiIiIgAiIiIiIiIiIiIiACIiIiIiIiIiIiIAIiIiIiIiIiIiIgAiIiIiIiIiIiIiACIiIiIiIiI
+iIiIAIiIiIiIiIiIiIgAiIiIiIiIiIiIiACIiIiIiIiIiIiIAIiIiIiIiIiIiIgAAAAAAAAA/wAA
+AAAAAAD/AAAAAAAAAP8AAAAAAAAA/wAAAAAAAAD/AAAAAAAAAP8AAAAAAAAA/wAAAAAAAAD/AAAA
+AAAAAP8AAAAAAAAA/wAAAAAAAAD/AAAAAAAAAP8AAAAAAAAA/wAAAAAAAAD/AAAAAAAAAP8AAAAA
+AAAA/wAAAAAAAAD/AAAAAAAAAP8AAAAAAAAA/zMJAAAAAAAAAAAAADQ2AwAAkBAAAAwAAAAAAAAA
+AAAAAAAAAAAAAAAA//8/AP//AAAXAAAA/wAAANAHAAAAAAAABAAAAA9/Hz8UAAoARgAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAADw8AAgyaSZGNgEAI2luMsgAAF8oPAAyAAAAAQEBAAAAAACQEAAA
+DAAAAAAAAAAAAAAAAAAAAAAAAAD//z8A//8AABcAAAD/AAAA0AcAAAAAAAAEAAAAD38fPxQACgBG
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDwACDJpJkY2AQAjaW4yyAAAXyg8ADIAAAABAQEA
+AAAAAJAQAAAMAAAAAAAAAAAAAAAAAAAAAAAAAP//PwD//wAAFwAAAP8AAADQBwAAAAAAAAQAAAAP
+fx8/FAAKAEYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8PAAIMmkmRjYBACNpbjLIAABfKDwA
+MgAAAAEBAQAAAAAAkBAAAAwAAAAAAAAAAAAAAAAAAAAAAAAA//8/AP//AAAXAAAA/wAAANAHAAAA
+AAAABAAAAA9/Hz8UAAoARgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADw8AAgyaSZGNgEAI2lu
+MsgAAF8oPAAyAAAAAQEBAAAAAACQEAAADAAAAAAAAAAAAAAAAAAAAAAAAAD//z8A//8AABcAAAD/
+AAAA0AcAAAAAAAAEAAAAD38fPxQACgBGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDwACDJp
+JkY2AQAjaW4yyAAAXyg8ADIAAAABAQEAAAAAAJAQAAAMAAAAAAAAAAAAAAAAAAAAAAAAAP//PwD/
+/wAAFwAAAP8AAADQBwAAAAAAAAQAAAAPfx8/FAAKAEYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAA8PAAIMmkmRjYBACNpbjLIAABfKDwAMgAAAAEBAQAAAPQB9AH0AfQBiBP0AfQB9AH0AYgT9AH0
+AfQB9AGIE/QB9AH0AfQBiBP0AfQB9AH0AYgT9AH0AfQB9AGIEwAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAYGBgYGBjjSAA0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADmCBAYD
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAOqICHABcYgAAgAKQAAgAYADgAR0AAgACAAAAAADAAAAAQJwAACADAAEoAIAA
+WAIcAAEABAAAAAAAwAAAAOj9AAAABEABGACIAAADJgADAAYAAAAAAIAAAADgpQEAAAWYATAAcAAA
+BDAAAQADAAAAAADAAAAA4KUBAHgFIAEQAHAAGgQQAAEAAwAAAAAAwAAAAJDcAQB4BeABWACYABoE
+JgABAAMAAAAAAMAAAADQeAIAQAYwAkAAwACwBDIAAQADAAAAAADAAAAA/E0BAFYFqgFGAJAAAAMe
+AAEABAAAAAAAgAAAANjQAQCQBqAAMAAgABoEHgADAAYAAAAAAMAAAACQWQIAgAegADAAIACwBCMA
+AgAKAAAAAADAAAAABKABAKAF0AFQAJkAhAMiAAEABwAAAAAAwAAAAOClAQBABsgAGABRAIQDZAAA
+AAQAAAAAAMAAAADo/QAAAARAARgAiAAAAyYAAwAGAAAAAADAAAAAJA0BAAAFoAAMADAAIAMXAAQA
+AwAAAAAAwAAAABREAgCABxgBWAAtADgELQADAAYAAAAAAMAAAACagQIAAAhgABAAEAAABhMAAQAB
+AAAAAADAAAAAXGIAAIACkAAIAGAA4AEdAAIAAgAAAAAAwAAAAFxiAACAApAACABgAOABHQACAAIA
+AAAAAMAAAABcYgAAgAKQAAgAYADgAR0AAgACAAAAAADAAAAAXGIAAIACkAAIAGAA4AEdAAIAAgAA
+AAAAwAAAAFxiAACAApAACABgAOABHQACAAIAAAAAAMAAAABcYgAAgAKQAAgAYADgAR0AAgACAAAA
+AADAAAAAXGIAAIACkAAIAGAA4AEdAAIAAgAAAAAAwAAAAFxiAACAApAACABgAOABHQACAAIAAAAA
+AMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAA
+--000000000000d988ec065df996a1--
