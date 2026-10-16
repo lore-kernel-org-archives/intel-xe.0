@@ -4,61 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1153DCCA462
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 03:06:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5953CCA463
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 03:16:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9052810E2DF;
-	Fri, 16 Oct 2026 03:05:55 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65F1410E2CB
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 03:05:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C34410E2DF;
+	Fri, 16 Oct 2026 03:16:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A586110E28C
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 03:16:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792119950; x=1823655950;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jTCh2bS40kQa/l8YU99NS13CWfF4zltr6FA2poT8OEA=;
- b=dute6ja46wDkLiPvNiEjcYN8dLOBzyMU/5o8zwbxIvgA9hepC/Jvrpr3
- fEktI5jv3HnGwtDGq7rvW1y9yMGoOtmNrHsC17rkwTrkJCpvbpHFabUmg
- XYVhWTq3+DCOBsCkAotCCH3QWWLXFiGTU3VjVPQIFbH+vSUsQ+knAO+GF
- THO4e81Cgl5Hure6h/vryylYz8KrowChVMXAKUJAy3+9m+lhy8+hJCoSD
- Yq5yE6T0+/Z/yoO06xMZ9cYMWcwhoNkLlqAcNjTee+6kVmd8GdnF2ocO6
- /5IkeLavd1BYy7n7yBkXSPT67G8AZepZp6F9UImrQSOtA46XcT3+VjbMy A==;
-X-CSE-ConnectionGUID: gz6/ZK8BR8K3YhA2jmIjZw==
-X-CSE-MsgGUID: ILrgxNQqSVWtPZdDbZAjxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="897888"
+ t=1792120572; x=1823656572;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fmuVdKZzGcncxxZxxp+oLJHtzEpHThIuBWqOBkkyew0=;
+ b=i2fGEmX2y0RVokCTHt7TrtAZcM3hYit1gnqSMvy3zAyqg+lRBGzH20NP
+ n5sPiMK22cEFFK4d1/tgRkEVyj9eEKyot5x1Kx3weaosBM6ZqeDFudbtk
+ uA3+lS2p8brbNYvm9FTmxza1dk7jKlIUfMfp83xL+N7UeQsJGqbgwQuY/
+ jYyz5+pAO+Rq17RC32llwsjPfHFmULCfP8pUvGyt78LUSBf/fnZJN0mVr
+ g/JaP33zSAFQHe0DQqbxQK9nxEbrUz+/nNblahCrTFryCOLaFqzRRt9uq
+ kKyllvGZ6cHv2JpXm/VFu3WpOcfY0ty2CFj1TaX3lBVSXwlJHPeMgG+ln g==;
+X-CSE-ConnectionGUID: zB6zWu7jTIyw4LHYa9xcSw==
+X-CSE-MsgGUID: GeshI8u7SRexC35lS2GAuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="933500"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="897888"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 20:05:49 -0700
-X-CSE-ConnectionGUID: XdXuiK/lT4S/lSscaRtsHQ==
-X-CSE-MsgGUID: rtgox6tJQ4uHUxdNgSiZdg==
+   d="scan'208";a="933500"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Oct 2026 20:16:12 -0700
+X-CSE-ConnectionGUID: zYAZ3EcjTy+srw/JK7WkBQ==
+X-CSE-MsgGUID: pTki7bFBRzi48YHdwv7lPA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="2200180"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Oct 2026 20:05:46 -0700
-Date: Fri, 16 Oct 2026 05:05:43 +0200
+   d="scan'208";a="1854066"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa004.fm.intel.com with ESMTP; 15 Oct 2026 20:16:08 -0700
 From: Raag Jadav <raag.jadav@intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
- riana.tauro@intel.com, mallesh.koujalagi@intel.com,
- aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
- arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
- nitin.r.gote@intel.com, pravalika.gurram@intel.com
-Subject: Re: [PATCH v4 12/12] drm/xe/xe_ras: Report correctable errors using
- SIGID
-Message-ID: <atGUh1N45hl6wzoU@black.igk.intel.com>
-References: <20261009104602.1075405-14-badal.nilawar@intel.com>
- <20261009104602.1075405-26-badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
+ matthew.d.roper@intel.com, matthew.brost@intel.com,
+ mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v9 0/7] Introduce xe_wedge
+Date: Fri, 16 Oct 2026 08:45:13 +0530
+Message-ID: <20261016031559.427941-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261009104602.1075405-26-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,64 +65,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 09, 2026 at 04:16:15PM +0530, Badal Nilawar wrote:
-> Use xe_log_* helper to report correctable errors.
-> 
-> Assisted-by: Copilot:Claude-Opus-5.5
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> Cc: Raag Jadav <raag.jadav@intel.com>
-> ---
-> v4:
->  - Pass structured log component to xe_log_from() (sashiko)
-> ---
->  drivers/gpu/drm/xe/xe_ras.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index af2970941b59..9df2e8942bda 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -3,6 +3,8 @@
->   * Copyright © 2026 Intel Corporation
->   */
->  
-> +#include <linux/bitfield.h>
-> +
->  #include "xe_configfs.h"
->  #include "xe_cper.h"
->  #include "xe_debugfs.h"
-> @@ -216,6 +218,12 @@ static u8 ras_sev_to_cper_sev(u8 ras_sev)
->  	}
->  }
->  
-> +static u16 ras_comp_to_log_comp(u8 component)
-> +{
-> +	return FIELD_PREP(XE_LOG_COMPONENT_CLASS_MASK, XE_LOG_COMPONENT_CLASS_HARDWARE) |
-> +	       FIELD_PREP(XE_LOG_COMPONENT_TYPE_MASK, component);
-> +}
-> +
->  static inline const char *sev_to_str(u8 severity)
->  {
->  	if (severity >= XE_RAS_SEV_MAX)
-> @@ -459,8 +467,11 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
->  		if (!ras_counter_is_valid(xe, &errors[id]))
->  			continue;
->  
-> -		xe_warn(xe, "[RAS]: %s %s detected\n",
-> -			comp_to_str(component), sev_to_str(severity));
-> +		xe_log_from(xe, ras_sev_to_cper_sev(severity),
-> +			    ras_comp_to_hw_sigid(component),
-> +			    ras_comp_to_log_comp(component),
-> +			    &errors[id], sizeof(errors[id]),
-> +			    "error detected\n");
+In the history of xe technical debt, this series takes one more step and
+consolidates all wedging implementation into a dedicated xe_wedge component.
 
-Please add a reference log in commit message, so we don't leave people
-guessing (in all patches).
+While at it, this fixes a few pre-existing issues related to wedge handling.
+Detailed description in commit message.
 
-Raag
+v1: https://patchwork.freedesktop.org/series/172727/
 
->  		/* Send event once per component */
->  		if (sent & BIT(component))
-> -- 
-> 2.54.0
-> 
+v2: Split fixes into separate patches (Rodrigo, Michal)
+    Also move struct xe_wedge and wedged_mode debt to xe_wedge (Lukasz, Michal)
+    Naming and aesthetic adjustments (Lukasz, Michal)
+
+v3: Respect the component namespace (Rodrigo)
+    Avoid chaining header includes (Rodrigo)
+    Squash debugfs changes with xe_wedge patch (Lukasz)
+
+v4: Introduce for_each_initialized_gt() (Michal)
+    Include xe_sriov.h (Rodrigo)
+
+v5: Flush GT wedge worker to avoid races (Sashiko)
+    Drop IRQ safe wedging for its flawed design
+
+v6: Move wedge worker initialization to xe_gt_init_early() (Rodrigo)
+    Don't flush GT wedge worker to avoid deadlock (Sashiko)
+    Include IRQ safe wedging with redesign
+
+v7: Guard GT wedge worker with runtime PM (Rodrigo)
+    Retain xe_pm_runtime_get_noresume() in IRQ context (Rodrigo)
+
+v8: Rebase
+
+v9: Drop runtime PM guard as callers already hold a reference (Matthew Brost)
+
+Raag Jadav (7):
+  drm/xe/gt: Use GT ordered workqueue for wedging
+  drm/xe: Drop xe_device_set_wedged_method()
+  drm/xe: Move xe_device_wedged_fini() registration to
+    xe_device_probe_early()
+  drm/xe: Make xe_device_declare_wedged() IRQ safe
+  drm/xe/pci_error: Flush GT wedge worker before bus reset
+  drm/xe: Introduce xe_wedge
+  drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
+ Documentation/gpu/xe/xe_device.rst          |   2 +-
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   3 +-
+ drivers/gpu/drm/xe/xe_amc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_debugfs.c             |  66 +----
+ drivers/gpu/drm/xe/xe_device.c              | 190 +-------------
+ drivers/gpu/drm/xe/xe_device.h              |  14 +-
+ drivers/gpu/drm/xe/xe_device_types.h        |  28 +--
+ drivers/gpu/drm/xe/xe_gsc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |  26 +-
+ drivers/gpu/drm/xe/xe_gt.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |   3 +-
+ drivers/gpu/drm/xe/xe_gt_types.h            |   9 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_guc.h                 |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   7 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  11 +-
+ drivers/gpu/drm/xe/xe_guc_rc.c              |   5 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  14 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c       |   3 +-
+ drivers/gpu/drm/xe/xe_mert.c                |   5 +-
+ drivers/gpu/drm/xe/xe_pci_error.c           |  13 +-
+ drivers/gpu/drm/xe/xe_ras.c                 |  11 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c            |   3 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |   4 +-
+ drivers/gpu/drm/xe/xe_uc.c                  |   6 +-
+ drivers/gpu/drm/xe/xe_uc.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_wedge.c               | 262 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wedge.h               |  24 ++
+ drivers/gpu/drm/xe/xe_wedge_types.h         |  44 ++++
+ 31 files changed, 444 insertions(+), 331 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
+
+-- 
+2.43.0
+
