@@ -4,92 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FF1CCF2E6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E57DCCF2E7
 	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA76510EC46;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA7AB10EC70;
 	Mon, 19 Oct 2026 11:42:18 +0000 (UTC)
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
- [209.85.167.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13F3110E354
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 18:45:51 +0000 (UTC)
-Received: by mail-lf1-f49.google.com with SMTP id
- 2adb3069b0e04-5ba3ec92031so313881e87.2
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 11:45:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1792176349; cv=none;
- d=google.com; s=arc-20260327;
- b=ETkunaAy248VPjxzbSzwT1gDdY0EI4r3YyaByBvm0M0C9GOaR8k9YwlxD9ySO49QyG
- aanDGK3be8r95ORWVWtIOJ3gItNgcyFyQaBHA+EwmMIvCTLwG2NZiVY77xoK22k3LaGK
- UuinuK6yhh8Af52St6WWT7Q8p/D1OsWK9yO0bu10DGtMP/4Cmfoa7IBFSC9Gws+lmWjO
- vlrXFS0iAHDsGwHZb7N4F5trqu+2yctX3PbN6kV+vxjxOPmJA7lUms8uWx+9eJuVAR2P
- GedVpVE0ni1sSaBOT0mrutPji4W+QDEuB1pB3UHGBS6MMEdYPOkWd61J5JSxO3HUo/GG
- 0cxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:references:in-reply-to
- :mime-version:dkim-signature;
- bh=k5fWdKR4KH1xJNhfX2EOMzlFvYwX5hK5uF++6d/eYyg=;
- fh=OK5W32kx3H9VO2XMYbN3RU3l+Y/m/BQNik6CJv4eAfg=;
- b=fTrABJRqH/qAAd5PetFhTaW/g7fIiEUPGKHj7hVMKCo6Bd6p7JEgFf3ns7muYoMdqL
- lNgjyiN7C5K3xMKgTzaBNqdiQfYqn2f2rFkpM/SNBGa7a9/H/FkC8NgutdenK2gJ2S/B
- I0ywgwggBy6vuVyxNdLEF6xTXAL/uyECu790NQMxzSmkMBzgdld+Weu9ZT6U+oaSX88i
- rTdOxdiHB6P0VHubXscPOXKltB4bIvLdPocaGq+vD9CYJ0ONbSzqIeCWWsqD5FQ4lwAc
- IBphTb8UlUm3mentUsDXKvYycO/i7zsq5RdEKeO7JkQpq05YxvzLyjc57rNaw7v4trJX
- FOoQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com
+ [209.85.128.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 928ED10E3B4
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 20:27:10 +0000 (UTC)
+Received: by mail-wm1-f45.google.com with SMTP id
+ 5b1f17b1804b1-4a0286c981dso3554765e9.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:27:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1792176349; x=1792781149; darn=lists.freedesktop.org;
- h=content-type:cc:to:subject:message-id:date:from:references
- :in-reply-to:mime-version:from:to:cc:subject:date:message-id
- :reply-to:content-type;
- bh=k5fWdKR4KH1xJNhfX2EOMzlFvYwX5hK5uF++6d/eYyg=;
- b=Qdlg+0poJecree0ibpGXs05txzVcHbPQHLWd2jVoKqCthPZj63Aqu1vX1rRcxH3tjW
- S55ZEPUrc/LIzA4tk7vV/z6T0vI4bPXACsldigGM7yRush5lNUS+i6nfjZMC9k72G/AP
- qAncxIoMre8O/QArOK7AmQf8frEwhf+Ux/vBk/9mX3RCPdd53By/vbEQR8CwZb/IWVb6
- ju3gcCpXrOQqRvseKsEWYUyC8zpLgG5Ia+OiBgFAuVxndsF97FEZ8L5X9zGWvGZxH9L3
- gHVzgtdd17A5Y6Ck4xskK3tWS7MI8p/rr+An5JCVwc6plc/ZRcYpQg1Hk/mokABlKRaK
- gvVQ==
+ d=gmail.com; s=20251104; t=1792182429; x=1792787229; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=Jqtp5LPxF0IFxOJfCVzAQN6SnoPJKqsXWwttpYr3O58=;
+ b=KZ/WnmGFPJgsK3sN5vOQr3YmcN5hNEmBzFj32QVjQC0URelqFGR0h12S8P/6524uig
+ hUm8HxtJ+wxBpdUmUEtvXoouJAUV0QSCmf+2KF1NKofSY9OUwunjx5V6C3eRMVPMDzv/
+ q+genrQVQoehS36dJKrddLR3GvE8dbUHXA2xQOOoijuiitAr4OIa9TiWv1tShqOzRb1u
+ xB59UiuWpRztf5cPPQ2OYA+VOmQVY0ZVAtUPexVrrEPdgz5M4hMRb2T6HlQHjS9wv70c
+ Nb7YtDmdzWCqf4OpbjTCJn4xfNqiJesc+HMFDbYdaRMJVCD/XLLvR91uKEWNn2NTtZ8T
+ B1AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1792176349; x=1792781149;
- h=content-type:cc:to:subject:message-id:date:from:references
- :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=k5fWdKR4KH1xJNhfX2EOMzlFvYwX5hK5uF++6d/eYyg=;
- b=RtORwJOxy9zp/R7G1O5pMyMpAeq77ePDPRy8NCoInzk5V87WR+JoQhgOdbkxLKLI5c
- wwnKkIGNBTmDTQzhAlHPQHLvQImbrjghcTaG8CKPTFmXk+IXnVJRd/orlaJ8o/2pnmzY
- OKbWVm9SooGUYxNkjkc+XsK4JfmnLyCkQHC5AgTJX5xYh27ywlSLmoRK403i2J7W1Cvf
- Yjc3Qva3fCOukU76w0eTOkM8GryNstHRtws3vqdV4KwEzJjrHcV1Fu+wnlrSyHZt4hTP
- hzX5WoZ9NF+LMyccOWtUGFS4J7X7WLRU5OIzWqAz3943hfVi11v++AqifLP5aaRhhAyX
- rJNw==
-X-Gm-Message-State: AFq9FYLJfgpywWGqbOHRXKjC9ZycthLM+6Fg4oU+zZgo6KP7PgiNjnlP
- 7aRkNH27yXyKYiKwDqyaX0aexgFxzLb/QMmDnx7LS94gDJ5Gdi4HgQqvtXngyTjFpyvfJ/UplSq
- eRe8I0OGHl2x5jUskpgQBIZpibB9zVU8=
-X-Gm-Gg: AYBFou0KEQc8Zo6azoBThDazALVmTUcCmhbHirsnmMZx2K35qwutyVaJYKm14z0b8jS
- LnDUXIKjlR8+qdfHqPEpVXB+hFwzngqSbehsm+qhXnUtJzj/UZwrE9FwrpcIpd3N3RsKfiuDBM7
- iZyK3JdmcaOBTW5BeQoNSOJ2K9BRU1EY7KvUIfFeYBLr0ApoeWAxDjLhJVlIMDQmcwjul+hJusR
- ixmfvG6KyZc+PWysIlSUFqPJ//lQFWmSQVEVP5GfUxRNN/LJx8CqmhK86LM4JKerMP/FPjppvjd
- 75/9Svr92fnYTGWVJ7Yk39/dAEL14uwb/uE7yksMU3sXjA0CJs9R3RS3b/A1jYfSUQ==
-X-Received: by 2002:a05:6512:3186:b0:5ba:3c60:b875 with SMTP id
- 2adb3069b0e04-5be50a6a815mr115374e87.43.1792176348595; Fri, 16 Oct 2026
- 11:45:48 -0700 (PDT)
-Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
- Fri, 16 Oct 2026 14:45:47 -0400
-Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
- Fri, 16 Oct 2026 14:45:47 -0400
+ d=1e100.net; s=20260707; t=1792182429; x=1792787229;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=Jqtp5LPxF0IFxOJfCVzAQN6SnoPJKqsXWwttpYr3O58=;
+ b=02Sc1kIwq4BNK1TRO1wlbqJf7pUUUlPBpn1zkVm0uJme0hS1CTtCvjhiGFB9+BQzJC
+ RMe6gDn4Tk3aSflEMO+KLZf2hLc2DeO0qdbRlwv3x/9fMCGt5otujRb2iyj5Kf5Zmpo/
+ AEsGdEkmq9KL8ZOWZ1l6KaJPXLD7/pAg9rwc6416DdIotT1Tt2C26F804bWeV0yxkBpn
+ tdn0yDPcA/bwDMi2xCWnwjdY6YcEr3v91/QnlhNh/BuyIaMK9JDBz3EFg51tIMm8Kpve
+ Phek9zPNOS1gGV3laHNSfg010jKTobX/3aX6w3gFOB+i0fWT4UXhTpnxl0Q6GPEaH2bu
+ yX4A==
+X-Forwarded-Encrypted: i=1;
+ AKwUvBwwyGn11wSVRaUe5DAgMjStwBNbU5Tcyhj+lLHVOcz5M9ZP+Qa+DYcoQ8I8JbRKQpCsW9MBIVc++g==@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYKWg2S5e/bRqt/wQbkR4v0xXWpZFmyt71W6p2wF/DWeiyv99MmV
+ Xn3GeF7jddVOFvI6k8sug80RJjHWqm0hdXc2JLxArGUOlFy/K0QHfGst
+X-Gm-Gg: AYBFou2ZU6rogXSMqMjb95SUPxMyeu4kx+J5WAjuQolZHHtLEViVPk8mMwxaeDW/CJK
+ xo9qvifODNRe73cRoaDCNR/W44WRNXbt4AKjrYkT/smA9MLupN5K9GC6Ntsv8ckmfn+Bmm2cuRp
+ u6obOKbSmo2IUP4R1JYbQOFG/8PzAKqelDzcV8QR0z90GljZzDAdHLSh8GuCf1fDI6tomiAB5ve
+ nPcs+XbrtDs3x/LnYi/NqYdSKoU1e9nrYgoMssD/JHLf74p9KTbi6q85k/Z8Xdk1trCOck3CAfI
+ u1se9CtxXABSf80c76b2r6DuIROnkEcJc1fRt+Zu8ZfxAgeXQJ1jwJAp0ic8PzcY4B6+jria/Yg
+ 3YWoTtwdk5/c5XfuG3tJMNXXZ0G8mKKxrbycPF8yv8hI8N1HbrU5r4nxatmbXiwvx6q9W9XF4Mt
+ bWSiTB43XoQG9qEqCykJeWhtNC8/1Txoi9nuqt145vlSJ0YZZ7WfeLe9wdtlH0QVV/AXgnUK91C
+ JPNx7Ge2yxTEtYx9UiCLdkIs5Hhz7HjVyiW/HU1CAknXhgb6F2EmPjJfStAPbaRLHbsjv1zcRV6
+ kxMWBEOlpD1X66pTBMrGYJwC82uP821JecULMgyeXXnu8h7XrnMxZ3t9NYCmiS0zPz61KnKb5SC
+ qsg==
+X-Received: by 2002:a05:600c:1393:b0:4a1:d248:25b5 with SMTP id
+ 5b1f17b1804b1-4a1d760e327mr19553895e9.24.1792182428699; 
+ Fri, 16 Oct 2026 13:27:08 -0700 (PDT)
+Received: from localhost.localdomain
+ (dynamic-2a02-3100-a951-9501-1471-d90c-a21f-9dd7.310.pool.telefonica.de.
+ [2a02:3100:a951:9501:1471:d90c:a21f:9dd7])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-4a1d7659805sm22421075e9.7.2026.10.16.13.27.07
+ (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+ Fri, 16 Oct 2026 13:27:08 -0700 (PDT)
+From: Karl Mehltretter <kmehltretter@gmail.com>
+To: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Karl Mehltretter <kmehltretter@gmail.com>,
+ Alistair Popple <apopple@nvidia.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Dongwon Kim <dongwon.kim@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, iommu@lists.linux.dev,
+ Kevin Tian <kevin.tian@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+Subject: Re: [PATCH RFC 03/26] dma-buf: Add dma_buf_mapping_attach()
+Date: Fri, 16 Oct 2026 22:26:53 +0200
+Message-Id: <20261016202653.97339-1-kmehltretter@gmail.com>
+X-Mailer: git-send-email 2.39.5 (Apple Git-154)
+In-Reply-To: <3-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
+References: <0-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
+ <3-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
 MIME-Version: 1.0
-In-Reply-To: <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
-References: <CAN52AYstOLqaX_=_HBLEGKvcEmY+VGwKSbRRRyQbG4ytr6FD_A@mail.gmail.com>
- <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
-From: Jame Jao <jaojame6@gmail.com>
-Date: Fri, 16 Oct 2026 14:45:47 -0400
-X-Gm-Features: AclHuK-OtA8zd8ZD6yhVY0T3x9G8mkTyhTueDHPQ63C0vT3FG7zdrTKBiWs99JE
-Message-ID: <CAN52AYsR-SbHWKjnMP-ssTR6UfGHxqtP620MSH=SSw_=SWYW6w@mail.gmail.com>
-Subject: Re: [RESEND PATCH 0/5] platform/x86: bitland-mifs-wmi: MIFS v2
- firmware support, Xiaomi Book Pro 14 2026
-To: jani.nikula@linux.intel.com
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- rodrigo.vivi@intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -105,63 +102,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Jani,
+On Tue, Feb 17, 2026 at 08:11:34PM -0400, Jason Gunthorpe wrote:
+> +	match_args.attach = attach;
+> +	if (dmabuf->ops->match_mapping) {
+> +		ret = dmabuf->ops->match_mapping(&match_args);
+> +	}
+> +
+>  	attach->dmabuf = dmabuf;
+>  	attach->importer_ops = importer_ops;
+>  	attach->importer_priv = importer_priv;
 
-The VBT is attached, as you asked. I have not been able to file the bug
-yet: gitlab.freedesktop.org needs an account that is manually approved and
-I do not have one at the moment, so I cannot open the issue. As soon as the
-account is usable I will file it against drm/xe with the attachments and
-post the link in this thread.
+I may misunderstand the intended contract. match_mapping() runs while the
+attachment is still zeroed and without dmabuf->resv held.
 
-What the attached dump is:
+Patch 11's amdgpu callback needs importer_ops and importer_priv, so its XGMI
+match cannot work here. Patch 12's VFIO callback asserts dmabuf->resv and
+reads priv->vdev, which cleanup changes under that lock.
 
-  Source      /sys/kernel/debug/dri/0/i915_vbt (raw dump, read today)
-  Size        7680 bytes
-  First bytes "$VBT PANTHERLAKE"
-  sha256      1a0a08b81c48977efbf3f4ea0cc547d6bdf44569f95d88662c5593f24a5e2e4d
-
-Status of the report itself, so the issue can be assessed:
-
-  - The warning is present in the boot journal collected today:
-
-      xe 0000:00:02.0: [drm] Port A asks to use VBT vswing/preemph tables
-      WARNING: drivers/gpu/drm/i915/display/intel_bios.c:2813 at
-      intel_bios_init+0x17fd/0x1f60 [xe]
-
-  - Machine: XIAOMI REDMI Book Pro 14 2026, board TM2426, BIOS
-    RMAPT4B0P0909 (2026-05-21), Panther Lake / Arc B370,
-    PCI 8086:b081 rev 04.
-
-  - Kernel: 7.2.9-zen1-1.1-zen, Arch linux-zen package. It carries one
-    local downstream change that touches only bitland-mifs-wmi
-    suspend/resume error handling; graphics and input code are unmodified.
-    Please treat it as a downstream kernel. I have not reproduced on
-    mainline or drm-tip yet.
-
-  - Boot options in use: xe.enable_psr=0 xe.enable_panel_replay=0
-    i8042.dumbkbd=1.
-
-  - I have not collected the DRM debug journal (drm.debug=0xe
-    log_buf_len=4M ignore_loglevel) yet. I will collect it together with
-    the mainline test and add both to the issue.
+Should the core initialize the attachment and hold dmabuf->resv for
+match_mapping(), or should callbacks avoid attachment and lock-protected
+state?
 
 Thanks,
-Eason
-
-
-On Wed, 07 Oct 2026 15:19:13 +0300, Jani Nikula
-<jani.nikula@linux.intel.com> wrote:
-> On Wed, 07 Oct 2026, Jame Jao <jaojame6@gmail.com> wrote:
-> > I would like to report a WARNING that appears on every boot on a Panther
-> > Lake laptop, and that is also visible on screen (before the desktop comes
-> > up) when resuming from hibernation.
->
-> Please file a bug as described at [1]. Please include the VBT.
->
-> Thanks,
-> Jani.
->
-> [1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
->
-> --
-> Jani Nikula, Intel
+Karl
