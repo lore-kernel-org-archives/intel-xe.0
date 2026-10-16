@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83C8ECCA48B
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:43:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3E15CCA462
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:44:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DC9A10E030;
-	Fri, 16 Oct 2026 07:43:34 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57A7210E030
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A26DE10E030;
+	Fri, 16 Oct 2026 07:44:22 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D24F10E030
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:44:16 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8849960A56;
- Fri, 16 Oct 2026 07:43:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 145541F000C6;
- Fri, 16 Oct 2026 07:43:27 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E9BCE43C55;
+ Fri, 16 Oct 2026 07:44:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABB9F1F000C4;
+ Fri, 16 Oct 2026 07:44:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792136607;
- bh=kPCa2FuNNHNDFCAzOmFyyJq2gAJaN55LV/HpVGnvdRY=;
+ s=k20260515; t=1792136655;
+ bh=MREKQD46cUHkgCuTfENGVp88vzQvg5bZ2aOC92B7uVM=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=jHkGaITtwO8uGuNpFP49QMWcz6/JAlKvKrcwfe2I3zb3NW57xlivcYA8QKJeNDLbD
- 2O6LNwNGyx7tcGvmPPBpaSUKTjbrA15jIyvgNI7z2Tfjd1XKrhNDScdRSZ+03VfIRl
- Ti9Yz1Dfa1MOG3GyaA693kL/tBXl3t9q11CyWQbu6RRZdpAuoX7aepZzTV3shCae1E
- ioRgfL1Qzj0ns7D5ieNOGTyBB9NEBzK9HRQLDRM8+XQl8jn7/EWLcKCfpTkC+FB7Tu
- Il2x3AL5jt9XFTYj8MZ2J52rEjNfVpSCprKVEqOrqKMu8A2wVsNJFr9eOIGCaatozM
- CFtKjrqbDKkIQ==
-Message-ID: <sashiko-outbox-173956@kernel.org>
+ b=WES98+wFCnSY+LyGL9gW012VO1YVQIwZx/UPCMsfzLtDnG9Kxm/WQgxQTF2XAVeGL
+ PyX7PsFRw7RvqpnJHqQQ+sHUZHuU2zhvUSPr3WxZ1v8YuyT9PfuVjGwd4nvdBMGzPT
+ ibIvaPfSIVJ9zMiDwg1CelUm6U2VgIQl7e74NvE6Zr1QnHcbgXVLr7bJgF/fJBDsKp
+ vOcZmyfDs1v4f4T1xKgPcYPijdAHVu7kGMkTpT5MUPpy3PsXAYMI9uZAtoLNsuyPLZ
+ qVknPQdWCmzYRVysZpT4V5TCsRjR/xiwxOhcSJbDj335vFf2U7vsQ7ANW91JqC7XKW
+ PnkmSCKlRkcFw==
+Message-ID: <sashiko-outbox-173958@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 3/9] drm/xe/hw_error: Guard csc_hw_error_work() with
- runtime PM
+Subject: Re: [PATCH v10 6/9] drm/xe/pci_error: Flush GT wedge worker before
+ bus reset
 To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261016072623.457392-4-raag.jadav@intel.com>
+In-Reply-To: <20261016072623.457392-7-raag.jadav@intel.com>
 References: <20261016072623.457392-1-raag.jadav@intel.com>
- <20261016072623.457392-4-raag.jadav@intel.com>
+ <20261016072623.457392-7-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 16 Oct 2026 07:43:26 +0000
+Date: Fri, 16 Oct 2026 07:44:15 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,71 +53,59 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] xe: missing cancel_work_sync() for csc_hw_error_work causes UAF
-- [Medium] drm/xe: missing multiple invocation protection in xe_survivabili=
-ty_mode_runtime_enable() causes sysfs WARN
-- [Low] drm/xe: missing xe_pm.h header inclusion for guard(xe_pm_runtime)
+- [High] drm/xe: flush_work() in PCI error recovery triggers MMIO on suspen=
+ded device
 --
 
-commit 8e1fc55f44fb943c373142f62d0ab081c339411d
+commit a372afc80ddd4997ba73485e586ca48280dbd14b
 Author: Raag Jadav <raag.jadav@intel.com>
-   =20
-drm/xe/hw_error: Guard csc_hw_error_work() with runtime PM
-   =20
-This commit adds a runtime PM reference around the survivability mode
-enablement path in the hardware error worker.
 
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_=
-error.c
-> index f53a6b3055de1..7575cc09cc2a9 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> @@ -170,6 +170,7 @@ static void csc_hw_error_work(struct work_struct *wor=
-k)
->  	struct xe_tile *tile =3D container_of(work, typeof(*tile), csc_hw_error=
-_work);
->  	struct xe_device *xe =3D tile_to_xe(tile);
+drm/xe/pci_error: Flush GT wedge worker before bus reset
+   =20
+This commit flushes the GT wedge worker synchronously to avoid side
+effects during PCI bus reset.
+
+> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pc=
+i_error.c
+> index e1b9dc5f0a6dc..a5c8fd67738cf 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_error.c
+> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+> @@ -30,8 +30,10 @@ static void prepare_device_for_reset(struct pci_dev *p=
+dev)
 > =20
-> +	guard(xe_pm_runtime)(xe);
-
-[Severity: Low]
-Does this compile cleanly?
-
-The guard(xe_pm_runtime) macro requires the corresponding cleanup class
-definition class_xe_pm_runtime_t.
-
-This class is defined in xe_pm.h, but it appears xe_hw_error.c doesn't
-include it directly or indirectly, which might lead to an unknown type
-build error.
+>  	xe_device_set_in_reset(xe);
+> =20
+> -	for_each_gt(gt, xe, id)
+> +	for_each_gt(gt, xe, id) {
+>  		xe_gt_declare_wedged(gt);
+> +		flush_work(&gt->wedge.worker);
 
 [Severity: High]
-Is there a missing work cancellation regression during device teardown?
+Does flushing the wedge worker here trigger unauthorized MMIO accesses on
+a suspended device?
 
-csc_hw_error_work is queued to the system workqueue upon a hardware error.
-If the driver is removed or the module unloaded, the DRM and device core
-release paths will free the xe and tile structures.
+If the device is runtime suspended (D3hot), prepare_device_for_reset()
+takes a PM reference earlier in the function via xe_pm_runtime_get_noresume=
+()
+which does not wake up the device.
 
-If cancel_work_sync() is missing during teardown, couldn't an executing
-or pending worker cause a use-after-free when it tries to dereference xe
-in this guard?
+By synchronously flushing the wedge worker here, it executes in this suspen=
+ded
+context. The worker unconditionally calls xe_device_assert_mem_access() (wh=
+ich
+fails because the device is suspended) and proceeds to perform MMIO accesses
+such as xe_guc_softreset().
 
->  	xe_survivability_mode_runtime_enable(xe);
+Accessing MMIO on a D3hot device can cause PCI master aborts, NMI system
+crashes, or hardware hangs.
 
-[Severity: Medium]
-Could multiple hardware errors trigger a sysfs warning regression here?
-
-csc_hw_error_work() can be queued and executed multiple times. If
-xe_survivability_mode_runtime_enable() is invoked unconditionally on each
-run, it will attempt to re-register the existing sysfs files via
-create_survivability_sysfs().
-
-This could fail with -EEXIST and trigger a kernel warning about duplicate
-filenames.
-
+> +	}
+> =20
+>  	pci_disable_device(pdev);
 >  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261016072623.4573=
-92-1-raag.jadav@intel.com?part=3D3
+92-1-raag.jadav@intel.com?part=3D6
