@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A981CCA462
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 13:36:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B3D7CC6B38
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 13:36:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E55CF10E0C1;
-	Fri, 16 Oct 2026 13:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEE9F10E0CA;
+	Fri, 16 Oct 2026 13:36:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A491D10E0B7
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:35:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF37D10E0CA
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 13:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792157758; x=1823693758;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cY2bqhaUxNMe8xNCCW3YXtbkj2GNUiG44l77j1pwL8Y=;
- b=Sr8PAVM1ReDRqM3+Q5O6BGCzcPyQ5aUfF7kYYg/Iv9fQoP2nZOvwWAb0
- oryNpryjYu6EPTy1a9Pm283XvQMsHiJ6W95la57Hfhjb+VjnZF1cERkos
- 18FvbCdMNHuTZ8QBhGWL51sTeXmIAuy6Gl8hb/31xijlGsWu0j2cg0+MF
- KbpirlaS04BC2bbB64eAQ5Pdot74W9LatYDYWAxQ6wcQgBhbdxvKemFGk
- VyJH/mlZWcONperna9gwStKIRZHd0gvpbIMqnL/UeUIIg62oa9DBvbywI
- VFC4R4Svj36rw0c0nRX48wg0sV1Q7ml1pkNmf3FK0t0SYYiFmAchkEu78 g==;
-X-CSE-ConnectionGUID: B9TWovAERH+tY9miIjTmFA==
-X-CSE-MsgGUID: yTPymXluSN2lvypXIvP0uA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="831439"
+ t=1792157760; x=1823693760;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jVurznloQ87QI0yuRqii2vkbcFQpIuNmrlQPJa6FanI=;
+ b=UtNNQSqaa1NE/5aluaOIM4Qw8TYUEn5uvk/fTvRCwcwpNUlbFCwjmD9/
+ zmPHT85AMgXQxTrnil8VO1+zeooD2q/LJrSuTYLOObYcX85tUtjwf/IUQ
+ FYz4NVSF71ijPD+RlFGjtiMWwNqWSbHwx99g+SRH3zjjP9hWI2Qz5BCCW
+ ATjJmXb57yBGJDe663zQNLWSb2aOFdNQ0Qd48jsjkVMyvgC1DCHsodu+a
+ 74P1XkLnwPdDWdVpvGB0Hd4nzVURS0xSEk8VCPpfERYHaH7S6vnKX9Z82
+ 5IZh64HAb+IvJMaG306/80b2wifSOeTHb5i1hPu3d99huPbLRTcmsZDFf A==;
+X-CSE-ConnectionGUID: 7A+HNZgnTmGSxlCeTPlU7A==
+X-CSE-MsgGUID: Of5Hv6OlTRCmKv8BTXLoDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="831449"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="831439"
+   d="scan'208";a="831449"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 06:35:57 -0700
-X-CSE-ConnectionGUID: GeQLu9hKQHOHhIx3kEjCDg==
-X-CSE-MsgGUID: yHhMRNNeQhyYk62z1KOytw==
+ 16 Oct 2026 06:36:00 -0700
+X-CSE-ConnectionGUID: /sIqCqAMSyuB7MIuklmxEw==
+X-CSE-MsgGUID: e8nyHvhITYaiosHWZhrt+A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="2273463"
+   d="scan'208";a="2273478"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO fedora)
  ([10.245.245.54])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 06:35:54 -0700
+ 16 Oct 2026 06:35:58 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v4 0/4] drm/xe: Adjust the bo shrinker batch size
-Date: Fri, 16 Oct 2026 15:35:19 +0200
-Message-ID: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v4 2/4] drm/xe: Track number of populated ttm_tts in the
+ shrinker
+Date: Fri, 16 Oct 2026 15:35:21 +0200
+Message-ID: <20261016133523.3622-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
+References: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -68,65 +71,147 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Shamelessly stolen from i915, To avoid gpu stalls for small
-shrinker request, Set the shrinker batch size to the average
-size of system buffer objects. Use the number of
-populated struct ttm_tts to compute the average size.
+Add a populated_tts counter to struct xe_shrinker to track how many
+ttm_tts are currently populated and on the LRU (i.e., shrinkable or
+purgeable). This mirrors the existing per-pages accounting but counts
+objects rather than pages.
 
-Sashiko AI review of the v2 posting flagged two issues:
+The counter is incremented in xe_ttm_tt_account_add() and decremented
+in xe_ttm_tt_account_subtract(), which are already called at the exact
+points where pages enter and leave the shrinker's jurisdiction (populate,
+unpopulate, pin, and unpin). Purgeable state transfers, which move pages
+between the shrinkable and purgeable buckets without changing the total
+object count, pass tts=0.
 
- - [High] a pre-existing shrinker accounting double-subtraction bug on
-   nested external pins (plus a related underflow for imported
-   dma-bufs, found while fixing it). This has since been fixed and
-   merged upstream as its own, separate fixes series, so it is no
-   longer carried as a patch here.
+Extend xe_shrinker_mod_pages() with a tts delta parameter so that page
+and object accounting can be updated atomically under the same lock.
 
- - [Medium] a data race on the unsynchronized read-modify-write of the
-   shrinker batch size. Fixed in v3 below.
+Assert that populated_tts reaches zero at device teardown, alongside
+the existing assertions for shrinkable_pages and purgeable_pages.
 
-Sashiko AI review of the v3 posting flagged, among others:
+No functional change intended; the new field is unused until a follow-up
+commit wires it into shrinker batch sizing.
 
- - [High] a pre-existing shrinker accounting underflow when the
-   purgeable state of a pinned bo changes. This is fixed by a
-   separately posted patch, "drm/xe: Don't transfer shrinker pages for
-   pinned bos on purgeable state change".
+Assisted-by: LLM
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 12 ++++++------
+ drivers/gpu/drm/xe/xe_shrinker.c | 15 +++++++++++----
+ drivers/gpu/drm/xe/xe_shrinker.h |  3 ++-
+ 3 files changed, 19 insertions(+), 11 deletions(-)
 
- - [High] the standalone purgeable shrinker aborting its LRU walk at
-   the first non-purgeable object. This turned out to be a
-   pre-existing bug affecting also the non-purge walk, for example
-   at imported dma-bufs. Fixed in patch 1/4, placed first so that it
-   can be backported independently.
-
-v2:
-- Fix the average object size estimate to account for the full
-  shrinkable and purgeable population.
-
-v3:
-- Drop the shrinker accounting double-subtraction fix from this
-  series; it has been fixed and merged upstream separately.
-- Patch 3/4: new patch, splitting the bo shrinker into purgeable and
-  non-purgeable shrinkers, per a suggestion from Matthew Brost.
-- Patch 4/4: reworked on top of the shrinker split, and the batch size
-  update is now performed under the existing shrinker lock, fixing the
-  data race caught by Sashiko AI review.
-
-v4:
-- Patch 1/4: new patch, skipping objects for which xe_bo_shrink()
-  returns -EBUSY rather than aborting the shrinker walk. (Sashiko)
-
-Thomas Hellström (4):
-  drm/xe: Don't abort the shrinker walk on -EBUSY
-  drm/xe: Track number of populated ttm_tts in the shrinker
-  drm/xe: Split the bo shrinker into purgeable and non-purgeable
-    shrinkers
-  drm/xe: Update non-purgeable shrinker batch size based on average BO
-    size
-
- drivers/gpu/drm/xe/xe_bo.c       |  12 +--
- drivers/gpu/drm/xe/xe_shrinker.c | 175 ++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_shrinker.h |   3 +-
- 3 files changed, 132 insertions(+), 58 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 12e523c61c1f..1b74331b15ec 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -456,9 +456,9 @@ static void xe_ttm_tt_account_add(struct xe_device *xe, struct ttm_tt *tt)
+ 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+ 
+ 	if (xe_tt->purgeable)
+-		xe_shrinker_mod_pages(xe->mem.shrinker, 0, tt->num_pages);
++		xe_shrinker_mod_pages(xe->mem.shrinker, 0, tt->num_pages, 1);
+ 	else
+-		xe_shrinker_mod_pages(xe->mem.shrinker, tt->num_pages, 0);
++		xe_shrinker_mod_pages(xe->mem.shrinker, tt->num_pages, 0, 1);
+ }
+ 
+ static void xe_ttm_tt_account_subtract(struct xe_device *xe, struct ttm_tt *tt)
+@@ -466,9 +466,9 @@ static void xe_ttm_tt_account_subtract(struct xe_device *xe, struct ttm_tt *tt)
+ 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+ 
+ 	if (xe_tt->purgeable)
+-		xe_shrinker_mod_pages(xe->mem.shrinker, 0, -(long)tt->num_pages);
++		xe_shrinker_mod_pages(xe->mem.shrinker, 0, -(long)tt->num_pages, -1);
+ 	else
+-		xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0);
++		xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0, -1);
+ }
+ 
+ static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
+@@ -984,11 +984,11 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
+ 	if (!xe_tt->purgeable && new_state == XE_MADV_PURGEABLE_DONTNEED) {
+ 		xe_tt->purgeable = true;
+ 		/* Transfer pages from shrinkable to purgeable count */
+-		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages, tt_pages);
++		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages, tt_pages, 0);
+ 	} else if (xe_tt->purgeable && new_state == XE_MADV_PURGEABLE_WILLNEED) {
+ 		xe_tt->purgeable = false;
+ 		/* Transfer pages from purgeable to shrinkable count */
+-		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -tt_pages);
++		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -tt_pages, 0);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+index 4e4da76936f4..378022c37a57 100644
+--- a/drivers/gpu/drm/xe/xe_shrinker.c
++++ b/drivers/gpu/drm/xe/xe_shrinker.c
+@@ -20,6 +20,7 @@
+  * @lock: Lock protecting accounting.
+  * @shrinkable_pages: Number of pages that are currently shrinkable.
+  * @purgeable_pages: Number of pages that are currently purgeable.
++ * @populated_tts: Number of populated ttm_tts currently shrinkable or purgeable.
+  * @shrink: Pointer to the mm shrinker.
+  * @pm_worker: Worker to wake up the device if required.
+  */
+@@ -28,6 +29,7 @@ struct xe_shrinker {
+ 	rwlock_t lock;
+ 	long shrinkable_pages;
+ 	long purgeable_pages;
++	long populated_tts;
+ 	struct shrinker *shrink;
+ 	struct work_struct pm_worker;
+ };
+@@ -38,19 +40,23 @@ static struct xe_shrinker *to_xe_shrinker(struct shrinker *shrink)
+ }
+ 
+ /**
+- * xe_shrinker_mod_pages() - Modify shrinker page accounting
++ * xe_shrinker_mod_pages() - Modify shrinker page and object accounting
+  * @shrinker: Pointer to the struct xe_shrinker.
+  * @shrinkable: Shrinkable pages delta. May be negative.
+- * @purgeable: Purgeable page delta. May be negative.
++ * @purgeable: Purgeable pages delta. May be negative.
++ * @tts: Populated ttm_tt count delta. May be negative.
+  *
+- * Modifies the shrinkable and purgeable pages accounting.
++ * Updates the shrinkable and purgeable page counts and the populated
++ * ttm_tt count.
+  */
+ void
+-xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable)
++xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable,
++		      long tts)
+ {
+ 	write_lock(&shrinker->lock);
+ 	shrinker->shrinkable_pages += shrinkable;
+ 	shrinker->purgeable_pages += purgeable;
++	shrinker->populated_tts += tts;
+ 	write_unlock(&shrinker->lock);
+ }
+ 
+@@ -286,6 +292,7 @@ static void xe_shrinker_fini(struct drm_device *drm, void *arg)
+ 
+ 	xe_assert(shrinker->xe, !shrinker->shrinkable_pages);
+ 	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
++	xe_assert(shrinker->xe, !shrinker->populated_tts);
+ 	shrinker_free(shrinker->shrink);
+ 	flush_work(&shrinker->pm_worker);
+ 	kfree(shrinker);
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.h b/drivers/gpu/drm/xe/xe_shrinker.h
+index 5132ae5192e1..9c63e22b3b73 100644
+--- a/drivers/gpu/drm/xe/xe_shrinker.h
++++ b/drivers/gpu/drm/xe/xe_shrinker.h
+@@ -9,7 +9,8 @@
+ struct xe_shrinker;
+ struct xe_device;
+ 
+-void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable);
++void xe_shrinker_mod_pages(struct xe_shrinker *shrinker, long shrinkable, long purgeable,
++			   long tts);
+ 
+ int xe_shrinker_create(struct xe_device *xe);
+ 
 -- 
 2.56.0
 
