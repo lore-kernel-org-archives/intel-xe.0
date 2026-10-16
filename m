@@ -4,155 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B281CC6B38
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 18:05:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8D3BCCF2C6
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 18:16:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE1D510E162;
-	Fri, 16 Oct 2026 18:05:32 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15FF910E162
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 18:05:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B5DB10E25D;
+	Fri, 16 Oct 2026 18:16:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B14EF10E25D
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 18:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792173927; x=1823709927;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=BoaFe+hkUZoR+6nDSuNxr5D4RZaOnn45hsjASZse5JA=;
- b=NrO1qheZ1sT2cQUa4zTHTLXc5wn2Z7W+2AQWablhOoQY3K9WZvLFlx/M
- cq5NeA7K9Qyq6KcKHaPmbN3yjtNMkqY6ggMpxWB84twTFfeG6auQEdfLu
- 2X6x5IbORt8FPKfOS1BkTmFXP8uItwWfSo8tN9+x/xJpFenOnvTtt82Fm
- gy9kdeLQj0ffe6RW8ButSiu9slolyVGs4ixcbXH1Dlyc++VaRYqKjDN30
- c33aC3c/hgAoD0X95lZJm4ZJF9TGSB/UphhhQnF468himlGczjWQsxkJz
- 1aD9Gz8af1ulMzD+XxE958c7VYOgCKZEvMYyY8cnqga8EZvleHVJdPnNM A==;
-X-CSE-ConnectionGUID: TL+SRa/hTfCO8cos22TWFA==
-X-CSE-MsgGUID: sRX6P2a3RLWp3OXgIv4LLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11937"; a="864309"
+ t=1792174597; x=1823710597;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=52nxPcIUR36g5cF0uNERLAoIw3PrFk1iNLMV0tsLKqk=;
+ b=I1eG5X5qCkn/fJnLxBCYZr1fnXS+IFSrfXVixKmvZktkWFOgZR2TnR+I
+ RhEIbbuPilKT3t/peTOPwfdoSCUN9bd3/NT3NE5SQVLLQMI3HpBWi2Twi
+ wJFMZSjWtNHCX3QzdaoJOSTVhS88aYBs2Aq+bCzUkc7F7kj+uzMaZBkSy
+ KPjXy2tr8iHsP5tPjhVaLh67ktHuJQ6nR5vbTMSmskm2yhX5pFhW8Kc95
+ maRJ++oUJ0Unn14rztjzpODrpsckOGMto6elnqLHhX/dfMw1/5AmrxE4F
+ ke/fCQkTgERkUOeTGIz3s7wNoLZkj1ievDtJYD2eeD6Mw4ZJ8qHnu+YvR w==;
+X-CSE-ConnectionGUID: TTOdkOBNQ3G/cvWn0ZfSYA==
+X-CSE-MsgGUID: Cr2i63IhSHW6E/hT5rWLsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11937"; a="867438"
 X-IronPort-AV: E=Sophos;i="6.27,162,1787036400"; 
-   d="scan'208";a="864309"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 11:05:26 -0700
-X-CSE-ConnectionGUID: Dkgwe6eMQzylWLLpxPN+RA==
-X-CSE-MsgGUID: Hd4PQOoiRWWA9DYwJKzRqA==
+   d="scan'208";a="867438"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 11:16:37 -0700
+X-CSE-ConnectionGUID: uE74oQBGT6yPxWjljaiXDg==
+X-CSE-MsgGUID: m/+dMnchQoG4XEciV1kCKg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,162,1787036400"; 
-   d="scan'208";a="3845531"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 11:05:26 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+   d="scan'208";a="2344267"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 11:16:36 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 16 Oct 2026 11:05:25 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.49; Fri, 16 Oct 2026 11:16:35 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Fri, 16 Oct 2026 11:05:25 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.17) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Fri, 16 Oct 2026 11:16:35 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.5) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Fri, 16 Oct 2026 11:05:25 -0700
+ 15.2.2562.49; Fri, 16 Oct 2026 11:16:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=o1FDLGEjusVlIXw4W+ybi29SobpoWYqSIgjCaPSklMczoKhRtDA55Aixaxyj/Fz4bUcThNMOOCqDSB9ffjgXyedkZ4BHL0iE+UNGIkYRJunzNGLQXSnETGpGF96FcuYxmtJsVF6N9XrZkvlWrIw+uyf7LwEEyanMfQUAK5TyLhgsqRiMH7TKgnnLj6M6xp+FKz7Ef4PYyZeuq/yhGKMQGC5/y8PZVQmEGvlsPFI/baLBN+fjqUDQl1ITsNqkA+6xpp0W8WzzEMUYEWRom5jc25EeVQJlF9DC9wCLEAjHZqvoUuGlsss/WXqSZk46VYvRiydXVH9fqkfiIe9v0lQdMw==
+ b=y5FmsB+R9vzMPEyCXE92ddBUzaql7E+npKdRm5MYb23sxFsJ4GmvlQOCsCsXVVfVc2ulTHOyiHIAP0fMfPynQ+7rHzMK+Xi9trkMzWvzaJ1yRYLfwkBX/Uf8x3q6aaCrK8m1/CiRrrsJYKtXYboq+ZdSTA+E0iCmv8mbtPb83EgP9oWqu+f10APVLOpadcB23KRArHfTKaKRH3kCly54bahW2uyR9ZZVVOvPB6Hu87xm2DWb1PnXF+vlpUmdArOAJtuO2KIfsjxnPj+lDXn/RMwbmwk1u0rbdJJ/hyxHyuxYrWsZx+WuPYLtq8O1McLIkRNbw4TBXaP3KPBisD9BkQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BKQ2jgK6mgwQnCPDIFqv8XyT82OnURtEG362f/fAs/E=;
- b=mEWhM+1o2qFPR0nHB8UYMWaTlOfBiqNORygmZRxO451CRoxO8A0x9CjMocgu20eqEQUqLK6E1gC2iErI1orOBvaFD/OPLP/hauyFUPe302YqHEOfyz59soE/OV/kwkNInGuB1jE8LKTz19FCb+i1ljFEH4xl38hnhoE+KEOLMtA9DbPULx4SNoSqVlN9tZfBwXW5t/yis8fZADBDtHSpgWifbTz/mTi00vfKam4WQSgS4bkWn8y0HgadIT8NOPKMRhXAPN4JsIo6neSwweZw+tlmfmu0hQSKkEnxQY6i4VFANpAXIGdZ4QMw78gTZ8JZ7EEFOiuLr1XbV/NtNER1TA==
+ bh=wPYFbjMAGFhk4HONavQyErnjcgWceNXcM6is0r/jFA8=;
+ b=tTKM46xobsuGtzTZZ3HXAMtweZOgemVFXjBH1ictpVdFhXxX1R1eqep7A0yodbVAVP4nb2w+av6DdSpsLD4nzibjDQGME+rqsELIIR2POgV1JC9kWYyv9XmDbFtQmqWFZLyPGk1QoSMd8Hos8c2HzEcnFK4lGpPE+5IHmS3ORo5IxUMijHpzHqne0IhPHv5xi9JStcgtw3kTGNDpx02WqZ5uA8y2Z+XybAYPsfDQ8ArmmA8WQ6aUU3oF2nn5vbtxaaxgnoI1tYjb+vCBsFcerEXAuxNQTV7hbWh+0n7jRwcav1pj/2dZBXf/5WDP4tP0aoqODdZlnlULeopy3M8R8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by DS6PR11MB9918.namprd11.prod.outlook.com (2603:10b6:8:464::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.23; Fri, 16 Oct
- 2026 18:05:22 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c%7]) with mapi id 15.21.0522.013; Fri, 16 Oct 2026
- 18:05:22 +0000
-Message-ID: <a62e7d36-5520-4bc3-aeb9-7a52b0ac6ff1@intel.com>
-Date: Fri, 16 Oct 2026 11:05:18 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [2/3] drm/xe: Access MMIO after pcode init
-To: "Poosa, Karthik" <karthik.poosa@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20261015165451.154495-7-vinay.belgaumkar@intel.com>
- <cfadcabe-0a2f-4e12-930a-e07bf78ca960@intel.com>
-Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <cfadcabe-0a2f-4e12-930a-e07bf78ca960@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by SN7PR11MB7603.namprd11.prod.outlook.com (2603:10b6:806:32b::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.472.19; Fri, 16 Oct
+ 2026 18:16:25 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0522.013; Fri, 16 Oct 2026
+ 18:16:24 +0000
+Date: Fri, 16 Oct 2026 11:16:23 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v4 3/4] drm/xe: Split the bo shrinker into purgeable and
+ non-purgeable shrinkers
+Message-ID: <atJp90kXhJceIa/i@gsse-cloud1.jf.intel.com>
+References: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
+ <20261016133523.3622-4-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR03CA0076.namprd03.prod.outlook.com
- (2603:10b6:303:b6::21) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
+In-Reply-To: <20261016133523.3622-4-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: MW4PR04CA0098.namprd04.prod.outlook.com
+ (2603:10b6:303:83::13) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|DS6PR11MB9918:EE_
-X-MS-Office365-Filtering-Correlation-Id: e1613969-39f4-4f65-2875-08df2bb00b89
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|SN7PR11MB7603:EE_
+X-MS-Office365-Filtering-Correlation-Id: a681f750-5cd5-4292-d024-08df2bb196a9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|10067099003|261009223027099003|6133799003|4143699003|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: z3AqwXP5i3xs+6gZDGSAMT+bMuZNsXwy8laR9SZy4TDjhA6G0mhjw96F83CpFhF+6ySGr1AJIAI5sFXTlGIA8fdf91+lk3ElvSlXyF/o7+56Q48Os65Fu8sUsDLVNsK4xqOFpFD/FcLvmMAhLJxXz3rUf7+ajsHAC6OuRdK69RlNMghz2c8ux895isfwOzkydxZHxvIirVh9DtmvgcZuJgYrhupMbR6Nk5c1VrVYGDb2OFUVHNQk0cvMRwcsJ86TnVQcc9YVDgO9K3vV/hU4Tu01pyecOLnOlwwOKJj3b+4XT7+viNWBvHDiLeM2f2DgB88hTyIrEVroHjX0TSY3+B8UznQ7jA+dmgmjYZ2yuOT//BmBh5DdfqEzynpbvWLAieIili5mPiKFTBme30jl8T8VW89R6zou4Hp30swDR29WTzIdloGK0yWX0xpzn8d1uTfuzbdjxSLotPTk0gXSd28MbpA95fw0PYsmBSePlDqhO5RWJPX1Vf7Ue94QxL8XyYfy17AlqQ2EFM96Oyb5syKfq6SuD8grTwvhbTnF7sr1R5ue7hmRmQxmeS0EQX2Vxfwx7u5gFYGKE4S/4FgZx40BQkxjAUFEIaDU0utoHlALsB8pX957L4ioBZQyX4IhsCRzBv02o+8oCmjAJUCF7ZPVI+SN0Hb96gRw3BlHFA4=
+ ARA:13230040|1800799024|23010399003|366016|376014|10067099003|4143699003|6133799003|56012099006|261009223027099003|11063799006|22082099003|18002099003|10063799003;
+X-Microsoft-Antispam-Message-Info: Adp9ptfvIZqMIaRC/06joBUb5zUo7OBd/VkeIGNDxXDxF1dB12EpqFcpQVaGj34cFP/aD+DmLjZaAp+Mvpdd4tyj+dnF9Upf9aVQbGX9EvYcQDi9OLGJ2UOc9q5AEo1iHytMNeoN9eTHnjL/xZiWIcmn7/+TiR8n9h7t0wO0aq9PvcPrrRhLjOS3UOrunqKklSqyMD8yVLMbZVs1u+4Ze6EfJRW9kH8M9TQCoqb7mp4Df+cjs7bG0WzqqLKL8Ama7Br/x5Lqju6FL/f+dvn3u2p8pDNI/UvLEBLfYJ64WylKcPEZf/Juh5DNXMYE+u5FcVWSi7aP4VoptimpAAangUNV5fypQA015iBFMN0ttL1diS9z4ZQZr3AwraE2aFHyg6LvYuwQ8l8UvJA3U09YjwQZvsAUxV3d2KfcTXhhaKJ6DObAdsoxcVq41HQKvgd8BVWIIj/GuxQEX1yX332TA5+fDFxBgPfxGZG50r4zXu99xY+2Gp5EH0qCXm/t6VM4KiG1TeDYz5DHwa6Kz91OqpLEnnqA9l49XoyAyxphYPnLFbt785DmlWAZLOusqulfC7Jbwc1O0r1RpJsNh3D0xq51kKmku6lii+ThlOBDNo4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(10067099003)(261009223027099003)(6133799003)(4143699003)(11063799006)(56012099006)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(10067099003)(4143699003)(6133799003)(56012099006)(261009223027099003)(11063799006)(22082099003)(18002099003)(10063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MVFvbEFZYytZUHFCb3F3aVIxMy8xYm5hOWdCV09wV0xzKzdtaUszT1kybFJR?=
- =?utf-8?B?dUZFcUc1WWNVZzljb2FKSWRTRmlVM212a2FYUmt3Y2ZaYzlBSkl0UHc0OVFa?=
- =?utf-8?B?V0taWUhoV2RoUzRnQjVIQWtad1hEMjJnV0hndnhQdG9TNzcvbTJxRThobWlH?=
- =?utf-8?B?RFBseDE3c2Z5QTNnendGVzBKY1NVTWRjWnRzNjlVWndIbDJ0eHo4TDNBNTZ2?=
- =?utf-8?B?OGNXKy9MY0ZHWHNiMUsvc2hjdjQvNDEvdjdZTTIwV3JtV3NRTkM3RlZnTzRY?=
- =?utf-8?B?eFBva3BzYmNKWitRUndjUloySC9SVXZtNUFrQ0p1Q2ZtaEVrTlkvL2ppcmhh?=
- =?utf-8?B?dVRYQm1oYkphaW1JOSs0eVdPNlQ4ZHBQT1ZmbWJPcngrNkx1azZSVXcySGUz?=
- =?utf-8?B?dGpvZEpSaUk2ayswWTh3VEFWMkYrdUFsMXorN1ZvY2dFK2ljYUNPUWEwV2lR?=
- =?utf-8?B?N1M2eHZ0Wm1TVEdTWDNPM0xXd2Nja3cydVYxZUNYd0FCN2hENmVvOWVGendL?=
- =?utf-8?B?aldDQ0dQdTVQS2JnMmV4MjlTd0s1QVBqQnFSYXMyVW1YRjYxOXB6L0w4ZUtm?=
- =?utf-8?B?ajd0TXk0VlNrV0ZRWWdCYjF4YWczR240dlljdU9STlQwWURUK0JsKyszNXNJ?=
- =?utf-8?B?ckk2ZHU4U29DUmc3MEkvTXRIK2NFYzdMRnYydy9qUHdNalJvR0o5NjZ3a3RG?=
- =?utf-8?B?MC9xd09USGRZa3JvenZNUmZPL3prN2M5L3A2TkNmU0V3VUxlZmVJUkZ4QXMz?=
- =?utf-8?B?UWpiL2ExVWx6eUplQU55TjhmdXVua0xjR05STW54a3ZaSVdVd1ZNSEM2MkJ6?=
- =?utf-8?B?L3ppMVhFZkhXL1VWRFhDWXYxNFJpMUZCNXI0c1hXN0JCWEh6cld1UEc2ZTEw?=
- =?utf-8?B?NUZrcnVPZVkrOWRPc3ZHaG5mUWVzMVJjd2J1d25FNlFMNUY2T3VOTFZSRmt5?=
- =?utf-8?B?cC9uRmphN0VDS2krS004MGgxVGpxMkx1eGRwYksvUEVFTlJDMEZFNTFRNnpn?=
- =?utf-8?B?SGlJMUhQczVFT2xSRzFUNzdPU0hBMERucTdocE53Z0diM2syZTlCUUFJcGtZ?=
- =?utf-8?B?N2xCNk9uT1Y0bXBQZUNxenFkWEJYQk1SWUY2WVptNjBUcDltYnNUeUFGNWh6?=
- =?utf-8?B?dTFWajJ6YUNEUE1GdHNVY1FHQzBSU1VXNzM3MW9RWUtxOHFvSXhDR3M4ZkdV?=
- =?utf-8?B?MkY5eUlGdGV3NUtoWWc4VThKaFh4SVVvWllob0hwMDdyMnYva3NuSXpwNGNh?=
- =?utf-8?B?TDRJTzUwNzZOd3RjSWxLS1lMN29GK3lYR21LQi9aMGhVR0xnd3ZNZGtoUkY3?=
- =?utf-8?B?YmxteFlmbnE5cXBDdXY0eGRoazF6UEJGajlYdWhCSHI5KzRBK3JjWm1mUThT?=
- =?utf-8?B?V2JiZWxJU0VobjFhM2tLZ0hPUiszaGI0VFFWYWJDTFM1T2Zsa3NYc0IydEph?=
- =?utf-8?B?VDZOR1BsT1dZZVQrUEFIWDV1cmdmZkkyamRvUDd3VGE4RUV5dnU0ODQyUmNx?=
- =?utf-8?B?R0YyVHZaS0RHVHlzVnJiZmg5ZHgrSm9EZlcyaTZSVWkzY3BvajFrSitTN0hn?=
- =?utf-8?B?TGJFM1VsbjEwcUx3d1MrMkJKM0t3QjFzWW03aStKNWpaTFVGYzhCMjVtalI5?=
- =?utf-8?B?OWhjdHZ3bFg0NXRLNVpXQ1JVT3A4TEM2NVJ5cGxzQUlpZUhZbzg0Rkl3SHMx?=
- =?utf-8?B?QWMyR1o2ZlN5eU9QdjZUNGZNczdhYktIUXBKSndUSEVERDUwOGg2NXBzVzV4?=
- =?utf-8?B?ZC9kclRidU1sRVdGK0RvRkZmVjZMQS91RENVR2ROZUpsZ3hVRGl2MGVPTHFR?=
- =?utf-8?B?MDJYU3hwUmJPREdCVkI0WkswaGtna3VuQUZsUk15UVVTNVhYb2dLRjd0b01n?=
- =?utf-8?B?bjlDVmM1MndWRTBKS2FUSlcrMTNMa1BHOHZSd0VydVh2NmdzQ0h3OHFDWmZq?=
- =?utf-8?B?RjcyeGVMMjRHNURTc2Ywd0xmdFluZFAzazdKUmtISTZ6NERSY3AyUW1iYnlq?=
- =?utf-8?B?WFBkUHVwM3VIanp4Y0RJejZvVHMyeXBBV0MydkZDZ1ROc3JzZzRwRElPWFZ2?=
- =?utf-8?B?T0UwUDEzOFZGQmlsbXpOUE5wMHJFd3VpQ3JHK2xQblk0QkNnUkVvcENDRERG?=
- =?utf-8?B?bnhoaEFDT01xS0J2NmYyYnJQamFzYVlDY2p4NUNDcm9nQmt0NjZnbFpjdFNs?=
- =?utf-8?B?TlBxTHBsdlF1ODJJYllCOGZYN3JRWmRKSVE3RnpKWGhEbDFaYnJGZ0EvNkdJ?=
- =?utf-8?B?N3p2aExmMmIwRWtCYXZMa1RnbUxITDNvTGVibks4bUxwZFlsVnVmVkpyQzh4?=
- =?utf-8?B?U0pHU29tT0dmdUJNOVJsSk1WM0h2M3o3dVROM3RkK09WNGYybVY5KzRQbWxI?=
- =?utf-8?Q?iMeAivytgrEcCrnc=3D?=
-X-Exchange-RoutingPolicyChecked: c00aY+h+rlODHYT/nKLveEw55kgGEbS3ckjapMY0wWrvIVO5ke9AWtnvDC2EAfpzlRcXCVnkl2Mt6Xz5suB/CAqwcmUugAq6LHZqUS0ZmcuAdY1eqmzTZzIVjCU4HmedhcBBvXD+4RGDhvKIf6/hKU1SYX8bEDaVrcxTqEiUXFiou/XFV/vXU/jnp/kgkchmiZVPmDgLTEpLshdmbA0wPLRyWZ3WfhRegteDJ4p37uFbud3e7mcSM7DsAR1VuUsf1cE4+s7dpTf07ly6Ngmn3wK2feNZN0R5/vsc5wmSFiluHV3OaJEe0T/yPhkQzQrr+ETVSkfvBRvkBRGku1U+4A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1613969-39f4-4f65-2875-08df2bb00b89
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?hsaA/HlthinMK4v9kdE46v4EIWg/FJwBkNSq7vwMkaPYckZ3morqtTh+bb?=
+ =?iso-8859-1?Q?PQwz4f3G+woGqsxp6Jnwdp+jEM6dd2ZboFcqGSJ/AzN36tPhlDmhmt4aOH?=
+ =?iso-8859-1?Q?aPsxwazZnSh85zSRoTomrLYGPd0+7bC5QuLg/NVjeaiiwTOuZqAw3vibxq?=
+ =?iso-8859-1?Q?mGGDscnnTTQT8wEEyXrvLV9CGgxks9jPxgDiwnH6HQO5NnlkwGhWaW6mDn?=
+ =?iso-8859-1?Q?0K0/aYX4EoaKHzcK4mKnkc8IjEqGjSno0pguP8gtUU+PzgGET7a4ibjYz2?=
+ =?iso-8859-1?Q?pfAVXl6+C6jFp9oMvmCcTySUhYBU7mZIZIbvJXGY2vk5HgHsmeUSLp1/tH?=
+ =?iso-8859-1?Q?Oq6VyXy0rVLbx8wsz3gvvodk9F4/yQdjD9WljkXoSKFw2+v91qJni4TTDR?=
+ =?iso-8859-1?Q?tk7wPTbwimsr7FRpLm4T5M/VCSwppgkUGSVQCIZ2L6BhFXhptWrLYyxvCz?=
+ =?iso-8859-1?Q?aNRDFEejocD/Sgyput/Mnla+81W0DCfyVaoN5NJrBOtwWPmMPIxQPpXF/p?=
+ =?iso-8859-1?Q?vA3za0hMHtZfC29F3002nzDScSkFlpOZBKQhYdSUq0Sb8mOzTdjfNR8DPt?=
+ =?iso-8859-1?Q?Bl3TxITKcys+M1OGdCYL5+k8299RJ234J+e6PE+f/TqjH2Y8CmqwFpefKA?=
+ =?iso-8859-1?Q?At90anISambF1SCGeFS+YLZEYwaglMUCNWI7p15C8K0FQuPixHU6STA9pl?=
+ =?iso-8859-1?Q?8bINwCTgHc57YavrbKMPeDSIORDPzUHB+o/OmFAPVO5NkUAm9eBWEO1Cf5?=
+ =?iso-8859-1?Q?/Vu07P6cs+EtMr3GzDlad3/YDjadXYVXis2u2OQzy/wDbsfuCxuRolQNdk?=
+ =?iso-8859-1?Q?jp6NCVRxSUf9TxCCl+yHO8LeMZygmiwbcYVdAUk+W9yg5yIpiH0XDk9vqI?=
+ =?iso-8859-1?Q?R00yqxuEoVhY55en8dW3cN0+9j0ZkEz9zbBXj0O8/l/hHgR4qOOx66GhIC?=
+ =?iso-8859-1?Q?gO3L8bJPPR0QN4g9/uvgQ1YKkcfxB/HIWzo81bEC/ohX65yZVZEBU4ce8S?=
+ =?iso-8859-1?Q?926D5nxzpQj4AGj8rK+dhwyNgVvZ5R0mICg4LfzaJ+kk8cP1tgJxDGDrXj?=
+ =?iso-8859-1?Q?FKzTMQFTXFzjUKo4yeSj+DrTIiF+olh+M9AYIc5eQFDhgllsxvdfu344tH?=
+ =?iso-8859-1?Q?NyGQ5ONWPVw4zVsrmgiQ/g3QQ44ygr7ejJa+pVgdS7DWYCCxYf8dhYZUbE?=
+ =?iso-8859-1?Q?S5tEtdN4E63Bdcj3IuqA1UBFCrVdYSCs27D1E4OPIJUGjgzel0l6Dlmaxa?=
+ =?iso-8859-1?Q?0rgM7DWaofmaZSn297hWwBdvbfhWLps2bffM0wHS3TtQnEofWu0PRPJPPx?=
+ =?iso-8859-1?Q?kR0n59E16Dxz1b7X87gdhhj1Wtc8pIJqA4Mw2uxd+tBUnNtwr8ABkCUY29?=
+ =?iso-8859-1?Q?Gybpz2nPjcUDEmqBx0Z2dKvA0Sgyx9n7ewP6a7fIzFMGYbsU6dITtqL/Ym?=
+ =?iso-8859-1?Q?D8V2HQariF0M3+K01YVZYWjnATp37J6fnCpTPbNcCZvS4ArTmR9XoOQKSe?=
+ =?iso-8859-1?Q?ia9BlQQ1Sv6J99MoFs4PDrW3OIldNgoTWZc9ZbYR/gJc7K80G7xuQK0D2K?=
+ =?iso-8859-1?Q?ZULJqp8hTzm6hrr335cQ0XRSMsAHzebN1RE0BFqC9QXV4XpO46OxDewncO?=
+ =?iso-8859-1?Q?n7+4gc4jHvh66QDXjjNjkU/wtWFc8ZNVHwp7vY+RsTmI/PjJplu2YYl/gG?=
+ =?iso-8859-1?Q?SRdcSiY2GC6SEiQTCvgaAW2jwbGJPl28o+z+rLjH22e+G12nSP5CLPdsYi?=
+ =?iso-8859-1?Q?oz/xcFxWm0MVXZh7EtS7RKIGlDUa4W16jMkSlb3JU51UNH3UT+LZlIEYuU?=
+ =?iso-8859-1?Q?EjQYUWw+Dw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: IjnoSBJsC89KUQdzK+/lejR6FIGufztmynFWdDdkDMBXYkOFaxe3EPqdBeGCPKtNGH30cM3hiI8/0YGtAH057nRzgyyonuyf1xsn4B6hvDDhHfvYTf/JDjzseWrEDdjqrUWnIcYC2SWTuyYsnml1rsFlAWZOWQtJYbw88S6zFVCTgXtVk227bY0Z0AuI5iNedl4E1saarc3N6ZLbyL2ZfmpKATptykcJP7Atqmh79X2EN6ePRjTDPOWffdPi66svV84iqjybiShjioOkpGdfDJ59zltbyfSK0LYB4e5u2qL+ikuzH75v7I6nNqsRa3TFtk2QZNMCC2nE/F0u6W5j9Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: a681f750-5cd5-4292-d024-08df2bb196a9
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2026 18:05:22.0691 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Oct 2026 18:16:24.8433 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zrUxBLdTsAMtDQBdhGjtIEolXN5EkPf8WeGYPwIbYMjgVU/zFo+QQfwJhHJj4FE1+XkPvC662/bwGYu/UE6nFPxB8iOLKNGzZONeGpj0Fc4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR11MB9918
+X-MS-Exchange-CrossTenant-UserPrincipalName: 551S8uBe/KWijTo5F4OIEad7gUrI4iAuTIY/+R1ndJUHk0Bn8JDUtE6zWxejiULxfWELQ8LmgddSXCZGaeD72Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7603
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,65 +160,272 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, Oct 16, 2026 at 03:35:22PM +0200, Thomas Hellstr�m wrote:
+> Purgeable objects are reclaimed by simply discarding their pages, with
+> no writeback required. They are therefore much cheaper to shrink than
+> regular shrinkable (non-purgeable) objects, whose reclaim may need to
+> wait for the GPU or write dirty compressed contents back to a backup
+> store, and whose contents need to be read back on next use.
+> 
+> Split the single xe_shrinker into two independent struct shrinker
+> instances registered against the shrinker core, sharing the same
+> underlying accounting (shrinkable_pages, purgeable_pages,
+> populated_tts) and locking:
+> 
+>  - A purgeable shrinker, whose count_objects() reports only
+>    purgeable_pages, and whose scan_objects() only purges objects.
+> 
+>  - A non-purgeable (shrinkable) shrinker, whose count_objects()
+>    reports the shrinkable page count (capped by backup availability)
+>    and whose scan_objects() shrinks non-purgeable objects, and also
+>    purges any purgeable objects it encounters, waking the device via
+>    runtime PM as needed.
+> 
+> Express the cost difference to the shrinker core through the seeks
+> value: the purgeable shrinker keeps DEFAULT_SEEKS, while the
+> non-purgeable shrinker uses a higher value,
+> XE_SHRINKER_NON_PURGEABLE_SEEKS (8). The core scales each shrinker's
+> scan target inversely with seeks, so purgeable objects receive
+> proportionally more reclaim pressure than non-purgeable ones, without
+> one shrinker's behaviour depending on the other's state.
+> 
+> The standalone purge walk relies on the LRU walk skipping
+> non-purgeable objects, for which xe_bo_shrink() returns -EBUSY,
+> rather than aborting.
+> 
+> v3:
+> - Patch introduced. (Matt Brost)
+> 
+> v4:
+> - The purge walk aborting at the first non-purgeable object is now
+>   fixed by a separate, preceding patch. (Sashiko)
+> 
+> Assisted-by: LLM
+> Signed-off-by: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_shrinker.c | 109 +++++++++++++++++++------------
+>  1 file changed, 68 insertions(+), 41 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+> index 378022c37a57..8e3fe675e0f3 100644
+> --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+> @@ -14,6 +14,15 @@
+>  #include "xe_pm.h"
+>  #include "xe_shrinker.h"
+>  
+> +/*
+> + * Reclaiming non-purgeable objects requires GPU idling and writeback to a
+> + * backup store, and restoring them requires reading the contents back.
+> + * Tell the shrinker core they're costlier to recreate than purgeable
+> + * objects, which use DEFAULT_SEEKS, so that purgeable objects are
+> + * preferentially reclaimed.
+> + */
+> +#define XE_SHRINKER_NON_PURGEABLE_SEEKS 8
 
-On 10/16/2026 11:02 AM, Poosa, Karthik wrote:
->
-> On 15-10-2026 22:24, Vinay Belgaumkar wrote:
->> Allow pcode initialization to complete before we start poking around
->> the MMIO space during resume. This ensures MMIO space is ready for 
->> access.
->>
->> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_pm.c | 12 ++++++------
->>   1 file changed, 6 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index daa7ba2df317..1f5097875bcd 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -241,9 +241,6 @@ int xe_pm_resume(struct xe_device *xe)
->>       drm_dbg(&xe->drm, "Resuming device\n");
->>       trace_xe_pm_resume(xe, __builtin_return_address(0));
->>   -    for_each_gt(gt, xe, id)
->> -        xe_gt_idle_disable_c6(gt);
->> -
->>       for_each_tile(tile, xe, id)
->>           xe_wa_apply_tile_workarounds(tile);
->
-> shouldn't xe_wa_apply_tile_workarounds() also be after pcode ready ?
-> are the MMIOs accessed inside independent of pcode readiness ?
-> if it is okay, below changes look right to me.
+I suggest for full tuning this tied to a Kconfig + plus syfs entry like
+I have here [1] so customers can play around with various configs.
 
-xe_wa_apply_tile_workarounds() primarily contains writes to SoC 
-registers (uncore). Those don't need to be moved. This patch is 
-primarily for writes in the GT MMIO space. I can clarify this in the 
-commit message.
+[1] https://patchwork.freedesktop.org/series/176251/
 
-Thanks,
+Most everything every LGTM, but I think the Sashiko comment it somewhat
+valid, I'll reply there.
 
-Vinay.
+Matt
 
->
->>   @@ -251,6 +248,9 @@ int xe_pm_resume(struct xe_device *xe)
->>       if (err)
->>           return err;
->>   +    for_each_gt(gt, xe, id)
->> +        xe_gt_idle_disable_c6(gt);
->> +
->>       xe_display_pm_resume_early(xe);
->>         /*
->> @@ -698,13 +698,13 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->>       xe_rpm_lockmap_acquire(xe);
->>         if (xe->d3cold.allowed) {
->> -        for_each_gt(gt, xe, id)
->> -            xe_gt_idle_disable_c6(gt);
->> -
->>           err = xe_pcode_ready(xe, true);
->>           if (err)
->>               goto out;
->>   +        for_each_gt(gt, xe, id)
->> +            xe_gt_idle_disable_c6(gt);
->> +
->>           xe_display_pm_resume_early(xe);
->>             /*
+> +
+>  /**
+>   * struct xe_shrinker - per-device shrinker
+>   * @xe: Back pointer to the device.
+> @@ -21,7 +30,8 @@
+>   * @shrinkable_pages: Number of pages that are currently shrinkable.
+>   * @purgeable_pages: Number of pages that are currently purgeable.
+>   * @populated_tts: Number of populated ttm_tts currently shrinkable or purgeable.
+> - * @shrink: Pointer to the mm shrinker.
+> + * @shrink: Pointer to the mm shrinker handling non-purgeable (shrinkable) objects.
+> + * @purge_shrink: Pointer to the mm shrinker handling purgeable objects.
+>   * @pm_worker: Worker to wake up the device if required.
+>   */
+>  struct xe_shrinker {
+> @@ -31,6 +41,7 @@ struct xe_shrinker {
+>  	long purgeable_pages;
+>  	long populated_tts;
+>  	struct shrinker *shrink;
+> +	struct shrinker *purge_shrink;
+>  	struct work_struct pm_worker;
+>  };
+>  
+> @@ -179,6 +190,19 @@ static int xe_shrinker_walk(struct xe_shrinker *shrinker,
+>  	return ret;
+>  }
+>  
+> +static unsigned long
+> +xe_shrinker_count_purgeable(struct shrinker *shrink, struct shrink_control *sc)
+> +{
+> +	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
+> +	unsigned long num_pages;
+> +
+> +	read_lock(&shrinker->lock);
+> +	num_pages = shrinker->purgeable_pages;
+> +	read_unlock(&shrinker->lock);
+> +
+> +	return num_pages ? num_pages : SHRINK_EMPTY;
+> +}
+> +
+>  static unsigned long
+>  xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
+>  {
+> @@ -194,7 +218,6 @@ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
+>  	else
+>  		num_pages = 0;
+>  
+> -	num_pages += shrinker->purgeable_pages;
+>  	read_unlock(&shrinker->lock);
+>  
+>  	return num_pages ? num_pages : SHRINK_EMPTY;
+> @@ -207,8 +230,7 @@ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
+>   * If bo shrinking needs an rpm reference and we don't have it (yet),
+>   * that bo will be skipped anyway.
+>   */
+> -static bool xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker, bool force,
+> -				       unsigned long nr_to_scan, bool can_backup)
+> +static bool xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker)
+>  {
+>  	struct xe_device *xe = shrinker->xe;
+>  
+> @@ -216,63 +238,52 @@ static bool xe_shrinker_runtime_pm_get(struct xe_shrinker *shrinker, bool force,
+>  	    !ttm_backup_bytes_avail())
+>  		return false;
+>  
+> -	if (!force) {
+> -		read_lock(&shrinker->lock);
+> -		force = (nr_to_scan > shrinker->purgeable_pages && can_backup);
+> -		read_unlock(&shrinker->lock);
+> -		if (!force)
+> -			return false;
+> -	}
+> -
+>  	return __xe_shrinker_runtime_pm_get(shrinker);
+>  }
+>  
+> -static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
+> +static unsigned long xe_shrinker_scan_purgeable(struct shrinker *shrink,
+> +						struct shrink_control *sc)
+>  {
+>  	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
+>  	struct ttm_operation_ctx ctx = {
+>  		.interruptible = false,
+>  		.no_wait_gpu = ttm_bo_shrink_avoid_wait(),
+>  	};
+> -	unsigned long nr_to_scan, nr_scanned = 0, freed = 0;
+> +	unsigned long nr_to_scan = sc->nr_to_scan, nr_scanned = 0, freed = 0;
+>  	struct xe_bo_shrink_flags shrink_flags = {
+>  		.purge = true,
+> -		/* Don't request writeback without __GFP_IO. */
+> -		.writeback = !ctx.no_wait_gpu && (sc->gfp_mask & __GFP_IO),
+>  	};
+> -	bool runtime_pm;
+> -	bool purgeable;
+> -	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
+> -
+> -	nr_to_scan = sc->nr_to_scan;
+> -
+> -	read_lock(&shrinker->lock);
+> -	purgeable = !!shrinker->purgeable_pages;
+> -	read_unlock(&shrinker->lock);
+>  
+> -	/* Might need runtime PM. Try to wake early if it looks like it. */
+> -	runtime_pm = xe_shrinker_runtime_pm_get(shrinker, false, nr_to_scan, can_backup);
+> -
+> -	if (purgeable && nr_scanned < nr_to_scan)
+> -		xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> -				 nr_to_scan, &nr_scanned, &freed);
+> +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned, &freed);
+>  
+>  	sc->nr_scanned = nr_scanned;
+> -	if (nr_scanned >= nr_to_scan || !can_backup)
+> -		goto out;
+>  
+> -	/* If we didn't wake before, try to do it now if needed. */
+> -	if (!runtime_pm)
+> -		runtime_pm = xe_shrinker_runtime_pm_get(shrinker, true, 0, can_backup);
+> +	return nr_scanned ? freed : SHRINK_STOP;
+> +}
+>  
+> -	shrink_flags.purge = false;
+> +static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_control *sc)
+> +{
+> +	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
+> +	struct ttm_operation_ctx ctx = {
+> +		.interruptible = false,
+> +		.no_wait_gpu = ttm_bo_shrink_avoid_wait(),
+> +	};
+> +	unsigned long nr_to_scan = sc->nr_to_scan, nr_scanned = 0, freed = 0;
+> +	struct xe_bo_shrink_flags shrink_flags = {
+> +		.purge = false,
+> +		/* Don't request writeback without __GFP_IO. */
+> +		.writeback = !ctx.no_wait_gpu && (sc->gfp_mask & __GFP_IO),
+> +	};
+> +	bool runtime_pm;
+> +
+> +	/* Might need runtime PM to access backed-up or CCS-compressed data. */
+> +	runtime_pm = xe_shrinker_runtime_pm_get(shrinker);
+>  
+> -	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> -			 nr_to_scan, &nr_scanned, &freed);
+> +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned, &freed);
+>  
+>  	sc->nr_scanned = nr_scanned;
+> -out:
+>  	xe_shrinker_runtime_pm_put(shrinker, runtime_pm);
+> +
+>  	return nr_scanned ? freed : SHRINK_STOP;
+>  }
+>  
+> @@ -294,6 +305,7 @@ static void xe_shrinker_fini(struct drm_device *drm, void *arg)
+>  	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
+>  	xe_assert(shrinker->xe, !shrinker->populated_tts);
+>  	shrinker_free(shrinker->shrink);
+> +	shrinker_free(shrinker->purge_shrink);
+>  	flush_work(&shrinker->pm_worker);
+>  	kfree(shrinker);
+>  }
+> @@ -311,8 +323,15 @@ int xe_shrinker_create(struct xe_device *xe)
+>  	if (!shrinker)
+>  		return -ENOMEM;
+>  
+> -	shrinker->shrink = shrinker_alloc(0, "drm-xe_gem:%s", xe->drm.unique);
+> +	shrinker->purge_shrink = shrinker_alloc(0, "drm-xe_gem-purgeable:%s", xe->drm.unique);
+> +	if (!shrinker->purge_shrink) {
+> +		kfree(shrinker);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	shrinker->shrink = shrinker_alloc(0, "drm-xe_gem-shrinkable:%s", xe->drm.unique);
+>  	if (!shrinker->shrink) {
+> +		shrinker_free(shrinker->purge_shrink);
+>  		kfree(shrinker);
+>  		return -ENOMEM;
+>  	}
+> @@ -320,10 +339,18 @@ int xe_shrinker_create(struct xe_device *xe)
+>  	INIT_WORK(&shrinker->pm_worker, xe_shrinker_pm);
+>  	shrinker->xe = xe;
+>  	rwlock_init(&shrinker->lock);
+> +
+> +	shrinker->purge_shrink->count_objects = xe_shrinker_count_purgeable;
+> +	shrinker->purge_shrink->scan_objects = xe_shrinker_scan_purgeable;
+> +	shrinker->purge_shrink->private_data = shrinker;
+> +	shrinker_register(shrinker->purge_shrink);
+> +
+>  	shrinker->shrink->count_objects = xe_shrinker_count;
+>  	shrinker->shrink->scan_objects = xe_shrinker_scan;
+>  	shrinker->shrink->private_data = shrinker;
+> +	shrinker->shrink->seeks = XE_SHRINKER_NON_PURGEABLE_SEEKS;
+>  	shrinker_register(shrinker->shrink);
+> +
+>  	xe->mem.shrinker = shrinker;
+>  
+>  	return drmm_add_action_or_reset(&xe->drm, xe_shrinker_fini, shrinker);
+> -- 
+> 2.56.0
+> 
