@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C065CCC6B38
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 08:06:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 116FDCCA462
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 08:07:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E56112624;
-	Fri, 16 Oct 2026 08:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB44610E119;
+	Fri, 16 Oct 2026 08:07:11 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 726A8112624;
- Fri, 16 Oct 2026 08:06:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82A8D10E119;
+ Fri, 16 Oct 2026 08:07:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7488801430782697189=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Introduce_xe=5Fwedge_=28rev9?=
- =?utf-8?q?=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Isolate_permanent?=
+ =?utf-8?q?ly_wedged_devices?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Oct 2026 08:06:15 -0000
-Message-ID: <179213797546.34131.6003768415020903723@221881a7231d>
+Date: Fri, 16 Oct 2026 08:07:10 -0000
+Message-ID: <179213803052.34131.9545678896449097343@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261016072623.457392-1-raag.jadav@intel.com>
-In-Reply-To: <20261016072623.457392-1-raag.jadav@intel.com>
+References: <20261016071832.222574-1-arvind.yadav@intel.com>
+In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,119 +40,195 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============7488801430782697189==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Introduce xe_wedge (rev9)
-URL   : https://patchwork.freedesktop.org/series/173011/
+Series: drm/xe: Isolate permanently wedged devices
+URL   : https://patchwork.freedesktop.org/series/176267/
 State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ kunitconfigs=('/kernel/drivers/gpu/tests/.kunitconfig' '/kernel/drivers/gpu/drm/xe/.kunitconfig' '/kernel/drivers/gpu/drm/tests/.kunitconfig' '/kernel/drivers/gpu/drm/ttm/tests/.kunitconfig' '/kernel/drivers/dma-buf/.kunitconfig')
-+ for kcfg in "${kunitconfigs[@]}"
-+ [[ ! -f /kernel/drivers/gpu/tests/.kunitconfig ]]
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/tests/.kunitconfig
-[08:05:08] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:05:13] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[08:05:33] Starting KUnit Kernel (1/1)...
-[08:05:33] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[08:05:33] ================= gpu_buddy (14 subtests) ==================
-[08:05:33] [PASSED] gpu_test_buddy_alloc_limit
-[08:05:33] [PASSED] gpu_test_buddy_alloc_optimistic
-[08:05:33] [PASSED] gpu_test_buddy_alloc_pessimistic
-[08:05:33] [PASSED] gpu_test_buddy_alloc_pathological
-[08:05:33] [PASSED] gpu_test_buddy_alloc_contiguous
-[08:05:33] [PASSED] gpu_test_buddy_alloc_clear
-[08:05:33] [PASSED] gpu_test_buddy_alloc_range
-[08:05:34] [PASSED] gpu_test_buddy_alloc_range_bias
-[08:05:35] [PASSED] gpu_test_buddy_fragmentation_performance
-[08:05:35] [PASSED] gpu_test_buddy_dirty_tracker_performance
-[08:05:35] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
-[08:05:35] [PASSED] gpu_test_buddy_offset_aligned_allocation
-[08:05:35] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
-[08:05:35] [PASSED] gpu_test_buddy_addr_to_block
-[08:05:35] ==================== [PASSED] gpu_buddy ====================
-[08:05:35] ============================================================
-[08:05:35] Testing complete. Ran 14 tests: passed: 14
-[08:05:35] Elapsed time: 27.079s total, 4.428s configuring, 20.484s building, 2.083s running
+CI Bug Log - changes from xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4_BAT -> xe-pw-176267v1_BAT
+====================================================
 
-+ for kcfg in "${kunitconfigs[@]}"
-+ [[ ! -f /kernel/drivers/gpu/drm/xe/.kunitconfig ]]
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../include/linux/bitmap.h:9,
-                 from ../drivers/gpu/drm/xe/xe_hw_error.c:6:
-../drivers/gpu/drm/xe/xe_hw_error.c: In function ‘csc_hw_error_work’:
-../include/linux/cleanup.h:302:9: error: unknown type name ‘class_xe_pm_runtime_t’
-  302 |         class_##_name##_t var __cleanup(class_##_name##_destructor) =   \
-      |         ^~~~~~
-../include/linux/cleanup.h:423:9: note: in expansion of macro ‘CLASS’
-  423 |         CLASS(_name, __UNIQUE_ID(guard))
-      |         ^~~~~
-../drivers/gpu/drm/xe/xe_hw_error.c:173:9: note: in expansion of macro ‘guard’
-  173 |         guard(xe_pm_runtime)(xe);
-      |         ^~~~~
-../drivers/gpu/drm/xe/xe_hw_error.c:173:9: error: cleanup argument not a function
-../include/linux/cleanup.h:303:17: error: implicit declaration of function ‘class_xe_pm_runtime_constructor’; did you mean ‘class_xe_validation_constructor’? [-Werror=implicit-function-declaration]
-  303 |                 class_##_name##_constructor
-      |                 ^~~~~~
-../include/linux/cleanup.h:423:9: note: in expansion of macro ‘CLASS’
-  423 |         CLASS(_name, __UNIQUE_ID(guard))
-      |         ^~~~~
-../drivers/gpu/drm/xe/xe_hw_error.c:173:9: note: in expansion of macro ‘guard’
-  173 |         guard(xe_pm_runtime)(xe);
-      |         ^~~~~
-../include/linux/compiler.h:165:17: warning: unused variable ‘__UNIQUE_ID_guard_442’ [-Wunused-variable]
-  165 |         __PASTE(__UNIQUE_ID_,                                   \
-      |                 ^~~~~~~~~~~~
-../include/linux/cleanup.h:302:27: note: in definition of macro ‘CLASS’
-  302 |         class_##_name##_t var __cleanup(class_##_name##_destructor) =   \
-      |                           ^~~
-./../include/linux/compiler_types.h:16:23: note: in expansion of macro ‘___PASTE’
-   16 | #define __PASTE(a, b) ___PASTE(a, b)
-      |                       ^~~~~~~~
-../include/linux/compiler.h:165:9: note: in expansion of macro ‘__PASTE’
-  165 |         __PASTE(__UNIQUE_ID_,                                   \
-      |         ^~~~~~~
-../include/linux/cleanup.h:423:22: note: in expansion of macro ‘__UNIQUE_ID’
-  423 |         CLASS(_name, __UNIQUE_ID(guard))
-      |                      ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_error.c:173:9: note: in expansion of macro ‘guard’
-  173 |         guard(xe_pm_runtime)(xe);
-      |         ^~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:290: drivers/gpu/drm/xe/xe_hw_error.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:551: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:551: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:551: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:551: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2229: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Summary
+-------
 
-[08:05:36] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:05:37] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-176267v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-176267v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-176267v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+    - bat-ptl-2:          [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html
+    - bat-bmg-1:          [PASS][5] -> [DMESG-WARN][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+    - bat-nvls-1:         [PASS][7] -> [DMESG-WARN][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html
+    - bat-lnl-2:          [PASS][9] -> [DMESG-WARN][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html
+    - bat-nvls-2:         [PASS][11] -> [DMESG-WARN][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html
+    - bat-atsm-2:         [PASS][13] -> [DMESG-WARN][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+    - bat-wcl-1:          [PASS][15] -> [DMESG-WARN][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html
+    - bat-ptl-1:          [PASS][17] -> [DMESG-WARN][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html
+    - bat-wcl-2:          [PASS][19] -> [DMESG-WARN][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html
+    - bat-lnl-1:          [PASS][21] -> [DMESG-WARN][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-176267v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][23] -> [ABORT][24] ([Intel XE#9463])
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
 
 
+Build changes
+-------------
+
+  * Linux: xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4 -> xe-pw-176267v1
+
+  IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4: 80c7a1d738b654b45717944325a57ff9e2ae3de4
+  xe-pw-176267v1: 176267v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/index.html
+
+--===============7488801430782697189==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Isolate permanently wedged devices</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176267/">https://patchwork.freedesktop.org/series/176267/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4_BAT -&gt; xe-pw-176267v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-176267v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-176267v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-176267v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-ptl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-nvls-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-lnl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-nvls-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-wcl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-ptl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-wcl-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-lnl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-176267v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176267v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4 -&gt; xe-pw-176267v1</li>
+</ul>
+<p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5957-80c7a1d738b654b45717944325a57ff9e2ae3de4: 80c7a1d738b654b45717944325a57ff9e2ae3de4<br />
+  xe-pw-176267v1: 176267v1</p>
+
+</body>
+</html>
+
+--===============7488801430782697189==--
