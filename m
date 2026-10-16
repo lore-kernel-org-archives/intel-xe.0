@@ -4,53 +4,33 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AAA5CCA462
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE3EECC6B38
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:22:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9ED11261C;
-	Fri, 16 Oct 2026 07:19:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 799FF112621
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:19:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792135150; x=1823671150;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=bUU+bIG3ru8uO7NSlfEi15DnigTdXBLtpB18yYzQpbc=;
- b=FaDivDQQFdg5zPkzw9Diyzw/aWKQeULX/EYjivtBlzUtSuaopzAF/M6a
- zPmpByQ/HStDge6sJy4pYQDq2C5AApwVgTc8NFyMYmcy8Ktk/jQQEvwNI
- vKsjhfI5JMOjU+Nb7Mj8/dmsawhV/VefQz6cUhb78JVjvur5yG/iN5XZy
- 5UUNiw8yASM3RM5W+cEkPxPhJfOgA8Fnvboy/DnAiKx2PsbQhx96JuHOt
- G97SIDVa2Kts4MUq+ZBi2H1eAS70kNRRjldNvE8MlACK8jP9U2aFbLPPJ
- QKZVQKanJL6qAAjyaj8ZnLlVShj2+YED36kncC+RUN2qKc/xzPRnVmr9O g==;
-X-CSE-ConnectionGUID: 6ulW7oc2TaK3pzsRMHfgMA==
-X-CSE-MsgGUID: e3iVpH02QMSfFJ7hERI76w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813661"
-X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="813661"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:58 -0700
-X-CSE-ConnectionGUID: 7MWDXnj3RJuldfSq0DNXLQ==
-X-CSE-MsgGUID: RmDlFVpTTBGIcwfFDC3ZQA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="1787303"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:57 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [CI-only v3 17/18] drm/xe: Skip PM notifier preparation when device
- I/O is blocked
-Date: Fri, 16 Oct 2026 12:48:27 +0530
-Message-ID: <20261016071832.222574-18-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
-References: <20261016071832.222574-1-arvind.yadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C2EF112626;
+	Fri, 16 Oct 2026 07:22:20 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97C74112626;
+ Fri, 16 Oct 2026 07:22:19 +0000 (UTC)
+Received: from 91-152-156-14.elisa-laajakaista.fi ([91.152.156.14]
+ helo=[192.168.100.138])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1xHcGV-00000004Qf3-3SJh; Fri, 16 Oct 2026 10:22:16 +0300
+Message-ID: <9eff5ff68bfbc955a5bb7be90296939428cd5ecf.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: uma.shankar@intel.com, imre.deak@intel.com
+Date: Fri, 16 Oct 2026 10:22:21 +0300
+In-Reply-To: <20261013161131.2572279-5-dibin.moolakadan.subrahmanian@intel.com>
+References: <20261013161131.2572279-4-dibin.moolakadan.subrahmanian@intel.com>
+ <20261013161131.2572279-5-dibin.moolakadan.subrahmanian@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-10+b1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH 1/2] drm/i915/display: avoid logging DC3CO transitions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,82 +45,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DO NOT REVIEW
+On Tue, 2026-10-13 at 21:41 +0530, Dibin Moolakadan Subrahmanian wrote:
+> DC3CO transitions can happen every frame.
+> Logging them floods the log and adds overhead to the flip path.
+>=20
+> Skip logs for transitions to or from DC3CO, while retaining logs for
+> other DC state changes. Log DC3CO trigger changes through
+> intel_display_power_dc3co_update().
+>=20
+> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmani=
+an@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_power.c |  6 ++++++
+>  .../drm/i915/display/intel_display_power_well.c    | 14 ++++++++++++--
+>  2 files changed, 18 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers=
+/gpu/drm/i915/display/intel_display_power.c
+> index 1b60ce2dd00c..53afd791381e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -4,6 +4,7 @@
+>   */
+> =20
+>  #include <linux/iopoll.h>
+> +#include <linux/string_choices.h>
+>  #include <linux/string_helpers.h>
+> =20
+>  #include <drm/drm_print.h>
+> @@ -419,6 +420,11 @@ void intel_display_power_dc3co_update(struct intel_d=
+isplay *display, u32 trigger
+>  		return;
+> =20
+>  	mutex_lock(&dc3co->lock);
+> +
+> +	if (dc3co->trigger !=3D trigger)
+> +		drm_dbg_kms(display->drm, "DC3co allowed:%s trigger %#x -> %#x\n",
 
-The system PM notifier runs before the PCI suspend callback and may
-evict BOs or prepare pinned BOs.
+s/DC3co/DC3O/ for consistency.
 
-Hold the common device I/O gate during preparation and skip it when
-the device is blocked or unplugged. Track whether preparation ran so
-the post callback only performs matching cleanup and releases the
-runtime PM reference when needed.
 
-Keep the gate held across BO eviction so isolation waits for
-preparation admitted before the device was blocked.
+> +			    str_yes_no(trigger), dc3co->trigger, trigger);
+> +
+>  	dc3co->trigger =3D trigger;
+>  	dc3co->allowed =3D !!trigger;
+>  	mutex_unlock(&dc3co->lock);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/dr=
+ivers/gpu/drm/i915/display/intel_display_power_well.c
+> index 233465a8306e..6d07643fc14f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -862,8 +862,18 @@ void gen9_set_dc_state(struct intel_display *display=
+, u32 state)
+> =20
+>  	val =3D intel_de_read(display, DC_STATE_EN);
+>  	mask =3D gen9_dc_mask(display);
+> -	drm_dbg_kms(display->drm, "Setting DC state from %02x to %02x\n",
+> -		    val & mask, state);
+> +
+> +	/*
+> +	 * DC3co is entered and exited once per frame while PSR2 or panel
 
-v2:
- - Protect PM preparation with the common SRCU gate.
+s/DC3co/DC3CO/
 
-v3:
-- Replace the private I/O gate with the DRM device SRCU helper.
 
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_pm.c           | 12 ++++++++++++
- 2 files changed, 14 insertions(+)
+> +	 * replay is active, so logging both transitions floods the log. The
+> +	 * exit additionally happens from intel_display_power_get(DC_OFF) in
+> +	 * the atomic commit path, before the flip has been armed, where the
+> +	 * printk is a measurable part of the time budget. Skip both.
+> +	 */
+> +	if ((val & mask) !=3D DC_STATE_EN_UPTO_DC3CO &&
+> +	    state !=3D DC_STATE_EN_UPTO_DC3CO)
+> +		drm_dbg_kms(display->drm, "Setting DC state from %02x to %02x\n",
+> +			    val & mask, state);
+> =20
+>  	/* Check if DMC is ignoring our DC state requests */
+>  	if ((val & mask) !=3D power_domains->dc_state)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 0a6ca893b257..b02d61343477 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -494,6 +494,8 @@ struct xe_device {
- 
- 	/** @pm_notifier: Our PM notifier to perform actions in response to various PM events. */
- 	struct notifier_block pm_notifier;
-+	/** @pm_notifier_active: PM notifier prepare work was performed */
-+	bool pm_notifier_active;
- 	/** @pm_block: Completion to block validating tasks on suspend / hibernate prepare */
- 	struct completion pm_block;
- 	/** @rebind_resume_list: List of wq items to kick on resume. */
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index daa7ba2df317..fd265f9135c6 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -459,10 +459,16 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
- 	case PM_SUSPEND_PREPARE:
- 	{
- 		struct xe_validation_ctx ctx;
-+		int io_idx;
-+
-+		/* Do not start PM preparation while device I/O is blocked. */
-+		if (xe_device_io_get(xe, &io_idx))
-+			break;
- 
- 		reinit_completion(&xe->pm_block);
- 		xe_pm_block_begin_signalling();
- 		xe_pm_runtime_get(xe);
-+		xe->pm_notifier_active = true;
- 		(void)xe_validation_ctx_init(&ctx, &xe->val, NULL,
- 					     (struct xe_val_flags) {.exclusive = true});
- 		err = xe_bo_evict_all_user(xe);
-@@ -479,10 +485,16 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
- 		 * allocations.
- 		 */
- 		xe_pm_block_end_signalling();
-+		xe_device_io_put(io_idx);
- 		break;
- 	}
- 	case PM_POST_HIBERNATION:
- 	case PM_POST_SUSPEND:
-+		if (!xe->pm_notifier_active)
-+			break;
-+
-+		xe->pm_notifier_active = false;
-+
- 		complete_all(&xe->pm_block);
- 		xe_pm_wake_rebind_workers(xe);
- 		xe_bo_notifier_unprepare_all_pinned(xe);
--- 
-2.43.0
 
+What about this log:
+
+void intel_power_well_enable(struct intel_display *display, struct i915_pow=
+er_well *power_well)
+{
+	drm_dbg_kms(display->drm, "enabling %s\n", intel_power_well_name(power_wel=
+l));
+
+
+...and the "disabling %s" one? Claude tells me that they are in the
+same path you're trying to silence.
+
+--
+Cheers,
+Luca.
+                                                                           =
+           =20
