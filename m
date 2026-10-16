@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21ED2CCA48B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31CF1CCA46D
 	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF43811261A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC9DF11261F;
 	Fri, 16 Oct 2026 07:18:57 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDA911260C
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:18:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED75211260C
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792135132; x=1823671132;
+ t=1792135125; x=1823671125;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=hT0n6CYiqOM16/uvm98RcPbdYg0OV6cFMH8v71NXZxY=;
- b=MKXd/BWWoh0qx5hm0Oyzem97W/QpaKG0pFM26woqbPZ/0hWUz8jFHe31
- U/0UEWlb5LtNBoseavtdNxlePBH4ONJGyOO9WNiwmHL4JgAFdijs43W3I
- SF1gKKeP0dlowJAFH6/AfXT4MNKzQl0SmWZsWIihjqpXaxL717EIm5Z0P
- PPJNj7TeD+EjNtNlF00TVe78of63rCBleHotNaZyMQKYEls3JvPYqdwbN
- usq2LMBgt6sJkBoIwMH7QC4A7US8EshP9vdBUhMUABesEjIfty2XzPs3l
- 4ODNR317YHNT+iHNhi/u509cQq1E7ka4Zf9Sfu7bfVm5TjkI4ezk1lN+/ w==;
-X-CSE-ConnectionGUID: yOf4DptzTe+WoU1Pia5KOg==
-X-CSE-MsgGUID: wuDyUkWLR8++QQx+Rp2snw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813642"
+ bh=xthlxIkkPCpvtDGd+I5tfsLwvvEzF8MhTOo5r+fillY=;
+ b=OweN5fh1x12DykW97rHshE3Gwod34cpgwwE3lR9E6sRGSLU7i8bqxOp+
+ mt0W7ol0pqZhyQzO6N+bKCyTJDOO4/8BJribxhMBWYHsT6XK9rmr3uOPp
+ 2dZre/X0ZW02VQZ/C1Hf/gq0yKAqEhMaJ3kpMz2wcw0EwwJepCLBA44VA
+ GxbxQUR782moeKNWm4lu5aWLy4IcwewbrIZco+pLGqZ8rWIbh8q5iMfoV
+ DVBJL7zJxVJZoRehjmE4+pQC/p1+A+mfcMZReem2y5bNXQ7/H8OPcmEaH
+ N1VsKAWyAPU6JlZu11RGibGf0qWV2e3/UTqGsH/EQaoyHMxcPIZ4+Pt8l Q==;
+X-CSE-ConnectionGUID: bC7O9HH1SXycGpjooGAWWg==
+X-CSE-MsgGUID: f0+tnrVjRI6uyVVpVshB2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813631"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="813642"
+   d="scan'208";a="813631"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:47 -0700
-X-CSE-ConnectionGUID: ho/5d/D7Szya9DOkMdhL2A==
-X-CSE-MsgGUID: o8/oJYrvTD2uahOeeWbhlQ==
+ 16 Oct 2026 00:18:43 -0700
+X-CSE-ConnectionGUID: o1ph6CGzQueQhTUYhS2FGg==
+X-CSE-MsgGUID: w5A6t2RpRuWZizKyuQ88yw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="1787254"
+   d="scan'208";a="1787241"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:46 -0700
+ 16 Oct 2026 00:18:42 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI-only v3 06/18] drm/xe: Drop queued page faults when device I/O is
- blocked
-Date: Fri, 16 Oct 2026 12:48:16 +0530
-Message-ID: <20261016071832.222574-7-arvind.yadav@intel.com>
+Subject: [CI-only v3 02/18] drm/drv: Export drm_dev_srcu_synchronize()
+Date: Fri, 16 Oct 2026 12:48:12 +0530
+Message-ID: <20261016071832.222574-3-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
 References: <20261016071832.222574-1-arvind.yadav@intel.com>
@@ -67,83 +66,74 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 DO NOT REVIEW
 
-Page-fault work may still be queued when PCI error recovery starts or
-the device becomes permanently wedged. Servicing these faults can migrate
-memory or update page tables after device I/O has been blocked.
+drm_dev_unplug() marks a device as unplugged and waits for existing
+drm_dev_enter() users to finish before releasing device resources.
 
-Check the device state while popping queued faults. Release queued
-entries instead of passing them to a worker when device I/O is blocked.
+Drivers may need the same publish-and-drain sequence for their own
+device state without unplugging the device.
 
-Hold the device I/O gate across fault servicing so wedge isolation waits
-for faults already in progress. Faults that start after the block are
-rejected at the gate.
+Export drm_dev_srcu_synchronize() so drivers can publish their state and
+wait for existing DRM SRCU readers to finish.
 
-v2:
-- Move the blocked-device check into the queue pop path. (Matt)
-- Drop queued faults while holding the queue lock. (Matt)
-- Remove weak checks around fault servicing. (Matt)
+The Xe driver will use this helper to block device access during PCI
+error recovery and permanent wedge isolation.
 
-v3:
-- Hold the common device I/O gate across fault servicing. (Thomas)
+The SRCU domain is shared by all DRM devices, so synchronization also
+waits for existing drm_dev_enter() sections on other devices.
 
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pagefault.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_drv.c | 17 ++++++++++++++++-
+ include/drm/drm_drv.h     |  1 +
+ 2 files changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 5247321c805e..c9458688684b 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -270,6 +270,7 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_vm *vm;
- 	struct xe_vma *vma = NULL;
-+	int io_idx;
- 	int err;
- 	bool atomic;
- 	u32 asid = FIELD_GET(XE_PAGEFAULT_ASID_MASK, pf->consumer.id);
-@@ -278,13 +279,17 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
- 	if (pf->consumer.fault_type_level == XE_PAGEFAULT_TYPE_LEVEL_NACK)
- 		return -EFAULT;
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 0cdc606af8d1..0f25103e9037 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -476,6 +476,21 @@ void drm_dev_exit(int idx)
+ }
+ EXPORT_SYMBOL(drm_dev_exit);
  
-+	err = xe_device_io_get(xe, &io_idx);
-+	if (err)
-+		return err;
++/**
++ * drm_dev_srcu_synchronize - Drain device SRCU readers
++ * @dev: DRM device whose state change is being synchronized
++ *
++ * Wait for existing drm_dev_enter() users to finish.
++ *
++ * The SRCU domain is shared by all DRM devices. Readers for other DRM
++ * devices may also delay this function.
++ */
++void drm_dev_srcu_synchronize(struct drm_device *dev)
++{
++	synchronize_srcu(&drm_unplug_srcu);
++}
++EXPORT_SYMBOL(drm_dev_srcu_synchronize);
 +
- 	vm = xe_pagefault_asid_to_vm(pf, asid);
- 	if (IS_ERR(vm)) {
- 		err = PTR_ERR(vm);
- 		trace_xe_pagefault_fail(xe, NULL, NULL, asid,
- 					xe_pagefault_addr(pf),
- 					xe_pagefault_get_error(pf), err);
--		return err;
-+		goto out_io;
- 	}
- 
- 	xe_migrate_ulls_enter(gt_to_tile(gt)->migrate);
-@@ -328,6 +333,8 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
- 	up_read(&vm->lock);
- 	xe_vm_put(vm);
- 
-+out_io:
-+	xe_device_io_put(io_idx);
- 	return err;
+ /*
+  * Mark the device as unplugged and wait for any in-flight drm_dev_enter()
+  * critical sections to complete.
+@@ -489,7 +504,7 @@ static void drm_dev_synchronize_unplug(struct drm_device *dev)
+ 	 * finished.
+ 	 */
+ 	dev->unplugged = true;
+-	synchronize_srcu(&drm_unplug_srcu);
++	drm_dev_srcu_synchronize(dev);
  }
  
-@@ -517,6 +524,12 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
- 		    XE_PAGEFAULT_ALLOC_STATE_QUEUED)
- 			continue;
- 
-+		if (xe_device_io_blocked(xe)) {
-+			lpf->consumer.alloc_state =
-+				XE_PAGEFAULT_ALLOC_STATE_FREE;
-+			continue;
-+		}
-+
- 		if (xe_pagefault_try_chain(pf_queue, lpf))
- 			continue;
- 
+ /**
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index b23830494ed4..27361fbad6dc 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -482,6 +482,7 @@ void drm_dev_put(struct drm_device *dev);
+ void drm_put_dev(struct drm_device *dev);
+ bool drm_dev_enter(struct drm_device *dev, int *idx);
+ void drm_dev_exit(int idx);
++void drm_dev_srcu_synchronize(struct drm_device *dev);
+ void drm_dev_unplug(struct drm_device *dev);
+ int drm_dev_wedged_event(struct drm_device *dev, unsigned long method,
+ 			 struct drm_wedge_task_info *info);
 -- 
 2.43.0
 
