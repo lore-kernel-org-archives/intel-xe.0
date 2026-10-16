@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BA40CCA46D
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41B26CCA462
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34477112619;
-	Fri, 16 Oct 2026 07:19:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F218611261D;
+	Fri, 16 Oct 2026 07:19:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3B711261D
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:18:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62A04112624
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:19:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792135135; x=1823671135;
+ t=1792135142; x=1823671142;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=p/mGcePOWVNnPDSC0v491MbH5S7C1YcMGEa5abTPu+k=;
- b=lweZppnrRdIKb00B+6gGp4XEiLKBysfXMYXvuREu4vXZzmOW1c6CHLXX
- /5AK2O7CcQ2Jz4OtsDWyEFOdOp31xjZ8m4Mpfdh0Z0AZxm3tAVs8HoKq/
- rGWZdFzId+2eZl7174KX8AgEmpztth75VBKst/H2En17ljYvKz7no4sLv
- dO0bdopSfdpMf8UoEBINuU2sCNJ4JwngEFZupDA5GRDcL1AjKNA+CJ1aa
- D16yNJpDndazIKwsA06T8W9mUX03ZuYTQDm22NABNUaL66whVI3gf/BOr
- x/uHtHlxq2v4Lh1oWd1W5iestuHS1Gg1bM4Er6OrQF20hfeiViTZ/kStz A==;
-X-CSE-ConnectionGUID: HPNinZDYTveed1adqvDjbQ==
-X-CSE-MsgGUID: CuPlH3cnRDWNo1u3uIa0qQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813646"
+ bh=MR7PzklUFQKqbNANMjnt50S/S+piLkX76zb/gylRs8o=;
+ b=Ei+I3eejhnwBr4Pv8+2UZ40SdeGb77G5oulDkFVPio2n+HzXS7p7nk7u
+ QGGXpsUK03Xq9VXdPEgoZg3carGCPxUCFaGDlMUvu8hgQNAij1AlJbswZ
+ 8hHAoljG8yyYJUISQ3A4nVambyWkuoeSSmKDS5uk0tG6IWuSiS33c0PKe
+ To+9CHznjh8a1EffFMWakovOxGqd7Z0aDJ2uDi5oZ1BaFaYtmuZSH11hK
+ xJuwydNcg4B0xdN3HUgWycYf0XqrZfmL1Sz3/cZnYzOP4HBk5crY1Kh7Z
+ bl5h3jSHcSjiA9lOrjBLbeqXe4zNWpUAYSpm12bYwXGYs1MpnXUt3L+3M w==;
+X-CSE-ConnectionGUID: 0OkYJlOSSXyWtfM/LzuLTg==
+X-CSE-MsgGUID: 5/cYAufJSaGZHJLzNBs2Zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813656"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="813646"
+   d="scan'208";a="813656"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:49 -0700
-X-CSE-ConnectionGUID: dPpem4h1S4G7YmRHg6oF1g==
-X-CSE-MsgGUID: lX7BMOqxQCG6vfSNWv4tOw==
+ 16 Oct 2026 00:18:53 -0700
+X-CSE-ConnectionGUID: pCtRsA/yReW1ti5UQLVJiQ==
+X-CSE-MsgGUID: Sk2sEuuZSY65VvuHYId5Xg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="1787268"
+   d="scan'208";a="1787280"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:48 -0700
+ 16 Oct 2026 00:18:52 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI-only v3 08/18] drm/xe/ggtt: Skip GGTT updates on a wedged device
-Date: Fri, 16 Oct 2026 12:48:18 +0530
-Message-ID: <20261016071832.222574-9-arvind.yadav@intel.com>
+Subject: [CI-only v3 12/18] drm/xe: Invalidate existing VRAM mappings on wedge
+Date: Fri, 16 Oct 2026 12:48:22 +0530
+Message-ID: <20261016071832.222574-13-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
 References: <20261016071832.222574-1-arvind.yadav@intel.com>
@@ -66,78 +66,89 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 DO NOT REVIEW
 
-ggtt_node_remove() checks whether the GGTT is online, but does not
-check whether the device is wedged. It can still clear entries and
-request invalidation after wedge isolation.
+CPU mappings created before a device wedge can keep valid PTEs and
+continue accessing VRAM. Mapping new faults to a dummy page does not
+replace these existing mappings.
 
-Keep GGTT hardware cleanup inside drm_dev_enter()/drm_dev_exit() and
-check the wedge state there. Isolation can then drain cleanup admitted
-before the wedge. Node removal and drm_mm bookkeeping still run when
-hardware access is skipped.
+Use the common device I/O SRCU gate to wait for active CPU faults to
+finish. Then invalidate all tracked VRAM mappings. Faults starting
+after the wedge use the per-BO dummy page.
 
-Keep the existing GGTT cleanup behaviour during PCI error recovery.
+This ensures userspace is notified only after existing VRAM mappings
+have been removed.
+
+v2:
+- Drain active faults before invalidating VRAM mappings
+
+v3:
+- Use the common DRM device SRCU gate instead of a separate VRAM fault
+  SRCU domain.
 
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 26 ++++++++++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c     | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h     |  1 +
+ drivers/gpu/drm/xe/xe_device.c |  4 ++++
+ 3 files changed, 25 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 63e8bf193605..25880e896778 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -20,6 +20,7 @@
- #include "regs/xe_regs.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
-+#include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
-@@ -472,13 +473,13 @@ static void ggtt_node_fini(struct xe_ggtt_node *node)
- 	kfree(node);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 20dcaf4cb9f1..e5f8c8b6db94 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -4235,6 +4235,26 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+ 	list_del_init(&bo->vram_userfault_link);
  }
  
--static void ggtt_node_remove(struct xe_ggtt_node *node)
-+static void __ggtt_node_remove(struct xe_ggtt_node *node, bool clear_hw)
- {
- 	struct xe_ggtt *ggtt = node->ggtt;
- 	bool bound;
- 
- 	mutex_lock(&ggtt->lock);
--	bound = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
-+	bound = clear_hw && (ggtt->flags & XE_GGTT_FLAGS_ONLINE);
- 	if (bound)
- 		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
- 	drm_mm_remove_node(&node->base);
-@@ -493,6 +494,27 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
- 	ggtt_node_fini(node);
- }
- 
-+static void ggtt_node_remove(struct xe_ggtt_node *node)
++/**
++ * xe_bo_wedged_invalidate_mmaps - Invalidate CPU mappings backed by VRAM
++ * @xe: xe device instance
++ *
++ * The caller must drain the common device I/O gate before calling this
++ * function. Remove all tracked VRAM mappings so later faults map the
++ * per-BO dummy page.
++ */
++void xe_bo_wedged_invalidate_mmaps(struct xe_device *xe)
 +{
-+	struct xe_device *xe = tile_to_xe(node->ggtt->tile);
-+	int idx;
++	struct xe_bo *bo, *next;
 +
-+	/*
-+	 * GGTT updates write page table entries through the BAR and request a
-+	 * TLB invalidation. Skip them after unplug, where the BAR is gone.
-+	 * Keep them during PCI error recovery so a recovered device does not
-+	 * inherit stale GGTT entries.
-+	 */
-+	if (!drm_dev_enter(&xe->drm, &idx)) {
-+		__ggtt_node_remove(node, false);
-+		return;
-+	}
-+
-+	__ggtt_node_remove(node, !xe_device_wedged(xe));
-+
-+	drm_dev_exit(idx);
++	mutex_lock(&xe->mem_access.vram_userfault.lock);
++	list_for_each_entry_safe(bo, next,
++				 &xe->mem_access.vram_userfault.list,
++				 vram_userfault_link)
++		xe_bo_runtime_pm_release_mmap_offset(bo);
++	mutex_unlock(&xe->mem_access.vram_userfault.lock);
 +}
 +
- static void ggtt_node_remove_work_func(struct work_struct *work)
- {
- 	struct xe_ggtt_node *node = container_of(work, typeof(*node),
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_bo.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 77b3a02e9b8e..3bd19866819c 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -453,6 +453,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
+ 			     struct drm_file *file);
+ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
++void xe_bo_wedged_invalidate_mmaps(struct xe_device *xe);
+ 
+ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 		      struct drm_device *dev,
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 7010d1320f8d..82743ca2d3f8 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -936,6 +936,10 @@ static void xe_device_wedged_work(struct work_struct *work)
+ 	unsigned long method;
+ 	int err;
+ 
++	/* Drain active faults before invalidating VRAM mappings. */
++	xe_device_io_drain(xe);
++	xe_bo_wedged_invalidate_mmaps(xe);
++
+ 	/* Report at most one recovery method per worker invocation. */
+ 	method = READ_ONCE(xe->wedged.method);
+ 	if (method != READ_ONCE(xe->wedged.reported_method)) {
 -- 
 2.43.0
 
