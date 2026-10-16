@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41B26CCA462
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D283CC6B38
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F218611261D;
-	Fri, 16 Oct 2026 07:19:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A826112624;
+	Fri, 16 Oct 2026 07:19:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62A04112624
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:19:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 455C5112620
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:19:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792135142; x=1823671142;
+ t=1792135140; x=1823671140;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=MR7PzklUFQKqbNANMjnt50S/S+piLkX76zb/gylRs8o=;
- b=Ei+I3eejhnwBr4Pv8+2UZ40SdeGb77G5oulDkFVPio2n+HzXS7p7nk7u
- QGGXpsUK03Xq9VXdPEgoZg3carGCPxUCFaGDlMUvu8hgQNAij1AlJbswZ
- 8hHAoljG8yyYJUISQ3A4nVambyWkuoeSSmKDS5uk0tG6IWuSiS33c0PKe
- To+9CHznjh8a1EffFMWakovOxGqd7Z0aDJ2uDi5oZ1BaFaYtmuZSH11hK
- xJuwydNcg4B0xdN3HUgWycYf0XqrZfmL1Sz3/cZnYzOP4HBk5crY1Kh7Z
- bl5h3jSHcSjiA9lOrjBLbeqXe4zNWpUAYSpm12bYwXGYs1MpnXUt3L+3M w==;
-X-CSE-ConnectionGUID: 0OkYJlOSSXyWtfM/LzuLTg==
-X-CSE-MsgGUID: 5/cYAufJSaGZHJLzNBs2Zg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813656"
+ bh=t+sogV/9UNpcL26pZbsOHBRpvL/O60z6BNC/tsL2kS8=;
+ b=UinG27QqkkSMQE0MLDRetntMbT0/wM22lI37htS9FaMvPEf+z5pD7W8H
+ rOTVkKensDhhpRJEJxxIN+iVa4pKAQzvwYr7IL7UD9/y/1LitLaX/O0fl
+ Hxk/+oEfJUkKMnlMyOyR4A3axODqZll5uWuUiHb5tZ0pPCeCZueRLPTl2
+ rLiDNZ2uD+RdAeC2rBaW4zL17KlwTxDA3EL8dC4RQIbbekm3VRwltEs63
+ xZUr8+bMGcl9S20lIYL24ZKQUsktVmzbRUgcGxQ8oyKgqBOhElk3OG+/9
+ eSs/hdrYW050VZo7pWLskrQiGBtatrh/O3fv1SpOJMKsgvGyFQBlPVe2Q A==;
+X-CSE-ConnectionGUID: 92hpbg0JSDGt9H3VB95LXA==
+X-CSE-MsgGUID: 8Atnvk8eSFyheTsyTvaPAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813655"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="813656"
+   d="scan'208";a="813655"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:53 -0700
-X-CSE-ConnectionGUID: pCtRsA/yReW1ti5UQLVJiQ==
-X-CSE-MsgGUID: Sk2sEuuZSY65VvuHYId5Xg==
+ 16 Oct 2026 00:18:52 -0700
+X-CSE-ConnectionGUID: zD32+aHRSZmeFZxKeNVL+g==
+X-CSE-MsgGUID: aeyNKnHwQS6XUFl2wzmHww==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="1787280"
+   d="scan'208";a="1787277"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:52 -0700
+ 16 Oct 2026 00:18:51 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI-only v3 12/18] drm/xe: Invalidate existing VRAM mappings on wedge
-Date: Fri, 16 Oct 2026 12:48:22 +0530
-Message-ID: <20261016071832.222574-13-arvind.yadav@intel.com>
+Subject: [CI-only v3 11/18] drm/xe: Reuse one dummy page per BO after wedge
+Date: Fri, 16 Oct 2026 12:48:21 +0530
+Message-ID: <20261016071832.222574-12-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
 References: <20261016071832.222574-1-arvind.yadav@intel.com>
@@ -66,89 +66,121 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 DO NOT REVIEW
 
-CPU mappings created before a device wedge can keep valid PTEs and
-continue accessing VRAM. Mapping new faults to a dummy page does not
-replace these existing mappings.
+ttm_bo_vm_dummy_page() allocates a page and a managed cleanup action on
+every call. These allocations remain until the DRM device is released,
+so repeated fallback faults can retain many pages.
 
-Use the common device I/O SRCU gate to wait for active CPU faults to
-finish. Then invalidate all tracked VRAM mappings. Faults starting
-after the wedge use the per-BO dummy page.
+Keep one zeroed dummy page in each Xe BO and reuse it when device I/O is
+blocked or the device is unplugged. Use cmpxchg() to handle concurrent
+faults and free the page when the BO is destroyed.
 
-This ensures userspace is notified only after existing VRAM mappings
-have been removed.
+A per-BO page also prevents writable mappings from different BOs from
+sharing data.
+
+Map only the faulting address and return the insertion result directly.
+Other addresses fault on demand and reuse the same dummy page.
+This avoids walking a potentially large VMA during a single fault.
 
 v2:
-- Drain active faults before invalidating VRAM mappings
+ - Drop whole-VMA prefaulting and map only the faulting address to avoid
+   long fault-handler runtimes on large mappings. (Sashiko)
 
 v3:
-- Use the common DRM device SRCU gate instead of a separate VRAM fault
-  SRCU domain.
+ - Map the dummy RAM page with normal WB protection. (Sashiko)
 
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c     | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h     |  1 +
- drivers/gpu/drm/xe/xe_device.c |  4 ++++
- 3 files changed, 25 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c       | 33 +++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_bo_types.h |  4 ++++
+ 2 files changed, 36 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 20dcaf4cb9f1..e5f8c8b6db94 100644
+index 7ee0eade172a..20dcaf4cb9f1 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -4235,6 +4235,26 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
- 	list_del_init(&bo->vram_userfault_link);
+@@ -1994,6 +1994,9 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 		list_del(&bo->vram_userfault_link);
+ 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
+ 
++	if (bo->wedged_dummy_page)
++		__free_page(bo->wedged_dummy_page);
++
+ 	kfree(bo);
  }
  
-+/**
-+ * xe_bo_wedged_invalidate_mmaps - Invalidate CPU mappings backed by VRAM
-+ * @xe: xe device instance
-+ *
-+ * The caller must drain the common device I/O gate before calling this
-+ * function. Remove all tracked VRAM mappings so later faults map the
-+ * per-BO dummy page.
-+ */
-+void xe_bo_wedged_invalidate_mmaps(struct xe_device *xe)
+@@ -2189,6 +2192,32 @@ static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_devic
+ 	return ret;
+ }
+ 
++static vm_fault_t xe_bo_vm_dummy_page(struct vm_fault *vmf, struct xe_bo *bo)
 +{
-+	struct xe_bo *bo, *next;
++	struct vm_area_struct *vma = vmf->vma;
++	struct page *page, *old;
++	pgprot_t prot = vm_get_page_prot(vma->vm_flags);
++	unsigned long pfn;
 +
-+	mutex_lock(&xe->mem_access.vram_userfault.lock);
-+	list_for_each_entry_safe(bo, next,
-+				 &xe->mem_access.vram_userfault.list,
-+				 vram_userfault_link)
-+		xe_bo_runtime_pm_release_mmap_offset(bo);
-+	mutex_unlock(&xe->mem_access.vram_userfault.lock);
++	page = READ_ONCE(bo->wedged_dummy_page);
++	if (!page) {
++		page = alloc_page(GFP_KERNEL | __GFP_ZERO);
++		if (!page)
++			return VM_FAULT_OOM;
++
++		old = cmpxchg(&bo->wedged_dummy_page, NULL, page);
++		if (old) {
++			__free_page(page);
++			page = old;
++		}
++	}
++
++	pfn = page_to_pfn(page);
++
++	/* Map other addresses on demand instead of walking the whole VMA. */
++	return vmf_insert_pfn_prot(vma, vmf->address, pfn, prot);
 +}
 +
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_bo.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 77b3a02e9b8e..3bd19866819c 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -453,6 +453,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 			     struct drm_file *file);
- void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
-+void xe_bo_wedged_invalidate_mmaps(struct xe_device *xe);
+ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+ {
+ 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
+@@ -2204,7 +2233,7 @@ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+ 	int io_idx;
  
- int xe_bo_dumb_create(struct drm_file *file_priv,
- 		      struct drm_device *dev,
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 7010d1320f8d..82743ca2d3f8 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -936,6 +936,10 @@ static void xe_device_wedged_work(struct work_struct *work)
- 	unsigned long method;
- 	int err;
+ 	if (xe_device_io_get(xe, &io_idx))
+-		return ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
++		return xe_bo_vm_dummy_page(vmf, bo);
  
-+	/* Drain active faults before invalidating VRAM mappings. */
-+	xe_device_io_drain(xe);
-+	xe_bo_wedged_invalidate_mmaps(xe);
+ 	ret = xe_bo_cpu_fault_fastpath(vmf, xe, bo, needs_rpm);
+ 	if (ret != VM_FAULT_RETRY)
+@@ -2494,6 +2523,8 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+ 			return bo;
+ 	}
+ 
++	bo->wedged_dummy_page = NULL;
 +
- 	/* Report at most one recovery method per worker invocation. */
- 	method = READ_ONCE(xe->wedged.method);
- 	if (method != READ_ONCE(xe->wedged.reported_method)) {
+ 	bo->ccs_cleared = false;
+ 	bo->tile = tile;
+ 	bo->flags = flags;
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 8ec4a01a0092..80aeb4e31fe9 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -21,6 +21,7 @@ struct xe_device;
+ struct xe_mem_pool_node;
+ struct xe_vm;
+ struct xe_exec_queue;
++struct page;
+ 
+ #define XE_BO_MAX_PLACEMENTS	3
+ 
+@@ -112,6 +113,9 @@ struct xe_bo {
+ 	/** @vram_userfault_link: Link into @mem_access.vram_userfault.list */
+ 	struct list_head vram_userfault_link;
+ 
++	/** @wedged_dummy_page: Zeroed page used for faults after device wedge */
++	struct page *wedged_dummy_page;
++
+ 	/**
+ 	 * @min_align: minimum alignment needed for this BO if different
+ 	 * from default
 -- 
 2.43.0
 
