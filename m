@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 475C2CC6B38
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5234ACCA46D
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 07:19:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 033C8112612;
-	Fri, 16 Oct 2026 07:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0308411260A;
+	Fri, 16 Oct 2026 07:19:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 124D611261A
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:18:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 027AB112612
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 07:18:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792135130; x=1823671130;
+ t=1792135134; x=1823671134;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=fOobEKSvLlUePPHRUTOARtHoq9Lv6forYhdzEIArc5s=;
- b=mMoN0+9WqKE+sb+9XU/kd9yGQFiqCmqqC1g10kxz4AVrV2H2cux86WcV
- UsVNT0w6pz03rIOmhs8qQBYeNAC8JHAwVxYJQ2FqohloP1R2HNsJWUG8H
- EmWb4L46KZiLUabDeqlakr06X/Aa/uFcWu4j/GMhpELUzQsstJhGGAWig
- OOxU4oU8Nnt3d+/hwnfc4wJTce7zkzcfRRRDLjA5jXZQ108zMrKqMsVPr
- 8HNtlptOzsJm94FuwUNWQY7g4ZLEetOOa9X0e7H0eMLxWdhGPsKH0v+ka
- l2i9TtC0Bjljemb4maXIJThEzDy3YkZ8+OaZe4w9C0QLRIiA1XlE+VMWB g==;
-X-CSE-ConnectionGUID: 0uAgM/45Sde2T3/zeGI58A==
-X-CSE-MsgGUID: LvjZj6zmSuyz5CATOil8FQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813638"
+ bh=pV1p2Mg4xz3zkjioG93s/zSXrVcy8nInqSa4ZsvacD8=;
+ b=I/dlHNmZME5oIySurBe4DGkE/wuqiqU0gFl/wcCy+HG7j/BJ3cP9Rx5O
+ pW0TNNDuSfREyEGhTk6q+lr5ye3VvKcYAwpfQ1YbMPTpwVhIZ+HK1zfgC
+ GuaH7R4lGejjwlYhQRxi0Og2m+8TFXeQejJ4HDv6GPxMiMZsnpBcwGSX5
+ TLz8earoQ3hKAshiCMOWRWAR3rhW/s2Pl2WbsxRdTSuSs7etzkoUkloYR
+ MZaGKEaDdgCjsP78pnUefSuji4GCvYet48PuZwPVz4kmHxVZ5hhnUifR+
+ pMOjSNqPnDebg5AN+XDTmxNURJGiPimsixxPVP1nrRVK0MG+pwNi2S0fn g==;
+X-CSE-ConnectionGUID: vZP4wJxcSR6s1XRoQB1NzA==
+X-CSE-MsgGUID: 2Lb8JtR3THGaeLr0BQxp2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="813645"
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="813638"
+   d="scan'208";a="813645"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:46 -0700
-X-CSE-ConnectionGUID: mndSjOi/SiKTBcsPwQKKeA==
-X-CSE-MsgGUID: BS2MAButSLaHG/QFYYX64w==
+ 16 Oct 2026 00:18:48 -0700
+X-CSE-ConnectionGUID: aL7jTYWnTeGBl9lIEivvaQ==
+X-CSE-MsgGUID: bEzRupv0QDC8YQCOHwDi3Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
-   d="scan'208";a="1787250"
+   d="scan'208";a="1787263"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 00:18:46 -0700
+ 16 Oct 2026 00:18:47 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI-only v3 05/18] drm/xe: Keep software waits outside the device I/O
- gate
-Date: Fri, 16 Oct 2026 12:48:15 +0530
-Message-ID: <20261016071832.222574-6-arvind.yadav@intel.com>
+Subject: [CI-only v3 07/18] drm/xe: Stop VM work when device I/O is blocked
+Date: Fri, 16 Oct 2026 12:48:17 +0530
+Message-ID: <20261016071832.222574-8-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261016071832.222574-1-arvind.yadav@intel.com>
 References: <20261016071832.222574-1-arvind.yadav@intel.com>
@@ -67,147 +66,156 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 DO NOT REVIEW
 
-xe_drm_ioctl() holds the device I/O gate across the whole ioctl.
-Software waits can wait for a fence that userspace has not submitted.
-Signalling GT fences cannot end these waits, so device I/O draining
-can hang during reset or wedge isolation.
+SVM fault handling and VM rebind work may still run when PCI error
+recovery starts or the device becomes permanently wedged. This work can
+validate BOs, update page tables or submit migration work after device
+I/O has been blocked.
 
-Release the outer gate before syncobj waits, syncobj transfers and
-Xe user-fence waits. Protect each Xe user-fence memory read with the
-gate, but release it before sleeping.
+Stop SVM fault handling, pagemap population, device-memory copies and
+preempt rebind work when device I/O is blocked.
 
-Wake Xe user-fence waiters when PCI recovery starts, the device wedges
-or the device is unplugged, so they can observe the blocked state.
+v2:
+ - Protect VM and SVM hardware access with the common SRCU gate (Thomas)
+ - Hold the gate across page-fault, migration and rebind work.
+ - Remove the racy device state checks (Matt)
+
+v3:
+ - Use DRM device SRCU for VM and SVM hardware access.
+ - Protect the SVM garbage collector worker with the common I/O gate.
+ - Keep the original TLB invalidation warning because cancellation is
+   converted to success by the lower layer.
 
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c          | 28 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pci_error.c       |  1 +
- drivers/gpu/drm/xe/xe_wait_user_fence.c | 12 ++++++++---
- 3 files changed, 38 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c | 26 +++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.c  | 11 +++++++++--
+ 2 files changed, 32 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 7c4f42ea83d0..0f319415055c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -232,6 +232,19 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 			  DRM_RENDER_ALLOW),
- };
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 909a602d091e..226dfa57cc06 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -12,6 +12,7 @@
+ #include <drm/ttm/ttm_bo.h>
  
-+static bool xe_drm_ioctl_is_wait(unsigned int cmd)
-+{
-+	switch (DRM_IOCTL_NR(cmd)) {
-+	case DRM_IOCTL_NR(DRM_IOCTL_SYNCOBJ_WAIT):
-+	case DRM_IOCTL_NR(DRM_IOCTL_SYNCOBJ_TIMELINE_WAIT):
-+	case DRM_IOCTL_NR(DRM_IOCTL_SYNCOBJ_TRANSFER):
-+	case DRM_IOCTL_NR(DRM_IOCTL_XE_WAIT_USER_FENCE):
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
- static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ #include "xe_bo.h"
++#include "xe_device.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_gt_stats.h"
+ #include "xe_log.h"
+@@ -457,9 +458,15 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
  {
- 	struct drm_file *file_priv = file->private_data;
-@@ -243,6 +256,12 @@ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
- 	if (ret)
- 		return ret;
+ 	struct xe_vm *vm = container_of(w, struct xe_vm,
+ 					svm.garbage_collector.work);
++	int io_idx;
  
-+	/* These waits must not hold up device I/O draining. */
-+	if (xe_drm_ioctl_is_wait(cmd)) {
-+		xe_device_io_put(io_idx);
-+		return drm_ioctl(file, cmd, arg);
-+	}
+ 	guard(rwsem_read)(&vm->lock);
 +
- 	scoped_cond_guard(xe_pm_runtime_ioctl,
- 			  ret = ACQUIRE_ERR(xe_pm_runtime_ioctl, &scope),
- 			  xe) {
-@@ -265,6 +284,12 @@ static long xe_drm_compat_ioctl(struct file *file, unsigned int cmd, unsigned lo
- 	if (ret)
- 		return ret;
- 
-+	/* These waits must not hold up device I/O draining. */
-+	if (xe_drm_ioctl_is_wait(cmd)) {
-+		xe_device_io_put(io_idx);
-+		return drm_compat_ioctl(file, cmd, arg);
-+	}
++	if (xe_device_io_get(vm->xe, &io_idx))
++		return;
 +
- 	scoped_cond_guard(xe_pm_runtime_ioctl,
- 			  ret = ACQUIRE_ERR(xe_pm_runtime_ioctl, &scope),
- 			  xe) {
-@@ -1138,6 +1163,8 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	drm_dev_unplug(&xe->drm);
- 
-+	wake_up_all(&xe->ufence_wq);
-+
- 	xe_bo_pci_dev_remove_all(xe);
+ 	xe_svm_garbage_collector(vm);
++	xe_device_io_put(io_idx);
  }
  
-@@ -1437,6 +1464,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 	if (!atomic_xchg(&xe->wedged.flag, 1)) {
- 		xe->needs_flr_on_fini = true;
- 		xe_pm_runtime_get_noresume(xe);
-+		wake_up_all(&xe->ufence_wq);
- 
- 		xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
- 		xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index 3e06f504f1b3..3dfcef03850e 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -21,6 +21,7 @@ static void prepare_device_for_reset(struct pci_dev *pdev)
- 
- 	/* Block device access until PCI error recovery completes. */
- 	xe_device_set_in_reset(xe);
-+	wake_up_all(&xe->ufence_wq);
- 
- 	for_each_gt(gt, xe, id)
- 		xe_gt_declare_wedged(gt);
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-index e241f3ec3547..b5239c002368 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-@@ -14,13 +14,19 @@
- #include "xe_macros.h"
- #include "xe_exec_queue.h"
- 
--static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
-+static int do_compare(struct xe_device *xe, u64 addr, u64 value, u64 mask, u16 op)
- {
- 	u64 rvalue;
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+@@ -600,6 +607,8 @@ static int xe_svm_copy(struct page **pages,
+ #define XE_VRAM_ADDR_INVALID	~0x0ull
+ 	u64 vram_addr = XE_VRAM_ADDR_INVALID;
+ 	int err = 0, pos = 0;
++	bool io_held = false;
 +	int io_idx;
- 	int err;
- 	bool passed;
+ 	bool sram = dir == XE_SVM_COPY_TO_SRAM;
+ 	ktime_t start = xe_gt_stats_ktime_get();
  
-+	err = xe_device_io_get(xe, &io_idx);
+@@ -630,6 +639,12 @@ static int xe_svm_copy(struct page **pages,
+ 			vr = xe_page_to_vr(spage);
+ 			gt = xe_migrate_exec_queue(vr->migrate)->gt;
+ 			xe = vr->xe;
++
++			err = xe_device_io_get(xe, &io_idx);
++			if (err)
++				goto err_out;
++
++			io_held = true;
+ 		}
+ 		XE_WARN_ON(spage && xe_page_to_vr(spage) != vr);
+ 
+@@ -750,6 +765,9 @@ static int xe_svm_copy(struct page **pages,
+ 	if (pre_migrate_fence)
+ 		dma_fence_wait(pre_migrate_fence, false);
+ 
++	if (io_held)
++		xe_device_io_put(io_idx);
++
+ 	/*
+ 	 * XXX: We can't derive the GT here (or anywhere in this functions, but
+ 	 * compute always uses the primary GT so accumulate stats on the likely
+@@ -1124,8 +1142,9 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 	struct xe_bo *bo;
+ 	int err = 0, idx;
+ 
+-	if (!drm_dev_enter(&xe->drm, &idx))
+-		return -ENODEV;
++	err = xe_device_io_get(xe, &idx);
 +	if (err)
 +		return err;
+ 
+ 	xe_pm_runtime_get(xe);
+ 
+@@ -1167,7 +1186,8 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 		xe_bo_put(bo);
+ 	}
+ 	xe_pm_runtime_put(xe);
+-	drm_dev_exit(idx);
 +
- 	err = copy_from_user(&rvalue, u64_to_user_ptr(addr), sizeof(rvalue));
-+	xe_device_io_put(io_idx);
++	xe_device_io_put(idx);
+ 
+ 	return err;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 095f762bbb6f..a9882a22b34e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -512,6 +512,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	unsigned int fence_count = 0;
+ 	LIST_HEAD(preempt_fences);
+ 	int err = 0;
++	int io_idx;
+ 	long wait;
+ 	int __maybe_unused tries = 0;
+ 
+@@ -545,6 +546,12 @@ static void preempt_rebind_work_func(struct work_struct *w)
  	if (err)
- 		return -EFAULT;
+ 		goto out_unlock_outer;
  
-@@ -136,7 +142,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
++	if (xe_device_io_get(vm->xe, &io_idx)) {
++		xe_validation_ctx_fini(&ctx);
++		err = 0;
++		goto out_unlock_outer;
++	}
++
+ 	drm_exec_until_all_locked(&exec) {
+ 		bool done = false;
  
- 	add_wait_queue(&xe->ufence_wq, &w_wait);
- 	for (;;) {
--		err = do_compare(addr, args->value, args->mask, args->op);
-+		err = do_compare(xe, addr, args->value, args->mask, args->op);
- 		if (err <= 0)
- 			break;
+@@ -552,8 +559,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 		drm_exec_retry_on_contention(&exec);
+ 		xe_validation_retry_on_oom(&ctx, &err);
+ 		if (err || done) {
+-			xe_validation_ctx_fini(&ctx);
+-			goto out_unlock_outer;
++			goto out_unlock;
+ 		}
+ 	}
  
-@@ -155,7 +161,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+@@ -599,6 +605,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
  
- 		if (!timeout) {
- 			LNL_FLUSH_WORKQUEUE(xe->ordered_wq);
--			err = do_compare(addr, args->value, args->mask,
-+			err = do_compare(xe, addr, args->value, args->mask,
- 					 args->op);
- 			if (err <= 0) {
- 				drm_dbg(&xe->drm, "LNL_FLUSH_WORKQUEUE resolved ufence timeout\n");
+ out_unlock:
+ 	xe_validation_ctx_fini(&ctx);
++	xe_device_io_put(io_idx);
+ out_unlock_outer:
+ 	if (err == -EAGAIN) {
+ 		trace_xe_vm_rebind_worker_retry(vm);
 -- 
 2.43.0
 
