@@ -4,48 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FAA7CCF2C1
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 14:07:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28A7FCCA46C
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 14:09:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 524F310E18E;
-	Fri, 16 Oct 2026 14:07:21 +0000 (UTC)
-Received: from sirius.syn-flut.de (sirius.syn-flut.de [94.125.25.230])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E21710E18E;
- Fri, 16 Oct 2026 14:07:15 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 39CED14156F; Fri, 16 Oct 2026 16:07:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kait2en.org; s=dkim;
- t=1792159632; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=h30Mgam/4jyLWJ5zVdT98NATHhJBxCWW+Pn6K6IZ+s0=;
- b=ffw1STN1isj/qT5sclaDatjVpllMYO9ibWpWLEKmlGpowZKD8FVSUCACMlLHqF50InaHrH
- 7Womja67fr9DkqaxYjHtYbkfceEZleHRDnr8a44RqrVh1keGLCX7OoJFW+tRoyjEHq66kY
- O1Iadtv8WOP+UM2FOaYjn1Dg/cql7NZrn2oYfx/t0/RXksFA62rae9H3jJdtX75B+SWQDO
- GdKggzPJ7/vWgrbPr0qiP8UYwiN3PG2gKqw1DMYg3MIQY/XRplJZkKPxaMKJ/XLd5FaZIO
- rQqMVc/QAZstwUaxl3vlkZIqWCCucl9gdR8QsERkfoHYh3gKfATuaFsCFg5+NQ==
-From: Alexander Fischer <alexander.fischer@kait2en.org>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Lukas Wunner <lukas@wunner.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- =?UTF-8?q?Andr=C3=A9=20Eikmeyer?= <andre.eikmeyer@kait2en.org>,
- Yossef Osman <yossef.osman@proton.me>,
- Alexander Fischer <alexander.fischer@kait2en.org>
-Subject: [PATCH v4] drm/i915/psr: enable PSR on Apple T2 eDP panels
-Date: Fri, 16 Oct 2026 16:07:07 +0200
-Message-ID: <20261016140707.1900947-1-alexander.fischer@kait2en.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20260916072558.147343-1-alexander.fischer@kait2en.org>
-References: <20260916072558.147343-1-alexander.fischer@kait2en.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D52F810E18E;
+	Fri, 16 Oct 2026 14:09:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63DC610E1AC
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 14:09:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792159788; x=1823695788;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=kP4nEbDknMU+UqBAZRRpIVKCv0DcNf8eTDxCGkwDKfc=;
+ b=fcE/XEBFEuxNM0qmmkBJc/b8n0y+VTNtE/ZmSSehn2ckjL0j/6K6PKBh
+ Swr0DsPyA0134opj1sKp/YxIhwbi/R8G1LnVwuetB1Pp9V2DgxngDYWbY
+ 1Uw+RNLYhYPRjMdC9hY1WY5Q/CMAjzY4mjOuVS2kKdA5/6SYb4XxGwk+S
+ LGq9vmDQ4Tm/bDYzBaEok8qf5JeHzSPbQc+WC+ztPxVHz5gbIqrVnlPGB
+ LfvxDBpFjq90vhK4iMFMdFVmLzEdEQ2NleSp1oSxIULr5hnCDNzW9XPb/
+ ziuEYZ771vnK4XEbBdH+c9zTBeax5mQ8S5QtPPXE6UHTkrt0gBVCFzhgs Q==;
+X-CSE-ConnectionGUID: 0iIRaFVGQDaYyDdBzQES5A==
+X-CSE-MsgGUID: lzTZ/maJTjW0i/bMOdaeYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11936"; a="829288"
+X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
+   d="scan'208";a="829288"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 07:09:47 -0700
+X-CSE-ConnectionGUID: W0aH3Z2dTiuYftWGSxAfBw==
+X-CSE-MsgGUID: Z5GGI263S2C1k6hjq9a/Qw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,161,1787036400"; 
+   d="scan'208";a="1951875"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.245.54])
+ ([10.245.245.54])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2026 07:09:46 -0700
+Message-ID: <4d1338d127bb9b77c8bc9a114c7c8740d2ec2780.camel@linux.intel.com>
+Subject: Re: [PATCH v4 3/4] drm/xe: Split the bo shrinker into purgeable and
+ non-purgeable shrinkers
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: sashiko-reviews@lists.linux.dev, intel-xe@lists.freedesktop.org
+Date: Fri, 16 Oct 2026 16:09:44 +0200
+In-Reply-To: <sashiko-outbox-174414@kernel.org>
+References: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
+ <20261016133523.3622-4-thomas.hellstrom@linux.intel.com>
+ <sashiko-outbox-174414@kernel.org>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,204 +70,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit 1035f4a65f58 ("drm/i915: Disable PSR in Apple panels")
-disabled PSR on all Apple sinks until i915 gained the required panel
-handling.
+On Fri, 2026-10-16 at 13:53 +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 2 potential
+> issue(s) to consider:
+> - [High] drm/xe: Use-After-Free of shrinker during DRM device
+> teardown
+> - [High] drm/xe: O(N^2) CPU lockup in purgeable shrinker due to
+> uncounted LRU skips
+> --
+>=20
+> commit 1e9348c2fe4768de2cf24e4dd9b6188400c84043
+> Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>=20
+> drm/xe: Split the bo shrinker into purgeable and non-purgeable
+> shrinkers
+>=20
+> This commit splits the single xe_shrinker into two independent
+> shrinker
+> instances: one for purgeable objects and another for non-purgeable
+> (shrinkable) objects. This allows the shrinker core to apply
+> different
+> reclaim pressures based on the varying costs of reclaiming these
+> object
+> types.
+>=20
+> > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
+> > b/drivers/gpu/drm/xe/xe_shrinker.c
+> > index 378022c37a57c..8e3fe675e0f34 100644
+> > --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+>=20
+> [ ... ]
+>=20
+> > @@ -216,63 +238,52 @@ static bool xe_shrinker_runtime_pm_get(struct
+> > xe_shrinker *shrinker, bool force,
+>=20
+> [ ... ]
+>=20
+> > -static unsigned long xe_shrinker_scan(struct shrinker *shrink,
+> > struct shrink_control *sc)
+> > +static unsigned long xe_shrinker_scan_purgeable(struct shrinker
+> > *shrink,
+> > +						struct
+> > shrink_control *sc)
+> > =C2=A0{
+> > =C2=A0	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
+> > =C2=A0	struct ttm_operation_ctx ctx =3D {
+> > =C2=A0		.interruptible =3D false,
+> > =C2=A0		.no_wait_gpu =3D ttm_bo_shrink_avoid_wait(),
+> > =C2=A0	};
+> > -	unsigned long nr_to_scan, nr_scanned =3D 0, freed =3D 0;
+> > +	unsigned long nr_to_scan =3D sc->nr_to_scan, nr_scanned =3D 0,
+> > freed =3D 0;
+> > =C2=A0	struct xe_bo_shrink_flags shrink_flags =3D {
+> > =C2=A0		.purge =3D true,
+> > -		/* Don't request writeback without __GFP_IO. */
+> > -		.writeback =3D !ctx.no_wait_gpu && (sc->gfp_mask &
+> > __GFP_IO),
+> > =C2=A0	};
+> > -	bool runtime_pm;
+> > -	bool purgeable;
+> > -	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
+> > -
+> > -	nr_to_scan =3D sc->nr_to_scan;
+> > -
+> > -	read_lock(&shrinker->lock);
+> > -	purgeable =3D !!shrinker->purgeable_pages;
+> > -	read_unlock(&shrinker->lock);
+> > =C2=A0
+> > -	/* Might need runtime PM. Try to wake early if it looks
+> > like it. */
+> > -	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker, false,
+> > nr_to_scan, can_backup);
+> > -
+> > -	if (purgeable && nr_scanned < nr_to_scan)
+> > -		xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> > -				 nr_to_scan, &nr_scanned, &freed);
+> > +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan,
+> > &nr_scanned, &freed);
+> > =C2=A0
+> > =C2=A0	sc->nr_scanned =3D nr_scanned;
+>=20
+> [Severity: High]
+> Can this cause an O(N^2) CPU lockup in the purgeable shrinker?
+>=20
+> When the memory reclaim core (do_shrink_slab) calls this purgeable
+> scan
+> routine under memory pressure, xe_shrinker_walk() iterates the LRU
+> list.
+>=20
+> However, non-purgeable BOs return -EBUSY and are skipped without
+> advancing
+> the scanned counter:
+>=20
+> drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
+> =C2=A0=C2=A0=C2=A0 ...
+> =C2=A0=C2=A0=C2=A0 if (!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) =
+||
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (flags.purge && !xe_tt->purgea=
+ble))
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EBUSY;
+> =C2=A0=C2=A0=C2=A0 ...
+> }
+>=20
+> drivers/gpu/drm/xe/xe_shrinker.c:__xe_shrinker_walk() {
+> =C2=A0=C2=A0=C2=A0 ...
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lret =
+=3D xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* Lik=
+e the TTM LRU walk, skip bos we can't shrink now.
+> */
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (lr=
+et =3D=3D -EBUSY)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 continue;
+> =C2=A0=C2=A0=C2=A0 ...
+> }
+>=20
+> Since the LRU cursor is initialized locally on each call and non-
+> purgeable
+> BOs do not increment nr_scanned, every batch rescans all leading
+> non-purgeable BOs without significantly advancing sc->nr_scanned.
+>=20
+> Will this force the shrinker core to repeatedly call this function,
+> processing the same leading non-purgeable BOs over and over again?
 
-An AUX trace on a MacBookPro16,2 running macOS 15.7.7 shows the
-following writes when the panel is powered on:
+This can't happen in practice since purgeable bos are always ordered
+before non-purgeable bos on the list.
 
-  DPCD 0x321 = 0x3c
-  DPCD 0x4d2 = 0x01
-  DPCD 0x4d1 = 0x03
-  DPCD 0x170 = 0x01 (DP_PSR_ENABLE without CRC verification)
+/Thomas
 
-Five seconds later, a write of 0x01 to DPCD 0x4d4 occurs between the
-BanksiaTcon FIFOEnter() and SRDEnter() events. This register is the
-vendor trigger for entering self refresh.
 
-With the three setup writes, CRC verification disabled, and the 0x4d4
-trigger added to i915's existing PSR enable sequence, the tested panels
-enter PSR1.
 
-Implement this handling as an i915 DPCD quirk. Match the Apple PCI
-subsystem vendor in the quirk table, and limit the quirk to Apple-OUI
-eDP sinks on systems containing an Apple T2. All other Apple sinks
-retain the existing NO_PSR quirk. Override the VBT PSR flag for
-matching panels because Apple leaves it clear.
-
-The same sink-side protocol may also be present on T1 and Apple silicon
-systems, but leave those systems unchanged until it has been tested
-with their display drivers.
-
-Tested on MacBookPro15,1, MacBookPro15,2, MacBookPro16,1,
-MacBookPro16,2 and MacBookAir9,1, covering four panel device IDs. All
-five enter PSR1 after boot and across suspend/resume, report
-DP_PSR_SINK_ACTIVE_SINK_SYNCED, and show no sink errors.
-
-Tested-by: André Eikmeyer <andre.eikmeyer@kait2en.org>
-Tested-by: Yossef Osman <yossef.osman@proton.me>
-Signed-off-by: Alexander Fischer <alexander.fischer@kait2en.org>
----
-v3 did not receive any review yet, so this rebases it onto current
-drm-tip. No functional changes.
-
-Changes in v4:
-- Rebase onto drm-tip; use drm_dp_dpcd_write_byte() for the new
-  writes to match the conversion of intel_psr.c
-
-Changes in v3:
-- Match the Apple PCI subsystem vendor in the DPCD quirk table
-  (Lukas Wunner)
-
-Changes in v2:
-- Use pci_dev_present() instead of pci_get_device()/pci_dev_put(),
-  which also drops the local PCI_DEVICE_ID define (Lukas Wunner)
----
- drivers/gpu/drm/i915/display/intel_psr.c    | 28 +++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_quirks.c | 28 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 55 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 00d0146b2..c3bde5b64 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -228,6 +228,9 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
- 
- 	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
- 	case I915_PSR_DEBUG_DEFAULT:
-+		if (intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE))
-+			return true;
-+
- 		return intel_dp_is_edp(intel_dp) ?
- 			connector->panel.vbt.psr.enable : true;
- 	case I915_PSR_DEBUG_DISABLE:
-@@ -667,7 +670,8 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
- 	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
- 		    connector->dp.psr_caps.dpcd[0]);
- 
--	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
-+	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR) &&
-+	    !intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE)) {
- 		drm_dbg_kms(display->drm,
- 			    "PSR support not currently available for this panel\n");
- 		return;
-@@ -807,19 +811,36 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 	drm_dp_dpcd_write_byte(&intel_dp->aux, PANEL_REPLAY_CONFIG3, panel_replay_config_3);
- }
- 
-+/* Undocumented Apple eDP sink registers */
-+#define APPLE_PSR_SETUP_1	0x321
-+#define APPLE_PSR_SETUP_2	0x4d2
-+#define APPLE_PSR_SETUP_3	0x4d1
-+#define APPLE_PSR_TRIGGER	0x4d4
-+
-+static void psr_apple_prepare_sink(struct intel_dp *intel_dp)
-+{
-+	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_1, 0x3c);
-+	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_2, 0x01);
-+	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_3, 0x03);
-+}
-+
- static void _psr_enable_sink(struct intel_dp *intel_dp,
- 			     const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	bool apple_psr = intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
- 	u8 val = 0;
- 
-+	if (apple_psr)
-+		psr_apple_prepare_sink(intel_dp);
-+
- 	if (crtc_state->has_sel_update) {
- 		val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
- 	} else {
- 		if (intel_dp->psr.link_standby)
- 			val |= DP_PSR_MAIN_LINK_ACTIVE;
- 
--		if (DISPLAY_VER(display) >= 8)
-+		if (DISPLAY_VER(display) >= 8 && !apple_psr)
- 			val |= DP_PSR_CRC_VERIFICATION;
- 	}
- 
-@@ -835,6 +856,9 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
- 
- 	val |= DP_PSR_ENABLE;
- 	drm_dp_dpcd_write_byte(&intel_dp->aux, DP_PSR_EN_CFG, val);
-+
-+	if (apple_psr)
-+		drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_TRIGGER, 0x01);
- }
- 
- static void intel_psr_enable_sink(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 7d7db774d..8e9c851c2 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -9,6 +9,7 @@
- 
- #include "intel_display_core.h"
- #include "intel_display_types.h"
-+#include "intel_dp.h"
- #include "intel_quirks.h"
- 
- static void intel_set_quirk(struct intel_display *display, enum intel_quirk_id quirk)
-@@ -100,6 +101,25 @@ static void quirk_disable_psr2(struct intel_display *display)
- 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
- }
- 
-+static void quirk_apple_psr_handshake(struct intel_dp *intel_dp)
-+{
-+	static const struct pci_device_id t2_ids[] = {
-+		/* Apple T2 */
-+		{PCI_DEVICE(PCI_VENDOR_ID_APPLE, 0x1801)},
-+		{}
-+	};
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	if (!intel_dp_is_edp(intel_dp))
-+		return;
-+
-+	if (!pci_dev_present(t2_ids))
-+		return;
-+
-+	intel_set_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
-+	drm_info(display->drm, "Applying Apple PSR handshake quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -289,6 +309,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
- 		.hook = quirk_disable_edp_panel_replay,
- 	},
-+	/* Apple T2 eDP panels */
-+	{
-+		.device = DEVICE_ID_ANY,
-+		.subsystem_vendor = PCI_VENDOR_ID_APPLE,
-+		.subsystem_device = PCI_ANY_ID,
-+		.sink_oui = SINK_OUI(0x00, 0x10, 0xfa),
-+		.hook = quirk_apple_psr_handshake,
-+	},
- };
- 
- void intel_init_quirks(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 970a4fe52..7b863d408 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -23,6 +23,7 @@ enum intel_quirk_id {
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
- 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
- 	QUIRK_DISABLE_PSR2,
-+	QUIRK_APPLE_PSR_HANDSHAKE,
- };
- 
- void intel_init_quirks(struct intel_display *display);
-
-base-commit: 5fe1ae49f9cd4c3e98bbf07d4b44adf672eb7e8b
--- 
-2.55.0
-
+>=20
+> > -	if (nr_scanned >=3D nr_to_scan || !can_backup)
+> > -		goto out;
+> > =C2=A0
+> > -	/* If we didn't wake before, try to do it now if needed.
+> > */
+> > -	if (!runtime_pm)
+> > -		runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker,
+> > true, 0, can_backup);
+> > +	return nr_scanned ? freed : SHRINK_STOP;
+> > +}
+>=20
+> [ ... ]
+>=20
+> > @@ -294,6 +305,7 @@ static void xe_shrinker_fini(struct drm_device
+> > *drm, void *arg)
+> > =C2=A0	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
+> > =C2=A0	xe_assert(shrinker->xe, !shrinker->populated_tts);
+> > =C2=A0	shrinker_free(shrinker->shrink);
+> > +	shrinker_free(shrinker->purge_shrink);
+> > =C2=A0	flush_work(&shrinker->pm_worker);
+> > =C2=A0	kfree(shrinker);
+> > =C2=A0}
+>=20
+> [Severity: High]
+> Does this kfree(shrinker) leave xe->mem.shrinker as a dangling
+> pointer?
+>=20
+> Because drmm actions execute in LIFO order upon device release,
+> xe_shrinker_fini() is called before xe_device_destroy().=20
+>=20
+> Later, xe_device_destroy() runs and calls xe_bo_dev_fini() which
+> flushes
+> the async_free workqueue. Pending BOs in the workqueue will have
+> their
+> final references dropped, leading to xe_ttm_tt_account_subtract():
+>=20
+> drivers/gpu/drm/xe/xe_bo.c:xe_ttm_tt_account_subtract() {
+> =C2=A0=C2=A0=C2=A0 ...
+> =C2=A0=C2=A0=C2=A0 if (xe_tt->purgeable)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_shrinker_mod_pages(xe->mem.=
+shrinker, 0, -(long)tt-
+> >num_pages, -1);
+> =C2=A0=C2=A0=C2=A0 else
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_shrinker_mod_pages(xe->mem.=
+shrinker, -(long)tt->num_pages,
+> 0, -1);
+> =C2=A0=C2=A0=C2=A0 ...
+> }
+>=20
+> Can this lead to a use-after-free and memory corruption when driver
+> unloads?
