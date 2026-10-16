@@ -4,128 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 080B9CCF2E5
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39FF1CCF2E6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95AF510EC6D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA76510EC46;
 	Mon, 19 Oct 2026 11:42:18 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E51810E2DC;
- Fri, 16 Oct 2026 15:12:42 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 5F41B601FF;
- Fri, 16 Oct 2026 15:12:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2F291F000C4;
- Fri, 16 Oct 2026 15:12:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792163561;
- bh=zExOvzSfNAOGhWyHayoCJYIMW12XGItswYYl/21/DBA=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=HeXH2eNd0qTi1KJWMDpX2qurIIHfELGudDOFsBVj38SK5hgtwRmtRu++Y/B5kYqqd
- A4blc5Fp2xS9ugu94PJEByj6vIlDtKLwiWnVuaMsxRz0Ir4yLDMdWRBi4NsEDJfgYI
- dTCWHHQPHA4O4L72QOauM8WSJ4JjVCneqoIAwA1rVTR79Lh6W41DTt4LcokcrG/DS7
- QghFRktl0qmqBt0Q2454sV5etB2cRZSEkJVEe4jVB1iPvoqhJu/FGnl3nmWT7TfuCi
- kYiPGdYgWB0PP3fl0nc6yx6ZWW1MUxK7rfa2DXZnz9GRXCns4+n+2ph4Izy2R1nkwe
- CPOLN30xIOzMQ==
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, Aun-Ali Zaidi <admin@kodeit.net>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, Liviu Dudau <liviu.dudau@arm.com>,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Joel Stanley <joel@jms.id.au>, Dave Airlie <airlied@redhat.com>,
- Jocelyn Falempe <jfalempe@redhat.com>,
- Francesco Dolcini <francesco@dolcini.it>,
- Ian Ray <ian.ray@gehealthcare.com>,
- Martyn Welch <martyn.welch@collabora.co.uk>,
- Peter Senna Tschudin <peter.senna@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>,
- Krzysztof Kozlowski <krzk@kernel.org>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Peter Griffin <peter.griffin@linaro.org>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org,
- Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>,
- Tian Tao <tiantao6@hisilicon.com>,
- Xinwei Kong <kong.kongxinwei@hisilicon.com>,
- Yongbang Shi <shiyongbang@huawei.com>, Dexuan Cui <decui@microsoft.com>,
- Long Li <longli@microsoft.com>,
- Saurabh Sengar <ssengar@linux.microsoft.com>, linux-hyperv@vger.kernel.org,
- Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sascha Hauer <s.hauer@pengutronix.de>, imx@lists.linux.dev,
- Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>,
- Icenowy Zheng <zhengxingda@iscas.ac.cn>,
- Jianmin Lv <lvjianmin@loongson.cn>, Mingcong Bai <jeffbai@aosc.io>,
- Qianhai Wu <wuqianhai@loongson.cn>, Xi Ruoyao <xry111@xry111.site>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Jessica Zhang <jesszhan0024@gmail.com>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- Gerd Hoffmann <kraxel@redhat.com>, spice-devel@lists.freedesktop.org,
- virtualization@lists.linux.dev,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- linux-renesas-soc@vger.kernel.org,
- Marcus Folkesson <marcus.folkesson@gmail.com>,
- Iker Pedrosa <ikerpedrosam@gmail.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Philippe Cornu <philippe.cornu@foss.st.com>,
- Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
- Yannick Fertre <yannick.fertre@foss.st.com>,
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>,
- linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>,
- Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org,
- Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>,
- LiangCheng Wang <zaq14760@gmail.com>,
- Alex Lanzano <lanzano.alex@gmail.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Chia-I Wu <olvaffe@gmail.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Melissa Wen <melissa.srw@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Ruben Wauters <rubenru09@aol.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Kevin Hilman <khilman@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>,
- Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org,
- Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Magnus Damm <magnus.damm@gmail.com>,
- Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Zack Rusin <zack.rusin@broadcom.com>, Aditya Garg <aditya.garg@linux.dev>
-Subject: Re: (subset) [PATCH 00/75] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-Date: Fri, 16 Oct 2026 17:12:34 +0200
-Message-ID: <179216354629.2387589.2597043397406887835.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
-References: <20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org>
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13F3110E354
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 18:45:51 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-5ba3ec92031so313881e87.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 11:45:50 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1792176349; cv=none;
+ d=google.com; s=arc-20260327;
+ b=ETkunaAy248VPjxzbSzwT1gDdY0EI4r3YyaByBvm0M0C9GOaR8k9YwlxD9ySO49QyG
+ aanDGK3be8r95ORWVWtIOJ3gItNgcyFyQaBHA+EwmMIvCTLwG2NZiVY77xoK22k3LaGK
+ UuinuK6yhh8Af52St6WWT7Q8p/D1OsWK9yO0bu10DGtMP/4Cmfoa7IBFSC9Gws+lmWjO
+ vlrXFS0iAHDsGwHZb7N4F5trqu+2yctX3PbN6kV+vxjxOPmJA7lUms8uWx+9eJuVAR2P
+ GedVpVE0ni1sSaBOT0mrutPji4W+QDEuB1pB3UHGBS6MMEdYPOkWd61J5JSxO3HUo/GG
+ 0cxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=cc:to:subject:message-id:date:from:references:in-reply-to
+ :mime-version:dkim-signature;
+ bh=k5fWdKR4KH1xJNhfX2EOMzlFvYwX5hK5uF++6d/eYyg=;
+ fh=OK5W32kx3H9VO2XMYbN3RU3l+Y/m/BQNik6CJv4eAfg=;
+ b=fTrABJRqH/qAAd5PetFhTaW/g7fIiEUPGKHj7hVMKCo6Bd6p7JEgFf3ns7muYoMdqL
+ lNgjyiN7C5K3xMKgTzaBNqdiQfYqn2f2rFkpM/SNBGa7a9/H/FkC8NgutdenK2gJ2S/B
+ I0ywgwggBy6vuVyxNdLEF6xTXAL/uyECu790NQMxzSmkMBzgdld+Weu9ZT6U+oaSX88i
+ rTdOxdiHB6P0VHubXscPOXKltB4bIvLdPocaGq+vD9CYJ0ONbSzqIeCWWsqD5FQ4lwAc
+ IBphTb8UlUm3mentUsDXKvYycO/i7zsq5RdEKeO7JkQpq05YxvzLyjc57rNaw7v4trJX
+ FOoQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1792176349; x=1792781149; darn=lists.freedesktop.org;
+ h=content-type:cc:to:subject:message-id:date:from:references
+ :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+ :reply-to:content-type;
+ bh=k5fWdKR4KH1xJNhfX2EOMzlFvYwX5hK5uF++6d/eYyg=;
+ b=Qdlg+0poJecree0ibpGXs05txzVcHbPQHLWd2jVoKqCthPZj63Aqu1vX1rRcxH3tjW
+ S55ZEPUrc/LIzA4tk7vV/z6T0vI4bPXACsldigGM7yRush5lNUS+i6nfjZMC9k72G/AP
+ qAncxIoMre8O/QArOK7AmQf8frEwhf+Ux/vBk/9mX3RCPdd53By/vbEQR8CwZb/IWVb6
+ ju3gcCpXrOQqRvseKsEWYUyC8zpLgG5Ia+OiBgFAuVxndsF97FEZ8L5X9zGWvGZxH9L3
+ gHVzgtdd17A5Y6Ck4xskK3tWS7MI8p/rr+An5JCVwc6plc/ZRcYpQg1Hk/mokABlKRaK
+ gvVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1792176349; x=1792781149;
+ h=content-type:cc:to:subject:message-id:date:from:references
+ :in-reply-to:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=k5fWdKR4KH1xJNhfX2EOMzlFvYwX5hK5uF++6d/eYyg=;
+ b=RtORwJOxy9zp/R7G1O5pMyMpAeq77ePDPRy8NCoInzk5V87WR+JoQhgOdbkxLKLI5c
+ wwnKkIGNBTmDTQzhAlHPQHLvQImbrjghcTaG8CKPTFmXk+IXnVJRd/orlaJ8o/2pnmzY
+ OKbWVm9SooGUYxNkjkc+XsK4JfmnLyCkQHC5AgTJX5xYh27ywlSLmoRK403i2J7W1Cvf
+ Yjc3Qva3fCOukU76w0eTOkM8GryNstHRtws3vqdV4KwEzJjrHcV1Fu+wnlrSyHZt4hTP
+ hzX5WoZ9NF+LMyccOWtUGFS4J7X7WLRU5OIzWqAz3943hfVi11v++AqifLP5aaRhhAyX
+ rJNw==
+X-Gm-Message-State: AFq9FYLJfgpywWGqbOHRXKjC9ZycthLM+6Fg4oU+zZgo6KP7PgiNjnlP
+ 7aRkNH27yXyKYiKwDqyaX0aexgFxzLb/QMmDnx7LS94gDJ5Gdi4HgQqvtXngyTjFpyvfJ/UplSq
+ eRe8I0OGHl2x5jUskpgQBIZpibB9zVU8=
+X-Gm-Gg: AYBFou0KEQc8Zo6azoBThDazALVmTUcCmhbHirsnmMZx2K35qwutyVaJYKm14z0b8jS
+ LnDUXIKjlR8+qdfHqPEpVXB+hFwzngqSbehsm+qhXnUtJzj/UZwrE9FwrpcIpd3N3RsKfiuDBM7
+ iZyK3JdmcaOBTW5BeQoNSOJ2K9BRU1EY7KvUIfFeYBLr0ApoeWAxDjLhJVlIMDQmcwjul+hJusR
+ ixmfvG6KyZc+PWysIlSUFqPJ//lQFWmSQVEVP5GfUxRNN/LJx8CqmhK86LM4JKerMP/FPjppvjd
+ 75/9Svr92fnYTGWVJ7Yk39/dAEL14uwb/uE7yksMU3sXjA0CJs9R3RS3b/A1jYfSUQ==
+X-Received: by 2002:a05:6512:3186:b0:5ba:3c60:b875 with SMTP id
+ 2adb3069b0e04-5be50a6a815mr115374e87.43.1792176348595; Fri, 16 Oct 2026
+ 11:45:48 -0700 (PDT)
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Fri, 16 Oct 2026 14:45:47 -0400
+Received: from 77377267392 named unknown by gmailapi.google.com with HTTPREST; 
+ Fri, 16 Oct 2026 14:45:47 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
+References: <CAN52AYstOLqaX_=_HBLEGKvcEmY+VGwKSbRRRyQbG4ytr6FD_A@mail.gmail.com>
+ <abc82e7191da4638c75ab87605fbe24e2667391d@intel.com>
+From: Jame Jao <jaojame6@gmail.com>
+Date: Fri, 16 Oct 2026 14:45:47 -0400
+X-Gm-Features: AclHuK-OtA8zd8ZD6yhVY0T3x9G8mkTyhTueDHPQ63C0vT3FG7zdrTKBiWs99JE
+Message-ID: <CAN52AYsR-SbHWKjnMP-ssTR6UfGHxqtP620MSH=SSw_=SWYW6w@mail.gmail.com>
+Subject: Re: [RESEND PATCH 0/5] platform/x86: bitland-mifs-wmi: MIFS v2
+ firmware support, Xiaomi Book Pro 14 2026
+To: jani.nikula@linux.intel.com
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ rodrigo.vivi@intel.com
+Content-Type: text/plain; charset="UTF-8"
 X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -141,22 +105,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 Oct 2026 19:26:23 +0200, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
-> 
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
-> 
-> [...]
+Hi Jani,
 
-Applied to misc/kernel.git (drm-misc-next)
+The VBT is attached, as you asked. I have not been able to file the bug
+yet: gitlab.freedesktop.org needs an account that is manually approved and
+I do not have one at the moment, so I cannot open the issue. As soon as the
+account is usable I will file it against drm/xe with the attachments and
+post the link in this thread.
 
-[02/75] drm/adp: Switch to drm_atomic_helper_connector_create_state
-        commit: db1de27aca30ebaad04aea74ac21e4c4fb531a37
+What the attached dump is:
 
-Thanks!
-Maxime
+  Source      /sys/kernel/debug/dri/0/i915_vbt (raw dump, read today)
+  Size        7680 bytes
+  First bytes "$VBT PANTHERLAKE"
+  sha256      1a0a08b81c48977efbf3f4ea0cc547d6bdf44569f95d88662c5593f24a5e2e4d
+
+Status of the report itself, so the issue can be assessed:
+
+  - The warning is present in the boot journal collected today:
+
+      xe 0000:00:02.0: [drm] Port A asks to use VBT vswing/preemph tables
+      WARNING: drivers/gpu/drm/i915/display/intel_bios.c:2813 at
+      intel_bios_init+0x17fd/0x1f60 [xe]
+
+  - Machine: XIAOMI REDMI Book Pro 14 2026, board TM2426, BIOS
+    RMAPT4B0P0909 (2026-05-21), Panther Lake / Arc B370,
+    PCI 8086:b081 rev 04.
+
+  - Kernel: 7.2.9-zen1-1.1-zen, Arch linux-zen package. It carries one
+    local downstream change that touches only bitland-mifs-wmi
+    suspend/resume error handling; graphics and input code are unmodified.
+    Please treat it as a downstream kernel. I have not reproduced on
+    mainline or drm-tip yet.
+
+  - Boot options in use: xe.enable_psr=0 xe.enable_panel_replay=0
+    i8042.dumbkbd=1.
+
+  - I have not collected the DRM debug journal (drm.debug=0xe
+    log_buf_len=4M ignore_loglevel) yet. I will collect it together with
+    the mainline test and add both to the issue.
+
+Thanks,
+Eason
+
+
+On Wed, 07 Oct 2026 15:19:13 +0300, Jani Nikula
+<jani.nikula@linux.intel.com> wrote:
+> On Wed, 07 Oct 2026, Jame Jao <jaojame6@gmail.com> wrote:
+> > I would like to report a WARNING that appears on every boot on a Panther
+> > Lake laptop, and that is also visible on screen (before the desktop comes
+> > up) when resuming from hibernation.
+>
+> Please file a bug as described at [1]. Please include the VBT.
+>
+> Thanks,
+> Jani.
+>
+> [1] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
+>
+> --
+> Jani Nikula, Intel
