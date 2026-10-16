@@ -4,39 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02DD0CC6B2D
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 03:33:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94B8DCC6B2D
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 03:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8E6910E3F9;
-	Fri, 16 Oct 2026 03:32:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E79810E3F9;
+	Fri, 16 Oct 2026 03:33:43 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601B210E3F9
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 03:32:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2203810E3F9
+ for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 03:33:37 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8CB00600D4;
- Fri, 16 Oct 2026 03:32:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1AA271F000C4;
- Fri, 16 Oct 2026 03:32:49 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 9926F600D4;
+ Fri, 16 Oct 2026 03:33:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 263D51F000C4;
+ Fri, 16 Oct 2026 03:33:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792121569;
- bh=7tlgf7MU8Sa+cCzlHHXeNo0DB+ordFB0Am6vZzscO9A=;
+ s=k20260515; t=1792121616;
+ bh=3Vn7IcoqNwqobVCgwMsvE+JeQCeRtUGVXB4qAaO38L4=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=hGTre7vpcmtn6qdL7nPo0wdXv49Cajtb8CCBwNELrTAG2/nxwsw0eESV4tPdk3JQO
- zn2jvJCHHcuxaH267PwLC2kaNFb0HkuCnlxzrGpvfXl+MfFjtd1Cr6r710AmoE1uMb
- /JjW4Dc+E0lI1JFuyAJydSlJMPkyT9/3sfv2UNXRTEPsZhwzMmLWUleDLHqst2CfaU
- YGwBoxhVJzqGNJXTyn9K3Denpn+HTny1kYCzKBgc+HYosJ6BxDkIH+QfQO7rDmOwFU
- dg4qrlM2Xw5ayXMlDTB5eNnGMdXkOZN9ii6pi4Luw2TvX2/oyAkSg6adZ5BAK1Dztm
- HZR5ev1Je1AOQ==
-Message-ID: <sashiko-outbox-173672@kernel.org>
+ b=leFc/t4JeAW3ocr4/SJ0d/NdKN54x+cjanpYuHbE4VaorKWvmQRcPgugdnOpXPwmd
+ +hBWAIQAMqVHu8AXJ/qH60/VAWX/JsdkIsFPWJTZ6S3coRyQUNm0xVhMlUAHhA7jcP
+ yhwKikmeR3SfSQPaX61e7M10W1dtjpPcdyFFza8UJJGqjEppxG/RbGwFtqua/5dfAv
+ C6RbBeLZ/bjaB59O61iHWrl7gUobOuegjThxWlOG18CpPBIGW/2D/2UV7gekbZl6rY
+ GeSSirvut+07MdngbvpbuJ12YOGodBxz/PmiuGdfEkB/d61jyH1EyVU7vDb1cgrrB1
+ xK/vcyg8GW9QQ==
+Message-ID: <sashiko-outbox-173675@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v9 1/7] drm/xe/gt: Use GT ordered workqueue for wedging
+Subject: Re: [PATCH v9 5/7] drm/xe/pci_error: Flush GT wedge worker before
+ bus reset
 To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261016031559.427941-2-raag.jadav@intel.com>
+In-Reply-To: <20261016031559.427941-6-raag.jadav@intel.com>
 References: <20261016031559.427941-1-raag.jadav@intel.com>
- <20261016031559.427941-2-raag.jadav@intel.com>
+ <20261016031559.427941-6-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 16 Oct 2026 03:32:48 +0000
+Date: Fri, 16 Oct 2026 03:33:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,76 +53,83 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/xe: gt_wedge_worker memory access assertion fails when device =
-is suspended
+- [High] drm/xe: panic in prepare_device_for_reset() on uninitialized work_=
+struct
+- [Medium] drm/xe: assertion failures in wedge path on PCI error
 --
 
-commit 375de707bf2e4590076210ea91f9aecb2bcce131
+commit 8e840959ff8a982016205caa862c674505ecb9c2
 Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe/gt: Use GT ordered workqueue for wedging
+drm/xe/pci_error: Flush GT wedge worker before bus reset
 
-This commit introduces a GT ordered workqueue for wedging to avoid tearing
-down exec queues synchronously and disrupting the scheduler while jobs are
-in-flight. It also uses the for_each_initialized_gt() macro to help avoid
-races if the device is declared wedged in the probe sequence.
+With GT wedging now done async, this commit makes sure the wedge worker
+is flushed to avoid side-effects during PCI bus reset.
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index bc9bf6f0b5a79..27f32627a1f9b 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-[ ... ]
-> @@ -1204,6 +1209,15 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe=
-_gt *gt)
->  	return NULL;
->  }
+> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pc=
+i_error.c
+> index e1b9dc5f0a6dc..a5c8fd67738cf 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_error.c
+> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+> @@ -30,8 +30,10 @@ static void prepare_device_for_reset(struct pci_dev *p=
+dev)
 > =20
-> +static void gt_wedge_worker(struct work_struct *w)
-> +{
-> +	struct xe_gt *gt =3D container_of(w, typeof(*gt), wedge.worker);
-> +
-> +	xe_device_assert_mem_access(gt_to_xe(gt));
+>  	xe_device_set_in_reset(xe);
+> =20
+> -	for_each_gt(gt, xe, id)
+> +	for_each_gt(gt, xe, id) {
+>  		xe_gt_declare_wedged(gt);
+
+[Severity: Medium]
+Will this trigger an assertion failure if a PCI error occurs when the device
+is configured with wedged_mode=3D0?
+
+If the user configures wedged_mode=3D0 (which resolves to XE_WEDGED_MODE_NE=
+VER),
+the device correctly skips GPU-hang wedging. However, when a PCI error forc=
+es
+a bus reset, prepare_device_for_reset() unconditionally calls
+xe_gt_declare_wedged() without checking the mode.
+
+Looking at xe_gt_declare_wedged() and downstream functions like
+xe_uc_declare_wedged() and xe_guc_declare_wedged(), they all contain assert=
+ions
+checking wedged.mode:
+
+void xe_gt_declare_wedged(struct xe_gt *gt)
+{
+	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
+...
+
+This will cause a cascade of kernel warnings if a PCI error is detected on a
+device with wedged_mode=3D0.
+
+> +		flush_work(&gt->wedge.worker);
 
 [Severity: High]
-Does this assertion safely hold in all contexts? The changelog mentions that
-v9 drops the runtime PM guard because callers already hold a reference.
-However, looking at the async callers that eventually invoke this worker,
-they don't seem to actively hold a runtime PM reference that guarantees the
-device is awake.
-
-For example, when an AMC alert is handled:
-
-drivers/gpu/drm/xe/xe_amc.c:xe_amc_work() {
-    ...
-    case AMC_ALERT_CATERR:
-        dev_warn(amc->i2c->drm_dev, "AMC Alert: %s\n",
-                 amc_alert[alert_reason]);
-        xe_device_declare_wedged(i2c_client_to_xe_device(client));
-        break;
-    ...
-}
-
-Inside xe_device_declare_wedged(), the code uses xe_pm_runtime_get_noresume=
-()
-and then loops over GTs to call xe_gt_declare_wedged(), which queues this
-worker. Since xe_pm_runtime_get_noresume() does not wake up a suspended
-device, couldn't this result in gt_wedge_worker() executing while the device
-is suspended, failing the xe_device_assert_mem_access() assertion and crash=
+Could this cause a panic by operating on a zero-initialized work_struct dur=
 ing
-the kernel?
+early probe?
 
-A similar pattern appears in
-drivers/gpu/drm/xe/xe_pci_error.c:prepare_device_for_reset(), which also us=
-es
-xe_pm_runtime_get_noresume() before invoking the wedge path.
+If a hardware error (AER) is detected during device probe,
+prepare_device_for_reset() can be called after xe_info_init() allocates the=
+ GT
+structures but before xe_device_probe() calls xe_gt_init_early() to initial=
+ize
+the wedge.worker.
 
-> +	xe_uc_declare_wedged(&gt->uc);
-> +	xe_tlb_inval_reset(&gt->tlb_inval);
-> +}
-> +
+Since for_each_gt() iterates over all allocated GTs rather than just the
+initialized ones, flush_work() could be called on an uninitialized work_str=
+uct,
+leading to a kernel oops or a WARN splat in __flush_work().
+
+> +	}
+> =20
+>  	pci_disable_device(pdev);
+>  }
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261016031559.4279=
-41-1-raag.jadav@intel.com?part=3D1
+41-1-raag.jadav@intel.com?part=3D5
