@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E84D2CC6B38
-	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 00:04:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22D13CC6B38
+	for <intel-xe@archiver.kernel.org>; Fri, 16 Oct 2026 00:41:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E0B210E0F7;
-	Fri, 16 Oct 2026 00:04:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC6AD10E0E6;
+	Fri, 16 Oct 2026 00:41:22 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5385710E0E6;
- Fri, 16 Oct 2026 00:04:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2552610E0E6;
+ Fri, 16 Oct 2026 00:41:21 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2606183335535086486=="
+ boundary="===============6076778248326674879=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_a_minimum_age?=
- =?utf-8?q?_gate_to_the_shrinker?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Some_d3cold_relat?=
+ =?utf-8?q?ed_fixes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 16 Oct 2026 00:04:55 -0000
-Message-ID: <179210909533.32562.5567354864061127253@221881a7231d>
+Date: Fri, 16 Oct 2026 00:41:21 -0000
+Message-ID: <179211128114.32618.9491005790225990670@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261015231733.624746-1-matthew.brost@intel.com>
-In-Reply-To: <20261015231733.624746-1-matthew.brost@intel.com>
+References: <20261015165451.154495-5-vinay.belgaumkar@intel.com>
+In-Reply-To: <20261015165451.154495-5-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,20 +40,20 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2606183335535086486==
+--===============6076778248326674879==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Add a minimum age gate to the shrinker
-URL   : https://patchwork.freedesktop.org/series/176251/
+Series: drm/xe: Some d3cold related fixes
+URL   : https://patchwork.freedesktop.org/series/176252/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67_BAT -> xe-pw-176251v1_BAT
+CI Bug Log - changes from xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67_BAT -> xe-pw-176252v1_BAT
 ====================================================
 
 Summary
@@ -70,38 +70,27 @@ Participating hosts (15 -> 15)
 
   No changes in participating hosts
 
-Known issues
-------------
 
-  Here are the changes found in xe-pw-176251v1_BAT that come from known issues:
+Changes
+-------
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176251v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+  No changes found
 
 
 Build changes
 -------------
 
-  * Linux: xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67 -> xe-pw-176251v1
+  * Linux: xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67 -> xe-pw-176252v1
 
   IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
   xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67: 9535f21e5e53e3f54e01125261d4c3875f161f67
-  xe-pw-176251v1: 176251v1
+  xe-pw-176252v1: 176252v1
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176251v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176252v1/index.html
 
---===============2606183335535086486==
+--===============6076778248326674879==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -121,40 +110,32 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add a minimum age gate to the shrinker</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176251/">https://patchwork.freedesktop.org/series/176251/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe: Some d3cold related fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176252/">https://patchwork.freedesktop.org/series/176252/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176251v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176251v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176252v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176252v1/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67_BAT -&gt; xe-pw-176251v1_BAT</h1>
+    <h1>CI Bug Log - changes from xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67_BAT -&gt; xe-pw-176252v1_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
 <h2>Participating hosts (15 -&gt; 15)</h2>
 <p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-176251v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176251v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-</ul>
-</li>
-</ul>
+<h2>Changes</h2>
+<p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67 -&gt; xe-pw-176251v1</li>
+<li>Linux: xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67 -&gt; xe-pw-176252v1</li>
 </ul>
 <p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
   xe-5956-9535f21e5e53e3f54e01125261d4c3875f161f67: 9535f21e5e53e3f54e01125261d4c3875f161f67<br />
-  xe-pw-176251v1: 176251v1</p>
+  xe-pw-176252v1: 176252v1</p>
 
 </body>
 </html>
 
---===============2606183335535086486==--
+--===============6076778248326674879==--
