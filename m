@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6266ACCA463
-	for <intel-xe@archiver.kernel.org>; Sat, 17 Oct 2026 03:19:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83643CC6B2A
+	for <intel-xe@archiver.kernel.org>; Sat, 17 Oct 2026 03:25:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 188F010E345;
-	Sat, 17 Oct 2026 03:19:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC08B10E345
- for <intel-xe@lists.freedesktop.org>; Sat, 17 Oct 2026 03:19:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792207150; x=1823743150;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oSS1/8MfTcoAblUcziWotPhaazU0ZcNOtq0XOOjRjwI=;
- b=kWbl/e1/jF+rxClteSgkvOgZdEWmkn+rVqv1Miz+GcqQqkTtw7GghK/u
- c0sRF+9NRSFP0o+GqhoNoEX1SeZa4EGLSOgr7AUb7NXjwKrqUfOi1R/Z/
- x3TpCCi+kPHIM88SrufRLYvmH5Thk+BGha8P6+ImmbFbD/203mqKyYaJ3
- jue9HS8LQ1cYti3qr4SexYV9pA7q8MU9SHUHN7WwVxYAG6hrRKVpVIBFw
- JviHaoFROq8FLmsIex1Ta58hIpirtYJpl3lrXIlDcw1NticGrR8KJY0bm
- amxk2HvJWKxHYUA4IiN9aMa64u/9TNwqK94M+D31wgCWh26GidQ0WaQNc Q==;
-X-CSE-ConnectionGUID: cW2BrkOGQJ+iX4TfurCmbg==
-X-CSE-MsgGUID: LOUPNoROR/WJDugs0EEsVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11937"; a="982112"
-X-IronPort-AV: E=Sophos;i="6.27,163,1787036400"; 
-   d="scan'208";a="982112"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 20:19:00 -0700
-X-CSE-ConnectionGUID: IkVcEftEQgOGgxZqi1G7tg==
-X-CSE-MsgGUID: rvMJaU7YRiOjwLW2bTwi+w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,163,1787036400"; 
-   d="scan'208";a="2556677"
-Received: from dut4072bmgfrd.fm.intel.com ([10.105.8.119])
- by fmviesa010.fm.intel.com with ESMTP; 16 Oct 2026 20:18:59 -0700
-From: Zongyao Bai <zongyao.bai@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com,
-	Zongyao Bai <zongyao.bai@intel.com>
-Subject: [PATCH 3/3] drm/xe/query: use delayed forcewake release for
- engine-cycle queries
-Date: Sat, 17 Oct 2026 03:18:56 +0000
-Message-ID: <20261017031856.2723986-4-zongyao.bai@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261017031856.2723986-1-zongyao.bai@intel.com>
-References: <20261017031856.2723986-1-zongyao.bai@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0773010E218;
+	Sat, 17 Oct 2026 03:25:39 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8033710E1F9;
+ Sat, 17 Oct 2026 03:25:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/forcewake=3A_add_d?=
+ =?utf-8?q?elayed_release_for_engine-cycle_queries?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zongyao Bai" <zongyao.bai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 17 Oct 2026 03:25:38 -0000
+Message-ID: <179220753851.36666.16019993305285378182@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261017031856.2723986-1-zongyao.bai@intel.com>
+In-Reply-To: <20261017031856.2723986-1-zongyao.bai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +36,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Engine-cycle queries are issued repeatedly by profilers such as VTune and
-PTI to correlate CPU and GPU timestamps, for example through Level Zero
-zeDeviceGetGlobalTimestamps(). Each query wakes the engine forcewake
-domain and puts it to sleep again, and waiting for both acknowledgments
-dominates the latency.
+== Series Details ==
 
-Release the domain with xe_force_wake_put_delay() so that a burst of
-queries reuses the awake domain instead of waking it again. Other forcewake
-users keep releasing immediately.
+Series: drm/xe/forcewake: add delayed release for engine-cycle queries
+URL   : https://patchwork.freedesktop.org/series/176324/
+State : warning
 
-Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
----
- drivers/gpu/drm/xe/xe_query.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index dc975f595368..86c4e1dfc101 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -157,7 +157,7 @@ query_engine_cycles(struct xe_device *xe,
- 
- 	fw_domain = xe_hw_engine_to_fw_domain(hwe);
- 
--	xe_with_force_wake(fw_ref, gt_to_fw(gt), fw_domain) {
-+	xe_with_force_wake_delay(fw_ref, gt_to_fw(gt), fw_domain) {
- 		if (!xe_force_wake_ref_has_domain(fw_ref.domains, fw_domain))
- 			return -EIO;
- 
--- 
-2.43.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b5beca4050ff309dbe33925729579bcff1a7e9e3
+Author: Zongyao Bai <zongyao.bai@intel.com>
+Date:   Sat Oct 17 03:18:56 2026 +0000
+
+    drm/xe/query: use delayed forcewake release for engine-cycle queries
+    
+    Engine-cycle queries are issued repeatedly by profilers such as VTune and
+    PTI to correlate CPU and GPU timestamps, for example through Level Zero
+    zeDeviceGetGlobalTimestamps(). Each query wakes the engine forcewake
+    domain and puts it to sleep again, and waiting for both acknowledgments
+    dominates the latency.
+    
+    Release the domain with xe_force_wake_put_delay() so that a burst of
+    queries reuses the awake domain instead of waking it again. Other forcewake
+    users keep releasing immediately.
+    
+    Signed-off-by: Zongyao Bai <zongyao.bai@intel.com>
++ /mt/dim checkpatch 173c9ebb628f22cdfb18e080e0ef46b728649f89 drm-intel
+c406eb511f73 drm/xe/forcewake: add delayed release with hysteresis
+-:310: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'done' - possible side-effects?
+#310: FILE: drivers/gpu/drm/xe/xe_force_wake.h:116:
++#define __xe_with_force_wake_delay(ref, fw, domains, done) \
++	for (CLASS(xe_force_wake_delay, ref)(fw, domains), *(done) = NULL; \
++	     !(done); (done) = (void *)1)
+
+total: 0 errors, 0 warnings, 1 checks, 327 lines checked
+a758900e8cf0 drm/xe/forcewake: flush delayed release at power and teardown boundaries
+b5beca4050ff drm/xe/query: use delayed forcewake release for engine-cycle queries
+
 
