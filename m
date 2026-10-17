@@ -4,55 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70A2FCC6B2A
-	for <intel-xe@archiver.kernel.org>; Sat, 17 Oct 2026 03:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D09B5CCA463
+	for <intel-xe@archiver.kernel.org>; Sat, 17 Oct 2026 04:01:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 074F910E324;
-	Sat, 17 Oct 2026 03:50:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F6EB10E2DD
- for <intel-xe@lists.freedesktop.org>; Sat, 17 Oct 2026 03:50:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792209004; x=1823745004;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ne4gf3D+91CeB7KSo+KVl/eLu5nBYINeGteMnUkRAqE=;
- b=JrK6RlGA3UkaSxPrVUSEeI6QQ4cWlVnWpicpdKojL8+gddhsxjKIjMH8
- xR+0BfsD+BJ7We41ebGWF4+QnAmQsBjCTHQbZJlnkKXCeXgtp8k92Nmfa
- wA43ip14Ch5DN6QlaioH5lR//+qrETzurAp6BUfuIZymfJNOpTaYq16MA
- kuM1LdXYOEEGVhnH1gDwdaElBGYwdnACLQdg/xjgfXyzuSd7QwU5Nffeh
- siwpAa7Zn9ISt6YIIYFjgNSKnJ4sfrsR3pga3VJXLwFa8WneXPRm4xl2k
- 8Au7Wino2hG7BsUqFEaA1h7lcO20sH4P7Dg3JFokgFpQes+RA6wdCur8r w==;
-X-CSE-ConnectionGUID: PxHq7lAZS8OSr9xJhV/wxQ==
-X-CSE-MsgGUID: nvMOKI8MR020hKyS9bZyxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11937"; a="1011725"
-X-IronPort-AV: E=Sophos;i="6.27,163,1787036400"; 
-   d="scan'208";a="1011725"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2026 20:50:03 -0700
-X-CSE-ConnectionGUID: UyWpj+f0RNGV6UkGCEM3aA==
-X-CSE-MsgGUID: U6WLfl7sTHiIEqlK4EHo4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,163,1787036400"; 
-   d="scan'208";a="2154389"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa003.fm.intel.com with ESMTP; 16 Oct 2026 20:50:00 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
- matthew.d.roper@intel.com, matthew.brost@intel.com,
- mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v11 9/9] drm/xe/ras: Move xe_ras_process_errors() to xe_ras
-Date: Sat, 17 Oct 2026 09:17:46 +0530
-Message-ID: <20261017034842.67054-10-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261017034842.67054-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5345810E1E5;
+	Sat, 17 Oct 2026 04:01:00 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9619110E1F9
+ for <intel-xe@lists.freedesktop.org>; Sat, 17 Oct 2026 04:00:54 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4D5BE408E9;
+ Sat, 17 Oct 2026 04:00:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D230E1F000C4;
+ Sat, 17 Oct 2026 04:00:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1792209654;
+ bh=b+7++6ajfvxyLdn2/TZde+yZqHVZIUInY1aMG4iCs7U=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=jXaBatyDzzKeOhDvoAx07hfmWOZ6x/zxtsOIpd7D2DWbMfNVwLBKDG/+ZqFMq3tZr
+ F17c0D02SWsIxNm4yy4rmlmGkb+dVyEzS9wzd8cFsG4nSNb0WddctBKntqhwrtQ2sh
+ +LSVDMuARfm26fSacu2IhbFjfOy/ZLNIHm7+yzQn1gOUxXEYuOaQcZ4UejYYr8bA+n
+ vCy7NYREybTqXm0B8jYpKBIFppsDGZp4KRsi9p863Ag5eyFgfZVCmxtIUjEdJKDA4G
+ cSJF1yipXAlHyxX1DqXCZV99BStsDaMhu3E7xWNcpGSqRKjgmTwnDW2PhpZkbuxx3s
+ QeV7nXa/Eo4oQ==
+Message-ID: <sashiko-outbox-175280@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v11 9/9] drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261017034842.67054-10-raag.jadav@intel.com>
 References: <20261017034842.67054-1-raag.jadav@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20261017034842.67054-10-raag.jadav@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 17 Oct 2026 04:00:53 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,58 +48,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With xe_wedge_fini() now moved to xe_wedge and registered as part of
-xe_device_probe_early(), it is safe to move xe_ras_process_errors() back
-to xe_ras where it belongs. This essentially reverts commit 20bc4883c7c0
-("drm/xe/ras: Fix boot-time ras error processing"), which was added to
-prevent PM reference leak in case of early wedging in probe sequence.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] drm/xe/ras: early wedging in xe_ras_init() breaks xe_gt_init() and=
+ uevent
+- [Medium] drm/xe/ras: xe_ras_init() skips xe_ras_process_errors() when !ha=
+s_sysctrl
+--
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 7 -------
- drivers/gpu/drm/xe/xe_ras.c    | 7 +++++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
+commit 28828164c7b9a221bd760c7ef57cdad077ccda45
+Author: Raag Jadav <raag.jadav@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9de173995a78..a07655b4c7a9 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1091,13 +1091,6 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	detect_preproduction_hw(xe);
- 
--	/*
--	 * Process and log any errors detected by hardware. Possible results can
--	 * include declaring the device as wedged, which must be done only after
--	 * xe_wedge_fini() is registered.
--	 */
--	xe_ras_process_errors(xe);
--
- 	err = devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 	if (err)
- 		goto err_unregister_display;
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 0072bb4cc5df..db3cbc186a51 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -1212,6 +1212,13 @@ int xe_ras_init(struct xe_device *xe)
- 	get_offline_list(xe);
- 	get_offline_queue(xe);
- 
-+	/*
-+	 * During probe, process and log any errors detected by firmware while the driver was not
-+	 * loaded. Critical errors such as Punit and CSC are reported through Pcode init failure,
-+	 * causing the driver to enter survivability mode.
-+	 */
-+	xe_ras_process_errors(xe);
-+
- 	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
- 	if (ret)
- 		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
--- 
-2.43.0
+drm/xe/ras: Move xe_ras_process_errors() to xe_ras
 
+This commit moves the boot-time call to xe_ras_process_errors() from the end
+of xe_device_probe() back into xe_ras_init().
+
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index 0072bb4cc5dfe..db3cbc186a514 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -1212,6 +1212,13 @@ int xe_ras_init(struct xe_device *xe)
+>  	get_offline_list(xe);
+>  	get_offline_queue(xe);
+> =20
+> +	/*
+> +	 * During probe, process and log any errors detected by firmware while =
+the driver was not
+> +	 * loaded. Critical errors such as Punit and CSC are reported through P=
+code init failure,
+> +	 * causing the driver to enter survivability mode.
+> +	 */
+> +	xe_ras_process_errors(xe);
+
+[Severity: High]
+Can calling xe_ras_process_errors() inside xe_ras_init() break driver probe
+and DRM uevent generation when an error wedges the device?
+
+In xe_device_probe(), xe_ras_init() runs before xe_gt_init() and
+drm_dev_register():
+
+drivers/gpu/drm/xe/xe_device.c:xe_device_probe() {
+	...
+	err =3D xe_ras_init(xe);
+	if (err)
+		return err;
+	...
+	for_each_gt(gt, xe, id) {
+		err =3D xe_gt_init(gt);
+		if (err)
+			return err;
+	}
+	...
+	err =3D drm_dev_register(&xe->drm, 0);
+	...
+}
+
+When xe_ras_process_errors() detects a boot-time SoC CSC firmware error
+(hec_fw_error) or Punit IEH error (XE_RAS_SOC_IEH_PUNIT) in
+handle_soc_internal_errors(), or when xe_fault_wedge_cold_reset() triggers,
+it calls xe_survivability_mode_runtime_enable() or punit_error_handler(),
+both of which invoke xe_wedge_declare().
+
+In xe_wedge_declare(), it sets xe->wedged.flag =3D 1, iterates initialized =
+GTs,
+and schedules wedge_work():
+
+drivers/gpu/drm/xe/xe_wedge.c:xe_wedge_declare() {
+	if (atomic_xchg(&xe->wedged.flag, 1))
+		return;
+	...
+	for_each_initialized_gt(gt, xe, id)
+		xe_gt_wedge_declare(gt);
+	...
+	schedule_work(&xe->wedged.work);
+}
+
+Because xe_gt_init() has not run yet, gt->initialized is still false for all
+GTs, so xe_gt_wedge_declare() is skipped. Then, when xe_device_probe() calls
+xe_gt_init() -> gt_init_with_all_forcewake() -> xe_uc_load_hw(), subsequent
+GuC CT messages in xe_gt_record_default_lrcs(), xe_guc_post_load_init(),
+xe_guc_pc_start(), and xe_guc_rc_enable() fail in __guc_ct_send_locked():
+
+drivers/gpu/drm/xe/xe_guc_ct.c:__guc_ct_send_locked() {
+	if (xe_wedged(ct_to_xe(ct))) {
+		ret =3D -ENOTRECOVERABLE;
+		goto out;
+	}
+	...
+}
+
+This causes xe_gt_init() and xe_device_probe() to abort with -ETIME or
+-ENOTRECOVERABLE, tearing down the device and removing the runtime
+survivability sysfs attributes instead of keeping the device bound in a
+wedged state.
+
+In addition, wedge_work() calls drm_dev_wedged_event(&xe->drm, ...) before
+drm_dev_register() has called device_add() on xe->drm.primary->kdev, emitti=
+ng
+KOBJ_CHANGE on an unregistered kobject prior to KOBJ_ADD. Commit 20bc4883c7=
+c0
+("drm/xe/ras: Fix boot-time ras error processing") noted that both wedged
+cleanup hooks and DRM device registration are required before
+xe_ras_process_errors() can declare the device wedged.
+
+[Severity: Medium]
+Also in xe_ras_init(), does placing xe_ras_process_errors() after the
+!xe->info.has_sysctrl check prevent cold-reset wedge fault injection on
+platforms without a system controller?
+
+In xe_ras_process_errors(), xe_fault_wedge_cold_reset() is checked before
+!xe->info.has_sysctrl:
+
+drivers/gpu/drm/xe/xe_ras.c:xe_ras_process_errors() {
+	if (xe_fault_wedge_cold_reset()) {
+		xe_err(xe, "[RAS]: cold-reset wedge injected\n");
+		punit_error_handler(xe);
+		return XE_RAS_RECOVERY_ACTION_DISCONNECT;
+	}
+
+	if (!xe->info.has_sysctrl)
+		return XE_RAS_RECOVERY_ACTION_RESET;
+	...
+}
+
+However, xe_ras_init() returns early when !xe->info.has_sysctrl:
+
+drivers/gpu/drm/xe/xe_ras.c:xe_ras_init() {
+	xe_drm_ras_init(xe);
+
+	if (!xe->info.has_sysctrl)
+		return 0;
+	...
+	xe_ras_process_errors(xe);
+}
+
+With xe_ras_process_errors() moved here from xe_device_probe(),
+xe_fault_wedge_cold_reset() is never reached during probe when
+xe->info.has_sysctrl is false.
+
+> +
+>  	ret =3D devm_device_add_group(xe->drm.dev, &gpu_health_group);
+>  	if (ret)
+>  		xe_err(xe, "Failed to create GPU health sysfs, err=3D%d\n", ret);
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261017034842.6705=
+4-1-raag.jadav@intel.com?part=3D9
