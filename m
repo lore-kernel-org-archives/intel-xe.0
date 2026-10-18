@@ -4,105 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B41D1CCF2E3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C1F2CCF2E4
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C8EB10EC59;
-	Mon, 19 Oct 2026 11:42:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="GVqpULF6";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="gLiO+VYV";
-	dkim-atps=neutral
-Received: from fhigh-b4-smtp.messagingengine.com
- (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BC9410E239
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 16:50:22 +0000 (UTC)
-Received: from phl-compute-09.internal (phl-compute-09.internal [10.202.2.49])
- by mailfhigh.stl.internal (Postfix) with ESMTP id BBBD17A00F2
- for <intel-xe@lists.freedesktop.org>; Fri, 16 Oct 2026 12:50:21 -0400 (EDT)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-09.internal (MEProxy); Fri, 16 Oct 2026 12:50:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1792169420;
- x=1792255820; bh=xgeXQ7QI49qUYlE81VNicEWZ0NBkP0UQ4uYQY/eXcg0=; b=
- GVqpULF6XfeuZGeCHyZcAi3Ds+T/ouQSnDoYbWb/o+nq49tcVDCWVZIbzcaLR7c4
- A6tZ6ckcv76wdaim6+Xy0XqJFzN7diMkelRBTLWUtpywcKkqkZ9+X40cLUNCPwYV
- BeSKaXP/axkEeXSmAEquyhlQE8boDlqf9QJyZhvgGk+9rKymNbRdvGE+okrAmt3U
- 2o7t63NHIK+7ar9dqVUBfm53mMbgUmec4GJ6zN8sQCZO3mI+lYX5SK2/kFMfdSrq
- zHwdphlTJ2K+Cwm0fYFx0G6Xo5NGQUx0SQYe3PmDz0f3MD9XgA0B5Pu7oMvVWF91
- 5cdTreJ3GaL3e/Jkqh29Og==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1792169420; x=
- 1792255820; bh=xgeXQ7QI49qUYlE81VNicEWZ0NBkP0UQ4uYQY/eXcg0=; b=g
- LiO+VYVOQjz3MC27kNoumQKbB7aM+wIf0fUXWRlpY0g8TXIZVsR7FYkFk0A0tb7i
- ba681COYXYruwAmAZg7OwmNtiu9CMsoYLTDz4yzWAS7BY9GHAvAZhH8/o8N/jnLJ
- YlDtHn7ZpfkmyavHOh1CcI2mOrWS58NAveJKdZmqhinm9KeLucAwSyjXTv2fSvwg
- k1bqSJQS8TjuiUr25iSpnoRHLkPN6KG76uj5TUJQ8z9yPdTYqfMe6joS9OHa0ujc
- Jm5FnOf2j/vGN5gOPhFUMFYfNj7GExGQxikEpGcd7zwb8MUUA9lsnA2Olio2jTc3
- ORJ3nK6Sqn1c4AKsY7xxA==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-06;
- repo=github.com/dkim2wg/interop; date=2026-10-08; sw=lmtpprox;
- action=sign d=shazbot.org a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1792169420; d=shazbot.org;
- mf=PGFsZXhAc2hhemJvdC5vcmc+;
- rt=PGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4=;
- s=fm1:rsa-sha256:jB4nlvwCI3/CaAza7ZjHY6mKStLt69Mcg1TOTOErj1dp0ua
- YxjltAJh5KFqqxVh3HR8FP2bPnJ79aZzXVv6UlBgXAU77CU00NnOQK8zyX6vbmyk
- CJ4+r1I1WOdg85npJDV/YgdrzEWDI5HydJEZylijnvw+esXQwu+YqAAPlonTzKVD
- K7fWF26S8ZsWSYL5B0NS/Z8EKr48wEnJ5iDfQ7Xz8PhjeWF/rH6JH+WgYTwDGTyW
- 1XHfDKzV7UYMwfGWkaUIwp8s3H0wrefURZgcWJswG6MkxdsEuGfDGEU7xtRsfAyJ
- hDOUOFk/ScxJG7AD9Rads8YrGlHiDxpPL+Di7EQ==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-06;
- repo=github.com/dkim2wg/interop; date=2026-10-08; sw=lmtpprox;
- action=mi-m=1; hc=12;
- hn=cc,content-transfer-encoding,content-type,date,feedback-id,
- from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1;
- h=sha256:aY80aroA/i0x89lPnAKZZ2eGbOpuWioNrDLlXsvQzFo=:dKGK9QzfUtkdrx3e2Lna8zFW8U+rke7oYbRAphr71y0=;
-X-ME-Sender: <xms:zFXSatIp5PVs_pCkx7ttSi6y4mLQHwVqriryiwOzq0G5uTfhUHeL5w>
- <xme:zFXSavLxUjK-Y7C0hdBYuxqOmeBRdDNOyHRVs4k9nOOA2G2LRSl0iLvF3Jd-f5efx
- VcDowkTlAr-D0hoFAMLATbtaLw8R3AhR8rMzDGsv5Fz95IYnKXks0VV>
-X-ME-Received: <xmr:zFXSagjZiG07CKYCezwrlFfa8v-dtsE_tWcCEquZlUqgG3aw0390PbP4VT6Dng>
-X-ME-Proxy-Cause: dmFkZTEb/AYso0mXeMN4uPzOI2HzYX85Xp44M58HlE7sv9GJphQzlpRb+Ar10TokQ47zK4
- dY0cfzNGkwd8kWFiRBSSQ+b+oNwUN1gQXBPe5b3ILFvYZlUMaolS58TB7gOcQRvpP2FzdZ
- qKC1HPKN7I5J14UK8Mgbuq2PT/GHr4WDq4YgduKqJ8YIdwtlNMWymYO8v0sS5q+c5UMNcQ
- lpEKOpocYGqf6tZBPaVRyshIV3v1A6/9s/yctJvVTEInjlZHqg/YsPrmcZGJhi++IIAJua
- FYxxMMlLtanbckLOFNFWctRHThoGvPZyTxr3fQPBwMxH9zCXuaP2FWVl8/OocESshLaFJN
- OorZwzEm+hMNMG/OA5H/zGUyF+p1A4e2KEFrGEVscJ3CAK+zZLidBQMq/6UuNbC2YIDuUs
- k5JAf3Sy2JgoQQCgmcIoxHCmBeqptu3oCfY5MyFtTghWF+T4ytOGztZ/I36sXdjV8qvHuX
- wMxZo3Wu37hIdOZ6km+BorJ5OGNex+E2TgaQktUazq7zjhZ/WadFP9gHVzNU0SWXmmi2Dh
- K7I2474itoDok6xv8/I+fbwbQDX7T8PbIjVqQYaTytdosuUgdbE6fky3iTGwlK3BcWQ0eA
- u12aMyzmSTFN01Pk6iKI5Y90yL3ucwJdv0Q6k69TSl8KSPX2w5/5sKZBGaAg
-X-ME-Proxy: <xmx:zFXSahOpE1yTIR9S1IAfAs1H7om6VrIbmbX3Mg-MehPDawhsmb-s_Q>
- <xmx:zFXSajrRRL-Ex5AQaDagDX4hEdD3bwru8UWHwi3G-zAbe4CM2ELMlQ>
- <xmx:zFXSar63N9SIHYtiZ9z1e7hxQhOIKsOEm2jjXQQjeZlN6RCILhW9OA>
- <xmx:zFXSapgzRIlQKv8Q5XWSZTjHVWYLN46k6sSUvyLXjU1myeBa3p3K3Q>
- <xmx:zFXSap4OV6nFhFBlJ9S2uaAg6I0v-7FYfn9GbeQ9jR3AVtkO3xlOgGkL>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 16 Oct 2026 12:50:19 -0400 (EDT)
-Date: Fri, 16 Oct 2026 10:50:14 -0600
-From: Alex Williamson <alex@shazbot.org>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: kvm@vger.kernel.org, =?UTF-8?B?TWljaGHFgg==?= Winiarski
- <michal.winiarski@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
- <yishaih@nvidia.com>, Shameer Kolothum <skolothumtho@nvidia.com>, Kevin
- Tian <kevin.tian@intel.com>, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, alex@shazbot.org
-Subject: Re: [PATCH] vfio/xe: Add CRI and NVL device IDs
-Message-ID: <20261016105014.672b05ac@shazbot.org>
-In-Reply-To: <20261014131849.157593-2-satyanarayana.k.v.p@intel.com>
-References: <20261014131849.157593-2-satyanarayana.k.v.p@intel.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33F5710EC6B;
+	Mon, 19 Oct 2026 11:42:38 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB3210E401;
+ Sun, 18 Oct 2026 20:12:50 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 3EA3460D9D;
+ Sun, 18 Oct 2026 20:12:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DE9D0C2BCF7;
+ Sun, 18 Oct 2026 20:12:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1792354368;
+ bh=Q4CkcTGHfwqlTq/v3Lz/CGzpf17o9gtfSV7GuFzUiVo=;
+ h=From:Date:Subject:To:Cc:Reply-To:From;
+ b=sQqdhi3M8f5GPF2nUAuQ2zY2NdImI0p3kH3y02aJFLQdJbiLHVgVu7WVTivxlEPBD
+ 4Ct9I1+91hyrzyCHN6hNOLK6GIidvxnQXGrxIngNExYl7UYTiXFIFOvRbo0TqKOLl1
+ BnV+8w8kvE+3CXaIb3GJs3GCmZNUspFX2LIgZJbr3Hh4iVD9U9uwO0rlOwtXVzr/1V
+ yhPKY7Cf7NzVqhpkdqdzJNMcxPV0iICZViX+Jzd51Mftlc6wiCkNerCFTTkTKSKXMM
+ dc3YsdnynGmSW5CjJZYHTSh+wW3cmjHtAHem0lMUX4C6IWUgZjWC2/OcjDf1UOvtML
+ 2w2n1Xbj1is1g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org
+ (localhost.localdomain [127.0.0.1])
+ by smtp.lore.kernel.org (Postfix) with ESMTP id AB85CCCF2C4;
+ Sun, 18 Oct 2026 20:12:48 +0000 (UTC)
+From: Mike Anderson via B4 Relay <devnull+mwwa919.gmail.com@kernel.org>
+Date: Sun, 18 Oct 2026 16:12:40 -0400
+Subject: [PATCH] drm/i915/dsi: Use owned panel/backlight GPIOs in VLV MIPI
+ sequences
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
+X-B4-Tracking: v=1; b=H4sIADco1WoC/yXMQQqDMBBA0avIrDvgpNBIr1JcaDLVkZJIpkZBv
+ HtTXb7F/zsoJ2GFZ7VD4iwqMRTQrQI3dmFgFF8MpjYPqqnB/MnoVTCugT0Os0RF58nYvqO7ZQu
+ lnBO/ZTuvr/ayLv3E7vtfwXH8ANQqkXx3AAAA
+X-Change-ID: 20261018-vlv-dsi-owned-gpios-cd127ba137e7
+To: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, 
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+ Hans de Goede <hansg@kernel.org>, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ stable@vger.kernel.org, Mike Anderson <mwwa919@gmail.com>
+X-Mailer: b4 0.16.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1792354368; l=5805;
+ i=mwwa919@gmail.com; s=20261018; h=from:subject:message-id;
+ bh=fqIda2quYt/iS4PsHXKJtfdrABxMHpRCeHK2kOAm+9k=;
+ b=YPHI4gGMlKh/kb6yUfYInfnPvCZcDfrreT+IUEzcqj8yDTmMeypyE/LvfsSY7CklhtFaRTt2Q
+ HYf2EATZ1JuCKiR8aNZuOhkZcMZnQCuOATJ0osAE1n4myfVScnPlcDL
+X-Developer-Key: i=mwwa919@gmail.com; a=ed25519;
+ pk=r8JyAI3thBa7smjCwoiNX+4TLbge6jj5Swldychd7nE=
+X-Endpoint-Received: by B4 Relay for mwwa919@gmail.com/20261018 with
+ auth_id=1231
+X-Original-From: Mike Anderson <mwwa919@gmail.com>
 X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -115,52 +75,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: mwwa919@gmail.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 Oct 2026 18:48:50 +0530
-Satyanarayana K V P <satyanarayana.k.v.p@intel.com> wrote:
+From: Mike Anderson <mwwa919@gmail.com>
 
-> Crescent Island (CRI), Nova Lake-S (NVL-S) and Nova Lake-P (NVL-P)
-> support SR-IOV in the Xe driver. Add their PCI IDs to the xe-vfio-pci
-> device table, so that the generated vfio_pci module aliases allow
-> userspace to select this variant driver for their VFs.
->=20
-> Also reordered the table entries.
->=20
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Yishai Hadas <yishaih@nvidia.com>
-> Cc: Shameer Kolothum <skolothumtho@nvidia.com>
-> Cc: Kevin Tian <kevin.tian@intel.com>
-> Cc: Alex Williamson <alex@shazbot.org>
-> Cc: kvm@vger.kernel.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> ---
->  drivers/vfio/pci/xe/main.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-> index cbff5af385ef..8f1237751d51 100644
-> --- a/drivers/vfio/pci/xe/main.c
-> +++ b/drivers/vfio/pci/xe/main.c
-> @@ -574,9 +574,12 @@ static void xe_vfio_pci_remove(struct pci_dev *pdev)
->  }
-> =20
->  static const struct pci_device_id xe_vfio_pci_table[] =3D {
-> +	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
-> +	INTEL_CRI_IDS(INTEL_PCI_VFIO_DEVICE),
-> +	INTEL_NVLS_IDS(INTEL_PCI_VFIO_DEVICE),
-> +	INTEL_NVLP_IDS(INTEL_PCI_VFIO_DEVICE),
->  	INTEL_PTL_IDS(INTEL_PCI_VFIO_DEVICE),
->  	INTEL_WCL_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
->  	{}
->  };
->  MODULE_DEVICE_TABLE(pci, xe_vfio_pci_table);
+On VLV with PPS_BLC_SOC, intel_dsi_vbt_gpio_init() requests the
+backlight and panel enable GPIOs (INT33FC:01 pins 10 and 11) for i915
+itself. Since commit 8241b55f1ded ("drm/i915/dsi: Replace poking of VLV
+GPIOs behind the driver's back") the GPIO elements of the VBT MIPI
+sequences also request their pin through gpiolib, so when a sequence
+toggles one of these two pins the request fails and the toggle is
+dropped:
 
-Applied to vfio next branch for v7.4.  Thanks,
+  i915 0000:00:02.0: [drm] *ERROR* GPIO index 10 request failed (-EBUSY)
 
-Alex
+Before that commit the pad registers were written directly, so the
+sequences could still drive the pins i915 owned.
+
+The Toshiba Encore 2 WT8-B (Bay Trail, DSI panel) uses pin 10 as the
+panel reset line: MIPI_SEQ_ASSERT_RESET drives it low and
+MIPI_SEQ_DEASSERT_RESET pulses it high-low-high. With every toggle
+failing, the panel is never reset after i915 sends MIPI_SEQ_DISPLAY_OFF
+during takeover and stays black, even though the backlight PWM and both
+enable GPIOs read back as on. The tablet only has a usable display
+with nomodeset.
+
+When a VLV MIPI sequence targets pin 10 or 11 and i915 holds the
+corresponding descriptor, set it through that descriptor instead of
+requesting the pin a second time.
+
+Fixes: 8241b55f1ded ("drm/i915/dsi: Replace poking of VLV GPIOs behind the driver's back")
+Cc: stable@vger.kernel.org
+Assisted-by: LLM sparse
+Signed-off-by: Mike Anderson <mwwa919@gmail.com>
+---
+This patch was developed with an AI coding assistant (Claude Code,
+Claude Opus 5.5): it ran the debugging session on the tablet (drm.debug
+log, gpio/pwm debugfs), traced the -EBUSY to 8241b55f1ded, and wrote the
+change and the changelog; I reviewed it and tested it on the hardware.
+
+Testing, Toshiba Encore 2 WT8-B (Atom Z3735F, BIOS 2.10, VBT MIPI
+sequence block v2, PPS_BLC_SOC):
+- Arch Linux v7.2.11-arch1 with this patch backported (applies as is):
+  the panel lights up at i915 takeover and the Xorg login screen shows;
+  no "GPIO index ... request failed" errors; gpio-10/11 stay owned as
+  "backlight"/"panel". Unpatched v7.2.11 and v6.18.57 give a black
+  panel with five -EBUSY errors during boot.
+- drm-intel-next: built intel_dsi_vbt.o for i915 (=m and =y) and for
+  xe (=m) with W=1 and sparse (C=2, sparse v0.6.5-rc1): no new
+  warnings.
+
+Not tested: other VLV machines with PPS_BLC_SOC. Their behaviour only
+changes when their VBT sequences touch pin 10 or 11, which currently
+fails with -EBUSY anyway.
+---
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 32 +++++++++++++++++++++++-----
+ 1 file changed, 27 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index fe12041e9..85d1cdc6e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -54,6 +54,10 @@
+ #define MIPI_VIRTUAL_CHANNEL_SHIFT	1
+ #define MIPI_PORT_SHIFT			3
+ 
++/* VLV NC pins of the backlight and panel enable GPIOs, see soc_panel_gpio_table */
++#define VLV_GPIO_NC_BACKLIGHT		10
++#define VLV_GPIO_NC_PANEL		11
++
+ struct i2c_adapter_lookup {
+ 	u16 target_addr;
+ 	struct intel_dsi *intel_dsi;
+@@ -247,10 +251,12 @@ static void soc_opaque_gpio_set_value(struct intel_connector *connector,
+ 	kfree(lookup);
+ }
+ 
+-static void vlv_gpio_set_value(struct intel_connector *connector,
++static void vlv_gpio_set_value(struct intel_dsi *intel_dsi,
+ 			       u8 gpio_source, u8 gpio_index, bool value)
+ {
+-	struct intel_display *display = to_intel_display(connector);
++	struct intel_display *display = to_intel_display(&intel_dsi->base);
++	struct intel_connector *connector = intel_dsi->attached_connector;
++	struct gpio_desc *gpio_desc = NULL;
+ 
+ 	/* XXX: this assumes vlv_gpio_table only has NC GPIOs. */
+ 	if (connector->panel.vbt.dsi.seq_version < 3) {
+@@ -265,6 +271,22 @@ static void vlv_gpio_set_value(struct intel_connector *connector,
+ 		}
+ 	}
+ 
++	/*
++	 * With PPS_BLC_SOC, intel_dsi_vbt_gpio_init() already owns these pins,
++	 * so requesting them again fails with -EBUSY. Some VBTs still toggle
++	 * them in their MIPI sequences, e.g. as the panel reset line, so drive
++	 * them through the descriptors we hold.
++	 */
++	if (gpio_index == VLV_GPIO_NC_BACKLIGHT)
++		gpio_desc = intel_dsi->gpio_backlight;
++	else if (gpio_index == VLV_GPIO_NC_PANEL)
++		gpio_desc = intel_dsi->gpio_panel;
++
++	if (gpio_desc && connector->panel.vbt.dsi.config->pwm_blc == PPS_BLC_SOC) {
++		gpiod_set_value_cansleep(gpio_desc, value);
++		return;
++	}
++
+ 	soc_opaque_gpio_set_value(connector, gpio_index,
+ 				  "INT33FC:01", "Panel N", gpio_index, value);
+ }
+@@ -430,7 +452,7 @@ static const u8 *mipi_exec_gpio(struct intel_dsi *intel_dsi, const u8 *data)
+ 	else if (DISPLAY_VER(display) >= 9)
+ 		bxt_gpio_set_value(connector, gpio_index, value);
+ 	else if (display->platform.valleyview)
+-		vlv_gpio_set_value(connector, gpio_source, gpio_number, value);
++		vlv_gpio_set_value(intel_dsi, gpio_source, gpio_number, value);
+ 	else if (display->platform.cherryview)
+ 		chv_gpio_set_value(connector, gpio_source, gpio_number, value);
+ 
+@@ -886,8 +908,8 @@ static struct gpiod_lookup_table pmic_panel_gpio_table = {
+ static struct gpiod_lookup_table soc_panel_gpio_table = {
+ 	.dev_id = "0000:00:02.0",
+ 	.table = {
+-		GPIO_LOOKUP("INT33FC:01", 10, "backlight", GPIO_ACTIVE_HIGH),
+-		GPIO_LOOKUP("INT33FC:01", 11, "panel", GPIO_ACTIVE_HIGH),
++		GPIO_LOOKUP("INT33FC:01", VLV_GPIO_NC_BACKLIGHT, "backlight", GPIO_ACTIVE_HIGH),
++		GPIO_LOOKUP("INT33FC:01", VLV_GPIO_NC_PANEL, "panel", GPIO_ACTIVE_HIGH),
+ 		{ }
+ 	},
+ };
+
+---
+base-commit: 0507cc5a476af0b6d037b19248bdd20dbe27487d
+change-id: 20261018-vlv-dsi-owned-gpios-cd127ba137e7
+
+Best regards,
+--  
+Mike Anderson <mwwa919@gmail.com>
+
+
