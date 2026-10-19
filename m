@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B482CCF2D5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56F9CCCF2D4
 	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 02:37:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16D3E10E774;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09AE410E772;
 	Mon, 19 Oct 2026 02:37:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 391FF10E1A1
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 02:37:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B844D10E76F
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 02:37:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792377459; x=1823913459;
+ t=1792377461; x=1823913461;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VAAc7V/IFdoFF5KS0qZ0A1/FWdcl7N1akS6SOF2bH5w=;
- b=j09ifFT5EJAuDCHgKcP8FhFH6dhHwSXTnznSN/b1h7u0bxvBPJ0BUh1a
- 171VEw3BAiLX0226e4496VztlT2q1H6n7tpKR/hu4YZcjL/G0V6BikZDl
- 18rYmuejDwg/e2p5OGKrOUTScRqI3ZJTMzp56bNM8hsE2zYGgU2KHijqI
- V/QsyRQUel0YeqBCltsjUHD5/vaXU+vStql2K1ivw8KkMHjfuVvb4NmJb
- c3bErYCABG2oIav+Yyfs4xfY7P28pZ86EnsQyROZ1kN6zp/geLakXBJpx
- zg9byI2gMG+lOFyEqyuQ444pHPzPcNiHqOqi0+FnHuhhJzvh9w5ol8RRa g==;
-X-CSE-ConnectionGUID: l9AmnixmQNuRZ556y5Gshg==
-X-CSE-MsgGUID: l0Yfa/qSSJiPLq+47EBZKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="943664"
+ bh=eZwww6RixpMJKg7J7PCoslcbQd2wEKTr1aQVWb3P1Ys=;
+ b=CuMYTEX87VlrZ8gTfa+rrCotQKUihoebszDXd8ur3gO3yqPU1EYwMJ0r
+ iGBkdjWzfOxedtjNQHvmmVVLdwQfp3yEo6njneEReLuWrvvkEbgSA2Gwg
+ 6rB9S9LhxoTZeml+mdk5OYyLe4FNqBR0NfoXn7a2fCbum0kZhc6UbNJAH
+ Rrk31ImAJ6ykMKe8ogft0FKUTrmgVnTdvnbokBjSijonB+ZGsZSVtI3i7
+ AFgHjQFr+auPthQldKHsSPOopziyI90aEaulGHQTst80/q3s0Ye1NrCwl
+ 7jWEe/ux4TiXFcwtAkyRudhPuRs3eDJ7kB1SQubBgbTp1bxEHtNBme0gt g==;
+X-CSE-ConnectionGUID: syKgcPPrQ0+wBhv0Nze5uA==
+X-CSE-MsgGUID: q37x/nKIRkKUb0s7XR2xYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="943666"
 X-IronPort-AV: E=Sophos;i="6.27,166,1787036400"; 
-   d="scan'208";a="943664"
+   d="scan'208";a="943666"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2026 19:37:39 -0700
-X-CSE-ConnectionGUID: eCJK+vFySfuGQbo+xTE24g==
-X-CSE-MsgGUID: 8jMzQRgLSTO+aqsZJ0o5ZQ==
+ 18 Oct 2026 19:37:41 -0700
+X-CSE-ConnectionGUID: i4tS+v10SOKc+nOhOf01kQ==
+X-CSE-MsgGUID: NjzZSiNZQNyQ8x2BY9VsYg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,166,1787036400"; 
-   d="scan'208";a="2526464"
+   d="scan'208";a="2526470"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa002.fm.intel.com with ESMTP; 18 Oct 2026 19:37:36 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 18 Oct 2026 19:37:39 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
  matthew.d.roper@intel.com, matthew.brost@intel.com,
  mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v12 3/9] drm/xe/hw_error: Guard csc_hw_error_work() with
- runtime PM
-Date: Mon, 19 Oct 2026 08:06:34 +0530
-Message-ID: <20261019023708.128835-4-raag.jadav@intel.com>
+Subject: [PATCH v12 4/9] drm/xe: Move xe_device_wedged_fini() registration to
+ xe_device_probe_early()
+Date: Mon, 19 Oct 2026 08:06:35 +0530
+Message-ID: <20261019023708.128835-5-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261019023708.128835-1-raag.jadav@intel.com>
 References: <20261019023708.128835-1-raag.jadav@intel.com>
@@ -68,37 +68,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_device_declare_wedged() callers are expected to hold a runtime PM
-reference. Fix it.
+The device can be declared wedged while processing boot-time hardware
+errors, which can result in PM reference leak if driver probe fails
+before xe_device_wedged_fini() is registered.
+
+Early register the required cleanup action and fix this.
 
 Fixes: a7df563b45b0 ("drm/xe/xe_hw_error: Handle CSC Firmware reported Hardware errors")
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-v10: Guard wedge callers with runtime PM (Sashiko)
+v2: Split fixes into separate patches (Rodrigo, Michal)
 ---
- drivers/gpu/drm/xe/xe_hw_error.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index f53a6b3055de..ac720710c8e8 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -14,6 +14,7 @@
- #include "xe_drm_ras.h"
- #include "xe_hw_error.h"
- #include "xe_mmio.h"
-+#include "xe_pm.h"
- #include "xe_survivability_mode.h"
- 
- #define GT_HW_ERROR_MAX_ERR_BITS		16
-@@ -170,6 +171,7 @@ static void csc_hw_error_work(struct work_struct *work)
- 	struct xe_tile *tile = container_of(work, typeof(*tile), csc_hw_error_work);
- 	struct xe_device *xe = tile_to_xe(tile);
- 
-+	guard(xe_pm_runtime)(xe);
- 	xe_survivability_mode_runtime_enable(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index cf0235e57827..b185c7d33185 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -697,6 +697,8 @@ static int xe_device_vram_alloc(struct xe_device *xe)
+ 	return 0;
  }
  
++static void xe_device_wedged_fini(struct drm_device *drm, void *arg);
++
+ /**
+  * xe_device_probe_early: Device early probe
+  * @xe: xe device instance
+@@ -765,6 +767,10 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
++	if (err)
++		return err;
++
+ 	return 0;
+ }
+ ALLOW_ERROR_INJECTION(xe_device_probe_early, ERRNO); /* See xe_pci_probe() */
+@@ -1099,10 +1105,6 @@ int xe_device_probe(struct xe_device *xe)
+ 
+ 	detect_preproduction_hw(xe);
+ 
+-	err = drmm_add_action_or_reset(&xe->drm, xe_device_wedged_fini, xe);
+-	if (err)
+-		goto err_unregister_display;
+-
+ 	/*
+ 	 * Process and log any errors detected by hardware. Possible results can
+ 	 * include declaring the device as wedged, which must be done only after
 -- 
 2.43.0
 
