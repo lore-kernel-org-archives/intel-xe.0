@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32F8FCCF2D6
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 08:00:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25316CCF2D3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 08:01:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1DD910E842;
-	Mon, 19 Oct 2026 08:00:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C33E610E812
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 07:59:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792396800; x=1823932800;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Rc824/XiH1K0fuI51TaTljkwtCzwTmuXLT67JRhcKk8=;
- b=j3UTis0JJBQT01Rt9sl2omE9IxPa7QLF/hWsgtMtlLhSUNhbUkFM8+SR
- esSBsWrloITcgF4865AF9K1gFdOFxonnR4mMiR6t3wPAJMXEc/FQX0Rwm
- 2s6BirKJLKcdQXZK83QZALKTPDeGHBsg0ouV1/1i8mPYRVkM9gL4Xui1O
- Xiihc5lPd62eM52FP1f8B7aaiDDUsB3TUVc5X9bdi4SOZ+fPkwZRQK7XA
- GLU9tn0Hb87VGl6TMWl7UA6rM78dXzFIFhuIYy/2dnDUla7tefvNYGN1I
- vyRXFMHu2E4lvqeE2C7UuHHl7xb8Tx2khJ9j7yvWeaH6yfTp7FguAWcb9 w==;
-X-CSE-ConnectionGUID: CMHRmL8PRJSoWYzCO6nmYA==
-X-CSE-MsgGUID: WwLqSwKmSYmonAT0zaFb6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="1096594"
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="1096594"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 01:00:00 -0700
-X-CSE-ConnectionGUID: b8qJ+y/MTP2XaP2kGcL4Yg==
-X-CSE-MsgGUID: ZS1gBXhbThyK7fU99zxS8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2419571"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO [10.245.245.222])
- ([10.245.245.222])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 00:59:58 -0700
-Message-ID: <6cbfc2349f0a8d14b7a170ff791d18dfcb44d158.camel@linux.intel.com>
-Subject: Re: [PATCH v4 3/4] drm/xe: Split the bo shrinker into purgeable and
- non-purgeable shrinkers
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: sashiko-reviews@lists.linux.dev, intel-xe@lists.freedesktop.org
-Date: Mon, 19 Oct 2026 09:59:55 +0200
-In-Reply-To: <atJvxCnNISBr2VLK@gsse-cloud1.jf.intel.com>
-References: <20261016133523.3622-1-thomas.hellstrom@linux.intel.com>
- <20261016133523.3622-4-thomas.hellstrom@linux.intel.com>
- <sashiko-outbox-174414@kernel.org>
- <4d1338d127bb9b77c8bc9a114c7c8740d2ec2780.camel@linux.intel.com>
- <atJvxCnNISBr2VLK@gsse-cloud1.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10FD10E825;
+	Mon, 19 Oct 2026 08:01:47 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7861B10E812;
+ Mon, 19 Oct 2026 08:01:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5876459510347959817=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_xe=5Fwedge_=28rev?=
+ =?utf-8?q?11=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Oct 2026 08:01:47 -0000
+Message-ID: <179239690748.38800.16417183202648871574@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261019023708.128835-1-raag.jadav@intel.com>
+In-Reply-To: <20261019023708.128835-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,248 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-10-16 at 11:41 -0700, Matthew Brost wrote:
-> On Fri, Oct 16, 2026 at 04:09:44PM +0200, Thomas Hellstr=C3=B6m wrote:
-> > On Fri, 2026-10-16 at 13:53 +0000, sashiko-bot@kernel.org=C2=A0wrote:
-> > > Thank you for your contribution! Sashiko AI review found 2
-> > > potential
-> > > issue(s) to consider:
-> > > - [High] drm/xe: Use-After-Free of shrinker during DRM device
-> > > teardown
-> > > - [High] drm/xe: O(N^2) CPU lockup in purgeable shrinker due to
-> > > uncounted LRU skips
-> > > --
-> > >=20
-> > > commit 1e9348c2fe4768de2cf24e4dd9b6188400c84043
-> > > Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > >=20
-> > > drm/xe: Split the bo shrinker into purgeable and non-purgeable
-> > > shrinkers
-> > >=20
-> > > This commit splits the single xe_shrinker into two independent
-> > > shrinker
-> > > instances: one for purgeable objects and another for non-
-> > > purgeable
-> > > (shrinkable) objects. This allows the shrinker core to apply
-> > > different
-> > > reclaim pressures based on the varying costs of reclaiming these
-> > > object
-> > > types.
-> > >=20
-> > > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > b/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > index 378022c37a57c..8e3fe675e0f34 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> > >=20
-> > > [ ... ]
-> > >=20
-> > > > @@ -216,63 +238,52 @@ static bool
-> > > > xe_shrinker_runtime_pm_get(struct
-> > > > xe_shrinker *shrinker, bool force,
-> > >=20
-> > > [ ... ]
-> > >=20
-> > > > -static unsigned long xe_shrinker_scan(struct shrinker *shrink,
-> > > > struct shrink_control *sc)
-> > > > +static unsigned long xe_shrinker_scan_purgeable(struct
-> > > > shrinker
-> > > > *shrink,
-> > > > +						struct
-> > > > shrink_control *sc)
-> > > > =C2=A0{
-> > > > =C2=A0	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
-> > > > =C2=A0	struct ttm_operation_ctx ctx =3D {
-> > > > =C2=A0		.interruptible =3D false,
-> > > > =C2=A0		.no_wait_gpu =3D ttm_bo_shrink_avoid_wait(),
-> > > > =C2=A0	};
-> > > > -	unsigned long nr_to_scan, nr_scanned =3D 0, freed =3D 0;
-> > > > +	unsigned long nr_to_scan =3D sc->nr_to_scan, nr_scanned
-> > > > =3D 0,
-> > > > freed =3D 0;
-> > > > =C2=A0	struct xe_bo_shrink_flags shrink_flags =3D {
-> > > > =C2=A0		.purge =3D true,
-> > > > -		/* Don't request writeback without __GFP_IO.
-> > > > */
-> > > > -		.writeback =3D !ctx.no_wait_gpu && (sc->gfp_mask
-> > > > &
-> > > > __GFP_IO),
-> > > > =C2=A0	};
-> > > > -	bool runtime_pm;
-> > > > -	bool purgeable;
-> > > > -	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
-> > > > -
-> > > > -	nr_to_scan =3D sc->nr_to_scan;
-> > > > -
-> > > > -	read_lock(&shrinker->lock);
-> > > > -	purgeable =3D !!shrinker->purgeable_pages;
-> > > > -	read_unlock(&shrinker->lock);
-> > > > =C2=A0
-> > > > -	/* Might need runtime PM. Try to wake early if it
-> > > > looks
-> > > > like it. */
-> > > > -	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker,
-> > > > false,
-> > > > nr_to_scan, can_backup);
-> > > > -
-> > > > -	if (purgeable && nr_scanned < nr_to_scan)
-> > > > -		xe_shrinker_walk(shrinker, &ctx, shrink_flags,
-> > > > -				 nr_to_scan, &nr_scanned,
-> > > > &freed);
-> > > > +	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
-> > > > nr_to_scan,
-> > > > &nr_scanned, &freed);
-> > > > =C2=A0
-> > > > =C2=A0	sc->nr_scanned =3D nr_scanned;
-> > >=20
-> > > [Severity: High]
-> > > Can this cause an O(N^2) CPU lockup in the purgeable shrinker?
-> > >=20
-> > > When the memory reclaim core (do_shrink_slab) calls this
-> > > purgeable
-> > > scan
-> > > routine under memory pressure, xe_shrinker_walk() iterates the
-> > > LRU
-> > > list.
-> > >=20
-> > > However, non-purgeable BOs return -EBUSY and are skipped without
-> > > advancing
-> > > the scanned counter:
-> > >=20
-> > > drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
-> > > =C2=A0=C2=A0=C2=A0 ...
-> > > =C2=A0=C2=A0=C2=A0 if (!(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPAB=
-LE) ||
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (flags.purge && !xe_tt->pu=
-rgeable))
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return -EBUSY;
-> > > =C2=A0=C2=A0=C2=A0 ...
-> > > }
-> > >=20
-> > > drivers/gpu/drm/xe/xe_shrinker.c:__xe_shrinker_walk() {
-> > > =C2=A0=C2=A0=C2=A0 ...
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 lr=
-et =3D xe_bo_shrink(ctx, ttm_bo, flags, scanned);
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*=
- Like the TTM LRU walk, skip bos we can't shrink
-> > > now.
-> > > */
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if=
- (lret =3D=3D -EBUSY)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 continue;
-> > > =C2=A0=C2=A0=C2=A0 ...
-> > > }
-> > >=20
-> > > Since the LRU cursor is initialized locally on each call and non-
-> > > purgeable
-> > > BOs do not increment nr_scanned, every batch rescans all leading
-> > > non-purgeable BOs without significantly advancing sc->nr_scanned.
-> > >=20
-> > > Will this force the shrinker core to repeatedly call this
-> > > function,
-> > > processing the same leading non-purgeable BOs over and over
-> > > again?
-> >=20
-> > This can't happen in practice since purgeable bos are always
-> > ordered
-> > before non-purgeable bos on the list.
-> >=20
->=20
-> Is this true, though? If a BO is marked as purged on a hot VM and
-> shares
-> the VM's bulk-move structure, it would remain hot in the list. Also,
-> within an individual bulk-move list, I don't think a purgable object
-> is
-> guaranteed to be at the front of the LRU.
->=20
-> So, at a minimum, BOs marked as purged should be moved to a lower
-> priority band, as this patch does [1], and reclaim should only walk
-> the
-> purged-priority band [2].
+--===============5876459510347959817==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-TBH, I thought we already had [1]. But even [2] sounds like a good
-optimization, although the link seems incorrect.
+== Series Details ==
 
->=20
-> We can do this in an immediate follow-up after this series merges.
+Series: Introduce xe_wedge (rev11)
+URL   : https://patchwork.freedesktop.org/series/173011/
+State : success
 
-OK let's do that.
-Thanks,
+== Summary ==
 
-Thomas
+CI Bug Log - changes from xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad_BAT -> xe-pw-173011v11_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-wcl-1 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-173011v11_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v11/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
 
 
->=20
-> Matt
->=20
-> [1]
-> https://patchwork.freedesktop.org/patch/743454/?series=3D170454&rev=3D5
-> [2]
-> https://patchwork.freedesktop.org/patch/743454/?series=3D170454&rev=3D5
->=20
-> > /Thomas
-> >=20
-> >=20
-> >=20
-> > >=20
-> > > > -	if (nr_scanned >=3D nr_to_scan || !can_backup)
-> > > > -		goto out;
-> > > > =C2=A0
-> > > > -	/* If we didn't wake before, try to do it now if
-> > > > needed.
-> > > > */
-> > > > -	if (!runtime_pm)
-> > > > -		runtime_pm =3D
-> > > > xe_shrinker_runtime_pm_get(shrinker,
-> > > > true, 0, can_backup);
-> > > > +	return nr_scanned ? freed : SHRINK_STOP;
-> > > > +}
-> > >=20
-> > > [ ... ]
-> > >=20
-> > > > @@ -294,6 +305,7 @@ static void xe_shrinker_fini(struct
-> > > > drm_device
-> > > > *drm, void *arg)
-> > > > =C2=A0	xe_assert(shrinker->xe, !shrinker->purgeable_pages);
-> > > > =C2=A0	xe_assert(shrinker->xe, !shrinker->populated_tts);
-> > > > =C2=A0	shrinker_free(shrinker->shrink);
-> > > > +	shrinker_free(shrinker->purge_shrink);
-> > > > =C2=A0	flush_work(&shrinker->pm_worker);
-> > > > =C2=A0	kfree(shrinker);
-> > > > =C2=A0}
-> > >=20
-> > > [Severity: High]
-> > > Does this kfree(shrinker) leave xe->mem.shrinker as a dangling
-> > > pointer?
-> > >=20
-> > > Because drmm actions execute in LIFO order upon device release,
-> > > xe_shrinker_fini() is called before xe_device_destroy().=20
-> > >=20
-> > > Later, xe_device_destroy() runs and calls xe_bo_dev_fini() which
-> > > flushes
-> > > the async_free workqueue. Pending BOs in the workqueue will have
-> > > their
-> > > final references dropped, leading to
-> > > xe_ttm_tt_account_subtract():
-> > >=20
-> > > drivers/gpu/drm/xe/xe_bo.c:xe_ttm_tt_account_subtract() {
-> > > =C2=A0=C2=A0=C2=A0 ...
-> > > =C2=A0=C2=A0=C2=A0 if (xe_tt->purgeable)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_shrinker_mod_pages(xe->=
-mem.shrinker, 0, -(long)tt-
-> > > > num_pages, -1);
-> > > =C2=A0=C2=A0=C2=A0 else
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_shrinker_mod_pages(xe->=
-mem.shrinker, -(long)tt-
-> > > >num_pages,
-> > > 0, -1);
-> > > =C2=A0=C2=A0=C2=A0 ...
-> > > }
-> > >=20
-> > > Can this lead to a use-after-free and memory corruption when
-> > > driver
-> > > unloads?
+Build changes
+-------------
+
+  * Linux: xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad -> xe-pw-173011v11
+
+  IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad: a9828cc3cc428b3892cde517d3662baa30687dad
+  xe-pw-173011v11: 173011v11
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v11/index.html
+
+--===============5876459510347959817==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce xe_wedge (rev11)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173011/">https://patchwork.freedesktop.org/series/173011/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v11/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v11/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad_BAT -&gt; xe-pw-173011v11_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-wcl-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-173011v11_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173011v11/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad -&gt; xe-pw-173011v11</li>
+</ul>
+<p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5966-a9828cc3cc428b3892cde517d3662baa30687dad: a9828cc3cc428b3892cde517d3662baa30687dad<br />
+  xe-pw-173011v11: 173011v11</p>
+
+</body>
+</html>
+
+--===============5876459510347959817==--
