@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B93BCCF2EB
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 14:04:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AD7CCF2E6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 14:14:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE0D510EE12;
-	Mon, 19 Oct 2026 14:04:17 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D1E510EE12;
- Mon, 19 Oct 2026 14:04:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9173700136909911028=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A08E510E8FA;
+	Mon, 19 Oct 2026 14:14:29 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2C8610E91D
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 14:14:23 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 73CB943B42
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 14:14:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 595C31F000CA
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 14:14:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1792419263;
+ bh=z/uufzOKyhdC0SjTvaevqnoNwnyGbdyLeYjrkpbtR/E=;
+ h=From:In-Reply-To:References:Date:Subject:To:Cc;
+ b=lBUHhcuQ1STY21Ac1q2PUTzl/4AVgeJXFxkITlHi37DiWe+2JlOfLrEsENA9BRdni
+ N7hB2BPfsAIjthXNjNAV4zEXD9FGYlMbjOM69FIxSjF1JBoqeV8oYXJe5MXXeuhgug
+ 4nLLfvUTB9OfoI1OWwrHYOmD1/vo9oXS5eeUurPFHDK/aYA59zPiMyjSZFl1ydE6WU
+ pDw+WQs2itn4ovf02s6pLG5moZR2IcnD2vmj1Dv+p7O+Q/i9DF467GjIuE4kxhUyfz
+ TZlTYpNro3cdc9rSm+fxwqtAQRX/zqU8HcWJi9n5ia8FZ0T47nyjIECcMgf9+IjKqb
+ OsMVWocR7bY0Q==
+Received: by mail-lj1-f180.google.com with SMTP id
+ 38308e7fff4ca-3ab4891fc73so4212961fa.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 07:14:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AKwUvBwyL9632MExeyyzQx4+fUNZu+V9k2yLpk0I09HzePb8cMmF2Uv5ZnNuTQA/iPKoERF8QF4t0iTUag==@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYIQR3Tf3gyTtryMyPfRD4VGE39S7dZWIHIm7eVGcxPGjaZVQW3Z
+ rxNQN56wAKkYoxwRE+27oCZFoAUjTq6LAnLHm6Sp3kRilFeMIK3gJpOsapyFpoYgRkW48c3N084
+ VO5OMN0ZMU6epJUqfOlaNppqdXH/awo76yFyKfagqRA==
+X-Received: by 2002:a2e:b8d5:0:b0:3ab:2d6a:1a1c with SMTP id
+ 38308e7fff4ca-3ab2d6a1c38mr16436591fa.12.1792419262054; Mon, 19 Oct 2026
+ 07:14:22 -0700 (PDT)
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 19 Oct 2026 10:14:20 -0400
+Received: from 969154062570 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 19 Oct 2026 10:14:20 -0400
+From: Bartosz Golaszewski <brgl@kernel.org>
+In-Reply-To: <atX8mpg19_WkIa27@ashevche-desk.local>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_Display_VT-d_cl?=
- =?utf-8?q?eanup?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Oct 2026 14:04:17 -0000
-Message-ID: <179241865718.41163.16933628220337435534@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261019130014.8851-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20261019130014.8851-1-ville.syrjala@linux.intel.com>
+References: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
+ <atXp2NSPKZUPj8sq@ashevche-desk.local>
+ <CAL-Wm=O-Gr3CuvCn8iSQceQMhu=LGFz0SPhmWeFL=RiVnoprdw@mail.gmail.com>
+ <atX8mpg19_WkIa27@ashevche-desk.local>
+Date: Mon, 19 Oct 2026 10:14:20 -0400
+X-Gmail-Original-Message-ID: <CAMRc=Mcrt8JVEUKLw+k_Duidi2Yuf=j61ViidR=aiUnjE5TZUQ@mail.gmail.com>
+X-Gm-Features: AclHuK8c9Lee5KOPnjoOwLwBKEDawbnB4l1kQfS7VfHTiarAnxS_Er4MQ7HyRIQ
+Message-ID: <CAMRc=Mcrt8JVEUKLw+k_Duidi2Yuf=j61ViidR=aiUnjE5TZUQ@mail.gmail.com>
+Subject: Re: [PATCH] drm/i915/dsi: Use owned panel/backlight GPIOs in VLV MIPI
+ sequences
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Hans de Goede <hansg@kernel.org>, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Michael Anderson <mwwa919@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +77,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9173700136909911028==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 19 Oct 2026 13:18:50 +0200, Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> said:
+> +Cc: Bart (as GPIOLIB maintainer and author of the reset-gpio rework).
+>
+> On Mon, Oct 19, 2026 at 07:03:57AM -0400, Michael Anderson wrote:
+>> Thanks for looking at this. I'd like to make sure I understand before
+>> doing a v2.
+>>
+>> Here both users of pin 10 are i915 itself: intel_dsi_vbt_gpio_init()
+>> takes it as the "backlight" enable GPIO (soc_panel_gpio_table,
+>> PPS_BLC_SOC), and the VBT MIPI sequences on this tablet then toggle the
+>> same pin as the panel reset (low in ASSERT_RESET, high-low-high in
+>> DEASSERT_RESET). Do you mean describing pin 10 with a software-node
+>> "reset-gpios" reference and having both paths go through
+>> reset_control_*(), or something else?
+>>
+>> One concern: the VBT drives explicit pulses on the pin, and shared reset
+>> controls are refcounted, so a pulse from one path wouldn't reach the line
+>> while the other holds it deasserted. Would an exclusive reset obtained
+>> once by i915 and used by both paths work instead, or am I missing how
+>> reset-gpio handles this?
+>
+> But then it sounds like the request-by-demand?
+> Bart, any ideas how to address this case?
+>
 
-== Series Details ==
+Yeah. If you need a more complex sequence than what refcounted reset-gpio or
+gpio-shared-proxy can provide (for instance a timed pulse) then you probably
+need to look at implementing a power sequencer using drivers/power/sequencing/.
 
-Series: drm/i915: Display VT-d cleanup
-URL   : https://patchwork.freedesktop.org/series/176387/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb_BAT -> xe-pw-176387v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb -> xe-pw-176387v1
-
-  IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb: 1909c1501d5a1c693215ad1cd7bbde41942182eb
-  xe-pw-176387v1: 176387v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176387v1/index.html
-
---===============9173700136909911028==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Display VT-d cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176387/">https://patchwork.freedesktop.org/series/176387/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176387v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176387v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb_BAT -&gt; xe-pw-176387v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb -&gt; xe-pw-176387v1</li>
-</ul>
-<p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb: 1909c1501d5a1c693215ad1cd7bbde41942182eb<br />
-  xe-pw-176387v1: 176387v1</p>
-
-</body>
-</html>
-
---===============9173700136909911028==--
+Bart
