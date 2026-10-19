@@ -1,48 +1,60 @@
-Received: from smtp.lore.kernel.org (ip-10-30-226-214.us-west-2.compute.internal [10.30.226.214])
-	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF14606A31C
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 14:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ixdFg3Ud
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BC13CCF2E5
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 14:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 442F2607D356
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 15:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KY2zUgWf
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D3F510E55E;
-	Mon, 19 Oct 2026 14:48:04 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 519CC10E55E;
- Mon, 19 Oct 2026 14:47:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 97AF960136;
- Mon, 19 Oct 2026 14:47:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 180D71F000C4;
- Mon, 19 Oct 2026 14:47:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792421277;
- bh=ROBpAwF4KUTANQfYV/YcSWuNUlXFcBlR5vC+33GP17A=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=ixdFg3UdENUKuCtHokhxR3dv//pUHybEDKlCe0mzIXL4k/+v6JrdiNv0cUilnETCW
- H8VJph6U+JD8caJsZZTaPMxzkiHiRgfN10EcSd89wTl0cYJsF63EtQfdCKKWYAfVGc
- pzXYIZzpnaXh/RMP5N3Cx/lUXt6eehpp8zKOWGW9OBYZwNTt7C4Gs1+QiST8rGn6tq
- k7klQDLKN+MnmP8ibMWwecRwpr31+CY3ZvZfjeWWSJM5MGif/asgyBM5RYPAN0rqtT
- 3dhjVTD8JOAi5RjdAXDbBT35Gjn+TN3AxxjCh8EI7wC+q1Oly/Ulu126laodxjjFlH
- nwNCXctUctw0Q==
-Message-ID: <sashiko-outbox-177503@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 15/15] drm/i915/pfit: Allow downscaling on i966+
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261019135309.23578-16-ville.syrjala@linux.intel.com>
-References: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
- <20261019135309.23578-16-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 19 Oct 2026 14:47:56 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 068D910E915;
+	Mon, 19 Oct 2026 15:03:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC64F10E915;
+ Mon, 19 Oct 2026 15:02:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792422176; x=1823958176;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JJ4wfctzSidwQwa829SCuUY5Y5KHXPN++9TN2i1LIBE=;
+ b=KY2zUgWfvvimm5csqjHcx6khUHhPIyks70WMEwuE26Jszye3BylI1s6M
+ CPngTU7h7+oWr/pn5VABUTj/is+i/ZDqLIRquHE5bW809gcIIv3sh1BdK
+ LgDyzBZJukjt0szytwFI0Pi/kjVEcXlbhHH3l5DyGSeW5ve8V38uja1UD
+ O0qlCyQuiDUW5K+UYN4rTcEfVtoQla+Qz1GLIhlpG+pnshFDEzCPE3qBc
+ 6KrasYIXZ8rwPzkKh0T1l0CWf/GYed3aVRv+wow1uh1l0SPi3qAINWnK4
+ MLUa6hSskl3NZ2YMfamrVvx0mn4+AZur4MDG3TkK/NAvCDI7mQUjp3wHi g==;
+X-CSE-ConnectionGUID: rOvtSi0CR3CghsKo+a276Q==
+X-CSE-MsgGUID: GxSLuhadSPCsb6WmZemtiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="991002"
+X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
+   d="scan'208";a="991002"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 08:02:55 -0700
+X-CSE-ConnectionGUID: bWDh15+TSpuCk4I5FnLJjA==
+X-CSE-MsgGUID: uSewnHV7TF6dYt/1X0Frmg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
+   d="scan'208";a="2633862"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
+ ([10.245.245.250])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 08:02:53 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	jani.nikula@linux.intel.com
+Subject: [PATCH v2 1/3] drm/i915/display: don't write Send Busy back when
+ toggling AUX power
+Date: Mon, 19 Oct 2026 17:52:59 +0300
+Message-ID: <20261019150226.734375-2-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261019150226.734375-1-luciano.coelho@intel.com>
+References: <20261019150226.734375-1-luciano.coelho@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,93 +64,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,RCVD_IN_DNSWL_BLOCKED,
-	RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,RCVD_IN_ZEN_BLOCKED_OPENDNS,
-	SPF_HELO_NONE autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+	RCVD_IN_ZEN_BLOCKED_OPENDNS,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/i915/pfit: off-by-one max_scale in i9xx_pfit_check_scaling()
---
+The AUX power wells share the AUX engine's control register, so the
+read-modify-writes we do to toggle the power request and the TBT IO
+bit also write back whatever else is in the register.  If a
+transaction is still running, Send Busy reads back as 1 and we write
+it again, which triggers the same transaction again.
 
-commit c5496f644982a254aa09057b7c02f1bea3cb5b18
-Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+intel_dp_aux_xfer() can return with the engine still busy, either from
+the pre-transaction check or from the "not done" path after all the
+retries, and it drops the AUX power reference right after, with the
+default 100ms delay.  So the delayed power well disable can run while
+the engine is still going.
 
-drm/i915/pfit: Allow downscaling on i966+
+Mask Send Busy out of these read-modify-writes so we never write it
+back as 1.  Writing 0 doesn't start a transaction, and the bit is 0
+anyway when the engine is idle, so nothing changes in the normal case.
 
-This commit updates i9xx_pfit_check_scaling() to raise max_scale to 0x20000=
- on
-DISPLAY_VER(display) >=3D 4 platforms to permit panel fitter downscaling.
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+---
+ .../drm/i915/display/intel_display_power_well.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/=
-i915/display/intel_pfit.c
-> index 6eb457047bf4c..2b6706c7af534 100644
-> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
-> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-> @@ -563,7 +563,10 @@ static int i9xx_pfit_check_scaling(const struct inte=
-l_crtc_state *crtc_state)
->  	int hscale, vscale, max_scale;
->  	struct drm_rect src;
-> =20
-> -	max_scale =3D 0x10000;
-> +	if (DISPLAY_VER(display) >=3D 4)
-> +		max_scale =3D 0x20000;
-> +	else
-> +		max_scale =3D 0x10000;
-> =20
->  	drm_rect_init(&src, 0, 0, pipe_src_w << 16, pipe_src_h << 16);
-> =20
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 233465a8306e..66be8826381b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -600,8 +600,10 @@ icl_tc_phy_aux_power_well_enable(struct intel_display *display,
+ 
+ 	icl_tc_port_assert_ref_held(display, power_well, dig_port);
+ 
++	/* don't write Send Busy back as 1, see xelpdp_aux_power_well_enable() */
+ 	intel_de_rmw(display, DP_AUX_CH_CTL(aux_ch),
+-		     DP_AUX_CH_CTL_TBT_IO, is_tbt ? DP_AUX_CH_CTL_TBT_IO : 0);
++		     DP_AUX_CH_CTL_TBT_IO | DP_AUX_CH_CTL_SEND_BUSY,
++		     is_tbt ? DP_AUX_CH_CTL_TBT_IO : 0);
+ 
+ 	intel_de_rmw(display, regs->driver,
+ 		     0,
+@@ -1935,8 +1937,15 @@ static void xelpdp_aux_power_well_enable(struct intel_display *display,
+ 		icl_tc_port_assert_ref_held(display, power_well,
+ 					    aux_ch_to_digital_port(display, aux_ch));
+ 
++	/*
++	 * This is the same register the AUX engine is driven through, so
++	 * mask Send Busy out of the read-modify-write.  Otherwise, if a
++	 * transaction is still in flight, we'd write Send Busy back as 1
++	 * and trigger the transaction again.
++	 */
+ 	intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+-		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
++		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST |
++		     DP_AUX_CH_CTL_SEND_BUSY,
+ 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST);
+ 
+ 	if (HAS_LT_PHY(display)) {
+@@ -1962,8 +1971,10 @@ static void xelpdp_aux_power_well_disable(struct intel_display *display,
+ 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+ 	enum phy phy = icl_aux_pw_to_phy(display, power_well);
+ 
++	/* don't write Send Busy back as 1, see the enable path */
+ 	intel_de_rmw(display, XELPDP_DP_AUX_CH_CTL(display, aux_ch),
+-		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
++		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST |
++		     DP_AUX_CH_CTL_SEND_BUSY,
+ 		     0);
+ 
+ 	if (HAS_LT_PHY(display)) {
+-- 
+2.53.0
 
-[Severity: Medium]
-Should max_scale be 0x20000 - 1 (or 0x1fff0) rather than 0x20000 here?
-
-In i9xx_pfit_check_scaling(), max_scale is passed to drm_rect_calc_hscale()
-and drm_rect_calc_vscale(), which treat max_hscale and max_vscale as inclus=
-ive
-upper bounds and only reject with -ERANGE when scale > max_scale. Setting
-max_scale =3D 0x20000 allows an exact 2.0x downscale factor (for example, w=
-hen
-scaling a 1600x1200 pipe_src to an 800x600 dst).
-
-However, in drivers/gpu/drm/i915/display/intel_pfit_regs.h, the i965+ scali=
-ng
-ratio fields in PFIT_PGM_RATIOS are 13-bit 1.12 fixed-point values:
-
-#define   PFIT_VERT_SCALE_MASK_965	REG_GENMASK(28, 16) /* 965+ */
-#define   PFIT_VERT_SCALE_965(x)	REG_FIELD_PREP(PFIT_VERT_SCALE_MASK_965, (=
-x))
-#define   PFIT_HORIZ_SCALE_MASK_965	REG_GENMASK(12, 0) /* 965+ */
-#define   PFIT_HORIZ_SCALE_965(x)	REG_FIELD_PREP(PFIT_HORIZ_SCALE_MASK_965,=
- (x))
-
-These 13-bit fields have a maximum representable value of 0x1fff (< 2.0). F=
-or
-an exact 2.0x downscale, panel_fitter_scaling() computes 0x2000 (BIT(13)),
-which overflows the 13-bit register field and causes a hardware state reado=
-ut
-mismatch in i965_pfit_get_config() -> i9xx_compute_pfit_dst() on
-crtc_state->pfit.dst and pixel_rate:
-
-drivers/gpu/drm/i915/display/intel_pfit.c:i965_pfit_get_config() {
-	...
-	case PFIT_SCALING_AUTO:
-	case PFIT_SCALING_PROGRAMMED:
-		hscale =3D REG_FIELD_GET(PFIT_HORIZ_SCALE_MASK_965, ratios);
-		vscale =3D REG_FIELD_GET(PFIT_VERT_SCALE_MASK_965, ratios);
-		break;
-	}
-
-	i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
-	...
-}
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261019135309.2357=
-8-1-ville.syrjala@linux.intel.com?part=3D15
