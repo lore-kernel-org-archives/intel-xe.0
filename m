@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9824CCF2DE
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:00:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F164CCF2DE
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:00:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9338F10ECB3;
-	Mon, 19 Oct 2026 13:00:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C3CC10ECB3;
- Mon, 19 Oct 2026 13:00:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0261E10ECEE;
+	Mon, 19 Oct 2026 13:00:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C58C10ECD0;
+ Mon, 19 Oct 2026 13:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792414822; x=1823950822;
+ t=1792414826; x=1823950826;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NIxv573kJR7r4dhLwh+r0UccFR5oGtT6tKI53A4UNiU=;
- b=LQHP63aCmwD0TkLxTjM9QhnPaQXpVX6piE6Uuok7p0awiz6i7DCh2DFk
- n0f7fF1tx1rdo2BL+Eyt0q5LZrWbKXCCv9uAT9b3wprBJPt28VBZQHNE+
- 3MF1B9kBjw49jKkqWDufhcQcdOtF+S2JbWhPd932ns2DjSI5vEofg8Fy3
- dMicsj9CElC7KnKllDanUgdvJhL2SwshV/+zKHzXJHoT5ZD/53m5uoKWl
- vNJRqmykkn1ZXmwgj8AxsVepcU4uI1AOpp0R+vvDgudZ3sT++/VWe/4Qf
- sJia3cNXrT0VZQoJ6uqyBOE8hKXyjza9vtIItZoacUMofpbG98ZSwaisN Q==;
-X-CSE-ConnectionGUID: MHiPAEnqROWurseWgNDPWg==
-X-CSE-MsgGUID: h54PpNYORaSZWUL+/JAqiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="1095416"
+ bh=vCQner5872qwjHjkGbjz4DQiUuZTscedOcL4UGW1PZ0=;
+ b=e92S7zxtAK7RbOglltWC2F3KkmgMBuUBVLAtkKG/AbAC+uQ1gn5D+/HD
+ 45TWDnYB8oP7jcC6hndlortsJ45IrNQTarmgJ9EOIVWQHrfl6fBi2Kjui
+ p1XAi8HHHNRujeAlGrqU/To+fne8TAltuXOQKlbhy0XDTjvtaGHsZoOD6
+ gNAMUSpW6xASUDB8/WaYENeaNooTTx4GFD4cGtxtj3oJftW/zwOKi8s4T
+ Q8jT0S3iFPIesXXRygWJmk1cD/WOiodtkkZrTYX09Y2MxMFG07uFexgkq
+ Y3FlGQWAyAN+G3Bc0TYOriiDKki/MTUWTceH+bBNS/wFEcKKbNv4+fK0c Q==;
+X-CSE-ConnectionGUID: WIqEH5HOTvWalM38RVWIHg==
+X-CSE-MsgGUID: 6l+BF7cnQq+FUDASZmbLFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="1095865"
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="1095416"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:00:21 -0700
-X-CSE-ConnectionGUID: fxOtBxA5QqWasa+EZPrrtw==
-X-CSE-MsgGUID: jhIU+oMYQNSY0DcnAF6pkw==
+   d="scan'208";a="1095865"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 06:00:25 -0700
+X-CSE-ConnectionGUID: sbFe6VBqRSijfqAO4BmRDQ==
+X-CSE-MsgGUID: 3yp0Ri4bQjqiC9IeZP4qbA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2894003"
+   d="scan'208";a="2526303"
 Received: from alekseim-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.34])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:00:20 -0700
+ 19 Oct 2026 06:00:24 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/3] drm/i915: Drop bogus VLV/CHV VT-d stuff
-Date: Mon, 19 Oct 2026 16:00:12 +0300
-Message-ID: <20261019130014.8851-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/3] drm/i915: Optimize VT-d w/a handling a bit
+Date: Mon, 19 Oct 2026 16:00:13 +0300
+Message-ID: <20261019130014.8851-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261019130014.8851-1-ville.syrjala@linux.intel.com>
 References: <20261019130014.8851-1-ville.syrjala@linux.intel.com>
@@ -71,93 +71,146 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Apparently VLV and CHV don't support VT-d at all. Drop the
-dead code and FIXMEs related to this.
-
-And since intel_scanout_needs_vtd_wa() is never true
-for VLV/CHV we can put the vtd_guard assignement into the
-common code path in intel_sprite_plane_create(), which is
-how intel_primary_plane_create() already does it as well.
+Since plane->min_alignment is already a vfunc we can skip
+the runtime VT-d checks by simply providing a VT-d specific
+implementation of the vfunc.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_plane.c   |  7 -------
- drivers/gpu/drm/i915/display/intel_sprite.c | 13 +++----------
- 2 files changed, 3 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_plane.c   | 16 ++++++++++------
+ drivers/gpu/drm/i915/display/intel_cursor.c | 20 ++++++++++++--------
+ drivers/gpu/drm/i915/display/intel_sprite.c | 16 ++++++++++------
+ 3 files changed, 32 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-index 0902b17d0269..bd5f2c74959a 100644
+index bd5f2c74959a..54e32b701770 100644
 --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
 +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-@@ -816,15 +816,9 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
- 				     const struct drm_framebuffer *fb,
- 				     int color_plane)
+@@ -830,18 +830,20 @@ unsigned int vlv_plane_min_alignment(struct intel_plane *plane,
+ 	}
+ }
+ 
++static unsigned int vtd_primary_min_alignment(struct intel_plane *plane,
++					      const struct drm_framebuffer *fb,
++					      int color_plane)
++{
++	return 256 * 1024;
++}
++
+ static unsigned int g4x_primary_min_alignment(struct intel_plane *plane,
+ 					      const struct drm_framebuffer *fb,
+ 					      int color_plane)
  {
 -	struct intel_display *display = to_intel_display(plane);
 -
  	if (intel_plane_can_async_flip(plane, fb->format, fb->modifier))
  		return 256 * 1024;
  
--	/* FIXME undocumented so not sure what's actually needed */
 -	if (intel_scanout_needs_vtd_wa(display))
 -		return 256 * 1024;
 -
  	switch (fb->modifier) {
  	case I915_FORMAT_MOD_X_TILED:
- 		return 4 * 1024;
-@@ -1019,7 +1013,6 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+ 	case DRM_FORMAT_MOD_LINEAR:
+@@ -1013,8 +1015,10 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
  	else
  		plane->min_alignment = i9xx_plane_min_alignment;
  
--	/* FIXME undocumented for VLV/CHV so not sure what's actually needed */
- 	if (intel_scanout_needs_vtd_wa(display))
+-	if (intel_scanout_needs_vtd_wa(display))
++	if (intel_scanout_needs_vtd_wa(display)) {
++		plane->min_alignment = vtd_primary_min_alignment;
  		plane->vtd_guard = 128;
++	}
  
+ 	if (display->platform.i830 || display->platform.i845g) {
+ 		plane->update_arm = i830_plane_update_arm;
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index 4afd275de86e..2f33a05bc76e 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -365,15 +365,17 @@ static unsigned int i85x_cursor_min_alignment(struct intel_plane *plane,
+ 	return 256; /* physical */
+ }
+ 
++static unsigned int vtd_cursor_min_alignment(struct intel_plane *plane,
++					     const struct drm_framebuffer *fb,
++					     int color_plane)
++{
++	return 64 * 1024;
++}
++
+ static unsigned int i9xx_cursor_min_alignment(struct intel_plane *plane,
+ 					      const struct drm_framebuffer *fb,
+ 					      int color_plane)
+ {
+-	struct intel_display *display = to_intel_display(plane);
+-
+-	if (intel_scanout_needs_vtd_wa(display))
+-		return 64 * 1024;
+-
+ 	return 4 * 1024; /* physical for i915/i945 */
+ }
+ 
+@@ -1188,15 +1190,17 @@ intel_cursor_plane_create(struct intel_display *display,
+ 		else
+ 			cursor->min_alignment = i9xx_cursor_min_alignment;
+ 
+-		if (intel_scanout_needs_vtd_wa(display))
+-			cursor->vtd_guard = 2;
+-
+ 		cursor->update_arm = i9xx_cursor_update_arm;
+ 		cursor->disable_arm = i9xx_cursor_disable_arm;
+ 		cursor->get_hw_state = i9xx_cursor_get_hw_state;
+ 		cursor->check_plane = i9xx_check_cursor;
+ 	}
+ 
++	if (intel_scanout_needs_vtd_wa(display)) {
++		cursor->min_alignment = vtd_cursor_min_alignment;
++		cursor->vtd_guard = 2;
++	}
++
+ 	cursor->surf_offset = intel_cursor_surf_offset;
+ 
+ 	if (DISPLAY_VER(display) >= 5 || display->platform.g4x)
 diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
-index 2321bfbb8630..116c7faf3452 100644
+index 116c7faf3452..42153a79d97b 100644
 --- a/drivers/gpu/drm/i915/display/intel_sprite.c
 +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
-@@ -1618,10 +1618,6 @@ intel_sprite_plane_create(struct intel_display *display,
- 		plane->min_alignment = vlv_plane_min_alignment;
- 		plane->min_cdclk = vlv_plane_min_cdclk;
+@@ -981,15 +981,17 @@ hsw_sprite_max_stride(struct intel_plane *plane,
+ 	return min(8192 * cpp, 16 * 1024);
+ }
  
--		/* FIXME undocumented for VLV/CHV so not sure what's actually needed */
--		if (intel_scanout_needs_vtd_wa(display))
--			plane->vtd_guard = 128;
++static unsigned int vtd_sprite_min_alignment(struct intel_plane *plane,
++					     const struct drm_framebuffer *fb,
++					     int color_plane)
++{
++	return 128 * 1024;
++}
++
+ static unsigned int g4x_sprite_min_alignment(struct intel_plane *plane,
+ 					     const struct drm_framebuffer *fb,
+ 					     int color_plane)
+ {
+-	struct intel_display *display = to_intel_display(plane);
 -
- 		if (display->platform.cherryview && pipe == PIPE_B) {
- 			formats = chv_pipe_b_sprite_formats;
- 			num_formats = ARRAY_SIZE(chv_pipe_b_sprite_formats);
-@@ -1650,9 +1646,6 @@ intel_sprite_plane_create(struct intel_display *display,
- 
- 		plane->min_alignment = g4x_sprite_min_alignment;
- 
--		if (intel_scanout_needs_vtd_wa(display))
--			plane->vtd_guard = 64;
+-	if (intel_scanout_needs_vtd_wa(display))
+-		return 128 * 1024;
 -
- 		formats = snb_sprite_formats;
- 		num_formats = ARRAY_SIZE(snb_sprite_formats);
+ 	return 4 * 1024;
+ }
  
-@@ -1669,9 +1662,6 @@ intel_sprite_plane_create(struct intel_display *display,
- 		plane->min_alignment = g4x_sprite_min_alignment;
- 		plane->min_cdclk = g4x_sprite_min_cdclk;
- 
--		if (intel_scanout_needs_vtd_wa(display))
--			plane->vtd_guard = 64;
--
- 		if (display->platform.sandybridge) {
- 			formats = snb_sprite_formats;
- 			num_formats = ARRAY_SIZE(snb_sprite_formats);
-@@ -1685,6 +1675,9 @@ intel_sprite_plane_create(struct intel_display *display,
+@@ -1675,8 +1677,10 @@ intel_sprite_plane_create(struct intel_display *display,
  		}
  	}
  
-+	if (intel_scanout_needs_vtd_wa(display))
-+		plane->vtd_guard = 64;
-+
+-	if (intel_scanout_needs_vtd_wa(display))
++	if (intel_scanout_needs_vtd_wa(display)) {
++		plane->min_alignment = vtd_sprite_min_alignment;
+ 		plane->vtd_guard = 64;
++	}
+ 
  	if (display->platform.cherryview && pipe == PIPE_B) {
  		supported_rotations =
- 			DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180 |
 -- 
 2.55.0
 
