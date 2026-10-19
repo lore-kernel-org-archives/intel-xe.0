@@ -2,153 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58D66606A319
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 22:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A041606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 23:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kP19skXI
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Lquk7GJa
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA69F10EB56;
-	Mon, 19 Oct 2026 22:55:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C754810E4EF;
+	Mon, 19 Oct 2026 23:01:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 780A010EB56
- for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 22:55:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3238310E4EF
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 23:01:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792450523; x=1823986523;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=iYNViwWisEA3YaClnvLgXhLBsnTcbOJgYgFMeJL3og4=;
- b=kP19skXI0L7VnrGcqlqfNpdV7SFfDRo7lzcc5emY2uSOZjlDsGNFraeE
- abnWoTLCslTqBwlsmSzz7Dm2tsO/tTt1rwEM7jZK/C2hfOeOL+Qm9xQ5R
- H9N6IU8TQfPKDZEm8NPKzzE4c8z7Pkv2MFpWX/5iadrJc9sHCUDJBkWqn
- hTHMqoZsJJMENiEj/OjT3iOe2uit+/vyJYhy6oa1V4f3gM7an8nVTsvKV
- tlzGRHt7Y9/0VotvtkQS9+AYfIKOnzp2D+PlpNskf04tY8Nb1XHzVOfVc
- qblhA0x2cGQlrhX0k2QRlDlh9hpouJIDzlbXXV2TWXaYg6nGwFe4cobYw Q==;
-X-CSE-ConnectionGUID: YM+BzRdvQWebgGAmkDgt4A==
-X-CSE-MsgGUID: pSe4iarzSjOXP+J9y+0rEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1158765"
+ t=1792450913; x=1823986913;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZJypgauNVpw4NiBBFdx6yV3Eu/iUywI09A2PHcSoM0Q=;
+ b=Lquk7GJayALl1iroMfSDFP3q0dtQaNiPj0msvOlCHry1xjY8/nO8oXMi
+ fEhMRKzyu09WTljvk4u2kjfltc2lrZqo0KE2nHgRM8qutyFGrR2PE+cMl
+ 3GIIhQhLz1eL2GkVO9KVvwhzBVGtMoszxTLMMICTgUKRfkTz7WjJGb7FK
+ oT56fxZUW25ZCOpmt5fHTJdqikPRuLO7/eYm/40qDMREfzKnlHC59Px2J
+ bcdotcr5w5wMEcccyhRdc2WjFlw8IybGYTVsIXpD1rnwh7eBzP5hpt14m
+ VKYXguWNZJwDsbYwbT2eRoiS/74SI1wIXdYplZ/wYViNpF1DM+70iFcpZ w==;
+X-CSE-ConnectionGUID: W5A7LcThTmGI3zxrIQ24QA==
+X-CSE-MsgGUID: R/dwqK+aTn+uzHqrWxOcoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1159259"
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1158765"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
+   d="scan'208";a="1159259"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 15:55:22 -0700
-X-CSE-ConnectionGUID: QtW0kRsZQ7OyVgjYzapUOg==
-X-CSE-MsgGUID: jSiXK1UMTde3JuHh+B6ksw==
+ 19 Oct 2026 16:01:53 -0700
+X-CSE-ConnectionGUID: HRTJ9X08Rg6kVQThmR72Zw==
+X-CSE-MsgGUID: vh0QurVuTRicMEeyqpm0HQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="2621846"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 15:55:23 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 19 Oct 2026 15:55:21 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 19 Oct 2026 15:55:21 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.38) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 19 Oct 2026 15:55:21 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X/l/GOeK0bqFCF31p+AbehpmKtOPtdZiEQ216jcQoz7FOCVJ8QWGeuzZnWt1CDh3k9uJ6CEbBLLzIn4jUVxISv53hSOCBa4FO45BVa0DW7+9iniL6oXTct9N+8b7a4V1/HVs6Ya39UkRYOypiyQCK528bF4uWwkJ8sY/WlB07yU76RM4VuxIuXgEUODY1lG9vcQOqmWMiGadPI791/NKdmiOA2i3FzULZUAVm3ccSEb4PnpsU89oqcn+ueGOah1c27gs0D0Xf/KHu0AOaQXR1B7bbTCPq+d1e2guoF9kN0dAsSca+/3uu2+Edmz6jd4XDjDMgoBheEY7oNS2sKMgsg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e5JfObzhgSiQ28npQbGk07G22VaYyelg6z4DHmK8hLA=;
- b=Vycdcqh060q9OfNE32JKcMCdz0jX41ZtzWhrHkpuCZClsv+K45+OpGY24LgptOkdO0XLlYLkQWq46Y/Fevgz5UrlO74xAaIEtodQa6gR7fOH1kxOdMW+gBTVrDZnOyNA3a+n5Ea0F0lRu+dHcgKkkleA6cFh9viGfw8cy4KLcMgO3V6BdoFwNdC3sjq5KDb55gBQXq58JfKhyUNrGhZfY+QF/ZrOzE1AX2E4/Ecdoolr1YcOJ1yUGY+eAlx+5WCnwWyJtlKvCDsEJe1VTXG962FBWuhDz2x8uCkWeKhveDHmnS98n8uHvD6HQiHgpdElTfMtSLB6/2UU6T1zwFDJyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SJ5PPF0FD67B0BC.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::80f) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Mon, 19 Oct
- 2026 22:55:19 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%6]) with mapi id 15.21.0522.017; Mon, 19 Oct 2026
- 22:55:19 +0000
-Date: Mon, 19 Oct 2026 15:55:17 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-CC: Jani Nikula <jani.nikula@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] drm/xe: Fix build with DRM_XE=y and CONFIGFS_FS=m
-Message-ID: <20261019225517.GG1329272@mdroper-desk1>
-References: <20261016191838.GH578251@mdroper-desk1>
- <20261016193254.3042071-2-rodrigo.vivi@intel.com>
- <9411b525240f8b79c2d828a887d1679518374689@intel.com>
- <20261019152559.GE1329272@mdroper-desk1>
- <4810b908f782874431348ea1509975a7a30f5148@intel.com>
- <20261019170621.GF1329272@mdroper-desk1>
- <ataSilyCrYkPXVFL@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ataSilyCrYkPXVFL@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0178.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::33) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+   d="scan'208";a="2607759"
+Received: from dut6094bmgfrd.fm.intel.com ([10.80.55.38])
+ by orviesa005.jf.intel.com with ESMTP; 19 Oct 2026 16:01:53 -0700
+From: Jia Yao <jia.yao@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Jia Yao <jia.yao@intel.com>
+Subject: [PATCH] drm/xe: Use a dedicated workqueue for VM rebinds
+Date: Mon, 19 Oct 2026 23:01:42 +0000
+Message-ID: <20261019230142.1112281-1-jia.yao@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ5PPF0FD67B0BC:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1a0c4037-ca0a-45aa-e4fb-08df2e340c83
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|6133799003|22082099003|18002099003|4143699003|11063799006|5023799004|10067099003|56012099006;
-X-Microsoft-Antispam-Message-Info: CdqUoXgUPfRXCdeoOL2rrp8vorSFoFYSAuTCK1lbSObXuB5U9qayIK6KybaLnR8yegn9aLFl4iNmWyBRxpQNEY+QZUOT6nZfLYWpXNm/C2sD/18+ukmUu6vDOc5eV1uZCxyz1qEW/8ldO1zUvy+vFw3RuiroIcCRZMRoxZoZxMfHh7P6BNPl4rffXy2s2oi1bmUFMeY5Ar0pCXhspKtLj/uHpcLUbUq/VI8SiZ1AisYteJ5cvAD8dNfDUhOLW5ez/ikYevLpCgomZRmD7xHMyRi8jnE5ZnLY82i7y+xC7S9EI0CeOjRtPXBNxxn1rQL/g8rB1kMyGX234dI9ddn61c8wJ8zMjiWkw6zy6YqGuacuMunFchmtbrNPGYV1jAnnaFAk3/VwaX3XO4gfkAUEwYJ0p0oqGyrdYZLyNGJ3pnH7xyCM1HlPeutiF22aOKx1ZP9EZFBJu80hq00oTSbkBuN11x2fx9h6fQFEd3ve+qih+dFMC/uNsLF4CY6i1ZKa7YC8eOPTzYNIYWVllDRG5dbpi6OrdZn4ViYUe9Jlsx72NezMtpRTs/g7fbjPliCYW+7Q5mwpodIZiS0kI0ntyqAYJ5Pl+0XJvcoq0Rupm3zYZ5z9dC5+GH7erLrOcq8X4TU3pYfGNt/XVbgvQsXqiMDhheA2StGqqTp8gVnD7/Q=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(6133799003)(22082099003)(18002099003)(4143699003)(11063799006)(5023799004)(10067099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WPjpaJc76BNcNYFFfsc8fjt9LLhm0sRryZLtkCD7HESJKD+93wsHCwQ8x3AQ?=
- =?us-ascii?Q?zuDJxDuqzYJVeiq2Y9d7PFM+4Ic9j1doNR5mLT77CJ8WPn89/eyXPS03nRP4?=
- =?us-ascii?Q?ZrVKmGiCn9sctBKJeaPQSQn3qSk+DXWZ3ad5iKeHZIX0T+3N/VacGJ7x3fG+?=
- =?us-ascii?Q?elxqSKPx4hYrUr/SvbWIBXParwatcIXZaeHFgdx7lpsWuWqnfdmYruy8l2rt?=
- =?us-ascii?Q?lsROZX4k6QGnNdKOSnEq9QgJ0kZ7R0EvvsxJi8lszp34qejtaqUHU5EqEAzo?=
- =?us-ascii?Q?xbDQ50j5UfIBoAM1DczFVi8z9dm/+DbQKxmDpUzOipDXErCVI0Tbqo9QOPOF?=
- =?us-ascii?Q?tYx8WVVqH9DPt6kpnl0hcb4eEN0We9ExDbmcPh1pbT0YwRo1CcTsJQyq6CQj?=
- =?us-ascii?Q?tFjPuC7yBbS0RAuOsjvTlSjBnurmKVh7FdOo5r0t9MiVn0ZY7N8p+gSksivT?=
- =?us-ascii?Q?hTeNwca3iIr3EvQaUOcQtK47rbRVh0mR6ygNpIXnWokC9jBklhAGSWozjclx?=
- =?us-ascii?Q?pvZ21ZEtLUTfsyXIah/O8moAPnUWrySNGJe1NFFKBYHrCUWfywm59cK+vp3o?=
- =?us-ascii?Q?u3UefkFAf1jmuz/7b9foIKGyJ5orQnFEqcJiNHRHeoD1KXPnAgGp1KYfjPYS?=
- =?us-ascii?Q?p7td5etI8wVcyokNhGJZLGHMzkSafIPgFpbFf1tgc1ukgE5/9bxQUaWqzOHV?=
- =?us-ascii?Q?4iT/K9lqyf2K/bKlX6U1AkNu20XKWtYxACdbM9e2i7D98qHp7vYAhtOwq+M0?=
- =?us-ascii?Q?3HY9so+YFC8CM7z1PIMCOgoHkKDRDtlxaObIREX9LL2NJY3I2xfjbJMg6TUE?=
- =?us-ascii?Q?vsa4Pvib8PWA9GYwF43rqqu67ipfSWTTpAie3eReDrseM/zFQQb3KXcsWo4K?=
- =?us-ascii?Q?MwDhUXWeyj1ZKG/Z74QKqCrhR1vrNHPyd+FL4k8An+kXX+Ib32259f5UMsRX?=
- =?us-ascii?Q?2GsTaeIvReDGlIw3Uxaqi20gnEvbvUII4+WkQ5oMVjUA8oHUQdFctRUshzBv?=
- =?us-ascii?Q?Evhii9OLdttrph1JgZcS4P6fVx7Olu2ARUJ6oUb9+9RfFyIITlnXZX2qDT63?=
- =?us-ascii?Q?eP6JlvKZ9axXQi0W80W4VudTDuv8M0uEzc4gKBc4OhWLJ+WivELnudtpNlUo?=
- =?us-ascii?Q?H4hQ01kgLjQzfkz4WHUFS2pT/JRc3f/rjZJw2c2P0Okzu+VVNaR6iKrUmh64?=
- =?us-ascii?Q?0ikK1biOvE0/GE/6zhoetkCX+M0Q4VhzxhsZBNu3YZ68baU4FQFG9+6npdVi?=
- =?us-ascii?Q?oaZ0RY46fAgkd/EN91UDgnrAyWhquU7F4KVHR7MnYqKK+LPVvTb+omJcZKIJ?=
- =?us-ascii?Q?VjAnvk9bW+S+eXn+fPEAUMmty/PYVuUTriahF8d9+H4/cBs6FBdzaLd27BL0?=
- =?us-ascii?Q?vYQ8Qyo5/8opk3m9zSpVKW0zmt06biVuMh/oCj3IgXZhjmEMXKvUdkcoOLHb?=
- =?us-ascii?Q?on2z0ifcEUKBO/kg6F5hZRFwcoikSioGVsaRMu7IaDsZwkhf9RU9q08YxVd+?=
- =?us-ascii?Q?pLTgVDErwK9yGF9WeDDzIzwYqs7qYIieQEJXvV2ncaqCCw7fhg28sBwEQdd0?=
- =?us-ascii?Q?c4Jewys/+RHpdx+zHzu807IqmOybEEN8HSpgOgvRGTsFKM1BICEiHtACacf+?=
- =?us-ascii?Q?wmBdIsYa0ah1CQr30pd4c+mLIs0OjDO7S/LEOLo2zQLMkx3mjd8yY7S+k4NC?=
- =?us-ascii?Q?m9JpawZrsM094eBZFj6l9x46bPdEEpnPX40A9ykQJLlOCeyXrfWkQlE0xsHL?=
- =?us-ascii?Q?A0d8y4O9F2M5XRPUOyHG+gwJdqMxNZY=3D?=
-X-Exchange-RoutingPolicyChecked: wUa5Vsrm/rioXUC+oGWwBoUCiq7mgKsMjdSX23GKzfl3lA1IrGrVDF+eAlBGqBwm3s+4RevsSP2XRRnvdavhU4vQUMWQI43zPqEJUHls7Nfq8WqmYCLZQpJkEqC1zN24W+PMWyFq0QQUDpM/glnptd3xMu2HFP8PtFb+nc0Q99JAXXaLgZsCcWsYiqtucHRu1+JNEUUGzGYwS/kvuLIQ2Wu6RUXe8ghMX+yI+WXpd5MZBg79VhW0lV68S+QX+A/yRdPylVPTSlOJ1B5lHgkC0EQBjw7pJoK3sRQU1knvc9QXSMGs4uMmPvt1HeL4Y8+DHKoxUnmZElW94+Lsietplg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1a0c4037-ca0a-45aa-e4fb-08df2e340c83
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Oct 2026 22:55:19.4555 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VEWyRoFolnKg2u+7zOtAvRKvoY2RJpCsXnlXrumwy4ePqtLZMTpOMro83mwIcJ+rXoGxvOVLmHJW5S44URChfnUtetrkdQNwaoJ6pmlKqS0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF0FD67B0BC
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,109 +60,105 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Oct 19, 2026 at 05:58:34PM -0400, Rodrigo Vivi wrote:
-> On Mon, Oct 19, 2026 at 10:06:21AM -0700, Matt Roper wrote:
-> > On Mon, Oct 19, 2026 at 07:53:31PM +0300, Jani Nikula wrote:
-> > > On Mon, 19 Oct 2026, Matt Roper <matthew.d.roper@intel.com> wrote:
-> > > > On Mon, Oct 19, 2026 at 06:21:29PM +0300, Jani Nikula wrote:
-> > > >> On Fri, 16 Oct 2026, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > > >> > When xe is built-in but configfs is a module, xe_configfs.o is not
-> > > >> > linked into xe, while IS_ENABLED(CONFIG_CONFIGFS_FS) in xe_configfs.h
-> > > >> > still exposes the real declarations, leading to undefined references.
-> > > >> >
-> > > >> > Use IS_REACHABLE() so this case falls back to the stubs, the same as
-> > > >> > CONFIGFS_FS=n.
-> > > >> 
-> > > >> I think using IS_REACHABLE() is almost always a mistake. It's a hack to
-> > > >> avoid link errors when something in a module needs something that is
-> > > >> built-in. It's a combo that should be handled at Kconfig level, not at
-> > > >> build level.
-> > > >
-> > > > But isn't this situation exactly the case that it's intended for?  Xe
-> > > > doesn't "need" configfs, but will use it if it's present and usable.  In
-> > > > cases where configfs is built as a module, then it will not be usable by
-> > > > any built-in driver (including Xe), and that's perfectly fine; we just
-> > > > treat that the same as the 'n' case.
-> > > 
-> > > Yeah, but there's zero discoverability for the user, or the developer
-> > > looking at a future bug report, with IS_REACHABLE().
-> > > 
-> > > The user enables two configs, the Kconfig doesn't enforce a relationship
-> > > between the two, but they still fail to work together. How is the user
-> > > supposed to know?
-> > > 
-> > > With the proxy kconfig option you at least get a hint at what's
-> > > required. And you could make it more comprehensible with e.g. something
-> > > like this:
-> > > 
-> > > config DRM_XE_CONFIGFS
-> > > 	def_bool y
-> > > 	depends on DRM_XE && CONFIGFS_FS
-> > > 	depends on CONFIGFS_FS=y || DRM_XE=m
-> > > 
-> > > Anyway, that's just my opinion. Obviously using IS_REACHABLE() is
-> > > "simpler" from Kconfig perspective, but I think explicit is better than
-> > > implicit.
-> > 
-> > If we're worried about bug report clarity, wouldn't it be more obvious
-> > if just add a print during init?  Something like:
-> > 
-> >     if (IS_ENABLED(CONFIG_CONFIGFS_FS) &&
-> >         !IS_REACHABLE(CONFIG_CONFIGFS_FS))
-> >             xe_notice(xe, "ConfigFS as module not reachable from built-in Xe.\n");
-> > 
-> > which provides immediate information to the end user, but doesn't imply
-> > that they need to change their config if they don't care about using
-> > Xe's configfs support and only want it for use with other modules.  I
-> > don't think most end users would understand how/why a proxy option like
-> > DRM_XE_CONFIGFS isn't getting set, and even to kernel developers the
-> > kconfig dependency stuff is always super clear.
-> 
-> I honestly don't have any strong opinion here. But I don't like this approach
-> of the notice...
-> We either use IS_REACHABLE as it was designed for or we go with the config.
+VM rebind workers may block while handling HMM faults or waiting for VM
+fences. Running them on ordered_wq can stall user-fence notifications
+and VM TLB timeout work queued behind them, preventing forward progress.
 
-Well,
+Move rebind workers to a dedicated ordered workqueue. This keeps rebinds
+serialized across VMs while allowing fence-related work to run
+independently.
 
-      Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Jia Yao <jia.yao@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c       | 12 +++++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h |  5 ++++-
+ drivers/gpu/drm/xe/xe_vm.c           |  2 +-
+ drivers/gpu/drm/xe/xe_vm.h           |  2 +-
+ 4 files changed, 17 insertions(+), 4 deletions(-)
 
-on the IS_REACHABLE form from me, but if others feel strongly about
-using using kconfig hacks, I guess that's fine too.  I just find trying
-to work around this with kconfig to be a lot harder to understand and
-debug.
-
-
-Matt
-
-> 
-> > 
-> > 
-> > Matt
-> > 
-> > > 
-> > > 
-> > > BR,
-> > > Jani.
-> > > 
-> > > 
-> > > -- 
-> > > Jani Nikula, Intel
-> > 
-> > -- 
-> > Matt Roper
-> > Graphics Software Engineer
-> > Linux GPU Platform Enablement
-> > Intel Corporation
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index db0b883322ef..f1dd4b7842a9 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -385,6 +385,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->preempt_fence_wq)
+ 		destroy_workqueue(xe->preempt_fence_wq);
+ 
++	if (xe->rebind_wq)
++		destroy_workqueue(xe->rebind_wq);
++
+ 	if (xe->ordered_wq)
+ 		destroy_workqueue(xe->ordered_wq);
+ 
+@@ -515,9 +518,16 @@ int xe_device_init_early(struct xe_device *xe)
+ 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
+ 						       WQ_MEM_RECLAIM);
+ 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
++	/*
++	 * Rebinding can block in HMM or wait for VM fences. Keep it off the
++	 * queue serving user-fence notifications and VM TLB fence timeouts,
++	 * which must be able to make progress while a rebind is waiting.
++	 * Preserve serialization between rebind workers on different VMs.
++	 */
++	xe->rebind_wq = alloc_ordered_workqueue("xe-rebind-wq", 0);
+ 	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
+ 	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU | WQ_MEM_RECLAIM, 0);
+-	if (!xe->ordered_wq || !xe->unordered_wq ||
++	if (!xe->ordered_wq || !xe->rebind_wq || !xe->unordered_wq ||
+ 	    !xe->preempt_fence_wq || !xe->destroy_wq) {
+ 		/*
+ 		 * Cleanup done in xe_device_destroy via
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 5553415afeaf..705c487e3c6f 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -387,9 +387,12 @@ struct xe_device {
+ 	/** @preempt_fence_wq: used to serialize preempt fences */
+ 	struct workqueue_struct *preempt_fence_wq;
+ 
+-	/** @ordered_wq: used to serialize compute mode resume */
++	/** @ordered_wq: ordered user-fence and VM TLB timeout work */
+ 	struct workqueue_struct *ordered_wq;
+ 
++	/** @rebind_wq: serializes compute mode rebinds and resume */
++	struct workqueue_struct *rebind_wq;
++
+ 	/** @unordered_wq: used to serialize unordered work */
+ 	struct workqueue_struct *unordered_wq;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e7f421a43516..88b4f6b19fdd 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -501,7 +501,7 @@ static bool vm_suspend_rebind_worker(struct xe_vm *vm)
+  */
+ void xe_vm_resume_rebind_worker(struct xe_vm *vm)
+ {
+-	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
++	xe_vm_queue_rebind_worker(vm);
+ }
+ 
+ static void preempt_rebind_work_func(struct work_struct *w)
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 06138c3c4315..25c8760e2392 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -259,7 +259,7 @@ int xe_vm_validate_protected(struct xe_vm *vm);
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+-	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
++	queue_work(vm->xe->rebind_wq, &vm->preempt.rebind_work);
+ }
+ 
+ /**
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.43.0
+
