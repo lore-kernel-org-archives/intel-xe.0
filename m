@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51451CCF2E6
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:53:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ADD8CCF2E3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:53:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0F3CE10ED62;
-	Mon, 19 Oct 2026 13:53:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1C4110ED5A;
- Mon, 19 Oct 2026 13:53:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 122D810ED39;
+	Mon, 19 Oct 2026 13:53:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0D3F10ED4B;
+ Mon, 19 Oct 2026 13:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792418019; x=1823954019;
+ t=1792418024; x=1823954024;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nYEeFy9YsUcIEr5WglfJXHwMvRbJueY3wPXZZl20tE8=;
- b=BNPg2lWkhOOgqwhG1TpvlQWz0oaiTTgRjVzpDOBf6jJtaqdMc6X+eHuy
- Jr9MTXU4uyoY7RuYA6msVpIwMFFgh5loNhqHuP4Vx7pXcs4gIIpDPn/66
- tjZ6fqII+DVWscxZMZTsthNkTP9V8t5LgxlXtj3Pbi02gBXh1doqpW/6q
- hBnRQUqgMuNS2/m7SEjHbOZ/uEuAR45ab8wm8aCefAR74OD9UTajAvml9
- vhcX85L2rQ+XQdnL43V0cnfTcpudPxm/2tfRzff+XLao+UWZx7n5RpsyJ
- Xo2j1H5NF/j0wti+C7ENTOR+Aok5bVr5mnO0XSAn2hk1L0II702TCcf5m Q==;
-X-CSE-ConnectionGUID: q9pBgFlHRjmonS99XsWa2w==
-X-CSE-MsgGUID: N/EbeOR5TQmtINFVzv6f4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="979715"
+ bh=1pBIoWVZiRi7gLDZTP+JHhG53Yml4KFrs+N0wdCkNP4=;
+ b=LTHvwsfHsFV01dhjFnruz3uPGrbXXq629kUf9juCXs+82EsGL6WJ5jHZ
+ zEg9hfy0qlAwUdcc1E3/RxSXjEhTbS+ZUqVwz34WnklvIAZrKMexdx9K4
+ cShUr8FARjjsv/l/eK4YfyeobUle4Al5UfNAyyreqMFhE4YvNSYhdO4jo
+ Q13ZIBPnvCWYodxeYEqsVuQxQ6mp1m+fHRLXJKXG14EBBLHf+pSIUJ7IJ
+ VQEMWdFYIvOrb5TT5QXlocleNz5fsenuNYTusXF0yUUUSAl2nl2pZfZgf
+ tUE6Btw1GxFw6TSc0DtbLhlqhVWYZG3VFZ0t/3lGlsAzrpJSOODft/1hV Q==;
+X-CSE-ConnectionGUID: W5qMTSwdQxyGIahmBuPX5A==
+X-CSE-MsgGUID: AsEtw31xRRia68UAlfFYlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1085129"
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="979715"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:53:39 -0700
-X-CSE-ConnectionGUID: 29O6xO1bQF2s9cTC0dURfw==
-X-CSE-MsgGUID: fw9mh4RpT6K8HK0srdoChA==
+   d="scan'208";a="1085129"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 06:53:43 -0700
+X-CSE-ConnectionGUID: l5YCnQwqTnCneUMWekIlew==
+X-CSE-MsgGUID: bbgiJ0mgQ3+wWMbwkOwMDw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2418564"
+   d="scan'208";a="2844406"
 Received: from alekseim-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.34])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:53:37 -0700
+ 19 Oct 2026 06:53:41 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/15] drm/i915/pfit: Drop platform check for
- gmch_pfit.pgm_ratios
-Date: Mon, 19 Oct 2026 16:53:01 +0300
-Message-ID: <20261019135309.23578-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/15] drm/i915/pfit: Unconfuse panel_fitter_scaling()
+Date: Mon, 19 Oct 2026 16:53:02 +0300
+Message-ID: <20261019135309.23578-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
 References: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
@@ -72,29 +71,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The platform check in the state checker for gmch_pfit.pgm_ratios
-is now pointless. gmch_pfit.pgm_ratios will always be 0 on i965+.
+panel_fitter_scaling() apparently tries to implemnt
+DIV_ROUND_CLOSEST() by hand, but in a somewhat weird way
+where the division and rounding are done as separate steps.
+Just use the real DIV_ROUND_CLOSEST() instead.
+
+This does in fact match how the i965+ hardware calculates
+the automagic scaling factors, which will be important
+for upcoming readout support.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pfit.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 79c4aff1c633..200426bf0c59 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5462,9 +5462,7 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+index 82804159d0a1..5d519f45adbe 100644
+--- a/drivers/gpu/drm/i915/display/intel_pfit.c
++++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+@@ -350,15 +350,7 @@ centre_vertically(struct drm_display_mode *adjusted_mode,
  
- 	PIPE_CONF_CHECK_X(gmch_pfit.control);
--	/* pfit ratios are autocomputed by the hw on gen4+ */
--	if (DISPLAY_VER(display) < 4)
--		PIPE_CONF_CHECK_X(gmch_pfit.pgm_ratios);
-+	PIPE_CONF_CHECK_X(gmch_pfit.pgm_ratios);
- 	PIPE_CONF_CHECK_X(gmch_pfit.lvds_border_bits);
+ static u32 panel_fitter_scaling(u32 source, u32 target)
+ {
+-	/*
+-	 * Floating point operation is not supported. So the FACTOR
+-	 * is defined, which can avoid the floating point computation
+-	 * when calculating the panel ratio.
+-	 */
+-#define ACCURACY 12
+-#define FACTOR (1 << ACCURACY)
+-	u32 ratio = source * FACTOR / target;
+-	return (FACTOR * ratio + FACTOR/2) / FACTOR;
++	return DIV_ROUND_CLOSEST(source << 12, target);
+ }
  
- 	/*
+ static void i965_scale_aspect(struct intel_crtc_state *crtc_state,
 -- 
 2.55.0
 
