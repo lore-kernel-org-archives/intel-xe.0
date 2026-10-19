@@ -4,107 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 250D8CCF2E3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3E4ACCF2E4
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:42:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E04A110EC64;
-	Mon, 19 Oct 2026 11:42:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="boGXDps6";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IyCELeOP";
-	dkim-atps=neutral
-X-Greylist: delayed 466 seconds by postgrey-1.36 at gabe;
- Thu, 15 Oct 2026 20:34:06 UTC
-Received: from fhigh-b3-smtp.messagingengine.com
- (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CC4310E84F
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 20:34:06 +0000 (UTC)
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
- by mailfhigh.stl.internal (Postfix) with ESMTP id E0EDC7A00CC
- for <intel-xe@lists.freedesktop.org>; Thu, 15 Oct 2026 16:26:19 -0400 (EDT)
-Received: from phl-frontend-04 ([10.202.2.163])
- by phl-compute-01.internal (MEProxy); Thu, 15 Oct 2026 16:26:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm1; t=1792095978;
- x=1792182378; bh=2RRIztZOszEgtU5KRM+EoAHa0heTyt/EU7Fc7IB6D2g=; b=
- boGXDps6z9yIfkCo6VBFj1kB192C1skTP3WndE/BRQm36ETwiSnLg6cRPj7mu2OS
- pRLqpd7r1yNY6PUaRKD64hi2tAC/98B0mf6lQHlNo2MNsud13MtIQ6v5eC+05kYH
- dq9mYRm9lp+hkfQ45R8KBWFdBsgZm476d7lDSAg5o2UG2UzR+fRNh5JNgWkrE8Iz
- CBFapBsoxgYM2nFevj5Kn2r+fkBKH26ucFmILiAnFJoOeNpLZdERRx50271vcPGx
- Nw17UfCHzS4ERg1XmwnU6zF0ncYzpIyZFhgwv948+SYySrKleZqIrlXYuOn/FDbx
- BoXf3qh1ec7mdcP7EIKlbA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1792095978; x=
- 1792182378; bh=2RRIztZOszEgtU5KRM+EoAHa0heTyt/EU7Fc7IB6D2g=; b=I
- yCELeOPCiDRkoOwUTJPxmfeqH8oGbOIq7U4l7Ii73g+rpVMUybKqJG/dFX+kYant
- rVBPOmXQnE6/eXA1kwK4FWZLz30aUkYLlYIxazuKLqZwIEsgkOACwcFqYUOMMy1a
- plHJLFVpYXn5NKspWMIX0q24Lm8n7lMu8qwU9haDmnhxGJgB7jZtH7/26T2x6ahz
- hDiC0Y2fARcIwfvYCdZIZy8DpcZ5hQPh4Gjmd2g5sfJCNjsXW5eLrEvEwALtBKaJ
- YNQqR8uppr8URDjQBgQASLajhmat9oDWHlpR0CesW1wRQCnmScnx4l3iDjUnWsmL
- hqracyR2Ea7B2OblZZLUA==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-06;
- repo=github.com/dkim2wg/interop; date=2026-10-08; sw=lmtpprox;
- action=sign d=shazbot.org a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1792095978; d=shazbot.org;
- mf=PGFsZXhAc2hhemJvdC5vcmc+;
- rt=PGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4=;
- s=fm1:rsa-sha256:L8oTZxkXPc5vBUXUue4M65YPFRzvbFLNBdR6WtG/J+sODNN
- 9oKns80jrLWd34i13V+0l6TM+384Cv6jwLPGZlS/oj0T4374piss/lBCVK/6wdCb
- 2c7SyfYUbe0iGcwxcdBIjew7AF6XUpCZc6ggj8V7sfwIdZCkEOZpnVQlotBopefE
- BVrj2IRm/R0h6sPLjj6LcEWyZiZY0jJEKLByBjHDoE6JwYx5l/rgTg7/6+JC8/M4
- R/2nDh7suidjs5Qu3A4jSOsdfSnO7Su4cSmHAyUI+Bf4FeJtkfdjhbKQmCx2So/H
- 0ljDDMOxzFSy7rrV0I5TWWnDAFrfdayjAOb0nkw==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-06;
- repo=github.com/dkim2wg/interop; date=2026-10-08; sw=lmtpprox;
- action=mi-m=1; hc=12;
- hn=cc,content-transfer-encoding,content-type,date,feedback-id,
- from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1;
- h=sha256:5d27a61I+Y3ZQRIEAgtTeNjwfjhCV+RAkyi02Z1AxqQ=:x7QwnD24yRUaqKk60dVJEyM7aNVWVX1BjN/KEWCUOus=;
-X-ME-Sender: <xms:6jbRana52w3L7o3zJF3Ge9ttQSQEQo3Z2-y0NVVBM-pjHRVtqNIiDA>
- <xme:6jbRasZy-HRBwQyyuY7PRo4gwS0z5ASIiYNxSqMEikO1qr3NeAFkZVbsrf_MpqOXl
- 0-c_kATvnBRAAbXpr8YnbZvkOQGRcUSB9cNuuAFoBSmzn8JoxZvtAc>
-X-ME-Received: <xmr:6jbRakwrLxupMOBm86kbOPch3OcWna0aAVIWBezHqBxQX-OvsCMdDOCmHztvzQ>
-X-ME-Proxy-Cause: dmFkZTE1b+N8kGGpUk13ieyPlVE5FAmIlfPgy+YxTXBBm9ekOGZjEXT6yIuYwplMn2dscS
- WLp1YY5w7dgFcPnlXnKeiMRT6HKE8tpI7sfYrftO5G3NK+ZYEHbWgK3C0IuhTPI1vnEHKo
- iHPqsRhiJbD4Vd921Kqyh7t+IybxtF6YFY2CRYEIx3ABwEIwJIzDSdKkBlRJ4qqsDtFgbM
- wkinftxPmJ+5Db7uJy7rxBfKbXhCGIIB0P6CLtvQw1/ilyQAlywhsxZb4vJvpRANnXeOqG
- Ck0Y2N75AJWwe2bj9j7VGyMaG2Y+dwqlXqUDJd3USnV9F0paO2lDDHSE9qEnW4OUdOAhqV
- WVvbyfotMt2ED7PhEO8sjZZPn0bgik8tKTTIV8zEr44vIFoVy9AMrZzuPVmDpRl0ahjjv6
- d7mwjZVMTbRZ0MuKtUDwulmFU9woGU79l5Z7WsBl/dkKkKJTr7opGj0cv4lPtP1jmGhbZJ
- XviqULnYkfff+mgVerf6RVILnMVVVBWnEdmW3i6nuao1k8hjzUKIk6jUOmGDqLDsJkMNcK
- 6ioQg6d6NuVN0b764YCSJaIACUjuolDXB76PT/fRH9599KTTgDduyzTxd+pqMwRtmfO0W8
- KkYXsjB+J8t6vjLvVPcYEl2umQ5cUDiz5xCueRuJ6FithsAxHtYZ3FTCLp1w
-X-ME-Proxy: <xmx:6jbRagfIfYiydrtja_z5x-8GUX2AWR7gFhRdzhRVhW8tvkPZGnza3g>
- <xmx:6jbRah43MyFseVVH6uqpjenLRG3UpDy28mDWWKd9JZ1mMKw-U-bYHA>
- <xmx:6jbRatLxc1ynLzIERu5IL5va_Ji6LBk02Yub-r8hzqV9NQYHMBBkYQ>
- <xmx:6jbRahzmholD6nmakHVjxCeicEe28Dzo7WaGpND3CU2mhaF3BEid-Q>
- <xmx:6jbRakI1kB02K5nqhaDs6o7cIwH1aMwXqr_aRzslAfk6-B5n4eQKJmSd>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 15 Oct 2026 16:26:17 -0400 (EDT)
-Date: Thu, 15 Oct 2026 14:26:16 -0600
-From: Alex Williamson <alex@shazbot.org>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: kvm@vger.kernel.org, =?UTF-8?B?TWljaGHFgg==?= Winiarski
- <michal.winiarski@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>, Yishai Hadas
- <yishaih@nvidia.com>, Shameer Kolothum <skolothumtho@nvidia.com>, Kevin
- Tian <kevin.tian@intel.com>, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, alex@shazbot.org
-Subject: Re: [PATCH] vfio/xe: Add CRI and NVL device IDs
-Message-ID: <20261015142616.2811a3a7@shazbot.org>
-In-Reply-To: <20261014131849.157593-2-satyanarayana.k.v.p@intel.com>
-References: <20261014131849.157593-2-satyanarayana.k.v.p@intel.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B98410EC6A;
+	Mon, 19 Oct 2026 11:42:18 +0000 (UTC)
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com
+ [209.85.208.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0DB10E79D
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 06:36:59 +0000 (UTC)
+Received: by mail-ed1-f47.google.com with SMTP id
+ 4fb4d7f45d1cf-6af9a9451daso2466274a12.0
+ for <intel-xe@lists.freedesktop.org>; Sun, 18 Oct 2026 23:36:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1792391818; x=1792996618; darn=lists.freedesktop.org;
+ h=references:in-reply-to:subject:cc:to:from:content-transfer-encoding
+ :content-type:mime-version:message-id:date:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=g2KeYWsG+wFaGgc+7I3C8q1Tb9M91ngHA9b+lWINLtQ=;
+ b=dE1rGGe5cI6oNHzUJusUIInawbeD5WrD3zjI+xsCcZc6UZ3fwi5ATns3IwfSk0yGQV
+ 7thI3P+srZ9vf/UIaLT96GvGoeCEJUwcKUPa0rM0L27OwK3dcq3IqvhJOi68QCwKMQXO
+ h8aVAe61YuOLHeRzoi3bbLAx/4e1nRIe/Q7JWUNDLklMlaSgWdnPVAkX9IuMCgSO9ZWZ
+ McFQaDBUXLrgHaoX+799Vle15ARcgI3CIiK9oxLr2kXlrZ12UetH8av8FAOK1Hfx1InO
+ b+Lt2MeRWZL76NQAJTdqlUW9jT5DPtYQLRM9NFS5kIr5x6WzY9oDagFPQvgE22z7lU0Y
+ 9ROA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1792391818; x=1792996618;
+ h=references:in-reply-to:subject:cc:to:from:content-transfer-encoding
+ :content-type:mime-version:message-id:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=g2KeYWsG+wFaGgc+7I3C8q1Tb9M91ngHA9b+lWINLtQ=;
+ b=gKT6IOUUT0UMIrQohcs3m3a4TEs8lhgO8l9OMKgnWwyXCp4l4jTrL59fdxBFF81G1V
+ 7Ku6QXA5KHhkjo+WSW9HfbsjUl957a+Mb0pZ1MAMfXtcwBWeYteL4tb5AcbfyEWqh8QG
+ cGURyFMbI9EX2ztL+1PqocO/kX/oAeqF7hQTEuDtHkv1G7SmCH4NI+pNs7MkKNKLdrIW
+ rkPXqgcm97wU61FeXDhsb4khjhzC4Mm4FMqY3rOkMG0Vjb9y/XeixA75QW4Y5iNmGHL5
+ bZD8fyqP49IwZhHywCZmBI7j3jF4A/5P8Gf1RSPnDI9tSAI5xt0IJjL13rRDcDR41qp7
+ qOKA==
+X-Forwarded-Encrypted: i=1;
+ AKwUvByf+RGwbEENfxkMPGLnWPlyL0zN4DIOhvctz9B2mQBaA5/3XT+mURkc76qFbSY6wxCJv3MiQSVeEA==@lists.freedesktop.org
+X-Gm-Message-State: AFq9FYIvq3OHbAM4LavTiVGmxpqP+SLMJK+KBzntV8wrTM2l0PiEPtMP
+ XcAr6c0lpiFEoMlUGdhrgeCXqQXX1Zd1d0PhZSxlbwgWp0onhLz1aXpN
+X-Gm-Gg: AYBFou3bo3cdCQ/cmXO83tqBAtAnHftPubXkKdjft0hi61m5smRg1AUT0pXr5Y80tqH
+ BnviY/6X9T3OdAaSgnz6gJJUCK09Z6D8XjCqlNcWy1C8NobVulGZixhce5A3FTbwowd+cogIR5Q
+ ZiUBGJCQlrfUMnJMSi4hS5JVXMXoX3fAHfjHPNxBQNM6LDH5nJytNVE2BaHXjhrHFsYdyNaNoyq
+ 3ZNU8fq4c/s2FdeTy/LSCS9n6rM9eWqziBKHQwiubFI+3jJJ895AJyEMNdYrRSy+F6HCl+zoM9J
+ GcUg0zDBUUNaJTg4+qWUSYlf2WFW2xASL1FIQ/eDqdfbI+LShD6/l8mdOIfepRInvLBMLtNFD6C
+ SoMQsFfQziNHuXzBnR7uNMw4ie78+xxrB0wQ9cDQVvoqiO9VZhYToeUkdcD/3rwitfeXiJQJZ+/
+ t1Ib2A4uEkDre4ZQMDv1hdk7qvRHrCzZRb62fp7XVR47uT2SPmQrDAxeqshK2pe+5g8ggF
+X-Received: by 2002:a05:6402:e87:b0:6b1:abe7:825c with SMTP id
+ 4fb4d7f45d1cf-6b3a8175611mr3870204a12.8.1792391817776; 
+ Sun, 18 Oct 2026 23:36:57 -0700 (PDT)
+Received: from localhost ([2a05:d016:6cf:a600:dca7:6eb5:c61c:2b8a])
+ by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-6b38a1b1347sm3628086a12.12.2026.10.18.23.36.56
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 18 Oct 2026 23:36:57 -0700 (PDT)
+Date: Mon, 19 Oct 2026 09:36:55 +0300
+Message-ID: <1792391815.ae0036ac0925@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+From: Ioann Komarov <kivan1337@gmail.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Imre Deak <imre.deak@intel.com>, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH] drm/i915/mst: let the branch-sink check uncompressed with
+ 18bpp
+In-Reply-To: <20260804094450.125307-1-arun.r.murthy@intel.com>
+References: <20260804094450.125307-1-arun.r.murthy@intel.com>
 X-Mailman-Approved-At: Mon, 19 Oct 2026 11:42:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -120,49 +89,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 14 Oct 2026 18:48:50 +0530
-Satyanarayana K V P <satyanarayana.k.v.p@intel.com> wrote:
+On Tue, Aug 04, 2026 at 03:14:50PM +0530, Arun R Murthy wrote:
+> mst_connector_mode_valid_ctx() uses a single 18bpp floor for both
 
-> Crescent Island (CRI), Nova Lake-S (NVL-S) and Nova Lake-P (NVL-P)
-> support SR-IOV in the Xe driver. Add their PCI IDs to the xe-vfio-pci
-> device table, so that the generated vfio_pci module aliases allow
-> userspace to select this variant driver for their VFs.
->=20
-> Also reordered the table entries.
->=20
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Yishai Hadas <yishaih@nvidia.com>
-> Cc: Shameer Kolothum <skolothumtho@nvidia.com>
-> Cc: Kevin Tian <kevin.tian@intel.com>
-> Cc: Alex Williamson <alex@shazbot.org>
-> Cc: kvm@vger.kernel.org
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: linux-kernel@vger.kernel.org
-> ---
->  drivers/vfio/pci/xe/main.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-> index cbff5af385ef..8f1237751d51 100644
-> --- a/drivers/vfio/pci/xe/main.c
-> +++ b/drivers/vfio/pci/xe/main.c
-> @@ -574,9 +574,12 @@ static void xe_vfio_pci_remove(struct pci_dev *pdev)
->  }
-> =20
->  static const struct pci_device_id xe_vfio_pci_table[] =3D {
-> +	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
-> +	INTEL_CRI_IDS(INTEL_PCI_VFIO_DEVICE),
-> +	INTEL_NVLS_IDS(INTEL_PCI_VFIO_DEVICE),
-> +	INTEL_NVLP_IDS(INTEL_PCI_VFIO_DEVICE),
->  	INTEL_PTL_IDS(INTEL_PCI_VFIO_DEVICE),
->  	INTEL_WCL_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
->  	{}
->  };
->  MODULE_DEVICE_TABLE(pci, xe_vfio_pci_table);
+Tested on ADL-P (ThinkPad T14 Gen 3, 8086:46a6) with a Lenovo 40AY
+USB-C dock (Synaptics MST branch, fw 5.6) and a 2560x1440@180 monitor
+without DSC, so the dock decompresses. The link is 2 lanes of HBR3.
 
-LGTM.  Micha=C5=82?  Thanks,
+Without the patch the 180Hz mode is pruned with CLOCK_HIGH. With it
+(backported to 7.2.8, which still has intel_dp_max_link_rate()) the
+mode is listed and runs with DSC at compressed-bpp 16, port_clock
+810000, lane_count 2. Logs are in
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/17207
 
-Alex
+The same dock and failure on MTL are reported in issue 17207, and on
+RPL-P in issue 16640.
+
+Tested-by: Ioann Komarov <ioannkomarov@proton.me>
+
+Adding Imre and Ankit, since the patch went out without reviewers on
+Cc. Could one of you take a look?
