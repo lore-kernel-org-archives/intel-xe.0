@@ -4,27 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D909ACCF2D5
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 10:57:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 075B6CCF2D3
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:19:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B67E10E538;
-	Mon, 19 Oct 2026 10:57:02 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A88D610E582;
- Mon, 19 Oct 2026 10:57:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6324922646629082315=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49AD710EA72;
+	Mon, 19 Oct 2026 11:19:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 856DD10EA55;
+ Mon, 19 Oct 2026 11:18:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792408737; x=1823944737;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=OjjfwwLZbDqlnlqqnl+VhPdVOwG66obu/ngPBAEEJ60=;
+ b=FYXtzA46uunxo6PJ6yY9DdiMkwbV2RhJlLvP+vGR77Z7Qwd/Bp28cMLz
+ c5V4EKfpJGzO8ilDHow7ZDjRTvSuhQYwwMs73iLlOdTe8VIvPA+sZZD+7
+ EZNCcamUHicEk3xIwXY4ksdtOHKvzOpuSZI5LyuS1aM+y5d/LGl8HXkCG
+ yvwPE+apuxmUz7GcLZRPuB71nOFpUvVC0WyDwWuf3rVS2fem8Q5GpgNKB
+ 092aRqjvxMmbHgYLzgPnAYnGBcsEClOC/tdzG8S4GZZoWRqfczZokp/sz
+ RJUVdM+TgR46g7rE0+anPwlfZTVQUFGHEtg4cBRZ82Diy90+jGA30hOMi Q==;
+X-CSE-ConnectionGUID: NNa2n/ihSUWlb6/9KFAE5g==
+X-CSE-MsgGUID: PX2p+8inQyGDnBDmrMJm1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="993083"
+X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
+   d="scan'208";a="993083"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 04:18:56 -0700
+X-CSE-ConnectionGUID: 2EQXLQQ7Q3Wkw2XbewmDww==
+X-CSE-MsgGUID: 34XvGfjIT8a4JiB7DgQHWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
+   d="scan'208";a="2570954"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.209])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 04:18:53 -0700
+Date: Mon, 19 Oct 2026 14:18:50 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michael Anderson <mwwa919@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Hans de Goede <hansg@kernel.org>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/dsi: Use owned panel/backlight GPIOs in VLV
+ MIPI sequences
+Message-ID: <atX8mpg19_WkIa27@ashevche-desk.local>
+References: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
+ <atXp2NSPKZUPj8sq@ashevche-desk.local>
+ <CAL-Wm=O-Gr3CuvCn8iSQceQMhu=LGFz0SPhmWeFL=RiVnoprdw@mail.gmail.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Split_the_bo_shri?=
- =?utf-8?q?nker_and_adjust_batch_size?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 19 Oct 2026 10:57:01 -0000
-Message-ID: <179240742168.39581.4831031628266510133@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261019095655.3501-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20261019095655.3501-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL-Wm=O-Gr3CuvCn8iSQceQMhu=LGFz0SPhmWeFL=RiVnoprdw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +76,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6324922646629082315==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
++Cc: Bart (as GPIOLIB maintainer and author of the reset-gpio rework).
 
-== Series Details ==
+On Mon, Oct 19, 2026 at 07:03:57AM -0400, Michael Anderson wrote:
+> Thanks for looking at this. I'd like to make sure I understand before
+> doing a v2.
+> 
+> Here both users of pin 10 are i915 itself: intel_dsi_vbt_gpio_init()
+> takes it as the "backlight" enable GPIO (soc_panel_gpio_table,
+> PPS_BLC_SOC), and the VBT MIPI sequences on this tablet then toggle the
+> same pin as the panel reset (low in ASSERT_RESET, high-low-high in
+> DEASSERT_RESET). Do you mean describing pin 10 with a software-node
+> "reset-gpios" reference and having both paths go through
+> reset_control_*(), or something else?
+> 
+> One concern: the VBT drives explicit pulses on the pin, and shared reset
+> controls are refcounted, so a pulse from one path wouldn't reach the line
+> while the other holds it deasserted. Would an exclusive reset obtained
+> once by i915 and used by both paths work instead, or am I missing how
+> reset-gpio handles this?
 
-Series: drm/xe: Split the bo shrinker and adjust batch size
-URL   : https://patchwork.freedesktop.org/series/176372/
-State : success
+But then it sounds like the request-by-demand?
+Bart, any ideas how to address this case?
 
-== Summary ==
+> On Mon, Oct 19, 2026 at 5:58 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> >
+> > On Sun, Oct 18, 2026 at 04:12:40PM -0400, Mike Anderson via B4 Relay wrote:
+> >
+> > > On VLV with PPS_BLC_SOC, intel_dsi_vbt_gpio_init() requests the
+> > > backlight and panel enable GPIOs (INT33FC:01 pins 10 and 11) for i915
+> > > itself. Since commit 8241b55f1ded ("drm/i915/dsi: Replace poking of VLV
+> > > GPIOs behind the driver's back") the GPIO elements of the VBT MIPI
+> > > sequences also request their pin through gpiolib, so when a sequence
+> > > toggles one of these two pins the request fails and the toggle is
+> > > dropped:
+> > >
+> > >   i915 0000:00:02.0: [drm] *ERROR* GPIO index 10 request failed (-EBUSY)
+> > >
+> > > Before that commit the pad registers were written directly, so the
+> > > sequences could still drive the pins i915 owned.
+> > >
+> > > The Toshiba Encore 2 WT8-B (Bay Trail, DSI panel) uses pin 10 as the
+> > > panel reset line: MIPI_SEQ_ASSERT_RESET drives it low and
+> > > MIPI_SEQ_DEASSERT_RESET pulses it high-low-high. With every toggle
+> > > failing, the panel is never reset after i915 sends MIPI_SEQ_DISPLAY_OFF
+> > > during takeover and stays black, even though the backlight PWM and both
+> > > enable GPIOs read back as on. The tablet only has a usable display
+> > > with nomodeset.
+> > >
+> > > When a VLV MIPI sequence targets pin 10 or 11 and i915 holds the
+> > > corresponding descriptor, set it through that descriptor instead of
+> > > requesting the pin a second time.
+> >
+> > Ah, nice, this should be solved via using reset-gpio, which is exactly fixed
+> > for the reset shared lines case.
 
-CI Bug Log - changes from xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43_BAT -> xe-pw-176372v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-176372v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176372v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-
-
-Build changes
--------------
-
-  * Linux: xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43 -> xe-pw-176372v1
-
-  IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43: 5b9ee97c47574138633a1cb70a32d118b6860a43
-  xe-pw-176372v1: 176372v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176372v1/index.html
-
---===============6324922646629082315==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Split the bo shrinker and adjust batch size</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176372/">https://patchwork.freedesktop.org/series/176372/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176372v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176372v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43_BAT -&gt; xe-pw-176372v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-176372v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176372v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43 -&gt; xe-pw-176372v1</li>
-</ul>
-<p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5973-5b9ee97c47574138633a1cb70a32d118b6860a43: 5b9ee97c47574138633a1cb70a32d118b6860a43<br />
-  xe-pw-176372v1: 176372v1</p>
-
-</body>
-</html>
-
---===============6324922646629082315==--
