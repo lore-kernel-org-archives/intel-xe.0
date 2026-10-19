@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01876CCF2D6
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:00:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB77FCCF2D6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:05:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B250F10ECE6;
-	Mon, 19 Oct 2026 13:00:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16E5110ECE2;
- Mon, 19 Oct 2026 13:00:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792414829; x=1823950829;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kaIt3RyusLC2xWJBSADuOT3FigJCq1K49+SAYj4VnDI=;
- b=B3AZj9If+CtAog5QTBG/alAlsj1XhUX2tI3mvmOplz+hp4Ob/riFNbsM
- uioPRHaj5QQi/1aUoAP0Ab//wHaNpR2OVmh98s0MPoZ7UrsgwlC2NYacF
- CkWGQwrvtBomIv7f2e0724Q3yc3GB7BPXHW+E3ECZHyQYypZ0QzGuIEXO
- g7zvAREZ/y6RyMb94WSNhbrq6nt9o/z5iBXTKm43LXaGkfV7vaxS3k5zg
- No5l1h/bRTtjLKJsAIG/9dkOO9PPcmNI9qRDGyJYWrISI4Lbn4uXdVgeP
- oYmhTaN0QgJa8sihkTol35K/ehckiSLAYFpGidKfp/AlV1s27mkWHZPAR g==;
-X-CSE-ConnectionGUID: 0JxTwuLVRuy+DrzPTwq3Mw==
-X-CSE-MsgGUID: 5I+WsNW2TZ+xd0IbnhMBXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="964592"
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="964592"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:00:29 -0700
-X-CSE-ConnectionGUID: tjXlsSBVQL+6OqsduuvVsg==
-X-CSE-MsgGUID: R0hLRLciSu2ARyE9lQLIyw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="4315207"
-Received: from alekseim-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.34])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:00:27 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915: Document which platforms have VT-d
-Date: Mon, 19 Oct 2026 16:00:14 +0300
-Message-ID: <20261019130014.8851-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261019130014.8851-1-ville.syrjala@linux.intel.com>
-References: <20261019130014.8851-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7040B10ED04;
+	Mon, 19 Oct 2026 13:05:46 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F19B910ED02;
+ Mon, 19 Oct 2026 13:05:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1486809208488086270=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dsi=3A_Use_owned_p?=
+ =?utf-8?q?anel/backlight_GPIOs_in_VLV_MIPI_sequences?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mike Anderson via B4 Relay" <devnull+mwwa919.gmail.com@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Oct 2026 13:05:44 -0000
+Message-ID: <179241514498.40186.5359574457469732196@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
+In-Reply-To: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,36 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============1486809208488086270==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Document which platforms may or may not have VT-d support.
-Avoids having to trawl all the CPU/chipset docs yet again.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_utils.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: drm/i915/dsi: Use owned panel/backlight GPIOs in VLV MIPI sequences
+URL   : https://patchwork.freedesktop.org/series/176383/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_utils.c b/drivers/gpu/drm/i915/display/intel_display_utils.c
-index 04d010f7c23e..53de5b90239d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_utils.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_utils.c
-@@ -22,6 +22,12 @@ bool intel_display_run_as_guest(struct intel_display *display)
- #endif
- }
- 
-+/*
-+ * Notes on VT-d support:
-+ * - Q35,Q45,GM45,GS45 are the only GMCHs that support VT-d
-+ * - VLV and CHV do not support VT-d
-+ * - ILK+ VT-d support varies based on CPU SKU
-+ */
- bool intel_display_vtd_active(struct intel_display *display)
- {
- 	if (device_iommu_mapped(display->drm->dev))
--- 
-2.55.0
+== Summary ==
 
+CI Bug Log - changes from xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb_BAT -> xe-pw-176383v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-bmg-vm 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb -> xe-pw-176383v1
+
+  IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb: 1909c1501d5a1c693215ad1cd7bbde41942182eb
+  xe-pw-176383v1: 176383v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176383v1/index.html
+
+--===============1486809208488086270==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dsi: Use owned panel/backlight GPIOs in VLV MIPI sequences</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176383/">https://patchwork.freedesktop.org/series/176383/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176383v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176383v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb_BAT -&gt; xe-pw-176383v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-bmg-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb -&gt; xe-pw-176383v1</li>
+</ul>
+<p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-5974-1909c1501d5a1c693215ad1cd7bbde41942182eb: 1909c1501d5a1c693215ad1cd7bbde41942182eb<br />
+  xe-pw-176383v1: 176383v1</p>
+
+</body>
+</html>
+
+--===============1486809208488086270==--
