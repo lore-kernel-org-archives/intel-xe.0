@@ -4,64 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C4F0CCF2D6
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 09:59:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58924CCF2D6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 10:08:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E9FE310E94A;
-	Mon, 19 Oct 2026 09:58:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A1BC10E969;
- Mon, 19 Oct 2026 09:58:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2FD210E14F;
+	Mon, 19 Oct 2026 10:08:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEF7D10E14F
+ for <intel-xe@lists.freedesktop.org>; Mon, 19 Oct 2026 10:08:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792403934; x=1823939934;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=FCF+CStTLQKo129wcMJjO9zPQelHyhJZb6dyEUr5q7k=;
- b=e4nwNIKaUVbDN50Wdgdp0BrJANLCNqBsGbFd1NAKEl9Xv51svADuVnCB
- XQGDbPsZNsouM0xTMZOxJW+vK35MxaWif9KSH7vgbIw9RMqOJMM/sjeJF
- 9yYhR8Wwoe7a79aeDD3oXjQ1WRzuIVzKSF1lfxW6TqNkt0OqxRZep5wlF
- SVHRiZY/uck9smPu5V3pRfkGhNFRr/vJ0GZsJMfO3d84LNsbXCdb/qP1I
- 9Lf6b1HeDV/Mjg/9g6nrWA5YhTU0SxzfWqQZRN4h1I79NC7BTu/zGQ52J
- uQkOYO4U+bs5pl8Pj9LsP7FiZXtzf2JDEfyJyz2hHI4S1kWzHsNMVjQwM w==;
-X-CSE-ConnectionGUID: ZiMtETPmTAmjF/tkxSlL4g==
-X-CSE-MsgGUID: Dww92uzlR2WZQhoQxb4E6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="1103099"
+ t=1792404519; x=1823940519;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=we/U60m7GJnIBFBm5j+i1dEhulgFjSwMEI+jcj6bIYo=;
+ b=JVgAlr23175Mfm1ZhO/H40BPpq3bWF5hy0hHkORU4ZIAq1DLCV69yEW7
+ UpGbuBvaXMYPlBgJfRRDdRSx1w1VHq1G/UgtgGUsGAIVsYJOJCCrEFEi9
+ 6W0/nBVoaxYNC2qXhev3FZlJ/bKA3u/7mD9kKX1+MQmOgSoY0v8JZyM5c
+ /ExZbKHr+0FvUqtfMO62hndHWcusmIUICaqjORF5+4XhmGUavEK5Og8+a
+ HGY+mx0p/rNMhv+C9Qiq5azUxYM2hbjeYna4BZybplBPVTLftYBJfpjmC
+ OMpBPFrd3onEFuOF4sYCzqlu5P75aDqvWw6wwZl05HzGUBvv1N7WPjIWt Q==;
+X-CSE-ConnectionGUID: c+pvGV8TQ/ayX2dJ+EXL8g==
+X-CSE-MsgGUID: b2+WYtBnR9mpENtG8l77fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="988348"
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="1103099"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 02:58:54 -0700
-X-CSE-ConnectionGUID: 7uDefMOhT1e07ff2UgJhDQ==
-X-CSE-MsgGUID: oZGsXOw8Qty5qXALoo+IuA==
+   d="scan'208";a="988348"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 03:08:38 -0700
+X-CSE-ConnectionGUID: UE553QtkRcKEezdLJxQT3w==
+X-CSE-MsgGUID: ToKN+RmqSoCT8sBLacO95g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="4277332"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.209])
+   d="scan'208";a="2902044"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.245.245])
+ ([10.245.245.245])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 02:58:51 -0700
-Date: Mon, 19 Oct 2026 12:58:48 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: mwwa919@gmail.com
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Hans de Goede <hansg@kernel.org>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/dsi: Use owned panel/backlight GPIOs in VLV
- MIPI sequences
-Message-ID: <atXp2NSPKZUPj8sq@ashevche-desk.local>
-References: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
+ 19 Oct 2026 03:08:36 -0700
+Message-ID: <69d9e989-67a7-415b-9433-05df2bf8bad7@intel.com>
+Date: Mon, 19 Oct 2026 11:08:34 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [1/3] drm/xe: Toggle the D3Cold enable flag at runtime resume
+To: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>,
+ "Poosa, Karthik" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
+References: <20261015165451.154495-6-vinay.belgaumkar@intel.com>
+ <553c4753-6c38-471b-8e3a-c6b8c4407e29@intel.com>
+ <7f92dbae-5b66-4fe0-9dcc-6cd2e2d5a4f0@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <7f92dbae-5b66-4fe0-9dcc-6cd2e2d5a4f0@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,38 +70,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Oct 18, 2026 at 04:12:40PM -0400, Mike Anderson via B4 Relay wrote:
-
-> On VLV with PPS_BLC_SOC, intel_dsi_vbt_gpio_init() requests the
-> backlight and panel enable GPIOs (INT33FC:01 pins 10 and 11) for i915
-> itself. Since commit 8241b55f1ded ("drm/i915/dsi: Replace poking of VLV
-> GPIOs behind the driver's back") the GPIO elements of the VBT MIPI
-> sequences also request their pin through gpiolib, so when a sequence
-> toggles one of these two pins the request fails and the toggle is
-> dropped:
+On 16/10/2026 19:35, Belgaumkar, Vinay wrote:
 > 
->   i915 0000:00:02.0: [drm] *ERROR* GPIO index 10 request failed (-EBUSY)
+> On 10/16/2026 11:23 AM, Poosa, Karthik wrote:
+>>
+>> On 15-10-2026 22:24, Vinay Belgaumkar wrote:
+>>> We enable this flag during runtime suspend,
+>> i think there should be Fixes tag for this.
+>>
+>> Fixes: f026520367be ("drm/xe: Only set PCI d3cold_allowed when we are 
+>> really allowing.")
+> ok.
+>>
+>>> need to set it back to
+>>> false early during resume to prevent any race with pci driver.
+>> What is race that seen without this ?
 > 
-> Before that commit the pad registers were written directly, so the
-> sequences could still drive the pins i915 owned.
+> While D0 is being programmed in xe_pci_runtime_resume(), pci driver's 
+> internal auto suspend timer could expire and, since this d3cold flag is 
+> still true, pci driver could try to put vsp into D3. This is probably 
+
+I think needs more info here? We are in the RPM resume callback at this 
+stage (RESUMING), so surely we are holding the required usage_count refs 
+etc here, so how can it enter D3 here?
+
+
+> why we toggle this flag as the very first thing in the S3 resume 
+> function xe_pci_resume().
 > 
-> The Toshiba Encore 2 WT8-B (Bay Trail, DSI panel) uses pin 10 as the
-> panel reset line: MIPI_SEQ_ASSERT_RESET drives it low and
-> MIPI_SEQ_DEASSERT_RESET pulses it high-low-high. With every toggle
-> failing, the panel is never reset after i915 sends MIPI_SEQ_DISPLAY_OFF
-> during takeover and stays black, even though the backlight PWM and both
-> enable GPIOs read back as on. The tablet only has a usable display
-> with nomodeset.
+> Thanks,
 > 
-> When a VLV MIPI sequence targets pin 10 or 11 and i915 holds the
-> corresponding descriptor, set it through that descriptor instead of
-> requesting the pin a second time.
-
-Ah, nice, this should be solved via using reset-gpio, which is exactly fixed
-for the reset shared lines case.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+> Vinay.
+> 
+>>>
+>>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_pci.c | 3 +++
+>>>   1 file changed, 3 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>>> index 57c6f778ca24..2269e51868c1 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pci.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pci.c
+>>> @@ -1450,6 +1450,9 @@ static int xe_pci_runtime_resume(struct device 
+>>> *dev)
+>>>       struct xe_device *xe = pdev_to_xe_device(pdev);
+>>>       int err;
+>>>   +    if (xe->d3cold.allowed)
+>>> +        d3cold_toggle(pdev, D3COLD_DISABLE);
+>>> +
+>>>       err = pci_set_power_state(pdev, PCI_D0);
+>>>       if (err)
+>>>           return err;
 
