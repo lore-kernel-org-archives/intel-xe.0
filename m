@@ -4,67 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 075B6CCF2D3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:19:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBD8CCCF2D6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 11:34:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49AD710EA72;
-	Mon, 19 Oct 2026 11:19:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 856DD10EA55;
- Mon, 19 Oct 2026 11:18:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7709F10EC47;
+	Mon, 19 Oct 2026 11:34:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EBCE10EC37;
+ Mon, 19 Oct 2026 11:34:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792408737; x=1823944737;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OjjfwwLZbDqlnlqqnl+VhPdVOwG66obu/ngPBAEEJ60=;
- b=FYXtzA46uunxo6PJ6yY9DdiMkwbV2RhJlLvP+vGR77Z7Qwd/Bp28cMLz
- c5V4EKfpJGzO8ilDHow7ZDjRTvSuhQYwwMs73iLlOdTe8VIvPA+sZZD+7
- EZNCcamUHicEk3xIwXY4ksdtOHKvzOpuSZI5LyuS1aM+y5d/LGl8HXkCG
- yvwPE+apuxmUz7GcLZRPuB71nOFpUvVC0WyDwWuf3rVS2fem8Q5GpgNKB
- 092aRqjvxMmbHgYLzgPnAYnGBcsEClOC/tdzG8S4GZZoWRqfczZokp/sz
- RJUVdM+TgR46g7rE0+anPwlfZTVQUFGHEtg4cBRZ82Diy90+jGA30hOMi Q==;
-X-CSE-ConnectionGUID: NNa2n/ihSUWlb6/9KFAE5g==
-X-CSE-MsgGUID: PX2p+8inQyGDnBDmrMJm1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="993083"
+ t=1792409649; x=1823945649;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ihfiDfoieI6RGkGQq9OLZlprHMM8mG9TsCU0BGiOO2g=;
+ b=gImAsGa6HZLMEAt2z6b5lvFyNxoSo/Lr1FMO29gI2zVxlaKBn6rd4ML7
+ fUipkUcCDSuKQhDnYf+2bHYeNeLuLXiidNB3b3x3I9cGPKxIpPaZYMxbh
+ EqC4fUyhukySQU8rLl6NN08mavFcjwILnR8G7vY1DV7RKubQ3Ki06xb1O
+ RFG7I7a7DnMlrEhVux2pYOy++i+RbCykny4ib9Cum3Dz5NE99gxl2aL4u
+ j5bi9IfOPszWcCxLHKBeyOdRninBBq4QWC5+ksZDC2h+u0CALpphrKRc5
+ SFSL/SvOSdF3xWuoAcLDuzko+Stq+/kvQJ/ZJ/oIYTgJD2kPhwfN7PhdK A==;
+X-CSE-ConnectionGUID: z1TL/5j7RSyLQMYfbaDa6g==
+X-CSE-MsgGUID: zvk6SiZlQ/uYuRyGDHisCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11939"; a="1109789"
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="993083"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 04:18:56 -0700
-X-CSE-ConnectionGUID: 2EQXLQQ7Q3Wkw2XbewmDww==
-X-CSE-MsgGUID: 34XvGfjIT8a4JiB7DgQHWg==
+   d="scan'208";a="1109789"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 04:34:09 -0700
+X-CSE-ConnectionGUID: 6gtdcHEYQTag4WgzELjoUg==
+X-CSE-MsgGUID: oIrclKQpRk+D+1Xr14KPGg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2570954"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.209])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 04:18:53 -0700
-Date: Mon, 19 Oct 2026 14:18:50 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Michael Anderson <mwwa919@gmail.com>, Bartosz Golaszewski <brgl@kernel.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Hans de Goede <hansg@kernel.org>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/dsi: Use owned panel/backlight GPIOs in VLV
- MIPI sequences
-Message-ID: <atX8mpg19_WkIa27@ashevche-desk.local>
-References: <20261018-vlv-dsi-owned-gpios-v1-1-3ca18bcda670@gmail.com>
- <atXp2NSPKZUPj8sq@ashevche-desk.local>
- <CAL-Wm=O-Gr3CuvCn8iSQceQMhu=LGFz0SPhmWeFL=RiVnoprdw@mail.gmail.com>
+   d="scan'208";a="2930791"
+Received: from xiaolu.sh.intel.com ([10.239.146.103])
+ by orviesa010.jf.intel.com with ESMTP; 19 Oct 2026 04:34:07 -0700
+From: Xiao Lu <xiaolu.xie@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com, jouni.hogander@intel.com,
+ Xiao Lu <xiaolu.xie@intel.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/i915/dp: Fail the DSC slice config if the minimum slice
+ count is 0
+Date: Mon, 19 Oct 2026 19:31:51 +0800
+Message-ID: <20261019113151.2258239-1-xiaolu.xie@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL-Wm=O-Gr3CuvCn8iSQceQMhu=LGFz0SPhmWeFL=RiVnoprdw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,64 +66,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-+Cc: Bart (as GPIOLIB maintainer and author of the reset-gpio rework).
+intel_dp_dsc_min_slice_count() returns 0 if DSC can't be used for the
+given mode: if the mode's pixel clock or hdisplay exceeds the maximum
+overall throughput or line width reported by a DSC branch device, or if
+the sink's maximum slice width is invalid.
 
-On Mon, Oct 19, 2026 at 07:03:57AM -0400, Michael Anderson wrote:
-> Thanks for looking at this. I'd like to make sure I understand before
-> doing a v2.
-> 
-> Here both users of pin 10 are i915 itself: intel_dsi_vbt_gpio_init()
-> takes it as the "backlight" enable GPIO (soc_panel_gpio_table,
-> PPS_BLC_SOC), and the VBT MIPI sequences on this tablet then toggle the
-> same pin as the panel reset (low in ASSERT_RESET, high-low-high in
-> DEASSERT_RESET). Do you mean describing pin 10 with a software-node
-> "reset-gpios" reference and having both paths go through
-> reset_control_*(), or something else?
-> 
-> One concern: the VBT drives explicit pulses on the pin, and shared reset
-> controls are refcounted, so a pulse from one path wouldn't reach the line
-> while the other holds it deasserted. Would an exclusive reset obtained
-> once by i915 and used by both paths work instead, or am I missing how
-> reset-gpio handles this?
+Before commit 15f908bce5d9 ("drm/i915/dp: Factor out
+intel_dp_dsc_min_slice_count()"), these checks returned 0 from
+intel_dp_dsc_get_slice_count(), which its callers treat as DSC not being
+possible. After the refactor, intel_dp_dsc_get_slice_config() uses the
+returned value as a lower bound and since 0 is less than any slice
+count, it selects the smallest slice config supported by the source and
+the sink instead of failing.
 
-But then it sounds like the request-by-demand?
-Bart, any ideas how to address this case?
+This was seen with a Synaptics SST branch device (OUI 90-cc-24, dev-ID
+SYNAR) in a USB4 dock, which reports the same 340 MP/s per-slice DSC
+throughput as the monitor behind it. For 3840x2160@240Hz (2315950 kHz
+pixel clock) the minimum slice count computation bailed out due to the
+branch device's overall throughput limit, so the mode was not pruned and
+was enabled with 4 slices on two joined pipes, ie. ~579 MP/s per slice,
+resulting in a garbled image. With the monitor connected directly, the
+same mode is enabled with 8 slices.
 
-> On Mon, Oct 19, 2026 at 5:58 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> >
-> > On Sun, Oct 18, 2026 at 04:12:40PM -0400, Mike Anderson via B4 Relay wrote:
-> >
-> > > On VLV with PPS_BLC_SOC, intel_dsi_vbt_gpio_init() requests the
-> > > backlight and panel enable GPIOs (INT33FC:01 pins 10 and 11) for i915
-> > > itself. Since commit 8241b55f1ded ("drm/i915/dsi: Replace poking of VLV
-> > > GPIOs behind the driver's back") the GPIO elements of the VBT MIPI
-> > > sequences also request their pin through gpiolib, so when a sequence
-> > > toggles one of these two pins the request fails and the toggle is
-> > > dropped:
-> > >
-> > >   i915 0000:00:02.0: [drm] *ERROR* GPIO index 10 request failed (-EBUSY)
-> > >
-> > > Before that commit the pad registers were written directly, so the
-> > > sequences could still drive the pins i915 owned.
-> > >
-> > > The Toshiba Encore 2 WT8-B (Bay Trail, DSI panel) uses pin 10 as the
-> > > panel reset line: MIPI_SEQ_ASSERT_RESET drives it low and
-> > > MIPI_SEQ_DEASSERT_RESET pulses it high-low-high. With every toggle
-> > > failing, the panel is never reset after i915 sends MIPI_SEQ_DISPLAY_OFF
-> > > during takeover and stays black, even though the backlight PWM and both
-> > > enable GPIOs read back as on. The tablet only has a usable display
-> > > with nomodeset.
-> > >
-> > > When a VLV MIPI sequence targets pin 10 or 11 and i915 holds the
-> > > corresponding descriptor, set it through that descriptor instead of
-> > > requesting the pin a second time.
-> >
-> > Ah, nice, this should be solved via using reset-gpio, which is exactly fixed
-> > for the reset shared lines case.
+Fail the slice config computation if the minimum slice count is 0, so
+that such modes are rejected as before the above refactor.
 
+Fixes: 15f908bce5d9 ("drm/i915/dp: Factor out intel_dp_dsc_min_slice_count()")
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: <stable@vger.kernel.org> # v7.1+
+Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index d8c0d9381..404839a2a 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -910,6 +910,10 @@ intel_dp_dsc_get_slice_config(const struct intel_connector *connector,
+ 		drm_dp_dsc_sink_slice_count_mask(connector->dp.dsc_dpcd, is_edp);
+ 	int slices_per_pipe;
+ 
++	/* A 0 minimum slice count means DSC isn't supported for the mode. */
++	if (!min_slice_count)
++		return false;
++
+ 	/*
+ 	 * Find the closest match to the valid slice count values
+ 	 *
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
