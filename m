@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DACDCCF2E3
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 680D7CCF2E6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:54:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DB7910ED45;
-	Mon, 19 Oct 2026 13:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3052510ED67;
+	Mon, 19 Oct 2026 13:54:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AECF810ED6D;
- Mon, 19 Oct 2026 13:54:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEDD810ED6C;
+ Mon, 19 Oct 2026 13:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792418041; x=1823954041;
+ t=1792418048; x=1823954048;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KyEe3aQO0YKuEi5bLC9NAyN6rucI3SvmWherne5KWlg=;
- b=hC+J70SV2x/N9oc9+srl/+DJLy1GjRWF2ZhoNt88PBYqz1UB4FL+eOWb
- 6Jbqv5q94a2kmF3RxBsNBqxJ8i7dFgTlRVVto0LfU+qaw/obDyQ2Gs4hD
- ENQfRTcEErbC0Rpl6pQDozGbb77lCzY05R8bKoPON0R97lyod2+5jJ19D
- 6Mmrf5Nx5F7YzhV89m5ST5+ak2cnps6ZX+niWiUUrkKOUZr7wg6Owv9v3
- nH0fE9OyGHijwrkFL717NIqZsdl8E1d7YrRlBJN/fs/DwOf40H5HSVye+
- mkcIXy8Kd4dFXGac0W1BUhaEBR1Rry3Q1NSsxcPJwF6uF3dnmN4w7CV30 w==;
-X-CSE-ConnectionGUID: V3cKJAnMREuHRq1Nc/Lcig==
-X-CSE-MsgGUID: RI22HFgDRBChqwJ6a5qw4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1085175"
+ bh=SP8enB34+h8b8Rz/7M3GiBORBw4a9nDj4Ga48+WOaOY=;
+ b=IE3thBRODBk3CdcrZPAI0mHailmANifnIaopQC4xT0Nxb7a4frM4X4bf
+ tiVHQYExf7M9X/fbjSiTVKZvRu3v4rEMvdBU0nYugORTR7j3CsUz9gnAz
+ af3EjVF5M6GhatTgtSLX0/rLLGdrIQ0KSkZyZkyUjeETcwmDwk6naLx1J
+ XUYx7+KO0w5yo0hidhEeRiHpAb/VICz+dvSn4gKCiIDwDXQ23MDw/sZQz
+ c5AEV0sOmw+Sv8kXdyJ3Npb7m6nWdAy3hUSTQvyBC+2KN6ZC/oWxyOTgO
+ GdFgRpQ/UCz/enQqaZ9dDWm4HMD7sWmgpwbL7JgZxr72wVT71X5cypnGW A==;
+X-CSE-ConnectionGUID: 5iVukeD5ThecXd8YxtHA7g==
+X-CSE-MsgGUID: mRYJlIOARBWQCHHqto77uA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1085194"
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="1085175"
+   d="scan'208";a="1085194"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:54:01 -0700
-X-CSE-ConnectionGUID: m7/5eHXQQfS0UZUmE0f/nQ==
-X-CSE-MsgGUID: 5vD42mwfRhaymdQcaJmUzQ==
+ 19 Oct 2026 06:54:08 -0700
+X-CSE-ConnectionGUID: M5+rucD7RpCopmOlGUWtCw==
+X-CSE-MsgGUID: RBx0Z1r/TFuRcIKdS8IfIg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2844461"
+   d="scan'208";a="2844512"
 Received: from alekseim-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.34])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:53:59 -0700
+ 19 Oct 2026 06:54:06 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 13/15] drm/i915/pfit: No pfit one line mode on i965+
-Date: Mon, 19 Oct 2026 16:53:07 +0300
-Message-ID: <20261019135309.23578-14-ville.syrjala@linux.intel.com>
+Subject: [PATCH 15/15] drm/i915/pfit: Allow downscaling on i966+
+Date: Mon, 19 Oct 2026 16:53:09 +0300
+Message-ID: <20261019135309.23578-16-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
 References: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
@@ -71,9 +71,7 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-i965+ panel fitter no longer appaers to have the "one line mode"
-fallback for wide sources. Presumably the line buffers are now
-big enough that the one line mode is not needed.
+The i965+ panel fitter supports downscaling. Allow it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
@@ -81,20 +79,20 @@ Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-index d8daa463452e..6eb457047bf4 100644
+index 6eb457047bf4..2b6706c7af53 100644
 --- a/drivers/gpu/drm/i915/display/intel_pfit.c
 +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-@@ -963,7 +963,10 @@ void intel_pfit_get_config(struct intel_crtc_state *crtc_state)
+@@ -563,7 +563,10 @@ static int i9xx_pfit_check_scaling(const struct intel_crtc_state *crtc_state)
+ 	int hscale, vscale, max_scale;
+ 	struct drm_rect src;
  
- bool i9xx_pfit_is_one_line_mode(const struct intel_crtc_state *crtc_state)
- {
--	return crtc_state->gmch_pfit.control & PFIT_ENABLE &&
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	return DISPLAY_VER(display) < 4 &&
-+		crtc_state->gmch_pfit.control & PFIT_ENABLE &&
- 		drm_rect_width(&crtc_state->pipe_src) > 1024;
- }
+-	max_scale = 0x10000;
++	if (DISPLAY_VER(display) >= 4)
++		max_scale = 0x20000;
++	else
++		max_scale = 0x10000;
+ 
+ 	drm_rect_init(&src, 0, 0, pipe_src_w << 16, pipe_src_h << 16);
  
 -- 
 2.55.0
