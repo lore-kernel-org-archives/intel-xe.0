@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0146CCF2E8
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:53:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A10CCF2E6
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 13:53:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB1E210ED63;
-	Mon, 19 Oct 2026 13:53:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 923EF10ED47;
+	Mon, 19 Oct 2026 13:53:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95B9E10ED47;
- Mon, 19 Oct 2026 13:53:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22D3610ED4F;
+ Mon, 19 Oct 2026 13:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792418012; x=1823954012;
+ t=1792418015; x=1823954015;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UK9gOBWEKBMdbtB2wRVhSE412Fxx4UG0iAT8usxC5ck=;
- b=UIA3bXvjxm+NoAUAD/mdO+f29vNeSVcVkUzBv20+ojGUmPNE27nm5rY4
- pFMbJW1Jaqvz1BavhcSUa1xS2s6cxvmLnM/JQWFRu69cmrdOi2jxh/NQu
- uSrPunKBN3EkuIBsEEFCGBtZguvyhvaRyTUqCkBxFlhIQ2IA0oaCdekAn
- NoHJrt6vrWGuuCfK1N9BZ2y9PL5O5UTopMUULSQ+1vtlnXZqAeQVCD4Oo
- XmQ/s8A7bG9/W9V0xfKXTZA608IrynGWFnt9lmc3UrHnPyVU5MZM9EcV8
- NIe5frFYfvL1bTv3MOWflNyuwWAJAaoccBz3cKC8tNrI298NU5s53p6cR Q==;
-X-CSE-ConnectionGUID: EAC/6JyCSPWiKO+hWCWBLQ==
-X-CSE-MsgGUID: wfzkmIZfQZOwmG9kWzv1xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="979702"
+ bh=zbTA46Vs62LQJKZVjsTA3pQ+zrqprNH2pfrpzoAF2fU=;
+ b=XPA0ebADCiiz+i5YcDfhYoyXHkCSxfwMau3zpeB9lXq1kkDdqUtkjxJE
+ Is3OqejoX+A8NfQzQhwlYuaPWVET/ZfE/b3ryvKTU4OTtgQpAk5yUsfdI
+ cC7lPU+mPmPecyJGhx6Mjn4nIBABZ6QTTyYSinG8gvYCEw7vksu1bt6R1
+ FAvX7Wa1RfhrYKI19iJ6Re6a9jVy8MTBBjDQOjQmNdG60f70s8583FkY6
+ WkbKwQ61wN+Cs/N3CIplCe97CCAw/k2X3d4fttZWVwRkapIGvptJGo+eX
+ QEDGYEy9yw42xYJ8e3ClAFgN4kXtUcrmCk/wFbCb6JChYcw5poK3xULhk w==;
+X-CSE-ConnectionGUID: WzAxZBBAT5KnbLSSqEvouw==
+X-CSE-MsgGUID: Z/co1iy2Qz+TXWvctEP+AA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="979709"
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="979702"
+   d="scan'208";a="979709"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:53:31 -0700
-X-CSE-ConnectionGUID: RBm5nW6eSRedO82aSKLLKA==
-X-CSE-MsgGUID: er46S6EQQk6ZWa448EtJ4A==
+ 19 Oct 2026 06:53:35 -0700
+X-CSE-ConnectionGUID: 37yUDlV0RcSU0mlCziy5KQ==
+X-CSE-MsgGUID: uVcdKrhZQuq4KlKlDvgoAw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="2418487"
+   d="scan'208";a="2418532"
 Received: from alekseim-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.34])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 06:53:30 -0700
+ 19 Oct 2026 06:53:33 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/15] drm/i915/pfit: Rename some pfit functions
-Date: Mon, 19 Oct 2026 16:52:59 +0300
-Message-ID: <20261019135309.23578-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/15] drm/i915/pfit: Extract i965_pfit_get_config()
+Date: Mon, 19 Oct 2026 16:53:00 +0300
+Message-ID: <20261019135309.23578-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
 References: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
@@ -71,83 +71,111 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Most pfit functions are called {ilk,i9xx}_pfit_*(). Rename
-{gmch,ilk}_panel_fitting() and intel_gmch_pfit_check_timings()
-to match.
+Split i965_pfit_get_config() out from i9xx_pfit_get_config() to
+unconfuse things a bit.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pfit.c | 21 +++++++++++++--------
- 1 file changed, 13 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pfit.c | 66 ++++++++++++++---------
+ 1 file changed, 42 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-index b4a201dc8f7b..972218346362 100644
+index 972218346362..82804159d0a1 100644
 --- a/drivers/gpu/drm/i915/display/intel_pfit.c
 +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-@@ -182,8 +182,8 @@ static int ilk_pfit_check_cloning(const struct intel_crtc_state *crtc_state)
+@@ -720,39 +720,52 @@ void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+ 	intel_de_write(display, PFIT_CONTROL(display), 0);
  }
  
- /* adjusted_mode has been preset to be the panel's fixed mode */
--static int ilk_panel_fitting(struct intel_crtc_state *crtc_state,
--			     const struct drm_connector_state *conn_state)
-+static int ilk_pfit_compute_config(struct intel_crtc_state *crtc_state,
-+				   const struct drm_connector_state *conn_state)
+-static bool i9xx_has_pfit(struct intel_display *display)
+-{
+-	if (display->platform.i830)
+-		return false;
+-
+-	return DISPLAY_VER(display) >= 4 ||
+-		display->platform.pineview || display->platform.mobile;
+-}
+-
+-static void i9xx_pfit_get_config(struct intel_crtc_state *crtc_state)
++static void i965_pfit_get_config(struct intel_crtc_state *crtc_state)
  {
  	struct intel_display *display = to_intel_display(crtc_state);
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -438,7 +438,7 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 	}
- }
+ 	enum pipe pipe;
+ 	u32 tmp;
  
--static int intel_gmch_pfit_check_timings(const struct intel_crtc_state *crtc_state)
-+static int i9xx_pfit_check_timings(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -470,8 +470,8 @@ static int intel_gmch_pfit_check_timings(const struct intel_crtc_state *crtc_sta
- 	return 0;
- }
+-	if (!i9xx_has_pfit(display))
+-		return;
+-
+ 	tmp = intel_de_read(display, PFIT_CONTROL(display));
+ 	if (!(tmp & PFIT_ENABLE))
+ 		return;
  
--static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
--			      const struct drm_connector_state *conn_state)
-+static int i9xx_pfit_compute_config(struct intel_crtc_state *crtc_state,
-+				    const struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -479,6 +479,7 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
- 	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
- 	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
-+	int ret;
+ 	/* Check whether the pfit is attached to our pipe. */
+-	if (DISPLAY_VER(display) >= 4)
+-		pipe = REG_FIELD_GET(PFIT_PIPE_MASK, tmp);
+-	else
+-		pipe = PIPE_B;
+-
++	pipe = REG_FIELD_GET(PFIT_PIPE_MASK, tmp);
+ 	if (pipe != crtc->pipe)
+ 		return;
  
- 	/* Native modes don't need fitting */
- 	if (adjusted_mode->crtc_hdisplay == pipe_src_w &&
-@@ -566,7 +567,11 @@ static int gmch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	if ((pfit_control & PFIT_ENABLE) == 0)
- 		return 0;
- 
--	return intel_gmch_pfit_check_timings(crtc_state);
-+	ret = i9xx_pfit_check_timings(crtc_state);
-+	if (ret)
-+		return ret;
+ 	crtc_state->gmch_pfit.control = tmp;
++}
 +
-+	return 0;
++static bool i9xx_has_pfit(struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(crtc);
++
++	if (crtc->pipe != PIPE_B)
++		return false;
++
++	if (display->platform.i830)
++		return false;
++
++	return display->platform.pineview || display->platform.mobile;
++}
++
++static void i9xx_pfit_get_config(struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	u32 tmp;
++
++	if (!i9xx_has_pfit(crtc))
++		return;
++
++	tmp = intel_de_read(display, PFIT_CONTROL(display));
++	if (!(tmp & PFIT_ENABLE))
++		return;
++
++	crtc_state->gmch_pfit.control = tmp;
+ 	crtc_state->gmch_pfit.pgm_ratios =
+ 		intel_de_read(display, PFIT_PGM_RATIOS(display));
  }
- 
- enum drm_mode_status
-@@ -585,9 +590,9 @@ int intel_pfit_compute_config(struct intel_crtc_state *crtc_state,
+@@ -761,10 +774,15 @@ void intel_pfit_get_config(struct intel_crtc_state *crtc_state)
+ {
  	struct intel_display *display = to_intel_display(crtc_state);
  
- 	if (HAS_GMCH(display))
--		return gmch_panel_fitting(crtc_state, conn_state);
-+		return i9xx_pfit_compute_config(crtc_state, conn_state);
- 	else
--		return ilk_panel_fitting(crtc_state, conn_state);
-+		return ilk_pfit_compute_config(crtc_state, conn_state);
+-	if (HAS_GMCH(display))
+-		i9xx_pfit_get_config(crtc_state);
+-	else if (DISPLAY_VER(display) >= 9)
+-		skl_scaler_get_config(crtc_state);
+-	else
+-		ilk_pfit_get_config(crtc_state);
++	if (HAS_GMCH(display)) {
++		if (DISPLAY_VER(display) >= 4)
++			i965_pfit_get_config(crtc_state);
++		else
++			i9xx_pfit_get_config(crtc_state);
++	} else {
++		if (DISPLAY_VER(display) >= 9)
++			skl_scaler_get_config(crtc_state);
++		else
++			ilk_pfit_get_config(crtc_state);
++	}
  }
- 
- void ilk_pfit_enable(const struct intel_crtc_state *crtc_state)
 -- 
 2.55.0
 
