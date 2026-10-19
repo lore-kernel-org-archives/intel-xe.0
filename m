@@ -2,62 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F29FD6078840
-	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 15:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=S5h22PUD
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1220606C904
+	for <intel-xe@archiver.kernel.org>; Mon, 19 Oct 2026 15:51:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9466410EEBB;
-	Mon, 19 Oct 2026 15:49:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2165F10EEC2;
- Mon, 19 Oct 2026 15:49:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792424972; x=1823960972;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=zoR+3VUv9YInVb55GPXedqoRS09GDNW1wEBb82dJR/Q=;
- b=S5h22PUDmfO3oog1jJSTntm/Uy2cSclUXgzMecQxyxK38xree7q0hws6
- 85nSQ5iw36HFGoZK1Joc7U95C43Mf+BXSmlmYCA5kLDK2SPIHMHBEDKxE
- nUbpyniexqLasFeSPZuhaSAHmK1ojMJi0Px/Hd6fvWSjIZImMRjbtM+x8
- 0TW157ndAS9MIYdx1M+cHZ2b0W6peS3o5caWcCyYMfshGgnGg1CmoC3/v
- F9FINhauO5nQJTIt5SZ1yylJa8bM2z2JQDkmQK1dnl+4MIfBc+3feSzb7
- 0NAJY0xQXZklTRaKiXXAxNruzkx1pUlZZ18SSsqB06hhB244vmRVXLgcd w==;
-X-CSE-ConnectionGUID: 9Bqb81VjT7+Hl1iCv46g2w==
-X-CSE-MsgGUID: uFWEenBpTiy3Pxg/7zkr9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1005217"
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="1005217"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 08:49:32 -0700
-X-CSE-ConnectionGUID: xXfx8MqAS/CmZHb+22albQ==
-X-CSE-MsgGUID: j8ECRXfdSDKVNmBRyBY1VA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,167,1787036400"; 
-   d="scan'208";a="3035563"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.21])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 08:49:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 03/15] drm/i915/pfit: Stop using HAS_PCH_SPLIT() in
- confusing places
-In-Reply-To: <20261019135309.23578-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
- <20261019135309.23578-4-ville.syrjala@linux.intel.com>
-Date: Mon, 19 Oct 2026 18:49:27 +0300
-Message-ID: <c1a018201ff52ce215d1ec0d9d50463b98820325@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B6FD10E9B6;
+	Mon, 19 Oct 2026 15:51:36 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EBE210E9B6;
+ Mon, 19 Oct 2026 15:51:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6872010938858195057=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_don=27t_touc?=
+ =?utf-8?q?h_the_AUX_engine_while_it=27s_still_busy_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 19 Oct 2026 15:51:35 -0000
+Message-ID: <179242509544.41910.7818925645820067872@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261019150226.734375-1-luciano.coelho@intel.com>
+In-Reply-To: <20261019150226.734375-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,80 +33,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-	RCVD_IN_ZEN_BLOCKED_OPENDNS,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H3,
+	RCVD_IN_MSPIKE_WL,RCVD_IN_ZEN_BLOCKED_OPENDNS,SPF_HELO_NONE,SPF_PASS
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, 19 Oct 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Stop using HAS_PCH_SPLIT() in places that have nothing to
-> do with PCH. !HAS_GMCH is a more sensible thing top check for.
+--===============6872010938858195057==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-*to
+== Series Details ==
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Series: drm/i915/dp: don't touch the AUX engine while it's still busy (rev2)
+URL   : https://patchwork.freedesktop.org/series/175554/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-5975-b0311e0de50840c3f35aafa2e95c14bf38f4a767_BAT -> xe-pw-175554v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
 
 
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/i9xx_wm.c               | 2 +-
->  drivers/gpu/drm/i915/display/intel_display.c         | 2 +-
->  drivers/gpu/drm/i915/display/intel_display_debugfs.c | 2 +-
->  3 files changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i91=
-5/display/i9xx_wm.c
-> index 86d1c9f7f0ff..0233f5053d95 100644
-> --- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-> +++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-> @@ -4150,7 +4150,7 @@ static const struct intel_wm_funcs nop_funcs =3D {
->  void i9xx_wm_init(struct intel_display *display)
->  {
->  	/* For FIFO watermark updates */
-> -	if (HAS_PCH_SPLIT(display)) {
-> +	if (!HAS_GMCH(display)) {
->  		ilk_setup_wm_latency(display);
->  		display->wm.funcs =3D &ilk_wm_funcs;
->  	} else if (display->platform.valleyview || display->platform.cherryview=
-) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 723dec35402a..d1440cc6dba4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6777,7 +6777,7 @@ static void intel_pipe_fastset(const struct intel_c=
-rtc_state *old_crtc_state,
->  	if (DISPLAY_VER(display) >=3D 9) {
->  		if (new_crtc_state->pfit.enabled)
->  			skl_pfit_enable(new_crtc_state);
-> -	} else if (HAS_PCH_SPLIT(display)) {
-> +	} else if (!HAS_GMCH(display)) {
->  		if (new_crtc_state->pfit.enabled)
->  			ilk_pfit_enable(new_crtc_state);
->  		else if (old_crtc_state->pfit.enabled)
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drive=
-rs/gpu/drm/i915/display/intel_display_debugfs.c
-> index 3e302f23f247..dba34f034785 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> @@ -96,7 +96,7 @@ static int i915_sr_status(struct seq_file *m, void *unu=
-sed)
->=20=20
->  	if (DISPLAY_VER(display) >=3D 9)
->  		/* no global SR status; inspect per-plane WM */;
-> -	else if (HAS_PCH_SPLIT(display))
-> +	else if (!HAS_GMCH(display))
->  		sr_enabled =3D intel_de_read(display, WM1_LP_ILK) & WM_LP_ENABLE;
->  	else if (display->platform.i965gm || display->platform.g4x ||
->  		 display->platform.i945g || display->platform.i945gm)
+Changes
+-------
 
---=20
-Jani Nikula, Intel
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9150 -> IGT_9151
+  * Linux: xe-5975-b0311e0de50840c3f35aafa2e95c14bf38f4a767 -> xe-pw-175554v2
+
+  IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_9151: 9151
+  xe-5975-b0311e0de50840c3f35aafa2e95c14bf38f4a767: b0311e0de50840c3f35aafa2e95c14bf38f4a767
+  xe-pw-175554v2: 175554v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175554v2/index.html
+
+--===============6872010938858195057==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: don&#x27;t touch the AUX engine while it&#x27;s still busy (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175554/">https://patchwork.freedesktop.org/series/175554/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175554v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175554v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5975-b0311e0de50840c3f35aafa2e95c14bf38f4a767_BAT -&gt; xe-pw-175554v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9150 -&gt; IGT_9151</li>
+<li>Linux: xe-5975-b0311e0de50840c3f35aafa2e95c14bf38f4a767 -&gt; xe-pw-175554v2</li>
+</ul>
+<p>IGT_9150: 18811c476bfde62ffbb4c0af55cd6f57e36e0dca @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_9151: 9151<br />
+  xe-5975-b0311e0de50840c3f35aafa2e95c14bf38f4a767: b0311e0de50840c3f35aafa2e95c14bf38f4a767<br />
+  xe-pw-175554v2: 175554v2</p>
+
+</body>
+</html>
+
+--===============6872010938858195057==--
