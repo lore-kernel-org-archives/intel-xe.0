@@ -2,50 +2,49 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979E8606A31B
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 19:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7FB606A31D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 19:09:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=i1VdFb4o
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JPufgVQe
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6081510EC3E;
-	Tue, 20 Oct 2026 19:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA3110F175;
+	Tue, 20 Oct 2026 19:09:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A669F10EC3E
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 19:08:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3D6E10F175
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 19:08:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792523331; x=1824059331;
+ t=1792523336; x=1824059336;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=VOB5odbYNUR1fFeaU8vNG8SOmJ+q4vrrv2pSst7Cpl8=;
- b=i1VdFb4obXMEHB3lCIuqie/HKkn23EqqAziAOm7PEvxhwPy8Wmr2tuJg
- xaVo2cwVyLQJ9BLeTJOyGftdcIAs4p6+raN0olSXRi/a5A4ljs6oHWnwq
- Jkauo0jn143+f6xIdFD01w2+in5/vSYu3VDeubuafp00JvmeQNSZ2CgsV
- uyCJgz8nj1PXUGeqs7bGS3V9dKoyDzoxj+swLL77V8uwgolpHjGuwKgZt
- S+j88uYwn7xjpzHFoZGsjcmIKnv0mxlatI3c87z+Nec6i3koKKcCPcnO2
- 1RObgezPVEOX1pfX7VLFiXgHv7iG4K/y/CGlL4PyRgtVDtK/Qlv8YtlZi Q==;
-X-CSE-ConnectionGUID: l6g862XqTN6M+kCOR7UBag==
-X-CSE-MsgGUID: BdkW4gS0SnWq+PxrcPvx8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1339817"
+ bh=LKllMy1pJ7QhsZK6dcddoxND+54q7Bsk4uvmxBHQTAM=;
+ b=JPufgVQeQstuw2iTQ3j1tozbbT+jL/x0xVsrf5jjHoatyCLliMyWFw56
+ 6pgIxEiRUvOtUMWT201IG1YPTkD7QgslMBZG8UaOL9bOLnOstGyCRVFRA
+ Bmqzi/DZ6S/foJHfpoCsTj3fCcvFRd23KdxNDd9O4FWvKgEFShCt0EVbl
+ 3iAipfAgKXvUkIXrTluS2kaog1GI7O3CVl858snbrTY+iyXseHIcho8r9
+ IopMLnJBj4u9odsC2Ft6aJZHY1TNw3Xk5OmHscjwWmsBz1csbnTPgQkH+
+ BwmSaxSn/CJMutuHFCdSLS42hkHPawAQq41itEH4Z6KPPb7BpUTuTdG2Q g==;
+X-CSE-ConnectionGUID: p/SNpAQMRRe73MdzO9Ai9A==
+X-CSE-MsgGUID: ChCtYIY6R8+mGYqkR0UJwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1339819"
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1339817"
+   d="scan'208";a="1339819"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 12:08:45 -0700
-X-CSE-ConnectionGUID: Ur9S7uMfTVS2gUA5Sps6JA==
-X-CSE-MsgGUID: VZFG62MyQ2qxnmZXwqabtg==
+ 20 Oct 2026 12:08:46 -0700
+X-CSE-ConnectionGUID: c7AnpnTcT8WYcsci3X6H3w==
+X-CSE-MsgGUID: Peo9piwqST+DugKF8jX0mw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="3226592"
+   d="scan'208";a="3226594"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2026 12:08:45 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 1/3] drm/xe: Tie BO TTM LRU priority to DONTNEED/WILLNEED
- madvise state
-Date: Tue, 20 Oct 2026 12:08:38 -0700
-Message-Id: <20261020190840.854525-2-matthew.brost@intel.com>
+Subject: [PATCH v3 3/3] drm/xe: Add a minimum age gate to the shrinker
+Date: Tue, 20 Oct 2026 12:08:40 -0700
+Message-Id: <20261020190840.854525-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261020190840.854525-1-matthew.brost@intel.com>
 References: <20261020190840.854525-1-matthew.brost@intel.com>
@@ -69,157 +68,606 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DRM_XE_MADVISE ioctl lets userspace mark a VMA's BO as DONTNEED,
-signalling that its contents are not needed right now and may be
-discarded under memory pressure (see madvise_purgeable() in
-xe_vm_madvise.c), or restore it back to WILLNEED. This is a stronger,
-explicit signal than a plain unbind: userspace has told us the BO is not
-just unused for now, but that it is actively fine to lose the data.
-There is no reason to keep such a BO competing for LRU space with
-actively used buffers, and conversely, once userspace marks it WILLNEED
-again it is back in active use and should be reprioritized accordingly.
+Backing up a BO costs a GPU blit plus a page copy, and if the BO is part
+of an active working set it is faulted straight back in on the next exec.
+Evicting a BO that was used moments ago is therefore almost always a
+loss, yet the shrinker has no notion of recency beyond LRU order.
 
-Give xe two TTM LRU priority bands and tie them to that state:
-XE_BO_PRIORITY_LOW for DONTNEED BOs and XE_BO_PRIORITY_NORMAL for
-everything else. Since the TTM LRU is walked in ascending priority
-order, DONTNEED BOs become the first candidates for eviction and
-shrinking. The transition is driven from xe_bo_set_purgeable_state(),
-the single point through which a BO's aggregate purgeable state actually
-moves between WILLNEED and DONTNEED (PURGED is terminal and left at
-XE_BO_PRIORITY_LOW).
+Timestamp BOs on their last LRU bump: on a successful move into TT in
+xe_bo_move(), which now also bumps the LRU, and on the exec bump in
+xe_vm_bump_lru(). Private BOs are anchored in their VM's bulk-move
+range, so bumping one bumps the whole range and stamps the VM, and the
+later of the BO and VM stamps is used for them.
 
-Changing bo->ttm.priority cannot be done by a plain store: private, user
-BOs have bo->ttm.bulk_move set to their VM's LRU bulk-move range, which
-tracks a contiguous [first, last] run of resources per (mem_type,
-priority) bucket. Writing the priority while the BO is still attached
-would leave the resource linked in the old priority's bucket while the
-bulk-move code looks it up under the new one, corrupting both. Add
-xe_bo_update_ttm_priority(), which temporarily detaches the BO from its
-bulk-move range, updates the priority with a plain non-bulk LRU update,
-and reattaches it into the new priority's bucket.
-xe_bo_set_purgeable_state() is always called with the BO's dma-resv
-held, so this is safe.
+Add a per-device shrinker_min_age_ms sysfs attribute, defaulting to
+CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS (0, disabled). While set, the shrinker
+won't back up BOs younger than the delay. Each LRU priority is roughly
+age ordered, so the gate is applied per priority: xe_shrinker_count()
+snoops the first shrinkable BO of each priority and reports nothing only
+if all of them are young, and the backup walk skips to the next priority
+at the first young BO, both as a backstop for the count sample and so a
+hot priority doesn't shield colder BOs in another one.
 
-With DONTNEED BOs now clustered at XE_BO_PRIORITY_LOW, the shrinker's
-purge pass no longer needs to walk each memory type's whole LRU: nothing
-beyond XE_BO_PRIORITY_LOW can possibly be purgeable, so continuing past
-it just wastes time trylocking BOs that can never be purged in this
-pass. Break out of the per-mem_type LRU walk in __xe_shrinker_walk()
-once a BO's priority rises above XE_BO_PRIORITY_LOW during the purge
-pass. Behavior of the non-purge (regular shrink) pass is unchanged.
+Only BOs this shrinker would actually back up have a say. BOs in
+XE_PL_SYSTEM, which are not GPU mapped and hence not part of a working
+set, and BOs xe_bo_shrink() rejects outright are never young. Purgeable
+BOs and those advised DONTNEED are neither: they are dropped rather than
+backed up and accounted to the purgeable shrinker, so they are never
+young and the count snoop skips their XE_BO_PRIORITY_LOW band entirely.
+
+The gate is hard and applies at every reclaim priority, so a working set
+kept younger than the delay is never backed up and can lead to OOM. This
+is deliberate, and why it is off by default.
 
 Assisted-by: LLM
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c       | 46 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo_types.h |  8 +++++-
- drivers/gpu/drm/xe/xe_shrinker.c |  3 +++
- 3 files changed, 56 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Kconfig.profile   |  15 +++
+ drivers/gpu/drm/xe/xe_bo.c           | 105 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h           |   6 +
+ drivers/gpu/drm/xe/xe_bo_types.h     |   8 ++
+ drivers/gpu/drm/xe/xe_device_sysfs.c |  35 ++++++
+ drivers/gpu/drm/xe/xe_shrinker.c     | 162 +++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_shrinker.h     |   3 +
+ drivers/gpu/drm/xe/xe_vm.c           |   4 +-
+ drivers/gpu/drm/xe/xe_vm_types.h     |   7 ++
+ 9 files changed, 335 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/Kconfig.profile b/drivers/gpu/drm/xe/Kconfig.profile
+index 23045ed2aa94..dd3985e502b8 100644
+--- a/drivers/gpu/drm/xe/Kconfig.profile
++++ b/drivers/gpu/drm/xe/Kconfig.profile
+@@ -74,6 +74,7 @@ config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
+ 	  to apply to applicable user. For elevated user, all above MIN
+ 	  and MAX values will apply when this configuration is enable to
+ 	  apply limitation. By default limitation is applied.
++
+ config DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS
+ 	int "Default seeks value of the non-purgeable bo shrinker"
+ 	default 8
+@@ -86,3 +87,17 @@ config DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS
+ 	  reclaim pressure on non-purgeable buffer objects, which need
+ 	  GPU idling and writeback to be reclaimed, in favour of purgeable
+ 	  ones and other kernel caches.
++
++config DRM_XE_SHRINKER_MIN_AGE_MS
++	int "Default minimum BO age before shrinker backup (ms)"
++	default 0
++	range 0 1000000
++	help
++	  Default for the per-device shrinker_min_age_ms sysfs attribute. The
++	  shrinker won't back up a BO that was moved into TT, or bumped on the
++	  LRU by an exec, less than this many milliseconds ago. BOs already
++	  evicted to system memory are not part of a working set and are
++	  never protected. This applies at every reclaim priority: a working
++	  set kept younger than this is never backed up and can cause OOM.
++	  Only set if that risk is preferred over thrashing a hot working
++	  set. 0 disables.
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 1b74331b15ec..bc4801c48fce 100644
+index bc4801c48fce..fc8fe68ca037 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -992,6 +992,38 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
+@@ -1359,9 +1359,114 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
  	}
+ 
++	if (!ret && ttm_bo->resource && ttm_bo->resource->mem_type == XE_PL_TT)
++		xe_bo_bump_lru(bo);
++
+ 	return ret;
  }
  
-+/*
-+ * Change @bo's TTM LRU priority to @priority. @bo's dma-resv must be held.
++/**
++ * xe_bo_bump_lru_locked() - Bump a BO on the LRU and stamp its last use
++ * @bo: The buffer object, reserved by the caller.
 + *
-+ * Private, user BOs of non-fault-mode VMs have bo->ttm.bulk_move set to their
-+ * VM's LRU bulk-move range (see xe_bo_create_user()), which tracks a
-+ * contiguous [first, last] run of resources per (mem_type, priority) bucket.
-+ * Writing bo->ttm.priority while the BO is still attached to that range would
-+ * leave the resource linked in the old priority's bucket while the bulk-move
-+ * code looks it up under the new one, corrupting both buckets. Temporarily
-+ * detaching the BO from its bulk-move range moves it with a plain, non-bulk
-+ * LRU update instead, and reattaching afterwards re-inserts it into the new
-+ * priority's bucket.
++ * Move @bo to the tail of its LRU and record the time for the shrinker's
++ * minimum age gate. A BO private to a VM is anchored inside that VM's
++ * bulk-move range, so moving it alone would only reorder it within the
++ * range, leaving it wherever the range sits on the LRU. Move the whole
++ * range to the tail and stamp the VM as well, matching xe_vm_bump_lru().
++ * The caller must hold the device LRU lock.
 + */
-+static void xe_bo_update_ttm_priority(struct xe_bo *bo, int priority)
++void xe_bo_bump_lru_locked(struct xe_bo *bo)
 +{
-+	struct ttm_lru_bulk_move *bulk = bo->ttm.bulk_move;
++	struct xe_vm *vm = bo->vm;
 +
-+	xe_bo_assert_held(bo);
++	if (vm) {
++		WRITE_ONCE(vm->lru_stamp, jiffies);
++		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
++	}
 +
-+	if (bo->ttm.priority == priority)
-+		return;
-+
-+	if (bulk)
-+		ttm_bo_set_bulk_move(&bo->ttm, NULL);
-+
-+	bo->ttm.priority = priority;
-+	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
-+
-+	if (bulk)
-+		ttm_bo_set_bulk_move(&bo->ttm, bulk);
++	WRITE_ONCE(bo->lru_stamp, jiffies);
++	ttm_bo_move_to_lru_tail(&bo->ttm);
 +}
 +
- /**
-  * xe_bo_set_purgeable_state() - Set BO purgeable state with validation
-  * @bo: Buffer object
-@@ -1001,6 +1033,13 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
-  * transitions. Once a BO is PURGED, it cannot transition to any other state.
-  * Invalid transitions are caught with xe_assert(). Shrinker page accounting
-  * is updated automatically.
++/**
++ * xe_bo_bump_lru() - Bump a BO on the LRU and stamp its last use
++ * @bo: The buffer object, reserved by the caller.
 + *
-+ * A WILLNEED -> DONTNEED transition also lowers the BO's TTM LRU priority to
-+ * XE_BO_PRIORITY_LOW: userspace has signaled it does not need these contents
-+ * again soon, so make it one of the first buffers considered for
-+ * eviction/shrinking. The shrinker's purge pass relies on this clustering to
-+ * bound its LRU walk. Conversely, a DONTNEED -> WILLNEED transition restores
-+ * XE_BO_PRIORITY_NORMAL, since the BO is back in active use.
-  */
- void xe_bo_set_purgeable_state(struct xe_bo *bo,
- 			       enum xe_madv_purgeable_state new_state)
-@@ -1018,6 +1057,13 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
- 	xe_assert(xe, !(bo->purgeable.state == XE_MADV_PURGEABLE_PURGED &&
- 			new_state != XE_MADV_PURGEABLE_PURGED));
- 
-+	if (new_state == XE_MADV_PURGEABLE_DONTNEED &&
-+	    bo->purgeable.state == XE_MADV_PURGEABLE_WILLNEED)
-+		xe_bo_update_ttm_priority(bo, XE_BO_PRIORITY_LOW);
-+	else if (new_state == XE_MADV_PURGEABLE_WILLNEED &&
-+		 bo->purgeable.state == XE_MADV_PURGEABLE_DONTNEED)
-+		xe_bo_update_ttm_priority(bo, XE_BO_PRIORITY_NORMAL);
++ * Like xe_bo_bump_lru_locked(), but takes the device LRU lock.
++ */
++void xe_bo_bump_lru(struct xe_bo *bo)
++{
++	spinlock_t *lru_lock = &xe_bo_device(bo)->ttm.lru_lock;
 +
- 	bo->purgeable.state = new_state;
- 	xe_bo_set_purgeable_shrinker(bo, new_state);
- }
++	spin_lock(lru_lock);
++	xe_bo_bump_lru_locked(bo);
++	spin_unlock(lru_lock);
++}
++
++/**
++ * xe_bo_shrink_backup_candidate() - Whether the shrinker may back up a BO
++ * @bo: The TTM buffer object, reserved by the caller.
++ *
++ * A BO is a backup candidate if backing it up is the only way to reclaim it.
++ * BOs advised DONTNEED, which sit at XE_BO_PRIORITY_LOW, and purgeable ones
++ * are not: their pages are simply dropped, which is cheap, and they are
++ * accounted to the purgeable shrinker. Neither are BOs whose tt isn't
++ * TTM_TT_FLAG_EXTERNAL_MAPPABLE, which xe_bo_shrink() rejects outright.
++ *
++ * Return: true if @bo would be backed up by a non-purge shrink pass.
++ */
++bool xe_bo_shrink_backup_candidate(struct ttm_buffer_object *bo)
++{
++	struct xe_ttm_tt *xe_tt;
++
++	if (!bo->ttm || !(bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
++	    bo->priority <= XE_BO_PRIORITY_LOW)
++		return false;
++
++	xe_tt = container_of(bo->ttm, struct xe_ttm_tt, ttm);
++
++	return !xe_tt->purgeable;
++}
++
++/**
++ * xe_bo_shrink_too_young() - Whether a BO was used too recently to shrink
++ * @bo: The TTM buffer object, reserved by the caller.
++ * @min_age: Minimum age in jiffies. 0 disables the check.
++ *
++ * The age is taken from the later of the BO's own &xe_bo.lru_stamp and, for
++ * user BOs private to a VM, the VM's &xe_vm.lru_stamp.
++ *
++ * BOs that the shrink walk would not back up anyway are never considered
++ * young: non-xe BOs and everything rejected by
++ * xe_bo_shrink_backup_candidate(). Neither are BOs in XE_PL_SYSTEM: they are
++ * not GPU mapped, hence not part of a working set, and must be moved back to
++ * TT, refreshing the stamp, before use.
++ *
++ * Return: true if @bo was touched less than @min_age jiffies ago.
++ */
++bool xe_bo_shrink_too_young(struct ttm_buffer_object *bo, unsigned long min_age)
++{
++	struct xe_bo *xe_bo;
++	unsigned long stamp;
++
++	if (!min_age || !xe_bo_is_xe_bo(bo) ||
++	    bo->resource->mem_type == XE_PL_SYSTEM ||
++	    !xe_bo_shrink_backup_candidate(bo))
++		return false;
++
++	xe_bo = ttm_to_xe_bo(bo);
++	stamp = READ_ONCE(xe_bo->lru_stamp);
++	if (xe_bo->vm && xe_bo_is_user(xe_bo)) {
++		unsigned long vm_stamp = READ_ONCE(xe_bo->vm->lru_stamp);
++
++		if (vm_stamp && (!stamp || time_after(vm_stamp, stamp)))
++			stamp = vm_stamp;
++	}
++
++	return stamp && time_before(jiffies, stamp + min_age);
++}
++
+ static long xe_bo_shrink_purge(struct ttm_operation_ctx *ctx,
+ 			       struct ttm_buffer_object *bo,
+ 			       unsigned long *scanned)
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 77b3a02e9b8e..12746770ddf9 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -623,6 +623,12 @@ struct xe_bo_shrink_flags {
+ 	u32 writeback : 1;
+ };
+ 
++void xe_bo_bump_lru_locked(struct xe_bo *bo);
++void xe_bo_bump_lru(struct xe_bo *bo);
++
++bool xe_bo_shrink_backup_candidate(struct ttm_buffer_object *bo);
++bool xe_bo_shrink_too_young(struct ttm_buffer_object *bo, unsigned long min_age);
++
+ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 		  const struct xe_bo_shrink_flags flags,
+ 		  unsigned long *scanned);
 diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index 8ec4a01a0092..0265fb314c77 100644
+index 0265fb314c77..e303350e37f7 100644
 --- a/drivers/gpu/drm/xe/xe_bo_types.h
 +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -24,7 +24,13 @@ struct xe_exec_queue;
+@@ -49,6 +49,14 @@ struct xe_bo {
+ 	u32 flags;
+ 	/** @vm: VM this BO is attached to, for extobj this will be NULL */
+ 	struct xe_vm *vm;
++	/**
++	 * @lru_stamp: jiffies at the last LRU bump, done on a move into TT
++	 * and, for external objects, at exec time. Private BOs are
++	 * additionally covered by &xe_vm.lru_stamp. Consulted by the
++	 * shrinker's minimum age gate. Accessed with
++	 * READ_ONCE()/WRITE_ONCE().
++	 */
++	unsigned long lru_stamp;
+ 	/**
+ 	 * @q: Queue this BO is attached to, mostly for LRC BO, NULL otherwise.
+ 	 * Protected by the BO dma_resv: readers must hold it across both the
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index ff5d25dd867c..26b1f71ed522 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -38,6 +38,12 @@
+  * reclaimed by the shrinker. Higher values reduce reclaim pressure on
+  * non-purgeable buffer objects. Valid values are 1 to 64. Defaults to
+  * CONFIG_DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS.
++ *
++ * shrinker_min_age_ms - Report/change the minimum time, in ms, since a BO was
++ * last moved to TT or bumped on the LRU by an exec before the shrinker may
++ * back it up. BOs evicted to system memory are never protected. Defaults to
++ * CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS, 0 disables. This applies at every
++ * reclaim priority, so a non-zero value can lead to OOM.
+  */
  
- #define XE_BO_MAX_PLACEMENTS	3
+ static ssize_t
+@@ -331,8 +337,37 @@ shrinker_non_purgeable_seeks_store(struct device *dev,
  
--/* TODO: To be selected with VM_MADVISE */
-+/*
-+ * TTM LRU priority bands. The LRU is walked in ascending priority order, so
-+ * XE_BO_PRIORITY_LOW objects are the first candidates for eviction and
-+ * shrinking. BOs advised DONTNEED through DRM_XE_MADVISE live at
-+ * XE_BO_PRIORITY_LOW, everything else at XE_BO_PRIORITY_NORMAL.
-+ */
-+#define	XE_BO_PRIORITY_LOW	0
- #define	XE_BO_PRIORITY_NORMAL	1
+ static DEVICE_ATTR_RW(shrinker_non_purgeable_seeks);
  
- /**
++static ssize_t
++shrinker_min_age_ms_show(struct device *dev, struct device_attribute *attr,
++			 char *buf)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++
++	return sysfs_emit(buf, "%u\n", xe_shrinker_min_age_ms(xe->mem.shrinker));
++}
++
++static ssize_t
++shrinker_min_age_ms_store(struct device *dev, struct device_attribute *attr,
++			  const char *buff, size_t count)
++{
++	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
++	unsigned int ms;
++	int ret;
++
++	ret = kstrtouint(buff, 0, &ms);
++	if (ret)
++		return ret;
++
++	xe_shrinker_set_min_age_ms(xe->mem.shrinker, ms);
++
++	return count;
++}
++
++static DEVICE_ATTR_RW(shrinker_min_age_ms);
++
+ static struct attribute *shrinker_attrs[] = {
+ 	&dev_attr_shrinker_non_purgeable_seeks.attr,
++	&dev_attr_shrinker_min_age_ms.attr,
+ 	NULL
+ };
+ 
 diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
-index 772dab9b3ed7..c86455ea08d1 100644
+index c86455ea08d1..2f396477822e 100644
 --- a/drivers/gpu/drm/xe/xe_shrinker.c
 +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-@@ -133,6 +133,9 @@ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
- 		}
+@@ -39,6 +39,8 @@
+  * @shrink: Pointer to the mm shrinker handling non-purgeable (shrinkable) objects.
+  * @purge_shrink: Pointer to the mm shrinker handling purgeable objects.
+  * @pm_worker: Worker to wake up the device if required.
++ * @min_age_ms: Minimum BO age before backup, in ms. 0 disables. Defaults to
++ * CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS, overridable through sysfs.
+  */
+ struct xe_shrinker {
+ 	struct xe_device *xe;
+@@ -50,6 +52,7 @@ struct xe_shrinker {
+ 	struct shrinker *shrink;
+ 	struct shrinker *purge_shrink;
+ 	struct work_struct pm_worker;
++	unsigned int min_age_ms;
+ };
  
- 		ttm_bo_lru_for_each_reserved_guarded(&curs, man, &arg, ttm_bo) {
-+			if (flags.purge && ttm_bo->priority > XE_BO_PRIORITY_LOW)
-+				break;
-+
+ static struct xe_shrinker *to_xe_shrinker(struct shrinker *shrink)
+@@ -104,6 +107,7 @@ static void xe_shrinker_runtime_pm_put(struct xe_shrinker *shrinker, bool runtim
+ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
+ 			      struct ttm_operation_ctx *ctx,
+ 			      const struct xe_bo_shrink_flags flags,
++			      unsigned long min_age,
+ 			      unsigned long to_scan, unsigned long *scanned,
+ 			      unsigned long *freed)
+ {
+@@ -139,6 +143,16 @@ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
  			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
  				continue;
  
++			/*
++			 * Each LRU priority is roughly age ordered, so the
++			 * rest of this priority is most likely young too.
++			 * Move on to the next priority.
++			 */
++			if (xe_bo_shrink_too_young(ttm_bo, min_age)) {
++				ttm_bo_lru_cursor_skip_priority(&curs);
++				continue;
++			}
++
+ 			lret = xe_bo_shrink(ctx, ttm_bo, flags, scanned);
+ 			/* Like the TTM LRU walk, skip bos we can't shrink now. */
+ 			if (lret == -EBUSY)
+@@ -171,6 +185,7 @@ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
+ static int xe_shrinker_walk(struct xe_shrinker *shrinker,
+ 			    struct ttm_operation_ctx *ctx,
+ 			    const struct xe_bo_shrink_flags flags,
++			    unsigned long min_age,
+ 			    unsigned long to_scan, unsigned long *scanned,
+ 			    unsigned long *freed)
+ {
+@@ -180,26 +195,124 @@ static int xe_shrinker_walk(struct xe_shrinker *shrinker,
+ 
+ 	swap(no_wait_gpu, ctx->no_wait_gpu);
+ 	save_flags.writeback = false;
+-	ret = __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan, scanned,
+-				 freed);
++	ret = __xe_shrinker_walk(shrinker, ctx, save_flags, min_age,
++				 to_scan, scanned, freed);
+ 	swap(no_wait_gpu, ctx->no_wait_gpu);
+ 	if (ret || *scanned >= to_scan)
+ 		return ret;
+ 
+ 	if (!ctx->no_wait_gpu) {
+-		ret = __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan, scanned,
+-					 freed);
++		ret = __xe_shrinker_walk(shrinker, ctx, save_flags, min_age,
++					 to_scan, scanned, freed);
+ 		if (ret || *scanned >= to_scan)
+ 			return ret;
+ 	}
+ 
+ 	if (flags.writeback)
+-		ret = __xe_shrinker_walk(shrinker, ctx, flags, to_scan, scanned,
+-					 freed);
++		ret = __xe_shrinker_walk(shrinker, ctx, flags, min_age,
++					 to_scan, scanned, freed);
+ 
+ 	return ret;
+ }
+ 
++/**
++ * DOC: Shrinker minimum age
++ *
++ * The per-device shrinker_min_age_ms sysfs attribute, defaulting to
++ * CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS, protects recently used BOs from backup.
++ * A BO's age is taken from the last time it was bumped on the LRU: a move
++ * into TT (xe_bo_move()) or an exec (xe_vm_bump_lru()). For BOs private to
++ * a VM the VM-wide stamp is used, matching the LRU bulk move. BOs in
++ * XE_PL_SYSTEM are never young: they are not GPU mapped, so not part of a
++ * working set, and will be stamped again when moved back to TT for use.
++ *
++ * The gate is applied per LRU priority, each of which is roughly age
++ * ordered. xe_shrinker_count() snoops the first shrinkable BO of each
++ * priority on each TT-backed LRU. Only if all of them are young does it stop
++ * reporting shrinkable pages; anything else, including reaching no verdict
++ * at all, lets it report. The backup walk in xe_shrinker_scan() skips to the
++ * next priority at the first young BO, as a backstop since the count snoop
++ * is only a sample. A hot priority thus doesn't shield colder BOs in another
++ * priority. BOs that aren't backed up anyway have no say either way: those
++ * in XE_PL_SYSTEM are never young, and purgeable and DONTNEED ones, which
++ * belong to the purgeable shrinker, are ignored by the snoop entirely.
++ *
++ * The gate is hard and applies at every reclaim priority. A working set kept
++ * younger than the delay is never backed up, which can lead to OOM. This is
++ * intended for users who prefer that risk over thrashing a hot working set,
++ * hence it is disabled by default.
++ */
++static unsigned long xe_shrinker_min_age(struct xe_shrinker *shrinker)
++{
++	unsigned int ms = READ_ONCE(shrinker->min_age_ms);
++
++	return ms ? msecs_to_jiffies(ms) : 0;
++}
++
++/* Max shrink-unsuitable BOs to skip per LRU before giving up the snoop. */
++#define XE_SHRINKER_SNOOP_MAX	16
++
++/*
++ * Whether the first BO of every priority on every TT-backed LRU that this
++ * shrinker would back up is younger than @min_age. BOs are trylocked through
++ * the reserved LRU walker since their tt may be torn down while still on the
++ * LRU. Contended BOs are skipped by the walker, and may be all of them. If no
++ * verdict can be reached, because nothing was inspected or the snoop budget
++ * ran out, report not young and leave it to the scan side check.
++ */
++static bool xe_shrinker_lru_young(struct xe_shrinker *shrinker,
++				  unsigned long min_age)
++{
++	struct ttm_operation_ctx ctx = {
++		.interruptible = false,
++		.no_wait_gpu = false,
++	};
++	struct xe_device *xe = shrinker->xe;
++	unsigned int mem_type;
++	bool young = false;
++
++	for (mem_type = XE_PL_SYSTEM; mem_type <= XE_PL_TT; ++mem_type) {
++		struct ttm_resource_manager *man = ttm_manager_type(&xe->ttm, mem_type);
++		struct ttm_bo_lru_cursor curs;
++		struct ttm_buffer_object *ttm_bo;
++		struct ttm_lru_walk_arg arg = {
++			.ctx = &ctx,
++			.trylock_only = true,
++		};
++		unsigned int budget = XE_SHRINKER_SNOOP_MAX;
++
++		if (!man || !man->use_tt)
++			continue;
++
++		ttm_bo_lru_for_each_reserved_guarded(&curs, man, &arg, ttm_bo) {
++			/*
++			 * Nothing in the DONTNEED band is backed up, and it
++			 * is accounted to the purgeable shrinker, so it has
++			 * no say here. Skip the whole band in one go.
++			 */
++			if (ttm_bo->priority <= XE_BO_PRIORITY_LOW) {
++				ttm_bo_lru_cursor_skip_priority(&curs);
++				continue;
++			}
++
++			if (!ttm_bo_shrink_suitable(ttm_bo, &ctx) ||
++			    !xe_bo_shrink_backup_candidate(ttm_bo)) {
++				if (!--budget)
++					return false;
++				continue;
++			}
++
++			if (!xe_bo_shrink_too_young(ttm_bo, min_age))
++				return false;
++
++			young = true;
++			ttm_bo_lru_cursor_skip_priority(&curs);
++		}
++	}
++
++	return young;
++}
++
+ static unsigned long
+ xe_shrinker_count_purgeable(struct shrinker *shrink, struct shrink_control *sc)
+ {
+@@ -239,7 +352,7 @@ static unsigned long
+ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
+ {
+ 	struct xe_shrinker *shrinker = to_xe_shrinker(shrink);
+-	unsigned long num_pages;
++	unsigned long num_pages, min_age;
+ 	bool can_backup = !!(sc->gfp_mask & __GFP_FS);
+ 
+ 	if (!can_backup)
+@@ -263,6 +376,10 @@ xe_shrinker_count(struct shrinker *shrink, struct shrink_control *sc)
+ 
+ 	write_unlock(&shrinker->lock);
+ 
++	min_age = xe_shrinker_min_age(shrinker);
++	if (num_pages && min_age && xe_shrinker_lru_young(shrinker, min_age))
++		return SHRINK_EMPTY;
++
+ 	return num_pages ? num_pages : SHRINK_EMPTY;
+ }
+ 
+@@ -297,7 +414,8 @@ static unsigned long xe_shrinker_scan_purgeable(struct shrinker *shrink,
+ 		.purge = true,
+ 	};
+ 
+-	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned, &freed);
++	xe_shrinker_walk(shrinker, &ctx, shrink_flags, 0, nr_to_scan, &nr_scanned,
++			 &freed);
+ 
+ 	sc->nr_scanned = nr_scanned;
+ 
+@@ -322,7 +440,9 @@ static unsigned long xe_shrinker_scan(struct shrinker *shrink, struct shrink_con
+ 	/* Might need runtime PM to access backed-up or CCS-compressed data. */
+ 	runtime_pm = xe_shrinker_runtime_pm_get(shrinker);
+ 
+-	xe_shrinker_walk(shrinker, &ctx, shrink_flags, nr_to_scan, &nr_scanned, &freed);
++	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
++			 xe_shrinker_min_age(shrinker), nr_to_scan, &nr_scanned,
++			 &freed);
+ 
+ 	sc->nr_scanned = nr_scanned;
+ 	xe_shrinker_runtime_pm_put(shrinker, runtime_pm);
+@@ -387,6 +507,29 @@ int xe_shrinker_set_non_purgeable_seeks(struct xe_shrinker *shrinker,
+ 	return 0;
+ }
+ 
++/**
++ * xe_shrinker_min_age_ms() - Get the shrinker minimum BO age
++ * @shrinker: Pointer to the struct xe_shrinker.
++ *
++ * Return: Minimum age, in ms, a BO must reach before it may be backed up.
++ */
++unsigned int xe_shrinker_min_age_ms(struct xe_shrinker *shrinker)
++{
++	return READ_ONCE(shrinker->min_age_ms);
++}
++
++/**
++ * xe_shrinker_set_min_age_ms() - Set the shrinker minimum BO age
++ * @shrinker: Pointer to the struct xe_shrinker.
++ * @ms: Minimum age, in ms. 0 disables the gate.
++ *
++ * See DOC: Shrinker minimum age. A non-zero value can lead to OOM.
++ */
++void xe_shrinker_set_min_age_ms(struct xe_shrinker *shrinker, unsigned int ms)
++{
++	WRITE_ONCE(shrinker->min_age_ms, ms);
++}
++
+ /**
+  * xe_shrinker_create() - Create an xe per-device shrinker
+  * @xe: Pointer to the xe device.
+@@ -415,6 +558,7 @@ int xe_shrinker_create(struct xe_device *xe)
+ 
+ 	INIT_WORK(&shrinker->pm_worker, xe_shrinker_pm);
+ 	shrinker->xe = xe;
++	shrinker->min_age_ms = CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS;
+ 	rwlock_init(&shrinker->lock);
+ 
+ 	shrinker->purge_shrink->count_objects = xe_shrinker_count_purgeable;
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.h b/drivers/gpu/drm/xe/xe_shrinker.h
+index 4b3c73689619..586d7772bd58 100644
+--- a/drivers/gpu/drm/xe/xe_shrinker.h
++++ b/drivers/gpu/drm/xe/xe_shrinker.h
+@@ -18,4 +18,7 @@ int xe_shrinker_non_purgeable_seeks(struct xe_shrinker *shrinker);
+ int xe_shrinker_set_non_purgeable_seeks(struct xe_shrinker *shrinker,
+ 					unsigned int seeks);
+ 
++unsigned int xe_shrinker_min_age_ms(struct xe_shrinker *shrinker);
++void xe_shrinker_set_min_age_ms(struct xe_shrinker *shrinker, unsigned int ms);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d6294d53dee6..0679aed1f51a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -456,13 +456,15 @@ void xe_vm_bump_lru(struct xe_vm *vm, struct drm_exec *exec)
+ 	spinlock_t *lru_lock = &vm->xe->ttm.lru_lock;
+ 	struct drm_gem_object *obj;
+ 
++	WRITE_ONCE(vm->lru_stamp, jiffies);
++
+ 	spin_lock(lru_lock);
+ 	ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
+ 	drm_exec_for_each_locked_object(exec, obj) {
+ 		if (!drm_gpuvm_is_extobj(&vm->gpuvm, obj))
+ 			continue;
+ 
+-		ttm_bo_move_to_lru_tail(&gem_to_xe_bo(obj)->ttm);
++		xe_bo_bump_lru_locked(gem_to_xe_bo(obj));
+ 		cond_resched_lock(lru_lock);
+ 	}
+ 	spin_unlock(lru_lock);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index fb9305124679..a6dc7233b336 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -267,6 +267,13 @@ struct xe_vm {
+ 	/** @lru_bulk_move: Bulk LRU move list for this VM's BOs */
+ 	struct ttm_lru_bulk_move lru_bulk_move;
+ 
++	/**
++	 * @lru_stamp: jiffies at the last xe_vm_bump_lru(). Covers the
++	 * VM's private BOs for the shrinker's minimum age gate.
++	 * Accessed with READ_ONCE()/WRITE_ONCE().
++	 */
++	unsigned long lru_stamp;
++
+ 	u64 size;
+ 
+ 	struct xe_pt *pt_root[XE_MAX_TILES_PER_DEVICE];
 -- 
 2.34.1
 
