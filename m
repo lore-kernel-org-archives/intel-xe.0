@@ -2,43 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46F77606A319
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 08:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CCB606A31D
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 08:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=EskI9rds
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mHsgO/WE
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FCA610F380;
-	Tue, 20 Oct 2026 08:12:56 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 576E410EB9A;
- Tue, 20 Oct 2026 08:12:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCC5710F3BB;
+	Tue, 20 Oct 2026 08:30:25 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55D1010F3BB
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 08:30:19 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 2374844006;
- Tue, 20 Oct 2026 08:12:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF7141F000C4;
- Tue, 20 Oct 2026 08:12:49 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id BACDA60A6A;
+ Tue, 20 Oct 2026 08:30:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D3E81F000C6;
+ Tue, 20 Oct 2026 08:30:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792483970;
- bh=v/p0MBWRBE/jfZOQ+KmlVsJfoYoINrJfRe8raH5Cc1c=;
+ s=k20260515; t=1792485018;
+ bh=b1sX0tmY/Ld4y0aFERJQRpCjpLvO3E0Mbnkn3NclCC4=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=EskI9rdsgJpE1SUSEtsSjW6pWyrzGXAwhGFJqWYDL5rG7+RPoqW5Scw7CRMGEQ/2D
- FQr9kHo0qNW+0GJFUQzqQui4SKaise60CIQCVYro/GidhtQjkhREnUYz4mjE9bwLyt
- 5oV5cMhN2mBauHfdqHD0RSp65RMuZczdzsaYO3h6gQncAUuXePcj1PkR2as/PIxF0G
- 5Cbyefxt7wmmBMNuL6/7VJz/5ZWEitNAy2C/f8d3oO9hLHwd4s/a6Gq8Eohn2TkSrY
- 3KFSGt260qd11E3sHe3ZNhxHNGYff7NCbvoQKy/jvwYTcDlO4WkgnPidBuSD3+THMH
- f3rVvhvejxICg==
-Message-ID: <sashiko-outbox-178494@kernel.org>
+ b=mHsgO/WEojHtYbAKbQWUhOXV7SHX/DaXTMsj6C0mP5+viFQSaawd3Dn6iVitcPMYv
+ Yr0AEUZcOFu8NS7IvTCExE5YAlN9uSI9G6OUzxi+KMibFTYr+Kx3rSaDl833ZrXbMx
+ q9Rg2EkjzuR27xWRuGsq2G2GpwpGP/WVY3b4w5LYJ9kC+sy7asS2iVXM3JH3k7MUjT
+ 89C9d6WZ0eHnm4Csh0zLeQXvbSWy8ElZNG5RI0lNpeIvNEAmdlaWCIwkUZxW1e5AtE
+ VN4LcampljqN8WREtfozOg0TFU2CfH5VA7jWm0EDIIFwHXJ6LdwW0msQ51wtG7JT5a
+ 1LovgTy89u8Fg==
+Message-ID: <sashiko-outbox-178553@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2] drm/i915/dp: clear and restore MSTM_CTRL around MST
- DPMS off/on
-To: "Xiao Lu" <xiaolu.xie@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261020021714.62573-1-xiaolu.xie@intel.com>
-References: <20261014081448.2320363-1-xiaolu.xie@intel.com>
- <20261020021714.62573-1-xiaolu.xie@intel.com>
+Subject: Re: [PATCH v13 1/9] drm/xe/gt: Use GT ordered workqueue for wedging
+To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261020023641.200658-2-raag.jadav@intel.com>
+References: <20261020023641.200658-1-raag.jadav@intel.com>
+ <20261020023641.200658-2-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 20 Oct 2026 08:12:49 +0000
+Date: Tue, 20 Oct 2026 08:30:17 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,184 +58,230 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/i915/dp: clearing MSTM_CTRL in intel_ddi_post_disable_dp() bre=
-aks MST
-- [Medium] drm/i915/dp: race between mst_stream_pre_enable() and DPCD state=
- verification
+- [High] drm/xe/gt: for_each_initialized_gt() skips active GT during xe_gt_=
+init()
+- [High] drm/xe/gt: race between synchronous wedge state and deferred gt_we=
+dge_worker()
 --
 
-commit 04bc6df114f62ef11692debf152cd3af90ff9f8d
-Author: Xiao Lu <xiaolu.xie@intel.com>
+commit 19edca009f0bb14e1051fc3ff32676af39bd1d12
+Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS off/on
+drm/xe/gt: Use GT ordered workqueue for wedging
 
-This patch clears DP_MST_EN and DP_UP_REQ_EN in DP_MSTM_CTRL before placing
-the sink in D3 when the last MST stream is disabled, and restores them
-after setting D0 when the first MST stream is re-enabled. It also teaches
-intel_dp_mst_verify_dpcd_state() to accept DP_UPSTREAM_IS_SRC when no MST
-streams are active so connector detection during DPMS off does not tear
-down the MST topology.
+This commit introduces a worker on the GT ordered workqueue to handle GT
+wedging asynchronously so the scheduler is not disrupted while jobs are in
+flight. It also introduces for_each_initialized_gt() to skip uninitialized
+GTs when declaring the device wedged during probe.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index a46ab5d3d70fc..6b7665206837a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3163,6 +3163,9 @@ static void intel_ddi_post_disable_dp(struct intel_=
-atomic_state *state,
->  	 * Power down sink before disabling the port, otherwise we end
->  	 * up getting interrupts from the sink on detecting link loss.
->  	 */
-> +	if (is_mst)
-> +		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
-> +				       DP_UPSTREAM_IS_SRC);
->  	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 4caf86be8c29c..b83ea856a6fc8 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -1436,7 +1436,7 @@ void xe_device_declare_wedged(struct xe_device *xe)
+>  			    WEDGED_URL, XE_BUG_URL);
+>  	}
 > =20
->  	if (DISPLAY_VER(display) >=3D 12) {
+> -	for_each_gt(gt, xe, id)
+> +	for_each_initialized_gt(gt, xe, id)
+>  		xe_gt_declare_wedged(gt);
+> =20
+>  	if (xe_device_wedged(xe)) {
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index bc9bf6f0b5a79..8dac5679d158d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+
+[ ... ]
+
+> @@ -784,6 +790,8 @@ int xe_gt_init(struct xe_gt *gt)
+>  			return err;
+>  	}
+> =20
+> +	/* Must be last */
+> +	WRITE_ONCE(gt->initialized, true);
+>  	return 0;
+>  }
+> =20
 
 [Severity: High]
-Does clearing DP_MST_EN and DP_UP_REQ_EN in intel_ddi_post_disable_dp()
-break downstream MST hotplug detection and sideband transactions whenever
-all MST streams are disabled?
+Can for_each_initialized_gt() skip a GT that is currently executing inside
+xe_gt_init(), leaving its GuC CT, GuC submission, and kernel exec queues
+unwedged?
 
-When the last active MST stream is disabled via mst_stream_post_disable() ->
-intel_ddi_post_disable_dp(), DP_MSTM_CTRL is written with
-DP_UPSTREAM_IS_SRC while intel_dp->is_mst and intel_dp->mst.mgr.mst_state
-remain true. DP_MSTM_CTRL is only restored in mst_stream_pre_enable() when
-enabling a stream.
+Inside xe_gt_init(), gt_init_with_all_forcewake() initializes GuC
+submission via xe_uc_init_post_hwconfig() -> xe_guc_submit_init(), creates
+kernel exec queues in xe_gsc_init_post_hwconfig() and xe_migrate_init(),
+and calls xe_uc_load_hw() to enable GuC CT communication, submit WA/NOP
+jobs in xe_gt_record_default_lrcs(), enable GuC submission in
+xe_guc_post_load_init(), and start async GSC loading in
+xe_gsc_load_start(). However, gt->initialized is not set to true until the
+end of xe_gt_init().
 
-Per the DisplayPort specification for MSTM_CTRL, clearing DP_UP_REQ_EN and
-DP_MST_EN stops the branch device from generating UP_REQ sideband messages
-such as CONNECTION_STATUS_NOTIFY when downstream sinks are plugged in or
-unplugged.
+In addition, xe_device_probe() calls xe_irq_install() (which schedules
+tile->csc_hw_error_work in xe_hw_error_init()) before the xe_gt_init()
+loop, and commit ("drm/xe/ras: Move xe_ras_process_errors() to xe_ras")
+calls xe_ras_process_errors() in xe_ras_init() prior to xe_gt_init().
 
-If the last connected downstream monitor on an MST hub is unplugged and
-userspace disables its CRTC (dropping intel_dp->mst.active_streams to 0),
-and a monitor is later plugged into the hub:
+If xe_device_declare_wedged() is called while gt->initialized is still
+false=E2=80=94for example, if gt_reset_worker() fails during
+gt_init_with_all_forcewake():
 
-1. The branch device cannot send a CONNECTION_STATUS_NOTIFY UP_REQ because
-   DP_UP_REQ_EN and DP_MST_EN are cleared.
+drivers/gpu/drm/xe/xe_gt.c:gt_reset_worker() {
+    ...
+err_out:
+	xe_force_wake_put(gt_to_fw(gt), fw_ref);
+	XE_WARN_ON(xe_uc_start(&gt->uc));
 
-2. Even if an HPD pulse or manual probe runs intel_dp_detect() on the root
-   connector, intel_dp_mst_verify_dpcd_state() now returns true when
-   val =3D=3D DP_UPSTREAM_IS_SRC and intel_dp_mst_active_streams(intel_dp) =
-=3D=3D 0,
-   and intel_dp_mst_configure() -> drm_dp_mst_topology_mgr_set_mst() is a
-   no-op because mgr->mst_state is already true.
-
-3. mst_connector_detect_ctx() -> drm_dp_mst_detect_port() only checks the
-   cached port->ddps (which stays 0), and because mst_stream_pre_enable()
-   is only called when enabling a stream on a connected connector,
-   DP_MSTM_CTRL is never restored.
-
-Similarly, if a downstream monitor is plugged or unplugged during DPMS off,
-waking an existing stream in mst_stream_pre_enable() calls
-intel_mst_reprobe_topology():
-
-drivers/gpu/drm/i915/display/intel_dp_mst.c:intel_mst_reprobe_topology() {
-	if (intel_mst_probed_link_params_valid(intel_dp,
-					       crtc_state->port_clock, crtc_state->lane_count))
-		return;
-
-	drm_dp_mst_topology_queue_probe(&intel_dp->mst.mgr);
+err_fail:
+	xe_log_err_fatal(gt, GT, err, "reset failed\n");
+	xe_device_declare_wedged(gt_to_xe(gt));
+    ...
 }
 
-When link parameters are unchanged, this returns early without reprobing the
-topology, so hotplug events missed while DP_UP_REQ_EN was cleared are not
-recovered.
+or via csc_hw_error_work or xe_mert_irq_handler() during
+xe_gt_record_default_lrcs()=E2=80=94then xe_device_declare_wedged() sets
+xe->wedged.flag =3D 1 globally, but for_each_initialized_gt() skips gt.
 
-In addition, while active_streams =3D=3D 0 and mgr->mst_state =3D=3D true,
-host-initiated sideband DOWN_REQ transactions remain reachable without
-enabling a stream, such as mst_connector_get_modes() ->
-mst_connector_get_ddc_modes() -> drm_dp_mst_edid_read() (which sends
-REMOTE_I2C_READ), drm_dp_mst_link_probe_work(), and userspace AUX/I2C dev
-nodes. With DP_MST_EN cleared in DP_MSTM_CTRL, won't the hub ignore
-sideband DOWN_REQ messages and cause drm_dp_mst_wait_tx_reply() to fail or
-time out?
+When that happens, xe_uc_reset_prepare() and gt_wedge_worker() never run on
+gt: guc->submission_state.stopped remains 0, xe_uc_fw_is_running(&guc->fw)
+remains true, and GuC CT is not stopped, while __guc_ct_send_locked()
+rejects all H2G messages with -ENOTRECOVERABLE due to xe_device_wedged(xe).
+Any registered kernel exec queue cleaned up via xe_exec_queue_put() ->
+__guc_exec_queue_process_msg_cleanup() enters
+disable_scheduling_deregister(), where wait_event_timeout() on guc->ct.wq
+is not woken by xe_guc_read_stopped(guc) and xe_guc_ct_send() drops the
+GUC_CONTEXT_DISABLE H2G with -ENOTRECOVERABLE.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 7023619aaaba9..da3cf7493118d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1270,8 +1270,12 @@ static void mst_stream_pre_enable(struct intel_ato=
-mic_state *state,
->  	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 12 && first_mst_str=
-eam &&
->  		    !intel_dp_mst_is_master_trans(pipe_config));
+Similarly, if xe_device_declare_wedged() is triggered after
+xe_gt_record_default_lrcs() completes (such as during non-fatal
+xe_huc_auth(), xe_gsc_load_start(), xe_gt_record_user_engines(),
+xe_eu_stall_init(), xe_gt_sriov_vf_init(), or on another GT), xe_gt_init()
+finishes without checking xe_device_wedged(xe) and sets gt->initialized =3D
+true with xe->wedged.flag =3D=3D 1 while xe_gt_declare_wedged() was never
+called on that GT (and with commit "drm/xe: Make xe_device_declare_wedged()
+IRQ safe", subsequent xe_device_declare_wedged() calls return early on
+atomic_xchg(&xe->wedged.flag, 1) without wedging the GT).
+
+> @@ -1204,6 +1212,15 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe=
+_gt *gt)
+>  	return NULL;
+>  }
 > =20
-> -	if (first_mst_stream)
-> +	if (first_mst_stream) {
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> +		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
-> +				       DP_MST_EN | DP_UP_REQ_EN |
-> +				       DP_UPSTREAM_IS_SRC);
-> +	}
-> =20
->  	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, t=
-rue);
-> =20
-> @@ -2254,6 +2258,14 @@ bool intel_dp_mst_verify_dpcd_state(struct intel_d=
-p *intel_dp)
-> =20
->  	ret =3D drm_dp_dpcd_read_byte(intel_dp->mst.mgr.aux, DP_MSTM_CTRL, &val=
-);
-> =20
-> +	/*
-> +	 * MST mode is disabled while all MST streams are disabled, keeping
-> +	 * UPSTREAM_IS_SRC set to tell this apart from a DPCD reset.
-> +	 */
-> +	if (ret =3D=3D 0 && val =3D=3D DP_UPSTREAM_IS_SRC &&
-> +	    intel_dp_mst_active_streams(intel_dp) =3D=3D 0)
-> +		return true;
+> +static void gt_wedge_worker(struct work_struct *w)
+> +{
+> +	struct xe_gt *gt =3D container_of(w, typeof(*gt), wedge.worker);
 > +
->  	/* Adjust the expected register value for SST + SideBand. */
->  	if (ret < 0 || val !=3D (DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC)=
-) {
->  		drm_dbg_kms(display->drm,
+> +	xe_uc_declare_wedged(&gt->uc);
+> +	xe_tlb_inval_reset(&gt->tlb_inval);
+> +	xe_pm_runtime_put(gt_to_xe(gt));
+> +}
+> +
+>  /**
+>   * xe_gt_declare_wedged() - Declare GT wedged
+>   * @gt: the GT object
+> @@ -1213,8 +1230,12 @@ struct xe_hw_engine *xe_gt_any_hw_engine(struct xe=
+_gt *gt)
+>   */
+>  void xe_gt_declare_wedged(struct xe_gt *gt)
+>  {
+> -	xe_gt_assert(gt, gt_to_xe(gt)->wedged.mode);
+> +	struct xe_device *xe =3D gt_to_xe(gt);
+> =20
+> -	xe_uc_declare_wedged(&gt->uc);
+> -	xe_tlb_inval_reset(&gt->tlb_inval);
+> +	xe_gt_assert(gt, xe->wedged.mode);
+> +	xe_uc_reset_prepare(&gt->uc);
+> +
+> +	xe_pm_runtime_get_noresume(xe);
+> +	if (!queue_work(gt->ordered_wq, &gt->wedge.worker))
+> +		xe_pm_runtime_put(xe);
+>  }
 
-[Severity: Medium]
-Can intel_dp_mst_verify_dpcd_state() race with mst_stream_pre_enable()
-during a non-blocking atomic modeset and falsely tear down the MST topology?
+[Severity: High]
+Does setting xe->wedged.flag =3D 1 and calling xe_uc_reset_prepare()
+synchronously while deferring xe_uc_declare_wedged() to gt->ordered_wq race
+with TDR and exec queue cleanup?
 
-In mst_stream_pre_enable(), intel_dp_mst_inc_active_streams(intel_dp)
-increments intel_dp->mst.active_streams from 0 to 1 before calling
-intel_dp_set_power(intel_dp, DP_SET_POWER_D0) (which performs AUX writes and
-msleep(1) retries) and before restoring DP_MSTM_CTRL to
-DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC:
+In xe_device_declare_wedged() -> xe_gt_declare_wedged(), xe->wedged.flag is
+set to 1 (causing __guc_ct_send_locked() and g2h_read() to fail with
+-ENOTRECOVERABLE) and xe_uc_reset_prepare() synchronously sets
+guc->submission_state.stopped =3D 1 and wakes guc->ct.wq. Meanwhile,
+xe_uc_declare_wedged() -> xe_guc_declare_wedged() -> xe_guc_submit_wedge()
+is queued on the single-threaded gt->ordered_wq behind any currently
+executing or pending guc_exec_queue_timedout_job() TDR works.
 
-drivers/gpu/drm/i915/display/intel_dp_mst.c:mst_stream_pre_enable() {
-	...
-	first_mst_stream =3D intel_dp_mst_inc_active_streams(intel_dp);
-	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 12 && first_mst_stream=
- &&
-		    !intel_dp_mst_is_master_trans(pipe_config));
+In XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET, when
+guc_exec_queue_timedout_job() calls guc_submit_hint_wedged() ->
+xe_device_declare_wedged(), gt_wedge_worker() is queued behind the running
+TDR on gt->ordered_wq. Before gt_wedge_worker() can run,
+guc_exec_queue_timedout_job() signals all pending job fences via
+xe_sched_job_set_error(), restarts the per-queue sched->base.submit_wq via
+xe_sched_submission_start(), and queues TDR cleanup via
+xe_guc_exec_queue_trigger_cleanup().
 
-	if (first_mst_stream) {
-		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
-				       DP_MST_EN | DP_UP_REQ_EN |
-				       DP_UPSTREAM_IS_SRC);
-	}
-	...
+On sched->base.submit_wq, drm_sched_free_job_work() frees the signaled jobs
+and drops their exec_queue references. If the last reference is dropped
+before gt_wedge_worker() executes, guc_exec_queue_destroy() queues CLEANUP
+on sched->base.submit_wq:
+
+drivers/gpu/drm/xe/xe_guc_submit.c:__guc_exec_queue_process_msg_cleanup() {
+    ...
+	if (bound && !exec_queue_wedged(q) && exec_queue_registered(q) &&
+	    xe_uc_fw_is_running(&guc->fw))
+		disable_scheduling_deregister(guc, q);
+	else
+		guc_exec_queue_destroy_async(q);
+    ...
 }
 
-When a non-blocking atomic commit (DRM_MODE_ATOMIC_NONBLOCK) re-enables the
-first MST stream on display->wq.modeset, mode_config.connection_mutex is
-not held while commit_work runs. If intel_dp_detect() runs concurrently on
-intel_dp->attached_connector (via hotplug work, output poll, or
-DRM_IOCTL_MODE_GETCONNECTOR), intel_dp_flush_connector_commits(connector)
-only waits on intel_dp->attached_connector->base.state->commit, which is not
-set for child MST connector commits.
+Because gt_wedge_worker() has not run yet, !exec_queue_wedged(q) and
+xe_uc_fw_is_running(&guc->fw) are still true, so it calls
+disable_scheduling_deregister(guc, q). Inside
+disable_scheduling_deregister(), wait_event_timeout() on guc->ct.wq wakes
+immediately with ret > 0 because xe_uc_reset_prepare() already set
+xe_guc_read_stopped(guc) to 1. It then sets EXEC_QUEUE_STATE_PENDING_DISABLE
+and EXEC_QUEUE_STATE_DESTROYED and calls xe_guc_ct_send(), which fails with
+-ENOTRECOVERABLE because xe->wedged.flag is 1.
 
-If intel_dp_mst_verify_dpcd_state() runs after active_streams is incremented
-to 1 (or reads DP_MSTM_CTRL just before mst_stream_pre_enable() writes it
-and increments active_streams), it will see val =3D=3D DP_UPSTREAM_IS_SRC w=
-hile
-intel_dp_mst_active_streams(intel_dp) =3D=3D 1, return false, and cause
-intel_dp_detect() to call intel_dp_mst_disconnect() in the middle of the
-modeset enable sequence.
+When gt_wedge_worker() finally runs xe_guc_submit_wedge(), q->refcount is
+already 0 so xe_exec_queue_get_unless_zero(q) fails, and
+xe_guc_submit_stop() is not called in XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET.
+As a result, guc_exec_queue_destroy_async(q) is never invoked, leaving
+xef->exec_queue.pending_removal permanently elevated (hanging
+show_run_ticks() in wait_var_event()) and triggering
+xe_gt_assert(guc_to_gt(guc), !exec_queue_destroyed(q)) if the queued
+work_tdr runs on gt->ordered_wq.
+
+In XE_WEDGED_MODE_UPON_CRITICAL_ERROR, any in-flight or already-queued
+guc_exec_queue_timedout_job() on gt->ordered_wq ahead of gt_wedge_worker()
+sees:
+
+drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_timedout_job() {
+    ...
+	if (!exec_queue_killed(q))
+		wedged =3D guc_submit_hint_wedged(exec_queue_to_guc(q));
+	else
+		wedged =3D xe_device_wedged(xe);
+    ...
+			if (!ret || xe_guc_read_stopped(guc))
+				goto trigger_reset;
+    ...
+}
+
+Because xe_guc_submit_pause_abort() in gt_wedge_worker() has not set
+exec_queue_killed(q) yet, guc_submit_hint_wedged() returns false even
+though xe_device_wedged(xe) is true. It then wakes from
+wait_event_timeout(guc->ct.wq, ...) with xe_guc_read_stopped(guc) =3D=3D 1 =
+and
+takes the goto trigger_reset branch, capturing a "Schedule disable failed to
+respond" devcoredump and jumping to rearm instead of completing the
+timed-out job.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261020021714.6257=
-3-1-xiaolu.xie@intel.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261020023641.2006=
+58-1-raag.jadav@intel.com?part=3D1
