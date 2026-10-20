@@ -2,28 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B2B3606A319
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 01:07:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA8E606A319
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 02:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mfXXeqYM
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08CF010F123;
-	Tue, 20 Oct 2026 01:07:54 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E09E110F123;
- Tue, 20 Oct 2026 01:07:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0540524422862888346=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C245C10F1BA;
+	Tue, 20 Oct 2026 02:19:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8553310F1BA;
+ Tue, 20 Oct 2026 02:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792462773; x=1823998773;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mF6ARC3Yz2YyuIVTGKo4p5bDE3WZu3Zu1St/zewOtoI=;
+ b=mfXXeqYMJSlUvkr4Ju3FuNsjun+MQJYB4q/1n81JkpxVplrXGMmN/JgI
+ VzTdFiA8ogECXKCN8T7rMy7l2KMbPga6wXYRQBtHjsQj+U98TZk3IM5Up
+ S3QSjBwxp9/lQdp/c2u1N4kzf2M4NYCn7kXSeu3j25+NB6ViVKIaVLywP
+ e04XLBKrj7wrgdE2RWiIezq/xlicria1WQWUhAUI/8m1pjFmu6Zv6H6gL
+ yKVhJlksEqriZWNiF3feKXL7ZZkCqM3CiG23YtQ5JB2RqMAZOv6v2nQBM
+ hRY7tlHfV/rO7WMe2O/L57SgsDrj884UdG1VJZVrwKiLOF9EeB7OodOxT g==;
+X-CSE-ConnectionGUID: sc/k9Nk4RVilmQN5dGaPQA==
+X-CSE-MsgGUID: y8D+eTyOQBiujH4/uQj8nQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1260124"
+X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
+   d="scan'208";a="1260124"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2026 19:19:32 -0700
+X-CSE-ConnectionGUID: xTv/b8qTQyKoLfgI4GgtMA==
+X-CSE-MsgGUID: c+MAB2IjQGmuECpwzC0SaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
+   d="scan'208";a="3019287"
+Received: from xiaolu.sh.intel.com ([10.239.146.103])
+ by fmviesa007.fm.intel.com with ESMTP; 19 Oct 2026 19:19:30 -0700
+From: Xiao Lu <xiaolu.xie@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com, Xiao Lu <xiaolu.xie@intel.com>,
+ Marco Nenciarini <mnencia@kcore.it>
+Subject: [PATCH v2] drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS
+ off/on
+Date: Tue, 20 Oct 2026 10:17:14 +0800
+Message-ID: <20261020021714.62573-1-xiaolu.xie@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261014081448.2320363-1-xiaolu.xie@intel.com>
+References: <20261014081448.2320363-1-xiaolu.xie@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/cri=3A_Set_downstrea?=
- =?utf-8?q?m_access_to_L3_class_3_and_write-back_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Charles" <daniel.charles@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Oct 2026 01:07:52 -0000
-Message-ID: <179245847291.43614.9555580891142312626@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261020001513.1528267-1-daniel.charles@intel.com>
-In-Reply-To: <20261020001513.1528267-1-daniel.charles@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +64,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============0540524422862888346==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When the last MST stream is disabled, i915 sends SET_POWER D3 to the
+MST trunk while MSTM_CTRL (DPCD 0x111) still has MST mode enabled.
+On re-enable, POWER_UP_PHY is sent before MSTM_CTRL is restored, so
+the hub may process the PHY power-up in an inconsistent state and
+fail to retrain its downstream links.
 
-== Series Details ==
+Fix this by clearing MST_EN and UP_REQ_EN in MSTM_CTRL before sending
+D3 on the last stream disable. On re-enable, restore MSTM_CTRL after
+writing D0 and before sending POWER_UP_PHY, so the hub is back in MST
+mode when it processes the PHY power-up and retrains its downstream
+links.
 
-Series: drm/xe/cri: Set downstream access to L3 class 3 and write-back (rev2)
-URL   : https://patchwork.freedesktop.org/series/175785/
-State : success
+Keep UPSTREAM_IS_SRC set while MST mode is disabled this way, and
+accept this value in intel_dp_mst_verify_dpcd_state() while no MST
+stream is active. Otherwise a connector detection during DPMS off,
+for instance after a runtime resume, would see MSTM_CTRL as reset and
+tear down the MST topology. A real DPCD reset still clears
+UPSTREAM_IS_SRC and so it's still detected.
 
-== Summary ==
+v2: Write UPSTREAM_IS_SRC instead of 0 and accept it in
+    intel_dp_mst_verify_dpcd_state(), to avoid removing the topology
+    on a connector detection during DPMS off. (Marco)
 
-CI Bug Log - changes from xe-5978-5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3_BAT -> xe-pw-175785v2_BAT
-====================================================
+Cc: Marco Nenciarini <mnencia@kcore.it>
+Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_ddi.c    |  3 +++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 14 +++++++++++++-
+ 2 files changed, 16 insertions(+), 1 deletion(-)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index a46ab5d3d..6b7665206 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -3163,6 +3163,9 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
+ 	 * Power down sink before disabling the port, otherwise we end
+ 	 * up getting interrupts from the sink on detecting link loss.
+ 	 */
++	if (is_mst)
++		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
++				       DP_UPSTREAM_IS_SRC);
+ 	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
+ 
+ 	if (DISPLAY_VER(display) >= 12) {
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 7023619aa..da3cf7493 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1270,8 +1270,12 @@ static void mst_stream_pre_enable(struct intel_atomic_state *state,
+ 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 12 && first_mst_stream &&
+ 		    !intel_dp_mst_is_master_trans(pipe_config));
+ 
+-	if (first_mst_stream)
++	if (first_mst_stream) {
+ 		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
++		drm_dp_dpcd_write_byte(&intel_dp->aux, DP_MSTM_CTRL,
++				       DP_MST_EN | DP_UP_REQ_EN |
++				       DP_UPSTREAM_IS_SRC);
++	}
+ 
+ 	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, true);
+ 
+@@ -2254,6 +2258,14 @@ bool intel_dp_mst_verify_dpcd_state(struct intel_dp *intel_dp)
+ 
+ 	ret = drm_dp_dpcd_read_byte(intel_dp->mst.mgr.aux, DP_MSTM_CTRL, &val);
+ 
++	/*
++	 * MST mode is disabled while all MST streams are disabled, keeping
++	 * UPSTREAM_IS_SRC set to tell this apart from a DPCD reset.
++	 */
++	if (ret == 0 && val == DP_UPSTREAM_IS_SRC &&
++	    intel_dp_mst_active_streams(intel_dp) == 0)
++		return true;
++
+ 	/* Adjust the expected register value for SST + SideBand. */
+ 	if (ret < 0 || val != (DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC)) {
+ 		drm_dbg_kms(display->drm,
+-- 
+2.43.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-5978-5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3 -> xe-pw-175785v2
-
-  IGT_9153: 9153
-  xe-5978-5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3: 5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3
-  xe-pw-175785v2: 175785v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175785v2/index.html
-
---===============0540524422862888346==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/cri: Set downstream access to L3 class 3 and write-back (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175785/">https://patchwork.freedesktop.org/series/175785/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175785v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175785v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5978-5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3_BAT -&gt; xe-pw-175785v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5978-5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3 -&gt; xe-pw-175785v2</li>
-</ul>
-<p>IGT_9153: 9153<br />
-  xe-5978-5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3: 5e3ce4f15807bf6c8a5bc43da6f0978634b2bbb3<br />
-  xe-pw-175785v2: 175785v2</p>
-
-</body>
-</html>
-
---===============0540524422862888346==--
