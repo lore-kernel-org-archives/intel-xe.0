@@ -2,50 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96A02606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 979E8606A31B
 	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 19:09:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=M+Xdk5Cc
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=i1VdFb4o
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54FE410E215;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6081510EC3E;
 	Tue, 20 Oct 2026 19:08:57 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D200310E215
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A669F10EC3E
  for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 19:08:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1792523331; x=1824059331;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Q+a0KRkWbPKPPXbj5S0Roto3SXW+vy8mMj3iYqdK9kM=;
- b=M+Xdk5CcWSahbybCjX8SVPvEneEWJ40fegbkjC38bopjJyQ1IhUdeLiD
- XLI/DCCMgznZvj4EuC1oDFO9H1t0t6Hnm+rs06r0Sxfntj20Wr+MJDnZK
- XgHyzo1lBN/79CZxcNnh1A4t4/DDBZV92HYpbhPu5yLDqfgYmA4Dpx8a+
- 0r45J8JywkrCbNM7wCnPqzjjgQYAfTEHEOu63gAAMB1oapxB7vVMrplRf
- 69nJsuZH7p13RNk5cYrdLWd8hdPCymfmyU3Q0KU7WgI76WCq0s9KYZeiP
- AfD3NgPxJci6K/bPHPYOjBsvW2HHJruB1wSNpUVOM8cxSN9iwki5dzm2q A==;
-X-CSE-ConnectionGUID: z9R2jKIzRUWndBSh7jWEKA==
-X-CSE-MsgGUID: JQdn0ApWT2OoCGJoQbWAew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1339818"
+ bh=VOB5odbYNUR1fFeaU8vNG8SOmJ+q4vrrv2pSst7Cpl8=;
+ b=i1VdFb4obXMEHB3lCIuqie/HKkn23EqqAziAOm7PEvxhwPy8Wmr2tuJg
+ xaVo2cwVyLQJ9BLeTJOyGftdcIAs4p6+raN0olSXRi/a5A4ljs6oHWnwq
+ Jkauo0jn143+f6xIdFD01w2+in5/vSYu3VDeubuafp00JvmeQNSZ2CgsV
+ uyCJgz8nj1PXUGeqs7bGS3V9dKoyDzoxj+swLL77V8uwgolpHjGuwKgZt
+ S+j88uYwn7xjpzHFoZGsjcmIKnv0mxlatI3c87z+Nec6i3koKKcCPcnO2
+ 1RObgezPVEOX1pfX7VLFiXgHv7iG4K/y/CGlL4PyRgtVDtK/Qlv8YtlZi Q==;
+X-CSE-ConnectionGUID: l6g862XqTN6M+kCOR7UBag==
+X-CSE-MsgGUID: BdkW4gS0SnWq+PxrcPvx8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1339817"
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1339818"
+   d="scan'208";a="1339817"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2026 12:08:45 -0700
-X-CSE-ConnectionGUID: KwHKpE+2Q/WLDvRSAYCggQ==
-X-CSE-MsgGUID: 427KKvV/Q+KtHgFcK7bv9A==
+X-CSE-ConnectionGUID: Ur9S7uMfTVS2gUA5Sps6JA==
+X-CSE-MsgGUID: VZFG62MyQ2qxnmZXwqabtg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="3226593"
+   d="scan'208";a="3226592"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Oct 2026 12:08:45 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 2/3] drm/ttm: Allow skipping to the next priority in the bo
- LRU cursor
-Date: Tue, 20 Oct 2026 12:08:39 -0700
-Message-Id: <20261020190840.854525-3-matthew.brost@intel.com>
+Subject: [PATCH v3 1/3] drm/xe: Tie BO TTM LRU priority to DONTNEED/WILLNEED
+ madvise state
+Date: Tue, 20 Oct 2026 12:08:38 -0700
+Message-Id: <20261020190840.854525-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261020190840.854525-1-matthew.brost@intel.com>
 References: <20261020190840.854525-1-matthew.brost@intel.com>
@@ -69,148 +69,157 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Drivers walking a manager's LRU with ttm_bo_lru_for_each_reserved_guarded()
-may decide that the rest of the current priority isn't worth walking,
-for example when the priority is roughly age ordered and the walk hit
-a BO that is still too hot to evict. Today the only option is to stop
-the walk altogether, which also gives up on the remaining priorities.
+The DRM_XE_MADVISE ioctl lets userspace mark a VMA's BO as DONTNEED,
+signalling that its contents are not needed right now and may be
+discarded under memory pressure (see madvise_purgeable() in
+xe_vm_madvise.c), or restore it back to WILLNEED. This is a stronger,
+explicit signal than a plain unbind: userspace has told us the BO is not
+just unused for now, but that it is actively fine to lose the data.
+There is no reason to keep such a BO competing for LRU space with
+actively used buffers, and conversely, once userspace marks it WILLNEED
+again it is back in active use and should be reprioritized accordingly.
 
-Add ttm_resource_manager_next_priority() to move a resource cursor to
-the start of the next priority, and ttm_bo_lru_cursor_skip_priority()
-to make the next ttm_bo_lru_cursor_next() use it.
+Give xe two TTM LRU priority bands and tie them to that state:
+XE_BO_PRIORITY_LOW for DONTNEED BOs and XE_BO_PRIORITY_NORMAL for
+everything else. Since the TTM LRU is walked in ascending priority
+order, DONTNEED BOs become the first candidates for eviction and
+shrinking. The transition is driven from xe_bo_set_purgeable_state(),
+the single point through which a BO's aggregate purgeable state actually
+moves between WILLNEED and DONTNEED (PURGED is terminal and left at
+XE_BO_PRIORITY_LOW).
 
-While at it, stop incrementing the cursor priority past the last valid
-priority once the iteration is done.
+Changing bo->ttm.priority cannot be done by a plain store: private, user
+BOs have bo->ttm.bulk_move set to their VM's LRU bulk-move range, which
+tracks a contiguous [first, last] run of resources per (mem_type,
+priority) bucket. Writing the priority while the BO is still attached
+would leave the resource linked in the old priority's bucket while the
+bulk-move code looks it up under the new one, corrupting both. Add
+xe_bo_update_ttm_priority(), which temporarily detaches the BO from its
+bulk-move range, updates the priority with a plain non-bulk LRU update,
+and reattaches it into the new priority's bucket.
+xe_bo_set_purgeable_state() is always called with the BO's dma-resv
+held, so this is safe.
+
+With DONTNEED BOs now clustered at XE_BO_PRIORITY_LOW, the shrinker's
+purge pass no longer needs to walk each memory type's whole LRU: nothing
+beyond XE_BO_PRIORITY_LOW can possibly be purgeable, so continuing past
+it just wastes time trylocking BOs that can never be purged in this
+pass. Break out of the per-mem_type LRU walk in __xe_shrinker_walk()
+once a BO's priority rises above XE_BO_PRIORITY_LOW during the purge
+pass. Behavior of the non-purge (regular shrink) pass is unchanged.
 
 Assisted-by: LLM
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo_util.c  |  3 +++
- drivers/gpu/drm/ttm/ttm_resource.c | 35 ++++++++++++++++++++++++++----
- include/drm/ttm/ttm_bo.h           | 19 ++++++++++++++++
- include/drm/ttm/ttm_resource.h     |  2 ++
- 4 files changed, 55 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       | 46 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo_types.h |  8 +++++-
+ drivers/gpu/drm/xe/xe_shrinker.c |  3 +++
+ 3 files changed, 56 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index f9458a4d5a09..d626f014e61f 100644
---- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -997,6 +997,9 @@ __ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
- 		if (first) {
- 			res = ttm_resource_manager_first(&curs->res_curs);
- 			first = false;
-+		} else if (curs->skip_priority) {
-+			res = ttm_resource_manager_next_priority(&curs->res_curs);
-+			curs->skip_priority = false;
- 		} else {
- 			res = ttm_resource_manager_next(&curs->res_curs);
- 		}
-diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 4e6d3d658d85..e631507d7aa1 100644
---- a/drivers/gpu/drm/ttm/ttm_resource.c
-+++ b/drivers/gpu/drm/ttm/ttm_resource.c
-@@ -674,6 +674,17 @@ ttm_resource_cursor_check_bulk(struct ttm_resource_cursor *cursor,
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 1b74331b15ec..bc4801c48fce 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -992,6 +992,38 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
  	}
  }
  
-+static bool ttm_resource_cursor_next_priority(struct ttm_resource_cursor *cursor)
++/*
++ * Change @bo's TTM LRU priority to @priority. @bo's dma-resv must be held.
++ *
++ * Private, user BOs of non-fault-mode VMs have bo->ttm.bulk_move set to their
++ * VM's LRU bulk-move range (see xe_bo_create_user()), which tracks a
++ * contiguous [first, last] run of resources per (mem_type, priority) bucket.
++ * Writing bo->ttm.priority while the BO is still attached to that range would
++ * leave the resource linked in the old priority's bucket while the bulk-move
++ * code looks it up under the new one, corrupting both buckets. Temporarily
++ * detaching the BO from its bulk-move range moves it with a plain, non-bulk
++ * LRU update instead, and reattaching afterwards re-inserts it into the new
++ * priority's bucket.
++ */
++static void xe_bo_update_ttm_priority(struct xe_bo *bo, int priority)
 +{
-+	if (cursor->priority + 1 >= TTM_MAX_BO_PRIORITY)
-+		return false;
++	struct ttm_lru_bulk_move *bulk = bo->ttm.bulk_move;
 +
-+	list_move(&cursor->hitch.link, &cursor->man->lru[++cursor->priority]);
-+	ttm_resource_cursor_clear_bulk(cursor);
++	xe_bo_assert_held(bo);
 +
-+	return true;
++	if (bo->ttm.priority == priority)
++		return;
++
++	if (bulk)
++		ttm_bo_set_bulk_move(&bo->ttm, NULL);
++
++	bo->ttm.priority = priority;
++	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
++
++	if (bulk)
++		ttm_bo_set_bulk_move(&bo->ttm, bulk);
 +}
 +
  /**
-  * ttm_resource_manager_first() - Start iterating over the resources
-  * of a resource manager
-@@ -723,16 +734,32 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
- 			}
+  * xe_bo_set_purgeable_state() - Set BO purgeable state with validation
+  * @bo: Buffer object
+@@ -1001,6 +1033,13 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
+  * transitions. Once a BO is PURGED, it cannot transition to any other state.
+  * Invalid transitions are caught with xe_assert(). Shrinker page accounting
+  * is updated automatically.
++ *
++ * A WILLNEED -> DONTNEED transition also lowers the BO's TTM LRU priority to
++ * XE_BO_PRIORITY_LOW: userspace has signaled it does not need these contents
++ * again soon, so make it one of the first buffers considered for
++ * eviction/shrinking. The shrinker's purge pass relies on this clustering to
++ * bound its LRU walk. Conversely, a DONTNEED -> WILLNEED transition restores
++ * XE_BO_PRIORITY_NORMAL, since the BO is back in active use.
+  */
+ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ 			       enum xe_madv_purgeable_state new_state)
+@@ -1018,6 +1057,13 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ 	xe_assert(xe, !(bo->purgeable.state == XE_MADV_PURGEABLE_PURGED &&
+ 			new_state != XE_MADV_PURGEABLE_PURGED));
+ 
++	if (new_state == XE_MADV_PURGEABLE_DONTNEED &&
++	    bo->purgeable.state == XE_MADV_PURGEABLE_WILLNEED)
++		xe_bo_update_ttm_priority(bo, XE_BO_PRIORITY_LOW);
++	else if (new_state == XE_MADV_PURGEABLE_WILLNEED &&
++		 bo->purgeable.state == XE_MADV_PURGEABLE_DONTNEED)
++		xe_bo_update_ttm_priority(bo, XE_BO_PRIORITY_NORMAL);
++
+ 	bo->purgeable.state = new_state;
+ 	xe_bo_set_purgeable_shrinker(bo, new_state);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index 8ec4a01a0092..0265fb314c77 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -24,7 +24,13 @@ struct xe_exec_queue;
+ 
+ #define XE_BO_MAX_PLACEMENTS	3
+ 
+-/* TODO: To be selected with VM_MADVISE */
++/*
++ * TTM LRU priority bands. The LRU is walked in ascending priority order, so
++ * XE_BO_PRIORITY_LOW objects are the first candidates for eviction and
++ * shrinking. BOs advised DONTNEED through DRM_XE_MADVISE live at
++ * XE_BO_PRIORITY_LOW, everything else at XE_BO_PRIORITY_NORMAL.
++ */
++#define	XE_BO_PRIORITY_LOW	0
+ #define	XE_BO_PRIORITY_NORMAL	1
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shrinker.c
+index 772dab9b3ed7..c86455ea08d1 100644
+--- a/drivers/gpu/drm/xe/xe_shrinker.c
++++ b/drivers/gpu/drm/xe/xe_shrinker.c
+@@ -133,6 +133,9 @@ static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
  		}
  
--		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
-+		if (!ttm_resource_cursor_next_priority(cursor))
- 			break;
--
--		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
--		ttm_resource_cursor_clear_bulk(cursor);
- 	}
- 
- 	return NULL;
- }
- 
-+/**
-+ * ttm_resource_manager_next_priority() - Skip the rest of the current
-+ * priority and continue iterating at the next one
-+ * @cursor: cursor to record the position
-+ *
-+ * Return: the first resource of the next non-empty priority, or NULL if
-+ * there is none.
-+ */
-+struct ttm_resource *
-+ttm_resource_manager_next_priority(struct ttm_resource_cursor *cursor)
-+{
-+	lockdep_assert_held(&cursor->man->bdev->lru_lock);
+ 		ttm_bo_lru_for_each_reserved_guarded(&curs, man, &arg, ttm_bo) {
++			if (flags.purge && ttm_bo->priority > XE_BO_PRIORITY_LOW)
++				break;
 +
-+	if (!ttm_resource_cursor_next_priority(cursor))
-+		return NULL;
-+
-+	return ttm_resource_manager_next(cursor);
-+}
-+
- /**
-  * ttm_lru_first_res_or_null() - Return the first resource on an lru list
-  * @head: The list head of the lru list.
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 32791c4db2a9..2fc517dbf03d 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -507,10 +507,29 @@ struct ttm_bo_lru_cursor {
- 	 * unlock before the next iteration or after loop exit.
- 	 */
- 	bool needs_unlock;
-+	/**
-+	 * @skip_priority: Continue at the next LRU priority on the next
-+	 * iteration. See ttm_bo_lru_cursor_skip_priority().
-+	 */
-+	bool skip_priority;
- 	/** @arg: Pointer to common BO LRU walk arguments. */
- 	struct ttm_lru_walk_arg *arg;
- };
+ 			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
+ 				continue;
  
-+/**
-+ * ttm_bo_lru_cursor_skip_priority() - Skip the rest of the current priority
-+ * @curs: The cursor.
-+ *
-+ * Make the next ttm_bo_lru_cursor_next() skip the remaining buffer objects
-+ * of the current LRU priority and continue at the next priority, for
-+ * example when the caller decides the rest of the priority isn't worth
-+ * walking.
-+ */
-+static inline void ttm_bo_lru_cursor_skip_priority(struct ttm_bo_lru_cursor *curs)
-+{
-+	curs->skip_priority = true;
-+}
-+
- void ttm_bo_lru_cursor_fini(struct ttm_bo_lru_cursor *curs);
- 
- struct ttm_bo_lru_cursor *
-diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-index 714c533622c2..8cd70d1e5481 100644
---- a/include/drm/ttm/ttm_resource.h
-+++ b/include/drm/ttm/ttm_resource.h
-@@ -499,6 +499,8 @@ struct ttm_resource *
- ttm_resource_manager_first(struct ttm_resource_cursor *cursor);
- struct ttm_resource *
- ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
-+struct ttm_resource *
-+ttm_resource_manager_next_priority(struct ttm_resource_cursor *cursor);
- 
- struct ttm_resource *
- ttm_lru_first_res_or_null(struct list_head *head);
 -- 
 2.34.1
 
