@@ -2,25 +2,25 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19958606A327
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 16:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F03606A31B
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 16:57:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC76C10E796;
-	Tue, 20 Oct 2026 16:55:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CAC410E05E;
+	Tue, 20 Oct 2026 16:57:03 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC8F210E796;
- Tue, 20 Oct 2026 16:55:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8CCE10E05E;
+ Tue, 20 Oct 2026 16:57:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_reduc?=
- =?utf-8?q?e_clock=5Fgating_interface_between_core_and_display_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/i915/display=3A_reduce_clo?=
+ =?utf-8?q?ck=5Fgating_interface_between_core_and_display_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Luca Coelho" <luciano.coelho@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Oct 2026 16:55:54 -0000
-Message-ID: <179251535496.47641.8348272431061297108@221881a7231d>
+Date: Tue, 20 Oct 2026 16:57:01 -0000
+Message-ID: <179251542181.47616.16138558220136992309@221881a7231d>
 X-Patchwork-Hint: ignore
 References: <20261020090723.803321-1-luciano.coelho@intel.com>
 In-Reply-To: <20261020090723.803321-1-luciano.coelho@intel.com>
@@ -35,9 +35,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
@@ -45,45 +44,105 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 Series: drm/i915/display: reduce clock_gating interface between core and display (rev4)
 URL   : https://patchwork.freedesktop.org/series/172330/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 2844a00a1801e21925193c068546ef548e33511e
-Author: Luca Coelho <luciano.coelho@intel.com>
-Date:   Tue Oct 20 12:05:50 2026 +0300
++ trap cleanup EXIT
++ kunitconfigs=('/kernel/drivers/gpu/tests/.kunitconfig' '/kernel/drivers/gpu/drm/xe/.kunitconfig' '/kernel/drivers/gpu/drm/tests/.kunitconfig' '/kernel/drivers/gpu/drm/ttm/tests/.kunitconfig' '/kernel/drivers/dma-buf/.kunitconfig')
++ for kcfg in "${kunitconfigs[@]}"
++ [[ ! -f /kernel/drivers/gpu/tests/.kunitconfig ]]
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/tests/.kunitconfig
+[16:55:55] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:56:00] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
+[16:56:21] Starting KUnit Kernel (1/1)...
+[16:56:21] ============================================================
+Running tests with:
+$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
+[16:56:21] ================= gpu_buddy (14 subtests) ==================
+[16:56:21] [PASSED] gpu_test_buddy_alloc_limit
+[16:56:21] [PASSED] gpu_test_buddy_alloc_optimistic
+[16:56:21] [PASSED] gpu_test_buddy_alloc_pessimistic
+[16:56:21] [PASSED] gpu_test_buddy_alloc_pathological
+[16:56:21] [PASSED] gpu_test_buddy_alloc_contiguous
+[16:56:21] [PASSED] gpu_test_buddy_alloc_clear
+[16:56:21] [PASSED] gpu_test_buddy_alloc_range
+[16:56:21] [PASSED] gpu_test_buddy_alloc_range_bias
+[16:56:22] [PASSED] gpu_test_buddy_fragmentation_performance
+[16:56:23] [PASSED] gpu_test_buddy_dirty_tracker_performance
+[16:56:23] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
+[16:56:23] [PASSED] gpu_test_buddy_offset_aligned_allocation
+[16:56:23] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
+[16:56:23] [PASSED] gpu_test_buddy_addr_to_block
+[16:56:23] ==================== [PASSED] gpu_buddy ====================
+[16:56:23] ============================================================
+[16:56:23] Testing complete. Ran 14 tests: passed: 14
+[16:56:23] Elapsed time: 27.356s total, 4.540s configuring, 20.697s building, 2.047s running
 
-    drm/i915/display: separate display and core clock gating
-    
-    We still call intel_clock_gating_init() from display when leaving
-    PC8+ and after a GPU reset.  The core clock gating code then calls
-    back into display, so we have dependencies in both directions.
-    
-    Move display and PCH clock gating into the display code and restore
-    the HSW/BDW GT and uncore workarounds from the device-level resume
-    paths instead.  Core clock gating is also handled separately when a
-    GPU reset affects display.
-    
-    Display doesn't need the core interface anymore, so build its clock
-    gating implementation for Xe and remove the compatibility header.
-    
-    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-+ /mt/dim checkpatch 4c323e0bf0cb001e147699e8a4dd21f112fba63e drm-intel
-7a0d81c18be1 drm/i915/display: move the SNB FBC workaround comment
-2844a00a1801 drm/i915/display: separate display and core clock gating
--:479: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#479: 
-deleted file mode 100644
++ for kcfg in "${kunitconfigs[@]}"
++ [[ ! -f /kernel/drivers/gpu/drm/xe/.kunitconfig ]]
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_bo.c:568:13: error: redefinition of ‘xe_ttm_bo_is_imported’
+  568 | static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:474:13: note: previous definition of ‘xe_ttm_bo_is_imported’ with type ‘bool(struct ttm_buffer_object *)’ {aka ‘_Bool(struct ttm_buffer_object *)’}
+  474 | static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
+      |             ^~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:593:13: error: redefinition of ‘xe_bo_account_pin’
+  593 | static void xe_bo_account_pin(struct xe_bo *bo)
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:499:13: note: previous definition of ‘xe_bo_account_pin’ with type ‘void(struct xe_bo *)’
+  499 | static void xe_bo_account_pin(struct xe_bo *bo)
+      |             ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:617:13: error: redefinition of ‘xe_bo_account_unpin’
+  617 | static void xe_bo_account_unpin(struct xe_bo *bo)
+      |             ^~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:523:13: note: previous definition of ‘xe_bo_account_unpin’ with type ‘void(struct xe_bo *)’
+  523 | static void xe_bo_account_unpin(struct xe_bo *bo)
+      |             ^~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:642:6: error: redefinition of ‘xe_bo_pin_account’
+  642 | void xe_bo_pin_account(struct xe_bo *bo)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:548:6: note: previous definition of ‘xe_bo_pin_account’ with type ‘void(struct xe_bo *)’
+  548 | void xe_bo_pin_account(struct xe_bo *bo)
+      |      ^~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:656:6: error: redefinition of ‘xe_bo_unpin_account’
+  656 | void xe_bo_unpin_account(struct xe_bo *bo)
+      |      ^~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_bo.c:562:6: note: previous definition of ‘xe_bo_unpin_account’ with type ‘void(struct xe_bo *)’
+  562 | void xe_bo_unpin_account(struct xe_bo *bo)
+      |      ^~~~~~~~~~~~~~~~~~~
+make[7]: *** [../scripts/Makefile.build:290: drivers/gpu/drm/xe/xe_bo.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:551: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:551: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:551: drivers/gpu] Error 2
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [../scripts/Makefile.build:551: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2229: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-total: 0 errors, 1 warnings, 0 checks, 379 lines checked
+[16:56:23] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:56:25] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
