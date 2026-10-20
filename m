@@ -2,80 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE942606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 11:42:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE4A606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 11:42:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=utexas.edu header.i=@utexas.edu header.a=rsa-sha256 header.s=google header.b=rWr1luxS
+	dkim=pass (1024-bit key, unprotected) header.d=kcore.it header.i=@kcore.it header.a=rsa-sha256 header.s=spark header.b=RRQpsBLq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8619D10FD9B;
-	Wed, 21 Oct 2026 11:42:30 +0000 (UTC)
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com
- [209.85.210.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03C7310F842
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 00:08:29 +0000 (UTC)
-Received: by mail-ot1-f41.google.com with SMTP id
- 46e09a7af769-843cf077f10so250522a34.1
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 17:08:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=utexas.edu; s=google; t=1792541309; x=1793146109; darn=lists.freedesktop.org;
- h=mime-version:content-transfer-encoding:content-type:cc:date:subject
- :to:from:message-id:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=q76fPd6I+9oLgbQ4WW7J9EoxVAQOgPqIoUvr4JNR1bA=;
- b=rWr1luxSe3DcgeqpSsB0Cb7L/tbdPtJBZ6dQAOdgqFzk/oW0EVd+vh8ogEayngTKUc
- tFJoStVYoeR/y3M6g0sqUBfsMNrYneilupHxqLIJe5VAlv7xIp2PvIchSwl/hPyffxhv
- 0X5iiqpZU6pCPyPTnGg0ZqdTXNZjNAE5/N1gpiy90gpDC5AwsL1VXE101xp/es+O5vW4
- N/kBBP5wvqJSTSmWYCQFGsFBAGHSme2F/qiIgAjH94BtrLIPm9ghhI/RysWXhVjtzzNn
- 3KRYP3vTczGmCTBkDMmlO06Io+6Gq7vRjlJLuW2EFCnamLKzzhLufA0O3dPp9T4hEfHe
- 9xdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1792541309; x=1793146109;
- h=mime-version:content-transfer-encoding:content-type:cc:date:subject
- :to:from:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=q76fPd6I+9oLgbQ4WW7J9EoxVAQOgPqIoUvr4JNR1bA=;
- b=OYteCgAZX8scQsWsVAOvLhxVzARv/STzY5W66xKiXd7ztKrdvawoRSZvVqTWn/mEDK
- +FprqKN0hfppI2gQo2TYkOb/4B/bmMe7p26VvlZGH/jEuxvxwv2b917dbCZc7pvdk42J
- DwDMkoh8oHhsPTj3W0ZnX57n+STJLXS8aBi74vgIM9h6P8nfeQDygqVQV+3ooOdxYpk7
- 7EFVpqiIhdHXZo/OGOWFamlb/aOwO/asX+vvSpohNlR8IXl+zVvW72UZ6AwDK5hsyfj5
- 23NodmfSh2jNIr1FclOhF/ddxOOM67jn2qr17+Ybqb+GsHiDnw0gXH7Hgk+DtQ+lO8X/
- l2rg==
-X-Gm-Message-State: AFq9FYKSYx89N3uS4mKAugne0erp94SIPoZtkwOKLpWDZwhtoKxNRpw0
- 2phyZJ/f7COZNpZp8aJEXyiwJM70cxDE31naHdYjSzRBmllchKssHq4j9/3OhDRQ36k=
-X-Gm-Gg: AYBFou0v2QOnDaUQoz3IY37QD+uDo6f5PxwqjGK+fi49fzH5XdlisUhyb/3vjB/18Mj
- 98QBzFgohupU842BP1b59B3nTvmHmksJdEbTt5CvZbzzp/R6YNQ+4D7cosOZDLGonpQ21vukF3n
- 5IFGgtS9DP2BmNqWvdpn9Qu6EC3miKqeh3eQ0j+Dn2kaQJz57Lpce3rTJDnCSNTsXMCPa8Sa7LU
- h+Ttzl7W5mSvFPaNd3q4261qgB485HahvF+YkNVAjEE1ao/4OrUHw3+tpc2wJCPY+xEpb0edCol
- mKEO0FhTFb/yYHKhBgAum6v8sE3lZZuQ3QRQMX123mcan6791i3K8AXu+xdhdSOGzTsvundAJUH
- xMAwa6McAQdkB6RpxgwP2pvlrdZaKpMSJK+a0WQLlZOADq38GsEpHpLUzb6EwHX5NWxbRbGOwlo
- Vi/tJsOht9YxFQEeu5CogHUdZDd08NbyS+2nFLGPc/C4UmWaYUu6EZmihI0AZRK8oXpqXRARBmu
- l34ZSArTvpB58uZ5YZnqNyDdgHQlyLqBsarOkbL05TRMF/iJjfO2ZGyfIXjPYKOdA9ZJ3Ku7DNu
- BB1yanasE/1nqx1a/at017oplcoznVgTVRA1kG70mVhmyBVZHXR5MWyS91lJAMgTJcMsdAy48YO
- dDQYEonLmQkZOti4E9Yv+Sv9GLsZdkvB8VWJneIx/uCtSnMWK04YN9+zKPq0rL/Q0g1HU9v2yDj
- ZJRm03SgAYfNwURt7ezw==
-X-Received: by 2002:a05:6830:4425:b0:81c:37e2:2012 with SMTP id
- 46e09a7af769-84d07f09896mr256325a34.15.1792541308869; 
- Tue, 20 Oct 2026 17:08:28 -0700 (PDT)
-Received: from
- 1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa
- ([173.174.112.101]) by smtp.gmail.com with ESMTPSA id
- 46e09a7af769-84cbd7d4431sm955195a34.19.2026.10.20.17.08.27
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 20 Oct 2026 17:08:28 -0700 (PDT)
-Message-ID: <6ad8027c.7f7fe2b9.10c6e4.4073@mx.google.com>
-From: karim.sabar@utexas.edu
-To: Matthew Brost <matthew.brost@intel.com>,
- Thomas =?utf-8?q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH] drm/xe: Use kvmalloc for the VMA ops page-table update array
-Date: Tue, 20 Oct 2026 19:08:27 -0500
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- Karim Sabar <karim.sabar@utexas.edu>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B30E10FDA5;
+	Wed, 21 Oct 2026 11:42:32 +0000 (UTC)
+Received: from spark.kcore.it (spark.kcore.it [49.13.27.68])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B949A10E7F9;
+ Tue, 20 Oct 2026 15:30:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kcore.it;
+ s=spark; h=References:In-Reply-To:Content-Type:MIME-Version:Message-ID:
+ Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date;
+ bh=shIwbpRYBRVZ5arD1o5RN0HiHTcxgmGfKoAfYRtBsek=; b=RRQpsBLqehNBGjJmb+7qq/OvHm
+ jw+06eGSDna85v9XK0tY00sbdWuHCq9LyHTltSSB4j6Usc1pXOaltLL0Mi4raRa8gRPIZlY6xlEuW
+ VlqTMCPs8JxEkEQpfGN2nXrY6OESkCN4iA0qIAIMfAoZ9Xa4h5J8oIiUZcrstdXPT07Y=;
+Received: from mnencia by spark.kcore.it with local (Exim 4.100.1)
+ (envelope-from <mnencia@kcore.it>) id 1xJBnL-00000000apB-1qvn;
+ Tue, 20 Oct 2026 17:30:31 +0200
+Date: Tue, 20 Oct 2026 17:30:31 +0200
+From: Marco Nenciarini <mnencia@kcore.it>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
+ imre.deak@intel.com, xiaolu.xie@intel.com
+Subject: Re: [PATCH v3] drm/i915/dp: clear and restore MSTM_CTRL around MST
+ DPMS off/on
+Message-ID: <ateJFyHPSYMYdj7A@spark.kcore.it>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261020110418.1272170-1-xiaolu.xie@intel.com>
+References: <20261020021714.62573-1-xiaolu.xie@intel.com>
+ <20261020110418.1272170-1-xiaolu.xie@intel.com>
 X-Mailman-Approved-At: Wed, 21 Oct 2026 11:42:29 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,97 +49,65 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-20.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Karim Sabar <karim.sabar@utexas.edu>
+Tested-by: Marco Nenciarini <mnencia@kcore.it>
 
-Big games die after every s2idle resume on flat-CCS iGPUs. The exec
-ioctl keeps returning -ENOMEM even with 11-16 GB of RAM free.
+Tested v3 on a Dell Pro Max 16 (Arrow Lake-P) with a Dell WD19DC dock
+(Synaptics VMM5331 MST hub), one monitor on DP and one on HDMI behind
+it, i915 driving the dock over TBT-alt, drm.debug=0x10e. Kernel is
+Debian 7.2.9 with v3 applied on top.
 
-On suspend xe_bo_evict_all_user() evicts every user BO in XE_PL_TT on
-these parts. On resume the first exec rebinds every VMA in one go and
-xe_vma_ops_alloc() kmallocs one 384-byte op per VMA as a single array.
-Final Fantasy VII Rebirth has about 33,500 VMAs which means a 12.9 MB
-array. It's over the 4 MB KMALLOC_MAX_SIZE and can never succeed.
-__GFP_NOWARN keeps it out of dmesg.
+The only change needed for 7.2.9 was the context of the last hunk in
+intel_dp_mst.c, which still uses drm_dp_dpcd_readb(). The new helpers
+use drm_dp_dpcd_read_byte(), which exists in 7.2.9, so verify_ctrl()
+needed no change.
 
-Data from a Panther Lake handheld (SteamOS kernel 7.2.7), kretprobes
-after resume:
-  xe_vma_ops_alloc  -ENOMEM on 63 of 63 attempts
-  xe_vm_rebind      -ENOMEM on 63 of 63 attempts
-  BO validate, TTM populate, PT prepare  never failed
+Results for the points you asked about, 120 s DPMS off with a connector
+probe forced on the trunk 30 s into the off period:
 
-The array is only used by the CPU and doesn't need to be contiguous.
-This switches it to kvmalloc and kvfree.
+1. No "MST mode got reset" message, no MSTM_CTRL mismatch message and
+   no connector was unregistered. DPMS off wrote MSTM_CTRL as 0x04
+   and the probe read it back as 04.
+2. After the wake, one LINK_ADDRESS was sent and the connectors kept
+   their names and ids.
+3. The wake was normal: link training passed at 810000 x4 on the sink
+   and both LTTPRs, payloads were allocated and both monitors came
+   back.
 
-With the same change applied as a module on that kernel, the game
-survives every sleep I tried with zero ENOMEM. The biggest array was
-30,753 ops (11.8 MB).
+I also probed the two MST connectors while paused (90 s off, probes
+at 30 s). Modes and EDID were identical before, during and after
+(28 and 32 modes, 256 byte EDID). The first probe (DP-6) took about
+5 s: its REMOTE_I2C_READ got a NAK (LINK_FAILURE) after 4 s and the
+retry worked. The DP-7 probe took under a second with no NAK. The
+probe of the trunk read MSTM_CTRL as 04 again.
 
-drm-xe-next already does this through commit 0e33330f1238 ("drm/xe: Add
-struct xe_pt_job_ops"), but that's part of a big series that won't go
-to stable.
+Unplug and replug during DPMS off: four runs, one cable at a time
+(HDMI and DP, 90 s off, cable moved 4 to 7 s into the off period). In
+all four the dock raised a long HPD on the trunk and AUX failed for
+about a second, so i915 took the normal disconnect path ("MST device
+may have disappeared"): the MSTM_CTRL write failed with -6 and the
+three MST connectors were unregistered. One second later MST was
+enabled again (0x111 <- 07), LINK_ADDRESS was sent and the topology
+was rebuilt with new connectors (DP-5, DP-10, DP-11), so the names
+were not kept in these runs. There was no "MST mode got reset"
+message. The wake that followed was normal, with link training at
+810000 x4 and payloads only for the monitors that were connected.
 
-I tracked this down and tested it on my own device. I used an AI
-assistant to help with the debugging, i.e the kprobe tracing and
-reading through the xe code. I ran every test, picked the fix and
-reviewed the change myself.
+There was no LINK_ADDRESS after the wake. As I read the code,
+set_mst() clears the paused state and nothing paused it again after
+the rebuild, so unpause() returned false and no re-probe followed.
+The only noise was the usual REMOTE_DPCD_READ NAKs, 4 to 10 per run,
+the same as the 4 at boot when the topology is first probed.
 
-What I couldn't do: this is build-tested on drm-xe-fixes but only
-run-tested on the SteamOS 7.2.7 kernel through an equivalent module,
-not on a mainline kernel.
+So on this dock a sink change while paused did not reach the re-probe
+at unpause: the dock raised a long HPD and the disconnect path rebuilt
+the topology first. The unpause re-probe was only exercised by the
+normal wakes above (one LINK_ADDRESS, no topology change).
 
-Fixes: 2e524668c440 ("drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops")
-Cc: stable@vger.kernel.org # v6.11+
-Assisted-by: Claude:claude-opus-5-5
-Signed-off-by: Karim Sabar <karim.sabar@utexas.edu>
----
-Downstream SteamOS report with the same data: https://github.com/ValveSoftwar=
-e/SteamOS/issues/2962
----
- drivers/gpu/drm/xe/xe_vm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 99e42bd29..5caef443b 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -703,9 +703,9 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool=
- array_of_binds)
- 			continue;
-=20
- 		vops->pt_update_ops[i].ops =3D
--			kmalloc_objs(*vops->pt_update_ops[i].ops,
--				     vops->pt_update_ops[i].num_ops,
--				     GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
-+			kvmalloc_objs(*vops->pt_update_ops[i].ops,
-+				      vops->pt_update_ops[i].num_ops,
-+				      GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
- 		if (!vops->pt_update_ops[i].ops)
- 			return array_of_binds ? -ENOBUFS : -ENOMEM;
- 	}
-@@ -742,7 +742,7 @@ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
- 	xe_vma_svm_prefetch_ops_fini(vops);
-=20
- 	for (i =3D 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
--		kfree(vops->pt_update_ops[i].ops);
-+		kvfree(vops->pt_update_ops[i].ops);
- }
-=20
- static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_m=
-ask, int inc_val)
-
----
-base-commit: d2ce8fcd778ee6d92748c92d23a56d4416c29d86
-change-id: 20261020-xe-kvmalloc-vma-ops-2637ebf81cfd
-
-Best regards,
--- =20
-Karim Sabar <karim.sabar@utexas.edu>
-
+The logs are available if you want them.
