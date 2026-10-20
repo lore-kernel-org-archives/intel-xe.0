@@ -2,43 +2,127 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FBF5606A31A
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 11:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9335E606A319
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 11:50:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=VBiXY6q/
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=WWcae0ae
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0190A10ED2D;
-	Tue, 20 Oct 2026 11:26:50 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 719AF10ED2D;
- Tue, 20 Oct 2026 11:26:44 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1842140247;
- Tue, 20 Oct 2026 11:26:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B28581F000C5;
- Tue, 20 Oct 2026 11:26:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792495604;
- bh=pknGrJ+5O/kK6eTDXc/Tvyy7hpUUaNAmdo2s5fK0kY0=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=VBiXY6q/pY3oqh+/ffWLQneR74IB01dbwGeLSq2VDSZ71AGu+Og2CHRo3pboploTj
- +loL66Qk7hF5PW3O/eTrBJ5PhiyqoYuyqOlIjJFF/B5gqpZD3n4nlEV4tFFREuNFUt
- CZDOWeKSqBmDOzglnm7CziqlaaF0+hEkxAbM2PYQz8uRzZ4EVNpvOeipTUq1tbGr4G
- ZHIvqhq74UValWvSQsCi9aFo7OodBzuKwhQO8G8io3qwGqykJbos8tQi8sGdZSz+0+
- qpwXl3n4qYqsjTacxbBa5S85lKy/w+6UIaQGAZ00jrMdWz4EkuGf/yThFxHWT2chtl
- nBN9YsuMnwOmA==
-Message-ID: <sashiko-outbox-178894@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3] drm/i915/dp: clear and restore MSTM_CTRL around MST
- DPMS off/on
-To: "Xiao Lu" <xiaolu.xie@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-In-Reply-To: <20261020110418.1272170-1-xiaolu.xie@intel.com>
-References: <20261020021714.62573-1-xiaolu.xie@intel.com>
- <20261020110418.1272170-1-xiaolu.xie@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 20 Oct 2026 11:26:43 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5225A10F510;
+	Tue, 20 Oct 2026 11:50:09 +0000 (UTC)
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010053.outbound.protection.outlook.com [52.101.61.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58B6A10F501;
+ Tue, 20 Oct 2026 11:50:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Gh41G9H81IK6zpFgBguMlioG7sK585ViTjL1HLR/UjvbyBRvDaZ1R27Fx0x9Or4BJKiFuvk+C59Ge0vp6FYgQ8YXhI5ceDSGxHi3fpfVoCb2mvzZRWijJdEw5HH/P5geItJy8RtxIxqpba9jvvxW4911zm+OIwrDgqI8MTRdxMono/B2yZiNwAW6Bwp6mPwzfBowoLFfn+Pov7+Gtv9uCJ/kq1y7raU3BYef0U7obUeEpXxSEwG9SFccbuyNpB/BKUxLoBOJaZttREcPgAwe/NfxAqse1ih3m15VPPxXOAHvO/+440jTM/rtiVCNb0hlIjpJDrfBfQAWU8XTLrhZbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AuQikB9GTZdM8oalpWKa+S5dRjJdaHN51O/4Z8pHB4Y=;
+ b=J1CZrwNzIJVzpjI8O5BRHT4NB35AzyfpimF3vu8w91+dTQ69L2rY+nTUNF9cc3x4Om2X7UKZdY1LukHSzJ3r9sPhAqyMjMVylp9Eh+EBrE6ZLfxK/XG1ZTslpnlVU1WIxd5AHVAFd4qTpCK+a9GYx7vQteze9l1z5pcIq7tF4oUB4HVlubvwYpW5q2zCcOtjgsf5VsbOm9IsxHryKj+G0UMUpGIq39BxjUmG/iCM5lCqe2oChGTB6M4tCK7gYT4Gtsgpe13wBQFCbFP5Y96qx43Ec7wMy6pBLMTqYYmZRtdTscuGs42bt6OH7ikBhN/MlsID644Ttax+daoeuCFg7g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AuQikB9GTZdM8oalpWKa+S5dRjJdaHN51O/4Z8pHB4Y=;
+ b=WWcae0ae6eLUkjsYmHYTQ5puX5sIkKNY6rVOqq5i5O78Nii+36mld2Fw2Ty2biMDZFzQEshyPJfqs3Ue1WbeN/Ku6AZpkL7w9Yopje7pOvYnS93Yy02f8OGWmQAb3Y1SvW3/1naJ95+bbsViacr95M2Qdghs8m6TAzDCMYqp5QA=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by MW6PR12MB9019.namprd12.prod.outlook.com (2603:10b6:303:23f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Tue, 20 Oct
+ 2026 11:49:35 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0546.012; Tue, 20 Oct 2026
+ 11:49:34 +0000
+Message-ID: <325057ab-3eaa-4095-8799-5a568fc599d7@amd.com>
+Date: Tue, 20 Oct 2026 17:19:28 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] gpu/buddy: do not pass caller list to
+ __alloc_contig_try_harder()
+To: Matthew Auld <matthew.auld@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Shashiko <sashiko-bot@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+References: <20261006110706.1636971-2-matthew.auld@intel.com>
+ <DM4PR12MB5039955C1A48C78942896415E4672@DM4PR12MB5039.namprd12.prod.outlook.com>
+ <281c6c14-2692-40d4-b812-e41c3a2acaf5@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <281c6c14-2692-40d4-b812-e41c3a2acaf5@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0126.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d5::7) To DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|MW6PR12MB9019:EE_
+X-MS-Office365-Filtering-Correlation-Id: d4f914c9-4d1a-4c3f-80ff-08df2ea035ef
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|366016|22082099003|18002099003|10067099003|11063799006|4143699003|261009223027099003|56012099006;
+X-Microsoft-Antispam-Message-Info: qDQPv8tAAOpX0OCARGEOBmHb7t9U2FeasanT11UCBb/cVeE6/n9JXtNdTCIG1TDuU0atL7HHsIgofWvRL5jKkyEubUrxtPDk4r/iy8rVpGRr/+6Gron7HTz4J1glmTb6Xtv1i0soJcZRRiXk8FYi9FFE9TNe7DBGZcdomYSfSccJFfToovLyRPRQQq1aOxfbHAYwQhFrIZfn4rlOpxsqB8Hh6puWwop8/fVyy10MvPjTv7TEsGShF9DCLgr0trCpz/Y88mzGDUR1EW6W6Lf0VPQ2IIlq6BD+GBkZpMUhbS06ygclAXjQeIx5dwA8tBk5gxgvpwci2oSn1zhebGS6u76GRCYwcum6tmJD7sEV2LCp3mfh+SfmNjN18HijdEOY2ZbRjEF5wYhs0KYVWMeIos7tea9oEVdU80n7nAzDEstApZFh/nTw41L5d+thmJLIzRsUcP+odZD6LBs6pthzVjAFy5kxW0c47ZaL2T7X0DHxafFjTzMOp+1nvCwt2TMz1QvkKx0wl0/Ds5lX9RBcUX0HI10XiZ6kb+ZOikx0ldJiVdWZDW1WLaiRNTdAMEvuIKuUuW3/XcJdYN7nXEPBpmkeEi3gA0gPelSyM2T0634=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(22082099003)(18002099003)(10067099003)(11063799006)(4143699003)(261009223027099003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cDJtU2ZOOVdiQnB0eFMzWXN3RkhYZU9SZjh3a2dlZjMyOWtvUUdBQ0grbUJO?=
+ =?utf-8?B?bE5jVjNwc3ByTFpBcWdDeHh5QTlqQ1dSSHBGZzc2b2c2WGw2NmlmdWc4aUEw?=
+ =?utf-8?B?a3F5cVdNS0EwZm9wTUVoMm9Ob0JkbGxDbG1ObjdDRmJlbVVKVWZzNUVjRjNv?=
+ =?utf-8?B?RjQycjk3V2o0SkdqZ1F1aG54NHlqR3NMNUxSZ3VpclErV2Erb2lrWUxnVFlz?=
+ =?utf-8?B?a285N3RRaG9UZ0x6Q3BvaUU3b3VpL1dzQXVrTi9lMWRxMEV1TzB4QkF1YnJk?=
+ =?utf-8?B?dlB6dFRCby92Nm5MakZNWmQ5em1MNUxNZUtraGNpWGRRcUExQzhVc1MrMWsv?=
+ =?utf-8?B?bFlKZXNUdm8rL3hlL2psTWVZbSt4TmxXQWNqRXNWcVhpT2pLQlJlMnUzODNY?=
+ =?utf-8?B?NFdqcFhXK2ZJTldrWVpyb1lJNDNYMm5XeU1ta0RRQVR5MGlwRjdVeU1qN2VB?=
+ =?utf-8?B?SElZdm5YZ3NGRStyVHJjdE5SVmxzelpvU3Y0Zyt3S2RGOTVidUEzQmFmWm5L?=
+ =?utf-8?B?S1lFRmM4dmNCWVp6eGY4UGVZbFJYcE9lNW84RERkY1k3U1VwVnI0MGlMalI1?=
+ =?utf-8?B?MzE2ekRiTzZOSm9XN3N1dzhHYS9qWjVKSEFpeWg5QzcvTGJHa2tQZC9NSzRL?=
+ =?utf-8?B?eFAzNURjR3NVWThZenllVS9NZEhWekpNZU9hQWJxSm1EMGZOdHlhVDA4aHN0?=
+ =?utf-8?B?c042ZS9xbEI1K0FuOHJ0Tkl6NTNaNEgyWm4wWFJYS1lVVnNFd3lpSXJxOFlX?=
+ =?utf-8?B?algycmlycXhjVTVBZ0s1YUIxNzVjL2lNaVU1VWdGbE85bEEwUGcxRHZyVFBJ?=
+ =?utf-8?B?a3dkSVphQjZtTGNyd21WUjhxMmRpZElnUlVrNU5acVVmU2NLZzJON3R6ejFU?=
+ =?utf-8?B?Z2ZTZ2I4VEo5eE45WUY2ZU5GY1BqL01PQlZURmhmdXdLdEZoY1RmUHFRZDVM?=
+ =?utf-8?B?dlJzZERHQkJOK3RBaDV2czJDUyswNDJCeUUydVlqN09NTjcxNHFzNnk3Wkdj?=
+ =?utf-8?B?TTlER1IydUJiNzMrN3FVZmxVc1pvVDh5QnhqT1RPdHFOYTFJN2dYL2dhMjFo?=
+ =?utf-8?B?OFBwRkcrOVFmdjloUEtFVkxIY3lYaHdxOFB5T0VFZ3lua2xsc3lTT0NhMllq?=
+ =?utf-8?B?WGpvV3lTTE55N3VTQk9MYzZJMU5zcnNjZndMZXYvNGpFSFVGVWFMUTdFWXVp?=
+ =?utf-8?B?L2toelJmYmNOREhmeXdTK2hRTGExS1NBRFBkN011aHozdFRKa0ZKb25senoy?=
+ =?utf-8?B?YjNyL3FEbHQrdlJtcWR6Qkh2MGFKUVlLSVovMjV5WFJKN2ZCbW10UFErV1ox?=
+ =?utf-8?B?K2N5WFZPNnFPY3hsQU9GTFdxb1U4NzNwQjZrMStEWHhkL0w4dUxTQ0tpamNP?=
+ =?utf-8?B?L3YvQUJCZjFEeDJQcTd3VmN4SCtWQnkyZGl2aDRocmIrSGk2LzV3STYwc245?=
+ =?utf-8?B?dHduYnhXeVh0UnhaYmVGMWZ4ZlE4N0lzSklYOTBtMXQ4M1ZicjRRNHMvZkdo?=
+ =?utf-8?B?L1ZoVU1QZ0VQMktKdTBsWFZ0Q1doamQ2QUdTWmxBRVFJc1VEY2owRFNUY2dm?=
+ =?utf-8?B?cWlMTlVlNUJrbk9DbmFhTm1BY2NyTnVLUHZwd1VyUlprTEg5TEJPczNsbXNL?=
+ =?utf-8?B?V3M3SUV1TE9kMVYzVndIbm0zL0oySzlZT3ZYOElSd0RiWnNUMzVGRzRUQTFa?=
+ =?utf-8?B?ZDkwL0pQU3NydVhMZ0tkbEYwU3hBaytrM3YyZEQreEFZUUFXR294Qy9NN3Iv?=
+ =?utf-8?B?WjhvU1Z3UUU0NkUwUTloK0JiUW9nZG1uZDZCNm4yZEppcmJrcW9QMW9PTmFq?=
+ =?utf-8?B?TERzNXZBS1QrTi9FVllVUFZuRWh2OGY4bTh6emhRWXNtYWZLWWhReThyYURT?=
+ =?utf-8?B?dis1NE5QeDJCb2xPQ0JGeFNoNjJMS3JraFJtVGI5TFVxOEMrNGdMZGdBQS9l?=
+ =?utf-8?B?cGlRa0NiMGV3R1BzWjV1TmFIZ3BiRWxVNHA4bWVPM0FlV3k0RXErV3dCZ3hx?=
+ =?utf-8?B?SDdOckRnT1U1M0FhZHVraUZMckI1c3c5RzVTcTJtR2xwRitQVlYrREFNR3VN?=
+ =?utf-8?B?enZMV2hFUUFXZTdlL254VFphdWxGSmxkZVNlVUpCcjlETmpNT3NKMGZEUlM3?=
+ =?utf-8?B?bWE1TzVhVTBENERlK2pCb0VZQ0RjOS9LQUJLU1plQXlFMEhvVGZxSVZ3K2Rp?=
+ =?utf-8?B?R2VHZnhrWWVqNWlqZGw4ZkpIaGVzWWxRcklwckpvdTNKNVdNUmN3Z3VyU2da?=
+ =?utf-8?B?VEVBcjdBTk04dXpJRVZGeVBFek9jcDUvYytqYVVnbldrckNlM1BpWHNtUGI5?=
+ =?utf-8?B?YmR2UDgxaGJpSk13VFVFczQ1Rmg0c1p5TTZWbEFBVVo5eENoa3JmZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4f914c9-4d1a-4c3f-80ff-08df2ea035ef
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2026 11:49:34.5481 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Itsv/uND4qiEqpSgWpvDBFROmNy7vQcd1J5INfacG5BcnMoxog2hv1i8XUzYLTkXHN9z4FkhnUgxz/nIjZ3ibA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB9019
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,386 +132,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] drm/i915/dp: drm_dp_mst_topology_mgr_pause() breaks hotplug with 0=
- streams
-- [High] drm/dp_mst: drm_dp_mst_topology_mgr_pause() breaks probe work and =
-edid reads
-- [Medium] drm/dp_mst: suspend and resume conflict with paused state in DP_=
-MSTM_CTRL
---
 
-commit b145319fb5344bbbdb4ae3ece1a54e6f33404fe1
-Author: Xiao Lu <xiaolu.xie@intel.com>
 
-drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS off/on
-
-This commit adds helpers to the DP MST topology manager to pause and
-unpause MST mode in DP_MSTM_CTRL around powering the branch device down
-to D3 on last stream disable and back up to D0 on first stream enable,
-while tracking the paused state to avoid tearing down the topology during
-connector detection and reprobing after unpausing.
-
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c b/drivers/gpu/=
-drm/display/drm_dp_mst_topology.c
-> index b7fce0bf8acc5..371cf88a2d1cf 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-
-[ ... ]
-
-> @@ -3759,6 +3762,104 @@ void drm_dp_mst_topology_queue_probe(struct drm_d=
-p_mst_topology_mgr *mgr)
->  }
->  EXPORT_SYMBOL(drm_dp_mst_topology_queue_probe);
-> =20
-> +/**
-> + * drm_dp_mst_topology_mgr_pause() - disable the MST mode of the branch =
-device
-> + * @mgr: manager to pause
-> + *
-> + * Disable the MST mode of the branch device, while keeping the MST topo=
-logy
-> + * in the SW state. This is meant to be called when all the MST streams =
-are
-> + * disabled and the branch device is about to be powered down.
-> + *
-> + * The branch device may not send UP messages while it is powered down, =
-so
-> + * after the MST mode is enabled again by drm_dp_mst_topology_mgr_unpaus=
-e(),
-> + * the topology must be re-probed.
-> + */
-> +void drm_dp_mst_topology_mgr_pause(struct drm_dp_mst_topology_mgr *mgr)
-> +{
-> +	mutex_lock(&mgr->lock);
-> +
-> +	if (!mgr->mst_state || !mgr->mst_primary || mgr->paused)
-> +		goto out_unlock;
-> +
-> +	if (drm_dp_dpcd_write_byte(mgr->aux, DP_MSTM_CTRL,
-> +				   DP_UPSTREAM_IS_SRC) =3D=3D 0)
-> +		mgr->paused =3D true;
-> +
-> +out_unlock:
-> +	mutex_unlock(&mgr->lock);
-> +}
-> +EXPORT_SYMBOL(drm_dp_mst_topology_mgr_pause);
-
-[Severity: High]
-Can clearing DP_MST_EN in drm_dp_mst_topology_mgr_pause() cause sideband
-timeouts and wipe connector modes when mgr->work or EDID reads run while
-paused?
-
-Unlike drm_dp_mst_topology_mgr_suspend(), drm_dp_mst_topology_mgr_pause()
-does not flush mgr->work (drm_dp_mst_link_probe_work()) or
-mgr->up_req_work, and drm_dp_mst_link_probe_work() only checks
-mgr->mst_primary without checking mgr->paused:
-
-drivers/gpu/drm/display/drm_dp_mst_topology.c:drm_dp_mst_link_probe_work() {
-	mutex_lock(&mgr->lock);
-	clear_payload_id_table =3D !mgr->payload_id_table_cleared;
-	mgr->payload_id_table_cleared =3D true;
-
-	mstb =3D mgr->mst_primary;
-	if (mstb) {
-		ret =3D drm_dp_mst_topology_try_get_mstb(mstb);
-		if (!ret)
-			mstb =3D NULL;
-	}
-	mutex_unlock(&mgr->lock);
-}
-
-Because mst_stream_pre_enable() queues mgr->work asynchronously via
-intel_mst_reprobe_topology() -> drm_dp_mst_topology_queue_probe(), if the
-stream is disabled before mgr->work finishes, DP_MST_EN is cleared
-underneath drm_dp_mst_link_probe_work(). In-flight sideband messages then
-time out in drm_dp_mst_wait_tx_reply(), which can leave
-mstb->link_address_sent or port PBN state incomplete or unlink ports in
-drm_dp_mst_handle_link_address_port().
-
-Similarly, while mgr->paused is true during DPMS off, if userspace or
-hotplug handling probes a connected physical MST port (port_num < 8, where
-port->cached_edid is NULL):
-
-  drm_helper_probe_single_connector_modes()
-    -> mst_connector_get_modes()
-      -> mst_connector_get_ddc_modes()
-        -> drm_dp_mst_edid_read()
-          -> drm_edid_read_ddc(connector, &port->aux.ddc)
-            -> drm_dp_mst_i2c_xfer()
-
-this sends DP_REMOTE_I2C_READ sideband requests while DP_MST_EN is 0 and
-the branch device is in D3. Each attempt stalls for 4000 ms in
-drm_dp_mst_wait_tx_reply() while holding mode_config.mutex and returns
-NULL, causing mst_connector_get_ddc_modes() to pass NULL to
-intel_connector_update_modes() and wipe the connector's EDID and native
-modes.
-
-> +
-> +/**
-> + * drm_dp_mst_topology_mgr_unpause() - re-enable the MST mode of the bra=
-nch device
-> + * @mgr: manager to unpause
-> + *
-> + * Re-enable the MST mode of the branch device disabled by
-> + * drm_dp_mst_topology_mgr_pause(). Does nothing if the manager isn't pa=
-used.
-> + *
-> + * Returns %true if the manager was paused. In this case the MST topology
-> + * should be re-probed with drm_dp_mst_topology_queue_probe(), once the =
-link
-> + * parameters to the branch device are set up.
-> + */
-> +bool drm_dp_mst_topology_mgr_unpause(struct drm_dp_mst_topology_mgr *mgr)
-> +{
-> +	bool was_paused =3D false;
-> +
-> +	mutex_lock(&mgr->lock);
-> +
-> +	if (!mgr->paused)
-> +		goto out_unlock;
-> +
-> +	if (drm_dp_dpcd_write_byte(mgr->aux, DP_MSTM_CTRL,
-> +				   DP_MST_EN | DP_UP_REQ_EN |
-> +				   DP_UPSTREAM_IS_SRC) =3D=3D 0) {
-> +		mgr->paused =3D false;
-> +		was_paused =3D true;
-> +	}
-> +
-> +out_unlock:
-> +	mutex_unlock(&mgr->lock);
-> +
-> +	return was_paused;
-> +}
-> +EXPORT_SYMBOL(drm_dp_mst_topology_mgr_unpause);
-> +
-> +/**
-> + * drm_dp_mst_topology_mgr_verify_ctrl() - verify the MST mode of the br=
-anch device
-> + * @mgr: manager to verify
-> + *
-> + * Verify that the MST mode enabled in the branch device matches the man=
-ager's
-> + * state. A long HPD pulse could've reset the branch device's MST mode, =
-which
-> + * requires tearing down and recreating the MST topology.
-> + *
-> + * Returns %true if the branch device's MST mode matches the manager's s=
-tate,
-> + * %false otherwise.
-> + */
-> +bool drm_dp_mst_topology_mgr_verify_ctrl(struct drm_dp_mst_topology_mgr =
-*mgr)
-> +{
-> +	u8 expected, val =3D 0;
-> +	int ret;
-> +
-> +	mutex_lock(&mgr->lock);
-> +
-> +	expected =3D mgr->paused ? DP_UPSTREAM_IS_SRC :
-> +		   DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC;
-> +
-> +	ret =3D drm_dp_dpcd_read_byte(mgr->aux, DP_MSTM_CTRL, &val);
-> +
-> +	mutex_unlock(&mgr->lock);
-> +
-> +	if (ret < 0 || val !=3D expected) {
-> +		drm_dbg_kms(mgr->dev,
-> +			    "%s: MSTM_CTRL mismatch (ret=3D%d, ctrl=3D0x%02x, expected=3D0x%0=
-2x)\n",
-> +			    mgr->aux->name, ret, val, expected);
-> +		return false;
-> +	}
-> +
-> +	return true;
-> +}
-> +EXPORT_SYMBOL(drm_dp_mst_topology_mgr_verify_ctrl);
-> +
->  /**
->   * drm_dp_mst_topology_mgr_suspend() - suspend the MST manager
->   * @mgr: manager to suspend
-> @@ -3828,6 +3929,8 @@ int drm_dp_mst_topology_mgr_resume(struct drm_dp_ms=
-t_topology_mgr *mgr,
->  		goto out_fail;
->  	}
-> =20
-> +	mgr->paused =3D false;
-> +
->  	/* Some hubs forget their guids after they resume */
->  	ret =3D drm_dp_dpcd_read_data(mgr->aux, DP_GUID, buf, sizeof(buf));
->  	if (ret < 0) {
-
-[Severity: Medium]
-How do drm_dp_mst_topology_mgr_suspend() and
-drm_dp_mst_topology_mgr_resume() interact with mgr->paused and the D3/D0
-power state transitions during system suspend and resume?
-
-During system suspend in __intel_display_driver_pm_suspend():
-
-  drm_atomic_helper_suspend()
-    -> intel_ddi_post_disable_dp()
-      -> drm_dp_mst_topology_mgr_pause()
-      -> intel_dp_set_power(intel_dp, DP_SET_POWER_D3)
-  intel_dp_mst_suspend()
-    -> drm_dp_mst_topology_mgr_suspend()
-
-drm_dp_mst_topology_mgr_suspend() unconditionally writes
-DP_MST_EN | DP_UPSTREAM_IS_SRC to DP_MSTM_CTRL after
-intel_ddi_post_disable_dp() has already paused the manager and put the
-branch device into D3, re-enabling DP_MST_EN in D3 and leaving
-DP_MSTM_CTRL out of sync with mgr->paused =3D=3D true.
-
-Then during system resume in intel_display_driver_pm_resume(),
-intel_dp_mst_resume() -> drm_dp_mst_topology_mgr_resume() runs before
-__intel_display_driver_resume() commits the restored modeset state.
-drm_dp_mst_topology_mgr_resume() writes
-DP_MST_EN | DP_UP_REQ_EN | DP_UPSTREAM_IS_SRC to DP_MSTM_CTRL, sets
-mgr->paused =3D false, and runs mgr->work while the sink is still in D3
-prior to intel_dp_set_power(intel_dp, DP_SET_POWER_D0) and link training.
-
-When __intel_display_driver_resume() subsequently calls
-mst_stream_pre_enable(), drm_dp_mst_topology_mgr_unpause() sees
-mgr->paused =3D=3D false and returns was_paused =3D false, skipping both the
-post-D0 DP_MSTM_CTRL write and the forced post-link-training reprobe in
-intel_mst_reprobe_topology(). And if all MST streams were in DPMS off
-before suspend, __intel_display_driver_resume() enables no streams,
-leaving the branch device in D3 with DP_MST_EN set and
-mgr->paused =3D=3D false.
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index a46ab5d3d70fc..9d918f968617a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -3163,6 +3163,8 @@ static void intel_ddi_post_disable_dp(struct intel_=
-atomic_state *state,
->  	 * Power down sink before disabling the port, otherwise we end
->  	 * up getting interrupts from the sink on detecting link loss.
->  	 */
-> +	if (is_mst)
-> +		drm_dp_mst_topology_mgr_pause(&intel_dp->mst.mgr);
->  	intel_dp_set_power(intel_dp, DP_SET_POWER_D3);
-> =20
->  	if (DISPLAY_VER(display) >=3D 12) {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 7023619aaaba9..2e3a2424d0e5a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1232,9 +1232,11 @@ static void intel_mst_set_probed_link_params(struc=
-t intel_dp *intel_dp,
->  }
-> =20
->  static void intel_mst_reprobe_topology(struct intel_dp *intel_dp,
-> -				       const struct intel_crtc_state *crtc_state)
-> +				       const struct intel_crtc_state *crtc_state,
-> +				       bool force)
->  {
-> -	if (intel_mst_probed_link_params_valid(intel_dp,
-> +	if (!force &&
-> +	    intel_mst_probed_link_params_valid(intel_dp,
->  					       crtc_state->port_clock, crtc_state->lane_count))
->  		return;
-> =20
-> @@ -1259,6 +1261,7 @@ static void mst_stream_pre_enable(struct intel_atom=
-ic_state *state,
->  		drm_atomic_get_new_mst_topology_state(&state->base, &intel_dp->mst.mgr=
-);
->  	int ret;
->  	bool first_mst_stream;
-> +	bool was_paused =3D false;
-> =20
->  	/* MST encoders are bound to a crtc, not to a connector,
->  	 * force the mapping here for get_hw_state.
-> @@ -1270,8 +1273,10 @@ static void mst_stream_pre_enable(struct intel_ato=
-mic_state *state,
->  	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 12 && first_mst_str=
-eam &&
->  		    !intel_dp_mst_is_master_trans(pipe_config));
-> =20
-> -	if (first_mst_stream)
-> +	if (first_mst_stream) {
->  		intel_dp_set_power(intel_dp, DP_SET_POWER_D0);
-> +		was_paused =3D drm_dp_mst_topology_mgr_unpause(&intel_dp->mst.mgr);
-> +	}
-> =20
->  	drm_dp_send_power_updown_phy(&intel_dp->mst.mgr, connector->mst.port, t=
-rue);
-> =20
-> @@ -1281,7 +1286,11 @@ static void mst_stream_pre_enable(struct intel_ato=
-mic_state *state,
->  		primary_encoder->pre_enable(state, primary_encoder,
->  					    pipe_config, NULL);
-> =20
-> -		intel_mst_reprobe_topology(intel_dp, pipe_config);
-> +		/*
-> +		 * The branch device may not have sent UP messages while it
-> +		 * was powered down, re-probe the topology to sync it.
-> +		 */
-> +		intel_mst_reprobe_topology(intel_dp, pipe_config, was_paused);
->  	}
-
-[Severity: High]
-Does pausing the MST topology manager on last stream disable break
-downstream monitor hotplug detection whenever zero MST streams are active?
-
-When the last active MST stream is disabled (for example, when the user
-unplugs the last monitor from an MST hub or dock, or disables all outputs
-in userspace), mst_stream_post_disable() calls
-primary_encoder->post_disable() -> intel_ddi_post_disable_dp(), which
-calls drm_dp_mst_topology_mgr_pause(&intel_dp->mst.mgr) (clearing
-DP_MST_EN and DP_UP_REQ_EN in DP_MSTM_CTRL) and puts the sink into D3.
-
-If a monitor is later plugged into the MST hub while zero streams are
-active:
-
-1. Because DP_MST_EN and DP_UP_REQ_EN are cleared and the branch device is
-   in D3, the branch device cannot send DP_CONNECTION_STATUS_NOTIFY UP
-   requests.
-
-2. If a short HPD pulse occurs, intel_dp_check_mst_status() ->
-   drm_dp_mst_hpd_irq_handle_event() sees no DP_UP_REQ_MSG_RDY in ESI.
-
-3. If a long HPD pulse or manual connector probe runs intel_dp_detect(),
-   intel_dp_mst_verify_dpcd_state() ->
-   drm_dp_mst_topology_mgr_verify_ctrl() sees
-   DP_MSTM_CTRL =3D=3D DP_UPSTREAM_IS_SRC matching mgr->paused =3D=3D true =
-and
-   returns true, and intel_dp_mst_configure() ->
-   drm_dp_mst_topology_mgr_set_mst(mgr, true) returns early because
-   mgr->mst_state is already true.
-
-4. On MST connector detection via mst_connector_detect_ctx() ->
-   drm_dp_mst_detect_port(), port->ddps remains 0 for any port that was
-   disconnected.
-
-Because mst_stream_pre_enable() is the only caller of
-drm_dp_mst_topology_mgr_unpause() and intel_mst_reprobe_topology(), and
-userspace cannot commit a modeset when all MST connectors are disconnected
-(or on any newly plugged port whose port->ddps is still 0), how can the
-topology manager ever be unpaused and reprobed to detect the plugged-in
-monitor without physically unplugging and replugging the MST hub itself?
-
-> =20
->  	ret =3D drm_dp_add_payload_part1(&intel_dp->mst.mgr, mst_state,
-
-[ ... ]
-
+On 10/20/2026 4:47 PM, Matthew Auld wrote:
+> On 20/10/2026 07:06, Paneer Selvam, Arunpravin wrote:
+>> AMD General
+>>
+>> Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 >
+> Thanks. I assume you will merge this?
+Yes, I will merge.
+
+Regards,
+Arun.
+>
+>>
+>> -----Original Message-----
+>> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf 
+>> Of Matthew Auld
+>> Sent: Tuesday, October 6, 2026 4:37 PM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org; Shashiko 
+>> <sashiko-bot@kernel.org>; Paneer Selvam, Arunpravin 
+>> <Arunpravin.PaneerSelvam@amd.com>; Joel Fernandes 
+>> <joelagnelf@nvidia.com>; stable@vger.kernel.org
+>> Subject: [PATCH] gpu/buddy: do not pass caller list to 
+>> __alloc_contig_try_harder()
+>>
+>> If the caller passes a non-empty blocks list, 
+>> __alloc_contig_try_harder() unconditionally frees it on failure or 
+>> during retry.
+>>
+>> Pass the local allocated list instead and only splice it onto the 
+>> caller's list upon success.
+>>
+>> Assisted-by: LLM
+>> Reported-by: Shashiko <sashiko-bot@kernel.org>
+>> Closes: 
+>> https://sashiko.dev/#/bug/linux-fa721daf-7333-48b5-a26b-624c7f5791d7
+>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>> Cc: Joel Fernandes <joelagnelf@nvidia.com>
+>> Cc: <stable@vger.kernel.org>
+>> ---
+>>   drivers/gpu/buddy.c                | 20 ++++++++++++++------
+>>   drivers/gpu/tests/gpu_buddy_test.c |  9 +++++++++
+>>   2 files changed, 23 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c index 
+>> 2f2aaadafe35..a86f454fbb40 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -2022,10 +2022,16 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>
+>>          if (order > mm->max_order || size > mm->size) {
+>>                  if ((flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) &&
+>> -                   !(flags & GPU_BUDDY_RANGE_ALLOCATION))
+>> -                       return __alloc_contig_try_harder(mm, 
+>> original_size,
+>> - original_min_size,
+>> -                                                        flags, blocks);
+>> +                   !(flags & GPU_BUDDY_RANGE_ALLOCATION)) {
+>> +                       err = __alloc_contig_try_harder(mm, 
+>> original_size,
+>> + original_min_size,
+>> +                                                       flags, 
+>> &allocated);
+>> +                       if (err)
+>> +                               return err;
+>> +
+>> +                       list_splice_tail(&allocated, blocks);
+>> +                       return 0;
+>> +               }
+>>
+>>                  return -EINVAL;
+>>          }
+>> @@ -2064,9 +2070,11 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>> original_size,
+>> original_min_size,
+>> flags,
+>> - blocks);
+>> -                               if (!err)
+>> + &allocated);
+>> +                               if (!err) {
+>> + list_splice_tail(&allocated, blocks);
+>>                                          return 0;
+>> +                               }
+>>                                  if (err != -ENOSPC)
+>>                                          return err;
+>>                                  goto err_free;
+>> diff --git a/drivers/gpu/tests/gpu_buddy_test.c 
+>> b/drivers/gpu/tests/gpu_buddy_test.c
+>> index b75d32ca6ca0..2c6f1da1a6d1 100644
+>> --- a/drivers/gpu/tests/gpu_buddy_test.c
+>> +++ b/drivers/gpu/tests/gpu_buddy_test.c
+>> @@ -1235,6 +1235,15 @@ static void 
+>> gpu_test_buddy_alloc_contiguous(struct kunit *test)
+>> GPU_BUDDY_CONTIGUOUS_ALLOCATION),
+>>                                 "buddy_alloc hit an error 
+>> size=%lu\n", 2 * ps);
+>>
+>> +       /*
+>> +        * A failed contiguous allocation with a non-empty blocks list
+>> +        * must NOT corrupt or free pre-existing blocks.
+>> +        */
+>> +       KUNIT_EXPECT_TRUE(test, gpu_buddy_alloc_blocks(&mm, 0, mm_size,
+>> +                                                      3 * ps, ps, 
+>> &allocated,
+>> + GPU_BUDDY_CONTIGUOUS_ALLOCATION));
+>> +       KUNIT_EXPECT_FALSE(test, list_empty(&allocated));
+>> +
+>>          gpu_buddy_free_list(&mm, &left, 0);
+>>          KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_alloc_blocks(&mm, 0, 
+>> mm_size,
+>>                                                              3 * ps, 
+>> ps, &allocated,
+>> -- 
+>> 2.55.0
 >
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261020110418.1272=
-170-1-xiaolu.xie@intel.com?part=3D1
