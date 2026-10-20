@@ -2,28 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17A4606A326
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 17:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8A4606AA39
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 17:15:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Vp8tMjxP
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE95710EC21;
-	Tue, 20 Oct 2026 17:03:53 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD9210EC21;
- Tue, 20 Oct 2026 17:03:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E8F2510E1BF;
+	Tue, 20 Oct 2026 17:15:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59A0C10E1BF
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 17:15:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792516538; x=1824052538;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=1yYloSzkP5LnVOLc5SDtK1b04md/Ph9SgnREBW9OSIg=;
+ b=Vp8tMjxPgupPf/lUNQFiAZfwlrMwJIbJ9x96g2PK5jeg8Um1axFkIcgq
+ NU4Ub4OPZqNUuLTelHgzw5kJGIk8ZRLNvtkXjU0NFBF4hr0du23UssgbF
+ 2RFDikgc/7N5lSyEzEKEX0O24i/7+90ywfwUAvEWshm80X6mYc2+igeEp
+ 0IvaL7QqvytYVW0DAG6r4xSZZf7jLDQ7ePf4lnNae/8qDcCdcyAy3SDSr
+ At5QMgE6njUGNSqe00lWE/kCVBwqVuUK8ZvGsKhBbPRbSYyoEJqOWL/Dp
+ rcRWcLnB2+BlQjm2rVeECYNAuTp3ZkFfBv3s0kvC4HliJBds0EnlFqAVA g==;
+X-CSE-ConnectionGUID: wo8U/gvDTFCsU0DofNzQCA==
+X-CSE-MsgGUID: d8zq9kgYTRCyAyItwvDwvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1255813"
+X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
+   d="scan'208";a="1255813"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 10:15:38 -0700
+X-CSE-ConnectionGUID: 2y7Ago9SQburOXxOj2+dzQ==
+X-CSE-MsgGUID: pMdOI2d1TJ2bQVHTlVaKFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
+   d="scan'208";a="2909836"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.244.166])
+ ([10.245.244.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 10:15:36 -0700
+Message-ID: <70731055-cc54-4637-903d-4ca904f0e687@intel.com>
+Date: Tue, 20 Oct 2026 18:15:34 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Tie_BO_TTM_LRU_prior?=
- =?utf-8?q?ity_to_DONTNEED/WILLNEED_madvise_state?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Oct 2026 17:03:52 -0000
-Message-ID: <179251583219.47616.7534796526224178707@221881a7231d>
-X-Patchwork-Hint: ignore
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Tie BO TTM LRU priority to DONTNEED/WILLNEED
+ madvise state
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
 References: <20261020165137.765886-1-matthew.brost@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
 In-Reply-To: <20261020165137.765886-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,116 +64,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-== Series Details ==
+On 20/10/2026 17:51, Matthew Brost wrote:
+> The DRM_XE_MADVISE ioctl lets userspace mark a VMA's BO as DONTNEED,
+> signalling that its contents are not needed right now and may be
+> discarded under memory pressure (see madvise_purgeable() in
+> xe_vm_madvise.c), or restore it back to WILLNEED. This is a stronger,
+> explicit signal than a plain unbind: userspace has told us the BO is not
+> just unused for now, but that it is actively fine to lose the data.
+> There is no reason to keep such a BO competing for LRU space with
+> actively used buffers, and conversely, once userspace marks it WILLNEED
+> again it is back in active use and should be reprioritized accordingly.
+> 
+> Give xe two TTM LRU priority bands and tie them to that state:
+> XE_BO_PRIORITY_LOW for DONTNEED BOs and XE_BO_PRIORITY_NORMAL for
+> everything else. Since the TTM LRU is walked in ascending priority
+> order, DONTNEED BOs become the first candidates for eviction and
+> shrinking. The transition is driven from xe_bo_set_purgeable_state(),
+> the single point through which a BO's aggregate purgeable state actually
+> moves between WILLNEED and DONTNEED (PURGED is terminal and left at
+> XE_BO_PRIORITY_LOW).
+> 
+> Changing bo->ttm.priority cannot be done by a plain store: private, user
+> BOs have bo->ttm.bulk_move set to their VM's LRU bulk-move range, which
+> tracks a contiguous [first, last] run of resources per (mem_type,
+> priority) bucket. Writing the priority while the BO is still attached
+> would leave the resource linked in the old priority's bucket while the
+> bulk-move code looks it up under the new one, corrupting both. Add
+> xe_bo_update_ttm_priority(), which temporarily detaches the BO from its
+> bulk-move range, updates the priority with a plain non-bulk LRU update,
+> and reattaches it into the new priority's bucket.
+> xe_bo_set_purgeable_state() is always called with the BO's dma-resv
+> held, so this is safe.
+> 
+> With DONTNEED BOs now clustered at XE_BO_PRIORITY_LOW, the shrinker's
+> purge pass no longer needs to walk each memory type's whole LRU: nothing
+> beyond XE_BO_PRIORITY_LOW can possibly be purgeable, so continuing past
+> it just wastes time trylocking BOs that can never be purged in this
+> pass. Break out of the per-mem_type LRU walk in __xe_shrinker_walk()
+> once a BO's priority rises above XE_BO_PRIORITY_LOW during the purge
+> pass. Behavior of the non-purge (regular shrink) pass is unchanged.
+> 
+> Assisted-by: LLM
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Series: drm/xe: Tie BO TTM LRU priority to DONTNEED/WILLNEED madvise state
-URL   : https://patchwork.freedesktop.org/series/176498/
-State : failure
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ kunitconfigs=('/kernel/drivers/gpu/tests/.kunitconfig' '/kernel/drivers/gpu/drm/xe/.kunitconfig' '/kernel/drivers/gpu/drm/tests/.kunitconfig' '/kernel/drivers/gpu/drm/ttm/tests/.kunitconfig' '/kernel/drivers/dma-buf/.kunitconfig')
-+ for kcfg in "${kunitconfigs[@]}"
-+ [[ ! -f /kernel/drivers/gpu/tests/.kunitconfig ]]
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/tests/.kunitconfig
-[17:02:46] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[17:02:50] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[17:03:11] Starting KUnit Kernel (1/1)...
-[17:03:11] ============================================================
-Running tests with:
-$ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[17:03:11] ================= gpu_buddy (14 subtests) ==================
-[17:03:11] [PASSED] gpu_test_buddy_alloc_limit
-[17:03:11] [PASSED] gpu_test_buddy_alloc_optimistic
-[17:03:11] [PASSED] gpu_test_buddy_alloc_pessimistic
-[17:03:11] [PASSED] gpu_test_buddy_alloc_pathological
-[17:03:11] [PASSED] gpu_test_buddy_alloc_contiguous
-[17:03:11] [PASSED] gpu_test_buddy_alloc_clear
-[17:03:11] [PASSED] gpu_test_buddy_alloc_range
-[17:03:11] [PASSED] gpu_test_buddy_alloc_range_bias
-[17:03:12] [PASSED] gpu_test_buddy_fragmentation_performance
-[17:03:13] [PASSED] gpu_test_buddy_dirty_tracker_performance
-[17:03:13] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
-[17:03:13] [PASSED] gpu_test_buddy_offset_aligned_allocation
-[17:03:13] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
-[17:03:13] [PASSED] gpu_test_buddy_addr_to_block
-[17:03:13] ==================== [PASSED] gpu_buddy ====================
-[17:03:13] ============================================================
-[17:03:13] Testing complete. Ran 14 tests: passed: 14
-[17:03:13] Elapsed time: 27.120s total, 4.475s configuring, 20.777s building, 1.826s running
-
-+ for kcfg in "${kunitconfigs[@]}"
-+ [[ ! -f /kernel/drivers/gpu/drm/xe/.kunitconfig ]]
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_bo.c:568:13: error: redefinition of ‘xe_ttm_bo_is_imported’
-  568 | static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
-      |             ^~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:474:13: note: previous definition of ‘xe_ttm_bo_is_imported’ with type ‘bool(struct ttm_buffer_object *)’ {aka ‘_Bool(struct ttm_buffer_object *)’}
-  474 | static bool xe_ttm_bo_is_imported(struct ttm_buffer_object *tbo)
-      |             ^~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:593:13: error: redefinition of ‘xe_bo_account_pin’
-  593 | static void xe_bo_account_pin(struct xe_bo *bo)
-      |             ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:499:13: note: previous definition of ‘xe_bo_account_pin’ with type ‘void(struct xe_bo *)’
-  499 | static void xe_bo_account_pin(struct xe_bo *bo)
-      |             ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:617:13: error: redefinition of ‘xe_bo_account_unpin’
-  617 | static void xe_bo_account_unpin(struct xe_bo *bo)
-      |             ^~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:523:13: note: previous definition of ‘xe_bo_account_unpin’ with type ‘void(struct xe_bo *)’
-  523 | static void xe_bo_account_unpin(struct xe_bo *bo)
-      |             ^~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:642:6: error: redefinition of ‘xe_bo_pin_account’
-  642 | void xe_bo_pin_account(struct xe_bo *bo)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:548:6: note: previous definition of ‘xe_bo_pin_account’ with type ‘void(struct xe_bo *)’
-  548 | void xe_bo_pin_account(struct xe_bo *bo)
-      |      ^~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:656:6: error: redefinition of ‘xe_bo_unpin_account’
-  656 | void xe_bo_unpin_account(struct xe_bo *bo)
-      |      ^~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:562:6: note: previous definition of ‘xe_bo_unpin_account’ with type ‘void(struct xe_bo *)’
-  562 | void xe_bo_unpin_account(struct xe_bo *bo)
-      |      ^~~~~~~~~~~~~~~~~~~
-make[7]: *** [../scripts/Makefile.build:290: drivers/gpu/drm/xe/xe_bo.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:551: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:551: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:551: drivers/gpu] Error 2
-make[4]: *** Waiting for unfinished jobs....
-make[3]: *** [../scripts/Makefile.build:551: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2229: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-[17:03:13] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[17:03:15] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
