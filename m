@@ -2,63 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32A5F606A31B
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 08:43:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33F36606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 08:43:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LfbXzHhy
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BTiciWgb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFE6010F3D8;
-	Tue, 20 Oct 2026 08:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB68310F3D3;
+	Tue, 20 Oct 2026 08:43:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F4DB10F3B2
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 08:43:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC40810F3D3
+ for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 08:43:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792485800; x=1824021800;
+ t=1792485802; x=1824021802;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=Sivwscr4mXGJhkjMTJauTwn3O5Z4fxRWroRBE7C7ZyQ=;
- b=LfbXzHhyrzfxlUbuOyQyGvNPHE/NslHPC9hJeuNsjf6Zz2OikwvQtDkG
- +gl53eitOfMcWdZsnvxA/g+2iDFNtimvMTll+KpZb/Y1OvzsSCD7d+vSq
- HW4OGmVy9+PUvAW3pPnzw8hd53LzvfF3R187KcpGSMNVBqoPWShNB5mFY
- UB19QN56Vbl0x2aXGhc7G5J+qL5T0fEbgEgRvH7BX7CM18xFiKi+XvMnv
- +dY/6+uojlcExsyNE2ak1WrXTgJYmsu+kbAAakMx64ZbevPDXN2RmmvdI
- vNU/NVv2GAtfZMMoyIQo1AI3xRYDLGFyPo80dWFYzKiQBb/U0cMs0zGYm A==;
-X-CSE-ConnectionGUID: y3ZtsSQMTv2+ONW8vUBl+A==
-X-CSE-MsgGUID: bgNjD/BPQ6CtWIxNDmjKCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1072098"
+ bh=TarXL2UBCyBMfk3OtQHEsNLXkOIpybt3lMlCBjO0VuU=;
+ b=BTiciWgb+n761tWlBaPAEtlPDqcOJLS4X7pLzr8Na/0+ssr8B5lsbSX5
+ Ddx4Zr1hcFrI/AgyiCCU6JYuKD4Izsza2vIQRJHtVjyn8/f2dx6oKi6Fi
+ xLAlxxMLxvh8/RByi3aLZxNT3gx08ACfUnH+OjI/kcYpsDNBm/Osh2EKj
+ w+lYGX5biTbUnT9dfY03qazWy/T4osxbFpX18Apg1fSQb8ynswVuWsbhi
+ ZoF8bOFVyQE0jKQ7q2cxfO3HAZ5dtlQr3pWq5fnDH/HhNchVX8snZ4rmo
+ jP+0cLq27V3GRA/oEYQI0yfyhgQNRN2x54hNipGQd6A+AgdSR4QbFxSLD w==;
+X-CSE-ConnectionGUID: RLJSYE4uQvC+jSbRWmQDcw==
+X-CSE-MsgGUID: W8to7oLBTbePByEa9MnwMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1072103"
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1072098"
+   d="scan'208";a="1072103"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 01:43:16 -0700
-X-CSE-ConnectionGUID: mD/ask+pQyKyWLBxHJ8zKQ==
-X-CSE-MsgGUID: PWQ8G6fjRH+QzFu/3uvqOQ==
+ 20 Oct 2026 01:43:20 -0700
+X-CSE-ConnectionGUID: Hp5s417PRNyXrHOeJjJsOw==
+X-CSE-MsgGUID: mt8DaBwkQ12mS93HO97UaA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="3221512"
+   d="scan'208";a="3221545"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 01:43:16 -0700
+ 20 Oct 2026 01:43:20 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 01:43:15 -0700
+ 15.2.2562.49; Tue, 20 Oct 2026 01:43:19 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 01:43:15 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.15) by
+ 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 01:43:19 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.61) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 01:43:15 -0700
+ 15.2.2562.49; Tue, 20 Oct 2026 01:43:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LbHkExyMe2qWmcfBHNHXLFKDDvahZFZm1UDocIbvIpxkX8QJvc/4qlSJGfjyU0PPkKaA/rzRei2ImJ0cVKGfTypphmgeYImEEZZL8qWc6KjqxUv7jt86Gmfh0/+HA/Rdrkc4URY/ptj4hMR/DwzLS1YsUM/E2OyFf8UjMQbA9+D6dBATdjaTndjKO09QkGA8XJ7YpIEfjDA60njCiqTMt7pT+mo6rLF7BDrSbvs+PMwG6HpZBRkLbHHp8t8ovWIfr+GNB3KYHCn1AA61zJJvlgvFfGNV2Fbk9yYVHwVKIKOc0vMtyubbutsGlyxsBd34emMogM/mXI+ga7twQUzmPg==
+ b=vh9SJbbKYrNcVH+tmcxd4ozaevfZAmDQXGg6SZDgCTbcX7x3h6ohyI5kEdp1vTxj+nygB/5jC2KeYuLZinlNS5ba/dmDdBS6qCr/mRNnF9kFZSKvVqEkIzoZCXqNjPzz/Wz0nT+0vEZ0ITwb9WbbhHf5vI8Lv5Bba7/+IZbkytSxePzkZP6JlUCUTfzPEzQGnJsurxC768fT5ScILnHUq/tZBKA775xFg5I54LzTQGx83j+5SdZZqJ8NSPs9Yl5h7GfI8JVh0nqank7tir2VIzGrFS4G6b7vARZ6EkZDZ/ayBSTNr1MKDgNpvcXP5jKiZ+lXGJeY/2/p3onA/X0mvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=coa+nYbYvM7heYOCwOBmu7Hm4ozdr9AC5HiZM3TzM8o=;
- b=hikIhhHryZSrIVVYKjkRyPaOQUBC3HvonMDIyrBPI19LTSULojTBDzgOtG732TU0ckJxhNOgQk0GeidioRf7O9HNPdZAXxakC5KVRoOJLVMNBJ/ekE4agCmCk3MMfEMemzaPqyXIur2UORk0b8lKukQ1JFS3JFyGkCAKxoJiIMql5CzRiPE6HXI2Wr/HD0PpEPOHB7Vp7hsKDWwDetqXnb+K+4uQsGbg67EcsSzMdXIRLc3Rli/lJ1E0KqMNadtsqzFj9qb3m55S7K6ulQeV1ChSr0bE4Ed6rrzhjkCCJ/tWEAbx6aab+enuZ5H5e58XB66rrGYpKJ2srnKrjOcGTQ==
+ bh=NFJNkZF0gBnOU5GS331q1Le6SrwsX/iOjWW6syEsQ8w=;
+ b=NtZ+SMqFpXP15BFUNl5+D0eaouRnpamXTOHK6EqU/HHtKOF9k4FnLYzJccy9nRezA0M3IyKffxXYJwiD3RPEmuiBjRsM4kNdKpWa1dugnWFJyU3BaX4n530stjTJvmzJllsAa+3ivxtLeQlrhwfQneBrSy13AWFKohFuuul9eHKl6lBKXGkU8l66zM5yeGwgXDaxHi6chBB8BQCgJ/paWscI0rz/fwUVzcOYmIlUSjF3tyDPUzk1AkH+VKXkVi4Jud8tyVUUZY4I9wHt1EnvgJC5cOmwZLk3bu7Hr9xgy+GWZterwGY5/w7sIzme8AAhGII6TvmLU5mKh1sYp0voFg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,89 +68,89 @@ Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by DSWPR11MB9581.namprd11.prod.outlook.com (2603:10b6:8:36e::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Tue, 20 Oct
- 2026 08:43:13 +0000
+ 2026 08:43:17 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0546.012; Tue, 20 Oct 2026
- 08:43:13 +0000
+ 08:43:17 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v3 2/7] drm/xe: Define VRAM regions and pools
-Date: Tue, 20 Oct 2026 10:42:53 +0200
-Message-ID: <20261020084258.443645-3-piotr.piorkowski@intel.com>
+Subject: [PATCH v3 3/7] drm/xe/vram: Make VRAM pools the allocation handle
+Date: Tue, 20 Oct 2026 10:42:54 +0200
+Message-ID: <20261020084258.443645-4-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261020084258.443645-1-piotr.piorkowski@intel.com>
 References: <20261020084258.443645-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: DUZPR01CA0008.eurprd01.prod.exchangelabs.com
- (2603:10a6:10:3c3::17) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: DUZPR01CA0215.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4b4::9) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|DSWPR11MB9581:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94a72aca-fd75-40b4-d45b-08df2e862d71
+X-MS-Office365-Filtering-Correlation-Id: d8a6992c-fa3e-4782-6673-08df2e862fe3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|56012099006|5023799004|11063799006|261009223027099003|10067099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: +qhQ/ebFtHF8mYx7cE6a/VBmhqYbBib340nJugL9sZr5ar1P/yyU9513t1S+zdRiv536iEEEsQwOEgho8RWoCFGPA4KHQsZ7isfIxPXs4gCO+NYXDQg3vm/m4L8tmUiqYfYmS2IGAVhXoRxebUzs5qTy3eVV3Va7YqIjozemaigtUqkRBjD8xtKENBfDKxzGHi8BD/dO9e+EyhlvutvpY2n9K5sTwemP1uc6P19RUCak6zfpJlbRPEi5W1rU6uujyB1MJZPpp0qjb1OjDf4Ci2rN+XKPmhtT/s04lvI3flS+H2MKQkCwZ3NZjAxzoOJe++raCvax1RxF4Ojg+isphS7DHNzsMNWw/Q+4DyT2YI/+7d9hKiWahw0lEyBbn8WGc9lqj+5sChmgKc+Lg5C6BEmm6c954cPUtWcdBDZP18htCAwdLP/OPyYs6HWgMyQuqeSCRPnih8xEL5UFsI3cn2gJcOgFXsIebXcAIlGeYtnu0HOsjc2FeoGhDIlraddD4BTUOQfrjwd4nvIA38qFoyXkUQfpH8yL8qs9fWlL6M6ZOUy2P0x6UWbibOgswrcI35g5Fn/ON49ClEpfs4H0bx978iBMoVquIUI2hpwDB22Rb37Jh+QFEg+DBHQJ5EFIUaaXm7UTTh6RzIIZqwg2QvsRV3yymUJ+XFijOWsj/yA=
+ ARA:13230040|366016|1800799024|376014|23010399003|56012099006|260925021911599003|260925021311599003|260925022911599003|5023799004|11063799006|261009223027099003|261009221727099003|261009220027099003|261009221227099003|261009223327099003|10067099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: PJQYjq3kYu590TANMCWjLNMV47lFRqe7UjDqgfzFjgWCPAHLNzt5piAB/cXDdkuyN81MmVweGZDiDt2tVmHYRzu9aK2ja/pLiJ9auPm7cjow9h33lH4Qu3jNbvRBBSJ5Cn5dulfHeafdVmb8QmY/4vBtx/hvDgu202rJ08lRgwrcgta1NMN8iXiWlC9XzyLTdHZ/ApYE1tKiZSjCsj/4JTgG7Dr+UPo1fnjR8Rljg8fJqNrlvUu42qwtpSA1PCu6fGKWsnUBzE7XK8pwAMbmocxsBY2A65rq+2jMamBEPP6r7N6Sh5wbIJMra4CalEumfTr1OBZAT9Svo6UlMWNtYQTIm9Z8xnlX3rHGz1TDTzTqy0KCWtmceVHVaM3k0WS2EBXZHbV0tOhLH03+ZLrFl73JA49etqWOw7gInEuDRMi3AbyODplxoUP/D6C4s/3ojjBtHCXhfHMvmyiZJX2l8eKup/JWk1FIyw2O4E/g/qyXWiYsDSlXfglncanN08KGniRJmN9FNYkVu+Dy4lGWV+YcmfisN6REWD0NQdnhzvvN2hGRLEGMmZyz6qSkkjkOvkel1WQLVVWONQ5yT6pe86+XOLeyvFLQEjmhjiViNllKAT+8g0VO3UL2nK5QN9jSkAOdKYEeJiTafFxlPr9rXL9VkJDo693D0XY7618wmb4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(56012099006)(5023799004)(11063799006)(261009223027099003)(10067099003)(22082099003)(18002099003)(6133799003);
+ SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(56012099006)(260925021911599003)(260925021311599003)(260925022911599003)(5023799004)(11063799006)(261009223027099003)(261009221727099003)(261009220027099003)(261009221227099003)(261009223327099003)(10067099003)(22082099003)(18002099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2sybyt1N0N2SHdDcDNmV1pyTWovYzV1ZU9EdnlLOVZvVGRqNE9UYjFqbzJQ?=
- =?utf-8?B?YU1ZbWNENFVuTng1VERocWtlQityVFY1Zi92UGpVYU9HZWI3aU9GM1lTSUV5?=
- =?utf-8?B?SGJ4aFZlS0tna2IzdWJtZEtnb0gxMWVhaXU4bXljaGU4ZUhCdi8vUmtFU3Ft?=
- =?utf-8?B?RmxDTXRwS2pFamlwUWZITmJQdDNEQTVRSjNOWmVwYkhvMmFpTFg4RjJ5WEgw?=
- =?utf-8?B?N1lKSmtYdnN0YXNzTzRqOURZY0VOUWZIeE5HVUQyTENmLy9vUlBLYSs0aXZ4?=
- =?utf-8?B?b0w1dUFJN3NVZkRBMXNHbHIrZk1JbjRObERyY0NQb3R6RlhxOXRqcWdyUUlr?=
- =?utf-8?B?bVFnSVgxSFFTVkdxdkd1elA1bUUyeVFpMzVHd3BLVEMydFBiVVc3a1FyQ1Ar?=
- =?utf-8?B?RHVHWlpTeWxTYjZMZHBCVVpnVEVpK21BaEd6ajF4ZmVvUzVyYmZQY0Z3dndw?=
- =?utf-8?B?VDhkcXcyT0sxNEFyMDJJQ1dhdU5kcUpkZ2hMbFVvV3pIc2oxY0ZNUkhvRVlU?=
- =?utf-8?B?STJML0phUHlhb1kvUVZNVHpHVGRhbURqNlViTFdxNWxWMDVBQnprQVB4a1RZ?=
- =?utf-8?B?UjRSTWhwZE85RHJwQTFUdWRMVkpnVGplZis4NlcvK1NqWWNHR1JzRHVaVVA3?=
- =?utf-8?B?Tmhsb1RPWUNRUGY3MWYyVDlxUnhPZ3VBdGxUaTFWWG9YaWRqY0UxSFRFNkdB?=
- =?utf-8?B?ZzhtWDRFejBPTjR2VGxEZ2hkRHpwOG1CMkhEazYrYzFjR2l0OVpPTEI5LzZr?=
- =?utf-8?B?UUhSQ1ZNcXRZbFFwRzdWNEluSE94ck5LUEhGVkZxaVJic28rTlFBMkxzYVp1?=
- =?utf-8?B?U01Bd1hHOUhra2RYSDU3WGdzcENDZlNpV3g4UlVYaWoxMTk2bndNMnVnSTJ6?=
- =?utf-8?B?LzllWUFlemNGbUxveDBnSUhZK1NTYzZlYnhkY2RuNWRpcDZJTCtKaEtLWVVJ?=
- =?utf-8?B?UFl0ZXB1MUdBYlJ4Q3pHaG9QLzRsTXJQTUpJanA3TE92czV1NXA4WUIyeWVm?=
- =?utf-8?B?RE53OUVLdTIrbjJEN2RkQVNDRFFDcWxaV0FVNzl4dnNIUVBHdHFxcG9peUZN?=
- =?utf-8?B?Wlp1NTErY0NuK0NaMWxXVXFvYUpSOWNWa3QvN0lQWG1GTXF0OTVGRWNjcGw0?=
- =?utf-8?B?WTB5Y0JvSmlPQjNNRzNmZjlNbVVOSjJTZWkrYUNVQzJzaUFtSWEwOUpMVTBy?=
- =?utf-8?B?b041dnNHaW5hc2djRTN3akl0T1F5eXNxSEJ6N0M3MlZrR0cwakVTK3lVRXRL?=
- =?utf-8?B?dmRzakhydXlmK1MrWDJCL3J4Zkp1aU94WFdyNExjQ3VQWUowUGxTUmFEdWdO?=
- =?utf-8?B?U01lY3F2NHgrS2FybzJhazl3ZkR1bDY2REVYWm9aOG1ud25sdFFkbUhzQlQx?=
- =?utf-8?B?NklhanR6elNpVzRzK2drOFJ0Rnp2TjdRblJCb0tHQ3NiaVZjZWd4Z3UzQ0o5?=
- =?utf-8?B?V014TEIvVE96Z1ZPUzhSLzBrYWZZZ2ljc0xuTHU3dlJMVWRHTUZlYjcwK2lh?=
- =?utf-8?B?WU1VSjlzZlBveERzZ1JqeENWZkhYYTcxUGFvdGRFZmVqbE5ZY2wxZlErdUhT?=
- =?utf-8?B?TVQ1LzdtQ2FpSERqaTNrSTBnUUdJOUFEeTJpczJnZktabXlCcWtKakhmRkVH?=
- =?utf-8?B?Tzdwd2FXdVhPK3MxUnNveHhPYzBqek5PVE55YU5uU0dFWnQxY0N5R2pZOWlD?=
- =?utf-8?B?Z2FzLzBSS1NDdklNNUVwL1p4SkY3QzgzQmNxeXRvS1d3eWV2THJ2cWU2Q2F5?=
- =?utf-8?B?L3pyT2FiSUNUbWx6M0lQTk5ZMGxJblVRRmJYVjBCdjdLV2MybklNVWphNmdo?=
- =?utf-8?B?UmdWbXVodENuV0w4RjlteVpyUWJsb3JSbjFBOGNvUGg1S0k3ZjRjQ1Fob1hv?=
- =?utf-8?B?NzVEZC9WbG45RHdrTWJnMkE5cHlIUEZ5Sm9DdGMxRXM2WXB1SWIwaGhJSGxC?=
- =?utf-8?B?cVV6eVVuVFN6NDRoZVVZUm5DbTVsN2syblE3NFNQWll5MUFzNUFBYVRlWnF5?=
- =?utf-8?B?YnV0RkZaQ0N6dXRXcTFNUHBiRkMrSGZBYjJJQjNmU3RLdGVyZy9PdHY5cWRv?=
- =?utf-8?B?SFZ6V2QwVHNUK0VBWFlrSEFSSTE3b3dhVUc4QXBXaStwb08wdVBhYkg3TXdV?=
- =?utf-8?B?MnFQOExhbXNacWgrRUtzVHV1NGRVVW55aWpPNEN6VSt5RjlCckU2UkpLWHRu?=
- =?utf-8?B?dEEwYjJQZ1cxc1c3blMraWdPMWRNdEcrcmRZZks4cFBvd1F2dHViWTlxR3hl?=
- =?utf-8?B?UVBqUEwyMFNkVWU1dk9pQ2FMUzAwSUhvR3F1bjJXME9KVXBMaUxGS2tCd0hQ?=
- =?utf-8?B?SU91bWRDNGpCNTJLUWgxTThpOTB1MXpSSmN6N05vUUFmdTRTTkNnQVhCZkhU?=
- =?utf-8?Q?8i8+MyHYvcg+Cz8A=3D?=
-X-Exchange-RoutingPolicyChecked: m5dUPjJfOW8f9WAEYgAVzBLy1srbK+itwhmZU4yG8RMescCw9N0Tkgjy1gmF2gBiduztq4qxkTrYTbkQQUuxK+fMPC1k4bFbIZTLQpqK+txi8SC8/mSoWdF3S/jPHfq/Jga01omywq9ejv+aJRZjx2RbNb8XH0ZlRflQbvk7hcue0yyUiUbRp2eEIXRoKvcvWRipxOmfN0QXcwcXp7fTNJttVaBH2AVJNiFE7LjShw9P+E5yANk/h2ySRJ4VhUfvVV/ECSGh7mXdcYyYQhbbqnM9z2x4u3AMLnf+oyEJH47Rjets5MFgsWKtZTdj8XrLEb1IWcqUECeK4u+G01wqTA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94a72aca-fd75-40b4-d45b-08df2e862d71
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NEdkYXNPcVFXS0tBanZJMGJJd29vMU0wVE5pcVdXbkVJb0FOMzI2SG9obnVq?=
+ =?utf-8?B?THFhS3QwelFBVmtINTRCWmxwclRPZTRrSG5qSmN6V29OMG1TRE1VMzZ1N1pM?=
+ =?utf-8?B?UndnbnI2TEp6SG5RaXVxZCsrZlg3WTYrbUdTUVhqRG13MnpGRTdQWFN4R3Q2?=
+ =?utf-8?B?TFMyclVmQ2UrVWdyamFSYnhSbkVJbGFKYVdMQW9tMlNwYUNubkpzRGlvQzV2?=
+ =?utf-8?B?MXdMdlhtZStaSHVwNm9QYmQ3Z0tFeVNyMlJKdU0wREtaa2FZTmlHREdvZmJw?=
+ =?utf-8?B?OGphMlUwSnA1WlovYWtLNVhSb2hvNm8wZVliN0FST2dhc1FVMzBOK3J3VWtw?=
+ =?utf-8?B?MEVXNDVmOXZNV1ZzV1U4Zkt3NHNuaHVFYVM1R2s1OVI0Ty8xdWllNFB0a2JP?=
+ =?utf-8?B?aWJnclpUVWVFWndXazVTMkd2TlRwOVBFcTdSUUpQRmJKYVMvOVgwd3F1cnFZ?=
+ =?utf-8?B?SXpMSVQwM2VUTXlvdUg0aFpLWGRCY3ZWaUpLa2tLNFZBUW0yZnlDMjh0b1Yx?=
+ =?utf-8?B?Qml5SlNuZ3lNQ0paZDhyK2UvcXE5UUtHTk50QTlrUEVxVW81a3BOL3VFdXFT?=
+ =?utf-8?B?U1QrUHZDV0ZqTm9qKzBqdmlZSFJ3U2gxNjAvQ2REL2t2VlVTZ2NCc05CUHps?=
+ =?utf-8?B?MW5DSlhiY216cTdZS2RkaFpLS3FwUlFvR2kvM3RKOVN6NGFScjNLZyt6eTdX?=
+ =?utf-8?B?Ykk3bS9IOTllU2dFVjZXR2ZKeFk3Z1g0MGFOTXJ1SlFnQkV1Z0cvQ1V2TWxX?=
+ =?utf-8?B?SkpYY1htSEQ5U2NDTmhmR0dsTXZvTk1OdGhSQ1Y4TXVCQkpKYUcxZFFsNit0?=
+ =?utf-8?B?MlQxamNjYlR3WXFvU1ZLTVdjd25OMTF5NU90Q3JLamlIK3pGclFDQTVsNmhX?=
+ =?utf-8?B?ZXV2bkhGd0dFNGhLNVhSa0ttZXJjdm96UGh6eUphTDk5aGQ5N2I3Wkh4RDZ0?=
+ =?utf-8?B?TFNvWkc5aDkyd1hwMkZ4UHExOHRYZStqNEYveEtod3ZzUm15UHdUWGNlbXBx?=
+ =?utf-8?B?dENFdjNIb29pSURtT084K0JOUWtPWWFyYWQ1Y25NR2J5QU1xRU9FVERLVmxU?=
+ =?utf-8?B?amhwUXVteGZOSVB6dmMycmFvb3YyNEVPVWM4ZTlGUGlzdUdJSHBiMVlpMWZE?=
+ =?utf-8?B?RTZOTi9PYUk0T25sSnZWc3Q0bDRuQlhuNVhOUld6amNrZXNtWGRSU0s3am15?=
+ =?utf-8?B?Zk8rRUw1RDhrNVIvcitsUERJZnlkdUdPU09tNDV0cFh5T3BLcTlDRisyT01X?=
+ =?utf-8?B?QjhTUDc1T0FxRkNPVGlvdnNSK0hNSlIxUnZNTVduUlFZN2VHWnNLc0tWVERX?=
+ =?utf-8?B?cWozMi9DQmxZamFDL0oybm04Vm9MNlhPZ0o3a2Y2TE9vZDVpMUR0aXVreVZr?=
+ =?utf-8?B?TUZBT2lpN0JjZFM5ZW9VSVJmeDRTNFVJWkg5MU1DaGF5Y1pzMnFiTHI3ZWNK?=
+ =?utf-8?B?T0tuNVJCN09Kb0lGWmRLZWx2K1RJb3AyODJmd01EbXZnZkFoMjFBMngrM2do?=
+ =?utf-8?B?UFpYVzNmL1U3M1Ewc3FheUNFZEE4bndNKy9hOGZOZXBHcUVkUXB3UGNyT1JZ?=
+ =?utf-8?B?MDE5REUwYm9GaEtJL2MvOS9QTmQ0TDh2MkpKSTlZRXBzQ29JSjhoWWNiOENC?=
+ =?utf-8?B?QkxDODhPRU5Vb0I4bWZqRDJIYmliUE5wakFMTDZjZWdZV3BHQnpqMThwbmUx?=
+ =?utf-8?B?c3N4N0RZM1lOSGZPV1RQQVBWM0Z1VDNRcUxvSkVMQ0hVTVN2NTFPaVcwR2Vx?=
+ =?utf-8?B?ZVNieEl1THhsYlJ5MisvRk1pNGFkTGprdzhoOHo4cy8xOWNGQ3dEMDZ5aCtx?=
+ =?utf-8?B?SkJldkkrN1lCRStNL0gzZDdlNk1KQXYrbDJ6WDRicG50SFZkZ2gwcUg3Tnh1?=
+ =?utf-8?B?TlRENTU0VjB1UWxIZWZ3cE9IeXV5ZGtzK1BXeHVPd2tleWRpc2ttWStzZmVl?=
+ =?utf-8?B?ZllvWWZJODRDQnhMMFErSjVFL2pRT0wxRGJMNzFJTktoeGlPeXBodlVwWDIw?=
+ =?utf-8?B?d3dlL01WSGpRbUlKSTlXRU9PK3JIQU5FaUllK0RXZml6SzVXVkRvRXlGbnI2?=
+ =?utf-8?B?azl6RzZjNi9ZTlYrM2c4N2JZL3NOVFdLTmdlMWpzVFNWMDVHVHpzVWN4Rzl3?=
+ =?utf-8?B?c3hCbmUrZFN6Q00rU3dXaEdKZWIxTEtpYTZ1RXJsZUZmMnU3bXJiYlYvcko2?=
+ =?utf-8?B?VjY1WTdjRFI1b2t0QTVid01nSFFmNkFPNWhLRGIvcSs2MnNUQytwdms0ZjBD?=
+ =?utf-8?B?UytIbnJmcDA4ZHNSNlp2SVhOTjZTT3FWZTl6cE5CUitJeVhsVnBoZ1RlZVNj?=
+ =?utf-8?B?d0pBdStNa21oNlBubWNCV1RkVUpydStSTWV1dUNwVEQ3cExtaDlRcjJhbGhX?=
+ =?utf-8?Q?sl6KAoxPBNwvZTV0=3D?=
+X-Exchange-RoutingPolicyChecked: TbbGQfiwCru5IeBQvZGVQWrdXsiPXhXSoS1YNVyHcL73ihcLatCLnXm5xjV7X6utDHGnx+F1ozmkub9o+EXCa7Kf85tbxL/1VonFngILQSbQSU0VmtKYHfUVMW36VUo2XzN0Epw3WEtm8exjTCgypTRx3SarIDCLScN2IyFGLl+00BHd7yVQHnHOFbdZqNZjagWdz4LJuKPuetpTex08dAiBgvNd+Avr5ifMui74YKZ6F9ZxNzgqdLXoylU76fGPYAjtoL5kGjcXYI83MdmrF+kSa7R0XVDpU9X1q1wS+YVwl44jXhISEDpL12FWz6GkzK2fkeqWWNL0rf28s8+c5g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8a6992c-fa3e-4782-6673-08df2e862fe3
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2026 08:43:13.3548 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2026 08:43:17.5927 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2cEostRep0BrTHmRPfgGbkb//+KJDV/IOmB4nsyim5jwISpepr4sIu0P9yQcOgQOmFkQVB6Obm6Cr4+SVuR023O/RmCjBewICF8KnI/yYL0=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6Rjqemp53hDnD2KToPx55MdxSY1JF6zJgw5LJk7iXuM0QoRXu49RWufc+oALWICoot26gGyn0X9T25M8tu62YjD91DfoFfwxdhqshkKHKNo=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSWPR11MB9581
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -172,214 +172,1052 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Allocation paths place memory through a struct xe_vram_region, which is
-both the physical carrier of a VRAM range (BAR mapping, DPA range, TTM
-manager) and the only handle for the purpose an allocation serves. That
-makes it impossible to dedicate part of a region to a given purpose,
-e.g. to keep kernel allocations such as LRCs and page tables in a range
-of their own, away from VRAM that may be reachable by other agents.
+Allocation paths take a struct xe_vram_pool instead of a struct
+xe_vram_region, so that a region can later be split into several pools
+without touching every consumer again.
 
-Separate the two concepts. A struct xe_vram_pool represents an allocation
-domain: it identifies the purpose served by a range within a VRAM region,
-whether that range is available for general use or dedicated to
-a particular purpose. A struct xe_vram_region owns the physical resources
-and embeds its pools as partitions, keeping pool pointers published during
-initialization stable when the region is later split. The region also
-records its binding, distinguishing a device-wide aggregate from a tile
-region, since both may use ID 0 for the first tile.
+A pool resolves to a TTM placement through xe_vram_pool_place(), which
+only ever narrows the page range of the placement, so that it composes
+with a caller supplied range such as the CPU visible window of a small
+BAR. A fixed placement has its address dictated by whoever owns that
+memory, e.g. the BIOS framebuffer, rather than by the purpose of the BO,
+so it resolves the pool covering that address through
+xe_vram_region_addr_to_pool() and fails if no pool covers it.
+
+BO creation and BO migration both resolve the pool serving the purpose
+of an allocation through the pools the tile publishes, so they cannot
+disagree on where an allocation of a given purpose goes. The PF queries
+the free VRAM of the pool backing VF LMEM.
+
+Every region still has exactly one pool spanning its whole usable range,
+and the kernel pool of a tile is its general-purpose pool, so there is no
+functional change.
+
+v2: Handle tiles without a VRAM pool on integrated GPUs (Sashiko)
+v3: Place fixed placements in the pool covering their address, not
+    in the pool serving their purpose (Sashiko)
+    Assert that such a kernel BO does not land outside the kernel pool
+    on a PF without LMTT, where VFs could reach it
 
 Assisted-by: Claude Opus 5.5
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vram_types.h | 159 ++++++++++++++++++++++++++++-
- 1 file changed, 158 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |   2 +-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
+ drivers/gpu/drm/xe/display/xe_panic.c         |   4 +-
+ .../xe/tests/xe_gt_sriov_pf_config_kunit.c    |   8 +-
+ drivers/gpu/drm/xe/xe_assert.h                |   3 +-
+ drivers/gpu/drm/xe/xe_bo.c                    | 102 ++++++---
+ drivers/gpu/drm/xe/xe_bo.h                    |   2 +-
+ drivers/gpu/drm/xe/xe_debugfs.c               |   3 +-
+ drivers/gpu/drm/xe/xe_device.c                |   2 +-
+ drivers/gpu/drm/xe/xe_device_types.h          |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    |   7 +-
+ drivers/gpu/drm/xe/xe_migrate.c               |   2 +-
+ drivers/gpu/drm/xe/xe_pagefault.c             |   3 +-
+ drivers/gpu/drm/xe/xe_query.c                 |   6 +-
+ drivers/gpu/drm/xe/xe_svm.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_tile.c                  |  22 +-
+ drivers/gpu/drm/xe/xe_tile.h                  |   6 +-
+ drivers/gpu/drm/xe/xe_tile_debugfs.c          |   4 +-
+ drivers/gpu/drm/xe/xe_tile_types.h            |   8 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        |   2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  32 ++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h          |   3 +-
+ drivers/gpu/drm/xe/xe_vram.c                  | 210 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vram.h                  |  14 +-
+ 24 files changed, 350 insertions(+), 101 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram_types.h b/drivers/gpu/drm/xe/xe_vram_types.h
-index 646e3c12ae9f7..a3e421f2f32d4 100644
---- a/drivers/gpu/drm/xe/xe_vram_types.h
-+++ b/drivers/gpu/drm/xe/xe_vram_types.h
-@@ -15,6 +15,142 @@
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index e09116265ae95..10e4499edc2dd 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -322,7 +322,7 @@ static struct i915_vma *__xe_pin_fb_vma(struct drm_gem_object *obj, bool is_dpt,
+ 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
+ 	    pin_params->needs_cpu_lmem_access &&
+ 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
+-		struct xe_vram_region *vram = xe_device_get_root_tile(xe)->mem.vram;
++		struct xe_vram_region *vram = xe_device_get_root_tile(xe)->mem.vram->region;
+ 
+ 		/*
+ 		 * If we need to able to access the clear-color value stored in
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 0f86b73036d03..971d9c78dd089 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -73,7 +73,7 @@ initial_plane_bo(struct xe_device *xe,
+ 		 * We don't currently expect this to ever be placed in the
+ 		 * stolen portion.
+ 		 */
+-		if (phys_base >= xe_vram_region_usable_size(tile0->mem.vram)) {
++		if (phys_base >= xe_vram_region_usable_size(tile0->mem.vram->region)) {
+ 			drm_err(&xe->drm,
+ 				"Initial plane programming using invalid range, phys_base=%pa\n",
+ 				&phys_base);
+diff --git a/drivers/gpu/drm/xe/display/xe_panic.c b/drivers/gpu/drm/xe/display/xe_panic.c
+index 1a6cee25e9d76..b223ae8fc0209 100644
+--- a/drivers/gpu/drm/xe/display/xe_panic.c
++++ b/drivers/gpu/drm/xe/display/xe_panic.c
+@@ -52,7 +52,7 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
+ 	if (new_page != panic->page) {
+ 		if (xe_bo_is_vram(bo)) {
+ 			/* Display is always mapped on root tile */
+-			struct xe_vram_region *vram =
++			struct xe_vram_pool *vram =
+ 				xe_device_get_root_tile(xe_bo_device(bo))->mem.vram;
+ 
+ 			if (panic->page < 0 || new_page < panic->page) {
+@@ -62,7 +62,7 @@ static void xe_panic_page_set_pixel(struct drm_scanout_buffer *sb, unsigned int
+ 				xe_res_next(&panic->res, PAGE_SIZE * (new_page - panic->page));
+ 			}
+ 			iosys_map_set_vaddr_iomem(&panic->vmap,
+-						  vram->mapping + panic->res.start);
++						  vram->region->mapping + panic->res.start);
+ 		} else {
+ 			xe_panic_kunmap(panic);
+ 			iosys_map_set_vaddr(&panic->vmap,
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+index 4d72411cd570c..98891e64565a2 100644
+--- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+@@ -44,8 +44,8 @@ static void pf_set_usable_vram(struct xe_device *xe, u64 usable)
+ 
+ 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, tile);
+ 	xe->mem.vram->usable_size = usable;
+-	tile->mem.vram->usable_size = usable;
+-	KUNIT_ASSERT_EQ(test, usable, xe_vram_region_usable_size(tile->mem.vram));
++	tile->mem.vram->size = usable;
++	KUNIT_ASSERT_EQ(test, usable, xe_vram_pool_usable_size(tile->mem.vram));
+ }
+ 
+ static const void *num_vfs_gen_param(struct kunit *test, const void *prev, char *desc)
+@@ -87,8 +87,10 @@ static int pf_gt_config_test_init(struct kunit *test)
+ 	vram = kunit_kzalloc(test, sizeof(*vram), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, vram);
+ 	vram->usable_size = TEST_VRAM;
++	vram->partitions[0] = (struct xe_vram_pool) { .region = vram, .size = TEST_VRAM };
++	vram->num_partitions = 1;
+ 	xe->mem.vram = vram;
+-	xe->tiles[0].mem.vram = vram;
++	xe->tiles[0].mem.vram = &vram->partitions[0];
+ 
+ 	/* pretend we have a valid LMTT */
+ 	KUNIT_ASSERT_TRUE(test, xe_device_has_lmtt(xe));
+diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
+index a818eaa05b7dc..1475200751a6b 100644
+--- a/drivers/gpu/drm/xe/xe_assert.h
++++ b/drivers/gpu/drm/xe/xe_assert.h
+@@ -147,7 +147,8 @@
+ 	char __buf[10] __maybe_unused;								\
+ 	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
+ 		      __tile->id, ({ string_get_size(						\
+-				     xe_vram_region_actual_physical_size(__tile->mem.vram), 1,	\
++				     xe_vram_region_actual_physical_size(__tile->mem.vram ?	\
++					__tile->mem.vram->region : NULL), 1,			\
+ 				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+ })
+ 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 12e523c61c1f3..b20cffe13855e 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -224,33 +224,53 @@ static u8 vram_bo_flag_to_tile_id(struct xe_device *xe, u32 vram_bo_flag)
+ 	return __ffs(vram_bo_flag >> (__ffs(XE_BO_FLAG_VRAM0) - 1)) - 1;
+ }
+ 
+-static u32 bo_vram_flags_to_vram_placement(struct xe_device *xe, u32 bo_flags, u32 vram_flag,
+-					   enum ttm_bo_type type)
++static enum xe_vram_pool_purpose bo_vram_purpose(u32 bo_flags, enum ttm_bo_type type)
+ {
+-	u8 tile_id = vram_bo_flag_to_tile_id(xe, vram_flag);
++	return type == ttm_bo_type_kernel && !(bo_flags & XE_BO_FLAG_FORCE_USER_VRAM) ?
++		XE_VRAM_POOL_KERNEL : XE_VRAM_POOL_GENERAL;
++}
+ 
+-	xe_assert(xe, tile_id < xe->info.tile_count);
++/* BO creation and migration both resolve the pool of a purpose through here */
++static struct xe_vram_pool *tile_vram_pool(struct xe_tile *tile,
++					   enum xe_vram_pool_purpose purpose)
++{
++	return purpose == XE_VRAM_POOL_KERNEL ? tile->mem.kernel_vram : tile->mem.vram;
++}
+ 
+-	if (type == ttm_bo_type_kernel && !(bo_flags & XE_BO_FLAG_FORCE_USER_VRAM))
+-		return xe->tiles[tile_id].mem.kernel_vram->placement;
+-	else
+-		return xe->tiles[tile_id].mem.vram->placement;
++static struct xe_vram_pool *bo_vram_pool(struct xe_device *xe, u32 bo_flags,
++					 u32 vram_flag, enum ttm_bo_type type)
++{
++	struct xe_tile *tile = &xe->tiles[vram_bo_flag_to_tile_id(xe, vram_flag)];
++
++	return tile_vram_pool(tile, bo_vram_purpose(bo_flags, type));
+ }
+ 
+-static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+-		     struct ttm_place *places, u32 bo_flags, u32 mem_type, u32 *c)
++static struct xe_vram_region *ttm_manager_to_vram_region(struct ttm_resource_manager *man)
+ {
+-	struct ttm_place place = { .mem_type = mem_type };
+-	struct ttm_resource_manager *mgr = ttm_manager_type(&xe->ttm, mem_type);
+-	struct xe_ttm_vram_mgr *vram_mgr = to_xe_ttm_vram_mgr(mgr);
++	return container_of(to_xe_ttm_vram_mgr(man), struct xe_vram_region, ttm);
++}
+ 
+-	struct xe_vram_region *vram;
++static struct xe_vram_pool *region_vram_pool(struct xe_vram_region *vram,
++					     enum xe_vram_pool_purpose purpose)
++{
++	struct xe_vram_pool *pool = tile_vram_pool(&vram->xe->tiles[vram->id], purpose);
++
++	xe_assert(vram->xe, pool->region == vram);
++
++	return pool;
++}
++
++static void add_vram(struct xe_device *xe, struct xe_bo *bo,
++		     struct ttm_place *places, u32 bo_flags,
++		     struct xe_vram_pool *pool, u32 *c)
++{
++	struct xe_vram_region *vram = pool->region;
++	struct ttm_place place = {};
+ 	u64 io_size;
+ 
+ 	xe_assert(xe, *c < ARRAY_SIZE(bo->placements));
+ 
+-	vram = container_of(vram_mgr, struct xe_vram_region, ttm);
+-	xe_assert(xe, vram && vram->usable_size);
++	xe_assert(xe, vram->usable_size);
+ 	io_size = vram->io_size;
+ 
+ 	if (force_contiguous(bo_flags))
+@@ -264,20 +284,31 @@ static void add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 			place.flags |= TTM_PL_FLAG_TOPDOWN;
+ 		}
+ 	}
++
++	xe_vram_pool_place(pool, &place);
+ 	places[*c] = place;
+ 	*c += 1;
+ }
+ 
++static void xe_bo_set_vram_place(struct xe_device *xe, struct xe_bo *bo,
++				 struct ttm_place *place, u32 mem_type)
++{
++	struct ttm_resource_manager *man = ttm_manager_type(&xe->ttm, mem_type);
++	struct xe_vram_region *vram = ttm_manager_to_vram_region(man);
++	enum xe_vram_pool_purpose purpose = bo_vram_purpose(bo->flags, bo->ttm.type);
++	u32 c = 0;
++
++	add_vram(xe, bo, place, bo->flags, region_vram_pool(vram, purpose), &c);
++}
++
+ static void try_add_vram(struct xe_device *xe, struct xe_bo *bo,
+ 			 u32 bo_flags, enum ttm_bo_type type, u32 *c)
+ {
+ 	u32 vram_flag;
+ 
+-	for_each_set_bo_vram_flag(vram_flag, bo_flags) {
+-		u32 pl = bo_vram_flags_to_vram_placement(xe, bo_flags, vram_flag, type);
+-
+-		add_vram(xe, bo, bo->placements, bo_flags, pl, c);
+-	}
++	for_each_set_bo_vram_flag(vram_flag, bo_flags)
++		add_vram(xe, bo, bo->placements, bo_flags,
++			 bo_vram_pool(xe, bo_flags, vram_flag, type), c);
+ }
+ 
+ static void try_add_stolen(struct xe_device *xe, struct xe_bo *bo,
+@@ -2614,10 +2645,29 @@ static int __xe_bo_fixed_placement(struct xe_device *xe,
+ 	place->fpfn = start >> PAGE_SHIFT;
+ 	place->lpfn = end >> PAGE_SHIFT;
+ 
+-	if (flags & XE_BO_FLAG_STOLEN)
++	if (flags & XE_BO_FLAG_STOLEN) {
+ 		place->mem_type = XE_PL_STOLEN;
+-	else
+-		place->mem_type = bo_vram_flags_to_vram_placement(xe, flags, vram_flag, type);
++	} else {
++		struct xe_vram_region *vram = bo_vram_pool(xe, flags, vram_flag, type)->region;
++		struct xe_vram_pool *pool;
++
++		/*
++		 * A fixed address is dictated by whoever owns that memory, e.g.
++		 * the BIOS framebuffer, not by the purpose of the BO, so place
++		 * it in the pool covering that address.
++		 */
++		pool = xe_vram_region_addr_to_pool(vram, start);
++		if (!pool)
++			return -EINVAL;
++
++		xe_assert(xe, !IS_SRIOV_PF(xe) || xe_device_has_lmtt(xe) ||
++			  bo_vram_purpose(flags, type) != XE_VRAM_POOL_KERNEL ||
++			  pool->purpose == XE_VRAM_POOL_KERNEL);
++
++		xe_vram_pool_place(pool, place);
++		if (place->lpfn && place->fpfn >= place->lpfn)
++			return -EINVAL;
++	}
+ 
+ 	bo->placement = (struct ttm_placement) {
+ 		.num_placement = 1,
+@@ -3995,9 +4045,7 @@ int xe_bo_migrate(struct xe_bo *bo, u32 mem_type, struct ttm_operation_ctx *tctx
+ 	drm_WARN_ON(&xe->drm, mem_type == XE_PL_STOLEN);
+ 
+ 	if (mem_type_is_vram(mem_type)) {
+-		u32 c = 0;
+-
+-		add_vram(xe, bo, &requested, bo->flags, mem_type, &c);
++		xe_bo_set_vram_place(xe, bo, &requested, mem_type);
+ 	}
+ 
+ 	if (!tctx->no_wait_gpu)
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 77b3a02e9b8eb..91804bbfbe0a4 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -31,7 +31,7 @@
+ #define XE_BO_FLAG_STOLEN		BIT(4)
+ #define XE_BO_FLAG_VRAM(vram)		(XE_BO_FLAG_VRAM0 << ((vram)->id))
+ #define XE_BO_FLAG_VRAM_IF_DGFX(tile)	(IS_DGFX(tile_to_xe(tile)) ? \
+-					 XE_BO_FLAG_VRAM((tile)->mem.vram) : \
++					 XE_BO_FLAG_VRAM((tile)->mem.vram->region) : \
+ 					 XE_BO_FLAG_SYSTEM)
+ #define XE_BO_FLAG_GGTT			BIT(5)
+ #define XE_BO_FLAG_IGNORE_MIN_PAGE_SIZE BIT(6)
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 926020c7526ed..963858265fbf3 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -32,6 +32,7 @@
+ #include "xe_sriov_vf.h"
+ #include "xe_step.h"
+ #include "xe_sysctrl_debugfs.h"
++#include "xe_tile.h"
+ #include "xe_tile_debugfs.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vsec.h"
+@@ -100,7 +101,7 @@ static ssize_t inject_mempage_offline_trigger(struct file *f,
+ {
+ 	struct xe_device *xe = file_inode(f)->i_private;
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-	struct xe_vram_region *vr = tile->mem.vram;
++	struct xe_vram_region *vr = xe_tile_to_vr(tile);
+ 	u64 pfn;
+ 	int ret;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index db0b883322efb..1143a80458166 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -689,7 +689,7 @@ static int xe_device_vram_alloc(struct xe_device *xe)
+ 	if (!IS_DGFX(xe))
+ 		return 0;
+ 
+-	vram = drmm_kzalloc(&xe->drm, sizeof(*vram), GFP_KERNEL);
++	vram = xe_vram_region_alloc_device(xe);
+ 	if (!vram)
+ 		return -ENOMEM;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index aa3a98ddb457c..b284c0c95d3fa 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -308,7 +308,7 @@ struct xe_device {
+ 
+ 	/** @mem: memory info for device */
+ 	struct {
+-		/** @mem.vram: VRAM info for device */
++		/** @mem.vram: device level VRAM region aggregating all tiles */
+ 		struct xe_vram_region *vram;
+ 		/** @mem.sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 0a47458e5bf20..07b9ec0f184f6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1722,7 +1722,7 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
+ 	bo = xe_bo_create_pin_range_novm(xe, tile,
+ 					 ALIGN(size, PAGE_SIZE), 0, ~0ull,
+ 					 ttm_bo_type_kernel,
+-					 XE_BO_FLAG_VRAM(tile->mem.vram) |
++					 XE_BO_FLAG_VRAM(tile->mem.vram->region) |
+ 					 (alignment == SZ_2M ? XE_BO_FLAG_NEEDS_2M : 0) |
+ 					 XE_BO_FLAG_PINNED |
+ 					 XE_BO_FLAG_PINNED_LATE_RESTORE |
+@@ -1933,7 +1933,8 @@ static u64 pf_query_free_lmem(struct xe_gt *gt)
+ {
+ 	struct xe_tile *tile = gt->tile;
+ 
+-	return xe_ttm_vram_get_avail(&tile->mem.vram->ttm.manager);
++	/* Only the general-purpose pool can back VF LMEM, see pf_provision_vf_lmem() */
++	return xe_ttm_vram_get_pool_avail(tile->mem.vram);
+ }
+ 
+ static u64 pf_query_max_lmem(struct xe_gt *gt)
+@@ -1974,7 +1975,7 @@ static u64 pf_profile_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	bool admin_only_pf = xe_sriov_pf_admin_only(tile->xe);
+-	u64 usable = xe_vram_region_usable_size(tile->mem.vram);
++	u64 usable = xe_vram_pool_usable_size(tile->mem.vram);
+ 	u64 spare = pf_get_min_spare_lmem(gt);
+ 	u64 available = usable > spare ? usable - spare : 0;
+ 	u64 shareable = ALIGN_DOWN(available, SZ_1G);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index fffb3eb6c76eb..6000c1f6dc765 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -2596,7 +2596,7 @@ int xe_migrate_debug_ccs_overlap(struct xe_migrate *m,
+ 	if (!xe_device_has_flat_ccs(xe))
+ 		return -EINVAL;
+ 
+-	first_page_dpa = xe_vram_region_dpa_base(m->tile->mem.vram);
++	first_page_dpa = xe_vram_region_dpa_base(m->tile->mem.vram->region);
+ 	clear_L0_ofs = xe_migrate_vram_ofs(xe, first_page_dpa, true);
+ 
+ 	scratch_dpa = xe_bo_addr(scratch_bo, 0, XE_PAGE_SIZE);
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index 5247321c805ec..cfc0d9a25fba1 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -19,6 +19,7 @@
+ #include "xe_pagefault_types.h"
+ #include "xe_pm.h"
+ #include "xe_svm.h"
++#include "xe_tile.h"
+ #include "xe_trace_bo.h"
+ #include "xe_vm.h"
+ 
+@@ -201,7 +202,7 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+ 		xe_validation_ctx_init(&ctx, &vm->xe->val, &exec,
+ 				       (struct xe_val_flags) {});
+ 		drm_exec_until_all_locked(&exec) {
+-			err = xe_pagefault_begin(&exec, vma, tile->mem.vram,
++			err = xe_pagefault_begin(&exec, vma, xe_tile_to_vr(tile),
+ 						 needs_vram == 1);
+ 			drm_exec_retry_on_contention(&exec);
+ 			xe_validation_retry_on_oom(&ctx, &err);
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index dc975f5953683..0692ec93f55d2 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -414,12 +414,16 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ 		 * However the uAPI is generic and it's userspace's
+ 		 * responsibility to check the mem_class, without any
+ 		 * assumption.
++		 *
++		 * Only the general-purpose VRAM region of a tile is ever
++		 * exposed, and there is exactly one of them per tile, so its
++		 * region id doubles as the tile index here.
+ 		 */
+ 		if (!IS_DGFX(xe))
+ 			gt_list->gt_list[iter].near_mem_regions = 0x1;
+ 		else
+ 			gt_list->gt_list[iter].near_mem_regions =
+-				BIT(gt_to_tile(gt)->mem.vram->id) << 1;
++				BIT(gt_to_tile(gt)->mem.vram->region->id) << 1;
+ 		gt_list->gt_list[iter].far_mem_regions = xe->info.mem_region_mask ^
+ 			gt_list->gt_list[iter].near_mem_regions;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 909a602d091ea..7f58240b0b5b4 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -2112,7 +2112,7 @@ int xe_pagemap_cache_create(struct xe_tile *tile)
+ 		if (IS_ERR(cache))
+ 			return PTR_ERR(cache);
+ 
+-		tile->mem.vram->dpagemap_cache = cache;
++		tile->mem.vram->region->dpagemap_cache = cache;
+ 	}
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 74d925a337b76..a916121177ba7 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -119,20 +119,12 @@ int xe_tile_alloc_vram(struct xe_tile *tile)
+ 	if (!IS_DGFX(xe))
+ 		return 0;
+ 
+-	vram = xe_vram_region_alloc(xe, tile->id, XE_PL_VRAM0 + tile->id);
++	vram = xe_vram_region_alloc_tile(xe, tile->id);
+ 	if (!vram)
+ 		return -ENOMEM;
+-	tile->mem.vram = vram;
++	tile->mem.vram = xe_vram_region_default_pool(vram);
+ 
+-	/*
+-	 * If the kernel_vram is not already allocated,
+-	 * it means that tile has common VRAM region for
+-	 * kernel and user space.
+-	 */
+-	if (!tile->mem.kernel_vram)
+-		tile->mem.kernel_vram = tile->mem.vram;
+-
+-	return 0;
++	return xe_vram_tile_alloc_kernel(tile);
+ }
+ 
+ /**
+@@ -190,12 +182,14 @@ int xe_tile_init_noalloc(struct xe_tile *tile)
+ 	if (err)
+ 		return err;
+ 
+-	if (IS_DGFX(xe) && !ttm_resource_manager_used(&tile->mem.vram->ttm.manager)) {
+-		err = xe_ttm_vram_mgr_init(xe, tile->mem.vram);
++	if (IS_DGFX(xe) && !ttm_resource_manager_used(&tile->mem.vram->region->ttm.manager)) {
++		err = xe_ttm_vram_mgr_init(xe, tile->mem.vram->region);
+ 		if (err)
+ 			return err;
+ 
+-		xe->info.mem_region_mask |= BIT(tile->mem.vram->id) << 1;
++		/* The uAPI indexes the general-purpose region of a tile by tile id */
++		xe_assert(xe, tile->mem.vram->region->id == tile->id);
++		xe->info.mem_region_mask |= BIT(tile->mem.vram->region->id) << 1;
+ 	}
+ 
+ 	return xe_tile_sysfs_init(tile);
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index a2a2c0e936b8e..ed34447c7d4f6 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -7,6 +7,7 @@
+ #define _XE_TILE_H_
+ 
+ #include "xe_tile_types.h"
++#include "xe_vram_types.h"
+ 
  struct xe_device;
- struct xe_migrate;
+ struct xe_pagemap;
+@@ -29,11 +30,12 @@ static inline bool xe_tile_is_root(struct xe_tile *tile)
+  * struct xe_tile pointer
+  * @tile: Pointer to the struct xe_tile.
+  *
+- * Return: Pointer to the struct xe_vram_region embedded in *@tile.
++ * Return: Pointer to the struct xe_vram_region backing *@tile's general
++ * purpose VRAM pool, or NULL if *@tile has no VRAM.
+  */
+ static inline struct xe_vram_region *xe_tile_to_vr(struct xe_tile *tile)
+ {
+-	return tile->mem.vram;
++	return tile->mem.vram ? tile->mem.vram->region : NULL;
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.c b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+index 5df2f461b7b7a..b69f4521eed35 100644
+--- a/drivers/gpu/drm/xe/xe_tile_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_debugfs.c
+@@ -109,8 +109,8 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ static void tile_debugfs_create_vram_mm(struct xe_tile *tile)
+ {
+ 	if (tile->mem.vram)
+-		ttm_resource_manager_create_debugfs(&tile->mem.vram->ttm.manager, tile->debugfs,
+-						    "vram_mm");
++		ttm_resource_manager_create_debugfs(&tile->mem.vram->region->ttm.manager,
++						    tile->debugfs, "vram_mm");
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
+index e1368c04846ae..f2497828c4aae 100644
+--- a/drivers/gpu/drm/xe/xe_tile_types.h
++++ b/drivers/gpu/drm/xe/xe_tile_types.h
+@@ -66,20 +66,20 @@ struct xe_tile {
+ 	/** @mem: memory management info for tile */
+ 	struct {
+ 		/**
+-		 * @mem.kernel_vram: kernel-dedicated VRAM info for tile.
++		 * @mem.kernel_vram: kernel-dedicated VRAM pool for tile.
+ 		 *
+ 		 * Although VRAM is associated with a specific tile, it can
+ 		 * still be accessed by all tiles' GTs.
+ 		 */
+-		struct xe_vram_region *kernel_vram;
++		struct xe_vram_pool *kernel_vram;
+ 
+ 		/**
+-		 * @mem.vram: general purpose VRAM info for tile.
++		 * @mem.vram: general purpose VRAM pool for tile.
+ 		 *
+ 		 * Although VRAM is associated with a specific tile, it can
+ 		 * still be accessed by all tiles' GTs.
+ 		 */
+-		struct xe_vram_region *vram;
++		struct xe_vram_pool *vram;
+ 
+ 		/** @mem.ggtt: Global graphics translation table */
+ 		struct xe_ggtt *ggtt;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 60f39efb02d05..38a20307f49d6 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -63,7 +63,7 @@ static u32 get_wopcm_size(struct xe_device *xe)
+ 
+ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+-	struct xe_vram_region *tile_vram = xe_device_get_root_tile(xe)->mem.vram;
++	struct xe_vram_region *tile_vram = xe_device_get_root_tile(xe)->mem.vram->region;
+ 	resource_size_t tile_io_start = xe_vram_region_io_start(tile_vram);
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 36d47de8b11ba..226f732ee97be 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -28,6 +28,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_vram_mgr.h"
++#include "xe_vram.h"
+ #include "xe_vram_types.h"
+ 
+ static inline struct gpu_buddy_block *
+@@ -508,7 +509,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 			      enum dma_data_direction dir,
+ 			      struct sg_table **sgt)
+ {
+-	struct xe_tile *tile = &xe->tiles[res->mem_type - XE_PL_VRAM0];
++	struct xe_vram_region *vram = xe_map_resource_to_region(res);
+ 	struct xe_ttm_vram_mgr_resource *vres = to_xe_ttm_vram_mgr_resource(res);
+ 	struct xe_res_cursor cursor;
+ 	struct scatterlist *sg;
+@@ -546,7 +547,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ 	 */
+ 	xe_res_first(res, offset, length, &cursor);
+ 	for_each_sgtable_sg((*sgt), sg, i) {
+-		phys_addr_t phys = cursor.start + xe_vram_region_io_start(tile->mem.vram);
++		phys_addr_t phys = cursor.start + xe_vram_region_io_start(vram);
+ 		size_t size = min_t(u64, cursor.size, SZ_2G);
+ 		dma_addr_t addr;
+ 
+@@ -613,13 +614,20 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 	mutex_unlock(&mgr->lock);
+ }
+ 
+-u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
++/**
++ * xe_ttm_vram_get_pool_avail - Free memory of a VRAM pool
++ * @pool: The VRAM pool, its region's TTM manager must be initialized
++ *
++ * Return: the number of bytes still available for allocation from @pool.
++ */
++u64 xe_ttm_vram_get_pool_avail(struct xe_vram_pool *pool)
+ {
+-	struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
++	struct xe_ttm_vram_mgr *mgr = &pool->region->ttm;
+ 	u64 avail;
+ 
++	/* A pool still spans the whole region of its manager */
+ 	mutex_lock(&mgr->lock);
+-	avail =  mgr->mm.avail;
++	avail = mgr->mm.avail;
+ 	mutex_unlock(&mgr->lock);
+ 
+ 	return avail;
+@@ -885,11 +893,13 @@ static struct xe_vram_region *xe_ttm_vram_addr_to_region(struct xe_device *xe, u
+ 	u8 id;
+ 
+ 	for_each_tile(tile, xe, id) {
+-		struct xe_vram_region *vr = tile->mem.vram;
++		struct xe_vram_region *vr;
+ 
+-		if (!vr)
++		if (!tile->mem.vram)
+ 			continue;
+ 
++		vr = tile->mem.vram->region;
++
+ 		if (addr >= vr->dpa_base && addr < (vr->dpa_base + vr->usable_size))
+ 			return vr;
+ 
+@@ -984,7 +994,7 @@ EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
+ int xe_ttm_vram_inject_fault(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-	struct xe_vram_region *vr = tile->mem.vram;
++	struct xe_vram_region *vr = tile->mem.vram->region;
+ 	struct xe_ttm_vram_mgr *vram_mgr = &vr->ttm;
+ 	struct gpu_buddy *mm = &vram_mgr->mm;
+ 	u64 addr;
+@@ -1036,11 +1046,13 @@ static int vram_bad_pages_show(struct seq_file *m, void *unused)
+ 	seq_printf(m, "max_pages: %u\n", xe_ras_get_max_pages(xe));
+ 
+ 	for_each_tile(tile, xe, id) {
+-		struct xe_vram_region *vr = tile->mem.vram;
++		struct xe_vram_region *vr;
+ 
+ 		man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0 + id);
+-		if (!man || !vr)
++		if (!man || !tile->mem.vram)
+ 			continue;
++
++		vr = tile->mem.vram->region;
+ 		mgr = to_xe_ttm_vram_mgr(man);
+ 
+ 		mutex_lock(&mgr->lock);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index d77f067d197b2..6cf8217ec46b5 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -7,6 +7,7 @@
+ #define _XE_TTM_VRAM_MGR_H_
+ 
+ #include "xe_ttm_vram_mgr_types.h"
++#include "xe_vram_types.h"
+ 
+ enum dma_data_direction;
+ struct xe_device;
+@@ -27,7 +28,7 @@ int xe_ttm_vram_mgr_alloc_sgt(struct xe_device *xe,
+ void xe_ttm_vram_mgr_free_sgt(struct device *dev, enum dma_data_direction dir,
+ 			      struct sg_table *sgt);
+ 
+-u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man);
++u64 xe_ttm_vram_get_pool_avail(struct xe_vram_pool *pool);
+ u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man);
+ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
+diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
+index 1c02889ba29b2..583906f93bc43 100644
+--- a/drivers/gpu/drm/xe/xe_vram.c
++++ b/drivers/gpu/drm/xe/xe_vram.c
+@@ -28,6 +28,20 @@
+ #include "xe_vram.h"
+ #include "xe_vram_types.h"
+ 
++static const char *stringify_vram_binding(enum xe_vram_binding binding)
++{
++	switch (binding) {
++	case XE_VRAM_BINDING_NONE:
++		return "None";
++	case XE_VRAM_BINDING_DEVICE:
++		return "Device";
++	case XE_VRAM_BINDING_TILE:
++		return "Tile";
++	}
++
++	return "Unknown";
++}
++
+ static bool resource_is_valid(struct pci_dev *pdev, int bar)
+ {
+ 	if (!pci_resource_flags(pdev, bar))
+@@ -200,19 +214,21 @@ static void vram_fini(void *arg)
+ 
+ 	xe_assert(xe, !xe->mem.vram->mapping);
+ 
+-	for_each_tile(tile, xe, id) {
+-		tile->mem.vram->mapping = NULL;
+-		if (tile->mem.kernel_vram)
+-			tile->mem.kernel_vram->mapping = NULL;
+-	}
++	for_each_tile(tile, xe, id)
++		tile->mem.vram->region->mapping = NULL;
+ }
+ 
+-struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement)
++static struct xe_vram_region *vram_region_alloc(struct xe_device *xe,
++						enum xe_vram_binding binding,
++						u8 id, u32 placement)
+ {
+ 	struct xe_vram_region *vram;
+ 	struct drm_device *drm = &xe->drm;
++	bool tile_bound = binding != XE_VRAM_BINDING_DEVICE;
+ 
+-	xe_assert(xe, id < xe->info.tile_count);
++	xe_assert(xe, binding != XE_VRAM_BINDING_NONE);
++	xe_assert(xe, !tile_bound || id < xe->info.tile_count);
++	xe_assert(xe, !tile_bound || placement >= XE_PL_VRAM0);
+ 
+ 	vram = drmm_kzalloc(drm, sizeof(*vram), GFP_KERNEL);
+ 	if (!vram)
+@@ -221,30 +237,104 @@ struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 pla
+ 	vram->xe = xe;
+ 	vram->id = id;
+ 	vram->placement = placement;
++	vram->binding = binding;
+ #if defined(CONFIG_DRM_XE_PAGEMAP)
+-	vram->migrate = xe->tiles[id].migrate;
++	if (tile_bound)
++		vram->migrate = xe->tiles[id].migrate;
+ #endif
++	if (!tile_bound)
++		return vram;
++
++	/*
++	 * partitions[0] always exists, so its address is a stable handle even
++	 * before vram_region_init() sizes it to span the whole region.
++	 */
++	vram->partitions[0] = (struct xe_vram_pool) {
++		.region = vram,
++		.purpose = XE_VRAM_POOL_GENERAL,
++	};
+ 	return vram;
+ }
  
 +/**
-+ * enum xe_vram_binding - VRAM region binding types
-+ * @XE_VRAM_BINDING_NONE: no binding assigned, default value of a zeroed region
-+ * @XE_VRAM_BINDING_DEVICE: device-level region aggregating all tile VRAM regions
-+ * @XE_VRAM_BINDING_TILE: VRAM region bound to a tile
++ * xe_vram_region_alloc_device - Allocate the device level VRAM region
++ * @xe: the &xe_device
++ *
++ * The device level region only aggregates the sizes and ranges of all tile
++ * VRAM regions, it is not backed by any TTM resource manager.
++ *
++ * Return: the allocated region, or NULL on failure.
 + */
-+enum xe_vram_binding {
-+	XE_VRAM_BINDING_NONE = 0,
-+	XE_VRAM_BINDING_DEVICE,
-+	XE_VRAM_BINDING_TILE,
-+};
++struct xe_vram_region *xe_vram_region_alloc_device(struct xe_device *xe)
++{
++	return vram_region_alloc(xe, XE_VRAM_BINDING_DEVICE, 0, 0);
++}
 +
 +/**
-+ * enum xe_vram_pool_purpose - What a VRAM pool serves
-+ * @XE_VRAM_POOL_GENERAL: general-purpose memory, available to userspace
-+ * @XE_VRAM_POOL_KERNEL: kernel-only memory, never exposed to userspace
++ * xe_vram_region_alloc_tile - Allocate a general-purpose tile VRAM region
++ * @xe: the &xe_device
++ * @id: tile id
++ *
++ * Return: the allocated region, or NULL on failure.
 + */
-+enum xe_vram_pool_purpose {
-+	XE_VRAM_POOL_GENERAL = 0,
-+	XE_VRAM_POOL_KERNEL,
-+};
++struct xe_vram_region *xe_vram_region_alloc_tile(struct xe_device *xe, u8 id)
++{
++	return vram_region_alloc(xe, XE_VRAM_BINDING_TILE, id, XE_PL_VRAM0 + id);
++}
 +
 +/**
-+ * XE_VRAM_MAX_PARTITIONS - Max partitions a single VRAM region can be split into
++ * xe_vram_region_default_pool - Get the default pool of a VRAM region
++ * @vram: the VRAM region, which must not be a device aggregate
 + *
-+ * A region currently holds its default pool and at most one pool dedicated
-+ * to another purpose. The TTM manager mirrors the partitions of a region one
-+ * by one, so a region cannot hold more of them than the manager can back.
++ * Return: the default pool of @vram.
 + */
-+#define XE_VRAM_MAX_PARTITIONS	XE_TTM_VRAM_MGR_MAX_PARTS
++struct xe_vram_pool *xe_vram_region_default_pool(struct xe_vram_region *vram)
++{
++	xe_assert(vram->xe, vram->binding != XE_VRAM_BINDING_DEVICE);
++
++	return &vram->partitions[0];
++}
 +
 +/**
-+ * DOC: VRAM pools, regions and partitions
++ * xe_vram_tile_alloc_kernel - Initialize the kernel VRAM pool of a tile
++ * @tile: the &xe_tile, with its general purpose VRAM pool already allocated
 + *
-+ * Allocation paths place memory through a struct xe_vram_pool. A pool names
-+ * a purpose (general-purpose, kernel-only ...) and resolves to a TTM
-+ * placement plus the address range serving it, see xe_vram_pool_place().
-+ * Whether that range is the whole region, or one of several partitions
-+ * sharing a region, is a backend detail pool consumers do not need to know.
++ * Kernel allocations use the general-purpose pool by default.
 + *
-+ * A struct xe_vram_region is the physical carrier: it owns the BAR mapping,
-+ * the DPA range and the TTM resource manager. A non-aggregate region
-+ * initially contains one partition spanning its whole usable range. That
-+ * partition is the region's default, general-purpose pool. It always
-+ * occupies partitions[0].
-+ *
-+ * Each partition is described by a struct xe_vram_pool embedded in the
-+ * region, so a pointer published during initialization remains valid if a
-+ * later split changes the pool's offset and size. A split never changes a
-+ * pool's purpose and may only happen before the region's TTM manager is
-+ * initialized.
-+ *
-+ * The device aggregate described below is the only region type that has no
-+ * manager and no partitions.
-+ *
-+ * The id shown below is the VRAM region instance id. For a tile region it
-+ * is the id of the tile, which the uAPI relies on. The pair (binding, id)
-+ * must uniquely identify a region.
-+ *
-+ * Partitioned region:
-+ * A tile's VRAM region can be split so that a pool dedicated to some purpose,
-+ * e.g. kernel-only, gets a range of its own and the default pool keeps the
-+ * rest. The dedicated partition is carved out at the start of the region, at
-+ * the lowest addresses, and takes the next free index. The default partition
-+ * keeps index 0 and is moved above the dedicated range. A tile without such
-+ * a reservation keeps one partition spanning the whole usable range::
-+ *
-+ *         xe_vram_region "tile0" (VRAM region id 0, binding TILE)
-+ *         ,-------------------------------------------------------------.
-+ *         | ttm: struct xe_ttm_vram_mgr (one manager, shared)           |
-+ *         | .---------------------------------------------------------. |
-+ *         | |  partitions[1]            |  partitions[0]              | |
-+ *         | |  offset 0                 |  offset pool_size           | |
-+ *         | |  size   pool_size         |  size   usable - pool_size  | |
-+ *         | `---------------------------------------------------------' |
-+ *         `-------------------------------------------------------------'
-+ *                  ^                               ^
-+ *                  |                               |
-+ *             dedicated pool                  general-purpose pool
-+ *
-+ *         xe_vram_region "tile1" (VRAM region id 1, binding TILE)
-+ *         ,-------------------------------------------------------------.
-+ *         | ttm: struct xe_ttm_vram_mgr (one manager)                   |
-+ *         | .---------------------------------------------------------. |
-+ *         | |  partitions[0]                                          | |
-+ *         | |  offset 0                                               | |
-+ *         | |  size   whole usable range                              | |
-+ *         | `---------------------------------------------------------' |
-+ *         `-------------------------------------------------------------'
-+ *                                     ^
-+ *                                     |
-+ *                            general-purpose pool
-+ *
-+ * Device aggregate:
-+ * A device-level aggregate region is unrelated to the tile regions. It is
-+ * never backed by a resource manager and has no partitions. It only
-+ * aggregates the sizes and DPA ranges of every tile for reporting purposes.
-+ * Nothing is ever allocated from it::
-+ *
-+ *         xe_vram_region "device" (VRAM region id 0, binding DEVICE)
-+ *         ,-------------------------------------------------------------.
-+ *         | ttm:        unused, not backed by any resource manager      |
-+ *         | partitions: none, this region is never allocated from       |
-+ *         | size:       total VRAM summed across all tiles              |
-+ *         `-------------------------------------------------------------'
++ * Return: 0 on success, negative error code on failure.
 + */
++int xe_vram_tile_alloc_kernel(struct xe_tile *tile)
++{
++	if (tile->mem.kernel_vram)
++		return 0;
++
++	tile->mem.kernel_vram = tile->mem.vram;
++
++	return 0;
++}
++
+ static void print_vram_region_info(struct xe_device *xe, struct xe_vram_region *vram)
+ {
+ 	if (vram->io_size < vram->usable_size)
+ 		xe_log_info(xe, VRAM, "Small BAR device\n");
+ 
+ 	xe_log_info(xe, VRAM,
+-		    "[%u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
+-		    vram->id, &vram->actual_physical_size, &vram->usable_size, &vram->io_size);
+-	xe_log_info(xe, VRAM, "[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
+-		    vram->id, &vram->dpa_base, vram->dpa_base + (u64)vram->actual_physical_size,
+-		    &vram->io_start, vram->io_start + (u64)vram->io_size);
++		    "%s[%u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n",
++		    stringify_vram_binding(vram->binding), vram->id, &vram->actual_physical_size,
++		    &vram->usable_size, &vram->io_size);
++	xe_log_info(xe, VRAM, "%s[%u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n",
++		    stringify_vram_binding(vram->binding), vram->id, &vram->dpa_base,
++		    vram->dpa_base + (u64)vram->actual_physical_size, &vram->io_start,
++		    vram->io_start + (u64)vram->io_size);
+ }
+ 
+ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+ 			    struct xe_vram_region *lmem_bar, u64 offset, u64 usable_size,
+ 			    u64 region_size, resource_size_t remain_io_size)
+ {
+-	struct xe_tile *tile = vram != xe->mem.vram ? &xe->tiles[vram->id] : NULL;
++	struct xe_tile *tile = vram->binding == XE_VRAM_BINDING_TILE ? &xe->tiles[vram->id] : NULL;
++
++	xe_assert(xe, vram->binding != XE_VRAM_BINDING_NONE);
+ 
+ 	/* Check if VRAM region is already initialized */
+ 	if (vram->mapping)
+@@ -274,11 +364,90 @@ static int vram_region_init(struct xe_device *xe, struct xe_vram_region *vram,
+ 	vram->dpa_base = lmem_bar->dpa_base + offset;
+ 	vram->usable_size = usable_size;
+ 
++	/* The device aggregate only reports sizes, nothing is allocated from it */
++	if (vram->binding != XE_VRAM_BINDING_DEVICE) {
++		/* Until split, partitions[0] spans the whole usable range */
++		vram->partitions[0].offset = 0;
++		vram->partitions[0].size = usable_size;
++		vram->num_partitions = 1;
++	}
++
+ 	print_vram_region_info(xe, vram);
+ 
+ 	return 0;
+ }
+ 
++/**
++ * xe_vram_pool_place - Fill in the TTM placement of a pool
++ * @pool: the VRAM pool to place in
++ * @place: the placement to narrow down to @pool
++ *
++ * Resolve @pool to the placement of the region backing it and, when the pool
++ * does not span that region, to the page range it covers. Callers do not have
++ * to care which of the two backs the pool.
++ *
++ * The range is only ever narrowed, so this composes with a caller supplied
++ * one, e.g. the CPU visible range of a small BAR.
++ */
++void xe_vram_pool_place(const struct xe_vram_pool *pool, struct ttm_place *place)
++{
++	u64 fpfn, lpfn;
++
++	place->mem_type = pool->region->placement;
++
++	if (pool->offset == 0 && pool->size == pool->region->usable_size)
++		return;
++
++	xe_assert(pool->region->xe, IS_ALIGNED(pool->offset, PAGE_SIZE));
++	xe_assert(pool->region->xe, IS_ALIGNED(pool->size, PAGE_SIZE));
++
++	fpfn = pool->offset >> PAGE_SHIFT;
++	lpfn = (pool->offset + pool->size) >> PAGE_SHIFT;
++
++	place->fpfn = max_t(u64, place->fpfn, fpfn);
++	place->lpfn = place->lpfn ? min_t(u64, place->lpfn, lpfn) : lpfn;
++}
 +
 +/**
-+ * struct xe_vram_pool - VRAM range used for a given allocation purpose
++ * xe_vram_region_addr_to_pool - Find the pool covering an address of a region
++ * @vram: the VRAM region
++ * @addr: the region relative address
 + *
-+ * VRAM allocations are placed through this frontend. It identifies an
-+ * allocation purpose and resolves it to a TTM placement and the address
-+ * range serving it. Whether that range is a whole region of its own - and
-+ * thus has its own placement, mapping and address range - or one of several
-+ * partitions of a region is a backend detail the allocation paths do not
-+ * need to know, see xe_vram_pool_place().
++ * Unlike the pool serving a given purpose, which the tile publishes, this
++ * resolves a pool by address. It is meant for allocations whose address is
++ * dictated by someone else, e.g. the framebuffer the BIOS left in VRAM.
 + *
-+ * A pool stays valid for the lifetime of its region and its purpose is fixed
-+ * once published.
++ * Return: the pool covering @addr, or NULL if no pool of @vram covers it.
 + */
-+struct xe_vram_pool {
-+	/** @region: region this pool belongs to */
-+	struct xe_vram_region *region;
-+	/**
-+	 * @part: TTM partition backing this pool, or NULL until the manager
-+	 * is initialized
-+	 */
-+	struct xe_ttm_vram_mgr_part *part;
-+	/** @offset: byte offset of the pool from the start of @region */
-+	u64 offset;
-+	/** @size: size of the pool in bytes */
-+	u64 size;
-+	/** @purpose: allocation purpose served by this pool */
-+	enum xe_vram_pool_purpose purpose;
-+};
++struct xe_vram_pool *xe_vram_region_addr_to_pool(struct xe_vram_region *vram, u64 addr)
++{
++	unsigned int i;
++
++	for (i = 0; i < vram->num_partitions; i++) {
++		struct xe_vram_pool *pool = &vram->partitions[i];
++
++		if (addr >= pool->offset && addr < pool->offset + pool->size)
++			return pool;
++	}
++
++	return NULL;
++}
++
++/**
++ * xe_vram_pool_usable_size - Usable size of a pool
++ * @pool: the VRAM pool
++ *
++ * Unlike xe_vram_region_usable_size(), which reports the whole region a pool
++ * may share with others, this reports only the range reserved for @pool's
++ * own purpose, e.g. what is actually available to hand out to userspace.
++ *
++ * Return: the usable size of @pool.
++ */
++resource_size_t xe_vram_pool_usable_size(const struct xe_vram_pool *pool)
++{
++	return pool->size;
++}
 +
  /**
-  * struct xe_vram_region - memory region structure
-  * This is used to describe a memory region in xe
-@@ -26,9 +162,11 @@ struct xe_vram_region {
- 	/**
- 	 * @id: VRAM region instance id
- 	 *
--	 * The value should be unique for VRAM region.
-+	 * The pair (@binding, @id) must uniquely identify a VRAM region.
- 	 */
- 	u8 id;
-+	/** @binding: VRAM region instance binding */
-+	enum xe_vram_binding binding;
- 	/** @io_start: IO start address of this VRAM instance */
- 	resource_size_t io_start;
- 	/**
-@@ -57,6 +195,25 @@ struct xe_vram_region {
- 	 * (e.g stolen mem)
- 	 */
- 	resource_size_t actual_physical_size;
-+	/**
-+	 * @partitions: partitions this region is split into
-+	 *
-+	 * A non-aggregate region initially has @partitions[0] spanning its
-+	 * whole usable range. It is the region's default, general-purpose
-+	 * pool. An optional split may adjust its range and create another
-+	 * partition before the TTM resource manager is initialized.
-+	 *
-+	 * A device aggregate region has no partitions. Allocation paths do
-+	 * not take a region pointer, they take a &xe_vram_pool pointing into
-+	 * this array, see the DOC above.
-+	 */
-+	struct xe_vram_pool partitions[XE_VRAM_MAX_PARTITIONS];
-+	/**
-+	 * @num_partitions: number of valid entries in @partitions
-+	 *
-+	 * Zero for a device aggregate region.
-+	 */
-+	unsigned int num_partitions;
- 	/** @mapping: pointer to VRAM mappable space */
- 	void __iomem *mapping;
- 	/** @ttm: VRAM TTM manager */
+  * xe_map_resource_to_region - Map ttm resource to vram memory region
+  * @res: The ttm resource
+@@ -330,6 +499,7 @@ int xe_vram_probe(struct xe_device *xe)
+ 	remain_io_size = lmem_bar.io_size;
+ 
+ 	for_each_tile(tile, xe, id) {
++		struct xe_vram_region *tile_region;
+ 		u64 region_size;
+ 		u64 usable_size;
+ 		u64 tile_offset;
+@@ -341,7 +511,8 @@ int xe_vram_probe(struct xe_device *xe)
+ 		total_size += region_size;
+ 		available_size += usable_size;
+ 
+-		err = vram_region_init(xe, tile->mem.vram, &lmem_bar, tile_offset, usable_size,
++		tile_region = tile->mem.vram->region;
++		err = vram_region_init(xe, tile_region, &lmem_bar, tile_offset, usable_size,
+ 				       region_size, remain_io_size);
+ 		if (err)
+ 			return err;
+@@ -352,7 +523,7 @@ int xe_vram_probe(struct xe_device *xe)
+ 				    total_size, (u64)lmem_bar.io_size);
+ 		}
+ 
+-		remain_io_size -= min_t(u64, tile->mem.vram->actual_physical_size, remain_io_size);
++		remain_io_size -= min_t(u64, tile_region->actual_physical_size, remain_io_size);
+ 	}
+ 
+ 	err = vram_region_init(xe, xe->mem.vram, &lmem_bar, 0, available_size, total_size,
+@@ -441,19 +612,20 @@ int xe_vram_reserve_memtest_bo(struct xe_device *xe)
+ 		if (!tile->mem.vram)
+ 			continue;
+ 
+-		if (tile->mem.vram->io_size < tile->mem.vram->usable_size) {
++		if (tile->mem.vram->region->io_size < tile->mem.vram->region->usable_size) {
+ 			drm_info(&xe->drm,
+ 				 "Tile %d: Small-BAR system detected, skipping VRAM memtest\n",
+ 				 id);
+ 			continue;
+ 		}
+ 
+-		vram_size = tile->mem.vram->usable_size;
++		vram_size = tile->mem.vram->region->usable_size;
+ 
+ 		tile->mem.memtest_bo = xe_bo_create_pin_map_at_novm(xe, tile, SZ_64K,
+ 								    vram_size - SZ_64K,
+ 								    ttm_bo_type_kernel,
+-								    XE_BO_FLAG_VRAM_IF_DGFX(tile),
++								    XE_BO_FLAG_VRAM_IF_DGFX(tile) |
++								    XE_BO_FLAG_FORCE_USER_VRAM,
+ 								    0, false);
+ 		if (IS_ERR(tile->mem.memtest_bo)) {
+ 			drm_warn(&xe->drm, "Tile %d: Failed to reserve memtest BO\n", id);
+diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
+index 38425d81f777f..1f15ca456f191 100644
+--- a/drivers/gpu/drm/xe/xe_vram.h
++++ b/drivers/gpu/drm/xe/xe_vram.h
+@@ -8,14 +8,24 @@
+ 
+ #include <linux/types.h>
+ 
++#include "xe_vram_types.h"
++
+ struct xe_device;
+-struct xe_vram_region;
++struct xe_tile;
+ struct ttm_resource;
++struct ttm_place;
+ 
+ struct xe_vram_region *xe_map_resource_to_region(struct ttm_resource *res);
+ int xe_vram_probe(struct xe_device *xe);
+ 
+-struct xe_vram_region *xe_vram_region_alloc(struct xe_device *xe, u8 id, u32 placement);
++struct xe_vram_region *xe_vram_region_alloc_device(struct xe_device *xe);
++struct xe_vram_region *xe_vram_region_alloc_tile(struct xe_device *xe, u8 id);
++struct xe_vram_pool *xe_vram_region_default_pool(struct xe_vram_region *vram);
++int xe_vram_tile_alloc_kernel(struct xe_tile *tile);
++
++void xe_vram_pool_place(const struct xe_vram_pool *pool, struct ttm_place *place);
++struct xe_vram_pool *xe_vram_region_addr_to_pool(struct xe_vram_region *vram, u64 addr);
++resource_size_t xe_vram_pool_usable_size(const struct xe_vram_pool *pool);
+ 
+ resource_size_t xe_vram_region_io_start(const struct xe_vram_region *vram);
+ resource_size_t xe_vram_region_io_size(const struct xe_vram_region *vram);
 -- 
 2.34.1
 
