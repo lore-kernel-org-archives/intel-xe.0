@@ -2,55 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95EDC606A31D
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 18:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E629B606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 18:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BYB4Y/l1
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Id5xzuES
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6225510E182;
-	Tue, 20 Oct 2026 18:40:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC8010E182;
- Tue, 20 Oct 2026 18:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B374B10E182;
+	Tue, 20 Oct 2026 18:41:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B72F910E182;
+ Tue, 20 Oct 2026 18:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792521641; x=1824057641;
+ t=1792521677; x=1824057677;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BrvFQRx7MQ4AVz6NNFLuoX58YK4Yw1wAbtf2gR4UsFg=;
- b=BYB4Y/l1qjfpoNQv1eiCF31v5WtaHVpRUht/iazhpcncDZGnZvBQjk7z
- qWTt+k1904N5mWJJjAf11HlOfdZauU17hAq0upG0iwGor1vkplltxl4Xc
- D3Gt26iIhX2wj6sYEJ+9AGSYo558rmiLn3lzOAl8vlfQ75+UPx3+H264R
- 04sqAgjXkpr2rWsUW98qCkvL/iDaPzttYIIIcRAVVjFvmUUzyb5u79X2e
- y5u+kOXq/fvycnHPHGjJbyM57jWnNNbOxzGHxQ1nRh9aOzddSsF5Ck/G8
- if2runlFxFFbKZ57touOtMadPqM1Kadlal9LJNbRm0vX88GiHWSnHkBJ6 Q==;
-X-CSE-ConnectionGUID: xckdjffvTdOmIH1l/0ok8A==
-X-CSE-MsgGUID: x/0+oI2AQL2sYDF4f8mquw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1128777"
+ bh=RE2Ek+WuDXDYJ7P4ek9qF7GLjkdSAbgbtyAae0Jv+rs=;
+ b=Id5xzuESOedroqv0POI813zMN3FzNBp/wwrQ1ndaYiGVxgYY0p7TEgM2
+ 96Hq3fgdB58icWdrrMg3VjGOwNNzHHFVNI70/7b7bYHUAz07dEJqEKDbP
+ zbTZ9PKfR6RZIHIKfiI6UVMoLelWWZFCW6A0+//ayKe2OkAmOy9WnSTfz
+ AMvKm719S6rrhDy7aYF789WwwmcUkQ4CugAAYNMCDDUgpyViRQVX4h7jY
+ 3tSbF/5S7kotDbOc0Tcbvu/3HuD0/1lZR5RD+dRLMzoo8GfTJTcBz96G2
+ 03li0kiieCcVCxWNIlIkcsyK8kAuDy2D55a+U2lJQ9T5JI4+Blz+z8qCQ Q==;
+X-CSE-ConnectionGUID: u5TYNtorSviYTuiA9Uq6Dg==
+X-CSE-MsgGUID: 9MLM1OJ1R6iW4MI9gSPQBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1110780"
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1128777"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 11:40:41 -0700
-X-CSE-ConnectionGUID: ozwJ1CmfRMufxsFycQ8T7A==
-X-CSE-MsgGUID: IMxei2zhSF2Wm7XGfdWXpA==
+   d="scan'208";a="1110780"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 11:41:16 -0700
+X-CSE-ConnectionGUID: m8jh8KvnSa2Sd8Qa1IC1/A==
+X-CSE-MsgGUID: /4eM6QYDTvmrsy3JWLeR7w==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="3219650"
+   d="scan'208";a="2791879"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.238])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 11:40:40 -0700
+ 20 Oct 2026 11:41:16 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 09/15] drm/i915/pfit: Populate crtc_state->pfit.dst on GMCH
- platforms
-Date: Tue, 20 Oct 2026 21:40:36 +0300
-Message-ID: <20261020184036.5426-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 15/15] drm/i915/pfit: Allow downscaling on i966+
+Date: Tue, 20 Oct 2026 21:41:11 +0300
+Message-ID: <20261020184111.5513-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261019135309.23578-10-ville.syrjala@linux.intel.com>
-References: <20261019135309.23578-10-ville.syrjala@linux.intel.com>
+In-Reply-To: <20261019135309.23578-16-ville.syrjala@linux.intel.com>
+References: <20261019135309.23578-16-ville.syrjala@linux.intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -76,424 +75,31 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Populate crtc_state->pfit.dst on GMCH platforms. Since
-(unlike ILK+) we don't actually program the pfit window
-coordinates to the hardware we need to compute the coordinates
-based on the scaling factor the hardware will use (whether
-that'll be the manually programmed thing on pre-i965 or
-the automagic thing on i965+). As long as we do the computation
-the same way .compute_config() and readout we'll get matching
-results, which is important to the state checker.
+The i965+ panel fitter supports downscaling. Allow it.
 
-Note that the automagic scaling factors on i965+ are slightly
-weird in that only one of the scaling factors in the register
-will read out correctly in the letterbox/pillabox modes. So
-the readout will have to know which direction has the correct
-information.
-
-v2: Protect against bogus PFIT_SCALING_MASK value (sashiko)
+v2: Limit to <2.0 instead of <=2.0 (sashiko)
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- .../drm/i915/display/intel_crtc_state_dump.c  |  10 +-
- drivers/gpu/drm/i915/display/intel_pfit.c     | 234 +++++++++++++-----
- drivers/gpu/drm/i915/display/intel_pfit.h     |   2 +
- .../gpu/drm/i915/display/intel_pfit_regs.h    |   4 +-
- 4 files changed, 187 insertions(+), 63 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pfit.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index f30d07bc6b07..9220c73d2f5e 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -355,11 +355,11 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 			   pipe_config->gmch_pfit.control,
- 			   pipe_config->gmch_pfit.pgm_ratios,
- 			   pipe_config->gmch_pfit.lvds_border_bits);
--	else
--		drm_printf(&p, "pfit: " DRM_RECT_FMT ", %s, force thru: %s\n",
--			   DRM_RECT_ARG(&pipe_config->pfit.dst),
--			   str_enabled_disabled(pipe_config->pfit.enabled),
--			   str_yes_no(pipe_config->pfit.force_thru));
-+
-+	drm_printf(&p, "pfit: " DRM_RECT_FMT ", %s, force thru: %s\n",
-+		   DRM_RECT_ARG(&pipe_config->pfit.dst),
-+		   str_enabled_disabled(pipe_config->pfit.enabled),
-+		   str_yes_no(pipe_config->pfit.force_thru));
- 
- 	drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpness enable: %d\n",
- 		   pipe_config->pfit.casf.strength,
 diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-index 5d519f45adbe..a322c7766772 100644
+index 42d087b406e0..293ec2aae095 100644
 --- a/drivers/gpu/drm/i915/display/intel_pfit.c
 +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-@@ -353,6 +353,35 @@ static u32 panel_fitter_scaling(u32 source, u32 target)
- 	return DIV_ROUND_CLOSEST(source << 12, target);
- }
+@@ -563,7 +563,10 @@ static int i9xx_pfit_check_scaling(const struct intel_crtc_state *crtc_state)
+ 	int hscale, vscale, max_scale;
+ 	struct drm_rect src;
  
-+static void i9xx_compute_pfit_dst(struct intel_crtc_state *crtc_state,
-+				  u32 hscale, u32 vscale)
-+{
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-+	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
-+	int x, y, width, height;
-+
-+	/* don't explode if the hw state was gibberish */
-+	if (hscale == 0)
-+		hscale = 1 << 12;
-+	if (vscale == 0)
-+		vscale = 1 << 12;
-+
-+	width = DIV_ROUND_CLOSEST(pipe_src_w << 12, hscale);
-+	height = DIV_ROUND_CLOSEST(pipe_src_h << 12, vscale);
-+
-+	width = min(width, adjusted_mode->crtc_hdisplay);
-+	height = min(height, adjusted_mode->crtc_vdisplay);
-+
-+	x = DIV_ROUND_CLOSEST(adjusted_mode->crtc_hdisplay - width, 2);
-+	y = DIV_ROUND_CLOSEST(adjusted_mode->crtc_vdisplay - height, 2);
-+
-+	crtc_state->pfit.enabled = true;
-+
-+	drm_rect_init(&crtc_state->pfit.dst, x, y, width, height);
-+}
-+
- static void i965_scale_aspect(struct intel_crtc_state *crtc_state,
- 			      u32 *pfit_control)
- {
-@@ -362,16 +391,54 @@ static void i965_scale_aspect(struct intel_crtc_state *crtc_state,
- 	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
- 	u32 scaled_width = adjusted_mode->crtc_hdisplay * pipe_src_h;
- 	u32 scaled_height = pipe_src_w * adjusted_mode->crtc_vdisplay;
-+	u32 hscale, vscale;
+-	max_scale = 0x10000;
++	if (DISPLAY_VER(display) >= 4)
++		max_scale = 0x20000 - 1;
++	else
++		max_scale = 0x10000;
  
- 	/* 965+ is easy, it does everything in hw */
--	if (scaled_width > scaled_height)
-+	if (scaled_width > scaled_height) {
- 		*pfit_control |= PFIT_ENABLE |
- 			PFIT_SCALING_PILLAR;
--	else if (scaled_width < scaled_height)
-+
-+		vscale = panel_fitter_scaling(pipe_src_h, adjusted_mode->crtc_vdisplay);
-+		hscale = vscale;
-+
-+		i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
-+	} else if (scaled_width < scaled_height) {
- 		*pfit_control |= PFIT_ENABLE |
- 			PFIT_SCALING_LETTER;
--	else if (adjusted_mode->crtc_hdisplay != pipe_src_w)
-+
-+		hscale = panel_fitter_scaling(pipe_src_w, adjusted_mode->crtc_hdisplay);
-+		vscale = hscale;
-+
-+		i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
-+	} else if (adjusted_mode->crtc_hdisplay != pipe_src_w) {
- 		*pfit_control |= PFIT_ENABLE | PFIT_SCALING_AUTO;
-+
-+		hscale = panel_fitter_scaling(pipe_src_w, adjusted_mode->crtc_hdisplay);
-+		vscale = panel_fitter_scaling(pipe_src_h, adjusted_mode->crtc_vdisplay);
-+
-+		i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
-+	}
-+}
-+
-+static void i965_scale_fullscreen(struct intel_crtc_state *crtc_state,
-+				  u32 *pfit_control)
-+{
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-+	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
-+	u32 hscale, vscale;
-+
-+	if (pipe_src_h == adjusted_mode->crtc_vdisplay &&
-+	    pipe_src_w == adjusted_mode->crtc_hdisplay)
-+		return;
-+
-+	*pfit_control |= PFIT_ENABLE | PFIT_SCALING_AUTO;
-+
-+	hscale = panel_fitter_scaling(pipe_src_w, adjusted_mode->crtc_hdisplay);
-+	vscale = panel_fitter_scaling(pipe_src_h, adjusted_mode->crtc_vdisplay);
-+
-+	i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
- }
+ 	drm_rect_init(&src, 0, 0, pipe_src_w << 16, pipe_src_h << 16);
  
- static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
-@@ -383,7 +450,7 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
- 	u32 scaled_width = adjusted_mode->crtc_hdisplay * pipe_src_h;
- 	u32 scaled_height = pipe_src_w * adjusted_mode->crtc_vdisplay;
--	u32 bits;
-+	u32 hscale, vscale;
- 
- 	/*
- 	 * For earlier chips we have to calculate the scaling
-@@ -396,14 +463,16 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 
- 		*border = LVDS_BORDER_ENABLE;
- 		if (pipe_src_h != adjusted_mode->crtc_vdisplay) {
--			bits = panel_fitter_scaling(pipe_src_h,
--						    adjusted_mode->crtc_vdisplay);
-+			vscale = panel_fitter_scaling(pipe_src_h, adjusted_mode->crtc_vdisplay);
-+			hscale = vscale;
- 
--			*pfit_pgm_ratios |= (PFIT_HORIZ_SCALE(bits) |
--					     PFIT_VERT_SCALE(bits));
-+			*pfit_pgm_ratios |= (PFIT_HORIZ_SCALE(hscale) |
-+					     PFIT_VERT_SCALE(vscale));
- 			*pfit_control |= (PFIT_ENABLE |
- 					  PFIT_VERT_INTERP_BILINEAR |
- 					  PFIT_HORIZ_INTERP_BILINEAR);
-+
-+			i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
- 		}
- 	} else if (scaled_width < scaled_height) { /* letter */
- 		centre_vertically(adjusted_mode,
-@@ -411,14 +480,16 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 
- 		*border = LVDS_BORDER_ENABLE;
- 		if (pipe_src_w != adjusted_mode->crtc_hdisplay) {
--			bits = panel_fitter_scaling(pipe_src_w,
--						    adjusted_mode->crtc_hdisplay);
-+			vscale = panel_fitter_scaling(pipe_src_w, adjusted_mode->crtc_hdisplay);
-+			hscale = vscale;
- 
--			*pfit_pgm_ratios |= (PFIT_HORIZ_SCALE(bits) |
--					     PFIT_VERT_SCALE(bits));
-+			*pfit_pgm_ratios |= (PFIT_HORIZ_SCALE(hscale) |
-+					     PFIT_VERT_SCALE(vscale));
- 			*pfit_control |= (PFIT_ENABLE |
- 					  PFIT_VERT_INTERP_BILINEAR |
- 					  PFIT_HORIZ_INTERP_BILINEAR);
-+
-+			i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
- 		}
- 	} else {
- 		/* Aspects match, Let hw scale both directions */
-@@ -427,9 +498,40 @@ static void i9xx_scale_aspect(struct intel_crtc_state *crtc_state,
- 				  PFIT_HORIZ_AUTO_SCALE |
- 				  PFIT_VERT_INTERP_BILINEAR |
- 				  PFIT_HORIZ_INTERP_BILINEAR);
-+
-+		hscale = panel_fitter_scaling(pipe_src_w, adjusted_mode->crtc_hdisplay);
-+		vscale = panel_fitter_scaling(pipe_src_h, adjusted_mode->crtc_vdisplay);
-+
-+		i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
- 	}
- }
- 
-+static void i9xx_scale_fullscreen(struct intel_crtc_state *crtc_state,
-+				  u32 *pfit_control, u32 *pfit_pgm_ratios,
-+				  u32 *border)
-+{
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-+	int pipe_src_h = drm_rect_height(&crtc_state->pipe_src);
-+	u32 hscale, vscale;
-+
-+	if (pipe_src_h == adjusted_mode->crtc_vdisplay &&
-+	    pipe_src_w == adjusted_mode->crtc_hdisplay)
-+		return;
-+
-+	*pfit_control |= (PFIT_ENABLE |
-+			  PFIT_VERT_AUTO_SCALE |
-+			  PFIT_HORIZ_AUTO_SCALE |
-+			  PFIT_VERT_INTERP_BILINEAR |
-+			  PFIT_HORIZ_INTERP_BILINEAR);
-+
-+	hscale = panel_fitter_scaling(pipe_src_w, adjusted_mode->crtc_hdisplay);
-+	vscale = panel_fitter_scaling(pipe_src_h, adjusted_mode->crtc_vdisplay);
-+
-+	i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
-+}
-+
- static int i9xx_pfit_check_timings(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -478,27 +580,18 @@ static int i9xx_pfit_compute_config(struct intel_crtc_state *crtc_state,
- 	    adjusted_mode->crtc_vdisplay == pipe_src_h)
- 		goto out;
- 
--	/*
--	 * TODO: implement downscaling for i965+. Need to account
--	 * for downscaling in intel_crtc_compute_pixel_rate().
--	 */
--	if (adjusted_mode->crtc_hdisplay < pipe_src_w) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] pfit horizontal downscaling (%d->%d) not supported\n",
--			    crtc->base.base.id, crtc->base.name,
--			    pipe_src_w, adjusted_mode->crtc_hdisplay);
--		return -EINVAL;
--	}
--	if (adjusted_mode->crtc_vdisplay < pipe_src_h) {
--		drm_dbg_kms(display->drm,
--			    "[CRTC:%d:%s] pfit vertical downscaling (%d->%d) not supported\n",
--			    crtc->base.base.id, crtc->base.name,
--			    pipe_src_h, adjusted_mode->crtc_vdisplay);
--		return -EINVAL;
--	}
--
- 	switch (conn_state->scaling_mode) {
- 	case DRM_MODE_SCALE_CENTER:
-+		if (adjusted_mode->crtc_hdisplay < pipe_src_w ||
-+		    adjusted_mode->crtc_vdisplay < pipe_src_h) {
-+			drm_dbg_kms(display->drm,
-+				    "[CRTC:%d:%s] pfit center mode source (%dx%d) exceeds display (%dx%d)\n",
-+				    crtc->base.base.id, crtc->base.name,
-+				    pipe_src_w, pipe_src_h,
-+				    adjusted_mode->crtc_hdisplay,
-+				    adjusted_mode->crtc_vdisplay);
-+			return -EINVAL;
-+		}
- 		/*
- 		 * For centered modes, we have to calculate border widths &
- 		 * heights and modify the values programmed into the CRTC.
-@@ -516,21 +609,11 @@ static int i9xx_pfit_compute_config(struct intel_crtc_state *crtc_state,
- 					  &pfit_pgm_ratios, &border);
- 		break;
- 	case DRM_MODE_SCALE_FULLSCREEN:
--		/*
--		 * Full scaling, even if it changes the aspect ratio.
--		 * Fortunately this is all done for us in hw.
--		 */
--		if (pipe_src_h != adjusted_mode->crtc_vdisplay ||
--		    pipe_src_w != adjusted_mode->crtc_hdisplay) {
--			pfit_control |= PFIT_ENABLE;
--			if (DISPLAY_VER(display) >= 4)
--				pfit_control |= PFIT_SCALING_AUTO;
--			else
--				pfit_control |= (PFIT_VERT_AUTO_SCALE |
--						 PFIT_VERT_INTERP_BILINEAR |
--						 PFIT_HORIZ_AUTO_SCALE |
--						 PFIT_HORIZ_INTERP_BILINEAR);
--		}
-+		if (DISPLAY_VER(display) >= 4)
-+			i965_scale_fullscreen(crtc_state, &pfit_control);
-+		else
-+			i9xx_scale_fullscreen(crtc_state, &pfit_control,
-+					      &pfit_pgm_ratios, &border);
- 		break;
- 	default:
- 		MISSING_CASE(conn_state->scaling_mode);
-@@ -716,19 +799,42 @@ static void i965_pfit_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+	u32 hscale, vscale, control, ratios;
- 	enum pipe pipe;
--	u32 tmp;
- 
--	tmp = intel_de_read(display, PFIT_CONTROL(display));
--	if (!(tmp & PFIT_ENABLE))
-+	control = intel_de_read(display, PFIT_CONTROL(display));
-+	if (!(control & PFIT_ENABLE))
- 		return;
- 
- 	/* Check whether the pfit is attached to our pipe. */
--	pipe = REG_FIELD_GET(PFIT_PIPE_MASK, tmp);
-+	pipe = REG_FIELD_GET(PFIT_PIPE_MASK, control);
- 	if (pipe != crtc->pipe)
- 		return;
- 
--	crtc_state->gmch_pfit.control = tmp;
-+	crtc_state->gmch_pfit.control = control;
-+
-+	ratios = intel_de_read(display, PFIT_PGM_RATIOS(display));
-+
-+	switch (control & PFIT_SCALING_MASK) {
-+	case PFIT_SCALING_LETTER:
-+		hscale = REG_FIELD_GET(PFIT_HORIZ_SCALE_MASK_965, ratios);
-+		vscale = hscale; /* PFIT_VERT_SCALE_MASK_965 contains garbage */
-+		break;
-+	case PFIT_SCALING_PILLAR:
-+		vscale = REG_FIELD_GET(PFIT_VERT_SCALE_MASK_965, ratios);
-+		hscale = vscale; /* PFIT_HORIZ_SCALE_MASK_965 contains garbage */
-+		break;
-+	case PFIT_SCALING_AUTO:
-+	case PFIT_SCALING_PROGRAMMED:
-+		hscale = REG_FIELD_GET(PFIT_HORIZ_SCALE_MASK_965, ratios);
-+		vscale = REG_FIELD_GET(PFIT_VERT_SCALE_MASK_965, ratios);
-+		break;
-+	default:
-+		MISSING_CASE(control & PFIT_SCALING_MASK);
-+		return;
-+	}
-+
-+	i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
- }
- 
- static bool i9xx_has_pfit(struct intel_crtc *crtc)
-@@ -748,18 +854,32 @@ static void i9xx_pfit_get_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	u32 tmp;
-+	u32 hscale, vscale, control, ratios;
- 
- 	if (!i9xx_has_pfit(crtc))
- 		return;
- 
--	tmp = intel_de_read(display, PFIT_CONTROL(display));
--	if (!(tmp & PFIT_ENABLE))
-+	control = intel_de_read(display, PFIT_CONTROL(display));
-+	if (!(control & PFIT_ENABLE))
- 		return;
- 
--	crtc_state->gmch_pfit.control = tmp;
--	crtc_state->gmch_pfit.pgm_ratios =
--		intel_de_read(display, PFIT_PGM_RATIOS(display));
-+	crtc_state->gmch_pfit.control = control;
-+
-+	ratios = intel_de_read(display, PFIT_AUTO_RATIOS(display));
-+	if (control & PFIT_HORIZ_AUTO_SCALE)
-+		hscale = REG_FIELD_GET(PFIT_HORIZ_SCALE_MASK, ratios);
-+	if (control & PFIT_VERT_AUTO_SCALE)
-+		vscale = REG_FIELD_GET(PFIT_VERT_SCALE_MASK, ratios);
-+
-+	ratios = intel_de_read(display, PFIT_PGM_RATIOS(display));
-+	if ((control & PFIT_HORIZ_AUTO_SCALE) == 0)
-+		hscale = REG_FIELD_GET(PFIT_HORIZ_SCALE_MASK, ratios);
-+	if ((control & PFIT_VERT_AUTO_SCALE) == 0)
-+		vscale = REG_FIELD_GET(PFIT_VERT_SCALE_MASK, ratios);
-+
-+	crtc_state->gmch_pfit.pgm_ratios = ratios;
-+
-+	i9xx_compute_pfit_dst(crtc_state, hscale, vscale);
- }
- 
- void intel_pfit_get_config(struct intel_crtc_state *crtc_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_pfit.h b/drivers/gpu/drm/i915/display/intel_pfit.h
-index 184e1932eae5..f1162b37d407 100644
---- a/drivers/gpu/drm/i915/display/intel_pfit.h
-+++ b/drivers/gpu/drm/i915/display/intel_pfit.h
-@@ -6,6 +6,8 @@
- #ifndef __INTEL_PFIT_H__
- #define __INTEL_PFIT_H__
- 
-+#include <linux/types.h>
-+
- enum drm_mode_status;
- struct drm_display_mode;
- struct drm_connector_state;
-diff --git a/drivers/gpu/drm/i915/display/intel_pfit_regs.h b/drivers/gpu/drm/i915/display/intel_pfit_regs.h
-index add8ce28004e..a83ac3b20ca3 100644
---- a/drivers/gpu/drm/i915/display/intel_pfit_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_pfit_regs.h
-@@ -34,9 +34,11 @@
- #define   PFIT_HORIZ_SCALE_MASK		REG_GENMASK(15, 4) /* pre-965 */
- #define   PFIT_HORIZ_SCALE(x)		REG_FIELD_PREP(PFIT_HORIZ_SCALE_MASK, (x))
- #define   PFIT_VERT_SCALE_MASK_965	REG_GENMASK(28, 16) /* 965+ */
-+#define   PFIT_VERT_SCALE_965(x)	REG_FIELD_PREP(PFIT_VERT_SCALE_MASK_965, (x))
- #define   PFIT_HORIZ_SCALE_MASK_965	REG_GENMASK(12, 0) /* 965+ */
-+#define   PFIT_HORIZ_SCALE_965(x)	REG_FIELD_PREP(PFIT_HORIZ_SCALE_MASK_965, (x))
- 
--#define PFIT_AUTO_RATIOS(dev_priv) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61238)
-+#define PFIT_AUTO_RATIOS(dev_priv) _MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61238) /* pre-965 */
- 
- /* CPU panel fitter */
- /* IVB+ has 3 fitters, 0 is 7x5 capable, the other two only 3x3 */
 -- 
 2.55.0
 
