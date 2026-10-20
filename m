@@ -2,58 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45AC606A319
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 02:37:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bqUfkiGo
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA480606A319
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 03:05:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C33910E2FA;
-	Tue, 20 Oct 2026 02:37:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5820310E212
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 02:37:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792463866; x=1823999866;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ne4gf3D+91CeB7KSo+KVl/eLu5nBYINeGteMnUkRAqE=;
- b=bqUfkiGoSfDMYfwIDCixhGV3SfRk8crYNIYoOYxpH0TZgwlao+bA20iv
- Fl1EZliFZ3UXdEDPurQ/0HacnA7Ez8opTRHk7zSERLyVhopXe7CVSVrfy
- vy7Nx2lVUylm8z/QjqGai2N5tXxNdGpdeDbfOWRh5x/Supq4uFD3Hu4HJ
- VUFhaThUU0i8meManuASqU5vl5BWAcCidyotBjIAPsrru4n3C0Y/A7UYy
- bpJaOe1XWV//VjI6cowy6iNNYV1DVkUUSWt7dE55S9j126wxQt6ZXUIM4
- HZeIR2POPEaWEyww3P4RjmxC+CoRAzdygxxM9nFVcjFYjnrRaxX95in4H A==;
-X-CSE-ConnectionGUID: WCk/prKNS2+d9wi80H/iPA==
-X-CSE-MsgGUID: 9URsoAApQy2aKzHJAnG2wQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11940"; a="1040815"
-X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1040815"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2026 19:37:46 -0700
-X-CSE-ConnectionGUID: 71sy++gHTiqLoxGmOUTSrQ==
-X-CSE-MsgGUID: RKlfD6OHQXqKEKkn4jPJXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="2648769"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa005.jf.intel.com with ESMTP; 19 Oct 2026 19:37:44 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
- matthew.d.roper@intel.com, matthew.brost@intel.com,
- mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v13 9/9] drm/xe/ras: Move xe_ras_process_errors() to xe_ras
-Date: Tue, 20 Oct 2026 08:06:09 +0530
-Message-ID: <20261020023641.200658-10-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261020023641.200658-1-raag.jadav@intel.com>
-References: <20261020023641.200658-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BAEB10E55C;
+	Tue, 20 Oct 2026 03:05:47 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DC910E55C;
+ Tue, 20 Oct 2026 03:05:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7683451763586234765=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_clear_and_re?=
+ =?utf-8?q?store_MSTM=5FCTRL_around_MST_DPMS_off/on_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Xiao Lu" <xiaolu.xie@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Oct 2026 03:05:46 -0000
+Message-ID: <179246554632.43894.9309953620280031767@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261014081448.2320363-1-xiaolu.xie@intel.com>
+In-Reply-To: <20261014081448.2320363-1-xiaolu.xie@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With xe_wedge_fini() now moved to xe_wedge and registered as part of
-xe_device_probe_early(), it is safe to move xe_ras_process_errors() back
-to xe_ras where it belongs. This essentially reverts commit 20bc4883c7c0
-("drm/xe/ras: Fix boot-time ras error processing"), which was added to
-prevent PM reference leak in case of early wedging in probe sequence.
+--===============7683451763586234765==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 7 -------
- drivers/gpu/drm/xe/xe_ras.c    | 7 +++++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9de173995a78..a07655b4c7a9 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1091,13 +1091,6 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	detect_preproduction_hw(xe);
- 
--	/*
--	 * Process and log any errors detected by hardware. Possible results can
--	 * include declaring the device as wedged, which must be done only after
--	 * xe_wedge_fini() is registered.
--	 */
--	xe_ras_process_errors(xe);
--
- 	err = devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 	if (err)
- 		goto err_unregister_display;
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 0072bb4cc5df..db3cbc186a51 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -1212,6 +1212,13 @@ int xe_ras_init(struct xe_device *xe)
- 	get_offline_list(xe);
- 	get_offline_queue(xe);
- 
-+	/*
-+	 * During probe, process and log any errors detected by firmware while the driver was not
-+	 * loaded. Critical errors such as Punit and CSC are reported through Pcode init failure,
-+	 * causing the driver to enter survivability mode.
-+	 */
-+	xe_ras_process_errors(xe);
-+
- 	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
- 	if (ret)
- 		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
--- 
-2.43.0
+Series: drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS off/on (rev2)
+URL   : https://patchwork.freedesktop.org/series/176106/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-5980-24d867f5e671c78760ab39087a57c25ad98e1f42_BAT -> xe-pw-176106v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5980-24d867f5e671c78760ab39087a57c25ad98e1f42 -> xe-pw-176106v2
+
+  IGT_9153: 9153
+  xe-5980-24d867f5e671c78760ab39087a57c25ad98e1f42: 24d867f5e671c78760ab39087a57c25ad98e1f42
+  xe-pw-176106v2: 176106v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176106v2/index.html
+
+--===============7683451763586234765==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: clear and restore MSTM_CTRL around MST DPMS off/on (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176106/">https://patchwork.freedesktop.org/series/176106/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176106v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176106v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5980-24d867f5e671c78760ab39087a57c25ad98e1f42_BAT -&gt; xe-pw-176106v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5980-24d867f5e671c78760ab39087a57c25ad98e1f42 -&gt; xe-pw-176106v2</li>
+</ul>
+<p>IGT_9153: 9153<br />
+  xe-5980-24d867f5e671c78760ab39087a57c25ad98e1f42: 24d867f5e671c78760ab39087a57c25ad98e1f42<br />
+  xe-pw-176106v2: 176106v2</p>
+
+</body>
+</html>
+
+--===============7683451763586234765==--
