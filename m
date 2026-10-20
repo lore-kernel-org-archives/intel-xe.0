@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F03606A31B
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 16:57:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17A4606A326
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 17:03:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CAC410E05E;
-	Tue, 20 Oct 2026 16:57:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE95710EC21;
+	Tue, 20 Oct 2026 17:03:53 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8CCE10E05E;
- Tue, 20 Oct 2026 16:57:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD9210EC21;
+ Tue, 20 Oct 2026 17:03:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/i915/display=3A_reduce_clo?=
- =?utf-8?q?ck=5Fgating_interface_between_core_and_display_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe=3A_Tie_BO_TTM_LRU_prior?=
+ =?utf-8?q?ity_to_DONTNEED/WILLNEED_madvise_state?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 20 Oct 2026 16:57:01 -0000
-Message-ID: <179251542181.47616.16138558220136992309@221881a7231d>
+Date: Tue, 20 Oct 2026 17:03:52 -0000
+Message-ID: <179251583219.47616.7534796526224178707@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261020090723.803321-1-luciano.coelho@intel.com>
-In-Reply-To: <20261020090723.803321-1-luciano.coelho@intel.com>
+References: <20261020165137.765886-1-matthew.brost@intel.com>
+In-Reply-To: <20261020165137.765886-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,8 +42,8 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 == Series Details ==
 
-Series: drm/i915/display: reduce clock_gating interface between core and display (rev4)
-URL   : https://patchwork.freedesktop.org/series/172330/
+Series: drm/xe: Tie BO TTM LRU priority to DONTNEED/WILLNEED madvise state
+URL   : https://patchwork.freedesktop.org/series/176498/
 State : failure
 
 == Summary ==
@@ -53,38 +53,38 @@ State : failure
 + for kcfg in "${kunitconfigs[@]}"
 + [[ ! -f /kernel/drivers/gpu/tests/.kunitconfig ]]
 + /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/tests/.kunitconfig
-[16:55:55] Configuring KUnit Kernel ...
+[17:02:46] Configuring KUnit Kernel ...
 Generating .config ...
 Populating config with:
 $ make ARCH=um O=.kunit olddefconfig
-[16:56:00] Building KUnit Kernel ...
+[17:02:50] Building KUnit Kernel ...
 Populating config with:
 $ make ARCH=um O=.kunit olddefconfig
 Building with:
 $ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-[16:56:21] Starting KUnit Kernel (1/1)...
-[16:56:21] ============================================================
+[17:03:11] Starting KUnit Kernel (1/1)...
+[17:03:11] ============================================================
 Running tests with:
 $ .kunit/linux kunit.enable=1 mem=1G console=tty kunit_shutdown=halt
-[16:56:21] ================= gpu_buddy (14 subtests) ==================
-[16:56:21] [PASSED] gpu_test_buddy_alloc_limit
-[16:56:21] [PASSED] gpu_test_buddy_alloc_optimistic
-[16:56:21] [PASSED] gpu_test_buddy_alloc_pessimistic
-[16:56:21] [PASSED] gpu_test_buddy_alloc_pathological
-[16:56:21] [PASSED] gpu_test_buddy_alloc_contiguous
-[16:56:21] [PASSED] gpu_test_buddy_alloc_clear
-[16:56:21] [PASSED] gpu_test_buddy_alloc_range
-[16:56:21] [PASSED] gpu_test_buddy_alloc_range_bias
-[16:56:22] [PASSED] gpu_test_buddy_fragmentation_performance
-[16:56:23] [PASSED] gpu_test_buddy_dirty_tracker_performance
-[16:56:23] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
-[16:56:23] [PASSED] gpu_test_buddy_offset_aligned_allocation
-[16:56:23] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
-[16:56:23] [PASSED] gpu_test_buddy_addr_to_block
-[16:56:23] ==================== [PASSED] gpu_buddy ====================
-[16:56:23] ============================================================
-[16:56:23] Testing complete. Ran 14 tests: passed: 14
-[16:56:23] Elapsed time: 27.356s total, 4.540s configuring, 20.697s building, 2.047s running
+[17:03:11] ================= gpu_buddy (14 subtests) ==================
+[17:03:11] [PASSED] gpu_test_buddy_alloc_limit
+[17:03:11] [PASSED] gpu_test_buddy_alloc_optimistic
+[17:03:11] [PASSED] gpu_test_buddy_alloc_pessimistic
+[17:03:11] [PASSED] gpu_test_buddy_alloc_pathological
+[17:03:11] [PASSED] gpu_test_buddy_alloc_contiguous
+[17:03:11] [PASSED] gpu_test_buddy_alloc_clear
+[17:03:11] [PASSED] gpu_test_buddy_alloc_range
+[17:03:11] [PASSED] gpu_test_buddy_alloc_range_bias
+[17:03:12] [PASSED] gpu_test_buddy_fragmentation_performance
+[17:03:13] [PASSED] gpu_test_buddy_dirty_tracker_performance
+[17:03:13] [PASSED] gpu_test_buddy_alloc_exceeds_max_order
+[17:03:13] [PASSED] gpu_test_buddy_offset_aligned_allocation
+[17:03:13] [PASSED] gpu_test_buddy_subtree_offset_alignment_stress
+[17:03:13] [PASSED] gpu_test_buddy_addr_to_block
+[17:03:13] ==================== [PASSED] gpu_buddy ====================
+[17:03:13] ============================================================
+[17:03:13] Testing complete. Ran 14 tests: passed: 14
+[17:03:13] Elapsed time: 27.120s total, 4.475s configuring, 20.777s building, 1.826s running
 
 + for kcfg in "${kunitconfigs[@]}"
 + [[ ! -f /kernel/drivers/gpu/drm/xe/.kunitconfig ]]
@@ -132,11 +132,11 @@ make[2]: *** [/kernel/Makefile:2229: .] Error 2
 make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
 make: *** [Makefile:248: __sub-make] Error 2
 
-[16:56:23] Configuring KUnit Kernel ...
+[17:03:13] Configuring KUnit Kernel ...
 Regenerating .config ...
 Populating config with:
 $ make ARCH=um O=.kunit olddefconfig
-[16:56:25] Building KUnit Kernel ...
+[17:03:15] Building KUnit Kernel ...
 Populating config with:
 $ make ARCH=um O=.kunit olddefconfig
 Building with:
