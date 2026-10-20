@@ -2,152 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC11606A322
-	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 20:19:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JQXd2cJr
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB99606A31E
+	for <intel-xe@archiver.kernel.org>; Tue, 20 Oct 2026 20:20:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF36C10E1CB;
-	Tue, 20 Oct 2026 20:19:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B47EC10E1CB
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Oct 2026 20:19:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792527561; x=1824063561;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=GpBj19YqfISk/gZi8Wp0Df19YyYUgXKJJ+Bb7sX8Udg=;
- b=JQXd2cJrdaEUys7MZgicOmrLUNxsZyZNYnKISq6Y6D0gT1a+VxBi9ZK4
- ft7vNYOjF/lh8CGr1n/mnhSxH8XNKyiJ9GL9KbAx20FggupOw4G835HBo
- wjWZjTqNUEDGZXdOjgx8N1d0RDwthrjWuhA1owSzCNXDzuxhh1zMsEvmx
- W4F3h+VxWYLWzYEQGBW05OWge/jGo0iDjvIiDdzapq+g+IJSF03jrOI48
- ztH6XrteYKb2KBZl6hj+LUY4OilZOB+TOMumRuufUhXwhfFTYRB+D7Ysn
- kJ/pi4y1OCofHL48A53gXPQRZdtUw1/q5RmFaU8Bu+fI2dgwuha45VBLN w==;
-X-CSE-ConnectionGUID: 9pw8NdAJQF6sleCfGY13uQ==
-X-CSE-MsgGUID: TyAKL24GTXya8AO6dNCdbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1119711"
-X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="1119711"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 13:19:20 -0700
-X-CSE-ConnectionGUID: NW82TNYqTB669VlH2qVvig==
-X-CSE-MsgGUID: Q93+BMmYT3CulNou8xmixA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,168,1787036400"; 
-   d="scan'208";a="3234954"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 13:19:20 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 13:19:19 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 13:19:19 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.0) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 13:19:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B0k7BBLp4E5rzMpK3sBFxHRMHNlNhcWZ6s+Ch5/Y7gOiQXtixmMHHle+zb9wRBNBq/1dr3/zjKFdTlwpi9FQ+geVuRyHyP3rseX8t3btvMU7UepP/rOqbZCezogyTt/YDfNbxz12TbgQiF2vr9VDUloiinlhhVZZOk36cX9f3Fa5U6DaInwasWK5Y3VoZ42w2xbl+TUa4Qh15+mtL0bPKZN+mYDSV5waZ7igIbBhJopvysLR1QvlY2j5sEXdrLvb8guDfxCehnVRWLMzR9GvCvBJOaDxUW6PIq8o19sVG0g6RHoh1r9ojIcT3TcZEOOuilpDmidvjv/QrtJ3i6jtyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MvUmOCvV3oQ29NYxHhaM9DFLCTYN/+8SXtBknYaflDY=;
- b=ro02hYS1FvLxIrMxE4A5rl5xE/MOgonZpMba2yjSnV5nSux9ElZPL9eI56yD0ysVGc6/m3rhIcHDOLH45489clOTwPKgROjLQ0ENaUIJiex9PZM2un5gM9suNctLjIrwB6LZHT77j3mJPGesTQ7I0mgzWxV/jSlKOTk3ldzxMgxxT7rcqWitDItFkFiv7BQZPQqWbROJXKvfsgFLsjmIAcynYwDF4R+U1AnJ21AWvFjOSVV3sIEu9nXQG44VcxI77znC6aN+xPqpRaCZcTsPoOomAMOYPEZZKef3BYbohKQ8otxSuhK/qY/2eirQlWX7rpgyYp+h+ugjGounCrwSNQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH3PR11MB7180.namprd11.prod.outlook.com (2603:10b6:610:148::5)
- by SN7PR11MB7667.namprd11.prod.outlook.com (2603:10b6:806:32a::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Tue, 20 Oct
- 2026 20:19:16 +0000
-Received: from CH3PR11MB7180.namprd11.prod.outlook.com
- ([fe80::70dc:90b2:50b4:31a8]) by CH3PR11MB7180.namprd11.prod.outlook.com
- ([fe80::70dc:90b2:50b4:31a8%7]) with mapi id 15.21.0522.017; Tue, 20 Oct 2026
- 20:19:16 +0000
-Date: Tue, 20 Oct 2026 16:19:12 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>, <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/xe: Don't fail runtime suspend permanently on VRAM
- eviction -ENOMEM
-Message-ID: <atfMwPZB4l01xna5@intel.com>
-References: <20261020100545.46715-1-thomas.hellstrom@linux.intel.com>
- <atduGDrVk7kc-PPe@intel.com>
- <ateSC6dTa0M3Qc8n@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ateSC6dTa0M3Qc8n@gsse-cloud1.jf.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0013.namprd13.prod.outlook.com
- (2603:10b6:a03:2c0::18) To CH3PR11MB7180.namprd11.prod.outlook.com
- (2603:10b6:610:148::5)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3B610E1CB;
+	Tue, 20 Oct 2026 20:20:27 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C17110E1CB;
+ Tue, 20 Oct 2026 20:20:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4801984009922627181=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR11MB7180:EE_|SN7PR11MB7667:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2c12d28d-197d-47da-279c-08df2ee769fc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|56012099006|4143699003|11063799006|261009223027099003|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: mYkHcKcMEMfhVcUBo4NvI41uCtMVDprihHnvCpps5q2IrvfGwVRaFrDVwrwFentxf3euKLm9teNLMgAwputcT2wbqADv//fE1T5tCnXXWy7gHi4MExTCB8t5AmGH2PJqgorjXpzUpM1rLZmR2YJHEEi1RzzKQfjJ5ehf+AlUcyTmSB9yfhHj3E/Dzx70Z5Lg4p/0exBZV/rmbJsLA21VNbZdtnhFGoaaCOGmQ8ibGYzhUmmLq9Kc8cFNszTTIlDUyeacWRHyXaWjcNfoiFJ8u0vqlNsi5fXQQee5QNig6l0NbrgI1stde+V0zD2+0EGkSYIHPVUxmpDPd38A2ne95P3NOS0f+zhJB09LQ/CkONZUQci+NqQ5qK7NJgw8FGQHN/qkFwwkzuxJoILRrHcyakX4TyhWFWObV+E04oST+FQXT4MKfELViACKKboJgsr8EHmZoX9PD2UCRJ2CsoOuz9p4xKz7wLsqXJo+LoZlQ5Jz0jvAZnSKAzifu5kcX3KNBfqNr3yPRLoJegTUmM4IBILzfYvHaNv5BcXNCtqaMXpyD2WrOefH+YnV/heBqwxqHhPCaDQ/U4l9Md3T6js4T12A5dhVAuzez2xdyzV3giVfKnVwCG9J7hrOmuDJsN9h7YYBT0jD45xfr4P5UnMsT1YW1cnK/NZS/u64dqMNiL0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR11MB7180.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(56012099006)(4143699003)(11063799006)(261009223027099003)(10067099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?WEHYI/MDpj8IUZp/vlqEyTKS0/j18MLt1ASWGX1NNlzrp0Rt99eDUnpNUb?=
- =?iso-8859-1?Q?niLwcs9y2YRbiXCqQty7pF+yYV5IKJXDHgK78knO8/UxzMGxrmrNbbMLBf?=
- =?iso-8859-1?Q?DxtOIUjFCh8mk3Bgy5W6rXk8XttrII3DTWYLSDnnEE1Z6iYolPe4+NZImx?=
- =?iso-8859-1?Q?M21QRkzXYr1r9JqsoOtKQUBHYBIfLHRhFRPZ+JrpnJXTvAzuuE66+tH/gW?=
- =?iso-8859-1?Q?ihy3DLv0a0ETC345OsNpzTZMhVi9LJ/jyYho23S8v/tWj0to5h2W07YtlY?=
- =?iso-8859-1?Q?8wjS45yQkJV+OXADWZ9dVefKeKlYMReyIUylu9HuRSxUW2G0ZM0PxpqS1F?=
- =?iso-8859-1?Q?uJAHvmkV1p9pYtouDQa89mLvOD/iIugPK5vYo3PKyJv4rY5iqvI6OKbvun?=
- =?iso-8859-1?Q?X7ix1bZMBcCa+Cq4DgnBF1fOpx2QlDgF1C27krhGUZtpv5N1MT6RQupszS?=
- =?iso-8859-1?Q?3wu4l7qPQ+cZVTBr2Txhjw0fwm0chAOtk+BBIWlzYl2hhG615bvAGaXk64?=
- =?iso-8859-1?Q?jhPdeMX7cseOmFe2UZJ+UmX3SVk9/tulR+qcyHr0IpiL80kGc+LBu12Ys6?=
- =?iso-8859-1?Q?vxrtQq903Czc9rY5El6YDpSVL0pSdLeH0r7Z8Djft+i09BVmnF5Gt6pOe2?=
- =?iso-8859-1?Q?KH7jGJJCvb7inXPGaSdtrHZjctcxCXtWA0+xD482iN2mztBPzGUmT5Ow6n?=
- =?iso-8859-1?Q?IEJZoKNJGNpjBTqim4L/g98LuB0WYZcfCpQ4V0oXKvEAzlcsHISeQm5XkN?=
- =?iso-8859-1?Q?GGZT+sx8ZogGR2qIiHABZkmygfse5HgEuNcSIA2tRAw4arOuVtdUwQ3Jcq?=
- =?iso-8859-1?Q?v3uAAot7wadb3YuPpvtmA9VsYj05cdj4Z66Od1VlFSGZ8SjcCSjJwDWcHz?=
- =?iso-8859-1?Q?BbySdjsila3qIdKjBwIeOcyRXEGU5yvDOHeFO/3Ahlb5DY3MnC69iRFrPl?=
- =?iso-8859-1?Q?LkGr7PGjpEMGPn+TApVPfvrV2X33boF13LBgVf0aafeZp5dD8DRvTD1hlq?=
- =?iso-8859-1?Q?Hjg5qrU9uPKN3W46XIxzq/ubDx7gKWdVwMcZSL7RS63/8KRAa/Stef7o6g?=
- =?iso-8859-1?Q?WHlJ4VBsHnOu5wBPSZubG5vqyRMBcusK7f5LeeQCrMXrmP4pH0+TjQSsKx?=
- =?iso-8859-1?Q?Eu33MaDAM4EJq+mZJa7LrTIarHF+Fkk/Atrz+O2+1d619LGHQmgslLo6ct?=
- =?iso-8859-1?Q?z8BSCtwLDFucP8TO2XobRKORW2jyc5+uKEnYfDzOxxDxPYXTRMhFbkt+JK?=
- =?iso-8859-1?Q?VgGBXU4HSDrs2fchDwJtM0uV7bZwUCYQD9zE4fG2Hm1T/N1v3WLYSHWDis?=
- =?iso-8859-1?Q?CeGtkQfmzXSe+wR74UQ1/PoZGrG0JcPn5/LFLQ0xJImeoq1YjWc5OF+T3D?=
- =?iso-8859-1?Q?iJ+TWqhvXgohzvXrJt61nN5T30Np5gTJXaKc70tCuxpEvXKHK/4MYJaynS?=
- =?iso-8859-1?Q?C5B+RO7jPft8V4LgEOzIloBqBN80z5UM626+f3PzhCyY4WR24jDuG3HssG?=
- =?iso-8859-1?Q?ORVrs5PLK1Xlrgk+uYgneLs2zPUwChjHdJAo0FpiaNAjWqaCjl03YgtUHM?=
- =?iso-8859-1?Q?sF4DpV7UJTf5iLDEgxfPt0fVYE0PCO0fuuz7NU3mwKHpvENG5AbcJb9/Ac?=
- =?iso-8859-1?Q?6s+J6KpkaO86Bt8QPts708fVU1jlu7vDvTcEVW44jcgkU7omT9+gunr0Ym?=
- =?iso-8859-1?Q?EWaRy5WYMTF+UPyih3HO5u998Z9NGEjdhRY3WmPHJTFgH5QLqGjsJSo5TF?=
- =?iso-8859-1?Q?uYxlydUd0qN7n6jbjKj8u1KH1urtDSyhTrQoGJFwPNjzU9K9unI9D9JolB?=
- =?iso-8859-1?Q?9jKmPuEKjA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: joxI6yaXlQYIy15hf3ljccbvaz9BmxEMv7z0SS9SC0JcdlpwvXWJ+GxbpbvovJOGL/dD1Cs8yTnys4bBedq498RVYVwgV+ylD+1TLdEgH3FCPo+sZGuVxBjBNFpX7vNBkMpcAwZXYu/yhdglva/ki2iTm/Ggdok5y6vmJKn8xOYPlVJ4qqQ5h3dCEVRIL/dpmqyE2Ga2cFb/z5IoBnpeSLhPeUKV+nf0LClYF58R/6uiH5/w3iMO4ExMsp+YN6aUE3Mh6RMBJ1Mwzd1b+vFeZSUl4cxg1CqS9R6QUW0mULKfeOkxmYmfYAV0oIj5CRJWsiaBmMtDVppUIKEPFA1+rw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c12d28d-197d-47da-279c-08df2ee769fc
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR11MB7180.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2026 20:19:16.2930 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2S3Rar4bPrgK9y9zxSF1D7R85YgmuV0GTEOWypEwdheJk3OiZRBmiYM3I4ny27O3woad8UhCBxaUoT7464Xsww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7667
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Do_not_attrib?=
+ =?utf-8?q?ute_a_TDR_disable_to_a_pending_suspend_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jagmeet Randhawa" <jagmeet.randhawa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 20 Oct 2026 20:20:26 -0000
+Message-ID: <179252762663.48125.11042019496705978360@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20260915192119.51065-1-jagmeet.randhawa@intel.com>
+In-Reply-To: <20260915192119.51065-1-jagmeet.randhawa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,85 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Oct 20, 2026 at 09:08:43AM -0700, Matthew Brost wrote:
-> On Tue, Oct 20, 2026 at 09:35:20AM -0400, Rodrigo Vivi wrote:
-> > On Tue, Oct 20, 2026 at 12:05:45PM +0200, Thomas Hellström wrote:
-> > > If evicting VRAM to system memory fails with -ENOMEM during runtime
-> > > suspend to D3cold, the error is returned to the runtime PM core.
-> > > Runtime PM treats any error other than -EAGAIN or -EBUSY from the
-> > > ->runtime_suspend() callback as fatal, records it in
-> > > dev->power.runtime_error, and refuses further runtime PM operations
-> > > on the device until the error is cleared.
-> > 
-> > oh!
-> > 
-> 
-> I'm poked around core PM code but had a hard time verifying the above
-> claim is correct.
-> 
-> Any code references to help me verify this is correct?
+--===============4801984009922627181==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-drivers/base/power/runtime.c
-rpm_callback()
+== Series Details ==
 
-if (retval != -EAGAIN && retval != -EBUSY)
-                 dev->power.runtime_error = retval;
+Series: drm/xe/guc: Do not attribute a TDR disable to a pending suspend (rev2)
+URL   : https://patchwork.freedesktop.org/series/174199/
+State : success
 
-that prevents new calls while this is not cleared.
+== Summary ==
 
-> 
-> Matt
-> 
-> > > 
-> > > Memory shortage is a transient condition, and with eviction now using
-> > > __GFP_RETRY_MAYFAIL it is also more likely to occur. Convert -ENOMEM
-> > > from the eviction to -EAGAIN so that the device stays active and
-> > > runtime suspend is retried at a later idle transition.
-> > > 
-> > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: intel-xe@lists.freedesktop.org
-> > > Cc: <stable@vger.kernel.org> # v6.8+
-> > > Assisted-by: LLM
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_pm.c | 10 +++++++++-
-> > >  1 file changed, 9 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> > > index daa7ba2df317..9bf57ed1ea59 100644
-> > > --- a/drivers/gpu/drm/xe/xe_pm.c
-> > > +++ b/drivers/gpu/drm/xe/xe_pm.c
-> > > @@ -649,8 +649,16 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
-> > >  
-> > >  	if (xe->d3cold.allowed) {
-> > >  		err = xe_bo_evict_all(xe);
-> > > -		if (err)
-> > > +		if (err) {
-> > > +			/*
-> > > +			 * Runtime PM treats errors other than -EAGAIN and
-> > > +			 * -EBUSY as fatal, so report memory shortage as
-> > > +			 * transient to allow a later retry.
-> > > +			 */
-> > > +			if (err == -ENOMEM)
-> > > +				err = -EAGAIN;
-> > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > 
-> > >  			goto out_resume;
-> > > +		}
-> > >  	}
-> > >  
-> > >  	for_each_gt(gt, xe, id) {
-> > > -- 
-> > > 2.56.0
-> > > 
+CI Bug Log - changes from xe-5983-0610db36f4635ed214d9f1de57f9141f36c78a31_BAT -> xe-pw-174199v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5983-0610db36f4635ed214d9f1de57f9141f36c78a31 -> xe-pw-174199v2
+
+  IGT_9156: 9156
+  xe-5983-0610db36f4635ed214d9f1de57f9141f36c78a31: 0610db36f4635ed214d9f1de57f9141f36c78a31
+  xe-pw-174199v2: 174199v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v2/index.html
+
+--===============4801984009922627181==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Do not attribute a TDR disable to a pending suspend (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/174199/">https://patchwork.freedesktop.org/series/174199/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-174199v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5983-0610db36f4635ed214d9f1de57f9141f36c78a31_BAT -&gt; xe-pw-174199v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5983-0610db36f4635ed214d9f1de57f9141f36c78a31 -&gt; xe-pw-174199v2</li>
+</ul>
+<p>IGT_9156: 9156<br />
+  xe-5983-0610db36f4635ed214d9f1de57f9141f36c78a31: 0610db36f4635ed214d9f1de57f9141f36c78a31<br />
+  xe-pw-174199v2: 174199v2</p>
+
+</body>
+</html>
+
+--===============4801984009922627181==--
