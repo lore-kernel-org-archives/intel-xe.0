@@ -2,50 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09929606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 00:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12419606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 00:18:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QALz9kfH
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lXqrKsLX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0DE110F841;
-	Wed, 21 Oct 2026 00:18:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D00BF10F844;
+	Wed, 21 Oct 2026 00:18:33 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E42D510F841
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 00:18:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5104110F844
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 00:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792541900; x=1824077900;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=JchZafRdlw2Ha5bqnuOJr+OJw6P0nfrdp+//laMIsMA=;
- b=QALz9kfHEv1/cWniB5Si+QXCYXoGxUmhaKG0BlgsdUQETrHVnvWEVAYA
- 28OMHTZMrPbg59mCvQJ/NKk4+oPKW8iUw5TyyZj00NjgzMkciotnkku3T
- vxWRqLgR4jVIB08pfIHOLv2/9rNRyYRVCfTtxlKp23Mtczv8RqXUgH0Dh
- srF0Zp5ScMhwrX5Ny1K5OsUjjkK+A01xwXlF1Zbm3u8+Hnt+2zn1axq5r
- 8YsdXKt8fC0QCc/84iyY6fUJiOJkTCOYGUAG1rH/zRgYibbvARuU/8IAa
- 3NL0jXyLe6bbBJxNbYouViO8UJmpoiF+gU+geCzlqpQMvkXhVjM/HUx6u A==;
-X-CSE-ConnectionGUID: WxsSuciLS1SBtybOKRJhTw==
-X-CSE-MsgGUID: I10RPCCUQqO5feFGpd65mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1132510"
+ t=1792541908; x=1824077908;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ocFu9vu0gsLdQ8RAFy/cfz9xdAk1WWKyDauIn4n1Os0=;
+ b=lXqrKsLXnhlUeFhJ6j4gwACiyP5XIRV7JZF117w4qTAsnbhj9/bzobya
+ Ei0FyQZJ71+69R0MdMaeBQmE9oMRkRKW4bgFv9ACJqzc4DdAQXGOLeKGg
+ VHPFMQtXEST3EpAgrPwK0+c7ZYJvo4w9jGpzXJsZAAAyeOOTqDIM873Co
+ oAo/IzZEXjT62tPMWqFK8D4gBfDphGYgQj9TPW1pgQrP0XabdeOhxYu7o
+ 7qn79GDNrdpS8AeZHMI+mpEmvlzVYLZ0N4sJpTmzyQw4KObhGdbN1h4MJ
+ TaJ6UA2JxzvAQA7RMtkqMtzK2LSAMLJ0WbcX6bVBzJMN9uamo+4D+biUh A==;
+X-CSE-ConnectionGUID: NhJaZMEoSSyH0PjTupMWLA==
+X-CSE-MsgGUID: ABNG9PWfTyGMLcfhBdARQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1132515"
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="1132510"
+   d="scan'208";a="1132515"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 17:18:20 -0700
-X-CSE-ConnectionGUID: r595fgXLS8ypGy5yOTPcKA==
-X-CSE-MsgGUID: RRbr9cGISaqNl8OIrbYr4Q==
+ 20 Oct 2026 17:18:28 -0700
+X-CSE-ConnectionGUID: 45soigEiRjWGxeLbpuQPEQ==
+X-CSE-MsgGUID: LofnyrtkRGurcysq1v6lZw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="2955613"
+   d="scan'208";a="2955631"
 Received: from vbelgaum-desk1.fm.intel.com ([10.121.64.203])
- by fmviesa004.fm.intel.com with ESMTP; 20 Oct 2026 17:18:19 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 20 Oct 2026 17:18:27 -0700
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: [PATCH v2 0/3] drm/xe: Some d3cold related fixes
-Date: Tue, 20 Oct 2026 10:39:44 -0700
-Message-ID: <20261020173943.669600-5-vinay.belgaumkar@intel.com>
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v2 1/3] drm/xe: Toggle the D3Cold enable flag at runtime resume
+Date: Tue, 20 Oct 2026 10:39:45 -0700
+Message-ID: <20261020173943.669600-6-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261020173943.669600-5-vinay.belgaumkar@intel.com>
+References: <20261020173943.669600-5-vinay.belgaumkar@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -67,26 +70,35 @@ X-Spam-Status: No, score=-17.5 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Toggle d3cold allow flag and wait for pcode init before accessing
-MMIO.
+We enable this flag during runtime suspend, need to set it back to
+false early during resume to maintain consistency in pci driver's
+internal state. d3cold_toggle() updates the root port's ability
+to go into d3cold via the dev->no_d3cold flag. With this patch, we
+are ensuring this internal state remains consistent with that of
+the endpoint.
 
+v2: Clarify the commit message (Matt Auld)
+
+Cc: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Vinay Belgaumkar (3):
-  drm/xe: Toggle the D3Cold enable flag at runtime resume
-  drm/xe: Access GT MMIO after pcode init
-  drm/xe: Memset g2g buffer on resume
-
- drivers/gpu/drm/xe/xe_gt.c     | 14 +++++++++++++-
- drivers/gpu/drm/xe/xe_gt.h     |  1 +
- drivers/gpu/drm/xe/xe_guc_ct.c | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.h |  1 +
- drivers/gpu/drm/xe/xe_pci.c    |  3 +++
- drivers/gpu/drm/xe/xe_pm.c     | 12 ++++++------
- drivers/gpu/drm/xe/xe_uc.c     | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_uc.h     |  1 +
- 8 files changed, 56 insertions(+), 7 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 0c13eb901aa7..d13599d79ae9 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1456,6 +1456,9 @@ static int xe_pci_runtime_resume(struct device *dev)
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+ 	int err;
+ 
++	if (xe->d3cold.allowed)
++		d3cold_toggle(pdev, D3COLD_DISABLE);
++
+ 	err = pci_set_power_state(pdev, PCI_D0);
+ 	if (err)
+ 		return err;
 -- 
 2.53.0
 
