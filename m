@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99AD3606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 06:50:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63EA606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 06:52:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6358110E263;
-	Wed, 21 Oct 2026 06:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0CF810E067;
+	Wed, 21 Oct 2026 06:52:53 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 312D610E067;
- Wed, 21 Oct 2026 06:50:55 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 831DE10E067;
+ Wed, 21 Oct 2026 06:52:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2561000935749783668=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Migrate_on_fault_for_devi?=
- =?utf-8?q?ce_pages_=28rev8=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe3=3A_Fix_OAM_strea?=
+ =?utf-8?q?m_broken_on_Xe3+_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
+To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Oct 2026 06:50:55 -0000
-Message-ID: <179256545519.50172.6837278893718300077@221881a7231d>
+Date: Wed, 21 Oct 2026 06:52:52 -0000
+Message-ID: <179256557252.50154.3073248529986964655@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261021060506.2377545-1-mpenttil@redhat.com>
-In-Reply-To: <20261021060506.2377545-1-mpenttil@redhat.com>
+References: <20261021053021.1343825-2-shekhar.chauhan@intel.com>
+In-Reply-To: <20261021053021.1343825-2-shekhar.chauhan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,154 +35,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============2561000935749783668==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: Migrate on fault for device pages (rev8)
-URL   : https://patchwork.freedesktop.org/series/165953/
-State : warning
+Series: drm/xe/xe3: Fix OAM stream broken on Xe3+ (rev4)
+URL   : https://patchwork.freedesktop.org/series/175946/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cf6180ecc35752df281a39567fae90ba9269f3da
-Author: Mika Penttilä <mpenttil@redhat.com>
-Date:   Wed Oct 21 09:05:06 2026 +0300
+CI Bug Log - changes from xe-5986-f3bbda7128124e54c4881b56958249a18d79a110_BAT -> xe-pw-175946v4_BAT
+====================================================
 
-    drm/nouveau/svm: add support for migrate on fault
-    
-    Add a direct user for the new HMM_PFN_REQ_MIGRATE flag and
-    implement migrate on fault for nouveau driver. It is gated
-    by the svm_migrate_on_fault module parameter, default off.
-    
-    Added nouveau_dmem_migrate_fault() that faults a range in and
-    does migrate collecting in a single hmm_range_fault() walk.
-    
-    As an optimization, a migration policy - deciding which faulting
-    ranges are worth migrating to VRAM and which are better left
-    mirrored in system memory - would be useful. This patch
-    establishes the migrate-on-fault mechanism as a basis for later
-    refinement.
-    
-    Signed-off-by: Mika Penttilä <mpenttil@redhat.com>
-+ /mt/dim checkpatch f3bbda7128124e54c4881b56958249a18d79a110 drm-intel
-f13478ecc5fc mm/Kconfig: changes for migrate on fault for device pages
-15404a960e5e mm: add helper to convert HMM pfn to migrate pfn
--:179: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#179: FILE: mm/migrate_device.c:1584:
-+
-+}
+Summary
+-------
 
-total: 0 errors, 0 warnings, 1 checks, 138 lines checked
-c887b5b56a44 mm/hmm: preparations for HMM to participate in migration
--:192: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'hmm_vma_walk->vma != walk->vma'
-#192: FILE: mm/hmm.c:422:
-+	if (hmm_vma_walk->vma && (hmm_vma_walk->vma != walk->vma))
+  **SUCCESS**
 
--:215: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#215: FILE: mm/hmm.c:445:
-+{
-+
+  No regressions found.
 
-total: 0 errors, 0 warnings, 2 checks, 262 lines checked
-1a03bf49a90a mm/hmm: do the plumbing for HMM to participate in migration
--:47: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#47: FILE: mm/hmm.c:54:
-+	spinlock_t			*ptl;
+  
 
--:55: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
-#55: FILE: mm/hmm.c:76:
-+#define HMM_ASSERT_PTE_LOCKED(hmm_vma_walk, locked)		\
-+	WARN_ON_ONCE((hmm_vma_walk)->ptelocked != locked)
+Participating hosts (15 -> 15)
+------------------------------
 
--:58: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'locked' may be better as '(locked)' to avoid precedence issues
-#58: FILE: mm/hmm.c:79:
-+#define HMM_ASSERT_PMD_LOCKED(hmm_vma_walk, locked)		\
-+	WARN_ON_ONCE((hmm_vma_walk)->pmdlocked != locked)
-
--:61: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hmm_vma_walk' - possible side-effects?
-#61: FILE: mm/hmm.c:82:
-+#define HMM_ASSERT_UNLOCKED(hmm_vma_walk)			\
-+	WARN_ON_ONCE((hmm_vma_walk)->ptelocked ||		\
-+		     (hmm_vma_walk)->pmdlocked)
-
--:92: CHECK:SPACING: spaces preferred around that '-' (ctx:VxV)
-#92: FILE: mm/hmm.c:118:
-+		end-addr == HPAGE_PMD_SIZE) {
- 		   ^
-
--:216: CHECK:BRACES: braces {} should be used on all arms of this statement
-#216: FILE: mm/hmm.c:466:
-+		if (softleaf_is_device_private(entry)) {
-[...]
- 		else
-[...]
-
--:320: CHECK:BRACES: braces {} should be used on all arms of this statement
-#320: FILE: mm/hmm.c:614:
-+	if (minfo) {
-[...]
-+	} else
-[...]
-
--:324: CHECK:BRACES: Unbalanced braces around else statement
-#324: FILE: mm/hmm.c:618:
-+	} else
-
-total: 0 errors, 0 warnings, 8 checks, 482 lines checked
-62069f077190 mm/hmm: migrate collection in HMM pagewalk - pte level
-8c37a25bb300 mm/hmm: migrate collection in HMM pagewalk - pmd level
-448794534cf2 mm/hmm: add lazy MMU mode support for migration in HMM pagewalk
-59a63360adff mm/hmm: implement rollback for device page migration in HMM pagewalk
--:167: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#167: FILE: mm/hmm.c:627:
-+
-+		}
-
-total: 0 errors, 0 warnings, 1 checks, 167 lines checked
-90eee00843a8 mm: enable device page migration from HMM pagewalk
-741c9c6d33d2 lib/test_hmm: add a new testcase for the migrate on fault
--:246: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#246: FILE: lib/test_hmm.c:1515:
-+
-+
-
--:321: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#321: FILE: tools/testing/selftests/mm/hmm-tests.c:948:
- 
-+
-
-total: 0 errors, 0 warnings, 2 checks, 326 lines checked
-b9fd3fbebaa1 Documentation/mm/hmm: document migration through hmm_range_fault()
-cf6180ecc357 drm/nouveau/svm: add support for migrate on fault
--:132: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#132: FILE: drivers/gpu/drm/nouveau/nouveau_dmem.c:835:
-+nouveau_dmem_migrate_alloc_and_copy(struct nouveau_drm *drm,
- 		struct nouveau_svmm *svmm, struct migrate_vma *args,
-
--:151: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#151: FILE: drivers/gpu/drm/nouveau/nouveau_dmem.c:866:
-+static void nouveau_dmem_migrate_chunk(struct nouveau_drm *drm,
-+		struct nouveau_svmm *svmm, struct migrate_vma *args,
-
--:337: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#337: FILE: drivers/gpu/drm/nouveau/nouveau_dmem.c:1057:
-+				pfns[0] = nouveau_dmem_hmm_pfn_to_map(hmm_pfn0,
-+						start, &map_addr, &page_shift);
-
-total: 0 errors, 0 warnings, 3 checks, 603 lines checked
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-5986-f3bbda7128124e54c4881b56958249a18d79a110 -> xe-pw-175946v4
+
+  IGT_9156: 9156
+  xe-5986-f3bbda7128124e54c4881b56958249a18d79a110: f3bbda7128124e54c4881b56958249a18d79a110
+  xe-pw-175946v4: 175946v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175946v4/index.html
+
+--===============2561000935749783668==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe3: Fix OAM stream broken on Xe3+ (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175946/">https://patchwork.freedesktop.org/series/175946/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175946v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175946v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-5986-f3bbda7128124e54c4881b56958249a18d79a110_BAT -&gt; xe-pw-175946v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-5986-f3bbda7128124e54c4881b56958249a18d79a110 -&gt; xe-pw-175946v4</li>
+</ul>
+<p>IGT_9156: 9156<br />
+  xe-5986-f3bbda7128124e54c4881b56958249a18d79a110: f3bbda7128124e54c4881b56958249a18d79a110<br />
+  xe-pw-175946v4: 175946v4</p>
+
+</body>
+</html>
+
+--===============2561000935749783668==--
