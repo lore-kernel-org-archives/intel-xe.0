@@ -2,41 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19C6606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 15:12:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 448A3606A32E
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 15:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=mlPoZuoS
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dSoZAdoO
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7190610E18E;
-	Wed, 21 Oct 2026 15:12:21 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD8810F4E3
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 15:12:15 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8EF9B4116E;
- Wed, 21 Oct 2026 15:12:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 426F41F000C2;
- Wed, 21 Oct 2026 15:12:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792595534;
- bh=JaGYXKtJ9sF/iOmJzbPO3KcWaX2pFrVC8N4BWdHH6xg=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=mlPoZuoSzjBXEn66M0u3Bwyvu3n41UiuHfIADUDv2ANkbCtD8dp1/UPQojPuJs6HF
- w8xqe8rn1qT++hXyrGI0SfVVulgj7AXO8DSKxZA9mf+1zlS5wE1mr+AKzEQNDNuH3f
- 9DiKUBJVHjXh0xau3RrHtna+WLfFIOGZtlc7hGQOb3IcPmBZ+rr3HdfWfY71ce0vO3
- pAqdDdFkpdM06kTEkW6dLGMQpmi7O5jfLAc86/34ITdNkuwzSEvqI6YsCM57/eFCNL
- 9UF+uqZ1B2W9PrzC/DRUGnAvqRjfHxQS2ZXqaJX3CxkB5z8p+qSeQ631cO7+1p4iiS
- kn8q4W9lwsj5A==
-Message-ID: <sashiko-outbox-180419@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: Patch "drm/xe: Don't transfer shrinker pages for pinned bos on
- purgeable state change" has been added to the 7.2-stable tree
-To: gregkh@linuxfoundation.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <2026102151-compound-fondness-145b@gregkh>
-References: <2026102151-compound-fondness-145b@gregkh>
-Content-Type: text/plain; charset=utf-8
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0637510E02C;
+	Wed, 21 Oct 2026 15:19:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1F5810E039
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 15:19:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792595974; x=1824131974;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=ULpDr1+rUPCdSres7S3dstuiM5d6KmYwt0077EWqOLQ=;
+ b=dSoZAdoOyam14M4t2nL3b8EFLOXi1wn18/mBtH5Zo0XsrTg2JIi77pr4
+ aZRJIjAf9juYJhoF3fXICdhNfN5D6D1XmhApy/gkUqRIXkVxlwUCBZWXj
+ ONkN5JyH2BYuT0wA3KdKm5sHLtbVvcuOh2ijzcWpcdDCqM0l3zfBJCNdP
+ aS9Ds1bEMjIgRz+4+RuxvQu0ausOzOseIOVjtssK8Je1b+2MsOXbXwtjZ
+ feFP/YZoXsLHU5ustwlPpSaFkzKgU+C64DBbHfAz98smXIfZXPz5p5TQP
+ 6bezpCt9XfGFbc8SvffRxZrCis5Z9sbQpT7jkP/eh7Lp5WFVIFPIBj6TX Q==;
+X-CSE-ConnectionGUID: fgXY3LiWRmKDq7nVMJcskg==
+X-CSE-MsgGUID: 0OurY5daSNGdqGETxFTOtA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1305760"
+X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
+   d="scan'208";a="1305760"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 08:19:33 -0700
+X-CSE-ConnectionGUID: 5fpXuWE+ThWdE7/v2i2BZA==
+X-CSE-MsgGUID: KvadopIeRXiVF02RcDjrng==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
+   d="scan'208";a="3127372"
+Received: from cpetruta-mobl1.ger.corp.intel.com (HELO [10.245.245.16])
+ ([10.245.245.16])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 08:19:31 -0700
+Message-ID: <871b54cbf3d6ac1937891e57a8353d00ca740ca4.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe: Don't fail runtime suspend permanently on VRAM
+ eviction -ENOMEM
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org
+Date: Wed, 21 Oct 2026 17:19:29 +0200
+In-Reply-To: <atfMwPZB4l01xna5@intel.com>
+References: <20261020100545.46715-1-thomas.hellstrom@linux.intel.com>
+ <atduGDrVk7kc-PPe@intel.com> <ateSC6dTa0M3Qc8n@gsse-cloud1.jf.intel.com>
+ <atfMwPZB4l01xna5@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 21 Oct 2026 15:12:13 +0000
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,148 +68,112 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] drm/xe: shrinker page accounting corruption in xe_bo_set_purgeable=
-_shrinker()
---
+On Tue, 2026-10-20 at 16:19 -0400, Rodrigo Vivi wrote:
+> On Tue, Oct 20, 2026 at 09:08:43AM -0700, Matthew Brost wrote:
+> > On Tue, Oct 20, 2026 at 09:35:20AM -0400, Rodrigo Vivi wrote:
+> > > On Tue, Oct 20, 2026 at 12:05:45PM +0200, Thomas Hellstr=C3=B6m wrote=
+:
+> > > > If evicting VRAM to system memory fails with -ENOMEM during
+> > > > runtime
+> > > > suspend to D3cold, the error is returned to the runtime PM
+> > > > core.
+> > > > Runtime PM treats any error other than -EAGAIN or -EBUSY from
+> > > > the
+> > > > ->runtime_suspend() callback as fatal, records it in
+> > > > dev->power.runtime_error, and refuses further runtime PM
+> > > > operations
+> > > > on the device until the error is cleared.
+> > >=20
+> > > oh!
+> > >=20
+> >=20
+> > I'm poked around core PM code but had a hard time verifying the
+> > above
+> > claim is correct.
+> >=20
+> > Any code references to help me verify this is correct?
+>=20
+> drivers/base/power/runtime.c
+> rpm_callback()
+>=20
+> if (retval !=3D -EAGAIN && retval !=3D -EBUSY)
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 dev->power.runtime_error =3D retval;
+>=20
+> that prevents new calls while this is not cleared.
 
-commit 38fe9b0b7cfb46e5ebc7efb56c8bdf33363c1017
-Author: gregkh@linuxfoundation.org <gregkh@linuxfoundation.org>
+This patch needs a prereq change, since if we return -ENOMEM, there's
+nothing that drops any allocated backup for pinned bos.
 
-Patch "drm/xe: Don't transfer shrinker pages for pinned bos on purgeable st=
-ate change" has been added to the 7.2-stable tree
+So will hold off this patch for a while since it increases the
+likelyhood that this will happen.
 
-This commit updates xe_bo_set_purgeable_shrinker() in
-drivers/gpu/drm/xe/xe_bo.c to set tt_pages to 0 when xe_bo_is_pinned(bo) is
-true, updating only xe_tt->purgeable without transferring pages between
-shrinker buckets. However, 7.2-stable does not include upstream commit
-6a117a2bb7ca65 ("drm/xe: Fix shrinker accounting double-subtraction on nest=
-ed
-external pins"), which changed scanout framebuffer pinning to use
-xe_bo_pin_external().
+/Thomas
 
-Link: https://patch.msgid.link/20261009070053.7790-1-thomas.hellstrom@linux=
-.intel.com
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 7ed76349075fd..2d8283f6010a6 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -838,6 +838,8 @@ static int xe_bo_move_notify(struct xe_bo *bo,
->   *
->   * Transfers pages between shrinkable and purgeable buckets when the BO
->   * purgeable state changes. Called automatically from xe_bo_set_purgeabl=
-e_state().
-> + * For pinned BOs, whose pages are not accounted, only the purgeable fla=
-g is
-> + * updated, so that the correct bucket is used when the BO is unpinned.
->   */
->  static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
->  					 enum xe_madv_purgeable_state new_state)
-> @@ -854,7 +856,8 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo=
- *bo,
->  		return;
-> =20
->  	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
-> -	tt_pages =3D tt->num_pages;
-> +	/* Pinned bos are not accounted. Only update the purgeable flag. */
-> +	tt_pages =3D xe_bo_is_pinned(bo) ? 0 : tt->num_pages;
-> =20
->  	if (!xe_tt->purgeable && new_state =3D=3D XE_MADV_PURGEABLE_DONTNEED) {
->  		xe_tt->purgeable =3D true;
-
-[Severity: High]
-Does setting tt_pages =3D 0 when xe_bo_is_pinned(bo) is true in
-xe_bo_set_purgeable_shrinker() in drivers/gpu/drm/xe/xe_bo.c introduce a
-shrinker page accounting regression on 7.2-stable when a scanout framebuffer
-buffer object changes purgeable state while pinned?
-
-In 7.2-stable (which lacks upstream commit 6a117a2bb7ca65, "drm/xe: Fix
-shrinker accounting double-subtraction on nested external pins"), scanout
-framebuffers are pinned and unpinned directly via ttm_bo_pin() and
-ttm_bo_unpin() without calling xe_ttm_tt_account_subtract() or
-xe_ttm_tt_account_add():
-
-drivers/gpu/drm/xe/display/xe_fb_pin.c:__xe_pin_fb_vma() {
-	...
-		if (IS_DGFX(xe))
-			ret =3D xe_bo_migrate(bo, XE_PL_VRAM0, NULL, &exec);
-		else
-			ret =3D xe_bo_validate(bo, NULL, true, &exec);
-		drm_exec_retry_on_contention(&exec);
-		xe_validation_retry_on_oom(&ctx, &ret);
-		if (!ret)
-			ttm_bo_pin(&bo->ttm);
-	...
-}
-
-drivers/gpu/drm/xe/display/xe_fb_pin.c:__xe_unpin_fb_vma() {
-	...
-	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-	ttm_bo_unpin(&vma->bo->ttm);
-	ttm_bo_unreserve(&vma->bo->ttm);
-	...
-}
-
-When a populated user buffer object has its pages accounted in
-shrinker->shrinkable_pages via xe_ttm_tt_populate() ->
-xe_ttm_tt_account_add() and is then pinned for scanout via
-__xe_pin_fb_vma() -> ttm_bo_pin(&bo->ttm), its pages remain accounted in
-shrinker->shrinkable_pages while bo->ttm.pin_count > 0.
-
-If userspace then updates the purgeable state via madvise_purgeable() ->
-xe_bo_willneed_put_locked() -> xe_bo_set_purgeable_state() ->
-xe_bo_set_purgeable_shrinker(), xe_bo_is_pinned(bo) is true, so
-xe_bo_set_purgeable_shrinker() sets tt_pages =3D 0 and updates
-xe_tt->purgeable =3D true without moving tt->num_pages from
-shrinker->shrinkable_pages to shrinker->purgeable_pages.
-
-After __xe_unpin_fb_vma() -> ttm_bo_unpin(&vma->bo->ttm) drops
-bo->ttm.pin_count to 0 without re-adding pages, subsequent unpopulation in
-xe_ttm_tt_unpopulate(), purging in xe_bo_shrink_purge(), or another state
-change while unpinned in xe_bo_set_purgeable_shrinker() subtracts from the
-bucket selected by xe_tt->purgeable:
-
-drivers/gpu/drm/xe/xe_bo.c:xe_ttm_tt_account_subtract() {
-	struct xe_ttm_tt *xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
-
-	if (xe_tt->purgeable)
-		xe_shrinker_mod_pages(xe->mem.shrinker, 0, -(long)tt->num_pages);
-	else
-		xe_shrinker_mod_pages(xe->mem.shrinker, -(long)tt->num_pages, 0);
-}
-
-Because xe_tt->purgeable was flipped while the pages stayed in
-shrinker->shrinkable_pages, wouldn't this subtract tt->num_pages from
-shrinker->purgeable_pages instead, underflowing shrinker->purgeable_pages to
-a negative value, leaving shrinker->shrinkable_pages permanently inflated,
-and causing unsigned long wrap-around in xe_shrinker_count() in
-drivers/gpu/drm/xe/xe_shrinker.c:
-
-drivers/gpu/drm/xe/xe_shrinker.c:xe_shrinker_count() {
-	...
-	if (can_backup)
-		num_pages =3D min_t(unsigned long, num_pages, shrinker->shrinkable_pages);
-	else
-		num_pages =3D 0;
-
-	num_pages +=3D shrinker->purgeable_pages;
-	...
-}
-
-when shrinker->purgeable_pages is negative?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/2026102151-compound=
--fondness-145b@gregkh?part=3D1
+>=20
+> >=20
+> > Matt
+> >=20
+> > > >=20
+> > > > Memory shortage is a transient condition, and with eviction now
+> > > > using
+> > > > __GFP_RETRY_MAYFAIL it is also more likely to occur. Convert -
+> > > > ENOMEM
+> > > > from the eviction to -EAGAIN so that the device stays active
+> > > > and
+> > > > runtime suspend is retried at a later idle transition.
+> > > >=20
+> > > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for
+> > > > Intel GPUs")
+> > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > Cc: intel-xe@lists.freedesktop.org
+> > > > Cc: <stable@vger.kernel.org> # v6.8+
+> > > > Assisted-by: LLM
+> > > > Signed-off-by: Thomas Hellstr=C3=B6m
+> > > > <thomas.hellstrom@linux.intel.com>
+> > > > ---
+> > > > =C2=A0drivers/gpu/drm/xe/xe_pm.c | 10 +++++++++-
+> > > > =C2=A01 file changed, 9 insertions(+), 1 deletion(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/xe/xe_pm.c
+> > > > b/drivers/gpu/drm/xe/xe_pm.c
+> > > > index daa7ba2df317..9bf57ed1ea59 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_pm.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_pm.c
+> > > > @@ -649,8 +649,16 @@ int xe_pm_runtime_suspend(struct xe_device
+> > > > *xe)
+> > > > =C2=A0
+> > > > =C2=A0	if (xe->d3cold.allowed) {
+> > > > =C2=A0		err =3D xe_bo_evict_all(xe);
+> > > > -		if (err)
+> > > > +		if (err) {
+> > > > +			/*
+> > > > +			 * Runtime PM treats errors other than
+> > > > -EAGAIN and
+> > > > +			 * -EBUSY as fatal, so report memory
+> > > > shortage as
+> > > > +			 * transient to allow a later retry.
+> > > > +			 */
+> > > > +			if (err =3D=3D -ENOMEM)
+> > > > +				err =3D -EAGAIN;
+> > >=20
+> > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > >=20
+> > > > =C2=A0			goto out_resume;
+> > > > +		}
+> > > > =C2=A0	}
+> > > > =C2=A0
+> > > > =C2=A0	for_each_gt(gt, xe, id) {
+> > > > --=20
+> > > > 2.56.0
+> > > >=20
