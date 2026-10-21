@@ -2,43 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE4A606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 11:42:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=kcore.it header.i=@kcore.it header.a=rsa-sha256 header.s=spark header.b=RRQpsBLq
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2D6606A31B
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 11:43:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B30E10FDA5;
-	Wed, 21 Oct 2026 11:42:32 +0000 (UTC)
-Received: from spark.kcore.it (spark.kcore.it [49.13.27.68])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B949A10E7F9;
- Tue, 20 Oct 2026 15:30:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kcore.it;
- s=spark; h=References:In-Reply-To:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
- Content-Description:Resent-Date;
- bh=shIwbpRYBRVZ5arD1o5RN0HiHTcxgmGfKoAfYRtBsek=; b=RRQpsBLqehNBGjJmb+7qq/OvHm
- jw+06eGSDna85v9XK0tY00sbdWuHCq9LyHTltSSB4j6Usc1pXOaltLL0Mi4raRa8gRPIZlY6xlEuW
- VlqTMCPs8JxEkEQpfGN2nXrY6OESkCN4iA0qIAIMfAoZ9Xa4h5J8oIiUZcrstdXPT07Y=;
-Received: from mnencia by spark.kcore.it with local (Exim 4.100.1)
- (envelope-from <mnencia@kcore.it>) id 1xJBnL-00000000apB-1qvn;
- Tue, 20 Oct 2026 17:30:31 +0200
-Date: Tue, 20 Oct 2026 17:30:31 +0200
-From: Marco Nenciarini <mnencia@kcore.it>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
- imre.deak@intel.com, xiaolu.xie@intel.com
-Subject: Re: [PATCH v3] drm/i915/dp: clear and restore MSTM_CTRL around MST
- DPMS off/on
-Message-ID: <ateJFyHPSYMYdj7A@spark.kcore.it>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C862D10FD99;
+	Wed, 21 Oct 2026 11:43:14 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79CD010FD99;
+ Wed, 21 Oct 2026 11:43:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261020110418.1272170-1-xiaolu.xie@intel.com>
-References: <20261020021714.62573-1-xiaolu.xie@intel.com>
- <20261020110418.1272170-1-xiaolu.xie@intel.com>
-X-Mailman-Approved-At: Wed, 21 Oct 2026 11:42:29 +0000
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Use_k?=
+ =?utf-8?q?vmalloc_for_the_VMA_ops_page-table_update_array?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: karim.sabar@utexas.edu
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Oct 2026 11:43:13 -0000
+Message-ID: <179258299349.51966.11469936263629541891@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <6ad8027c.7f7fe2b9.10c6e4.4073@mx.google.com>
+In-Reply-To: <6ad8027c.7f7fe2b9.10c6e4.4073@mx.google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,66 +33,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Tested-by: Marco Nenciarini <mnencia@kcore.it>
+== Series Details ==
 
-Tested v3 on a Dell Pro Max 16 (Arrow Lake-P) with a Dell WD19DC dock
-(Synaptics VMM5331 MST hub), one monitor on DP and one on HDMI behind
-it, i915 driving the dock over TBT-alt, drm.debug=0x10e. Kernel is
-Debian 7.2.9 with v3 applied on top.
+Series: drm/xe: Use kvmalloc for the VMA ops page-table update array
+URL   : https://patchwork.freedesktop.org/series/176556/
+State : failure
 
-The only change needed for 7.2.9 was the context of the last hunk in
-intel_dp_mst.c, which still uses drm_dp_dpcd_readb(). The new helpers
-use drm_dp_dpcd_read_byte(), which exists in 7.2.9, so verify_ctrl()
-needed no change.
+== Summary ==
 
-Results for the points you asked about, 120 s DPMS off with a connector
-probe forced on the trunk 30 s into the off period:
+Series author address 'karim.sabar@utexas.edu' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1318717/ (on master)
 
-1. No "MST mode got reset" message, no MSTM_CTRL mismatch message and
-   no connector was unregistered. DPMS off wrote MSTM_CTRL as 0x04
-   and the probe read it back as 04.
-2. After the wake, one LINK_ADDRESS was sent and the connectors kept
-   their names and ids.
-3. The wake was normal: link training passed at 810000 x4 on the sink
-   and both LTTPRs, payloads were allocated and both monitors came
-   back.
 
-I also probed the two MST connectors while paused (90 s off, probes
-at 30 s). Modes and EDID were identical before, during and after
-(28 and 32 modes, 256 byte EDID). The first probe (DP-6) took about
-5 s: its REMOTE_I2C_READ got a NAK (LINK_FAILURE) after 4 s and the
-retry worked. The DP-7 probe took under a second with no NAK. The
-probe of the trunk read MSTM_CTRL as 04 again.
-
-Unplug and replug during DPMS off: four runs, one cable at a time
-(HDMI and DP, 90 s off, cable moved 4 to 7 s into the off period). In
-all four the dock raised a long HPD on the trunk and AUX failed for
-about a second, so i915 took the normal disconnect path ("MST device
-may have disappeared"): the MSTM_CTRL write failed with -6 and the
-three MST connectors were unregistered. One second later MST was
-enabled again (0x111 <- 07), LINK_ADDRESS was sent and the topology
-was rebuilt with new connectors (DP-5, DP-10, DP-11), so the names
-were not kept in these runs. There was no "MST mode got reset"
-message. The wake that followed was normal, with link training at
-810000 x4 and payloads only for the monitors that were connected.
-
-There was no LINK_ADDRESS after the wake. As I read the code,
-set_mst() clears the paused state and nothing paused it again after
-the rebuild, so unpause() returned false and no re-probe followed.
-The only noise was the usual REMOTE_DPCD_READ NAKs, 4 to 10 per run,
-the same as the 4 at boot when the topology is first probed.
-
-So on this dock a sink change while paused did not reach the re-probe
-at unpause: the dock raised a long HPD and the disconnect path rebuilt
-the topology first. The unpause re-probe was only exercised by the
-normal wakes above (one LINK_ADDRESS, no topology change).
-
-The logs are available if you want them.
