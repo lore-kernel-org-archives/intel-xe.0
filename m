@@ -2,145 +2,149 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79284606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 21:25:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79F11606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 22:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ks9YHHNV
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O8sEleqF
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FAB6112214;
-	Wed, 21 Oct 2026 21:25:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 162D411221B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 21:24:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4005E10E280;
+	Wed, 21 Oct 2026 22:14:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC0210E280
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 22:14:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792617895; x=1824153895;
+ t=1792620881; x=1824156881;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=2Yl8MrB0/nV+I5OtziplPNL0BOb21e7B/Wca43Y/UbY=;
- b=ks9YHHNVVgvn9zBMJKK5t80/oWEsnZmBhDYuv7bj//Bf5TlcR9qpzphg
- uetHSpHD9lcrgBIeafSwNulseeeRQnFknrbrfvEpsIjNNvRMfNSX2ZgQ3
- bNc3gcJoFMKHZ2PYDSs2hm7bSd0yPx9aGJMJVU3tFGAbCOWeFYZs8yCEc
- zOT57GjI1IuCX5w4PyUd7hMoXw86ZBvjmOUkhNE27LYKwc8RjuPn/Unc/
- 1c2utt/xb1PBQn63npzKqNfhIcsATyCnP9ZkPg9DzkFYHTE+pa2gomOq3
- NVF+nXo3c5zHcEwY8UtVyNiy30WcGGWMI0G6VTi1AC2S4ZPCxkIr2EDS8 w==;
-X-CSE-ConnectionGUID: iO16cvD1SNW/N2uuWrZAXA==
-X-CSE-MsgGUID: uDxLiRy0Q9uOjD55XlHazQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1244417"
-X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
-   d="scan'208";a="1244417"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 14:24:54 -0700
-X-CSE-ConnectionGUID: w6Ax4UW8R/6ijUMsKghAsw==
-X-CSE-MsgGUID: U91fwu2ISImo1wlpbRwndA==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=xYZSmUljINgIufGgcrNhZt6fZQp2JwOjXfDpRuEq3BU=;
+ b=O8sEleqF/Uaowl+xBR0aQeK1PjbKx4IkJN4glyIHEeLQHYSvSanv7Jow
+ VWrob1Nj0WAQZf50Xs4PEnAs2LOd5NQPIXP8L0w6WK8CJhztrvEKeBeaD
+ 95gQ7tGlUnpYjDNUakliyEe9Tu+1Lyullg7f8W+Hmt/Qxds5ofGFuYc7M
+ GJFmvuWee2fkqxqVomKTGmujSpN9a7oAssP4we6s36kC4VLkADmBXVSVb
+ Dqsa08MVB/LrPcM9MeiYuWgFoEzVZ1nKGkFdyhdQxTR0w3bqP8ISq93ou
+ WhlAd80nYonbOlkEjFBTp/r/QOuQVC6I0jPMffwXVgNzDUOY+vzWI6FwO g==;
+X-CSE-ConnectionGUID: KMk/OdnzReuEK+Yyl4S3OQ==
+X-CSE-MsgGUID: g5MYwFlURrODB+a5u4DXvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1372494"
+X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
+   d="scan'208";a="1372494"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 15:14:41 -0700
+X-CSE-ConnectionGUID: npwcg5PET2ibofTZ6niPcw==
+X-CSE-MsgGUID: lIgeqjMWQfe3W5AJHBpq8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
-   d="scan'208";a="3128453"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 14:24:53 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
+   d="scan'208";a="3541843"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 15:14:40 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 21 Oct 2026 14:24:53 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.49; Wed, 21 Oct 2026 15:14:40 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 14:24:53 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.51) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 15:14:40 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.12) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 21 Oct 2026 14:24:53 -0700
+ 15.2.2562.49; Wed, 21 Oct 2026 15:14:39 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bpDVV4Yb0+oDU1FRn3rRYveHJ6iSHl2fVgEmcFxgW0pZLO5tDJyiooUVGtsx3SCcRvpw7UQhA17G2k6til01BAKJ/Isc5X7+lg+sSItSRyT2v+qcdnwh1NHBrJF/bI/6lyqCtYcdedHj0X+sjauJh6rVYfErB462SmkWT4ONH6G2CBJThUSoba7EDjjVYYOnVRVNz1OWloG/mlS7XV2WNqQW42NeGyfzVwGVi2UOVsYRCxR47AppL+EaiwG3W//1UXiJyIaGWiCRaPwd3sqeeCtcONtk7reI7JlgWd07PvTpsvG+YV8uF4oCcNfp5r5McUOD4XZBS09mESt4wFs9Ww==
+ b=lj1mL98jy3ifQJjPw2d0ZEs3XnYP8G8/ahTM9UKgbkZiNHpDeDGXySBzXEZnIFgHPtV4K4JK++prVRjriO9W1dD/aBUjAsk6WfCOfDzQtbuBSesN748/y8nHjtIDpiq6plmS4is8eOHSsYL4rOgr5oq74igsQd1D5AwjlleXs6lLK9EDdmrQojg/cSy5k7jCGMQL2qiaYun5fb16cz91Wa2QPuJxwNVNqSycTECVf9BOQlllOzc+s3hXuNJhWQAf1CYTlOo1ZoM4qGxSri8sqpV2KKU4xKcykttLPWDPYy6PPSq9tM2MQbq+OAmFsy4wBrZJmC4tPTf2QGeZfj7blQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=30plbOpZp6TVkYRZGAOvGRzodhkQWoIBuvTq0a5hFnY=;
- b=dv+FLh08Qcd/8d8SXxDxrMHa6ptXZCEj5yYyERmBmCnTlWP/UDUeHR3j6bXO9HRs3quXYJOe0VocyyMpK8ItLcsWJT37DskqFXHlSmiyfbhktCmQ6/uw+iL4xJJVkkC0W1mQWh91FjRef1rQ+2yo//KxGCvtUI+oTaUJV3TH1j1xc9NdwwGzLcl4w6LojttsS4F0hkiUmyFMcLOXFP4muItsSXHEuvaIi/vBOqFClx/elHMMn3fgrTJGt1WYAkVk4KDCPvmzQexOjSFOiHm3SSf5STA1GJOzaoMmgM428rw6YjXMCNTwG5PwknYNQ2+oZzYd9B7eKjvpYm44adLfxw==
+ bh=Fml8sB3G4ibG4uR+28AxbJYqT2nXhCAr4MXkv/8OL9E=;
+ b=yHtjCYwORmyk3T/Bjd4uw5+ARHkZ/nzx2WZQXRPaghmF8GvVuzZXKQjvqJ5lcRC5zuUAKAqAWM/12lXJ0LrkBv7j7sHajlmKmIzyEa9SBwhfnpoVWhOhQNOUfbk1O3C6a02KJFuApcfbiM9OAXY18RQrvMkUIiXoabygzD3ncR5XqL7NxS/Aeo+QiMwsVYixd5bX3CMJ9qxYljOsf2QprMsbCTfF/pAW5ZUkR6JxkkSQNZGp4YGrqshSBuu0qLTrJ++mUXfxPw+9/ScSi/cD026SG5UDgSznQEVQkThnQzusWxXKuoZYe7USGRMS40s+igI/3fm8eoteW60PPVQdag==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by MN2PR11MB4758.namprd11.prod.outlook.com (2603:10b6:208:260::16)
+ by IA1PR11MB7889.namprd11.prod.outlook.com (2603:10b6:208:3fe::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Wed, 21 Oct
- 2026 21:24:51 +0000
+ 2026 22:13:36 +0000
 Received: from CO1PR11MB4787.namprd11.prod.outlook.com
  ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
  ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
- 21:24:51 +0000
-Date: Wed, 21 Oct 2026 14:24:49 -0700
+ 22:13:36 +0000
+Date: Wed, 21 Oct 2026 15:13:34 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH 0/6] ATS/PASID SVA support and PRI-less fault servicing
-Message-ID: <atktoYr4H6wjnR4m@gsse-cloud1.jf.intel.com>
-References: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: <sashiko-reviews@lists.linux.dev>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 3/3] drm/xe: Add a minimum age gate to the shrinker
+Message-ID: <atk5DqK1nGPcoSEu@gsse-cloud1.jf.intel.com>
+References: <20261020190840.854525-1-matthew.brost@intel.com>
+ <20261020190840.854525-4-matthew.brost@intel.com>
+ <sashiko-outbox-179512@kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
-X-ClientProxiedBy: MW4PR02CA0029.namprd02.prod.outlook.com
- (2603:10b6:303:16d::34) To CO1PR11MB4787.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <sashiko-outbox-179512@kernel.org>
+X-ClientProxiedBy: MW4PR04CA0057.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::32) To CO1PR11MB4787.namprd11.prod.outlook.com
  (2603:10b6:303:95::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|MN2PR11MB4758:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8cf3947e-d179-4de0-593e-08df2fb9bdbc
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|IA1PR11MB7889:EE_
+X-MS-Office365-Filtering-Correlation-Id: a2eac93b-2923-434a-9aa1-08df2fc08d8b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|6133799003|18002099003|22082099003|10067099003|261021121427099003|261021123027099003|11063799006|261009223027099003|56012099006;
-X-Microsoft-Antispam-Message-Info: 4GmWbL3ZuXFEwJdhtPYf38EWJrfBeAK8vBEnWMAApSN3/pnON7Fbo+6qNFir8oC+tIP7O5wNCir06QpUa9ELjWfLyikmkF0AnxrFVaSpMU90iWXFiQ84PeWCri0aZWj4lUOaIdYLs2qNpFtRWhhd/xVjFpEEWsb8ZO6zT1lSPy3Ot13goU2n9CtdAYDjBNeCrKbhrk/gvXvOFNChlQ20EUu3Z5VMM5REWXoWarQYKQi7WobZHiSmzn2njs3oau+jNhipokcA7VIh3cfVH4HDQGiYgVJwZFt7iAdlY65bQgEFgFbTcAQAqdkJtN1bl3AMesdO29hQxNSV6eT2H0T6yFsUKMLeHPdxMdVshMkyQvQH/skpSLdNz1W0tNqUbxmmt57S6+3Bo3HHWSRgE/xWJNvu2DHkV4qtpINMG8K8Ah/28RkafRwaHJRk+OKpO9JRR82Zz5oQEXmqM4UrUeWoTgQOYqmu7Yq6uk9McsvFcYKGYMtdGNeYd82QDimDRb4oOo3MFQhW3Pj9k3BReXuGnITPzrGngE3gA6Kg7mc2vHiHr6zwIuxkEpo8uL1522XoYsCWD9INAidnEiIgj51aJ/yEw8k2BKrGS3ApFHh8ykyvqSxoNewqZQhdAkxsltXfjkWddh7NqQBYEh7mCUDt6c9IjQfGt25eZl26oCEgoxY=
+ ARA:13230040|366016|376014|23010399003|1800799024|6133799003|18002099003|10067099003|261021121427099003|22082099003|261021123027099003|4143699003|11063799006|261009223027099003|56012099006;
+X-Microsoft-Antispam-Message-Info: xRH/9IG9HFyddY2Vt/YQpe4KpTVzGnaea45T6UuCJCbm58Fzt5TED/frvcRqjl7DuLzIPO56d77qvdaZ3RZsE63LuiUQIwGsHLYuEJ2tgYucPUDpURQ2EPrMc3PmbWwGDgusdH68YTqOFIMnpZWOPgkgsQ4IWnwN2RQ0FmKt4zOSdocpoqdMr0u6b9TKrRprLN7UH1sB5B07p2ffMCfTMSr1qM1xOoB+fODz4YZAGzJwjcPz+zme875EhWi4WovRYmzrVSa7shju1GsQMC5DaLM1hC3cE1jhN68uWKSF8oqLBvm4jQYa8pPl2VMAlGZKsxT8TnuvasL3+4VyT/fCWyICHxVLrAmzJrAXLSPH+y4S6DsHkNE/87n26jdBdeA3k+t95GEesZKOD3i8jWEmYWi/UN5AMQXcUmY4ifN6kdJFyqwZWMavJ53yc8y2dJwZ9QfYs+vhmvUB9LNYiZqAYRBtxdrcWGhjsHAKqJx3tahgDOJyLbSSSCM9txsbrq/8J3/i6A6t1jiYLVY4fc/jWc5f5WS/6VLTdTMbI/eHQrWeVm89NsmOFRAWSOpqpkIGEM87DYRjYP3/xtINza9YIJj32WCVO7VgujWmMsLgeFA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(6133799003)(18002099003)(22082099003)(10067099003)(261021121427099003)(261021123027099003)(11063799006)(261009223027099003)(56012099006);
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(6133799003)(18002099003)(10067099003)(261021121427099003)(22082099003)(261021123027099003)(4143699003)(11063799006)(261009223027099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HokIVerJEHz6BMuB1WO+5EbL8E7IIC8M+hWWNF10dZpD0N1GWX2P0pwCoO6O?=
- =?us-ascii?Q?wYgvSPsQGBQ/a+/isNoN/0tpBt3yy231ZKvR1SPLaGHXaHKmZnm73HrHyrSa?=
- =?us-ascii?Q?lPpCju8C7dH8BvClWcxaNXcyJxwM5VDd04LEoIVh12pU81HStn3wgh3QpqGw?=
- =?us-ascii?Q?HxO4p6+Sb+jtmdVQO3Y7ngwQrhem0Rhl2UjzO4z1PfZvAgbRoUuAbZ1Jixko?=
- =?us-ascii?Q?v6gNv3ZRHuvB+36MrEOJaA2Vb/IwTxHtyEKuRW4Yppxvzfkbs+Bq587jj03C?=
- =?us-ascii?Q?HWsjGafdsO6TXlJgT1aeExVTwfxkz0K9MGe0Sn0FSedbyyUeyz13wRrqtI29?=
- =?us-ascii?Q?0VWH0NmihJJK7tag8YfnY028DdyX4b7ISnf82CBAhnipWIVzFD86BO9R/ZGT?=
- =?us-ascii?Q?okDZKys2zpJN0RJrQRlV7O217pbdd/NQbLXpqX+MzpRKk7zu9jdtagGD+Ea2?=
- =?us-ascii?Q?FI9NowDDY7tZKbLf02i2zhLvfFr4Lnn5SyFQdNuSBjpRFWFTReppmoTM1/UT?=
- =?us-ascii?Q?lqe/pptJXjQj1FLnL+8wqcYdF9+Va4rA36c5JOdkc9AA3DOpVlA2QRnZZzd3?=
- =?us-ascii?Q?RW4Zss7oAY5hBkSe5xs7jplCt5BRIN+iWm8cikgBy/cvgcYO7UG/7pJPahd0?=
- =?us-ascii?Q?e9Nd8S/yhBhxffkTorCcYf4B+RZbb2tN74UCg8imu/bEYLbAtgHtWuGQqSWM?=
- =?us-ascii?Q?bG3w8nAmi85BumB9owgMxuSBn702Lh5HEzArP8TPhRmv+jhpjpFMzrmZ/VKB?=
- =?us-ascii?Q?WKPNMjO2eNvGgQ9t4K4yvfEdzY95ZAIK6tBnY/qKPfTSjGEXEdFCkh1ELMlG?=
- =?us-ascii?Q?FPMJERleVCuVxSekk0G7olju/b0ZqNpM4HxFDB/cqf0zAyGv5P+QjvnuypfU?=
- =?us-ascii?Q?bYf6uy4ozv6p0+qqQubrjbM3+Px2MKr+mdmCs2Ez9uet+DwqxEeePVV/Rk9q?=
- =?us-ascii?Q?1tXTZlGdJjPnE4zsixnR+meebgXfToPnHrrHTN36NdGeyQPoc+gxGScdlpAK?=
- =?us-ascii?Q?vEKto8SOg5JlYBppNExJd0clBsxYuCKMBo/GDk79dTLygnUK1qWreSljDVE+?=
- =?us-ascii?Q?JvFuTvJjQLPRR3iSjE9uLwBuYt1K+Tcn4oJNPCaJPVPkJQP1N1MzWneVbPex?=
- =?us-ascii?Q?bF43815D6jnv440tpbQVi8yGwMMibzDzKHG08VIGiFzOw4/MYrSa2HiQkB76?=
- =?us-ascii?Q?Om6pM/CSxZaGGesHDlNcgAT5UfJRPkzd+1y5gzYT1P0TMGGbEKrC80rInsqy?=
- =?us-ascii?Q?htiGlWDYvcvZqNxd5bqF2OpodRDRgx0XlSb9Y1X6lk4ehgFPZRwI4NtOfu8g?=
- =?us-ascii?Q?MJlU+xNRk1/etx0JHoJWyGquJtt94lERd4hyckaMk8UlZlLKkHq4WPZKJKs9?=
- =?us-ascii?Q?XAc9hu/P6X0VfM5/P0qMLsVIXUsb7OsJHtZixHfrL5wo96pGBALWrZvhA/+4?=
- =?us-ascii?Q?WsMgLOv4qck+6V73Q1s9gGlvtVb1W3ObhPC8obN7Xz+HfcmhN0ptx2N/loUi?=
- =?us-ascii?Q?NtW7I8/AuuloSZt9MHXQuIHJJ2D/dA0FD904llECUJEY2WYoFrFXP4DKknKS?=
- =?us-ascii?Q?ITDfrIyxeHiCki4gPrM6vvQC7+WvCvsxc6rnMHbWgGnO7g/Hs7DtM9wl4CzH?=
- =?us-ascii?Q?+SRJXRWeIto7pu4cDcCEQXm6wvk87kQkRIFyrTqTUMlzQ1Vs2RJjwxpPg2dT?=
- =?us-ascii?Q?E/au9IOwU1quDN7+1PzbacNyWE0DoT1h0q3AritXhCBF8MA25bZpEDj6t8j8?=
- =?us-ascii?Q?yQl9hsKHmQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: SGww5Cd3gHjxtTGuggzcnYleKwrTIJaqdIO15xPxot3ypcxqc/qABVYq6NTFnfe+ueqcURS4AwQiUe54WAbCYXXXAXBeX/c6ZLAen1Jh2gKJxaBDwikmQZr3CxwUu2euMuGnTUaX5b6dvf1POmzSaL63IAK+xi/NwX2hXK/5zjc1M+xFeXz1/+efVa0ACJAfM5HPN8ro2oAbLytUpvcwWDFWHc2jDmJGHeVtnGquLSFfJWh9LThWy1WNKk1U7/9HdFqNEApdo2O5Pau0Zzd+GtxsDaUoiSP2PuY/VWwvP5FlFw0Yi7rApny4pTnq6FZbhUuBiFi2b3btKL7KtRNEVQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8cf3947e-d179-4de0-593e-08df2fb9bdbc
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?TLesuUYOzlTgH7X70fF/zinomyu2EsBb/snouHTl77c3udvu41PvtjvfpZ?=
+ =?iso-8859-1?Q?+2+YIElmARTnpLyRoeBhBF0uUs6TCmUehpOd1u0IG/cG6iUlUm0Zi0dEFQ?=
+ =?iso-8859-1?Q?2v7KvTCqFhLhYbz/jkm9VecFdmOTFo+hCf91T7kqcoXdp0fn5ceRlXFacC?=
+ =?iso-8859-1?Q?s+9mRga4tgq8Jr7VqKsSmXWu7zPmhVvJeXdVMgXKCNgVr99nh+ovajOIYW?=
+ =?iso-8859-1?Q?5D5uKE4LlFpprdNGgeVcAfoZCL9czc0d+NDObaIoq2Bmd651y7c7LJyDvW?=
+ =?iso-8859-1?Q?rRwPOz4qZ9WfXH2A603Za5BF6p75ob2qNZ0CG1uk49Nnlz+CU8whgk/Gxm?=
+ =?iso-8859-1?Q?oWAaT97h3jV+1gzwZFNX9caqjpsW5y/zQZ0d5GTU6TjvSZ+I3020zBx4//?=
+ =?iso-8859-1?Q?2cT1H0gBnPJWThzOs8yU3ykrMQb4Detn4x7TYSS2o4TBhRCGPXaf9rYyIa?=
+ =?iso-8859-1?Q?nttPGKsmaEo6wCl4f4XDRPKoLniCgQHpZEKcCQJubcNPu/YUzzQp8kkuct?=
+ =?iso-8859-1?Q?eMfM9a633vwiVzuldMoSvt6Jra8YZLDWsleHwbvIX8jX8UZeeq4J2LRGyu?=
+ =?iso-8859-1?Q?niOLtzYJlUhAe7BzvRyMWvvVnhbnjYvBBtRn6xYSUFHK9XOlY9Fx/KDccC?=
+ =?iso-8859-1?Q?W2SW4II79MBv/72x3YLFxWiRv1irzXpj84Bp6bz3+eMXDIj5QJlQt+hQ/8?=
+ =?iso-8859-1?Q?cQDy0T/X9fOwuuwJ0Cxf29LdVpdJiAtHNduTzElVxnuGvz+pNj1jsN8S2+?=
+ =?iso-8859-1?Q?cop1vaK4v4gcIkVWZkweNY1uUuOUU6Esj+N0eL7mNa5NBqcyKveCKhKzo+?=
+ =?iso-8859-1?Q?6N+cqjA4RUrXYlxZ8TcN9GVik8tGNQ8bPukyrYyJ3vsssffZw6w5EcjlC0?=
+ =?iso-8859-1?Q?l1QYMW3plBezNQ+9HclfHZ7CfOpLOGlolTXbRkCQLD/X2favDtxN3PM12R?=
+ =?iso-8859-1?Q?10STs1ajmNwenNudMFEAGdDetC/Oft+bsh9A1WwHbhAycMIs4nvlA9ex8o?=
+ =?iso-8859-1?Q?Bt5yjD6/RmO4TASh842Rpq/rR3ejULjmlDTli2ZDBQSkUK7r7+r1VabANH?=
+ =?iso-8859-1?Q?OsiTdM9f0ZBqIXm6NPToWvYfFo3sZI7CGceaIcRWO8h1GmFvoicY0DC4p9?=
+ =?iso-8859-1?Q?2pOldK+W4cuQSnUMBaFxd8Zi9SLsnvefq8s1G6fIAKhFor3dxRY270tBI5?=
+ =?iso-8859-1?Q?Bw8dxYQ1iOKaqYkRU9e2HKB/SD8Eq1ldkIxnCMB+sRjVuf3i0jCn+E7KIt?=
+ =?iso-8859-1?Q?wFg8rZt+mOAazsNtiz2AOJF9MX790W9sEdmhL4TpMFu1PdA8pYxTU5uFg4?=
+ =?iso-8859-1?Q?jOsugZ54m7VsR5gnu204KqMIIpHlez7C+qGhf6PF74ekHnqa5DFdUOyvfE?=
+ =?iso-8859-1?Q?GZkoY+809sJGj6iWdkG/zmd3otpUG7518vWQ6s9RuKjfGGcbkIBUXEApat?=
+ =?iso-8859-1?Q?zkTKXVO13YzBOaw3/6scof96FtVzuAZDeZDRV3rsWU0mR1JhuikeWcWMpm?=
+ =?iso-8859-1?Q?KkPj8ZUv08EvneD4zb2plhAuZQxthkRhoYryfnDSUxcJ/FzYB3pzaTTrTX?=
+ =?iso-8859-1?Q?yF+JiKw7fB2zCx4yNjTA+Lrx5RPPWu4jy+Bzkr+teusQ3ce0/YjX9/9Z38?=
+ =?iso-8859-1?Q?Z/x4RocefB+DVOXacxhEisjIgQ4HhnUweICptbywrKkDATNBqSsSvA6JbB?=
+ =?iso-8859-1?Q?jpIpMCQJi5vY5NJB+d/slN9lz1owowZKEFBjnh1qZgnoOXaGJ58ZiaN5d4?=
+ =?iso-8859-1?Q?W2xemxLYiGmddWIe7r1nhHUEp2g7HzkdmP26quEbX0dXPCinciLKIFmCIS?=
+ =?iso-8859-1?Q?dK0HRR9ZGw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: IOkHqiAMYFRe9aJ6M7tm05BElb40qvqorhrNly45kwiSn7XTshOpeUgtOf6QEb3CT2HWcHKS5x7sZeHQlozFfF+zMCzhm9OWTe0bn4l6RMOWNWzLTb7Og2/qgbVNnhSqLIgMqB+Ro+e9cYySmtj4rzzRGu/H2Vh+4wl2PqwvgUrb6gWnrLvFPftjVdAOY2utm7X0rHSJnscGTlC5E12WOJ2HUjocuRhAeD8VbkwhzxVGwd1GKE1Uxngyr3WTOrqc183iBJxKhNhDXFGWqQ1Iz6aHHNddJ6hQ0BFekuT0yDWAHmgnoLqjkiE14yQGhkm70DWrcOYZnpq1cncnAg7+qQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2eac93b-2923-434a-9aa1-08df2fc08d8b
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 21:24:51.0185 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 22:13:36.6343 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: llauL+leeCh+XUZVM2p1KfCidXEufDaArPrLQriXbIQFnwVAguBkvmpM3h2AFq/8ykWGojJ5j4gTIu0mmMX5eQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4758
+X-MS-Exchange-CrossTenant-UserPrincipalName: zdlUoRyCzkpZu8LOzj42ZgYUDVrnP8riuEqkiIiKmnphtts307UNVAqwDBU6EoCUWFNWl/i8doY94F36nfi1RQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7889
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -154,129 +158,326 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Oct 21, 2026 at 09:41:11AM +0530, Nareshkumar Gollakoti wrote:
-> This series adds initial Shared Virtual Addressing (SVA) support for xe
-> on platforms where ATS and PASID are available but PRI is not enabled or
-> not supported.
+On Tue, Oct 20, 2026 at 07:36:05PM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
+> - [High] drm/xe: xe_bo_bump_lru_locked() and xe_bo_shrink_too_young() ignore bulk_move
+> - [High] drm/xe: xe_bo_move() bumps LRU and stamps VM on VRAM-to-TT evictions
+> - [Medium] drm/xe: xe_bo_init_locked() bumps LRU before setting bo->vm and bulk_move
+> - [Medium] drm/xe: xe_bo_shrink_backup_candidate() includes deleted and ghost BOs
+> --
 > 
-> For SVA, the device must be able to issue memory transactions tagged
-> with a PASID so that address translation is performed in the process
-> address space rather than in a driver owned address space. This series
-> adds the xe side infrastructure needed for that flow: VM support for SVA
-> PASID state, PASID retriveal helpers, and programming of CTX_SYS_PASID
-> for ATS and PASID enabled contexts.
+> commit 7080502f8c1d2ffa8fd84f4e7f1ff61a34a0e8c9
+> Author: Matthew Brost <matthew.brost@intel.com>
 > 
-> On systems with PRI, device page faults can be surfaced and resolved
-> through the hardware page request interface, so the driver does not need
-> to implement a separate fault servicing path for SVA.
-> On non PRI systems, that hardware assisted fault path is unavailable.In
-> that case, the driver still needs a way to resolve faults against the
-> backing process address space so execution can proceed.
+> drm/xe: Add a minimum age gate to the shrinker
 > 
-> To support that case, this series introduces a CPU mirror VMA and uses
-> it as part of a driver managed SVM path for SVA faults without PRI.The
-> purpose of the CPU mirror VMA is to provide a CPU side VMA
-> representation for the address range being accesses through SVA,so the
-> driver can rely on the kernel MM/VMA machinery to validate mappings and
-> resolve backing pages for fault handling in the absence of PRI.In
-> other words, since the device cannot issue PRI requests, the driver
-> needs a CPU visible VMA context that mirrors the GPU SVA range closely
-> enough to let faults be service through normal MM paths.
+> This commit adds a per-device shrinker_min_age_ms sysfs attribute and Kconfig
+> default to prevent the shrinker from backing up buffer objects that were
+> recently moved into TT or bumped on the LRU during exec. It timestamps BOs and
+> VMs on LRU bumps and skips LRU priorities whose first shrinkable backup
+> candidate is younger than the configured minimum age.
 > 
-> At a high level, this series does the following:
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index bc4801c48fce5..fc8fe68ca0373 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1359,9 +1359,114 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+> >  		xe_tt_unmap_sg(xe, ttm_bo->ttm);
+> >  	}
+> >  
+> > +	if (!ret && ttm_bo->resource && ttm_bo->resource->mem_type == XE_PL_TT)
+> > +		xe_bo_bump_lru(bo);
 > 
->  1. log ATS/PASID enablement state during probe,
->  2. add VM infrastructure needed for SVA PASID support,
->  3. add a helper to retrieve the VM SVA PASID,
->  4. program CTX_SYS_PASID for ATS/PASID-enabled contexts,
->  5. add a PCI helper for ATS/PASID operation without PRI,
->  6. add a CPU mirror VMA for handling SVA faults on non PRI platforms
+> [Severity: High]
+> Should xe_bo_move() avoid calling xe_bo_bump_lru() when evict is true or when
+> ttm_bo->resource->placement has TTM_PL_FLAG_TEMPORARY set?
 > 
-> Patches 1-5 provide the ATS/PASID and VM/context plumbing needed for
-> this flow and have been validated internally.Patch 6 adds the non PRI
-> fault servicing path, and feedback on that overall approach would be
-> especially appreciated.
+> Under VRAM pressure on discrete GPUs, ttm_bo_evict() calls xe_evict_flags(),
+> which selects tt_placement (XE_PL_TT) for BOs in VRAM or stolen memory:
+> 
+> drivers/gpu/drm/xe/xe_bo.c:xe_evict_flags() {
+> 	...
+> 	switch (tbo->resource->mem_type) {
+> 	case XE_PL_VRAM0:
+> 	case XE_PL_VRAM1:
+> 	case XE_PL_STOLEN:
+> 		*placement = tt_placement;
+> 		break;
+> 	...
+> }
+> 
+> A multihop move in xe_bo_move() can also bounce a BO through a temporary
+> XE_PL_TT resource with TTM_PL_FLAG_TEMPORARY set.
+> 
+> When a single cold VM-private BO is evicted from XE_PL_VRAM0 or XE_PL_VRAM1
+> into XE_PL_TT, calling xe_bo_bump_lru() -> xe_bo_bump_lru_locked() updates
+> bo->lru_stamp and vm->lru_stamp to jiffies and calls
+> ttm_lru_bulk_move_tail(&vm->lru_bulk_move). Because ttm_lru_bulk_move_tail()
+> moves the VM's bulk-move ranges across all TTM_NUM_MEM_TYPES and advances
+> active eviction cursors via ttm_bulk_move_adjust_cursors(), evicting one BO
+> from VRAM moves all remaining cold VRAM BOs of that VM to the tail of the
+> VRAM LRU so hotter VMs are evicted instead. It also stamps the evicted BO and
+> all XE_PL_TT BOs of that idle VM as freshly used, protecting them from the
+> shrinker for min_age_ms.
 > 
 
-Many concerns with this series, and I'm also generally quite confused
-about the flows here. Let's take a step back and dig into what you're
-trying to accomplish and why.
+This is correct. Will fix.
 
-Prior to this series:
+> > +
+> >  	return ret;
+> >  }
+> >  
+> > +/**
+> > + * xe_bo_bump_lru_locked() - Bump a BO on the LRU and stamp its last use
+> > + * @bo: The buffer object, reserved by the caller.
+> > + *
+> > + * Move @bo to the tail of its LRU and record the time for the shrinker's
+> > + * minimum age gate. A BO private to a VM is anchored inside that VM's
+> > + * bulk-move range, so moving it alone would only reorder it within the
+> > + * range, leaving it wherever the range sits on the LRU. Move the whole
+> > + * range to the tail and stamp the VM as well, matching xe_vm_bump_lru().
+> > + * The caller must hold the device LRU lock.
+> > + */
+> > +void xe_bo_bump_lru_locked(struct xe_bo *bo)
+> > +{
+> > +	struct xe_vm *vm = bo->vm;
+> > +
+> > +	if (vm) {
+> > +		WRITE_ONCE(vm->lru_stamp, jiffies);
+> > +		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
+> > +	}
+> > +
+> > +	WRITE_ONCE(bo->lru_stamp, jiffies);
+> > +	ttm_bo_move_to_lru_tail(&bo->ttm);
+> > +}
+> 
+> [Severity: Medium]
+> What happens when a VM-private user BO is initially created in XE_PL_TT via
+> __xe_bo_create_locked() -> xe_bo_init_locked() -> ttm_bo_init_reserved() ->
+> ttm_bo_validate() -> xe_bo_move()?
+> 
+> In xe_bo_init_locked(), ttm_bo_init_reserved() runs before
+> ttm_bo_set_bulk_move():
+> 
+> drivers/gpu/drm/xe/xe_bo.c:xe_bo_init_locked() {
+> 	...
+> 	err = ttm_bo_init_reserved(&xe->ttm, &bo->ttm, type,
+> 				   placement, alignment,
+> 				   &ctx, NULL, resv, xe_ttm_bo_destroy);
+> 	...
+> 	bo->created = true;
+> 	if (bulk)
+> 		ttm_bo_set_bulk_move(&bo->ttm, bulk);
+> 	else
+> 		ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
+> 
+> 	return bo;
+> }
+> 
+> And __xe_bo_create_locked() only sets bo->vm = vm after xe_bo_init_locked()
+> returns.
+> 
+> When xe_bo_move() calls xe_bo_bump_lru() during ttm_bo_init_reserved(), both
+> bo->vm and bo->ttm.bulk_move are still NULL, so xe_bo_bump_lru_locked() only
+> stamps bo->lru_stamp and moves the new BO to the LRU tail without updating
+> vm->lru_stamp or calling ttm_lru_bulk_move_tail(&vm->lru_bulk_move).
+> 
+> Immediately afterward in xe_bo_init_locked(), ttm_bo_set_bulk_move() calls
+> ttm_lru_bulk_move_add() -> ttm_lru_bulk_move_pos_tail(), which executes
+> list_move(&res->lru.link, &pos->last->lru.link) if the VM already has BOs in
+> (XE_PL_TT, XE_BO_PRIORITY_NORMAL). That pulls the newly stamped young BO
+> backward from the LRU tail to the end of the VM's existing bulk-move range.
+> If that range sits near the head of the XE_PL_TT LRU ahead of older BOs from
+> other VMs, the shrinker can encounter the young BO near the head of the list
+> and call ttm_bo_lru_cursor_skip_priority(), skipping older cold BOs behind
+> the VM's range.
 
-VM bind sets up PPGTTs.
-- System memory uses DMA addresses (via dma-map) with DM=0 in the entry.
-  These are GPAs (no pasid) translated by the IOMMU (or via ATS).
-- Device memory uses DPAs with DM=1 in the entry.
-SVM is configured via VM bind and CPU page-table mirroring.
-- Pagefault or prefetches create mappings, data may or may not migrate.
+I think it is temporarily not in the bulk-move list, but as soon as
+xe_bo_init_locked() is called, it is moved into the bulk-move list. The
+BO should end up at the tail of the bulk-move list after
+ttm_bo_set_bulk_move(), so this is a non-issue. 
 
-After this series, all I have is questions and none are explained by the
-cover-letter or patch commits:
+> 
+> [ ... ]
+> 
+> > +/**
+> > + * xe_bo_shrink_backup_candidate() - Whether the shrinker may back up a BO
+> > + * @bo: The TTM buffer object, reserved by the caller.
+> > + *
+> > + * A BO is a backup candidate if backing it up is the only way to reclaim it.
+> > + * BOs advised DONTNEED, which sit at XE_BO_PRIORITY_LOW, and purgeable ones
+> > + * are not: their pages are simply dropped, which is cheap, and they are
+> > + * accounted to the purgeable shrinker. Neither are BOs whose tt isn't
+> > + * TTM_TT_FLAG_EXTERNAL_MAPPABLE, which xe_bo_shrink() rejects outright.
+> > + *
+> > + * Return: true if @bo would be backed up by a non-purge shrink pass.
+> > + */
+> > +bool xe_bo_shrink_backup_candidate(struct ttm_buffer_object *bo)
+> > +{
+> > +	struct xe_ttm_tt *xe_tt;
+> > +
+> > +	if (!bo->ttm || !(bo->ttm->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE) ||
+> > +	    bo->priority <= XE_BO_PRIORITY_LOW)
+> > +		return false;
+> > +
+> > +	xe_tt = container_of(bo->ttm, struct xe_ttm_tt, ttm);
+> > +
+> > +	return !xe_tt->purgeable;
+> > +}
+> 
+> [Severity: Medium]
+> Could xe_bo_shrink_backup_candidate() misclassify non-xe ghost BOs or deleted
+> BOs awaiting delayed_delete that xe_bo_shrink() purges rather than backs up?
+> 
+> In xe_bo_shrink(), both non-xe BOs and xe_bo objects whose GEM refcount has
+> reached zero are purged via xe_bo_shrink_purge():
+> 
+> drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
+> 	...
+> 	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
+> 		return xe_bo_shrink_purge(ctx, bo, scanned);
+> 	...
+> }
+> 
+> When a recently stamped user BO is freed while busy (or with
+> want_init_on_free() enabled) via xe_gem_object_free() -> ttm_bo_fini() ->
+> ttm_bo_release(), its GEM refcount is zero and bo->deleted is true while it
+> remains on man->lru[XE_BO_PRIORITY_NORMAL] awaiting delayed_delete. Once its
+> fences signal before the delayed_delete worker runs, ttm_bo_shrink_suitable()
+> returns true. Because neither xe_bo_shrink_backup_candidate() nor
+> xe_bo_shrink_too_young() checks bo->deleted or kref_read(&bo->base.refcount),
+> xe_bo_shrink_too_young() treats the freed BO as a young backup candidate,
+> preventing __xe_shrinker_walk() from purging it and causing both
+> __xe_shrinker_walk() and xe_shrinker_lru_young() to skip the rest of the
+> priority via ttm_bo_lru_cursor_skip_priority().
+> 
+> Additionally, because xe_bo_shrink_backup_candidate() does not check
+> xe_bo_is_xe_bo(bo), if xe_shrinker_lru_young() encounters a non-xe TTM ghost
+> BO at the head of a priority list, it treats the ghost BO as that priority's
+> first backup candidate and immediately returns false (since
+> xe_bo_shrink_too_young() returns false for !xe_bo_is_xe_bo(bo)) without
+> inspecting the first real backup candidate in that priority.
+> 
 
-1. Is a user expected to call VM bind? It seems the answer is yes.
+xe_bo_shrink_backup_candidate should likely check !xe_bo_is_xe_bo ||
+!kref_read(xe_bo) and return false for both.
 
-2. Do we need any changes to the PPGTT setup? bspec53912 seems to
-indicate that we do, but I'm not seeing any PPGTT setup changes in this
-series. At the very minimum, I'd expect userptr to not use dma-address
-and rely a PPGTT entry with P=0, FF=0 so the PASID walk occurs.
+> > +
+> > +/**
+> > + * xe_bo_shrink_too_young() - Whether a BO was used too recently to shrink
+> > + * @bo: The TTM buffer object, reserved by the caller.
+> > + * @min_age: Minimum age in jiffies. 0 disables the check.
+> > + *
+> > + * The age is taken from the later of the BO's own &xe_bo.lru_stamp and, for
+> > + * user BOs private to a VM, the VM's &xe_vm.lru_stamp.
+> > + *
+> > + * BOs that the shrink walk would not back up anyway are never considered
+> > + * young: non-xe BOs and everything rejected by
+> > + * xe_bo_shrink_backup_candidate(). Neither are BOs in XE_PL_SYSTEM: they are
+> > + * not GPU mapped, hence not part of a working set, and must be moved back to
+> > + * TT, refreshing the stamp, before use.
+> > + *
+> > + * Return: true if @bo was touched less than @min_age jiffies ago.
+> > + */
+> > +bool xe_bo_shrink_too_young(struct ttm_buffer_object *bo, unsigned long min_age)
+> > +{
+> > +	struct xe_bo *xe_bo;
+> > +	unsigned long stamp;
+> > +
+> > +	if (!min_age || !xe_bo_is_xe_bo(bo) ||
+> > +	    bo->resource->mem_type == XE_PL_SYSTEM ||
+> > +	    !xe_bo_shrink_backup_candidate(bo))
+> > +		return false;
+> > +
+> > +	xe_bo = ttm_to_xe_bo(bo);
+> > +	stamp = READ_ONCE(xe_bo->lru_stamp);
+> > +	if (xe_bo->vm && xe_bo_is_user(xe_bo)) {
+> > +		unsigned long vm_stamp = READ_ONCE(xe_bo->vm->lru_stamp);
+> > +
+> > +		if (vm_stamp && (!stamp || time_after(vm_stamp, stamp)))
+> > +			stamp = vm_stamp;
+> > +	}
+> > +
+> > +	return stamp && time_before(jiffies, stamp + min_age);
+> > +}
+> 
+> [Severity: High]
+> Should xe_bo_bump_lru_locked() and xe_bo_shrink_too_young() check
+> bo->ttm.bulk_move instead of bo->vm?
+> 
 
-3. Are any programming model changes required in the UMD? If so, what
-are they? I'm also concerned that this becomes a blind opt-in whenever
-ATS + PASID are supported, as this would surely affect performance and a
-UMD should have an explicit opt-in or opt-out mechanism.
 
-4. Is SVM just implicitly enabled? Patch 6 seems to suggest that it is.
-However, if I'm reading bspec53912 correctly and force-fault is not set
-in the PPGTT, non-present PPGTT entries that correspond to valid CPU
-pages would simply be translated and never migrated. If we miss in the
-CPU page tables (e.g., the CPU has never touched the page), migration
-could still occur, but only in 4K chunks, which would be terrible for
-performance.
+The check should be...
 
-5. If SVM is explicitly enabled (e.g., through CPU page-table mirroring
-via a CPU bind), we still have all the same issues described in #4 with
-migration largely being bypassed. However, we'd at least hit the CPU
-mirror and could perform larger migrations.
+if (xe_bo->vm && bulk..
 
-6. The most important question is: why is this being posted at all?
-Unless we have hard data showing a performance benefit, I'd prefer not
-to carry this code in the upstream tree. I could see some very narrow
-use cases (e.g., userptr or SVM with a preferred system-memory location)
-where avoiding a DMA map might provide a small performance win. However,
-we'd likely need to rework things so that FF=1 is the default SVM
-configuration. Alternatively, if we wanted access-counter-driven
-migration rather than first-touch migration, this might make sense. 
+> There are two cases where a user BO has xe_bo->vm != NULL and
+> XE_BO_FLAG_USER set, but bo->ttm.bulk_move is NULL:
+> 
+> 1. In __xe_bo_create_locked(), private user BOs in a fault-mode VM
+> (xe_vm_in_fault_mode(vm)) are created with bulk = NULL while bo->vm = vm is
+> still assigned:
+> 
+> drivers/gpu/drm/xe/xe_bo.c:__xe_bo_create_locked() {
+> 	...
+> 	bo = xe_bo_init_locked(xe, bo, tile, vm ? xe_vm_resv(vm) : NULL,
+> 			       vm && !xe_vm_in_fault_mode(vm) &&
+> 			       flags & XE_BO_FLAG_USER ?
+> 			       &vm->lru_bulk_move : NULL, size,
+> 			       cpu_caching, type, flags, NULL, exec);
+> 	...
+> 	bo->vm = vm;
+> }
+> 
+> 2. In xe_gem_object_close(), closing the GEM handle of a private user BO that
+> remains mapped in a non-fault-mode VM clears bo->ttm.bulk_move while leaving
+> bo->vm set:
+> 
+> drivers/gpu/drm/xe/xe_bo.c:xe_gem_object_close() {
+> 	struct xe_bo *bo = gem_to_xe_bo(obj);
+> 
+> 	if (bo->vm && !xe_vm_in_fault_mode(bo->vm)) {
+> 		xe_assert(xe_bo_device(bo), xe_bo_is_user(bo));
+> 
+> 		xe_bo_lock(bo, false);
+> 		ttm_bo_set_bulk_move(&bo->ttm, NULL);
+> 		xe_bo_unlock(bo);
+
+This is probably not correct in current code.
+
+BOs can outlive their handles, so I'm reading this correctly after a
+handle closes for private user BO, we never bump the LRU.
 
 Matt
 
-
-> Himal Prasad Ghimiray (1):
->   drm/xe/vm: Setup SVA infrastructure for PASID support
+> 	}
+> }
 > 
-> Nareshkumar Gollakoti (5):
->   drm/xe/pci: log ATS/PASID enablement state at probe
->   drm/xe/vm: add helper to retrieve VM SVA PASID
->   drm/xe/lrc: program CTX_SYS_PASID for ATS/PASID-enabled contexts
->   drm/xe/pci: add helper for ATS/PASID without PRI
->   drm/xe/pagefault: add CPU mirror VMA for SVA faults without PRI
+> Non-user VM BOs such as XE_BO_FLAG_PAGETABLE BOs also have bo->vm == vm and
+> bo->ttm.bulk_move == NULL.
 > 
->  drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  6 +++
->  drivers/gpu/drm/xe/xe_lrc.c             | 37 ++++++++++++++++
->  drivers/gpu/drm/xe/xe_pagefault.c       | 49 ++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_pagefault_types.h |  6 +++
->  drivers/gpu/drm/xe/xe_pci.c             |  7 ++++
->  drivers/gpu/drm/xe/xe_pci.h             | 15 +++++++
->  drivers/gpu/drm/xe/xe_vm.c              | 56 +++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_vm.h              |  2 +
->  drivers/gpu/drm/xe/xe_vm_types.h        |  6 +++
->  9 files changed, 184 insertions(+)
+> Whenever any BO of that VM moves into XE_PL_TT (calling xe_bo_move() ->
+> xe_bo_bump_lru() -> xe_bo_bump_lru_locked()) or when xe_vm_bump_lru() runs on
+> exec, vm->lru_stamp is updated to jiffies. However,
+> ttm_lru_bulk_move_tail(&vm->lru_bulk_move) only moves BOs attached to
+> vm->lru_bulk_move, and the loop in xe_vm_bump_lru() skips private BOs because
+> drm_gpuvm_is_extobj() is false when obj->resv == drm_gpuvm_resv(&vm->gpuvm).
+> 
+> As a result, detached or fault-mode user BOs with bo->ttm.bulk_move == NULL
+> are never moved to the LRU tail and stay at the oldest head of
+> man->lru[XE_BO_PRIORITY_NORMAL], yet xe_bo_shrink_too_young() gives them the
+> fresh vm->lru_stamp. When xe_shrinker_lru_young() or __xe_shrinker_walk() in
+> drivers/gpu/drm/xe/xe_shrinker.c inspects the head of
+> man->lru[XE_BO_PRIORITY_NORMAL], it sees the un-moved cold BO at the head as
+> young and calls ttm_bo_lru_cursor_skip_priority(&curs), skipping the entire
+> XE_BO_PRIORITY_NORMAL list across all VMs on the device.
+> 
+> [ ... ]
 > 
 > -- 
-> 2.43.0
-> 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20261020190840.854525-1-matthew.brost@intel.com?part=3
