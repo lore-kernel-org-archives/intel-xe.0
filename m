@@ -2,157 +2,156 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5735606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 05:12:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19D79606A31B
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 05:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=TV/px+kb
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=j5QqTmx+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 74D4410E08B;
-	Wed, 21 Oct 2026 05:12:25 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 244EE10E08B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 05:12:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C318710EC4A;
+	Wed, 21 Oct 2026 05:17:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC73210E303;
+ Wed, 21 Oct 2026 05:17:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792559540; x=1824095540;
- h=message-id:date:subject:to:references:cc:from:
- in-reply-to:mime-version;
- bh=joLpduwjaFt0sLr2P1PPyPaDnlzea6uvDMz/59S7YAM=;
- b=TV/px+kbo1KNtWGTOk+uCXm1ZQEEDiNOUnvLukmhoWRiM6R6S4Hn4pam
- N1g1Yrr4HwR+YqPAPmnDu8fv1Iwcp0ELxQacbpZ+mP+hO2G2Mp4s/RK88
- b7dizUuqgouRoIsmm/Z0j/VP0l7s8/a/qxEZckQ1E3tYdsN6Z5Jj9paUV
- m4GQzhuzI+abhqjMMT9pwWOApFwDANVqs6ueNyJrQ1ylSnoYSZd29YVCt
- IFRTiAgi9RHbGYfVrO3dfz0Q3hbWf3Mm86qrU492LyY86Z4yJIpl6mtqE
- yY6JNQO9rZkzcAxSepLxlcUuStbQroeDundH4VuS46up3HVqdIJLXR0jX w==;
-X-CSE-ConnectionGUID: 3q1IOPbzQVizOqTKak5jjA==
-X-CSE-MsgGUID: VzKe9CIZT6K3eWzbe1yigQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1154361"
-X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; d="scan'208,217";a="1154361"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 22:12:19 -0700
-X-CSE-ConnectionGUID: RzeX0KNuT8WGJM/PN4UJ/w==
-X-CSE-MsgGUID: foYIGVunQHCQuw9abh4/nQ==
+ t=1792559847; x=1824095847;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=qwJC0T496gn42jpdbO1E+QvT6kiJbkl8QnpNtMFd9tI=;
+ b=j5QqTmx+/owm+kUGHlV+IlpLvAVMOz1misyUvc95O/wl2oFZDyaEpK0D
+ 1EyzZy/Szlgz020AuYGU/MxeHDr1DFnzlPjRa/S3wjUS8e9vmewWFqFcT
+ jLW1+V5VL/UgyHna1csZCIDc5LJx+tcIHwq1rpGku/P7e0m26Em4829dG
+ AfS+sboSu4isEWe/z3a+iDP9lDcuyUhf34mzpGTuw1/SYgO+VO4l+1BHU
+ HgbfbE+JXw+kApGWe2hDUAe5rZ6GSOF9OvEUaFb19s7MLkbCSCjOqBAui
+ pkdGrTeZvVhgHZI8xjK4gRoiV8CfzVtbItlm0HNz4tek+/FKrHUT+cZ2H w==;
+X-CSE-ConnectionGUID: y8D56HayTKeqHvlA4SWMgg==
+X-CSE-MsgGUID: FY5tsneYQZibn76yYCNVUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1176980"
+X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
+   d="scan'208";a="1176980"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 22:17:27 -0700
+X-CSE-ConnectionGUID: FsSvkCdBSJ+CBZJ7UBCyzg==
+X-CSE-MsgGUID: y+jtVX9/TySEQtrYTK0Pmg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; d="scan'208,217";a="2997321"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 22:12:18 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
+   d="scan'208";a="3456985"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 22:17:27 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 22:12:03 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.49; Tue, 20 Oct 2026 22:17:26 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 22:12:03 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.34) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 22:17:26 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.15) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 22:12:03 -0700
+ 15.2.2562.49; Tue, 20 Oct 2026 22:17:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ow42brW8FMKvT42lmjxX4FZ2UNfVfejNcSVgekndkJy+jwd0hdQPHnIM7fIux+qPVz2YzhpFt3KH150KjP2Vk+0kv/weDXUEwh3sYuo4kvt0dNdv/QOM/Jo6a1FFIUyFUYQzZq+U+dvsx1kyOrkkCMiAfl89qu4VO7LC0mFfperj62oFsyR4rF05rpR4O7y28dWhaAiUFkXI9BiIxmP91hta0+yWBEbTiTHZpWZVbr22w8yg2G2tRVrqMjdFKUa1yuUnkP+dVEfPVqJQ2/XUd7kX5XYN6RaDfM/FMqGFkvlFGfnPS2qCn+6o3Ld98bV+oLZ+p/O3b5Igkex4AKvEjQ==
+ b=TCthbF06gevEqGRzkjmuJbEOrJbubT6/S8vioyv3iStfz6sOgJq1wkv5O3OqZ3t5SqexJYO7Bc2+Ay5waCC9tBTVhzyonkps6zqYQA6/ukOuUtRgKCsZfiTaLwjRmuRhsOJDOD1he6vlqcBT4XRoH4rXphktr6izJdYvUj5Iyf7i4PsAfuf98puevoFhoAxw2rxYDvchESGbvJh6y1Lb4FeziABXwuB0v8n7RFKhqztte3i0DctRYSmXmbNQZwrZcc3G4FaWugfbk1un2gCJpLOONQli3S0oRly3H4fYQmAj+HfHwn7EL6q5Z6xWashPiHBfk8R8sy+NOEontIdIQA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YnGmEC5RbylUpwZcCHM9pQBJ6tZUTG1jcMZ0B46sTmQ=;
- b=bA83Q3JFhv2iRhCmQpIUJmfVxc4bLa+JOvIT0CBs9lLi41H3Rvn0mVcPt5IpH5xAYmmJbB1rAYUib6BUqGzkhtv8RDAl/3n6BTTW40t4W+WrFAb1MyYpykzOnQoZIdqjsbnG6/qN265cBPynZH5+rGDvholm+MGR1yLBScGmep8wAwddXCFaX9DpS8WBwzKxRDZPDN5KUwzJMLFomnNypkJjNgafsu08G44AYQObFBhcDKbLuKnpEkYNsqbu4/FLfgrqBr6ZarsJKXQcEZiaZ8X5KnMblmpXr55MN+dmndj6bgIK0Q/mejdDi6i8MMKlm3U7vuP8UZ/4ZbEkojKSFA==
+ bh=jZ1a4AKN3EGzgRUf2bSKEPUfuBOKy4sioPCiq067ees=;
+ b=NdI210DcmMz4n7jeN2BolHQT+xAu9BiRoXUXs/402t7pCxQlWXR7ALRAjQSay472z83JGUL2Q2R8M9eMj9zeAnvFj9sbJ8vl0sVZv6Fpco1xRvl7NSFysUI5Wm64FzDYb0ikDHMzT1jEdSZO0cpIbHq5ZPai3r7U0AGud+VFlHmWVL2UntS6DjQnKgRu8p5oxPMwGS9BPHytpCEbtl+7fDtY9pwlYhvXTKmx+MIZsYZdNp349+h6rfgUTBROHXOwOlyWSVSXyl5HBZUyRm2LmpnyztZXocNm3kq6rQJPpckLEfhD0W3gyGAu16B/BdzrOBe696wXMAP0PcB8vM93Zg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV8PR11MB8607.namprd11.prod.outlook.com (2603:10b6:408:1ec::18)
- by CH3PR11MB8562.namprd11.prod.outlook.com (2603:10b6:610:1b8::13)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by IA3PR11MB824491.namprd11.prod.outlook.com
+ (2603:10b6:208:626::16) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Wed, 21 Oct
- 2026 05:11:55 +0000
-Received: from LV8PR11MB8607.namprd11.prod.outlook.com
- ([fe80::70de:934:a004:9c56]) by LV8PR11MB8607.namprd11.prod.outlook.com
- ([fe80::70de:934:a004:9c56%4]) with mapi id 15.21.0522.017; Wed, 21 Oct 2026
- 05:11:55 +0000
-Content-Type: multipart/alternative;
- boundary="------------gYa0dbEx2mykXuU10stZjqVk"
-Message-ID: <83c07a17-29b7-45dd-bd51-4ae72a1fd22a@intel.com>
-Date: Wed, 21 Oct 2026 10:41:48 +0530
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe3?=
- =?UTF-8?Q?=3A_Fix_OAM_stream_broken_on_Xe3+_=28rev2=29?=
-To: <intel-xe@lists.freedesktop.org>
-References: <20261012112158.180251-1-shekhar.chauhan@intel.com>
- <179182308911.13983.4620248949818831428@221881a7231d>
+ 2026 05:17:19 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::19f5:13eb:df52:68ff]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::19f5:13eb:df52:68ff%8]) with mapi id 15.21.0522.012; Wed, 21 Oct 2026
+ 05:17:19 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH v4 04/10] drm/i915/dp: Add M/N ratio check for DP link
+ config
+Thread-Topic: [PATCH v4 04/10] drm/i915/dp: Add M/N ratio check for DP link
+ config
+Thread-Index: AQHdRmJ94wCbcD5pPUyk/04vWGZevLb/ITyAgAiH96A=
+Date: Wed, 21 Oct 2026 05:17:18 +0000
+Message-ID: <DS4PPFE901A304F4B4712F24CF4306E2337E3662@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20260917050649.871960-1-suraj.kandpal@intel.com>
+ <20260917050649.871960-5-suraj.kandpal@intel.com>
+ <BYAPR11MB37839E745F7C026E80523E08B29C2@BYAPR11MB3783.namprd11.prod.outlook.com>
+In-Reply-To: <BYAPR11MB37839E745F7C026E80523E08B29C2@BYAPR11MB3783.namprd11.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-CC: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
-In-Reply-To: <179182308911.13983.4620248949818831428@221881a7231d>
-X-ClientProxiedBy: MA5P287CA0101.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d4::15) To LV8PR11MB8607.namprd11.prod.outlook.com
- (2603:10b6:408:1ec::18)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|IA3PR11MB824491:EE_
+x-ms-office365-filtering-correlation-id: 889827ca-1a6c-4189-5b6a-08df2f32941b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|10070799003|366016|1800799024|376014|23010399003|56012099006|38070700021|260925021911599003|260925022911599003|260925021311599003|261009223027099003|11063799006|4143699003|10067099003|22082099003|18002099003|6133799003|3023799007;
+x-microsoft-antispam-message-info: A+R8yeHbfEf60PhiCzUoJmmGCYB0pAYFikmxvGQ3pQ0X9eWefPB5qi7kml6q+G40m16B9uRHhrHI1zuJTRrN02Wdb4KpkeDh+iDiZbK+scuEmmW/zSZUeJsHt43FMNo9QEQpic9SIR6Q38RMeWoys6Qkxgs+2EVrISYE0xdQ/0KMlSO/rqtxf6BMjxE7+OyGgca8NvH1/jXmF1vdVy7Qh25KZWNF7T/z4dof2cacZtmApoLNVSgExjDYbuXXTHBQQ1NcEOmnkNGEMoy4fsZuKerp5bW2XgMNGL3mBFcyRLy5cVFE4M0tSr61nPBvX+VuRqMA30EMmORjpxQRxfHf9GYgGiXZtPGpkVBn7nA9ftZVfR/7FRdVVQg85E0UnDk3WgI1XFSCpRmfiy8SS07qxOfh534iYT9pC84GWb4VuVfh+rL+YPC0oGDRSsgKFCUooGgEV2SwliyUDyUEH0gW+PP/duC34377PLiQApgOGKG0lZNGWCM8xZl66SxXshDEr8GsOn5TIs8sqgNRvhJWkc7XryW18fjYMN/3WM1lF3TRsvgNgzn6CBBGySho5lVLLZqISiBkwu4q1acsxj22SaI5eFKHuzKsiX/9F+ptEsCzBmfOliwbiKN3C7fYVyxw5GufsDJoPfMeYINQ1knmaeGlR0pS1t4i5PhGE+udQHEhWbIqtTIAADOReESXrlTz4icMxfVcBrtCPy0RZPtMQgiiB96VN/ORJR7Y86WoKC8=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(1800799024)(376014)(23010399003)(56012099006)(38070700021)(260925021911599003)(260925022911599003)(260925021311599003)(261009223027099003)(11063799006)(4143699003)(10067099003)(22082099003)(18002099003)(6133799003)(3023799007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?xjGHSjXO4iqIYGs2qqK3w7jtpOp6+6F6hLNt3jF5x43CfLwUtNN+yA1TD0aH?=
+ =?us-ascii?Q?GYQCAinxhx6N6mhGboXt4jndgrvswEg9TSZB/VnvYhLjATY0bBPFbZVwoS1L?=
+ =?us-ascii?Q?S2ECjEYZ50SEbD3qfAlFwmPzP0BErUvgKXXkweFD7iGzvKiJVYD6WNjjA8Fr?=
+ =?us-ascii?Q?bpzJNLuE6gh8lqV3GV7F6eiIIrc34huJbLVwrKwf5LeHLVhwD/2a/Hr6kl4U?=
+ =?us-ascii?Q?qneZPHBGMZ67c0yfXsvVjthVY5bWlBcgjRAhHLSWqjchbu9saT+/8S1gD6Lc?=
+ =?us-ascii?Q?yOBBscgspXegF+FszFtHxUvFxasHa/XXV3ucyMyQ4AaMiaPHDKc0ocRYEJ/+?=
+ =?us-ascii?Q?uLStE3BD6B5kRxPTdFK7XqqWF9eXb2di5ha+RzstZIdMwm/ksZiY/DiZ7ili?=
+ =?us-ascii?Q?jCAchDxtN7rcxnEREtCQTh4q20lafxhcm58xW2vU/kULb1s3tALvNqV1eHoQ?=
+ =?us-ascii?Q?cpedypnvA3i2AaOX3APqQ5S1FOBMw1EEpOF8E30mNE12SANpAzmJroB4aqjF?=
+ =?us-ascii?Q?zLrd86AEruRv7JJq+8+SDrfyJLjr3H7SegfVasIy98IXxFegNgcR85AEDZ3I?=
+ =?us-ascii?Q?AVnVB5RT23tZ7i0pxOWmNfQb+K82DaQEsVPdZaoJ4jUR4v894SXB6wvnb2GF?=
+ =?us-ascii?Q?3jucGWG5C5q5dVBFuwvyPB2HBwnwDzfu4IJvZcjiBuf6mVC3SeC53Eo4+wtb?=
+ =?us-ascii?Q?EfE8tn9f1oN2t7s62L/PHnzld3/+7NU0p1KewHsWtD31Ubv7Jk4V6iKthstF?=
+ =?us-ascii?Q?u78lqZSNiOb2Z/7gFHT6fYaaaw/0xlvsLzpk9iO/UYwWeA/Zlx9/8JVa2GTn?=
+ =?us-ascii?Q?ulFwkzjvc80rubNxHbPnAf0FlTNXHfIHuKNQZxkSbvawlJDqT4t5tQ0tZi1A?=
+ =?us-ascii?Q?LdvkteKtBx0yb44eCZz+mHdPRenQa81duIRZbylBmyH0+WeWkwUDHxcx4m9O?=
+ =?us-ascii?Q?f1CCu4YiDtTiluLLCrIvJ4eGVgO3sZhy6uWBT8Fg8G48w10I0bIXR7E5v5Gu?=
+ =?us-ascii?Q?dPp+Low85G4pYkBrfr6lIWP+O767WWbKX9GomF3d9MhXWoNEjHahTh41C0Vf?=
+ =?us-ascii?Q?DAiXWL0qHjAcgqZr40XNddmVGhyrGRWOnAveylMGtQ3sbgeinyGAyVx+vUX4?=
+ =?us-ascii?Q?+IfQMO4W6x+F0T5JRSU8Bm72op4Y+Jf5X1f9276OOVMm32TKUNofBThGEyzU?=
+ =?us-ascii?Q?tXxWwWIBA5I7PHKfqV/B5jtekB1HMpy0oHzrCEysWt5aWKQjoO1tvMaJtKJ5?=
+ =?us-ascii?Q?xL7yCZcTa0gCnsr63d3kNpcmTGyYXCq8uEB59SxjlPXz25aeO9b661sreo3J?=
+ =?us-ascii?Q?qbAOMV1SG5Cg21J8kKPCNQq3XNRm88MUkg9b/euM7y/wjii9VKe7DGewf4C6?=
+ =?us-ascii?Q?MNOsp/Jaz7tgX5AS9rV0Z3a+Ad4x90MoFFse2ZO02M35HcP6Tp79pHuXViH1?=
+ =?us-ascii?Q?xagoRIU7hfNlfLqVIeQAWD1MquJikueHg9EJL6XwacQLBflAnkziAwSEWIA1?=
+ =?us-ascii?Q?+TLvqJy2VGa6HSS5X5o5cf9tciJkiDKbYKOv/G5tW067RpqRCuqIdkXDAX4b?=
+ =?us-ascii?Q?SbCVjFaeOegBd3AkNsiFqsTY+ifNBEsO0CrAbwvSKAtV6vH7V/MhQy/NyrHv?=
+ =?us-ascii?Q?9jd0SZyaN5fOKqZD1NYR6F1YlT3aSycztXceEspGQtFQVvNReeCxFGfSfasV?=
+ =?us-ascii?Q?B84k40SU5Qb29gE53IWrGZVJtFms9OLQzj9Lc8RmqHp9ADrtu9aM1ly1+WkP?=
+ =?us-ascii?Q?wGOycOBDcIGf04NB2Qtozli/5gMcDxanhDs/NxvOHPlmjpCVsJevkLlfCjpj?=
+x-ms-exchange-antispam-messagedata-1: dDuuASg0vbi+qw==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR11MB8607:EE_|CH3PR11MB8562:EE_
-X-MS-Office365-Filtering-Correlation-Id: 73513ed5-17b5-4c82-2f03-08df2f31d31b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|6133799003|22082099003|18002099003|13003099007|8096899003|11063799006|4143699003|261009221727099003|261009223027099003|261009221227099003|261009223327099003|261009220027099003|10067099003|56012099006;
-X-Microsoft-Antispam-Message-Info: OiQ4LJhUFhUAmUm8m70PyGiArErNuSFF49x5Z0VdDT4dbNKmVWWUuK+UZK5KCJ3VN1lQph9q2WfNnBzHy98nxHvLpJbolbAZ38l4SMdHdbbrAuIQt32u3BQzTd1VS0vA0AKj4OCCXLtKSiEP3Rb9ujTtknlVOrUfqwWtWOUuYeJoQQ6tZ0Xg6luJJncgaR6hbRg2+RVLwvRZTp83gAzbtyY1Dg+ZE7Fisodwj9BGMU8XPx38wRzL0kIERO25LnwG3yx+eqUTjA21G0cU5EpJsXlA5+jNxexYMCiAidUamQv5toqVHxpfGIHfO8PHOdYq9p5fQrGTmE+xsP2xWsFSavlkjmPrhOcxX4RCw3zQOucOmaNUO45X0Tee2t10MhRoxfE4w4gO+2FHfNV0DP9+/2sHpg04BzScxyGNJ8FaVRKI6uhTyHp11BqGOBjhR6BIVr+PHiULCcc2WvJ0Rj69oYboFvszlrdV99a6pEHnLnAbLezoqJ0Mm1U6XHnNb7lBq/p9cXhjATCh4rzaBoWEasD4MinQVx9sV3Cjd7ArctT4u+wdOohusC1NeGjIuPLOMDfN2ORRowYuKu/FIqQqHeFCgWsGxQh7kTm6QN4z6FkrHcmT96Kbaqh0OxsZSnoG
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV8PR11MB8607.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(6133799003)(22082099003)(18002099003)(13003099007)(8096899003)(11063799006)(4143699003)(261009221727099003)(261009223027099003)(261009221227099003)(261009223327099003)(261009220027099003)(10067099003)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHk3U1JoQ09uOGQzSURoTjVxSldIajBVczdacnVrbFFKOVNxQ21jSXN1MWxO?=
- =?utf-8?B?WWJBb250RnRGWEVHdGJLQUE3Vk9yL3Fld1Z2T09nWFJLLzh0dTFENnFUbnI3?=
- =?utf-8?B?bHIzbDg4VWFicGhTczQvNVVpNnU4V003ajVYTlRocE1sMXprYlJ2ejMxL3Vr?=
- =?utf-8?B?MkxpZDQ0dWtlQzhyYi9FRVBtMEJob3V2YU9DblNQbENWclNlSllydGN2bWdG?=
- =?utf-8?B?QXdnUFczbG1YR09ia09LTFFmaEc2Q3NrMHkwWklyeHRleGtUUmlubGZiZFk5?=
- =?utf-8?B?VGhWbXJ6TzNaV1hjWk02UldjYlZDTkgwT1NZYzcrUUNZTmUvZ052aWw1bGNt?=
- =?utf-8?B?cG1UK1cxd3U0RGpaRXRFaG1PRVlham1oRGxMaGJZK1lMeTNwODJuNEJoZXZK?=
- =?utf-8?B?T3FXVkdoR09XU1pqMzZwZnpxc0x0NkpBL25Ubmd4VERDaWwxcGVLZGREbnhr?=
- =?utf-8?B?NWYwT3FvSXhGNm5YVWlVSStIdExtK2tHakhMeDkxYzExaUM2SUdZZmZrUHBu?=
- =?utf-8?B?Qnc1elFrYTdwVFpkYm1PQmt2a2xtQlhxTnJWU1BybkhmYitMdVhjTWRlR0RS?=
- =?utf-8?B?TktSMzIydFZ0OTFQVmNIb2pLVElVTTdEaVhXNHZpRlRZaWwzc2RFdFNudXls?=
- =?utf-8?B?cko0aHEva2ZkMlNzbVZHNVNkdWQveDMvUFpWWHNtdis1L0RMdTlHbUJINTZo?=
- =?utf-8?B?MWNKbDJsYWtLYzZBcitScGFtYlNzUERtVU9mT25qYU5OOFVhUjVRR25lS0xZ?=
- =?utf-8?B?dCsyTSsvejhMMzJtcjVEWmFxdXhSSytubDRVdUhkWU1wclJzR0VEUSt1QzNU?=
- =?utf-8?B?M0M1Z3FoZXlZSjFIY1VSSEoxMVlqUm5KMUF0QlorNnMrZ3V1VG83cHZOVEdi?=
- =?utf-8?B?a1hXY2ZZcDN0Q1VDUXMvNFZvY25CL3poZUJSc09mUjVpRi94cVVmeGNyWmdR?=
- =?utf-8?B?QWlsdzR3S3prR0pwVHNZYnhDNkc4UStBRmozcVNZUGJKbytDaGRSaktBa3lk?=
- =?utf-8?B?Zm11REdzRkNUWExKeUJpVnd1QmxvS0ZyVmM2MWpiSUxTMnZsYUtIMGZweDdS?=
- =?utf-8?B?bTZVenNTUGRFTXZCcU9ZbktZWjFsZm9JUFZ3Q2ZQY2ljanpIbXcxK1pEYkV1?=
- =?utf-8?B?OGl6YVNyRCsvaFlEaGgrcHdJWENiQ2U4VVZjY2dvMkYyRmc1dkVwNkx5dmg1?=
- =?utf-8?B?YlYwTnh1NEhCWTF1M0pXWDZkMnVkU3QzOW9ianpBN0pBWW50QXl3b2xyck0w?=
- =?utf-8?B?MmZLYUFwajEzQnFUVmtYRk94VDR0Mm1lclBpM3F4RU1VMlp2eWtsaC84d3Vz?=
- =?utf-8?B?cXhSYm9vbGw2bkhTYTJJQ3p3MzVISm93VHNlNUFMcTNTWlVlM3FlYkMxdzg1?=
- =?utf-8?B?Z2FFeVE1Sm1Eay9sYmRkOXUxb1A0ZmZDaHVkVmR3Umdzd0w4Mk9HK0VLUC9u?=
- =?utf-8?B?RkhxQlRzaUhiSGV1NmI4NGpRT3BnMTlPZVdMQU1sK1pWTnhFemxIWUJNaUxz?=
- =?utf-8?B?Ty9PYm4xOUZQM1dYTW96bWFZMzluZk5HRnN4bnRDTTh0dkozR2hDYzZZSFBa?=
- =?utf-8?B?dTI2ZnEza2JvTlpPeG9WbEVMNUJPWEp4eENaeElsemJ5bVNyRGU4K0pFVzdq?=
- =?utf-8?B?UUQ3SWE0a1BSNk9ibVhJb2RLUUxRSTA2RW1TNThxQjlvZ0Z1RFBodDVBVUU0?=
- =?utf-8?B?UDM0SDdqTG10d1UzWWN5Q0Fwak9kMWlJdHlDNUpRbkZoMHZERzBibzZKblc0?=
- =?utf-8?B?TnFCSmdVNkZld2puVklYdlFJZ1pTSGg5MFhld2h1Nkg1NEp3akl5dDRJSVpN?=
- =?utf-8?B?aDc4STFkbHhIMmlwbGJVcmM5VnAwZlpJVlBJRzlXa0RQenBtd215VS9abDV4?=
- =?utf-8?B?OXZmV0dEcWJRb0NMK3VxZSswem82Ym5IemVuRy9jL1loUHVtQVozdi9MMGR4?=
- =?utf-8?B?MktSVWpyaXRTdVJETXlvTXl5U1l4VzRudVFlOFpDUTVBSzhwMnVCdG5tTEVq?=
- =?utf-8?B?cElKRHZIMEVDd0l0OEpTMk9ZN1J0eFc4UVpqbzE0aVJsL1FFTkNMeE1lUDZq?=
- =?utf-8?B?NmV2S29JNXJ1cW45d1ZYSG1ObG5pUlB0a2Q4bFdyOUI2YVNZbmRHbkg0ZWtQ?=
- =?utf-8?B?RU5yNklFSVNROHBKTCszOTVmdFhUWXZuZE0ydE5lNzBOcGtwTkxYQXNHamlz?=
- =?utf-8?B?dUVlTzBJT1lPK3ZnbFRucGZRTU1vSWJnR2ZISzZBbGdxb3BnQUxJOEEyK1k2?=
- =?utf-8?B?VzB3YW9XYkwyOHpMdEVZZFQ5c2RlNDlRNDRlWjFRL1ZHZi9MRlF4N1BNMVgv?=
- =?utf-8?B?akRIaHhmWXo3Z3B5Z2NSWFh5d0RJcWZMOFdXdzczL05QNi9NbFljQkprNHhu?=
- =?utf-8?Q?DfmaTjKGKKTETaX4=3D?=
-X-Exchange-RoutingPolicyChecked: bPzZ+yRHyvmeOYEHze24X2LfE7LyDts/ieyRvO4Jcze1k3ekLWrbgOWD8MkSJF8vPEfgxe/htRsiVBjCWfEo3WwjMBc1cm3VttbnaNnZnOpR+K2Z0P5ENhotg+lNzPSph4pS8IJC5t1hCXmvQ16rqSfokt3xICXqPo1YLttje+yk9PGzpGxrewMN+ghlwGA6CCjRHFLpK5f9C/SFdVxUQVERp/Rsty7uWoUatqlnv39LCz9w/s5+ojuAt0T7hoVdWXKjdgw1Is8gaL4Ewi/VmWKdU5wC9rIKym0XlEyl/dlsIaj4X9IgpjnND/Ocs7IOYLET8V4N4d2LnEt1PAykuQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 73513ed5-17b5-4c82-2f03-08df2f31d31b
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR11MB8607.namprd11.prod.outlook.com
+X-Exchange-RoutingPolicyChecked: QW6QAZohBxWWsalfgW02gnvhZDNNjjbQu9WNc6aXAgioICD35CV8QAVU1Ei2MYoD5IUIYodDQPI6oRYNfVdWYmMkueMwtlDKtCMAUHZ2Ke48DRlk0TgPFlCGz9WAKTi9xx5sr4mmkBcET+NU13j8kiCSuh1qDW+j2FBVnXANI6e7gkwSFJYvllW/vpOYprwHNmOGCUYuPbJLUTNEcTcDtf/qrBnTKlnFaKsdWyLGuDLJvFeooMg4Wjc+SUIUaZ15ZRPaUDBac+Brtz+yMEdkxWXlIkYeV1qucYbX4CbT9LhzfFcPbDaseVW8XyOdrbrdknWTlCOvr279ILScxZYGTQ==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 05:11:55.3088 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uOyfQc6SgvJ7dXYnfSfXhAxuWLK43adWQIWOVzLY2XC+xpiPgPn4mXH/8V1rAdwYD+GXz0KiEq3zTY3ghdO1Yghg5Z08iwJhPx1r9y/+sLU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8562
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 889827ca-1a6c-4189-5b6a-08df2f32941b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2026 05:17:18.8961 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YoMB3RhRi6Pe8FztTZEr7IAB+ZtL/nHov9oFtrRjyhdFDGywqmKbxRjPA7vtseok+rLmtY2Umc4j7Y+3Yr92gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB824491
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,157 +163,272 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	HTML_MESSAGE,INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---------------gYa0dbEx2mykXuU10stZjqVk
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
 
 
-On 10/12/2026 22:08, Patchwork wrote:
-> == Series Details ==
->
-> Series: drm/xe/xe3: Fix OAM stream broken on Xe3+ (rev2)
-> URL   :https://patchwork.freedesktop.org/series/175946/
-> State : warning
+> -----Original Message-----
+> From: Golani, Mitulkumar Ajitkumar
+> <mitulkumar.ajitkumar.golani@intel.com>
+> Sent: 16 October 2026 00:27
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
+org;
+> intel-gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+> <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
+> Subject: RE: [PATCH v4 04/10] drm/i915/dp: Add M/N ratio check for DP lin=
+k
+> config
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > Suraj Kandpal
+> > Sent: 17 September 2026 10:37
+> > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+> > <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
+> > Subject: [PATCH v4 04/10] drm/i915/dp: Add M/N ratio check for DP link
+> > config
+> >
+> > From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >
+> > Introduce intel_dp_check_m_n_ratio() to validate the computed link M/N
+> > ratio against the maximum allowed value, and log it if the ratio
+> > exceeds the limit.
+> >
+> > The link config limits computed in the previous patches only restrict
+> > the configurations that may be selected; this catches anything that
+> > still slips through.
+> >
+> > Log it rather than warn about it: the link config filter already
+> > excludes the configurations violating the limit, so the only way to
+> > get here is with link parameters forced through debugfs, which are
+> > applied after that filter. A user triggerable drm_WARN() with its
+> > backtrace would be out of proportion for that.
+> >
+> > This check works off the M/N values as actually computed, which
+> > exposes a mismatch with the prediction done while computing the
+> > limits: the pixel clock there is the one before
+> > intel_dp_compute_config() divides adjusted_mode-
+> > >crtc_clock by the MSO link count. Divide in the prediction too, so
+> > >both
+> > agree. The joiner needs no such handling, as
+> > intel_joiner_adjust_timings() only rewrites the pipe mode and leaves
+> > the adjusted mode the link M/N is derived from untouched.
+> >
+> > For MST the check goes after the bpp loop rather than inside it. The
+> > link M/N is computed from the pixel clock and the link symbol clock,
+> > so it does not depend on the bpp being tried and the result is the same=
+ on
+> every iteration.
+> >
+> > v2:
+> > -Use the platform specific ratio limit. (Wa_14014191401) -Use the MSO
+> > adjusted pixel clock when predicting the ratio, matching what the link
+> > M/N is actually computed from. (Imre) -Drop the check from
+> > ilk_fdi_compute_config(): it was passing dp_m_n rather than the
+> > fdi_m_n it had just computed, and an FDI link cannot get anywhere near
+> > the ratio limit anyway.
+> > v3:
+> > -Check the ratio once after the MST bpp loop instead of on every
+> > iteration, the result does not depend on the bpp. (Sashiko) -Log
+> > instead of warning, since the link config filter already excludes
+> > these configurations and only forced link parameters can reach it.
+> > (Sashiko)
+> >
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c     | 37 +++++++++++++++++++--
+> >  drivers/gpu/drm/i915/display/intel_dp.h     |  4 +++
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
+> >  3 files changed, 41 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
+> > b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index f6a2152c4432..fbfc00101886 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -1294,6 +1294,14 @@ intel_dp_can_support_m_n(struct intel_display
+> > *display,
+> >  	return m_n_ratio <=3D max_m_n_ratio;
+> >  }
+> >
+> > +static int intel_dp_mso_pixel_clock(struct intel_dp *intel_dp, int
+> > +pixel_clock) {
+> > +	if (!intel_dp->mso_link_count)
+> > +		return pixel_clock;
+> > +
+> > +	return pixel_clock / intel_dp->mso_link_count; }
+> > +
+>=20
+> These hunks fix the prediction added in "drm/i915/dp: Limit M/N ratio for=
+ DP
+> SST". On its own that patch over-restricts MSO eDP by mso_link_count .
+> Please squash them, together with the MSO/joiner explanation, into that
+> patch so it is correct on its own, and keep this patch to the debug check=
+.
 
-In regards to the below checkpatch warning, the local checkpatch doesn't 
-report it:
+Sure
 
-$ ./scripts/checkpatch.pl v1-0001-drm-xe-xe3-Fix-OAM-stream-broken-on-Xe3.patch
-total: 0 errors, 0 warnings, 33 lines checked
-v1-0001-drm-xe-xe3-Fix-OAM-stream-broken-on-Xe3.patch has no obvious style problems and is ready for submission.
+>=20
+> >  static
+> >  bool intel_dp_can_join(struct intel_dp *intel_dp,
+> >  		       int num_joined_pipes)
+> > @@ -1332,6 +1340,7 @@ bool intel_dp_dotclk_valid(struct intel_display
+> > *display,  bool intel_dp_mode_valid_m_n(struct intel_dp *intel_dp, int
+> > pixel_clock)  {
+> >  	struct intel_display *display =3D to_intel_display(intel_dp);
+> > +	int m_n_pixel_clock =3D intel_dp_mso_pixel_clock(intel_dp,
+> > pixel_clock);
+> >  	struct intel_dp_link_caps_order order =3D {
+> >  		.key =3D INTEL_DP_LINK_CAPS_ORDER_KEY_RATE_LANE,
+> >  		.dir =3D INTEL_DP_LINK_CAPS_ORDER_DIR_DESC,
+> > @@ -1343,7 +1352,8 @@ bool intel_dp_mode_valid_m_n(struct intel_dp
+> > *intel_dp, int pixel_clock)
+> >  	intel_dp_link_caps_iter_start(&iter, intel_dp->link.caps, order,
+> >  				      INTEL_DP_LINK_CAPS_FILTER_ALL);
+> >  	for_each_dp_link_config(&iter, &link_config) {
+> > -		if (intel_dp_can_support_m_n(display, pixel_clock,
+> > link_config.rate)) {
+> > +		if (intel_dp_can_support_m_n(display, m_n_pixel_clock,
+> > +					     link_config.rate)) {
+> >  			found =3D true;
+> >
+> >  			break;
+> > @@ -2723,7 +2733,8 @@ intel_dp_compute_m_n_ratio_limits(struct
+> > intel_dp *intel_dp,
+> >  	struct intel_dp_link_caps_order order =3D
+> >  		intel_dp_link_caps_connector_compute_order(connector);
+> >  	struct intel_dp_link_caps_filter new_filter =3D
+> > INTEL_DP_LINK_CAPS_FILTER_NONE;
+> > -	int pixel_clock =3D intel_dp_mode_clock(crtc_state, conn_state);
+> > +	int pixel_clock =3D intel_dp_mso_pixel_clock(intel_dp,
+> > +
+> > intel_dp_mode_clock(crtc_state, conn_state));
+> >  	struct intel_dp_link_config link_config;
+> >  	struct intel_dp_link_caps_iter iter;
+> >  	bool found =3D false;
+> > @@ -3382,6 +3393,24 @@ static bool can_enable_drrs(struct
+> > intel_connector *connector,
+> >  		intel_panel_drrs_type(connector) =3D=3D DRRS_TYPE_SEAMLESS;
+> }
+> >
+> > +void intel_dp_check_m_n_ratio(struct intel_crtc_state *crtc_state,
+> > +			      struct intel_link_m_n *m_n)
+> > +{
+> > +	struct intel_display *display =3D to_intel_display(crtc_state);
+> > +	int max_m_n_ratio =3D intel_dp_get_max_m_n_ratio(display);
+> > +	int m_n_ratio;
+> > +
+> > +	if (!m_n || !m_n->link_n)
+> > +		return;
+> > +
+> > +	m_n_ratio =3D DIV_ROUND_UP(m_n->link_m, m_n->link_n);
+> > +
+> > +	if (m_n_ratio > max_m_n_ratio)
+> > +		drm_dbg_kms(display->drm,
+> > +			    "Link M/N ratio (%d) exceeds max allowed (%d)\n",
+> > +			    m_n_ratio, max_m_n_ratio);
+> > +}
+>=20
+> Could we reuse a small helper here, since the DIV_ROUND_UP(link_m,
+> link_n) <=3D max check appears to duplicate intel_dp_can_support_m_n?=20
 
-I'll still send a new revision, addressing the failure below.
+I can do that.
 
--shekhar
+> Also,
+> are the !m_n and !m_n->link_n checks necessary, given that callers pass
+> struct members and link_n is fixed at 0x80000?
 
->
-> == Summary ==
->
-> + KERNEL=/kernel
-> + git clonehttps://gitlab.freedesktop.org/drm/maintainer-tools mt
-> Cloning into 'mt'...
-> warning: redirecting tohttps://gitlab.freedesktop.org/drm/maintainer-tools.git/
-> + git -C mt rev-list -n1 origin/master
-> 6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-> + cd /kernel
-> + git config --global --add safe.directory /kernel
-> + git log -n1
-> commit 30e935573a92a8456ce8fea58d475beb87a6d14b
-> Author: Shekhar Chauhan<shekhar.chauhan@intel.com>
-> Date:   Mon Oct 12 16:51:58 2026 +0530
->
->      drm/xe/xe3: Fix OAM stream broken on Xe3+
->      
->      OAM stream: Prevent partial reports at the end of the buffer
->      when overrun mode is enabled by making the buffer size
->      a multiple of the report size.
->      
->      Signed-off-by: Shekhar Chauhan<shekhar.chauhan@intel.com>
-> + /mt/dim checkpatch c7126da5b5d507ecf3f195efa75d99a7fb9cfd95 drm-intel
-> 30e935573a92 drm/xe/xe3: Fix OAM stream broken on Xe3+
-> -:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stream' - possible side-effects?
-> #20: FILE: drivers/gpu/drm/xe/xe_oa.c:1746:
-> +#define oag_has_tail_address_wrap(stream) \
-> +	(GRAPHICS_VER((stream)->oa->xe) >= 20 && \
-> +	 (stream)->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAG)
->
-> -:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stream' - possible side-effects?
-> #24: FILE: drivers/gpu/drm/xe/xe_oa.c:1750:
-> +#define oam_has_tail_address_wrap(stream) \
-> +	(MEDIA_VER((stream)->oa->xe) >= 30 && \
-> +	 ((stream)->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM || \
-> +	  (stream)->oa_unit->type == DRM_XE_OA_UNIT_TYPE_OAM_SAG))
->
-> total: 0 errors, 0 warnings, 2 checks, 33 lines checked
+Sure will drop the check
 
--- 
-Shekhar Chauhan
-Linux Graphics Software Engineer
-Intel Corporation
+ Could the parameters be
+> const as well?=20
 
---------------gYa0dbEx2mykXuU10stZjqVk
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Finally, would it make sense to place this helper next to
+> intel_dp_can_support_m_n ?
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 10/12/2026 22:08, Patchwork wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:179182308911.13983.4620248949818831428@221881a7231d">
-      <pre wrap="" class="moz-quote-pre">== Series Details ==
+Can do=20
+>=20
+> > +
+> >  static void
+> >  intel_dp_drrs_compute_config(struct intel_connector *connector,
+> >  			     struct intel_crtc_state *pipe_config, @@ -3420,6
+> > +3449,8 @@ intel_dp_drrs_compute_config(struct intel_connector
+> > *connector,
+> >  			       intel_dp_bw_fec_overhead(pipe_config-
+> > >fec_enable),
+> >  			       &pipe_config->dp_m2_n2);
+> >
+> > +	intel_dp_check_m_n_ratio(pipe_config, &pipe_config->dp_m2_n2);
+>=20
+> Could we drop this check since dp_m2_n2 is computed using the same
+> port_clock and its ratio should already be covered by the dp_m_n check? O=
+r
+> is this intended as a defensive check?
 
-Series: drm/xe/xe3: Fix OAM stream broken on Xe3+ (rev2)
-URL   : <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/175946/">https://patchwork.freedesktop.org/series/175946/</a>
-State : warning</pre>
-    </blockquote>
-    <p>In regards to the below checkpatch warning, the local checkpatch
-      doesn't report it:<br>
-    </p>
-    <pre>$ ./scripts/checkpatch.pl v1-0001-drm-xe-xe3-Fix-OAM-stream-broken-on-Xe3.patch
-total: 0 errors, 0 warnings, 33 lines checked
-v1-0001-drm-xe-xe3-Fix-OAM-stream-broken-on-Xe3.patch has no obvious style problems and is ready for submission.</pre>
-    <p>I'll still send a new revision, addressing the failure below.&nbsp;</p>
-    <p>-shekhar</p>
-    <blockquote type="cite" cite="mid:179182308911.13983.4620248949818831428@221881a7231d">
-      <pre wrap="" class="moz-quote-pre">
+Sure will drop it.
 
-== Summary ==
+>=20
+> > +
+> >  	/* FIXME: abstract this better */
+> >  	if (pipe_config->splitter.enable)
+> >  		pipe_config->dp_m2_n2.data_m *=3D pipe_config-
+> > >splitter.link_count; @@ -3739,6 +3770,8 @@
+> > intel_dp_compute_config(struct intel_atomic_state *state,
+> >  				       pipe_config->port_clock,
+> >  				       intel_dp_bw_fec_overhead(pipe_config-
+> > >fec_enable),
+> >  				       &pipe_config->dp_m_n);
+> > +
+> > +		intel_dp_check_m_n_ratio(pipe_config, &pipe_config-
+> > >dp_m_n);
+> >  	}
+> >
+> >  	ret =3D intel_dp_compute_min_hblank(pipe_config, conn_state); diff --
+> > git a/drivers/gpu/drm/i915/display/intel_dp.h
+> > b/drivers/gpu/drm/i915/display/intel_dp.h
+> > index aa58833a405b..4c975358ab96 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> > @@ -26,6 +26,7 @@ struct intel_display;  struct intel_dp;  struct
+> > intel_dp_link_config;  struct intel_encoder;
+> > +struct intel_link_m_n;
+> >
+> >  struct link_config_limits {
+> >  	struct intel_dp_link_caps_filter link_config_filter; @@ -244,4 +245,7
+> > @@ bool intel_dp_mode_valid_m_n(struct intel_dp *intel_dp, int
+> > pixel_clock);  int intel_dp_link_init(struct intel_dp *intel_dp);  void
+> > intel_dp_link_cleanup(struct intel_dp *intel_dp);
+> >
+> > +void intel_dp_check_m_n_ratio(struct intel_crtc_state *crtc_state,
+> > +			      struct intel_link_m_n *m_n);
+> > +
+> >  #endif /* __INTEL_DP_H__ */
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 823fe99ca0a1..6d2e234a9e9b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -429,6 +429,8 @@ int intel_dp_mtp_tu_compute_config(struct
+> intel_dp
+> > *intel_dp,
+> >  		return slots;
+> >  	}
+> >
+> > +	intel_dp_check_m_n_ratio(crtc_state, &crtc_state->dp_m_n);
+> > +
+> >  	if (!dsc)
+> >  		crtc_state->pipe_bpp =3D fxp_q4_to_int(bpp_x16);
+> >  	else
+> > --
+> > 2.34.1
 
-+ KERNEL=/kernel
-+ git clone <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/maintainer-tools">https://gitlab.freedesktop.org/drm/maintainer-tools</a> mt
-Cloning into 'mt'...
-warning: redirecting to <a class="moz-txt-link-freetext" href="https://gitlab.freedesktop.org/drm/maintainer-tools.git/">https://gitlab.freedesktop.org/drm/maintainer-tools.git/</a>
-+ git -C mt rev-list -n1 origin/master
-6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 30e935573a92a8456ce8fea58d475beb87a6d14b
-Author: Shekhar Chauhan <a class="moz-txt-link-rfc2396E" href="mailto:shekhar.chauhan@intel.com">&lt;shekhar.chauhan@intel.com&gt;</a>
-Date:   Mon Oct 12 16:51:58 2026 +0530
-
-    drm/xe/xe3: Fix OAM stream broken on Xe3+
-    
-    OAM stream: Prevent partial reports at the end of the buffer
-    when overrun mode is enabled by making the buffer size
-    a multiple of the report size.
-    
-    Signed-off-by: Shekhar Chauhan <a class="moz-txt-link-rfc2396E" href="mailto:shekhar.chauhan@intel.com">&lt;shekhar.chauhan@intel.com&gt;</a>
-+ /mt/dim checkpatch c7126da5b5d507ecf3f195efa75d99a7fb9cfd95 drm-intel
-30e935573a92 drm/xe/xe3: Fix OAM stream broken on Xe3+
--:20: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stream' - possible side-effects?
-#20: FILE: drivers/gpu/drm/xe/xe_oa.c:1746:
-+#define oag_has_tail_address_wrap(stream) \
-+	(GRAPHICS_VER((stream)-&gt;oa-&gt;xe) &gt;= 20 &amp;&amp; \
-+	 (stream)-&gt;oa_unit-&gt;type == DRM_XE_OA_UNIT_TYPE_OAG)
-
--:24: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'stream' - possible side-effects?
-#24: FILE: drivers/gpu/drm/xe/xe_oa.c:1750:
-+#define oam_has_tail_address_wrap(stream) \
-+	(MEDIA_VER((stream)-&gt;oa-&gt;xe) &gt;= 30 &amp;&amp; \
-+	 ((stream)-&gt;oa_unit-&gt;type == DRM_XE_OA_UNIT_TYPE_OAM || \
-+	  (stream)-&gt;oa_unit-&gt;type == DRM_XE_OA_UNIT_TYPE_OAM_SAG))
-
-total: 0 errors, 0 warnings, 2 checks, 33 lines checked
-</pre>
-    </blockquote>
-    <pre class="moz-signature" cols="72">-- 
-Shekhar Chauhan
-Linux Graphics Software Engineer
-Intel Corporation</pre>
-  </body>
-</html>
-
---------------gYa0dbEx2mykXuU10stZjqVk--
