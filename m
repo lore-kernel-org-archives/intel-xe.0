@@ -2,51 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41D3606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 04:13:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB8D9606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 04:14:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=iIPsr7kL
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=COzf/ocx
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 838B310E26B;
-	Wed, 21 Oct 2026 04:13:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8033D10EA00;
+	Wed, 21 Oct 2026 04:13:57 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C52C310E26B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 04:13:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D0BE10EA00
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 04:13:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792556029; x=1824092029;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CbAgZ0k8ioz05sahgJi9SeUTmTLjcE7lLDhsS5u98Ho=;
- b=iIPsr7kLCsDbth5mfLBpHc5pRhn4mIaSQf4wnv+k1/1kPKBpc9pAEoO9
- 3BLf/5n8CBSFigVe1/zy65ebTmfaoY6eSYuszfmiRhInTBaoRcLTliCyC
- 9MYELIeyflM/0ZKsLYvuWwI8qdZGjnoyrZYDfFszeYJrUQYCXp4QHYLws
- ztmEdG0xmBQhvQBZar5+UZ5R17pgYeIlusE8Tx3WspI23USeoYgKvwZ1v
- YjMgpWJ/YWFr5IUMtg80ENllC0JXgjVNah7e7Tf91jZejn21lTAC9YRGA
- gXYtF0W0cT6soTWWnw+jrE7oTyiPgffCrzBGxLxcIfHr3SzZuNGw1kWH9 g==;
-X-CSE-ConnectionGUID: 5iy8ugiGQ++X18gkIyYOpA==
-X-CSE-MsgGUID: bjx428DHRLGy+aFtK2eu/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1264309"
+ t=1792556032; x=1824092032;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Oe7Z6XVdU+95yTm1+wBNAaXoDLXXiiEIdebdw4FIYVA=;
+ b=COzf/ocxO0kYzpz5rjdBGoZL+cU4tZ4kVs/QgOmgUtAKtaIuoqZnOxry
+ M44aW6vA8GEAuqGoKyG1c5BsvkDpeD0GwscSGB7E0Kyyu1+Ak+OJ5stAU
+ XhVVnvGIb8KBRoSdTo0jhszSv9nnpNUyKIHzxY4n+RqHomqSbrH2+41c/
+ uTBCDH7MDu52+VEQ//anoSqE4ttS9moPis7OSl48B8mFJQMcPlWUmUrwI
+ luguMtO18Xw+JzkRqH5t8PXToOQw4qbNiJ82G8wRe18TzUca2EQrqSJ7m
+ BVjTobnp9Gd4XxFdAKcMZoYvvaRfOymYAwkm8p6MZfxkP4XvnTMKtfUwf w==;
+X-CSE-ConnectionGUID: aupvdVl2RqCIfSssl4JLmA==
+X-CSE-MsgGUID: JXs7XKa/SySUCNd3m7EeUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1264311"
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="1264309"
+   d="scan'208";a="1264311"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 21:13:49 -0700
-X-CSE-ConnectionGUID: QfJj/y5qQgmM5WT76IasGQ==
-X-CSE-MsgGUID: v8s9DBm1TpexcrEm3ppWhg==
+ 20 Oct 2026 21:13:51 -0700
+X-CSE-ConnectionGUID: MTct4ljYTgOw+ndB+TZjZA==
+X-CSE-MsgGUID: 0jclMHQkSD6vstNjjkGcrA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="2868682"
+   d="scan'208";a="2868689"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa008.jf.intel.com with ESMTP; 20 Oct 2026 21:13:47 -0700
+ by orviesa008.jf.intel.com with ESMTP; 20 Oct 2026 21:13:50 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH 0/6] ATS/PASID SVA support and PRI-less fault servicing 
-Date: Wed, 21 Oct 2026 09:41:11 +0530
-Message-ID: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
+Subject: [PATCH 2/6] drm/xe/vm: Setup SVA infrastructure for PASID support
+Date: Wed, 21 Oct 2026 09:41:13 +0530
+Message-ID: <20261021041117.1774877-3-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
+References: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -60,76 +62,130 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series adds initial Shared Virtual Addressing (SVA) support for xe
-on platforms where ATS and PASID are available but PRI is not enabled or
-not supported.
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-For SVA, the device must be able to issue memory transactions tagged
-with a PASID so that address translation is performed in the process
-address space rather than in a driver owned address space. This series
-adds the xe side infrastructure needed for that flow: VM support for SVA
-PASID state, PASID retriveal helpers, and programming of CTX_SYS_PASID
-for ATS and PASID enabled contexts.
+Add sva_handle to struct xe_vm to represent the device-mm bond
+established via iommu_sva_bind_device(). This handle will be used to
+retrieve the PASID for SVM-enabled VMs
 
-On systems with PRI, device page faults can be surfaced and resolved
-through the hardware page request interface, so the driver does not need
-to implement a separate fault servicing path for SVA.
-On non PRI systems, that hardware assisted fault path is unavailable.In
-that case, the driver still needs a way to resolve faults against the
-backing process address space so execution can proceed.
+Introduce xe_vm_sva_bind() to bind the VM to the current process
+address space using Shared Virtual Addressing(SVA) when ATS and
+PASID are enabled on the device. This allows the GPU to shate the
+same virtual address space as the CPU.
 
-To support that case, this series introduces a CPU mirror VMA and uses
-it as part of a driver managed SVM path for SVA faults without PRI.The
-purpose of the CPU mirror VMA is to provide a CPU side VMA
-representation for the address range being accesses through SVA,so the
-driver can rely on the kernel MM/VMA machinery to validate mappings and
-resolve backing pages for fault handling in the absence of PRI.In
-other words, since the device cannot issue PRI requests, the driver
-needs a CPU visible VMA context that mirrors the GPU SVA range closely
-enough to let faults be service through normal MM paths.
+If sva binding fails, the VM continues without PASID support.
+Also introduce a cleanup helper to unbind during VM teardown.
 
-At a high level, this series does the following:
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c       | 40 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  6 +++++
+ 2 files changed, 46 insertions(+)
 
- 1. log ATS/PASID enablement state during probe,
- 2. add VM infrastructure needed for SVA PASID support,
- 3. add a helper to retrieve the VM SVA PASID,
- 4. program CTX_SYS_PASID for ATS/PASID-enabled contexts,
- 5. add a PCI helper for ATS/PASID operation without PRI,
- 6. add a CPU mirror VMA for handling SVA faults on non PRI platforms
-
-Patches 1-5 provide the ATS/PASID and VM/context plumbing needed for
-this flow and have been validated internally.Patch 6 adds the non PRI
-fault servicing path, and feedback on that overall approach would be
-especially appreciated.
-
-Himal Prasad Ghimiray (1):
-  drm/xe/vm: Setup SVA infrastructure for PASID support
-
-Nareshkumar Gollakoti (5):
-  drm/xe/pci: log ATS/PASID enablement state at probe
-  drm/xe/vm: add helper to retrieve VM SVA PASID
-  drm/xe/lrc: program CTX_SYS_PASID for ATS/PASID-enabled contexts
-  drm/xe/pci: add helper for ATS/PASID without PRI
-  drm/xe/pagefault: add CPU mirror VMA for SVA faults without PRI
-
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h |  6 +++
- drivers/gpu/drm/xe/xe_lrc.c             | 37 ++++++++++++++++
- drivers/gpu/drm/xe/xe_pagefault.c       | 49 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pagefault_types.h |  6 +++
- drivers/gpu/drm/xe/xe_pci.c             |  7 ++++
- drivers/gpu/drm/xe/xe_pci.h             | 15 +++++++
- drivers/gpu/drm/xe/xe_vm.c              | 56 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h              |  2 +
- drivers/gpu/drm/xe/xe_vm_types.h        |  6 +++
- 9 files changed, 184 insertions(+)
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 761bc136145f..b1d37e5a673f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -45,6 +45,7 @@
+ #include "xe_trace_bo.h"
+ #include "xe_vm_madvise.h"
+ #include "xe_wa.h"
++#include "xe_pci.h"
+ 
+ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+ {
+@@ -1648,6 +1649,41 @@ static void xe_vm_init_prove_locking(struct xe_device *xe, struct xe_vm *vm)
+ 	up_read(&vm->exec_queues.lock);
+ }
+ 
++static void xe_vm_sva_handle_init(struct xe_vm *vm)
++{
++	struct device *dev = vm->xe->drm.dev;
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct iommu_sva *sva_handle;
++
++	/*
++	 * Assumes the IOMMU driver has already decided and latched the
++	 * device's ATS/PASID enablement by the time any VM is created (true
++	 * for Intel VT-d, which enables both eagerly at IOMMU probe). If a
++	 * backend instead enables them lazily on first SVA bind, this check
++	 * will never see them set and SVA/PASID support is silently skipped.
++	 */
++	if (!xe_pci_ats_pasid_enabled(pdev))
++		return;
++
++	sva_handle = iommu_sva_bind_device(dev, current->mm);
++	if (IS_ERR(sva_handle)) {
++		drm_err(&vm->xe->drm, "SVA binding failed, preventing PASID creation.\n");
++		return;
++	}
++
++	vm->sva_handle = sva_handle;
++}
++
++static void xe_vm_sva_handle_fini(struct xe_vm *vm)
++{
++	xe_assert(vm->xe, xe_vm_is_closed(vm));
++	if (!vm->sva_handle)
++		return;
++
++	iommu_sva_unbind_device(vm->sva_handle);
++	vm->sva_handle = NULL;
++}
++
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ {
+ 	struct drm_gem_object *vm_resv_obj;
+@@ -1994,6 +2030,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 
+ 	xe_svm_fini(vm);
+ 
++	xe_vm_sva_handle_fini(vm);
+ 	up_write(&vm->lock);
+ 
+ 	down_write(&xe->usm.lock);
+@@ -2159,6 +2196,9 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
+ 
++	if (flags & XE_VM_FLAG_FAULT_MODE)
++		xe_vm_sva_handle_init(vm);
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+ 	/* Warning: Security issue - never enable by default */
+ 	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index fb9305124679..113807fa4ea0 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -11,6 +11,7 @@
+ #include <drm/drm_pagemap_util.h>
+ 
+ #include <linux/dma-resv.h>
++#include <linux/iommu.h>
+ #include <linux/kref.h>
+ #include <linux/mmu_notifier.h>
+ #include <linux/scatterlist.h>
+@@ -423,6 +424,11 @@ struct xe_vm {
+ 	bool batch_invalidate_tlb;
+ 	/** @xef: Xe file handle for tracking this VM's drm client */
+ 	struct xe_file *xef;
++	/**
++	 * @sva_handle: the sva_handle to a device-mm bond, populated using
++	 * iommu_sva_bind_device(). To be used to determine pasid in case of svm vm.
++	 */
++	struct iommu_sva *sva_handle;
+ };
+ 
+ /** struct xe_vma_op_map - VMA map operation */
 -- 
 2.43.0
 
