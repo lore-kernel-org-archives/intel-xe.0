@@ -2,54 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B462606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 00:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08BEE606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 00:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CxDQYlM+
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UNOmNwsJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E36FE10F84F;
-	Wed, 21 Oct 2026 00:18:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A95510F84F
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 00:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDAB310F844;
+	Wed, 21 Oct 2026 00:25:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 355AC10F844
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 00:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792541916; x=1824077916;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bBTYSFIDz8nLet8w/etooS+w0maiCNpJDHSpAzwKotg=;
- b=CxDQYlM+E/V/9uawPiE+tJD7QfMa9oQkH4wdrAegB4o02ujbKSmH8C8F
- lIrR8CMj/WRUlvUVP9Pqa5RUiNm1lFTx+ECNewwVjAKPWeLYSOf8yGyl6
- PzHN1b1xFpa/X4op++rXdVgOf223aPkVYvfrymrmE91jgOqCGm1a5zxAe
- 6njxbS3NE9sRmRWMvHWKGhSNJJZJYXP+75yRzVnnEPlErVDuOz9V0cRWz
- O81nLdftIDYYpFt4Snof+LrNdkg8ynIa5t9luC02zLUn38i4HUEciqE22
- Fi76pLCom9UljaCDnnreoRUiu00jo2CPP3KE4Vo1RVWCAfweKIDz08i8y g==;
-X-CSE-ConnectionGUID: hVuZqsz3SQCTYLilCcQpPA==
-X-CSE-MsgGUID: Zx7S6kUTTKq8J/lxCZQJVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1132518"
+ t=1792542298; x=1824078298;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zLjr/nsbyWAqd0qfNhSgIqZwNDdcpRC9FHqnnUDAuWY=;
+ b=UNOmNwsJLtrWOL4+AMLFhEFR/H3C6A5MTrTb/YhOGq48nNkGGH0S5rdJ
+ /T6OaRHOhwEzB+KXhhaGXAgeN81gjdUl/WQo/q2Y1DBIe+hSap5cy/z60
+ E8MP2YkkL2QfJhOHAS9QYJo2MhSXGUXOujxK/tkt/YmgyOy1/nrpNX+dW
+ Qu+Vt2ylMVH3rDDB9kVlb6qzVsmWZ6mTzHeUbyKN8Mi8kHrsaee/2Me7v
+ bsg0ZW7G13eXKiQM+u5IBVvHICstfgZKdZO6DTpW3SILWsTyOeSdjwwgq
+ fYWD2a+daMWhV135BCVOa5Gn+fh4b2nJNl6VcbbFF901YFwvx4Suf4pvM g==;
+X-CSE-ConnectionGUID: C+c3dOXzSguiP+gCSydx3w==
+X-CSE-MsgGUID: pU4dV/0GQr+8TaS26JkgFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1274604"
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="1132518"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 17:18:36 -0700
-X-CSE-ConnectionGUID: 3/yUrxaMSTGdHPoYv3NyoQ==
-X-CSE-MsgGUID: T3j1lQXlTfetWR+T98xd8w==
+   d="scan'208";a="1274604"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 17:24:57 -0700
+X-CSE-ConnectionGUID: /1QHUH8jRwuTZbjubj8M8A==
+X-CSE-MsgGUID: rqn2aM8FTTOOBcU1AUizRw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="2955651"
-Received: from vbelgaum-desk1.fm.intel.com ([10.121.64.203])
- by fmviesa004.fm.intel.com with ESMTP; 20 Oct 2026 17:18:35 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+   d="scan'208";a="3292058"
+Received: from danielcm-desk1.jf.intel.com ([10.24.81.120])
+ by fmviesa007.fm.intel.com with ESMTP; 20 Oct 2026 17:24:57 -0700
+From: Daniel Charles <daniel.charles@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v2 3/3] drm/xe: Memset g2g buffer on resume
-Date: Tue, 20 Oct 2026 10:39:47 -0700
-Message-ID: <20261020173943.669600-8-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261020173943.669600-5-vinay.belgaumkar@intel.com>
-References: <20261020173943.669600-5-vinay.belgaumkar@intel.com>
+Cc: Fei Yang <fei.yang@intel.com>,
+	Daniel Charles <daniel.charles@intel.com>
+Subject: [PATCH v3] drm/xe/cri: Set downstream access to L3 class 3 and
+ write-back
+Date: Tue, 20 Oct 2026 17:20:51 -0700
+Message-ID: <20261021002051.1784161-1-daniel.charles@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -63,185 +61,227 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.5 required=3.0 tests=BAYES_00,DATE_IN_PAST_06_12,
-	DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-KMD creates this buffer for use by GuC, it is also responsible for zeroing
-it during resume. The buffer is marked as XE_BO_FLAG_PINNED_NORESTORE,
-so we cannot trust its contents after a suspend cycle. This commit adds
-xe_*_resume_early() functions for handling this and the C6 disable
-during resume.
+From: Fei Yang <fei.yang@intel.com>
 
-v2: Maintain layering with _early functions for gt/uc/ct (Matt Brost)
+Program DWNSTRM_ACCESS_MODE (0x144154) with 0xcc on graphics
+version 3511. Compared with 0x3c, this selects L3 class of service
+3 instead of 0 and write-back rather than uncached L3 policy.
+The L4 caching policy and coherency mode remain unchanged.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+v2:
+- Create a dedicated MERT workaround section/table instead of placing
+  this workaround in gt_was. MERT registers are device-level registers
+  accessed through root-tile MMIO, outside GT forcewake and GT
+  save/restore bookkeeping.
+- Add an RTP helper for full-register device MMIO writes and apply the
+  MERT table during probe and after pcode is ready on system or D3cold
+  resume. Match Xe3p_XPC explicitly and skip devices without
+  MERT and SR-IOV VFs.
+
+v3: Use PLATFORM(CRESCENTISLAND) for the MERT workaround (sashiko)
+
+BSpec: 73603
+Signed-off-by: Fei Yang <fei.yang@intel.com>
+Signed-off-by: Daniel Charles <daniel.charles@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c     | 14 +++++++++++++-
- drivers/gpu/drm/xe/xe_gt.h     |  1 +
- drivers/gpu/drm/xe/xe_guc_ct.c | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_ct.h |  1 +
- drivers/gpu/drm/xe/xe_pm.c     |  4 ++--
- drivers/gpu/drm/xe/xe_uc.c     | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_uc.h     |  1 +
- 7 files changed, 49 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_mert_regs.h |  2 ++
+ drivers/gpu/drm/xe/xe_device.c         |  4 +++
+ drivers/gpu/drm/xe/xe_pm.c             |  8 ++++++
+ drivers/gpu/drm/xe/xe_rtp.c            | 39 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_rtp.h            |  2 ++
+ drivers/gpu/drm/xe/xe_wa.c             | 23 +++++++++++++++
+ drivers/gpu/drm/xe/xe_wa.h             |  1 +
+ 7 files changed, 79 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index bc9bf6f0b5a7..3abb7d409bac 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -50,7 +50,6 @@
- #include "xe_lmtt.h"
- #include "xe_log.h"
- #include "xe_lrc.h"
--#include "xe_map.h"
- #include "xe_migrate.h"
- #include "xe_mmio.h"
- #include "xe_pagefault.h"
-@@ -1084,6 +1083,19 @@ int xe_gt_sanitize_freq(struct xe_gt *gt)
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/xe/regs/xe_mert_regs.h b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
+index 99e5a26da6572..1e6ce818fcee9 100644
+--- a/drivers/gpu/drm/xe/regs/xe_mert_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
+@@ -8,6 +8,8 @@
  
-+/**
-+ * xe_gt_resume_early() - Early init for GT resume
-+ * @gt: the GT object
-+ *
-+ * Handles GT related init before GT restart after a suspend cycle.
-+ */
-+void xe_gt_resume_early(struct xe_gt *gt)
-+{
-+	xe_gt_idle_disable_c6(gt);
-+
-+	xe_uc_resume_early(&gt->uc);
-+}
-+
- int xe_gt_resume(struct xe_gt *gt)
- {
- 	int err;
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index 92d934d50244..9b69f36ebc7a 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -58,6 +58,7 @@ void xe_gt_record_user_engines(struct xe_gt *gt);
- void xe_gt_suspend_prepare(struct xe_gt *gt);
- int xe_gt_suspend(struct xe_gt *gt);
- void xe_gt_shutdown(struct xe_gt *gt);
-+void xe_gt_resume_early(struct xe_gt *gt);
- int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
- int xe_gt_runtime_resume(struct xe_gt *gt);
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index e9fc55917fa3..4ea1f71d5a52 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -862,6 +862,22 @@ void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct)
- 	xe_guc_ct_disable(ct);
- }
+ #include "regs/xe_reg_defs.h"
  
-+/**
-+ * xe_guc_ct_resume_early() - Early init for GuC CT resume
-+ * @ct: the &xe_guc_ct
-+ *
-+ * CT init before GT restart after a suspend cycle.
-+ */
-+void xe_guc_ct_resume_early(struct xe_guc_ct *ct)
-+{
-+	struct xe_guc *guc = ct_to_guc(ct);
-+	struct xe_device *xe = ct_to_xe(ct);
++#define DWNSTRM_ACCESS_MODE_GAMREQ_MERTSS	XE_REG(0x144154)
 +
-+	/* clear the g2g buffer which is marked as NORESTORE during alloc */
-+	if (guc->g2g.bo && guc->g2g.owned)
-+		xe_map_memset(xe, &guc->g2g.bo->vmap, 0, 0, xe_bo_size(guc->g2g.bo));
-+}
+ #define MERT_LMEM_CFG				XE_REG(0x1448b0)
+ 
+ #define MERT_TLB_CT_INTR_ERR_ID_PORT		XE_REG(0x145190)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8392c9fad3c48..27cff3137a7fe 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -953,6 +953,10 @@ int xe_device_probe(struct xe_device *xe)
+ 			return err;
+ 	}
+ 
++	err = xe_wa_apply_mert_workarounds(xe);
++	if (err)
++		return err;
 +
- /**
-  * xe_guc_ct_runtime_resume() - GuC CT runtime resume
-  * @ct: the &xe_guc_ct
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
-index f3af15c95c75..3470ced126de 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.h
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.h
-@@ -20,6 +20,7 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct);
- int xe_guc_ct_enable(struct xe_guc_ct *ct);
- int xe_guc_ct_restart(struct xe_guc_ct *ct);
- void xe_guc_ct_disable(struct xe_guc_ct *ct);
-+void xe_guc_ct_resume_early(struct xe_guc_ct *ct);
- void xe_guc_ct_runtime_resume(struct xe_guc_ct *ct);
- void xe_guc_ct_runtime_suspend(struct xe_guc_ct *ct);
- void xe_guc_ct_stop(struct xe_guc_ct *ct);
+ 	/*
+ 	 * Allow allocations only now to ensure xe_display_init_early()
+ 	 * is the first to allocate, always.
 diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 1f5097875bcd..89d64aa6577d 100644
+index daa7ba2df317a..ba863df3fbf59 100644
 --- a/drivers/gpu/drm/xe/xe_pm.c
 +++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -249,7 +249,7 @@ int xe_pm_resume(struct xe_device *xe)
+@@ -251,6 +251,10 @@ int xe_pm_resume(struct xe_device *xe)
+ 	if (err)
  		return err;
  
- 	for_each_gt(gt, xe, id)
--		xe_gt_idle_disable_c6(gt);
-+		xe_gt_resume_early(gt);
- 
++	err = xe_wa_apply_mert_workarounds(xe);
++	if (err)
++		return err;
++
  	xe_display_pm_resume_early(xe);
  
-@@ -703,7 +703,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 	/*
+@@ -705,6 +709,10 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 		if (err)
  			goto out;
  
- 		for_each_gt(gt, xe, id)
--			xe_gt_idle_disable_c6(gt);
-+			xe_gt_resume_early(gt);
- 
++		err = xe_wa_apply_mert_workarounds(xe);
++		if (err)
++			goto out;
++
  		xe_display_pm_resume_early(xe);
  
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 65f59f06177f..8a704ca7d496 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -12,6 +12,7 @@
- #include "xe_gt_printk.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
-+#include "xe_guc_ct.h"
- #include "xe_guc_pc.h"
- #include "xe_guc_rc.h"
- #include "xe_guc_engine_activity.h"
-@@ -297,6 +298,20 @@ int xe_uc_suspend(struct xe_uc *uc)
- 	return xe_guc_suspend(&uc->guc);
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 6a8d6ea68f25d..539d06eaba6fc 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -13,6 +13,7 @@
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_topology.h"
++#include "xe_mmio.h"
+ #include "xe_reg_sr.h"
+ #include "xe_sriov.h"
+ 
+@@ -413,6 +414,44 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
  }
+ EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
  
 +/**
-+ * xe_uc_resume_early() - Early init for UC resume
-+ * @uc: the UC object
++ * xe_rtp_apply_device_mmio_writes - Apply full-register device MMIO writes
++ * @xe: Device to apply the actions to
++ * @table: RTP action table containing only full-register writes
 + *
-+ * UC init before a GT restart during resume.
++ * Device registers are accessed via the root tile without GT forcewake or
++ * GT save/restore bookkeeping.
++ *
++ * Return: 0 on success or -EINVAL for an unsupported action.
 + */
-+void xe_uc_resume_early(struct xe_uc *uc)
++int xe_rtp_apply_device_mmio_writes(struct xe_device *xe,
++				    const struct xe_rtp_table_sr *table)
 +{
-+	if (!xe_device_uc_enabled(uc_to_xe(uc)))
-+		return;
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
 +
-+	xe_guc_ct_resume_early(&uc->guc.ct);
++	for (size_t i = 0; i < table->n_entries; i++) {
++		const struct xe_rtp_entry_sr *entry = &table->entries[i];
++
++		if (!rule_matches(xe, NULL, NULL, entry->rules, entry->n_rules))
++			continue;
++
++		for (size_t j = 0; j < entry->n_actions; j++) {
++			const struct xe_rtp_action *action = &entry->actions[j];
++
++			if (drm_WARN_ON(&xe->drm, action->clr_bits != ~0u ||
++					action->reg.mcr || action->reg.masked ||
++					action->flags || action->use_func))
++				return -EINVAL;
++
++			xe_mmio_write32(mmio, action->reg, action->set_bits);
++		}
++
++		drm_dbg(&xe->drm, "Applied device workaround %s\n", entry->name);
++	}
++
++	return 0;
 +}
 +
+ bool xe_rtp_match_always(const struct xe_device *xe,
+ 			 const struct xe_gt *gt,
+ 			 const struct xe_hw_engine *hwe)
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index 0032f68ea1873..7f45bb8552244 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -514,6 +514,8 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
+ 
+ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
+ 		    const struct xe_rtp_table *table);
++int xe_rtp_apply_device_mmio_writes(struct xe_device *xe,
++				    const struct xe_rtp_table_sr *table);
+ 
+ /* Match functions to be used with XE_RTP_MATCH_FUNC */
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c94fe7753f9a9..c5f5d02be2eaa 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -16,7 +16,9 @@
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_guc_regs.h"
++#include "regs/xe_mert_regs.h"
+ #include "regs/xe_regs.h"
++#include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt_types.h"
+@@ -823,6 +825,13 @@ VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table device_oob_was = {
+ };
+ EXPORT_SYMBOL_IF_KUNIT(device_oob_was);
+ 
++static const struct xe_rtp_table_sr mert_was = XE_RTP_TABLE_SR(
++	{ XE_RTP_NAME("14028586678"),
++	  XE_RTP_RULES(PLATFORM(CRESCENTISLAND)),
++	  XE_RTP_ACTIONS(WR(DWNSTRM_ACCESS_MODE_GAMREQ_MERTSS, 0xcc))
++	},
++);
++
+ __diag_pop();
+ 
  /**
-  * xe_uc_runtime_suspend() - UC runtime suspend
-  * @uc: the UC object
-diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
-index 255a54a8f876..7a05f4a97ab5 100644
---- a/drivers/gpu/drm/xe/xe_uc.h
-+++ b/drivers/gpu/drm/xe/xe_uc.h
-@@ -13,6 +13,7 @@ int xe_uc_init(struct xe_uc *uc);
- int xe_uc_init_post_hwconfig(struct xe_uc *uc);
- int xe_uc_load_hw(struct xe_uc *uc);
- int xe_uc_reset_prepare(struct xe_uc *uc);
-+void xe_uc_resume_early(struct xe_uc *uc);
- void xe_uc_runtime_resume(struct xe_uc *uc);
- void xe_uc_runtime_suspend(struct xe_uc *uc);
- void xe_uc_stop_prepare(struct xe_uc *uc);
+@@ -1032,3 +1041,17 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
+ 	if (XE_DEVICE_WA(tile->xe, 22010954014))
+ 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
+ }
++
++/**
++ * xe_wa_apply_mert_workarounds - Apply root-tile MERT workarounds
++ * @xe: Xe device
++ *
++ * Called during probe and after pcode is ready on system or D3cold resume.
++ */
++int xe_wa_apply_mert_workarounds(struct xe_device *xe)
++{
++	if (!xe_device_has_mert(xe) || IS_SRIOV_VF(xe))
++		return 0;
++
++	return xe_rtp_apply_device_mmio_writes(xe, &mert_was);
++}
+diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
+index f4da2b2713963..28516812cb2bf 100644
+--- a/drivers/gpu/drm/xe/xe_wa.h
++++ b/drivers/gpu/drm/xe/xe_wa.h
+@@ -22,6 +22,7 @@ void xe_wa_process_gt(struct xe_gt *gt);
+ void xe_wa_process_engine(struct xe_hw_engine *hwe);
+ void xe_wa_process_lrc(struct xe_hw_engine *hwe);
+ void xe_wa_apply_tile_workarounds(struct xe_tile *tile);
++int xe_wa_apply_mert_workarounds(struct xe_device *xe);
+ void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
+ int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
 -- 
-2.53.0
+2.43.0
 
