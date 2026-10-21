@@ -2,35 +2,39 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8CE6606A328
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 15:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84EB606A31F
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 15:01:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=bcKo39mD
+	dkim=pass (2048-bit key, unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=eFRXlNGI
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7629B10E31F;
-	Wed, 21 Oct 2026 15:00:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99B7510F4E3;
+	Wed, 21 Oct 2026 15:00:59 +0000 (UTC)
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21FEB10F343
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5335610E31F
  for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 15:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1792594846;
- bh=BgEZm6D4ubQtnuiR4qMaH8BgBgQLO99dq6huQn9Q56Q=;
- h=From:To:Cc:Subject:Date:From;
- b=bcKo39mDTo9ALK50aUafEjNvc2OSzN9KELJs/W6F2uAIBRge4o/jUWqVOHGA7XCGD
- yEqqsLBpnYBU2EU3gyeZxQfIUwkpag0VZTAXOKqQ+kQUYV5kn2kLI51R9W2e+thyjz
- Sw++97ULb0lS4WLvYNr9bXEeCJJz5xdrTyQtD1mqY/imSBWw9FpaoATgxxmQhzqCW5
- GeG8IZ+CpWqUbFxB9msGDyskROxZGrmZsyCv5flLnBOuXbQS6kyYTVbBmz3gJNuDe1
- GJC8KJcEJOpJemZNLUJql/NIiOrKMO3pkoF6hkiybAYlNqnkTwa9jj9QPKeDOCHCiM
- XzJoQ782VR70g==
+ s=default; t=1792594847;
+ bh=IOV0Vgs9HQQtz7lmmJ2qvk3YngDVTlP8W5Z6R7B7KkA=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=eFRXlNGIoeXlds+Q1Vafu0q0KNBRBa+dZ43YYDjL42dXlOZMBh3QFQVhH7u7pptOk
+ XeN/YXCiYnhyNrFdHJlgOrPcT1nopkJ9RcR0SpRJ0Lo1Gs8XyfgQFNI6gagJCYTU4s
+ WH6pfILx79oZOSPXUmpN5Y5A+DJH+13/W7vexOMCaV77GNoBzlkJ4U3ktBfS1qw3DX
+ kF0v5hosDh24iYJmkuIJGXtWLDLh9TjXqdkxoAuCh7MKSnPE35/4XvONnkanQymBpu
+ +jkQ8UvPQZK+P+4vK/gAQKFbMognqlMow0QOOROv55lyVwqgm+5d2KtIdqzSBWq718
+ 5fgXTPoXl+FcQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 1/2] drm/xe/bo: Add xe_bo_addr_iter.
-Date: Wed, 21 Oct 2026 17:01:17 +0200
-Message-ID: <20261021150116.516131-3-dev@lankhorst.se>
+Subject: [PATCH 2/2] drm/xe/display: Use xe_bo_addr_iter in remapped DPT
+ pinning
+Date: Wed, 21 Oct 2026 17:01:18 +0200
+Message-ID: <20261021150116.516131-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261021150116.516131-3-dev@lankhorst.se>
+References: <20261021150116.516131-3-dev@lankhorst.se>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,101 +53,77 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For display we iterate often over the pinned VRAM/system memory BO.
-Add some code to speed up DPT/GGTT programming.
+Right now we're using xe_bo_addr() on each individual address, which gives
+problems at larger resolution and sizes, since it's a O(N²).
+
+By using xe_bo_addr_iter_first() + xe_bo_addr_iter_addr(), the time
+complexity is reduced again to O(N).
+
+To fix rotated pinning requires some thinking.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Fixes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9516
 ---
- drivers/gpu/drm/xe/xe_bo.c | 45 ++++++++++++++++++++++----------------
- drivers/gpu/drm/xe/xe_bo.h |  3 +++
- 2 files changed, 29 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 12e523c61c1f3..5e48669732fdd 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3434,6 +3434,30 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
- 	return false;
- }
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index e09116265ae95..e7e5c70c7b236 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -17,6 +17,7 @@
+ #include "xe_ggtt.h"
+ #include "xe_pat.h"
+ #include "xe_pm.h"
++#include "xe_res_cursor.h"
+ #include "xe_vram_types.h"
  
-+void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+
-+	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
-+		xe_assert(xe, bo->ttm.ttm);
-+
-+		xe_res_first_sg(xe_bo_sg(bo), offset, size, cur);
-+	} else {
-+		xe_res_first(bo->ttm.resource, offset, size, cur);
-+
-+		xe_assert(xe, !cur->dma_addr);
-+		cur->dma_start = vram_region_gpu_offset(bo->ttm.resource);
-+	}
-+}
-+
-+dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur)
-+{
-+	if (cur->mem_type == XE_PL_TT)
-+		return xe_res_dma(cur);
-+
-+	return cur->start + cur->dma_start;
-+}
-+
- /*
-  * Resolve a BO address. There is no assert to check if the proper lock is held
-  * so it should only be used in cases where it is not fatal to get the wrong
-@@ -3442,27 +3466,10 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
-  */
- dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
- {
--	struct xe_device *xe = xe_bo_device(bo);
- 	struct xe_res_cursor cur;
--	u64 page;
+ static void
+@@ -68,14 +69,14 @@ write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
+ 	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
+ 						 xe_cache_pat_idx(xe, XE_CACHE_NONE));
+ 	unsigned int offset = plane->offset * XE_PAGE_SIZE;
+-	unsigned int size = plane->size;
++	unsigned int size = plane->size * XE_PAGE_SIZE;
++	struct xe_res_cursor cur;
+ 
+-	while (size--) {
+-		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++	for (xe_bo_addr_iter_first(bo, &cur, offset, size); cur.remaining; xe_res_next(&cur, XE_PAGE_SIZE)) {
++		u64 addr = xe_bo_addr_iter_addr(&cur);
+ 
+ 		iosys_map_wr(map, dest, u64, addr | pte);
+ 		dest += sizeof(u64);
+-		offset += XE_PAGE_SIZE;
+ 	}
+ 
+ 	return dest;
+@@ -90,18 +91,17 @@ write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
+ 	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+ 	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
+ 						 xe_cache_pat_idx(xe, XE_CACHE_NONE));
+-	unsigned int offset, column, row;
++	u32 offset = plane->offset * XE_PAGE_SIZE;
++	struct xe_res_cursor cur;
+ 
+-	for (row = 0; row < plane->height; row++) {
+-		offset = (plane->offset + plane->src_stride * row) *
+-			 XE_PAGE_SIZE;
 -
--	xe_assert(xe, page_size <= PAGE_SIZE);
--	page = offset >> PAGE_SHIFT;
--	offset &= (PAGE_SIZE - 1);
+-		for (column = 0; column < plane->width; column++) {
+-			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++	xe_bo_addr_iter_first(bo, &cur, offset, plane->height * plane->src_stride * XE_PAGE_SIZE);
++	while (cur.remaining) {
++		for (u32 column = 0; column < plane->width; column++) {
++			u64 addr = xe_bo_addr_iter_addr(&cur);
  
--	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
--		xe_assert(xe, bo->ttm.ttm);
--
--		xe_res_first_sg(xe_bo_sg(bo), page << PAGE_SHIFT,
--				page_size, &cur);
--		return xe_res_dma(&cur) + offset;
--	} else {
--		struct xe_res_cursor cur;
--
--		xe_res_first(bo->ttm.resource, page << PAGE_SHIFT,
--			     page_size, &cur);
--		return cur.start + offset + vram_region_gpu_offset(bo->ttm.resource);
--	}
-+	xe_bo_addr_iter_first(bo, &cur, offset, page_size);
-+	return xe_bo_addr_iter_addr(&cur);
- }
+ 			iosys_map_wr(map, dest, u64, addr | pte);
+ 			dest += sizeof(u64);
+-			offset += XE_PAGE_SIZE;
++			xe_res_next(&cur, XE_PAGE_SIZE);
+ 		}
  
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 77b3a02e9b8eb..286f52225bc79 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -113,6 +113,7 @@ enum xe_madv_purgeable_state {
- };
- 
- struct sg_table;
-+struct xe_res_cursor;
- 
- struct xe_bo *xe_bo_alloc(void);
- void xe_bo_free(struct xe_bo *bo);
-@@ -375,6 +376,8 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
- }
- 
- bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo);
-+void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size);
-+dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur);
- dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- 
+ 		dest = write_dpt_padding(map, dest,
 -- 
 2.55.0
 
