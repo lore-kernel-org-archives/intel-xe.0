@@ -2,145 +2,148 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA78606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 18:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB7C606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 18:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Piyp7AUn
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UyIXeqzv
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DB7610E378;
-	Wed, 21 Oct 2026 18:33:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAB2C10E378
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 18:33:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96B1510E429;
+	Wed, 21 Oct 2026 18:35:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE7510FF81
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 18:35:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792607615; x=1824143615;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=3091ZFdDZxGxk6zdyozvGVxvWQXuXAMKYZjbbL0t8TI=;
- b=Piyp7AUnI2ibK+Np/N22fBPOhcGTtHYujBElkf2/QF8umjhSwLRVkfcO
- Rm+KYAaBQShktw9LBLGNejAb6y7OG7GTUjfQoisuya26oSNlozFdtd4ve
- 70iRZooJU3Pfb5Wx+cmkVUIG0MVRghHmHXCmROhxa5DoGimmGXEiulrxK
- TYqZgsUW35rqHpO2YGY/4d5W63BCiue0g4UDT+Vrq+BvrLXKaSKB11Bfa
- QYwj+6REucZob2yTTX4808KnlvWhfTF8fU0PegKyNZ3xgqexfNUJCJQzR
- eaADYOeEvBcJEo9MVjOkC620EOmNi4e1iOzTZ8enLNxEcd9JukHKs5/UR w==;
-X-CSE-ConnectionGUID: f2sKdTbzRQyycGbV9IxV6g==
-X-CSE-MsgGUID: XChOahsfQ1+czgyOdHCCJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1353258"
+ t=1792607734; x=1824143734;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ceseliaPlJpO03TQF/0syUzhD+Tz4Bg6M90pkDS2as4=;
+ b=UyIXeqzv8Bd059I8UF8rgUd6nzXiTJtgDZvf8pT5pChabkKDLSjV3AoD
+ IzY+dr91IszuNbIxNEmbxBBsMRXS9xE0G2iy8Mb+mIY9t1xNcItKKj9bS
+ KZuHkDxRwXSX8okdmiNqb+zMaIBIN7ZNUwyh/vPJNd06K4F5ifcKeQqux
+ gxJvAx398uA2/m/Bnhqs5PeLRoyWbL+wVSNn0wV01ejznetf6qJQGifq4
+ byuw0zy6dSOtkCmwVQEoCHlZPAfI5iYe3nYtOHDHUhcksH0I6ezl2gpK5
+ 9qSFUxuu+IHtQdjYD+/3rPvbUNc7xs1fuTUC8e6RE5fBwEcUuQ5GV0q9e g==;
+X-CSE-ConnectionGUID: E0UMXgviT1aFMVzcg8bT4w==
+X-CSE-MsgGUID: 6rB2tV8/TVq2+S8wiEE74g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1231847"
 X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
-   d="scan'208";a="1353258"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 11:33:35 -0700
-X-CSE-ConnectionGUID: di2QDJIaSUWIZhL0TvBz7A==
-X-CSE-MsgGUID: ohY1OLkQTSSPT0nW8lAy1w==
+   d="scan'208";a="1231847"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 11:35:33 -0700
+X-CSE-ConnectionGUID: ug3564B9Rnq4Dpqc/Yp/eA==
+X-CSE-MsgGUID: sTK+7D4FRFuwH/TkxsTatw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
-   d="scan'208";a="3157574"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 11:33:35 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 21 Oct 2026 11:33:34 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+   d="scan'208";a="3502679"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 11:35:33 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 11:33:34 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.40) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.49; Wed, 21 Oct 2026 11:35:32 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 21 Oct 2026 11:33:33 -0700
+ 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 11:35:32 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.44) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Wed, 21 Oct 2026 11:35:32 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HS3H0exxS1eWsMIFEeeJZ7xl/NMfT7n7LuHpaVF5NIUmRiVxpzc/TWdycxZ+owSqMsadp3rzMq5vKVBrfzpq4qLOVaUn0EeZvX9aiYR4haFzDCVd7JnACivzPQMelPbvWXSXcDcdGkrKf8UUWgrtyxA9KQGPg+7ck/VndAvHdKHkqw4WRCEb0BaP9I0PaeQtLaQicPlutD+B7HayrdVKdrADaDd0A7So4OEVuYU5LPkrXdic3RTwDrusCmOIuWH4v+Ou6K3yTFLDCFtizGOFBMxUGqcOl88qL1N2U0H66AJfHNTMldVSZDhHSirTI/Tw/Tb0D4NEN/mOKPQ3ee+XDw==
+ b=uLxLG2ebBVkQEP+ibBTZtnFBhJjEss9HVQ17Z+R0igh/ao7RfJmKiVnSdkRrS0BGTRTkJiF8auuwnVT3ose3tAMf3oDDmq+s8NF/wS4JpaAy18XRemlqw7szwHIDOGeyW9NFkIqajl8EcP7By0vNNturTaJMJ63ZDIuETRBqvNII8bP1LxdMgliMZhILCcb8jb3BwAfOPGRZczMOJZ3aBjRvzVwI3Trp5tjnnzHxNrE1HKQrb//T2ni5WbLluDibIHjsfPJhTkVqYHJuoR8w9YOQ/QMqwiDKtgzIi/VWaKBdsCcrT/JjUgeAajgUY9E28NdZv++gfWaJ5Yr5vbYgtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T+1KsGkY2JLN+UGQIFJu3L4pZuz3zC3gRPZsvVh8LeE=;
- b=WT7/8HIHLg7LIXPUtqcmC1TP4G6bVqaWmMFjhPZ76Mc6/gqS5n2MMPgNFdZQXpnBEH2nthQOuh+xzQk+i8TdlIwxabPRtovUId3M1R7ezI9lFMJmTJShN8O88UU69xb4e1UK6t+ZAEFlSNI1kse1nFTC4LxjDzRz5hQ5EQdstlIjc6ucRfL7sd/Eeb8h+gIi6woaW2lshBL6c59u/oEcpRQf5eRIBSu338rA5oDq0VC/Os6RSBi6ITvvVMUeAZwAIGyXm+mOOwnQ8b6uiXw4g6eBJ98Igokq0mrZKsbf8FCp40lxtAdrwBpT2XHbMGtYDzPP7W5VqoTEKzVdR7KrLg==
+ bh=PT6KbXeqXwqrWEUZ8Q1WMClavK0ALz1QwmAx3VHGsHw=;
+ b=GBA0Bl6UlRtEwwMtKra5nvT0jK42WV8gpc4Xcu/h8a/hEpFQZfrcvlx+7UUukvFrS4bqeTobq3amyvjDprIBQouMk/KqRU3YB2807EzRo4x8q4Bu6m7BmRrNnLbYmairlNsXHC0NO8b15tApILHnPm7qPud5JPY1SQoDm21ejsEXDBXfZ9xzqy6UjRWC3PoB9mTw3QS6cUZ1NKbOS5Lf/2uYkxCyJ/uZH35ryrVanm5H4yemfDdCnC4HLC26kdrkBkiYrz2zTzWunkubGsnM/jEdeWhsUmlN3wDJLOIp3Nhxr1zggIJfyKWXWLDHZ6zV6qzfFk7oJYDbbNg6mt8dGQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by PH0PR11MB9749.namprd11.prod.outlook.com (2603:10b6:510:397::9)
+Received: from PH0PR11MB5095.namprd11.prod.outlook.com (2603:10b6:510:3b::14)
+ by SJ2PR11MB8321.namprd11.prod.outlook.com (2603:10b6:a03:546::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Wed, 21 Oct
- 2026 18:33:32 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
- 18:33:32 +0000
-Date: Wed, 21 Oct 2026 11:33:30 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/2] drm/xe/bo: Add xe_bo_addr_iter.
-Message-ID: <atkFerOgJSp2wafr@gsse-cloud1.jf.intel.com>
-References: <20261021150116.516131-3-dev@lankhorst.se>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20261021150116.516131-3-dev@lankhorst.se>
-X-ClientProxiedBy: MW4PR03CA0160.namprd03.prod.outlook.com
- (2603:10b6:303:8d::15) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+ 2026 18:35:30 +0000
+Received: from PH0PR11MB5095.namprd11.prod.outlook.com
+ ([fe80::770b:7229:68c0:5ded]) by PH0PR11MB5095.namprd11.prod.outlook.com
+ ([fe80::770b:7229:68c0:5ded%3]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
+ 18:35:29 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: <tilak.tirumalesh.tangudu@intel.com>,
+ <tilak.tirumalesh.tangudu@intel.com>, <vinay.belgaumkar@intel.com>,
+ <shuicheng.lin@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH 2/2] drm/xe: Add wa_14025941587 to xe2, xe3 and xe3p
+ platforms
+In-Reply-To: <20260916100545.779894-3-tilak.tirumalesh.tangudu@intel.com>
+References: <20260916100545.779894-1-tilak.tirumalesh.tangudu@intel.com>
+ <20260916100545.779894-3-tilak.tirumalesh.tangudu@intel.com>
+Date: Wed, 21 Oct 2026 15:35:25 -0300
+Message-ID: <87cxt2ewb6.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0062.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::7) To PH0PR11MB5095.namprd11.prod.outlook.com
+ (2603:10b6:510:3b::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|PH0PR11MB9749:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4097b75b-20fc-40ad-fa77-08df2fa1cf53
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5095:EE_|SJ2PR11MB8321:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2dbd28df-159c-450f-5c3a-08df2fa214e4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|22082099003|18002099003|261021121427099003|261009223027099003|261021123027099003|11063799006|10067099003|56012099006;
-X-Microsoft-Antispam-Message-Info: btYPADn35rbRuTvgL9Bo4kojSbIgJce/uqhdNLrGZXVJA21gUIszZ/uqWKHdolDXOxz1VJXcwYki7KfXyn+THFLpXw8Z2JCu2ygUvfaDNKxzrFH+0jOj8rYjNmJMtBI7FO4bXxt+xOR2C3e25vDgWNmjXdqPLNZVxBDJ2nwg6Ne/ykMBo50w0R+J/NOOsBqzn8aE7LfzKl8lRYbYbcTRPTVxCpWHJpSRmm1XlaFfb426VbFIthO6Y56lz7cinvenaFJeskTWQ+2jx9VO7LR7o1kp/uIrHtLcefe531aFZqbx62NhLlg+EoHoJMEFa2cFNI8NibJoBSV+xJDefR7TS6Qpk/eHSkJlB1CXZ+oJ8+hUToniWxBtQQ5MtKnnMvmyyW6M6cXnCd9Iqmo20238WEI8qdASFMqPrW0P+/UwK55UUKytSXTk8BnSzRvYYfWGqUbbyNwUX9iL4RAFczU+8wDMnMo8umRmpmdODALtsek6dGJW8CcTTPPBQt1FX1jSZEGQ5k8oghyGZ7IyyuslA+v/HOmZkSjkrQXFopcIZGeTXZGsNTQEpvpKd414krbZhD4r9CKPsaVspiQWGLm6UUndvr84BER3y7UGZAwkLdwWvbbzVpQy640KJW9FKc7GUsZr9CuZ48gBeXmVdJr8BJg7jdX9PQCiXvJ9sIk246k=
+ ARA:13230040|376014|366016|1800799024|23010399003|261021123027099003|56012099006|260925021311599003|260925022911599003|260925021911599003|11063799006|4143699003|261009223027099003|10067099003|18002099003|22082099003|261021121427099003;
+X-Microsoft-Antispam-Message-Info: RPnOydAo/DdxZfHSe1jWvHa2g8V2ufc110siVBc1EXMB9E6wSuwkCSqyTLvGUVrrdGv3Yl2Rj+HNeSBAEFIzR/HUL/GPTJ1exgJmKMHDilxs2/gX81Cn7nMRlB/7RJ/gSnCB4lWGWOcMMeQMHDuhe72dMCPx4CKTINv4x0OLYCaFm3pvuqsgEsrRxFPO+1jj/ievZzust0EmH8N40VU+ixBZB6OzCGHeaJP3KRPck7r+wYzAN4tAM6TGKhRkNM4j/8PqARpw4a+opTundv0ITc2S1nKJsOK5hhj6SQ0L2/9XG7Icv7ENo7mI4uTMoY/WCDfkY3IKfgi/hipweJaND9ibq4xUsCscF5GuOA/OPWxjxSh+DPo7uGlr2XD8r+Exj37jCre14CEswZgtP9CYc8xbkThwNwi44D2uPxrxQuQQRHK4CffeyoVcM3QXHW/kfUzgF4hbsDvMAgeNO4BeJApRO3BpO89oqEWXYGMhBVAkBvxKzSMJj7GrSviVcITPl284lYKcZba8aAQXQ3K02H4RWjS+C7nQAANm7E2D/pwU4uoEs1O47/fV/IEFwMFOVHDbQVyLN/LRAjSY8OQaF2XN7M7CzbSIQ3mDEFSf0JijCbirIz3k5FoWlvNM4S3geClJitewwF8u8ukNZHcLb+oM0e/0DtnlM3Y8vUtql+o=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(22082099003)(18002099003)(261021121427099003)(261009223027099003)(261021123027099003)(11063799006)(10067099003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5095.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(261021123027099003)(56012099006)(260925021311599003)(260925022911599003)(260925021911599003)(11063799006)(4143699003)(261009223027099003)(10067099003)(18002099003)(22082099003)(261021121427099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?I7RrRqsqEKTbolriOauf6G+atU9dVPPtKCyIt6LLYwufxEnvIbIkMk5oydit?=
- =?us-ascii?Q?cRgEFwgi/ls2X9EwO/gNOS7yrziRSqXCLpPbcuvQotdcet+2dKiEZ0+QkDyI?=
- =?us-ascii?Q?jcC26fwehptSMzW5/4/cj/o21WUd1F6UItS3vfL9ZUU3daPSLHwsx6RrZW8Y?=
- =?us-ascii?Q?7uIu6xdYTsUXnABKOXr3sK/0bShRtHnFVISF3LydO2+yWQBoatTZuCjol2qx?=
- =?us-ascii?Q?de0POtp8O3j3V2/Abj9GMUpvcnDWcCsMirav7VLZzXe/9jeuDogFqIO79oZY?=
- =?us-ascii?Q?A1yyzx/0Mo6TB+XY2iyTTgk/gLf7US9P4CpapQL4ZG0O5UvjIhE/liMphKcE?=
- =?us-ascii?Q?JnOqbp/LFZn0I5UgY/jeT6XDYx9hdgjTb9i6j0ae42reZUY3Vyutbug27UO8?=
- =?us-ascii?Q?1dUytg1aDd4p+M694ISbGdo4/1YW6pTVhyRD9ymTQwRBqjn3EqR4gD7xTDpk?=
- =?us-ascii?Q?fxPjuo7E7LIpwBPa+WypPggOVyliacjwGKfqKSqcolrcsgfLVyRIDFh4kgB9?=
- =?us-ascii?Q?iIZHnlFZR7n2ZpHcm7VKXhcQkbAvudetTej8WLjIhlx73/34Wr85FVmvBIFi?=
- =?us-ascii?Q?cNzVT4HsKjeUU3Nq/7c47XABvP6MI2LcOwqzT4trUvBOhFJl6rl2E04Q8hfW?=
- =?us-ascii?Q?oGwo7c4Ez38hEjCIIbsT16m7qwlgCoY12fmARavAbxBIkQuW+FfPWZJoEFlG?=
- =?us-ascii?Q?r314yNz/x3H74dCS/CM0sCJ5gcladMfxwiJbayDrvv3A4Mp/RaeH4W5niuq1?=
- =?us-ascii?Q?DUa3w/5iT6qlhSnWLw7IoMPNw/C2xh6k63VBgYIxYvkBhHbRoBeRTgLevxut?=
- =?us-ascii?Q?rqrvCshjeAWTta6PV7KXvbS4Qdo+GDi1LQS2WMkQSNpneG6vpUFPVpCmiOf3?=
- =?us-ascii?Q?lf0rucrQhEc3dzUSJE3up4RhSGec6w4Mu3nDWo7hCm668RSi2whCtJhCiLGI?=
- =?us-ascii?Q?MyMTNPBrmf+7ASJ5QNn7oDt8kNTDPGCanPeUS8WS0h4/v+YFRquczEsIar7S?=
- =?us-ascii?Q?U0qFjJnB/qTBx7G5GcNiinYd/m1F23naecr+0q84npGGHp5idfcH+xT3kMY3?=
- =?us-ascii?Q?390tY31HwtRyy0ifEXdkRQN5A8f+FKFkMeiggIXjhD3Qjscjhu0MAR/Z6eCB?=
- =?us-ascii?Q?KGgQY6J21pqhOA+fsk6utFs3uFYeJ8h/iv3NxUUyhk9/UzVa4O90vduhn7DA?=
- =?us-ascii?Q?VPLFmLDuhHAJPyol49msW4ZPREb1dml3/GXhNtcXbXbO6dyN1ON+TaFnI40C?=
- =?us-ascii?Q?ewr3KFyXfEx/aNoS2yp5R1AolqG5mbGvqRVMFWnh31rcuRAdQPhNgR5TmaYl?=
- =?us-ascii?Q?MpZNIoXiYaXq6p4k8HdhgOK8JOHYf/ZA2lg32je/9iEIB/nJhyiUgnmUzR7H?=
- =?us-ascii?Q?93utdgUtTPBMTigBGv102RZd5heHT/GwG5HgOiAm+xu+0p9W/RmWryF2aQzq?=
- =?us-ascii?Q?Pv1FoLYG2oUvoEQw9o4snF22q+1HQBoA3AS26oQ3I4yI+GOY9rpD10pmJsT0?=
- =?us-ascii?Q?KUGYDriXim1EJiO19sG1zKVLMuSJ0g1I0OT5WKznm0BgsLGscNeTTK4w1HbW?=
- =?us-ascii?Q?uzDib19nr8vDqnOHgpLRfVEVHSxv72U6OHoSsZscS0/UAC5Y0ieNGu1UO88s?=
- =?us-ascii?Q?Ybpl0pCUm7Me6qDIAHsQ8lPb4gqIJWuqE8lX7RY5dKJgysclGpFHICjXQoMG?=
- =?us-ascii?Q?0O+vfCu471w/fS8qIGr7948ciEG4ysln0KaGtoKa0768LvYA8StiGKa0T8mu?=
- =?us-ascii?Q?He8pnz65DA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: HylMkWgn9xJ3+GR6M0f8SPkBeG0N6LWycA8h3ZRQM+Fi1c86tO0umH82GNukLMyefYFaT6XnO0PLTWC3f4zMEwZG0rXi0ytvbtmuf8FKI4TAVwThiF54eFYU/Gc9vXcybeyc7y8yQVPGUzfVu3ZuaNrdtqadZNxrWPBhVpyDjqa5z9Qz1mzt7p0qZht8KF+LjgzdYmt3wD03D+pHU7gXTA12vaoG1xNQjbzTMnxIaNUCQxYUG4PmygRsAC83qwamqbO5pQhPvxOsKcmB6MTBkaxzPEzg6TRsJQ7YIYq4zbFX9h3eXy6+nCXwWLu37xKEl6od2wScNeecxuf0I4cehg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4097b75b-20fc-40ad-fa77-08df2fa1cf53
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?te1215/EoAHpszt8DWgu1kLaTl7SfX7CgfIrxCUupeHYhQ9kVy2aNvf3P2o0?=
+ =?us-ascii?Q?0Zjm2k+hlKp1DSJsN5B8k4AgYtAzpE06/ics7+DArdQwJKNiEvy0KE4ZJIn3?=
+ =?us-ascii?Q?bNJwIKeEMFsH2XDw/+Fsr9zyruDlSSsFBjAKNjcIkB31nTTi2cPjiyv0yWTb?=
+ =?us-ascii?Q?IcmpDyTa3CThyWhdO2rFHrKQR76gSn42fJ3ysO+EEOKKgtUk0KMDKcT5vkcb?=
+ =?us-ascii?Q?GZZQnPaHJo47Xk1N1hu71N2eBRJoHY04Wm8QXcaSZepIk/WeFk6eyGfb4j3I?=
+ =?us-ascii?Q?KuVtpFtVfFyZCqgJeU8pl+baOhKQMrFOxq13obfoe+snqviOREuGg2mRy5s0?=
+ =?us-ascii?Q?GxonAeZ7iTuSzGrzFEpsPayg63pEcTHpjAggOe7gXmxEPZqwqKUkZ/tiz+F8?=
+ =?us-ascii?Q?CVg6n1NH4MufEqZ5NjMxDH1AXUo+eorZh1dPtmQOgKZIMXK19GQ/DUwfkUza?=
+ =?us-ascii?Q?l9iEZH2dTUMHL/zlRxMp66lOlxlCtaxrSvWiLT6Uy2GWyquA29qlEN1MB1n3?=
+ =?us-ascii?Q?0VcU1dcHVTzXorzTs9LQnrS9u9gACZWJ7apavIqa59wCvnZilbkNz+ZKNG/d?=
+ =?us-ascii?Q?8lBcPm2PWDLMbEeZc2d11qjT+CamZsdN1ETmjdxyOxZLCyIDG523W+ZXxMV0?=
+ =?us-ascii?Q?OL9MaVkem4Yz/Kz0Ow+uTQQdFE2KKRSvX+3xu9CCRsPbDevxU/wyLH11yCBj?=
+ =?us-ascii?Q?+RPo40NJJzFNUbXcIgYXW4y6ve75V2iD2QlVcotWp3T2LIjUpj1v7uLN/sbI?=
+ =?us-ascii?Q?d1xj38en9GAI0yDsIoBTlCa3AgqC400FnUbIzRUWnh2GJCrNPHms9eWbRKMG?=
+ =?us-ascii?Q?lMgmHdQL3IUspHm6dYejlK1QBkQEAjtYUeG6g46r3WG0N5LagvgaKJ2iXkKf?=
+ =?us-ascii?Q?rjj6sVapPsWGnEoBMU9qXY1Xuv3v4RJR4q3YZOmWgHQw2T0TUVxUzfXVltOE?=
+ =?us-ascii?Q?RSERXQta6RiPjSce0fKZGkipd5Jd1tgpg/N7rImMWYGe7kc8Zm2GuPSvwfF4?=
+ =?us-ascii?Q?6WT6W1ZPemzk/fjoSKZe0Iw+WB23BMneBQqXKAqcJOnQz24jDKjr56MHqwn3?=
+ =?us-ascii?Q?TEIpCJmZN/aelKDgkr9vxmlt2+/2i/zMR79HWE7CbGUrRyRY3cZsOTqeRWaS?=
+ =?us-ascii?Q?yrMj9ytOBtQTQWzornF2/uoRcH9MQx3qeGFvEsOITlQZ2n2k9TIBKopLjqea?=
+ =?us-ascii?Q?VcHFcs2/MUe04iy93VVRXR5RFV5H7KRsN9i4Qi6Q86kB8eiBOgvGm3xauWsk?=
+ =?us-ascii?Q?DWZ3ZKKMyfWdMfurigoebMe1UD7jOWNOVRNM8OSpMIirmC7fUkdkYBd6l1oV?=
+ =?us-ascii?Q?CWYczvQZ4gpwbfYVImq1Taq5sHUw8gBfKnyD1B5ye+Cs4SSH6Fne5boJL8Kh?=
+ =?us-ascii?Q?qAU/JvSfDhHlM8QJs8GxK7AeBnyS4wnK5AbvI7oouG46+HO82lyV9f6rLiyj?=
+ =?us-ascii?Q?eiW6+SPi5ssaKQVa1cvOVxnJTCkg1eUM1Z38Vi+41vNzRxK2kxtHgmZU0p2A?=
+ =?us-ascii?Q?CcPAlQy1kpUMxyU+dIluv/CX5WyPpRb4n2Y7XAcpsUHtaEBdPhKKiN2plBG6?=
+ =?us-ascii?Q?1hsSjg/6+m7aueYzaAVX11ovNxzoGyhFoY/Xu6TdmMLSeg6+uZLzBkrjuwhG?=
+ =?us-ascii?Q?P1ck/Z1UrR/2H+pPxAIC2e5ngTD4E4PJU19VZ7yWnoA6POA2JUCYNYxXUguh?=
+ =?us-ascii?Q?afck+pYmZc6qoETiBQEtxCIj/D8s78ueVMaesF/ADURKAAGypi2uYxsnvbqZ?=
+ =?us-ascii?Q?Tq+86D4pfw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: YriiuIveY7VN1tzr6wcovE7Z2TEsZyCjAhIE4ftFJL4gij7mYsGIgWj3G5/MAAIm3oG2ifLTWsMGj37awLikdW1iM0AMCiYh6v27HTCI/087QHx3Gk4gqeu/UA1JqyiLZPr2COkxJTdCWPyxOEk5RKAbjTEQ8iSbrYX3ElP0xXbgbDVDD6RXn0T7dkFX+NdqnhsYyVQrc1RQzlexY19bSRrlu490MQY/k9v3HqlLxoahBmA5YGI6A1dBuXVejQ7Lq/7orQSOo1gB0WpO62OG3QOsWqJyxHdM1+CGorCxGUsLaQNFy8TWVw2kprD/EdCR4Tc3E4rdMZdfs5dznOP4hA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2dbd28df-159c-450f-5c3a-08df2fa214e4
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5095.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 18:33:32.6559 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 18:35:29.3611 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7w/4OG7eQmcKh1GelSjIFWV1ir/C7yQ6bguWWiXDaKqkwlIfCzTJzVpV0NI7mWcLPhI6vEtfuTe+ntaJKnuBvg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB9749
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZCjbXQpK6fyzdppEtQjHHSA+KvoTZZmBg70Z/bxces5nWBEfwVJs0uaVVwfSjq1kIe/kfpCf6gvLpOU2d70xKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8321
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -159,109 +162,212 @@ X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Oct 21, 2026 at 05:01:17PM +0200, Maarten Lankhorst wrote:
-> For display we iterate often over the pinned VRAM/system memory BO.
-> Add some code to speed up DPT/GGTT programming.
-> 
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+tilak.tirumalesh.tangudu@intel.com writes:
+
+> From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+>
+> Avoid programming the IDLEDLY timer to less than 5 microseconds.
+> Apply wa_14025941587 to Graphics Versions 20.01 to 35.11
+> and Media Versions 13.01 to 35.03
+>
+> v2: Use xe_rtp_match_not_sriov_vf, move to local variable
+>     Remove warn and other knits            - Matt R
+>
+> v3: Add verbose comment - Tejas
+>
+> v4: Restore IDLE_DLY register on engine reset.
+>     Add it to GUC save-restore list. -Vivek
+>
+> v5: Extend WA to Media Versions 13.01 to 35.03 - Vinay
+>
+> v6: Avoid clearing inhibit switch - Bala
+>     Refactor code accordingly by adding idle_reg_val.
+>
+> v7: Rebased with the divide-by-zero/overflow guards living in
+>     a separate hardening patch.
+>
+> v8: Preserve the Wa_16023105232 floor (DIV_ROUND_DOWN_ULL) and the
+>     maxcnt == 0 guard from the hardening patch. Round up
+>     (DIV_ROUND_UP_ULL) the Wa_14025941587 minimum conversion instead,
+>     so the tick-quantized delay cannot round back below 5 us.
+>
+> v9: Evaluate the Wa_16023105232 xe_gt_WARN_ON() against the value
+>     read from hardware instead of the Wa_14025941587-bumped value,
+>     so it no longer fires on the driver's own floor. Re-check the
+>     rounded-up tick value against maxcnt and floor it if tick
+>     quantization pushed it back to/above maxcnt, logging via
+>     xe_gt_dbg since this is the driver's own value, not a hardware
+>     anomaly.
+>
+> Assisted-by: GitHub_Copilot:claude-opus-4.8
+> Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_bo.c | 45 ++++++++++++++++++++++----------------
->  drivers/gpu/drm/xe/xe_bo.h |  3 +++
->  2 files changed, 29 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 12e523c61c1f3..5e48669732fdd 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -3434,6 +3434,30 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
->  	return false;
+>  drivers/gpu/drm/xe/xe_guc_ads.c    |  2 +-
+>  drivers/gpu/drm/xe/xe_hw_engine.c  | 93 ++++++++++++++++++++++++------
+>  drivers/gpu/drm/xe/xe_wa_oob.rules |  2 +
+>  3 files changed, 79 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+> index ff8eee3831aa..58a3f6293ce4 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ads.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+> @@ -864,7 +864,7 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+>  		}
+>  	}
+>  
+> -	if (XE_GT_WA(hwe->gt, 16023105232))
+> +	if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
+>  		guc_mmio_regset_write_one(ads, regset_map,
+>  					  RING_IDLEDLY(hwe->mmio_base),
+>  					  count++);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index d868af8e3301..9680d2a5adec 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -585,44 +585,103 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+>  	xe_reg_whitelist_process_engine(hwe);
 >  }
 >  
-
-Kernel doc.
-
-Patch logic looks correct to me.
-
-Matt
-
-> +void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size)
+> +static u32 idledly_floor_ticks(u32 idledly_ns, u32 idledly_units_ps)
 > +{
-> +	struct xe_device *xe = xe_bo_device(bo);
-> +
-> +	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
-> +		xe_assert(xe, bo->ttm.ttm);
-> +
-> +		xe_res_first_sg(xe_bo_sg(bo), offset, size, cur);
-> +	} else {
-> +		xe_res_first(bo->ttm.resource, offset, size, cur);
-> +
-> +		xe_assert(xe, !cur->dma_addr);
-> +		cur->dma_start = vram_region_gpu_offset(bo->ttm.resource);
-> +	}
+> +	return DIV_ROUND_DOWN_ULL((u64)idledly_ns * 1000, idledly_units_ps);
 > +}
 > +
-> +dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur)
-> +{
-> +	if (cur->mem_type == XE_PL_TT)
-> +		return xe_res_dma(cur);
-> +
-> +	return cur->start + cur->dma_start;
-> +}
-> +
->  /*
->   * Resolve a BO address. There is no assert to check if the proper lock is held
->   * so it should only be used in cases where it is not fatal to get the wrong
-> @@ -3442,27 +3466,10 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
->   */
->  dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
+>  static void adjust_idledly(struct xe_hw_engine *hwe)
 >  {
-> -	struct xe_device *xe = xe_bo_device(bo);
->  	struct xe_res_cursor cur;
-> -	u64 page;
-> -
-> -	xe_assert(xe, page_size <= PAGE_SIZE);
-> -	page = offset >> PAGE_SHIFT;
-> -	offset &= (PAGE_SIZE - 1);
+>  	struct xe_gt *gt = hwe->gt;
+> -	u32 idledly, maxcnt;
+> +	u32 idledly, idledly_hw, idledly_reg_val, maxcnt;
+>  	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
+>  	u32 maxcnt_units_ns = 640;
+> -	bool inhibit_switch = 0;
+> +	bool inhibit_switch = false;
+>  	bool wa_applied = false;
+> +	bool clamped_below_maxcnt = false;
+> +
+> +	if ((!IS_SRIOV_VF(gt_to_xe(gt)) && XE_GT_WA(gt, 16023105232)) ||
+> +	    XE_GT_WA(gt, 14025941587)) {
+
+Hey, eveyone.
+
+I came across this recently I was wondering why Wa_14025941587 doesn't
+check for SRIOV as done for Wa_16023105232.
+
+I think VF doesn't have access to the IDLEDLY register.
+
+I'll be changing this section of the driver soon.  I could send a patch
+making sure that we bail early if on a VF.
+
+--
+Gustavo Sousa
+
+> +		u32 mincnt_idledly_ns = 5000;
 >  
-> -	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
-> -		xe_assert(xe, bo->ttm.ttm);
-> -
-> -		xe_res_first_sg(xe_bo_sg(bo), page << PAGE_SHIFT,
-> -				page_size, &cur);
-> -		return xe_res_dma(&cur) + offset;
-> -	} else {
-> -		struct xe_res_cursor cur;
-> -
-> -		xe_res_first(bo->ttm.resource, page << PAGE_SHIFT,
-> -			     page_size, &cur);
-> -		return cur.start + offset + vram_region_gpu_offset(bo->ttm.resource);
-> -	}
-> +	xe_bo_addr_iter_first(bo, &cur, offset, page_size);
-> +	return xe_bo_addr_iter_addr(&cur);
+> -	if (!IS_SRIOV_VF(gt_to_xe(gt)) && XE_GT_WA(gt, 16023105232)) {
+>  		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
+>  		if (!idledly_units_ps)
+>  			return;
+>  
+> -		idledly = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
+> +		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
+>  		maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
+>  
+> -		inhibit_switch = idledly & INHIBIT_SWITCH_UNTIL_PREEMPTED;
+> -		idledly = REG_FIELD_GET(IDLE_DELAY, idledly);
+> +		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
+> +		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
+>  		idledly = DIV_ROUND_CLOSEST_ULL((u64)idledly * idledly_units_ps, 1000);
+> +		idledly_hw = idledly;
+>  		maxcnt = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
+>  		maxcnt *= maxcnt_units_ns;
+>  
+> -		/* Clear the inhibit switch without disturbing a valid delay. */
+> -		if (inhibit_switch)
+> +		/*
+> +		 * Wa_14025941587 is applied before Wa_16023105232, which takes
+> +		 * priority if the two ever conflict (not expected in practice).
+> +		 */
+> +		if (XE_GT_WA(gt, 14025941587) &&
+> +		    idledly < mincnt_idledly_ns) {
+> +			idledly = mincnt_idledly_ns;
+>  			wa_applied = true;
+> +		}
+>  
+> -		if (xe_gt_WARN_ON(gt, idledly >= maxcnt)) {
+> -			/* Floor below maxcnt; write 0 to still clear the inhibit bit. */
+> -			idledly = maxcnt ?
+> -				DIV_ROUND_DOWN_ULL((u64)(maxcnt - 1) * 1000,
+> -						   idledly_units_ps) : 0;
+> -			wa_applied = true;
+> +		if (XE_GT_WA(gt, 16023105232)) {
+> +			/* Clear the inhibit switch without disturbing a valid delay. */
+> +			if (inhibit_switch) {
+> +				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
+> +				wa_applied = true;
+> +			}
+> +
+> +			/* Warn only on the value read from hardware. */
+> +			xe_gt_WARN_ON(gt, idledly_hw >= maxcnt);
+> +
+> +			if (idledly >= maxcnt) {
+> +				/* maxcnt may be 0 if IDLE_WAIT_TIME is unprogrammed. */
+> +				idledly = maxcnt ? maxcnt - 1 : 0;
+> +				clamped_below_maxcnt = true;
+> +				wa_applied = true;
+> +			}
+>  		}
+>  
+> -		if (wa_applied)
+> -			xe_mmio_write32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base),
+> -					REG_FIELD_PREP(IDLE_DELAY, idledly));
+> +		if (wa_applied) {
+> +			u32 idledly_ticks;
+> +
+> +			/*
+> +			 * Wa_16023105232 requires idledly < maxcnt, so floor
+> +			 * that clamp; otherwise round up to guarantee the
+> +			 * Wa_14025941587 minimum survives tick quantization.
+> +			 */
+> +			if (clamped_below_maxcnt)
+> +				idledly_ticks = idledly_floor_ticks(idledly, idledly_units_ps);
+> +			else
+> +				idledly_ticks = DIV_ROUND_UP_ULL((u64)idledly * 1000,
+> +								 idledly_units_ps);
+> +
+> +			/*
+> +			 * Tick quantization can still push the rounded-up value
+> +			 * to/above maxcnt; re-floor here so Wa_16023105232 keeps
+> +			 * priority even in that case.
+> +			 */
+> +			if (!clamped_below_maxcnt && XE_GT_WA(gt, 16023105232) &&
+> +			    (u64)idledly_ticks * idledly_units_ps >= (u64)maxcnt * 1000) {
+> +				xe_gt_dbg(gt, "idledly %s: %u ticks would exceed maxcnt=%u, so flooring\n",
+> +					  hwe->name, idledly_ticks, maxcnt);
+> +				idledly = maxcnt ? maxcnt - 1 : 0;
+> +				idledly_ticks = idledly_floor_ticks(idledly, idledly_units_ps);
+> +			}
+> +
+> +			idledly_reg_val &= ~IDLE_DELAY;
+> +			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY, idledly_ticks);
+> +			xe_gt_dbg(gt, "idledly %s: set %u max=%u inh=%u ts=%u\n",
+> +				  hwe->name, idledly, maxcnt,
+> +				  !!inhibit_switch, gt->info.timestamp_base);
+> +			xe_mmio_write32(&gt->mmio,
+> +					RING_IDLEDLY(hwe->mmio_base),
+> +					idledly_reg_val);
+> +		}
+>  	}
 >  }
 >  
->  dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 77b3a02e9b8eb..286f52225bc79 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -113,6 +113,7 @@ enum xe_madv_purgeable_state {
->  };
->  
->  struct sg_table;
-> +struct xe_res_cursor;
->  
->  struct xe_bo *xe_bo_alloc(void);
->  void xe_bo_free(struct xe_bo *bo);
-> @@ -375,6 +376,8 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
->  }
->  
->  bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo);
-> +void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size);
-> +dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur);
->  dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
->  dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
->  
+> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> index dd69ad07f7a9..3001155f8d09 100644
+> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
+> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+> @@ -72,3 +72,5 @@
+>  16029897822	MEDIA_VERSION(3500)
+>  		GRAPHICS_VERSION(3510)
+>  14027054324	GRAPHICS_VERSION(3511)
+> +14025941587	GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
+> +		MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
 > -- 
-> 2.55.0
-> 
+> 2.46.0
