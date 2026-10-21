@@ -2,42 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC36606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 04:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3CFF606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 04:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KObQT0Pa
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iMsPBQ32
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB3010E26B;
-	Wed, 21 Oct 2026 04:32:38 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6B710E26B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 04:32:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90F9910E26B;
+	Wed, 21 Oct 2026 04:35:09 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF6FD10E26B
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 04:35:02 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D0C2F6021E;
- Wed, 21 Oct 2026 04:32:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 724681F000C9;
- Wed, 21 Oct 2026 04:32:30 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6BD8740308;
+ Wed, 21 Oct 2026 04:35:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 311901F000C9;
+ Wed, 21 Oct 2026 04:35:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792557150;
- bh=dAKqy8trlVm43Opc0XjoPKPpf9fIQVhJqwwBAA8fPlk=;
+ s=k20260515; t=1792557302;
+ bh=OFBtoeozEpFD4+e3aI7oNAVwTHBI7xRKPsmOK4jMKLQ=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=KObQT0Pa8Jp53+eIoNSr4Dhet6xCieRFlcV6PP7qyT3jh7/wl6GEnGiM+RME8gGas
- J4q+RogzF6ZRZg9dpRs1gxVeJzXtIqPku9CbkstK5I2oMSFnK5dNvDE6DZx5Nv+UoS
- dgMFTrVbzI+HNPoj6OuL1wV0c3gsD2eJSsLD8gbP6eqzbIFjLRaOEkHoqvDtK0Od/E
- YXdFoUAJ3QtUC5ae75WW25Pb9hr/oj6rxAtPmniB27Q34GnBVviqvY24vu0+fNRuzF
- SxXTccZ91GGm7QZwURT+VR+sfWaqjreEBTdKRMeRjlngAWIEaSK3nv2SeKJg7pkblK
- O8J81QjFTrxqQ==
-Message-ID: <sashiko-outbox-179784@kernel.org>
+ b=iMsPBQ32WI1+3htnGfQjovuLKfHPw4RmFEtSh31DatwrEl+PIgfOOw6xIBJW1EL+G
+ j9c7xWm6rrIjPALvRrQpcuaioIScqR0uit1MCj4qrBMMLD7gNIShH02UetXEHcGcUS
+ Gk+Rj5nrLdU1KcRdxUN4mOHZTwkarVYngREOV1Xkg1F0fzb+EQvgnfAydMB5gX+Vxi
+ U2cQ6/YV+uitFq++cD6Y3MT7xwA1yYJtoDzPJEZH/baQmFVnL6CBApeI251+8MRGZq
+ 2JRd7JBZNU0GyXV5nO4FvFx0NqsLjQyVH8mD8CmJwf/q6Q7AIzVU1+EuVbGszRGG3d
+ QBwrhvmo3kX0A==
+Message-ID: <sashiko-outbox-179786@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/6] drm/xe/pci: log ATS/PASID enablement state at probe
+Subject: Re: [PATCH 6/6] drm/xe/pagefault: add CPU mirror VMA for SVA faults
+ without PRI
 To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261021041117.1774877-2-naresh.kumar.g@intel.com>
+In-Reply-To: <20261021041117.1774877-7-naresh.kumar.g@intel.com>
 References: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
- <20261021041117.1774877-2-naresh.kumar.g@intel.com>
+ <20261021041117.1774877-7-naresh.kumar.g@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 21 Oct 2026 04:32:30 +0000
+Date: Wed, 21 Oct 2026 04:35:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,117 +60,155 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] drm/xe/pci: xe_pci_ats_pasid_enabled() always returns false on S=
-R-IOV VFs
-- [Low] drm/xe/pci: build failure in __xe_pci_probe() without CONFIG_PCI_AT=
-S/PASID
+- [Critical] drm/xe: NULL deref and uninitialized PAT in xe_vm_alloc_cpu_ad=
+dr_mirror_vma()
+- [High] drm/xe: 4K VMA check before 64K mirror alloc in xe_pagefault_servi=
+ce()
 --
 
-commit 9613705bbc43ffcbfae8d92b0e6cff920caffa87
+commit c441331b0c386c437e9ad479c73465c57bd86054
 Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 
-drm/xe/pci: log ATS/PASID enablement state at probe
+drm/xe/pagefault: add CPU mirror VMA for SVA faults without PRI
 
-This commit logs ATS and PASID enablement states during __xe_pci_probe() wh=
-en
-their PCI capabilities are present, and introduces xe_pci_ats_pasid_enabled=
-()
-to check whether both features are enabled on a PCI device.
+This commit adds on-demand creation of a cpu-address-mirror vma in
+xe_pagefault_service() when servicing sva faults on platforms with ats/pasid
+enabled but without pri support. It also introduces the
+XE_PAGEFAULT_ERROR_VMA_ALLOC error code to report vma allocation failures.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 44587b5f4df60..7c8a4286b657a 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -1281,6 +1281,13 @@ static int __xe_pci_probe(struct pci_dev *pdev, co=
-nst struct xe_device_desc *des
->  		xe_step_name(xe->info.step.media),
->  		xe_step_name(xe->info.step.basedie));
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pa=
+gefault.c
+> index 5247321c805ec..fbdf12d3d5580 100644
+> --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+[ ... ]
+> @@ -298,6 +300,51 @@ static int xe_pagefault_service(struct xe_pagefault =
+*pf)
+>  	}
 > =20
-> +	if (pdev->ats_cap)
-> +		drm_dbg(&xe->drm, "Arch ATS =3D %s",
-> +			str_enabled_disabled(pdev->ats_enabled));
-> +	if (pdev->pasid_cap)
-> +		drm_dbg(&xe->drm, "Arch PASID =3D %s",
-> +			str_enabled_disabled(pdev->pasid_enabled));
+>  	vma =3D xe_vm_find_vma_by_addr(vm, xe_pagefault_addr(pf));
+> +
+> +	/*
+> +	 * ATS/PASID is negotiated but this hardware has no PRI, so there is
+> +	 * no IOMMU self-healing path to fault the page in - the driver has
+> +	 * to create the missing CPU-address-mirror binding itself and let
+> +	 * the SVM path below service the fault.
+> +	 */
+> +	if (!vma && vm->sva_handle && xe_pci_svm_needs_sw_iopf(pdev)) {
+> +		u64 page_size =3D vm->flags & XE_VM_FLAG_64K ? SZ_64K : SZ_4K;
+> +		u64 start =3D ALIGN_DOWN(xe_pagefault_addr(pf), page_size);
+> +		u64 end =3D start + page_size;
+> +		int alloc_err =3D 0;
+> +
+> +		up_read(&vm->lock);
+> +		down_write(&vm->lock);
+> +		/* Lock was dropped, re-check: a racing fault may have won */
+> +		vma =3D xe_vm_find_vma_by_addr(vm, xe_pagefault_addr(pf));
 
-[Severity: Low]
-Will __xe_pci_probe() in drivers/gpu/drm/xe/xe_pci.c fail to build when
-CONFIG_PCI_ATS or CONFIG_PCI_PASID is disabled?
+[Severity: High]
+When vm->flags & XE_VM_FLAG_64K is set, xe_pagefault_service() aligns start
+and end to SZ_64K, but xe_vm_find_vma_by_addr() in drivers/gpu/drm/xe/xe_vm=
+.c
+only checks a 4k range at the faulting address:
 
-In include/linux/pci.h, struct pci_dev only defines ats_cap and pasid_cap
-when their respective Kconfig options are enabled:
+drivers/gpu/drm/xe/xe_vm.c:xe_vm_find_vma_by_addr() {
+	return xe_vm_find_overlapping_vma(vm, page_addr, SZ_4K);
+}
 
-#ifdef CONFIG_PCI_ATS
+Because vm_bind_ioctl_check_args() in drivers/gpu/drm/xe/xe_vm.c and
+madvise_args_are_sane() in drivers/gpu/drm/xe/xe_vm_madvise.c allow
+4k-aligned mappings on 64k vms (xe_vm_bind_ioctl_validate_bo() only requires
+64k alignment for bos with XE_BO_FLAG_INTERNAL_64K), another 4k-aligned vma
+(such as a system-memory bo, userptr, sparse vma, or madvise-split vma) can
+already exist elsewhere within [start, end).
+
+If a fault hits an unmapped 4k page in that 64k window without first checki=
+ng
+xe_vm_find_overlapping_vma(vm, start, page_size), won't
+xe_vm_alloc_cpu_addr_mirror_vma() -> xe_vm_alloc_vma() ->
+drm_gpuvm_sm_map_ops_create() generate unmap or remap operations that destr=
+oy
+the overlapping vma via xe_vma_destroy() without unbinding its page tables =
+or
+holding bo->ttm.base.resv, triggering xe_bo_assert_held(bo) in
+xe_vma_destroy()?
+
+> +		if (!vma) {
+> +			if (xe_vm_is_closed_or_banned(vm)) {
+> +				alloc_err =3D -ENOENT;
+> +			} else {
+> +				/* Merge with adjacent mirror VMAs instead of leaving singletons */
+> +				xe_vm_find_cpu_addr_mirror_vma_range(vm, &start, &end);
+> +				alloc_err =3D xe_vm_alloc_cpu_addr_mirror_vma(vm, start, end - start=
+);
+
+[Severity: Critical]
+What happens in xe_pagefault_service() when a fault occurs at an address wi=
+th
+no immediately adjacent default-attribute mirror vma at start - SZ_4K or
+end + 1 (such as the first sva page fault in the vm)?
+
+In that case, xe_vm_find_cpu_addr_mirror_vma_range() leaves [start, end)
+unchanged so the range does not overlap any existing gpuva in vm->gpuvm.
+
+When xe_vm_alloc_cpu_addr_mirror_vma() calls xe_vm_alloc_vma(vm, &map_req,
+false) in drivers/gpu/drm/xe/xe_vm.c, vma_flags is initialized to 0 and
+default_pat is left uninitialized on the stack, because both are only
+populated from an existing vma during DRM_GPUVA_OP_UNMAP or
+DRM_GPUVA_OP_REMAP:
+
+drivers/gpu/drm/xe/xe_vm.c:xe_vm_alloc_vma() {
+	unsigned int vma_flags =3D 0;
+	bool remap_op =3D false;
+	struct xe_vma_mem_attr tmp_attr =3D {};
+	u16 default_pat;
 	...
-	u16		ats_cap;	/* ATS Capability offset */
-	u8		ats_stu;	/* ATS Smallest Translation Unit */
-#endif
-...
-#ifdef CONFIG_PCI_PASID
-	u16		pasid_cap;	/* PASID Capability offset */
-	u16		pasid_features;
-#endif
+		if (!is_madvise) {
+			if (__op->op =3D=3D DRM_GPUVA_OP_UNMAP) {
+				vma =3D gpuva_to_vma(op->base.unmap.va);
+				XE_WARN_ON(!xe_vma_has_default_mem_attrs(vma));
+				default_pat =3D vma->attr.default_pat_index;
+				vma_flags =3D vma->gpuva.flags;
+			}
 
-Since CONFIG_DRM_XE in drivers/gpu/drm/xe/Kconfig only depends on DRM and
-PCI without selecting or depending on PCI_ATS or PCI_PASID (for example, in
-drivers/gpu/drm/xe/.kunitconfig), accessing pdev->ats_cap and pdev->pasid_c=
-ap
-directly without IS_ENABLED() guards breaks the build when either option is
-not set.
+			if (__op->op =3D=3D DRM_GPUVA_OP_REMAP) {
+				vma =3D gpuva_to_vma(op->base.remap.unmap->va);
+				default_pat =3D vma->attr.default_pat_index;
+				vma_flags =3D vma->gpuva.flags;
+			}
 
-> +
->  	drm_dbg(&xe->drm, "SR-IOV support: %s (mode: %s)\n",
->  		str_yes_no(xe_device_has_sriov(xe)),
->  		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-> diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
-> index 11bcc5fe2c5b9..5f784229a5ecf 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.h
-> +++ b/drivers/gpu/drm/xe/xe_pci.h
-> @@ -5,6 +5,7 @@
-> =20
->  #ifndef _XE_PCI_H_
->  #define _XE_PCI_H_
-> +#include <linux/pci.h>
-> =20
->  struct pci_dev;
-> =20
-> @@ -12,4 +13,9 @@ int xe_register_pci_driver(void);
->  void xe_unregister_pci_driver(void);
->  struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev);
-> =20
-> +static inline bool xe_pci_ats_pasid_enabled(struct pci_dev *pdev)
-> +{
-> +	return pdev->ats_enabled && pdev->pasid_enabled;
-> +}
+			if (__op->op =3D=3D DRM_GPUVA_OP_MAP) {
+				op->map.vma_flags |=3D vma_flags & XE_VMA_CREATE_MASK;
+				op->map.pat_index =3D default_pat;
+			}
+		}
+}
 
-[Severity: Medium]
-How does xe_pci_ats_pasid_enabled() in drivers/gpu/drm/xe/xe_pci.h (as well
-as the PASID check in __xe_pci_probe()) behave on SR-IOV Virtual Functions?
+Because drm_gpuvm_sm_map_ops_create() only emits DRM_GPUVA_OP_MAP when no
+existing gpuva overlaps [start, end), op->map.vma_flags remains 0 (missing
+XE_VMA_SYSTEM_ALLOCATOR) and op->map.pat_index uses the uninitialized
+default_pat variable.
 
-In drivers/pci/ats.c, pci_enable_pasid() notes that VFs do not implement
-their own PASID capability (so pdev->pasid_cap is 0) and instead share the
-PF's PASID configuration:
+From there, vm_bind_ioctl_ops_parse() -> new_vma() -> xe_vma_create() in
+drivers/gpu/drm/xe/xe_vm.c sees !bo && !is_null && !is_cpu_addr_mirror,
+allocates a struct xe_userptr_vma instead of a mirror vma, and calls
+xe_userptr_setup() in drivers/gpu/drm/xe/xe_userptr.c:
 
-	if (pdev->is_virtfn) {
-		if (pci_physfn(pdev)->pasid_enabled)
-			return 0;
-		return -EINVAL;
-	}
+drivers/gpu/drm/xe/xe_userptr.c:xe_userptr_setup() {
+	...
+	err =3D mmu_interval_notifier_insert(&userptr->notifier, current->mm,
+					   start, range,
+					   &vma_userptr_notifier_ops);
+}
 
-When the IOMMU enables PASID on a VF via pci_enable_pasid(), it checks
-pci_physfn(pdev)->pasid_enabled and returns 0 without setting
-pdev->pasid_enabled on the VF's pci_dev (whereas pci_enable_ats() sets
-pdev->ats_enabled on the VF).
+Since xe_pagefault_service() runs on a workqueue kthread where current->mm =
+is
+NULL, won't this cause a null pointer dereference inside
+mmu_interval_notifier_insert()?
 
-Because xe_pci_ats_pasid_enabled() and __xe_pci_probe() inspect
-pdev->pasid_enabled and pdev->pasid_cap directly instead of checking
-pci_physfn(pdev) (or calling pci_pasid_status(pdev)), won't
-xe_pci_ats_pasid_enabled() always return false on VFs and __xe_pci_probe()
-always skip logging the PASID state on VFs?
-
-> +
->  #endif
+> +			}
+[ ... ]
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261021041117.1774=
-877-1-naresh.kumar.g@intel.com?part=3D1
+877-1-naresh.kumar.g@intel.com?part=3D6
