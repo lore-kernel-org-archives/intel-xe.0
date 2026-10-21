@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD2F1606A31B
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 16:25:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 132C7606A31B
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 16:25:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=U6SbxxVR
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=oKw6hyN7
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A984010FECB;
-	Wed, 21 Oct 2026 16:25:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D781710FEDA;
+	Wed, 21 Oct 2026 16:25:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECDE410FECB
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 16:25:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 653C110FEDA
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 16:25:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792599936; x=1824135936;
+ t=1792599940; x=1824135940;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+uP2vQWcCwlqRXYL1bvoybRTbHw1PikfKInyAOlX7ws=;
- b=U6SbxxVRTduVWOOSxya2cKGZhtN97J3Dy+fRSBzIVri3/9uR5JlWgZBE
- T6trE3cx2OKj3vkg4Rnfv1Dmr40/oQPrtPlUkpgGS41rYDNTmbTEIpjtv
- bHY9ZOPDqdm0fsey21xQ/eGEkDgPuAcSBWl/nMyEHyD5jmTQCKqQEFeI8
- VYkfOLLJO7Jo6Ifu9KFnpA2WdRPD2JCSyGpA6jSPiekxuiTSgefIZuizY
- Rtmg+UpWQNx4AxCvWZVR6aZs9HTLsxSPMz/imrOwV6OEUS//a7m3aHmuJ
- pwxZN79aAzov58IxUoSTQE39N53VUFuJpQ7KGtRLpEOvSRKjAtCh8yUh7 g==;
-X-CSE-ConnectionGUID: siu5VY39Q0mjiW4II9DZlg==
-X-CSE-MsgGUID: qyNe9r0jQqKXT5drH8vQog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1428276"
+ bh=4B3NmcpXbunvUJ9Re1KPt3o/FLVKVCMv64c2WPZsBwA=;
+ b=oKw6hyN7KUYQidCd4e27IhHR+dmq2viQKez5Qsyb+Qn0V2FNj3D1Ch32
+ hjEhN+yJISjUeP8PSVYh9ftJGfbda2UUXodaqxlHeai/ksqNExJwDcbUw
+ jECLd+InhXyFQ6opx76la3+1ioLfW3AuZbcbcxUrMO2aCBjA4Kmyzme/s
+ accxO46ILo3vLvqI72F9LBV2LZVnqTN9bFON0ebyVJmlv1Nuv8LS57KGJ
+ CdO53/KpgGBNhBy1TWcwqQImcSzhRoKfh4gBSFtkV8Z010/aB/Esk/qhp
+ Bngw8vusDUO8CnRRxqFj8FyaIfmJ637HLTEVQvdiY1dIiBUm+OqZwRrRi g==;
+X-CSE-ConnectionGUID: Be7KlCJ4SQe/X94Yd3ZTIw==
+X-CSE-MsgGUID: vy+g79xgQki1lXrCFUg4VA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1428294"
 X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
-   d="scan'208";a="1428276"
+   d="scan'208";a="1428294"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 09:25:36 -0700
-X-CSE-ConnectionGUID: 5Gk3143kRnaUVdQjrscOPA==
-X-CSE-MsgGUID: N5iEZqJqR6qVdDnSZJmLYg==
+ 21 Oct 2026 09:25:40 -0700
+X-CSE-ConnectionGUID: XiPhSOCVRviG/xz306OAyw==
+X-CSE-MsgGUID: EEqlmxYyRtGt2U5YNST1fw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
-   d="scan'208";a="3468914"
+   d="scan'208";a="3468937"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa007.fm.intel.com with ESMTP; 21 Oct 2026 09:25:33 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 21 Oct 2026 09:25:36 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -47,9 +47,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  sk.anirban@intel.com, raag.jadav@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@linux.intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH 2/5] drm/xe/cper: Add driver error classification definitions
-Date: Wed, 21 Oct 2026 21:55:10 +0530
-Message-ID: <20261021162508.265700-9-mallesh.koujalagi@intel.com>
+Subject: [PATCH 3/5] drm/xe/cper: Let caller initialize error_class
+Date: Wed, 21 Oct 2026 21:55:11 +0530
+Message-ID: <20261021162508.265700-10-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261021162508.265700-7-mallesh.koujalagi@intel.com>
 References: <20261021162508.265700-7-mallesh.koujalagi@intel.com>
@@ -73,76 +73,48 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add definitions for driver-detected CPER error classification,
-including xe_cper_driver_error_class, a common union for raw and
-typed access, and the INTEL_CPER_NOTIFY_DRV_ERROR notification GUID.
+Move error_class population from
+xe_cper_init_intel_err_hdr() to its caller.
 
-These definitions will be used for software-generated CPER records.
+This decouples the helper from the RAS-specific error_class format
+and allows future paths to provide their own encoding.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_cper_types.h | 41 ++++++++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+ drivers/gpu/drm/xe/xe_cper.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
-index e0034429e661..5e7bceef703e 100644
---- a/drivers/gpu/drm/xe/xe_cper_types.h
-+++ b/drivers/gpu/drm/xe/xe_cper_types.h
-@@ -41,6 +41,10 @@
- 	GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
- 		  0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
+diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+index 0fedef06e138..1dab6ea93fea 100644
+--- a/drivers/gpu/drm/xe/xe_cper.c
++++ b/drivers/gpu/drm/xe/xe_cper.c
+@@ -91,12 +91,9 @@ static void fill_cper_error_class(struct xe_cper_error_class *dst,
+ 	dst->cause = src->product.cause.cause;
+ }
  
-+#define INTEL_CPER_NOTIFY_DRV_ERROR \
-+	GUID_INIT(0xcef7e934, 0x51e7, 0x535f, \
-+		  0xa6, 0x78, 0x5a, 0x4c, 0xcc, 0xb6, 0x96, 0x09)
-+
- /* Section Types */
- #define INTEL_CPER_SECTION_ACCEL_GENERIC \
- 	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
-@@ -66,6 +70,43 @@ struct xe_cper_error_class {
- 	u8  reserved;
- };
+-static void xe_cper_init_intel_err_hdr(struct xe_device *xe,
+-				       const struct xe_ras_error_class *error_class,
+-				       u64 first_timestamp, u32 sig_id, u32 error_count,
+-				       struct xe_cper_sec_intel_err_hdr *ihdr)
++static void xe_cper_init_intel_err_hdr(struct xe_device *xe, u64 first_timestamp, u32 sig_id,
++				       u32 error_count, struct xe_cper_sec_intel_err_hdr *ihdr)
+ {
+-	fill_cper_error_class(&ihdr->error_class, error_class);
+ 	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
  
-+/**
-+ * struct xe_cper_driver_error_class - Intel GPU CPER driver-detected error classification
-+ */
-+struct xe_cper_driver_error_class {
-+	/** @error_type: CPER severity: CPER_SEV_* */
-+	u8  error_type;
-+	/** @reserved0: Reserved, must be zero */
-+	u8  reserved0;
-+	/** @error_component: Driver component id: CLASS[7:0].TYPE[15:8] */
-+	u16 error_component;
-+	/** @tile: Driver location id: TYPE[7:0].ID[15:8] ('tile' and 'GT' field region) */
-+	u16 tile;
-+	/** @reserved1: Reserved, must be zero */
-+	u16 reserved1;
-+	/** @cause: errno of the failing operation, or 0 if none */
-+	u32 cause;
-+};
-+
-+/* Same size as the counter-sourced error_class */
-+#define XE_CPER_ERROR_CLASS_SIZE	12
-+
-+/**
-+ * union xe_cper_error_class_u - RAS counter-sourced or driver-sourced error classification
-+ */
-+union xe_cper_error_class_u {
-+	/** @ras: RAS counter-sourced error classification */
-+	struct xe_cper_error_class ras;
-+	/** @driver: Driver-detected (software) error classification */
-+	struct xe_cper_driver_error_class driver;
-+	/** @raw: Raw byte view */
-+	u8 raw[XE_CPER_ERROR_CLASS_SIZE];
-+};
-+
-+static_assert(sizeof(struct xe_cper_error_class) == XE_CPER_ERROR_CLASS_SIZE);
-+static_assert(sizeof(struct xe_cper_driver_error_class) == XE_CPER_ERROR_CLASS_SIZE);
-+static_assert(sizeof(union xe_cper_error_class_u) == XE_CPER_ERROR_CLASS_SIZE);
-+
- /**
-  * struct xe_cper_sec_intel_err_hdr - Intel-specific CPER error section header
-  *
+ 	if (first_timestamp) {
+@@ -428,8 +425,9 @@ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigi
+ 	for (i = 0; i < count; i++) {
+ 		struct xe_cper_sec_intel_err_hdr ihdr = {};
+ 
+-		xe_cper_init_intel_err_hdr(xe, &entries[i].hdr.error_class, entries[i].timestamp,
+-					   sigid, entries[i].hdr.counter, &ihdr);
++		fill_cper_error_class(&ihdr.error_class, &entries[i].hdr.error_class);
++		xe_cper_init_intel_err_hdr(xe, entries[i].timestamp, sigid,
++					   entries[i].hdr.counter, &ihdr);
+ 
+ 		xe_cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
+ 				    entries[i].einfo, entries[i].einfo_size);
 -- 
 2.48.1
 
