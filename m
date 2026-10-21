@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F2F606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 04:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DC36606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 04:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Id0fDk6A
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KObQT0Pa
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90DB210E26B;
-	Wed, 21 Oct 2026 04:30:30 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A83D310E26B
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 04:30:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FB3010E26B;
+	Wed, 21 Oct 2026 04:32:38 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E6B710E26B
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 04:32:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 526CC43B8D;
- Wed, 21 Oct 2026 04:30:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 101411F000C9;
- Wed, 21 Oct 2026 04:30:24 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id D0C2F6021E;
+ Wed, 21 Oct 2026 04:32:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 724681F000C9;
+ Wed, 21 Oct 2026 04:32:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792557024;
- bh=Zdp18Axz+xaz64G77j2YidKRB5eIwNrUDSdXTMyYd30=;
+ s=k20260515; t=1792557150;
+ bh=dAKqy8trlVm43Opc0XjoPKPpf9fIQVhJqwwBAA8fPlk=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=Id0fDk6AKsp32NjrXA+v4QNK9rLdeQ9B86D4eZYiwq1HYhv3+x/Tsmgd0F1LVvyFq
- +8EXxsWaLsBZe8RENBnfzPf6Bxu1S3s3V6KUy3ymNUmLk7lO2iaUh8DyfVgzFupxvV
- XMp3/yzKTPbhEcCwn6Tk9YGKT0XA6xIv7Wq5R7H+VR6ru5py3gwW8tqwSi3dwV/laS
- EJJhiM5dXyvvhX0PRSpHvEsRwlAt/Tvo3pyt6PzA7wgxYmEuHCTk9ByyeDdOa5G/fj
- QSEyKnOmTUY0fPN5kruzVlbHfM5eF7F7lP/AtPrmCL0Eh3QGt+9cRGKEfaLFsCztZn
- iXRRrtdEg1qbw==
-Message-ID: <sashiko-outbox-179783@kernel.org>
+ b=KObQT0Pa8Jp53+eIoNSr4Dhet6xCieRFlcV6PP7qyT3jh7/wl6GEnGiM+RME8gGas
+ J4q+RogzF6ZRZg9dpRs1gxVeJzXtIqPku9CbkstK5I2oMSFnK5dNvDE6DZx5Nv+UoS
+ dgMFTrVbzI+HNPoj6OuL1wV0c3gsD2eJSsLD8gbP6eqzbIFjLRaOEkHoqvDtK0Od/E
+ YXdFoUAJ3QtUC5ae75WW25Pb9hr/oj6rxAtPmniB27Q34GnBVviqvY24vu0+fNRuzF
+ SxXTccZ91GGm7QZwURT+VR+sfWaqjreEBTdKRMeRjlngAWIEaSK3nv2SeKJg7pkblK
+ O8J81QjFTrxqQ==
+Message-ID: <sashiko-outbox-179784@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 2/6] drm/xe/vm: Setup SVA infrastructure for PASID support
+Subject: Re: [PATCH 1/6] drm/xe/pci: log ATS/PASID enablement state at probe
 To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261021041117.1774877-3-naresh.kumar.g@intel.com>
+In-Reply-To: <20261021041117.1774877-2-naresh.kumar.g@intel.com>
 References: <20261021041117.1774877-1-naresh.kumar.g@intel.com>
- <20261021041117.1774877-3-naresh.kumar.g@intel.com>
+ <20261021041117.1774877-2-naresh.kumar.g@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 21 Oct 2026 04:30:23 +0000
+Date: Wed, 21 Oct 2026 04:32:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,139 +57,119 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [High] drm/xe/vm: missing SVA unbind on device removal leaks DMA owner an=
-d crashes
+- [Medium] drm/xe/pci: xe_pci_ats_pasid_enabled() always returns false on S=
+R-IOV VFs
+- [Low] drm/xe/pci: build failure in __xe_pci_probe() without CONFIG_PCI_AT=
+S/PASID
 --
 
-commit 08c0c9b32bbf8f35bf925eec1c7c7d7bb127ed1a
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+commit 9613705bbc43ffcbfae8d92b0e6cff920caffa87
+Author: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 
-drm/xe/vm: Setup SVA infrastructure for PASID support
+drm/xe/pci: log ATS/PASID enablement state at probe
 
-This commit adds an sva_handle field to struct xe_vm and introduces helpers=
- to
-bind and unbind a fault-mode VM to the current process address space via
-iommu_sva_bind_device() and iommu_sva_unbind_device().
-
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index b98f2e56bf6f4..3504b890ababf 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-
-[ ... ]
-
-> @@ -1674,6 +1675,41 @@ static void xe_vm_init_prove_locking(struct xe_dev=
-ice *xe, struct xe_vm *vm)
->  	up_read(&vm->exec_queues.lock);
->  }
-> =20
-> +static void xe_vm_sva_handle_init(struct xe_vm *vm)
-> +{
-> +	struct device *dev =3D vm->xe->drm.dev;
-> +	struct pci_dev *pdev =3D to_pci_dev(dev);
-> +	struct iommu_sva *sva_handle;
-> +
-> +	/*
-> +	 * Assumes the IOMMU driver has already decided and latched the
-> +	 * device's ATS/PASID enablement by the time any VM is created (true
-> +	 * for Intel VT-d, which enables both eagerly at IOMMU probe). If a
-> +	 * backend instead enables them lazily on first SVA bind, this check
-> +	 * will never see them set and SVA/PASID support is silently skipped.
-> +	 */
-> +	if (!xe_pci_ats_pasid_enabled(pdev))
-> +		return;
-> +
-> +	sva_handle =3D iommu_sva_bind_device(dev, current->mm);
-> +	if (IS_ERR(sva_handle)) {
-> +		drm_err(&vm->xe->drm, "SVA binding failed, preventing PASID creation.\=
-n");
-> +		return;
-> +	}
-> +
-> +	vm->sva_handle =3D sva_handle;
-> +}
-> +
-> +static void xe_vm_sva_handle_fini(struct xe_vm *vm)
-> +{
-> +	xe_assert(vm->xe, xe_vm_is_closed(vm));
-> +	if (!vm->sva_handle)
-> +		return;
-> +
-> +	iommu_sva_unbind_device(vm->sva_handle);
-> +	vm->sva_handle =3D NULL;
-> +}
-
-[Severity: High]
-What happens if the pci device is unbound from the driver or hot-unplugged
-while a userspace process still holds an open fault-mode xe_vm?
-
-When xe_vm_create_ioctl() calls xe_vm_sva_handle_init(),
-iommu_sva_bind_device() attaches a pasid domain and inserts an entry into
-dev->iommu_group->pasid_array. However, vm->sva_handle is only unbound in
-xe_vm_sva_handle_fini() during xe_vm_close_and_put(), which is tied to the
-userspace file descriptor and vm lifetime rather than device removal in
-drivers/gpu/drm/xe/xe_device.c:
-
-void xe_device_remove(struct xe_device *xe)
-{
-	xe_display_unregister(xe);
-
-	drm_dev_unplug(&xe->drm);
-
-	xe_bo_pci_dev_remove_all(xe);
-}
-
-In addition, xe_vm_sva_handle_init() does not guard the
-iommu_sva_bind_device() call with drm_dev_enter(), so an in-flight
-xe_vm_create_ioctl() can also establish a new bond after drm_dev_unplug()
-completes.
-
-When __device_release_driver() finishes xe_pci_remove() -> xe_device_remove=
-(),
-it immediately calls pci_dma_cleanup() -> iommu_device_unuse_default_domain=
+This commit logs ATS and PASID enablement states during __xe_pci_probe() wh=
+en
+their PCI capabilities are present, and introduces xe_pci_ats_pasid_enabled=
 ()
-in drivers/iommu/iommu.c:
+to check whether both features are enabled on a PCI device.
 
-	mutex_lock(&group->mutex);
-	if (!WARN_ON(!group->owner_cnt || !xa_empty(&group->pasid_array)))
-		group->owner_cnt--;
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 44587b5f4df60..7c8a4286b657a 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -1281,6 +1281,13 @@ static int __xe_pci_probe(struct pci_dev *pdev, co=
+nst struct xe_device_desc *des
+>  		xe_step_name(xe->info.step.media),
+>  		xe_step_name(xe->info.step.basedie));
+> =20
+> +	if (pdev->ats_cap)
+> +		drm_dbg(&xe->drm, "Arch ATS =3D %s",
+> +			str_enabled_disabled(pdev->ats_enabled));
+> +	if (pdev->pasid_cap)
+> +		drm_dbg(&xe->drm, "Arch PASID =3D %s",
+> +			str_enabled_disabled(pdev->pasid_enabled));
 
-	mutex_unlock(&group->mutex);
+[Severity: Low]
+Will __xe_pci_probe() in drivers/gpu/drm/xe/xe_pci.c fail to build when
+CONFIG_PCI_ATS or CONFIG_PCI_PASID is disabled?
 
-Because group->pasid_array is not empty while vm->sva_handle remains bound,
-does this trigger the WARN_ON() and leak group->owner_cnt?
+In include/linux/pci.h, struct pci_dev only defines ats_cap and pasid_cap
+when their respective Kconfig options are enabled:
 
-Furthermore, if the pci device is hot-unplugged and removed from the bus,
-iommu_release_device() -> __iommu_group_remove_device() ->
-iommu_deinit_device() clears dev->iommu_group to NULL. When userspace later
-closes the file descriptor or destroys the vm:
+#ifdef CONFIG_PCI_ATS
+	...
+	u16		ats_cap;	/* ATS Capability offset */
+	u8		ats_stu;	/* ATS Smallest Translation Unit */
+#endif
+...
+#ifdef CONFIG_PCI_PASID
+	u16		pasid_cap;	/* PASID Capability offset */
+	u16		pasid_features;
+#endif
 
-xe_vm_close_and_put()
-  xe_vm_sva_handle_fini()
-    iommu_sva_unbind_device()
-      iommu_detach_device_pasid()
+Since CONFIG_DRM_XE in drivers/gpu/drm/xe/Kconfig only depends on DRM and
+PCI without selecting or depending on PCI_ATS or PCI_PASID (for example, in
+drivers/gpu/drm/xe/.kunitconfig), accessing pdev->ats_cap and pdev->pasid_c=
+ap
+directly without IS_ENABLED() guards breaks the build when either option is
+not set.
 
-drivers/iommu/iommu.c:iommu_detach_device_pasid() requires the caller to st=
-ill
-be a probed driver on dev and dereferences dev->iommu_group directly:
+> +
+>  	drm_dbg(&xe->drm, "SR-IOV support: %s (mode: %s)\n",
+>  		str_yes_no(xe_device_has_sriov(xe)),
+>  		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
+> diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
+> index 11bcc5fe2c5b9..5f784229a5ecf 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.h
+> +++ b/drivers/gpu/drm/xe/xe_pci.h
+> @@ -5,6 +5,7 @@
+> =20
+>  #ifndef _XE_PCI_H_
+>  #define _XE_PCI_H_
+> +#include <linux/pci.h>
+> =20
+>  struct pci_dev;
+> =20
+> @@ -12,4 +13,9 @@ int xe_register_pci_driver(void);
+>  void xe_unregister_pci_driver(void);
+>  struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev);
+> =20
+> +static inline bool xe_pci_ats_pasid_enabled(struct pci_dev *pdev)
+> +{
+> +	return pdev->ats_enabled && pdev->pasid_enabled;
+> +}
 
-void iommu_detach_device_pasid(struct iommu_domain *domain, struct device *=
-dev,
-			       ioasid_t pasid)
-{
-	/* Caller must be a probed driver on dev */
-	struct iommu_group *group =3D dev->iommu_group;
+[Severity: Medium]
+How does xe_pci_ats_pasid_enabled() in drivers/gpu/drm/xe/xe_pci.h (as well
+as the PASID check in __xe_pci_probe()) behave on SR-IOV Virtual Functions?
 
-	mutex_lock(&group->mutex);
+In drivers/pci/ats.c, pci_enable_pasid() notes that VFs do not implement
+their own PASID capability (so pdev->pasid_cap is 0) and instead share the
+PF's PASID configuration:
 
-Wouldn't calling iommu_sva_unbind_device() after device removal dereference=
- a
-NULL group pointer here? Should xe_device_remove() unbind active sva_handle
-bonds before driver detach completes, and should xe_vm_sva_handle_init()
-protect the bind with drm_dev_enter() / drm_dev_exit()?
+	if (pdev->is_virtfn) {
+		if (pci_physfn(pdev)->pasid_enabled)
+			return 0;
+		return -EINVAL;
+	}
+
+When the IOMMU enables PASID on a VF via pci_enable_pasid(), it checks
+pci_physfn(pdev)->pasid_enabled and returns 0 without setting
+pdev->pasid_enabled on the VF's pci_dev (whereas pci_enable_ats() sets
+pdev->ats_enabled on the VF).
+
+Because xe_pci_ats_pasid_enabled() and __xe_pci_probe() inspect
+pdev->pasid_enabled and pdev->pasid_cap directly instead of checking
+pci_physfn(pdev) (or calling pci_pasid_status(pdev)), won't
+xe_pci_ats_pasid_enabled() always return false on VFs and __xe_pci_probe()
+always skip logging the PASID state on VFs?
+
+> +
+>  #endif
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261021041117.1774=
-877-1-naresh.kumar.g@intel.com?part=3D2
+877-1-naresh.kumar.g@intel.com?part=3D1
