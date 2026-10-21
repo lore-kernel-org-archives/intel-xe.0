@@ -2,158 +2,154 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2451606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 05:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD989606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 05:09:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VLgUJEc6
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=by3GG+6V
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9DF810E0BF;
-	Wed, 21 Oct 2026 05:05:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE9D610E0BF
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Oct 2026 05:04:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 97C2D10E02A;
+	Wed, 21 Oct 2026 05:09:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EBAE10E02A;
+ Wed, 21 Oct 2026 05:09:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792559097; x=1824095097;
- h=message-id:date:subject:to:cc:references:from:
+ t=1792559360; x=1824095360;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=35AF0G5mkxEvlpqxXlW3WunUpuVWUt/lR16gH/yXOwQ=;
- b=VLgUJEc6XRV0Zv1VmFSWk2Vsly7kv/GV75mxF48KaUvhsWrvM694UUXL
- znRAZCb9DVOBHeMeHEOD4Su8/KCC42wN82MStxMFCgbxS1qKGwn+afSY9
- BLPjT63F6gxbL2JSdIBq9qio5fRDVk3tuWS3siNLeQBB5hypR9ipDbnNS
- MpQvUoqTS6JRMxcXi7cbterw9sBHPC7BiFXcPUomjVcJWZ87ppbkhoWm3
- Xno5aBrRsopqruibqUMgeVcGByzaAOAyJWn0beEDpWbi9jTleEsH3CEpk
- mnuooJURIOY0NXh+xKVqp/3aLtmKslzxttJfRspVVRkYnDiV+6dbpgzFZ w==;
-X-CSE-ConnectionGUID: lyxsHto5S/SaTAOLLbsL+Q==
-X-CSE-MsgGUID: jT0PkGwQToy67eHiZFBzTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1173966"
+ bh=gM93FnnroosOB2hn3ReLVSsHKEZLUFoD7R3VEFjg3M0=;
+ b=by3GG+6Vvcqmva4h7LXRyzgiLPClqYa81YfjoyduVQv/Ty7I/OU3FINq
+ qzUsjz+izn9PAw3zL5tNfmRJKop4jfT2uF7u3RTybAmq8wiQv1RyxYHGB
+ NP4y7JQR9sn8kbjRwHtHS98P8kX/oB57/X0qL0Jbew1XOMiVWhuueP/Fr
+ dr5Ib9XJCN+Q47WGf4VluzA4UZjxqWkViXxH60fg9dwFIEwY73HkE4FrO
+ h1zFC1fwD7FZ0BefKw4rGFmuHoDNcGlNFGD2X/FgqaVr3ja6VlralG/0v
+ 86UvjjDlpVLLd5U6nPjnFo9ckax2ITfvMMtUfrK5vxBloI/EMCJCE0U4R w==;
+X-CSE-ConnectionGUID: qJleU1xLQCWrvWKGrhF/+w==
+X-CSE-MsgGUID: X32uprwZT3OCGiWxlPYB/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1154171"
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="1173966"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 22:04:56 -0700
-X-CSE-ConnectionGUID: 4O+pHLbqRkCqKgJMoY21og==
-X-CSE-MsgGUID: MGAaE+qpSqeNmQXOiMblOQ==
+   d="scan'208";a="1154171"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 22:09:19 -0700
+X-CSE-ConnectionGUID: jShc0YO0Q92QoscH1F6nrw==
+X-CSE-MsgGUID: FRJ1dy7dSBqNr62ppV9IBw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="3038178"
+   d="scan'208";a="2996705"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2026 22:04:55 -0700
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2026 22:09:19 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 22:04:55 -0700
+ 15.2.2562.49; Tue, 20 Oct 2026 22:09:18 -0700
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 22:04:55 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.6) by
+ 15.2.2562.49 via Frontend Transport; Tue, 20 Oct 2026 22:09:18 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.33) by
  edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 20 Oct 2026 22:04:55 -0700
+ 15.2.2562.49; Tue, 20 Oct 2026 22:09:18 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gFTCNS0QS/iAK2C4RI9FhXihEeiWbaRzDpSAkFRkRFyqh5FeCdd3v4V9cnZYiFkko3Wbzxyhl4azbaFCVbHaZtzR1rAIi67PjfWX/WEwLRAOHhuUA3IVk83ViIt9l3Zhf/GIalOzoGwzSto3AZzFcVLCu7gY0DvWkY3i+HweaTdv8MnwH9OkaCuY+UIRhwNBlTM2c38b/xTo7/DAGUYVMBWD9bPY+ulDH7t6M6itMBNxHOfm/SBsNNS7NGzew2Mjx0eOXpqAxiLUl9L2IO8rMGEfrOsoC2+omONbA8SzcpVlAHLgraiw0i7nFjbLe3IqjxUihdIvtYsW2xDo5IVWmg==
+ b=MHo+7kLCjJi8apXOgkdQDcAvwEHQbjnRkPzRS5CN7EbngZt57IymkEF6BDknPcNuTGEttz56CN1yyhqWHhI9E4ayrGE7IGBZW6yMxc8XmTWnPPkloXr6jD8r5jDOsKm4dTzEmdeJzf699/OW2SYynK8YnD3WuAvFNhFGACW8GOa1DKsYt1Gd/1rT0iJsi1nrnW7LSKGe5nH9eAY8uxed00wbnh9kVBIKxFS65s8qB71jFfFaCr7U9iDlEPga/5WyPvfY8MzYdcTHN93uGH4ZPl1mnXgIApICKHR7t+nRan4RNXpGQk9K0ZKNAyPUyYpZGdlwK6+xHIBxkxmso5EB9g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xwrBjoxGUsE+ilCE4z4J1J88TdciPX1CcIuU8REzbFw=;
- b=xUjDxzAtnBpxvLfqmSbi46cDvi/PSPgS8X/tqa6GkLkOEvjzppU3yGT/uZ7F7LZ9r9ZGaOxDArax17wQG5CJELJQ9TY7A9xSGTU77cptEIPgjm1TiPv7fdr90QFXqM6u7pVqZ3KIsMj1JLGMa2pDnNRbEjj9tehOgxXxKxhULQer9zNj/g9/eXX3kP3kNYPw65FLbv6PYRrf8PfVsyFkxNB8FDbyZlM4UieQSFesbUE9vGnJPZ+sDntBO4t8+JWzXtv2UehkzibKw+y28YkFKjtCZzOF+gbijf+e37a5F20M+diuE5A6XYFA1pZhRJjaKr/XGS7tth/z+5fw80yRYQ==
+ bh=7cPYyW4ZAO/HUuv1WO8tI5DYCtZwwRetLO6dUE9psAg=;
+ b=QvK7fCM52+4Q3VZe/4vlwq2buRCPoB/QgZuKy1C98PuHg+XIC0HB1qDA7xRg1PJZzg/zVrhUvEqTCYauZl7hAvMK+zGuoG9fwZ4fuHRrdJ9juLxGRULejfOwy+gN4JgPonQvE9FY6imiboifU3NNRNjqO/cPdDvN7RlZDe1/+jfNXC6qD79yXZdocW6rBEZRn+bqlzdpY7OWig5fNlV7hoKoZBFaKHJB2rziG9HHqZLo2snUiNO2mlBTZ6WHUHdsompNjMnKDFVQrpSCVk7rQa7JYiCJlyojYtmeJ2jKUzEAMNRTqn4g+19CFXGS1dshZT5Gahgu7ebtz1Ls9NUn9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8040.namprd11.prod.outlook.com (2603:10b6:510:238::11)
- by SJ0PR11MB6670.namprd11.prod.outlook.com (2603:10b6:a03:44a::8)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by IA1PR11MB8200.namprd11.prod.outlook.com
+ (2603:10b6:208:454::6) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Wed, 21 Oct
- 2026 05:04:52 +0000
-Received: from PH8PR11MB8040.namprd11.prod.outlook.com
- ([fe80::89bf:2274:1371:50c5]) by PH8PR11MB8040.namprd11.prod.outlook.com
- ([fe80::89bf:2274:1371:50c5%5]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
- 05:04:52 +0000
-Message-ID: <8ad8e21b-f13a-4df7-b6c7-b69240da08ab@intel.com>
-Date: Tue, 20 Oct 2026 22:04:51 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe: Use a dedicated workqueue for VM rebinds
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>
-References: <20261019230142.1112281-1-jia.yao@intel.com>
- <ateYILtvzWfEkwoi@gsse-cloud1.jf.intel.com>
+ 2026 05:09:10 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::19f5:13eb:df52:68ff]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::19f5:13eb:df52:68ff%8]) with mapi id 15.21.0522.012; Wed, 21 Oct 2026
+ 05:09:10 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
+ <arun.r.murthy@intel.com>
+Subject: RE: [PATCH v4 03/10] drm/i915/dp_mst: Limit M/N ratio for MST
+Thread-Topic: [PATCH v4 03/10] drm/i915/dp_mst: Limit M/N ratio for MST
+Thread-Index: AQHdRmJ8mY+S5reF1kSEMNM7vWLURbb/CI8AgAieuIA=
+Date: Wed, 21 Oct 2026 05:09:10 +0000
+Message-ID: <DS4PPFE901A304F44A3DDE4BCCEDD9ED758E3662@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20260917050649.871960-1-suraj.kandpal@intel.com>
+ <20260917050649.871960-4-suraj.kandpal@intel.com>
+ <BYAPR11MB37839CAA76DDB9487E2B50BDB29C2@BYAPR11MB3783.namprd11.prod.outlook.com>
+In-Reply-To: <BYAPR11MB37839CAA76DDB9487E2B50BDB29C2@BYAPR11MB3783.namprd11.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Yao, Jia" <jia.yao@intel.com>
-In-Reply-To: <ateYILtvzWfEkwoi@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0288.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::23) To PH8PR11MB8040.namprd11.prod.outlook.com
- (2603:10b6:510:238::11)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|IA1PR11MB8200:EE_
+x-ms-office365-filtering-correlation-id: b49e66bf-4c2f-47bb-c01d-08df2f3170cc
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|366016|10070799003|376014|38070700021|4143699003|11063799006|56012099006|10067099003|261009223027099003|22082099003|18002099003|6133799003;
+x-microsoft-antispam-message-info: taKC5yxiqmtJHM+FoEGjnzNC/6zCszSa3D09sUVP0oKPqB2XGXAsi84xgQw1TmoPvH0fxgba91bFlGFMpPvXnsUXOf7EXgIZxsdykcDWW43/YeSPr6j+b40JSSHLGDAqEtalk6k0CoEEUHz2YA6QEkFW1pyLhD/QAJtUdIZWO+ukUdAFnp/zrwZh0FH50HPFdGiVHEA/O8kC5QhSXzkVCTMpRvLsTaiMIQDfEXlPonasV2qQeobvzzJ/g7q+DjGSb2g3g8ZjYwmj7TbxtJFAdKjQioBvPOOArI3ijg1tAbtRxcAyHkPa/91X878DRQhiFqFA9Xbwhiq3rnfnVhgz/Ts9wTZoLdFAY9BhbvJVgdjj4R5yPSB280IEjnGfF5cSu9gewlWEKsgHj+d1lf+cVX54xtwjJd+lcs0aI60KaoxCl66msZOrFJv/c2so6LXNmLqa2UkmdzfjTlL+Bq8XsPe/ihKp7MHmMiTzVjOSnWTXmbl3U2nS+TohYL2mE/3HIXDldWiyQ9bE/5kl4zQQ0d9JWeOOaVIU0JUPHCG5m3D9e94hsfbo0AAY4OTpO/4g0sAAPyBQ9G4U1YGRUWWQqDeoeWFfa/xzJ0CGPpzGz2Pl0YTo1IaVyh5fpvO+ovvfka95LzbecwyTb0x7L89zcWMmgmwZ5+XaSdIoWlIXC97WN3z5CAXnSAoAxrMofZcrF4TiPjmT8OhgMxUv30AMZK7b9lLT/4OTYkinl5M4IeE=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(366016)(10070799003)(376014)(38070700021)(4143699003)(11063799006)(56012099006)(10067099003)(261009223027099003)(22082099003)(18002099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?QGNvLUKDXsgHmqCDroT99ZPRpvlVuWOIz3ERD+TcEqfwlN35S6hrajfuRT27?=
+ =?us-ascii?Q?FbdzQ8bZMdzS9KPjcjVE9eGerKY9oisBhswx0dpLSLzmN+jgE7Dg8wM1hW+Z?=
+ =?us-ascii?Q?igCZON1liUdv/D7EEZUXxc9znpkoHKz45tf7Zz9DGc9lS5vAXJqAGAv84k0D?=
+ =?us-ascii?Q?aglNyAOnRsfKnCog9ogjMK3ql9Uf1MbDQZUVog1j2IG0Z7RSHSNchQ6pdJsi?=
+ =?us-ascii?Q?omCognubTNGIiahRsOprjc/qxCtfVYdrEmxIQVIKVDNBCsnxCIDIzMTrWLv/?=
+ =?us-ascii?Q?nBMZrytuanQrnrywxxv2Q3DGGg1N7XSHF/0Vih329cIva4dXKADW2nUcA/gi?=
+ =?us-ascii?Q?C+XxexC40f4mYKkbotjNoW0LY/F7GcCB6Vjn8rwoWRsBfIU12SO+/iAmElIT?=
+ =?us-ascii?Q?MPLKRjHTMkf9C84wze65HSgXm7IK8NFV6LteZ8Tt6HdfIq1fZDGgOAh3TqrS?=
+ =?us-ascii?Q?CMQWTf83F9oOy9dMdQK/hTZLYwmg2bGr087y8Gqonrrx4h2UFV8WE/+zWDam?=
+ =?us-ascii?Q?4QXZLGDDdHYJmWJ4ApOsQNRLlFN61rDvwJ84wrf8x0AYWKqlZ5HItDn2aoQK?=
+ =?us-ascii?Q?pgOUAX8CREfReqLvXXuPinoQiEnH1CY0yZOwadXPGoRmg+QskIBWug2NBeyC?=
+ =?us-ascii?Q?lR05EaHCN/z0YnGcddq0/zrgEjyhJ3UfoQa5Q284X7DmvpN9hU8sOIWvYkLH?=
+ =?us-ascii?Q?C0u7AB77eEr3c3sRpmHLvN+G21WewVCn6mIC4Dr+TJPvMEVoQM9w0/iQnFz3?=
+ =?us-ascii?Q?Mx6lzbqjbmQpkUHj6QW2kgZ6P86WhpmqBCwedWNWQ2yD1Tc41Ts6pgMDdnhN?=
+ =?us-ascii?Q?Ac5zxnxyi6UH3NW8L1peBXPQ+f+ik7YfB+40u9s2Gv4ElAUdkrmEIcMh9YHY?=
+ =?us-ascii?Q?2E9kBW/eEzGK9iRyJkfhkVjDDNLPfe6QXTor1rr+HAtlYvxy3ebkUpuFSNx8?=
+ =?us-ascii?Q?mrxSx1iJm7zrgxDdX16pqT2iOI3Zi+6SU2mKTpKayPfsW51k0JTDCmY+GG4N?=
+ =?us-ascii?Q?ZyN4YoexmOkA14Nmm+phnHKUgm5ISGKi6APg1FXixW2z27PirQ8AgoiXzOUk?=
+ =?us-ascii?Q?up/pmrLHTIb2SkyhtIYdZ1KhCMnMFMtDwdvEHDOdN8qpdpV08jaq5yhVkeuI?=
+ =?us-ascii?Q?dx9RpDrwdSWyliZh/g7+kAfmulTfbi0PDp0WPBFjgOj/+nkxlDo6Vkus9Nop?=
+ =?us-ascii?Q?qINwmFukXTkQK+8t7kjqrbZzt4xbtaFxPcEUr/WOP2Vxfsq8UONQcYmU9wUt?=
+ =?us-ascii?Q?MZPfLFg0uR7WrACSKhvSW7gVT12dRPK2XNMRa2PFISZbdq1xPjPOAiQUzOkd?=
+ =?us-ascii?Q?70MCtv6wSZrHhyzCbtG16843HSrPj3n8OzYytgpKcW97xpMauXMYdLYI3Suy?=
+ =?us-ascii?Q?KyXr6tvs/6MPW3RoGI4lNJVI++2VRjeF+sM5b693sfHmB54FY0uSUs0A3UOU?=
+ =?us-ascii?Q?1dQowKtOx1SfZkUwzZ1NyAYVW/wDExe94mAqrwn6SRwi+TmyivNLxYxGQHRo?=
+ =?us-ascii?Q?U9GlPgcEY/TGPop8owfU/Wa+xnv2Am1B0jEeT8DCzuu5r6mCV9F+DGSxt1e0?=
+ =?us-ascii?Q?aer3IAOCKcO2qhOrmyXAP762kvUxTDqhkJjSgEVLyBQ2cttaDvXSQXeNzHTM?=
+ =?us-ascii?Q?YOp2/7GQ+NhLvi//UNdSEpgJrvyXJa1y7VQzaa2CJ1X50av64J3h+t7Rm8S8?=
+ =?us-ascii?Q?vH2CvDEiKcYJj6lUE2MzD+xEiO8AqxiZ7QdDgs+uuRmjr6cCe+Xz3J4TaPAk?=
+ =?us-ascii?Q?pJgsNvMZ9UYPf5W806dIx3LfrhpvZYBBAdNPS75iykxNilnSoiH09KcR5BdP?=
+x-ms-exchange-antispam-messagedata-1: jbKVhAU/E5lRTQ==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8040:EE_|SJ0PR11MB6670:EE_
-X-MS-Office365-Filtering-Correlation-Id: 748069cd-41a2-4a01-aa12-08df2f30d6f1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|42112799006|366016|23010399003|1800799024|261009223027099003|10067099003|56012099006|22082099003|18002099003|11063799006|4143699003|5023799004;
-X-Microsoft-Antispam-Message-Info: LT+R1dA9zHWssqZFjo86lIXGqNuEHxHYw1kf9ZY6ahWhXfuP5A9jJfSI35qWIQN70QzwbBhGAOg9W6yKDcLTznaD39Ae397LN5Z4wtzle+NnBsFczNWie70pluGtSPFPxn4tN6uU4JOW4SMr7f+znliDGCRVej0inJcTaC91Wf4ldxfRuOqgewUPlTwbiWU1nHH/KoA0y5BcjdWwgfohwHTZykXdO31sJb59H4lGT6QI1CNKlL0g4d+GkXUbD888ZYuTYeypaRy315f/GWKLs75RBDjV6ZRNd2ATRfLVEa8wazhDdAyIDCj24x0OmIwJRf8yqWbHXxUOzb8Wd+/jS7FVyNM4gKqtjE3v/PODhl9AAgvTkMMHfPGxPazJkusThiu/OQclaT2xNQDxglVs8ODOmslkpGV2o8p3G/KcEfyJ+GC52/ORouqTPt6OxfL7BwENisODUt7TX7+Bdz8qhRAunIKhjDcaUgSawxSrWkx1a1CqknVdyBlVhEK7kI6pHxK4H48xdJn24yeYAzLqTg2+rwR1zwlDDOxa0XWj5uInKUWsvTe+NUncKI0G1qOgMi68qwdsMNu7RAiGNrizf6ZaGVURaHicXCDFuf9sec1TOqR5m9r6gh44z9JtKKLnIeT/WMy+dVQNg2ELi/Dy04c9D5CMXaDYXTS5q6ZFLUo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8040.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(42112799006)(366016)(23010399003)(1800799024)(261009223027099003)(10067099003)(56012099006)(22082099003)(18002099003)(11063799006)(4143699003)(5023799004);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RjJLZEI4RVA4dXdVM2p2bDJUQWdTM1JvNGtRL0k1K3AyUUNySzd5LzFwN0JE?=
- =?utf-8?B?RGhwSC84T2sxRFlLSTRKKzNGbmJVZkM1UnZrby9IZ1ZJWG4xdHRjVzk0cTlP?=
- =?utf-8?B?aGkwVC9yTVQ3SWhhQVVpY2JaaUxjWmlTK2pscjl1Q1VYRW5hWWZFSm5FenhS?=
- =?utf-8?B?Y2xhMi9ER3F0SC9EYXZ1Qk9raDZ2ZnovQXNIT016Qmw3cGg1S1NPcXNtSUNa?=
- =?utf-8?B?dFBGUnBCNko1OWdtKzJzM0VTZG5YNDRBOXJkV0x1akR1SDJ2NDg1eWpnTnVR?=
- =?utf-8?B?Rmd1L255WTZkTDBNY3dabW9xeGpYUzN5a1JUSVJKb2g3NFBOS0NFTm1EVUFv?=
- =?utf-8?B?UlZOa1l6bXBYL2pmQUJseU5RS1JVL0xXR05JU3hSalgzeUZYYnk1YmhMSWly?=
- =?utf-8?B?eGtvd3R1dXc2SGd3QS9tOWpneThzUXlTNXZ4ZFYxbXZWYmxwYUtYeWhiMHJU?=
- =?utf-8?B?M0EyZDl5QTRMTkhjeWlqbXhoZDg2QjdrYmQyRHUwZ1pFS0dPQVZEQnNzV0N0?=
- =?utf-8?B?L25nYTlZR0pjTHUwcnRCK29LeGhGVVEvdE5zbGVXblZCQ29sb0NuSWlUTUFR?=
- =?utf-8?B?TWJxVXhtaURGQUx3QU0zRUdyTHNieC9iemErUy9GMjM1WVh3Q3dEcTBnQWUr?=
- =?utf-8?B?WlN6eCtiRjJ1UXc1WVlLNlhwczkwWlV0dTVENWFjbmh1TmxRUmIyUW9OODNM?=
- =?utf-8?B?aXpXM2doeWZPQVR2eGRwZTE0YjJDUGpzaU1DdVdsQkxPcTBHRmRXRnBjS2dW?=
- =?utf-8?B?WkxjcWUxdkpTYUtoTVZPeFlVK0g4U3ZtMkxtRWUzd3FpVklpV2c0bVVNVFNI?=
- =?utf-8?B?UkpPKy9wcmsvYmI5MDZCeTdBakZkVW0zU2hOTHNLYXJMVFdYTzIwS1Mwb2Fa?=
- =?utf-8?B?ZHAxVGZVSUNXV1NxNHdLeWRTZGdzZ0swcndjbmlhbGwvSG5qblBWV0VTNXJr?=
- =?utf-8?B?allDYjFyWWdlWEkrVmx5dko0ZG05a3ZtbmVTNEY0QjlZYjB1OXFMY2NFMmRw?=
- =?utf-8?B?U3M3a3pmWVdoVFVCRUY3UGV2MGtHdFA2cnRoQkRqNkdZZU5mZWV4WU5EY2U0?=
- =?utf-8?B?TWE5d2pUMHFmamZMazJGdU5SLzlCVTcwVk9raURqOTF3L0U4eURISWZCeGh0?=
- =?utf-8?B?S2YrZmtBMEFzdVlhekNCTWlNcHliWjRqby9uZThFSWFLZnFKUVJ0L3RKbFJj?=
- =?utf-8?B?SlNiY1RlZGpTOHRTK0ltMUQ0aWhNd2xJa2ZacXQ1ZlZSV3E2NllocjVaNWVw?=
- =?utf-8?B?T2Fia2EyR2cyZGtUY21xalpsZWNROG9DRUlKNEZpS2Q4ZEROcDJVR0I2d0o0?=
- =?utf-8?B?Qy9SUkxka2NRMjRVTHQrWVhGcloyODUycVUwRU9PbUdiVUpWR2dCL1hGb0pE?=
- =?utf-8?B?bTZGOEFzZWVOLzdZVjlCYXBmVEdoU21kQWNDWjRDcDJhUnROeHA2NEk2czY2?=
- =?utf-8?B?WlFrcnZBdnRDL3l4MjZTSFh0YkRIYWt2RkhBaHlTaGlsRVRyTmtwTldsK24z?=
- =?utf-8?B?amdsdDhCRWpadzAwdURLYnF0Qm9vcFE1M2pqSzc0Sm1XWjEvbnMyTjdQVC9U?=
- =?utf-8?B?MjJjZVVVaWVzbGh0QTB1OVRpbHFHRkJRZmVuU0lVM3hMVm05dWhGUzBkaE44?=
- =?utf-8?B?UEoralFWMTZvOHRwQmU3aXBJYm5SREtNWVV0TDNpTG05UGRKYmZzLzdjejVn?=
- =?utf-8?B?YjhlMlpyaTFyY2RaZ3hWYU5DRENlT3ZzS2NBWXZFR0VxSjR4ZGYwZ085eW9w?=
- =?utf-8?B?Q1ZPZGt4WXpSeEM4cmx5aGNOcEtmdTJhd2RKNkJFV2hIL1BGN3ZuU0tTWkZX?=
- =?utf-8?B?V0hld3h6UWxWK3drNXFKYWsvYjN4cTRMNUI1YlAwVC93QWhkRlBzUkNhSlp3?=
- =?utf-8?B?dUxhNzhQN1N5VVM4b1d1YWxrTDE1K0UrV2dLb1ZVUzJCQTFNbDBsbGp2Ynhy?=
- =?utf-8?B?Mnd1SHpLeVg2QTkxTXl1ZDczSUJvcWdMVHhXWWtzc1ZFVFhiUVNtcUUwdXlI?=
- =?utf-8?B?NnlldHZzT2hmMWVEclFkTmc5ZU5hbUdCejZCU0JoaWtIWnJibWRobVFCQ2dj?=
- =?utf-8?B?U0FvcUtyRElXQWF2OUN0Vk1VV204ajVKcFkrYnk2NTRPb014N2EwMjZXMWFj?=
- =?utf-8?B?TlZtR00rSUhkRE13UjFyUFluZHMrbHdDakJXVXJvRU9UM0UrSkdVd2ttWTl0?=
- =?utf-8?B?OU1uK2FidVVVZlF1SEJZSFY3Vmw3bmZxRUREL21jb0pRZGdFOVNPY3IzWitG?=
- =?utf-8?B?RXRuSkdsTzd2cnd6Y0tWSVg2T3IrTDhWNFJhWXhmZmNkSFh3WXRYMnR1dnB0?=
- =?utf-8?Q?LFJEWDbDVeBqAcdYk6?=
-X-Exchange-RoutingPolicyChecked: n0TN0VP6hQTxvtbVTNyjFzQ+Y5JJyR/8iIA/dvLqAWIcQBPjPPEwZWoGQ4tLhoQDQCRT+VRE3jiw+H7S49YtZhOCLt7pERMOcdZptyYcXcAfLR9MrwEzrsRzB89n+kQcpBtt30huPGLjjwW8PgeXUa69egOZFAT4IBsXzceevmUeoVCKGh6sbZUZEeaT7aB1dLrjzeucz22PSQLPupYAqrb7EJW01a+Fp6mjMxMcRV2PWy4gFrYpTQVJrl6fksCMjYn0gQw7EI31vdUg2zZ2bmTnB96Kj3/SoIy+TwYY2p0wix0ej7C3YBvVjFHvq5ClA717ZtTdvhTOPUy3v9nZNw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 748069cd-41a2-4a01-aa12-08df2f30d6f1
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8040.namprd11.prod.outlook.com
+X-Exchange-RoutingPolicyChecked: nbiGF/gTts17nntmC8D9oWosaydvCbjMhco+MIa6++zku/y+xZGfQWQSynz3zVtsT+ppJ+4kuQzaMKi8mFS2FmSGxb/U7wd1io9TqRGUl3B2OEH8CasqbLgvL34gQlMYPKgbtdJU83dWo9rTcAOahPvWUyNoRU7XHvclAiiri7U+p+N5eBJGkZQiP0IbQolgSG2T7yzHj/2RHYjioskJKIzyAyBBatMuroon/6veYe+nix6RCTZCGACIMJV+D9nqIDL7ZCTkwqT54mNn88zueP11Ls8iHOr0bbhIggZrNvovPnqvqVnj9ORdE4GFY1Hv4NSnt/QB0rUobhoAoe12lA==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 05:04:52.2535 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7/mflp5rLd9J3m3rXUh4WhlL9DexRrvLBlM4Zl6kkGXbbVsS9E0gKhJS+TGyvUVETdSU5BkWuElpmrcxGlKzwA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6670
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b49e66bf-4c2f-47bb-c01d-08df2f3170cc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2026 05:09:10.2184 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: BtjTX1hv83WC2irNnOyrrA+9qBrSXQRs4z03DA8gmZwAejyghh3C5lNjblYAoCEHhFH6Bx4va8g7PtPRTmU2qQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8200
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,129 +161,117 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On 10/20/2026 9:34 AM, Matthew Brost wrote:
-> On Mon, Oct 19, 2026 at 11:01:42PM +0000, Jia Yao wrote:
->> VM rebind workers may block while handling HMM faults or waiting for VM
->> fences. Running them on ordered_wq can stall user-fence notifications
->> and VM TLB timeout work queued behind them, preventing forward progress.
-> I don't see how ' VM TLB timeout work' is related. Those are scheduled
-> on the GT ordered work queue.
-You're right. I'll remove it from the commit message and the 
-corresponding comments.
->
->> Move rebind workers to a dedicated ordered workqueue. This keeps rebinds
->> serialized across VMs while allowing fence-related work to run
->> independently.
->>
-> So this isn't a deadlock rather just a delay in user fences signaling?
-Yes, no deadlock observed, I'll clarify the wording to avoid implying a 
-deadlock.
->
->> Signed-off-by: Jia Yao <jia.yao@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_device.c       | 12 +++++++++++-
->>   drivers/gpu/drm/xe/xe_device_types.h |  5 ++++-
->>   drivers/gpu/drm/xe/xe_vm.c           |  2 +-
->>   drivers/gpu/drm/xe/xe_vm.h           |  2 +-
->>   4 files changed, 17 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->> index db0b883322ef..f1dd4b7842a9 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -385,6 +385,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
->>   	if (xe->preempt_fence_wq)
->>   		destroy_workqueue(xe->preempt_fence_wq);
->>   
->> +	if (xe->rebind_wq)
->> +		destroy_workqueue(xe->rebind_wq);
->> +
->>   	if (xe->ordered_wq)
->>   		destroy_workqueue(xe->ordered_wq);
-> How about s/ordered_wq/userfence_wq to make this clear what is used for
-> and nothing else should be scheduled on this.
->
-> Matt
 
-Good suggestion. Once rebind work is moved out, this queue is dedicated 
-to user-fence notifications. I'll rename the device-level ordered_wq to 
-userfence_wq and document that no other work should be queued on it.
+> -----Original Message-----
+> From: Golani, Mitulkumar Ajitkumar
+> <mitulkumar.ajitkumar.golani@intel.com>
+> Sent: 15 October 2026 22:59
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-xe@lists.freedesktop.=
+org;
+> intel-gfx@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+> <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
+> Subject: RE: [PATCH v4 03/10] drm/i915/dp_mst: Limit M/N ratio for MST
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf Of
+> > Suraj Kandpal
+> > Sent: 17 September 2026 10:37
+> > To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+> > Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+> > <arun.r.murthy@intel.com>; Kandpal, Suraj <suraj.kandpal@intel.com>
+> > Subject: [PATCH v4 03/10] drm/i915/dp_mst: Limit M/N ratio for MST
+> >
+> > From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >
+> > The hardware does not support DisplayPort configurations where the
+> > ceiling of the Link M/Link N ratio exceeds the limit. Enforce this
+> > constraint for MST as well.
+> >
+> > The compute config path needs no change: MST goes through
+> > intel_dp_compute_config_limits() too, so the link config filter set up
+> > there already excludes the configurations violating the ratio limit,
+> > and MST fails there if none is left.
+> >
+> > What is still missing is pruning such modes, so add the check to
+> > mst_connector_mode_valid_ctx(), reusing the helper the SST mode_valid
+> > uses. It walks the link configurations and only rejects the mode if
+> > none of them can satisfy the ratio, rather than evaluating it at a sing=
+le link
+> rate.
+> >
+> > v2:
+> > -Drop the checks in the MST link config helpers, redundant now that
+> > the constraint is applied while computing the link config limits.
+> > (Imre) -Share the mode_valid helper with SST instead of evaluating the
+> > ratio at one link rate, since the link symbol clock is not monotonic
+> > in the link rate and there is no single best case configuration.
+> > v3:
+> > -Now that intel_dp_mode_valid_m_n checks for all configs just call
+> > that
+> > (Sashiko)
+> >
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp_mst.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > index 0c362784afe4..823fe99ca0a1 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+> > @@ -1565,6 +1565,11 @@ mst_connector_mode_valid_ctx(struct
+> > drm_connector *_connector,
+> >  					   min_link_bpp_x16,
+> >  					   bw_overhead_flags);
+> >
+> > +	if (!intel_dp_mode_valid_m_n(intel_dp, mode->clock)) {
+> > +		*status =3D MODE_CLOCK_HIGH;
+> > +		return 0;
+> > +	}
+>=20
+> Since MST appears to use only the max_bw_config for link configuration,
+> should the M/N ratio check in mode_valid also be performed against that
+> configuration's max_link_clock? Currently, intel_dp_mode_valid_m_n
+> accepts the mode if any allowed config passes the ratio check.
+>=20
+> For example, on DG2 with a UHBR10 MST link, could a ~1.3 GHz stream pass
+> the check using HBR3 but later fail during config computation because MST
+> uses UHBR10, which does not satisfy the ratio limit? If so, should the
+> validation use the same link configuration that MST will actually use?
 
-Jia Yao
+Lets start with DG2 does not have UHBR to begin with.
+Also compute doesn't actually use max_bw_config. MST goes through
+intel_dp_compute_config_limits() too, so configs that fail the ratio are al=
+ready
+filtered out and it picks from what's left. In your example it'd just use H=
+BR3 instead of failing (DG2 has no UHBR anyway).
+For mode_valid I didn't want to check only max_bw_config, since the symbol =
+clock
+isn't monotonic in link rate and a lower rate can pass where the max one fa=
+ils.
+If something slips through, compute still does the exact check.
 
->
->>   
->> @@ -515,9 +518,16 @@ int xe_device_init_early(struct xe_device *xe)
->>   	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
->>   						       WQ_MEM_RECLAIM);
->>   	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
->> +	/*
->> +	 * Rebinding can block in HMM or wait for VM fences. Keep it off the
->> +	 * queue serving user-fence notifications and VM TLB fence timeouts,
->> +	 * which must be able to make progress while a rebind is waiting.
->> +	 * Preserve serialization between rebind workers on different VMs.
->> +	 */
->> +	xe->rebind_wq = alloc_ordered_workqueue("xe-rebind-wq", 0);
->>   	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
->>   	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU | WQ_MEM_RECLAIM, 0);
->> -	if (!xe->ordered_wq || !xe->unordered_wq ||
->> +	if (!xe->ordered_wq || !xe->rebind_wq || !xe->unordered_wq ||
->>   	    !xe->preempt_fence_wq || !xe->destroy_wq) {
->>   		/*
->>   		 * Cleanup done in xe_device_destroy via
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 5553415afeaf..705c487e3c6f 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -387,9 +387,12 @@ struct xe_device {
->>   	/** @preempt_fence_wq: used to serialize preempt fences */
->>   	struct workqueue_struct *preempt_fence_wq;
->>   
->> -	/** @ordered_wq: used to serialize compute mode resume */
->> +	/** @ordered_wq: ordered user-fence and VM TLB timeout work */
->>   	struct workqueue_struct *ordered_wq;
->>   
->> +	/** @rebind_wq: serializes compute mode rebinds and resume */
->> +	struct workqueue_struct *rebind_wq;
->> +
->>   	/** @unordered_wq: used to serialize unordered work */
->>   	struct workqueue_struct *unordered_wq;
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index e7f421a43516..88b4f6b19fdd 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -501,7 +501,7 @@ static bool vm_suspend_rebind_worker(struct xe_vm *vm)
->>    */
->>   void xe_vm_resume_rebind_worker(struct xe_vm *vm)
->>   {
->> -	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
->> +	xe_vm_queue_rebind_worker(vm);
->>   }
->>   
->>   static void preempt_rebind_work_func(struct work_struct *w)
->> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
->> index 06138c3c4315..25c8760e2392 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.h
->> +++ b/drivers/gpu/drm/xe/xe_vm.h
->> @@ -259,7 +259,7 @@ int xe_vm_validate_protected(struct xe_vm *vm);
->>   static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
->>   {
->>   	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
->> -	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
->> +	queue_work(vm->xe->rebind_wq, &vm->preempt.rebind_work);
->>   }
->>   
->>   /**
->> -- 
->> 2.43.0
->>
+Regards,
+Suraj Kandpal
+
+>=20
+> > +
+> >  	/*
+> >  	 * TODO:
+> >  	 * - Also check if compression would allow for the mode
+> > --
+> > 2.34.1
+
