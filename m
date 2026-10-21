@@ -2,53 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8B6606A319
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E18C606A31A
 	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 07:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=H8mnrjdx
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QQioGY9U
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18E7F10FC7C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B65610FC72;
 	Wed, 21 Oct 2026 07:25:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1703D10FC54;
- Wed, 21 Oct 2026 07:24:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EC0910FC54;
+ Wed, 21 Oct 2026 07:24:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792567499; x=1824103499;
+ t=1792567494; x=1824103494;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ibbvhwlF/llfrxeuZR4lLNTkeDW3Sy6NcRS2KKX4Pv4=;
- b=H8mnrjdxGBFxnBuZ5RWkBCsO5rSuDk3PxV1cA+ktkK/Lr92W+vslDbL8
- lSbmCBpAprL8GgryTLqvtOJHy2bFh352swlQhGMYhfP+GMas1kMVDKJxs
- +UKjkcU1kII97cCX8iaVDxai1I/rq0sBSuZIGYNX/u+vNtXEN9x1nvXU/
- BHfDU5nedkH5ZAqiVeeXRB2MEupeJKDiCOHuN8mn/gxoL4iCbw0d+KCzo
- KuSknemNtV/diWZO/P5gF2+yMN4SdzuX/EJXi16ksX60E6nSceNRV1356
- u5Rzw4Eq0DWUp3iwlBKyXSdfUVbcZ+ReJsvKONR14ejQtkLv3NpO6yJ5Y A==;
-X-CSE-ConnectionGUID: 5THFFu5PTVyEgmWcZ9ri9Q==
-X-CSE-MsgGUID: tEq1etn7QC6Aw6tvG+U83w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1186360"
+ bh=IC+ZhI2EvKb9Awspun3aezjEra6Dp4mMSNLgXruYT64=;
+ b=QQioGY9UWA5GvSHyX4Nyo0mSZgqgiCoZLL9oTOGM7ss94UGXZSGh4Aes
+ hM13sxzyzLRol6nB4NctF4fFQV4Y80EcQx3nr5q4PTsdgaSkip+p66dSX
+ RdvZdllVYhvpZT2sthk9EVYK/v2voDL/oLpwV6o3zcVKGgsjW3aduaDrc
+ GvKFLb2fJYa2iNx5mH3YHWRyNt/Cjq12q0VptU11HDrjPbdG2FZx+OOcR
+ XW8IzX15ld1duK2u50yjad/0louu/FCfuCl+q7lMAUAWTGcupyUu/vq6N
+ 6qIbEwstXKU1GkFqfd2s4mYQJiLP3n0ytkcmZA9kP008ySprbWbbbpOLI Q==;
+X-CSE-ConnectionGUID: zmCj1hPBTk+WyDPPaln4Tw==
+X-CSE-MsgGUID: yZhFwaz5SyeyyEWaWZvc+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1186355"
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="1186360"
+   d="scan'208";a="1186355"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 00:24:58 -0700
-X-CSE-ConnectionGUID: h6+amx/wRpaTKjcORW0R6g==
-X-CSE-MsgGUID: Or6QTBM0TvKIhZwC0twXHw==
+ 21 Oct 2026 00:24:52 -0700
+X-CSE-ConnectionGUID: loFTffWQRv6onSt5YKfwrA==
+X-CSE-MsgGUID: wxiOGmb/T7af52uqI1yJjQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="2966392"
+   d="scan'208";a="2966367"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 21 Oct 2026 00:24:55 -0700
+ by orviesa001.jf.intel.com with ESMTP; 21 Oct 2026 00:24:50 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: mitulkumar.ajitkumar.golani@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v6 08/11] drm/i915/display: Add bits for Wa_14021768792 for
- linkm/n ratio > 10
-Date: Wed, 21 Oct 2026 12:54:35 +0530
-Message-Id: <20261021072438.1164249-9-suraj.kandpal@intel.com>
+Subject: [PATCH v6 05/11] drm/i915/dp: Add M/N ratio check for DP link config
+Date: Wed, 21 Oct 2026 12:54:32 +0530
+Message-Id: <20261021072438.1164249-6-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261021072438.1164249-1-suraj.kandpal@intel.com>
 References: <20261021072438.1164249-1-suraj.kandpal@intel.com>
@@ -68,291 +67,132 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-To support a Link M/N ratio between 10.0 and 15.0, for some BMG
-ultrajoiner cases we need Wa_14021768792.
+Introduce intel_dp_check_m_n_ratio() to validate the computed link M/N
+ratio against the maximum allowed value, and log it if the ratio exceeds
+the limit.
 
-To bypass the hardware limitation within the Timing Generator DDA
-(TGDDA), we need to program the LINKM and LINKN registers as defined in
-the WA. Along with this we also need the relevant bits in HDMI_EMP_DATA
-and CHICKEN_TRANS.
+The link config limits computed in the previous commits only restrict
+the configurations that may be selected; this catches anything that
+still slips through.
 
-Add the bits for the WA and a new member 'bypass_m_n_ratio_limit' to
-track if we need to bypass the Link M/N ratio limit in the
-intel_link_m_n structure.
+Log it rather than warn about it: the link config filter already
+excludes the configurations violating the limit, so the only way to get
+here is with link parameters forced through debugfs, which are applied
+after that filter. A user triggerable drm_WARN() with its backtrace
+would be out of proportion for that.
 
-Per Bspec the extended LINK_N field is two nibbles: bits 27:24 hold
-INT(Link M / Link N) and bits 31:28 hold CEIL(Link M / Link N).
-
-The workaround is limited to transcoder A. Check the transcoder rather
-than the pipe: for a single pipe the two are the same, but the joiner
-secondaries read the M/N back through the primary's transcoder, so a
-pipe check would have them report the workaround as not applied while
-their state, copied from the primary, has it applied.
-
-CHICKEN_TRANS and HDMI_EMP_DATA are programmed before LINK_N, since
-writing LINK_N arms the double buffered update of the M/N registers, and
-all of the programming has to be done before the transcoder is enabled.
-Both are also explicitly cleared when the mechanism is not in use, so
-that state cannot leak from a previous modeset.
-
-Only bypass_m_n_ratio_limit is compared by the state checker, not the
-ratio integer and fraction themselves. That is deliberate: both are
-derived from Link M and Link N, which are compared already, so the thing
-worth verifying is whether the workaround ended up being applied or not.
-
-Unlike the rest of the M/N registers, CHICKEN_TRANS and HDMI_EMP_DATA
-are not double buffered, so the flag has to be compared outside the
-fastset exemption that PIPE_CONF_CHECK_M_N() has for update_m_n.
-Otherwise a seamless M/N update could switch the DDA out of the
-workaround on a live transcoder, with the Link M/N values only following
-at the next MSA.
+For MST the check goes after the bpp loop rather than inside it. The
+link M/N is computed from the pixel clock and the link symbol clock, so
+it does not depend on the bpp being tried and the result is the same on
+every iteration.
 
 v2:
--Drop the drm_WARN_ON() on the extended LINK_N field in intel_get_m_n():
-it is derived from Link M and Link N, so the state checker comparison of
-those and of bypass_m_n_ratio_limit already covers it. (Sashiko)
--Compare bypass_m_n_ratio_limit unconditionally, so that a change to it
-forces a full modeset instead of being applied during a seamless M/N
-fastset. (Sashiko)
+-Use the platform specific ratio limit. (Wa_14014191401)
+-Use the MSO adjusted pixel clock when predicting the ratio, matching
+what the link M/N is actually computed from. (Imre)
+-Drop the check from ilk_fdi_compute_config(): it was passing dp_m_n
+rather than the fdi_m_n it had just computed, and an FDI link cannot get
+anywhere near the ratio limit anyway.
 v3:
--Check for transcoder A instead of pipe A, so that the joiner secondaries
-read the flag back the same as the primary. (Mitul)
--Drop bypass_m_n_ratio_limit from intel_compare_link_m_n(), the
-unconditional PIPE_CONF_CHECK_BOOL() already compares it. (Mitul)
--Print bypass_m_n_ratio_limit in the crtc state dump. (Mitul)
+-Check the ratio once after the MST bpp loop instead of on every
+iteration, the result does not depend on the bpp. (Sashiko)
+-Log instead of warning, since the link config filter already excludes
+these configurations and only forced link parameters can reach it.
+(Sashiko)
+v4:
+-Move the MSO adjusted pixel clock to the commit adding the prediction,
+so that one is correct on its own. (Mitul)
+-Reuse intel_dp_link_m_n_ratio() instead of open coding the ratio.
+(Mitul)
+-Drop the m_n and link_n checks, neither can be NULL or 0. Make the
+parameters const and move it next to intel_dp_can_support_m_n().
+(Mitul)
+-Drop the check on dp_m2_n2, the dp_m_n one already covers it. (Mitul)
 
-Bspec: 49266
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Co-developed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- .../drm/i915/display/intel_crtc_state_dump.c  |  6 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 82 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_display.h  |  2 +
- .../gpu/drm/i915/display/intel_display_regs.h | 10 +++
- .../drm/i915/display/intel_display_types.h    |  2 +
- 5 files changed, 99 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h     |  4 ++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
+ 3 files changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 92675a88b969..c51b21222dc6 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -36,10 +36,12 @@ intel_dump_m_n_config(struct drm_printer *p,
- 		      const char *id, unsigned int lane_count,
- 		      const struct intel_link_m_n *m_n)
- {
--	drm_printf(p, "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n: %u, tu: %u\n",
-+	drm_printf(p,
-+		   "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n: %u, tu: %u, bypass_m_n_ratio_limit: %s\n",
- 		   id, lane_count,
- 		   m_n->data_m, m_n->data_n,
--		   m_n->link_m, m_n->link_n, m_n->tu);
-+		   m_n->link_m, m_n->link_n, m_n->tu,
-+		   str_yes_no(m_n->bypass_m_n_ratio_limit));
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f3a79ae49b18..8ef6b4c4fc8e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1299,6 +1299,21 @@ intel_dp_can_support_m_n(struct intel_display *display,
+ 	return m_n_ratio <= max_m_n_ratio;
  }
  
- static void
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 461b81bf8341..ecc0e5ec181a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2715,6 +2715,15 @@ void intel_zero_m_n(struct intel_link_m_n *m_n)
- 	m_n->tu = 1;
- }
- 
-+static u8 bmg_get_link_n_ext(const struct intel_link_m_n *m_n)
++void intel_dp_check_m_n_ratio(const struct intel_crtc_state *crtc_state,
++			      const struct intel_link_m_n *m_n)
 +{
-+	if (!m_n->link_n)
-+		return 0;
-+
-+	return PIPE_LINK_N1_EXT_INT(m_n->link_m / m_n->link_n) |
-+		PIPE_LINK_N1_EXT_CEIL(DIV_ROUND_UP(m_n->link_m, m_n->link_n));
-+}
-+
- void intel_set_m_n(struct intel_display *display,
- 		   const struct intel_link_m_n *m_n,
- 		   intel_reg_t data_m_reg, intel_reg_t data_n_reg,
-@@ -2726,7 +2735,9 @@ void intel_set_m_n(struct intel_display *display,
- 	intel_de_write(display, data_n_reg, m_n->data_n);
- 	intel_de_write(display, link_m_reg, m_n->link_m);
- 
--	if (DISPLAY_VER(display) >= 14)
-+	if (DISPLAY_VER(display) >= 14 && m_n->bypass_m_n_ratio_limit)
-+		link_n |= PIPE_LINK_N1_EXTENDED(bmg_get_link_n_ext(m_n));
-+	else if (DISPLAY_VER(display) >= 14)
- 		link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
- 	else
- 		link_n &= DATA_LINK_M_N_MASK;
-@@ -2747,6 +2758,26 @@ bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
- 	return IS_DISPLAY_VER(display, 5, 7) || display->platform.cherryview;
- }
- 
-+static void bmg_enhanced_tgdda_write(struct intel_crtc *crtc,
-+				     enum transcoder transcoder,
-+				     const struct intel_link_m_n *m_n)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	bool enable = m_n->bypass_m_n_ratio_limit && m_n->link_n;
-+	u32 link_m_frac = enable ? m_n->link_m % m_n->link_n : 0;
-+
-+	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14021768792))
-+		return;
-+
-+	intel_de_rmw(display, HDMI_EMP_DATA(display, transcoder),
-+		     HDMI_EMP_DATA_LINK_M_FRAC_MASK,
-+		     REG_FIELD_PREP(HDMI_EMP_DATA_LINK_M_FRAC_MASK, link_m_frac));
-+
-+	intel_de_rmw(display, CHICKEN_TRANS(display, transcoder),
-+		     DP_ENHANCED_TGDDA_ENABLE,
-+		     enable ? DP_ENHANCED_TGDDA_ENABLE : 0);
-+}
-+
- void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    const struct intel_link_m_n *m_n)
-@@ -2754,6 +2785,8 @@ void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
- 	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
- 
-+	bmg_enhanced_tgdda_write(crtc, transcoder, m_n);
-+
- 	if (DISPLAY_VER(display) >= 5)
- 		intel_set_m_n(display, m_n,
- 			      PIPE_DATA_M1(display, transcoder),
-@@ -3504,6 +3537,49 @@ void intel_get_m_n(struct intel_display *display,
- 	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
- }
- 
-+bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
-+					int m_n_ratio,
-+					enum transcoder transcoder)
-+{
-+	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14021768792))
-+		return false;
-+
-+	if (m_n_ratio > 15)
-+		return false;
-+
-+	if (transcoder != TRANSCODER_A)
-+		return false;
-+
-+	return true;
-+}
-+
-+static void bmg_enhanced_tgdda_read(struct intel_crtc *crtc,
-+				    enum transcoder transcoder,
-+				    struct intel_link_m_n *m_n)
-+{
-+	struct intel_display *display = to_intel_display(crtc);
-+	u32 link_m_frac;
++	struct intel_display *display = to_intel_display(crtc_state);
++	int max_m_n_ratio = intel_dp_get_max_m_n_ratio(display);
 +	int m_n_ratio;
 +
-+	if (!m_n->link_n)
-+		return;
++	m_n_ratio = intel_dp_link_m_n_ratio(m_n->link_m, m_n->link_n);
 +
-+	m_n_ratio = DIV_ROUND_UP(m_n->link_m, m_n->link_n);
-+
-+	if (!intel_display_can_bypass_m_n_limit(display, m_n_ratio, transcoder))
-+		return;
-+
-+	if (!(intel_de_read(display, CHICKEN_TRANS(display, transcoder)) &
-+	      DP_ENHANCED_TGDDA_ENABLE))
-+		return;
-+
-+	link_m_frac = REG_FIELD_GET(HDMI_EMP_DATA_LINK_M_FRAC_MASK,
-+				    intel_de_read(display, HDMI_EMP_DATA(display, transcoder)));
-+
-+	if (link_m_frac == m_n->link_m % m_n->link_n)
-+		m_n->bypass_m_n_ratio_limit = true;
++	if (m_n_ratio > max_m_n_ratio)
++		drm_dbg_kms(display->drm,
++			    "Link M/N ratio (%d) exceeds max allowed (%d)\n",
++			    m_n_ratio, max_m_n_ratio);
 +}
 +
- void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 				    enum transcoder transcoder,
- 				    struct intel_link_m_n *m_n)
-@@ -3521,6 +3597,8 @@ void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
- 		intel_get_m_n(display, m_n,
- 			      PIPE_DATA_M_G4X(pipe), PIPE_DATA_N_G4X(pipe),
- 			      PIPE_LINK_M_G4X(pipe), PIPE_LINK_N_G4X(pipe));
+ static int intel_dp_mso_pixel_clock(struct intel_dp *intel_dp, int pixel_clock)
+ {
+ 	if (!intel_dp->mso_link_count)
+@@ -3755,6 +3770,8 @@ intel_dp_compute_config(struct intel_atomic_state *state,
+ 				       pipe_config->port_clock,
+ 				       intel_dp_bw_fec_overhead(pipe_config->fec_enable),
+ 				       &pipe_config->dp_m_n);
 +
-+	bmg_enhanced_tgdda_read(crtc, transcoder, m_n);
- }
- 
- void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
-@@ -5445,6 +5523,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_M_N(dp_m2_n2);
++		intel_dp_check_m_n_ratio(pipe_config, &pipe_config->dp_m_n);
  	}
  
-+	PIPE_CONF_CHECK_BOOL(dp_m_n.bypass_m_n_ratio_limit);
+ 	ret = intel_dp_compute_min_hblank(pipe_config, conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index aa58833a405b..1e3da678c9b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -26,6 +26,7 @@ struct intel_display;
+ struct intel_dp;
+ struct intel_dp_link_config;
+ struct intel_encoder;
++struct intel_link_m_n;
+ 
+ struct link_config_limits {
+ 	struct intel_dp_link_caps_filter link_config_filter;
+@@ -244,4 +245,7 @@ bool intel_dp_mode_valid_m_n(struct intel_dp *intel_dp, int pixel_clock);
+ int intel_dp_link_init(struct intel_dp *intel_dp);
+ void intel_dp_link_cleanup(struct intel_dp *intel_dp);
+ 
++void intel_dp_check_m_n_ratio(const struct intel_crtc_state *crtc_state,
++			      const struct intel_link_m_n *m_n);
 +
- 	PIPE_CONF_CHECK_X(output_types);
+ #endif /* __INTEL_DP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index f00edfb66a10..8db84975f36b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -429,6 +429,8 @@ int intel_dp_mtp_tu_compute_config(struct intel_dp *intel_dp,
+ 		return slots;
+ 	}
  
- 	PIPE_CONF_CHECK_I(framestart_delay);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 404168f4213b..d53b7b4a80e7 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -525,5 +525,7 @@ bool intel_scanout_needs_vtd_wa(struct intel_display *display);
- int intel_crtc_num_joined_pipes(const struct intel_crtc_state *crtc_state);
- void intel_display_compute_link_m_n(u32 *link_m, u32 *link_n,
- 				    int pixel_clock, int link_symbol_clock);
-+bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
-+					int m_n_ratio, enum transcoder transcoder);
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 983a0d9dcb9c..bbdbc27629d7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -550,6 +550,11 @@
- #define _TRANS_MULT_B		0x6102c
- #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv, (trans), _TRANS_MULT_A)
- 
-+#define _HDMI_EMP_DATA_A	0x600d8
-+#define _HDMI_EMP_DATA_B	0x610d8
-+#define  HDMI_EMP_DATA_LINK_M_FRAC_MASK	REG_GENMASK(23, 0)
-+#define HDMI_EMP_DATA(display, trans)	_MMIO_TRANS2((display), (trans), _HDMI_EMP_DATA_A)
++	intel_dp_check_m_n_ratio(crtc_state, &crtc_state->dp_m_n);
 +
- /* Hotplug control (945+ only) */
- #define PORT_HOTPLUG_EN(dev_priv)		_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61110)
- #define   PORTB_HOTPLUG_INT_EN			(1 << 29)
-@@ -1192,6 +1197,10 @@
- #define _PIPEB_LINK_N1		0x61044
- #define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
- #define  PIPE_LINK_N1_EXTENDED(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
-+#define  PIPE_LINK_N1_EXT_CEIL_MASK	REG_GENMASK(7, 4)
-+#define  PIPE_LINK_N1_EXT_CEIL(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXT_CEIL_MASK, (val))
-+#define  PIPE_LINK_N1_EXT_INT_MASK	REG_GENMASK(3, 0)
-+#define  PIPE_LINK_N1_EXT_INT(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXT_INT_MASK, (val))
- #define PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
- 
- #define _PIPEA_LINK_M2		0x60048
-@@ -1710,6 +1719,7 @@
- #define   PSR2_ADD_VERTICAL_LINE_COUNT	REG_BIT(15)
- #define   DP_FEC_BS_JITTER_WA		REG_BIT(15)
- #define   PSR2_VSC_ENABLE_PROG_HEADER	REG_BIT(12)
-+#define   DP_ENHANCED_TGDDA_ENABLE	REG_BIT(11)
- #define   DP_DSC_INSERT_SF_AT_EOL_WA	REG_BIT(4)
- #define   HDCP_LINE_REKEY_DISABLE	REG_BIT(0)
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 8f9fb2603638..d0748837ce97 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -985,6 +985,8 @@ struct intel_link_m_n {
- 	u32 data_n;
- 	u32 link_m;
- 	u32 link_n;
-+	/* Wa_14021768792 for linkm/n ratio > 10 */
-+	bool bypass_m_n_ratio_limit;
- };
- 
- struct intel_csc_matrix {
+ 	if (!dsc)
+ 		crtc_state->pipe_bpp = fxp_q4_to_int(bpp_x16);
+ 	else
 -- 
 2.34.1
 
