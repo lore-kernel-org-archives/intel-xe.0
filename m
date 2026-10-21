@@ -2,126 +2,151 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B68D606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 18:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F367606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 18:58:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=2Z2hGk62
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=eRpuOjAZ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59B0610E393;
-	Wed, 21 Oct 2026 18:43:05 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012042.outbound.protection.outlook.com [52.101.48.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3141C10E378;
- Wed, 21 Oct 2026 18:42:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 336ED10E1A7;
+	Wed, 21 Oct 2026 18:58:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81E8210E05A;
+ Wed, 21 Oct 2026 18:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792609075; x=1824145075;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=UrgewqVMrgxf3uRDYrR8jqwmWSq5Z2NVijNy6HT5pu4=;
+ b=eRpuOjAZdpZa5QmZlG3hXg179E+ARiYSSMeND+ZKcH8FO2tFGqdDosIq
+ WLw0DqaPS907y7uUnqi6bAoigFbYMRm0AsU2YyDE9RcxRCGp0hRBWAL7/
+ zkgygzNyo8gCUHxcr1CKWYaXobXQoVTtUVDj+OQVKvbXL0MpCEMpBbJx4
+ 63ZpM6f6twjT6+nMUJudrgo7PcCwEqze2//zivtdtqM1qqG03j7O034j2
+ 0sEX0W4QvsIQR8iaX0tVEtcF/kXBn7bTYvrZBd6aP8Xkb0GFY/ER6907C
+ i31UoxVFBTHU8cJdRczeGSX+qKsyqqzyXNEPAJmtaX3p5XYDlIKRlaQSo A==;
+X-CSE-ConnectionGUID: 15otW9WxTz2LY5+zGi23Qg==
+X-CSE-MsgGUID: dgjzNlnFQOyCf8/eKwv6RA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1336809"
+X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
+   d="scan'208";a="1336809"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 11:57:54 -0700
+X-CSE-ConnectionGUID: VLBhgZaeRm2z0eT/eDkbcw==
+X-CSE-MsgGUID: oKBLeGFrSQmmqc4DYxGCHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,170,1787036400"; 
+   d="scan'208";a="3562823"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 11:57:54 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Wed, 21 Oct 2026 11:57:53 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 11:57:53 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.6) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Wed, 21 Oct 2026 11:57:53 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fxSvpk0t1C9FIukulOwSZK96rSoczf1I1f1BM49scBo+N78yoYiEcoP9DsI1tUAMKjE+hoo6hccgZR+dtNzM1mZkZt6BqsKPD04OGXZut75ja1+MXpf+6vP+nPWz9NUU3MTy+tvXiQPhgUSKbAIHptriS1C9ETEWJDe7EN5nha0/orrXIddkTSyKOayKWFyHELymosq1PlkkLbpLDBFNgdMXNuXpTYRbuCbF51boqRbFmmvKj2xWjH4jVOpSutw8RpGOk/1fgznj7sGYqCpPnGTx1Uj8ureKvM6BQe7UMLFu3fRbMwh2VsKK3UBzzeXBR2OKNRNOzpH+QJr7f57zWg==
+ b=rUn+ejKyQac6XypVkbe2Ww90lFMSVf+9LEsHAjhv+sh5bAMj7H6uWH1IimRvyferTAUAhOmVi+WIV140S2uWhQO4EWh/xr1Hy3oae8V1gRSmOgigLXi4ubloQPNWWqp2Icu4VUYB/GXqy+4MCH+Vwe5v1rvb9gz1OxvN5qsrcNR0bbSBFp3SrqBf9ygKmnJUT/qJOJSqOUWqc0F6o4eybveaE06BZhBUdPNap3my1ccef+yBHKnIA2swpfCADOM8AnTe0XqceR+Vhy2NJfn9tnOJ8s5P4Xd7cQxkVHoFfrEQGQYL4UcAXjbIpMO13rbbOZl0gEv6AUZy54J6RpRf6g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vWTqbiKHqXrdvCjIjlAuFlbadZBAXvaeJ32YATNi1M4=;
- b=SkeSZNVM0xxHjqAyYMQ/jAnvm1R2ymnkODcsfBpMnQ77s+4ms7RvDexWo5K79VJCWJwM/V20aNxqQf01iLqSFBkyGIyh8yXBpEGaRozpk/cN3QhZmeZwESLeDdBe/Js5i+T+M+At6vcKuZXhv0p3v1rLgj+/rixOujXUFUpJmPgLqgCZOtwpy/q2s25RVW+1YQuHo9Q23IK1fM4zO31DVi4gZTNuDTooT7GkfddiXzss5awh4yOzxYiX6BNPSEBtRDl2hd0dioLKhhF8lAqWo2Xb4geQXjfIYg7XdMoC0jFsA5xKgClrqZnpsHE9uUlIOIv3aq0BP4Mt66JgzgklnQ==
+ bh=t4Bx2Gf8ABTE7uIW4DpoKW3pt1AqsoA1UGHODkRyES0=;
+ b=DEj1ic4CZy9qfgiR5OlFj8eS7Y6VEZGJYn2/uajTeyLtzeSKk6CYtYnpKoF/G5vzeAI92Tiejx6ChiS+8B8yW4MpWzZzaH/WFQeiLzrpj/KC0N6VACREvlk6J+7H7y08dHH+wgORXqCct4D5pqP4ipnETpYRRNY2/H0SB8bYy0jWZ/Y4mUKjk2h+3NxcqmF25tgQktBz21D/PLUgWg3iDVbXICpnwAJohJWXy6rg90RuS+4HVqltr8woiNKaEfTth+B5sj9uo5UYLnPPKf9/EYiwmep5JMKRmhQgqDqQ+1DOvF93QP6vK+h8FwsA67IZk7PynUE7K7NfCEdQkCLxdg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vWTqbiKHqXrdvCjIjlAuFlbadZBAXvaeJ32YATNi1M4=;
- b=2Z2hGk62ywRkn3tco+lCKV3ST9R7KLvINokEAdWL+9LQlFl1XjgZ9RTxGuq1wAOXjDr2se2QF2KgEbwlMrmYo9+iHiRwz7mxyQnZ9D44hFeVVZSocn1Fyj2Of457F0/octEczBjt12nnfvkcSDdl3brOJdXNQsxv0ASt1jqNP+A=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
- by IA1PR12MB7711.namprd12.prod.outlook.com (2603:10b6:208:421::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.19; Wed, 21 Oct
- 2026 18:42:51 +0000
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
- 18:42:50 +0000
-Message-ID: <88b8a710-7674-49b4-9bff-13958f97fe7c@amd.com>
-Date: Thu, 22 Oct 2026 00:12:45 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/ttm, drm/xe: Don't invoke the OOM killer when
- evicting VRAM at suspend
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Natalie Vock <nat@pixelcluster.dev>,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-References: <20261020100504.46684-1-thomas.hellstrom@linux.intel.com>
-Content-Language: en-US
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-In-Reply-To: <20261020100504.46684-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0182.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b6::17) To DM4PR12MB5039.namprd12.prod.outlook.com
- (2603:10b6:5:38a::18)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by SN7PR11MB7438.namprd11.prod.outlook.com (2603:10b6:806:32b::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.18; Wed, 21 Oct
+ 2026 18:57:51 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0546.012; Wed, 21 Oct 2026
+ 18:57:50 +0000
+Date: Wed, 21 Oct 2026 11:57:48 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <karim.sabar@utexas.edu>
+CC: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+ <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/xe: Use kvmalloc for the VMA ops page-table update
+ array
+Message-ID: <atkLLH47Zd6vMX3B@gsse-cloud1.jf.intel.com>
+References: <6ad8027c.7f7fe2b9.10c6e4.4073@mx.google.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <6ad8027c.7f7fe2b9.10c6e4.4073@mx.google.com>
+X-ClientProxiedBy: MW4PR04CA0048.namprd04.prod.outlook.com
+ (2603:10b6:303:6a::23) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|IA1PR12MB7711:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7100afa3-f0dc-4843-72c3-08df2fa31c1b
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|SN7PR11MB7438:EE_
+X-MS-Office365-Filtering-Correlation-Id: bf65563f-79cc-4516-dfb4-08df2fa53420
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|261021123027099003|56012099006|11063799006|5023799004|261009223027099003|22082099003|18002099003|10067099003|6133799003|261021121427099003;
-X-Microsoft-Antispam-Message-Info: yFpjJuB0/bkCZYjpPusC/ft8hYDap5SluVzwEZZXGOTZb4PqjfciGdJipWDF46zM9N78v8NyxaXuZ0UNOPMf7nU5ClivZfLYq0oidNbf0CEQoDu6mcohI2xvxUJxrYJyVXuXScmsL9oYnmmsQp18k/wYEtpnq4tuCAsdq3BNquYUU2y7Ag4gTTAHmyj2XEn+qxX5T5zpARRU1NMHa0ke7JfY4PbfddqA61v/f414ZXUqjwZKVONvipF9Fy0yjXStui3Gsbl2usQMEqCNCnO2oVRtsL3yv24QcRbvTSGEi3WPesNXKNqqVXlExOs6zjdAWwmE+euvSFIU4qdfZd/R3UUHSFarTfaG4rb2g+WCc5CML2kWsA7rSDW4BbH5PTnf2uXvnlG5A2wrHgDCegGVIGxMBKGIswnLxQfBwAHpePXRJHWh+tf5VUVuE/li5Yh6aLlPle3k8VpkQXBM2rZr2x1HIB9dsyfpXAhXk6wDqDhK3rFxYllI7Q6h+2LHytuuUozhYXTuW7Yuq5NsiLlnxbmTf06kQePwFVArD94N/5hgqjl1B7QpnBZba+gErh9TX1qWqiNVeZkbA7zv+IL9UHfHzGz9Qyq9lS/PlMPDcGueIVa17TkWuPMhAS3dKj8c
+ ARA:13230040|366016|23010399003|376014|1800799024|18002099003|22082099003|10067099003|261021121427099003|261021123027099003|261009223027099003|11063799006|5023799004|56012099006;
+X-Microsoft-Antispam-Message-Info: 4PGsZaDUFE3+hdYwj+N0tf+tSgf/qQeQhil3tjq+dStqVZydmxrgMt4TOQtNmzK/EnAAbFIfpo8iT1c1S+MevVipI4HlUdTOgV0WfRZNdq5a10J4STLmWPQWShkGSvZkclbJKmXEagWsZc5chhcIcAbOzhWBgu4j8hZqD64xhT50B+wb+gKbSbrR+aEipR6HCi/e3UomkwnYfIKD2VNEXZfKDAmk9djejMJvzAuYh6mkdKqFWw84xJt3r83GOGYGZbhzz2JzsUEbgLAfmbHeuId0NctFsQW+E5srQLv0asD/j4h5AbOsbAnGTSkrxkiide5OcM5Fw9WM35nTysMmR8lNwVZH8sgKlftwu7DyoUhYYC3eNulPM4w2WrMlBx5e1ZHYkDgQ3A2r0VjSj5JeUoCm8O+TitnbNNz3jMiNnL7KCgEOBKewyESMm/sfgnNYyZauYNVrH/kZCTpDEvzYxvlXrRtNRUeIF4/7PC2YCyGWyg0agW418n4lWFOsd7ABRd5VgZB/4tEChE/qVOIXZ+0TTeMKxhqUfOhf2AaPuctpT+M9cYGDIFyyVV5RxEQPf4Xc+Wai3lKlWu7bxDE+GxDzprIrqGTdNA5/Qk8aEvuyZ9hfPzvQbarlgW/UFcnAw2EXtsXG61Vv7dU/tmXE5P4LUwTk/RIVy9PBbHQgJHI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(261021123027099003)(56012099006)(11063799006)(5023799004)(261009223027099003)(22082099003)(18002099003)(10067099003)(6133799003)(261021121427099003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(18002099003)(22082099003)(10067099003)(261021121427099003)(261021123027099003)(261009223027099003)(11063799006)(5023799004)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2Qrako3amtUZ2I2cUVMaER3di95RDVieVprbXhnMFhoaE1MeFR5d0hLY21G?=
- =?utf-8?B?eEVzRGpVZ2R1azUzdURZb3BLUmRFek5KczFLSVdzaHg1Nk1qNEZ0WmhhaFdU?=
- =?utf-8?B?aFR0dU9JYVVQRUpWR1BTczJBSisrNnR6UFlUQ2wvZjFwSFR3WHBvbUc0UXpR?=
- =?utf-8?B?VWpXQ1NFL0RWM2VmdTkzSG5aWWFudXFZSnFEYXZYUFRHRmZnRzNCK3NNNUky?=
- =?utf-8?B?UVpJS1BGQk9UNnc3QkVXWFh2a2Q3MnFjMWdLTWxUaFlKS25JLzZld1J0aklx?=
- =?utf-8?B?akdlQnlmTnVvY3pQYW9NTUN0bG92RmwwSDR3ODRYOXl1c0EzK3d3VndNTzJ1?=
- =?utf-8?B?MDNGY1dlZDhveVdlakVrend5YVNuSjlOdGIyWVdxVERQd2s1OHVOWnlsYVlp?=
- =?utf-8?B?ejNwLytLeDVYamIrYVVoSXRuaDFzQUpHOXVXbUd0b2NMcFBCNGY0em50Y1FI?=
- =?utf-8?B?R25kc0ZNRDVBaHNRTGtubXNpSFdNcjRVM1hPT2VBL3BkY2FnbFFWa2ZMcTFz?=
- =?utf-8?B?WTBVSndhQUc1SEczZ01NOS9sY2xMQjVwQVRCVEpRY1orWWFneFFhY29WNkpX?=
- =?utf-8?B?eFBsZmZpMzRhR0NPVkZKa3d5YlV5Q093SkdjMlJFb3ZxT1JSQWlLRXh2dm1O?=
- =?utf-8?B?clRLTkltTUdDSHlhNnVxSU12RXJOSEZZWnVQR09nYjR6SXIrM2RSSVd0Uldo?=
- =?utf-8?B?U090WWJOekt2OFc2TnJjUU1rTGlXWE9keDVkaEFJbndEVi9IQUJzM0lpbXNY?=
- =?utf-8?B?STlrNjVtZVBRMWRyMWJwRGcwK3l3Q0dNejgvUnhwdzN1bUNGcnFVUG55OGxF?=
- =?utf-8?B?ZzhWSzdBT1NYdVo4cXZ0Um9FaXNvVnE0Lzg2bS9Ib0FRbU9hVTBEb2VDYkow?=
- =?utf-8?B?RktXRktjUUFWMUVEcXBCQmloeWdvUjl4Sm44MDZCSng0WVdpeGFJYkJZbjdk?=
- =?utf-8?B?R2JRZThZSVVMQzhvOTJUc3R0RHJBZWJIdUpqWVVUZXhnTC9hd0VwRmJwbzVX?=
- =?utf-8?B?UE1Udjcxd2hwWjhqSVRnOXRxZmVIdWlvcHBhRWtITU1PZnh2dHVoMzEyVVV1?=
- =?utf-8?B?c3JTaUVONk51VlQrRE1YRXA3ZytmUk41U3NJMkpDUVYvbS91OXFEUFVnVGdQ?=
- =?utf-8?B?WThqYk9ySytJdWFNY1dUM3UzRlppckhFWVl4ZlJMYUZ4RlI4c0NlL2xJMG5R?=
- =?utf-8?B?TzFxMHBGSHloTFd4ZVliSWhHelU5RFFOWkxyZG0zQ2NXMUtwK0pUM1VQaHVz?=
- =?utf-8?B?YUc4QmhkVzFYaWhoRmxOZ1o1TitReVUrYTQrM0ZUNVY2OEtlMEtsbDZZSFox?=
- =?utf-8?B?bjhVMUEyK1ZYSThMbFFaSjJaOW0zTmlldWFHSys5R0J0ZVlmUUtSc0hpcmJl?=
- =?utf-8?B?VGJWSjRnMHFjZ2E3Nk9tbkxTaHcrQ1FhWkd6eE1MSk5QYnM3MWFnWEFRMHNQ?=
- =?utf-8?B?VXBIejU0SkY4TnFZZjVWdkdHNWlFYUpWVFV1K0hvalRzKzVIbHZVb011Y1p0?=
- =?utf-8?B?WmliaGVQalBJRmtMaFBoK3o2UVVyY1NlbXpRR2xOUFU4dVVLQ3lHcE1OempR?=
- =?utf-8?B?Y2VQcEhOWWN4TjJya0lRcnVpd013bHlJRDkzalFWMldFNE9ncEFzelJDdytv?=
- =?utf-8?B?K0llV3ArVk50ZWdWMHc1K0VMWk5rRlA1UVA1RjlGOVEvMkJBakVRSG1vWnpV?=
- =?utf-8?B?T3hld2tMYzlIK3Y1blNNeG5hejZqdytVN2hUbE9PUGIzckYyL1pHRTdPMjVV?=
- =?utf-8?B?UW1hWG9wdVBKMUpGL0lwT0d4S1hxWFY1SHZ1Q0dzekljaHUwTTFCUzZ3bVc0?=
- =?utf-8?B?c2NCa1pVN3IxQ1Q3UUN5bWNpR2ZkNHA1bTFobnc3dGRWM0pPNlY0dXo3T3A1?=
- =?utf-8?B?M3B3OVlDN1MvZ211Ymp2Z1hYbVExcFVvVVJIVGl2MTBVQ04vbFlmaE5oQWVx?=
- =?utf-8?B?RU9VZnFuM25qUGVMdXFRTk1LdEVFWGptajQwZUVxWVBhbWkxNTRUYUpkUjlK?=
- =?utf-8?B?QksvL3Rwb20rZERHb0V4allUZFh6djFWaFI0aHR6ejhoeklrL0FlS01TTWVQ?=
- =?utf-8?B?dHBWTFpoVWQ0RzBuaGVSendVek83aWNYb1lwYnNLZ2sxdzhwZExzL1cwb0Y4?=
- =?utf-8?B?NnQ5UmN1VHJHRnZOSUxhMmVwSm0yaU9CWDNrbTMxbWxDQ3VTUDB6ZmlPMWVn?=
- =?utf-8?B?VXN3YmthTkZUM0E5aCt2a21sSWJDODU4amZ3L1JYVlhhdVdWQlBUa3F6U3Ey?=
- =?utf-8?B?Z1JrcTRHaUM0NGxIWkZ1blo5TzJTd3FWUnJXdVZjWGNiSVZqa00vTll6a2xy?=
- =?utf-8?B?TjRreWVwSkl3ejdpcEdnTnNFQVVPbHQzNTA5Yytza2FUUkpyMzlFUT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7100afa3-f0dc-4843-72c3-08df2fa31c1b
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aNzILbEODSBzDYtnYpKLbEaGZDw3JqOFs/pUSbh/nuMH1AMFH6ZmuoTcrzr2?=
+ =?us-ascii?Q?qh9SqgeU8bKesHaBZ3ZOJlLXJ31CHqXRxzbQONmaBUOx2gcTWXivyK7q+fpa?=
+ =?us-ascii?Q?LRBobxsx6EiJLfmMfsr21Ld+jrSvZ6WNz6Ep52jDumbaP+9clBwxAUeLCYl9?=
+ =?us-ascii?Q?JYCsP6/6UypGkJpliwa1+h7WVnlmkm0yrkgVm/qdaySiRCv+IIivT3R4yjv4?=
+ =?us-ascii?Q?dBf7wbPQv5rgdDoleNJAmxpkpw4hUUkRlQqIgEjXwaLb39UeuBmyhzRcIuQH?=
+ =?us-ascii?Q?bBP5/L4DieGisXlXh+8btQ02w949roTM4tDvxT66f13fG3yFhLkoebrJFUFU?=
+ =?us-ascii?Q?511NC96D68tXMYs3lJnMvbWx1CHkN9Eq7EywuyEfDCWgBW899C2Im18V69mc?=
+ =?us-ascii?Q?wDP0jVWiFMT3q63m2LXGvvhEV5ygQrMnZlh1Tejy8HWxIqn6Q6JMwzeah6cC?=
+ =?us-ascii?Q?ZZPngFruYB2gQljSayKfPdHijVHQowMjOZ+PB7huYsJN+Wk1849+MDfAFmxy?=
+ =?us-ascii?Q?G59vHgiCCLmX53TIkap7aswouEQKdxvxmn0nQiGBLZStXMU2+fNwMII39/Rj?=
+ =?us-ascii?Q?/KkMCW8I/VgBAmAG1W5X33qUkT6k5qdA3XI7ZGabPMpkaOhmFpxwNCWK53pd?=
+ =?us-ascii?Q?v0YCl1pDcVFkZWxUTvlsTqcMDbK/xFUah807KOhY8LKj+ECbBLYqaymqcM89?=
+ =?us-ascii?Q?Uv6bd7LX20n98bT8vpplBmtX8LvG6VfF1aRuQlYFfRNyD9GiTUiCGZ7MiS2L?=
+ =?us-ascii?Q?Gmh858ao9UBpuVQ1+BvX9RZUJ2W4kCj1j3ydOcKWi0DBiHcHnV/TLT/HeNAW?=
+ =?us-ascii?Q?ZT/tAJIYBp71fwjNEDQp754p0qaHLJDVzrpk7bw1QMapmM+imKW5cv0ozEHF?=
+ =?us-ascii?Q?DaKJjiWdaIFnL4aMSOJ2TgrYn9kwAc3NH9qPmUXWlF0LmtLNGV21z4nFldC1?=
+ =?us-ascii?Q?LcwdZaoKW3gVpD/Z0/kzDvO+9qndpQutMswUN1SoAawnhcNmJMKt4NJodnyo?=
+ =?us-ascii?Q?/U4GXqMoikY41m43uXXC7w4hg2FCjQ1jD9WLn3X6zfCEf7IFiR0Ur2BwHmeN?=
+ =?us-ascii?Q?I54t5Sc/fHqKGnPDS3WzISLwAd1wrSYS3G6HJV+cRv1sTs4oWmu7llg1VSkP?=
+ =?us-ascii?Q?SWvYz2u3E+DRcE4Wnpn6ToBg8TiOMHRDAyyjx3Ixhkktf0cPm90yiN/EB3RS?=
+ =?us-ascii?Q?s00p9dfxBc5xDtCUX/03+7hgnauIDjRFyVjYwNAWNTdNlKU7qjPnxqBLiCe0?=
+ =?us-ascii?Q?wewRnas+ZtTxuAU5ric+yGiUCHXCA27alQAKbmSFVLJcd4om205AwPX23Ykz?=
+ =?us-ascii?Q?gyRFjsxZVn1quFhNtTFI+Vg7KSM3OHBpjP1O9V7LCXELB6KrwmOiw64HPGon?=
+ =?us-ascii?Q?kdMC1P4G5lfcck+MTXOpUi3y0NAQnoqh8nD07Rb6Fu0GBOezB2UHwc1VLKpy?=
+ =?us-ascii?Q?k+seR1uxForyYqnFDNZZUYnGekVXLR5wGZhWd1ruWs0+/ckhlfW657FJOUa7?=
+ =?us-ascii?Q?6Ogvk9lhtbXkyldTsLRo6hEO+1V5+68p+geue9GjBl4U+/ImTvsV7gZirf0p?=
+ =?us-ascii?Q?FT0p5tanuLNUgzjPPSMGcYFjdbt5z9flLBS+He83hrcaOujMNTztYqFJnM0W?=
+ =?us-ascii?Q?SkragDS4O15O1o8OECSbRJHwEyBscpq1wle14NWBA+9NpN4O6ujL68Q1vSpQ?=
+ =?us-ascii?Q?wofqEEpWMrXkw1h43JJyuAnLO9RVHGOLYSSQXXJJj0CLIkIr1ZPM6Y68OsSU?=
+ =?us-ascii?Q?tPxYIhHvkQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: D0iAQmSiOFGliL8F4KX9QL131ug4hG4TiNgimaf/sQtNZ248g/kdv4rQqFp5/HyFwG5706T1bIXblYFlUNANyjccWt0wTTi4FLESFEc2JmxYmyfbwXJtpirXQGzyu0WZo5QCnH9vbTlRtstlYtUnlV4AwssEBAJbZdn7g5c8h3s7uTKUEg6AdAOnLfwNhHOMS60U9hc9lvAKWTHAtqYakk67dDgkm/rHQy/X4WaKOAp/xPUpbaZ2EKlXeMaEMvl7i4R5Uv96VdB8d4eSGapyz6D5hpOF+kZ9zEjzenUl2S8AICAJliO4JOKCcVxGh0ojPtAtsshref3M4TlGZMQFpw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf65563f-79cc-4516-dfb4-08df2fa53420
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 18:42:50.8786 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 18:57:50.2180 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WZizapheuUSD30lYp9+MF2BvpGex3eB3T74j6OeMy0bJvFLeMWWzHwj9GVgIEDyWtMv7APuUi/BfT0ADd9uq/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7711
+X-MS-Exchange-CrossTenant-UserPrincipalName: J6OJS7esCYJ3LdnJqr5fDIWiSoZAtAa8nxbzJC2KW3BKxLUCWVQtMlzlPA8MTCcZlN0xL7Od8I0IoaqDHCzFug==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7438
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,175 +157,120 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-21.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Tue, Oct 20, 2026 at 07:08:27PM -0500, karim.sabar@utexas.edu wrote:
+> From: Karim Sabar <karim.sabar@utexas.edu>
+> 
 
+Thanks for the patch. I do see the problem in the old code.
+Unfortunately, we will not be able to pull this into drm-xe-next or
+drm-xe-fixes, as 7.3 is already out and 0e33330f1238 is included in our
+7.4 PR. As a result, this would need to go directly to stable.
 
-On 10/20/2026 3:35 PM, Thomas Hellström wrote:
-> When evicting user BOs from VRAM at suspend time, allocating system
-> memory for the eviction may currently invoke the OOM killer. Under
-> memory pressure it is preferable to abort the suspend and return
-> -ENOMEM rather than killing processes.
->
-> TTM's ttm_resource_manager_evict_all() uses a default operation
-> context, which doesn't allow the caller to request
-> __GFP_RETRY_MAYFAIL allocations. Introduce
-> ttm_resource_manager_evict_all_ctx() taking a caller-supplied
-> struct ttm_operation_ctx, keeping ttm_resource_manager_evict_all()
-> as an exported wrapper using a default context so that existing
-> users are unaffected. Also honor the ctx interruptible setting when
-> waiting for the eviction fences.
->
-> Use the new function from xe_bo_evict_all_user() with
-> gfp_retry_mayfail set.
->
-> Note that the PM notifier eviction is best-effort and ignores errors.
-> Any remaining BOs are evicted again from the .suspend() callback,
-> where an -ENOMEM might then cause the suspend to be aborted.
->
-> Fixes: c6a4d46ec1d7 ("drm/xe: evict user memory in PM notifier")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Natalie Vock <nat@pixelcluster.dev>
-> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
-Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+There is also a risk that predates the series containing 0e33330f1238.
+If the bind has to run on the GPU, you can still get -ENOBUFS later in
+the bind pipeline if the bind is too large to fit into the
+migration-layer BB. If that occurs, the proper fix may actually be in
+xe_vm_validate_rebind(). If xe_vm_rebind() fails with -ENOBUFS or
+-ENOMEM, we could call a new function, such as xe_vm_rebind_iterative(),
+which would run each VMA requiring a rebind in its own job. This is
+effectively what Mesa does in userspace when a bind operation returns
+-ENOBUFS.
 
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v6.16+
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9615
-> Assisted-by: LLM
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+We could probably still pull that approach into drm-xe-fixes + have
+naturally backport to stable, and it may ultimately be the better
+solution.
+
+Let me know what you think. I can give this an RB, but I'd like to hold
+off until we've settled on the solution we want to pursue here.
+
+Matt
+
+> Big games die after every s2idle resume on flat-CCS iGPUs. The exec
+> ioctl keeps returning -ENOMEM even with 11-16 GB of RAM free.
+> 
+> On suspend xe_bo_evict_all_user() evicts every user BO in XE_PL_TT on
+> these parts. On resume the first exec rebinds every VMA in one go and
+> xe_vma_ops_alloc() kmallocs one 384-byte op per VMA as a single array.
+> Final Fantasy VII Rebirth has about 33,500 VMAs which means a 12.9 MB
+> array. It's over the 4 MB KMALLOC_MAX_SIZE and can never succeed.
+> __GFP_NOWARN keeps it out of dmesg.
+> 
+> Data from a Panther Lake handheld (SteamOS kernel 7.2.7), kretprobes
+> after resume:
+>   xe_vma_ops_alloc  -ENOMEM on 63 of 63 attempts
+>   xe_vm_rebind      -ENOMEM on 63 of 63 attempts
+>   BO validate, TTM populate, PT prepare  never failed
+> 
+> The array is only used by the CPU and doesn't need to be contiguous.
+> This switches it to kvmalloc and kvfree.
+> 
+> With the same change applied as a module on that kernel, the game
+> survives every sleep I tried with zero ENOMEM. The biggest array was
+> 30,753 ops (11.8 MB).
+> 
+> drm-xe-next already does this through commit 0e33330f1238 ("drm/xe: Add
+> struct xe_pt_job_ops"), but that's part of a big series that won't go
+> to stable.
+> 
+> I tracked this down and tested it on my own device. I used an AI
+> assistant to help with the debugging, i.e the kprobe tracing and
+> reading through the xe code. I ran every test, picked the fix and
+> reviewed the change myself.
+> 
+> What I couldn't do: this is build-tested on drm-xe-fixes but only
+> run-tested on the SteamOS 7.2.7 kernel through an equivalent module,
+> not on a mainline kernel.
+> 
+> Fixes: 2e524668c440 ("drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops")
+> Cc: stable@vger.kernel.org # v6.11+
+> Assisted-by: Claude:claude-opus-5-5
+> Signed-off-by: Karim Sabar <karim.sabar@utexas.edu>
 > ---
->   drivers/gpu/drm/ttm/ttm_resource.c | 37 +++++++++++++++++++++++-------
->   drivers/gpu/drm/xe/xe_bo_evict.c   |  5 +++-
->   include/drm/ttm/ttm_resource.h     |  5 ++++
->   3 files changed, 38 insertions(+), 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-> index 4e6d3d658d85..5296b32a2e92 100644
-> --- a/drivers/gpu/drm/ttm/ttm_resource.c
-> +++ b/drivers/gpu/drm/ttm/ttm_resource.c
-> @@ -568,24 +568,26 @@ void ttm_resource_manager_init(struct ttm_resource_manager *man,
->   }
->   EXPORT_SYMBOL(ttm_resource_manager_init);
->   
-> -/*
-> - * ttm_resource_manager_evict_all
-> - *
-> +/**
-> + * ttm_resource_manager_evict_all_ctx() - Evict all objects from a manager
->    * @bdev: device to use
->    * @man: manager to use
-> + * @ctx: operation context for the eviction
->    *
->    * Evict all the objects out of a memory manager until it is empty.
->    * Part of memory manager cleanup sequence.
-> + *
-> + * Return: 0 on success, negative error code on failure.
->    */
-> -int ttm_resource_manager_evict_all(struct ttm_device *bdev,
-> -				   struct ttm_resource_manager *man)
-> +int ttm_resource_manager_evict_all_ctx(struct ttm_device *bdev,
-> +				       struct ttm_resource_manager *man,
-> +				       struct ttm_operation_ctx *ctx)
->   {
-> -	struct ttm_operation_ctx ctx = { };
->   	struct dma_fence *fence;
->   	int ret, i;
->   
->   	do {
-> -		ret = ttm_bo_evict_first(bdev, man, &ctx);
-> +		ret = ttm_bo_evict_first(bdev, man, ctx);
->   		cond_resched();
->   	} while (!ret);
->   
-> @@ -600,7 +602,7 @@ int ttm_resource_manager_evict_all(struct ttm_device *bdev,
->   		if (fence && !dma_fence_is_signaled(fence)) {
->   			dma_fence_get(fence);
->   			spin_unlock(&man->eviction_lock);
-> -			ret = dma_fence_wait(fence, false);
-> +			ret = dma_fence_wait(fence, ctx->interruptible);
->   			dma_fence_put(fence);
->   			if (ret)
->   				return ret;
-> @@ -611,6 +613,25 @@ int ttm_resource_manager_evict_all(struct ttm_device *bdev,
->   
->   	return ret;
->   }
-> +EXPORT_SYMBOL(ttm_resource_manager_evict_all_ctx);
-> +
-> +/**
-> + * ttm_resource_manager_evict_all() - Evict all objects from a manager
-> + * @bdev: device to use
-> + * @man: manager to use
-> + *
-> + * Same as ttm_resource_manager_evict_all_ctx() using a default,
-> + * non-interruptible operation context.
-> + *
-> + * Return: 0 on success, negative error code on failure.
-> + */
-> +int ttm_resource_manager_evict_all(struct ttm_device *bdev,
-> +				   struct ttm_resource_manager *man)
-> +{
-> +	struct ttm_operation_ctx ctx = { };
-> +
-> +	return ttm_resource_manager_evict_all_ctx(bdev, man, &ctx);
-> +}
->   EXPORT_SYMBOL(ttm_resource_manager_evict_all);
->   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-> index 7661fca7f278..a37316a27573 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_evict.c
-> +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-> @@ -114,6 +114,9 @@ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe)
->    */
->   int xe_bo_evict_all_user(struct xe_device *xe)
->   {
-> +	struct ttm_operation_ctx ctx = {
-> +		.gfp_retry_mayfail = true,
-> +	};
->   	struct ttm_device *bdev = &xe->ttm;
->   	u32 mem_type;
->   	int ret;
-> @@ -135,7 +138,7 @@ int xe_bo_evict_all_user(struct xe_device *xe)
->   			continue;
->   
->   		if (man) {
-> -			ret = ttm_resource_manager_evict_all(bdev, man);
-> +			ret = ttm_resource_manager_evict_all_ctx(bdev, man, &ctx);
->   			if (ret)
->   				return ret;
->   		}
-> diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
-> index 714c533622c2..6cf9187a12eb 100644
-> --- a/include/drm/ttm/ttm_resource.h
-> +++ b/include/drm/ttm/ttm_resource.h
-> @@ -42,6 +42,7 @@ struct dmem_cgroup_device;
->   struct dmem_cgroup_region;
->   struct drm_printer;
->   struct ttm_device;
-> +struct ttm_operation_ctx;
->   struct ttm_resource_manager;
->   struct ttm_resource;
->   struct ttm_place;
-> @@ -488,6 +489,10 @@ void ttm_resource_manager_set_dmem_region(struct ttm_resource_manager *man,
->   int ttm_resource_manager_dmem_reclaim(struct dmem_cgroup_pool_state *pool,
->   				      u64 target_bytes, void *priv);
->   
-> +int ttm_resource_manager_evict_all_ctx(struct ttm_device *bdev,
-> +				       struct ttm_resource_manager *man,
-> +				       struct ttm_operation_ctx *ctx);
-> +
->   int ttm_resource_manager_evict_all(struct ttm_device *bdev,
->   				   struct ttm_resource_manager *man);
->   
-
+> Downstream SteamOS report with the same data: https://github.com/ValveSoftware/SteamOS/issues/2962
+> ---
+>  drivers/gpu/drm/xe/xe_vm.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 99e42bd29..5caef443b 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -703,9 +703,9 @@ static int xe_vma_ops_alloc(struct xe_vma_ops *vops, bool array_of_binds)
+>  			continue;
+>  
+>  		vops->pt_update_ops[i].ops =
+> -			kmalloc_objs(*vops->pt_update_ops[i].ops,
+> -				     vops->pt_update_ops[i].num_ops,
+> -				     GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
+> +			kvmalloc_objs(*vops->pt_update_ops[i].ops,
+> +				      vops->pt_update_ops[i].num_ops,
+> +				      GFP_KERNEL | __GFP_RETRY_MAYFAIL | __GFP_NOWARN);
+>  		if (!vops->pt_update_ops[i].ops)
+>  			return array_of_binds ? -ENOBUFS : -ENOMEM;
+>  	}
+> @@ -742,7 +742,7 @@ static void xe_vma_ops_fini(struct xe_vma_ops *vops)
+>  	xe_vma_svm_prefetch_ops_fini(vops);
+>  
+>  	for (i = 0; i < XE_MAX_TILES_PER_DEVICE; ++i)
+> -		kfree(vops->pt_update_ops[i].ops);
+> +		kvfree(vops->pt_update_ops[i].ops);
+>  }
+>  
+>  static void xe_vma_ops_incr_pt_update_ops(struct xe_vma_ops *vops, u8 tile_mask, int inc_val)
+> 
+> ---
+> base-commit: d2ce8fcd778ee6d92748c92d23a56d4416c29d86
+> change-id: 20261020-xe-kvmalloc-vma-ops-2637ebf81cfd
+> 
+> Best regards,
+> --  
+> Karim Sabar <karim.sabar@utexas.edu>
+> 
