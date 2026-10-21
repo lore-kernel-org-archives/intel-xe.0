@@ -2,60 +2,133 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24350606A319
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 07:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87009606A319
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Oct 2026 07:18:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lyfKckjQ
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=KHnyO1uX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D185210FAA7;
-	Wed, 21 Oct 2026 07:14:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B58B810FA98;
- Wed, 21 Oct 2026 07:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792566865; x=1824102865;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0jnXKomCxwK+aCcK8+FXkY3IPEzsMOSln2xsego4RVw=;
- b=lyfKckjQEBvSnv+29YFh0cs3bLmV2zwDvL2ek+vQuC4VNULd9KguhbSe
- Ihh0OVYEJ/QeBt2NC2/Yb5CZoVHN2CureIVhd5GSWtZymzMlgGiFT12xL
- jXissxkSmSJYgYB78drzxWZfllzueJqrUNSp6H4Ta9b6rt/fxxc7kaM3J
- 8E7R+GPju4KRo/0G3FH1Z4/VIYNdHa45QoF7E1DCTvv8EG5hJwuKXUxIc
- ui0oBDPsJuLuUPexw1zxf8XGeUxUUV6ulpc+u0yzqsP1JxuLp6wp13Vn+
- TMENRRvTbw1KtSNJkhrU/Tkd2kBYAxGd+UvGhxEOvHNLx/sIbIARYgn8/ g==;
-X-CSE-ConnectionGUID: Fp63/yFSQwGVZI7G5wgShA==
-X-CSE-MsgGUID: XdUwwZ76Qp+oYWrOkgZcHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11941"; a="1384004"
-X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="1384004"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 00:14:25 -0700
-X-CSE-ConnectionGUID: Eqj20+sxTuaznkVGNfZ2Og==
-X-CSE-MsgGUID: UZAt9wOrSgeLnmKwaCFV8g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,169,1787036400"; 
-   d="scan'208";a="3357065"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa008.fm.intel.com with ESMTP; 21 Oct 2026 00:14:23 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: mitulkumar.ajitkumar.golani@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v6 09/11] drm/i915/display: Implement Wa_14021768792 for BMG
- DP for link_m/n ratio > 10
-Date: Wed, 21 Oct 2026 12:43:59 +0530
-Message-Id: <20261021071401.1161586-10-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261021071401.1161586-1-suraj.kandpal@intel.com>
-References: <20260917050649.871960-1-suraj.kandpal@intel.com>
- <20261021071401.1161586-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DE2310FAE2;
+	Wed, 21 Oct 2026 07:18:08 +0000 (UTC)
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012008.outbound.protection.outlook.com [52.101.48.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E78AE10FAE2;
+ Wed, 21 Oct 2026 07:18:01 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P76pzTuXnAbIXIkiExULskXscKI6oaNBZvjrc8jtD1+buM5ZUKh/T1nsRLX4qXCs0N+ImRNEvnpgn6NiV3mCfEBAk8j+M/P4K1vKJ9UrSnogBe44LL8yS1m9j54sJIuMIpkaJQb8C2LaJOxuA90iNxupLQL3g5iIfBq0SfI527zpVijWGJXgZKYX+MzzaZJlAXLiQUqN3ydq6c2/S1PIzyApMsu8OmPXJE7N5rG7Ap3nsTO8V0NIhw3tKgbLYVb6IbLgkbgibWsFbHu2iNrJx4AsENM7NgxM97PCFoyPEb5T3v74q0Hpds0X2GZndEVyPG7Ndo53tCxYVdauh6v+fA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CfVlp/U84Ek1YAWH2BfUTwRSlofgxtqwRgKxpRacTng=;
+ b=NLiBbruD9qzzjnxzQyjd1h5F7GaV/wrA9ceTvry69o57O3cAGCUthEH9R4dRqpAtIAotVyaE7Zcm6nU2tCx+JZfg/6CXu4Ac64lQl4bqQYOcWBj7wb2hyXNpsAOrskTVKfw1RVG5csV6ZcVrc7g7Z/irq5dhBVFLbScQW0uLPIRe3fBK825uqVsRQFds+S/juHCmB/42vVXukMjBqF9u/xBiCFC4XeRVQfhn1TbwlMncYSqHoZgWWUD2sLNsuWFhrhnSA5Cd7/tDeDq03GFc7c7NoPPvVzCkylaW+Xh1T2rxgk9CMEEzzp1XdcEyYulCwu1dbwnGsYRAOLtfW7+dLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CfVlp/U84Ek1YAWH2BfUTwRSlofgxtqwRgKxpRacTng=;
+ b=KHnyO1uXkmxvCakoNtwV727ugHZfYq3Z+fLXJ7BLui2KZaQ0zfiwX3trQSmRW90PNg5KLRRx32eG19uLGdBu1/X0jw6Pt637TZLS4uTDZGznAwVzYjOxkRIW8Kq3h8LKvPz4pbU0SNJtmwpnc4l8vfgZ3nCNPG5UBDmZCxree6r09lFwIuZ5bkMd9s8s37h0jKqCe+gJq/2Iq2y30Ox/QZw/2K3ujktPBzCgRW+xY3+JhSI3mdzhibGG+jjWJzNOycFpLcaiqNxejK2k+U6zEQdMnMNSgRekLuk3Tp8POrBcBGs4ACmmVaTTQ5hNdtNSYv5j2JrDgpVWzXsOXxAr9g==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH3PR12MB9730.namprd12.prod.outlook.com (2603:10b6:610:253::9)
+ by SJ2PR12MB8738.namprd12.prod.outlook.com (2603:10b6:a03:548::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Wed, 21 Oct
+ 2026 07:17:58 +0000
+Received: from CH3PR12MB9730.namprd12.prod.outlook.com
+ ([fe80::843d:c1f0:b2ed:4128]) by CH3PR12MB9730.namprd12.prod.outlook.com
+ ([fe80::843d:c1f0:b2ed:4128%4]) with mapi id 15.21.0522.016; Wed, 21 Oct 2026
+ 07:17:58 +0000
+Message-ID: <017202b1-1c48-4fb1-a951-6d909fb30016@nvidia.com>
+Date: Wed, 21 Oct 2026 18:17:48 +1100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v16 03/12] mm/hmm: preparations for HMM to participate in
+ migration
+To: mpenttil@redhat.com, linux-mm@kvack.org
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, David Hildenbrand <david@kernel.org>,
+ Jason Gunthorpe <jgg@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Zi Yan <ziy@nvidia.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka
+ <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>
+References: <20261021060506.2377545-1-mpenttil@redhat.com>
+ <20261021060506.2377545-4-mpenttil@redhat.com>
+Content-Language: en-US
+From: Balbir Singh <balbirs@nvidia.com>
+In-Reply-To: <20261021060506.2377545-4-mpenttil@redhat.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: ME0PR01CA0071.ausprd01.prod.outlook.com
+ (2603:10c6:220:20a::19) To CH3PR12MB9730.namprd12.prod.outlook.com
+ (2603:10b6:610:253::9)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH3PR12MB9730:EE_|SJ2PR12MB8738:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5f98694c-7d06-4b2a-40ab-08df2f436f2a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|7416014|376014|1800799024|23010399003|56012099006|261009221227099003|4143699003|11063799006|261009223027099003|10067099003|22082099003|18002099003|3023799007;
+X-Microsoft-Antispam-Message-Info: Ya6pgCv5DLF5doseikTllR8jrceUxOL4nZ0TMrjjUy2a5MR9lnXKBfdjTgLc0SjbuuXA2EjaKdiOxL2B2JQJ6v7PNSBkdap4hlSomFZHe7D5CUekexQEQuuK/I7Jlqs85Yo8B2iDEJrHUMpn7ZK4+chwghY/Aif5etGuV/vmw6wItftbjRwmLONFGeshPlqf+xw6pKa36MXvEO3UY/M51bbyywqKNHcf66TqRNhMJu1xh6vdGLQeruV1agoG2s3oAL209M+d9MJzX0iCX+7Dj5y2NQ2Y1mvgPnpQ94Fj/wnRqaam+aM3WG2F2pQpLcRrQB0nUJSwcaoNas2USlNIaJ688VQbGN+fJApaXXwNM+CiZ/2mnASo8xE52tPXup/sArSggRjNIpQF+F2nmWA/b4hKXs7iX9xkCohxbBuXTvz84CAzb3xmegdxk67Ye1o7xstPLASg6P73isZ9qlrFtqqZnvVYvb/x2dGxppSeQht5lBiAw+/a/rCqIkWMGUjI7H2nzEVSh/OXOIHgm/8OSImo6yCx4xwl0EfXWcoGJSHN8Ekj3lRU6MuwFPj4g3QDRu6O8c6y+9A5hTpNWq+mAnUOvONNyY/G4g8iGrE1bWBS426RJ7GxN/kFHuEGY/S2SY9kxM6+MlYvzZCtXUXGQXzUiWMz+fLgc43kDXwMwYM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH3PR12MB9730.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024)(23010399003)(56012099006)(261009221227099003)(4143699003)(11063799006)(261009223027099003)(10067099003)(22082099003)(18002099003)(3023799007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OUpQQTJsTWlnSWVXRDZHTzdycllJMTE0QlI4bkFsU2pLUVpKSzYzN011OUFx?=
+ =?utf-8?B?OGF2TWlxcEo2Sm5NUmN5TEw2WktzREhzRWoybEVRN2F5TExQaFRiSmJTVkVU?=
+ =?utf-8?B?cWk1c1FUU0ZRTWlUZ2JMaXRDNjNUY05Cc3lmZ0RRSFlJSFNzSS84cFcydmF1?=
+ =?utf-8?B?azBwTG9CQkR5eUFKM1FsZ29sMHc1QWNGYjZSUXhJYUxCSWlVYkY5S3l5eXVX?=
+ =?utf-8?B?KzUwbVZKNy9sc1dWY2R5MHNuS2pmczJhZXVCOS9Ocnl2bUszLzI3SEhaeXFU?=
+ =?utf-8?B?VXo5RlczeXI3TWswbXhXTVM4QU9KM0w2RnJ6cDgvUDBUc0ZhdWcycjdGVjFD?=
+ =?utf-8?B?aWVjc2tGaFpNaWZmKzJQQTdHeFNIWUZyMFo3UlZhcjFNQ1M2NmFtQ1Eva3pN?=
+ =?utf-8?B?ekMrT0ErYnZpdGRzZ0J3cENJbkVuYnNDSjlzdVhZck1lMXcyMk5LMkh1bnk5?=
+ =?utf-8?B?NitiR0lZL1o4RndmU1ZzYlBVdm5hQzhiZzVQYjUrWGF3Vk1ZdHhLUWs0b204?=
+ =?utf-8?B?WXhsSm45c0IxSjR6WjJxTndqd0QxZmsvdHV2bFVLYnBvRWYxSDdJOEZQVCtq?=
+ =?utf-8?B?YmNnSFdERGJkUC80MjNTbGF3eHJZSkFIeUdzOXRLdEo1cmV6YURJMTRTZ0pt?=
+ =?utf-8?B?bTZVRldRU2VJZTVzYUNWbUxhVXlNWVRCRFI2dzV6ajBmQ0UxWEM1c3FNZVZu?=
+ =?utf-8?B?UlVUa3FIQWI3SDJSMTlvMzByeURDWHhKN2NuemNWTW1Ya1plZlExL1lYNE8x?=
+ =?utf-8?B?eXA2Y1Nua1dub1FkRkg1VDJsTTJrd25ZTm1tM1h6REFQMU1XNHhWMW1xZ1pt?=
+ =?utf-8?B?bmlObERwdzZ0S1pnckhnajdlbTEwVHZhd0gxQnk5RnNjUVNJWTQ2R281WEZ0?=
+ =?utf-8?B?RFVucnlwNm00TnZ3YXl6dG1xeENISGlhREJyVVJjUWJML1pOalR6MjFNdHU5?=
+ =?utf-8?B?aTN2NzdVMjM4MUFVcmw5bDEvL0x1UHF5dURpSTNlenBXVnpadm9EYWNwTm1l?=
+ =?utf-8?B?cFlGb0VQSC94emxkZ3BWN2tXSmI2THF3akFicUJaUTI0S0kxUVlNaWt6aW1a?=
+ =?utf-8?B?TFBQMjFCYzluWkVmNW1XV1ZqWlZCU1BLUmd6aUFqVVN4L3U0NkRwOUFrUm11?=
+ =?utf-8?B?SzRibG1CKytQNlhjWU1HZE9Cd05aRmFJZ1ltODdFQXphb2RKNnk5Y1NpWmhS?=
+ =?utf-8?B?ZDhDelR3OVM3MmtNcHZVZFVYRkZvUEZkSFcrV2poLzlGTmpuMmxJcWNCU21N?=
+ =?utf-8?B?encyOEk3amNvUWY4by9lRDhEMWlQMS9VS1BQeEplVks0NGJ3R3ErUUtSNzg4?=
+ =?utf-8?B?SjI3YTlpSVoxaTdKK1pBSHROd3ptQ0lmL0g3VytZc2dSMnZsRGMyQVIyR1Bt?=
+ =?utf-8?B?MWdJenFFS0tmZDA0c1J4dUlqQ2toUWVNcEdPN1hpQkp5VkpHUkNIMzY1WXVL?=
+ =?utf-8?B?SEVCWFZDVUMvY0VmY282SysvaEZhaVpPdGVYMU4wcjV3N2NEcUYzSVRjdFVG?=
+ =?utf-8?B?OFhiazRzRVlnbGxHaHYzVmdiZERNQ21MdVhEV3pwOXRzWHVGT3VWTlBuS09Y?=
+ =?utf-8?B?UlFBK2Z6TThxbjB4WGRQNzZuUnduRk9uazRoTS9KWEg3djR5VDNua3dkUlVo?=
+ =?utf-8?B?a3RjUnhkZG1KdUFMVXRwWHZ3SnBEdFZ5VDRnNFRtTUtzRDZkcVczT3g4YWJk?=
+ =?utf-8?B?L0hYdHl5emVXQlpXU0F0aHVRRHFkVVNYcTcrYXdoOE92U2E4d0Ixb3VHbHpt?=
+ =?utf-8?B?Tlh6NnZUZGlnaUFvZ0RSaE9ackN2bzlJVkVOWWhpbVZiVUdRTVphOUJrTkxx?=
+ =?utf-8?B?eUlRMnNkUEQydDFud1NMNkFMVnRKUFQyaElHM0NIaE5yVm9zT3NCRWtrc1kx?=
+ =?utf-8?B?UWRRS1VFL3J1Y2ZWSnN6KzVLa1FsbUpyVXBzY0JYbWRJS1h0ZEhhOW5iUEk0?=
+ =?utf-8?B?dTFPZ0FIR0RhSlJOYjdUL1piZXJOMC85RlFGYUhTOGoxUVBOajVPZHhxdUd6?=
+ =?utf-8?B?OFA2SStJcTZHVU5nZmFLOGljTkJjVmV1ZnR2cXNxSHM4VVlTdlJTMHdCREwr?=
+ =?utf-8?B?WnZ6TVhacGpGLzZqQmxHOGFYMlB6aUV2TU9UUDEzMis5bFMvT2liSDJNWllx?=
+ =?utf-8?B?d0M5dnNVdnpjWi9EbVJZZmREbnVhUHUxTWRwZnJEWlJuZkl3UFZBK2YvN0pp?=
+ =?utf-8?B?NzZCaWJaUDhlaDNyYksvL29ibDlOR1NFNlQyZ1pneDYwYmthOG9WZ1hDVHZD?=
+ =?utf-8?B?dXU3RGd3SUNxN1hWcUkwbS9mUnl2N2VhWEgzTytYS0V0aDB2ZnJRd1EyN2c5?=
+ =?utf-8?B?UHhIZVNyQmhJWGJjRFNtTTI3MlR5cnkzTXI2eU02K0dKeWhtRVhsdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f98694c-7d06-4b2a-40ab-08df2f436f2a
+X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB9730.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Oct 2026 07:17:58.5129 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RhsIes3p08tBAsbhuh+bzDx0w/VMcHR3tNO8PvrnMChMsTgxKi1JETZUV9b01Ce/Y+hseWlCOh5+PqQxHX0Syw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8738
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,111 +139,346 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+On 10/21/26 5:04 PM, mpenttil@redhat.com wrote:
+> From: Mika Penttilä <mpenttil@redhat.com>
+> 
+> For migration to happen after hmm_range_fault(), the vma has to
+> retrieved. Luckily, pagewalk already resolves that for us, so
+> just have to save it for further use. For migration, mmap_lock
+> has to be hold for the whole operation, so vma stays stable.
+> In case lock-drop behavior is requested, return an error while
+> migrating. Also, rename some struct hmm_vma_walk fields to solve
+> namespace collisions, and we are later introducing more
+> xxlocked fields so be unambiguous.
+> 
+> Take care also of firing the mmu_notifier when migrating.
+> 
+> Also, prepare for differencies of how mm_struct * is retrieved
+> in fault and migrate_vma paths.
+> 
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Jason Gunthorpe <jgg@nvidia.com>
+> Cc: Leon Romanovsky <leonro@nvidia.com>
+> Cc: Alistair Popple <apopple@nvidia.com>
+> Cc: Balbir Singh <balbirs@nvidia.com>
+> Cc: Zi Yan <ziy@nvidia.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Suggested-by: Alistair Popple <apopple@nvidia.com>
+> Signed-off-by: Mika Penttilä <mpenttil@redhat.com>
+> ---
+>  include/linux/migrate.h |  50 +++++++++++++++++-
+>  lib/test_hmm.c          |   2 +-
+>  mm/hmm.c                | 110 ++++++++++++++++++++++++++++++++++------
+>  3 files changed, 145 insertions(+), 17 deletions(-)
+> 
+> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
+> index 280ec9a866c7..dd7dd7ec6995 100644
+> --- a/include/linux/migrate.h
+> +++ b/include/linux/migrate.h
+> @@ -5,6 +5,7 @@
+>  #include <linux/mm.h>
+>  #include <linux/hmm.h>
+>  #include <linux/mempolicy.h>
+> +#include <linux/mmu_notifier.h>
+>  #include <linux/migrate_mode.h>
+>  #include <linux/hugetlb.h>
+>  
+> @@ -108,6 +109,29 @@ static inline void softleaf_entry_wait_on_locked(softleaf_t entry, spinlock_t *p
+>  	spin_unlock(ptl);
+>  }
+>  
+> +enum migrate_vma_info {
+> +	MIGRATE_VMA_SELECT_NONE = 0,
+> +	MIGRATE_VMA_SELECT_COMPOUND = MIGRATE_VMA_SELECT_NONE,
+> +};
+> +
+> +static inline enum migrate_vma_info hmm_select_migrate(struct hmm_range *range)
+> +{
+> +	return MIGRATE_VMA_SELECT_NONE;
+> +}
+> +
+> +static inline void hmm_fill_migrate_vma(struct hmm_range *range,
+> +					struct vm_area_struct *vma,
+> +					unsigned long start,
+> +					unsigned long end)
+> +{
+> +}
+> +
+> +#ifdef CONFIG_MMU_NOTIFIER
+> +static inline struct mm_struct *hmm_range_fault_mm(struct hmm_range *range)
+> +{
+> +	return range->notifier->mm;
+> +}
+> +#endif
+>  #endif /* CONFIG_MIGRATION */
+>  
+>  #ifdef CONFIG_NUMA_BALANCING
+> @@ -151,7 +175,8 @@ static inline unsigned long migrate_pfn(unsigned long pfn)
+>  	return (pfn << MIGRATE_PFN_SHIFT) | MIGRATE_PFN_VALID;
+>  }
+>  
+> -enum migrate_vma_direction {
+> +enum migrate_vma_info {
+> +	MIGRATE_VMA_SELECT_NONE = 0,
+>  	MIGRATE_VMA_SELECT_SYSTEM = 1 << 0,
+>  	MIGRATE_VMA_SELECT_DEVICE_PRIVATE = 1 << 1,
+>  	MIGRATE_VMA_SELECT_DEVICE_COHERENT = 1 << 2,
+> @@ -193,6 +218,29 @@ struct migrate_vma {
+>  	struct page		*fault_page;
+>  };
+>  
+> +// TODO: enable migration
+> +static inline enum migrate_vma_info hmm_select_migrate(struct hmm_range *range)
+> +{
+> +	return 0;
+> +}
+> +
+> +#ifdef CONFIG_MMU_NOTIFIER
+> +static inline struct mm_struct *hmm_range_fault_mm(struct hmm_range *range)
+> +{
+> +	return range->notifier ? range->notifier->mm : range->migrate->vma->vm_mm;
+> +}
+> +#endif
+> +
+> +static inline void hmm_fill_migrate_vma(struct hmm_range *range,
+> +					struct vm_area_struct *vma,
+> +					unsigned long start,
+> +					unsigned long end)
+> +{
+> +	range->migrate->vma   = vma;
+> +	range->migrate->start = start;
+> +	range->migrate->end   = end;
+> +}
+> +
+>  int migrate_vma_setup(struct migrate_vma *args);
+>  void migrate_vma_pages(struct migrate_vma *migrate);
+>  void migrate_vma_finalize(struct migrate_vma *migrate);
+> diff --git a/lib/test_hmm.c b/lib/test_hmm.c
+> index 6911daa9f854..cd88e8177d0a 100644
+> --- a/lib/test_hmm.c
+> +++ b/lib/test_hmm.c
+> @@ -145,7 +145,7 @@ static bool dmirror_is_private_zone(struct dmirror_device *mdevice)
+>  		HMM_DMIRROR_MEMORY_DEVICE_PRIVATE);
+>  }
+>  
+> -static enum migrate_vma_direction
+> +static enum migrate_vma_info
+>  dmirror_select_device(struct dmirror *dmirror)
+>  {
+>  	return (dmirror->mdevice->zone_device_type ==
+> diff --git a/mm/hmm.c b/mm/hmm.c
+> index 2f1e98c6b644..4e9542aedc25 100644
+> --- a/mm/hmm.c
+> +++ b/mm/hmm.c
+> @@ -21,6 +21,7 @@
+>  #include <linux/pagemap.h>
+>  #include <linux/leafops.h>
+>  #include <linux/hugetlb.h>
+> +#include <linux/migrate.h>
+>  #include <linux/memremap.h>
+>  #include <linux/sched/mm.h>
+>  #include <linux/jump_label.h>
+> @@ -28,15 +29,23 @@
+>  #include <linux/pci-p2pdma.h>
+>  #include <linux/mmu_notifier.h>
+>  #include <linux/memory_hotplug.h>
+> +#include <asm/tlbflush.h>
+>  
+>  #include "internal.h"
+>  
+>  struct hmm_vma_walk {
+> -	struct hmm_range	*range;
+> -	bool			*locked;
+> -	unsigned long		last;
+> -	unsigned long		end;
+> -	unsigned int		required_fault;
+> +	struct mmu_notifier_range	mmu_range;
+> +	/* Set once mmu_range is armed with mmu_notifier_invalidate_range_start() */
+> +	bool				mmu_armed;
+> +	struct vm_area_struct		*vma;
+> +	struct hmm_range		*range;
+> +	unsigned long			start;
+> +	unsigned long			end;
+> +	unsigned long			last;
+> +	/* fault and lock drop related fields */
+> +	bool				*mmlocked;
+> +	unsigned long			fault_end;
+> +	unsigned int			required_fault;
+>  };
+>  
+>  /*
+> @@ -95,7 +104,7 @@ static int hmm_record_fault(unsigned long addr, unsigned long end,
+>  
+>  	WARN_ON_ONCE(!required_fault);
+>  	hmm_vma_walk->last = addr;
+> -	hmm_vma_walk->end = end;
+> +	hmm_vma_walk->fault_end = end;
+>  	hmm_vma_walk->required_fault = required_fault;
+>  	return HMM_FAULT_PENDING;
+>  }
+> @@ -400,6 +409,58 @@ static int hmm_vma_handle_absent_pmd(struct mm_walk *walk, unsigned long start,
+>  }
+>  #endif  /* CONFIG_ARCH_HAS_PMD_SOFTLEAVES */
+>  
+> +static int hmm_vma_capture_migrate_range(unsigned long start,
+> +					 unsigned long end,
+> +					 struct mm_walk *walk)
+> +{
+> +	struct hmm_vma_walk *hmm_vma_walk = walk->private;
+> +	struct hmm_range *range = hmm_vma_walk->range;
+> +
+> +	if (!hmm_select_migrate(range))
+> +		return 0;
+> +
+> +	if (hmm_vma_walk->vma && (hmm_vma_walk->vma != walk->vma))
+> +		return -ERANGE;
+> +
+> +	hmm_vma_walk->vma = walk->vma;
 
-Handle the bypass logic for the M/N ratio limit for DP.
-Calculate the M/N ratio, check if it can bypass the limit, and set the
-appropriate flags for the workaround.
+I don't quite follow the check for -ERANGE, it checks for hmm_vma_walk->vma !=
+walk->vma, but then set's it later to be the same?
 
-v2:
--Restrict the workaround to 128b/132b links.
--Clear bypass_m_n_ratio_limit on entry, so a rejected link rate cannot
-leave it set for the rate that gets used. (Sashiko)
-v3:
--Rebase on the reworked M/N ratio check, which no longer checks m_n and
-link_n. m_n is no longer const, as the flag is set through it. (Mitul)
--Pass the cpu transcoder to intel_display_can_bypass_m_n_limit() instead
-of the pipe. (Mitul)
+> +
+> +	if (end - start > range->end - range->start)
+> +		return -ERANGE;
+> +
 
-Bspec: 49266
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Co-developed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 28 ++++++++++++++++++++-----
- drivers/gpu/drm/i915/display/intel_dp.h |  2 +-
- 2 files changed, 24 insertions(+), 6 deletions(-)
+Have we established that end > start and same for range->end > range->start?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 8ef6b4c4fc8e..8e6ba5b9fde6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1300,18 +1300,32 @@ intel_dp_can_support_m_n(struct intel_display *display,
- }
- 
- void intel_dp_check_m_n_ratio(const struct intel_crtc_state *crtc_state,
--			      const struct intel_link_m_n *m_n)
-+			      struct intel_link_m_n *m_n)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	int max_m_n_ratio = intel_dp_get_max_m_n_ratio(display);
- 	int m_n_ratio;
- 
-+	m_n->bypass_m_n_ratio_limit = false;
-+
- 	m_n_ratio = intel_dp_link_m_n_ratio(m_n->link_m, m_n->link_n);
- 
--	if (m_n_ratio > max_m_n_ratio)
-+	if (m_n_ratio <= max_m_n_ratio)
-+		return;
-+
-+	if (intel_dp_is_uhbr(crtc_state) &&
-+	    intel_display_can_bypass_m_n_limit(display, m_n_ratio,
-+					       crtc_state->cpu_transcoder)) {
-+		m_n->bypass_m_n_ratio_limit = true;
- 		drm_dbg_kms(display->drm,
--			    "Link M/N ratio (%d) exceeds max allowed (%d)\n",
--			    m_n_ratio, max_m_n_ratio);
-+			    "Bypassing Link_m/Link_n ratio limit (ratio %d)\n",
-+			    m_n_ratio);
-+		return;
-+	}
-+
-+	drm_dbg_kms(display->drm,
-+		    "Link M/N ratio (%d) exceeds max allowed (%d)\n",
-+		    m_n_ratio, max_m_n_ratio);
- }
- 
- static int intel_dp_mso_pixel_clock(struct intel_dp *intel_dp, int pixel_clock)
-@@ -3393,6 +3407,9 @@ static bool can_enable_drrs(struct intel_connector *connector,
- 	if (pipe_config->vrr.enable)
- 		return false;
- 
-+	if (pipe_config->dp_m_n.bypass_m_n_ratio_limit)
-+		return false;
-+
- 	/*
- 	 * DRRS and PSR can't be enable together, so giving preference to PSR
- 	 * as it allows more power-savings by complete shutting down display,
-@@ -3427,7 +3444,8 @@ intel_dp_drrs_compute_config(struct intel_connector *connector,
- 	 * FIXME all joined pipes share the same transcoder.
- 	 * Need to account for that when updating M/N live.
- 	 */
--	if (has_seamless_m_n(connector) && !pipe_config->joiner_pipes)
-+	if (has_seamless_m_n(connector) && !pipe_config->joiner_pipes &&
-+	    !pipe_config->dp_m_n.bypass_m_n_ratio_limit)
- 		pipe_config->update_m_n = true;
- 
- 	if (!can_enable_drrs(connector, pipe_config, downclock_mode)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 1e3da678c9b6..c834d90a1f81 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -246,6 +246,6 @@ int intel_dp_link_init(struct intel_dp *intel_dp);
- void intel_dp_link_cleanup(struct intel_dp *intel_dp);
- 
- void intel_dp_check_m_n_ratio(const struct intel_crtc_state *crtc_state,
--			      const struct intel_link_m_n *m_n);
-+			      struct intel_link_m_n *m_n);
- 
- #endif /* __INTEL_DP_H__ */
--- 
-2.34.1
+> +	if (!hmm_vma_walk->mmu_armed) {
+> +		hmm_vma_walk->start = start;
+> +		hmm_vma_walk->end = end;
+
+Does the walk range matter here?
+
+> +		mmu_notifier_range_init_owner(&hmm_vma_walk->mmu_range, MMU_NOTIFY_MIGRATE, 0,
+> +					      walk->vma->vm_mm, start, end,
+> +					      range->dev_private_owner);
+> +		mmu_notifier_invalidate_range_start(&hmm_vma_walk->mmu_range);
+> +		hmm_vma_walk->mmu_armed = true;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void hmm_vma_post_range_fault(struct hmm_vma_walk *hmm_vma_walk)
+> +{
+> +
+> +	struct hmm_range *range = hmm_vma_walk->range;
+> +
+> +	if (hmm_select_migrate(range) &&
+> +	    hmm_vma_walk->mmu_armed) {
+> +		/*
+> +		 *  The migrate_vma path has the following initialized,
+> +		 *  so take care of fault path below.
+> +		 */
+> +		if (range->notifier) {
+> +			hmm_fill_migrate_vma(range,
+> +					     hmm_vma_walk->vma,
+> +					     hmm_vma_walk->start,
+> +					     hmm_vma_walk->end);
+> +		}
+> +		mmu_notifier_invalidate_range_end(&hmm_vma_walk->mmu_range);
+> +	}
+> +}
+> +
+>  static int hmm_vma_walk_pmd(pmd_t *pmdp,
+>  			    unsigned long start,
+>  			    unsigned long end,
+> @@ -594,6 +655,11 @@ static int hmm_vma_walk_test(unsigned long start, unsigned long end,
+>  	struct hmm_vma_walk *hmm_vma_walk = walk->private;
+>  	struct hmm_range *range = hmm_vma_walk->range;
+>  	struct vm_area_struct *vma = walk->vma;
+> +	int r;
+> +
+> +	r = hmm_vma_capture_migrate_range(start, end, walk);
+> +	if (r)
+> +		return r;
+>  
+>  	if (!(vma->vm_flags & (VM_IO | VM_PFNMAP)) &&
+>  	    vma->vm_flags & VM_READ)
+> @@ -646,12 +712,12 @@ static int hmm_do_fault(struct mm_struct *mm,
+>  			struct hmm_vma_walk *hmm_vma_walk)
+>  {
+>  	unsigned long addr = hmm_vma_walk->last;
+> -	unsigned long end = hmm_vma_walk->end;
+> +	unsigned long end = hmm_vma_walk->fault_end;
+>  	unsigned int required_fault = hmm_vma_walk->required_fault;
+>  	unsigned int fault_flags = FAULT_FLAG_REMOTE;
+>  	struct vm_area_struct *vma;
+>  
+> -	if (hmm_vma_walk->locked)
+> +	if (hmm_vma_walk->mmlocked)
+>  		fault_flags |= FAULT_FLAG_ALLOW_RETRY | FAULT_FLAG_KILLABLE;
+>  
+>  	vma = vma_lookup(mm, addr);
+> @@ -670,8 +736,8 @@ static int hmm_do_fault(struct mm_struct *mm,
+>  		ret = handle_mm_fault(vma, addr, fault_flags, NULL);
+>  
+>  		if (ret & (VM_FAULT_COMPLETED | VM_FAULT_RETRY)) {
+> -			if (hmm_vma_walk->locked)    /* needed by sparse */
+> -				*hmm_vma_walk->locked = false;
+> +			if (hmm_vma_walk->mmlocked)    /* needed by sparse */
+> +				*hmm_vma_walk->mmlocked = false;
+>  			else
+>  				WARN_ON_ONCE(1);    /* broken fault handler */
+>  			return HMM_FAULT_UNLOCKED;
+> @@ -694,19 +760,31 @@ static int hmm_range_fault_locked(struct hmm_range *range, bool *locked)
+>  {
+>  	struct hmm_vma_walk hmm_vma_walk = {
+>  		.range = range,
+> -		.locked = locked,
+> +		.mmlocked = locked,
+>  		.last = range->start,
+>  	};
+> -	struct mm_struct *mm = range->notifier->mm;
+> +	/*
+> +	 *  Could be serving a device fault or come from migrate
+> +	 *  entry point. For the former we have not resolved the vma
+> +	 *  yet, and the latter we don't have a notifier (but have a vma).
+> +	 *
+> +	 */
+> +	struct mm_struct *mm = hmm_range_fault_mm(range);
+>  	int ret;
+>  
+> +	/* Migration is incompatible with mmap lock drop */
+> +	if (locked && hmm_select_migrate(range))
+> +		return -EINVAL;
+> +
+>  	mmap_assert_locked(mm);
+>  
+>  	do {
+>  		/* If range is no longer valid force retry. */
+> -		if (mmu_interval_check_retry(range->notifier,
+> -					     range->notifier_seq))
+> -			return -EBUSY;
+> +		if (range->notifier && mmu_interval_check_retry(range->notifier,
+> +								range->notifier_seq)) {
+> +			ret =  -EBUSY;
+> +			break;
+> +		}
+>  		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
+>  				      &hmm_walk_ops, &hmm_vma_walk);
+>  		/*
+> @@ -732,6 +810,8 @@ static int hmm_range_fault_locked(struct hmm_range *range, bool *locked)
+>  		 * output, and all >= are still at their input values.
+>  		 */
+>  	} while (ret == -EBUSY);
+> +
+> +	hmm_vma_post_range_fault(&hmm_vma_walk);
+
+Have you checked to see if we could end up with notifier start/end inbalance?
+For example if hmm_select_migrate returns false?
+
+>  	return ret;
+>  }
+>  
 
