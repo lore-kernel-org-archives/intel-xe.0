@@ -2,61 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822F6606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 05:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D678E606A319
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 05:13:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=L5ymFnrw
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lEV6BD+J
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48CB210E3B8;
-	Thu, 22 Oct 2026 05:07:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A7D610E3B8
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 05:06:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDF7112307;
+	Thu, 22 Oct 2026 05:13:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C269010E1F9
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 05:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792645615; x=1824181615;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=sL5G3tsQ4p1M6Affs6+C+pd/ZuX8xgA0DkPs+T3IitQ=;
- b=L5ymFnrwOvq79tSdZk5uD1LY5naNVn9dAwAy/Rqee2q4xDl219cfCfJT
- XSs9VTP5hFlZOtsZe45dtuupxXu2RuVRRPNWWK0SZKUP1LAajIx5SKjxa
- 1bKh/UPlWdb7lOE7UFIrbc4rZEq9cHNpO0sap4zUFh1vBkR2fjkG3DOuF
- Lwpo5E94YQGo7uzr3V1QmfCT2mqXfPaRDuPymfqTrHDX2PGPSN+bYRL6S
- p1+7afVwJqavD1Qq0Fvvw6VbOXdZcDtYOvt5yTfjxgN5fe3c12co01AzK
- h3Ozjaod7wfATWpX9E63/5LPM6y34kYuxMFnjwbVL4uTEW+Linv/KC7KL w==;
-X-CSE-ConnectionGUID: c74qDCx0QK2/+tSfXfHvUA==
-X-CSE-MsgGUID: 74ChyyMhQMuwq35b1jQwJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1283391"
+ t=1792646005; x=1824182005;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VjmHF3jqx2EcPIbdpdTFM1AoWRJtLkje+V8V3/TDB+Y=;
+ b=lEV6BD+JmIS+nrPj9JYaQLWKUx2Aik24OwSzkaSoXPVbIpn8qz6bY66Q
+ T2temk4PGe5q6Kqf/Yb3L/3XdwyYzdIGY04OOuzMlMAWo0ktZysx0kLm8
+ 4hL5M707iSj3uSzKDWPAu5zGnTs2BJ669nMGbYRwtpWBcfsc+4zno46JY
+ fQ1QQX8MdGU7PvehzsLWv0yu5w4D/6ol4jSJCNsKX5mdEHUFP6DRQyVLU
+ 8R/RqqulXwn84GI+Naoo6aAg4asuhLB8mebE6No80VaLgxLJHp5yyLmsw
+ Zbd9sF++QNv+/mYcrxZPKSoahYFAZAsdHmzNfXJ5w7JxIOOAq1jbQ3N14 g==;
+X-CSE-ConnectionGUID: IR0y2pSAR9CF895akrjQWw==
+X-CSE-MsgGUID: uDL29HRRQ+aFo9HVLhaw/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1393918"
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="1283391"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 22:06:55 -0700
-X-CSE-ConnectionGUID: KSBAcESQRFiK4rO6KYfmXQ==
-X-CSE-MsgGUID: nm4JJZA4SrKHG9ul7YsjDg==
+   d="scan'208";a="1393918"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 22:13:24 -0700
+X-CSE-ConnectionGUID: TGB9BJ+YS3OQcktgNNJW+w==
+X-CSE-MsgGUID: mW5cF6wZRWihD0HFtdR4zA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="5118515"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 22:06:54 -0700
-Date: Thu, 22 Oct 2026 07:06:50 +0200
+   d="scan'208";a="3268700"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa004.jf.intel.com with ESMTP; 21 Oct 2026 22:13:22 -0700
 From: Raag Jadav <raag.jadav@intel.com>
-To: "Tauro, Riana" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, michal.wajdeczko@intel.com,
- lukasz.laguna@intel.com, matthew.d.roper@intel.com,
- matthew.brost@intel.com, mallesh.koujalagi@intel.com,
- rodrigo.vivi@intel.com
-Subject: Re: [PATCH v13 7/9] drm/xe/amc: Guard xe_amc_work() with runtime PM
-Message-ID: <atmZ6r0OxAhzATjF@black.igk.intel.com>
-References: <20261020023641.200658-1-raag.jadav@intel.com>
- <20261020023641.200658-8-raag.jadav@intel.com>
- <c51e19af-aa41-491a-b1c9-07ba5ea17de6@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
+ matthew.d.roper@intel.com, matthew.brost@intel.com,
+ mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v14 0/9] Introduce xe_wedge
+Date: Thu, 22 Oct 2026 10:42:24 +0530
+Message-ID: <20261022051303.282805-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c51e19af-aa41-491a-b1c9-07ba5ea17de6@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,83 +62,105 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 22, 2026 at 10:09:47AM +0530, Tauro, Riana wrote:
-> 
-> On 20-10-2026 08:06, Raag Jadav wrote:
-> > xe_device_declare_wedged() callers are expected to hold a runtime PM
-> > reference. Fix it.
-> > 
-> > Fixes: a55b76b8bc2c ("drm/xe/i2c: Fix the interrupt handling")
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> > v10: Guard wedge callers with runtime PM (Sashiko)
-> > v11: Use traditional xe_pm_runtime_get/put() with goto (Sashiko)
-> > ---
-> >   drivers/gpu/drm/xe/xe_amc.c | 7 +++++++
-> >   1 file changed, 7 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_amc.c b/drivers/gpu/drm/xe/xe_amc.c
-> > index b7390a4ee3ce..1f85df598e56 100644
-> > --- a/drivers/gpu/drm/xe/xe_amc.c
-> > +++ b/drivers/gpu/drm/xe/xe_amc.c
-> > @@ -15,9 +15,11 @@
-> >   #include "regs/xe_i2c_regs.h"
-> >   #include "xe_amc.h"
-> > +#include "xe_any.h"
-> >   #include "xe_device.h"
-> >   #include "xe_i2c.h"
-> >   #include "xe_mmio.h"
-> > +#include "xe_pm.h"
-> >   /**
-> >    * DOC: Add-In Management Controller (AMC)
-> > @@ -108,11 +110,14 @@ static void xe_amc_work(struct work_struct *work)
-> >   {
-> >   	const struct amc_request *request = &amc_get_alert_reason;
-> >   	struct xe_amc *amc = from_work(amc, work, work);
-> > +	struct xe_device *xe = xe_any_to_xe(amc->i2c->drm_dev);
-> >   	u8 alert_reason = AMC_ALERT_UNKNOWN;
-> >   	struct amc_response response;
-> >   	struct i2c_client *client;
-> >   	int ret;
-> > +	xe_pm_runtime_get(xe);
-> 
-> Even though Sashiko did complain about guard.
-> Wouldn't usage of guard maintain consistency and be better here?
+In the history of xe technical debt, this series takes one more step and
+consolidates all wedging implementation into a dedicated xe_wedge component.
 
-I don't know enough about guard to suspect the side effects (if any),
-so just following the documentation.
+While at it, this fixes a few pre-existing issues related to wedge handling.
+Detailed description in commit message.
 
-include/linux/cleanup.h +148
+ v1: https://patchwork.freedesktop.org/series/172727/
 
- * Lastly, given that the benefit of cleanup helpers is removal of
- * "goto", and that the "goto" statement can jump between scopes, the
- * expectation is that usage of "goto" and cleanup helpers is never
- * mixed in the same function. I.e. for a given routine, convert all
- * resources that need a "goto" cleanup to scope-based cleanup, or
- * convert none of them.
+ v2: Split fixes into separate patches (Rodrigo, Michal)
+     Also move struct xe_wedge and wedged_mode debt to xe_wedge (Lukasz, Michal)
+     Naming and aesthetic adjustments (Lukasz, Michal)
 
-> With or without guard
-> Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+ v3: Respect the component namespace (Rodrigo)
+     Avoid chaining header includes (Rodrigo)
+     Squash debugfs changes with xe_wedge patch (Lukasz)
 
-Awesome.
+ v4: Introduce for_each_initialized_gt() (Michal)
+     Include xe_sriov.h (Rodrigo)
 
-Raag
+ v5: Flush GT wedge worker to avoid races (Sashiko)
+     Drop IRQ safe wedging for its flawed design
 
-> >   	client = amc->i2c->client[XE_I2C_CLIENT_AMC];
-> >   	if (IS_ERR_OR_NULL(client))
-> >   		goto out_reassert_interrupt;
-> > @@ -167,6 +172,8 @@ static void xe_amc_work(struct work_struct *work)
-> >   		dev_warn(amc->i2c->drm_dev, "unknown AMC alert: %d\n", alert_reason);
-> >   		break;
-> >   	}
-> > +
-> > +	xe_pm_runtime_put(xe);
-> >   }
-> >   void xe_amc_handle_alert(struct xe_i2c *i2c)
+ v6: Move wedge worker initialization to xe_gt_init_early() (Rodrigo)
+     Don't flush GT wedge worker to avoid deadlock (Sashiko)
+     Include IRQ safe wedging with redesign
+
+ v7: Guard GT wedge worker with runtime PM (Rodrigo)
+     Retain xe_pm_runtime_get_noresume() in IRQ context (Rodrigo)
+
+ v8: Rebase
+
+ v9: Drop runtime PM guard from GT wedge worker (Matthew Brost)
+
+v10: Guard wedge callers with runtime PM (Sashiko)
+
+v11: Use traditional xe_pm_runtime_get/put() with goto (Sashiko)
+
+v12: Teardown GT wedge worker alongside GT reset worker (Sashiko)
+
+v13: Avoid deadlock with GuC CT waiters (Sashiko)
+
+v14: Rebase
+
+Raag Jadav (9):
+  drm/xe/gt: Use GT ordered workqueue for wedging
+  drm/xe: Drop xe_device_set_wedged_method()
+  drm/xe/hw_error: Guard csc_hw_error_work() with runtime PM
+  drm/xe: Move xe_device_wedged_fini() registration to
+    xe_device_probe_early()
+  drm/xe: Make xe_device_declare_wedged() IRQ safe
+  drm/xe/pci_error: Flush GT wedge worker before bus reset
+  drm/xe/amc: Guard xe_amc_work() with runtime PM
+  drm/xe: Introduce xe_wedge
+  drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
+ Documentation/gpu/xe/xe_device.rst          |   2 +-
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/tests/xe_kunit_helpers.c |   3 +-
+ drivers/gpu/drm/xe/xe_amc.c                 |  11 +-
+ drivers/gpu/drm/xe/xe_bo.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_debugfs.c             |  66 +----
+ drivers/gpu/drm/xe/xe_device.c              | 190 +-------------
+ drivers/gpu/drm/xe/xe_device.h              |  14 +-
+ drivers/gpu/drm/xe/xe_device_types.h        |  28 +--
+ drivers/gpu/drm/xe/xe_gsc.c                 |   4 +-
+ drivers/gpu/drm/xe/xe_gt.c                  |  48 +++-
+ drivers/gpu/drm/xe/xe_gt.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c         |   3 +-
+ drivers/gpu/drm/xe/xe_gt_types.h            |   9 +
+ drivers/gpu/drm/xe/xe_guc.c                 |   5 +-
+ drivers/gpu/drm/xe/xe_guc.h                 |   2 +-
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   7 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  11 +-
+ drivers/gpu/drm/xe/xe_guc_rc.c              |   5 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  14 +-
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c       |   3 +-
+ drivers/gpu/drm/xe/xe_hw_error.c            |   2 +
+ drivers/gpu/drm/xe/xe_mert.c                |   5 +-
+ drivers/gpu/drm/xe/xe_pci_error.c           |  13 +-
+ drivers/gpu/drm/xe/xe_ras.c                 |  11 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c            |   3 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c  |   4 +-
+ drivers/gpu/drm/xe/xe_uc.c                  |   6 +-
+ drivers/gpu/drm/xe/xe_uc.h                  |   2 +-
+ drivers/gpu/drm/xe/xe_wedge.c               | 262 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wedge.h               |  24 ++
+ drivers/gpu/drm/xe/xe_wedge_types.h         |  44 ++++
+ 32 files changed, 468 insertions(+), 339 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.c
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge.h
+ create mode 100644 drivers/gpu/drm/xe/xe_wedge_types.h
+
+-- 
+2.43.0
+
