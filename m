@@ -2,52 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D1E606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 11:56:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80E7E606A319
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 11:56:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lNZhDwB0
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JkanqJ9g
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52F8A1124FF;
-	Thu, 22 Oct 2026 11:56:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BD9510E3CA;
+	Thu, 22 Oct 2026 11:56:03 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6ABB31124F7;
- Thu, 22 Oct 2026 11:55:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE5AA10E3CA;
+ Thu, 22 Oct 2026 11:55:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792670154; x=1824206154;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=h/JWciE/zqOawMBc4eu8WWLPnO2WMTYl5jgLGWINQfw=;
- b=lNZhDwB0/Kx+3uZPF0oPqNIPh9KeVR83ujOMuYGdFSJNIT0jdGGnU/5o
- Km6SuCd5kelRVUy1TuS9ptiwNLYrdaU1LxuLY1URpHAGSr9ot9uwcws/U
- ny8VhpT5TQ/70kOKmy+Gzti/WuZHWiRw2+jfvNLIl/nSDxfR13fPwOPPs
- WJWRmQ2T+aoMd2XwEs5JATMf2fd8wte5nHF9OtALCnYDNdZrqCFGLBnva
- YLkjSE2KcToT8ZmQA6OAyPL2FAbDFBl4L9D88DBbLoUP0qaUufWvMlJ8G
- /rdn9rF4t9PHOdMVNC/kNFq3juPtecI6JmgyJhXDZbuWIBaVR52GEtFQS Q==;
-X-CSE-ConnectionGUID: CxHBJ8s3RwWBmAhC2ltztg==
-X-CSE-MsgGUID: GbrIf+9FR5OmpF/BTR6Hkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1520050"
+ t=1792670157; x=1824206157;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cgxJgoa7zjAIUI9lAxp+ygzdaQjNT6EBd3VtVKwY6LA=;
+ b=JkanqJ9grnvaDt3LIGAH7uh7joRTOEc7quZV6wGc+qJUrEAoEbpqnHKn
+ UXI50wCd6Lt8IoEi6HVsb2OJZQ/NedwYXVI1q3LB7QN9NTpjucxooGAOn
+ TAbou8SZpOctqdKV9RkurOyjM2wfzqVtk98LoykI5tL803EkYISLOK1NC
+ jPxJwy2zbUsM6T409erZxyphMsFq81/+YI9Fr0FCUOLnqNm1kC+kY5JfV
+ NjgRgFyVQCayVBlORhWhFTDrCHott/KyPLhIpAI6mCrUD8ssCP35rt0a4
+ XHiHUZP13meXMANxIQ+qnVnQ0ADWTmeAjgrAquT4ZZffURkKEwlRQMI0B Q==;
+X-CSE-ConnectionGUID: ZIaEVmtOTsCDBDinhpw+5w==
+X-CSE-MsgGUID: Ebx2+VuaRrqN5h8oBPzv+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1520060"
 X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="1520050"
+   d="scan'208";a="1520060"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 04:55:53 -0700
-X-CSE-ConnectionGUID: kchFZ5gzS8OlaR5l/naZ4Q==
-X-CSE-MsgGUID: c1cK8P+8RZe0gA3qwpVCLA==
+ 22 Oct 2026 04:55:57 -0700
+X-CSE-ConnectionGUID: dtRsaqkWTYGDWCP1nqMZFQ==
+X-CSE-MsgGUID: F4gl3n75SIi+sdIGeNdAgQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="3351452"
+   d="scan'208";a="3351465"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.245])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 04:55:52 -0700
+ 22 Oct 2026 04:55:56 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/4] drm/i915: Optimize registers accesses in irq handlers
-Date: Thu, 22 Oct 2026 14:55:44 +0300
-Message-ID: <20261022115548.32678-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/4] drm/i915: Use intel_de_read64_2x32_volatile_fw() for
+ IVB_TIMESTAMP_CTR+PIPE_FRMTMSTMP query
+Date: Thu, 22 Oct 2026 14:55:45 +0300
+Message-ID: <20261022115548.32678-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261022115548.32678-1-ville.syrjala@linux.intel.com>
+References: <20261022115548.32678-1-ville.syrjala@linux.intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -64,45 +67,82 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-MMIO is incredible expensive on some of our platforms (especially
-the new ones). Switch to the cheaper _fw() register accessors
-in irq handlers to avoid adding a lot more costly FPGA_DBG MMIO
-reads to them when I (eventually) hoist the unclaimed register
-detection to the display code (and thus bring it over to xe
-as well).
+Switch the combined IVB_TIMESTAMP_CTR+PIPE_FRMTMSTMP read to
+use intel_de_read64_2x32_volatile_fw(). It basically does the
+same thing that we were doing by hand, and both are already
+using the intel_de_read_fw().
 
-ILK-HSW are still left with the more costly variants. I'm thinking
-I might try to convert them as well at some point, but that'll
-need some extra testing (especially on IVB/HSW which might
-suffer from some system hangs from parallel MMIO accesses to the
-same cacheline). MMIO isn't super expnsive on those platforms
-so might not matter too much. SNB/IVB are epscially cheap with
-~70 ns for both reads and writes. ILK and HSW are bit more
-expensive in the 100-200 ns range.
+This has a few functional changes:
+- intel_de_read64_2x32_volatile_fw() has a retry limit, the
+  old code did not
+- when retrying intel_de_read64_2x32_volatile_fw() reads each
+  register once, the old code always read PIPE_FRMTMSTMP twice
+  and IVB_TIMESTAMP_CTR once
 
-Ville Syrjälä (4):
-  drm/i915: Use intel_de_read64_2x32_volatile_fw() for
-    IVB_TIMESTAMP_CTR+PIPE_FRMTMSTMP query
-  drm/i915: Use intel_de_{read,write})fw() in BDW+ irq handlers
-  drm/i915: Use intel_de_{read,write})fw() in VLV/CHV irq handlers
-  drm/i915: Skip redundant frame/scanline/time reads for async flips
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vblank.c | 34 +++++++--------------
+ 1 file changed, 11 insertions(+), 23 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_crtc.c     | 10 +-
- .../gpu/drm/i915/display/intel_display_irq.c  | 94 +++++++++----------
- drivers/gpu/drm/i915/display/intel_dmc.c      |  6 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  | 26 ++---
- drivers/gpu/drm/i915/display/intel_vblank.c   | 34 +++----
- 5 files changed, 81 insertions(+), 89 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 99cb648cab73..1d4753605675 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -142,34 +142,22 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
+ 	const struct drm_display_mode *mode = &vblank->hwmode;
+ 	u32 htotal = mode->crtc_htotal;
+ 	u32 clock = mode->crtc_clock;
+-	u32 scan_prev_time, scan_curr_time, scan_post_time;
++	u32 curr_time, frame_time;
++	u64 result;
+ 
+ 	/*
+-	 * To avoid the race condition where we might cross into the
+-	 * next vblank just between the PIPE_FRMTMSTMP and TIMESTAMP_CTR
+-	 * reads. We make sure we read PIPE_FRMTMSTMP and TIMESTAMP_CTR
+-	 * during the same frame.
++	 * IVB_TIMESTAMP_CTR is the current timestamp, PIPE_FRMTMSTMP
++	 * is the sampled timestamp at the start of the previous
++	 * delayed vblank. intel_de_read64_2x32_volatile_fw() gives
++	 * a race free snapshot of both registers.
+ 	 */
+-	do {
+-		/*
+-		 * This field provides read back of the display
+-		 * pipe frame time stamp. The time stamp value
+-		 * is sampled at every start of vertical blank.
+-		 */
+-		scan_prev_time = intel_de_read_fw(display,
++	result = intel_de_read64_2x32_volatile_fw(display,
++						  IVB_TIMESTAMP_CTR,
+ 						  PIPE_FRMTMSTMP(crtc->pipe));
++	curr_time = lower_32_bits(result);
++	frame_time = upper_32_bits(result);
+ 
+-		/*
+-		 * The TIMESTAMP_CTR register has the current
+-		 * time stamp value.
+-		 */
+-		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
+-
+-		scan_post_time = intel_de_read_fw(display,
+-						  PIPE_FRMTMSTMP(crtc->pipe));
+-	} while (scan_post_time != scan_prev_time);
+-
+-	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
++	return div_u64(mul_u32_u32(curr_time - frame_time,
+ 				   clock), 1000 * htotal);
+ }
+ 
 -- 
 2.55.0
 
