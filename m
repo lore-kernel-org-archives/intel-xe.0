@@ -2,63 +2,70 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59F6C60A5BE3
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 13:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9323F606A31A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 13:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZOoCsIa8
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NdI1FTWA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E587112649;
-	Thu, 22 Oct 2026 13:47:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC1AE112664
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 13:46:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53EB5112654;
+	Thu, 22 Oct 2026 13:58:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A74A112654;
+ Thu, 22 Oct 2026 13:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792676816; x=1824212816;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=yV8XX6WhGMGFh7n+OvetCW7+8G2xuBfQDMt2XGpPdro=;
- b=ZOoCsIa8gcBl4n3x1bmH8780cLWf/ShxHbrZMgXDdn1qQDQNIhI6/Ppb
- +50EuzlCGXJYo7TipzEy/Gv9Qh1tGs/KH7MS38+G2qFs8TPUj9yUwQZX9
- /Ak1FXEQvgC14Y8ZPQg9cgImxM/l85Ypa2ZKcYqGxhShMZg71L65ufOpk
- suXz1Yq3O8y86xSNuGVTijRbrlnzezAXwIp1yURFEFAKK71Ng2gfvDdPc
- mtuvHRUAVOcXPbvdfZTlurLmCq7f94Fo++3fW7WDdWpfNlA8KqYbOvFwe
- siauH/ZJXCpRlZdpCy/9kBhGZ9ZB0hzGadomlxm5/OCZBvpqztXFNOPME Q==;
-X-CSE-ConnectionGUID: l5Btp6YKTWWN4I1RiFoGxg==
-X-CSE-MsgGUID: ptETapyNR42m1EJQ3MShfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1315255"
+ t=1792677479; x=1824213479;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=vqFHmZHGB7nmSDfdqVWuVwioVVKAAt1/3ZALRMmBees=;
+ b=NdI1FTWA3UnJqP58nEo1aBHbwwDFmt1pEJoq8wO9ZzhTV5bJ+FR2MXch
+ GUgMJVq5CWvvPeEGm0Cjn6DxdNHeVyv5V91+oto4eDHwWEg0PuPArgLoh
+ uNyb64dAy4nTmCYHPDvB25z/w9CgApkuIxJOci9FQLFUkWbadW6LfNtpU
+ BiVcJWuBIB54V087FsA+HFQqGc8hbXf4ONWXTPT908gH5Abv2E1eQ8bkH
+ Z25PJXnD42/UtMXlmhZqcNw/6XSvdqRYDJNiWx7dyLUIAqd+Hi/oXPt+W
+ fwoEaJWxHOJzS9qs1HsUQzFjbnm2V1ysclKLxQOteLJlc/aflYjmow7q1 A==;
+X-CSE-ConnectionGUID: coiksT86RkSqaUjEqhNAeQ==
+X-CSE-MsgGUID: Ss3GLv2kRVSAUBdHDQpsDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1434194"
 X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="1315255"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 06:46:55 -0700
-X-CSE-ConnectionGUID: 3rSzR0j1Qb60dKGq2L4uQg==
-X-CSE-MsgGUID: ELvI7/4BSvywJ+KLnBVAmA==
+   d="scan'208";a="1434194"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2026 06:57:58 -0700
+X-CSE-ConnectionGUID: h8qbDZZqT7m+FJdo3bpTiQ==
+X-CSE-MsgGUID: 9Aa4p+p9RrGgAGD31BNOeg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="3297887"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.245.243])
- ([10.245.245.243])
+   d="scan'208";a="5211010"
+Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.245.180])
+ ([10.245.245.180])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 06:46:54 -0700
-Message-ID: <3afd42cd-d251-4bb3-9925-06078f35306c@intel.com>
-Date: Thu, 22 Oct 2026 14:46:52 +0100
+ 22 Oct 2026 06:57:55 -0700
+Message-ID: <76d5115564d88428ce2a67447075582b5da78c9a.camel@linux.intel.com>
+Subject: Re: [PATCH RFC 01/26] dma-buf: Introduce DMA-buf mapping types
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>, Christian Koenig	
+ <christian.koenig@amd.com>, Dongwon Kim <dongwon.kim@intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ iommu@lists.linux.dev, Kevin Tian <kevin.tian@intel.com>, Leon Romanovsky	
+ <leonro@nvidia.com>, linaro-mm-sig@lists.linaro.org, 
+ linux-media@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Vivek Kasireddy	 <vivek.kasireddy@intel.com>
+Date: Thu, 22 Oct 2026 15:57:52 +0200
+In-Reply-To: <atnkjQNkgXTmfecD@nvdebian.thelocal>
+References: <1-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
+ <b5d1bc79fae01fd9b511e06ed796130314ff841b.camel@linux.intel.com>
+ <20261021123755.GL3008132@nvidia.com> <atmurtZOhKwwGjV3@nvdebian.thelocal>
+ <6eeb6257a6ab3b5db384aeb255623a11cb09c603.camel@linux.intel.com>
+ <atnkjQNkgXTmfecD@nvdebian.thelocal>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] drm/xe/pat: always check is_valid() when querying
- an index
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Cc: "Teres Alexis, Alan Previn" <alan.previn.teres.alexis@intel.com>
-References: <20261022120915.138606-5-matthew.auld@intel.com>
- <20261022120915.138606-8-matthew.auld@intel.com>
- <DS0PR11MB871825975B301935CD33606381652@DS0PR11MB8718.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <DS0PR11MB871825975B301935CD33606381652@DS0PR11MB8718.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,144 +76,304 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 22/10/2026 13:41, Upadhyay, Tejas wrote:
-> 
-> 
->> -----Original Message-----
->> From: Auld, Matthew <matthew.auld@intel.com>
->> Sent: 22 October 2026 17:39
->> To: intel-xe@lists.freedesktop.org
->> Cc: Teres Alexis, Alan Previn <alan.previn.teres.alexis@intel.com>; Upadhyay,
->> Tejas <tejas.upadhyay@intel.com>
->> Subject: [PATCH v3 3/3] drm/xe/pat: always check is_valid() when querying an
->> index
->>
->> Make the bevaviour consistent. If trying to extract comp or l3 on an unknown
->> index, just treat as a programmer error, like we already do for coh_mode
->> (implicit).
->>
->> v2 (Tejas):
->>    - Make is_valid() return false for an index which is out of range, to
->>      avoid multiple WARNs.
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
->> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_pat.c | 10 ++++++----  drivers/gpu/drm/xe/xe_pat.h
->> |  6 ++++--
->>   2 files changed, 10 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c index
->> d239693b803b..53c5f4030bf8 100644
->> --- a/drivers/gpu/drm/xe/xe_pat.c
->> +++ b/drivers/gpu/drm/xe/xe_pat.c
->> @@ -297,13 +297,15 @@ static const struct xe_pat_table_entry
->> xe3p_lpg_pat_table[] = {
->>
->>   bool xe_pat_index_is_valid(struct xe_device *xe, u16 pat_index)  {
->> -	WARN_ON(pat_index >= xe->pat.n_entries);
->> +	if (WARN_ON(pat_index >= xe->pat.n_entries))
->> +		return false;
->> +
->>   	return xe->pat.table[pat_index].valid;  }
->>
->>   u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)  {
->> -	WARN_ON(pat_index >= xe->pat.n_entries);
->> +	WARN_ON(!xe_pat_index_is_valid(xe, pat_index));
-> 
-> With that we need something like below right or else still we will have 2 warns for same check, let me know your view :
+ * On Thu, 2026-10-22 at 22:17 +1100, Alistair Popple wrote:
+> On 2026-10-22 at 18:25 +1100, Thomas Hellstr=C3=B6m
+> <thomas.hellstrom@linux.intel.com> wrote...
+> > On Thu, 2026-10-22 at 17:52 +1100, Alistair Popple wrote:
+> > > On 2026-10-21 at 23:37 +1100, Jason Gunthorpe <jgg@nvidia.com>
+> > > wrote...
+> > > > On Wed, Oct 21, 2026 at 08:24:40AM +0200, Thomas Hellstr=C3=B6m
+> > > > wrote:
+> > > > > > struct dma_buf_mapping_exp_ops
+> > > > > > =C2=A0=C2=A0 Base type for the per-mapping type exporter provid=
+ed
+> > > > > > functions.
+> > > > > > This
+> > > > > > =C2=A0=C2=A0 would be the map/unmap callbacks. Each mapping typ=
+e can
+> > > > > > provide
+> > > > > > its own
+> > > > > > =C2=A0=C2=A0 functions for map/unmap type operations with optim=
+al
+> > > > > > type
+> > > > > > signatures.
+> > > > >=20
+> > > > > Does it make sense to try to land this patch first, plus a
+> > > > > conversion
+> > > > > of pcie_p2p so we could agree on what the contract should
+> > > > > look
+> > > > > like?
+> > > >=20
+> > > > I think it would be good to focus on this patch as the main
+> > > > 'crux'
+> > > > of
+> > > > the series. The API contract is the main agreement. I'm
+> > > > relucant to
+> > > > merge code that has no users, so it woudl be ebtter to go up to
+> > > > at
+> > > > least through SGT.
+> > > > =C2=A0
+> > > > > s/mapping/interconnect/? My gut feeling is that
+> > > > > "interconnect"
+> > > > > best
+> > > > > describes what's typically going on, but "mapping" perhaps
+> > > > > better
+> > > > > describes all cases.
+> > > >=20
+> > > > My intention was to cover more than just the phyiscal
+> > > > transport. We
+> > > > do
+> > > > really want to get away from scatterlist, so having PCIe map
+> > > > with
+> > > > scatterlist and PCIe map with <something else> still ends up
+> > > > with
+> > > > two
+> > > > mapping types in the system.
+> > > >=20
+> > > > This is why I choose the name over interconnect.
+> > > >=20
+> > > > > Location of common protocols which typically carry cross-
+> > > > > subsystem
+> > > > > dependencies?
+> > > > > drivers/dma-buf/mapping_types? drivers/dma-buf/interconnects?
+> > > >=20
+> > > > I'd encourage people to design more like PCI where the actual
+> > > > *interconnect* has its own home and there is just some minor
+> > > > call
+> > > > outs
+> > > > from dmabuf to help the matching logic.
+> > > >=20
+> > > > > As discussed previously:=20
+> > > > > Agree on theoretically possible matches at attach time, Match
+> > > > > at
+> > > > > mapping time and guarantee the match is valid until
+> > > > > invalidate_mappings().
+> > > >=20
+> > > > I was thinking about this some more, and I'm less sure now.
+> > > >=20
+> > > > If I think about mlx5, in a multi-path PCIe configuration, it
+> > > > can
+> > > > move
+> > > > the translation around within a single PCIe path, but it cannot
+> > > > move
+> > > > it to another path without creating disruption for the
+> > > > application. This is a HW limitation in how the internal
+> > > > routing
+> > > > works..
+> > > >=20
+> > > > I strongly suspect this will be the norm for any hardware that
+> > > > doesn't
+> > > > rely on decorated page tables to select the IO path..
+> > > >=20
+> > > > So, while I agree we should support hardware that can fully
+> > > > change
+> > > > the
+> > > > path on each and every map, we also need to suport hardware
+> > > > that
+> > > > must
+> > > > pin the path during attach.
+> > > >=20
+> > > > Probably this points to needing a 'pin' operation for the
+> > > > mapping
+> > > > selection after attach.
+> > >=20
+> > > If I'm understanding things correctly we're expecting a change in
+> > > path between
+> > > attach and map time to be rare in practice. Therefore the need to
+> > > handle this
+> > > case is mostly as a fallback to not break things. So instead of
+> > > pinning could
+> > > new attachments just invalidate all existing incompatible
+> > > attachments
+> > > on the
+> > > list by setting eg. attach->valid =3D 0?
+> >=20
+> > I agree, (although I think the "invalidate_attachment" needs to be
+> > discussed). In the end the importer should be given a choice,
+> > either
+> > pin=C2=A0 and accept that subsequent attachers might see errors or
+> > accept
+> > app disruption.
+> >=20
+> > >=20
+> > > Attachment could also scan existing attachments to preferentially
+> > > pick matching
+> > > mapping_types that are compatible with existing attachments, thus
+> > > avoiding
+> > > invalidation where possible.
+> >=20
+> > Current design appears to be that attach only determines the set of
+> > theoretically possible mapping types, disregarding other
+> > attachments.=20
+> > Taking other attachments into account is also problematic because
+> > the
+> > dma-resv lock is not held.
+>=20
+> Oh I see. Do you foresee any problems just taking the dma-resv lock
+> to walk the
+> current attachments? If so we could probably resolve it with RCU, but
+> I'd rather
+> keep it simple if we can.
 
-I'm not really fan tbh. It's a basically just a BUG_ON() level event if 
-we get here and not something we should see in production. Trying to 
-then add fallbacks might not be helping much (also no test coverage).
+It looks like dma_buf_dynamic_attach() actually takes the dma_resv lock
+to update the attachment list, so that should work. Provided we want to
+take existing attachments into account already at this stage.
 
-> u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
-> {
->      if (!xe_pat_index_is_valid(xe, pat_index))
->          return XE_COH_NONE;
-> 
->      WARN_ON(!xe->pat.table[pat_index].coh_mode ||
->          xe->pat.table[pat_index].coh_mode > XE_COH_2WAY);
->      return xe->pat.table[pat_index].coh_mode;
-> }
-> 
-> bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)
-> {
->      if (!xe_pat_index_is_valid(xe, pat_index))
->          return false;
-> 
->      return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);
-> }
-> 
-> u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index)
-> {
->      if (!xe_pat_index_is_valid(xe, pat_index))
->          return XE_L3_POLICY_UC;
-> 
->      return REG_FIELD_GET(XE2_L3_POLICY, xe->pat.table[pat_index].value);
-> }
-> 
-> Tejas
->>   	WARN_ON(!xe->pat.table[pat_index].coh_mode ||
->>   		xe->pat.table[pat_index].coh_mode > XE_COH_2WAY);
->>   	return xe->pat.table[pat_index].coh_mode;
->> @@ -311,13 +313,13 @@ u16 xe_pat_index_get_coh_mode(struct xe_device
->> *xe, u16 pat_index)
->>
->>   bool xe_pat_index_get_comp_en(struct xe_device *xe, u16 pat_index)  {
->> -	WARN_ON(pat_index >= xe->pat.n_entries);
->> +	WARN_ON(!xe_pat_index_is_valid(xe, pat_index));
->>   	return !!(xe->pat.table[pat_index].value & XE2_COMP_EN);  }
->>
->>   u16 xe_pat_index_get_l3_policy(struct xe_device *xe, u16 pat_index)  {
->> -	WARN_ON(pat_index >= xe->pat.n_entries);
->> +	WARN_ON(!xe_pat_index_is_valid(xe, pat_index));
->>
->>   	return REG_FIELD_GET(XE2_L3_POLICY, xe-
->>> pat.table[pat_index].value);  } diff --git a/drivers/gpu/drm/xe/xe_pat.h
->> b/drivers/gpu/drm/xe/xe_pat.h index f6b0fac2000a..16beda6db97e 100644
->> --- a/drivers/gpu/drm/xe/xe_pat.h
->> +++ b/drivers/gpu/drm/xe/xe_pat.h
->> @@ -57,7 +57,8 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer
->> *p);  int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p);
->>
->>   /**
->> - * xe_pat_index_is_valid - Check whether the given pat_index is valid.
->> + * xe_pat_index_is_valid - Check whether the given pat_index is valid.
->> + Index
->> + * must be within valid range.
->>    * @xe: xe device
->>    * @pat_index: The pat_index to query
->>    *
->> @@ -75,7 +76,7 @@ u16 xe_pat_index_get_coh_mode(struct xe_device *xe,
->> u16 pat_index);
->>
->>   /**
->>    * xe_pat_index_get_comp_en - Extract the compression enable flag for
->> - * the given pat_index.
->> + * the given pat_index. Index must be valid for the hw.
->>    * @xe: xe device
->>    * @pat_index: The pat_index to query
->>    *
->> @@ -88,6 +89,7 @@ bool xe_pat_index_get_comp_en(struct xe_device *xe,
->> u16 pat_index);
->>   #define XE_L3_POLICY_UC		3 /* Uncached */
->>   /**
->>    * xe_pat_index_get_l3_policy - Extract the L3 policy for the given pat_index.
->> + * Index must be valid for the hw.
->>    * @xe: xe device
->>    * @pat_index: The pat_index to query
->>    */
->> --
->> 2.56.0
-> 
+Need to take care, though, not to have the resv lock held over the ops-
+>attach callback into the driver.
 
+>=20
+> > Looking at current GPU drivers, what you describe above is
+> > typically
+> > done at pin() time, but if some importers want an early very likely
+> > decision on what mapping_type to use, one could introduce a
+> > separate
+> > function that match the mapping_types, but that would be very
+> > similar
+> > to the map() function but without returning a sgt/mapping, or a
+> > pin()
+> > without actually pinning. One could reuse the invalidate_mappings()
+> > callback to indicate the mapping type is no longer valid?
+>=20
+> I did wonder about that, but a callback for attachment invalidation
+> seems like
+> it might be a pain for importers to syncrhonize with. What I'm
+> thinking, which I
+> think is similar to what you describe, is something like the
+> following:
+>=20
+> 1. Importer gets the likley attachment by passing a list of mapping
+> types in
+> prefered order to dma_buf_mapping_attach() which returns the
+> dma_buf_attachment
+> that would work based on current attachments and what the exporter
+> provides:
+>=20
+>=20
+
+Something like this sounds OK, although given Jason's use-case, I added
+some comments:
+
+
+> attach =3D dma_buf_mapping_attach(...)
+>=20
+
+Just filter out impossible mappings.
+
+> 2. Takes dmabuf->resv lock.
+
+dma_buf_match_mapping_type(); Determines a mapping that is valid until
+the next invalidate_mappings(). NOP if a valid mapping already exists.
+Allows masking mapping_types.
+This allows Jason's use-case while keeping the attachment as a
+callback anchor.
+
+>=20
+> 3. Pins the attachment (if required):
+
+dma_buf_match_mapping_type(); Determines a mapping that is valid until
+the next invalidate_mappings(). NOP if a valid mapping already exists.
+Allows masking mapping_types.
+This allows Jason's use-case while keeping the attachment as a
+callback anchor.
+
+>=20
+> rc =3D dma_buf_pin(attach)
+
+This would implicitly pin also the mapping_type, but question is what
+happens if a link is severed? Then we'd want an invalidate_mappings()
+to re-negotiate the mapping type, but a pinned dma-buf that receives an
+invalidate_mappings() is revoked by definition.
+
+>=20
+> DMA-BUF core revalidates the attachment is still valid (ie. by
+> checking the
+> match again or via some other mechanism to detect the attachment
+> path/location
+> has changed such as a sequence/generation number).
+
+Since the resv is locked, nothing could have changed since
+dma_buf_match_mapping_type();
+
+/Thomas
+
+
+>=20
+> On error the importer can either fail or try to create a new
+> attachment.
+>=20
+> 4. Map
+>=20
+> rc =3D dma_buf_[sgt|pcie_p2p]_map(attach, ...)
+>=20
+> Follows the same revalidation process as dma_buf_pin().
+>=20
+> Thoughts?
+>=20
+> =C2=A0- Alistair
+>=20
+> > /Thomas
+> >=20
+> >=20
+> > >=20
+> > > Map time functions (eg. dma_buf_sgt_map_attachment) would check
+> > > attach->valid
+> > > and return a failure if a subsequent attachment/event had
+> > > invalidated
+> > > the
+> > > mapping type.
+> > >=20
+> > > Importers with invalidated attachments would then have to retry
+> > > creating the
+> > > attachment, probably getting a different mapping_type. Would this
+> > > be
+> > > acceptable?
+> > > Or do some importers absolutely require the mapping_type to never
+> > > change once
+> > > the intial match/attachment has happened?
+> > >=20
+> > > =C2=A0- Alistair
+> > >=20
+> > > > > > +/*
+> > > > > > + * Match items are generated by the importer using the
+> > > > > > DMA_BUF_IMAPPING_*() and
+> > > > > > + * the exporter using the DMA_BUF_EMAPPING_*() functions.
+> > > > > > Each
+> > > > > > mapping type
+> > > > > > + * defines its own signature with its own data to make the
+> > > > > > match and
+> > > > > > attachment.
+> > > > > > + */
+> > > > > > +struct dma_buf_mapping_match {
+> > > > > > + const struct dma_buf_mapping_type *type;
+> > > > > > + const struct dma_buf_mapping_exp_ops *exp_ops;
+> > > > > > + union {
+> > > > > > + /* Each mapping_type has unique match
+> > > > > > parameters
+> > > > > > here */
+> > > > > > + };
+> > > > >=20
+> > > > > Do we really need to add all global mapping types here? Then
+> > > > > we'd
+> > > > > need
+> > > > > something for driver-private mapping types as well.
+> > > >=20
+> > > > IIRC it is fixed size up front like this because of how the
+> > > > structure's memory is managed in this design..
+> > > >=20
+> > > > If you want a driver private thing then I'd add a 'u64
+> > > > driver_private[2]' to the union and the driver can cast over
+> > > > it.
+> > > >=20
+> > > > But this is the kernel, if you want to add an xe_mapping_type,
+> > > > then
+> > > > just add it. I don't know we need to do driver private things.
+> > > >=20
+> > > > Jason
