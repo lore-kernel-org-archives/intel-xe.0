@@ -2,28 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A15C606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 12:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0044606A31A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 12:41:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LPqk+E8r
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24EAF1125CD;
-	Thu, 22 Oct 2026 12:41:07 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42B2C1125CD;
- Thu, 22 Oct 2026 12:41:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4053634614687618725=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67D8910E3C7;
+	Thu, 22 Oct 2026 12:41:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7276B1125D2
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 12:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792672870; x=1824208870;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7fGlJkgPrP3DrduyqV2MlzU5DKEi9SjvCbgR99++MIA=;
+ b=LPqk+E8r7E7pphXQ23JfMW0ONWowTGcqYfs9iUItXaIdZa23aE+933Iz
+ Eq2wuWWZdboo+3IpQuftsA5e6ui6Cm+K8LpWUTh7O45vp8Hrw5DDmr0Fd
+ Na44fNzHWh8tCLlejwjk4VnrqnndSCgPdEIDdNLtm6ATkMAew7Bc8AeVi
+ hgxykMqEwemQCbAGaFyu7taivHmGWuJLlqglDY43L7//N8+CLRRDnNQHV
+ ZzxZ92oexRq5zZOUHC1RZG7a0GK7rxzk/aUzGytaELlk5xRzMtktcM45+
+ 4Z64h+BAkIfbz+hTuBLvIxRHVKFyTdGkgFvzyhZ/86GPtxFxfM53nIe6d Q==;
+X-CSE-ConnectionGUID: MUOwQ5EtQYm7YaIcrm7WeQ==
+X-CSE-MsgGUID: FzkTzg1PRRWkuiDrvjqAmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1431139"
+X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
+   d="scan'208";a="1431139"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2026 05:41:09 -0700
+X-CSE-ConnectionGUID: oaVyJb5RQqGcdN/V5WPSuw==
+X-CSE-MsgGUID: E/srr/zGSZa14bMn7IyrCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
+   d="scan'208";a="5117700"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Oct 2026 05:41:07 -0700
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
+ mallesh.koujalagi@intel.com, Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH] drm/xe: Enable CSC fault injection on CRI
+Date: Thu, 22 Oct 2026 17:57:09 +0530
+Message-ID: <20261022122708.625136-2-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Optimize_regist?=
- =?utf-8?q?ers_accesses_in_irq_handlers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Oct 2026 12:41:06 -0000
-Message-ID: <179267286626.56426.11064536112628750104@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261022115548.32678-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20261022115548.32678-1-ville.syrjala@linux.intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,163 +61,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============4053634614687618725==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Enable CSC fault-injection debugfs on CRI, in addition to Battlemage.
+Preserve the SR-IOV VF exclusion.
 
-== Series Details ==
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+---
+ drivers/gpu/drm/xe/xe_debugfs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Series: drm/i915: Optimize registers accesses in irq handlers
-URL   : https://patchwork.freedesktop.org/series/176635/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 926020c7526e..31b71b34eade 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -50,7 +50,9 @@ DECLARE_FAULT_ATTR(inject_mempage_offline);
+ 
+ static bool csc_hw_error_available(struct xe_device *xe)
+ {
+-	return !IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE;
++	return !IS_SRIOV_VF(xe) &&
++		(xe->info.platform == XE_BATTLEMAGE ||
++		 xe->info.platform == XE_CRESCENTISLAND);
+ }
+ 
+ static bool is_crescent_island_pf(struct xe_device *xe)
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856_BAT -> xe-pw-176635v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-176635v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-176635v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-176635v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - bat-atsm-2:         [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-176635v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-ptl-2:          [PASS][3] -> [ABORT][4] ([Intel XE#9362])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856/bat-ptl-2/igt@kms_force_connector_basic@force-connector-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/bat-ptl-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  
-  [Intel XE#9362]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362
-
-
-Build changes
--------------
-
-  * Linux: xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856 -> xe-pw-176635v1
-
-  IGT_9158: c06ac65c584387323e8322c258d74cea1ce07b18 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856: b2af5f9ef576a3026836cca5ec8757cc045a1856
-  xe-pw-176635v1: 176635v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/index.html
-
---===============4053634614687618725==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Optimize registers accesses in irq handlers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176635/">https://patchwork.freedesktop.org/series/176635/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856_BAT -&gt; xe-pw-176635v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-176635v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-176635v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-176635v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-176635v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_force_connector_basic@force-connector-state:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856/bat-ptl-2/igt@kms_force_connector_basic@force-connector-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176635v1/bat-ptl-2/igt@kms_force_connector_basic@force-connector-state.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856 -&gt; xe-pw-176635v1</li>
-</ul>
-<p>IGT_9158: c06ac65c584387323e8322c258d74cea1ce07b18 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-5999-b2af5f9ef576a3026836cca5ec8757cc045a1856: b2af5f9ef576a3026836cca5ec8757cc045a1856<br />
-  xe-pw-176635v1: 176635v1</p>
-
-</body>
-</html>
-
---===============4053634614687618725==--
