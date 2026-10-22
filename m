@@ -2,62 +2,109 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A15606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 12:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DA5B606A319
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 12:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Rr5ibvDw
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=S3UvU8sc
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2AFD11257C;
-	Thu, 22 Oct 2026 12:31:29 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6026611257C;
- Thu, 22 Oct 2026 12:31:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792672283; x=1824208283;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=tLvV5/ERMt+eQR+efaGmmP+87VaCKZlhMPjpiEKyPfA=;
- b=Rr5ibvDwAcApINeg1gUQEHtGrrYXeNbEg/urMNmTjFvUu4MbSsqIzWq0
- kWGi2IOQftBbbNfkBbe2Qt9bzUiYtxoxCSzF7JtBkxd7WvjGJRJ6I86MI
- U2IHAhrk4T8ZWI/d9zgFtyBqgwCDPFHh26ELqUemzLV6QHvYj0FeYdnjl
- F7U8TMtYWyoYI2kSmKujjZHGgxH9hmWY+DJfjOh1736ElvehH1DIEQy60
- XVvhDltGPC9aWNmCKFKgoAiyvYrY0VShKg3V6I/jG6tfP5HrknMotTC5E
- uGGYxfQzLkuaRlehIAsWj/YFOot9vdFe48nTvE/OhUCtmKL5kg5pi88c1 Q==;
-X-CSE-ConnectionGUID: X5beNAJNQ7iHkLLt0lhr9A==
-X-CSE-MsgGUID: r8ct2KKgRAeWliUuLbhSew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1305448"
-X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="1305448"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 05:31:22 -0700
-X-CSE-ConnectionGUID: /synAoI6RbSQEmIsBtumgw==
-X-CSE-MsgGUID: XTx2K88kSpGRd6GhUdzq2Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="3742358"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.5])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 05:31:21 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/4] drm/i915: Use intel_de_{read, write})fw() in
- VLV/CHV irq handlers
-In-Reply-To: <20261022115548.32678-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261022115548.32678-1-ville.syrjala@linux.intel.com>
- <20261022115548.32678-4-ville.syrjala@linux.intel.com>
-Date: Thu, 22 Oct 2026 15:31:17 +0300
-Message-ID: <ec5542fe2c281219ff4c63bb5fd1bed9775a0d36@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B894112594;
+	Thu, 22 Oct 2026 12:33:55 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E80F112584;
+ Thu, 22 Oct 2026 12:33:48 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 70695436C8;
+ Thu, 22 Oct 2026 12:33:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C249B1F000C1;
+ Thu, 22 Oct 2026 12:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1792672427;
+ bh=es0EBw+s01NCevX6p6GYQJTMMjVuoGTr4HClcof2aRA=;
+ h=From:Subject:Date:To:Cc;
+ b=S3UvU8sc13/k33yf8QZiv/7uF2MDwHf3xjNmGLC6O7vJJqa2EsTAvFV6VERueVqaX
+ KbJPhoKrsFGl0ozfSDGXqa/gvOSS47YMM8XFNCrI44pNEZqvSNDfaJWIyqXRfn1iyP
+ tOXWqsMQVlaIgETZvAZJmOinxNRJlL4GE+oet56i8vHfhlkUHk0bd2SyDS2jBSh6vQ
+ h1EerhG6CTWwTrFq7c9M0Pcy70XfUkLqNu7c6RB5n6ex1Z+WhXV46ZeNTqwY6EKQ25
+ ZQoQGxFmpJQxsd+P2bJHSXfMBR7cW/PYZfU71VG4HWp9/17BpXUCK4vttjJEgpKJrv
+ 5+yeyF/+Gh3Dg==
+From: Maxime Ripard <mripard@kernel.org>
+Subject: [PATCH v2 00/59] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Date: Thu, 22 Oct 2026 14:30:59 +0200
+Message-Id: <20261022-drm-no-more-connector-reset-v2-0-0b7e4e85b1e8@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32Oyw6CMBBFf4XM2jFt5VVX/odxAWWURml1WomG8
+ O8W2Lu8k3vPnAkCsaUAx2wCptEG610KapeB6Rt3I7RdyqCEKkUlNHY8oPM4eCY03jky0TMyBYq
+ YF0Qy7ypTKgOJ8GS62s9KP1+2zPR6pydxO0LbhAUzDDYeMy2vhSKta5W3sPR7GxL8u8qNch0sH
+ lLI/K/HKFFgUZdGm1Sv1eF0J3b02Hu+wWWe5x/N8Hdo9wAAAA==
+X-Change-ID: 20260709-drm-no-more-connector-reset-45ee14d7c62c
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, Maxime Ripard <mripard@kernel.org>, 
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>, 
+ Ruben Wauters <rubenru09@aol.com>, Chen-Yu Tsai <wens@kernel.org>, 
+ Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, amd-gfx@lists.freedesktop.org, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, Joel Stanley <joel@jms.id.au>, 
+ Dave Airlie <airlied@redhat.com>, Jocelyn Falempe <jfalempe@redhat.com>, 
+ Russell King <linux@armlinux.org.uk>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Inki Dae <inki.dae@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ Seung-Woo Kim <sw0312.kim@samsung.com>, linux-samsung-soc@vger.kernel.org, 
+ Alison Wang <alison.wang@nxp.com>, Stefan Agner <stefan@agner.ch>, 
+ Tian Tao <tiantao6@hisilicon.com>, 
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>, 
+ Yongbang Shi <shiyongbang@huawei.com>, 
+ Paul Kocialkowski <paulk@sys-base.io>, Huacai Chen <chenhuacai@kernel.org>, 
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, 
+ Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, 
+ Xi Ruoyao <xry111@xry111.site>, Gerd Hoffmann <kraxel@redhat.com>, 
+ spice-devel@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ Geert Uytterhoeven <geert+renesas@glider.be>, 
+ linux-renesas-soc@vger.kernel.org, 
+ Marcus Folkesson <marcus.folkesson@gmail.com>, 
+ Iker Pedrosa <ikerpedrosam@gmail.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>, 
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Mikko Perttunen <mperttunen@nvidia.com>, 
+ Thierry Reding <thierry.reding@kernel.org>, linux-tegra@vger.kernel.org, 
+ Alexey Brodkin <abrodkin@synopsys.com>, Hans de Goede <hansg@kernel.org>, 
+ LiangCheng Wang <zaq14760@gmail.com>, Alex Lanzano <lanzano.alex@gmail.com>, 
+ Sean Paul <sean@poorly.run>, Chia-I Wu <olvaffe@gmail.com>, 
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
+ Gurchetan Singh <gurchetansingh@chromium.org>, 
+ Haneen Mohammed <hamohammed.sa@gmail.com>, 
+ Louis Chauvet <louis.chauvet@bootlin.com>, 
+ Melissa Wen <melissa.srw@gmail.com>, 
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ linux-amlogic@lists.infradead.org, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Danilo Krummrich <dakr@kernel.org>, 
+ Lyude Paul <lyude@redhat.com>, nouveau@lists.freedesktop.org
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11112; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=l8HHxUF3ppkOWkHs/T+vPFIyXJxDYh41p1hKBDhkwOM=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFm3mHrFm95UZ4hNsDky/UeeVf6r7FOOW/TK/tl9b71/x
+ a/25817HVNZGIQ5GWTFFFmeyISdXt6+uMrBfuUPmDmsTCBDGLg4BWAiMy4xNjz+MKfvS8IPz4Pv
+ 7sXOO3X6TJiz2vrd3oaau3kPeJ+JrzO3E06I6HV5cZGNhTNZfAb7fsb6rHTnrCXTJzyey3v359X
+ WDMVpC+71/xRwmp6k4HY30jBg55GC3SpL7Bqkd32e7+CR4h8DAA==
+X-Developer-Key: i=mripard@kernel.org; a=openpgp;
+ fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,178 +115,198 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 22 Oct 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> MMIO is rather expensive on VLV and CHV. MMIO read in particular
-> seems to take around 450 ns on CHV. VLV is a bit better
-> in the 200-300 ns range. The use of the non-fw() register
-> accessors means that each actual register access is bracketed
-> by two CLAIM_ER reads. I'm thinking we don't want that extra
-> cost in the irq handlers, so switch over to the fw() accessors.
->
-> On VLV/CHV this also means we lose the uncore.lock protection
-> around the MMIO accesses, but that is fine as these platforms
-> do not need any serialization of parallel MMIO accesses.
->
-> This actually changes all GMCH platofors since the irq
+This is a follow-up to the plane and CRTC reset removal series, and
+part of a larger effort to remove the reset hook from all KMS objects.
 
-*platforms
+The connector reset hook is overloaded: it is called both at probe
+time to create the initial software state and during suspend/resume to
+reset hardware and software state. These two roles have different
+requirements, and the reset hook is not fallible, making error
+handling difficult for the initial state allocation path.
 
-> handlers are shared between the platforms. But that doesn't
-> actually cause significant functional changes on the older
-> platforms as the non-fw() accessors are identical to the fw()
-> versions, apart from some rpm asserts.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+While reset has the semantics to reset both the software and hardware
+state, the vast majority of implementations and all the helpers only
+reset the software state, making them equivalent to
+atomic_create_state in practice. The atomic_create_state hook makes
+this explicit: it only allocates and initializes a pristine state
+without any side effect, and returns the state pointer or an ERR_PTR
+on failure.
 
-Subject needs one s/)/_/
+This series converts all connector drivers tree-wide from the reset hook
+to atomic_create_state, then removes the reset hook from struct
+drm_connector_funcs entirely. The conversions were done using a
+combination of Coccinelle semantic patches, mechanical one-line
+replacements and manual adjustments.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Maxime Ripard <mripard@kernel.org>
+---
+Changes in v2:
+- Change the parameter order of __drm_atomic_helper_connector_hdmi_state_init
+- Fixed state argument casing for drm_atomic_helper_connector_tv_margins_state_init
+  and drm_atomic_helper_connector_tv_state_init
+- Put atomic_create_state before atomic_duplicate_state
+- Fix state allocation for MST and WB connectors
+- Link to v1:
+  https://lore.kernel.org/r/20261014-drm-no-more-connector-reset-v1-0-586c9c026823@kernel.org
 
-> ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 32 +++++++++----------
->  .../gpu/drm/i915/display/intel_hotplug_irq.c  |  8 ++---
->  2 files changed, 20 insertions(+), 20 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/g=
-pu/drm/i915/display/intel_display_irq.c
-> index d2d45767bfd2..25b899990475 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -501,19 +501,19 @@ static void i9xx_pipe_crc_irq_handler(struct intel_=
-display *display,
->  	u32 res1, res2;
->=20=20
->  	if (DISPLAY_VER(display) >=3D 3)
-> -		res1 =3D intel_de_read(display, PIPE_CRC_RES_RES1_I915(display, pipe));
-> +		res1 =3D intel_de_read_fw(display, PIPE_CRC_RES_RES1_I915(display, pip=
-e));
->  	else
->  		res1 =3D 0;
->=20=20
->  	if (DISPLAY_VER(display) >=3D 5 || display->platform.g4x)
-> -		res2 =3D intel_de_read(display, PIPE_CRC_RES_RES2_G4X(display, pipe));
-> +		res2 =3D intel_de_read_fw(display, PIPE_CRC_RES_RES2_G4X(display, pipe=
-));
->  	else
->  		res2 =3D 0;
->=20=20
->  	display_pipe_crc_irq_handler(display, pipe,
-> -				     intel_de_read(display, PIPE_CRC_RES_RED(display, pipe)),
-> -				     intel_de_read(display, PIPE_CRC_RES_GREEN(display, pipe)),
-> -				     intel_de_read(display, PIPE_CRC_RES_BLUE(display, pipe)),
-> +				     intel_de_read_fw(display, PIPE_CRC_RES_RED(display, pipe)),
-> +				     intel_de_read_fw(display, PIPE_CRC_RES_GREEN(display, pipe)),
-> +				     intel_de_read_fw(display, PIPE_CRC_RES_BLUE(display, pipe)),
->  				     res1, res2);
->  }
->=20=20
-> @@ -577,7 +577,7 @@ static void i9xx_pipestat_irq_ack(struct intel_displa=
-y *display,
->  			continue;
->=20=20
->  		reg =3D PIPESTAT(display, pipe);
-> -		pipe_stats[pipe] =3D intel_de_read(display, reg) & status_mask;
-> +		pipe_stats[pipe] =3D intel_de_read_fw(display, reg) & status_mask;
->  		enable_mask =3D i915_pipestat_enable_mask(display, pipe);
->=20=20
->  		/*
-> @@ -590,8 +590,8 @@ static void i9xx_pipestat_irq_ack(struct intel_displa=
-y *display,
->  		 * an interrupt is still pending.
->  		 */
->  		if (pipe_stats[pipe]) {
-> -			intel_de_write(display, reg, pipe_stats[pipe]);
-> -			intel_de_write(display, reg, enable_mask);
-> +			intel_de_write_fw(display, reg, pipe_stats[pipe]);
-> +			intel_de_write_fw(display, reg, enable_mask);
->  		}
->  	}
->  	spin_unlock(&display->irq.lock);
-> @@ -1893,7 +1893,7 @@ static void vlv_page_table_error_irq_ack(struct int=
-el_display *display, u32 *dpi
->  {
->  	u32 status, enable, tmp;
->=20=20
-> -	tmp =3D intel_de_read(display, DPINVGTT);
-> +	tmp =3D intel_de_read_fw(display, DPINVGTT);
->=20=20
->  	enable =3D tmp >> 16;
->  	status =3D tmp & 0xffff;
-> @@ -1909,8 +1909,8 @@ static void vlv_page_table_error_irq_ack(struct int=
-el_display *display, u32 *dpi
->  	enable &=3D ~status;
->=20=20
->  	/* customary ack+disable then re-enable to guarantee an edge */
-> -	intel_de_write(display, DPINVGTT, status);
-> -	intel_de_write(display, DPINVGTT, enable << 16);
-> +	intel_de_write_fw(display, DPINVGTT, status);
-> +	intel_de_write_fw(display, DPINVGTT, enable << 16);
->  }
->=20=20
->  static void vlv_page_table_error_irq_handler(struct intel_display *displ=
-ay, u32 dpinvgtt)
-> @@ -1932,21 +1932,21 @@ static void vlv_display_error_irq_ack(struct inte=
-l_display *display,
->  {
->  	u32 emr;
->=20=20
-> -	*eir =3D intel_de_read(display, VLV_EIR);
-> +	*eir =3D intel_de_read_fw(display, VLV_EIR);
->=20=20
->  	if (*eir & VLV_ERROR_PAGE_TABLE)
->  		vlv_page_table_error_irq_ack(display, dpinvgtt);
->=20=20
-> -	intel_de_write(display, VLV_EIR, *eir);
-> +	intel_de_write_fw(display, VLV_EIR, *eir);
->=20=20
->  	/*
->  	 * Toggle all EMR bits to make sure we get an edge
->  	 * in the ISR master error bit if we don't clear
->  	 * all the EIR bits.
->  	 */
-> -	emr =3D intel_de_read(display, VLV_EMR);
-> -	intel_de_write(display, VLV_EMR, 0xffffffff);
-> -	intel_de_write(display, VLV_EMR, emr);
-> +	emr =3D intel_de_read_fw(display, VLV_EMR);
-> +	intel_de_write_fw(display, VLV_EMR, 0xffffffff);
-> +	intel_de_write_fw(display, VLV_EMR, emr);
->  }
->=20=20
->  static void vlv_display_error_irq_handler(struct intel_display *display,
-> diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/g=
-pu/drm/i915/display/intel_hotplug_irq.c
-> index 913fcd2a1723..ce0c8f56106a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-> @@ -439,15 +439,15 @@ u32 i9xx_hpd_irq_ack(struct intel_display *display)
->  	 * bits can itself generate a new hotplug interrupt :(
->  	 */
->  	for (i =3D 0; i < 10; i++) {
-> -		u32 tmp =3D intel_de_read(display,
-> -					PORT_HOTPLUG_STAT(display)) & hotplug_status_mask;
-> +		u32 tmp =3D intel_de_read_fw(display,
-> +					   PORT_HOTPLUG_STAT(display)) & hotplug_status_mask;
->=20=20
->  		if (tmp =3D=3D 0)
->  			return hotplug_status;
->=20=20
->  		hotplug_status |=3D tmp;
-> -		intel_de_write(display, PORT_HOTPLUG_STAT(display),
-> -			       hotplug_status);
-> +		intel_de_write_fw(display, PORT_HOTPLUG_STAT(display),
-> +				  hotplug_status);
->  	}
->=20=20
->  	drm_WARN_ONCE(display->drm, 1,
+---
+Maxime Ripard (59):
+      drm/hdmi: Change __drm_atomic_helper_connector_hdmi_state_init parameter order
+      drm/atomic-state-helper: Rename connector_tv_margins_reset to state_init
+      drm/atomic-state-helper: Rename connector_tv_reset to state_init
+      drm/panel: Add atomic_create_state support
+      drm/amdgpu: vkms: Switch to drm_atomic_helper_connector_create_state
+      drm/aspeed: Switch to drm_atomic_helper_connector_create_state
+      drm/ast: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: analogix-anx6345: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: analogix-anx78xx: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: chrontel-ch7033: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: nxp-ptn3460: Switch to drm_atomic_helper_connector_create_state
+      drm/panel: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: synopsys: dw-hdmi: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: tc358767: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: tda998x: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: ti-tfp410: Switch to drm_atomic_helper_connector_create_state
+      drm/exynos: Switch to drm_atomic_helper_connector_create_state
+      drm/fsl-dcu: Switch to drm_atomic_helper_connector_create_state
+      drm/hisilicon: hibmc: Switch to drm_atomic_helper_connector_create_state
+      drm/logicvc: Switch to drm_atomic_helper_connector_create_state
+      drm/loongson: Switch to drm_atomic_helper_connector_create_state
+      drm/mgag200: Switch to drm_atomic_helper_connector_create_state
+      drm/mipi-dbi: Switch to drm_atomic_helper_connector_create_state
+      drm/qxl: Switch to drm_atomic_helper_connector_create_state
+      drm/renesas: shmobile: Switch to drm_atomic_helper_connector_create_state
+      drm/sitronix: st7571: Switch to drm_atomic_helper_connector_create_state
+      drm/sitronix: st7920: Switch to drm_atomic_helper_connector_create_state
+      drm/sti: Switch to drm_atomic_helper_connector_create_state
+      drm/sun4i: Switch to drm_atomic_helper_connector_create_state
+      drm/tegra: Switch to drm_atomic_helper_connector_create_state
+      drm/tests: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: arcpgu: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: bochs: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: cirrus: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: gm12u320: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: pixpaper: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: repaper: Switch to drm_atomic_helper_connector_create_state
+      drm/tiny: sharp: Switch to drm_atomic_helper_connector_create_state
+      drm/udl: Switch to drm_atomic_helper_connector_create_state
+      drm/vboxvideo: Switch to drm_atomic_helper_connector_create_state
+      drm/virtio: Switch to drm_atomic_helper_connector_create_state
+      drm/vkms: Switch to drm_atomic_helper_connector_create_state
+      drm/xen: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: synopsys: dw-hdmi: Convert to atomic_create_state
+      drm/meson: Convert to atomic_create_state
+      drm/gud: Convert to atomic_create_state
+      drm/sun4i: hdmi: Convert to atomic_create_state
+      drm/sun4i: tv: Convert to atomic_create_state
+      drm/tests: hdmi: Convert to atomic_create_state
+      drm/vc4: hdmi: Convert to atomic_create_state
+      drm/vc4: vec: Convert to atomic_create_state
+      drm/connector: Remove drm_atomic_helper_connector_reset()
+      drm/amdgpu: dm: Convert to atomic_create_state
+      drm/ast: Convert to atomic_create_state
+      drm/i915: Convert to atomic_create_state
+      drm/nouveau: Convert to atomic_create_state
+      drm/tegra: Convert to atomic_create_state
+      drm/connector: Remove __drm_atomic_helper_connector_reset()
+      drm/connector: Remove reset
 
---=20
-Jani Nikula, Intel
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vkms.c           |  2 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    | 32 ++++----
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.h    |  3 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    | 11 ++-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c   | 17 +++-
+ .../amdgpu_dm/tests/amdgpu_dm_connector_test.c     | 90 ++++++++++++++--------
+ drivers/gpu/drm/aspeed/aspeed_gfx_out.c            |  2 +-
+ drivers/gpu/drm/ast/ast_dp.c                       | 18 ++---
+ drivers/gpu/drm/ast/ast_dp501.c                    |  2 +-
+ drivers/gpu/drm/ast/ast_sil164.c                   |  2 +-
+ drivers/gpu/drm/ast/ast_vga.c                      |  2 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx6345.c |  2 +-
+ drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c |  2 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c           |  2 +-
+ drivers/gpu/drm/bridge/nxp-ptn3460.c               |  2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          | 12 ++-
+ drivers/gpu/drm/bridge/tc358767.c                  |  2 +-
+ drivers/gpu/drm/bridge/tda998x_drv.c               |  2 +-
+ drivers/gpu/drm/bridge/ti-tfp410.c                 |  2 +-
+ drivers/gpu/drm/display/drm_bridge_connector.c     |  4 +-
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  9 +--
+ drivers/gpu/drm/drm_atomic_state_helper.c          | 67 ++++------------
+ drivers/gpu/drm/drm_connector.c                    |  8 --
+ drivers/gpu/drm/drm_mode_config.c                  |  4 +-
+ drivers/gpu/drm/drm_panel.c                        | 16 +++-
+ drivers/gpu/drm/exynos/exynos_drm_dpi.c            |  2 +-
+ drivers/gpu/drm/exynos/exynos_drm_vidi.c           |  2 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c               |  2 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_rgb.c          |  2 +-
+ drivers/gpu/drm/gud/gud_connector.c                | 20 +++--
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_dp.c     |  2 +-
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_connector.c     |  6 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c          |  6 +-
+ drivers/gpu/drm/logicvc/logicvc_interface.c        |  2 +-
+ drivers/gpu/drm/loongson/lsdc_output_7a1000.c      |  2 +-
+ drivers/gpu/drm/loongson/lsdc_output_7a2000.c      |  4 +-
+ drivers/gpu/drm/meson/meson_encoder_hdmi.c         | 12 ++-
+ drivers/gpu/drm/mgag200/mgag200_vga.c              |  2 +-
+ drivers/gpu/drm/mgag200/mgag200_vga_bmc.c          |  2 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            | 11 ++-
+ drivers/gpu/drm/nouveau/nouveau_connector.c        | 27 ++++---
+ drivers/gpu/drm/nouveau/nouveau_connector.h        |  3 +-
+ drivers/gpu/drm/qxl/qxl_display.c                  |  2 +-
+ drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c  |  2 +-
+ drivers/gpu/drm/sitronix/st7571.c                  |  2 +-
+ drivers/gpu/drm/sitronix/st7920.c                  |  2 +-
+ drivers/gpu/drm/sti/sti_dvo.c                      |  2 +-
+ drivers/gpu/drm/sti/sti_hda.c                      |  2 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                     |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             | 17 +++-
+ drivers/gpu/drm/sun4i/sun4i_lvds.c                 |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_rgb.c                  |  2 +-
+ drivers/gpu/drm/sun4i/sun4i_tv.c                   | 16 +++-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c             |  2 +-
+ drivers/gpu/drm/tegra/dsi.c                        | 17 ++--
+ drivers/gpu/drm/tegra/hdmi.c                       |  2 +-
+ drivers/gpu/drm/tegra/sor.c                        | 13 ++--
+ drivers/gpu/drm/tests/drm_atomic_commit_test.c     |  2 +-
+ drivers/gpu/drm/tests/drm_atomic_test.c            |  2 +-
+ drivers/gpu/drm/tests/drm_connector_test.c         |  4 +-
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 17 +++-
+ drivers/gpu/drm/tests/drm_probe_helper_test.c      |  2 +-
+ drivers/gpu/drm/tiny/arcpgu.c                      |  2 +-
+ drivers/gpu/drm/tiny/bochs.c                       |  2 +-
+ drivers/gpu/drm/tiny/cirrus-qemu.c                 |  2 +-
+ drivers/gpu/drm/tiny/gm12u320.c                    |  2 +-
+ drivers/gpu/drm/tiny/pixpaper.c                    |  2 +-
+ drivers/gpu/drm/tiny/repaper.c                     |  2 +-
+ drivers/gpu/drm/tiny/sharp-memory.c                |  2 +-
+ drivers/gpu/drm/udl/udl_modeset.c                  |  2 +-
+ drivers/gpu/drm/vboxvideo/vbox_mode.c              |  2 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     | 31 ++++++--
+ drivers/gpu/drm/vc4/vc4_vec.c                      | 16 +++-
+ drivers/gpu/drm/virtio/virtgpu_display.c           |  2 +-
+ drivers/gpu/drm/vkms/vkms_connector.c              |  2 +-
+ drivers/gpu/drm/vkms/vkms_writeback.c              |  2 +-
+ drivers/gpu/drm/xen/xen_drm_front_conn.c           |  2 +-
+ include/drm/display/drm_hdmi_state_helper.h        |  4 +-
+ include/drm/drm_atomic_state_helper.h              |  9 +--
+ include/drm/drm_connector.h                        | 12 ---
+ include/drm/drm_mipi_dbi.h                         |  2 +-
+ 82 files changed, 360 insertions(+), 276 deletions(-)
+---
+base-commit: 91f52e99824b0beebb48cad51bbda81437af8664
+change-id: 20260709-drm-no-more-connector-reset-45ee14d7c62c
+
+Best regards,
+-- 
+Maxime Ripard <mripard@kernel.org>
+
