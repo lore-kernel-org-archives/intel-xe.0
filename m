@@ -2,50 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8AD606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 13:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6847F606A319
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 13:32:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YI6WNj/I
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EevNGgZQ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92488112656;
-	Thu, 22 Oct 2026 13:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21CE4112619;
+	Thu, 22 Oct 2026 13:32:39 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35A8B112655
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 13:32:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F930112619
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 13:32:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792675950; x=1824211950;
+ t=1792675953; x=1824211953;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jRzNU2aXPV7G885NUXQBqBCLTBnlOcmWdEASpV26xoc=;
- b=YI6WNj/I1z8SCIPPzOu1Iz7LYAZtWZJCqOSdTnJZSwf7Ctb+V6dVB8Ti
- EtvmXx2LVAxZOMyIIkrePjGy8waBdWBdw7JFynWg1FJb02VIaJfuMyUYD
- P7Re8aYtBJX7qE9JaX1SokcwrYBbtffw0aVcnpwfXXMqNmgamSgzMBSjf
- Z17whVeBAVug8WptQgtbaVNUxOk+vBwwPo290Lam6QdCt4kFp1axH4I7Z
- +Ezkm8fgCBUxS6r9u/Qnw4T9hiiBrZaR/SpXupzQuSYuvktBRG0xf0Fk1
- PK2oL9KvGkypB+IMIM9usWG/YgRqX10g2l5pVVrqcWXBlPkYL0L5sQsUv g==;
-X-CSE-ConnectionGUID: uG46FXDYRPyW6qC0ODxdCw==
-X-CSE-MsgGUID: u7XehORnSeGfkHViYlZ0zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1439226"
+ bh=1qcE31WfrIyMLwMG5i2dMJltzsYIjkWurt1qRxifOKk=;
+ b=EevNGgZQbTo+ROhWcD4xhXRgL4y/g0xWyacfp+lceOL/ENrlop5Kku0P
+ qpWp4cp8lmCSRAhd2AChL+fcltRNAEyO1xD+HP/gxQqmz+QUh6Tl5jeyT
+ Oyku/JHAtcNx+x7Vsw6Rv8sGkuraPFC6wRh9UPALCbKgJtA+97hemP9C+
+ j4V1jE5dEv7lwpfAVS7g5OqRdoUzNaQif/NjXJ+Lqv1GZHY1fDiO/jAiP
+ JmXL5rCywGn4nn5WsDIN1vk0w9eb0qO2hDTd0JlJ52nU5TJUdRH4CVQjw
+ 63ecX9l8h3zggV0f5+vjk4At5u4fzvQkp4Qez+IJfOIRSgnoEJw9Wl7Ij g==;
+X-CSE-ConnectionGUID: NBRXf/n1TBe0NZBNeMRX+Q==
+X-CSE-MsgGUID: zcC+GtvHQpaMZFtlbVagJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1439235"
 X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="1439226"
+   d="scan'208";a="1439235"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 06:32:29 -0700
-X-CSE-ConnectionGUID: KENLKzUHT+OhXyfPFlWxDw==
-X-CSE-MsgGUID: Q4JEjSurSdShNtyjujkq+g==
+ 22 Oct 2026 06:32:32 -0700
+X-CSE-ConnectionGUID: ZbInkEzkRlmPkjeStP4lug==
+X-CSE-MsgGUID: dkg5IrG7Sg2pkIZoQZ/0bg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,172,1787036400"; 
-   d="scan'208";a="3700772"
+   d="scan'208";a="3700779"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by fmviesa001.fm.intel.com with ESMTP; 22 Oct 2026 06:32:27 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 22 Oct 2026 06:32:30 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v5 3/7] drm/xe/guc: Print register addresses in capture
- snapshot output
-Date: Thu, 22 Oct 2026 18:59:53 +0530
-Message-ID: <20261022132957.2479469-4-naresh.kumar.g@intel.com>
+Subject: [PATCH v5 5/7] drm/xe/guc: add TDL,
+ SLICE gfx registers to capture list
+Date: Thu, 22 Oct 2026 18:59:55 +0530
+Message-ID: <20261022132957.2479469-6-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261022132957.2479469-1-naresh.kumar.g@intel.com>
 References: <20261022132957.2479469-1-naresh.kumar.g@intel.com>
@@ -62,89 +62,67 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Include register offsets in GuC capture snapshot print output for both
-32-bit and 64-bit registers.
-
-When dumping captured engine register state, print each register name
-alongside its MMIO offset to make the snapshot output easier to
-cross-reference with register definitions and hardware debug
-documentation.
-
-This improves postmortem analysis without changing capture contents.
+Add ROW_INSTDONE_TDL_GFX, SS_LSC_HDC_IDLE_TDL_GFX and SLICE_ARB_STATUS
+register definitions and include them in the XeHPG extended GuC capture
+register list.
 
 v2:(Sashiko)
-- Ensure lower DWORD prints
-
-v3:(Sashiko)
-- Use the LOW_DW MMIO offset(capture in last_address)  when combined 64bit
-  register values in the dump instead of HI_SW offset
-- preserve existing coredump register-name format and append register
-  address as trailing metadata as a debug info and avoids disrupting
-  existing format
+- Refactored ROW_INSTDONE_TDL_GFX to ROW_INSTDONE_TDL_GFX
+- Add SLICE_ARB_STATUS register to xeHP register list
+- Refactor commit message
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_capture.c | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 5 +++++
+ drivers/gpu/drm/xe/xe_guc_capture.c  | 5 ++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index e9eb0bd04af1..2e4cb4957479 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -533,6 +533,8 @@
+ #define PAGE_FLTRPTQ_HEAD_GAMCTRL		XE_REG(0xcf90)
+ #define PAGE_FLTRPTQ_TAIL_GAMCTRL		XE_REG(0xcf94)
+ 
++#define SLICE_ARB_STATUS			XE_REG_MCR(0xd814)
++
+ #define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
+ #define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
+ 
+@@ -597,6 +599,9 @@
+ #define EU_SYSTOLIC_LIC_THROTTLE_CTL_WITH_LOCK	XE_REG_MCR(0xe534)
+ #define   EU_SYSTOLIC_LIC_THROTTLE_CTL_LOCK_BIT	REG_BIT(31)
+ 
++#define ROW_INSTDONE_TDL_GFX			XE_REG_MCR(0xe580)
++#define SS_LSC_HDC_IDLE_TDL_GFX			XE_REG_MCR(0xe584)
++
+ #define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0, XE_REG_OPTION_MASKED)
+ #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
+ #define   DIS_ATOMIC_CHAINING_TYPED_WRITES	REG_BIT(3)
 diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 5a4d085660a2..3e99aef53b46 100644
+index 3e99aef53b46..6a20eab0f820 100644
 --- a/drivers/gpu/drm/xe/xe_guc_capture.c
 +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -1716,6 +1716,7 @@ snapshot_print_by_list_order(struct xe_hw_engine_snapshot *snapshot, struct drm_
- 	struct xe_devcoredump_snapshot *devcore_snapshot = &devcoredump->snapshot;
- 	struct gcap_reg_list_info *reginfo = NULL;
- 	u32 i, last_value = 0;
-+	u32 last_address = 0;
- 	bool low32_ready = false;
+@@ -376,7 +376,10 @@ static const struct __ext_steer_reg xehpg_extregs[] = {
+ 	{"SC_INSTDONE",			XEHPG_SC_INSTDONE},
+ 	{"SC_INSTDONE_EXTRA",		XEHPG_SC_INSTDONE_EXTRA},
+ 	{"SC_INSTDONE_EXTRA2",		XEHPG_SC_INSTDONE_EXTRA2},
+-	{"INSTDONE_GEOM_SVGUNIT",	XEHPG_INSTDONE_GEOM_SVGUNIT}
++	{"INSTDONE_GEOM_SVGUNIT",	XEHPG_INSTDONE_GEOM_SVGUNIT},
++	{"ROW_INSTDONE_TDL_GFX",	ROW_INSTDONE_TDL_GFX},
++	{"SS_LSC_HDC_IDLE_TDL_GFX",	SS_LSC_HDC_IDLE_TDL_GFX},
++	{"SLICE_ARB_STATUS",		SLICE_ARB_STATUS}
+ };
  
- 	if (!list || !list->list || list->num_regs == 0)
-@@ -1743,6 +1744,7 @@ snapshot_print_by_list_order(struct xe_hw_engine_snapshot *snapshot, struct drm_
- 		switch (reg_desc->data_type) {
- 		case REG_64BIT_LOW_DW:
- 			last_value = value;
-+			last_address = reg_desc->reg.addr;
- 
- 			/*
- 			 * A 64 bit register define requires 2 consecutive
-@@ -1774,7 +1776,11 @@ snapshot_print_by_list_order(struct xe_hw_engine_snapshot *snapshot, struct drm_
- 			XE_WARN_ON(!low32_ready);
- 			low32_ready = false;
- 
--			drm_printf(p, "\t%s: 0x%016llx\n", reg_desc->regname, value_qw);
-+			drm_printf(p, "\t%s: 0x%016llx [addr=0x%x]\n",
-+				   reg_desc->regname,
-+				   value_qw,
-+				   last_address);
-+
- 			break;
- 		}
- 
-@@ -1788,10 +1794,14 @@ snapshot_print_by_list_order(struct xe_hw_engine_snapshot *snapshot, struct drm_
- 			XE_WARN_ON(low32_ready);
- 
- 			if (FIELD_GET(GUC_REGSET_STEERING_NEEDED, reg_desc->flags))
--				drm_printf(p, "\t%s[%u]: 0x%08x\n", reg_desc->regname,
--					   reg_desc->dss_id, value);
-+				drm_printf(p, "\t%s[%u]: 0x%08x [addr=0x%x]\n",
-+					   reg_desc->regname,
-+					   reg_desc->dss_id, value, reg_desc->reg.addr);
-+
- 			else
--				drm_printf(p, "\t%s: 0x%08x\n", reg_desc->regname, value);
-+				drm_printf(p, "\t%s: 0x%08x [addr=0x%x]\n",
-+					   reg_desc->regname, value, reg_desc->reg.addr);
-+
- 
- 			break;
- 		}
+ static void __fill_ext_reg(struct __guc_mmio_reg_descr *ext,
 -- 
 2.43.0
 
