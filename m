@@ -2,42 +2,128 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AB01606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 03:43:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06C17606A31A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 04:05:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nk1+XXFh
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=qHEo+vH6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEAA010E19F;
-	Thu, 22 Oct 2026 03:43:40 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9CFD10E19F;
- Thu, 22 Oct 2026 03:43:34 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id DD04460AAB;
- Thu, 22 Oct 2026 03:43:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E3A11F000C1;
- Thu, 22 Oct 2026 03:43:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792640613;
- bh=+RMiY9uw6eCN0BpTPDSoavmomVaVOJjoADFEWKO7cYw=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=nk1+XXFh3mnnLnQOCgcnzoyo96g1VFkh37yG1OADu5rGMqEO8eXIVbR4tROOsX2Gs
- /T7maoSS3YNLt2jzqaTOEcpg5QiLbO91l3TCQESSywqV3U7QKdILfiU3Pz9tPThYIS
- 32hM7MmHB5+iHwEY1IUfrRTmMpu5FROeuMH5nu1POUKgAU71HDI966pSkJlbBlUcdV
- I3DVmOa8Jfs89la/iFIhgtcT/uVDzAHqhhLw1OqDa3vcZJC0VOaUgDpVAmRcxK2AKO
- 1+pSXYgsFrgRcqhQ3GLhU5pJr2ewdZxQ1uwB42viTZT2PEsc2sCERJmQJEGkcpICn4
- fmAHPUwKp71TQ==
-Message-ID: <sashiko-outbox-180972@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v7 04/13] drm/i915/dp_mst: Limit M/N ratio for MST
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261022032247.1378809-5-suraj.kandpal@intel.com>
-References: <20261022032247.1378809-1-suraj.kandpal@intel.com>
- <20261022032247.1378809-5-suraj.kandpal@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 22 Oct 2026 03:43:32 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C270D10E212;
+	Thu, 22 Oct 2026 04:05:08 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012040.outbound.protection.outlook.com
+ [40.107.200.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D65110E212;
+ Thu, 22 Oct 2026 04:05:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=DgIW5ZgxFtptMTqPxv3mpUk6jkcN+GQGaAZkNIoqSw08z6MzoYDZEf8yoLifIMVUtVylae7Wmpzd2h5bJdaUQdC1ekqgvRbwRpij0ti4KME6PC6F9eN0qQpOMCmLQa/0WGNslaM8N+wli9NFI12kFpTboSIl2D6m6BHzkP2qvd+a0LkvzC0iiUuggt4y5F8oOlr96WDiXgr1u0mdvu9nF1obCEJBoC1J1Nn4hHv5y/x5ZlqzgZMuoaLcC+OCIsv1WKgfY3MOkF4DdPQtTMPkoqvFgUPl5HocjhgqSyOhcQB7YqMAiS8beDMKJIwVOni3IhgTFAUv2YS/CoeN6Ii/aw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lOAZB56aAOCpf/5J+rSwb8tTh7A1q7LUV2n2GftI+bA=;
+ b=cUMEpgqvXwoZPHI8ML96VVK4uyOib+fq/bJGV9SNSrclz52WxPS7Hdn1/aMWzojRTr0ferOFB05SrIBsDKTnTQH4L7QLoEmOb9Zy/sdtxKmcyinaG4iXcR2V+TE/kq2rGJxanHCp8U2058XCUNmKHvCcAtuoM4MivWe2USbrDqeruynL0NrwHkoN6ZfYhHDgnK4bEFPBgnlqvrGjSH5W0t88+CfXEBlw/G9sKR6CYk7qPXN2jTfZYVng0AzvobS4PtW6CCmQFnGRP0aW7DZO6NI7cF6WtlcHWgoebdZEw3gSZH9wwe+93caIL3n/H073cd0f80T/dcKOpf9FH+UGqA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lOAZB56aAOCpf/5J+rSwb8tTh7A1q7LUV2n2GftI+bA=;
+ b=qHEo+vH6IXuLi02fWayXGB+5Sw0VtKjiEB56z5eBdC0oYOPNV+v+5JjzcViovsRRHxXqrRDXu2wImEQkKSqww3WXJtoYVQb4k7a4VTWCqTJb1g3aBizxune3CzylHM7F8Z9h3Scpp5yoQRX/q3czSSci0mYq2olax38qSEyMlZ8=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by BL3PR12MB6546.namprd12.prod.outlook.com (2603:10b6:208:38d::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Thu, 22 Oct
+ 2026 04:05:00 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0546.012; Thu, 22 Oct 2026
+ 04:04:59 +0000
+Message-ID: <4ec3b046-56db-46f1-8930-4062249988e7@amd.com>
+Date: Thu, 22 Oct 2026 09:34:53 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] gpu/buddy: do not pass caller list to
+ __alloc_contig_try_harder()
+To: Matthew Auld <matthew.auld@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ Shashiko <sashiko-bot@kernel.org>, Joel Fernandes <joelagnelf@nvidia.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+References: <20261006110706.1636971-2-matthew.auld@intel.com>
+ <DM4PR12MB5039955C1A48C78942896415E4672@DM4PR12MB5039.namprd12.prod.outlook.com>
+ <281c6c14-2692-40d4-b812-e41c3a2acaf5@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <281c6c14-2692-40d4-b812-e41c3a2acaf5@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0076.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ad::17) To DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|BL3PR12MB6546:EE_
+X-MS-Office365-Filtering-Correlation-Id: 708d4cea-4ec7-4918-c84d-08df2ff1a41a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|23010399003|376014|261021123027099003|56012099006|4143699003|11063799006|261009223027099003|10067099003|22082099003|18002099003|261021121427099003;
+X-Microsoft-Antispam-Message-Info: rFU8GRB9SV5u89I0q5tFkfkpf6go8s3Fln9TrRP8NcF7rKpUWCWR6tod3X6pZ7S0xV9PMqnNYlLC+Qh0n2VFhX+1VRw+57sEYZtQ/09gpQwP1hWccBMlNBUkm0JCEvI7r07nBhncK823STTy7Vu1VbWA7qIsBFCYQZFWr4L5hUiw7SyuZLV1LvLrxwfu5xhMwh0+XKuKSATPjMrwkCpVvCd+dkubqX3NVmFk4BzT/U9+b9hPwEjR0pRsqlVLcDYs/qitJ4SHskXKMlyJnEIoIEaXTLmw7wh7du05jndCzoegJVT33r7YXvaJFEKaNgHuGs3Lc1IKFgkCDiaDKaBEhKDs5YD9WfDcsPN4SV6ynkHVvktHeyswxWLwIqgYSpxB0IVNulz7JwwTcfJDeNXIk3Dn1DKt+qCKGQHFHsziMtGJWeeUmQoDNZ0dM5+kK8jQQ01nM+HjR0EsAI986iy918hncZdPxTzMSWGderTuKG8P9ElXGeZCqgQBVf2diOO2aICQy48Y2qy9kaEy5ZXtQ9wxJnLgHPL6qbiJIHfdsx3kOo0WhE+ATMJ4RJDa3WCfJ0MGF6cucDJObD8oYxuv9X7VqMTpLjmld+DeDPrIbWQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(261021123027099003)(56012099006)(4143699003)(11063799006)(261009223027099003)(10067099003)(22082099003)(18002099003)(261021121427099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TERIZEREOXNBaHJ0emFIeCt5M2hHZWNBUno3dDZMUTFQMmtiOEJ5c1QrMTRF?=
+ =?utf-8?B?MU5tcTBpSVVYdmdMUTZOaWJCNWxVRkxEYTdJMzlNZURzMlgyQld6MWlub2dn?=
+ =?utf-8?B?cVVzOGN4Mm93UXM5bXVJQ01uTHV4VXVqci84bzArd1MyTlVnSVRhMW91NGRi?=
+ =?utf-8?B?blp2L3pVVjM4REpYQTVkeEh5cU5MWUQ0NVd3b3BLd0Y1TmtVZWpweWd0SmlO?=
+ =?utf-8?B?NlJpZndENUtjc0FiNXdWbFN1N1N0VDZEUldwYWdBUVR5QjhLQUFIangwajBC?=
+ =?utf-8?B?THhTb1ZwWGFsMW1xUzNCMUpYTVEzQ2NxVFY0bkx3NHg2MmdJelVUZlNXcE1V?=
+ =?utf-8?B?VjlUR0gzajA2Qi9NU1B4WEtMYktKcGthQndUdTJibE0ybElwVjgxRkJnNlVo?=
+ =?utf-8?B?QVV6L0xmNVV3MnNYUFFreGY2ZEVWem1XTmVmclZBOUJ0by9WQ0ptVEgrMHo1?=
+ =?utf-8?B?RjZIdWIxTE5FcktmYXRjU1hXUTR5UkFtbXZrTGU2MU9kbXYwRVFQZDhSVDlZ?=
+ =?utf-8?B?M0RSQ0ZmZldSUFEvOXhIMFZJS3VRUGg3SWlNclhkQlI2OExFNEJJYnNVRzRs?=
+ =?utf-8?B?R1p1OVhweG9aYlUwdjV1dzhaT3BiKzJuVms2dlRZcjlpWHRGYXVoOXI0V1Jq?=
+ =?utf-8?B?ejdjTHErWmpVY0wreUdJbUpWbk1jT3gvM1AzMUpSLy9FL05iYzhZdnBMM1Fv?=
+ =?utf-8?B?YkFuTENiNzNpbXNoN2p4WWNaRWdmeWdFakVYeHdnYVV4Rm1vekROc241OUtZ?=
+ =?utf-8?B?MFlWY2Uvb1V3djN4bzUrbGJzellHb2hDdWh0SUFuSDJrY0VtcjNobmUxNjB0?=
+ =?utf-8?B?NHJTSEcyeE1EYk9pcW1GeVRoRE5WVGFhQ25oNTljVmpEeWw2VFpJYnRTZHgy?=
+ =?utf-8?B?WEQvcEZRYTJ5QUY1Zkp2cEVRQUJZWlRUYWtqVFp3MEw3dTZnZ3VrTFJSOWJS?=
+ =?utf-8?B?c0ozQ3l2alVteURSSW0ybFhBY3pYaDBIRm82WjREQmlySno3aW1OTTdYOGJC?=
+ =?utf-8?B?aExzb3pxVEs5SzZQK0xWVEk3UW8ydGlBN3AxWTJWK0F5bXlnRVk5dEJGNFlY?=
+ =?utf-8?B?Yi9odWVkbC91MzBkbHorbkhZZTZMc0ZiYllMMm1qTHA0N0Rta1BRYkJyWmJT?=
+ =?utf-8?B?aGZ2V3JlU3MrSjhwcGxsM250Y05PbXFjVlpBUDN2VG9xRkRlMjQ2dW52Z0tI?=
+ =?utf-8?B?OHVQMHBZZWdUc2QxWWo2OEV4OURJdEc3TFBkQ0paclF3Yy9hUE1jMDc5M0xu?=
+ =?utf-8?B?TjFHVWhDei9ZY3BaZmZMV2FrRTIrbTFtV29qOXlmNmc4RFRSMGtTV2JhNHh3?=
+ =?utf-8?B?Um9JWitOZkd0REs0aCtFQVFBd09QaEVpcnZVTGY1RVFjTlJ1Q1ZFN1AwbnA0?=
+ =?utf-8?B?bTVJdkRQTm9obW5UeU1kZmpLVkdKaGY4SEt0anJmb0h1My9Pb044MlAwOXpo?=
+ =?utf-8?B?VVFBMWJTbDRIRHFPc0xPc1E0MFRqSXB4Q1IwYS9zUXRMNFRnQUFBb1lWeEJx?=
+ =?utf-8?B?eUhLTkg2RVBvVGZaU2Foc3o2ZlkxVVFTbE50SFlGN1V1aTdtNkhrMTk3cWFL?=
+ =?utf-8?B?YUI1dnZ5Nm01TmVRTCttMk9tTUFVYVhLWWNzTlAxUUNob3pTd0hCcEVxN1dW?=
+ =?utf-8?B?M0dMd01XWWtZWnJGQzUrRENSYXhuM09taldrL0NscXlFeEhjbXpaWUlESDVH?=
+ =?utf-8?B?RVd5eWFQVUVIYXJIOTdaam52d253Y2tWam5mUWZGT3Q5STJhMk5vUHhVTkhW?=
+ =?utf-8?B?UERVV3p3NXFJb1YrM2pFbzVWdmhYRDFXNElnRi91bERuMjA4Zmc0RW1ibWRF?=
+ =?utf-8?B?YVAxUFk0dk9VYVRENjBwNmtDZzh1QkRRdTEwVWE0S1ZkY2tvRnpESlk2dlJN?=
+ =?utf-8?B?WVJLcXNnQnFzTmNocWh3ZW4zNkVvbG5XakhzMjBJOHNmNVVBeVY4S3NDdEZI?=
+ =?utf-8?B?NTBuRVR6YmI1aUJmcUxRQTVVWWJCNzdtNFRSQjAveGdpUVFOUFV4LzE5M28v?=
+ =?utf-8?B?OC9aTFNTTmN5Y3NTdDJoYzJ1bjZncEliWnc2Q1BkcHd1MTJFNTl4cmJsdXB2?=
+ =?utf-8?B?N2pZQ0xqcGNiSk5FZUVZV0JjSFJJbkJUYy85bWhYcDlnNHNSVjBmK0paTjFZ?=
+ =?utf-8?B?bDhyMzlCd1hOaFR6WTU4Z2JuU2w3K2o3TVN0ZlRETVo5VXV2b0x3eXFTTC9Y?=
+ =?utf-8?B?bkZha1hNM1RwcVlqRW1UT3BjN1diS1BtOWFFczQzd0UyelNuWFdoWTRTUXo0?=
+ =?utf-8?B?SzRmeXcyK0JqNlZHUFdXMjliVXhQL21neHFieXkvT0pudktuY1BObWZmZ0V5?=
+ =?utf-8?B?ZzFnT01qcEVTN1UxRVdQaWc0Tkd4emdUV1VBQkNIMXRIaDRZakJNZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 708d4cea-4ec7-4918-c84d-08df2ff1a41a
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2026 04:04:59.8041 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kxK6f5ABFUMJUDAfq1rakl3b/Y1t2P5NUwgrEn4sHH8mJwV7VBWD9gYmgogXtWk5p5fB0CNYT2v7MxvURR5AXw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6546
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,123 +133,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/i915/dp_mst: M/N mode_valid check mismatches MST compute_con=
-fig limits
---
 
-commit 67d8f2b2b1195befcc18a05f5eb7b442e2188782
-Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-drm/i915/dp_mst: Limit M/N ratio for MST
+On 10/20/2026 4:47 PM, Matthew Auld wrote:
+> On 20/10/2026 07:06, Paneer Selvam, Arunpravin wrote:
+>> AMD General
+>>
+>> Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>
+> Thanks. I assume you will merge this?
+I merged this patch.
 
-This commit adds a Link M/Link N ratio check to mst_connector_mode_valid_ct=
-x()
-using intel_dp_mode_valid_m_n() to prune display modes that exceed the
-hardware M/N ratio limit on MST connectors.
+Regards,
+Arun.
+>
+>>
+>> -----Original Message-----
+>> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf 
+>> Of Matthew Auld
+>> Sent: Tuesday, October 6, 2026 4:37 PM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: dri-devel@lists.freedesktop.org; Shashiko 
+>> <sashiko-bot@kernel.org>; Paneer Selvam, Arunpravin 
+>> <Arunpravin.PaneerSelvam@amd.com>; Joel Fernandes 
+>> <joelagnelf@nvidia.com>; stable@vger.kernel.org
+>> Subject: [PATCH] gpu/buddy: do not pass caller list to 
+>> __alloc_contig_try_harder()
+>>
+>> If the caller passes a non-empty blocks list, 
+>> __alloc_contig_try_harder() unconditionally frees it on failure or 
+>> during retry.
+>>
+>> Pass the local allocated list instead and only splice it onto the 
+>> caller's list upon success.
+>>
+>> Assisted-by: LLM
+>> Reported-by: Shashiko <sashiko-bot@kernel.org>
+>> Closes: 
+>> https://sashiko.dev/#/bug/linux-fa721daf-7333-48b5-a26b-624c7f5791d7
+>> Fixes: 0a1844bf0b53 ("drm/buddy: Improve contiguous memory allocation")
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>> Cc: Joel Fernandes <joelagnelf@nvidia.com>
+>> Cc: <stable@vger.kernel.org>
+>> ---
+>>   drivers/gpu/buddy.c                | 20 ++++++++++++++------
+>>   drivers/gpu/tests/gpu_buddy_test.c |  9 +++++++++
+>>   2 files changed, 23 insertions(+), 6 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c index 
+>> 2f2aaadafe35..a86f454fbb40 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -2022,10 +2022,16 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>
+>>          if (order > mm->max_order || size > mm->size) {
+>>                  if ((flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) &&
+>> -                   !(flags & GPU_BUDDY_RANGE_ALLOCATION))
+>> -                       return __alloc_contig_try_harder(mm, 
+>> original_size,
+>> - original_min_size,
+>> -                                                        flags, blocks);
+>> +                   !(flags & GPU_BUDDY_RANGE_ALLOCATION)) {
+>> +                       err = __alloc_contig_try_harder(mm, 
+>> original_size,
+>> + original_min_size,
+>> +                                                       flags, 
+>> &allocated);
+>> +                       if (err)
+>> +                               return err;
+>> +
+>> +                       list_splice_tail(&allocated, blocks);
+>> +                       return 0;
+>> +               }
+>>
+>>                  return -EINVAL;
+>>          }
+>> @@ -2064,9 +2070,11 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>> original_size,
+>> original_min_size,
+>> flags,
+>> - blocks);
+>> -                               if (!err)
+>> + &allocated);
+>> +                               if (!err) {
+>> + list_splice_tail(&allocated, blocks);
+>>                                          return 0;
+>> +                               }
+>>                                  if (err != -ENOSPC)
+>>                                          return err;
+>>                                  goto err_free;
+>> diff --git a/drivers/gpu/tests/gpu_buddy_test.c 
+>> b/drivers/gpu/tests/gpu_buddy_test.c
+>> index b75d32ca6ca0..2c6f1da1a6d1 100644
+>> --- a/drivers/gpu/tests/gpu_buddy_test.c
+>> +++ b/drivers/gpu/tests/gpu_buddy_test.c
+>> @@ -1235,6 +1235,15 @@ static void 
+>> gpu_test_buddy_alloc_contiguous(struct kunit *test)
+>> GPU_BUDDY_CONTIGUOUS_ALLOCATION),
+>>                                 "buddy_alloc hit an error 
+>> size=%lu\n", 2 * ps);
+>>
+>> +       /*
+>> +        * A failed contiguous allocation with a non-empty blocks list
+>> +        * must NOT corrupt or free pre-existing blocks.
+>> +        */
+>> +       KUNIT_EXPECT_TRUE(test, gpu_buddy_alloc_blocks(&mm, 0, mm_size,
+>> +                                                      3 * ps, ps, 
+>> &allocated,
+>> + GPU_BUDDY_CONTIGUOUS_ALLOCATION));
+>> +       KUNIT_EXPECT_FALSE(test, list_empty(&allocated));
+>> +
+>>          gpu_buddy_free_list(&mm, &left, 0);
+>>          KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_alloc_blocks(&mm, 0, 
+>> mm_size,
+>>                                                              3 * ps, 
+>> ps, &allocated,
+>> -- 
+>> 2.55.0
+>
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index 7023619aaaba9..f00edfb66a10a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -1565,6 +1565,11 @@ mst_connector_mode_valid_ctx(struct drm_connector =
-*_connector,
->  					   min_link_bpp_x16,
->  					   bw_overhead_flags);
-> =20
-> +	if (!intel_dp_mode_valid_m_n(intel_dp, mode->clock)) {
-> +		*status =3D MODE_CLOCK_HIGH;
-> +		return 0;
-> +	}
-> +
->  	/*
->  	 * TODO:
->  	 * - Also check if compression would allow for the mode
-
-[Severity: Medium]
-Does calling intel_dp_mode_valid_m_n() here match the link configuration
-constraints enforced during MST modeset in intel_dp_compute_config_limits()?
-
-In drivers/gpu/drm/i915/display/intel_dp_mst.c, mst_connector_mode_valid_ct=
-x()
-evaluates bandwidth and DSC against max_bw_config, whereas
-intel_dp_mode_valid_m_n() in drivers/gpu/drm/i915/display/intel_dp.c iterat=
-es
-over all configurations in INTEL_DP_LINK_CAPS_FILTER_ALL:
-
-drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_mode_valid_m_n() {
-	intel_dp_link_caps_iter_start(&iter, intel_dp->link.caps, order,
-				      INTEL_DP_LINK_CAPS_FILTER_ALL);
-	for_each_dp_link_config(&iter, &link_config) {
-		if (intel_dp_can_support_m_n(display, m_n_pixel_clock,
-					     link_config.rate)) {
-			found =3D true;
-
-			break;
-		}
-	}
-}
-
-On a UHBR-capable MST topology (for example UHBR10 with a 312.5 MHz symbol
-clock, or UHBR13.5 with a 421.875 MHz symbol clock), intel_dp->link.caps al=
-so
-includes 8b/10b rates such as HBR3 (810 MHz symbol clock). Because HBR3 has=
- a
-higher link symbol clock than UHBR10 or UHBR13.5, intel_dp_mode_valid_m_n()
-will see that HBR3 satisfies intel_dp_can_support_m_n() and return true even
-when max_bw_config violates the M/N ratio limit.
-
-However, during modeset via
-mst_stream_compute_config() -> mst_stream_compute_link_for_joined_pipes() ->
-mst_stream_compute_config_limits() -> intel_dp_compute_config_limits(),
-the MST path narrows limits->link_config_filter to the single highest-BW
-max_config before intel_dp_compute_m_n_ratio_limits() is called:
-
-drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_compute_config_limits() {
-	if (is_mst || intel_dp->use_max_params) {
-		struct intel_dp_link_caps_filter new_filter =3D INTEL_DP_LINK_CAPS_FILTER=
-_NONE;
-		struct intel_dp_link_config max_config;
-		...
-		if (!intel_dp_get_connector_max_link_config(connector, limits, &max_confi=
-g))
-			return false;
-
-		if (!intel_dp_link_caps_filter_add(link_caps, &new_filter, &max_config))
-			return false;
-
-		limits->link_config_filter =3D new_filter;
-	}
-
-	if (!intel_dp_compute_m_n_ratio_limits(intel_dp, conn_state, crtc_state, l=
-imits))
-		return false;
-}
-
-As a result, intel_dp_compute_m_n_ratio_limits() only checks max_config for
-MST and rejects the modeset if max_config violates the M/N ratio limit.
-
-Should mst_connector_mode_valid_ctx() check intel_dp_can_support_m_n() agai=
-nst
-max_link_clock (matching the rest of mst_connector_mode_valid_ctx() and the
-current MST max_config selection), or should intel_dp_compute_m_n_ratio_lim=
-its()
-filter limits->link_config_filter before intel_dp_get_connector_max_link_co=
-nfig()
-picks max_config?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261022032247.1378=
-809-1-suraj.kandpal@intel.com?part=3D4
