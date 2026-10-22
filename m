@@ -2,58 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1979B606A31D
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 05:14:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Q8TbbE1a
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AA2D606A325
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 05:20:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D42EF112313;
-	Thu, 22 Oct 2026 05:13:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20141112315
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 05:13:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792646028; x=1824182028;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ne4gf3D+91CeB7KSo+KVl/eLu5nBYINeGteMnUkRAqE=;
- b=Q8TbbE1afQt9YcdOGvMpkLFAVUrsZG6EYMOdsmXWYClpWKelcxsdyJNO
- mmerFepdQ7RrdRMsL3jAJ3wiGE2XH7eRGuxoGkgpXZCWhWVyfLE/ntre9
- IA204scZ3U+qVTxqAFYhG+QZvr/f7ndzrYnnb2bHhqEkYAZm1nkNOIH+V
- GPmKcfnhwvLQpJqN5BxNR5BX/jBZY2UWr3CdgLLd/ojlBeBq+B0JzAP+P
- +qOmP2NkakEyWUpZ3A6j0pV1wqJ+y/5uIB38pVfaetEENk1nRdSNeRSwq
- 6kYLrovWeQ20nuJ2WNvmHHHErVTshYw0GxY7NQ2oKMtp6XMNbT1HMExpp g==;
-X-CSE-ConnectionGUID: sk376T4MSC2LqRcm9ng3mg==
-X-CSE-MsgGUID: 4fxX56k5QeuNmYE6oQ41Kw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1393968"
-X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="1393968"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 22:13:48 -0700
-X-CSE-ConnectionGUID: jpKK/J2eQCSAXcbn4PDwxA==
-X-CSE-MsgGUID: Qd/t4l4WQ+CuAKRBWpubWQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="3268775"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa004.jf.intel.com with ESMTP; 21 Oct 2026 22:13:46 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, michal.wajdeczko@intel.com, lukasz.laguna@intel.com,
- matthew.d.roper@intel.com, matthew.brost@intel.com,
- mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v14 9/9] drm/xe/ras: Move xe_ras_process_errors() to xe_ras
-Date: Thu, 22 Oct 2026 10:42:33 +0530
-Message-ID: <20261022051303.282805-10-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261022051303.282805-1-raag.jadav@intel.com>
-References: <20261022051303.282805-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 140C51122F5;
+	Thu, 22 Oct 2026 05:20:54 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 230B010E0EE;
+ Thu, 22 Oct 2026 05:20:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_xe=5Fwedge_=28r?=
+ =?utf-8?q?ev13=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 22 Oct 2026 05:20:53 -0000
+Message-ID: <179264645312.54817.16743499289010264344@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261022051303.282805-1-raag.jadav@intel.com>
+In-Reply-To: <20261022051303.282805-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,63 +33,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With xe_wedge_fini() now moved to xe_wedge and registered as part of
-xe_device_probe_early(), it is safe to move xe_ras_process_errors() back
-to xe_ras where it belongs. This essentially reverts commit 20bc4883c7c0
-("drm/xe/ras: Fix boot-time ras error processing"), which was added to
-prevent PM reference leak in case of early wedging in probe sequence.
+== Series Details ==
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 7 -------
- drivers/gpu/drm/xe/xe_ras.c    | 7 +++++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
+Series: Introduce xe_wedge (rev13)
+URL   : https://patchwork.freedesktop.org/series/173011/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9de173995a78..a07655b4c7a9 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1091,13 +1091,6 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	detect_preproduction_hw(xe);
- 
--	/*
--	 * Process and log any errors detected by hardware. Possible results can
--	 * include declaring the device as wedged, which must be done only after
--	 * xe_wedge_fini() is registered.
--	 */
--	xe_ras_process_errors(xe);
--
- 	err = devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
- 	if (err)
- 		goto err_unregister_display;
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 0072bb4cc5df..db3cbc186a51 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -1212,6 +1212,13 @@ int xe_ras_init(struct xe_device *xe)
- 	get_offline_list(xe);
- 	get_offline_queue(xe);
- 
-+	/*
-+	 * During probe, process and log any errors detected by firmware while the driver was not
-+	 * loaded. Critical errors such as Punit and CSC are reported through Pcode init failure,
-+	 * causing the driver to enter survivability mode.
-+	 */
-+	xe_ras_process_errors(xe);
-+
- 	ret = devm_device_add_group(xe->drm.dev, &gpu_health_group);
- 	if (ret)
- 		xe_err(xe, "Failed to create GPU health sysfs, err=%d\n", ret);
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6bef5ce5c74dc76b4ee69ab2832c0d1fd63c91c7
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2e174b00d978ae6d817c2eda99b194c14ab33fef
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Thu Oct 22 10:42:33 2026 +0530
+
+    drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+    
+    With xe_wedge_fini() now moved to xe_wedge and registered as part of
+    xe_device_probe_early(), it is safe to move xe_ras_process_errors() back
+    to xe_ras where it belongs. This essentially reverts commit 20bc4883c7c0
+    ("drm/xe/ras: Fix boot-time ras error processing"), which was added to
+    prevent PM reference leak in case of early wedging in probe sequence.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch dccfdbc40b10720efe537dfc63de84eed983fc8f drm-intel
+a430bee22535 drm/xe/gt: Use GT ordered workqueue for wedging
+-:43: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#43: FILE: drivers/gpu/drm/xe/xe_device.h:142:
++#define for_each_initialized_gt(gt__, xe__, id__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if(READ_ONCE((gt__)->initialized))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:43: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt__' - possible side-effects?
+#43: FILE: drivers/gpu/drm/xe/xe_device.h:142:
++#define for_each_initialized_gt(gt__, xe__, id__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if(READ_ONCE((gt__)->initialized))
+
+total: 1 errors, 0 warnings, 1 checks, 153 lines checked
+7be0d067a17c drm/xe: Drop xe_device_set_wedged_method()
+42811bab9d79 drm/xe/hw_error: Guard csc_hw_error_work() with runtime PM
+ff23fbc46fb1 drm/xe: Move xe_device_wedged_fini() registration to xe_device_probe_early()
+45c9e5cf372d drm/xe: Make xe_device_declare_wedged() IRQ safe
+aca24587cac3 drm/xe/pci_error: Flush GT wedge worker before bus reset
+a6d3ec8a9d64 drm/xe/amc: Guard xe_amc_work() with runtime PM
+a56b5700f923 drm/xe: Introduce xe_wedge
+-:1070: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#1070: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 1202 lines checked
+2e174b00d978 drm/xe/ras: Move xe_ras_process_errors() to xe_ras
+
 
