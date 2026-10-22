@@ -2,174 +2,131 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615D8606A319
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 13:29:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD09E606A31E
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 13:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=huq6+EdL;
-	dkim=pass (2048-bit key, unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=Ca5l99oX
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=hNXvjwHN
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 183A9112633;
-	Thu, 22 Oct 2026 13:29:18 +0000 (UTC)
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25C8611265C
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 13:28:36 +0000 (UTC)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 69MA0C9a2396880
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 13:28:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- ZeC773TKEYubASujmMTo4cYzyXvzJFRJKmRo+UPd0C4=; b=huq6+EdLHIG2IKh9
- fq+pBx8cZXxAlw6MNLQsBsBq/skklFtFTkH9mSCKnIther6jO1a/HCONVvYjnXN2
- QaDCt6zjurulTvzpcbiYaCRzfYZvR4c1oCAyDzlgxAPTxrJtmDUH2olZjhE0ztaT
- V6TNw4uaZ2X3NoG8Qp5GL6OFRwhDGX+7Z7cqCx/WnzXwzLURb4i7N2oPXwzAmGZg
- E4j7rsqN+RkR7XbGOp/uhX4utIY8PH1+EJ5AY8tegI2Q3Knpq+Leq6P/5u6+b1RX
- VdNA7E5J1CPiPvBlJK+4LT9ybakIaQavIzrJIYYj/wYjlKKRvoggcIiE3kj/agu4
- izt4BA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
- [209.85.219.71])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4hf93bur55-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 13:28:35 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id
- 6a1803df08f44-91bebff9fcaso64880476d6.2
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 06:28:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1792675714; x=1793280514;
- darn=lists.freedesktop.org; 
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :content-type:mime-version:subject:date:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=ZeC773TKEYubASujmMTo4cYzyXvzJFRJKmRo+UPd0C4=;
- b=Ca5l99oXxfZ05SAcp1hi3CPQei/kYdCslzHToC7J33K/4D69zgWlRf4Tyk1wjLAF4l
- rBU4JTh9JV12Vhr91dPd80sBHnoTrFOllNjdmSB/8NRwZFgLhjjGcLiBBRiNIT3MzSzC
- n5h1mJgbG+m+td6AOO54iAamhIIccWi15HTyKHcba6Lx/2zzuzbjJ2CEOKwG2eEaoJRJ
- F95yWFbrd4+9nKlXVHNuHKsNFeZgCDnrSp9+ANFMH+4j+D6xrXSrkTg1EUdDHmiZnbcp
- NfMlydEqoRaO6iZebhMKoHzji2YCaLJs1HqICmlPGuX9OgrzcOv1YdPhJZkMlpiL9m/1
- WovA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1792675714; x=1793280514;
- h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
- :content-type:mime-version:subject:date:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=ZeC773TKEYubASujmMTo4cYzyXvzJFRJKmRo+UPd0C4=;
- b=2f/K+JYGDNSPlS9s0xAWQK9RXFlVmmpmKUG5gW0WmuN3s5iwt1JhSi2d6UqL6qE/Ck
- olDdyjIvmW80zlKL9vIBI8qYxXGaaXuODHAc2LjHHyoJS6pQjYw/p8suAeyttoYKiKpU
- /2jtv+w0bGNEsOc3D67E6VEQSSspdA6aIRBqAkhHJINJYUuOWus4v1zRW8Bsdt1gkDqM
- BI+jXDNsY50DpELMQqd88Xct4MKchJ0HvE7B8RG+yHc3QTPLnm5lQ+L+Hz+x/0RvWAtg
- kqYTFcCh9iTA/GrAtpioc2zPYsIeZMdrez8EY4pS3GjB5iMSq6j6HywOIKEJJtoO1/ah
- sz5A==
-X-Forwarded-Encrypted: i=1;
- AKwUvByrCuDBndBmutaQqS8XXKCLfOg2KlU549cFh9+03GryvIMTKwRl9u7NugYoqoBHmJxo3Ts8QQn8tQ==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYLv89ca4JJ1iuUJOgGg2i4NIjdzFXJguwNyU8c6sDoyS9AEQUqd
- F0XTvbe3bq+zUSl5wL8JT3sD3FZU6hCzH1cBElKUIMDS1l52TQX/+KRh5LsJ3oFYlbnBtMgnOSV
- m2LXygq/gQcLjzgkx+NuQ1eUpecTJZSXbEBvi1OOxdoezEijlHmhzPYZLpWGXs2SSmmNSfA==
-X-Gm-Gg: AYBFou2R3I8lCb4CR3ojXC9SQBEzNlODIhtT3I5tTCwvK6trX520PIYaD8LsOYos8L8
- 7Zkbu8lWnjFLVou8wU4wEmGdAi5NAeEFNr+hu9cir592cc06jCNna3z3jObem2w3fk9xrLM4qk5
- El8Hbs0o16i6pB5sTfDzAhHhfBKkXYbFJ0o7lRkuHIpGyOCWGREfTkOCl11Wqzq5proYSK63CAH
- JzCRsjWrfF7J1yZzoZy4UFUyEG+u5FJJOziqItN9QXtJilNJ4gUIa0jb3lp4s8M+UXfGWfjm9o+
- L7VN6Tse9TshC3C28cU0q4mE+yCtAErP8IkITZqwiL7gk91Y9JKbL1MFwkyz/fNvZyAqEt6LxOz
- StAi8+PKsHiA8PksoPqPOrq6StXv7+1cPycOwOMXiYztuCxgmspSa8CVwjgzsvNXFtQcoYcz3Pt
- +lu136Me2gQi20
-X-Received: by 2002:a05:620a:2b89:b0:93c:7f48:8f46 with SMTP id
- af79cd13be357-93f57e45af9mr860582985a.4.1792675714439; 
- Thu, 22 Oct 2026 06:28:34 -0700 (PDT)
-X-Received: by 2002:a05:620a:2b89:b0:93c:7f48:8f46 with SMTP id
- af79cd13be357-93f57e45af9mr860577785a.4.1792675713861; 
- Thu, 22 Oct 2026 06:28:33 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-3ac4f6683edsm8762201fa.22.2026.10.22.06.28.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Oct 2026 06:28:32 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Thu, 22 Oct 2026 16:28:04 +0300
-Subject: [PATCH v6 9/9] usb: typec: ucsi: huawei-gaokun: pass down HPD_IRQ
- events
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84A9C112624;
+	Thu, 22 Oct 2026 13:30:28 +0000 (UTC)
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010065.outbound.protection.outlook.com [52.101.201.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59179112624;
+ Thu, 22 Oct 2026 13:30:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=cN2VY7+JKp3yCbk4ejPHhpHavPP1E003oeOJ8dMW6lAZDkUIk4YKTkNtREbssoijPl41+sMZiW/HF+0ZQnvCTmTV+izRwsoC4UW/Uns6KIXRPb/+e5JDePk8DAO2eD8G0DiRXvw0gi24eWpUlbX+kVc3xnsW1lqYv6KDAqANcBizFlPouyUHExn6COwJmJNT4AbTojTlwZa53yRemgtA1vqoGfAhZy1105iWbFHnlsmYwiQnBR1QoG0KlI0HReyzn4HfYw835hHCl7sBiG/8cP7ke/CGRpvXYWYHmFtv1jKPDLEQ7m+waDWjCxmpqTo198ixSjTv7huEMaya7sHcng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pTcl00j1OPpmyqOqO/eot6rKBqByxj2eXdhEQBe7icE=;
+ b=syF74JJMvuYjGpkm4mp0/0CPMK6GqytiymO/fZSlFx2ji5JSTzgFiIdGNsdn8hvNxaXMIg47izfyNunr7FV9mkP3+1zZCK+eu8oUFeb7ahIY+TVmNnQHqB6NGurDD9smJ98Qm8264BqpFPu2/Praq3Ml9el58az4UBy3/XZ7KpBAwxSwqgt3PplZVP/qQFnGt3Bxw0k5cwuUsPxQOQnpeYiOD7PJnOPqwH9+11wao66sYNNVSdcacw7jvzE2q9D/GeT6HEXaZzS/lET3w7HUpKy26ZnJ/wUCESxIKKrs6l76PivJ9NNCDgZSoZ1L26O35eULzaq5JpTyg0gyBbvS1A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pTcl00j1OPpmyqOqO/eot6rKBqByxj2eXdhEQBe7icE=;
+ b=hNXvjwHND7VCT8TOKlV5Ud0RoW8NzX5F6Ybrr40opPj8AtOp+Z85vtfCwNR9dOLV1Cwnp88nDEsx85hnv+mdad0qTdyVUZEZ6/zNB0df6UqAnlKBwkwyz7YT/t80FoSfwhJGSElSCqIf7bMRxI1wknSdTP/mpMzN7jT9XYb7aqs=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by PH7PR12MB5736.namprd12.prod.outlook.com (2603:10b6:510:1e3::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.16; Thu, 22 Oct
+ 2026 13:30:17 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0546.012; Thu, 22 Oct 2026
+ 13:30:17 +0000
+Message-ID: <7b4dc988-5dbd-40e4-b17a-47b6eaf4bf81@amd.com>
+Date: Thu, 22 Oct 2026 15:30:11 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 01/26] dma-buf: Introduce DMA-buf mapping types
+To: Alistair Popple <apopple@nvidia.com>, Jason Gunthorpe <jgg@nvidia.com>
+Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Dongwon Kim <dongwon.kim@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, iommu@lists.linux.dev,
+ Kevin Tian <kevin.tian@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+References: <1-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
+ <b5d1bc79fae01fd9b511e06ed796130314ff841b.camel@linux.intel.com>
+ <20261021123755.GL3008132@nvidia.com> <atmurtZOhKwwGjV3@nvdebian.thelocal>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <atmurtZOhKwwGjV3@nvdebian.thelocal>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BLAPR03CA0118.namprd03.prod.outlook.com
+ (2603:10b6:208:32a::33) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261022-hpd-irq-events-v6-9-337ea3ddaa62@oss.qualcomm.com>
-References: <20261022-hpd-irq-events-v6-0-337ea3ddaa62@oss.qualcomm.com>
-In-Reply-To: <20261022-hpd-irq-events-v6-0-337ea3ddaa62@oss.qualcomm.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Francesco Dolcini <francesco@dolcini.it>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
- Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org
-X-Mailer: b4 0.16.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1516;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=bY5FhyMu3eZPaJc1ltLzH3W13KWzM9lAhGrC22j7pKg=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBq2g9oUOGyoZ/Lo9msFFhzc2wcKn57bx/TRaPi0
- NP7H+uDIseJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCatoPaAAKCRCLPIo+Aiko
- 1Qn/CACG1K4eJynq5qB7lVOT6butQGOdb0Uhg1y7eGfXBUIIGj1DRv6ecFzKRRK0bqqp6pcC5ci
- EIrQitRmOJrdtYWSEpurrdG1g8G+KPLJUhVNQEysupJKk1UtdeTjjfLKzFo0433HZaIXhfDpj3N
- K3momphg+N2wrPSqKOypSco4Z/DK1vaIXXYy+0UWhUxrrYMXstFcdV6IsFrEXkcVoNcdL9pxLls
- IJxAjrrVY16uL/yTOwggUx66Zvog/fgGXfehXKJwmzjWKCAkhWW369L1wPJ5HGNAbqCPvQESo/X
- 5Wj+blNVgBLSYe62VO2WdSqoGusXFkACUWYMezRkF7KbPzw6
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: 3zhZaPvpVEpRQjVfwylkxU3CD95TFNlR
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMDIyMDA1MyBTYWx0ZWRfX8xlRDiRFVv5Q
- TUEvEfnofjJUKkKgzOIHTk2QOTkEdCRZGOOvpaxzffaBqirLbhi0rShqMHtLEsAvZFint1xOtP5
- tLfov6dvHrM5ZkktXNo/OF2om2XERhM=
-X-Authority-Analysis: v=2.4 cv=F4fC5ahN c=1 sm=1 tr=0 ts=6ada0f83 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=660iZSQnnn4A:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=pGLkceISAAAA:8
- a=QyXUC8HyAAAA:8 a=EUspDBNiAAAA:8 a=HJ0TMOZLSqZlwYNULgAA:9 a=QEXdDO2ut3YA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-ORIG-GUID: 3zhZaPvpVEpRQjVfwylkxU3CD95TFNlR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMDIyMDA1MyBTYWx0ZWRfXx1uBmCxH7/B4
- D0ly+cMt+eh2wusvQvC52kYE0RDaDxw6zarRVMLUyN2/7fJ+lAhEKUI7N1y8h3bXa/EUhBJDL2p
- Dl5WgiwQ+y7yvKZHAJ8BdTpcDkxqPrlGWLW4ezgG+Ewwm4TyxPTzWk5GD1G+01ojeXYTtfL5EOL
- cnvceClhWEkQh82R3a0p1SKvrVtWxHbkM+u4vdPsy41wIlDCop7cEvUrgIZfXtKo8IrIFkna8vQ
- BDf3iF7FsgSN3M/XL31pG0J6FrE11OMYKnJmIr4wz/X7FfpIiUqLkzUQrfEpBwp7gb/IxiSq28t
- i27pr/S9r26dGLt8MHCnLjTgEPTnJ6JLWh2H3LGc3GCzA3gvUx/DY4vD2W9OkJjFlXcyNr77DTy
- ItofD63ulFwVXFZ+XKxUCCJs9mTbztRbU3t3l46zS4hRuO0XO4EfeiQKUsspE4oNc/HCRkX9d/t
- 4D15OnojEPnzk+cIZlw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
- definitions=2026-10-22_04,2026-10-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 malwarescore=0 priorityscore=1501 adultscore=0
- phishscore=0 bulkscore=0 clxscore=1015 impostorscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2610190000 definitions=main-2610220053
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB5736:EE_
+X-MS-Office365-Filtering-Correlation-Id: 73190f50-df86-49bc-6e3f-08df30409c60
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|23010399003|376014|7416014|56012099006|4143699003|11063799006|261021121427099003|261009223027099003|10067099003|22082099003|18002099003|6133799003|3023799007;
+X-Microsoft-Antispam-Message-Info: nRHzcom1AZbaAyuyCDaRt6lw8Y72XZxEWXGEXvIY220iwZgUcx4ZW3OG1tpdi1Ry1xXvIvglQY38Rwx+X5ZXG6OVc1l8c5SNODcCWzZb1CD4zPEd2wszfU0uOjf6IGLy86el5dfExxrSz1dlHoFf/roq9r4w1kzkf6hL23E6/VbLBlH76gGhAWOa+5z8VRYHDrKJ2pExv5Yo/+LTmDJQPW7mMl930PvHQU+cFrjyI/DCOOcVwEBzl1t0aLHzMFxd1nbZL756pvYoMJivzUJK4mk+i/HWYCldmgJ18ZdTKaG8VDpQ8dofbMV2+yJsMiz6nRz644lC9p+5DQfi+SWU0ZVz5lCtpJDEgnZ9c99FkL3BvFHcs4mFDNWUuE20NbPSZL2Stt3hZ9e86JPetHxp1r/Sr84e4o9q7Frp3qvbXWWfEGpMqPv3SB655dfL8RKOpre//gge/ovnrFkdYtt+ZJEZ6SSOsFNGif0ceMQoVcNQ4BFIpyi4Od2J8wybxe9hh7pIItKeQubF+hlPNzRxe2DeRFBKG9ZGIhrITNyYDTyB1OuppfZJv1IR7KxxezqXHtOdmC2UFsKNzmEeFsU3Sd4pIqaTaTp1bN5OoZ62N8ePrFcoPc69DJ/5z0l29a/T9rsM/OsyXov0zbnGGD/1KbzCdFvDIeavddMpccYpJBQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(7416014)(56012099006)(4143699003)(11063799006)(261021121427099003)(261009223027099003)(10067099003)(22082099003)(18002099003)(6133799003)(3023799007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?USttTFpzUmJlejI0SXF5azQyWm9WQTNrKzhhUTlkZEpNQXZpMHljc0ZraUtH?=
+ =?utf-8?B?cXUzeElxQllXbllnUWgyalJjYXV4UlFiK2FSSldqOTN0QjB2b0J2a3FWMFBl?=
+ =?utf-8?B?MDR6VnpqN05wWWtNbEY1STlzOVpYZUQxWjR4cEdQRkozS1J3L0FoRWtFV2NF?=
+ =?utf-8?B?QVY2VDRNMFNxU2NPc084ZUNWS2lQUVdMTmlOOHc2TGxOYU1pWHU1dS91aC9V?=
+ =?utf-8?B?Szk5WTJLZ3BSSTcxOWlJREV5emlsbnNVdVVnQlFTOGdpS3BZbFFDNU1VZFcz?=
+ =?utf-8?B?eTZKQVVyYi9TYWR2RlVmSHdueGQ1UFJ6K0x0Z3BiSUxtS1RZMHZNeCtsUTZm?=
+ =?utf-8?B?Z1NkOVNGSUtvRGZmYTlKRzNWNmdHQnRoSmFlcTNWOGl6TFhZTEJHY3c5L1hN?=
+ =?utf-8?B?TlFQSlJKTEw0aCs1Z0xwNkhxWFY4QUdQMDZCT2FNT3BQeG52NDlRRGw3R3BQ?=
+ =?utf-8?B?VkNUd05jWWpBNWNFaEF4dVRMY2p3UzdiTnpoV2lMNkhrcmxHQUNRYURnK2Ja?=
+ =?utf-8?B?d1A5c1MzaG1rTUpKWWhNc253L3ZKUE01em5GOTJGOXRlMGdZQ1RQTm8vTGtW?=
+ =?utf-8?B?OHNyUjg5eXFHY0k3N3I5dU4rZzh1V2VyN0VJME12cU5GTDh5M1k0NDMrUHNQ?=
+ =?utf-8?B?bUliVFhheVphRG9vdXRQWWtQQUg3cVprRmZCTVk5VHZSZmhZRFpoVXd3UEN4?=
+ =?utf-8?B?QTJjODBKcWdDVXZHb3R2eGtMQ2JONXNudVhIWlVWbC9UVjM2UnJOd0Y2VDhE?=
+ =?utf-8?B?NkkxdWNKanVzdncrYTdVYkhqbmNTWk5KZ3VUVUh3TDgzQUQ1a29UNTlGOVpR?=
+ =?utf-8?B?VGc3UXZVeWRBZTY2Qkd2ZkNlOHpkSEdIOUhqUHpNSVllVXAvY1UyTDJlWmhQ?=
+ =?utf-8?B?S0FwUVNoYytjNXJPS3YwdGNuRjRUV202SFRFSXVwUk50L2RMYk9na0U4cnA0?=
+ =?utf-8?B?YkZRUW54T3lRR3RVWTJ4eTJ4Wnkvek9DWFRNa1JOMStwTEo4M2M1NWlXTGZM?=
+ =?utf-8?B?eEttc1BFZEpOeDErMlNoZ1M3eTZ1bHBPVURaVkluRTJHdDFqa3hqeHEvV01U?=
+ =?utf-8?B?MUVCY2U3aGNWUnROTUxJOENqOG9OSUV0SDVDeUZJblBSQ0tYNXpVdGxDZ0Zm?=
+ =?utf-8?B?ZXJvdmxhWXFhb0hZeTd1YmpTTVJ5YUQ4RnJiZk1ybDlIWjRERHZTQzI0a0ZP?=
+ =?utf-8?B?UVFiM1NzcHdaOXdGSnlDS3htdXFwZE9KZ0pubmJMM3BmSU1jcktNQllob3p2?=
+ =?utf-8?B?QTkzQm9JL1hwZ21hNU1YWGdYN1h5aEM3cEhLUDE0R3UyOEFscUxTMU5yNzhy?=
+ =?utf-8?B?WFdOTjY0dXdyK0hnRDR2WmZsMlFpQUVHMkVPR280RDJvNDRFU2lyTlZwVzFs?=
+ =?utf-8?B?VWcyNVdoazl6VzJlVUxHemVsb3IvSGlPMTBmNUt2NHRSZ0xZSUJQY0xHOUE4?=
+ =?utf-8?B?aU1reFJKQStaODZ6ZzRSbFlNZHpRTS9ubVlOK0hNN24rY3pNUUlhKzBDa1cv?=
+ =?utf-8?B?RFhTdVBBTS84MnBmWjF6amhhZlMwR21DNVFaYnBpSnR0THNLd3UrV0xCUkdm?=
+ =?utf-8?B?UGJDdnhkNkUrdG85bmxQT3dKbzMweUZZLzBLOWdTa1Z3TGZuNmNMUERMa29t?=
+ =?utf-8?B?QjI1WllacXQrNURidzRUSU11cUVQNkw4L0UvYjBOWlA0TDZqZUFXWmYvZHVR?=
+ =?utf-8?B?UXZ2RzEyNUZ4cmFVZ2czT2JlcTJPYkw3NGw4M0hZa0l2QmZEci8xaW0vQ3lN?=
+ =?utf-8?B?NDQvWFNqOTducm9RUDBBVHZ3VTlvUU1WWWVEc1FzSUNnK1hJVTBQalFyNTFM?=
+ =?utf-8?B?dzJyY3VtUDFYZ2xWemJxVmtJTitsSnh5bTFjMk1IUjBERk5rajVnQkdKbHlN?=
+ =?utf-8?B?bTRVUDc5b0YraitXbGFXVWJOcUJGVmVOMTNzdndmNjBTalkwWFFHUzJLT2h3?=
+ =?utf-8?B?RUUvd2o1U01QTkV5cUl6TVFBN2FlemY4dEFhV3hnSDlrSGNTTkFRcnNwM0Fs?=
+ =?utf-8?B?Qk9WbWFoUndhd1M2L0NSS09VWWJvTWV0SHpiMkFqcEpxaHc5QS9hS1VVdUJu?=
+ =?utf-8?B?UGdGdFphYVhEa2hRTUxsNGVNZldmVjUzU0U1ZG4vU1Z5Z2p5cWhnZzZvbjNV?=
+ =?utf-8?B?a05GK0lKVkZMajJTa1NpL3V4VDdsamNvRVlWOXd2Zm9hMnFvMEJsMjd3MXV5?=
+ =?utf-8?B?MmkrdGdLTzhWSnpGaVhPMC9URzJ0U09pNVJYbXlIaGJtR1d2WG5QKzAzODVx?=
+ =?utf-8?B?ZGoyc3RFTG5wdUg4SDZROWtnTWNDRmRRSzNiTkEvUWpkbjZjUy9jdlNmS1FO?=
+ =?utf-8?Q?XyIrJK9fnfdR4fF1fx?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73190f50-df86-49bc-6e3f-08df30409c60
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Oct 2026 13:30:17.6000 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: if7RAX/syMIplZuaxOBa8fzCmVEpdY9Zk5qkNEQfpdvFfmbldYQZ2cgItPnH8UVb
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5736
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,51 +137,130 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The DisplayPort standard defines a special kind of HPD events called
-IRQ_HPD. These events are used to notify DP Source about the events on
-the Sink side.
+On 10/22/26 08:52, Alistair Popple wrote:
+> On 2026-10-21 at 23:37 +1100, Jason Gunthorpe <jgg@nvidia.com> wrote...
+>> On Wed, Oct 21, 2026 at 08:24:40AM +0200, Thomas Hellström wrote:
+>>>> struct dma_buf_mapping_exp_ops
+>>>>    Base type for the per-mapping type exporter provided functions.
+>>>> This
+>>>>    would be the map/unmap callbacks. Each mapping type can provide
+>>>> its own
+>>>>    functions for map/unmap type operations with optimal type
+>>>> signatures.
+>>>
+>>> Does it make sense to try to land this patch first, plus a conversion
+>>> of pcie_p2p so we could agree on what the contract should look like?
+>>
+>> I think it would be good to focus on this patch as the main 'crux' of
+>> the series. The API contract is the main agreement. I'm relucant to
+>> merge code that has no users, so it woudl be ebtter to go up to at
+>> least through SGT.
+>>  
+>>> s/mapping/interconnect/? My gut feeling is that "interconnect" best
+>>> describes what's typically going on, but "mapping" perhaps better
+>>> describes all cases.
+>>
+>> My intention was to cover more than just the phyiscal transport. We do
+>> really want to get away from scatterlist, so having PCIe map with
+>> scatterlist and PCIe map with <something else> still ends up with two
+>> mapping types in the system.
+>>
+>> This is why I choose the name over interconnect.
+>>
+>>> Location of common protocols which typically carry cross-subsystem
+>>> dependencies?
+>>> drivers/dma-buf/mapping_types? drivers/dma-buf/interconnects?
+>>
+>> I'd encourage people to design more like PCI where the actual
+>> *interconnect* has its own home and there is just some minor call outs
+>> from dmabuf to help the matching logic.
+>>
+>>> As discussed previously: 
+>>> Agree on theoretically possible matches at attach time, Match at
+>>> mapping time and guarantee the match is valid until
+>>> invalidate_mappings().
+>>
+>> I was thinking about this some more, and I'm less sure now.
+>>
+>> If I think about mlx5, in a multi-path PCIe configuration, it can move
+>> the translation around within a single PCIe path, but it cannot move
+>> it to another path without creating disruption for the
+>> application. This is a HW limitation in how the internal routing
+>> works..
+>>
+>> I strongly suspect this will be the norm for any hardware that doesn't
+>> rely on decorated page tables to select the IO path..
+>>
+>> So, while I agree we should support hardware that can fully change the
+>> path on each and every map, we also need to suport hardware that must
+>> pin the path during attach.
+>>
+>> Probably this points to needing a 'pin' operation for the mapping
+>> selection after attach.
+> 
+> If I'm understanding things correctly we're expecting a change in path between
+> attach and map time to be rare in practice. Therefore the need to handle this
+> case is mostly as a fallback to not break things. So instead of pinning could
+> new attachments just invalidate all existing incompatible attachments on the
+> list by setting eg. attach->valid = 0?
 
-Pass IRQ_HPD events from the EC to the HPD bridge, letting those
-to be delivered to the DisplayPort driver.
+No, that would result in ping/pong behavior which is something we explicitly try to avoid.
 
-Reviewed-by: Pengyu Luo <mitltlatltl@gmail.com>
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
+This is also not something uncommon, it happens multiple times a second on a standard X11 Linux desktop when a new buffer is started to be scanned out on an A+A or A+I laptop.
 
-diff --git a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-index 57b37fca150c..cb0312e2b8dc 100644
---- a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-+++ b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
-@@ -316,10 +316,13 @@ static void gaokun_ucsi_handle_usb_mode(struct gaokun_ucsi_port *port)
- 
- 	/* UCSI callback .connector_status() have set orientation */
- 	if (port->bridge && port->svid == USB_TYPEC_DP_SID)
--		drm_aux_hpd_bridge_notify(&port->bridge->dev,
--					  port->hpd_state ?
--					  connector_status_connected :
--					  connector_status_disconnected);
-+		drm_aux_hpd_bridge_notify_extra(&port->bridge->dev,
-+						port->hpd_state ?
-+						connector_status_connected :
-+						connector_status_disconnected,
-+						port->hpd_irq ?
-+						DRM_CONNECTOR_DP_IRQ_HPD :
-+						DRM_CONNECTOR_NO_EXTRA_STATUS);
- 
- 	gaokun_ec_ucsi_pan_ack(uec->ec, port->idx);
- }
+Regards,
+Christian.
 
--- 
-2.47.3
+> 
+> Attachment could also scan existing attachments to preferentially pick matching
+> mapping_types that are compatible with existing attachments, thus avoiding
+> invalidation where possible.
+> 
+> Map time functions (eg. dma_buf_sgt_map_attachment) would check attach->valid
+> and return a failure if a subsequent attachment/event had invalidated the
+> mapping type.
+> 
+> Importers with invalidated attachments would then have to retry creating the
+> attachment, probably getting a different mapping_type. Would this be acceptable?
+> Or do some importers absolutely require the mapping_type to never change once
+> the intial match/attachment has happened?
+> 
+>  - Alistair
+> 
+>>>> +/*
+>>>> + * Match items are generated by the importer using the
+>>>> DMA_BUF_IMAPPING_*() and
+>>>> + * the exporter using the DMA_BUF_EMAPPING_*() functions. Each
+>>>> mapping type
+>>>> + * defines its own signature with its own data to make the match and
+>>>> attachment.
+>>>> + */
+>>>> +struct dma_buf_mapping_match {
+>>>> +	const struct dma_buf_mapping_type *type;
+>>>> +	const struct dma_buf_mapping_exp_ops *exp_ops;
+>>>> +	union {
+>>>> +		/* Each mapping_type has unique match parameters
+>>>> here */
+>>>> +	};
+>>>
+>>> Do we really need to add all global mapping types here? Then we'd need
+>>> something for driver-private mapping types as well.
+>>
+>> IIRC it is fixed size up front like this because of how the
+>> structure's memory is managed in this design..
+>>
+>> If you want a driver private thing then I'd add a 'u64
+>> driver_private[2]' to the union and the driver can cast over it.
+>>
+>> But this is the kernel, if you want to add an xe_mapping_type, then
+>> just add it. I don't know we need to do driver private things.
+>>
+>> Jason
 
