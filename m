@@ -2,91 +2,91 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7AC9606A31A
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 02:40:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7FE4606A31A
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 02:42:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=c6ehBi1v
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=S/DeOi5e
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B32210E3A7;
-	Thu, 22 Oct 2026 02:40:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B66E210E242;
- Thu, 22 Oct 2026 02:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8866F10E242;
+	Thu, 22 Oct 2026 02:42:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 701B310E242;
+ Thu, 22 Oct 2026 02:42:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792636836; x=1824172836;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=nrSkEF6C/rh8XtVZJ/cMTYc0SzReOQEdKY1wRL9j+j4=;
- b=c6ehBi1vClkKZ6UpgQhGKR3/c8ua2jAZq3q6g+qlO3dZFJq2fv78aEo/
- Qdy2dhoA650u/0n5YV06iwKsl5/LjPZHaT8Yv8iS5+TBomFY9OUujsxlP
- auS/4G3+FnQtP6AajlL/D29eFy3LOeRai7g/c37PMeIkSGTCsPg7p0931
- /WpUUZjoa+Gb2UtSsBEdHEeh4lnmmMSyK5Kj4rDFJCXmJ8xRJe0VGugRA
- Wiu/dL1+gh+Du8sq09Gi8OGl0mxQFkDeAy92S7uf8/5GVSnfDyNOPqLDg
- ijvZYn59t9QT+VZwxBDK8pXHl1WomgzyNjoPBieV2r3unZsd4Rs0JaOcp g==;
-X-CSE-ConnectionGUID: pqx1UQ/PQaaZEGMUMq/Rdw==
-X-CSE-MsgGUID: vux21tnzSTO6ABSX3T+0YA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1262313"
+ t=1792636966; x=1824172966;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=F71bjt64HN4BqbmjOi5PvKnJo35C2l6aOXkjZuFitVg=;
+ b=S/DeOi5eAjnTtkRE7LTujGDZkxSsjH9IoJbZDnbMcjoJfdyj8qM10hE3
+ VxqyPYwiK8he9T+6jXdrR9VO3VIjTxmDGwaIcPRIurw6qB10NnsfIEtZG
+ RFiu+qpTm4EhLGjTXi26JF9icYO+D8K98gUICF7zePKzg9qMEbyN1LjF1
+ /NTaGyCfcc83toe6wXtG3nhN5dHS37Jg0d6QcRAGADYUsWQb1RS4RlmaC
+ wL87khEh6Dtq3qCXPR3RQdMI+5ICknFCvm0cXtOjh9GjsODshgthoblxw
+ PjXrSbUgzT3ImdnYGirn1TCmLartUwLThdWjKIzvt38QixRnIoX3Tn8Tz Q==;
+X-CSE-ConnectionGUID: 8QJQiGyDQVGUrpIYZsJmjQ==
+X-CSE-MsgGUID: mPj8/jYXRcOYSZQWm6PuHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1277326"
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="1262313"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 19:40:35 -0700
-X-CSE-ConnectionGUID: +M3hHFqGRlW/vaj1ZMiikA==
-X-CSE-MsgGUID: EQsve3ibRZK6j6sdh2/5eQ==
+   d="scan'208";a="1277326"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 19:42:46 -0700
+X-CSE-ConnectionGUID: NSd9nLcSRbCBFxLgp/uUXw==
+X-CSE-MsgGUID: 61isOvTzQGu7fvGCjnahoA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="5054488"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 19:40:35 -0700
+   d="scan'208";a="5005473"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Oct 2026 19:42:45 -0700
 Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 21 Oct 2026 19:40:34 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ 15.2.2562.49; Wed, 21 Oct 2026 19:42:44 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 19:40:34 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.44) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Wed, 21 Oct 2026 19:42:44 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.36) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 21 Oct 2026 19:40:34 -0700
+ 15.2.2562.49; Wed, 21 Oct 2026 19:42:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wZ6pFYHmGbx0YAZTL2Wfv7EK1RZAn5PTk+mkTEYYxUBAX7P1GJafrGdjHh3FCgdt2dZyUZFXc6wwFYM4172pcEr+blqx4EouLFcvzTA6EmxE7uPm4u7PgUckqJp2wv+SfEgaUIfhYjv+lkRvLhxuTuQShH0Y+Dm6+nz9O4WPumOxeDtB/GNEqfX2HsBnAAYvGCNkLkjX7FX+0dkeD7rjRYO1JR1oBocCsgOGmDJ4h7IMQdIpHi0GOoTGYzN2Kb9B7W7zItSmGTRsRgSqx9EbF6Ap7f9OptZoLwWvk8GEoH1EW94Gm4ELJMzQSwWrh66wtvRIJ7T+dtvpXE2xLZL23w==
+ b=h5GuBLppDm9HvgK5kfvFECfTUCpz1g89t/+Oc+wzoZAKXuV92DPUCUbRryMoXmRfbdBPE+VaK5Brn1UFCSi4QjCcJRbYeRfMS626q8LfRDvMU6B0qnQCy1NO9bJkiXzPxahWc/yJnpw4BInGTj8QgdUfAwwhsX21eJnd9mespmw3bSSDD7FPkjK+Vy1fcKFvvL9oknI/2GgHVfWWmrguxl3hp1t9DMiwAMpcdkiLUYGTlx8Lpal2nd1Bzu2l3ONjHZZJABYVzArAawqC59+spzd+hXIp2/bnMaB1d5e21M8aC5ugEdNnMnyjNpqbdbbwGeaDf8BgzQAZN/pPkhnViA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kMTgT4kEw2hSJlCVoitzh3A8hUoTi5/w6FAgYCpswHQ=;
- b=Gtc/M6afGEl3ZDbZ4Rp0o3jS5vtQy6qcBkTVUjT38/8n3vKN1CXul/pXRcPOqC3fvIzFGe7vvFyI5+VPRaOaODH8pWlB2ZYYKiyFv9e+ttMZN25P6dMSZ8hgG0FfLpdhGXna0zlOatdmJQ95YZxuYilwDrv5klrjWh2I9DUVlqshYuDMqSG+cGS/j9OygVoE+UhjgGsmDACavf4oKxXxhdpWk8Fd5KdiH80RBx+W9kGQTOtgB6ztsGDVTvLR7GQg1N2HuRG0O+sCU401ZhDHLph0+q7NGt2e4W6pVcJ6mA3f9FXLiaqOt/G0OrliVfLKvkCF+73V2JXJZ7eB6AmCOQ==
+ bh=8Z2+veshmSCPgDC/w7pEAOAs/D4TW/SgBbcF1JlZ1do=;
+ b=EBN2fGbdMClm2VGaYFMaCUotcAcjCvagMQpSzi9W/Tp6oPqM3BmU6nBAfFoxiWlScYKPDo2VYpJXElUHOg+SPOA7PPFvZfCfTkU7PLPx4vmCdPADIUQKtQDeJXsanNAsWjdWM1U2oPuh5FC59yA2lgXN2BbN/JaqXabWRra08kMBzcs15TwC3OsA7G46o0Oflmr2U8LjkmwVy+zkiMFl7jAl85oTP4t3XywiiKzH1ZCgEMX44gchrLgN/IdW98Fmzd1HXcr8ZSilis/MVcQc+Ifir7ChkJNOQl3J+FXl3knYxp6UAQFMaDP1QY5yrGkMVW0CBAMWRQPNVc59VzkTjg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by CY8PR11MB6963.namprd11.prod.outlook.com
- (2603:10b6:930:58::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.522.18; Thu, 22 Oct
- 2026 02:40:31 +0000
+ (2603:10b6:f:fc02::5b) by PH8PR11MB8038.namprd11.prod.outlook.com
+ (2603:10b6:510:25e::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.15; Thu, 22 Oct
+ 2026 02:42:29 +0000
 Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
  ([fe80::19f5:13eb:df52:68ff]) by DS4PPFE901A304F.namprd11.prod.outlook.com
  ([fe80::19f5:13eb:df52:68ff%8]) with mapi id 15.21.0522.012; Thu, 22 Oct 2026
- 02:40:30 +0000
+ 02:42:28 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: "Golani, Mitulkumar Ajitkumar" <mitulkumar.ajitkumar.golani@intel.com>,
  "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v6 03/11] drm/i915/display_wa: Add support for
- Wa_14014191401
-Thread-Topic: [PATCH v6 03/11] drm/i915/display_wa: Add support for
- Wa_14014191401
-Thread-Index: AQHdYSvMcvPT88n9Ok6x2/PGmS/oNrcIO0kAgACfJuA=
-Date: Thu, 22 Oct 2026 02:40:30 +0000
-Message-ID: <DS4PPFE901A304F45A4934739C52B7E4EA1E3652@DS4PPFE901A304F.namprd11.prod.outlook.com>
-References: <20260917050649.871960-1-suraj.kandpal@intel.com>
- <20261021071401.1161586-1-suraj.kandpal@intel.com>
- <20261021071401.1161586-4-suraj.kandpal@intel.com>
- <BYAPR11MB3783FC1B96A694B9A629492CB2662@BYAPR11MB3783.namprd11.prod.outlook.com>
-In-Reply-To: <BYAPR11MB3783FC1B96A694B9A629492CB2662@BYAPR11MB3783.namprd11.prod.outlook.com>
+CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH v6 08/11] drm/i915/display: Add bits for Wa_14021768792
+ for linkm/n ratio > 10
+Thread-Topic: [PATCH v6 08/11] drm/i915/display: Add bits for Wa_14021768792
+ for linkm/n ratio > 10
+Thread-Index: AQHdYS1Q2TMInZYMEEuHQbtGV2denrcIN+OAgACjf2A=
+Date: Thu, 22 Oct 2026 02:42:28 +0000
+Message-ID: <DS4PPFE901A304FBDA4A054BD979EADE0ABE3652@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20261021072438.1164249-1-suraj.kandpal@intel.com>
+ <20261021072438.1164249-9-suraj.kandpal@intel.com>
+ <BYAPR11MB37833527B31B2A81A4D5BA15B2662@BYAPR11MB3783.namprd11.prod.outlook.com>
+In-Reply-To: <BYAPR11MB37833527B31B2A81A4D5BA15B2662@BYAPR11MB3783.namprd11.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -94,62 +94,62 @@ X-MS-TNEF-Correlator:
 authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|CY8PR11MB6963:EE_
-x-ms-office365-filtering-correlation-id: f1406298-1d2d-4471-c00b-08df2fe5d699
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|PH8PR11MB8038:EE_
+x-ms-office365-filtering-correlation-id: bd330fd8-a3c0-4f7f-f1db-08df2fe61cc3
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|4143699003|261021123027099003|38070700021|11063799006|56012099006|10067099003|260925022911599003|260925021911599003|260925021311599003|261009223027099003|22082099003|18002099003|261021121427099003;
-x-microsoft-antispam-message-info: mzpuxZeKScSJ4LUwToiu7epNV+VVaGkNx79CcAciunme0ksAgOfnqll5nCMAGX8n9TP7OMSHf6Z+2JqFHXRyPNywsxkKsAVTnclQeRLQSktttgxDLcfxXvqO2bCB8XsQSgM8ErsDcKm1LNyjEP8QxN0D91K5SK5a0tPUSRd/DT2sbG5zKDMZUiJ6uxb/MGoxNcoYzj2TEWOVsj0tkeyPmabV3uZOiFlye7Xs/UcXFPkiwMKvqkui2X30FfIpmMlJjiEJsRbLV/0ulz7TM234iHGNrAhccpsaLWZsHatIfFOFV8oFzaBUJbTCVtW01mwvD735j5Bcec14Lorht1PW7CUNE1mTqIP614x8sPIG0Dn6DM0TG+HK9SKDsbrZShdmZkNdwFrOAdrcwI8HrDLVWXyqPirjOFIglBdRVJNN3MgmVsboLf4bzkH8bjgajVFcUaLyc9aelztSLZXfdyE5L18y1wOvvy6ebK6Z/dsXSqSbkW1f2KZqCIff+oFrlwBpfLV7A95CD89heq21/Na5twD44q9YMv2/C0x7nPUBqWOHw+Txzv6TxiAhx0UjHFjm4AABT94+TZ0Pe33qCwZ1hJBkfxWcSPGTMuD7KkhzasNgXOsuglttBTfXXcBq8XKrW8j7rj9soQLyeANYkGbwrxmGyLmkyZznn7TSiJJ55fVrnxBAQjOH4bqbpyYb9/L5CDLxVSNFwvvts1eEv7xMYQ==
+ ARA:13230040|23010399003|376014|366016|1800799024|4143699003|261021123027099003|38070700021|56012099006|260925022911599003|11063799006|260925021911599003|260925021311599003|5023799004|261009223027099003|10067099003|22082099003|18002099003|6133799003|3023799007|261021121427099003;
+x-microsoft-antispam-message-info: nqagUaiaAH1JtD0VJYRY/E8KNVOgf5hWSvbhs3q3ZYTEKwV7h9pITetJ6ES7+SX29wF1Lu850aM9rZoWiyhEHHvqbyken83QDZurTxyH+1HNTeklSeY+txZZ9IvyQOULWIUu5ht1yeYAWvlKO28GlKzEw5EimecGQmI7VU/jeVrAxxODjdS+ogU6vDrWQCrNyCfNjaSWKwsQt9b7Rj0rXYFUSBJMckJN7GVVT4Ir1JaLYR0PyuXhFvnSKpz/IOdq7k8kpBO/RwD+O1gY5ubcE14GXPcoGV2leocUYg9ADCuPvrMYuk/ER9dwhYOhu8LHsNWy3ZeZH+fKiApNZnhurB4jdzjFu0XBtAnEq9nti6HrlHe7nld/zBn0pCBU52rPqLTxi21X3pnV1MgDyD2pqmqBuOgPn2zscDpv23J5JdUMo1yt2wPElTiL202g03YrDKLCD0uKHvoR134pHxQC0HG0fcNrbv67+caarBZxapc3TYJKXsXVKniSlw1FM312pQMecBbBb2xg9YSAEiQh5EzqxWts7d+TZ9kUBlRvju1ZHV2914jZbcdpgfX1jMNfm8getEIEPt7t01ZTaZTVMIQGVB4m1NR4iR6wktKIxDPJArwBFvaqPhATsXS7eleGqgYyY4sMWPRHkcXCt+hlgIEdc+BIQiT6A5y3jDTNaW2qvaDp+iTUfkjVUMBhbKnjvPXnaQcd4FtlzJV5XM2pmYrvIcOhi5oFi8H0Y/0PQ7U=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(4143699003)(261021123027099003)(38070700021)(11063799006)(56012099006)(10067099003)(260925022911599003)(260925021911599003)(260925021311599003)(261009223027099003)(22082099003)(18002099003)(261021121427099003);
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(4143699003)(261021123027099003)(38070700021)(56012099006)(260925022911599003)(11063799006)(260925021911599003)(260925021311599003)(5023799004)(261009223027099003)(10067099003)(22082099003)(18002099003)(6133799003)(3023799007)(261021121427099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0KTpD7e7ai3yS7PfsB1YaLgAkrTm1SBzZy3sb+wGCL1OWhoUy+EJhNNzqV+M?=
- =?us-ascii?Q?Uk04UNu6nq6DYTdyYrVho4vMQdpWvnf7Vw3Pr0eQaaWOOCPgIRu0fztY6Rp5?=
- =?us-ascii?Q?0msdBRyBQmhTJW/zitjW/o2F3zOTW3ss3ZLkbs4zrtbHsQooWXyHf7sZUijh?=
- =?us-ascii?Q?iBeZOqEXACks56AclkBifM5sCFsWWXAOoogf1aj0DbEs1YJNjvdliCDmwddv?=
- =?us-ascii?Q?+hURB8L0zHEPFmkW6War42JIO4qdk6sIlJeLsCoWPw5WdvY709avZV13abej?=
- =?us-ascii?Q?HQRq/snEMpcZGg1VbKXIslbxf9/1n+Jf/YJ/o0GGoVNo5A89sAKfULqBBLU+?=
- =?us-ascii?Q?td/w2TOi5a620+L6tx8nli0w74lyavc9rQ9q/V9cUkFw+wyyrIhh+GUgZ7rn?=
- =?us-ascii?Q?oAnQr7MMWIfmV3z1Xj3KMus70Ulh3ESVkL1++tz7QUAiDeJXKgJzCQx6H1ma?=
- =?us-ascii?Q?aCBBJqRzhOwid8KdQyxZIeD1uc4qoA7yQ0/lIVVCScOXSGLkMtp0hZgYWQhq?=
- =?us-ascii?Q?mb2TdQ+2B7BXDtDbr+BJWJVO89yjz4VFAM4aS9WPVnyZHvjGNCsyiPimcQaS?=
- =?us-ascii?Q?sZv2IcLzpQ5dxDmP93xONpwQizuXH5156hOyUp7GGdjFP0CxAXa8MBlq+B+i?=
- =?us-ascii?Q?XIQN8zLZvaFUZktHv9dGmWart66smyxTckHUpZN50rb+eEt4/CwYCJbiiAPu?=
- =?us-ascii?Q?TAmI0NEG72MKFvcDw120p1rxIxeqrdySs9pyHhCBqYNkNIAPnKpATYYZazxa?=
- =?us-ascii?Q?Rjk1/7Ed8opvS80t4omvEJi484gXy9DvKAFQmtaUdwCvErofzbf4JN3/I9gT?=
- =?us-ascii?Q?s1lHmsAZtQOmzZZpaeNvgqwkN/r7lrbf8XU8nutam+FCYZi4FWh8AYgi8Bv6?=
- =?us-ascii?Q?sYRh6eVQKk8Yw6ItgjcxKcMawjkyJJfcfHXZN0fSgxlAOralh7UtwYkPjQ+X?=
- =?us-ascii?Q?sflJCQ8BYPZzKT/W95Pcufvax2ULKRRBkmtPIX+ZvT5A0n7XXO3MwhwRGX1g?=
- =?us-ascii?Q?oW9htv0nGGbm99vnW7I6o+BebK3AgBSov5XJml4N0WHQvyodHxPkczESIEu1?=
- =?us-ascii?Q?Ax0buyw2dbjcjYzzhi3GwCD5zA+HWllFSMJyVpiP8W5NkoW6vNHTJ9v1mF51?=
- =?us-ascii?Q?3XcZ956Ib6pJEiT8puo9yqxaqu2ZhvOSaUIKczeOsSJxZfElLP9YzjJFi5kW?=
- =?us-ascii?Q?gXBsJ8hK1kIj4H6ca0SC1qf8/0DpqFtpUGRNfJWy6oapc09LP1nyDTm//hS5?=
- =?us-ascii?Q?X8qa8MXj2IdGTggHNAFHRK3kXsXIyrtyMgNy+0lSy/G0B91YayCLY6TpYHdD?=
- =?us-ascii?Q?fOY+XvDxdRkY1EeefrVCP6kwCf0g3T0BcroESn+fXl4HaX0Hd44ENSM/svoj?=
- =?us-ascii?Q?D/hhT4brYX+ngDuqVSAnkbN0JrbmJn/t9XUdFlMEODU2CKE73hBUoQbCeZ0W?=
- =?us-ascii?Q?MfRO9oVvKqe83X085p5jt6riOW6UMNi/iN1U5Lnu2WbMu3CNgigDM3bVy9TA?=
- =?us-ascii?Q?Pug+/Sav8p0qbx0y1fZ5VGv5lF1sP7Pqi9jrTWpAIrv0yEly9LkLHcNrpMKu?=
- =?us-ascii?Q?hHGNVY+wVYhfBo0Y8aUTZ/owpxRqphYFSFl/GI+zu8hXcTRLzk0eSFf+5aSp?=
- =?us-ascii?Q?yGP5fDvv1qnKAvnHQx5kn2X50gMUxYN1i4pPNh0yIOzaXb8YGrQ0IUn5oXWR?=
- =?us-ascii?Q?4Mp2NdcsYzyPpmYFlQGG/+sPQ420TVOhZTZ+LCP2N7GaPQc0TEqFulHULdja?=
- =?us-ascii?Q?DqX6MK6rfw=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?q8Z8zucANqgoJBkg3H3s0m0DZ1RjPWjFgdbd2ZotubRuEAMLqLnFplDoIn3h?=
+ =?us-ascii?Q?emkkWuIg1263f4uh/7hX3rGmxw8vsYL/Ce1X6uEsV01Km/EWk1yu3FDii/eO?=
+ =?us-ascii?Q?MZ+GmmVRDaUJmc9yQzYgS4+uuA6JPwaAw1SNzTwjRMpK9IdAeEagXOfkyuZq?=
+ =?us-ascii?Q?i47oESmYhtD1Hglz1vW9iaVvMZKhhgahMqfu8L5h+wQ1heVOOxg1DbejfRdS?=
+ =?us-ascii?Q?JNrucgiqUFhw6FzEmbB2n8Yfcinufdhc7FcuG8FGCp+n/eU1O4O2HXWLf5Km?=
+ =?us-ascii?Q?p7/CuzklvMIPNW5PHpJqpPEQUmwC8QAkATjGhPGfenluJ2esbx6hwr9wZ5r6?=
+ =?us-ascii?Q?tfZUnfyKoktcbexkBrrFRcEhcaZsf/T6jAjLfBH01z3rwrlna2P2ubjzR1ZO?=
+ =?us-ascii?Q?jCs7rH9/m40ASnj4cAeo/3YajnqlyNLBy8ztr8YfULopDoBW+OOzg1ugrFqR?=
+ =?us-ascii?Q?2OYZkEfHeVPbtmqoz8IDlA/AV2fsBf7fvCB+FToPgpDpbK1cB9xBT/3ueq93?=
+ =?us-ascii?Q?q5V8eUcQ2vndEBrz2htfW8lHRWGJ9VEMFIWS7Kn8IMZOG5fRmTvGQ1fd1AYy?=
+ =?us-ascii?Q?jbfn00r9jYlU8xrgBaHt2V2AmnZA5FZEEeTFWNNL1viFUrM2Zok1DQaC9Ubo?=
+ =?us-ascii?Q?u7BFMkW5BF+TErtK2fjojhDpE2kH/gX9fezKyhq2rG3HitO+Tqxe4CNcBLWj?=
+ =?us-ascii?Q?4WuAjW+JC+jBD7fAikp7rGOi3MbjHJg5RoOhOziNFYDoEqZL8eBzZJUthDG1?=
+ =?us-ascii?Q?5X4QIgctLNM0zIKO1B7pu2hgorypPA0s1krMF8T9TKJ8hNCmvTxwJMjnPx8Q?=
+ =?us-ascii?Q?eE//4VJckDBK4D7jPutzxqa8unmm5A9862rcnEOkonh+0RuMvRczCeZqhMo5?=
+ =?us-ascii?Q?70jAfI2LfDdRj85IiqmVpLmkLA7zxNJQ213AwN+Lyer9TBLerQdImC2QucJ2?=
+ =?us-ascii?Q?3fx9Eca2pO2Y+zBpQcCv1Rkfjm8klYEP40Llfb5wcM9N0K5WzT/X5JhbXi1Y?=
+ =?us-ascii?Q?XyzyLUW74+1WHKyPkY8pCK0+/F4eRktCLvG9HRHWOdvx8hq2RL7Aw/K7wBDs?=
+ =?us-ascii?Q?CT5NfnS8JDAIPU7fjZr+6km8Z3+ZVi5f1ddmjO3on7eBtZHKpgrh2G4SvGuu?=
+ =?us-ascii?Q?pXYUUGaqKRp7jIUmAdcHc4WixiKpPbPEx1li6m/WsDI32j1cu7lNJb2Vn5Wo?=
+ =?us-ascii?Q?Rx163fQu4NaslZPpEpmRUhirPo2KP6A99Ku/kV2gd4WpieBZ/9Jj6QzVAZlH?=
+ =?us-ascii?Q?rRRs8biXW9VgapQxOXNbfjL5n9rj/n5Megiub0iR5/3cKDvDAPV3BiDU4DGB?=
+ =?us-ascii?Q?F2wWAkQZsfc/3zhQz3DjxHisTWsIYUozURF6+yi+/9GVgqiqqclUi8Y9M/UN?=
+ =?us-ascii?Q?YB6XxbcZoKrrhivWJqW07nO36d81/YKzbw3ujUJmq3p9sLukGF5tRto4iOY5?=
+ =?us-ascii?Q?jQ+KjMCvxqFlpr76Wxgfwhx6JCV5ib/HVbjG4d/gK4e+Xc7hVHePioliz124?=
+ =?us-ascii?Q?vVL/IjUi3Y1F6gqRb8I8flX006u1R+aSdG7xMajjW5jpLqHOE5GYW8+QSNsY?=
+ =?us-ascii?Q?yjWyl0phytU5GECn9uSFBRzSixsvi8mfehmcS1pVFgyAe0n7rroRGC0bZJ+x?=
+ =?us-ascii?Q?4JR2F9lvOQYJjZkuh4I2Vyq9pHgYnX3UsFBlFCy0x1J/0y7Ol19juiuJ24qQ?=
+ =?us-ascii?Q?FEynHCUf1eHx2SKBzq6T0+jTShQ8ntjFY7daxhQAxCQTGRxxANtHH6SvEzs5?=
+ =?us-ascii?Q?DAnUS1DWDg=3D=3D?=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: x9QDZhMWGuJlZyxlqlCaO/b0Niset39ziMfU28gPQTH4T25A4mrKN9L2Crey9cU1dyrf387YoEeamHwmSWCGh3iUFvZgBtL/b15TkPjMZjBDWJtEVpKLr7sAaOoTOFBknHdu8PafE2wczNUBXn0FLxiPZrU/taVUVaQcj2ve7IKKtNVtKkJAN++EtCms7h1+lpqp6GMVcZtV68LJq42kTI/8dGbUO6QdrWT1qw+sv0aeHxS0semkibUGaINnsyA5fmaiux6Py0lEp7/vVIFsiWrX0KX4jDHJwAFFSZrIJ/wjkIHrKSIhp1fazpfqouDcmeed8y+X2G58beUD3TJDog==
+X-Exchange-RoutingPolicyChecked: B70kimK/kGySaqv/mWiNarN6G7NDhd5svJjviBi0ENqjpe44dH7LSOke+s3iJ2Z2KubMZVG1tf+t+349Cg2jrlsWRyO0OpI9qCemLyyL1mf1RUbRdKA8kwVaO2BXJdkvSycLXY/OMm1PWhkQnQI+7TkzbExoWV6zHVSGf/Te0AHMXLLkigfXNZr711ORphB3jiTMCdqVE4CWsF2MA7kFdTBtnWmpUIdk9ui0i5gUVkahylqN059MaFsNpB0xMRj9eTPkbjlK+n3EQypjPRpqWTKSvljKtP4ZseFrEEsO6Z/Mo8ZSlO4Z9Zkuvie/k08lH3m3pa/yX7nR/3F+5iHcaw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f1406298-1d2d-4471-c00b-08df2fe5d699
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2026 02:40:30.3205 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd330fd8-a3c0-4f7f-f1db-08df2fe61cc3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Oct 2026 02:42:28.0978 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d2JHVciV7LVqsndEmp3zEvtSA1qdeQwsQnWoK1gf2Kc3IZx/bUYjrPcAkrUl8LkFw6uBDfHaPkXYd6dlWPg5iQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6963
+X-MS-Exchange-CrossTenant-userprincipalname: yrq1lbpXnkSdfD0DORnN7JKaRuwyfgMOef7hBhVOkfvWHinZN0EiLl2sGWmR1DWF7uTvlD9PJUV2pNwFQQlmnQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8038
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -168,98 +168,361 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> I think the patch order may need to be adjusted: swap this patch with pat=
-ch 2
-> and move the current patch 2 to position 3.
 
-The patch ordering cannot be changed because  the function in which=20
-if (intel_display_wa(display, INTEL_DISPLAY_WA_14014191401))
-was called was introduced in patch 2, hence the patch 2 needs to comes firs=
-t
+
+> -----Original Message-----
+> From: Golani, Mitulkumar Ajitkumar <mitulkumar.ajitkumar.golani@intel.com=
+>
+> Sent: 21 October 2026 22:27
+> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-gfx@lists.freedesktop=
+.org;
+> intel-xe@lists.freedesktop.org
+> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>
+> Subject: RE: [PATCH v6 08/11] drm/i915/display: Add bits for Wa_140217687=
+92
+> for linkm/n ratio > 10
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Kandpal, Suraj <suraj.kandpal@intel.com>
+> > Sent: 21 October 2026 12:55
+> > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > Cc: Golani, Mitulkumar Ajitkumar
+> > <mitulkumar.ajitkumar.golani@intel.com>;
+> > Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Kandpal, Suraj
+> > <suraj.kandpal@intel.com>
+> > Subject: [PATCH v6 08/11] drm/i915/display: Add bits for
+> > Wa_14021768792 for linkm/n ratio > 10
+> >
+> > From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> >
+> > To support a Link M/N ratio between 10.0 and 15.0, for some BMG
+> > ultrajoiner cases we need Wa_14021768792.
+> >
+> > To bypass the hardware limitation within the Timing Generator DDA
+> > (TGDDA), we need to program the LINKM and LINKN registers as defined in
+> the WA.
+> > Along with this we also need the relevant bits in HDMI_EMP_DATA and
+> > CHICKEN_TRANS.
+> >
+> > Add the bits for the WA and a new member 'bypass_m_n_ratio_limit' to
+> > track if we need to bypass the Link M/N ratio limit in the intel_link_m=
+_n
+> structure.
+> >
+> > Per Bspec the extended LINK_N field is two nibbles: bits 27:24 hold
+> > INT(Link M / Link N) and bits 31:28 hold CEIL(Link M / Link N).
+> >
+> > The workaround is limited to transcoder A. Check the transcoder rather
+> > than the pipe: for a single pipe the two are the same, but the joiner
+> > secondaries read the M/N back through the primary's transcoder, so a
+> > pipe check would have them report the workaround as not applied while
+> > their state, copied from the primary, has it applied.
+> >
+> > CHICKEN_TRANS and HDMI_EMP_DATA are programmed before LINK_N,
+> since
+> > writing LINK_N arms the double buffered update of the M/N registers,
+> > and all of the programming has to be done before the transcoder is
+> enabled.
+> > Both are also explicitly cleared when the mechanism is not in use, so
+> > that state cannot leak from a previous modeset.
+> >
+> > Only bypass_m_n_ratio_limit is compared by the state checker, not the
+> > ratio integer and fraction themselves. That is deliberate: both are
+> > derived from Link M and Link N, which are compared already, so the
+> > thing worth verifying is whether the workaround ended up being applied =
+or
+> not.
+> >
+> > Unlike the rest of the M/N registers, CHICKEN_TRANS and HDMI_EMP_DATA
+> > are not double buffered, so the flag has to be compared outside the
+> > fastset exemption that PIPE_CONF_CHECK_M_N() has for update_m_n.
+> > Otherwise a seamless M/N update could switch the DDA out of the
+> > workaround on a live transcoder, with the Link M/N values only
+> > following at the next MSA.
+> >
+> > v2:
+> > -Drop the drm_WARN_ON() on the extended LINK_N field in intel_get_m_n()=
+:
+> > it is derived from Link M and Link N, so the state checker comparison
+> > of those and of bypass_m_n_ratio_limit already covers it. (Sashiko)
+> > -Compare bypass_m_n_ratio_limit unconditionally, so that a change to
+> > it forces a full modeset instead of being applied during a seamless
+> > M/N fastset. (Sashiko)
+> > v3:
+> > -Check for transcoder A instead of pipe A, so that the joiner
+> > secondaries read the flag back the same as the primary. (Mitul) -Drop
+> > bypass_m_n_ratio_limit from intel_compare_link_m_n(), the
+> > unconditional
+> > PIPE_CONF_CHECK_BOOL() already compares it. (Mitul) -Print
+> > bypass_m_n_ratio_limit in the crtc state dump. (Mitul)
+> >
+> > Bspec: 49266
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > Co-developed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > ---
+> >  .../drm/i915/display/intel_crtc_state_dump.c  |  6 +-
+> > drivers/gpu/drm/i915/display/intel_display.c  | 82 ++++++++++++++++++-
+> > drivers/gpu/drm/i915/display/intel_display.h  |  2 +
+> > .../gpu/drm/i915/display/intel_display_regs.h | 10 +++
+> >  .../drm/i915/display/intel_display_types.h    |  2 +
+> >  5 files changed, 99 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> > b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> > index 92675a88b969..c51b21222dc6 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+> > @@ -36,10 +36,12 @@ intel_dump_m_n_config(struct drm_printer *p,
+> >  		      const char *id, unsigned int lane_count,
+> >  		      const struct intel_link_m_n *m_n)  {
+> > -	drm_printf(p, "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u,
+> > link_n: %u, tu: %u\n",
+> > +	drm_printf(p,
+> > +		   "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n:
+> > %u,
+> > +tu: %u, bypass_m_n_ratio_limit: %s\n",
+> >  		   id, lane_count,
+> >  		   m_n->data_m, m_n->data_n,
+> > -		   m_n->link_m, m_n->link_n, m_n->tu);
+> > +		   m_n->link_m, m_n->link_n, m_n->tu,
+> > +		   str_yes_no(m_n->bypass_m_n_ratio_limit));
+>=20
+> Please add dump as part of separate patch ?
+>=20
+> >  }
+> >
+> >  static void
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index 461b81bf8341..ecc0e5ec181a 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -2715,6 +2715,15 @@ void intel_zero_m_n(struct intel_link_m_n *m_n)
+> >  	m_n->tu =3D 1;
+> >  }
+> >
+> > +static u8 bmg_get_link_n_ext(const struct intel_link_m_n *m_n) {
+> > +	if (!m_n->link_n)
+> > +		return 0;
+> > +
+> > +	return PIPE_LINK_N1_EXT_INT(m_n->link_m / m_n->link_n) |
+> > +		PIPE_LINK_N1_EXT_CEIL(DIV_ROUND_UP(m_n->link_m, m_n-
+> > >link_n)); }
+> > +
+> >  void intel_set_m_n(struct intel_display *display,
+> >  		   const struct intel_link_m_n *m_n,
+> >  		   intel_reg_t data_m_reg, intel_reg_t data_n_reg, @@ -2726,7
+> > +2735,9 @@ void intel_set_m_n(struct intel_display *display,
+> >  	intel_de_write(display, data_n_reg, m_n->data_n);
+> >  	intel_de_write(display, link_m_reg, m_n->link_m);
+> >
+> > -	if (DISPLAY_VER(display) >=3D 14)
+> > +	if (DISPLAY_VER(display) >=3D 14 && m_n->bypass_m_n_ratio_limit)
+> > +		link_n |=3D
+> > PIPE_LINK_N1_EXTENDED(bmg_get_link_n_ext(m_n));
+> > +	else if (DISPLAY_VER(display) >=3D 14)
+> >  		link_n &=3D ~PIPE_LINK_N1_EXTENDED_MASK;
+> >  	else
+> >  		link_n &=3D DATA_LINK_M_N_MASK;
+> > @@ -2747,6 +2758,26 @@ bool intel_cpu_transcoder_has_m2_n2(struct
+> > intel_display *display,
+> >  	return IS_DISPLAY_VER(display, 5, 7) ||
+> > display->platform.cherryview; }
+> >
+> > +static void bmg_enhanced_tgdda_write(struct intel_crtc *crtc,
+> > +				     enum transcoder transcoder,
+> > +				     const struct intel_link_m_n *m_n) {
+> > +	struct intel_display *display =3D to_intel_display(crtc);
+> > +	bool enable =3D m_n->bypass_m_n_ratio_limit && m_n->link_n;
+> > +	u32 link_m_frac =3D enable ? m_n->link_m % m_n->link_n : 0;
+> > +
+> > +	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14021768792))
+> > +		return;
+> > +
+> > +	intel_de_rmw(display, HDMI_EMP_DATA(display, transcoder),
+> > +		     HDMI_EMP_DATA_LINK_M_FRAC_MASK,
+> > +		     REG_FIELD_PREP(HDMI_EMP_DATA_LINK_M_FRAC_MASK,
+> > link_m_frac));
+> > +
+> > +	intel_de_rmw(display, CHICKEN_TRANS(display, transcoder),
+> > +		     DP_ENHANCED_TGDDA_ENABLE,
+> > +		     enable ? DP_ENHANCED_TGDDA_ENABLE : 0); }
+> > +
+> >  void intel_cpu_transcoder_set_m1_n1(struct intel_crtc *crtc,
+> >  				    enum transcoder transcoder,
+> >  				    const struct intel_link_m_n *m_n) @@ -
+> > 2754,6 +2785,8 @@ void intel_cpu_transcoder_set_m1_n1(struct
+> > intel_crtc *crtc,
+> >  	struct intel_display *display =3D to_intel_display(crtc);
+> >  	enum pipe pipe =3D crtc->pipe;
+> >
+> > +	bmg_enhanced_tgdda_write(crtc, transcoder, m_n);
+> > +
+> >  	if (DISPLAY_VER(display) >=3D 5)
+> >  		intel_set_m_n(display, m_n,
+> >  			      PIPE_DATA_M1(display, transcoder), @@ -3504,6
+> > +3537,49 @@ void intel_get_m_n(struct intel_display *display,
+> >  	m_n->tu =3D REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display,
+> > data_m_reg)) + 1;  }
+> >
+> > +bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
+> > +					int m_n_ratio,
+> > +					enum transcoder transcoder)
+> > +{
+> > +	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14021768792))
+> > +		return false;
+> > +
+> > +	if (m_n_ratio > 15)
+> > +		return false;
+> > +
+> > +	if (transcoder !=3D TRANSCODER_A)
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +static void bmg_enhanced_tgdda_read(struct intel_crtc *crtc,
+> > +				    enum transcoder transcoder,
+> > +				    struct intel_link_m_n *m_n)
+> > +{
+> > +	struct intel_display *display =3D to_intel_display(crtc);
+> > +	u32 link_m_frac;
+> > +	int m_n_ratio;
+> > +
+> > +	if (!m_n->link_n)
+> > +		return;
+> > +
+> > +	m_n_ratio =3D DIV_ROUND_UP(m_n->link_m, m_n->link_n);
+> > +
+> > +	if (!intel_display_can_bypass_m_n_limit(display, m_n_ratio,
+> > transcoder))
+> > +		return;
+> > +
+> > +	if (!(intel_de_read(display, CHICKEN_TRANS(display, transcoder)) &
+> > +	      DP_ENHANCED_TGDDA_ENABLE))
+> > +		return;
+> > +
+> > +	link_m_frac =3D
+> > REG_FIELD_GET(HDMI_EMP_DATA_LINK_M_FRAC_MASK,
+> > +				    intel_de_read(display,
+> > HDMI_EMP_DATA(display, transcoder)));
+> > +
+> > +	if (link_m_frac =3D=3D m_n->link_m % m_n->link_n)
+> > +		m_n->bypass_m_n_ratio_limit =3D true; }
+> > +
+> >  void intel_cpu_transcoder_get_m1_n1(struct intel_crtc *crtc,
+> >  				    enum transcoder transcoder,
+> >  				    struct intel_link_m_n *m_n)
+> > @@ -3521,6 +3597,8 @@ void intel_cpu_transcoder_get_m1_n1(struct
+> > intel_crtc *crtc,
+> >  		intel_get_m_n(display, m_n,
+> >  			      PIPE_DATA_M_G4X(pipe),
+> > PIPE_DATA_N_G4X(pipe),
+> >  			      PIPE_LINK_M_G4X(pipe),
+> > PIPE_LINK_N_G4X(pipe));
+> > +
+> > +	bmg_enhanced_tgdda_read(crtc, transcoder, m_n);
+> >  }
+> >
+> >  void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc, @@
+> > -5445,6
+> > +5523,8 @@ intel_pipe_config_compare(const struct intel_crtc_state
+> > *current_config,
+> >  		PIPE_CONF_CHECK_M_N(dp_m2_n2);
+> >  	}
+> >
+> > +	PIPE_CONF_CHECK_BOOL(dp_m_n.bypass_m_n_ratio_limit);
+> > +
+> >  	PIPE_CONF_CHECK_X(output_types);
+> >
+> >  	PIPE_CONF_CHECK_I(framestart_delay);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
+> > b/drivers/gpu/drm/i915/display/intel_display.h
+> > index 404168f4213b..d53b7b4a80e7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > @@ -525,5 +525,7 @@ bool intel_scanout_needs_vtd_wa(struct
+> > intel_display *display);  int intel_crtc_num_joined_pipes(const struct
+> > intel_crtc_state *crtc_state);  void intel_display_compute_link_m_n(u32
+> *link_m, u32 *link_n,
+> >  				    int pixel_clock, int link_symbol_clock);
+> > +bool intel_display_can_bypass_m_n_limit(struct intel_display *display,
+> > +					int m_n_ratio, enum transcoder
+> > transcoder);
+> >
+> >  #endif
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > index 983a0d9dcb9c..bbdbc27629d7 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> > @@ -550,6 +550,11 @@
+> >  #define _TRANS_MULT_B		0x6102c
+> >  #define TRANS_MULT(dev_priv, trans)	_MMIO_TRANS2(dev_priv,
+> (trans),
+> > _TRANS_MULT_A)
+> >
+> > +#define _HDMI_EMP_DATA_A	0x600d8
+> > +#define _HDMI_EMP_DATA_B	0x610d8
+> > +#define  HDMI_EMP_DATA_LINK_M_FRAC_MASK	REG_GENMASK(23, 0)
+> > +#define HDMI_EMP_DATA(display, trans)	_MMIO_TRANS2((display),
+> > (trans), _HDMI_EMP_DATA_A)
+> > +
+> >  /* Hotplug control (945+ only) */
+> >  #define PORT_HOTPLUG_EN(dev_priv)
+> > 	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x61110)
+> >  #define   PORTB_HOTPLUG_INT_EN			(1 << 29)
+> > @@ -1192,6 +1197,10 @@
+> >  #define _PIPEB_LINK_N1		0x61044
+> >  #define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
+> >  #define  PIPE_LINK_N1_EXTENDED(val)
+> > 	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
+> > +#define  PIPE_LINK_N1_EXT_CEIL_MASK	REG_GENMASK(7, 4)
+> > +#define  PIPE_LINK_N1_EXT_CEIL(val)
+> > 	REG_FIELD_PREP(PIPE_LINK_N1_EXT_CEIL_MASK, (val))
+> > +#define  PIPE_LINK_N1_EXT_INT_MASK	REG_GENMASK(3, 0)
+> > +#define  PIPE_LINK_N1_EXT_INT(val)
+> > 	REG_FIELD_PREP(PIPE_LINK_N1_EXT_INT_MASK, (val))  #define
+> > PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran,
+> > _PIPEA_LINK_N1)
+> >
+> >  #define _PIPEA_LINK_M2		0x60048
+> > @@ -1710,6 +1719,7 @@
+> >  #define   PSR2_ADD_VERTICAL_LINE_COUNT	REG_BIT(15)
+> >  #define   DP_FEC_BS_JITTER_WA		REG_BIT(15)
+> >  #define   PSR2_VSC_ENABLE_PROG_HEADER	REG_BIT(12)
+> > +#define   DP_ENHANCED_TGDDA_ENABLE	REG_BIT(11)
+> >  #define   DP_DSC_INSERT_SF_AT_EOL_WA	REG_BIT(4)
+> >  #define   HDCP_LINE_REKEY_DISABLE	REG_BIT(0)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > index 8f9fb2603638..d0748837ce97 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > @@ -985,6 +985,8 @@ struct intel_link_m_n {
+> >  	u32 data_n;
+> >  	u32 link_m;
+> >  	u32 link_n;
+> > +	/* Wa_14021768792 for linkm/n ratio > 10 */
+> > +	bool bypass_m_n_ratio_limit;
+>=20
+> This patch seems to combine register definitions, workaround programming,
+> state readback, and state dump output. Could we split these into smaller
+> logical patches where practical ?
+
+Sure will try break them down
 
 Regards,
 Suraj Kandpal
 
 >=20
-> > -----Original Message-----
-> > From: Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Sent: 21 October 2026 12:44
-> > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> > Cc: Golani, Mitulkumar Ajitkumar
-> > <mitulkumar.ajitkumar.golani@intel.com>;
-> > Kandpal, Suraj <suraj.kandpal@intel.com>
-> > Subject: [PATCH v6 03/11] drm/i915/display_wa: Add support for
-> > Wa_14014191401
+> >  };
 > >
-> > The DG2 transcoder timing generator DDA only supports a Link M/N ratio
-> > of up to 4. The Link M/N ratio limit uses a bare platform check for it.
-> >
-> > Add Wa_14014191401 for DG2 and use it for the limit instead.
-> >
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_wa.c | 2 ++
-> > drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
-> >  drivers/gpu/drm/i915/display/intel_dp.c         | 3 ++-
-> >  3 files changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > index 2e3ff4861ef4..91395076e903 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-> > @@ -94,6 +94,8 @@ bool __intel_display_wa(struct intel_display
-> > *display, enum intel_display_wa wa,
-> >  			IS_DISPLAY_STEP(display, STEP_A0, STEP_A2);
-> >  	case INTEL_DISPLAY_WA_14014143976:
-> >  		return IS_DISPLAY_STEP(display, STEP_E0, STEP_FOREVER);
-> > +	case INTEL_DISPLAY_WA_14014191401:
-> > +		return display->platform.dg2;
-> >  	case INTEL_DISPLAY_WA_14016740474:
-> >  		return IS_DISPLAY_VERx100_STEP(display, 1400, STEP_A0,
-> STEP_C0);
-> >  	case INTEL_DISPLAY_WA_14020863754:
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > index b707147a7587..f41e58d1d6e7 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-> > @@ -31,6 +31,7 @@ enum intel_display_wa {
-> >  	INTEL_DISPLAY_WA_14011508470,
-> >  	INTEL_DISPLAY_WA_14011765242,
-> >  	INTEL_DISPLAY_WA_14014143976,
-> > +	INTEL_DISPLAY_WA_14014191401,
-> >  	INTEL_DISPLAY_WA_14016740474,
-> >  	INTEL_DISPLAY_WA_14020863754,
-> >  	INTEL_DISPLAY_WA_14025769978,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
-> > b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 7ceb7c02b597..f3a79ae49b18 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -70,6 +70,7 @@
-> >  #include "intel_display_regs.h"
-> >  #include "intel_display_rpm.h"
-> >  #include "intel_display_types.h"
-> > +#include "intel_display_wa.h"
-> >  #include "intel_dp.h"
-> >  #include "intel_dp_aux.h"
-> >  #include "intel_dp_hdcp.h"
-> > @@ -1271,7 +1272,7 @@ bool intel_dp_has_dsc(const struct
-> > intel_connector
-> > *connector)  static int  intel_dp_get_max_m_n_ratio(struct
-> > intel_display
-> > *display)  {
-> > -	if (display->platform.dg2)
-> > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_14014191401))
->=20
-> With above suggested change is done,
-> LGTM
-> Reviewed-by: Mitul Golani<mitulkumar.ajitkumar.golani@intel.com>
->=20
-> >  		return 4;
-> >
-> >  	return 10;
+> >  struct intel_csc_matrix {
 > > --
 > > 2.34.1
 
