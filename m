@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8119F606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDC4A606A31B
 	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 03:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=G1uYd8EF
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Y6Vs3bQz
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3706F11230B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B809B10E37F;
 	Thu, 22 Oct 2026 03:23:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D6CF10E3C0;
- Thu, 22 Oct 2026 03:23:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 723ED10E3CF;
+ Thu, 22 Oct 2026 03:23:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792639391; x=1824175391;
+ t=1792639392; x=1824175392;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DCrH2DG31TN7Cn9Mtsejb3Eek5M4EukZEVGhklQaV9Y=;
- b=G1uYd8EFnixWSlaiN49IR2iVlrcq90JbjeQcdBwM/zIXm5fPkeA9nHvd
- NrzXD3KZ279tgvoY3aNTC+ITIdTJV0OC6PPu3yg357qKBGvOkJkLvULl1
- y0jskN5G7NDTW6Id1CF0+CzPDgXOuwSq56FJ3tNhM6dGG4QHZCwIBzORy
- K4kgD6jpBskfanuasRVbJ73msO0/9kXvxWYjUNcS4gAE72ugvYA1groGe
- PYCyWkTNsf5UcEOUHZChzMn3sODkKxmWlY9K+uKJWnO4vphMMKhyVJQTc
- cH6F4qub7m5blwV2ettJzES/IHC86ijOoHoZTB/SsfQ1/K1p/iw3n+ARQ g==;
-X-CSE-ConnectionGUID: G2SN6B/aTeetHmlR/tiZIQ==
-X-CSE-MsgGUID: gs0rMv4oTBWbdemc6+x9rA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1383504"
+ bh=H5vJ5PeANaMrDnCNMv6tLOO/D9A0+tI3oK+Df/e3h3c=;
+ b=Y6Vs3bQzEvP/nFOTa+UmBHOXLOI+7LQ9ZuZI+ctYmCw2eUA9awNRJ7qN
+ QZDDIUNPs+J6m9hCHlw+mRw93ev30eAe1wMbQgQM/+rTCs64hG2NX8/M1
+ x0GbZo8wxI1MhRm8ZlDvnz0KYc07WmITZxi+z5TbnJPjUyrSMHP+tyrGd
+ 2pCaNtECVI7UJnksu2RC278CnstpWxqRVIYS+mp0NZazXYukJvfZ1ye+E
+ mWr+ZrbsFIwlAsKysw2IWq0hpmxvhk8Fo29IYRaKvHx/NNHF763gHpG4z
+ m0ktqVd1zeh8RGK41Ve8wLIPXZjUDJmDjIRF+LQAc5/74vXHwY1FnW7b5 g==;
+X-CSE-ConnectionGUID: CduqWyR3Rxis4BI2Xc4dEQ==
+X-CSE-MsgGUID: ovwyVUXKQ0u8xOzD4/REvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1383506"
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="1383504"
+   d="scan'208";a="1383506"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 20:23:10 -0700
-X-CSE-ConnectionGUID: 3Iw9t6rXS4a+RGZ/ECGHCQ==
-X-CSE-MsgGUID: m5AOxz7JSkmjWUTpMBEARQ==
+ 21 Oct 2026 20:23:11 -0700
+X-CSE-ConnectionGUID: +w0bs837RFKFzt7Op/PoBw==
+X-CSE-MsgGUID: Jity/kb3RlyVO9ygmh5vMg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="3197338"
+   d="scan'208";a="3197347"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 21 Oct 2026 20:23:09 -0700
+ by orviesa001.jf.intel.com with ESMTP; 21 Oct 2026 20:23:10 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: mitulkumar.ajitkumar.golani@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v7 09/13] drm/i915/display: Compare bypass_m_n_ratio_limit in
- the state checker
-Date: Thu, 22 Oct 2026 08:52:43 +0530
-Message-Id: <20261022032247.1378809-10-suraj.kandpal@intel.com>
+Subject: [PATCH v7 10/13] drm/i915/display: Dump bypass_m_n_ratio_limit in the
+ crtc state dump
+Date: Thu, 22 Oct 2026 08:52:44 +0530
+Message-Id: <20261022032247.1378809-11-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261022032247.1378809-1-suraj.kandpal@intel.com>
 References: <20261022032247.1378809-1-suraj.kandpal@intel.com>
@@ -72,38 +72,33 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Compare bypass_m_n_ratio_limit in intel_pipe_config_compare(), so that a
-mismatch between the computed and the read back state of
-Wa_14021768792 is caught.
-Only bypass_m_n_ratio_limit is compared, not the ratio integer and
-fraction themselves. That is deliberate: both are derived from Link M
-and Link N, which are compared already, so the thing worth verifying is
-whether the workaround ended up being applied or not.
-Unlike the rest of the M/N registers, CHICKEN_TRANS and HDMI_EMP_DATA
-are not double buffered, so the flag has to be compared outside the
-fastset exemption that PIPE_CONF_CHECK_M_N() has for update_m_n.
-Otherwise a seamless M/N update could switch the DDA out of the
-workaround on a live transcoder, with the Link M/N values only following
-at the next MSA.
+Dump whether the Link M/N ratio limit is bypassed with Wa_14021768792
+along with the rest of the M/N values in the crtc state dump.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9e9321976a21..ecc0e5ec181a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5523,6 +5523,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_M_N(dp_m2_n2);
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index 92675a88b969..c51b21222dc6 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -36,10 +36,12 @@ intel_dump_m_n_config(struct drm_printer *p,
+ 		      const char *id, unsigned int lane_count,
+ 		      const struct intel_link_m_n *m_n)
+ {
+-	drm_printf(p, "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n: %u, tu: %u\n",
++	drm_printf(p,
++		   "%s: lanes: %i; data_m: %u, data_n: %u, link_m: %u, link_n: %u, tu: %u, bypass_m_n_ratio_limit: %s\n",
+ 		   id, lane_count,
+ 		   m_n->data_m, m_n->data_n,
+-		   m_n->link_m, m_n->link_n, m_n->tu);
++		   m_n->link_m, m_n->link_n, m_n->tu,
++		   str_yes_no(m_n->bypass_m_n_ratio_limit));
+ }
  
-+	PIPE_CONF_CHECK_BOOL(dp_m_n.bypass_m_n_ratio_limit);
-+
- 	PIPE_CONF_CHECK_X(output_types);
- 
- 	PIPE_CONF_CHECK_I(framestart_delay);
+ static void
 -- 
 2.34.1
 
