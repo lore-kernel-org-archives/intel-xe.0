@@ -2,29 +2,80 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01B5606A31E
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 07:52:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A424B606A319
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 08:03:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key, unprotected) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=TWRhUV3P
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8470210E2AF;
-	Thu, 22 Oct 2026 07:52:19 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01E8910E1F4;
- Thu, 22 Oct 2026 07:52:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8339938208748808890=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66F6810E23D;
+	Thu, 22 Oct 2026 08:03:32 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23D7710E2C8
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 08:03:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1792656205;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=W6J737TEl9B2egnW0p7z/YAbbC3wSedR9eDcIGXJuFs=;
+ b=TWRhUV3PzJOupBLdaSvA87D/kDy3IyAb1pf0zSBAsRoBczAaBv8GD9LGgAKotLOUZNK4wV
+ Tg8r1YvRL17aeqwGk/C9EEFq6Faai0fv4V68s8FmBLbanM+/6yy4bwaHx2shLjVMrKjiHS
+ CtReXn2yikdYJhNlXhR3JqSEPAZQLHU=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-213-FzCTtsFFM7uoNa0_etRQ0w-1; Thu, 22 Oct 2026 04:03:23 -0400
+X-MC-Unique: FzCTtsFFM7uoNa0_etRQ0w-1
+X-Mimecast-MFC-AGG-ID: FzCTtsFFM7uoNa0_etRQ0w_1792656203
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-4a009f82bedso10375215e9.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Oct 2026 01:03:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1792656203; x=1793261003;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=W6J737TEl9B2egnW0p7z/YAbbC3wSedR9eDcIGXJuFs=;
+ b=encEKg1Z9QMPcWp7x3RzwurNJY17XvEh6k6rYvwsqnBFbTijFcv/rQ1j7ZUsVT6Jo0
+ WFWTQtdTke3DW0hsI0jb7/vwRdH+XoHIt6f7IC9xc0k/1wx728PTMMrOjF//wsemPnZG
+ KA0dVS/ptEla54mylyCpua9CsWMREb3VJ6hPTu4iBKwCNu7MqVn7l3W989GjdhSZjWMn
+ WXi1op3yEqXX4l4Ko8IYrvMq1MqJDjIBTz/Z872MNr33O5m/wjIGEgJ6PFPe1iTZ5pHP
+ osgECpw4lEOeh3vYWLmEMurbzMwe/PKNvizm9hVWjtcCMLSsKqk6MORPwMw62/8hTMrI
+ GUhw==
+X-Gm-Message-State: AFq9FYKSDXz2zcv9tpIeMFC4AD9zRSEY9DjqzTIJf9Lz7lyr8oVF6iOv
+ qFMQTAYpZtVSy3UUUtKhb/pekBoTW14kMoa3tS5qwA3HJhfS+23Z64oX0iUu6Vvym/+lQXiKSig
+ XQXkx4IJ+ax9mNUTmCZLMJgiMyvMp8g1Azlov3ZDRXtHEnilhU8Lx7RIuGwq2LjZeU443e0R9QR
+ BD3K4OozNJwZczhm6d3BzMhmAIeKMe/GZEfjIlzM82YuY=
+X-Gm-Gg: AYBFou2zMxzGkwMAIU0l7jxyYV0HavesarYv14fsENeN7w8J5DVX3kRGiOHwADXj47M
+ HoeHAOP/D2HK3j0YZfuYXzgUYKET1qzm4+zuJK3eVQkPYXvM4CFEQtAnO+9nXtbyxerOZLaBXRh
+ CXnHO3lTAOQ1EQQEZdbghSkWgMJFjlRyc5NYh9/uP93wlXBj7N5p92hqm3
+X-Received: by 2002:a05:600c:3155:b0:4a2:803:a3c4 with SMTP id
+ 5b1f17b1804b1-4a20803a77emr19050545e9.13.1792656202224; 
+ Thu, 22 Oct 2026 01:03:22 -0700 (PDT)
+X-Received: by 2002:a05:600c:3155:b0:4a2:803:a3c4 with SMTP id
+ 5b1f17b1804b1-4a20803a77emr19049855e9.13.1792656201601; Thu, 22 Oct 2026
+ 01:03:21 -0700 (PDT)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Fmst=3A_Drop_d?=
- =?utf-8?q?ead_ret_check_in_mst=5Fstream=5Fcompute=5Flink=5Ffor=5Fjoined=5Fp?=
- =?utf-8?q?ipes=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Oct 2026 07:52:18 -0000
-Message-ID: <179265553899.55234.8983489117952314584@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261022061736.1721600-1-suraj.kandpal@intel.com>
-In-Reply-To: <20261022061736.1721600-1-suraj.kandpal@intel.com>
+References: <20260721223244.1102276-1-matthew.brost@intel.com>
+In-Reply-To: <20260721223244.1102276-1-matthew.brost@intel.com>
+From: Jan Stancek <jstancek@redhat.com>
+Date: Thu, 22 Oct 2026 10:03:09 +0200
+X-Gm-Features: AclHuK9lDSJzIh1F3yl4aopdz0Eiem3shCKhqffOA1TaZenWgjeQE26eptsBHE4
+Message-ID: <CAASaF6z3gEFD41XiNA_dLruNc7QCjJvZr=yABKm_WMP8rpKquA@mail.gmail.com>
+Subject: Re: [PATCH] drm/pagemap: Guard HPAGE_PMD_ORDER use with
+ CONFIG_ARCH_ENABLE_THP_MIGRATION
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ kernel test robot <lkp@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: LvNW1ZjxGHk6i-T7V4TLFlxvIhmDhLwnToTNUTv9NiM_1792656203
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,114 +85,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============8339938208748808890==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jul 22, 2026 at 12:32=E2=80=AFAM Matthew Brost <matthew.brost@intel=
+.com> wrote:
+>
+> HPAGE_PMD_SHIFT expands to BUILD_BUG() when CONFIG_PGTABLE_HAS_HUGE_LEAVE=
+S
+> is not set, causing a compile error when both CONFIG_TRANSPARENT_HUGEPAGE
+> and CONFIG_HUGETLB_PAGE are disabled:
+>
+>  drivers/gpu/drm/drm_pagemap.c:480:12: error: call to '__compiletime_asse=
+rt_458'
+>  declared with 'error' attribute: BUILD_BUG failed
+>    480 |                         order =3D HPAGE_PMD_ORDER;
+>        |                                 ^
+>  include/linux/huge_mm.h:117:26: note: expanded from macro 'HPAGE_PMD_ORD=
+ER'
+>    117 | #define HPAGE_PMD_ORDER (HPAGE_PMD_SHIFT-PAGE_SHIFT)
+>        |                          ^
+>  include/linux/huge_mm.h:113:28: note: expanded from macro 'HPAGE_PMD_SHI=
+FT'
+>    113 | #define HPAGE_PMD_SHIFT ({ BUILD_BUG(); 0; })
+>
+> Define DRM_PAGEMAP_PMD_ORDER, which maps to HPAGE_PMD_ORDER when
+> CONFIG_ARCH_ENABLE_THP_MIGRATION is enabled and to -1 otherwise.
+>
+> This is safe because all code paths that use DRM_PAGEMAP_PMD_ORDER are
+> reachable only when CONFIG_ARCH_ENABLE_THP_MIGRATION is enabled.
+>
+> Fixes: 139ab31aea8a ("drm/pagemap: Correct cpages calculation for migrate=
+_vma_setup")
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/r/202607201914.LpAGsbXs-lkp@intel.com/
+> Cc: Jan Stancek <jstancek@redhat.com>
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/drm_pagemap.c | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.=
+c
+> index 15c78eca180b..951cd92c930c 100644
+> --- a/drivers/gpu/drm/drm_pagemap.c
+> +++ b/drivers/gpu/drm/drm_pagemap.c
+> @@ -12,6 +12,12 @@
+>  #include <drm/drm_pagemap_util.h>
+>  #include <drm/drm_print.h>
+>
+> +#if IS_ENABLED(CONFIG_ARCH_ENABLE_THP_MIGRATION)
 
-== Series Details ==
+Now that d547b1001755 ("mm: rename ARCH_ENABLE_THP_MIGRATION to
+ARCH_HAS_PMD_SOFTLEAVES")
+landed in Linus' tree, would you consider applying this again using
+the new config name?
 
-Series: drm/i915/dp_mst: Drop dead ret check in mst_stream_compute_link_for_joined_pipes()
-URL   : https://patchwork.freedesktop.org/series/176610/
-State : success
+Thanks,
+Jan
 
-== Summary ==
+> +#define DRM_PAGEMAP_PMD_ORDER  HPAGE_PMD_ORDER
+> +#else
+> +#define DRM_PAGEMAP_PMD_ORDER  (-1)
+> +#endif
+> +
+>  /**
+>   * DOC: Overview
+>   *
+> @@ -579,7 +585,7 @@ static int drm_pagemap_cpages(unsigned long *migrate_=
+pfn, unsigned long npages)
+>                         order =3D folio_order(folio);
+>                         cpages +=3D NR_PAGES(order);
+>                 } else if (migrate_pfn[i] & MIGRATE_PFN_COMPOUND) {
+> -                       order =3D HPAGE_PMD_ORDER;
+> +                       order =3D DRM_PAGEMAP_PMD_ORDER;
+>                         cpages +=3D NR_PAGES(order);
+>                 }
+>
+> @@ -765,10 +771,11 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagema=
+p_devmem *devmem_allocation,
+>
+>                 if (migrate.src[i] & MIGRATE_PFN_COMPOUND) {
+>                         drm_WARN_ONCE(dpagemap->drm, src_page &&
+> -                                     folio_order(page_folio(src_page)) !=
+=3D HPAGE_PMD_ORDER,
+> +                                     folio_order(page_folio(src_page)) !=
+=3D
+> +                                     DRM_PAGEMAP_PMD_ORDER,
+>                                       "Unexpected folio order\n");
+>
+> -                       order =3D HPAGE_PMD_ORDER;
+> +                       order =3D DRM_PAGEMAP_PMD_ORDER;
+>                         migrate.dst[i] |=3D MIGRATE_PFN_COMPOUND;
+>
+>                         for (j =3D 1; j < NR_PAGES(order) && i + j < npag=
+es; j++)
+> --
+> 2.34.1
+>
 
-CI Bug Log - changes from xe-5997-dccfdbc40b10720efe537dfc63de84eed983fc8f_BAT -> xe-pw-176610v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9156 -> IGT_9157
-  * Linux: xe-5997-dccfdbc40b10720efe537dfc63de84eed983fc8f -> xe-pw-176610v1
-
-  IGT_9156: 9156
-  IGT_9157: 9157
-  xe-5997-dccfdbc40b10720efe537dfc63de84eed983fc8f: dccfdbc40b10720efe537dfc63de84eed983fc8f
-  xe-pw-176610v1: 176610v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176610v1/index.html
-
---===============8339938208748808890==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Drop dead ret check in mst_stream_compute_link_for_joined_pipes()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176610/">https://patchwork.freedesktop.org/series/176610/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176610v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176610v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-5997-dccfdbc40b10720efe537dfc63de84eed983fc8f_BAT -&gt; xe-pw-176610v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9156 -&gt; IGT_9157</li>
-<li>Linux: xe-5997-dccfdbc40b10720efe537dfc63de84eed983fc8f -&gt; xe-pw-176610v1</li>
-</ul>
-<p>IGT_9156: 9156<br />
-  IGT_9157: 9157<br />
-  xe-5997-dccfdbc40b10720efe537dfc63de84eed983fc8f: dccfdbc40b10720efe537dfc63de84eed983fc8f<br />
-  xe-pw-176610v1: 176610v1</p>
-
-</body>
-</html>
-
---===============8339938208748808890==--
