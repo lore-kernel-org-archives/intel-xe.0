@@ -2,53 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054B9606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62172606A31A
 	for <intel-xe@archiver.kernel.org>; Thu, 22 Oct 2026 03:23:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Yqbv+xgq
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=StWe0t1h
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7581122F5;
-	Thu, 22 Oct 2026 03:23:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19BFE1122F7;
+	Thu, 22 Oct 2026 03:23:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB89910E3C0;
- Thu, 22 Oct 2026 03:23:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3502F10E37B;
+ Thu, 22 Oct 2026 03:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792639386; x=1824175386;
+ t=1792639382; x=1824175382;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BHqSpiFao4OWGjv2RiMkyZQNnm2rZXy4UXOptcaNQbg=;
- b=Yqbv+xgq+WaYWeno8TWVGfKmB9IlNazIWIdSRjgR/hoP49ygD7ERAVq2
- xvUXxD6IQ1TFphxtnN1HXjTtVe5jqbCzX2ix6CAvdovaLCRrgwb4CEfhI
- t6ygnx+CZ9JeIm8JSv0gdTHoL/GHCf6qlv+5E2iKf9UvW63bydYHs1oYY
- 6Ut4oBjE4k8iURYPTGxNXNBDCTOvPantk2aayfa1ZLiecD0fXZBe+k8ZA
- 5yJGTR2k6OT06MCy8dZv3i4zqvgsJNK71S99HJ5oJmWEY59MKiaYHa0RV
- yh9rrvebksbgpwGFsDdK6nsh8TW96Q+SGkQaVQpl6jxINsFJQVt6PEvrY A==;
-X-CSE-ConnectionGUID: AHaTTSk4TQ6PgTqba/GSFA==
-X-CSE-MsgGUID: fbNaEX5TRje70bhMxl7ZnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1383493"
+ bh=Nlp5tERVYpzrky90NGvR+RkCFdEVhOOnOP7OK+DYZ80=;
+ b=StWe0t1hTj/AGD5VF3BKX8KQsktMQg0ynbJqy3vAdDsuZErc7/ltb2r4
+ 6YeiU/iFbg7VbIchnSV6bZYUhMrDIZYN4f39vopvr8e72Q+gGJR7vmZ0P
+ XATnDqjgYqJQY/BqtjG8QM3IGzwrjnCef2mMDEu4JIoA8pdB0L6+XbHKR
+ 8U+hqyekSQdF+sLd9fGGo+CV36uHQwOztLHXAHeIHbKa3iorkDYeiR/g7
+ pItMvrrQJyyTcygqWs0zz/AtJuuXGu5lRB0xHwblCoWtKo/REFE1Dhzst
+ KcibScWwzSA4fTDfQd7NBVTJOHp9icrzwCzsGaDVkmPL8+NtrosoPSNFp g==;
+X-CSE-ConnectionGUID: wbaJe7CvStuTIl2j1bSqUg==
+X-CSE-MsgGUID: 0PdAxAc3TmGICSN8ZaZfjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11942"; a="1383488"
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="1383493"
+   d="scan'208";a="1383488"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Oct 2026 20:23:05 -0700
-X-CSE-ConnectionGUID: vOdt93iAQbm6TFooec+g8A==
-X-CSE-MsgGUID: YJds44EKSd+/COFVnr9gBg==
+ 21 Oct 2026 20:23:01 -0700
+X-CSE-ConnectionGUID: C86G8e9HTrihOaPkNCIj1A==
+X-CSE-MsgGUID: Ewu1mCbRQCOoUECEYLX0IA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,171,1787036400"; 
-   d="scan'208";a="3197305"
+   d="scan'208";a="3197285"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa001.jf.intel.com with ESMTP; 21 Oct 2026 20:23:03 -0700
+ by orviesa001.jf.intel.com with ESMTP; 21 Oct 2026 20:23:00 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: mitulkumar.ajitkumar.golani@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v7 06/13] drm/i915/display: Add bits for link_n_extended for
- DISPLAY >= 14
-Date: Thu, 22 Oct 2026 08:52:40 +0530
-Message-Id: <20261022032247.1378809-7-suraj.kandpal@intel.com>
+Subject: [PATCH v7 04/13] drm/i915/dp_mst: Limit M/N ratio for MST
+Date: Thu, 22 Oct 2026 08:52:38 +0530
+Message-Id: <20261022032247.1378809-5-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261022032247.1378809-1-suraj.kandpal@intel.com>
 References: <20261022032247.1378809-1-suraj.kandpal@intel.com>
@@ -68,98 +67,60 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-LINK_N register has bits 31:24 for extended link N value used for
-HDMI2.1 and for an alternate mode of operation of DP TG DDA.
+The hardware does not support DisplayPort configurations where the
+ceiling of the Link M/Link N ratio exceeds the limit. Enforce this
+constraint for MST as well.
 
-Add support for these extra bits.
+The compute config path needs no change: MST goes through
+intel_dp_compute_config_limits() too, so the link config filter set up
+there already excludes the configurations violating the ratio limit, and
+MST fails there if none is left.
 
-For displays with version 14 or higher, PIPE_LINK_N1_EXTENDED_MASK
-(bits 31:24) is used to handle the extended link N bits. For older
-platforms, DATA_LINK_M_N_MASK (bits 23:0) is used to handle the
-standard link N bits. This distinction ensures clarity and maintains
-the semantics for platforms that support the extended bits. In
-subsequent changes the logic is updated to conditionally apply the
-extended link N bits.
+What is still missing is pruning such modes, so add the check to
+mst_connector_mode_valid_ctx(), reusing the helper the SST mode_valid
+uses. It walks the link configurations and only rejects the mode if none
+of them can satisfy the ratio, rather than evaluating it at a single
+link rate.
 
-v2: Drop extra link_n_ext member. (Jani)
-v3: Avoid link_n_ext in set_m_n helper. (Jani)
-v4: Rebase, and update commit message.
-v5: Drop a stale changelog entry, the DISPLAY_VER split here is
-    intentional. (Sashiko)
+v2:
+-Drop the checks in the MST link config helpers, redundant now that the
+constraint is applied while computing the link config limits. (Imre)
+-Share the mode_valid helper with SST instead of evaluating the ratio at
+one link rate, since the link symbol clock is not monotonic in the link
+rate and there is no single best case configuration.
+v3:
+-Now that intel_dp_mode_valid_m_n checks for all configs just call
+that (Sashiko)
 
-Bspec: 50488
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Co-developed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c   | 18 ++++++++++++++++--
- .../gpu/drm/i915/display/intel_display_regs.h  |  2 ++
- 2 files changed, 18 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f74e7ddf0e41..461b81bf8341 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2720,14 +2720,22 @@ void intel_set_m_n(struct intel_display *display,
- 		   intel_reg_t data_m_reg, intel_reg_t data_n_reg,
- 		   intel_reg_t link_m_reg, intel_reg_t link_n_reg)
- {
-+	u32 link_n = m_n->link_n;
-+
- 	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
- 	intel_de_write(display, data_n_reg, m_n->data_n);
- 	intel_de_write(display, link_m_reg, m_n->link_m);
-+
-+	if (DISPLAY_VER(display) >= 14)
-+		link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
-+	else
-+		link_n &= DATA_LINK_M_N_MASK;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index 7023619aaaba..f00edfb66a10 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -1565,6 +1565,11 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+ 					   min_link_bpp_x16,
+ 					   bw_overhead_flags);
+ 
++	if (!intel_dp_mode_valid_m_n(intel_dp, mode->clock)) {
++		*status = MODE_CLOCK_HIGH;
++		return 0;
++	}
 +
  	/*
- 	 * On BDW+ writing LINK_N arms the double buffered update
- 	 * of all the M/N registers, so it must be written last.
- 	 */
--	intel_de_write(display, link_n_reg, m_n->link_n);
-+	intel_de_write(display, link_n_reg, link_n);
- }
- 
- bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
-@@ -3484,7 +3492,13 @@ void intel_get_m_n(struct intel_display *display,
- 		   intel_reg_t link_m_reg, intel_reg_t link_n_reg)
- {
- 	m_n->link_m = intel_de_read(display, link_m_reg) & DATA_LINK_M_N_MASK;
--	m_n->link_n = intel_de_read(display, link_n_reg) & DATA_LINK_M_N_MASK;
-+	m_n->link_n = intel_de_read(display, link_n_reg);
-+
-+	if (DISPLAY_VER(display) >= 14)
-+		m_n->link_n &= ~PIPE_LINK_N1_EXTENDED_MASK;
-+	else
-+		m_n->link_n &= DATA_LINK_M_N_MASK;
-+
- 	m_n->data_m = intel_de_read(display, data_m_reg) & DATA_LINK_M_N_MASK;
- 	m_n->data_n = intel_de_read(display, data_n_reg) & DATA_LINK_M_N_MASK;
- 	m_n->tu = REG_FIELD_GET(TU_SIZE_MASK, intel_de_read(display, data_m_reg)) + 1;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 2f509bd06557..983a0d9dcb9c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -1190,6 +1190,8 @@
- 
- #define _PIPEA_LINK_N1		0x60044
- #define _PIPEB_LINK_N1		0x61044
-+#define  PIPE_LINK_N1_EXTENDED_MASK	REG_GENMASK(31, 24)
-+#define  PIPE_LINK_N1_EXTENDED(val)	REG_FIELD_PREP(PIPE_LINK_N1_EXTENDED_MASK, (val))
- #define PIPE_LINK_N1(dev_priv, tran) _MMIO_TRANS2(dev_priv, tran, _PIPEA_LINK_N1)
- 
- #define _PIPEA_LINK_M2		0x60048
+ 	 * TODO:
+ 	 * - Also check if compression would allow for the mode
 -- 
 2.34.1
 
