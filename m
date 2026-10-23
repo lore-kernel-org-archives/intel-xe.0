@@ -2,42 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A0FD606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 21:19:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NaccoN8j
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E625D606A328
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 21:20:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19D7510E2A8;
-	Fri, 23 Oct 2026 21:19:19 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 456BF10E2A8
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 21:19:13 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D17564341F;
- Fri, 23 Oct 2026 21:19:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95D121F01825;
- Fri, 23 Oct 2026 21:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1792790352;
- bh=8OSnad7OsRwMc9OFSAgQMo1KTIlRNz2NuVFg6jxJwEs=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=NaccoN8jtu0R/UFUX0Lf2cZ++wDOgKKdp/KaxR5oW3G+ybqb3urCMLLj6DWzRNecj
- V2m43uK+PV4rUc4y98yKlLCo+nbo+iPSOUWaJKVoQbV09Mr/GV1Xtndedy+fWg5Muv
- QWyCYsSYTj60VGXBbOhKFNO13KBcjXIfa6kcBzZ0nZJH6whwRyQKm684tOH1DaskNx
- jJN/VRlpe+KsewixwUptyhaQp8d9Dj4gHgRwGk4Nzi2X3xIKHjLSP5t2TSU/5KvHJK
- jyOU96ZQMOvZCb5sgSmtzyWQYk6SRktpbdSXSnVa8UhVmvvjMbXa5VT3mo9J5eddpo
- rLxkvoXJ5uLgQ==
-Message-ID: <sashiko-outbox-183245@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 03/10] drm/xe: Use picosecond as common unit in
- adjust_idledly()
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261023-wa_16031259911-v1-3-b0453f79c4e1@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB1010E2A8;
+	Fri, 23 Oct 2026 21:20:07 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFC5A10E2A8;
+ Fri, 23 Oct 2026 21:20:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Clean_up_adjust?=
+ =?utf-8?q?=5Fidledly=28=29_and_implement_Wa=5F16031259911?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 23 Oct 2026 21:20:06 -0000
+Message-ID: <179279040697.63821.17396755283075422084@221881a7231d>
+X-Patchwork-Hint: ignore
 References: <20261023-wa_16031259911-v1-0-b0453f79c4e1@intel.com>
- <20261023-wa_16031259911-v1-3-b0453f79c4e1@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 23 Oct 2026 21:19:12 +0000
+In-Reply-To: <20261023-wa_16031259911-v1-0-b0453f79c4e1@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,124 +33,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [High] drm/xe: 32-bit multiplication overflow in adjust_idledly()
---
+== Series Details ==
 
-commit 6274ddb08f811b772af3c2cc759b8be4b565872c
+Series: drm/xe: Clean up adjust_idledly() and implement Wa_16031259911
+URL   : https://patchwork.freedesktop.org/series/176761/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5247c9a4bf536feb23d18dc73874d4e5371a7961
 Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Fri Oct 23 18:09:38 2026 -0300
 
-drm/xe: Use picosecond as common unit in adjust_idledly()
+    drm/xe: Implement Wa_16031259911
+    
+    Implement Wa_16031259911, which applies to graphics version 35.10 and
+    35.11.  The workaround definition instructs us to set the minimum idle
+    delay value to 2 times the memory read delay, and tells that using 1
+    unit of the IDLE_DELAY field covers that minimum.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch b255dd13059988fddde9ea187d1dd1017c9a5766 drm-intel
+54c306f7e5b8 drm/xe: Bail from adjust_idledly() if in VF mode
+e4185b45d7ba drm/xe: Sync Wa_16023105232 in xe_was to match OOB rule
+ac4de2d1c1ea drm/xe: Use picosecond as common unit in adjust_idledly()
+cd14ce970f15 drm/xe: Factor out {min,max}_idledly_ps in adjust_idledly()
+-:98: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#98: FILE: drivers/gpu/drm/xe/xe_hw_engine.c:634:
++					       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
 
-This commit changes adjust_idledly() to use picoseconds instead of
-nanoseconds as the common unit of time to avoid precision loss and
-eliminate extra integer divisions.
+total: 0 errors, 1 warnings, 0 checks, 140 lines checked
+22e1b230a901 drm/xe: Bail from adjust_idledly() if no applicable workaround
+c88016f894f5 drm/xe: Drop early and redundant workaround checks in adjust_idledly()
+66e42acbc1a6 drm/xe: Drop comment about MAXCNT when calling adjust_idledly()
+8838effa0ca7 drm/xe/guc: Increment regset size for Wa_1607983814 inside hwe loop
+b3792ca4a1db drm/xe/guc: Increment regset size for RING_IDLEDLY workarounds
+5247c9a4bf53 drm/xe: Implement Wa_16031259911
+-:23: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#23: FILE: drivers/gpu/drm/xe/xe_guc_ads.c:231:
++		    (XE_GT_WA(hwe->gt, 16031259911) && xe_gt_supports_multi_queue(hwe->gt, hwe->class)))
 
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw=
-_engine.c
-> index 6872d1ca656e2..dcc8a6d53c5d0 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -585,17 +585,19 @@ static void hw_engine_init_early(struct xe_gt *gt, =
-struct xe_hw_engine *hwe,
->  	xe_reg_whitelist_process_engine(hwe);
->  }
-> =20
-> -static u32 idledly_floor_ticks(u32 idledly_ns, u32 idledly_units_ps)
-> +static u32 idledly_floor_ticks(u64 idledly_ps, u32 idledly_units_ps)
->  {
-> -	return DIV_ROUND_DOWN_ULL((u64)idledly_ns * 1000, idledly_units_ps);
-> +	return DIV_ROUND_DOWN_ULL(idledly_ps, idledly_units_ps);
->  }
-> =20
->  static void adjust_idledly(struct xe_hw_engine *hwe)
->  {
->  	struct xe_gt *gt =3D hwe->gt;
-> -	u32 idledly, idledly_hw, idledly_reg_val, maxcnt;
-> +	u32 idledly_reg_val, maxcnt_reg_val;
->  	u32 idledly_units_ps =3D 8 * gt->info.timestamp_base;
-> -	u32 maxcnt_units_ns =3D 640;
-> +	u32 maxcnt_units_ps =3D 640000;
-> +	u64 idledly_ps, idledly_hw_ps;
-> +	u64 maxcnt_ps;
->  	bool inhibit_switch =3D false;
->  	bool wa_applied =3D false;
->  	bool clamped_below_maxcnt =3D false;
-> @@ -604,29 +606,27 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
->  		return;
-> =20
->  	if (XE_GT_WA(gt, 16023105232) || XE_GT_WA(gt, 14025941587)) {
-> -		u32 mincnt_idledly_ns =3D 5000;
-> +		u32 mincnt_idledly_ps =3D 5000000;
-> =20
->  		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown cryst=
-al clock. */
->  		if (!idledly_units_ps)
->  			return;
-> =20
->  		idledly_reg_val =3D xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_b=
-ase));
-> -		maxcnt =3D xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base=
-));
-> -
->  		inhibit_switch =3D idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
-> -		idledly =3D REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
-> -		idledly =3D DIV_ROUND_CLOSEST_ULL((u64)idledly * idledly_units_ps, 100=
-0);
-> -		idledly_hw =3D idledly;
-> -		maxcnt =3D REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt);
-> -		maxcnt *=3D maxcnt_units_ns;
-> +		idledly_ps =3D REG_FIELD_GET(IDLE_DELAY, idledly_reg_val) * idledly_un=
-its_ps;
-> +		idledly_hw_ps =3D idledly_ps;
-> +
-> +		maxcnt_reg_val =3D xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->m=
-mio_base));
-> +		maxcnt_ps =3D REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt_reg_val) * maxcnt_u=
-nits_ps;
+total: 0 errors, 1 warnings, 0 checks, 31 lines checked
 
-[Severity: High]
-Can the multiplications computing idledly_ps and maxcnt_ps in
-adjust_idledly() overflow 32-bit unsigned arithmetic before being widened
-to u64?
 
-In include/drm/intel/reg_bits.h, REG_FIELD_GET() returns a u32:
-
-    #define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
-
-Because idledly_units_ps and maxcnt_units_ps are both declared as u32,
-both multiplications are evaluated in 32-bit arithmetic before assignment
-to u64 idledly_ps and u64 maxcnt_ps.
-
-For idledly_ps, dropping the (u64) cast that was added in commit
-d864065ea25e ("drm/xe: harden adjust_idledly() against divide-by-zero and
-overflow") means IDLE_DELAY (a 21-bit field, REG_GENMASK(20, 0)) multiplied
-by idledly_units_ps (up to 666,664 ps) wraps around U32_MAX whenever
-IDLE_DELAY is >=3D 6443 ticks.
-
-Similarly, for maxcnt_ps, scaling the unit multiplier from 640 ns to
-640,000 ps in u32 means IDLE_WAIT_TIME (a 20-bit field, REG_GENMASK(19, 0))
-multiplied by maxcnt_units_ps wraps around U32_MAX whenever IDLE_WAIT_TIME
-is >=3D 6711 ticks (~4.29 ms out of its ~671 ms range).
-
-When either product wraps, xe_gt_WARN_ON(gt, idledly_hw_ps >=3D maxcnt_ps)
-can trigger spuriously, and the Wa_14025941587 and Wa_16023105232 checks
-can program a corrupted IDLE_DELAY tick count into RING_IDLEDLY.
-
-Should idledly_units_ps and maxcnt_units_ps be declared as u64 (or the
-operands cast to u64 before multiplying)?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261023-wa_1603125=
-9911-v1-0-b0453f79c4e1@intel.com?part=3D3
