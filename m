@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CA01606A31B
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 06:35:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8148E606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 06:56:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 085E910E552;
-	Fri, 23 Oct 2026 06:35:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F11210E052;
+	Fri, 23 Oct 2026 06:56:48 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3A9F10E552;
- Fri, 23 Oct 2026 06:35:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EEB410E052;
+ Fri, 23 Oct 2026 06:56:47 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7838150606872729310=="
+ boundary="===============6457070229382407845=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_CPER_logging_support_fo?=
- =?utf-8?q?r_CRI_=28rev5=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Capture_additiona?=
+ =?utf-8?q?l_HW_register_state_in_devcoredump_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
+To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 Oct 2026 06:35:35 -0000
-Message-ID: <179273733572.60204.13649765567427176150@221881a7231d>
+Date: Fri, 23 Oct 2026 06:56:47 -0000
+Message-ID: <179273860731.60459.10053082167107430485@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261023043422.681260-15-badal.nilawar@intel.com>
-In-Reply-To: <20261023043422.681260-15-badal.nilawar@intel.com>
+References: <20261023060554.2643515-1-naresh.kumar.g@intel.com>
+In-Reply-To: <20261023060554.2643515-1-naresh.kumar.g@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,20 +41,20 @@ X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============7838150606872729310==
+--===============6457070229382407845==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: Add CPER logging support for CRI (rev5)
-URL   : https://patchwork.freedesktop.org/series/169692/
+Series: drm/xe: Capture additional HW register state in devcoredump (rev6)
+URL   : https://patchwork.freedesktop.org/series/172150/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f_BAT -> xe-pw-169692v5_BAT
+CI Bug Log - changes from xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f_BAT -> xe-pw-172150v6_BAT
 ====================================================
 
 Summary
@@ -82,18 +82,18 @@ Build changes
 -------------
 
   * IGT: IGT_9159 -> IGT_9160
-  * Linux: xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f -> xe-pw-169692v5
+  * Linux: xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f -> xe-pw-172150v6
 
   IGT_9159: 9159
   IGT_9160: 9160
   xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f: 55c6bb0b4d006ee415abe9f048014f7bcc90ae6f
-  xe-pw-169692v5: 169692v5
+  xe-pw-172150v6: 172150v6
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v5/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172150v6/index.html
 
---===============7838150606872729310==
+--===============6457070229382407845==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -113,16 +113,16 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe: Capture additional HW register state in devcoredump (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/172150/">https://patchwork.freedesktop.org/series/172150/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v5/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172150v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-172150v6/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f_BAT -&gt; xe-pw-169692v5_BAT</h1>
+    <h1>CI Bug Log - changes from xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f_BAT -&gt; xe-pw-172150v6_BAT</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
@@ -133,14 +133,14 @@ Content-Transfer-Encoding: 7bit
 <h2>Build changes</h2>
 <ul>
 <li>IGT: IGT_9159 -&gt; IGT_9160</li>
-<li>Linux: xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f -&gt; xe-pw-169692v5</li>
+<li>Linux: xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f -&gt; xe-pw-172150v6</li>
 </ul>
 <p>IGT_9159: 9159<br />
   IGT_9160: 9160<br />
   xe-6001-55c6bb0b4d006ee415abe9f048014f7bcc90ae6f: 55c6bb0b4d006ee415abe9f048014f7bcc90ae6f<br />
-  xe-pw-169692v5: 169692v5</p>
+  xe-pw-172150v6: 172150v6</p>
 
 </body>
 </html>
 
---===============7838150606872729310==--
+--===============6457070229382407845==--
