@@ -2,36 +2,65 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26E22606A31F
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 11:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92CBD606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 11:58:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=EB3FttOR
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OP8ahQ/T
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A722B112AD6;
-	Fri, 23 Oct 2026 11:46:07 +0000 (UTC)
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C92B1112ACC
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 11:46:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1792755958;
- bh=gXKbcWanuzJ5mIqyuDUks3WVyJql56GNTmzthFuU87k=;
- h=From:To:Cc:Subject:Date:From;
- b=EB3FttORDQo5mJF7MQQ3zHmAzsFW3/1K+nNqkhfrStAj6TYCnarAFv1uUIvpqwDtC
- /zn/YakZYSeMhC5RbWARnQoGjRLMadr27pMU7c212zkD4K34SSTq9mEoGNEaGIHF4y
- TmbTrE19OBZ/F/F7FPalKZM0zCAhWZS+0ioc/wPRfrt5S3pbnxlApYILR7PqgLuecU
- CIuqmmueAA3X+IXT36UCSKJqOTgmFGWLvPeY9bf3zWLj1sEmcbNKKSA5j2k1PkN3EB
- z0nQtsIETxlUUiET6oPQRRgQiGKZ9Rc0M3yhEYJTYuSlq+DvmV+G4Trd8K4WG2fmaB
- HLFguSOpv44vQ==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 1/2] drm/xe/bo: Add xe_bo_addr_iter.
-Date: Fri, 23 Oct 2026 13:46:15 +0200
-Message-ID: <20261023114616.735366-1-dev@lankhorst.se>
-X-Mailer: git-send-email 2.55.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55268112AEA;
+	Fri, 23 Oct 2026 11:58:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A325C112B05
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 11:58:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792756729; x=1824292729;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Hj4tRDuHe3v1BpZXivXDQx1MJ9AJvc5HnGawkxJFtF4=;
+ b=OP8ahQ/T4q6QYQfP8SstGEBDkKI1o5X4ppNcJd4IjtSFB6PyTCzXTJrE
+ vWbv7QrhI8GAMnL2WbPL/S6HqbuPPgYHXgHgyz9JRclT/5HDPH0d3UE6Y
+ 0FLQ7DXrOy/GUvRJje3gl9WNhzVqw2datIAB1fQNVakzqUHZ+KRu5cmYg
+ x63KX6vHcvyNKLMcrLnKlEHfLOp7Esal2H6IIkeZMwE5Dx3Qo0sd2Gwn4
+ Xozropa94eE8yI8yOiJtv7kIiYvDeVKN0Ca0nKSJLMF1HLKreUPK2WmFL
+ wM7R9RzJifQfnHvh1C0hX7FxfenbI6PaDqONUemnitQ7cZvn8EXUTpA3S g==;
+X-CSE-ConnectionGUID: nE2FU0VrRTaS0RLZ3VGuGw==
+X-CSE-MsgGUID: p4BtHkgaScOffeaKiXkzmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1535874"
+X-IronPort-AV: E=Sophos;i="6.27,174,1787036400"; 
+   d="scan'208";a="1535874"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2026 04:58:10 -0700
+X-CSE-ConnectionGUID: cEoFNOfIQsawvF33icJLiw==
+X-CSE-MsgGUID: ls+CRbloRpeqcIupUb3HNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,174,1787036400"; 
+   d="scan'208";a="3541774"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.106])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2026 04:58:06 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
+ aravind.iddamsetty@linux.intel.com, Mallesh Koujalagi
+ <mallesh.koujalagi@intel.com>
+Subject: Re: [PATCH] drm/xe/hwmon: Restrict LONG_MAX overflow check to
+ 32-bit builds
+In-Reply-To: <20261023082939.387258-2-mallesh.koujalagi@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261023082939.387258-2-mallesh.koujalagi@intel.com>
+Date: Fri, 23 Oct 2026 14:58:04 +0300
+Message-ID: <e5d55f7adef63e5ff054b1493f1759c83cf5e33b@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,133 +71,55 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For display we iterate often over the pinned VRAM/system memory BO.
-Add some code to speed up DPT/GGTT programming.
+On Fri, 23 Oct 2026, Mallesh Koujalagi <mallesh.koujalagi@intel.com> wrote:
+> The temperature decoding code stores the intermediate result in an
+> s64 and checks it against LONG_MAX before assigning it to a long.
+>
+> This check is only needed on 32-bit architectures, where long is
+> narrower than s64. On 64-bit systems, long and s64 are both 64 bits,
+> so the condition can never be true.
+>
+> Wrap the check with BITS_PER_LONG == 32 so it is only compiled where
+> it is needed, preserving the existing overflow protection on 32-bit
+> architectures while eliminating the dead branch on 64-bit builds.
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
-Changes since v1:
-- Add documentation.
----
- drivers/gpu/drm/xe/xe_bo.c | 64 +++++++++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_bo.h |  3 ++
- 2 files changed, 48 insertions(+), 19 deletions(-)
+Why would it matter? Why make the code harder to read with the inline
+#ifdef?
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 12e523c61c1f3..b5972181a8ebd 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3434,37 +3434,63 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
- 	return false;
- }
- 
--/*
-- * Resolve a BO address. There is no assert to check if the proper lock is held
-- * so it should only be used in cases where it is not fatal to get the wrong
-- * address, such as printing debug information, but not in cases where memory is
-- * written based on this result.
-+/**
-+ * xe_bo_addr_iter_first - Iterate over a bo
-+ * @bo: The BO
-+ * @cur: Pointer to a &xe_res_cursor for iteration
-+ * @offset: Offset into BO.
-+ * @size: Size of iteration.
-+ *
-+ * Initializes @cur for iteration over all GPU addresses in the range
-+ * [@offset...@offset+@size).
-+ *
-+ * This is useful for getting the GPU address for a range of pages,
-+ * rather than calling xe_bo_addr separately for each page.
-  */
--dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
-+void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_res_cursor cur;
--	u64 page;
--
--	xe_assert(xe, page_size <= PAGE_SIZE);
--	page = offset >> PAGE_SHIFT;
--	offset &= (PAGE_SIZE - 1);
- 
- 	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
- 		xe_assert(xe, bo->ttm.ttm);
- 
--		xe_res_first_sg(xe_bo_sg(bo), page << PAGE_SHIFT,
--				page_size, &cur);
--		return xe_res_dma(&cur) + offset;
-+		xe_res_first_sg(xe_bo_sg(bo), offset, size, cur);
- 	} else {
--		struct xe_res_cursor cur;
-+		xe_res_first(bo->ttm.resource, offset, size, cur);
- 
--		xe_res_first(bo->ttm.resource, page << PAGE_SHIFT,
--			     page_size, &cur);
--		return cur.start + offset + vram_region_gpu_offset(bo->ttm.resource);
-+		xe_assert(xe, !cur->dma_addr);
-+		cur->dma_start = vram_region_gpu_offset(bo->ttm.resource);
- 	}
- }
- 
-+/**
-+ * xe_bo_addr_iter_addr - Get the BO's GPU address at current cursor.
-+ * @cur: Pointer to a &xe_res_cursor initialized by xe_bo_addr_iter_first()
-+ *
-+ * Returns: a 64-bits DMA address for usage on the device.
-+ */
-+dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur)
-+{
-+	if (cur->mem_type == XE_PL_TT)
-+		return xe_res_dma(cur);
-+
-+	return cur->start + cur->dma_start;
-+}
-+
-+/*
-+ * Resolve a BO address. There is no assert to check if the proper lock is held
-+ * so it should only be used in cases where it is not fatal to get the wrong
-+ * address, such as printing debug information, but not in cases where memory is
-+ * written based on this result.
-+ */
-+dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
-+{
-+	struct xe_res_cursor cur;
-+
-+	xe_bo_addr_iter_first(bo, &cur, offset, page_size);
-+	return xe_bo_addr_iter_addr(&cur);
-+}
-+
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
- {
- 	if (!READ_ONCE(bo->ttm.pin_count))
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 77b3a02e9b8eb..286f52225bc79 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -113,6 +113,7 @@ enum xe_madv_purgeable_state {
- };
- 
- struct sg_table;
-+struct xe_res_cursor;
- 
- struct xe_bo *xe_bo_alloc(void);
- void xe_bo_free(struct xe_bo *bo);
-@@ -375,6 +376,8 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
- }
- 
- bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo);
-+void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size);
-+dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur);
- dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- 
+>
+> Fixes: 24ec15d64617 ("drm/xe/hwmon: Decode CRI temperature registers as IEEE-754")
+> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_hwmon.c | 7 ++++++-
+>  1 file changed, 6 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 42acfeb8818c..2ee51921acf5 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -1322,9 +1322,14 @@ static int xe_hwmon_temperature_decode(u32 reg_val, long *temperature)
+>  		value = 0;
+>  	}
+>  
+> -	/* Ensure the magnitude fits in long, which is 32-bit on some arches. */
+> +#if BITS_PER_LONG == 32
+> +	/*
+> +	 * On 32-bit systems, long is smaller than s64, so the value may
+> +	 * still overflow long even if it fits in s64.
+> +	 */
+>  	if (value > LONG_MAX)
+>  		return -ERANGE;
+> +#endif
+>  
+>  	if (reg_val & IEEE754_SIGN)
+>  		value = -value;
+
 -- 
-2.55.0
-
+Jani Nikula, Intel
