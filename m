@@ -2,49 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84A6606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 06:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5810B606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 06:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=H+ryhFr1
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=n3XgrDsm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A2CF10E585;
-	Fri, 23 Oct 2026 06:08:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08BFB10E598;
+	Fri, 23 Oct 2026 06:08:39 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8413D10E585
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8E910E574
  for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 06:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792735713; x=1824271713;
+ t=1792735712; x=1824271712;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tdMZH2nfXi+M+I0P/73XMIN1HXEe6UNaiyvkViMkrx4=;
- b=H+ryhFr1rJ60VByqjNXm/3bscMwcSwuR1siBD0bNSjd0M1sBF4K4oIGG
- 7vjsUBrog6O3cd9H0HxHTBX1CRFZ5lYEpTKzxOAQSsp5/LotiSeEosEi/
- P9LSdaVIkbFCcTDksGsV41Ya+dzi+o7QQEpvrWyt5fCaWNxLhBOcWPU91
- u7/9A9/0YE6+LM3x3xLhHsXCV80IZFGqXNMafCiv5vkmt5OCawOpglclI
- KWU8bxmieroI43ESKVtJ216UfH3gVNguyiuLmnthV4CzlgqZ9v16gAIB/
- cj6B3TFN444vL49O6qMXVaGPu2oJKf9T5iTQ20VCUVI05hJuXPvZYuwdV Q==;
-X-CSE-ConnectionGUID: Lb7iojbeSmGZgrl8xdweBQ==
-X-CSE-MsgGUID: VC88faYPTxeCVWAYRvkdtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1386728"
+ bh=1qcE31WfrIyMLwMG5i2dMJltzsYIjkWurt1qRxifOKk=;
+ b=n3XgrDsmQIUs9ViMab6XCftIQRP33iFzmp7cUBIGN+thLRD2JJmA8dBH
+ vwO9QM2lPlMdxyKKZEh6Awmw5SYT46nm3GcPbsg8ksVVTdRhc/4nro6BZ
+ sFcpF+jjq96Pcj8nwtXV8ncSG/CrBfN4TXuLrgS+kLjMlojz7/ne2h5N4
+ SW/gy0tyK5KvhlDrZJ0DsC+HDkv333nVC4HATRrV5MzP+4HRsL1/2FERi
+ VInmK0BfEako68k/51hzQ+VFKo9lnQ67Er1ndPQO5qQ7L1jkdKywPGZTn
+ AFVJuGok59otS4qF8qVB4c7WH+PntXrLLfD8hGPudwLxgl1e4aefEcPSG w==;
+X-CSE-ConnectionGUID: xNtmiqdAQe2WQKE8TZrq0w==
+X-CSE-MsgGUID: RcDJghSZSTmqm6Fl5L2UYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1386727"
 X-IronPort-AV: E=Sophos;i="6.27,173,1787036400"; 
-   d="scan'208";a="1386728"
+   d="scan'208";a="1386727"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 23:08:31 -0700
-X-CSE-ConnectionGUID: Y+JxpZpuTruA5TvwBdqv0w==
-X-CSE-MsgGUID: AQlHIpHBQmSJu4Lr+H3grA==
+ 22 Oct 2026 23:08:30 -0700
+X-CSE-ConnectionGUID: CtP7po9nRB+FfHgzbEAdJw==
+X-CSE-MsgGUID: u+z1o0KDQC6+H+pU0Hwhow==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,173,1787036400"; 
-   d="scan'208";a="3646548"
+   d="scan'208";a="3646545"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by fmviesa003.fm.intel.com with ESMTP; 22 Oct 2026 23:08:29 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 22 Oct 2026 23:08:28 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v5 6/7] drm/xe: capture L3 node status registers in devcoredump
-Date: Fri, 23 Oct 2026 11:35:53 +0530
-Message-ID: <20261023060554.2643515-7-naresh.kumar.g@intel.com>
+Subject: [PATCH v5 5/7] drm/xe/guc: add TDL,
+ SLICE gfx registers to capture list
+Date: Fri, 23 Oct 2026 11:35:52 +0530
+Message-ID: <20261023060554.2643515-6-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261023060554.2643515-1-naresh.kumar.g@intel.com>
 References: <20261023060554.2643515-1-naresh.kumar.g@intel.com>
@@ -61,196 +62,67 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add L3_NODE_IDLE and L3STAT_LBCF_GFX register definitions and include
-them in the devcoredump snapshot as a node status section.
-
-Extend the register descriptor to mark MCR registers so the snapshot
-code can read them through xe_gt_mcr_unicast_read_any(), then print and
-free the captured node status registers alongside the existing dump
-sections.
+Add ROW_INSTDONE_TDL_GFX, SS_LSC_HDC_IDLE_TDL_GFX and SLICE_ARB_STATUS
+register definitions and include them in the XeHPG extended GuC capture
+register list.
 
 v2:(Sashiko)
-- change L3 node registers as XE_REG_MCR type
-- identify mcr register type from reg.mcr
-- As generic capture function ensure VF check this will not execute
-  on VF Mode.
-
-v4:(Tejas)
-- Add L3_NODE type into the enum as changed/added in initial patch
-
-v5:
-- Rebase
+- Refactored ROW_INSTDONE_TDL_GFX to ROW_INSTDONE_TDL_GFX
+- Add SLICE_ARB_STATUS register to xeHP register list
+- Refactor commit message
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  3 +++
- drivers/gpu/drm/xe/xe_devcoredump.c       | 32 ++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_devcoredump_types.h | 10 +++++--
- 3 files changed, 40 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 5 +++++
+ drivers/gpu/drm/xe/xe_guc_capture.c  | 5 ++++-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 2e4cb4957479..55f0eee4e20e 100644
+index e9eb0bd04af1..2e4cb4957479 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -454,6 +454,9 @@
- #define   L3_ESC_MASK				REG_BIT(0)
- #define   L3_ESC(value)				REG_FIELD_PREP(L3_ESC_MASK, value)
+@@ -533,6 +533,8 @@
+ #define PAGE_FLTRPTQ_HEAD_GAMCTRL		XE_REG(0xcf90)
+ #define PAGE_FLTRPTQ_TAIL_GAMCTRL		XE_REG(0xcf94)
  
-+#define L3_NODE_IDLE				XE_REG_MCR(0xb0b0)
-+#define L3STAT_LBCF_GFX				XE_REG_MCR(0xb128)
++#define SLICE_ARB_STATUS			XE_REG_MCR(0xd814)
 +
- #define XEHP_L3NODEARBCFG			XE_REG_MCR(0xb0b4)
- #define   XEHP_LNESPARE				REG_BIT(19)
+ #define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
+ #define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
  
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index 8d59f80e2929..de9ef3e0cb5d 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump.c
-+++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -28,6 +28,7 @@
- #include "xe_mmio.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_guc_regs.h"
-+#include "xe_gt_mcr.h"
+@@ -597,6 +599,9 @@
+ #define EU_SYSTOLIC_LIC_THROTTLE_CTL_WITH_LOCK	XE_REG_MCR(0xe534)
+ #define   EU_SYSTOLIC_LIC_THROTTLE_CTL_LOCK_BIT	REG_BIT(31)
  
- /**
-  * DOC: Xe device coredump
-@@ -73,6 +74,7 @@
- #define XE_COREDUMP_TIMEOUT_JIFFIES (60 * 60 * HZ)
- 
- #define XE_REG_DESC(_reg, _name)	{ .reg = (_reg), .name = (_name) }
-+#define XE_REG_DESC_MCR(_reg, _name)	{ .mcr_reg = (_reg), .name = (_name) }
- 
- static const struct xe_reg_desc xe_dbg_gt_guc_reglist[] = {
- 	XE_REG_DESC(GUC_STATUS,	"GUC_STATUS"),
-@@ -119,6 +121,11 @@ static const struct xe_reg_desc xe_dbg_gam_pf_reglist[] = {
- 	XE_REG_DESC(PAGE_FLTRPTQ_TAIL_GAMCTRL, "PAGE_FLTRPTQ_TAIL_GAMCTRL"),
++#define ROW_INSTDONE_TDL_GFX			XE_REG_MCR(0xe580)
++#define SS_LSC_HDC_IDLE_TDL_GFX			XE_REG_MCR(0xe584)
++
+ #define XEHP_HDC_CHICKEN0					XE_REG_MCR(0xe5f0, XE_REG_OPTION_MASKED)
+ #define   LSC_L1_FLUSH_CTL_3D_DATAPORT_FLUSH_EVENTS_MASK	REG_GENMASK(13, 11)
+ #define   DIS_ATOMIC_CHAINING_TYPED_WRITES	REG_BIT(3)
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 3e99aef53b46..6a20eab0f820 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -376,7 +376,10 @@ static const struct __ext_steer_reg xehpg_extregs[] = {
+ 	{"SC_INSTDONE",			XEHPG_SC_INSTDONE},
+ 	{"SC_INSTDONE_EXTRA",		XEHPG_SC_INSTDONE_EXTRA},
+ 	{"SC_INSTDONE_EXTRA2",		XEHPG_SC_INSTDONE_EXTRA2},
+-	{"INSTDONE_GEOM_SVGUNIT",	XEHPG_INSTDONE_GEOM_SVGUNIT}
++	{"INSTDONE_GEOM_SVGUNIT",	XEHPG_INSTDONE_GEOM_SVGUNIT},
++	{"ROW_INSTDONE_TDL_GFX",	ROW_INSTDONE_TDL_GFX},
++	{"SS_LSC_HDC_IDLE_TDL_GFX",	SS_LSC_HDC_IDLE_TDL_GFX},
++	{"SLICE_ARB_STATUS",		SLICE_ARB_STATUS}
  };
  
-+static const struct xe_reg_desc xe_dbg_l3_node_reglist[] = {
-+	XE_REG_DESC_MCR(L3_NODE_IDLE, "L3_NODE_IDLE"),
-+	XE_REG_DESC_MCR(L3STAT_LBCF_GFX, "L3STAT_LBCF_GFX"),
-+};
-+
- /**
-  * struct xe_gt_regset - Struct for register descriptor list for GT
-  *
-@@ -139,6 +146,7 @@ struct xe_gt_regset {
-  * @XE_DBG_REGSET_RPM: RPM register set
-  * @XE_DBG_REGSET_GUC: GUC register set
-  * @XE_DBG_REGSET_GAM_PF: GAM Pagefault registers set
-+ * @XE_DBG_REGSET_L3_NODE: L3 Node register Set
-  * @XE_DBG_REGSET_MAX: Number of debug register set types
-  */
- enum xe_dbg_regset_type {
-@@ -146,6 +154,7 @@ enum xe_dbg_regset_type {
- 	XE_DBG_REGSET_RPM,
- 	XE_DBG_REGSET_GUC,
- 	XE_DBG_REGSET_GAM_PF,
-+	XE_DBG_REGSET_L3_NODE,
- 	XE_DBG_REGSET_MAX,
- };
- 
-@@ -172,6 +181,10 @@ static const struct xe_gt_regset xe_dbg_regsets[XE_DBG_REGSET_MAX] = {
- 		.gt[XE_GT_TYPE_MAIN] = { xe_dbg_gam_pf_reglist,
- 					ARRAY_SIZE(xe_dbg_gam_pf_reglist) },
- 	},
-+	[XE_DBG_REGSET_L3_NODE] = {
-+		.gt[XE_GT_TYPE_MAIN] = { xe_dbg_l3_node_reglist,
-+					 ARRAY_SIZE(xe_dbg_l3_node_reglist) },
-+	},
- };
- 
- static void xe_dbg_reg_snapshot_print(struct drm_printer *p,
-@@ -262,8 +275,13 @@ xe_dbg_reg_snapshot_capture_target(struct xe_gt *gt,
- 
- 	snap->desc	= reglist;
- 	snap->num_regs = reglist->num_regs;
--	for (i = 0; i < reglist->num_regs; i++)
--		snap->values[i] = xe_mmio_read32(&gt->mmio, reglist->regs[i].reg);
-+	for (i = 0; i < reglist->num_regs; i++) {
-+		if (reglist->regs[i].reg.mcr)
-+			snap->values[i] = xe_gt_mcr_unicast_read_any(gt,
-+								     reglist->regs[i].mcr_reg);
-+		else
-+			snap->values[i] = xe_mmio_read32(&gt->mmio, reglist->regs[i].reg);
-+	}
- 
- 	return snap;
- }
-@@ -345,6 +363,8 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
- 
- 	xe_gam_pf_snapshot_print(&p, "GAM PF Report", ss->gam_pf_report);
- 
-+	xe_dbg_reg_snapshot_print(&p, "Node Status", ss->ns);
-+
- 	drm_puts(&p, "\n**** Contexts ****\n");
- 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
- 
-@@ -402,6 +422,9 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
- 	xe_dbg_reg_snapshot_free(ss->gam_pf_report);
- 	ss->gam_pf_report = NULL;
- 
-+	xe_dbg_reg_snapshot_free(ss->ns);
-+	ss->ns = NULL;
-+
- 	xe_guc_exec_queue_snapshot_free(ss->ge);
- 	ss->ge = NULL;
- 
-@@ -602,6 +625,10 @@ static void xe_devcoredump_capture_gt_regs(struct xe_devcoredump_snapshot *ss,
- 						       other_gt,
- 						       XE_DBG_REGSET_GAM_PF,
- 						       XE_GT_TYPE_MAIN);
-+	ss->ns = xe_dbg_gt_snapshot_capture(gt,
-+					    other_gt,
-+					    XE_DBG_REGSET_L3_NODE,
-+					    XE_GT_TYPE_MAIN);
- }
- 
- static void devcoredump_snapshot(struct xe_devcoredump *coredump,
-@@ -653,7 +680,6 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
- 		if (job)
- 			ss->job = xe_sched_job_snapshot_capture(job);
- 		ss->vm = xe_vm_snapshot_capture(q->vm);
--
- 		xe_engine_snapshot_capture_for_queue(q);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 34f224a6751f..6cbecad43c42 100644
---- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -21,8 +21,12 @@ struct xe_gt;
-  * of the register to dump its value during coredump for debug purpose.
-  */
- struct xe_reg_desc {
--	/** @reg: The register */
--	struct xe_reg reg;
-+	union {
-+		/** @reg: The register */
-+		struct xe_reg reg;
-+		/** @mcr_reg: The mcr register */
-+		struct xe_reg_mcr mcr_reg;
-+	};
- 	/** @name: Name of the register */
- 	const char *name;
- };
-@@ -105,6 +109,8 @@ struct xe_devcoredump_snapshot {
- 
- 	/** @gam_pf_report: GAM PF report snapshot */
- 	struct xe_dbg_reg_snapshot *gam_pf_report;
-+	/** @ns: Node status snapshot */
-+	struct xe_dbg_reg_snapshot *ns;
- 
- 	/** @ge: GuC Submission Engine snapshot */
- 	struct xe_guc_submit_exec_queue_snapshot *ge;
+ static void __fill_ext_reg(struct __guc_mmio_reg_descr *ext,
 -- 
 2.43.0
 
