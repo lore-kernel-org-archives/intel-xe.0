@@ -2,116 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F13D606A321
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 07:15:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F12F606A337
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 07:26:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=PkHMqt5L;
-	dkim=pass header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=l0bxn31F;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=1d5NKJWq;
-	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=rHTpjcFD
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mv7Ir+yg
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D71B01129C1;
-	Fri, 23 Oct 2026 07:15:24 +0000 (UTC)
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 675041129BF;
- Fri, 23 Oct 2026 07:15:13 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id F00E62218F;
- Fri, 23 Oct 2026 07:14:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1792739696; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ca6drIQthA2Jo9zeZiS2v9XZDnLpAggnqv+Vzaz1Qg4=;
- b=PkHMqt5L5HWOM5uIoBGuWB/B5cuaq5JP4wBwibyBfiR4K8DofFui+GtRODUh+7iKBcPzuT
- 5JnbUJEIzxQMhkHiemjYUSXSYpod0BfomAJPTO9aR9SemPa0EcLaRNnj0xi4zYHpMvnlVt
- 6X1+p/+5XfXy66/FxpLAxZKldzQIF/s=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1792739696;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ca6drIQthA2Jo9zeZiS2v9XZDnLpAggnqv+Vzaz1Qg4=;
- b=l0bxn31FBYdM+BSoXnTF15gXC5c+FamuIri1aX8e+Jo9RjTX0N7Kw+O/L2CTLDyP5uHWy9
- S5HA28lQk50/MjCw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=1d5NKJWq;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=rHTpjcFD
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1792739695; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ca6drIQthA2Jo9zeZiS2v9XZDnLpAggnqv+Vzaz1Qg4=;
- b=1d5NKJWqS09+kzNSAAVqx2JJM5GTtVT+nm0+pnAVh6tS3abWSfR1dzvUds0mMmL0g2txFY
- XOqh14q7sgyiEf2odJxKZmxg4LnI+Hkdq0jc9JU2f2CySjczLsn4Vv5W3Upb6zkW5jpASP
- /CVoip/JFnmeby476HgXshKju1EcYig=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1792739695;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=ca6drIQthA2Jo9zeZiS2v9XZDnLpAggnqv+Vzaz1Qg4=;
- b=rHTpjcFDi7bTjUSr3OTGUI6GOHztZdwV26fcQpEQYAEsGG4zeFjW7OEyO5AvpDrgZCYUaj
- NYAgTpUsmS3corCA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 6D709133F3;
- Fri, 23 Oct 2026 07:14:55 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id zkl1DG8J22orNwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 23 Oct 2026 07:14:55 +0000
-Date: Fri, 23 Oct 2026 09:14:53 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20261023071453.GA13189@linux.fritz.box>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD65310E073;
+	Fri, 23 Oct 2026 07:26:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FBBB10E073
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 07:26:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1792740372; x=1824276372;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=cwZcCVrSbEStQgidU+VTUhMvlP/v/K+F8wmMOKQPHR0=;
+ b=mv7Ir+yghb/Pz0vvrAnA+8HHZFydKYvrGE6xhbnZzimoStFLQYuKc30V
+ 32omK5Lg+AlDhy7e8KcxqH878vlo0J+IBL/VyxEnl2wpjg9mi2eXS0oB9
+ /iANWi0dWg1L7MSxouf+7Sz5ey3ExUONUoc6vEb6/RfnSDgiKpSraqSw/
+ JpKdhT8R7FiRKcIAJl0WYmH3o/3OhW9NC0r223iPjjRcYzsr8rTDoAN7T
+ 8O2dKJXHgGcNSyiH2IkxwXgvECnG56CJrSN0W/qxMfxoLJGSTwJ9xeBnd
+ +tpE1tu7TADeJLi8Z2m168HtxvDXFoLyWbyc/J39xDNov8AEKBh0Tpmaj w==;
+X-CSE-ConnectionGUID: ikGcuemGThyMwuNurqCjSQ==
+X-CSE-MsgGUID: 8VslQi5ITrevSCJhBme3Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1508682"
+X-IronPort-AV: E=Sophos;i="6.27,173,1787036400"; 
+   d="scan'208";a="1508682"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2026 00:26:12 -0700
+X-CSE-ConnectionGUID: TNDiX4WaRWyilNOEPyh7yg==
+X-CSE-MsgGUID: 1jETEBYfQniMDtiU6Xvkzg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,173,1787036400"; 
+   d="scan'208";a="3530562"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.106])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2026 00:26:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ rodrigo.vivi@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: Re: [PATCH v1] drm/xe: Register drm device at the end of probe
+In-Reply-To: <20261023030446.337222-1-raag.jadav@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261023030446.337222-1-raag.jadav@intel.com>
+Date: Fri, 23 Oct 2026 10:26:05 +0300
+Message-ID: <480b4c14a37c56c289606c850e6ab3074c67b72a@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-13.51 / 50.00]; SUSE_INTERNAL_BYPASS(-9.00)[];
- BAYES_HAM(-3.00)[100.00%]; NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- MIME_GOOD(-0.10)[text/plain]; MX_GOOD(-0.01)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- FREEMAIL_ENVRCPT(0.00)[gmail.com]; ARC_NA(0.00)[];
- RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:104:10:150:64:97:from]; 
- RCPT_COUNT_TWELVE(0.00)[16]; MIME_TRACE(0.00)[0:+];
- TO_MATCH_ENVRCPT_ALL(0.00)[]; RCVD_TLS_ALL(0.00)[];
- DKIM_TRACE(0.00)[suse.de:+]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; RCVD_VIA_SMTP_AUTH(0.00)[];
- RECEIVED_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[2a07:de40:b281:106:10:150:64:167:received];
- MISSING_XM_UA(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim, suse.com:url,
- imap1.dmz-prg2.suse.org:rdns, imap1.dmz-prg2.suse.org:helo,
- gitlab.freedesktop.org:url]
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Action: no action
-X-Spam-Score: -13.51
-X-Spam-Level: 
-X-Rspamd-Queue-Id: F00E62218F
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,56 +65,93 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Dave, Sima,
+On Fri, 23 Oct 2026, Raag Jadav <raag.jadav@intel.com> wrote:
+> Call drm_dev_register() to advertice the device to user space and register
+> it with other core subsystems. As per documentation, this should be done
+> last in the device initialization sequence to make sure userspace can't
+> access an inconsistent state. Also reflect this reordering in driver
+> remove sequence.
 
-here's the PR from drm-misc-next-fixes. Only 3 fixes for panthor
-this week.
+You could read the whole commit message thinking the drm_dev_register()
+call is being added in this patch. Which it's obviously not.
 
-Best regards
-Thomas
+BR,
+Jani.
 
-drm-misc-next-fixes-2026-10-23:
-Short summary of fixes pull:
 
-panthor:
-- Fix bugs in MMU handling
-The following changes since commit 1b15fa434b4b49cdf276fc0bc88264605661fdf6:
-
-  Merge tag 'drm-misc-next-2026-10-02' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2026-10-03 09:42:53 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2026-10-23
-
-for you to fetch changes up to 9a96e169c9267af918d28fb291df948d83112807:
-
-  drm/panthor: Move cache-flush after UPDATE(UNMAPPED) (2026-10-16 13:20:46 +0100)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-panthor:
-- Fix bugs in MMU handling
-
-----------------------------------------------------------------
-Boris Brezillon (3):
-      drm/panthor: Don't invalidate OTHER caches
-      drm/panthor: Fully disable the AS even if it's going to be re-assigned
-      drm/panthor: Move cache-flush after UPDATE(UNMAPPED)
-
- drivers/gpu/drm/panthor/panthor_mmu.c | 45 ++++++++++++++++-------------------
- 1 file changed, 21 insertions(+), 24 deletions(-)
+>
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c | 8 --------
+>  drivers/gpu/drm/xe/xe_pci.c    | 7 +++++++
+>  2 files changed, 7 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index a07655b4c7a9..6fbcc06c0e45 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -1052,10 +1052,6 @@ int xe_device_probe(struct xe_device *xe)
+>  	if (err)
+>  		return err;
+>  
+> -	err = drm_dev_register(&xe->drm, 0);
+> -	if (err)
+> -		return err;
+> -
+>  	xe_display_register(xe);
+>  
+>  	err = xe_oa_register(xe);
+> @@ -1099,8 +1095,6 @@ int xe_device_probe(struct xe_device *xe)
+>  
+>  err_unregister_display:
+>  	xe_display_unregister(xe);
+> -	drm_dev_unregister(&xe->drm);
+> -
+>  	return err;
+>  }
+>  
+> @@ -1108,8 +1102,6 @@ void xe_device_remove(struct xe_device *xe)
+>  {
+>  	xe_display_unregister(xe);
+>  
+> -	drm_dev_unplug(&xe->drm);
+> -
+>  	xe_bo_pci_dev_remove_all(xe);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 605c452a9c33..e71e48ad1564 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -1119,6 +1119,8 @@ static void xe_pci_remove(struct pci_dev *pdev)
+>  {
+>  	struct xe_device *xe = pdev_to_xe_device(pdev);
+>  
+> +	drm_dev_unplug(&xe->drm);
+> +
+>  	if (IS_SRIOV_PF(xe))
+>  		xe_pci_sriov_configure(pdev, 0);
+>  
+> @@ -1297,6 +1299,11 @@ static int __xe_pci_probe(struct pci_dev *pdev, const struct xe_device_desc *des
+>  	if (err)
+>  		goto err_driver_cleanup;
+>  
+> +	/* Must be last */
+> +	err = drm_dev_register(&xe->drm, 0);
+> +	if (err)
+> +		goto err_driver_cleanup;
+> +
+>  	return 0;
+>  
+>  err_driver_cleanup:
 
 -- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Stefan Gaiser, Jochen Jaser, Abhinav Puri, (HRB 36809, AG Nürnberg)
+Jani Nikula, Intel
