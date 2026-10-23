@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5C0D606A31E
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 12:08:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97CAB606A31D
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 12:09:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78F9F112AEA;
-	Fri, 23 Oct 2026 12:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56A89112ADD;
+	Fri, 23 Oct 2026 12:09:37 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E43B1112AD9;
- Fri, 23 Oct 2026 12:08:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17628112ADD;
+ Fri, 23 Oct 2026 12:09:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0166399830933688953=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
- =?utf-8?q?2=2C1/2=5D_drm/xe/bo=3A_Add_xe=5Fbo=5Faddr=5Fiter=2E?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/hwmon=3A_Store_mailb?=
+ =?utf-8?q?ox_temperature_data_as_bytes?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 23 Oct 2026 12:08:28 -0000
-Message-ID: <179275730893.61275.16033068473936602687@221881a7231d>
+Date: Fri, 23 Oct 2026 12:09:36 -0000
+Message-ID: <179275737608.61275.13864114607064303025@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261023114616.735366-1-dev@lankhorst.se>
-In-Reply-To: <20261023114616.735366-1-dev@lankhorst.se>
+References: <20261023103631.432279-2-mallesh.koujalagi@intel.com>
+In-Reply-To: <20261023103631.432279-2-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,51 +35,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============0166399830933688953==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: series starting with [v2,1/2] drm/xe/bo: Add xe_bo_addr_iter.
-URL   : https://patchwork.freedesktop.org/series/176723/
-State : warning
+Series: drm/xe/hwmon: Store mailbox temperature data as bytes
+URL   : https://patchwork.freedesktop.org/series/176722/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-3009867cd31863246e4afc138520a7a8bd37bb11
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 6cb2b0a31ed104506ee37eea995638b6b152ec50
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Fri Oct 23 13:46:16 2026 +0200
+CI Bug Log - changes from xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4_BAT -> xe-pw-176722v1_BAT
+====================================================
 
-    drm/xe/display: Use xe_bo_addr_iter in remapped DPT pinning
-    
-    Right now we're using xe_bo_addr() on each individual address, which gives
-    problems at larger resolution and sizes, since it's a O(N²).
-    
-    By using xe_bo_addr_iter_first() + xe_bo_addr_iter_addr(), the time
-    complexity is reduced again to O(N).
-    
-    To fix rotated pinning requires some thinking.
-    
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch 398287468d51cbdf3788b2a17fe84d4537aeba5d drm-intel
-e92447340412 drm/xe/bo: Add xe_bo_addr_iter.
-6cb2b0a31ed1 drm/xe/display: Use xe_bo_addr_iter in remapped DPT pinning
--:41: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
-#41: FILE: drivers/gpu/drm/xe/display/xe_fb_pin.c:75:
-+	for (xe_bo_addr_iter_first(bo, &cur, offset, size); cur.remaining; xe_res_next(&cur, XE_PAGE_SIZE)) {
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 55 lines checked
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-176722v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
+    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - bat-atsm-2:         [ABORT][2] ([Intel XE#9663]) -> [PASS][3] +1 other test pass
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+
+  
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#9663]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663
 
 
+Build changes
+-------------
+
+  * Linux: xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4 -> xe-pw-176722v1
+
+  IGT_9161: 9161
+  xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4: d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4
+  xe-pw-176722v1: 176722v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/index.html
+
+--===============0166399830933688953==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/hwmon: Store mailbox temperature data as bytes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176722/">https://patchwork.freedesktop.org/series/176722/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4_BAT -&gt; xe-pw-176722v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-176722v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-prefetch:<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663">Intel XE#9663</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176722v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4 -&gt; xe-pw-176722v1</li>
+</ul>
+<p>IGT_9161: 9161<br />
+  xe-6003-d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4: d6c8f78b0a1bb599990dcae731e1f6a29daeb9d4<br />
+  xe-pw-176722v1: 176722v1</p>
+
+</body>
+</html>
+
+--===============0166399830933688953==--
