@@ -2,52 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3A6606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 10:01:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE711606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 10:01:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nd3vjFLT
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FBD2FqTi
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6844D112AAC;
-	Fri, 23 Oct 2026 10:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4439112AA1;
+	Fri, 23 Oct 2026 10:01:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F158C112A9B;
- Fri, 23 Oct 2026 10:01:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E360112A9E;
+ Fri, 23 Oct 2026 10:01:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792749668; x=1824285668;
+ t=1792749669; x=1824285669;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LRGY9SjZgAzka1raaukBCY49BmAgw70kyfqY1RCTCJw=;
- b=nd3vjFLTWtCZ6vj9tClqvi7SNAui1hb1VqkXYbJJZSYf9sp51VYlTmmE
- gJWcbAnLGpMSNq0zUNWypOvEmMU8UKdRoyPN7o6Xg6m1+t8sJh7xEV0yl
- 0xBOLajom8qERTcAz4+dx3El+lmPT1pnyONY5vtBEho9OK9V8Qkcb0xwx
- fRdAfkiqJCKJ+D6b7583tCQCHLDyRssCeLV1ldG4rrojRidY85Qq0czLt
- wyasjDW1L9ZIBsF+RcCJ3AhecBSrqlMfDTs0RYjfvsThQMzmkJOfOtSmp
- bgBH2xojk7mNvH5/z6pJ612B7nw990uVSg4qT3bWblfp5g9oIlgf5pscl Q==;
-X-CSE-ConnectionGUID: XnRaX5cURP6xdggNZVdstg==
-X-CSE-MsgGUID: lQ1qfVPjT/u2jFdVOs9CZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1384280"
+ bh=jA4kZ/YVrsciEPpdYezkywCI0T31sLaDE7PTVG2kTBc=;
+ b=FBD2FqTidljIFG5+f5wcUvxOUDjZZTTUND9AQ/OHmXryWg1gM/bcG9va
+ BGr/Blpn9ZP8KS90Mz4g5F57CvneVGIZ6JEYNtS+aM2j8Hbbq1FSjXO+4
+ akHtOHYPWpMrsygOqaqExrvCUYTQYisvO+saH4Zf3R4d4P3snVKqi0wAx
+ 61PlY8N1n5D0yt74JC06mfnYqzpxF2eKPDHk9D66b6knvq6Zq8QMi6dLI
+ 5VSRw5JxzgAkV3tL81TPaSJMWETGTvSTRMxcqerGrFDLQZd4O7Tsp3xEI
+ +oqr3kiaMF2LldoyZRcn2iy0b5YqIzPud157IVtLlq2F9HwXesLU9hSjD w==;
+X-CSE-ConnectionGUID: hmZkijL1TXmrDd+KOen4nw==
+X-CSE-MsgGUID: 5v4pnoSmTCijni4utxTbew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1384283"
 X-IronPort-AV: E=Sophos;i="6.27,174,1787036400"; 
-   d="scan'208";a="1384280"
+   d="scan'208";a="1384283"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Oct 2026 03:01:06 -0700
-X-CSE-ConnectionGUID: heB+kIJsSZKb4g3tfvQXbA==
-X-CSE-MsgGUID: C9kcrRbKRxW1IzdFoySuog==
+ 23 Oct 2026 03:01:07 -0700
+X-CSE-ConnectionGUID: a24AEV3FRzC7N3yx9YbpOg==
+X-CSE-MsgGUID: iBnYGxlJTNyJRmTvyh4J9g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,174,1787036400"; 
-   d="scan'208";a="3932739"
+   d="scan'208";a="3932746"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa001.fm.intel.com with ESMTP; 23 Oct 2026 03:01:04 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 23 Oct 2026 03:01:06 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com,
 	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 7/9] drm/i915/psr: Resolve the PSR encoders through the
- joiner primary
-Date: Fri, 23 Oct 2026 10:00:50 +0000
-Message-ID: <20261023100052.683192-8-mika.kahola@intel.com>
+Subject: [PATCH v3 8/9] drm/i915/psr: Allow Panel Replay and PSR2 with joiner
+Date: Fri, 23 Oct 2026 10:00:51 +0000
+Message-ID: <20261023100052.683192-9-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261023100052.683192-1-mika.kahola@intel.com>
 References: <20261023100052.683192-1-mika.kahola@intel.com>
@@ -72,86 +71,102 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A joiner secondary has no encoders of its own, uapi.encoder_mask is
-zero, so for_each_intel_encoder_mask_with_psr() iterates nothing on its
-crtc_state. intel_psr_lock()/intel_psr_unlock() then take no lock at
-all, intel_psr_wait_for_idle_locked() never waits, and
-intel_psr2_program_trans_man_trk_ctl() skips the cff check and hands the
-encoder list head to intel_dsc_su_et_parameters_configure().
+PSR is rejected outright whenever the joiner is in use. Panel Replay and
+PSR2 selective update do work with the joiner, so only keep rejecting
+plain PSR1.
 
-PSR is a transcoder level feature driven by the primary, so take the
-encoders from there for a secondary.
+The eDP Panel Replay pipe A/B restriction only looks at the primary
+pipe. joiner_pipes is a contiguous mask anchored at the primary pipe, so
+a joined config on pipe B extends to pipe C, which has no PSR/Panel
+Replay register block. Test the whole joined pipe mask instead, which is
+a no-op without the joiner.
+
+PSR1/PSR2 have no equivalent pipe A/B check today. That is a
+pre-existing gap independent of the joiner and is left alone here.
+
+v2: Drop psr_joiner_config_valid(), it duplicated the existing eDP Panel
+    Replay pipe A/B check and wrongly applied it to DP Panel Replay (Jouni)
+    Extend that existing check to the joined pipe mask instead (Jouni)
+    Keep only the joiner specific checks: PSR1 and YUV 4:2:0 (Jouni)
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 26 ++++++++++++++++++++----
- 1 file changed, 22 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 34 +++++++++++++++---------
+ 1 file changed, 21 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index ffbb1e55c2b5a..f1d52c39d8834 100644
+index f1d52c39d8834..288836d4a993c 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2638,6 +2638,24 @@ static void intel_psr_force_update(struct intel_dp *intel_dp)
- 	intel_de_write(display, CURSURFLIVE(display, intel_dp->psr.pipe), 0);
+@@ -1598,6 +1598,13 @@ static bool intel_sel_update_config_valid(struct intel_crtc_state *crtc_state,
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 
++	if (crtc_state->joiner_pipes && !crtc_state->dsc.compression_enable &&
++	    crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
++		drm_dbg_kms(display->drm,
++			    "Selective update not enabled, uncompressed joiner does not support YUV 4:2:0\n");
++		goto unsupported;
++	}
++
+ 	if (HAS_PSR2_SEL_FETCH(display) &&
+ 	    !intel_psr2_sel_fetch_config_valid(intel_dp, crtc_state) &&
+ 	    !HAS_PSR_HW_TRACKING(display)) {
+@@ -1745,8 +1752,8 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
+ 
+ 	/* Remaining checks are for eDP only */
+ 
+-	if (to_intel_crtc(crtc_state->uapi.crtc)->pipe != PIPE_A &&
+-	    to_intel_crtc(crtc_state->uapi.crtc)->pipe != PIPE_B)
++	/* Every joined pipe needs its own PSR/Panel Replay register block. */
++	if (intel_crtc_joined_pipe_mask(crtc_state) & ~(BIT(PIPE_A) | BIT(PIPE_B)))
+ 		return false;
+ 
+ 	/* 128b/132b Panel Replay is not supported on eDP */
+@@ -1890,17 +1897,6 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 		return;
+ 	}
+ 
+-	/*
+-	 * FIXME figure out what is wrong with PSR+joiner and
+-	 * fix it. Presumably something related to the fact that
+-	 * PSR is a transcoder level feature.
+-	 */
+-	if (crtc_state->joiner_pipes) {
+-		drm_dbg_kms(display->drm,
+-			    "PSR disabled due to joiner\n");
+-		return;
+-	}
+-
+ 	/* Only used for state verification. */
+ 	crtc_state->panel_replay_dsc_support = connector->dp.panel_replay_caps.dsc_support;
+ 	crtc_state->has_panel_replay = _panel_replay_compute_config(crtc_state, conn_state);
+@@ -1912,6 +1908,14 @@ void intel_psr_compute_config(struct intel_dp *intel_dp,
+ 		return;
+ 
+ 	crtc_state->has_sel_update = intel_sel_update_config_valid(crtc_state, conn_state);
++
++	/* Plain PSR1 is not supported with joiner. */
++	if (crtc_state->joiner_pipes && !crtc_state->has_panel_replay &&
++	    !crtc_state->has_sel_update) {
++		drm_dbg_kms(display->drm,
++			    "PSR disabled, PSR1 not supported with joiner\n");
++		crtc_state->has_psr = false;
++	}
  }
  
-+/*
-+ * The joiner secondary has no encoders of its own, its uapi.encoder_mask is
-+ * zero. PSR is a transcoder level feature driven by the primary, so take the
-+ * encoders from there. Only valid once the state has been swapped in, i.e.
-+ * from the commit phase.
-+ */
-+static u32 psr_encoder_mask(const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *primary_crtc;
+ void intel_psr_get_config(struct intel_encoder *encoder,
+@@ -4755,6 +4759,10 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+ 		crtc_state->has_sel_update = false;
+ 		crtc_state->enable_psr2_su_region_et = false;
+ 		crtc_state->enable_psr2_sel_fetch = false;
 +
-+	if (!intel_crtc_is_joiner_secondary(crtc_state))
-+		return crtc_state->uapi.encoder_mask;
-+
-+	primary_crtc = intel_primary_crtc(crtc_state);
-+
-+	return to_intel_crtc_state(primary_crtc->base.state)->uapi.encoder_mask;
-+}
-+
- void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
- 					  const struct intel_crtc_state *crtc_state)
- {
-@@ -2650,7 +2668,7 @@ void intel_psr2_program_trans_man_trk_ctl(struct intel_dsb *dsb,
- 		return;
++		/* Plain PSR1 is not supported with joiner. */
++		if (crtc_state->joiner_pipes)
++			crtc_state->has_psr = false;
+ 	}
  
- 	for_each_intel_encoder_mask_with_psr(display->drm, encoder,
--					     crtc_state->uapi.encoder_mask) {
-+					     psr_encoder_mask(crtc_state)) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
- 		if (!dsb)
-@@ -3464,7 +3482,7 @@ void intel_psr_wait_for_idle_locked(const struct intel_crtc_state *new_crtc_stat
- 		return;
- 
- 	for_each_intel_encoder_mask_with_psr(display->drm, encoder,
--					     new_crtc_state->uapi.encoder_mask) {
-+					     psr_encoder_mask(new_crtc_state)) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 		int ret;
- 
-@@ -4109,7 +4127,7 @@ void intel_psr_lock(const struct intel_crtc_state *crtc_state)
- 		return;
- 
- 	for_each_intel_encoder_mask_with_psr(display->drm, encoder,
--					     crtc_state->uapi.encoder_mask) {
-+					     psr_encoder_mask(crtc_state)) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
- 		mutex_lock(&intel_dp->psr.lock);
-@@ -4132,7 +4150,7 @@ void intel_psr_unlock(const struct intel_crtc_state *crtc_state)
- 		return;
- 
- 	for_each_intel_encoder_mask_with_psr(display->drm, encoder,
--					     crtc_state->uapi.encoder_mask) {
-+					     psr_encoder_mask(crtc_state)) {
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 
- 		mutex_unlock(&intel_dp->psr.lock);
+ 	/* Wa_18037818876 */
 -- 
 2.43.0
 
