@@ -2,44 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE050606A319
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 04:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BC8606A319
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Oct 2026 04:18:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=eHFgGkSL
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nqNfD4B3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A543510E583;
-	Fri, 23 Oct 2026 04:18:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF0C8112954;
+	Fri, 23 Oct 2026 04:18:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66F08112947
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 04:18:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A6662112952
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Oct 2026 04:18:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792729080; x=1824265080;
+ t=1792729083; x=1824265083;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KfDfGvteiAIFFeetfmS4Ep4M5KiYQ8ibBY8/XgJssYE=;
- b=eHFgGkSLanJNCWr7a6tBOckQmC/6C2sbTMYMC8t7Jdnocq4kGvAhwwcD
- KR9vKhgCcVgUsDcYgSSnblOzTpDV/kOVyuBhgEPZ9tfIbH7KHY5jK4U0j
- eeKTGSVWvJHfFnfaJEazGY7osID63poklVgd/YPyznY0SQQBDkFLMfHD6
- VRuTHHKONTW4lK4toh4ZYmHy3Lzw8nx654WQGniokMsBrgo+RVNpCO5pH
- 70FGxOsSnWXeVbqLk2lifWAWXwPyK1/o7VDFWKW1T5htsFVe2Y32RR+IB
- dJfWRZyrRuwgAgOZA3l4Y+HE2gPR7g0hFqOF/0hIu8jtVfctDscEZVqIT g==;
-X-CSE-ConnectionGUID: gbGGc00uRuuMM/65IGnViA==
-X-CSE-MsgGUID: noUg3ivhRtiLbbc6qORScw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1383517"
+ bh=K5lmRSizNMROLLo2tZPwk0pLi8kXpuW/3UwTkWers/E=;
+ b=nqNfD4B3iJqr2bIHmFki2ytDWS5zTJ3pMne6QXj6bgU3tm4OOiNjpH2B
+ OKVPHCjyhbTBXCDGPGBgT7OnkTrwsk39jngFrI4CqAbBsBZJZsxjleURK
+ Dvw2XZMNorXKzDkhSy78BNHxjyCbUNU34AoR4KpFcf28YwkIxPCJ/1FBZ
+ 7T3S7hyAGi49KcIWhgujv/+ZmGvpiZ+mq4pt+t+V0IWsd4nu9BGHnCDpY
+ bmS0ebnquL2mx2+XMfDX2HenupFwrmobXhirC08NOrCf/+OWCJKA/nlmT
+ A/MFcNi7AVNXu3qvhN9fCMhEqjya0kJrKAx5pyOdk5k1tLCPcqMZtnJr3 A==;
+X-CSE-ConnectionGUID: bMzCEjFQS02vxAmJwet1+g==
+X-CSE-MsgGUID: flXQ+sciR6ipcGd7WKJJiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11943"; a="1383520"
 X-IronPort-AV: E=Sophos;i="6.27,173,1787036400"; 
-   d="scan'208";a="1383517"
+   d="scan'208";a="1383520"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 21:18:00 -0700
-X-CSE-ConnectionGUID: 6DGPg8LcQSG6j3slYv5DeA==
-X-CSE-MsgGUID: 1S75Vwk6ROKLv4yrV1yhxg==
+ 22 Oct 2026 21:18:03 -0700
+X-CSE-ConnectionGUID: smXkie5NQCu2C9pADAGuBw==
+X-CSE-MsgGUID: +gVHnaDISnqo9qf9wuTCqA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,173,1787036400"; 
-   d="scan'208";a="3658313"
+   d="scan'208";a="3658320"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Oct 2026 21:17:57 -0700
+ 22 Oct 2026 21:18:01 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -48,10 +48,9 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com
-Subject: [PATCH v5 12/13] drm/xe/xe_ras: Add support to retrieve info queue
- data
-Date: Fri, 23 Oct 2026 10:04:34 +0530
-Message-ID: <20261023043422.681260-27-badal.nilawar@intel.com>
+Subject: [PATCH v5 13/13] drm/xe/cper: Prepare Intel CPER info records
+Date: Fri, 23 Oct 2026 10:04:35 +0530
+Message-ID: <20261023043422.681260-28-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20261023043422.681260-15-badal.nilawar@intel.com>
 References: <20261023043422.681260-15-badal.nilawar@intel.com>
@@ -75,316 +74,428 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Retrieve the RAS info queue data, in multiple chunks, and assemble it into
-a flat buffer.
+Prepare xe_cper_intel_info records from RAS info queue data. Depending
+on the error class type, detail or aggregate, one or more info records
+may be generated and embedded in the CPER record.
 
 Assisted-by: LLM
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
 v5:
- - Marked unused fields reserved
- - Handle response.status
+ - Simplify CPER info and event queue naming, and use size consistently
+   for byte-size fields (Raag)
+ - Add and handle info_log_size in cper intel header
 v4:
- - Simplify info queue handling and validation (Raag)
- - Clean up info queue naming and definitions (Raag)
- - Validate each chunk against the requested offset
+ - Move struct xe_cper_einfo_entry to xe_cper_types.h (Raag)
+ - Use kzalloc_flex()/kzalloc_objs() (Raag)
+ - Allocate info queue buffer from reported total size (Raag)
 ---
- drivers/gpu/drm/xe/xe_ras.c                   | 130 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h                   |   3 +
- drivers/gpu/drm/xe/xe_ras_types.h             |  91 +++++++++++-
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
- 4 files changed, 224 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_cper.c       | 247 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_cper_types.h |  54 ++++++-
+ drivers/gpu/drm/xe/xe_ras_types.h  |  25 +++
+ 3 files changed, 318 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index b3dc4d8ad190..12ac9a29555a 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -1114,6 +1114,136 @@ int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 th
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+index cb4a15a036ac..0d04a85cb1af 100644
+--- a/drivers/gpu/drm/xe/xe_cper.c
++++ b/drivers/gpu/drm/xe/xe_cper.c
+@@ -89,7 +89,7 @@ static u64 cper_timestamp_now(void)
+ static void cper_init_intel_hdr(struct xe_device *xe,
+ 				const struct xe_ras_error_class *counter,
+ 				u64 first_timestamp, u32 sig_id, u32 error_count,
+-				struct xe_cper_intel_hdr *ihdr)
++				u32 einfo_size, struct xe_cper_intel_hdr *ihdr)
+ {
+ 	ihdr->counter = *counter;
+ 	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
+@@ -105,6 +105,7 @@ static void cper_init_intel_hdr(struct xe_device *xe,
+ 	}
+ 
+ 	ihdr->error_count = error_count;
++	ihdr->info_log_size = einfo_size;
+ 
+ 	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->pci_bdf));
+ 	ihdr->validation_bits |= XE_CPER_VALID_PCI_BDF;
+@@ -200,6 +201,212 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
+ 	kfree(rec);
  }
  
-+static int get_info_queue_data(struct xe_device *xe,
-+			       struct xe_ras_get_info_queue_request *req,
-+			       struct xe_ras_get_info_queue_response *out)
++/* Entries built from RAS error logs carry fixed-size error_details */
++#define XE_CPER_RAS_LOG_ENTRY_SIZE \
++	(offsetof(struct xe_cper_intel_priv_event, metadata) + \
++	 sizeof_field(struct xe_ras_error_log, error_details))
++
++static struct xe_cper_intel_info *
++build_einfo(const struct xe_ras_error_log *logs, u32 num_logs,
++	    const struct xe_ras_error_class *ec, u32 error_count)
 +{
-+	struct xe_ras_get_info_queue_response response = {0};
-+	struct xe_sysctrl_mailbox_command command = {0};
-+	const struct xe_ras_info_queue_header *hdr;
-+	size_t rlen;
-+	int ret;
++	struct xe_cper_intel_priv_event *entry;
++	struct xe_cper_intel_info *einfo;
++	u32 queue_size, i;
 +
-+	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_INFO_QUEUE,
-+				  req, sizeof(*req), &response, sizeof(response));
++	queue_size = num_logs * XE_CPER_RAS_LOG_ENTRY_SIZE;
++	einfo = kzalloc_flex(*einfo, queue, queue_size);
++	if (!einfo)
++		return NULL;
 +
-+	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: failed to get info queue data %d\n", ret);
-+		return ret;
++	einfo->error_count        = error_count;
++	einfo->queue_size	  = queue_size;
++	einfo->queue_count        = num_logs;
++	einfo->counter		  = *ec;
++
++	entry = (struct xe_cper_intel_priv_event *)einfo->queue;
++	for (i = 0; i < num_logs; i++) {
++		entry->size       = sizeof_field(struct xe_ras_error_log, error_details);
++		entry->timestamp    = logs[i].timestamp;
++		memcpy(entry->metadata, logs[i].error_details, sizeof(logs[i].error_details));
++		entry = (void *)entry + XE_CPER_RAS_LOG_ENTRY_SIZE;
 +	}
 +
-+	if (rlen != sizeof(response)) {
-+		xe_err(xe, "sysctrl: unexpected get info queue data response length %zu (expected %zu)\n",
-+		       rlen, sizeof(response));
-+		return -EIO;
-+	}
-+
-+	ret = ras_status_to_errno(response.status);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: get info queue command failed with status %#x\n",
-+		       response.status);
-+		return ret;
-+	}
-+
-+	hdr = &response.queue_response.header;
-+	xe_dbg(xe, "[RAS] info queue: total_size=%u chunk_offset=%u chunk_size=%u flags=0x%x num_headers=%u\n",
-+	       hdr->total_size, hdr->chunk_offset, hdr->chunk_size,
-+	       hdr->flags, hdr->num_headers);
-+
-+	*out = response;
-+	return 0;
++	return einfo;
 +}
 +
-+static bool chunk_is_valid(const struct xe_ras_info_queue_header *hdr,
-+			   u32 expected_offset, u32 dest_size)
++static void free_einfo_arr(struct xe_cper_einfo_entry *einfo_arr, u32 count)
 +{
-+	u32 end;
++	u32 i;
 +
-+	return hdr->chunk_offset == expected_offset &&
-+	       hdr->chunk_size && hdr->chunk_size <= XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE &&
-+	       !check_add_overflow(hdr->chunk_offset, hdr->chunk_size, &end) &&
-+	       end <= XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE && end <= dest_size;
++	for (i = 0; i < count; i++)
++		kfree(einfo_arr[i].einfo);
++	kfree(einfo_arr);
++}
++
++static bool fill_einfo_entry(struct xe_cper_einfo_entry *entry,
++			     const struct xe_ras_error_class *counter, u32 count,
++			     const struct xe_ras_error_log *logs, u32 num_logs)
++{
++	entry->einfo = build_einfo(logs, num_logs, counter, count);
++	if (!entry->einfo)
++		return false;
++
++	entry->einfo_size = struct_size(entry->einfo, queue,
++					entry->einfo->queue_size);
++	/* The first log is the first occurrence of the error */
++	entry->timestamp = logs[0].timestamp;
++	entry->hdr.counter = *counter;
++	entry->hdr.count = count;
++	return true;
++}
++
++static u32 build_detail_einfo(const struct xe_ras_error_class *counter, u32 count,
++			      const struct xe_ras_error_log *logs, u32 num_logs,
++			      struct xe_cper_einfo_entry *einfo_arr)
++{
++	/* All logs belong to the queried class; the error count may exceed the logs kept */
++	if (!num_logs)
++		return 0;
++
++	num_logs = min_t(u32, num_logs, XE_RAS_NUM_COUNTERS);
++
++	return fill_einfo_entry(&einfo_arr[0], counter, count, logs, num_logs) ? 1 : 0;
++}
++
++static u32 build_aggregate_einfo(struct xe_device *xe,
++				 const struct xe_ras_info_queue_dynamic_counter_hdr *hdrs,
++				 u32 num_hdrs, const struct xe_ras_error_log *logs,
++				 u32 avail_logs, struct xe_cper_einfo_entry *einfo_arr)
++{
++	u32 log_offset = 0, count = 0, i;
++
++	for (i = 0; i < num_hdrs; i++) {
++		/* @count is the error count; firmware logs at most XE_RAS_NUM_COUNTERS */
++		u32 num_logs = min_t(u32, hdrs[i].count, XE_RAS_NUM_COUNTERS);
++
++		if (num_logs > avail_logs - log_offset) {
++			xe_warn(xe, "CPER: header[%u] claims %u logs but only %u remain\n",
++				i, num_logs, avail_logs - log_offset);
++			break;
++		}
++
++		if (!num_logs)
++			continue;
++
++		if (!fill_einfo_entry(&einfo_arr[count], &hdrs[i].counter, hdrs[i].count,
++				      &logs[log_offset], num_logs))
++			break;
++
++		log_offset += num_logs;
++		count++;
++	}
++
++	return count;
 +}
 +
 +/**
-+ * xe_ras_drain_info_queue_raw() - Drain the full RAS info queue into a flat buffer
-+ * @xe: xe device
-+ * @counter_resp: counter response carrying the first embedded chunk and the
-+ *                counter identifier used as the source context for subsequent
-+ *                GET_INFO_QUEUE fetches
-+ * @dest_buf: destination buffer supplied by the caller
-+ * @dest_size: size of @dest_buf in bytes; also caps the total amount of data
-+ *             assembled from the info queue
++ * cper_prepare_einfo() - Build the CPER error info records from RAS info queue data
++ * @xe: xe device instance
++ * @counter_resp: counter response containing the first embedded chunk
++ * @counter: RAS error class used to populate the einfo error_class fields
++ * @count_out: output number of entries in the returned array
 + *
-+ * Copies the first chunk already embedded in @counter_resp, then loops
-+ * issuing GET_INFO_QUEUE to fetch any remaining chunks until the queue
-+ * signals no more data or a transport/bounds error is encountered.  On
-+ * transport or bounds errors the function stops and returns whatever has
-+ * been assembled so far.
++ * Assembles the complete raw info queue data from the first chunk already
++ * embedded in @counter_resp and any additional chunks fetched via
++ * GET_INFO_QUEUE.  Two use cases are supported based on num_headers in
++ * the info queue header:
 + *
-+ * Returns: Number of valid bytes written into @dest_buf.  Zero if @dest_buf is
-+ *          NULL or @dest_size is 0.
++ * Detail error counter (num_headers == 0)::
++ *
++ *   [xe_ras_error_log * N]
++ *
++ *   Returns one xe_cper_einfo_entry covering up to XE_RAS_NUM_COUNTERS logs.
++ *
++ * Aggregate error counter (num_headers > 0)::
++ *
++ *   [xe_ras_info_queue_dynamic_counter_hdr * num_headers]
++ *   [xe_ras_error_log * N]
++ *
++ *   Returns one xe_cper_einfo_entry per header. Each header's @counter
++ *   identifies its error class, and @count gives its error count. Up to
++ *   XE_RAS_NUM_COUNTERS xe_ras_error_log entries are associated with each
++ *   header, and @counter populates the entry's einfo->error_class.
++ *
++ * Returns: allocated xe_cper_einfo_entry array on success (caller must free it
++ *          with free_einfo_arr()), NULL if no info queue is available or no
++ *          error info could be built. @count_out is set to the number of
++ *          entries in the array, or zero when returning NULL.
 + */
-+u32 xe_ras_drain_info_queue_raw(struct xe_device *xe,
-+				const struct xe_ras_get_counter_response *counter_resp,
-+				u8 *dest_buf, u32 dest_size)
++static struct xe_cper_einfo_entry *
++cper_prepare_einfo(struct xe_device *xe,
++		   const struct xe_ras_get_counter_response *counter_resp,
++		   const struct xe_ras_error_class *counter, u32 *count_out)
 +{
-+	const struct xe_ras_info_queue_header *first_hdr;
-+	u32 flags, offset = 0;
-+	int ret;
++	const struct xe_ras_info_queue_header *first_qhdr = &counter_resp->first.header;
++	struct xe_cper_einfo_entry *einfo_arr = NULL;
++	const struct xe_ras_error_log *logs;
++	u32 buf_size, raw_total, num_headers, headers_size;
++	u32 avail_logs, count = 0;
++	u8 *raw_buf = NULL;
 +
-+	xe_assert(xe, counter_resp->has_info_queue);
++	*count_out = 0;
++	if (!counter_resp->has_info_queue)
++		return NULL;
 +
-+	if (!dest_buf || !dest_size)
-+		return 0;
-+
-+	first_hdr = &counter_resp->first.header;
-+
-+	if (!chunk_is_valid(first_hdr, offset, dest_size)) {
-+		xe_warn(xe, "[RAS]: invalid first info queue chunk (offset=%u size=%u, expected offset=%u)\n",
-+			first_hdr->chunk_offset, first_hdr->chunk_size, offset);
-+		return 0;
++	if (!first_qhdr->total_size) {
++		xe_warn(xe, "CPER: info queue reports zero total size\n");
++		goto out;
 +	}
 +
-+	/* Copy first chunk already embedded in the counter response */
-+	memcpy(dest_buf, counter_resp->first.data, first_hdr->chunk_size);
-+	offset = first_hdr->chunk_size;
-+	flags = first_hdr->flags;
++	if (first_qhdr->total_size > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE)
++		xe_warn(xe, "CPER: info queue size %u exceeds max %u, truncating\n",
++			first_qhdr->total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE);
 +
-+	/* Fetch any remaining chunks */
-+	while ((flags & XE_RAS_INFO_QUEUE_FLAG_MORE_DATA) && offset < dest_size) {
-+		struct xe_ras_get_info_queue_request req = {};
-+		struct xe_ras_get_info_queue_response resp = {};
-+		struct xe_ras_info_queue_header *hdr;
++	buf_size = min(first_qhdr->total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE);
++	raw_buf = kzalloc_objs(*raw_buf, buf_size);
++	if (!raw_buf)
++		goto out;
 +
-+		req.queue_request.offset = offset;
-+		req.queue_request.size = min(XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE, dest_size - offset);
-+		req.queue_request.session_id = counter_resp->counter;
++	raw_total = xe_ras_drain_info_queue_raw(xe, counter_resp, raw_buf, buf_size);
++	if (!raw_total)
++		goto out;
 +
-+		ret = get_info_queue_data(xe, &req, &resp);
-+		if (ret) {
-+			xe_err(xe, "[RAS]: info queue drain aborted: fetch at offset=%u, ret = %d\n",
-+			       offset, ret);
-+			return offset;
-+		}
-+
-+		hdr = &resp.queue_response.header;
-+
-+		if (!chunk_is_valid(hdr, offset, dest_size)) {
-+			xe_warn(xe, "[RAS]: invalid info queue chunk (offset=%u size=%u, expected offset=%u)\n",
-+				hdr->chunk_offset, hdr->chunk_size, offset);
-+			return offset;
-+		}
-+
-+		memcpy(dest_buf + offset, resp.queue_response.data, hdr->chunk_size);
-+		offset += hdr->chunk_size;
-+		flags = hdr->flags;
++	num_headers = first_qhdr->num_headers;
++	headers_size = num_headers * sizeof(struct xe_ras_info_queue_dynamic_counter_hdr);
++	if (headers_size > raw_total) {
++		xe_warn(xe, "CPER: aggregate headers size (%u) exceeds raw total (%u)\n",
++			headers_size, raw_total);
++		goto out;
 +	}
 +
-+	return min(offset, first_hdr->total_size);
++	logs = (const struct xe_ras_error_log *)(raw_buf + headers_size);
++	avail_logs = (raw_total - headers_size) / sizeof(*logs);
++
++	einfo_arr = kzalloc_objs(*einfo_arr, num_headers ?: 1);
++	if (!einfo_arr)
++		goto out;
++
++	if (num_headers)
++		count = build_aggregate_einfo(xe, (const void *)raw_buf, num_headers,
++					      logs, avail_logs, einfo_arr);
++	else
++		count = build_detail_einfo(counter, counter_resp->value,
++					   logs, avail_logs, einfo_arr);
++
++	if (!count) {
++		kfree(einfo_arr);
++		einfo_arr = NULL;
++	}
++out:
++	kfree(raw_buf);
++	*count_out = count;
++	if (!einfo_arr)
++		xe_warn(xe, "CPER: failed to build error info from info queue, emitting record without it\n");
++
++	return einfo_arr;
 +}
 +
- static ssize_t gpu_health_show(struct device *dev, struct device_attribute *attr, char *buf)
- {
- 	struct xe_ras_get_health_response response = {0};
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index c736d5a01c47..ccb79f2c2844 100644
---- a/drivers/gpu/drm/xe/xe_ras.h
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -25,5 +25,8 @@ bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
- u32 xe_ras_get_max_pages(struct xe_device *xe);
- int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
- 				struct xe_ras_get_counter_response *out);
-+u32 xe_ras_drain_info_queue_raw(struct xe_device *xe,
-+				const struct xe_ras_get_counter_response *counter_resp,
-+				u8 *dest_buf, u32 dest_size);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index a86f9d2b8c92..67d57182aac9 100644
---- a/drivers/gpu/drm/xe/xe_ras_types.h
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -19,6 +19,10 @@
- #define XE_RAS_MEMORY_POISON			BIT(2)
- #define XE_RAS_MEMORY_DATA_PARITY		BIT(5)
- 
-+#define XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE	200
-+#define XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE	5120
-+#define XE_RAS_INFO_QUEUE_FLAG_MORE_DATA	0x02
-+
  /**
-  * enum xe_ras_page_action - Page offline actions for page offline request
+  * xe_cper_emit_counter() - Emit CPER records for an already fetched error counter
+  * @xe: The &xe_device
+@@ -208,19 +415,47 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
+  * @counter: RAS error class
+  * @response: Counter response returned by firmware for @counter
   *
-@@ -110,6 +114,83 @@ struct xe_ras_threshold_crossed {
- 	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
- } __packed;
+- * Build and emit a CPER record from @response.
++ * Build and emit CPER records from @resp, including any info queue data.
++ * Must be called from a sleepable context with a runtime PM reference held.
+  */
+ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+ 			  const struct xe_ras_error_class *counter,
+ 			  const struct xe_ras_get_counter_response *response)
+ {
+-	struct xe_cper_intel_hdr ihdr = {};
++	struct xe_cper_einfo_entry *einfo_arr = NULL, *entries;
++	struct xe_cper_einfo_entry single = {};
++	u32 einfo_count = 0, count, i;
  
-+/**
-+ * struct xe_ras_info_queue_header - Metadata for large info queue data transfers
-+ *
-+ * Provides chunk metadata for commands that support extended info queue
-+ * functionality. Used when the total data exceeds a single mailbox response.
-+ */
-+struct xe_ras_info_queue_header {
-+	/** @total_size: Total size of the complete info queue data in bytes */
-+	u32 total_size;
-+	/** @chunk_offset: Offset of this chunk within the total data in bytes */
-+	u32 chunk_offset;
-+	/** @chunk_size: Size of the data in this chunk in bytes */
-+	u32 chunk_size;
-+	/** @reserved0: Reserved for future use */
-+	u32 reserved0;
-+	/** @flags: Info queue control flags (XE_RAS_INFO_QUEUE_FLAG_*) */
-+	u32 flags:8;
-+	/** @reserved1: Reserved for future use */
-+	u32 reserved1:4;
-+	/** @num_headers: Number of detailed counter headers at start of the data */
-+	u32 num_headers:5;
-+	/** @reserved2: Reserved for future use */
-+	u32 reserved2:15;
-+	/** @reserved3: Reserved for future use */
-+	u32 reserved3;
+ 	xe_assert(xe, is_hw_sigid(sigid));
+ 
+-	cper_init_intel_hdr(xe, counter, response->timestamp,
+-			    sigid, response->value, &ihdr);
+-	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
++	/* Draining the info queue sends sysctrl commands */
++	might_sleep();
++	xe_device_assert_mem_access(xe);
++
++	/* Without info queue data, emit a single record from the counter itself */
++	single.hdr.counter = *counter;
++	single.hdr.count = response->value;
++	single.timestamp = response->timestamp;
++	entries = &single;
++	count = 1;
++
++	einfo_arr = cper_prepare_einfo(xe, response, counter, &einfo_count);
++	if (einfo_arr) {
++		entries = einfo_arr;
++		count = einfo_count;
++	}
++
++	for (i = 0; i < count; i++) {
++		struct xe_cper_intel_hdr ihdr = {};
++
++		cper_init_intel_hdr(xe, &entries[i].hdr.counter, entries[i].timestamp,
++				    sigid, entries[i].hdr.count, entries[i].einfo_size, &ihdr);
++
++		cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
++				 entries[i].einfo, entries[i].einfo_size);
++	}
++
++	free_einfo_arr(einfo_arr, einfo_count);
+ }
+ 
+ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+index 107688b17d17..3252e89f64cd 100644
+--- a/drivers/gpu/drm/xe/xe_cper_types.h
++++ b/drivers/gpu/drm/xe/xe_cper_types.h
+@@ -69,14 +69,50 @@ struct xe_cper_intel_hdr {
+ 	/** @fw_id: Firmware version string (GFSP+PCODE+CSC+GUC or MNG+NUC+RAS+GUC) */
+ 	char fw_id[256];
+ 	/** @reserved: Reserved for future use, must be zero */
+-	u8 reserved[5];
++	u8 reserved[2];
++	/** @info_log_size: Size of xe_cper_intel_info */
++	u16 info_log_size;
++	/** @reserved1: Reserved for future use, must be zero */
++	u8 reserved1;
 +} __packed;
 +
 +/**
-+ * struct xe_ras_info_queue_data_request - Request for a specific chunk of info queue data
++ * struct xe_cper_intel_info - Variable-length Intel GPU error payload
 + *
-+ * Allows the driver to request continuation of large info queue transfers
-+ * by specifying an offset and size within the full data set.
++ * Appended after &xe_cper_intel_hdr when detailed error information
++ * is available.
 + */
-+struct xe_ras_info_queue_data_request {
-+	/** @offset: Byte offset of the requested data chunk */
-+	u32 offset;
-+	/** @size: Maximum size of the requested chunk in bytes */
++struct xe_cper_intel_info {
++	/** @counter: Error class (severity, component, location, cause) */
++	struct xe_ras_error_class counter;
++	/** @error_count: Total number of errors recorded */
++	u32 error_count;
++	/** @queue_size: Total byte size of the @queue array */
++	u32 queue_size;
++	/** @queue_count: Number of entries in @queue */
++	u32 queue_count;
++	/** @queue: Packed array of &xe_cper_intel_priv_event records */
++	u8 queue[];
++} __packed;
++
++/**
++ * struct xe_cper_intel_priv_event - Single event in the event queue
++ */
++struct xe_cper_intel_priv_event {
++	/** @size: Byte size of the @metadata payload */
 +	u32 size;
-+	/** @session_id: Session ID to correlate multi-chunk transfers */
-+	struct xe_ras_error_class session_id;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_info_queue_data_response - Generic response for commands with info queues
-+ *
-+ * Standard response format for any command that returns an info queue
-+ * payload. May be embedded in a command-specific response structure.
-+ */
-+struct xe_ras_info_queue_data_response {
-+	/** @header: Info queue metadata for this chunk */
-+	struct xe_ras_info_queue_header header;
-+	/** @data: Info queue data for this chunk */
-+	u8 data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
-+} __packed;
-+
-+/**
-+ * struct xe_ras_get_info_queue_request - Request for XE_SYSCTRL_CMD_GET_INFO_QUEUE
-+ */
-+struct xe_ras_get_info_queue_request {
-+	/** @queue_request: Info queue request parameters */
-+	struct xe_ras_info_queue_data_request queue_request;
-+	/** @reserved: Reserved for future use */
-+	u32 reserved[16];
-+} __packed;
-+
-+/**
-+ * struct xe_ras_get_info_queue_response - Response for XE_SYSCTRL_CMD_GET_INFO_QUEUE
-+ */
-+struct xe_ras_get_info_queue_response {
-+	/** @status: Status of the retrieval operation */
-+	u32 status;
-+	/** @queue_response: Info queue data chunk */
-+	struct xe_ras_info_queue_data_response queue_response;
-+} __packed;
-+
- /**
-  * struct xe_ras_get_counter_request - Request structure for get counter
-  */
-@@ -132,8 +213,14 @@ struct xe_ras_get_counter_response {
- 	u64 timestamp;
- 	/** @threshold: Threshold value for the counter */
- 	u32 threshold;
--	/** @reserved: Reserved  */
--	u32 reserved[57];
-+	/** @reserved: Reserved for future use */
-+	u32 reserved:9;
-+	/** @has_info_queue: Set if info queue is available */
-+	u32 has_info_queue:1;
-+	/** @reserved1: Reserved for future use */
-+	u32 reserved1:22;
-+	/** @first: First info queue chunk, if @has_info_queue is set */
-+	struct xe_ras_info_queue_data_response first;
++	/** @timestamp: Timestamp of this event, in firmware ticks */
++	u64 timestamp;
++	/** @metadata: Event-specific payload bytes */
++	u8 metadata[];
  } __packed;
  
  /**
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index 1f3f782d770e..9188457ef7ae 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -37,6 +37,7 @@ enum xe_sysctrl_group {
-  * @XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE: Retrieve list of offlined queued pages from firmware
-  * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
-  * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
-+ * @XE_SYSCTRL_CMD_GET_INFO_QUEUE: Retrieve a chunk of info queue data
+  * struct xe_cper_nonstd_record - Intel GPU CPER record
+  *
+  * Contains the standard CPER record header, section descriptor, and the
+- * Intel error section header.
++ * Intel section header. A &xe_cper_intel_info payload may be
++ * appended dynamically.
   */
- enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_GET_SOC_ERROR		= 0x01,
-@@ -50,6 +51,7 @@ enum xe_sysctrl_gfsp_cmd {
- 	XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE	= 0x0A,
- 	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
- 	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
-+	XE_SYSCTRL_CMD_GET_INFO_QUEUE		= 0x0D,
+ struct xe_cper_nonstd_record {
+ 	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
+@@ -101,6 +137,20 @@ struct xe_platform_id_entry {
+ 	guid_t    platform_id;
  };
  
++/**
++ * struct xe_cper_einfo_entry - One CPER error info payload and its source counter
++ */
++struct xe_cper_einfo_entry {
++	/** @hdr: Error class and counter value used for the CPER section header */
++	struct xe_ras_info_queue_dynamic_counter_hdr hdr;
++	/** @einfo: Allocated info payload, NULL if none */
++	struct xe_cper_intel_info *einfo;
++	/** @einfo_size: Byte size of @einfo including the event queue */
++	u32 einfo_size;
++	/** @timestamp: Timestamp of the first occurrence of this error class */
++	u64 timestamp;
++};
++
  /**
+  * struct xe_cper - Xe CPER state
+  */
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+index 67d57182aac9..903a122e468e 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -171,6 +171,31 @@ struct xe_ras_info_queue_data_response {
+ 	u8 data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
+ } __packed;
+ 
++/**
++ * struct xe_ras_info_queue_dynamic_counter_hdr - Aggregate counter header entry
++ *
++ * When a session requests aggregate counter data, one header per matching
++ * dynamic counter class is prepended to the queue data. The @counter field
++ * identifies the error class, and @count is its error count; at most
++ * XE_RAS_NUM_COUNTERS error log entries follow for it.
++ */
++struct xe_ras_info_queue_dynamic_counter_hdr {
++	/** @counter: Error class associated with this counter group */
++	struct xe_ras_error_class counter;
++	/** @count: Error count of this class */
++	u32 count;
++} __packed;
++
++/**
++ * struct xe_ras_error_log - Single error log entry following dynamic counter headers
++ */
++struct xe_ras_error_log {
++	/** @timestamp: Timestamp when the error was recorded */
++	u64 timestamp;
++	/** @error_details: Error-specific details */
++	u32 error_details[16];
++} __packed;
++
+ /**
+  * struct xe_ras_get_info_queue_request - Request for XE_SYSCTRL_CMD_GET_INFO_QUEUE
+  */
 -- 
 2.54.0
 
