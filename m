@@ -2,97 +2,75 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695AD606A31F
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96877606A31E
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 13:16:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20251104 header.b=Ww00hyP4
+	dkim=pass (1024-bit key, unprotected) header.d=rock-chips.com header.i=@rock-chips.com header.a=rsa-sha256 header.s=default header.b=X/Fm4VDX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9E010F4B5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C54510F4BD;
 	Tue, 27 Oct 2026 13:15:57 +0000 (UTC)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
- [209.85.221.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD96A10EC20
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 08:03:27 +0000 (UTC)
-Received: by mail-wr1-f43.google.com with SMTP id
- ffacd0b85a97d-48e4831c028so1100604f8f.0
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 01:03:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1793001806; x=1793606606; darn=lists.freedesktop.org;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=oue2gY3N148Z5QjebnGzECChsQECIfu8P/sF36ovlgA=;
- b=Ww00hyP4q6cCB020hECdbIGhq3pKARobVYkwcfxjinSX3RPa59vG6sCopEVWoqEG2g
- dpbd49Y+IeqwYml43JQbYPBCxzQGxAmo+6s0BxNCBWS+rhWMzYQnAdTTQjPVTkFUn0F/
- Lozka5lzT3hwbc0PxmoyMuGZxlHaZMUyBCCzOCaKU+k5bd6YEaztmhmeu9nqz2ZrO8Fr
- gwJ2lvvHnNLP/wHGUGvs3lLMQ7QnJYtv+2gqRti1C54/bq+fTeb0FrM5a9ZH82Avy8Sm
- VebkDUzaZnusp8NEJsQvVNbWzAm7nJWuVZQG79RfWA0NZdMeHUDQsJ6XyepoXJwzazBl
- pq8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1793001806; x=1793606606;
- h=in-reply-to:content-disposition:content-type:mime-version
- :references:message-id:subject:cc:to:from:date:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=oue2gY3N148Z5QjebnGzECChsQECIfu8P/sF36ovlgA=;
- b=Q64UP5kvPFeM6zm4EbSPnD6ipOYfuBm1stQt7zIKqqTo5ZeiV+pSf7dKpBjXbugYkp
- mGPu/ntOSZliWVtOIFCBsjJvCTxKzVgwr0kKxsa1bkKNBTccADGZsam5U50GqZKIL8zg
- I/5BuplREDvgT5qLmZK5iabiGS6r09AVkTrjjbemfyP8AIVFmPlCyQQ7B33bCeyFx3JF
- lxyOuv5Goz8NCD4K+Ft0jSBxBJ4rnzSaBrkGtb+qf5blhMQ4ly4+IGLNFyd2iRBEG2jS
- b59vSXnv6b5SI7cy0bwKCTEammReECM7ouGxDr6urbR4ifoGGOvGmiKfzvQareoZLUOf
- vHgg==
-X-Forwarded-Encrypted: i=1;
- AKwUvByCQdOBX7VbEWqv3hnvIfVJKHQCQHxoF9EXA39KRvIUmWLIGsi72NkYOMdcvgqGWkpKV4M2v7BVFA==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYLWmTXnzsAYHmlG6VcSZBvI4MS1NMQolzb02nlJbwRls6axpSv6
- BEOJp/U7MJm7E+oN/wWELIK6x1FwR/EMOJ5/jHNN6jVm9TLbDwjXhu+8
-X-Gm-Gg: AYBFou1buR3HLYMGeWWSXWOYt5OFEEr4vRUEg0p21j+RP4srKut8VmqmbLjGofKa8hS
- sf6qM6WiQweFkOqddrWyYJeUhV7tdDBpsNzZPhZXnpLntd1L1mAQN0FxVwEl28s+3+aSlK7SEGM
- 2HWETlsmHkfMoIZKT7gdBJUj3ZveculefRVWGykJ9H8m5BuYsdwG/J/8YKR+ElM49Cb3q9z/G39
- PToyTdLbMvGrazVZn4LkxWPoJQX6YLKsCx7AwBhGWTxjhiNfDpGbQoj6aiJj8gS+jOCCrePTjvh
- m/K4tGG9AXxufrLGSNhhRIwJZyW72xBTec8HV8LIrMNjMRSm0c2VsK82oiEK7mL03hStByoK+iT
- oKSdWs5zbD3ttJ0sxNkYguinFwAVyrvAOr3SxIE7IAxKr1LppHRdKALTWZP2ZqSWW1d42Z1eCAh
- VvWDGagzwFe33YlMOsnkeZ7KoQn765dGKpHnP18R7aeVyan8T7G4EGJxAFswmjpde0GuBpTOfaj
- BpZX0yE5o6eEazjiOwwvref6/WrXUX91kab9wJVN/LR3PxONRqJASQ9HEmj58/tQiJhtw1X4Xq1
- DRTRVH/dIk/2nkym8I29cunWEVQ+kzQCOnUriEXACrLzhgj6Ouk+SHbFf678LZpKr1QOb/QBcYE
- M8XWMYUEOeTrDb0qtocQoSItLvtseYpVb7ZhyflYgcsCCOLmSMoIPf7FrcK7cGA==
-X-Received: by 2002:a05:600c:3f12:b0:4a4:7a8d:c436 with SMTP id
- 5b1f17b1804b1-4a47a8dc6e6mr85645335e9.11.1793001805868; 
- Mon, 26 Oct 2026 01:03:25 -0700 (PDT)
-Received: from unknown748F3CBA5068
- (dynamic-2a02-3100-b1a4-1201-5c78-89f4-99d8-70d7.310.pool.telefonica.de.
- [2a02:3100:b1a4:1201:5c78:89f4:99d8:70d7])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4a35a04ad39sm473163315e9.1.2026.10.26.01.03.24
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 26 Oct 2026 01:03:25 -0700 (PDT)
-Date: Mon, 26 Oct 2026 09:03:22 +0100
-From: Karl Mehltretter <kmehltretter@gmail.com>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: dri-devel@lists.freedesktop.org, christian.koenig@amd.com, 
- sumit.semwal@linaro.org, jgg@nvidia.com, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Matthew Brost <matthew.brost@intel.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>, 
- Dongwon Kim <dongwon.kim@intel.com>, Leon Romanovsky <leonro@nvidia.com>, 
- Kevin Tian <kevin.tian@intel.com>, Xu Yilun <yilun.xu@linux.intel.com>, 
- Baolu Lu <baolu.lu@linux.intel.com>, Felix Kuehling <felix.kuehling@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, 
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-rdma@vger.kernel.org, 
- iommu@lists.linux.dev, Alexey Kardashevskiy <aik@amd.com>, zhipingz@meta.com, 
- treding@nvidia.com, jhubbard@nvidia.com
-Subject: Re: [PATCH 05/26] dma-buf: Let the exporter select mapping type at
- pin/map
-Message-ID: <at8IQZ34wkHQ_5PL@gmail.com>
-References: <20261026053623.202642-1-apopple@nvidia.com>
- <20261026053623.202642-6-apopple@nvidia.com>
+X-Greylist: delayed 308 seconds by postgrey-1.36 at gabe;
+ Fri, 23 Oct 2026 01:26:38 UTC
+Received: from mail-m6021.netease.com (mail-m6021.netease.com [210.79.60.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5772110E00C;
+ Fri, 23 Oct 2026 01:26:38 +0000 (UTC)
+Received: from [127.0.0.1] (unknown [61.154.14.86])
+ by smtp.qiye.163.com (Hmail) with ESMTP id 520f42c30;
+ Fri, 23 Oct 2026 09:21:25 +0800 (GMT+08:00)
+Message-ID: <e19ac7d1-5a86-4a96-a868-56a4abda3ec4@rock-chips.com>
+Date: Fri, 23 Oct 2026 09:21:08 +0800
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261026053623.202642-6-apopple@nvidia.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 3/9] drm/bridge: pass down IRQ_HPD to the drivers
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Francesco Dolcini <francesco@dolcini.it>, Kevin Hilman
+ <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org
+References: <20261022-hpd-irq-events-v6-0-337ea3ddaa62@oss.qualcomm.com>
+ <20261022-hpd-irq-events-v6-3-337ea3ddaa62@oss.qualcomm.com>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <20261022-hpd-irq-events-v6-3-337ea3ddaa62@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-HM-Tid: 0aa1665937f503a7kunmabefcd952d3a31
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+ tZV1koWUFITzdXWRgWCB1ZQUpXWS1ZQUlXWQ8JGhUIEh9ZQVlCHkxKVkIdSU4dHxpNGhkZTFYVFA
+ kWGhdVEwETFhoSFyQUDg9ZV1kYEgtZQVlNSlVKTk9VSk9VQ01ZV1kWGg8SFR0UWUFZT0tIVUpLSE
+ pKQkxVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+ b=X/Fm4VDX9sFENPD6Wn9qD+Uao+7D0Epq2pQrsnbwFBrymGk6h8O6RmS3bL18Vm4+OOE5fn9EHK7f5aXlKmzlgC52HGgkZdlKQwycb9gdto26fXfwfIFdx0+DDP+R8+nr+Q9Qgl+MLUiC4hQPHMwHPlcJ75OMdNIu2jiqwx+mQLE=;
+ s=default; c=relaxed/relaxed; d=rock-chips.com; v=1; 
+ bh=fTHe9pcXTKxRGNgBHQwELDkRI1+tQnp9o4yzAANBj4Y=;
+ h=date:mime-version:subject:message-id:from;
 X-Mailman-Approved-At: Tue, 27 Oct 2026 13:15:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,64 +82,133 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-2.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.2 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Oct 26, 2026 at 04:35:56PM +0100, Alistair Popple wrote:
-> +struct sg_table *dma_buf_map_attachment(struct dma_buf_attachment *attach,
-> +					enum dma_data_direction direction)
-> +{
-> +	struct sg_table *sg_table;
-> +	int ret;
-> +
-> +	might_sleep();
-> +
-> +	if (WARN_ON(!attach || !attach->dmabuf))
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	dma_resv_assert_held(attach->dmabuf->resv);
-> +
-> +	ret = dma_buf_mapping_select(attach);
-> +	if (ret)
-> +		return ERR_PTR(ret);
-> +
-> +	sg_table = __dma_buf_sgt_map_attachment(attach, direction);
-> +	if (IS_ERR(sg_table))
-> +		/* Nothing was established, so the choice may be made afresh */
-> +		attach->selected = false;
-> +
-> +	return sg_table;
-> +}
+On 10/22/2026 9:27 PM, Dmitry Baryshkov wrote:
+> The DisplayPort standard defines a special kind of HPD events called
+> IRQ_HPD. These events are used to notify DP Source about the events on
+> the Sink side. Pass down the extra status to the bridge drivers via the
+> hpd_notify() callback, letting DP bridges to act accordingly.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  drivers/gpu/drm/bridge/lontium-lt9611uxc.c     | 3 ++-
+>  drivers/gpu/drm/display/drm_bridge_connector.c | 2 +-
+>  drivers/gpu/drm/meson/meson_encoder_hdmi.c     | 3 ++-
+>  drivers/gpu/drm/msm/dp/dp_display.c            | 3 ++-
+>  drivers/gpu/drm/msm/dp/dp_drm.h                | 3 ++-
+>  drivers/gpu/drm/omapdrm/dss/hdmi4.c            | 3 ++-
+>  include/drm/drm_bridge.h                       | 3 ++-
+>  7 files changed, 13 insertions(+), 7 deletions(-)
+> 
 
-The map-failure report from Sashiko [1] reproduces with a KUnit test
-against the full series:
+Reviewed-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
 
-  pin selects B -> map returns -EIO -> selected is cleared
-                -> retry selects A, with the original pin still held
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> index b3bb7f2cebb3..b1ffbab89a16 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> @@ -429,7 +429,8 @@ static const struct drm_edid *lt9611uxc_bridge_edid_read(struct drm_bridge *brid
+>  
+>  static void lt9611uxc_bridge_hpd_notify(struct drm_bridge *bridge,
+>  					struct drm_connector *connector,
+> -					enum drm_connector_status status)
+> +					enum drm_connector_status status,
+> +					enum drm_connector_dp_event event)
+>  {
+>  	const struct drm_edid *drm_edid;
+>  
+> diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+> index 898273f60cf6..1b0a1a00d8eb 100644
+> --- a/drivers/gpu/drm/display/drm_bridge_connector.c
+> +++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+> @@ -151,7 +151,7 @@ static void drm_bridge_connector_hpd_notify(struct drm_connector *connector,
+>  	/* Notify all bridges in the pipeline of hotplug events. */
+>  	drm_for_each_bridge_in_chain(bridge_connector->encoder, bridge) {
+>  		if (bridge->funcs->hpd_notify)
+> -			bridge->funcs->hpd_notify(bridge, connector, status);
+> +			bridge->funcs->hpd_notify(bridge, connector, status, event);
+>  	}
+>  }
+>  
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> index c4355c5cc340..a637613ae2e1 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -323,7 +323,8 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
+>  
+>  static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
+>  					  struct drm_connector *connector,
+> -					  enum drm_connector_status status)
+> +					  enum drm_connector_status status,
+> +					  enum drm_connector_dp_event event)
+>  {
+>  	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
+>  
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index 6abe30bdff12..fa8942922b53 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -1541,7 +1541,8 @@ void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge)
+>  
+>  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>  			      struct drm_connector *connector,
+> -			      enum drm_connector_status status)
+> +			      enum drm_connector_status status,
+> +			      enum drm_connector_dp_event event)
+>  {
+>  	struct msm_dp_bridge *msm_dp_bridge = to_dp_bridge(bridge);
+>  	struct msm_dp *msm_dp_display = msm_dp_bridge->msm_dp_display;
+> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.h b/drivers/gpu/drm/msm/dp/dp_drm.h
+> index da412c788503..8f2f4201da60 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_drm.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_drm.h
+> @@ -31,6 +31,7 @@ void msm_dp_bridge_hpd_enable(struct drm_bridge *bridge);
+>  void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge);
+>  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>  			      struct drm_connector *connector,
+> -			      enum drm_connector_status status);
+> +			      enum drm_connector_status status,
+> +			      enum drm_connector_dp_event event);
+>  
+>  #endif /* _DP_DRM_H_ */
+> diff --git a/drivers/gpu/drm/omapdrm/dss/hdmi4.c b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> index bd6c4d2dcdc8..72972a6fe989 100644
+> --- a/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> +++ b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> @@ -429,7 +429,8 @@ static void hdmi4_bridge_disable(struct drm_bridge *bridge,
+>  
+>  static void hdmi4_bridge_hpd_notify(struct drm_bridge *bridge,
+>  				    struct drm_connector *connector,
+> -				    enum drm_connector_status status)
+> +				    enum drm_connector_status status,
+> +				    enum drm_connector_dp_event event)
+>  {
+>  	struct omap_hdmi *hdmi = drm_bridge_to_hdmi(bridge);
+>  
+> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+> index 1981d24a700d..6382ef5f1ea2 100644
+> --- a/include/drm/drm_bridge.h
+> +++ b/include/drm/drm_bridge.h
+> @@ -509,7 +509,8 @@ struct drm_bridge_funcs {
+>  	 */
+>  	void (*hpd_notify)(struct drm_bridge *bridge,
+>  			   struct drm_connector *connector,
+> -			   enum drm_connector_status status);
+> +			   enum drm_connector_status status,
+> +			   enum drm_connector_dp_event event);
+>  
+>  	/**
+>  	 * @hpd_enable:
+> 
 
-The exporter pin count stays at 1. Preserving selected when it was true
-on entry makes the test pass. Patch 7 needs the same fix.
+-- 
+Best, 
+Chaoyi
 
-Could dma_buf_mapping_select() report whether it made a new selection?
-Then the error path could undo only that choice, without dropping one
-established by an earlier pin or map.
-
-On the Sashiko failed-pin report:
-("Because the attachment is not pinned, the exporter may migrate the
-buffer elsewhere without invalidating it")
-
-I don't think this follows from the documented contract.
-select_mapping() requires the exporter to keep the recorded type
-servable and invalidate before an incompatible move. That obligation
-still applies if ops->pin() fails.
-
-Is retaining the selection after a failed pin intentional? If so, this
-can be added as a test documenting that alongside the map-failure
-regression test.
-
-Thanks,
-Karl
