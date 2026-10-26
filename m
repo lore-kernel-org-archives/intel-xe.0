@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623C5606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 05:41:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10486606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 05:41:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NJm/77QZ
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QNWZxck8
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AD6610E978;
-	Mon, 26 Oct 2026 05:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C264210E990;
+	Mon, 26 Oct 2026 05:41:07 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCB410E98D;
- Mon, 26 Oct 2026 05:40:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D7EE10E988;
+ Mon, 26 Oct 2026 05:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792993256; x=1824529256;
+ t=1792993259; x=1824529259;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HJVWpU4DDEZzeC9H6zr7zri5JknQl+XVowTOao1L2HA=;
- b=NJm/77QZQZsT4+yf6INbUvj2G1jtS4rb2X3oT7FhYx7xGd1GmDCMcuY0
- hpwfvHMVtNbQYuJ9L5wz2bSLiZityN+98Nkz9sDa+vwmxXstfis55HKWI
- sfuMKVudeftU7wdV0vNyelLsDEUQDns/nPFhakjY2PM6qWsXAAfJNs3T7
- 2AGMfWrWYT6HCXlWsYexwarDDMIWIaQR6GlUbvaxebF6BJPQhQYdIGsKM
- 9FRHdcFYmFnIAHQ4jf1LYHPFASi6HqDW7Py49B2b7BxAZFJfH/TtQFGSf
- /qChT90A4QI8jaXwof3Rkx2kpUdXdgq3EypXJwQgqe0tLwJI0dOyTuwr/ w==;
-X-CSE-ConnectionGUID: Bqnye0JLRQ61TWibRkpoWA==
-X-CSE-MsgGUID: MoiojzqSQZ+Gz2tOzvQxlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1550210"
+ bh=IX6aGNxhMj5jjUTRoiLfcXFIXczpbyAg2W0KfOHJSKk=;
+ b=QNWZxck8bvJ3qmOXk02GVqFspduVIXUZM9kbTGhqLZn9LJv4DHvDq4K+
+ nti1mWO+NmiBglB1qRDSw3AhVkDbFTV14i4UVbhNGctXKmO1f3+j52/ct
+ KABxSU54DbqwdpSSwO2zDsAoXayKbs1hs9f7PfagUZ8dU4sSY2yWfF1vJ
+ +L2cWNRK1wqOgxodQze/u2VFe+PXy27lH+zoHKXgtvCZBe7ZUquZYSf2F
+ ls7mlcvpFnJHANsePpjFnaa+ExJt7RM3BXfPbOXmay1k5r1/YAYn023YF
+ +TKY8CmG+GN0QdMzxtiGAZo1glfrX6A3NTt7sDHnCc1uyPgmS5snPoQu8 w==;
+X-CSE-ConnectionGUID: YfCzsj9RSqyJqnj3DYCtow==
+X-CSE-MsgGUID: RCIb+GWATViedckoSRW4aA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1550212"
 X-IronPort-AV: E=Sophos;i="6.27,178,1787036400"; 
-   d="scan'208";a="1550210"
+   d="scan'208";a="1550212"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2026 22:40:56 -0700
-X-CSE-ConnectionGUID: oGp1CQpYRbiFlWvyrL/lUw==
-X-CSE-MsgGUID: L//dSAVsTWKJaOW+lE1HRw==
+ 25 Oct 2026 22:40:59 -0700
+X-CSE-ConnectionGUID: zMcfMCDATEmfxYISOQv1yA==
+X-CSE-MsgGUID: i+X/7VUiStKF2SsMyGpEwg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,178,1787036400"; 
-   d="scan'208";a="6001973"
+   d="scan'208";a="6001984"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa013.fm.intel.com with ESMTP; 25 Oct 2026 22:40:54 -0700
+ by fmviesa013.fm.intel.com with ESMTP; 25 Oct 2026 22:40:57 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jani.nikula@intel.com, suraj.kandpal@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v7 14/20] drm/i915/alpm: Enable MAC Transmitting LFPS for LT
- PHY
-Date: Mon, 26 Oct 2026 11:09:25 +0530
-Message-ID: <20261026054001.799894-15-animesh.manna@intel.com>
+Subject: [PATCH v7 15/20] drm/i915/alpm: Compute and program switch to active
+ latency
+Date: Mon, 26 Oct 2026 11:09:26 +0530
+Message-ID: <20261026054001.799894-16-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261026054001.799894-1-animesh.manna@intel.com>
 References: <20261026054001.799894-1-animesh.manna@intel.com>
@@ -72,114 +72,114 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Enable MAC to transmit LFPS via LT PHY during aux-less alpm.
+Program the ALPM switch to active latency into ALPM_CTL2. For UHBR link
+rates the latency is derived from the link symbol clock and converted to
+scanlines, for non-UHBR rates it is zero.
 
-v2:
-- Correct commit description. [Suraj]
-- Remove loop as no dependency on the transmitter LT_PHY_CMN_CTL0. [Suraj]
-v3: Cosmetic changes. [Suraj]
-v4:
-- Add Bspec reference. [Jouni]
-- Rename intel_xe3plpd_mac_transmit_lfps() to
-  intel_lt_mac_transmit_lfps(). [Jouni]
-- Rename LT_PHY_CMN_LFPS_ENABLE to LT_PHY_CMN_MAC_TRANSMIT_LFPS to
-  follow Bspec. [Jouni]
+v2: Use macro instead of magic number wherever possible. [Jouni]
+v3:
+- Use intel_dp_link_symbol_clock(). [Jouni]
+- Fix switch to active time which was 32 times too long as the symbol
+  clock already accounts for the 32 bits per symbol. [sashiko]
+- Round the switch to active time up to microseconds. [sashiko]
+- Check the switch to active latency fits into ALPM_CTL2. [sashiko]
 
-Bspec: 74500
 Cc: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c      |  5 +++-
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 27 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  2 ++
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  3 +++
- 4 files changed, 36 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 35 +++++++++++++++++--
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ 2 files changed, 34 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index a46ab5d3d70f..6a196df2691e 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3808,7 +3808,10 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
- 	 *     ii. Enable MAC Transmits LFPS in the "PHY Common Control 0" PIPE
- 	 *         register
- 	 */
--	intel_lnl_mac_transmit_lfps(encoder, crtc_state);
-+	if (HAS_LT_PHY(display))
-+		intel_lt_mac_transmit_lfps(encoder, crtc_state);
-+	else
-+		intel_lnl_mac_transmit_lfps(encoder, crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index 831dfa5e677b..4e761022485d 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -250,6 +250,31 @@ static int get_establishment_period(struct intel_dp *intel_dp,
+ 	return SILENCE_PERIOD_TIME + t1 + tcds;
  }
  
- static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 86492651b01d..5b26957d7fb9 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -5,6 +5,7 @@
- 
- #include <drm/drm_print.h>
- 
-+#include "intel_alpm.h"
- #include "intel_cx0_phy.h"
- #include "intel_cx0_phy_regs.h"
- #include "intel_ddi.h"
-@@ -2357,3 +2358,29 @@ void intel_lt_phy_verify_plls(struct intel_display *display)
- 	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_edp_tables);
- 	intel_lt_phy_pll_verify_tables(display, xe3plpd_lt_hdmi_tables);
- }
-+
-+/*
-+ * According to HAS we need to enable MAC Transmitting LFPS in the "PHY Common
-+ * Control 0" PIPE register in case of AUX Less ALPM is going to be used. This
-+ * function is doing that and is called by link retrain sequence.
-+ */
-+void intel_lt_mac_transmit_lfps(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state)
++static int get_switch_to_active(const struct intel_crtc_state *crtc_state)
 +{
-+	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+	struct ref_tracker *wakeref;
-+	u8 owned_lane_mask;
++	int switch_to_active;
 +
-+	if (!intel_alpm_is_alpm_aux_less(intel_dp, crtc_state))
-+		return;
++	if (intel_dp_is_uhbr(crtc_state)) {
++		/* link symbol clock (fLink / 32) in kHz */
++		int symbol_clock = intel_dp_link_symbol_clock(crtc_state->port_clock);
 +
-+	wakeref = intel_lt_phy_transaction_begin(encoder);
++		/*
++		 * tSwitch to Active = 32 * (ML_PHY_LOCK Length + 3 + 64) / fLink
++		 *		     = (ML_PHY_LOCK Length + 3 + 64) / symbol clock
++		 *
++		 * The "+ 3" term is the trailing zero padding after the
++		 * POST_LT_SCRAMBLER_RESET, the "+ 64" term represents the MTP
++		 * time slots. The result is rounded up to microseconds.
++		 */
++		switch_to_active = DIV_ROUND_UP((ML_PHY_LOCK_LEN_UHBR + 3 + 64) * 1000,
++						symbol_clock);
++	} else {
++		switch_to_active = 0;
++	}
 +
-+	owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
-+
-+	intel_lt_phy_rmw(encoder, owned_lane_mask, LT_PHY_CMN_CTL_0,
-+			 LT_PHY_CMN_MAC_TRANSMIT_LFPS,
-+			 LT_PHY_CMN_MAC_TRANSMIT_LFPS, MB_WRITE_COMMITTED);
-+
-+	intel_lt_phy_transaction_end(encoder, wakeref);
++	return switch_to_active;
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 16de39484779..1c3e9e200749 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -49,5 +49,7 @@ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      const struct intel_dpll_hw_state *dpll_hw_state);
- void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);
- void intel_lt_phy_verify_plls(struct intel_display *display);
-+void intel_lt_mac_transmit_lfps(struct intel_encoder *encoder,
-+				const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_LT_PHY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index ff6d7829dbb9..a48da8315413 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -35,6 +35,9 @@
- #define LT_PHY_TXY_CTL10_MAC(idx)	_MMIO(LT_PHY_TXY_CTL10(idx))
- #define  LT_PHY_TX_LANE_ENABLE		REG_BIT8(0)
- 
-+#define LT_PHY_CMN_CTL_0		(0x800)
-+#define  LT_PHY_CMN_MAC_TRANSMIT_LFPS	REG_BIT8(1)
 +
- /* LT Phy Vendor Register */
- #define LT_PHY_VDR_0_CONFIG	0xC02
- #define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
+ /*
+  * AUX-Less Wake Time = CEILING( ((PHY P2 to P0) + tLFPS_Period, Max+
+  * tSilence, Max+ tPHY Establishment + tCDS) / tline)
+@@ -292,7 +317,7 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	int aux_less_wake_time, aux_less_wake_lines, silence_period,
+-		lfps_half_cycle;
++		lfps_half_cycle, switch_to_active_lines;
+ 
+ 	aux_less_wake_time =
+ 		_lnl_compute_aux_less_wake_time(intel_dp, crtc_state);
+@@ -302,10 +327,14 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 
+ 	lfps_half_cycle = get_lfps_half_cycle_clocks(crtc_state);
+ 
++	switch_to_active_lines = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
++							  get_switch_to_active(crtc_state));
++
+ 	if (aux_less_wake_lines > get_aux_less_wake_lines_max(display) ||
+ 	    silence_period > PORT_ALPM_CTL_SILENCE_PERIOD_MASK ||
+ 	    lfps_half_cycle < 1 ||
+-	    lfps_half_cycle > PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK + 1)
++	    lfps_half_cycle > PORT_ALPM_LFPS_CTL_LAST_LFPS_HALF_CYCLE_DURATION_MASK + 1 ||
++	    switch_to_active_lines > REG_FIELD_MAX(ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY_MASK))
+ 		return false;
+ 
+ 	if (display->params.psr_safest_params)
+@@ -314,6 +343,7 @@ _lnl_compute_aux_less_alpm_params(struct intel_dp *intel_dp,
+ 	crtc_state->alpm_state.aux_less_wake_lines = aux_less_wake_lines;
+ 	crtc_state->alpm_state.silence_period_sym_clocks = silence_period;
+ 	crtc_state->alpm_state.lfps_half_cycle_num_of_syms = lfps_half_cycle;
++	crtc_state->alpm_state.switch_to_active = switch_to_active_lines;
+ 
+ 	return true;
+ }
+@@ -731,6 +761,7 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 		lttpr_count = 0;
+ 
+ 	alpm_ctl2 = ALPM_CTL2_NUMBER_OF_LTTPR(lttpr_count);
++	alpm_ctl2 |= ALPM_CTL2_SWITCH_TO_ACTIVE_LATENCY(crtc_state->alpm_state.switch_to_active);
+ 
+ 	intel_de_write(display, ALPM_CTL2(display, cpu_transcoder), alpm_ctl2);
+ 	intel_de_write(display, ALPM_CTL(display, cpu_transcoder), alpm_ctl);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d0748837ce97..82a63a2e7fa3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1469,6 +1469,7 @@ struct intel_crtc_state {
+ 		u8 aux_less_wake_lines;
+ 		u8 silence_period_sym_clocks;
+ 		u8 lfps_half_cycle_num_of_syms;
++		int switch_to_active;
+ 	} alpm_state;
+ 
+ 	/* to track changes in plane color blocks */
 -- 
 2.43.0
 
