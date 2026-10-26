@@ -2,64 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7ABD2606A32D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 09:54:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BAD606A325
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LV8PjW2z
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kLPO07Aq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 444C410ED5E;
-	Mon, 26 Oct 2026 09:54:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE00710ED5E
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 09:54:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793008481; x=1824544481;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=wk5FA3Z22Gi1C/TRqU8PkeWKMV460nFCwnS19fJJoLg=;
- b=LV8PjW2z1HjE/XoAFpYQ/y4oNfU9vHPLS8Hslg7jYLIRVcft3K/bMyjc
- KhJkLfsc1cvvrC4T8QWhHAZs78IPD3CQcavtbJOyLozNHv3fJLRgviqz7
- 1sE5MyKi8RN+rNaQVFYua36hywdhG/2bPqMuo9yiTtP5vp/sxZM8JH3V3
- cmx5jisOBknjrfa//lcB6aITgDP7Gpb3dKR6dnZ2SOsaLRuqnO9Cy8rFC
- ffA8ikwfw2DPaHQAqDaqz9Zb2D+Gim4RpYTygrFlrNmLt7/q/qPpjHunC
- iYt7rQBjb8zNb+wE/PYJxCdxD+7MG/sHZpCUTDu72Es4d6HGS5HY8HCaX w==;
-X-CSE-ConnectionGUID: wr4q0JKJT9OVZy6y57a7wA==
-X-CSE-MsgGUID: EPWXXvFsS4KYj8vhzKAgcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1554109"
-X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="1554109"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 02:54:41 -0700
-X-CSE-ConnectionGUID: dRtMayqgQTe4ON8pMkZqXA==
-X-CSE-MsgGUID: cqs7C52CQsmhlAYjnnpV2w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="4171388"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 02:54:38 -0700
-Date: Mon, 26 Oct 2026 10:54:35 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
- riana.tauro@intel.com, mallesh.koujalagi@intel.com,
- aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
- arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
- nitin.r.gote@intel.com
-Subject: Re: [PATCH v5 04/13] drm/xe/cper: Construct CPER record for hardware
- errors
-Message-ID: <at8jW32wxXRuSpzP@black.igk.intel.com>
-References: <20261023043422.681260-15-badal.nilawar@intel.com>
- <20261023043422.681260-19-badal.nilawar@intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9C4810E14C;
+	Mon, 26 Oct 2026 10:09:43 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E777610ED96
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 10:09:36 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id B91BA432D0;
+ Mon, 26 Oct 2026 10:09:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 813421F01280;
+ Mon, 26 Oct 2026 10:09:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793009376;
+ bh=gX6Gj2BJW/r/XB/MBTadEsRnGOmEB9k35lyC637POog=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=kLPO07Aq8vAwrWVB0U1oR/xb1Otu8FU+XD0jywgXPYT0Q14jsFp+Xfw9JnI3yblaJ
+ cBSYtRDn0aHDRvwdjikQOX3pDF29SCYOZ2hVj+mz6mn3sqoDvDE68abcj8tsB42UZN
+ hkQ6H+hxnKs34anSOmHRL3AN0zWAsEejHIq3myDNfBRSp/eqAbnNkcAnzEGYOLmSC4
+ 1KW7AtNhwAAr4JZY6Wpx56Pv3knynfXAXKYqqvoC3PWl79zq1ejlE0ygKYRbcaJ4ME
+ 1X7bQIQzs5WjloMYAi4BlR2C3UwXGQed741l0kBe86bENTlamR+PaNQTRHZqpu4NRE
+ LNCVIXu65u0Jg==
+Message-ID: <sashiko-outbox-184890@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 4/9] drm/xe/xe_hw_error: Handle non-fatal errors
+ routed via direct IRQ
+To: "Riana Tauro" <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261026060459.771448-15-riana.tauro@intel.com>
+References: <20261026060459.771448-11-riana.tauro@intel.com>
+ <20261026060459.771448-15-riana.tauro@intel.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261023043422.681260-19-badal.nilawar@intel.com>
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 26 Oct 2026 10:09:36 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,308 +47,203 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On Fri, Oct 23, 2026 at 10:04:26AM +0530, Badal Nilawar wrote:
-> Assemble the CPER record header, section descriptor and the Intel
-> error section for Intel GPU hardware errors.
-> 
-> Assisted-by: LLM
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
-> v5:
->  - Rebased
->  - Add helpers to initialize CPER headers (Raag)
-> v4:
->  - Split from "drm/xe/cper: Prepare CPER record" (Raag)
->  - Use xe->device_uid for FRU ID
->  - Add platform IDs for all CRI PCI device IDs
-> v2:
->  - Encode cper_record_header timestamp in BCD format (sashiko)
-> ---
->  drivers/gpu/drm/xe/xe_cper.c       | 139 +++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_cper_types.h |  53 +++++++++++
->  2 files changed, 192 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-> index 3d7657517223..012693fe48c4 100644
-> --- a/drivers/gpu/drm/xe/xe_cper.c
-> +++ b/drivers/gpu/drm/xe/xe_cper.c
-> @@ -3,10 +3,14 @@
->   * Copyright © 2026 Intel Corporation
->   */
->  
-> +#include <linux/bcd.h>
->  #include <linux/err.h>
->  #include <linux/kernel.h>
->  #include <linux/minmax.h>
->  #include <linux/pci.h>
-> +#include <linux/slab.h>
-> +#include <linux/time.h>
-> +#include <linux/timekeeping.h>
->  
->  #include "xe_cper.h"
->  #include "xe_cper_types.h"
-> @@ -25,6 +29,60 @@ static bool is_hw_sigid(enum xe_sigid sigid)
->  	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
->  }
->  
-> +static const struct xe_platform_id_entry xe_platform_ids[] = {
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] drm/xe: ignored recovery action in hw_error_work() and premature D=
+B_ECC wedge
+- [High] drm/xe: race between hw_error_work() and PCIe AER reset and remova=
+l paths
+--
 
-In xe terminology platform signifies the name, which is different from device
-id (which looks like the mapping is for). So this can be xe_device_guid_entry
-or something like that.
+commit 599d1ef3076a9398588bb132729ba7fcc7f8f463
+Author: Riana Tauro <riana.tauro@intel.com>
 
-> +	/* 0x674C  platform/8086:674c */
-> +	{ 0x674C, GUID_INIT(0x9046afe5, 0x9041, 0x5124,
-> +			    0x86, 0x14, 0x92, 0x55, 0x0d, 0x9e, 0x9d, 0xa6) },
-> +	/* 0x674D  platform/8086:674d */
-> +	{ 0x674D, GUID_INIT(0xf95911b8, 0x6564, 0x5905,
-> +			    0xa6, 0xa7, 0xb9, 0xbf, 0x54, 0xab, 0x6c, 0x27) },
-> +	/* 0x674E  platform/8086:674e */
-> +	{ 0x674E, GUID_INIT(0xb8d24106, 0x0108, 0x59f1,
-> +			    0x8f, 0xfc, 0x9f, 0xc4, 0xa9, 0xc9, 0xb7, 0xb0) },
-> +	/* 0x674F  platform/8086:674f */
-> +	{ 0x674F, GUID_INIT(0xdd8dd88e, 0xef2f, 0x59b1,
-> +			    0x99, 0x15, 0xdb, 0x6f, 0x1d, 0xc9, 0xb4, 0x5d) },
-> +	/* 0x6750  platform/8086:6750 */
-> +	{ 0x6750, GUID_INIT(0x1dd66c44, 0x87d5, 0x524a,
-> +			    0xad, 0x6e, 0xfc, 0x18, 0x9d, 0x42, 0x6f, 0x1a) },
-> +	/* 0x6751  platform/8086:6751 */
-> +	{ 0x6751, GUID_INIT(0x17d0dd04, 0x2fad, 0x5400,
-> +			    0x99, 0xc8, 0x9b, 0x45, 0x51, 0x3b, 0x67, 0xe3) },
+drm/xe/xe_hw_error: Handle non-fatal errors routed via direct IRQ
 
-I'd try to reuse INTEL_CRI_IDS() here instead of playing catch up on each update.
+This patch schedules hw_error_work() when non-fatal hardware errors are
+routed via direct IRQ on platforms with a system controller, invokes
+xe_ras_process_errors() from the worker, and declares the device wedged
+with a bus reset if double-bit ECC page offlining fails.
 
-> +};
-> +
-> +static const guid_t *lookup_platform_id(const struct pci_dev *pdev)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(xe_platform_ids); i++)
-> +		if (xe_platform_ids[i].device_id == pdev->device)
-> +			return &xe_platform_ids[i].platform_id;
-> +	return NULL;
-> +}
-> +
-> +static u64 cper_timestamp_now(void)
-> +{
-> +	struct tm tm;
-> +	u64 ts = 0;
-> +	u8 *p = (u8 *)&ts;
-> +	int year;
-> +
-> +	time64_to_tm(ktime_get_real_seconds(), 0, &tm);
-> +
-> +	year = tm.tm_year + 1900;
-> +
-> +	p[0] = bin2bcd(tm.tm_sec);
-> +	p[1] = bin2bcd(tm.tm_min);
-> +	p[2] = bin2bcd(tm.tm_hour);
-> +	p[3] = 0x1; /* precise time */
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_=
+error.c
+> index f7799c3c08aac..269ce6a19a80b 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
 
-From what I understand a precise timestamp is the time of the error event
-which needs to come from sysctrl firmware and not kernel, but please correct
-me if I'm wrong.
+[ ... ]
 
-> +	p[4] = bin2bcd(tm.tm_mday);
-> +	p[5] = bin2bcd(tm.tm_mon + 1);
-> +	p[6] = bin2bcd(year % 100);
-> +	p[7] = bin2bcd(year / 100);
+> @@ -166,12 +170,36 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_=
+err_reg) =3D=3D XE_RAS_REG_SIZE);
+
+[ ... ]
+
+>  static void hw_error_work(struct work_struct *work)
+>  {
+>  	struct xe_tile *tile =3D container_of(work, typeof(*tile), hw_error_wor=
+k.work);
+>  	struct xe_device *xe =3D tile_to_xe(tile);
+> =20
+>  	guard(xe_pm_runtime)(xe);
 > +
-> +	return ts;
-> +}
+> +	if (xe->info.has_sysctrl && XE_DEVICE_WA(xe, 14028434957)) {
+> +		/* If the device is in reset in AER path, skip processing hardware err=
+ors */
+> +		if (xe_device_is_in_reset(xe))
+> +			return;
+
+[Severity: High]
+Can hw_error_work() race with the PCIe AER reset and removal paths here?
+
+In hw_error_source_handler(), a non-fatal hardware error IRQ schedules
+tile->hw_error_work with a 1-second delay, and hw_error_work() checks
+xe_device_is_in_reset(xe) without synchronization before calling
+xe_ras_process_errors(xe).
+
+Although the later commit "drm/xe/xe_ras: Disable hw error worker when AER
+handling is in progress" calls xe_hw_error_work_disable(xe) in
+xe_pci_error_detected(), that call is gated on:
+
+    if (XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev))
+
+which only checks PCI_ERR_UNC_INTN on the upstream switch port, and is
+also skipped if xe_wedged(xe) is already true.
+
+When an AER event occurs without PCI_ERR_UNC_INTN set on the upstream
+switch port (such as a fatal link or protocol error with
+state =3D=3D pci_channel_io_frozen, or a non-fatal error where
+xe_pci_error_mmio_enabled() runs xe_ras_process_errors(xe) and triggers
+XE_RAS_RECOVERY_ACTION_RESET), xe_hw_error_work_disable(xe) is not called:
+
+1. In drivers/gpu/drm/xe/xe_pci_error.c:prepare_device_for_reset():
+
+    xe_device_set_in_reset(xe);
+
+    for_each_gt(gt, xe, id) {
+        xe_gt_wedge_declare(gt);
+        flush_work(&gt->wedge.worker);
+    }
+
+    pci_disable_device(pdev);
+
+If hw_error_work() passes the xe_device_is_in_reset(xe) check just before
+xe_device_set_in_reset(xe) is called, xe_ras_process_errors(xe) can run
+system controller MMIO mailbox transactions and TTM VRAM page offlining
+concurrently with pci_disable_device(pdev) and secondary bus reset.
+
+2. In drivers/gpu/drm/xe/xe_pci_error.c:xe_pci_error_slot_reset():
+
+    xe_device_clear_in_reset(xe);
+    pdev->driver->remove(pdev);
+    devres_release_group(&pdev->dev, xe->devres_group);
+
+Because xe_device_clear_in_reset(xe) clears xe->in_reset before
+pdev->driver->remove(pdev) and devres_release_group() run, if the delayed
+tile->hw_error_work fires in this window, xe_device_is_in_reset(xe) will
+return false and xe_ras_process_errors(xe) will execute concurrently with
+driver teardown.
+
+Should prepare_device_for_reset() also cancel or flush tile->hw_error_work,
+and should in_reset remain set across removal in xe_pci_error_slot_reset()?
+
 > +
->  static void cper_init_intel_hdr(struct xe_device *xe,
->  				const struct xe_ras_error_class *counter,
->  				u64 first_timestamp, u32 sig_id, u32 error_count,
-> @@ -58,6 +116,86 @@ static void cper_init_intel_hdr(struct xe_device *xe,
->  	/* TODO: fill fw_id and set XE_CPER_VALID_FW_ID */
->  }
->  
-> +static void cper_init_record_hdr(struct xe_device *xe, u8 severity,
-> +				 const guid_t *notification_type,
-> +				 struct cper_record_header *rhdr,
-> +				 u32 total_len)
-> +{
-> +	const guid_t *platform_id;
-> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> +
-> +	/* Assemble the CPER record header (UEFI Appendix N.2.1) */
-> +	memcpy(rhdr->signature, CPER_SIG_RECORD, CPER_SIG_SIZE);
-> +	rhdr->revision          = CPER_RECORD_REV;
-> +	rhdr->signature_end     = CPER_SIG_END;
-> +	rhdr->section_count     = 1;
-> +	rhdr->error_severity    = severity;
-> +	rhdr->validation_bits   = CPER_VALID_TIMESTAMP;
-> +	rhdr->record_length     = total_len;
-> +	rhdr->timestamp         = cper_timestamp_now();
-> +	rhdr->creator_id        = INTEL_CPER_CREATOR_XEKMD;
-> +	rhdr->notification_type = *notification_type;
-> +	rhdr->record_id         = cper_next_record_id();
-> +	platform_id = lookup_platform_id(pdev);
-> +	if (platform_id) {
-> +		rhdr->platform_id      = *platform_id;
-> +		rhdr->validation_bits |= CPER_VALID_PLATFORM_ID;
-> +	}
-> +}
-> +
-> +static void cper_init_section_desc(struct xe_device *xe, u8 severity,
-> +				   struct cper_section_descriptor *sdesc,
-> +				   u32 einfo_len)
-> +{
-> +	sdesc->section_offset   = sizeof(struct cper_record_header) +
-> +				  sizeof(struct cper_section_descriptor);
-> +	sdesc->section_length   = sizeof(struct xe_cper_intel_hdr) + einfo_len;
-> +	sdesc->revision         = CPER_SEC_REV;
-> +	sdesc->validation_bits  = 0;
-> +	sdesc->section_type     = INTEL_CPER_SECTION_ACCEL_GENERIC;
-> +	sdesc->section_severity = severity;
-> +	if (xe->info.has_device_uid) {
-> +		memcpy(&sdesc->fru_id, &xe->device_uid, sizeof(xe->device_uid));
-> +		sdesc->validation_bits |= CPER_SEC_VALID_FRU_ID;
-> +	}
-> +}
-> +
-> +static void cper_record_emit(struct xe_device *xe, u8 severity,
-> +			     const guid_t *notification_type,
-> +			     const struct xe_cper_intel_hdr *ihdr,
-> +			     const void *einfo, u32 einfo_len)
-> +{
-> +	struct cper_section_descriptor *sdesc;
-> +	struct cper_record_header *rhdr;
-> +	struct xe_cper_nonstd_record *rec;
-> +	u32 total_len;
-> +
-> +	total_len = sizeof(struct xe_cper_nonstd_record) + einfo_len;
-> +	rec = kzalloc(total_len, GFP_KERNEL);
-> +	if (!rec)
+> +		xe_ras_process_errors(xe);
 > +		return;
+> +	}
 > +
-> +	rhdr = &rec->record_hdr;
-> +	sdesc = &rec->section_desc;
-> +
-> +	/* Assemble the CPER record header (UEFI Appendix N.2.1) */
-> +	cper_init_record_hdr(xe, severity, notification_type, rhdr, total_len);
-> +
-> +	/* Assemble the section descriptor (UEFI Appendix N.2.2) */
-> +	cper_init_section_desc(xe, severity, sdesc, einfo_len);
-> +
-> +	/* Copy the Intel-specific section header */
-> +	rec->intel_hdr = *ihdr;
-> +
-> +	/* Append optional variable-length error info */
-> +	if (einfo && einfo_len)
-> +		memcpy((u8 *)rec + sizeof(*rec), einfo, einfo_len);
-> +
-> +	/* TODO: Emit trace event */
-> +
-> +	kfree(rec);
-> +}
-> +
->  static void cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
->  			      const struct xe_ras_error_class *counter,
->  			      const struct xe_ras_get_counter_response *response)
-> @@ -66,6 +204,7 @@ static void cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid
->  
->  	cper_init_intel_hdr(xe, counter, response->timestamp,
->  			    sigid, response->value, &ihdr);
-> +	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
+>  	xe_survivability_mode_runtime_enable(xe);
 >  }
->  
->  static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
-> index a8730ff62b69..e32c7d539257 100644
-> --- a/drivers/gpu/drm/xe/xe_cper_types.h
-> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
-> @@ -6,7 +6,9 @@
->  #ifndef _XE_CPER_TYPES_H_
->  #define _XE_CPER_TYPES_H_
->  
-> +#include <linux/cper.h>
->  #include <linux/types.h>
-> +#include <linux/uuid.h>
->  
->  #include "xe_ras_types.h"
->  
-> @@ -21,6 +23,28 @@
->  #define XE_CPER_VALID_PCI_BDF		0x0008
->  #define XE_CPER_VALID_DRV_VERSION	0x0010
->  
-> +/*
-> + * Intel CPER GUID Namespace — RFC 9562 UUIDv5 (SHA-1 name-based)
-> + *
-> + * All values below are generated deterministically by uuid generator.
-> + * Do not hand-edit the byte values.
-> + */
-> +
-> +/* Creator IDs */
-> +#define INTEL_CPER_CREATOR_XEKMD \
-> +	GUID_INIT(0x9a42070f, 0xdf9d, 0x555e, \
-> +		  0xba, 0x02, 0x7c, 0xbc, 0x86, 0x3d, 0x37, 0x1c)
-> +
-> +/* Notification Types */
-> +#define INTEL_CPER_NOTIFY_GPU_ERROR \
-> +	GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
-> +		  0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
-> +
-> +/* Section Types */
-> +#define INTEL_CPER_SECTION_ACCEL_GENERIC \
-> +	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
-> +		  0x80, 0x28, 0xb9, 0xb1, 0x3e, 0x6d, 0x58, 0xb0)
-> +
->  /**
->   * struct xe_cper_intel_hdr - Intel-specific CPER header
->   *
-> @@ -48,4 +72,33 @@ struct xe_cper_intel_hdr {
->  	u8 reserved[5];
->  } __packed;
->  
-> +/**
-> + * struct xe_cper_nonstd_record - Intel GPU CPER record
-> + *
-> + * Contains the standard CPER record header, section descriptor, and the
-> + * Intel error section header.
-> + */
-> +struct xe_cper_nonstd_record {
-> +	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
-> +	struct cper_record_header record_hdr;
-> +	/** @section_desc: CPER section descriptor */
-> +	struct cper_section_descriptor section_desc;
-> +	/** @intel_hdr: Intel-specific CPER header */
-> +	struct xe_cper_intel_hdr intel_hdr;
-> +} __packed;
-> +
-> +/**
-> + * struct xe_platform_id_entry - Mapping from PCI device ID to CPER platform GUID
 
-'xe_device_guid_entry'
+[ ... ]
 
-> + *
-> + * Used to resolve the platform_id field in a CPER section descriptor.
-> + * GUIDs are UUIDv5 (RFC 9562, SHA-1) derived from the Intel CPER namespace
-> + * with name string "platform/8086:<dev_id_hex_lower>".
-> + */
-> +struct xe_platform_id_entry {
-> +	/** @device_id: PCI device ID */
-> +	u16       device_id;
-> +	/** @platform_id: Corresponding UUIDv5 platform GUID */
-> +	guid_t    platform_id;
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index db3cbc186a514..e6a0ee468b17b 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -628,8 +628,15 @@ static u8 handle_device_memory_errors(struct xe_devi=
+ce *xe, struct xe_ras_error_
+>  		break;
+>  	case XE_RAS_MEMORY_DB_ECC:
+>  		ret =3D handle_page_offline(xe, info->sw_address, true);
+> -		if (ret)
+> +		/*
+> +		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
+> +		 * Wedge the device with a bus reset for errors that require SBR to re=
+cover.
+> +		 * TODO: Trigger SBR using pci_reset_bus
+> +		 */
+> +		if (ret) {
+> +			xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET);
+>  			return XE_RAS_RECOVERY_ACTION_RESET;
+> +		}
 
-'guid'
+[Severity: High]
+Should theDRM_WEDGE_RECOVERY_BUS_RESET wedging be performed by the caller
+based on the enum xe_ras_recovery_action return value of
+xe_ras_process_errors(xe) in hw_error_work(), rather than directly inside
+handle_device_memory_errors()?
 
-Raag
+Right now, hw_error_work() in drivers/gpu/drm/xe/xe_hw_error.c calls
+xe_ras_process_errors(xe) and ignores its return value. Any error processed
+on the direct IRQ path that returns XE_RAS_RECOVERY_ACTION_RESET outside of
+XE_RAS_MEMORY_DB_ECC (such as GLOBAL_UNCORR_ERROR in
+handle_core_compute_errors(), non-CSC/non-Punit errors in
+handle_soc_internal_errors(), other device memory error categories, unknown
+RAS components, or a sysctrl mailbox failure/flood jumping to err:) will
+not trigger any reset or wedge recovery action.
 
-> +};
-> +
->  #endif
-> -- 
-> 2.54.0
-> 
+Conversely, calling xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET)
+directly inside handle_device_memory_errors() affects all callers of
+xe_ras_process_errors(xe):
+
+1. Multi-error severity aggregation in xe_ras_process_errors():
+
+    /* Process and log all errors and then trigger highest recovery action =
+*/
+    if (action > final_action)
+        final_action =3D action;
+
+Because xe_wedge_declare() is one-shot via atomic_xchg(&xe->wedged.flag, 1),
+if a XE_RAS_MEMORY_DB_ECC entry with a failing handle_page_offline() is
+processed before a higher-severity XE_RAS_RECOVERY_ACTION_DISCONNECT entry
+in the batch (such as a Punit error requiring DRM_WEDGE_RECOVERY_COLD_RESET
+in punit_error_handler() or a CSC firmware error requiring
+DRM_WEDGE_RECOVERY_VENDOR in xe_survivability_mode_runtime_enable()),
+xe->wedged.method is latched to DRM_WEDGE_RECOVERY_BUS_RESET and the
+higher-severity recovery method is masked.
+
+2. Driver probe path via xe_device_probe() -> xe_ras_init() ->
+xe_ras_process_errors(xe):
+This runs before xe_gt_init() and drm_dev_register() to log boot-time
+errors. If a boot-time XE_RAS_MEMORY_DB_ECC error fails
+handle_page_offline() (for example with -EIO on a critical BO/stolen page,
+-ENOMEM, or -ENOSPC), handle_device_memory_errors() calls
+xe_wedge_declare(), scheduling drm_dev_wedged_event() before
+drm_dev_register() and setting xe->wedged.flag, which causes
+__guc_ct_send_locked() in xe_gt_init() to fail with -ENOTRECOVERABLE and
+aborts probe.
+
+3. PCIe AER path in xe_pci_error_mmio_enabled():
+In the AER path, XE_RAS_RECOVERY_ACTION_RESET is handled by
+ras_action_to_pci_result() -> prepare_device_for_reset(), which sets
+wedged.flag without sending a wedged uevent or setting needs_flr_on_fini
+because AER performs an automatic slot reset. Although the later commit
+"drm/xe/ras: Skip double-bit ECC page offlining on AER path" skips DB_ECC
+when ras->aer_path is set for WA 14028434957 internal errors, ras->aer_path
+remains false on non-internal AER errors and on platforms without
+WA 14028434957, where calling xe_wedge_declare() emits an unintended
+WEDGED=3Dbus-reset uevent and sets xe->needs_flr_on_fini =3D true.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261026060459.7714=
+48-11-riana.tauro@intel.com?part=3D4
