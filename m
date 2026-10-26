@@ -2,28 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2084F606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 07:05:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15EE606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 07:06:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ctLKGBLv
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2CB710E46B;
-	Mon, 26 Oct 2026 07:05:45 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5884410E2B7;
- Mon, 26 Oct 2026 07:05:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7529014461345320520=="
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Handle_non-fatal_errors_rou?=
- =?utf-8?q?ted_via_IRQ_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Oct 2026 07:05:45 -0000
-Message-ID: <179299834535.68147.5721595744675156856@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261026060459.771448-11-riana.tauro@intel.com>
-In-Reply-To: <20261026060459.771448-11-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A559810E2B7;
+	Mon, 26 Oct 2026 07:06:13 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D66F10E2B7;
+ Mon, 26 Oct 2026 07:06:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 2220C600CB;
+ Mon, 26 Oct 2026 07:06:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 999E41F01825;
+ Mon, 26 Oct 2026 07:06:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1792998360;
+ bh=hcIWQK7DO7s3dtiLs8FopN4oSCHtHx18SXESLQ4p0Qs=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=ctLKGBLv8OZf3YJdOxaZ2Ux/B6NHR0iCVdV82wGSRs9/AWdruIHnx7AwkScAEnLGx
+ iXPopvUivGSMvHcnjuvOAku8qItncmjcvdm8yHrXzno+QaMlsnRYjQMlpds5/6JTCN
+ zl7jOzOxg3Z2bBOnQBuGYDbRtyCwwAzOI25k40pRXaBEUbkernizH0S2E/SDyNqOMm
+ HQ8rznp8OTART3POLRAFf1aUEZka27UncEnpHVHOVfqusRA7XItvxLq4aUE0qTGykK
+ qAxqdIlbYUfh2u+tz7SMolwbCRHzYlgWqnfDRCepbNQk3nvN8kz2+GXqNLBU0lN1bt
+ BenzdxZ3j5WIA==
+Message-ID: <sashiko-outbox-184650@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 10/20] drm/i915/alpm: Half LFPS cycle calculation
+To: "Animesh Manna" <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+In-Reply-To: <20261026054001.799894-11-animesh.manna@intel.com>
+References: <20261026054001.799894-1-animesh.manna@intel.com>
+ <20261026054001.799894-11-animesh.manna@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 26 Oct 2026 07:06:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,114 +47,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---===============7529014461345320520==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+s) to consider:
+- [High] drm/i915/alpm: uninitialized variables in get_lfps_cycle_time()
+--
 
-== Series Details ==
+commit 5c47cf246b743bb16ee9903923cc22a473083617
+Author: Animesh Manna <animesh.manna@intel.com>
 
-Series: Handle non-fatal errors routed via IRQ (rev2)
-URL   : https://patchwork.freedesktop.org/series/173001/
-State : success
+drm/i915/alpm: Half LFPS cycle calculation
 
-== Summary ==
+This patch updates the LFPS cycle period minimum and maximum calculation for
+DP2.1 ALPM by splitting it into HAS_LT_PHY() and non-LT-PHY helpers that ch=
+eck
+whether the output type is eDP.
 
-CI Bug Log - changes from xe-6010-d56ff005f0d16ec136ee31fe3238eb447fefdc1a_BAT -> xe-pw-173001v2_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/=
+i915/display/intel_alpm.c
+> index 2bf2ca9564391..b6de938990ddb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
+> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+> @@ -81,24 +81,49 @@ static int get_silence_period_symbols(const struct in=
+tel_crtc_state *crtc_state)
+>  		1000 / 1000;
+>  }
+> =20
+> -static void get_lfps_cycle_min_max_time(const struct intel_crtc_state *c=
+rtc_state,
+> -					int *min, int *max)
+> +static void lnl_get_lfps_period_min_max_time(const struct intel_crtc_sta=
+te *crtc_state,
+> +					     int *min, int *max)
+>  {
+> -	if (crtc_state->port_clock < 540000) {
+> -		*min =3D 65 * LFPS_CYCLE_COUNT;
+> -		*max =3D 75 * LFPS_CYCLE_COUNT;
+> -	} else {
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+> +		if (crtc_state->port_clock < 540000) {
+> +			*min =3D 65 * LFPS_CYCLE_COUNT;
+> +			*max =3D 75 * LFPS_CYCLE_COUNT;
+> +		} else {
+> +			*min =3D 140;
+> +			*max =3D 800;
+> +		}
+> +	}
+> +}
+> +
+> +static void lt_get_lfps_period_min_max_time(const struct intel_crtc_stat=
+e *crtc_state,
+> +					    int *min, int *max)
+> +{
+> +	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+>  		*min =3D 140;
+>  		*max =3D 800;
+> +	} else {
+> +		*min =3D 320;
+> +		*max =3D 1600;
+>  	}
+>  }
+> =20
+> +static void get_lfps_period_min_max_time(const struct intel_crtc_state *=
+crtc_state,
+> +					int *min, int *max)
+> +{
+> +	struct intel_display *display =3D to_intel_display(crtc_state);
+> +
+> +	if (HAS_LT_PHY(display))
+> +		lt_get_lfps_period_min_max_time(crtc_state, min, max);
+> +	else
+> +		lnl_get_lfps_period_min_max_time(crtc_state, min, max);
+> +}
+> +
+>  static int get_lfps_cycle_time(const struct intel_crtc_state *crtc_state)
+>  {
+>  	int tlfps_cycle_min, tlfps_cycle_max;
+> =20
+> -	get_lfps_cycle_min_max_time(crtc_state, &tlfps_cycle_min,
+> -				    &tlfps_cycle_max);
+> +	get_lfps_period_min_max_time(crtc_state, &tlfps_cycle_min,
+> +				     &tlfps_cycle_max);
+> =20
+>  	return tlfps_cycle_min +  (tlfps_cycle_max - tlfps_cycle_min) / 2;
+>  }
 
-Summary
--------
+[Severity: High]
+Can tlfps_cycle_min and tlfps_cycle_max be used uninitialized in
+get_lfps_cycle_time()?
 
-  **SUCCESS**
+In get_lfps_cycle_time(), tlfps_cycle_min and tlfps_cycle_max are declared
+without initialization and passed to get_lfps_period_min_max_time(). When
+HAS_LT_PHY(display) is false, get_lfps_period_min_max_time() calls
+lnl_get_lfps_period_min_max_time(), which only assigns *min and *max when
+intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP) is true.
 
-  No regressions found.
+For non-eDP outputs on !HAS_LT_PHY(display) platforms, *min and *max are
+never written before get_lfps_cycle_time() computes:
 
-  
+	return tlfps_cycle_min +  (tlfps_cycle_max - tlfps_cycle_min) / 2;
 
-Participating hosts (15 -> 15)
-------------------------------
+In particular, get_establishment_period() calls get_lfps_cycle_time() when
+lttpr_count > 0, which only occurs in the !intel_crtc_has_type(crtc_state,
+INTEL_OUTPUT_EDP) branch:
 
-  No changes in participating hosts
+drivers/gpu/drm/i915/display/intel_alpm.c:get_establishment_period() {
+	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+		num_ml_phy_lock =3D 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
+	} else {
+		num_ml_phy_lock =3D 7;
 
+		lttpr_count =3D drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+		...
+	}
+	...
+	if (lttpr_count > 0) {
+		/* tlw and tcs values are taken from DP2.1 spec */
+		int tlw =3D 13000;
+		int tcs =3D 10000;
+		int tlfps_period =3D get_lfps_cycle_time(crtc_state);
+		...
+	}
+}
 
-Changes
--------
+Would this leave tlfps_cycle_min and tlfps_cycle_max uninitialized at
+runtime for non-eDP DP outputs and trigger -Wmaybe-uninitialized or
+-Wsometimes-uninitialized warnings during the build?
 
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9163 -> IGT_9164
-  * Linux: xe-6010-d56ff005f0d16ec136ee31fe3238eb447fefdc1a -> xe-pw-173001v2
-
-  IGT_9163: 9163
-  IGT_9164: 9164
-  xe-6010-d56ff005f0d16ec136ee31fe3238eb447fefdc1a: d56ff005f0d16ec136ee31fe3238eb447fefdc1a
-  xe-pw-173001v2: 173001v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173001v2/index.html
-
---===============7529014461345320520==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Handle non-fatal errors routed via IRQ (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173001/">https://patchwork.freedesktop.org/series/173001/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173001v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173001v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6010-d56ff005f0d16ec136ee31fe3238eb447fefdc1a_BAT -&gt; xe-pw-173001v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9163 -&gt; IGT_9164</li>
-<li>Linux: xe-6010-d56ff005f0d16ec136ee31fe3238eb447fefdc1a -&gt; xe-pw-173001v2</li>
-</ul>
-<p>IGT_9163: 9163<br />
-  IGT_9164: 9164<br />
-  xe-6010-d56ff005f0d16ec136ee31fe3238eb447fefdc1a: d56ff005f0d16ec136ee31fe3238eb447fefdc1a<br />
-  xe-pw-173001v2: 173001v2</p>
-
-</body>
-</html>
-
---===============7529014461345320520==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261026054001.7998=
+94-1-animesh.manna@intel.com?part=3D10
