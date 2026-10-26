@@ -2,67 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BADC0606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 18:10:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A563606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 18:26:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=grjTp60C
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OGTEDOs/
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79A2610E310;
-	Mon, 26 Oct 2026 18:10:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C984810E34B
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 18:10:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E28C910E394;
+	Mon, 26 Oct 2026 18:26:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AF4E10E394
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 18:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793038217; x=1824574217;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=fRWpN1N9d4Z8H5PkgUJ7/SVWXWlFaO9kdiLnm5ijmGk=;
- b=grjTp60CWOIcMXl0+6OSXPL71UOSVIOHcLlMa9B82Xru7pcb7W2rttSR
- 0ta8bV/jEZfAWRUVlEgrAMM5dsn353HdtlfeeoDU8EECCkU6ag+0K8/SY
- tacjmdDgfkHaRcpNBre02hW0n7q1gb0VWjyCCk+qc8GY5H/hGjFCD5k9r
- 80U2DsuqYHDPYXFMT1vyiqN+8V97+kbrZ1dKWD9ckaoePSm/IEhvobKIe
- VwtfIKOrA9PM2k7g9BD7JhKHhCS8K9xD0bYZxUPkGboHe68w4qHxIGIR6
- xS4jSqhMvFXVZ7aUQ0CnHW5l+YnLKsvwpDjPWEyDIhzQpS6m1/xHCGlgj w==;
-X-CSE-ConnectionGUID: 4B/275HjSoOQUMxvdwPDFQ==
-X-CSE-MsgGUID: 2d8j4HPbSnKKMIOnpH1wwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1593765"
+ t=1793039158; x=1824575158;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=40GzrUHnByR17Y8qj9LCcdq5zL9yDLKTsHDERmZsq/o=;
+ b=OGTEDOs/1errx4KnBvyS/U0fv49xKXLjQKcrENcx5bbdE+V8ydcOPec9
+ 71K7uwJMkrKKiQnbxN4L4zhZo8fMuAfuWNydUiEiw4QVDeANEPkhD6lq2
+ rFzs/vL/BNXdKerj82kb9K6YgxYKGV7FrRg1+NDD7b3u2dIVMYYaZtkJ/
+ L/W8k3IbJaIOPXDeVut6pHoKqCgvxcx4Z17MqMSr/3JZa554GKkT0czac
+ srqKG63Q78l0x/FABZdjDmW1ET31carxFRuBBSMf74ejFNzbz9cXj5qjs
+ ybDuFyaOMm6nqd68GUUK2O9BcmWwH+BFIzjNvVFbvZxVVJzyKadrNUXoZ w==;
+X-CSE-ConnectionGUID: Q1+qhiJ1RcyxpD1NTHgt7w==
+X-CSE-MsgGUID: s31clMpbS5yp2XOWQlS/dg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1733682"
 X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="1593765"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 11:10:17 -0700
-X-CSE-ConnectionGUID: 0o3KfLSGTkWZvyc45lDEsg==
-X-CSE-MsgGUID: W1de4D3xSAenaqjK1RsS3Q==
+   d="scan'208";a="1733682"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2026 11:25:57 -0700
+X-CSE-ConnectionGUID: 5t+/fKUcQZSihZr1zRl6/w==
+X-CSE-MsgGUID: R4isxIKCQPCN1rD5ZoD8+A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="4727659"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.93])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 11:10:14 -0700
-Date: Mon, 26 Oct 2026 20:10:12 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Cc: "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- "Kumar G, Naresh" <naresh.kumar.g@intel.com>,
- intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- Bartosz Golaszewski <bartosz.golaszewski@oss.qualcomm.com>,
- Danilo Krummrich <dakr@kernel.org>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Subject: Re: [PATCH] drm/xe/i2c: Fix use-after-free on driver unload
-Message-ID: <at-XhFGST5C3lFTu@ashevche-desk.local>
-References: <20261009164241.923756-2-balasubramani.vivekanandan@intel.com>
- <7939f69c-bc63-4465-a578-8024e20c4eb8@intel.com>
- <aszdvyOY5zkyFTU1@bvivekan-mobl1>
- <at8_996Aarbq0_TO@black.igk.intel.com>
+   d="scan'208";a="4366734"
+Received: from jesusnar-vm-u24.iil.labsad.intel.com ([10.111.58.210])
+ by fmviesa004.fm.intel.com with ESMTP; 26 Oct 2026 11:25:55 -0700
+From: Jesus Narvaez <jesus.narvaez@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Jesus Narvaez <jesus.narvaez@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Alan Previn <alan.previn.teres.alexis@intel.com>
+Subject: [PATCH v2] drm/xe/guc: Handle GuC semaphore instruction field check
+ error
+Date: Mon, 26 Oct 2026 20:25:13 +0200
+Message-ID: <20261026182513.1329781-2-jesus.narvaez@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <at8_996Aarbq0_TO@black.igk.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,232 +62,207 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Oct 26, 2026 at 12:56:39PM +0100, Heikki Krogerus wrote:
-> +Andy
-> 
-> On Mon, Oct 12, 2026 at 06:46:47PM +0530, Vivekanandan, Balasubramani wrote:
-> > On 12.10.2026 17:16, Kumar G, Naresh wrote:
-> > > 
-> > > I was investigating this issue earlier in sometime and found the root cause
-> > > in software _node_notify_remove().
-> > > 
-> > > It is a kind of ownership bug in driver/base/swnode.c
-> > > sofware_node_notify_remove(). when a manged swnode is mirrored onto a
-> > > 
-> > > second device(which is exactly what i2c-core does for the adapter's own
-> > > struct device), the old code does an extra
-> > > set_secondary_fwnode()/swnode_put()
-> > > 
-> > > for every device that tears down, not just the true owner. this is a
-> > > double-release/UAF risk. The following fix solves the issue without changing
-> > > i2c adapter registration flow.
-> > > 
-> > > The following code patch is suggested/provided to @heikki: waiting for his
-> > > inputs on the same.
-> > > 
-> > > Fixes: 151f6ff78cdf ("software node: Provide replacement for device_add_properties()")
-> > > Assisted-by: GitHub_Copilot:claude-sonnet-5
-> > > Signed-off-by: Nareshkumar Gollakoti<naresh.kumar.g@intel.com>
-> > > ---
-> > >  drivers/base/swnode.c | 18 +++++++++++++++---
-> > >  1 file changed, 15 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
-> > > index 84a77ffa3dc4..2efcf12b4c21 100644
-> > > --- a/drivers/base/swnode.c
-> > > +++ b/drivers/base/swnode.c
-> > > @@ -1190,6 +1190,7 @@ void software_node_notify(struct device *dev)
-> > >  void software_node_notify_remove(struct device *dev)
-> > >  {
-> > >  	struct swnode *swnode;
-> > > +	bool owns_managed_fwnode;
-> > >  	swnode = dev_to_swnode(dev);
-> > >  	if (!swnode)
-> > > @@ -1198,6 +1199,16 @@ void software_node_notify_remove(struct device *dev)
-> > >  	sysfs_remove_link(&swnode->kobj, dev_name(dev));
-> > >  	sysfs_remove_link(&dev->kobj, "software_node");
-> > > +	/*
-> > > +	 * A managed node can end up mirrored onto more than one device (e.g.
-> > > +	 * a bus core copying the fwnode onto a child device, as i2c-core does
-> > > +	 * for an adapter's own struct device). Only the device that actually
-> > > +	 * owns the fwnode releases the creation reference and detaches it;
-> > > +	 * every other device only releases the reference software_node_notify()
-> > > +	 * took for it.
-> > > +	 */
-> > > +	owns_managed_fwnode = swnode->managed && swnode->fwnode.dev == dev;
-> > > +
-> > >  	/*
-> > >  	 * Drop the device pointer mirrored onto a secondary software node in
-> > >  	 * software_node_notify(). For a primary software node the core owns
-> > > @@ -1206,12 +1217,13 @@ void software_node_notify_remove(struct device *dev)
-> > >  	if (!device_match_fwnode(dev, &swnode->fwnode) && swnode->fwnode.dev == dev)
-> > >  		swnode->fwnode.dev = NULL;
-> > > +	if (owns_managed_fwnode)
-> > > +		set_secondary_fwnode(dev, NULL);
-> > > +
-> > >  	swnode_put(swnode);
-> > > -	if (swnode->managed) {
-> > > -		set_secondary_fwnode(dev, NULL);
-> > > +	if (owns_managed_fwnode)
-> > >  		swnode_put(swnode);
-> > > -	}
-> > >  }
-> > > 
-> > > Given that,
-> > > 
-> > > Is this rework still needed once the core fix landed?
-> > 
-> > We don't need this patch if the limitation in sharing the managed
-> > software nodes is fixed.
-> 
-> The below patch actually looks more correct to me compared to the
-> swnode patch above.
-> 
-> Andy, I'm sorry to bother you with this, but can you take a look.
+Starting on NVL-P and newer platforms which support 64 bit semaphores,
+opt in to enable GuC to check the semaphore instruction field when it
+receives it from HW.
 
-Bart is in Cc and I believe he recently proposed some fixes against driver
-core, but I can't say now how relevant they are (at least all keywords sounds
-very similar).
+The 64 bit semaphore instruction includes a field that is passed through
+the CSB to the GuC. The GuC then checks for any invalid values in this
+field and sends a G2H message back if the check failed, so add a
+handler to deal with the context that has been marked as unrunnable.
 
-https://lore.kernel.org/lkml/20261023-swnode-dev-notify-balance-v2-0-948d920a79f6@oss.qualcomm.com/
+Rejecting the unsupported values now means later on, if the values are
+used for something else like sending hints about semaphore behavior,
+there won't be any conflicts due to the change in behavior.
 
-Ca you give a try and see if it resolves your issue?
+v2:
+- Updated commit message to explain why GuC checks the instruction field
+  (Daniele)
+- Use "instruction field" in comments, but kept KLV name to match GuC
+  specs (Daniele)
+- Removed LRCA variable and print out in handler (Daniele)
 
-> > > On 10/9/2026 10:12 PM, Balasubramani Vivekanandan wrote:
-> > > > The kernel crashes when unloading the xe driver on CRI:
-> > > > 
-> > > >   Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b73
-> > > >   RIP: 0010:platform_device_release+0x80/0x90
-> > > >   Call Trace:
-> > > >    device_release+0x44/0xa0
-> > > >    kobject_put+0x9b/0x250
-> > > >    put_device+0x13/0x30
-> > > >    platform_device_unregister+0x29/0x40
-> > > >    xe_i2c_remove+0x80/0xa0 [xe]
-> > > >    devm_action_release+0x16/0x30
-> > > >    release_nodes+0x3d/0x140
-> > > >    devres_release_all+0x96/0xd0
-> > > > 
-> > > > This started after commit 0f485f88656af ("drm/xe/i2c: use
-> > > > device_create_managed_software_node()"), which attaches a managed
-> > > > software node to a platform device created with platform_device_alloc().
-> > > > 
-> > > > Comment above the device_create_managed_software_node function cautions
-> > > > that the software node created by it should not be shared or reused as
-> > > > the lifetime of the node is linked to the device.
-> > > > 
-> > > > But the DesignWare i2c driver which creates an adapter device as a child
-> > > > of the platform device reuses the software node as its fwnode.
-> > > > (device_set_node() in i2c_dw_probe()).
-> > > > 
-> > > > During module unbind, when the adapter device is deleted, it drops the
-> > > > reference count for the software node and frees the software node.
-> > > > Later when the platform device is removed, it tries to dereference the
-> > > > software node pointer and results in use-after-free.
-> > > > 
-> > > > Instead of managed software node use a static struct software_node
-> > > > passed through platform_device_info.swnode to
-> > > > platform_device_register_full().
-> > > > But we have a blocker which doesn't allow to use
-> > > > platform_device_register_full() simply.
-> > > > 
-> > > > Currently the driver is using the two step alloc/add sequence while
-> > > > creating the platform device so that i2c->pdev is set before
-> > > > platform_device_add(), because xe_i2c_notifier() needs i2c->dev and it
-> > > > can run before platform_device_register_full() returns.
-> > > > 
-> > > > We can fix it by removing the dependency on i2c->dev in
-> > > > xe_i2c_notifier(). It is using it to match against the right adapter.
-> > > > Instead of using the device, use its parent to match.
-> > > > 
-> > > > Fixes: 0f485f88656af ("drm/xe/i2c: use device_create_managed_software_node()")
-> > > > Cc: Bartosz Golaszewski<bartosz.golaszewski@oss.qualcomm.com>
-> > > > Cc: Danilo Krummrich<dakr@kernel.org>
-> > > > Cc: Heikki Krogerus<heikki.krogerus@linux.intel.com>
-> > > > Signed-off-by: Balasubramani Vivekanandan<balasubramani.vivekanandan@intel.com>
-> > > > ---
-> > > >   drivers/gpu/drm/xe/xe_i2c.c | 45 +++++++++++++------------------------
-> > > >   1 file changed, 15 insertions(+), 30 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-> > > > index b82caaff80d7b..c54a2375f07ef 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_i2c.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_i2c.c
-> > > > @@ -55,6 +55,10 @@ static const struct property_entry xe_i2c_adapter_properties[] = {
-> > > >   	{ }
-> > > >   };
-> > > > +static const struct software_node xe_i2c_adapter_node = {
-> > > > +	.properties = xe_i2c_adapter_properties,
-> > > > +};
-> > > > +
-> > > >   static inline void xe_i2c_read_endpoint(struct xe_mmio *mmio, void *ep)
-> > > >   {
-> > > >   	u32 *val = ep;
-> > > > @@ -98,7 +102,7 @@ static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void
-> > > >   	struct device *dev = data;
-> > > >   	if (action == BUS_NOTIFY_ADD_DEVICE &&
-> > > > -	    adapter && dev->parent == &i2c->pdev->dev) {
-> > > > +	    adapter && dev->parent && dev->parent->parent == i2c->drm_dev) {
-> > > >   		i2c->adapter = adapter;
-> > > >   		schedule_work(&i2c->work);
-> > > >   		return NOTIFY_OK;
-> > > > @@ -110,41 +114,22 @@ static int xe_i2c_notifier(struct notifier_block *nb, unsigned long action, void
-> > > >   static int xe_i2c_register_adapter(struct xe_i2c *i2c)
-> > > >   {
-> > > >   	struct pci_dev *pci = to_pci_dev(i2c->drm_dev);
-> > > > +	struct platform_device_info info = {
-> > > > +		.parent = i2c->drm_dev,
-> > > > +		.name = adapter_name,
-> > > > +		.swnode = &xe_i2c_adapter_node,
-> > > > +	};
-> > > >   	struct platform_device *pdev;
-> > > > -	int ret;
-> > > > -	u32 id;
-> > > > -
-> > > > -	id = (pci_domain_nr(pci->bus) << 16) | pci_dev_id(pci);
-> > > > -
-> > > > -	/*
-> > > > -	 * Not using platform_device_register_full() here because we don't have
-> > > > -	 * a handle to the platform_device before it returns. xe_i2c_notifier()
-> > > > -	 * uses that handle, but it may be called before
-> > > > -	 * platform_device_register_full() is done.
-> > > > -	 */
-> > > > -	pdev = platform_device_alloc(adapter_name, id);
-> > > > -	if (!pdev)
-> > > > -		return -ENOMEM;
-> > > > -	ret = device_create_managed_software_node(&pdev->dev,
-> > > > -						  xe_i2c_adapter_properties,
-> > > > -						  NULL);
-> > > > -	if (ret)
-> > > > -		goto err_pdev_put;
-> > > > +	info.id = (pci_domain_nr(pci->bus) << 16) | pci_dev_id(pci);
-> > > > -	pdev->dev.parent = i2c->drm_dev;
-> > > > -	i2c->pdev = pdev;
-> > > > +	pdev = platform_device_register_full(&info);
-> > > > +	if (IS_ERR(pdev))
-> > > > +		return PTR_ERR(pdev);
-> > > > -	ret = platform_device_add(pdev);
-> > > > -	if (ret)
-> > > > -		goto err_pdev_put;
-> > > > +	i2c->pdev = pdev;
-> > > >   	return 0;
-> > > > -
-> > > > -err_pdev_put:
-> > > > -	platform_device_put(pdev);
-> > > > -
-> > > > -	return ret;
-> > > >   }
-> > > >   static void xe_i2c_unregister_adapter(struct xe_i2c *i2c)
+Signed-off-by: Jesus Narvaez <jesus.narvaez@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  1 +
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  9 +++++
+ drivers/gpu/drm/xe/xe_guc.c              | 10 ++++++
+ drivers/gpu/drm/xe/xe_guc_ct.c           |  4 +++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 46 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h       |  2 ++
+ drivers/gpu/drm/xe/xe_trace.h            |  5 +++
+ 7 files changed, 77 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index f5c9b37038d4..520b771906cd 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -143,6 +143,7 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_MULTI_QUEUE_CONTEXT_CGP_SYNC = 0x4603,
+ 	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CONTEXT_CGP_SYNC_DONE = 0x4604,
+ 	XE_GUC_ACTION_NOTIFY_MULTI_QUEUE_CGP_CONTEXT_ERROR = 0x4605,
++	XE_GUC_ACTION_NOTIFY_CONTEXT_INVALID_SEMAPHORE_INSTRUCTION_FIELD = 0x460B,
+ 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
+ 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
+ 	XE_GUC_ACTION_SET_DEVICE_ENGINE_ACTIVITY_BUFFER = 0x550C,
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 4bcdc1a96785..dd34d61ebf3a 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -169,6 +169,12 @@ enum  {
+  *      This flag will enable notification from GuC to KMD via G2H message
+  *      GUC_ACTION_GUC2HOST_NOTIFY_UNCORRECTABLE_LOCAL_ERROR upon receiving the
+  *      same interrupt from the CS.
++ *
++ * _`GUC_KLV_OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK` : 0x400A
++ *      This flag will enable the GuC to check the semaphore instruction field
++ *      when GuC receives it from HW. If the check fails the GuC removes the
++ *      context, marks it as not runnable and notifies the driver via G2H
++ *      message GUC_ACTION_GUC2HOST_CONTEXT_INVALID_SEMAPHORE_INSTRUCTION_FIELD.
+  */
+ 
+ #define GUC_KLV_OPT_IN_FEATURE_EXT_CAT_ERR_TYPE_KEY 0x4001
+@@ -180,6 +186,9 @@ enum  {
+ #define GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION_KEY 0x4004
+ #define GUC_KLV_OPT_IN_FEATURE_UNCORRECTABLE_LOCAL_ERROR_NOTIFICATION_LEN 0u
+ 
++#define GUC_KLV_OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK_KEY 0x400A
++#define GUC_KLV_OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK_LEN 0u
++
+ /**
+  * DOC: GuC Scheduling Policies KLVs
+  *
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index b1f4e132fa0c..c96c02fc924a 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -663,6 +663,16 @@ int xe_guc_opt_in_features_enable(struct xe_guc *guc)
+ 	if (supports_dynamic_ics(guc))
+ 		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_DYNAMIC_INHIBIT_CONTEXT_SWITCH);
+ 
++	/*
++	 * 64 bit semaphore instruction field check support was added in GuC
++	 * v70.64.0, which maps to compatibility version v1.33.0.
++	 * Support starts with platforms that have 64 bit semaphores, which
++	 * is NVL-P and newer.
++	 */
++	if ((GUC_SUBMIT_VER(guc) >= MAKE_GUC_VER(1, 33, 0)) &&
++	    xe->info.platform >= XE_NOVALAKE_P)
++		klvs[count++] = PREP_GUC_KLV_TAG(OPT_IN_FEATURE_SEMAPHORE_INSTRUCTION_FIELDS_CHECK);
++
+ 	if (count) {
+ 		xe_assert(xe, count <= OPT_IN_MAX_DWORDS);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index d42f0133c1eb..27afe95c4ce7 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -1909,6 +1909,10 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 		ret = xe_guc_exec_queue_cgp_context_error_handler(guc, payload,
+ 								  adj_len);
+ 		break;
++	case XE_GUC_ACTION_NOTIFY_CONTEXT_INVALID_SEMAPHORE_INSTRUCTION_FIELD:
++		ret = xe_guc_context_invalid_semaphore_instruction_field_handler(guc, payload,
++										 adj_len);
++		break;
+ 	default:
+ 		xe_gt_err(gt, "unexpected G2H action 0x%04x\n", action);
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 7e2ce1a79a75..179ad7287ffd 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3723,6 +3723,52 @@ int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 le
+ 	return 0;
+ }
+ 
++/**
++ * xe_guc_context_invalid_semaphore_instruction_field_handler - Invalid semaphore field handler
++ * @guc: guc
++ * @msg: message indicating which context failed the field check
++ * @len: length of message
++ *
++ * The GuC has detected an unsupported SW Token Info value in a 64 bit semaphore
++ * instruction and has already removed the offending context and marked it as
++ * not runnable, so trigger reset-cleanup on the queue to match the state GuC
++ * already applied.
++ *
++ * Return: 0 on success, -EPROTO for malformed messages.
++ */
++int xe_guc_context_invalid_semaphore_instruction_field_handler(struct xe_guc *guc,
++							       u32 *msg, u32 len)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	struct xe_exec_queue *q;
++	u32 guc_id, type;
++	u64 token, data;
++
++	if (unlikely(len != 8))
++		return -EPROTO;
++
++	guc_id = msg[0];
++
++	token = (u64)msg[4] << 32 | msg[3];
++	type  = msg[5];
++	data  = (u64)msg[7] << 32 | msg[6];
++
++	q = g2h_exec_queue_lookup(guc, guc_id);
++	if (unlikely(!q))
++		return -EPROTO;
++
++	xe_gt_info(gt,
++		   "GuC: invalid semaphore instruction field! guc_id=%d, type=%u, token=0x%llx, data=0x%llx",
++		   guc_id, type, token, data);
++
++	trace_xe_guc_invalid_semaphore_instruction_field(q);
++
++	/* Treat the same as engine reset */
++	xe_guc_exec_queue_reset_trigger_cleanup(q);
++
++	return 0;
++}
++
+ static void
+ guc_exec_queue_wq_snapshot_capture(struct xe_exec_queue *q,
+ 				   struct xe_guc_submit_exec_queue_snapshot *snapshot)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index 7a81d0aa19bb..3eef8784a1a5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -41,6 +41,8 @@ int xe_guc_error_capture_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_cgp_sync_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
+ int xe_guc_exec_queue_cgp_context_error_handler(struct xe_guc *guc, u32 *msg,
+ 						u32 len);
++int xe_guc_context_invalid_semaphore_instruction_field_handler(struct xe_guc *guc,
++							       u32 *msg, u32 len);
+ 
+ struct xe_guc_submit_exec_queue_snapshot *
+ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q);
+diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
+index d4e9d91f6f7f..e52054eccc8d 100644
+--- a/drivers/gpu/drm/xe/xe_trace.h
++++ b/drivers/gpu/drm/xe/xe_trace.h
+@@ -223,6 +223,11 @@ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_cgp_context_error,
+ 	     TP_ARGS(q)
+ );
+ 
++DEFINE_EVENT(xe_exec_queue, xe_guc_invalid_semaphore_instruction_field,
++	     TP_PROTO(struct xe_exec_queue *q),
++	     TP_ARGS(q)
++);
++
+ DEFINE_EVENT(xe_exec_queue, xe_exec_queue_stop,
+ 	     TP_PROTO(struct xe_exec_queue *q),
+ 	     TP_ARGS(q)
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
