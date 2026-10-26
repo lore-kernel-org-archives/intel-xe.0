@@ -2,43 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCC9606A31B
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:19:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85C40606A324
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bxALa8B4
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TCrIU93w
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B544610EDA7;
-	Mon, 26 Oct 2026 10:19:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E05610EDC5;
+	Mon, 26 Oct 2026 10:26:16 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 025C810EDA7;
- Mon, 26 Oct 2026 10:19:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB18010EDBA;
+ Mon, 26 Oct 2026 10:26:10 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 9EA6D43601;
- Mon, 26 Oct 2026 10:19:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CA511F01825;
- Mon, 26 Oct 2026 10:19:44 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6DECF43BAC;
+ Mon, 26 Oct 2026 10:26:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CF781F01828;
+ Mon, 26 Oct 2026 10:26:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793009984;
- bh=oZXuIZB1OfhO4xVP5brrsRIQTt0HNBTRDxCMpd4Ya+0=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bxALa8B4ZO5meVz12zCEO9mqK14UuDMBCHbc2hnnvUx8uBeXNJOfC1cB3wVjOqIHN
- O7mYSV9vWZQlvjwiYxRZDY5z8Rvn6PK9KgWIUl45pGsnqu/TxBn4FgFJeJKXWlJLAk
- p/aEQV+3hds9addlOI+IA2UeofSmTZmqjIU2UxhOVHbc8h/d8JXUMwmAaC1p3XNDMN
- ciqTCZntYi51/oHCxXF5NWO12gZuWufu6kP8I2X+4yv3ZjmBRcB4Tczv2EUv7CzDvs
- sskZy6Mrn4GyitFTIt4N54kSDeHObbxqndU9Ula1QPG3npvY3dX2USMZqqBRUju36A
- KKbrVxeWp6bPg==
-Message-ID: <sashiko-outbox-184924@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 25/26] dma-buf: Add kunit tests for mapping type
-To: "Alistair Popple" <apopple@nvidia.com>, dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- media-ci@linuxtv.org
-In-Reply-To: <20261026053623.202642-26-apopple@nvidia.com>
-References: <20261026053623.202642-1-apopple@nvidia.com>
- <20261026053623.202642-26-apopple@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 26 Oct 2026 10:19:43 +0000
+ s=k20260515; t=1793010370;
+ bh=Y6oRwARljAebElUKFvK8H3t3ANwhHxuF/Ppq0WMLrq8=;
+ h=From:To:Cc:Subject:Date;
+ b=TCrIU93w9IHx64zbHME5wnCOja5h5+idy8mXAZzOIJn62yXZ5CiDq4JKjUxL9oeoV
+ svklRgsVSTOk6cwdO3SCpHUUUsyLy6XbUXAq1e3GXOgrzpQbyUi6/nryC0XHKSYPDT
+ xuFeQYaHtFksLzQicEe6FVWCOV7zDcaJ8MYpq/m3Wdhp4JxW6d0VkpgWQLqX6gbkYJ
+ Vqs4kGvZVOYuSIp42uXgSEf8j71pmmpU3kkFmaSaihvBYQnBnokduJTty788sN3ueU
+ FYXlFevbdSUl0FlGtHdOpuXtBUK/3KTK7ZQQFFf0n64JGXQ+bc8i77vfqZLM6KqS3O
+ AKfe8307sq18w==
+From: Arnd Bergmann <arnd@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <demarchi@kernel.org>, Riana Tauro <riana.tauro@intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Matthew Auld <matthew.auld@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>, Armin Wolf <W_Armin@gmx.de>,
+ Zhanjun Dong <zhanjun.dong@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm: xe: select configfs
+Date: Mon, 26 Oct 2026 11:25:50 +0100
+Message-ID: <20261026102603.2045493-1-arnd@kernel.org>
+X-Mailer: git-send-email 2.53.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,104 +56,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] dma-buf: kunit: test_match_fail() overwrites args before type mi=
-smatch check
---
+From: Arnd Bergmann <arnd@arndb.de>
 
-commit 4b902f505b8acdddc13e192c921c70bcac60644c
-Author: Jason Gunthorpe <jgg@ziepe.ca>
+The original addition of configfs to xe missed a compile-time dependency,
+which leads to a link failure when configfs is enabled as a loadable module:
 
-dma-buf: Add kunit tests for mapping type
+ld.lld-21: error: undefined symbol: xe_configfs_get_survivability_mode
+>>> referenced by xe_survivability_mode.c:224
+>>>               drivers/gpu/drm/xe/xe_survivability_mode.o:(xe_survivability_mode_is_requested) in archive vmlinux.a
 
-This commit adds KUnit tests in drivers/dma-buf/st-dma-mapping.c to test
-dma_buf_match_mapping() matching and priority rules as well as SGT and
-dynamic attachment flows.
+A recent workaround added a 'IS_REACHABLE()' check around the calls into
+configfs, which makes it link in this configuration, but this is generally
+a bad idea because it makes the actual behavior inconsistent and confusing
+to users that expect configfs to work if both xe and configfs are enabled.
 
-> diff --git a/drivers/dma-buf/st-dma-mapping.c b/drivers/dma-buf/st-dma-ma=
-pping.c
-> new file mode 100644
-> index 0000000000000..9d0f1e389e15e
-> --- /dev/null
-> +++ b/drivers/dma-buf/st-dma-mapping.c
-> @@ -0,0 +1,385 @@
+Use 'select CONFIGFS_FS' instead, like every other configfs user does,
+and remove the unnecessary stub functions. There is little practical
+difference here as anyone using XE graphics is likely to have a complex
+configuration that already selects configfs anyway, and the link error
+or the IS_REACHABLE() would only manifest during randconfig testing.
 
-[ ... ]
+Fixes: 30499cbd7961 ("drm/xe: Fix build with DRM_XE=y and CONFIGFS_FS=m")
+Fixes: 16280ded45fb ("drm/xe: Add configfs to enable survivability mode")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+ drivers/gpu/drm/xe/Kconfig       |  1 +
+ drivers/gpu/drm/xe/xe_configfs.h | 30 ------------------------------
+ 2 files changed, 1 insertion(+), 30 deletions(-)
 
-> +static void test_match_fail(struct kunit *test)
-> +{
-> +	struct dma_buf_mapping_match matches[] =3D { { .type =3D &mock_type_a }=
- };
-> +	struct dma_buf_mapping_match exp[] =3D { { .type =3D &mock_type_b } };
-> +	struct dma_buf_attachment attach =3D {};
-> +	struct dma_buf_match_args args =3D {
-> +		.attach =3D &attach,
-> +		.imp_matches =3D matches,
-> +		.imp_len =3D ARRAY_SIZE(matches),
-> +	};
-> +
-> +	/* Zero-length exporter array returns -EINVAL */
-> +	KUNIT_EXPECT_EQ(test, dma_buf_match_mapping(&args, NULL, 0), -EINVAL);
-> +	KUNIT_EXPECT_FALSE(test, mock_match_called);
-> +	KUNIT_EXPECT_FALSE(test, mock_finish_called);
-> +
-> +	/* Zero-length importer array returns -EINVAL */
-> +	args =3D (struct dma_buf_match_args){ .attach =3D &attach };
-> +	KUNIT_EXPECT_EQ(test,
-> +			dma_buf_match_mapping(&args, matches,
-> +					      ARRAY_SIZE(matches)),
-> +			-EINVAL);
-> +	KUNIT_EXPECT_FALSE(test, mock_match_called);
-> +	KUNIT_EXPECT_FALSE(test, mock_finish_called);
-> +
-> +	/* Different types produce no match */
-> +	KUNIT_EXPECT_EQ(test,
-> +			dma_buf_match_mapping(&args, exp, ARRAY_SIZE(exp)),
-> +			-EINVAL);
-> +	KUNIT_EXPECT_FALSE(test, mock_match_called);
-> +	KUNIT_EXPECT_FALSE(test, mock_finish_called);
-> +}
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 4fc8abdc5cb6..b52a8dc28f97 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -11,6 +11,7 @@ config DRM_XE
+ 	# the shmem_readpage() which depends upon tmpfs
+ 	select SHMEM
+ 	select TMPFS
++	select CONFIGFS_FS
+ 	select DRM_BUDDY
+ 	select DRM_CLIENT_SELECTION
+ 	select DRM_KMS_HELPER
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index 327b648944ff..d726800de26a 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -14,7 +14,6 @@
+ 
+ struct pci_dev;
+ 
+-#if IS_REACHABLE(CONFIG_CONFIGFS_FS)
+ int xe_configfs_init(void);
+ void xe_configfs_exit(void);
+ void xe_configfs_check_device(struct pci_dev *pdev);
+@@ -36,34 +35,5 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+ unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+ #endif
+-#else
+-static inline int xe_configfs_init(void) { return 0; }
+-static inline void xe_configfs_exit(void) { }
+-static inline void xe_configfs_check_device(struct pci_dev *pdev) { }
+-static inline bool xe_configfs_get_survivability_mode(struct pci_dev *pdev) { return false; }
+-static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return true; }
+-static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
+-static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
+-static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
+-static inline bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev) { return true; }
+-static inline u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev) { return 5; }
+-static inline bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev) { return false; }
+-static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+-						     enum xe_engine_class class,
+-						     const u32 **cs) { return 0; }
+-static inline u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+-						      enum xe_engine_class class,
+-						      const u32 **cs) { return 0; }
+-#ifdef CONFIG_PCI_IOV
+-static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
+-{
+-	return xe_modparam.max_vfs;
+-}
+-static inline bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
+-{
+-	return XE_DEFAULT_ADMIN_ONLY_PF;
+-}
+-#endif
+-#endif
+ 
+ #endif
+-- 
+2.53.0
 
-[Severity: Medium]
-In drivers/dma-buf/st-dma-mapping.c, test_match_fail() overwrites args with:
-
-	args =3D (struct dma_buf_match_args){ .attach =3D &attach };
-
-for the zero-length importer array check, which zeroes args.imp_matches and
-args.imp_len.
-
-When the subsequent "Different types produce no match" check calls
-dma_buf_match_mapping(&args, exp, ARRAY_SIZE(exp)), args.imp_matches is sti=
-ll
-NULL and args.imp_len is still 0. In drivers/dma-buf/dma-buf-mapping.c,
-dma_buf_match_mapping() computes imp_end =3D args->imp_matches + args->imp_=
-len,
-so imp =3D=3D imp_end on entry to the inner loop:
-
-	for (; exp !=3D exp_end; exp++) {
-		const struct dma_buf_mapping_match *imp =3D args->imp_matches;
-
-		for (; imp !=3D imp_end; imp++) {
-			if (exp->type !=3D imp->type)
-				continue;
-
-Doesn't this bypass the exp->type !=3D imp->type comparison and just re-tes=
-t a
-zero-length importer array instead of testing mismatched types? Should
-args.imp_matches and args.imp_len be restored to matches and
-ARRAY_SIZE(matches) before the third dma_buf_match_mapping() call?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261026053623.2026=
-42-1-apopple@nvidia.com?part=3D25
