@@ -2,157 +2,157 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0723606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27C4B606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:43:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=eYapiQOu
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Zhb70tHF
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1D4110EDE0;
-	Mon, 26 Oct 2026 10:42:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F4A410EDD8
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 10:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD74710EDED;
+	Mon, 26 Oct 2026 10:42:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3389110EDD8
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 10:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793011361; x=1824547361;
+ t=1793011371; x=1824547371;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=J/BKXK+KmR6A73cK45lLjOfQ110QxxKWJglF7I6IN6w=;
- b=eYapiQOuoqhYbV0HZucGhT8+a03JMcOTiqDR1lrA4DUbil/S1xdGXPQf
- eAS9Np1YPPBKY0/AX6iUO9sttgC6lER9Ox/n0c9HWu9BimyVAV2uPsFZa
- 9gxSP4z3E/TSMhUxn1/a5K4Ki783VkcV7hn/CbDnw7eLKNVjkrZGUps5n
- P+z//+1YnR7ysP8V1nRCI2DGWH0kG8QQru/2E+4wCwmK/wRz+D1dD2sEj
- wQNkcqICOqXq0eynf1mmRvjiNM11t75Xnoza0GMe2k8AYUvQLjzqufla3
- Or7w31xJBju6gLGPFMn9xYNma5br/mTsd8kSaOtX+pYhojEKKQJMVsn0o g==;
-X-CSE-ConnectionGUID: MBYyFYcfRZWPxOn6B9XjtQ==
-X-CSE-MsgGUID: +g16TJENRpKK+x1mn9VJcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1764708"
+ bh=bRlPiZjKyCEK5t/ZPcvec7bcMZWXntrYcbYkNJCjs7Y=;
+ b=Zhb70tHFpIk4Vv+OXbzWCQMCnSO/Kliu8wSgPeYl1T6JRNgLD28FrYun
+ 3TM4m1Uw5lhTW9BshmOahEXzUqQEy88RuegiHgTZTEX4ergP7WiEc7/7c
+ oDembxinwfMJCek4EMVGb9IpQsDSHeAYn8gkcTmQeAe1+Fc7Gke7jYggc
+ TXg+8yiTSWGKLTSMkftprd5TW2KsG4hz+utYjTFgeTFf1cI9noTC7FukI
+ X+6U2RC2CjFIQeguGL9qZPOsFps4QBfT//2DNj1tdFZ3m97SXUt2b6/Oi
+ HWdqaXxG2YtfUGtgYyQz/KcgJn+QYXrMAlYm3Cgib/s0MXEareJnQ4wCP Q==;
+X-CSE-ConnectionGUID: aXFtYeGUQbqz0O4H3+k0JA==
+X-CSE-MsgGUID: f2zQr28MTZq1apP9XK7ZGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1695057"
 X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="1764708"
+   d="scan'208";a="1695057"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 03:42:40 -0700
-X-CSE-ConnectionGUID: PPQni3ZSQ2arFcummYb6Vg==
-X-CSE-MsgGUID: HGG0IMVDRVSp2n0jXldm/g==
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2026 03:42:50 -0700
+X-CSE-ConnectionGUID: SudU7thmTTCk/DBosa1sGg==
+X-CSE-MsgGUID: U1l/+zLuS7OcNXfn3uJGqQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="4245561"
+   d="scan'208";a="4245596"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 03:42:40 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ 26 Oct 2026 03:42:49 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 26 Oct 2026 03:42:40 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.49; Mon, 26 Oct 2026 03:42:49 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 26 Oct 2026 03:42:40 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.33) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.49 via Frontend Transport; Mon, 26 Oct 2026 03:42:49 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.11) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 26 Oct 2026 03:42:39 -0700
+ 15.2.2562.49; Mon, 26 Oct 2026 03:42:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZpDg5Ms2kTTV1XS+TMO5haJJSoKz4xUWP3eAQfZWox4SEY51239U0yhDbVQj1mKUaoxu/ojjik5ZZcEWE+RYT42jsyMzOQ+y+g7et1ojjUelZa+3w83DBP4OUgMe+mU10jmir8TEkilljUrAM6SiftRlo2TwjGjdAgo58suIlLqnrkkT2GSDI+dki7wPH1lulwB60YpPtrHfS/yb8onsVvwAmZ5LXY9sYOl1N6A55ng06wup1BcD7UppzyHTI536furJA7Ue1QOgjf8+29eD1tOuTSeohUqQSRtergYdklMsSZfO0sN5MmeabaRpiyhegpqttZKV93gXO+VzgFjlYQ==
+ b=LtsorLfGj4NIOIPslbxS7ztPt1gj1wOcazNasLfThYkBCN6+mc6CyXR23dTR7VJySjzPVS9rF/ndcEWph4nq60twlPOhWWU95BO/DBs6pk//KCJa5F09yIGuU4/v0iPD5U84CmK596k9SegYl6b9yQGP5wREMmS1ns3Fo2gcTYgu+19smdaSRylzLngZHebt0SUvXVfEQHpmTFRw9CRsdwSaciPhIb9qlVk6c1HEA+ahJxc6g8ajfHZAPih5JtAQLN4kb+GrgeliBIllIOI2zTTByXLOfjoFFcNwHUYX7Pz/n4M0oRMzWdufmBucETCx+YwYXM3XrByy1Unj3xNZ0Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HpBoEBtPS5nbV1V5bPMtJBFpJAhzsXPs7QX5BDQuVK0=;
- b=EQFnH4Z9e0T2qlaAmzXcy8uGX7lMqH5xHImKGhE6s8E5OeRzpW+X9VqT7+UCTnMVa5Zaw91Ekc7sNGY8Bp0QsCgijz3Sdy35gUxN8M68njEO7EWOo2v1wcc7YElqlcnP05eXrjUmkCU1Eu/r+IaHF8ekYl6q/YAnMIj8fZxqjeJgLCE3tqdoMGfGEhEPr6sj91s6WoFLWa+gGdpnlxifwZb8Kxo6gL7kujbkHW5y/3iO1p85KNKVnhW07QG/Ryr1JWfT0pG666G3HBNidrTCfOsc7w/N02ANYaFSuuLjUC/9VTZKBt7KPz2j36N+uC+rdmoaeVjcdGl5C8iuMWo4oA==
+ bh=/37MkG2MHFVXtwDSfiMynjV+koODJzqe2QU+GGCO7hA=;
+ b=wZLbhrpQsGtbFpGoVLzRnbIs9VoIojIkvIRGzhWsVOHdSEX6E1EvJdEScaB1ThaRp11d7znHvf+sGF84OlrrXalnxDPN4PLUGtGbV866y8/J+1h3mT3FMGwha7+V3Np98UOenseDgSeQ5TI+s+J5pbh3NpufCPBMMvSZkQFsQ/AeBxzbFFR5IsA6xsvuTw3CFC2x81tkxiNgxHUOW2oM5VQ5nBcl/USmcC4AUfDEt+OBnKQ/e0Oz6sIlA4m8SDYTzbFkA+EfJtUrMQ7/lxXX8qaXmOOVQZFKd5vY6L4gIqof9iarRFXPSX7iz1DMnLaqrTzMeRhfPV4bDEAxCvaGVg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
- by DM4PR11MB8225.namprd11.prod.outlook.com (2603:10b6:8:188::12) with
+ by DS7PR11MB6016.namprd11.prod.outlook.com (2603:10b6:8:75::20) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Mon, 26 Oct
- 2026 10:42:38 +0000
+ 2026 10:42:45 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0546.021; Mon, 26 Oct 2026
- 10:42:37 +0000
+ 10:42:43 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v1 1/4] drm/xe/guc: Split GuC doorbells manager into usable
- and shareable pools
-Date: Mon, 26 Oct 2026 11:42:21 +0100
-Message-ID: <20261026104224.1018993-2-piotr.piorkowski@intel.com>
+Subject: [PATCH v1 2/4] drm/xe/kunit: Extend GuC doorbells manager split-pool
+ coverage
+Date: Mon, 26 Oct 2026 11:42:22 +0100
+Message-ID: <20261026104224.1018993-3-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261026104224.1018993-1-piotr.piorkowski@intel.com>
 References: <20261026104224.1018993-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TL0P290CA0002.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:5::10) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: TL2P290CA0021.ISRP290.PROD.OUTLOOK.COM
+ (2603:1096:950:3::15) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|DM4PR11MB8225:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ca4f4e3-d6d4-4de9-09f8-08df334dda37
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|DS7PR11MB6016:EE_
+X-MS-Office365-Filtering-Correlation-Id: 68f54be4-0d27-43e3-64ae-08df334ddd72
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|11063799006|56012099006|261009223027099003|261022113327099003|261022105027099003|261021121427099003|261022075727099003|261021123027099003|10067099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: +/8eL4FNlerphu3fQCNIVPb2u8VaMhsm363Ea+lu8UIxOz2pzDUiYm9k1x73Y9eDMFexL2lZ0nJzCAhLhJQ+quIm8sCDfT/p8CDnJUFx8Db8bdLJpQ5tLuodi0stdVzwTjTopfPwWKac9rpXL0zf/IJ2m13aUtAmKoEq7kkHzCyyLRXEgHPAuI1eI4s0grmYXYPEDoyrA5PGYX5Lm6jSGZEERezlG7Nf3xEwg4sNB7Av8sHKV2P990+H1ECJqhulR/DePBA4NAa2xZrAMBOjsnlDzGJiO2YTTxY0I843JF09PnROaH5yyuNCaB6cksa4ZNTzoCfYZGtlrjUgNhGOg1JCkAAw502+VyADTj91xXWajLrJYKrX2HKOXYyEUKZ3f7FJwHfO1h86wwggjGj8Cr2IaO/1/di1RkkbDp3Dv2vaTzO0oYxmRyJ64jjRyaI7wsRjLSe/bi+Xx4gs8dxcfFfoBUM5dTEYmEhhoDh2WJTVacgxPBd05jvpcxqu7usxkle0XkWo/2lnG1virQ7U5+SKERw86mndsY4eZh9IauV17SOcni1iM4jFqnJ96yrDUYrc6EcYAY5pib8QwN+cz+YoCqvoLk/aNqxFXzCogT/lEgdGvIc7H/yfTn8n3ur9RLZs97wVrvC1w1Zf/lbJihDzb9m05m/ziOG+58tOIpA=
+ ARA:13230040|366016|23010399003|376014|1800799024|11063799006|56012099006|261021121427099003|261021123027099003|261022113327099003|261022105027099003|261022075727099003|261009223027099003|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: VvRV7cRdOIc6iEvkcvl6fN3QjiLBADXePljjMRv8rDL1yTHY5M3xnqLwUnHRdO358CpoMJm7gRWxfiFuMQ7ZnY8ww7gwUseJET2APkYDTXeT2uTf/KZanb/664NgiNCKcT0zSyc2s0mM+DWA5gLJWYKrX2xhh2EgVC1LsePVrlQF3qmy3Q17mkurBSQuxxlUfFY51HPULy/NlMEUTxXnQ5H24T7DCKZoa/RCrAE1Sznu1J1oqR8oCwwZ561AulOEkaqvh2qYA5owZTgAsPmizrXMhD2b+OMypxUF9aBkF9o/6B2etc8L+Tup09fRAxLLYCMM1z+QTOhjUmEGPFOOE+eYiISdHTulgyP/7BEEpAq478JrGgYl0Nlh5MYO9Xzo7AiRLDPoP+pi8SGrqP4uKVFoM+MjiZI8rtXxLHBB97Cll8vMGAbWLZKpMN7NVy129aLfMtesZVH4suoS13PfApLAnniM8aw6hYIDeV9v1H3H959xk+2IGJ6mhkwDA45243QoVCrKvYYWcs3PspN8Yba9DYRO6DFTYl+MGZdO0svdRDDBV60Nw2KvzZmuxUU9oJ5XUaioXVBJhx0vukybM/3nu/4dz2KESJCRe1t4qTBZMcmFUHY6+6lpCgUM5ScJGMM9C+crZBiGiWM/D61WicSZ1nZ3UV3EDg+F2xAaelA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(11063799006)(56012099006)(261009223027099003)(261022113327099003)(261022105027099003)(261021121427099003)(261022075727099003)(261021123027099003)(10067099003)(22082099003)(18002099003);
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(11063799006)(56012099006)(261021121427099003)(261021123027099003)(261022113327099003)(261022105027099003)(261022075727099003)(261009223027099003)(10067099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZldMa2gycDhJK2RzSEZScEg1ZWNIY09rc0pLOFNsQVR4ck14dFBYNnRmR2NI?=
- =?utf-8?B?dnRzU0tTUXFHR0pEbHZUclF3UzBpcUZFZFZ4Sk16YWhjR1FNVFM3VmM0Z1pX?=
- =?utf-8?B?V2VVRXJUekk4OFBIUkwvM3VyK21EYlJKOHl3RVZrUnEyQXk0Q2pKWjFMZk4x?=
- =?utf-8?B?QUVhd3BpVG13YVhnWjZoZks0OHphMGdwc0VEaGREKzFsNUU4WGRoOG5DVkcv?=
- =?utf-8?B?U0VUeFlXTm00V1crbkZCOWR5U3Zoc1YxWlB6aGhSL0J4YWNnaXJPV0t4c2dP?=
- =?utf-8?B?ZEh6bWZ2ZHR1aEUxaXBsM0lFeUFqeEZCTDU0UEVPeVBna1pjQUU2MTVUaTFu?=
- =?utf-8?B?WExzRGNTdzAxdWdRdkQ5dmhNbTZVWGxUazRnR2dsZVVYMElOcVIxUS9ZQ2t3?=
- =?utf-8?B?QnR2ZXIrSVRvTWtJQVlVTmM5NFdFRXdOM2R5Q0NDblMxQ2tGdnVQTVhvUXpL?=
- =?utf-8?B?RUJqcGFOMTFjYUpuUmx6MkpKaGdTZzF1QzZoTFpFY3JyTUg5SExLSUN6RS8w?=
- =?utf-8?B?Wlk2OW9aNmt1aUdlbkVic3p5OTcxbGtJT002bm4rRExlb0tBeDN1ajhqNUE0?=
- =?utf-8?B?UkljSTByMXBwMWxhUCtZN2pNdFJwMkN0bXhMaWFTWGF3T1l3VTBTckM4ZW0x?=
- =?utf-8?B?Z1M2SkljMWlIWlliMEYyWjh1NS9kd1Q2SzN6TWRNZXBwdmpPS3Foc1lVQTQ1?=
- =?utf-8?B?TFd4RVBVM0Ixd1hnUEFMbVVJUm9MYm9RUFlpOGkzd0NSQndFM2pDOE55Qlgy?=
- =?utf-8?B?ckdCSzRMK1U3d3FDTWFENlU0U3EzYUd3cENYVklNR3F1QWxSNUJPeVhqSGlu?=
- =?utf-8?B?SE5aUWoySU52SzM5eXNJQnlFencwc0ljN0N6STdvUEt2NythZU5IeXlhM0d3?=
- =?utf-8?B?OWlnNHZHQjFHYUdaVFYxczZWSzFjOEE1Zy9lRjR3QVVzSlVCakx1djNoelBl?=
- =?utf-8?B?Ui9qWW5ZUEJkUWZ5TGx5TzFQQ3VPRWpwWVJKdmdLMVNyREhjOTNLY2Qzd0xT?=
- =?utf-8?B?UlBFeTE2MGEwUnlsTkhBbklyZkROZXZvWkpTS1NHQWRnWXJYZ3RzSkVKWlhL?=
- =?utf-8?B?cmIxKytuTVZENzZlNXMrN1dDZStXR0lpOHg5djdmKzg0RWtrYStUa0RtVFVM?=
- =?utf-8?B?MTJ5MGM4QUdxWFJ2NS8rSlArVmQ3THZYYXV3SDcxbDVHZ1ZNUllkcjByY01B?=
- =?utf-8?B?cmY1WEg4d05wMHRPUW5KM3hrNkk4ckZJSGRoSEI2L0JRWkpFZ0w2OGg2NHg2?=
- =?utf-8?B?dSs1WSt4ZHBZczhUQ3N1TnJod2lpQkJCaytUeGk1M2hSckRUbVNCTkJQbk5M?=
- =?utf-8?B?aEkzMm5MYVB1S2NZc0N0NW96MTZTemV6bDdqQmtxTHp5SW8rYk9rZkp1Nk9M?=
- =?utf-8?B?WURHV2wxc0ZZVHU0SWx3UXZaM2F0U0FVbmNDaEtySnVRVmtUUDM3eEFZT3NC?=
- =?utf-8?B?cXRGdmhzbXVVWlM2eDJxdVlnZFdER1dTa2s1elVPalBEQUNaM2RJcExKQWNE?=
- =?utf-8?B?TGVkZE44L1cwRjd5ZnZ3Wlk1c1JpOEd6RENlL015UjJaaXdQZXFlR3BXZDRi?=
- =?utf-8?B?ZXNGSWh1OVNFdWZOd2NUWHc0N1JhN0U2Q0tZYWdGQ2VMMHNDR2RDOUpldDR1?=
- =?utf-8?B?RVFFOFZob0dFUDgzWDhpK0lIdWM0TEtlSGwyb3VHdTdRbmpSSW1weGZMbmFE?=
- =?utf-8?B?NXNOMHRtc0h2MDdmeE5jcWhKYWxUYVh3Q2VkQVUwYUFCTWlIMmk4Q1prQ096?=
- =?utf-8?B?a0MxblFRV1AvV2ozcGpBMUs4UXRwWlFSYlZVKzJickxqZmxzOHVlczgwcysw?=
- =?utf-8?B?dTFidUwvb0tsbUM1TWJEYTkzS1Rrcy8zSms4YnJLUFRzTXA4MTE4b01UOGZ0?=
- =?utf-8?B?RldRaUk3dSt3dFRoNVdlc2ZTYngwd3J6bUVhZnJaZnZ5b2NXd1REZ3p1ZGNM?=
- =?utf-8?B?M0VJb1hERmFIUkx4NEV6dHlTUllHY1pEejZzVUZvVHd6eUJtWHMvdHg2Z0I0?=
- =?utf-8?B?THZqa2Q3NERDOXRCSS8vT1lXbE5pWnp6Slc3ZGVJZHhHOE4xazNLV1ozZzZF?=
- =?utf-8?B?VlFrZnZuY2ZRYVJjeHlKV0hCSmxabCtNeGVRcitVQVRMUGNmcWR2WHI0ZDh1?=
- =?utf-8?B?cHZxRDE4SmRmbENlUWVsNUMrMW1JcHpIaEwrVDFITEdIRWZrU0tJVDFYL3l4?=
- =?utf-8?B?bmExcUJqWmpOZzlzdFZ4MGU2Tnd1WXNMVWp4OWwzeDRlc3pVWVRRb0hka2lV?=
- =?utf-8?B?N083VVNpNVE5K2FCQWpzWmJ1dWdxcFd0bFVHcDFERVR1WUlBOTJ5N0JWSnFL?=
- =?utf-8?B?bzBiMi9NVUxCSzBqWHJodStrUE9HejRxbGthWnY2MkRQb0tTSzg2eUlKU1lD?=
- =?utf-8?Q?X29zPxlzTQttPlSg=3D?=
-X-Exchange-RoutingPolicyChecked: vHOQxCUcO31bo0U1RPJ4ycai7YiXyk6C0ccfaARZrq+IUaZMIBUhcYg1cTOhwP4WnNdreYdhYwNc4JlSmV0vxwY9otlxfAYPjoPk49Rdk7JXDTHABQO0tEB8sO5mj77BJdgZnJb8IndbOH9xJTw/RoRvekr+N5XuvOlsVhu4jcnKrm5WcRyI3Bg2Qia+lViypyCH9gMGACBN67sCSJVQT81QxpY3nCIbNyHEp7b0JcPoiXYknyMa40hZTKX0aos9A7TOhOQ3PAzuaaYpNQ5cslcddwkBEBU0O623u5vJ9rOZIL7FP76atbfJycvtTd9WWRo5ZRgmZi6W7mjA6WH18w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ca4f4e3-d6d4-4de9-09f8-08df334dda37
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N2k5Tk5TZkJJY0tESlQzOEhTYVoyT0lPdG14eHhPR2Vlc1ZSdUt6RzdtaVU2?=
+ =?utf-8?B?M0tlSHFNTDREcXdmYkRpdnYxS0VJQURzdVczRk55Wm85a3JiS3ZGbUw1aGgy?=
+ =?utf-8?B?WDMzdFNPRzREMlBoaGRYVStmWGpqZzgzV3RVSTk4M003VGpuZ2FRWjRtWEZV?=
+ =?utf-8?B?RUExd2NPQnhBZjFOeEdxSVVvS0QyMEtQd1B4cnpMTVNnRWJDUUowRUVIZGNQ?=
+ =?utf-8?B?cjU0dk82UDZmZWgxanNUb2FCL2NwbGVpZEtzMm9BNlNWSW1RcVhSenozUnBt?=
+ =?utf-8?B?MEtMTTA3YlZhRUZ3YXE0OUM5TmtsLzVkbzdrWWFDQ29vZlF0MnUyU3ZNbU1m?=
+ =?utf-8?B?ekI2a0ZNbldPaTNPN2liM2VXT2o2SVgzRXA2WGF3cDZDL283VFQwdU1GOStw?=
+ =?utf-8?B?cG9EL2R2dlc0aE9jbElkeWNIeUJ6dVc3MDVTeWkzQlBXVzdYUXFoakJkU2lZ?=
+ =?utf-8?B?cm5KUm5hTmkraXN0U1F3VDlaeStpY0pOK3RuQktCVTdzREVOeGdzVFptTTVi?=
+ =?utf-8?B?YXRuL2lHRlJwUklEa2NCL29MRkZuM2V3bm1YNFRqeUNyRXJMc2F1Ry80L0hW?=
+ =?utf-8?B?MHFTbWYwQ3ZpOGZnZUZuaGhodVNQWXBFdkFvdG4xMFMrVXBLcGxwSnFHKy9T?=
+ =?utf-8?B?V1dqVW9HV2Rzelp5Z2d2aytXNjBQWURzNkFHNzE1czh4U1BoeDk2d3ZZWTdB?=
+ =?utf-8?B?cFdnYVZPc05wQmMwMDVDR1M2Zk40V0RnZEdiekJxZ3NqaGpZd242T2pXWFdI?=
+ =?utf-8?B?ODVQVnJtL3lpZm5obWllWkdYZk14SFBBNzFlWWRoOWIrZVVKNTQ2YTVuaDY0?=
+ =?utf-8?B?NGlINjJpSjIxZjhYbEczUldWNkYxWEZ2SWZ6K0lrcFJJeWNJRkg0MzQyc3lo?=
+ =?utf-8?B?SjhoeUF5NkxwcFVFS05BTjNDWkx4clV5Mk85N0JKVWdxaXZkWHhDaFo2VXQ5?=
+ =?utf-8?B?S2R6dXd0bTZGZ0RTM1BNaE91enpObm50bjdna296NG1RTUFsd1F4TFpmV1Nt?=
+ =?utf-8?B?SHhyTHhNNnRPb0FMYUxzVWFOaGlpQTFYdFJMU2NxdTY4UnJXVEEyT3VEVnVH?=
+ =?utf-8?B?cXhXK1RqREwyVGVSeWt5czczcGJtNG0xdzRjWUZCUitsQUN1angwTUE1TytH?=
+ =?utf-8?B?cS9sTUVFQ21XOXdWT0F0bC9SemR1UGorTmV5UnBRNTh6QzY5V2xjYTR0aWs4?=
+ =?utf-8?B?bHNZU2UzNmpHUlZTaC9WQkZRQ0RVZUlrRFFhUGlqcStZMWZMWXhESDlzNU5q?=
+ =?utf-8?B?cDA5V2FSUXlCaWhFd1NtS1A3bGE1ZUwyckZYdHQ1dERWNkFaMkI5Z0lRTHBh?=
+ =?utf-8?B?YXljRzNzNkpKODVGWjJPSHAzRjJuRGc1ZkxiM3pwYW1HNG1UbjIrM3VYenRy?=
+ =?utf-8?B?Q2VXdERGZGtRUlVReStvZTNVMk5pajhhd2Z4aGVBQ0VYVXZSakdhbFlhZUtv?=
+ =?utf-8?B?ekZJRWtQY29GalJCc0tHczhkSmczaDk0bzh0Nm9kZ2txVU1KVjJSQXRXc3pi?=
+ =?utf-8?B?S1hrck5JSDNUSkNTbFlQSFJ2M2hkaG44NHdjajJqSEp3UG5rTEEvM3l2RVZm?=
+ =?utf-8?B?MVdmdHhDVjNFSFdlTXZzU095RmRuU3ZGMmtBQkFDaU4xK2FjSVdYcHE5dGgv?=
+ =?utf-8?B?c3h0dGNWWks2VE41YU41bnJkbUxCYjlHMG5SVkhDckxOenY2UFllVGx6NVdq?=
+ =?utf-8?B?L1BYTloyQnZZbzBuby83WTZPQUplRTViMW9HTW5NV0Nud1B0N2oxTkZObFJk?=
+ =?utf-8?B?bk9ySkRRVUNVTlNUbVY5ZldUN3JOWTVuN0hpVXQ5MWJLeUMvZXQ3YTVzdVdP?=
+ =?utf-8?B?Q1haTjJndUhheFF6WFZGZy95RFBvdVNXQUQzQVNCbkpDVWZOcnA2LzJENzFl?=
+ =?utf-8?B?c2JFQWxKY2h0Z0p2M3JpSk8veEF2WEhUQlkvczNOSWsrRDNMd09iREZjOE9N?=
+ =?utf-8?B?MGNzaFNvbVFlTnp2R3JOSDdWbnV1VjFBMjVMcFA5cSs3RGxZVVR1WUNxRHRj?=
+ =?utf-8?B?ajZ2T2UrVHFhTm1XUXg0S0V5MFd5aXZzcktrVGR2SFNSMVBOZEt3OU5Helly?=
+ =?utf-8?B?MnN2VEdGOFhvcGdSbC9NRXpMdU1PaXJZZTJ2amY5WUU3UnZEdFVMaXlXbytU?=
+ =?utf-8?B?cnhMQmtrZEhnWVFVdWo4VkFqaHQvTjFLR0hpbHJjYUJDSkxhMEs2bWN1Q1N1?=
+ =?utf-8?B?QnpRZm0zLzEybFRzamQyS2FzOXQxVGxaVnJRMkhENnNkYXl0eE9DeHhGT0ZR?=
+ =?utf-8?B?ZW1nWityd1JtcHVrRjN4VS9rMjBLOTh4WWV5TDJPd2svR2h1K1BZdDBDVkJ3?=
+ =?utf-8?B?Znd3c2w5T3dvKzBwNWNwOW5LSlJ1cUg2Ujl2UWZpMkMzSUx2QUt4YlNmWTJk?=
+ =?utf-8?Q?w7jEfYPFu7eAwiOE=3D?=
+X-Exchange-RoutingPolicyChecked: YElP7OOBP/Duttg5nGafqnSbvayceCaNRKDX+Obp8cf/sJKjOxxNKRkELr9uNATpJrj1vRXq7j/8OxLU8pCgsFdZaGFsF5hILnvtVxw+1bUUpa0HkGOCeifPWqEmreI2RavH7mFZuvUFOl5qGF29huGWr57rsBihUDwM9i9OBwUMz+KJNSHRrpgq3FtgzedrbHV1TgR44KIeBtE+16rVs4sgAgkrxQK/N7ihfOQvwfvJTmUV6IRWujDQC6DQeM1ZwOgJFptswukM1r0P2dvNM6daCAvWVkqlJ0y/DVCNem8zuJCxitHFpiQDr/o/7djDC4WMKErs1OvqVkmvg75cbQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68f54be4-0d27-43e3-64ae-08df334ddd72
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2026 10:42:37.8861 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2026 10:42:43.3517 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Kxt7PhIIU2c4cviirKW5e6R2vonOJIK3wo48E6JEHT3FOBU5u1MYgGkANnlRhSXWnfONiiDcA4dGbN8udD1I+pveP7l8csj52IsiGQZmZB0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8225
+X-MS-Exchange-CrossTenant-UserPrincipalName: bdNElcUYtmazneVo82Bv5Tz86qOrDTuJjKuaZx4DKB2qA0IHVKCfRGIvQqQibZtTNBc44OzwLuIl7FIX7c/j8g2DIH44Gq9hArKYcp+84kI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB6016
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,605 +173,908 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Modify the GuC doorbells manager so that it distinguishes between
-usable doorbells, available for the PF, and shareable doorbells, which
-can be provisioned to VFs. Both pools are represented as a single
-bitmap and may overlap.
-
-Let's replace the single-pool accounting model with separate usable and
-shareable pools, add helpers for pool accounting and limits, add API to
-reserve and release shareable doorbells, and update debug reporting.
-
-For now, let's keep the current allocation behaviour by mapping both pools
-onto the same doorbells space. This prepares the doorbells manager for
-separate management of PF and VF doorbells in following changes.
+Expand the GuC doorbells manager KUnit coverage to exercise the new
+usable/shareable pool model.
 
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c |  36 +-
- drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 316 ++++++++++++++----
- drivers/gpu/drm/xe/xe_guc_db_mgr.h            |   7 +
- drivers/gpu/drm/xe/xe_guc_types.h             |   6 +-
- 4 files changed, 283 insertions(+), 82 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 773 ++++++++++++++++--
+ 1 file changed, 720 insertions(+), 53 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-index a87a7b4b040a2..014f2dd6f3cc3 100644
+index 014f2dd6f3cc3..df882c5b4e698 100644
 --- a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
 +++ b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-@@ -25,7 +25,7 @@ static void test_empty(struct kunit *test)
- 	struct xe_guc_db_mgr *dbm = test->priv;
+@@ -7,31 +7,116 @@
  
- 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, 0), 0);
--	KUNIT_ASSERT_EQ(test, dbm->count, 0);
-+	KUNIT_ASSERT_EQ(test, dbm_total(dbm), 0);
- 
- 	mutex_lock(dbm_mutex(dbm));
- 	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
-@@ -39,7 +39,7 @@ static void test_default(struct kunit *test)
- 	struct xe_guc_db_mgr *dbm = test->priv;
- 
- 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
--	KUNIT_ASSERT_EQ(test, dbm->count, GUC_NUM_DOORBELLS);
-+	KUNIT_ASSERT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
- }
- 
- static const unsigned int guc_dbm_params[] = {
-@@ -64,12 +64,12 @@ static void test_size(struct kunit *test)
- 	int id;
- 
- 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, *p), 0);
--	KUNIT_ASSERT_EQ(test, dbm->count, *p);
-+	KUNIT_ASSERT_EQ(test, dbm_total(dbm), *p);
- 
- 	mutex_lock(dbm_mutex(dbm));
- 	for (n = 0; n < *p; n++) {
- 		KUNIT_EXPECT_GE(test, id = xe_guc_db_mgr_reserve_id_locked(dbm), 0);
--		KUNIT_EXPECT_LT(test, id, dbm->count);
-+		KUNIT_EXPECT_LT(test, id, dbm_total(dbm));
- 	}
- 	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
- 	mutex_unlock(dbm_mutex(dbm));
-@@ -116,17 +116,17 @@ static void test_range_overlap(struct kunit *test)
- 	unsigned int n;
- 
- 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
--	KUNIT_ASSERT_LE(test, *p, dbm->count);
-+	KUNIT_ASSERT_LE(test, *p, dbm_total(dbm));
- 
- 	KUNIT_ASSERT_GE(test, id1 = xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
--	for (n = 0; n < dbm->count - *p; n++) {
-+	for (n = 0; n < dbm_total(dbm) - *p; n++) {
- 		KUNIT_ASSERT_GE(test, id2 = xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
- 		KUNIT_ASSERT_NE(test, id2, id1);
- 		KUNIT_ASSERT_NE_MSG(test, id2 < id1, id2 > id1 + *p - 1,
- 				    "id1=%d id2=%d", id1, id2);
- 	}
- 	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
--	xe_guc_db_mgr_release_range(dbm, 0, dbm->count);
-+	xe_guc_db_mgr_release_range(dbm, 0, dbm_total(dbm));
- 
- 	if (*p >= 1) {
- 		KUNIT_ASSERT_GE(test, id1 = xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
-@@ -134,7 +134,7 @@ static void test_range_overlap(struct kunit *test)
- 		KUNIT_ASSERT_NE(test, id2, id1);
- 		KUNIT_ASSERT_NE_MSG(test, id1 < id2, id1 > id2 + *p - 2,
- 				    "id1=%d id2=%d", id1, id2);
--		for (n = 0; n < dbm->count - *p; n++) {
-+		for (n = 0; n < dbm_total(dbm) - *p; n++) {
- 			KUNIT_ASSERT_GE(test, id3 = xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
- 			KUNIT_ASSERT_NE(test, id3, id1);
- 			KUNIT_ASSERT_NE(test, id3, id2);
-@@ -142,7 +142,7 @@ static void test_range_overlap(struct kunit *test)
- 					    "id3=%d id2=%d", id3, id2);
- 		}
- 		KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
--		xe_guc_db_mgr_release_range(dbm, 0, dbm->count);
-+		xe_guc_db_mgr_release_range(dbm, 0, dbm_total(dbm));
- 	}
- }
- 
-@@ -154,15 +154,15 @@ static void test_range_compact(struct kunit *test)
- 
- 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
- 	KUNIT_ASSERT_NE(test, *p, 0);
--	KUNIT_ASSERT_LE(test, *p, dbm->count);
--	if (dbm->count % *p)
-+	KUNIT_ASSERT_LE(test, *p, dbm_total(dbm));
-+	if (dbm_total(dbm) % *p)
- 		kunit_skip(test, "must be divisible");
- 
- 	KUNIT_ASSERT_GE(test, xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
--	for (n = 1; n < dbm->count / *p; n++)
-+	for (n = 1; n < dbm_total(dbm) / *p; n++)
- 		KUNIT_ASSERT_GE(test, xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
- 	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
--	xe_guc_db_mgr_release_range(dbm, 0, dbm->count);
-+	xe_guc_db_mgr_release_range(dbm, 0, dbm_total(dbm));
- }
- 
- static void test_range_spare(struct kunit *test)
-@@ -172,12 +172,12 @@ static void test_range_spare(struct kunit *test)
- 	int id;
- 
- 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
--	KUNIT_ASSERT_LE(test, *p, dbm->count);
-+	KUNIT_ASSERT_LE(test, *p, dbm_total(dbm));
- 
--	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm->count), 0);
--	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm->count - *p + 1), 0);
--	KUNIT_ASSERT_EQ(test, id = xe_guc_db_mgr_reserve_range(dbm, *p, dbm->count - *p), 0);
--	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, dbm->count - *p), 0);
-+	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm_total(dbm)), 0);
-+	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm_total(dbm) - *p + 1), 0);
-+	KUNIT_ASSERT_EQ(test, id = xe_guc_db_mgr_reserve_range(dbm, *p, dbm_total(dbm) - *p), 0);
-+	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, dbm_total(dbm) - *p), 0);
- 	xe_guc_db_mgr_release_range(dbm, id, *p);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-index 6767e8076e6b4..57b775847ac17 100644
---- a/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-@@ -48,6 +48,34 @@ static struct xe_device *dbm_to_xe(struct xe_guc_db_mgr *dbm)
- 
- static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent);
- 
-+static unsigned int dbm_total(struct xe_guc_db_mgr *dbm)
-+{
-+	if (dbm->usable > GUC_NUM_DOORBELLS - dbm->shareable)
-+		return GUC_NUM_DOORBELLS;
+ #include "xe_device.h"
+ #include "xe_kunit_helpers.h"
++#include "xe_pci_test.h"
 +
-+	return dbm->usable + dbm->shareable;
-+}
-+
-+static unsigned int dbm_shareable_start(struct xe_guc_db_mgr *dbm)
-+{
-+	return dbm_total(dbm) - dbm->shareable;
-+}
-+
-+static unsigned int dbm_used_usable(struct xe_guc_db_mgr *dbm)
-+{
-+	lockdep_assert_held(dbm_mutex(dbm));
-+
-+	return bitmap_weight(dbm->bitmap, dbm->usable);
-+}
-+
-+static unsigned int dbm_used_shareable(struct xe_guc_db_mgr *dbm)
-+{
-+	lockdep_assert_held(dbm_mutex(dbm));
-+
-+	return bitmap_weight(dbm->bitmap, dbm_total(dbm)) -
-+	       bitmap_weight(dbm->bitmap, dbm_shareable_start(dbm));
-+}
-+
- static void __fini_dbm(struct drm_device *drm, void *arg)
++#define DBM_TEST_POOL_SIZE		8
++#define DBM_TEST_PARTIAL_POOL_SIZE	((GUC_NUM_DOORBELLS / 4) * 3)
+ 
+ static int guc_dbm_test_init(struct kunit *test)
  {
- 	struct xe_guc_db_mgr *dbm = arg;
-@@ -55,22 +83,56 @@ static void __fini_dbm(struct drm_device *drm, void *arg)
++	struct xe_pci_fake_data *fake;
+ 	struct xe_guc_db_mgr *dbm;
  
- 	mutex_lock(dbm_mutex(dbm));
- 
--	weight = bitmap_weight(dbm->bitmap, dbm->count);
-+	weight = bitmap_weight(dbm->bitmap, dbm_total(dbm));
- 	if (weight) {
- 		struct drm_printer p = xe_gt_info_printer(dbm_to_gt(dbm));
- 
- 		xe_gt_err(dbm_to_gt(dbm), "GuC doorbells manager unclean (%u/%u)\n",
--			  weight, dbm->count);
-+			  weight, dbm_total(dbm));
- 		dbm_print_locked(dbm, &p, 1);
- 	}
- 
- 	bitmap_free(dbm->bitmap);
- 	dbm->bitmap = NULL;
--	dbm->count = 0;
-+	dbm->usable = 0;
-+	dbm->shareable = 0;
- 
- 	mutex_unlock(dbm_mutex(dbm));
- }
- 
-+static int dbm_init(struct xe_guc_db_mgr *dbm, unsigned int usable, unsigned int shareable)
-+{
-+	bool overlap = usable > GUC_NUM_DOORBELLS - shareable;
-+	unsigned int total;
-+	int ret;
-+
-+	if (usable > GUC_NUM_DOORBELLS || shareable > GUC_NUM_DOORBELLS)
-+		return -ERANGE;
-+
-+	dbm_assert(dbm, !dbm->bitmap);
-+	dbm_assert(dbm, !shareable || IS_SRIOV_PF(dbm_to_xe(dbm)));
-+	total = overlap ? GUC_NUM_DOORBELLS : usable + shareable;
-+
-+	if (!total)
-+		goto done;
-+
-+	dbm->bitmap = bitmap_zalloc(total, GFP_KERNEL);
-+	if (!dbm->bitmap)
++	/* Use PF fixture, so the shareable pool can be tested. */
++	fake = kunit_kzalloc(test, sizeof(*fake), GFP_KERNEL);
++	if (!fake)
 +		return -ENOMEM;
 +
-+	dbm->usable = usable;
-+	dbm->shareable = shareable;
++	*fake = (struct xe_pci_fake_data) {
++		.sriov_mode = XE_SRIOV_MODE_PF,
++		.platform = XE_TIGERLAKE, /* some random platform */
++		.subplatform = XE_SUBPLATFORM_NONE,
++	};
++	test->priv = fake;
 +
-+	ret = drmm_add_action_or_reset(&dbm_to_xe(dbm)->drm, __fini_dbm, dbm);
-+	if (ret)
-+		return ret;
-+done:
-+	xe_gt_dbg(dbm_to_gt(dbm), "using %u doorbell%s, %u doorbell%s shareable with VFs\n",
-+		  dbm->usable, str_plural(dbm->usable),
-+		  dbm->shareable, str_plural(dbm->shareable));
-+	return 0;
-+}
-+
- /**
-  * xe_guc_db_mgr_init() - Initialize GuC Doorbells Manager.
-  * @dbm: the &xe_guc_db_mgr to initialize
-@@ -79,60 +141,124 @@ static void __fini_dbm(struct drm_device *drm, void *arg)
-  * The bare-metal or PF driver can pass ~0 as &count to indicate that all
-  * doorbells supported by the hardware are available for use.
-  *
-- * Only VF's drivers will have to provide explicit number of doorbells IDs
-- * that they can use.
-- *
-  * Return: 0 on success or a negative error code on failure.
-  */
- int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count)
- {
--	int ret;
--
- 	if (count == ~0)
- 		count = GUC_NUM_DOORBELLS;
+ 	xe_kunit_helper_xe_device_test_init(test);
+-	dbm = &xe_device_get_gt(test->priv, 0)->uc.guc.dbm;
++	dbm = &xe_root_mmio_gt(test->priv)->uc.guc.dbm;
  
--	dbm_assert(dbm, !dbm->bitmap);
--	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
-+	return dbm_init(dbm, count, 0);
-+}
+ 	mutex_init(dbm_mutex(dbm));
+ 	test->priv = dbm;
+ 	return 0;
+ }
  
--	if (!count)
--		goto done;
-+/**
-+ * xe_guc_db_mgr_max_shareable() - Get maximum number of shareable GuC doorbells.
-+ * @dbm: the &xe_guc_db_mgr to query
-+ *
-+ * Return: maximum number of GuC doorbells that can be shared with VFs.
-+ */
-+unsigned int xe_guc_db_mgr_max_shareable(struct xe_guc_db_mgr *dbm)
++static void require_iov_config_or_skip(struct kunit *test)
 +{
-+	return dbm->shareable;
-+}
- 
--	dbm->bitmap = bitmap_zalloc(count, GFP_KERNEL);
--	if (!dbm->bitmap)
--		return -ENOMEM;
--	dbm->count = count;
-+static unsigned int dbm_find_last_zero_area_in_range(unsigned long *bitmap,
-+						     unsigned int range_start,
-+						     unsigned int range_end,
-+						     unsigned int count)
-+{
-+	unsigned int found = range_end;
-+	unsigned int rs, re;
- 
--	ret = drmm_add_action_or_reset(&dbm_to_xe(dbm)->drm, __fini_dbm, dbm);
--	if (ret)
--		return ret;
--done:
--	xe_gt_dbg(dbm_to_gt(dbm), "using %u doorbell%s\n",
--		  dbm->count, str_plural(dbm->count));
--	return 0;
-+	for_each_clear_bitrange(rs, re, bitmap, range_end) {
-+		unsigned int start = max(rs, range_start);
-+		unsigned int end = min(re, range_end);
-+		unsigned int range;
-+
-+		if (start >= end)
-+			continue;
-+
-+		range = end - start;
-+		if (range < count)
-+			continue;
-+
-+		found = start + (range - count);
-+	}
-+
-+	return found;
++	if (!IS_ENABLED(CONFIG_PCI_IOV))
++		kunit_skip(test, "requires CONFIG_PCI_IOV");
 +}
 +
-+static int dbm_check_quota(unsigned int used, unsigned int count,
-+			   unsigned int spare, unsigned int limit)
++static unsigned int test_dbm_used_total(struct xe_guc_db_mgr *dbm)
 +{
-+	return used + count + spare > limit ? -EDQUOT : 0;
-+}
-+
-+static int dbm_reserve_chunk_shareable_locked(struct xe_guc_db_mgr *dbm, unsigned int count,
-+					      unsigned int spare)
-+{
-+	unsigned int shareable_start = dbm_shareable_start(dbm);
-+	unsigned int total = dbm_total(dbm);
-+	int id;
-+
-+	dbm_assert(dbm, count);
 +	lockdep_assert_held(dbm_mutex(dbm));
 +
-+	if (!dbm->shareable)
++	return bitmap_weight(dbm->bitmap, dbm_total(dbm));
++}
++
++/* There is no allocator for usable doorbells yet, simulate PF use of them. */
++static int test_dbm_reserve_usable_locked(struct xe_guc_db_mgr *dbm, unsigned int count)
++{
++	int id;
++
++	lockdep_assert_held(dbm_mutex(dbm));
++
++	if (!dbm->usable)
 +		return -ENODATA;
 +
-+	if (shareable_start < dbm->usable)
-+		id = dbm_find_last_zero_area_in_range(dbm->bitmap, shareable_start, total, count);
-+	else
-+		id = bitmap_find_next_zero_area(dbm->bitmap, total, shareable_start, count, 0);
-+
-+	if (id >= total)
++	id = bitmap_find_next_zero_area(dbm->bitmap, dbm->usable, 0, count, 0);
++	if (id >= dbm->usable)
 +		return -ENOSPC;
-+
-+	/*
-+	 * Spare is meaningful only for doorbells that are shared between usable
-+	 * and shareable pools. Only doorbells taken from the overlapping part
-+	 * reduce PF usable capacity, so a chunk located entirely in the
-+	 * VF-exclusive part (or any chunk from non-overlapping pools) is never
-+	 * limited by the spare.
-+	 */
-+	if (spare && id < dbm->usable) {
-+		unsigned int need_overlap = min(id + count, dbm->usable) - id;
-+		int err;
-+
-+		err = dbm_check_quota(dbm_used_usable(dbm), need_overlap, spare, dbm->usable);
-+		if (err)
-+			return err;
-+	}
 +
 +	bitmap_set(dbm->bitmap, id, count);
 +
 +	return id;
- }
- 
- static int dbm_reserve_chunk_locked(struct xe_guc_db_mgr *dbm,
- 				    unsigned int count, unsigned int spare)
- {
--	unsigned int used;
-+	unsigned int total = dbm_total(dbm);
- 	int index;
- 
- 	dbm_assert(dbm, count);
- 	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
--	dbm_assert(dbm, dbm->count <= GUC_NUM_DOORBELLS);
- 	lockdep_assert_held(dbm_mutex(dbm));
- 
--	if (!dbm->count)
-+	if (!total)
- 		return -ENODATA;
- 
- 	if (spare) {
--		used = bitmap_weight(dbm->bitmap, dbm->count);
--		if (used + count + spare > dbm->count)
--			return -EDQUOT;
-+		int err;
-+
-+		err = dbm_check_quota(bitmap_weight(dbm->bitmap, total), count, spare, total);
-+		if (err)
-+			return err;
- 	}
- 
--	index = bitmap_find_next_zero_area(dbm->bitmap, dbm->count, 0, count, 0);
--	if (index >= dbm->count)
-+	index = bitmap_find_next_zero_area(dbm->bitmap, total, 0, count, 0);
-+	if (index >= total)
- 		return -ENOSPC;
- 
- 	bitmap_set(dbm->bitmap, index, count);
-@@ -144,9 +270,8 @@ static void dbm_release_chunk_locked(struct xe_guc_db_mgr *dbm,
- 				     unsigned int start, unsigned int count)
- {
- 	dbm_assert(dbm, count);
--	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
--	dbm_assert(dbm, dbm->count);
--	dbm_assert(dbm, dbm->count <= GUC_NUM_DOORBELLS);
-+	dbm_assert(dbm, start < dbm_total(dbm));
-+	dbm_assert(dbm, start + count - 1 < dbm_total(dbm));
- 	lockdep_assert_held(dbm_mutex(dbm));
- 
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-@@ -158,6 +283,65 @@ static void dbm_release_chunk_locked(struct xe_guc_db_mgr *dbm,
- 	bitmap_clear(dbm->bitmap, start, count);
- }
- 
-+static int dbm_release_chunk_in_range_locked(struct xe_guc_db_mgr *dbm,
-+					     unsigned int start,
-+					     unsigned int count,
-+					     unsigned int range_start,
-+					     unsigned int range_end)
-+{
-+	lockdep_assert_held(dbm_mutex(dbm));
-+
-+	if (!count)
-+		return -EINVAL;
-+
-+	if (start < range_start || start >= range_end)
-+		return -ERANGE;
-+
-+	if (count > range_end - start)
-+		return -ERANGE;
-+
-+	dbm_release_chunk_locked(dbm, start, count);
-+
-+	return 0;
 +}
 +
-+/**
-+ * xe_guc_db_mgr_reserve_shareable() - Reserve one or more shareable GuC doorbells for VFs.
-+ * @dbm: the &xe_guc_db_mgr
-+ * @count: number of shareable GuC doorbells to reserve (can't be 0)
-+ * @spare: number of usable doorbells to keep available for the PF
-+ *
-+ * This function is dedicated for use by the PF driver, which expects the
-+ * reserved range of doorbells to be contiguous.
-+ *
-+ * Return: starting ID of the allocated GuC doorbell range or
-+ *         a negative error code on failure.
-+ */
-+int xe_guc_db_mgr_reserve_shareable(struct xe_guc_db_mgr *dbm, unsigned int count,
-+				    unsigned int spare)
++static int test_dbm_reserve_usable(struct xe_guc_db_mgr *dbm, unsigned int count)
 +{
 +	guard(mutex)(dbm_mutex(dbm));
 +
-+	return dbm_reserve_chunk_shareable_locked(dbm, count, spare);
++	return test_dbm_reserve_usable_locked(dbm, count);
 +}
 +
-+/**
-+ * xe_guc_db_mgr_release_shareable() - Release one or more shareable GuC doorbells.
-+ * @dbm: the &xe_guc_db_mgr
-+ * @id: the first shareable GuC doorbell to release
-+ * @count: number of shareable GuC doorbells to release
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_guc_db_mgr_release_shareable(struct xe_guc_db_mgr *dbm, unsigned int id,
-+				    unsigned int count)
++static int test_dbm_release_usable_locked(struct xe_guc_db_mgr *dbm, unsigned int id,
++					  unsigned int count)
++{
++	return dbm_release_chunk_in_range_locked(dbm, id, count, 0, dbm->usable);
++}
++
++static int test_dbm_release_usable(struct xe_guc_db_mgr *dbm, unsigned int id,
++				   unsigned int count)
 +{
 +	guard(mutex)(dbm_mutex(dbm));
 +
++	return test_dbm_release_usable_locked(dbm, id, count);
++}
++
++static int test_dbm_release_shareable_locked(struct xe_guc_db_mgr *dbm, unsigned int id,
++					     unsigned int count)
++{
 +	return dbm_release_chunk_in_range_locked(dbm, id, count,
 +						 dbm_shareable_start(dbm), dbm_total(dbm));
 +}
 +
- /**
-  * xe_guc_db_mgr_reserve_id_locked() - Reserve a single GuC Doorbell ID.
-  * @dbm: the &xe_guc_db_mgr
-@@ -199,13 +383,9 @@ void xe_guc_db_mgr_release_id_locked(struct xe_guc_db_mgr *dbm, unsigned int id)
- int xe_guc_db_mgr_reserve_range(struct xe_guc_db_mgr *dbm,
- 				unsigned int count, unsigned int spare)
- {
--	int ret;
--
--	mutex_lock(dbm_mutex(dbm));
--	ret = dbm_reserve_chunk_locked(dbm, count, spare);
--	mutex_unlock(dbm_mutex(dbm));
-+	guard(mutex)(dbm_mutex(dbm));
- 
--	return ret;
-+	return dbm_reserve_chunk_locked(dbm, count, spare);
- }
- 
- /**
-@@ -217,35 +397,48 @@ int xe_guc_db_mgr_reserve_range(struct xe_guc_db_mgr *dbm,
- void xe_guc_db_mgr_release_range(struct xe_guc_db_mgr *dbm,
- 				 unsigned int start, unsigned int count)
- {
--	mutex_lock(dbm_mutex(dbm));
-+	guard(mutex)(dbm_mutex(dbm));
++static void test_bad_init(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
 +
- 	dbm_release_chunk_locked(dbm, start, count);
--	mutex_unlock(dbm_mutex(dbm));
- }
- 
--static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent)
-+static void dbm_print_range_locked(struct xe_guc_db_mgr *dbm,
-+				   struct drm_printer *p,
-+				   int indent,
-+				   const char *name,
-+				   unsigned int range_start,
-+				   unsigned int range_end,
-+				   unsigned int used)
- {
- 	unsigned int rs, re;
--	unsigned int total;
- 
--	drm_printf_indent(p, indent, "count: %u\n", dbm->count);
--	if (!dbm->bitmap)
--		return;
-+	lockdep_assert_held(dbm_mutex(dbm));
- 
--	total = 0;
--	for_each_clear_bitrange(rs, re, dbm->bitmap, dbm->count) {
--		drm_printf_indent(p, indent, "available range: %u..%u (%u)\n",
--				  rs, re - 1, re - rs);
--		total += re - rs;
--	}
--	drm_printf_indent(p, indent, "available total: %u\n", total);
-+	drm_printf_indent(p, indent, "%s count: %u\n", name, range_end - range_start);
-+	for_each_set_bitrange(rs, re, dbm->bitmap, range_end) {
-+		rs = max(rs, range_start);
-+		re = min(re, range_end);
- 
--	total = 0;
--	for_each_set_bitrange(rs, re, dbm->bitmap, dbm->count) {
--		drm_printf_indent(p, indent, "reserved range: %u..%u (%u)\n",
--				  rs, re - 1, re - rs);
--		total += re - rs;
-+		if (rs < re)
-+			drm_printf_indent(p, indent, "%s reserved range: %u..%u (%u)\n",
-+					  name, rs, re - 1, re - rs);
- 	}
--	drm_printf_indent(p, indent, "reserved total: %u\n", total);
-+	drm_printf_indent(p, indent, "%s reserved total: %u\n", name, used);
++	KUNIT_EXPECT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS + 1, 0), -ERANGE);
++	KUNIT_EXPECT_EQ(test, dbm_init(dbm, 0, GUC_NUM_DOORBELLS + 1), -ERANGE);
++	KUNIT_EXPECT_NULL(test, dbm->bitmap);
 +}
 +
-+static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent)
-+{
-+	lockdep_assert_held(dbm_mutex(dbm));
-+
-+	drm_printf_indent(p, indent, "count: %u\n", dbm_total(dbm));
-+	if (!dbm->bitmap)
-+		return;
-+
-+	dbm_print_range_locked(dbm, p, indent, "usable", 0, dbm->usable,
-+			       dbm_used_usable(dbm));
-+	dbm_print_range_locked(dbm, p, indent, "shareable",
-+			       dbm_shareable_start(dbm), dbm_total(dbm),
-+			       dbm_used_shareable(dbm));
+ static void test_empty(struct kunit *test)
+ {
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, 0), 0);
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, 0, 0), 0);
+ 	KUNIT_ASSERT_EQ(test, dbm_total(dbm), 0);
+ 
+-	mutex_lock(dbm_mutex(dbm));
+-	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
+-	mutex_unlock(dbm_mutex(dbm));
++	scoped_guard(mutex, dbm_mutex(dbm))
++		KUNIT_EXPECT_EQ(test, test_dbm_reserve_usable_locked(dbm, 1), -ENODATA);
+ 
+-	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
++	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_reserve_shareable(dbm, 1, 0), -ENODATA);
  }
  
- /**
-@@ -257,9 +450,8 @@ static void dbm_print_locked(struct xe_guc_db_mgr *dbm, struct drm_printer *p, i
- void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm,
- 			 struct drm_printer *p, int indent)
- {
+ static void test_default(struct kunit *test)
+@@ -39,7 +124,9 @@ static void test_default(struct kunit *test)
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 
+ 	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
+-	KUNIT_ASSERT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, dbm->usable, GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_max_shareable(dbm), 0);
++	KUNIT_EXPECT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
+ }
+ 
+ static const unsigned int guc_dbm_params[] = {
+@@ -63,21 +150,23 @@ static void test_size(struct kunit *test)
+ 	unsigned int n;
+ 	int id;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, *p), 0);
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, *p, 0), 0);
+ 	KUNIT_ASSERT_EQ(test, dbm_total(dbm), *p);
+ 
 -	mutex_lock(dbm_mutex(dbm));
 +	guard(mutex)(dbm_mutex(dbm));
- 	dbm_print_locked(dbm, p, indent);
++
+ 	for (n = 0; n < *p; n++) {
+-		KUNIT_EXPECT_GE(test, id = xe_guc_db_mgr_reserve_id_locked(dbm), 0);
++		id = test_dbm_reserve_usable_locked(dbm, 1);
++		KUNIT_EXPECT_GE(test, id, 0);
++		if (id < 0)
++			break;
+ 		KUNIT_EXPECT_LT(test, id, dbm_total(dbm));
+ 	}
+-	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
 -	mutex_unlock(dbm_mutex(dbm));
++	if (n == *p)
++		KUNIT_EXPECT_EQ(test, test_dbm_reserve_usable_locked(dbm, 1), -ENOSPC);
+ 
+-	mutex_lock(dbm_mutex(dbm));
+-	for (n = 0; n < *p; n++)
+-		xe_guc_db_mgr_release_id_locked(dbm, n);
+-	mutex_unlock(dbm_mutex(dbm));
++	if (n)
++		KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, 0, n), 0);
  }
  
- #if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.h b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-index c250fa0ca9d63..9b611a29b1a9b 100644
---- a/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-@@ -11,6 +11,13 @@ struct xe_guc_db_mgr;
+ static void test_reuse(struct kunit *test)
+@@ -85,27 +174,40 @@ static void test_reuse(struct kunit *test)
+ 	const unsigned int *p = test->param_value;
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 	unsigned int n;
++	int id;
  
- int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count);
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, *p), 0);
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, *p, 0), 0);
  
-+unsigned int xe_guc_db_mgr_max_shareable(struct xe_guc_db_mgr *dbm);
+-	mutex_lock(dbm_mutex(dbm));
+-	for (n = 0; n < *p; n++)
+-		KUNIT_EXPECT_GE(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
+-	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
+-	mutex_unlock(dbm_mutex(dbm));
++	guard(mutex)(dbm_mutex(dbm));
+ 
+-	mutex_lock(dbm_mutex(dbm));
+ 	for (n = 0; n < *p; n++) {
+-		xe_guc_db_mgr_release_id_locked(dbm, n);
+-		KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_reserve_id_locked(dbm), n);
++		id = test_dbm_reserve_usable_locked(dbm, 1);
++		KUNIT_EXPECT_EQ(test, id, n);
++		if (id < 0)
++			break;
++	}
++	if (n < *p) {
++		if (n)
++			dbm_release_chunk_locked(dbm, 0, n);
++		return;
+ 	}
+-	KUNIT_EXPECT_LT(test, xe_guc_db_mgr_reserve_id_locked(dbm), 0);
+-	mutex_unlock(dbm_mutex(dbm));
++	KUNIT_EXPECT_EQ(test, test_dbm_reserve_usable_locked(dbm, 1), -ENOSPC);
+ 
+-	mutex_lock(dbm_mutex(dbm));
+-	for (n = 0; n < *p; n++)
+-		xe_guc_db_mgr_release_id_locked(dbm, n);
+-	mutex_unlock(dbm_mutex(dbm));
++	for (n = 0; n < *p; n++) {
++		KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, n, 1), 0);
++		id = test_dbm_reserve_usable_locked(dbm, 1);
++		KUNIT_EXPECT_EQ(test, id, n);
++		if (id < 0) {
++			if (n)
++				dbm_release_chunk_locked(dbm, 0, n);
++			if (n + 1 < *p)
++				dbm_release_chunk_locked(dbm, n + 1, *p - n - 1);
++			return;
++		}
++	}
++	KUNIT_EXPECT_EQ(test, test_dbm_reserve_usable_locked(dbm, 1), -ENOSPC);
 +
-+int xe_guc_db_mgr_reserve_shareable(struct xe_guc_db_mgr *dbm, unsigned int count,
-+				    unsigned int spare);
-+int xe_guc_db_mgr_release_shareable(struct xe_guc_db_mgr *dbm, unsigned int id,
-+				    unsigned int count);
-+
- int xe_guc_db_mgr_reserve_id_locked(struct xe_guc_db_mgr *dbm);
- void xe_guc_db_mgr_release_id_locked(struct xe_guc_db_mgr *dbm, unsigned int id);
++	KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, 0, *p), 0);
+ }
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index 6da43691e54c5..fa9e0bd296d66 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -27,10 +27,12 @@
-  * to protect its members.
-  */
- struct xe_guc_db_mgr {
--	/** @count: number of doorbells to manage */
--	unsigned int count;
- 	/** @bitmap: bitmap to track allocated doorbells */
- 	unsigned long *bitmap;
-+	/** @usable: number of doorbells available for the native or PF driver */
-+	unsigned int usable;
-+	/** @shareable: number of doorbells that can be shared with VFs */
-+	unsigned int shareable;
+ static void test_range_overlap(struct kunit *test)
+@@ -115,34 +217,34 @@ static void test_range_overlap(struct kunit *test)
+ 	int id1, id2, id3;
+ 	unsigned int n;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, 0), 0);
+ 	KUNIT_ASSERT_LE(test, *p, dbm_total(dbm));
+ 
+-	KUNIT_ASSERT_GE(test, id1 = xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
++	KUNIT_ASSERT_GE(test, id1 = test_dbm_reserve_usable(dbm, *p), 0);
+ 	for (n = 0; n < dbm_total(dbm) - *p; n++) {
+-		KUNIT_ASSERT_GE(test, id2 = xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
++		KUNIT_ASSERT_GE(test, id2 = test_dbm_reserve_usable(dbm, 1), 0);
+ 		KUNIT_ASSERT_NE(test, id2, id1);
+ 		KUNIT_ASSERT_NE_MSG(test, id2 < id1, id2 > id1 + *p - 1,
+ 				    "id1=%d id2=%d", id1, id2);
+ 	}
+-	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
+-	xe_guc_db_mgr_release_range(dbm, 0, dbm_total(dbm));
++	KUNIT_ASSERT_LT(test, test_dbm_reserve_usable(dbm, 1), 0);
++	KUNIT_ASSERT_EQ(test, test_dbm_release_usable(dbm, 0, dbm_total(dbm)), 0);
+ 
+ 	if (*p >= 1) {
+-		KUNIT_ASSERT_GE(test, id1 = xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
+-		KUNIT_ASSERT_GE(test, id2 = xe_guc_db_mgr_reserve_range(dbm, *p - 1, 0), 0);
++		KUNIT_ASSERT_GE(test, id1 = test_dbm_reserve_usable(dbm, 1), 0);
++		KUNIT_ASSERT_GE(test, id2 = test_dbm_reserve_usable(dbm, *p - 1), 0);
+ 		KUNIT_ASSERT_NE(test, id2, id1);
+ 		KUNIT_ASSERT_NE_MSG(test, id1 < id2, id1 > id2 + *p - 2,
+ 				    "id1=%d id2=%d", id1, id2);
+ 		for (n = 0; n < dbm_total(dbm) - *p; n++) {
+-			KUNIT_ASSERT_GE(test, id3 = xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
++			KUNIT_ASSERT_GE(test, id3 = test_dbm_reserve_usable(dbm, 1), 0);
+ 			KUNIT_ASSERT_NE(test, id3, id1);
+ 			KUNIT_ASSERT_NE(test, id3, id2);
+ 			KUNIT_ASSERT_NE_MSG(test, id3 < id2, id3 > id2 + *p - 2,
+ 					    "id3=%d id2=%d", id3, id2);
+ 		}
+-		KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
+-		xe_guc_db_mgr_release_range(dbm, 0, dbm_total(dbm));
++		KUNIT_ASSERT_LT(test, test_dbm_reserve_usable(dbm, 1), 0);
++		KUNIT_ASSERT_EQ(test, test_dbm_release_usable(dbm, 0, dbm_total(dbm)), 0);
+ 	}
+ }
+ 
+@@ -152,36 +254,586 @@ static void test_range_compact(struct kunit *test)
+ 	struct xe_guc_db_mgr *dbm = test->priv;
+ 	unsigned int n;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, 0), 0);
+ 	KUNIT_ASSERT_NE(test, *p, 0);
+ 	KUNIT_ASSERT_LE(test, *p, dbm_total(dbm));
+ 	if (dbm_total(dbm) % *p)
+ 		kunit_skip(test, "must be divisible");
+ 
+-	KUNIT_ASSERT_GE(test, xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
++	KUNIT_ASSERT_GE(test, test_dbm_reserve_usable(dbm, *p), 0);
+ 	for (n = 1; n < dbm_total(dbm) / *p; n++)
+-		KUNIT_ASSERT_GE(test, xe_guc_db_mgr_reserve_range(dbm, *p, 0), 0);
+-	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, 0), 0);
+-	xe_guc_db_mgr_release_range(dbm, 0, dbm_total(dbm));
++		KUNIT_ASSERT_GE(test, test_dbm_reserve_usable(dbm, *p), 0);
++	KUNIT_ASSERT_LT(test, test_dbm_reserve_usable(dbm, 1), 0);
++	KUNIT_ASSERT_EQ(test, test_dbm_release_usable(dbm, 0, dbm_total(dbm)), 0);
+ }
+ 
+ static void test_range_spare(struct kunit *test)
+ {
+ 	const unsigned int *p = test->param_value;
+ 	struct xe_guc_db_mgr *dbm = test->priv;
++	unsigned int total;
+ 	int id;
+ 
+-	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
+-	KUNIT_ASSERT_LE(test, *p, dbm_total(dbm));
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, GUC_NUM_DOORBELLS), 0);
++	total = dbm_total(dbm);
++	KUNIT_ASSERT_LE(test, *p, total);
++
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_reserve_shareable(dbm, *p, total), -EDQUOT);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_reserve_shareable(dbm, *p, total - *p + 1), -EDQUOT);
++	KUNIT_ASSERT_EQ(test, id = xe_guc_db_mgr_reserve_shareable(dbm, *p, total - *p),
++			total - *p);
++	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_shareable(dbm, 1, total - *p), 0);
++	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_release_shareable(dbm, id, *p), 0);
++}
++
++static void test_limits(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int usable = 10;
++	const unsigned int shareable = 20;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, usable, shareable), 0);
++
++	KUNIT_EXPECT_EQ(test, dbm->usable, usable);
++	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_max_shareable(dbm), shareable);
++	KUNIT_EXPECT_EQ(test, dbm_total(dbm), usable + shareable);
++	KUNIT_EXPECT_EQ(test, dbm_shareable_start(dbm), usable);
++}
++
++static void test_overlap(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, GUC_NUM_DOORBELLS), 0);
++
++	KUNIT_EXPECT_EQ(test, dbm->usable, GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_max_shareable(dbm), GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, dbm_shareable_start(dbm), 0);
++}
++
++static void test_overlap_alloc(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int usable_count = 2;
++	const unsigned int shareable_count = 3;
++	int usable_id, shareable_id;
++	unsigned int total;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, GUC_NUM_DOORBELLS), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++	total = dbm_total(dbm);
++
++	usable_id = test_dbm_reserve_usable_locked(dbm, usable_count);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0)
++		return;
++
++	shareable_id = dbm_reserve_chunk_shareable_locked(dbm, shareable_count, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, total - shareable_count);
++	if (shareable_id < 0) {
++		dbm_release_chunk_locked(dbm, usable_id, usable_count);
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), usable_count + shareable_count);
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), usable_count + shareable_count);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), usable_count + shareable_count);
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_usable_locked(dbm, usable_id, usable_count), 0);
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_id,
++							  shareable_count), 0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_overlap_release(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int count = 4;
++	unsigned int total;
++	int id;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, GUC_NUM_DOORBELLS), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++	total = dbm_total(dbm);
++
++	id = test_dbm_reserve_usable_locked(dbm, count);
++	KUNIT_EXPECT_EQ(test, id, 0);
++	if (id < 0)
++		return;
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_shareable_locked(dbm, id, count), 0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++
++	id = dbm_reserve_chunk_shareable_locked(dbm, count, 0);
++	KUNIT_EXPECT_EQ(test, id, total - count);
++	if (id < 0)
++		return;
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, id, count), 0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, 0, 0), -EINVAL);
++	KUNIT_EXPECT_EQ(test, test_dbm_release_shareable_locked(dbm, 0, 0), -EINVAL);
++}
++
++static void test_overlap_partial_init(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int pools_size = DBM_TEST_PARTIAL_POOL_SIZE;
++	unsigned int shareable_start;
++	int usable_id, shareable_id;
++	unsigned int rest;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, pools_size, pools_size), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	shareable_start = dbm_shareable_start(dbm);
++	rest = dbm_total(dbm) - pools_size;
++
++	KUNIT_EXPECT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, dbm->usable, pools_size);
++	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_max_shareable(dbm), pools_size);
++	KUNIT_EXPECT_EQ(test, shareable_start, GUC_NUM_DOORBELLS - pools_size);
++
++	usable_id = test_dbm_reserve_usable_locked(dbm, pools_size);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0)
++		return;
++
++	shareable_id = dbm_reserve_chunk_shareable_locked(dbm, rest, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, pools_size);
++	if (shareable_id < 0) {
++		dbm_release_chunk_locked(dbm, usable_id, pools_size);
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), GUC_NUM_DOORBELLS);
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), pools_size);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), pools_size);
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_usable_locked(dbm, usable_id, pools_size), 0);
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_id, rest), 0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_overlap_partial_shared_range_blocking(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int pools_size = DBM_TEST_PARTIAL_POOL_SIZE;
++	int usable_id, shareable_range_id, shareable_overlap_id;
++	unsigned int shareable_start;
++	unsigned int nonoverlap_size;
++	unsigned int overlap_size;
++	unsigned int total;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, pools_size, pools_size), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	total = dbm_total(dbm);
++	shareable_start = dbm_shareable_start(dbm);
++	nonoverlap_size = total - pools_size;
++	overlap_size = pools_size - shareable_start;
++
++	KUNIT_EXPECT_GT(test, nonoverlap_size, 0);
++	KUNIT_EXPECT_GT(test, overlap_size, 0);
++
++	shareable_range_id = dbm_reserve_chunk_shareable_locked(dbm, nonoverlap_size, 0);
++	KUNIT_EXPECT_EQ(test, shareable_range_id, pools_size);
++	if (shareable_range_id < 0)
++		return;
++
++	usable_id = test_dbm_reserve_usable_locked(dbm, pools_size);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0) {
++		dbm_release_chunk_locked(dbm, shareable_range_id, nonoverlap_size);
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test, dbm_reserve_chunk_shareable_locked(dbm, 1, 0), -ENOSPC);
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, usable_id, pools_size), 0);
++
++	shareable_overlap_id = dbm_reserve_chunk_shareable_locked(dbm, overlap_size, 0);
++	KUNIT_EXPECT_EQ(test, shareable_overlap_id, shareable_start);
++	if (shareable_overlap_id < 0) {
++		dbm_release_chunk_locked(dbm, shareable_range_id, nonoverlap_size);
++		return;
++	}
++
++	usable_id = test_dbm_reserve_usable_locked(dbm, shareable_start);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0) {
++		dbm_release_chunk_locked(dbm, shareable_overlap_id, overlap_size);
++		dbm_release_chunk_locked(dbm, shareable_range_id, nonoverlap_size);
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, test_dbm_reserve_usable_locked(dbm, 1), -ENOSPC);
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_usable_locked(dbm, usable_id, shareable_start),
++			0);
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_overlap_id,
++							  overlap_size),
++			0);
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_range_id,
++							  nonoverlap_size),
++			0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_used_usable(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int count = 2;
++	int id;
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, DBM_TEST_POOL_SIZE, 0), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), 0);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), 0);
++
++	id = test_dbm_reserve_usable_locked(dbm, count);
++	KUNIT_EXPECT_GE(test, id, 0);
++	if (id < 0)
++		return;
++
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), count);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), 0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), count);
++
++	dbm_release_chunk_locked(dbm, id, count);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_used_shareable(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int count = 3;
++	unsigned int shareable_start;
++	int id;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, DBM_TEST_POOL_SIZE, DBM_TEST_POOL_SIZE), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++	shareable_start = dbm_shareable_start(dbm);
++
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), 0);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), 0);
++
++	id = dbm_reserve_chunk_shareable_locked(dbm, count, 0);
++	KUNIT_EXPECT_EQ(test, id, shareable_start);
++	if (id < 0)
++		return;
++
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), 0);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), count);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), count);
++
++	dbm_release_chunk_locked(dbm, id, count);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_used_mixed(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int usable_count = 2;
++	const unsigned int shareable_count = 3;
++	unsigned int shareable_start;
++	int usable_id, shareable_id;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, DBM_TEST_POOL_SIZE, DBM_TEST_POOL_SIZE), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++	shareable_start = dbm_shareable_start(dbm);
++
++	usable_id = test_dbm_reserve_usable_locked(dbm, usable_count);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0)
++		return;
++
++	shareable_id = dbm_reserve_chunk_shareable_locked(dbm, shareable_count, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, shareable_start);
++	if (shareable_id < 0) {
++		dbm_release_chunk_locked(dbm, usable_id, usable_count);
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), usable_count);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), shareable_count);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), usable_count + shareable_count);
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_usable_locked(dbm, usable_id, usable_count), 0);
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_id,
++							  shareable_count), 0);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_release_usable_range(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int count = 4;
++	int id;
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, DBM_TEST_POOL_SIZE, 0), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	id = test_dbm_reserve_usable_locked(dbm, count);
++	KUNIT_EXPECT_EQ(test, id, 0);
++	if (id < 0)
++		return;
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_usable_locked(dbm, count,
++						       DBM_TEST_POOL_SIZE - count + 1),
++			-ERANGE);
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), count);
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, 0, 0), -EINVAL);
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), count);
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_usable_locked(dbm, id, count), 0);
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), 0);
++}
++
++static void test_release_shareable_range(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int count = 4;
++	unsigned int shareable_start;
++	int id;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, DBM_TEST_POOL_SIZE, DBM_TEST_POOL_SIZE), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	shareable_start = dbm_shareable_start(dbm);
++	id = dbm_reserve_chunk_shareable_locked(dbm, count, 0);
++	KUNIT_EXPECT_EQ(test, id, shareable_start);
++	if (id < 0)
++		return;
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_start - 1, count),
++			-ERANGE);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), count);
++
++	KUNIT_EXPECT_EQ(test,
++			test_dbm_release_shareable_locked(dbm, shareable_start, 0),
++			-EINVAL);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), count);
++
++	KUNIT_EXPECT_EQ(test, test_dbm_release_shareable_locked(dbm, id, count), 0);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), 0);
++}
++
++static void test_split_boundaries(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int pool_size = DBM_TEST_POOL_SIZE;
++	unsigned int shareable_start;
++	int usable_id, shareable_id;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, pool_size, pool_size), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	shareable_start = dbm_shareable_start(dbm);
++
++	usable_id = test_dbm_reserve_usable_locked(dbm, pool_size);
++	KUNIT_EXPECT_EQ(test, usable_id, 0);
++	if (usable_id < 0)
++		return;
++	KUNIT_EXPECT_EQ(test, test_dbm_reserve_usable_locked(dbm, 1), -ENOSPC);
++
++	shareable_id = dbm_reserve_chunk_shareable_locked(dbm, pool_size, 0);
++	KUNIT_EXPECT_EQ(test, shareable_id, shareable_start);
++	if (shareable_id < 0) {
++		dbm_release_chunk_locked(dbm, usable_id, pool_size);
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, dbm_reserve_chunk_shareable_locked(dbm, 1, 0), -ENOSPC);
++
++	KUNIT_EXPECT_EQ(test, dbm_used_usable(dbm), pool_size);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), pool_size);
++
++	dbm_release_chunk_locked(dbm, usable_id, pool_size);
++	dbm_release_chunk_locked(dbm, shareable_id, pool_size);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_shareable_quota(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int overlap = 10;
++	const unsigned int tail = 10;
++	const unsigned int usable = GUC_NUM_DOORBELLS - tail;
++	const unsigned int shareable = overlap + tail;
++	const unsigned int spare = overlap + 1;
++	int usable_id, tail_id;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, usable, shareable), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++
++	/* spare is larger than the overlap, but the VF-exclusive tail is not limited by it */
++	usable_id = test_dbm_reserve_usable_locked(dbm, usable - spare);
++	KUNIT_EXPECT_GE(test, usable_id, 0);
++	if (usable_id < 0)
++		return;
++
++	tail_id = dbm_reserve_chunk_shareable_locked(dbm, tail, spare);
++	KUNIT_EXPECT_EQ(test, tail_id, usable);
++	if (tail_id < 0) {
++		dbm_release_chunk_locked(dbm, usable_id, usable - spare);
++		return;
++	}
++
++	KUNIT_EXPECT_EQ(test,
++			dbm_reserve_chunk_shareable_locked(dbm, 1, spare), -EDQUOT);
++
++	dbm_release_chunk_locked(dbm, usable_id, usable - spare);
++	dbm_release_chunk_locked(dbm, tail_id, tail);
++	KUNIT_EXPECT_EQ(test, test_dbm_used_total(dbm), 0);
++}
++
++static void test_shareable_spare(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int pools_size = DBM_TEST_PARTIAL_POOL_SIZE;
++	unsigned int shareable_start;
++	unsigned int overlap_size;
++	unsigned int shared_tail;
++	int id_tail, id_overlap, id_extra;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, pools_size, pools_size), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++	shareable_start = dbm_shareable_start(dbm);
++	overlap_size = dbm->usable - shareable_start;
++	shared_tail = dbm_total(dbm) - dbm->usable;
++
++	KUNIT_EXPECT_GT(test, overlap_size, 0);
++	KUNIT_EXPECT_GT(test, shared_tail, 0);
++
++	id_tail = dbm_reserve_chunk_shareable_locked(dbm, shared_tail, 1);
++	KUNIT_EXPECT_EQ(test, id_tail, dbm->usable);
++	if (id_tail < 0)
++		return;
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), shared_tail);
++
++	id_overlap = dbm_reserve_chunk_shareable_locked(dbm, overlap_size - 1, 1);
++	KUNIT_EXPECT_EQ(test, id_overlap, shareable_start + 1);
++	if (id_overlap < 0) {
++		dbm_release_chunk_locked(dbm, id_tail, shared_tail);
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), dbm->shareable - 1);
++
++	id_extra = dbm_reserve_chunk_shareable_locked(dbm, 1, 1);
++	KUNIT_EXPECT_EQ(test, id_extra, shareable_start);
++	if (id_extra < 0) {
++		dbm_release_chunk_locked(dbm, id_tail, shared_tail);
++		dbm_release_chunk_locked(dbm, id_overlap, overlap_size - 1);
++		return;
++	}
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), dbm->shareable);
++
++	dbm_release_chunk_locked(dbm, id_tail, shared_tail);
++	dbm_release_chunk_locked(dbm, id_overlap, overlap_size - 1);
++	dbm_release_chunk_locked(dbm, id_extra, 1);
++	KUNIT_EXPECT_EQ(test, dbm_used_shareable(dbm), 0);
++}
++
++static void test_shareable_spare_fragmented_tail(struct kunit *test)
++{
++	struct xe_guc_db_mgr *dbm = test->priv;
++	const unsigned int overlap = 40;
++	const unsigned int tail = 50;
++	const unsigned int usable = GUC_NUM_DOORBELLS - tail;
++	const unsigned int shareable = overlap + tail;
++	const unsigned int stride = 5;
++	const unsigned int count = overlap - 1;
++	const unsigned int spare = 10;
++	const unsigned int overlap_free = 30;
++	const unsigned int tail_free = 20;
++	unsigned int shareable_start;
++	unsigned int i;
++
++	require_iov_config_or_skip(test);
++
++	KUNIT_ASSERT_EQ(test, dbm_init(dbm, usable, shareable), 0);
++
++	guard(mutex)(dbm_mutex(dbm));
++	shareable_start = dbm_shareable_start(dbm);
++	KUNIT_EXPECT_EQ(test, dbm->usable - shareable_start, overlap);
++
++	/*
++	 * Fragmented tail cannot fit @count doorbells, so the request must fall
++	 * back to the overlap, where it is limited by @spare.
++	 */
++	bitmap_fill(dbm->bitmap, dbm_total(dbm));
++	bitmap_clear(dbm->bitmap, shareable_start + 1, count);
++	for (i = dbm->usable; i < dbm_total(dbm); i++) {
++		if ((i - dbm->usable) % stride)
++			bitmap_clear(dbm->bitmap, i, 1);
++	}
++
++	KUNIT_EXPECT_EQ(test, dbm_reserve_chunk_shareable_locked(dbm, count, spare),
++			-EDQUOT);
++
++	bitmap_fill(dbm->bitmap, dbm_total(dbm));
++	bitmap_clear(dbm->bitmap, shareable_start, overlap_free);
++	bitmap_clear(dbm->bitmap, dbm_total(dbm) - tail_free, tail_free);
++	KUNIT_EXPECT_EQ(test, dbm_reserve_chunk_shareable_locked(dbm, overlap_free, 1),
++			-EDQUOT);
+ 
+-	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm_total(dbm)), 0);
+-	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, *p, dbm_total(dbm) - *p + 1), 0);
+-	KUNIT_ASSERT_EQ(test, id = xe_guc_db_mgr_reserve_range(dbm, *p, dbm_total(dbm) - *p), 0);
+-	KUNIT_ASSERT_LT(test, xe_guc_db_mgr_reserve_range(dbm, 1, dbm_total(dbm) - *p), 0);
+-	xe_guc_db_mgr_release_range(dbm, id, *p);
++	bitmap_zero(dbm->bitmap, dbm_total(dbm));
+ }
+ 
+ static struct kunit_case guc_dbm_test_cases[] = {
++	KUNIT_CASE(test_bad_init),
+ 	KUNIT_CASE(test_empty),
+ 	KUNIT_CASE(test_default),
+ 	KUNIT_CASE_PARAM(test_size, guc_dbm_gen_params),
+@@ -189,6 +841,21 @@ static struct kunit_case guc_dbm_test_cases[] = {
+ 	KUNIT_CASE_PARAM(test_range_overlap, guc_dbm_gen_params),
+ 	KUNIT_CASE_PARAM(test_range_compact, guc_dbm_gen_params),
+ 	KUNIT_CASE_PARAM(test_range_spare, guc_dbm_gen_params),
++	KUNIT_CASE(test_limits),
++	KUNIT_CASE(test_overlap),
++	KUNIT_CASE(test_overlap_alloc),
++	KUNIT_CASE(test_overlap_release),
++	KUNIT_CASE(test_overlap_partial_init),
++	KUNIT_CASE(test_overlap_partial_shared_range_blocking),
++	KUNIT_CASE(test_used_usable),
++	KUNIT_CASE(test_used_shareable),
++	KUNIT_CASE(test_used_mixed),
++	KUNIT_CASE(test_release_usable_range),
++	KUNIT_CASE(test_release_shareable_range),
++	KUNIT_CASE(test_split_boundaries),
++	KUNIT_CASE(test_shareable_quota),
++	KUNIT_CASE(test_shareable_spare),
++	KUNIT_CASE(test_shareable_spare_fragmented_tail),
+ 	{}
  };
  
- /**
 -- 
 2.34.1
 
