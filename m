@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 849C6606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 05:40:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2D61606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 05:40:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XhEeSJNj
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=iGIUSRp7
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38D9010E96A;
-	Mon, 26 Oct 2026 05:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EFDE10E97A;
+	Mon, 26 Oct 2026 05:40:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20B1110E965;
- Mon, 26 Oct 2026 05:40:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8239610E96D;
+ Mon, 26 Oct 2026 05:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792993225; x=1824529225;
+ t=1792993232; x=1824529232;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PhW6qsp2E/4EtS3MTIFWuzXeEv6TpTLsfh4bHU82vsU=;
- b=XhEeSJNj1RtbHxvHiTYJof4iObbo9eJ5N6SKiteUkYdSmb2SnT12eb+d
- q5FSMHJjHKOwYPN4I6ZvE9zZJ5YYQE60HE9I+B/fnpzH5xSUq40mK9Pa6
- FsP0YKlS9v7BdC9o3MGwHJ/yll07N2On2sY8SnUDdmyPer3MwnovtjkbI
- IpPlH0ZUQ+csQZ2Jbw235+e6U//HT7ipxNZNfQ2VcmrbX2NTaLUtuQF41
- hvp3wpyiqaXWWcqZg74MRkC53KNOK0rr1J0h8yNDNJ1hVMzixWqSukrts
- 3KQc1h/PQYqnBTbRMkVOD+XSSdLrGuBY09vU58AXWm8Z1bJoNOFqwuA4I A==;
-X-CSE-ConnectionGUID: n/IfmjVQSLqfzqD6J+TACA==
-X-CSE-MsgGUID: PspeTJf3Qmu2pu8wpmLa1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1550172"
+ bh=Xr9lLmSR0vgQU5s8NAeJ2XZV+2VuvKAoSiqpMVF5Ops=;
+ b=iGIUSRp7okWooeqWz19/D1TPN3dH3NwVBAq9jdWAsWDWV7tijJ7sCc95
+ QmzXzJndXcDzA8wYWzkxlGSp8yeO8xr1fXHAAXAgNo1Xugsy6AR52MD91
+ T6SiDtFqEz0ANduzVheG5ALisosT64XQvLO3dOl+O+AFqalFH1RfCog4R
+ IHuNJgDZIBPWta3LV2mA0FN8hQDSPN8cbJmkW9FpiwJAt+pSmdt+d8GpK
+ NoK7+K/dUgfZF0tuhxsyRN7UIDFc8uz+i689qqP0xjyt5jsYQpk6FGwZf
+ Ht/0ndG4TPBf0s9363rgCX2J9h+Yrgx/qAJ5eUgiOTaIklZVqeDfRsUh3 g==;
+X-CSE-ConnectionGUID: k/c8d6pBR/CZp4Tup4bDKA==
+X-CSE-MsgGUID: h7+6ddeUTCq7jzVpzwePCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1550189"
 X-IronPort-AV: E=Sophos;i="6.27,178,1787036400"; 
-   d="scan'208";a="1550172"
+   d="scan'208";a="1550189"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2026 22:40:25 -0700
-X-CSE-ConnectionGUID: ys3I3ovoRzWW/Twdw0rx6w==
-X-CSE-MsgGUID: Ev2CFWJOTCexEmfPwgZq4g==
+ 25 Oct 2026 22:40:32 -0700
+X-CSE-ConnectionGUID: 4i4nfh5pRx+5/MiYCk+Adw==
+X-CSE-MsgGUID: ssyieCiNTrmYNNTo99mALg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,178,1787036400"; 
-   d="scan'208";a="6001855"
+   d="scan'208";a="6001864"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa013.fm.intel.com with ESMTP; 25 Oct 2026 22:40:23 -0700
+ by fmviesa013.fm.intel.com with ESMTP; 25 Oct 2026 22:40:30 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, jani.nikula@intel.com, suraj.kandpal@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v7 04/20] drm/i915/alpm: alpm_init() for DP2.1
-Date: Mon, 26 Oct 2026 11:09:15 +0530
-Message-ID: <20261026054001.799894-5-animesh.manna@intel.com>
+Subject: [PATCH v7 06/20] drm/i915/alpm: Refactor Auxless wake time calculation
+Date: Mon, 26 Oct 2026 11:09:17 +0530
+Message-ID: <20261026054001.799894-7-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261026054001.799894-1-animesh.manna@intel.com>
 References: <20261026054001.799894-1-animesh.manna@intel.com>
@@ -72,120 +72,73 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Initialize ALPM for DP2.1 and separate out ALPM mutex-init
-from alpm-init.
+Divide the auxless wake time calculation in parts which will
+help later to add Xe3p related modification.
 
-v2: Separate out mutex-init. [Jani]
-v3: Refactor further to avoid DISPLAY_VER check in multiple places. [Jani]
-v4: Cosmetic changes. [Suraj]
-v5: Reset alpm_dpcd and simplify source-supported check.
-v6: Drop display-version check for eDP for backward compatible.
-v7:
-- Read ALPM DPCD in detect only for DP, eDP already does it. [Jouni]
-- Move source-supported check into intel_alpm_init/_dpcd(). [Jouni]
-- Check source support instead of sink caps in intel_alpm_disable()
-  as alpm_dpcd is reset on disconnect before the CRTC is disabled.
-  [Sashiko]
+v2: Refactor first existing calculation. [Jani]
+v3: Cosmetic changes. [Jani, Suraj]
+v4: Keep num_ml_phy_lock for readability and return the
+    establishment period directly. [Jouni]
 
+Bspec: 71477
 Cc: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c | 19 ++++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_dp.c   |  9 ++++++---
- 2 files changed, 24 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 31 ++++++++++++++++-------
+ 1 file changed, 22 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index cb1d68fef198..b6307862b756 100644
+index 12dc79198494..ab6612b4506e 100644
 --- a/drivers/gpu/drm/i915/display/intel_alpm.c
 +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -43,11 +43,21 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
- 		(crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp));
+@@ -109,6 +109,25 @@ static int get_lfps_half_cycle_clocks(const struct intel_crtc_state *crtc_state)
+ 		1000 / (2 * LFPS_CYCLE_COUNT);
  }
  
-+static bool intel_alpm_source_supported(struct intel_dp *intel_dp)
++static int get_tphy2_p2_to_p0(const struct intel_crtc_state *crtc_state)
 +{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	return intel_dp_is_edp(intel_dp) || DISPLAY_VER(display) >= 35;
++	return 12 * 1000;
 +}
 +
- int intel_alpm_init_dpcd(struct intel_dp *intel_dp)
- {
- 	u8 dpcd;
- 	int ret;
- 
-+	if (!intel_alpm_source_supported(intel_dp))
-+		return 0;
++static int get_establishment_period(const struct intel_crtc_state *crtc_state)
++{
++	int t1 = 50 * 1000;
++	int tps4 = 252;
++	/* port_clock is link rate in 10kbit/s units */
++	int tml_phy_lock = 1000 * 1000 * tps4 / crtc_state->port_clock;
++	int num_ml_phy_lock, tcds;
 +
- 	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_RECEIVER_ALPM_CAP, &dpcd);
- 	if (ret < 0)
- 		return ret;
-@@ -59,6 +69,9 @@ int intel_alpm_init_dpcd(struct intel_dp *intel_dp)
- 
- void intel_alpm_init(struct intel_dp *intel_dp)
- {
-+	if (!intel_alpm_source_supported(intel_dp))
-+		return;
++	num_ml_phy_lock = 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
++	tcds = num_ml_phy_lock * tml_phy_lock;
 +
- 	mutex_init(&intel_dp->alpm.lock);
++	return SILENCE_PERIOD_TIME + t1 + tcds;
++}
++
+ /*
+  * AUX-Less Wake Time = CEILING( ((PHY P2 to P0) + tLFPS_Period, Max+
+  * tSilence, Max+ tPHY Establishment + tCDS) / tline)
+@@ -130,17 +149,11 @@ static int get_lfps_half_cycle_clocks(const struct intel_crtc_state *crtc_state)
+  */
+ static int _lnl_compute_aux_less_wake_time(const struct intel_crtc_state *crtc_state)
+ {
+-	int tphy2_p2_to_p0 = 12 * 1000;
+-	int t1 = 50 * 1000;
+-	int tps4 = 252;
+-	/* port_clock is link rate in 10kbit/s units */
+-	int tml_phy_lock = 1000 * 1000 * tps4 / crtc_state->port_clock;
+-	int num_ml_phy_lock = 7 + DIV_ROUND_UP(6500, tml_phy_lock) + 1;
+-	int t2 = num_ml_phy_lock * tml_phy_lock;
+-	int tcds = 1 * t2;
++	int tphy2_p2_to_p0 = get_tphy2_p2_to_p0(crtc_state);
++	int establishment_period = get_establishment_period(crtc_state);
+ 
+ 	return DIV_ROUND_UP(tphy2_p2_to_p0 + get_lfps_cycle_time(crtc_state) +
+-			    SILENCE_PERIOD_TIME + t1 + tcds, 1000);
++			    establishment_period, 1000);
  }
  
-@@ -750,7 +763,11 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	enum transcoder cpu_transcoder = intel_dp->alpm.transcoder;
- 
--	if (DISPLAY_VER(display) < 20 || !intel_dp->alpm_dpcd)
-+	/*
-+	 * Don't check sink ALPM caps here, they are reset on disconnect
-+	 * before the CRTC is disabled.
-+	 */
-+	if (DISPLAY_VER(display) < 20 || !intel_alpm_source_supported(intel_dp))
- 		return;
- 
- 	mutex_lock(&intel_dp->alpm.lock);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 816337efeb91..c543fe551eb8 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6607,6 +6607,7 @@ intel_dp_detect(struct drm_connector *_connector,
- 		connector->dp.panel_replay_caps.su_support = false;
- 		connector->dp.panel_replay_caps.dsc_support =
- 			INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED;
-+		intel_dp->alpm_dpcd = 0;
- 
- 		intel_dp_mst_disconnect(intel_dp);
- 
-@@ -6629,8 +6630,10 @@ intel_dp_detect(struct drm_connector *_connector,
- 	if (ret == 1)
- 		connector->base.epoch_counter++;
- 
--	if (!intel_dp_is_edp(intel_dp))
-+	if (!intel_dp_is_edp(intel_dp)) {
-+		intel_alpm_init_dpcd(intel_dp);
- 		intel_psr_init_dpcd(intel_dp, connector);
-+	}
- 
- 	intel_dp_detect_dsc_caps(intel_dp, connector);
- 
-@@ -7272,8 +7275,6 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
- 	 */
- 	intel_hpd_enable_detection(encoder);
- 
--	intel_alpm_init(intel_dp);
--
- 	/* Cache DPCD and EDID for edp. */
- 	has_dpcd = intel_edp_init_dpcd(intel_dp, connector);
- 
-@@ -7488,6 +7489,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 
- 	intel_psr_init(intel_dp);
- 
-+	intel_alpm_init(intel_dp);
-+
- 	return true;
- 
- fail:
+ static int
 -- 
 2.43.0
 
