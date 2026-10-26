@@ -2,42 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00BAD606A325
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:09:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B426606A31B
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:19:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kLPO07Aq
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MXpA5DW4
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9C4810E14C;
-	Mon, 26 Oct 2026 10:09:43 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E777610ED96
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 10:09:36 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B91BA432D0;
- Mon, 26 Oct 2026 10:09:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 813421F01280;
- Mon, 26 Oct 2026 10:09:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793009376;
- bh=gX6Gj2BJW/r/XB/MBTadEsRnGOmEB9k35lyC637POog=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=kLPO07Aq8vAwrWVB0U1oR/xb1Otu8FU+XD0jywgXPYT0Q14jsFp+Xfw9JnI3yblaJ
- cBSYtRDn0aHDRvwdjikQOX3pDF29SCYOZ2hVj+mz6mn3sqoDvDE68abcj8tsB42UZN
- hkQ6H+hxnKs34anSOmHRL3AN0zWAsEejHIq3myDNfBRSp/eqAbnNkcAnzEGYOLmSC4
- 1KW7AtNhwAAr4JZY6Wpx56Pv3knynfXAXKYqqvoC3PWl79zq1ejlE0ygKYRbcaJ4ME
- 1X7bQIQzs5WjloMYAi4BlR2C3UwXGQed741l0kBe86bENTlamR+PaNQTRHZqpu4NRE
- LNCVIXu65u0Jg==
-Message-ID: <sashiko-outbox-184890@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 4/9] drm/xe/xe_hw_error: Handle non-fatal errors
- routed via direct IRQ
-To: "Riana Tauro" <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261026060459.771448-15-riana.tauro@intel.com>
-References: <20261026060459.771448-11-riana.tauro@intel.com>
- <20261026060459.771448-15-riana.tauro@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 26 Oct 2026 10:09:36 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E8C10EDA7;
+	Mon, 26 Oct 2026 10:19:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6A5A10EDA2;
+ Mon, 26 Oct 2026 10:18:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793009940; x=1824545940;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=9tMpmj4eAx16Jn6+SLCzKuvfVeOweMElzjjZ+NMwjB0=;
+ b=MXpA5DW4QC2ZxKt2dJ6CFxCIf+fBdZk0BEr+RnbukcjP+CeC4XYXbhVs
+ fVGX/+FuNMx8OhDfBmms9Opv+BSm2xjgoh/QqFbGs7rjQZ3uuQ5/eQeDl
+ 1fvUfqn3sONP0u9Bq9Nwau2k06HNXaednpIfSiVxNgd8Sb8yomnleqWaW
+ V1gLSG9Ws+mM9VyGFpM9RM4jClafhReEhi/24nMslbxZ1bRHLLNNLf6Jl
+ AWO3y4as28cnxBx4mLmBZ6iu1ZyrzMDGFxtQZZ/Ct9ko2JvjwsOtxqr89
+ ey9HWNmkT7DygZYJmSJ2GVMA3a6TkxfmAsTwH23WjIItv+b4s8bMo8i73 Q==;
+X-CSE-ConnectionGUID: fLVEHeZbQBmvZRROcpHCmg==
+X-CSE-MsgGUID: Dznh0LoVTv2UH1YRfLkioA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1573233"
+X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
+   d="scan'208";a="1573233"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2026 03:18:59 -0700
+X-CSE-ConnectionGUID: P7jBGFHjTrSRJM10kB1XUg==
+X-CSE-MsgGUID: /Erp2yk4RgWQu8iqvI+n6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
+   d="scan'208";a="4621233"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2026 03:18:59 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Mon, 26 Oct 2026 03:18:59 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Mon, 26 Oct 2026 03:18:59 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.11) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Mon, 26 Oct 2026 03:18:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hW1ALmyBH94qeGEr7hXORiC9OtTO+LBFUh7u3BRMKxld4O09xrV6T4DNXFmDJQymQjlXgCY8ZjxKuJt4e8Lgm5QhL0wAwTplanPQXsAUQ4b9X90SKrEFMDKdZD+YvUEWp+M+rdmV+fOTyAQ8uFSQlTniEncum5kiZCSTa+bCSyfRT3K2qxZGs/cIocZzLDHgmVKWldkrq/G5QEmmNUtfYJz78BrzYaBB3UZk0i0izHEr25MqaxIJ1mvRAdYLtgEKYS4Y3hbz9HdnALu92LIYAz4B6w4czYRLUs5QnnTMy9M7Ag/UaFz9dPder9xDqh3QV94bgG/JHPnnIgdC2pB+bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E4UPBT9wS0pJuuopFB3UncRdrdao84OkceJQUY6Wu3A=;
+ b=RmaSY/MEQnfcvz/jeob2lBopkgBnCGckqiTf8QDhrgIPwSVz7qno8n+YReHSCSxCiVzke8oZaUZ6BtowWjngtV5yTgbf4qs0Z+1f9eNZ8c3pu//tqQhsBYHIIMgdRr6mi8xVf65YiZjKCq/ipQ24eE5vounI6mXfjNIBypCPxhdr33UbYwka2IuAQMYIwW09nLeslcTVsQvoe1qmlYjT7QyvMu9isFRQhsY4zEXzTLwX6p8mhd0ZRZZQgdbTyoiGCBBWkOidr5QyKFU4rOkmdTjKogo/12y8o9eUxH0mIKmGPlz0FUYk5zKayCmMk8OYXfvZwJ4HNn68n6FUYzQwsQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6440.namprd11.prod.outlook.com (2603:10b6:930:33::9)
+ by PH8PR11MB7022.namprd11.prod.outlook.com (2603:10b6:510:222::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Mon, 26 Oct
+ 2026 10:18:57 +0000
+Received: from CY5PR11MB6440.namprd11.prod.outlook.com
+ ([fe80::90ea:c216:8cc7:3757]) by CY5PR11MB6440.namprd11.prod.outlook.com
+ ([fe80::90ea:c216:8cc7:3757%6]) with mapi id 15.21.0546.021; Mon, 26 Oct 2026
+ 10:18:56 +0000
+Message-ID: <3445c79e-105b-4092-b897-deb0d2e7f85d@intel.com>
+Date: Mon, 26 Oct 2026 15:48:45 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/1] drm/i915/cmtg: Disable CMTG after encoder disable
+ in hsw_crtc_disable()
+To: Animesh Manna <animesh.manna@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <jani.nikula@intel.com>, <uma.shankar@intel.com>
+References: <20261026082906.802048-1-animesh.manna@intel.com>
+ <20261026082906.802048-2-animesh.manna@intel.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20261026082906.802048-2-animesh.manna@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0228.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b4::7) To CY5PR11MB6440.namprd11.prod.outlook.com
+ (2603:10b6:930:33::9)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6440:EE_|PH8PR11MB7022:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9e42f2fb-d93f-49b9-c044-08df334a8af5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|18002099003|6133799003|22082099003|56012099006|4143699003|11063799006|261022075727099003|261021123027099003|10067099003|261009223027099003|261021121427099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: v9hn2ROwu5G8PQtFvT8nWnNbhmMatBVyRYiJDoIY0jZBj4vtCH+cZa/sl8eXvQUyxUl92gbd3hCFCXbzwQzPF8z3yfhq7f2gn0BvZr/X2MOgrhthx7TAd2K0ZmzCnVa4OWMR4bVO2dQ3EzV+HYhOLgL42IzV+zlyzaTqmNdTnaqozM7WFkS3hAIb7WSYMQMFt6zpoejQGaMgzlPje2lScRs07r6BFA9SJLkerbX+kMvulYgNW674BFYhrvz8IYnJ2YRvVb+Zijq07+We/q4DjY63iVlfafsYk9bybTNUoKxfhqjoLNNM7xM/+Fyc79TKV5E0+ofaJsybgAbP6as9ZU1YtCAC+R03eQXxnINRH/ZR3WZp7nggEaJlgIaFFDgB3QliS4MylkdGGPqI+2LPrHJ2gcNqy3tQBhPvXaMFqG+fXBUTyXOOOs1XP3ub1gRy1Sl9LMrL8GHBeLEagZCwy9g3wKm0QLq9LRDzxfyG4nR9VlH6926RIMrmmEl3ZurZBuOkKZfsTy9lE/7oSTlPLKp9uide6JatP5Bix7R8OFttTK0ETCKzYOgdw4U9FQfDCJbhUv1jZ5bOHv5QmJLmCTXq5+6SBlh7S9LV5qJBTTSfW++4GdIwQazQboeXqFEYd9ag+U7St2dBRQ/NcCLodUIxlIQxHIuW/QtAgMQKQRY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6440.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(18002099003)(6133799003)(22082099003)(56012099006)(4143699003)(11063799006)(261022075727099003)(261021123027099003)(10067099003)(261009223027099003)(261021121427099003)(261022105027099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3IreWpSdUd3T2RiRjdTS09BRVh4ZENOenBwZVZrejdsNmZWaTdVV1VseU1M?=
+ =?utf-8?B?Q25maUNmeVV0OFFTWE9tUlFsZlBycEVqcnkremd2Tm9qSHB5ZzZGMmNGY0ZR?=
+ =?utf-8?B?eVBaaGw5Ynp5Q3VsQ0E0dXJSamJBQ0dTYXlBWTlVUWJxdzVaeC9yR2UvZDdu?=
+ =?utf-8?B?cDZ3N0pKbGd1SnBEdmJOWTVmOFpRZjNJYlBqR3o5S3k2dXY0Z3dhWHQrb2VC?=
+ =?utf-8?B?b3Fyd1h2b3J5a1hRQ3VCUE9qUStESUdHdERJTkRmeVNsSFNSRWdhVms5RTZS?=
+ =?utf-8?B?U05UWFVDR3Vxekt5SG5uVjE3ZUJaUEQyRWdZVXhlNys4UDJEeGQ2TU1mZVdP?=
+ =?utf-8?B?VW9YOEF4OGw3b0EzaEUvR3J2SUxPdUlLTk5zTWtMNzN1b3NvbUcwM080NEZW?=
+ =?utf-8?B?ZXVMbitBem4xVHNkZWFNMm1jb2I4ZldPMlhoeWh2d3djVStKd2YxUGRoS1NE?=
+ =?utf-8?B?b01wLzMzVEt3ckpNSlB2VG9DSFZZeUljS1d0b3EwdmtzenFFU0d5UThCazdN?=
+ =?utf-8?B?NTVhVndPeERLd1QvVFQ0ZjdMN0VEdm5RUXpvSk85Y1IrMnA2disrQ2FnU3Ur?=
+ =?utf-8?B?ZFlQaVlqUU1QZzVQRFNvazJYK05iUUQxd0xZLzl2UjRLWVhMTmJKRHVqbWNF?=
+ =?utf-8?B?d1M1YTd5Mi9vL0hYVjNkZitvMDBHTGRWUS9KMzViOHVpRUtpOFNxVmVaQ3F6?=
+ =?utf-8?B?TFE0azcwRFJ1MGtnUG9iaTNJaXoyZGVVODZkLzZ5MzRsNzdKV00xbTl5VWdN?=
+ =?utf-8?B?OE1OS1p5RHl3M20vc243eVoyZVhUYkVQcDRHbW9ORFozQmxqVDlJUkJBKzBk?=
+ =?utf-8?B?VER0dEUrS214S3FEbEx5ZjVGZEZjU0lRYm9UcVNQKzdEenF5NWYwMUhjbTJH?=
+ =?utf-8?B?WDlFdXVzN0JjRG9IMDdFckFKRmtENW5NRVU1NitCc2c3dnNIUjBrVWNlM2Jr?=
+ =?utf-8?B?Z1FUd2MyK2xVbDRqL05PWnM0RHhWZ2ZuT2QxNzY3UEZnakxQbklKakVtRFJX?=
+ =?utf-8?B?cDJWVW5KU3o1MnNOUnBDQ2d3YUNaUEE0Z0I3dXpHOWx3RXJ4Mm9JYUFmaWFq?=
+ =?utf-8?B?U1RCa0hrdmk0TExtSFJScXVJbHRDdElpVC9MMlFoQWlYalNkZmZaN1RGR3Vv?=
+ =?utf-8?B?Q2t4NkFqOWxmbTdxNGd0T1V1WkFqWmUwVTAzSUxDbkZHTlEzMTFzbUZJUzF5?=
+ =?utf-8?B?UTAxNGFTQVFnZnd0STlTUm5qaDBNU0ZhNy9sZlp6KzZpOGFVSXBpYWxKZU52?=
+ =?utf-8?B?V01pWlJpNXNqMGRocFUwcDE1RGRMYjlqcUJtWkcvZkVaZVJ1aHk5Yi9ZTk1B?=
+ =?utf-8?B?b2JHZnY3dW0yaHNVMGNkeG1MRmIvWXBYR1dxSlExZGZtRlphbVlHVEJDckRm?=
+ =?utf-8?B?cnpsTFhrSnUyRk44UnB6Q0Q1RzJ1T0dBVnNZWjdqeG9sOUxrUWg5WlNhZmpT?=
+ =?utf-8?B?SHgyWFZXOHFWcDVrV24rSnBaY0NMK2F1MkFUbEZZZzRsdmNmYVB0UG8wVmor?=
+ =?utf-8?B?WUZhQnpXMWRZMnZaazEzK2pzNFlZVm5CQkdzWk1ZbmQyVjBVV1M0cnNzU2tO?=
+ =?utf-8?B?S2d5M2NTWi9WS1d6MDBGZTU5VGdjdjNKMVhJS0tTRGRSQVV4WUJGSFhSL0VI?=
+ =?utf-8?B?UHp5TFZVSGxVcVBVcFU1Y0ZVR2NNNjZ5YTkyQVM3aTQyQkx5MEhtOFdEMklU?=
+ =?utf-8?B?dHhrVFloNDlTbVluMkVrcjdpVXl1Q1JOU0l6MThTNWdOQzAwS2F1SThuQ3Bz?=
+ =?utf-8?B?M1JCREYzK1VHL2xRUlV6VEhmTnpZckk4UzhvV2Y5b3JXYVl3czYrOFl3aS8w?=
+ =?utf-8?B?TTcxbGFUelRvWUIrMVdHZzJITHFUY1ZHRjNZYSs0MUQ5dU5rUHJKM1Z2U2pn?=
+ =?utf-8?B?Q0dmY3BoUGJiNzBoS29QWlRuKzZxMlhXeGZLampBZHJRckI3MTFtVjMySU9y?=
+ =?utf-8?B?YUdvZmp3Nk9hSkxCUkswajZWVmFIakVtRkdoemtaU2dlZmFrUHdSdnpVdWpC?=
+ =?utf-8?B?Zk5BQWxDUEpJTEJYY2pWNVA0dFNvVmlPaDZKU3M1ZXdQLzJZRmhFUDlNeHJz?=
+ =?utf-8?B?SzZJcHRDck9NOTFUekV0eU9lazlHUTVXTEhaeHNzamtrZkJKUkdyVjUwNTZC?=
+ =?utf-8?B?VFhDOHEzSENhbEoyWEtQakl4RFhvVG9FOWovS3gxNDdQQjR0WkdKM3hZTEJr?=
+ =?utf-8?B?MC9XbnJJOHM0ZnZ5Ym85YUFZTXpMREhTQTV1QzB0UlQ5RE4rSmJFMnU2cThP?=
+ =?utf-8?B?RjFYQ3FZOU1kWVdOZlZPTVhFRkEvNCtRK2w2UHpMVS9HUHJGaWRGb0hrYWpV?=
+ =?utf-8?B?R1pMaDB6NlU3YS9sZlZuVmxCN21DTEwvNGovdjFBSERRY1N0Ym4xcHM5Yy9j?=
+ =?utf-8?Q?mqe4fbhMOFnTIRh6kr+AA45ESvlvsPDNGWRqwShKNFO/B?=
+X-MS-Exchange-AntiSpam-MessageData-1: ux1ywqsw5ZyXcw==
+X-Exchange-RoutingPolicyChecked: Xnx8rV6gB/cTMDurFEdOopI0ZifH+adkLhPEu59IV+EDpdrYyon4I72vmrKF2YzOUbf5B6Vk+7DHLzqpXhx2wiJBjxbAiXa+021tsxTDg8UJMaSBbcNzBZck9xCPa81X19a3JdHag0ef79bqZeKwHvfnEU/0Qm/KSvnxuSs4bUMe+z39WSaJRo1Rljst8bQY85ZvXA9tKPVDm6tTZ7dXiZ7nqakAV65eTyrC2BhjyxcdOZ+ZofL5fGCYtuiost73Tog5uiGYfN4zr875B7LDjnJqV6btvnG+aJH5+Yclm1q0qogfjE7oUe+jnoaijFq0M1+yNbU45c1i71UewhG8Hw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9e42f2fb-d93f-49b9-c044-08df334a8af5
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6440.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2026 10:18:56.5126 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2iuf1vnzRr1v2I1OxD1CoPGsRU8VsA+yLewNEBQXK88tKlCItWy9D+UwZm5TncCgC9aL9vqKClnXtipLmv0DgjwmcURiX7YxE1icXGdkikE4ELYASghviWK8YxKwzuem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7022
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,203 +167,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [High] drm/xe: ignored recovery action in hw_error_work() and premature D=
-B_ECC wedge
-- [High] drm/xe: race between hw_error_work() and PCIe AER reset and remova=
-l paths
---
-
-commit 599d1ef3076a9398588bb132729ba7fcc7f8f463
-Author: Riana Tauro <riana.tauro@intel.com>
-
-drm/xe/xe_hw_error: Handle non-fatal errors routed via direct IRQ
-
-This patch schedules hw_error_work() when non-fatal hardware errors are
-routed via direct IRQ on platforms with a system controller, invokes
-xe_ras_process_errors() from the worker, and declares the device wedged
-with a bus reset if double-bit ECC page offlining fails.
-
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_=
-error.c
-> index f7799c3c08aac..269ce6a19a80b 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-
-[ ... ]
-
-> @@ -166,12 +170,36 @@ static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_=
-err_reg) =3D=3D XE_RAS_REG_SIZE);
-
-[ ... ]
-
->  static void hw_error_work(struct work_struct *work)
->  {
->  	struct xe_tile *tile =3D container_of(work, typeof(*tile), hw_error_wor=
-k.work);
->  	struct xe_device *xe =3D tile_to_xe(tile);
-> =20
->  	guard(xe_pm_runtime)(xe);
+On 10/26/2026 1:58 PM, Animesh Manna wrote:
+> hsw_crtc_disable() disables CMTG at the very start of the CRTC disable
+> sequence, before intel_encoders_disable(). With this ordering, the wait
+> for CMTG_STATE to clear after CMTG_ENABLE is cleared intermittently
+> times out:
+>
+>    xe 0000:00:02.0: [drm] CMTG: A disable timeout
+>    WARNING: drivers/gpu/drm/i915/display/intel_cmtg.c:205 intel_cmtg_disable+0x331/0x3d0 [xe]
+>
+> This is seen with igt@kms_hdr@bpc-switch-suspend, which repeatedly
+> disables and re-enables the eDP across modesets and suspend/resume.
+>
+> Move the CMTG disable after intel_encoders_disable(), so the eDP-side
+> teardown (panel unprepare, ALPM disable, backlight off) has completed,
+> but keep it before intel_encoders_post_disable() and
+> intel_dpll_disable(). The transcoder timing generator, DDI buffer and
+> port PLL are therefore still running while CMTG_STATE is polled, and
+> the requirement to disable CMTG before the transcoder and the port PLL
+> feeding it are turned off is preserved.
+>
+> v2:
+> - Modify commit description regarding PSR exit. [Dibin]
+> - Add fixes tag. [Jani, Dibin]
+> v3:
+> - Add a cover letter with links to v1 and v2 for the review
+>    history. [Dibin]
+>
+> Fixes: c588a324183b ("drm/i915/cmtg: Add trigger to enable/disable cmtg")
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display.c | 15 +++++++++++----
+>   1 file changed, 11 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index afe70e9ce347..5e40487e9ab0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1854,15 +1854,22 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+>   		intel_atomic_get_old_crtc_state(state, crtc);
+>   	struct intel_crtc *pipe_crtc;
+>   
+> -	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
+> -		intel_cmtg_set_clk_select(old_crtc_state);
+> -		intel_cmtg_disable(old_crtc_state);
+> -	}
+>   	/*
+>   	 * FIXME collapse everything to one hook.
+>   	 * Need care with mst->ddi interactions.
+>   	 */
+>   	intel_encoders_disable(state, crtc);
 > +
-> +	if (xe->info.has_sysctrl && XE_DEVICE_WA(xe, 14028434957)) {
-> +		/* If the device is in reset in AER path, skip processing hardware err=
-ors */
-> +		if (xe_device_is_in_reset(xe))
-> +			return;
-
-[Severity: High]
-Can hw_error_work() race with the PCIe AER reset and removal paths here?
-
-In hw_error_source_handler(), a non-fatal hardware error IRQ schedules
-tile->hw_error_work with a 1-second delay, and hw_error_work() checks
-xe_device_is_in_reset(xe) without synchronization before calling
-xe_ras_process_errors(xe).
-
-Although the later commit "drm/xe/xe_ras: Disable hw error worker when AER
-handling is in progress" calls xe_hw_error_work_disable(xe) in
-xe_pci_error_detected(), that call is gated on:
-
-    if (XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev))
-
-which only checks PCI_ERR_UNC_INTN on the upstream switch port, and is
-also skipped if xe_wedged(xe) is already true.
-
-When an AER event occurs without PCI_ERR_UNC_INTN set on the upstream
-switch port (such as a fatal link or protocol error with
-state =3D=3D pci_channel_io_frozen, or a non-fatal error where
-xe_pci_error_mmio_enabled() runs xe_ras_process_errors(xe) and triggers
-XE_RAS_RECOVERY_ACTION_RESET), xe_hw_error_work_disable(xe) is not called:
-
-1. In drivers/gpu/drm/xe/xe_pci_error.c:prepare_device_for_reset():
-
-    xe_device_set_in_reset(xe);
-
-    for_each_gt(gt, xe, id) {
-        xe_gt_wedge_declare(gt);
-        flush_work(&gt->wedge.worker);
-    }
-
-    pci_disable_device(pdev);
-
-If hw_error_work() passes the xe_device_is_in_reset(xe) check just before
-xe_device_set_in_reset(xe) is called, xe_ras_process_errors(xe) can run
-system controller MMIO mailbox transactions and TTM VRAM page offlining
-concurrently with pci_disable_device(pdev) and secondary bus reset.
-
-2. In drivers/gpu/drm/xe/xe_pci_error.c:xe_pci_error_slot_reset():
-
-    xe_device_clear_in_reset(xe);
-    pdev->driver->remove(pdev);
-    devres_release_group(&pdev->dev, xe->devres_group);
-
-Because xe_device_clear_in_reset(xe) clears xe->in_reset before
-pdev->driver->remove(pdev) and devres_release_group() run, if the delayed
-tile->hw_error_work fires in this window, xe_device_is_in_reset(xe) will
-return false and xe_ras_process_errors(xe) will execute concurrently with
-driver teardown.
-
-Should prepare_device_for_reset() also cancel or flush tile->hw_error_work,
-and should in_reset remain set across removal in xe_pci_error_slot_reset()?
-
-> +
-> +		xe_ras_process_errors(xe);
-> +		return;
+> +	/*
+> +	 * Disable CMTG after the encoders are disabled, but before the
+> +	 * transcoder and port PLL are torn down in
+> +	 * intel_encoders_post_disable()/intel_dpll_disable().
+> +	 */
+> +	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
+> +		intel_cmtg_set_clk_select(old_crtc_state);
+> +		intel_cmtg_disable(old_crtc_state);
 > +	}
 > +
->  	xe_survivability_mode_runtime_enable(xe);
->  }
+>   	intel_encoders_post_disable(state, crtc);
+>   
+>   	intel_dpll_disable(old_crtc_state);
 
-[ ... ]
+Changes look good to me.
+Reviewed-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index db3cbc186a514..e6a0ee468b17b 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -628,8 +628,15 @@ static u8 handle_device_memory_errors(struct xe_devi=
-ce *xe, struct xe_ras_error_
->  		break;
->  	case XE_RAS_MEMORY_DB_ECC:
->  		ret =3D handle_page_offline(xe, info->sw_address, true);
-> -		if (ret)
-> +		/*
-> +		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
-> +		 * Wedge the device with a bus reset for errors that require SBR to re=
-cover.
-> +		 * TODO: Trigger SBR using pci_reset_bus
-> +		 */
-> +		if (ret) {
-> +			xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET);
->  			return XE_RAS_RECOVERY_ACTION_RESET;
-> +		}
-
-[Severity: High]
-Should theDRM_WEDGE_RECOVERY_BUS_RESET wedging be performed by the caller
-based on the enum xe_ras_recovery_action return value of
-xe_ras_process_errors(xe) in hw_error_work(), rather than directly inside
-handle_device_memory_errors()?
-
-Right now, hw_error_work() in drivers/gpu/drm/xe/xe_hw_error.c calls
-xe_ras_process_errors(xe) and ignores its return value. Any error processed
-on the direct IRQ path that returns XE_RAS_RECOVERY_ACTION_RESET outside of
-XE_RAS_MEMORY_DB_ECC (such as GLOBAL_UNCORR_ERROR in
-handle_core_compute_errors(), non-CSC/non-Punit errors in
-handle_soc_internal_errors(), other device memory error categories, unknown
-RAS components, or a sysctrl mailbox failure/flood jumping to err:) will
-not trigger any reset or wedge recovery action.
-
-Conversely, calling xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET)
-directly inside handle_device_memory_errors() affects all callers of
-xe_ras_process_errors(xe):
-
-1. Multi-error severity aggregation in xe_ras_process_errors():
-
-    /* Process and log all errors and then trigger highest recovery action =
-*/
-    if (action > final_action)
-        final_action =3D action;
-
-Because xe_wedge_declare() is one-shot via atomic_xchg(&xe->wedged.flag, 1),
-if a XE_RAS_MEMORY_DB_ECC entry with a failing handle_page_offline() is
-processed before a higher-severity XE_RAS_RECOVERY_ACTION_DISCONNECT entry
-in the batch (such as a Punit error requiring DRM_WEDGE_RECOVERY_COLD_RESET
-in punit_error_handler() or a CSC firmware error requiring
-DRM_WEDGE_RECOVERY_VENDOR in xe_survivability_mode_runtime_enable()),
-xe->wedged.method is latched to DRM_WEDGE_RECOVERY_BUS_RESET and the
-higher-severity recovery method is masked.
-
-2. Driver probe path via xe_device_probe() -> xe_ras_init() ->
-xe_ras_process_errors(xe):
-This runs before xe_gt_init() and drm_dev_register() to log boot-time
-errors. If a boot-time XE_RAS_MEMORY_DB_ECC error fails
-handle_page_offline() (for example with -EIO on a critical BO/stolen page,
--ENOMEM, or -ENOSPC), handle_device_memory_errors() calls
-xe_wedge_declare(), scheduling drm_dev_wedged_event() before
-drm_dev_register() and setting xe->wedged.flag, which causes
-__guc_ct_send_locked() in xe_gt_init() to fail with -ENOTRECOVERABLE and
-aborts probe.
-
-3. PCIe AER path in xe_pci_error_mmio_enabled():
-In the AER path, XE_RAS_RECOVERY_ACTION_RESET is handled by
-ras_action_to_pci_result() -> prepare_device_for_reset(), which sets
-wedged.flag without sending a wedged uevent or setting needs_flr_on_fini
-because AER performs an automatic slot reset. Although the later commit
-"drm/xe/ras: Skip double-bit ECC page offlining on AER path" skips DB_ECC
-when ras->aer_path is set for WA 14028434957 internal errors, ras->aer_path
-remains false on non-internal AER errors and on platforms without
-WA 14028434957, where calling xe_wedge_declare() emits an unintended
-WEDGED=3Dbus-reset uevent and sets xe->needs_flr_on_fini =3D true.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261026060459.7714=
-48-11-riana.tauro@intel.com?part=3D4
