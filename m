@@ -2,53 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C21F606A31D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 06:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DEF606A31F
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 06:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=esaicJK6
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=SPkTXRVq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7F4E10EA53;
-	Mon, 26 Oct 2026 06:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1FFA10EA93;
+	Mon, 26 Oct 2026 06:05:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA6F10EA90
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 06:05:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38CE210EA8C
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 06:05:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1792994736; x=1824530736;
+ t=1792994739; x=1824530739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=exdxt4WH9SrQ3bIhLbpb70yNRF4eBULLntJwNGVQzi8=;
- b=esaicJK6tWqzEzx6AMysY+hrEmWkq1tY23ajKnFvM4qXKydrtg9dSNcy
- U10NZopF1s/BHbWNqxXmw0aUVW19AeRhzb8GgAR7290tpfXp58zUU3m9G
- suTMh2TmMLFXdj5diZKZHzXPX7zdLUE8XIx6CDyyHRmz0FVqtYJZod3bU
- gfojkkpo7bsMmc4N1zMNyUvvMLOmI5U4ym0oXRZ+K+VhVt8Jc9vdUpZXI
- 5CS0zuAQfq+dskFd5u49SgIGZECI9g6iDzynUfD1PiobrFLjX2agtVb9e
- BsEZc7Cyf1+tBJb0tEwOgO7NN/2cOKJR61dCHsKPXJsINHkjk7mcyn4St g==;
-X-CSE-ConnectionGUID: 7mBWkxu6Rq2mIRIEy/edfw==
-X-CSE-MsgGUID: l1RCPdxDQ6CkxBsSYRYicg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1531038"
+ bh=P2BjF61XITn3RU1tG4uAL++4z9WhHh7AyvF6ShH3oN8=;
+ b=SPkTXRVqtxEbwfiUv5VtYTGnI/U3pmfPO48peLpb6xrMVNKBhqtk0IaL
+ h6pGVe2lIBvixle+eBpIs6Xn+2uhbDtZQfB48fhBoBUFGtbCz22lGjsHM
+ FXYmhPFn0Z7jhEBhsKHDv12z+xVe8iUKJzaLx7VtrOWZy7hBatFb21QT2
+ t+RSmdB3XQOoyl53YFD/vqjhIcNOtSMF4KKKqJ7HA2or8f5SawdVJhk3j
+ 0+QIz52kuykdpPjeqbsq2Ax6P0lcdJXpeftZcnaMv8kyS9jU4FDXekFKY
+ S9ziAo6oeZ7/cFdgze0mKosnZ+cGvHJ8XNUtzxwDdx72vJbkvjP2hd/n6 Q==;
+X-CSE-ConnectionGUID: kajDWrIVRGyzD3deXaN+Wg==
+X-CSE-MsgGUID: YLR5x6vYSfeIM29Lb7/FpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1531045"
 X-IronPort-AV: E=Sophos;i="6.27,178,1787036400"; 
-   d="scan'208";a="1531038"
+   d="scan'208";a="1531045"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2026 23:05:35 -0700
-X-CSE-ConnectionGUID: OCPGPelFRO2ljmenWkoKNg==
-X-CSE-MsgGUID: nfRCb1DuTumXRMmBKG4alg==
+ 25 Oct 2026 23:05:39 -0700
+X-CSE-ConnectionGUID: MqWEQqy7Q/qFub3+9IK0QQ==
+X-CSE-MsgGUID: Gz4IrJThR8G6D3weoWi4sQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,178,1787036400"; 
-   d="scan'208";a="4557337"
+   d="scan'208";a="4557343"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2026 23:05:32 -0700
+ 25 Oct 2026 23:05:36 -0700
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com
-Subject: [PATCH v2 6/9] drm/xe/pci: Add upstream switch port lookup helper
-Date: Mon, 26 Oct 2026 11:35:05 +0530
-Message-ID: <20261026060459.771448-17-riana.tauro@intel.com>
+Subject: [PATCH v2 7/9] drm/xe/xe_ras: Disable hw error worker when AER
+ handling is in progress
+Date: Mon, 26 Oct 2026 11:35:06 +0530
+Message-ID: <20261026060459.771448-18-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261026060459.771448-11-riana.tauro@intel.com>
 References: <20261026060459.771448-11-riana.tauro@intel.com>
@@ -72,107 +73,131 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move the USP lookup logic out of RAS code and into the PCI
-layer so it can be reused by other callers.
-
-No functional change.
+An uncorrectable internal AER error event is triggered for device fatal
+errors. If non-fatal error processing is in progress, flush and disable
+the worker to prevent further processing, as a reset is imminent.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pci.h |  1 +
- drivers/gpu/drm/xe/xe_ras.c | 19 ++-----------------
- 3 files changed, 26 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_pci_error.c | 33 +++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.c       | 12 +++++++++++
+ drivers/gpu/drm/xe/xe_ras.h       |  1 +
+ drivers/gpu/drm/xe/xe_ras_types.h |  2 ++
+ 4 files changed, 48 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 0c13eb901aa7..a9b8e65dff07 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1521,6 +1521,29 @@ struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev)
- 	return to_xe_device(drm);
- }
+diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+index 9bf0da3a3d15..b27f8a0f1b17 100644
+--- a/drivers/gpu/drm/xe/xe_pci_error.c
++++ b/drivers/gpu/drm/xe/xe_pci_error.c
+@@ -5,14 +5,18 @@
  
-+/**
-+ * xe_pci_get_usp_dev() - Get the upstream switch port device.
-+ * @pdev: pci device of SGunit
-+ *
-+ * Device Hierarchy:
-+ * Upstream Switch Port (USP) --> Virtual Switch Port (VSP) --> SGunit (GPU endpoint)
-+ *
-+ * The function traverses the PCI device hierarchy to find the upstream switch port
-+ * device.
-+ *
-+ * Return: pointer to USP &pci_dev, NULL otherwise.
-+ */
-+struct pci_dev *xe_pci_get_usp_dev(struct pci_dev *pdev)
-+{
-+	struct pci_dev *vsp;
-+
-+	vsp = pci_upstream_bridge(pdev);
-+	if (!vsp)
-+		return NULL;
-+
-+	return pci_upstream_bridge(vsp);
-+}
-+
- int xe_register_pci_driver(void)
- {
- 	return pci_register_driver(&xe_pci_driver);
-diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
-index 11bcc5fe2c5b..3dc3539c3970 100644
---- a/drivers/gpu/drm/xe/xe_pci.h
-+++ b/drivers/gpu/drm/xe/xe_pci.h
-@@ -11,5 +11,6 @@ struct pci_dev;
- int xe_register_pci_driver(void);
- void xe_unregister_pci_driver(void);
- struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev);
-+struct pci_dev *xe_pci_get_usp_dev(struct pci_dev *pdev);
+ #include <linux/pci.h>
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 2b1a7cb01b0d..a91c3d924e8c 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -10,6 +10,7 @@
++#include <generated/xe_device_wa_oob.h>
++
  #include "xe_device.h"
- #include "xe_drm_ras.h"
+ #include "xe_gt.h"
++#include "xe_hw_error.h"
  #include "xe_log.h"
-+#include "xe_pci.h"
+ #include "xe_pci.h"
  #include "xe_pm.h"
  #include "xe_printk.h"
  #include "xe_ras.h"
-@@ -462,22 +463,6 @@ static void get_offline_list(struct xe_device *xe)
- 			      &response, sizeof(response), &response.common, false);
+ #include "xe_survivability_mode.h"
++#include "xe_wa.h"
+ #include "xe_wedge.h"
+ 
+ static void prepare_device_for_reset(struct pci_dev *pdev)
+@@ -54,6 +58,26 @@ static pci_ers_result_t ras_action_to_pci_result(struct pci_dev *pdev, u8 action
+ 	}
  }
  
--static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
--{
--	struct pci_dev *vsp;
--
--	/*
--	 * Device Hierarchy:
--	 *
--	 * Upstream Switch Port (USP) --> Virtual Switch Port (VSP) --> SGunit (GPU endpoint)
--	 */
--	vsp = pci_upstream_bridge(pdev);
--	if (!vsp)
--		return NULL;
--
--	return pci_upstream_bridge(vsp);
--}
--
- static void ras_usp_aer_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -485,7 +470,7 @@ static void ras_usp_aer_init(struct xe_device *xe)
- 	u16 aer_cap;
- 	u32 status;
- 
--	usp = find_usp_dev(pdev);
++static bool is_aer_internal_error(struct pci_dev *pdev)
++{
++	struct pci_dev *usp;
++	u16 aer_cap;
++	u32 status;
++
 +	usp = xe_pci_get_usp_dev(pdev);
- 	if (!usp)
- 		return;
++	if (!usp)
++		return false;
++
++	aer_cap = pci_find_ext_capability(usp, PCI_EXT_CAP_ID_ERR);
++	if (!aer_cap) {
++		dev_warn(&usp->dev, "AER capability unavailable\n");
++		return false;
++	}
++
++	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, &status);
++	return status & PCI_ERR_UNC_INTN;
++}
++
+ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_state_t state)
+ {
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+@@ -67,6 +91,15 @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
+ 	if (xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe))
+ 		return PCI_ERS_RESULT_DISCONNECT;
  
++	/*
++	 * If non-fatal error processing is in progress when uncorrectable internal error occurs,
++	 * flush and disable the worker to prevent further processing, as a reset is imminent.
++	 */
++	if (XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev)) {
++		xe_ras_set_aer_path(xe, true);
++		xe_hw_error_work_disable(xe);
++	}
++
+ 	switch (state) {
+ 	case pci_channel_io_normal:
+ 		return PCI_ERS_RESULT_CAN_RECOVER;
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index a91c3d924e8c..42fb24366a6b 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -1170,6 +1170,18 @@ u32 xe_ras_get_max_pages(struct xe_device *xe)
+ 	return xe->ras.state.max_pages;
+ }
+ 
++/**
++ * xe_ras_set_aer_path - Set whether errors are processed via the AER path
++ * @xe: xe device instance
++ * @aer_path: true if errors are processed via the AER path, false if via irq
++ *
++ * Set if errors are processed via AER
++ */
++void xe_ras_set_aer_path(struct xe_device *xe, bool aer_path)
++{
++	xe->ras.state.aer_path = aer_path;
++}
++
+ /**
+  * xe_ras_init - Initialize Xe RAS
+  * @xe: xe device instance
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index 1b358c7d040f..06518226db85 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -23,5 +23,6 @@ int xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
+ bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
+ u32 xe_ras_get_max_pages(struct xe_device *xe);
++void xe_ras_set_aer_path(struct xe_device *xe, bool aer_path);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+index a86f9d2b8c92..558df12bcd9b 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -414,6 +414,8 @@ struct xe_ras_set_health_response {
+  * struct xe_ras_state - RAS device and firmware state
+  */
+ struct xe_ras_state {
++	/** @aer_path: True if errors are processed via the AER path, false if via irq */
++	bool aer_path;
+ 	/** @disable_vram_page_offline: cached configfs policy, immutable after init */
+ 	bool disable_vram_page_offline;
+ 	/** @max_pages: Total number of pages that can be stored by firmware */
 -- 
 2.47.1
 
