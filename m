@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90B5E606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 14:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dwK+RBUZ
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BEF1606A31D
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 14:58:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58B8D10EF52;
-	Mon, 26 Oct 2026 14:55:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D60C610EF52;
- Mon, 26 Oct 2026 14:55:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793026542; x=1824562542;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=vpTfkXwe0VMSxZ7NVEDMiuEWp8EQHCr3916ulNF4g04=;
- b=dwK+RBUZ9tWGhinnjKBu5vfq1CV/+RfgneIL2ZZwQJi021srZddQUn5x
- Z7sK8XhG6LyX7HZbROusYWA/m4kAt7UarlLdhrJVKm0ABsPVGQm113cC3
- mPWab1WzLBCWOPXbmxUAwGh5Qk41ZSUEOd0QAqDRi+Z4EUobOcBqpu43n
- 1KUotUOOrdghN3OfQJiW8IpVpIkWOBTzlAJ5YN3Fh/d+N7LjvbxsyqMlq
- /wBRC9FXbbLYq1DXGZb/6ppaDXofZrTxyTYT5HPpmi5FxTtMvwznqHbhh
- YK2dPoU1rhgwwuaKMlfnquOXu91sFbNJcvu+zXh2+DbkvScuh3doNUW4P A==;
-X-CSE-ConnectionGUID: MPMw1vj3T1uYHujy38EwRA==
-X-CSE-MsgGUID: OdgzBlITSe6mIVlnhFy3RA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1585461"
-X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="1585461"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 07:55:42 -0700
-X-CSE-ConnectionGUID: YNBfoUstQJKOtnongxRYsg==
-X-CSE-MsgGUID: 1EA8BRfiQL6xbFrb3dfRSg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="4679912"
-Received: from gargmani-mobl1.amr.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.247.175.113])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 07:55:39 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com
-Subject: [PATCH v2 3/3] drm/i915/fbc: update pixel normalizer condition for
- FBC FP16 formats
-Date: Mon, 26 Oct 2026 16:55:08 +0200
-Message-ID: <20261026145508.235851-3-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261026145508.235851-1-vinod.govindapillai@intel.com>
-References: <20261026145508.235851-1-vinod.govindapillai@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3DB610EF52;
+	Mon, 26 Oct 2026 14:58:33 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3839310EF52;
+ Mon, 26 Oct 2026 14:58:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/svm=3A_Take_write_?=
+ =?utf-8?q?access_only_for_GC_attribute_resets?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Oct 2026 14:58:33 -0000
+Message-ID: <179302671322.71419.5552652231396507820@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261026122045.2709500-1-arvind.yadav@intel.com>
+In-Reply-To: <20261026122045.2709500-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,39 +33,160 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-As the WA 14028723391 restrict enabling FBC for FP16 formats with
-alpha, there is no point in enabling pixel normalizer for this
-case. Use the same WA check before enabling the pixel normalizer
-for FBC with FP16 formats as well
+== Series Details ==
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: drm/xe/svm: Take write access only for GC attribute resets
+URL   : https://patchwork.freedesktop.org/series/176860/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 494bb7d852fc..36f676645f4e 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1223,7 +1223,8 @@ bool intel_fbc_need_pixel_normalizer(const struct intel_plane_state *plane_state
- 	struct intel_display *display = to_intel_display(plane_state);
- 
- 	return HAS_PIXEL_NORMALIZER(display) &&
--	       intel_fbc_is_fp16_format(plane_state);
-+	       intel_fbc_is_fp16_format(plane_state) &&
-+	       !intel_fbc_wa_14028723391_applies(plane_state);
- }
- 
- static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
--- 
-2.43.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f05d9604ecdb7550641e08bc31a680171ccc0c79
+Author: Arvind Yadav <arvind.yadav@intel.com>
+Date:   Mon Oct 26 17:50:45 2026 +0530
+
+    drm/xe/svm: Take write access only for GC attribute resets
+    
+    Fault service holds vm->lock for read while using a VMA. SVM garbage
+    collection also runs under the read lock and can reset AUTORESET
+    attributes. The reset can split or merge VMAs and immediately free a
+    VMA that another fault worker is still using. The GC mutex serializes
+    collectors but does not protect VMA readers.
+    
+    Keep backing collection under read access when no attribute change is
+    needed. Defer ranges requiring a reset and return -EAGAIN so the caller
+    can release its read-side state and collect with write access.
+    
+    In fault service, discard the old VMA pointer before releasing the read
+    lock. After acquiring write access, recheck VM state and collect the
+    queued ranges. Downgrade to read and repeat VMA lookup, permission checks
+    and advice-dependent setup.
+    
+    Drain GC under the existing write lock before madvise, bind and attribute
+    query. Require write access for VMA changes while retaining parallel
+    fault service when no reset is needed.
+    
+    [ 2163.042338] ==================================================================
+    [ 2163.042353] BUG: KASAN: slab-use-after-free in __xe_svm_handle_pagefault+0x297/0x1460 [xe]
+    [ 2163.042815] Read of size 8 at addr ffff88813f879b70 by task kworker/u65:3/3115
+    
+    [ 2163.042834] CPU: 0 UID: 0 PID: 3115 Comm: kworker/u65:3 Kdump: loaded Tainted: G S      W  O        7.3.0-lgci-xe-svm-22oct #16 PREEMPT(full)
+    [ 2163.042841] Tainted: [S]=CPU_OUT_OF_SPEC, [W]=WARN, [O]=OOT_MODULE
+    [ 2163.042842] Hardware name: ASUS System Product Name/PRIME Z790-P WIFI, BIOS 1002 03/31/2023
+    [ 2163.042845] Workqueue: xe_page_fault_work_queue xe_pagefault_queue_work [xe]
+    [ 2163.043326] Call Trace:
+    [ 2163.043327]  <TASK>
+    [ 2163.043330]  dump_stack_lvl+0x91/0xf0
+    [ 2163.043336]  print_report+0xd1/0x610
+    [ 2163.043340]  ? __xe_svm_handle_pagefault+0x297/0x1460 [xe]
+    [ 2163.043825]  ? __virt_addr_valid+0x1b2/0x350
+    [ 2163.043831]  ? kasan_complete_mode_report_info+0x6a/0x210
+    [ 2163.043836]  ? __xe_svm_handle_pagefault+0x297/0x1460 [xe]
+    [ 2163.044340]  kasan_report+0xa3/0xe0
+    [ 2163.044344]  ? __xe_svm_handle_pagefault+0x297/0x1460 [xe]
+    [ 2163.044881]  __asan_load8+0x8b/0xe0
+    [ 2163.044885]  __xe_svm_handle_pagefault+0x297/0x1460 [xe]
+    [ 2163.045456]  ? lock_acquire+0x1b0/0x320
+    [ 2163.045461]  ? xe_vm_find_overlapping_vma+0x88/0x310 [xe]
+    [ 2163.046072]  ? __pfx___xe_svm_handle_pagefault+0x10/0x10 [xe]
+    [ 2163.046679]  ? rcu_is_watching+0x21/0x60
+    [ 2163.046684]  ? __mutex_lock+0x1172/0x18b0
+    [ 2163.046690]  ? find_held_lock+0x31/0x90
+    [ 2163.046696]  ? xe_vm_find_overlapping_vma+0xa1/0x310 [xe]
+    [ 2163.047273]  ? __kasan_check_write+0x14/0x30
+    [ 2163.047278]  ? __mutex_unlock_slowpath+0x10f/0x660
+    [ 2163.047285]  ? __pfx___mutex_unlock_slowpath+0x10/0x10
+    [ 2163.047295]  ? mutex_unlock+0x12/0x20
+    [ 2163.047299]  ? xe_vm_find_overlapping_vma+0xa1/0x310 [xe]
+    [ 2163.047844]  xe_svm_handle_pagefault+0x5c/0x140 [xe]
+    [ 2163.048355]  xe_pagefault_queue_work+0x19ad/0x2450 [xe]
+    [ 2163.048843]  process_one_work+0x5ae/0xdd0
+    [ 2163.048847]  ? __lock_acquire+0x58a/0x2820
+    [ 2163.048850]  ? __schedule+0x22a6/0x3670
+    [ 2163.048858]  ? __pfx_process_one_work+0x10/0x10
+    [ 2163.048866]  ? __pfx_xe_pagefault_queue_work+0x10/0x10 [xe]
+    [ 2163.049345]  ? assign_work+0xe4/0x1d0
+    [ 2163.049350]  worker_thread+0x3b4/0x6a0
+    [ 2163.049357]  ? __pfx_worker_thread+0x10/0x10
+    [ 2163.049361]  kthread+0x204/0x250
+    [ 2163.049364]  ? kthread+0xf1/0x250
+    [ 2163.049369]  ? __pfx_kthread+0x10/0x10
+    [ 2163.049372]  ret_from_fork+0x465/0x6a0
+    [ 2163.049377]  ? __pfx_ret_from_fork+0x10/0x10
+    [ 2163.049381]  ? __switch_to+0x26f/0x740
+    [ 2163.049386]  ? __pfx_kthread+0x10/0x10
+    [ 2163.049390]  ret_from_fork_asm+0x1a/0x30
+    [ 2163.049399]  </TASK>
+    
+    [ 2163.049654] Allocated by task 522570:
+    [ 2163.049662]  kasan_save_stack+0x26/0x60
+    [ 2163.049668]  kasan_save_track+0x14/0x40
+    [ 2163.049672]  kasan_save_alloc_info+0x37/0x60
+    [ 2163.049677]  __kasan_kmalloc+0xc3/0xd0
+    [ 2163.049681]  __kmalloc_cache_noprof+0x2b4/0x6c0
+    [ 2163.049686]  xe_vma_create+0xe3/0xe60 [xe]
+    [ 2163.050170]  new_vma+0x416/0x540 [xe]
+    [ 2163.050654]  vm_bind_ioctl_ops_parse+0xc3e/0x1110 [xe]
+    [ 2163.051139]  xe_vm_alloc_vma+0x243/0xd60 [xe]
+    [ 2163.051623]  xe_vm_alloc_madvise_vma+0x92/0xd0 [xe]
+    [ 2163.052107]  xe_vm_madvise_ioctl+0x783/0x14f0 [xe]
+    [ 2163.052591]  drm_ioctl_kernel+0x143/0x200
+    [ 2163.052597]  drm_ioctl+0x419/0x790
+    [ 2163.052600]  xe_drm_ioctl+0x9e/0xf0 [xe]
+    [ 2163.053074]  __x64_sys_ioctl+0xd5/0x130
+    [ 2163.053079]  x64_sys_call+0x2b5/0x27e0
+    [ 2163.053084]  do_syscall_64+0xef/0x6c0
+    [ 2163.053088]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+    
+    [ 2163.053098] Freed by task 17929:
+    [ 2163.053105]  kasan_save_stack+0x26/0x60
+    [ 2163.053110]  kasan_save_track+0x14/0x40
+    [ 2163.053114]  kasan_save_free_info+0x3b/0x60
+    [ 2163.053118]  __kasan_slab_free+0x6f/0xa0
+    [ 2163.053123]  kfree+0x2bb/0x600
+    [ 2163.053127]  xe_vma_free+0x5a/0x70 [xe]
+    [ 2163.053610]  xe_vma_destroy_late+0xae/0xf0 [xe]
+    [ 2163.054093]  xe_vma_destroy+0xda/0xf20 [xe]
+    [ 2163.054576]  xe_vm_alloc_vma+0x304/0xd60 [xe]
+    [ 2163.055059]  xe_vm_alloc_cpu_addr_mirror_vma+0x8f/0xd0 [xe]
+    [ 2163.055543]  xe_svm_garbage_collector+0x388/0x5d0 [xe]
+    [ 2163.056028]  xe_svm_garbage_collector_work_func+0x2a/0x40 [xe]
+    [ 2163.056512]  process_one_work+0x5ae/0xdd0
+    [ 2163.056517]  worker_thread+0x3b4/0x6a0
+    [ 2163.056521]  kthread+0x204/0x250
+    [ 2163.056525]  ret_from_fork+0x465/0x6a0
+    [ 2163.056530]  ret_from_fork_asm+0x1a/0x30
+    
+    Fixes: 941bcc1a4bbf ("drm/xe: Fine grained page fault locking")
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Assisted-by: LLM
+    Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
++ /mt/dim checkpatch 3543fd9d737a3f30b44d036b5de64c379d1c376f drm-intel
+f05d9604ecdb drm/xe/svm: Take write access only for GC attribute resets
+-:410: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#410: FILE: drivers/gpu/drm/xe/xe_svm.c:1398:
++				xe_pagefault_set_error(pf,
++						      XE_PAGEFAULT_ERROR_SVM_GARBAGE_COLLECTOR);
+
+total: 0 errors, 0 warnings, 1 checks, 536 lines checked
+
 
