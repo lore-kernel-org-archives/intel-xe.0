@@ -2,157 +2,157 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F24D6606A31D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E21C606A320
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Oct 2026 10:43:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FJ7HewzZ
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EPFEIKzd
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B367810EDEC;
-	Mon, 26 Oct 2026 10:43:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8AC010EDEC
- for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 10:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1C5210EDCA;
+	Mon, 26 Oct 2026 10:43:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7B110EDD8
+ for <intel-xe@lists.freedesktop.org>; Mon, 26 Oct 2026 10:42:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793011374; x=1824547374;
+ t=1793011379; x=1824547379;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=iHSAOq99TT7xDTcYP7TrfE+yj0sSQTwfSU2S93Y9SEE=;
- b=FJ7HewzZRiBKNVUYWJQBUDUHJiSqfUa2bE7FhUwgJQDhUo4Uzc+o1/jM
- gbbHyNWbG5V9AABUJS1EYJoind4rV5C1I/s9ylDhyC8IXwJJpmCowM7OB
- 13CYeZfX49b2Xyd3D+6MwGrLSSofbV4O4zf1LOxgJaeZI/QfZaXKgmI/a
- tEhvKG1ThortQWQwutKzKDJSoKRrjzfa3SfekNazE5/g6crb2ZL4VNyyO
- sh6o5oizwsWbAI/k0nH5laAONI1DlsMDDP1gZm1QCibsrQ1hhITR5BksY
- XOSPiy41/SP7CSB7jnGMmozwfAK9jyYg97f6iEjAe8/ITzd9bGNyngPko A==;
-X-CSE-ConnectionGUID: F9Y5AHPlReGQ+051jmZJZA==
-X-CSE-MsgGUID: E/lsoxSSQSCri/4XuTjcsg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1569195"
+ bh=YaG07HeePXW4hlK8epbnnvUywhxUiXS1QZYc3lbeOzA=;
+ b=EPFEIKzdMR/eX4WR0UahRPmMEAIVcgjXr4YQJ8YkA4/27/QdzMjRtAOe
+ t6dXubY8biw4hz24idip/RlPMo/yPbmGJAa/5kNaDCK2jNT/k/C9TaL0n
+ 4LcZbGZbrFTb3zow91UJgdyk+7kwo7uEBzJ42z3tBr8IgQYhCsaTbZqx/
+ wEPSppSiOuRF5jGCKSDAp/93oL/FnqKIl8PvHguG5AgTDj/AjqLr8W7Qa
+ SwxXioCJMum7tqK8hS6qU6eUxsM8rRXqBsYDup1+GIY5N7Wjkyb4wgmI7
+ GPNmeuvHSB67/fC1/q4aRewi5hwv7uBBUDgO5S5gIpyocZVNJiAXA6bxW A==;
+X-CSE-ConnectionGUID: r7l2IOMyQSO/aNSOmQMPCA==
+X-CSE-MsgGUID: fGV8amYkTXugkNVIzqceIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11946"; a="1695076"
 X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="1569195"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 03:42:53 -0700
-X-CSE-ConnectionGUID: imEzut5XQt6cjUIkGPnAzQ==
-X-CSE-MsgGUID: SWLdXmMFRyS/oVEQY03xyA==
+   d="scan'208";a="1695076"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2026 03:42:59 -0700
+X-CSE-ConnectionGUID: uXHgWEuUTXu/7KGPvBj2EQ==
+X-CSE-MsgGUID: vdIBp2Q3Rq6j1nZfBY89ZA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,179,1787036400"; 
-   d="scan'208";a="4619926"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 03:42:52 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 26 Oct 2026 03:42:50 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+   d="scan'208";a="5986554"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Oct 2026 03:42:58 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 26 Oct 2026 03:42:50 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.64) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.49; Mon, 26 Oct 2026 03:42:57 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 26 Oct 2026 03:42:50 -0700
+ 15.2.2562.49 via Frontend Transport; Mon, 26 Oct 2026 03:42:57 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.47) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Mon, 26 Oct 2026 03:42:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QL7o0X6NGqoPAM4zu8AfUylO7iMnZJCNKAci6m3yWWKAc2fLjNkMUFBjL6Bc2xG0g1BWpWvfFHP/KFjS35ulfz1ktJB1dJMXCILw110ayV4XGIo9CuSXd28W6c+Ly2ZkKwWV82IXkx3M/h+bjCyokNsLzrcel5lS7Wv2P7AAR3RYIg9s97/WnP67sYnjq12CBxUqbSy82yM5kI9OQtfT+kpgOUx0/S9KaE1rCRSoDpoiwikWKxFl22RisVo/Tc3NCgsSY+ib1tI6rT3Xx74MCVQNDtTmMgBsy0NnvAmoKyCkMG5xGa5OUCIj4l88+PjIpyqh1q2g0GQyUnGFk+dh9w==
+ b=Wn7YxvP4Ih7qcMVeco+Ebv+Re7RybEzw7mFge/ICRKHSjoN5v5rTQdpzjiuq5w66nyQ2Qaj8jBs88rN9d92+jltFMMhV9navRagHFhhWf8KGbwiBZFOr40VMkPUn/Qu+foEb1ju5lxVcAN//fry9ci87nEXuw+aAKC7FUpxstXTkCooioFJx4yuKdletAaN+j000/KfX2m4bnzQUAgqt39cNmS9Ag3UwBXNGVryfIwa8EUkkg8zLVRAayh2tOgMSbI8hw2sJVvVcuLDA+lcBDE8G2ychPpEAr2caO4+lz9W4wFNmkJXt/pJ2iicAlgGfUDmxmKv9orxA1+3f+dn4ug==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=22ytGFDGPUWkvBbuEEsdrNw35RoVoW/OiBhT0zKvPoc=;
- b=AzvpDSfN1W8se5nJpDtRFkf69L7FrKZ9nvDy9im1mVy1aYONZLuIt6Ny2YVnc2D4GpgxNygYn0KeBgNHeQFzjRAdctnlKvPjMJiOBVqG+hinKolefco1PLTwxTVg+zRcOasFHGPz3+Sf4eY3J3w0XM5fGZuIrO4a4j9g8lncWl8FM9GvGdan5NFUpOwib1SSkXFF3RD/HFRjpuiGEW98BueLsVUDQiIo99SuZ+sEzKECEUIo82nLnNnkYwjGaXVtZOyOUzdekpYnpxBETGFU7fyVdQtc67T08iuM6BBaMGfyX53DTQ3pLRrNfHH87hf+aMbUtyr8s9vw2EjgGuCZ2A==
+ bh=oh0Mq9jjsXkc/C/krpp9vkVhyhfuEO2ueSs0d7/+7Rc=;
+ b=f/cXKfvifuFoJx1raTgUJX7DTzJ7II1i890KRPHDelGVWu5NJx9BZoVfjq32/RBbPImMe71gHOOBNrn8RzdCF273VX8gaPblvLdr6IVMXoJn1i6/2k4XIJBt1nHEgisMwWJSU+GtwRgE38uq6UfYjNHFEQOAO+TfgD67bQrc6EyZo6rlGQFv3ODQn5absijPlWX+oCkHPFcYrgLVwU9bLjNqaLCHLgzJ8OU9pfGlo+XPGwlkQEfggjBOGCFhmsTOX9KMXs7+4LX11djEVYEA6lDJwt3Kr/m0Xg1xzrrO2TYkZ1w7xA/jamYxLb61md4aqfl9AqpIhve2c1FyjR8kqg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
- by AT6PR11MB044526.namprd11.prod.outlook.com (2603:10b6:170:110::22)
+ by PH8PR11MB8016.namprd11.prod.outlook.com (2603:10b6:510:250::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Mon, 26 Oct
- 2026 10:42:49 +0000
+ 2026 10:42:54 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%2]) with mapi id 15.21.0546.021; Mon, 26 Oct 2026
- 10:42:48 +0000
+ 10:42:54 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v1 3/4] drm/xe/guc: Initialize GuC doorbells manager according
- to device mode
-Date: Mon, 26 Oct 2026 11:42:23 +0100
-Message-ID: <20261026104224.1018993-4-piotr.piorkowski@intel.com>
+Subject: [PATCH v1 4/4] drm/xe/pf: Explicitly use shareable GuC doorbells for
+ VFs provisioning
+Date: Mon, 26 Oct 2026 11:42:24 +0100
+Message-ID: <20261026104224.1018993-5-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261026104224.1018993-1-piotr.piorkowski@intel.com>
 References: <20261026104224.1018993-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: TLZP290CA0005.ISRP290.PROD.OUTLOOK.COM
- (2603:1096:950:9::12) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: TL2P290CA0019.ISRP290.PROD.OUTLOOK.COM
+ (2603:1096:950:3::14) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|AT6PR11MB044526:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32dff4d4-b102-4427-f28f-08df334de0ca
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|PH8PR11MB8016:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28dbbea3-325c-4329-4465-08df334de3ef
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|18002099003|22082099003|6133799003|56012099006|11063799006|261021121427099003|261021123027099003|10067099003|261022105027099003|261009223027099003;
-X-Microsoft-Antispam-Message-Info: 2ncjUQZDxVomIphaaGbvv7rHNpRe54Im3tu3G9w0pmdK5JkPankuPp0a1e5l6kVFOA3UbqG6I/tV7LLqyqx7XMOk3Hy6yQbt1b8AFwmez/QNdNAKPMhnFMMbuv6Csv8zawLJmWtC1N7KtYoIXIpLrxkj+O6S5LSbLNc0Oew9A3YzfEJpcl62SxF/yJsYXAOMxAeYKdP+KIkxbah1fCvNBlH9UcaLlqlDDcjwVNYWc8skVSnz9oQfQyUwz097DZa3RtVFrVtbV/6ldiZTbaGvzGZ2xeQM6tEfT8YpQE1HTzfydtWto4L3g1z+LyIMMIZn4rOxgIDlzfjaK3Nr5lYUOj3vb7ZJEYWLmyHQ+EFVrW0LFPwzDoiwyGKklNuneMUXEc1Ih/Pdqah9BUVD2kEfDx9P54+YDEi3zgOhsxs/uop/EjBrQKdR/rT8/cbQ+YM0Fjn/gWXWXyR1xFlGBbK2tuMW9pQvMLR07qtutgIv3DpRhstak45dAHu9eryMFBvE2ZIJHCJxc+XCF98DxxVNMSzdBajzescVHjapw0ZruJ84+jJRpQK80u+MhxCRhIw5kRpr2aSwv+p3oTLCbDicotgTG49F8FJ83T66KrF4NV5ucYSi0Q1E62Efj5RmkRgj28p3Xp32gQFBREE6BcxnokdEpXxmc5TBaSiwkKSDnUU=
+ ARA:13230040|23010399003|376014|1800799024|366016|18002099003|22082099003|56012099006|11063799006|261021123027099003|10067099003|261009223027099003|261021121427099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: HJ54wecKwSf2EmdN+LYjWM0A5R8G2pDwxkAR9S/GCA3B524BXcLxVpGg6lo8WXNVyuE9UzFeRpLWUQXQxQ59P/IikuRE9yjT4FPGcfPI6xU5OJOseag8iAV4TgigOOUe//M+1qOb7WyWaXdL9dUMcVndvXJqcRHiACHB3O5WoVNN1aXSQPT7kDFNyuVG7BvbVAP/DMlL+oiYpPIJbNKamkDI3vlM+1MJhCaAbe5ulne1ToHAf475rA4APPGmxyP3MfR0sjiul/HxN8u/VvMNUA2duAloLP49LyOVmk/oCyodZEWo/cZ1WmmE+5sNUJh7qU4CeChUkRK3zIw31DLO7IkU1nY04A5qp9DvCTnNqIxNMxNyFt39XVjmL7SOyOzGBLkFmafdxe1zEIFhx1R8/JJeTiv4FxX26MYm1SnMik7rPMUmJwzsX2+ZObp7DLJaUg+N8OxjQeQZ1pgAfvzk49Zo4LVZJt9jbTa+ojZPuyqUHM6VWOTmS7xPrTaIwobi+VcmFge/Pj8go6BjfDmFSotlXAIpJcnYfFUwlBI9jgUhTEgVH/vOY0kgcT+AXh8z1gbRXsw+Oy2nHTs+0afMUkuqAQNq98vuHp7WqYlft0F4lF5aXMv+wCgCgdzWr2tX9l9f1cE5aDsld55kdQUvSaYsalMO5zSZel/8gj8WG8A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(22082099003)(6133799003)(56012099006)(11063799006)(261021121427099003)(261021123027099003)(10067099003)(261022105027099003)(261009223027099003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099006)(11063799006)(261021123027099003)(10067099003)(261009223027099003)(261021121427099003)(261022105027099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVdqaC9GbllZanJxcGZ5NmJZTkFHanNidGJVY3RxT0tyeU5pV1BkTWRPTWZn?=
- =?utf-8?B?WG9PTkEvUi80ZHliVnhDUFkyODNyVXVNdWg5Rkl2UlBDUUQ2QjdqUk80Nmo4?=
- =?utf-8?B?V2drRktiYytiS292ZkJhd0gvOTkvQmdIUHArYlhhSDZMNnBjTDVwTHNWenFj?=
- =?utf-8?B?Qmx0ZmxpRW5SNWd1NU5NTFhqeUtHNS9oYUt0a2UwSHpVQlpWeEExYzhpa2Ns?=
- =?utf-8?B?U3ZERGFRYTMweklJc3llMExHSmtXd2JDdHhicVNUb2dGQnBKMXNJWUZ0dG85?=
- =?utf-8?B?TmdGZGZuWElYN1RvNlUrcjZLVUMxQWJQcEZSMjJReXhnTlA4dmVLZ0VZTHlZ?=
- =?utf-8?B?WDFMVUJ4N1dIenUwRnFZdXAxVVU1OGVJMUwzT1pZa2FDNFFWRmQ2dlMxNHZF?=
- =?utf-8?B?VWFPUWdJTjdZK21hK1NmSlZHVUgzQnZoeGFTbTI0Wnc1VFg5dEpFeStNVVBE?=
- =?utf-8?B?Y2dIc1E2UzVDUU5vWnFCcmMrMkI4SG9FWnZIZTZNeWhhUnRaK3ZQcnVVOVhR?=
- =?utf-8?B?aW81MG9VbWN6VFBSWkJKY0JDcnZLTjVuUXpHYnF1VU5nTFFDbFhjTk5Cbmk4?=
- =?utf-8?B?enB3Z0JWTGRXSi9lallhb0RmQi9BUVhJREt4M0hLWS9qdFk4eXpxL0M3Vzd5?=
- =?utf-8?B?R25nZkowd2xuRCs0aXVuQkNLY0V1WlZyYUdIOWJrcWVjRVVzK2tZN3B1cExk?=
- =?utf-8?B?WlZLNlcyT1QveEIzeWZEU0hqZ3lpYzl4RGV4Lzg2eXh5Mm5NNGJRRXdsZmtM?=
- =?utf-8?B?cGlXMmhQL25jQ1RCWmxOcGNQcjFNTFlOdVVPRVkvbGRhVTVscm9yaEl0RkRQ?=
- =?utf-8?B?c1JoalkxaFN2SzF0cHZYcUw0WVBEYXRueDc3bUxBekJzMndpb2tVMjFJaHRr?=
- =?utf-8?B?REp5TVo5M1BnYjdXaWQzQWNoM2pOUXRoT1VieWhhOG1mLzdjbGF3a1JHdWhE?=
- =?utf-8?B?bnpRcll5dXhqZ2Q1VmMwUmtRSEljT0x1RVorM0QwNzFjaThWSDVDM3BzZ01r?=
- =?utf-8?B?M1Y1aXpHTGdnL01VQ2ZFV3JVY3I4K2pnVTAzYVJiY0VyT1N4blBaTFJCenU2?=
- =?utf-8?B?ZEM5NFZIbnV1b3FSVGJuaEJ0LzJlT1YzQ3BNcEFxSHJtWVJQa3JqUzZXUzYr?=
- =?utf-8?B?bmVnVzNRbENkVXJPdGlsY0pzcmpEY3p5cHh5WElJbXhiT242TGU4SVE1V3ZQ?=
- =?utf-8?B?VjYxaStvaHJrQ2FJaFJQZ1ZUdFNOZnozaWltbzdTQzZCQWQxUlhVc0Jpa2I3?=
- =?utf-8?B?cmlQYm91TERGTW5aQXBPajl4Y2FtbmkxNmZuNk04RmNNTUlscjJXQk5VeDQ5?=
- =?utf-8?B?ZkNqUFlhbm9HaGhxWmtLbE1mRGpFSCtMc2pZK3ZzbitXM2d5bVBjMFlqV3hJ?=
- =?utf-8?B?VnZmM09ZVjhsTnpaRVNCWDVkaW8vMytxQ0swZmhpNkh1cWxpRE9FbEhoUmpS?=
- =?utf-8?B?WHdKSGhPWWN0ZmpPSGVUK1FYeHQyRWlNL0RtMGpvbkVYZmlhSHgxNnBtUkVT?=
- =?utf-8?B?Skl2a2hjRHRlRCtORTh4aDZLaEZxK3crT0lINDloU3NMQlhMRTg2ZDhZVHZS?=
- =?utf-8?B?V0hQWkVyL1F3WmczSmFURzN6Vzg2MWRiMVk2N2JXZHd0c3Y1Vnk0enk5czUv?=
- =?utf-8?B?V2dJeFhsekZ5MG8xZk92TmtHKzBBVXpHUVZuczM5b2JySkF5SmtUTzQ2T2dm?=
- =?utf-8?B?Y0xacXVJaTJnUUp2cWJ1TmtQc2swRXVTYWZyNnFZZGpXdG9mQ2oxN0ViZzVv?=
- =?utf-8?B?MGZRMkJjZkIzOEk2T0RUZWxndmNoeVU2bFJKdzNlRTBMaW9rU1BRb1hsOVVV?=
- =?utf-8?B?c0MyWDBFdWxud3BPcmtpVkRjZ0JEaEM1bS93RlRJdm16WHU1aDZ3UjRIa3U5?=
- =?utf-8?B?YmtJbFlReS9tZVpJTmZBVTlFR1hCamZEYTdpUEtuS2l2SFluNnNuQnpwbzZU?=
- =?utf-8?B?WFhDejRrRjhqdjZmTjFBS2R3NDN6MHRaSU1vWnQ0b00rMjdqVUNhRmRIVk5U?=
- =?utf-8?B?MldLSmRYWkIzcktod3djYjNvTGFzSGpqL25PaXNEdTZCSzFBTHhuK0pqeUlw?=
- =?utf-8?B?c1pYV2FuMndtd2EzQTMxb0N2STZQcnB3bWNGY3ZxalNTRUdEaDQ3S1BGU0lT?=
- =?utf-8?B?Y0EwcFZVV0YvcjhZT2pPUlZjZ2lKVzNRVWd1SlF5NUtwajNDdDVjSktrNlZp?=
- =?utf-8?B?OWpEcFp0L1BSMHowQ040STJlVytiQzdxdkdKMXg5SmdNWS9OalUrV2tGMlN0?=
- =?utf-8?B?UVFwSDJJdnlXcVpXaGRxRndheHo2U3lHWU1LQWVSd01Ebm9TOTdTVUdIc3kr?=
- =?utf-8?B?YlZaS1kxeHhqbG4yMXdaSXAwdFV5UUV2Qnc1M29yS0xqbVJoeTJ3ZTNuVEZD?=
- =?utf-8?Q?y5ZbfXT9zIgTmM8Q=3D?=
-X-Exchange-RoutingPolicyChecked: GZhlPG1TNh4zlovgJA1q7Sib/VIcOeph8lN1s3UzM9C4k7YKTlHYKggcPY63qEaZvncXAtCht7GEmNQFI+sbgDPMJ3PAGrJcM6OpqNrDKSLxGPKj9BrJRd3pxsYZUc19MUrk32S0nuF/lc8+iqCuTnf2A0LJ8quzhXdCIJok91lrLSBpdCoo6gqq9qc1WCUeaedUYjBL4/tsUi2a03KmDCDfavPpGGcD9n7UxSjvQ0IGE68DOw8OcjlW4oQS6kJK0lzumPmX6KLW0oKBKybQKyTKc5CY422MOi47EpEvUXwzy8GluthdzG+HPs9f/kWSJZHkE87Hyt9KN5qSCcxpSg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32dff4d4-b102-4427-f28f-08df334de0ca
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cUtuQ2ZWaTN0ak10QWdKU1VNTElVN3BCK2NWVzMreUN6WGNLZWYwanFSU0R2?=
+ =?utf-8?B?N2hha0JjVzg5UG1JeE8wZWd2TEdNWG1XcUlESlVJUmRVaDVXWnJoKzJLNUdS?=
+ =?utf-8?B?UGF1c2ZXZEhVaFBVTCsvSXdqVzNrdDlEUXIzNzV6NGc5N3MyVW94LzBkbDhI?=
+ =?utf-8?B?b0dxZHphSEo4S2VXNzBIT0FORWNUdUhRMWkwN043d0pzZjZqSXZTWVFUWnpO?=
+ =?utf-8?B?VnZWbVREeWFIamt0SXA4ZURUcTFoSGpYcTg2bWNJMmpmN0xVcnFYNlZkUURE?=
+ =?utf-8?B?eTBzd05VSUZmWUx1aGZvVmFGUkdmcWJ3dC9ZQlovZ2s4MkptYVp3SlRPSUk1?=
+ =?utf-8?B?WkNoZmpvenFQdXJCVlNSMi9XSzc4RmsxS2NOdUVheFNGL0t1S0hzRjJzZ0hs?=
+ =?utf-8?B?WDh5NGFQRHdKOFFLSDRXRHlTYUdiZnVtV1RUOTBHQmFPM1MxdDE3MW16d0pz?=
+ =?utf-8?B?d0s0N1BPekNEaGFOMU8vaG5ySWdocGp3TEF1dUdCWjFGOWRPT1VycitidFc2?=
+ =?utf-8?B?b0RKK0JETkdMNFlRZ0pqeDdLSnZiZzRKY0NwZHNaUEd0aUZ4bmZVRTFiWFF0?=
+ =?utf-8?B?VnFCQWJXaitYWGpadStCbWhIUWNGQ2lYVTYrRGFkQzZ3NFRGQ284Nk4zV2Rj?=
+ =?utf-8?B?b0RZRHVXMVhHb2JQTURzL1JXbVU2SHIzYnBtL1FnVnduRGZ0VnIrWDEyRExh?=
+ =?utf-8?B?WlFSTzJzNnI5UXYzSzBLS0NXQTgrNVlSMzJuaVMramcvekZiV3VPbHAxQWdK?=
+ =?utf-8?B?Sk40VG9wK2J6VlVWd1drRTNIR2paUStQdXdxS2hoVS9iRHVmTFMwa3pIU0lY?=
+ =?utf-8?B?b2xGZE54K0hkd3dETkRJNUhaTWx5WnpFZUpJRGIrMDJ1eGpBVzI4aDFQdTFz?=
+ =?utf-8?B?ZitRM1VucTNDemdXSkpPeUVCNkR0eno3YVRUVW1Ra0RRbTJTSVdHVVNXbnhI?=
+ =?utf-8?B?YjUzem5ZVHVsVmt5U01iSWt1U201eTE5NVJnc2dGZnVtVDN5TmdnandEVnAw?=
+ =?utf-8?B?WkxMeFpxeEEyS2lTdnYySjRzR1Rpc2YyNmpoNUlheHg2Wml2cFdXeE1tZy85?=
+ =?utf-8?B?Zzk4TEo5TlE5dW40c1JDaDUxdnptUEdhZXJhWUpWcGU0QjMxYkQ2K3RXOGR0?=
+ =?utf-8?B?Wmw5eDJURHo1RjZWVUNTN2ZzMXN3dFRUU0VDLzdvYVUvc2hZVUVML1BITSs5?=
+ =?utf-8?B?VkE2di93cFlDMnE0eFEvNEorYVVWSXpCSmxZZU05bHM3cjFTWjR2dDM2dWxl?=
+ =?utf-8?B?ZGhmSEJIeWp2ZXpQSUx3L0FtRXRVbHV0NGNBbjhqVmpiREFUemFyU0F0K3Vv?=
+ =?utf-8?B?RlJ2VU1EazVhak1UbitpY3Z2NUVPcjlLMXkwamxqbDNqV2JuYXo5QmhMQUxU?=
+ =?utf-8?B?RTM4ZERGdGsrbk1UeEZGbkNkN1E2RXordXZXeHhVVWNLbHg0OVgvYXJhNkxq?=
+ =?utf-8?B?Wm5yekozblE2eXoyWFViZmlVdXhvTVpSSGpDYnd0anFHNTdTUG5tcU13Z2Jx?=
+ =?utf-8?B?Tmk1NXN5T3pWMEFBdzQrYTZVbTF6MUdQc0ZiN0xQVmFOWi81UVFBTGFSYzJ5?=
+ =?utf-8?B?VkorOVYwVkRIV1IyODBLdjBJaitxblB5cUhZQkJJQzVTaHFITWVQSTV1bjN1?=
+ =?utf-8?B?RUlDZlluVXRDVFRqUmlsSXRIYzFwUGlOQjdIbDJhY0o5MGJlUG1NT3RqSHN0?=
+ =?utf-8?B?NGtsbDNwZ21FeDFCTC9qL21tVHBTQ1ZtcUM0dE9RUDBCajVXaGhzdGlwMm1p?=
+ =?utf-8?B?Y1M5RzR1S0hyZTZhWXJLYmdOMmRqNElheWhrSnIwaXRZdEZsUW5xUk1PQldp?=
+ =?utf-8?B?dFBHWk1zM0s1QzFqYWlOQmtjM3BNMWdkRklUMDB3Uk5SQUZsRFMva29ZNmwz?=
+ =?utf-8?B?Z2pMcExiK2NzakNMZUlHd25MRFFqM2NYUWptY3p6em1wUVcxbXZBbExFVHNi?=
+ =?utf-8?B?RW15WmFSQ3hzbVdWbDFwTmNQK0srUDBaN2RjUWRZNWdoZkFkZUUrS094bkpq?=
+ =?utf-8?B?WmZ5K1gwZHd5b1NJQVdwZ1pxakZFVy9SYXVxdnM5Y3hGWjIyUFl3aUhLYUth?=
+ =?utf-8?B?RzFDaFdFTTlyWDhIZkNHdDhiellWdHhoMHZlNm0zL2ZJZ3Z0ZlFRbHd5a1ZK?=
+ =?utf-8?B?dmtpR0ZsRVc3TU11NUVSVXg2NGUrVm1La3g0NUNMUm9SSXppQnpoNlVlQzcr?=
+ =?utf-8?B?MUIveXplOHYzeXA3K3dlQm9oOEk5TTIzWDZ6ZFZDLzdKQW40NkZGUjVQTVBs?=
+ =?utf-8?B?QStLOFJkTzEreHUvV01IcHBMRUpPM241d3JZcDY4UUxwMGY2cDNZVmF0bGFQ?=
+ =?utf-8?B?UEhXOXBPOEl1ZW1YcENNbmZBUHlDZGdHVDk1VFhDUTFsRTV1TGpzMzhtWnFt?=
+ =?utf-8?Q?JoSZgqNYGZ5CwRQ0=3D?=
+X-Exchange-RoutingPolicyChecked: b8wTobB46mrjUGq0C15CEdjFrKpmsIRvyFdRs8Xkmilsfi/2SXpLbxlnbwbc3H2LVDD+zZMeTEujtEpm0DfUU9T5OWOtOmL2HFR9I3kfiqANhiAdjWnLrfPRQ8KxKenfGCBbhLn87iZeEeCKI8jD9exIZeaC5L/lgVAgXb1eg14Fl/RAKsoQx2cp3NYbuheFYLJIWoigxPIAfX1y3glKjesWmuIscCy5jXgVXmz2N+waWv5sNTg2gIWtbXUqDSC08dZTImyaOW+OR4yL0EsjFUDRv8Iv/vja4zvrQ+37nb7L/EKhEY0/cGso0sHk02J2JO8lxcCB1z3PLFtpzRT4Og==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28dbbea3-325c-4329-4465-08df334de3ef
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2026 10:42:48.7971 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Oct 2026 10:42:54.0539 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cvDMI74gc2lBQsIUfebVq1T72NrWUbpNust9vqtKfLtIaN83H92BPUppT7bVpu26NqFHzed1xYskwwzgbKkqxQb0XSmyW+VLPm9uKW1KQy8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AT6PR11MB044526
+X-MS-Exchange-CrossTenant-UserPrincipalName: 11epuwZrwDFcYKn8PfGsileMkPiAmNsQyYCZguiLSVl7rZX7oyouNtwbeDbv4jnASOVyVGGCewc8cyCK7AvvNEP1blbkH27VREXPU/ofTD0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8016
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,172 +173,250 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Configure the GuC doorbells manager according to the device operating
-mode. Use dedicated initialization paths for native and PF modes to
-expose the appropriate usable and shareable GuC doorbells ranges.
+Switch PF VF-doorbells provisioning to explicitly reserve and release
+doorbells from the dedicated shareable pool. Note that shareable
+doorbells are now reserved starting from the end of the pool, the same
+way as GuC context IDs, leaving the lower doorbells for the PF use.
 
-The VF driver still does not need the GuC doorbells manager, so leave
-it uninitialized there.
+Also, let's remove the legacy GuC doorbells reservation API now that all
+VFs provisioning paths use the shareable helpers.
 
 Assisted-by: Claude:claude-opus-5-5
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c | 16 +++++++-
- drivers/gpu/drm/xe/xe_guc.c                   | 10 ++++-
- drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 38 +++++++++++++++----
- drivers/gpu/drm/xe/xe_guc_db_mgr.h            | 12 +++++-
- 4 files changed, 65 insertions(+), 11 deletions(-)
+ .../xe/tests/xe_gt_sriov_pf_config_kunit.c    |  4 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c    | 25 ++++--
+ drivers/gpu/drm/xe/xe_guc_db_mgr.c            | 90 -------------------
+ drivers/gpu/drm/xe/xe_guc_db_mgr.h            |  6 --
+ 4 files changed, 20 insertions(+), 105 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-index df882c5b4e698..f5e891b977d50 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-@@ -123,12 +123,25 @@ static void test_default(struct kunit *test)
- {
- 	struct xe_guc_db_mgr *dbm = test->priv;
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+index 4d72411cd570c..77e587f5b4af6 100644
+--- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+@@ -68,6 +68,7 @@ static int pf_gt_config_test_init(struct kunit *test)
+ 		.graphics_verx100 = 2001,
+ 	};
+ 	struct xe_vram_region *vram;
++	struct xe_guc_db_mgr *dbm;
+ 	struct xe_guc_id_mgr *idm;
+ 	struct xe_device *xe;
+ 	struct xe_gt *gt;
+@@ -107,6 +108,9 @@ static int pf_gt_config_test_init(struct kunit *test)
+ 	mutex_init(&gt->uc.guc.submission_state.lock);
+ 	KUNIT_ASSERT_EQ(test, xe_guc_id_mgr_init_shared(idm), 0);
  
--	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init(dbm, ~0), 0);
-+	KUNIT_ASSERT_EQ(test, dbm_init(dbm, GUC_NUM_DOORBELLS, 0), 0);
- 	KUNIT_EXPECT_EQ(test, dbm->usable, GUC_NUM_DOORBELLS);
- 	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_max_shareable(dbm), 0);
- 	KUNIT_EXPECT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
- }
- 
-+static void test_init_shared(struct kunit *test)
-+{
-+	struct xe_guc_db_mgr *dbm = test->priv;
-+
-+	require_iov_config_or_skip(test);
-+
-+	KUNIT_ASSERT_TRUE(test, IS_SRIOV_PF(dbm_to_xe(dbm)));
++	dbm = &gt->uc.guc.dbm;
 +	KUNIT_ASSERT_EQ(test, xe_guc_db_mgr_init_shared(dbm), 0);
-+	KUNIT_EXPECT_EQ(test, dbm->usable, GUC_NUM_DOORBELLS);
-+	KUNIT_EXPECT_EQ(test, xe_guc_db_mgr_max_shareable(dbm), GUC_NUM_DOORBELLS);
-+	KUNIT_EXPECT_EQ(test, dbm_total(dbm), GUC_NUM_DOORBELLS);
-+}
 +
- static const unsigned int guc_dbm_params[] = {
- 	GUC_NUM_DOORBELLS / 64,
- 	GUC_NUM_DOORBELLS / 32,
-@@ -836,6 +849,7 @@ static struct kunit_case guc_dbm_test_cases[] = {
- 	KUNIT_CASE(test_bad_init),
- 	KUNIT_CASE(test_empty),
- 	KUNIT_CASE(test_default),
-+	KUNIT_CASE(test_init_shared),
- 	KUNIT_CASE_PARAM(test_size, guc_dbm_gen_params),
- 	KUNIT_CASE_PARAM(test_reuse, guc_dbm_gen_params),
- 	KUNIT_CASE_PARAM(test_range_overlap, guc_dbm_gen_params),
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index b1f4e132fa0cb..ccf11473794bb 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -866,6 +866,14 @@ static int vf_guc_init_post_hwconfig(struct xe_guc *guc)
- 	return 0;
+ 	/* more sanity checks */
+ 	KUNIT_EXPECT_EQ(test, GUC_ID_MAX + 1, SZ_64K);
+ 	KUNIT_EXPECT_EQ(test, GUC_NUM_DOORBELLS, SZ_256);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 0a47458e5bf20..69ad4fddfb855 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1261,7 +1261,7 @@ static int pf_set_spare_dbs(struct xe_gt *gt, u32 spare)
+ 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
+ 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
+ 
+-	if (spare > GUC_NUM_DOORBELLS)
++	if (spare > xe_guc_db_mgr_max_shareable(&gt->uc.guc.dbm))
+ 		return -EINVAL;
+ 
+ 	if (spare && spare < pf_get_min_spare_dbs(gt))
+@@ -1277,7 +1277,7 @@ static int pf_reserve_dbs(struct xe_gt *gt, u32 num)
+ 	struct xe_guc_db_mgr *dbm = &gt->uc.guc.dbm;
+ 	unsigned int spare = pf_get_spare_dbs(gt);
+ 
+-	return xe_guc_db_mgr_reserve_range(dbm, num, spare);
++	return xe_guc_db_mgr_reserve_shareable(dbm, num, spare);
  }
  
-+static int guc_db_mgr_init(struct xe_guc *guc)
-+{
-+	if (IS_SRIOV_PF(guc_to_xe(guc)))
-+		return xe_guc_db_mgr_init_shared(&guc->dbm);
-+	else
-+		return xe_guc_db_mgr_init(&guc->dbm);
-+}
-+
- static u32 guc_additional_cache_size(struct xe_device *xe)
- {
- 	if (IS_SRIOV_PF(xe) && xe_sriov_pf_migration_supported(xe))
-@@ -901,7 +909,7 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
- 	if (ret)
- 		return ret;
+ static void pf_release_dbs(struct xe_gt *gt, u32 start, u32 num)
+@@ -1285,7 +1285,7 @@ static void pf_release_dbs(struct xe_gt *gt, u32 start, u32 num)
+ 	struct xe_guc_db_mgr *dbm = &gt->uc.guc.dbm;
  
--	ret = xe_guc_db_mgr_init(&guc->dbm, ~0);
-+	ret = guc_db_mgr_init(guc);
- 	if (ret)
- 		return ret;
+ 	if (num)
+-		xe_guc_db_mgr_release_range(dbm, start, num);
++		xe_gt_WARN_ON(gt, xe_guc_db_mgr_release_shareable(dbm, start, num));
+ }
+ 
+ static void pf_release_config_dbs(struct xe_gt *gt, struct xe_gt_sriov_config *config)
+@@ -1304,7 +1304,7 @@ static int pf_provision_vf_dbs(struct xe_gt *gt, unsigned int vfid, u32 num_dbs)
+ 
+ 	xe_gt_assert(gt, vfid);
+ 
+-	if (num_dbs > GUC_NUM_DOORBELLS)
++	if (num_dbs > xe_guc_db_mgr_max_shareable(&gt->uc.guc.dbm))
+ 		return -EINVAL;
+ 
+ 	if (config->num_dbs) {
+@@ -1458,27 +1458,34 @@ int xe_gt_sriov_pf_config_bulk_set_dbs(struct xe_gt *gt, unsigned int vfid,
+ 
+ static u32 pf_profile_fair_dbs(struct xe_gt *gt, unsigned int num_vfs)
+ {
++	u32 max_shareable = xe_guc_db_mgr_max_shareable(&gt->uc.guc.dbm);
+ 	bool admin_only_pf = xe_sriov_pf_admin_only(gt_to_xe(gt));
+ 
+ 	/* XXX: preliminary */
+ 	if (admin_only_pf && num_vfs == 1)
+-		return GUC_NUM_DOORBELLS - SZ_16;
++		return max_shareable > SZ_16 ? max_shareable - SZ_16 : 0;
+ 
+-	return rounddown_pow_of_two(GUC_NUM_DOORBELLS / (num_vfs + 1));
++	return rounddown_pow_of_two(max_shareable / (num_vfs + 1));
+ }
+ 
+ static u32 pf_estimate_fair_dbs(struct xe_gt *gt, unsigned int num_vfs)
+ {
+ 	struct xe_guc_db_mgr *dbm = &gt->uc.guc.dbm;
++	u32 max_shareable = xe_guc_db_mgr_max_shareable(dbm);
+ 	u32 spare = pf_get_spare_dbs(gt);
+-	u32 fair = (GUC_NUM_DOORBELLS - spare) / num_vfs;
++	u32 fair;
+ 	int ret;
+ 
++	if (max_shareable <= spare)
++		return 0;
++
++	fair = (max_shareable - spare) / num_vfs;
++
+ 	for (; fair; --fair) {
+-		ret = xe_guc_db_mgr_reserve_range(dbm, fair * num_vfs, spare);
++		ret = xe_guc_db_mgr_reserve_shareable(dbm, fair * num_vfs, spare);
+ 		if (ret < 0)
+ 			continue;
+-		xe_guc_db_mgr_release_range(dbm, ret, fair * num_vfs);
++		xe_gt_WARN_ON(gt, xe_guc_db_mgr_release_shareable(dbm, ret, fair * num_vfs));
+ 		break;
+ 	}
  
 diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.c b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-index 57b775847ac17..7da37e838957b 100644
+index 7da37e838957b..c2cc63bc5f075 100644
 --- a/drivers/gpu/drm/xe/xe_guc_db_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.c
-@@ -134,22 +134,44 @@ static int dbm_init(struct xe_guc_db_mgr *dbm, unsigned int usable, unsigned int
+@@ -258,36 +258,6 @@ static int dbm_reserve_chunk_shareable_locked(struct xe_guc_db_mgr *dbm, unsigne
+ 	return id;
  }
  
- /**
-- * xe_guc_db_mgr_init() - Initialize GuC Doorbells Manager.
-+ * xe_guc_db_mgr_init() - Initialize GuC Doorbells Manager for native.
-  * @dbm: the &xe_guc_db_mgr to initialize
-- * @count: number of doorbells to manage
-  *
-- * The bare-metal or PF driver can pass ~0 as &count to indicate that all
-- * doorbells supported by the hardware are available for use.
-+ * This function initializes the GuC Doorbells Manager to manage the full range
-+ * of GuC doorbells (0..GUC_NUM_DOORBELLS - 1) for use by the driver.
-+ * No GuC doorbells will be reserved for sharing with VFs.
-+ *
-+ * Can only be called when the device is not in SR-IOV mode.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm)
-+{
-+	dbm_assert(dbm, !IS_SRIOV(dbm_to_xe(dbm)));
-+
-+	return dbm_init(dbm, GUC_NUM_DOORBELLS, 0);
-+}
-+
-+#ifdef CONFIG_PCI_IOV
-+/**
-+ * xe_guc_db_mgr_init_shared() - Initialize GuC Doorbells Manager for PF.
-+ * @dbm: the &xe_guc_db_mgr to initialize
-+ *
-+ * This function initializes the GuC Doorbells Manager to manage the full range
-+ * of GuC doorbells (0..GUC_NUM_DOORBELLS - 1) for use by the PF driver.
-+ * All GuC doorbells will be shareable with VFs.
-+ *
-+ * Can only be called when the device is in SR-IOV PF mode.
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count)
-+int xe_guc_db_mgr_init_shared(struct xe_guc_db_mgr *dbm)
+-static int dbm_reserve_chunk_locked(struct xe_guc_db_mgr *dbm,
+-				    unsigned int count, unsigned int spare)
+-{
+-	unsigned int total = dbm_total(dbm);
+-	int index;
+-
+-	dbm_assert(dbm, count);
+-	dbm_assert(dbm, count <= GUC_NUM_DOORBELLS);
+-	lockdep_assert_held(dbm_mutex(dbm));
+-
+-	if (!total)
+-		return -ENODATA;
+-
+-	if (spare) {
+-		int err;
+-
+-		err = dbm_check_quota(bitmap_weight(dbm->bitmap, total), count, spare, total);
+-		if (err)
+-			return err;
+-	}
+-
+-	index = bitmap_find_next_zero_area(dbm->bitmap, total, 0, count, 0);
+-	if (index >= total)
+-		return -ENOSPC;
+-
+-	bitmap_set(dbm->bitmap, index, count);
+-
+-	return index;
+-}
+-
+ static void dbm_release_chunk_locked(struct xe_guc_db_mgr *dbm,
+ 				     unsigned int start, unsigned int count)
  {
--	if (count == ~0)
--		count = GUC_NUM_DOORBELLS;
-+	dbm_assert(dbm, IS_SRIOV_PF(dbm_to_xe(dbm)));
- 
--	return dbm_init(dbm, count, 0);
-+	return dbm_init(dbm, GUC_NUM_DOORBELLS, GUC_NUM_DOORBELLS);
+@@ -364,66 +334,6 @@ int xe_guc_db_mgr_release_shareable(struct xe_guc_db_mgr *dbm, unsigned int id,
+ 						 dbm_shareable_start(dbm), dbm_total(dbm));
  }
-+#endif /* CONFIG_PCI_IOV */
  
- /**
-  * xe_guc_db_mgr_max_shareable() - Get maximum number of shareable GuC doorbells.
+-/**
+- * xe_guc_db_mgr_reserve_id_locked() - Reserve a single GuC Doorbell ID.
+- * @dbm: the &xe_guc_db_mgr
+- *
+- * This function expects that submission lock is already taken.
+- *
+- * Return: ID of the allocated GuC doorbell or a negative error code on failure.
+- */
+-int xe_guc_db_mgr_reserve_id_locked(struct xe_guc_db_mgr *dbm)
+-{
+-	return dbm_reserve_chunk_locked(dbm, 1, 0);
+-}
+-
+-/**
+- * xe_guc_db_mgr_release_id_locked() - Release a single GuC Doorbell ID.
+- * @dbm: the &xe_guc_db_mgr
+- * @id: the GuC Doorbell ID to release
+- *
+- * This function expects that submission lock is already taken.
+- */
+-void xe_guc_db_mgr_release_id_locked(struct xe_guc_db_mgr *dbm, unsigned int id)
+-{
+-	return dbm_release_chunk_locked(dbm, id, 1);
+-}
+-
+-/**
+- * xe_guc_db_mgr_reserve_range() - Reserve a range of GuC Doorbell IDs.
+- * @dbm: the &xe_guc_db_mgr
+- * @count: number of GuC doorbell IDs to reserve
+- * @spare: number of GuC doorbell IDs to keep available
+- *
+- * This function is dedicated for the for use by the PF which expects that
+- * allocated range for the VF will be contiguous and that there will be at
+- * least &spare IDs still available for the PF use after this reservation.
+- *
+- * Return: starting ID of the allocated GuC doorbell ID range or
+- *         a negative error code on failure.
+- */
+-int xe_guc_db_mgr_reserve_range(struct xe_guc_db_mgr *dbm,
+-				unsigned int count, unsigned int spare)
+-{
+-	guard(mutex)(dbm_mutex(dbm));
+-
+-	return dbm_reserve_chunk_locked(dbm, count, spare);
+-}
+-
+-/**
+- * xe_guc_db_mgr_release_range() - Release a range of Doorbell IDs.
+- * @dbm: the &xe_guc_db_mgr
+- * @start: the starting ID of GuC doorbell ID range to release
+- * @count: number of GuC doorbell IDs to release
+- */
+-void xe_guc_db_mgr_release_range(struct xe_guc_db_mgr *dbm,
+-				 unsigned int start, unsigned int count)
+-{
+-	guard(mutex)(dbm_mutex(dbm));
+-
+-	dbm_release_chunk_locked(dbm, start, count);
+-}
+-
+ static void dbm_print_range_locked(struct xe_guc_db_mgr *dbm,
+ 				   struct drm_printer *p,
+ 				   int indent,
 diff --git a/drivers/gpu/drm/xe/xe_guc_db_mgr.h b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-index 9b611a29b1a9b..ca62c6b86b273 100644
+index ca62c6b86b273..9df4fdbde0db6 100644
 --- a/drivers/gpu/drm/xe/xe_guc_db_mgr.h
 +++ b/drivers/gpu/drm/xe/xe_guc_db_mgr.h
-@@ -6,10 +6,20 @@
- #ifndef _XE_GUC_DB_MGR_H_
- #define _XE_GUC_DB_MGR_H_
+@@ -28,12 +28,6 @@ int xe_guc_db_mgr_reserve_shareable(struct xe_guc_db_mgr *dbm, unsigned int coun
+ int xe_guc_db_mgr_release_shareable(struct xe_guc_db_mgr *dbm, unsigned int id,
+ 				    unsigned int count);
  
-+#include <linux/errno.h>
-+
- struct drm_printer;
- struct xe_guc_db_mgr;
+-int xe_guc_db_mgr_reserve_id_locked(struct xe_guc_db_mgr *dbm);
+-void xe_guc_db_mgr_release_id_locked(struct xe_guc_db_mgr *dbm, unsigned int id);
+-
+-int xe_guc_db_mgr_reserve_range(struct xe_guc_db_mgr *dbm, unsigned int count, unsigned int spare);
+-void xe_guc_db_mgr_release_range(struct xe_guc_db_mgr *dbm, unsigned int start, unsigned int count);
+-
+ void xe_guc_db_mgr_print(struct xe_guc_db_mgr *dbm, struct drm_printer *p, int indent);
  
--int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm, unsigned int count);
-+int xe_guc_db_mgr_init(struct xe_guc_db_mgr *dbm);
-+#ifdef CONFIG_PCI_IOV
-+int xe_guc_db_mgr_init_shared(struct xe_guc_db_mgr *dbm);
-+#else
-+static inline int xe_guc_db_mgr_init_shared(struct xe_guc_db_mgr *dbm)
-+{
-+	return -ENODEV;
-+}
-+#endif
- 
- unsigned int xe_guc_db_mgr_max_shareable(struct xe_guc_db_mgr *dbm);
- 
+ #endif
 -- 
 2.34.1
 
