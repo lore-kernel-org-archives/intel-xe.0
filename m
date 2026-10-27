@@ -2,50 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4256B606A31A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5434606A31A
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 18:37:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=a3SZ59qe
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HVuP1XNs
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E89AC10E475;
-	Tue, 27 Oct 2026 18:37:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F16F10F799;
+	Tue, 27 Oct 2026 18:37:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CAB010F799
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 46FCF10E475
  for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 18:36:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1793126214; x=1824662214;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3/HO2omzXJIs7mQwQ7vFsYXGCdGDfPtp4Glk07QP36U=;
- b=a3SZ59qeMjAALBlwVhBJfugHpUkv9PFp+86aapX+IoyWMl0Ce9ZfRPbR
- +PA6kdAL64KeKAVmO6BcORc29PvshnBtEbeK1iYKqcXbl9WJtbncCi6jR
- 56gpmf3oL45AtadRIKP043ZRiVa/yCnef1i+B7AkjQl/VaFCLsfIhPgDr
- YAoNirfBf8tUnFq7Gh1wQEOvwgsF4Q7PQmXIhyNfwVpyKjfUH7Ap6M86j
- O2t3kZJm+Z9k5VrXh1hGpp5SKo7A0ldSiQovYigOsgmQwoSBSkWN6SybG
- LcYWCFt4icRB2FmdmDGBcLp/rnOYrCmqxUvwejTsz06rtLIQHBsbg9g0x Q==;
-X-CSE-ConnectionGUID: 2fNLp+0qSOqUjnm5dQUKxA==
-X-CSE-MsgGUID: UiJNlyjrQaGlDNljJ03zMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1725996"
+ bh=Q+a0KRkWbPKPPXbj5S0Roto3SXW+vy8mMj3iYqdK9kM=;
+ b=HVuP1XNsrzCYqa31e/9KqKrURwX9pU913EGknUkY0xdrLua5foO8zUZB
+ 3AB03D7eMScDqbF5UauVXmGXkkHfHlMR0ZzX8nb5cR9bHXbvPVrQIaWzt
+ 1fGVtPctoSYs/vc8T5EjsUTw0xAmYKcwAWi8eWxGm0i33XQPvVel/MYhZ
+ eePXBSsxF/oNdxjIQgnG3/wa3w7ySts+iBiN0pghkgJX/b2QUjZ0bx/pg
+ EEGgDJW6zrABGVDvBBmUmI/3+M6ylBhne5clV3zQqWhRnaYOtWgFzBB8N
+ TOSg8ETHk+xK5gQQK1AY6JEWTHeq5g3+c26QWszYUMGuoAX8exX989bC0 Q==;
+X-CSE-ConnectionGUID: b77S0b5gRDi8Zpeb3B56pg==
+X-CSE-MsgGUID: afBxTFbuTZSyjcezBbqPiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1725997"
 X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="1725996"
+   d="scan'208";a="1725997"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2026 11:36:43 -0700
-X-CSE-ConnectionGUID: 9l/sDuYkSZyKt2tyKn5WXg==
-X-CSE-MsgGUID: S2SAKYB6RwmqOZrN8aAYMg==
+X-CSE-ConnectionGUID: shrgzmgjRgq3dBPjnI+mVw==
+X-CSE-MsgGUID: 2SzOJijhSpOx+cgAwo+gmA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="4579014"
+   d="scan'208";a="4579015"
 Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Oct 2026 11:36:43 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v4 3/5] drm/xe: Leave the VM bulk move on BO release,
- not on GEM close
-Date: Tue, 27 Oct 2026 11:36:36 -0700
-Message-Id: <20261027183638.1031299-4-matthew.brost@intel.com>
+Subject: [PATCH v4 4/5] drm/ttm: Allow skipping to the next priority in the bo
+ LRU cursor
+Date: Tue, 27 Oct 2026 11:36:37 -0700
+Message-Id: <20261027183638.1031299-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261027183638.1031299-1-matthew.brost@intel.com>
 References: <20261027183638.1031299-1-matthew.brost@intel.com>
@@ -69,75 +69,148 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-xe_gem_object_close() drops a VM private BO out of the VM's LRU bulk
-move as soon as the GEM handle goes away. A BO can easily outlive its
-handle though, since every VM bind holds a reference, and such a BO is
-still very much part of the VM's working set.
+Drivers walking a manager's LRU with ttm_bo_lru_for_each_reserved_guarded()
+may decide that the rest of the current priority isn't worth walking,
+for example when the priority is roughly age ordered and the walk hit
+a BO that is still too hot to evict. Today the only option is to stop
+the walk altogether, which also gives up on the remaining priorities.
 
-Once detached, it no longer rides along with the bulk move on exec, so
-nothing ever bumps its LRU position again. It just sits where it was
-left, orphaned ahead of genuinely colder BOs, and is evicted or shrunk
-first even while the VM keeps using it.
+Add ttm_resource_manager_next_priority() to move a resource cursor to
+the start of the next priority, and ttm_bo_lru_cursor_skip_priority()
+to make the next ttm_bo_lru_cursor_next() use it.
 
-Do the detach in xe_ttm_bo_release_notify() instead, where the BO
-really is going away. The BO holds a reference to its VM, so the bulk
-move is still alive at that point.
+While at it, stop incrementing the cursor priority past the last valid
+priority once the iteration is done.
 
 Assisted-by: LLM
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 23 ++++++++---------------
- 1 file changed, 8 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c  |  3 +++
+ drivers/gpu/drm/ttm/ttm_resource.c | 35 ++++++++++++++++++++++++++----
+ include/drm/ttm/ttm_bo.h           | 19 ++++++++++++++++
+ include/drm/ttm/ttm_resource.h     |  2 ++
+ 4 files changed, 55 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 42a6aa1a2e4a..ba16b260dbcb 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1869,6 +1869,14 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
- 		return;
- 
-+	/*
-+	 * Leave the VM's bulk move, which is only kept alive by the VM, and
-+	 * whose LRU position no longer says anything about a BO on its way
-+	 * out.
-+	 */
-+	if (ttm_bo->bulk_move)
-+		ttm_bo_set_bulk_move(ttm_bo, NULL);
-+
- 	/*
- 	 * Scrub the preempt fences if any. The unbind fence is already
- 	 * attached to the resv.
-@@ -2060,20 +2068,6 @@ static void xe_gem_object_free(struct drm_gem_object *obj)
- 	ttm_bo_fini(container_of(obj, struct ttm_buffer_object, base));
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index f9458a4d5a09..d626f014e61f 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -997,6 +997,9 @@ __ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
+ 		if (first) {
+ 			res = ttm_resource_manager_first(&curs->res_curs);
+ 			first = false;
++		} else if (curs->skip_priority) {
++			res = ttm_resource_manager_next_priority(&curs->res_curs);
++			curs->skip_priority = false;
+ 		} else {
+ 			res = ttm_resource_manager_next(&curs->res_curs);
+ 		}
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 4e6d3d658d85..e631507d7aa1 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -674,6 +674,17 @@ ttm_resource_cursor_check_bulk(struct ttm_resource_cursor *cursor,
+ 	}
  }
  
--static void xe_gem_object_close(struct drm_gem_object *obj,
--				struct drm_file *file_priv)
--{
--	struct xe_bo *bo = gem_to_xe_bo(obj);
--
--	if (bo->vm && !xe_vm_in_fault_mode(bo->vm)) {
--		xe_assert(xe_bo_device(bo), xe_bo_is_user(bo));
--
--		xe_bo_lock(bo, false);
--		ttm_bo_set_bulk_move(&bo->ttm, NULL);
--		xe_bo_unlock(bo);
--	}
--}
--
- static bool should_migrate_to_smem(struct xe_bo *bo)
- {
- 	/*
-@@ -2408,7 +2402,6 @@ static int xe_gem_object_mmap(struct drm_gem_object *obj, struct vm_area_struct
++static bool ttm_resource_cursor_next_priority(struct ttm_resource_cursor *cursor)
++{
++	if (cursor->priority + 1 >= TTM_MAX_BO_PRIORITY)
++		return false;
++
++	list_move(&cursor->hitch.link, &cursor->man->lru[++cursor->priority]);
++	ttm_resource_cursor_clear_bulk(cursor);
++
++	return true;
++}
++
+ /**
+  * ttm_resource_manager_first() - Start iterating over the resources
+  * of a resource manager
+@@ -723,16 +734,32 @@ ttm_resource_manager_next(struct ttm_resource_cursor *cursor)
+ 			}
+ 		}
  
- static const struct drm_gem_object_funcs xe_gem_object_funcs = {
- 	.free = xe_gem_object_free,
--	.close = xe_gem_object_close,
- 	.mmap = xe_gem_object_mmap,
- 	.export = xe_gem_prime_export,
- 	.vm_ops = &xe_gem_vm_ops,
+-		if (++cursor->priority >= TTM_MAX_BO_PRIORITY)
++		if (!ttm_resource_cursor_next_priority(cursor))
+ 			break;
+-
+-		list_move(&cursor->hitch.link, &man->lru[cursor->priority]);
+-		ttm_resource_cursor_clear_bulk(cursor);
+ 	}
+ 
+ 	return NULL;
+ }
+ 
++/**
++ * ttm_resource_manager_next_priority() - Skip the rest of the current
++ * priority and continue iterating at the next one
++ * @cursor: cursor to record the position
++ *
++ * Return: the first resource of the next non-empty priority, or NULL if
++ * there is none.
++ */
++struct ttm_resource *
++ttm_resource_manager_next_priority(struct ttm_resource_cursor *cursor)
++{
++	lockdep_assert_held(&cursor->man->bdev->lru_lock);
++
++	if (!ttm_resource_cursor_next_priority(cursor))
++		return NULL;
++
++	return ttm_resource_manager_next(cursor);
++}
++
+ /**
+  * ttm_lru_first_res_or_null() - Return the first resource on an lru list
+  * @head: The list head of the lru list.
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index 32791c4db2a9..2fc517dbf03d 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -507,10 +507,29 @@ struct ttm_bo_lru_cursor {
+ 	 * unlock before the next iteration or after loop exit.
+ 	 */
+ 	bool needs_unlock;
++	/**
++	 * @skip_priority: Continue at the next LRU priority on the next
++	 * iteration. See ttm_bo_lru_cursor_skip_priority().
++	 */
++	bool skip_priority;
+ 	/** @arg: Pointer to common BO LRU walk arguments. */
+ 	struct ttm_lru_walk_arg *arg;
+ };
+ 
++/**
++ * ttm_bo_lru_cursor_skip_priority() - Skip the rest of the current priority
++ * @curs: The cursor.
++ *
++ * Make the next ttm_bo_lru_cursor_next() skip the remaining buffer objects
++ * of the current LRU priority and continue at the next priority, for
++ * example when the caller decides the rest of the priority isn't worth
++ * walking.
++ */
++static inline void ttm_bo_lru_cursor_skip_priority(struct ttm_bo_lru_cursor *curs)
++{
++	curs->skip_priority = true;
++}
++
+ void ttm_bo_lru_cursor_fini(struct ttm_bo_lru_cursor *curs);
+ 
+ struct ttm_bo_lru_cursor *
+diff --git a/include/drm/ttm/ttm_resource.h b/include/drm/ttm/ttm_resource.h
+index 714c533622c2..8cd70d1e5481 100644
+--- a/include/drm/ttm/ttm_resource.h
++++ b/include/drm/ttm/ttm_resource.h
+@@ -499,6 +499,8 @@ struct ttm_resource *
+ ttm_resource_manager_first(struct ttm_resource_cursor *cursor);
+ struct ttm_resource *
+ ttm_resource_manager_next(struct ttm_resource_cursor *cursor);
++struct ttm_resource *
++ttm_resource_manager_next_priority(struct ttm_resource_cursor *cursor);
+ 
+ struct ttm_resource *
+ ttm_lru_first_res_or_null(struct list_head *head);
 -- 
 2.34.1
 
