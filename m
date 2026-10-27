@@ -2,56 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCFD560A2607
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 22:49:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RLT44OQr
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63CA1606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 22:51:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8853B10E0AE;
-	Tue, 27 Oct 2026 22:49:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58E7110E4D1;
- Tue, 27 Oct 2026 22:49:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793141352; x=1824677352;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=4osgydFKP9q7dfBxY1RYyGja1Q7a4PTd0+Lxe9xcnXg=;
- b=RLT44OQrpvat289swvdqhClxB6/o63yUfhqdOqR7t3xUF057kaoJ1Gbk
- fp8Ht1Mzqx2Kcg3hKO92K0iJJ9xHWBntXp9VSKDIoy3dUOsbUvGFMyaHB
- 9D2Vi0MIwQer/cw6zHBK7HBMIwapMl3PXBPt13X4VzhML6/lXgwJcjMZK
- s5k3TS0v4AZSdQo8d5wp+xXdW4N0nrLk1V7bsnp6AeA2kKpqdGc1AdUuZ
- pTjnqwvuwANFsMco7gPHSd9k61RegZPUWNLqrVo3OAWlayXSVnE9X8O9x
- NJ9eFAkYMPQlXGI0FPh3gAsnWIxHGZWzD8YhDTQ3kD4WOnY0XbMx7Zjb3 A==;
-X-CSE-ConnectionGUID: yEeQvvTOQEWAL8GoVC8qMg==
-X-CSE-MsgGUID: EOxx/Z3RR1WfgTM+xEPTIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1842031"
-X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="1842031"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 15:49:07 -0700
-X-CSE-ConnectionGUID: 1dGC000WSMWN/CMPuwqjow==
-X-CSE-MsgGUID: oVK737AIRtiIekmBbbJtqg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="5056294"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 15:49:07 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Subject: [PATCH v6 1/3] drm/xe: Bump the LRU on a successful page fault
-Date: Tue, 27 Oct 2026 15:49:00 -0700
-Message-Id: <20261027224902.1085762-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261027224902.1085762-1-matthew.brost@intel.com>
-References: <20261027224902.1085762-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A1FD10E0AE;
+	Tue, 27 Oct 2026 22:51:42 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2582E10E0AE;
+ Tue, 27 Oct 2026 22:51:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_topic/xe-for-CI=3A_update?=
+ =?utf-8?q?_GuC_for_CRI_and_NVL-P_to_70=2E80=2E0?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 27 Oct 2026 22:51:41 -0000
+Message-ID: <179314150114.79056.8228953658879695292@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261027224448.1672411-6-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20261027224448.1672411-6-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,55 +33,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	T_SPF_TEMPERROR,USER_AGENT_GIT autolearn=unavailable
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Servicing a page fault validates the VMA's backing store and binds it,
-making the BO part of the VM's active working set, but unlike exec it
-never moves anything on the TTM LRU. In fault mode, where a VM may run
-for a long time without a single exec, the BOs the GPU actually touches
-therefore drift towards the LRU head and are picked by eviction and by
-the shrinker ahead of genuinely cold BOs.
+== Series Details ==
 
-Bump the BO's LRU on a successful page fault.
+Series: topic/xe-for-CI: update GuC for CRI and NVL-P to 70.80.0
+URL   : https://patchwork.freedesktop.org/series/176988/
+State : warning
 
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_pagefault.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 5247321c805e..6828f81df50e 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -201,6 +201,8 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
- 		xe_validation_ctx_init(&ctx, &vm->xe->val, &exec,
- 				       (struct xe_val_flags) {});
- 		drm_exec_until_all_locked(&exec) {
-+			struct xe_bo *bo = xe_vma_bo(vma);
-+
- 			err = xe_pagefault_begin(&exec, vma, tile->mem.vram,
- 						 needs_vram == 1);
- 			drm_exec_retry_on_contention(&exec);
-@@ -221,6 +223,11 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
- 				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_REBIND);
- 				break;
- 			}
-+
-+			if (bo) {
-+				scoped_guard(spinlock, &vm->xe->ttm.lru_lock)
-+					ttm_bo_move_to_lru_tail(&bo->ttm);
-+			}
- 		}
- 		xe_validation_ctx_fini(&ctx);
- 	} while (err == -EAGAIN);
--- 
-2.34.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5eb579b01e70eed25539a4e5a171aaec06c39735
+Author: John Harrison <John.C.Harrison@Intel.com>
+Date:   Tue Oct 27 22:44:53 2026 +0000
+
+    topic/xe-for-CI: Define GuC firmware for NVL-P
+    
+    Novalake P has different IP on each GT and requires a different GuC
+    for each. So add separate graphics and media GT entries or NVL-P.
+    
+    Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7235
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Link: https://patch.msgid.link/20260202-nvl-p-upstreaming-v1-16-653e4ff105dc@intel.com
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Link: https://patch.msgid.link/20260529193558.185436-14-daniele.ceraolospurio@intel.com
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Link: https://patch.msgid.link/20260618222536.3351750-14-julia.filipchuk@intel.com
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
++ /mt/dim checkpatch adaeb3881f12295309596acf2387c3f00b3050bb drm-intel
+e42da1d675b1 Revert "topic/xe-for-CI: Define GuC firmware for NVL-P"
+-:9: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+c195cf68b0b3 Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
+-:10: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:20: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 1 errors, 1 warnings, 0 checks, 7 lines checked
+8682a2697447 topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI
+-:21: WARNING:BAD_SIGN_OFF: Duplicate signature
+#21: 
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+5eb579b01e70 topic/xe-for-CI: Define GuC firmware for NVL-P
+-:22: WARNING:BAD_SIGN_OFF: Duplicate signature
+#22: 
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+
+-:24: WARNING:BAD_SIGN_OFF: Duplicate signature
+#24: 
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+
+total: 0 errors, 2 warnings, 0 checks, 8 lines checked
+
 
