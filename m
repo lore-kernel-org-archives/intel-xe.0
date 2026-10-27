@@ -2,43 +2,140 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8827C606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 13:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F390606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 13:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=dancol.org header.i=@dancol.org header.a=rsa-sha256 header.s=x header.b=hegwxAFm
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=bWoW/dcU
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5236710E07B;
-	Wed, 28 Oct 2026 13:08:19 +0000 (UTC)
-X-Greylist: delayed 1170 seconds by postgrey-1.36 at gabe;
- Wed, 28 Oct 2026 05:10:04 UTC
-Received: from dancol.org (dancol.org [96.126.100.184])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1989610E17E;
- Wed, 28 Oct 2026 05:10:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=dancol.org; 
- s=x;
- h=Content-Type:MIME-Version:Message-ID:Date:Subject:To:From; 
- bh=iPcml1MP8Ls9urv5n5lLtmn/ChRnyi9qwTe5mQUbNZQ=; b=hegwxAFmmjmEZp2QBxnU+tBobg
- nz9nUeocnDjycdvamubq5Sgc0C+2zxbYifrG7dl5LhtyI6QbKKxxJtymX0IsodYklXVrblsfAqjBS
- nHJgEihOGG6h8b+BteXnEBNWyiOV8Z+jKZgXl0kuwtISrFPkDMVIJUxUlNSYEkItIuPuYCEabPJ+y
- Uk1NicagfIBxCCsnd9FI8EAe7HWfbZFFhCkzmH3kXcp4dFgJtdR8bm1FVtJs/ARaQY4S3NWM1POgW
- NLElKGRMi5LuIEUOVwRYwqB+gfBCUmK082EjsxiV0hXhrI0s2YRF8Twhs9m4gsAJvbezzuPx0WUPX
- nTrWziqg==;
-Received: from [12.111.91.62] (port=37220 helo=localhost)
- by dancol.org with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <dancol@dancol.org>)
- id 1xLvcP-000000004VX-2Qd9; Wed, 28 Oct 2026 00:50:33 -0400
-From: Daniel Colascione <dancol@dancol.org>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Thomas Hellstrom
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH] drm/xe/ggtt: Cut GGTT initialization from 900 ms to 37 ms
-User-Agent: mu4e 1.14.1; emacs 32.0.50
-Date: Tue, 27 Oct 2026 21:50:31 -0700
-Message-ID: <87v76m1l9k.fsf@dancol.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E23D10E4E1;
+	Wed, 28 Oct 2026 13:08:22 +0000 (UTC)
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011024.outbound.protection.outlook.com
+ [40.93.194.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D018E10F529;
+ Tue, 27 Oct 2026 13:40:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QIajvYqiUnioSv2UwOzmABMLPzH8O1mOjm3IFGlG4YHungSNx1qKCu2TTYFf3598LM9OfZwWL2N2rJPsjw7JoSjhpQtQ3+Rr5dYgSbyxZRSjZHxQIeLGE0jTOLOVBRYjW1brRtltYgc8tMshB6fKdT7X1Bk2dUF6lh/SlErIp3S6zXkauIfqICZCLYY/mUIv80bYd/eOEwZoE+2eQF+8K6t8EIsqgd5RTOGaya/dxy2AnTHbMxAHf/0mSkqAGOVoX4qiDlxIUqycqyWwtP6EAVvHjy8QS9Rd+C1y4dQvclU7A8Xt0b6X3PjWPiXs86LlQmRGYZ9O6Dd+/sptr7OTzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jm5Pvk9LJFhmcF+EPkcy57oZc3XXAhxPOTsMuUZuVTE=;
+ b=iSFeTSz7oIhxrkR6izekIoNNznW5NJLdv/j2zloGZtAbP1n5OVQLchlBR97UN5/uauuqEOBL1K/2tfbHHoD7cgKmbfs1lky67N9HxdCcHRbL0TL+Z36yRVIP90BYo8WxlVmKAJPGTA+aVQVGmjggVde1eq6JDGamUxAyUjzyNElGcCoN/WN0X/RuPO4XJCXcssQLQLlCGRZbdUTtywYgjrHULIORQljpztPUoOmpQum7I/FFq1uES4VvAcbrrXY+19qmZmcSeiMZQ5kv4Xn3f76C7wREG3Njk4aymoXcGTqXg+vt62p8pclO9/0QlBAVEWixBqwTSIoy9Xiw5eQbgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jm5Pvk9LJFhmcF+EPkcy57oZc3XXAhxPOTsMuUZuVTE=;
+ b=bWoW/dcUiB9GBykLBubgOKNbsBZ9MXURremdZiKpH/dxGiPI7b0ajTGBgpZ/JyTYa4bvnJq3YbGVNPwrhm7aICKdni7iplz/Wrt3g7KpMNvDlMhvUixXYKUPA7AaQn6TF9F/jrhxUHTuMBVcvvBQqnYZqEBhfAe1tPiOplz49RginUtaXNed3V1zZmUd8OucplDPlo/S2qsdv3InEQCmuvTtQTyJuXgJFXadvE6vjy7lrsCjpMy8xvQOHVOyYToB1Lw1psddJ9C+5VMfnK7fzSUZKJu+yZ3UizavBhBUHRQjbOvD9p4Qug01rsv+gL+d3ZYx+xNNVoeGIp04Gw+Kfg==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com (2603:10b6:a03:566::20)
+ by BN5PR12MB9461.namprd12.prod.outlook.com (2603:10b6:408:2a8::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Tue, 27 Oct
+ 2026 13:39:59 +0000
+Received: from SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017]) by SJ2PR12MB9161.namprd12.prod.outlook.com
+ ([fe80::d9d1:8c49:a703:b017%5]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
+ 13:39:58 +0000
+From: Mikko Perttunen <mperttunen@nvidia.com>
+To: linux-rdma@vger.kernel.org
+Cc: Alistair Popple <apopple@nvidia.com>, linux-rdma@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ sumit.semwal@linaro.org,
+ Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ Dongwon Kim <dongwon.kim@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
+ Kevin Tian <kevin.tian@intel.com>, Xu Yilun <yilun.xu@linux.intel.com>,
+ Baolu Lu <baolu.lu@linux.intel.com>, Felix Kuehling <felix.kuehling@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, iommu@lists.linux.dev,
+ Alexey Kardashevskiy <aik@amd.com>, zhipingz@meta.com, treding@nvidia.com,
+ jhubbard@nvidia.com, Karl Mehltretter <kmehltretter@gmail.com>,
+ Jason Gunthorpe <jgg@nvidia.com>
+Subject: Re: [PATCH 23/26] treewide: Rename dma_buf_attach() to
+ dma_buf_sgt_attach()
+Date: Tue, 27 Oct 2026 22:34:46 +0900
+Message-ID: <Rajx42GMRO6ivDcA4gzBaQ@nvidia.com>
+In-Reply-To: <20261027123308.GC1671235@nvidia.com>
+References: <20261026053623.202642-1-apopple@nvidia.com>
+ <jB0baKUEStaR7DFEykw_Qw@nvidia.com> <20261027123308.GC1671235@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-ClientProxiedBy: TY4P301CA0114.JPNP301.PROD.OUTLOOK.COM
+ (2603:1096:405:37e::12) To SJ2PR12MB9161.namprd12.prod.outlook.com
+ (2603:10b6:a03:566::20)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB9161:EE_|BN5PR12MB9461:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25ea8d64-a9d3-43c2-33dd-08df342fcae8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|7416014|376014|10070799003|366016|23010399003|261026140227099003|4143699003|56012099006|11063799006|261021121427099003|261022075727099003|261022105027099003|18002099003|22082099003|261026121527099003|6133799003|10067099003;
+X-Microsoft-Antispam-Message-Info: IkRHq0Nc1q02Dqf2CCi1KtToxqxx+3w6pCM5uyE4+EiOiqDkZAXS2T/DSS1eqr2AEOgCyQtOxwHYRNV+nFIvvqi+CYc8/uoP3RPPQyzDHn7jEzhlJs4Z7k6b5Qx2vXX5q3GGEkKeA+9+JehM7MFTNLnC9bZPw+pzKUwDW9i8ReLUeL9kr1N1ggt2J1ocKnLAc0PP7iZWpP0s+3To4agE4l4RlKHhFvFMWXaYIvb/RBy9WNlfDiiNgMy68wWbWrB+pzrb9psXH2YM0ingSkgiMKW6eNL44xQivPjfCyXS3CV+g36MchcAll+Mgbx+qlgNscT1Y882enEfkkR3BGfspPAYlsx8+efCYwcsqF/MmhJ8QVjhlCEk7Y5ZSq1aSyBlx95lB6nNfMv4BaOAyriobknjotXa15zGi3s1RnxC4UX8C+iGn8rQ0LEqYvp4IqYM5ACvj3gzjHSPmemc2eFyRAQG0VaXTLqwpSXfnVLfiQmxmU+YtblARsoubVMGwT5Z1II4DzhXZ9uHBpMqEUpVPgBNwBGfbSkg9DFSbV1yvxTVmBeOPEinobsV87d9gqLNSkkumEj2D577ofrWUAqe+M9w6CXNq//z7jaupRK+Immj6yq597Vu7IqZv2pz5AJ2Fzf3vgY/L3J/eE2WosslahkPTl/7gnV8KiWciV37KUA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ2PR12MB9161.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(10070799003)(366016)(23010399003)(261026140227099003)(4143699003)(56012099006)(11063799006)(261021121427099003)(261022075727099003)(261022105027099003)(18002099003)(22082099003)(261026121527099003)(6133799003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q0FEU0xnYXNORXFMRVcxRXd3Sm9KcXlMM1NHV21oZmRMWW5mdGR0WTVBU2xK?=
+ =?utf-8?B?RGloMURzLzREaGxkcWN1bGZBR3VwNUg2Z1VrRnBEOWJjWndpalY5SlYybm9O?=
+ =?utf-8?B?SW9WT2YrdXlXZ2M3MklWZkRSdlBoeUpXZkJmMUphUDIySENER2hBaUpkTFBx?=
+ =?utf-8?B?MU5xUmRxK3FTNG1BWnh5SXQrQzFtNi9IZU5BcGdFQUN6WHY4SXd1Ri9OOWsz?=
+ =?utf-8?B?aXBtemlNQzB5NmVBcUNPSmNtOWdwNzhRb0ZqUFZaVy91OFNUVWZKYzBqbVdW?=
+ =?utf-8?B?QWdEMmdNeGRBMlA0Y1h1WmNFZDhEcjQ0eUtCc1hWbUQxbGV1R3pZcG9CUGtL?=
+ =?utf-8?B?cHZKTWN5dFR3bnA0N0QrSGtEdUgrYzl2TnJhVzBmbE1uQnNQUkdieVBBN0FM?=
+ =?utf-8?B?YTQvVE8ybzFPRHd6ZFNvVEVBU0NvWnVWUXVnaHpaUlkyN3BOVWhQa2tack9L?=
+ =?utf-8?B?REEwRTAxYkY4OUN1VDhLdTIyUEgzU1YzNHVoTHVJRm8vM1ZPUDVQT1RldHAy?=
+ =?utf-8?B?RnVqU1FUTGlnVXBkTGlaUHVVRnlyUjl6cUx2VlBtVlVhRTAweW90T1dUYjV6?=
+ =?utf-8?B?MHhkaHRITkhLQklUcXAvRWgya0Fwd3gwa2pGN055NVNGSXI5eDltbUY3Tyt6?=
+ =?utf-8?B?aFAxb05ra1lISWVXWkhGL1NrTmx0VG9YQ3pwK25ZMU1zMGZGaWZocUUvdmVt?=
+ =?utf-8?B?SUlBYU84dkZhdUVuelB2K0t4b0ZJV2I1Y3NVL1pSNlNINHIwODJSSTh2bm13?=
+ =?utf-8?B?YW9uUGw4TU5QR2t3NnNja1d6YjVpVWpoa0FmLzN5aFVwOE9GSWIxVlovUjlh?=
+ =?utf-8?B?M0NQMlF4enNWNHdXVmZveEFtejdUYlMzMGswYlRCc0VVd2oxWEtlTXlEa244?=
+ =?utf-8?B?YW5lZ2FpY043cncyNlh6RVdNQWZnd2hBU3VwbU55aCtkZVdxOVRNR0JIeG1J?=
+ =?utf-8?B?Rkx2UGsyc0kvdzVHa3pQKzc0TVFtbHJ2Q3dqeU53SEdDSHZTRVcyQ2FJUkVL?=
+ =?utf-8?B?c3ZwelF2Mm13Unliczh3ZTE2UkdIWTVlSk1nYkp5V1B3NXRYUGtQKzd6KzI2?=
+ =?utf-8?B?d1dQWjVndTd6SVNmQlFNOVRpMHBhQ1lsM3V2ZWgrU25nSkVOeGI3S0NUT0pi?=
+ =?utf-8?B?N3VlVlFvYjFVV3RBMzFiWWdmc053RjJIays0VzZ1U2tORHpqUXJLVkpyWFcv?=
+ =?utf-8?B?K29PckdFT09vZ1RJc1ZRa2owOHpta2RMMlRFYWJ2VzBHSkQyRDBHamhiMEMz?=
+ =?utf-8?B?QWxwS1htaUZ0MTNMWG1FRGUrZDJiVWlMekdJSkRvVnhqc2hjWnNXc2F1eDNq?=
+ =?utf-8?B?UUxpZUlMWngvenFKWENOMTJMRlp2bFBPQmpLTUxIeEVaUm45TElwMTdsdmND?=
+ =?utf-8?B?eVRXRXh4K0VJTFowT0NaT3cvdmhxK1pIN21raFVXN2VrVWg1Ym0vMWVQem50?=
+ =?utf-8?B?UkEzNUUxbkQrQWo0MUJ2U2VLeXJhZ2dvRDZ3ajEyOFlkUFJSOGlSaGZWNDlM?=
+ =?utf-8?B?M3VZOGZJNWxLa2xKODJjVS9MZk1TMUxva0MvOWJ2Ynl1TVRTNGUzRXA1QU5L?=
+ =?utf-8?B?dkcvZ0dzMjNOOVQzNUdwMEMvZUJEN2FFS21VTW40bDRVNjFkODVCb3BvSFNa?=
+ =?utf-8?B?RC93a3BSOVMzV0FzMzlkTFpQTzRJQUhxOWhjRS9iKzdQRlV4TGFuclFxQ3NK?=
+ =?utf-8?B?c3Uva2R0bnBqN0cvQ3ZwMVZ1YlFLVS9laHhUb3JBUzZaSmdlMFBwS1lldzZL?=
+ =?utf-8?B?UUdZYi9xaEV3dTlJRlpxZFZoNTJsbFVVL2d2S1pYVnZOUkg1bEd0ZW13V251?=
+ =?utf-8?B?dXFENlJ6Znh6T2E1TDhHK0dIZkJOR3NMSlBJVHZmcmJhWm02U0haOExPRkJl?=
+ =?utf-8?B?aExPZ2RUNkVteHVYdnlTek8yNVplS1lhRGpCWlFKdFNTTngyMm1RWkppNHM4?=
+ =?utf-8?B?V0p3ODB2Zk5KQzRQL3BVbXFRa1FtYWFzS2Y5bHRvZm5jU1I4ZjlBQjFCd242?=
+ =?utf-8?B?ZnloYSs4VjZVZzRNaWVqelVtN2NseGVTdDE3cWNZRnhSWndZU1hKY1plV1Bi?=
+ =?utf-8?B?VUpnM0pBbG9ya0ZHaXRRTHZPZDBYU2xRaThqRU1QS3huaHQyaitFUWF3em03?=
+ =?utf-8?B?R2l6b0JPckJDMHpibFFJTy9nV1BDRldGMlVTeitBQ0NDQkxBdWpxY29DNGxH?=
+ =?utf-8?B?NGViQlZ4Uk1leUlsdGxpODBOUWpJbjg1UllHYklFUW41bGJ6dERCNE5YUTlO?=
+ =?utf-8?B?ZUxpY0tGdHlmODNXUjRmMFljYVVDb1NwQnl3bGE2TVZjNDRRc1F0THB6Q1hr?=
+ =?utf-8?B?Y2plYXUxb1FpQlNWUFEzbTFXYVdtZWEzd0tvNkd1cnRpdG11cXV1RFNGMHdS?=
+ =?utf-8?Q?J8vRcQSt31AlFiIiP66CvRLKJftu8m8r4/ptF09Z0LloW?=
+X-MS-Exchange-AntiSpam-MessageData-1: YY3ij5IJLNGxaA==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25ea8d64-a9d3-43c2-33dd-08df342fcae8
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB9161.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 13:39:58.3992 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LtifhMYk0vH6JUgW3DH1qUDdfE8iCFe0M2YToHfmEM7d1r6aPl/ghqgyrKeOtjMqzeScoksocSalBBMzfCe9Mg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN5PR12MB9461
 X-Mailman-Approved-At: Wed, 28 Oct 2026 13:08:18 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -50,296 +147,46 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-We initialize the GGTT GPU page tables on startup. On my LNL, doing
-this one PTE at a time through the BAR takes about 900 ms and involves
-a million small writes.
+On Tuesday, October 27, 2026 9:33=E2=80=AFPM Jason Gunthorpe wrote:
+> On Tue, Oct 27, 2026 at 12:42:32PM +0900, Mikko Perttunen wrote:
+>=20
+> > > This page-side use predates the series, so the fault is not itself a =
+v2
+> > > regression. Is dma_buf_sgt_attach() valid for this call site, or does=
+ Tegra
+> > > need a page/physical mapping type first?
+> >=20
+> > Sounds like a bug in TegraDRM; we should be using the DMA addr/length=20
+> > for the explicit IOMMU mapping as the sgt attachment is for the dummy=20
+> > DRM device explicitly intended to give us physical addresses.
+>=20
+> No, you cannot connect dmabuf to an iommu_domain. It is 100% always
+> illegal. DMABUF does not support this. Do not pass sg_dma to iommu
+> functions either.
 
-Use the GPU's copy engine to fill the PTEs in batches. We build
-MI_UPDATE_GTT commands in normal memory, then send them to the GPU for
-execution. This way, we avoid the per-PTE MMIO write and do the PTE fill
-in 36.77 ms, ~24x faster.
+Sure, I agree -- so let's say it's a bug on top of the baseline crimes=20
+TegraDRM commits :)
 
-The new path is enabled by default. xe.ggtt_init_gpu=0 uses the old
-CPU-driven path.
+>=20
+> > I'm currently in the process of removing the whole explicit IOMMU path=
+=20
+> > so if this only occurs with CONFIG_DMABUF_DEBUG enabled, I don't think=
+=20
+> > there's a pressing need to fix this before then.
+>=20
+> Yes I think this is probably the only way to fix it :| You have to
+> always use the DMA API
+>=20
+> Jason
+>=20
 
-LNL-only because I can test only LNL. Might it work elsewhere?
 
-Signed-off-by: Daniel Colascione <dancol@dancol.org>
----
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h |   2 +
- drivers/gpu/drm/xe/xe_ggtt.c                     | 128 +++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_ggtt.h                     |   1 +
- drivers/gpu/drm/xe/xe_gt.c                       |   3 +-
- drivers/gpu/drm/xe/xe_module.c                   |   5 +
- drivers/gpu/drm/xe/xe_module.h                   |   1 +
- 6 files changed, 130 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 835ef75bbeb1..04bd4225adef 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -62,6 +62,8 @@
- #define   MI_LRI_FORCE_POSTED		REG_BIT(12)
- #define   MI_LRI_LEN(x)			(((x) & 0xff) + 1)
- 
-+#define MI_UPDATE_GTT			__MI_INSTR(0x23)
-+
- #define MI_STORE_REGISTER_MEM		(__MI_INSTR(0x24) | XE_INSTR_NUM_DW(4))
- #define   MI_SRM_USE_GGTT		REG_BIT(22)
- #define   MI_SRM_ADD_CS_OFFSET		REG_BIT(19)
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 773777afc68a..3737d085ae68 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -15,20 +15,25 @@
- #include <drm/intel/i915_drm.h>
- #include <generated/xe_wa_oob.h>
- 
-+#include "instructions/xe_mi_commands.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_gtt_defs.h"
- #include "regs/xe_regs.h"
- #include "xe_assert.h"
-+#include "xe_bb.h"
- #include "xe_bo.h"
-+#include "xe_exec_queue.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
- #include "xe_log.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
-+#include "xe_module.h"
- #include "xe_pat.h"
- #include "xe_pm.h"
- #include "xe_res_cursor.h"
-+#include "xe_sched_job.h"
- #include "xe_sriov.h"
- #include "xe_tile_printk.h"
- #include "xe_tile_sriov_vf.h"
-@@ -384,9 +389,9 @@ static void dev_fini_ggtt(void *arg)
-  * @ggtt: the &xe_ggtt to be initialized
-  *
-  * It allows to create new mappings usable by the GuC.
-- * Mappings are not usable by the HW engines, as it doesn't have scratch nor
-- * initial clear done to it yet. That will happen in the regular, non-early
-- * GGTT initialization.
-+ * HW engines may only access explicitly mapped bootstrap buffers until the
-+ * remaining holes have been cleared. Normally xe_ggtt_init() does this;
-+ * the GPU clear finishes this work in xe_ggtt_init_late().
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
-@@ -456,18 +461,119 @@ ALLOW_ERROR_INJECTION(xe_ggtt_init_early, ERRNO); /* See xe_pci_probe() */
- static void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
- static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt);
- 
--static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
-+static bool ggtt_use_gpu(struct xe_device *xe)
- {
-+	return xe_modparam.ggtt_init_gpu && xe->info.platform == XE_LUNARLAKE;
-+}
-+
-+/*
-+ * MI_UPDATE_GTT takes at most 511 inline PTEs (ACM PRM, Vol. 2a,
-+ * pp. 1096-1097). Limit batches to 512K to fit the kernel batch pool.
-+ */
-+#define GGTT_INIT_PTES_PER_PACKET	511
-+#define GGTT_INIT_BATCH_DWORDS	(128 * (2 + 2 * GGTT_INIT_PTES_PER_PACKET))
-+
-+static int ggtt_clear_gpu(struct xe_exec_queue *q, struct xe_bb *bb,
-+			  u64 pte, u64 start, u64 end)
-+{
-+	while (start < end) {
-+		struct xe_sched_job *job;
-+		int err;
-+
-+		bb->len = 0;
-+		while (start < end && bb->len < GGTT_INIT_BATCH_DWORDS) {
-+			u32 count = min_t(u64, (end - start) >> XE_PTE_SHIFT,
-+					  GGTT_INIT_PTES_PER_PACKET);
-+
-+			bb->cs[bb->len++] = MI_UPDATE_GTT | (2 * count);
-+			bb->cs[bb->len++] = start;
-+			memset64((u64 *)&bb->cs[bb->len], pte, count);
-+			bb->len += 2 * count;
-+			start += (u64)count << XE_PTE_SHIFT;
-+		}
-+
-+		job = xe_bb_create_job(q, bb);
-+		if (IS_ERR(job))
-+			return PTR_ERR(job);
-+
-+		xe_sched_job_arm(job);
-+		xe_sched_job_get(job);
-+		xe_sched_job_push(job);
-+
-+		dma_fence_wait(&job->drm.s_fence->finished, false);
-+		err = dma_fence_get_status(&job->drm.s_fence->finished);
-+		xe_sched_job_put(job);
-+		if (err < 0)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
-+static int xe_ggtt_initial_clear(struct xe_ggtt *ggtt, struct xe_hw_engine *hwe)
-+{
-+	struct xe_device *xe = tile_to_xe(ggtt->tile);
-+	struct xe_exec_queue *q = NULL;
-+	struct xe_bb *bb = NULL;
- 	struct drm_mm_node *hole;
--	u64 start, end;
-+	u16 pat_index = xe_cache_pat_idx(xe, XE_CACHE_WB);
-+	u64 start, end, pte = 0;
-+	int err = 0;
-+
-+	if (hwe) {
-+		q = xe_exec_queue_create(xe, NULL, BIT(hwe->logical_instance), 1,
-+					 hwe, EXEC_QUEUE_FLAG_KERNEL, 0);
-+		if (IS_ERR(q))
-+			return PTR_ERR(q);
-+
-+		bb = xe_bb_new(hwe->gt, GGTT_INIT_BATCH_DWORDS, false);
-+		if (IS_ERR(bb)) {
-+			err = PTR_ERR(bb);
-+			goto put_queue;
-+		}
-+	}
- 
--	/* Display may have allocated inside ggtt, so be careful with clearing here */
-+	if (ggtt->scratch)
-+		pte = xe_bo_addr(ggtt->scratch, 0, XE_PAGE_SIZE) |
-+		      ggtt->pt_ops->pte_encode_flags(ggtt->scratch, pat_index);
-+
-+	/* Preserve boot mappings and exclude allocator changes until completion. */
- 	mutex_lock(&ggtt->lock);
--	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
--		xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
-+	drm_mm_for_each_hole(hole, &ggtt->mm, start, end) {
-+		if (q)
-+			err = ggtt_clear_gpu(q, bb, pte, ggtt->start + start, ggtt->start + end);
-+		else
-+			xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
-+		if (err)
-+			goto unlock;
-+	}
- 
- 	xe_ggtt_invalidate(ggtt);
-+unlock:
- 	mutex_unlock(&ggtt->lock);
-+	xe_bb_free(bb, NULL);
-+put_queue:
-+	if (q)
-+		xe_exec_queue_put(q);
-+	return err;
-+}
-+
-+/**
-+ * xe_ggtt_init_late - Finish deferred GGTT initialization after GuC startup
-+ * @ggtt: GGTT to initialize
-+ *
-+ * All default contexts must be recorded before waiting for a GPU clear with
-+ * the GGTT mutex held, so reset recovery need not allocate context mappings.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_ggtt_init_late(struct xe_ggtt *ggtt)
-+{
-+	if (!ggtt_use_gpu(tile_to_xe(ggtt->tile)))
-+		return 0;
-+
-+	return xe_ggtt_initial_clear(ggtt, xe_gt_hw_engine(ggtt->tile->primary_gt,
-+							XE_ENGINE_CLASS_COPY, 0, false));
- }
- 
- static void ggtt_node_fini(struct xe_ggtt_node *node)
-@@ -536,6 +642,9 @@ void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate)
-  * xe_ggtt_init - Regular non-early GGTT initialization
-  * @ggtt: the &xe_ggtt to be initialized
-  *
-+ * Allocate the scratch page if needed and clear unused entries, or defer
-+ * the clear to xe_ggtt_init_late() when GPU initialization is enabled.
-+ *
-  * Return: 0 on success or a negative error code on failure.
-  */
- int xe_ggtt_init(struct xe_ggtt *ggtt)
-@@ -572,7 +681,8 @@ int xe_ggtt_init(struct xe_ggtt *ggtt)
- 			      xe_bo_size(ggtt->scratch));
- 	}
- 
--	xe_ggtt_initial_clear(ggtt);
-+	if (!ggtt_use_gpu(xe))
-+		xe_ggtt_initial_clear(ggtt, NULL);
- 
- 	return devm_add_action_or_reset(xe->drm.dev, ggtt_fini, ggtt);
- err:
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index c864cc975a69..cae8600d7142 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -17,6 +17,7 @@ struct xe_ggtt *xe_ggtt_alloc(struct xe_tile *tile);
- int xe_ggtt_init_early(struct xe_ggtt *ggtt);
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 reserved, u32 size);
- int xe_ggtt_init(struct xe_ggtt *ggtt);
-+int xe_ggtt_init_late(struct xe_ggtt *ggtt);
- 
- void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_base);
- u64 xe_ggtt_start(struct xe_ggtt *ggtt);
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 45fb074812a2..d1c14a02de66 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -686,7 +686,8 @@ static int gt_init_with_all_forcewake(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
--	return 0;
-+	return xe_gt_is_main_type(gt) ?
-+		xe_ggtt_init_late(gt_to_tile(gt)->mem.ggtt) : 0;
- }
- 
- static void xe_gt_fini(void *arg)
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 897724cb5cfb..44cc0107cf53 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -22,6 +22,7 @@
- #include "xe_sched_job.h"
- 
- struct xe_modparam xe_modparam = {
-+	.ggtt_init_gpu =		true,
- 	.probe_display =	XE_DEFAULT_PROBE_DISPLAY,
- 	.guc_log_level =	XE_DEFAULT_GUC_LOG_LEVEL,
- 	.force_probe =		XE_DEFAULT_FORCE_PROBE,
-@@ -34,6 +35,10 @@ struct xe_modparam xe_modparam = {
- 	/* the rest are 0 by default */
- };
- 
-+module_param_named(ggtt_init_gpu, xe_modparam.ggtt_init_gpu, bool, 0444);
-+MODULE_PARM_DESC(ggtt_init_gpu,
-+		 "GPU GGTT initialization on Lunar Lake (default: true)");
-+
- module_param_named(svm_notifier_size, xe_modparam.svm_notifier_size, uint, 0600);
- MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size in MiB, must be power of 2 "
- 		 "[default=" __stringify(XE_DEFAULT_SVM_NOTIFIER_SIZE) "]");
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 6272d9e41207..8aa91822c35c 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -12,6 +12,7 @@ struct work_struct;
- 
- /* Module modprobe variables */
- struct xe_modparam {
-+	bool ggtt_init_gpu;
- 	bool probe_display;
- 	int force_vram_bar_size;
- 	int guc_log_level;
+
