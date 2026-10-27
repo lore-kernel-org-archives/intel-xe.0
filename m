@@ -2,143 +2,65 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86570606A31D
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 14:54:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5290606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 15:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Y6/nHPrk
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O6xdsYiD
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4ED2110F5FD;
-	Tue, 27 Oct 2026 14:54:46 +0000 (UTC)
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012069.outbound.protection.outlook.com [52.101.43.69])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9196410E3C4;
- Tue, 27 Oct 2026 14:54:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B1EKU6QWCE7w0HmKZtKIFWPG0uX+I6P1I87jgFYSYRs0qf2OOPiVp4Fw1rTwuOVqTae5GdTiOVR0dvmuyYhKaSLpHbhQKvHfzpGKQsoVeIdjJEOlUMF76JW9FnhA5tPZwlBuVNc3qp0G+uqmwvBzj6DgiHIwZX5W5zqdclXcK0Awx9fPHTcwobQhOzLAt84LBWvjhsNW0BL7b0NnlU2UFXj4k7CxRTPIkFFLGtGNoqg7h0dLtXOIx1WYBipnAsIhSVUblXRKxrDluOA+EJN503dceQcrFtss35rwPgz8I5RUr+tPQo9iSk9HeiDA0G0NfJj+PldVdLZBIBJ3Lfu7Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YlYsVJNd+bUGkTP1ao7nLrE/Q+2iNW+/YGhSPcDEgr4=;
- b=oQle+nsULXtQjpdJUOLXLBBWYqmtNzN3UPhzkbhPHmvSbtT2NEInUsaGfRdTS4D/5kzEV1Mp+/S+eZoC2A4OrueJnkWocF/eIfhSQ4dPtxjIp02xcf92cXidyGXp4Ws1E9zqlqwd+kQSXeREHr9vW0w5aX8lOh67xBKYtYc5mdqR83v93crPzZVoqKNSrtNnyeckxibcAWApIeSGOXpbXmZBuPvcLOzqT0B9pskQ1CUhYQ56zc62jvvroply2mG4aWUlThNPuuzASp6zV8UnU+LkdRTTpLWPGvEm7fqq2bXGn2WrajaVtXPgChcp9NBOVzm2ZtyHZ5xIN8+lE/1vWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YlYsVJNd+bUGkTP1ao7nLrE/Q+2iNW+/YGhSPcDEgr4=;
- b=Y6/nHPrkyf8W9dSWXWBPq4Oy83+2RPyObavzNZXA5d/85+Dwn6t5gZJgK0sGfYzMKWSr7pzUMq31jG0aJd5mk8KbydMrhRrk6XrWxKCxlYKoVYS08K7USHw/q0gkTrwqgCbFqJVhINEvhqSJ+xwXK88v/G1RZqE4waAbsWZeG6c=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH8PR12MB6748.namprd12.prod.outlook.com (2603:10b6:510:1c4::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Tue, 27 Oct
- 2026 14:54:35 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
- 14:54:33 +0000
-Message-ID: <43a20d60-89a9-48fc-af73-5907b35a54d7@amd.com>
-Date: Tue, 27 Oct 2026 15:54:27 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 23/26] treewide: Rename dma_buf_attach() to
- dma_buf_sgt_attach()
-To: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
- sumit.semwal@linaro.org, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Dongwon Kim <dongwon.kim@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, Xu Yilun <yilun.xu@linux.intel.com>,
- Karl Mehltretter <kmehltretter@gmail.com>,
- Baolu Lu <baolu.lu@linux.intel.com>, Felix Kuehling
- <felix.kuehling@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev,
- Alexey Kardashevskiy <aik@amd.com>, zhipingz@meta.com, treding@nvidia.com,
- jhubbard@nvidia.com
-References: <20261026053623.202642-1-apopple@nvidia.com>
- <20261026053623.202642-24-apopple@nvidia.com>
- <27307d58-9ca9-4624-a564-6e35fb4befb5@amd.com>
- <20261027123859.GE1671235@nvidia.com>
- <3a09ef96-45a6-486f-b482-fd34c27415af@amd.com>
- <20261027140831.GA2338330@nvidia.com>
- <7193d384-5e28-4f85-8004-1dc9318d5c1c@amd.com>
- <20261027144459.GC2338330@nvidia.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20261027144459.GC2338330@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0156.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:b3::10) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 954F010F627;
+	Tue, 27 Oct 2026 15:03:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD1BE10F627;
+ Tue, 27 Oct 2026 15:03:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793113387; x=1824649387;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=rwnnC+mpRJvnpcgCWQjHZ9U2vCiFm+jjrP8z1HbfOmQ=;
+ b=O6xdsYiDI+4zuXULtdwIQ3hybXmoBMLT9ylEJ+9JwLHodq+yGlDOu9Tm
+ EdNwbFlEHgXWLsnTqzOpyN1AfIlP/VC+JYieRaAKtkpqG4Q0YeKtlyN3S
+ 1HKy6GIzafquj1NQjO6nYHQ9tGbkzawBk7ml476VUSMhDcxwtdnvKBn2i
+ wZwruZCSZK6D6XDj3IFeGNTNObuYmyRhum2vLHiOp2YP6x9YYlKk9Ht7H
+ BsG6vfvyIQoRTk5Gs74+XsHHNIUnScN9A8FIAPo4JTONqEP3pcHbwGXxg
+ fTisvoTPhbp874kEmw/fZtz/L8HuNaZW4If+VlDfQkiFyGZuP4wu1iWZU g==;
+X-CSE-ConnectionGUID: RnjYMAioQPCYIcJ8nLOvZQ==
+X-CSE-MsgGUID: 7TgCGjgDT5SMk43CwMITzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1701916"
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="1701916"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 08:03:07 -0700
+X-CSE-ConnectionGUID: VCziJyF4SnObpbbii2JOBw==
+X-CSE-MsgGUID: REMCwwU6Qre4UE/0xXDm8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="4946190"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.33])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 08:03:04 -0700
+Date: Tue, 27 Oct 2026 17:03:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ =?iso-8859-1?Q?Polo-Fran=E7ois?= Poli <polo.code.dev@gmail.com>
+Subject: Re: [PATCH 1/2] drm/i915/display: Seed skl_cdclk_init_hw() with
+ SKU-max, not zero
+Message-ID: <auC9JGcyDdZ76yzH@intel.com>
+References: <20260804-cdclk-v1-0-484864b1aafd@intel.com>
+ <20260804-cdclk-v1-1-484864b1aafd@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH8PR12MB6748:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e816800-1ce3-4f45-eb74-08df343a367e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|23010399003|376014|366016|1800799024|6133799003|22082099003|18002099003|261026140227099003|261026130827099003|10067099003|261021121427099003|56012099006|11063799006|4143699003|5023799004|261021130227099003|261021123027099003|261021135927099003|261022075727099003|261022115727099003|261022113327099003|261022105027099003|261026121527099003;
-X-Microsoft-Antispam-Message-Info: utUkeziJ30WpRWscxmo/Yi/3YOf+fYX9DyMWuZiKOCFOdId4+taS4HOnm27FkWbqHsYvRSuj/P8Ny+L3WcNJ7Vqp06ea3NNvU0ARzsx8uNhLnIit8AGz+p1JJDdIOKPxhy6bJ2IDZcs2SQI5vATs8ZCCakz4RVKs2HYZDpd5RB+lztMeWkH2iNOUKss/WeJvU9X/3waVeCtEcN72XVNus29Oc9sG50mylxbc4k3YqjS/Ij07iIToPwBQdbnYmpPufqJ3wa75FzyK4cr1snx1t6hNEBAmnMyU8cfva5+1Ls036/ZvB285lZz7jPLJl6LxqJrrcP4EcBG7wLn2qjjloxrbfTImC+K39FBUlNJe7tMOzeWkgBxz5hGs5iI6XD/BdRUuN7H4xXzNOIWRqE41WPND6iY1xC8431ZqeLV6aBzK+VoYHImtMKl7mTkEWj8KGlX0RkjRKvSgSroLmuz4YyFuqf/2/Q1KV0GrWsQhoVXfxd1Pw711GczyOL2eG4V3wU0l7XWSmcxTTi/zNyNOwU/CWAYokepFFcYgUf+dxkpjYI0+yuebPa8PIh410mWn0c7a1P2Zju/BktLMv1kXw/vQ19NjSB9u31LVQQJJUXqa0tuQL8LhrZcPm248g3nOWUYhgNUfYIxWNR8MyNKHSM0p8jyGc5FizJ2ZuuwbE84=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(23010399003)(376014)(366016)(1800799024)(6133799003)(22082099003)(18002099003)(261026140227099003)(261026130827099003)(10067099003)(261021121427099003)(56012099006)(11063799006)(4143699003)(5023799004)(261021130227099003)(261021123027099003)(261021135927099003)(261022075727099003)(261022115727099003)(261022113327099003)(261022105027099003)(261026121527099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?djlCRlNYbUw3TDhWM242c1VFWGR6R3VhbHNTai9jd3JNZ3l3L2tIMEdTS09W?=
- =?utf-8?B?RjQySVd6U3VydXJhMW1IdGNzSytRc0d3OTNmTUsrSVVaWUc0OFF3ZmloUTBI?=
- =?utf-8?B?angzR0NYYnBKMjczTXJYYms0ZFIzYXZ5SHdEeDZRTUF3U0V5MGttR0NIK2F3?=
- =?utf-8?B?ckJBeTc1YXR1TDVuSmtubDlad2NiTkVmTHd1QWgvbmhRa0hYT0JWZnU4c0JN?=
- =?utf-8?B?RzNIbWNQYm1YTk9rSHdPUGkveVYvTzhlNWN5MkxiaXMxemttUE9MSVVLTHpQ?=
- =?utf-8?B?SUF4dUZ1YVQ3U08wU29TMU81K2pERnVPWW9OWWtwUzZsRUFXZjlwNWNzM0xU?=
- =?utf-8?B?amZITTg1SWRreUlZazlRKzFYcVE5MWFBalBqZWF1L0ZrcXo2d2RkUVF3QmRM?=
- =?utf-8?B?Q2paY25Bb3VXTVplbk9zNEE0bnd6czFBNzZDV1JWUFgrYU5zYjkxMHdGVy95?=
- =?utf-8?B?M09XOHliV3NnY0lOdmtwQWw3M1VxTVQ5aDZ5RnJ1L3o0aUlQYnE0bGY4OSt0?=
- =?utf-8?B?STFjTHdIZEM0Qkt1QWZhRU84WXZBSG04OWthMWhlWmc1RXpxTFlYV0lGZEtT?=
- =?utf-8?B?SU1KZmpRVkkzSDU4TkNlLzIxc0FBTjIvUVRJZXQvRk5zOTV2NUcydEdOakt1?=
- =?utf-8?B?OVhkNGZQWm10T3NaYlFyMmdndXF0akVLaXMvcGVlTnJIRDdnY0hGczZNVkRJ?=
- =?utf-8?B?Q3dickFjaDZQTVZoRzN5YmhkdGV0cUw2SHhaYmZKZCtEa1hlZmRJWUNzaUp4?=
- =?utf-8?B?WVgyWUpuaXdvZHJaMjJJSjE2bktxOUp0UFkySWxkdXFuNFhCdUpnMnJwbkZ5?=
- =?utf-8?B?MmxPQUxuQWtOWHh4Mm1ZRXBYeWdqa21aZkVhb0dIVzZ5UGI1d2JsVDk1NGw3?=
- =?utf-8?B?NXg3cm1oNmc0TnFyQVVIRURaalBlV2h2NEtNdVQyamtsT3VINlkwMlVhMnlC?=
- =?utf-8?B?VG10QzdTTk1id1E4b1o3UEkrZEVVV1dhWGg5cWdQMVdjeXpib29ybVJuUW94?=
- =?utf-8?B?ZTV5Mk05L1Y4ZWt6MkY4SzFQR0RDeCtyR1krMkxsTk9maUxWMUc2U1czZmtx?=
- =?utf-8?B?cmFnL3FzcS8yZ3Z0OHUxbGlFM05tblR3TGFubTZWa0paNjk2bEZjWk9LY3k3?=
- =?utf-8?B?dHZNcUwvckM4RjdsM3ErNmdtbi9oOVI2WUVXWUx1SGZ3NlJwNnl0b2JxNHNJ?=
- =?utf-8?B?alJpeUJaZStQa2V0clora2RIZGcwSlliNFJKUmZEcG41dU5vNUhWRjcwbnZR?=
- =?utf-8?B?blcyZWJlMlp1THJvY3crV2EwL3V4QUtZbnc5YnlDQ2ZvUEx2TEVBQjg0SXln?=
- =?utf-8?B?bWo5OHBaUlNLVWV6YzE3bGcrQXVXYTNVdExxcnZLUHQ3MXIxYVZTckp5c1Vh?=
- =?utf-8?B?dkNuNlc4M0pPS2pkQlFjVFo1ajFKK0dZWFYyaHJvcUNlQ0Y0UCswNnpDczA5?=
- =?utf-8?B?Mk5aVGdqRXBQeWg3QkVQVkRxKzhoWW1LK080dTdKalIxbHAwZlpFOFVZeTJ1?=
- =?utf-8?B?N0tyODZBSDA5UG8xc2xhTDh1UTNzKzQvb1BUL3BZck9DRjVHRlc3R3Arb3hl?=
- =?utf-8?B?Y0MrZldxQTdscEN2cmpUTlU0MGRVRFhCeDd0K0hLdkNCc3FaUnFYcEg5UE9u?=
- =?utf-8?B?K2o1d1FJeVBteTAvbDRZVitvRGt2K0s3L2RyUkJCblVKU0REbDkzenFMdDJ1?=
- =?utf-8?B?cDBvSnZuZGN5bjBVaFBrTEJtM2NkR05oL1ZxNStNVDZGZFBFd0NiaUpaM2Uv?=
- =?utf-8?B?bUpJNHV3TjJmVWthK0VER1lodmNvTXlNMEExSGFaVTVNc0V5b085d3llMW0x?=
- =?utf-8?B?WEpyOWJlazkrQkVzemVZaXZQK1pXdnZmQkVCa3RqNnhpOXZRUUd1bWtHZjMy?=
- =?utf-8?B?T0NNdlE1ckFrbjZkQzdPSlVHWHFTWUVZUC9La0Qwci84aG5ML2JHNXh0OVgy?=
- =?utf-8?B?L0xmSitVbUsxNkszL3lMaEdtUDZPeVg3VjZoQ3ZCUWpDV3FoYkZBNzY1bytE?=
- =?utf-8?B?RmFraG5lMVRYQTN2bTJJMW10Tlc3anhFbEVWSm55M3FjR2R0VHUxNE81aFdu?=
- =?utf-8?B?eHY1Q0NxZHd4MWIwZHNINjA0MG1JeW5RL0pXVlBWeEl0M2wzbSt6ZkJ5ZjI5?=
- =?utf-8?B?T1ZTY0Y0SUhUSGIyZTRaUTlwaGR4YzY4aGx3OGpBZkt6WWxwZHBtU1g0dkJ4?=
- =?utf-8?B?RHIvOWFvRUZtWitYU1VmR21EcTU5NmlaY0NtbStJYlBvcE5BandLZEtEREx3?=
- =?utf-8?B?RTMvRFBER1VjZ1VnMEVHYlA1UHU0M0p4bUZaam1Kc3lmYkVDdllTa1ovbXNm?=
- =?utf-8?Q?WYoMvzsL1lif6tlGwb?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e816800-1ce3-4f45-eb74-08df343a367e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 14:54:33.8707 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5sq5A9jD564lJ+UFKa99Q1H+nw/kWSD8XchlH3ZFHynVqtoZYUSyJJNqljJYWxH3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB6748
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260804-cdclk-v1-1-484864b1aafd@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,105 +71,140 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 10/27/26 15:44, Jason Gunthorpe wrote:
-> On Tue, Oct 27, 2026 at 03:28:44PM +0100, Christian KÃ¶nig wrote:
->> On 10/27/26 15:08, Jason Gunthorpe wrote:
->>> On Tue, Oct 27, 2026 at 02:17:16PM +0100, Christian KÃ¶nig wrote:
->>>> On 10/27/26 13:38, Jason Gunthorpe wrote:
->>>>> On Tue, Oct 27, 2026 at 01:07:36PM +0100, Christian KÃ¶nig wrote:
->>>>>> On 10/26/26 06:36, Alistair Popple wrote:
->>>>>>> From: Jason Gunthorpe <jgg@nvidia.com>
->>>>>>>
->>>>>>> This attach function always creates a SGT mapping type importer.
->>>>>>
->>>>>> Yeah that is a clear NO-GO. The attachment should be the same for
->>>>>> the new interface as well.
->>>>>
->>>>> Not sure I understand this comment...
->>>>>
->>>>> This was intended as a helper so that existing drivers can run through
->>>>> the sgt based mapping type flow without having to open code it. It is
->>>>> hardwired to only do sgt like this. If you want to use more than sgt
->>>>> as your mapping type don't use this function
->>>>>
->>>>> The point was to create a clear distinction in the API names when
->>>>> things were in a SGT-only flow vs using the newer negotiable flow.
->>>>
->>>> Well that is my point, the dma_buf_attach() or rather
->>>> dynamic_attach() function should still be part of the new flow.
->>>
->>> It is, this is just a helper wrapper effectively to run the flow
->>> exactly as it is right now wired to only do sgt.
->>>
->>> Unless you want to see that open coded in ever driver using the more
->>> general functions, I'm not sure I see the alternative?
->>
->> I still don't see what you mean.
+On Tue, Aug 04, 2026 at 02:58:30PM +0530, Arun R Murthy wrote:
+> skl_cdclk_init_hw() has a recovery path that runs when skl_sanitize_cdclk()
+> has decided the pre-OS CDCLK state is not usable and zeroes
+> display->cdclk.hw.
 > 
-> The function is this:
+> Seed with the SKU-permitted maximum instead (as read from SKL_DFSM), so
+> the recovery path lands on a cdclk that satisfies every pipe on the SKU.
+> The very first atomic commit that follows will dial cdclk down to what
+> active pipes actually need via the normal skl_modeset_calc_cdclk() path.
 > 
-> struct dma_buf_attachment *dma_buf_sgt_attach(struct dma_buf *dmabuf,
-> 					      struct device *dev)
-> {
-> 	struct dma_buf_mapping_match sgt_match[] = {
-> 		DMA_BUF_IMAPPING_SGT(dev, DMA_SGT_NO_P2P),
-> 	};
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16595
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Tested-by: Polo-François Poli <polo.code.dev@gmail.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 65 +++++++++++++++++++++++++++++-
+>  1 file changed, 64 insertions(+), 1 deletion(-)
 > 
-> 	return dma_buf_mapping_attach(dmabuf, sgt_match, ARRAY_SIZE(sgt_match),
-> 				      NULL, NULL);
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index a53d887271778193fd400b9199ad841d5d9730fe..19f3ef8adfcded378428924539db9336834278ea 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1288,6 +1288,31 @@ static void skl_sanitize_cdclk(struct intel_display *display)
+>  	display->cdclk.hw.vco = ~0;
+>  }
+>  
+> +/*
+> + * Seed cdclk from the SKU-permitted maximum. Used by skl_cdclk_init_hw()'s
+> + * recovery path when skl_sanitize_cdclk() has decided the pre-OS CDCLK state
+> + * is not usable and has zeroed display->cdclk.hw.
+> + * Seed with the SKU top instead: it is guaranteed to satisfy every pipe on
+> + * the platform, and the very first atomic commit will dial cdclk down via
+> + * skl_modeset_calc_cdclk() once per-pipe min_cdclk is known.
+> + */
+> +static int skl_cdclk_init_hw_seed(struct intel_display *display, int vco)
+> +{
+> +	u32 limit = intel_de_read(display, SKL_DFSM) & SKL_DFSM_CDCLK_LIMIT_MASK;
+> +	int max_cdclk;
+> +
+> +	if (limit == SKL_DFSM_CDCLK_LIMIT_675)
+> +		max_cdclk = 617143;
+> +	else if (limit == SKL_DFSM_CDCLK_LIMIT_540)
+> +		max_cdclk = 540000;
+> +	else if (limit == SKL_DFSM_CDCLK_LIMIT_450)
+> +		max_cdclk = 432000;
+> +	else
+> +		max_cdclk = 308571;
+> +
+> +	return skl_calc_cdclk(max_cdclk, vco);
 
-Yeah. exactly that is a clear NO-GO from my side.
+That's just the max cdclk. We already have it.
 
-The existing dma_buf_dynamic_attach() function should already have everything you need to negotiate the mapping type.
+> +}
+> +
+>  static void skl_cdclk_init_hw(struct intel_display *display)
+>  {
+>  	struct intel_cdclk_config cdclk_config;
+> @@ -1311,9 +1336,14 @@ static void skl_cdclk_init_hw(struct intel_display *display)
+>  	cdclk_config.vco = display->cdclk.skl_preferred_vco_freq;
+>  	if (cdclk_config.vco == 0)
+>  		cdclk_config.vco = 8100000;
+> -	cdclk_config.cdclk = skl_calc_cdclk(0, cdclk_config.vco);
+> +
+> +	cdclk_config.cdclk = skl_cdclk_init_hw_seed(display, cdclk_config.vco);
 
-Don't add any new dma_buf_mapping_attach() function since attachments are generally not mapping related.
+We sanitize to min cdclk on all platforms. Don't add weird differences
+between platforms.
 
-Regards,
-Christian.
+>  	cdclk_config.voltage_level = skl_calc_voltage_level(cdclk_config.cdclk);
+>  
+> +	drm_dbg_kms(display->drm,
+> +		    "cdclk: init seed cdclk=%d vco=%d volt=%d (SKU-max, no per-pipe min_cdclk yet)\n",
+> +		    cdclk_config.cdclk, cdclk_config.vco, cdclk_config.voltage_level);
 
+What?
 
-> }
-> EXPORT_SYMBOL_NS_GPL(dma_buf_sgt_attach, "DMA_BUF");
-> 
-> Which is just a wrapper around the more general attach function,
-> forcing it to do SGT.
-> 
-> I don't see why we should label a function that can ony do SGT anything
-> other than under the SGT names.
-> 
-> If you want to get rid of it then the above has to get dropped into
-> every caller, or something like...
-> 
->> If a driver can only deal with sgt then it won't implement the
->> dma_buf_attach_ops->supported_mapping_types (or whatever we name
->> that).
->>
->> So if either dma_buf_attach_ops is NULL or
->> dma_buf_attach_ops->supported_mapping_types is NULL then we only
->> match to the sgt export.
-> 
-> This is basically changing how dma_buf_mapping_attach() works to hard
-> wire in SGT behaviors. I think this is something you'd regret down the
-> road as it starts muddling up different concerns..
-> 
-> dma_buf_sgt_attach() is very readable for what the driver is doing,
-> and grepable. Implicitly doing things when other things are NULL is
-> more indirect.
-> 
->> What I want to avoid is to get just another dma_buf_attach() variant
->> since we already added a parameter structure here.
-> 
-> It is a pretty standard kernel style to do things like this rather
-> than expose super APIs with complex signatures to every caller. If
-> there are many places with the same operation it does tend to help
-> alot to mark them with a helper function like this.
-> 
-> Jason
+> +
+>  	skl_set_cdclk(display, &cdclk_config, INVALID_PIPE);
+>  }
+>  
+> @@ -4231,6 +4261,39 @@ void intel_cdclk_read_hw(struct intel_display *display)
+>  	cdclk_state->logical = display->cdclk.hw;
+>  }
+>  
+> +/**
+> + * intel_cdclk_sync_hw_state - Adopt the HW-asserted cdclk into SW state.
+> + * @display: display instance
+> + * @hw_config: the cdclk configuration as currently read back from HW
+> + *
+> + * This helper reconciles the SW state to match what HW is currently asserting.
+> + * It updates display->cdclk.hw and the committed cdclk_state's actual/logical
+> + * so that any following atomic commit sees a truthful baseline and will
+> + * naturally attach a cdclk_state (via intel_cdclk_atomic_check()) to raise
+> + * cdclk when the workload demands it.
+> + */
+> +void intel_cdclk_sync_hw_state(struct intel_display *display,
+> +			       const struct intel_cdclk_config *hw_config)
+> +{
+> +	struct intel_cdclk_state *cdclk_state =
+> +		to_intel_cdclk_state(display->cdclk.obj.state);
+> +
+> +	if (!intel_cdclk_clock_changed(&display->cdclk.hw, hw_config))
+> +		return;
+> +
+> +	drm_dbg_kms(display->drm,
+> +		    "cdclk: syncing SW state to HW after drift (sw %d/vco %d/ref %d -> hw %d/vco %d/ref %d)\n",
+> +		    display->cdclk.hw.cdclk, display->cdclk.hw.vco, display->cdclk.hw.ref,
+> +		    hw_config->cdclk, hw_config->vco, hw_config->ref);
+> +
+> +	display->cdclk.hw.cdclk = hw_config->cdclk;
+> +	display->cdclk.hw.vco = hw_config->vco;
+> +	display->cdclk.hw.ref = hw_config->ref;
+> +
+> +	cdclk_state->actual = display->cdclk.hw;
+> +	cdclk_state->logical = display->cdclk.hw;
 
+I have no idea what's happening here or why? We already copy the hw
+state into the initial sw state somewhere.
+
+> +}
+> +
+>  static int calc_cdclk(const struct intel_crtc_state *crtc_state, int min_cdclk)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+> 
+> -- 
+> 2.25.1
+
+-- 
+Ville Syrjälä
+Intel
