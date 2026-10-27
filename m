@@ -2,140 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ADBF60A2605
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 12:39:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C4D860A2605
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 12:42:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=k1bhtu35
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EofktGYX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5FBA110E416;
-	Tue, 27 Oct 2026 12:39:15 +0000 (UTC)
-Received: from BL0PR03CU003.outbound.protection.outlook.com
- (mail-eastusazon11012026.outbound.protection.outlook.com [52.101.53.26])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25B1B10E40B;
- Tue, 27 Oct 2026 12:39:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N5zYQVaaDRq/8BRlpblbEfEwddZdxLFJ9aohQl3v789ZsQqJIkhZ3+nA8CANtTFcKzFb4uUEag+1wQ8Xrhv3lfGkG7iMo31Mo+N0iv5Rs6lBrPJ2VXrzVmye/58br2JVAZUQlPqY7dXCnzDfaMiVGanvfbsm+RQHl9K20HkSbuj81flSeQyo63lpbR+VMxjUPK3JWdJ8U/X2g9XyujG+VyUvLkK1LipFMANN8CPNhbdMT0jZYLAEXP0xiDHXt/gHuN/f8hnQ537gj4kQneXuNH2X/zBf1XngcJeo/o+asqi4RQl9joYZ42NaWOjyq9Gq+tDbo4FeOrlPOvpfYpj0UA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HziDsGmgK9Gf37+SktFNo49wkeEA9Ry2xyPH26deLYs=;
- b=gJnqJZGMVjSdsfRp1in9586Pg+52lp06LArAtMG0PSTJ+2dTi8lkgBuarqfI3McaA1eG1rkQ4VqZs+O/zYMBK3zE/cC5iLMBOT2MU0Asx2YW/haSp0TY093yt0uak4uXITvXwiDR7QNwalX7Jp4X5DR41EgF9+NWHy3/zHMrRHRf+YeqaZMpjMaLzKjJ8035RDN5xhF2paj1Hc/w3zS4uE2JGK+KlU8/b6Rjok/t+hyMny/vEP/eLWE0orlxNSw5HjDkqrdWfwAsDpVaZfFLfLksQP32d2Afj/BfRUqWlCsuh4oAK+qWLqvGeW5lTlszLIZ77BxrB7FP+UZN8mR2Xg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HziDsGmgK9Gf37+SktFNo49wkeEA9Ry2xyPH26deLYs=;
- b=k1bhtu35NcetzH3jUQF+t3rhAJIwNujuTgVYEBXPU0Hie5bIfca9A9SwvyCb1ls/eN3ckzroFWhieQhBWIHQZO7RJmK4o5mCgPMk4l+clweyazwI5biGfILuNi78SX9pWCqgEoQlBk7vX3vsCcQGHcwUpIcJ3ZjEY3Xr7vCIgwn0aYnsgnUtYBERSEgjPf1fWHZyJUTWk42xyK9woDDrcSVP1Ax4MfOCFPfnQQrVUOBUjfURiJ21XMdWyyvdIdnJDSFhJ2wNycAhY8V8qCKFyBXPV7G5tVYdCPA89clQ3IhEfHilEsUmG9Je8tFfK12zgRgx8SdiTg/AHwbf9YOQ8g==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CHBPR12MB731189.namprd12.prod.outlook.com
- (2603:10b6:610:33d::12) by CH3PR12MB7548.namprd12.prod.outlook.com
- (2603:10b6:610:144::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Tue, 27 Oct
- 2026 12:39:00 +0000
-Received: from CHBPR12MB731189.namprd12.prod.outlook.com
- ([fe80::b0e5:123d:fe06:e10d]) by CHBPR12MB731189.namprd12.prod.outlook.com
- ([fe80::b0e5:123d:fe06:e10d%6]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
- 12:39:00 +0000
-Date: Tue, 27 Oct 2026 09:38:59 -0300
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>
-Cc: Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
- sumit.semwal@linaro.org,
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Dongwon Kim <dongwon.kim@intel.com>, Leon Romanovsky <leonro@nvidia.com>,
- Kevin Tian <kevin.tian@intel.com>, Xu Yilun <yilun.xu@linux.intel.com>,
- Karl Mehltretter <kmehltretter@gmail.com>,
- Baolu Lu <baolu.lu@linux.intel.com>,
- Felix Kuehling <felix.kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev,
- Alexey Kardashevskiy <aik@amd.com>, zhipingz@meta.com,
- treding@nvidia.com, jhubbard@nvidia.com
-Subject: Re: [PATCH 23/26] treewide: Rename dma_buf_attach() to
- dma_buf_sgt_attach()
-Message-ID: <20261027123859.GE1671235@nvidia.com>
-References: <20261026053623.202642-1-apopple@nvidia.com>
- <20261026053623.202642-24-apopple@nvidia.com>
- <27307d58-9ca9-4624-a564-6e35fb4befb5@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <27307d58-9ca9-4624-a564-6e35fb4befb5@amd.com>
-X-ClientProxiedBy: MN0P223CA0022.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:52b::23) To CHBPR12MB731189.namprd12.prod.outlook.com
- (2603:10b6:610:33d::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1AC110E40B;
+	Tue, 27 Oct 2026 12:42:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CD9A10E40B
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 12:42:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793104939; x=1824640939;
+ h=message-id:date:mime-version:subject:from:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=NMEa5vWU4ZlNJLykssghl9O3s6Ml6pgdhRGqV7VPbts=;
+ b=EofktGYXXZJqhklz0WdIAtoHHhE+ceb17RN3HF0G98bNdt0bXPhQaA8S
+ RVe21M1VpOr/jh7rVrYJCKpsKlMe7tEakjLi3GXJRqSr+2aUHABKzvGjQ
+ B7Ju6GOEQtV8sO42o5a/UDLnPZX8zEkF8SRlPhcbez8ViVTHiA0za+DfE
+ eJXRndLM44lOMsI7+63OkikLnHACbFXYJAe90BrKyilG9tE/fqbun2r//
+ +/HmQ1ZqM34W6uvqDgS7vViUN755l0yGxIzxG+OBEzmE4qPPyRgA3csjP
+ 9obz5J6R6abVLTI8juxcJvvQiu3Oq2LQHweimuqLl+Dy3N7zbdfsgJ6Hv g==;
+X-CSE-ConnectionGUID: 2Vmk2BsVSWyxbsXldP0q4g==
+X-CSE-MsgGUID: mRI1HDDAQN2GVNVZaqwdzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1790041"
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="1790041"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 05:42:18 -0700
+X-CSE-ConnectionGUID: dSeO7xJfQMOp0jxELMjmdw==
+X-CSE-MsgGUID: QgWc/OjfSbaLYded+0PQLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="4556012"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.244.18])
+ ([10.245.244.18])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 05:42:16 -0700
+Message-ID: <bfb62b44-5fcb-4a41-8dc8-c917d9687d28@intel.com>
+Date: Tue, 27 Oct 2026 12:42:13 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CHBPR12MB731189:EE_|CH3PR12MB7548:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba848c84-75e6-4b89-5207-08df342746bf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|376014|7416014|1800799024|22082099003|18002099003|261026140227099003|56012099006|11063799006|4143699003|10067099003|261022105027099003|261026121527099003;
-X-Microsoft-Antispam-Message-Info: ouxHyHteo6Af9DAYY30UBwqgYDBkUk6Nb22Q6a3WKojA5bGgTZR5QTdm5m/4GBEOd2AZNAilXQuQRojaZOgGEsIuvXXc6SqjBDhD1t7DvrvzoMxoL6uQXGN8IegxAh91seomhzTZ9dmp9Zr27PFRFUtMyKfRCwufhKBhzbQwoBY+GYVLgKHzFilR51Aff2g784ONq7BzKFaXoer/9p41zubqeay/74uc+oDmnDRkOxGGUtXpUq+9NcPQbUf7JfrH9Qcv6vnCf4TtXm7Uz4FY3D/qzWDWIB44AD1D/eU6+xENlqnP5yn4GSwKjXFiHzbNOfVh7M7ijKekXxDxSeZQxwHKB258GzvpxBXpw5Af/xd/9EshR5vHjDB10iqSyTukeChVhrXX83DWfb9JXNQzNUNc8mYmp3ms96jUuDSTeahUjrqdGjd6tz6w44gJY1n8ficPIkg6Ql5rvP4sIeSqieNorvE9Hfr0W4prL6LWUxxlt4OwVrugVUdHPA2MTR56ashnKojTcPH3vIWmweMOY4cT/jclrx7bH7aHltI8lbErdml8JufAtf/c55HL87zIiwqkrcUYeVBDHy4DRlx6+RhqS50FkUWERJgVwDXBC8cy1vlePPJgjLJw3V+ymyWebWP4DGhp+/MMmVna0NkicNRjMeqdb3dl1czbtAHURfM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CHBPR12MB731189.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(376014)(7416014)(1800799024)(22082099003)(18002099003)(261026140227099003)(56012099006)(11063799006)(4143699003)(10067099003)(261022105027099003)(261026121527099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bnFuU2cvRDJQZndzaTA3dFArU3k3Uy9XKzZBNndhNmZpQ1dpVzhYem9LaGli?=
- =?utf-8?B?djRKOWZPS09SelNuNXZQSWVBYUN3NS85bkplVytwRjE4MDh1NzV4T0tFSHY0?=
- =?utf-8?B?VWJhS0JDOGpPRnRwOHF3QkRsUVM1WE52UDlwZGRDM0haczJLQUZ3cWFBYnkz?=
- =?utf-8?B?ekI3bnFMcHczVXZyaVQ3a2QzWCttc1J1UEFXcm95cEUxVHJ4cTlFbzNMNGww?=
- =?utf-8?B?TlNSZk9IVi9mbHN0dGUzZkhjTWhwUmhlNVMxdXVWT3R3dWVsQlZaLzFyNExM?=
- =?utf-8?B?ZDVlNGtmZytMdDAyaUxWZ3RSMERKQVo2OWtDMVhsQmVyTDlObkZZRjg1ZWNC?=
- =?utf-8?B?NWZEVk9UY3hyd2JqcjNJNXVIK0xqSHpVVkEvN1VCYStQUTJxQmtkSDFaby8y?=
- =?utf-8?B?aTdvMHBNamdtYjczT2VBcTh2M2pvUTRZYTV5UFAvNGdSMkorRWdJQ1NWbElv?=
- =?utf-8?B?cnh4bFNtNmp1VUFNU3RyVXp3TklUb1hVYUFjcHROVi83dGdac3pzRms3K3Fx?=
- =?utf-8?B?b08zaWNWMFFlYm02cTdmYTQwUHlXVWJiSHJ5N1NhNms5T0l0UHIvYTFSaXJw?=
- =?utf-8?B?S01vcFErVzJuOVQ1Rm1PQWxYNTgvNURSc2t3REQ4blhNUWYzK2RzVXE3SHpv?=
- =?utf-8?B?TVJtMnhDRGFXWDQxUzRSRjhGREhpM2YwV21jY2l5a1VXSlQ0djAyZm93b2dr?=
- =?utf-8?B?ckVwOWF1UHJURSsrT3dGQ0ZtMEwrQ1VldUsvRUdVWmdpOHlzU3BDdnBMbFFz?=
- =?utf-8?B?dlJlNDFDd2p0Zm8wTHN5SFE2dkgzZi9rL04ydnBzeTkxQzZsL0lTdHh3R0FN?=
- =?utf-8?B?N0J1MjFVcUNJTDBsQzdEOG1SUm1oNWt3aXM5bGpsdHZLdGdnOGZhS2VkKzJE?=
- =?utf-8?B?UXpzaEhRaXZCSDR2WENmbnRuYTRxZTIxaHJYb2ZmdFh2TVN3eUl4dEVtdytn?=
- =?utf-8?B?dkJwUGVhUFpKZ1h3ZjI4SFgzRmxzN1VoSWYxMVBYdkdLWTY1d3VNL2VuVE1H?=
- =?utf-8?B?aHFlQUorMlJ6eHhJdzZGM0hyQURTRGl3WnlFYUx0V1p1M3J1NjVhWk9BZGR6?=
- =?utf-8?B?MDhadGNmTjZESWU1Z1BtN0NDU2xNaVBmcXA4ZC9EZ2tMRDNJVm5wQnVvdHhj?=
- =?utf-8?B?OTU1aUJHQ1ZYTzNZZ3l6WlduSnRCUlF6Z2xIRmI3b0ZGTUcySi91emxhQ1NR?=
- =?utf-8?B?YmxHT25mdW5Ra0gzaU1QNFdEd1Y0Uko5VjJ1a3l3RUZDTmJrUjN1UllvOEVQ?=
- =?utf-8?B?WFVpYXl5RDY0SzFrQVZYNFpad2s5dTZUUTdTMmpxR2RoR1Q1NnpEbnBUbkxT?=
- =?utf-8?B?Ym1tR2E2VkxxVVQvOWp4VTVsWUNmSnlVcUlJSVBqM0h4ZHcyNDZyVkxjYzZI?=
- =?utf-8?B?ckJlNmttemlPSzNOa2hCSnpMZE1hZStEci9zQThqODZSVnljanRGbzAyOEdv?=
- =?utf-8?B?ZE5IV2RvendGVzlDTXN4b0dTL1p4RHFXcjRYN2ZocHBIa3lUMjlESnFVbHhX?=
- =?utf-8?B?K2tINTcvUGY3cnppTkcreWVFL2NsSTNzUC9RMldhL2Y5Wmpac3VhNXBkOEhP?=
- =?utf-8?B?eDYxajZvaUlXZnU5amxXekNrU0tKc3MyTVQxY29qV2UyL0hzaHJuVHJpalVE?=
- =?utf-8?B?SVJzby9XSkswUXlrQmgxMFZZdWJpWDB3U2ZacVZUZEhNR2RETnFXUllkVUZN?=
- =?utf-8?B?YzUxM2Q4bHJaSmNjeGgwcEc1SG05UmlMK2lXQWF4Sy9EaU1BS3d2VWlyblUv?=
- =?utf-8?B?YnBhNCtqOFNta1dvRFhYTzdrSnhEWVcyYm1MdUpBZFd5VGNJeWlVaEVTNUY2?=
- =?utf-8?B?R0NNUnVUeGlMN1dQR0ZIcFg1YmhZNEVXTk1aY0g2M21kY201N2FLaHpUMjFm?=
- =?utf-8?B?bnFUaURRQnErVWtJek5OaXM2ZnhGK2hweFJsK2NhNVFqUEpxV1VudmZzU1hR?=
- =?utf-8?B?SXY0NFMrWnNXNUNoZ0cxYnkzOGp4cm85UWVDYXM5TURVc0VKajl1bnZla3cv?=
- =?utf-8?B?N0VqNVFsWWsyd2JnWXNOZlI1ZEpkSkFTbFJUb0QwOVQzUTZBdzdpTmJ4Qkpi?=
- =?utf-8?B?WVFEQnN6YityR3NpdlJNdjBaVng0ZlVtWXRoRk9ZbnBzRStzdVFDMGhnekVM?=
- =?utf-8?B?WXlCcVdRck9LWCtWZFdRc2dvWnZIQ2xyY2R1elYwK25kMFczbU9WOUpad2dL?=
- =?utf-8?B?eXFXemZvYWhac2VSczNaMmNaWHd3dzNNMkJpQ0dqR1VIR3pXUEEzbDFoMGlp?=
- =?utf-8?B?VE9jb0FwakxTYmhnZzdDTFdhQzR1Ukg1dWR3dWNyUzdrY3BQcW1OMVU5UlRx?=
- =?utf-8?Q?ZqDqhL5G3uBsTKwptY?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba848c84-75e6-4b89-5207-08df342746bf
-X-MS-Exchange-CrossTenant-AuthSource: CHBPR12MB731189.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 12:39:00.6151 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: x9lvOFOBrhp1LpevKB0FFkNPeFfo8NeyoJEGpRTivn0hYN/4K5wYDyGHfn7oI41x
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7548
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/xe/sa: make suballocator waits uninterruptible
+From: Matthew Auld <matthew.auld@intel.com>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org
+References: <20261022174058.226432-4-matthew.auld@intel.com>
+ <20261022174058.226432-5-matthew.auld@intel.com>
+ <45831f6088cde19e2885cbbde52574da8a595e18.camel@linux.intel.com>
+ <3c39fc90-de66-44a6-936e-06a69219f7af@intel.com>
+Content-Language: en-GB
+In-Reply-To: <3c39fc90-de66-44a6-936e-06a69219f7af@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,36 +69,140 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Oct 27, 2026 at 01:07:36PM +0100, Christian König wrote:
-> On 10/26/26 06:36, Alistair Popple wrote:
-> > From: Jason Gunthorpe <jgg@nvidia.com>
-> > 
-> > This attach function always creates a SGT mapping type importer.
+On 23/10/2026 10:32, Matthew Auld wrote:
+> Hi,
 > 
-> Yeah that is a clear NO-GO. The attachment should be the same for
-> the new interface as well.
+> On 22/10/2026 19:29, Thomas Hellström wrote:
+>> Hi, Matt
+>>
+>> On Thu, 2026-10-22 at 18:41 +0100, Matthew Auld wrote:
+>>> Large BO clears and copies in xe_migrate_clear() and
+>>> xe_migrate_copy()
+>>> are split into multiple passes, each needing a batchbuffer from the
+>>> fixed size kernel bb pool. Once the pool fills up, __xe_sa_bo_new()
+>>> waits interruptibly for space, so a pending signal (e.g. Xorg's 5ms
+>>> SIGALRM smart-scheduler timer) makes it fail mid-loop with -
+>>> ERESTARTSYS.
+>>> The partial progress is then thrown away and the restarted ioctl
+>>> starts
+>>> again from byte 0, including the memory allocation, which can
+>>> livelock
+>>> if the signal arrives faster than the whole operation completes. In
+>>> the
+>>> shrinker path the same error also aborts the shrinker walk, even
+>>> though
+>>> ctx->interruptible is false.
+>>>
+>>> Being interruptible here doesn't seem to buy much anyway: on error
+>>> the loop already waits uninterruptibly for all submitted passes
+>>> before
+>>> returning. So just make the suballocator waits uninterruptible,
+>>> matching
+>>> amdgpu and radeon. The other users (page reclaim from a kworker, and
+>>> the
+>>> GuC buffer cache) shouldn't really see any meaningful change.
+>>
+>> This is a deviation from the "make all waits possible interruptible".
+>> One might argue that user-space that interrupts kernel work with a 5ms
+>> time only to restart it again and again is not well-behaving and
+>> continously shoots itself in the foot.
+> 
+> Maybe. This is the xserver, so I assume this is very old and not some 
+> new thing. I feel like even in this situation the kernel should be able 
+> to make some forward progress in the ioctl.
+> 
+>>
+>> Given our pipelining abilities, isn't there a risk that we delay signal
+>> delivery with up to 10s?
+> 
+> At least for the copy/clear, it looks like there is already an 
+> uninterruptible wait on the err path if fence != NULL, which we trigger 
+> on a signal.
+> 
+>>
+>> In the worst case, is there a way we can periodically at least check
+>> for pending signals or perhaps increase the sa bo size so that it
+>> doesn't block on a single large buffer?
+> 
+> Other idea is to expose the intr, and then maybe plumb down the ctx- 
+>  >interruptible somehow, which would then cover the shrinker case and 
+> maybe other places like that which explicitly asked for that? For the 
+> clear case (gem_create) maybe we check if the fence != NULL first and 
+> then set intr accordingly? If we have a pending signal it would bail if 
+> we have not started GPU clearing yet, but if we have started then we try 
+> to finish? The error path will currently do an uninterruptible wait 
+> anyway, and that one could be a lot worse for a big buffer, since it 
+> drains ALL prior jobs, instead of just waiting for the oldest bb. And 
+> here it might be that we got right to the tail end of the clears but we 
+> got a signal, so we throw away all of that work.
+> 
+> Increasing the sa bo is also an option (maybe both). Although I guess 
+> there will likely still be something too big, and I guess we might still 
+> see issues if the pool is still busy with other pending work?
 
-Not sure I understand this comment...
+Some more thoughts. Since Matt nuked the vm_bind GPU path, I don't think 
+there is much contention on the reserved bcs any more since there is 
+just one migrate queue (?), so maybe we can also:
 
-This was intended as a helper so that existing drivers can run through
-the sgt based mapping type flow without having to open code it. It is
-hardwired to only do sgt like this. If you want to use more than sgt
-as your mapping type don't use this function
+1. Bump the VRAM clear + identity path. 8M is maybe very pessimistic 
+now? Maybe we could push a lot more work per MEM_SET + page mode here? 
+This could also give more perf, with a lot fewer jobs for 1G+ buffers. I 
+have seen llama.py with 5G+ gemma model use 1G+ buffer on my BMG, for 
+example.
 
-The point was to create a clear distinction in the API names when
-things were in a SGT-only flow vs using the newer negotiable flow.
+2. Maybe also pack more work per-bb, at least for identity? Each new bb 
+eats up a bunch of padding for pre-fetch etc.
 
-> > Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+> 
+>>
+>> /Thomas
+>>
+>>>
+>>> Assisted-by: LLM
+>>> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9644
+>>> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel
+>>> GPUs")
+>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: <stable@vger.kernel.org> # v6.12+
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_sa.c | 5 +++--
+>>>   1 file changed, 3 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+>>> index f32045f40b7a..d9c2b28b08c2 100644
+>>> --- a/drivers/gpu/drm/xe/xe_sa.c
+>>> +++ b/drivers/gpu/drm/xe/xe_sa.c
+>>> @@ -165,7 +165,8 @@ void xe_sa_bo_sync_shadow(struct drm_suballoc
+>>> *sa_bo)
+>>>    * @size: number of bytes we want to suballocate
+>>>    * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL.
+>>>    *
+>>> - * Try to make a suballocation of size @size.
+>>> + * Try to make a suballocation of size @size. Any waits for space
+>>> are
+>>> + * uninterruptible.
+>>>    *
+>>>    * Return: a &drm_suballoc, or an ERR_PTR.
+>>>    */
+>>> @@ -178,7 +179,7 @@ struct drm_suballoc *__xe_sa_bo_new(struct
+>>> xe_sa_manager *sa_manager, u32 size,
+>>>       if (size > sa_manager->base.size)
+>>>           return ERR_PTR(-ENOBUFS);
+>>> -    return drm_suballoc_new(&sa_manager->base, size, gfp, true,
+>>> 0);
+>>> +    return drm_suballoc_new(&sa_manager->base, size, gfp, false,
+>>> 0);
+>>>   }
+>>>   /**
+> 
 
-Alistair since you rebased it you should put your SOB on every
-patch...
-
-Regards,
-Jason
