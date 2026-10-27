@@ -2,28 +2,29 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BCC6606D93D
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 15:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C80F60A3801
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 15:38:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43C2210F68A;
-	Tue, 27 Oct 2026 15:37:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5527D10F67C;
+	Tue, 27 Oct 2026 15:38:00 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D77F10F67D;
- Tue, 27 Oct 2026 15:37:52 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6203811515570121933=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E51A10F67D;
+ Tue, 27 Oct 2026 15:37:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Update_Wa=5F14026?=
- =?utf-8?q?539277?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/2=5D_drm/xe/migrate=3A_Keep_access=5Fmemory_chunks_within_the_tr?=
+ =?utf-8?q?ansfer_limit?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Oct 2026 15:37:52 -0000
-Message-ID: <179311547237.77490.2939902578065474865@221881a7231d>
+Date: Tue, 27 Oct 2026 15:37:58 -0000
+Message-ID: <179311547825.77490.14925706993374233230@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261027-wa_14026539277-v5-0-541941b1c032@intel.com>
-In-Reply-To: <20261027-wa_14026539277-v5-0-541941b1c032@intel.com>
+References: <20261027145237.1862132-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20261027145237.1862132-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,112 +36,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============6203811515570121933==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Update Wa_14026539277
-URL   : https://patchwork.freedesktop.org/series/176958/
-State : success
+Series: series starting with [1/2] drm/xe/migrate: Keep access_memory chunks within the transfer limit
+URL   : https://patchwork.freedesktop.org/series/176960/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6014-d645db52a6b60d0f0d921077f0233085b41b3a1e_BAT -> xe-pw-176958v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1a32501fcf07e6bfcbfcf9df5f592cab5e039b90
+Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Date:   Tue Oct 27 16:52:37 2026 +0200
 
-Summary
--------
+    drm/xe/tests: Cover a large write to an unaligned bo offset
+    
+    Write a contiguous 16M bo from offset 4 with xe_migrate_access_memory()
+    and read it back. Aligning the vram side leaves buf mid page, so the
+    following full chunk has to stay within MAX_PREEMPTDISABLE_TRANSFER.
+    
+    Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
++ /mt/dim checkpatch 4fae0a24d63d617b8651b1cc247c3a36bc1eff32 drm-intel
+c489d20b5666 drm/xe/migrate: Keep access_memory chunks within the transfer limit
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#34: 
+  xe 0000:03:00.0: [drm] Assertion `npages * ((1UL) << 12) <= 0x00800000` failed!
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9166 -> IGT_9167
-  * Linux: xe-6014-d645db52a6b60d0f0d921077f0233085b41b3a1e -> xe-pw-176958v1
-
-  IGT_9166: 9166
-  IGT_9167: 9167
-  xe-6014-d645db52a6b60d0f0d921077f0233085b41b3a1e: d645db52a6b60d0f0d921077f0233085b41b3a1e
-  xe-pw-176958v1: 176958v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176958v1/index.html
-
---===============6203811515570121933==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+1a32501fcf07 drm/xe/tests: Cover a large write to an unaligned bo offset
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Update Wa_14026539277</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176958/">https://patchwork.freedesktop.org/series/176958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176958v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176958v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6014-d645db52a6b60d0f0d921077f0233085b41b3a1e_BAT -&gt; xe-pw-176958v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9166 -&gt; IGT_9167</li>
-<li>Linux: xe-6014-d645db52a6b60d0f0d921077f0233085b41b3a1e -&gt; xe-pw-176958v1</li>
-</ul>
-<p>IGT_9166: 9166<br />
-  IGT_9167: 9167<br />
-  xe-6014-d645db52a6b60d0f0d921077f0233085b41b3a1e: d645db52a6b60d0f0d921077f0233085b41b3a1e<br />
-  xe-pw-176958v1: 176958v1</p>
-
-</body>
-</html>
-
---===============6203811515570121933==--
