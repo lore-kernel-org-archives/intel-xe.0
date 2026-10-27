@@ -2,61 +2,61 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C3E1606A31A
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 15:57:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12411606A335
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 16:04:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=B2OHiGKN
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NDefxWy9
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3656010E34E;
-	Tue, 27 Oct 2026 15:57:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C25110E34E
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 15:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA30210F701;
+	Tue, 27 Oct 2026 16:04:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29C6D10E443;
+ Tue, 27 Oct 2026 16:04:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793116668; x=1824652668;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=ASAcpbBQnri+/4P0bzK/5B2np3Isyn41zRF0gp/D74A=;
- b=B2OHiGKNsmfe8sX9+pc8WqdDWvib41Gq9XgMUu5576iX5qlKNPYwXVSp
- fmR6STsI9SW8DhCwd3bpRIeAXX0lxUQ5mybPRgoEDjVRfH+GuNrrJmVSR
- Ln/nsNmbhNLncFhtoOvFRkyhHz7fsYCyZuY0SI2w5HOOxli1ll4o+i40p
- 9YKEv8GKMIWbNOZMW2Ym83qTYN8+JuSOFMN4G4M/ckNB2A+8vzczcSeEy
- MzOwBBLd1K0gVfsrddE5MPIHEf2hDZ0B4TJVM3OstpZEPYjgevlkfU3oi
- R88TFZlm7hgsSArr0Gz3XI9QCQ8fSLJRBt7aH05JG8nOAUNeHRlqYXVe0 w==;
-X-CSE-ConnectionGUID: IPNDA+lZQN66nf7fdINSIw==
-X-CSE-MsgGUID: wwq7GlSYRrO/BWtxTvb7BQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1835375"
+ t=1793117084; x=1824653084;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=E17rDRpemwE0pwkgxrdTqZW6dJck+1yrSNqBwMignYw=;
+ b=NDefxWy9XIdVWE0H+iKHQMr30/Sj6F2krIWPiKPIj1sgHXoPRdvsl6Ou
+ T5IYuoXQNO2fgW8VjKhnjC1WWlbQH+8+o6UJm4oUw7DtOV3ZtRUdpqmyi
+ vnV7p4P9t/TOoEgFASajAfDHqWb2HU1NnkVbjwMyuMbk2v+AmZD5fa2qC
+ kBFVtdKJsgcNq7NDzsjiMOrlQCg2q7yM1MYu4+M70xr5U7CuRDGzIxDuR
+ f9RkAhaVgqf1DGwFOmHIVcooeFIGuO1aIEFZVSAbVxqFUljQEKXqtibi1
+ Ou8VxmhxCUSms/GpCHe74WaC0tmXGw//z30oKDZ+QtW9/Lq1sqyWzTbSi Q==;
+X-CSE-ConnectionGUID: pBRIYXTARj+lXS6lYN7z8g==
+X-CSE-MsgGUID: mCySRIh8RLiTongJPvZ3FQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1830934"
 X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="1835375"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 08:57:47 -0700
-X-CSE-ConnectionGUID: KwI3CvgvTj+Fa2WNHa1iog==
-X-CSE-MsgGUID: LahVapE+RNubuRB5qaBulw==
+   d="scan'208";a="1830934"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 09:04:43 -0700
+X-CSE-ConnectionGUID: f4gYiu7WQwevUfAeIPJcZw==
+X-CSE-MsgGUID: tDldDrB5QB+4CJE7egdoAQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="4917891"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.244.18])
- ([10.245.244.18])
+   d="scan'208";a="4720089"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.247])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 08:57:46 -0700
-Message-ID: <a8126cc8-b608-4bf9-9102-fe1e9ae58703@intel.com>
-Date: Tue, 27 Oct 2026 15:57:44 +0000
+ 27 Oct 2026 09:04:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 01/13] drm/i915/vrr: Fix intel_vrr_dcb_vmin_vblank_start()
+In-Reply-To: <20261023165803.31016-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261023165803.31016-1-ville.syrjala@linux.intel.com>
+ <20261023165803.31016-2-ville.syrjala@linux.intel.com>
+Date: Tue, 27 Oct 2026 18:04:39 +0200
+Message-ID: <956f60a3c6194f7ab12f8cb44d413c0bb58ec541@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/tests: Cover a large write to an unaligned bo
- offset
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20261027145237.1862132-1-mika.kuoppala@linux.intel.com>
- <20261027145237.1862132-2-mika.kuoppala@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20261027145237.1862132-2-mika.kuoppala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,95 +67,66 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 27/10/2026 14:52, Mika Kuoppala wrote:
-> Write a contiguous 16M bo from offset 4 with xe_migrate_access_memory()
-> and read it back. Aligning the vram side leaves buf mid page, so the
-> following full chunk has to stay within MAX_PREEMPTDISABLE_TRANSFER.
-> 
-> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+On Fri, 23 Oct 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> intel_vrr_dcb_vmin_vblank_start() may evaluate
+> intel_vrr_dcb_vmin_vblank_start_next() twice, and given that
+> this is doing hardware access under the hood isn't really
+> desired.
 
-Do we know how long this test now takes? It is pulled into BAT I think.
+Feels like there's a word missing there. This? It?
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> Even worse, the double evaluation might even cause
+> intel_vrr_dcb_vmin_vblank_start() itself to finally
+> return -EINVAL (if we race against the DMC hard enough),
+> which we definitely never want to do.
+>
+> Eliminate the double evaluation, guaranteeing a sane
+> final return value at the same time.
 
+I think a Fixes: would be in order.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/xe/tests/xe_migrate.c | 50 +++++++++++++++++++++++++++
->   1 file changed, 50 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index a9ef8f2dcebb..715de366d33c 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -1041,6 +1041,53 @@ static void access_memory_test_run_tile(struct xe_device *xe,
->   	kvfree(buf);
->   }
->   
-> +static void access_memory_test_unaligned_large_write(struct kunit *test,
-> +						     struct xe_tile *tile)
-> +{
-> +	const u32 size = SZ_16M, offset = 4;
-> +	struct xe_bo *bo;
-> +	u32 j;
-> +	u8 *buf;
-> +	int ret;
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index b14750692ae0..e59345bd1d33 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -1202,9 +1202,13 @@ int intel_vrr_safe_window_start(const struct intel=
+_crtc_state *crtc_state)
+>  static int
+>  intel_vrr_dcb_vmin_vblank_start(const struct intel_crtc_state *crtc_stat=
+e)
+>  {
+> -	return (intel_vrr_dcb_vmin_vblank_start_next(crtc_state) < 0) ?
+> -		intel_vrr_dcb_vmin_vblank_start_final(crtc_state) :
+> -		intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
+> +	int vblank_start;
 > +
-> +	buf = kvmalloc(size, GFP_KERNEL);
-> +	if (!buf) {
-> +		KUNIT_FAIL(test, "Failed to allocate buffer\n");
-> +		return;
-> +	}
+> +	vblank_start =3D intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
+> +	if (vblank_start < 0)
+> +		vblank_start =3D intel_vrr_dcb_vmin_vblank_start_final(crtc_state);
 > +
-> +	bo = xe_bo_create_pin_map_novm(tile_to_xe(tile), tile, size,
-> +				       ttm_bo_type_kernel,
-> +				       XE_BO_FLAG_VRAM_IF_DGFX(tile), false);
-> +	if (IS_ERR(bo)) {
-> +		KUNIT_FAIL(test, "Failed to create bo: %pe\n", bo);
-> +		goto free_buf;
-> +	}
-> +
-> +	for (j = 0; j < size / sizeof(u32); j++)
-> +		((u32 *)buf)[j] = j;
-> +
-> +	xe_bo_lock(bo, false);
-> +	ret = xe_migrate_access_memory(tile->migrate, bo, offset, buf,
-> +				       size - offset, true);
-> +	if (!ret) {
-> +		memset(buf, 0, size);
-> +		ret = xe_migrate_access_memory(tile->migrate, bo, offset, buf,
-> +					       size - offset, false);
-> +	}
-> +	xe_bo_unlock(bo);
-> +
-> +	if (ret)
-> +		KUNIT_FAIL(test, "Unaligned large write failed: %d\n", ret);
-> +	else
-> +		verify_access_memory_read(test, buf, 0, 0, size - offset,
-> +					  "Unaligned large write");
-> +
-> +	xe_bo_unpin_map_no_vm(bo);
-> +free_buf:
-> +	kvfree(buf);
-> +}
-> +
->   static int access_memory_test_run_device(struct xe_device *xe)
->   {
->   	struct kunit *test = kunit_get_current_test();
-> @@ -1059,6 +1106,9 @@ static int access_memory_test_run_device(struct xe_device *xe)
->   
->   		kunit_info(test, "Testing tile id %d (random offset)\n", id);
->   		access_memory_test_run_tile(xe, tile, test, true);
-> +
-> +		kunit_info(test, "Testing tile id %d (unaligned large write)\n", id);
-> +		access_memory_test_unaligned_large_write(test, tile);
->   	}
->   
->   	return 0;
+> +	return vblank_start;
+>  }
+>=20=20
+>  int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_s=
+tate)
 
+--=20
+Jani Nikula, Intel
