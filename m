@@ -2,50 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D172E606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFCF606A31A
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 05:13:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ltSxV3AF
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bk+JE5HF
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9771F10E3AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90A3210E3A7;
 	Tue, 27 Oct 2026 05:13:13 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AF9410E37B
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 05:13:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B3D810E2A4
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 05:13:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793077987; x=1824613987;
+ t=1793077982; x=1824613982;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yQHdKcZ0LUyPZuya84Z35QlNS7IAkXd4+46fyzFTxT8=;
- b=ltSxV3AF826SCmOmzUMCAQjyvI7o4Jqo9uCYoK0VtJE4oks+9VfBUSib
- V+QyOw+wz+imohxc0L6QNWAjkcr7gl+j4RFDHpYBZNb6QpKAgAKhY/xrL
- xqReYps0pRAWCThHauoVUW7y1+qewqfEelLYID+7nZ/mVIFg3UFQL1inw
- d5n4KISaBdtsgvMI3KfCTiGmE7WwfieRITdY0he1nS7CQ9w63N47F/Wuj
- +k5rFEjYvS6WAqIQ7txdBVV7HZm+AHtTFsG0FoS/ARIWGdN32qs4uX2cF
- djrleM9nAxqsgx3clQZ0nZ2FaEJ0Ed0AbQj/vNGaXTKU0keJyAMl5pxIZ Q==;
-X-CSE-ConnectionGUID: GMRg3Ke1REGiId3ekX5xiQ==
-X-CSE-MsgGUID: ANnz9E5aTEykyZJSnEphng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1857327"
+ bh=L5n9GOmaOU6uzZNlxWgmT7cpLkbVg0rXJ1fBh8HCkb4=;
+ b=bk+JE5HFLsbIpYGNem4YhZB1vE6HIfa6jPce9W9AenJ2GBaKnMqp820i
+ 9gfKZqtcTdlD/f+ZhYQyKJVbS411NPeWeakYyKjL/ceR6Hc2vSKIdsXY1
+ n0uu+iO9vkIUvBHY3cC/topP692QD77TllAIdV8hOE7T2dJllalFlxm8q
+ xmQcT6W6adFyhVlXVkyK50BOjHFt7TXE1xW3EZoZw6vaKZQfFGQWcjBtV
+ h6QpyaNBJmZFdf6vXScDeCPXsA12DTjGfkdN0+aSdOYkUj8CKf3yMYdds
+ s6VWRI8L7LfQmhq9gIAnXmcNeoHYWs3db2xtpNUIM0MsqXosIr9olLbYn g==;
+X-CSE-ConnectionGUID: SL25Z/nnTZStdUQmOIzkng==
+X-CSE-MsgGUID: /wkMFtawSkmdaz00TUkDQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1857319"
 X-IronPort-AV: E=Sophos;i="6.27,180,1787036400"; 
-   d="scan'208";a="1857327"
+   d="scan'208";a="1857319"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 22:13:06 -0700
-X-CSE-ConnectionGUID: qpKb6wz1Ti+WW/HgqpjUeg==
-X-CSE-MsgGUID: lgk0wDT2R2C3d3u0l5wwKg==
+ 26 Oct 2026 22:13:02 -0700
+X-CSE-ConnectionGUID: A9baCgqrQ8m+SflcQVv1cw==
+X-CSE-MsgGUID: IF5up8SdTcKUsXoLAvhbuQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,180,1787036400"; 
-   d="scan'208";a="4536705"
+   d="scan'208";a="4536678"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa006.jf.intel.com with ESMTP; 26 Oct 2026 22:13:05 -0700
+ by orviesa006.jf.intel.com with ESMTP; 26 Oct 2026 22:13:00 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: tejas.upadhyay@intel.com, Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v6 4/7] drm/xe: dump GAM page fault report registers in
+Subject: [PATCH v6 1/7] drm/xe/devcoredump: Capture GT fuse registers in
  devcoredump
-Date: Tue, 27 Oct 2026 10:40:21 +0530
-Message-ID: <20261027051024.465587-5-naresh.kumar.g@intel.com>
+Date: Tue, 27 Oct 2026 10:40:18 +0530
+Message-ID: <20261027051024.465587-2-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261027051024.465587-1-naresh.kumar.g@intel.com>
 References: <20261027051024.465587-1-naresh.kumar.g@intel.com>
@@ -69,213 +69,419 @@ X-Spam-Status: No, score=-19.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add PAGE_FLTRPTQ_HEAD_GAMCTRL and PAGE_FLTRPTQ_TAIL_GAMCTRL to the Xe
-register definitions and capture them as part of the devcoredump
-snapshot.
+Capture fuse-related GT register state in the Xe devcoredump to preserve
+additional hardware configuration information for postmortem debugging.
 
-Include the register dump in the devcoredump output and release the
-snapshot during cleanup so page fault report state is available for
-post-mortem debugging.
+Add generic register snapshot storage and helpers for capturing,
+printing, and freeing MMIO register dumps. Use them to record both
+primary GT and media GT fuse register state during devcoredump snapshot
+collection and print the captured values in the coredump output.
 
-v2:
-- As design change made for previous patches. refactored this patch
-  as well to accommodate those changes.
-- Add PF occurred print when the two register values are not equal
+Also add the required GT register definitions for RPM and mirror
+copy-enable state used by the new dump paths.
+
+v2:(Sashiko)
+- Fix GT/media fuse snapshot capture to use the correct GT context.
+- Add non-fault GT force wake for cross-GT register capture.
+- Skip reading registers when SR-IOV VF.
+- Skip media GT capture when media GT is absent.
+- Add RPM snapshot print/free handling explicitly.
+- Add POWERGATE_ENABLE register to get render awake status
+
+v3:(Sashiko)
+- Check RENDER_POWERGATE_ENABLE of POWERGATE_ENABLE register
+- Replace "render is not awake" message with "render powergating
+  appears not enabled"
 
 v4:
-Refactored as per the patch1 change(Tejas)
+- Reduce multiple apis and optimize the suggest way of struct arrays(Tejas)
+- Add document for struct xe_gt_regset gt member(Hook failure)
+- Change struct reg_desc to header file
+- Remove Graphics version check for these registers set
 
 v5:
-Refactored as per patch1 changes
+- Fix possible Null dereference using valid gt instead of q->gt(sashiko)
+- refactor struct member commenting(Tejas)
+- Avoid using xe3p naming as the regs are for all platforms
 
 v6:(Tejas)
-- Changed GAM Pagefault regs from reg to mcr reg infra
+- Refactor regnames aligned to spec names
+- Rectify misplaced comment
 
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  3 ++
- drivers/gpu/drm/xe/xe_devcoredump.c       | 48 ++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_devcoredump_types.h | 12 +++++-
- 3 files changed, 59 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |   2 +
+ drivers/gpu/drm/xe/xe_devcoredump.c       | 228 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |  52 +++++
+ 3 files changed, 281 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 220f0968f9db8..ad8aa6e10e361 100644
+index f5cd3a94e47f0..220f0968f9db8 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -530,6 +530,9 @@
- #define   LMEM_EN				REG_BIT(31)
- #define   LMTT_DIR_PTR				REG_GENMASK(30, 0) /* in multiples of 64KB */
+@@ -22,6 +22,8 @@
+ #define   MTL_CC_MASK					REG_GENMASK(12, 9)
+ #define   MTL_CRST					0xf
  
-+#define PAGE_FLTRPTQ_HEAD			XE_REG_MCR(0xcf90)
-+#define PAGE_FLTRPTQ_TAIL			XE_REG_MCR(0xcf94)
++#define MIRROR_PM_DEBUG					XE_REG(0xc98)
 +
- #define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
- #define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
- 
+ /* RPM unit config (Gen8+) */
+ #define RPM_CONFIG0					XE_REG(0xd00)
+ #define   RPM_CONFIG0_CRYSTAL_CLOCK_FREQ_MASK		REG_GENMASK(5, 3)
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump.c b/drivers/gpu/drm/xe/xe_devcoredump.c
-index cd2c641111d68..90e16c89dd963 100644
+index 133cbe196d66a..b3fb8a521c9ba 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump.c
 +++ b/drivers/gpu/drm/xe/xe_devcoredump.c
-@@ -15,6 +15,7 @@
- #include "xe_device.h"
- #include "xe_exec_queue.h"
- #include "xe_force_wake.h"
-+#include "xe_gt_mcr.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_types.h"
- #include "xe_guc_capture.h"
-@@ -73,6 +74,7 @@
+@@ -25,6 +25,8 @@
+ #include "xe_pm.h"
+ #include "xe_sched_job.h"
+ #include "xe_vm.h"
++#include "xe_mmio.h"
++#include "regs/xe_gt_regs.h"
+ 
+ /**
+  * DOC: Xe device coredump
+@@ -69,6 +71,179 @@
+ /* 1 hour timeout */
  #define XE_COREDUMP_TIMEOUT_JIFFIES (60 * 60 * HZ)
  
- #define XE_REG_DESC(_reg, _name)	{ .reg = (_reg), .name = (_name) }
-+#define XE_REG_DESC_MCR(_reg, _name)   { .mcr_reg = (_reg), .name = (_name) }
- 
- static const struct xe_reg_desc xe_dbg_gt_guc_reglist[] = {
- 	XE_REG_DESC(GUC_STATUS,	"GUC_STATUS"),
-@@ -114,6 +116,11 @@ static const struct xe_reg_desc xe_dbg_media_gt_rpm_reglist[] = {
- 	XE_REG_DESC(MIRROR_PM_DEBUG, "MIRROR_PM_DEBUG"),
- };
- 
-+static const struct xe_reg_desc xe_dbg_gam_pf_reglist[] = {
-+	XE_REG_DESC_MCR(PAGE_FLTRPTQ_HEAD, "PAGE_FLTRPTQ_HEAD"),
-+	XE_REG_DESC_MCR(PAGE_FLTRPTQ_TAIL, "PAGE_FLTRPTQ_TAIL"),
++#define XE_REG_DESC(_reg, _name)	{ .reg = (_reg), .name = (_name) }
++
++static const struct xe_reg_desc xe_dbg_gt_fuse_reglist[] = {
++	XE_REG_DESC(XELP_GT_GEOMETRY_DSS_ENABLE, "GT_GEOMETRY_DSS_ENABLE"),
++	XE_REG_DESC(XEHP_GT_COMPUTE_DSS_ENABLE, "GT_COMPUTE_DSS_ENABLE"),
++	XE_REG_DESC(XELP_EU_ENABLE, "EU_ENABLE"),
++	XE_REG_DESC(MIRROR_FUSE1, "MIRROR_FUSE1"),
++	XE_REG_DESC(GT_VEBOX_VDBOX_DISABLE, "GT_VEBOX_VDBOX_DISABLE"),
++	XE_REG_DESC(SERVICE_COPY_ENABLE, "SERVICE_COPY_ENABLE"),
++	XE_REG_DESC(RESOURCE_COPY_ENABLE, "COPY_ENABLE_GTFS_GCD"),
++	XE_REG_DESC(XE2_GT_GEOMETRY_DSS_1, "GT_GEOMETRY_DSS_1"),
++	XE_REG_DESC(XE2_GT_GEOMETRY_DSS_2, "GT_GEOMETRY_DSS_2"),
++	XE_REG_DESC(XE2_GT_COMPUTE_DSS_2, "GT_COMPUTE_DSS_2"),
++	XE_REG_DESC(XEHPC_GT_COMPUTE_DSS_ENABLE_EXT, "GT_COMPUTE_DSS_ENABLE_EXT"),
++	XE_REG_DESC(XE3P_XPC_GT_GEOMETRY_DSS_3, "GT_GEOMETRY_DSS_3"),
++	XE_REG_DESC(XE3P_XPC_GT_COMPUTE_DSS_3, "GT_COMPUTE_DSS_3"),
 +};
 +
- /**
-  * struct xe_gt_regset - Struct for register descriptor list for GT
-  *
-@@ -133,12 +140,14 @@ struct xe_gt_regset {
-  * @XE_DBG_REGSET_FUSE: Fuse register set
-  * @XE_DBG_REGSET_RPM: RPM register set
-  * @XE_DBG_REGSET_GUC: GUC register set
-+ * @XE_DBG_REGSET_GAM_PF: GAM Pagefault registers set
-  * @XE_DBG_REGSET_MAX: Number of debug register set types
-  */
- enum xe_dbg_regset_type {
- 	XE_DBG_REGSET_FUSE,
- 	XE_DBG_REGSET_RPM,
- 	XE_DBG_REGSET_GUC,
-+	XE_DBG_REGSET_GAM_PF,
- 	XE_DBG_REGSET_MAX,
- };
- 
-@@ -161,6 +170,10 @@ static const struct xe_gt_regset xe_dbg_regsets[XE_DBG_REGSET_MAX] = {
- 		.gt[XE_GT_TYPE_MEDIA] = { xe_dbg_gt_guc_reglist,
- 					  ARRAY_SIZE(xe_dbg_gt_guc_reglist) },
- 	},
-+	[XE_DBG_REGSET_GAM_PF] = {
-+		.gt[XE_GT_TYPE_MAIN] = { xe_dbg_gam_pf_reglist,
-+					ARRAY_SIZE(xe_dbg_gam_pf_reglist) },
++static const struct xe_reg_desc xe_dbg_media_gt_fuse_reglist[] = {
++	XE_REG_DESC(SERVICE_COPY_ENABLE, "SERVICE_COPY_ENABLE"),
++	XE_REG_DESC(RESOURCE_COPY_ENABLE, "COPY_ENABLE_GTFS_GCD"),
++};
++
++static const struct xe_reg_desc xe_dbg_gt_rpm_reglist[] = {
++	XE_REG_DESC(MIRROR_PM_DEBUG, "MIRROR_PM_DEBUG"),
++	XE_REG_DESC(POWERGATE_ENABLE, "POWERGATE_ENABLE"),
++};
++
++static const struct xe_reg_desc xe_dbg_media_gt_rpm_reglist[] = {
++	XE_REG_DESC(MIRROR_PM_DEBUG, "MIRROR_PM_DEBUG"),
++};
++
++/**
++ * struct xe_gt_regset - Struct for register descriptor list for GT
++ *
++ * This struct is used to reference the corresponding reglist of
++ * Main GT and media GT
++ */
++struct xe_gt_regset {
++	/**
++	 * @gt: GT array indexed by enum xe_gt_type starting at 1
++	 *	(UNINITIALIZED=0, MAIN=1, MEDIA=2)
++	 */
++	struct xe_reg_desc_list gt[XE_MAX_GT_PER_TILE + 1];
++};
++
++/**
++ * enum xe_dbg_regset_type - debug register set types
++ * @XE_DBG_REGSET_FUSE: Fuse register set
++ * @XE_DBG_REGSET_RPM: RPM register set
++ * @XE_DBG_REGSET_MAX: Number of debug register set types
++ */
++enum xe_dbg_regset_type {
++	XE_DBG_REGSET_FUSE,
++	XE_DBG_REGSET_RPM,
++	XE_DBG_REGSET_MAX,
++};
++
++static const struct xe_gt_regset xe_dbg_regsets[XE_DBG_REGSET_MAX] = {
++	[XE_DBG_REGSET_FUSE] = {
++		.gt[XE_GT_TYPE_MAIN]  = { xe_dbg_gt_fuse_reglist,
++					  ARRAY_SIZE(xe_dbg_gt_fuse_reglist) },
++		.gt[XE_GT_TYPE_MEDIA] = { xe_dbg_media_gt_fuse_reglist,
++					  ARRAY_SIZE(xe_dbg_media_gt_fuse_reglist) },
 +	},
- };
- 
- static void xe_dbg_reg_snapshot_print(struct drm_printer *p,
-@@ -202,6 +215,23 @@ static const u32 *xe_dbg_find_value(const struct xe_dbg_reg_snapshot *snap,
- 	return NULL;
- }
- 
-+static void xe_gam_pf_snapshot_print(struct drm_printer *p,
++	[XE_DBG_REGSET_RPM] = {
++		.gt[XE_GT_TYPE_MAIN]  = { xe_dbg_gt_rpm_reglist,
++					  ARRAY_SIZE(xe_dbg_gt_rpm_reglist) },
++		.gt[XE_GT_TYPE_MEDIA] = { xe_dbg_media_gt_rpm_reglist,
++					  ARRAY_SIZE(xe_dbg_media_gt_rpm_reglist) },
++	},
++};
++
++static void xe_dbg_reg_snapshot_print(struct drm_printer *p,
++				      const char *title,
++				      const struct xe_dbg_reg_snapshot *snap)
++{
++	u32 i;
++
++	if (!snap)
++		return;
++
++	if (title)
++		drm_printf(p, "\n**** %s ****\n", title);
++
++	for (i = 0; i < snap->num_regs; i++)
++		drm_printf(p, " %s [0x%x] = 0x%08x\n",
++			   snap->desc->regs[i].name,
++			   snap->desc->regs[i].reg.addr,
++			   snap->values[i]);
++}
++
++static void xe_dbg_reg_snapshot_free(struct xe_dbg_reg_snapshot *snap)
++{
++	kfree(snap);
++}
++
++static const u32 *xe_dbg_find_value(const struct xe_dbg_reg_snapshot *snap,
++				    struct xe_reg reg)
++{
++	int i;
++
++	if (!snap)
++		return NULL;
++
++	for (i = 0; i < snap->num_regs; i++)
++		if (snap->desc->regs[i].reg.addr == reg.addr)
++			return &snap->values[i];
++
++	return NULL;
++}
++
++static void xe_gt_rpm_snapshot_print(struct drm_printer *p,
 +				     const char *title,
 +				     const struct xe_dbg_reg_snapshot *snap)
 +{
-+	const u32 *val1, *val2;
++	const u32 *val;
 +
 +	xe_dbg_reg_snapshot_print(p, title, snap);
 +
 +	if (!snap)
 +		return;
 +
-+	val1 = xe_dbg_find_value(snap, PAGE_FLTRPTQ_HEAD.__reg);
-+	val2 = xe_dbg_find_value(snap, PAGE_FLTRPTQ_TAIL.__reg);
-+	if ((val1 && val2) && (*val1 != *val2))
-+		drm_printf(p, "PF occurred, refer to dmesg log for PF info\n");
++	val = xe_dbg_find_value(snap, POWERGATE_ENABLE);
++	if (val && !(*val & RENDER_POWERGATE_ENABLE))
++		drm_puts(p, "render powergating appears not enabled\n");
 +}
 +
- static void xe_gt_rpm_snapshot_print(struct drm_printer *p,
- 				     const char *title,
- 				     const struct xe_dbg_reg_snapshot *snap)
-@@ -234,8 +264,13 @@ xe_dbg_reg_snapshot_capture_target(struct xe_gt *gt,
- 
- 	snap->desc	= reglist;
- 	snap->num_regs = reglist->num_regs;
--	for (i = 0; i < reglist->num_regs; i++)
--		snap->values[i] = xe_mmio_read32(&gt->mmio, reglist->regs[i].reg);
-+	for (i = 0; i < reglist->num_regs; i++) {
-+		if (reglist->regs[i].reg.mcr)
-+			snap->values[i] = xe_gt_mcr_unicast_read_any(gt,
-+								     reglist->regs[i].mcr_reg);
-+		else
-+			snap->values[i] = xe_mmio_read32(&gt->mmio, reglist->regs[i].reg);
-+	}
- 
- 	return snap;
- }
-@@ -315,6 +350,8 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
- 	drm_puts(&p, "\n**** GuC CT ****\n");
- 	xe_guc_ct_snapshot_print(ss->guc.ct, &p, ss->gt);
- 
-+	xe_gam_pf_snapshot_print(&p, "GAM PF Report", ss->gam_pf_report);
++static struct xe_dbg_reg_snapshot *
++xe_dbg_reg_snapshot_capture_target(struct xe_gt *gt,
++				   const struct xe_reg_desc_list *reglist)
++{
++	struct xe_dbg_reg_snapshot *snap;
++	int i;
 +
- 	drm_puts(&p, "\n**** Contexts ****\n");
- 	xe_guc_exec_queue_snapshot_print(ss->ge, &p);
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return NULL;
++
++	snap = kmalloc(struct_size(snap, values, reglist->num_regs), GFP_ATOMIC);
++	if (!snap)
++		return NULL;
++
++	snap->desc	= reglist;
++	snap->num_regs = reglist->num_regs;
++	for (i = 0; i < reglist->num_regs; i++)
++		snap->values[i] = xe_mmio_read32(&gt->mmio, reglist->regs[i].reg);
++
++	return snap;
++}
++
++static struct xe_dbg_reg_snapshot *
++xe_dbg_gt_snapshot_capture(struct xe_gt *fault_gt, struct xe_gt *other_gt,
++			   enum xe_dbg_regset_type type,
++			   enum xe_gt_type gt_type)
++{
++	struct xe_gt *target_gt;
++
++	if (!fault_gt || !fault_gt->tile)
++		return NULL;
++
++	target_gt = gt_type == XE_GT_TYPE_MEDIA ? fault_gt->tile->media_gt
++						 : fault_gt->tile->primary_gt;
++	if (!target_gt)
++		return NULL;
++
++	/* non-fault GT needs the caller's confirmed forcewake */
++	if (target_gt != fault_gt && target_gt != other_gt)
++		return NULL;
++
++	return xe_dbg_reg_snapshot_capture_target(target_gt,
++						  &xe_dbg_regsets[type].gt[gt_type]);
++}
++
+ static struct xe_device *coredump_to_xe(const struct xe_devcoredump *coredump)
+ {
+ 	return container_of(coredump, struct xe_device, devcoredump);
+@@ -109,6 +284,11 @@ static ssize_t __xe_devcoredump_read(char *buffer, ssize_t count,
+ 	drm_printf(&p, "\n**** GT #%d ****\n", ss->gt->info.id);
+ 	drm_printf(&p, "\tTile: %d\n", ss->gt->tile->id);
  
-@@ -369,6 +406,9 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
++	xe_dbg_reg_snapshot_print(&p, "GT Fuse Register Dump", ss->gt_fuse);
++	xe_dbg_reg_snapshot_print(&p, "Media GT Fuse Register Dump", ss->media_fuse);
++	xe_gt_rpm_snapshot_print(&p, "GT RPM Register Dump", ss->gt_rpm);
++	xe_dbg_reg_snapshot_print(&p, "Media GT RPM Register Dump", ss->media_gt_rpm);
++
+ 	drm_puts(&p, "\n**** GuC Log ****\n");
+ 	xe_guc_log_snapshot_print(ss->guc.log, &p, ss->gt);
+ 	drm_puts(&p, "\n**** GuC CT ****\n");
+@@ -146,6 +326,18 @@ static void xe_devcoredump_snapshot_free(struct xe_devcoredump_snapshot *ss)
+ 	xe_guc_ct_snapshot_free(ss->guc.ct);
+ 	ss->guc.ct = NULL;
+ 
++	xe_dbg_reg_snapshot_free(ss->gt_fuse);
++	ss->gt_fuse = NULL;
++
++	xe_dbg_reg_snapshot_free(ss->media_fuse);
++	ss->media_fuse = NULL;
++
++	xe_dbg_reg_snapshot_free(ss->gt_rpm);
++	ss->gt_rpm = NULL;
++
++	xe_dbg_reg_snapshot_free(ss->media_gt_rpm);
++	ss->media_gt_rpm = NULL;
++
+ 	if (!IS_ERR_OR_NULL(ss->gt))
  		xe_guc_capture_put_matched_nodes(&ss->gt->uc.guc);
  	ss->matched_node = NULL;
- 
-+	xe_dbg_reg_snapshot_free(ss->gam_pf_report);
-+	ss->gam_pf_report = NULL;
-+
- 	xe_guc_exec_queue_snapshot_free(ss->ge);
- 	ss->ge = NULL;
- 
-@@ -565,6 +605,10 @@ static void xe_devcoredump_capture_gt_regs(struct xe_devcoredump_snapshot *ss,
- 							  other_gt,
- 							  XE_DBG_REGSET_GUC,
- 							  XE_GT_TYPE_MEDIA);
-+	ss->gam_pf_report = xe_dbg_gt_snapshot_capture(gt,
-+						       other_gt,
-+						       XE_DBG_REGSET_GAM_PF,
-+						       XE_GT_TYPE_MAIN);
+@@ -319,6 +511,27 @@ static void xe_devcoredump_deferred_snap_work(struct work_struct *work)
+ 	}
  }
  
++static void xe_devcoredump_capture_gt_regs(struct xe_devcoredump_snapshot *ss,
++					   struct xe_gt *gt, struct xe_gt *other_gt)
++{
++	ss->gt_fuse      = xe_dbg_gt_snapshot_capture(gt,
++						      other_gt,
++						      XE_DBG_REGSET_FUSE,
++						      XE_GT_TYPE_MAIN);
++	ss->media_fuse   = xe_dbg_gt_snapshot_capture(gt,
++						      other_gt,
++						      XE_DBG_REGSET_FUSE,
++						      XE_GT_TYPE_MEDIA);
++	ss->gt_rpm       = xe_dbg_gt_snapshot_capture(gt,
++						      other_gt,
++						      XE_DBG_REGSET_RPM,
++						      XE_GT_TYPE_MAIN);
++	ss->media_gt_rpm = xe_dbg_gt_snapshot_capture(gt,
++						      other_gt,
++						      XE_DBG_REGSET_RPM,
++						      XE_GT_TYPE_MEDIA);
++}
++
  static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 				 struct xe_gt *gt,
+ 				 struct xe_exec_queue *q,
+@@ -328,6 +541,7 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	struct xe_guc *guc = &gt->uc.guc;
+ 	const char *process_name = "no process";
+ 	bool cookie;
++	struct xe_gt *other_gt;
+ 
+ 	ss->snapshot_time = ktime_get_real();
+ 	ss->boot_time = ktime_get_boottime();
+@@ -342,11 +556,23 @@ static void devcoredump_snapshot(struct xe_devcoredump *coredump,
+ 	ss->gt = gt;
+ 	INIT_WORK(&ss->work, xe_devcoredump_deferred_snap_work);
+ 
+-	/* keep going if fw fails as we still want to save the memory and SW data */
+ 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 
+ 	cookie = dma_fence_begin_signalling();
+ 
++	other_gt = gt->tile->media_gt == gt ? gt->tile->primary_gt
++					    : gt->tile->media_gt;
++	if (other_gt) {
++		/* fw_ref_other must stay in scope through the register captures below */
++		CLASS(xe_force_wake, fw_ref_other)(gt_to_fw(other_gt),
++						   XE_FORCEWAKE_ALL);
++		if (!xe_force_wake_ref_has_domain(fw_ref_other.domains, XE_FORCEWAKE_ALL))
++			other_gt = NULL;
++		xe_devcoredump_capture_gt_regs(ss, gt, other_gt);
++	} else {
++		xe_devcoredump_capture_gt_regs(ss, gt, NULL);
++	}
++
+ 	ss->guc.log = xe_guc_log_snapshot_capture(&guc->log, true);
+ 	ss->guc.ct = xe_guc_ct_snapshot_capture(&guc->ct);
+ 
 diff --git a/drivers/gpu/drm/xe/xe_devcoredump_types.h b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-index 52db64640f89e..fba3d23040b9e 100644
+index a174385a6d83f..e2fac33dce091 100644
 --- a/drivers/gpu/drm/xe/xe_devcoredump_types.h
 +++ b/drivers/gpu/drm/xe/xe_devcoredump_types.h
-@@ -9,6 +9,7 @@
- #include <linux/ktime.h>
- #include <linux/mutex.h>
- 
-+#include "regs/xe_reg_defs.h"
- #include "xe_hw_engine_types.h"
- 
+@@ -14,6 +14,48 @@
  struct xe_device;
-@@ -21,8 +22,12 @@ struct xe_gt;
-  * of the register to dump its value during coredump for debug purpose.
-  */
- struct xe_reg_desc {
--	/** @reg: The register */
--	struct xe_reg reg;
-+	union {
-+		/** @reg: The register */
-+		struct xe_reg reg;
-+		/** @mcr_reg: The mcr register */
-+		struct xe_reg_mcr mcr_reg;
-+	};
- 	/** @name: Name of the register */
- 	const char *name;
- };
-@@ -103,6 +108,9 @@ struct xe_devcoredump_snapshot {
- 		struct xe_guc_log_snapshot *log;
- 	} guc;
+ struct xe_gt;
  
-+	/** @gam_pf_report: GAM PF report snapshot */
-+	struct xe_dbg_reg_snapshot *gam_pf_report;
++/**
++ * struct xe_reg_desc - Register descriptor struct to make reg list
++ *
++ * This struct is used as descriptor containing reg address and name
++ * of the register to dump its value during coredump for debug purpose.
++ */
++struct xe_reg_desc {
++	/** @reg: The register */
++	struct xe_reg reg;
++	/** @name: Name of the register */
++	const char *name;
++};
 +
- 	/** @ge: GuC Submission Engine snapshot */
- 	struct xe_guc_submit_exec_queue_snapshot *ge;
++/**
++ * struct xe_reg_desc_list - Struct for register descriptor list
++ *
++ * This struct is used to reference the corresponding reglist of
++ * various component
++ */
++struct xe_reg_desc_list {
++	/** @regs: Pointer to an array of register descriptors. */
++	const struct xe_reg_desc *regs;
++	/** @num_regs: number of registers in the descriptor list*/
++	u32 num_regs;
++};
++
++/**
++ * struct xe_dbg_reg_snapshot - Register snapshot
++ *
++ * This struct contains the register values captured at the time of the crash.
++ * It is used to store the register values in a human-readable format for
++ * debugging purposes.
++ */
++struct xe_dbg_reg_snapshot {
++	/** @desc: register descriptor list. */
++	const struct xe_reg_desc_list *desc;
++	/** @num_regs: Number of registers needed for capture. */
++	u32 num_regs;
++	/** @values: register values*/
++	u32 values[];
++};
++
+ /**
+  * struct xe_devcoredump_snapshot - Crash snapshot
+  *
+@@ -35,6 +77,16 @@ struct xe_devcoredump_snapshot {
+ 
+ 	/** @gt: Affected GT, used by forcewake for delayed capture */
+ 	struct xe_gt *gt;
++
++	/** @gt_fuse: Fuse snapshot */
++	struct xe_dbg_reg_snapshot *gt_fuse;
++	/** @media_fuse: Media Fuse snapshot */
++	struct xe_dbg_reg_snapshot *media_fuse;
++	/** @gt_rpm: GT RPM snapshot */
++	struct xe_dbg_reg_snapshot *gt_rpm;
++	/** @media_gt_rpm: Media GT RPM snapshot */
++	struct xe_dbg_reg_snapshot *media_gt_rpm;
++
+ 	/** @work: Workqueue for deferred capture outside of signaling context */
+ 	struct work_struct work;
  
 -- 
 2.43.0
