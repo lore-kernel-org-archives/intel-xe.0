@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C230606A321
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 20:44:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BDE4606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 20:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jV5//+ET
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=USerJRNk
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBA5510E4DC;
-	Tue, 27 Oct 2026 20:44:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3033E10E4DC;
+	Tue, 27 Oct 2026 20:50:53 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 593C610F81C;
- Tue, 27 Oct 2026 20:44:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEB6B10F827;
+ Tue, 27 Oct 2026 20:50:46 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 7AFB060211;
- Tue, 27 Oct 2026 20:44:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F33A11F01828;
- Tue, 27 Oct 2026 20:44:13 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id BCD1C60211;
+ Tue, 27 Oct 2026 20:50:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4083B1F01825;
+ Tue, 27 Oct 2026 20:50:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793133854;
- bh=AX1cjS8Utg5r1vJjFBgBSl7iDwhdoaePqXHrPp7DtWw=;
+ s=k20260515; t=1793134245;
+ bh=TuaeLEOpigXbx6pmjWGhDvzeqZvPeg2WYFOPoPESNYk=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=jV5//+ETP/l+CDJzR+AXuzhT53HgFgBdy1wJwyY9o+KZ/zE/Bbb8G7BsHhxp5lNVS
- t7GHc/ByZFhNX2KG3+su37sXVCEx2VXh6F4vRA9Zo3oJ5G7TsM3j83jnTa+NR2Hlik
- S9nC81pgUMdJHJ8GdBIEjfXlzOE2kNWh/Ceuiraa/nBrLH4IU6luTfT2h07TUf/hlm
- ezZ6MtBMgXXryqcrMnhY8JvqdG3EliCinthklaeFulz+/2NuOBVZ7RcAVwQaNP1OOw
- E/C/o2FemgLpYVxm2t75rx4x0NoKK6JdmS+rxY3+4MyjiqdzWottYszWQb7dTMSl4x
- /vT+6gXvpScWQ==
-Message-ID: <sashiko-outbox-187097@kernel.org>
+ b=USerJRNkopE4a5HArO8y1BBiVg8XPnfkRlXJD+AwIYcLs0gtFEsIampmuWTXKo7vO
+ wCu7SwTgF6zuHS71vzuOjJ2L6jNjQ6U7/fgUWFmvWDJH1I8YsJaG/8ERFAvaFaOSzw
+ LenXN+XrIIL0M9ja2zYaRRjFmFAwKS6J0OvAgPdnzQW3nXhn52NjE0fwwMxQrt5y7x
+ apEazV62/3hxnLgWw2gINQCA8gqsHiETxVGyZWdsrcVWFjWT9o/fdm+/Wk7r2pbtWg
+ c21fHhlsJGpBF/ZON5psy4q2+xCDcBk1+UcBSUHT84zqRCNdBhQ1Kv55N7Kiyyf3+m
+ SUabpYzSnMcRg==
+Message-ID: <sashiko-outbox-187101@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 1/3] drm/xe: Bump the LRU on a successful page fault
+Subject: Re: [PATCH v5 3/3] drm/xe: Add a minimum age gate to the shrinker
 To: "Matthew Brost" <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-In-Reply-To: <20261027203107.1065800-2-matthew.brost@intel.com>
+In-Reply-To: <20261027203107.1065800-4-matthew.brost@intel.com>
 References: <20261027203107.1065800-1-matthew.brost@intel.com>
- <20261027203107.1065800-2-matthew.brost@intel.com>
+ <20261027203107.1065800-4-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 27 Oct 2026 20:44:13 +0000
+Date: Tue, 27 Oct 2026 20:50:44 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,96 +57,144 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Critical] drm/xe: missing lru_lock in xe_pagefault_handle_vma() LRU bump
+- [High] drm/xe: missing lru_lock around xe_bo_bump_lru_locked() in pagefau=
+lt
+- [Medium] drm/xe: __xe_shrinker_walk() fails to skip priority on GPU-busy =
+young BOs
 --
 
-commit 5192e1a5e7b4819fce82dbbbf32300162b7b7460
+commit b66983cf80f56fab6416b52fa5320ec4dd988b90
 Author: Matthew Brost <matthew.brost@intel.com>
 
-drm/xe: Bump the LRU on a successful page fault
+drm/xe: Add a minimum age gate to the shrinker
 
-This commit moves a VMA's backing BO to the tail of the TTM LRU after
-successfully servicing a page fault so active fault-mode BOs are not
-prematurely evicted or shrunk.
+This commit adds a minimum age gate to the non-purgeable BO shrinker,
+configured via Kconfig and a per-device shrinker_min_age_ms sysfs attribute.
+BOs and VM bulk moves are timestamped when their LRU positions are updated =
+so
+the shrinker can skip backing up recently used BOs.
+
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 42a6aa1a2e4a0..a4c0c6284a24d 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1357,9 +1357,92 @@ static int xe_bo_move(struct ttm_buffer_object *tt=
+m_bo, bool evict,
+
+[ ... ]
+
+> +/**
+> + * xe_bo_bump_lru_locked() - Bump a BO on the LRU and stamp its last use
+> + * @bo: The buffer object, reserved by the caller.
+> + *
+> + * Move @bo to the tail of its LRU and record the time for the shrinker's
+> + * minimum age gate. Only meaningful for BOs outside a bulk move, since a
+> + * BO in one is anchored inside its range and is bumped, and aged, with =
+it.
+> + * The caller must hold the device LRU lock.
+> + */
+> +void xe_bo_bump_lru_locked(struct xe_bo *bo)
+> +{
+> +	WRITE_ONCE(bo->lru_stamp, jiffies);
+> +	ttm_bo_move_to_lru_tail(&bo->ttm);
+> +}
+
+[ ... ]
 
 > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pa=
 gefault.c
-> index 5247321c805ec..7d363160103ab 100644
+> index 7d363160103ab..8e25bc67772e4 100644
 > --- a/drivers/gpu/drm/xe/xe_pagefault.c
 > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
-> @@ -201,6 +201,8 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, =
+> @@ -225,7 +225,7 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, =
 struct xe_vma *vma,
->  		xe_validation_ctx_init(&ctx, &vm->xe->val, &exec,
->  				       (struct xe_val_flags) {});
->  		drm_exec_until_all_locked(&exec) {
-> +			struct xe_bo *bo =3D xe_vma_bo(vma);
-> +
->  			err =3D xe_pagefault_begin(&exec, vma, tile->mem.vram,
->  						 needs_vram =3D=3D 1);
->  			drm_exec_retry_on_contention(&exec);
-> @@ -221,6 +223,9 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, =
-struct xe_vma *vma,
->  				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_REBIND);
->  				break;
 >  			}
-> +
-> +			if (bo)
-> +				ttm_bo_move_to_lru_tail(&bo->ttm);
+> =20
+>  			if (bo)
+> -				ttm_bo_move_to_lru_tail(&bo->ttm);
+> +				xe_bo_bump_lru_locked(bo);
 
-[Severity: Critical]
-Should xe_pagefault_handle_vma() call ttm_bo_move_to_lru_tail_unlocked()
-here (or acquire bo->ttm.bdev->lru_lock around the call) instead of calling
-ttm_bo_move_to_lru_tail() directly?
+[Severity: High]
+Does xe_pagefault_handle_vma() need to hold vm->xe->ttm.lru_lock around
+xe_bo_bump_lru_locked(bo)?
 
-At this point in xe_pagefault_handle_vma(), only the VM and BO dma_resv
-locks (via drm_exec), vma->fault_lock, and vm->lock are held, not
-bo->ttm.bdev->lru_lock.
+While the pre-existing ttm_bo_move_to_lru_tail() call here also lacked
+lru_lock, xe_bo_bump_lru_locked() requires the caller to hold the device LRU
+lock because the call chain:
 
-When a page fault occurs on a BO-backed VMA with a valid bo->ttm.resource,
-the call chain xe_pagefault_handle_vma() -> ttm_bo_move_to_lru_tail() ->
-ttm_resource_move_to_lru_tail() expects bo->bdev->lru_lock to be held:
+  xe_pagefault_handle_vma()
+    xe_bo_bump_lru_locked()
+      ttm_bo_move_to_lru_tail()
+        ttm_resource_move_to_lru_tail()
 
-drivers/gpu/drm/ttm/ttm_bo.c:ttm_bo_move_to_lru_tail() {
-	dma_resv_assert_held(bo->base.resv);
+asserts lockdep_assert_held(&bo->bdev->lru_lock) and mutates the shared LRU
+lists via list_move_tail(). Without acquiring vm->xe->ttm.lru_lock, servici=
+ng
+a GPU page fault on a BO-backed VMA will trigger a lockdep warning and race
+with concurrent TTM LRU operations.
 
-	if (bo->resource)
-		ttm_resource_move_to_lru_tail(bo->resource);
-}
+> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shr=
+inker.c
+> index c86455ea08d18..c650726ff6ded 100644
+> --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
 
-drivers/gpu/drm/ttm/ttm_resource.c:ttm_resource_move_to_lru_tail() {
-	struct ttm_buffer_object *bo =3D res->bo;
-	struct ttm_device *bdev =3D bo->bdev;
+[ ... ]
 
-	lockdep_assert_held(&bo->bdev->lru_lock);
+> @@ -139,6 +143,16 @@ static int __xe_shrinker_walk(struct xe_shrinker *sh=
+rinker,
+>  			if (!ttm_bo_shrink_suitable(ttm_bo, ctx))
+>  				continue;
+> =20
+> +			/*
+> +			 * Each LRU priority is roughly age ordered, so the
+> +			 * rest of this priority is most likely young too.
+> +			 * Move on to the next priority.
+> +			 */
+> +			if (xe_bo_shrink_too_young(ttm_bo, min_age)) {
+> +				ttm_bo_lru_cursor_skip_priority(&curs);
+> +				continue;
+> +			}
 
-	if (ttm_resource_unevictable(res, bo)) {
-		list_move_tail(&res->lru.link, &bdev->unevictable);
+[Severity: Medium]
+Should the xe_bo_shrink_too_young() check in __xe_shrinker_walk() happen
+before ttm_bo_shrink_suitable(), or otherwise not depend on ctx->no_wait_gp=
+u?
 
-	} else if (bo->bulk_move) {
-		struct ttm_lru_bulk_move_pos *pos =3D
-			ttm_lru_bulk_move_pos(bo->bulk_move, res);
+In xe_shrinker_walk(), the first pass (and the only pass during direct
+reclaim when ttm_bo_shrink_avoid_wait() is true) forces ctx->no_wait_gpu to
+true:
 
-		ttm_lru_bulk_move_pos_tail(pos, res);
-	} else {
-		struct ttm_resource_manager *man;
+  swap(no_wait_gpu, ctx->no_wait_gpu);
+  save_flags.writeback =3D false;
+  ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags, min_age,
+                           to_scan, scanned, freed);
+  swap(no_wait_gpu, ctx->no_wait_gpu);
 
-		man =3D ttm_manager_type(bdev, res->mem_type);
-		list_move_tail(&res->lru.link, &man->lru[bo->priority]);
-	}
-}
+When ctx->no_wait_gpu is true, ttm_bo_shrink_suitable() returns false for a=
+ny
+BO with unsignaled GPU fences:
 
-Without holding bo->bdev->lru_lock, won't this trigger a lockdep assertion
-and race with concurrent LRU list users (such as other pagefault workers,
-xe_vm_bump_lru(), resource init/fini, eviction, and the shrinker),
-corrupting the shared LRU lists?
+  bool ttm_bo_shrink_suitable(struct ttm_buffer_object *bo,
+                              struct ttm_operation_ctx *ctx)
+  {
+          return bo->ttm && ttm_tt_is_populated(bo->ttm) && !bo->pin_count =
+&&
+                  (!ctx->no_wait_gpu ||
+                   dma_resv_test_signaled(bo->base.resv,
+                                          DMA_RESV_USAGE_BOOKKEEP));
+  }
 
-Also, a later commit in this series (b66983cf80f5) replaces this call with
-xe_bo_bump_lru_locked(bo), which still calls ttm_bo_move_to_lru_tail() and
-requires the caller to hold the device LRU lock without acquiring it in
-xe_pagefault_handle_vma().
+Because BOs that were recently moved into TT or bumped by an exec are likely
+to still have active GPU fences, they will fail ttm_bo_shrink_suitable() and
+hit continue before reaching xe_bo_shrink_too_young(). Won't that prevent
+ttm_bo_lru_cursor_skip_priority(&curs) from triggering and cause
+__xe_shrinker_walk() to walk every busy young BO in the priority list witho=
+ut
+advancing *scanned?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261027203107.1065=
-800-1-matthew.brost@intel.com?part=3D1
+800-1-matthew.brost@intel.com?part=3D3
