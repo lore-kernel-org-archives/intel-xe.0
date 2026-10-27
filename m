@@ -2,61 +2,67 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12411606A335
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 16:04:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAAEE606A323
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 16:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NDefxWy9
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bUyVnThJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA30210F701;
-	Tue, 27 Oct 2026 16:04:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29C6D10E443;
- Tue, 27 Oct 2026 16:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37F210F6D2;
+	Tue, 27 Oct 2026 16:06:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C197410E443;
+ Tue, 27 Oct 2026 16:06:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793117084; x=1824653084;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=E17rDRpemwE0pwkgxrdTqZW6dJck+1yrSNqBwMignYw=;
- b=NDefxWy9XIdVWE0H+iKHQMr30/Sj6F2krIWPiKPIj1sgHXoPRdvsl6Ou
- T5IYuoXQNO2fgW8VjKhnjC1WWlbQH+8+o6UJm4oUw7DtOV3ZtRUdpqmyi
- vnV7p4P9t/TOoEgFASajAfDHqWb2HU1NnkVbjwMyuMbk2v+AmZD5fa2qC
- kBFVtdKJsgcNq7NDzsjiMOrlQCg2q7yM1MYu4+M70xr5U7CuRDGzIxDuR
- f9RkAhaVgqf1DGwFOmHIVcooeFIGuO1aIEFZVSAbVxqFUljQEKXqtibi1
- Ou8VxmhxCUSms/GpCHe74WaC0tmXGw//z30oKDZ+QtW9/Lq1sqyWzTbSi Q==;
-X-CSE-ConnectionGUID: pBRIYXTARj+lXS6lYN7z8g==
-X-CSE-MsgGUID: mCySRIh8RLiTongJPvZ3FQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1830934"
+ t=1793117185; x=1824653185;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=QeDUBUizWLtA7XI9PJPNXcQQfLNEh885J+VXo/vT19k=;
+ b=bUyVnThJPY9lWI7jyeekvqi6adayy90oY1Txz0Dh2rp3m0YaK/7xlnog
+ MA37Y791dXHbpX79w0P/LYK9nEZ4ly5agTxkcg6cT9/Aqo4AcJIMA5xQT
+ FKi54AoIXQt+1PMWrOSm4bGVbZCACsrWUh2he4uKhCErZkIVQuZenqzim
+ ni2Nm14AuyYcgLCMCLom1eqOMuZYEeJsZ3Dhpmvd0fEGdNIB+ogH4Lnl4
+ 7cMx0bM/3HPY4x3WV9RgD7pmB15I5m4lH8Wo5If/131nkMQHzOrEYZniT
+ ZDD2vH7QI9hZ9vlOBAYoy5osILlcD4eoGm1Kn0gpUcdhU1BsvHwijx/N5 g==;
+X-CSE-ConnectionGUID: r9kX+ej9SC6J4RXLp6Ep6Q==
+X-CSE-MsgGUID: 7WYRYhbZQgCovry4FkcVfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1711564"
 X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="1830934"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 09:04:43 -0700
-X-CSE-ConnectionGUID: f4gYiu7WQwevUfAeIPJcZw==
-X-CSE-MsgGUID: tDldDrB5QB+4CJE7egdoAQ==
+   d="scan'208";a="1711564"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 09:06:25 -0700
+X-CSE-ConnectionGUID: rYA31FBRTzm90Ahsewu5Zg==
+X-CSE-MsgGUID: 3THNQOObR6SXr7jRhO6qDg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="4720089"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.247])
+   d="scan'208";a="4956101"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.33])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 09:04:41 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 01/13] drm/i915/vrr: Fix intel_vrr_dcb_vmin_vblank_start()
-In-Reply-To: <20261023165803.31016-2-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261023165803.31016-1-ville.syrjala@linux.intel.com>
- <20261023165803.31016-2-ville.syrjala@linux.intel.com>
-Date: Tue, 27 Oct 2026 18:04:39 +0200
-Message-ID: <956f60a3c6194f7ab12f8cb44d413c0bb58ec541@intel.com>
+ 27 Oct 2026 09:06:22 -0700
+Date: Tue, 27 Oct 2026 18:06:17 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Heikkila, Juha-pekka" <juha-pekka.heikkila@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "Syrjala, Ville" <ville.syrjala@intel.com>
+Subject: Re: [PATCH v3 2/3] drm/i915/fbc: Apply Wa_14028723391
+Message-ID: <auDL-bAq0KSacWGL@intel.com>
+References: <20261027150544.81548-1-vinod.govindapillai@intel.com>
+ <20261027150544.81548-2-vinod.govindapillai@intel.com>
+ <auC_tAQTwUlC67Wv@intel.com>
+ <7340968078ff6e9d8e4cc1c8850e5a243d964e66.camel@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7340968078ff6e9d8e4cc1c8850e5a243d964e66.camel@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,63 +76,107 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 23 Oct 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> intel_vrr_dcb_vmin_vblank_start() may evaluate
-> intel_vrr_dcb_vmin_vblank_start_next() twice, and given that
-> this is doing hardware access under the hood isn't really
-> desired.
+On Tue, Oct 27, 2026 at 03:53:25PM +0000, Govindapillai, Vinod wrote:
+> On Tue, 2026-10-27 at 17:13 +0200, Ville Syrjälä wrote:
+> > On Tue, Oct 27, 2026 at 05:05:43PM +0200, Vinod Govindapillai wrote:
+> > > Disable FBC in XE3P_LPD for FP16 formats with Alpha.
+> > > 
+> > > v2: Group the wa conditions as a separate function
+> > >     Wa condition to check pixel blend mode
+> > > 
+> > > v3: use fomrat_is_float()
+> > > 
+> > > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> > > ---
+> > >  .../gpu/drm/i915/display/intel_display_wa.c   |  2 ++
+> > >  .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+> > >  drivers/gpu/drm/i915/display/intel_fbc.c      | 22
+> > > +++++++++++++++++++
+> > >  3 files changed, 25 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > index cc0b28d524f6..3df25104fb12 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > @@ -159,6 +159,8 @@ bool __intel_display_wa(struct intel_display
+> > > *display, enum intel_display_wa wa,
+> > >  		return IS_DISPLAY_VERx100(display, 1100, 1400);
+> > >  	case INTEL_DISPLAY_WA_22021048059:
+> > >  		return IS_DISPLAY_VER(display, 14, 35);
+> > > +	case INTEL_DISPLAY_WA_14028723391:
+> > > +		return DISPLAY_VER(display) == 35;
+> > >  	default:
+> > >  		drm_WARN(display->drm, 1, "Missing Wa: %s\n",
+> > > name);
+> > >  		break;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > index 2086c7da710d..5514771f513b 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > @@ -56,6 +56,7 @@ enum intel_display_wa {
+> > >  	INTEL_DISPLAY_WA_22012358565,
+> > >  	INTEL_DISPLAY_WA_22014263786,
+> > >  	INTEL_DISPLAY_WA_22021048059,
+> > > +	INTEL_DISPLAY_WA_14028723391,
+> > >  };
+> > >  
+> > >  bool __intel_display_wa(struct intel_display *display, enum
+> > > intel_display_wa wa, const char *name);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > index b84fa350c433..f70f3e34d655 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > @@ -1215,6 +1215,23 @@ static bool
+> > > xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state
+> > > *p
+> > >  	}
+> > >  }
+> > >  
+> > > +static bool
+> > > +intel_fbc_wa_14028723391_applies(const struct intel_plane_state
+> > > *plane_state)
+> > > +{
+> > > +	struct intel_display *display =
+> > > to_intel_display(plane_state);
+> > > +	const struct drm_framebuffer *fb = plane_state->hw.fb;
+> > > +
+> > > +	/*
+> > > +	 * Wa_14028723391:
+> > > +	 * Fixes: Screen corruption with FBC enabled on a plane
+> > > with the FP16
+> > > +	 * Workaround: Disable FBC for FP16+Alpha in xe3p_lpd
+> > > +	 */
+> > > +	return intel_display_wa(display,
+> > > INTEL_DISPLAY_WA_14028723391) &&
+> > > +	       format_is_float(plane_state) &&
+> > > +	       fb->format->has_alpha &&
+> > > +	       plane_state->hw.pixel_blend_mode !=
+> > > DRM_MODE_BLEND_PIXEL_NONE;
+> > 
+> > Seems overly complicated. Could just drop the alpha formats from
+> > the list and be done with it.
+> 
+> This WA is "only" to NVL. This format supported from this platform
+> onwards. So isn't this the right approach to list as supported though
+> this WA counteract on that. 
 
-Feels like there's a word missing there. This? It?
+The next platform can get its own pixel_format_is_valid() function.
 
-> Even worse, the double evaluation might even cause
-> intel_vrr_dcb_vmin_vblank_start() itself to finally
-> return -EINVAL (if we race against the DMC hard enough),
-> which we definitely never want to do.
->
-> Eliminate the double evaluation, guaranteeing a sane
-> final return value at the same time.
+> 
+> Also gathered that, ARGB/ABGR with DRM_MODE_BLEND_PIXEL_NONE is treated
+> like XRGB/XBGR. So aren't those case need to be allowed? And there is
+> another existing case in the fbc_check_pane() where we do the same.
 
-I think a Fixes: would be in order.
+That is dead code. I also hope that userspace isn't dumb enough to
+use a format with alpha needlessly.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
-915/display/intel_vrr.c
-> index b14750692ae0..e59345bd1d33 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -1202,9 +1202,13 @@ int intel_vrr_safe_window_start(const struct intel=
-_crtc_state *crtc_state)
->  static int
->  intel_vrr_dcb_vmin_vblank_start(const struct intel_crtc_state *crtc_stat=
-e)
->  {
-> -	return (intel_vrr_dcb_vmin_vblank_start_next(crtc_state) < 0) ?
-> -		intel_vrr_dcb_vmin_vblank_start_final(crtc_state) :
-> -		intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
-> +	int vblank_start;
-> +
-> +	vblank_start =3D intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
-> +	if (vblank_start < 0)
-> +		vblank_start =3D intel_vrr_dcb_vmin_vblank_start_final(crtc_state);
-> +
-> +	return vblank_start;
->  }
->=20=20
->  int intel_vrr_vmin_safe_window_end(const struct intel_crtc_state *crtc_s=
-tate)
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
