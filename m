@@ -2,153 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF347606A31A
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 19:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NiUUu2Vn
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9816606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 19:23:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2EE910E471;
-	Tue, 27 Oct 2026 19:22:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E151710E470
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 19:22:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793128950; x=1824664950;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=+j8Nh+pqm/MOH4/806dcaZ8MKyXDpPbRprkuSVbQ5aI=;
- b=NiUUu2VnrcBLDFFFzxDZHhLc2hWOtL74Kaehy6vIHz6NEVGqHSHyodvC
- xUwAh/eHKhCMFUPUuAj8g/TMNCDle0txzlIHnmUd9W+yLQd5f9+Jaqf6h
- E2ITvMPtL6Q0jBAYtKDjfL75KcU6X4JpcY3060A1F05pWQBxWvJ598uMu
- WpdzFGfzGWN18cOEmBlnfqeF4mfaqaYbM1nrJrgy8WWF5Mgu0tccyBDBq
- gCPh1kLbKHfp/m4+dvVtvXRRUIAxIP2MyBTCbSQc0uTe4bnnLs3hYKVFE
- 9G+SfSUdbn12A/q0ZUYUInuyR5RpNFlw176jpO51qXnrBG6BICxvEJnn2 Q==;
-X-CSE-ConnectionGUID: wexjq8LQTnS4/qjTdMd7aw==
-X-CSE-MsgGUID: mTGVZAtdQeCRsrYT04sJPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1841502"
-X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="1841502"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 12:22:30 -0700
-X-CSE-ConnectionGUID: IrI3m71NRT60k9qNBWmmYQ==
-X-CSE-MsgGUID: 95Dj1a4YSYOf3ihh9CbarA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
-   d="scan'208";a="6402757"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 12:22:29 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 27 Oct 2026 12:22:28 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Tue, 27 Oct 2026 12:22:28 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.17) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Tue, 27 Oct 2026 12:22:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PQ6kcpEuvZgTGfMkZuJHWYkcXkwtHGx+dPe6zDgQ0AyqATEvayJRb8za6JEkPTSWQna2DzdBnms0XjOiAs8yjvTwei0l5CRpsmeuAkqMPIlovE1Q5cWjXCjMJmtUZZ0OpVel64GqwPzMRz5vywODVpK8INcsJdLckFOzEIrW//8rI+G6HfJf6QF9sSjvu8A2EhYj8Sl1fBzMwqdD2ezDu3yztAVcfCSHj52a9js3b8VfTXMet0Z5peMAXZc0hk0G4RMdCG0CCxI6JAykQ1g1h3/YMrmPLpKsRD0K2Duvo9nZbfZ3GTTNssPD/8dBmFeavvRGJnH7IJnzYrrkmhVNww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2RcaK/dQgwqLdnMnQFU8dBC9xoIYQe2SuTUKrWghkyY=;
- b=Wec5bd9KpkI3WFK+0qUDmOSSts+lZeT+RlRh4fFbrs1+NOJU3OxpcS6U4iIlWMIc+T9xLUHqsohpv02KWULnGZU3xOIIzI+6UNfGwVOa1ItyZo2l/gOHbNbxuzbWfCJBTpHLVa5BKbrIxnbGJbX0qrEbx+JZwxEcawG9DfoQUc0omj4KIYcvhY9xIZwVoZ+zWZZfalopol/kE7WPmZmAv4z7Gw1GjwVjHWI1easUPLYxFhOpqLFdVo07aGa6tNPBYrGDc7UEnNs01xPO/6Jqmjdevg+EfwOnOzhxDriIUheMNfRhpGhgrwEH2xHkUf9IsBpkgUPwIZ6s+uJmK5NWxA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ5PPF89507EDE4.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::83e) by SA2PR11MB5114.namprd11.prod.outlook.com
- (2603:10b6:806:114::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.496.15; Tue, 27 Oct
- 2026 19:22:26 +0000
-Received: from SJ5PPF89507EDE4.namprd11.prod.outlook.com
- ([fe80::387e:6187:3626:ee07]) by SJ5PPF89507EDE4.namprd11.prod.outlook.com
- ([fe80::387e:6187:3626:ee07%2]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
- 19:22:25 +0000
-Date: Tue, 27 Oct 2026 12:22:23 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: <sashiko-reviews@lists.linux.dev>
-CC: Gustavo Sousa <gustavo.sousa@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 04/10] drm/xe: Factor out {min,max}_idledly_ps in
- adjust_idledly()
-Message-ID: <20261027192223.GC203565@msatwood-mobl>
-References: <20261023-wa_16031259911-v1-0-b0453f79c4e1@intel.com>
- <20261023-wa_16031259911-v1-4-b0453f79c4e1@intel.com>
- <sashiko-outbox-183251@kernel.org>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <sashiko-outbox-183251@kernel.org>
-X-ClientProxiedBy: SJ0PR13CA0039.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::14) To SJ5PPF89507EDE4.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::83e)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A11DD10E45F;
+	Tue, 27 Oct 2026 19:23:59 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B23A10E45F;
+ Tue, 27 Oct 2026 19:23:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6853083035513012796=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PPF89507EDE4:EE_|SA2PR11MB5114:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b5c6869-58c6-428f-0ab4-08df345fa22d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|10070799003|23010399003|1800799024|376014|366016|261026121527099003|261021123027099003|261022075727099003|261022105027099003|4143699003|11063799006|56012099006|261009223027099003|260925021311599003|260925021911599003|260925022911599003|10067099003|18002099003|22082099003|6133799003|261026140227099003|261021121427099003;
-X-Microsoft-Antispam-Message-Info: 45T60YTOUdtNTDcxe3d4xqIu069k3iER6jC0CjrrLG5SlHKXAgukAJCiJWQ7srlz0jWgpPqUT1LRrQUqoyFGaC/adBkKoYcaqpSAflVXu4pwRiZOxNr2tjCsWSgG0w3zuth5mpw8RdfRwGVMIQ/y92CCTiUHCWRJrlXjopORklkQTpxdtUx5FX2SltwUOIawZnYkJsgHCH31MTe6uO18ons28/ZhszVvlGGwSY+eijTpa8Z1GgMAD02qQt7uhzduiI+lq++4VLueQUDxeunNXF6pLktuosTL5E+POHKyCfMGJIxdjU1lgmTEeihRU1zwvWD6WW9ulsjfhlBA8CgL6yuxeHKc37HS26BaOp6oVIYThh9kF85aZW0rWKxQB+owjrKGnUDcsRAv+z3PbzIUmG2bKu9Xziz9DeRxyfffsq19qk/3/Vc9llNSF3gfPb/T016qYpPylvPImJ3JnLFLVE0/lTTmkYGwAvjjraIMsK9MsbmF1qN+8eBBtt6Qz1/FXwpCbU647CKZIeIEfcEdasi/8l6jnmFAKDcRr6F6sSbwHglIM/7VfTzOp6IVugXOpEnXXpagLlNFjUOlIQBuux1PtN6JkO5Mvg8zZCzYNv8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ5PPF89507EDE4.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(23010399003)(1800799024)(376014)(366016)(261026121527099003)(261021123027099003)(261022075727099003)(261022105027099003)(4143699003)(11063799006)(56012099006)(261009223027099003)(260925021311599003)(260925021911599003)(260925022911599003)(10067099003)(18002099003)(22082099003)(6133799003)(261026140227099003)(261021121427099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?7gAGbaWxNS3WcVpB72RF83vzDaRH9OZMIGaw6zA3hxJjveWR8cN9qFGj6+?=
- =?iso-8859-1?Q?c03/vEUL+IWzWFn5D/x3rUeMGQMrfMR6mJT09AuwKlhEv79/cBgKeGncEP?=
- =?iso-8859-1?Q?N15u3deM6ZIt5DoVheCpXuYqofJnvEZaWsMtQnpsLgIZ83C25bNtYASqR0?=
- =?iso-8859-1?Q?86yUQbqminiTsyvIbVoPPP2ESQjGKrd/HTdLAsHTclnRCuD3cTvj2lDxqK?=
- =?iso-8859-1?Q?XDFIWxzyvZIh1hi80WMbymCN5tJO1+r75hGZX+tb2/P3Y3ke4Tr7tf1qdm?=
- =?iso-8859-1?Q?N3PaKMaFoECco5EboFBnOhnYc+lYqQCd7muviNY3PDND0fHjITtsnTMMs+?=
- =?iso-8859-1?Q?VImZka+wU4glqo4Chy5x5gm4+nr4f5Bm8tN81bAO5G+Wcdzm2Hhr0HV0nH?=
- =?iso-8859-1?Q?f5tumKEOxFV4q0ThU/zAqXiNCz34FNyCTuf6HBuXZSUqzXYd4t0Odf9LhH?=
- =?iso-8859-1?Q?tyXzQCSXvmCtp3EKTUYn7PWx+67fkZTJadjMkExlYPxaEjETcrmUSG7u7F?=
- =?iso-8859-1?Q?Jruts1cT4wo4dNg+5QmOUP58963zMpyisAm+tJsHb51+/nmeeOEu8/avvp?=
- =?iso-8859-1?Q?LAZ7eIZdX02H7WC4UxHdFPuASqx5/RRP1aYR+Zj8nwkJbeyofZYZ3AgbLy?=
- =?iso-8859-1?Q?cMUoWBgq/CEWEaeieOeXiLaTSlqa/K5xrKN9o/ljZWHOqE8eZbRA6SNw8C?=
- =?iso-8859-1?Q?8AJT7F6rmRZ9m1PBkW51TBbKEkGBpOghZiWE3xhwFFJipz/R/iLnIuoVDV?=
- =?iso-8859-1?Q?A7oD1UpfwG0q13CG059NFnay2NaC0a3XXVJiBNLcyZeCANqTc8mO4DuJF7?=
- =?iso-8859-1?Q?cXGsBG1GZVCTytNlgDFh+XzEeGckr7eaHBZNtnNG1NoeC6JyJT6j6tdONX?=
- =?iso-8859-1?Q?XdLSQyRS1bxyogWlqNxmnQxMt1/16dUUXNDPm4AJ5EDYtpqqT8aOLpNdjU?=
- =?iso-8859-1?Q?/8nNsrEgY2uKRxw/G6Neq25WqPcsjeelY4tb09fMMpZBbOSXLCggpPYiNG?=
- =?iso-8859-1?Q?gzAqhs8O0gZuqRRVoMxCScVptUjulkkT3ZiTAafmy58Uy1XvueXZ2syZoj?=
- =?iso-8859-1?Q?8L8aZGUw3SsGV0B7uR2LLw59gUZd1on5Voi8UMt8hGYhE+k56elBdVu4jI?=
- =?iso-8859-1?Q?Jd660DRGUcQrSk6zAynEcGtP9pD/M3onlXCFarOUgMWR4MM+7kBSc7BKt2?=
- =?iso-8859-1?Q?OyDQFvJ3s/qmUqR7yBzV61KxLZtcdmtMWw9vx7EvgbNY38szSypHa1Wg3K?=
- =?iso-8859-1?Q?SDjFVnndrF3hfeHOtuvTA6v0wIfdf1f3akjozbLhig36W+OSFkiJStXq5B?=
- =?iso-8859-1?Q?NOwf9o6suGG3t4B31zBFTUWtyBl3shhC6bOyd64uX2o8Vtanj7Ig+tlCaj?=
- =?iso-8859-1?Q?7BcvEFvjOt6pUP8gRuu90AQfo5qMqqyUkjOweWrHNQdiElUcEzCqswF8gq?=
- =?iso-8859-1?Q?u007QK5PM3SqjGlcDY7cZvID5V3UYm4z7Q01bML+dO20ZJqRGvw8Re6NqX?=
- =?iso-8859-1?Q?5qeGSHGOQh5htsb7gZnEJehu5nISvo9qCgHk1Wpq3RyfIiMOKXpB54XyQL?=
- =?iso-8859-1?Q?9NyTUxE1wRK7LZqSiLlelESNv7KbabbVIqfib1qMtp4+x+Ho5s5lkuOljX?=
- =?iso-8859-1?Q?MNr2cGw9vRMSuR927TaC8a92PAda7lPdD44ZD5lwvBXTqSBvg92/TXqft7?=
- =?iso-8859-1?Q?iE+CwXc4wbPY3zCosOxAjn2pBRAh9eB7dE9J74KdgKlXFm8uZLW0Oydyoq?=
- =?iso-8859-1?Q?4GnttDFjelhieVpspFvC0AHynFjJuz3B/vaDZ9Ez0ctqSFM0XSAZw9xiT9?=
- =?iso-8859-1?Q?k5kovmspnsNnz+3aYo42RFm3qMS2V24PUVaGxVRmnQcjBKyQZdMb0Nz+fj?=
- =?iso-8859-1?Q?g8?=
-X-MS-Exchange-AntiSpam-MessageData-1: 4BCEwvbCTJe6QVWBo550InUPRwXPQ/53EbM=
-X-Exchange-RoutingPolicyChecked: f4AD1jYBB1gVeeSHW0Km0PL7trna8xaG6chV+IFA8FQnFVpTNvjr0mXKu78JB86TFvJ0aBDMuE6zKRHihZ2ghEjoPIdHzBOn6A+/3/A58WhPNdHVTrRFSk2Y17S48LTr4k/ROmzX5eYZsGDA5zwZtbLEJ1ZpvmuETNBw4wVkAw1TvHo8TcIK2tb/wiBDhFELZqHHDKCmPUN/1+h2XHsox/p3JNMViq+6SlYp2DJFrxKm4QcAW2UQO0a3OwctgMc26GZqLwp3X1tgWH23TzIm/W1+xTUHD5ZjE4cgz7RL4G2WI3z4ZZ1G7r+tZRRKG9hj49vA/leWFDq/yNQ6fpGivQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b5c6869-58c6-428f-0ab4-08df345fa22d
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PPF89507EDE4.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 19:22:25.8746 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uF1ntKhE91VtCM0YOjWrIQ0ZrVuVASm8+f+DfJC4Mw5xna7gye7VyeIuLytYeek/jCne/7KYnoPNqLeDGPe3bL0EIllqSa4/4Spu5DYqjqo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5114
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_a_minimum_age_gate_to_t?=
+ =?utf-8?q?he_shrinker_+_LRU_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 27 Oct 2026 19:23:58 -0000
+Message-ID: <179312903856.78159.14896328322297057667@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261027183638.1031299-1-matthew.brost@intel.com>
+In-Reply-To: <20261027183638.1031299-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,163 +33,202 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Oct 23, 2026 at 09:23:04PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] drm/xe: 32-bit multiplication overflow in adjust_idledly()
-> --
-> 
-> commit 032b173104de210ca0228dd31e057951f3cde20d
-> Author: Gustavo Sousa <gustavo.sousa@intel.com>
-> 
-> drm/xe: Factor out {min,max}_idledly_ps in adjust_idledly()
-> 
-> This commit reorganizes adjust_idledly() so that workaround-specific logic
-> computes min_idledly_ps and max_idledly_ps before applying and rounding
-> those limits to the RING_IDLEDLY register field.
-> 
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > index dcc8a6d53c5d0..2d2a80cc2da35 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > @@ -585,99 +585,81 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
-> >  	xe_reg_whitelist_process_engine(hwe);
-> >  }
-> >  
-> > -static u32 idledly_floor_ticks(u64 idledly_ps, u32 idledly_units_ps)
-> > -{
-> > -	return DIV_ROUND_DOWN_ULL(idledly_ps, idledly_units_ps);
-> > -}
-> > -
-> >  static void adjust_idledly(struct xe_hw_engine *hwe)
-> >  {
-> >  	struct xe_gt *gt = hwe->gt;
-> > -	u32 idledly_reg_val, maxcnt_reg_val;
-> > +	u32 idledly_reg_val;
-> > +	u32 idledly;
-> >  	u32 idledly_units_ps = 8 * gt->info.timestamp_base;
-> > -	u32 maxcnt_units_ps = 640000;
-> >  	u64 idledly_ps, idledly_hw_ps;
-> > -	u64 maxcnt_ps;
-> > +	u64 min_idledly_ps = 0;
-> > +	u64 max_idledly_ps = -1;
-> >  	bool inhibit_switch = false;
-> >  	bool wa_applied = false;
-> > -	bool clamped_below_maxcnt = false;
-> >  
-> >  	if (IS_SRIOV_VF(gt_to_xe(gt)))
-> >  		return;
-> >  
-> >  	if (XE_GT_WA(gt, 16023105232) || XE_GT_WA(gt, 14025941587)) {
-> > -		u32 mincnt_idledly_ps = 5000000;
-> > -
-> >  		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
-> >  		if (!idledly_units_ps)
-> >  			return;
-> >  
-> >  		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-> >  		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
-> > -		idledly_ps = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val) * idledly_units_ps;
-> > +		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
-> > +		idledly_ps = idledly * idledly_units_ps;
-> >  		idledly_hw_ps = idledly_ps;
-> >  
-> > -		maxcnt_reg_val = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
-> > -		maxcnt_ps = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt_reg_val) * maxcnt_units_ps;
-> > -
-> > -		/*
-> > -		 * Wa_14025941587 is applied before Wa_16023105232, which takes
-> > -		 * priority if the two ever conflict (not expected in practice).
-> > -		 */
-> > -		if (XE_GT_WA(gt, 14025941587) &&
-> > -		    idledly_ps < mincnt_idledly_ps) {
-> > -			idledly_ps = mincnt_idledly_ps;
-> > -			wa_applied = true;
-> > -		}
-> > +		if (XE_GT_WA(gt, 14025941587))
-> > +			min_idledly_ps = max(min_idledly_ps, 5000000);
-> >  
-> >  		if (XE_GT_WA(gt, 16023105232)) {
-> > +			u32 maxcnt_units_ps = 640000;
-> > +			u32 maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
-> > +
-> > +			max_idledly_ps = min_t(u64,
-> > +					       max_idledly_ps,
-> > +					       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
-> > +
-> >  			/* Clear the inhibit switch without disturbing a valid delay. */
-> >  			if (inhibit_switch) {
-> >  				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-> >  				wa_applied = true;
-> >  			}
-> > +		}
-> >  
-> > -			/* Warn only on the value read from hardware. */
-> > -			xe_gt_WARN_ON(gt, idledly_hw_ps >= maxcnt_ps);
-> > +		/*
-> > +		 * min_idledly_ps is applied before max_idledly_ps, which takes
-> > +		 * priority if the two ever conflict (not expected in practice).
-> > +		 */
-> > +		if (idledly_ps < min_idledly_ps) {
-> > +			idledly = DIV_ROUND_UP_ULL(min_idledly_ps, idledly_units_ps);
-> > +			idledly_ps = idledly * idledly_units_ps;
-> > +			wa_applied = true;
-> > +		}
-> >  
-> > -			if (idledly_ps >= maxcnt_ps) {
-> > -				/* maxcnt may be 0 if IDLE_WAIT_TIME is unprogrammed. */
-> > -				idledly_ps = maxcnt_ps ? maxcnt_ps - 1 : 0;
-> > -				clamped_below_maxcnt = true;
-> > -				wa_applied = true;
-> > +		if (idledly_ps >= max_idledly_ps) {
-> > +			if (max_idledly_ps) {
-> > +				idledly = DIV_ROUND_DOWN_ULL(max_idledly_ps - 1, idledly_units_ps);
-> > +				idledly_ps = idledly * idledly_units_ps;
-> 
-> [Severity: Medium]
-> Can these tick-to-picosecond multiplications in adjust_idledly() in
-> drivers/gpu/drm/xe/xe_hw_engine.c overflow 32 bits before being widened to
-> u64?
-> 
-> When hw_engine_init() calls adjust_idledly() on non-VF platforms where
-> Wa_16023105232 or Wa_14025941587 is active, idledly, idledly_units_ps (up to
-> 8 * 83333 = 666,664 ps), maxcnt_units_ps (640,000 ps), and the return value
-> of REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) are all u32.
-> 
-> In the three assignments:
-> 
-> 	idledly_ps = idledly * idledly_units_ps;
-> 
-> both operands are u32. Since IDLE_DELAY is a 21-bit field (REG_GENMASK(20, 0),
-> up to 2,097,151 ticks), the product can reach ~1.398e12 ps and wraps modulo
-> 2^32 for idledly >= 6443 ticks before assignment to u64 idledly_ps.
-> 
-> Similarly, in:
-> 
-> 	max_idledly_ps = min_t(u64,
-> 			       max_idledly_ps,
-> 			       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
-> 
-> REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps is evaluated in 32-bit
-> unsigned arithmetic before min_t(u64, ...) casts the result to u64. Because
-> IDLE_WAIT_TIME is a 20-bit field (REG_GENMASK(19, 0), up to 1,048,575 ticks),
-> the product can reach ~6.71e11 ps and wraps 32 bits for IDLE_WAIT_TIME >= 6711
-> ticks, which can misprogram RING_IDLEDLY or trigger false
-> xe_gt_WARN_ON(gt, idledly_hw_ps >= max_idledly_ps) warnings.
-> 
-> Commit d864065ea25e ("drm/xe: harden adjust_idledly() against divide-by-zero
-> and overflow") previously added explicit (u64) casts to prevent 32-bit
-> truncation when converting ticks to time units. Should idledly_units_ps and
-> maxcnt_units_ps (or the multiplication operands) be promoted to u64 here as
-> well?
-Similar to previous patch the bot is correct here, please adjust in v2
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20261023-wa_16031259911-v1-0-b0453f79c4e1@intel.com?part=4
+--===============6853083035513012796==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: Add a minimum age gate to the shrinker + LRU fixes
+URL   : https://patchwork.freedesktop.org/series/176975/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4_BAT -> xe-pw-176975v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-176975v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-176975v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-176975v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_compute@compute-square:
+    - bat-ptl-1:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-ptl-1/igt@xe_compute@compute-square.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-ptl-1/igt@xe_compute@compute-square.html
+    - bat-ptl-vm:         [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-ptl-vm/igt@xe_compute@compute-square.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-ptl-vm/igt@xe_compute@compute-square.html
+    - bat-lnl-1:          [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-lnl-1/igt@xe_compute@compute-square.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-lnl-1/igt@xe_compute@compute-square.html
+    - bat-bmg-vm:         [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-vm/igt@xe_compute@compute-square.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-vm/igt@xe_compute@compute-square.html
+    - bat-bmg-2:          [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-2/igt@xe_compute@compute-square.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-2/igt@xe_compute@compute-square.html
+    - bat-adlp-7:         [PASS][11] -> [ABORT][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-adlp-7/igt@xe_compute@compute-square.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-adlp-7/igt@xe_compute@compute-square.html
+    - bat-ptl-2:          [PASS][13] -> [ABORT][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-ptl-2/igt@xe_compute@compute-square.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-ptl-2/igt@xe_compute@compute-square.html
+    - bat-atsm-2:         [PASS][15] -> [ABORT][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-atsm-2/igt@xe_compute@compute-square.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-atsm-2/igt@xe_compute@compute-square.html
+    - bat-wcl-2:          [PASS][17] -> [ABORT][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-wcl-2/igt@xe_compute@compute-square.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-wcl-2/igt@xe_compute@compute-square.html
+    - bat-bmg-1:          [PASS][19] -> [ABORT][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-1/igt@xe_compute@compute-square.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-1/igt@xe_compute@compute-square.html
+    - bat-nvls-1:         [PASS][21] -> [ABORT][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-nvls-1/igt@xe_compute@compute-square.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-nvls-1/igt@xe_compute@compute-square.html
+    - bat-lnl-2:          [PASS][23] -> [ABORT][24]
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-lnl-2/igt@xe_compute@compute-square.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-lnl-2/igt@xe_compute@compute-square.html
+    - bat-nvls-2:         [PASS][25] -> [ABORT][26]
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-nvls-2/igt@xe_compute@compute-square.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-nvls-2/igt@xe_compute@compute-square.html
+    - bat-wcl-1:          [PASS][27] -> [ABORT][28]
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-wcl-1/igt@xe_compute@compute-square.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-wcl-1/igt@xe_compute@compute-square.html
+
+  * igt@xe_exec_basic@multigpu-once-basic:
+    - bat-bmg-3:          [PASS][29] -> [ABORT][30]
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4 -> xe-pw-176975v1
+
+  IGT_9168: 9168
+  xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4: 5e5b89446954adf0d9b74ba4228862403f71eec4
+  xe-pw-176975v1: 176975v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/index.html
+
+--===============6853083035513012796==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add a minimum age gate to the shrinker + LRU fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176975/">https://patchwork.freedesktop.org/series/176975/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4_BAT -&gt; xe-pw-176975v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-176975v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-176975v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-176975v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_compute@compute-square:</p>
+<ul>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-ptl-1/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-ptl-1/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-ptl-vm/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-ptl-vm/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-lnl-1/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-lnl-1/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-vm/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-vm/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-2/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-adlp-7/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-adlp-7/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-ptl-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-ptl-2/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-atsm-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-atsm-2/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-wcl-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-wcl-2/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-1/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-1/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-nvls-1/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-nvls-1/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-lnl-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-lnl-2/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-nvls-2/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-nvls-2/igt@xe_compute@compute-square.html">ABORT</a></li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-wcl-1/igt@xe_compute@compute-square.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-wcl-1/igt@xe_compute@compute-square.html">ABORT</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_basic@multigpu-once-basic:</p>
+<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176975v1/bat-bmg-3/igt@xe_exec_basic@multigpu-once-basic.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4 -&gt; xe-pw-176975v1</li>
+</ul>
+<p>IGT_9168: 9168<br />
+  xe-6016-5e5b89446954adf0d9b74ba4228862403f71eec4: 5e5b89446954adf0d9b74ba4228862403f71eec4<br />
+  xe-pw-176975v1: 176975v1</p>
+
+</body>
+</html>
+
+--===============6853083035513012796==--
