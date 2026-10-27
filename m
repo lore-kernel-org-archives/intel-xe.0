@@ -2,36 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6897C606A31A
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 18:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D09A606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 18:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=DnB5xzCm
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nT9+YgNr
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E48810E440;
-	Tue, 27 Oct 2026 18:03:22 +0000 (UTC)
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7862310E440
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 18:03:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1793124190;
- bh=AI07cY2fihMffbpl2UKU/UMJr12px5hHexAA2pcH9SE=;
- h=From:To:Cc:Subject:Date:From;
- b=DnB5xzCmM2kwzBoDd26BJs5tYEtOysdIDPVYZWHYQ1SNE7NUqo9yJumtGF87MgJTO
- ZnBaw0GRKtSZ2i/3Y9Q/BhY9ZeppKg3/HyGs1rmXYjIiq5B0EbWRtPm55vimnD3yBQ
- wzC5zhb7sVplCbsg0CrpvjhkLJ9pufQBP4nH4C8CSQjEI3q7HLuZUVUm1usndAFUyL
- PckWTG0GAO0MxhNimP4G+frl3Ir7cvZGGt9nTnt/H9IMP2frQIjMdVCM9W67Cv9xvS
- yU5tL2OFdkaj4zTcW0Xj4iavLmukSTKBIIP+0O05eD7AIPA9eRWjrs1I5ePUlYoQN/
- d/EPxV7hmP1aA==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v3 1/2] drm/xe/bo: Add xe_bo_addr_iter.
-Date: Tue, 27 Oct 2026 19:03:55 +0100
-Message-ID: <20261027180354.340849-3-dev@lankhorst.se>
-X-Mailer: git-send-email 2.55.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B80E910E440;
+	Tue, 27 Oct 2026 18:04:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94EE610E440
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 18:04:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793124247; x=1824660247;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=Bd2OgGhkA9QNDZFgKdGBqibrZdgWgk9X7/lrCVYBI8s=;
+ b=nT9+YgNrPCTm01MmNdjlAn8pLsqmAvu3Xyqq2RbHx3OzAdtTUQVmhwSy
+ kUr/kAQRdqw7TJ6m2SJqsT/RoSTlpJLkcUQegswKg3+cIPrEBej9l4oBT
+ +IQHYPlM7eDdvPruf64CsdMZ97Yi3Eb++2u011JdYTX6ClrIlZ/ooBBJG
+ nt5Utf0kewOod0PORBggFLex/mHKKxeCRHv9++9BhZL4pQ4FadNqPmkeh
+ 0ZKcAwl0hTP6aSCjh3BCh/3B5sUvEnllGyltCzcmkaMFkn9xceSd/rxFf
+ iyN8g59ILW/dEPAegbniamFXprOAyMg/Njzlzuuf4kWx7kCyutKoVYj/M w==;
+X-CSE-ConnectionGUID: uRAm/rR1Q5SeECrLZYFK7A==
+X-CSE-MsgGUID: HWQfyI5ZQaKFrVMc7DPEyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1819773"
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="1819773"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 11:04:06 -0700
+X-CSE-ConnectionGUID: npKPPVVaTuacIjXlnz2liw==
+X-CSE-MsgGUID: 14H0aD16ScCcrQTz82g6nA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="6448799"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.125])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 11:04:05 -0700
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/xe/tests: Cover a large write to an unaligned
+ bo offset
+In-Reply-To: <a8126cc8-b608-4bf9-9102-fe1e9ae58703@intel.com>
+References: <20261027145237.1862132-1-mika.kuoppala@linux.intel.com>
+ <20261027145237.1862132-2-mika.kuoppala@linux.intel.com>
+ <a8126cc8-b608-4bf9-9102-fe1e9ae58703@intel.com>
+Date: Tue, 27 Oct 2026 20:04:02 +0200
+Message-ID: <87wlr3rpf1.fsf@mkuoppal-desk>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,133 +63,108 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-14.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For display we iterate often over the pinned VRAM/system memory BO.
-Add some code to speed up DPT/GGTT programming.
+Matthew Auld <matthew.auld@intel.com> writes:
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
-Changes since v1:
-- Add documentation.
----
- drivers/gpu/drm/xe/xe_bo.c | 64 +++++++++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_bo.h |  3 ++
- 2 files changed, 48 insertions(+), 19 deletions(-)
+> On 27/10/2026 14:52, Mika Kuoppala wrote:
+>> Write a contiguous 16M bo from offset 4 with xe_migrate_access_memory()
+>> and read it back. Aligning the vram side leaves buf mid page, so the
+>> following full chunk has to stay within MAX_PREEMPTDISABLE_TRANSFER.
+>> 
+>> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>
+> Do we know how long this test now takes? It is pulled into BAT I think.
+>
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 42a6aa1a2e4a0..0202028d38e5d 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -3478,37 +3478,63 @@ bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo)
- 	return false;
- }
- 
--/*
-- * Resolve a BO address. There is no assert to check if the proper lock is held
-- * so it should only be used in cases where it is not fatal to get the wrong
-- * address, such as printing debug information, but not in cases where memory is
-- * written based on this result.
-+/**
-+ * xe_bo_addr_iter_first - Iterate over a bo
-+ * @bo: The BO
-+ * @cur: Pointer to a &xe_res_cursor for iteration
-+ * @offset: Offset into BO.
-+ * @size: Size of iteration.
-+ *
-+ * Initializes @cur for iteration over all GPU addresses in the range
-+ * [@offset...@offset+@size).
-+ *
-+ * This is useful for getting the GPU address for a range of pages,
-+ * rather than calling xe_bo_addr separately for each page.
-  */
--dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
-+void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_res_cursor cur;
--	u64 page;
--
--	xe_assert(xe, page_size <= PAGE_SIZE);
--	page = offset >> PAGE_SHIFT;
--	offset &= (PAGE_SIZE - 1);
- 
- 	if (!xe_bo_is_vram(bo) && !xe_bo_is_stolen(bo)) {
- 		xe_assert(xe, bo->ttm.ttm);
- 
--		xe_res_first_sg(xe_bo_sg(bo), page << PAGE_SHIFT,
--				page_size, &cur);
--		return xe_res_dma(&cur) + offset;
-+		xe_res_first_sg(xe_bo_sg(bo), offset, size, cur);
- 	} else {
--		struct xe_res_cursor cur;
-+		xe_res_first(bo->ttm.resource, offset, size, cur);
- 
--		xe_res_first(bo->ttm.resource, page << PAGE_SHIFT,
--			     page_size, &cur);
--		return cur.start + offset + vram_region_gpu_offset(bo->ttm.resource);
-+		xe_assert(xe, !cur->dma_addr);
-+		cur->dma_start = vram_region_gpu_offset(bo->ttm.resource);
- 	}
- }
- 
-+/**
-+ * xe_bo_addr_iter_addr - Get the BO's GPU address at current cursor.
-+ * @cur: Pointer to a &xe_res_cursor initialized by xe_bo_addr_iter_first()
-+ *
-+ * Returns: a 64-bits DMA address for usage on the device.
-+ */
-+dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur)
-+{
-+	if (cur->mem_type == XE_PL_TT)
-+		return xe_res_dma(cur);
-+
-+	return cur->start + cur->dma_start;
-+}
-+
-+/*
-+ * Resolve a BO address. There is no assert to check if the proper lock is held
-+ * so it should only be used in cases where it is not fatal to get the wrong
-+ * address, such as printing debug information, but not in cases where memory is
-+ * written based on this result.
-+ */
-+dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
-+{
-+	struct xe_res_cursor cur;
-+
-+	xe_bo_addr_iter_first(bo, &cur, offset, page_size);
-+	return xe_bo_addr_iter_addr(&cur);
-+}
-+
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size)
- {
- 	if (!READ_ONCE(bo->ttm.pin_count))
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 77b3a02e9b8eb..286f52225bc79 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -113,6 +113,7 @@ enum xe_madv_purgeable_state {
- };
- 
- struct sg_table;
-+struct xe_res_cursor;
- 
- struct xe_bo *xe_bo_alloc(void);
- void xe_bo_free(struct xe_bo *bo);
-@@ -375,6 +376,8 @@ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
- }
- 
- bool xe_bo_is_xe_bo(struct ttm_buffer_object *bo);
-+void xe_bo_addr_iter_first(struct xe_bo *bo, struct xe_res_cursor *cur, u64 offset, u64 size);
-+dma_addr_t xe_bo_addr_iter_addr(struct xe_res_cursor *cur);
- dma_addr_t __xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- dma_addr_t xe_bo_addr(struct xe_bo *bo, u64 offset, size_t page_size);
- 
--- 
-2.55.0
+With BMG:
 
+IGT-Version: 2.6-gfd2038445a (x86_64) (Linux: 7.3.0+ x86_64)
+  Using IGT_SRANDOM=1793110920 for randomisation
+  Starting subtest: xe_migrate
+  Starting dynamic subtest: xe_migrate_access_memory_kunit
+  Dynamic subtest xe_migrate_access_memory_kunit: SUCCESS (0.320s)
+  Subtest xe_migrate: SUCCESS (0.338s)
+  
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+
+Thanks,
+-Mika
+
+>> ---
+>>   drivers/gpu/drm/xe/tests/xe_migrate.c | 50 +++++++++++++++++++++++++++
+>>   1 file changed, 50 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> index a9ef8f2dcebb..715de366d33c 100644
+>> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+>> @@ -1041,6 +1041,53 @@ static void access_memory_test_run_tile(struct xe_device *xe,
+>>   	kvfree(buf);
+>>   }
+>>   
+>> +static void access_memory_test_unaligned_large_write(struct kunit *test,
+>> +						     struct xe_tile *tile)
+>> +{
+>> +	const u32 size = SZ_16M, offset = 4;
+>> +	struct xe_bo *bo;
+>> +	u32 j;
+>> +	u8 *buf;
+>> +	int ret;
+>> +
+>> +	buf = kvmalloc(size, GFP_KERNEL);
+>> +	if (!buf) {
+>> +		KUNIT_FAIL(test, "Failed to allocate buffer\n");
+>> +		return;
+>> +	}
+>> +
+>> +	bo = xe_bo_create_pin_map_novm(tile_to_xe(tile), tile, size,
+>> +				       ttm_bo_type_kernel,
+>> +				       XE_BO_FLAG_VRAM_IF_DGFX(tile), false);
+>> +	if (IS_ERR(bo)) {
+>> +		KUNIT_FAIL(test, "Failed to create bo: %pe\n", bo);
+>> +		goto free_buf;
+>> +	}
+>> +
+>> +	for (j = 0; j < size / sizeof(u32); j++)
+>> +		((u32 *)buf)[j] = j;
+>> +
+>> +	xe_bo_lock(bo, false);
+>> +	ret = xe_migrate_access_memory(tile->migrate, bo, offset, buf,
+>> +				       size - offset, true);
+>> +	if (!ret) {
+>> +		memset(buf, 0, size);
+>> +		ret = xe_migrate_access_memory(tile->migrate, bo, offset, buf,
+>> +					       size - offset, false);
+>> +	}
+>> +	xe_bo_unlock(bo);
+>> +
+>> +	if (ret)
+>> +		KUNIT_FAIL(test, "Unaligned large write failed: %d\n", ret);
+>> +	else
+>> +		verify_access_memory_read(test, buf, 0, 0, size - offset,
+>> +					  "Unaligned large write");
+>> +
+>> +	xe_bo_unpin_map_no_vm(bo);
+>> +free_buf:
+>> +	kvfree(buf);
+>> +}
+>> +
+>>   static int access_memory_test_run_device(struct xe_device *xe)
+>>   {
+>>   	struct kunit *test = kunit_get_current_test();
+>> @@ -1059,6 +1106,9 @@ static int access_memory_test_run_device(struct xe_device *xe)
+>>   
+>>   		kunit_info(test, "Testing tile id %d (random offset)\n", id);
+>>   		access_memory_test_run_tile(xe, tile, test, true);
+>> +
+>> +		kunit_info(test, "Testing tile id %d (unaligned large write)\n", id);
+>> +		access_memory_test_unaligned_large_write(test, tile);
+>>   	}
+>>   
+>>   	return 0;
