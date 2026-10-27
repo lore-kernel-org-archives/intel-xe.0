@@ -2,29 +2,64 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44DA5606A338
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 16:18:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274AB606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 16:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OW/0Pn8K
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08E3F10F6EA;
-	Tue, 27 Oct 2026 16:18:23 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E275610F6E2;
- Tue, 27 Oct 2026 16:18:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3916486491107893847=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC83891BA;
+	Tue, 27 Oct 2026 16:32:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF51B10F749
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 16:31:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793118718; x=1824654718;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=SpcxHmUlZ5eOpgi5fpbYivp8oq6o9byKn9qiEwqYdoM=;
+ b=OW/0Pn8KyPY7bWhxXBJJtS50NNAQK94IUhhy87olmPcwsQzOPzEHGwyT
+ PTlJMfqa6sEcuyfcKd98uOdnAq0bCbh4v1VqS2I3QboxJy9sn9vLs+g84
+ 9V41uQHuFqniz3ffCs2t5C8ORgIHCodOziqyzKCNd9AH2XQcfX9gtVQPx
+ gZwMV4s7Ll9lpzNXfDdgzNwyjWboYfjqn+SAg3LbtVPcw6/5VTfIUG7Ge
+ aAdxXTtSZlRMWeDZe9DlsDy+xSDuQ2ju5FOgxY8cdGoGLMssw8hU/1+D3
+ X5zLWh+JIwNqoWCaplTmMeabo9cB0UXe89PLLQVSP/LnYQK0+Fvmn3coT g==;
+X-CSE-ConnectionGUID: igV+UhcwQi6iH9kDT6vfJA==
+X-CSE-MsgGUID: bk8FwgcvRfqDr0/ZISXkSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1836841"
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="1836841"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 09:31:57 -0700
+X-CSE-ConnectionGUID: uxaHIloeTIWDtV1/rXwcYQ==
+X-CSE-MsgGUID: PsoOWIANQz6WQTnNZJF5hQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="4487584"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.247])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 09:31:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: =?utf-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, Ville
+ =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: Re: [PATCH v7 5/5] drm/xe/ggtt: Add KUnit tests for usable and
+ shareable pools
+In-Reply-To: <20261021085716.709503-6-piotr.piorkowski@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261021085716.709503-1-piotr.piorkowski@intel.com>
+ <20261021085716.709503-6-piotr.piorkowski@intel.com>
+Date: Tue, 27 Oct 2026 18:31:53 +0200
+Message-ID: <af0830362243e3f3d7289e853b8d72856faf7419@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/xe/migrate=3A_Keep_access=5Fmemory_chunks_within_the_tran?=
- =?utf-8?q?sfer_limit?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Oct 2026 16:18:21 -0000
-Message-ID: <179311790192.77788.13509872889755382028@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261027145237.1862132-1-mika.kuoppala@linux.intel.com>
-In-Reply-To: <20261027145237.1862132-1-mika.kuoppala@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,143 +69,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============3916486491107893847==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 21 Oct 2026, Pi=C3=B3rkowski, Piotr <piotr.piorkowski@intel.com> wr=
+ote:
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index b7e3d626e8cb8..3dd029bc76dfc 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -1395,3 +1395,7 @@ u64 xe_ggtt_node_size(const struct xe_ggtt_node *no=
+de)
+>  {
+>  	return node->base.size;
+>  }
+> +
+> +#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
+> +#include "tests/xe_ggtt_kunit.c"
+> +#endif
 
-== Series Details ==
+Why IS_BUILTIN()?
 
-Series: series starting with [1/2] drm/xe/migrate: Keep access_memory chunks within the transfer limit
-URL   : https://patchwork.freedesktop.org/series/176960/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32_BAT -> xe-pw-176960v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-176960v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - bat-atsm-2:         [PASS][3] -> [ABORT][4] ([Intel XE#9663]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
-  [Intel XE#9663]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663
+It smells like a mistake.
 
 
-Build changes
--------------
-
-  * Linux: xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32 -> xe-pw-176960v1
-
-  IGT_9167: 9167
-  xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32: 4fae0a24d63d617b8651b1cc247c3a36bc1eff32
-  xe-pw-176960v1: 176960v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/index.html
-
---===============3916486491107893847==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/migrate: Keep access_memory chunks within the transfer limit</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176960/">https://patchwork.freedesktop.org/series/176960/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32_BAT -&gt; xe-pw-176960v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-176960v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176960v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663">Intel XE#9663</a>) +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32 -&gt; xe-pw-176960v1</li>
-</ul>
-<p>IGT_9167: 9167<br />
-  xe-6015-4fae0a24d63d617b8651b1cc247c3a36bc1eff32: 4fae0a24d63d617b8651b1cc247c3a36bc1eff32<br />
-  xe-pw-176960v1: 176960v1</p>
-
-</body>
-</html>
-
---===============3916486491107893847==--
+--=20
+Jani Nikula, Intel
