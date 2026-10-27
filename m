@@ -2,162 +2,116 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB37D606A31A
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 04:24:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20C48606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 04:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=T+5Xzg9m
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=OlTy9vnC
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A06710E1F1;
-	Tue, 27 Oct 2026 04:24:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C759110E1F1
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 04:24:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793075075; x=1824611075;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=sgS5W1ON9eEWYgEArhdf+9TU19FyI7EgO+ae6MEGxJo=;
- b=T+5Xzg9mxVhZdWpecyt7MCj+JfAsvXxOpIOR28bwsSgJUnozEN6XlS1j
- InctR1E9z8vkci1t4kujgG6jUOxo3vherZ9+Lb+jkFcci9MLjDXak3lq/
- A2GicLVlc5WO/Z3A3KNNHMshVdupDKXdWjN0fuBnLryoIbx/fyfCPOdHG
- Rp2fcp1se+ZMfhjarrq8X+PfIJ4sojqfR/AVEh4ZiXcaeK1PnbDElyrn4
- KBDcNEDXbKFQvWEz0WV0tb8nhUJQbvFAtoCT7moGb3UPR1jEgkZDmSX3E
- FsKwtI/rXHRT/trDVSJXBswOVR95E9cjLnB9eF127JYZOKkP+A9Q8s7i1 w==;
-X-CSE-ConnectionGUID: 6yya5ez6SQWburQizrhvsQ==
-X-CSE-MsgGUID: 6kFlFDEIRD6cCAG+1quZ6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11947"; a="1780874"
-X-IronPort-AV: E=Sophos;i="6.27,180,1787036400"; d="scan'208,217";a="1780874"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 21:24:35 -0700
-X-CSE-ConnectionGUID: iF6NYlhAR/yd316UEKMpJg==
-X-CSE-MsgGUID: G+JwSfOhQn2B4Lu5I8hkuw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,180,1787036400"; d="scan'208,217";a="4453555"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Oct 2026 21:24:35 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 26 Oct 2026 21:24:33 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49 via Frontend Transport; Mon, 26 Oct 2026 21:24:33 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.35) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Mon, 26 Oct 2026 21:24:33 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF58210E2A4;
+	Tue, 27 Oct 2026 04:26:35 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011013.outbound.protection.outlook.com [40.107.208.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3119B10E1F1;
+ Tue, 27 Oct 2026 04:26:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FxCO7InGVvSyRpXEBIHth5BTm9Dodzfz9sM0T/cfwuLgqGOGa4P92qeKKIE0nrhmNDtbT2UJy/TH8JI6pIzc3a7Qc4G1hEdTVXnzBDlUUwDBDSQUdi0HgRDadUtOiPJqlywKYKfo92yxUrYOBgikHCniTOmOjF6OZSZhWksTmI3tad0h1vzNQk6MnGAwNpOYulRAUF4vO+FkVhwkf8tLGYPYn18JF0XzgD6KmG+gLyZaN/v5xgfWemitOUK1E2Nterp7z9NJsMIwBoS+rTnjceD6hAccQROtKpwm/2QTvxlSU9BL0dIHmegZ2R7Hcs8lFnqq/C45le9Z8ffYfo+McA==
+ b=U8WRrslR0S7g5UnXcyO7sXWl161PZTay5bGSevytYczN7ksKjSFZwP0UJmLCuenihTpcWHCmKJM0mBe0cXRcOokVh4ln6bFgJ8jOTOykYMeJcijDOzGW/pKtmoDhjNXvH+OLMRQkufk0xtMdDFMHZt7g+iNIolcCs3U/CrDdhRjlYPPgAAFN/3XYxEyvPmP9TesUXlOgqjvQ/NFkavI/z7DKYnKfxpYd4YUuvjvjD2bf6AKPmacNjPvZwWlIspJPvxNdLg89gdBWqjVlcNd4DnzwGK6Hl3vhQQsW6D8kYv2sZEEgLHwQfn0y+RrX30edAY8DHkJgAiVPSJuDL8r4eg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ze8RhKhuI1HThQ/IXp+bEDm8KcgpU/rynU/k8SRPZPA=;
- b=eAiBOsEWsrdpkvvXrbo6GccO62LdvsOkdAYvK7rs94m+tNahJA/2R/MwR6B/+Pvepb6X/AiaMC+vGsbZQpmowA5l5siP7Nz5E+nRTlBwsCRKdcVijOXWE8VGjmn3vEacyXigeuW9ordV13HvnENGAVaf5DlkuFjJoKZxV4UfAGhJszRn7Gi2UomMKk6AJZ5pmuq0iJt6i0XWMnOe713JBSBHtzaFobgcQ2hI1HAsVY4iiwAoHnJ4wa44fT7QCfIT9U7e34oF4hZnA8u311OSc+A8geid6gdHHywQOF9pgjqQqlxqC56uKoRTqN50ZxRuyErWNQiY2POgYFpC9xQUdA==
+ bh=2AIt5fyIdfByGtv8NDydOJg2Fi8rwWh0OVFOiSNPJbE=;
+ b=UfoFzmPdg9BZmAKxHjN0qskmsRy7J8hR+6k26ZI13FnbPP3I4nCmZMgc1nGU9577DCcJlsGHbYFoF1elmpSKol4dePR2q75i5g1tKs8no/KXPuSpamIB7ss85ADp0B/zgp6Lo9iM6huj0tCqBuSAi0wexCp8c6lzQwM6aeoNYvPEGHE2qSdRa5Aa+XDhIaAUlmLkRPUyYNaUH5Cs1emwcz0rK/gZly06DIWPnxmqOoKha4RI15o35CZEj9ZHf4JyzJMx2i7PFoik5UhCiZkVspRQBackp8C4sH7IKkbVN1+sGrLjdOBRTpG45LogBEtx4OLSw6Z3MzSuXyt5REMtrA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2AIt5fyIdfByGtv8NDydOJg2Fi8rwWh0OVFOiSNPJbE=;
+ b=OlTy9vnCdR9NOF06lO8fXm+wPjcNtO5hYdB+U5a3lW6CEkW8ZMBdKanAd8yl8ZTnNUgrPt3JTyDeAZ/CdjqBfcnbTsYDaogtmoaIE19CSFc4NL9B5tSZ6sjoEZS/aGJtmvy6pFueD6iqIcVfqhCUNmXB2SyskDNWLps+Ae580GVa5zQMX+dGQm6tqzQuOS5w441j+C1bvE3nk6IqWbgLk7mF4umqCkHydJ3GNWpGDu9mIGnP84LBwU3Sw4wsM+OmjadAHMmCoDmNEvlPGKyqTvWMJ+E/FSX+CyzyNLmSQCkIRNAxEiiq0/H7xAGZ0u8pXpuV/1+viv8dQcFjq4RiIA==
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by PH8PR11MB8258.namprd11.prod.outlook.com (2603:10b6:510:1c1::5)
- with Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from SA3PR12MB598757.namprd12.prod.outlook.com
+ (2603:10b6:806:52d::14) by PH7PR12MB5686.namprd12.prod.outlook.com
+ (2603:10b6:510:13d::13) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Tue, 27 Oct
- 2026 04:22:06 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
- 04:21:54 +0000
-Content-Type: multipart/alternative;
- boundary="------------n02uf0TJz2F0qaCO25xggHNf"
-Message-ID: <f983ccf6-e29f-485d-8f46-0b94ee252fb6@intel.com>
-Date: Tue, 27 Oct 2026 09:51:44 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 06/13] drm/xe/cper: Emit cper record to trace buf
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <daniele.ceraolospurio@intel.com>,
- <riana.tauro@intel.com>, <mallesh.koujalagi@intel.com>,
- <aravind.iddamsetty@intel.com>, <himal.prasad.ghimiray@intel.com>,
- <arvind.yadav@intel.com>, <syed.abdul.muqthyar.ahmed@intel.com>,
- <nitin.r.gote@intel.com>
-References: <20261023043422.681260-15-badal.nilawar@intel.com>
- <20261023043422.681260-21-badal.nilawar@intel.com>
- <at9HoRyZmOwUYiyK@black.igk.intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <at9HoRyZmOwUYiyK@black.igk.intel.com>
-X-ClientProxiedBy: MA5PR01CA0050.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d6::10) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
+ 2026 04:26:25 +0000
+Received: from SA3PR12MB598757.namprd12.prod.outlook.com
+ ([fe80::e206:100:5946:a777]) by SA3PR12MB598757.namprd12.prod.outlook.com
+ ([fe80::e206:100:5946:a777%5]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
+ 04:26:25 +0000
+Date: Tue, 27 Oct 2026 15:26:19 +1100
+From: Alistair Popple <apopple@nvidia.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-rdma@vger.kernel.org, media-ci@linuxtv.org
+Subject: Re: [PATCH 13/26] drm/xe/dma-buf: Use the SGT mapping type
+Message-ID: <auAk6hXyZbvBIrVO@nvdebian.thelocal>
+References: <20261026053623.202642-1-apopple@nvidia.com>
+ <20261026053623.202642-14-apopple@nvidia.com>
+ <sashiko-outbox-184673@kernel.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <sashiko-outbox-184673@kernel.org>
+X-ClientProxiedBy: SY5P300CA0055.AUSP300.PROD.OUTLOOK.COM
+ (2603:10c6:10:1fe::10) To SA3PR12MB598757.namprd12.prod.outlook.com
+ (2603:10b6:806:52d::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|PH8PR11MB8258:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1b110039-02c8-4d5b-bb9a-08df33e1d4be
+X-MS-TrafficTypeDiagnostic: SA3PR12MB598757:EE_|PH7PR12MB5686:EE_
+X-MS-Office365-Filtering-Correlation-Id: 67f16a8f-ad08-490f-2818-08df33e27654
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|23010399003|8096899003|11063799006|4143699003|56012099006|261021121427099003|261022113327099003|261022105027099003|261009223027099003|10067099003|22082099003|18002099003|6133799003|261026140227099003|3023799007;
-X-Microsoft-Antispam-Message-Info: pUCgrc0DR/BTmkbxb+fwllp1Sj4mN44G35Zq8cBB06q2fubjxGiRzMtzqdEPJrswYAfPLqW5K1C7DHnYhJokCc2ze2f+niTMvFwh+u0F6AvICVZhkMnkUjU+FsSPCJwAT4+AMH07wIqrGtwjsZ+XPB+F/Aa6jJ6gW6ffvfr5DOlWMhK8rrN7cv80uVdz8dCh+/clvbTNh5CRnFs9oiFNkhUxJrGj/mZnOfhz7NKbn7pORlYilL9TRq9S6xJshmhCrsjUVaW/SrFahC3VhLqIF7BRsEnVMaDLqKXlVYQFHvOy006DH3Sj5amCzc1Q+Gka78FpasDbeNXaatxbAK8+47MOaa3WAo8zdvPaqosd2LfgZAa4+ujHZkIKdUU6OyGaGgXoZAebomC0Vy9n/25AjoE2X4flKy7aHF9aaEmbD+qfZEvJargqQHhrgvipPhDEU2VMoHH0jnuA9ZAu+pJx1MiU+c2RaGFMlp0d6KiViLWJlSUYwKfT3r611rIGF3BG7fpshnIaOPoyFpeCPD4KQOZwzpIvIWDEuboFq8dKK+joPYuTwlA2kKF/5ERtoRnIsqg1u8iEP2WyWQK10ojNAPsNgloGED2x8SSiFNbSoHWgeuHCga3b9K3VlkDYPh5+wFYi+aybC4nvXMNAUi4aR/ZgMkJLkN7MtNzFQWZmXs0=
+ ARA:13230040|376014|23010399003|1800799024|366016|261009223027099003|261022105027099003|261021121427099003|261022075727099003|10067099003|56012099006|261026121527099003|22082099003|18002099003|4143699003|5023799004|11063799006|261026140227099003;
+X-Microsoft-Antispam-Message-Info: XDfB9HMP0DT9bTgHf2alQEp0lpK6Jiwk051RSu+fYbRC5G9OaL6dxhI9vb1tFl9E2X/X6gw1p0alwzoj2mDlGQBKgzUf6uqApPwOAv+A6g8ImPzhqUoA1QbZHTWyc/XIGreRUJKqTx97sF69FlUhQ3cfPmIO4bVBGHpBqjEwiD6Cvv3mHaJkaAQc29ECHrdnNFZHL8bGk8ib6M3QKQtG66QWJ72JRmw3sEUMi3uMmCJJqHUFgDMn6sENPGQ2lqhpNsXC5xdaWiexbGDwE7q6BEFraOuDQeRh4qcp+vtqY+TLxeRc3MdX77sJdQAjIS6iXamEEHWnxc1nXll3P2aBA8D2Uvjzxv4QakEDWXtlG6NzIL5FWOjSsqB3JI3tYILOBdRnaCe8lV9nR6TnZaAohNPmAde+Gdzu9q+JIPkifSb09/4dL8e+/RFYAylFYF75VvSKW4xqhXL84JXkeoTj3LhCALGsrcJkvyY02pe07UuXowVIZvJywJnMbq1DdPIWgG9RhJlmlaf+OZuJlzLd1HkN6CR9mWFEPLhImTz3xa3cOtYPOnIIocN7svHnJ5plyke2D0jJOcfYSozZ5hGj9CleGStcsngUmRC7J3u7Bz+nZgQLMLoYDrjkYVk2e7a5IjozAp7XEC7KOf22n2NAA3OFPlRWmTsZGkFY2fb4nn4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(8096899003)(11063799006)(4143699003)(56012099006)(261021121427099003)(261022113327099003)(261022105027099003)(261009223027099003)(10067099003)(22082099003)(18002099003)(6133799003)(261026140227099003)(3023799007);
+ IPV:NLI; SFV:NSPM; H:SA3PR12MB598757.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(261009223027099003)(261022105027099003)(261021121427099003)(261022075727099003)(10067099003)(56012099006)(261026121527099003)(22082099003)(18002099003)(4143699003)(5023799004)(11063799006)(261026140227099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VlRjdUVRQlR0cEpUYkN3dnVMQ3VqQkJuMDRLRnBEc0dua21aRmNhUGZJWU9k?=
- =?utf-8?B?Z3NwTVprUEk5YzdUbVMrMFQyM1ZyNVZYVjdvamhxTktEbHR1aU9vSnc5UjYw?=
- =?utf-8?B?UXBseTVqVXNadDBKM2ZZT3JnNkM4WU9Tdkp5T3BocTdmVjBTSldhejlMUVBS?=
- =?utf-8?B?UXE0bnlaZkVsZzhvS09JMlRxZzUyUlJ0eWJwcE00djBZOWhHRmE1bUo2SlA0?=
- =?utf-8?B?UmZIOEplaTdIcjlDQ0hnNEliZWIyNWNWWEdxaGlTWlFyWi9mZDFRNy9VTGRu?=
- =?utf-8?B?S05pSG0yV21KT0FlNUpLOTZiTmZKY25jeEM0dGtuTUlzQTdQSXlzQ24wUEtC?=
- =?utf-8?B?L2hteGpCY0lLMklFZGRFUVpia3hCa2sxRFRrdWFPaDdQRG9wL3gyNFF5alZz?=
- =?utf-8?B?WEMxRjY3T04zenF5ZW9KTlAyWHlXVC80U3R0M3BDYmU2bVdXMHRTODJuRXFm?=
- =?utf-8?B?blRodGRMVXA2VlFYV1dDOXg4Tk1meWxraVQ0allqM05OQXNKUGpHSzU2Vm5I?=
- =?utf-8?B?c3BFRUlMbmgzYTM0a1JRQ3ZPV3UrTjhWQzkrellrWDBpSzI3dEtaaWJ4Zkxo?=
- =?utf-8?B?a3VCaVdXYzhuYVlMWG9DU0VMRkoxRnltblpmOWVGMXZDVzBWRGFMNzJSOW0z?=
- =?utf-8?B?a3YvbElCZ2tBMDVrZDN2Q2o5Y1p3RUlpR3hCS2FZenJTSHRRczROdW5CbDdL?=
- =?utf-8?B?aHFDTE5naGVhL2dxZk9TQmJ0WitOK3Zrb1FwZmExUXNRby9pM3kzWjlmNXhZ?=
- =?utf-8?B?SGZIcnVpVFBobjNtMXp0RnB6YzhEMFFhenYvSnhXZXU4TEpuN2FtbUkzZ2hV?=
- =?utf-8?B?T0hQRTY4akhheS96ZHpzVjF2TCtweWw5MEJlelVtcklRYmhhcm8yUG9VMWlF?=
- =?utf-8?B?d3RmdTNLM21TOWlEUndIcFpRTzB2cnF2S1ZyMW5pUGFwV3pyK0NVVFlpNGZk?=
- =?utf-8?B?bjRMRUhiZ1ZhY3RycXdPMUUyZWdRblFNQlpKMGxiQUw0aDlLMXBPNGJZN3Zv?=
- =?utf-8?B?K1hEWmpnVWxwbWQ2VVpsRGphMDdKdGh3UExsT3V3eWNkRjRNZzczT29tQ1hw?=
- =?utf-8?B?S3QyOEc1c2VXeWNpUDN2ZGJORi9hVUhYbmFWeUZPYlFGbjhJME5HdytyeFZ2?=
- =?utf-8?B?dGtSbXhQQ043dkxlM1Myczl5dXpkdWxCa1lPOFFtakkxOW5Ma1ZQSVA2L1Iz?=
- =?utf-8?B?OG44cmhvYmo3ZUNGeVhlOUluREhRdENkVUVxTitXUHppdHpjdTNSS2NERUtR?=
- =?utf-8?B?M3c3OXFKTm1KSWx6dmNTdDg3Z1dYNTlRWUk3cFlLclc2RksrcUZYYzA3VFRK?=
- =?utf-8?B?aHRBVEFsUHJFVjVGeUpUZWk0NFd2V2JrUHNTYUxxSHV0aXVGU0Z3NTRCZmtp?=
- =?utf-8?B?bUh2bFRUejdoVEtpbDhVei8rbUFuVWJWWnYzank1N0c0Ny90KzdTUDVnWitX?=
- =?utf-8?B?ck1rcnYyZHNVRWlIbXQ3NlZ0eGwxMW1LOFJwWHNQOUpDODcxRkhBcCtZVUkx?=
- =?utf-8?B?Tlg2ejNVTVFFZWFaN0VaU3RKS2hGOWg1MFVHTWZLQjNuVW01RVV2VTRqYVBI?=
- =?utf-8?B?T1ZUTXZGTTVzQlUyZUlEVkhIcTJ1NkZHY2s2RDZyNDdpZEVlditFcU14Vncv?=
- =?utf-8?B?Q1daVnVGR0JLNVRYazJJclFKUlYyUTUzYnc5VUdoVTgyanlsRXJJVmRpU0FX?=
- =?utf-8?B?anFPQUErNXFOL1lKakhVWGFYelgwZGFsMXE5NUExUjBxWk5NQm1WRmprSGM1?=
- =?utf-8?B?a1dHODB0b3JiSE9XcEcrNE9aQnpoYWJ1TXlwM2xlZThMeitOZk5lUTN3dkE1?=
- =?utf-8?B?d3lLWDNheVk2Nkc1d1FBZ3FjVmxqa3hPUFRSRFpuQnEwbGR0V3RtZ1ZLL0hC?=
- =?utf-8?B?MThaQ0VkYWw1d2J6K1c2eDhxRHUxamZrQVUvVGFQTHBnWElFeWhqb0FtQUd6?=
- =?utf-8?B?M2wzaFBmL1FoMkVmSHU4UHd2SFJtTEQwYlVrRnZxU295ZGJ6OHJ4WXQzQ3pC?=
- =?utf-8?B?dkNTUVY1NzVZZDU4VVRZU0FpQnJLZGRtbDhlQ0NSeVV0S043N0oxbElUcVQv?=
- =?utf-8?B?RXhVckNJVTBselQ1ZmdYVFd0UGdpTVdiUjlnVUtJZ0VuWllyVEpLd3RHMjla?=
- =?utf-8?B?cUNrRldHNk1DbHM4OFIrUHFNMFl4N0N1U3BNdEJXRk01Sm9Ha0Era0lTMWFk?=
- =?utf-8?B?elVJOXhWbHVBYnMvN2tzVWNmR0V6eHVuN05LNnJZQ0IwTTBaN3RsQXNrU0Rr?=
- =?utf-8?B?dThmcHZJM05IZTF4MFprY3lqT3ZUd2VpazgyNEhFN3NMb0JiRHZpQzhDQ1lR?=
- =?utf-8?B?RjlHcXhZWVcwdkNGUWJoVzVOOWRyN1JWbHQyWWgxSllOZmplM21ndz09?=
-X-Exchange-RoutingPolicyChecked: c6Bu0+KuJE9TH3RHISPsPHrkrT/ZrIDT0Qwc4f9dJhbHj9o3tNtxlbuJ57pZNKc3jXQAyetvcRKkoH/dgfmlv2KHXaQfJcfO/oKGlKaRJLecXspNRt5jBZVo+V5+eJn4JXnTTlCchKrikoXSQ0hlBU39Bft/Q5ycAWMnLiVDj60F4aSpfgs07V0pOkI0lzfKWilbD9JWw4F9Ik0FcHcE5Q7snww91KB458+7L9fluJDRxm9VbiZd7B8hjmDsS6z1wTqOrGUPWYIDlnwtkDfaD1UZQqPNUNq5uegZqPEYJvshQW2U+1G67JwxE9/WCXb9pe8wd1SBPwQrUeqds0b/NQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b110039-02c8-4d5b-bb9a-08df33e1d4be
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?drR95zOzWcji0YmO1mBqwOfMtDAqNrZvsN3LM2gSwEwJl7wchGX0BguasA?=
+ =?iso-8859-1?Q?1SncZNPKAov8Jtn2aD555MFK2KHrh4+zuL1vY4VtXZ+H22dZ6ylGRFTfub?=
+ =?iso-8859-1?Q?mgBcC7LNsEVCkGZ3FyJJe8OJ6IB22YXzY5mVXquCcWKEVR3rzXoidBQuuH?=
+ =?iso-8859-1?Q?wy0lhG6MS/Kut7FYDBwVw13Q00PwaSF28y0dRteN/tdzoIM4YwRpa97D9q?=
+ =?iso-8859-1?Q?fO1WY2W1zKpa30Fg1XaM3E8u4H0592Ei6bGv+yWxiyN39aJWQnBRogvF8e?=
+ =?iso-8859-1?Q?VMEiculYGI92zSO8FB9fsDAAqbC5KNGhNmc+2x/VvFaE3f+T1hNfUXE7zj?=
+ =?iso-8859-1?Q?vNsvnpGjZUTsR55IqYuI/mVMcvNbxCPH8nFTZUDRncI/KXHyIXj64JVS5q?=
+ =?iso-8859-1?Q?l9QKq7614Zwrc6yZCM3bHFERqHxbLfkWNaqaLsj915+moJw/brGJwalqmg?=
+ =?iso-8859-1?Q?tEimRGm4UyqYWwQ2BeWAQL6X/ABmQYQmMXsMtSQBRSSlg91A1CAuSf3KzS?=
+ =?iso-8859-1?Q?wbVcutcOuFwXdwLD6wNUOZxro/MkjSeMCX/zz8WsUMt34QvDWAbZM9+vf2?=
+ =?iso-8859-1?Q?1trH9xyHEIua3SdJ5cve8W9eF+Reg7U1JBQK97aFv3vl+8SnAtNsB27Mbk?=
+ =?iso-8859-1?Q?rb12bpGq+4y/dnQdwfnicQERSyIua8ZjuWzk3RXHZdg23ys+3Uo26+CBR9?=
+ =?iso-8859-1?Q?SyuANrEyfKkAcePd7KbTX7Q+aIxhBneNLg96iRr06LnT+OaWfwuRAQUjnY?=
+ =?iso-8859-1?Q?OjZd+Jp/SDGc+7C/Ju50fb5z1he+dcOmF+lfq2+PJL3we199vYVWhBDxjb?=
+ =?iso-8859-1?Q?xNwgqdP167PgGaXMgfAJhAYWBWJ4U1v+DbPsTM8lAHq/HvrLYNC/h2BeOF?=
+ =?iso-8859-1?Q?yyNoS+kdrP8JXtgdU4WauQWRozTeaybkOYhcFazdIiCQokMDmU+DqaSpHI?=
+ =?iso-8859-1?Q?NqM8L4yFbL3qLYsgHqxGGewdQ17nRkuShZZr7WSfJGFCZCyl8XjEXoySBc?=
+ =?iso-8859-1?Q?Z+1U607o4JYjoQwqqAInW2tfzr9FJqtJfJKLK48xjXBE2ExPJM0zkB8bsN?=
+ =?iso-8859-1?Q?/8qX0q6gKTeIIfArc5kbV8s6pRapeBSVMXv4KPSbrkCwDmYAPAKU46cEj5?=
+ =?iso-8859-1?Q?oQbxmUIKa4bIcTQbADLIVLXH1fwuMWIm3h1r7gSyj40Z0lysTnMTvGM7FA?=
+ =?iso-8859-1?Q?dBodJxI1u4By8Rzl8WsNjnGnPii8XTXk4XTe6PGTNpcMgEG/lgd4kjIUkb?=
+ =?iso-8859-1?Q?ULATrjDUD5X9GFRa7V+UyudBqRs+TdQGQFsmAdIlG+KqaBFm4d4OCjXKCF?=
+ =?iso-8859-1?Q?dEgfGZRQVIRSpTQ6oaqLRCGW1TAXlbiDHXXrk9O4kNmka1oEy4hqjLGmro?=
+ =?iso-8859-1?Q?jM0PEeVX1yi0g09MNoq+6i/88sjfDpMo85p2uMVM59G9bmBiOLU57AuZik?=
+ =?iso-8859-1?Q?5T4fxbLG6RWXwGx0XXbyFARp9h4daNopfOnbp9sy8GI9/K43voBNuZkbI9?=
+ =?iso-8859-1?Q?q6UgJWBrMxxrlxR3vSCSOdRs0toaMDQEhUUu7CnZqltWj9qnCA5DDehphT?=
+ =?iso-8859-1?Q?0Cnuz6hqydwgvqXx2UYlJ3znGBH9lROJySjTK59TASVzYYRZtAgKwOUIjV?=
+ =?iso-8859-1?Q?iIBmpTuvhDT8hZPCxHifvZGt9V2iCThwgqsu8IDcNiq1urE/v3EFk/FUI4?=
+ =?iso-8859-1?Q?+TdMKufhLtTMRNJIPlfqTDX3QRpeaIPsQ1mvgAsZFCvy0FUqhJMtit6TzF?=
+ =?iso-8859-1?Q?T4YrI69wMlZe+XTVtyVsIcuCcNaKlr41WqgzkOnHkamJx4ChuKwqJRqIL1?=
+ =?iso-8859-1?Q?LxMxK3bFoA=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 67f16a8f-ad08-490f-2818-08df33e27654
+X-MS-Exchange-CrossTenant-AuthSource: SA3PR12MB598757.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 04:21:54.0615 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 04:26:25.1283 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: q9dTS0dDZwoODPdyY1XsvZn/TxmwtgH0yliTp3pb10TBQuRv6pOobNxgyyzUReAX9d5PCFPmq/c/e0CO2G1dMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8258
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: LbZ0/6uHUqBc/iUm8OUgv9oMDcFD43SfdPQC8GmeSVc1oOyr1Ml1jXEjORPpN5JTSd8rAerS5l3tFaczi5+nrg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5686
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,147 +122,161 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-4.6 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	HTML_MESSAGE,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---------------n02uf0TJz2F0qaCO25xggHNf
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+On 2026-10-26 at 19:34 +1100, sashiko-bot@kernel.org wrote...
+> Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+> - [Medium] drm/xe/dma-buf: xe_dma_buf_match_mapping() changes attach error to -EINVAL
 
+I don't have access to Xe compatible hardware which is required to run
+the kunit test, but this comment seems reasonable. Will fix by having
+dma_buf_match_mapping() return -EOPNOTSUPP in the first patch.
 
-On 26-10-2026 17:59, Raag Jadav wrote:
-> On Fri, Oct 23, 2026 at 10:04:28AM +0530, Badal Nilawar wrote:
->> Add the xe_error_cper tracepoint and emit each assembled CPER record
->> through it. Besides the raw record, the event carries the device name,
->> platform ID, FRU ID, severity and the Intel error section header, so
->> tools can pick up the records from the trace buffer.
+> - [Medium] drm/xe: verbose pci_p2pdma_distance() check in xe_dma_buf_match_mapping()
+
+This seems valid - fix is to make pci_p2pdma_distance() non-verbose when
+introducing dma_buf_sgt_match() in "dma-buf: Add the SGT DMA mapping type".
+
+Will fix this for v2.
+
+ - Alistair
+
+> --
+> 
+> commit d3c9a19b80db02efc0ef1143d9205eb0a3c2194e
+> Author: Jason Gunthorpe <jgg@ziepe.ca>
+> 
+> drm/xe/dma-buf: Use the SGT mapping type
+> 
+> This commit converts the Xe dma-buf exporter to use the new SGT mapping type
+> infrastructure by providing P2P and non-P2P SGT exporter matches in
+> xe_dma_buf_match_mapping() and querying attachment mapping helpers during pin,
+> map, and unmap.
+> 
+> > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > index bf0728838ead5..3ca198da6ee87 100644
+> > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> > @@ -27,13 +27,6 @@ static int xe_dma_buf_attach(struct dma_buf *dmabuf,
+> >  {
+> >  	struct drm_gem_object *obj = attach->dmabuf->priv;
+> >  
+> > -	if (attach->peer2peer &&
+> > -	    pci_p2pdma_distance(to_pci_dev(obj->dev->dev), attach->dev, false) < 0)
+> > -		attach->peer2peer = false;
+> > -
+> > -	if (!attach->peer2peer && !xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
+> > -		return -EOPNOTSUPP;
+> > -
+> >  	xe_pm_runtime_get(to_xe_device(obj->dev));
+> >  	return 0;
+> >  }
+> 
+> [ ... ]
+> 
+> > @@ -205,18 +205,38 @@ static void xe_dma_buf_release(struct dma_buf *dmabuf)
+> >  	drm_gem_dmabuf_release(dmabuf);
+> >  }
+> >  
+> > +static const struct dma_buf_mapping_sgt_exp_ops xe_dma_buf_sgt_ops = {
+> > +	.map_dma_buf = xe_dma_buf_map,
+> > +	.unmap_dma_buf = xe_dma_buf_unmap,
+> > +};
+> > +
+> > +static int xe_dma_buf_match_mapping(struct dma_buf_match_args *args)
+> > +{
+> > +	struct drm_gem_object *obj = args->dmabuf->priv;
+> > +	struct dma_buf_mapping_match sgt_match[2];
+> > +	unsigned int num_match = 0;
+> > +
+> > +	sgt_match[num_match++] = DMA_BUF_EMAPPING_SGT_P2P(
+> > +		&xe_dma_buf_sgt_ops, to_pci_dev(obj->dev->dev));
+> 
+> [Severity: Medium]
+> Will offering DMA_BUF_EMAPPING_SGT_P2P() unconditionally first cause spurious
+> pci_warn() and dev_warn() messages in dmesg when attaching migratable or
+> system-memory-only BOs on systems without PCIe P2P support?
+> 
+> Previously, xe_dma_buf_attach() called pci_p2pdma_distance() with verbose set
+> to false because P2P is optional when a BO resides in or can migrate to
+> XE_PL_TT (similar to commit d0fa84f17477 ("drm/amdgpu: Disable verbose for p2p
+> dist calc")).
+> 
+> With this change, dma_buf_match_mapping() evaluates sgt_match[0] first via
+> dma_buf_sgt_match(), which calls pci_p2pdma_distance() with verbose set to
+> true:
+> 
+> drivers/dma-buf/dma-buf-mapping.c:dma_buf_sgt_match() {
+> 	if (exp->sgt_data.exporter_requires_p2p ==
+> 	    DMA_SGT_EXPORTER_REQUIRES_P2P_DISTANCE) {
+> 		if (!imp->sgt_data.importer_allows_p2p)
+> 			return -EOPNOTSUPP;
+> 		if (pci_p2pdma_distance(exp->sgt_data.exporting_p2p_device,
+> 					imp->sgt_data.importing_dma_device,
+> 					true) < 0)
+> 			return -EOPNOTSUPP;
+> 	}
+> }
+> 
+> Whenever a P2P-capable importer attaches to an exported Xe dma-buf on a
+> platform where P2P is unavailable (such as a non-PCI importer, non-whitelisted
+> host bridge, or ACS redirect on PCIe switches), calc_map_type_and_dist() will
+> log a warning even though sgt_match[1] (DMA_BUF_EMAPPING_SGT) immediately
+> succeeds using system memory, or even when the BO was created as
+> system-memory-only.
+> 
+> > +
+> > +	if (xe_bo_can_migrate(gem_to_xe_bo(obj), XE_PL_TT))
+> > +		sgt_match[num_match++] =
+> > +			DMA_BUF_EMAPPING_SGT(&xe_dma_buf_sgt_ops);
+> > +
+> > +	return dma_buf_match_mapping(args, sgt_match, num_match);
+> > +}
+> 
+> [Severity: Medium]
+> Does replacing the check in xe_dma_buf_attach() with dma_buf_match_mapping()
+> change the attach error code from -EOPNOTSUPP to -EINVAL and break the Xe
+> dma-buf KUnit test suite?
+> 
+> When exporting a non-migratable VRAM-only BO (where xe_bo_can_migrate(bo,
+> XE_PL_TT) is false) and attaching or importing it from an importer that does
+> not support P2P (or where pci_p2pdma_distance() < 0), xe_dma_buf_attach()
+> previously returned -EOPNOTSUPP.
+> 
+> Now, xe_dma_buf_match_mapping() only populates sgt_match[0] with
+> DMA_BUF_EMAPPING_SGT_P2P() and calls dma_buf_match_mapping(). In
+> drivers/dma-buf/dma-buf-mapping.c:dma_buf_match_mapping(), -EOPNOTSUPP from
+> exp->type->match() is skipped, and -EINVAL is returned when no matches remain:
+> 
+> drivers/dma-buf/dma-buf-mapping.c:dma_buf_match_mapping() {
+> 			if (exp->type->match) {
+> 				ret = exp->type->match(args->dmabuf, exp, imp);
+> 				if (ret == -EOPNOTSUPP)
+> 					continue;
+> 				if (ret != 0)
+> 					return ret;
+> 			}
 > ...
->
->> + * Example trace output::
->> + *
->> + *   xe_error_cper: dev=0000:03:00.0 severity=2
->> + *     platform_id=9046afe5-9041-5124-8614-92550d9e9da6
->> + *     fru_id=91befe38-2f61-3d7b-0000-000000000000
->> + *     intel_err_hdr_raw=
-> 'intel_hdr_raw'
-
-The specs uses intel_err_hdr_raw in the example trace output, so I kept 
-the same naming here for consistency.
-
-Thanks,
-
-Badal
-
->
->> + *       01 02 00 18 00 00 00 01 00 00 00 00 64 77 51 14 ...
->> + *     cper_len=1772
->> + *     cper_raw=
->> + *       43 50 45 52 00 01 ff ff ff ff 01 00 02 00 00 00 ...
-> ...
->
->> +	    TP_printk("dev=%s severity=%d platform_id=%pUl fru_id=%pUl intel_err_hdr_raw=%s cper_len=%u cper_raw=%s",
-> Ditto.
->
-> Raag
->
->> +		      __get_str(dev), __entry->sev,
->> +		      __entry->platform_id, __entry->fru_id,
->> +		      __print_hex(__entry->ihdr_raw,
->> +				  sizeof(struct xe_cper_intel_hdr)),
->> +		      __entry->cper_len,
->> +		      __print_hex(__get_dynamic_array(cper),
->> +				  __entry->cper_len))
---------------n02uf0TJz2F0qaCO25xggHNf
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 26-10-2026 17:59, Raag Jadav wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:at9HoRyZmOwUYiyK@black.igk.intel.com">
-      <pre wrap="" class="moz-quote-pre">On Fri, Oct 23, 2026 at 10:04:28AM +0530, Badal Nilawar wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Add the xe_error_cper tracepoint and emit each assembled CPER record
-through it. Besides the raw record, the event carries the device name,
-platform ID, FRU ID, severity and the Intel error section header, so
-tools can pick up the records from the trace buffer.
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-...
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+ * Example trace output::
-+ *
-+ *   xe_error_cper: dev=0000:03:00.0 severity=2
-+ *     platform_id=9046afe5-9041-5124-8614-92550d9e9da6
-+ *     fru_id=91befe38-2f61-3d7b-0000-000000000000
-+ *     intel_err_hdr_raw=
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-'intel_hdr_raw'</pre>
-    </blockquote>
-    <p>
-      <style>a {
-    text-decoration: none;
-    color: #464feb;
-}tr th, tr td {
-    border: 1px solid #e6e6e6;
-}tr th {
-    background-color: #f5f5f5;
-}</style>The specs uses intel_err_hdr_raw in the example trace output,
-      so I kept the same naming here for consistency.&nbsp;</p>
-    <p>Thanks,</p>
-    <p>Badal</p>
-    <blockquote type="cite" cite="mid:at9HoRyZmOwUYiyK@black.igk.intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+ *       01 02 00 18 00 00 00 01 00 00 00 00 64 77 51 14 ...
-+ *     cper_len=1772
-+ *     cper_raw=
-+ *       43 50 45 52 00 01 ff ff ff ff 01 00 02 00 00 00 ...
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-...
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+	    TP_printk(&quot;dev=%s severity=%d platform_id=%pUl fru_id=%pUl intel_err_hdr_raw=%s cper_len=%u cper_raw=%s&quot;,
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Ditto.
-
-Raag
-
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">+		      __get_str(dev), __entry-&gt;sev,
-+		      __entry-&gt;platform_id, __entry-&gt;fru_id,
-+		      __print_hex(__entry-&gt;ihdr_raw,
-+				  sizeof(struct xe_cper_intel_hdr)),
-+		      __entry-&gt;cper_len,
-+		      __print_hex(__get_dynamic_array(cper),
-+				  __entry-&gt;cper_len))
-</pre>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------n02uf0TJz2F0qaCO25xggHNf--
+> 	if (!nr)
+> 		return -EINVAL;
+> }
+> 
+> In drivers/gpu/drm/xe/tests/xe_dma_buf.c:xe_test_dmabuf_import_same_driver(),
+> the KUnit test explicitly checks for -EOPNOTSUPP on import failure of a
+> non-migratable VRAM BO without P2P:
+> 
+> 	} else if (PTR_ERR(import) != -EOPNOTSUPP) {
+> 		/* Unexpected error code. */
+> 		KUNIT_FAIL(test,
+> 			   "xe_gem_prime_import failed with the wrong err=%ld\n",
+> 			   PTR_ERR(import));
+> 
+> Should this path still return -EOPNOTSUPP when no mapping matches?
+> 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20261026053623.202642-1-apopple@nvidia.com?part=13
