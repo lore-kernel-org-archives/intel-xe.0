@@ -2,41 +2,151 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156B5606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 19:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C855606A31A
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Oct 2026 19:02:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kEdY9p3q
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nf8du6o3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB69210E494;
-	Tue, 27 Oct 2026 19:00:14 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49D6610F7A6
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 19:00:08 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id B819E60142;
- Tue, 27 Oct 2026 19:00:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4556D1F01825;
- Tue, 27 Oct 2026 19:00:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793127607;
- bh=0IRtt+stidi2nkZPLJJ8twWbwS8976KKwnqTQLKyvCk=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=kEdY9p3qKLj4em56gEkBP7V4r3ImIpfJKahg9y9tlN3M9CkKew/3leI/Rlf02U1dB
- y7BeVBN71fk+csEhyx78MXUQNPdBpGpsJv38xSl4WQVRB2SuUyOEJQo2eXkujOmaI6
- 6rKVKFs6nqIisuXQTNlDKDsA8lXI3m4MyAm0csUjJGbV2j39T5tCJdwwHeOD2Sh0n9
- ifUpiNEDqrYNSvCV9JhGfaweKEVszaRVd0DdWrzKRk3a6vQy5tJLkAgyDHWPSXntGy
- QWC4+iWUdbKVOOSLZ26HV4SF5SIR76itIYuEV0Eakvu+WqMukRq0FUmDCSeX8lUS/v
- w+v1nS4lL1Ccg==
-Message-ID: <sashiko-outbox-187045@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 5/5] drm/xe: Add a minimum age gate to the shrinker
-To: "Matthew Brost" <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261027183638.1031299-6-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C15910E494;
+	Tue, 27 Oct 2026 19:02:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7A9D10E494
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Oct 2026 19:02:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793127730; x=1824663730;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=GQtpUIyfxF4cdDnpoXt9OJnp9sYfmSGqZJY5llRF6Lk=;
+ b=nf8du6o3GD/YIPsTiSJ0hVb8bmEptElZ2hEnFU6MXFpT8/dLsKaRtkxg
+ YaE7bRODUUHN/5tNXClnj2awmbMpwLfDOc9pKvlO3ZzEc3x0SAWDYMp4b
+ FFxcJn9EZFg5IPFMP+tL7JGXnA2SyNeoGQkMFZWfKSeaKy9eXKbpKQpUk
+ iZO9qEftlIeJ4xu9in5Pw3RZnKU6iG9F8EkGTXyIJqBnvCripoWaHwh/T
+ AFJNX2thuiHCKrUHVpoLTv0esKcLY3ftzbQHXo240Oje8jYoK5mOVaj2M
+ PCJPxwFwUGyqwb0xdMZ9yD5Hp1knjJPwEvMLdDrkq5H27WSgzrScs2Nam A==;
+X-CSE-ConnectionGUID: qsp1l5YTTmqmzh2FmatclQ==
+X-CSE-MsgGUID: VJlkkHaAShCng25LroO0Pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1733333"
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="1733333"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 12:01:40 -0700
+X-CSE-ConnectionGUID: wcTSpST9Q76julGpjuTtcg==
+X-CSE-MsgGUID: J2Px0Uu1RiuHXOngETQEWg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,181,1787036400"; 
+   d="scan'208";a="4722809"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2026 12:01:39 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 27 Oct 2026 12:01:39 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49 via Frontend Transport; Tue, 27 Oct 2026 12:01:39 -0700
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.55)
+ by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.49; Tue, 27 Oct 2026 12:01:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KJmPEvuKYKs8689buLlJfgWFTpC1ODnIEU7mYZtM0eExRiJmKb9glX/62tsonw4+K/W/Ve9bpo72qa4rv0FHN3LWFM7lo03b/J4jbK/mErsoRfMHjVSs5155q1ubZWRL/A3WsudOkTKtvQLB8lgQOIvR3EKbWDgi6YPo40hIA9VX7ERhM7wF5OsQaNWhFPXj0+FNU+rUKjE9CkxSTcS7Ekn8sJkSpX4+UbMnVbfOFoi3Eu6/NxBc/ldglWBbyCOzIKoh551E2uVmmqboxf8/AqCfo+78Fm5eq798o8cqbi2NHa3HebSju//RixKQraeK55aFVhrI0Yk0DXxA4kb3Xg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xB/pZ7OywTQ/zlUXtdjLffwHRgJXj0A5Ct9WydnPm2A=;
+ b=nO2t2UJuoCIIMloGK0PFEgGK0VLT6a5KlOUaLAcmpeJm+Ekg1tv/SML7+GdMMlgAYkuva4sOtEf7ozKAVDZTCmVMv2dlZA3riUJmfyoj6K//ZuPUjlI+kJW+VpkiUh6kXugmWrIEXf211TafhS8nQQ++EIgITjyqBsSmumuyswoR36F39Zjmys6NZELiqAvalZMDEvFTJqrRLReb0EcXQ3JzEGVP73n9tzPsqB9Ob0L5SuY5IZDwJC7w/KxfPeoVzixJgPZNaZVBlC7K10ZN603SSndAhliucwAQBu7RX5HBKwhJEV6J8s+SOvb7t7UbZDXEfPzquxJuZrZLyCSc8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by PH0PR11MB7469.namprd11.prod.outlook.com (2603:10b6:510:286::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Tue, 27 Oct
+ 2026 19:01:35 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0546.021; Tue, 27 Oct 2026
+ 19:01:34 +0000
+Date: Tue, 27 Oct 2026 12:01:33 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: <sashiko-reviews@lists.linux.dev>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v4 3/5] drm/xe: Leave the VM bulk move on BO release, not
+ on GEM close
+Message-ID: <auD1DQSSOgXvtLgE@gsse-cloud1.jf.intel.com>
 References: <20261027183638.1031299-1-matthew.brost@intel.com>
- <20261027183638.1031299-6-matthew.brost@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 27 Oct 2026 19:00:06 +0000
+ <20261027183638.1031299-4-matthew.brost@intel.com>
+ <sashiko-outbox-187039@kernel.org>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <sashiko-outbox-187039@kernel.org>
+X-ClientProxiedBy: MW3PR05CA0027.namprd05.prod.outlook.com
+ (2603:10b6:303:2b::32) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|PH0PR11MB7469:EE_
+X-MS-Office365-Filtering-Correlation-Id: d08b0a8a-51ff-433f-3555-08df345cb889
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|23010399003|376014|1800799024|6133799003|18002099003|22082099003|261026121527099003|11063799006|56012099006|4143699003|261009221227099003|261021121427099003|10067099003|261021123027099003|261009223027099003|261022075727099003|261022105027099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: Znnp69WnkZw3giRsFW2NjCGlcI5qkX8qGONoGIOxhR5b2fAX1yWTAVPHcedEHBJPGoW5kYjhnNAOB/lgxIEgrOmtpP4JBbo2i50JiyrJXxechwMaDJabKrDqiGIHGXkPFvSA9qjvvKs1iBsXGcDDsJuWZLA6plOWsnnsM6DycwCpFx4viZ7ulKpJxtxGc7TgQs9AU0M7my1yW0LIz/f+HiOj/+DdGmGJiXlfztJxHFmhUP7PPC3mQfYik7u8SWPv7+Yr68zK6YvjZQrtA++GEqdxQl90o26aW60Vc+PzhRZVd9adQvX6JpOWqjNgbzFqKZ2WxeKWGTbM7Kc0Bil/uCd5uzPA+UJu7lLYqOSK+/PURMfqLNmLgH7/iGIy5v8aOgi0VD+ieW6dIyjrKTCtoJcmO2clUVaQ78T+B5fegzdt6Ugs+kLVIy14/ieVwj3HBB0QzEikchh1c6AOMFINs2gWyIXxcQmk+xIg9/4X8sSY8pTklZvPlkVAD9TyuWfwubKEPj29jpUMZ99ibfVxmjuavUemdyr0xfqGxZuZXSjQsZKHvzwwwACCMteOudPMhmQ9RkM5kuY2ivmcMM718vwjBQ6kA7c9xBqxdCIRAfk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(6133799003)(18002099003)(22082099003)(261026121527099003)(11063799006)(56012099006)(4143699003)(261009221227099003)(261021121427099003)(10067099003)(261021123027099003)(261009223027099003)(261022075727099003)(261022105027099003)(261026140227099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?DWFxeR5cFe5Dt7TXV0XTPLb6Ay8cRgAiHsxMONQPmtvcCYcWxVFj2uYi5z?=
+ =?iso-8859-1?Q?t1l41bPlLH6+JXnTaN6sSTofkqzEof0FNYLTs678NGzpav99GUBtaonPvy?=
+ =?iso-8859-1?Q?R8SfOGpD0RBINovrswuEeuFfVln6OJeKbz3dRqQ2f09dxAF4Fkp5pMAJen?=
+ =?iso-8859-1?Q?cgZuLfPKBV8P493ADAR7303wtbibpm+7vpqE2h1xXN8ODhZZLUnFWGrmhH?=
+ =?iso-8859-1?Q?+Gyyzxy4Cmc19Prk4irM0uCB41uxGp1yJC6EojvzTmU4Bkw11MAdEyWYK+?=
+ =?iso-8859-1?Q?S066w9sgtb5sVqlFwLrzI3MxzhRYbs0bIw82Csi7lPD0/L8yREdx0jcz+p?=
+ =?iso-8859-1?Q?u5tZj5HYZmkZbfLjMsmMPC1idu6x+1L+mRfjm698yNS7IjHVIJ/Ez0k5Rh?=
+ =?iso-8859-1?Q?ZBYOp84CHE8fIMiQAzXjfzCUuIN/xQSC6poX8g+YIGuQOQDThEvciDyaB1?=
+ =?iso-8859-1?Q?T5KZRQa3E24y0gjlnWagBZjX0fm4NA7G4cKoNPmoipQPFYWJv+3/ZxP+Mg?=
+ =?iso-8859-1?Q?u+LpirhaNoFnlvjdLp4dbsUozssI0NpzpjpDgloMnppJAreA0vLktRI6tB?=
+ =?iso-8859-1?Q?YZhuvNWHVWhRVJvcrQ56czJJ4WEhX467/V2l9xX+9rmfHkAtZK/vF3OA5r?=
+ =?iso-8859-1?Q?p5lhNQVHzBsFlDzqZ21JCAH1td6mSHyD2hRzJziCjOD15Abyfw+x768Pzi?=
+ =?iso-8859-1?Q?qWnwIGLUHl0yiZgsFy+UxkCPJnGKhjgnM9Q9CcJU6PwKFsQyAq9gDs8uLN?=
+ =?iso-8859-1?Q?hglrGww6F0+5GoX78nCdKCsFbfkNUNjGC5lbRXyT4cQwar5IJwjKugMhc6?=
+ =?iso-8859-1?Q?MndiwAjtb8dP9JzOeabK6zbFLWhi8HFwoG6YPELhBQx5wA5qcGmnED8cZp?=
+ =?iso-8859-1?Q?gqjWx+lTucUZrbF4MFKHNwpkaoTjVTBpJhNuJnaWTFWDQ/hZMK8tUM/+xd?=
+ =?iso-8859-1?Q?nhQZ9KZBmp9CaRC73ZR2nb/tx+TYsYlC582iGKbDFaRVgyWd0gR2Gs3Ify?=
+ =?iso-8859-1?Q?pjEWtmC1cpyuH3woKda7APGF0Kw2U5VUxCET4+sY2dtdpJiIYW0+eTsLlY?=
+ =?iso-8859-1?Q?/MUNkV5LMI05lOgm3wF4H59ZjDd03FIsVMuNTJbOPua1HIDkfSjWuJE2rb?=
+ =?iso-8859-1?Q?D5nk0VMwyeQuzj83jSnzeExaf5O8s0RzeloNowUBn2zoyNIfXXWJ/ItERC?=
+ =?iso-8859-1?Q?1diHjObtunil/BOnZiJgYl5fMtxEAYwNIFul4/LWJpJhmsqNAfELp//3TB?=
+ =?iso-8859-1?Q?S4/jDObXF3SCmu9r7xIEqbYJJGez9MU+wpbFUdjhMB79oRn3HRUmtKTzww?=
+ =?iso-8859-1?Q?jZyG0ZnLynUWOLZIc/M0SsGNW+o8twbqS2flIsN97BiKQnjfzMO/ZXUUI+?=
+ =?iso-8859-1?Q?xRuwTdD3uyqQwWw0Kcmd0+NL3xq7yJVWEksSgc3C4jC+LiMCRChrhbIj7h?=
+ =?iso-8859-1?Q?of0kW1Yk1uIsJqobtUTVh4G7lyyqJZzD/Kf8MH5kepjYNRQOgaS3D/nHhe?=
+ =?iso-8859-1?Q?X4mu/l+Qzd4lLXRjymY+kSkH0ebk/foilYiYmr2tQXQ3BXw+2moSqyhUkk?=
+ =?iso-8859-1?Q?TPnJI8vNihuPfX/2n64GPM2jDNB40goP5wTHQx1bVWSnvGjI+AEtsj4P9Y?=
+ =?iso-8859-1?Q?qDuhPaaGlgxZI7EfuyqlVoDJWTvTwGlzBC0GV07AYdX9ytxbEcShPev9Q/?=
+ =?iso-8859-1?Q?r1ps3E49JtPkDFuXKcA81YfverQHMy0wHsHQzsuNB8cHVSmDFVrOePYYcT?=
+ =?iso-8859-1?Q?HVVhRrLCOR6UAClA6cjDVDOqAMyiSb5Llx4kEdq1AdXI720O6yf6n/wz3M?=
+ =?iso-8859-1?Q?CqEQCXQOCDxjfmwD4Fo05PX2aeb8Ohc=3D?=
+X-Exchange-RoutingPolicyChecked: u8n24NA98673teAs/wzch7NZVYYMXufewVyyfQWO9JanXiIdUX9DClwit9gSX0jPOefE7DIyu2VXg2L+jz4zafSDicnFVndAF6keWyXjwUwUuvbjhZDP2ciflp+1HOLK8U89d0GLr+vu3HXpdx1jqC75ki2KojIG/j8bAz+OncnVg2zBv9uIB/VDq0HLRs1JXcuwSCac3QLYs1cEihPSzQgNvciz0+cMGtvBkk0r6IbHNvrd1CoRXhiD1zZK39PEvGD7WLVuDFf3tmQ1og/cuLy0qcM8u/Hl1ofZeHRvIHhAc+t5/QKHRqKDZ5nKWZREc3kY5lTOUufe2h8gMZD92g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d08b0a8a-51ff-433f-3555-08df345cb889
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Oct 2026 19:01:34.9290 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9YD6vthgwSKjTVvCFY1L9jMiMvsIvRgGWvwANNAMPNI28kTcQ1V03jyY9pXMcS6rL/g+4WZg218g2nrB70j3YQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7469
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,104 +156,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-11.1 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/xe: fault-mode VM-private BOs are not stamped or aged in xe_=
-vm_bump_lru()
---
+On Tue, Oct 27, 2026 at 06:47:57PM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] drm/xe: bulk_move detach in xe_ttm_bo_release_notify() violates TTM invariants
+> --
+> 
+> commit 5d85520c1e2e507cc032c4248bd48c50a734e710
+> Author: Matthew Brost <matthew.brost@intel.com>
+> 
+> drm/xe: Leave the VM bulk move on BO release, not on GEM close
+> 
+> This commit removes xe_gem_object_close() and moves the detachment of a
+> VM-private BO from its VM's LRU bulk move into xe_ttm_bo_release_notify()
+> so that BOs outliving their GEM handles remain part of the VM bulk move
+> until release.
+> 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index 42a6aa1a2e4a0..ba16b260dbcb7 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1869,6 +1869,14 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+> >  	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
+> >  		return;
+> >  
+> > +	/*
+> > +	 * Leave the VM's bulk move, which is only kept alive by the VM, and
+> > +	 * whose LRU position no longer says anything about a BO on its way
+> > +	 * out.
+> > +	 */
+> > +	if (ttm_bo->bulk_move)
+> > +		ttm_bo_set_bulk_move(ttm_bo, NULL);
+> 
+> [Severity: High]
 
-commit 169ae3636dd7a7f18b87dc4d22d9738909855961
-Author: Matthew Brost <matthew.brost@intel.com>
+Ugh, this is correct - this patch doesn't work but the code prior to
+this patch is also incorrect.
 
-drm/xe: Add a minimum age gate to the shrinker
+I'm not immediately spoting an obvisous solution, so I will just drop
+this patch for now.
 
-This commit adds a per-device shrinker_min_age_ms sysfs attribute and
-timestamps buffer objects on LRU updates so the shrinker avoids backing up
-recently used objects. Buffer objects in a VM's bulk move use the VM-wide
-timestamp updated in xe_vm_bump_lru(), while other buffer objects use their
-own timestamp updated in xe_bo_move() and xe_bo_bump_lru_locked().
+Matt
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index ba16b260dbcb7..59874f9a1ed7a 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1357,9 +1357,92 @@ static int xe_bo_move(struct ttm_buffer_object *tt=
-m_bo, bool evict,
-
-[ ... ]
-
-> +bool xe_bo_shrink_too_young(struct ttm_buffer_object *bo, unsigned long =
-min_age)
-> +{
-> +	struct xe_bo *xe_bo;
-> +	unsigned long stamp;
-> +
-> +	if (!min_age || bo->resource->mem_type =3D=3D XE_PL_SYSTEM ||
-> +	    !xe_bo_shrink_backup_candidate(bo))
-> +		return false;
-> +
-> +	xe_bo =3D ttm_to_xe_bo(bo);
-> +	if (bo->bulk_move && xe_bo->vm)
-> +		stamp =3D READ_ONCE(xe_bo->vm->lru_stamp);
-> +	else
-> +		stamp =3D READ_ONCE(xe_bo->lru_stamp);
-> +
-> +	return stamp && time_before(jiffies, stamp + min_age);
-> +}
-
-[Severity: Medium]
-Does this leave VM-private buffer objects in fault-mode VMs with a stale
-lru_stamp when they are faulted and rebound through xe_vm_bump_lru()?
-
-In drivers/gpu/drm/xe/xe_bo.c, __xe_bo_create_locked() initializes
-VM-private user buffer objects in fault-mode VMs with bo->vm set, resv set
-to xe_vm_resv(vm), and bulk_move set to NULL:
-
-drivers/gpu/drm/xe/xe_bo.c:__xe_bo_create_locked() {
-	...
-	bo =3D xe_bo_init_locked(xe, bo, tile, vm ? xe_vm_resv(vm) : NULL,
-			       vm && !xe_vm_in_fault_mode(vm) &&
-			       flags & XE_BO_FLAG_USER ?
-			       &vm->lru_bulk_move : NULL, size,
-			       cpu_caching, type, flags, NULL, exec);
-	...
-}
-
-When a GPU page fault is handled via
-xe_pagefault_handle_vma()->xe_pagefault_begin()->xe_vm_lock_vma(),
-drivers/gpu/drm/xe/xe_vm.c only adds the buffer object to drm_exec when
-bo->vm is NULL, since VM-private objects share xe_vm_obj(vm)'s reservation:
-
-drivers/gpu/drm/xe/xe_vm.c:xe_vm_lock_vma() {
-	...
-	err =3D drm_exec_lock_obj(exec, xe_vm_obj(vm));
-	if (!err && bo && !bo->vm)
-		err =3D drm_exec_lock_obj(exec, &bo->ttm.base);
-	...
-}
-
-When xe_pagefault_handle_vma() then calls xe_vm_bump_lru(vm, &exec),
-vm->lru_stamp is updated, but drm_exec_for_each_locked_object(exec, obj)
-only sees xe_vm_obj(vm) (which is skipped) and any external objects, so
-xe_bo_bump_lru_locked(bo) is never called for VM-private objects.
-
-When the shrinker later calls xe_bo_shrink_too_young(), bo->bulk_move is
-NULL for fault-mode VM-private objects, so it reads xe_bo->lru_stamp
-rather than xe_bo->vm->lru_stamp. If the object was already resident in
-XE_PL_TT when faulted (for example, on another tile or after VMA
-invalidation), won't its age remain stuck at the initial xe_bo_move()
-timestamp rather than reflecting the fault activity?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261027183638.1031=
-299-1-matthew.brost@intel.com?part=3D5
+> Does detaching from bulk_move in xe_ttm_bo_release_notify() happen too late
+> in the TTM teardown sequence?
+> 
+> When the final reference to a VM-private user BO on a non-fault-mode VM is
+> dropped via xe_gem_object_free() -> ttm_bo_fini() -> ttm_bo_put() ->
+> ttm_bo_release(), ttm_bo_release() checks bo->bulk_move and individualizes
+> bo->base.resv before invoking bdev->funcs->release_notify():
+> 
+> drivers/gpu/drm/ttm/ttm_bo.c:ttm_bo_release() {
+>     ...
+> 	WARN_ON_ONCE(bo->pin_count);
+> 	WARN_ON_ONCE(bo->bulk_move);
+> 
+> 	if (!bo->deleted) {
+> 		ret = ttm_bo_individualize_resv(bo);
+> 		if (ret) {
+> 			/* Last resort, if we fail to allocate memory for the
+> 			 * fences block for the BO to become idle
+> 			 */
+> 			dma_resv_wait_timeout(bo->base.resv,
+> 					      DMA_RESV_USAGE_BOOKKEEP, false,
+> 					      30 * HZ);
+> 		}
+> 
+> 		if (bdev->funcs->release_notify)
+> 			bdev->funcs->release_notify(bo);
+>     ...
+> }
+> 
+> Because bo->bulk_move is still set upon entering ttm_bo_release(), releasing
+> such a BO will immediately trigger WARN_ON_ONCE(bo->bulk_move).
+> 
+> In addition, ttm_bo_individualize_resv() switches bo->base.resv away from
+> xe_vm_resv(vm) to &bo->base._resv under bo->bdev->lru_lock and then drops
+> lru_lock while the BO's resource is still linked in vm->lru_bulk_move:
+> 
+> drivers/gpu/drm/ttm/ttm_bo.c:ttm_bo_individualize_resv() {
+>     ...
+> 		spin_lock(&bo->bdev->lru_lock);
+> 		bo->base.resv = &bo->base._resv;
+> 		spin_unlock(&bo->bdev->lru_lock);
+>     ...
+> }
+> 
+> In the window between ttm_bo_individualize_resv() and
+> ttm_bo_set_bulk_move(ttm_bo, NULL) in xe_ttm_bo_release_notify(), another
+> thread holding xe_vm_resv(vm) can access vm->lru_bulk_move while the dying
+> BO is still pos->first or pos->last:
+> 
+> - Calling xe_vm_bump_lru() -> ttm_lru_bulk_move_tail() will fail
+>   dma_resv_assert_held(pos->first->bo->base.resv) or
+>   dma_resv_assert_held(pos->last->bo->base.resv) in
+>   drivers/gpu/drm/ttm/ttm_resource.c:
+> 
+> drivers/gpu/drm/ttm/ttm_resource.c:ttm_lru_bulk_move_tail() {
+>     ...
+> 			lockdep_assert_held(&pos->first->bo->bdev->lru_lock);
+> 			dma_resv_assert_held(pos->first->bo->base.resv);
+> 			dma_resv_assert_held(pos->last->bo->base.resv);
+>     ...
+> }
+> 
+> - Adding or moving another resource in the same bucket via
+>   ttm_resource_add_bulk_move() -> ttm_lru_bulk_move_add() will trigger
+>   WARN_ON(pos->first->bo->base.resv != res->bo->base.resv):
+> 
+> drivers/gpu/drm/ttm/ttm_resource.c:ttm_lru_bulk_move_add() {
+>     ...
+> 	} else {
+> 		WARN_ON(pos->first->bo->base.resv != res->bo->base.resv);
+> 		ttm_lru_bulk_move_pos_tail(pos, res);
+> 	}
+> }
+> 
+> Conversely, if ttm_bo_individualize_resv() fails (for example, if
+> dma_resv_copy_fences() returns -ENOMEM), bo->base.resv remains
+> xe_vm_resv(vm), while xe_ttm_bo_lock_in_destructor() only trylocks
+> &ttm_bo->base._resv. Calling ttm_bo_set_bulk_move(ttm_bo, NULL) in
+> xe_ttm_bo_release_notify() will then fail dma_resv_assert_held(bo->base.resv)
+> in ttm_bo_set_bulk_move() and ttm_resource_is_swapped(), and mutate
+> vm->lru_bulk_move without holding xe_vm_resv(vm).
+> 
+> Should bulk_move be cleared before ttm_bo_release() runs (or before
+> ttm_bo_individualize_resv() detaches bo->base.resv from the VM reservation
+> object) while holding the VM reservation lock?
+> 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20261027183638.1031299-1-matthew.brost@intel.com?part=3
