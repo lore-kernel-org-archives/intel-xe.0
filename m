@@ -2,28 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E09B606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 12:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1C81606A327
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 12:21:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UnCp/ga0
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C68E010FBCF;
-	Wed, 28 Oct 2026 12:13:15 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A20ED10FBCF;
- Wed, 28 Oct 2026 12:13:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7602225746100463790=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64C9D10FBE5;
+	Wed, 28 Oct 2026 12:21:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2338C10FBE5;
+ Wed, 28 Oct 2026 12:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793190102; x=1824726102;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=t7JUaZEJfNWanWA4rdaDWi9dYzoJDfBRLKdKz5TOTxU=;
+ b=UnCp/ga0lodfob1mJs0o9EVHsIc8s2+e2z+0GUb47pHoJfsYunXtw9kg
+ Q1HCUYNEP5qwJJk8uE131pA1kbnepDpyiISQzfKa774iTPFLMIHt/Frvd
+ SPb3PxOg/wVqPEuN/7mxSVMjub4QYjnnClXdlDmu1+G/UE7i+ExQ5qfAU
+ fZZNFfTEMJUO4OmcUzMcIzh1wPMMGKlNqotUHzLrA8Qw2q/qQBrAZf1Cv
+ TGI3+8lcd7OAWOZHSwUcH1MUj1lW3NgU6Nj0Le62wzQsIMGW6sqWFaKhF
+ EVrbryLc3+ApupOQyQ1OAOtEid0/1hVcIS09FiLTt9omMe3p5ugcB7hL1 Q==;
+X-CSE-ConnectionGUID: tqc83vHXQqi8CLWQ073z3w==
+X-CSE-MsgGUID: hLpQZPAVQDGCF+KHjncWkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1939031"
+X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
+   d="scan'208";a="1939031"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 05:21:41 -0700
+X-CSE-ConnectionGUID: eIofGgE9Tc2VMItUIJnddw==
+X-CSE-MsgGUID: BX17nw/OQhKDJTivNGv4+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
+   d="scan'208";a="4838450"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 05:21:40 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, matthew.brost@intel.com,
+ himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
+ sanjay.kumar.yadav@intel.com
+Subject: [PATCH v2 0/4] drm/xe: Fix VM teardown and migration queue recovery
+Date: Wed, 28 Oct 2026 17:51:21 +0530
+Message-ID: <20261028122125.3772832-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Write_t?=
- =?utf-8?q?he_DIP_header_last_on_Xe2+_and_reset_VSC=5FSELECT?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xiao Lu" <xiaolu.xie@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Oct 2026 12:13:14 -0000
-Message-ID: <179318959465.81327.5039275784096440802@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261028112423.2445450-1-xiaolu.xie@intel.com>
-In-Reply-To: <20261028112423.2445450-1-xiaolu.xie@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,163 +62,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============7602225746100463790==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On BMG, terminating a process with Ctrl+C while GPU work is running
+under VRAM pressure can cause an RCS page fault followed by a migration
+queue timeout on BCS8. Recovery can then end in repeated timeouts and
+device wedging.
 
-== Series Details ==
+During file close, exec queues are killed asynchronously. VM teardown
+can remove their mappings before queue cleanup has finished, while
+the hardware may still access them.
 
-Series: drm/i915/display: Write the DIP header last on Xe2+ and reset VSC_SELECT
-URL   : https://patchwork.freedesktop.org/series/177020/
-State : success
+This series starts scheduling disable earlier, marks VMs as closing
+before queue cleanup, and keeps their mappings until the tracked
+queues have been freed. It also holds a device reference across final
+VM destruction.
 
-== Summary ==
+File close uses one five-second queue-wait budget across all VMs.
+If cleanup is still pending, VM teardown is deferred. VM destroy
+defers without waiting for queues whose handles remain owned by
+userspace. Existing teardown waits are unchanged.
 
-CI Bug Log - changes from xe-6018-6a182ac542350dbca9147134654c35e463aa1382_BAT -> xe-pw-177020v1_BAT
-====================================================
+With the reduced four-patch series, I have not reproduced the failure
+in my current testing. The hardware link between the RCS fault and
+the BCS8 stall remains under investigation.
 
-Summary
--------
+Changes in v2:
+- Reduce the series to four patches following review.
+- Run deferred VM close and final VM destruction on the
+  module-lifetime destroy workqueue.
+- Use a shared queue-wait budget during file close and defer teardown
+  when queues remain.
 
-  **SUCCESS**
+Arvind Yadav (3):
+  drm/xe: Hold a device reference across deferred VM destruction
+  drm/xe: Mark VMs as closing before queue cleanup
+  drm/xe: Defer VM teardown until exec queue cleanup completes
 
-  No regressions found.
+Matthew Brost (1):
+  drm/xe: Disable scheduling early on FD close to avoid CAT error
+    cascade
 
-  
+ drivers/gpu/drm/xe/xe_device.c               |  25 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.c           |  22 ++-
+ drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   2 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c           |  46 ++++-
+ drivers/gpu/drm/xe/xe_pagefault.c            |   2 +-
+ drivers/gpu/drm/xe/xe_svm.c                  |   3 +-
+ drivers/gpu/drm/xe/xe_vm.c                   | 191 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h                   |  14 +-
+ drivers/gpu/drm/xe/xe_vm_types.h             |  16 ++
+ 9 files changed, 286 insertions(+), 35 deletions(-)
 
-Participating hosts (15 -> 15)
-------------------------------
+-- 
+2.43.0
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-177020v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - bat-ptl-2:          [PASS][1] -> [ABORT][2] ([Intel XE#1727] / [Intel XE#9362]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-ptl-2/igt@kms_psr@psr-cursor-plane-move.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/bat-ptl-2/igt@kms_psr@psr-cursor-plane-move.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
-    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#288]) +32 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - bat-atsm-2:         [ABORT][4] ([Intel XE#9663]) -> [PASS][5] +1 other test pass
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  
-  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#9362]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362
-  [Intel XE#9663]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663
-
-
-Build changes
--------------
-
-  * IGT: IGT_9168 -> IGT_9169
-  * Linux: xe-6018-6a182ac542350dbca9147134654c35e463aa1382 -> xe-pw-177020v1
-
-  IGT_9168: 9168
-  IGT_9169: 9169
-  xe-6018-6a182ac542350dbca9147134654c35e463aa1382: 6a182ac542350dbca9147134654c35e463aa1382
-  xe-pw-177020v1: 177020v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/index.html
-
---===============7602225746100463790==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Write the DIP header last on Xe2+ and reset VSC_SELECT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177020/">https://patchwork.freedesktop.org/series/177020/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6018-6a182ac542350dbca9147134654c35e463aa1382_BAT -&gt; xe-pw-177020v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-177020v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-ptl-2/igt@kms_psr@psr-cursor-plane-move.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/bat-ptl-2/igt@kms_psr@psr-cursor-plane-move.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-prefetch:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663">Intel XE#9663</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177020v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9168 -&gt; IGT_9169</li>
-<li>Linux: xe-6018-6a182ac542350dbca9147134654c35e463aa1382 -&gt; xe-pw-177020v1</li>
-</ul>
-<p>IGT_9168: 9168<br />
-  IGT_9169: 9169<br />
-  xe-6018-6a182ac542350dbca9147134654c35e463aa1382: 6a182ac542350dbca9147134654c35e463aa1382<br />
-  xe-pw-177020v1: 177020v1</p>
-
-</body>
-</html>
-
---===============7602225746100463790==--
