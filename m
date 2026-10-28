@@ -2,48 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A43DF606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 16:20:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523D1606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 16:22:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BRzupJHs
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FVzhx8Td
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DDE910E0E0;
-	Wed, 28 Oct 2026 16:20:06 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19D9810E0E0
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 16:20:00 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C81FA43764;
- Wed, 28 Oct 2026 16:19:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DFF791F01825;
- Wed, 28 Oct 2026 16:19:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793204399;
- bh=Pk5aJm6r49Y+5Z1yC2x4w0xSBRdKZeaq3KhjUNItQPE=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=BRzupJHs5DE3Ghw8ZzyX3BgrvJ8JSKuR1jjaTxHemr5oyYPqWua53kuYXeLa2w++H
- xIeh5Z57ERd1m22DeBXhq5D5jCp0p2WcWbH/K2vQ99xhRGcQk5ejeV95EjU6r6vChs
- goDTehg+QUzLcNKR5EkkaioNjJDFyA5BtPq7kZguxqCc2zglpAR7Sh8Kxk1kmWIQLD
- ci8aogPMc+UCjdK91JU/xD4vDf4lS7XGa1n4iWzwiZzS0Yib+/gdYP1lO5RNpWwLwk
- xqhQPe3sq8/aCCHMxca1W3DAdOlcRZSwdzaY3P1rAWR7fQnXVMDc44Pe0MJPTc9W/G
- T7wUeR4yHlKnw==
-Date: Wed, 28 Oct 2026 17:19:56 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com, 
- rodrigo.vivi@intel.com, aravind.iddamsetty@linux.intel.com,
- badal.nilawar@intel.com, 
- raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com
-Subject: Re: [PATCH v2 6/9] drm/xe/pci: Add upstream switch port lookup helper
-Message-ID: <auIgkNGz2oliaZGD@zenone.zhora.eu>
-References: <20261026060459.771448-11-riana.tauro@intel.com>
- <20261026060459.771448-17-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A75B10E645;
+	Wed, 28 Oct 2026 16:22:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E60B10E645
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 16:22:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793204565; x=1824740565;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=39E7WXf1spnl6ZW4Oy0LCtr2zzUt9eNo6SNGSf5LmHk=;
+ b=FVzhx8TdznEaAhyP+uPBTrzRhBqupZblhmPGd4HLUAB/zf3Y+K1Lr6cF
+ d6KOg0kufo5sBAKwctCKET7cUTPZEmf9u9hEiWP3bomgeJtDLS7IAQaxs
+ 5YBr0Vv5Af6z3u7CRwp4SMh9qJ+fjc7oAD0/Uo0E11fsvToWbQ9cZvi8j
+ jxp5Bhi3FSCJnWtxDYqcZzxIKTliewV9BaIAXBqbAM7xnDOh/zqhRdiLj
+ Zpn0vbiIXU79GaJYnVQCO3kSnoqePIfHRks5LZhm+8XsJIDEbtIxaCQv5
+ laGg6HgCqYObVSO1A6cLC6x4tiqlAmdoF+FLgBRcMyiyZZZxeReFw0dQY A==;
+X-CSE-ConnectionGUID: jOyBUhQoTz2WKczQRhnsbA==
+X-CSE-MsgGUID: yGgvpEAHTM2rJ+YY8eLY7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1921698"
+X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; 
+   d="scan'208";a="1921698"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 09:22:44 -0700
+X-CSE-ConnectionGUID: EOlctm+KQLiPRKYX6l4b9Q==
+X-CSE-MsgGUID: hUKgUldgQDuX8sT5nHfWdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; 
+   d="scan'208";a="5018846"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 09:22:41 -0700
+Date: Wed, 28 Oct 2026 17:22:38 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com
+Subject: Re: [PATCH v6 01/10] drm/xe/cper: Add CPER reporting entry point for
+ xe_log
+Message-ID: <auIhTiQaOTenUMm5@black.igk.intel.com>
+References: <20261028095723.734387-12-badal.nilawar@intel.com>
+ <20261028095723.734387-13-badal.nilawar@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261026060459.771448-17-riana.tauro@intel.com>
+In-Reply-To: <20261028095723.734387-13-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,17 +76,14 @@ X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Riana,
-
-On Mon, Oct 26, 2026 at 11:35:05AM +0530, Riana Tauro wrote:
-> Move the USP lookup logic out of RAS code and into the PCI
-> layer so it can be reused by other callers.
+On Wed, Oct 28, 2026 at 03:27:25PM +0530, Badal Nilawar wrote:
+> Introduce xe_cper_emit() as the single entry point for emitting
+> CPER records from xe_log. xe_log now forwards every SIGID log entry
+> with its full context (component, location, data/len and formatted
+> message), and xe_cper decides how to report it. Hardware SIGIDs are
+> routed to a hardware error helper, software SIGIDs are left as TODO.
 > 
-> No functional change.
-> 
-> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> Assisted-by: LLM
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-
-Thanks,
-Andi
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
