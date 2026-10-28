@@ -2,44 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAD60606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 09:57:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89E0A606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 09:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AMgTpMdk
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=H4kOw5+K
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC15110E5BB;
-	Wed, 28 Oct 2026 09:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5307510FB11;
+	Wed, 28 Oct 2026 09:57:50 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6020710E5DF
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 09:57:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE2B510E5BB
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 09:57:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793181461; x=1824717461;
+ t=1793181464; x=1824717464;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Qur0a14pqhPNDAhMMD1No72Wzn5iLv3lKbty9R4mpkg=;
- b=AMgTpMdkL2Onq9hkFh9vDTqEooe2gMnVLiEcJD2Gmv7Npil6z+BNIElT
- VqjMqGiLGwUdimt4bnDcsAFl9vux6Fd8Ws0SfHFFAVcUlW4mCG0UZ4EsT
- hfw/HqpKbpuDrD07HAk5TMnMthelhPLNOBU09+XrweNzHS34KrFnjwb7c
- LOnb2Iskqb2X+vY2h22HqzUP73+kBF3ADx4RR+G+1pkbGMv7nIm1jTleD
- qjITwnrRWf+Pd/Kqsn4nePA6RuXBo2Cqc9Q037WzynXGD9Kss38b7EwVD
- 3yUHgtCJudWwB81meab9o4v67MDsX9hSmnq/GHYcEriLy1vk3rF5ew/RT w==;
-X-CSE-ConnectionGUID: TqpOzZb/Rfa2LmYPTZ+pKg==
-X-CSE-MsgGUID: soArZ3KQQvSI5m3dW3QCkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1913959"
+ bh=6FUXFE9XKOUGVrKSpkrfjq+j8LoyhNJM2wJIUCArfeg=;
+ b=H4kOw5+KGgD2fippgeSfbpUEYJmcOnO00QlKtRoHyN0vl0ZJo0VwoLgx
+ U7C3E0FJlCo9DDGHekaWblphBtFWPMWo71U6RR1L8GqRIvNppBNf2xh+E
+ W3ZUD7wbq/76zVpR5kEQCeAJTnIXAfkPchsFGr6d3YUipLQ2RpDSLvxx8
+ F3qWP3KHRgkeYAsfizpA7w1tn+12dtXmHqRkR51+1L3nyxWcdLalKMedh
+ u7Kceo32h0WT3A79dKGLWb0H6h5nwvD22q+2OLgWT3ihd/nZ0LlEzebwP
+ GgwoBjbtebrq1xgockUP6yiBqFmYgDR4ATlWgE3M5gvJjh38UyxxQacF6 g==;
+X-CSE-ConnectionGUID: APPk5lVIQBGjHxGfsXBgoQ==
+X-CSE-MsgGUID: DKiitYQ1QnW62SKvFOf9PA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1913967"
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="1913959"
+   d="scan'208";a="1913967"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 02:57:40 -0700
-X-CSE-ConnectionGUID: +jF5K0fsSG+BQMgx9TyxkA==
-X-CSE-MsgGUID: QDvbdFjFShyvb6rVTeVmzw==
+ 28 Oct 2026 02:57:44 -0700
+X-CSE-ConnectionGUID: YDe1OPflTmmCxCOqrVzRlg==
+X-CSE-MsgGUID: o8P5OPFmQ9C84pr/wYgC3g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="4782743"
+   d="scan'208";a="4782750"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 02:57:37 -0700
+ 28 Oct 2026 02:57:40 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,10 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com
-Subject: [PATCH v6 03/10] drm/xe/cper: Initialize Intel-specific CPER header
-Date: Wed, 28 Oct 2026 15:27:27 +0530
-Message-ID: <20261028095723.734387-15-badal.nilawar@intel.com>
+Subject: [PATCH v6 04/10] drm/xe/cper: Construct CPER record for hardware
+ errors
+Date: Wed, 28 Oct 2026 15:27:28 +0530
+Message-ID: <20261028095723.734387-16-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261028095723.734387-12-badal.nilawar@intel.com>
 References: <20261028095723.734387-12-badal.nilawar@intel.com>
@@ -75,166 +76,280 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Define the Intel-specific CPER header and initialize it
-from the error counter record for Intel GPU hardware errors.
+Assemble the CPER record header, section descriptor and the Intel
+error section for Intel GPU hardware errors.
 
 Assisted-by: LLM
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
 v6:
- - Handle INTEL_SIGID_INVALID (Sashiko)
+ - Warn once for missing PCI ID to GUID mappings
+ - Make record header timestamp non precise
+ - %s/xe_platform_id/xe_device_guid/ (Raag)
 v5:
- - Move xe_cper_emit_counter() from patch 7 of rev4 to this patch to
-   avoid code churn (Raag)
- - Use __packed for individual structures instead of #pragma pack (Raag)
- - Drop redundent 'err'/'error' references, shorten structure name (Raag)
+ - Rebased
+ - Add helpers to initialize CPER headers (Raag)
 v4:
  - Split from "drm/xe/cper: Prepare CPER record" (Raag)
- - Add dedicated struct xe_cper_error_class (Michal)
- - Drop empty fill_fw_id() stub, leave a TODO instead
+ - Use xe->device_uid for FRU ID
+ - Add platform IDs for all CRI PCI device IDs
 v2:
- - Guard against NULL THIS_MODULE->srcversion (sashiko)
+ - Encode cper_record_header timestamp in BCD format (sashiko)
 ---
- drivers/gpu/drm/xe/xe_cper.c       | 50 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_cper_types.h | 49 +++++++++++++++++++++++++++++
- 2 files changed, 99 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
+ drivers/gpu/drm/xe/xe_cper.c       | 137 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_cper_types.h |  53 +++++++++++
+ 2 files changed, 190 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index 484f1b025558..3a6e3ad1e130 100644
+index 3a6e3ad1e130..ac9a3d724e5a 100644
 --- a/drivers/gpu/drm/xe/xe_cper.c
 +++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -6,18 +6,66 @@
+@@ -3,10 +3,14 @@
+  * Copyright © 2026 Intel Corporation
+  */
+ 
++#include <linux/bcd.h>
  #include <linux/err.h>
  #include <linux/kernel.h>
  #include <linux/minmax.h>
-+#include <linux/pci.h>
+ #include <linux/pci.h>
++#include <linux/slab.h>
++#include <linux/time.h>
++#include <linux/timekeeping.h>
  
  #include "xe_cper.h"
-+#include "xe_cper_types.h"
- #include "xe_device.h"
- #include "xe_printk.h"
- #include "xe_ras.h"
- #include "xe_ras_types.h"
- 
-+static bool is_sigid(u32 sigid)
-+{
-+	return sigid != INTEL_SIGID_INVALID && sigid != U32_MAX;
-+}
-+
- static bool is_hw_sigid(enum xe_sigid sigid)
- {
+ #include "xe_cper_types.h"
+@@ -25,6 +29,55 @@ static bool is_hw_sigid(enum xe_sigid sigid)
  	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
  }
  
-+static void cper_init_intel_hdr(struct xe_device *xe, const struct xe_ras_error_class *counter,
-+				u64 first_timestamp, u32 sig_id, u32 error_count,
-+				struct xe_cper_intel_hdr *ihdr)
++/* CPER platform_id GUIDs (RFC 9562 UUIDv5) for each PCI device ID. */
++static const struct xe_device_guid_entry xe_device_guids[] = {
++	{ 0x674C, GUID_INIT(0x9046afe5, 0x9041, 0x5124,
++			    0x86, 0x14, 0x92, 0x55, 0x0d, 0x9e, 0x9d, 0xa6) },
++	{ 0x674D, GUID_INIT(0xf95911b8, 0x6564, 0x5905,
++			    0xa6, 0xa7, 0xb9, 0xbf, 0x54, 0xab, 0x6c, 0x27) },
++	{ 0x674E, GUID_INIT(0xb8d24106, 0x0108, 0x59f1,
++			    0x8f, 0xfc, 0x9f, 0xc4, 0xa9, 0xc9, 0xb7, 0xb0) },
++	{ 0x674F, GUID_INIT(0xdd8dd88e, 0xef2f, 0x59b1,
++			    0x99, 0x15, 0xdb, 0x6f, 0x1d, 0xc9, 0xb4, 0x5d) },
++	{ 0x6750, GUID_INIT(0x1dd66c44, 0x87d5, 0x524a,
++			    0xad, 0x6e, 0xfc, 0x18, 0x9d, 0x42, 0x6f, 0x1a) },
++	{ 0x6751, GUID_INIT(0x17d0dd04, 0x2fad, 0x5400,
++			    0x99, 0xc8, 0x9b, 0x45, 0x51, 0x3b, 0x67, 0xe3) },
++};
++
++static const guid_t *lookup_device_guid(const struct pci_dev *pdev)
 +{
-+	ihdr->counter = *counter;
-+	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
-+	ihdr->sig_id = U32_MAX;
++	unsigned int i;
 +
-+	if (first_timestamp) {
-+		ihdr->first_timestamp = first_timestamp;
-+		ihdr->validation_bits |= XE_CPER_VALID_FIRST_TIMESTAMP;
-+	}
-+
-+	if (is_sigid(sig_id)) {
-+		ihdr->sig_id = sig_id;
-+		ihdr->validation_bits |= XE_CPER_VALID_SIG_ID;
-+	}
-+
-+	ihdr->error_count = error_count;
-+
-+	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->pci_bdf));
-+	ihdr->validation_bits |= XE_CPER_VALID_PCI_BDF;
-+
-+#ifdef MODULE
-+	if (THIS_MODULE->srcversion) {
-+		strscpy(ihdr->drv_version, THIS_MODULE->srcversion, sizeof(ihdr->drv_version));
-+		ihdr->validation_bits |= XE_CPER_VALID_DRV_VERSION;
-+	}
-+#endif
++	for (i = 0; i < ARRAY_SIZE(xe_device_guids); i++)
++		if (xe_device_guids[i].device_id == pdev->device)
++			return &xe_device_guids[i].guid;
++	return NULL;
 +}
 +
-+static void cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-+			      const struct xe_ras_error_class *counter,
-+			      const struct xe_ras_get_counter_response *response)
++static u64 cper_timestamp_now(void)
 +{
-+	struct xe_cper_intel_hdr ihdr = {};
++	struct tm tm;
++	u64 ts = 0;
++	u8 *p = (u8 *)&ts;
++	int year;
 +
-+	cper_init_intel_hdr(xe, counter, response->timestamp,
-+			    sigid, response->value, &ihdr);
++	time64_to_tm(ktime_get_real_seconds(), 0, &tm);
++
++	year = tm.tm_year + 1900;
++
++	p[0] = bin2bcd(tm.tm_sec);
++	p[1] = bin2bcd(tm.tm_min);
++	p[2] = bin2bcd(tm.tm_hour);
++	p[3] = 0x0;
++	p[4] = bin2bcd(tm.tm_mday);
++	p[5] = bin2bcd(tm.tm_mon + 1);
++	p[6] = bin2bcd(year % 100);
++	p[7] = bin2bcd(year / 100);
++
++	return ts;
 +}
 +
- static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
- 			     const struct xe_ras_error_class *counter)
- {
-@@ -31,6 +79,8 @@ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
- 		xe_err(xe, "CPER: failed to get counter, skipping record\n");
- 		return;
- 	}
-+
-+	cper_emit_counter(xe, cper_sev, sigid, counter, &response);
+ static void cper_init_intel_hdr(struct xe_device *xe, const struct xe_ras_error_class *counter,
+ 				u64 first_timestamp, u32 sig_id, u32 error_count,
+ 				struct xe_cper_intel_hdr *ihdr)
+@@ -56,6 +109,89 @@ static void cper_init_intel_hdr(struct xe_device *xe, const struct xe_ras_error_
+ #endif
  }
  
- /**
++static void cper_init_record_hdr(struct xe_device *xe, u8 severity,
++				 const guid_t *notification_type,
++				 struct cper_record_header *rhdr,
++				 u32 total_len)
++{
++	const guid_t *device_guid;
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++
++	/* Assemble the CPER record header (UEFI Appendix N.2.1) */
++	memcpy(rhdr->signature, CPER_SIG_RECORD, CPER_SIG_SIZE);
++	rhdr->revision          = CPER_RECORD_REV;
++	rhdr->signature_end     = CPER_SIG_END;
++	rhdr->section_count     = 1;
++	rhdr->error_severity    = severity;
++	rhdr->validation_bits   = CPER_VALID_TIMESTAMP;
++	rhdr->record_length     = total_len;
++	rhdr->timestamp         = cper_timestamp_now();
++	rhdr->creator_id        = INTEL_CPER_CREATOR_XEKMD;
++	rhdr->notification_type = *notification_type;
++	rhdr->record_id         = cper_next_record_id();
++	device_guid = lookup_device_guid(pdev);
++	if (device_guid) {
++		rhdr->platform_id      = *device_guid;
++		rhdr->validation_bits |= CPER_VALID_PLATFORM_ID;
++	} else {
++		xe_printk(xe, warn_once, "CPER: no platform GUID for device %04x\n",
++			  pdev->device);
++	}
++}
++
++static void cper_init_section_desc(struct xe_device *xe, u8 severity,
++				   struct cper_section_descriptor *sdesc,
++				   u32 einfo_len)
++{
++	sdesc->section_offset   = sizeof(struct cper_record_header) +
++				  sizeof(struct cper_section_descriptor);
++	sdesc->section_length   = sizeof(struct xe_cper_intel_hdr) + einfo_len;
++	sdesc->revision         = CPER_SEC_REV;
++	sdesc->validation_bits  = 0;
++	sdesc->section_type     = INTEL_CPER_SECTION_ACCEL_GENERIC;
++	sdesc->section_severity = severity;
++	if (xe->info.has_device_uid) {
++		memcpy(&sdesc->fru_id, &xe->device_uid, sizeof(xe->device_uid));
++		sdesc->validation_bits |= CPER_SEC_VALID_FRU_ID;
++	}
++}
++
++static void cper_record_emit(struct xe_device *xe, u8 severity,
++			     const guid_t *notification_type,
++			     const struct xe_cper_intel_hdr *ihdr,
++			     const void *einfo, u32 einfo_len)
++{
++	struct cper_section_descriptor *sdesc;
++	struct cper_record_header *rhdr;
++	struct xe_cper_nonstd_record *rec;
++	u32 total_len;
++
++	total_len = sizeof(struct xe_cper_nonstd_record) + einfo_len;
++	rec = kzalloc(total_len, GFP_KERNEL);
++	if (!rec)
++		return;
++
++	rhdr = &rec->record_hdr;
++	sdesc = &rec->section_desc;
++
++	/* Assemble the CPER record header (UEFI Appendix N.2.1) */
++	cper_init_record_hdr(xe, severity, notification_type, rhdr, total_len);
++
++	/* Assemble the section descriptor (UEFI Appendix N.2.2) */
++	cper_init_section_desc(xe, severity, sdesc, einfo_len);
++
++	/* Copy the Intel-specific section header */
++	rec->intel_hdr = *ihdr;
++
++	/* Append optional variable-length error info */
++	if (einfo && einfo_len)
++		memcpy((u8 *)rec + sizeof(*rec), einfo, einfo_len);
++
++	/* TODO: Emit trace event */
++
++	kfree(rec);
++}
++
+ static void cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+ 			      const struct xe_ras_error_class *counter,
+ 			      const struct xe_ras_get_counter_response *response)
+@@ -64,6 +200,7 @@ static void cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid
+ 
+ 	cper_init_intel_hdr(xe, counter, response->timestamp,
+ 			    sigid, response->value, &ihdr);
++	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
+ }
+ 
+ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
 diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
-new file mode 100644
-index 000000000000..a42f4f2bd719
---- /dev/null
+index a42f4f2bd719..ce1ae53b3415 100644
+--- a/drivers/gpu/drm/xe/xe_cper_types.h
 +++ b/drivers/gpu/drm/xe/xe_cper_types.h
-@@ -0,0 +1,49 @@
-+/* SPDX-License-Identifier: MIT */
+@@ -6,7 +6,9 @@
+ #ifndef _XE_CPER_TYPES_H_
+ #define _XE_CPER_TYPES_H_
+ 
++#include <linux/cper.h>
+ #include <linux/types.h>
++#include <linux/uuid.h>
+ 
+ #include "xe_ras_types.h"
+ 
+@@ -21,6 +23,28 @@
+ #define XE_CPER_VALID_PCI_BDF		0x0008
+ #define XE_CPER_VALID_DRV_VERSION	0x0010
+ 
 +/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_CPER_TYPES_H_
-+#define _XE_CPER_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+#include "xe_ras_types.h"
-+
-+/*
-+ * Validation bits definition for validation_bits in struct
-+ * xe_cper_intel_hdr. When set, corresponding fields in header
-+ * contains valid data
-+ */
-+#define XE_CPER_VALID_LOCATION		0x0001
-+#define XE_CPER_VALID_FIRST_TIMESTAMP	0x0002
-+#define XE_CPER_VALID_SIG_ID		0x0004
-+#define XE_CPER_VALID_PCI_BDF		0x0008
-+#define XE_CPER_VALID_DRV_VERSION	0x0010
-+
-+/**
-+ * struct xe_cper_intel_hdr - Intel-specific CPER header
++ * Intel CPER GUID Namespace — RFC 9562 UUIDv5 (SHA-1 name-based)
 + *
-+ * Fixed-size header for the Intel GPU error section of a CPER record.
-+ * All multi-byte fields are little-endian.
++ * All values below are generated deterministically by uuid generator.
++ * Do not hand-edit the byte values.
 + */
-+struct xe_cper_intel_hdr {
-+	/** @counter: Error class (severity, component, location, cause) */
-+	struct xe_ras_error_class counter;
-+	/** @first_timestamp: First occurrence of this error class, in ticks */
-+	u64 first_timestamp;
-+	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
-+	u32 sig_id;
-+	/** @error_count: Number of times this error has been observed */
-+	u32 error_count;
-+	/** @validation_bits: Raw u16 view of all valid bits */
-+	u16 validation_bits;
-+	/** @pci_bdf: PCI location string, format "DDDD:bb:dd.f" */
-+	char pci_bdf[16];
-+	/** @drv_version: Driver source version string (THIS_MODULE->srcversion) */
-+	char drv_version[25];
-+	/** @reserved: Reserved for future use, must be zero */
-+	u8 reserved[261];
++
++/* Creator IDs */
++#define INTEL_CPER_CREATOR_XEKMD \
++	GUID_INIT(0x9a42070f, 0xdf9d, 0x555e, \
++		  0xba, 0x02, 0x7c, 0xbc, 0x86, 0x3d, 0x37, 0x1c)
++
++/* Notification Types */
++#define INTEL_CPER_NOTIFY_GPU_ERROR \
++	GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
++		  0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
++
++/* Section Types */
++#define INTEL_CPER_SECTION_ACCEL_GENERIC \
++	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
++		  0x80, 0x28, 0xb9, 0xb1, 0x3e, 0x6d, 0x58, 0xb0)
++
+ /**
+  * struct xe_cper_intel_hdr - Intel-specific CPER header
+  *
+@@ -46,4 +70,33 @@ struct xe_cper_intel_hdr {
+ 	u8 reserved[261];
+ } __packed;
+ 
++/**
++ * struct xe_cper_nonstd_record - Intel GPU CPER record
++ *
++ * Contains the standard CPER record header, section descriptor, and the
++ * Intel error section header.
++ */
++struct xe_cper_nonstd_record {
++	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
++	struct cper_record_header record_hdr;
++	/** @section_desc: CPER section descriptor */
++	struct cper_section_descriptor section_desc;
++	/** @intel_hdr: Intel-specific CPER header */
++	struct xe_cper_intel_hdr intel_hdr;
 +} __packed;
 +
-+#endif
++/**
++ * struct xe_device_guid_entry - Mapping from PCI device ID to CPER device GUID
++ *
++ * Used to resolve the platform_id field in a CPER record header.
++ * GUIDs are UUIDv5 (RFC 9562, SHA-1) derived from the Intel CPER namespace
++ * with name string "platform/8086:<dev_id_hex_lower>".
++ */
++struct xe_device_guid_entry {
++	/** @device_id: PCI device ID */
++	u16       device_id;
++	/** @guid: Corresponding UUIDv5 device GUID */
++	guid_t    guid;
++};
++
+ #endif
 -- 
 2.56.0
 
