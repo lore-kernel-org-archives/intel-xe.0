@@ -2,44 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81667606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 09:58:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0ED606A320
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 09:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RAnFC5pv
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CC8WUO0L
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA1A10E621;
-	Wed, 28 Oct 2026 09:58:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63DD810E5DF;
+	Wed, 28 Oct 2026 09:58:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E4ED10E5DF
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 09:57:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8BE210E5DF
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 09:57:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793181473; x=1824717473;
+ t=1793181480; x=1824717480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Luz3JIby2sWCYiMrOz/DEFD+CD4zMjSLBcGrXb8qoCA=;
- b=RAnFC5pvu9sW+LT/uW7JL0uoV2K1btCFRGMQw9iCgXH1cFew8WCKhmA6
- 7HNQtcA21/iJWU0mLSORlm7eC3G6Dx+dwqPuMfoA3g4n5Vok96b9+1x0i
- xiwLiBC3Ra/rcLsGnKFTlMhn0KDkYLotMJwcO9c5SPE5mP1YOTzdGPMoX
- BLYKg2onqsWqfqJUZyKcX4kZfZuV5UIwKx1bS8Dq5LwnQiVIsee3tEVhe
- XWyiEbDe1A6ddQaYx487CIDctHa2/jc6TKuInYf6ARQSA0vSz+8K1n12s
- px0WTZSnvi9rqNIh/DO80uKheIp/1gEsQddX8KDiSg7BDDQ65GoCZ4cJl w==;
-X-CSE-ConnectionGUID: X/A8rbanRTuRcJhcg5pIzQ==
-X-CSE-MsgGUID: bHKlfW2IQ4aTyotZMm445A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1913983"
+ bh=vCc1BbgbPecNxiyb0SL7dnJphGopjjlWo38gTENsTUw=;
+ b=CC8WUO0LcRRjEXOZrjCfiRj3GIfY1c3kcQGTZEQrhb9WWVNBxt8jBSoU
+ i1kl1Rc1Tp/UQBMdbxp+3wgqlGyH994lJEmosp1y65SmHlpf1RykPRAqy
+ MjMopLlOZBvpsZUgfBNFhLR2305Z6Pk+dYAiaU4mPasTH8AecvLXb8eA0
+ /hO/EBATA5fwVZ5N4fjTy8KsHyIdg+VEBln2ZzjhdxqmkLbN5IMqJXSPQ
+ WGNXrXC2flj8AG/5p1ezkAmnVWtCiQiezjAHHN5IcyR9xFIjZy6mq4qTN
+ gTe+nxlL5RJxc5j/wZydfe0QSI4nfs6pQ1ureCP/2SnSBn39L6muWCu2w Q==;
+X-CSE-ConnectionGUID: 3XS86aFdSguYBv2+1G0O3A==
+X-CSE-MsgGUID: LUKgN+9jQtqcDeczn0Zc3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1913988"
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="1913983"
+   d="scan'208";a="1913988"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 02:57:53 -0700
-X-CSE-ConnectionGUID: DJYzJ1CgSNecttmOhLevHg==
-X-CSE-MsgGUID: tf5X1xehRvSb27Zd4LBt3Q==
+ 28 Oct 2026 02:58:00 -0700
+X-CSE-ConnectionGUID: hoBadmPPQPuOgFsDd2tAHg==
+X-CSE-MsgGUID: BJDNHvT8RGybtDgestraXQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="4782771"
+   d="scan'208";a="4782784"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 02:57:50 -0700
+ 28 Oct 2026 02:57:57 -0700
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -48,10 +48,9 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com
-Subject: [PATCH v6 07/10] drm/xe/xe_ras: Report device memory errors using
- SIGID
-Date: Wed, 28 Oct 2026 15:27:31 +0530
-Message-ID: <20261028095723.734387-19-badal.nilawar@intel.com>
+Subject: [PATCH v6 09/10] drm/xe/xe_ras: Report soc internal errors using SIGID
+Date: Wed, 28 Oct 2026 15:27:33 +0530
+Message-ID: <20261028095723.734387-21-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261028095723.734387-12-badal.nilawar@intel.com>
 References: <20261028095723.734387-12-badal.nilawar@intel.com>
@@ -75,66 +74,73 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use xe_log_comp_info helper to report device memory errors using the
-corresponding SIGID.
+Use xe_log_* helpers to report soc internal errors.
 
 Example:
-	xe 0000:03:00.0: [drm] SIGID=202 (020100020008002000300000)
-DEVICE_MEMORY: Double-bit ECC error at sw address 0x63000
+	xe 0000:03:00.0: [drm] *ERROR* SIGID=205 FATAL
+(020600700000000000000000) [Hardware Error]: SOC_INTERNAL:
+PUNIT error detected: 0x00000002
 
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 Cc: Riana Tauro <riana.tauro@intel.com>
 ---
 v6:
-  - Consolidate double-bit ECC logs into a single log; informational if the
-    page was offlined, error otherwise (Raag)
+  - Print entire xe_ras_soc_error_source for unknown errors (Raag)
 v5:
-  - Log unknown memory errors
-  - Add example log in commit message (Raag)
+  - Log unknown soc internal errors
 ---
- drivers/gpu/drm/xe/xe_ras.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ras.c | 17 ++++++++++-------
+ 1 file changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 6664153b3cae..8ed3c4d5b580 100644
+index d7789beb2f6f..5eeccc920d7c 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -644,6 +644,7 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
- static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
+@@ -609,7 +609,7 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
  {
- 	struct xe_ras_memory_error *info = (void *)arr->details;
-+	u8 cper_sev = ras_sev_to_cper_sev(arr->counter.common.severity);
- 	int ret;
+ 	struct xe_ras_soc_error *info = (void *)arr->details;
+ 	struct xe_ras_soc_error_source *source = &info->source;
+-	struct xe_ras_error_class *counter = &arr->counter;
++	u32 raw_source;
  
- 	/*
-@@ -655,17 +656,25 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
- 	 */
- 	switch (info->category) {
- 	case XE_RAS_MEMORY_POISON:
--		xe_info(xe, "[RAS]: Poison error detected\n");
-+		xe_log_comp_info(xe, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
-+				 "Poison error detected\n");
- 		break;
- 	case XE_RAS_MEMORY_DATA_PARITY:
--		xe_info(xe, "[RAS]: Data parity error detected\n");
-+		xe_log_comp_info(xe, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
-+				 "Data parity error detected\n");
- 		break;
- 	case XE_RAS_MEMORY_DB_ECC:
- 		ret = handle_page_offline(xe, info->sw_address, true);
-+		xe_log_comp(xe, ret ? cper_sev : CPER_SEV_INFORMATIONAL,
-+			    DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
-+			    "Double-bit ECC error detected at sw address 0x%llx\n",
-+			    info->sw_address);
- 		if (ret)
- 			return XE_RAS_RECOVERY_ACTION_RESET;
- 		break;
- 	default:
-+		xe_log_comp(xe, cper_sev, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
-+			    "Unknown error detected\n");
- 		return XE_RAS_RECOVERY_ACTION_RESET;
+ 	if (source->csc) {
+ 		struct xe_ras_csc_error *csc_error = (void *)info->details;
+@@ -623,9 +623,8 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
+ 		 * is required.
+ 		 */
+ 		if (csc_error->hec_fw_error) {
+-			xe_err(xe, "[RAS]: CSC %s detected: 0x%x\n",
+-			       sev_to_str(counter->common.severity),
+-			       csc_error->hec_fw_error);
++			xe_log_comp_fatal(xe, SOC_INTERNAL, &arr->counter, sizeof(arr->counter),
++					  "CSC error detected: 0x%08x\n", csc_error->hec_fw_error);
+ 			xe_survivability_mode_runtime_enable(xe);
+ 			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
+ 		}
+@@ -633,15 +632,19 @@ static u8 handle_soc_internal_errors(struct xe_device *xe, struct xe_ras_error_a
+ 		struct xe_ras_ieh_error *ieh_error = (void *)info->details;
+ 
+ 		if (ieh_error->global_error_status & XE_RAS_SOC_IEH_PUNIT) {
+-			xe_err(xe, "[RAS]: PUNIT %s detected: 0x%x\n",
+-			       sev_to_str(counter->common.severity),
+-			       ieh_error->global_error_status);
++			xe_log_comp_fatal(xe, SOC_INTERNAL, &arr->counter, sizeof(arr->counter),
++					  "PUNIT error detected: 0x%08x\n",
++					  ieh_error->global_error_status);
+ 			punit_error_handler(xe);
+ 			return XE_RAS_RECOVERY_ACTION_DISCONNECT;
+ 		}
  	}
+ 
+ 	/* For other SoC internal errors, request a reset as recovery mechanism */
++	memcpy(&raw_source, source, sizeof(raw_source));
++	xe_log_comp(xe, ras_sev_to_cper_sev(arr->counter.common.severity), SOC_INTERNAL,
++		    &arr->counter, sizeof(arr->counter),
++		    "Unknown error detected (source=0x%08x)\n", raw_source);
+ 	return XE_RAS_RECOVERY_ACTION_RESET;
+ }
  
 -- 
 2.56.0
