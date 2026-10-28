@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791F2606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 10:40:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JL+p+WQO
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B20A606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 10:43:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0AA10FB40;
-	Wed, 28 Oct 2026 10:40:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E19D10FB4F
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 10:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793184041; x=1824720041;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=XMfdoD3eqRVmmkBvjCNgpNlml6WjnNuzxdDi7StoWFw=;
- b=JL+p+WQOAt5bpDNbU6CD68qP6Opar7xGXu8eU450qvXE2FLTcmYyrpci
- bbGfbpANUoP8SCpeuKdlvnwyUWRLFQkSfldZogFIA8L6tVrEXzRJwBMw8
- NAfXdBJC8L5bd2fMK+HxCYEFu/qLrLIOPiYT1J8osDJhkfbuna799Vv0Z
- sWEefF8/haeygRx71AAwB/QTzqcSkNQGrk42lho0D4z/8p63jqMKiHrSJ
- gTB7u6j7Fz4TeIsyxsgyuhQwdWrwj/CS+BDaqJuupnpe4H0VVsWmHEANR
- CaBg5nvU0twP3XImue+MaO9bIFHzvORhUXURJo+HwyeFx+OqllZD1sUDk Q==;
-X-CSE-ConnectionGUID: B/OGoLjRTfWQCAYarctPZw==
-X-CSE-MsgGUID: vZix0CRgS1S/vD3GHo6QtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="2005429"
-X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="2005429"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 03:40:40 -0700
-X-CSE-ConnectionGUID: SO8alTFURXCdWVjmi0/Htg==
-X-CSE-MsgGUID: 6TfsokfVRAORJMBtbKqCfg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="5203629"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.146])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 03:40:39 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: Re: [PATCH v3 2/2] drm/xe/display: Use xe_bo_addr_iter in remapped
- DPT pinning
-In-Reply-To: <20261027180354.340849-4-dev@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261027180354.340849-3-dev@lankhorst.se>
- <20261027180354.340849-4-dev@lankhorst.se>
-Date: Wed, 28 Oct 2026 12:40:36 +0200
-Message-ID: <c9bbe8de41cb7ef856b6da950f0f57bc7b0d9456@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D555410E5D0;
+	Wed, 28 Oct 2026 10:43:25 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EBD810E5D0;
+ Wed, 28 Oct 2026 10:43:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2994328733780417409=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_CPER_logging_support_fo?=
+ =?utf-8?q?r_CRI_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Oct 2026 10:43:24 -0000
+Message-ID: <179318420437.81013.18399595013419086746@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261028095723.734387-12-badal.nilawar@intel.com>
+In-Reply-To: <20261028095723.734387-12-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,109 +33,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 27 Oct 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> Right now we're using xe_bo_addr() on each individual address, which gives
-> problems at larger resolution and sizes, since it's a O(N=C2=B2).
->
-> By using xe_bo_addr_iter_first() + xe_bo_addr_iter_addr(), the time
-> complexity is reduced again to O(N).
->
-> To fix rotated pinning requires some thinking.
->
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> ---
-> Changes since v1:
-> - handle plane->src_stride !=3D plane->width
-> Changes since v2:
-> - Add missing u32 casts.
-> ---
->  drivers/gpu/drm/xe/display/xe_fb_pin.c | 29 ++++++++++++++------------
->  1 file changed, 16 insertions(+), 13 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
-display/xe_fb_pin.c
-> index e09116265ae95..e6c375f47a65b 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -17,6 +17,7 @@
->  #include "xe_ggtt.h"
->  #include "xe_pat.h"
->  #include "xe_pm.h"
-> +#include "xe_res_cursor.h"
->  #include "xe_vram_types.h"
->=20=20
->  static void
-> @@ -67,15 +68,15 @@ write_dpt_remapped_linear(struct xe_bo *bo, struct io=
-sys_map *map,
->  	struct xe_ggtt *ggtt =3D xe_device_get_root_tile(xe)->mem.ggtt;
->  	const u64 pte =3D xe_ggtt_encode_pte_flags(ggtt, bo,
->  						 xe_cache_pat_idx(xe, XE_CACHE_NONE));
-> -	unsigned int offset =3D plane->offset * XE_PAGE_SIZE;
-> -	unsigned int size =3D plane->size;
-> +	unsigned int offset =3D (u32)plane->offset * XE_PAGE_SIZE;
-> +	unsigned int size =3D (u32)plane->size * XE_PAGE_SIZE;
+--===============2994328733780417409==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-What do you need the casts for? Useless?
+== Series Details ==
 
-> +	struct xe_res_cursor cur;
->=20=20
-> -	while (size--) {
-> -		u64 addr =3D xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-> +	for (xe_bo_addr_iter_first(bo, &cur, offset, size); cur.remaining; xe_r=
-es_next(&cur, XE_PAGE_SIZE)) {
-> +		u64 addr =3D xe_bo_addr_iter_addr(&cur);
->=20=20
->  		iosys_map_wr(map, dest, u64, addr | pte);
->  		dest +=3D sizeof(u64);
-> -		offset +=3D XE_PAGE_SIZE;
->  	}
->=20=20
->  	return dest;
-> @@ -90,20 +91,22 @@ write_dpt_remapped_tiled(struct xe_bo *bo, struct ios=
-ys_map *map,
->  	struct xe_ggtt *ggtt =3D xe_device_get_root_tile(xe)->mem.ggtt;
->  	const u64 pte =3D xe_ggtt_encode_pte_flags(ggtt, bo,
->  						 xe_cache_pat_idx(xe, XE_CACHE_NONE));
-> -	unsigned int offset, column, row;
-> +	u32 offset =3D (u32)plane->offset * XE_PAGE_SIZE;
+Series: Add CPER logging support for CRI (rev6)
+URL   : https://patchwork.freedesktop.org/series/169692/
+State : success
 
-Ditto.
+== Summary ==
 
-> +	struct xe_res_cursor cur;
->=20=20
-> -	for (row =3D 0; row < plane->height; row++) {
-> -		offset =3D (plane->offset + plane->src_stride * row) *
-> -			 XE_PAGE_SIZE;
-> -
-> -		for (column =3D 0; column < plane->width; column++) {
-> -			u64 addr =3D xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-> +	xe_bo_addr_iter_first(bo, &cur, offset, (u32)plane->height * plane->src=
-_stride * XE_PAGE_SIZE);
-> +	while (cur.remaining) {
-> +		for (u32 column =3D 0; column < plane->width; column++) {
-> +			u64 addr =3D xe_bo_addr_iter_addr(&cur);
->=20=20
->  			iosys_map_wr(map, dest, u64, addr | pte);
->  			dest +=3D sizeof(u64);
-> -			offset +=3D XE_PAGE_SIZE;
-> +			xe_res_next(&cur, XE_PAGE_SIZE);
->  		}
->=20=20
-> +		if (plane->src_stride !=3D plane->width)
-> +			xe_res_next(&cur, (u32)(plane->src_stride - plane->width) * XE_PAGE_S=
-IZE);
-> +
->  		dest =3D write_dpt_padding(map, dest,
->  					 plane->dst_stride - plane->width);
->  	}
+CI Bug Log - changes from xe-6018-6a182ac542350dbca9147134654c35e463aa1382_BAT -> xe-pw-169692v6_BAT
+====================================================
 
---=20
-Jani Nikula, Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-169692v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
+    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - bat-atsm-2:         [ABORT][2] ([Intel XE#9663]) -> [PASS][3] +1 other test pass
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+
+  
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#9663]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9168 -> IGT_9169
+  * Linux: xe-6018-6a182ac542350dbca9147134654c35e463aa1382 -> xe-pw-169692v6
+
+  IGT_9168: 9168
+  IGT_9169: 9169
+  xe-6018-6a182ac542350dbca9147134654c35e463aa1382: 6a182ac542350dbca9147134654c35e463aa1382
+  xe-pw-169692v6: 169692v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/index.html
+
+--===============2994328733780417409==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6018-6a182ac542350dbca9147134654c35e463aa1382_BAT -&gt; xe-pw-169692v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-169692v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-prefetch:<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663">Intel XE#9663</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9168 -&gt; IGT_9169</li>
+<li>Linux: xe-6018-6a182ac542350dbca9147134654c35e463aa1382 -&gt; xe-pw-169692v6</li>
+</ul>
+<p>IGT_9168: 9168<br />
+  IGT_9169: 9169<br />
+  xe-6018-6a182ac542350dbca9147134654c35e463aa1382: 6a182ac542350dbca9147134654c35e463aa1382<br />
+  xe-pw-169692v6: 169692v6</p>
+
+</body>
+</html>
+
+--===============2994328733780417409==--
