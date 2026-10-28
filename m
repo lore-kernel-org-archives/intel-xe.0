@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B20A606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 10:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5F2606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 10:43:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D555410E5D0;
-	Wed, 28 Oct 2026 10:43:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF57010FB18;
+	Wed, 28 Oct 2026 10:43:29 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EBD810E5D0;
- Wed, 28 Oct 2026 10:43:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2994328733780417409=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F3E110FB18;
+ Wed, 28 Oct 2026 10:43:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_CPER_logging_support_fo?=
- =?utf-8?q?r_CRI_=28rev6=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Add_a_per-clien?=
+ =?utf-8?q?t_debugfs_file_reporting_bo_NUMA_node_distribution?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Oct 2026 10:43:24 -0000
-Message-ID: <179318420437.81013.18399595013419086746@221881a7231d>
+Date: Wed, 28 Oct 2026 10:43:27 -0000
+Message-ID: <179318420705.81013.15658816434701910306@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261028095723.734387-12-badal.nilawar@intel.com>
-In-Reply-To: <20261028095723.734387-12-badal.nilawar@intel.com>
+References: <20261028103237.70129-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20261028103237.70129-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,146 +35,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============2994328733780417409==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Add CPER logging support for CRI (rev6)
-URL   : https://patchwork.freedesktop.org/series/169692/
-State : success
+Series: drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution
+URL   : https://patchwork.freedesktop.org/series/177016/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6018-6a182ac542350dbca9147134654c35e463aa1382_BAT -> xe-pw-169692v6_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6c7babfaaa6793cef63a42e5fe3311739adf0825
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Wed Oct 28 11:32:37 2026 +0100
 
-Summary
--------
+    drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution
+    
+    When debugging NUMA placement of bo system memory, there is currently
+    no way to tell on which nodes the pages backing a bo reside. The
+    /proc/<pid>/numa_maps interface doesn't help since bo CPU mappings are
+    VM_PFNMAP, and clients may have thousands of bos, so a dump of all bos
+    is undesirable.
+    
+    Add a "bo_numa" file to the drm core per-client debugfs directory,
+    client-<id>/. The file implements a request-response protocol per open
+    file: Writing a GEM handle valid for the client takes a snapshot, under
+    the bo's dma_resv lock, of the bo size, placement, and the number of
+    pages on each NUMA node. A bo whose pages are swapped out or backed
+    up is reported as swapped, and one whose pages are not populated as
+    not populated. Subsequent reads return that snapshot. Once the
+    snapshot has been completely read it is discarded, and a new handle
+    may be written. Until then writes fail with -EBUSY, so that a pending
+    snapshot can't be replaced before it is consumed. This allows querying
+    many bos using a single open file.
+    
+    The write-request / read-response protocol per open file follows the
+    simple_transaction helpers in fs/libfs.c, used by e.g. nfsd and
+    selinuxfs, and amdgpu already populates the per-client debugfs
+    directory with its vm_pagetable_info file.
+    
+    For sg bos, typically imported dma-bufs, the backing pages are owned
+    by the exporter and can't be inspected, so only size and placement are
+    reported.
+    
+    Example:
+      exec 3<>/sys/kernel/debug/dri/client-<id>/bo_numa
+      echo <handle1> >&3
+      cat <&3
+      echo <handle2> >&3
+      cat <&3
+      exec 3>&-
+    
+    The client id can be obtained from the drm-client-id fdinfo key.
+    
+    Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Assisted-by: LLM
++ /mt/dim checkpatch 6a182ac542350dbca9147134654c35e463aa1382 drm-intel
+6c7babfaaa67 drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution
+-:414: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-169692v6_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
-    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#288]) +32 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - bat-atsm-2:         [ABORT][2] ([Intel XE#9663]) -> [PASS][3] +1 other test pass
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#9663]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663
-
-
-Build changes
--------------
-
-  * IGT: IGT_9168 -> IGT_9169
-  * Linux: xe-6018-6a182ac542350dbca9147134654c35e463aa1382 -> xe-pw-169692v6
-
-  IGT_9168: 9168
-  IGT_9169: 9169
-  xe-6018-6a182ac542350dbca9147134654c35e463aa1382: 6a182ac542350dbca9147134654c35e463aa1382
-  xe-pw-169692v6: 169692v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/index.html
-
---===============2994328733780417409==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 0 warnings, 0 checks, 336 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6018-6a182ac542350dbca9147134654c35e463aa1382_BAT -&gt; xe-pw-169692v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-169692v6_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_fault_mode@twice-userptr-prefetch:<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6018-6a182ac542350dbca9147134654c35e463aa1382/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9663">Intel XE#9663</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v6/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9168 -&gt; IGT_9169</li>
-<li>Linux: xe-6018-6a182ac542350dbca9147134654c35e463aa1382 -&gt; xe-pw-169692v6</li>
-</ul>
-<p>IGT_9168: 9168<br />
-  IGT_9169: 9169<br />
-  xe-6018-6a182ac542350dbca9147134654c35e463aa1382: 6a182ac542350dbca9147134654c35e463aa1382<br />
-  xe-pw-169692v6: 169692v6</p>
-
-</body>
-</html>
-
---===============2994328733780417409==--
