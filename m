@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48F14606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 18:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4D70606A327
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 18:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=b51/jsxu
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XPvtSJtB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D6F810E6E4;
-	Wed, 28 Oct 2026 18:29:27 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79EE910E6E4
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 18:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E31410E6E3;
+	Wed, 28 Oct 2026 18:32:03 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3E0310E6E3
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 18:31:57 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 6EB7B600C8;
- Wed, 28 Oct 2026 18:29:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F18781F01825;
- Wed, 28 Oct 2026 18:29:19 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 64DCF40966;
+ Wed, 28 Oct 2026 18:31:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BCBC1F01828;
+ Wed, 28 Oct 2026 18:31:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793212160;
- bh=37hlOD8dwEh0EUXrS1Ce/KpApK2v4nHWwN4xZbJmA6E=;
+ s=k20260515; t=1793212317;
+ bh=N1U0x6pY97ZowCxvcVsG2P5sbZPATOjF7M3H+QCVysk=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=b51/jsxuNeh/5Tgm0xkzoauvJZFcn7X6TovxQmObc7LS3QWLab4ZciPHu2WpcQ5A7
- 2MO8jzckmat2jRDJd8Yt1H8Vv7AxaGVjmTcKwygNBAtwEy2gHZ9wHzpgT5nEpFCoQ5
- QFX1ltL3DSIsC0MWNIPy61QRoILLTgTDnnTfnRMCcoBVO8c8OYTMmQazXR1o9JkCsz
- 1TUG5oZyDKyRJV9wJlHuIHDkMkJ/KoY4hb44lVTbFNnlCaM0rW7vbmu2QOBLL/b0YJ
- /79NRyIEVDiQmCHz665DXfPGxhyYGN3ypTWX7XMZ5SJpmudUlW1CdEr4+baO1S2mFJ
- 10NtrOOVMdF9w==
-Message-ID: <sashiko-outbox-188289@kernel.org>
+ b=XPvtSJtBwjUJPxpb+ZdGC3vmvrlVGk2VV+lvndmsMXSXZpsCF5advNz/gvRKf/53U
+ G6z8Vg/QkE73T2AI7w/eh3StIvStRM2pIhK3LAJOoxvaOFpqw0SaLP8+LZR8yUNwjm
+ tPjHdD4Y1ZdtRzdQNsmGfjYhwJxnLqoMOYp4eqNVqMp0rSB4HVzbW5KXF16VZo9cCL
+ iOmvd+F+z3FHEDCserTF0q2UUDVqcpMrMs3XD1uG+RmXu9XlmhT/tY9viv4bIJ2YwX
+ fQbY6uTmdAVIGdStboArDpVBLadl67v1CM2SL2pQ9ll+hsf5bGfWP18awicv690b8/
+ DZ4mZFAfxtv/g==
+Message-ID: <sashiko-outbox-188293@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 4/5] drm/xe/xe_late_bind_fw: Enable late binding
- support for CRI
+Subject: Re: [PATCH v5 3/5] drm/xe/xe_late_bind_fw: Add support to load
+ Ocode firmware
 To: "Badal Nilawar" <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261028181951.1093283-11-badal.nilawar@intel.com>
+In-Reply-To: <20261028181951.1093283-10-badal.nilawar@intel.com>
 References: <20261028181951.1093283-7-badal.nilawar@intel.com>
- <20261028181951.1093283-11-badal.nilawar@intel.com>
+ <20261028181951.1093283-10-badal.nilawar@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 28 Oct 2026 18:29:19 +0000
+Date: Wed, 28 Oct 2026 18:31:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,71 +59,94 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/xe: wrong Kconfig check in xe_late_bind_init() for CRI
+- [Low] drm/xe: unreachable INTEL_LB_STATUS_IP_ERROR_START and missing stat=
+us in xe_late_bind_parse_status()
 --
 
-commit 4506929d511f2d47da604ed04955ac5e9cacd5bb
+commit 24b78786ca211ddb93b253dbb3bc2c006a8f78c6
 Author: Badal Nilawar <badal.nilawar@intel.com>
 
-drm/xe/xe_late_bind_fw: Enable late binding support for CRI
+drm/xe/xe_late_bind_fw: Add support to load Ocode firmware
 
-This commit enables late binding firmware support for fan control and ocode=
- on
-Crescent Island (CRI) by setting .late_bind_mask in cri_desc.
+This commit enables loading the Ocode firmware through the late binding
+flow by querying the SDK API version from the System Controller mailbox
+and verifying it against the firmware manifest. It also removes the 4K
+payload size limit and expands the status string table in
+xe_late_bind_parse_status().
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 33e0ea0d406a0..190eaee5250eb 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -488,6 +488,8 @@ static const struct xe_device_desc cri_desc =3D {
->  	.has_sriov =3D true,
->  	.has_sysctrl =3D true,
->  	.has_temp_sentinel =3D true,
-> +	.late_bind_mask =3D BIT(XE_LB_FW_FAN_CONTROL) |
-> +			  BIT(XE_LB_FW_OCODE),
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe=
+_late_bind_fw.c
+> index 881a46abc4f51..39c47b743edc9 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+[ ... ]
+> @@ -179,6 +188,34 @@ static const char *xe_late_bind_parse_status(uint32_=
+t status)
+>  		return "Invalid Payload";
+>  	case INTEL_LB_STATUS_TIMEOUT:
+>  		return "Timeout";
+> +	case INTEL_LB_STATUS_INTERNAL_ERROR:
+> +		return "Internal Error";
+> +	case INTEL_LB_STATUS_INVALID_FPT_TABLE:
+> +		return "Invalid FPT Table";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_VERIFICATION_ERROR:
+> +		return "Signed Payload Verification Error";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_INVALID_CPD:
+> +		return "Signed Payload Invalid CPD";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_FW_VERSION_MISMATCH:
+> +		return "Signed Payload FW Version Mismatch";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_INVALID_MANIFEST:
+> +		return "Signed Payload Invalid Manifest";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_INVALID_HASH:
+> +		return "Signed Payload Invalid Hash";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_BINDING_TYPE_MISMATCH:
+> +		return "Signed Payload Binding type Mismatch";
+> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_HANDLE_SVN_FAILED:
+> +		return "Signed Payload Handle SVN Failed";
+> +	case INTEL_LB_STATUS_DESTINATION_MBOX_FAILURE:
+> +		return "Destination MBOX Failure";
+> +	case INTEL_LB_STATUS_MISSING_LOADING_PATCH:
+> +		return "Missing Loading Patch";
+> +	case INTEL_LB_STATUS_INVALID_COMMAND:
+> +		return "Invalid Command";
+> +	case INTEL_LB_STATUS_INVALID_HECI_HEADER:
+> +		return "Invalid HECI Header";
+> +	case INTEL_LB_STATUS_IP_ERROR_START:
+> +		return "IP Error Start";
 
-[Severity: Medium]
-Does xe_late_bind_init() also need to be updated to check for
-CONFIG_INTEL_MEI_CSC when initializing late binding on CRI?
+[Severity: Low]
+Can the INTEL_LB_STATUS_IP_ERROR_START case in xe_late_bind_parse_status()
+ever be reached?
 
-Unlike Battlemage (bmg_desc), which sets .has_heci_cscfi =3D 1 and register=
-s an
-auxiliary device bound by the mei-gsc driver (CONFIG_INTEL_MEI_GSC), Cresce=
-nt
-Island exposes its MEI CSC controller as a standalone PCI device bound by t=
-he
-mei-csc driver (CONFIG_INTEL_MEI_CSC):
+In include/drm/intel/intel_lb_mei_interface.h, enum intel_lb_status defines
+INTEL_LB_STATUS_IP_ERROR_START as BIT(31):
 
-drivers/misc/mei/pci-csc.c:
-static const struct pci_device_id mei_csc_pci_tbl[] =3D {
-	{ PCI_DEVICE_DATA(INTEL, MEI_CRI, MEI_ME_CSC_CFG) },
-	{ }
-};
-
-However, xe_device_probe() -> xe_late_bind_init() unconditionally checks
-CONFIG_INTEL_MEI_GSC:
-
-drivers/gpu/drm/xe/xe_late_bind_fw.c:xe_late_bind_init() {
+	INTEL_LB_STATUS_TIMEOUT                              =3D 7,
+	INTEL_LB_STATUS_BUFFER_TOO_SMALL                     =3D 8,
+	INTEL_LB_STATUS_INTERNAL_ERROR                       =3D 9,
 	...
-	if (!IS_ENABLED(CONFIG_INTEL_MEI_LB) || !IS_ENABLED(CONFIG_INTEL_MEI_GSC))=
- {
-		drm_info(&xe->drm, "Can't init xe mei late bind missing mei component\n");
-		return 0;
-	}
-	...
-}
+	INTEL_LB_STATUS_IP_ERROR_START                       =3D BIT(31),
 
-If CONFIG_INTEL_MEI_LB and CONFIG_INTEL_MEI_CSC are enabled without
-CONFIG_INTEL_MEI_GSC, xe_late_bind_init() will bail out and skip loading the
-fan_control and ocode firmware on CRI.
+However, in drivers/gpu/drm/xe/xe_late_bind_fw.c, the sole caller
+xe_late_bind_work() stores the return value of push_payload() in a signed
+int and only invokes xe_late_bind_parse_status() when ret > 0:
 
-Conversely, if CONFIG_INTEL_MEI_LB and CONFIG_INTEL_MEI_GSC are enabled whi=
-le
-CONFIG_INTEL_MEI_CSC is disabled, xe_late_bind_init() will register the
-component and queue xe_late_bind_work(), which will then sleep for
-LB_INIT_TIMEOUT_MS (20 seconds) per firmware image waiting for a component
-bind that never happens.
+	if (ret > 0)
+		drm_err(&xe->drm, "Load %s firmware failed with err %d, %s\n",
+			fw_id_to_name[lbfw->id], ret, xe_late_bind_parse_status(ret));
+	else
+		drm_err(&xe->drm, "Load %s firmware failed with err %d",
+			fw_id_to_name[lbfw->id], ret);
+
+Because BIT(31) is negative when stored in a signed 32-bit int, a failure
+returning INTEL_LB_STATUS_IP_ERROR_START will take the else branch instead
+of calling xe_late_bind_parse_status().
+
+Also, should INTEL_LB_STATUS_BUFFER_TOO_SMALL (8), which sits between
+INTEL_LB_STATUS_TIMEOUT (7) and INTEL_LB_STATUS_INTERNAL_ERROR (9) in
+enum intel_lb_status, be included in this switch statement so it does not
+fall through to "Unknown error"?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261028181951.1093=
-283-7-badal.nilawar@intel.com?part=3D4
+283-7-badal.nilawar@intel.com?part=3D3
