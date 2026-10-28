@@ -2,160 +2,143 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFB1E606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 18:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACB5606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 18:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=akdXfmcB
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AVG5YwTu
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE79410E599;
-	Wed, 28 Oct 2026 18:46:25 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33D3E10E599
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 18:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 714A310E20E;
+	Wed, 28 Oct 2026 18:53:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2226F10FE0A
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 18:53:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793213179; x=1824749179;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=tj5rhDdvzwG8xT7XPqMlMQs4JddZKPQGB74702YImPo=;
- b=akdXfmcB09taXgQz0PKoQzSFetFroa22cZL0WcCNQ7Ht+C2iGWzHgO6V
- qri4pdLPT9tDvVj3GXwq9j9jgH69BoPlQgYOdTSwWwZBBg4R64ygqPynb
- O34Yrjzxv6uMzcReKt9L+Tbr5GXaoua9Ij0UTXb8vWWfpU6YsshQJy8UV
- TlcFRdQLL6+gLOY1fv/Y9Z5YqnOoBRctzsnd/OBoPXisuRg9XG4WzSVuR
- v9ualy5A5GeS0SoDLvOkb5d5FYs7YKCticzD1uT1l+QKrIEH/mE725iT1
- nQjKE8AUkYoqvrJoRWm6mZQ/33uhaUNf7p6Cg22DSKrarVqv2OLKycUMr g==;
-X-CSE-ConnectionGUID: uyPPwmoUTMC4H5ORQjqdPQ==
-X-CSE-MsgGUID: u0dB7+zhT2Spu0MYGULFWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1831947"
-X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; d="scan'208,217";a="1831947"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 11:46:18 -0700
-X-CSE-ConnectionGUID: s6HS7UGyTJSdqugVlTp46Q==
-X-CSE-MsgGUID: 0z5rtCFgTX+UiYS+zdw3ww==
+ t=1793213615; x=1824749615;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=ugmn6CeeGggimRVz0z1t2H4YqnTayTBiUxRdO+3tEDY=;
+ b=AVG5YwTu+NTFpHHABUCslK8llfICi6T1nro1BjqeGtfNvtMTZVCRlztf
+ LtTH5zXq8vc8+W02hYZljjw0Q/fzzhM1U45OMMtq5IZxa7ff5G6tUfgsC
+ db1rSLS4eSqu4fhP+tZp7FHKcf+X7fwB88mU2XFUwaIUaZhw2GJEIdkIx
+ 6iKc87ERys54f32FGhd5dPDKen3hvDGnXA1YKXmP/0EoJsd6stSFG2GQN
+ QkCepxLZe+qvX4MlaYURO4rNXyhN+00c36NjhhZuSsKSAM0Lok80pMlze
+ gv4TZV0Dd64PFM+hRd5RyPS4Zv2CNms3kOUqayLWvo7ZDMuM0tDDK5+kj A==;
+X-CSE-ConnectionGUID: toeLUWsxT/+nFNwvsy4K0g==
+X-CSE-MsgGUID: GM7fsntaS+KsYe2TqfFoBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1961541"
+X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; 
+   d="scan'208";a="1961541"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 11:53:35 -0700
+X-CSE-ConnectionGUID: 4jSQlZDTQhqLYUOJLjvy+g==
+X-CSE-MsgGUID: BkpKnGzDQVKZskg/bPHIQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; d="scan'208,217";a="4945682"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 11:46:19 -0700
+X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; 
+   d="scan'208";a="6686564"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 11:53:35 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 28 Oct 2026 11:53:34 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 28 Oct 2026 11:46:18 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.56 via Frontend Transport; Wed, 28 Oct 2026 11:53:34 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.68) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Wed, 28 Oct 2026 11:46:18 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.20)
- by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 28 Oct 2026 11:46:17 -0700
+ 15.2.2562.49; Wed, 28 Oct 2026 11:53:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y4NAm4411Rgbj/RK1ZXJ/BHX1xm00j7yJBd/O6zGXOyW/tpKxJB+dVLdmX7I7goCMUDScAjHtDfInnREe38Dw9RMnvYUDyL2WdeISpeNgWOtqEqSnV2iwvw1xcFMfnYYH2gJ/+74m0mteB/C+n4GVrMzx2Ihp4k9MeqdZJ43mJfH3C3JlsBzK//8+JrfzxsLDUYE17ZJ+q5BW87yOyZB7HpnN/WQVeVr9P9RuNhvjRMMaeWxS7nrswj19pn2xt/9iJ6usmMyb8McYULwB0MgmDEdkflE4G76NvUfE33Q4+fhHiNjEYGlwYNja1pzY4bywmeSgs/3vmXhsiyxxbp76Q==
+ b=gWprqTxe21YC2np+mXcGMKNa9mV5jIBRQPnJtF40goc8O43Q4IRC/ZC4oPSuw9aj6xGKfKqseOpLR0xmdE40EyIHEN3dr3ox7W9Rz3gOpw0peSpSGLM1EZIdnmucxeM6ovfrA/J+exSGwpuPue8z8T91cqbEv2s+qQMmns9FhkIOj1+88JLngcfzB48ta8GN8FqtsEWYDAFjr0mpn8ZP32g3aC+iwEKRTcjuU0pbpvJCfH8DGPBMRcfzyZyK3lzb4v/Hsh+6WGvr0fnrlvn9YbryR+lNf6dfxn7rd+3aCw/zby0hoFS2GXjBWnRYA/0fNxTsOPg6/4Yj6P8VXpctjA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VlnDlau2043qlikFdAYnyln/1LX9x25jxcKo0TI4LqE=;
- b=vwSenlZqy7enHMZAg/rjv3CauBykT9SozHbZm7Zp3tDPED5Qj8l+aI/DvurX6mnFJMWa6o7BG2pUkLtYYM1IT+MOkUW57gHtZGkrgz2lThYV/8DSjpZsMF/jpfWOst/5FDNjMHqR1U9zvgPzh7x5OYWbLt9wUzRcDC18wYT/UadVp3a4O+lqCK+ve/6fUcPlGNkrnvm6Imi8T/CJwvwvKeuanmuQkQZnzs+1L/RpskHajEixm/U8sFbB0IWUzgHNArwZUmmzSRtyao+J02htMJbz3/0VofKZf5e1WnBYEPAsr3QKwePfWxVG0XgFWKuoDf7ElD2IhZybjk8zKp6cNw==
+ bh=iWSwMVGFnd9yI8eqLm0j6cg2pfklTiUjZVjFeu/cXGA=;
+ b=wtqnzc72fFZx+PUI6IDlFF8sgTJ1pLWb8+uEPN2zFOjeolR6N73bVuxADLes1wccZY3Pc53GPn95ksTbrzsLjtUD53MheX3nrggwta8bDoVxbVhT5zIcy9J8WRIqdsom55mBcjonNCBGoySWq6RacfgkI3YZIRJ3ypqGitSSYBmdbI3ZNrXTY2/OOT94Wjpsh+ZMqoSaWPYOfIvoqNIxT/epS2QT3u/+l2qNGfmvM59mpALVaYFBTRrmTsA8PJJ2H9Q7c+kwfWGKFWwCwoFEgJZRtjBmNQnDnio1K8SzQdWp100h9JLf1UkGJFDA2P6fhPXXxhwPLS2HBqkzcLUeiw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS6PR11MB087165.namprd11.prod.outlook.com (2603:10b6:8:4c4::7)
- by SA1PR11MB6735.namprd11.prod.outlook.com (2603:10b6:806:25e::7)
+Received: from PH0PR11MB5095.namprd11.prod.outlook.com (2603:10b6:510:3b::14)
+ by MW6PR11MB8368.namprd11.prod.outlook.com (2603:10b6:303:246::14)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Wed, 28 Oct
- 2026 18:46:14 +0000
-Received: from DS6PR11MB087165.namprd11.prod.outlook.com
- ([fe80::4223:7b03:1329:265f]) by DS6PR11MB087165.namprd11.prod.outlook.com
- ([fe80::4223:7b03:1329:265f%5]) with mapi id 15.21.0546.021; Wed, 28 Oct 2026
- 18:46:14 +0000
-Content-Type: multipart/alternative;
- boundary="------------jlCfj6gnLzXKbSXLaRO5xeaJ"
-Message-ID: <244e9d47-794d-4290-9bdf-d6c83a6f0fbe@intel.com>
-Date: Thu, 29 Oct 2026 00:16:04 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/9] drm/xe/hwmon: initialize fan-control backend and
- table cache
-To: Karthik Poosa <karthik.poosa@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <rodrigo.vivi@intel.com>, <anshuman.gupta@intel.com>,
- <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
- <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>,
- <ravi.kishore.koppuravuri@intel.com>
-References: <20261015190751.1268916-1-karthik.poosa@intel.com>
- <20261015190751.1268916-2-karthik.poosa@intel.com>
-Content-Language: en-US
-From: "Purkait, Soham" <soham.purkait@intel.com>
-In-Reply-To: <20261015190751.1268916-2-karthik.poosa@intel.com>
-X-ClientProxiedBy: MA5P287CA0032.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:17a::10) To DS6PR11MB087165.namprd11.prod.outlook.com
- (2603:10b6:8:4c4::7)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Wed, 28 Oct
+ 2026 18:53:31 +0000
+Received: from PH0PR11MB5095.namprd11.prod.outlook.com
+ ([fe80::770b:7229:68c0:5ded]) by PH0PR11MB5095.namprd11.prod.outlook.com
+ ([fe80::770b:7229:68c0:5ded%3]) with mapi id 15.21.0569.007; Wed, 28 Oct 2026
+ 18:53:31 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Pallavi Mishra <pallavi.mishra@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <matthew.d.roper@intel.com>
+Subject: Re: [PATCH] drm/xe: Store GMD_ID subunit during GT init
+In-Reply-To: <20261028020554.390714-1-pallavi.mishra@intel.com>
+References: <20261028020554.390714-1-pallavi.mishra@intel.com>
+Date: Wed, 28 Oct 2026 15:53:26 -0300
+Message-ID: <87ecd9mzbt.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0333.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::8) To PH0PR11MB5095.namprd11.prod.outlook.com
+ (2603:10b6:510:3b::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS6PR11MB087165:EE_|SA1PR11MB6735:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6b4927b6-01e0-4ed6-f880-08df3523be01
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5095:EE_|MW6PR11MB8368:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6ff378eb-3355-4c21-e0dc-08df3524c28c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|261022105027099003|261009223027099003|261021121427099003|261022113327099003|261022075727099003|261021123027099003|10067099003|8096899003|56012099006|261028144727099003|261026140227099003|6133799003|18002099003|22082099003|261026121527099003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: tmYiSbh+OpTcr8glFbJPP6NdtC6THfwUQbNnXxsH0FpagRcUBPMQvbaZaKuZNIj+pgS/6D6zgBK4lsYfcEn9dW6C958xl88ov3SJAwJClWcuMOEPZ0t99dD5ApXcdX/jMTt8KZSvI4Abd79mP19WO7jidQkmGxcdpevmgeAYg4FgGzvcXixAL4dpk3hFVdqdt7rgHjoe2iJUwBd3Pb2BIo7jq/FhUONb9NTQx/Py9OO1InW2p0rVNX6j0BZzk6KSaCiRfdW1bBUq0VTKyJon/Y77oHf18YD+Uvv0LGI9GTt4nevAY/fh/i8Xk0avYcoyBL7HJF9lXGdjXs4muEYbWD+sxt3phLzBwLOAIHlNw18rLVv8IVRM838TarV+/yIIU82LCwPXYdBGfNWlBf+Aj3XcbnfSZSLxRZta0ECjy/b2EXW9aiCGPK9JcZxkv4cfOTZXuche9p2DVZFjshxhhn6VxiZ82XHfBqCrgsZSaaPM9vg58sycfxkBRKmmMG9IC1yE7DLojPb9DXJ7d5szl+l7uqGg/87RlSlKftWIHaVwjvy3aIFE1zPbkkn+0lJ63ZDwM+UNvX27atMvNWg7Ori7zuzswlncyR9xsnsAg6cuusB7W+7D+euVacLKpGURw3p+K+uO4cQ54D8jm557h+OiXczGWcVtJ6+cztIn4PM=
+ ARA:13230040|366016|1800799024|23010399003|376014|261028144727099003|261021121427099003|56012099006|11063799006|261022105027099003|261009223027099003|261022075727099003|261026140227099003|261026121527099003|10067099003|261021123027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: mjgju9RVginkco5ESwkrrmlg67nbxeOXDphZQtRTR1E1POWJcMASDt2dB8R35zgDGc4cy9gAseWbObmPF6q8wA87KvZNiUx0fDvys0pWcrQv0qkLZMYeeO789gXxaoRzKXiJ9+2UnJL/Kh4h+MlvVC0Cmi6t4RemA5Io067Hu/pO+ZfeiA+afJt4pjb4x59vgZO+zwVC2gRQoc1+ztfbfYigELxU3sRmwOpAu1Zta9TXv8d0h9nf7BHIj9ybrilg7v0VSUInKaGtnH6ozkcgy6M42gcAT9UuZnK36kEDuzFP92uYAkX3tPqYNECE3MFXtQLQaeqkdY+61jHlcVrzM1LqoYVhbXwXF92mkSz9FptHH6bVn8aB3wKc6/NtnH9yIJYdawfBNhwqajLjEkIATVui96myB90SKp1IfsgM/+Ke9cLQrd7gjsGhsz2iRu6ep9Q1JXnqXKV5c4xSczBi9/0QNveKqxP16rUZXb6oMyN4qIEliASx2M5Kb8KztSipZVxpswCRPHQurFtc6JbEX2l+LblObxQ8hB2/33KLVsjEmu4vU7YltmW3f7j2BbDIo2aIbbi8ZZwakqBeWKryWuuDas7u6EUeH7KFXbMKWslReRLDFxzLCLeRHptGqiXRCKSF8oqMX4Vo3BYddfGeV7hR6XqI9zIRrhyaQ+aDNv4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS6PR11MB087165.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(261022105027099003)(261009223027099003)(261021121427099003)(261022113327099003)(261022075727099003)(261021123027099003)(10067099003)(8096899003)(56012099006)(261028144727099003)(261026140227099003)(6133799003)(18002099003)(22082099003)(261026121527099003)(11063799006)(4143699003);
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5095.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(261028144727099003)(261021121427099003)(56012099006)(11063799006)(261022105027099003)(261009223027099003)(261022075727099003)(261026140227099003)(261026121527099003)(10067099003)(261021123027099003)(22082099003)(18002099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzU1OVhudUYvcFlFUForL1hnbUY4QklrWFE1cTJHNERHbXpRMWcvTUNLemVK?=
- =?utf-8?B?dmNUaXFXZ1A0azJlKy9UajNzKzFrU25yQ2VIamhHTXEwR0krbWhEU1BKNHpM?=
- =?utf-8?B?Qms0THpNQ2lBR0xJdDd1TGJGZlhwRTNzL2ZhZjhjR2hRWmVnZmJpZ0dCSU1Z?=
- =?utf-8?B?ZUFDdmNOYkNHN3JURnhCbm9ReXJFKzZHbmk5dE8xTnRwT2pVRGZFdUNGUlJi?=
- =?utf-8?B?UktJR1JrbE04MktaVXR5TGpGcmszdHJwYmRBeWk0YTQ2T1gvQXMvbXVSTnZR?=
- =?utf-8?B?VEFpRm1ITWhnOGJydUhsVFlhL1BBNGhhSzZrUkF5Wnd3dVFzcWc2UW1mcXRV?=
- =?utf-8?B?RmhiemFWY0g0UXFNR05pMy9VSTBYeGk2L2UvcEw3dk80dkhFbGZRVnVkUEUy?=
- =?utf-8?B?V3BtVkxaaWJhVVRReHlnRjUvL1IvUm9rMURyMnBKY1JLUVAvUVZEOEh4MVg5?=
- =?utf-8?B?ZFJGY3drZzUrNHFkMTVySnVjNlZleDkreDZqalFQa1F3WkJzVUN3Ukt0VVJC?=
- =?utf-8?B?dEdPb1NOVU5JL2dxczVzZXF4Y1dpR01SQm83S0tWdy9ScEtSYU13M0ZsTDYz?=
- =?utf-8?B?eFROaUJuU0NnR0d3TEdmYUE5dDBUNXhCVEVuTCtyamMzVGs5ckp1cEh6YTBU?=
- =?utf-8?B?THk5ajJKVkMyWkVicERmL3A2emtvRENGVG04eUdqOTZJTnZiZkhvVWtZZE9S?=
- =?utf-8?B?M0YzTy9ZUG9ob25hdkcweGhmMDNTTzRmTk9iaWpteVM1QnRaeWx2c2RXMEV6?=
- =?utf-8?B?VkJ1Rnd2aHg2OXRXakUybFVJbnFTUUtDVExmMnlOS25QNi9idVVpbzg1UGZ1?=
- =?utf-8?B?cklnRGt4S21TRjBRVjl5VDc3UTdNcU9Rd1FzM21rM2xPTmhvM0tzRDA5TDZJ?=
- =?utf-8?B?dlF6R3VXWlBCZjNjN3ViWFlsOHpjdG14VXlSWGd1aFJ5aFZCSXRoM2c5NHoz?=
- =?utf-8?B?YkVVSkNxMzFUd1RwSTBraENFZE1sRzloS2EwQ1FHM3lGZHk1Y0xXQVZzWHZa?=
- =?utf-8?B?dkQwM1gvUGFXR3d4ckc1NUFDMjZuT3FEYzdLU0lVRlUzZG1tVTdhMFU4TFow?=
- =?utf-8?B?cVhETy9YZytScHJFMXFzVnJ4bzVFNS9Tdmd1Z2R5RXhRYUJBTjhNRWJuMlFZ?=
- =?utf-8?B?YVppV1Fpakx3enQ2bTFFVlVmM0dVRSt2T3VKSXdOYlpjWDhmMWFrQ1p2cTVE?=
- =?utf-8?B?cUtkSVVXKzZHNWdLWFhxR2pjV2xjS3VzVkJYSCtudUN4bnp0MGZ2REtKQTlH?=
- =?utf-8?B?a001OXc4RWUrNmdpTlQ4TmNGZEpIZXl2WnNpdEtEM09pd2M2bGxyZmdpSjJq?=
- =?utf-8?B?VTRzNlJrSUdpWEZJUXlHdWI1WVQwSlFiRE1PWmF6R05CaXl0N1NKMUdGRUdq?=
- =?utf-8?B?TVg3Vyt6L2dQbmRTTG5mTWhCbGVHcmxVaGYyNzIwbUZTUndGN2hkempBb3l3?=
- =?utf-8?B?U3JWUXdITFdpVVFkUnBjQlNMVHpHY3NWRDNQS001Tkt6ejJWZmlKaUZPRUo5?=
- =?utf-8?B?MG5jZURGMUJFOEhEbjl3SkJaYTc4K3pXWFMyQVlGVm9TM096OUY1WnozUHlR?=
- =?utf-8?B?Qmk4YSt5clNQK092ZWVGSGNhaDlVaUY5NWhkWGo0Q21kODJ6YjdNdEorS0Nk?=
- =?utf-8?B?dGxTcWRpYnFLbDhSSXhuUnhaYk9NN0Y0cE9BdHRGam5sUDNBYW9INDQ3NUR3?=
- =?utf-8?B?bXZpUm5EWXJRZVE1SFdBK05MSlYycnlLZHkzVGUzRU5sbjk0L0gwZmxtUGFl?=
- =?utf-8?B?Z0tvK0V0RGpoUkNWWkh5KzhJNXFjMDVqNGFWMjloU3RMa0R6bE96amExdmh5?=
- =?utf-8?B?SllIQklHVkJ2S3BxU2psTnpkOXJFd1FWMzh4M3M5U2tXTGtpYzNYUFM2SlE3?=
- =?utf-8?B?b0Q5OXV3VEVxcjQxN2wwTkVmUTlVVU9CUHJOQWVWVnkxZTBFL1gzbmpjMFBz?=
- =?utf-8?B?VytRbjBuUm9JLzBFM3ErZ2dMMTJaayt1bDFaVE5EQWhGUnJ6MTNXZ2hkbm5w?=
- =?utf-8?B?YkI3MzFVV3dNQ05YMUNQWjhudmozejhjY2oya01ENUNtY1JaM1R5TmR3N1NS?=
- =?utf-8?B?RFBrWm92TE5EdWdjNVAvYURnWXAzekpMYVEwTlI1cXE0ZkhCaGdDenpveUxZ?=
- =?utf-8?B?di81SUZnY3VON3RZdGRtYzJrN1pLbWV1UEVreWxLelJOcmhNQnVhVUU1TDg1?=
- =?utf-8?B?MUVxNmVKeXl6TU1kS20vby9UZmhPNVZ2M2pxYllFeDJSejdmZGcyMisyKzBk?=
- =?utf-8?B?ZllqODNDQ2pTSCtUc0xlbVl0NmZrRUR6dGljL1pWQjhadHE3SXA2UytvSEU3?=
- =?utf-8?B?WjUwYmdLYzE2ZXlEaVNob1JCSXdJMTk1S3VJb3FVSENRM0hzM1FNbTZyUzVB?=
- =?utf-8?Q?1n+NB+uTqx+/bVr4=3D?=
-X-Exchange-RoutingPolicyChecked: XtN8uVrluVPX2zfmuk6CIc9eQHhLPWEm0IUPc3VPZ4b+jsF/ewjbVhwWRXtaccCQuFdCDB3RyjFied7qDbSsUMeTQwGZR9sx1tDO7GsAZSjeL1BDANeOz9ekJKbCT0viT6tcNGZiHXcDMweS0tYayCsHLdB8VVkMyjIFghNKSmPOmRNDi6Rwtj9Fc6of7VecCF1BcZynVGYfIdQp0B8kIuaXDF8UVrgjfMWOLd37LM3vVSaNvem7q/RqypIGkd5Sstx5Syoo5zfoI8jRlkNnqzqDpkV7vJ6d5v/uEDUIuSs6qiXVof+kzdKmqlanJ4f5gWsesrwruA1nXzLKMXEECQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6b4927b6-01e0-4ed6-f880-08df3523be01
-X-MS-Exchange-CrossTenant-AuthSource: DS6PR11MB087165.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RJ/Tt9e0nymZwBg1//NeYXgWJXCEMhJt6GHfz78kA3OtU35o1/DCgcF5zq/J?=
+ =?us-ascii?Q?E+xl/ih5tIsKHI+IvdsXELqoHjyemXbREfpgYd0DgcGMhKJsT8h9ZWx2bRt6?=
+ =?us-ascii?Q?RHHp6H291o7tUf8ZHd3insdY1Ie3lN9jOTLf5Pwrjh07Hot5qENfqQkjIY5r?=
+ =?us-ascii?Q?WKvQ886VIvCRdlm5FGaY5UK7u9xlvgjv+YI8XSrl2VLQTDy9rIe9341X5Nnv?=
+ =?us-ascii?Q?Wvb49abqvJWWodLOdSSm5KltQQ7s/t7pbnvoKOdbfZLUm9DwS53JvbRvvtAL?=
+ =?us-ascii?Q?qfO4baUu/T0K0hC//YRWFcr+MwT5/JsOlNXQ5HlNXzdPBH5009oBCi9/w9mo?=
+ =?us-ascii?Q?ZNOfmTLQ5G0Kxzm64zY8Z+mXafL1urQL7hB1xPoSBbTgRlCzvUC0KWcLgC7o?=
+ =?us-ascii?Q?cn2BlKJf3fG3dZNeoXt9Eix4RoB44GxzLzjJWeEWGf6J0n9M7NqdnmLYJpZR?=
+ =?us-ascii?Q?vXs4R+UijFyYKNC5pijBbR49p0p9wGvWGwvmbK36XtxCEq6FroNnn4F/Mmkp?=
+ =?us-ascii?Q?B9f9H1argmp5YFCnEXoTQxa+s/378zXdukZuwPpKJOqOT7ItleNARCHZw10/?=
+ =?us-ascii?Q?6gRUCdzjsacYHp2W964rb0QW84WUCwhO3LeqlbZdqpZcfoRek3gVWfYEuKrZ?=
+ =?us-ascii?Q?Tu6RDNwq/G90P4uAskiO6lbfO80SLfft8lEXD2wRMALdhMCbLpVDjmEyN8Oe?=
+ =?us-ascii?Q?w/+2RcoqR5l2ooTdIkjcHSeqINktL4snFSqnydUoxzGlhQx0GnL/FUWYqfQx?=
+ =?us-ascii?Q?0u4DD49tVy3e3vQEIY4sYD6FjWguJeZtJ049tYJWyyfy0EdUelchbG1/1vpk?=
+ =?us-ascii?Q?PPobyP7sWyUOzSu0xCcC9FV7wC3CmXesta0989Mq/ux68ggD+trRx8tbmmwj?=
+ =?us-ascii?Q?cvC/9Vtcu50eu9OmycSPiHVeNC0ZUxtlZRXdDg5XgfNw8Gwz0mS5NVenEJ/f?=
+ =?us-ascii?Q?aXT2TR8O/ICmYecrsVEl+P5ycBRV5S5pMm2IdbqCfD8+Kzx6jDfRa6cwauux?=
+ =?us-ascii?Q?5WtGKg3g69NyO4a8NN40n5KsoE1bnbYjdr0V/0Q4qwD0kG9vb28c6qQb+dEv?=
+ =?us-ascii?Q?schR7gSMJbXQvq3LPkA7LIawWugNoSL3FbUZ3fmkWqzBhXyLR5vN18Vzp9LK?=
+ =?us-ascii?Q?jntVDw12ROFNah06Du2XdD17j9KWAwbOzRVohQke/fUtQIhZDvAtvmKVP4/d?=
+ =?us-ascii?Q?BFf0dncOEC8wHrVBtVUAGwOerE5HmWbJcWBpWJ4X1viY5UAmlqwHoTbCrufr?=
+ =?us-ascii?Q?oF2Phu4P1Mt8KfqOTa/YFPbz54Hqpf5TuGykBxzcsWbHn4inLvDjHCnDTtLg?=
+ =?us-ascii?Q?2t1PDmIjBCiUssR3bONUuZ4+V3Qa7fKKr3pEfwbnl08xb7ViPuPKB09tPgmh?=
+ =?us-ascii?Q?whnndlG2+JNsfuBdY0IPvQ52OSJ8zai5dTmqsikdnr8uLkMpVr2d22DYrZJ4?=
+ =?us-ascii?Q?IKA8w2XCajImjZsBMU0L6GQkiuF2QUDWnp8DdNYCshVqV0P0YtE6d2TDwebd?=
+ =?us-ascii?Q?0kMT+3kdM4PlQ/9TNmxwacANlsyc3B+BIy9EQMBKesRwbO8Ydu52KLsfqaKD?=
+ =?us-ascii?Q?HT6BOximpLryqI5ckAHudLRFeJMTWn610eYAoQ8ioErYEBng5Bb3Hl6vKl6y?=
+ =?us-ascii?Q?H6SVX5hr8oSjpNLNMxuXm2TDiN1lijfbBL7hlxHDjfdgyQr2oAhSU8BnHcV9?=
+ =?us-ascii?Q?mrXxlTvDudegUxI9JwPMlAALENjiDX+xGBs+0gGehfp7erL3UPM0aowhXjTv?=
+ =?us-ascii?Q?qfZ1P44I8w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: czSfbPevKFOisUlOx96cHisFimFk9LsQ+MSfSaB1IRUNvGp0w6Q3fSsxyOacjm+PR8Uqi8wzMKTUS3Bmt7NTAJyZCS4399PXUFTGlx7zbnRLRFEevrfCM9KadGvs4dqNqkVkkh4aAwSeJICAqrJPSyhbXCRpdLS/wihyRyJYzkNBdH8QtTaDzG31yzPiUHzcOgBnZdcH1b/cGrJ+zAFRWRAfU7Hotq4WPuRP3NE2NVxpNiIdim7KWSxGH3I5N6mwxQ4xjDm+R5o3+lMUY3BCGJIJendL7YJqgFBOI33jeeMEWKWpdPK0MTe/xlftomOpGo/rDY4aM2RvvTrQZoDuIQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6ff378eb-3355-4c21-e0dc-08df3524c28c
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5095.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2026 18:46:13.9375 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2026 18:53:31.1702 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o0XWQqka6EMke5Kqs9/8oCkOF4hjaSzIyDVBjR1J1O2YupKN0Pixwr2dcw4rZhxU4R5tN/iMsNGwZQGwWEHFaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6735
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7z97xa5zmdptXPa4Pee9FWDkOTqq11YPbsNrWb9L2D1TvG6NJBFFb1srnrsm/3tiEnOUF+MRhvR3/TkUI2UuTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8368
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -167,646 +150,126 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	HTML_MESSAGE,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---------------jlCfj6gnLzXKbSXLaRO5xeaJ
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Pallavi Mishra <pallavi.mishra@intel.com> writes:
 
-Hi Karthik,
-
-On 16-10-2026 00:37, Karthik Poosa wrote:
-> Initialize Xe hwmon fan-control support by detecting fan count,
-> reading stock fan control points and min PWM.
+> Read GMD_ID during GT forcewake initialization and store both the
+> full GMD_ID value and the subip field in gt->info.
+> Keeping the field in gt->info provides a common source for
+> future users and avoids additional GMD_ID reads.
 >
-> v2:
->   - Avoid user table initialization during probe. (Badal)
->   - Move unused code to appropriate patches.
->   - Use xe helpers for dmesg logs.
->
-> v3:
->   - Rebase.
->   - Refine a few debug log messages and comments.
->   - Update xe_hwmon_read_fan_control_info() to return on any stock table
->     read failures.
->   - Avoid returning when num_fans is 0 in
->     xe_hwmon_get_preregistration_info(), ensuring thermal mailbox
->     initialization is not skipped.
->   - Remove XE_PCODE_FAN_CONTROL_TIMEOUT_MS which is unncessary as default
->     timeout itself is now 10ms.
->   - Use xe_pcode_read() instead of xe_pcode_read_timeout().
->   - Rename fan_control_point_count to point_count in struct fan_table.
->   - Resolve kgdoc warnings.
->   - Add valid check for stock table fan point count.
->   - Use the fan-enable bitmap reported by FSC_READ_NUM_FANS when enumerating
->     fans. This avoids assuming contiguous fan indices and allows masks with
->     gaps to be represented correctly in the hwmon interface.
->
-> Signed-off-by: Karthik Poosa<karthik.poosa@intel.com>
-> Assisted-by: LLM
+> Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_hwmon.c     | 167 +++++++++++++++++++++++++++---
->   drivers/gpu/drm/xe/xe_pcode_api.h |   5 +
->   2 files changed, 157 insertions(+), 15 deletions(-)
+>  drivers/gpu/drm/xe/xe_gt.c       | 20 ++++++++++++++------
+>  drivers/gpu/drm/xe/xe_gt_types.h |  2 ++
+>  drivers/gpu/drm/xe/xe_guc.c      | 12 +++++-------
+>  3 files changed, 21 insertions(+), 13 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index 42acfeb8818c..f2bd20f8b0a2 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-> @@ -21,6 +21,7 @@
->   #include "xe_pcode_api.h"
->   #include "xe_sriov.h"
->   #include "xe_pm.h"
-> +#include "xe_printk.h"
->   #include "xe_vsec.h"
->   #include "regs/xe_pmt.h"
->   
-> @@ -137,14 +138,51 @@ struct xe_hwmon_energy_info {
->   	long accum_energy;
->   };
->   
-> +enum fan_table_type {
-> +	/** @STOCK_FAN_TABLE: firmware-provided fan table */
-> +	STOCK_FAN_TABLE,
-> +	/** @USER_FAN_TABLE: user fan table written through sysfs */
-> +	USER_FAN_TABLE,
-> +	/** @FAN_TABLE_MAX: number of fan tables tracked per fan */
-> +	FAN_TABLE_MAX,
-> +};
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 60d35ada2853..39ae7105aaa0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -564,6 +564,18 @@ static void dump_pat_on_error(struct xe_gt *gt)
+>  	xe_pat_dump(gt, &p);
+>  }
+>  
+> +/*
+> + * Store GMD_ID and sub-IP before GuC upload. Main GAMCTRL consumes the stored
+> + * subunit field during upload.
+> + */
+> +static void xe_gt_read_gmdid(struct xe_gt *gt)
+> +{
+> +	u32 gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
 > +
-> +/* Check if a fan is enabled based on the fan_enable_mask got from FSC_READ_NUM_FANS. */
-> +#define IS_FAN_ENABLED(fan) (hwmon->fan_enable_mask & BIT(fan))
-If this macro is called from any function having no local variable named 
-hwmon it will break. Should it take hwmon as an argument ?
-> +
-> +/* Maximum number of fan control points supported by each fan. */
-> +#define MAX_FAN_CONTROL_POINTS	(10)
-> +
-> +/* Fan control point index: bit31 selects fan table type; bits30:0 control point index. */
-> +#define FCP_INDEX(FAN_TABLE_TYPE, POINT_NUM) (((FAN_TABLE_TYPE) << 31) | \
-Cast to u32 ? shifting the signed enum into bit 31 could lead to UB.
-> +						((POINT_NUM) & REG_GENMASK(30, 0)))
-> +
->   /**
-> - * struct xe_hwmon_fan_info - to cache previous fan reading
-> + * struct xe_hwmon_fan_info - cached fan telemetry and control state
-> + *
-> + * Each fan keeps the latest tachometer sampling state along with two fan
-> + * tables: the stock table discovered from firmware and the user table managed
-> + * by hwmon sysfs writes.
->    */
->   struct xe_hwmon_fan_info {
->   	/** @reg_val_prev: previous fan reg val */
->   	u32 reg_val_prev;
->   	/** @time_prev: previous timestamp */
->   	u64 time_prev;
-> +	/** @fan_table: fan control tables */
-> +	struct fan_table {
-> +		/** @point_count: number of fan control points */
-> +		u8 point_count;
-> +		/** @fcp: array of fan control points */
-> +		struct fan_control_point {
-> +			/** @temp: temperature in degree celsius */
-> +			u8 temp;
-> +			/** @speed: fan speed in percentage */
-> +			u8 speed;
-> +		} fcp[MAX_FAN_CONTROL_POINTS];
-> +	} fan_table[FAN_TABLE_MAX];
-> +	/** @min_pwm: minimum fan PWM */
-> +	u32 min_pwm;
->   };
->   
->   /**
-> @@ -193,6 +231,8 @@ struct xe_hwmon {
->   	int scl_shift_time;
->   	/** @ei: Energy info for energyN_input */
->   	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
-> +	/** @fan_enable_mask: bitmask of available fans */
-> +	u32 fan_enable_mask;
->   	/** @fi: Fan info for fanN_input */
->   	struct xe_hwmon_fan_info fi[FAN_MAX];
->   	/** @read_power_limit_from_pcode: pcode accepted power limits write for the channel */
-> @@ -1075,17 +1115,112 @@ static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
->   			      (uval & POWER_SETUP_I1_DATA_MASK));
->   }
->   
-> -static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 subcmd, u32 *uval)
-> +static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 subcmd, u8 fan_num,
-> +					   u32 *uval)
->   {
->   	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-Nit: blank line after variable declaration
-> +	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, fan_num),
-> +				     uval, NULL);
+> +	gt->info.gmdid = gmdid;
+> +	gt->info.subip = REG_FIELD_GET(GMD_ID_SUBIP_FLAG_MASK, gmdid);
+
+Why do we want to store a subip field? Shouldn't we simply use
+REG_FIELD_GET(GMD_ID_SUBIP_FLAG_MASK, gt->info.gmdid) when needed
+instead of adding another field to the struct?
+
+Furthermore, there is some exceptional use case for the "subip" bits on
+media version 35, but for other IPs they are tagged as reserved.  As
+such, I think we should limit ourselves to treat those bits as "subip"
+info only where it makes sense (i.e. the current approach inside
+xe_guc_using_main_gamctrl_queues()).
+
+--
+Gustavo Sousa
+
 > +}
 > +
-> +static int xe_hwmon_get_fan_enable_mask(struct xe_hwmon *hwmon)
-> +{
-> +	int ret;
->   
->   	/* Platforms that don't return correct value */
-> -	if (hwmon->xe->info.platform == XE_DG2 && subcmd == FSC_READ_NUM_FANS) {
-> -		*uval = 2;
-> +	if (hwmon->xe->info.platform == XE_DG2) {
-> +		hwmon->fan_enable_mask = GENMASK(1, 0);
->   		return 0;
->   	}
->   
-> -	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, 0), uval, NULL);
-> +	ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, 0,
-> +					      &hwmon->fan_enable_mask);
-> +	if (ret) {
-> +		xe_warn(hwmon->xe, "failed to read number of fans, ret=%d\n", ret);
-> +		return ret;
-> +	}
+>  static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+>  {
+>  	int err;
+> @@ -572,6 +584,8 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+>  	if (!fw_ref.domains)
+>  		return -ETIMEDOUT;
+>  
+> +	xe_gt_read_gmdid(gt);
 > +
-> +	/* Check if fan mask exceeds FAN_MAX and log a warning if it does */
-> +	if (hwmon->fan_enable_mask & ~GENMASK(FAN_MAX - 1, 0)) {
-> +		xe_warn(hwmon->xe, "fan enable mask exceeds maximum supported fans\n");
-Reset the mask to 0 so IS_FAN_ENABLED() stays false in case fan mask 
-exceeds FAN_MAX.
-> +		return -EINVAL;
-> +	}
-> +
-> +	xe_info(hwmon->xe, "Number of fans detected: %u\n",
-> +		hweight32(hwmon->fan_enable_mask));
-> +	return 0;
-> +}
-> +
-> +static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
-> +{
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
-> +	int point;
-> +	int fan;
-> +	int ret;
-> +
-> +	for (fan = 0; fan < FAN_MAX; fan++) {
-> +		u32 stock_fcp_count = 0;
-> +
-> +		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
-> +
-> +		if (!IS_FAN_ENABLED(fan))
-> +			continue;
-> +
-> +		ret = xe_hwmon_pcode_read_fan_control(hwmon,
-> +						      FSC_READ_STOCK_FAN_CONTROL_POINTS,
-> +						      fan, &stock_fcp_count);
-> +		if (ret) {
-> +			xe_err(hwmon->xe,
-> +			       "failed to read fan %d stock table point count, ret=%d\n",
-> +			       fan, ret);
-Why not continue for the rest of the fans marking the current one ?
-> +			return ret;
-> +		}
-> +
-> +		if (!stock_fcp_count || stock_fcp_count > MAX_FAN_CONTROL_POINTS) {
-> +			xe_warn(hwmon->xe,
-> +				"fan %d stock table point count %u is invalid\n",
-> +				fan, stock_fcp_count);
-Ditto.
-> +			return -EINVAL;
-> +		}
-> +
-> +		fi->fan_table[STOCK_FAN_TABLE].point_count = stock_fcp_count;
-> +		xe_dbg(hwmon->xe, "fan %d stock table point count is %u\n", fan,
-> +		       fi->fan_table[STOCK_FAN_TABLE].point_count);
-> +
-> +		/* Cache the stock fan table for later use. */
-> +		for (point = 0; point < fi->fan_table[STOCK_FAN_TABLE].point_count;
-> +		     point++) {
-> +			u32 fcp = 0;
-> +
-> +			fcp = FCP_INDEX(STOCK_FAN_TABLE, point);
-
-nit: u32 fcp = FCP_INDEX(STOCK_FAN_TABLE, point);
-
-Regards,
-Soham
-> +			ret = xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
-> +								  FSC_READ_FAN_TABLE, fan),
-> +					    &fcp, NULL);
-> +			if (ret) {
-> +				xe_err(hwmon->xe, "failed to read fan %d stock point %d, ret=%d\n",
-> +				       fan, point, ret);
-> +				fi->fan_table[STOCK_FAN_TABLE].point_count = 0;
-> +				return ret;
-> +			}
-> +
-> +			fi->fan_table[STOCK_FAN_TABLE].fcp[point].temp =
-> +						REG_FIELD_GET(FAN_CONTROL_POINT_TEMP_MASK, fcp);
-> +			fi->fan_table[STOCK_FAN_TABLE].fcp[point].speed =
-> +						REG_FIELD_GET(FAN_CONTROL_POINT_SPEED_MASK, fcp);
-> +			xe_dbg(hwmon->xe, "fan %d stock point %d: temp %u C, speed %u\n",
-> +			       fan, point, fi->fan_table[STOCK_FAN_TABLE].fcp[point].temp,
-> +			       fi->fan_table[STOCK_FAN_TABLE].fcp[point].speed);
-> +		}
-> +
-> +		/* Read minimum fan PWM */
-> +		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_MIN_PWM, fan,
-> +						      &fi->min_pwm);
-> +		if (ret)
-> +			xe_warn(hwmon->xe, "fan %d min pwm unavailable, ret=%d\n", fan, ret);
-> +		else
-> +			xe_dbg(hwmon->xe, "fan %d min PWM %u\n", fan, fi->min_pwm);
-> +	}
-> +	return 0;
->   }
->   
->   static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
-> @@ -1615,17 +1750,12 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
->   static umode_t
->   xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
->   {
-> -	u32 uval = 0;
+>  	err = xe_uc_init(&gt->uc);
+>  	if (err)
+>  		return err;
+> @@ -610,12 +624,6 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
+>  	if (err)
+>  		return err;
+>  
+> -	/*
+> -	 * Stash hardware-reported version.  Since this register does not exist
+> -	 * on pre-MTL platforms, reading it there will (correctly) return 0.
+> -	 */
+> -	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
 > -
->   	if (!hwmon->xe->info.has_fan_control)
->   		return 0;
->   
->   	switch (attr) {
->   	case hwmon_fan_input:
-> -		if (xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, &uval))
-> -			return 0;
+>  	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20 && xe_gt_is_main_type(gt))
+>  		gt->info.has_wmtp_disabled = !!(xe_mmio_read32(&gt->mmio, XEHP_FUSE4) &
+>  			CFEG_WMTP_DISABLE);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index c00a7c171f80..c67fb0d512b0 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -153,6 +153,8 @@ struct xe_gt {
+>  		u64 engine_mask;
+>  		/** @info.gmdid: raw GMD_ID value from hardware */
+>  		u32 gmdid;
+> +		/** @info.subip: GMD_ID subunit field */
+> +		u8 subip;
+>  		/**
+>  		 * @info.multi_queue_engine_class_mask: Bitmask of engine classes with
+>  		 * multi queue support enabled.
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index b1f4e132fa0c..37d72ce1d589 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -1864,18 +1864,16 @@ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc)
+>  	/*
+>  	 * For Xe3p media gt (35), the GuC and the CS subunits may be still Xe3
+>  	 * that lacks the Main GAMCTRL support. Reserved bits from the GMD_ID
+> -	 * inform the IP version of the subunits.
+> +	 * inform the IP version of the subunits. That field is captured once
+> +	 * at GT init and stored in gt->info.subip.
+>  	 */
+>  	if (xe_gt_is_media_type(gt) && MEDIA_VER(gt_to_xe(gt)) == 35) {
+> -		u32 val = xe_mmio_read32(&gt->mmio, GMD_ID);
+> -		u32 subip = REG_FIELD_GET(GMD_ID_SUBIP_FLAG_MASK, val);
 > -
-> -		return channel < uval ? 0444 : 0;
-> +		return IS_FAN_ENABLED(channel) ? 0444 : 0;
->   	default:
->   		return 0;
->   	}
-> @@ -1858,11 +1988,18 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
->   		if (xe_hwmon_is_visible(hwmon, hwmon_energy, hwmon_energy_input, channel))
->   			xe_hwmon_energy_get(hwmon, channel, &energy);
->   
-> -	/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
-> -	for (channel = 0; channel < FAN_MAX; channel++)
-> -		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
-> -			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
-> +	if (hwmon->xe->info.has_fan_control) {
-> +		xe_hwmon_get_fan_enable_mask(hwmon);
-> +
-> +		/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
-> +		for (channel = 0; channel < FAN_MAX; channel++)
-> +			if (IS_FAN_ENABLED(channel))
-> +				xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
->   
-> +		/* Fan control tables initialization */
-> +		if (xe_hwmon_read_fan_control_info(hwmon))
-> +			xe_warn(hwmon->xe, "Fan control tables are not available\n");
-> +	}
->   	return xe_hwmon_init_temp_info(hwmon);
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-> index 00c4fc7d0124..0349b24a8259 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
-> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-> @@ -83,6 +83,11 @@
->   
->   #define   FAN_SPEED_CONTROL			0x7D
->   #define     FSC_READ_NUM_FANS			0x4
-> +#define     FSC_READ_STOCK_FAN_CONTROL_POINTS	0x5
-> +#define     FSC_READ_FAN_TABLE			0x7
-> +#define     FAN_CONTROL_POINT_TEMP_MASK		REG_GENMASK(7, 0)
-> +#define     FAN_CONTROL_POINT_SPEED_MASK	REG_GENMASK(15, 8)
-> +#define     FSC_READ_FAN_MIN_PWM		0x8
->   
->   #define PCODE_SCRATCH(x)		XE_REG(0x138320 + ((x) * 4))
->   /* PCODE_SCRATCH0 */
---------------jlCfj6gnLzXKbSXLaRO5xeaJ
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p>Hi Karthik,</p>
-    <div class="moz-cite-prefix">On 16-10-2026 00:37, Karthik Poosa
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">Initialize Xe hwmon fan-control support by detecting fan count,
-reading stock fan control points and min PWM.
-
-v2:
- - Avoid user table initialization during probe. (Badal)
- - Move unused code to appropriate patches.
- - Use xe helpers for dmesg logs.
-
-v3:
- - Rebase.
- - Refine a few debug log messages and comments.
- - Update xe_hwmon_read_fan_control_info() to return on any stock table
-   read failures.
- - Avoid returning when num_fans is 0 in
-   xe_hwmon_get_preregistration_info(), ensuring thermal mailbox
-   initialization is not skipped.
- - Remove XE_PCODE_FAN_CONTROL_TIMEOUT_MS which is unncessary as default
-   timeout itself is now 10ms.
- - Use xe_pcode_read() instead of xe_pcode_read_timeout().
- - Rename fan_control_point_count to point_count in struct fan_table.
- - Resolve kgdoc warnings.
- - Add valid check for stock table fan point count.
- - Use the fan-enable bitmap reported by FSC_READ_NUM_FANS when enumerating
-   fans. This avoids assuming contiguous fan indices and allows masks with
-   gaps to be represented correctly in the hwmon interface.
-
-Signed-off-by: Karthik Poosa <a class="moz-txt-link-rfc2396E" href="mailto:karthik.poosa@intel.com">&lt;karthik.poosa@intel.com&gt;</a>
-Assisted-by: LLM
----
- drivers/gpu/drm/xe/xe_hwmon.c     | 167 +++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_pcode_api.h |   5 +
- 2 files changed, 157 insertions(+), 15 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 42acfeb8818c..f2bd20f8b0a2 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -21,6 +21,7 @@
- #include &quot;xe_pcode_api.h&quot;
- #include &quot;xe_sriov.h&quot;
- #include &quot;xe_pm.h&quot;
-+#include &quot;xe_printk.h&quot;
- #include &quot;xe_vsec.h&quot;
- #include &quot;regs/xe_pmt.h&quot;
- 
-@@ -137,14 +138,51 @@ struct xe_hwmon_energy_info {
- 	long accum_energy;
- };
- 
-+enum fan_table_type {
-+	/** @STOCK_FAN_TABLE: firmware-provided fan table */
-+	STOCK_FAN_TABLE,
-+	/** @USER_FAN_TABLE: user fan table written through sysfs */
-+	USER_FAN_TABLE,
-+	/** @FAN_TABLE_MAX: number of fan tables tracked per fan */
-+	FAN_TABLE_MAX,
-+};
-+
-+/* Check if a fan is enabled based on the fan_enable_mask got from FSC_READ_NUM_FANS. */
-+#define IS_FAN_ENABLED(fan) (hwmon-&gt;fan_enable_mask &amp; BIT(fan))</pre>
-    </blockquote>
-    If this macro is called from any function having no local variable
-    named&nbsp;<span style="white-space: pre-wrap">hwmon</span>&nbsp;it will
-    break. Should it take hwmon as an argument ?
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+
-+/* Maximum number of fan control points supported by each fan. */
-+#define MAX_FAN_CONTROL_POINTS	(10)
-+
-+/* Fan control point index: bit31 selects fan table type; bits30:0 control point index. */
-+#define FCP_INDEX(FAN_TABLE_TYPE, POINT_NUM) (((FAN_TABLE_TYPE) &lt;&lt; 31) | \</pre>
-    </blockquote>
-    Cast to u32 ? shifting the signed enum into bit 31 could lead to UB.
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+						((POINT_NUM) &amp; REG_GENMASK(30, 0)))
-+
- /**
-- * struct xe_hwmon_fan_info - to cache previous fan reading
-+ * struct xe_hwmon_fan_info - cached fan telemetry and control state
-+ *
-+ * Each fan keeps the latest tachometer sampling state along with two fan
-+ * tables: the stock table discovered from firmware and the user table managed
-+ * by hwmon sysfs writes.
-  */
- struct xe_hwmon_fan_info {
- 	/** @reg_val_prev: previous fan reg val */
- 	u32 reg_val_prev;
- 	/** @time_prev: previous timestamp */
- 	u64 time_prev;
-+	/** @fan_table: fan control tables */
-+	struct fan_table {
-+		/** @point_count: number of fan control points */
-+		u8 point_count;
-+		/** @fcp: array of fan control points */
-+		struct fan_control_point {
-+			/** @temp: temperature in degree celsius */
-+			u8 temp;
-+			/** @speed: fan speed in percentage */
-+			u8 speed;
-+		} fcp[MAX_FAN_CONTROL_POINTS];
-+	} fan_table[FAN_TABLE_MAX];
-+	/** @min_pwm: minimum fan PWM */
-+	u32 min_pwm;
- };
- 
- /**
-@@ -193,6 +231,8 @@ struct xe_hwmon {
- 	int scl_shift_time;
- 	/** @ei: Energy info for energyN_input */
- 	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
-+	/** @fan_enable_mask: bitmask of available fans */
-+	u32 fan_enable_mask;
- 	/** @fi: Fan info for fanN_input */
- 	struct xe_hwmon_fan_info fi[FAN_MAX];
- 	/** @read_power_limit_from_pcode: pcode accepted power limits write for the channel */
-@@ -1075,17 +1115,112 @@ static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
- 			      (uval &amp; POWER_SETUP_I1_DATA_MASK));
- }
- 
--static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 subcmd, u32 *uval)
-+static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 subcmd, u8 fan_num,
-+					   u32 *uval)
- {
- 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon-&gt;xe);</pre>
-    </blockquote>
-    Nit: blank line after variable declaration
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, fan_num),
-+				     uval, NULL);
-+}
-+
-+static int xe_hwmon_get_fan_enable_mask(struct xe_hwmon *hwmon)
-+{
-+	int ret;
- 
- 	/* Platforms that don't return correct value */
--	if (hwmon-&gt;xe-&gt;info.platform == XE_DG2 &amp;&amp; subcmd == FSC_READ_NUM_FANS) {
--		*uval = 2;
-+	if (hwmon-&gt;xe-&gt;info.platform == XE_DG2) {
-+		hwmon-&gt;fan_enable_mask = GENMASK(1, 0);
- 		return 0;
- 	}
- 
--	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, 0), uval, NULL);
-+	ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, 0,
-+					      &amp;hwmon-&gt;fan_enable_mask);
-+	if (ret) {
-+		xe_warn(hwmon-&gt;xe, &quot;failed to read number of fans, ret=%d\n&quot;, ret);
-+		return ret;
-+	}
-+
-+	/* Check if fan mask exceeds FAN_MAX and log a warning if it does */
-+	if (hwmon-&gt;fan_enable_mask &amp; ~GENMASK(FAN_MAX - 1, 0)) {
-+		xe_warn(hwmon-&gt;xe, &quot;fan enable mask exceeds maximum supported fans\n&quot;);</pre>
-    </blockquote>
-    Reset the mask to 0 so IS_FAN_ENABLED() stays false in case&nbsp;<span style="white-space: pre-wrap">fan mask exceeds FAN_MAX.</span>
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+		return -EINVAL;
-+	}
-+
-+	xe_info(hwmon-&gt;xe, &quot;Number of fans detected: %u\n&quot;,
-+		hweight32(hwmon-&gt;fan_enable_mask));
-+	return 0;
-+}
-+
-+static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
-+{
-+	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon-&gt;xe);
-+	int point;
-+	int fan;
-+	int ret;
-+
-+	for (fan = 0; fan &lt; FAN_MAX; fan++) {
-+		u32 stock_fcp_count = 0;
-+
-+		struct xe_hwmon_fan_info *fi = &amp;hwmon-&gt;fi[fan];
-+
-+		if (!IS_FAN_ENABLED(fan))
-+			continue;
-+
-+		ret = xe_hwmon_pcode_read_fan_control(hwmon,
-+						      FSC_READ_STOCK_FAN_CONTROL_POINTS,
-+						      fan, &amp;stock_fcp_count);
-+		if (ret) {
-+			xe_err(hwmon-&gt;xe,
-+			       &quot;failed to read fan %d stock table point count, ret=%d\n&quot;,
-+			       fan, ret);</pre>
-    </blockquote>
-    Why not continue for the rest of the fans marking the current one ?
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+			return ret;
-+		}
-+
-+		if (!stock_fcp_count || stock_fcp_count &gt; MAX_FAN_CONTROL_POINTS) {
-+			xe_warn(hwmon-&gt;xe,
-+				&quot;fan %d stock table point count %u is invalid\n&quot;,
-+				fan, stock_fcp_count);</pre>
-    </blockquote>
-    Ditto.
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+			return -EINVAL;
-+		}
-+
-+		fi-&gt;fan_table[STOCK_FAN_TABLE].point_count = stock_fcp_count;
-+		xe_dbg(hwmon-&gt;xe, &quot;fan %d stock table point count is %u\n&quot;, fan,
-+		       fi-&gt;fan_table[STOCK_FAN_TABLE].point_count);
-+
-+		/* Cache the stock fan table for later use. */
-+		for (point = 0; point &lt; fi-&gt;fan_table[STOCK_FAN_TABLE].point_count;
-+		     point++) {
-+			u32 fcp = 0;
-+
-+			fcp = FCP_INDEX(STOCK_FAN_TABLE, point);</pre>
-    </blockquote>
-    <p>nit:&nbsp;<span style="white-space: pre-wrap">u32 fcp = </span><span style="white-space: pre-wrap">FCP_INDEX(STOCK_FAN_TABLE, point);</span></p>
-    Regards,<br>
-    Soham
-    <blockquote type="cite" cite="mid:20261015190751.1268916-2-karthik.poosa@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+			ret = xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL,
-+								  FSC_READ_FAN_TABLE, fan),
-+					    &amp;fcp, NULL);
-+			if (ret) {
-+				xe_err(hwmon-&gt;xe, &quot;failed to read fan %d stock point %d, ret=%d\n&quot;,
-+				       fan, point, ret);
-+				fi-&gt;fan_table[STOCK_FAN_TABLE].point_count = 0;
-+				return ret;
-+			}
-+
-+			fi-&gt;fan_table[STOCK_FAN_TABLE].fcp[point].temp =
-+						REG_FIELD_GET(FAN_CONTROL_POINT_TEMP_MASK, fcp);
-+			fi-&gt;fan_table[STOCK_FAN_TABLE].fcp[point].speed =
-+						REG_FIELD_GET(FAN_CONTROL_POINT_SPEED_MASK, fcp);
-+			xe_dbg(hwmon-&gt;xe, &quot;fan %d stock point %d: temp %u C, speed %u\n&quot;,
-+			       fan, point, fi-&gt;fan_table[STOCK_FAN_TABLE].fcp[point].temp,
-+			       fi-&gt;fan_table[STOCK_FAN_TABLE].fcp[point].speed);
-+		}
-+
-+		/* Read minimum fan PWM */
-+		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_MIN_PWM, fan,
-+						      &amp;fi-&gt;min_pwm);
-+		if (ret)
-+			xe_warn(hwmon-&gt;xe, &quot;fan %d min pwm unavailable, ret=%d\n&quot;, fan, ret);
-+		else
-+			xe_dbg(hwmon-&gt;xe, &quot;fan %d min PWM %u\n&quot;, fan, fi-&gt;min_pwm);
-+	}
-+	return 0;
- }
- 
- static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
-@@ -1615,17 +1750,12 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- static umode_t
- xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- {
--	u32 uval = 0;
--
- 	if (!hwmon-&gt;xe-&gt;info.has_fan_control)
- 		return 0;
- 
- 	switch (attr) {
- 	case hwmon_fan_input:
--		if (xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, &amp;uval))
--			return 0;
--
--		return channel &lt; uval ? 0444 : 0;
-+		return IS_FAN_ENABLED(channel) ? 0444 : 0;
- 	default:
- 		return 0;
- 	}
-@@ -1858,11 +1988,18 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
- 		if (xe_hwmon_is_visible(hwmon, hwmon_energy, hwmon_energy_input, channel))
- 			xe_hwmon_energy_get(hwmon, channel, &amp;energy);
- 
--	/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
--	for (channel = 0; channel &lt; FAN_MAX; channel++)
--		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
--			xe_hwmon_fan_input_read(hwmon, channel, &amp;fan_speed);
-+	if (hwmon-&gt;xe-&gt;info.has_fan_control) {
-+		xe_hwmon_get_fan_enable_mask(hwmon);
-+
-+		/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
-+		for (channel = 0; channel &lt; FAN_MAX; channel++)
-+			if (IS_FAN_ENABLED(channel))
-+				xe_hwmon_fan_input_read(hwmon, channel, &amp;fan_speed);
- 
-+		/* Fan control tables initialization */
-+		if (xe_hwmon_read_fan_control_info(hwmon))
-+			xe_warn(hwmon-&gt;xe, &quot;Fan control tables are not available\n&quot;);
-+	}
- 	return xe_hwmon_init_temp_info(hwmon);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 00c4fc7d0124..0349b24a8259 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -83,6 +83,11 @@
- 
- #define   FAN_SPEED_CONTROL			0x7D
- #define     FSC_READ_NUM_FANS			0x4
-+#define     FSC_READ_STOCK_FAN_CONTROL_POINTS	0x5
-+#define     FSC_READ_FAN_TABLE			0x7
-+#define     FAN_CONTROL_POINT_TEMP_MASK		REG_GENMASK(7, 0)
-+#define     FAN_CONTROL_POINT_SPEED_MASK	REG_GENMASK(15, 8)
-+#define     FSC_READ_FAN_MIN_PWM		0x8
- 
- #define PCODE_SCRATCH(x)		XE_REG(0x138320 + ((x) * 4))
- /* PCODE_SCRATCH0 */
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------jlCfj6gnLzXKbSXLaRO5xeaJ--
+> -		if (!subip)
+> +		if (!gt->info.subip)
+>  			return true;
+>  
+> -		xe_gt_WARN(gt, subip != 1,
+> +		xe_gt_WARN(gt, gt->info.subip != 1,
+>  			   "GMD_ID has unknown value in the SUBIP_FLAG field - 0x%x\n",
+> -			   subip);
+> +			   gt->info.subip);
+>  
+>  		return false;
+>  	}
+> -- 
+> 2.43.0
