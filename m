@@ -2,66 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0586A606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 10:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791F2606A31A
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 10:40:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Bu6ESi5X
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JL+p+WQO
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5C4B10FB18;
-	Wed, 28 Oct 2026 10:33:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AF7910E403;
- Wed, 28 Oct 2026 10:33:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0AA10FB40;
+	Wed, 28 Oct 2026 10:40:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E19D10FB4F
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 10:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793183612; x=1824719612;
+ t=1793184041; x=1824720041;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=RMchR7ILtmjbNKbv7Rj853D+bvHKsZ/Jxvm7AvGtLRI=;
- b=Bu6ESi5X3kZUjwGUMIyzNThhwQ0Pg6t7wu566vLo8WIqhXAFWJsBv978
- xM9A+Bhcj0QJ0F94TxVBDOwshPNwVF6q4rTgmo7zXk5T08y7o5JTQjskP
- w2Szj+MeLuT6rPxhLGaN7ORJLwI0H58WamsSRvo0dI/ISIIMDLRIa6SED
- 1CU6aK5ygFdWgutBDlctsXwL2ILfI1hbFSjv27PwfcGQ2+igv+vTDkyA6
- fB0UqX+UAupIQ2CXygtpWWp3/vawFoKv5j5dRyUY91KKlknEPPwBxACnq
- /QZrZtCkW4TtKaIQrQbzhAq1E6vWXtlrdWDF9mtQ5hUfkBZvZ7G1qv6Um Q==;
-X-CSE-ConnectionGUID: D8piI5dKR7y8yiQJUYTGYA==
-X-CSE-MsgGUID: JlfGYxBASGW0ndTFeIZvOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1912641"
+ bh=XMfdoD3eqRVmmkBvjCNgpNlml6WjnNuzxdDi7StoWFw=;
+ b=JL+p+WQOAt5bpDNbU6CD68qP6Opar7xGXu8eU450qvXE2FLTcmYyrpci
+ bbGfbpANUoP8SCpeuKdlvnwyUWRLFQkSfldZogFIA8L6tVrEXzRJwBMw8
+ NAfXdBJC8L5bd2fMK+HxCYEFu/qLrLIOPiYT1J8osDJhkfbuna799Vv0Z
+ sWEefF8/haeygRx71AAwB/QTzqcSkNQGrk42lho0D4z/8p63jqMKiHrSJ
+ gTB7u6j7Fz4TeIsyxsgyuhQwdWrwj/CS+BDaqJuupnpe4H0VVsWmHEANR
+ CaBg5nvU0twP3XImue+MaO9bIFHzvORhUXURJo+HwyeFx+OqllZD1sUDk Q==;
+X-CSE-ConnectionGUID: B/OGoLjRTfWQCAYarctPZw==
+X-CSE-MsgGUID: vZix0CRgS1S/vD3GHo6QtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="2005429"
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="1912641"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 03:33:32 -0700
-X-CSE-ConnectionGUID: +I51gv/KQvejHVn6aiYEzg==
-X-CSE-MsgGUID: EyIG9h1pRPmyXudR2oLfCg==
+   d="scan'208";a="2005429"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 03:40:40 -0700
+X-CSE-ConnectionGUID: SO8alTFURXCdWVjmi0/Htg==
+X-CSE-MsgGUID: 6TfsokfVRAORJMBtbKqCfg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="4789382"
+   d="scan'208";a="5203629"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.146])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 03:33:30 -0700
+ 28 Oct 2026 03:40:39 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Srinivas, Vidya" <vidya.srinivas@intel.com>, "Borah, Chaitanya Kumar"
- <chaitanya.kumar.borah@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "stable@vger.kernel.org" <stable@vger.kernel.org>, "Shankar, Uma"
- <uma.shankar@intel.com>, "Lin, Charlton" <charlton.lin@intel.com>
-Subject: RE: [PATCH v4 2/2] drm/i915/display: Disable pipe joiner on WCL
-In-Reply-To: <PH7PR11MB8252C032AB2E00046CC69C14896F2@PH7PR11MB8252.namprd11.prod.outlook.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
+Subject: Re: [PATCH v3 2/2] drm/xe/display: Use xe_bo_addr_iter in remapped
+ DPT pinning
+In-Reply-To: <20261027180354.340849-4-dev@lankhorst.se>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261007072334.1801956-1-vidya.srinivas@intel.com>
- <20261028070404.1913843-1-vidya.srinivas@intel.com>
- <20261028070404.1913843-3-vidya.srinivas@intel.com>
- <94c3c16c-50ce-444c-985f-0fc0fb009242@intel.com>
- <PH7PR11MB82526C4A1D72F22D44331A7B896F2@PH7PR11MB8252.namprd11.prod.outlook.com>
- <48da0157-6fb3-4e93-a43c-0443c5bcbbb2@intel.com>
- <fe7b9725-be64-4a34-a8b1-b2551fb0ae91@intel.com>
- <PH7PR11MB8252C032AB2E00046CC69C14896F2@PH7PR11MB8252.namprd11.prod.outlook.com>
-Date: Wed, 28 Oct 2026 12:33:26 +0200
-Message-ID: <126b26709bd8fcd42552c81ec551ecd21dbdc614@intel.com>
+References: <20261027180354.340849-3-dev@lankhorst.se>
+ <20261027180354.340849-4-dev@lankhorst.se>
+Date: Wed, 28 Oct 2026 12:40:36 +0200
+Message-ID: <c9bbe8de41cb7ef856b6da950f0f57bc7b0d9456@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -79,148 +70,105 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, 28 Oct 2026, "Srinivas, Vidya" <vidya.srinivas@intel.com> wrote:
->> -----Original Message-----
->> From: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
->> Sent: 28 October 2026 15:07
->> To: Srinivas, Vidya <vidya.srinivas@intel.com>; intel-gfx@lists.freedesk=
-top.org
->> Cc: intel-xe@lists.freedesktop.org; stable@vger.kernel.org; Shankar, Uma
->> <uma.shankar@intel.com>; jani.nikula@linux.intel.com; Lin, Charlton
->> <charlton.lin@intel.com>
->> Subject: Re: [PATCH v4 2/2] drm/i915/display: Disable pipe joiner on WCL
->>=20
->>=20
->>=20
->> On 10/28/2026 2:58 PM, Borah, Chaitanya Kumar wrote:
->> >
->> >
->> > On 10/28/2026 2:27 PM, Srinivas, Vidya wrote:
->> >>
->> >>
->> >>> -----Original Message-----
->> >>> From: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>
->> >>> Sent: 28 October 2026 14:08
->> >>> To: Srinivas, Vidya <vidya.srinivas@intel.com>; intel-
->> >>> gfx@lists.freedesktop.org
->> >>> Cc: intel-xe@lists.freedesktop.org; stable@vger.kernel.org; Shankar,
->> >>> Uma <uma.shankar@intel.com>; jani.nikula@linux.intel.com; Lin,
->> >>> Charlton <charlton.lin@intel.com>
->> >>> Subject: Re: [PATCH v4 2/2] drm/i915/display: Disable pipe joiner on
->> >>> WCL
->> >>>
->> >>>
->> >>>
->> >>> On 10/28/2026 12:34 PM, Vidya Srinivas wrote:
->> >>>> Pipe joining is not supported in the WCL display configuration.
->> >>>> Report no joiner support on WCL so that modes which would require
->> >>>> joining are rejected, matching the 4k 60Hz maximum resolution
->> >>>> documented for the platform.
->> >>>>
->> >>>> v2: Rebase onto latest upstream
->> >>>> v3: Fix up the commit message
->> >>>> v4: Split the scaler and joiner changes into separate patches
->> >>>> (Jani)
->> >>>>
->> >>>> Bspec: 74286
->> >>>> Cc: stable@vger.kernel.org
->> >>>
->> >>> Won't we need a Fixes tag to tell where this change need to go to?
->> >>
->> >> Hello Chaitanya,
->> >>
->> >> Thank you. Yes, I did check checkpatch gave the same warning but I
->> >> couldn=E2=80=99t find the exact patch to call out the fixes There are=
- patches
->> >> like Extend the max dotclock limit to WCL, Restrict max source rate
->> >> for WCL to HBR3,
->> >> drm/i915/wcl: Add display device info, Add power well mapping for WCL
->> >> etc.
->> >> git log shows under merge tag the "Add support for Wildcat Lake (WCL)
->> >> display, version 30.02"
->> >> So, could not find the patch for which I could mention fixes.
->> >
->> > Fixes: 632633d095b6 ("drm/i915/wcl: Add display device info")
->> >
->> > Should be sufficient.
->> >
->>=20
->> Sorry, support for the device id was added even before that.
->>=20
->> Better fit.
->>=20
->> Fixes: f8e1c3e07db1 ("drm/i915/xe3lpd: Add support for display version
->> 30.02")
->>=20
->> It would be worth checking though if these patches applies as is or might
->> need some rebase.
+On Tue, 27 Oct 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> Right now we're using xe_bo_addr() on each individual address, which gives
+> problems at larger resolution and sizes, since it's a O(N=C2=B2).
 >
-> Thank you Chaitanya. Will use this and float again.
-
-You *never* need to resend patches just to add git commit message
-trailers.
-
-Doing so means another round of CI and delay for absolutely nothing.
-
-We apply patches using b4, and simply replying with the trailers is
-enough to have them picked up.
-
-BR,
-Jani.
-
-
+> By using xe_bo_addr_iter_first() + xe_bo_addr_iter_addr(), the time
+> complexity is reduced again to O(N).
 >
-> Regards
-> Vidya
+> To fix rotated pinning requires some thinking.
 >
->>=20
->> =3D=3D
->> Chaitanya
->>=20
->> >>
->> >> Regards
->> >> Vidya
->> >>
->> >>>
->> >>>> Suggested-by: Charlton Lin <charlton.lin@intel.com>
->> >>>> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
->> >>>> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
->> >>>> ---
->> >>>> =C2=A0=C2=A0 drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
->> >>>> =C2=A0=C2=A0 1 file changed, 2 insertions(+), 2 deletions(-)
->> >>>>
->> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->> >>>> b/drivers/gpu/drm/i915/display/intel_dp.c
->> >>>> index 00e02e019d25..ef164a797618 100644
->> >>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> >>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> >>>> @@ -485,9 +485,9 @@ bool intel_dp_has_joiner(struct intel_dp
->> >>>> *intel_dp)
->> >>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 return false;
->> >>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->> >>>>
->> >>>> -=C2=A0=C2=A0=C2=A0 return DISPLAY_VER(display) >=3D 12 ||
->> >>>> +=C2=A0=C2=A0=C2=A0 return ((DISPLAY_VER(display) >=3D 12 &&
->> >>>> +DISPLAY_VERx100(display) !=3D
->> >>>> +3002) ||
->> >>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 (DISPL=
-AY_VER(display) =3D=3D 11 &&
->> >>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 encoder->port !=
-=3D PORT_A);
->> >>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 encoder->port !=
-=3D PORT_A));
->> >>>> =C2=A0=C2=A0 }
->> >>>>
->> >>>> =C2=A0=C2=A0 static int dg2_max_source_rate(struct intel_dp *intel_=
-dp)
->> >>
->> >
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+> Changes since v1:
+> - handle plane->src_stride !=3D plane->width
+> Changes since v2:
+> - Add missing u32 casts.
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 29 ++++++++++++++------------
+>  1 file changed, 16 insertions(+), 13 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
+display/xe_fb_pin.c
+> index e09116265ae95..e6c375f47a65b 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -17,6 +17,7 @@
+>  #include "xe_ggtt.h"
+>  #include "xe_pat.h"
+>  #include "xe_pm.h"
+> +#include "xe_res_cursor.h"
+>  #include "xe_vram_types.h"
+>=20=20
+>  static void
+> @@ -67,15 +68,15 @@ write_dpt_remapped_linear(struct xe_bo *bo, struct io=
+sys_map *map,
+>  	struct xe_ggtt *ggtt =3D xe_device_get_root_tile(xe)->mem.ggtt;
+>  	const u64 pte =3D xe_ggtt_encode_pte_flags(ggtt, bo,
+>  						 xe_cache_pat_idx(xe, XE_CACHE_NONE));
+> -	unsigned int offset =3D plane->offset * XE_PAGE_SIZE;
+> -	unsigned int size =3D plane->size;
+> +	unsigned int offset =3D (u32)plane->offset * XE_PAGE_SIZE;
+> +	unsigned int size =3D (u32)plane->size * XE_PAGE_SIZE;
+
+What do you need the casts for? Useless?
+
+> +	struct xe_res_cursor cur;
+>=20=20
+> -	while (size--) {
+> -		u64 addr =3D xe_bo_addr(bo, offset, XE_PAGE_SIZE);
+> +	for (xe_bo_addr_iter_first(bo, &cur, offset, size); cur.remaining; xe_r=
+es_next(&cur, XE_PAGE_SIZE)) {
+> +		u64 addr =3D xe_bo_addr_iter_addr(&cur);
+>=20=20
+>  		iosys_map_wr(map, dest, u64, addr | pte);
+>  		dest +=3D sizeof(u64);
+> -		offset +=3D XE_PAGE_SIZE;
+>  	}
+>=20=20
+>  	return dest;
+> @@ -90,20 +91,22 @@ write_dpt_remapped_tiled(struct xe_bo *bo, struct ios=
+ys_map *map,
+>  	struct xe_ggtt *ggtt =3D xe_device_get_root_tile(xe)->mem.ggtt;
+>  	const u64 pte =3D xe_ggtt_encode_pte_flags(ggtt, bo,
+>  						 xe_cache_pat_idx(xe, XE_CACHE_NONE));
+> -	unsigned int offset, column, row;
+> +	u32 offset =3D (u32)plane->offset * XE_PAGE_SIZE;
+
+Ditto.
+
+> +	struct xe_res_cursor cur;
+>=20=20
+> -	for (row =3D 0; row < plane->height; row++) {
+> -		offset =3D (plane->offset + plane->src_stride * row) *
+> -			 XE_PAGE_SIZE;
+> -
+> -		for (column =3D 0; column < plane->width; column++) {
+> -			u64 addr =3D xe_bo_addr(bo, offset, XE_PAGE_SIZE);
+> +	xe_bo_addr_iter_first(bo, &cur, offset, (u32)plane->height * plane->src=
+_stride * XE_PAGE_SIZE);
+> +	while (cur.remaining) {
+> +		for (u32 column =3D 0; column < plane->width; column++) {
+> +			u64 addr =3D xe_bo_addr_iter_addr(&cur);
+>=20=20
+>  			iosys_map_wr(map, dest, u64, addr | pte);
+>  			dest +=3D sizeof(u64);
+> -			offset +=3D XE_PAGE_SIZE;
+> +			xe_res_next(&cur, XE_PAGE_SIZE);
+>  		}
+>=20=20
+> +		if (plane->src_stride !=3D plane->width)
+> +			xe_res_next(&cur, (u32)(plane->src_stride - plane->width) * XE_PAGE_S=
+IZE);
+> +
+>  		dest =3D write_dpt_padding(map, dest,
+>  					 plane->dst_stride - plane->width);
+>  	}
 
 --=20
 Jani Nikula, Intel
