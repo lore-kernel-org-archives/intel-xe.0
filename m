@@ -2,146 +2,147 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3498606A31D
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 21:19:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDE6606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 21:27:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lh4rcImw
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hWUwUOZl
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79DE210E086;
-	Wed, 28 Oct 2026 21:19:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 331C110E086
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Oct 2026 21:19:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73CA910E086;
+	Wed, 28 Oct 2026 21:27:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E74F10E086;
+ Wed, 28 Oct 2026 21:26:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793222358; x=1824758358;
+ t=1793222820; x=1824758820;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=C0y4Bwp9fuDGQSmyLctaxUxyLMTE7ey+iW5UtOKDtCM=;
- b=lh4rcImw7YDBWZligs/ydk2q5gJxJCrk0TnLYfpLTeRw+hM3lmHdJrXZ
- hsq7GkNrh4xNCwWVReQYERsNUCrKoE8jcsf97ACHfDhzDaurI9TiyXHoW
- eHFnRxHx2b2Y9s757JVekrC1DoLT5mgGJB/7X2k2wSC0flUE+u1Ui5T8W
- ZIE+XiD6OwQakZIx3vCPaAN5BdXqxAbTBw7+8ekKB0xkPJ0iAhNVhflUt
- 776c3qiTziYrAY/1fhtVh2cJ7HiMLZk927AkefSmvFNeIgGR/XfjtvPYw
- XlmUlpPu5LNhgnqFB5+L4mE0+Z2M8oiuxgeRE86ZBMMX10evJx1+KnZ27 g==;
-X-CSE-ConnectionGUID: NCQfP7miQR+rPnETR8wHiA==
-X-CSE-MsgGUID: vlkS0Y2JSoG+rPKVNuA5Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1849693"
+ bh=x9VNlgAbKu/PDFL8O/uYfZFKMjSd+g8Jw79aAYEIdos=;
+ b=hWUwUOZlLhaSBvZP5xwyOypLvzwBmkfDg3aBVwieWD0ZVUVwsNj6a3wb
+ hA6MLc9PlrYJZEHCpxM1xT/LGsybFmc2KNJ99Hue9NySsnPomVwA3TCyy
+ J6oF8cEhLQicW8Hbuze+UC/QQHAZiEYNn4Pa9A1dkzoobKdMICygc02Mm
+ 2jTaVLYYaOfrd3KqFZT3aEZBa1iM6CD/xrxtFmqF0bskHF5hRqMntzfBV
+ TOdeoUe/3dKDw7KhSGZ8wxWsSrsgJJQ/VhOp4IqfBIuDHoT/5JuexHo3e
+ oBo1GlA8TEjYxvqsoGZ0HEo9IZBiaN69ChQVxaLjxWeA6aqITtlZwhdBE A==;
+X-CSE-ConnectionGUID: SO3dOMbrTn+hk+BAfUDdgQ==
+X-CSE-MsgGUID: yTokl2bXTDaiRzGfIcsAIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1841104"
 X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; 
-   d="scan'208";a="1849693"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 14:19:18 -0700
-X-CSE-ConnectionGUID: 2pCGmHlWR/WrD+MPJ6npDg==
-X-CSE-MsgGUID: 4gIyKStzTHualtfk+1jeLg==
+   d="scan'208";a="1841104"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 14:27:00 -0700
+X-CSE-ConnectionGUID: W+5I2qO8QnqcY3tYA38syQ==
+X-CSE-MsgGUID: ek7GNIuqQOWYhgricgoRxg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,183,1787036400"; 
-   d="scan'208";a="4814476"
+   d="scan'208";a="6717782"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Oct 2026 14:19:18 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ by fmviesa012.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Oct 2026 14:26:59 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 28 Oct 2026 14:19:17 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.56; Wed, 28 Oct 2026 14:26:58 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Wed, 28 Oct 2026 14:19:17 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.9) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.56 via Frontend Transport; Wed, 28 Oct 2026 14:26:58 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.7) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.49; Wed, 28 Oct 2026 14:19:16 -0700
+ 15.2.2562.49; Wed, 28 Oct 2026 14:26:58 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mEGJtdoZqKLvneumR8PRM2KtBn3bEJYnr/yOrOTsmgd1W31KXxdimFw05M+qOXeCylAiYEswlrMU2t2OBwjpfWlIFeCKrsAty1qodG5vw16BbQ76hqNQqDZAm687B2JG7LJ13qDUO4lsybJ4Ng9984x0mzNGVYvjvsE8mYcRmA1KWCWyX5iucHAMcLBmRnBctXJqZUa6zWx36XhEpFSgEm2qUBpktpEblI7e+jPLIE4j5pTuzQDTbAQBL1dTS4KG/SKEl3NN9huKrbw6+mvFPTSDD1d62ydu60u9jXP4gEh+SGFXKs7BqlOYiGYApipG1RRGeUS0Qe+z2yZAGNadiw==
+ b=zVkq8YNoI6ophZcfPgjQj8UfFLAdfJmXDVUzFuPPLuFat2Nph1h9RDTXweSDtVEetDgUQk14lxmw3P5vchTmnR2dwF8lDfh4Yn4OxbU5K9q9SKnD8tFNo6RmhSi0YLx3GpiJkGXlmyGos49KpIgv2I+a6RdwAglVXcOynj8RuUNfHPZhz8jkzVOezW/YNTAxkATYjqoEfph8OgTmhUZ6FVKGN8GCW28G3G5f2ITmnekTO9oidJfBo5jPIZd8UObkDVAAwwn4gnlI2Ot0tQDeygHgsxBOKD8vMxIxyrcbGefzEB3Ji0y5VI4f3dIf3jNdZVn/RkWfpukD1Xa9+Xo3xQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ccBIgRoiVHH1MkhuJvthBeAozYcyyxIy2X8q0dOA9SI=;
- b=U2dMaWCL0p9d/TuGwIXuY05PjXr5GV6qlich1HUif4z4nxsxZRay0qJQUqPJUoD9DBI8c3s2oDThN2zD7/pYFeJAKNNMHw/e1JwMFGPa0exc2g3uMl2h5BxA8OR2/V1/byVfXr3gd4xvQQDOwZWHALHJYKDgxHT+C3O+6KkJxVL2cksU7pvXnZOGAcw/dWLykL4ZcA6Jq/rs1oxhXetidjegD4+PIH5LL1rPoJ46Hj/ShC7kOaxbmPI825x/+3PQuL4u5FZnVtthBsOsOK/ghciFhRkxoMDvP0viKngrcOnhHVZBAbGb4xMFwtQxzardpGWJagPOGzKKxQ0p/9kbGA==
+ bh=aYBAww1GNIE7+tq80L+W2U1n5oXLm6aOmEcU1vV1dfc=;
+ b=nc6EBsay4Q2cwCZ49nEIAzavXwtEEsoTBbtMiaMnyD2Y31b6Q/nciGPlzPjTxUx2qQSaDUJaPO55tTtAPUDv8fg+oSa7TndVdCqaUf97ntzNrnW57pjwrYIkNxOS5v3uwQKx5v6ixjqQDufnuIwvdn7kRVUOcnNb4XDDTwvi6bhc2puPJxVAukemaQJ3/w1jRheNMWy1iWcekeZJLNAqlFKbORynWkY08I/cUX7ZgocCYN4dLYDjUFviGHhrdhwPSpZStSGZhU1CDDQ8vh2DtVibFYaroTuBDvsbH/jO8Q9em6muckw2YVuZ1g5eEnOmrYNl1cmtSHzsNmY+0TswYA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA1PR11MB9660.namprd11.prod.outlook.com (2603:10b6:806:4df::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Wed, 28 Oct
- 2026 21:19:14 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%6]) with mapi id 15.21.0546.012; Wed, 28 Oct 2026
- 21:19:14 +0000
-Date: Wed, 28 Oct 2026 14:19:12 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Daniel Charles <daniel.charles@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Fei Yang <fei.yang@intel.com>
-Subject: Re: [PATCH v3] drm/xe/cri: Set downstream access to L3 class 3 and
- write-back
-Message-ID: <20261028211912.GC6078@mdroper-desk1>
-References: <20261021002051.1784161-1-daniel.charles@intel.com>
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by SA2PR11MB4890.namprd11.prod.outlook.com (2603:10b6:806:117::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Wed, 28 Oct
+ 2026 21:25:55 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0569.007; Wed, 28 Oct 2026
+ 21:25:54 +0000
+Date: Wed, 28 Oct 2026 14:25:52 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v6 1/3] drm/xe: Bump the LRU on a successful page fault
+Message-ID: <auJoYA7c/1Raxqbg@gsse-cloud1.jf.intel.com>
+References: <20261027224902.1085762-1-matthew.brost@intel.com>
+ <20261027224902.1085762-2-matthew.brost@intel.com>
+ <dcbb570b-0f53-4df2-9d17-62c66a80a8c4@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20261021002051.1784161-1-daniel.charles@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0387.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::32) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+In-Reply-To: <dcbb570b-0f53-4df2-9d17-62c66a80a8c4@intel.com>
+X-ClientProxiedBy: MW4PR03CA0123.namprd03.prod.outlook.com
+ (2603:10b6:303:8c::8) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA1PR11MB9660:EE_
-X-MS-Office365-Filtering-Correlation-Id: a84830b2-30d3-4d4d-2f09-08df35391dba
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|SA2PR11MB4890:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0cad2cb9-21b4-4358-faef-08df353a0c79
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|261022113327099003|261028144727099003|260925022911599003|260925021911599003|260925021311599003|11063799006|5023799004|56012099006|261009223027099003|261026121527099003|261026140227099003|261022075727099003|261022105027099003|261021121427099003|10067099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: wAO5COIczpio4KxZWD3uARNFsd1yONrKgxDFzU3e3SJ6lwiVzkzWMeKlBlTIKnWeGs5Q1lCmbVIecOJ0KQQ/w40mlwyp/Kx+RsxLJ0LP9O9J8Utflnc077frcqym8IirfKCWzSyz/BYDyai4impq72zbi//xesM2ayQUcMNbqDB+Ze2P4qMCd+vp0bQdMrgvOVragkiqbi/KC0ShkN/tDsrbFHCY1XBcyXkbzE/BuAx2CmqBukFXnorB2u3WVYtaeX4zjxrdH2Pn/sDIRIo/g6YVH1+9Qrv2MDi0FqOuIyViZS0FccA5zVjJPMWvITXkuWqumOPwx647yYjM4EFitpNtbk6Caf6Qm+S67UROsfWHfZc0Az7qobLlbIDZJbM9JxbsoARcQBrdwcOcYAOUvh8k+s9jGkGiGk0rR6jtRb60lNJs8hY3XMmc3g/D1M+iPd5xlv+u+gxizW4vMQ1m9ARctQQ7JotYAMcWa0N5KE593A5jChOfZir3UEMOGusy8y7wuPI5d2TdSe1CgAyclp/wo/Ht7SPcz7A1FzHtuu8J2PicFMAPrAkf9NMwgEbrBkW49TJVIK/QwCOOiI+RBY9vfugROKeGd2zsBSCidNjvB4pK+wkJflooOyLLlk2HRuNMGttdNkdnlwgBqm+9rSNMUQdop+iTHCV5sXvrkMA=
+ ARA:13230040|23010399003|376014|1800799024|366016|261026140227099003|4143699003|11063799006|56012099006|261022075727099003|10067099003|261028144727099003|261009223027099003|261022105027099003|261021121427099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: KGuZf76Clh8WL1jOhGFlt36ZIK0g3NkuzE6DBfeqG9sSilF9xyRI77+pwcBL0/O4MwFa6/ZhL+P43hN/lV4Inyn2tvYjRIAtE3woD4Nj8oIH1ecxSOcevi95iN2fDCR+2O16S5WZh4sIrKeK4WXfcYMV3vYvkNPoNk7Uco3ghsviK/UfrrjzPZs5FLXBjrqIZcyH3EVbCrr6vGjz/2gvJpCcQP3gRiHjjLaTDl6XzKb6mn0Oo29GOn8WhBV3z7WDGUCG6RdmwdtQeIWfkqxnxocD60FzcifE4h3tk/y3auCWP0EPdU0sZfO6lLoYxUSn/xJ75tvFsYREdumtq/KMYOtr+T/bNUxDEXwxoxvuvhlFaRM0Vj/SiMMHjBr2v+ssRc7rwqdnQdEE6E8ACtef33n0tR6lhYQM9A2yBfZXukg+Cb/e+rmtntgOXLaazMlpFm/UKP/4GafsfMrwp7WlFjZu+0vavr4wyI8Dv5XNQ1/J0zr2MF23fJoBb8J+rTodnmfhrUCqUrCMKVYyHvNdHlsjoeu5GbBo/c09BpgJy6nFepAvrDGRPDl8igkM9gMdI4wxQRJK1oX9ebTYyLPi+ByLIiL+Bjt1zazIwiinLqGQaKV49pq+zpZlr4WjL5PmdFTW7+1alBLgOwf8spKUuAnn1BxQCKHxGoxD0RM8ks4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(261022113327099003)(261028144727099003)(260925022911599003)(260925021911599003)(260925021311599003)(11063799006)(5023799004)(56012099006)(261009223027099003)(261026121527099003)(261026140227099003)(261022075727099003)(261022105027099003)(261021121427099003)(10067099003)(22082099003)(18002099003)(6133799003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(261026140227099003)(4143699003)(11063799006)(56012099006)(261022075727099003)(10067099003)(261028144727099003)(261009223027099003)(261022105027099003)(261021121427099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vgMFY1I2KHL8GEULidbLCSzQFEPvh6aq9p5SB99Bz3pLSDA35xxmrTTHh7/a?=
- =?us-ascii?Q?YocDByEpO+Abtr7p6jNRUIFqy2MnrWS1NXAl5zI+pZm/7LqI3r56c4ycs5kM?=
- =?us-ascii?Q?bqGZSIqSisMTwNjyZgwleMWLHlmvKvfVWgAQyDwIPWdUqyUUcC+6IldkBuD7?=
- =?us-ascii?Q?TH+KSNWbrOMVl5UPCZaRBRbWHhdl1ECROaAz1Drqu7TUBrSU0v/o9F2c0e+A?=
- =?us-ascii?Q?pyyjLwF1kyxxhzUm+/WTDndSc6viFNmm8Mbc5I1KHRqGjyH/rYnq1yzoPuEZ?=
- =?us-ascii?Q?TYNjTaIHui34cTyI7skfZWkgEiFXnrYzPHevLSPAFl/boOFcTZSUf85FkbcQ?=
- =?us-ascii?Q?1ab8UJdpxH+Xd78rlpMDScy0V+s8+Xnl5u32sdRSFlOq8aM/0CCeG1GgynZZ?=
- =?us-ascii?Q?7Y7wpKN11GXELVM1UYJthRXcxpPw6+2Glp6RyH/yR/Mq03lIQMJd78isiXg8?=
- =?us-ascii?Q?EB3UAYV9W3lK+U4jOjR9R5wyOBe9JUNARcO1dIJ19GrTDWXtp5jHEL4dPEjT?=
- =?us-ascii?Q?74CHtLRGdFBGJYAicNTZG1hWghb5LhtN7/kT32WNlfML+NWvId+9nE4QhsmU?=
- =?us-ascii?Q?OLs0etZ54ElPZYZ3ItbqZGGcE2fILvD6SAJkAXLAVCRuHbW1QwZ9ZIU2wYfX?=
- =?us-ascii?Q?A7qjkDT7vzg0H5EAN2jLAbwOmS+s1bLkRkhq5IJx3Yu56k7qWPK7WcbYjK0B?=
- =?us-ascii?Q?POwK3sMal6K6S1lASpEJxE4+XT/oAAVfsauBLcTY5oXydi7v3VuB82z1Eapl?=
- =?us-ascii?Q?UzNxGTRiHHXZeDFH2oLy6H53KFJ2c0fYlyi7Qs8nTVvl8PM0oNH2dWi6AHMR?=
- =?us-ascii?Q?U4wZgrsRRfgV0E7hbGw3bOhvNDrFcbYaANYsJJDO82CU8hVhgqvMoHRZ0g2G?=
- =?us-ascii?Q?GrRBQ868G3pU7v+B/6oZhFej3iCwFnFuX5KgDC2Np+96P662ea/6Fg4LPttu?=
- =?us-ascii?Q?vHhasDYJ36rqSs88XRvnlKsvZduz7ItSKkg41X63QlODcr+yUxxmaD3bb3GO?=
- =?us-ascii?Q?2McmHBGwTrJGKw5H2BRFcqJBHqO7oKSfesLOH77KVaOvUsmwf+69Vw2gfbIh?=
- =?us-ascii?Q?wXx4BUqfHlLGt1/3E2WcYhCzJ+P0u5tenFt8jFZ5XzjhetwzezUr+5a3d1rd?=
- =?us-ascii?Q?BQ6krI3ilYvPyFT4Qct4/mHmfl/IoLG8Vtqapkd6MvxKi1I/EiDmIyRhm/8y?=
- =?us-ascii?Q?xBLp+Iidr1IHj6FWPglhlkUf5zoCuUtQevh6RGzra5PzyFzYLA3q4Rh1FI7l?=
- =?us-ascii?Q?qvDky2qHTknCaHa4hZlOqPgFsX85gTgkZ04eeZ6pCGVPCB99ZlMr98KmczhL?=
- =?us-ascii?Q?EiX2VAysaFj4vBOc8bY4vrz3hlZsGr1ZolhvaS1IK2HbD7vnsNR59pA8A59G?=
- =?us-ascii?Q?jl2lgtKEcw/3c82IzLBJD/RLC7+Y3bggKN/KcE/LKDTIQ5yMc6C1+KOPNvPP?=
- =?us-ascii?Q?1ACz5pYMyYLO3nW3/sv+P8QegvkiWqHdy4PAL8M4EZOFu/0H8UiPVH+Jh1hF?=
- =?us-ascii?Q?y/1WWiSDiwYNxMpmUiOSm2MDyVERVKLjdVVE5QQBq/Yrw2/eq7MpOHSBm0Gy?=
- =?us-ascii?Q?NdnyWgtyGc4eaK+oOJqTYVDSDPpYTagCp1DA16EYl8N3hl31K+H0s1hs2u1M?=
- =?us-ascii?Q?KiVjxkL+MSjZ0nxS18xJzmuBiBMQQn9HZMGDk582JFNTPV75mc+P3DKgTfKR?=
- =?us-ascii?Q?AmRV2QnCgK3TGkGsWRuO5O6NMFiXnP/sCsZ+B6h+O8VkDvrjwkXg5Mi458wK?=
- =?us-ascii?Q?7mEhdt+yWkLY/WYJowFB3JK3OSwjW34=3D?=
-X-Exchange-RoutingPolicyChecked: GvQyV037cPTv1KiCwwkWnjn/SIylgARraqcY9hN4umqRh77AMUqmu9t2wlbWr4TGWZb74OniN+2uIqgPS+6+iIqAn3nlSZm9+WQtI11T3lQ66fYW5PwX62m3GAFzcqJoK9YYZ81TvSe3uMY3cytm6XMji7vlnGzACyieArSSNSV5LBS4BjQcI7Mti4maiPQ61oT0aMQTjoBuCRIJHmUmw2qEo4OBzgt0oIb06dtGIoNkZax4U/9i1L7Ijuiyc24tuyoiWT+Hae9wyBXCEva1YxQnucAQo/PbR5yHHS44STJu8/8DCs3edizz+Gfq3LXTEiKJtdqScADYFD0WaJpGKg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a84830b2-30d3-4d4d-2f09-08df35391dba
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fsAgbJIi+cRvR6cA7xs+8Ix4fPR9ZrswudnR/yKKNu5SP438OdISn5VrCZGT?=
+ =?us-ascii?Q?jo2i7iZTnZ9EW0i9G6DhPObDUlIhu6bJW/+izgTz9lvCGeNGvVUPpMIrwUFo?=
+ =?us-ascii?Q?du3gu4cFc9yqxuSElqxoL2lLth1sKVQH1wSc/WSUHHdiHEWCD5CS2GQRDze9?=
+ =?us-ascii?Q?WfBXgvRO8j46OOMkxlFYwadh+8n0LHWb9YGca8UTopTOvBUD1o5Rb8gaX2O4?=
+ =?us-ascii?Q?SmQwSHc9NVA2+bzNWCG8OjTUwcqY3KDzIPc4uPq4mwhdhkO8o0uLMDOxYY+v?=
+ =?us-ascii?Q?3vprvt7oT0XIdfDMoEMaVDjjRY1bBOlPBjDPXuU08o3tAXB2gI+e2RJaauUo?=
+ =?us-ascii?Q?GC4hGasLvIxCXQznDQeMC4m4SA18ZhDnKaQajDrldjVGJRuNqkN9uDHwa4iC?=
+ =?us-ascii?Q?5c14eEQz0yQGxcayH0xWVyAOGVC2VPkDw+GXa7fxGha4dsG5C2zPb67RabhD?=
+ =?us-ascii?Q?ooK2VzyLFvBEwhEomNnFSPlNKah9N/7hO1ocPz3RZ5cKUFEX3w4F2xP3iR56?=
+ =?us-ascii?Q?gknfERFMikeTJPHcDGovxfqS5L0c/iiB5x72FZSpHRndsqQtgfz7JiOZYj8P?=
+ =?us-ascii?Q?2pGWmD9tsfEf3D53bDbO+gcakE2mH3tyERUVSal0D8Dgo750BEZe8xUzJGHP?=
+ =?us-ascii?Q?0gZWcGB1qOriaGFWlkCqF174TqvnW7Pbh7rAkdyTt6DYNGLr54OghD/+hOaZ?=
+ =?us-ascii?Q?IH/Cb/tAoWV3jAWtqjC8SJ4ChREiiaMHbs4GmdGlMufKGWeslHjZnhwj0EfV?=
+ =?us-ascii?Q?UGptJWlOEjHIenHa0uRxZ6TOfhmDTFpcpiIqjUkiZ0Z1KfFMUcJ0EQZNffu+?=
+ =?us-ascii?Q?ZXyM50LW+CeQ/uOXW+m0mh1hr8LDw96pHuKIlkPanJrQsWy1FJhIX3LgtGEo?=
+ =?us-ascii?Q?dZsYMnrzragMF7G1bvZBjkXwr/6O+NWG8WaeHpNJHtJyHEh5R4TP3Ns9dyMe?=
+ =?us-ascii?Q?wbET/vslV2f3QhynYtJ3UFBegXr0ndIGNIMOIOFYnJ/khHJLpDtDExmavu00?=
+ =?us-ascii?Q?XIHlEDSHEivkBWDHHavuy8UWAu0NQ7A2RbO2LaBXi3a/LhlN/kqotdsy167p?=
+ =?us-ascii?Q?aUZsuWR+/TK7XFznl38AtKu0kqrwBAe8CtCIZf9vXn/Z/7BkCcWcZqr4tUoK?=
+ =?us-ascii?Q?D0EXi+ReHOFaX2LYfxAtab0vESAitMm+F20BXIoxKZcDIAygJgoBtSW+vdMQ?=
+ =?us-ascii?Q?ptn1Gt8DY6v/VKmmz98eWTMtk1M1EmfztfbS14CzjMiY/E7MIOdA05FPrK5o?=
+ =?us-ascii?Q?C6FfdIDw15/c6hr2xhxmYXpYROvGd4zoCVJ1oEO4HBAs1+HE93FkvH2xLrhL?=
+ =?us-ascii?Q?2MZT2y8rdkqnVrXIl15uRmngsb3Z4SUcUZyJ+LV1DGK/0c/6EjHGKIhKoyYN?=
+ =?us-ascii?Q?yjg7vJPv3sbqSKCap86j5jl3xodgvUVoyBRQD0q/Zdto6EWgYDgkAvxCh9HG?=
+ =?us-ascii?Q?qZ31uBNkz7jpdBXn9pSVFc+IKRdn/oPhiyqq3eIEFRfN2GuWrQFpbzKCq91e?=
+ =?us-ascii?Q?NiZA5Eg5gv9ORyMHq+pK9ScFpPkU02Iai0BUPTGIbl2U+O+DVdIbiz+YNBSA?=
+ =?us-ascii?Q?mP31tTQhPk18fs7Y/PPp1YbWzrwK7xGD9Zegie5p6b4KxA/dBOx89AcQL/St?=
+ =?us-ascii?Q?DWOL6cJYPWbcCFDo7HOeb41K7OofqHeZYDBcScM0z2FWiWPtek4ma2LWMdbX?=
+ =?us-ascii?Q?qQRyKxv1gtA6q9I/hnnoiCBFmUMybkz5czogjBJ3W4F5w9PUHF+5cIfK296s?=
+ =?us-ascii?Q?G+BFfGjzW0+aZyQXVSeBmZ4aBbvzQ3A=3D?=
+X-Exchange-RoutingPolicyChecked: 4rjbxuaqMYEZKLNzfniRPxf4xBwBYLnv9ascJyjx0mBw5dWn6PZjK7kdrTEQAFxUTLdwrFGw8VE36BlowhNwjzrcGJHRSNkE+UUK3/adx4guALQAc4h3JoW0s50KOGg+54sIjAjLOw4PZD7WpsSGPtt/eFquIiOFE0o4KLqgcIE/Sqm1AjZVnoOFfEynIL8sedSyofCo5nmVb+7xV/LlYqaew3mJpsCNHBX+wB1EJJWA1IbEECl3C5T1NWfgPIlZ6VSKGkkRdk4ZMP/X+L8WtNfgHwYAv3acMQOLo7I31WhO62LhVsziKK8LnJ6H6H714k4MJ6ljwolvpc8+c++oeA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0cad2cb9-21b4-4358-faef-08df353a0c79
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2026 21:19:14.1155 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Oct 2026 21:25:54.5663 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GuyyTRmaWw4mhxCkPo2IwuIkAkisw6SFFxwJ+KLFIcm/jcMVx9VXQlNaWLaNL5Wi62dH1vkI9dzNd/hihR4Ntb0OrPPlehKlo0Sj6TYzW3Q=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB9660
+X-MS-Exchange-CrossTenant-UserPrincipalName: elY0Xst1LiHvyQPyOE8KyUEGHwQqSrl/0FYP+QIgcoYYGbHN4r4xchKV28WM6nYecbY6BvsLgZgVcLwMHhthhw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4890
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -160,287 +161,57 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Oct 20, 2026 at 05:20:51PM -0700, Daniel Charles wrote:
-> From: Fei Yang <fei.yang@intel.com>
+On Wed, Oct 28, 2026 at 09:59:26AM +0000, Matthew Auld wrote:
+> On 27/10/2026 22:49, Matthew Brost wrote:
+> > Servicing a page fault validates the VMA's backing store and binds it,
+> > making the BO part of the VM's active working set, but unlike exec it
+> > never moves anything on the TTM LRU. In fault mode, where a VM may run
+> > for a long time without a single exec, the BOs the GPU actually touches
+> > therefore drift towards the LRU head and are picked by eviction and by
+> > the shrinker ahead of genuinely cold BOs.
+> > 
+> > Bump the BO's LRU on a successful page fault.
+> > 
+> > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_pagefault.c | 7 +++++++
+> >   1 file changed, 7 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+> > index 5247321c805e..6828f81df50e 100644
+> > --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> > @@ -201,6 +201,8 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+> >   		xe_validation_ctx_init(&ctx, &vm->xe->val, &exec,
+> >   				       (struct xe_val_flags) {});
+> >   		drm_exec_until_all_locked(&exec) {
+> > +			struct xe_bo *bo = xe_vma_bo(vma);
+> > +
+> >   			err = xe_pagefault_begin(&exec, vma, tile->mem.vram,
+> >   						 needs_vram == 1);
+> >   			drm_exec_retry_on_contention(&exec);
+> > @@ -221,6 +223,11 @@ static int xe_pagefault_handle_vma(struct xe_gt *gt, struct xe_vma *vma,
+> >   				xe_pagefault_set_error(pf, XE_PAGEFAULT_ERROR_VMA_REBIND);
+> >   				break;
+> >   			}
+> > +
+> > +			if (bo) {
+> > +				scoped_guard(spinlock, &vm->xe->ttm.lru_lock)
+> > +					ttm_bo_move_to_lru_tail(&bo->ttm);
 > 
-> Program DWNSTRM_ACCESS_MODE (0x144154) with 0xcc on graphics
-> version 3511. Compared with 0x3c, this selects L3 class of service
-> 3 instead of 0 and write-back rather than uncached L3 policy.
-> The L4 caching policy and coherency mode remain unchanged.
+> Would it be cleaner to just use ttm_bo_move_to_lru_tail_unlocked() without
+> the scoped guard stuff?
 > 
 
-This patch is implementing Wa_14028586678, but the workaround number
-doesn't appear anywhere in the title or the commit message.  We should
-make sure to add that (preferably in the title) so that it's easy for
-people to find this commit when looking for if/when workarounds were
-added to the driver.
-
-That also helps explain to readers why we we have this commit at all.
-The commit message currently describes what the patch is changing
-without justifying why the change is being made (i.e., that this is a
-documented hardware workaround that's required on this platform).
-
-> v2:
-> - Create a dedicated MERT workaround section/table instead of placing
->   this workaround in gt_was. MERT registers are device-level registers
->   accessed through root-tile MMIO, outside GT forcewake and GT
->   save/restore bookkeeping.
-> - Add an RTP helper for full-register device MMIO writes and apply the
->   MERT table during probe and after pcode is ready on system or D3cold
->   resume. Match Xe3p_XPC explicitly and skip devices without
->   MERT and SR-IOV VFs.
-> 
-> v3: Use PLATFORM(CRESCENTISLAND) for the MERT workaround (sashiko)
-> 
-> BSpec: 73603
-> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> Signed-off-by: Daniel Charles <daniel.charles@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_mert_regs.h |  2 ++
->  drivers/gpu/drm/xe/xe_device.c         |  4 +++
->  drivers/gpu/drm/xe/xe_pm.c             |  8 ++++++
->  drivers/gpu/drm/xe/xe_rtp.c            | 39 ++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_rtp.h            |  2 ++
->  drivers/gpu/drm/xe/xe_wa.c             | 23 +++++++++++++++
->  drivers/gpu/drm/xe/xe_wa.h             |  1 +
->  7 files changed, 79 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_mert_regs.h b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-> index 99e5a26da6572..1e6ce818fcee9 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-> @@ -8,6 +8,8 @@
->  
->  #include "regs/xe_reg_defs.h"
->  
-> +#define DWNSTRM_ACCESS_MODE_GAMREQ_MERTSS	XE_REG(0x144154)
-> +
->  #define MERT_LMEM_CFG				XE_REG(0x1448b0)
->  
->  #define MERT_TLB_CT_INTR_ERR_ID_PORT		XE_REG(0x145190)
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 8392c9fad3c48..27cff3137a7fe 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -953,6 +953,10 @@ int xe_device_probe(struct xe_device *xe)
->  			return err;
->  	}
->  
-> +	err = xe_wa_apply_mert_workarounds(xe);
-> +	if (err)
-> +		return err;
-> +
->  	/*
->  	 * Allow allocations only now to ensure xe_display_init_early()
->  	 * is the first to allocate, always.
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index daa7ba2df317a..ba863df3fbf59 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -251,6 +251,10 @@ int xe_pm_resume(struct xe_device *xe)
->  	if (err)
->  		return err;
->  
-> +	err = xe_wa_apply_mert_workarounds(xe);
-> +	if (err)
-> +		return err;
-> +
->  	xe_display_pm_resume_early(xe);
->  
->  	/*
-> @@ -705,6 +709,10 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->  		if (err)
->  			goto out;
->  
-> +		err = xe_wa_apply_mert_workarounds(xe);
-> +		if (err)
-> +			goto out;
-> +
->  		xe_display_pm_resume_early(xe);
->  
->  		/*
-> diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-> index 6a8d6ea68f25d..539d06eaba6fc 100644
-> --- a/drivers/gpu/drm/xe/xe_rtp.c
-> +++ b/drivers/gpu/drm/xe/xe_rtp.c
-> @@ -13,6 +13,7 @@
->  #include "xe_device.h"
->  #include "xe_gt.h"
->  #include "xe_gt_topology.h"
-> +#include "xe_mmio.h"
->  #include "xe_reg_sr.h"
->  #include "xe_sriov.h"
->  
-> @@ -413,6 +414,44 @@ void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
->  }
->  EXPORT_SYMBOL_IF_KUNIT(xe_rtp_process);
->  
-> +/**
-> + * xe_rtp_apply_device_mmio_writes - Apply full-register device MMIO writes
-> + * @xe: Device to apply the actions to
-> + * @table: RTP action table containing only full-register writes
-> + *
-> + * Device registers are accessed via the root tile without GT forcewake or
-> + * GT save/restore bookkeeping.
-> + *
-> + * Return: 0 on success or -EINVAL for an unsupported action.
-> + */
-> +int xe_rtp_apply_device_mmio_writes(struct xe_device *xe,
-> +				    const struct xe_rtp_table_sr *table)
-> +{
-> +	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-
-This works okay today because the only workaround on the list is for
-CRI, which is a single-tile platform, but in general this probably isn't
-a good idea to handle a general workaround programming interface.  If we
-had a workaround like this on PVC, then we'd probably need to be
-programming the relevant register on all tiles, not just the first one.
-Same if we wind up with more multi-tile platforms in the future that
-wind up needing workarounds like this.
-
-This seems like we should be using the xe_wa_apply_tile_workarounds()
-function that we already have for applying soc/sgunit workarounds to a
-tile.  At the moment that doesn't use RTP there because there aren't
-enough such workarounds yet to make it worthwhile, so you could either
-add this as an OOB workaround there, or you could convert that function
-to use the RTP infrastructure if you want (although that conversion
-should probably be a separate initial patch, with the workaround itself
-being added independently after the framework is in place).
-
-> +
-> +	for (size_t i = 0; i < table->n_entries; i++) {
-> +		const struct xe_rtp_entry_sr *entry = &table->entries[i];
-> +
-> +		if (!rule_matches(xe, NULL, NULL, entry->rules, entry->n_rules))
-> +			continue;
-
-This seems to be mixing the "process" and "apply" steps into a single
-function; the primary reason we have the RTP infrastructure is to keep
-those separate so that we can process once during driver init and then
-(re-)apply the processed list later as necessary.  And by not having a
-process step, this also isn't going to be hooked into the rest of our
-workaround tracking in debugfs and such.  So I think we need to decide
-whether we want to put in the effort to make this a true RTP-based set
-of workarounds, or whether it's simpler to just use OOB for this as we
-do for the other SoC/sgunit workarounds today.
-
-> +
-> +		for (size_t j = 0; j < entry->n_actions; j++) {
-> +			const struct xe_rtp_action *action = &entry->actions[j];
-> +
-> +			if (drm_WARN_ON(&xe->drm, action->clr_bits != ~0u ||
-> +					action->reg.mcr || action->reg.masked ||
-> +					action->flags || action->use_func))
-> +				return -EINVAL;
-> +
-> +			xe_mmio_write32(mmio, action->reg, action->set_bits);
-> +		}
-> +
-> +		drm_dbg(&xe->drm, "Applied device workaround %s\n", entry->name);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  bool xe_rtp_match_always(const struct xe_device *xe,
->  			 const struct xe_gt *gt,
->  			 const struct xe_hw_engine *hwe)
-> diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-> index 0032f68ea1873..7f45bb8552244 100644
-> --- a/drivers/gpu/drm/xe/xe_rtp.h
-> +++ b/drivers/gpu/drm/xe/xe_rtp.h
-> @@ -514,6 +514,8 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
->  
->  void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
->  		    const struct xe_rtp_table *table);
-> +int xe_rtp_apply_device_mmio_writes(struct xe_device *xe,
-> +				    const struct xe_rtp_table_sr *table);
->  
->  /* Match functions to be used with XE_RTP_MATCH_FUNC */
->  
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index c94fe7753f9a9..c5f5d02be2eaa 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -16,7 +16,9 @@
->  #include "regs/xe_engine_regs.h"
->  #include "regs/xe_gt_regs.h"
->  #include "regs/xe_guc_regs.h"
-> +#include "regs/xe_mert_regs.h"
->  #include "regs/xe_regs.h"
-> +#include "xe_device.h"
->  #include "xe_device_types.h"
->  #include "xe_force_wake.h"
->  #include "xe_gt_types.h"
-> @@ -823,6 +825,13 @@ VISIBLE_IF_KUNIT __maybe_unused const struct xe_rtp_table device_oob_was = {
->  };
->  EXPORT_SYMBOL_IF_KUNIT(device_oob_was);
->  
-> +static const struct xe_rtp_table_sr mert_was = XE_RTP_TABLE_SR(
-> +	{ XE_RTP_NAME("14028586678"),
-> +	  XE_RTP_RULES(PLATFORM(CRESCENTISLAND)),
-> +	  XE_RTP_ACTIONS(WR(DWNSTRM_ACCESS_MODE_GAMREQ_MERTSS, 0xcc))
-
-The workaround description asks us to write [5:4] = 0x0 and [7:6] = 0x3
-so if we're using RTP we should be setting those specific fields to the
-desired values to avoid clobbering the rest of the register's fields.
-It looks like you might have tried to include the hardware default
-values for the other fields in the overall value here, but that's still
-risky in case the firmware changes some of those to non-default values
-and/or other workarounds show up to target the other bits.
-
-> +	},
-> +);
-
-If we think we're eventually going to have enough MERT workarounds that
-we want to keep them separate from the more general tile workaround
-category (and if we want to use the RTP infrastructure for them), then
-it would probably be best to keep the MERT-specific workaround list in
-xe_mert.c with the rest of the MERT code.
-
+Yes, that would be better. Will adjust.
 
 Matt
 
-> +
->  __diag_pop();
->  
->  /**
-> @@ -1032,3 +1041,17 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
->  	if (XE_DEVICE_WA(tile->xe, 22010954014))
->  		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
->  }
-> +
-> +/**
-> + * xe_wa_apply_mert_workarounds - Apply root-tile MERT workarounds
-> + * @xe: Xe device
-> + *
-> + * Called during probe and after pcode is ready on system or D3cold resume.
-> + */
-> +int xe_wa_apply_mert_workarounds(struct xe_device *xe)
-> +{
-> +	if (!xe_device_has_mert(xe) || IS_SRIOV_VF(xe))
-> +		return 0;
-> +
-> +	return xe_rtp_apply_device_mmio_writes(xe, &mert_was);
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_wa.h b/drivers/gpu/drm/xe/xe_wa.h
-> index f4da2b2713963..28516812cb2bf 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.h
-> +++ b/drivers/gpu/drm/xe/xe_wa.h
-> @@ -22,6 +22,7 @@ void xe_wa_process_gt(struct xe_gt *gt);
->  void xe_wa_process_engine(struct xe_hw_engine *hwe);
->  void xe_wa_process_lrc(struct xe_hw_engine *hwe);
->  void xe_wa_apply_tile_workarounds(struct xe_tile *tile);
-> +int xe_wa_apply_mert_workarounds(struct xe_device *xe);
->  void xe_wa_device_dump(struct xe_device *xe, struct drm_printer *p);
->  int xe_wa_gt_dump(struct xe_gt *gt, struct drm_printer *p);
->  
-> -- 
-> 2.43.0
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+> > +			}
+> >   		}
+> >   		xe_validation_ctx_fini(&ctx);
+> >   	} while (err == -EAGAIN);
+> 
