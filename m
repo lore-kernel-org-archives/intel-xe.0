@@ -2,57 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A7F606A31A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 04:53:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4237F606A31F
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Oct 2026 04:53:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=heUTDnbM
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bac1o6SL
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67EEB10F98C;
-	Wed, 28 Oct 2026 04:53:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B120110F9AB;
+	Wed, 28 Oct 2026 04:53:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0517210E1DE;
- Wed, 28 Oct 2026 04:53:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3583410E51C;
+ Wed, 28 Oct 2026 04:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793163214; x=1824699214;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=xBHwl4P8mqdK6km3R+rEMNGuE23FAz+kLJZj1Qn20v0=;
- b=heUTDnbMpUBnYHRYI2GIgVx0XhtK+LKMPQexeXF+9lQu3jIPNdom/eIz
- wGzZ+rl5uQiDKeT7NDHSyFxuR+8GRC8eXKh0HcU10GZG9Z0UupQTgr10w
- draXvP3rSQoG0GGdSp+4X9q+iD1+GeYWEELyjTjidSlKfQEuKZkDwRhdN
- 4Tg20B3vYXJmx9MAYfyk1pXZ9tAT5TrQgFbKGJyhJZx6LIhVxLTntrDSM
- drgVQzr049JounT8hC67zc8zMKaTLnpqZVPCQO2nKQlIglvl3shETJ1OC
- Dwz9uTjMP2sZPUtA6iEavmyKJ4fWrjgYE2HQvr6JuNd7OPs1sX/PtQe+1 Q==;
-X-CSE-ConnectionGUID: JAuKMfjaTfmhKUioKUT49g==
-X-CSE-MsgGUID: nSoP6Me/R+m/fYopQ5tAJg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1757316"
+ t=1793163216; x=1824699216;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=O5GOpwU5gyBj+/h1XeHxYgMh+cA+WtbgY6l704cCudA=;
+ b=bac1o6SLPqzY+Hb+syIJCeAL2AwyIKOwas0MWrhYLTQmB3shmAbMWTEp
+ w6hRLRQKT0oQKwt0j07ATf/0ksOCRDbAO8iZxWMRUtBqQ7gJ1nmScB42V
+ XoAA7xWDWivseGJUliZLFNxy2eKhmKtYop1xDjXrBrP6hfKedjNSF/D/v
+ IhUYzwwkV3UWuArFVz7K5N55Kp7DR9y6uos9WcNoK/h569Tm+N2JNmlKl
+ HJLMD+NPYfpnjey41iC9Gt/63mnu4PdNs+2NIPfAIYRy13EW5GjBec6Lw
+ jaP5Z8a+e0FByIhujik1dQFagvezzRjpn94UCKPHQKU11HIO2ZmSgTtsX w==;
+X-CSE-ConnectionGUID: fBplWXHcT5WssHMttE2uqA==
+X-CSE-MsgGUID: JRbhJVXHQIO2yq6B8IW/8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11948"; a="1757321"
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="1757316"
+   d="scan'208";a="1757321"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2026 21:53:34 -0700
-X-CSE-ConnectionGUID: VngUO47URrKqF2tby+kRaA==
-X-CSE-MsgGUID: ze2/tEDfRwacWbk5fq8PgQ==
+ 27 Oct 2026 21:53:36 -0700
+X-CSE-ConnectionGUID: +Nmd7gwERHyx7WBDKrFouA==
+X-CSE-MsgGUID: DuxCgp++QhSMThlO2wsWdw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,182,1787036400"; 
-   d="scan'208";a="4638228"
+   d="scan'208";a="4638248"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa007.jf.intel.com with ESMTP; 27 Oct 2026 21:53:31 -0700
+ by orviesa007.jf.intel.com with ESMTP; 27 Oct 2026 21:53:34 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH v2 0/6] drm/i915/dp: Add support for the DP symbol based
- timing generator
-Date: Wed, 28 Oct 2026 10:18:10 +0530
-Message-Id: <20261028-vlk-64036-dp-symbol-tg-v2-0-43849c325d32@intel.com>
+Date: Wed, 28 Oct 2026 10:18:11 +0530
+Subject: [PATCH v2 1/6] drm/i915/dp: Factor out the DSC slice count and
+ link bpp lookup
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIt+4WoC/4WNQQ6CMBBFr0Jm7Zgy1mJceQ/DQtoBJgIlLWkkh
- LtbuYDL95L//gaRg3CEe7FB4CRR/JSBTgXY/jV1jOIyAykypaIK0/BGo9XFoJsxrmPjB1w6dBV
- ZTUS3q2HI4zlwK58j/Kwz9xIXH9bjJ5U/+zeZSlRotWk1N62p2D1kWng4Wz9Cve/7FxzbhR28A
- AAA
-X-Change-ID: 20261027-vlk-64036-dp-symbol-tg-d72c4222856e
+Message-Id: <20261028-vlk-64036-dp-symbol-tg-v2-1-43849c325d32@intel.com>
+References: <20261028-vlk-64036-dp-symbol-tg-v2-0-43849c325d32@intel.com>
+In-Reply-To: <20261028-vlk-64036-dp-symbol-tg-v2-0-43849c325d32@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
  chaitanya.kumar.borah@intel.com, uma.shankar@intel.com, 
@@ -71,74 +68,103 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xe3p adds a DP link layer (LL) symbol based timing generator, as an
-alternative to the pixel clock based one. It generates the transcoder
-timings in LL symbol cycles instead of pixels, which makes the per-line
-symbol insertion for 8b/10b MST and 128b/132b SST/MST compliant with
-the DP 2.1 hblank symbol cycle count. This reduces the line-to-line
-hblank jitter that some sinks can't handle, and the Min Hblank
-mechanism can't be used together with it.
+Move the DSC slice count and link bpp determination out of
+intel_dp_compute_min_hblank() into a helper, so that it can be shared
+with the upcoming DP symbol based timing generator computation.
+No functional change.
 
-This series computes the LL symbol HACT/HTOTAL/CHUNK_SIZE and the 128
-bit Data M/N for the symbol based timing generator, programs and enables
-it, and drops the Link M/N ratio limit, which only applies to the pixel
-based timing generator. If the symbol based timing generator can't be
-used (MSO/eDP splitter, timings out of range, Data M/N above 1.0), the
-pixel based one is kept.
-
-Patch overview:
- - Patch 1 factors out the DSC slice count and link bpp lookup, to be
-   shared with the Min Hblank computation.
- - Patch 2 adds the symbol based timing generator registers.
- - Patch 3 adds HAS_DP_SYMBOL_TG().
- - Patch 4 computes the timing generator parameters.
- - Patch 5 programs and enables the timing generator, including the
-   state readout and the state checker.
- - Patch 6 lifts the Link M/N ratio limit when the symbol based timing
-   generator is used.
-
-Cc: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: chaitanya.kumar.borah@intel.com
-Cc: uma.shankar@intel.com
-Cc: suraj.kandpal@intel.com
-To: intel-gfx@lists.freedesktop.org
-To: intel-xe@lists.freedesktop.org
-
-Bspec: 68922
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
-Changes in v2:
-- EDITME: describe what is new in this series revision.
-- EDITME: use bulletpoints and terse descriptions.
-- Link to v1: https://lore.kernel.org/r/20261027-vlk-64036-dp-symbol-tg-v1-0-c46f4ebf67ed@intel.com
+ drivers/gpu/drm/i915/display/intel_dp.c | 51 ++++++++++++++++++++++-----------
+ 1 file changed, 34 insertions(+), 17 deletions(-)
 
----
-Arun R Murthy (6):
-      drm/i915/dp: Factor out the DSC slice count and link bpp lookup
-      drm/i915/display: Add the DP link layer symbol timing generator registers
-      drm/i915/display: Add HAS_DP_SYMBOL_TG()
-      drm/i915/dp: Compute the DP symbol based timing generator parameters
-      drm/i915/display: Program and enable the DP symbol based timing generator
-      drm/i915/dp: Don't limit the Link M/N ratio with the symbol timing generator
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index bf5e87a72108eaf274f24bc997f2e8e2cc8320a0..3827737c0d808229413ef969082d59249a6b96b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3628,6 +3628,35 @@ intel_dp_queue_modeset_retry_for_link(struct intel_atomic_state *state,
+ 	}
+ }
+ 
++static int intel_dp_get_dsc_slices_and_link_bpp(const struct intel_crtc_state *crtc_state,
++						struct intel_connector *connector,
++						int *dsc_slices, int *link_bpp_x16)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	const struct drm_display_mode *adjusted_mode =
++					&crtc_state->hw.adjusted_mode;
++
++	*dsc_slices = 0;
++
++	if (crtc_state->dsc.compression_enable) {
++		*dsc_slices = intel_dp_dsc_get_slice_count(connector,
++							   adjusted_mode->crtc_clock,
++							   adjusted_mode->crtc_hdisplay,
++							   intel_crtc_num_joined_pipes(crtc_state));
++		if (!*dsc_slices) {
++			drm_dbg(display->drm, "failed to calculate dsc slice count\n");
++			return -EINVAL;
++		}
++
++		*link_bpp_x16 = crtc_state->dsc.compressed_bpp_x16;
++	} else {
++		*link_bpp_x16 = intel_dp_output_format_link_bpp_x16(crtc_state->output_format,
++								    crtc_state->pipe_bpp);
++	}
++
++	return 0;
++}
++
+ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
+ 				const struct drm_connector_state *conn_state)
+ {
+@@ -3642,12 +3671,12 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
+ 	 */
+ 	int min_sym_cycles = intel_dp_is_uhbr(crtc_state) ? 3 : 5;
+ 	bool is_mst = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST);
+-	int num_joined_pipes = intel_crtc_num_joined_pipes(crtc_state);
+ 	int min_hblank;
+ 	int max_lane_count = 4;
+ 	int hactive_sym_cycles, htotal_sym_cycles;
+ 	int dsc_slices = 0;
+ 	int link_bpp_x16;
++	int ret;
+ 
+ 	if (DISPLAY_VER(display) < 30)
+ 		return 0;
+@@ -3656,22 +3685,10 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
+ 	if (!is_mst && !intel_dp_is_uhbr(crtc_state))
+ 		return 0;
+ 
+-	if (crtc_state->dsc.compression_enable) {
+-		dsc_slices = intel_dp_dsc_get_slice_count(connector,
+-							  adjusted_mode->crtc_clock,
+-							  adjusted_mode->crtc_hdisplay,
+-							  num_joined_pipes);
+-		if (!dsc_slices) {
+-			drm_dbg(display->drm, "failed to calculate dsc slice count\n");
+-			return -EINVAL;
+-		}
+-	}
+-
+-	if (crtc_state->dsc.compression_enable)
+-		link_bpp_x16 = crtc_state->dsc.compressed_bpp_x16;
+-	else
+-		link_bpp_x16 = intel_dp_output_format_link_bpp_x16(crtc_state->output_format,
+-								   crtc_state->pipe_bpp);
++	ret = intel_dp_get_dsc_slices_and_link_bpp(crtc_state, connector,
++						   &dsc_slices, &link_bpp_x16);
++	if (ret)
++		return ret;
+ 
+ 	/* Calculate min Hblank Link Layer Symbol Cycle Count for 8b/10b MST & 128b/132b */
+ 	hactive_sym_cycles = drm_dp_link_symbol_cycles(max_lane_count,
 
- .../gpu/drm/i915/display/intel_crtc_state_dump.c   |  11 +
- drivers/gpu/drm/i915/display/intel_display.c       | 100 ++++++-
- .../gpu/drm/i915/display/intel_display_device.h    |   1 +
- drivers/gpu/drm/i915/display/intel_display_regs.h  |  45 ++++
- drivers/gpu/drm/i915/display/intel_display_types.h |  13 +
- drivers/gpu/drm/i915/display/intel_dp.c            | 293 +++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_dp.h            |   5 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        |   8 +-
- 8 files changed, 446 insertions(+), 30 deletions(-)
----
-base-commit: d56ff005f0d16ec136ee31fe3238eb447fefdc1a
-change-id: 20261027-vlk-64036-dp-symbol-tg-d72c4222856e
-
-Best regards,
 -- 
-Arun R Murthy <arun.r.murthy@intel.com>
+2.25.1
 
