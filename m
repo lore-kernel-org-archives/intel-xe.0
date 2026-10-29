@@ -2,146 +2,66 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9807D606A31A
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 14:39:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E77B2606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 14:42:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=J/lDHcH7
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NLuNa/hV
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6174210E4D0;
-	Thu, 29 Oct 2026 14:39:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D583210E4D0
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 14:39:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAB4310E6DB;
+	Thu, 29 Oct 2026 14:42:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C83F10E110;
+ Thu, 29 Oct 2026 14:42:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793284769; x=1824820769;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=8Dobp4+kfgSIOVbbxtlTEKkTGrCpfUmw++tYZ6igESg=;
- b=J/lDHcH7/sBEmJWgcLfjFhJB9o7yRIIKOUSffC/XyZpvcNClIyoRTODG
- nFO96XHaiBCjzLLLwy/Y6BdEe6EmDbZL+1dZtMXgXU5aDiasGwsbKhebl
- gitMOoiKyY1uVm7z+BjEZNrwErbhbsVOROzXMEb8y6+5WpgGdjx6vKpKi
- zFppAJmbr3VeAInM2M4uxBEFQ2pw5ypjFFInwPkoUEgbMhxhUY1HnJxHw
- EyEi6a6douWQd/lTBqTdMB6jw20OaiduuL5Q1NpRt5PqvQZIKdmGjM1I3
- sT+UQ7YJHosipP7Vtavb4bCgIFH9+GK36xaujEeElEScxVG1SPUSS8UHb w==;
-X-CSE-ConnectionGUID: LQU4y3ECRoWdSiRaaluH6A==
-X-CSE-MsgGUID: su5T9BcgR82/vyIwRybe5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="2054585"
+ t=1793284926; x=1824820926;
+ h=message-id:date:mime-version:from:to:cc:subject:
+ content-transfer-encoding;
+ bh=cPIpGwMsK40ZmgMXS8+Oc2H49uEAbyXDlCo7W73KXkk=;
+ b=NLuNa/hVoc7mM3U0KTxCzLUTB962061VFB9bfJ999AOvp0PotWOpWxyv
+ KHPZ/h4ko4JyoWacIyK8Zo5WsfC1yChYZ4oyXtyy/apTR4i8gekXiOYfj
+ 737VQxY5dSyioPjtpHIdjqaNc3yrDqaUgZpVArr8Iq6hLmTyOz7Y3FX+H
+ aTArv/1QrOIL88aP5F7OXrGe1MsH2xhiH4wpzO4Yz2uD43aRc62vQ/i7p
+ oLC1KV1oBuqG+HHKmUHj7d2ldSDKfoRcqBA/mcNJnuDHIC7q1WgvWyZV5
+ QcY+UEnp+I6VTiCQoEOtcaKdJB+P3e2Z7RXr78LD8+kElgnLN1wy7qWiX A==;
+X-CSE-ConnectionGUID: FPIyNHqqTjaFW0HUkUEU3A==
+X-CSE-MsgGUID: sjcJHf7OTuul/lSzuBITWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="2046250"
 X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="2054585"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 07:39:29 -0700
-X-CSE-ConnectionGUID: IuGEXhStSqGaRsOCBMpW6w==
-X-CSE-MsgGUID: Jmkdr4kpTXGyB41J+XRgZw==
+   d="scan'208";a="2046250"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 07:42:05 -0700
+X-CSE-ConnectionGUID: io79ij54Ssq5FRNwxd05iw==
+X-CSE-MsgGUID: XrX1BiZ8Rb+Y70Emk1R/jg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="5291358"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 07:39:28 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 29 Oct 2026 07:39:28 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Thu, 29 Oct 2026 07:39:28 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.23) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 29 Oct 2026 07:39:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HhkaxeS/PyEWV3oUQ00jL7lwOby7Awfgo2R8Mwzo9KGqz9QkVtjTPKbQRWBz9VuiL4zNe+F11Z0lX8/d1WZaDtT7LoJnbW7ujBPi5xoIoGrydWPQg88vxUNImxGf0yMC6DGcMd7DarBZtMZb4LENAvxmJij3akaDL+aWLS+1mc2jTOTZqhPXyNRjymq7joAHP4MjsohObzaBKlmxLSTo/3LnfFYvFjetU4o1GRMRCVg9I2JiwnHuvOZ+bK/L/gp43boe6zWqzmHwQGSsofa/LHylJMPv0v2BHpYLu4Q3/pv7sIyYzg4LJJnN3tirBj+3SHnCc+UlgWRit+iva9zvEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=T8Oe8R1ghglKX1fLN5s0yMAP23J2YdDyUO5/KBp/B2A=;
- b=xdaBD1PWoC9YR3CMeTj7qS9Boy8IrBvWblLFOxlbm9/M2RlisCPcIgqKo5k5K9gEW/cDS2E5Xkds3iAeH8cCQULx0QAwKHANXVePuEpzUCJ6H6GcoVTHYc5/atgqig/8L1ZKQR8xOWbM0syj2O/vHRo9lnopzY8KgkcCJOyh/eyh8s1L0mqV3ijkfelq050A3zFkP8wRVS8RpcLvBfP1DrGkZX1xIO4PE1zSpxGyjQDu5baZD9+OBE1qjV8MMeuUqj6cgxT0ZsCUusku64SUhYFy3XzSsBDd9ghIzEMArIr/rrtSG/tHAEEYKTybgnI53MBYSnQZCYmSMQ0XsqAYlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by LV2PR11MB121525.namprd11.prod.outlook.com (2603:10b6:408:423::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.9; Thu, 29 Oct
- 2026 14:39:26 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0569.008; Thu, 29 Oct 2026
- 14:39:25 +0000
-Date: Thu, 29 Oct 2026 07:39:23 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe/dma-buf: Add xe_dma_buf_to_gem() self-import helper
-Message-ID: <auNamy4jovDxiDPq@gsse-cloud1.jf.intel.com>
-References: <20261029142111.2590982-2-niranjana.vishwanathapura@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20261029142111.2590982-2-niranjana.vishwanathapura@intel.com>
-X-ClientProxiedBy: MW4PR03CA0097.namprd03.prod.outlook.com
- (2603:10b6:303:b7::12) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+   d="scan'208";a="5052788"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.245.177])
+ ([10.245.245.177])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 07:42:01 -0700
+Message-ID: <ba231556-17a6-4b2b-8ebc-3150f887db48@linux.intel.com>
+Date: Thu, 29 Oct 2026 15:41:54 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|LV2PR11MB121525:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5070b422-6d7d-4fc6-47b0-08df35ca6e14
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|366016|11063799006|56012099006|261009223027099003|261026121527099003|10067099003|261022113327099003|261021121427099003|261021123027099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: TCBVvJD5bO/JXCZMR9qHSOueWHRZVKhkHPMmL6IJSc/xhuWSfPhArARrHH4GqhDRzJvTwg4023QXnXo5znXTQsrkr4cpxJav5sHFvm2V6Jyypg+8xyju9QNaZ9X6581Ailpt+QOkT/4hxQi2R3GPzM+CmHfbBWghDZtKSoSR/Eog9QzBIGn4TJva6TaCzh7hLj5HOBv4SAlDEzEcFGIYnp2AZXA6e/fgYbPlmfchus3FkoaJmjnRWE/8fvH3lqErn5OrrElxw24/F2NZs8Vknh51OXwsPsvn5U9yPlveGha2cmqPLlJMdWp4JnKXW3e0DtkvY0/917GdINmBOQu3iOnEtUTMrVTLz7xJp2K3I1mWiq/M61CxrQdiMs4NW6ruX/TTdgJFak4AcYfJYCGbB6XqOYRSu0p0/dNjn6IEpWsRn3WAQ8cRqF34tfaY8TrPSq7MNmYIwKRbKCsAYcw2nYTHnsBVSpuUsZ9ng+BbPJN0uiwIS62mgDF8+Ln12duM7MgNINDqN6XYJ/qvnlXHtiU1lsHgG5oMCjYVFYMUZHjS56JUlTvL2vnFOcKA4w/CNdozSPvr3nWLyQvHn1xgTgc5dhQol5LMwkrA4cZhjEZLSqXvmsxVwUQjbYtxKb3H4NpMgVdQqwNKlAvOHjBm8eFri/72ci0XIw8q1i/aPxg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(11063799006)(56012099006)(261009223027099003)(261026121527099003)(10067099003)(261022113327099003)(261021121427099003)(261021123027099003)(22082099003)(18002099003)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/cIZNhn9SeJaJAvktRGDmkKnCbhX3ICa+zC3TRO/grjicLPx/n/hx7GDrmuA?=
- =?us-ascii?Q?T/gEVtN2/kfU4aSMDSsmhazn+SJy+jruVNmZK6+/l//OUFt23yHDOnxGYTc2?=
- =?us-ascii?Q?8W6XgPxIhqyxFEepFnOgva9yMIhv4Bm2+xJ5BrIKXpbKheb1GvgDfQWSdNY9?=
- =?us-ascii?Q?9k59+r0uTRRWM4WZ1R9vVoU4b97uL99UQzsGPHjDRTPWEWGYsuCylHia5u16?=
- =?us-ascii?Q?Asn3vmx/KixO8218LPPvAMN4VE3edaKcJukKlnLJu26+4lgByxUGBwljq6b1?=
- =?us-ascii?Q?z/kG4yZZBClw6KvVfOJiHVhCA7y7JMN6NsvxBH68jv2dVLD8Mhqehu9zLmxi?=
- =?us-ascii?Q?crEbbFHppvU4U81CNt09tFPzt/DYpzZqRNU6WilR9ypiW4+DuDa//DUgrgM8?=
- =?us-ascii?Q?QRmDMvjFoC+ymowU0mXQX3652gVYuox6V0xbGTKG/UbxmqFKn3ln0y3vLJhz?=
- =?us-ascii?Q?u11gW+eyOxyXpPdSIQw3r4k86H+lz9FcO0IUiHvLHMvz9H362ygjPkN1vMMz?=
- =?us-ascii?Q?JFGdtFy/XEOgqFESALaxtHiC/Nis8lhQUTw5Sfa65Q7XdmS2YuVuWdc6u8UW?=
- =?us-ascii?Q?HORFl9CYMpZoceCR7B82fusl84HgxD/Jsr5MctGVGpcGRNvguy/2VGcjh4FN?=
- =?us-ascii?Q?bkuwmDzv280gN+ttwx9n91GxwKYEM6QdyJo5/bFF3oB5bW6vJQPr+0lUKwuO?=
- =?us-ascii?Q?ZdiyKME80rtmQrZFFHqs5chv0CrgdlrlZq6Y8j/0ZnVTYvDmb4BkfFRlKgH5?=
- =?us-ascii?Q?CHVdJbue4NR325Y+qWlK0h2qTjufy2VWwg/ECzEuv3jLBFiGalgPu1uygG1O?=
- =?us-ascii?Q?Fiqx6QEn3q8BJ5jNS4SCdBFfUS+9NRIouehmJRDqU0cY1vQAe9cqCftIQLrL?=
- =?us-ascii?Q?vc1rNRqhyAq6zc++l4CbZojWr55VX7Wr/UNli+ir/3djqOMauM2NkGMYdM5M?=
- =?us-ascii?Q?eIWYBki2+VuRPekD6LfSFzuE7Yc1xP9z1SzoeRL3BzjfKd+yjpkh7UkDyaUo?=
- =?us-ascii?Q?yqxJNXXZfcRWJpb40g3mbYjQz1A45/gOoSHhQRlW6tzzxuWoEMFCplMKe2I2?=
- =?us-ascii?Q?rwHyH8m1/wDJR5jRkNLjQQIQxnwIU/5Zn4DLufsnbTTL3Hg8VPMX6pAvNj9O?=
- =?us-ascii?Q?4Kx0UV/CVq9JAxeGds3tKEeRjB9t/khpAcnRg1EmLe1y4ruX8HVqFbxnsdHx?=
- =?us-ascii?Q?/6vU8vGdrv/Ox/3c07g4x87mFj+XD+N2pjTUVE4DCE+3Sh0Ou3woEgOcFLk1?=
- =?us-ascii?Q?iHT3bl41J+ar7NcTZFQ1a0n+PEE9p6WfV7dlmq3tkPlvYjwHoREW2wZ1VTzh?=
- =?us-ascii?Q?qHusJnBUxmd9+pvwnGgRTAjZdCxFJXXmbFGL2t0GhDdi7Affy2mYbqcQ/hBZ?=
- =?us-ascii?Q?S3flK7LceD3vEaTcB1Hz1e0bk+wnF/UJraH8YfOL4OzMwSQXXVmH2CdfamAi?=
- =?us-ascii?Q?vY23wfiBvOUjMTwIwL/3SrlfUFOy1FPdSO6dCh2cmt/saiCChYv3G6aO0wqF?=
- =?us-ascii?Q?4OWzKzJpvlKY4ENGLSM6mUWj3cmv90otuBldyVRn5VNq21dlhmVsmhxqkkUu?=
- =?us-ascii?Q?vrlIYhIAJZMTxFX2Hopk2RhQPPttt1PjHldHjSglBw9pXob+M3Xa24mJe3qP?=
- =?us-ascii?Q?D745J59S2RgE9xeQ9sRxJtUSxoJpJ2hSlebWrHk0we0Hh1MoC5IHJls1+1tn?=
- =?us-ascii?Q?dkszYZHvHr7OTiZJ0Y/Di9WWGZNkzeFQdwq+Wb+jjlBkl+SCwjq0rCtwlNLC?=
- =?us-ascii?Q?2K/1kzm+Pw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: cQcHsVmkWOBOWts0s6QhotC2qwwWzxv42B5DGpTr9W6S5fygswSo4XswvXy1SRHS2hw9TR/onvk9ewcRXJdPtObA0nW7CLkBd8dEAjoPNuryk04XrDxPnMez7cBaoJeA5nUdx0sCzvAqVTNELKgxTo8ZKY1euzvYTrSvVX8YlHEp89ZZevdQu59bWmfdfifhfaPpfi5QBkYiW+uRAfhRNxZQDp6+zpEKoisBrmE457HKnSz0SZ1wfB1jh2p9wduZzbnMoHrpx+cERNXjwTJLWb32JYG+s3omJImwJPGzRd7jyktsCJ9coPqP8Hko9O6mIzgu9it72XlhT9wlSl8pew==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5070b422-6d7d-4fc6-47b0-08df35ca6e14
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 14:39:25.8613 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qgug3hrvamL8mzzzVYblM3IwYcjPRo/PATyqmhjznAD0uS3ICFbFitLzGChXFT5WH5b1fCLRkd//tUGupX9UGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB121525
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
+Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Oded Gabbay <ogabbay@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: [PULL] drm-misc-next
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,100 +72,306 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 29, 2026 at 07:21:12AM -0700, Niranjana Vishwanathapura wrote:
-> Factor the dma-buf self-import detection out of xe_gem_prime_import()
-> into a standalone xe_dma_buf_to_gem() helper. The helper checks that the
-> dma-buf was exported by this Xe device (matching ops and drm_device) and,
-> if so, takes an extra reference on the backing GEM object instead of the
-> dma-buf file. Expose it for future use within Xe.
-> 
-> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-> Signed-off-by: Farah Kassabri <farah.kassabri@intel.com>
+Hi Dave, Sima,
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Quiet drm-misc-next pull, but it seems the one from the 16th hasn't been pulled yet.
 
-> ---
->  drivers/gpu/drm/xe/xe_dma_buf.c | 38 ++++++++++++++++++++++++---------
->  drivers/gpu/drm/xe/xe_dma_buf.h |  2 ++
->  2 files changed, 30 insertions(+), 10 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 6a85b292dee7..5bf13dc4b61d 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -239,6 +239,27 @@ static const struct dma_buf_ops xe_dmabuf_ops = {
->  	.vunmap = drm_gem_dmabuf_vunmap,
->  };
->  
-> +struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
-> +					 struct dma_buf *dma_buf)
-> +{
-> +	struct drm_gem_object *obj;
-> +
-> +	if (dma_buf->ops != &xe_dmabuf_ops)
-> +		return NULL;
-> +
-> +	obj = dma_buf->priv;
-> +	if (obj->dev != dev)
-> +		return NULL;
-> +
-> +	/*
-> +	 * Importing dmabuf exported from our own gem increases
-> +	 * refcount on gem itself instead of f_count of dmabuf.
-> +	 */
-> +	drm_gem_object_get(obj);
-> +
-> +	return obj;
-> +}
-> +
->  struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags)
->  {
->  	struct xe_bo *bo = gem_to_xe_bo(obj);
-> @@ -372,17 +393,14 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
->  	struct dma_buf_attachment *attach;
->  	struct drm_gem_object *obj;
->  
-> -	if (dma_buf->ops == &xe_dmabuf_ops) {
-> -		obj = dma_buf->priv;
-> -		if (obj->dev == dev &&
-> -		    !XE_TEST_ONLY(test && test->force_different_devices)) {
-> -			/*
-> -			 * Importing dmabuf exported from out own gem increases
-> -			 * refcount on gem itself instead of f_count of dmabuf.
-> -			 */
-> -			drm_gem_object_get(obj);
-> +	obj = xe_dma_buf_to_gem(dev, dma_buf);
-> +	if (obj) {
-> +		if (!XE_TEST_ONLY(test && test->force_different_devices))
->  			return obj;
-> -		}
-> +
-> +		/* Test only: force different devices */
-> +		drm_gem_object_put(obj);
-> +		obj = NULL;
->  	}
->  
->  	/*
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.h b/drivers/gpu/drm/xe/xe_dma_buf.h
-> index 861dd28a862c..d0c7893a5a6f 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.h
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.h
-> @@ -8,6 +8,8 @@
->  
->  #include <drm/drm_gem.h>
->  
-> +struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
-> +					 struct dma_buf *dma_buf);
->  struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags);
->  struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
->  					   struct dma_buf *dma_buf);
-> -- 
-> 2.43.0
-> 
+So I'm only adding the changelog compared to that one.
+
+Kind regards,
+~Maarten Lankhorst
+
+drm-misc-next-2026-10-29:
+drm-misc-next for v7.5:
+
+UAPI Changes:
+- Add TFU constant color suport for v3d.
+
+Core Changes:
+- tidss devicetree bindings updates.
+
+Driver Changes:
+- Assorted fixes and cleanups in panthor, arm/hdlcd, amdxdna, bridge/sii902x,
+  v3d, tidss, imagination, ivpu.
+- Add BOE NV116WH2-M32 V8.0, PNB601LS1-3 HW:1.2 panels.
+The following changes since commit db1de27aca30ebaad04aea74ac21e4c4fb531a37:
+
+  drm/adp: Switch to drm_atomic_helper_connector_create_state (2026-10-16 17:08:45 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-10-29
+
+for you to fetch changes up to 33ed26235db93162935d1719bc6f538c384a2fd8:
+
+  accel/ivpu: Read preemption buffer size from boot params (2026-10-29 09:24:25 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for v7.5:
+
+UAPI Changes:
+- Add TFU constant color suport for v3d.
+
+Core Changes:
+- tidss devicetree bindings updates.
+
+Driver Changes:
+- Assorted fixes and cleanups in panthor, arm/hdlcd, amdxdna, bridge/sii902x,
+  v3d, tidss, imagination, ivpu.
+- Add BOE NV116WH2-M32 V8.0, PNB601LS1-3 HW:1.2 panels.
+
+----------------------------------------------------------------
+Alessio Belle (4):
+      drm/imagination: Improve logging of unknown freelist IDs
+      drm/imagination: Remove wrong soft reset code from GPU start sequence
+      drm/imagination: Add utility function to write and read back register
+      drm/imagination: Check virtual address space size only once
+
+Alice Ryhl (1):
+      drm/gpuvm: skip setting kernel_alloc_node range on overflow
+
+Andrzej Kacprowski (1):
+      accel/ivpu: Read preemption buffer size from boot params
+
+Aryan Sinha (1):
+      accel: ethosu: Fix kernel-doc for ethosu_gem_cmdstream_create()
+
+Daniel Stone (2):
+      drm/panthor: Add neural-engine presence and power bits for v14+
+      drm/panthor: Delegate neural power domain to CSF when present
+
+David Zhang (19):
+      accel/amdxdna: Rename NPU3 firmware files
+      accel/amdxdna: Remove mmap for doorbell
+      accel/amdxdna: Add CERT firmware version support
+      accel/amdxdna: Support firmware 6.0
+      accel/amdxdna: Add NPU3 classic device support
+      accel/amdxdna: Add AIE version query to aie4_get_info
+      accel/amdxdna: Add get and set power_mode for AIE4
+      accel/amdxdna: Add clock, DPM frequency, and resource info queries for AIE4
+      accel/amdxdna: Add context switch hysteresis with debugfs control
+      accel/amdxdna: Refactor AIE4 hardware initialization sequence
+      accel/amdxdna: Decouple AIE4 doorbell and MSI-X notify transport hooks
+      accel/amdxdna: Implement AIE4 kernel queue lifecycle and memory layout
+      accel/amdxdna: Prepare for AIE4 command submission
+      accel/amdxdna: Move HMM invalidate wait into common GEM code
+      accel/amdxdna: Make populate_range common for AIE2 and AIE4
+      accel/amdxdna: Implement AIE4 command packet building and submission
+      accel/amdxdna: Enable AIE4 firmware logging to DRAM
+      accel/amdxdna: Implement AIE4 suspend and resume
+      accel/amdxdna: Implement runtime suspend and resume support
+
+Karl Mehltretter (1):
+      udmabuf: respect the device's maximum segment size
+
+Lizhi Hou (1):
+      accel/amdxdna: Serialize HMM range faults on one umap
+
+Luke Macken (1):
+      drm/panel-edp: Add BOE NE140WUM-N41 (0x0d9b) panel
+
+Marek Szyprowski (1):
+      drm/arm/hdlcd: Attach the output bridge directly
+
+Matthew Auld (1):
+      gpu/buddy: do not pass caller list to __alloc_contig_try_harder()
+
+Matthew Brost (7):
+      accel/amdxdna: Wait uninterruptibly for jobs in the HMM invalidate callback
+      drm/gpuvm: allow locking external objects in two passes
+      drm/xe: lock the resident BOs of an exec last
+      drm/panthor: lock the resident BOs of a submit last
+      drm/msm: reject a submit_bo table on VM_BIND contexts
+      drm/msm: use DRM_GPUVM_RESV_PROTECTED for VM_BIND VMs
+      drm/msm: lock the resident BOs of a VM_BIND submit last
+
+Max Zhen (1):
+      accel/amdxdna: Use compatible fdinfo engine key
+
+Maxime Ripard (8):
+      drm/vmwgfx: Convert to atomic_create_state
+      drm/amdgpu: dm: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: sii902x: Switch to drm_atomic_helper_connector_create_state
+      drm/bridge: simple-bridge: Switch to drm_atomic_helper_connector_create_state
+      drm/msm: dpu1: Switch to drm_atomic_helper_connector_create_state
+      drm/stm: Switch to drm_atomic_helper_connector_create_state
+      drm/rcar-du: Convert to atomic_create_state
+      drm/ci: Add CI pipeline for drm-misc branches
+
+Maíra Canal (4):
+      drm/panthor: Replace panthor_mmu_as_fault_mask() with a macro
+      drm/v3d: Validate the v71 fields of the TFU submit ioctl
+      drm/v3d: Only program TFU coefficients when used on V3D 7.x
+      drm/v3d: Add TFU constant colour support for V3D 7.x
+
+Raag Jadav (1):
+      drm: Log recovery method with wedged event
+
+Rob Herring (Arm) (1):
+      drm/bridge: sii902x: Read "sil,i2s-data-lanes" as u32
+
+Rosen Penev (1):
+      drm/imagination: simplify pvr_fw_trace_seq_data
+
+Ryan Zhang (1):
+      drm/panthor: dummy read to discard the stale first GPU_TIMESTAMP read
+
+Terry Hsiao (1):
+      drm/panel-edp: Add BOE NV116WH2-M32 V8.0, PNB601LS1-3 HW:1.2
+
+Thomas Zimmermann (7):
+      drm/hyperv: Add missing include statements
+      drm/kms-helper: Remove struct drm_simple_display_pipe and helpers
+      drm/bridge: Do not include <drm/drm_simple_kms_helper.h>
+      drm/hisilicon/hibmc: Do not include <drm/drm_simple_kms_helper.h>
+      drm/tegra: Do not include <drm/drm_simple_kms_helper.h>
+      drm/verisilicon: Do not include <drm/drm_simple_kms_helper.h>
+      drm/vc4: Do not include <drm/drm_simple_kms_helper.h>
+
+Tomi Valkeinen (10):
+      dt-bindings: display: ti: Move ti,am62l-dss binding to a new binding file
+      dt-bindings: display: ti,am65x-dss: Simplify binding
+      dt-bindings: display: ti,am625-oldi: Add optional power-domain for OLDI
+      drm/tidss: Remove extra pm_runtime_mark_last_busy
+      drm/tidss: oldi: Remove define for unused register OLDI_LB_CTRL
+      drm/tidss: Add mechanism to detect DPI output
+      drm/tidss: Add support for DPIENABLE bit
+      drm/tidss: oldi: Fix OLDI signal polarities
+      drm/tidss: Drop WARN_ON() from tidss_runtime_put()
+      drm/tidss: oldi: Fix missing of_node_put()s in error paths
+
+ Documentation/accel/amdxdna/amdnpu.rst             |    2 +-
+ .../bindings/display/ti/ti,am625-oldi.yaml         |    3 +
+ .../bindings/display/ti/ti,am62l-dss.yaml          |  136 +++
+ .../bindings/display/ti/ti,am65x-dss.yaml          |  149 +--
+ Documentation/gpu/drm-mm.rst                       |    6 +
+ Documentation/gpu/todo.rst                         |   17 -
+ MAINTAINERS                                        |    1 +
+ drivers/accel/amdxdna/aie.c                        |   33 +-
+ drivers/accel/amdxdna/aie.h                        |   47 +-
+ drivers/accel/amdxdna/aie2_ctx.c                   |   90 +-
+ drivers/accel/amdxdna/aie2_message.c               |    4 +-
+ drivers/accel/amdxdna/aie2_pci.c                   |   67 +-
+ drivers/accel/amdxdna/aie2_pci.h                   |   40 +-
+ drivers/accel/amdxdna/aie2_pm.c                    |   10 +-
+ drivers/accel/amdxdna/aie4_ctx.c                   | 1139 ++++++++++++++++++--
+ drivers/accel/amdxdna/aie4_host_queue.h            |   72 +-
+ drivers/accel/amdxdna/aie4_message.c               |  245 +++++
+ drivers/accel/amdxdna/aie4_msg_priv.h              |  149 ++-
+ drivers/accel/amdxdna/aie4_pci.c                   |  818 +++++++++++++-
+ drivers/accel/amdxdna/aie4_pci.h                   |  117 +-
+ drivers/accel/amdxdna/aie4_sriov.c                 |   66 +-
+ drivers/accel/amdxdna/amdxdna_ctx.c                |   72 +-
+ drivers/accel/amdxdna/amdxdna_ctx.h                |   28 +-
+ drivers/accel/amdxdna/amdxdna_debugfs.c            |    3 +
+ drivers/accel/amdxdna/amdxdna_gem.c                |   89 +-
+ drivers/accel/amdxdna/amdxdna_gem.h                |    2 +
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |   50 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.h            |   20 +-
+ drivers/accel/amdxdna/amdxdna_pm.c                 |   26 +
+ drivers/accel/amdxdna/amdxdna_pm.h                 |    2 +
+ drivers/accel/amdxdna/amdxdna_sysfs.c              |    2 +-
+ drivers/accel/amdxdna/npu1_regs.c                  |   19 +-
+ drivers/accel/amdxdna/npu3_regs.c                  |  105 +-
+ drivers/accel/amdxdna/npu4_regs.c                  |   30 +-
+ drivers/accel/ethosu/ethosu_gem.c                  |    2 +-
+ drivers/accel/ivpu/ivpu_drv.c                      |   11 +-
+ drivers/accel/ivpu/ivpu_drv.h                      |    2 +-
+ drivers/accel/ivpu/ivpu_fw.c                       |   91 +-
+ drivers/accel/ivpu/ivpu_fw.h                       |    1 +
+ drivers/accel/ivpu/ivpu_job.c                      |    3 +
+ drivers/accel/ivpu/ivpu_pm.c                       |    2 +-
+ drivers/accel/ivpu/vpu_boot_api.h                  |   36 +-
+ drivers/dma-buf/udmabuf.c                          |   13 +-
+ drivers/gpu/buddy.c                                |   20 +-
+ .../display/amdgpu_dm/tests/amdgpu_dm_audio_test.c |    2 +-
+ .../amdgpu_dm/tests/amdgpu_dm_backlight_test.c     |    2 +-
+ .../display/amdgpu_dm/tests/amdgpu_dm_crc_test.c   |    7 +-
+ .../amdgpu_dm/tests/amdgpu_dm_helpers_test.c       |    2 +-
+ .../display/amdgpu_dm/tests/amdgpu_dm_irq_test.c   |    2 +-
+ .../amdgpu_dm/tests/amdgpu_dm_mst_types_test.c     |    4 +-
+ .../display/amdgpu_dm/tests/amdgpu_dm_wb_test.c    |    2 +-
+ drivers/gpu/drm/arm/Kconfig                        |    4 +-
+ drivers/gpu/drm/arm/hdlcd_drv.c                    |   85 +-
+ drivers/gpu/drm/arm/hdlcd_drv.h                    |    1 +
+ drivers/gpu/drm/bridge/inno-hdmi.c                 |    1 -
+ drivers/gpu/drm/bridge/microchip-lvds.c            |    1 -
+ drivers/gpu/drm/bridge/sii902x.c                   |   22 +-
+ drivers/gpu/drm/bridge/simple-bridge.c             |    2 +-
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c            |    1 -
+ drivers/gpu/drm/bridge/tda998x_drv.c               |    1 -
+ drivers/gpu/drm/ci/drm-misc-ci.yml                 |  147 +++
+ drivers/gpu/drm/drm_drv.c                          |    4 +-
+ drivers/gpu/drm/drm_gem_atomic_helper.c            |   92 --
+ drivers/gpu/drm/drm_gpuvm.c                        |  518 ++++++++-
+ drivers/gpu/drm/drm_simple_kms_helper.c            |  328 ------
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_dp.c     |    1 -
+ drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_vdac.c   |    1 -
+ drivers/gpu/drm/hyperv/hyperv_drm.h                |    5 +
+ drivers/gpu/drm/hyperv/hyperv_drm_drv.c            |    1 -
+ drivers/gpu/drm/hyperv/hyperv_drm_proto.c          |    1 -
+ drivers/gpu/drm/imagination/pvr_device.c           |   43 +-
+ drivers/gpu/drm/imagination/pvr_device.h           |   28 +
+ drivers/gpu/drm/imagination/pvr_free_list.c        |   13 +-
+ drivers/gpu/drm/imagination/pvr_fw_meta.c          |    5 +-
+ drivers/gpu/drm/imagination/pvr_fw_startstop.c     |   37 +-
+ drivers/gpu/drm/imagination/pvr_fw_trace.c         |   25 +-
+ drivers/gpu/drm/imagination/pvr_mmu.h              |    2 +-
+ drivers/gpu/drm/imagination/pvr_vm.c               |   22 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c      |    2 +-
+ drivers/gpu/drm/msm/msm_gem_submit.c               |   90 +-
+ drivers/gpu/drm/msm/msm_gem_vma.c                  |   16 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |    3 +
+ drivers/gpu/drm/panthor/panthor_gpu.c              |    4 +
+ drivers/gpu/drm/panthor/panthor_gpu_regs.h         |    1 +
+ drivers/gpu/drm/panthor/panthor_hw.h               |    6 +
+ drivers/gpu/drm/panthor/panthor_mmu.c              |   72 +-
+ drivers/gpu/drm/panthor/panthor_mmu_regs.h         |    1 +
+ drivers/gpu/drm/panthor/panthor_pwr.c              |   29 +-
+ drivers/gpu/drm/panthor/panthor_pwr_regs.h         |    7 +
+ .../gpu/drm/renesas/rcar-du/rcar_du_writeback.c    |   16 +-
+ drivers/gpu/drm/stm/lvds.c                         |    2 +-
+ drivers/gpu/drm/tegra/output.c                     |    1 -
+ drivers/gpu/drm/tidss/tidss_crtc.c                 |   10 +-
+ drivers/gpu/drm/tidss/tidss_crtc.h                 |    4 +-
+ drivers/gpu/drm/tidss/tidss_dispc.c                |   28 +-
+ drivers/gpu/drm/tidss/tidss_dispc.h                |    5 +-
+ drivers/gpu/drm/tidss/tidss_dispc_regs.h           |    1 +
+ drivers/gpu/drm/tidss/tidss_drv.c                  |    7 +-
+ drivers/gpu/drm/tidss/tidss_kms.c                  |   70 +-
+ drivers/gpu/drm/tidss/tidss_oldi.c                 |   46 +-
+ drivers/gpu/drm/tidss/tidss_oldi.h                 |    1 -
+ drivers/gpu/drm/v3d/v3d_drv.c                      |    3 +
+ drivers/gpu/drm/v3d/v3d_regs.h                     |   19 +-
+ drivers/gpu/drm/v3d/v3d_sched.c                    |   30 +-
+ drivers/gpu/drm/v3d/v3d_submit.c                   |    9 +
+ drivers/gpu/drm/vc4/vc4_dpi.c                      |    1 -
+ drivers/gpu/drm/vc4/vc4_dsi.c                      |    1 -
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |    1 -
+ drivers/gpu/drm/vc4/vc4_vec.c                      |    1 -
+ drivers/gpu/drm/verisilicon/vs_bridge.c            |    1 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c                |   23 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h                |    3 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_ldu.c                |    2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c               |    2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c               |    2 +-
+ drivers/gpu/drm/xe/xe_exec.c                       |   23 +-
+ drivers/gpu/drm/xe/xe_vm.c                         |   43 +-
+ drivers/gpu/drm/xe/xe_vm.h                         |    3 +-
+ drivers/gpu/tests/gpu_buddy_test.c                 |    9 +
+ drivers/staging/fbtft/TODO                         |    4 +-
+ include/drm/drm_gem_atomic_helper.h                |   28 -
+ include/drm/drm_gpuvm.h                            |  139 ++-
+ include/drm/drm_simple_kms_helper.h                |   56 +-
+ include/uapi/drm/v3d_drm.h                         |    5 +
+ 124 files changed, 4693 insertions(+), 1389 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/ti/ti,am62l-dss.yaml
+ create mode 100644 drivers/gpu/drm/ci/drm-misc-ci.yml
