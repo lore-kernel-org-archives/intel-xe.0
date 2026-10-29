@@ -2,59 +2,29 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4633A606A31E
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 12:21:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HSMyz765
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F90606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 12:55:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BC9F112246;
-	Thu, 29 Oct 2026 12:21:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40690112246
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 12:21:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793276504; x=1824812504;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Ot7YFClwm0bDSKMUPdfDQw/40+ZpDoXUBZOgRId7//M=;
- b=HSMyz765CStdincR3Q9AyO2cdGiXDZy83Vu3FLzklDLqYmuj9EVlTte3
- IqhONh8fpKITn9Iw73URVUVE3cF6ITtjCqBvq+9tgGQbCoQmwkWw8DtHN
- iuj/ldb+6CvePGb9cmGpV3Qa7Cvpx9qXUSKgHIJHY7Z3utuCTOVd2xWXH
- VOt1rREEx4rKrLQ4gwwZqgAuYS+d81McTyhu9m9NRhD28q3qxka5A7l5r
- HLliqwY8E93An57z4y5ETyeW5gAwSZ9HlL8w1z/iABz0tBSwuKy4HiS/X
- o6Vd3ZpY1tAVWyj9MW8L8ZRf+SH/k+ko0PLQQCT8iZU8uurZEsltF66RR Q==;
-X-CSE-ConnectionGUID: XcFSKVbjRVeDg8gUoX8UrQ==
-X-CSE-MsgGUID: S3YdoWFASk2D5LJG1oGtcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1894852"
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="1894852"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 05:21:44 -0700
-X-CSE-ConnectionGUID: C/unZMJzTFKYJW6BzHgMaQ==
-X-CSE-MsgGUID: A/KuOnhATjq3f/Lgrh2yAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="5471503"
-Received: from szadworn-mobl.ger.corp.intel.com (HELO mkuoppal-desk.home.arpa)
- ([10.245.246.253])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 05:21:42 -0700
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>
-Subject: [PATCH 3/3] drm/xe/tests: Keep bounce buffered accesses short in
- access_memory test
-Date: Thu, 29 Oct 2026 14:21:30 +0200
-Message-ID: <20261029122130.2795549-3-mika.kuoppala@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261029122130.2795549-1-mika.kuoppala@linux.intel.com>
-References: <20261029122130.2795549-1-mika.kuoppala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B83A110E806;
+	Thu, 29 Oct 2026 12:55:13 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA8510E7C0;
+ Thu, 29 Oct 2026 12:55:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/3=5D_drm/xe/migrate=3A_Keep_access=5Fmemory_chunks_within_the_tr?=
+ =?utf-8?q?ansfer_limit?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Oct 2026 12:55:13 -0000
+Message-ID: <179327851338.88070.9137007007996271002@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261029122130.2795549-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20261029122130.2795549-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,86 +34,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Without MEM_COPY, the unaligned accesses go through a cacheline sized
-bounce buffer, one job per 64 bytes. On ATS-M each of the unaligned
-reads over the 512K bo takes 10-15s and the case 75s, tripping the hung
-task detector.
+== Series Details ==
 
-The bounce loop only differs in its first and last iteration, so cap
-those accesses to 16K on platforms without MEM_COPY. Platforms with
-MEM_COPY keep the full length.
+Series: series starting with [1/3] drm/xe/migrate: Keep access_memory chunks within the transfer limit
+URL   : https://patchwork.freedesktop.org/series/177152/
+State : warning
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9663
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c | 19 ++++++++++++++++---
- 1 file changed, 16 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 57c5de5032d2..56c49d8507d7 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -776,6 +776,7 @@ static void xe_validate_ccs_kunit(struct kunit *test)
- #define ACCESS_MEM_BO_SIZE		SZ_512K
- #define ACCESS_MEM_NUM_CELLS		(ACCESS_MEM_BO_SIZE / sizeof(u32))
- #define ACCESS_MEM_UNALIGNED_OFFSET	0x215ee
-+#define ACCESS_MEM_BOUNCE_LEN		SZ_16K
- 
- /*
-  * Verify byte-by-byte that data read from the BO matches expected cell pattern.
-@@ -848,12 +849,22 @@ static bool verify_access_memory_read(struct kunit *test, u8 *buf,
- 	return true;
- }
- 
-+/* Bounce buffering without MEM_COPY is slow, keep those accesses short */
-+static u32 access_memory_test_len(struct xe_migrate *m, u32 len)
-+{
-+	if (!tile_to_xe(m->tile)->info.has_mem_copy_instr)
-+		return min(len, ACCESS_MEM_BOUNCE_LEN);
-+
-+	return len;
-+}
-+
- static void access_memory_test_unaligned_bo_offset(struct kunit *test,
- 						   struct xe_migrate *m,
- 						   struct xe_bo *bo, u8 *buf,
- 						   u32 unaligned_offset)
- {
--	u32 partial_size = ACCESS_MEM_BO_SIZE - unaligned_offset;
-+	u32 partial_size = access_memory_test_len(m, ACCESS_MEM_BO_SIZE -
-+						     unaligned_offset);
- 	int ret;
- 
- 	memset(buf, 0, ACCESS_MEM_BO_SIZE);
-@@ -880,7 +891,8 @@ static void access_memory_test_unaligned_dst(struct kunit *test,
- 					     struct xe_bo *bo, u8 *buf,
- 					     u32 unaligned_offset)
- {
--	u32 partial_size = ACCESS_MEM_BO_SIZE - unaligned_offset;
-+	u32 partial_size = access_memory_test_len(m, ACCESS_MEM_BO_SIZE -
-+						     unaligned_offset);
- 	int ret;
- 
- 	memset(buf, 0, ACCESS_MEM_BO_SIZE);
-@@ -908,7 +920,8 @@ static void access_memory_test_unaligned_dst_aligned_size(struct kunit *test,
- 							  u8 *buf,
- 							  u32 unaligned_offset)
- {
--	u32 partial_size = round_down(ACCESS_MEM_BO_SIZE - unaligned_offset, 4);
-+	u32 partial_size = round_down(access_memory_test_len(m, ACCESS_MEM_BO_SIZE -
-+								unaligned_offset), 4);
- 	int ret;
- 
- 	memset(buf, 0, ACCESS_MEM_BO_SIZE);
--- 
-2.53.0
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 79e80f3df933426d1b5574a806ca25d5b8db2190
+Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Date:   Thu Oct 29 14:21:30 2026 +0200
+
+    drm/xe/tests: Keep bounce buffered accesses short in access_memory test
+    
+    Without MEM_COPY, the unaligned accesses go through a cacheline sized
+    bounce buffer, one job per 64 bytes. On ATS-M each of the unaligned
+    reads over the 512K bo takes 10-15s and the case 75s, tripping the hung
+    task detector.
+    
+    The bounce loop only differs in its first and last iteration, so cap
+    those accesses to 16K on platforms without MEM_COPY. Platforms with
+    MEM_COPY keep the full length.
+    
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9663
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
++ /mt/dim checkpatch e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355 drm-intel
+e337d79e0810 drm/xe/migrate: Keep access_memory chunks within the transfer limit
+-:34: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#34: 
+  xe 0000:03:00.0: [drm] Assertion `npages * ((1UL) << 12) <= 0x00800000` failed!
+
+total: 0 errors, 1 warnings, 0 checks, 25 lines checked
+d7c70f3bdd58 drm/xe/tests: Cover a large write to an unaligned bo offset
+79e80f3df933 drm/xe/tests: Keep bounce buffered accesses short in access_memory test
+
 
