@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84583606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 13:26:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0F9606A31A
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 13:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VBe6wPWY
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ids+qCGB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 497641122C1;
-	Thu, 29 Oct 2026 13:26:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 387AC1122AA;
+	Thu, 29 Oct 2026 13:26:50 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 677501122B0
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 13:26:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36C1B1122BD
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 13:26:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793280399; x=1824816399;
+ t=1793280403; x=1824816403;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=w2vJPjrWYYPokkofhPKZdOz0hXfU1iDdXo0erb1c8ic=;
- b=VBe6wPWYBEUKrmAE3I5Dpa4Rb65pZOd2dwX2V0Hr8G0NsxgfWCb1mAta
- uGbkynkpc1r/6rYL1+COZX4ofH52Ab93gMh5ahTs6NE7i2rlnT376eISw
- xb0m/kpnISqzPmMMK5gkND7+mQH3rTZkc8n0Ob9zp80xAvoqz1Qf+v5Ne
- EDhAuVRDHFub7MHr03yTs4zMFaTNRKhve4XqwHx8jmkdxJH60O/sZr68M
- +kI6L7QyTOzK0tj0JxENj5wO0sLI1QC3e4fR3C6Aa1xuwmiZjOND74CM0
- /r53otgFVL+cHloZVoWlEViNXnx41XuESR+YGFfsgJM4SqDMyvMslLCsP g==;
-X-CSE-ConnectionGUID: +d2k2HbfRyaMbMmXfHT95A==
-X-CSE-MsgGUID: tRFw+ROrTC2vN4LLzNHHVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1900367"
+ bh=dyLfeRRYmDfhShYhC/Lla2ZPUG9Ek3mrjDGbEiegWUY=;
+ b=ids+qCGBARkSnhi7Dxon9UAeES8pUwEnGW/vc0mSQg5l1i3SwvsIKBqM
+ rA1XlRCrWMn5zzLbHTkTfT0GayFhfQs45/o0p63kC1lp1k4cZfe8D/QUk
+ 5Pl3bVd9kCr4duWLIz7BC2PK+OmPfXbfv051hid44quYwDKZB+xtsYCAW
+ aYn0+PPAlvQX7eg20QMgdfwW9JO8vvmY0UI2VxSjvR0vxxqqGDsM6eCnZ
+ xIb6hsSvT+j6JBoF9xD+1gchlAwQQcTHxbjZvJvcv5NekErXKb9Wid8fd
+ qwf6sZaaG6nWlUeKpGV5rAA1MJUb1IVURPRF62g/aZ6luAFotrFpKfacX Q==;
+X-CSE-ConnectionGUID: npgBuUKIQJCnLFtu+EFEgA==
+X-CSE-MsgGUID: fziVKHoDRHiunNuidTOqDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1900386"
 X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="1900367"
+   d="scan'208";a="1900386"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 06:26:39 -0700
-X-CSE-ConnectionGUID: uUQ0PoAPQ7KTOF2VE6TujQ==
-X-CSE-MsgGUID: w0NMGHHRRS+YxQ2J/Xwf4g==
+ 29 Oct 2026 06:26:42 -0700
+X-CSE-ConnectionGUID: PIyBYTKNQGOQ7FVWgiYLgQ==
+X-CSE-MsgGUID: /8uyyIwqRT6HnqeQ7h5HUQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="5691702"
+   d="scan'208";a="5691707"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa010.fm.intel.com with ESMTP; 29 Oct 2026 06:26:34 -0700
+ by fmviesa010.fm.intel.com with ESMTP; 29 Oct 2026 06:26:38 -0700
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -47,10 +47,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  sk.anirban@intel.com, raag.jadav@intel.com, michal.wajdeczko@intel.com,
  aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v2 5/6] drm/xe/log: Add software CPER information to KUnit
- output
-Date: Thu, 29 Oct 2026 18:56:15 +0530
-Message-ID: <20261029132609.907017-13-mallesh.koujalagi@intel.com>
+Subject: [PATCH v2 6/6] drm/xe/log: Test software CPER emission parameters
+Date: Thu, 29 Oct 2026 18:56:16 +0530
+Message-ID: <20261029132609.907017-14-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261029132609.907017-8-mallesh.koujalagi@intel.com>
 References: <20261029132609.907017-8-mallesh.koujalagi@intel.com>
@@ -74,73 +73,106 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Display driver classification details for software CPER records
-in the fake CPER emitter used by KUnit tests.
+Add KUnit tests for software SIGIDs to verify the correct
+arguments are forwarded to the CPER emission path.
 
 Assisted-by: LLM
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_log_kunit.c | 21 ++++++++++++++++++++-
- 1 file changed, 20 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_log_kunit.c | 73 +++++++++++++++++++++++++
+ 1 file changed, 73 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/tests/xe_log_kunit.c b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-index 56c36c8a08e1..08828ecc9098 100644
+index 08828ecc9098..e53100df5b32 100644
 --- a/drivers/gpu/drm/xe/tests/xe_log_kunit.c
 +++ b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-@@ -6,11 +6,14 @@
- #include <kunit/static_stub.h>
- #include <kunit/test.h>
- #include <kunit/test-bug.h>
-+#include <linux/minmax.h>
+@@ -149,6 +149,78 @@ static void demo_cper(struct kunit *test)
+ 	demo(test->priv);
+ }
  
- #include "tests/xe_kunit_helpers.h"
- #include "tests/xe_pci_test.h"
-+#include "xe_cper.h"
- #include "xe_device.h"
- #include "xe_log.h"
-+#include "xe_ras_types.h"
- 
- static void nop_dmesg_vprintk(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
++/*
++ * Software CPER
++ */
++static struct {
++	unsigned int count;
++	int cper_sev;
++	enum xe_sigid sigid;
++	u32 component;
++	u32 location;
++	const void *data;
++	size_t len;
++} sw_cper_capture;
++
++static void capture_emit_cper(struct pci_dev *pdev, int cper_sev,
++			      enum xe_sigid sigid, u32 component, u32 location,
++			      const void *data, size_t len, struct va_format *vaf)
++{
++	sw_cper_capture.count++;
++	sw_cper_capture.cper_sev = cper_sev;
++	sw_cper_capture.sigid = sigid;
++	sw_cper_capture.component = component;
++	sw_cper_capture.location = location;
++	sw_cper_capture.data = data;
++	sw_cper_capture.len = len;
++}
++
++static const struct sw_cper_param {
++	int cper_sev;
++	enum xe_sigid sigid;
++	u32 component;
++	int err;		/* reported as ERR_PTR when non-zero */
++	size_t len;		/* bytes of @blob passed as data */
++	const char *name;
++} sw_cper_params[] = {
++	{ CPER_SEV_FATAL, XE_SIGID_PROBE, XE_LOG_COMPONENT_PROBE,
++	  -ENODEV, 0, "sw-fatal-errno" },
++	{ CPER_SEV_RECOVERABLE, XE_SIGID_GT_TDR, XE_LOG_COMPONENT_GUCSUBMIT,
++	  -ETIMEDOUT, 0, "sw-recoverable-errno" },
++	{ CPER_SEV_CORRECTED, XE_SIGID_MEM_FAULT, XE_LOG_COMPONENT_PAGEFAULT,
++	  0, 0, "sw-corrected" },
++	{ CPER_SEV_INFORMATIONAL, XE_SIGID_SURVIVABILITY, XE_LOG_COMPONENT_SURVIVABILITY,
++	  0, 0, "sw-informational" },
++	{ CPER_SEV_FATAL, XE_SIGID_SW, XE_LOG_COMPONENT_NONE,
++	  0, sizeof(struct xe_ras_error_class), "sw-with-error-class" },
++};
++
++KUNIT_ARRAY_PARAM_DESC(sw_cper, sw_cper_params, name);
++
++static void test_sw_cper(struct kunit *test)
++{
++	const struct sw_cper_param *param = test->param_value;
++	struct xe_device *xe = test->priv;
++	struct pci_dev *pdev = xe_any_to_pdev(xe);
++	const void *data = param->err ? ERR_PTR(param->err) : param->len ? blob : NULL;
++
++	memset(&sw_cper_capture, 0, sizeof(sw_cper_capture));
++	kunit_activate_static_stub(test, log_emit_cper, capture_emit_cper);
++	kunit_activate_static_stub(test, log_dmesg_vprintk, nop_dmesg_vprintk);
++
++	xe_log_emit(pdev, param->cper_sev, param->sigid, param->component,
++		    XE_LOG_LOCATION_NONE, data, param->len, "testing %s\n", param->name);
++
++	KUNIT_ASSERT_EQ(test, sw_cper_capture.count, 1);
++	KUNIT_EXPECT_EQ(test, sw_cper_capture.cper_sev, param->cper_sev);
++	KUNIT_EXPECT_EQ(test, (u32)sw_cper_capture.sigid, (u32)param->sigid);
++	KUNIT_EXPECT_EQ(test, sw_cper_capture.component, param->component);
++	KUNIT_EXPECT_PTR_EQ(test, sw_cper_capture.data, data);
++	KUNIT_EXPECT_EQ(test, sw_cper_capture.len, param->len);
++
++	KUNIT_EXPECT_TRUE(test, is_sw_cper(sw_cper_capture.sigid));
++}
++
+ static const char *test_fatal(struct xe_device *xe)
  {
-@@ -43,6 +46,19 @@ static const char *location_type(u32 location)
- 	       location ? "?" : "";
- }
- 
-+static bool is_sw_cper(enum xe_sigid sigid)
-+{
-+	return in_range(sigid, INTEL_SIGID_GPU_XE_SOFTWARE_START, INTEL_SIGID_BATCH);
-+}
-+
-+static void fake_emit_sw_cper(int cper_sev, u32 component, u32 location, const void *data)
-+{
-+	/* mirrors xe_cper_driver_error_class: full 16-bit component/tile, unconditional */
-+	pr_info("SW CPER CLASS=severity:%u component:%u tile:%u cause:%u\n",
-+		cper_sev, (u16)component, (u16)location,
-+		IS_ERR(data) ? (u32)-PTR_ERR(data) : 0);
-+}
-+
- static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
- 			   enum xe_sigid sigid, u32 component, u32 location,
- 			   const void *data, size_t len, struct va_format *vaf)
-@@ -51,7 +67,8 @@ static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
- 	int n;
- 
- 	pr_info("\n");
--	pr_info("CPER SEV=%u SIGID=%u\n", cper_sev, sigid);
-+	pr_info("CPER SEV=%u SIGID=%u \t# %s\n", cper_sev, sigid,
-+		is_sw_cper(sigid) ? "software" : "");
- 	pr_info("CPER DEVICE=%s\n", dev_name(&pdev->dev));
- 	if (location)
- 		pr_info("CPER LOCATION=%#x \t# %s.%u\n",
-@@ -68,6 +85,8 @@ static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
- 
- 	n = vscnprintf(msg, sizeof(msg), vaf->fmt, *vaf->va);
- 	print_hex_dump(KERN_INFO, "CPER MSG=", DUMP_PREFIX_OFFSET, 16, 1, msg, n, true);
-+	if (is_sw_cper(sigid))
-+		fake_emit_sw_cper(cper_sev, component, location, data);
- 	pr_info("CPER END\n");
- }
- 
+ 	struct pci_dev *pdev = to_pdev_safe(xe);
+@@ -559,6 +631,7 @@ static struct kunit_case xe_log_test_cases[] = {
+ 	KUNIT_CASE(demo_cper),
+ 	KUNIT_CASE(demo_dmesg),
+ 	KUNIT_CASE_PARAM(test_dmesg, log_gen_params),
++	KUNIT_CASE_PARAM(test_sw_cper, sw_cper_gen_params),
+ 	KUNIT_CASE_PARAM(test_invalid, invalid_param_gen_params),
+ 	{}
+ };
 -- 
 2.48.1
 
