@@ -2,45 +2,61 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE34606A31A
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 09:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC04606A31E
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 09:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AbX+BSHo
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HZEMoiE6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52BF91120F6;
-	Thu, 29 Oct 2026 09:10:08 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A86421120F6
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 09:10:01 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 4DCEA41766;
- Thu, 29 Oct 2026 09:10:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ADFB1F01825;
- Thu, 29 Oct 2026 09:10:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793265001;
- bh=CGMuMKH/+K+X7MMNSUWRUZqUEFf0jPPR4vEanF/nW1k=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=AbX+BSHot9gKJczS5ZTZllSAoxNUa/Ez1xigcp4/7+yskWy4OHoynYelSeVtaThZn
- xltcKoNN2IT5+5lei9a6Ms5dODY2HkqvG8m0ahhYSmsht29Ex0jqMwFhJsPnm6VdoU
- tZUYLGpNRvuRtUBQEkSk1+MPUKryzX1GC+nIdKHJb2ksXYULvHp+UW08+Ol8Mckbet
- j67UsVcD0ncMWcidTYYF2VhSyZ1m3Gc5OHcbLPzpQqebPzv7q7xzi19iShGWbQ/CDc
- 0V9sm7M47szGKchwHBKtCHeQDfZHqEs13UwaaZA+x2Zvk7nphkrlLMpXhnm7h+Rr9/
- EwIIbrkwoD5FA==
-Date: Thu, 29 Oct 2026 10:09:56 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Sk Anirban <sk.anirban@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com, 
- badal.nilawar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com, 
- raag.jadav@intel.com, soham.purkait@intel.com, mallesh.koujalagi@intel.com
-Subject: Re: [PATCH] drm/xe: Enable CSC fault injection on CRI
-Message-ID: <auMNTq4V1PDJZpoQ@zenone.zhora.eu>
-References: <20261022122708.625136-2-sk.anirban@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A54410E4A3;
+	Thu, 29 Oct 2026 09:18:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB2F7112106
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 09:18:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793265484; x=1824801484;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=diFP7E/ukFeYEly7YPVi1clJaJ+BG5+jLllUiQCyrpk=;
+ b=HZEMoiE6V/YQGa4nQK4DOlsBYF6fOWcVXYMcFKLDedU0atWvcHBkQEeo
+ RzUVqwneX0Ubg9U+bIszrAtTpv5dvkHX5bzLM2S7YPQ2fHvQsJrioHmPF
+ hY6PFSMeJyT4VkclBtZz/UE5gMVwg1Xs29+TZyh7rX9dKhMQFbzTscWEq
+ bl/3MKZgDKZaO4C15yOJtQQ5fRC4KT4knsEqtUGVexqFYfVQ0obaT4nD4
+ 8NX4UBA8NbXiA18RwOVB3O98jqYDqJL9hYAlaKy6sVcbwNWXe2RIveNIU
+ OVdkOXSAMgg2KEnK0uiwhBWM1I/xYnnMD8CXrdJbr69U65ebA83gshwBc g==;
+X-CSE-ConnectionGUID: QxIIEANWQwqx7dZAyWWHVQ==
+X-CSE-MsgGUID: hI9gltO/Rt2c5kOxHzKMfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1880763"
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
+   d="scan'208";a="1880763"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 02:18:04 -0700
+X-CSE-ConnectionGUID: G737yqHqSc2n1m49r63pXg==
+X-CSE-MsgGUID: P1E5UmjpTuGdmWYp/Co1Ww==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
+   d="scan'208";a="5096256"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 02:18:01 -0700
+Date: Thu, 29 Oct 2026 10:17:58 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com
+Subject: Re: [PATCH v7 00/10] Add CPER logging support for CRI
+Message-ID: <auMPRpO3ZAoMqFmx@black.igk.intel.com>
+References: <20261029082752.1739281-12-badal.nilawar@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261022122708.625136-2-sk.anirban@intel.com>
+In-Reply-To: <20261029082752.1739281-12-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,20 +69,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
-
-On Thu, Oct 22, 2026 at 05:57:09PM +0530, Sk Anirban wrote:
-> Enable CSC fault-injection debugfs on CRI, in addition to Battlemage.
-> Preserve the SR-IOV VF exclusion.
+On Thu, Oct 29, 2026 at 01:57:53PM +0530, Badal Nilawar wrote:
+> This patch series adds CPER (Common Platform Error Record) logging support
+> for RAS errors reported by Intel Xe GPUs. CPER records are emitted through
+> a trace event.
 > 
-> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> v2:
+>    - Extended CPER logging to Uncorrectable errors and xe_ras_get_counter
+>      request
+>    - Log CPER records via xe_log SIGID infra 
+> 
+> v3:
+>   - Added the patches in incremental order (Raag)
+>   - Fixed Sashiko warnings which are applicable 
+> 
+> v4:
+>   - Split the patches further for incremental review (Raag)
+>   - Refactor info queue handling (Raag)
+>   - Fix applicable Sashiko warnings
+> 
+> v5:
+>   - Fixed v4 comments
+>   - Covered default paths in error handling flow
+>   - Moved info queue related patches at top
+>   - Added example logs
+> 
+> v6:
+>   - Fixed v6 comments
+>   - Dropped the Info Queue patches; they will be submitted separately
+>   - Dropped "drm/xe/xe_ras: Report unknown errors using SIGID" as
+>     SIGID logging is not needed for it (Riana/Raag)
+> v7:
+>   - Rebased
+>   - Fixed Sashiko comments
+>   - Added GUID of PCIID 6752
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+I think we missed a few comments[1][2][3] here. Please make sure to address
+them.
 
-Thanks,
-Andi
+Raag
+
+[1] https://lore.kernel.org/intel-xe/auIoa-LxjETpt0LR@black.igk.intel.com/
+[2] https://lore.kernel.org/intel-xe/auIrXSWHyxE2K_M6@black.igk.intel.com/
+[3] https://lore.kernel.org/intel-xe/auIuFsYCyl5m2mrG@black.igk.intel.com/
+
+> Badal Nilawar (10):
+>   drm/xe/cper: Add CPER reporting entry point for xe_log
+>   drm/xe/cper: Retrieve the error counter record for CPER reporting
+>   drm/xe/cper: Initialize Intel-specific CPER header
+>   drm/xe/cper: Construct CPER record for hardware errors
+>   drm/xe/cper: Log CPER records for aggregate counter retrieval
+>   drm/xe/cper: Emit cper record to trace buf
+>   drm/xe/xe_ras: Report device memory errors using SIGID
+>   drm/xe/xe_ras: Report core compute errors using SIGID
+>   drm/xe/xe_ras: Report soc internal errors using SIGID
+>   drm/xe/xe_ras: Report correctable errors using SIGID
+> 
+>  .../ABI/testing/sysfs-driver-intel-xe-cper    |  18 +
+>  drivers/gpu/drm/xe/Makefile                   |   3 +
+>  drivers/gpu/drm/xe/xe_cper.c                  | 321 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_cper.h                  |  37 ++
+>  drivers/gpu/drm/xe/xe_cper_types.h            | 110 ++++++
+>  drivers/gpu/drm/xe/xe_device_types.h          |   4 +
+>  drivers/gpu/drm/xe/xe_log.c                   |   5 +-
+>  drivers/gpu/drm/xe/xe_ras.c                   | 146 ++++++--
+>  drivers/gpu/drm/xe/xe_ras.h                   |   2 +
+>  drivers/gpu/drm/xe/xe_trace_cper.c            |   9 +
+>  drivers/gpu/drm/xe/xe_trace_cper.h            |  65 ++++
+>  11 files changed, 692 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-cper
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
+> 
+> -- 
+> 2.56.0
+> 
