@@ -2,159 +2,115 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3991606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 09:49:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F1460A2604
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 09:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KEMRhROD
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=E9blAECY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBD111213F;
-	Thu, 29 Oct 2026 09:49:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82DCD11213F
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 09:49:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793267351; x=1824803351;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=o9V4Z4EBpIAunUzT63xSfRmlPuNUYtnUwMb5mlcMpIw=;
- b=KEMRhRODpMFA/IDrxieeLxw8entDO8rIk+YD7/pXAO2K1SZzPqrIOpx3
- chB1/mhdawZmSV1zzTjrK4Vgh8JadxLiy/wKcu6Yh5VCI3ZBnjQl3/DHS
- yEPWWwmeKIfsfpgbn19vIeeJWnBSCRRQePbxDbkoxJktG0ILKzaeLwRdX
- iD09uljekta9W9l4uQVrXt/m72uJaE2mdDuC65kdDwy1fuET8XRVJays7
- 8GgbpDXjSbAJOT+1vArvWdzPiktIAcSNMr+1RRygc8YR80DOtpq77cOlU
- BwwAmOhWF8xB2/yNfSqdCUSLvUbgZWHaCsGIfH+Kh3b5wsd0ijGmZhpKW g==;
-X-CSE-ConnectionGUID: Kwp1ykL8Tham0ChmfNB3zg==
-X-CSE-MsgGUID: +z2D9uVwSDWeSUOgUHrmwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1900863"
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="1900863"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 02:49:10 -0700
-X-CSE-ConnectionGUID: BrT8UuK5Sje5l6t+ZvaptA==
-X-CSE-MsgGUID: Pav9mkNnTtyI1jQfa3GGOw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="5186802"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 02:49:10 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 29 Oct 2026 02:49:09 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Thu, 29 Oct 2026 02:49:09 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.17) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 29 Oct 2026 02:49:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=x2GRRufGxTDRuctskoYnBV0ldxJMWmV1tWfodh2LUkJ3/qjwHSheNZ+HyS4hrNwwoX/T326ZF5xBYidI8gFUOrmZ/pYKqc/oB1W8pm3KvC2GIXRDYz9TBSUoKSi+svNKn5kuhPGbrvHtozMrHlG6t9a0T4igRUZ1KOR4PYknb45YNoz4HWUomBtXSzbbjNEzHTchCPmZz9UFn01Qnz0cxFdnNZLsxq6Onxo1t6nDUaL3DvatWkikMU+dWJhXAr25uEcLtOtm2uApVfXgUCnX4jvgoCh039BfyU3p1GCESwp55ApC0xESSc/m790qPFzcU0964jwMepyoNrtLDD0h7g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XQFGRrIQhwUwLTUJhWp3ZltLbLTYIWzjf54CpcXDdxA=;
- b=B6NCu7HZDyBKhRDpp2gRosXDu0UMxxA8ZNDUUZescn5pgusqfhyZU/WsKXQ7oAcPW/41KAYu42K2ufS6p4r/pFec22c5o07D6B61gKJMBMhsxuESOYLAGzn6ykswhgmYJJ4SqTexz7nQnDJFOmTPDCS0zJEDhMl9WQ7R+Z67ubdWdv+VijKFQPwiU+2ukvdWHsd9aAOhW6DtYMzaZAjjrKgnrHXiL7HKGhbMWWNWqGdHjXrC+QQAvc1SA/fu6vLpiYv6vx2GwoWQ0rQkaY9NdIU3gWb18Frt+OimIOk5WCo5FWM9poLLAYyJyws+wzBrtxj5GSrYPImByXSoqgK/rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by DS4PR11MB456666.namprd11.prod.outlook.com (2603:10b6:8:508::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Thu, 29 Oct
- 2026 09:49:00 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0569.007; Thu, 29 Oct 2026
- 09:48:59 +0000
-Message-ID: <131144ed-82ae-4353-a55d-80db82dd3a6b@intel.com>
-Date: Thu, 29 Oct 2026 15:18:52 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 10/10] drm/xe/xe_ras: Report correctable errors using
- SIGID
-To: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
-References: <20261029082752.1739281-12-badal.nilawar@intel.com>
- <20261029082752.1739281-22-badal.nilawar@intel.com>
- <sashiko-outbox-188984@kernel.org>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <sashiko-outbox-188984@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0092.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ae::16) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A7A611215D;
+	Thu, 29 Oct 2026 09:58:42 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9421411215D;
+ Thu, 29 Oct 2026 09:58:35 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4822D43B68;
+ Thu, 29 Oct 2026 09:58:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D52E1F01825;
+ Thu, 29 Oct 2026 09:58:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793267915;
+ bh=pvyVptf34gNXi8Bay+Y0wQ1+su1zbi4JW/reYBgb1VQ=;
+ h=From:To:Cc:Subject:Date;
+ b=E9blAECYp6KG8AN9sCB1a35WZl4tql7Y8ZXp0RDyDE91uhItcOlCubJTDFxxfFQ1c
+ FQ1oLcDZUFCI5NNc2ysWVgB/YRzMjzSxsJmTuSY+45io7wuL8LjueztYWrgRcpOECH
+ VewapS1H9J02mVTfUi3oCFQKKGmnMRyzM3asO2oNSoHkcLOi0Td6e3tzSkHmyLmid0
+ hdfX9MCzFdHpolJc2F/hD/ot11Mq8ijC0ZN/oRoyiR3cb6617vJjq0MXOsWWjMlgvu
+ 0oeqVetAnnaBq4kfE+Rq5DaPVbXmQggZR+obBEtf/xce5dNpC92pf3UDffILLhhSf6
+ rLTIHQ1YDRYGA==
+From: Philipp Stanner <phasta@kernel.org>
+To: Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+ Karol Wachowski <karol.wachowski@linux.intel.com>,
+ Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Alessio Belle <alessio.belle@imgtec.com>,
+ Luigi Santivetti <luigi.santivetti@imgtec.com>,
+ Qiang Yu <yuq825@gmail.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>,
+ =?UTF-8?q?Adri=C3=A1n=20Larumbe?= <adrian.larumbe@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, Matthew Brost <matthew.brost@intel.com>,
+ Philipp Stanner <phasta@kernel.org>, Natalie Vock <nat@pixelcluster.dev>,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Sunil Khatri <sunil.khatri@amd.com>, Kees Cook <kees@kernel.org>,
+ Jesse Zhang <jesse.zhang@amd.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Kexin Sun <kexinsun@smail.nju.edu.cn>, Prike Liang <Prike.Liang@amd.com>,
+ David Rosca <david.rosca@amd.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Shixiong Ou <oushixiong@kylinos.cn>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,
+ Neill Kapron <nkapron@google.com>,
+ Michael Bommarito <michael.bommarito@gmail.com>, Sam Day <me@samcday.com>,
+ Gabriel Prostitis <prostitisgabriel@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-usb@vger.kernel.org
+Subject: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
+Date: Thu, 29 Oct 2026 10:55:37 +0100
+Message-ID: <20261029095542.1526750-3-phasta@kernel.org>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|DS4PR11MB456666:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93b93ec8-5361-4cfc-b90d-08df35a1db1b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|22082099003|18002099003|3023799007|56012099006|11063799006|4143699003|261026140227099003|261022105027099003|10067099003|261022113327099003|261021121427099003|261009223027099003|261026121527099003|261028144727099003;
-X-Microsoft-Antispam-Message-Info: Ru1wcQ1r0aKAbZmABqLk3WmSInq8pWZtLoT+Qpcp9zsy5Z3B5SmM00ZA/0ETYn/jCqhgz7fuza815lodixaAbvFeE07W/eWmxR3oEDIYVHRRVfCqVG5Ld0IjThT52Vs/EHTDMFM9PQth8jK2uvcxdC3wgux7+hnr0U2cFFtMPWo/QY3uD2lC/eLV0Uk+Jt4eyJb9Lsk4JXXws3HjaK51cfmivV6YO1GL7VSiLxasMTkyyJUu5LVU7oX4jMGrYvTDgrNFfh3Ko2yAC66JQ2c7MVDYrlk5zrQtXuNbPX5ML+SiDrhvUImq6Ic07oexa6ejYE4Otrdqz/3nLy+7u5N4nVsh2THyYHJaU7nIdRENa0AgO0AlTKklPql9wJatiCgZMSEgHg2fM81nJ+mZD8z6gRMQyAbsL6rSFV3tHopFHVgjpEdHNrxWuldKjeU5/RmEw/VGBmt3tOuWZAnPg78OllgmhHP8xyYbHo0oOtDkNiHipiqb5WB4USeP++8wg+sEUusacZhX1g9xOEs5tn1FjBkJHhVDHkg8L40NkI6o5xV7dr7JjnQM+57joDgqzvGPRmOCztkg6XymBjRYUiEGQ0VGXHsS1FdHA4CWyh341nnjjc+9b5O+9YloCK24c7WCzPSpvFj9AO54mO8ibZnDJ2vSkQjcR+Q9MDwTgCurIzE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(22082099003)(18002099003)(3023799007)(56012099006)(11063799006)(4143699003)(261026140227099003)(261022105027099003)(10067099003)(261022113327099003)(261021121427099003)(261009223027099003)(261026121527099003)(261028144727099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cGg0TDNIcFlZUVUxa3VoVGxFSnQ0UUZHaTZFcEE1QThtTWhUbXJaL1FMQWJZ?=
- =?utf-8?B?ZWRSbzhwelVsSWNWYWUvdGM4REtxdWJXcUdXRDVwYlFUZG9HelpOdUE3elRh?=
- =?utf-8?B?bUlFd1RSTUtZcWgyOEtwNU1VRDVEaGdYTHNqRzlUUlpvMDVTSGJQc1VIYzBn?=
- =?utf-8?B?SWdGSnJIZmdobGdTVFF1VUVkR3ZzRDFLMlprcDNYZmFwTHR4M0hmWStLMVZa?=
- =?utf-8?B?Y3JsbHZQY1VRL2NNbG1hci9IeWVhbVlLWHE5Q2V1bUJid2xkK05BMGRHb3Fy?=
- =?utf-8?B?UGZYTC9DVFNlQjN4Sm9MUmlPaUYvamY4eXliQjNvOUthWGl6SFdqVExINUtI?=
- =?utf-8?B?OFRvaVEvT3JzODBUNGhxQjVnMmc1ckZZc29Ed0JYSmtUL01Gdm0rZjFkaXlV?=
- =?utf-8?B?VWtaZVpTU2Z2Z3lXNmVWckxUNCtBaE9jdVo3NFRUUnQxT3prcmoycUo3dnBq?=
- =?utf-8?B?ZTF3b1VpTzhPWWRuOEt3SCt5b2d3R3hOWXR0Y0tEbGFRU1lBVS9ab3NGaWpT?=
- =?utf-8?B?QzgxcWRCT2R1bTlEYmlJUU1rMGtISXdwRXUwUDRFdVVqTEc4NFJ4WkYyUEQz?=
- =?utf-8?B?UkU1N0RmNE96ZEh0dFVjbk1oQ3ozaTFWd0ZvOVBvajlUWXB2dHJEd2g2Y0lj?=
- =?utf-8?B?ckliNkFNMFNjWFpVUlZRVjBRSDFVSDZscEJmQ2xreGp1bEpPUjdxaHp4VlJD?=
- =?utf-8?B?WFU4aCs2WlZZR3hBRFhJcy82c1Y1TW1iY0ZWNUNHN3lETkZjRVpXMXR6VldF?=
- =?utf-8?B?NWovMlVnMC9tclFxVmdBcEJUb2JUY2dyZUxSc2c4UWxCdFZ4eGxUdkd4VEFH?=
- =?utf-8?B?QUFpVDlBMGduOER3Zzl3UUFmU2d1M1lUTmxJc0d2T283dWhEdXBCVE15dTY1?=
- =?utf-8?B?ODgzRzhZbXBqeXZWODlZYkwvT3BlZ2VHdG9rRUtSNjlBbC9Qem4wNWVXa1hR?=
- =?utf-8?B?V3N5THdxc0puZmk1dlZveS96RTA3cEJkeGtnMXJDK3JTSUw0SzJCdDNFZ2Z1?=
- =?utf-8?B?RExXL0dLbzFkbllIZk5pSTlxU3BiWjZkSGhiYTBjRUhFZHZLTXNJUVVKc0VO?=
- =?utf-8?B?UXQ4NWxTejdiSGpaWFYyV2tBM1BtSGRkSUJPaTFDL2Exck1VRVNmRkZXUXF3?=
- =?utf-8?B?UytScGNkcmtsL3orQWVaTEJQOG4xa2F6c2t2REtkRGl5VnpTVWJtR21BUkd3?=
- =?utf-8?B?cWRFWUsvZmVzY2pZeFhBNTdJdWNYbmV4QjBzOFhZeTloZXovK3VhWGFjMk02?=
- =?utf-8?B?alVZak5WdDRvaXVvNVNqNzE2cks3NHJ4b2R5bHMzOGtaRnlEWHBVUTJDbFI0?=
- =?utf-8?B?d3YzWkQzN1hIRnF1WmlERDVQckdWQnNTQ3RFTHE1ZHNlUUlrV000Uk9SalpO?=
- =?utf-8?B?dGlmQXFtcm44eDh6Ukk5bmY5Wm4wTis4RFkwY0F0Nk9RVmpMSGFSclFGeG03?=
- =?utf-8?B?cER1NlFVejc5aHpMcllNZFBHSVZLMXE5VVBRUkovQkIydzVOSkhJSThSM1hX?=
- =?utf-8?B?R0xBQzlmQ3hLQzFFK3dTR21WaTBkQlRDRlcxbDd3OHphZHRCbzhsUFNYSlI2?=
- =?utf-8?B?NmxIcitJVFhxL0VWL2xnUlVyZE1laW1maVlrNHUzWW5mTzY5SDZWVUQ0MGV6?=
- =?utf-8?B?MjhxUzFWZW9jRXhlS3grOVR6b0VBcmZ4Rm01MU9pUm1pNjc5aFJWRHFZQmdx?=
- =?utf-8?B?V3dJeitwYlVpdFFyeiswanNCL3VPb3ZoMWRod2lRQ2pRNkVaa05BSUhIWGZW?=
- =?utf-8?B?dGtVQWtFdDkrWVhVQVJPR0t2L0ZnM2RWMHNIcHpidXQ4cXdpR0Q5VGZPdyt4?=
- =?utf-8?B?ekhYNXlUZEtSbzdrMzFob3ViSHVSNWNUdWRaMnNWalNyTVVNUU1SRDlVRm1H?=
- =?utf-8?B?VDBTOW5Hb1RvempjR1BFbkp1eEpzdUdYTXhTT3Q5bnp3b3FpYXk3TWRMWENT?=
- =?utf-8?B?N2EwRkpGdTU5VGRNOGc1cFVlU3NwcXBMeGZNYUF5Q1lEd0xGcy9CRWpiYnV6?=
- =?utf-8?B?dktPR1dhWXA2VGpzandUM09ubGFLam05SjBEODFXb24rbFBGc2JXVzNUKzEy?=
- =?utf-8?B?NmFnNWdQZ2xGcnFWVzRvd0FzN0drRkR4NXJSbU8vQXplZHN1V0ZqWE40a0Ir?=
- =?utf-8?B?Z1Iwb2gzRS9qOUFxNklUVTMvbHdydkZCZklXZzJ4WndpRU5XWHFUMGxmRGp5?=
- =?utf-8?B?aHFuWlI3L00vWml6MTE2ZUhHSkNFQXBPWEE2QlpPOUxia2oyYnhtekNaQkFZ?=
- =?utf-8?B?Ym9IeFh5dlYxQ2RYOXEzNGV1R2RkUUZXMEdjTU8rMVlSM3Bja1ZDZHFxN0ls?=
- =?utf-8?B?UVVZTytkNHNTUkxrbDVYSjg3L2tiVjVMblN1OE1vQkJZajNpNWN6UT09?=
-X-Exchange-RoutingPolicyChecked: wRRVsEYGsPTsPd3WOJLbIX1Zpuimu0D2k5YM00p39Otf2pTsfQQENjPqMHcDL2S8SGe0AyTTh79JwxPKnPYkqaQtq7E3piHxQWrSzjED6mmEVBka7SZkNgivcHwO1gUTE9uzFY4NCOoZwGOZEQk0TrkmxynAkdg4pL/weIj6Kwg1fa+8kgzvqWlKSqTZPcS232S6WKFd5zJHc8E3A7eaWRGd1srxywg4a2MazfAT5NDnFZ8+GT2o6z7lhjcJOSvvQeYAWANINLK6LU9GMdXxTDQ6Er2qM6MEPtXi0t90AgWUANNfHinQZc/Vxy0L47/hIctJeC21WGndfI/sv6LTfQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93b93ec8-5361-4cfc-b90d-08df35a1db1b
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 09:48:59.2821 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XzmLNJq1KPBpxXQPfPfa7jdyMUJihWdK1mIX8bi8z7B7aBFih9FmWhtONkvYBgsPUtmInUQHi0TFOR/FqlJzww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PR11MB456666
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,102 +121,118 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+dma_fence_is_signaled() can return true *while* the fence is signaling.
+This has caused explosions before and I guess we can agree that it's
+just not ideal.
 
-On 29-10-2026 14:12, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
-> - [Medium] drm/xe/ras: unrecognized log component for XE_RAS_COMP_RESERVED in ras_comp_to_log_comp()
-> --
->
-> commit 523a0553a8f4f634b0b558643739a2f201d23a02
-> Author: Badal Nilawar <badal.nilawar@intel.com>
->
-> drm/xe/xe_ras: Report correctable errors using SIGID
->
-> This commit replaces xe_warn() in xe_ras_counter_threshold_crossed() with
-> xe_log_from() to report RAS counter threshold crossings using hardware
-> SIGIDs and log components.
->
->> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index 58d3834345bc1..09b3c96042d5b 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> [ ... ]
->> @@ -226,6 +228,12 @@ static int ras_status_to_errno(u32 status)
->>   	}
->>   }
->>   
->> +static u16 ras_comp_to_log_comp(u8 component)
->> +{
->> +	return FIELD_PREP(XE_LOG_COMPONENT_CLASS_MASK, XE_LOG_COMPONENT_CLASS_HARDWARE) |
->> +	       FIELD_PREP(XE_LOG_COMPONENT_TYPE_MASK, component);
->> +}
->> +
->>   static inline const char *sev_to_str(u8 severity)
->>   {
->>   	if (severity >= XE_RAS_SEV_MAX)
->> @@ -714,8 +722,11 @@ void xe_ras_counter_threshold_crossed(struct xe_device *xe,
->>   		if (!ras_counter_is_valid(xe, &errors[id]))
->>   			continue;
->>   
->> -		xe_warn(xe, "[RAS]: %s %s detected\n",
->> -			comp_to_str(component), sev_to_str(severity));
->> +		xe_log_from(xe, ras_sev_to_cper_sev(severity),
->> +			    ras_comp_to_hw_sigid(component),
->> +			    ras_comp_to_log_comp(component),
->> +			    &errors[id], sizeof(errors[id]),
->> +			    "error detected\n");
-> [Severity: Medium]
-> What happens if the system controller reports a counter with component set
-> to XE_RAS_COMP_RESERVED (3)?
->
-> In drivers/gpu/drm/xe/xe_ras.c, ras_counter_is_valid() only checks the outer
-> bounds of component:
->
-> 	if (!in_range(component, XE_RAS_COMP_NOT_SUPPORTED + 1, XE_RAS_COMP_MAX - 1)) {
-> 		xe_err(xe, "sysctrl: unexpected component %u\n", component);
-> 		return false;
-> 	}
->
-> This allows XE_RAS_COMP_RESERVED (3) to pass validation. While
-> ras_comp_to_hw_sigid() uses a switch statement that falls back to
-> XE_SIGID_HW for unhandled values, ras_comp_to_log_comp() unconditionally
-> encodes component into XE_LOG_COMPONENT_TYPE_MASK under
-> XE_LOG_COMPONENT_CLASS_HARDWARE.
->
-> Because hardware component 3 is reserved and omitted from
-> DEFINE_XE_LOG_HARDWARE_COMPONENTS in drivers/gpu/drm/xe/abi/xe_log_abi.h:
->
-> #define DEFINE_XE_LOG_HARDWARE_COMPONENTS(define) \
-> 	define(HARDWARE, 1, DEVICE_MEMORY, DEVICE_MEMORY, "Device Memory")	\
-> 	define(HARDWARE, 2, CORE_COMPUTE, CORE_COMPUTE, "Core Compute")		\
-> 	/*     HARDWARE, 3, RESERVED */						\
-> 	define(HARDWARE, 4, PCIE, PCIE, "PCIe Interface")			\
-> 	define(HARDWARE, 5, FABRIC, FABRIC, "Fabric")				\
-> 	define(HARDWARE, 6, SOC_INTERNAL, SOC_INTERNAL, "SoC Internal")		\
->
-> passing that encoded value to xe_log_from() will miss all cases in
-> log_component_prefix() and hit log_unknown_component_prefix() in
-> drivers/gpu/drm/xe/xe_log.c:
->
-> 	WARN(IS_ENABLED(CONFIG_DRM_XE_DEBUG), "LOG: unrecognized component %u.%u\n", class, type);
->
-> Should ras_counter_is_valid() reject XE_RAS_COMP_RESERVED, or should
-> ras_comp_to_log_comp() handle unmapped components like
-> ras_comp_to_hw_sigid() does?
+The fundamental issue is that the fence-signaled-bit is set under lock
+protection but read without it.
 
-XE_RAS_COMP_RESERVED is a reserved value and is not reported by the 
-firmware. Therefore, rejecting it explicitly in ras_counter_is_valid() 
-is not required.
+So ideally, we would read it with the lock. This would not change the
+relative order, i.e. the bit would still be true in the fence callbacks.
 
-Thanks,
-Badal
+Christian informs us that taking the lock causes people to complain
+about performance regressions because the lock-taking shoots down copied
+cache-lines. (which is weird since it would mean that someone is
+repeatedly polling on fences instead of just registering a callback to
+notify himself once it signals)
 
->
+Let's accept the potential for regressions as true for now.
+Nevertheless, I think I can propose a path towards removing the race:
+
+This series suggests taking the lock in dma_fence_is_signaled() *unless*
+the driver explicitly asks for a check with a race-condition.
+
+As a preparation, I allow drivers to set flags when initializing fences.
+Then, we add a flag with which the driver can switch locking off for
+that particular function.
+
+By default, we let all drivers take the lock.
+
+Should we then, in the kernel release process get reports about
+regressions, we can set the race-flag for the affected driver and
+restore the old behavior.
+
+Should there be no reports, we could phase the flag out again after a
+few releases, always taking the lock.
+
+New users would always see the lock.
+
+I put all potentially affected parties on Cc. Please point out if you
+can already foresee your driver being negatively affected by this.
+
+P.
+
+
+Philipp Stanner (6):
+  dma-buf: dma-fence: Add flags parameter to dma_fence_init()
+  dma-buf: dma-fence: Add flag for using 64-bit seqnos
+  dma-buf: Port users of dma_fence_init64()
+  dma-buf: dma-fence: remove dma_fence_init64()
+  dma-buf: dma-fence: Close race in dma_fence_is_signaled() by default
+  drm/nouveau: Remove hacky fence check
+
+ drivers/accel/amdxdna/amdxdna_ctx.c           |  2 +-
+ drivers/accel/ethosu/ethosu_job.c             |  2 +-
+ drivers/accel/ivpu/ivpu_job.c                 |  2 +-
+ drivers/accel/rocket/rocket_job.c             |  2 +-
+ drivers/dma-buf/dma-fence-array.c             |  2 +-
+ drivers/dma-buf/dma-fence-chain.c             |  4 +-
+ drivers/dma-buf/dma-fence.c                   | 44 +++++------------
+ drivers/dma-buf/st-dma-fence-chain.c          |  2 +-
+ drivers/dma-buf/st-dma-fence-unwrap.c         |  2 +-
+ drivers/dma-buf/st-dma-fence.c                |  2 +-
+ drivers/dma-buf/st-dma-resv.c                 |  2 +-
+ drivers/dma-buf/sw_sync.c                     |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c  |  2 +-
+ .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |  7 +--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     |  2 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  5 +-
+ .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |  5 +-
+ drivers/gpu/drm/drm_crtc.c                    |  2 +-
+ drivers/gpu/drm/drm_writeback.c               |  2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  2 +-
+ drivers/gpu/drm/i915/i915_request.c           |  2 +-
+ drivers/gpu/drm/i915/i915_sw_fence_work.c     |  2 +-
+ drivers/gpu/drm/i915/i915_vma_resource.c      |  2 +-
+ .../gpu/drm/i915/selftests/i915_sw_fence.c    |  2 +-
+ drivers/gpu/drm/imagination/pvr_ccb.c         |  2 +-
+ drivers/gpu/drm/imagination/pvr_queue.c       |  2 +-
+ drivers/gpu/drm/lima/lima_sched.c             |  2 +-
+ drivers/gpu/drm/msm/msm_fence.c               |  2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         | 13 -----
+ drivers/gpu/drm/nouveau/nouveau_fence.c       |  4 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c       |  2 +-
+ drivers/gpu/drm/panthor/panthor_sched.c       |  2 +-
+ drivers/gpu/drm/qxl/qxl_release.c             |  2 +-
+ drivers/gpu/drm/radeon/radeon_fence.c         |  2 +-
+ drivers/gpu/drm/scheduler/sched_fence.c       |  4 +-
+ .../gpu/drm/scheduler/tests/mock_scheduler.c  |  2 +-
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  2 +-
+ .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  2 +-
+ drivers/gpu/drm/v3d/v3d_fence.c               |  2 +-
+ drivers/gpu/drm/vc4/vc4_gem.c                 |  2 +-
+ drivers/gpu/drm/vgem/vgem_fence.c             |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_fence.c        |  2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_fence.c         |  2 +-
+ drivers/gpu/drm/xe/xe_hw_fence.c              |  2 +-
+ drivers/gpu/drm/xe/xe_oa.c                    |  2 +-
+ drivers/gpu/drm/xe/xe_preempt_fence.c         |  2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c             |  2 +-
+ drivers/gpu/host1x/fence.c                    |  2 +-
+ drivers/iio/industrialio-buffer.c             |  2 +-
+ drivers/usb/gadget/function/f_fs.c            |  2 +-
+ include/linux/dma-fence.h                     | 48 +++++++++++++++++--
+ 52 files changed, 115 insertions(+), 105 deletions(-)
+
+-- 
+2.56.0
+
