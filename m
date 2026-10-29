@@ -2,128 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F0E6606A32C
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 10:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=Ql2h6Chx
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0A05606A31D
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 10:46:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C9291121CA;
-	Thu, 29 Oct 2026 10:23:55 +0000 (UTC)
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de
- [185.203.200.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A47C710E4DE;
- Thu, 29 Oct 2026 10:23:38 +0000 (UTC)
-Received: from [IPv6:::1] (ptz.office.stw.pengutronix.de
- [IPv6:2a0a:edc0:0:900:1d::77])
- (Authenticated sender: lst@pengutronix.de)
- by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 9E169200AD7;
- Thu, 29 Oct 2026 11:23:34 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
- s=20260414; t=1793269416;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=h/NTq1WLBMPSLF6XFZgbhvzXQ8oYuf+0ZqChn7K5Lhk=;
- b=Ql2h6ChxMtOcGZatguhKGOuEC+rmEILtn+if2SqEYCCbxsuZJ6Ru1gYHv8VOZp6Mh4UHgD
- nqC+Abc2a38Cwsw0drk11FIo/o24C4d78/xhRP3/VTW8wljjZU8itJ+/kl8dIca91QxHTe
- zvq2X5SIBOfNysNtdZi59WpQkG7l62333eKKoo1mxhb7lKFl0mbo4G2Zx6icW/xkO4bTTE
- YLTxcS/jNobwPebe1QvNnKjEU9FWzz23p1+A9z4qKfS4d3UnGFoteuJK8i4EG/TbM+kgZm
- 36EtXeEIB1VKZmg46ZE6J8JvC49oxRtIkz9PpvGhCuexji4WQBw+w9KH7UeaQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de; 
- s=20260414; t=1793269416;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=h/NTq1WLBMPSLF6XFZgbhvzXQ8oYuf+0ZqChn7K5Lhk=;
- b=GGV5mVLTXHW8P1GM8MYEEw2sQLTe4MwdizvhP5Gb/W/2fDooOaBhx/Sa6fBxsgpigJrLiU
- igwFXfs2zGARcG6oRLe3YbfOnTu/2cJUh7LRJrnnkQS9jz/1Y3UBwkh5VQ/POkNwIuxIT0
- KQqycJPkCqfr8Rb3w+LWfxdHK9tZOIFSmALUHySLhH2nMw1ohIN5PV6epE7MfW9GnTgZiP
- aB1o7tlQphCTr3i/eUUYsp9+VzsQAbIi7aed/Fs9CWQwqWGP3mh0SmpkOiff1MJ5KuNFqQ
- /B16Le4NHB27ysqZuAH84XpNo3HERRJf+Gjr9xim0+G/tMzPUQcCR7egGl6w6w==
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=lst@pengutronix.de smtp.mailfrom=l.stach@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1793269416; a=rsa-sha256;
- cv=none;
- b=WpN8WUnDHqz9Mc+CuO1qqQ2s1JkX/YAqSIeMD64lYoC6u7e/Mf6zaDQORC81p8qVmhEOlB
- Qyk2Tu3F5ZFoPi+6o3G5P8XatkbqSpZqIMxTmNYjN7iZ9PyGZF+UJ9ECFfr5xTsdvve48U
- DwjbkCL6Gqu4fpyQEmvvgJ4MB8/2UNwQB3y97Tn6pks8uSBKkJNnVRBHkLNA79FYLoF/UQ
- /Fka7A7sY843ZzZCE560WkHfHGLJkmQ0WFB126J4qtxaMZHhGGerIFlt07dEmX36MJuoaj
- +Fi5x3cZiGZ8NviUZwVGZyTDLNtqw6kmMNQeZKWIuGV0RSo3ygqYDO8hsPjmKA==
-Message-ID: <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
-Subject: Re: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
-From: Lucas Stach <l.stach@pengutronix.de>
-To: Philipp Stanner <phasta@kernel.org>, Min Ma <mamin506@gmail.com>, Lizhi
- Hou	 <lizhi.hou@amd.com>, Oded Gabbay <ogabbay@kernel.org>, "Rob Herring
- (Arm)"	 <robh@kernel.org>, Tomeu Vizoso <tomeu@tomeuvizoso.net>, Karol
- Wachowski	 <karol.wachowski@linux.intel.com>, Andrzej Kacprowski	
- <andrzej.kacprowski@linux.intel.com>, Sumit Semwal
- <sumit.semwal@linaro.org>,  Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Russell King	
- <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner
- <christian.gmeiner@gmail.com>,  Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Alessio
- Belle	 <alessio.belle@imgtec.com>, Luigi Santivetti
- <luigi.santivetti@imgtec.com>,  Qiang Yu <yuq825@gmail.com>, Rob Clark
- <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov	 <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang	
- <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten	
- <marijn.suijten@somainline.org>, Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>, Boris Brezillon
- <boris.brezillon@collabora.com>, Steven Price	 <steven.price@arm.com>,
- =?ISO-8859-1?Q?Adri=E1n?= Larumbe	 <adrian.larumbe@collabora.com>, Liviu
- Dudau <liviu.dudau@arm.com>, Dave Airlie	 <airlied@redhat.com>, Gerd
- Hoffmann <kraxel@redhat.com>, Matthew Brost	 <matthew.brost@intel.com>,
- Natalie Vock <nat@pixelcluster.dev>, Arun Pravin	
- <arunpravin.paneerselvam@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>,
- Melissa Wen <mwen@igalia.com>,  =?ISO-8859-1?Q?Ma=EDra?= Canal	
- <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Raspberry Pi Kernel Maintenance	 <kernel-list@raspberrypi.com>, Dmitry
- Osipenko <dmitry.osipenko@collabora.com>,  Gurchetan Singh
- <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, Zack Rusin
- <zack.rusin@broadcom.com>,  Broadcom internal kernel review list	
- <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding	
- <thierry.reding@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Cameron	 <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Sunil Khatri <sunil.khatri@amd.com>, Kees
- Cook	 <kees@kernel.org>, Jesse Zhang <jesse.zhang@amd.com>, Timur
- =?ISO-8859-1?Q?Krist=F3f?=	 <timur.kristof@gmail.com>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>,  Kexin Sun <kexinsun@smail.nju.edu.cn>,
- Prike Liang <Prike.Liang@amd.com>, David Rosca	 <david.rosca@amd.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>, Marco Crivellari
- <marco.crivellari@suse.com>, Shixiong Ou <oushixiong@kylinos.cn>, Jouni
- =?ISO-8859-1?Q?H=F6gander?=	 <jouni.hogander@intel.com>, Thadeu Lima de
- Souza Cascardo <cascardo@igalia.com>,  Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>, Joel Fernandes
- <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,  Neill Kapron
- <nkapron@google.com>, Michael Bommarito <michael.bommarito@gmail.com>, Sam
- Day <me@samcday.com>,  Gabriel Prostitis <prostitisgabriel@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev, 
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org, 
- linux-usb@vger.kernel.org
-Date: Thu, 29 Oct 2026 11:23:34 +0100
-In-Reply-To: <20261029095542.1526750-3-phasta@kernel.org>
-References: <20261029095542.1526750-3-phasta@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.2 (3.60.2-2.fc44) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3FC10E7DB;
+	Thu, 29 Oct 2026 10:46:01 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0830910E7DB;
+ Thu, 29 Oct 2026 10:46:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0726120127104347651=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_dma-buf=3A_Phase_out_is=5Fs?=
+ =?utf-8?q?ignaled=28=29_race?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Philipp Stanner" <phasta@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Oct 2026 10:46:00 -0000
+Message-ID: <179327076002.87305.10352781267094092828@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261029095542.1526750-3-phasta@kernel.org>
+In-Reply-To: <20261029095542.1526750-3-phasta@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,134 +33,235 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Philipp, hi Christian,
+--===============0726120127104347651==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
-> dma_fence_is_signaled() can return true *while* the fence is signaling.
-> This has caused explosions before and I guess we can agree that it's
-> just not ideal.
->=20
-> The fundamental issue is that the fence-signaled-bit is set under lock
-> protection but read without it.
->=20
-> So ideally, we would read it with the lock. This would not change the
-> relative order, i.e. the bit would still be true in the fence callbacks.
->=20
-> Christian informs us that taking the lock causes people to complain
-> about performance regressions because the lock-taking shoots down copied
-> cache-lines. (which is weird since it would mean that someone is
-> repeatedly polling on fences instead of just registering a callback to
-> notify himself once it signals)
->=20
-I think we would all be interested in the actual use-case that's
-sensitive to this kind of latency.
+== Series Details ==
 
-However, I wonder if this is even an issue anymore with the lock
-inlined into the fence structure. With the deprecated external lock you
-would potentially get two cacheline bounces/remote invalidations for
-the exclusive access: once for the lock and one for the
-test_and_set_bit atomic op on the flags field.
-Now with the inlined lock, the lock operation will bring the cacheline
-into exclusive state on the local CPU and the flag check would then
-operate on that same cacheline, so there should be only a very minimal
-penalty compared to the sole atomic op.
+Series: dma-buf: Phase out is_signaled() race
+URL   : https://patchwork.freedesktop.org/series/177133/
+State : success
 
-Regards,
-Lucas
+== Summary ==
 
-> Let's accept the potential for regressions as true for now.
-> Nevertheless, I think I can propose a path towards removing the race:
->=20
-> This series suggests taking the lock in dma_fence_is_signaled() *unless*
-> the driver explicitly asks for a check with a race-condition.
->=20
-> As a preparation, I allow drivers to set flags when initializing fences.
-> Then, we add a flag with which the driver can switch locking off for
-> that particular function.
->=20
-> By default, we let all drivers take the lock.
->=20
-> Should we then, in the kernel release process get reports about
-> regressions, we can set the race-flag for the affected driver and
-> restore the old behavior.
->=20
-> Should there be no reports, we could phase the flag out again after a
-> few releases, always taking the lock.
->=20
-> New users would always see the lock.
->=20
-> I put all potentially affected parties on Cc. Please point out if you
-> can already foresee your driver being negatively affected by this.
->=20
-> P.
->=20
->=20
-> Philipp Stanner (6):
->   dma-buf: dma-fence: Add flags parameter to dma_fence_init()
->   dma-buf: dma-fence: Add flag for using 64-bit seqnos
->   dma-buf: Port users of dma_fence_init64()
->   dma-buf: dma-fence: remove dma_fence_init64()
->   dma-buf: dma-fence: Close race in dma_fence_is_signaled() by default
->   drm/nouveau: Remove hacky fence check
->=20
->  drivers/accel/amdxdna/amdxdna_ctx.c           |  2 +-
->  drivers/accel/ethosu/ethosu_job.c             |  2 +-
->  drivers/accel/ivpu/ivpu_job.c                 |  2 +-
->  drivers/accel/rocket/rocket_job.c             |  2 +-
->  drivers/dma-buf/dma-fence-array.c             |  2 +-
->  drivers/dma-buf/dma-fence-chain.c             |  4 +-
->  drivers/dma-buf/dma-fence.c                   | 44 +++++------------
->  drivers/dma-buf/st-dma-fence-chain.c          |  2 +-
->  drivers/dma-buf/st-dma-fence-unwrap.c         |  2 +-
->  drivers/dma-buf/st-dma-fence.c                |  2 +-
->  drivers/dma-buf/st-dma-resv.c                 |  2 +-
->  drivers/dma-buf/sw_sync.c                     |  2 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_amdkfd_fence.c  |  2 +-
->  .../drm/amd/amdgpu/amdgpu_eviction_fence.c    |  7 +--
->  drivers/gpu/drm/amd/amdgpu/amdgpu_fence.c     |  2 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_userq_fence.c   |  5 +-
->  .../gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c  |  5 +-
->  drivers/gpu/drm/drm_crtc.c                    |  2 +-
->  drivers/gpu/drm/drm_writeback.c               |  2 +-
->  drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |  2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_ttm_move.c  |  2 +-
->  drivers/gpu/drm/i915/i915_request.c           |  2 +-
->  drivers/gpu/drm/i915/i915_sw_fence_work.c     |  2 +-
->  drivers/gpu/drm/i915/i915_vma_resource.c      |  2 +-
->  .../gpu/drm/i915/selftests/i915_sw_fence.c    |  2 +-
->  drivers/gpu/drm/imagination/pvr_ccb.c         |  2 +-
->  drivers/gpu/drm/imagination/pvr_queue.c       |  2 +-
->  drivers/gpu/drm/lima/lima_sched.c             |  2 +-
->  drivers/gpu/drm/msm/msm_fence.c               |  2 +-
->  drivers/gpu/drm/nouveau/nouveau_drm.c         | 13 -----
->  drivers/gpu/drm/nouveau/nouveau_fence.c       |  4 +-
->  drivers/gpu/drm/panfrost/panfrost_job.c       |  2 +-
->  drivers/gpu/drm/panthor/panthor_sched.c       |  2 +-
->  drivers/gpu/drm/qxl/qxl_release.c             |  2 +-
->  drivers/gpu/drm/radeon/radeon_fence.c         |  2 +-
->  drivers/gpu/drm/scheduler/sched_fence.c       |  4 +-
->  .../gpu/drm/scheduler/tests/mock_scheduler.c  |  2 +-
->  drivers/gpu/drm/ttm/tests/ttm_bo_test.c       |  2 +-
->  .../gpu/drm/ttm/tests/ttm_bo_validate_test.c  |  2 +-
->  drivers/gpu/drm/v3d/v3d_fence.c               |  2 +-
->  drivers/gpu/drm/vc4/vc4_gem.c                 |  2 +-
->  drivers/gpu/drm/vgem/vgem_fence.c             |  2 +-
->  drivers/gpu/drm/virtio/virtgpu_fence.c        |  2 +-
->  drivers/gpu/drm/vmwgfx/vmwgfx_fence.c         |  2 +-
->  drivers/gpu/drm/xe/xe_hw_fence.c              |  2 +-
->  drivers/gpu/drm/xe/xe_oa.c                    |  2 +-
->  drivers/gpu/drm/xe/xe_preempt_fence.c         |  2 +-
->  drivers/gpu/drm/xe/xe_tlb_inval.c             |  2 +-
->  drivers/gpu/host1x/fence.c                    |  2 +-
->  drivers/iio/industrialio-buffer.c             |  2 +-
->  drivers/usb/gadget/function/f_fs.c            |  2 +-
->  include/linux/dma-fence.h                     | 48 +++++++++++++++++--
->  52 files changed, 115 insertions(+), 105 deletions(-)
+CI Bug Log - changes from xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201_BAT -> xe-pw-177133v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-177133v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-ptl-2:          NOTRUN -> [SKIP][1] ([Intel XE#5764]) +11 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_exec_balancer@twice-parallel-userptr:
+    - bat-ptl-2:          NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_exec_balancer@twice-parallel-userptr.html
+
+  * igt@xe_exec_multi_queue@many-queues-priority:
+    - bat-ptl-2:          NOTRUN -> [SKIP][3] ([Intel XE#8364]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_exec_multi_queue@many-queues-priority.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-ptl-2:          NOTRUN -> [SKIP][4] ([Intel XE#5775]) +2 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - bat-ptl-2:          NOTRUN -> [SKIP][5] ([Intel XE#9657])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-ptl-2:          NOTRUN -> [SKIP][6] ([Intel XE#5776])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-ptl-2:          NOTRUN -> [SKIP][7] ([Intel XE#5777] / [Intel XE#7590])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-ptl-2:          NOTRUN -> [SKIP][8] ([Intel XE#5771] / [Intel XE#7590])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-ptl-2:          NOTRUN -> [SKIP][9] ([Intel XE#5780] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_compute_preempt@compute-threadgroup-preempt:
+    - bat-ptl-2:          [ABORT][10] ([Intel XE#9362]) -> [PASS][11] +1 other test pass
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html
+
+  
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+  [Intel XE#9362]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362
+  [Intel XE#9657]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657
+
+
+Build changes
+-------------
+
+  * Linux: xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201 -> xe-pw-177133v1
+
+  IGT_9170: 9170
+  xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201: adf57aa7454332ef1651f5735de1ab6a1cc6b201
+  xe-pw-177133v1: 177133v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/index.html
+
+--===============0726120127104347651==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>dma-buf: Phase out is_signaled() race</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177133/">https://patchwork.freedesktop.org/series/177133/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201_BAT -&gt; xe-pw-177133v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-177133v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@twice-parallel-userptr:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_exec_balancer@twice-parallel-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-priority:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_exec_multi_queue@many-queues-priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657">Intel XE#9657</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_compute_preempt@compute-threadgroup-preempt:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177133v1/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201 -&gt; xe-pw-177133v1</li>
+</ul>
+<p>IGT_9170: 9170<br />
+  xe-6029-adf57aa7454332ef1651f5735de1ab6a1cc6b201: adf57aa7454332ef1651f5735de1ab6a1cc6b201<br />
+  xe-pw-177133v1: 177133v1</p>
+
+</body>
+</html>
+
+--===============0726120127104347651==--
