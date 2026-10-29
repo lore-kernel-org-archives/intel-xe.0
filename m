@@ -2,130 +2,150 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AC6606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 11:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C7D3606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 11:30:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=pengutronix.de header.i=@pengutronix.de header.a=rsa-sha256 header.s=20260414 header.b=YhheDy8E
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=b1TVWfAr
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17C5B11220D;
-	Thu, 29 Oct 2026 11:23:56 +0000 (UTC)
-Received: from mx1.white.stw.pengutronix.de (mx1.white.stw.pengutronix.de
- [185.203.200.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 32C0A112208;
- Thu, 29 Oct 2026 11:23:50 +0000 (UTC)
-Received: from [IPv6:::1] (ptz.office.stw.pengutronix.de
- [IPv6:2a0a:edc0:0:900:1d::77])
- (Authenticated sender: lst@pengutronix.de)
- by mx1.white.stw.pengutronix.de (Postfix) with ESMTPSA id 418BC2007F9;
- Thu, 29 Oct 2026 12:23:46 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de;
- s=20260414; t=1793273028;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=s4uscHTSNNyFgyqCTfvm7pgyQFz42LzvHFK7u0x0Cw0=;
- b=YhheDy8EfCQv89DyrUXN/Yqh1aav8HKOaPDt4/Y3XFIPfM2HQZksNK1Q4J8Xiva3N9Z1Am
- tkP2eX7Gmfxohg3zXmJeyevXeiaQVGhGYtgf5DW7WiXDKCn+YIxVKqJUBhnT18fBqcR9od
- pNUOxHrNlb/aeBZqcMinomv32QEtNIj5iOvnDLzi8UenUwl35U/mEBFZgBoAEnX3k3vgMh
- WQOKG6XE+gjRy2dunur160DUflwOCoaEEllxXNkae4RdWnLlHPVfWZgcVG5KwuGlYdMS4j
- K8l8J5jfGgLMMk0a9E7oE+GBGvUkDtPQtpWfP+urJK7Rg8cIfoftFRGLPfWCxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=pengutronix.de; 
- s=20260414; t=1793273028;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=s4uscHTSNNyFgyqCTfvm7pgyQFz42LzvHFK7u0x0Cw0=;
- b=YtyTqxntKVSuf0cXkpc84IWDjijQempbl/OM6z3jYncGCiwf/Ln99mK5+x8W0cyO9xO1gA
- kZBUATT4teV385wTGMVEaT2ftHDv466XZMo/nCHJ+3VBjvaefh76HC4h6ZqGpVZBZzIif0
- B0s67a7gzHS6sPKR61gN4QKr3LIKCsgfOapXu1CZ/XgwBY8WD5Dr2jHZMjCr5H6sThWMxU
- MsRJbd3Mcfr33CLRmW8Bp3z2gPWqfmC5Y9O64Vqrjxd/mFXxtXsuyhRNEFalbt43sftG6G
- xJ0leaBmncxO0k6VjKMNj5ycc2G3vyKocU53toT9hpLpEM+cmebxYVR8EEEN+Q==
-ARC-Authentication-Results: i=1; ORIGINATING;
- auth=pass smtp.auth=lst@pengutronix.de smtp.mailfrom=l.stach@pengutronix.de
-ARC-Seal: i=1; s=20260414; d=pengutronix.de; t=1793273028; a=rsa-sha256;
- cv=none;
- b=CMz7Ii0BbFpIf3JOy1xOkUy1/GalemR2HX7An2NH4NYYc7nV9uA9ia33/CLwhOM5TIZVCO
- r5SjbN1jtUnItbnYc85Z8xd4yR28RKXjpQwR04UflRreGYa/mpCLkcKsFkvwIJI+HcAAQT
- e6tyb0XkfNDiCGGfk7D6jVoenCj3H0aH4beZaCr4Eu2G+Ql31BsMOvYsHkb91GsL5HKzlk
- 3XcSZVASLqeWZ4KZWuMaxSYPs7oxi8oIKtwvZ2vU+4PLj3JdRq+wZ2/4S5M1ckb3lR6s7O
- ZyHtIMqbdSoBMc5gGXlEKgsiCFaxc5lHEpetkI/HR6kfcn8G0LRnwE1RHAFQyQ==
-Message-ID: <d0610126883f23bec3472f41e528aae786f27c8c.camel@pengutronix.de>
-Subject: Re: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
-From: Lucas Stach <l.stach@pengutronix.de>
-To: phasta@kernel.org, Min Ma <mamin506@gmail.com>, Lizhi Hou
- <lizhi.hou@amd.com>,  Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)"
- <robh@kernel.org>, Tomeu Vizoso	 <tomeu@tomeuvizoso.net>, Karol Wachowski
- <karol.wachowski@linux.intel.com>,  Andrzej Kacprowski
- <andrzej.kacprowski@linux.intel.com>, Sumit Semwal
- <sumit.semwal@linaro.org>, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, Felix Kuehling <Felix.Kuehling@amd.com>, Alex
- Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter	 <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Russell King	
- <linux+etnaviv@armlinux.org.uk>, Christian Gmeiner
- <christian.gmeiner@gmail.com>,  Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Alessio
- Belle	 <alessio.belle@imgtec.com>, Luigi Santivetti
- <luigi.santivetti@imgtec.com>,  Qiang Yu <yuq825@gmail.com>, Rob Clark
- <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov	 <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang	
- <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, Marijn Suijten	
- <marijn.suijten@somainline.org>, Lyude Paul <lyude@redhat.com>, Danilo
- Krummrich <dakr@kernel.org>, Boris Brezillon
- <boris.brezillon@collabora.com>, Steven Price	 <steven.price@arm.com>,
- =?ISO-8859-1?Q?Adri=E1n?= Larumbe	 <adrian.larumbe@collabora.com>, Liviu
- Dudau <liviu.dudau@arm.com>, Dave Airlie	 <airlied@redhat.com>, Gerd
- Hoffmann <kraxel@redhat.com>, Matthew Brost	 <matthew.brost@intel.com>,
- Natalie Vock <nat@pixelcluster.dev>, Arun Pravin	
- <arunpravin.paneerselvam@amd.com>, Matthew Auld <matthew.auld@intel.com>, 
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?=	 <thomas.hellstrom@linux.intel.com>,
- Melissa Wen <mwen@igalia.com>,  =?ISO-8859-1?Q?Ma=EDra?= Canal	
- <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Raspberry Pi Kernel Maintenance	 <kernel-list@raspberrypi.com>, Dmitry
- Osipenko <dmitry.osipenko@collabora.com>,  Gurchetan Singh
- <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, Zack Rusin
- <zack.rusin@broadcom.com>,  Broadcom internal kernel review list	
- <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding	
- <thierry.reding@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Cameron	 <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>, Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Greg Kroah-Hartman	
- <gregkh@linuxfoundation.org>, Sunil Khatri <sunil.khatri@amd.com>, Kees
- Cook	 <kees@kernel.org>, Jesse Zhang <jesse.zhang@amd.com>, Timur
- =?ISO-8859-1?Q?Krist=F3f?=	 <timur.kristof@gmail.com>, Srinivasan Shanmugam
- <srinivasan.shanmugam@amd.com>,  Kexin Sun <kexinsun@smail.nju.edu.cn>,
- Prike Liang <Prike.Liang@amd.com>, David Rosca	 <david.rosca@amd.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>, Marco Crivellari
- <marco.crivellari@suse.com>, Shixiong Ou <oushixiong@kylinos.cn>, Jouni
- =?ISO-8859-1?Q?H=F6gander?=	 <jouni.hogander@intel.com>, Thadeu Lima de
- Souza Cascardo <cascardo@igalia.com>,  Pierre-Eric Pelloux-Prayer
- <pierre-eric.pelloux-prayer@amd.com>, Joel Fernandes
- <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,  Neill Kapron
- <nkapron@google.com>, Michael Bommarito <michael.bommarito@gmail.com>, Sam
- Day <me@samcday.com>,  Gabriel Prostitis <prostitisgabriel@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev, 
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org, 
- linux-usb@vger.kernel.org
-Date: Thu, 29 Oct 2026 12:23:45 +0100
-In-Reply-To: <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-References: <20261029095542.1526750-3-phasta@kernel.org>
- <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
- <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.60.2 (3.60.2-2.fc44) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD8310E7D3;
+	Thu, 29 Oct 2026 11:30:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2127410E4CB;
+ Thu, 29 Oct 2026 11:30:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793273445; x=1824809445;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=51a6mHFAro9bpOqS6nPhyVj3UmbYwR6YSkJ+n1us9I8=;
+ b=b1TVWfArzrY0dvajcIu+Mv7cTW2yYClf2A1Dy2WZ7TAcX8gmE45DJKsf
+ G+88dEdH/zHr3QNwZV0YQyONnJsEIsd2XWj51Ekfmw3IrMTGTePrClCLA
+ ufmHPHwjgSTme0xmpo1bB0SISJX+yf5Rlc4cwBYhFaXu9/jGuKfTj/Owg
+ o+nQiERCnnTAJAWum2axNBYhXnJOXUCSYhexF8ZzJyWVoLMg9VUyh2RTf
+ iEs+mZnVbtMAiH7vxbouycAMBQK2sUWgACwyH2HHCBSr880XPcQZ638py
+ XxrNJqfOlh7uOYEJ8yKVTPvmUfbHeuxaoLNssF6KDFXkCuFo6Ch2fnukS A==;
+X-CSE-ConnectionGUID: wzSwuHYrTzmVL6/HoUt0jA==
+X-CSE-MsgGUID: 7GZUYZzRTaio+OXMLAf/mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="2018062"
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
+   d="scan'208";a="2018062"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 04:30:44 -0700
+X-CSE-ConnectionGUID: 0REhG9kgQp6L60O5RxvBDw==
+X-CSE-MsgGUID: rscclq4DRhC4uvrQJYJHDw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
+   d="scan'208";a="5130206"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2026 04:30:45 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 29 Oct 2026 04:30:43 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Thu, 29 Oct 2026 04:30:43 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.49) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 29 Oct 2026 04:30:43 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pqHWE7c//6KNd21boCmL2gR+WvFCF1Z3kOLW4M6hxSyIptlT4BAy72ddQZ5MQLpzxE1T8A8RS9NSctWtgguSsTGxQPWAneLgf0S17plZ8ael5VrxWHzWus7jn0zFnbYsMi7YlWj7jvJeb6maoLJK3EcZloG3ot4Mddmkno+gc2hVuuma7kntfShNGpRO+nL2LrG/P76f0EEk5lBe19DDjv4C1dH8BT3hjCubuIwIx71cXHTzALlWBQxJ7KQHweX/axa4dWHs7LGWV/0MdmM8++UEF0RkHez9mRhsNCH3pVFOeNLJsagiA9wwlxvx1+TF1wX2Fbp3Hcq9JibttwcvvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E5nKOLOb0TNRD3R8Vu/qLhN+A49ep3rTeqrQNWsdY7U=;
+ b=jG6SeyBmoDo3eixXm0N8k+xJtegA9mkEM6Aij4FaIiNYC8/dCZd+xqO1ZjnNTv6d3M71LsLL6vJMeL0Ca9ormTebh7T8dzOPkAygBaHB6GUhNkcgIg2o2YwKXIOrIvnnz4irntR+IfATPaUDmfK+XboawJXxeXZTWXMGD879LRCtAjnG29Loc8tEbcT+oMJMPCDIK+fXXStqATwb/vdqEDTg+QbuSYZYzjEfMKSzj2xyfoQE2XYrObdwJRqaMMEIHSRVEeb7CWIF3yXJ5/Dmx85hQ+EmApY09poOSwWM5cxqdqGFxo/h2eOB0e4i0T0Nplves9vVteXPzVMd4xc8SQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by DSWPR11MB9823.namprd11.prod.outlook.com (2603:10b6:8:4e1::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Thu, 29 Oct
+ 2026 11:30:25 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%6]) with mapi id 15.21.0569.007; Thu, 29 Oct 2026
+ 11:30:25 +0000
+From: Imre Deak <imre.deak@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <stable@vger.kernel.org>
+Subject: [PATCH 1/6] drm/i915/dp_aux: Take the TypeC port lock after the PPS
+ lock
+Date: Thu, 29 Oct 2026 13:30:12 +0200
+Message-ID: <20261029113017.618286-2-imre.deak@intel.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20261029113017.618286-1-imre.deak@intel.com>
+References: <20261029113017.618286-1-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: GV3PEPF0001DC22.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::119) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|DSWPR11MB9823:EE_
+X-MS-Office365-Filtering-Correlation-Id: c01e4d4a-d0b8-4c15-89a2-08df35b00649
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|23010399003|376014|261028144727099003|56012099006|11063799006|261009223027099003|261022075727099003|261009221227099003|261022105027099003|261021123027099003|261021121427099003|261026140227099003|261026121527099003|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: X4R4x9OuG07nrltCHwYIYpoGFC989X0tGNQIU8a81uZNklwhTlsjb6rQwNINg48bx8KPDlmrxZvL6SbQzTpT124Cv39aKDTCdDG9F/8d31cHR8tVit+MCRiAq1L5FCaxF/UgX3nOZrkT9Uel/pIr1OZ6uyxXjf+9e78T1sYiMWFuqWwv2xZAA/e/+gnImAUJ6TCf8lSsho4W2o0uF+TiheFxl85RIY7ik4bA+qdwMXZhz0MPZx6iV5c2CHlPLW0aQvIV2LMuYJBVzZPNi++Ua027deuynxtwPTUJFUyjnA9+iGA0doQ1cTncLK0QzbvYhwPS0ZHIqXC+xYQC6jy0wAQs5yg0yiXT3ZupLvikGgXLfSzW3jxLr6Z1+UvOhofe9dzIWXxPzNQcjUXt75Vk83i+H2AltcZ8s1ZOBWoVfWWjJhZfIETbGwbJJOmsY4O/akHbP0h3+UJRhVqzOY8Cuvh5Uip5laNWc/HqQi7fIja9N4VAscODmqtf37KrWz/Mku+c4al9fEOv71MfhD4dYE772E1254Opx5y/juu33P6DOHiWgpanSSLRdd2P4GhgCjmgbhJvVqjoBSAdgUAYm8pr1MOwrEfvDD9O511Dntbdkdb8HxKG1dej/iAzUweja83UmZsKwlYm6HxTjpjvxxmV7sVY4CznU2qRHs/wgXA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(261028144727099003)(56012099006)(11063799006)(261009223027099003)(261022075727099003)(261009221227099003)(261022105027099003)(261021123027099003)(261021121427099003)(261026140227099003)(261026121527099003)(10067099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hM9ZnMYti5WlbuH1XmDVJ2zIc2STQBTgc9mx8FXQZjVpW8T+WHFyMYqzC5xc?=
+ =?us-ascii?Q?pWKkbulIEkRdEMvlqa8GgkXELlw7bOKS1/QjxIgzuPufMTJjf/2P1o78xXUU?=
+ =?us-ascii?Q?pjrmFteZ+mIuUP5wL6QR/5pPgZtv4INkp0oZqFQa79WIDKTppzln9v1/PAHF?=
+ =?us-ascii?Q?T43strPlfBxA2W9fL++2AWNdoftAegAStXpqFW2tgA3Y9/7QzaCP3X+pzEjz?=
+ =?us-ascii?Q?aoRInXOWdnIq7Z9AyaDLcOPd3iD/Fdux7tbghK/LKfoCc6xYo9np7rqBtJGI?=
+ =?us-ascii?Q?LDFD5WDPDsv7TfFCWzouVhKkSJS77RvBfQxCWxGIir3mGy6SsvoCxFppg2MK?=
+ =?us-ascii?Q?G7J61SlA5e/nMg21KaP/QEINTF1EPjM7WCqodz1PAPRGT1X7xI0/ErZWN74q?=
+ =?us-ascii?Q?OTVCZNZnXgmaYgqsn4Lb6FmZt9MSDFP+DkrXvKJ53iodmm316FBaW/AC4Nz7?=
+ =?us-ascii?Q?yXAhvQszPWHRlK3MWDGLfzsuvL8hEa42pqEJhuTSMiW2tdiZbhHyXC7iOdyv?=
+ =?us-ascii?Q?4E596u2u7tBFGbMzFtF+9D9eMKKNX8nvsl93pH8bkCY2u/QJzfaSs21JxR1P?=
+ =?us-ascii?Q?wXZNWP5f0MUDfLjHyQYAaBAz5lvh3dUzJz9Hlqvjq7Eq+54WggQitBixODmG?=
+ =?us-ascii?Q?3ZWD9yeQY7Yp8hXQSlwGo7YxVxyzeLKgB3DWzgWBIciiz5N0W8ZvmtB+5CFW?=
+ =?us-ascii?Q?ppKKoKQWuw0aE+u0UlfFC/KnACdOew4RzRvGA3NVNu1GbvDbBgHyI+oVFSjx?=
+ =?us-ascii?Q?sQcyGUr2zCihHQHLLYFfNEDg88D8p8idViRKllQeKz/rcnYRY9VTMouaE4aM?=
+ =?us-ascii?Q?SNz/ACZfaB1U/l06AE9u73IBj+g6sRCIgjKcVEs06/WBnw+smiCJIcrx+MrU?=
+ =?us-ascii?Q?z1ZxFlIgZhJgBt+Ec7CWOOizZ9sOCD55TgMYw2EOiTjRimP8VdbTX0Qt3JBn?=
+ =?us-ascii?Q?Vz3yuR6VMNopG+Tsgw+XnVvBXsoPSGNaBj1ee4sTUz5ALBsEKIXGPpd/WkQy?=
+ =?us-ascii?Q?ND1vhWUXvWEJFrV28JsgyaSAESIHcphmIDo3ANBqz8EtCyp+5crF/37djcfV?=
+ =?us-ascii?Q?JXzXZTmWBuBdzd3Cvaq5uxskkXOW8Wt0FelCNgBfHuA4AzxmuU0sSLJVhDfr?=
+ =?us-ascii?Q?3kjqeVA4T77FqKcv77QJHZh0G/ACl9jWwGeFYMRcKNbTLdyKO4Ss+qC2hp20?=
+ =?us-ascii?Q?BN6X1OJNtFeEaHPh5NZYIsonEt93sV2e28z9eVvyaiiVolHr11JDuHpYviNi?=
+ =?us-ascii?Q?GOAwGjH3AANxxuH3KE2sGDNhwsSoP4Npf0MCblUPedSfsHCf82WxYUFpkIBU?=
+ =?us-ascii?Q?f+DrGYJX+0gIPjLW3Jr2MEuRQSXr4293dfx90V8djkK18A35XN7vr0LuBfpr?=
+ =?us-ascii?Q?5zgH7t664bawQmaKsl/VWxri0qkfOnEmPshqpIPRvTv+FOk40p0PWFFTohD9?=
+ =?us-ascii?Q?e4iT44LrJ+MvJxn2GmnipbEeeQZOlMD3mPn5zeFbx/Xp/bqa9rmfmEQVfoDV?=
+ =?us-ascii?Q?42GkPh4lyRR3dXrjFvKY/XhDYdWba47GCziZrm+/v1BHPn8oun2VWjalTyW7?=
+ =?us-ascii?Q?AQbTs2xFJVViCLOqEGyTBptjty4euetImjzjB1Qn1uhGVvvF5rqHRwM31HPp?=
+ =?us-ascii?Q?qPUroHZ5OucC622Q6aPhuBKFPFxyCuTj0Mhr80sMBhn22O7n1G0ibF4NC6WN?=
+ =?us-ascii?Q?ySARMjDeNzJo3TxSkg5/rNALg2FvcgcWIxRK1ukdiQJUTqE7MeRnSrfrr/IT?=
+ =?us-ascii?Q?xKmmxRFS4Q=3D=3D?=
+X-Exchange-RoutingPolicyChecked: cw29c+NEMm87peopRVUu/V9OTejk+BJkVpc6MJ2B1ZT6C4UsJWdqD4Up9Lj3gh5vVtxXX+fQwKoomT/fCmq+DJbSveWFa9WIkPiUt6VfdoWvdwBYimpSaFQgm2DkDwqRfXNh3m80xaBo1JjjfxQsoC7AhiDrL+7s2DeqlSCj2jvhPJMI4x/66SICCEXut7PQRQ6raAw1dF4ZSFyFtiCxqxZWXHKISUR4BUXR/ay0OYGJn9qmdI523n7/2rS53FYpQC5RCJYGz2Ui/VwDRsqPznqLXZ1mTQMZdqNcG8J47II+nMJ58ss4agcxPlztMRkZgTI3tzQCJyHchjhDElT+zg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c01e4d4a-d0b8-4c15-89a2-08df35b00649
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 11:30:24.9841 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jK+kNBoJGeP+hgXSSXaRKfp9otdjEbt+8eadcCBuYzhWzSJ/eIO7Bxk8LVZJdX91P4zGru8Y4qcZ/3ij06L4Gg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSWPR11MB9823
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,78 +156,99 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Am Donnerstag, dem 29.10.2026 um 11:28 +0100 schrieb Philipp Stanner:
-> On Thu, 2026-10-29 at 11:23 +0100, Lucas Stach wrote:
-> > Hi Philipp, hi Christian,
->=20
-> Jo Lucas
->=20
-> >=20
-> > Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
->=20
-> [=E2=80=A6]
->=20
-> > I think we would all be interested in the actual use-case that's
-> > sensitive to this kind of latency.
->=20
-> Me too.
->=20
-> Let me use this opportunity to stress that in the future, in DRM,
-> whenever we have [to accept] a racy "optimization", both commit
-> messages and code comments must document why it exists and who
-> requested it with what proof.
->=20
-I don't fully agree that this is a racy optimization. To me it seems
-the most critical issue here is that "fence is signaled" is under
-specified.
+An upcoming change will need to acquire a TypeC port link reference
+along with an AUX power domain reference when enabling PPS VDD for the
+port during an AUX transfer. Acquiring the link reference requires
+holding the TypeC port lock.
 
-Does it purely mean that the actual hardware operation that the fence
-is guarding is done? In that case the current implementation is fine,
-as the bit is only set after the HW told us that it is done. This is
-the interpretation I would assume was the original intent behind the
-current implementation.
+To allow the PPS VDD code to take this lock itself, acquire the TypeC
+port lock in the AUX transfer function only after locking PPS and
+enabling VDD.
 
-Does it mean that the hardware is done and all registered callbacks
-have been run, even if the actual work is done in a (indefinitely)
-deferred worker? You mentioning explosions caused by the pure signal
-state check outside the lock would imply that some consumers of the
-fence took the signaled state to mean this interpretation.
+CC: stable@vger.kernel.org # 6.14+
+Signed-off-by: Imre Deak <imre.deak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 39 ++++++++++-----------
+ 1 file changed, 19 insertions(+), 20 deletions(-)
 
-> Would save us lots of time when those things are discussed >5 years
-> later.
->=20
-> >=20
-> > However, I wonder if this is even an issue anymore with the lock
-> > inlined into the fence structure.
->=20
-> Almost no one uses inline-lock so far. So unfortunately, we might
-> regress old drivers, maybe.
->=20
-> But sounds as if you're in favor of phasing the locklessness out :)
->=20
-I'm in favor of ripping out hard to reason optimizations if they turn
-out to not provide any optimization after all. However, before going in
-either direction we need to clarify the fence signal state interface.=C2=A0
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 394326d17e0da..63bd72e537ec3 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -269,22 +269,6 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	for (i = 0; i < ARRAY_SIZE(ch_data); i++)
+ 		ch_data[i] = intel_dp->aux_ch_data_reg(intel_dp, i);
+ 
+-	intel_digital_port_lock(encoder);
+-	/*
+-	 * Abort transfers on a disconnected port as required by
+-	 * DP 1.4a link CTS 4.2.1.5, also avoiding the long AUX
+-	 * timeouts that would otherwise happen.
+-	 */
+-	if (!intel_dp_is_edp(intel_dp) &&
+-	    !intel_digital_port_connected_locked(&dig_port->base)) {
+-		ret = -ENXIO;
+-		goto out_unlock;
+-	}
+-
+-	aux_domain = intel_aux_power_domain(dig_port);
+-
+-	aux_wakeref = intel_display_power_get(display, aux_domain);
+-
+ 	/*
+ 	 * The PPS state needs to be locked for:
+ 	 * - eDP on all platforms, since AUX transfers on eDP need VDD power
+@@ -307,6 +291,21 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 	 */
+ 	vdd = intel_pps_vdd_on_unlocked(intel_dp);
+ 
++	intel_digital_port_lock(encoder);
++	/*
++	 * Abort transfers on a disconnected port as required by
++	 * DP 1.4a link CTS 4.2.1.5, also avoiding the long AUX
++	 * timeouts that would otherwise happen.
++	 */
++	if (!intel_dp_is_edp(intel_dp) &&
++	    !intel_digital_port_connected_locked(&dig_port->base)) {
++		ret = -ENXIO;
++		goto out_unlock;
++	}
++
++	aux_domain = intel_aux_power_domain(dig_port);
++	aux_wakeref = intel_display_power_get(display, aux_domain);
++
+ 	/*
+ 	 * dp aux is extremely sensitive to irq latency, hence request the
+ 	 * lowest possible wakeup latency and so prevent the cpu from going into
+@@ -450,16 +449,16 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ out:
+ 	cpu_latency_qos_update_request(&intel_dp->pm_qos, PM_QOS_DEFAULT_VALUE);
+ 
++	intel_display_power_put_async(display, aux_domain, aux_wakeref);
++out_unlock:
++	intel_digital_port_unlock(encoder);
++
+ 	if (vdd)
+ 		intel_pps_vdd_off_unlocked(intel_dp, false);
+ 
+ 	if (pps_wakeref)
+ 		intel_pps_unlock(intel_dp, pps_wakeref);
+ 
+-	intel_display_power_put_async(display, aux_domain, aux_wakeref);
+-out_unlock:
+-	intel_digital_port_unlock(encoder);
+-
+ 	return ret;
+ }
+ 
+-- 
+2.49.1
 
-Either we keep the (in my interpretation) original intent of the signal
-state only telling about HW progress state and thus declare some
-current uses as wrong usage of the interface, which need to be fixed.
-Or we need to include the SW callbacks too, but then your current lock
-approach only guards against code directly executed in the callback
-functions. If the implementation of the callback defers anything to a
-worker this may still be racy.
-And that's also my criticism to this patchset now that I thought a bit
-more about this: by simply putting things under the lock you serialized
-more of the SW state without actually better defining the guarantees
-that this changed fence interface provides or doesn't provide to the
-consumers.
-
-Regards,
-Lucas
