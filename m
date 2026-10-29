@@ -2,79 +2,75 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6454D606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4ED2606A32D
 	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 12:42:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=YdE4RXLQ
+	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=D0KnBisL
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC3410E28D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 688A810EDA4;
 	Mon,  2 Nov 2026 12:42:14 +0000 (UTC)
-Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com
- [74.125.224.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CCF310EAD4
- for <intel-xe@lists.freedesktop.org>; Sun,  1 Nov 2026 22:53:27 +0000 (UTC)
-Received: by mail-yx1-f44.google.com with SMTP id
- 956f58d0204a3-67990a45e02so1984691d50.3
- for <intel-xe@lists.freedesktop.org>; Sun, 01 Nov 2026 14:53:27 -0800 (PST)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com
+ [209.85.222.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50FCD10E3C2
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 21:32:00 +0000 (UTC)
+Received: by mail-ua1-f54.google.com with SMTP id
+ a1e0cc1a2514c-98febe968deso30573241.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 14:32:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1793573606; x=1794178406; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=s7+GOe5TlTu09tPuJuAXaS5FmzeWJcxHvWMkwG9Tvkg=;
- b=YdE4RXLQB7p3MOkDNcvS0xwLFcxn7qDh8oDiE0owbEY8xTJUaa47yl7MpOPqClCU6T
- YRK59p5tckkXIXFMIbcVg6vHOlWyDmyJx+fPZA9aaC8hv/sR5FFgtlQQteb1SwIkYTaj
- Z8AKAA1T80TwTLu+OCv9NRdM2mth2kUajkw4loyCRqXO3WPshxlRbk+MkS0ty22wgN3Y
- MIbbzniIzdJq9wUvD6BJ4bpmxkfAduejeL97ta81f1KYo7X9gpM2DtNF663q96rhLrqX
- stmIiWSt4Z1qyDUyu9RjWr9m6qSRgIlNjAmVRaPq+daP6WnZW2vA3LGm/UTYyfFXWHUT
- qWAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1793573606; x=1794178406;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=gmail.com; s=20260707; t=1793309519; x=1793914319; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to:content-type;
- bh=s7+GOe5TlTu09tPuJuAXaS5FmzeWJcxHvWMkwG9Tvkg=;
- b=dfErB9M/t+yXjNYiOJgklt4y7bWrFlHS3RqCqfIkGioAdSMAUAyQBE/+M64OJ4xO6g
- NJ4MKt8H2CpInsfgG/F+Wo9r32veLuOLU3Spo2voqpT3UENL5ghb2coXsyqZDFy+UYoD
- o+uTk7gBCWNH/0Ma/ac1TYpwkswLowgd8+7kDyFBDUA/A8eOKt9+jBtaHEwBgT3xvgYb
- Z69Z3CLHEVhcciDZ1s49IWKTsqMEwDjYc51wTCRwX7BK3ItA/ZIuBtGsgQ0Oh9FIoRGx
- XIfsFMwRHpPFq2bdwaxwwFuDE6p2xzxCJqlhldyhOKkrm6lkQiMQvSEVCUmJqpQJLkW4
- YcMQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvByW5qb3sKzJyYNJFG7jqf0iorw9wVZyKIwrIMTWPCk/3EhC05Ch/FlPZY1y9EKWEJzfi3R3oDac+g==@lists.freedesktop.org
-X-Gm-Message-State: AFq9FYKxqB8ZxOCSs6Blv4XOvtW2KnyNKBdFnEvnVlC4aDpbRryXargK
- gJ6yh+ZYYQvOnlT5Lx7CjdRTCCol4JqYKpMcBsSabJGQBSQXCk6pu/Ah
-X-Gm-Gg: AYBFou2NrE4ZmHJZTenZ+sv0VHzpDkTPsqPTMRqz6totj8UcUd8fquAhJhVvnlD5j7a
- 3BJf+83b40Btfq0Qo1m/JIpbpveh3Yg1sJWerfNqmrw+sWX6+AAizVkvr50qzDpSKe0hLfBeF5l
- bHsB9F/aZegZhbG2jzYdZn9ExXbytHVQ0rd6QTubbJ3tn1ApbjmkabjT1Y/7S7lOaQTw28Qvv8R
- FORynLKun3Gz1OL2+NTWv3oCgCJ9KF3E6rhZooB8eFSJYNTFPcRzsnoUxRf7PkebvX6GVu8Gz+Y
- d4mb5pHBsIchT10mTuotp2u5Dgkp0lpe1vhQbdw4vleJcIdfaUmB7BQqdcUZ3Y0UeYuC3ABcsQT
- +VLYSEl0/pUsU7hG9uuGYwrdDsGv9CjfbzH7C3dG7Pqz7p/9h2ODtST3Dmx3daz9h6Fvpe0uP8X
- GkVsk8FmWtOSJMeeU4DlKomtmgX+vQU372BEr0GQe5GF13O1tXgbaaVhwpOvtZ78gYf5Yypvwhk
- XsC5P3I9r6+x81GZ/wFtJZvNm/+PJJfTOnV+ckvDftSl/Thy7Hl3rkX10bo0gu+2Vb4OSdi7cDB
- btN+DQgoO687QawwS4Qjtv86OyDhWa58KmQT9yDQCHiTQF0tWc1/HOrckFInqeCISsVPTlgNOzr
- ooBTTlTHd3N2GXdEXD1BjgDC3EQ==
-X-Received: by 2002:a05:690e:13c9:b0:677:b7a7:ba38 with SMTP id
- 956f58d0204a3-67ba4c806b6mr7372011d50.14.1793573605653; 
- Sun, 01 Nov 2026 14:53:25 -0800 (PST)
-Received: from tux ([2601:7c0:c37c:135::5a87])
+ bh=2fppUUj5HcejdeVjTMNfb4aywjhpz3Hjgzr44FiZzlE=;
+ b=D0KnBisLfcEPF+TtxIwpvMMBj7Pr0Ju9stVwSkE6D+K+vMn8B6Ezt9XHOZ4+qK4S3C
+ 4ogp9j4oqUyPEops1aTtqGOG0CrDXLg39TK5TGwgbXZLsWLrhXAEyejJff4WNNirHQ0V
+ LJ+IQDoCzH5Y72lMlA6vZMK4ixETGFwGRazS/owWytQa93qZnCfdv6zGJfsaAC/mde2b
+ fd/Jd98aYirVX3v9i5oPxGPOtEwz1VJrH5ZrlTGPmpZuk7O6Sp+ZrmPXZR6b0olE6Ags
+ /dWaRqe+ywmug/sZncZ3EUJMcg2p+9vYy7muFgm5m9NNlGBLHDy/i4jNHWc9I4Lmhlk/
+ kNgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1793309519; x=1793914319;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=2fppUUj5HcejdeVjTMNfb4aywjhpz3Hjgzr44FiZzlE=;
+ b=NgClH8jvoAP5OUH0t0X1+aXv4sI8VNVlMNL9gW0+l1OFDffA1XovjMUbvFIftQYqSr
+ lT7QRnszQ8ZkyqS1ag/B63gkkB1ihGUcX4MqbFDMOVKge42oI/O+gBQ9m/IRGUG1fn6e
+ yo1IifYTzh+VqXN37LNbrAxwRpRhFzJkU2FrFZBxzHa1Wg6+02FR072YyAYPPbt1HGeo
+ BV7XvCcqzLZewOJCUOszxhLd8KabB/GxsIDDgs8whpr51XHQeIaYBEFyvTqdXdygSn4r
+ 4aAMFEZ9dwbNGcftlTtymbviONewoxVy7FAf8wXC314OEbAcrm2ppBgNtIYoO8Yh56mt
+ SUCA==
+X-Gm-Message-State: AFq9FYLtnTc50m6Domay9emHA9LRD1AfqM5FwygHAhvQQOQdTepGKs2l
+ bJgucLs+0OdNzAG2lxf1dY93CeGF7479AvQtJvClSv3Olbl4varL7Bj0
+X-Gm-Gg: AYBFou1WurZEvIn/MgfkG0gbTY/Yka5Xj78Lze2N/+ioSJ/MTy3j2yOA5HJRO154rMt
+ lZO8WuCGBflXhU4Pu0SAegsUEKmCz+AFKr+WzsbdXmOG+bBzuQ0n7rZedFs0Ue995YlhWlNaC/y
+ wymceJSAlUY+E5LxQp+WXw+JvbcoZAuEkt67zY3Ko5jr4ENJ35smAMiQ9L4GzvC5dshgGm1SZtC
+ tiIzmYt8yHyVypN7n2GsjRQuJ5T1hCNG5eWFX2WVK6MtpKrZskfSl/PHygdZ//3yoX7RN4NvLKC
+ Rou5oJgGhs5PSlhOzKkGTdwXydYvS9/rTsyH+Nf4EwlAY+KMMjw6DUMrzLvGLNN2hIn0hHp0Fjw
+ UjU+lorrpHWohc8vYOKsgXFhXgrIu6dvY9c4NI27YpM8S/pYEoYVvs8oTdMPptU6BTLu0+S2mSJ
+ bDgMsQU+XqbJyBOe1TICTT8V1TsUtsDaIt91hHX9p/rP5aTzO2K6SwSxYuo/cTBI5K9p+sNvIUG
+ GiTlXc1XK0NywriCranTQKOP0Kr1IiA6iOst0SzYMOg0LBednGgsfPzKvtQlKDsZ9P9rdUxmpkZ
+ xEm010AS0BN5P4pVz22eR2rUZck4Oj6Tnig/0xniJmO83b897lUligmBblPaFkmSbfkwIY8+Wnq
+ 51A==
+X-Received: by 2002:a05:6102:f0b:b0:7d0:5688:f4fd with SMTP id
+ ada2fe7eead31-7d0726c0897mr316589137.17.1793309518687; 
+ Thu, 29 Oct 2026 14:31:58 -0700 (PDT)
+Received: from localhost.localdomain ([190.13.90.101])
  by smtp.gmail.com with ESMTPSA id
- 00721157ae682-8b2b71b70fdsm41846847b3.43.2026.11.01.14.53.24
+ 71dfb90a1353d-5ec69caeccdsm239589e0c.16.2026.10.29.14.31.56
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Nov 2026 14:53:25 -0800 (PST)
-From: Ethan Tidmore <ethantidmore06@gmail.com>
-To: Riana Tauro <riana.tauro@intel.com>,
-	intel-xe@lists.freedesktop.org
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Ethan Tidmore <ethantidmore06@gmail.com>
-Subject: [PATCH] drm/xe/xe_ras: Use xe_log_info to avoid passing zero as error
- code
-Date: Sun,  1 Nov 2026 16:52:52 -0600
-Message-ID: <20261101225252.556741-1-ethantidmore06@gmail.com>
-X-Mailer: git-send-email 2.56.0
+ Thu, 29 Oct 2026 14:31:58 -0700 (PDT)
+From: Lucas Moreno <lucasgabmoreno@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, i915-ci-infra@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] drm/i915/bios: Fix reset sequence order on GLK VBTs with
+ DEASSERT_RESET in INIT_OTP
+Date: Thu, 29 Oct 2026 18:30:41 -0300
+Message-ID: <20261029213041.6220-1-lucasgabmoreno@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20261013001245.12347-1-lucasgabmoreno@gmail.com>
+References: <20261013001245.12347-1-lucasgabmoreno@gmail.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -89,46 +85,24 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-20.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-5.7 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-xe_log_err() expects an error code, but in the case 0 branch of
-handle_page_offline(), 'ret' is zero. Passing zero to a function
-expecting an error code is incorrect.
+Hi,
 
-Switch to xe_log_info() instead so that an error code is not
-expected and zero is not passed.
+A gentle ping on this one. CI has not run on the series because my
+address is not on the allowlist (I also mailed i915-ci-infra about it
+on Oct 26). Could someone with access to Patchwork please click
+"retest" on series 176138, or let me know who I should ask?
 
-Fixes: 12b427cf8bb0 ("drm/xe/xe_ras: Handle page offline requests for device memory ecc errors")
-Signed-off-by: Ethan Tidmore <ethantidmore06@gmail.com>
----
- drivers/gpu/drm/xe/xe_ras.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+I'm also happy to rework the patch, for example to limit it with a DMI
+quirk for the D330 instead of applying it to all GLK, if that is the
+preferred way. The issue it closes is
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13225
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index db3cbc186a51..7942a2a48887 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -304,9 +304,9 @@ static int handle_page_offline(struct xe_device *xe, u64 page_address, bool noti
- 	switch (ret) {
- 	case 0:
- 		action = XE_RAS_PAGE_ACTION_REMOVE;
--		xe_log_err(xe, DEVICE_MEMORY, ret,
--			   "Poison detected at physical address 0x%llx, page soft-offlined\n",
--			   page_address);
-+		xe_log_info(xe, DEVICE_MEMORY,
-+			    "Poison detected at physical address 0x%llx, page soft-offlined\n",
-+			    page_address);
- 		break;
- 	case -EIO:
- 		xe_log_err(xe, DEVICE_MEMORY, ret,
--- 
 Thanks,
-ET
-https://github.com/sponsors/ethantidmore
-
+Lucas
