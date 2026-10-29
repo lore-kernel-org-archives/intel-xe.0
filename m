@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8D40606A31A
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 08:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1846606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 08:40:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845B910E7B4;
-	Thu, 29 Oct 2026 08:39:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5A0C10E7A3;
+	Thu, 29 Oct 2026 08:40:09 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EFC110E7A3;
- Thu, 29 Oct 2026 08:39:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0383634274003038990=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4BA210E7A3;
+ Thu, 29 Oct 2026 08:40:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Add_support_?=
- =?utf-8?q?for_the_DP_symbol_based_timing_generator_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_CPER_logging_support_?=
+ =?utf-8?q?for_CRI_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 Oct 2026 08:39:57 -0000
-Message-ID: <179326319725.86652.3098973257554788492@221881a7231d>
+Date: Thu, 29 Oct 2026 08:40:07 -0000
+Message-ID: <179326320793.86671.15975706887401671707@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261029-vlk-64036-dp-symbol-tg-v3-0-69022424ef17@intel.com>
-In-Reply-To: <20261029-vlk-64036-dp-symbol-tg-v3-0-69022424ef17@intel.com>
+References: <20261029082752.1739281-12-badal.nilawar@intel.com>
+In-Reply-To: <20261029082752.1739281-12-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,141 +35,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============0383634274003038990==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: Add support for the DP symbol based timing generator (rev2)
-URL   : https://patchwork.freedesktop.org/series/177001/
-State : success
+Series: Add CPER logging support for CRI (rev7)
+URL   : https://patchwork.freedesktop.org/series/169692/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795_BAT -> xe-pw-177001v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5a5bbc7600b3c1b4c1b88bede197a365ce3f1322
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Thu Oct 29 13:58:03 2026 +0530
 
-Summary
--------
+    drm/xe/xe_ras: Report correctable errors using SIGID
+    
+    Use xe_log_* helper to report correctable errors.
+    
+    Example:
+            xe 0000:03:00.0: [drm] *ERROR* SIGID=203 CORRECTED
+    (010200180000000100000000) [Hardware Error]: CORE_COMPUTE: error detected
+    
+    Assisted-by: LLM
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
+    Cc: Raag Jadav <raag.jadav@intel.com>
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
++ /mt/dim checkpatch adf57aa7454332ef1651f5735de1ab6a1cc6b201 drm-intel
+fa9d5f9d7baf drm/xe/cper: Add CPER reporting entry point for xe_log
+-:30: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#30: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 98 lines checked
+472f7ee2a1ce drm/xe/cper: Retrieve the error counter record for CPER reporting
+e4a1e6c3032b drm/xe/cper: Initialize Intel-specific CPER header
+-:94: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#94: 
+new file mode 100644
 
-  No regressions found.
+total: 0 errors, 1 warnings, 0 checks, 123 lines checked
+b2121d181841 drm/xe/cper: Construct CPER record for hardware errors
+9da399ebfe0e drm/xe/cper: Log CPER records for aggregate counter retrieval
+-:14: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#14: 
+new file mode 100644
 
-  
+total: 0 errors, 1 warnings, 0 checks, 283 lines checked
+fdc88eb49917 drm/xe/cper: Emit cper record to trace buf
+-:70: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#70: 
+new file mode 100644
 
-Participating hosts (15 -> 15)
-------------------------------
+-:117: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#117: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:28:
++	    TP_STRUCT__entry(
 
-  No changes in participating hosts
+-:127: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#127: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:38:
++	    TP_fast_assign(
 
-Known issues
-------------
+-:152: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#152: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:63:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                              ^
 
-  Here are the changes found in xe-pw-177001v2_BAT that come from known issues:
+-:152: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#152: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:63:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                 ^
 
-### IGT changes ###
+-:152: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#152: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:63:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                         ^
 
-#### Issues hit ####
+-:152: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#152: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:63:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                             ^
 
-  * igt@xe_create@create-execqueues-noleak:
-    - bat-ptl-2:          NOTRUN -> [ABORT][1] ([Intel XE#9362])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/bat-ptl-2/igt@xe_create@create-execqueues-noleak.html
+-:152: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#152: FILE: drivers/gpu/drm/xe/xe_trace_cper.h:63:
++#define TRACE_INCLUDE_PATH ../../drivers/gpu/drm/xe
+                                                 ^
 
-  
-#### Possible fixes ####
-
-  * igt@xe_compute_preempt@compute-threadgroup-preempt:
-    - bat-ptl-2:          [ABORT][2] ([Intel XE#9362]) -> [PASS][3] +1 other test pass
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html
-
-  
-  [Intel XE#9362]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362
-
-
-Build changes
--------------
-
-  * Linux: xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795 -> xe-pw-177001v2
-
-  IGT_9170: 9170
-  xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795: 8f4ea34f33525cf5120a2a68ee119ef0df276795
-  xe-pw-177001v2: 177001v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/index.html
-
---===============0383634274003038990==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Add support for the DP symbol based timing generator (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177001/">https://patchwork.freedesktop.org/series/177001/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 7 checks, 116 lines checked
+a90e692adee4 drm/xe/xe_ras: Report device memory errors using SIGID
+90af1bac5574 drm/xe/xe_ras: Report core compute errors using SIGID
+439b5a6c5ae1 drm/xe/xe_ras: Report soc internal errors using SIGID
+5a5bbc7600b3 drm/xe/xe_ras: Report correctable errors using SIGID
 
 
-    <h1>CI Bug Log - changes from xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795_BAT -&gt; xe-pw-177001v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-177001v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_create@create-execqueues-noleak:<ul>
-<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/bat-ptl-2/igt@xe_create@create-execqueues-noleak.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_compute_preempt@compute-threadgroup-preempt:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v2/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795 -&gt; xe-pw-177001v2</li>
-</ul>
-<p>IGT_9170: 9170<br />
-  xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795: 8f4ea34f33525cf5120a2a68ee119ef0df276795<br />
-  xe-pw-177001v2: 177001v2</p>
-
-</body>
-</html>
-
---===============0383634274003038990==--
