@@ -2,193 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF746606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 13:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=kNKHDjEz
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562F4606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 14:12:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA8A1122FF;
-	Thu, 29 Oct 2026 13:44:29 +0000 (UTC)
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011061.outbound.protection.outlook.com [52.101.57.61])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A3E91122F8;
- Thu, 29 Oct 2026 13:44:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QdIiAqXAI+zWHrO16CJ5P0zhNYulxwjQYjPPM4Ui//BJ1bKvTnb72hqvnX+M2jOb+roky/Mc03bYLaohOOnKw0jo2BKS1mvPcILKupkX6qF6X9LbeFPfJZZ0mQ8PZuva7YvKhKkfUn9GTI3gAbXlkZsoPn6GJ2anQrbqiDJjK76xdfh1pGGPJztsqEmP58/MLvBJPd9NG4uV4xfnj1EMrzojTz83byf2bRMpWeUcXC4IcoVl05OP34uR3I7PhcL4lB1G3cvuV34h9YuzjGJYPArbepTzS3ADUKo/CeSiybHtEz/lOF3zRE+cT2Ztgs4tXJ0/gjaDcJd8IdC2w2bOuQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1u4PYj+cvLRBRXYmD3Z/wuQ5LDXlcQvlgFzTpcHPDiw=;
- b=wuS9l1D4AnMuSuUcy7Albr01USOAb+dWlWdFnLvG5S3HrEJHdWh7CVOTegEyVRX2Cgu0vMPaRCHrPaVNpU8qmYa62oSZNZcFHACOh8idSjJNySBG9f4Ou8rzOXTWUx2oiO2zw6euXoc6sc4W2sRg1AAt4YijE1QWqR7OHympdSkFtujfFDRSqzGqCshkAclmIGFwFseeuY8tojvTxuUy0WeksFXqa2IhU3SMJkktc+1ua7QaiNkBoaQc3csa/XlAoPlfxWGmZ7BVsTK74rhZPQPXnwWs5wgbBLHGfM/sy7tPckhEndA9kZIty2CJP4FPPj43D+s8BDeCJso+5lcRvA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1u4PYj+cvLRBRXYmD3Z/wuQ5LDXlcQvlgFzTpcHPDiw=;
- b=kNKHDjEzP3f325erIp5at/HZX5EzmIqaS3e8gWwC6h8mSUTFwtnxLMOft7AwC5ddFAC/MFnC47pvDYnfCpj4Lq9Bq6Qu1yJgozAe2UHtQMNC2xDSWWq5oXVw0ykLFlIWFgDHBWGZ78k/oX/qcqRc42fhrT6ju1IhKyBzzMicb4o=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by MN0PR12MB5716.namprd12.prod.outlook.com (2603:10b6:208:373::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.8; Thu, 29 Oct
- 2026 13:44:11 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0546.021; Thu, 29 Oct 2026
- 13:44:11 +0000
-Message-ID: <2db0f1b4-6628-465e-928e-d779b89f59dc@amd.com>
-Date: Thu, 29 Oct 2026 14:43:52 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 0/6] dma-buf: Phase out is_signaled() race
-To: phasta@kernel.org, Lucas Stach <l.stach@pengutronix.de>,
- Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
- Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>,
- Tomeu Vizoso <tomeu@tomeuvizoso.net>,
- Karol Wachowski <karol.wachowski@linux.intel.com>,
- Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Russell King <linux+etnaviv@armlinux.org.uk>,
- Christian Gmeiner <christian.gmeiner@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Alessio Belle <alessio.belle@imgtec.com>,
- Luigi Santivetti <luigi.santivetti@imgtec.com>, Qiang Yu <yuq825@gmail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>, Lyude Paul
- <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Steven Price <steven.price@arm.com>,
- =?UTF-8?Q?Adri=C3=A1n_Larumbe?= <adrian.larumbe@collabora.com>,
- Liviu Dudau <liviu.dudau@arm.com>, Dave Airlie <airlied@redhat.com>,
- Gerd Hoffmann <kraxel@redhat.com>, Matthew Brost <matthew.brost@intel.com>,
- Natalie Vock <nat@pixelcluster.dev>,
- Arun Pravin <arunpravin.paneerselvam@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Melissa Wen <mwen@igalia.com>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
- <mcanal@igalia.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Cameron
- <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Sunil Khatri <sunil.khatri@amd.com>, Kees Cook <kees@kernel.org>,
- Jesse Zhang <jesse.zhang@amd.com>, =?UTF-8?Q?Timur_Krist=C3=B3f?=
- <timur.kristof@gmail.com>,
- Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
- Kexin Sun <kexinsun@smail.nju.edu.cn>, Prike Liang <Prike.Liang@amd.com>,
- David Rosca <david.rosca@amd.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Marco Crivellari <marco.crivellari@suse.com>,
- Shixiong Ou <oushixiong@kylinos.cn>,
- =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
- Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, Al Viro <viro@zeniv.linux.org.uk>,
- Neill Kapron <nkapron@google.com>,
- Michael Bommarito <michael.bommarito@gmail.com>, Sam Day <me@samcday.com>,
- Gabriel Prostitis <prostitisgabriel@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20261029095542.1526750-3-phasta@kernel.org>
- <abca3f0039b07999e29558690c27fef23292bea3.camel@pengutronix.de>
- <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <3565783722927fa48a30f48b063ef99bcd703eab.camel@mailbox.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BL1P223CA0025.NAMP223.PROD.OUTLOOK.COM
- (2603:10b6:208:2c4::30) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A1711232B;
+	Thu, 29 Oct 2026 14:12:54 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2865B112310;
+ Thu, 29 Oct 2026 14:12:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3549096070856856464=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|MN0PR12MB5716:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4f175a8-d876-4067-d914-08df35c2b66d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|7416014|921020|11063799006|4143699003|56012099006|261026121527099003|261026140227099003|261028144727099003|10067099003|261022105027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Lk286bQ5Rub5REwqftKLPts5rFVF0LYGEPbYRc0zyAUGxDspTrurJAog+OPthqT5Vht+kHe3ebOvp6Z643HNp4Dt37Z0Y1lHrfdGD0yH/ZYByx+UiURNiEeeuE8LSP6Erz4wrUfmP0SRL42fI/kKCWvgBHKy/7ml75lWCXUaDIA6zdv/2yVcwKA1kar0ikrLmH45bY+hNSCFh+d+xrk2LnCXG5kNh+eenz9uflwWXGfxF25I0GxBvxMvGQS2r8SLJSkwV6A2R3Vx2mTuVGL+PSPkHHuFHjlFt07t8gqeDy2AZslHHlTv9aRogsBhkep06jRL9NnElBrcIzD41LtOPL+t3PclZVVBSKe3X5WZQw0yagOX14G23m+IOuR5J7yk/Bu132jPhzColiDqRJ7dEpRfkioGKWAV45bR8T4v4kBPbXus63hLRkCkpzmI7rEkZWdokPxDBTmInl8bbp5+04KzU8Xae+5i2iAUOvJzNxgQhSPjFiFo4qIQ6I6yZxJouiJQZTuQNy7InhPg9bvJ0NxRuhWZ1DU4E2ES3osW7WkqHOXlSFrN6cS3JobXeOGJeqpVOHXYZQDyD7wYWrIhCz4kLEFDgz50w36REz/Expo3lZbq2Bf22NuOjk0DaLb/AeIAQOSCXem7zD4241MMacnIzoHk/k8HXuwC35YPT4cAbYNSQmJqxPTXsq/XDAl4DHmHWkL0j5CAqO3LayEuZA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(7416014)(921020)(11063799006)(4143699003)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(10067099003)(261022105027099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eE5rYmJWYkxBcGFYd2oxZWxRai9VNHI2dldqOUN0UnppZ1JuTGs5aFVNVkFH?=
- =?utf-8?B?Y0NuOFhhQU90NGh0M1BLc3U0eWlpa3hLT3RLK0pGU1pYMloxSDl2MUZuV3c2?=
- =?utf-8?B?cVp1eVUwbXZ1SjVoNlNpSGloZW4yOVNaSUpnaUxraEg0d3lsOFVRTEFJRVdD?=
- =?utf-8?B?YlZ6bU1FUGthZEZkclVGOWNyeThoWGkrM1M3S2FDRmxFc3FlSUNlbnBsSzF1?=
- =?utf-8?B?aUxXYXZxL0dTUVJZV0RIaHBaTEMrSWtKWEZoMXpRUTllVExzUFFSTUtVU1p1?=
- =?utf-8?B?U3pwM3dCWWtxZDVYRkJzenRRZlZiRFNFRWtrY1BpTHFtUDc1Q1B6UDIrb0tB?=
- =?utf-8?B?UlNmQ3ppcTMxZXFidFcyNzE4Q1ZGNHZwWFhXWWwyREFQU0JpK2NJU3I2TFVO?=
- =?utf-8?B?Ulp6NGFYeHNsNmUyOXJNSUxMeENRTHZHaVpZQ3Y0ZWdTanM3N0tOVjgxdHVw?=
- =?utf-8?B?VWZ5MnptK0ZpN3NLbGUrZmxtWVlmeXpISzV1OURxeTNvWGhZb2l1ckFnZU5J?=
- =?utf-8?B?R2o1Nk1wcklrNXBlNEdEdFdYRmx3U0hOU3dMRVlsMmh1RC95enQ4QytmYm85?=
- =?utf-8?B?alJCWlNoQ1NIbDU4TGZRbGs1Sy9MYlNJV2s0WGRvSGUvMlB3RjdMWm5YZkNH?=
- =?utf-8?B?bWRMZk1tcTRZWHg1eVNTWnl2OWhYcTVsRTN5Tkw0dHR5SG5nT0xRTmdsMzk3?=
- =?utf-8?B?UFAzVmhvREdzb21sK0ZsVU9JUCtEZ21UVm1NelE3QmZqMlpkcUZVR3ZzV2p0?=
- =?utf-8?B?eFR5K3gwT1ZialVZaVJjS3IvUjhjWGtXTm12aksxR1VhMkE4MG1XRng5d2FH?=
- =?utf-8?B?ckFZSFNTbktvNU9VRVlMV3E0M09GTG4rdFZWMFpTWDdITklmNzQwVDErLzlu?=
- =?utf-8?B?Um1GVWwrQklURy9UbnMwV0czQXNtTjZ3ZytiVnA2YmlsU1dqb3lXdk9QbWRq?=
- =?utf-8?B?YkJZVHZrR2NmMDlhUy8ybFZ6dDZSQkRud0pwM1p1RDNWUzZuak44ZTNmbEFD?=
- =?utf-8?B?WitwWXNCQzdxUW1tSm9FVnBJMm15Y1MyRTBkOEl3ejk5QmFyOHV5cTIzK3dV?=
- =?utf-8?B?RW1qcnVjNDBZWklCcDh0eDl6R3daMkZZWW0wWldMMDlxU1ljajlmU0RQRzZO?=
- =?utf-8?B?aHFuSWZKcHJCcmhKUXk2RWhDdDhkd0FPZTVtdWFhZ2F0d2tUYzhvWlZJZDBR?=
- =?utf-8?B?dG5UcUMrd25Fek1Da0pHMEt0eFJkb0RMOGxWSE02SXJmWjVyTFEvdUhacFkz?=
- =?utf-8?B?clI3eXJrUXU3eENrVHl2djRXRWtLOVhpUVVjVXNGbHVCTHVTeG0yOE1EM3dT?=
- =?utf-8?B?K2UzM1FVSkxkaVdvODFhQTQzUld2Z0dKYTZvSEJHZE5KclNmZ1pyK2hobE93?=
- =?utf-8?B?di9xRjRkT2pDS2lsaU5LN2NJTlhqdXh4a2xEaXdyMnJtQmNZMzB1MjBNdTNm?=
- =?utf-8?B?c21qWDl3S05mckdBWjRFejdmVkpmeW1pbWZ5ZENWa01xQUlQNDE3VmRtbVRE?=
- =?utf-8?B?Zm1oS2FTUmFrWDdHN3ozc25JWkVHMnZXZGZWNTVBYmxaTzhYcDFIRkdkeWNa?=
- =?utf-8?B?MThiQi9QK1h0aW02UW05MnZpOWhkV2U3Y211djNsN01WNkVrVmpQZXA3eUVu?=
- =?utf-8?B?NkQ1elN1NUJHVUxQUzJWS0had2YzR3NOeXNvRXdHa1lxNnFCOFJNcDk0ZWs5?=
- =?utf-8?B?NHJCK0xPY09HTmQ0VXVOemJVaENMeFhtS1RtYmVjQXB5NUgyQjgzS0c0K2Z3?=
- =?utf-8?B?eWNmaEJpMFYwOHB5bW11Y09TdFB3YjR2R0R4cEpqMlROak1nVkdUdXJRNnlQ?=
- =?utf-8?B?RHAzMWVib3hUM25nYWs1MHp5YXpGTUIzTEZqV2pVZmNGbWt3WW5UcTBVU3hk?=
- =?utf-8?B?WWpQNGx3aFN4S0lZaUphazc5M2NYdE9tVWhSZjdMMlB1TmUzcTlkNFByK2NW?=
- =?utf-8?B?cUdCcm9acUxVOUZhcjRWNnRUS1JDeTB3Z085OGxHelEyMEk2NGM4QTRvTU9q?=
- =?utf-8?B?WmhQUWovQzJ3R2UwNVBWamx2aVNxbWtxTGFoRHRlaWgyeEJna1A4SmUyazBr?=
- =?utf-8?B?aVNCTFF3WTR2UDdYdUkyZlprcytYL3NteXVkQ29LVDczMUtpRmtzb2Rhdkdt?=
- =?utf-8?B?cGpoZ1I0azYvSXBPcUpjZXY1cTAxNVo0My9hVll4d1ZsZGJNd3A2TlRlMnV6?=
- =?utf-8?B?STNlUGd4Zi82YnIxRHE3YU0xRVZIVUgydG1ZOURBYllzMVlmSkhwQ1F4VVFB?=
- =?utf-8?B?MHVWTjlCNC9VRzZxa2JXZnEvZk96eVdOQzRWZ21pOGhwZnB1clAxbDNjTWZF?=
- =?utf-8?Q?Wy8Zx8IkX+2cI+Z0ek?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4f175a8-d876-4067-d914-08df35c2b66d
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Oct 2026 13:44:11.2221 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +LipB9l1rBDBHZrY4fr2AuoSMtG65tQoTqpUAuJYZCa5LAdiRjkpqEsPhln5Da+e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5716
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/cper=3A_Software_=28?=
+ =?utf-8?q?driver-detected=29_CPER_error_reporting_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Oct 2026 14:12:53 -0000
+Message-ID: <179328317315.89088.13229909510784040986@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261029132609.907017-8-mallesh.koujalagi@intel.com>
+In-Reply-To: <20261029132609.907017-8-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -198,62 +33,216 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi guys,
+--===============3549096070856856464==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 10/29/26 11:28, Philipp Stanner wrote:
-> On Thu, 2026-10-29 at 11:23 +0100, Lucas Stach wrote:
->> Hi Philipp, hi Christian,
-> 
-> Jo Lucas
-> 
->>
->> Am Donnerstag, dem 29.10.2026 um 10:55 +0100 schrieb Philipp Stanner:
-> 
-> […]
-> 
->> I think we would all be interested in the actual use-case that's
->> sensitive to this kind of latency.
+== Series Details ==
 
-Well everything which wants things to start as early as possible when the fence is signaled and not wait for the callbacks to run is affected.
+Series: drm/xe/cper: Software (driver-detected) CPER error reporting (rev2)
+URL   : https://patchwork.freedesktop.org/series/176576/
+State : failure
 
-If I'm not completely mistaken when we start to wait for the callbacks to finish in is_signaled we break more things than we fix because some people relied on timing here.
+== Summary ==
 
-> Me too.
-> 
-> Let me use this opportunity to stress that in the future, in DRM,
-> whenever we have [to accept] a racy "optimization", both commit
-> messages and code comments must document why it exists and who
-> requested it with what proof.
+CI Bug Log - changes from xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355_BAT -> xe-pw-176576v2_BAT
+====================================================
 
-That is a really good idea I think.
+Summary
+-------
 
-> 
-> Would save us lots of time when those things are discussed >5 years
-> later.
-> 
->>
->> However, I wonder if this is even an issue anymore with the lock
->> inlined into the fence structure.
-> 
-> Almost no one uses inline-lock so far. So unfortunately, we might
-> regress old drivers, maybe.
+  **FAILURE**
 
-Considering that I still get bug reports even for the performance of radeon when we change things I fear that this is true.
+  Serious unknown changes coming with xe-pw-176576v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-176576v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-Regards,
-Christian.
+  
 
-> 
-> But sounds as if you're in favor of phasing the locklessness out :)
-> 
-> 
-> P.
+Participating hosts (15 -> 15)
+------------------------------
 
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-176576v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-ptl-2:          [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1:
+    - bat-nvls-1:         [PASS][3] -> [DMESG-WARN][4] +1 other test dmesg-warn
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-nvls-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-nvls-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+    - bat-wcl-1:          [PASS][5] -> [DMESG-WARN][6] +1 other test dmesg-warn
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-wcl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-wcl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+    - bat-lnl-1:          [PASS][7] -> [DMESG-WARN][8] +1 other test dmesg-warn
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+    - bat-adlp-7:         [PASS][9] -> [DMESG-WARN][10] +1 other test dmesg-warn
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html
+
+  * igt@xe_exec_fault_mode@invalid-va:
+    - bat-lnl-2:          [PASS][11] -> [DMESG-WARN][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-lnl-2/igt@xe_exec_fault_mode@invalid-va.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-lnl-2/igt@xe_exec_fault_mode@invalid-va.html
+    - bat-nvls-2:         [PASS][13] -> [DMESG-WARN][14]
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-nvls-2/igt@xe_exec_fault_mode@invalid-va.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-nvls-2/igt@xe_exec_fault_mode@invalid-va.html
+    - bat-ptl-1:          [PASS][15] -> [DMESG-WARN][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-ptl-1/igt@xe_exec_fault_mode@invalid-va.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-ptl-1/igt@xe_exec_fault_mode@invalid-va.html
+    - bat-ptl-vm:         [PASS][17] -> [DMESG-WARN][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-ptl-vm/igt@xe_exec_fault_mode@invalid-va.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-ptl-vm/igt@xe_exec_fault_mode@invalid-va.html
+    - bat-wcl-2:          [PASS][19] -> [DMESG-WARN][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-wcl-2/igt@xe_exec_fault_mode@invalid-va.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-wcl-2/igt@xe_exec_fault_mode@invalid-va.html
+
+  * igt@xe_module_load@load:
+    - bat-atsm-2:         [PASS][21] -> [DMESG-WARN][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-atsm-2/igt@xe_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-atsm-2/igt@xe_module_load@load.html
+    - bat-bmg-vm:         [PASS][23] -> [DMESG-WARN][24]
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-vm/igt@xe_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-vm/igt@xe_module_load@load.html
+    - bat-bmg-3:          [PASS][25] -> [DMESG-WARN][26]
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-3/igt@xe_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-3/igt@xe_module_load@load.html
+    - bat-bmg-2:          [PASS][27] -> [DMESG-WARN][28]
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-2/igt@xe_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-2/igt@xe_module_load@load.html
+    - bat-bmg-1:          [PASS][29] -> [DMESG-WARN][30]
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-1/igt@xe_module_load@load.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355 -> xe-pw-176576v2
+
+  IGT_9170: 9170
+  xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355: e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355
+  xe-pw-176576v2: 176576v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/index.html
+
+--===============3549096070856856464==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/cper: Software (driver-detected) CPER error reporting (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176576/">https://patchwork.freedesktop.org/series/176576/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355_BAT -&gt; xe-pw-176576v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-176576v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-176576v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-176576v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-ptl-2/igt@kms_pipe_crc_basic@hang-read-crc.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1:</p>
+<ul>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-nvls-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-nvls-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-wcl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-wcl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-lnl-1/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-adlp-7/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-edp-1.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@invalid-va:</p>
+<ul>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-lnl-2/igt@xe_exec_fault_mode@invalid-va.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-lnl-2/igt@xe_exec_fault_mode@invalid-va.html">DMESG-WARN</a></li>
+<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-nvls-2/igt@xe_exec_fault_mode@invalid-va.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-nvls-2/igt@xe_exec_fault_mode@invalid-va.html">DMESG-WARN</a></li>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-ptl-1/igt@xe_exec_fault_mode@invalid-va.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-ptl-1/igt@xe_exec_fault_mode@invalid-va.html">DMESG-WARN</a></li>
+<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-ptl-vm/igt@xe_exec_fault_mode@invalid-va.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-ptl-vm/igt@xe_exec_fault_mode@invalid-va.html">DMESG-WARN</a></li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-wcl-2/igt@xe_exec_fault_mode@invalid-va.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-wcl-2/igt@xe_exec_fault_mode@invalid-va.html">DMESG-WARN</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-atsm-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
+<li>bat-bmg-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-vm/igt@xe_module_load@load.html">DMESG-WARN</a></li>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-3/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-3/igt@xe_module_load@load.html">DMESG-WARN</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176576v2/bat-bmg-1/igt@xe_module_load@load.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355 -&gt; xe-pw-176576v2</li>
+</ul>
+<p>IGT_9170: 9170<br />
+  xe-6031-e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355: e650cd4c5bd5d3b068ed7a1eb3c55cde4386b355<br />
+  xe-pw-176576v2: 176576v2</p>
+
+</body>
+</html>
+
+--===============3549096070856856464==--
