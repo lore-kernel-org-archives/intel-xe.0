@@ -2,60 +2,27 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BC04606A31E
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 09:18:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HZEMoiE6
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53414606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Oct 2026 09:26:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A54410E4A3;
-	Thu, 29 Oct 2026 09:18:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB2F7112106
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Oct 2026 09:18:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793265484; x=1824801484;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=diFP7E/ukFeYEly7YPVi1clJaJ+BG5+jLllUiQCyrpk=;
- b=HZEMoiE6V/YQGa4nQK4DOlsBYF6fOWcVXYMcFKLDedU0atWvcHBkQEeo
- RzUVqwneX0Ubg9U+bIszrAtTpv5dvkHX5bzLM2S7YPQ2fHvQsJrioHmPF
- hY6PFSMeJyT4VkclBtZz/UE5gMVwg1Xs29+TZyh7rX9dKhMQFbzTscWEq
- bl/3MKZgDKZaO4C15yOJtQQ5fRC4KT4knsEqtUGVexqFYfVQ0obaT4nD4
- 8NX4UBA8NbXiA18RwOVB3O98jqYDqJL9hYAlaKy6sVcbwNWXe2RIveNIU
- OVdkOXSAMgg2KEnK0uiwhBWM1I/xYnnMD8CXrdJbr69U65ebA83gshwBc g==;
-X-CSE-ConnectionGUID: QxIIEANWQwqx7dZAyWWHVQ==
-X-CSE-MsgGUID: hI9gltO/Rt2c5kOxHzKMfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11949"; a="1880763"
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="1880763"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 02:18:04 -0700
-X-CSE-ConnectionGUID: G737yqHqSc2n1m49r63pXg==
-X-CSE-MsgGUID: P1E5UmjpTuGdmWYp/Co1Ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,184,1787036400"; 
-   d="scan'208";a="5096256"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Oct 2026 02:18:01 -0700
-Date: Thu, 29 Oct 2026 10:17:58 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Badal Nilawar <badal.nilawar@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
- riana.tauro@intel.com, mallesh.koujalagi@intel.com,
- aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
- arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
- nitin.r.gote@intel.com
-Subject: Re: [PATCH v7 00/10] Add CPER logging support for CRI
-Message-ID: <auMPRpO3ZAoMqFmx@black.igk.intel.com>
-References: <20261029082752.1739281-12-badal.nilawar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1038710E7AA;
+	Thu, 29 Oct 2026 09:26:59 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14F2E10E7AA;
+ Thu, 29 Oct 2026 09:26:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5397388415237547878=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_CPER_logging_support_fo?=
+ =?utf-8?q?r_CRI_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Oct 2026 09:26:58 -0000
+Message-ID: <179326601807.86838.6232173793114195274@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261029082752.1739281-12-badal.nilawar@intel.com>
 In-Reply-To: <20261029082752.1739281-12-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,89 +33,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Oct 29, 2026 at 01:57:53PM +0530, Badal Nilawar wrote:
-> This patch series adds CPER (Common Platform Error Record) logging support
-> for RAS errors reported by Intel Xe GPUs. CPER records are emitted through
-> a trace event.
-> 
-> v2:
->    - Extended CPER logging to Uncorrectable errors and xe_ras_get_counter
->      request
->    - Log CPER records via xe_log SIGID infra 
-> 
-> v3:
->   - Added the patches in incremental order (Raag)
->   - Fixed Sashiko warnings which are applicable 
-> 
-> v4:
->   - Split the patches further for incremental review (Raag)
->   - Refactor info queue handling (Raag)
->   - Fix applicable Sashiko warnings
-> 
-> v5:
->   - Fixed v4 comments
->   - Covered default paths in error handling flow
->   - Moved info queue related patches at top
->   - Added example logs
-> 
-> v6:
->   - Fixed v6 comments
->   - Dropped the Info Queue patches; they will be submitted separately
->   - Dropped "drm/xe/xe_ras: Report unknown errors using SIGID" as
->     SIGID logging is not needed for it (Riana/Raag)
-> v7:
->   - Rebased
->   - Fixed Sashiko comments
->   - Added GUID of PCIID 6752
+--===============5397388415237547878==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think we missed a few comments[1][2][3] here. Please make sure to address
-them.
+== Series Details ==
 
-Raag
+Series: Add CPER logging support for CRI (rev7)
+URL   : https://patchwork.freedesktop.org/series/169692/
+State : success
 
-[1] https://lore.kernel.org/intel-xe/auIoa-LxjETpt0LR@black.igk.intel.com/
-[2] https://lore.kernel.org/intel-xe/auIrXSWHyxE2K_M6@black.igk.intel.com/
-[3] https://lore.kernel.org/intel-xe/auIuFsYCyl5m2mrG@black.igk.intel.com/
+== Summary ==
 
-> Badal Nilawar (10):
->   drm/xe/cper: Add CPER reporting entry point for xe_log
->   drm/xe/cper: Retrieve the error counter record for CPER reporting
->   drm/xe/cper: Initialize Intel-specific CPER header
->   drm/xe/cper: Construct CPER record for hardware errors
->   drm/xe/cper: Log CPER records for aggregate counter retrieval
->   drm/xe/cper: Emit cper record to trace buf
->   drm/xe/xe_ras: Report device memory errors using SIGID
->   drm/xe/xe_ras: Report core compute errors using SIGID
->   drm/xe/xe_ras: Report soc internal errors using SIGID
->   drm/xe/xe_ras: Report correctable errors using SIGID
-> 
->  .../ABI/testing/sysfs-driver-intel-xe-cper    |  18 +
->  drivers/gpu/drm/xe/Makefile                   |   3 +
->  drivers/gpu/drm/xe/xe_cper.c                  | 321 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_cper.h                  |  37 ++
->  drivers/gpu/drm/xe/xe_cper_types.h            | 110 ++++++
->  drivers/gpu/drm/xe/xe_device_types.h          |   4 +
->  drivers/gpu/drm/xe/xe_log.c                   |   5 +-
->  drivers/gpu/drm/xe/xe_ras.c                   | 146 ++++++--
->  drivers/gpu/drm/xe/xe_ras.h                   |   2 +
->  drivers/gpu/drm/xe/xe_trace_cper.c            |   9 +
->  drivers/gpu/drm/xe/xe_trace_cper.h            |  65 ++++
->  11 files changed, 692 insertions(+), 28 deletions(-)
->  create mode 100644 Documentation/ABI/testing/sysfs-driver-intel-xe-cper
->  create mode 100644 drivers/gpu/drm/xe/xe_cper.c
->  create mode 100644 drivers/gpu/drm/xe/xe_cper.h
->  create mode 100644 drivers/gpu/drm/xe/xe_cper_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.c
->  create mode 100644 drivers/gpu/drm/xe/xe_trace_cper.h
-> 
-> -- 
-> 2.56.0
-> 
+CI Bug Log - changes from xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795_BAT -> xe-pw-169692v7_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-169692v7_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_create@create-execqueues-noleak:
+    - bat-ptl-2:          NOTRUN -> [ABORT][1] ([Intel XE#9362])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/bat-ptl-2/igt@xe_create@create-execqueues-noleak.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_compute_preempt@compute-threadgroup-preempt:
+    - bat-ptl-2:          [ABORT][2] ([Intel XE#9362]) -> [PASS][3] +1 other test pass
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html
+
+  
+  [Intel XE#9362]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362
+
+
+Build changes
+-------------
+
+  * Linux: xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795 -> xe-pw-169692v7
+
+  IGT_9170: 9170
+  xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795: 8f4ea34f33525cf5120a2a68ee119ef0df276795
+  xe-pw-169692v7: 169692v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/index.html
+
+--===============5397388415237547878==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add CPER logging support for CRI (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169692/">https://patchwork.freedesktop.org/series/169692/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795_BAT -&gt; xe-pw-169692v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-169692v7_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_create@create-execqueues-noleak:<ul>
+<li>bat-ptl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/bat-ptl-2/igt@xe_create@create-execqueues-noleak.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_compute_preempt@compute-threadgroup-preempt:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9362">Intel XE#9362</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-169692v7/bat-ptl-2/igt@xe_compute_preempt@compute-threadgroup-preempt.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795 -&gt; xe-pw-169692v7</li>
+</ul>
+<p>IGT_9170: 9170<br />
+  xe-6028-8f4ea34f33525cf5120a2a68ee119ef0df276795: 8f4ea34f33525cf5120a2a68ee119ef0df276795<br />
+  xe-pw-169692v7: 169692v7</p>
+
+</body>
+</html>
+
+--===============5397388415237547878==--
