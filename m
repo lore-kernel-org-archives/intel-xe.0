@@ -2,28 +2,64 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2A5606A31F
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 13:16:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0660B606A322
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 13:32:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=WCV8YRTA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 393101127F8;
-	Fri, 30 Oct 2026 13:16:51 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD7B310E579;
- Fri, 30 Oct 2026 13:16:49 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4542110723400599501=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7DC910E07C;
+	Fri, 30 Oct 2026 13:31:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 431CA10E07C;
+ Fri, 30 Oct 2026 13:31:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793367108; x=1824903108;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=K3LqUgrUt5sXEXRZfXPc1i73J7NlU2UySFpN7w+81Go=;
+ b=WCV8YRTAYgdM5tsa3kH0EtzyFFyx23LzwLdcyK/PjvvFSggWd4Pbzk0X
+ obbKQP4y3O0xN7mBS66bD7Sw+4miZD9dxBAYZJoBwRJagyiLGWtp0vX8x
+ sMeeMLd2R0UxOcskZfaThSVCjb87yFehK0A+Ojh6ec2byYkmWeR6sWTio
+ w67d0tuVwVgmUAUDgB/CgOMwqcmvkZhn5sNlbzHN6O/GfgT/yTcw9pa14
+ vthH7DPjdqgYIGfhBrfUWPZZjt7oNWDo3+BuAOGpYJnx1sN8K0PAk8PKA
+ dyIGYdyvCxzJ2lw1wop5aOsLxiHSj+3bLCtXh+uwWiYfXxmOeUvMm1FgT A==;
+X-CSE-ConnectionGUID: jtDhANNiQCO9c5hpPiuf5w==
+X-CSE-MsgGUID: wCSWwG8RQ+eiadzaolAPMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11950"; a="2233443"
+X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
+   d="scan'208";a="2233443"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 06:31:48 -0700
+X-CSE-ConnectionGUID: gLa8dUVNRqGTkmaFG+q/bw==
+X-CSE-MsgGUID: PfQWW32ERGyvW9XMQ9KBaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
+   d="scan'208";a="5329817"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.36])
+ ([10.245.244.36])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 06:31:46 -0700
+Message-ID: <5a7d92b8-3752-4585-ba68-070857b89db0@intel.com>
+Date: Fri, 30 Oct 2026 13:31:44 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Interruptible_bb_wait_+_rel?=
- =?utf-8?q?ated_bits?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 30 Oct 2026 13:16:49 -0000
-Message-ID: <179336620990.93618.9724279048346981778@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261030-migrate-bb-optimise-v1-0-b8d01649cfe9@intel.com>
-In-Reply-To: <20261030-migrate-bb-optimise-v1-0-b8d01649cfe9@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] gpu/buddy: Prune exhausted subtrees in
+ range-biased allocation
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>
+References: <20261022051518.486064-4-sanjay.kumar.yadav@intel.com>
+ <20261022051518.486064-5-sanjay.kumar.yadav@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20261022051518.486064-5-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,175 +69,195 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============4542110723400599501==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 22/10/2026 06:15, Sanjay Yadav wrote:
+> __alloc_range_bias() walks the buddy tree depth-first, higher address
+> first, and descends every SPLIT block even when nothing below it is
+> free. Range allocations are placed top-down, so they pack below the
+> range end and each new one walks every block already allocated there:
+> O(N) per allocation and O(N^2) for N allocations, under the allocator
+> lock.
+> 
+> Track in each block the largest order of any FREE block in its subtree
+> (GPU_BUDDY_NO_FREE_ORDER if none), update it whenever a block changes
+> state, and skip subtrees that cannot satisfy the requested order.
+> gpu_buddy_block_trim() detaches the block while re-allocating inside
+> it, so recompute from the parent once it is reattached.
+> 
+> Skipped subtrees contain no FREE block of the requested order or
+> larger, so the old walk could neither split nor return anything there.
+> The remaining blocks are visited in the same order, so the selected
+> block and placement are unchanged.
+> 
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
+> Cc: Joel Fernandes <joelagnelf@nvidia.com>
+> Assisted-by: LLM
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+> ---
+>   drivers/gpu/buddy.c       | 31 +++++++++++++++++++++++++++++++
+>   include/linux/gpu_buddy.h |  7 +++++++
+>   2 files changed, 38 insertions(+)
+> 
+> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> index 28cff97d57dc..b77d7f621290 100644
+> --- a/drivers/gpu/buddy.c
+> +++ b/drivers/gpu/buddy.c
+> @@ -602,6 +602,7 @@ static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
+>   	block->header = offset;
+>   	block->header |= order;
+>   	block->parent = parent;
+> +	block->subtree_max_free_order = GPU_BUDDY_NO_FREE_ORDER;
+>   
+>   	RB_CLEAR_NODE(&block->rb);
+>   
+> @@ -717,6 +718,27 @@ static void rbtree_remove(struct gpu_buddy *mm,
+>   	RB_CLEAR_NODE(&block->rb);
+>   }
+>   
+> +static void update_subtree_max_free_order(struct gpu_buddy_block *block)
+> +{
+> +	while (block) {
+> +		s8 max_free;
+> +
+> +		if (gpu_buddy_block_is_free(block))
+> +			max_free = gpu_buddy_block_order(block);
+> +		else if (gpu_buddy_block_is_split(block))
+> +			max_free = max(block->left->subtree_max_free_order,
+> +				       block->right->subtree_max_free_order);
+> +		else
+> +			max_free = GPU_BUDDY_NO_FREE_ORDER;
+> +
+> +		if (block->subtree_max_free_order == max_free)
+> +			break;
+> +
+> +		block->subtree_max_free_order = max_free;
+> +		block = block->parent;
+> +	}
+> +}
+> +
+>   static void mark_allocated(struct gpu_buddy *mm,
+>   			   struct gpu_buddy_block *block)
+>   {
+> @@ -729,6 +751,7 @@ static void mark_allocated(struct gpu_buddy *mm,
+>   	mm->used_scoreboard[gpu_buddy_block_order(block)]++;
+>   
+>   	rbtree_remove(mm, block);
+> +	update_subtree_max_free_order(block);
+>   }
+>   
+>   static void __mark_free(struct gpu_buddy *mm,
+> @@ -750,6 +773,7 @@ static void __mark_free(struct gpu_buddy *mm,
+>   	mm->free_scoreboard[gpu_buddy_block_order(block)]++;
+>   
+>   	rbtree_insert(mm, block);
+> +	update_subtree_max_free_order(block);
+>   }
+>   
+>   static void mark_free(struct gpu_buddy *mm,
+> @@ -772,6 +796,7 @@ static void mark_split(struct gpu_buddy *mm,
+>   	mm->free_scoreboard[gpu_buddy_block_order(block)]--;
+>   
+>   	rbtree_remove(mm, block);
+> +	update_subtree_max_free_order(block);
+>   }
+>   
+>   static inline bool overlaps(u64 s1, u64 e1, u64 s2, u64 e2)
+> @@ -869,6 +894,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+>   
+>   	size = round_down(size, chunk_size);
+>   
+> +	BUILD_BUG_ON(GPU_BUDDY_MAX_ORDER > S8_MAX);
+> +
+>   	mm->size = size;
+>   	mm->avail = size;
+>   	mm->chunk_size = chunk_size;
+> @@ -1280,6 +1307,9 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   		if (gpu_buddy_block_order(block) < order)
+>   			continue;
+>   
+> +		if (block->subtree_max_free_order < (int)order)
+> +			continue;
+> +
 
-== Series Details ==
+If we do go with this, I think we can drop the 
+gpu_buddy_block_order(block) < order just before this?
 
-Series: Interruptible bb wait + related bits
-URL   : https://patchwork.freedesktop.org/series/177249/
-State : success
+Also, I think we can also drop the is_allocated()/is_free checks.
 
-== Summary ==
+@@ -1304,9 +1304,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
 
-CI Bug Log - changes from xe-6033-a8997640de2e96daca6ba2a01ed65a7bb48d3807_BAT -> xe-pw-177249v1_BAT
-====================================================
+                 list_del(&block->tmp_link);
 
-Summary
--------
+-               if (gpu_buddy_block_order(block) < order)
+-                       continue;
+-
+                 if (block->subtree_max_free_order < (int)order)
+                         continue;
 
-  **SUCCESS**
+@@ -1316,9 +1313,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
+                 if (!overlaps(start, end, block_start, block_end))
+                         continue;
 
-  No regressions found.
+-               if (gpu_buddy_block_is_allocated(block))
+-                       continue;
+-
+                 if (block_start < start || block_end > end) {
+                         u64 adjusted_start = max(block_start, start);
+                         u64 adjusted_end = min(block_end, end);
+@@ -1329,15 +1323,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
+                 }
 
-  
-
-Participating hosts (14 -> 15)
-------------------------------
-
-  Additional (1): bat-bmg-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-177249v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_multi_queue@many-queues-userptr-invalidate:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][1] ([Intel XE#8364]) +13 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][2] ([Intel XE#2229])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][3] ([Intel XE#1420] / [Intel XE#7590])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][4] ([Intel XE#2245] / [Intel XE#7590])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-bmg-vm:         NOTRUN -> [SKIP][5] ([Intel XE#2236] / [Intel XE#7590])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
-  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+                 if (contains(start, end, block_start, block_end) &&
+-                   order == gpu_buddy_block_order(block)) {
+-                       /*
+-                        * Find the free block within the range.
+-                        */
+-                       if (gpu_buddy_block_is_free(block))
+-                               return block;
+-
++                   order == gpu_buddy_block_order(block))
+                         continue;
+-               }
 
 
-Build changes
--------------
+>   		block_start = gpu_buddy_block_offset(block);
+>   		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
+>   
+> @@ -1881,6 +1911,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+>   	}
+>   
+>   	block->parent = parent;
+> +	update_subtree_max_free_order(parent);
+>   	return err;
+>   }
+>   EXPORT_SYMBOL(gpu_buddy_block_trim);
+> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+> index ddc4eca84175..8037f5a0feb1 100644
+> --- a/include/linux/gpu_buddy.h
+> +++ b/include/linux/gpu_buddy.h
+> @@ -141,8 +141,15 @@ struct gpu_buddy_block {
+>   	unsigned int subtree_max_alignment;
+>   	struct list_head tmp_link;
+>   	bool has_clear;
+> +	/*
+> +	 * Largest order of any FREE block in this block's buddy subtree, or
+> +	 * GPU_BUDDY_NO_FREE_ORDER if none. Protected by the driver lock.
+> +	 */
+> +	s8 subtree_max_free_order;
+>   };
+>   
+> +#define GPU_BUDDY_NO_FREE_ORDER (-1)
+> +
+>   /* Order-zero must be at least SZ_4K */
+>   #define GPU_BUDDY_MAX_ORDER (63 - 12)
+>   
 
-  * Linux: xe-6033-a8997640de2e96daca6ba2a01ed65a7bb48d3807 -> xe-pw-177249v1
-
-  IGT_9171: 9171
-  xe-6033-a8997640de2e96daca6ba2a01ed65a7bb48d3807: a8997640de2e96daca6ba2a01ed65a7bb48d3807
-  xe-pw-177249v1: 177249v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/index.html
-
---===============4542110723400599501==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Interruptible bb wait + related bits</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177249/">https://patchwork.freedesktop.org/series/177249/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6033-a8997640de2e96daca6ba2a01ed65a7bb48d3807_BAT -&gt; xe-pw-177249v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 15)</h2>
-<p>Additional (1): bat-bmg-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-177249v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-userptr-invalidate:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177249v1/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6033-a8997640de2e96daca6ba2a01ed65a7bb48d3807 -&gt; xe-pw-177249v1</li>
-</ul>
-<p>IGT_9171: 9171<br />
-  xe-6033-a8997640de2e96daca6ba2a01ed65a7bb48d3807: a8997640de2e96daca6ba2a01ed65a7bb48d3807<br />
-  xe-pw-177249v1: 177249v1</p>
-
-</body>
-</html>
-
---===============4542110723400599501==--
