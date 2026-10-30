@@ -2,43 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36DB606A31D
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94C98606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=W2yK/csM
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=WnHuwU6/
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8E510E7FA;
-	Fri, 30 Oct 2026 17:29:32 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7ABE10E790;
- Fri, 30 Oct 2026 17:29:25 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 92278405C2;
- Fri, 30 Oct 2026 17:29:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4521A1F00A02;
- Fri, 30 Oct 2026 17:29:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793381365;
- bh=lVxtQ9qhuh2LwdxblOOYbZQ4DbLAlSGNIHwTV6SCG2k=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=W2yK/csMldsGtzqS73B2Pyx4EhOY9Gs3FBwcGlVgMDv0WzCMz4qd6AwFfqvI4HwAW
- XJRh0lSy9kJKKERiWknYbJNjtrcsl+yu7f4aToGhjqgSy0RRinNxaP5Zh4WW179gJY
- DOTTnx4vinXdncAuLvFXG7tg8xQ9xGY1ubbyScQ9Qs3DRlDD6qyKoWDVhT1dexOe08
- CwftmkxSwEMoYmGt50+Xv81BIm67NmL+6ceYbMmVvOB/CpypLVmxvPWtXsWTl4p6vH
- 9jsE6Z0xJc5N2iFkkuBfbapN2kyMnCTGjSG45lkn7nGqAvYpuLFACOaFmjrgj4V1MP
- +7vtCzMwEtfVA==
-Message-ID: <sashiko-outbox-191346@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 09/10] drm/i915: Fix FEC wait with port sync on pre-LNL
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261030171327.29829-10-ville.syrjala@linux.intel.com>
-References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
- <20261030171327.29829-10-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 30 Oct 2026 17:29:24 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59DA110E840;
+	Fri, 30 Oct 2026 17:30:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2847110E840;
+ Fri, 30 Oct 2026 17:30:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793381439; x=1824917439;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nU20Lsk3NegF2cLYRw4s4X6TGExuqWjv/s6tuST/uBk=;
+ b=WnHuwU6/ugE8LMeQL/yRzok3qMgeks4Rd2CDpT9lnsu2L2uS/lcxO3HW
+ KjW6h3byfNhR92pCmJmxCpg36FnIlj2Av68JoCS4tKDBsk3986avnYuqj
+ xaZ9VM7GxBiottk5dXZyrLtGzgBc2mxpknsNHmiXQW8iLLM94hoRgwoCT
+ 0ggeM2c3DDybM43o8dTO9NChWnfbcBUS1AO0BmrFjqkDToWi74+UvzMKf
+ DVWB8VImyDEZM2fBOkYk9eRvgum+fJQz8xf/n1ChoHcpQjHmg8wDvKab7
+ 0EyWJttYrtxmpvO2K7z/hDv3lZuws+2F6SS/HaFKruzkWoakGCE6eSYhP g==;
+X-CSE-ConnectionGUID: 0wKEetzaSZ6UhRB0afcVtQ==
+X-CSE-MsgGUID: ORktFIKwSyyRZHkPTqj3ZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2045967"
+X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
+   d="scan'208";a="2045967"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 10:30:39 -0700
+X-CSE-ConnectionGUID: 8QV7x65MQvaYJeySfr9eMQ==
+X-CSE-MsgGUID: 34vEEhlfQsixRV3V+L8fxQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
+   d="scan'208";a="5377842"
+Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
+ by orviesa008.jf.intel.com with ESMTP; 30 Oct 2026 10:30:39 -0700
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org, Raag Jadav <raag.jadav@intel.com>,
+ Riana Tauro <riana.tauro@intel.com>
+Subject: [PATCH 1/1] drm/xe/pcode: Fix pcode_try_request polling delays
+Date: Fri, 30 Oct 2026 10:30:39 -0700
+Message-ID: <20261030173038.681250-2-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.43.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,96 +60,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/i915/ddi: LNL vs PTL version mismatch in FEC status wait com=
-ment and check
---
+Honor OOB max for udelay. Also add a backoff for 'wait'
+as it exponentially increases so that doesn't overflow
+and also caps to a sane limit so we dont suffer overtly
+extended wait times as we progress.
 
-commit c0a68d9ab06674ed868f492b35dc93f1dc05b1bf
-Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+Fixes: 7dc9b92dcfef ("drm/xe: Remove i915_utils dependency from xe_pcode.")
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pcode.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-drm/i915: Fix FEC wait with port sync on pre-LNL
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 266deecbb100..25d1a354ee36 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -146,6 +146,7 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1)
+ 	return err;
+ }
+ 
++#define __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100 * USEC_PER_MSEC)
+ static int pcode_try_request(struct xe_tile *tile, u32 mbox,
+ 			     u32 request, u32 reply_mask, u32 reply,
+ 			     int *status, bool atomic, int timeout_us, bool locked)
+@@ -165,10 +166,11 @@ static int pcode_try_request(struct xe_tile *tile, u32 mbox,
+ 			return 0;
+ 
+ 		if (atomic)
+-			udelay(wait);
++			udelay(min_t(int, wait, (MAX_UDELAY_MS * 1000)));
+ 		else
+ 			usleep_range(wait, wait << 1);
+ 		wait <<= 1;
++		wait = min_t(int, wait << 1, __XE_MMIO_WAIT_MAX_BACKOFF_100MS);
+ 	}
+ 
+ 	return -ETIMEDOUT;
 
-This commit defers waiting for FEC status in intel_ddi_enable() until after
-the timing generators have started, and adds a helper to wait for FEC status
-across all synced transcoders when port sync is enabled.
+base-commit: d8a353e238652bec29fd452babdaae0044d30b9b
+-- 
+2.43.0
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
-915/display/intel_ddi.c
-> index 9939fa43e8f73..2e7f278a1b6c6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-
-[ ... ]
-
-> @@ -3623,6 +3654,16 @@ static void intel_ddi_enable(struct intel_atomic_s=
-tate *state,
->  	else
->  		intel_crtc_vblank_on(state, crtc_state);
-> =20
-> +	/*
-> +	 * On pre-LNL FEC_DECODE_EN will only be sent when the timing
-> +	 * generator starts. Also note that FEC_DECODE_EN cannot be
-> +	 * re-sent without restarting the timing generator.
-> +	 */
-> +	if (is_trans_port_sync_mode(crtc_state))
-> +		trans_port_sync_wait_for_fec_status(state, encoder, crtc_state, true);
-> +	else
-> +		intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
-
-[Severity: Medium]
-Should the comment here (and the commit message) refer to pre-PTL and PTL+
-rather than pre-LNL and LNL+, or should the version check in
-intel_ddi_enable_fec() be updated?
-
-The commit message and the comment in intel_ddi_enable() state that on LNL+
-FEC_DECODE_EN is sent immediately when enabling FEC in DP_TP_CTL, and that
-LNL+ therefore checks FEC status immediately in intel_ddi_enable_fec() and
-then a second time here in intel_ddi_enable().
-
-However, intel_ddi_enable_fec() skips the immediate check and retry loop on
-DISPLAY_VER < 30:
-
-drivers/gpu/drm/i915/display/intel_ddi.c:intel_ddi_enable_fec() {
-	...
-	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-		     0, DP_TP_CTL_FEC_ENABLE);
-
-	if (DISPLAY_VER(display) < 30)
-		return;
-
-	ret =3D intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
-	...
-}
-
-Since LNL is DISPLAY_VER 20 and PTL is DISPLAY_VER 30, LNL returns early in
-intel_ddi_enable_fec() without waiting for FEC status, and port sync is also
-enabled up through DISPLAY_VER 20 in intel_ddi_port_sync_transcoders():
-
-drivers/gpu/drm/i915/display/intel_ddi.c:intel_ddi_port_sync_transcoders() {
-	/*
-	 * We don't enable port sync on BDW due to missing w/as and
-	 * due to not having adjusted the modeset sequence appropriately.
-	 */
-	if (!IS_DISPLAY_VER(display, 9, 20))
-		return 0;
-	...
-}
-
-Is intel_ddi_enable_fec() supposed to check DISPLAY_VER(display) < 20 for
-LNL+, or was the description intended to say pre-PTL / PTL+?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261030171327.2982=
-9-1-ville.syrjala@linux.intel.com?part=3D9
