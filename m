@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C40606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC5F8606A324
 	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O+qE0exr
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QN/8Z5ED
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739C611295C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A352112955;
 	Fri, 30 Oct 2026 17:14:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F338112944;
- Fri, 30 Oct 2026 17:14:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5227C112940;
+ Fri, 30 Oct 2026 17:13:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793380448; x=1824916448;
+ t=1793380439; x=1824916439;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A3J4VciQeeVIAzgkk/JaQvceBCHS0bxxIegvtb4Cbvc=;
- b=O+qE0exri0YAT9TPK+JfIbIts7AvQ6wiV5GGaY3jMCkU3jIxdzNYhMUM
- 4OnMB9f33FDf2RrpQNvE/qQpe9ELI8RQU3OOshvgn+ql8hSGGTzle5Znx
- foUraf/NJ/J8vDudkGW4cScpZqnws+m/Ghy3Xp5INm8YG2emcZeguQ4dk
- jiuIP6bMxEabP2NbP4alnqj7WYzATY4u80HFtSJk1ni1TILC+Os8xAsI/
- rPnkAZ3brUfvu3iOIQazT/DZ1GqHOuj9WFH7d+YYxlWbekrO7RlATQUJL
- oyhaDGiZMD+MD2WaywBIhfxjc6yXyzZQk6yPdipRq9ytiwtfK2TWSoleh g==;
-X-CSE-ConnectionGUID: Vr8y1koYRVGu0wKfsk6PEA==
-X-CSE-MsgGUID: Rx0m0MOyTX2BTciFikNDoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2144592"
+ bh=/ePUHD/7BED/xa9So2qAsFOozkmvb8edIHI2hVNjElM=;
+ b=QN/8Z5EDcevYPsMH5zjrUT7I9ZMvc0ZmEDsGLsG6S2uMq5SVuPS32hVW
+ sy+7nM0yx8WHKB9uLoheMGtHh89iH2Rnl3m3g59LLw96kBc9+2xUQ8VsV
+ wX29TybWx+JmTdy0UgEF7vyXkS8v95PvvgivXFHPciFtjGTEzasbLkPDX
+ iruWMDi2SKgOa3MAIgBN0aDSGoH7QuXy3OHe3dvFH1hoovomcjRDXyWfp
+ R59r5s+dGIVATcUrhA29OzYqUduKrU3IMWYSPRH53rqR2cUBtCG4YINCG
+ PKBx4T4O1kAhCtpibjJw8y1cQOHZt/nnrNemmmg4kqAClx40Hn1TnJyRn w==;
+X-CSE-ConnectionGUID: Y+wDCcVTRkqe7fKCwo/ZAg==
+X-CSE-MsgGUID: 30xoIVWpQY68Q8+Atrsf0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2144558"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2144592"
+   d="scan'208";a="2144558"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 10:14:08 -0700
-X-CSE-ConnectionGUID: BFPkoxBJQtWpwGNRFO+qMQ==
-X-CSE-MsgGUID: u+d6SJJ8QSi3ZwGNZCX5GQ==
+ 30 Oct 2026 10:13:59 -0700
+X-CSE-ConnectionGUID: L3fegPb5RNibjAkdCc/GDA==
+X-CSE-MsgGUID: H5Zi+0RzTDmvysIdur5Zbg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5490950"
+   d="scan'208";a="5490931"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.58])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 10:14:07 -0700
+ 30 Oct 2026 10:13:58 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/10] drm/i915: Document timing generator start/stop
- behaviour on HSW+
-Date: Fri, 30 Oct 2026 19:13:24 +0200
-Message-ID: <20261030171327.29829-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/10] drm/i915: Wait for timing generator to start in
+ intel_crtc_vblank_on() on HSW+
+Date: Fri, 30 Oct 2026 19:13:22 +0200
+Message-ID: <20261030171327.29829-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
 References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
@@ -70,107 +70,57 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Document the HSW+ timing generator start/stop behaviour so
-I don't have to reverse engineer it again in the future.
+The HSW+ modeset sequences (perhaps excluding DSI) should now do the
+intel_crtc_vblank_on() calls after the timing generator has actually
+been started. However it looks it may take a few moments until the
+scanline counter actually starts to tick. Wait for that to happen
+before we enabled vblank interrupts for the pipe. This should
+guarantee that the vblank machinery will never see the frame/scanline
+counters jumping erratically, which can cause real problems.
 
-TODO: DSI behavior is unknown
+As for DSI, I have no hardware to test it, so can't tell whether
+we're calling intel_crtc_vblank_on() in a good spot or not. I
+guess we'll eventually find out when someone tries runs this on
+machine with DSI...
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crt.c    |  2 ++
- drivers/gpu/drm/i915/display/intel_ddi.c    | 18 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
- 3 files changed, 22 insertions(+)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index b814b84c650f..532617bf626f 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -265,6 +265,7 @@ static void hsw_post_disable_crt(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index fe7af983f9f5..ae720e400073 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -128,8 +128,21 @@ u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state)
  
-+	/* timing generator stops after disabling TRANSCONF */
- 	intel_crtc_vblank_off(state, old_crtc_state);
- 
- 	intel_disable_transcoder(old_crtc_state);
-@@ -333,6 +334,7 @@ static void hsw_enable_crt(struct intel_atomic_state *state,
- 
- 	lpt_pch_enable(state, crtc);
- 
-+	/* timing generator starts after enabling PCH_TRANSCONF */
- 	intel_crtc_vblank_on(state, crtc_state);
- 
- 	intel_crt_set_dpms(encoder, crtc_state, DRM_MODE_DPMS_ON);
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index ed39f1e265a9..e97e586bed72 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2961,6 +2961,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 						   crtc_state);
- 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state, true);
- 	intel_dp_start_link_train(state, intel_dp, crtc_state);
-+
- 	if ((port != PORT_A || DISPLAY_VER(display) >= 9) &&
- 	    !is_trans_port_sync_mode(crtc_state))
- 		intel_dp_stop_link_train(intel_dp, crtc_state);
-@@ -3282,6 +3283,7 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
- 	struct intel_crtc *pipe_crtc;
- 	bool is_hdmi = intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_HDMI);
- 
-+	/* timing generator stops after disabling TRANSCONF */
- 	intel_crtc_vblank_off(state, old_crtc_state);
- 
- 	intel_disable_transcoder(old_crtc_state);
-@@ -3600,6 +3602,22 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
- 	else
- 		intel_ddi_enable_dp(state, encoder, crtc_state, conn_state);
+ void intel_pipe_vblank_on(const struct intel_crtc_state *crtc_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  
 +	/*
-+	 * HDMI:
-+	 *  timing generator starts after enabling DDI_BUF_CTL
-+	 *  TRANSCONF is enabled beforehand
-+	 * DP SST:
-+	 *  timing generator starts after switching DP_TP_CTL
-+	 *  link training to normal or enabling TRANSCONF
-+	 *  (whichever happens last).
++	 * Make sure the timing generator has really started so
++	 * the sampled frame/scanline counter values don't jump
++	 * erratically.
 +	 *
-+	 * With port sync the secondaries will be transmitting
-+	 * the idle pattern (and thus their timing generators
-+	 * will not run) until the primary has finished its
-+	 * link training. At that point everyone will switch
-+	 * DP_TP_CTL link training to normal all the timings
-+	 * generators will start.
++	 * TODO do this for older platforms as well after
++	 * rearranging the modeset sequence a bit.
 +	 */
- 	if (is_trans_port_sync_mode(crtc_state))
- 		trans_port_sync_vblank_on(state, crtc_state);
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 84e69f37deff..56734016cd19 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1114,6 +1114,7 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
- 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 12 && last_mst_stream &&
- 		    !intel_dp_mst_is_master_trans(old_crtc_state));
++	if (DISPLAY_VER(display) >= 9 ||
++	    display->platform.broadwell || display->platform.haswell)
++		intel_wait_for_pipe_scanline_moving(crtc);
++
+ 	crtc->vblank_psr_notify = intel_psr_needs_vblank_notification(crtc_state);
  
-+	/* timing generator stops after disabling TRANSCONF */
- 	intel_crtc_vblank_off(state, old_crtc_state);
- 
- 	intel_disable_transcoder(old_crtc_state);
-@@ -1391,6 +1392,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
- 
- 	intel_enable_transcoder(pipe_config);
- 
-+	/* timing generator starts after enabling TRANSCONF */
- 	intel_crtc_vblank_on(state, pipe_config);
- 
- 	intel_hdcp_enable(state, encoder, pipe_config, conn_state);
+ 	assert_vblank_disabled(&crtc->base);
 -- 
 2.55.0
 
