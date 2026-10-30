@@ -2,44 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5DC606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBA8606A322
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HVjnkMaM
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YmO74CP3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F74A10E28E;
-	Fri, 30 Oct 2026 17:32:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012E310E186;
+	Fri, 30 Oct 2026 17:38:54 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A90910E28E;
- Fri, 30 Oct 2026 17:32:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5CA310E3AF;
+ Fri, 30 Oct 2026 17:38:47 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3B4CB431DA;
- Fri, 30 Oct 2026 17:32:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF7411F000C1;
- Fri, 30 Oct 2026 17:32:47 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 673BE43ED5;
+ Fri, 30 Oct 2026 17:38:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CF591F000C1;
+ Fri, 30 Oct 2026 17:38:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793381568;
- bh=Q3ieiLiFjs1VuSJrjCfBcIblR8jFuIbAn2W/sTO7WwQ=;
+ s=k20260515; t=1793381927;
+ bh=udmFjoOsxM4mdeL62v0g8SSAzeWF8y/AuyOsRoGgE5k=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=HVjnkMaMpsX3vO8DANTfXwwOGbN7fwg3YLhhkBq7JZi79A1S2nyS+GpGrIQWlNW6s
- ufbIwbOl6fUV8RcE2oVR3xmFYCUYUHRET75GrUilRP68ygrATvFVweJJG0KnmgokAj
- n7kI7fajD6sW17U7Nmz3gxXRS9udKMtHQtkCV/w6tuD7xuzXxnQVOXZwfcjk5T3pPm
- 0kQxqKTbvmPbnn3uAZs+sqah3z0NouJi5vheRRZq0ivXYWQfpfAa/05a7LgjPXqZzm
- 0XPqgzaHrSKJA1dhtCDyf8qyTY0eYT9zb/Qx21ZZvfGf50xbDWUfhZk3lMBz6wQzd8
- PdZ8KkvjLM5Dw==
-Message-ID: <sashiko-outbox-191348@kernel.org>
+ b=YmO74CP3RNtkEBugm+ioCvqKSFO/q8mKpuNCjAYLxgQsojxAkyt5Yv1hLKpvMP3sP
+ sb0R9urt9aUhqgevlNMFFBhT2NhUhatUcfPejDUgyhDhCgiyrWiJBfWRIGGra3W2kN
+ hefNQhATxm0nbIokzPN8Hf/1C71JK9+1cPr63LtL5sh/japE33+bTvsunWqeRxN4Vn
+ 5Ibl6L9DnV7/XToXmUJs3b90t9wFE+DY4wbpeWsUsAthLj3B+yCbUBzAfRXB+/9/fu
+ 2dAhKtrHD2XKxZHXr+4MGao+7E3NuXQekjBJ+7UKK6QrW9ljfobWmm7cWGTN8GVgeW
+ ljDfAlA0Gx6WA==
+Message-ID: <sashiko-outbox-191350@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/10] drm/i915: Wait for timing generator to start in
- intel_crtc_vblank_on() on HSW+
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261030171327.29829-7-ville.syrjala@linux.intel.com>
-References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
- <20261030171327.29829-7-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 1/1] drm/xe/pcode: Fix pcode_try_request polling delays
+To: "Alan Previn" <alan.previn.teres.alexis@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org
+In-Reply-To: <20261030173038.681250-2-alan.previn.teres.alexis@intel.com>
+References: <20261030173038.681250-2-alan.previn.teres.alexis@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 30 Oct 2026 17:32:47 +0000
+Date: Fri, 30 Oct 2026 17:38:46 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,114 +57,83 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] drm/i915: intel_pipe_vblank_on() scanline wait times out on DSI
+- [High] drm/xe/pcode: duplicate left shift of wait in pcode_try_request()
+- [High] drm/xe/pcode: uncapped wait added to slept in pcode_try_request()
 --
 
-commit a024447aed84d4ab8f0e7bb2ee11d21475e5b408
-Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+commit b0181a87e207629275e050ae1f5d781e540c4b82
+Author: Alan Previn <alan.previn.teres.alexis@intel.com>
 
-drm/i915: Wait for timing generator to start in intel_crtc_vblank_on() on H=
-SW+
+drm/xe/pcode: Fix pcode_try_request polling delays
 
-This commit waits for the pipe scanline counter to start moving inside
-intel_pipe_vblank_on() on Haswell and newer platforms before enabling
-vblank interrupts.
+This commit clamps the atomic udelay() argument in pcode_try_request() to
+MAX_UDELAY_MS * 1000 and adds a 100 ms upper bound to the exponential
+backoff wait interval.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
-i915/display/intel_crtc.c
-> index a28f4a088e587..209d5a18ee8d9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -128,8 +128,21 @@ u32 intel_crtc_max_vblank_count(const struct intel_c=
-rtc_state *crtc_state)
+> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+> index 266deecbb100a..25d1a354ee369 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode.c
+> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+> @@ -146,6 +146,7 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32=
+ *val0, u32 *val1)
+>  	return err;
+>  }
 > =20
->  void intel_pipe_vblank_on(const struct intel_crtc_state *crtc_state)
->  {
-> +	struct intel_display *display =3D to_intel_display(crtc_state);
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
+> +#define __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100 * USEC_PER_MSEC)
+>  static int pcode_try_request(struct xe_tile *tile, u32 mbox,
+>  			     u32 request, u32 reply_mask, u32 reply,
+>  			     int *status, bool atomic, int timeout_us, bool locked)
+> @@ -165,10 +166,11 @@ static int pcode_try_request(struct xe_tile *tile, =
+u32 mbox,
+>  			return 0;
 > =20
-> +	/*
-> +	 * Make sure the timing generator has really started so
-> +	 * the sampled frame/scanline counter values don't jump
-> +	 * erratically.
-> +	 *
-> +	 * TODO do this for older platforms as well after
-> +	 * rearranging the modeset sequence a bit.
-> +	 */
-> +	if (DISPLAY_VER(display) >=3D 9 ||
-> +	    display->platform.broadwell || display->platform.haswell)
-> +		intel_wait_for_pipe_scanline_moving(crtc);
+>  		if (atomic)
+> -			udelay(wait);
+> +			udelay(min_t(int, wait, (MAX_UDELAY_MS * 1000)));
+>  		else
+>  			usleep_range(wait, wait << 1);
+>  		wait <<=3D 1;
+> +		wait =3D min_t(int, wait << 1, __XE_MMIO_WAIT_MAX_BACKOFF_100MS);
 
-[Severity: Medium]
-Will calling intel_wait_for_pipe_scanline_moving() unconditionally on
-DISPLAY_VER(display) >=3D 9 time out for 100 ms and log a false error on
-Broxton/Geminilake DSI and Gen11+ DSI command mode?
+[Severity: High]
+Should the existing wait <<=3D 1 statement above be removed? Leaving both
+shifts in pcode_try_request() shifts wait left twice on every iteration,
+quadrupling wait at each step (10 -> 40 -> 160 -> 640 -> 2560 us) instead
+of doubling it.
 
-intel_wait_for_pipe_scanline_moving() calls wait_for_pipe_scanline_moving()=
- ->
-pipe_scanline_is_moving(), which directly polls PIPEDSL:
+Because the loop header accumulates elapsed time via slept +=3D wait after
+the loop body finishes:
 
-drivers/gpu/drm/i915/display/intel_vblank.c:pipe_scanline_is_moving() {
-	intel_reg_t reg =3D PIPEDSL(display, pipe);
-	u32 line1, line2;
+drivers/gpu/drm/xe/xe_pcode.c:pcode_try_request() {
+	for (slept =3D 0; slept < timeout_us; slept +=3D wait) {
 
-	line1 =3D intel_de_read(display, reg) & PIPEDSL_LINE_MASK;
-	msleep(5);
-	line2 =3D intel_de_read(display, reg) & PIPEDSL_LINE_MASK;
+slept also advances by 4x the delay just performed, causing
+xe_pcode_ready() and xe_pcode_request() to time out with -ETIMEDOUT before
+timeout_us has actually elapsed.
 
-	return line1 !=3D line2;
-}
+[Severity: High]
+When atomic is true, udelay() is clamped to MAX_UDELAY_MS * 1000 (for
+example, 5000 us on x86 or 2000 us on arm64), but wait continues to grow
+up to __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100000 us) and is added directly
+to slept in the loop header:
 
-On Broxton (DISPLAY_VER 9) and Geminilake (DISPLAY_VER 10) MIPI DSI, timings
-are driven from the port rather than the CPU transcoder, and PIPEDSL does n=
-ot
-increment. Because of this, intel_dsi_compute_config() and
-bxt_dsi_get_pipe_config() set I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP, a=
-nd
-__intel_get_crtc_scanline() skips reading PIPEDSL:
+drivers/gpu/drm/xe/xe_pcode.c:pcode_try_request() {
+	for (slept =3D 0; slept < timeout_us; slept +=3D wait) {
 
-drivers/gpu/drm/i915/display/intel_vblank.c:__intel_get_crtc_scanline() {
-	if (crtc->mode_flags & I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP)
-		return __intel_get_crtc_scanline_from_timestamp(crtc);
+When xe_pcode_request() retries with preemption disabled:
 
-	vtotal =3D intel_mode_vtotal(mode);
+drivers/gpu/drm/xe/xe_pcode.c:xe_pcode_request() {
+	preempt_disable();
+	ret =3D pcode_try_request(tile, mbox, request, reply_mask, reply, &status,
+				true, 50 * 1000, true);
+	preempt_enable();
 
-	position =3D intel_de_read_fw(display, PIPEDSL(display, pipe)) & PIPEDSL_L=
-INE_MASK;
-	...
-}
-
-When bxt_dsi_enable() -> intel_crtc_vblank_on() -> intel_pipe_vblank_on() r=
-uns
-(or during intel_modeset_setup_hw_state()), polling PIPEDSL will see a stat=
-ic
-value and time out.
-
-Similarly, on Gen11+ DSI command mode (where I915_MODE_FLAG_DSI_USE_TE0 or
-I915_MODE_FLAG_DSI_USE_TE1 is set in crtc_state->mode_flags),
-gen11_dsi_configure_transcoder() configures the transcoder in CMD_MODE_TE_G=
-ATE
-without periodic updates. When gen11_dsi_enable() calls intel_crtc_vblank_o=
-n()
-during intel_enable_crtc(), no frame update has been requested yet because
-icl_dsi_frame_update() is only called later in intel_update_crtc() ->
-intel_pipe_update_end():
-
-drivers/gpu/drm/i915/display/intel_crtc.c:intel_pipe_update_end() {
-	...
-	if (DISPLAY_VER(display) >=3D 11 &&
-	    intel_crtc_has_type(new_crtc_state, INTEL_OUTPUT_DSI))
-		icl_dsi_frame_update(new_crtc_state);
-	...
-}
-
-Should intel_pipe_vblank_on() skip intel_wait_for_pipe_scanline_moving() wh=
-en
-crtc_state->mode_flags has I915_MODE_FLAG_GET_SCANLINE_FROM_TIMESTAMP or
-I915_MODE_FLAG_DSI_USE_TE0 / I915_MODE_FLAG_DSI_USE_TE1 set?
+won't slept accumulate the unclamped wait value once wait exceeds
+MAX_UDELAY_MS * 1000, causing the 50 ms atomic retry to return -ETIMEDOUT
+after only a fraction of the intended 50 ms delay?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261030171327.2982=
-9-1-ville.syrjala@linux.intel.com?part=3D6
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261030173038.6812=
+50-2-alan.previn.teres.alexis@intel.com?part=3D1
