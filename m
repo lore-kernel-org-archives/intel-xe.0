@@ -2,63 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0649D606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 22:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD461606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 22:46:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NZCTU3RE
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=L473w+oG
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C12E910E1B0;
-	Fri, 30 Oct 2026 22:44:32 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CC5110E1B0
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 22:44:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F57810E5D2;
+	Fri, 30 Oct 2026 22:46:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1CDDC10E25E
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 22:46:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793400266; x=1824936266;
+ t=1793400387; x=1824936387;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=aCoWLNztJDwl/zRSw+kZrxE/iCUV15aUVS0ZVisgMv0=;
- b=NZCTU3RE5gzzTfnNZK8SxXLywi528gbAfSrcr+zoB83Rsx4WdWy/jpGJ
- Wth7WO5ScB0UCk2zLKesSDwpxU1JDmZMArNVQsfJClPphWljYEglzhiBP
- XwglAjB3iXZ2rdaPNeC9CIsm9Hd9SHmMZfHd0Z9NL82aAvupLafm7pmYp
- hmwyOWwJ9OxZLuRzYzPdtG9CQQ1CMuodrbg/YFRXdo+lXFz2u2dFFkMci
- 9yGfqdQNQCiYfa5OGylDtdsFR8JTAIfuXJCGZkLTFBl+2D7GC9vrqp4FP
- /TLctjRpH+48l0NIvSYvv7AfNxT0t/cwNIpIYovIg6NxZO2oBfMMaD0Vq g==;
-X-CSE-ConnectionGUID: LemZAZmtTFeiKcV5wnWX7w==
-X-CSE-MsgGUID: XKyLYZO2S4C+Vvn20PmYdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2200136"
+ bh=m/ryueOyNlQXwZbT5n+FH0hElUDI9FGEruY3hsSj+8I=;
+ b=L473w+oGt8VNXZMxuJiFA0Mrf+Pc+3G2TfmySImUa1kdcbe6+qc7SYrD
+ xdhDD53nfUlV0zbkuPRZ5ZuJ7iNxEBzNa5Yk+Gtcz4Ev7FhXJubNL+SIK
+ wQBe/SX8eRH6jdA1XBvMyJGtRw4L0oC5tGFWUefiv9gbG3lUZkzz0DBSD
+ GVJy5KcX38QLYar9Ux+oedm5fv39Or+y6lvwJpnydUoEJFIiUzOtJBNaB
+ piD7N/d6v0Hql1+be4TcxVPw4p9kB9itWAy29SLlxt6CXk32hGC01PXBh
+ vlECcB3Aw589l5ev217W0r7BsA8gTLzvXRDq8VuwtzIwCc3CS6cdSetgE Q==;
+X-CSE-ConnectionGUID: xDihMOqETMq1iIRzZUwhmA==
+X-CSE-MsgGUID: VPq8/CkcQ1CyEQmZzo+pmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2053839"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2200136"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 15:44:25 -0700
-X-CSE-ConnectionGUID: sidjpLFITJaPgTxWS769FA==
-X-CSE-MsgGUID: mhYV3rW6S+WVZKTjsg/lsg==
+   d="scan'208";a="2053839"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 15:46:27 -0700
+X-CSE-ConnectionGUID: 5Kruc+ftS9WjqsnOUTPBQA==
+X-CSE-MsgGUID: ozhSqtwRQTaRbznrUQ2CQg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5523712"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 15:44:26 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+   d="scan'208";a="5568631"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 15:46:27 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 30 Oct 2026 15:44:25 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.56; Fri, 30 Oct 2026 15:46:26 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Fri, 30 Oct 2026 15:44:25 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.6) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.56 via Frontend Transport; Fri, 30 Oct 2026 15:46:26 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.58) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 30 Oct 2026 15:44:25 -0700
+ 15.2.2562.56; Fri, 30 Oct 2026 15:46:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lfjnGdMp9kkcg8T/DnpmXld82a2Dwiy/R2i+6BcGGOk3N9Xdshi4Z18hL+2wC6sCmO03q+gG3ovfoWaqsbFp86nkN4U51hBo3nOmkNLUbCDhTaOPeUdwfZy4QpneI3cmHKD3ZjkUGhmMTiWEeLjdYSyBb9K9tjsDyr5CqYB+XIcxIGPtiLDG7krFvvObxKvWFjkNz8DIX3nCplbzJvjmBUCspWqLZO1eLQ1awRg+OXa2CTKp43OIxO5gFq2mFKSbpNAEZcP0mntvZegHht7nmq+b1QGVFJMYBA5HMJw415XYQMpkCLfh7aKM5xduCVDI4WK8xA3vWP2lgE5oybPI3A==
+ b=CaNnAqYTkp6yVn3wR/TFp+BQ+A2KNRgMfzJW8B1f57jan3y4MSFsBx6H02xPb9OzQMOFJfEGXYiN+ZECiEzY+4enGz9SK/rW1rB4pTHkllseN8+9o3J34ebs8WTnAVOvmpcJ8UgnjqQuuZeyGMNVGIw75PHQ5re4px9/zjqNp3hupA+tyF+E07CIDJ1csJU+cjs/Z0BMg8MEHUNB6Ca24Gt9BNUV3LcncloRdOlM+U9AuTJEP3EZSlH7FIovCk3GZEb2zH1p9PttQqYzoG0afxvV9H/xgBt90G2MFa/Jy2xanF6LasguNOC72Rcnnkg7oX/SfCHvdkTBxoWRQ39MOg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/aK55dmShsLeLcxouBCLoBvFXGpfoaeyv/ZYpdweQdA=;
- b=FYqq8Z9/JuEjq2kJbO8rn67zZ73pDLmZdsT/nND5XYXqdEKFOI2LAE218Zrh5nNNGSK3DIBD98V4IypUgZWa0xQ+M2+56jO91s9w0DUrZUOOQNnTiK15GRrQHQdxWk63rr2rfiIwzFTW2udhNTbo0dn1MtjyMyFqMFnEOFQw8JLg2iVcE1YbWIEBcneH9qVtTvJ1F3O1I3fHMArzTLadG41AltBLiTRjZVFRYNKtFLwzqgJEoicTfYzp9oABDHyvkcVgak2PZ2LAXJ1N8AZv+5CN8jqJuP/d6zPlxBy7CYsoyZQ6qd1zu2u6wFmc1n4li4Bf2eUslxD0DW5Q0oBCeA==
+ bh=Bodg46Ly0aQ3MEoc5ZKLIuuY7tD55xaKUbBzM5Y3aWE=;
+ b=vxIANSe4pfjfwUFGhcK73cBMH4u/XsTGgSrE7MtmoAWO42ZF2UCCB2AU1UxLFWgDDSc76ru16rXlD5WxsQsg0gNIKhlRHo6ynR1uXMq72y5Lu1uqwIal8hTfyYknzSgBV10KKkZAC5qrWSFXAu2Cxzq+Xzxitm56Pv3RId5YQPBwD/asDDIfGcSfbKROK2PfWLce6woVXYHToNloxQikMgTFzi94LtezvXR9cvtrjtQoCXVrRj8doCTXC6HqsS6xEbNdNLq8j4t2adEbwJnUT8Fk06b9zJh9YBy+m3qmHjEJT8AMoL/jM57uM8nkMssMDj65kojZxUPL9TMilFxnkw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,95 +68,95 @@ Received: from CO1PR11MB4979.namprd11.prod.outlook.com (2603:10b6:303:99::16)
  by BL3PR11MB6363.namprd11.prod.outlook.com (2603:10b6:208:3b6::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.10; Fri, 30 Oct
- 2026 22:44:22 +0000
+ 2026 22:46:16 +0000
 Received: from CO1PR11MB4979.namprd11.prod.outlook.com
  ([fe80::ed0a:e4ab:fde6:edcc]) by CO1PR11MB4979.namprd11.prod.outlook.com
  ([fe80::ed0a:e4ab:fde6:edcc%7]) with mapi id 15.21.0569.009; Fri, 30 Oct 2026
- 22:44:21 +0000
-Message-ID: <92cbe214-7e51-4fe6-97de-b863431e776f@intel.com>
-Date: Fri, 30 Oct 2026 15:44:17 -0700
+ 22:46:16 +0000
+Message-ID: <b623c308-ea2b-4b34-9a5e-db1fad870c16@intel.com>
+Date: Fri, 30 Oct 2026 15:46:13 -0700
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/6] drm/xe/xe_late_bind_fw: Add string mappings of
- status codes
+Subject: Re: [PATCH v6 4/6] drm/xe/xe_late_bind_fw: Add support to load Ocode
+ firmware
 To: Badal Nilawar <badal.nilawar@intel.com>, <intel-xe@lists.freedesktop.org>
 CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
  <michael.j.ruhl@intel.com>, <alexander.usyskin@intel.com>,
  <anoop.c.vijay@intel.com>, <shamim.begum@intel.com>,
  <kelvin.gardiner@intel.com>
 References: <20261030144547.2532309-8-badal.nilawar@intel.com>
- <20261030144547.2532309-10-badal.nilawar@intel.com>
+ <20261030144547.2532309-12-badal.nilawar@intel.com>
 Content-Language: en-US
 From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20261030144547.2532309-10-badal.nilawar@intel.com>
+In-Reply-To: <20261030144547.2532309-12-badal.nilawar@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PH7P221CA0042.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:33c::10) To CO1PR11MB4979.namprd11.prod.outlook.com
+X-ClientProxiedBy: PH7P221CA0048.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:510:33c::8) To CO1PR11MB4979.namprd11.prod.outlook.com
  (2603:10b6:303:99::16)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CO1PR11MB4979:EE_|BL3PR11MB6363:EE_
-X-MS-Office365-Filtering-Correlation-Id: fc3239a2-7875-4a16-e9f4-08df36d75699
+X-MS-Office365-Filtering-Correlation-Id: 92ea74d7-10f2-4097-1d76-08df36d79b74
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|56012099006|261028144727099003|11063799006|4143699003|261009223027099003|261026140227099003|261022105027099003|261021121427099003|261022075727099003|261022113327099003|10067099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: gBp6zrUc/CKOjBTXarmGsVCPQuXMbnfZOrZ6CHOtHO6+pauaXrkcGz9UyVEEHYmvDJDbrnze33QnjXYY/CgtqZQbbLECGvch5MGyi3V8nEezju9KOoBhVhkDQan4st2PUhnDhBfIKNsvmbTnmvHFgZutZ45w+lDJNo+xgWAduDNAhVUeC5J/OKt6Uxm2K8krmwthwTGighTJlJc33sys7xZyJeXpbUXHw8fbf/LJR4QeSppz4dH0ffdpeyW19TFjsf3n0s9C02ppVZhUK001kBgn7a+HChRnSbnH+BCUiFCOQzMoU4kSVz2a+u4JW/Zu7y/cywN41Mcnn1kPyh10/sIjNYfWUotYfTb26kUhCEIjBVjiO/O92O5+r/+KEJOaxXqBWRhR7/oCHTgdwaCPn1qqRUIxsoOP2wvaW5CtxJ+jXYJpa6nNafvDdakYojZzRM7TfvCVroIR/seQxcSCHHa8Js/4jF3PB+sMykns66dSkFeRaP+5JPF+m8AzLBOwyaFnmt5dMNUpqixE1G2DWqTbK3LajgGikXhny08zpMX2vefW3fY3mZ/gX8Y5Zd+1p7C7WKGLyHnbMSvL4cKgtJCwjUS5xwxN/mNpdv33bGzXWa4nEEAscEVLHIHhBKtH5ymUdupctMIYvxGO380uehiupxQEd8MjoXHQtXPX05A=
+ ARA:13230040|366016|23010399003|1800799024|376014|56012099006|261028144727099003|11063799006|4143699003|261009221227099003|261009223027099003|261026140227099003|261026135527099003|261026130827099003|261026121527099003|261022105027099003|261021123027099003|261022115727099003|261021121427099003|261022075727099003|261021130227099003|261021133027099003|261022113327099003|261021135927099003|10067099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: Nb5ULwGIfHClwexfs/TXsDT5O0T2yYXC3nxfniYgxSM7gQ0zQHeJ4oSzfu1FKaaAOlZtpq6+/KLQ2UxUZWtEc+dCUc3I6TjEkZWMlg7GsJmi/U3vzUWCjPkNyxIPFmBPDNFbE/2M22j8tWEkGNgbdW8d3wS8IBCq5QFQrvZpUeFq18kkF0dz4tl0P2C7T9YLKgjFm+lBYYmNRqWBbZc/O0Wfubuyq/ZESPA3dpxzL1XjsR75/4HxCmISl1QnVLp8sEKCsCLKQ1PKvC8EtxJEHp4E359SI3XRcQfZ6K+YA/nK/M6OylvxEd3PX9SE6sNEptz0FH96R51aD7cYpESKS5TTN7KWxUEYN6oTeZx/8ZbPhpD7eS8Lbi71kqN3yPB2WP9yq9/c5bAbWMt2SibMrPyvVae58jb6WfXnCInr4UrCqyMlVcBPSRGzdA8SdppO9dCxSBV86a/1KkrFpRTlkD+cOIIvqxF+fgMjZyucMLdP66RPC2vQzt99M01MsK6IjGFGLhHo3ktCmWuJwTWC4lg0544bgN2lMR02zVF1gJ/vbCwL+gV3jfO2wwueUzRs05/YeHFXeHU+JWzMJAJBWxu+AuiB4SWVJvfejGIo2r1yS+PsaLc5WtGQgeTYEnEe/nFy1tFcHOjCeXZxBkrg9qcTwDvvl6Uw6eEP9V9uunU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB4979.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(56012099006)(261028144727099003)(11063799006)(4143699003)(261009223027099003)(261026140227099003)(261022105027099003)(261021121427099003)(261022075727099003)(261022113327099003)(10067099003)(18002099003)(22082099003);
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(56012099006)(261028144727099003)(11063799006)(4143699003)(261009221227099003)(261009223027099003)(261026140227099003)(261026135527099003)(261026130827099003)(261026121527099003)(261022105027099003)(261021123027099003)(261022115727099003)(261021121427099003)(261022075727099003)(261021130227099003)(261021133027099003)(261022113327099003)(261021135927099003)(10067099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NG0yUmhTYmVLTFM0L0g0OUlDZHRxWUR4YkE5R05wcVJJTFQwRkdDdUVRVXY2?=
- =?utf-8?B?cWUzZTVKWWhGRWxZMEhQaHVrUG9UWWxYN3hEQmFIelhiM1VRVFBOT2NNaysw?=
- =?utf-8?B?QkV4OHYwemlKQzgyUTBjQTB2Ujg5R3RvUk5jMHZJU2R2Z25GM3JoRFhXeHk0?=
- =?utf-8?B?eno4L2F2TGU1MmppMk9KOE9lQUpUNFhocXVhZGpSa0NRaXZ4ZjhGR0pvU3Bv?=
- =?utf-8?B?b0RMenp3YXBpbitNRTE3RkwxUitwU2tEMC9tdmcyS2dQU05QeHFVNExFc21K?=
- =?utf-8?B?dUVXczJVQlBpcmxYajJvMXNTZ1gwRXBFNngwNmx4aWdId3VDTzd0Q2J5Z3U5?=
- =?utf-8?B?L3h3VnFHZzRvZFZiMkN4aXFMZ3BTTmtDRFU3SGx6Q2FiNlJhMkcrekJLU0dt?=
- =?utf-8?B?UDBlSDI5cy8vZ25GaTdkUFd1QmRZY0RtMFpOdkJqL2JIRStVRHlpSEF3N1J6?=
- =?utf-8?B?Y2ZaaDlWK2pxcS9aTzFUYmhlOWt2eThsSXIrWjdndDFmQUVCVzhmZ09uSm9n?=
- =?utf-8?B?TzI5eVZyZGdKTHdWS05JSkFkVTZLNWJ5c2NkaXkrQVJKd2x1T045akpVdEJj?=
- =?utf-8?B?bVAxNlpUcEJWRW5pbUNWMVRxQU9SUGZHSE41UlgxSFI4UUlTRUhCUkZDdE9Z?=
- =?utf-8?B?Q0YzNjFBQWpQMlduNUpheGRsZ1dtclU3enRYUWtXaU5FZDVSOU12K3l6WEI5?=
- =?utf-8?B?L0daN1RFdmFxSlA2OW5xaE1uZ0lCNjlMcXZJaXU2RXRoTU5oMTZYOUJXWUh1?=
- =?utf-8?B?Nm1RVVZyeEUvTnJKbDNaRkV1M3o2eGZpNTVmbGlOTjMzaDFld3NnR1Q4S3FD?=
- =?utf-8?B?ek92bmxjS1dFQjVQY3dxZVlHWlRZWEtsa2tnSTVwRVB1TXJGVUkyODNIRy9X?=
- =?utf-8?B?VUphK3RnekF0QUcyU3A2UDdWMUZMcE1MYjJ0RlhucXZjcitXb2RPaVhYWWpR?=
- =?utf-8?B?LzhzQktpRGw3d25QeWl2NTVydnhnVGl5YjlKaURBeUpxNXU4dFFHQXltS3Bj?=
- =?utf-8?B?bHBUQndWeFcxenZMaFI0QnJJa0RJM1kwaXZvOGNJVVFiTmtFYVVoTGRPUlp6?=
- =?utf-8?B?Q3R1VWFRWC8razNOcEdRN1E0RTBWeXNnc0p6RnZtMkM2Ky9KbTUyV2J4OE83?=
- =?utf-8?B?bzlUaFhUUzFLc0c2RUtyODVRN0lteThiNGcxY0RkMjh5RG5ybkxBbEU1SGFD?=
- =?utf-8?B?eWdmd05mVUZ0TDlrVTB5enA0OWJLRFE1elFJRENVYmFBUnZuUVJWR1Y3OTNl?=
- =?utf-8?B?aXpRM3h6VlBEeURtVlhTNDY3MjJrVklzTTlnZGFJZzdFRkVCQUYrc0dnWUVF?=
- =?utf-8?B?Q1ZjL1JvUmFoNEhYeFhlc05FZWJGYUxzYm52RW02ZGErV0NaR0Z1QytGcnpN?=
- =?utf-8?B?MjB4TWl1Skp4YVliamZaaEdVRjJRSFFEUmpzM3ZRY0tuWVRDL0NNb0xaL2FX?=
- =?utf-8?B?UWVtUWM3YmZUd2N0TWowejZNa0s0K1BRcGxtVkhzelBNMjdnWW93RlBZNjBC?=
- =?utf-8?B?N2t4WmgzZEgzSHB0VlRDSjE1eGp6QUdXQ2s4L1k5OVN1YVZJWjcySWp3UWY0?=
- =?utf-8?B?MWRVTU1aUXZPY2lDRDFiTzFhU2dya01leXFVYnNtbFJOYWIwZVZBSWZvb0pK?=
- =?utf-8?B?VERHTjYzbVVDcWxtMjV0N2V1QWNZcjFjNHJBeXF4S0VqRzFEYnJ4cFJBeGly?=
- =?utf-8?B?cnpHZTZ6UEJEQzMvMXpyYWJKcTRIQmpRcVhHYlNVZGNKQnhKa0NicWQxaFU2?=
- =?utf-8?B?Mm1zbUtranhha2YzV2hkZG5JTkI4bWNyNFlxVThhSDN1UG8yMUpMbWdKb0FC?=
- =?utf-8?B?aWIzSUk3UlU3RTU1a3crdG1JOEE4eGlack1WTjlQU1A3R2RveHNXaUMwVUt0?=
- =?utf-8?B?eDZRdjhITTNIN1cvWG5qSjd4MjRKbE5zYVY2OE9VZG9zODJjLzlsNmJoSERi?=
- =?utf-8?B?Mm1UTm1pR042RkxDakFUSVV5VmJneWU2Qnk5SlFDNWw3NTlMelMveVQ3NFhx?=
- =?utf-8?B?ZWVBV1RxV2tLaEVuNm15OEp6ZEFtNDNWYlVnWGQwbW1vR29KZlJrWXpkMEVr?=
- =?utf-8?B?WGZrY251VWk4VmxlMXlaM0VYOVF0OFpmYWhrczYwbEN6Vk4yZ1EySzcrREpo?=
- =?utf-8?B?RW13RG42eVpSYkx2V0V3Z3ZsODVKMTR4cFVBTVB2QXhoMzVtK002VmkxbWFU?=
- =?utf-8?B?aDUwTXFZc0ErVVAxN25nS0VyNzF3bHhuNS9UN0dseStWUDFKT3VHZVFaQVYy?=
- =?utf-8?B?enNFWTAvUHUzLzlkRjlEbFFyUnpRT0dIRm00L1hEWjVCTEtMd3J6c3puVDdF?=
- =?utf-8?B?ZjhhMUtoZFRZUVBsbHZOUmJaT2UyNldZSlhNSGJhZktPYXpiYkdlYXdpaG51?=
- =?utf-8?Q?vqqY3FjjdQGPlVxo=3D?=
-X-Exchange-RoutingPolicyChecked: gsSCKCP51QokpnMlQpEhpyYafoGAxrTdYpGLCgj24UmW6bBOzc+qYx3nXBv3jkxmfax/eaUjKyT06295oqQX//y/RPThaRpaf4eiHpC4Fe4fhBPx+Hwmf4xwHDKpb3LPp83w0xSV4sIt8ND4Bp1EVYY4eHx7sl/vsF6d157NEgRl5qV/HAdHk6OPYBOGvsocW4leCyAd1sZIEqBsmr+ELbKhCkdRxjxx64zkIYWfL4TiRyI/b3/4cwLHmTU5k4rqyd1e78oFBNAXIY7Li45gDCwjxoOL13STako1LJqRbKxWSa4VEZ8yr9rdMhY5DHVumQdLv+YW6rPulNdlc6wSrA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc3239a2-7875-4a16-e9f4-08df36d75699
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Qyt3b3Qvb3Z0NmUvdDVxZGdEQ3VLanVpWi9JT3p0aHB1dDhBVkRlK1NSVUNE?=
+ =?utf-8?B?K2h1UWlRNzRUNEkvaEdjYTRvNllLWlYwWmRrVHdXZWV1NGs0aGNVWE5pODcw?=
+ =?utf-8?B?c2ZRblg3UTN5SEZwNU44YzZiQzlKOEI2VU10aWhzZGw3cVdMRG1HdFNkSXJI?=
+ =?utf-8?B?aCtUSTBtdGpxOEFYNlloODRDNFFyNWh5ZzlUTml4MWF2YllKcVFrN0FLeVBO?=
+ =?utf-8?B?VWJnOFlsbFdHZjBidFpOQzdGa3J2MElHaFBuYW5vdktmcDhyM3A4MFZiUVNq?=
+ =?utf-8?B?NXQ2RE96L1R0V0E5VEVseEtWbGVsaDdHV2JEYmF3SWtpdktDZWVCUjZYQ3JU?=
+ =?utf-8?B?cVdLMkRENFB0ZGlzbHFJYUpnL2g4Vnc2R2VaeTZZUUx5NElQaG1QRHR6ZEJQ?=
+ =?utf-8?B?VVJtTDJINjRMcVBXVGViVU1sR1VEM0FVdzZnSTVFL29pVUs5R0J1ckwzUmxU?=
+ =?utf-8?B?SHA0RG1TUnhGbVVHbTdiUEdpSk51bkhLMnM2Qk1sTW1zWDMzcGVLMDFEWEY2?=
+ =?utf-8?B?MnFyU1owaGpVWXc3MzBsZ0oxR21BSm1iTk1ra21vbVJrMVprWkN1bVBzVzJS?=
+ =?utf-8?B?dUpxcllySzFWTFRwRUVyaTZIaTdFNzVRS0dHbVpOWnB3L2dOMUs4S3JEUEEw?=
+ =?utf-8?B?ajFNNkNoWmVaTGZ5QWJGWkFBaVV4SVVkMDRIMkFLZ0dwbVRiL2k2cGRkMGpp?=
+ =?utf-8?B?RnBFUEt3anpaUk53R0duQ2JXT3pUdnBrNFd0LzVNRDgzVW1Yc3BoYXRJOC9r?=
+ =?utf-8?B?NC9NY3RZQTEvQVkvcWh2cGZCVGQ0MGZqR3AxdnVQL1FtRDRvNDY5MWhkeE1x?=
+ =?utf-8?B?MUxaemRDVDdhd3lRYzQxbkkyMUQ4TnZVQnNycGRob1Ftc3Y4a1djSUhuZ3o1?=
+ =?utf-8?B?aW1qYXF0WTROMGdVRjlPVlY2SVMvUVpzcWQwWDJpVUxlWEpCSnF6VGpaVHli?=
+ =?utf-8?B?d1ZybWdmdVRJaWt1ejF5RzV5VmRic1pUZjZmbjdoQ21xQ0tQY29EcnBhcWtr?=
+ =?utf-8?B?TWZuSGtBVkg4bmlVK0Rhd2pQRnk4Vk91VjJDaDcyaEdpRHZhWkpGaEI3dkJp?=
+ =?utf-8?B?ZkxiNnVMUnpENUxqbk5HVjQ0cTdOS0V1WHFtamg3MTV0UHFMRkU4V1VsRWRT?=
+ =?utf-8?B?dE9pSTJjRnFtNjBsbVRvajNIZEE2bXV5SW92MDJ0ZnJaemxabW4xay9ZTU5T?=
+ =?utf-8?B?TllveUxoRFdvK2ZFb3EydmhRSTdMWjh0ZE5Ya2N1aWtHd1pmYVpsUXpkY1J1?=
+ =?utf-8?B?eWRiZ0NVb1pFKzIyWDhhUTFGc1lLZTMvVXpXRmx2cDY1aUVPZkplYVR2R2ti?=
+ =?utf-8?B?aE5FNFVsVGM2WE4wQThneHBWbEMvWER6UmlsTVl1NFJEbUYwajN1eUhZVi9K?=
+ =?utf-8?B?VUd4QVJQV0NOQnhQai9DMzB0L3VyZE1HMjdUQnZGM2tlOWlaTE8yU24yb2h4?=
+ =?utf-8?B?YmFBdHpJL202VytqM1VQSUtrcEo5RkRXckdhU2tWZ3dScTY0TFJqLzcra0Vj?=
+ =?utf-8?B?UGNJMUhpeDluNW8vYnJXSEc1dEtVa3N3ajB1UFhVUlo2QnRUOUFMZjQwb0V4?=
+ =?utf-8?B?alArNzZPOTllVFI2MlpMNTVXanR5elhrdm8zRWRRSXcxeTkwMlhZSjlPQStW?=
+ =?utf-8?B?UkJtT1Y2OWRiNmIwSm1hY3NXc3ZlRFc3MFBXeUFnQ3E3VEFMN1B4VFdoMEEz?=
+ =?utf-8?B?UEtTQ2taeVdlUTJyWmJFOGgyVkZjek5QMU8ya281TGtYd05jNUs0Z25HaTM2?=
+ =?utf-8?B?b3JVRUJvdDF0RDZJekhNNTFtOUZMcXRleXpKYWJwZzk1cTJuV0dUbithZTd3?=
+ =?utf-8?B?TDlBc3ZLMk12Q0t0UngrMHhxOVkwWXlJTzlyMm1HSmlSRTJxWWhsbkxNR0ZZ?=
+ =?utf-8?B?TGgrR0ZsQmJ1dG1jU0NuMzdQemZ3MDBIZkllZ05uUlZvTmhMc0xIejE4OUxV?=
+ =?utf-8?B?TTBtYXJpWWladVlPNVBsSUx6UGhBZDV5Zkl2TGU3U0paM1ZLNHZKVVkzRURv?=
+ =?utf-8?B?RmRvQm1hMDdtekFvb1ZPVnBvQ2FIYXV4NmlsQ1o4UU5WYU4ySmQ5aFBNcS84?=
+ =?utf-8?B?RmM4cmUrUXg4Uzd2TnVxbkxGdWZqOWpvREF0UlliREQ4cXd1ZW81cDJTQXZF?=
+ =?utf-8?B?T0w4QlhQS3NpdVRGTTRkbERCeGUrWmlsM2RZdzhvVEtTMlZqVVNUbFhQWmZa?=
+ =?utf-8?B?L1Rud1g3bk8waU9MRERZYitFTi9qVCtIQ3N3eWdoaFRLTFY2YXFoem1YUnB6?=
+ =?utf-8?B?ZFhqa1dhbHU0elRMMEQ0dFRDQ01TSFFidGpzOUxPT3R0M0UwZlBmQ1BGY3kw?=
+ =?utf-8?B?bUU5WVVKOXQvZ1l3UkRNYUkrTHVrY3AvUm96QmVySmhhVjBhdWozOTRsWmFk?=
+ =?utf-8?Q?e2hKbF6/zhelShlc=3D?=
+X-Exchange-RoutingPolicyChecked: OFl94MZYOW74BqdcOVAg3da5uHuSQdKSgQALD9Xzkjlll7Qtd5HXu4zKCjinI4amqZEMAaxZpH737KMadxxkCaZuPr0avwq9TY26ozsNgn7j1bRKNaDFjDqMFZH7+xD39T8/d4oFBpHzKvuK6cyXvR4RJRTV++Vndt0U10Qz+0ib+4n6BL9i2pvZr0cYh9imjzHeFNkR4rQHlivIusr/y0xWNw9ZwsPekVbWqDFqczM692tl6Q/W9hYgmEWG1DPhR8lSAAW6IVmQRgkV5y8Hm3gTU50zbjTLG0PHVLhaRFoyEu3QHIvZ4SRA0vWjNiS6BhfUdF2/eED0XTU7bSizvg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 92ea74d7-10f2-4097-1d76-08df36d79b74
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4979.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2026 22:44:21.0504 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Oct 2026 22:46:16.5179 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cKidU6BLE5SKbBMg/fW29hTt8aV7K/lfzoz4X6zovFlX6TzONlcE26YrhEcFYdGP6iXIJt8qY27Kv+bhGxQUaJ3tugxtmNeyIeV5knSPeWQ=
+X-MS-Exchange-CrossTenant-UserPrincipalName: xieK8i+i4/Yj671XS9263RXTXcawKUQHJkBQWwwe4vZfhQmOXSz7D3ux8uyIwjhL+grgTU1gtCyiwGUHw4RF7ZgJrdT5FM8VVgUK+2RTgcg=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6363
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -180,55 +180,288 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 On 10/30/2026 7:45 AM, Badal Nilawar wrote:
-> The mei_lb driver introduced additional late binding status codes.
-> Add the corresponding string mappings in Xe for reporting these
-> statuses.
+> Enable loading of Ocode, the legacy OOBMSM firmware, through the
+> late binding flow. The payload size check is no longer needed as
+> late binding supports larger payloads.
 >
+> Ocode may not remain backward compatible across IFWI updates. Query
+> the SDK API version from the System Controller mailbox and load the
+> corresponding xe/cri_ocode_<ver>.bin. Skip loading the firmware if
+> the SDK API version in its manifest does not match.
+>
+> v2:
+>    - Make sdk_api_version part of ip_specific_data union (Daniele)
+>
+> Assisted-by: LLM
 > Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
+Please get an ack from a maintainer if you want to merge this ahead of 
+the FW being published.
+
 Daniele
 
 > ---
->   drivers/gpu/drm/xe/xe_late_bind_fw.c | 26 ++++++++++++++++++++++++++
->   1 file changed, 26 insertions(+)
+>   drivers/gpu/drm/xe/abi/uc_fw_abi.h            | 11 ++++-
+>   drivers/gpu/drm/xe/xe_late_bind_fw.c          | 48 +++++++++++++++----
+>   drivers/gpu/drm/xe/xe_late_bind_fw_types.h    |  6 ++-
+>   drivers/gpu/drm/xe/xe_sysctrl.c               | 32 +++++++++++++
+>   drivers/gpu/drm/xe/xe_sysctrl.h               |  1 +
+>   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 12 +++++
+>   6 files changed, 97 insertions(+), 13 deletions(-)
 >
+> diff --git a/drivers/gpu/drm/xe/abi/uc_fw_abi.h b/drivers/gpu/drm/xe/abi/uc_fw_abi.h
+> index 198e949660e0..59699ba4def5 100644
+> --- a/drivers/gpu/drm/xe/abi/uc_fw_abi.h
+> +++ b/drivers/gpu/drm/xe/abi/uc_fw_abi.h
+> @@ -316,6 +316,11 @@ struct gsc_cpd_entry {
+>   	u8 reserved[4];
+>   } __packed;
+>   
+> +struct ocode_manifest_data {
+> +	u16 sdk_api_version;
+> +	u8 reserved[22];
+> +} __packed;
+> +
+>   struct gsc_manifest_header {
+>   	u32 header_type; /* 0x4 for manifest type */
+>   	u32 header_length; /* in dwords */
+> @@ -331,7 +336,11 @@ struct gsc_manifest_header {
+>   	struct gsc_version meu_kit_version;
+>   	u32 meu_manifest_version;
+>   	u8 general_data[4];
+> -	u8 reserved3[56];
+> +	union {
+> +		u8 ip_specific_data[24];
+> +		struct ocode_manifest_data ocode_data;
+> +	};
+> +	u8 reserved3[32];
+>   	u32 modulus_size; /* in dwords */
+>   	u32 exponent_size; /* in dwords */
+>   } __packed;
 > diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> index 1bddfaf0fb9f..b7957e255ccd 100644
+> index c5f3a3b8d404..b62a4c15c738 100644
 > --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
 > +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> @@ -179,6 +179,32 @@ static const char *xe_late_bind_parse_status(uint32_t status)
->   		return "Invalid Payload";
->   	case INTEL_LB_STATUS_TIMEOUT:
->   		return "Timeout";
-> +	case INTEL_LB_STATUS_INTERNAL_ERROR:
-> +		return "Internal Error";
-> +	case INTEL_LB_STATUS_INVALID_FPT_TABLE:
-> +		return "Invalid FPT Table";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_VERIFICATION_ERROR:
-> +		return "Signed Payload Verification Error";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_INVALID_CPD:
-> +		return "Signed Payload Invalid CPD";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_FW_VERSION_MISMATCH:
-> +		return "Signed Payload FW Version Mismatch";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_INVALID_MANIFEST:
-> +		return "Signed Payload Invalid Manifest";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_INVALID_HASH:
-> +		return "Signed Payload Invalid Hash";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_BINDING_TYPE_MISMATCH:
-> +		return "Signed Payload Binding type Mismatch";
-> +	case INTEL_LB_STATUS_SIGNED_PAYLOAD_HANDLE_SVN_FAILED:
-> +		return "Signed Payload Handle SVN Failed";
-> +	case INTEL_LB_STATUS_DESTINATION_MBOX_FAILURE:
-> +		return "Destination MBOX Failure";
-> +	case INTEL_LB_STATUS_MISSING_LOADING_PATCH:
-> +		return "Missing Loading Patch";
-> +	case INTEL_LB_STATUS_INVALID_COMMAND:
-> +		return "Invalid Command";
-> +	case INTEL_LB_STATUS_INVALID_HECI_HEADER:
-> +		return "Invalid HECI Header";
->   	default:
->   		return "Unknown error";
+> @@ -17,6 +17,12 @@
+>   #include "xe_pcode.h"
+>   #include "xe_pcode_api.h"
+>   #include "xe_pm.h"
+> +#include "xe_sysctrl.h"
+> +
+> +/*
+> + * TODO: Add MODULE_FIRMWARE() for xe/cri_ocode_<ver>.bin once the
+> + *       Ocode firmware binary is available upstream.
+> + */
+>   
+>   /*
+>    * The component should load quite quickly in most cases, but it could take
+> @@ -33,10 +39,12 @@
+>   
+>   static const u32 fw_id_to_type[] = {
+>   		[XE_LB_FW_FAN_CONTROL] = INTEL_LB_TYPE_FAN_CONTROL,
+> +		[XE_LB_FW_OCODE] = INTEL_LB_TYPE_OCODE,
+>   	};
+>   
+>   static const char * const fw_id_to_name[] = {
+>   		[XE_LB_FW_FAN_CONTROL] = "fan_control",
+> +		[XE_LB_FW_OCODE] = "ocode",
+>   	};
+>   
+>   static struct xe_device *
+> @@ -104,6 +112,7 @@ static int parse_cpd_header(struct xe_late_bind_fw *lb_fw,
+>   	manifest = data + offset;
+>   
+>   	lb_fw->version = manifest->fw_version;
+> +	lb_fw->sdk_api_version = manifest->ocode_data.sdk_api_version;
+>   
+>   	return 0;
+>   }
+> @@ -324,6 +333,7 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
+>   	struct xe_late_bind_fw *lb_fw;
+>   	const struct firmware *fw;
+>   	u32 num_fans;
+> +	u16 sdk_ver = 0;
+>   	int ret;
+>   
+>   	if (fw_id >= XE_LB_FW_MAX_ID)
+> @@ -346,9 +356,23 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
+>   			return 0;
 >   	}
+>   
+> -	snprintf(lb_fw->blob_path, sizeof(lb_fw->blob_path), "xe/%s_8086_%04x_%04x_%04x.bin",
+> -		 fw_id_to_name[lb_fw->id], pdev->device,
+> -		 pdev->subsystem_vendor, pdev->subsystem_device);
+> +	if (lb_fw->type == INTEL_LB_TYPE_OCODE) {
+> +		/* Get SDK API version */
+> +		ret = xe_sysctrl_sdk_api_version(xe, &sdk_ver);
+> +		if (ret) {
+> +			drm_warn(&xe->drm, "Failed to get OCODE SDK API version: %pe\n",
+> +				 ERR_PTR(ret));
+> +			return 0;
+> +		}
+> +
+> +		snprintf(lb_fw->blob_path, sizeof(lb_fw->blob_path),
+> +			 "xe/cri_ocode_%u.bin", sdk_ver);
+> +	} else {
+> +		snprintf(lb_fw->blob_path, sizeof(lb_fw->blob_path),
+> +			 "xe/%s_8086_%04x_%04x_%04x.bin",
+> +			 fw_id_to_name[lb_fw->id], pdev->device,
+> +			 pdev->subsystem_vendor, pdev->subsystem_device);
+> +	}
+>   
+>   	drm_dbg(&xe->drm, "Request late binding firmware %s\n", lb_fw->blob_path);
+>   	ret = firmware_request_nowarn(&fw, lb_fw->blob_path, xe->drm.dev);
+> @@ -358,17 +382,17 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
+>   		return 0;
+>   	}
+>   
+> -	if (fw->size > XE_LB_MAX_PAYLOAD_SIZE) {
+> -		drm_err(&xe->drm, "Firmware %s size %zu is larger than max pay load size %u\n",
+> -			lb_fw->blob_path, fw->size, XE_LB_MAX_PAYLOAD_SIZE);
+> -		ret = -ENODATA;
+> -		goto release_fw;
+> -	}
+> -
+>   	ret = parse_lb_layout(lb_fw, fw->data, fw->size, "LTES");
+>   	if (ret)
+>   		goto release_fw;
+>   
+> +	if (lb_fw->type == INTEL_LB_TYPE_OCODE && lb_fw->sdk_api_version != sdk_ver) {
+> +		drm_warn(&xe->drm, "%s late binding fw: SDK API version mismatch %u != %u\n",
+> +			 fw_id_to_name[lb_fw->id], lb_fw->sdk_api_version, sdk_ver);
+> +		ret = 0;
+> +		goto release_fw;
+> +	}
+> +
+>   	lb_fw->payload_size = fw->size;
+>   	lb_fw->payload = drmm_kzalloc(&xe->drm, lb_fw->payload_size, GFP_KERNEL);
+>   	if (!lb_fw->payload) {
+> @@ -381,6 +405,10 @@ static int __xe_late_bind_fw_init(struct xe_late_bind *late_bind, u32 fw_id)
+>   		 lb_fw->version.major, lb_fw->version.minor,
+>   		 lb_fw->version.hotfix, lb_fw->version.build);
+>   
+> +	if (lb_fw->type == INTEL_LB_TYPE_OCODE)
+> +		drm_info(&xe->drm, "%s firmware SDK API version %u\n",
+> +			 fw_id_to_name[lb_fw->id], lb_fw->sdk_api_version);
+> +
+>   	memcpy((void *)lb_fw->payload, fw->data, lb_fw->payload_size);
+>   	INIT_WORK(&lb_fw->work, xe_late_bind_work);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+> index ee5efe60774e..c7b3ffc743cf 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
+> @@ -13,14 +13,14 @@
+>   
+>   #include "abi/uc_fw_abi.h"
+>   
+> -#define XE_LB_MAX_PAYLOAD_SIZE SZ_4K
+> -
+>   /**
+>    * enum xe_late_bind_fw_id - enum to determine late binding fw index
+>    */
+>   enum xe_late_bind_fw_id {
+>   	/** @XE_LB_FW_FAN_CONTROL: Fan control */
+>   	XE_LB_FW_FAN_CONTROL = 0,
+> +	/** @XE_LB_FW_OCODE: Ocode firmware */
+> +	XE_LB_FW_OCODE,
+>   	/** @XE_LB_FW_MAX_ID: Number of IDs */
+>   	XE_LB_FW_MAX_ID
+>   };
+> @@ -45,6 +45,8 @@ struct xe_late_bind_fw {
+>   	struct work_struct work;
+>   	/** @version: late binding blob manifest version */
+>   	struct gsc_version version;
+> +	/** @sdk_api_version: late binding blob manifest SDK API version */
+> +	u16 sdk_api_version;
+>   };
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+> index 4067e1dfdcd5..27a59e8e4487 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl.c
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+> @@ -217,3 +217,35 @@ bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe)
+>   	return xe_sysctrl_check_app_status(xe, XE_SYSCTRL_APP_DIAG) ==
+>   	       XE_SYSCTRL_FIRMWARE_APP_INITIALIZED;
+>   }
+> +
+> +/**
+> + * xe_sysctrl_sdk_api_version - Get SDK API version
+> + * @xe: Xe device
+> + * @version: SDK API version
+> + *
+> + * Return: 0 on success, negative error code on failure.
+> + */
+> +int xe_sysctrl_sdk_api_version(struct xe_device *xe, u16 *version)
+> +{
+> +	struct xe_sysctrl_sdk_api_resp resp = {};
+> +	struct xe_sysctrl_mailbox_command cmd = {};
+> +	size_t out_len = 0;
+> +	int ret;
+> +
+> +	xe_sysctrl_create_command(&cmd, XE_SYSCTRL_GROUP_CORE, XE_SYSCTRL_CMD_SDK_API_VERSION,
+> +				  0, 0, &resp, sizeof(resp));
+> +
+> +	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_len);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (out_len != sizeof(resp)) {
+> +		xe_err(xe, "sysctrl: unexpected SDK API version length %zu (expected %zu)\n",
+> +		       out_len, sizeof(resp));
+> +		return -EPROTO;
+> +	}
+> +
+> +	*version = resp.sdk_api_version;
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+> index b69a3f474236..c0b6d4330c88 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl.h
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+> @@ -22,5 +22,6 @@ void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl);
+>   void xe_sysctrl_pm_resume(struct xe_device *xe);
+>   bool xe_sysctrl_is_oobmsm_fw_ready(struct xe_device *xe);
+>   bool xe_sysctrl_is_diag_fw_ready(struct xe_device *xe);
+> +int xe_sysctrl_sdk_api_version(struct xe_device *xe, u16 *version);
+>   
+>   #endif
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> index 1f3f782d770e..cdacceebca06 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> @@ -57,10 +57,12 @@ enum xe_sysctrl_gfsp_cmd {
+>    *
+>    * @XE_SYSCTRL_CMD_LOOPBACK: Loopback test command
+>    * @XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID: Retrieve application status by ID
+> + * @XE_SYSCTRL_CMD_SDK_API_VERSION: Get SDK API version
+>    */
+>   enum xe_sysctrl_core_cmd {
+>   	XE_SYSCTRL_CMD_LOOPBACK				= 0x03,
+>   	XE_SYSCTRL_CMD_GET_APP_STATUS_BY_ID		= 0x05,
+> +	XE_SYSCTRL_CMD_SDK_API_VERSION			= 0x06,
+>   };
+>   
+>   /**
+> @@ -126,6 +128,16 @@ enum xe_sysctrl_fw_status {
+>   	XE_SYSCTRL_FIRMWARE_COMM_FAILURE,
+>   };
+>   
+> +/**
+> + * struct xe_sysctrl_sdk_api_resp - Get sdk api version response
+> + */
+> +struct xe_sysctrl_sdk_api_resp {
+> +	/** @sdk_api_version: SDK API version */
+> +	u16 sdk_api_version;
+> +	/** @reserved: Reserved for future use */
+> +	u16 reserved;
+> +} __packed;
+> +
+>   /**
+>    * struct xe_sysctrl_mailbox_command - System Controller mailbox command
+>    */
 
