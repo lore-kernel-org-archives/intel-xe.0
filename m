@@ -2,51 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15470606A321
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FC53606A325
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZLWJ6ZQh
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=aDIaL1yj
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E504112958;
-	Fri, 30 Oct 2026 17:14:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDC6711295A;
+	Fri, 30 Oct 2026 17:14:13 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D548B11294E;
- Fri, 30 Oct 2026 17:13:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA92D11295A;
+ Fri, 30 Oct 2026 17:14:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793380434; x=1824916434;
+ t=1793380444; x=1824916444;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6jpoKxHDCLTHdFpPJTkyF6Q0iT8MkPJ20221l/h+Z5I=;
- b=ZLWJ6ZQhrCjR0E4zfYOg0oawNcJ6NfAvG+uuWCf9JZgfg611t2AuVtzc
- cTsT7GnO58ocA6920KcS0DvYyUvZLWexuHI42xm/zD8o5Tw/IlzBeTx7Y
- crF0pWt1ZWu2MALIWwYRCsq4V/+Nq+LwXY1W18ipM2SQPSkv1ggL3QJko
- TemlWw4j0oMuVP3Nm9mnmTOqtPmBxR/HBmSgKmQ2sFdnWBuYtoEvqI+yp
- yvLp/X0+6PgVpH0rzbuGznbN6k/r4IaYLYwur+uvUXFC66dKucsobNEf6
- JYcm4x6FlX2YrnpsxtQMCTvX6Y69EbZTouzOvgzbRvfMAAKb6EEEXz8SC g==;
-X-CSE-ConnectionGUID: /ztbBF7gQ929xS5iTZXWXg==
-X-CSE-MsgGUID: xJXzJsk/QbiY2UxoKp+NLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2144538"
+ bh=vRnXMn36h+wP3a31Fwd84NLwrsC9zPgms2s2ysGAn4k=;
+ b=aDIaL1yjTh/qsxPuTrVkhAgRVY6U9JFWtSORXWczMfyHoSQcB+VT4S1c
+ uVHpNt0M6HQFY2yJOpi/KpHumb9Wzzp6BMZk2Lp8KOim0PN7vmCEoAbhg
+ LyW1oo00zVGI7I+z7KyXwMQkg1i2uiGaXD8KjGdmX5JBgr9Ts0Jo2y0s1
+ dvgg8Zh8mxK7moiYsNk+pu7fYk0bTeRNYrdjqvI0kT8Uev0PvYnFntZp2
+ PKBq5ugANrIljRodm2ckgwk5uERltHp4DuZ9kiBYrIiO/YrMSRpI5eJLe
+ 1fj6vyg0MKxzx3DX/IeUVgTHJd+aWl+JbInA/kgmAjgcefekaie3LwmtX g==;
+X-CSE-ConnectionGUID: /zIf6CjkQsSDkN8kHg1lcw==
+X-CSE-MsgGUID: KEOVD4JsR8ezhwPStqAlZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2144577"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2144538"
+   d="scan'208";a="2144577"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 10:13:54 -0700
-X-CSE-ConnectionGUID: WdJNyYLfRuGfO4GnqqpJCQ==
-X-CSE-MsgGUID: hN3PSYR0RSu+bnBv4//fcQ==
+ 30 Oct 2026 10:14:03 -0700
+X-CSE-ConnectionGUID: BEm+itfJTFOpvYaiuT5dWw==
+X-CSE-MsgGUID: uGPPJetdQ9yJEmiMxdssoQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5490928"
+   d="scan'208";a="5490945"
 Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.58])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 10:13:54 -0700
+ 30 Oct 2026 10:14:02 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/10] drm/i915: Fix intel_crtc_vblank_on() with port sync
-Date: Fri, 30 Oct 2026 19:13:21 +0200
-Message-ID: <20261030171327.29829-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 07/10] drm/i915: Reduce the sleep inside
+ pipe_scanline_is_moving()
+Date: Fri, 30 Oct 2026 19:13:23 +0200
+Message-ID: <20261030171327.29829-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
 References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
@@ -75,74 +76,37 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-When port sync is used we first iterate the secondary transcoders
-and leave them transmitting the idle pattern rather than producing
-actual pixels. Only after the primary transcoder has finished its
-link training we switch DP_TP_CTL on all the transcoders over to
-normal mode, after which all the timings generators will start.
+The msleep(5) inside pipe_scanline_is_moving() seems rather
+excessive. Sleeping for too long might in fact be harmful
+as it may even increase the chance that we end up sampling
+the scanline at the same spot between two completely different
+frames. With high refresh rate display frame durations are
+now in the few millisecond range.
 
-Defer the intel_crtc_vblank_on() calls for all the transcoders until
-the timing generators have started, to avoid the frame/scanline
-counters jumping erratically after the vblank machinery is up and
-running.
+Let's use a 250-500 usec sleep instead, which more or less
+matches what the poll_timeout_us() uses for the sleep duration
+between the samplings. We reject any mode whose line time
+excees 64 usec, so that number should guarantee that at least
+a few scanlines will have elapsed, but not a whole frame.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 34 +++++++++++++++++++++++-
- 1 file changed, 33 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 12222e5096d4..ed39f1e265a9 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3243,6 +3243,35 @@ static void intel_ddi_post_disable_hdmi(struct intel_atomic_state *state,
- 	intel_dp_dual_mode_set_tmds_output(intel_hdmi, false);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 1d4753605675..749640007140 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -477,7 +477,7 @@ static bool pipe_scanline_is_moving(struct intel_display *display,
+ 	u32 line1, line2;
  
-+static void trans_port_sync_vblank_on(struct intel_atomic_state *state,
-+				      const struct intel_crtc_state *crtc_state)
-+{
-+	const struct drm_connector_state *conn_state;
-+	struct drm_connector *conn;
-+	int i;
-+
-+	if (!crtc_state->sync_mode_slaves_mask)
-+		return;
-+
-+	for_each_new_connector_in_state(&state->base, conn, conn_state, i) {
-+		struct intel_crtc *slave_crtc = to_intel_crtc(conn_state->crtc);
-+		const struct intel_crtc_state *slave_crtc_state;
-+
-+		if (!slave_crtc)
-+			continue;
-+
-+		slave_crtc_state =
-+			intel_atomic_get_new_crtc_state(state, slave_crtc);
-+
-+		if (slave_crtc_state->master_transcoder != crtc_state->cpu_transcoder)
-+			continue;
-+
-+		intel_crtc_vblank_on(state, slave_crtc_state);
-+	}
-+
-+	intel_crtc_vblank_on(state, crtc_state);
-+}
-+
- static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
- 					       struct intel_encoder *encoder,
- 					       const struct intel_crtc_state *old_crtc_state,
-@@ -3571,7 +3600,10 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
- 	else
- 		intel_ddi_enable_dp(state, encoder, crtc_state, conn_state);
+ 	line1 = intel_de_read(display, reg) & PIPEDSL_LINE_MASK;
+-	msleep(5);
++	usleep_range(250, 500);
+ 	line2 = intel_de_read(display, reg) & PIPEDSL_LINE_MASK;
  
--	intel_crtc_vblank_on(state, crtc_state);
-+	if (is_trans_port_sync_mode(crtc_state))
-+		trans_port_sync_vblank_on(state, crtc_state);
-+	else
-+		intel_crtc_vblank_on(state, crtc_state);
- 
- 	intel_hdcp_enable(state, encoder, crtc_state, conn_state);
- }
+ 	return line1 != line2;
 -- 
 2.55.0
 
