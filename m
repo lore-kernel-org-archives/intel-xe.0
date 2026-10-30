@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA966606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 12:03:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38755606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 12:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GYhTI0g7
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DXWSuGss
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A099112799;
-	Fri, 30 Oct 2026 12:03:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00BCF112780;
+	Fri, 30 Oct 2026 12:03:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFCD8112786;
- Fri, 30 Oct 2026 12:03:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CEDBF112780;
+ Fri, 30 Oct 2026 12:03:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793361813; x=1824897813;
+ t=1793361817; x=1824897817;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QI2KIrk5zM92DJjuVaPtPyhDMqI8TiRE82mfzIrZt3c=;
- b=GYhTI0g7U1QG6L9V9g0Q9fXUEe99G53zwIOPK1sNoJUxByEYJOyRl+qF
- UNLfP21ITALlYzFPCaZhde0J9umKxtp5KvY0g0wVw7NHYd05pgrIFNjnZ
- uRbc8SxEZUjkCIOVIDrqxk4vPnFktq2P+FLhr2KQhkHgYlvXcW0mowUkY
- dO65ZSeL9Muy8QSMHK4Yw1XQVGCA9rilwlKMREOXFxyRHbLIj4i+wi1mx
- AA4ezXsMGBqEtrHyGAPpeLyUvzwyN8R2O9Wmj6eKvK6sW6sDCTtpDpXNT
- qSZpmRTSGDlqZTl0A7IkyYKwDdXcbqKS1zPW8XOnFuRxhxa32Cx3lhRRH w==;
-X-CSE-ConnectionGUID: F40ZsSxdQ2ui4hXcKkNMQA==
-X-CSE-MsgGUID: 1jlyNSitTPK2H/uY28S1pA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11950"; a="2226489"
+ bh=qdKwg5vuq8n9JbH2EI86h8eUNUPfPx4EqL1/pC5tc10=;
+ b=DXWSuGssoRZH8klExTAbrbRAyDmOsrZkM3A5FfeWjrZyLGALiDCsByHi
+ /aSxXhm2exRPK9AY0awoyS4QCPOyQ3tPT2YskYF22wiS6huD/HtpXVM0K
+ sSpEiDeDlxpLKyMPfsSjlmJVsfnBG7eAEumuvVkVXHnlgfTOJeMB8Kq+d
+ UaZWpg3PnKJThCBDHW9nqENauMbH82xJTXyJ4XQxpBgb1LM/TDBGkfj+X
+ TqkU83baUc4nHsY8HNeASV5wpLGSRQ1lLXQzQhlYx8lkV0la0Z6wTlauU
+ iZDDRytV1k7K26vYIMVy7KGbO/AHKvpLBJpo6U6d91tf5kH9qZrsJoqH/ Q==;
+X-CSE-ConnectionGUID: Q15dl/Q6Q5O6hoOZ0bAO7w==
+X-CSE-MsgGUID: rW8lAYNiTdeKNjEXkajHhA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11950"; a="2226490"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2226489"
+   d="scan'208";a="2226490"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 05:03:33 -0700
-X-CSE-ConnectionGUID: 3TRj7eCaQnatjWa06tfd4A==
-X-CSE-MsgGUID: he3cZ+SYTwuha6Udm/rFDQ==
+ 30 Oct 2026 05:03:37 -0700
+X-CSE-ConnectionGUID: vGGqpJ/dTEmYrWx4Xsj7lw==
+X-CSE-MsgGUID: Ri7ALf5ZSGmrkTSDn5DyrQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="7210978"
+   d="scan'208";a="7211023"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 05:03:31 -0700
+ 30 Oct 2026 05:03:35 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 03/13] drm/i915/debugfs: pass struct drm_printer to
- intel_plane_info()
-Date: Fri, 30 Oct 2026 14:03:06 +0200
-Message-ID: <9e962b3c7e9b045f95d102840be83210ce6136fc.1793361738.git.jani.nikula@intel.com>
+Subject: [PATCH 04/13] drm/i915/debugfs: pass struct drm_printer to
+ crtc_updates_info()
+Date: Fri, 30 Oct 2026 14:03:07 +0200
+Message-ID: <9b394123390eb554376692b758efde5b3eb07f0c.1793361738.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1793361738.git.jani.nikula@intel.com>
 References: <cover.1793361738.git.jani.nikula@intel.com>
@@ -74,102 +74,88 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Pass struct drm_printer to intel_plane_info() and its dependencies
-intel_plane_uapi_info() and intel_plane_hw_info().
+Pass struct drm_printer to crtc_updates_info().
 
 Prefer struct drm_printer * over struct seq_file * to unify and allow
 use of drm_printer helpers.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 28 +++++++++----------
- 1 file changed, 14 insertions(+), 14 deletions(-)
+ .../drm/i915/display/intel_display_debugfs.c  | 23 +++++++++++--------
+ 1 file changed, 13 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 93e80b5e7ce8..7b82a51145da 100644
+index 7b82a51145da..507cd8528906 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -344,7 +344,7 @@ static const char *plane_visibility(const struct intel_plane_state *plane_state)
- 	return "hidden";
+@@ -442,7 +442,7 @@ static void intel_scaler_info(struct seq_file *m, struct intel_crtc *crtc)
  }
  
--static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
-+static void intel_plane_uapi_info(struct drm_printer *p, struct intel_plane *plane)
+ #if IS_ENABLED(CONFIG_DRM_I915_DEBUG_VBLANK_EVADE)
+-static void crtc_updates_info(struct seq_file *m,
++static void crtc_updates_info(struct drm_printer *p,
+ 			      struct intel_crtc *crtc,
+ 			      const char *hdr)
  {
- 	const struct intel_plane_state *plane_state =
- 		to_intel_plane_state(plane->base.state);
-@@ -358,24 +358,24 @@ static void intel_plane_uapi_info(struct seq_file *m, struct intel_plane *plane)
- 	plane_rotation(rot_str, sizeof(rot_str),
- 		       plane_state->uapi.rotation);
+@@ -452,7 +452,7 @@ static void crtc_updates_info(struct seq_file *m,
+ 	count = 0;
+ 	for (row = 0; row < ARRAY_SIZE(crtc->debug.vbl.times); row++)
+ 		count += crtc->debug.vbl.times[row];
+-	seq_printf(m, "%sUpdates: %llu\n", hdr, count);
++	drm_printf(p, "%sUpdates: %llu\n", hdr, count);
+ 	if (!count)
+ 		return;
  
--	seq_puts(m, "\t\tuapi: [FB:");
-+	drm_puts(p, "\t\tuapi: [FB:");
- 	if (fb)
--		seq_printf(m, "%d] %p4cc,0x%llx,%dx%d", fb->base.id,
-+		drm_printf(p, "%d] %p4cc,0x%llx,%dx%d", fb->base.id,
- 			   &fb->format->format, fb->modifier, fb->width,
- 			   fb->height);
- 	else
--		seq_puts(m, "0] n/a,0x0,0x0,");
--	seq_printf(m, ", visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT
-+		drm_puts(p, "0] n/a,0x0,0x0,");
-+	drm_printf(p, ", visible=%s, src=" DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT
- 		   ", rotation=%s\n", plane_visibility(plane_state),
- 		   DRM_RECT_FP_ARG(&src), DRM_RECT_ARG(&dst), rot_str);
+@@ -481,22 +481,25 @@ static void crtc_updates_info(struct seq_file *m,
+ 			columns[8 + x] = '\0';
+ 		}
  
- 	if (plane_state->planar_linked_plane)
--		seq_printf(m, "\t\tplanar: Linked to [PLANE:%d:%s] as a %s\n",
-+		drm_printf(p, "\t\tplanar: Linked to [PLANE:%d:%s] as a %s\n",
- 			   plane_state->planar_linked_plane->base.base.id, plane_state->planar_linked_plane->base.name,
- 			   plane_state->is_y_plane ? "Y plane" : "UV plane");
- }
- 
--static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
-+static void intel_plane_hw_info(struct drm_printer *p, struct intel_plane *plane)
- {
- 	const struct intel_plane_state *plane_state =
- 		to_intel_plane_state(plane->base.state);
-@@ -388,7 +388,7 @@ static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
- 	plane_rotation(rot_str, sizeof(rot_str),
- 		       plane_state->hw.rotation);
- 
--	seq_printf(m, "\t\thw: [FB:%d] %p4cc,0x%llx,%dx%d, visible=%s, src="
-+	drm_printf(p, "\t\thw: [FB:%d] %p4cc,0x%llx,%dx%d, visible=%s, src="
- 		   DRM_RECT_FP_FMT ", dst=" DRM_RECT_FMT ", rotation=%s\n",
- 		   fb->base.id, &fb->format->format,
- 		   fb->modifier, fb->width, fb->height,
-@@ -398,17 +398,17 @@ static void intel_plane_hw_info(struct seq_file *m, struct intel_plane *plane)
- 		   rot_str);
- }
- 
--static void intel_plane_info(struct seq_file *m, struct intel_crtc *crtc)
-+static void intel_plane_info(struct drm_printer *p, struct intel_crtc *crtc)
- {
--	struct intel_display *display = node_to_intel_display(m->private);
-+	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_plane *plane;
- 
- 	for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
--		seq_printf(m, "\t[PLANE:%d:%s]: type=%s\n",
-+		drm_printf(p, "\t[PLANE:%d:%s]: type=%s\n",
- 			   plane->base.base.id, plane->base.name,
- 			   plane_type(plane->base.type));
--		intel_plane_uapi_info(m, plane);
--		intel_plane_hw_info(m, plane);
-+		intel_plane_uapi_info(p, plane);
-+		intel_plane_hw_info(p, plane);
+-		seq_printf(m, "%s%s\n", hdr, columns);
++		drm_printf(p, "%s%s\n", hdr, columns);
  	}
+ 
+-	seq_printf(m, "%sMin update: %lluns\n",
++	drm_printf(p, "%sMin update: %lluns\n",
+ 		   hdr, crtc->debug.vbl.min);
+-	seq_printf(m, "%sMax update: %lluns\n",
++	drm_printf(p, "%sMax update: %lluns\n",
+ 		   hdr, crtc->debug.vbl.max);
+-	seq_printf(m, "%sAverage update: %lluns\n",
++	drm_printf(p, "%sAverage update: %lluns\n",
+ 		   hdr, div64_u64(crtc->debug.vbl.sum, count));
+-	seq_printf(m, "%sOverruns > %uus: %u\n",
++	drm_printf(p, "%sOverruns > %uus: %u\n",
+ 		   hdr, VBLANK_EVASION_TIME_US, crtc->debug.vbl.over);
  }
  
-@@ -593,7 +593,7 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
- 				    crtc_state->uapi.encoder_mask)
- 		intel_encoder_info(m, crtc, encoder);
+ static int crtc_updates_show(struct seq_file *m, void *data)
+ {
+-	crtc_updates_info(m, m->private, "");
++	struct drm_printer p = drm_seq_file_printer(m);
++
++	crtc_updates_info(&p, m->private, "");
++
+ 	return 0;
+ }
  
--	intel_plane_info(m, crtc);
-+	intel_plane_info(&p, crtc);
+@@ -534,7 +537,7 @@ static void crtc_updates_add(struct intel_crtc *crtc)
+ }
  
- 	seq_printf(m, "\tunderrun reporting: cpu=%s pch=%s\n",
+ #else
+-static void crtc_updates_info(struct seq_file *m,
++static void crtc_updates_info(struct drm_printer *p,
+ 			      struct intel_crtc *crtc,
+ 			      const char *hdr)
+ {
+@@ -599,7 +602,7 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
  		   str_yes_no(!crtc->cpu_fifo_underrun_disabled),
+ 		   str_yes_no(!crtc->pch_fifo_underrun_disabled));
+ 
+-	crtc_updates_info(m, crtc, "\t");
++	crtc_updates_info(&p, crtc, "\t");
+ }
+ 
+ static int i915_display_info(struct seq_file *m, void *unused)
 -- 
 2.47.3
 
