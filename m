@@ -2,52 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10547606A31A
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 16:04:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3169E606A326
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BmyRiyTt
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Jovov1T5
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA9FE10E2CE;
-	Fri, 30 Oct 2026 16:04:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AEB310E2CE
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 16:03:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2E43112939;
+	Fri, 30 Oct 2026 17:13:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12B7B112939;
+ Fri, 30 Oct 2026 17:13:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793376234; x=1824912234;
- h=from:to:subject:date:message-id:mime-version:
+ t=1793380412; x=1824916412;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=9Rhi95/YoidInddbHc4sgs2AnHlPyCcRYsLv+b8nBdA=;
- b=BmyRiyTtRQ9IT86/JeZwa8pbaWkwrHuRUtRwJEVDqFRHKdyXRTIwfnwZ
- nhcpqkcQHWo38g9Wv5UnddqdGXcv5N9jcBK9ugeZ0kb9Wx1cYQkuJx5QH
- essJl/eTZbP4xEh7aDnfmCBuUPOM0Hrw2V3fICGNnlXw4N8TapYMpbupi
- KIeVCQQrZTxyH1Arx996/TF9yNMUmPFp8v/bJzjWxhX5juqec6Y0msBBq
- a4wgS0fxHVMlQtGaK9z8D3Sz8p7iPx2eswnos1QSCsqJrzOBYeLOUshp5
- gSoa3ctfbhfSYfw9DiUPxC/+fzd9NeT/hSdaj/K775ju2YdD+qVqq9Fhp w==;
-X-CSE-ConnectionGUID: tkonoS3jRXSFChRrXtWeXg==
-X-CSE-MsgGUID: pgZKqe7+Q7uPWEscewWqHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2134159"
+ bh=xzseLuViJguH/kuXBX8A8rj+ajzTRnzAFTw28dI9s2M=;
+ b=Jovov1T5DonxO4WyTV/GgM8l5z2NyNy89GpN6/yEc+dhr6LWko9uz6nI
+ Nqa2P5jk+74uGvaqwNZZu2hDTf1K6QimvatKN/7GRpEwPkfdFtUcECev/
+ mDbuLlNjNW89FNVqRe+g2dKom828jm80LZgd/d7dSiROyuOj1g7V4e2qd
+ ijAeTNhCTG7TiBqfKIw9hMk0bK4KluiBLLR636uxH9dypvsr6vgasnmaR
+ es1ipZw0z/f8N3A75aq38Al7Avyw5zaIt+PK20iNSzr3c/1w/TDm+CBjx
+ PToE5SALjjI6+eFN8RWz0XhJa9lbw0RrmnXZNZhthrRriHLWm/mmkcgIv Q==;
+X-CSE-ConnectionGUID: 0PWXCjjES7qFUcT2G0z6aA==
+X-CSE-MsgGUID: h9AOUI9TSSKQsmQjO5gFKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2174304"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2134159"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 09:03:54 -0700
-X-CSE-ConnectionGUID: 0tTdoesPS7GnlZ84VWHNiA==
-X-CSE-MsgGUID: Xg0catgST7iCGFO8BmxqKg==
+   d="scan'208";a="2174304"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 10:13:32 -0700
+X-CSE-ConnectionGUID: lpoFqzUXSuOMUlcIu0q7bg==
+X-CSE-MsgGUID: qy2SJULqTue0KQgKTN8aRQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5371345"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.126])
+   d="scan'208";a="7311362"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.58])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 09:03:54 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/xe/dma-buf: Add xe_dma_buf_to_gem() self-import helper
-Date: Fri, 30 Oct 2026 09:03:50 -0700
-Message-ID: <20261030160349.2743506-2-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.43.0
+ 30 Oct 2026 10:13:30 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/10] drm/i915: Enable vblanks after the timing generator has
+ started
+Date: Fri, 30 Oct 2026 19:13:16 +0200
+Message-ID: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,97 +65,61 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Factor the dma-buf self-import detection out of xe_gem_prime_import()
-into a standalone xe_dma_buf_to_gem() helper. The helper checks that the
-dma-buf was exported by this Xe device (matching ops and drm_device) and,
-if so, takes an extra reference on the backing GEM object instead of the
-dma-buf file. Expose it for future use within Xe.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Farah Kassabri <farah.kassabri@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_dma_buf.c | 38 ++++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_dma_buf.h |  2 ++
- 2 files changed, 30 insertions(+), 10 deletions(-)
+Currently we may enable the vblank machinery before the
+timing generator has actually started, which means the
+frame/scanline counters read out during the vblank enabling
+may be complete nonsense. When the timing generator finally
+starts running and we get the first vblank interrupt the
+sampled counters may jump erratically, which could cause
+the vblank code to get confused as to how many frames have
+actually elapsed.
 
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-index 6a85b292dee7..5bf13dc4b61d 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-@@ -239,6 +239,27 @@ static const struct dma_buf_ops xe_dmabuf_ops = {
- 	.vunmap = drm_gem_dmabuf_vunmap,
- };
- 
-+struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
-+					 struct dma_buf *dma_buf)
-+{
-+	struct drm_gem_object *obj;
-+
-+	if (dma_buf->ops != &xe_dmabuf_ops)
-+		return NULL;
-+
-+	obj = dma_buf->priv;
-+	if (obj->dev != dev)
-+		return NULL;
-+
-+	/*
-+	 * Importing dmabuf exported from our own gem increases
-+	 * refcount on gem itself instead of f_count of dmabuf.
-+	 */
-+	drm_gem_object_get(obj);
-+
-+	return obj;
-+}
-+
- struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags)
- {
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
-@@ -372,17 +393,14 @@ struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
- 	struct dma_buf_attachment *attach;
- 	struct drm_gem_object *obj;
- 
--	if (dma_buf->ops == &xe_dmabuf_ops) {
--		obj = dma_buf->priv;
--		if (obj->dev == dev &&
--		    !XE_TEST_ONLY(test && test->force_different_devices)) {
--			/*
--			 * Importing dmabuf exported from out own gem increases
--			 * refcount on gem itself instead of f_count of dmabuf.
--			 */
--			drm_gem_object_get(obj);
-+	obj = xe_dma_buf_to_gem(dev, dma_buf);
-+	if (obj) {
-+		if (!XE_TEST_ONLY(test && test->force_different_devices))
- 			return obj;
--		}
-+
-+		/* Test only: force different devices */
-+		drm_gem_object_put(obj);
-+		obj = NULL;
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_dma_buf.h b/drivers/gpu/drm/xe/xe_dma_buf.h
-index 861dd28a862c..d0c7893a5a6f 100644
---- a/drivers/gpu/drm/xe/xe_dma_buf.h
-+++ b/drivers/gpu/drm/xe/xe_dma_buf.h
-@@ -8,6 +8,8 @@
- 
- #include <drm/drm_gem.h>
- 
-+struct drm_gem_object *xe_dma_buf_to_gem(struct drm_device *dev,
-+					 struct dma_buf *dma_buf);
- struct dma_buf *xe_gem_prime_export(struct drm_gem_object *obj, int flags);
- struct drm_gem_object *xe_gem_prime_import(struct drm_device *dev,
- 					   struct dma_buf *dma_buf);
+The series fixes the problem for HSW+ by making sure the
+timing generator is actually ticking before we enable
+the vblank machinery. I also plan to fix the pre-HSW
+platforms but I'll need to do a bit more reverse
+engineering to figure out the final details.
+
+While doing this I also ended up fixing some related
+FEC issues with port sync, and finally enable joiner+port
+sync because we no longer have any need to keep the two
+apart from each other.
+
+Ville Syrjälä (10):
+  drm/i915: Disable port sync if VRR is enabled
+  drm/i915: Do intel_crtc_vblank_on() later on HSW+
+  drm/i915: Handle joined pipes inside intel_crtc_vblank_{on,off}()
+  Revert "drm/i915/display: Avoid stale PIPE_SCANLINE values after
+    crtc_enable"
+  drm/i915: Fix intel_crtc_vblank_on() with port sync
+  drm/i915: Wait for timing generator to start in intel_crtc_vblank_on()
+    on HSW+
+  drm/i915: Reduce the sleep inside pipe_scanline_is_moving()
+  drm/i915: Document timing generator start/stop behaviour on HSW+
+  drm/i915: Fix FEC wait with port sync on pre-LNL
+  drm/i915: Allow joiner with port sync
+
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_crt.c      |   6 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  45 ++++++-
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   8 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      | 120 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_display.c  |  12 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  17 +--
+ .../drm/i915/display/intel_modeset_setup.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   |   2 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c        |   4 +-
+ 10 files changed, 166 insertions(+), 54 deletions(-)
+
 -- 
-2.43.0
+2.55.0
 
