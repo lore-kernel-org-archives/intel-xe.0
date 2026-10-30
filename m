@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1404606A31F
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 11:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0993C606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 11:50:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LRvubuPv
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KrkRJJHh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A8EE112786;
-	Fri, 30 Oct 2026 11:50:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C063B112780;
+	Fri, 30 Oct 2026 11:50:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 656F7112771
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 11:50:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8292B11277D
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 11:50:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793361003; x=1824897003;
+ t=1793361008; x=1824897008;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gc5HQ/uI42C4XvTNY+RnAXgT6UKrmDQNcHKoFpBmU70=;
- b=LRvubuPv2UVP5FH6IAooZ+ECK7ixTTU3A1iuA6ThdNJN3GB9sThk+Z6v
- mmOhVPVU7weFaiLSHG95Z9aaK3otlOD3VRsq77EU1sC8dV/+hPS+yDc+k
- PffVz4x9cL30U2zNCAwKQaE5oXWS4fhr/8flpIx//p83vXkfGMF9OwvJG
- vRYU0/WzrStuVfTUQ+0izv5TGGlMJEKNuPfs9Ps/AyCRVXyLlWwNtyCYP
- Vxa3VPpnOgZn2ecyya7APz8mJSIR1OeE7kHVi+mzx+CepR5gkOW2ZTt5Y
- yMLms0TFx2LQ+K/7l/2mouzf398oPX4UdnPPFProRcc0cEf4jCda3M+ey A==;
-X-CSE-ConnectionGUID: t5ZQe/MlSr2IfZFn9qifIg==
-X-CSE-MsgGUID: DzDYIP1gSQCn/3N88qcX3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11950"; a="2135385"
+ bh=56i1oHzpdRlsUc+qlVwW6vu5+bDgjETBZhNKtytiCbE=;
+ b=KrkRJJHhfq3rvEcrOhDUJAQ735bR86tEcm1ktznhmUYMVDj7JIaqrtRB
+ V1nsFiEZSE5NCh8KfDSMBuB/15I3ruxNMm7IesRvlHU2KdfAovd6NDEGh
+ I/qYAdLyhDPVkP9DcCigRkNQolwyfR7aNMcXN83AS3/Y4WGOOOa3ktR3Y
+ 16AndHhXQlYiP5E7kIysr3dOONvJ178aX/OUIBHSdoTkOb0Z9xBWIrNPD
+ Dzb+PDi0+2LAHV8Azs0UNB0Hnt+Eo3iHmc6wkxsdZjV4apb9Dv6P2Pwdq
+ CKR/vezzs6UQ6NniArM4rAlKg6PSv9YaiQoqrSahBwwHoS+pWPssYuNU5 Q==;
+X-CSE-ConnectionGUID: hrzC07+BSxaJNKOsDyh8KA==
+X-CSE-MsgGUID: 55eWQCfqRXaR2Zri3Guudg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11950"; a="2135390"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2135385"
+   d="scan'208";a="2135390"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 04:50:03 -0700
-X-CSE-ConnectionGUID: iuZV+SZOR5eljliasilXNA==
-X-CSE-MsgGUID: mQ9sHl3/TMu5+L3FZjsiTA==
+ 30 Oct 2026 04:50:06 -0700
+X-CSE-ConnectionGUID: dq951EBrSxKWcFFOy988Kg==
+X-CSE-MsgGUID: IQnZw/dvQd6DaLe3cVeCYw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5441138"
+   d="scan'208";a="5441161"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO mwauld-desk.intel.com)
  ([10.245.244.36])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 04:50:03 -0700
+ 30 Oct 2026 04:50:06 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH 1/6] drm/xe/migrate: allow larger chunk sizes for identity
- VRAM clears
-Date: Fri, 30 Oct 2026 11:49:51 +0000
-Message-ID: <20261030-migrate-bb-optimise-v1-1-b8d01649cfe9@intel.com>
+Subject: [PATCH 4/6] drm/xe/sa: allow callers to specify interruptible
+ suballocator waits
+Date: Fri, 30 Oct 2026 11:49:54 +0000
+Message-ID: <20261030-migrate-bb-optimise-v1-4-b8d01649cfe9@intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261030-migrate-bb-optimise-v1-0-b8d01649cfe9@intel.com>
 References: <20261030-migrate-bb-optimise-v1-0-b8d01649cfe9@intel.com>
@@ -73,68 +73,173 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-xe_migrate_clear() currently clamps every clear pass to 8M. On platforms
-with Xe2 blitter instructions and no separate CCS copy emission, VRAM
-clears use the identity map without dynamic PTE updates and execute on
-the dedicated migration engine, so clamping each pass to 8M splits
-a 1G+ clear into 100+ jobs. 1G VRAM pages look quite normal in real
-workloads like llama.py with even a small model.
+__xe_sa_bo_new() currently hardcodes intr=true when calling
+drm_suballoc_new(), making every suballocator wait interruptible even
+when the caller cannot tolerate -ERESTARTSYS.
 
-It looks like the 8M limit comes from wanting a ~1ms preemption
-granularity, and dates back to i915. But consider:
-
-1. Xe has kernel reserved BCS engine just for migrations on newer hw,
-   so no need to duke it out with userspace jobs. Further, we now also
-   dropped the GPU VM_BIND path, so there is now only a single migration
-   queue, so the ~1ms preemption granularity is maybe not a big deal
-   anymore.
-
-2. It does not take ~1ms to clear 8M (single MEM_SET) of VRAM through
-   the identity map. Currently we just lump everything in the same
-   bucket, even though we have VRAM clearing with identity, VRAM
-   clearing with PTE emit, and then copying between VRAM and system
-   memory, which will have different characteristics and performance.
-   Applying the same 8M limit everywhere seems overly cautious.
-
-With that be more optimistic and bump the fast path VRAM clearing
-through identity map to 128M per single MEM_SET instruction. This still
-only takes up to around < ~2ms, or < ~1ms if boosted. For very large
-clears, this massively lowers the number of GPU jobs, reducing pressure
-on the bb pool and as a bonus gives slightly lower CPU/GPU overhead.
+Plumb a bool intr parameter through __xe_sa_bo_new(), xe_sa_bo_new(),
+and __xe_bb_new(), while defaulting xe_bb_new() to false for
+kernel-internal callers.
 
 Assisted-by: LLM
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9644
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_bb.c           | 4 ++--
+ drivers/gpu/drm/xe/xe_bb.h           | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_guc_buf.c      | 4 ++--
+ drivers/gpu/drm/xe/xe_page_reclaim.c | 2 +-
+ drivers/gpu/drm/xe/xe_sa.c           | 6 ++++--
+ drivers/gpu/drm/xe/xe_sa.h           | 9 ++++++---
+ 6 files changed, 23 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 70408fa0a606..1a216fb12d2b 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -246,6 +246,7 @@ struct xe_migrate {
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 771e50e7c4e3..7f71233b1036 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -14,7 +14,7 @@
+ #include "xe_sched_job.h"
+ #include "xe_vm_types.h"
  
- #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
- #define MAX_CCS_LIMITED_TRANSFER SZ_4M /* XE_PAGE_SIZE * (FIELD_MAX(XE2_CCS_SIZE_MASK) + 1) */
-+#define MAX_IDENTITY_CLEAR_TRANSFER SZ_128M
- #define NUM_PT_SLOTS 48
- #define LEVEL0_PAGE_TABLE_ENCODE_SIZE SZ_2M
- #define MAX_NUM_PTE 512
-@@ -1964,6 +1965,11 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+-struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
++struct xe_bb *__xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm, bool intr)
+ {
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_bb *bb = kmalloc_obj(*bb);
+@@ -30,7 +30,7 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
+ 	 * reserved by xe_sa_bo_manager_init().
+ 	 */
+ 	bb->bo = xe_sa_bo_new(!usm ? tile->mem.kernel_bb_pool : gt->usm.bb_pool,
+-			      4 * (dwords + 1));
++			      4 * (dwords + 1), intr);
+ 	if (IS_ERR(bb->bo)) {
+ 		err = PTR_ERR(bb->bo);
+ 		goto err;
+diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
+index b5cc65506696..6f685176d4e8 100644
+--- a/drivers/gpu/drm/xe/xe_bb.h
++++ b/drivers/gpu/drm/xe/xe_bb.h
+@@ -6,6 +6,8 @@
+ #ifndef _XE_BB_H_
+ #define _XE_BB_H_
  
- 		clear_L0 = xe_migrate_res_sizes(m, &src_it);
-+		if (clear_vram && !xe_migrate_needs_ccs_emit(xe) &&
-+		    gt->info.has_xe2_blt_instructions &&
-+		    xe_migrate_allow_identity(clear_L0, &src_it))
-+			clear_L0 = min_t(u64, MAX_IDENTITY_CLEAR_TRANSFER,
-+					 src_it.size);
++#include <linux/types.h>
++
+ #include "xe_bb_types.h"
  
- 		/* Calculate final sizes and batch size.. */
- 		pte_flags = clear_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
+ struct dma_fence;
+@@ -14,7 +16,12 @@ struct xe_gt;
+ struct xe_exec_queue;
+ struct xe_sched_job;
+ 
+-struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
++struct xe_bb *__xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm, bool intr);
++
++static inline struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
++{
++	return __xe_bb_new(gt, dwords, usm, false);
++}
+ struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
+ 				      struct xe_bb *bb);
+ struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
+diff --git a/drivers/gpu/drm/xe/xe_guc_buf.c b/drivers/gpu/drm/xe/xe_guc_buf.c
+index 7a8efb62df60..ec0b64a1d4c1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_buf.c
++++ b/drivers/gpu/drm/xe/xe_guc_buf.c
+@@ -95,7 +95,7 @@ struct xe_guc_buf xe_guc_buf_reserve(struct xe_guc_buf_cache *cache, u32 dwords)
+ 	struct drm_suballoc *sa;
+ 
+ 	if (cache->sam)
+-		sa = __xe_sa_bo_new(cache->sam, dwords * sizeof(u32), GFP_ATOMIC);
++		sa = __xe_sa_bo_new(cache->sam, dwords * sizeof(u32), GFP_ATOMIC, false);
+ 	else
+ 		sa = ERR_PTR(-EOPNOTSUPP);
+ 
+@@ -117,7 +117,7 @@ struct xe_guc_buf xe_guc_buf_from_data(struct xe_guc_buf_cache *cache,
+ {
+ 	struct drm_suballoc *sa;
+ 
+-	sa = __xe_sa_bo_new(cache->sam, size, GFP_ATOMIC);
++	sa = __xe_sa_bo_new(cache->sam, size, GFP_ATOMIC, false);
+ 	if (!IS_ERR(sa))
+ 		memcpy(xe_sa_bo_cpu_addr(sa), data, size);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_page_reclaim.c b/drivers/gpu/drm/xe/xe_page_reclaim.c
+index da1ed99cd3f8..921f30ffb4cb 100644
+--- a/drivers/gpu/drm/xe/xe_page_reclaim.c
++++ b/drivers/gpu/drm/xe/xe_page_reclaim.c
+@@ -76,7 +76,7 @@ struct drm_suballoc *xe_page_reclaim_create_prl_bo(struct xe_tlb_inval *tlb_inva
+ 
+ 	/* Maximum size of PRL is 1 4K-page */
+ 	prl_sa = __xe_sa_bo_new(tile->mem.reclaim_pool,
+-				prl_size, GFP_ATOMIC);
++				prl_size, GFP_ATOMIC, false);
+ 	if (IS_ERR(prl_sa))
+ 		return prl_sa;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index b356d4327c97..d9da4276b5dd 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -93,12 +93,14 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u3
+  * @sa_manager: the &xe_sa_manager
+  * @size: number of bytes we want to suballocate
+  * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL.
++ * @intr: whether to wait interruptibly if space is not immediately available
+  *
+  * Try to make a suballocation of size @size.
+  *
+  * Return: a &drm_suballoc, or an ERR_PTR.
+  */
+-struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp)
++struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
++				    gfp_t gfp, bool intr)
+ {
+ 	/*
+ 	 * BB to large, return -ENOBUFS indicating user should split
+@@ -107,7 +109,7 @@ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
+ 	if (size > sa_manager->base.size)
+ 		return ERR_PTR(-ENOBUFS);
+ 
+-	return drm_suballoc_new(&sa_manager->base, size, gfp, true, 0);
++	return drm_suballoc_new(&sa_manager->base, size, gfp, intr, 0);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
+index 1be744350836..bf81be165ea0 100644
+--- a/drivers/gpu/drm/xe/xe_sa.h
++++ b/drivers/gpu/drm/xe/xe_sa.h
+@@ -15,7 +15,8 @@ struct dma_fence;
+ struct xe_tile;
+ 
+ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 guard, u32 align);
+-struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
++struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
++				    gfp_t gfp, bool intr);
+ 
+ static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
+ {
+@@ -26,14 +27,16 @@ static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile,
+  * xe_sa_bo_new() - Make a suballocation.
+  * @sa_manager: the &xe_sa_manager
+  * @size: number of bytes we want to suballocate
++ * @intr: whether to wait interruptibly if space is not immediately available
+  *
+  * Try to make a suballocation of size @size.
+  *
+  * Return: a &drm_suballoc, or an ERR_PTR.
+  */
+-static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size)
++static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager,
++						u32 size, bool intr)
+ {
+-	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
++	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL, intr);
+ }
+ 
+ void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
 
 -- 
 2.56.0
