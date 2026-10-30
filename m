@@ -2,54 +2,64 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401EB606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04290606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O3nExc9h
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=b81ueP3o
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07F1910E3AF;
-	Fri, 30 Oct 2026 17:40:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 500AA10E3AF
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 17:40:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7BA510E8A6;
+	Fri, 30 Oct 2026 17:49:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1E1B10E7FA;
+ Fri, 30 Oct 2026 17:49:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793382016; x=1824918016;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9JumhsuYkDIaxsBbDGE4gDxw7iVXAkQCRHEc0Yopwq0=;
- b=O3nExc9hMVWyCPrJKcc/LVfZDgu5WOZpdtWkOtXS0x1pq6PIjaJ1+AeV
- wBShcWBF4Jtidsj3uk17vDacuZoYAYSkG+8dvgBPpZLLYtR4kdOU0ona7
- K9RoWwDIPGf9JardRLEoNLu6ezrBcpbT/HrtF/SxLMxAvQ2JFuHkpMlja
- cZET0LX3dvG5yn4gy40Pp4eaE1mfstBUXBLCKUrVRTBJgM2IcKbspCbxh
- L9P0hVg/7UTUZeHqtUj6A1NcqsQvtXNFGbMvCPU/DD0e5ETkkBA1uRHaH
- HYGfwGgRPo/5aQ4VD+qyC0y+LoQ+8YPDbNjOzh2n3Qf1h04Q+1kDH6ISG w==;
-X-CSE-ConnectionGUID: v5ZOffdqQ0+hfleq7c51XA==
-X-CSE-MsgGUID: cmXVqzTuTJCCcjqbJ5xF9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2168286"
+ t=1793382563; x=1824918563;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Q9NUBALzJtbhnhVCNIwuJ47P+HE6jJLbXyKKMYZsZfM=;
+ b=b81ueP3oYXyOQsjv51+FBPSuJW/tNc0ng0owrN+yt2uWeGyoerg0vWFO
+ R0rPyaoRaWNymLCu8iy1C05uTtG9IA86+s2pShPTCvgNqQPM3ZuQu9qHS
+ K1g+J/P3iK551CrWWSQ3HDy7PpXFoX5W+zxw6AwQhhO8OxzSZF7uW6Ec5
+ s4PqKiIKrazyd+PiVgoOiAZT7pUVtSTOq9uJAS9zPOq2ERPy/BeeEP4aH
+ YWL8ZI8gnz903+4W6jCBJkVg9Xu7bPQMP8Lj6VKCJldumLwAM56ROIWPi
+ bz2DnzVLkuCWknfzSt2QBNK3rRsYDE23Shps47HsC3g4ysBoFIQvE3lDs g==;
+X-CSE-ConnectionGUID: h7YGpb5FS8WzY+yxqaxrQw==
+X-CSE-MsgGUID: sEC8r/MWTaKAdnpPfE7HTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2041057"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2168286"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 10:40:16 -0700
-X-CSE-ConnectionGUID: dSGCSniaR62eb7DO81x2dg==
-X-CSE-MsgGUID: XGBnyyqjRveUbSja3vsJzA==
+   d="scan'208";a="2041057"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 10:49:22 -0700
+X-CSE-ConnectionGUID: gjq2ikNwQp+wdp/6QMhXhg==
+X-CSE-MsgGUID: zp2xxMV6QGS4vueUG2sEiQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5493893"
-Received: from danielcm-desk1.jf.intel.com ([10.24.81.120])
- by orviesa002.jf.intel.com with ESMTP; 30 Oct 2026 10:40:15 -0700
-From: Daniel Charles <daniel.charles@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Fei Yang <fei.yang@intel.com>,
- Daniel Charles <daniel.charles@intel.com>
-Subject: [PATCH v4] drm/xe/cri: Implement Wa_14028586678
-Date: Fri, 30 Oct 2026 10:36:19 -0700
-Message-ID: <20261030173619.266260-1-daniel.charles@intel.com>
-X-Mailer: git-send-email 2.43.0
+   d="scan'208";a="7335017"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.58])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2026 10:49:21 -0700
+Date: Fri, 30 Oct 2026 19:49:17 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 03/10] drm/i915: Handle joined pipes inside
+ intel_crtc_vblank_{on, off}()
+Message-ID: <auTYnfB34tjuivIH@intel.com>
+References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
+ <20261030171327.29829-4-ville.syrjala@linux.intel.com>
+ <sashiko-outbox-191339@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <sashiko-outbox-191339@kernel.org>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,128 +70,148 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Fei Yang <fei.yang@intel.com>
+On Fri, Oct 30, 2026 at 05:26:33PM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential issue(s) to consider:
+> - [High] drm/i915: NULL state dereference in intel_crtc_vblank_off()
+> --
+> 
+> commit c6499a1bf58e345d4e50ee3b23d7821c66712bdd
+> Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> drm/i915: Handle joined pipes inside intel_crtc_vblank_{on, off}()
+> 
+> This commit moves the joined-pipe iteration into intel_crtc_vblank_on()
+> and intel_crtc_vblank_off(), renaming the single-pipe helpers to
+> intel_pipe_vblank_on() and intel_pipe_vblank_off(). Callers are updated to
+> pass struct intel_atomic_state alongside the CRTC state.
+> 
+> > diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+> > index ea0cdb7822f39..381cdf7d5131c 100644
+> > --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> > +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> 
+> [ ... ]
+> 
+> > @@ -1455,7 +1455,7 @@ static void gen11_dsi_post_disable(struct intel_atomic_state *state,
+> >  	struct intel_dsi *intel_dsi = enc_to_intel_dsi(encoder);
+> >  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> >  
+> > -	intel_crtc_vblank_off(old_crtc_state);
+> > +	intel_crtc_vblank_off(state, old_crtc_state);
+> >  
+> >  	/* step2d,e: disable transcoder and wait */
+> >  	gen11_dsi_disable_transcoder(encoder);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
+> > index 5b8968197fbcf..b814b84c650fd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crt.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crt.c
+> > @@ -265,7 +265,7 @@ static void hsw_post_disable_crt(struct intel_atomic_state *state,
+> >  	struct intel_display *display = to_intel_display(encoder);
+> >  	struct intel_crtc *crtc = to_intel_crtc(old_crtc_state->uapi.crtc);
+> >  
+> > -	intel_crtc_vblank_off(old_crtc_state);
+> > +	intel_crtc_vblank_off(state, old_crtc_state);
+> >  
+> >  	intel_disable_transcoder(old_crtc_state);
+> >  
+> 
+> [ ... ]
+> 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+> > index 10ed9bdfee763..a28f4a088e587 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> 
+> [ ... ]
+> 
+> > @@ -165,6 +165,34 @@ void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state)
+> >  	flush_work(&display->irq.vblank_notify_work);
+> >  }
+> >  
+> > +void intel_crtc_vblank_on(struct intel_atomic_state *state,
+> > +			  const struct intel_crtc_state *crtc_state)
+> > +{
+> > +	struct intel_display *display = to_intel_display(state);
+> > +	struct intel_crtc *pipe_crtc;
+> > +
+> > +	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, crtc_state) {
+> > +		const struct intel_crtc_state *pipe_crtc_state =
+> > +			intel_atomic_get_new_crtc_state(state, pipe_crtc);
+> > +
+> > +		intel_pipe_vblank_on(pipe_crtc_state);
+> > +	}
+> > +}
+> > +
+> > +void intel_crtc_vblank_off(struct intel_atomic_state *state,
+> > +			   const struct intel_crtc_state *old_crtc_state)
+> > +{
+> > +	struct intel_display *display = to_intel_display(state);
+> > +	struct intel_crtc *pipe_crtc;
+> > +
+> > +	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
+> > +		const struct intel_crtc_state *old_pipe_crtc_state =
+> > +			intel_atomic_get_old_crtc_state(state, pipe_crtc);
+> > +
+> > +		intel_pipe_vblank_off(old_pipe_crtc_state);
+> > +	}
+> > +}
+> 
+> [Severity: High]
+> Can state be NULL when intel_crtc_vblank_off() is called from
+> encoder->post_disable()?
+> 
+> During initial hardware readout or resume in
+> intel_modeset_setup_hw_state(), intel_sanitize_encoder() disables an
+> encoder whose connector is active while its pipe is inactive by invoking
+> the disable hooks with a NULL atomic state:
+> 
+> drivers/gpu/drm/i915/display/intel_modeset_setup.c:intel_sanitize_encoder() {
+> 	...
+> 	if (connector && !has_active_crtc) {
+> 		...
+> 		if (crtc_state) {
+> 			...
+> 			/* FIXME NULL atomic state passed! */
+> 			if (encoder->disable)
+> 				encoder->disable(NULL, encoder, crtc_state,
+> 						 connector->base.state);
+> 			if (encoder->post_disable)
+> 				encoder->post_disable(NULL, encoder, crtc_state,
+> 						      connector->base.state);
+> 		}
+> 	}
+> }
+> 
+> Previously, gen11_dsi_post_disable(), intel_dsi_post_disable() (on
+> Broxton and Geminilake), and hsw_post_disable_crt() did not dereference
+> state and passed old_crtc_state directly to intel_crtc_vblank_off(). With
+> this change, those callbacks pass state = NULL to intel_crtc_vblank_off(),
+> which dereferences state in both to_intel_display(state) and
+> intel_atomic_get_old_crtc_state(state, pipe_crtc).
+> 
+> Would it make sense to keep using intel_pipe_vblank_off(old_crtc_state) in
+> the non-joiner post_disable callbacks, or handle a NULL state inside
+> intel_crtc_vblank_off()?
 
-Implement the documented Wa_14028586678 hardware workaround on
-Crescent Island by updating the L3 class-of-service and caching-policy
-fields in DWNSTRM_ACCESS_MODE (0x144154). Change bits [7:4] from 0x3
-to 0xc to select L3 class of service 3 and write-back caching, while
-preserving the other register fields.
+I thought about it but apparently forgot to note it in the commit
+message; My conclusion was that the encoder sanitize stuff should
+never happen on the platforms where we do the vblank_off() from the
+encoder hooks. On earlier platforms the vblank_off() is in
+.crtc_disable() and intel_crtc_disable_noatomic_begin() creates
+a temporary atomic state for that.
 
-v2:
-  - Move this workaround into a dedicated MERT table instead of
-    placing it in gt_was, since MERT registers are device-level and
-    accessed through root-tile MMIO, outside GT forcewake and GT
-    save/restore bookkeeping.
-  - Add an RTP helper for full-register device MMIO writes and apply
-    the MERT table during probe and after pcode is ready on system or
-    D3cold resume. Match Crescent Island and skip devices without MERT
-    and SR-IOV VFs.
+I've also occasionally pondered about creating a temporary
+atomic state for intel_sanitize_encoder() as well, just to get
+rid of even the theoretical possibility of a NULL state. But
+that would probably involve some actual thinking...
 
-v3:
-  - Use PLATFORM(CRESCENTISLAND) instead of GRAPHICS_VERSION(3511),
-    because device-level OOB processing has no GT context and the
-    graphics-version matcher requires one.
-
-v4:
-  - Switching from RTP to OOB removes the need for the MERT-specific
-    table and RTP helper proposed in v2. The v2 and v3 notes are retained
-    as revision history; this version uses the device OOB rule through
-    the existing per-tile workaround helper.
-  - Program the register on every tile, assuming the workaround values
-    are identical across tiles.
-  - Use a masked read-modify-write to set [7:6] to 0x3 and [5:4] to
-    0x0, preserving all other register fields.
-
-BSpec: 73603
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Signed-off-by: Daniel Charles <daniel.charles@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_mert_regs.h    | 4 ++++
- drivers/gpu/drm/xe/xe_device_wa_oob.rules | 1 +
- drivers/gpu/drm/xe/xe_pm.c                | 4 ++++
- drivers/gpu/drm/xe/xe_wa.c                | 9 +++++++++
- 4 files changed, 18 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/regs/xe_mert_regs.h b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-index 99e5a26da6572..8139263f2746a 100644
---- a/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_mert_regs.h
-@@ -8,6 +8,10 @@
- 
- #include "regs/xe_reg_defs.h"
- 
-+#define DWNSTRM_ACCESS_MODE_GAMREQ_MERTSS	XE_REG(0x144154)
-+#define   DWNSTRM_ACCESS_MODE_L3_COS		REG_GENMASK(7, 6)
-+#define   DWNSTRM_ACCESS_MODE_L3_POLICY		REG_GENMASK(5, 4)
-+
- #define MERT_LMEM_CFG				XE_REG(0x1448b0)
- 
- #define MERT_TLB_CT_INTR_ERR_ID_PORT		XE_REG(0x145190)
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index 356b4707dafea..753b2a4a10067 100644
---- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -6,3 +6,4 @@
- 14026633728	PLATFORM(CRESCENTISLAND)
- 14026746987	PLATFORM(CRESCENTISLAND)
- 14026779378	PLATFORM(CRESCENTISLAND)
-+14028586678	PLATFORM(CRESCENTISLAND)
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 89d64aa6577d1..6668f66660b5c 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -687,6 +687,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
-  */
- int xe_pm_runtime_resume(struct xe_device *xe)
- {
-+	struct xe_tile *tile;
- 	struct xe_gt *gt;
- 	u8 id;
- 	int err = 0;
-@@ -702,6 +703,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 		if (err)
- 			goto out;
- 
-+		for_each_tile(tile, xe, id)
-+			xe_wa_apply_tile_workarounds(tile);
-+
- 		for_each_gt(gt, xe, id)
- 			xe_gt_resume_early(gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index c94fe7753f9a9..539850614902b 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -16,7 +16,9 @@
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_guc_regs.h"
-+#include "regs/xe_mert_regs.h"
- #include "regs/xe_regs.h"
-+#include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
- #include "xe_gt_types.h"
-@@ -1031,4 +1033,11 @@ void xe_wa_apply_tile_workarounds(struct xe_tile *tile)
- 
- 	if (XE_DEVICE_WA(tile->xe, 22010954014))
- 		xe_mmio_rmw32(mmio, XEHP_CLOCK_GATE_DIS, 0, SGSI_SIDECLK_DIS);
-+
-+	if (xe_device_has_mert(tile->xe) &&
-+	    XE_DEVICE_WA(tile->xe, 14028586678))
-+		xe_mmio_rmw32(mmio, DWNSTRM_ACCESS_MODE_GAMREQ_MERTSS,
-+			      DWNSTRM_ACCESS_MODE_L3_COS |
-+			      DWNSTRM_ACCESS_MODE_L3_POLICY,
-+			      REG_FIELD_PREP(DWNSTRM_ACCESS_MODE_L3_COS, 3));
- }
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
