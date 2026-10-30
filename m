@@ -2,44 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18BC5606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36DB606A31D
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BZGom+Nn
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=W2yK/csM
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B73A610E186;
-	Fri, 30 Oct 2026 17:26:40 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD86A10E6C8;
- Fri, 30 Oct 2026 17:26:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C8E510E7FA;
+	Fri, 30 Oct 2026 17:29:32 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7ABE10E790;
+ Fri, 30 Oct 2026 17:29:25 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 05D9F601EE;
- Fri, 30 Oct 2026 17:26:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A4341F000C1;
- Fri, 30 Oct 2026 17:26:33 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 92278405C2;
+ Fri, 30 Oct 2026 17:29:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4521A1F00A02;
+ Fri, 30 Oct 2026 17:29:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793381193;
- bh=S7/eVeosovN/z/owFlFTKJ3W7BSIaAYA5N+oZzOtufU=;
+ s=k20260515; t=1793381365;
+ bh=lVxtQ9qhuh2LwdxblOOYbZQ4DbLAlSGNIHwTV6SCG2k=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=BZGom+NnPR9dJp1KQYkpWEFQTLM2L4X81TJ0yz8PjL6GWab91h6zCU53R+BCmzM1t
- 4f/7NorT4r9ph836nUXXS1QVaExEembovv77TabkmDpEIuNQe7o7GoNUdWoNdaVMY8
- PshlWMiuO2kaTJdf7tIzBUOnwR728xincDFVfEA5B7Rw5NY87/DFTsInzEjzV/IU6E
- cAAFAnEto97/BKHBEYhWBXJuawxQym4ij2slNEhTF3WMRcCZ3dTusSWz7HOmtWPGPW
- 64ukXPf+YXSXYrm+Sv7gGu5uffJITbRuao2SiTSVJ26tuxUFbPya/C4C8Zh5APl/lF
- PMFbI9VyygtZQ==
-Message-ID: <sashiko-outbox-191339@kernel.org>
+ b=W2yK/csMldsGtzqS73B2Pyx4EhOY9Gs3FBwcGlVgMDv0WzCMz4qd6AwFfqvI4HwAW
+ XJRh0lSy9kJKKERiWknYbJNjtrcsl+yu7f4aToGhjqgSy0RRinNxaP5Zh4WW179gJY
+ DOTTnx4vinXdncAuLvFXG7tg8xQ9xGY1ubbyScQ9Qs3DRlDD6qyKoWDVhT1dexOe08
+ CwftmkxSwEMoYmGt50+Xv81BIm67NmL+6ceYbMmVvOB/CpypLVmxvPWtXsWTl4p6vH
+ 9jsE6Z0xJc5N2iFkkuBfbapN2kyMnCTGjSG45lkn7nGqAvYpuLFACOaFmjrgj4V1MP
+ +7vtCzMwEtfVA==
+Message-ID: <sashiko-outbox-191346@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 03/10] drm/i915: Handle joined pipes inside
- intel_crtc_vblank_{on, off}()
+Subject: Re: [PATCH 09/10] drm/i915: Fix FEC wait with port sync on pre-LNL
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261030171327.29829-4-ville.syrjala@linux.intel.com>
+In-Reply-To: <20261030171327.29829-10-ville.syrjala@linux.intel.com>
 References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
- <20261030171327.29829-4-ville.syrjala@linux.intel.com>
+ <20261030171327.29829-10-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 30 Oct 2026 17:26:33 +0000
+Date: Fri, 30 Oct 2026 17:29:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,134 +60,84 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/i915: NULL state dereference in intel_crtc_vblank_off()
+- [Medium] drm/i915/ddi: LNL vs PTL version mismatch in FEC status wait com=
+ment and check
 --
 
-commit c6499a1bf58e345d4e50ee3b23d7821c66712bdd
+commit c0a68d9ab06674ed868f492b35dc93f1dc05b1bf
 Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-drm/i915: Handle joined pipes inside intel_crtc_vblank_{on, off}()
+drm/i915: Fix FEC wait with port sync on pre-LNL
 
-This commit moves the joined-pipe iteration into intel_crtc_vblank_on()
-and intel_crtc_vblank_off(), renaming the single-pipe helpers to
-intel_pipe_vblank_on() and intel_pipe_vblank_off(). Callers are updated to
-pass struct intel_atomic_state alongside the CRTC state.
+This commit defers waiting for FEC status in intel_ddi_enable() until after
+the timing generators have started, and adds a helper to wait for FEC status
+across all synced transcoders when port sync is enabled.
 
-> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
-5/display/icl_dsi.c
-> index ea0cdb7822f39..381cdf7d5131c 100644
-> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
-> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-
-[ ... ]
-
-> @@ -1455,7 +1455,7 @@ static void gen11_dsi_post_disable(struct intel_ato=
-mic_state *state,
->  	struct intel_dsi *intel_dsi =3D enc_to_intel_dsi(encoder);
->  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
-> =20
-> -	intel_crtc_vblank_off(old_crtc_state);
-> +	intel_crtc_vblank_off(state, old_crtc_state);
-> =20
->  	/* step2d,e: disable transcoder and wait */
->  	gen11_dsi_disable_transcoder(encoder);
-> diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i=
-915/display/intel_crt.c
-> index 5b8968197fbcf..b814b84c650fd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crt.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crt.c
-> @@ -265,7 +265,7 @@ static void hsw_post_disable_crt(struct intel_atomic_=
-state *state,
->  	struct intel_display *display =3D to_intel_display(encoder);
->  	struct intel_crtc *crtc =3D to_intel_crtc(old_crtc_state->uapi.crtc);
-> =20
-> -	intel_crtc_vblank_off(old_crtc_state);
-> +	intel_crtc_vblank_off(state, old_crtc_state);
-> =20
->  	intel_disable_transcoder(old_crtc_state);
-> =20
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 9939fa43e8f73..2e7f278a1b6c6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
 
 [ ... ]
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
-i915/display/intel_crtc.c
-> index 10ed9bdfee763..a28f4a088e587 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-
-[ ... ]
-
-> @@ -165,6 +165,34 @@ void intel_crtc_vblank_off(const struct intel_crtc_s=
-tate *crtc_state)
->  	flush_work(&display->irq.vblank_notify_work);
->  }
+> @@ -3623,6 +3654,16 @@ static void intel_ddi_enable(struct intel_atomic_s=
+tate *state,
+>  	else
+>  		intel_crtc_vblank_on(state, crtc_state);
 > =20
-> +void intel_crtc_vblank_on(struct intel_atomic_state *state,
-> +			  const struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display =3D to_intel_display(state);
-> +	struct intel_crtc *pipe_crtc;
-> +
-> +	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, crtc_state) {
-> +		const struct intel_crtc_state *pipe_crtc_state =3D
-> +			intel_atomic_get_new_crtc_state(state, pipe_crtc);
-> +
-> +		intel_pipe_vblank_on(pipe_crtc_state);
-> +	}
-> +}
-> +
-> +void intel_crtc_vblank_off(struct intel_atomic_state *state,
-> +			   const struct intel_crtc_state *old_crtc_state)
-> +{
-> +	struct intel_display *display =3D to_intel_display(state);
-> +	struct intel_crtc *pipe_crtc;
-> +
-> +	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
-> +		const struct intel_crtc_state *old_pipe_crtc_state =3D
-> +			intel_atomic_get_old_crtc_state(state, pipe_crtc);
-> +
-> +		intel_pipe_vblank_off(old_pipe_crtc_state);
-> +	}
-> +}
+> +	/*
+> +	 * On pre-LNL FEC_DECODE_EN will only be sent when the timing
+> +	 * generator starts. Also note that FEC_DECODE_EN cannot be
+> +	 * re-sent without restarting the timing generator.
+> +	 */
+> +	if (is_trans_port_sync_mode(crtc_state))
+> +		trans_port_sync_wait_for_fec_status(state, encoder, crtc_state, true);
+> +	else
+> +		intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
 
-[Severity: High]
-Can state be NULL when intel_crtc_vblank_off() is called from
-encoder->post_disable()?
+[Severity: Medium]
+Should the comment here (and the commit message) refer to pre-PTL and PTL+
+rather than pre-LNL and LNL+, or should the version check in
+intel_ddi_enable_fec() be updated?
 
-During initial hardware readout or resume in
-intel_modeset_setup_hw_state(), intel_sanitize_encoder() disables an
-encoder whose connector is active while its pipe is inactive by invoking
-the disable hooks with a NULL atomic state:
+The commit message and the comment in intel_ddi_enable() state that on LNL+
+FEC_DECODE_EN is sent immediately when enabling FEC in DP_TP_CTL, and that
+LNL+ therefore checks FEC status immediately in intel_ddi_enable_fec() and
+then a second time here in intel_ddi_enable().
 
-drivers/gpu/drm/i915/display/intel_modeset_setup.c:intel_sanitize_encoder()=
- {
+However, intel_ddi_enable_fec() skips the immediate check and retry loop on
+DISPLAY_VER < 30:
+
+drivers/gpu/drm/i915/display/intel_ddi.c:intel_ddi_enable_fec() {
 	...
-	if (connector && !has_active_crtc) {
-		...
-		if (crtc_state) {
-			...
-			/* FIXME NULL atomic state passed! */
-			if (encoder->disable)
-				encoder->disable(NULL, encoder, crtc_state,
-						 connector->base.state);
-			if (encoder->post_disable)
-				encoder->post_disable(NULL, encoder, crtc_state,
-						      connector->base.state);
-		}
-	}
+	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+		     0, DP_TP_CTL_FEC_ENABLE);
+
+	if (DISPLAY_VER(display) < 30)
+		return;
+
+	ret =3D intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
+	...
 }
 
-Previously, gen11_dsi_post_disable(), intel_dsi_post_disable() (on
-Broxton and Geminilake), and hsw_post_disable_crt() did not dereference
-state and passed old_crtc_state directly to intel_crtc_vblank_off(). With
-this change, those callbacks pass state =3D NULL to intel_crtc_vblank_off(),
-which dereferences state in both to_intel_display(state) and
-intel_atomic_get_old_crtc_state(state, pipe_crtc).
+Since LNL is DISPLAY_VER 20 and PTL is DISPLAY_VER 30, LNL returns early in
+intel_ddi_enable_fec() without waiting for FEC status, and port sync is also
+enabled up through DISPLAY_VER 20 in intel_ddi_port_sync_transcoders():
 
-Would it make sense to keep using intel_pipe_vblank_off(old_crtc_state) in
-the non-joiner post_disable callbacks, or handle a NULL state inside
-intel_crtc_vblank_off()?
+drivers/gpu/drm/i915/display/intel_ddi.c:intel_ddi_port_sync_transcoders() {
+	/*
+	 * We don't enable port sync on BDW due to missing w/as and
+	 * due to not having adjusted the modeset sequence appropriately.
+	 */
+	if (!IS_DISPLAY_VER(display, 9, 20))
+		return 0;
+	...
+}
+
+Is intel_ddi_enable_fec() supposed to check DISPLAY_VER(display) < 20 for
+LNL+, or was the description intended to say pre-PTL / PTL+?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261030171327.2982=
-9-1-ville.syrjala@linux.intel.com?part=3D3
+9-1-ville.syrjala@linux.intel.com?part=3D9
