@@ -2,59 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4896B606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 22:58:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565D3606A31A
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 22:58:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UPppkSAX
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lsrcdWpM
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B821112A48;
-	Fri, 30 Oct 2026 22:58:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F03410E2C7;
+	Fri, 30 Oct 2026 22:58:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F00410E8F8
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 22:58:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B13D10E2C7
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 Oct 2026 22:58:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793401095; x=1824937095;
+ t=1793401097; x=1824937097;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=qBWIJzVRiG+Wm/EJVjNmvUGhny4SVn087t//o1fzG1I=;
- b=UPppkSAXSZTag3Bl/oIdBPUWIEGlC9MHoXCPE7SsRjExkAYxcbkEupps
- oH+yOuWa5cC0XXG54kJ1HwgaMTo4d26d2w+eL8YerN/L2sLd8bjNh2piL
- WhMmRo5TS1PE3nkE9W4uM/kGhqj3Sx7mbzi0R5Ejm4fSlpJWpMLY7UlIY
- LXNOTdZc1ByzhMNtmUROu5+lnjuQkHkKRQM8ILdVuzffHJJEibW3W2DA8
- GO3Q5MqpOObyAGoO47CjiuoVGexHRtI7YNkyewmT/0p/4dkyjK8oXbc6y
- zhdQ/7vXzxntu6rU+FOuhs2VKdeQn5F0VaBQkvpMPFjuMlYz/bp1l+7G6 A==;
-X-CSE-ConnectionGUID: /C7Gvt/LTV+7hGeGpOq5Cw==
-X-CSE-MsgGUID: UJd5Oiw7TGKWcwRxNdURIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2197995"
+ bh=gFSm2v86dUmXCifF7A0Hn8z+cR4KwRp6ALS1ield3lc=;
+ b=lsrcdWpMrYJJ/W5Q0XvnuG7q/YOLtxsTMSDaJ150AbYkzHQ+7EFRZ8iY
+ lLzgXJMAcICVJMcqlxjwGfQLhmG0b+M1C2ymncbsQ7HfBCCwc01eghkg6
+ EkHSD443+rNhAQPdk06rBUU4Ft23paoNiQEYcnm6LwhM8bHWKtlHJ5kX1
+ QWG3wLHv5EG7GSwylFFCpC6nRA6A6ZY0+cIZfoiPnnNbo+dTGJy3qbzWJ
+ cz6Hdd/GFiMg+5JkiDufUAGB+tvWWGfhxmO9SjUheZIqEA4LHGWBJeHCq
+ 6uvlV/MKFdn/XRvki7oiPd+z3OF8mvc6L/0glDsNqPFP5x2QZXu4RQy8/ w==;
+X-CSE-ConnectionGUID: mciQmTjIRbeHOaYgrnOFIA==
+X-CSE-MsgGUID: MF/M+UgDS428R6pBE00ZLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11951"; a="2197998"
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="2197995"
+   d="scan'208";a="2197998"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 15:58:12 -0700
-X-CSE-ConnectionGUID: dba6gdHhRWaSve5bTRyY3Q==
-X-CSE-MsgGUID: savxsadmQDm4d8UPDGQZNA==
+ 30 Oct 2026 15:58:14 -0700
+X-CSE-ConnectionGUID: bi7A6j5DRxqbG5JvFvlt8Q==
+X-CSE-MsgGUID: x/TmZa/eTQmwHeJ6HGhEiQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,186,1787036400"; 
-   d="scan'208";a="5637716"
+   d="scan'208";a="5637721"
 Received: from iherna2-mobl4.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.197])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2026 15:58:12 -0700
+ 30 Oct 2026 15:58:13 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 30 Oct 2026 19:57:44 -0300
-Subject: [PATCH v2 05/10] drm/xe: Bail from adjust_idledly() if no
- applicable workaround
+Date: Fri, 30 Oct 2026 19:57:45 -0300
+Subject: [PATCH v2 06/10] drm/xe: Drop early and redundant workaround
+ checks in adjust_idledly()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261030-wa_16031259911-v2-5-919fa1c27070@intel.com>
+Message-Id: <20261030-wa_16031259911-v2-6-919fa1c27070@intel.com>
 References: <20261030-wa_16031259911-v2-0-919fa1c27070@intel.com>
 In-Reply-To: <20261030-wa_16031259911-v2-0-919fa1c27070@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,81 +72,151 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Re-organize adjust_idledly() so that we return and avoid touching the
-hardware if no applicable workaround was found.
+With the latest change, adjust_idledly() now only touches hardware
+when necessary and has workaround-specific logic well scoped into
+individual "if" statements.  The early workaround checks are now
+redundant and can be dropped.  Do that.
 
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 32 +++++++++++++++++++-------------
- 1 file changed, 19 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 108 +++++++++++++++++++-------------------
+ 1 file changed, 53 insertions(+), 55 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 01a7baf061eb..32d33c70e7f4 100644
+index 32d33c70e7f4..08bd8754ad09 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -605,7 +605,7 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 	u64 idledly_ps, idledly_hw_ps;
- 	u64 min_idledly_ps = 0;
- 	u64 max_idledly_ps = -1;
--	bool inhibit_switch = false;
-+	bool clear_inhibit_switch = false;
- 	bool wa_applied = false;
- 
+@@ -611,77 +611,75 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
  	if (IS_SRIOV_VF(gt_to_xe(gt)))
-@@ -616,12 +616,6 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 		if (!idledly_units_ps)
- 			return;
+ 		return;
+ 
+-	if (XE_GT_WA(gt, 16023105232) || XE_GT_WA(gt, 14025941587)) {
+-		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
+-		if (!idledly_units_ps)
+-			return;
++	/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
++	if (!idledly_units_ps)
++		return;
+ 
+-		if (XE_GT_WA(gt, 14025941587))
+-			min_idledly_ps = max(min_idledly_ps, 5000000);
++	if (XE_GT_WA(gt, 14025941587))
++		min_idledly_ps = max(min_idledly_ps, 5000000);
+ 
+-		if (XE_GT_WA(gt, 16023105232)) {
+-			u64 maxcnt_units_ps = 640000;
+-			u32 maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
++	if (XE_GT_WA(gt, 16023105232)) {
++		u64 maxcnt_units_ps = 640000;
++		u32 maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
+ 
+-			max_idledly_ps = min_t(u64,
+-					       max_idledly_ps,
+-					       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
++		max_idledly_ps = min_t(u64,
++				       max_idledly_ps,
++				       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
+ 
+-			clear_inhibit_switch = true;
+-		}
++		clear_inhibit_switch = true;
++	}
+ 
+-		/* No applicable workaround found. */
+-		if (min_idledly_ps == 0 && max_idledly_ps == -1 && !clear_inhibit_switch)
+-			return;
++	/* No applicable workaround found. */
++	if (min_idledly_ps == 0 && max_idledly_ps == -1 && !clear_inhibit_switch)
++		return;
  
 -		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
--		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
++	idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
+ 
+-		if (clear_inhibit_switch && idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED) {
+-			idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
+-			wa_applied = true;
+-		}
++	if (clear_inhibit_switch && idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED) {
++		idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
++		wa_applied = true;
++	}
++
++	idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
++	idledly_ps = idledly * idledly_units_ps;
++	idledly_hw_ps = idledly_ps;
+ 
 -		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
--		idledly_ps = idledly * idledly_units_ps;
++	/*
++	 * min_idledly_ps is applied before max_idledly_ps, which takes
++	 * priority if the two ever conflict (not expected in practice).
++	 */
++	if (idledly_ps < min_idledly_ps) {
++		idledly = DIV_ROUND_UP_ULL(min_idledly_ps, idledly_units_ps);
+ 		idledly_ps = idledly * idledly_units_ps;
 -		idledly_hw_ps = idledly_ps;
--
- 		if (XE_GT_WA(gt, 14025941587))
- 			min_idledly_ps = max(min_idledly_ps, 5000000);
++		wa_applied = true;
++	}
  
-@@ -633,13 +627,24 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 					       max_idledly_ps,
- 					       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
- 
--			/* Clear the inhibit switch without disturbing a valid delay. */
--			if (inhibit_switch) {
--				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
--				wa_applied = true;
--			}
-+			clear_inhibit_switch = true;
+-		/*
+-		 * min_idledly_ps is applied before max_idledly_ps, which takes
+-		 * priority if the two ever conflict (not expected in practice).
+-		 */
+-		if (idledly_ps < min_idledly_ps) {
+-			idledly = DIV_ROUND_UP_ULL(min_idledly_ps, idledly_units_ps);
++	if (idledly_ps >= max_idledly_ps) {
++		if (max_idledly_ps) {
++			idledly = DIV_ROUND_DOWN_ULL(max_idledly_ps - 1, idledly_units_ps);
+ 			idledly_ps = idledly * idledly_units_ps;
+-			wa_applied = true;
++		} else {
++			idledly = 0;
++			idledly_ps = 0;
  		}
  
-+		/* No applicable workaround found. */
-+		if (min_idledly_ps == 0 && max_idledly_ps == -1 && !clear_inhibit_switch)
-+			return;
-+
-+		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-+
-+		if (clear_inhibit_switch && idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED) {
-+			idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+			wa_applied = true;
-+		}
-+
-+		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
-+		idledly_ps = idledly * idledly_units_ps;
-+		idledly_hw_ps = idledly_ps;
-+
- 		/*
- 		 * min_idledly_ps is applied before max_idledly_ps, which takes
- 		 * priority if the two ever conflict (not expected in practice).
-@@ -671,7 +676,8 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
+-		if (idledly_ps >= max_idledly_ps) {
+-			if (max_idledly_ps) {
+-				idledly = DIV_ROUND_DOWN_ULL(max_idledly_ps - 1, idledly_units_ps);
+-				idledly_ps = idledly * idledly_units_ps;
+-			} else {
+-				idledly = 0;
+-				idledly_ps = 0;
+-			}
+-
+-			wa_applied = true;
+-		}
++		wa_applied = true;
++	}
  
- 			xe_gt_dbg(gt, "idledly %s: set %llups min=%llups max=%llups inh=%u ts=%ups\n",
- 				  hwe->name, idledly_ps, min_idledly_ps, max_idledly_ps,
--				  !!inhibit_switch, gt->info.timestamp_base);
-+				  !!(idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED),
-+				  gt->info.timestamp_base);
- 			xe_mmio_write32(&gt->mmio,
- 					RING_IDLEDLY(hwe->mmio_base),
- 					idledly_reg_val);
+-		/* Warn only if the value read from *hardware* exceeds the maximum. */
+-		xe_gt_WARN_ON(gt, idledly_hw_ps >= max_idledly_ps);
++	/* Warn only if the value read from *hardware* exceeds the maximum. */
++	xe_gt_WARN_ON(gt, idledly_hw_ps >= max_idledly_ps);
+ 
+-		if (wa_applied) {
+-			idledly_reg_val &= ~IDLE_DELAY;
+-			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY, idledly);
++	if (wa_applied) {
++		idledly_reg_val &= ~IDLE_DELAY;
++		idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY, idledly);
+ 
+-			xe_gt_dbg(gt, "idledly %s: set %llups min=%llups max=%llups inh=%u ts=%ups\n",
+-				  hwe->name, idledly_ps, min_idledly_ps, max_idledly_ps,
+-				  !!(idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED),
+-				  gt->info.timestamp_base);
+-			xe_mmio_write32(&gt->mmio,
+-					RING_IDLEDLY(hwe->mmio_base),
+-					idledly_reg_val);
+-		}
++		xe_gt_dbg(gt, "idledly %s: set %llups min=%llups max=%llups inh=%u ts=%ups\n",
++			  hwe->name, idledly_ps, min_idledly_ps, max_idledly_ps,
++			  !!(idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED),
++			  gt->info.timestamp_base);
++		xe_mmio_write32(&gt->mmio,
++				RING_IDLEDLY(hwe->mmio_base),
++				idledly_reg_val);
+ 	}
+ }
+ 
 
 -- 
 2.56.0
