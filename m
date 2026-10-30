@@ -2,42 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBA8606A322
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:38:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8645A606A31D
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Oct 2026 17:39:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YmO74CP3
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jylU01br
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 012E310E186;
-	Fri, 30 Oct 2026 17:38:54 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5CA310E3AF;
- Fri, 30 Oct 2026 17:38:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC7310E300;
+	Fri, 30 Oct 2026 17:39:06 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E033B10E300;
+ Fri, 30 Oct 2026 17:38:59 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 673BE43ED5;
- Fri, 30 Oct 2026 17:38:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CF591F000C1;
- Fri, 30 Oct 2026 17:38:47 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id C666760202;
+ Fri, 30 Oct 2026 17:38:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 579BE1F00A16;
+ Fri, 30 Oct 2026 17:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793381927;
- bh=udmFjoOsxM4mdeL62v0g8SSAzeWF8y/AuyOsRoGgE5k=;
+ s=k20260515; t=1793381938;
+ bh=813Ymywf9xufPsi6X0p/XUL4nE18WjEcDJPHB6vfHtg=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=YmO74CP3RNtkEBugm+ioCvqKSFO/q8mKpuNCjAYLxgQsojxAkyt5Yv1hLKpvMP3sP
- sb0R9urt9aUhqgevlNMFFBhT2NhUhatUcfPejDUgyhDhCgiyrWiJBfWRIGGra3W2kN
- hefNQhATxm0nbIokzPN8Hf/1C71JK9+1cPr63LtL5sh/japE33+bTvsunWqeRxN4Vn
- 5Ibl6L9DnV7/XToXmUJs3b90t9wFE+DY4wbpeWsUsAthLj3B+yCbUBzAfRXB+/9/fu
- 2dAhKtrHD2XKxZHXr+4MGao+7E3NuXQekjBJ+7UKK6QrW9ljfobWmm7cWGTN8GVgeW
- ljDfAlA0Gx6WA==
-Message-ID: <sashiko-outbox-191350@kernel.org>
+ b=jylU01brzN3v1zLYwnjxkMolZgQFrCxtae2geCD0ERdmvpFFGW2AvA//D1K+ZZS8G
+ V7MF0bEHaObruxTgq68WTRknMGfT5/lo51gg6ls/O+EGXx0ThZK65GVj2jJmGyohps
+ qRX/+DcpIX92wN9r8+oHXUSwi34Icms6GbeQ7QVd1r2VnQ77Sd4jcbxXjAqiaF2/9a
+ 26rtdjLeTjvEIRpNplaxdjzzHVwP1YoF0VxNCEqubBE0KGromdA++iFpxw+k9JOLiJ
+ 9m6wR/2UX8NW1CsrIyULLBrZ9gTBudlbh9d4hjDn8F4MdjiTmCvgo7O28bNm/gouL2
+ bPNTqnvi9N8EA==
+Message-ID: <sashiko-outbox-191352@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/1] drm/xe/pcode: Fix pcode_try_request polling delays
-To: "Alan Previn" <alan.previn.teres.alexis@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-In-Reply-To: <20261030173038.681250-2-alan.previn.teres.alexis@intel.com>
-References: <20261030173038.681250-2-alan.previn.teres.alexis@intel.com>
+Subject: Re: [PATCH 10/10] drm/i915: Allow joiner with port sync
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+In-Reply-To: <20261030171327.29829-11-ville.syrjala@linux.intel.com>
+References: <20261030171327.29829-1-ville.syrjala@linux.intel.com>
+ <20261030171327.29829-11-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 30 Oct 2026 17:38:46 +0000
+Date: Fri, 30 Oct 2026 17:38:58 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,83 +58,108 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe/pcode: duplicate left shift of wait in pcode_try_request()
-- [High] drm/xe/pcode: uncapped wait added to slept in pcode_try_request()
+- [High] drm/i915: port sync dropped when joiner secondary CRTC triggers mo=
+deset
 --
 
-commit b0181a87e207629275e050ae1f5d781e540c4b82
-Author: Alan Previn <alan.previn.teres.alexis@intel.com>
+commit e8591be1b66ac026c8025978e792560a0337567b
+Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-drm/xe/pcode: Fix pcode_try_request polling delays
+drm/i915: Allow joiner with port sync
 
-This commit clamps the atomic udelay() argument in pcode_try_request() to
-MAX_UDELAY_MS * 1000 and adds a 100 ms upper bound to the exponential
-backoff wait interval.
+This commit removes the check preventing pipes using joiner from entering
+port sync mode now that modeset enable and disable sequences iterate in
+pipe/transcoder order.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index 266deecbb100a..25d1a354ee369 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -146,6 +146,7 @@ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32=
- *val0, u32 *val1)
->  	return err;
->  }
-> =20
-> +#define __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100 * USEC_PER_MSEC)
->  static int pcode_try_request(struct xe_tile *tile, u32 mbox,
->  			     u32 request, u32 reply_mask, u32 reply,
->  			     int *status, bool atomic, int timeout_us, bool locked)
-> @@ -165,10 +166,11 @@ static int pcode_try_request(struct xe_tile *tile, =
-u32 mbox,
->  			return 0;
-> =20
->  		if (atomic)
-> -			udelay(wait);
-> +			udelay(min_t(int, wait, (MAX_UDELAY_MS * 1000)));
->  		else
->  			usleep_range(wait, wait << 1);
->  		wait <<=3D 1;
-> +		wait =3D min_t(int, wait << 1, __XE_MMIO_WAIT_MAX_BACKOFF_100MS);
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i=
+915/display/intel_ddi.c
+> index 2e7f278a1b6c6..3be5b429ac876 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4675,14 +4675,8 @@ static bool m_n_equal(const struct intel_link_m_n =
+*m_n_1,
+>  static bool crtcs_port_sync_compatible(const struct intel_crtc_state *cr=
+tc_state1,
+>  				       const struct intel_crtc_state *crtc_state2)
+>  {
+> -	/*
+> -	 * FIXME the modeset sequence is currently wrong and
+> -	 * can't deal with joiner + port sync at the same time.
+> -	 *
+> -	 * TODO VRR + port sync needs special handling
+> -	 */
+> +	/* TODO VRR + port sync needs special handling */
+>  	return crtc_state1->hw.active && crtc_state2->hw.active &&
+> -		!crtc_state1->joiner_pipes && !crtc_state2->joiner_pipes &&
 
 [Severity: High]
-Should the existing wait <<=3D 1 statement above be removed? Leaving both
-shifts in pcode_try_request() shifts wait left twice on every iteration,
-quadrupling wait at each step (10 -> 40 -> 160 -> 640 -> 2560 us) instead
-of doubling it.
+Can allowing joiner with port sync here cause port sync to be dropped when =
+an
+atomic commit triggers a modeset via a joiner secondary CRTC?
 
-Because the loop header accumulates elapsed time via slept +=3D wait after
-the loop body finishes:
+In drivers/gpu/drm/i915/display/intel_display.c:intel_atomic_check(),
+drm_atomic_helper_check_modeset() runs connector atomic_check callbacks
+before intel_atomic_check_config_and_link() pulls in joined CRTCs:
 
-drivers/gpu/drm/xe/xe_pcode.c:pcode_try_request() {
-	for (slept =3D 0; slept < timeout_us; slept +=3D wait) {
+	ret =3D drm_atomic_helper_check_modeset(dev, &state->base);
+	if (ret)
+		goto fail;
+	...
+	ret =3D intel_atomic_check_config_and_link(state);
 
-slept also advances by 4x the delay just performed, causing
-xe_pcode_ready() and xe_pcode_request() to time out with -ETIMEDOUT before
-timeout_us has actually elapsed.
+Suppose a joined CRTC pair (primary Pipe A and secondary Pipe B) is active =
+in
+port sync mode with a peer CRTC (Pipe C). If userspace submits an atomic
+commit targeting the joiner secondary CRTC (Pipe B, which has uapi.enable =
+=3D=3D
+false and no uapi connectors) that sets uapi.mode_changed =3D true in
+intel_atomic_check() (for example by changing scaling_filter,
+sharpness_strength, or vrr_enabled, or clearing inherited on the first
+userspace commit), drm_atomic_helper_check_modeset() runs while neither Pipe
+A nor its connector is in the atomic state.
 
-[Severity: High]
-When atomic is true, udelay() is clamped to MAX_UDELAY_MS * 1000 (for
-example, 5000 us on x86 or 2000 us on arm64), but wait continues to grow
-up to __XE_MMIO_WAIT_MAX_BACKOFF_100MS (100000 us) and is added directly
-to slept in the loop header:
+Later, intel_atomic_check_config_and_link() -> intel_atomic_check_config() =
+->
+intel_joiner_add_affected_crtcs() adds Pipe A, sets Pipe A's
+uapi.mode_changed =3D true, and adds Pipe A's connector:
 
-drivers/gpu/drm/xe/xe_pcode.c:pcode_try_request() {
-	for (slept =3D 0; slept < timeout_us; slept +=3D wait) {
+	for_each_intel_crtc_in_pipe_mask(display, crtc, modeset_pipes) {
+		int ret;
 
-When xe_pcode_request() retries with preemption disabled:
+		crtc_state =3D intel_atomic_get_new_crtc_state(state, crtc);
 
-drivers/gpu/drm/xe/xe_pcode.c:xe_pcode_request() {
-	preempt_disable();
-	ret =3D pcode_try_request(tile, mbox, request, reply_mask, reply, &status,
-				true, 50 * 1000, true);
-	preempt_enable();
+		crtc_state->uapi.mode_changed =3D true;
 
-won't slept accumulate the unclamped wait value once wait exceeds
-MAX_UDELAY_MS * 1000, causing the 50 ms atomic retry to return -ETIMEDOUT
-after only a fraction of the intended 50 ms delay?
+		ret =3D drm_atomic_add_affected_connectors(&state->base, &crtc->base);
+
+Because drm_atomic_helper_check_modeset() has already finished,
+intel_dp_connector_atomic_check() -> intel_modeset_tile_group() and
+intel_modeset_synced_crtcs() never run for Pipe A's connector, so Pipe C and
+its connector are never added to the atomic state.
+
+When intel_modeset_pipe_config_late() -> intel_ddi_compute_config_late() ->
+intel_ddi_port_sync_transcoders() subsequently iterates over connectors in
+the atomic state:
+
+	for_each_new_connector_in_state(&state->base, connector, conn_state, i) {
+		struct intel_crtc *crtc =3D to_intel_crtc(conn_state->crtc);
+		const struct intel_crtc_state *crtc_state;
+
+it only sees Pipe A's connector, leaving master_transcoder =3D
+INVALID_TRANSCODER and sync_mode_slaves_mask =3D 0 on Pipe A.
+
+In intel_crtc_check_fastset(), intel_pipe_config_compare() then sees the
+mismatch in master_transcoder or sync_mode_slaves_mask against old_crtc_sta=
+te
+and forces a full modeset on Pipe A and Pipe B without Pipe C in the commit.
+If Pipe A was the port sync master, Pipe C's hardware transcoder remains
+active and enslaved to TRANSCODER_A while TRANSCODER_A is disabled and
+re-enabled, and bdw_get_trans_port_sync_config() during
+intel_modeset_verify_crtc() reads back a non-zero sync_mode_slaves_mask,
+triggering INTEL_DISPLAY_STATE_WARN in verify_crtc_state().
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261030173038.6812=
-50-2-alan.previn.teres.alexis@intel.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261030171327.2982=
+9-1-ville.syrjala@linux.intel.com?part=3D10
