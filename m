@@ -2,28 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D28606A31C
-	for <intel-xe@archiver.kernel.org>; Sat, 31 Oct 2026 16:32:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DCC5606A31A
+	for <intel-xe@archiver.kernel.org>; Sat, 31 Oct 2026 17:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ox1WBMOb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41E7410E187;
-	Sat, 31 Oct 2026 16:32:29 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D265D10E187;
- Sat, 31 Oct 2026 16:32:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4283407714043634283=="
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Fmst=3A_Avoid_?=
- =?utf-8?q?the_3_s_ACT_timeouts_after_the_upstream_HPD_drops_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xiao Lu" <xiaolu.xie@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 31 Oct 2026 16:32:27 -0000
-Message-ID: <179346434785.97721.2352820240038170064@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261031154456.465469-1-xiaolu.xie@intel.com>
-In-Reply-To: <20261031154456.465469-1-xiaolu.xie@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4FE110E10C;
+	Sat, 31 Oct 2026 17:55:21 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B171B10E10C;
+ Sat, 31 Oct 2026 17:55:15 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 5B29B60C08;
+ Sat, 31 Oct 2026 17:55:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAAA31F000C1;
+ Sat, 31 Oct 2026 17:55:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793469314;
+ bh=72ZTUiaW/xPPsRS42rEDWovInGzCFnt3oGUuR1Drm1M=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=Ox1WBMObL68M3BwPM8m2xr22nkF7CLpMd6VBGg1hvceTysfpfrwh5tWvfEtzsuNOs
+ VHNvBySj1dcWb6724boLXPAWlJJCX1YBkvQFaRe1JbgzatWdXLry4umlCAyx72cR6V
+ t0WFTXBwzYe6We/17xVFyma4BNd86zsrlp4u23MHZfEUHr7O28pV+Iwzj/td+NsZwP
+ xy+UpE9SlQ3VAJ01yU9PpccMlWFLEDFjTnnV3JRuCQoclzx9VpLFIEI0a6TUtW+ZM0
+ 0L7+LODnI+Vv20CqAk7tpBeojKTRoLJjMuV7EWSoL3x0YYhTkY9L8nNqJmMSQk2Iz7
+ zMkuBYFY0bmWQ==
+Message-ID: <sashiko-outbox-192081@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4] drm/i915/display: Add quirk for interlane align bit
+ on CH7511
+To: bitey <s.mavlenkov@mail.ru>, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261031174518.10004-1-s.mavlenkov@mail.ru>
+References: <20260608082500.45902-1-pjakobsson@suse.de>
+ <20261031174518.10004-1-s.mavlenkov@mail.ru>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Sat, 31 Oct 2026 17:55:13 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,129 +48,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---===============4283407714043634283==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] drm/i915/display: intel_init_dpcd_quirks() never clears quirks.m=
+ask
+- [Low] drm/i915/display: misleading QUIRK_IGNORE_INTERLANE_ALIGN_BIT name =
+and logic
+--
 
-== Series Details ==
+commit f2b8ff46914625ae07bb1d14ecb3a249c916384a
+Author: bitey <s.mavlenkov@mail.ru>
 
-Series: drm/i915/dp_mst: Avoid the 3 s ACT timeouts after the upstream HPD drops (rev2)
-URL   : https://patchwork.freedesktop.org/series/177318/
-State : success
+drm/i915/display: Add quirk for interlane align bit on CH7511
 
-== Summary ==
+This commit adds a DPCD quirk matching the Chrontel CH7511 bridge on any
+platform and forces the per-lane and interlane alignment link status bits
+in intel_dp_needs_link_retrain() to prevent an endless retraining loop.
 
-CI Bug Log - changes from xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96_BAT -> xe-pw-177318v2_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index ac1aff6edf052..5888f57422be2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 
-Summary
--------
+[ ... ]
 
-  **SUCCESS**
+> @@ -2521,6 +2522,22 @@ intel_dp_needs_link_retrain(struct intel_dp *intel=
+_dp)
+>  	if (link_recovery_autoretrain_pending(link_training))
+>  		return true;
+> =20
+> +	/*
+> +	 * The CH7511 bridge incorrectly clears all link status bits
+> +	 * (INTERLANE_ALIGN_DONE, per-lane CR/CEQ/SYMLOCK) when disabling
+> +	 * the training pattern. Force them to indicate successful training.
+> +	 */
+> +	if (intel_has_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT)) {
+> +		u8 lane_eq =3D DP_LANE_CR_DONE | DP_LANE_CHANNEL_EQ_DONE |
+> +			     DP_LANE_SYMBOL_LOCKED;
+> +		int i;
+> +
+> +		for (i =3D 0; i < (intel_dp->lane_count + 1) / 2; i++)
+> +			link_status[i] |=3D lane_eq | (lane_eq << 4);
+> +		link_status[DP_LANE_ALIGN_STATUS_UPDATED - DP_LANE0_1_STATUS] |=3D
+> +			DP_INTERLANE_ALIGN_DONE;
+> +	}
 
-  No regressions found.
+[Severity: Low]
+This isn't a bug, but since v4 forces all of the 8b/10b link status bits
+(DP_LANE_CR_DONE, DP_LANE_CHANNEL_EQ_DONE, DP_LANE_SYMBOL_LOCKED, and
+DP_INTERLANE_ALIGN_DONE) rather than just the interlane align bit, are
+QUIRK_IGNORE_INTERLANE_ALIGN_BIT, quirk_ignore_interlane_align_bit(), the l=
+og
+message, and the commit subject now misleadingly named?
 
-  
+Also, instead of synthesizing every bit checked by drm_dp_channel_eq_ok() i=
+nto
+link_status right before calling intel_dp_link_ok(), would it be clearer to
+return false early in intel_dp_needs_link_retrain() or check the quirk insi=
+de
+intel_dp_link_ok()?
 
-Participating hosts (15 -> 15)
-------------------------------
+> diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/dr=
+m/i915/display/intel_quirks.c
+> index 7d7db774d8c7b..359bca48c6f66 100644
+> --- a/drivers/gpu/drm/i915/display/intel_quirks.c
+> +++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+> @@ -94,6 +94,14 @@ static void quirk_disable_edp_panel_replay(struct inte=
+l_dp *intel_dp)
+>  	drm_info(display->drm, "Applying disable Panel Replay quirk\n");
+>  }
+> =20
+> +static void quirk_ignore_interlane_align_bit(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display =3D to_intel_display(intel_dp);
+> +
+> +	intel_set_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT);
+> +	drm_info(display->drm, "Applying ignore interlane align bit quirk\n");
+> +}
+> +
+>  static void quirk_disable_psr2(struct intel_display *display)
+>  {
+>  	intel_set_quirk(display, QUIRK_DISABLE_PSR2);
+> @@ -289,6 +297,15 @@ static const struct intel_dpcd_quirk intel_dpcd_quir=
+ks[] =3D {
+>  		.sink_oui =3D SINK_OUI(0x00, 0x22, 0xb9),
+>  		.hook =3D quirk_disable_edp_panel_replay,
+>  	},
+> +	/* Chrontel CH7511 DP-to-LVDS bridge */
+> +	{
+> +		.device =3D DEVICE_ID_ANY,
+> +		.subsystem_vendor =3D PCI_ANY_ID,
+> +		.subsystem_device =3D PCI_ANY_ID,
+> +		.sink_oui =3D SINK_OUI(0x2b, 0x02, 0xf0),
+> +		.sink_device_id =3D SINK_DEVICE_ID('C', 'H', '7', '5', '1', '1'),
+> +		.hook =3D quirk_ignore_interlane_align_bit,
+> +	},
+>  };
 
-  No changes in participating hosts
+[Severity: Medium]
+Unlike existing entries in intel_dpcd_quirks[] which match internal eDP pan=
+els
+on specific laptop PCI subsystem IDs, this entry uses DEVICE_ID_ANY and
+PCI_ANY_ID and matches external hotpluggable CH7511 DP-to-HDMI/LVDS adapter=
+s.
 
-Known issues
-------------
+On non-eDP connectors, intel_dp_detect() -> intel_dp_detect_dpcd() ->
+intel_dp_get_dpcd() runs on every connector detection:
 
-  Here are the changes found in xe-pw-177318v2_BAT that come from known issues:
+drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_get_dpcd() {
+	...
+	if (!intel_dp_is_edp(intel_dp)) {
+		u8 dprx;
 
-### IGT changes ###
+		drm_dp_read_desc(&intel_dp->aux, &intel_dp->desc,
+				 drm_dp_is_branch(intel_dp->dpcd));
 
-#### Possible fixes ####
+		intel_init_dpcd_quirks(intel_dp, &intel_dp->desc.ident);
+	...
+}
 
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][1] ([Intel XE#9463]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177318v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+And intel_init_dpcd_quirks() never clears intel_dp->quirks.mask before
+scanning intel_dpcd_quirks[]:
 
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+drivers/gpu/drm/i915/display/intel_quirks.c:intel_init_dpcd_quirks() {
+	struct intel_display *display =3D to_intel_display(intel_dp);
+	struct pci_dev *d =3D to_pci_dev(display->drm->dev);
+	int i;
 
+	for (i =3D 0; i < ARRAY_SIZE(intel_dpcd_quirks); i++) {
+		...
+			q->hook(intel_dp);
+	}
+}
 
-Build changes
--------------
+If a user unplugs a CH7511 adapter from an external DisplayPort connector a=
+nd
+plugs in a normal DisplayPort monitor, won't QUIRK_IGNORE_INTERLANE_ALIGN_B=
+IT
+remain permanently set in intel_dp->quirks.mask for that port (especially if
+drm_dp_read_desc() fails on the new sink without clearing intel_dp->desc),
+disabling 8b/10b link failure detection and retraining for any monitor
+connected afterwards?
 
-  * Linux: xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96 -> xe-pw-177318v2
+Also, while a CH7511 adapter remains connected to a non-eDP port, won't eve=
+ry
+connector probe re-run quirk_ignore_interlane_align_bit() and print "Applyi=
+ng
+ignore interlane align bit quirk" via drm_info()?
 
-  IGT_9173: 9173
-  xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96: a3d3816838d5a0e122641b68b9c502cc5d016e96
-  xe-pw-177318v2: 177318v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177318v2/index.html
-
---===============4283407714043634283==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp_mst: Avoid the 3 s ACT timeouts after the upstream HPD drops (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177318/">https://patchwork.freedesktop.org/series/177318/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177318v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177318v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96_BAT -&gt; xe-pw-177318v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-177318v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177318v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96 -&gt; xe-pw-177318v2</li>
-</ul>
-<p>IGT_9173: 9173<br />
-  xe-6037-a3d3816838d5a0e122641b68b9c502cc5d016e96: a3d3816838d5a0e122641b68b9c502cc5d016e96<br />
-  xe-pw-177318v2: 177318v2</p>
-
-</body>
-</html>
-
---===============4283407714043634283==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261031174518.1000=
+4-1-s.mavlenkov@mail.ru?part=3D1
