@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE34B606A324
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:14:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10D78606A327
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JkLj/n38
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PX5c0w3l
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B52F10E700;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0D9310E719;
 	Mon,  2 Nov 2026 22:13:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0062E10F268
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:13:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC5C10F26F
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:13:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793657633; x=1825193633;
+ t=1793657628; x=1825193628;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=zQWMCPCm0H0SEJIolC0gZeqxHcXD92EBSTr4/VHg1es=;
- b=JkLj/n38EPDjl2ywmh2jk8Lh/BqmUHCZDSHjNGw5gVZPF61fvmr1T1JU
- YfvXd4tY9abnRcSI6npBkmGJfFvJium/65rUR5t+9oUgznjMhkWCzVBDH
- UT5HrPnTjBf/qD/3qpRKwNn/+3ybI/9xBR1XwbLZuxGI4z/Z3vc0POO4A
- ylWEE5WEFUEQmYCGUJSBWzjRH4AnC7E5uHmTU1V6uF6sNyjkGjbFON53r
- vEFMxyCgi3qplHRvzC+FKlqxqsbc9JiuB2/HYkqSDQqIJ8/r4Ph9v3ksJ
- U38yg3/lk8KgkG3Fh5e5c3NoMcQhvdtxyQtDEnBalSEsH17oBPJK6uO32 w==;
-X-CSE-ConnectionGUID: VI0ftbDfSSa/bm00KGY4zw==
-X-CSE-MsgGUID: O8DWI751SBmdaYbSrgz2wQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2255813"
+ bh=2UDDk8wcyPhemWgvaFRZZu3lB/8ojyr8MzOJsCuDCWs=;
+ b=PX5c0w3l0ms+fV384eXpYKC9GivmWmHKLlUi4FYuoyBBKJ62fHwH8zUU
+ F2xZQFwA8s1xivny+jAhvrrqVa0uFfC92UmI64huXRC5kYPmiLt+J8gaY
+ wdets2kpX9FT+9NEX85ly2YAa5HzRmUjxzhsiEi19bEurZ2X+4xDmZdSH
+ QZWUvsricK8DPIJep5cL63ZXUz87zAUYXH37CYe+ZXLLNR1QH7wZ6Odyd
+ Zhcv1enGF9RZ3EgknHgCLKDogLzieJGVLMLNRSr83G7biViCdluhahJd3
+ dr39n7LXo/kEBwlhm8ik6A/8cwUqcgzm6oAA+LYfjCuDiw1hK1HJRM1Qf g==;
+X-CSE-ConnectionGUID: qRYpK+//SgCZGS/j80T0zA==
+X-CSE-MsgGUID: DWTRX8tzQbe0SvK9F2Y9SA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2255801"
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="2255813"
+   d="scan'208";a="2255801"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 14:13:29 -0800
-X-CSE-ConnectionGUID: rQleRkAfTVaSRyRd2vy/dg==
-X-CSE-MsgGUID: A+1wH3wkRPeg0ccZmbBvIQ==
+ 02 Nov 2026 14:13:28 -0800
+X-CSE-ConnectionGUID: Mikf1FZAS2q1TjgM4tBhkA==
+X-CSE-MsgGUID: r96G1d1TRCaqFLhhuLmWag==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="6225235"
+   d="scan'208";a="6225221"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 14:13:28 -0800
+ 02 Nov 2026 14:13:27 -0800
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v13 16/16] drm/xe/vsec: Support survivability mode for CRI
-Date: Mon,  2 Nov 2026 14:13:28 -0800
-Message-ID: <20261102221314.119028-34-michael.j.ruhl@intel.com>
+Subject: [PATCH v13 12/16] drm/xe/vsec: Support late bind fw information
+Date: Mon,  2 Nov 2026 14:13:24 -0800
+Message-ID: <20261102221314.119028-30-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261102221314.119028-18-michael.j.ruhl@intel.com>
 References: <20261102221314.119028-18-michael.j.ruhl@intel.com>
@@ -72,123 +72,315 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For survivability mode, CRI can only support access to the
-PUNIT CRASHLOG PMT function.
+CRI FW is loaded on power on.  Because of this, access to the FW cannot
+be done until it is running.
 
-Create a special config to support survivability mode.
+Update the XE PMT probe and access to check for late bind devices,
+verify, and wait for the appropriate FW state before probe or access.
 
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_survivability_mode.c |  2 ++
- drivers/gpu/drm/xe/xe_vsec.c               | 34 +++++++++++++++++++++-
- 2 files changed, 35 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c       |   4 +-
+ drivers/gpu/drm/xe/xe_device_types.h |   5 ++
+ drivers/gpu/drm/xe/xe_vsec.c         | 129 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vsec.h         |   2 +-
+ 4 files changed, 134 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index d73cdad0b3a9..4ce84bafcbf5 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -19,6 +19,7 @@
- #include "xe_nvm.h"
- #include "xe_pcode_api.h"
- #include "xe_printk.h"
-+#include "xe_soc_remapper.h"
- #include "xe_vsec.h"
- #include "xe_wedge.h"
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index dfdd83d4150f..e8a270838666 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1082,7 +1082,9 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
  
-@@ -352,6 +353,7 @@ static int enable_boot_survivability_mode(struct pci_dev *pdev)
+-	xe_vsec_init(xe);
++	err = xe_vsec_init(xe);
++	if (err)
++		goto err_unregister_display;
  
- 	xe_heci_gsc_init(xe);
+ 	xe_debugfs_register(xe);
  
-+	xe_soc_remapper_init(xe);
- 	xe_vsec_init(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index b1c7de90002d..cc8e0e6bed9a 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -7,6 +7,7 @@
+ #define _XE_DEVICE_TYPES_H_
  
- 	if (survivability->fdo_mode) {
+ #include <linux/pci.h>
++#include <linux/workqueue.h>
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+@@ -485,6 +486,10 @@ struct xe_device {
+ 		struct mutex lock;
+ 		/** @pmt.base_offset: device specific base offset */
+ 		u64 base_offset;
++		/** @pmt.work: support late-bind probe */
++		struct delayed_work work;
++		/** @pmt.retry_count: late-bind probe retry */
++		u32 retry_count;
+ 	} pmt;
+ 
+ 	/** @soc_remapper: SoC remapper object */
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 1ed904ec1496..6d4ef9cb9f60 100644
+index 0f6e3be520c0..5384fef5e5ac 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -101,10 +101,26 @@ static struct intel_vsec_header *cri_capabilities[] = {
- 	NULL
+@@ -3,6 +3,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/bits.h>
+ #include <linux/cleanup.h>
++#include <linux/delay.h>
+ #include <linux/errno.h>
+ #include <linux/intel_vsec.h>
+ #include <linux/module.h>
+@@ -18,6 +19,7 @@
+ #include "xe_mmio.h"
+ #include "xe_platform_types.h"
+ #include "xe_pm.h"
++#include "xe_sysctrl.h"
+ #include "xe_vsec.h"
+ 
+ #include "regs/xe_pmt.h"
+@@ -173,6 +175,14 @@ enum capability {
+ 	WATCHER,
  };
  
-+static struct intel_vsec_header cri_survivability_crashlog = {
-+	.rev = 1,
-+	.length = SZ_16,
-+	.id = VSEC_ID_CRASHLOG,
-+	.num_entries = 1,
-+	.entry_size = 6,
-+	.tbir = 0,
-+	.offset = CRI_PMT_OFFSET + CRI_CRASHLOG_PUNIT_DISC_OFFSET,
-+};
++/*
++ * Late bind will delay 100msec for up to 20 seconds
++ */
++#define VSEC_LATE_BIND_DELAY_MSEC	100
++#define VSEC_LATE_BIND_RETRY		200
 +
-+static struct intel_vsec_header *cri_survivability_capabilities[] = {
-+	&cri_survivability_crashlog,
-+	NULL
-+};
++static void cri_late_bind_probe(struct xe_device *xe);
 +
- enum xe_vsec {
- 	XE_VSEC_UNKNOWN = 0,
- 	XE_VSEC_BMG,
- 	XE_VSEC_CRI,
-+	XE_VSEC_CRI_SURVIVABILITY,
- };
- 
- static struct intel_vsec_platform_info xe_vsec_info[] = {
-@@ -116,6 +132,10 @@ static struct intel_vsec_platform_info xe_vsec_info[] = {
- 		.caps = VSEC_CAP_TELEMETRY | VSEC_CAP_CRASHLOG,
- 		.headers = cri_capabilities,
- 	},
-+	[XE_VSEC_CRI_SURVIVABILITY] = {
-+		.caps = VSEC_CAP_CRASHLOG,
-+		.headers = cri_survivability_capabilities,
-+	},
- 	{ }
- };
- 
-@@ -316,9 +336,10 @@ static void cri_late_bind_probe_work(struct work_struct *work)
- 
- static bool wait_for_fw(struct xe_device *xe)
+ static int bmg_guid_decode(u32 guid, int *index, u32 *offset)
  {
-+	struct xe_survivability *survivability = &xe->survivability;
- 	int retries = VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
+ 	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
+@@ -281,6 +291,48 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+ 	return -ENODEV;
+ }
  
--	if (xe->info.platform != XE_CRESCENTISLAND)
-+	if (xe->info.platform != XE_CRESCENTISLAND || survivability->mode)
- 		return true;
- 
- 	while (retries--) {
-@@ -534,6 +555,8 @@ static const int vsec_platforms[] = {
- 
- static enum xe_vsec get_platform_info(struct xe_device *xe)
- {
-+	struct xe_survivability *survivability = &xe->survivability;
++static void cri_late_bind_probe_work(struct work_struct *work)
++{
++	struct xe_device *xe = container_of(work, struct xe_device, pmt.work.work);
 +
- 	if (xe->info.platform > XE_CRESCENTISLAND)
- 		return XE_VSEC_UNKNOWN;
- 
-@@ -542,6 +565,9 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
- 	     xe->info.platform == XE_CRESCENTISLAND))
- 		return XE_VSEC_UNKNOWN;
- 
-+	if (survivability->mode && xe->info.platform == XE_CRESCENTISLAND)
-+		return XE_VSEC_CRI_SURVIVABILITY;
++	if (xe_sysctrl_is_oobmsm_fw_ready(xe)) {
++		cri_late_bind_probe(xe);
++		xe_pm_runtime_put(xe);
++		return;
++	}
 +
++	xe->pmt.retry_count++;
++
++	/* wait up to 20 seconds */
++	if (xe->pmt.retry_count == VSEC_LATE_BIND_RETRY) {
++		drm_warn(&xe->drm, "PMT probe: Late Binding failed to complete\n");
++		xe_pm_runtime_put(xe);
++		return;
++	}
++
++	if (!schedule_delayed_work(&xe->pmt.work, msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC)))
++		xe_pm_runtime_put(xe);
++}
++
++static bool wait_for_fw(struct xe_device *xe)
++{
++	int retries = VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
++
++	if (xe->info.platform != XE_CRESCENTISLAND)
++		return true;
++
++	while (retries--) {
++		if (xe_sysctrl_is_oobmsm_fw_ready(xe))
++			return true;
++
++		msleep(VSEC_LATE_BIND_DELAY_MSEC);
++	}
++
++	drm_warn(&xe->drm, "Late Binding failed to complete\n");
++
++	return false;
++}
++
+ /**
+  * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a buffer
+  * @dev: valid Xe device
+@@ -343,6 +395,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		goto dev_exit;
+ 	}
+ 
++	if (!wait_for_fw(xe)) {
++		ret = -ENODATA;
++		goto runtime_exit;
++	}
++
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+ 		/* set SoC re-mapper index register based on GUID memory region */
+ 		xe->soc_remapper.set_telem_region(xe, mem_region);
+@@ -350,6 +407,7 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		memcpy_fromio(data, telem_addr, count);
+ 	}
+ 
++runtime_exit:
+ 	xe_pm_runtime_put(xe);
+ 
+ dev_exit:
+@@ -397,6 +455,10 @@ static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
+ 	disc_addr += inst + offset;
+ 
+ 	xe_pm_runtime_get(xe);
++	if (!wait_for_fw(xe)) {
++		ret = -ENODATA;
++		goto runtime_exit;
++	}
+ 
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+ 		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+@@ -404,6 +466,7 @@ static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
+ 		*reg = readl(disc_addr);
+ 	}
+ 
++runtime_exit:
+ 	xe_pm_runtime_put(xe);
+ 
+ dev_exit:
+@@ -434,6 +497,10 @@ static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
+ 	disc_addr += inst + offset;
+ 
+ 	xe_pm_runtime_get(xe);
++	if (!wait_for_fw(xe)) {
++		ret = -ENODATA;
++		goto runtime_exit;
++	}
+ 
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+ 		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+@@ -441,6 +508,7 @@ static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
+ 		writel(reg, disc_addr);
+ 	}
+ 
++runtime_exit:
+ 	xe_pm_runtime_put(xe);
+ 
+ dev_exit:
+@@ -477,12 +545,46 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
  	return vsec_platforms[xe->info.platform];
  }
  
-@@ -668,6 +694,12 @@ int xe_vsec_init(struct xe_device *xe)
++static void cri_late_bind_probe(struct xe_device *xe)
++{
++	struct intel_vsec_platform_info *info;
++	struct device *dev = xe->drm.dev;
++	enum xe_vsec platform;
++
++	platform = get_platform_info(xe);
++	if (platform != XE_VSEC_CRI)
++		return;
++
++	info = &xe_vsec_info[platform];
++	if (!info->headers)
++		return;
++
++	guard(mutex)(&xe->pmt.lock);
++
++	info->priv_data = &xe_cri_pmt_cb;
++	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
++
++	intel_vsec_register(dev, info);
++}
++
++static void vsec_disable_late_bind_work(void *arg)
++{
++	struct xe_device *xe = arg;
++
++	/*
++	 * If the queued work is canceled, the runtime reference needs to be
++	 * released here.
++	 */
++	if (disable_delayed_work_sync(&xe->pmt.work))
++		xe_pm_runtime_put(xe);
++}
++
+ /**
+  * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+  * interface
+  * @xe: valid xe instance
+  */
+-void xe_vsec_init(struct xe_device *xe)
++int xe_vsec_init(struct xe_device *xe)
+ {
+ 	struct intel_vsec_platform_info *info;
+ 	struct device *dev = xe->drm.dev;
+@@ -490,11 +592,11 @@ void xe_vsec_init(struct xe_device *xe)
+ 
+ 	platform = get_platform_info(xe);
+ 	if (platform == XE_VSEC_UNKNOWN)
+-		return;
++		return 0;
+ 
+ 	info = &xe_vsec_info[platform];
+ 	if (!info->headers)
+-		return;
++		return 0;
+ 
+ 	switch (platform) {
+ 	case XE_VSEC_BMG:
+@@ -504,12 +606,26 @@ void xe_vsec_init(struct xe_device *xe)
+ 
+ 	case XE_VSEC_CRI:
+ 		xe->pmt.base_offset = CRI_PMT_OFFSET;
++
++		xe->pmt.retry_count = 0;
++		INIT_DELAYED_WORK(&xe->pmt.work, cri_late_bind_probe_work);
++
++		xe_pm_runtime_get_noresume(xe);
++		if (!xe_sysctrl_is_oobmsm_fw_ready(xe)) {
++			schedule_delayed_work(&xe->pmt.work,
++					      msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
++			return devm_add_action_or_reset(xe->drm.dev,
++							vsec_disable_late_bind_work,
++							xe);
++		}
++
+ 		info->priv_data = &xe_cri_pmt_cb;
  		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
  		break;
  
-+	case XE_VSEC_CRI_SURVIVABILITY:
-+		xe->pmt.base_offset = CRI_PMT_OFFSET;
-+		info->priv_data = &xe_cri_pmt_cb;
-+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+		break;
-+
  	default:
- 		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
- 		return 0;
+-		break;
++		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
++		return 0;
+ 	}
+ 
+ 	/*
+@@ -517,5 +633,10 @@ void xe_vsec_init(struct xe_device *xe)
+ 	 * resources.
+ 	 */
+ 	intel_vsec_register(dev, info);
++
++	if (platform == XE_VSEC_CRI)
++		xe_pm_runtime_put(xe);
++
++	return 0;
+ }
+ MODULE_IMPORT_NS("INTEL_VSEC");
+diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+index a25b4e6e681b..c4a1e2fc67d8 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.h
++++ b/drivers/gpu/drm/xe/xe_vsec.h
+@@ -9,7 +9,7 @@
+ struct device;
+ struct xe_device;
+ 
+-void xe_vsec_init(struct xe_device *xe);
++int xe_vsec_init(struct xe_device *xe);
+ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset, u32 count);
+ 
+ #endif
 -- 
 2.43.0
 
