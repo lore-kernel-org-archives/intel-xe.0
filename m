@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E931606A326
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836CE606A32C
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F++8EZcP
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J4uBv9X+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1119010E710;
-	Mon,  2 Nov 2026 22:39:02 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4021410E710
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:38:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6D910F274;
+	Mon,  2 Nov 2026 22:39:27 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 085AB10E710
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:39:21 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 44FAF601EF;
- Mon,  2 Nov 2026 22:38:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D40091F00A16;
- Mon,  2 Nov 2026 22:38:54 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E1F8F40E00;
+ Mon,  2 Nov 2026 22:39:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A715B1F00A16;
+ Mon,  2 Nov 2026 22:39:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793659135;
- bh=2bjoyYT7Z7xR6TRpc6fiTdRwdQCirlHnTv8hlmvipX4=;
+ s=k20260515; t=1793659160;
+ bh=d56BBnT9GP2STD6n/LvrDOWKiRAwJWsfe3xJXA4Sg6U=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=F++8EZcP52g5DZOyzDixebibbs+8KqWy3tREyTgfAr/eytSrHXbjLfpNg7Uh45g1X
- LbrxC+FExXrMybDTGXISohIFK0oRalozj6r/F6YpJsA577gKgR9HvLyNCJ1e+AU7g8
- fVEbHCiS+d/ir390ti/KwObUfPyrzYBC5ZdJlchU//WBfifGX6+kUPYCq1bflLirSi
- 6crRLo5HVr6jZzG1zLBsNfDlnYnBzbqHxNB+idTEsscPVjUbEFnsU4ge7HwuTiOrnO
- kjQczMzxqKy52BHxXfJz2WECn17qEaFbd4ZQRgUJzlZpp2ArgNJ8Gp33NijJ8Vx0Hk
- 9w1oEam+hW9nA==
-Message-ID: <sashiko-outbox-194293@kernel.org>
+ b=J4uBv9X+DifGAHd5Wzd0ODsfO4uN8vME5zw2C2LfgRjAVzPmndCEfn2dFypjtRSNe
+ CgBdabn7JOnMUAp8JdWCEWQfyoUO/kGeEd7m6AyFZAbuYAuneCtr2Nj8y7B+of1s+A
+ Ztw6vvxJ6rdZAPFxIklvmitiN4EVnC/C5EUD0+O9YvyYk4hlFoif5fa6r9rVUsyWTj
+ Yk6cDSYdT1dEltACYUj1vhxr47tUXw0pHv65XJSerJSFlrnYBxUDwgMfQH33/J3XyQ
+ xa65zKwzZI+r6zT+hdiueuoxCsspGmrqNEqY0e6bj/xwtK2/chCsPAJRkwNjlyXhct
+ 1iw/iCXUC71oQ==
+Message-ID: <sashiko-outbox-194294@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 11/16] drm/xe/vsec: Crescent Island PMT callbacks
+Subject: Re: [PATCH v13 16/16] drm/xe/vsec: Support survivability mode for CRI
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261102221314.119028-29-michael.j.ruhl@intel.com>
+In-Reply-To: <20261102221314.119028-34-michael.j.ruhl@intel.com>
 References: <20261102221314.119028-18-michael.j.ruhl@intel.com>
- <20261102221314.119028-29-michael.j.ruhl@intel.com>
+ <20261102221314.119028-34-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 02 Nov 2026 22:38:54 +0000
+Date: Mon, 02 Nov 2026 22:39:20 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,217 +57,112 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [Medium] drm/xe/vsec: xe_pmt_telem_read() leaves CRI discovery window rem=
-apped
-- [Low] drm/xe/vsec: mixed goto and scoped_guard() cleanup in reg callbacks
+- [Medium] drm/xe/vsec: NULL sc->mmio dereference in wait_for_fw() on survi=
+vability error
 --
 
-commit dc4cd399324f5200a61e70ed93f8ba5b2a90435c
+commit 6e126caaac7b556b33b3c1891921257efd2a418a
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Crescent Island PMT callbacks
+drm/xe/vsec: Support survivability mode for CRI
 
-This commit introduces Crescent Island PMT register read and write callbacks
-to access the discovery status and control areas via the indexed MMIO window
-and registers the CRI PMT functionality.
+This commit adds a VSEC configuration for Crescent Island in survivability
+mode to expose the PUNIT crashlog PMT capability and initializes the SoC
+remapper during boot survivability mode.
 
+> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm=
+/xe/xe_survivability_mode.c
+> index d73cdad0b3a9c..4ce84bafcbf57 100644
+> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+[ ... ]
+> @@ -352,6 +353,7 @@ static int enable_boot_survivability_mode(struct pci_=
+dev *pdev)
+> =20
+>  	xe_heci_gsc_init(xe);
+> =20
+> +	xe_soc_remapper_init(xe);
+>  	xe_vsec_init(xe);
+> =20
+>  	if (survivability->fdo_mode) {
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index a814d7151eeae..0f6e3be520c09 100644
+> index 1ed904ec14965..6d4ef9cb9f60f 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
-> @@ -358,20 +358,120 @@ int xe_pmt_telem_read(struct device *dev, u32 guid=
-, u64 *data, loff_t user_offse
->  	return ret =3D=3D 0 ? count : ret;
->  }
-> =20
-> -static struct pmt_callbacks xe_pmt_cb =3D {
-> +/**
-> + * xe_pmt_read_reg() - read a crashlog register
-> + * @dev: the xe device that registered the callback
-> + * @guid: PMT guid of the crashlog instance
-> + * @reg: data read from the PMT data structure
-> + * @offset: which data to read from the PMT data structure
-> + *
-> + * Read the requested PMT register based on the pcie device and guid.  T=
-he
-> + * supported struct is the Crashlog Type1 Version2.
-> + *
-> + * Currently this is for CRI only.
-> + *
-> + * Return:
-> + * * -ENODEV device is not available (hotplug)
-> + * * -EINVAL invalid guid
-> + * * 0       success
-> + */
-> +static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 o=
-ffset)
-> +{
-> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
-> +	void __iomem *disc_addr =3D xe->mmio.regs + xe->pmt.base_offset;
-> +	int ret =3D 0;
-> +	u32 inst;
-> +	int idx;
-> +
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return -ENODEV;
-> +
-> +	if (FIELD_GET(GUID_DEVICE_ID, guid) !=3D CRI_DEVICE_ID ||
-> +	    FIELD_GET(GUID_CAP_TYPE, guid) !=3D CRASHLOG) {
-> +		ret =3D -EINVAL;
-> +		goto dev_exit;
-> +	}
-> +
-> +	inst =3D FIELD_GET(GUID_RECORD_ID, guid) =3D=3D PUNIT ?
-> +		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
-> +	disc_addr +=3D inst + offset;
-> +
-> +	xe_pm_runtime_get(xe);
-> +
-> +	scoped_guard(mutex, &xe->pmt.lock) {
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +		*reg =3D readl(disc_addr);
-> +	}
-> +
-> +	xe_pm_runtime_put(xe);
-> +
-> +dev_exit:
-> +	drm_dev_exit(idx);
-> +
-> +	return ret;
-> +}
-> +
-> +static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 o=
-ffset)
-> +{
-> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
-> +	void __iomem *disc_addr =3D xe->mmio.regs + xe->pmt.base_offset;
-> +	int ret =3D 0;
-> +	u32 inst;
-> +	int idx;
-> +
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return -ENODEV;
-> +
-> +	if (FIELD_GET(GUID_DEVICE_ID, guid) !=3D CRI_DEVICE_ID ||
-> +	    FIELD_GET(GUID_CAP_TYPE, guid) !=3D CRASHLOG) {
-> +		ret =3D -EINVAL;
-> +		goto dev_exit;
-> +	}
-> +
-> +	inst =3D FIELD_GET(GUID_RECORD_ID, guid) =3D=3D PUNIT ?
-> +		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
-> +	disc_addr +=3D inst + offset;
-> +
-> +	xe_pm_runtime_get(xe);
-> +
-> +	scoped_guard(mutex, &xe->pmt.lock) {
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +
-> +		writel(reg, disc_addr);
-> +	}
-> +
-> +	xe_pm_runtime_put(xe);
-> +
-> +dev_exit:
-> +	drm_dev_exit(idx);
-> +
-> +	return ret;
-> +}
-
-[Severity: Low]
-As reported by Sashiko on v11 [1], this isn't a bug, but both
-xe_pmt_read_reg() and xe_pmt_write_reg() in drivers/gpu/drm/xe/xe_vsec.c mix
-goto-based cleanup (goto dev_exit) with scope-based cleanup
-(scoped_guard(mutex, &xe->pmt.lock)) in the same function, and duplicate
-nearly identical bodies differing only in readl() vs writel().
-
-Since the guid validation only inspects the u32 guid argument, could that
-check be performed before drm_dev_enter() to avoid the dev_exit label (or
-convert the remaining cleanup in these functions to a consistent pattern),
-and could the shared setup between xe_pmt_read_reg() and xe_pmt_write_reg()
-be factored into a common helper?
-
 [ ... ]
-
-> @@ -399,8 +499,15 @@ void xe_vsec_init(struct xe_device *xe)
->  	switch (platform) {
->  	case XE_VSEC_BMG:
->  		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
-> -		info->priv_data =3D &xe_pmt_cb;
-> +		info->priv_data =3D &xe_bmg_pmt_cb;
->  		break;
-> +
-> +	case XE_VSEC_CRI:
-> +		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
-> +		info->priv_data =3D &xe_cri_pmt_cb;
-> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> +		break;
+> @@ -316,9 +336,10 @@ static void cri_late_bind_probe_work(struct work_str=
+uct *work)
+> =20
+>  static bool wait_for_fw(struct xe_device *xe)
+>  {
+> +	struct xe_survivability *survivability =3D &xe->survivability;
+>  	int retries =3D VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
+> =20
+> -	if (xe->info.platform !=3D XE_CRESCENTISLAND)
+> +	if (xe->info.platform !=3D XE_CRESCENTISLAND || survivability->mode)
+>  		return true;
+> =20
+>  	while (retries--) {
 
 [Severity: Medium]
-Can a call to xe_pmt_telem_read() leave the shared CRI_PMT_OFFSET MMIO wind=
-ow
-banked to a telemetry or crashlog payload region instead of
-CRI_IDX_TELEM_DISCOVERY when PMT discovery headers are read during probe?
+Can this dereference a NULL xe->sc.mmio pointer and lock an uninitialized
+xe->sc.cmd_lock mutex if enable_boot_survivability_mode() fails after
+xe_vsec_init()?
 
-On Crescent Island, both the discovery tables and the telemetry/crashlog da=
-ta
-banks share the CRI_PMT_OFFSET window controlled by set_telem_region().
-During auxiliary driver probe in pmt_telem_probe() and pmt_crashlog_probe(),
-the Intel PMT drivers read the discovery headers directly from the ioremapp=
-ed
-CRI_PMT_OFFSET window without calling read_reg() or holding xe->pmt.lock:
+During early probe in xe_device_probe_early(), xe_sysctrl_init() has not run
+yet, so xe->sc.cmd_lock is uninitialized and xe->sc.mmio is NULL.
+enable_boot_survivability_mode() sets survivability->mode =3D true and calls
+xe_vsec_init(xe), which registers the crashlog auxiliary device via
+intel_vsec_register() with devm-managed cleanup:
 
-drivers/platform/x86/intel/pmt/class.c:pmt_get_headers() {
-    ...
-	memset(entry->disc_header, 0, header_bytes);
-	memcpy_fromio(entry->disc_header, disc_table,
-		      min(header_bytes, resource_size(disc_res)));
+drivers/gpu/drm/xe/xe_survivability_mode.c:enable_boot_survivability_mode()=
+ {
+	...
+	survivability->mode =3D true;
 
-	/* Used by crashlog driver */
-	entry->disc_table =3D disc_table;
-    ...
-}
+	xe_heci_gsc_init(xe);
 
-and:
+	xe_soc_remapper_init(xe);
+	xe_vsec_init(xe);
 
-drivers/platform/x86/intel/pmt/crashlog.c:pmt_crashlog_header_decode() {
-    ...
-	header->access_type =3D GET_ACCESS(readl(disc_table));
-	header->guid =3D readl(disc_table + GUID_OFFSET);
-	header->base_offset =3D readl(disc_table + BASE_OFFSET);
-
-	/* Size is measured in DWORDS, but accessor returns bytes */
-	header->size =3D GET_SIZE(readl(disc_table + SIZE_OFFSET));
-    ...
-}
-
-However, in drivers/gpu/drm/xe/xe_vsec.c, xe_pmt_telem_read() switches the
-remapper index to mem_region and does not restore CRI_IDX_TELEM_DISCOVERY
-before releasing xe->pmt.lock:
-
-	scoped_guard(mutex, &xe->pmt.lock) {
-		/* set SoC re-mapper index register based on GUID memory region */
-		xe->soc_remapper.set_telem_region(xe, mem_region);
-
-		memcpy_fromio(data, telem_addr, count);
+	if (survivability->fdo_mode) {
+		ret =3D xe_nvm_init(xe);
+		if (ret)
+			goto failed;
 	}
 
-In addition, xe_vsec_init() sets CRI_IDX_TELEM_DISCOVERY without holding
-xe->pmt.lock.
+	ret =3D xe_i2c_probe(xe);
+	if (ret)
+		goto failed;
+	...
+failed:
+	xe_log_err_fatal(pdev, SURVIVABILITY, ret, "Failed to enable Boot Mode!\n"=
+);
+	survivability->mode =3D false;
+	return ret;
+}
 
-If pmt_telemetry or pmt_crashlog probes asynchronously as a module or is
-rebound via sysfs after any xe_pmt_telem_read() call (such as from debugfs
-residency reads or an earlier telemetry sysfs read), wouldn't
-pmt_get_headers() and pmt_crashlog_header_decode() read telemetry or crashl=
-og
-payload data instead of the discovery headers?
+If xe_nvm_init() or xe_i2c_probe() fails, survivability->mode is reset to
+false while the VSEC crashlog device and its sysfs attributes remain
+registered until PCI probe teardown runs devres_release_all().
 
-[1] https://lore.kernel.org/r/20260923181115.2514193-38-michael.j.ruhl@inte=
-l.com
+If userspace reads the crashlog sysfs attributes during that teardown windo=
+w,
+xe_pmt_telem_read() or xe_pmt_read_reg() calls wait_for_fw(xe), which sees
+survivability->mode =3D=3D false and calls:
+
+  wait_for_fw(xe)
+    -> xe_sysctrl_is_oobmsm_fw_ready(xe)
+      -> xe_sysctrl_send_command(xe, ...)
+        -> guard(mutex)(&sc->cmd_lock)
+        -> sysctrl_send_command(sc, ...)
+
+Because xe_sysctrl_init() was never called, would this lock the uninitializ=
+ed
+sc->cmd_lock and dereference the NULL sc->mmio pointer?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102221314.1190=
-28-18-michael.j.ruhl@intel.com?part=3D11
+28-18-michael.j.ruhl@intel.com?part=3D16
