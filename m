@@ -2,57 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092B9606B0FF
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 16:39:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F3F8606B0F9
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 16:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=I5dgLmxS
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HhPut12t
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C24BC10E636;
-	Mon,  2 Nov 2026 16:38:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCD9D10E641;
+	Mon,  2 Nov 2026 16:39:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7E8810E636
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 16:38:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71AF610E641
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 16:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793637533; x=1825173533;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gogOnJdoV4Hz5+hUDwFGqnAdvROXVbEmT/O/yItkpQk=;
- b=I5dgLmxS7fnY4U4H+x+o0nu3XzJY3ZljPxkm527HKgjDsSlTD/N1uZ73
- amNYFgUc/UgSkTv2CqT7BFAENRa5frIjFs8bqZnYiJOmQXFjlLseRq3ck
- vpllEWaicGQgIv0swpKVRPdaZHtl0Svkxj6hx+ZWwPjH47d8Cs+G7Zk53
- 7pdwxQbUHnnTCx4DrPsN1WCHG0d+KzoTcEM3xo3sUamR5GrEC4VNNS1yV
- SvcXqgyPQdA8vPME6JQCdsPVIeTSk3SKGyKfrPCrF319t8i+ifRFG9Ghz
- DjXN855niX1ncKBzgSONlBeVcbOHLPVdxgDl5AsAf3U3bf0suNSoIDXd/ w==;
-X-CSE-ConnectionGUID: RHYXf4mtRViwGODvAypQtA==
-X-CSE-MsgGUID: 34kSVscMSfugP/3h4oKvuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2354326"
+ t=1793637535; x=1825173535;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fLhx0AaPMZZ3SvWKL8TGbxmGMeaJqh9aYzTagH4u4Yg=;
+ b=HhPut12tiDNQXLLgtiQhUzz2oIgNj/5Ty35TXCo3zf/Nn66RhRA2D9Et
+ /WAbXUnvo3KX3IQKj27r5KeeaH5WWzio7pc/Hg/f64/qXafbjlaU1Rkwd
+ 6qdKDwJXP6AJXMSopRHyCifYbFXmGrMeFQlqRWtzSv5hIW4HQKDFIr/Jy
+ f5ndm9FyKBn8cB504FH6fqXaOy7PId2FzOmyYWCSDvS0IQjvkpKD4GMhz
+ jJ2nBGMg70CqxF9J2GJ2M7hsQACeKefy95HoHeoDYK4qFW1xCxgVgvjVA
+ MEXE+deGy3vANWyog7i0HoN4OBLOVe5oz7H2CysAcovLiwzP2X1o4da/B w==;
+X-CSE-ConnectionGUID: jiUnF/AlRZ2hAcdtJm/loA==
+X-CSE-MsgGUID: QZ5qhPTPSGSoXUewxWwHDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2354332"
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2354326"
+   d="scan'208";a="2354332"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 08:38:53 -0800
-X-CSE-ConnectionGUID: noaLbn5tRzOYoDLAcXvQQg==
-X-CSE-MsgGUID: bfSdVp5PTfSxB/OTP4sfcw==
+ 02 Nov 2026 08:38:55 -0800
+X-CSE-ConnectionGUID: zFDWPRGISqKNBUGhQodCpQ==
+X-CSE-MsgGUID: Htn0Ug0oTymuWVrVmFeetw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="6159812"
+   d="scan'208";a="6159821"
 Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
  ([10.121.64.151])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 08:38:53 -0800
+ 02 Nov 2026 08:38:55 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 0/4] topic/xe-for-CI: update GuC for CRI and NVL-P to 70.83.0
-Date: Mon,  2 Nov 2026 16:38:41 +0000
-Message-ID: <20261102163840.2231293-6-daniele.ceraolospurio@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH 1/4] Revert "topic/xe-for-CI: Define GuC firmware for NVL-P"
+Date: Mon,  2 Nov 2026 16:38:42 +0000
+Message-ID: <20261102163840.2231293-7-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261102163840.2231293-6-daniele.ceraolospurio@intel.com>
+References: <20261102163840.2231293-6-daniele.ceraolospurio@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,26 +70,24 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move both CRI and NVL-P to a more recent GuC 70.83.0 .
+This reverts commit b275cb3f07a7ab3ef3bd419db86bd42fa95dcedb.
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Since those definitions are in topic/xe-for-CI, the series reverts the
-older patches to mimic them being dropped from the branch and then picks
-them back up with the updated FW version.
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-
-Balasubramani Vivekanandan (1):
-  topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI
-
-Daniele Ceraolo Spurio (3):
-  Revert "topic/xe-for-CI: Define GuC firmware for NVL-P"
-  Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
-  topic/xe-for-CI: Define GuC firmware for NVL-P
-
- drivers/gpu/drm/xe/xe_uc_fw.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index fa15c3cfbad1..11408b466a82 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -116,8 +116,6 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
+ 
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
+-	fw_def(NOVALAKE_P,	GT_TYPE_MAIN,	mmp_ver(xe,	guc,	nvlpg,	70, 70, 0))	\
+-	fw_def(NOVALAKE_P,	GT_TYPE_MEDIA,	mmp_ver(xe,	guc,	nvlpm,	70, 70, 0))	\
+ 	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 70, 0))	\
+ 	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	major_ver(xe,	guc,	nvl,	70, 71, 0))	\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
 -- 
 2.53.0
 
