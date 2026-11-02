@@ -2,43 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DAF606A327
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 18:00:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F1E606A32D
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 18:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PL+cwV2M
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O56W9w0m
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF37F10E6D5;
-	Mon,  2 Nov 2026 18:00:36 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C973810F0A5;
- Mon,  2 Nov 2026 18:00:30 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8209F411BA;
- Mon,  2 Nov 2026 18:00:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EA731F00A16;
- Mon,  2 Nov 2026 18:00:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793642430;
- bh=xfQXiR0waxNaVgKjR2iU+kFlkn7FoWk8VuMm344wi/g=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=PL+cwV2MxNmCokocZk8VeKqEYcDzYO3Rn1udgStGWcnmT8rArEneCRwOW8mfKEswv
- Nr1T+PrHET1byOf3dU+acZt1OUTmwhN+It3kSuUlvoI0vI56CbJEWZN4WwDDRQ5pBV
- KRI4vJzl1zPuhP7+JyoXuKnzhcotn2wzlQXhVavBXWOpdr3NIBFszAXI423jm3auHs
- //GSSwkJnV3/4/vJxDFrP4KoBGO954aP/kq0dlpkiFRyJs/3zaS2UFKD/otdnZa6UK
- GoiccULpRgCxKp0vMTCJqAOyj6RX/3seqUeMlB/Hh7jb1chkXY8usV/RjXX3k8GDBy
- uLAEGZSSy1o6g==
-Message-ID: <sashiko-outbox-193892@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 05/15] drm/amd/display: update KUnit luminance fixtures
-To: =?utf-8?b?TWFyaW8gTGltb25jaWVsbG8gKEFNRCk=?= <superm1@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261102-superm1-backlight-property-v10-5-b2a6f24131f5@kernel.org>
-References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
- <20261102-superm1-backlight-property-v10-5-b2a6f24131f5@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 02 Nov 2026 18:00:29 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3160210F131;
+	Mon,  2 Nov 2026 18:05:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 362C910F0D9;
+ Mon,  2 Nov 2026 18:05:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793642718; x=1825178718;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=UqtGetrbrkil/gK1g9r8+25rWujc9kVbr/dtxdfrl6g=;
+ b=O56W9w0mjqqCB5NLSEgx1BFi5icSoCUywvRkcG68FtXGxPsjd0ceO8fI
+ OpaKhiUt1JjPvaIG6f6/ODjY4tv6/jKmTFCWeCSR25mJMIr9nwKVQ3CPS
+ ieiLvFtSqIbH6FWef/ONFW354evfqmaaRR0KNebw6wI/YU2kDjyattjXq
+ hJ53pZK7Mx5Gzdze1xcYEloQcaOrfuyKqvjMhW7cxbIXKTuotobUmQa1A
+ BsoOAL6Rq80yc9wIYyetMsoiDRlW31ecVeylEwIGUZQUpaNhGlvkcnDI1
+ BCSFoC3Y9iSfu4tZ+k2+ga9glk8QLpYy+G9wx7XD1ZpQbyAFFp1WoLCOU Q==;
+X-CSE-ConnectionGUID: mEYwpunSQpOY1dGZGcBRTg==
+X-CSE-MsgGUID: UKuE+bPiTJapan6+JWUhgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2246121"
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="2246121"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 10:05:18 -0800
+X-CSE-ConnectionGUID: iWJle9Q6Q+O4884NrP2xSA==
+X-CSE-MsgGUID: iK+H67SFSamTAfTcA9iWSw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="6346540"
+Received: from aalteres-desk1.fm.intel.com ([10.121.64.173])
+ by fmviesa002.fm.intel.com with ESMTP; 02 Nov 2026 10:05:17 -0800
+From: Alan Previn <alan.previn.teres.alexis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>,
+ dri-devel@lists.freedesktop.org,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [PATCH 1/1] drm/xe: Add support for Wa_14028250015
+Date: Mon,  2 Nov 2026 10:05:16 -0800
+Message-ID: <20261102180516.1551869-2-alan.previn.teres.alexis@intel.com>
+X-Mailer: git-send-email 2.43.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,164 +60,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] drm/amd/display: wrong connector_type IDA freed in setup_test_co=
-nnector() user
-- [Medium] drm/amd/display: link failure in backlight KUnit test when DRM_L=
-UMINANCE=3Dy
---
+The WA is implemented by the GuC, so we just need to enable it via the
+dedicated KLV. It makes the GuC complete page reclaim requests that
+end in an error, instead of leaving them pending. It is only needed
+when the page reclaim HW assist is in use. This WA only applies to
+graphics version 3510.
 
-commit 66d823079de9e4318719fbb2464a13997a1ae155
-Author: Mario Limonciello (AMD) <superm1@kernel.org>
+v2: Update "Wa" tag to align with others. Don't gate against value of
+    has_page_reclaim_hw_assist. Change the #define name to match GuC
+    specs. (Gustavo).
 
-drm/amd/display: update KUnit luminance fixtures
+Assisted-by: LLM
+Signed-off-by: Alan Previn <alan.previn.teres.alexis@intel.com>
+---
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h | 1 +
+ drivers/gpu/drm/xe/xe_guc_ads.c       | 5 +++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    | 1 +
+ 3 files changed, 7 insertions(+)
 
-This commit updates the backlight KUnit test fixtures to initialize DRM mode
-configuration, connector state, and the display manager lock so tests work
-when the atomic LUMINANCE property is enabled.
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 4bcdc1a96785..4103de0b1c97 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -526,6 +526,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
+ 	GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64					= 0x9010,
+ 	GUC_WA_KLV_IGNORE_MULTIQ_CTX_COMPLETE_WITH_PREEMPT_IN_CSB			= 0x9011,
++	GUC_WA_KLV_PAGE_RECLAMATION_COMPLETION_TIMEOUT					= 0x9012,
+ };
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index c3ce3c8c905a..1927b595ad67 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -389,6 +389,11 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
+ 				 GUC_WA_KLV_IGNORE_MULTIQ_CTX_COMPLETE_WITH_PREEMPT_IN_CSB);
+ 
++	/* On GuC 70.78 onwards, we enable GuC PRL-completion-IRQ workaround on applicable GMIDs */
++	if (XE_GT_WA(gt, 14028250015) && GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 78))
++		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
++				 GUC_WA_KLV_PAGE_RECLAMATION_COMPLETION_TIMEOUT);
++
+ 	/*
+ 	 * On GuC firmware 70.66 and above, use the Feature KLV (shared with the
+ 	 * WA KLV buffer); older firmware uses GUC_CTL_DISABLE_MULTI_QUEUE in
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 61aa50a63764..fde91192bd46 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -78,3 +78,4 @@
+ 		MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
+ 16030224309	GRAPHICS_VERSION_RANGE(3510, 3511)
+ 14028709524	GRAPHICS_VERSION(3510)
++14028250015	GRAPHICS_VERSION(3510)
 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backli=
-ght_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backligh=
-t_test.c
-> index b21850788f36f..8883010e8af9c 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
-t.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
-t.c
-> @@ -41,12 +41,21 @@ static void setup_test_connector(struct kunit *test,
->  				 struct dm_backlight_connector_fixture *fixture,
->  				 int bl_idx, enum signal_type signal)
->  {
-> -	fixture->adev =3D kunit_kzalloc(test, sizeof(*fixture->adev), GFP_KERNE=
-L);
-> -	fixture->aconnector =3D kunit_kzalloc(test, sizeof(*fixture->aconnector=
-), GFP_KERNEL);
-> +	int ret;
-> +
-> +	fixture->adev =3D dm_kunit_alloc_adev(test);
-> +	ret =3D drmm_mode_config_init(&fixture->adev->ddev);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +
-> +	fixture->aconnector =3D dm_kunit_alloc_connector(test, fixture->adev, N=
-ULL);
->  	fixture->link =3D kunit_kzalloc(test, sizeof(*fixture->link), GFP_KERNE=
-L);
-> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->adev);
-> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->aconnector);
->  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->link);
-> +	ret =3D drmm_connector_init(&fixture->adev->ddev,
-> +				  &fixture->aconnector->base,
-> +				  &dm_backlight_test_connector_funcs,
-> +				  DRM_MODE_CONNECTOR_eDP, NULL);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> +	drm_atomic_helper_connector_reset(&fixture->aconnector->base);
+base-commit: 2cd78713d917a02987f21b437561a5e1e13ddda2
+-- 
+2.43.0
 
-[Severity: Medium]
-Does hardcoding DRM_MODE_CONNECTOR_eDP in setup_test_connector() corrupt or
-leak the connector_type_id IDA when dm_test_should_create_sysfs_non_edp() r=
-uns?
-
-drmm_connector_init() -> drm_connector_init_and_add() ->
-drm_connector_init_only() allocates connector->connector_type_id from
-drm_connector_enum_list[DRM_MODE_CONNECTOR_eDP].ida and registers
-drm_connector_cleanup_action() for managed teardown.
-
-However, dm_test_should_create_sysfs_non_edp() mutates connector_type after
-calling setup_test_connector():
-
-drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c:dm_t=
-est_should_create_sysfs_non_edp() {
-	setup_test_connector(test, &fixture, 0, SIGNAL_TYPE_HDMI_TYPE_A);
-	fixture.aconnector->base.connector_type =3D DRM_MODE_CONNECTOR_HDMIA;
-	...
-}
-
-When the test finishes and drm_connector_cleanup() runs:
-
-drivers/gpu/drm/drm_connector.c:drm_connector_cleanup() {
-	...
-	ida_free(&drm_connector_enum_list[connector->connector_type].ida,
-		 connector->connector_type_id);
-	...
-}
-
-it frees connector_type_id back to the DRM_MODE_CONNECTOR_HDMIA IDA instead=
- of
-DRM_MODE_CONNECTOR_eDP, triggering a warning in ida_free() (or freeing an
-active HDMI-A ID) while leaking the eDP connector_type_id.
-
-> @@ -483,12 +492,17 @@ static void dm_test_register_backlight_device_succe=
-ss(struct kunit *test)
->  	struct dc_link *link =3D dm_kunit_alloc_link(test);
->  	struct drm_minor *primary;
->  	unsigned int max;
-> +	int ret;
-> +
-> +	ret =3D drmm_mode_config_init(&adev->ddev);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-> =20
->  	setup_test_link_service(test, link);
->  	link->dc->link_srv->edp_get_backlight_level =3D dm_test_get_backlight_l=
-evel_error;
->  	primary =3D kunit_kzalloc(test, sizeof(*primary), GFP_KERNEL);
->  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, primary);
->  	adev->ddev.primary =3D primary;
-> +	adev->dm.ddev =3D &adev->ddev;
->  	adev->dm.backlight_link[0] =3D link;
-
-[Severity: Medium]
-Can this test suite link when CONFIG_DRM_LUMINANCE=3Dy and
-CONFIG_BACKLIGHT_CLASS_DEVICE is disabled?
-
-With commit de26f6665aed ("drm/amd: add luminance property support"),
-DRM_AMDGPU in drivers/gpu/drm/amd/amdgpu/Kconfig only selects
-BACKLIGHT_CLASS_DEVICE when !DRM_LUMINANCE:
-
-	select BACKLIGHT_CLASS_DEVICE if !DRM_LUMINANCE
-
-Neither DRM_AMD_DC_KUNIT_TEST in drivers/gpu/drm/amd/display/Kconfig nor
-drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig enables
-CONFIG_BACKLIGHT_CLASS_DEVICE.
-
-However, dm_test_register_backlight_device_success() and
-dm_test_unregister_backlight_device() in amdgpu_dm_backlight_test.c, as well
-as amdgpu_dm_register_backlight_device() in amdgpu_dm_backlight.c, still
-unconditionally call backlight_device_register() and
-backlight_device_unregister():
-
-drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c:dm_t=
-est_unregister_backlight_device() {
-	backlight_device_unregister(data);
-}
-
-drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c:amdgpu_dm_regis=
-ter_backlight_device() {
-	...
-	dm->backlight_dev[aconnector->bl_idx] =3D
-		backlight_device_register(bl_name, aconnector->base.kdev, dm,
-					  &amdgpu_dm_backlight_ops, &props);
-	...
-}
-
-Because include/linux/backlight.h does not provide inline stubs for
-backlight_device_register() or backlight_device_unregister() when
-CONFIG_BACKLIGHT_CLASS_DEVICE is disabled, won't building the KUnit tests (=
-or
-amdgpu) with CONFIG_DRM_LUMINANCE=3Dy and CONFIG_BACKLIGHT_CLASS_DEVICE=3Dn=
- fail
-at link time with undefined references to those symbols?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102-superm1-ba=
-cklight-property-v10-0-b2a6f24131f5@kernel.org?part=3D5
