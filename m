@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4F32606A331
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7629606A334
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=NuFdWfA2
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FuPVt3/E
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8163110FC90;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C6C10FC94;
 	Wed,  4 Nov 2026 15:02:48 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CEAD10E9CF;
- Tue,  3 Nov 2026 22:42:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CBEC10F0E3;
+ Mon,  2 Nov 2026 16:49:48 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id E72DA4029D;
- Tue,  3 Nov 2026 22:42:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 254F51F0093A;
- Tue,  3 Nov 2026 22:42:23 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 24EF143D67;
+ Mon,  2 Nov 2026 16:49:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 591FE1F01833;
+ Mon,  2 Nov 2026 16:49:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793745744;
- bh=RYzRY6pUjO4vR+HoG7+wRVy0VRP9l+RugrUlV/NSiUU=;
+ s=k20260515; t=1793638188;
+ bh=so0lGgQRgYqwEUOe7kSUad+RxOSJt9V6H5hwEO4IVXk=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=NuFdWfA2tudkpMTd9GfNFj4OB4kkAnEEiRSgwJ9a+QjHepJxsKKG2V5zF8N+edLrp
- pOh6woA0/CYHq711JKsg9sQvfmeFQ1A0dl1OP4N4TWcnUJtGK6xgym0M/0y45wN34S
- UYDqfPdhUbCxNLtLbcjx2BUbQ2mNr/40pu8czVWPsEsIRDD6aRq8FGsgylHbYvxp1D
- NlZ1swLmsOt4se8W0CH2wvWAJM9oiLxiF7He5YrWZI2Vckbnk9zrO3kcvdpG5uS7mE
- w1h+B1VzsTe4NfVTx4ZPqAUv0vGF0vMMlHigFLnKrNVIUiVPpOgYsIBBkrhzKuyHwj
- 2jeWyYQz9pQng==
+ b=FuPVt3/Eb8wxZ8ltORT7bfVHmBxOsVmLUIfUTLjr16H7LO4VzDOhXSHvgGS+OJwoP
+ o3txnWTtWcaF0xiampm36M47ckf6QJQVDF0nLcSJMYRIJ06sT2OuWnKOMeJZYS6Ct2
+ bAeNkt92WYL9w1EAhtIW/bjLsC91jkut8zhMQ90bn+6ZRzQM2uAGXpehaRBwGoOQav
+ dDhes+DgFJ0nOuTZGg8b1cLI3A0xuEvd8PyP69GY9fnXNE/qNIs79gA45P9WiR/sHA
+ YaOYl19FdPtDzwIPzQTXfVcfg8bArGyT6V3I9xGKQEB4SO4n/MF3BxyC9uiD6kFWTa
+ ZinH2mLR1B5/w==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:06 -0600
-Subject: [PATCH v11 05/12] drm/i915/display: add luminance property support
+Date: Mon, 02 Nov 2026 10:49:26 -0600
+Subject: [PATCH v10 10/15] drm/nouveau: add connector luminance support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261103-superm1-backlight-property-v11-5-00cce7b2ba22@kernel.org>
-References: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
-In-Reply-To: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
+Message-Id: <20261102-superm1-backlight-property-v10-10-b2a6f24131f5@kernel.org>
+References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+In-Reply-To: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 To: Maxime Ripard <mripard@kernel.org>, 
  Alex Deucher <alexander.deucher@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -73,254 +73,297 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Expose the DRM LUMINANCE connector property for eDP, LVDS, and DSI panels
-when CONFIG_DRM_LUMINANCE is enabled. Keep registering the existing
-backlight class device otherwise, preserving its userspace ABI.
-
-Use the existing Intel brightness scaling and programming path from
-connector helper callbacks. Apply atomic luminance after modeset enables
-so updates made while a panel is inactive take effect when it is enabled
-again. The shared display code provides the same behavior to i915 and Xe.
+Expose Nouveau panel brightness through the connector LUMINANCE property
+when DRM_LUMINANCE is enabled. Reuse the existing NV40, NV50, and DPCD
+hardware paths while preserving the backlight class interface otherwise.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
-v11:
- * Call acpi_video_backlight_use_native() before attaching LUMINANCE and
-   leave the panel to acpi_video otherwise (Sashiko)
- * Enable the backlight at the committed LUMINANCE level (Sashiko)
- * Fix build with CONFIG_BACKLIGHT_CLASS_DEVICE=n (Sashiko)
- * Keep selecting BACKLIGHT_CLASS_DEVICE if ACPI (Sashiko)
- * Fall back to the backlight class device if attaching LUMINANCE fails
----
- drivers/gpu/drm/i915/display/icl_dsi.c         |  1 +
- drivers/gpu/drm/i915/display/intel_backlight.c | 74 ++++++++++++++++++++++----
- drivers/gpu/drm/i915/display/intel_backlight.h |  1 +
- drivers/gpu/drm/i915/display/intel_display.c   |  2 +
- drivers/gpu/drm/i915/display/intel_dp.c        |  1 +
- drivers/gpu/drm/i915/display/intel_lvds.c      |  1 +
- drivers/gpu/drm/i915/display/intel_panel.c     |  8 +--
- drivers/gpu/drm/i915/display/vlv_dsi.c         |  1 +
- 8 files changed, 76 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/nouveau/Kconfig             |   4 +-
+ drivers/gpu/drm/nouveau/dispnv50/disp.c     |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_backlight.c | 110 ++++++++++++++++++++++------
+ drivers/gpu/drm/nouveau/nouveau_connector.c |   2 +
+ drivers/gpu/drm/nouveau/nouveau_connector.h |  14 ++++
+ 5 files changed, 108 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index ea0cdb7822f39..37ff84c03ce05 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1801,6 +1801,7 @@ static const struct drm_connector_helper_funcs gen11_dsi_connector_helper_funcs
- 	.get_modes = intel_dsi_get_modes,
- 	.mode_valid = gen11_dsi_mode_valid,
- 	.atomic_check = intel_digital_connector_atomic_check,
-+	.set_luminance = intel_backlight_set_luminance,
- };
+diff --git a/drivers/gpu/drm/nouveau/Kconfig b/drivers/gpu/drm/nouveau/Kconfig
+index 3b5757aed9c84..2dcb7c5344f48 100644
+--- a/drivers/gpu/drm/nouveau/Kconfig
++++ b/drivers/gpu/drm/nouveau/Kconfig
+@@ -17,13 +17,13 @@ config DRM_NOUVEAU
+ 	select DRM_SCHED
+ 	select I2C
+ 	select I2C_ALGOBIT
+-	select BACKLIGHT_CLASS_DEVICE if DRM_NOUVEAU_BACKLIGHT
++	select BACKLIGHT_CLASS_DEVICE if DRM_NOUVEAU_BACKLIGHT && !DRM_LUMINANCE
+ 	select X86_PLATFORM_DEVICES if ACPI && X86
+ 	select ACPI_WMI if ACPI && X86
+ 	select MXM_WMI if ACPI && X86
+ 	select POWER_SUPPLY
+ 	# Similar to i915, we need to select ACPI_VIDEO and it's dependencies
+-	select BACKLIGHT_CLASS_DEVICE if ACPI && X86
++	select BACKLIGHT_CLASS_DEVICE if ACPI && X86 && !DRM_LUMINANCE
+ 	select INPUT if ACPI && X86
+ 	select THERMAL if ACPI && X86
+ 	select ACPI_VIDEO if ACPI && X86
+diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+index e91130f93db67..79be7900a0794 100644
+--- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
++++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
+@@ -1838,7 +1838,7 @@ nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_commit *st
+ 		backlight = nv_connector->backlight;
+ 		if (backlight && backlight->uses_dpcd)
+ 			drm_edp_backlight_enable(&nv_connector->aux, &backlight->edp_info,
+-						 backlight->dev->props.brightness);
++						 backlight->brightness);
+ #endif
  
- static int gen11_dsi_host_attach(struct mipi_dsi_host *host,
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index b128896cb1c2d..f9e84d17d3fb0 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -9,6 +9,7 @@
- #include <linux/string_helpers.h>
- #include <acpi/video.h>
- 
-+#include <drm/drm_connector.h>
- #include <drm/drm_file.h>
- #include <drm/drm_print.h>
- #include <drm/intel/pci_config.h>
-@@ -76,6 +77,16 @@ static u32 clamp_user_to_hw(struct intel_connector *connector,
- 	return hw_level;
+ 		break;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+index da1ee24a2531d..fefcfa8c2a3a9 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
++++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
+@@ -73,12 +73,10 @@ nv40_get_intensity(struct backlight_device *bd)
  }
  
-+/* Scale user_level in range [0..user_max] to [hw_min..hw_max]. */
-+static u32 scale_user_to_hw(struct intel_connector *connector,
-+			    u32 user_level, u32 user_max)
-+{
-+	struct intel_panel *panel = &connector->panel;
-+
-+	return scale(user_level, 0, user_max,
-+		     panel->backlight.min, panel->backlight.max);
-+}
-+
- /* Scale hw_level in range [hw_min..hw_max] to [0..user_max]. */
- static u32 scale_hw_to_user(struct intel_connector *connector,
- 			    u32 hw_level, u32 user_max)
-@@ -778,6 +789,16 @@ static void __intel_backlight_enable(const struct intel_crtc_state *crtc_state,
- 
- 	WARN_ON(panel->backlight.max == 0);
- 
-+	/*
-+	 * Enable at the luminance committed in this atomic state, rather than
-+	 * at a stale level which would only be corrected afterwards by
-+	 * drm_atomic_helper_commit_luminance_enables().
-+	 */
-+	if (connector->base.luminance_property)
-+		panel->backlight.level =
-+			scale_user_to_hw(connector, conn_state->luminance,
-+					 panel->backlight.max);
-+
- 	if (panel->backlight.level < panel->backlight.min) {
- 		panel->backlight.level = panel->backlight.min;
- 		if (panel->backlight.device)
-@@ -831,16 +852,6 @@ static u32 intel_panel_get_backlight(struct intel_connector *connector)
- 	return val;
- }
- 
--/* Scale user_level in range [0..user_max] to [hw_min..hw_max]. */
--static u32 scale_user_to_hw(struct intel_connector *connector,
--			    u32 user_level, u32 user_max)
--{
--	struct intel_panel *panel = &connector->panel;
--
--	return scale(user_level, 0, user_max,
--		     panel->backlight.min, panel->backlight.max);
--}
--
- /* set backlight brightness to level in range [0..max], scaling wrt hw min */
- static void intel_panel_set_backlight(const struct drm_connector_state *conn_state,
- 				      u32 user_level, u32 user_max)
-@@ -1670,6 +1681,9 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+ static int
+-nv40_set_intensity(struct backlight_device *bd)
++nv40_set_intensity_value(struct nouveau_encoder *nv_encoder, int val)
  {
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_panel *panel = &connector->panel;
-+	struct drm_connector *base = &connector->base;
-+	u32 brightness;
-+	u32 max;
- 	int ret;
+-	struct nouveau_encoder *nv_encoder = bl_get_data(bd);
+ 	struct nouveau_drm *drm = nouveau_drm(nv_encoder->base.base.dev);
+ 	struct nvif_object *device = &drm->client.device.object;
+-	int val = bd->props.brightness;
+ 	int reg = nvif_rd32(device, NV40_PMC_BACKLIGHT);
  
- 	if (!connector->panel.vbt.backlight.present) {
-@@ -1703,6 +1717,19 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
- 
- 	panel->backlight.present = true;
- 
-+	/*
-+	 * acpi_video_backlight_use_native() also tells the ACPI video code that
-+	 * a native backlight is available. If native control should not be
-+	 * used, leave the backlight to acpi_video, which is registered later
-+	 * from intel_acpi_video_register().
-+	 */
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE) && acpi_video_backlight_use_native()) {
-+		max = panel->backlight.max;
-+		brightness = scale_hw_to_user(connector, panel->backlight.level, max);
-+		ret = drm_connector_attach_luminance_property(base, 0, max, brightness);
-+		drm_WARN_ON(display->drm, ret);
-+	}
-+
- 	drm_dbg_kms(display->drm,
- 		    "[CONNECTOR:%d:%s] backlight initialized, %s, brightness %u/%u\n",
- 		    connector->base.base.id, connector->base.name,
-@@ -1712,6 +1739,33 @@ int intel_backlight_setup(struct intel_connector *connector, enum pipe pipe)
+ 	nvif_wr32(device, NV40_PMC_BACKLIGHT,
+@@ -87,6 +85,12 @@ nv40_set_intensity(struct backlight_device *bd)
  	return 0;
  }
  
-+void intel_backlight_set_luminance(const struct drm_connector_state *conn_state)
++static int
++nv40_set_intensity(struct backlight_device *bd)
 +{
-+	struct intel_connector *connector =
-+		to_intel_connector(conn_state->connector);
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_panel *panel = &connector->panel;
-+	u32 hw_level;
-+
-+	if (!panel->backlight.present)
-+		return;
-+
-+	guard(mutex)(&display->backlight.lock);
-+
-+	/*
-+	 * Nothing to do if __intel_backlight_enable() already programmed this
-+	 * level as part of a modeset enable.
-+	 */
-+	hw_level = scale_user_to_hw(connector, conn_state->luminance,
-+				    panel->backlight.max);
-+	if (hw_level == panel->backlight.level)
-+		return;
-+
-+	panel->backlight.level = hw_level;
-+	if (panel->backlight.enabled)
-+		intel_panel_actually_set_backlight(conn_state, hw_level);
++	return nv40_set_intensity_value(bl_get_data(bd), bd->props.brightness);
 +}
 +
- void intel_backlight_destroy(struct intel_panel *panel)
+ static const struct backlight_ops nv40_bl_ops = {
+ 	.options = BL_CORE_SUSPENDRESUME,
+ 	.get_brightness = nv40_get_intensity,
+@@ -105,6 +109,8 @@ nv40_backlight_init(struct nouveau_encoder *encoder,
+ 		return -ENODEV;
+ 
+ 	props->max_brightness = 31;
++	props->brightness = (nvif_rd32(device, NV40_PMC_BACKLIGHT) &
++			     NV40_PMC_BACKLIGHT_MASK) >> 16;
+ 	*ops = &nv40_bl_ops;
+ 	return 0;
+ }
+@@ -234,12 +240,15 @@ nv50_backlight_init(struct nouveau_backlight *bl,
+ 		    const struct backlight_ops **ops)
  {
- 	/* dispose of the pwm */
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.h b/drivers/gpu/drm/i915/display/intel_backlight.h
-index 339643f638978..1634ce414695a 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.h
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.h
-@@ -32,6 +32,7 @@ void intel_backlight_set_acpi(const struct drm_connector_state *conn_state,
- 			      u32 level, u32 max);
- void intel_backlight_set_pwm_level(const struct drm_connector_state *conn_state,
- 				   u32 level);
-+void intel_backlight_set_luminance(const struct drm_connector_state *conn_state);
- u32 intel_backlight_invert_pwm_level(struct intel_connector *connector, u32 level);
- u32 intel_backlight_level_to_pwm(struct intel_connector *connector, u32 level);
- u32 intel_backlight_level_from_pwm(struct intel_connector *connector, u32 val);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1c2b99cfb53b..f87c78e316a5d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7845,6 +7845,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	display->modeset.funcs->commit_modeset_enables(state);
- 
-+	drm_atomic_helper_commit_luminance_enables(&state->base);
+ 	struct nouveau_drm *drm = nouveau_drm(nv_encoder->base.base.dev);
++	int brightness;
 +
- 	intel_display_power_dc3co_compute(state);
++	brightness = nvif_outp_bl_get(&nv_encoder->outp);
  
- 	/* FIXME probably need to sequence this properly */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ef164a7976187..905c8743a2a2b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7060,6 +7060,7 @@ static const struct drm_connector_helper_funcs intel_dp_connector_helper_funcs =
- 	.get_modes = intel_dp_get_modes,
- 	.mode_valid = intel_dp_mode_valid,
- 	.atomic_check = intel_dp_connector_atomic_check,
-+	.set_luminance = intel_backlight_set_luminance,
- };
+ 	/*
+ 	 * Note when this runs the connectors have not been probed yet,
+ 	 * so nv_conn->base.status is not set yet.
+ 	 */
+-	if (nvif_outp_bl_get(&nv_encoder->outp) < 0 ||
++	if (brightness < 0 ||
+ 	    drm_helper_probe_detect(&nv_conn->base, NULL, false) != connector_status_connected)
+ 		return -ENODEV;
  
- enum irqreturn
-diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index 872753478cf21..fa668b1debb21 100644
---- a/drivers/gpu/drm/i915/display/intel_lvds.c
-+++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -502,6 +502,7 @@ static const struct drm_connector_helper_funcs intel_lvds_connector_helper_funcs
- 	.get_modes = intel_lvds_get_modes,
- 	.mode_valid = intel_lvds_mode_valid,
- 	.atomic_check = intel_digital_connector_atomic_check,
-+	.set_luminance = intel_backlight_set_luminance,
- };
+@@ -284,6 +293,7 @@ nv50_backlight_init(struct nouveau_backlight *bl,
  
- static const struct drm_connector_funcs intel_lvds_connector_funcs = {
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 81e638d0c7b33..9e2a53f300d39 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -610,9 +610,11 @@ int intel_panel_register(struct intel_connector *connector)
- 	struct intel_panel *panel = &connector->panel;
- 	int ret;
+ 	*ops = &nv50_bl_ops;
+ 	props->max_brightness = 100;
++	props->brightness = brightness;
+ 	return 0;
+ }
  
--	ret = intel_backlight_device_register(connector);
--	if (ret)
--		return ret;
-+	if (!connector->base.luminance_property) {
-+		ret = intel_backlight_device_register(connector);
+@@ -317,10 +327,13 @@ nouveau_backlight_init(struct drm_connector *connector)
+ 	bl = kzalloc_obj(*bl);
+ 	if (!bl)
+ 		return -ENOMEM;
++	bl->id = -1;
++	bl->encoder = nv_encoder;
+ 
+ 	switch (device->info.family) {
+ 	case NV_DEVICE_INFO_V0_CURIE:
+ 		ret = nv40_backlight_init(nv_encoder, &props, &ops);
++		bl->uses_nv40 = true;
+ 		break;
+ 	case NV_DEVICE_INFO_V0_TESLA:
+ 	case NV_DEVICE_INFO_V0_FERMI:
+@@ -349,26 +362,39 @@ nouveau_backlight_init(struct drm_connector *connector)
+ 		goto fail_alloc;
+ 	}
+ 
+-	if (!nouveau_get_backlight_name(backlight_name, bl)) {
+-		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
+-		goto fail_alloc;
+-	}
+-
+ 	props.type = BACKLIGHT_RAW;
+-	bl->dev = backlight_device_register(backlight_name, connector->kdev,
+-					    nv_encoder, ops, &props);
+-	if (IS_ERR(bl->dev)) {
+-		if (bl->id >= 0)
+-			ida_free(&bl_ida, bl->id);
+-		ret = PTR_ERR(bl->dev);
+-		goto fail_alloc;
++	bl->brightness = props.brightness;
++	bl->max_brightness = props.max_brightness;
++	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
++		ret = drm_connector_attach_luminance_property(connector, 0, props.max_brightness,
++							      props.brightness);
 +		if (ret)
-+			return ret;
++			goto fail_alloc;
++	} else {
++		if (!nouveau_get_backlight_name(backlight_name, bl)) {
++			NV_ERROR(drm,
++				 "Failed to retrieve a unique name for the backlight interface\n");
++			goto fail_alloc;
++		}
++
++		bl->dev = backlight_device_register(backlight_name, connector->kdev,
++						    nv_encoder, ops, &props);
++		if (IS_ERR(bl->dev)) {
++			if (bl->id >= 0)
++				ida_free(&bl_ida, bl->id);
++			ret = PTR_ERR(bl->dev);
++			goto fail_alloc;
++		}
+ 	}
+ 
+ 	nouveau_connector(connector)->backlight = bl;
+-	if (!bl->dev->props.brightness)
+-		bl->dev->props.brightness =
+-			bl->dev->ops->get_brightness(bl->dev);
+-	backlight_update_status(bl->dev);
++	if (bl->dev) {
++		if (!bl->dev->props.brightness)
++			bl->dev->props.brightness =
++				bl->dev->ops->get_brightness(bl->dev);
++		bl->brightness = bl->dev->props.brightness;
++		backlight_update_status(bl->dev);
 +	}
  
- 	if (connector->base.connector_type == DRM_MODE_CONNECTOR_DSI ||
- 	    connector->base.connector_type == DRM_MODE_CONNECTOR_eDP) {
-diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 8829f365592ef..7e60407e0af4a 100644
---- a/drivers/gpu/drm/i915/display/vlv_dsi.c
-+++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -1555,6 +1555,7 @@ static const struct drm_connector_helper_funcs intel_dsi_connector_helper_funcs
- 	.get_modes = intel_dsi_get_modes,
- 	.mode_valid = vlv_dsi_mode_valid,
- 	.atomic_check = intel_digital_connector_atomic_check,
-+	.set_luminance = intel_backlight_set_luminance,
+ 	return 0;
+ 
+@@ -396,7 +422,9 @@ nouveau_backlight_fini(struct drm_connector *connector)
+ 	if (bl->id >= 0)
+ 		ida_free(&bl_ida, bl->id);
+ 
+-	backlight_device_unregister(bl->dev);
++	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE))
++		backlight_device_unregister(bl->dev);
++
+ 	nv_conn->backlight = NULL;
+ 	kfree(bl);
+ }
+@@ -412,3 +440,43 @@ nouveau_backlight_dtor(void)
+ {
+ 	ida_destroy(&bl_ida);
+ }
++
++void
++nouveau_backlight_set_luminance(const struct drm_connector_state *conn_state)
++{
++	struct nouveau_connector *nv_connector = nouveau_connector(conn_state->connector);
++	struct nouveau_backlight *bl = nv_connector->backlight;
++	unsigned int luminance = conn_state->luminance;
++
++	if (!bl || !bl->max_brightness)
++		return;
++
++	bl->brightness = luminance;
++	if (bl->uses_dpcd) {
++		drm_edp_backlight_set_level(&nv_connector->aux, &bl->edp_info,
++					    luminance);
++		return;
++	}
++
++	if (bl->uses_nv40)
++		nv40_set_intensity_value(bl->encoder, luminance);
++	else
++		nvif_outp_bl_set(&bl->encoder->outp, luminance);
++}
++
++void
++nouveau_backlight_disable_luminance(const struct drm_connector_state *conn_state)
++{
++	struct nouveau_connector *nv_connector = nouveau_connector(conn_state->connector);
++	struct nouveau_backlight *bl = nv_connector->backlight;
++
++	if (!bl)
++		return;
++
++	if (bl->uses_dpcd)
++		drm_edp_backlight_disable(&nv_connector->aux, &bl->edp_info);
++	else if (bl->uses_nv40)
++		nv40_set_intensity_value(bl->encoder, 0);
++	else
++		nvif_outp_bl_set(&bl->encoder->outp, 0);
++}
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
+index cc3caf8de64b0..56ee579ea7909 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.c
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
+@@ -1225,6 +1225,8 @@ nouveau_connector_helper_funcs = {
+ 	.mode_valid = nouveau_connector_mode_valid,
+ 	.best_encoder = nouveau_connector_best_encoder,
+ 	.atomic_check = nouveau_connector_atomic_check,
++	.set_luminance = nouveau_backlight_set_luminance,
++	.disable_luminance = nouveau_backlight_disable_luminance,
  };
  
- static const struct drm_connector_funcs intel_dsi_connector_funcs = {
+ static const struct drm_connector_funcs
+diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
+index eb292d2ba4bcd..0cee3e4c1d11c 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_connector.h
++++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
+@@ -50,9 +50,13 @@ struct nouveau_backlight {
+ 	struct backlight_device *dev;
+ 
+ 	struct drm_edp_backlight_info edp_info;
++	struct nouveau_encoder *encoder;
+ 	bool uses_dpcd : 1;
++	bool uses_nv40 : 1;
+ 
+ 	int id;
++	int brightness;
++	int max_brightness;
+ };
+ #endif
+ 
+@@ -239,6 +243,8 @@ extern int nouveau_backlight_init(struct drm_connector *);
+ extern void nouveau_backlight_fini(struct drm_connector *);
+ extern void nouveau_backlight_ctor(void);
+ extern void nouveau_backlight_dtor(void);
++void nouveau_backlight_set_luminance(const struct drm_connector_state *conn_state);
++void nouveau_backlight_disable_luminance(const struct drm_connector_state *conn_state);
+ #else
+ static inline int
+ nouveau_backlight_init(struct drm_connector *connector)
+@@ -257,6 +263,14 @@ nouveau_backlight_ctor(void) {
+ static inline void
+ nouveau_backlight_dtor(void) {
+ }
++
++static inline void
++nouveau_backlight_set_luminance(const struct drm_connector_state *conn_state) {
++}
++
++static inline void
++nouveau_backlight_disable_luminance(const struct drm_connector_state *conn_state) {
++}
+ #endif
+ 
+ #endif /* __NOUVEAU_CONNECTOR_H__ */
 
 -- 
 2.53.0
