@@ -2,42 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8737C606A32C
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:35:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47B6606A327
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=XMNIaP4K
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AKJD0+da
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5032310E599;
-	Mon,  2 Nov 2026 22:35:23 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F4B010E599
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:35:17 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 437084363E;
- Mon,  2 Nov 2026 22:35:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B82E1F00A17;
- Mon,  2 Nov 2026 22:35:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793658917;
- bh=329DmGFey9bGvCwGuYGR6cuHsWrgnVMEgvsfqFP6g5g=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=XMNIaP4KjhB/lIYx4rAZVyZupoqM7Bfb5ICouSWZtSMxGFbUOhthRf5Y6ktuZ6lGY
- rBUhq5sHiJuIPLAjH9ZHgjR1lCVgFf0BS1LXkpcYq/UKAq2nW+3MnzyPKB6bJ+Wfqf
- Jm8zQ3MsOxJ1t11+m7edkw/QnfVdVPHCndjMKWP+9OzVO9tsr733PkXSyHEYh43o8d
- H2AV4Wi904Uhlu+M02RPhnYs8swxmx1R38sGGijvz+30pCnPlYKBHLmgvjAjYWfUBu
- pI6uHZiaQrfG/42gx9jR68CigikGYRBiATfuS9butIXafIn1lrHEkDdXayQc6DcZxF
- Gw9oE+dvf8hPQ==
-Message-ID: <sashiko-outbox-194292@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 14/16] drm/xe/vsec: Update PMT internal access
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261102221314.119028-32-michael.j.ruhl@intel.com>
-References: <20261102221314.119028-18-michael.j.ruhl@intel.com>
- <20261102221314.119028-32-michael.j.ruhl@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 02 Nov 2026 22:35:16 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A6E410E714;
+	Mon,  2 Nov 2026 22:35:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B99B910F274
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:35:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793658920; x=1825194920;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3fX2SL42qu80evn/skNMptjXR/0jA1jSuOi+QRnRrKI=;
+ b=AKJD0+daoZ49nOVE/cVTYGPYHIuOyidDIxAppo8MWrCI136PQ7e4cG10
+ DyovcnuliVN4e2Gb7MDFTwwiJu/s1MxtiYY7aNBNHEov8C66ULcHtzy5p
+ LT7wdsuxAC4mxIx8h+WME6cYct6u/nJU8dRdO469RnCp6HNhFFrCovOJT
+ sSjV3P6RJMWtPS1cWB6Pix2iZR9Boh2qRSoPAtOXdJ3JYvakWQGwZcNiz
+ otmvbUTFuvm+WjpwM2Oma5H7eo+vLZ9FlPFGgr95Py2DAqgaVLvi+GeMA
+ yE+HHDgZHDB/Xyo8oOsgSZcY7RTkIyzHOIxv4cGDmKipKugBvKO51VDki w==;
+X-CSE-ConnectionGUID: IKbnDExsSWOiYcvTL6LDYg==
+X-CSE-MsgGUID: QQC8/43FQ9iewPGc0qw1Rg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2362378"
+X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
+   d="scan'208";a="2362378"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 14:35:20 -0800
+X-CSE-ConnectionGUID: U/O/WlXcR5GGIae72THeLQ==
+X-CSE-MsgGUID: KBTntMPhT66c2FzoIn6Dig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
+   d="scan'208";a="8028479"
+Received: from orsosgc001.jf.intel.com ([10.54.56.63])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 14:35:20 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: rodrigo.vivi@intel.com,
+	intel-xe@lists.freedesktop.org
+Cc: jani.saarinen@intel.com
+Subject: [drm-intel/topic/core-for-CI v3] io_uring/sqpoll: don't set
+ IO_SQ_THREAD_SHOULD_STOP on thread exit
+Date: Mon,  2 Nov 2026 14:35:10 -0800
+Message-ID: <20261102223509.2821164-2-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.55.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,117 +61,95 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Medium] drm/xe/vsec: missing wait_for_fw() and invalid caching in xe_vse=
-c_get_guid()
---
+From: Shuai Liu <847807867@qq.com>
 
-commit ff1f060a60a0a4bf5c3f7818992f8347fb84bca2
-Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+io_sq_thread_stop() carries a WARN_ON_ONCE() asserting that
+IO_SQ_THREAD_SHOULD_STOP isn't set yet, i.e. that stopping the SQPOLL
+thread is never attempted twice. Since commit 22d9db9fd64a
+("io_uring/sqpoll: don't attach to a thread that is canceling"), the
+SQPOLL thread itself sets that bit on its way out, so that
+io_sq_offload_create() won't attach a new ring to a thread that is
+canceling.
 
-drm/xe/vsec: Update PMT internal access
+When the thread exits on a fatal signal, the bit is thus set before the
+ring teardown gets to io_sq_thread_stop(), which now triggers the
+warning on every such exit:
 
-This commit updates read_residency_counter(), xe_hwmon_energy_get(), and
-xe_get_pcode_version() to retrieve the device-specific PMT telemetry GUID v=
-ia
-xe_vsec_get_guid() instead of reading BMG_PUNIT_TELEMETRY_GUID directly.
+  WARNING: io_uring/sqpoll.c:88 at io_sq_thread_stop
+  Workqueue: iou_exit io_ring_exit_work
+  Call Trace:
+   io_put_sq_data
+   io_sq_thread_finish
+   io_ring_ctx_free
+   io_ring_exit_work
 
-> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-> index 8c901e54f3847..fa9f45d565cb9 100644
-> --- a/drivers/gpu/drm/xe/xe_pcode.c
-> +++ b/drivers/gpu/drm/xe/xe_pcode.c
-> @@ -365,11 +365,17 @@ ALLOW_ERROR_INJECTION(xe_pcode_probe_early, ERRNO);=
- /* See xe_pci_probe */
->  int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *=
-version)
->  {
->  	int ret =3D 0;
-> +	u32 guid;
-> =20
->  	guard(xe_pm_runtime)(xe);
-> =20
-> -	ret =3D xe_pmt_telem_read(xe->drm.dev,
-> -				xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PUNIT_TELEMETRY_GUID),
-> +	ret =3D xe_vsec_get_guid(xe, &guid);
-> +	if (ret) {
-> +		xe_warn(xe, "PMT device is not available: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret =3D xe_pmt_telem_read(xe->drm.dev, guid,
->  				(u64 *)version, PUNIT_VERSION_OFFSET, sizeof(*version));
+Introduce a separate IO_SQ_THREAD_EXITING bit for the thread marking
+itself as on its way out, and check it in io_sq_offload_create() along
+with IO_SQ_THREAD_SHOULD_STOP. IO_SQ_THREAD_SHOULD_STOP regains its
+original meaning, "a stop has been requested", and the WARN_ON_ONCE()
+holds again.
 
-[Severity: Medium]
-On XE_CRESCENTISLAND, can calling xe_vsec_get_guid() before xe_pmt_telem_re=
-ad()
-access the CRI PMT discovery window before OOBMSM firmware is ready and
-corrupt punit_guid_cache?
+Reproduced with an SQPOLL ring and an immediate fatal signal: the
+warning fires on v7.3.0+ (22d9db9fd64a present) and is gone with this
+change.
 
-In xe_debugfs_register(), pcode_info is registered on both XE_BATTLEMAGE and
-XE_CRESCENTISLAND, and reading it invokes:
+Reported-by: syzbot+675af112519ca34f5502@syzkaller.appspotmail.com
+Closes: https://syzkaller.appspot.com/bug?extid=675af112519ca34f5502
+Fixes: 22d9db9fd64a ("io_uring/sqpoll: don't attach to a thread that is canceling")
+Signed-off-by: Shuai Liu <847807867@qq.com>
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17748
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9717
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17747
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ io_uring/sqpoll.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
-  pcode_info() -> xe_get_pcode_version() -> xe_vsec_get_guid()
+diff --git a/io_uring/sqpoll.c b/io_uring/sqpoll.c
+index c833e776320d..bbfb1a6e6668 100644
+--- a/io_uring/sqpoll.c
++++ b/io_uring/sqpoll.c
+@@ -29,6 +29,7 @@
+ enum {
+ 	IO_SQ_THREAD_SHOULD_STOP = 0,
+ 	IO_SQ_THREAD_SHOULD_PARK,
++	IO_SQ_THREAD_EXITING,
+ };
+ 
+ void io_sq_thread_unpark(struct io_sq_data *sqd)
+@@ -436,9 +437,12 @@ static int io_sq_thread(void *data)
+ 	/*
+ 	 * Cancelation drops sqd->lock while it waits, and a ring could attach
+ 	 * to a thread that is on its way out. A fatal signal doesn't set the
+-	 * bit, so set it here for io_sq_offload_create() to see.
++	 * stop bit, so mark the thread as exiting here for
++	 * io_sq_offload_create() to see. IO_SQ_THREAD_SHOULD_STOP is left
++	 * alone, as it means a stop has been requested via
++	 * io_sq_thread_stop().
+ 	 */
+-	set_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state);
++	set_bit(IO_SQ_THREAD_EXITING, &sqd->state);
+ 	io_uring_cancel_generic(true, sqd);
+ 	rcu_assign_pointer(sqd->thread, NULL);
+ 	put_task_struct(current);
+@@ -510,7 +514,8 @@ __cold int io_sq_offload_create(struct io_ring_ctx *ctx,
+ 		/* don't attach to a dying SQPOLL thread, would be racy */
+ 		ret = 0;
+ 		if (attached && (!sqd->thread ||
+-		    test_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state)))
++		    test_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state) ||
++		    test_bit(IO_SQ_THREAD_EXITING, &sqd->state)))
+ 			ret = -ENXIO;
+ 		io_sq_thread_unpark(sqd);
+ 
+-- 
+2.55.0
 
-Unlike xe_pmt_telem_read(), xe_pmt_read_reg(), and xe_pmt_write_reg(),
-xe_vsec_get_guid() in drivers/gpu/drm/xe/xe_vsec.c does not call wait_for_f=
-w()
-before programming the SoC remapper and reading CRI_PUNIT_TELEMETRY_GUID:
-
-drivers/gpu/drm/xe/xe_vsec.c:xe_vsec_get_guid() {
-	...
-	case XE_CRESCENTISLAND:
-		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-		*guid =3D xe_mmio_read32(mmio, CRI_PUNIT_TELEMETRY_GUID);
-		break;
-	...
-	/* the GUID is static, read once and cache for all requests */
-	if (*guid)
-		xe->pmt.punit_guid_cache =3D *guid;
-}
-
-If pcode_info (or read_residency_counter()) is read while late-bound OOBMSM
-firmware is not yet ready (for example during initial probe while
-cri_late_bind_probe_work is polling, or after runtime resume from D3cold),
-reading CRI_PUNIT_TELEMETRY_GUID before wait_for_fw() has two failure modes:
-
-1. If the premature read returns 0, xe_vsec_get_guid() still returns 0 with
-   *guid =3D=3D 0, and xe_pmt_telem_read() then fails immediately in
-   xe_guid_decode() with -ENODEV before reaching its own wait_for_fw() chec=
-k:
-
-drivers/gpu/drm/xe/xe_vsec.c:xe_pmt_telem_read() {
-	...
-	ret =3D xe_guid_decode(guid, &mem_region, &offset);
-	if (ret)
-		goto dev_exit;
-	...
-	if (!wait_for_fw(xe)) {
-		ret =3D -ENODATA;
-		goto runtime_exit;
-	}
-}
-
-2. If the premature read returns a non-zero uninitialized or all-ones value
-   (such as 0xffffffff), xe_vsec_get_guid() caches it in
-   xe->pmt.punit_guid_cache permanently, causing all subsequent calls to
-   xe_vsec_get_guid(), xe_get_pcode_version(), and read_residency_counter()=
- to
-   fail even after OOBMSM firmware becomes ready.
-
-Should xe_vsec_get_guid() call wait_for_fw(xe) before reading the GUID (and
-validate the GUID before caching it)?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102221314.1190=
-28-18-michael.j.ruhl@intel.com?part=3D14
