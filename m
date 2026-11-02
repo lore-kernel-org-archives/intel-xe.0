@@ -2,28 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1CD9606A330
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 17:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DAF606A327
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 18:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PL+cwV2M
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A0510E0E4;
-	Mon,  2 Nov 2026 17:48:46 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6992D10E0E4;
- Mon,  2 Nov 2026 17:48:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0177597019070091610=="
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_topic/xe-for-CI=3A_update_?=
- =?utf-8?q?GuC_for_CRI_and_NVL-P_to_70=2E83=2E0?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Nov 2026 17:48:45 -0000
-Message-ID: <179364172542.105888.8467984619118777021@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261102163840.2231293-6-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20261102163840.2231293-6-daniele.ceraolospurio@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF37F10E6D5;
+	Mon,  2 Nov 2026 18:00:36 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C973810F0A5;
+ Mon,  2 Nov 2026 18:00:30 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 8209F411BA;
+ Mon,  2 Nov 2026 18:00:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EA731F00A16;
+ Mon,  2 Nov 2026 18:00:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793642430;
+ bh=xfQXiR0waxNaVgKjR2iU+kFlkn7FoWk8VuMm344wi/g=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=PL+cwV2MxNmCokocZk8VeKqEYcDzYO3Rn1udgStGWcnmT8rArEneCRwOW8mfKEswv
+ Nr1T+PrHET1byOf3dU+acZt1OUTmwhN+It3kSuUlvoI0vI56CbJEWZN4WwDDRQ5pBV
+ KRI4vJzl1zPuhP7+JyoXuKnzhcotn2wzlQXhVavBXWOpdr3NIBFszAXI423jm3auHs
+ //GSSwkJnV3/4/vJxDFrP4KoBGO954aP/kq0dlpkiFRyJs/3zaS2UFKD/otdnZa6UK
+ GoiccULpRgCxKp0vMTCJqAOyj6RX/3seqUeMlB/Hh7jb1chkXY8usV/RjXX3k8GDBy
+ uLAEGZSSy1o6g==
+Message-ID: <sashiko-outbox-193892@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v10 05/15] drm/amd/display: update KUnit luminance fixtures
+To: =?utf-8?b?TWFyaW8gTGltb25jaWVsbG8gKEFNRCk=?= <superm1@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261102-superm1-backlight-property-v10-5-b2a6f24131f5@kernel.org>
+References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+ <20261102-superm1-backlight-property-v10-5-b2a6f24131f5@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 02 Nov 2026 18:00:29 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,114 +48,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---===============0177597019070091610==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] drm/amd/display: wrong connector_type IDA freed in setup_test_co=
+nnector() user
+- [Medium] drm/amd/display: link failure in backlight KUnit test when DRM_L=
+UMINANCE=3Dy
+--
 
-== Series Details ==
+commit 66d823079de9e4318719fbb2464a13997a1ae155
+Author: Mario Limonciello (AMD) <superm1@kernel.org>
 
-Series: topic/xe-for-CI: update GuC for CRI and NVL-P to 70.83.0
-URL   : https://patchwork.freedesktop.org/series/177482/
-State : success
+drm/amd/display: update KUnit luminance fixtures
 
-== Summary ==
+This commit updates the backlight KUnit test fixtures to initialize DRM mode
+configuration, connector state, and the display manager lock so tests work
+when the atomic LUMINANCE property is enabled.
 
-CI Bug Log - changes from xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d_FULL -> xe-pw-177482v1_FULL
-====================================================
+> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backli=
+ght_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backligh=
+t_test.c
+> index b21850788f36f..8883010e8af9c 100644
+> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
+t.c
+> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
+t.c
+> @@ -41,12 +41,21 @@ static void setup_test_connector(struct kunit *test,
+>  				 struct dm_backlight_connector_fixture *fixture,
+>  				 int bl_idx, enum signal_type signal)
+>  {
+> -	fixture->adev =3D kunit_kzalloc(test, sizeof(*fixture->adev), GFP_KERNE=
+L);
+> -	fixture->aconnector =3D kunit_kzalloc(test, sizeof(*fixture->aconnector=
+), GFP_KERNEL);
+> +	int ret;
+> +
+> +	fixture->adev =3D dm_kunit_alloc_adev(test);
+> +	ret =3D drmm_mode_config_init(&fixture->adev->ddev);
+> +	KUNIT_ASSERT_EQ(test, ret, 0);
+> +
+> +	fixture->aconnector =3D dm_kunit_alloc_connector(test, fixture->adev, N=
+ULL);
+>  	fixture->link =3D kunit_kzalloc(test, sizeof(*fixture->link), GFP_KERNE=
+L);
+> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->adev);
+> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->aconnector);
+>  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, fixture->link);
+> +	ret =3D drmm_connector_init(&fixture->adev->ddev,
+> +				  &fixture->aconnector->base,
+> +				  &dm_backlight_test_connector_funcs,
+> +				  DRM_MODE_CONNECTOR_eDP, NULL);
+> +	KUNIT_ASSERT_EQ(test, ret, 0);
+> +	drm_atomic_helper_connector_reset(&fixture->aconnector->base);
 
-Summary
--------
+[Severity: Medium]
+Does hardcoding DRM_MODE_CONNECTOR_eDP in setup_test_connector() corrupt or
+leak the connector_type_id IDA when dm_test_should_create_sysfs_non_edp() r=
+uns?
 
-  **SUCCESS**
+drmm_connector_init() -> drm_connector_init_and_add() ->
+drm_connector_init_only() allocates connector->connector_type_id from
+drm_connector_enum_list[DRM_MODE_CONNECTOR_eDP].ida and registers
+drm_connector_cleanup_action() for managed teardown.
 
-  No regressions found.
+However, dm_test_should_create_sysfs_non_edp() mutates connector_type after
+calling setup_test_connector():
 
-  
+drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c:dm_t=
+est_should_create_sysfs_non_edp() {
+	setup_test_connector(test, &fixture, 0, SIGNAL_TYPE_HDMI_TYPE_A);
+	fixture.aconnector->base.connector_type =3D DRM_MODE_CONNECTOR_HDMIA;
+	...
+}
 
-Participating hosts (3 -> 3)
-------------------------------
+When the test finishes and drm_connector_cleanup() runs:
 
-  No changes in participating hosts
+drivers/gpu/drm/drm_connector.c:drm_connector_cleanup() {
+	...
+	ida_free(&drm_connector_enum_list[connector->connector_type].ida,
+		 connector->connector_type_id);
+	...
+}
 
+it frees connector_type_id back to the DRM_MODE_CONNECTOR_HDMIA IDA instead=
+ of
+DRM_MODE_CONNECTOR_eDP, triggering a warning in ida_free() (or freeing an
+active HDMI-A ID) while leaking the eDP connector_type_id.
 
-Changes
--------
+> @@ -483,12 +492,17 @@ static void dm_test_register_backlight_device_succe=
+ss(struct kunit *test)
+>  	struct dc_link *link =3D dm_kunit_alloc_link(test);
+>  	struct drm_minor *primary;
+>  	unsigned int max;
+> +	int ret;
+> +
+> +	ret =3D drmm_mode_config_init(&adev->ddev);
+> +	KUNIT_ASSERT_EQ(test, ret, 0);
+> =20
+>  	setup_test_link_service(test, link);
+>  	link->dc->link_srv->edp_get_backlight_level =3D dm_test_get_backlight_l=
+evel_error;
+>  	primary =3D kunit_kzalloc(test, sizeof(*primary), GFP_KERNEL);
+>  	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, primary);
+>  	adev->ddev.primary =3D primary;
+> +	adev->dm.ddev =3D &adev->ddev;
+>  	adev->dm.backlight_link[0] =3D link;
 
-  No changes found
+[Severity: Medium]
+Can this test suite link when CONFIG_DRM_LUMINANCE=3Dy and
+CONFIG_BACKLIGHT_CLASS_DEVICE is disabled?
 
+With commit de26f6665aed ("drm/amd: add luminance property support"),
+DRM_AMDGPU in drivers/gpu/drm/amd/amdgpu/Kconfig only selects
+BACKLIGHT_CLASS_DEVICE when !DRM_LUMINANCE:
 
-Build changes
--------------
+	select BACKLIGHT_CLASS_DEVICE if !DRM_LUMINANCE
 
-  * IGT: IGT_9174 -> IGT_9175
-  * Linux: xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d -> xe-pw-177482v1
+Neither DRM_AMD_DC_KUNIT_TEST in drivers/gpu/drm/amd/display/Kconfig nor
+drivers/gpu/drm/amd/display/amdgpu_dm/tests/.kunitconfig enables
+CONFIG_BACKLIGHT_CLASS_DEVICE.
 
-  IGT_9174: bb222a83882fe443bd3285f34c475813865b301e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9175: 9175
-  xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d: 79cefeb775e63da397152ab01c2f1d4fa1b9b46d
-  xe-pw-177482v1: 177482v1
+However, dm_test_register_backlight_device_success() and
+dm_test_unregister_backlight_device() in amdgpu_dm_backlight_test.c, as well
+as amdgpu_dm_register_backlight_device() in amdgpu_dm_backlight.c, still
+unconditionally call backlight_device_register() and
+backlight_device_unregister():
 
-== Logs ==
+drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c:dm_t=
+est_unregister_backlight_device() {
+	backlight_device_unregister(data);
+}
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177482v1/index.html
+drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c:amdgpu_dm_regis=
+ter_backlight_device() {
+	...
+	dm->backlight_dev[aconnector->bl_idx] =3D
+		backlight_device_register(bl_name, aconnector->base.kdev, dm,
+					  &amdgpu_dm_backlight_ops, &props);
+	...
+}
 
---===============0177597019070091610==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Because include/linux/backlight.h does not provide inline stubs for
+backlight_device_register() or backlight_device_unregister() when
+CONFIG_BACKLIGHT_CLASS_DEVICE is disabled, won't building the KUnit tests (=
+or
+amdgpu) with CONFIG_DRM_LUMINANCE=3Dy and CONFIG_BACKLIGHT_CLASS_DEVICE=3Dn=
+ fail
+at link time with undefined references to those symbols?
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>topic/xe-for-CI: update GuC for CRI and NVL-P to 70.83.0</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177482/">https://patchwork.freedesktop.org/series/177482/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177482v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177482v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d_FULL -&gt; xe-pw-177482v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9174 -&gt; IGT_9175</li>
-<li>Linux: xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d -&gt; xe-pw-177482v1</li>
-</ul>
-<p>IGT_9174: bb222a83882fe443bd3285f34c475813865b301e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9175: 9175<br />
-  xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d: 79cefeb775e63da397152ab01c2f1d4fa1b9b46d<br />
-  xe-pw-177482v1: 177482v1</p>
-
-</body>
-</html>
-
---===============0177597019070091610==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102-superm1-ba=
+cklight-property-v10-0-b2a6f24131f5@kernel.org?part=3D5
