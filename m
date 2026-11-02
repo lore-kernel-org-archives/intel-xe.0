@@ -2,43 +2,149 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28398606A324
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 18:35:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A906606A324
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 18:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BcieJFso
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KWZ14aGB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D2D010F13B;
-	Mon,  2 Nov 2026 18:35:05 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 27E7310E13B;
- Mon,  2 Nov 2026 18:34:59 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 1B0A160609;
- Mon,  2 Nov 2026 18:34:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F8F01F00A17;
- Mon,  2 Nov 2026 18:34:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793644497;
- bh=6qIDn35Yo4W/SbtUA+gH/kviba5Fsv5JPHIsFCS+2EA=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=BcieJFso4J6eOAsGIVYP8chCDXUN/ExDAph7mO5kPGJ2UrfQ8+CMxBUfS8AZmlIvE
- qH1otO3eGfhQJY6NK4nnFzuLUWHCo2HPaoLi3WUaW2WXr5Wc3qus1MbuwkzUuqfick
- f129Fq9svuaGw6ZZldpU9i5qz7xjPacZg2liAwW36ulq4lkXAYKV7JnhUX7pkxv/Ot
- fiesvhnYQQFlsjR2MIJ50/8pV1O6RtkmRbqMaQPynUZW9O52GxHFHYZv7u+X3G/Cc9
- iiXhAVKk7N7WIVmijOyGGawpOTIxoBKjrj70J8Xk712eYoLUtybYcp+Zfe606hhs5y
- 1ptzVVUFG7nFQ==
-Message-ID: <sashiko-outbox-193948@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v10 08/15] drm/panel: add connector luminance forwarding
-To: =?utf-8?b?TWFyaW8gTGltb25jaWVsbG8gKEFNRCk=?= <superm1@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261102-superm1-backlight-property-v10-8-b2a6f24131f5@kernel.org>
-References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
- <20261102-superm1-backlight-property-v10-8-b2a6f24131f5@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 02 Nov 2026 18:34:57 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 347DE10E095;
+	Mon,  2 Nov 2026 18:48:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6776B10E095
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 18:48:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793645314; x=1825181314;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=/sRYzSOjW1ZHqML03aJeKSWowdi4CNpRj+cs4VbKkcA=;
+ b=KWZ14aGBg/kLuRM/lLOldWHuSijdmNPSKhG+eFOQz9N6ZTk68qq2+MgM
+ ev5jHRN6SH9EXiGZ0NJKUH+kuezBRm9U+mhINeG/CPJWefu4R0sAnn46U
+ XS3vpX0e9dI3sVqiVQTgnP2o8iOS+0moKWCYJezPs3PrXnOhNf2SNdHZg
+ ypjY9WXuCPuxD6iinvJfjHmJ+pyhrUjCBfYQnBvJg5I/Nq/adUyTtZqpw
+ e5RdKeZVsjSZYPtN43HAzHV8nUTeEk2+YvoP/9vpT4bnu+BhkLjonXtfc
+ uX1MjEEBDfdOawobypHfhULM71FDvJ094LhvXYrRvp+UDLym422WVlDRQ g==;
+X-CSE-ConnectionGUID: 6UaEiaetRrSgfvb9fLv9iw==
+X-CSE-MsgGUID: BIPEDUWRRt6J5NC6zO5zMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2380989"
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="2380989"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 10:48:34 -0800
+X-CSE-ConnectionGUID: j6k+f4Q6RqiOPxrWX+sR3g==
+X-CSE-MsgGUID: mIglx0mFRfi40wdMd074VA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="6195144"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 10:48:34 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Mon, 2 Nov 2026 10:48:33 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Mon, 2 Nov 2026 10:48:33 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.10) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Mon, 2 Nov 2026 10:48:33 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hW1arbUcPF4PoAgmBWr2MutXblwAcwJfZOGXEYcRsANJUh+6bPUEJwXq0gIAD/fD/IvtiL5ZCV64IaaBEGAsVQMrEq7ZGakkrZHqjORAqUREsSwKa1kIlgPlDWapY+wxQq9dGn3L5csSi4smU7e0YWa8T9ACP9I4FGy7eoEu1Ml9InYLEEhhJJSMb++VbFgolfA6BFXEdzl4KcVwrbsUwUViSipd7P2IWnYS5NVSbnDfDh41LnYiYNJ+vTon46iWAVdF5X/LdVATjzr3bSv65qmx64pS2admuy/A0SdAwswda4y05RHprmr9KJAHW2D8eLGVeDm3CeKMCP4qorVYnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=09ghrTkXVh/f0hZb8cG2yeIuWFze162CXFa8WpkWsR0=;
+ b=T40g1grr63D6HACS//Q/8m4iMQUo48J6jQ381WNqEVr7OuTCDutLrnujIpVM++QK9Jo/bPn4yDGp5dl3ETK2xcW3asOHcV8OIGKDnM4dPVgmUpVknQ+W9nFvaZ9bFC35J91QetW0/SPAdoDUwnFIhtmYHN4aVIoQh0JO+ecYhEh1sae4Uaad+rJnTf90Y+ww6AbuqCxnx8FDF9fZaWn39/fGoGQ3WZdC12j50AgTZ+P9HI0ZTMnlBJPToWBEnV7czvlDKlhmNnmKj/pVUNkjoOxHjlezHFZRoDqPY4f5wtlqwnmkfokfrchyY7gGNeVdtVhs6WKcWLXLFID0knkU/Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ5PPF89507EDE4.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::83e) by SJ0PR11MB4957.namprd11.prod.outlook.com
+ (2603:10b6:a03:2df::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
+ 2026 18:48:31 +0000
+Received: from SJ5PPF89507EDE4.namprd11.prod.outlook.com
+ ([fe80::4fa4:138e:7455:9384]) by SJ5PPF89507EDE4.namprd11.prod.outlook.com
+ ([fe80::4fa4:138e:7455:9384%5]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
+ 18:48:31 +0000
+Date: Mon, 2 Nov 2026 10:48:28 -0800
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v2 07/10] drm/xe: Replace MAXCNT comment with a comment
+ on adjust_idledly()
+Message-ID: <20261102184828.GA326958@msatwood-mobl>
+References: <20261030-wa_16031259911-v2-0-919fa1c27070@intel.com>
+ <20261030-wa_16031259911-v2-7-919fa1c27070@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20261030-wa_16031259911-v2-7-919fa1c27070@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0069.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::14) To SJ5PPF89507EDE4.namprd11.prod.outlook.com
+ (2603:10b6:a0f:fc02::83e)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ5PPF89507EDE4:EE_|SJ0PR11MB4957:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41bc11a0-9bd3-4ca9-f7c7-08df3911e3db
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|10070799003|1800799024|23010399003|366016|261021123027099003|261021121427099003|11063799006|4143699003|56012099006|261026121527099003|261009223027099003|10067099003|18002099003|22082099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: xvMS9ELcCohWAR/EM7P6bErtPp/yiybDWY0Jq3XkX1gq2o5oHJBEK2y7v2r8KbxixyHlrhvmx7woFARjKhBdB5YJZDMi3zJVogvQlw6exFDff3eyl7+niPvYEA2za3XiD6CtgRpmtfGTOQMrVDO1S+ClQxHIjMcQkSt478R5L4Cro4UC+7XLzuCRSK8PAV0z5nFNZxWg88ZnOwx0WYhEwVbCUwNvihp+N75FuR/XCtPp0usrmKbFonMWQAlf73n12EhbwmV9tBOD5uvQyb6EVfWjFy/zjaWEnKw2+IYca1bOP0SuT7EE8Hfb3fG01UWVBeaA90kgiEvW5nktqXJMHYekCd7tEL5mgP9xEr7RL5bTIfWwRy4wHYPqHsuQA6Oosw+NUxqqflGTKNZVPl91CR3fKt+WM/jQzqSoBDydlYhSBGocc3tl4zvwwL4iXmBa7wmdR0dVXyEd1Na7FykCzIqThnH1p0o593v0Bsfv4qhQq/a12tfWKv75WKetwjTFH2btUfMK3ctohL23GSd88rAIXOIhOfqwcZ9fgcZ83ovN4O89a0vGGkF5P8Fw7T0AnkPw7IpIvnAw24i9U7vSWoc2NEEesbmLpUxvTl87apw7H2mfFYzuXboBXPSlFwjkVmZPPf2HpyAC/6Ch4jmueB2Zr5DK9ZyZpsIYUHxO6VQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ5PPF89507EDE4.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(10070799003)(1800799024)(23010399003)(366016)(261021123027099003)(261021121427099003)(11063799006)(4143699003)(56012099006)(261026121527099003)(261009223027099003)(10067099003)(18002099003)(22082099003)(261102123227099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4U6IORV0bMAtQRZ7IO7IPc/df+WgrqXFiMO3+aYYjfg53JmZuZmErRuz+O+r?=
+ =?us-ascii?Q?USmAARoFyzzfVm5PVEPTpgidJ36xwOkA7WrAsfnkEKZMPoZHWnrkstbjIuK5?=
+ =?us-ascii?Q?LphWdMr8paKraLPIYhvnc+ZREILi9fMihsrreA4lBiB1tbDYnK0+oiHyAj4E?=
+ =?us-ascii?Q?avnbPJrHd6Oek9VGZalw2K/Adoz31vxSblIXR4FUokf4CSho/PY+W87O7xWr?=
+ =?us-ascii?Q?A9/hiMKrjq1FKTkYMbQmpOhdBnhWGJeZBzAahMFuEkT3A5xKgWNr7QrUDoP/?=
+ =?us-ascii?Q?TK0DZQ4F0szAcrULIFZxolfq+maVVb99O5tJpLpufXnfAXgG1sNxRxJs2IiJ?=
+ =?us-ascii?Q?xh8UKqZyPHWT6hoqHVfDG1DPRfiBznrlBYCtWt126R1cynHN5HBb9ppLTKxs?=
+ =?us-ascii?Q?FLD6Mzh18KU/3khvuSL1emWnQeLc5pKDGptYORAhLHLMFPGbKhSzBAV9tKwt?=
+ =?us-ascii?Q?sdFRX6qMiC+CBmr+9iT3TLMRb+xMgQADh2VX+tge3UZvPDflSUKuJmz89ISS?=
+ =?us-ascii?Q?k0ucrASiKVgElfnZ+5y2LsgCUH+Rsibni1jPpbth9UnryS0nwR3GlN4yuyqJ?=
+ =?us-ascii?Q?xJa7zQqB+DDRviqXOnEIhH+ZDVocO0srU7FnDD2Bu2D6loeFWYjywhrRx29F?=
+ =?us-ascii?Q?KxQVU4NWl8S/qEDmTxSa11L4tkAoiPtbGQTWZ8m5EbdXjLW0vkSgwZDlci6L?=
+ =?us-ascii?Q?1M+5WJFF1BQbO5VF/dftw0wn+8sFEwetK4lwx9Zy/SQYCBXu6gVLMoFF2lN2?=
+ =?us-ascii?Q?ueVCz69Ibjp0DnGY+nSxqxRGgpRrMKbO4WONe/TxQ3JBD7PTu6YvE9fDnATD?=
+ =?us-ascii?Q?Zkdsjcf7WZJOWeaOwibGSsbvbkvXWLcE6zguy/RjJ3QQ2Hv4LpokDTh1r+Nv?=
+ =?us-ascii?Q?dNt4ZnI4OpZBVmvNJeeycTNoKVGzjHOeY70EelgzubZMZz3Kzn42BvNRSnGo?=
+ =?us-ascii?Q?D/umPoq5LLHzEgNUdX19PBQy2Se1jnmEodqRUhdWA0OL3i26F1cjn1qlML8i?=
+ =?us-ascii?Q?cY9oilbWrm3DcYWzN5ZvTYVdpd5qwYKYbKupuFEHRac96Bu4+66N9YtRV5/O?=
+ =?us-ascii?Q?Hd89uoLAMmD77FcuZ5kKxTMWOlXbpJPuLzTk8Ss2Dp1sN9TFtLbOCGG3jFat?=
+ =?us-ascii?Q?LEY5ZuvOYHtaNPifKVL9LbbHf7EA+qc3zbyjnhNlSF2USHB1/8DX+rf56uDb?=
+ =?us-ascii?Q?AskGt20x/FY/cTov5efc040/Mijbi/Y78ncW9O9e13d5JtnxYInfEVQYt3aZ?=
+ =?us-ascii?Q?H67AtB2LP060LJnsNQn01BIt7fzUjTblO/6dSQZHBaPXXhydDl2btREEzY+G?=
+ =?us-ascii?Q?/plwkiM0bFg936BgwJxXi1Q9ZKwjXWJTikngt7PwVbBIknQ/HFRHT6tiY6kh?=
+ =?us-ascii?Q?bZiYyGSVsn53cuYXLwyYE5ADLqALcIGPbB4v1TB3jWqfcbmERvWisG4U4rMY?=
+ =?us-ascii?Q?9rTVGjEbHFVcqudoW9+0rcD1TVcqqCB6DfkcmcaSh4FaykmguKXyoMvq8F9J?=
+ =?us-ascii?Q?Y/tNY+yOxJ3spkuuRbpqjVBGjmqc6R7kH2d6bgzLd9yNNvagOPj9hPe3qwUO?=
+ =?us-ascii?Q?+/swS2Eqcvz4KX2GGq6Fi16i1T1iih+6gf0lKAZsv1Z7aqVNITofcvIkzbgq?=
+ =?us-ascii?Q?NqFntO5GcbRUjsvMiH/tESlY5YskAFHXy0fI9WKi/majxsUYoGna50D1H9b7?=
+ =?us-ascii?Q?irloXjiY2/+mbqGuD1Vsmv3bj2ByEq2aT45hU4w+YPOdx8tbmQ8M1otsY8WY?=
+ =?us-ascii?Q?zv0IVtZNmDQdmeQbRJG6TuDIe/wwNtMTp3WZ74UI+N2D+2MRHwNVbR2sJh/J?=
+X-MS-Exchange-AntiSpam-MessageData-1: 8I8i/meyTbSC6LFgskMk4lBn67sJ71xKwy8=
+X-Exchange-RoutingPolicyChecked: XI5kuxvjokfcuaQjxaYheQ5BuT+BCBVxObN54tfpLWeCYGU6fK39VJaFP3SjpAnDoC3qOnxNsqz/eapRR7NQcuzuIQSNe8kjcZI3+smDu9OQ0HHtRRexLXwK98WNGEm9hw8IF14POhqDLkbYe9/TFFO92QTQ6WJKyfufL3imm90zS/IROFPBjWU1K/fHm8umKQNK9PqorplTigx2aIjBmdXwGBj/7IGWEA0uFnW9dOL8cVjJ3tv8bLOq5udwSy2vggIhzXfmLbURfVIdiSQf5WrHbrPa0V7OrJlKYKE0H885AB2JT8j6MNU0ABoNLnfmo5VxvLHhQNqV0LswlmEAZA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41bc11a0-9bd3-4ca9-f7c7-08df3911e3db
+X-MS-Exchange-CrossTenant-AuthSource: SJ5PPF89507EDE4.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2026 18:48:31.3196 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /TaHC1IUD5V43hKhE00rdAOp/PJt7IiQATnBoEf5ip+QhKcGjNd0CmTB3dDsaT7/WdKTOpvrgi4KbUDUm18mMIq+zmehUSxrHLv0p19cAi0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4957
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,334 +154,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 4 potential issue(=
-s) to consider:
-- [Critical] drm/panel: invalid container_of cast to panel_bridge in lumina=
-nce callbacks
-- [High] drm/panel: drm_panel_disable_luminance() and drm_panel_set_luminan=
-ce() break PSR and blank state
-- [Medium] drm/panel: missing drm_connector_cleanup() on error in panel_bri=
-dge_attach()
-- [Low] drm/panel: unintended removal of panel bridge stubs from drm_panel.h
---
-
-commit 3eac0878c8a6609d8eb6adf67569604a16f5b3e4
-Author: Mario Limonciello <mario.limonciello@amd.com>
-
-drm/panel: add connector luminance forwarding
-
-This commit adds helpers to expose a panel backlight via the DRM connector
-luminance property and hooks them into panel bridges that create their own
-connector.
-
-> diff --git a/drivers/gpu/drm/drm_panel.c b/drivers/gpu/drm/drm_panel.c
-> index c00529bfb706b..a5706edad9735 100644
-> --- a/drivers/gpu/drm/drm_panel.c
-> +++ b/drivers/gpu/drm/drm_panel.c
-> @@ -38,6 +38,19 @@ static LIST_HEAD(panel_list);
->   * take look at drm_panel_bridge_add() and devm_drm_panel_bridge_add().
->   */
-> =20
-> +struct panel_bridge {
-> +	struct drm_bridge bridge;
-> +	struct drm_connector connector;
-> +	struct drm_panel *panel;
-> +	u32 connector_type;
-> +};
-> +
-> +static inline struct panel_bridge *
-> +drm_connector_to_panel_bridge(const struct drm_connector *connector)
-> +{
-> +	return container_of(connector, struct panel_bridge, connector);
-> +}
-> +
->  static inline struct drm_panel *
->  drm_bridge_to_panel(const struct drm_bridge *bridge)
+On Fri, Oct 30, 2026 at 07:57:46PM -0300, Gustavo Sousa wrote:
+> The adjust_idledly() function does more than what the comment on the
+> call site says.  Drop that outdated comment and document
+> adjust_idledly() at its definition instead.
+> 
+> v2:
+>   - Add a comment above adjust_idledly() instead of just dropping the
+>     call-site comment. (Matt)
+> 
+> Cc: Matt Atwood <matthew.s.atwood@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_hw_engine.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> index 08bd8754ad09..7950e118ee1d 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> @@ -596,6 +596,9 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+>  	xe_reg_whitelist_process_engine(hwe);
+>  }
+>  
+> +/*
+> + * Apply workarounds that require adjustments to RING_IDLEDLY.
+> + */
+>  static void adjust_idledly(struct xe_hw_engine *hwe)
 >  {
-> @@ -50,13 +63,6 @@ drm_connector_to_panel(const struct drm_connector *con=
-nector)
->  	return container_of(connector, struct drm_panel, connector);
->  }
-> =20
-> -struct panel_bridge {
-> -	struct drm_bridge bridge;
-> -	struct drm_connector connector;
-> -	struct drm_panel *panel;
-> -	u32 connector_type;
-> -};
-> -
->  static int panel_bridge_connector_get_modes(struct drm_connector *connec=
-tor)
->  {
->  	struct drm_panel *panel =3D drm_connector_to_panel(connector);
-> @@ -64,9 +70,29 @@ static int panel_bridge_connector_get_modes(struct drm=
-_connector *connector)
->  	return drm_panel_get_modes(panel, connector);
->  }
-> =20
-> +static void
-> +panel_bridge_connector_set_luminance(const struct drm_connector_state *c=
-onn_state)
-> +{
-> +	struct panel_bridge *panel_bridge =3D
-> +		drm_connector_to_panel_bridge(conn_state->connector);
-> +
-> +	drm_panel_set_luminance(panel_bridge->panel, conn_state->luminance);
-> +}
-> +
-> +static void
-> +panel_bridge_connector_disable_luminance(const struct drm_connector_stat=
-e *conn_state)
-> +{
-> +	struct panel_bridge *panel_bridge =3D
-> +		drm_connector_to_panel_bridge(conn_state->connector);
-> +
-> +	drm_panel_disable_luminance(panel_bridge->panel);
-> +}
-
-[Severity: Critical]
-Since commit b7797081ccfe ("drm/panel: embed a drm_bridge into every
-drm_panel"), the bridge and connector are embedded directly inside struct
-drm_panel, and struct panel_bridge is an unused leftover definition that is
-never allocated.
-
-In panel_bridge_attach(), the connector initialized with
-panel_bridge_connector_helper_funcs is &panel->connector:
-
-	struct drm_panel *panel =3D drm_bridge_to_panel(bridge);
-	struct drm_connector *connector =3D &panel->connector;
-
-Calling drm_connector_to_panel_bridge(conn_state->connector) in
-panel_bridge_connector_set_luminance() and
-panel_bridge_connector_disable_luminance() computes container_of() for stru=
-ct
-panel_bridge on a struct drm_panel instance, so reading panel_bridge->panel
-reads the fields following connector in struct drm_panel (connector_type and
-list) as a struct drm_panel pointer.
-
-Won't passing that pointer to drm_panel_set_luminance() or
-drm_panel_disable_luminance() dereference an invalid panel->backlight addre=
-ss,
-and should these callbacks use drm_connector_to_panel(conn_state->connector)
-instead?
-
->  static const struct drm_connector_helper_funcs
->  panel_bridge_connector_helper_funcs =3D {
->  	.get_modes =3D panel_bridge_connector_get_modes,
-> +	.set_luminance =3D panel_bridge_connector_set_luminance,
-> +	.disable_luminance =3D panel_bridge_connector_disable_luminance,
->  };
-> =20
->  static const struct drm_connector_funcs panel_bridge_connector_funcs =3D=
- {
-> @@ -101,6 +127,10 @@ static int panel_bridge_attach(struct drm_bridge *br=
-idge,
-> =20
->  	drm_panel_bridge_set_orientation(connector, bridge);
-> =20
-> +	ret =3D drm_panel_attach_luminance_property(panel, connector);
-> +	if (ret)
-> +		return ret;
-
-[Severity: Medium]
-In panel_bridge_attach(), drm_connector_init() has already succeeded and
-linked &panel->connector into bridge->dev->mode_config.connector_list before
-drm_panel_attach_luminance_property() is called.
-
-When bridge->funcs->attach() fails in drm_bridge_attach(), the error path
-resets the bridge without calling bridge->funcs->detach().
-
-Should this error path call drm_connector_cleanup(connector) before returni=
-ng
-ret so that &panel->connector is not left linked on mode_config.connector_l=
-ist
-if drm_panel_attach_luminance_property() fails?
-
-[ ... ]
-
-> @@ -861,6 +891,61 @@ void drm_panel_disable(struct drm_panel *panel)
->  }
->  EXPORT_SYMBOL(drm_panel_disable);
-> =20
-> +/**
-> + * drm_panel_attach_luminance_property - expose a panel backlight throug=
-h DRM
-> + * @panel: panel whose backlight is controlled
-> + * @connector: connector on which to expose the property
-> + *
-> + * The backlight class device remains the internal hardware backend. Whe=
-n the
-> + * luminance UAPI is enabled, userspace controls that backend through th=
-e DRM
-> + * connector property instead.
-> + *
-> + * Return: 0 on success or a negative error code
-> + */
-> +int drm_panel_attach_luminance_property(struct drm_panel *panel,
-> +					struct drm_connector *connector)
-> +{
-> +	struct backlight_device *backlight;
-> +
-> +	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE) || !panel)
-> +		return 0;
-> +
-> +	backlight =3D panel->backlight;
-> +	if (!backlight)
-> +		return 0;
-> +
-> +	return drm_connector_attach_luminance_property(connector, 0,
-> +					backlight->props.max_brightness,
-> +					backlight->props.brightness);
-> +}
-> +EXPORT_SYMBOL(drm_panel_attach_luminance_property);
-> +
-> +/**
-> + * drm_panel_set_luminance - set a panel backlight's relative luminance
-> + * @panel: panel whose backlight is controlled
-> + * @luminance: relative luminance level
-> + */
-> +void drm_panel_set_luminance(struct drm_panel *panel, unsigned int lumin=
-ance)
-> +{
-> +	if (!panel || !panel->backlight)
-> +		return;
-> +
-> +	panel->backlight->props.brightness =3D luminance;
-> +	backlight_update_status(panel->backlight);
-> +}
-> +EXPORT_SYMBOL(drm_panel_set_luminance);
-> +
-> +/**
-> + * drm_panel_disable_luminance - turn off a panel backlight
-> + * @panel: panel whose backlight is controlled
-> + */
-> +void drm_panel_disable_luminance(struct drm_panel *panel)
-> +{
-> +	if (panel)
-> +		backlight_disable(panel->backlight);
-> +}
-> +EXPORT_SYMBOL(drm_panel_disable_luminance);
-
-[Severity: High]
-How do drm_panel_disable_luminance() and drm_panel_set_luminance() interact
-with panel self-refresh and the backlight blank state?
-
-In drm_panel_disable_luminance(), backlight_disable() sets:
-
-	bd->props.power =3D BACKLIGHT_POWER_OFF;
-	bd->props.state |=3D BL_CORE_FBBLANK;
-
-whereas drm_panel_set_luminance() only updates props.brightness and calls
-backlight_update_status() without clearing BL_CORE_FBBLANK or restoring
-BACKLIGHT_POWER_ON.
-
-In panel_bridge_atomic_disable() and panel_bridge_atomic_enable(), the brid=
-ge
-checks self_refresh_active and returns early so that drm_panel_disable() and
-drm_panel_enable() are skipped during self-refresh:
-
-	new_crtc_state =3D drm_atomic_get_new_crtc_state(atomic_state, crtc);
-	if (new_crtc_state && new_crtc_state->self_refresh_active)
-		return;
-
-However, disable_outputs() still runs drm_atomic_helper_commit_luminance_di=
-sables()
-when entering self-refresh, which calls panel_bridge_connector_disable_lumi=
-nance()
-and turns the backlight off via backlight_disable(). When exiting
-self-refresh, panel_bridge_atomic_enable() skips drm_panel_enable() (so
-backlight_enable() is never called), and drm_panel_set_luminance() leaves
-BACKLIGHT_POWER_OFF and BL_CORE_FBBLANK set, keeping the backlight blanked.
-
-Also, on a normal modeset disable, drm_atomic_helper_commit_luminance_disab=
-les()
-runs before drm_atomic_helper_commit_encoder_bridge_disable(), which disabl=
-es
-the backlight before panel_disabling followers run in drm_panel_disable(), =
-and
-on modeset enable drm_panel_enable() calls backlight_enable() with the old
-props.brightness before drm_panel_set_luminance() updates it.
-
-Could drm_panel_set_luminance() unblank the backlight (or use
-backlight_enable()), and should panel luminance disable/enable respect
-self-refresh and panel sequencing?
-
-> diff --git a/include/drm/drm_panel.h b/include/drm/drm_panel.h
-> index 58113ea7d63a0..76d49d4485ff0 100644
-> --- a/include/drm/drm_panel.h
-> +++ b/include/drm/drm_panel.h
-
-[ ... ]
-
-> @@ -418,40 +423,6 @@ struct drm_bridge *devm_drm_panel_bridge_add_typed(s=
-truct device *dev,
->  struct drm_bridge *drmm_panel_bridge_add(struct drm_device *drm,
->  					 struct drm_panel *panel);
->  struct drm_connector *drm_panel_bridge_connector(struct drm_bridge *brid=
-ge);
-> -#else
-> -static inline bool drm_bridge_is_panel(const struct drm_bridge *bridge)
-> -{
-> -	return false;
-> -}
-> -
-> -static inline int drm_panel_bridge_set_orientation(struct drm_connector =
-*connector,
-> -						   struct drm_bridge *bridge)
-> -{
-> -	return -EINVAL;
-> -}
-> -#endif
-> -
-> -#if defined(CONFIG_OF) && defined(CONFIG_DRM_PANEL_BRIDGE)
-> -struct drm_bridge *devm_drm_of_get_bridge(struct device *dev, struct dev=
-ice_node *node,
-> -					  u32 port, u32 endpoint);
-> -struct drm_bridge *drmm_of_get_bridge(struct drm_device *drm, struct dev=
-ice_node *node,
-> -				      u32 port, u32 endpoint);
-> -#else
-> -static inline struct drm_bridge *devm_drm_of_get_bridge(struct device *d=
-ev,
-> -							struct device_node *node,
-> -							u32 port,
-> -							u32 endpoint)
-> -{
-> -	return ERR_PTR(-ENODEV);
-> -}
-> -
-> -static inline struct drm_bridge *drmm_of_get_bridge(struct drm_device *d=
-rm,
-> -						    struct device_node *node,
-> -						    u32 port,
-> -						    u32 endpoint)
-> -{
-> -	return ERR_PTR(-ENODEV);
-> -}
->  #endif
-
-[Severity: Low]
-Was this removal of the fallback stubs and the devm_drm_of_get_bridge() /
-drmm_of_get_bridge() declarations in include/drm/drm_panel.h an unintended
-rebase artifact against commit aa8a8c7e4641 ("drm/bridge: panel: move all c=
-ode
-to drm_panel.c")?
-
-It looks like the preceding patch in the series re-added these blocks to
-include/drm/drm_bridge.h, and this hunk removes only the #else half and the
-of_get_bridge block from include/drm/drm_panel.h while leaving the #ifdef
-CONFIG_DRM_PANEL_BRIDGE declarations duplicated in both headers.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102-superm1-ba=
-cklight-property-v10-0-b2a6f24131f5@kernel.org?part=3D8
+>  	struct xe_gt *gt = hwe->gt;
+> @@ -719,7 +722,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+>  			xe_hw_engine_enable_ring(hwe);
+>  	}
+>  
+> -	/* Ensure IDLEDLY is lower than MAXCNT */
+>  	adjust_idledly(hwe);
+>  
+>  	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
+> 
+> -- 
+> 2.56.0
+> 
