@@ -2,56 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C47B6606A327
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E931606A326
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:39:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AKJD0+da
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F++8EZcP
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A6E410E714;
-	Mon,  2 Nov 2026 22:35:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B99B910F274
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:35:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793658920; x=1825194920;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3fX2SL42qu80evn/skNMptjXR/0jA1jSuOi+QRnRrKI=;
- b=AKJD0+daoZ49nOVE/cVTYGPYHIuOyidDIxAppo8MWrCI136PQ7e4cG10
- DyovcnuliVN4e2Gb7MDFTwwiJu/s1MxtiYY7aNBNHEov8C66ULcHtzy5p
- LT7wdsuxAC4mxIx8h+WME6cYct6u/nJU8dRdO469RnCp6HNhFFrCovOJT
- sSjV3P6RJMWtPS1cWB6Pix2iZR9Boh2qRSoPAtOXdJ3JYvakWQGwZcNiz
- otmvbUTFuvm+WjpwM2Oma5H7eo+vLZ9FlPFGgr95Py2DAqgaVLvi+GeMA
- yE+HHDgZHDB/Xyo8oOsgSZcY7RTkIyzHOIxv4cGDmKipKugBvKO51VDki w==;
-X-CSE-ConnectionGUID: IKbnDExsSWOiYcvTL6LDYg==
-X-CSE-MsgGUID: QQC8/43FQ9iewPGc0qw1Rg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2362378"
-X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="2362378"
-Received: from fmviesa011.fm.intel.com ([10.60.135.151])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 14:35:20 -0800
-X-CSE-ConnectionGUID: U/O/WlXcR5GGIae72THeLQ==
-X-CSE-MsgGUID: KBTntMPhT66c2FzoIn6Dig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="8028479"
-Received: from orsosgc001.jf.intel.com ([10.54.56.63])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 14:35:20 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: rodrigo.vivi@intel.com,
-	intel-xe@lists.freedesktop.org
-Cc: jani.saarinen@intel.com
-Subject: [drm-intel/topic/core-for-CI v3] io_uring/sqpoll: don't set
- IO_SQ_THREAD_SHOULD_STOP on thread exit
-Date: Mon,  2 Nov 2026 14:35:10 -0800
-Message-ID: <20261102223509.2821164-2-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.55.0
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1119010E710;
+	Mon,  2 Nov 2026 22:39:02 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4021410E710
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:38:56 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 44FAF601EF;
+ Mon,  2 Nov 2026 22:38:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D40091F00A16;
+ Mon,  2 Nov 2026 22:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793659135;
+ bh=2bjoyYT7Z7xR6TRpc6fiTdRwdQCirlHnTv8hlmvipX4=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=F++8EZcP52g5DZOyzDixebibbs+8KqWy3tREyTgfAr/eytSrHXbjLfpNg7Uh45g1X
+ LbrxC+FExXrMybDTGXISohIFK0oRalozj6r/F6YpJsA577gKgR9HvLyNCJ1e+AU7g8
+ fVEbHCiS+d/ir390ti/KwObUfPyrzYBC5ZdJlchU//WBfifGX6+kUPYCq1bflLirSi
+ 6crRLo5HVr6jZzG1zLBsNfDlnYnBzbqHxNB+idTEsscPVjUbEFnsU4ge7HwuTiOrnO
+ kjQczMzxqKy52BHxXfJz2WECn17qEaFbd4ZQRgUJzlZpp2ArgNJ8Gp33NijJ8Vx0Hk
+ 9w1oEam+hW9nA==
+Message-ID: <sashiko-outbox-194293@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v13 11/16] drm/xe/vsec: Crescent Island PMT callbacks
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261102221314.119028-29-michael.j.ruhl@intel.com>
+References: <20261102221314.119028-18-michael.j.ruhl@intel.com>
+ <20261102221314.119028-29-michael.j.ruhl@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 02 Nov 2026 22:38:54 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,95 +47,227 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-From: Shuai Liu <847807867@qq.com>
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] drm/xe/vsec: xe_pmt_telem_read() leaves CRI discovery window rem=
+apped
+- [Low] drm/xe/vsec: mixed goto and scoped_guard() cleanup in reg callbacks
+--
 
-io_sq_thread_stop() carries a WARN_ON_ONCE() asserting that
-IO_SQ_THREAD_SHOULD_STOP isn't set yet, i.e. that stopping the SQPOLL
-thread is never attempted twice. Since commit 22d9db9fd64a
-("io_uring/sqpoll: don't attach to a thread that is canceling"), the
-SQPOLL thread itself sets that bit on its way out, so that
-io_sq_offload_create() won't attach a new ring to a thread that is
-canceling.
+commit dc4cd399324f5200a61e70ed93f8ba5b2a90435c
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-When the thread exits on a fatal signal, the bit is thus set before the
-ring teardown gets to io_sq_thread_stop(), which now triggers the
-warning on every such exit:
+drm/xe/vsec: Crescent Island PMT callbacks
 
-  WARNING: io_uring/sqpoll.c:88 at io_sq_thread_stop
-  Workqueue: iou_exit io_ring_exit_work
-  Call Trace:
-   io_put_sq_data
-   io_sq_thread_finish
-   io_ring_ctx_free
-   io_ring_exit_work
+This commit introduces Crescent Island PMT register read and write callbacks
+to access the discovery status and control areas via the indexed MMIO window
+and registers the CRI PMT functionality.
 
-Introduce a separate IO_SQ_THREAD_EXITING bit for the thread marking
-itself as on its way out, and check it in io_sq_offload_create() along
-with IO_SQ_THREAD_SHOULD_STOP. IO_SQ_THREAD_SHOULD_STOP regains its
-original meaning, "a stop has been requested", and the WARN_ON_ONCE()
-holds again.
+> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+> index a814d7151eeae..0f6e3be520c09 100644
+> --- a/drivers/gpu/drm/xe/xe_vsec.c
+> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+> @@ -358,20 +358,120 @@ int xe_pmt_telem_read(struct device *dev, u32 guid=
+, u64 *data, loff_t user_offse
+>  	return ret =3D=3D 0 ? count : ret;
+>  }
+> =20
+> -static struct pmt_callbacks xe_pmt_cb =3D {
+> +/**
+> + * xe_pmt_read_reg() - read a crashlog register
+> + * @dev: the xe device that registered the callback
+> + * @guid: PMT guid of the crashlog instance
+> + * @reg: data read from the PMT data structure
+> + * @offset: which data to read from the PMT data structure
+> + *
+> + * Read the requested PMT register based on the pcie device and guid.  T=
+he
+> + * supported struct is the Crashlog Type1 Version2.
+> + *
+> + * Currently this is for CRI only.
+> + *
+> + * Return:
+> + * * -ENODEV device is not available (hotplug)
+> + * * -EINVAL invalid guid
+> + * * 0       success
+> + */
+> +static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 o=
+ffset)
+> +{
+> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
+> +	void __iomem *disc_addr =3D xe->mmio.regs + xe->pmt.base_offset;
+> +	int ret =3D 0;
+> +	u32 inst;
+> +	int idx;
+> +
+> +	if (!drm_dev_enter(&xe->drm, &idx))
+> +		return -ENODEV;
+> +
+> +	if (FIELD_GET(GUID_DEVICE_ID, guid) !=3D CRI_DEVICE_ID ||
+> +	    FIELD_GET(GUID_CAP_TYPE, guid) !=3D CRASHLOG) {
+> +		ret =3D -EINVAL;
+> +		goto dev_exit;
+> +	}
+> +
+> +	inst =3D FIELD_GET(GUID_RECORD_ID, guid) =3D=3D PUNIT ?
+> +		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
+> +	disc_addr +=3D inst + offset;
+> +
+> +	xe_pm_runtime_get(xe);
+> +
+> +	scoped_guard(mutex, &xe->pmt.lock) {
+> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +
+> +		*reg =3D readl(disc_addr);
+> +	}
+> +
+> +	xe_pm_runtime_put(xe);
+> +
+> +dev_exit:
+> +	drm_dev_exit(idx);
+> +
+> +	return ret;
+> +}
+> +
+> +static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 o=
+ffset)
+> +{
+> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
+> +	void __iomem *disc_addr =3D xe->mmio.regs + xe->pmt.base_offset;
+> +	int ret =3D 0;
+> +	u32 inst;
+> +	int idx;
+> +
+> +	if (!drm_dev_enter(&xe->drm, &idx))
+> +		return -ENODEV;
+> +
+> +	if (FIELD_GET(GUID_DEVICE_ID, guid) !=3D CRI_DEVICE_ID ||
+> +	    FIELD_GET(GUID_CAP_TYPE, guid) !=3D CRASHLOG) {
+> +		ret =3D -EINVAL;
+> +		goto dev_exit;
+> +	}
+> +
+> +	inst =3D FIELD_GET(GUID_RECORD_ID, guid) =3D=3D PUNIT ?
+> +		CRI_CRASHLOG_PUNIT_DISC_OFFSET : CRI_CRASHLOG_OOBMSM_DISC_OFFSET;
+> +	disc_addr +=3D inst + offset;
+> +
+> +	xe_pm_runtime_get(xe);
+> +
+> +	scoped_guard(mutex, &xe->pmt.lock) {
+> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +
+> +		writel(reg, disc_addr);
+> +	}
+> +
+> +	xe_pm_runtime_put(xe);
+> +
+> +dev_exit:
+> +	drm_dev_exit(idx);
+> +
+> +	return ret;
+> +}
 
-Reproduced with an SQPOLL ring and an immediate fatal signal: the
-warning fires on v7.3.0+ (22d9db9fd64a present) and is gone with this
-change.
+[Severity: Low]
+As reported by Sashiko on v11 [1], this isn't a bug, but both
+xe_pmt_read_reg() and xe_pmt_write_reg() in drivers/gpu/drm/xe/xe_vsec.c mix
+goto-based cleanup (goto dev_exit) with scope-based cleanup
+(scoped_guard(mutex, &xe->pmt.lock)) in the same function, and duplicate
+nearly identical bodies differing only in readl() vs writel().
 
-Reported-by: syzbot+675af112519ca34f5502@syzkaller.appspotmail.com
-Closes: https://syzkaller.appspot.com/bug?extid=675af112519ca34f5502
-Fixes: 22d9db9fd64a ("io_uring/sqpoll: don't attach to a thread that is canceling")
-Signed-off-by: Shuai Liu <847807867@qq.com>
-References: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17748
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9717
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17747
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- io_uring/sqpoll.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+Since the guid validation only inspects the u32 guid argument, could that
+check be performed before drm_dev_enter() to avoid the dev_exit label (or
+convert the remaining cleanup in these functions to a consistent pattern),
+and could the shared setup between xe_pmt_read_reg() and xe_pmt_write_reg()
+be factored into a common helper?
 
-diff --git a/io_uring/sqpoll.c b/io_uring/sqpoll.c
-index c833e776320d..bbfb1a6e6668 100644
---- a/io_uring/sqpoll.c
-+++ b/io_uring/sqpoll.c
-@@ -29,6 +29,7 @@
- enum {
- 	IO_SQ_THREAD_SHOULD_STOP = 0,
- 	IO_SQ_THREAD_SHOULD_PARK,
-+	IO_SQ_THREAD_EXITING,
- };
- 
- void io_sq_thread_unpark(struct io_sq_data *sqd)
-@@ -436,9 +437,12 @@ static int io_sq_thread(void *data)
- 	/*
- 	 * Cancelation drops sqd->lock while it waits, and a ring could attach
- 	 * to a thread that is on its way out. A fatal signal doesn't set the
--	 * bit, so set it here for io_sq_offload_create() to see.
-+	 * stop bit, so mark the thread as exiting here for
-+	 * io_sq_offload_create() to see. IO_SQ_THREAD_SHOULD_STOP is left
-+	 * alone, as it means a stop has been requested via
-+	 * io_sq_thread_stop().
- 	 */
--	set_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state);
-+	set_bit(IO_SQ_THREAD_EXITING, &sqd->state);
- 	io_uring_cancel_generic(true, sqd);
- 	rcu_assign_pointer(sqd->thread, NULL);
- 	put_task_struct(current);
-@@ -510,7 +514,8 @@ __cold int io_sq_offload_create(struct io_ring_ctx *ctx,
- 		/* don't attach to a dying SQPOLL thread, would be racy */
- 		ret = 0;
- 		if (attached && (!sqd->thread ||
--		    test_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state)))
-+		    test_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state) ||
-+		    test_bit(IO_SQ_THREAD_EXITING, &sqd->state)))
- 			ret = -ENXIO;
- 		io_sq_thread_unpark(sqd);
- 
--- 
-2.55.0
+[ ... ]
 
+> @@ -399,8 +499,15 @@ void xe_vsec_init(struct xe_device *xe)
+>  	switch (platform) {
+>  	case XE_VSEC_BMG:
+>  		xe->pmt.base_offset =3D BMG_TELEMETRY_OFFSET;
+> -		info->priv_data =3D &xe_pmt_cb;
+> +		info->priv_data =3D &xe_bmg_pmt_cb;
+>  		break;
+> +
+> +	case XE_VSEC_CRI:
+> +		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
+> +		info->priv_data =3D &xe_cri_pmt_cb;
+> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +		break;
+
+[Severity: Medium]
+Can a call to xe_pmt_telem_read() leave the shared CRI_PMT_OFFSET MMIO wind=
+ow
+banked to a telemetry or crashlog payload region instead of
+CRI_IDX_TELEM_DISCOVERY when PMT discovery headers are read during probe?
+
+On Crescent Island, both the discovery tables and the telemetry/crashlog da=
+ta
+banks share the CRI_PMT_OFFSET window controlled by set_telem_region().
+During auxiliary driver probe in pmt_telem_probe() and pmt_crashlog_probe(),
+the Intel PMT drivers read the discovery headers directly from the ioremapp=
+ed
+CRI_PMT_OFFSET window without calling read_reg() or holding xe->pmt.lock:
+
+drivers/platform/x86/intel/pmt/class.c:pmt_get_headers() {
+    ...
+	memset(entry->disc_header, 0, header_bytes);
+	memcpy_fromio(entry->disc_header, disc_table,
+		      min(header_bytes, resource_size(disc_res)));
+
+	/* Used by crashlog driver */
+	entry->disc_table =3D disc_table;
+    ...
+}
+
+and:
+
+drivers/platform/x86/intel/pmt/crashlog.c:pmt_crashlog_header_decode() {
+    ...
+	header->access_type =3D GET_ACCESS(readl(disc_table));
+	header->guid =3D readl(disc_table + GUID_OFFSET);
+	header->base_offset =3D readl(disc_table + BASE_OFFSET);
+
+	/* Size is measured in DWORDS, but accessor returns bytes */
+	header->size =3D GET_SIZE(readl(disc_table + SIZE_OFFSET));
+    ...
+}
+
+However, in drivers/gpu/drm/xe/xe_vsec.c, xe_pmt_telem_read() switches the
+remapper index to mem_region and does not restore CRI_IDX_TELEM_DISCOVERY
+before releasing xe->pmt.lock:
+
+	scoped_guard(mutex, &xe->pmt.lock) {
+		/* set SoC re-mapper index register based on GUID memory region */
+		xe->soc_remapper.set_telem_region(xe, mem_region);
+
+		memcpy_fromio(data, telem_addr, count);
+	}
+
+In addition, xe_vsec_init() sets CRI_IDX_TELEM_DISCOVERY without holding
+xe->pmt.lock.
+
+If pmt_telemetry or pmt_crashlog probes asynchronously as a module or is
+rebound via sysfs after any xe_pmt_telem_read() call (such as from debugfs
+residency reads or an earlier telemetry sysfs read), wouldn't
+pmt_get_headers() and pmt_crashlog_header_decode() read telemetry or crashl=
+og
+payload data instead of the discovery headers?
+
+[1] https://lore.kernel.org/r/20260923181115.2514193-38-michael.j.ruhl@inte=
+l.com
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102221314.1190=
+28-18-michael.j.ruhl@intel.com?part=3D11
