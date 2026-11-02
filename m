@@ -2,28 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B749606A324
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 06:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AEC606A324
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 07:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NRloYKYY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48B3B10E572;
-	Mon,  2 Nov 2026 06:34:02 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8791310E572;
- Mon,  2 Nov 2026 06:34:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5931788798759333186=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91D3610E574;
+	Mon,  2 Nov 2026 07:49:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC03710E574
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 07:49:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793605789; x=1825141789;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=w89E3ZgSHh1/fWJcChYIoaMl4cdJX+1uOH/8sA8+FKo=;
+ b=NRloYKYYYKzx5cSxaCeV9liggNI/0RzFkPF5jWbh9l5sCJITqWHClllW
+ SL8dJsURRLYskDY8muWvo9XHFtc9Idoemj/Y8DWgMbeaKAPBn0onjMrel
+ Z/3wNjGr0jE1cPRWBdrlK97t/WsNCvDxBQ8TpKHCzn0m01wefyNvCK6PU
+ BSaq5MF9wjqIO74XUODMwztL7Cf9ttRyYFYq1HpZEpKrxNUR4R/MwQnln
+ Jk1l1mMrREJsG5T0e/g1G+ggB6T9ddK1m9tr9nqhf7Q1rkEq0aZCM060v
+ rurDC2uz0mdQhvA2WAtJEZmOwyjgZdCtSp9hDaZPAzR34aNk3sK5aHAgL A==;
+X-CSE-ConnectionGUID: CKOtY6jaRKOFDAbIRGyLHw==
+X-CSE-MsgGUID: PJkbdcEcQ0Wm7lU9NvNCNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2293952"
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="2293952"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2026 23:49:48 -0800
+X-CSE-ConnectionGUID: qi8NdyB0SvG7MD5nZIBD+w==
+X-CSE-MsgGUID: iuUS+RixTUuliHu8XOEsHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="6066775"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2026 23:49:46 -0800
+Date: Mon, 2 Nov 2026 08:49:43 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com
+Subject: Re: [PATCH v5 13/13] drm/xe/cper: Prepare Intel CPER info records
+Message-ID: <auhAl1p1PBAcEaLg@black.igk.intel.com>
+References: <20261023043422.681260-15-badal.nilawar@intel.com>
+ <20261023043422.681260-28-badal.nilawar@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_gpu/buddy=3A_Fix_quadratic?=
- =?utf-8?q?_cost_of_range-biased_allocation_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Nov 2026 06:34:01 -0000
-Message-ID: <179360124154.100339.15638171495127517621@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261102051633.2035348-3-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20261102051633.2035348-3-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261023043422.681260-28-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,365 +67,475 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============5931788798759333186==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Oct 23, 2026 at 10:04:35AM +0530, Badal Nilawar wrote:
+> Prepare xe_cper_intel_info records from RAS info queue data. Depending
+> on the error class type, detail or aggregate, one or more info records
+> may be generated and embedded in the CPER record.
+> 
+> Assisted-by: LLM
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+> v5:
+>  - Simplify CPER info and event queue naming, and use size consistently
+>    for byte-size fields (Raag)
+>  - Add and handle info_log_size in cper intel header
+> v4:
+>  - Move struct xe_cper_einfo_entry to xe_cper_types.h (Raag)
+>  - Use kzalloc_flex()/kzalloc_objs() (Raag)
+>  - Allocate info queue buffer from reported total size (Raag)
+> ---
+>  drivers/gpu/drm/xe/xe_cper.c       | 247 ++++++++++++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_cper_types.h |  54 ++++++-
+>  drivers/gpu/drm/xe/xe_ras_types.h  |  25 +++
+>  3 files changed, 318 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index cb4a15a036ac..0d04a85cb1af 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -89,7 +89,7 @@ static u64 cper_timestamp_now(void)
+>  static void cper_init_intel_hdr(struct xe_device *xe,
+>  				const struct xe_ras_error_class *counter,
+>  				u64 first_timestamp, u32 sig_id, u32 error_count,
+> -				struct xe_cper_intel_hdr *ihdr)
+> +				u32 einfo_size, struct xe_cper_intel_hdr *ihdr)
+>  {
+>  	ihdr->counter = *counter;
+>  	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
+> @@ -105,6 +105,7 @@ static void cper_init_intel_hdr(struct xe_device *xe,
+>  	}
+>  
+>  	ihdr->error_count = error_count;
+> +	ihdr->info_log_size = einfo_size;
+>  
+>  	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->pci_bdf));
+>  	ihdr->validation_bits |= XE_CPER_VALID_PCI_BDF;
+> @@ -200,6 +201,212 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
+>  	kfree(rec);
+>  }
+>  
+> +/* Entries built from RAS error logs carry fixed-size error_details */
+> +#define XE_CPER_RAS_LOG_ENTRY_SIZE \
+> +	(offsetof(struct xe_cper_intel_priv_event, metadata) + \
+> +	 sizeof_field(struct xe_ras_error_log, error_details))
 
-== Series Details ==
+Move this to the top of xe_cper_types.h.
 
-Series: gpu/buddy: Fix quadratic cost of range-biased allocation (rev5)
-URL   : https://patchwork.freedesktop.org/series/175945/
-State : failure
+> +static struct xe_cper_intel_info *
+> +build_einfo(const struct xe_ras_error_log *logs, u32 num_logs,
+> +	    const struct xe_ras_error_class *ec, u32 error_count)
 
-== Summary ==
+'counter' for consistency.
 
-CI Bug Log - changes from xe-6038-e381c39629d83fbe9de2c94a98a2bbb0b875cf28_FULL -> xe-pw-175945v5_FULL
-====================================================
+> +{
+> +	struct xe_cper_intel_priv_event *entry;
+> +	struct xe_cper_intel_info *einfo;
+> +	u32 queue_size, i;
+> +
+> +	queue_size = num_logs * XE_CPER_RAS_LOG_ENTRY_SIZE;
+> +	einfo = kzalloc_flex(*einfo, queue, queue_size);
+> +	if (!einfo)
+> +		return NULL;
+> +
+> +	einfo->error_count        = error_count;
+> +	einfo->queue_size	  = queue_size;
+> +	einfo->queue_count        = num_logs;
+> +	einfo->counter		  = *ec;
+> +
+> +	entry = (struct xe_cper_intel_priv_event *)einfo->queue;
+> +	for (i = 0; i < num_logs; i++) {
+> +		entry->size       = sizeof_field(struct xe_ras_error_log, error_details);
+> +		entry->timestamp    = logs[i].timestamp;
+> +		memcpy(entry->metadata, logs[i].error_details, sizeof(logs[i].error_details));
+> +		entry = (void *)entry + XE_CPER_RAS_LOG_ENTRY_SIZE;
+> +	}
+> +
+> +	return einfo;
+> +}
+> +
+> +static void free_einfo_arr(struct xe_cper_einfo_entry *einfo_arr, u32 count)
+> +{
+> +	u32 i;
+> +
+> +	for (i = 0; i < count; i++)
+> +		kfree(einfo_arr[i].einfo);
+> +	kfree(einfo_arr);
+> +}
+> +
+> +static bool fill_einfo_entry(struct xe_cper_einfo_entry *entry,
+> +			     const struct xe_ras_error_class *counter, u32 count,
+> +			     const struct xe_ras_error_log *logs, u32 num_logs)
+> +{
+> +	entry->einfo = build_einfo(logs, num_logs, counter, count);
+> +	if (!entry->einfo)
+> +		return false;
+> +
+> +	entry->einfo_size = struct_size(entry->einfo, queue,
+> +					entry->einfo->queue_size);
+> +	/* The first log is the first occurrence of the error */
+> +	entry->timestamp = logs[0].timestamp;
+> +	entry->hdr.counter = *counter;
+> +	entry->hdr.count = count;
+> +	return true;
+> +}
+> +
+> +static u32 build_detail_einfo(const struct xe_ras_error_class *counter, u32 count,
+> +			      const struct xe_ras_error_log *logs, u32 num_logs,
+> +			      struct xe_cper_einfo_entry *einfo_arr)
+> +{
+> +	/* All logs belong to the queried class; the error count may exceed the logs kept */
+> +	if (!num_logs)
+> +		return 0;
+> +
+> +	num_logs = min_t(u32, num_logs, XE_RAS_NUM_COUNTERS);
+> +
+> +	return fill_einfo_entry(&einfo_arr[0], counter, count, logs, num_logs) ? 1 : 0;
+> +}
+> +
+> +static u32 build_aggregate_einfo(struct xe_device *xe,
+> +				 const struct xe_ras_info_queue_dynamic_counter_hdr *hdrs,
+> +				 u32 num_hdrs, const struct xe_ras_error_log *logs,
+> +				 u32 avail_logs, struct xe_cper_einfo_entry *einfo_arr)
+> +{
+> +	u32 log_offset = 0, count = 0, i;
+> +
+> +	for (i = 0; i < num_hdrs; i++) {
+> +		/* @count is the error count; firmware logs at most XE_RAS_NUM_COUNTERS */
+> +		u32 num_logs = min_t(u32, hdrs[i].count, XE_RAS_NUM_COUNTERS);
+> +
+> +		if (num_logs > avail_logs - log_offset) {
+> +			xe_warn(xe, "CPER: header[%u] claims %u logs but only %u remain\n",
+> +				i, num_logs, avail_logs - log_offset);
+> +			break;
+> +		}
+> +
+> +		if (!num_logs)
+> +			continue;
+> +
+> +		if (!fill_einfo_entry(&einfo_arr[count], &hdrs[i].counter, hdrs[i].count,
+> +				      &logs[log_offset], num_logs))
+> +			break;
+> +
+> +		log_offset += num_logs;
+> +		count++;
+> +	}
+> +
+> +	return count;
+> +}
+> +
+> +/**
+> + * cper_prepare_einfo() - Build the CPER error info records from RAS info queue data
+> + * @xe: xe device instance
+> + * @counter_resp: counter response containing the first embedded chunk
+> + * @counter: RAS error class used to populate the einfo error_class fields
+> + * @count_out: output number of entries in the returned array
+> + *
+> + * Assembles the complete raw info queue data from the first chunk already
+> + * embedded in @counter_resp and any additional chunks fetched via
+> + * GET_INFO_QUEUE.  Two use cases are supported based on num_headers in
+> + * the info queue header:
+> + *
+> + * Detail error counter (num_headers == 0)::
+> + *
+> + *   [xe_ras_error_log * N]
+> + *
+> + *   Returns one xe_cper_einfo_entry covering up to XE_RAS_NUM_COUNTERS logs.
+> + *
+> + * Aggregate error counter (num_headers > 0)::
+> + *
+> + *   [xe_ras_info_queue_dynamic_counter_hdr * num_headers]
+> + *   [xe_ras_error_log * N]
+> + *
+> + *   Returns one xe_cper_einfo_entry per header. Each header's @counter
+> + *   identifies its error class, and @count gives its error count. Up to
+> + *   XE_RAS_NUM_COUNTERS xe_ras_error_log entries are associated with each
+> + *   header, and @counter populates the entry's einfo->error_class.
+> + *
+> + * Returns: allocated xe_cper_einfo_entry array on success (caller must free it
+> + *          with free_einfo_arr()), NULL if no info queue is available or no
+> + *          error info could be built. @count_out is set to the number of
+> + *          entries in the array, or zero when returning NULL.
+> + */
+> +static struct xe_cper_einfo_entry *
+> +cper_prepare_einfo(struct xe_device *xe,
+> +		   const struct xe_ras_get_counter_response *counter_resp,
+> +		   const struct xe_ras_error_class *counter, u32 *count_out)
+> +{
+> +	const struct xe_ras_info_queue_header *first_qhdr = &counter_resp->first.header;
+> +	struct xe_cper_einfo_entry *einfo_arr = NULL;
+> +	const struct xe_ras_error_log *logs;
+> +	u32 buf_size, raw_total, num_headers, headers_size;
+> +	u32 avail_logs, count = 0;
+> +	u8 *raw_buf = NULL;
+> +
+> +	*count_out = 0;
+> +	if (!counter_resp->has_info_queue)
+> +		return NULL;
+> +
+> +	if (!first_qhdr->total_size) {
+> +		xe_warn(xe, "CPER: info queue reports zero total size\n");
+> +		goto out;
+> +	}
+> +
+> +	if (first_qhdr->total_size > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE)
+> +		xe_warn(xe, "CPER: info queue size %u exceeds max %u, truncating\n",
+> +			first_qhdr->total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE);
+> +
+> +	buf_size = min(first_qhdr->total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE);
+> +	raw_buf = kzalloc_objs(*raw_buf, buf_size);
+> +	if (!raw_buf)
+> +		goto out;
+> +
+> +	raw_total = xe_ras_drain_info_queue_raw(xe, counter_resp, raw_buf, buf_size);
+> +	if (!raw_total)
+> +		goto out;
+> +
+> +	num_headers = first_qhdr->num_headers;
+> +	headers_size = num_headers * sizeof(struct xe_ras_info_queue_dynamic_counter_hdr);
+> +	if (headers_size > raw_total) {
+> +		xe_warn(xe, "CPER: aggregate headers size (%u) exceeds raw total (%u)\n",
+> +			headers_size, raw_total);
+> +		goto out;
+> +	}
+> +
+> +	logs = (const struct xe_ras_error_log *)(raw_buf + headers_size);
+> +	avail_logs = (raw_total - headers_size) / sizeof(*logs);
+> +
+> +	einfo_arr = kzalloc_objs(*einfo_arr, num_headers ?: 1);
+> +	if (!einfo_arr)
+> +		goto out;
+> +
+> +	if (num_headers)
+> +		count = build_aggregate_einfo(xe, (const void *)raw_buf, num_headers,
+> +					      logs, avail_logs, einfo_arr);
+> +	else
+> +		count = build_detail_einfo(counter, counter_resp->value,
+> +					   logs, avail_logs, einfo_arr);
+> +
+> +	if (!count) {
+> +		kfree(einfo_arr);
+> +		einfo_arr = NULL;
+> +	}
 
-Summary
--------
+I'm seeing atleast two functions here.
 
-  **FAILURE**
+1. Figure out buf_size, allocate buf and drain info queue.
+2. Figure out header_size, allocate info_arr and do all the num_headers
+   magic.
 
-  Serious unknown changes coming with xe-pw-175945v5_FULL absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-175945v5_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+> +out:
+> +	kfree(raw_buf);
+> +	*count_out = count;
+> +	if (!einfo_arr)
+> +		xe_warn(xe, "CPER: failed to build error info from info queue, emitting record without it\n");
+> +
+> +	return einfo_arr;
+> +}
+> +
+>  /**
+>   * xe_cper_emit_counter() - Emit CPER records for an already fetched error counter
+>   * @xe: The &xe_device
+> @@ -208,19 +415,47 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
+>   * @counter: RAS error class
+>   * @response: Counter response returned by firmware for @counter
+>   *
+> - * Build and emit a CPER record from @response.
+> + * Build and emit CPER records from @resp, including any info queue data.
+> + * Must be called from a sleepable context with a runtime PM reference held.
+>   */
+>  void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+>  			  const struct xe_ras_error_class *counter,
+>  			  const struct xe_ras_get_counter_response *response)
+>  {
+> -	struct xe_cper_intel_hdr ihdr = {};
+> +	struct xe_cper_einfo_entry *einfo_arr = NULL, *entries;
+> +	struct xe_cper_einfo_entry single = {};
+> +	u32 einfo_count = 0, count, i;
+>  
+>  	xe_assert(xe, is_hw_sigid(sigid));
+>  
+> -	cper_init_intel_hdr(xe, counter, response->timestamp,
+> -			    sigid, response->value, &ihdr);
+> -	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
+> +	/* Draining the info queue sends sysctrl commands */
+> +	might_sleep();
+> +	xe_device_assert_mem_access(xe);
+> +
+> +	/* Without info queue data, emit a single record from the counter itself */
+> +	single.hdr.counter = *counter;
+> +	single.hdr.count = response->value;
+> +	single.timestamp = response->timestamp;
+> +	entries = &single;
+> +	count = 1;
+> +
+> +	einfo_arr = cper_prepare_einfo(xe, response, counter, &einfo_count);
+> +	if (einfo_arr) {
+> +		entries = einfo_arr;
+> +		count = einfo_count;
+> +	}
+> +
+> +	for (i = 0; i < count; i++) {
+> +		struct xe_cper_intel_hdr ihdr = {};
+> +
+> +		cper_init_intel_hdr(xe, &entries[i].hdr.counter, entries[i].timestamp,
+> +				    sigid, entries[i].hdr.count, entries[i].einfo_size, &ihdr);
+> +
+> +		cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
+> +				 entries[i].einfo, entries[i].einfo_size);
+> +	}
+> +
+> +	free_einfo_arr(einfo_arr, einfo_count);
+>  }
+>  
+>  static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+> index 107688b17d17..3252e89f64cd 100644
+> --- a/drivers/gpu/drm/xe/xe_cper_types.h
+> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+> @@ -69,14 +69,50 @@ struct xe_cper_intel_hdr {
+>  	/** @fw_id: Firmware version string (GFSP+PCODE+CSC+GUC or MNG+NUC+RAS+GUC) */
+>  	char fw_id[256];
+>  	/** @reserved: Reserved for future use, must be zero */
+> -	u8 reserved[5];
+> +	u8 reserved[2];
+> +	/** @info_log_size: Size of xe_cper_intel_info */
+> +	u16 info_log_size;
+> +	/** @reserved1: Reserved for future use, must be zero */
+> +	u8 reserved1;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_cper_intel_info - Variable-length Intel GPU error payload
+> + *
+> + * Appended after &xe_cper_intel_hdr when detailed error information
+> + * is available.
+> + */
+> +struct xe_cper_intel_info {
+> +	/** @counter: Error class (severity, component, location, cause) */
+> +	struct xe_ras_error_class counter;
+> +	/** @error_count: Total number of errors recorded */
+> +	u32 error_count;
+> +	/** @queue_size: Total byte size of the @queue array */
+> +	u32 queue_size;
+> +	/** @queue_count: Number of entries in @queue */
+> +	u32 queue_count;
+> +	/** @queue: Packed array of &xe_cper_intel_priv_event records */
+> +	u8 queue[];
+> +} __packed;
+> +
+> +/**
+> + * struct xe_cper_intel_priv_event - Single event in the event queue
 
-  
+Looking at the above struct, perhaps 'xe_cper_queue_entry' would be more
+suitable for this. Also avoid introducing random terminologies (like 'event')
+to make things less confusing throughout the code and documentation.
 
-Participating hosts (3 -> 3)
-------------------------------
+> + */
+> +struct xe_cper_intel_priv_event {
+> +	/** @size: Byte size of the @metadata payload */
+> +	u32 size;
+> +	/** @timestamp: Timestamp of this event, in firmware ticks */
+> +	u64 timestamp;
+> +	/** @metadata: Event-specific payload bytes */
 
-  No changes in participating hosts
+Please also reference the payload contents (if taken from another struct).
 
-Possible new issues
--------------------
+> +	u8 metadata[];
+>  } __packed;
+>  
+>  /**
+>   * struct xe_cper_nonstd_record - Intel GPU CPER record
+>   *
+>   * Contains the standard CPER record header, section descriptor, and the
+> - * Intel error section header.
+> + * Intel section header. A &xe_cper_intel_info payload may be
+> + * appended dynamically.
+>   */
+>  struct xe_cper_nonstd_record {
+>  	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
+> @@ -101,6 +137,20 @@ struct xe_platform_id_entry {
+>  	guid_t    platform_id;
+>  };
+>  
+> +/**
+> + * struct xe_cper_einfo_entry - One CPER error info payload and its source counter
 
-  Here are the unknown changes that may have been introduced in xe-pw-175945v5_FULL:
+s/einfo/info for simplicity (in all other places where applicable).
 
-### IGT changes ###
+> + */
+> +struct xe_cper_einfo_entry {
+> +	/** @hdr: Error class and counter value used for the CPER section header */
+> +	struct xe_ras_info_queue_dynamic_counter_hdr hdr;
+> +	/** @einfo: Allocated info payload, NULL if none */
+> +	struct xe_cper_intel_info *einfo;
+> +	/** @einfo_size: Byte size of @einfo including the event queue */
+> +	u32 einfo_size;
+> +	/** @timestamp: Timestamp of the first occurrence of this error class */
+> +	u64 timestamp;
+> +};
 
-#### Possible regressions ####
+Shouldn't this be __packed? If yes, also group it with other __packed
+structs.
 
-  * igt@runner@aborted:
-    - shard-bmg:          NOTRUN -> ([FAIL][1], [FAIL][2], [FAIL][3], [FAIL][4], [FAIL][5], [FAIL][6], [FAIL][7], [FAIL][8], [FAIL][9], [FAIL][10], [FAIL][11], [FAIL][12], [FAIL][13], [FAIL][14], [FAIL][15], [FAIL][16], [FAIL][17], [FAIL][18], [FAIL][19], [FAIL][20], [FAIL][21], [FAIL][22], [FAIL][23], [FAIL][24], [FAIL][25])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-2/igt@runner@aborted.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-2/igt@runner@aborted.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-7/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-6/igt@runner@aborted.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-6/igt@runner@aborted.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-6/igt@runner@aborted.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-10/igt@runner@aborted.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-5/igt@runner@aborted.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-3/igt@runner@aborted.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-5/igt@runner@aborted.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-3/igt@runner@aborted.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-5/igt@runner@aborted.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-3/igt@runner@aborted.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-7/igt@runner@aborted.html
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-9/igt@runner@aborted.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-1/igt@runner@aborted.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-7/igt@runner@aborted.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-9/igt@runner@aborted.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-8/igt@runner@aborted.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-4/igt@runner@aborted.html
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-8/igt@runner@aborted.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-1/igt@runner@aborted.html
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-9/igt@runner@aborted.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-4/igt@runner@aborted.html
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-10/igt@runner@aborted.html
-    - shard-lnl:          NOTRUN -> ([FAIL][26], [FAIL][27], [FAIL][28], [FAIL][29], [FAIL][30], [FAIL][31], [FAIL][32], [FAIL][33], [FAIL][34], [FAIL][35], [FAIL][36], [FAIL][37], [FAIL][38], [FAIL][39], [FAIL][40], [FAIL][41], [FAIL][42], [FAIL][43], [FAIL][44], [FAIL][45], [FAIL][46], [FAIL][47], [FAIL][48], [FAIL][49], [FAIL][50])
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-4/igt@runner@aborted.html
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-2/igt@runner@aborted.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-4/igt@runner@aborted.html
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-8/igt@runner@aborted.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-7/igt@runner@aborted.html
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-7/igt@runner@aborted.html
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-8/igt@runner@aborted.html
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-7/igt@runner@aborted.html
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-8/igt@runner@aborted.html
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-7/igt@runner@aborted.html
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/igt@runner@aborted.html
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/igt@runner@aborted.html
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-8/igt@runner@aborted.html
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/igt@runner@aborted.html
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-4/igt@runner@aborted.html
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/igt@runner@aborted.html
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-2/igt@runner@aborted.html
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-2/igt@runner@aborted.html
-   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-4/igt@runner@aborted.html
-   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html
-   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-2/igt@runner@aborted.html
+>  /**
+>   * struct xe_cper - Xe CPER state
+>   */
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> index 67d57182aac9..903a122e468e 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> @@ -171,6 +171,31 @@ struct xe_ras_info_queue_data_response {
+>  	u8 data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
+>  } __packed;
+>  
+> +/**
+> + * struct xe_ras_info_queue_dynamic_counter_hdr - Aggregate counter header entry
+> + *
+> + * When a session requests aggregate counter data, one header per matching
+> + * dynamic counter class is prepended to the queue data. The @counter field
+> + * identifies the error class, and @count is its error count; at most
+> + * XE_RAS_NUM_COUNTERS error log entries follow for it.
+> + */
+> +struct xe_ras_info_queue_dynamic_counter_hdr {
+> +	/** @counter: Error class associated with this counter group */
+> +	struct xe_ras_error_class counter;
+> +	/** @count: Error count of this class */
+> +	u32 count;
 
-  
-Known issues
-------------
+'error_count'. I realized this will help remove a lot of comments above.
 
-  Here are the changes found in xe-pw-175945v5_FULL that come from known issues:
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_error_log - Single error log entry following dynamic counter headers
+> + */
+> +struct xe_ras_error_log {
 
-### IGT changes ###
+Why can't struct xe_ras_error_array be reused here?
 
-#### Issues hit ####
+> +	/** @timestamp: Timestamp when the error was recorded */
+> +	u64 timestamp;
+> +	/** @error_details: Error-specific details */
+> +	u32 error_details[16];
 
-  * igt@runner@aborted:
-    - shard-ptl:          NOTRUN -> ([FAIL][51], [FAIL][52], [FAIL][53], [FAIL][54], [FAIL][55], [FAIL][56], [FAIL][57], [FAIL][58], [FAIL][59], [FAIL][60], [FAIL][61], [FAIL][62], [FAIL][63], [FAIL][64], [FAIL][65], [FAIL][66], [FAIL][67], [FAIL][68], [FAIL][69], [FAIL][70], [FAIL][71], [FAIL][72], [FAIL][73], [FAIL][74], [FAIL][75]) ([Intel XE#9694])
-   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-2/igt@runner@aborted.html
-   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-2/igt@runner@aborted.html
-   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-5/igt@runner@aborted.html
-   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-2/igt@runner@aborted.html
-   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-6/igt@runner@aborted.html
-   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-5/igt@runner@aborted.html
-   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@runner@aborted.html
-   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-3/igt@runner@aborted.html
-   [59]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@runner@aborted.html
-   [60]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-3/igt@runner@aborted.html
-   [61]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@runner@aborted.html
-   [62]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-3/igt@runner@aborted.html
-   [63]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@runner@aborted.html
-   [64]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-6/igt@runner@aborted.html
-   [65]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-5/igt@runner@aborted.html
-   [66]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-7/igt@runner@aborted.html
-   [67]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-7/igt@runner@aborted.html
-   [68]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-7/igt@runner@aborted.html
-   [69]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-8/igt@runner@aborted.html
-   [70]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-8/igt@runner@aborted.html
-   [71]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-8/igt@runner@aborted.html
-   [72]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-1/igt@runner@aborted.html
-   [73]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-1/igt@runner@aborted.html
-   [74]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-6/igt@runner@aborted.html
-   [75]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-1/igt@runner@aborted.html
+'details'. Also, why 16? Does this signify XE_RAS_NUM_COUNTERS? If yes,
+please reuse it. If no, please define its own macro.
 
-  
-  [Intel XE#9694]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694
+Raag
 
-
-Build changes
--------------
-
-  * Linux: xe-6038-e381c39629d83fbe9de2c94a98a2bbb0b875cf28 -> xe-pw-175945v5
-
-  IGT_9173: 9173
-  xe-6038-e381c39629d83fbe9de2c94a98a2bbb0b875cf28: e381c39629d83fbe9de2c94a98a2bbb0b875cf28
-  xe-pw-175945v5: 175945v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/index.html
-
---===============5931788798759333186==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-
-<!DOCTYPE html>
-<html xmlns=3D"http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id=3D"css-table-select" type=3D"text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu/buddy: Fix quadratic cost of range-biase=
-d allocation (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
-ries/175945/">https://patchwork.freedesktop.org/series/175945/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
-tree/intel-xe/xe-pw-175945v5/index.html">https://intel-gfx-ci.01.org/tree/i=
-ntel-xe/xe-pw-175945v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6038-e381c39629d83fbe9de2c94a98a2bbb0b=
-875cf28_FULL -&gt; xe-pw-175945v5_FULL</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-175945v5_FULL absolutely need =
-to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br=
- />
-  introduced in xe-pw-175945v5_FULL, please notify your bug team (I915-ci-i=
-nfra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in C=
-I.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-1759=
-45v5_FULL:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>shard-bmg:          NOTRUN -&gt; (<a href=3D"https://intel-gfx-ci.01.or=
-g/tree/intel-xe/xe-pw-175945v5/shard-bmg-2/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shar=
-d-bmg-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-7/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5=
-/shard-bmg-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-6/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175=
-945v5/shard-bmg-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-10/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-=
-pw-175945v5/shard-bmg-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-3/igt@runner@=
-aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
-e/xe-pw-175945v5/shard-bmg-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"=
-https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-3/igt@ru=
-nner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/in=
-tel-xe/xe-pw-175945v5/shard-bmg-5/igt@runner@aborted.html">FAIL</a>, <a hre=
-f=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-3/i=
-gt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tr=
-ee/intel-xe/xe-pw-175945v5/shard-bmg-7/igt@runner@aborted.html">FAIL</a>, <=
-a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bm=
-g-9/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.o=
-rg/tree/intel-xe/xe-pw-175945v5/shard-bmg-1/igt@runner@aborted.html">FAIL</=
-a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/sha=
-rd-bmg-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci=
-.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-9/igt@runner@aborted.html">F=
-AIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v=
-5/shard-bmg-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-g=
-fx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-4/igt@runner@aborted.ht=
-ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-17=
-5945v5/shard-bmg-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://in=
-tel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-1/igt@runner@abort=
-ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-=
-pw-175945v5/shard-bmg-9/igt@runner@aborted.html">FAIL</a>, <a href=3D"https=
-://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-bmg-4/igt@runner@=
-aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
-e/xe-pw-175945v5/shard-bmg-10/igt@runner@aborted.html">FAIL</a>)</li>
-<li>shard-lnl:          NOTRUN -&gt; (<a href=3D"https://intel-gfx-ci.01.or=
-g/tree/intel-xe/xe-pw-175945v5/shard-lnl-4/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shar=
-d-lnl-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5=
-/shard-lnl-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-4/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175=
-945v5/shard-lnl-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-7/igt@runner@aborte=
-d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
-w-175945v5/shard-lnl-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-8/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
-/xe-pw-175945v5/shard-lnl-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-8/igt@run=
-ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/int=
-el-xe/xe-pw-175945v5/shard-lnl-7/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/ig=
-t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
-e/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl=
--3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shar=
-d-lnl-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5=
-/shard-lnl-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-3/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175=
-945v5/shard-lnl-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-2/igt@runner@aborte=
-d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
-w-175945v5/shard-lnl-4/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-lnl-5/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
-/xe-pw-175945v5/shard-lnl-2/igt@runner@aborted.html">FAIL</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175945v5_FULL that come from known i=
-ssues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>shard-ptl:          NOTRUN -&gt; (<a href=3D"https://intel-gfx-ci.01.or=
-g/tree/intel-xe/xe-pw-175945v5/shard-ptl-2/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shar=
-d-ptl-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-5/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5=
-/shard-ptl-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-6/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175=
-945v5/shard-ptl-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@runner@aborte=
-d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
-w-175945v5/shard-ptl-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
-/xe-pw-175945v5/shard-ptl-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
-ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/igt@run=
-ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/int=
-el-xe/xe-pw-175945v5/shard-ptl-3/igt@runner@aborted.html">FAIL</a>, <a href=
-=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-4/ig=
-t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
-e/intel-xe/xe-pw-175945v5/shard-ptl-6/igt@runner@aborted.html">FAIL</a>, <a=
- href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl=
--5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
-g/tree/intel-xe/xe-pw-175945v5/shard-ptl-7/igt@runner@aborted.html">FAIL</a=
->, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shar=
-d-ptl-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
-01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-7/igt@runner@aborted.html">FA=
-IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5=
-/shard-ptl-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
-x-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-8/igt@runner@aborted.htm=
-l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175=
-945v5/shard-ptl-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
-el-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-1/igt@runner@aborte=
-d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
-w-175945v5/shard-ptl-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
-//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v5/shard-ptl-6/igt@runner@a=
-borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
-/xe-pw-175945v5/shard-ptl-1/igt@runner@aborted.html">FAIL</a>) (<a href=3D"=
-https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694">Intel XE#9694</a>=
-)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6038-e381c39629d83fbe9de2c94a98a2bbb0b875cf28 -&gt; xe-pw-175=
-945v5</li>
-</ul>
-<p>IGT_9173: 9173<br />
-  xe-6038-e381c39629d83fbe9de2c94a98a2bbb0b875cf28: e381c39629d83fbe9de2c94=
-a98a2bbb0b875cf28<br />
-  xe-pw-175945v5: 175945v5</p>
-
-</body>
-</html>
-
---===============5931788798759333186==--
+> +} __packed;
+> +
+>  /**
+>   * struct xe_ras_get_info_queue_request - Request for XE_SYSCTRL_CMD_GET_INFO_QUEUE
+>   */
+> -- 
+> 2.54.0
+> 
