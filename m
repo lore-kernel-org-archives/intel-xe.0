@@ -2,83 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A29606A328
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82FEC606A32C
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=k71DnFWs
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SGSFp4cg
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B37B10FC9C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C1F910FC9A;
 	Wed,  4 Nov 2026 15:02:49 +0000 (UTC)
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
- [209.85.221.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC94310E544
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 14:02:57 +0000 (UTC)
-Received: by mail-wr1-f54.google.com with SMTP id
- ffacd0b85a97d-48bbb06e746so2078921f8f.3
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Nov 2026 06:02:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1793714576; x=1794319376; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=uu68lQxHEs/mkQVI9vO7Af9VdhM6SKqu6dRO3KGsMrE=;
- b=k71DnFWs2C4BOlmUnahOM7Tpz1HeLUdFBaa4ZpXLXj0nQk+kUxJBTLgF77VL6TTe5s
- ldm72W/gpjGb9OjAnhOMZ8W6ehuIBQCQHVJi5mDpqB2RPfH0yXcicC8EB+1o090miR5f
- yNcZ15dyDs9viE4h85XPNSlE6hAn/eZSS/dTotnz9WzwKpL3RLFd1nUjXZ3viTOFmuV7
- 8QQnqRJaSzvW1bA+6xBg54s53MLrQfbwha3FOwGJsiz7LhGwly4U+J+9rBM9MX+TsUt/
- k2Bl0fEZvjsl2I9EHn2N9mFYBkkWonpZqodjbk/oo5QzYNh0VZtRmhB3MkffpZld2FQp
- O7Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1793714576; x=1794319376;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=uu68lQxHEs/mkQVI9vO7Af9VdhM6SKqu6dRO3KGsMrE=;
- b=Hg9Vaj2A1kfYTlT7uvQvg32vTqF6Cb5Njtr1YHdQJYazCIzMAZ6NrUjje/Vn9SSAH6
- guBL+v4p5rbwsa+zMiT4CUFUVRXBt8XLrVgofsEaIkMYQaRAS8/n7xJa3GNkJInwtEHH
- MkmnZuKH1lxr5MkLbTOnYBhXjB9xqbu1ec9R2nVv0BPk8zqfqshmmRNDpcUpAftlsVWa
- 5Gkafc0RkHBO+MCDG4cp2lFYKEL0PK9MICjQaKCa8XEpcMO+SKzYXe5o0KjYnqc8Ov2R
- RSafh+NhGHOpqRR9uEUe0DS09rFpucqrUmTDriD52H8dn2NukIEgaExiD9faXPP+rsPz
- AenQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvBzqbMoKyrhvEM/jM5pflZPhdiNGepXOfN/GPkBw+aUjpsS1x7aoo80+/9A9cDFG89+WWwsTaB7g5g==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z83jbtotNbLcSD/oO0ZoPaAtlvpXXAUnOrwZZQMNq+t42g3gdBG
- 0weSbcm3Fy2/x9j9w6meR/6Y4NhQIlBh7WvZUbtMpMQ59dHWrN+pYiWB
-X-Gm-Gg: AYBFou0T3rQ5LUyzT2Q/Udz/wkBbP+pXYAPdcd0aTO1tqtTULAG+dj4X7NS2eLNhf3e
- q9FqczcpnVz67JMGD/aI9UhQatVFv+e2Z3DL/9fr9URTBwOZ6xQLqTOD2nJX/LQJxoktS8yINe6
- 9WF7e2FPN4fGC0rRNkXder4AMDovfNoxw+2NNNCmJl8X0fEibdQElUT3aq1pfAFiW/Tggt+VepP
- B+oyEUiqQ53lYcf284bAS1bOi8vkmvZrw1gNqTMfNsn+JILiHC2yRLScfn0BRMNsb/AwL+MSeYi
- jJtCl8qzMxj7dkoM/8ghnEkZAqeRr8p1BXVIS+jlVpg88ve9N9gJSP4LLMO/5F502DKB4GUQi7q
- 6kdfFZ1JOETxGgI8fHHBwm+zi/q61lJ3Tx0IOMQ2nZMWtunYt/bPHLooFogNzDN5EgPZmC5gV70
- W+nDpojCbXIQHoGu9QcuikJ8meOeTgKzqVnOHTa17ccD0htdctxnmsKF5sKGVg4G0Nuws+95U7Y
- gD8R5TQpOCTB2JxrMp2hPdQsvSxF5ADp2jh53oh1SxaAGkDSofn3j2Fum/wNE67gdQsp6L76BD5
- SK6nUI2aOnJj2F9Q79639cEwROM/CuraioNOIsmMdvjuT6BFvT748U/jcYMDDdx6bhnVt+onBlL
- UhCEZWQ==
-X-Received: by 2002:a05:6000:2486:b0:48d:ff81:5201 with SMTP id
- ffacd0b85a97d-48e6e4f44f2mr30393094f8f.41.1793714574925; 
- Tue, 03 Nov 2026 06:02:54 -0800 (PST)
-Received: from gandalf.magpie-herring.ts.net ([90.251.75.96])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-48e71b8c0b6sm24467507f8f.41.2026.11.03.06.02.50
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 03 Nov 2026 06:02:52 -0800 (PST)
-From: Zak Brighton Knight <zakbrightonknight@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org,
- Zak Brighton Knight <zakbrightonknight@gmail.com>
-Subject: [PATCH] drm/i915/backlight: Keep ACPI backlight requests while the
- panel is off
-Date: Tue,  3 Nov 2026 14:02:35 +0000
-Message-ID: <20261103140235.1032320-1-zakbrightonknight@gmail.com>
-X-Mailer: git-send-email 2.56.0
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB33210E6B5;
+ Mon,  2 Nov 2026 16:49:36 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id D1F1F436A2;
+ Mon,  2 Nov 2026 16:49:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6701F00A17;
+ Mon,  2 Nov 2026 16:49:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793638176;
+ bh=zVpHwEi1acfZUiGgbeCPyTxHSVjEFQmQseYO2YcJPk0=;
+ h=From:Date:Subject:References:In-Reply-To:To:Cc;
+ b=SGSFp4cgHWsyT1Zwmaoh2VWhsvYgwsCbG4SdEhQTzPWWYfE/MpDzcaEabYmidhImC
+ YuNMnzT7zBzsTDKJdwC3wLMp6D1v2uGPmPcS00fNymqTPInndUf9JZ1POxg+FHon/H
+ zfc0/1OWRILSY7zBBMbgtO2PtDt4Qk3b73tj/l+8NFzDzQR1HE712xDnSp/zL/92oX
+ 23bt69U7Y847IwJZv2MJA316+/YVNEjSl1alG4FlbaqO2CbHIZ/87V5oMJSq31qdUk
+ v8JUayenlZY+t3zWXddlL1DrucZw9rL60wEb2tBePGWMc3ooSWF/Qh2sdJLyoCuRxz
+ 0kl++LKj1UqIA==
+From: "Mario Limonciello (AMD)" <superm1@kernel.org>
+Date: Mon, 02 Nov 2026 10:49:20 -0600
+Subject: [PATCH v10 04/15] drm/amdgpu: Check bios_scratch_reg_offset in
+ backlight level helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20261102-superm1-backlight-property-v10-4-b2a6f24131f5@kernel.org>
+References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+In-Reply-To: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Javier Martinez Canillas <javierm@redhat.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
+Cc: Mario Limonciello <superm1@kernel.org>, 
+ Xaver Hugl <xaver.hugl@gmail.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org
+X-Mailer: b4 0.16.0
 X-Mailman-Approved-At: Wed, 04 Nov 2026 15:02:42 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -90,139 +63,42 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With the ACPI video backlight (acpi_video0), brightness changes reach
-i915 as OpRegion ASLE requests: the firmware's _BCM method writes the
-level to the mailbox and raises the ASLE interrupt.
-intel_backlight_set_acpi() returns early when the connector has no
-crtc, so a request made while the panel is off is dropped. The ACPI
-video driver still reports the new level, but the panel comes back on
-at the old one.
+Ensure adev->bios_scratch_reg_offset is non-zero before accessing
+scratch registers in amdgpu_atombios_scratch_regs_set_backlight_level()
+to avoid dereferencing unmapped MMIO offsets.
 
-The connector has no crtc whenever userspace turns the screen off by
-disabling the crtc and detaching the connector from it, which is what
-mutter does for its power saving mode. GNOME's login screen makes this
-easy to hit: it dims the screen when idle and turns it off a little
-later, and on the next key press it restores the brightness while the
-screen is still off. The screen comes back dim, and the next brightness
-key press jumps from the level the backlight device reports.
-
-On a ThinkPad T520 (Ivy Bridge, LVDS, coreboot), setting acpi_video0
-to 10, turning the screen off through mutter, setting 14 and turning
-the screen back on gives, with drm.debug=0x6:
-
-  brightness 10, screen on:
-    updating opregion backlight 73/255
-    [CONNECTOR:92:LVDS-1] set backlight level = 444
-  screen off:
-    [CONNECTOR:92:LVDS-1] set backlight PWM = 0
-  brightness 14, screen off:
-    updating opregion backlight 170/255
-  screen on:
-    [CONNECTOR:92:LVDS-1] set backlight PWM = 444
-
-after which acpi_video0 reads brightness 14 and actual_brightness 10.
-
-The check goes back to commit 752aa88a1e78 ("drm/i915: make backlight
-functions take a connector"). Commit 260d8f98ef9d ("drm/i915: Remove
-most INVALID_PIPE checks from the backlight code") dropped it from the
-native path, but kept it for BIOS requests, which can arrive during
-driver init before the modeset readout, when there is no crtc yet. The
-native path, intel_panel_set_backlight(), stores the level whatever the
-connector state and leaves it to the next backlight enable.
-
-Do the same for ACPI requests: always store the level, and skip only
-the hardware update when there is no crtc, which still covers the
-driver init case.
-
-The problem was found and root-caused, and this patch was drafted, with
-the help of an AI coding assistant (Claude, by Anthropic).
-
-Fixes: 752aa88a1e78 ("drm/i915: make backlight functions take a connector")
-Signed-off-by: Zak Brighton Knight <zakbrightonknight@gmail.com>
+Signed-off-by: Mario Limonciello (AMD) <superm1@kernel.org>
 ---
-Tested on the T520 (i7-3840QM, Ivy Bridge, coreboot 24.08 with SeaBIOS)
-with v7.4-rc1 plus this patch, built with PROVE_LOCKING, under GNOME 50
-(mutter 50.6). intel_backlight_set_acpi() is the same in drm-intel-next
-and drm-tip today, and the patch applies to both.
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-- The sequence above now ends with "set backlight PWM = 1035" when the
-  screen comes back on, and acpi_video0 reads 14 for both brightness
-  and actual_brightness. The same from 13 down to 6.
-- Setting 12 while the screen is off, then suspending to RAM and
-  resuming before turning the screen on: acpi_video re-sends 12 on
-  resume ("Restoring backlight state"), and the screen comes back at 12.
-- Suspend and resume with the screen on keeps the level, the level
-  systemd restores at boot is applied, and there were no lockdep
-  reports or warnings.
-
-One case still comes back wrong, differently from before. On this
-machine _BQC reports the PWM duty cycle, so reading actual_brightness
-while the panel is off makes acpi_video cache its lowest level (2%),
-and it re-sends that on resume. Without this patch, that request is
-dropped and the panel comes back at the level from before the screen
-went off; with it, the panel comes back at 2%. Mutter only reads
-brightness, so I have only hit this from a test script.
-
-Not tested: the driver init case the check was kept for. coreboot only
-sends requests from _BCM, or from the brightness keys before the OS has
-called _BCL, so I couldn't make it send one between the backlight
-setup and the modeset readout. Not tested either on other platforms or
-with other compositors.
-
-https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15987 reports
-the same symptom on a MacBookPro11,1: the brightness is wrong after the
-display sleeps, and acpi_backlight=native fixes it. It may be this bug,
-but I can't test that machine.
-
- drivers/gpu/drm/i915/display/intel_backlight.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index b128896cb..2310a9258 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -310,13 +310,7 @@ void intel_backlight_set_acpi(const struct drm_connector_state *conn_state,
- 	struct intel_panel *panel = &connector->panel;
- 	u32 hw_level;
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+index 27c0dc8f6137a..2d8c2ba04e670 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c
+@@ -1622,7 +1622,12 @@ void amdgpu_atombios_scratch_regs_engine_hung(struct amdgpu_device *adev,
+ void amdgpu_atombios_scratch_regs_set_backlight_level(struct amdgpu_device *adev,
+ 						      u32 backlight_level)
+ {
+-	u32 tmp = RREG32(adev->bios_scratch_reg_offset + 2);
++	u32 tmp;
++
++	if (!adev->bios_scratch_reg_offset)
++		return;
++
++	tmp = RREG32(adev->bios_scratch_reg_offset + 2);
  
--	/*
--	 * Lack of crtc may occur during driver init because
--	 * connection_mutex isn't held across the entire backlight
--	 * setup + modeset readout, and the BIOS can issue the
--	 * requests at any time.
--	 */
--	if (!panel->backlight.present || !conn_state->crtc)
-+	if (!panel->backlight.present)
- 		return;
- 
- 	mutex_lock(&display->backlight.lock);
-@@ -332,7 +326,15 @@ void intel_backlight_set_acpi(const struct drm_connector_state *conn_state,
- 					 panel->backlight.level,
- 					 panel->backlight.device->props.max_brightness);
- 
--	if (panel->backlight.enabled)
-+	/*
-+	 * Lack of crtc may occur during driver init because
-+	 * connection_mutex isn't held across the entire backlight
-+	 * setup + modeset readout, and the BIOS can issue the
-+	 * requests at any time. There's no crtc either while
-+	 * userspace has the panel turned off. Keep the level
-+	 * anyway, it's applied when the backlight is next enabled.
-+	 */
-+	if (panel->backlight.enabled && conn_state->crtc)
- 		intel_panel_actually_set_backlight(conn_state, hw_level);
- 
- 	mutex_unlock(&display->backlight.lock);
+ 	tmp &= ~ATOM_S2_CURRENT_BL_LEVEL_MASK;
+ 	tmp |= (backlight_level << ATOM_S2_CURRENT_BL_LEVEL_SHIFT) &
 
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
 -- 
-2.56.0
+2.53.0
 
