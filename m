@@ -2,28 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1203606A324
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 20:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B46E606D83B
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 20:06:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Nt0FkrZO
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9910410F1CB;
-	Mon,  2 Nov 2026 20:01:13 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C268E10E149;
- Mon,  2 Nov 2026 20:01:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5474818566751942323=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 427CE10F1D9;
+	Mon,  2 Nov 2026 20:06:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C80510F1D3;
+ Mon,  2 Nov 2026 20:06:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793649983; x=1825185983;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sqwF5koL8AP3LB0wgv/MTTxH79kNm2LxlGwWOnr2EuY=;
+ b=Nt0FkrZOSA+YknhutMWSFr7CQie2npROHg3tYAhNPtc9Pl1jpyF6WVkb
+ VxT4trS6eXWOpwwak+hzf9S+/U8AhNXWncfG9sUhTNXoqvrEBQ4aOYDWw
+ teP8WSWyJ21Js+MX1WbXc/P5li4LHIHJpkuCmmIjwhH7pqpQuo6p4S5/r
+ Sr3DD4zthuDVgUhm8vYQVxLFBuhjP+nxSgRtTuLRYpmDS530TmK778UN/
+ e5Vy1ls0HZa5ETUrc9FrvhLpdNH4eCQbxEVAnsI71ZzuJh3M6fCdG8BhN
+ oUVzE0NCTWDBwzafgHidsikSDxo7x5xsfVvM0Vv93rUN0M2Qx6M77VMbE A==;
+X-CSE-ConnectionGUID: jrYtKiPSQfCCAXpySGSbGA==
+X-CSE-MsgGUID: DTpf+KQvRjOjgxK9LPDnfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2371254"
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="2371254"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 12:06:23 -0800
+X-CSE-ConnectionGUID: 4ezcMXSYRR+HqedtWMc/Dw==
+X-CSE-MsgGUID: TAy6u4EBTqmn4Q3l5gxW8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="6077427"
+Received: from orsosgc001.jf.intel.com ([10.54.56.63])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 12:06:23 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: jani.saarinen@intel.com
+Subject: [drm-intel/topic/core-for-CI] Revert "io_uring/sqpoll: don't attach
+ to a thread that is canceling"
+Date: Mon,  2 Nov 2026 12:06:04 -0800
+Message-ID: <20261102200603.2605130-2-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Keep_ulls_alive_w?=
- =?utf-8?q?hile_servicing_ops=2E?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Nov 2026 20:01:12 -0000
-Message-ID: <179364967278.106515.11372529449170141632@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261102185834.136370-2-dev@lankhorst.se>
-In-Reply-To: <20261102185834.136370-2-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,114 +61,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============5474818566751942323==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This reverts commit 22d9db9fd64a493525d692b32c556875b7254665.
 
-== Series Details ==
+This is resulting in igt@runner@aborted on Xe and i915 runs, so
+reverting the patch. The actual fix is still in flight on the kernel ML:
 
-Series: drm/xe: Keep ulls alive while servicing ops.
-URL   : https://patchwork.freedesktop.org/series/177499/
-State : success
+[PATCH] io_uring/sqpoll: don't set IO_SQ_THREAD_SHOULD_STOP on thread exit
 
-== Summary ==
+Until that lands, revert this one.
 
-CI Bug Log - changes from xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d_BAT -> xe-pw-177499v1_BAT
-====================================================
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+References: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17747
+---
+ io_uring/sqpoll.c | 11 +----------
+ 1 file changed, 1 insertion(+), 10 deletions(-)
 
-Summary
--------
+diff --git a/io_uring/sqpoll.c b/io_uring/sqpoll.c
+index c833e776320d..49c52284ecdd 100644
+--- a/io_uring/sqpoll.c
++++ b/io_uring/sqpoll.c
+@@ -433,12 +433,6 @@ static int io_sq_thread(void *data)
+ 	if (io_sq_tw_pending())
+ 		io_sq_tw(UINT_MAX);
+ 
+-	/*
+-	 * Cancelation drops sqd->lock while it waits, and a ring could attach
+-	 * to a thread that is on its way out. A fatal signal doesn't set the
+-	 * bit, so set it here for io_sq_offload_create() to see.
+-	 */
+-	set_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state);
+ 	io_uring_cancel_generic(true, sqd);
+ 	rcu_assign_pointer(sqd->thread, NULL);
+ 	put_task_struct(current);
+@@ -508,10 +502,7 @@ __cold int io_sq_offload_create(struct io_ring_ctx *ctx,
+ 		list_add(&ctx->sqd_list, &sqd->ctx_list);
+ 		io_sqd_update_thread_idle(sqd);
+ 		/* don't attach to a dying SQPOLL thread, would be racy */
+-		ret = 0;
+-		if (attached && (!sqd->thread ||
+-		    test_bit(IO_SQ_THREAD_SHOULD_STOP, &sqd->state)))
+-			ret = -ENXIO;
++		ret = (attached && !sqd->thread) ? -ENXIO : 0;
+ 		io_sq_thread_unpark(sqd);
+ 
+ 		if (ret < 0)
+-- 
+2.55.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 13)
-------------------------------
-
-  Missing    (2): bat-ptl-2 bat-ptl-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9174 -> IGT_9175
-  * Linux: xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d -> xe-pw-177499v1
-
-  IGT_9174: bb222a83882fe443bd3285f34c475813865b301e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_9175: 9175
-  xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d: 79cefeb775e63da397152ab01c2f1d4fa1b9b46d
-  xe-pw-177499v1: 177499v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177499v1/index.html
-
---===============5474818566751942323==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Keep ulls alive while servicing ops.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177499/">https://patchwork.freedesktop.org/series/177499/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177499v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177499v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d_BAT -&gt; xe-pw-177499v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 13)</h2>
-<p>Missing    (2): bat-ptl-2 bat-ptl-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9174 -&gt; IGT_9175</li>
-<li>Linux: xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d -&gt; xe-pw-177499v1</li>
-</ul>
-<p>IGT_9174: bb222a83882fe443bd3285f34c475813865b301e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_9175: 9175<br />
-  xe-6046-79cefeb775e63da397152ab01c2f1d4fa1b9b46d: 79cefeb775e63da397152ab01c2f1d4fa1b9b46d<br />
-  xe-pw-177499v1: 177499v1</p>
-
-</body>
-</html>
-
---===============5474818566751942323==--
