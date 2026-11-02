@@ -2,150 +2,161 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BDB160A261B
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 05:14:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECC82606A324
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 05:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UGDfu8CG
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C777F10E1DE;
-	Mon,  2 Nov 2026 05:14:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B111810E1DE;
- Mon,  2 Nov 2026 05:14:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CC9310E1DE;
+	Mon,  2 Nov 2026 05:20:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2610910E4F9;
+ Mon,  2 Nov 2026 05:20:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793596442; x=1825132442;
- h=from:to:cc:subject:date:message-id:references:
+ t=1793596824; x=1825132824;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=UgAJi6eOjfg7i6i/2mFldGju0F5/wb21yXFeRHNzsCg=;
- b=av2QaDOAZCUpguczWju59UuVuRkMZdXg2dAKy6jg6+BQt9S5/jiED1IC
- QjhEZ+zWevbQzssBYSr77v7yDkX3OIH8UGjCOtkskJKj4cq41e5GuEMpH
- wEupC63ZTGDN23GeKNMR1JdPdUiFI3KPTX+7AW6TjDtUuw0iV6+klm+BS
- wDnWz9qy83/mlB/1z364owJvUVZlxs7UPZQNxCl/pGN6X6h0aaDWqGB/m
- lUogAIbjFtRtXCepv+aE9qXgi38yDid11h8PvW3vpJYhAckciYNhU8cFV
- +EVQDSFBZGU0pfBMtY3dE2oB8pUofhNoE0i3j3ufnqSBz596N9a9bZsjl A==;
-X-CSE-ConnectionGUID: BgOPYMxuRM6IJZmylipJCA==
-X-CSE-MsgGUID: vEfTFWXWSBGabz+6opyWng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2154497"
+ bh=iAt3tMyF55oh8YxYSSDC+46CbW4op0wEmk5FZfwf87E=;
+ b=UGDfu8CGIR9S4bx6KPIuYIDgETzVu8lSZpmwpT+RBmQmKkd+exWQhctp
+ B59IuNEPY7aJla3YpJYpWlUn+xmoOWI1Op2dOWTLuC4WaWZo3c1dMOT6Y
+ 6DZuo8dXQkOUGtl34WTCcx8DrId4S767aPVeWoLPKVgP39xFs0Tp6kzaq
+ j6T6Yu6BDUoaL0K3V0Gq4aacUk/sqQjSpKIwzAq2OQQMOeUjedpp1xLUY
+ K/Yc57HupeNXPoZoZJvQL6HgAl/rsohIuXJlUtc8iM8QIbXD+3s6tdF6u
+ 0MkNkzuNGzgU9y4Sr3uvH8UT2WM/WlcWp9FIeWCnhLXhrbkWOuJrKejCJ Q==;
+X-CSE-ConnectionGUID: CfcINnDZQfy/yOcntMFeSA==
+X-CSE-MsgGUID: 3Kilwme6ToGiclwiOKlfAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2171123"
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2154497"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2026 21:14:01 -0800
-X-CSE-ConnectionGUID: i0B0GZ74Q6GjApzcPmoNXg==
-X-CSE-MsgGUID: vx14uV8dQTWOnIH+gAfC6w==
+   d="scan'208";a="2171123"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2026 21:20:24 -0800
+X-CSE-ConnectionGUID: 8QZkwICEQD65z4g8+BhDyw==
+X-CSE-MsgGUID: cT2dHfilS3+K+n9f5A+a+g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="6028411"
+   d="scan'208";a="7840132"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2026 21:14:01 -0800
+ by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2026 21:20:21 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Sun, 1 Nov 2026 21:14:00 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ 15.2.2562.56; Sun, 1 Nov 2026 21:20:20 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Sun, 1 Nov 2026 21:14:00 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.21)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.56 via Frontend Transport; Sun, 1 Nov 2026 21:20:20 -0800
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.5) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Sun, 1 Nov 2026 21:14:00 -0800
+ 15.2.2562.56; Sun, 1 Nov 2026 21:20:19 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yZNh0+ZvDoTBwDiw3wvS6+CaKrG/ADc04ZLH2L5cPEMHP7O+sHOqAhclzCcp8fsUDgmSw2ccPwnKPwwBM8hIrazsaYqsjkGKILFXphnZmiN7WVsFiXA2sqqB8N7qIqEmkCCjropnal4sLCplyO+D7V9S4KB1S7NEDDhg9WO98MsaputpU0Mvd4fjdvytmjWlKsApxm3ODzJRVKWb5zptDBwT274m5eZUWiFTkDjqSVwqeQztI1FDfONJmm1WsdGyBlFSzHzlw2OTBGFV4mq8O1b/FJoiaKt4vQcxfpBrEkVOnJj6FupyCAcvTBkapYjq+XIQksg/i7To7l5M61K0/g==
+ b=X2vuAPfgTCzJxuOF2KEbKnEY2OqM9633LhjNyiW3m1BQhkmr5kTNJ6LAhOl6fxmmzGbjJ3ED9sXi87rbldN3c4PwEs/YXgVGiaJqlFw1+K81zXXODnfpkiDh9g36o8EdvFTF2cbgKNh3HX9HYrX0GlXvtC2nk3OmWcZnom3n8qeKFEEJrXGwZqctoxRWA5C1xnUvLc8qQgx0atFxiNsOH+OcmIJm6UMIvQyT24ICRJoRvMyyh9oGjpmbtpmuPaf23xQx0iM39TRoJe2ccts1q97r80egtrwEinDC1sYYdYpI4IFytsDAE+t9LjlMCh8AUEbhdqhrPx0O4A2GK82oLg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ze1T9xnFuqqmlF6aZLMLaT33ncDBdNH+Vt7fYu7TASY=;
- b=btHIJB3pZ2Thgf/MlgX2pYw/t/922zhTDwmtsOmJE9NvBAOfamcEQUyW+6g5gNgy8yuIOl6sijw0aC2RPYDYcU2aMPmqxOnEMgu88kTdFhmr0DRz99o1khfZaaBokHSjnMvL+DZLSuXyu0kgfrYprOJqLkVNsqXlIEjyczLEZoLlOKhXpldd0NRiV1hZ+b8TYFbh+Z2dbV2tv/lDovZfC80EwDVz/YojlXqhTUjYwumCP74M406bveK+4Mc9U62uS3tckeoAg0yGuFy0n4nx3zc5X4vlU2wWJCMpNirhzVhDS0HD4PEkvQ+8/e8U7vdpO9vDpABMXW6IDaVRFowttg==
+ bh=H4Dfw50J/dsQnxIsYBgL/gnCLt8noEKbSTjcqAhNF3U=;
+ b=dJKueswmK4AK0VlCOmvydQ5GJ1i4ntrACKg/rvPfeVvWTeqJ8aLV1gMvaPDPEOV0w6I1lsbtwmUxoaYL/n/8DX2pedZY5aQfDajLMKaxr4zQ5yjmYbFyO+Fz0GM7sEWDjuNivu4k2kOvJqhLQUtyZrIO8vc+MJPAXLAryi43Xcqb0PU8amAB+y/2Se0o4F09aIkDpJJ5nwmplf59yEER3vmA2aNyOp6OQZ6rU4awsx7tEbKuaBb2cHTLSsEGklpM6KlR8LixWSnCgVJbfCNkWLq2+fMcldgj8D9qXMQ9XS562YwcJrXeK8xr6NhX85y+wOC7HdNUe3TNLgnmT3GxcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::5b) by DM6PR11MB4612.namprd11.prod.outlook.com
- (2603:10b6:5:2a8::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
- 2026 05:13:58 +0000
-Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::19f5:13eb:df52:68ff]) by DS4PPFE901A304F.namprd11.prod.outlook.com
- ([fe80::19f5:13eb:df52:68ff%8]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
- 05:13:58 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Nikula, Jani" <jani.nikula@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>
-Subject: RE: [PATCH] drm/i915/display: fix a few i915_reg_t usages that have
- crept back
-Thread-Topic: [PATCH] drm/i915/display: fix a few i915_reg_t usages that have
- crept back
-Thread-Index: AQHdaGlckVUhJ/QE6EWewhNoY7A5VrcaQPQA
-Date: Mon, 2 Nov 2026 05:13:58 +0000
-Message-ID: <DS4PPFE901A304FA4A537312A02AEDE54BCE36A2@DS4PPFE901A304F.namprd11.prod.outlook.com>
-References: <20261030122207.2835113-1-jani.nikula@intel.com>
-In-Reply-To: <20261030122207.2835113-1-jani.nikula@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|DM6PR11MB4612:EE_
-x-ms-office365-filtering-correlation-id: 20542e6e-2058-438f-76c6-08df38a01978
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|23010399003|376014|38070700021|11063799006|56012099006|261009223027099003|261021121427099003|261021123027099003|261022075727099003|10067099003|18002099003|22082099003;
-x-microsoft-antispam-message-info: iOxn4XA/PVBy+oOj4ID+rgAFzdqWKBVgXM/dXArzf50WeTL2CmBsV1OpzGvvdhy/y59MSI0qyDdE2eJmOMfP4nHBJi+0OpbBRWnnJv+VRws9daYHfic1pxiDfLOkAFY96vAzV08/YLMzYNEjrhdcimEnyVt1bbCPhTffTs3u9qYMJljjXB+8aIE1uhdt0QahogbNaK9Oz6PLD11X7mm6LYeAuYXDKx07tSoIyMDhmF4OExcLxTtcQXDo+GWxv0M70GzrozwLMsAs/kNAicruFTpQo4DlTDHlxHwx/WHq8gybd5VNTGm/2C31FnFV16OUDGIWOqt9kLMIVYyEUDnCgi5H00ghQNR61tDDx03qEilZwyDYdgWDD2dg1Fx1k1kRPVvv/gMS9HuD9/NoRsZJWSVNvKIn7l8Y6agAZK2Z5h0gbCMTsBP0UpXOzPxKKs2hNMpOXV0REkqr1/iQnY0pqBKCH7Lm40rSbv1TFNcC2RC1s8K2XjeOPbuKbrpMdfkFE/EYQSelL8doG8xrPZbbagsmfAw1H5rtq05C8tR3HesU3BYA3yrxi0x4WZr0XAs7///0m4EF/Li67Vmo4fRZlBIvfOgYrjY/b9argX3Xl2QN/UEh7LDeNf2u3kBNZoJCIyAG97UHHi7Jm1cHsDWwgL4Qrw4dF4HHyzaiFpz5XRrQGBd9y2fZ2HA1Uz+sJCKbg7F8JBgEp66wxQ7JzY8FxpT1Yxz4YsAOkyV7/pKLLPk=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(38070700021)(11063799006)(56012099006)(261009223027099003)(261021121427099003)(261021123027099003)(261022075727099003)(10067099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6chA/GaVz172NSsgJX4yRTy5P58fkFUYJQYQIcAQ6y3CKn/2/As62O/p+JmV?=
- =?us-ascii?Q?oTkJFV29nvNq+NbdRfDS3bKKaxoFOPK7gBmjPHyLzJdWQSyO0f4B5P7+tKUr?=
- =?us-ascii?Q?DqW5Sxq4+xJONA4w07bqipJ2lIUQwHdmuamjn8Y+r/6BOz4EsOA6SN8rT7kl?=
- =?us-ascii?Q?4X7bEvzg617zc1+bnXiixfbDjb+Z1XXv24u5Ga+MDDxHWGGEdpBPhTq2NPv4?=
- =?us-ascii?Q?HOUIIsOx9mUI/Zd//hJaHSKYVYhfQTTz6+r4wt5TmnHoaemrEODuGEeP4jFX?=
- =?us-ascii?Q?uy2tVVRUXsw81g8QGqHA8h5W/a6tW4Zt4LV4FqRqu+WUCBV2Y3K5qBuQsKzq?=
- =?us-ascii?Q?DeLYQUVriFuN01Fxm4F52pAa6dn8JQi4PCYCIbpTI0nHEQATjIVzTpUAcY9x?=
- =?us-ascii?Q?KltWLWRsXC7Lb3VcIFBQadKQIHWHq85FbfrhnuvJw5MtTqM62DUKkp4xeQwv?=
- =?us-ascii?Q?Xj1aEUKmJEuxTnsgpUt0FUa6q9HjT0VRgcYT6pgeboOQgALLxAxU3r981ZOA?=
- =?us-ascii?Q?2BqPJSjQpXdigcXS/zqteq8C5MPfUODEzFYbkaTkMyICrptdQxkUjGVlBj5O?=
- =?us-ascii?Q?v9ctCrtq/aGLvbLUVCmKV2H27ywGXxOhYTMr/8vZU69h13HVoQoDk4uAAYLc?=
- =?us-ascii?Q?eHCD1SkYVyGb9nozeXs77zPPOma6FvkjTH5OzAnbhdxJ97MzkFKHYwoGxvKZ?=
- =?us-ascii?Q?ntM/4StGuGzbeDTOv9aNwY/2zxG9hAUiemMFuaV9iwnq7ah7IQzJZz/HudRI?=
- =?us-ascii?Q?vaMVpUetpCbGZt+x5M1mbeE3hJzOnmRjQwe5X8d2MHrKih9usuiZnXYnosEP?=
- =?us-ascii?Q?y31YaNlaARQ2URWBjhuJj63qRVoXKzH4wVlF06aLQQAJsSRTgS2/HDAf5F/5?=
- =?us-ascii?Q?2xggh7KmDYG3RvU7juZiN8N55k2yLjYxKYq868mgIpMeUluCbty0gYdDd5uX?=
- =?us-ascii?Q?1r50AAIQvTr2W5xt/pLCC/9g3wifa+t/DXtgMW3Ue1CBlh9fXb0PQXClaZ5m?=
- =?us-ascii?Q?pzCtDX+fgoAO73+2G6O5YeHdbVKLExUmm/qXfyXlyH6tEvs9C59I9zsy9vwi?=
- =?us-ascii?Q?oRFGxaaBGP5/Oa45FLe1+kjLy0DkhdNz7J/RQbxDSD8VRjMg9/2mHbbsEvLO?=
- =?us-ascii?Q?c2L9ByhWGUxrRqCrDsEwHHz5AjyW4WRlY8MVnYSwt05EQ9ptqy7h4KnFklmf?=
- =?us-ascii?Q?xm9lMdZxRa7eMR4vrrglS1BXHbqZVm+E/cut0iwpAFl7H+ZFEaFS0Tr/6mZW?=
- =?us-ascii?Q?qU0jCRq32DEaPOkk4X0eymUEBaHyZHvMcgHLiIEkc1AaEdWbswsLAliNoMIR?=
- =?us-ascii?Q?/Sj4ilR5k3XGKWIUsZPd1qTUg5L5LOZTN5MQd849FzJJqElZHPDoguyCVk9u?=
- =?us-ascii?Q?LmBM4Pdj9Cj7mtpb+5XhtAVvMAmRPCjvW3nGbtYYDSKElZ+YsVswh/gfTm4J?=
- =?us-ascii?Q?JOQtidN585muSyVzqaR8mnlBMtMzSWqQ2iMk7LGZF5Dz0GMbn4SQoYob3bXd?=
- =?us-ascii?Q?wa2IaMCKdHa2qp9L3/HCtUvVG/y2qKII2lUdSnZhb0kUCFAOq5KbmR83vgV/?=
- =?us-ascii?Q?dQpxjmODUyqw/g+GawKzddO2l5RrwEXW/XCKHM8zVZk0kNc5N11e0HRdeqyM?=
- =?us-ascii?Q?jfQa/bXX7yvjs1/iLo+VVMoyPVCdocPncWZjcpo/8rMg3A/gj6p4S43m+zbs?=
- =?us-ascii?Q?S5RGzvmBoN8wT4WVctS9c5ie9j6A4a1/U1byWUHIR3n3g+MiItje7noQ2HWl?=
- =?us-ascii?Q?DyDc0WeBrQ=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from DS0PR11MB8208.namprd11.prod.outlook.com (2603:10b6:8:165::18)
+ by CH3PR11MB7895.namprd11.prod.outlook.com (2603:10b6:610:12f::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
+ 2026 05:20:13 +0000
+Received: from DS0PR11MB8208.namprd11.prod.outlook.com
+ ([fe80::ecb0:7475:84de:ca9c]) by DS0PR11MB8208.namprd11.prod.outlook.com
+ ([fe80::ecb0:7475:84de:ca9c%6]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
+ 05:20:13 +0000
+Message-ID: <d9f66444-5194-4a83-beed-5b355d5e3687@intel.com>
+Date: Mon, 2 Nov 2026 10:50:00 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] gpu/buddy: Prune exhausted subtrees in
+ range-biased allocation
+To: Matthew Auld <matthew.auld@intel.com>, <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Arun Pravin
+ <arunpravin.paneerselvam@amd.com>, Joel Fernandes <joelagnelf@nvidia.com>
+References: <20261022051518.486064-4-sanjay.kumar.yadav@intel.com>
+ <20261022051518.486064-5-sanjay.kumar.yadav@intel.com>
+ <37602ca7-91eb-40ec-bf6f-3c2f568fde20@intel.com>
+Content-Language: en-US
+From: "Yadav, Sanjay Kumar" <sanjay.kumar.yadav@intel.com>
+In-Reply-To: <37602ca7-91eb-40ec-bf6f-3c2f568fde20@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0283.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:221::16) To DS0PR11MB8208.namprd11.prod.outlook.com
+ (2603:10b6:8:165::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: PvBNYK4DxfX2Iz7FS2lmDSxk6OtV3cq/PJgqMa3vcidqBisVZKX9TZo/MKo7hS1WQN6GgzFFxtmxfn0VT2NgR8pZgpqcoijI1A7W2aTeb68iAECyqaQwEEyRO5VnGIIy0jKIBu5SCiqobXu/IfRaj0yn+EWywymmgl+rzz8S5KXv/ZMP2VnVFe5oqIgodCWfvbjL5U05pS4K7Uhhpk++j4uKLDlv/cvoycGgWBpyh0keidlVzJwF5RZsffJ6DCpUH3s+XsXx2mo7QGXI6NYptMd+noB9xQwgh+lxRVVTWFl1UN18KCrhRujMVw94WvdfbPfUMHraRe/1CZt3WTiKIw==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8208:EE_|CH3PR11MB7895:EE_
+X-MS-Office365-Filtering-Correlation-Id: a25806f0-7100-4f1a-6802-08df38a0f895
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|23010399003|18002099003|22082099003|10067099003|56012099006|261009223027099003|261022105027099003|261021121427099003|261022075727099003|11063799006|5023799004|4143699003|261028144727099003|261026121527099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: 1mUgsXMLxq6QaXwGWnCxaEbUVZbf0n+9r0nNHv3sI9ebRxC6khT+lHjO3UxUxSJpYGW1RIbAafUa6r4i0LiLaGX8rx/An9sLnUJJGVHjtm8qCrB5E5TxixSsj7GxdhXR5KQ5O7QH6QxYAYuJZ1yXaYXJai73oJV5hXRN1IHRySZCYZRDwx75M96bRZAdPrLZrwgqrdAcJYXPcS8uauCa660kyQzbDTc4+KfD46YDNxiDXeZqyhzbkB74n4IZBtk2u8F6SCJ0Hcd3HOuQuA9OVnfE85+RkmeLOoV8X7y2YdFCJVjGJAWck1mxEFFezV3Yzybmc42s4oIGW0dh/bDPCsIhK1X1JLocEsCbGslgew7MEpbT3gnnR2Il/bjQk2gwxGe8k+RDmjcQvzTBWovZpddEcKBWs+Qp17ZzCUaviNPDKepMvv3O1fZWZ7EZQjuY8SStUUO/9rJa5lTWG+Sy7Tl2iH9P2utYlBH0FVI4+lkdsDpGdSX3g85z9HlOkKVqTwFUF1oHOK+sjM4/44cpqW11pDVrgE5xYXe7zVZnA/gvrooxsF+BJOFwsoZCWOImlevsJxxqrnulwEWhTXsLWJzZomh+6Vf3tZnH64fFjOyWVtYVZwOdBsu3ruVWoRM9ijpZg9Cg5bkwB9vs0DFt+7c67Z/13gdc+qsuitmMYiA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8208.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(18002099003)(22082099003)(10067099003)(56012099006)(261009223027099003)(261022105027099003)(261021121427099003)(261022075727099003)(11063799006)(5023799004)(4143699003)(261028144727099003)(261026121527099003)(261026140227099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SUt1MmJEMEZ1Vjdvd2xWd05YZnlKUmxmalFLVkpnL3Q1dzJzMGFzSXcwZkk1?=
+ =?utf-8?B?RG5abUVwT1JsUXFCOHFhS21GM2tMRUEvSVcwYkg4aFh4K0d0cTdZMmZwaTVK?=
+ =?utf-8?B?Z1RaZm0yUVNoUEFYVjc4YllCYlRReS9GWG53V0E5eXVpZERsOXllYUc0d1Jy?=
+ =?utf-8?B?R3kzS1c4UUhiNEVIa2RvWThNdkZWaTI3b1ZLNVlpcVFOMDhyY2lBdXNRMjc2?=
+ =?utf-8?B?QVBlVXFqMTVudHQxSzB4dE5uVHhqWFA5Y2FqckFLL2toUGFyN2poaUNRVWJN?=
+ =?utf-8?B?ZEtoNmFhQmtiUFJSMzRaa2d2NDRyMWFqZEVtdjZ0dEZwVFAwcE9jaUZNTU9L?=
+ =?utf-8?B?L1pVZ0xIWm0zeW1tZVM5SEhrTmllRkxQbENPLzRuRmZUKzlBRXFwSUdDbmhF?=
+ =?utf-8?B?clYweTRYS3hqdFJFUWQ4NzBpUE4xdCs1eklyUEl1OXlEWlhlVnpVWGxiOUd6?=
+ =?utf-8?B?cmdXU3VUbmY4NktoY3MzSEtkZXB2dFg4cDkrTGNGbjhQM1JzcFJwQnhySTVn?=
+ =?utf-8?B?VU9iUDJwbWwrd3paUjU5M0M0cytOeXJtd3dzN05LSTlOZ1lvYTlYelZmenRH?=
+ =?utf-8?B?NTBPVmdxRW44U0I0ZDl2S3Q2RkQxMU0yUC9OaFFnbmpYU3pFbVZiaitHNjY2?=
+ =?utf-8?B?bVZ0Wlh2NkZqcHlDMnhDRXpoelFxeWxsaW56K2wvUy9ZU3FjMWFJallsUFhU?=
+ =?utf-8?B?MkxwOGVKVUxZRC9TVGhIek1xQlFvV3Mrd1pyVzY4Mk51NlhMTmZCdHdybjFC?=
+ =?utf-8?B?aXRtNWticklFYmhqRTNrUWJmU2doSm9KNWx5OWlLWWM4Q1lDanBhQ1N2UUNC?=
+ =?utf-8?B?SFFPMmJLWUxmaUFRYVlJNHAxTlBETmgrMkloc0VXbDVJNERySmpMayt0Zkc3?=
+ =?utf-8?B?Mmx0N1FacWlUTmpDTE1oSFZNZnJYYU9aRUhVY3Y3Wmg1ekxNSWRpUkRTdHZI?=
+ =?utf-8?B?V3I1cHNMT1BDdytkYnExOXAyeWxoUXVCamdLRmx1SDVmT3h2SW5MVlRlY21r?=
+ =?utf-8?B?REViVzdlbC90YTZrOUMvNDdXejhxalVwNXNrWlRpQjZaY09GTzFLcm5qd1Zq?=
+ =?utf-8?B?QjNPOWNaL2sxZkdGZkQ5WEg2K09tU2daSjcvOWJ0WVIvVVdTbXczY0dnRUU4?=
+ =?utf-8?B?ODFTeUZKcGJmdlM1OEN3ZzRKWkpCUXNPYmVYeHZzOFJ2Wkc5U1FyUHNDWDdq?=
+ =?utf-8?B?OVNxVDB5c0k1Y3dvTGQ5NjdGRGJWOFRlVTVqRXNrRGY2cDZueHhNVDZ1Z2FH?=
+ =?utf-8?B?dnEyMGNGYUV2bzdlM2dFZHhBYU9VczVGVE9UUVozY0dEcm01ZGdtYm42WVR4?=
+ =?utf-8?B?c2JaV3QvdHp1THJ0VDlXbDQreURSaXRGaFN6YnJiaWlULzR3alZjU0RacGlr?=
+ =?utf-8?B?WmRuQ3lGSzJURDVLUW1TTmNXd1FPU1BWU0ZLRHpYUnhtN3VMQ3RVUlgwMXdm?=
+ =?utf-8?B?RXJKRUJDeTFtL0MvZEJRTDRYeURlYjU3M0laT0lTQlZyRG9jaENWemFLZmNp?=
+ =?utf-8?B?dVBsT3l5dGgwUmI0RkMwZjFVVDFIN2wyZzVuSHVpMWVqWjFqSUp6czh5dSsz?=
+ =?utf-8?B?YVpMZWI5MHFQcW1NSUlwMXRkc0RTRGtML0pKWEFNL3E4Z2pRbWcvR1MyLzNR?=
+ =?utf-8?B?OHlwSXNNQ2hwQk43ZjlUT3h2ZmZkV3BhSXk0YmZab3JVWjFDa1pDLzBRK201?=
+ =?utf-8?B?bThzek5uUk1Ddk1kZWpad0NqQXpGSzRzaFhYYlFwaktPYW8xSlFqQ1Rrekg3?=
+ =?utf-8?B?OHJ4Z091dVhGK2xsM0xWTVJhTFRlamFmYlV0L1ZkTFRiM1d2TGVCU3I4U3V6?=
+ =?utf-8?B?QzRVM1l3bUJ2NTIvS1dsUVhGNEpRZjU3U093ZDZadW9jWFN2QXFnRXpwS3Np?=
+ =?utf-8?B?d243bE1Vek9OL0tWbTJhQTRRMkJGTStwbUpDRTBtQUsrVHo0SVpyUlFiRlJz?=
+ =?utf-8?B?UUJRd2cxU1Q1c2VoOXRHeHE5ZEVteHBQTlhIeDBxY3FmbVlIM2ZweXoyZWlt?=
+ =?utf-8?B?azBldEl6Mko1U0VRSjVQTk5pUThjdk5tQ0ZjYWo3UE5Oc3JjaStxM0JJeVpI?=
+ =?utf-8?B?Q3l2cnZoampiN1ZJdDdabWpyRlB4SWJocFV6UEtxOGRDeS9ZMUZxUGRId1Bl?=
+ =?utf-8?B?bkZpWGxTK3pGQWhSZDcrWGczZEdWY3huUm5NU2NZRzhQVVBXS2wxNTlVeEdL?=
+ =?utf-8?B?WDVPNFkvR1Raa0hFZlM0MWlaTExhZ3NZKzJxWjliVVB4aUl3Sy93RUlUM2k5?=
+ =?utf-8?B?N0M3NVIvajZQeUcwcVRWeXNKb0dteU53TlZZSGJ4RVdwczFqbFBxakRvSXdy?=
+ =?utf-8?B?YXdiSTNVcGxlRWY1aXZWODc4QXgwVjd2cTZYVUVIdzdhV2IxdldRakc0VzR4?=
+ =?utf-8?Q?NNQZY8UaTLk00TrA=3D?=
+X-Exchange-RoutingPolicyChecked: Vzhh0Tt5gfcjs+iXspYVGDOAZ+qdizqc2bMPVouvT6//VkwnI+Ili4v52SpgvmraSppTT5TkiiM+TTSlhsXwrLlAkzmPJYAg0vL82wluqXRSZL/WcGUH79nmlnBK9GjLOEo+2s1F04LAs8pixEQ4qYNYrX0taqO3wr/exg7GIdVFA2HrwsxZL/Wxf8vKyUQP3OsF26HTvgABDRLVv08KQB8DuDFOVx6T8+rePREMops2WEv8V37D8S4HFbETJnudPf9/lGkEzoXfPkmmgE8S+k7HatV8nHOn1/yByFOfS+bqSH02hpFG8BcKfxZRPd4wHKiLCqnxkVsf3td9A9AX/g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: a25806f0-7100-4f1a-6802-08df38a0f895
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8208.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 20542e6e-2058-438f-76c6-08df38a01978
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2026 05:13:58.2704 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: IWE8/BalQ6avEwWv9YC0nDDRrbLu6rwse2M1LoIngemgdzYJTntRP1lP6fV3mUmeJ6imgPpmOtYpj4jBAB2PGA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4612
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2026 05:20:12.8075 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f26GuAm6qCw8o4QSoongXbXa3E5CJ7tJz9htEk7d0K1DqqmXHmlecF7Rr7pf+jXHH24lfy/9Y5/XDyCRcklmQJQgeOpyEqY/c81FUzjaBx8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7895
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,60 +168,154 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-> Subject: [PATCH] drm/i915/display: fix a few i915_reg_t usages that have =
-crept
-> back
->=20
-> Display code should use intel_reg_t instead of i915_reg_t. It's currently=
- just a
-> typedef around i915_reg_t, but this will change in the future.
->=20
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-> ---
->  drivers/gpu/drm/i915/display/intel_de.h       | 2 +-
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h
-> b/drivers/gpu/drm/i915/display/intel_de.h
-> index 5d3aeaf6a70f..d0a239a36980 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -136,7 +136,7 @@ intel_de_rmw_fw(struct intel_display *display,
-> intel_reg_t reg, u32 clear, u32 s
->=20
->  static inline u64
->  intel_de_read64_2x32_volatile_fw(struct intel_display *display,
-> -				 i915_reg_t lower_reg, i915_reg_t upper_reg)
-> +				 intel_reg_t lower_reg, intel_reg_t upper_reg)
->  {
->  	u32 old_upper, upper, lower;
->  	int loop =3D 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index bfd6f0a19725..07a66db583dd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -4798,7 +4798,7 @@ static bool dg2_mpllb_get_hw_state(struct
-> intel_display *display,  {
->  	struct intel_encoder *encoder =3D dg2_get_intel_encoder(display, pll);
->  	enum phy phy;
-> -	i915_reg_t enable_reg;
-> +	intel_reg_t enable_reg;
->  	struct ref_tracker *wakeref;
->  	bool ret =3D false;
->  	u32 val;
-> --
-> 2.47.3
-
+On 30-10-2026 19:59, Matthew Auld wrote:
+> On 22/10/2026 06:15, Sanjay Yadav wrote:
+>> __alloc_range_bias() walks the buddy tree depth-first, higher address
+>> first, and descends every SPLIT block even when nothing below it is
+>> free. Range allocations are placed top-down, so they pack below the
+>> range end and each new one walks every block already allocated there:
+>> O(N) per allocation and O(N^2) for N allocations, under the allocator
+>> lock.
+>>
+>> Track in each block the largest order of any FREE block in its subtree
+>> (GPU_BUDDY_NO_FREE_ORDER if none), update it whenever a block changes
+>> state, and skip subtrees that cannot satisfy the requested order.
+>> gpu_buddy_block_trim() detaches the block while re-allocating inside
+>> it, so recompute from the parent once it is reattached.
+>>
+>> Skipped subtrees contain no FREE block of the requested order or
+>> larger, so the old walk could neither split nor return anything there.
+>> The remaining blocks are visited in the same order, so the selected
+>> block and placement are unchanged.
+>>
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
+>> Cc: Joel Fernandes <joelagnelf@nvidia.com>
+>> Assisted-by: LLM
+>> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+>> ---
+>>   drivers/gpu/buddy.c       | 31 +++++++++++++++++++++++++++++++
+>>   include/linux/gpu_buddy.h |  7 +++++++
+>>   2 files changed, 38 insertions(+)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index 28cff97d57dc..b77d7f621290 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -602,6 +602,7 @@ static struct gpu_buddy_block 
+>> *gpu_block_alloc(struct gpu_buddy *mm,
+>>       block->header = offset;
+>>       block->header |= order;
+>>       block->parent = parent;
+>> +    block->subtree_max_free_order = GPU_BUDDY_NO_FREE_ORDER;
+>>         RB_CLEAR_NODE(&block->rb);
+>>   @@ -717,6 +718,27 @@ static void rbtree_remove(struct gpu_buddy *mm,
+>>       RB_CLEAR_NODE(&block->rb);
+>>   }
+>>   +static void update_subtree_max_free_order(struct gpu_buddy_block 
+>> *block)
+>> +{
+>> +    while (block) {
+>> +        s8 max_free;
+>> +
+>> +        if (gpu_buddy_block_is_free(block))
+>> +            max_free = gpu_buddy_block_order(block);
+>> +        else if (gpu_buddy_block_is_split(block))
+>> +            max_free = max(block->left->subtree_max_free_order,
+>> + block->right->subtree_max_free_order);
+>> +        else
+>> +            max_free = GPU_BUDDY_NO_FREE_ORDER;
+>> +
+>> +        if (block->subtree_max_free_order == max_free)
+>> +            break;
+>> +
+>> +        block->subtree_max_free_order = max_free;
+>> +        block = block->parent;
+>> +    }
+>> +}
+>> +
+>>   static void mark_allocated(struct gpu_buddy *mm,
+>>                  struct gpu_buddy_block *block)
+>>   {
+>> @@ -729,6 +751,7 @@ static void mark_allocated(struct gpu_buddy *mm,
+>>       mm->used_scoreboard[gpu_buddy_block_order(block)]++;
+>>         rbtree_remove(mm, block);
+>> +    update_subtree_max_free_order(block);
+>>   }
+>>     static void __mark_free(struct gpu_buddy *mm,
+>> @@ -750,6 +773,7 @@ static void __mark_free(struct gpu_buddy *mm,
+>>       mm->free_scoreboard[gpu_buddy_block_order(block)]++;
+>>         rbtree_insert(mm, block);
+>> +    update_subtree_max_free_order(block);
+>>   }
+>>     static void mark_free(struct gpu_buddy *mm,
+>> @@ -772,6 +796,7 @@ static void mark_split(struct gpu_buddy *mm,
+>>       mm->free_scoreboard[gpu_buddy_block_order(block)]--;
+>>         rbtree_remove(mm, block);
+>> +    update_subtree_max_free_order(block);
+>
+> I think this one is not needed?
+right, split_block() is the only caller and marks both children free 
+right after, which recomputes the parent
+>
+>>   }
+>>     static inline bool overlaps(u64 s1, u64 e1, u64 s2, u64 e2)
+>> @@ -869,6 +894,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 
+>> size, u64 chunk_size)
+>>         size = round_down(size, chunk_size);
+>>   +    BUILD_BUG_ON(GPU_BUDDY_MAX_ORDER > S8_MAX);
+>> +
+>>       mm->size = size;
+>>       mm->avail = size;
+>>       mm->chunk_size = chunk_size;
+>> @@ -1280,6 +1307,9 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>           if (gpu_buddy_block_order(block) < order)
+>>               continue;
+>>   +        if (block->subtree_max_free_order < (int)order)
+>> +            continue;
+>> +
+>>           block_start = gpu_buddy_block_offset(block);
+>>           block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
+>>   @@ -1881,6 +1911,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+>>       }
+>>         block->parent = parent;
+>> +    update_subtree_max_free_order(parent);
+>
+> Since mark_free() now sends it up the flag pole, maybe move the 
+> block->parent = NULL before mark_free() to prevent that? The update at 
+> the end here should be enough?
+Yes, done in v4. With the block detached, the updates stop at it during
+the trim, and the final update from the parent fixes up the ancestors.
+>
+>>       return err;
+>>   }
+>>   EXPORT_SYMBOL(gpu_buddy_block_trim);
+>> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+>> index ddc4eca84175..8037f5a0feb1 100644
+>> --- a/include/linux/gpu_buddy.h
+>> +++ b/include/linux/gpu_buddy.h
+>> @@ -141,8 +141,15 @@ struct gpu_buddy_block {
+>>       unsigned int subtree_max_alignment;
+>>       struct list_head tmp_link;
+>>       bool has_clear;
+>> +    /*
+>> +     * Largest order of any FREE block in this block's buddy 
+>> subtree, or
+>> +     * GPU_BUDDY_NO_FREE_ORDER if none. Protected by the driver lock.
+>> +     */
+>> +    s8 subtree_max_free_order;
+>>   };
+>>   +#define GPU_BUDDY_NO_FREE_ORDER (-1)
+>> +
+>>   /* Order-zero must be at least SZ_4K */
+>>   #define GPU_BUDDY_MAX_ORDER (63 - 12)
+>
