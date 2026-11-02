@@ -2,42 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FAB5606A329
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26185606A32C
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=iftOeaxG
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MuWq2jam
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BACEA10FCA3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C326810FCA4;
 	Wed,  4 Nov 2026 15:02:53 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0F6110E9CF;
- Tue,  3 Nov 2026 22:42:19 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC17710F0D6;
+ Mon,  2 Nov 2026 16:49:55 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 4483B60416;
- Tue,  3 Nov 2026 22:42:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A971F00A02;
- Tue,  3 Nov 2026 22:42:17 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id C3FD044601;
+ Mon,  2 Nov 2026 16:49:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BE081F00A16;
+ Mon,  2 Nov 2026 16:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793745739;
- bh=qVqLMAowWNNhyYo56lksEAIwVw7s3n3V0O+bkJsZopw=;
+ s=k20260515; t=1793638195;
+ bh=oRJRMMD3ctMEcVviiDxytRdlmLbWxJT80Ce13o2Sbyo=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=iftOeaxGfx9EBOch2JcelLX5nfcthifD4mkbDaBsSwmWLBT/s7L37c3nX/QzFFe6r
- qC4K7QbarNyv55yrvsV/8cQ7U1LyDD1ifRlTd/ETfHEF6xYGu3Qwo0DxD7LcPFwpu+
- PKzvIkHU98UVMtON+Cy9Ut/H4mquUjLPx3x58fJrfIySPPiIkgS02A6DZ+dZ8Lzv6Y
- lHhuyqz2Zu3LrIR+PUphpC6Sw/8rOWan5Z+K23HsfRdkMvP8iDK6I76jHda42rdmfA
- F5oWG7NeG6eKljVQHqUNrYo4SytuyJxj7+3t211LL8Ub/+lSRPn6yOy7qgCBox7XZv
- KZoiaUa9hj8VA==
+ b=MuWq2jamAXbNo1Xz1TG/MelTuHxU/QDkjNY8A2r74MLF0kgIrW9J9Lh9vTAH5DlvO
+ wByf+MJ7ePvJsu2l+iowPAmRUqHNcmxH4pz6cwPwKQtKdyUuK+NF5Hl5AypF1dA2Ad
+ IPEqidNpl1XAuUx/eqhXekQwyEZOwOkPoxfu1E3CZdzQO3542cG6xuI9n42GT4Lq5f
+ kRnfbMw05gz4v9r4zlrh31fcSnRsyOP5Muky17VgkzADC5+3P4SsKFF/vkSvGZrgd4
+ 9hIJkQyMZKG4osAc/yFaHFf9YBOaj6RO0YOYTJl9rbFQo/XmZ39tm+Of3t0u6WJZ4V
+ ZgXhqwnCZaI5g==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:03 -0600
-Subject: [PATCH v11 02/12] drm/amd/display: Pass up errors reading actual
- brightness
+Date: Mon, 02 Nov 2026 10:49:30 -0600
+Subject: [PATCH v10 14/15] drm/bridge: add PS8622 connector luminance support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261103-superm1-backlight-property-v11-2-00cce7b2ba22@kernel.org>
-References: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
-In-Reply-To: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
+Message-Id: <20261102-superm1-backlight-property-v10-14-b2a6f24131f5@kernel.org>
+References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+In-Reply-To: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 To: Maxime Ripard <mripard@kernel.org>, 
  Alex Deucher <alexander.deucher@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -74,101 +73,129 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-[Why]
-If the DC API fails to return actual brightness when backlight control
-API requests it, then the wrong value may be returned.
-
-[How]
-Change return type of amdgpu_dm_backlight_get_level() to an integer
-and pass an error code up to the caller.
+Expose PS8622 brightness through bridge luminance operations when
+DRM_LUMINANCE is enabled. Keep registering the backlight class device
+otherwise.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c | 13 +++++++++----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h |  2 +-
- .../amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c  |  4 ++--
- 3 files changed, 12 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/bridge/Kconfig         |  2 +-
+ drivers/gpu/drm/bridge/parade-ps8622.c | 45 +++++++++++++++++++++++++---------
+ 2 files changed, 34 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-index cb74b00723fda..0f664c658a127 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
-@@ -438,7 +438,7 @@ int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
- EXPORT_IF_KUNIT(amdgpu_dm_backlight_update_status);
+diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
+index c7da6b02d7b6b..d27e9b2485fd6 100644
+--- a/drivers/gpu/drm/bridge/Kconfig
++++ b/drivers/gpu/drm/bridge/Kconfig
+@@ -278,7 +278,7 @@ config DRM_PARADE_PS8622
+ 	depends on OF
+ 	select DRM_PANEL_BRIDGE
+ 	select DRM_KMS_HELPER
+-	select BACKLIGHT_CLASS_DEVICE
++	depends on DRM_LUMINANCE || BACKLIGHT_CLASS_DEVICE = y || !BACKLIGHT_CLASS_DEVICE
+ 	help
+ 	  Parade eDP-LVDS bridge chip driver.
  
- STATIC_IFN_KUNIT
--u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
-+int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
- {
- 	int ret;
- 	struct amdgpu_dm_backlight_caps caps;
-@@ -451,14 +451,14 @@ u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
- 		u32 avg, peak;
+diff --git a/drivers/gpu/drm/bridge/parade-ps8622.c b/drivers/gpu/drm/bridge/parade-ps8622.c
+index 3a2ec482037df..229d9d7218c4e 100644
+--- a/drivers/gpu/drm/bridge/parade-ps8622.c
++++ b/drivers/gpu/drm/bridge/parade-ps8622.c
+@@ -45,6 +45,7 @@ struct ps8622_bridge {
+ 	struct drm_bridge *panel_bridge;
+ 	struct regulator *v12;
+ 	struct backlight_device *bl;
++	u8 brightness;
  
- 		if (!dc_link_get_backlight_level_nits(link, &avg, &peak))
--			return dm->brightness[bl_idx];
-+			return -EINVAL;
- 		return convert_brightness_to_user(&caps, avg);
+ 	struct gpio_desc *gpio_slp;
+ 	struct gpio_desc *gpio_rst;
+@@ -276,7 +277,7 @@ static int ps8622_send_config(struct ps8622_bridge *ps8622)
+ 
+ 		/* FFh for 100% brightness, 0h for 0% brightness */
+ 		err = ps8622_set(cl, 0x01, 0xa7,
+-				ps8622->bl->props.brightness);
++				ps8622->brightness);
+ 		if (err)
+ 			goto error;
+ 	} else {
+@@ -324,6 +325,8 @@ static int ps8622_backlight_update(struct backlight_device *bl)
+ 	struct ps8622_bridge *ps8622 = dev_get_drvdata(&bl->dev);
+ 	int ret, brightness = backlight_get_brightness(bl);
+ 
++	ps8622->brightness = brightness;
++
+ 	if (!ps8622->enabled)
+ 		return -EINVAL;
+ 
+@@ -332,6 +335,15 @@ static int ps8622_backlight_update(struct backlight_device *bl)
+ 	return ret;
+ }
+ 
++static void ps8622_set_luminance(struct drm_bridge *bridge,
++				 unsigned int luminance)
++{
++	struct ps8622_bridge *ps8622 = bridge_to_ps8622(bridge);
++
++	ps8622->brightness = luminance;
++	ps8622_set(ps8622->client, 0x01, 0xa7, luminance);
++}
++
+ static const struct backlight_ops ps8622_backlight_ops = {
+ 	.update_status	= ps8622_backlight_update,
+ };
+@@ -438,6 +450,7 @@ static const struct drm_bridge_funcs ps8622_bridge_funcs = {
+ 	.atomic_disable = ps8622_disable,
+ 	.atomic_post_disable = ps8622_post_disable,
+ 	.attach = ps8622_attach,
++	.set_luminance = ps8622_set_luminance,
+ };
+ 
+ static const struct of_device_id ps8622_devices[] = {
+@@ -502,18 +515,25 @@ static int ps8622_probe(struct i2c_client *client)
+ 		ps8622->lane_count = ps8622->max_lane_count;
  	}
  
- 	ret = dc_link_get_backlight_level(link);
++	ps8622->brightness = PS8622_MAX_BRIGHTNESS;
+ 	if (!of_property_read_bool(dev->of_node, "use-external-pwm")) {
+-		ps8622->bl = backlight_device_register("ps8622-backlight",
+-				dev, ps8622, &ps8622_backlight_ops,
+-				NULL);
+-		if (IS_ERR(ps8622->bl)) {
+-			DRM_ERROR("failed to register backlight\n");
+-			ret = PTR_ERR(ps8622->bl);
+-			ps8622->bl = NULL;
+-			return ret;
++		if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
++			ps8622->bridge.ops |= DRM_BRIDGE_OP_LUMINANCE;
++			ps8622->bridge.luminance_max = PS8622_MAX_BRIGHTNESS;
++			ps8622->bridge.luminance = ps8622->brightness;
++		} else {
++			ps8622->bl = backlight_device_register("ps8622-backlight",
++							       dev, ps8622,
++							 &ps8622_backlight_ops, NULL);
++			if (IS_ERR(ps8622->bl)) {
++				DRM_ERROR("failed to register backlight\n");
++				ret = PTR_ERR(ps8622->bl);
++				ps8622->bl = NULL;
++				return ret;
++			}
++			ps8622->bl->props.max_brightness = PS8622_MAX_BRIGHTNESS;
++			ps8622->bl->props.brightness = ps8622->brightness;
+ 		}
+-		ps8622->bl->props.max_brightness = PS8622_MAX_BRIGHTNESS;
+-		ps8622->bl->props.brightness = PS8622_MAX_BRIGHTNESS;
+ 	}
  
- 	if (ret == DC_ERROR_UNEXPECTED)
--		return dm->brightness[bl_idx];
-+		return -EINVAL;
- 
- 	return convert_brightness_to_user(&caps, ret);
- }
-@@ -469,8 +469,13 @@ int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
+ 	ps8622->bridge.type = DRM_MODE_CONNECTOR_LVDS;
+@@ -529,7 +549,8 @@ static void ps8622_remove(struct i2c_client *client)
  {
- 	struct amdgpu_display_manager *dm = bl_get_data(bd);
- 	int i = amdgpu_dm_backlight_get_device_index(dm, bd);
-+	int ret;
-+
-+	ret = amdgpu_dm_backlight_get_level(dm, i);
-+	if (ret < 0)
-+		return dm->brightness[i];
+ 	struct ps8622_bridge *ps8622 = i2c_get_clientdata(client);
  
--	return amdgpu_dm_backlight_get_level(dm, i);
-+	return ret;
- }
- EXPORT_IF_KUNIT(amdgpu_dm_backlight_get_brightness);
- 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
-index 9ad888d3ae7b2..891749322191c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
-@@ -57,7 +57,7 @@ void amdgpu_dm_validate_backlight_caps(struct amdgpu_display_manager *dm, int bl
- struct dc_stream_state *dm_find_stream_with_link(struct amdgpu_display_manager *dm,
- 						 struct dc_link *link);
- int amdgpu_dm_backlight_update_status(struct backlight_device *bd);
--u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx);
-+int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx);
- int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd);
- ssize_t panel_power_savings_show(struct device *device,
- 				 struct device_attribute *attr,
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-index 28dda5324dfa7..8fc1c2f997688 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
-@@ -382,7 +382,7 @@ static void dm_test_backlight_get_level_pwm_error(struct kunit *test)
- 	dm->brightness[0] = 4321;
- 	dm->backlight_link[0] = link;
- 
--	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 4321U);
-+	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
+-	backlight_device_unregister(ps8622->bl);
++	if (ps8622->bl)
++		backlight_device_unregister(ps8622->bl);
+ 	drm_bridge_remove(&ps8622->bridge);
  }
  
- /**
-@@ -424,7 +424,7 @@ static void dm_test_backlight_get_level_aux_error(struct kunit *test)
- 	caps->caps_valid = true;
- 	caps->aux_support = true;
- 
--	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 6789U);
-+	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
- }
- 
- /**
 
 -- 
 2.53.0
