@@ -2,39 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6DD7606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66FDA606A337
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Bak8PR33
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WhOtx3Fm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6337010FC7B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBF010FC72;
 	Wed,  4 Nov 2026 15:02:43 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82DFB10F0C6;
- Mon,  2 Nov 2026 16:49:42 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26D2210E676;
+ Mon,  2 Nov 2026 16:49:34 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6DEE944510;
- Mon,  2 Nov 2026 16:49:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9D691F00A1A;
- Mon,  2 Nov 2026 16:49:40 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 4F07760C08;
+ Mon,  2 Nov 2026 16:49:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 604F71F00A1A;
+ Mon,  2 Nov 2026 16:49:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793638182;
- bh=hI1MJq4K8L5jI0+LOV3XfRn/TD9k2MaKrMvKNdRDEoU=;
+ s=k20260515; t=1793638173;
+ bh=cvbBm4Tp3/ViJKgby3dRF7WjDg9OW1cC4hM7fJo8a3M=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=Bak8PR33p6oWgFybUkZoLevJ2evrRwZLe86BX79lDY+3foHj7EE2Zs6nlKZ+K67oc
- wAKdmTFo/LotMoKeXC8KRqSpoEIpQSpngubonYVfJFzWda/yf9YOoUX8ZPDE7mVlx/
- OxAV6pAhOPgcn+TNQ1MN+S9ZULeDUAFTET1VqaDy4e+mqQNMOWhrNbPuFvdwh9LKHb
- 1jwmW4azVC+VLAC3G1H9PN8k8MiftCEX0zrFmGJaj6XZlBKsTiF3qiK2JXyuQ35Y6Q
- ijGETtfoKU8JQGt3bV694yhBfUToAYTd3wh0NdIOFX8SJ/FE8TSXq5qgO/Dy7S9EjE
- EXmHIhbwKy6Zg==
+ b=WhOtx3Fm6Hv32lNSjNjq810YCZ3Pa4vOYTu30yq1tvSCDlN4J7gqTXEMjGbMbFUxz
+ HE9BEt5A+QDNKrUMcgyqDKdRXjBetosn6IgcIwrj9yjvkshs7wS0grdP8eRjB4LtbI
+ DU6is3Jd87W4dI8F/MeDlZKZE8LAPJiHvcEh6d20sf0ogzNsAHk8vGNkB2qDDKGDyx
+ GhqUBenu5GT/YsEdkI3gysDLEFDeyafwgMmLnHCu9xoIeue1yWwS55RgScIuSbL8SH
+ KpRWsZRa3l9b6QHmh8q9H9ajIl2UI35Wfo2VtA4Sp+d2kHj0pJ7lk5CGSE6t06mHPm
+ sdAACQ6j/hn9Q==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Mon, 02 Nov 2026 10:49:23 -0600
-Subject: [PATCH v10 07/15] drm/bridge: add connector luminance operations
+Date: Mon, 02 Nov 2026 10:49:18 -0600
+Subject: [PATCH v10 02/15] drm/amd/display: Pass up errors reading actual
+ brightness
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261102-superm1-backlight-property-v10-7-b2a6f24131f5@kernel.org>
+Message-Id: <20261102-superm1-backlight-property-v10-2-b2a6f24131f5@kernel.org>
 References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 In-Reply-To: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
 To: Maxime Ripard <mripard@kernel.org>, 
@@ -73,123 +74,101 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Allow bridges that own brightness control to advertise a luminance
-operation and its supported relative range.
+[Why]
+If the DC API fails to return actual brightness when backlight control
+API requests it, then the wrong value may be returned.
+
+[How]
+Change return type of amdgpu_dm_backlight_get_level() to an integer
+and pass an error code up to the caller.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
-v10:
- * Split bridge operations out of the combined panel and bridge patch
----
- include/drm/drm_bridge.h | 74 ++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c | 13 +++++++++----
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h |  2 +-
+ .../amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c  |  4 ++--
+ 3 files changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index 1981d24a700d2..95f5c2b8656cd 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -62,6 +62,15 @@ enum drm_bridge_attach_flags {
-  * struct drm_bridge_funcs - drm_bridge control functions
-  */
- struct drm_bridge_funcs {
-+	/**
-+	 * @set_luminance:
-+	 *
-+	 * Apply a relative luminance level to a bridge that controls panel
-+	 * emission. Bridges implementing this callback shall set
-+	 * @DRM_BRIDGE_OP_LUMINANCE.
-+	 */
-+	void (*set_luminance)(struct drm_bridge *bridge, unsigned int luminance);
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
+index cb74b00723fda..0f664c658a127 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.c
+@@ -438,7 +438,7 @@ int amdgpu_dm_backlight_update_status(struct backlight_device *bd)
+ EXPORT_IF_KUNIT(amdgpu_dm_backlight_update_status);
+ 
+ STATIC_IFN_KUNIT
+-u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
++int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
+ {
+ 	int ret;
+ 	struct amdgpu_dm_backlight_caps caps;
+@@ -451,14 +451,14 @@ u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx)
+ 		u32 avg, peak;
+ 
+ 		if (!dc_link_get_backlight_level_nits(link, &avg, &peak))
+-			return dm->brightness[bl_idx];
++			return -EINVAL;
+ 		return convert_brightness_to_user(&caps, avg);
+ 	}
+ 
+ 	ret = dc_link_get_backlight_level(link);
+ 
+ 	if (ret == DC_ERROR_UNEXPECTED)
+-		return dm->brightness[bl_idx];
++		return -EINVAL;
+ 
+ 	return convert_brightness_to_user(&caps, ret);
+ }
+@@ -469,8 +469,13 @@ int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd)
+ {
+ 	struct amdgpu_display_manager *dm = bl_get_data(bd);
+ 	int i = amdgpu_dm_backlight_get_device_index(dm, bd);
++	int ret;
 +
- 	/**
- 	 * @attach:
- 	 *
-@@ -1021,6 +1030,11 @@ enum drm_bridge_ops {
- 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
- 	 */
- 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
-+
-+	/**
-+	 * @DRM_BRIDGE_OP_LUMINANCE: The bridge controls panel luminance.
-+	 */
-+	DRM_BRIDGE_OP_LUMINANCE = BIT(11),
- };
++	ret = amdgpu_dm_backlight_get_level(dm, i);
++	if (ret < 0)
++		return dm->brightness[i];
+ 
+-	return amdgpu_dm_backlight_get_level(dm, i);
++	return ret;
+ }
+ EXPORT_IF_KUNIT(amdgpu_dm_backlight_get_brightness);
+ 
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
+index 9ad888d3ae7b2..891749322191c 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_backlight.h
+@@ -57,7 +57,7 @@ void amdgpu_dm_validate_backlight_caps(struct amdgpu_display_manager *dm, int bl
+ struct dc_stream_state *dm_find_stream_with_link(struct amdgpu_display_manager *dm,
+ 						 struct dc_link *link);
+ int amdgpu_dm_backlight_update_status(struct backlight_device *bd);
+-u32 amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx);
++int amdgpu_dm_backlight_get_level(struct amdgpu_display_manager *dm, int bl_idx);
+ int amdgpu_dm_backlight_get_brightness(struct backlight_device *bd);
+ ssize_t panel_power_savings_show(struct device *device,
+ 				 struct device_attribute *attr,
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
+index 5221050dec2f1..b21850788f36f 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_test.c
+@@ -382,7 +382,7 @@ static void dm_test_backlight_get_level_pwm_error(struct kunit *test)
+ 	dm->brightness[0] = 4321;
+ 	dm->backlight_link[0] = link;
+ 
+-	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 4321U);
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
+ }
  
  /**
-@@ -1071,6 +1085,12 @@ struct drm_bridge {
- 	void *driver_private;
- 	/** @ops: bitmask of operations supported by the bridge */
- 	enum drm_bridge_ops ops;
-+
-+	/** @luminance_max: Maximum relative luminance level. */
-+	unsigned int luminance_max;
-+
-+	/** @luminance: Current relative luminance level. */
-+	unsigned int luminance;
- 	/**
- 	 * @type: Type of the connection at the bridge output
- 	 * (DRM_MODE_CONNECTOR_*). For bridges at the end of this chain this
-@@ -1522,6 +1542,60 @@ void drm_bridge_hpd_disable(struct drm_bridge *bridge);
- void drm_bridge_hpd_notify(struct drm_bridge *bridge,
- 			   enum drm_connector_status status);
+@@ -424,7 +424,7 @@ static void dm_test_backlight_get_level_aux_error(struct kunit *test)
+ 	caps->caps_valid = true;
+ 	caps->aux_support = true;
  
-+#ifdef CONFIG_DRM_PANEL_BRIDGE
-+bool drm_bridge_is_panel(const struct drm_bridge *bridge);
-+struct drm_bridge *drm_panel_bridge_add(struct drm_panel *panel);
-+struct drm_bridge *drm_panel_bridge_add_typed(struct drm_panel *panel,
-+					      u32 connector_type);
-+void drm_panel_bridge_remove(struct drm_bridge *bridge);
-+int drm_panel_bridge_set_orientation(struct drm_connector *connector,
-+				     struct drm_bridge *bridge);
-+struct drm_bridge *devm_drm_panel_bridge_add(struct device *dev,
-+					     struct drm_panel *panel);
-+struct drm_bridge *devm_drm_panel_bridge_add_typed(struct device *dev,
-+						   struct drm_panel *panel,
-+						   u32 connector_type);
-+struct drm_bridge *drmm_panel_bridge_add(struct drm_device *drm,
-+					     struct drm_panel *panel);
-+struct drm_connector *drm_panel_bridge_connector(struct drm_bridge *bridge);
-+#else
-+static inline bool drm_bridge_is_panel(const struct drm_bridge *bridge)
-+{
-+	return false;
-+}
-+
-+static inline int drm_panel_bridge_set_orientation(struct drm_connector *connector,
-+						   struct drm_bridge *bridge)
-+{
-+	return -EINVAL;
-+}
-+
-+#endif
-+
-+#if defined(CONFIG_OF) && defined(CONFIG_DRM_PANEL_BRIDGE)
-+struct drm_bridge *devm_drm_of_get_bridge(struct device *dev, struct device_node *node,
-+					  u32 port, u32 endpoint);
-+struct drm_bridge *drmm_of_get_bridge(struct drm_device *drm, struct device_node *node,
-+					  u32 port, u32 endpoint);
-+#else
-+static inline struct drm_bridge *devm_drm_of_get_bridge(struct device *dev,
-+							struct device_node *node,
-+							u32 port,
-+							u32 endpoint)
-+{
-+	return ERR_PTR(-ENODEV);
-+}
-+
-+static inline struct drm_bridge *drmm_of_get_bridge(struct drm_device *drm,
-+						     struct device_node *node,
-+						     u32 port,
-+						     u32 endpoint)
-+{
-+	return ERR_PTR(-ENODEV);
-+}
-+#endif
-+
-+void devm_drm_put_bridge(struct device *dev, struct drm_bridge *bridge);
- void drm_bridge_debugfs_params(struct dentry *root);
- void drm_bridge_debugfs_encoder_params(struct dentry *root, struct drm_encoder *encoder);
+-	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), 6789U);
++	KUNIT_EXPECT_EQ(test, amdgpu_dm_backlight_get_level(dm, 0), -EINVAL);
+ }
  
+ /**
 
 -- 
 2.53.0
