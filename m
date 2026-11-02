@@ -2,28 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B3E606A324
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:06:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A515C606A338
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=TDYHF9no
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF81410E5F2;
-	Mon,  2 Nov 2026 10:06:05 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAE1710E5D3;
- Mon,  2 Nov 2026 10:06:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0622082315931836261=="
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/ras=3A_Distinguish_b?=
- =?utf-8?q?etween_detailed_and_aggregate_counters?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Nov 2026 10:06:05 -0000
-Message-ID: <179361396569.101614.3331296144615523641@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261102090424.987843-1-raag.jadav@intel.com>
-In-Reply-To: <20261102090424.987843-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6036289496;
+	Mon,  2 Nov 2026 10:06:47 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4238810E5D3;
+ Mon,  2 Nov 2026 10:06:41 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id CD86D412B0;
+ Mon,  2 Nov 2026 10:06:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 818581F00919;
+ Mon,  2 Nov 2026 10:06:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793614000;
+ bh=iWIYPIvIFLRtwn+uC5U/H7f0a4miSU2EbQLKMw69uWU=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=TDYHF9noC0GOvw2zO/WnRHKtxWHqKSfqnvpuKwhEGxyWrOYwKXMoe+pnHwyxmIVvo
+ 3Xxczhrr/U1/Wwl8oZzB2OD3cYINokvV4KnUEFh3sycHAovW6zpRI1DkEUfjRwmE+J
+ DyAKdhNTROEit1tLKmfdwH9wzSgnpXJNn5BMz9Tc6q+vNxT07k5tNuNg3bSwY/iXif
+ gJAraSiXPdTyJegZdadeJdV9pBpTSvzNHwxiTtyffHW8oae+SoubOAYZNFEmpvjtjx
+ f35Rj6FvsUtqQtPSu4C5TdD90FaxFKyzacT9U4Xy4u9p9iUbB8gpydzj//IFiypgC2
+ 5JyOY7s7RFEhg==
+Message-ID: <sashiko-outbox-193233@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2] drm/xe: Tear down kernel mappings in release_notify
+To: "Arvind Yadav" <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20261102094529.785224-1-arvind.yadav@intel.com>
+References: <20261102094529.785224-1-arvind.yadav@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 02 Nov 2026 10:06:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,142 +46,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---===============0622082315931836261==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [High] drm/xe: missing kernel unmap when unplug eviction purges BO via tt=
+m_bo_pipeline_gutting()
+- [High] drm/xe: xe_bo_shrink() unmaps BO before waiting on reservation fen=
+ces or early-exit checks
+--
 
-== Series Details ==
+commit 5f1d487383f2c8c07f8f671e579bb556db6a0d58
+Author: Arvind Yadav <arvind.yadav@intel.com>
 
-Series: drm/xe/ras: Distinguish between detailed and aggregate counters
-URL   : https://patchwork.freedesktop.org/series/177428/
-State : failure
+drm/xe: Tear down kernel mappings in release_notify
 
-== Summary ==
+This commit moves the final kernel BO unmap from xe_gem_object_free() to
+xe_ttm_bo_release_notify() so that TTM eviction cannot race with
+__xe_bo_vunmap(). It also calls xe_bo_vunmap() in xe_bo_shrink() under the =
+BO
+reservation lock before shrinking.
 
-CI Bug Log - changes from xe-6040-abc364961b361ab626fa5a09568b22744f1e0393_BAT -> xe-pw-177428v1_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 42a6aa1a2e4a0..0793ed59a90a5 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1454,6 +1454,10 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, s=
+truct ttm_buffer_object *bo,
+>  	if (!xe_bo_eviction_valuable(bo, &place))
+>  		return -EBUSY;
+> =20
+> +	/* Shrinking can free pages without calling xe_bo_move_notify(). */
+> +	if (xe_bo_is_xe_bo(bo))
+> +		xe_bo_vunmap(xe_bo);
 
-Summary
--------
+[Severity: High]
+Does calling xe_bo_vunmap() here tear down bo->vmap before waiting on the
+BO's reservation fences and before the early-exit checks in xe_bo_shrink()?
 
-  **WARNING**
+During xe_pt_update_ops_run(), if a VM_BIND batch has an operation that
+stages a page-table update on a page-table BO (for example clearing PTEs in
+op 0) and a subsequent operation in the same batch frees that page table (op
+1), xe_pt_commit() -> xe_pt_destroy() unpins pt->bo and drops its GEM
+refcount to zero via xe_bo_put_deferred() while deferring the final put on
+pt_job_ops->deferred until the asynchronous CPU bind job finishes:
 
-  Minor unknown changes coming with xe-pw-177428v1_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-177428v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+drivers/gpu/drm/xe/xe_pt.c:xe_pt_destroy() {
+	...
+	xe_bo_unpin(pt->bo);
+	xe_bo_put_deferred(pt->bo, deferred, &added);
+	...
+}
 
-  
+While that asynchronous job is still waiting to run, kswapd can run the
+second pass of xe_shrinker_walk() with ctx->no_wait_gpu set to false. In th=
+at
+pass, ttm_bo_shrink_suitable() allows BOs with unsignaled fences into
+xe_bo_shrink(), relying on ttm_bo_wait_ctx() inside xe_bo_shrink_purge() or
+ttm_bo_shrink() to wait for the reservation fences before reclaiming the BO.
 
-Participating hosts (15 -> 15)
-------------------------------
+Because xe_bo_vunmap() now runs before xe_bo_shrink_purge() calls
+ttm_bo_wait_ctx(), xe_bo_shrink() clears pt_bo->vmap while the CPU bind job
+is still in flight and then blocks in ttm_bo_wait_ctx() waiting for that jo=
+b.
+When run_pt_job() executes xe_cpu_bind_update_pgtables_execute(),
+update->pt_bo->vmap is already cleared, hitting the assertion and
+dereferencing a NULL mapping pointer in ops->clear():
 
-  No changes in participating hosts
+drivers/gpu/drm/xe/xe_cpu_bind.c:xe_cpu_bind_update_pgtables_execute() {
+	...
+			xe_assert(vm->xe, !iosys_map_is_null(&update->pt_bo->vmap));
 
-Possible new issues
--------------------
+			if (pt_op->bind && !force_clear)
+				ops->populate(tile, &update->pt_bo->vmap,
+					      update);
+			else
+				ops->clear(vm, tile, &update->pt_bo->vmap,
+					   update);
+	...
+}
 
-  Here are the unknown changes that may have been introduced in xe-pw-177428v1_BAT:
+In addition, for live unpinned BOs where xe_bo_get_unless_zero() succeeds,
+calling xe_bo_vunmap() at the top of xe_bo_shrink() unmaps bo->vmap even wh=
+en
+xe_bo_shrink() does not shrink the BO (such as when
+xe_pm_runtime_get_if_active() fails and jumps to out_unref, or when
+ttm_bo_shrink() returns -EBUSY during the non-writeback pass).
 
-### IGT changes ###
+> +
+>  	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
+>  		return xe_bo_shrink_purge(ctx, bo, scanned);
+> =20
+> @@ -1866,6 +1870,12 @@ static void xe_ttm_bo_release_notify(struct ttm_bu=
+ffer_object *ttm_bo)
+>  	bo =3D ttm_to_xe_bo(ttm_bo);
+>  	xe_assert(xe_bo_device(bo), !(bo->created && kref_read(&ttm_bo->base.re=
+fcount)));
+> =20
+> +	/*
+> +	 * The TTM BO refcount is zero, so eviction and swapout cannot
+> +	 * take a reference. Unmap before TTM frees the backing store.
+> +	 */
+> +	__xe_bo_vunmap(bo);
 
-#### Warnings ####
+[Severity: High]
+Can an unplug eviction purge the BO's backing pages and resource before
+xe_ttm_bo_release_notify() runs __xe_bo_vunmap()?
 
-  * igt@runner@aborted:
-    - bat-ptl-1:          [FAIL][1] ([Intel XE#9694]) -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/bat-ptl-1/igt@runner@aborted.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/bat-ptl-1/igt@runner@aborted.html
-    - bat-ptl-2:          [FAIL][3] ([Intel XE#9694]) -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/bat-ptl-2/igt@runner@aborted.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/bat-ptl-2/igt@runner@aborted.html
+When a kernel-mapped BO is unpinned during teardown (for example via
+xe_bo_unpin_map_no_vm() or xe_pt_destroy()) and the device is unplugged
+(such as in xe_device_remove() -> drm_dev_unplug() ->
+xe_bo_pci_dev_remove_all() -> ttm_resource_manager_evict_all()), TTM can
+evict the BO while holding a ttm_buffer_object kref before the final TTM BO
+reference is dropped.
 
-  
-  [Intel XE#9694]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694
+During ttm_bo_evict(), xe_evict_flags() selects purge_placement when the
+device is unplugged:
 
+drivers/gpu/drm/xe/xe_bo.c:xe_evict_flags() {
+	...
+	if (device_unplugged && !tbo->base.dma_buf) {
+		*placement =3D purge_placement;
+		return;
+	}
+	...
+}
 
-Build changes
--------------
+Because purge_placement has num_placement =3D=3D 0, ttm_bo_evict() bypasses
+ttm_bo_handle_move_mem(), xe_bo_move(), and xe_bo_move_notify(), and instead
+calls ttm_bo_pipeline_gutting() directly:
 
-  * Linux: xe-6040-abc364961b361ab626fa5a09568b22744f1e0393 -> xe-pw-177428v1
+drivers/gpu/drm/ttm/ttm_bo.c:ttm_bo_evict() {
+	...
+	if (!placement.num_placement) {
+		ret =3D ttm_bo_wait_ctx(bo, ctx);
+		if (ret)
+			return ret;
 
-  IGT_9173: 9173
-  xe-6040-abc364961b361ab626fa5a09568b22744f1e0393: abc364961b361ab626fa5a09568b22744f1e0393
-  xe-pw-177428v1: 177428v1
+		/*
+		 * Since we've already synced, this frees backing store
+		 * immediately.
+		 */
+		return ttm_bo_pipeline_gutting(bo);
+	}
+	...
+}
 
-== Logs ==
+Since ttm_bo_wait_ctx() has just completed, ttm_bo_pipeline_gutting()
+immediately calls ttm_tt_unpopulate() and ttm_resource_free() while bo->vmap
+and bo->kmap are still active. When the last TTM BO reference is then dropp=
+ed
+and xe_ttm_bo_release_notify() calls __xe_bo_vunmap() -> ttm_bo_kunmap(), a
+single-page cached BO (ttm_bo_map_kmap) will call kunmap(map->page) on a
+struct page already freed by ttm_tt_unpopulate(), and multi-page vmap/iomap
+BOs retain a dangling mapping to freed pages or IO memory until
+release_notify runs. Should xe_evict_flags() also call xe_bo_vunmap() when
+selecting purge_placement for an Xe BO?
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/index.html
-
---===============0622082315931836261==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/ras: Distinguish between detailed and aggregate counters</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177428/">https://patchwork.freedesktop.org/series/177428/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6040-abc364961b361ab626fa5a09568b22744f1e0393_BAT -&gt; xe-pw-177428v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-177428v1_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-177428v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-177428v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/bat-ptl-1/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694">Intel XE#9694</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/bat-ptl-1/igt@runner@aborted.html">FAIL</a></li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/bat-ptl-2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694">Intel XE#9694</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/bat-ptl-2/igt@runner@aborted.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6040-abc364961b361ab626fa5a09568b22744f1e0393 -&gt; xe-pw-177428v1</li>
-</ul>
-<p>IGT_9173: 9173<br />
-  xe-6040-abc364961b361ab626fa5a09568b22744f1e0393: abc364961b361ab626fa5a09568b22744f1e0393<br />
-  xe-pw-177428v1: 177428v1</p>
-
-</body>
-</html>
-
---===============0622082315931836261==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102094529.7852=
+24-1-arvind.yadav@intel.com?part=3D1
