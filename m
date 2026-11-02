@@ -2,28 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60FD0606A324
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 09:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF3F606A324
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DNCELma4
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1915A10E06A;
-	Mon,  2 Nov 2026 09:55:19 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF35310E5A3;
- Mon,  2 Nov 2026 09:55:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2066252230592676487=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2CAB10E5D3;
+	Mon,  2 Nov 2026 10:01:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5B8E10E5CD;
+ Mon,  2 Nov 2026 10:01:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793613666; x=1825149666;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1DkADTmSrES6Oy4S3+VUiHyS0tpIBEVIXCettri5kfo=;
+ b=DNCELma4KXqFMagAEPOV3ozFMZvzEzBOa1mzYRnEG/eBghX5sD6s/vNn
+ HN8VEBcPxe6Dw6sJkvTUaqyX4/zYmboIaihNu2YoFL8kje27F3/LnwKRa
+ 8fGUBLy693Et+18tuWt3CDg2Q8+cbH0USVzOq9ctCyiRrAxlCISGfuohV
+ 6yk8lHMSnpBvm/4D3KgGaHsKC8FsO+u0ttGGqpBMqNC1hGwb1W3oFkErH
+ /XB1hfMi9/J3rIN9VgrzPZgX0kssmV5sS8UsVNdIobXbK1Xzi6w4vIbyZ
+ PoVaakzB0vaYXLEvjdGC2pk8Z9XO/wnZbwevR3VTHnnx0l+xhzjt/rfki w==;
+X-CSE-ConnectionGUID: fFjMPGRsRX+o2bs7bcpaMQ==
+X-CSE-MsgGUID: I7gKR2DISLGzihEv0voU3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2204569"
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="2204569"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 02:01:06 -0800
+X-CSE-ConnectionGUID: qEUhlbUNSd6s0ve+TzQ5Tw==
+X-CSE-MsgGUID: MCsTFYMlTWqThqzkaMyTgQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
+   d="scan'208";a="6068263"
+Received: from bradocaj-mobl.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.122])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 02:01:04 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 0/4] Frontbuffer tracking fixes
+Date: Mon,  2 Nov 2026 12:00:47 +0200
+Message-ID: <20261102100051.272137-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe=3A_Tear_down_kernel?=
- =?utf-8?q?_mappings_in_release=5Fnotify?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Nov 2026 09:55:17 -0000
-Message-ID: <179361331770.101491.8513910826972969126@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261102082626.747462-1-arvind.yadav@intel.com>
-In-Reply-To: <20261102082626.747462-1-arvind.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +63,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============2066252230592676487==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Two frontbuffer tracking paths can leave display power saving inactive:
+flip flushes may not re-arm PSR, and fbdev updates may leave busy bits set.
+Re-arm PSR after every flush and flush fbdev updates once
+complete. Former scenario is also leaving CFF bit set on older
+platforms. Fixes for these are in this patch set.
 
-== Series Details ==
+Also fix for problems with Panel Replay full frame update issue on
+cursor update is included in this set.
 
-Series: drm/xe: Tear down kernel mappings in release_notify
-URL   : https://patchwork.freedesktop.org/series/177423/
-State : success
+v2:
+  - Clear CFF flag
+  - Add old related cursor update patch
 
-== Summary ==
+Jouni Högander (4):
+  drm/i915/psr: Flush on cursor update also when not using Selective
+    Fetch
+  drm/i915/psr: Re-arm PSR after flush
+  drm/i915/psr: Clear CFF state on flip flush
+  drm/i915/display: Flush the fbdev frontbuffer
 
-CI Bug Log - changes from xe-6040-abc364961b361ab626fa5a09568b22744f1e0393_FULL -> xe-pw-177423v1_FULL
-====================================================
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 13 +++---
+ drivers/gpu/drm/i915/display/intel_psr.c   | 46 +++++++++++-----------
+ 2 files changed, 31 insertions(+), 28 deletions(-)
 
-Summary
--------
+-- 
+2.53.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6040-abc364961b361ab626fa5a09568b22744f1e0393 -> xe-pw-177423v1
-
-  IGT_9173: 9173
-  xe-6040-abc364961b361ab626fa5a09568b22744f1e0393: abc364961b361ab626fa5a09568b22744f1e0393
-  xe-pw-177423v1: 177423v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177423v1/index.html
-
---===============2066252230592676487==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Tear down kernel mappings in release_notify</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177423/">https://patchwork.freedesktop.org/series/177423/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177423v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177423v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6040-abc364961b361ab626fa5a09568b22744f1e0393_FULL -&gt; xe-pw-177423v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6040-abc364961b361ab626fa5a09568b22744f1e0393 -&gt; xe-pw-177423v1</li>
-</ul>
-<p>IGT_9173: 9173<br />
-  xe-6040-abc364961b361ab626fa5a09568b22744f1e0393: abc364961b361ab626fa5a09568b22744f1e0393<br />
-  xe-pw-177423v1: 177423v1</p>
-
-</body>
-</html>
-
---===============2066252230592676487==--
