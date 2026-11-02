@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 836CE606A32C
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC88A606A324
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:39:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J4uBv9X+
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YyHNA3Yz
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6D910F274;
-	Mon,  2 Nov 2026 22:39:27 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 085AB10E710
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:39:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AF5C10E710;
+	Mon,  2 Nov 2026 22:39:53 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44C0010E710
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:39:47 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id E1F8F40E00;
- Mon,  2 Nov 2026 22:39:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A715B1F00A16;
- Mon,  2 Nov 2026 22:39:20 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id BC50A601EF;
+ Mon,  2 Nov 2026 22:39:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55E081F00A18;
+ Mon,  2 Nov 2026 22:39:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793659160;
- bh=d56BBnT9GP2STD6n/LvrDOWKiRAwJWsfe3xJXA4Sg6U=;
+ s=k20260515; t=1793659186;
+ bh=p+Ea3lpHXoAlA0yml/w9MvmV53xrIrop73EwfEbR0ts=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=J4uBv9X+DifGAHd5Wzd0ODsfO4uN8vME5zw2C2LfgRjAVzPmndCEfn2dFypjtRSNe
- CgBdabn7JOnMUAp8JdWCEWQfyoUO/kGeEd7m6AyFZAbuYAuneCtr2Nj8y7B+of1s+A
- Ztw6vvxJ6rdZAPFxIklvmitiN4EVnC/C5EUD0+O9YvyYk4hlFoif5fa6r9rVUsyWTj
- Yk6cDSYdT1dEltACYUj1vhxr47tUXw0pHv65XJSerJSFlrnYBxUDwgMfQH33/J3XyQ
- xa65zKwzZI+r6zT+hdiueuoxCsspGmrqNEqY0e6bj/xwtK2/chCsPAJRkwNjlyXhct
- 1iw/iCXUC71oQ==
-Message-ID: <sashiko-outbox-194294@kernel.org>
+ b=YyHNA3YzpUs5f/JJRNa0CBtPWFqug8kG1p2docjmAJfiI0NQcQctVBO1ckZ8yt5he
+ 6OCIlvzyBYvnCjpxx/MUTPQFBXXR58yJl0Y8neGsFFH02HdNU6V9smezOMkFX4pG9q
+ EI3rI7MoEAQS2umRiEnxhEksu3jvWioO4XvFHiZhNtG7v2iHotYM2eXYii0OQikK9y
+ gjuhEGDv0BogBQqp/DrA4nTbUDBW45L0y8jval/f7SZpejBIf+uVlurcxeM60vucTo
+ xR2cuHD+OZ7vRu7RnPCXQMUsmm40VVVWDn6gSsinHtzSLoM2BYDDG+6t4JuZ2t2oVF
+ eLdWhb0vwfPTg==
+Message-ID: <sashiko-outbox-194295@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v13 16/16] drm/xe/vsec: Support survivability mode for CRI
+Subject: Re: [PATCH v13 13/16] drm/xe/vsec: Add PMT GUID internal access
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261102221314.119028-34-michael.j.ruhl@intel.com>
+In-Reply-To: <20261102221314.119028-31-michael.j.ruhl@intel.com>
 References: <20261102221314.119028-18-michael.j.ruhl@intel.com>
- <20261102221314.119028-34-michael.j.ruhl@intel.com>
+ <20261102221314.119028-31-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 02 Nov 2026 22:39:20 +0000
+Date: Mon, 02 Nov 2026 22:39:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,112 +57,142 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] drm/xe/vsec: NULL sc->mmio dereference in wait_for_fw() on survi=
-vability error
+- [Medium] drm/xe/vsec: missing wait_for_fw() and zero-GUID check in xe_vse=
+c_get_guid()
+- [Low] drm/xe/vsec: missing kernel-doc for xe_vsec_get_guid()
 --
 
-commit 6e126caaac7b556b33b3c1891921257efd2a418a
+commit f5d795abace88c0eb050818c49e569b4c3a02f52
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Support survivability mode for CRI
+drm/xe/vsec: Add PMT GUID internal access
 
-This commit adds a VSEC configuration for Crescent Island in survivability
-mode to expose the PUNIT crashlog PMT capability and initializes the SoC
-remapper during boot survivability mode.
+This commit renames PUNIT_TELEMETRY_GUID to BMG_PUNIT_TELEMETRY_GUID, adds
+CRI_PUNIT_TELEMETRY_GUID for Crescent Island, and introduces
+xe_vsec_get_guid() to read and cache the PUNIT telemetry GUID based on the
+platform.
 
-> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm=
-/xe/xe_survivability_mode.c
-> index d73cdad0b3a9c..4ce84bafcbf57 100644
-> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe=
+_device_types.h
+> index cc8e0e6bed9a8..7430185ad41a9 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -490,6 +490,8 @@ struct xe_device {
+>  		struct delayed_work work;
+>  		/** @pmt.retry_count: late-bind probe retry */
+>  		u32 retry_count;
+> +		/** @pmt.punit_guid_cache: cache of the PUINT GUID */
+> +		u32 punit_guid_cache;
+
+[Severity: Low]
+This isn't a bug, but there is a minor typo in the kernel-doc comment here
+(PUINT instead of PUNIT).
+
 [ ... ]
-> @@ -352,6 +353,7 @@ static int enable_boot_survivability_mode(struct pci_=
-dev *pdev)
-> =20
->  	xe_heci_gsc_init(xe);
-> =20
-> +	xe_soc_remapper_init(xe);
->  	xe_vsec_init(xe);
-> =20
->  	if (survivability->fdo_mode) {
+
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 1ed904ec14965..6d4ef9cb9f60f 100644
+> index 5384fef5e5ac5..1ed904ec14965 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
-[ ... ]
-> @@ -316,9 +336,10 @@ static void cri_late_bind_probe_work(struct work_str=
-uct *work)
+> @@ -579,6 +579,51 @@ static void vsec_disable_late_bind_work(void *arg)
+>  		xe_pm_runtime_put(xe);
+>  }
 > =20
->  static bool wait_for_fw(struct xe_device *xe)
->  {
-> +	struct xe_survivability *survivability =3D &xe->survivability;
->  	int retries =3D VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
-> =20
-> -	if (xe->info.platform !=3D XE_CRESCENTISLAND)
-> +	if (xe->info.platform !=3D XE_CRESCENTISLAND || survivability->mode)
->  		return true;
-> =20
->  	while (retries--) {
+> +int xe_vsec_get_guid(struct xe_device *xe, u32 *guid)
+> +{
+
+[Severity: Low]
+This isn't a bug, but since Documentation/gpu/xe/xe_vsec.rst pulls
+kernel-doc from drivers/gpu/drm/xe/xe_vsec.c and the other exported VSEC
+entry points (xe_pmt_telem_read() and xe_vsec_init()) are documented,
+should xe_vsec_get_guid() also have a kernel-doc comment describing its
+parameters, runtime PM and xe->pmt.lock locking expectations, and return
+values?
+
+> +	struct xe_mmio *mmio =3D xe_root_tile_mmio(xe);
+> +	int ret =3D 0;
+> +
+> +	xe_assert(xe, !IS_SRIOV_VF(xe));
+> +
+> +	if (!xe_pm_runtime_get_if_active(xe))
+> +		return -ENODATA;
+> +
+> +	mutex_lock(&xe->pmt.lock);
+> +
+> +	if (xe->pmt.punit_guid_cache) {
+> +		*guid =3D xe->pmt.punit_guid_cache;
+> +		goto unlock;
+> +	}
+> +
+> +	switch (xe->info.platform) {
+> +	case XE_BATTLEMAGE:
+> +		*guid =3D xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID);
+> +		break;
+> +
+> +	case XE_CRESCENTISLAND:
+> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +		*guid =3D xe_mmio_read32(mmio, CRI_PUNIT_TELEMETRY_GUID);
+> +		break;
+> +
+> +	default:
+> +		*guid =3D 0;
+> +		drm_err(&xe->drm, "Unsupported platform: %u\n", xe->info.platform);
+> +		ret =3D -EINVAL;
+> +		break;
+> +	}
+> +
+> +	/* the GUID is static, read once and cache for all requests */
+> +	if (*guid)
+> +		xe->pmt.punit_guid_cache =3D *guid;
+> +
+> +unlock:
+> +	mutex_unlock(&xe->pmt.lock);
+> +	xe_pm_runtime_put(xe);
+> +
+> +	return ret;
+> +}
 
 [Severity: Medium]
-Can this dereference a NULL xe->sc.mmio pointer and lock an uninitialized
-xe->sc.cmd_lock mutex if enable_boot_survivability_mode() fails after
-xe_vsec_init()?
+On XE_CRESCENTISLAND, can xe_vsec_get_guid() be called before the late-bound
+OOBMSM firmware has finished initializing (for example, via debugfs or hwmon
+after xe_vsec_init() defers discovery to cri_late_bind_probe_work(), or rig=
+ht
+after runtime/system resume)?
 
-During early probe in xe_device_probe_early(), xe_sysctrl_init() has not run
-yet, so xe->sc.cmd_lock is uninitialized and xe->sc.mmio is NULL.
-enable_boot_survivability_mode() sets survivability->mode =3D true and calls
-xe_vsec_init(xe), which registers the crashlog auxiliary device via
-intel_vsec_register() with devm-managed cleanup:
+The other PMT access helpers in drivers/gpu/drm/xe/xe_vsec.c (such as
+xe_pmt_telem_read() and xe_pmt_read_reg()) check wait_for_fw(xe) before
+taking xe->pmt.lock, programming CRI_IDX_TELEM_DISCOVERY, and reading the
+discovery window:
 
-drivers/gpu/drm/xe/xe_survivability_mode.c:enable_boot_survivability_mode()=
- {
+drivers/gpu/drm/xe/xe_vsec.c:xe_pmt_read_reg() {
 	...
-	survivability->mode =3D true;
-
-	xe_heci_gsc_init(xe);
-
-	xe_soc_remapper_init(xe);
-	xe_vsec_init(xe);
-
-	if (survivability->fdo_mode) {
-		ret =3D xe_nvm_init(xe);
-		if (ret)
-			goto failed;
+	xe_pm_runtime_get(xe);
+	if (!wait_for_fw(xe)) {
+		ret =3D -ENODATA;
+		goto runtime_exit;
 	}
 
-	ret =3D xe_i2c_probe(xe);
-	if (ret)
-		goto failed;
+	scoped_guard(mutex, &xe->pmt.lock) {
+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+
+		*reg =3D readl(disc_addr);
+	}
 	...
-failed:
-	xe_log_err_fatal(pdev, SURVIVABILITY, ret, "Failed to enable Boot Mode!\n"=
-);
-	survivability->mode =3D false;
-	return ret;
 }
 
-If xe_nvm_init() or xe_i2c_probe() fails, survivability->mode is reset to
-false while the VSEC crashlog device and its sysfs attributes remain
-registered until PCI probe teardown runs devres_release_all().
+Without wait_for_fw(xe) in xe_vsec_get_guid(), if reading
+CRI_PUNIT_TELEMETRY_GUID before firmware is ready returns a non-zero bogus
+value (such as 0xffffffff), won't xe->pmt.punit_guid_cache permanently cache
+that invalid value for the lifetime of the device?
 
-If userspace reads the crashlog sysfs attributes during that teardown windo=
-w,
-xe_pmt_telem_read() or xe_pmt_read_reg() calls wait_for_fw(xe), which sees
-survivability->mode =3D=3D false and calls:
-
-  wait_for_fw(xe)
-    -> xe_sysctrl_is_oobmsm_fw_ready(xe)
-      -> xe_sysctrl_send_command(xe, ...)
-        -> guard(mutex)(&sc->cmd_lock)
-        -> sysctrl_send_command(sc, ...)
-
-Because xe_sysctrl_init() was never called, would this lock the uninitializ=
-ed
-sc->cmd_lock and dereference the NULL sc->mmio pointer?
+Conversely, if xe_mmio_read32() returns 0 (either before firmware is ready
+or when !mmio_available(mmio)), xe_vsec_get_guid() skips caching *guid, but
+ret remains 0. Should xe_vsec_get_guid() wait for firmware readiness via
+wait_for_fw(xe) and return an error code when *guid is 0 (or invalid) rather
+than returning 0 with *guid =3D=3D 0?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102221314.1190=
-28-18-michael.j.ruhl@intel.com?part=3D16
+28-18-michael.j.ruhl@intel.com?part=3D13
