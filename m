@@ -2,161 +2,66 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BF73606A336
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:53:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14A7606A326
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 11:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Ppi1+XIN
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ntVk8Njt
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F37BC10E609;
-	Mon,  2 Nov 2026 10:53:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA3E510E609;
- Mon,  2 Nov 2026 10:53:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55C7210ED08;
+	Mon,  2 Nov 2026 11:13:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B267210ED08;
+ Mon,  2 Nov 2026 11:12:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793616823; x=1825152823;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=V7c1lDNAgEFHrDKVFLu+jpt4cN/1ESV4ZecJ4zuib98=;
- b=Ppi1+XINzOjT2Ro9C9iYRirOydRzsLgL4O3qBmLbkLvJCEWZGemYCjjA
- 2awxV/KWLwakqJAabYq8e7gK9kmCxYyiZFG6GsDp7v7Qf0m2r1Ibdlpvm
- FnaFZkocVCS0vJqQ5m5nqd7Kly93DB8jS65+o5RAqt1F62rFpfa/758mr
- +HChCrONjdQxybeoSYltvfJyN9UvTXSkwLojCZcGx5fXqqjQRw4tQUqcU
- ehnGcVCgF5VaMG+D6KSWXZsV8H+FsZpbzwDHd0dbCmWuv2hv01Y4R1ehB
- JH+dZcYDvcJK+51vdXLaZmg/3MotnLJlV3GMqYUrToJAPqZ7v/XUZtAf3 g==;
-X-CSE-ConnectionGUID: bjW9FliITIOUOG3tPat4uQ==
-X-CSE-MsgGUID: +SBlOsQ5QjmE0F06tIduWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2210383"
+ t=1793617976; x=1825153976;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=mplt71fy/1nGSUQ8TeemmAvkT7JXr50n5+uyr60/ycw=;
+ b=ntVk8NjtEgiS8NRLP42fHafarqDgfzIl4G026j1jNkSeQ8LBqqxZVMUd
+ FK8oWALZ2HWiTFT6NHcWSvBtNbem7VVwGfV+BMhhjKg5pEWPKgu1vX0Jr
+ Q4DSUq9QU5OEIWDAa2905tYjyBERIow8YSHCDHHHDF3M96OiM7iLoczOl
+ 63RLHETI3Nyky4XJIy8texGtuBE8ziukhS5uyKoqEz58JnBuE0QMLPjLt
+ Riu9CtL4D/Jjma+ECeP+7t1XQ18VHMJGIxXY1bPrO9zZ5BZt9lY+7C6nL
+ BE3AJkRXa4YoWg6vKlEkHySiPj9YQpCUtbQZ0rB21FHT4fPGpuZnuA3nY Q==;
+X-CSE-ConnectionGUID: 1u4cR0meRoCgE0JjuuwBDw==
+X-CSE-MsgGUID: eN13BbEzTza6sn+VuDivaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2185033"
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2210383"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 02:53:43 -0800
-X-CSE-ConnectionGUID: YryqLzTzTdqd124G+nP1Tg==
-X-CSE-MsgGUID: wLNrsjLTR++J40S1qNuz7A==
+   d="scan'208";a="2185033"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 03:12:56 -0800
+X-CSE-ConnectionGUID: 0VN+su3DRtqMh20prUccvg==
+X-CSE-MsgGUID: HTOQwFxZTKSqI4k8T+BrXw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="6081705"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 02:53:42 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 02:53:41 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Mon, 2 Nov 2026 02:53:41 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.35) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 02:53:41 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZvvTQP7sXN/zh/womUY2rTxlUdQfCdLyVD0D1/OoX4CirRl4e1eSAd5Rwe6Cv8/Wok5ukVSWlA6/mrm/m+7C+zmSyI4DkIuOPUL843cFRmmQashebrdTOYr/vIxrYF9Si3NoFosn+Zh2p1Y5pqeiuS2DOwhx0lIhDOx+G/DJ5BXVgKIRh8AUx6h4oiRZ9nH9FdXFbqlyJeMAgO7KwbKPcuFLN4fybrrSKCZkZ3ggEGbBCFOQmUddYv2Yu8+r0d+KF5pLzz5WDsa5k6zcx+alkgRJ2HDjeli9sA+iWGejXDUmB6jbqb9IyrHe6Eg0zvCtnu0uxSKzfRNG9KEo/MNpPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V7c1lDNAgEFHrDKVFLu+jpt4cN/1ESV4ZecJ4zuib98=;
- b=uPY+zxyn+WzY0xANs1iORu2N1bfDlSrRQM6hcl0tFZ7Cth1KAvChn8i/ss4Xt6qzJgxPk4KZc79rh7v6fcI0uqC5kzvFeMR6TuaXsUt2ONZ/JczDyOjTiewgdUWBMmq+OxJeDoBHjPCyt5TB0HhdLOxkkZDJwYsYyadbmixHjbVVc1PIBuefXdsOOXqG9HxsIotux7q//gTr9Hxs52DFGo8qMdn+8Mv8328NZ6ZSfhj46kFGfZyyekQ6AR6FgAj4FGuIUWR2+DZDZoAlzfNNLpohLeAbBZ7JdCPGxohosg313o62Y/p9+mBlGaH4VLR+mvFmCQzHJJ4UiA8oXT7ekw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::28) by DM3PPFA69606334.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f42) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
- 2026 10:53:37 +0000
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::79ab:f4ae:b1c2:61d9]) by DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::79ab:f4ae:b1c2:61d9%5]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
- 10:53:37 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "stable@vger.kernel.org" <stable@vger.kernel.org>
-Subject: RE: [PATCH 6/6] drm/i915/ptl+: Fix TypeC detection for eDP on port B
-Thread-Topic: [PATCH 6/6] drm/i915/ptl+: Fix TypeC detection for eDP on port B
-Thread-Index: AQHdZ5nPZmifZl/kyEuNm6V7ndBmQrcaoYpw
-Date: Mon, 2 Nov 2026 10:53:37 +0000
-Message-ID: <DS4PPF69154114F4ABEE5367DDD3D4EC13CEF6A2@DS4PPF69154114F.namprd11.prod.outlook.com>
-References: <20261029113017.618286-1-imre.deak@intel.com>
- <20261029113017.618286-7-imre.deak@intel.com>
-In-Reply-To: <20261029113017.618286-7-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|DM3PPFA69606334:EE_
-x-ms-office365-filtering-correlation-id: c0a4fa7b-f04b-4520-18f8-08df38cf8c7c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|261021121427099003|261022075727099003|261009223027099003|38070700021|4143699003|11063799006|5023799004|10067099003|56012099006|18002099003|22082099003;
-x-microsoft-antispam-message-info: 26b6QhhU3go83+bTBXVLux63kfY/e4suXz8AWQ+MD95GH6Zky89vTsy4pMvFpHrvOnEeT2mAeQL8evZByu2HYWcdCnLFcxy5Xu/f1PA8muNjIRLEvj9s4QbMp5KN6Vj3qcjjHdeB1LeddQOFl42ghr85Mt1ErEZFEC4Xh1tjo2xDt4/BdgJSuydvMkAv+zwo5ICkHwI637eMPh61Cx7ejrt6x5UrY1572mLfHuQRahtHqbjxyQc50b4Cr1C3a6I18V/ZhkYa8ZudTPftyyU/uXO7SyzHe6tF7AVRDdwO+VgJAVr3AGltGoEwCkkrGMENZtodIFOzgsMvXGq75v+NxSFsuLgD8ZRkNGUHGUlPxL6rVf/bVBUfZDwEwmZcP87HQ7oOVU0OwaeRxk6Dxh94nltuMyh6XIbHrfESWaIJfyPLnNlzUo7bJIWzvLZEFQ9XzlexlCG80/LzqO5bJo6bt5watbjOFkW1V6J1zd9CWXMCKumSpkTfGH4j0I4zC4roXnPnFu8EMKJ4UUDUhyQgGQqDMCcYtk5Ll5CdWUMsopzb2Zv7sak3cZJvS3OSphRn433pBGNSUQrVcDHxA51RBT6aU0GX2CVIFBrImlJQU16tWXQi+niHzR94Cy3z2bkg7dWNhyz7onFYqknxUR87T5MlXDecUcM/c2kC9oPy9q8=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(261021121427099003)(261022075727099003)(261009223027099003)(38070700021)(4143699003)(11063799006)(5023799004)(10067099003)(56012099006)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cnBLQ0lFcmpMMjM2SUJhK2psODc1SnBGdjQ0N1ZFR0c5RlNjU2RoYWNzSkVH?=
- =?utf-8?B?cnZuRUMyYXBzaTYwQk85aXAwMFpIdXdrYXM4ZzdCMXdpNjhqQURJSGk5dmpw?=
- =?utf-8?B?T25FR2V4QklwOFc3N2JkNmI3cVNtbHRRN2NDVHA2aE5qRHpVU09oM1ZUM2cz?=
- =?utf-8?B?dWZVTEtpUTN5ejdkVjlVeGs5SkJ0dysvaXZvek1ReDArNzE1ZUUyTmxtSFdG?=
- =?utf-8?B?UTM0RklTRnJPaWpRYW5rU0VYUFVFMGxoRnRId2Y1MC9pTnB3dnJzcHhBQS9x?=
- =?utf-8?B?b1RwSWRkTHJVK1BNM1g2SElPazBBdythOVFjajVxYjBYSVVEb2xwZHplOVVB?=
- =?utf-8?B?aHRGZVRQRU5vdHdRTzJxd3pGWmY2OHVJMHFmaW9pMSs1dWx3bUcxRDhYUHM1?=
- =?utf-8?B?ekN0MUZ6RWdoOTUyS0paN093THJRNy9aU1AvYUkrYlZOT0N0VmRDZXhuVkRo?=
- =?utf-8?B?eU5oYy9GMGFqdkFqMjBiSmpSZWlHeGhTVExlRXNLL0pBZm9ZQ3NkbkxWRHVH?=
- =?utf-8?B?WG9OWHQ4N2RqRXpMRVd4K3dQUmNjRytrZVFsM3RSSmxGSlhwQnBHUFdhNFJ5?=
- =?utf-8?B?NjFNVmcyRW1CN2hBdlZHQUxibi9INmRCTkJYN0p5dG04T0F6L1F1MlFZV2Q4?=
- =?utf-8?B?bHIyQXE4ZUtDVHVYSVNzck1mTURPOHlWQUxMZ0NySHhFcE5sU0xyMUdYUzRm?=
- =?utf-8?B?TDlGam1FeHIrRE1MMEhKTXQ2Ym1vOFpEclhacENNMlg0N1V3bkpXRFpTZTF3?=
- =?utf-8?B?Q2ljUytBaS9Ba21TMnphUzlleXIvS2pidER4dVlhNVp6b1hIa0lVZUdrMDAv?=
- =?utf-8?B?NTlmMlVHdjExUUc3d2E4NnJ0QXBnVEsxUVBlbkV2Q3VFNkFxZnduY2FwUVFm?=
- =?utf-8?B?c3p5UHNHRC9oTUtpUXpZRWtING95dkE5TXZ6VlFDZXF0NXA2anF0ZVJQYzFv?=
- =?utf-8?B?V2dUTzgyQ3dxamV2Snc4QVhQa2grWGoxdFJob3haNGVNOGhtVi9zQkc4Y1hG?=
- =?utf-8?B?T2l2S3Znc00raGMrMnRrYnIrU1lpajFUc25UdVlqN2Z0dUE2alNKSHVDSDB4?=
- =?utf-8?B?Y1VZT0U5RlFqUVRFVC9WR24veURrcXNxRGRGWHVvMUllREF5UDM4Z2RKU3Vx?=
- =?utf-8?B?dUxHdERlVDJGSlZIZklBMjFXeWEyMG5MYUhRMFZIQVFjSWxrTHhuRVRDZXlF?=
- =?utf-8?B?V2dvTE80bnN3YmVFOGdPMUtrOGZiWVI5Nmw4aVJrZmNzZUtGQXhjdjJldFB6?=
- =?utf-8?B?dXA1Um9VWHJVQ2pRU0ZpTE1HVURWd1F1T1gzM1RnNEZncEMrY2dMWVNZRGFv?=
- =?utf-8?B?VE9rV2xDcUYyOU9USEpZZDRKQ3Q4UUdlaU5XUDZoWmlyandqa1VubTd5VXJ2?=
- =?utf-8?B?RWtCVnowTWNKVElVL21WRm9mTnByM3Y0bWhUNit1WUQ5UXBSTzZGYWt5dFl3?=
- =?utf-8?B?bS9HbHZTRzJhSEY0OGJ5cnYrdlRlazdpSXlMdlBmZDRGdGhvaHQrdFVHbUtV?=
- =?utf-8?B?VDhQS3Q3aXZiWFZCVkFrekNUSjJzRjJURjJ4M1k5RUFVd1BiZXkxQUpIWE9x?=
- =?utf-8?B?SDFvcGpoZll1ZXJZaEllb010YzJyNGlUakR4VnpOdVBoWFI2Y3hRNTdqeVV4?=
- =?utf-8?B?Njc1L2MzTjgrMDZqc3dnVTlUN2R5aUlqNnJRaVJOekRCWk0zdCtGWURqY0lp?=
- =?utf-8?B?Z3VGQXl0LzhZdm1CMGhYQ0kvcncwUWlaZXpoancxTkFIZzVHaXQzSkVMdmEy?=
- =?utf-8?B?d00waU1ZZ09URnF1SnBUcncxTFcwbDNTM2RLWEp2clVISkdMZTgvTE5GRVJs?=
- =?utf-8?B?UGxFNCtTYllxQklEY2tUeFUzNE81ejMwYno5RVptazBuRkJlMHVyY1FWck1z?=
- =?utf-8?B?L0J2ci8zVTVSdkl0SjVETGkybFp5aERJclkvK1I3R0p4M1RjVTVMV0RWODFj?=
- =?utf-8?B?TSswUUFLMU81TEVqS1hIMHV0NkhLNDlUTndaV3R0M1EwLzRhRFNiK2xFd0Nu?=
- =?utf-8?B?QXU1bWFoY296YmZkUHdWa0ttblVCYnU2VlRUVjVacFByOEc0RDhiQ1MvZVRy?=
- =?utf-8?B?QWhFUk5TL0o0Q3lTd3ViNWZOcFllV1F2ZExJOStvWjhPTmVNWHJoZlFXSFQ0?=
- =?utf-8?B?cDlUMzJMZW9odmFPSGVOcXMxVS9jNkM5WG1VKzJjZ2xxWThId2VlYnJSeFQ0?=
- =?utf-8?B?WDF3RW1Db0hhQ0hVOXdjSzBxZldPOGRFYVBGS3pHT3UvcFE0TDU0RFJMMGk2?=
- =?utf-8?B?VGhPVzd2bWs2cUVEREFTUHlxK3g0RDl4eWMyOUxFcGMrNmRVN0o4TjNJUDdK?=
- =?utf-8?B?S1BmcTAwTE96bDVUbkZNSGwzSW1Sc0p1czhoRzRvTTRoTSs4Y0wwdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+   d="scan'208";a="6016099"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.251])
+ ([10.245.244.251])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 03:12:54 -0800
+Message-ID: <b1fa8b88-fb7e-4e39-997b-b924a79e728c@intel.com>
+Date: Mon, 2 Nov 2026 11:12:51 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: GnGHIBp4w3UWikNOG25mUuZYZZP4zNW0w6lsleoPT/XS02ghOfRL0BBWtdHhUIvSZsNyGIjuScU7zhOclS40Z9zv31HWdZsu2hA4HI1UUUlr/sbWALb/qrLUwwYIuvxt98y+lwatgg3GC4kMooH+B/gckObHpz9OFDogpdTZM1AswisQOKWsmcAXxjGOvzhnU9JXp5mxUxYvfoJmlH83fFnt4QaTOXGGGY58k943YSXq7A27REHTFzER9b0ENfWEahxU0iNQdDMgNOaFyC6bfQEqSBWz5J7N6/BKYn5PiaFYgzodGaG/HpjDreMx3scvYlo8fS5qutTzruyEIBxBKg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0a4fa7b-f04b-4520-18f8-08df38cf8c7c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2026 10:53:37.6095 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: FOPavybNLglkY+DgB0Y7wgT8gknc1ApU7xh7iIuDdroTpUDhM1Kqmr2dXh40jRZY9s6UgDKJJrm1P/E+6RPdxQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFA69606334
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 7/7] drm/xe/uapi: Wire up GEM_CREATE NUMA node placement
+ handler
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+References: <20261102101803.455921-9-himal.prasad.ghimiray@intel.com>
+ <20261102101803.455921-16-himal.prasad.ghimiray@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20261102101803.455921-16-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,51 +72,444 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC14ZSA8aW50ZWwteGUt
-Ym91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBJbXJlIERlYWsNCj4g
-U2VudDogVGh1cnNkYXksIDI5IE9jdG9iZXIgMjAyNiAxMy4zMA0KPiBUbzogaW50ZWwtZ2Z4QGxp
-c3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENj
-OiBzdGFibGVAdmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFtQQVRDSCA2LzZdIGRybS9pOTE1
-L3B0bCs6IEZpeCBUeXBlQyBkZXRlY3Rpb24gZm9yIGVEUCBvbiBwb3J0IEINCj4gDQo+IE9uIFBU
-TCsgcGxhdGZvcm1zIHdpdGggZURQIG9uIFR5cGVDLCBwb3J0IEIncyBEREkgaXMgY29ubmVjdGVk
-IHRvIGEgQzIwDQo+IFR5cGVDIFBIWS4gSWRlbnRpZnkgUEhZIEIgYXMgVHlwZUMgYW5kIG1hcCBw
-b3J0IEIgdG8gVENfUE9SVF8xIHdoZW4gZURQDQo+IFR5cGVDIHN1cHBvcnQgaXMgZW5hYmxlZC4N
-Cj4gDQo+IENsb3NlczogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS94ZS9rZXJu
-ZWwvLS9pc3N1ZXMvOTE5Ng0KPiBDQzogc3RhYmxlQHZnZXIua2VybmVsLm9yZyAjIDYuMTQrDQo+
-IFNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCg0KUmV2aWV3
-ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+DQoNCj4gLS0tDQo+ICBk
-cml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3BsYXkuYyB8IDExICsrKysrKysr
-KysrDQo+ICAxIGZpbGUgY2hhbmdlZCwgMTEgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdp
-dCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheS5jIGIvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gaW5kZXggNWU0MDQ4N2U5
-YWIwNi4uMTBhZjEyODQ2ZTczMCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUv
-ZGlzcGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlz
-cGxheS9pbnRlbF9kaXNwbGF5LmMNCj4gQEAgLTE5MDQsNiArMTkwNCwxMSBAQCBib29sIGludGVs
-X3BoeV9pc19jb21ibyhzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSwgZW51bSBwaHkgcGh5
-KQ0KPiAgCQlyZXR1cm4gZmFsc2U7DQo+ICB9DQo+IA0KPiArc3RhdGljIGJvb2wgaW50ZWxfcGh5
-X2lzX2VkcF9vbl90YyhzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSwgZW51bSBwaHkgcGh5
-KQ0KPiArew0KPiArCXJldHVybiBESVNQTEFZX1JVTlRJTUVfSU5GTyhkaXNwbGF5KS0+ZWRwX3R5
-cGVjX3N1cHBvcnQgJiYgcGh5ID09IFBIWV9COw0KPiArfQ0KPiArDQo+ICAvKg0KPiAgICogVGhp
-cyBmdW5jdGlvbiByZXR1cm5zIHRydWUgaWYgdGhlIERESSBwb3J0IHJlc3BlY3RpdmUgdG8gdGhl
-IFBIWSBlbnVtZXJhdGlvbg0KPiAgICogaXMgYSBUeXBlLUMgY2FwYWJsZSBwb3J0Lg0KPiBAQCAt
-MTkyNCw2ICsxOTI5LDkgQEAgYm9vbCBpbnRlbF9waHlfaXNfdGMoc3RydWN0IGludGVsX2Rpc3Bs
-YXkgKmRpc3BsYXksIGVudW0gcGh5IHBoeSkNCj4gIAlpZiAoZGlzcGxheS0+cGxhdGZvcm0uZGdm
-eCkNCj4gIAkJcmV0dXJuIGZhbHNlOw0KPiANCj4gKwlpZiAoaW50ZWxfcGh5X2lzX2VkcF9vbl90
-YyhkaXNwbGF5LCBwaHkpKQ0KPiArCQlyZXR1cm4gdHJ1ZTsNCj4gKw0KPiAgCWlmIChESVNQTEFZ
-X1ZFUihkaXNwbGF5KSA+PSAxMykNCj4gIAkJcmV0dXJuIHBoeSA+PSBQSFlfRiAmJiBwaHkgPD0g
-UEhZX0k7DQo+ICAJZWxzZSBpZiAoZGlzcGxheS0+cGxhdGZvcm0udGlnZXJsYWtlKQ0KPiBAQCAt
-MTk3NCw2ICsxOTgyLDkgQEAgZW51bSBwaHkgaW50ZWxfcG9ydF90b19waHkoc3RydWN0IGludGVs
-X2Rpc3BsYXkgKmRpc3BsYXksIGVudW0gcG9ydCBwb3J0KQ0KPiAgICovDQo+ICBlbnVtIHRjX3Bv
-cnQgaW50ZWxfcG9ydF90b190YyhzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSwgZW51bSBw
-b3J0IHBvcnQpDQo+ICB7DQo+ICsJaWYgKGludGVsX3BoeV9pc19lZHBfb25fdGMoZGlzcGxheSwg
-aW50ZWxfcG9ydF90b19waHkoZGlzcGxheSwgcG9ydCkpKQ0KPiArCQlyZXR1cm4gVENfUE9SVF8x
-Ow0KPiArDQo+ICAJaWYgKERJU1BMQVlfVkVSKGRpc3BsYXkpID49IDEyKQ0KPiAgCQlyZXR1cm4g
-VENfUE9SVF8xICsgcG9ydCAtIFBPUlRfVEMxOw0KPiAgCWVsc2UNCj4gLS0NCj4gMi40OS4xDQoN
-Cg==
+On 02/11/2026 10:18, Himal Prasad Ghimiray wrote:
+> Parse the NUMA node property before BO creation and store it on the BO.
+> Offline or out of range nodes, and BOs without a system memory
+> placement, are rejected with -EINVAL.
+> 
+> Drop the explicit DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY check, already
+> covered by the property bounds check.
+> 
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>   drivers/gpu/drm/xe/tests/xe_bo.c      |  12 +--
+>   drivers/gpu/drm/xe/tests/xe_dma_buf.c |   4 +-
+>   drivers/gpu/drm/xe/tests/xe_migrate.c |   8 +-
+>   drivers/gpu/drm/xe/xe_bo.c            | 102 +++++++++++++++++++++-----
+>   drivers/gpu/drm/xe/xe_bo.h            |   5 +-
+>   drivers/gpu/drm/xe/xe_dma_buf.c       |   3 +-
+>   6 files changed, 100 insertions(+), 34 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
+> index 6a17e13d58cf..6f61f5c618f1 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+> @@ -89,7 +89,7 @@ static void run_only_leaf(struct kunit *test,
+>   
+>   	bo = xe_bo_create_user(xe, NULL, li->alloc_size,
+>   			       DRM_XE_GEM_CPU_CACHING_WC,
+> -			       XE_BO_FLAG_VRAM0, NULL);
+> +			       XE_BO_FLAG_VRAM0, NUMA_NO_NODE, NULL);
+>   	if (IS_ERR(bo)) {
+>   		page_size_alloc_restore(xe, &saved);
+>   		if (PTR_ERR(bo) == -ENOSPC) {
+> @@ -183,7 +183,7 @@ static void xe_bo_page_size_alloc_mixed_bos(struct kunit *test)
+>   		 */
+>   		bo = xe_bo_create_user(xe, NULL, SZ_1G,
+>   				       DRM_XE_GEM_CPU_CACHING_WC,
+> -				       XE_BO_FLAG_VRAM0, NULL);
+> +				       XE_BO_FLAG_VRAM0, NUMA_NO_NODE, NULL);
+>   		if (IS_ERR(bo)) {
+>   			int err = PTR_ERR(bo);
+>   
+> @@ -366,7 +366,7 @@ static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
+>   		kunit_info(test, "Testing system memory\n");
+>   
+>   	bo = xe_bo_create_user(xe, NULL, SZ_1M, DRM_XE_GEM_CPU_CACHING_WC,
+> -			       bo_flags, exec);
+> +			       bo_flags, NUMA_NO_NODE, exec);
+>   	if (IS_ERR(bo)) {
+>   		KUNIT_FAIL(test, "Failed to create bo.\n");
+>   		return;
+> @@ -445,7 +445,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+>   		xe_vm_lock(vm, false);
+>   		bo = xe_bo_create_user(xe, vm, 0x10000,
+>   				       DRM_XE_GEM_CPU_CACHING_WC,
+> -				       bo_flags, exec);
+> +				       bo_flags, NUMA_NO_NODE, exec);
+>   		xe_vm_unlock(vm);
+>   		if (IS_ERR(bo)) {
+>   			KUNIT_FAIL(test, "bo create err=%pe\n", bo);
+> @@ -454,7 +454,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
+>   
+>   		external = xe_bo_create_user(xe, NULL, 0x10000,
+>   					     DRM_XE_GEM_CPU_CACHING_WC,
+> -					     bo_flags, NULL);
+> +					     bo_flags, NUMA_NO_NODE, NULL);
+>   		if (IS_ERR(external)) {
+>   			KUNIT_FAIL(test, "external bo create err=%pe\n", external);
+>   			goto cleanup_bo;
+> @@ -719,7 +719,7 @@ static int shrink_test_run_device(struct xe_device *xe)
+>   		/* We can create bos using WC caching here. But it is slower. */
+>   		bo = xe_bo_create_user(xe, NULL, XE_BO_SHRINK_SIZE,
+>   				       DRM_XE_GEM_CPU_CACHING_WB,
+> -				       XE_BO_FLAG_SYSTEM, NULL);
+> +				       XE_BO_FLAG_SYSTEM, NUMA_NO_NODE, NULL);
+>   		if (IS_ERR(bo)) {
+>   			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
+>   			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
+> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> index 792376e965f1..876ea545d1a7 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+> @@ -127,7 +127,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+>   
+>   	kunit_info(test, "running %s\n", __func__);
+>   	bo = xe_bo_create_user(xe, NULL, size, DRM_XE_GEM_CPU_CACHING_WC,
+> -			       params->mem_mask, NULL);
+> +			       params->mem_mask, NUMA_NO_NODE, NULL);
+>   	if (IS_ERR(bo)) {
+>   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+>   			   PTR_ERR(bo));
+> @@ -215,7 +215,7 @@ static void xe_test_dmabuf_move_notify_no_resource(struct xe_device *xe)
+>   
+>   	kunit_info(test, "running %s\n", __func__);
+>   	bo = xe_bo_create_user(xe, NULL, PAGE_SIZE, DRM_XE_GEM_CPU_CACHING_WC,
+> -			       params->mem_mask, NULL);
+> +			       params->mem_mask, NUMA_NO_NODE, NULL);
+>   	if (IS_ERR(bo)) {
+>   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+>   			   PTR_ERR(bo));
+> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+> index 56c49d8507d7..69b64e3a23b8 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+> @@ -649,7 +649,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+>   				   DRM_XE_GEM_CPU_CACHING_WC,
+>   				   XE_BO_FLAG_SYSTEM |
+>   				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> -				   XE_BO_FLAG_PINNED, NULL);
+> +				   XE_BO_FLAG_PINNED, NUMA_NO_NODE, NULL);
+>   
+>   	if (IS_ERR(sys_bo)) {
+>   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+> @@ -675,7 +675,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+>   	ccs_bo = xe_bo_create_user(xe, NULL, SZ_4M,
+>   				   DRM_XE_GEM_CPU_CACHING_WC,
+>   				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> -				   XE_BO_FLAG_PINNED, NULL);
+> +				   XE_BO_FLAG_PINNED, NUMA_NO_NODE, NULL);
+>   
+>   	if (IS_ERR(ccs_bo)) {
+>   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+> @@ -700,7 +700,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
+>   	vram_bo = xe_bo_create_user(xe, NULL, SZ_4M,
+>   				    DRM_XE_GEM_CPU_CACHING_WC,
+>   				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> -				    XE_BO_FLAG_PINNED, NULL);
+> +				    XE_BO_FLAG_PINNED, NUMA_NO_NODE, NULL);
+>   	if (IS_ERR(vram_bo)) {
+>   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+>   			   PTR_ERR(vram_bo));
+> @@ -979,7 +979,7 @@ static void access_memory_test_run_tile(struct xe_device *xe,
+>   
+>   	bo = xe_bo_create_user(xe, NULL, ACCESS_MEM_BO_SIZE,
+>   			       DRM_XE_GEM_CPU_CACHING_WC,
+> -			       bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
+> +			       bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS, NUMA_NO_NODE, NULL);
+>   	if (IS_ERR(bo)) {
+>   		KUNIT_FAIL(test, "Failed to create bo: %pe\n", bo);
+>   		goto free_buf;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index fc9bfb436b8e..bbbc33737264 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1538,7 +1538,7 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
+>   		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
+>   					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+>   					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> -					   XE_BO_FLAG_PINNED, NULL, &exec);
+> +					   XE_BO_FLAG_PINNED, NULL, NUMA_NO_NODE, &exec);
+>   		if (IS_ERR(backup)) {
+>   			drm_exec_retry_on_contention(&exec);
+>   			ret = PTR_ERR(backup);
+> @@ -1680,7 +1680,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
+>   						   xe_bo_size(bo),
+>   						   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
+>   						   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
+> -						   XE_BO_FLAG_PINNED, NULL, &exec);
+> +						   XE_BO_FLAG_PINNED, NULL, NUMA_NO_NODE, &exec);
+>   			if (IS_ERR(backup)) {
+>   				drm_exec_retry_on_contention(&exec);
+>   				ret = PTR_ERR(backup);
+> @@ -2480,7 +2480,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+>   				struct ttm_lru_bulk_move *bulk, size_t size,
+>   				u16 cpu_caching, enum ttm_bo_type type,
+>   				u32 flags, struct dma_buf *dma_buf,
+> -				struct drm_exec *exec)
+> +				int numa_node, struct drm_exec *exec)
+>   {
+>   	struct ttm_operation_ctx ctx = {
+>   		.interruptible = true,
+> @@ -2546,7 +2546,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+>   	bo->tile = tile;
+>   	bo->flags = flags;
+>   	bo->cpu_caching = cpu_caching;
+> -	bo->numa_node = NUMA_NO_NODE;
+> +	bo->numa_node = numa_node;
+>   	bo->ttm.base.funcs = &xe_gem_object_funcs;
+>   	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
+>   	INIT_LIST_HEAD(&bo->pinned_link);
+> @@ -2681,7 +2681,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+>   		      struct xe_tile *tile, struct xe_vm *vm,
+>   		      size_t size, u64 start, u64 end,
+>   		      u16 cpu_caching, enum ttm_bo_type type, u32 flags,
+> -		      u64 alignment, struct drm_exec *exec)
+> +		      u64 alignment, int numa_node, struct drm_exec *exec)
+>   {
+>   	struct xe_bo *bo = NULL;
+>   	int err;
+> @@ -2706,7 +2706,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+>   			       vm && !xe_vm_in_fault_mode(vm) &&
+>   			       flags & XE_BO_FLAG_USER ?
+>   			       &vm->lru_bulk_move : NULL, size,
+> -			       cpu_caching, type, flags, NULL, exec);
+> +			       cpu_caching, type, flags, NULL, numa_node, exec);
+>   	if (IS_ERR(bo))
+>   		return bo;
+>   
+> @@ -2781,13 +2781,13 @@ struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
+>   				  struct drm_exec *exec)
+>   {
+>   	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, type,
+> -				     flags, 0, exec);
+> +				     flags, 0, NUMA_NO_NODE, exec);
+>   }
+>   
+>   static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *tile,
+>   				       size_t size, u16 cpu_caching,
+>   				       enum ttm_bo_type type, u32 flags,
+> -				       u64 alignment, bool intr)
+> +				       u64 alignment, int numa_node, bool intr)
+>   {
+>   	struct xe_validation_ctx ctx;
+>   	struct drm_exec exec;
+> @@ -2797,7 +2797,8 @@ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *til
+>   	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = intr},
+>   			    ret) {
+>   		bo = __xe_bo_create_locked(xe, tile, NULL, size, 0, ~0ULL,
+> -					   cpu_caching, type, flags, alignment, &exec);
+> +					   cpu_caching, type, flags, alignment,
+> +					   numa_node, &exec);
+>   		drm_exec_retry_on_contention(&exec);
+>   		if (IS_ERR(bo)) {
+>   			ret = PTR_ERR(bo);
+> @@ -2966,7 +2967,8 @@ static void xe_bo_debug_mixed_mode_cur_index_advance(struct xe_device *xe,
+>   struct xe_bo *xe_bo_create_user(struct xe_device *xe,
+>   				struct xe_vm *vm, size_t size,
+>   				u16 cpu_caching,
+> -				u32 flags, struct drm_exec *exec)
+> +				u32 flags, int numa_node,
+> +				struct drm_exec *exec)
+>   {
+>   	struct xe_bo *bo;
+>   	int err = 0;
+> @@ -2983,12 +2985,13 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe,
+>   		xe_assert(xe, exec);
+>   		bo = __xe_bo_create_locked(xe, NULL, vm, size, 0, ~0ULL,
+>   					   cpu_caching, ttm_bo_type_device,
+> -					   flags, 0, exec);
+> +					   flags, 0, numa_node, exec);
+>   		if (!IS_ERR(bo))
+>   			xe_bo_unlock_vm_held(bo);
+>   	} else {
+>   		bo = xe_bo_create_novm(xe, NULL, size, cpu_caching,
+> -				       ttm_bo_type_device, flags, 0, true);
+> +				       ttm_bo_type_device, flags, 0,
+> +				       numa_node, true);
+>   	}
+>   
+>   	return bo;
+> @@ -3022,7 +3025,7 @@ struct xe_bo *xe_bo_create_pin_range_novm(struct xe_device *xe, struct xe_tile *
+>   
+>   	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
+>   		bo = __xe_bo_create_locked(xe, tile, NULL, size, start, end,
+> -					   0, type, flags, 0, &exec);
+> +					   0, type, flags, 0, NUMA_NO_NODE, &exec);
+>   		if (IS_ERR(bo)) {
+>   			drm_exec_retry_on_contention(&exec);
+>   			err = PTR_ERR(bo);
+> @@ -3061,7 +3064,7 @@ static struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
+>   
+>   	bo = __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, type,
+>   				   flags | XE_BO_FLAG_NEEDS_CPU_ACCESS | XE_BO_FLAG_PINNED,
+> -				   alignment, exec);
+> +				   alignment, NUMA_NO_NODE, exec);
+>   	if (IS_ERR(bo))
+>   		return bo;
+>   
+> @@ -3604,10 +3607,15 @@ static int gem_create_user_ext_set_property(struct xe_device *xe,
+>   	if (XE_IOCTL_DBG(xe, err))
+>   		return -EFAULT;
+>   
+> +	if (XE_IOCTL_DBG(xe, ext.pad))
+> +		return -EINVAL;
+> +
+> +	/* The NUMA node property is parsed and applied before BO creation. */
+> +	if (ext.property == DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE)
+> +		return 0;
+> +
+>   	if (XE_IOCTL_DBG(xe, ext.property >=
+> -			 ARRAY_SIZE(gem_create_set_property_funcs)) ||
+> -	    XE_IOCTL_DBG(xe, ext.pad) ||
+> -	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY))
+> +			 ARRAY_SIZE(gem_create_set_property_funcs)))
+>   		return -EINVAL;
+>   
+>   	idx = array_index_nospec(ext.property, ARRAY_SIZE(gem_create_set_property_funcs));
+> @@ -3658,6 +3666,56 @@ static int gem_create_user_extensions(struct xe_device *xe, struct xe_bo *bo,
+>   	return 0;
+>   }
+>   
+> +/*
+> + * Parse a host NUMA node request from the extension chain. The node must be
+> + * known before the BO is created, because the backing pages are allocated
+> + * during creation. Returns the requested node in @numa_node (NUMA_NO_NODE if
+> + * none or a negative value is given) or a negative errno on an invalid request.
+
+Would it make sense to rework this and have something like:
+
+struct gem_create_extension_data {
+     u32 pxp_key_instance;
+     int numa_node;
+}
+
+Which is parsed up front before the bo create? And then in some way we 
+just pass that along to create_user() or manual bo init after? Otherwise 
+here we look to be open coding a duplicate extension parser flow, rather 
+than using gem_create_set_property_funcs? I think parsing before bo 
+create make more sense anyway, like you do here?
+
+> + */
+> +static int gem_create_parse_numa_node(struct xe_device *xe, u64 extensions,
+> +				      u32 bo_flags, int *numa_node)
+> +{
+> +	struct drm_xe_user_extension base;
+> +	struct drm_xe_ext_set_property ext;
+> +	unsigned int i = 0;
+> +
+> +	*numa_node = NUMA_NO_NODE;
+> +
+> +	while (extensions && i++ < MAX_USER_EXTENSIONS) {
+> +		u64 __user *address = u64_to_user_ptr(extensions);
+> +		s64 nid;
+> +
+> +		if (XE_IOCTL_DBG(xe, copy_from_user(&base, address, sizeof(base))))
+> +			return -EFAULT;
+> +
+> +		if (base.name != DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY)
+> +			goto next;
+> +
+> +		if (XE_IOCTL_DBG(xe, copy_from_user(&ext, address, sizeof(ext))))
+> +			return -EFAULT;
+> +
+> +		if (ext.property != DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE)
+> +			goto next;
+> +
+> +		nid = (s64)ext.value;
+> +		*numa_node = NUMA_NO_NODE;
+> +		if (nid < 0)
+> +			goto next;
+> +
+> +		if (XE_IOCTL_DBG(xe, nid >= MAX_NUMNODES || !node_online(nid)))
+
+I think needs nospec dance for nid?
+
+> +			return -EINVAL;
+> +
+> +		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_FLAG_SYSTEM)))
+> +			return -EINVAL;
+> +
+> +		*numa_node = nid;
+> +next:
+> +		extensions = base.next_extension;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   			struct drm_file *file)
+>   {
+> @@ -3669,6 +3727,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   	struct xe_vm *vm = NULL;
+>   	struct xe_bo *bo;
+>   	unsigned int bo_flags;
+> +	int numa_node;
+>   	u32 handle;
+>   	int err;
+>   
+> @@ -3744,6 +3803,11 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
+>   		return -EINVAL;
+>   
+> +	err = gem_create_parse_numa_node(xe, args->extensions, bo_flags,
+> +					 &numa_node);
+> +	if (err)
+> +		return err;
+> +
+>   	if (args->vm_id) {
+>   		vm = xe_vm_lookup(xef, args->vm_id);
+>   		if (XE_IOCTL_DBG(xe, !vm))
+> @@ -3760,7 +3824,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>   				break;
+>   		}
+>   		bo = xe_bo_create_user(xe, vm, args->size, args->cpu_caching,
+> -				       bo_flags, &exec);
+> +				       bo_flags, numa_node, &exec);
+>   		drm_exec_retry_on_contention(&exec);
+>   		if (IS_ERR(bo)) {
+>   			err = PTR_ERR(bo);
+> @@ -4231,7 +4295,7 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+>   			       DRM_XE_GEM_CPU_CACHING_WC,
+>   			       XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+>   			       XE_BO_FLAG_FORCE_WC |
+> -			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
+> +			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NUMA_NO_NODE, NULL);
+>   	if (IS_ERR(bo))
+>   		return PTR_ERR(bo);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 77b3a02e9b8e..225c6a8676a6 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -122,13 +122,14 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
+>   				struct ttm_lru_bulk_move *bulk, size_t size,
+>   				u16 cpu_caching, enum ttm_bo_type type,
+>   				u32 flags, struct dma_buf *dma_buf,
+> -				struct drm_exec *exec);
+> +				int numa_node, struct drm_exec *exec);
+>   struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
+>   				  struct xe_vm *vm, size_t size,
+>   				  enum ttm_bo_type type, u32 flags,
+>   				  struct drm_exec *exec);
+>   struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_vm *vm, size_t size,
+> -				u16 cpu_caching, u32 flags, struct drm_exec *exec);
+> +				u16 cpu_caching, u32 flags, int numa_node,
+> +				struct drm_exec *exec);
+>   struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
+>   				   struct xe_vm *vm, size_t size,
+>   				   enum ttm_bo_type type, u32 flags,
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index 5bf13dc4b61d..b5351310a07b 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -343,7 +343,8 @@ xe_dma_buf_create_obj(struct drm_device *dev, struct dma_buf *dma_buf)
+>   
+>   		bo = xe_bo_init_locked(xe, NULL, NULL, resv, NULL, dma_buf->size,
+>   				       0, /* Will require 1way or 2way for vm_bind */
+> -				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, dma_buf, &exec);
+> +				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, dma_buf,
+> +				       NUMA_NO_NODE, &exec);
+>   		drm_exec_retry_on_contention(&exec);
+>   		if (IS_ERR(bo)) {
+>   			ret = PTR_ERR(bo);
+
