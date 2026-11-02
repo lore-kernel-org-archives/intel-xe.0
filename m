@@ -2,53 +2,60 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9DD60A1DAA
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 16:40:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC80606CEE9
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 16:45:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZjLbSxNy
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Jf7MtF5P
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD63410E0A6;
-	Mon,  2 Nov 2026 16:40:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 835E910E0A6
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 16:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEF310E636;
+	Mon,  2 Nov 2026 16:45:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA4CB10E636;
+ Mon,  2 Nov 2026 16:44:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793637635; x=1825173635;
- h=date:from:to:cc:subject:message-id;
- bh=HLiR55GBkgk56L6gBytWHkOt1Rl8Z8K7loJ8KVAP28g=;
- b=ZjLbSxNyvHPBCRQghPyktGDrg8Ig9/c7IxHQdNkPcCGfmshkmcgtqKMr
- vf0i7N05/Lt9dlY34wSwmcK5eTsS1oUAOQBjORjqi58T6sjzQqf38E14R
- gi0XcY3/oIjxy537taCDqxXOo+/JjPtE5kDINW+oGC1tlMKT0/eFwN2W2
- ilZ4XF1dJpseFlo9cxyCIkHIQWQOw15zwLXOosLSbkxyDj6jtZXgmIJt+
- OtBjmf5XHVjq7t4shxiS9bY/a/54r74pJQEUrftXrwsfWy36VROxMGEEj
- QuggU/Pn/N/Ogr2aKq4FcAa8byy0IZstCGCcb1QcRGRTJNjBHsXhgP9Gb g==;
-X-CSE-ConnectionGUID: eKR/rsGrSi6+E4ccFs10Ww==
-X-CSE-MsgGUID: 0ZX9AXNoSjiRjgKB7ZcIqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2428324"
+ t=1793637896; x=1825173896;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=1/+MQpV4gGCF7SlxSx86h8gCpBfsOyE1qQaMtC05pv0=;
+ b=Jf7MtF5PPTUnOECmyX8g7sY4nIkRjAE02FWEsKSrKGhyy6EncmjjfOfz
+ yTi6kKXZugzIAA9nd1NULdMtYotD0G7LjECrZEMT15EuWgbeairOp5rpQ
+ fvGBNDVQcS3P2Nb30DjQ9UIaOElh78YyUbFpdOYAGeuyFVWJnWGlF45ND
+ 1NJMskxADcfMcMkQrrzagDpUTs6nBTe0VT2KfiS7Z//OZEUBu9SPaJaAA
+ 3cfcEb5W61l8sOzqAqpjh3JoulHSISlsOhNaIA3JMT3B+IgVskOjnv5c2
+ jSUSg42hH4nMaeOLdIisgr0ard6hmTcGOFS/KuqVqbehz4y2wg72krzuH g==;
+X-CSE-ConnectionGUID: QAqvBR31RGStY2MAeWZcOQ==
+X-CSE-MsgGUID: OsAnehrLREaew1vfHClS4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2238269"
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2428324"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 08:40:35 -0800
-X-CSE-ConnectionGUID: gAnUtdqBSRqFSuVe+NUiHQ==
-X-CSE-MsgGUID: 6fkPuoORSYuMybn7bwM8Rg==
+   d="scan'208";a="2238269"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 08:44:55 -0800
+X-CSE-ConnectionGUID: wr3sNNS3Sji0oQGyE7xlOA==
+X-CSE-MsgGUID: CNHz869ORbSrCkuVCzN57Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="6220804"
-Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
- by orviesa006.jf.intel.com with ESMTP; 02 Nov 2026 08:40:35 -0800
-Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1xNv5D-00000000hLi-465H;
- Mon, 02 Nov 2026 16:40:31 +0000
-Date: Tue, 03 Nov 2026 00:40:03 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 72fde60e3ed747d0312bae613d045d8a812dbaa4
-Message-ID: <20261103004003.Nssek3GA-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+   d="scan'208";a="6291394"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.222])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 08:44:53 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/i915/display: fix a few i915_reg_t usages that have
+ crept back
+In-Reply-To: <DS4PPFE901A304FA4A537312A02AEDE54BCE36A2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261030122207.2835113-1-jani.nikula@intel.com>
+ <DS4PPFE901A304FA4A537312A02AEDE54BCE36A2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Date: Mon, 02 Nov 2026 18:44:51 +0200
+Message-ID: <82f39b16a4789120dd814b844b03e87776264701@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,115 +66,68 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 72fde60e3ed747d0312bae613d045d8a812dbaa4  drm/xe/hwmon: Use overflows_type() for temperature range check
+On Mon, 02 Nov 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH] drm/i915/display: fix a few i915_reg_t usages that have crept
+>> back
+>> 
+>> Display code should use intel_reg_t instead of i915_reg_t. It's currently just a
+>> typedef around i915_reg_t, but this will change in the future.
+>> 
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-elapsed time: 3826m
+Thanks, pushed to din.
 
-configs tested: 88
-configs skipped: 2
+BR,
+Jani.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_de.h       | 2 +-
+>>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 2 +-
+>>  2 files changed, 2 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_de.h
+>> b/drivers/gpu/drm/i915/display/intel_de.h
+>> index 5d3aeaf6a70f..d0a239a36980 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_de.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+>> @@ -136,7 +136,7 @@ intel_de_rmw_fw(struct intel_display *display,
+>> intel_reg_t reg, u32 clear, u32 s
+>> 
+>>  static inline u64
+>>  intel_de_read64_2x32_volatile_fw(struct intel_display *display,
+>> -				 i915_reg_t lower_reg, i915_reg_t upper_reg)
+>> +				 intel_reg_t lower_reg, intel_reg_t upper_reg)
+>>  {
+>>  	u32 old_upper, upper, lower;
+>>  	int loop = 0;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> index bfd6f0a19725..07a66db583dd 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+>> @@ -4798,7 +4798,7 @@ static bool dg2_mpllb_get_hw_state(struct
+>> intel_display *display,  {
+>>  	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
+>>  	enum phy phy;
+>> -	i915_reg_t enable_reg;
+>> +	intel_reg_t enable_reg;
+>>  	struct ref_tracker *wakeref;
+>>  	bool ret = false;
+>>  	u32 val;
+>> --
+>> 2.47.3
+>
 
-tested configs:
-alpha                              allnoconfig    gcc-16.2.0
-alpha                                defconfig    gcc-16.2.0
-arc                                allnoconfig    gcc-16.2.0
-arc                                  defconfig    gcc-16.2.0
-arc                   randconfig-1000-20261102    gcc-10.5.0
-arc                   randconfig-1001-20261102    gcc-10.5.0
-arm                                allnoconfig    gcc-16.2.0
-arm                                  defconfig    gcc-16.2.0
-arm                              mxs_defconfig    clang-24
-arm                          nhk8815_defconfig    clang-24
-arm                   randconfig-1000-20261102    gcc-10.5.0
-arm                   randconfig-1001-20261102    gcc-10.5.0
-arm                   randconfig-1002-20261102    gcc-10.5.0
-arm                   randconfig-1003-20261102    gcc-10.5.0
-arm64                              allnoconfig    gcc-16.2.0
-arm64                                defconfig    gcc-16.2.0
-csky                               allnoconfig    gcc-16.2.0
-csky                                 defconfig    gcc-16.2.0
-hexagon                            allnoconfig    gcc-16.2.0
-hexagon                              defconfig    gcc-16.2.0
-hexagon               randconfig-1000-20261102    clang-19
-hexagon               randconfig-1001-20261102    clang-19
-i386                               allnoconfig    gcc-16.2.0
-i386        buildonly-randconfig-1000-20261102    clang-22
-i386        buildonly-randconfig-1001-20261102    clang-22
-i386        buildonly-randconfig-1002-20261102    clang-22
-i386        buildonly-randconfig-1003-20261102    clang-22
-i386        buildonly-randconfig-1004-20261102    clang-22
-i386        buildonly-randconfig-1005-20261102    clang-22
-i386                                 defconfig    gcc-16.2.0
-loongarch                          allnoconfig    gcc-16.2.0
-loongarch                            defconfig    clang-24
-loongarch             randconfig-1000-20261102    clang-19
-loongarch             randconfig-1001-20261102    clang-19
-m68k                               allnoconfig    gcc-16.2.0
-m68k                                 defconfig    clang-24
-microblaze                         allnoconfig    gcc-16.2.0
-microblaze                           defconfig    clang-24
-mips                               allnoconfig    gcc-16.2.0
-mips                      decstation_defconfig    clang-24
-mips                      eyeq6lplus_defconfig    clang-24
-mips                            ip22_defconfig    clang-24
-nios2                              allnoconfig    clang-24
-nios2                                defconfig    clang-24
-nios2                 randconfig-1000-20261102    clang-19
-nios2                 randconfig-1001-20261102    clang-19
-openrisc                           allnoconfig    clang-24
-openrisc                             defconfig    gcc-16.2.0
-parisc                             allnoconfig    clang-24
-parisc                               defconfig    gcc-16.2.0
-parisc                randconfig-1000-20261102    clang-17
-parisc                randconfig-1001-20261102    clang-17
-parisc64                             defconfig    clang-24
-powerpc                            allnoconfig    clang-24
-powerpc                  canyonlands_defconfig    clang-24
-powerpc                      mpc512x_defconfig    clang-24
-powerpc               randconfig-1000-20261102    clang-17
-powerpc               randconfig-1001-20261102    clang-17
-powerpc64             randconfig-1000-20261102    clang-17
-powerpc64             randconfig-1001-20261102    clang-17
-riscv                              allnoconfig    clang-24
-riscv                                defconfig    gcc-16.2.0
-riscv                 randconfig-1000-20261102    clang-21
-riscv                 randconfig-1001-20261102    clang-21
-s390                               allnoconfig    clang-24
-s390                                 defconfig    gcc-16.2.0
-s390                  randconfig-1000-20261102    clang-21
-s390                  randconfig-1001-20261102    clang-21
-sh                                 allnoconfig    clang-24
-sh                    randconfig-1000-20261102    clang-21
-sh                    randconfig-1001-20261102    clang-21
-sparc                              allnoconfig    clang-24
-sparc                                defconfig    gcc-16.2.0
-sparc                 randconfig-1000-20261102    gcc-15.3.0
-sparc                 randconfig-1001-20261102    gcc-15.3.0
-sparc                        sparc64_defconfig    clang-24
-sparc64               randconfig-1000-20261102    gcc-15.3.0
-sparc64               randconfig-1001-20261102    gcc-15.3.0
-um                                 allnoconfig    clang-24
-um                    randconfig-1000-20261102    gcc-15.3.0
-um                    randconfig-1001-20261102    gcc-15.3.0
-x86_64                             allnoconfig    clang-24
-x86_64                            rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-kunit    gcc-14
-x86_64                            rhel-9.4-ltp    gcc-14
-xtensa                             allnoconfig    clang-24
-xtensa                randconfig-1000-20261102    gcc-15.3.0
-xtensa                randconfig-1001-20261102    gcc-15.3.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+-- 
+Jani Nikula, Intel
