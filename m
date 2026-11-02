@@ -2,28 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F440606A335
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D91E606A334
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 22:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HapxT64o
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F1A10E2A8;
-	Mon,  2 Nov 2026 22:08:23 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34D6F10E2A8;
- Mon,  2 Nov 2026 22:08:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2986308587572875309=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5328010E71A;
+	Mon,  2 Nov 2026 22:13:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80A5110E700
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 22:13:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793657606; x=1825193606;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=csci7tCMr9Ii7+Xpg05phHwcD1KT8lBozHU2bXnHtdc=;
+ b=HapxT64obCgN/7g+9MHsLoiOq4HVLoUs/2coZ6mI1bMwXaNxu2ucv9w3
+ W6edFm+/FZRI8bzLbVJcVO6sTiWW30FfoJOrY69CzF1saMX6JE2DTGjVP
+ MPHwunkgLN18ZwrzSl71OcmAoN7150SadzQM0st7ujn8hXXbsTvN0Zrt0
+ M4x1yTloaaXJ4h0ZmEPnhgcteygVT/WO1nFo8bLqXhjuVxqI9sgpmizpu
+ RT6YjlHF9tO/DBqt0hJlukg9W7hzi0d56wXF29QcuCRsqwAnIoYFjfaaW
+ nY247gfta0kYMpVsjb5BKc+6keapdcpI2yJsP917tqnYlSkZJnp+26P7v A==;
+X-CSE-ConnectionGUID: SpV3BeCcTE2V6t5gx0xGUQ==
+X-CSE-MsgGUID: 7lmHslTqSviq0Ytw+LXuIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2255764"
+X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
+   d="scan'208";a="2255764"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 14:13:25 -0800
+X-CSE-ConnectionGUID: npY1YKBVSgucm/ojHyrf4w==
+X-CSE-MsgGUID: TnWhRVlHTeu8wRS5077k6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
+   d="scan'208";a="6225175"
+Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 14:13:25 -0800
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
+ anoop.c.vijay@intel.com, badal.nilawar@intel.com,
+ matthew.d.roper@intel.com, james.ausmus@intel.com
+Subject: [PATCH v13 00/16] Crescent Island PMT support
+Date: Mon,  2 Nov 2026 14:13:12 -0800
+Message-ID: <20261102221314.119028-18-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_mode-3_fault_?=
- =?utf-8?q?inspection_with_debugfs_release?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniel Charles" <daniel.charles@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Nov 2026 22:08:22 -0000
-Message-ID: <179365730220.106923.15724799560874474443@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261102210242.635207-1-daniel.charles@intel.com>
-In-Reply-To: <20261102210242.635207-1-daniel.charles@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,128 +62,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============2986308587572875309==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The Crescent Island (CRI) GPU supports PMT via Xe driver
+registration.
 
-== Series Details ==
+The CRI PMT MMIO mapping is shared for each PMT feature and it is
+necessary to set an index register value to access the correct memory
+space.
 
-Series: drm/xe: Add mode-3 fault inspection with debugfs release
-URL   : https://patchwork.freedesktop.org/series/177508/
-State : success
+The PMT driver has a callback infrastructure to access data areas with
+driver specific access. It is does not support the PMT control access.
 
-== Summary ==
+CRI discovery/control spaces are part of the access window so a driver
+callback is necessary to allow for the correct window to be exposed.
 
-CI Bug Log - changes from xe-6047-2cd78713d917a02987f21b437561a5e1e13ddda2_BAT -> xe-pw-177508v1_BAT
-====================================================
+Add control path callback support to the PMT driver.
 
-Summary
--------
+Add CRI PMT discovery information.
 
-  **SUCCESS**
+Update the Xe driver to support the CRI PMT access.
 
-  No regressions found.
+The crashlog access needs to be done with power enabled (telem is only
+available when the device is powered).
 
-  
+Determine which access is requested, and do the appropriate power
+request.
 
-Participating hosts (15 -> 15)
-------------------------------
+CRI FW is loaded at device power.  Support the late-binding API to
+wait for FW readiness. (pending sysctl patch set implements the API).
 
-  No changes in participating hosts
+v2:
+  Address AI feedback:
+  - add missing entry->cb check
+  - address SRIOV VF concerns
+  - use xe_pm_runtime_put instead of _get in error path
 
-Known issues
-------------
+  Address review comments:
+  - redo power/lock sequencing
+  - support device hotplug events
 
-  Here are the changes found in xe-pw-177508v1_BAT that come from known issues:
+v3:
+  - cleanup power manangement flow
+  - fixed an out of order power management locking issue
+  - add a GUID caching mechanism, for GUID read
+  - removed unused parameter (mmio)
 
-### IGT changes ###
+v4:
+ - address various review comments
+ - refactor crashlog to allow for return values
+ - for callback usage, decouple PMT remap of data areas
+ - use IS_SRIOV_VF() rather than expose soc-remapper internals
+ - separate locking fixes intos distinct steps
+ - refactor define update patches to seperate BMG and CRI updates
+ - separate internal GUID into separate steps
 
-#### Issues hit ####
+v5:
+ - removed callback helpers
+ - do not return error message with sysfs
+ - fix missed return code check in trigger_store
+ - return error value not false
+ - use DEFINE_RES_MEM
+ - document when base is unused
+ - return error on invalid GUID request
 
-  * igt@runner@aborted:
-    - bat-atsm-2:         NOTRUN -> [FAIL][1] ([Intel XE#9717])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177508v1/bat-atsm-2/igt@runner@aborted.html
+v6:
+ - fix enabled/disabled inversion
+ - fix missing DOC reference
+ - change memcpy_to/fromio to readl/writel for register read
+ - guid cache comment and update on valid guid
 
-  
-  [Intel XE#9717]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9717
+v7:
+ - reordered to have BMG updates followed by CRI support
+ - separate base_offset usage for clarity
+ - added EAGAIN usage to block uninitialized use of the API
 
+v8:
+ - fix punit crashlog offset (should be 0xE60 not 0xE78)
+ - remove EAGAIN support and re-order probe steps to initialize
+   VSEC before other features use it
 
-Build changes
--------------
+v9:
+ - added appropriate reviewed-bys
+ - use dev_err instead of pr_err
+ - enforce defined base usage when callbacks are in plcace
+ - move SRIOV check to get_platform_info
+ - assert SRIOV for API check
+ - use scoped_guard() where possible
+ - update to use correct sysctrl helper
 
-  * Linux: xe-6047-2cd78713d917a02987f21b437561a5e1e13ddda2 -> xe-pw-177508v1
+v10:
+ - fix incorrect return type (broken in refactor, int -> bool)
+ - fix incorrectly documented error return values
+ - doc text cleanup
 
-  IGT_9175: 9175
-  xe-6047-2cd78713d917a02987f21b437561a5e1e13ddda2: 2cd78713d917a02987f21b437561a5e1e13ddda2
-  xe-pw-177508v1: 177508v1
+v11:
+ - add reviewed-by
+ - fix minor checkpatch issue
+ - use xe_assert() for a consistent API check
 
-== Logs ==
+v12:
+ - add survivability mode support
+ - add reviewed-by
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177508v1/index.html
+v13:
+ - PMT patches (original commits 1 - 5) are merged upstream
+ - resubmitting XeKMD patches
 
---===============2986308587572875309==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Michael J. Ruhl (16):
+  drm/xe/vsec: Do not register BMG PMT for VF
+  drm/xe/vsec: Correct locking order
+  drm/xe/vsec: Use correct pm state get
+  drm/xe/vsec: Add DOC text for VSEC
+  drm/xe/vsec: Support possible hotplug exit
+  drm/xe/vsec: Refactor BattleMage PMT defines
+  drm/xe/vsec: Update VSEC probe order
+  drm/xe/vsec: Add base_offset to allow for more flexibilty
+  drm/xe/vsec: Support Crescent Island PMT
+  drm/xe/vsec: Crescent Island PMT decode
+  drm/xe/vsec: Crescent Island PMT callbacks
+  drm/xe/vsec: Support late bind fw information
+  drm/xe/vsec: Add PMT GUID internal access
+  drm/xe/vsec: Update PMT internal access
+  drm/xe/vsec: Refactor platform check
+  drm/xe/vsec: Support survivability mode for CRI
 
+ Documentation/gpu/xe/index.rst             |   1 +
+ Documentation/gpu/xe/xe_vsec.rst           |  14 +
+ drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
+ drivers/gpu/drm/xe/xe_debugfs.c            |  45 +-
+ drivers/gpu/drm/xe/xe_device.c             |   6 +-
+ drivers/gpu/drm/xe/xe_device_types.h       |   9 +
+ drivers/gpu/drm/xe/xe_hwmon.c              |  10 +-
+ drivers/gpu/drm/xe/xe_pcode.c              |  10 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c |   2 +
+ drivers/gpu/drm/xe/xe_vsec.c               | 584 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vsec.h               |   3 +-
+ 11 files changed, 619 insertions(+), 77 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_vsec.rst
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-- 
+2.43.0
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add mode-3 fault inspection with debugfs release</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177508/">https://patchwork.freedesktop.org/series/177508/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177508v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177508v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6047-2cd78713d917a02987f21b437561a5e1e13ddda2_BAT -&gt; xe-pw-177508v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-177508v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@runner@aborted:<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177508v1/bat-atsm-2/igt@runner@aborted.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9717">Intel XE#9717</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6047-2cd78713d917a02987f21b437561a5e1e13ddda2 -&gt; xe-pw-177508v1</li>
-</ul>
-<p>IGT_9175: 9175<br />
-  xe-6047-2cd78713d917a02987f21b437561a5e1e13ddda2: 2cd78713d917a02987f21b437561a5e1e13ddda2<br />
-  xe-pw-177508v1: 177508v1</p>
-
-</body>
-</html>
-
---===============2986308587572875309==--
