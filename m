@@ -2,66 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A14A7606A326
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 11:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ntVk8Njt
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B17F606A326
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 11:13:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C7210ED08;
-	Mon,  2 Nov 2026 11:13:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B267210ED08;
- Mon,  2 Nov 2026 11:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793617976; x=1825153976;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=mplt71fy/1nGSUQ8TeemmAvkT7JXr50n5+uyr60/ycw=;
- b=ntVk8NjtEgiS8NRLP42fHafarqDgfzIl4G026j1jNkSeQ8LBqqxZVMUd
- FK8oWALZ2HWiTFT6NHcWSvBtNbem7VVwGfV+BMhhjKg5pEWPKgu1vX0Jr
- Q4DSUq9QU5OEIWDAa2905tYjyBERIow8YSHCDHHHDF3M96OiM7iLoczOl
- 63RLHETI3Nyky4XJIy8texGtuBE8ziukhS5uyKoqEz58JnBuE0QMLPjLt
- Riu9CtL4D/Jjma+ECeP+7t1XQ18VHMJGIxXY1bPrO9zZ5BZt9lY+7C6nL
- BE3AJkRXa4YoWg6vKlEkHySiPj9YQpCUtbQZ0rB21FHT4fPGpuZnuA3nY Q==;
-X-CSE-ConnectionGUID: 1u4cR0meRoCgE0JjuuwBDw==
-X-CSE-MsgGUID: eN13BbEzTza6sn+VuDivaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2185033"
-X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2185033"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 03:12:56 -0800
-X-CSE-ConnectionGUID: 0VN+su3DRtqMh20prUccvg==
-X-CSE-MsgGUID: HTOQwFxZTKSqI4k8T+BrXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="6016099"
-Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.251])
- ([10.245.244.251])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 03:12:54 -0800
-Message-ID: <b1fa8b88-fb7e-4e39-997b-b924a79e728c@intel.com>
-Date: Mon, 2 Nov 2026 11:12:51 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3250C10ED15;
+	Mon,  2 Nov 2026 11:13:08 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88A2C10ED13;
+ Mon,  2 Nov 2026 11:13:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7224163537778709419=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 7/7] drm/xe/uapi: Wire up GEM_CREATE NUMA node placement
- handler
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Huang Rui <ray.huang@amd.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20261102101803.455921-9-himal.prasad.ghimiray@intel.com>
- <20261102101803.455921-16-himal.prasad.ghimiray@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20261102101803.455921-16-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe=3A_Tear_down_kernel?=
+ =?utf-8?q?_mappings_in_release=5Fnotify_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Nov 2026 11:13:07 -0000
+Message-ID: <179361798755.102239.2987894585700180920@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261102094529.785224-1-arvind.yadav@intel.com>
+In-Reply-To: <20261102094529.785224-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,445 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 02/11/2026 10:18, Himal Prasad Ghimiray wrote:
-> Parse the NUMA node property before BO creation and store it on the BO.
-> Offline or out of range nodes, and BOs without a system memory
-> placement, are rejected with -EINVAL.
-> 
-> Drop the explicit DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY check, already
-> covered by the property bounds check.
-> 
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->   drivers/gpu/drm/xe/tests/xe_bo.c      |  12 +--
->   drivers/gpu/drm/xe/tests/xe_dma_buf.c |   4 +-
->   drivers/gpu/drm/xe/tests/xe_migrate.c |   8 +-
->   drivers/gpu/drm/xe/xe_bo.c            | 102 +++++++++++++++++++++-----
->   drivers/gpu/drm/xe/xe_bo.h            |   5 +-
->   drivers/gpu/drm/xe/xe_dma_buf.c       |   3 +-
->   6 files changed, 100 insertions(+), 34 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index 6a17e13d58cf..6f61f5c618f1 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -89,7 +89,7 @@ static void run_only_leaf(struct kunit *test,
->   
->   	bo = xe_bo_create_user(xe, NULL, li->alloc_size,
->   			       DRM_XE_GEM_CPU_CACHING_WC,
-> -			       XE_BO_FLAG_VRAM0, NULL);
-> +			       XE_BO_FLAG_VRAM0, NUMA_NO_NODE, NULL);
->   	if (IS_ERR(bo)) {
->   		page_size_alloc_restore(xe, &saved);
->   		if (PTR_ERR(bo) == -ENOSPC) {
-> @@ -183,7 +183,7 @@ static void xe_bo_page_size_alloc_mixed_bos(struct kunit *test)
->   		 */
->   		bo = xe_bo_create_user(xe, NULL, SZ_1G,
->   				       DRM_XE_GEM_CPU_CACHING_WC,
-> -				       XE_BO_FLAG_VRAM0, NULL);
-> +				       XE_BO_FLAG_VRAM0, NUMA_NO_NODE, NULL);
->   		if (IS_ERR(bo)) {
->   			int err = PTR_ERR(bo);
->   
-> @@ -366,7 +366,7 @@ static void ccs_test_run_tile(struct xe_device *xe, struct xe_tile *tile,
->   		kunit_info(test, "Testing system memory\n");
->   
->   	bo = xe_bo_create_user(xe, NULL, SZ_1M, DRM_XE_GEM_CPU_CACHING_WC,
-> -			       bo_flags, exec);
-> +			       bo_flags, NUMA_NO_NODE, exec);
->   	if (IS_ERR(bo)) {
->   		KUNIT_FAIL(test, "Failed to create bo.\n");
->   		return;
-> @@ -445,7 +445,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
->   		xe_vm_lock(vm, false);
->   		bo = xe_bo_create_user(xe, vm, 0x10000,
->   				       DRM_XE_GEM_CPU_CACHING_WC,
-> -				       bo_flags, exec);
-> +				       bo_flags, NUMA_NO_NODE, exec);
->   		xe_vm_unlock(vm);
->   		if (IS_ERR(bo)) {
->   			KUNIT_FAIL(test, "bo create err=%pe\n", bo);
-> @@ -454,7 +454,7 @@ static int evict_test_run_tile(struct xe_device *xe, struct xe_tile *tile, struc
->   
->   		external = xe_bo_create_user(xe, NULL, 0x10000,
->   					     DRM_XE_GEM_CPU_CACHING_WC,
-> -					     bo_flags, NULL);
-> +					     bo_flags, NUMA_NO_NODE, NULL);
->   		if (IS_ERR(external)) {
->   			KUNIT_FAIL(test, "external bo create err=%pe\n", external);
->   			goto cleanup_bo;
-> @@ -719,7 +719,7 @@ static int shrink_test_run_device(struct xe_device *xe)
->   		/* We can create bos using WC caching here. But it is slower. */
->   		bo = xe_bo_create_user(xe, NULL, XE_BO_SHRINK_SIZE,
->   				       DRM_XE_GEM_CPU_CACHING_WB,
-> -				       XE_BO_FLAG_SYSTEM, NULL);
-> +				       XE_BO_FLAG_SYSTEM, NUMA_NO_NODE, NULL);
->   		if (IS_ERR(bo)) {
->   			if (bo != ERR_PTR(-ENOMEM) && bo != ERR_PTR(-ENOSPC) &&
->   			    bo != ERR_PTR(-EINTR) && bo != ERR_PTR(-ERESTARTSYS))
-> diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> index 792376e965f1..876ea545d1a7 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> @@ -127,7 +127,7 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
->   
->   	kunit_info(test, "running %s\n", __func__);
->   	bo = xe_bo_create_user(xe, NULL, size, DRM_XE_GEM_CPU_CACHING_WC,
-> -			       params->mem_mask, NULL);
-> +			       params->mem_mask, NUMA_NO_NODE, NULL);
->   	if (IS_ERR(bo)) {
->   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
->   			   PTR_ERR(bo));
-> @@ -215,7 +215,7 @@ static void xe_test_dmabuf_move_notify_no_resource(struct xe_device *xe)
->   
->   	kunit_info(test, "running %s\n", __func__);
->   	bo = xe_bo_create_user(xe, NULL, PAGE_SIZE, DRM_XE_GEM_CPU_CACHING_WC,
-> -			       params->mem_mask, NULL);
-> +			       params->mem_mask, NUMA_NO_NODE, NULL);
->   	if (IS_ERR(bo)) {
->   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
->   			   PTR_ERR(bo));
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index 56c49d8507d7..69b64e3a23b8 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -649,7 +649,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->   				   DRM_XE_GEM_CPU_CACHING_WC,
->   				   XE_BO_FLAG_SYSTEM |
->   				   XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -				   XE_BO_FLAG_PINNED, NULL);
-> +				   XE_BO_FLAG_PINNED, NUMA_NO_NODE, NULL);
->   
->   	if (IS_ERR(sys_bo)) {
->   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-> @@ -675,7 +675,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->   	ccs_bo = xe_bo_create_user(xe, NULL, SZ_4M,
->   				   DRM_XE_GEM_CPU_CACHING_WC,
->   				   bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -				   XE_BO_FLAG_PINNED, NULL);
-> +				   XE_BO_FLAG_PINNED, NUMA_NO_NODE, NULL);
->   
->   	if (IS_ERR(ccs_bo)) {
->   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-> @@ -700,7 +700,7 @@ static void validate_ccs_test_run_tile(struct xe_device *xe, struct xe_tile *til
->   	vram_bo = xe_bo_create_user(xe, NULL, SZ_4M,
->   				    DRM_XE_GEM_CPU_CACHING_WC,
->   				    bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -				    XE_BO_FLAG_PINNED, NULL);
-> +				    XE_BO_FLAG_PINNED, NUMA_NO_NODE, NULL);
->   	if (IS_ERR(vram_bo)) {
->   		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
->   			   PTR_ERR(vram_bo));
-> @@ -979,7 +979,7 @@ static void access_memory_test_run_tile(struct xe_device *xe,
->   
->   	bo = xe_bo_create_user(xe, NULL, ACCESS_MEM_BO_SIZE,
->   			       DRM_XE_GEM_CPU_CACHING_WC,
-> -			       bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
-> +			       bo_flags | XE_BO_FLAG_NEEDS_CPU_ACCESS, NUMA_NO_NODE, NULL);
->   	if (IS_ERR(bo)) {
->   		KUNIT_FAIL(test, "Failed to create bo: %pe\n", bo);
->   		goto free_buf;
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index fc9bfb436b8e..bbbc33737264 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1538,7 +1538,7 @@ int xe_bo_notifier_prepare_pinned(struct xe_bo *bo)
->   		backup = xe_bo_init_locked(xe, NULL, NULL, bo->ttm.base.resv, NULL, xe_bo_size(bo),
->   					   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
->   					   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -					   XE_BO_FLAG_PINNED, NULL, &exec);
-> +					   XE_BO_FLAG_PINNED, NULL, NUMA_NO_NODE, &exec);
->   		if (IS_ERR(backup)) {
->   			drm_exec_retry_on_contention(&exec);
->   			ret = PTR_ERR(backup);
-> @@ -1680,7 +1680,7 @@ int xe_bo_evict_pinned(struct xe_bo *bo)
->   						   xe_bo_size(bo),
->   						   DRM_XE_GEM_CPU_CACHING_WB, ttm_bo_type_kernel,
->   						   XE_BO_FLAG_SYSTEM | XE_BO_FLAG_NEEDS_CPU_ACCESS |
-> -						   XE_BO_FLAG_PINNED, NULL, &exec);
-> +						   XE_BO_FLAG_PINNED, NULL, NUMA_NO_NODE, &exec);
->   			if (IS_ERR(backup)) {
->   				drm_exec_retry_on_contention(&exec);
->   				ret = PTR_ERR(backup);
-> @@ -2480,7 +2480,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
->   				struct ttm_lru_bulk_move *bulk, size_t size,
->   				u16 cpu_caching, enum ttm_bo_type type,
->   				u32 flags, struct dma_buf *dma_buf,
-> -				struct drm_exec *exec)
-> +				int numa_node, struct drm_exec *exec)
->   {
->   	struct ttm_operation_ctx ctx = {
->   		.interruptible = true,
-> @@ -2546,7 +2546,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
->   	bo->tile = tile;
->   	bo->flags = flags;
->   	bo->cpu_caching = cpu_caching;
-> -	bo->numa_node = NUMA_NO_NODE;
-> +	bo->numa_node = numa_node;
->   	bo->ttm.base.funcs = &xe_gem_object_funcs;
->   	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
->   	INIT_LIST_HEAD(&bo->pinned_link);
-> @@ -2681,7 +2681,7 @@ __xe_bo_create_locked(struct xe_device *xe,
->   		      struct xe_tile *tile, struct xe_vm *vm,
->   		      size_t size, u64 start, u64 end,
->   		      u16 cpu_caching, enum ttm_bo_type type, u32 flags,
-> -		      u64 alignment, struct drm_exec *exec)
-> +		      u64 alignment, int numa_node, struct drm_exec *exec)
->   {
->   	struct xe_bo *bo = NULL;
->   	int err;
-> @@ -2706,7 +2706,7 @@ __xe_bo_create_locked(struct xe_device *xe,
->   			       vm && !xe_vm_in_fault_mode(vm) &&
->   			       flags & XE_BO_FLAG_USER ?
->   			       &vm->lru_bulk_move : NULL, size,
-> -			       cpu_caching, type, flags, NULL, exec);
-> +			       cpu_caching, type, flags, NULL, numa_node, exec);
->   	if (IS_ERR(bo))
->   		return bo;
->   
-> @@ -2781,13 +2781,13 @@ struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
->   				  struct drm_exec *exec)
->   {
->   	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, type,
-> -				     flags, 0, exec);
-> +				     flags, 0, NUMA_NO_NODE, exec);
->   }
->   
->   static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *tile,
->   				       size_t size, u16 cpu_caching,
->   				       enum ttm_bo_type type, u32 flags,
-> -				       u64 alignment, bool intr)
-> +				       u64 alignment, int numa_node, bool intr)
->   {
->   	struct xe_validation_ctx ctx;
->   	struct drm_exec exec;
-> @@ -2797,7 +2797,8 @@ static struct xe_bo *xe_bo_create_novm(struct xe_device *xe, struct xe_tile *til
->   	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {.interruptible = intr},
->   			    ret) {
->   		bo = __xe_bo_create_locked(xe, tile, NULL, size, 0, ~0ULL,
-> -					   cpu_caching, type, flags, alignment, &exec);
-> +					   cpu_caching, type, flags, alignment,
-> +					   numa_node, &exec);
->   		drm_exec_retry_on_contention(&exec);
->   		if (IS_ERR(bo)) {
->   			ret = PTR_ERR(bo);
-> @@ -2966,7 +2967,8 @@ static void xe_bo_debug_mixed_mode_cur_index_advance(struct xe_device *xe,
->   struct xe_bo *xe_bo_create_user(struct xe_device *xe,
->   				struct xe_vm *vm, size_t size,
->   				u16 cpu_caching,
-> -				u32 flags, struct drm_exec *exec)
-> +				u32 flags, int numa_node,
-> +				struct drm_exec *exec)
->   {
->   	struct xe_bo *bo;
->   	int err = 0;
-> @@ -2983,12 +2985,13 @@ struct xe_bo *xe_bo_create_user(struct xe_device *xe,
->   		xe_assert(xe, exec);
->   		bo = __xe_bo_create_locked(xe, NULL, vm, size, 0, ~0ULL,
->   					   cpu_caching, ttm_bo_type_device,
-> -					   flags, 0, exec);
-> +					   flags, 0, numa_node, exec);
->   		if (!IS_ERR(bo))
->   			xe_bo_unlock_vm_held(bo);
->   	} else {
->   		bo = xe_bo_create_novm(xe, NULL, size, cpu_caching,
-> -				       ttm_bo_type_device, flags, 0, true);
-> +				       ttm_bo_type_device, flags, 0,
-> +				       numa_node, true);
->   	}
->   
->   	return bo;
-> @@ -3022,7 +3025,7 @@ struct xe_bo *xe_bo_create_pin_range_novm(struct xe_device *xe, struct xe_tile *
->   
->   	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
->   		bo = __xe_bo_create_locked(xe, tile, NULL, size, start, end,
-> -					   0, type, flags, 0, &exec);
-> +					   0, type, flags, 0, NUMA_NO_NODE, &exec);
->   		if (IS_ERR(bo)) {
->   			drm_exec_retry_on_contention(&exec);
->   			err = PTR_ERR(bo);
-> @@ -3061,7 +3064,7 @@ static struct xe_bo *xe_bo_create_pin_map_at_aligned(struct xe_device *xe,
->   
->   	bo = __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, type,
->   				   flags | XE_BO_FLAG_NEEDS_CPU_ACCESS | XE_BO_FLAG_PINNED,
-> -				   alignment, exec);
-> +				   alignment, NUMA_NO_NODE, exec);
->   	if (IS_ERR(bo))
->   		return bo;
->   
-> @@ -3604,10 +3607,15 @@ static int gem_create_user_ext_set_property(struct xe_device *xe,
->   	if (XE_IOCTL_DBG(xe, err))
->   		return -EFAULT;
->   
-> +	if (XE_IOCTL_DBG(xe, ext.pad))
-> +		return -EINVAL;
-> +
-> +	/* The NUMA node property is parsed and applied before BO creation. */
-> +	if (ext.property == DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE)
-> +		return 0;
-> +
->   	if (XE_IOCTL_DBG(xe, ext.property >=
-> -			 ARRAY_SIZE(gem_create_set_property_funcs)) ||
-> -	    XE_IOCTL_DBG(xe, ext.pad) ||
-> -	    XE_IOCTL_DBG(xe, ext.property != DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY))
-> +			 ARRAY_SIZE(gem_create_set_property_funcs)))
->   		return -EINVAL;
->   
->   	idx = array_index_nospec(ext.property, ARRAY_SIZE(gem_create_set_property_funcs));
-> @@ -3658,6 +3666,56 @@ static int gem_create_user_extensions(struct xe_device *xe, struct xe_bo *bo,
->   	return 0;
->   }
->   
-> +/*
-> + * Parse a host NUMA node request from the extension chain. The node must be
-> + * known before the BO is created, because the backing pages are allocated
-> + * during creation. Returns the requested node in @numa_node (NUMA_NO_NODE if
-> + * none or a negative value is given) or a negative errno on an invalid request.
+--===============7224163537778709419==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Would it make sense to rework this and have something like:
+== Series Details ==
 
-struct gem_create_extension_data {
-     u32 pxp_key_instance;
-     int numa_node;
-}
+Series: drm/xe: Tear down kernel mappings in release_notify (rev2)
+URL   : https://patchwork.freedesktop.org/series/177423/
+State : success
 
-Which is parsed up front before the bo create? And then in some way we 
-just pass that along to create_user() or manual bo init after? Otherwise 
-here we look to be open coding a duplicate extension parser flow, rather 
-than using gem_create_set_property_funcs? I think parsing before bo 
-create make more sense anyway, like you do here?
+== Summary ==
 
-> + */
-> +static int gem_create_parse_numa_node(struct xe_device *xe, u64 extensions,
-> +				      u32 bo_flags, int *numa_node)
-> +{
-> +	struct drm_xe_user_extension base;
-> +	struct drm_xe_ext_set_property ext;
-> +	unsigned int i = 0;
-> +
-> +	*numa_node = NUMA_NO_NODE;
-> +
-> +	while (extensions && i++ < MAX_USER_EXTENSIONS) {
-> +		u64 __user *address = u64_to_user_ptr(extensions);
-> +		s64 nid;
-> +
-> +		if (XE_IOCTL_DBG(xe, copy_from_user(&base, address, sizeof(base))))
-> +			return -EFAULT;
-> +
-> +		if (base.name != DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY)
-> +			goto next;
-> +
-> +		if (XE_IOCTL_DBG(xe, copy_from_user(&ext, address, sizeof(ext))))
-> +			return -EFAULT;
-> +
-> +		if (ext.property != DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE)
-> +			goto next;
-> +
-> +		nid = (s64)ext.value;
-> +		*numa_node = NUMA_NO_NODE;
-> +		if (nid < 0)
-> +			goto next;
-> +
-> +		if (XE_IOCTL_DBG(xe, nid >= MAX_NUMNODES || !node_online(nid)))
+CI Bug Log - changes from xe-6041-9d5e43e047f6dfd7339705a76daec2c0af5809f6_FULL -> xe-pw-177423v2_FULL
+====================================================
 
-I think needs nospec dance for nid?
+Summary
+-------
 
-> +			return -EINVAL;
-> +
-> +		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_FLAG_SYSTEM)))
-> +			return -EINVAL;
-> +
-> +		*numa_node = nid;
-> +next:
-> +		extensions = base.next_extension;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   			struct drm_file *file)
->   {
-> @@ -3669,6 +3727,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   	struct xe_vm *vm = NULL;
->   	struct xe_bo *bo;
->   	unsigned int bo_flags;
-> +	int numa_node;
->   	u32 handle;
->   	int err;
->   
-> @@ -3744,6 +3803,11 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
->   		return -EINVAL;
->   
-> +	err = gem_create_parse_numa_node(xe, args->extensions, bo_flags,
-> +					 &numa_node);
-> +	if (err)
-> +		return err;
-> +
->   	if (args->vm_id) {
->   		vm = xe_vm_lookup(xef, args->vm_id);
->   		if (XE_IOCTL_DBG(xe, !vm))
-> @@ -3760,7 +3824,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   				break;
->   		}
->   		bo = xe_bo_create_user(xe, vm, args->size, args->cpu_caching,
-> -				       bo_flags, &exec);
-> +				       bo_flags, numa_node, &exec);
->   		drm_exec_retry_on_contention(&exec);
->   		if (IS_ERR(bo)) {
->   			err = PTR_ERR(bo);
-> @@ -4231,7 +4295,7 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
->   			       DRM_XE_GEM_CPU_CACHING_WC,
->   			       XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->   			       XE_BO_FLAG_FORCE_WC |
-> -			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
-> +			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NUMA_NO_NODE, NULL);
->   	if (IS_ERR(bo))
->   		return PTR_ERR(bo);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 77b3a02e9b8e..225c6a8676a6 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -122,13 +122,14 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
->   				struct ttm_lru_bulk_move *bulk, size_t size,
->   				u16 cpu_caching, enum ttm_bo_type type,
->   				u32 flags, struct dma_buf *dma_buf,
-> -				struct drm_exec *exec);
-> +				int numa_node, struct drm_exec *exec);
->   struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
->   				  struct xe_vm *vm, size_t size,
->   				  enum ttm_bo_type type, u32 flags,
->   				  struct drm_exec *exec);
->   struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_vm *vm, size_t size,
-> -				u16 cpu_caching, u32 flags, struct drm_exec *exec);
-> +				u16 cpu_caching, u32 flags, int numa_node,
-> +				struct drm_exec *exec);
->   struct xe_bo *xe_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
->   				   struct xe_vm *vm, size_t size,
->   				   enum ttm_bo_type type, u32 flags,
-> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> index 5bf13dc4b61d..b5351310a07b 100644
-> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> @@ -343,7 +343,8 @@ xe_dma_buf_create_obj(struct drm_device *dev, struct dma_buf *dma_buf)
->   
->   		bo = xe_bo_init_locked(xe, NULL, NULL, resv, NULL, dma_buf->size,
->   				       0, /* Will require 1way or 2way for vm_bind */
-> -				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, dma_buf, &exec);
-> +				       ttm_bo_type_sg, XE_BO_FLAG_SYSTEM, dma_buf,
-> +				       NUMA_NO_NODE, &exec);
->   		drm_exec_retry_on_contention(&exec);
->   		if (IS_ERR(bo)) {
->   			ret = PTR_ERR(bo);
+  **SUCCESS**
 
+  No regressions found.
+
+  
+
+Participating hosts (3 -> 3)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6041-9d5e43e047f6dfd7339705a76daec2c0af5809f6 -> xe-pw-177423v2
+
+  IGT_9173: 9173
+  xe-6041-9d5e43e047f6dfd7339705a76daec2c0af5809f6: 9d5e43e047f6dfd7339705a76daec2c0af5809f6
+  xe-pw-177423v2: 177423v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177423v2/index.html
+
+--===============7224163537778709419==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Tear down kernel mappings in release_notify (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177423/">https://patchwork.freedesktop.org/series/177423/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177423v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177423v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6041-9d5e43e047f6dfd7339705a76daec2c0af5809f6_FULL -&gt; xe-pw-177423v2_FULL</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (3 -&gt; 3)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6041-9d5e43e047f6dfd7339705a76daec2c0af5809f6 -&gt; xe-pw-177423v2</li>
+</ul>
+<p>IGT_9173: 9173<br />
+  xe-6041-9d5e43e047f6dfd7339705a76daec2c0af5809f6: 9d5e43e047f6dfd7339705a76daec2c0af5809f6<br />
+  xe-pw-177423v2: 177423v2</p>
+
+</body>
+</html>
+
+--===============7224163537778709419==--
