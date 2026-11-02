@@ -2,163 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991A6606A329
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76CF0606A32E
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:41:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hqcFTVOq
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dpT5u7CE
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCC910E626;
-	Mon,  2 Nov 2026 10:38:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2585E10ECDC;
- Mon,  2 Nov 2026 10:38:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBAC10ECA4;
+	Mon,  2 Nov 2026 10:41:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 136FB10E626;
+ Mon,  2 Nov 2026 10:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793615904; x=1825151904;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=QEc0ARrwV59+umE+m1n480H/umHkWgzP8OcVyWLdb5w=;
- b=hqcFTVOq+FFN8V0KeDL8HMed5hYOo4cnlHE6+J4PmcJWezvbNDAo6rg/
- JXZe/sbsdLzggTtdXVKgoM4uNomdLdYeuvQUPrzAlAOeW+xtWmlIbYTj+
- YqTnYSbxDCBisQgn64Xm7nTUKCt2+GHOBvAp7rVBp0uKPaXhdqNIdXBCM
- hGcqgswgFHkAg5rCumIA5jWAfr5sRdkGm5XKFo/yDmiDbdY0HIykdd8LA
- 7jXb+uHcwZMdQIUQAWr56ZcTa98uZIJpw2FhiHXvQWHP1WZskw2xMaHlR
- /QTmt/wJzE7j7tLBZWWdW9zwAKoaZ/EB5XDDPA61fWoSznKCRixZPsgdl g==;
-X-CSE-ConnectionGUID: YLfj+oldTvCvq15bwVm+ZQ==
-X-CSE-MsgGUID: oVxgYbtZRVakGG0kOQ0Gcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2328611"
+ t=1793616078; x=1825152078;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=YnldqfErkK6TKa5sj5Az1WWE3VIV/fJkzhlPXvS/i6E=;
+ b=dpT5u7CEGP42Kh7J1N4P3yFimhr56O4wu5B/p39cv4rqsUtVAxQrsFzU
+ Cs+ZRGAOUV9RBB1FW9jyQJ0RvcEUMmRERgfhFDF+OgtcgrAsANIJ4aSJT
+ x6F3OH6Zuv9KfgMrfTrZFQd+4fEoESHA9GI7y4MZqUbyQG41fXLxq+J82
+ dIEeT4dmm8PUaiuk6DUj/6HVJq5xhSbi2MCpRrySOV1l7C8n/O2fbbrba
+ giJ6/FoepYLMWzaVCZ0bpz85G2U2HPu8xd3l4k61EfP+pIZ5HVugbecSV
+ Q0Yykb0szVyo53gUVsNkbkhnsBd9BcVLw5yd1WjGETRPFAoscTc+HRmaC A==;
+X-CSE-ConnectionGUID: T6pvPNQvSO6P99HcWpRBUw==
+X-CSE-MsgGUID: ZlDju0uVR3+h05JKYN6B9Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2212419"
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2328611"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 02:38:23 -0800
-X-CSE-ConnectionGUID: vpYwu8w4Q++kAx7WkLJhrA==
-X-CSE-MsgGUID: 5rvV4c2XQ5Gm1C/3Vp/U5g==
+   d="scan'208";a="2212419"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 02:41:18 -0800
+X-CSE-ConnectionGUID: mAChnpwJSmq/L5cLDgKz1w==
+X-CSE-MsgGUID: zyakzi1mTFq0Srli3nkIYQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="6637934"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 02:38:23 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 02:38:22 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Mon, 2 Nov 2026 02:38:22 -0800
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.41) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 02:38:22 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bVOleKy68iefNgXiPmK+Piej/9dkoLZvMZTxP//IoX2Xy2HnaWHcDwvQWGkAyeufOsUvzgOq8nCA+BOOO/qi3LlO59EJcYVFPzMipgiHVcXEhHQKSofzrYMFXNKEHz48XazOUMgF2ogfIP0QG+5trhvrseRElz9B4wBpcLu0C6qGzIceDIoclKBtR+KizWD5LJDpNnuFmQEuEMoXtw6EgcNoGWSsOgJET94fgJiwWQLSaBNgJxrgIePTIMTSNFQewgLFQj8v6XsaZ5dl2QFI+rbKkoqNzyO2IkCYdMYFTuGZxuhB8CtNL8Cddsuksd6Oy2lPe1MsT30hz9QhmOQttQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QEc0ARrwV59+umE+m1n480H/umHkWgzP8OcVyWLdb5w=;
- b=yP/uglhEKh+clu54kBCQ1/4cEJcXTgaKe3ntRkbuR5IkBe0xD4oP3R2CzYi0YD1n9OW55fC5aSy6afplSkOaZ37vZusdcnhoYAu0LoMkXfuIe76RiiabYw97sQ3241j/nLwJcUftsmzj3ziaCa7JBTywRaWkM52IfrQXOaDfmTH3Q/p8uOpMZ0sqfCXKMrrLBRoRCO8tCZ2WnU0blz6OZMJJ2tC7pHKI/pSZxM6JByZUhawWHVzMB1503PG8gN6Rl7TvtRzmvE1s2BtAvgFpKI68F7dHG2bkbS0WaUo7kj3Tq1X3acWmeaminiJHYlX5y71FZIZOSl7ZtXdNt4qf8Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::28) by CH3PR11MB870661.namprd11.prod.outlook.com
- (2603:10b6:610:367::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
- 2026 10:38:08 +0000
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::79ab:f4ae:b1c2:61d9]) by DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::79ab:f4ae:b1c2:61d9%5]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
- 10:38:08 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Coelho, Luciano" <luciano.coelho@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>
-Subject: RE: [PATCH v2 2/3] drm/i915/dp: don't touch the AUX engine while it's
- still busy
-Thread-Topic: [PATCH v2 2/3] drm/i915/dp: don't touch the AUX engine while
- it's still busy
-Thread-Index: AQHdX92SdLhXZTWVFUuzFasjRCuDNbcarLCg
-Date: Mon, 2 Nov 2026 10:38:07 +0000
-Message-ID: <DS4PPF69154114FAFE969E97C94E7347338EF6A2@DS4PPF69154114F.namprd11.prod.outlook.com>
-References: <20261019150226.734375-1-luciano.coelho@intel.com>
- <20261019150226.734375-3-luciano.coelho@intel.com>
-In-Reply-To: <20261019150226.734375-3-luciano.coelho@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|CH3PR11MB870661:EE_
-x-ms-office365-filtering-correlation-id: d8068e32-a429-4211-063d-08df38cd6271
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|23010399003|6133799003|10067099003|18002099003|22082099003|38070700021|56012099006|11063799006|4143699003|261021123027099003|261022105027099003|261026121527099003|261026140227099003|261009223027099003|261028144727099003|261021121427099003;
-x-microsoft-antispam-message-info: /pvUNPB/3Ygpzbri1q9PGgqlyHl0UJowyRwAvEIbnDOwQKevUinXjmOV0oA3U4rCCvCF+5dCrXDs9OXo9tMzY15jyIZz2zeALWXrlguALCHnAqfMEI7swBiTL7bxL9Jju4WpEV6hng3sg7P6qlzXGp4F3chCIeKkpc+07q5hqqtd/iuVwUWDID6X4bRmDgyZjwjMgKe0TD2ob7CGvlLjKAgQtvnFXoqeNzVgTY2jqDev9ulE1fGnYnDGMHQkF/zCDbELT4ipIjpLGnkPoGeIcKmqFBbqNMGjtA3hcRCwzDnWpQPD0rJa4r3UgzZ2GQxpV7ySO2lOF/s7LcsevHpZRXVeEg8e2gArrb1i43g2eZTsTD2TdzMKGM4dpb9m4TmKKMUpa1hrbrkP1rlX7hj+Ueitnfzovz2C+tatilsraPNeh+jD8xp1+fsjwrH+mNEaJEJtaasiIbsoK4A9085A0BCGzJNGCL1XVvHmmZIleBR5V68xKFHd1XxXDqemVt6mPLoyhhwaeSiPomPx3gtJ7zjBrbG9jtcvQptrxdCEFtBVs5MvgpDiv/c8IyE9ojdeJJfpvP9YqR3+nrucS39+YBdDAXbG7y1bmlz0mUBcLGAb+UYSyXhPhUnheHE0HPIwGwQwvrAwbM7SS1s49fyVm+SjVvbz2jT11lHjWgT1kQQ=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(23010399003)(6133799003)(10067099003)(18002099003)(22082099003)(38070700021)(56012099006)(11063799006)(4143699003)(261021123027099003)(261022105027099003)(261026121527099003)(261026140227099003)(261009223027099003)(261028144727099003)(261021121427099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZjM5WExzWGVPNUo4NTMxSEt0R0k4VEdWTGppVDNsMkVKd0Rmcjh2VE83Vm9Y?=
- =?utf-8?B?eU5kMXNjOTROQ3NzaGJsNmMxR1FVZ1dzUmtJZk9PZlBtWW1mQWtkc01DQnZC?=
- =?utf-8?B?L1MvV1Voc09mdGRCZzIvanZXMDlBQUhCeXZKdUZ3VWxzcDAyeTMxSkhmT094?=
- =?utf-8?B?clVRQmJtTWtudytSbkN5U0h4blNWTXRvQTFNZjl6eE9BNnl2UmFpelMyVTNr?=
- =?utf-8?B?ZGY4UVF0Z1MrMUJtRDBxaG1ReEVHZnFPWUxXRTFFWjlmb0lpZlgwUGlRUVlZ?=
- =?utf-8?B?TUZrb3lmK1RhbnYwdWVtWDZIKzZWcG80VDlrVXAzZGlET1RlZm1KaXFsc1hI?=
- =?utf-8?B?bkV1S0w3SGQvM3E1L3JiR29kaXc0MWRQTktGK0o2QlIvSk12U21ZbnRWcUNF?=
- =?utf-8?B?c3dJOUsyQURtbitOVklUYldRU051elAvY2UwN1k5RmhJNFNSS3dTRzJOZkN5?=
- =?utf-8?B?TG1Ua3dPajhaejBhdGlHa01OQklpYmE4RmVBTXJkNGlQVjV4NnZhQkZwY3h5?=
- =?utf-8?B?SzRMaHVkN1VqOWR1QmpIZTZyamhWcnRKSEdPQ1l3SXo2ZFY2RFBKK1lzcUMw?=
- =?utf-8?B?cGhQamhrRndYamRSckJwS3hBTndHTGhqajNVNTRQQnlGVGZBSDR4VXpwRU8z?=
- =?utf-8?B?aG1jSkV2RUU5enJyanRJVDl3QUxOaWxCazBVTUl6TTkxanNHM1dwTGJ0aGlX?=
- =?utf-8?B?NzBEeklJSk5NTmhEanpvY2xnS3k2dHVaUGxYa3NHSHBhc3dIKy83dGtpOVFs?=
- =?utf-8?B?RTFTTHpSMFczNWFnNDRmem1wY290UlZSdk5hRE9PWUQxNkdwdmgxZmZYZWtW?=
- =?utf-8?B?ejBTQlBVMFB0NzlzL2h6aUNaSmV2RU4ra0xaR3drNTgzZ2loR2JqQVVESkV0?=
- =?utf-8?B?NE5jVkhEcGd5V002MENBYUM0a05SSlpWQTFhUTFodk5QZzBBMDQrNWhoQ3ZW?=
- =?utf-8?B?emNtd1BYWHZycjZ4Mk1wV2p3WUdVME9rUUgrYjlNUlc0YUJtVnE0Mml0OUxE?=
- =?utf-8?B?bzlzeFQ5dXlZN2E3aGJHbklCNTRFdFBpVUM2cVF5cjQ0UnpsOXgwaWxWY0tm?=
- =?utf-8?B?OUFMTmhwd0s4NXZCM3J4eEpNMTg1K014WlpCUW9oaWdKb2tHenp4a2VoZmx2?=
- =?utf-8?B?R0k3bmFqa3dtS2lQWWs5eHVpRmt2RnV5L2VmTjhuZExiUkRlL1VhRnkxdElU?=
- =?utf-8?B?R0VIOWtIbmJVdlplTEpKMk92S1hPS1ZqV3NHTzRnaTEyeGZOQnF2c1RMQWpo?=
- =?utf-8?B?MkhiZGZpU3NKMVkvQStTSDYwQ3Q1blBCYWtkdDJSMDE4ekxTUkd5VXh2RjVz?=
- =?utf-8?B?bk44NG9HN1JXV1QxcmhoeXo1U01ZbWhJZ3gxS0ppK0tlSGxnZzM3dU9jdGJI?=
- =?utf-8?B?VnBtWnJLZXdyUW5UOThQaGduMFBnalV6YnU2TFIyNmM1TW8yZFR4d2c1dkRk?=
- =?utf-8?B?UTR6ZGxqaTFEbkxnV25UaDYycnhadTdiRVFGdzlWRUxXR2NTUU9KcGFLajZE?=
- =?utf-8?B?NWxFRjBtRVJEK3lacjlBM2RuUFFRbThmU0tTTGhXWDJQei9nMkczWTlpdjdW?=
- =?utf-8?B?QTNZMU1xQkFjcU8vb1ZxTW9DYkJGUXBVTG9YQzVJM1dWb1h3bTBpZUtmd3Jp?=
- =?utf-8?B?dFhtNi81K3J1c1A1L3lmWFA4dnh5KytLNFppSnZLYjFNalhuZXBhcWVCVE50?=
- =?utf-8?B?YjNrR0ZQUFh4Mktvbm0ydDNJNVBqaHA2VzgyMDhFUUE5SDhNVjBpMURlOVBl?=
- =?utf-8?B?dlFKakhKZWFqMGMxTWVxbHBmazlZc01kQ0Z4NFpnTEhqWU44UzNacm1RWE9p?=
- =?utf-8?B?M0doalljSzh2QXRHNmorUnFrcXhGM1JYMklTc21Tb2tDQWZGTVFzTzJ1U29v?=
- =?utf-8?B?amFCUFgzSVJCUDNYZkhMaHhhYktmTEl3YjRWbTM5WXdOWGNKclFFdk94QnJp?=
- =?utf-8?B?R2VZQ0doRUZWRzBnM01qdU1COC8yTkNoZGtESkNVMXdaU0ZpS2R0M1VFRUN6?=
- =?utf-8?B?cW96N3VScHFqdXlrb3pYaktmRWZZbUdQUlcvVjg4WXNNbzdRQ0tBKzZ0RG00?=
- =?utf-8?B?OHBoeHBtTHRZY3lvajl4cFA2cXlCYXJQZjFjYUpTMk95Rk5qa3FlcWxFR09N?=
- =?utf-8?B?blBsQ3I0U2Q1TDFtT3FQdmJla1lLdENZLy9wMmZYN0JYZEpCUnN1T3lYTCtv?=
- =?utf-8?B?N0kveGZKK0hGTCs1NzM1Mk9KNGxIejQxN21zSWw2YlF4RFNjQ1lVTjZJYlFD?=
- =?utf-8?B?VHNmUk40ZUJpZU9RTnRzSENNTkN0NS9NS3lKMFlLOGpxdi9lbWw0Y3oxL0Fa?=
- =?utf-8?B?NUhra2lLUmpnNUpua0J0K2h4WDcralFGK2VRNkhkcFUwRFkzdklQdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+   d="scan'208";a="6404334"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.237])
+ ([10.245.244.237])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 02:41:17 -0800
+Message-ID: <4a195bb607e70abb00bf8be322e3bb55540a9b62.camel@linux.intel.com>
+Subject: Re: [PATCH v6 3/3] drm/xe: Add a minimum age gate to the shrinker
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Date: Mon, 02 Nov 2026 11:41:13 +0100
+In-Reply-To: <auUJNoo1ZpzBevGR@gsse-cloud1.jf.intel.com>
+References: <20261027224902.1085762-1-matthew.brost@intel.com>
+ <20261027224902.1085762-4-matthew.brost@intel.com>
+ <bff778512e4c9a9abde641a23b98514309509d56.camel@linux.intel.com>
+ <auUJNoo1ZpzBevGR@gsse-cloud1.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: a/4spciVfLxX8MDGZxzv9ivJTNuwBFYRQ6rGFMbWuzq6b0saQyJymLbCRrCQRPTjGWDwn+YMSKv0uXYp+gldDnV5N3RUDYxp3w7da/ctab9933JRmAzKExnpXJZxsdliqhfcSbHh2WZ2hWZF+KffZW8U0ljZon3TL6CJJUlJy2Uw4lLq1HthkT1k7lU9m0CkOy1gZmjcYHDixeCFLkNuDlV2KrDZhX+TSs1OEPZcoH3sZ4s5z3OkADWsjRaBhuOlgn2bljwO690bxg7tTlLUWvVxq7EFWHthWbE5jjW87i9we1xe4tsuX/MNm0yyqv5ZvjzRbfDlPeNcJGsx5uZllA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d8068e32-a429-4211-063d-08df38cd6271
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Nov 2026 10:38:07.5321 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yz6MRsqHT2Ay+Ox6S7kSaL1nMoDNqiRImtkibjUWVKIscxSWfPhzm5/32eAOYxgyp/uqBgz6AGevvXzTAV6hjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB870661
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,110 +68,964 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEx1Y2EgQ29lbGhv
-DQo+IFNlbnQ6IE1vbmRheSwgMTkgT2N0b2JlciAyMDI2IDE3LjUzDQo+IFRvOiBpbnRlbC1nZnhA
-bGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5v
-cmc7IGphbmkubmlrdWxhQGxpbnV4LmludGVsLmNvbQ0KPiBTdWJqZWN0OiBbUEFUQ0ggdjIgMi8z
-XSBkcm0vaTkxNS9kcDogZG9uJ3QgdG91Y2ggdGhlIEFVWCBlbmdpbmUgd2hpbGUgaXQncyBzdGls
-bCBidXN5DQo+IA0KPiBXaGVuIGFuIEFVWCB0cmFuc2FjdGlvbiBkb2Vzbid0IGZpbmlzaCB3aXRo
-aW4gdGhlIGRyaXZlcidzIDEwbXMNCj4gdGltZW91dCwgaW50ZWxfZHBfYXV4X3hmZXIoKSB3cml0
-ZXMgUE9SVF9BVVhfQ1RMIHdpdGggU2VuZCBCdXN5IHN0aWxsDQo+IHNldCBhbmQgcmUtdHJpZ2dl
-cnMgdGhlIHRyYW5zYWN0aW9uLiAgVGhlIEJzcGVjIGV4cGxpY2l0bHkgZm9yYmlkcw0KPiBjaGFu
-Z2luZyB0aGUgcmVnaXN0ZXIgb3Igd3JpdGluZyBTZW5kIEJ1c3kgYWdhaW4gd2hpbGUgaXQgaXMg
-YXNzZXJ0ZWQuDQo+IA0KPiBJbiB0aGUgYnVncyBtZW50aW9uZWQgaGVyZSwgd2UgY2FuIG9ic2Vy
-dmUgdGhhdCBvbiBOVkxfUyB3aXRoIGFuIExUVFBSDQo+IGRvY2sgdGhlIGVuZ2luZSBjYW4gcmVt
-YWluIGJ1c3kgZm9yIHVwIHRvIH4yMG1zLiAgUmUtdHJpZ2dlcmluZyBpdA0KPiBjYXVzZXMgcmVw
-ZWF0ZWQgMTBtcyBlcnJvcnMgYW5kIGNhbiBsZWFkIHRvICJub3QgZG9uZSIgZm9sbG93ZWQgYnkg
-YQ0KPiAibm90IHN0YXJ0ZWQiIFdBUk4uDQo+IA0KPiBHaXZlIGVhY2ggYXR0ZW1wdCB1cCB0byAx
-MDBtcyB0byBmaW5pc2guICBJZiB0aGUgZW5naW5lIHJlbWFpbnMgYnVzeSwNCj4gcmV0dXJuIC1F
-QlVTWSB3aXRob3V0IHRvdWNoaW5nIHRoZSBjb250cm9sIHJlZ2lzdGVyIGFuZCBsZXQgdGhlIERS
-TQ0KPiBoZWxwZXJzIHJldHJ5LiAgRGVtb3RlIHRoZSAxMG1zIGVycm9yIHRvIGEgZGVidWcgbWVz
-c2FnZSwgc2luY2UgaXQgY2FuDQo+IG9jY3VyIHdoaWxlIGEgdHJhbnNhY3Rpb24gaXMgc3RpbGwg
-aW4gcHJvZ3Jlc3MsIGFuZCB0dXJuIHRoZQ0KPiBwcmUtdHJhbnNhY3Rpb24gIm5vdCBzdGFydGVk
-IiBXQVJOIGludG8gYSBwbGFpbiBlcnJvciwgc2luY2UgdGhlDQo+IGJhY2t0cmFjZSBkb2Vzbid0
-IGFkZCBhbnl0aGluZy4NCj4gDQo+IFRoZSAxMDBtcyBhcHBsaWVzIHBlciBhdHRlbXB0LCBub3Qg
-cGVyIHRyYW5zZmVyLCBzbyBhIG1pc2JlaGF2aW5nDQo+IGVuZ2luZSBjYW4ga2VlcCBpbnRlbF9k
-cF9hdXhfeGZlcigpIGJ1c3kgZm9yIHVwIHRvIDUgeCAxMDBtcyBwZXIgY2xvY2sNCj4gZGl2aWRl
-ciBpbnN0ZWFkIG9mIDUgeCAxMG1zLg0KPiANCj4gQnNwZWM6IDY5Njk1DQo+IENsb3NlczogaHR0
-cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS94ZS9rZXJuZWwvLS9pc3N1ZXMvOTA5MA0K
-PiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0veGUva2VybmVsLy0v
-aXNzdWVzLzkwOTINCj4gU2lnbmVkLW9mZi1ieTogTHVjYSBDb2VsaG8gPGx1Y2lhbm8uY29lbGhv
-QGludGVsLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IE1pa2EgS2Fob2xhIDxtaWthLmthaG9sYUBpbnRl
-bC5jb20+DQoNCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-X2F1eC5jIHwgNzEgKysrKysrKysrKysrKystLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwgNDkg
-aW5zZXJ0aW9ucygrKSwgMjIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9hdXguYyBiL2RyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHBfYXV4LmMNCj4gaW5kZXggMzk0MzI2ZDE3ZTBkLi5hNjg3MWE1
-NDkyZDcgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-ZHBfYXV4LmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kcF9h
-dXguYw0KPiBAQCAtNTQsMzUgKzU0LDUyIEBAIHN0YXRpYyB2b2lkIGludGVsX2RwX2F1eF91bnBh
-Y2sodTMyIHNyYywgdTggKmRzdCwgaW50IGRzdF9ieXRlcykNCj4gIAkJZHN0W2ldID0gc3JjID4+
-ICgoMyAtIGkpICogOCk7DQo+ICB9DQo+IA0KPiAtc3RhdGljIHUzMg0KPiAtaW50ZWxfZHBfYXV4
-X3dhaXRfZG9uZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKQ0KPiArc3RhdGljIGJvb2wNCj4g
-K19faW50ZWxfZHBfYXV4X3dhaXRfZG9uZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLCB1bnNp
-Z25lZCBpbnQgdGltZW91dF9tcywNCj4gKwkJCSB1MzIgKnN0YXR1cykNCj4gIHsNCj4gIAlzdHJ1
-Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoaW50ZWxfZHApOw0K
-PiAgCWludGVsX3JlZ190IGNoX2N0bCA9IGludGVsX2RwLT5hdXhfY2hfY3RsX3JlZyhpbnRlbF9k
-cCk7DQo+IC0JY29uc3QgdW5zaWduZWQgaW50IHRpbWVvdXRfbXMgPSAxMDsNCj4gLQlib29sIGRv
-bmUgPSB0cnVlOw0KPiAtCXUzMiBzdGF0dXM7DQo+IC0JaW50IHJldDsNCj4gDQo+ICAJaWYgKGlu
-dGVsX3BhcmVudF9pcnFfZW5hYmxlZChkaXNwbGF5KSkgew0KPiAtI2RlZmluZSBDICgoKHN0YXR1
-cyA9IGludGVsX2RlX3JlYWQoZGlzcGxheSwgY2hfY3RsKSkgJiBEUF9BVVhfQ0hfQ1RMX1NFTkRf
-QlVTWSkgPT0gMCkNCj4gLQkJZG9uZSA9IHdhaXRfZXZlbnRfdGltZW91dChkaXNwbGF5LT5nbWJ1
-cy53YWl0X3F1ZXVlLCBDLA0KPiArI2RlZmluZSBDICgoKCpzdGF0dXMgPSBpbnRlbF9kZV9yZWFk
-KGRpc3BsYXksIGNoX2N0bCkpICYgRFBfQVVYX0NIX0NUTF9TRU5EX0JVU1kpID09IDApDQo+ICsJ
-CXJldHVybiB3YWl0X2V2ZW50X3RpbWVvdXQoZGlzcGxheS0+Z21idXMud2FpdF9xdWV1ZSwgQywN
-Cj4gIAkJCQkJICBtc2Vjc190b19qaWZmaWVzX3RpbWVvdXQodGltZW91dF9tcykpOw0KPiAtDQo+
-ICAjdW5kZWYgQw0KPiAgCX0gZWxzZSB7DQo+IC0JCXJldCA9IGludGVsX2RlX3dhaXRfbXMoZGlz
-cGxheSwgY2hfY3RsLA0KPiAtCQkJCSAgICAgICBEUF9BVVhfQ0hfQ1RMX1NFTkRfQlVTWSwgMCwN
-Cj4gLQkJCQkgICAgICAgdGltZW91dF9tcywgJnN0YXR1cyk7DQo+IC0NCj4gLQkJaWYgKHJldCA9
-PSAtRVRJTUVET1VUKQ0KPiAtCQkJZG9uZSA9IGZhbHNlOw0KPiArCQlyZXR1cm4gaW50ZWxfZGVf
-d2FpdF9tcyhkaXNwbGF5LCBjaF9jdGwsDQo+ICsJCQkJCURQX0FVWF9DSF9DVExfU0VORF9CVVNZ
-LCAwLA0KPiArCQkJCQl0aW1lb3V0X21zLCBzdGF0dXMpID09IDA7DQo+ICAJfQ0KPiArfQ0KPiAN
-Cj4gLQlpZiAoIWRvbmUpDQo+IC0JCWRybV9lcnIoZGlzcGxheS0+ZHJtLA0KPiAtCQkJIiVzOiBk
-aWQgbm90IGNvbXBsZXRlIG9yIHRpbWVvdXQgd2l0aGluICV1bXMgKHN0YXR1cyAweCUwOHgpXG4i
-LA0KPiAtCQkJaW50ZWxfZHAtPmF1eC5uYW1lLCB0aW1lb3V0X21zLCBzdGF0dXMpOw0KPiArc3Rh
-dGljIHUzMg0KPiAraW50ZWxfZHBfYXV4X3dhaXRfZG9uZShzdHJ1Y3QgaW50ZWxfZHAgKmludGVs
-X2RwKQ0KPiArew0KPiArCXN0cnVjdCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0gdG9faW50ZWxf
-ZGlzcGxheShpbnRlbF9kcCk7DQo+ICsJLyoNCj4gKwkgKiBUaGUgSFcgdGltZW91dCBpcyA0bXMs
-IGJ1dCBhIGRvd25zdHJlYW0gTFRUUFIgcmVjb3ZlcmluZyBmcm9tIGENCj4gKwkgKiBwb3dlciBz
-dGF0ZSB0cmFuc2l0aW9uIGNhbiBrZWVwIHRoZSBlbmdpbmUgYnVzeSBtdWNoIGxvbmdlciwgc28N
-Cj4gKwkgKiBnaXZlIGl0IHVwIHRvIDEwMG1zIGJlZm9yZSBnaXZpbmcgdXAuDQo+ICsJICovDQo+
-ICsJY29uc3QgdW5zaWduZWQgaW50IHRpbWVvdXRfbXMgPSAxMDsNCj4gKwljb25zdCB1bnNpZ25l
-ZCBpbnQgc3R1Y2tfdGltZW91dF9tcyA9IDEwMDsNCj4gKwl1MzIgc3RhdHVzOw0KPiArDQo+ICsJ
-aWYgKF9faW50ZWxfZHBfYXV4X3dhaXRfZG9uZShpbnRlbF9kcCwgdGltZW91dF9tcywgJnN0YXR1
-cykpDQo+ICsJCXJldHVybiBzdGF0dXM7DQo+ICsNCj4gKwlkcm1fZGJnX2ttcyhkaXNwbGF5LT5k
-cm0sDQo+ICsJCSAgICAiJXM6IGRpZCBub3QgY29tcGxldGUgb3IgdGltZW91dCB3aXRoaW4gJXVt
-cyAoc3RhdHVzIDB4JTA4eCksIHdhaXRpbmcgZm9yIHRoZSBBVVggZW5naW5lIHRvIHJlY292ZXJc
-biIsDQo+ICsJCSAgICBpbnRlbF9kcC0+YXV4Lm5hbWUsIHRpbWVvdXRfbXMsIHN0YXR1cyk7DQo+
-ICsNCj4gKwlpZiAoX19pbnRlbF9kcF9hdXhfd2FpdF9kb25lKGludGVsX2RwLCBzdHVja190aW1l
-b3V0X21zIC0gdGltZW91dF9tcywNCj4gKwkJCQkgICAgICZzdGF0dXMpKQ0KPiArCQlyZXR1cm4g
-c3RhdHVzOw0KPiArDQo+ICsJZHJtX2VycihkaXNwbGF5LT5kcm0sDQo+ICsJCSIlczogZGlkIG5v
-dCBjb21wbGV0ZSBvciB0aW1lb3V0IHdpdGhpbiAldW1zIChzdGF0dXMgMHglMDh4KVxuIiwNCj4g
-KwkJaW50ZWxfZHAtPmF1eC5uYW1lLCBzdHVja190aW1lb3V0X21zLCBzdGF0dXMpOw0KPiANCj4g
-IAlyZXR1cm4gc3RhdHVzOw0KPiAgfQ0KPiBAQCAtMzMzLDkgKzM1MCw5IEBAIGludGVsX2RwX2F1
-eF94ZmVyKHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHAsDQo+ICAJCWNvbnN0IHUzMiBzdGF0dXMg
-PSBpbnRlbF9kZV9yZWFkKGRpc3BsYXksIGNoX2N0bCk7DQo+IA0KPiAgCQlpZiAoc3RhdHVzICE9
-IGludGVsX2RwLT5hdXhfYnVzeV9sYXN0X3N0YXR1cykgew0KPiAtCQkJZHJtX1dBUk4oZGlzcGxh
-eS0+ZHJtLCAxLA0KPiAtCQkJCSAiJXM6IG5vdCBzdGFydGVkIChzdGF0dXMgMHglMDh4KVxuIiwN
-Cj4gLQkJCQkgaW50ZWxfZHAtPmF1eC5uYW1lLCBzdGF0dXMpOw0KPiArCQkJZHJtX2VycihkaXNw
-bGF5LT5kcm0sDQo+ICsJCQkJIiVzOiBub3Qgc3RhcnRlZCAoc3RhdHVzIDB4JTA4eClcbiIsDQo+
-ICsJCQkJaW50ZWxfZHAtPmF1eC5uYW1lLCBzdGF0dXMpOw0KPiAgCQkJaW50ZWxfZHAtPmF1eF9i
-dXN5X2xhc3Rfc3RhdHVzID0gc3RhdHVzOw0KPiAgCQl9DQo+IA0KPiBAQCAtMzY5LDYgKzM4Niwx
-NiBAQCBpbnRlbF9kcF9hdXhfeGZlcihzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwLA0KPiANCj4g
-IAkJCXN0YXR1cyA9IGludGVsX2RwX2F1eF93YWl0X2RvbmUoaW50ZWxfZHApOw0KPiANCj4gKwkJ
-CS8qDQo+ICsJCQkgKiBUaGUgYnNwZWNzIHNwZWNpZnkgdGhhdCB3ZSBjYW5ub3QgY2hhbmdlIGFu
-eSBmaWVsZHMNCj4gKwkJCSAqIHdoaWxlIFNlbmQgQnVzeSBpcyBhc3NlcnRlZC4gIExlYXZlIHRo
-ZSBzdHVjayBlbmdpbmUNCj4gKwkJCSAqIGFsb25lLCB0aGUgY2FsbGVyIHdpbGwgcmV0cnkgdGhl
-IHRyYW5zYWN0aW9uIGxhdGVyLg0KPiArCQkJICovDQo+ICsJCQlpZiAoc3RhdHVzICYgRFBfQVVY
-X0NIX0NUTF9TRU5EX0JVU1kpIHsNCj4gKwkJCQlyZXQgPSAtRUJVU1k7DQo+ICsJCQkJZ290byBv
-dXQ7DQo+ICsJCQl9DQo+ICsNCj4gIAkJCS8qIENsZWFyIGRvbmUgc3RhdHVzIGFuZCBhbnkgZXJy
-b3JzICovDQo+ICAJCQlpbnRlbF9kZV93cml0ZShkaXNwbGF5LCBjaF9jdGwsDQo+ICAJCQkJICAg
-ICAgIHN0YXR1cyB8IERQX0FVWF9DSF9DVExfRE9ORSB8DQo+IC0tDQo+IDIuNTMuMA0KDQo=
+On Fri, 2026-10-30 at 14:16 -0700, Matthew Brost wrote:
+> On Fri, Oct 30, 2026 at 04:17:20PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Tue, 2026-10-27 at 15:49 -0700, Matthew Brost wrote:
+> > > Backing up a BO costs a GPU blit plus a page copy, and if the BO
+> > > is
+> > > part
+> > > of an active working set it is faulted straight back in on the
+> > > next
+> > > exec.
+> > > Evicting a BO that was used moments ago is therefore almost
+> > > always a
+> > > loss, yet the shrinker has no notion of recency beyond LRU order.
+> > >=20
+> > > Timestamp BOs wherever their LRU position is updated, and read
+> > > the
+> > > stamp
+> > > back from whatever owns that position. A BO in a VM's bulk move
+> > > is
+> > > anchored inside its range, so it is aged by the VM-wide stamp
+> > > taken
+> > > in
+> > > xe_vm_bump_lru() alongside the bulk move itself. Any other BO
+> > > carries
+> > > its own, stamped there too and on a successful move into TT in
+> > > xe_bo_move(), where ttm_resource_alloc() has already placed the
+> > > new
+> > > resource at the LRU tail.
+> > >=20
+> > > Add a per-device shrinker_min_age_ms sysfs attribute, defaulting
+> > > to
+> > > CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS (0, disabled). While set, the
+> > > shrinker
+> > > won't back up BOs younger than the delay. Each LRU priority is
+> > > roughly
+> > > age ordered, so the gate is applied per priority:
+> > > xe_shrinker_count()
+> > > snoops the first shrinkable BO of each priority and reports
+> > > nothing
+> > > only
+> > > if all of them are young, and the backup walk skips to the next
+> > > priority
+> > > at the first young BO, both as a backstop for the count sample
+> > > and so
+> > > a
+> > > hot priority doesn't shield colder BOs in another one.
+> > >=20
+> > > Only BOs this shrinker would actually back up have a say. BOs in
+> > > XE_PL_SYSTEM, which are not GPU mapped and hence not part of a
+> > > working
+> > > set, and BOs xe_bo_shrink() rejects outright are never young.
+> > > Purgeable
+> > > BOs and those advised DONTNEED are neither: they are dropped
+> > > rather
+> > > than
+> > > backed up and accounted to the purgeable shrinker, so they are
+> > > never
+> > > young and the count snoop skips their XE_BO_PRIORITY_LOW band
+> > > entirely.
+> > >=20
+> > > The gate is hard and applies at every reclaim priority, so a
+> > > working
+> > > set
+> > > kept younger than the delay is never backed up and can lead to
+> > > OOM.
+> > > This
+> > > is deliberate, and why it is off by default.
+> >=20
+> > For completeness, Perhaps add to the commit message that
+> > the plan is to follow up with an OOM notifier?
+> >=20
+>=20
+> That is a possible option. Another idea I had was if we can get the
+> priority exported from the shrinker core - we have a config knob that
+> says 'at this priority or greater', shrink BOs which have been used
+> recently.
+>=20
+> > I also wonder what happens during the PM notifier preparing for
+> > suspend
+> > on DGFX, Does that move mark bos accessed, hence possibly blocked
+> > by
+> > the shrinker at suspend time?
+> >=20
+>=20
+> I haven't tried this on DGFX, can give it try but this off by
+> default.
+>=20
+> I'm also a little confused by this - does the shrinker run at suspend
+> time? I thought once the memory in ram a hiberation image in created
+> from the that - i.e., there isn't a requirement the BOs to get shrunk
+> into shmem.
+
+The problem occurs when evicting VRAM to system memory during the pm
+notifier. If system fills up then the shrinker kicks in. But if that
+eviction from VRAM to system doesn't bump LRU / update timestamps then
+that is not a problem.
+
+For hibernation I'm not sure whether whether we actually see backup
+shrinking, since it requires __GFP_FS and __GFP_IO for writeback, and I
+think those are turned off during hibernation shrinking.
+
+
+>=20
+> > >=20
+> > > Assisted-by: LLM
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/Kconfig.profile=C2=A0=C2=A0 |=C2=A0 15 +++
+> > > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 83 ++++++++++++++
+> > > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +
+> > > =C2=A0drivers/gpu/drm/xe/xe_bo_types.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 8 ++
+> > > =C2=A0drivers/gpu/drm/xe/xe_device_sysfs.c |=C2=A0 35 ++++++
+> > > =C2=A0drivers/gpu/drm/xe/xe_pagefault.c=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 2 +-
+> > > =C2=A0drivers/gpu/drm/xe/xe_shrinker.c=C2=A0=C2=A0=C2=A0=C2=A0 | 164
+> > > +++++++++++++++++++++++++--
+> > > =C2=A0drivers/gpu/drm/xe/xe_shrinker.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 3 +
+> > > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> > > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 8 ++
+> > > =C2=A010 files changed, 316 insertions(+), 11 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/Kconfig.profile
+> > > b/drivers/gpu/drm/xe/Kconfig.profile
+> > > index 23045ed2aa94..dd3985e502b8 100644
+> > > --- a/drivers/gpu/drm/xe/Kconfig.profile
+> > > +++ b/drivers/gpu/drm/xe/Kconfig.profile
+> > > @@ -74,6 +74,7 @@ config DRM_XE_ENABLE_SCHEDTIMEOUT_LIMIT
+> > > =C2=A0	=C2=A0 to apply to applicable user. For elevated user, all
+> > > above
+> > > MIN
+> > > =C2=A0	=C2=A0 and MAX values will apply when this configuration is
+> > > enable to
+> > > =C2=A0	=C2=A0 apply limitation. By default limitation is applied.
+> > > +
+> > > =C2=A0config DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS
+> > > =C2=A0	int "Default seeks value of the non-purgeable bo
+> > > shrinker"
+> > > =C2=A0	default 8
+> > > @@ -86,3 +87,17 @@ config DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS
+> > > =C2=A0	=C2=A0 reclaim pressure on non-purgeable buffer objects,
+> > > which
+> > > need
+> > > =C2=A0	=C2=A0 GPU idling and writeback to be reclaimed, in favour of
+> > > purgeable
+> > > =C2=A0	=C2=A0 ones and other kernel caches.
+> > > +
+> > > +config DRM_XE_SHRINKER_MIN_AGE_MS
+> > > +	int "Default minimum BO age before shrinker backup (ms)"
+> > > +	default 0
+> > > +	range 0 1000000
+> > > +	help
+> > > +	=C2=A0 Default for the per-device shrinker_min_age_ms sysfs
+> > > attribute. The
+> > > +	=C2=A0 shrinker won't back up a BO that was moved into TT, or
+> > > bumped on the
+> > > +	=C2=A0 LRU by an exec, less than this many milliseconds ago.
+> > > BOs
+> > > already
+> > > +	=C2=A0 evicted to system memory are not part of a working set
+> > > and
+> > > are
+> > > +	=C2=A0 never protected. This applies at every reclaim
+> > > priority: a
+> > > working
+> > > +	=C2=A0 set kept younger than this is never backed up and can
+> > > cause OOM.
+> > > +	=C2=A0 Only set if that risk is preferred over thrashing a
+> > > hot
+> > > working
+> > > +	=C2=A0 set. 0 disables.
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > b/drivers/gpu/drm/xe/xe_bo.c
+> > > index 42a6aa1a2e4a..a4c0c6284a24 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > @@ -1357,9 +1357,92 @@ static int xe_bo_move(struct
+> > > ttm_buffer_object
+> > > *ttm_bo, bool evict,
+> > > =C2=A0		xe_tt_unmap_sg(xe, ttm_bo->ttm);
+> > > =C2=A0	}
+> > > =C2=A0
+> > > +	/*
+> > > +	 * ttm_resource_alloc() already placed the new resource
+> > > at
+> > > the tail of
+> > > +	 * its LRU, or of @bo's bulk move, so only record when
+> > > that
+> > > happened.
+> > > +	 */
+> > > +	if (!ret && ttm_bo->resource && ttm_bo->resource-
+> > > >mem_type
+> > > =3D=3D XE_PL_TT)
+> > > +		WRITE_ONCE(bo->lru_stamp, jiffies);
+> > > +
+> > > =C2=A0	return ret;
+> > > =C2=A0}
+> > > =C2=A0
+> > > +/**
+> > > + * xe_bo_bump_lru_locked() - Bump a BO on the LRU and stamp its
+> > > last
+> > > use
+> > > + * @bo: The buffer object, reserved by the caller.
+> > > + *
+> > > + * Move @bo to the tail of its LRU and record the time for the
+> > > shrinker's
+> > > + * minimum age gate. Only meaningful for BOs outside a bulk
+> > > move,
+> > > since a
+> > > + * BO in one is anchored inside its range and is bumped, and
+> > > aged,
+> > > with it.
+> > > + * The caller must hold the device LRU lock.
+> > > + */
+> > > +void xe_bo_bump_lru_locked(struct xe_bo *bo)
+> > > +{
+> > > +	WRITE_ONCE(bo->lru_stamp, jiffies);
+> > > +	ttm_bo_move_to_lru_tail(&bo->ttm);
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_bo_shrink_backup_candidate() - Whether the shrinker may
+> > > back
+> > > up a BO
+> > > + * @bo: The TTM buffer object, reserved by the caller.
+> > > + *
+> > > + * A BO is a backup candidate if backing it up is the only way
+> > > to
+> > > reclaim it.
+> > > + * BOs advised DONTNEED, which sit at XE_BO_PRIORITY_LOW, and
+> > > purgeable ones
+> > > + * are not: their pages are simply dropped, which is cheap, and
+> > > they
+> > > are
+> > > + * accounted to the purgeable shrinker. Neither are the BOs
+> > > xe_bo_shrink()
+> > > + * hands to xe_bo_shrink_purge() outright: ghost BOs, which
+> > > aren't
+> > > xe BOs,
+> > > + * and BOs already freed and waiting to be reaped. Nor are BOs
+> > > whose
+> > > tt
+> > > + * isn't TTM_TT_FLAG_EXTERNAL_MAPPABLE, which xe_bo_shrink()
+> > > rejects.
+> > > + *
+> > > + * Return: true if @bo would be backed up by a non-purge shrink
+> > > pass.
+> > > + */
+> > > +bool xe_bo_shrink_backup_candidate(struct ttm_buffer_object *bo)
+> > > +{
+> > > +	struct xe_ttm_tt *xe_tt;
+> > > +
+> > > +	if (!xe_bo_is_xe_bo(bo) || !kref_read(&bo-
+> > > >base.refcount) ||
+> > > !bo->ttm ||
+> > > +	=C2=A0=C2=A0=C2=A0 !(bo->ttm->page_flags &
+> > > TTM_TT_FLAG_EXTERNAL_MAPPABLE)
+> > > > >=20
+> > > +	=C2=A0=C2=A0=C2=A0 bo->priority <=3D XE_BO_PRIORITY_LOW)
+> > > +		return false;
+> > > +
+> > > +	xe_tt =3D container_of(bo->ttm, struct xe_ttm_tt, ttm);
+> > > +
+> > > +	return !xe_tt->purgeable;
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_bo_shrink_too_young() - Whether a BO was used too recently
+> > > to
+> > > shrink
+> > > + * @bo: The TTM buffer object, reserved by the caller.
+> > > + * @min_age: Minimum age in jiffies. 0 disables the check.
+> > > + *
+> > > + * The age is taken from whatever owns @bo's LRU position:
+> > > &xe_vm.lru_stamp
+> > > + * if @bo rides along with a VM's bulk move, its own
+> > > &xe_bo.lru_stamp if not.
+> > > + *
+> > > + * BOs that the shrink walk would not back up anyway are never
+> > > considered
+> > > + * young, see xe_bo_shrink_backup_candidate(). Neither are BOs
+> > > in
+> > > + * XE_PL_SYSTEM: they are not GPU mapped, hence not part of a
+> > > working set,
+> > > + * and must be moved back to TT, refreshing the stamp, before
+> > > use.
+> > > + *
+> > > + * Return: true if @bo was touched less than @min_age jiffies
+> > > ago.
+> > > + */
+> > > +bool xe_bo_shrink_too_young(struct ttm_buffer_object *bo,
+> > > unsigned
+> > > long min_age)
+> > > +{
+> > > +	struct xe_bo *xe_bo;
+> > > +	unsigned long stamp;
+> > > +
+> > > +	if (!min_age || bo->resource->mem_type =3D=3D XE_PL_SYSTEM
+> > > ||
+> > > +	=C2=A0=C2=A0=C2=A0 !xe_bo_shrink_backup_candidate(bo))
+> > > +		return false;
+> > > +
+> > > +	xe_bo =3D ttm_to_xe_bo(bo);
+> > > +	if (bo->bulk_move && xe_bo->vm)
+> > > +		stamp =3D READ_ONCE(xe_bo->vm->lru_stamp);
+> > > +	else
+> > > +		stamp =3D READ_ONCE(xe_bo->lru_stamp);
+> > > +
+> > > +	return stamp && time_before(jiffies, stamp + min_age);
+> > > +}
+> > > +
+> > > =C2=A0static long xe_bo_shrink_purge(struct ttm_operation_ctx *ctx,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_buffer_objec=
+t *bo,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long *scanned)
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo.h
+> > > b/drivers/gpu/drm/xe/xe_bo.h
+> > > index 77b3a02e9b8e..65d4c638e8d8 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo.h
+> > > +++ b/drivers/gpu/drm/xe/xe_bo.h
+> > > @@ -623,6 +623,11 @@ struct xe_bo_shrink_flags {
+> > > =C2=A0	u32 writeback : 1;
+> > > =C2=A0};
+> > > =C2=A0
+> > > +void xe_bo_bump_lru_locked(struct xe_bo *bo);
+> > > +
+> > > +bool xe_bo_shrink_backup_candidate(struct ttm_buffer_object
+> > > *bo);
+> > > +bool xe_bo_shrink_too_young(struct ttm_buffer_object *bo,
+> > > unsigned
+> > > long min_age);
+> > > +
+> > > =C2=A0long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct
+> > > ttm_buffer_object *bo,
+> > > =C2=A0		=C2=A0 const struct xe_bo_shrink_flags flags,
+> > > =C2=A0		=C2=A0 unsigned long *scanned);
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h
+> > > b/drivers/gpu/drm/xe/xe_bo_types.h
+> > > index 0265fb314c77..f63b668c7134 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
+> > > @@ -49,6 +49,14 @@ struct xe_bo {
+> > > =C2=A0	u32 flags;
+> > > =C2=A0	/** @vm: VM this BO is attached to, for extobj this will
+> > > be
+> > > NULL */
+> > > =C2=A0	struct xe_vm *vm;
+> > > +	/**
+> > > +	 * @lru_stamp: jiffies at the last LRU bump, done on a
+> > > move
+> > > into TT
+> > > +	 * and at exec time. Only describes the LRU position of
+> > > a BO
+> > > outside
+> > > +	 * a bulk move; BOs in one are aged by &xe_vm.lru_stamp
+> > > instead.
+> > > +	 * Consulted by the shrinker's minimum age gate.
+> > > Accessed
+> > > with
+> > > +	 * READ_ONCE()/WRITE_ONCE().
+> > > +	 */
+> > > +	unsigned long lru_stamp;
+> > > =C2=A0	/**
+> > > =C2=A0	 * @q: Queue this BO is attached to, mostly for LRC BO,
+> > > NULL
+> > > otherwise.
+> > > =C2=A0	 * Protected by the BO dma_resv: readers must hold it
+> > > across
+> > > both the
+> > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > index ff5d25dd867c..26b1f71ed522 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> > > @@ -38,6 +38,12 @@
+> > > =C2=A0 * reclaimed by the shrinker. Higher values reduce reclaim
+> > > pressure
+> > > on
+> > > =C2=A0 * non-purgeable buffer objects. Valid values are 1 to 64.
+> > > Defaults
+> > > to
+> > > =C2=A0 * CONFIG_DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS.
+> > > + *
+> > > + * shrinker_min_age_ms - Report/change the minimum time, in ms,
+> > > since a BO was
+> > > + * last moved to TT or bumped on the LRU by an exec before the
+> > > shrinker may
+> > > + * back it up. BOs evicted to system memory are never protected.
+> > > Defaults to
+> > > + * CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS, 0 disables. This applies
+> > > at
+> > > every
+> > > + * reclaim priority, so a non-zero value can lead to OOM.
+> > > =C2=A0 */
+> > > =C2=A0
+> > > =C2=A0static ssize_t
+> > > @@ -331,8 +337,37 @@ shrinker_non_purgeable_seeks_store(struct
+> > > device
+> > > *dev,
+> > > =C2=A0
+> > > =C2=A0static DEVICE_ATTR_RW(shrinker_non_purgeable_seeks);
+> > > =C2=A0
+> > > +static ssize_t
+> > > +shrinker_min_age_ms_show(struct device *dev, struct
+> > > device_attribute
+> > > *attr,
+> > > +			 char *buf)
+> > > +{
+> > > +	struct xe_device *xe =3D
+> > > pdev_to_xe_device(to_pci_dev(dev));
+> > > +
+> > > +	return sysfs_emit(buf, "%u\n",
+> > > xe_shrinker_min_age_ms(xe-
+> > > > mem.shrinker));
+> > > +}
+> > > +
+> > > +static ssize_t
+> > > +shrinker_min_age_ms_store(struct device *dev, struct
+> > > device_attribute *attr,
+> > > +			=C2=A0 const char *buff, size_t count)
+> > > +{
+> > > +	struct xe_device *xe =3D
+> > > pdev_to_xe_device(to_pci_dev(dev));
+> > > +	unsigned int ms;
+> > > +	int ret;
+> > > +
+> > > +	ret =3D kstrtouint(buff, 0, &ms);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	xe_shrinker_set_min_age_ms(xe->mem.shrinker, ms);
+> > > +
+> > > +	return count;
+> > > +}
+> > > +
+> > > +static DEVICE_ATTR_RW(shrinker_min_age_ms);
+> > > +
+> > > =C2=A0static struct attribute *shrinker_attrs[] =3D {
+> > > =C2=A0	&dev_attr_shrinker_non_purgeable_seeks.attr,
+> > > +	&dev_attr_shrinker_min_age_ms.attr,
+> > > =C2=A0	NULL
+> > > =C2=A0};
+> > > =C2=A0
+> > > diff --git a/drivers/gpu/drm/xe/xe_pagefault.c
+> > > b/drivers/gpu/drm/xe/xe_pagefault.c
+> > > index 6828f81df50e..895866d639f8 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> > > @@ -226,7 +226,7 @@ static int xe_pagefault_handle_vma(struct
+> > > xe_gt
+> > > *gt, struct xe_vma *vma,
+> > > =C2=A0
+> > > =C2=A0			if (bo) {
+> > > =C2=A0				scoped_guard(spinlock, &vm->xe-
+> > > > ttm.lru_lock)
+> > > -
+> > > 					ttm_bo_move_to_lru_tail(&bo-
+> > > > ttm);
+> > > +					xe_bo_bump_lru_locked(bo
+> > > );
+> > > =C2=A0			}
+> > > =C2=A0		}
+> > > =C2=A0		xe_validation_ctx_fini(&ctx);
+> > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.c
+> > > b/drivers/gpu/drm/xe/xe_shrinker.c
+> > > index c86455ea08d1..64e5e684f591 100644
+> > > --- a/drivers/gpu/drm/xe/xe_shrinker.c
+> > > +++ b/drivers/gpu/drm/xe/xe_shrinker.c
+> > > @@ -39,6 +39,8 @@
+> > > =C2=A0 * @shrink: Pointer to the mm shrinker handling non-purgeable
+> > > (shrinkable) objects.
+> > > =C2=A0 * @purge_shrink: Pointer to the mm shrinker handling purgeable
+> > > objects.
+> > > =C2=A0 * @pm_worker: Worker to wake up the device if required.
+> > > + * @min_age_ms: Minimum BO age before backup, in ms. 0 disables.
+> > > Defaults to
+> > > + * CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS, overridable through sysfs.
+> > > =C2=A0 */
+> > > =C2=A0struct xe_shrinker {
+> > > =C2=A0	struct xe_device *xe;
+> > > @@ -50,6 +52,7 @@ struct xe_shrinker {
+> > > =C2=A0	struct shrinker *shrink;
+> > > =C2=A0	struct shrinker *purge_shrink;
+> > > =C2=A0	struct work_struct pm_worker;
+> > > +	unsigned int min_age_ms;
+> > > =C2=A0};
+> > > =C2=A0
+> > > =C2=A0static struct xe_shrinker *to_xe_shrinker(struct shrinker
+> > > *shrink)
+> > > @@ -104,6 +107,7 @@ static void xe_shrinker_runtime_pm_put(struct
+> > > xe_shrinker *shrinker, bool runtim
+> > > =C2=A0static int __xe_shrinker_walk(struct xe_shrinker *shrinker,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx=
+,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_fla=
+gs
+> > > flags,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long min_age,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsign=
+ed
+> > > long
+> > > *scanned,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 unsigned long *freed)
+> > > =C2=A0{
+> > > @@ -136,6 +140,16 @@ static int __xe_shrinker_walk(struct
+> > > xe_shrinker
+> > > *shrinker,
+> > > =C2=A0			if (flags.purge && ttm_bo->priority >
+> > > XE_BO_PRIORITY_LOW)
+> > > =C2=A0				break;
+> > > =C2=A0
+> > > +			/*
+> > > +			 * Each LRU priority is roughly age
+> > > ordered,
+> > > so the
+> > > +			 * rest of this priority is most likely
+> > > young too.
+> > > +			 * Move on to the next priority.
+> > > +			 */
+> > > +			if (xe_bo_shrink_too_young(ttm_bo,
+> > > min_age))
+> > > {
+> > > +				ttm_bo_lru_cursor_skip_priority(
+> > > &cur
+> > > s);
+> > > +				continue;
+> > > +			}
+> > > +
+> > > =C2=A0			if (!ttm_bo_shrink_suitable(ttm_bo,
+> > > ctx))
+> > > =C2=A0				continue;
+> > > =C2=A0
+> > > @@ -171,6 +185,7 @@ static int __xe_shrinker_walk(struct
+> > > xe_shrinker
+> > > *shrinker,
+> > > =C2=A0static int xe_shrinker_walk(struct xe_shrinker *shrinker,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0 const struct xe_bo_shrink_flags
+> > > flags,
+> > > +			=C2=A0=C2=A0=C2=A0 unsigned long min_age,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0 unsigned long to_scan, unsigned long
+> > > *scanned,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0 unsigned long *freed)
+> > > =C2=A0{
+> > > @@ -180,26 +195,126 @@ static int xe_shrinker_walk(struct
+> > > xe_shrinker
+> > > *shrinker,
+> > > =C2=A0
+> > > =C2=A0	swap(no_wait_gpu, ctx->no_wait_gpu);
+> > > =C2=A0	save_flags.writeback =3D false;
+> > > -	ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags,
+> > > to_scan,
+> > > scanned,
+> > > -				 freed);
+> > > +	ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags,
+> > > min_age,
+> > > +				 to_scan, scanned, freed);
+> > > =C2=A0	swap(no_wait_gpu, ctx->no_wait_gpu);
+> > > =C2=A0	if (ret || *scanned >=3D to_scan)
+> > > =C2=A0		return ret;
+> > > =C2=A0
+> > > =C2=A0	if (!ctx->no_wait_gpu) {
+> > > -		ret =3D __xe_shrinker_walk(shrinker, ctx,
+> > > save_flags,
+> > > to_scan, scanned,
+> > > -					 freed);
+> > > +		ret =3D __xe_shrinker_walk(shrinker, ctx,
+> > > save_flags,
+> > > min_age,
+> > > +					 to_scan, scanned,
+> > > freed);
+> > > =C2=A0		if (ret || *scanned >=3D to_scan)
+> > > =C2=A0			return ret;
+> > > =C2=A0	}
+> > > =C2=A0
+> > > =C2=A0	if (flags.writeback)
+> > > -		ret =3D __xe_shrinker_walk(shrinker, ctx, flags,
+> > > to_scan, scanned,
+> > > -					 freed);
+> > > +		ret =3D __xe_shrinker_walk(shrinker, ctx, flags,
+> > > min_age,
+> > > +					 to_scan, scanned,
+> > > freed);
+> > > =C2=A0
+> > > =C2=A0	return ret;
+> > > =C2=A0}
+> > > =C2=A0
+> > > +/**
+> > > + * DOC: Shrinker minimum age
+> > > + *
+> > > + * The per-device shrinker_min_age_ms sysfs attribute,
+> > > defaulting to
+> > > + * CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS, protects recently used BOs
+> > > from backup.
+> > > + * A BO's age is taken from whatever owns its position on the
+> > > LRU,
+> > > and is
+> > > + * stamped wherever that position is updated: the VM-wide stamp
+> > > for
+> > > a BO
+> > > + * riding along with a VM's bulk move, bumped on exec in
+> > > xe_vm_bump_lru(),
+> > > + * its own stamp otherwise, bumped there as well and on a move
+> > > into
+> > > TT in
+> > > + * xe_bo_move(). BOs in XE_PL_SYSTEM are never young: they are
+> > > not
+> > > GPU
+> > > + * mapped, so not part of a working set, and will be stamped
+> > > again
+> > > when
+> > > + * moved back to TT for use.
+> > > + *
+> > > + * The gate is applied per LRU priority, each of which is
+> > > roughly
+> > > age
+> > > + * ordered. xe_shrinker_count() snoops the first shrinkable BO
+> > > of
+> > > each
+> > > + * priority on each TT-backed LRU. Only if all of them are young
+> > > does it stop
+> > > + * reporting shrinkable pages; anything else, including reaching
+> > > no
+> > > verdict
+> > > + * at all, lets it report. The backup walk in xe_shrinker_scan()
+> > > skips to the
+> > > + * next priority at the first young BO, as a backstop since the
+> > > count snoop
+> > > + * is only a sample. A hot priority thus doesn't shield colder
+> > > BOs
+> > > in another
+> > > + * priority. BOs that aren't backed up anyway have no say either
+> > > way: those
+> > > + * in XE_PL_SYSTEM are never young, and purgeable and DONTNEED
+> > > ones,
+> > > which
+> > > + * belong to the purgeable shrinker, are ignored by the snoop
+> > > entirely.
+> > > + *
+> > > + * The gate is hard and applies at every reclaim priority. A
+> > > working
+> > > set kept
+> > > + * younger than the delay is never backed up, which can lead to
+> > > OOM.
+> > > This is
+> > > + * intended for users who prefer that risk over thrashing a hot
+> > > working set,
+> > > + * hence it is disabled by default.
+> > > + */
+> > > +static unsigned long xe_shrinker_min_age(struct xe_shrinker
+> > > *shrinker)
+> > > +{
+> > > +	unsigned int ms =3D READ_ONCE(shrinker->min_age_ms);
+> > > +
+> > > +	return ms ? msecs_to_jiffies(ms) : 0;
+> > > +}
+> > > +
+> > > +/* Max shrink-unsuitable BOs to skip per LRU before giving up
+> > > the
+> > > snoop. */
+> > > +#define XE_SHRINKER_SNOOP_MAX	16
+> > > +
+> > > +/*
+> > > + * Whether the first BO of every priority on every TT-backed LRU
+> > > that this
+> > > + * shrinker would back up is younger than @min_age. BOs are
+> > > trylocked through
+> > > + * the reserved LRU walker since their tt may be torn down while
+> > > still on the
+> > > + * LRU. Contended BOs are skipped by the walker, and may be all
+> > > of
+> > > them. If no
+> > > + * verdict can be reached, because nothing was inspected or the
+> > > snoop budget
+> > > + * ran out, report not young and leave it to the scan side
+> > > check.
+> > > + */
+> > > +static bool xe_shrinker_lru_young(struct xe_shrinker *shrinker,
+> > > +				=C2=A0 unsigned long min_age)
+> > > +{
+> > > +	struct ttm_operation_ctx ctx =3D {
+> > > +		.interruptible =3D false,
+> > > +		.no_wait_gpu =3D false,
+> > > +	};
+> > > +	struct xe_device *xe =3D shrinker->xe;
+> > > +	unsigned int mem_type;
+> > > +	bool young =3D false;
+> > > +
+> > > +	for (mem_type =3D XE_PL_SYSTEM; mem_type <=3D XE_PL_TT;
+> > > ++mem_type) {
+> > > +		struct ttm_resource_manager *man =3D
+> > > ttm_manager_type(&xe->ttm, mem_type);
+> > > +		struct ttm_bo_lru_cursor curs;
+> > > +		struct ttm_buffer_object *ttm_bo;
+> > > +		struct ttm_lru_walk_arg arg =3D {
+> > > +			.ctx =3D &ctx,
+> > > +			.trylock_only =3D true,
+> > > +		};
+> > > +		unsigned int budget =3D XE_SHRINKER_SNOOP_MAX;
+> > > +
+> > > +		if (!man || !man->use_tt)
+> > > +			continue;
+> > > +
+> > > +		ttm_bo_lru_for_each_reserved_guarded(&curs, man,
+> > > &arg, ttm_bo) {
+> > > +			/*
+> > > +			 * Nothing in the DONTNEED band is
+> > > backed
+> > > up, and it
+> > > +			 * is accounted to the purgeable
+> > > shrinker,
+> > > so it has
+> > > +			 * no say here. Skip the whole band in
+> > > one
+> > > go.
+> > > +			 */
+> > > +			if (ttm_bo->priority <=3D
+> > > XE_BO_PRIORITY_LOW)
+> > > {
+> > > +				ttm_bo_lru_cursor_skip_priority(
+> > > &cur
+> > > s);
+> > > +				continue;
+> > > +			}
+> > > +
+> > > +			if (!ttm_bo_shrink_suitable(ttm_bo,
+> > > &ctx) ||
+> > > +			=C2=A0=C2=A0=C2=A0
+> > > !xe_bo_shrink_backup_candidate(ttm_bo))
+> > > {
+> > > +				if (!--budget)
+> > > +					return false;
+> > > +				continue;
+> > > +			}
+> > > +
+> > > +			if (!xe_bo_shrink_too_young(ttm_bo,
+> > > min_age))
+> > > +				return false;
+> > > +
+> > > +			young =3D true;
+> > > +			ttm_bo_lru_cursor_skip_priority(&curs);
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return young;
+> > > +}
+> > > +
+> > > =C2=A0static unsigned long
+> > > =C2=A0xe_shrinker_count_purgeable(struct shrinker *shrink, struct
+> > > shrink_control *sc)
+> > > =C2=A0{
+> > > @@ -239,7 +354,7 @@ static unsigned long
+> > > =C2=A0xe_shrinker_count(struct shrinker *shrink, struct shrink_contro=
+l
+> > > *sc)
+> > > =C2=A0{
+> > > =C2=A0	struct xe_shrinker *shrinker =3D to_xe_shrinker(shrink);
+> > > -	unsigned long num_pages;
+> > > +	unsigned long num_pages, min_age;
+> > > =C2=A0	bool can_backup =3D !!(sc->gfp_mask & __GFP_FS);
+> > > =C2=A0
+> > > =C2=A0	if (!can_backup)
+> > > @@ -263,6 +378,10 @@ xe_shrinker_count(struct shrinker *shrink,
+> > > struct shrink_control *sc)
+> > > =C2=A0
+> > > =C2=A0	write_unlock(&shrinker->lock);
+> > > =C2=A0
+> > > +	min_age =3D xe_shrinker_min_age(shrinker);
+> > > +	if (num_pages && min_age &&
+> > > xe_shrinker_lru_young(shrinker,
+> > > min_age))
+> > > +		return SHRINK_EMPTY;
+> > > +
+> > > =C2=A0	return num_pages ? num_pages : SHRINK_EMPTY;
+> > > =C2=A0}
+> > > =C2=A0
+> > > @@ -297,7 +416,8 @@ static unsigned long
+> > > xe_shrinker_scan_purgeable(struct shrinker *shrink,
+> > > =C2=A0		.purge =3D true,
+> > > =C2=A0	};
+> > > =C2=A0
+> > > -	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> > > nr_to_scan,
+> > > &nr_scanned, &freed);
+> > > +	xe_shrinker_walk(shrinker, &ctx, shrink_flags, 0,
+> > > nr_to_scan, &nr_scanned,
+> > > +			 &freed);
+> > > =C2=A0
+> > > =C2=A0	sc->nr_scanned =3D nr_scanned;
+> > > =C2=A0
+> > > @@ -322,7 +442,9 @@ static unsigned long xe_shrinker_scan(struct
+> > > shrinker *shrink, struct shrink_con
+> > > =C2=A0	/* Might need runtime PM to access backed-up or CCS-
+> > > compressed data. */
+> > > =C2=A0	runtime_pm =3D xe_shrinker_runtime_pm_get(shrinker);
+> > > =C2=A0
+> > > -	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> > > nr_to_scan,
+> > > &nr_scanned, &freed);
+> > > +	xe_shrinker_walk(shrinker, &ctx, shrink_flags,
+> > > +			 xe_shrinker_min_age(shrinker),
+> > > nr_to_scan,
+> > > &nr_scanned,
+> > > +			 &freed);
+> > > =C2=A0
+> > > =C2=A0	sc->nr_scanned =3D nr_scanned;
+> > > =C2=A0	xe_shrinker_runtime_pm_put(shrinker, runtime_pm);
+> > > @@ -387,6 +509,29 @@ int
+> > > xe_shrinker_set_non_purgeable_seeks(struct
+> > > xe_shrinker *shrinker,
+> > > =C2=A0	return 0;
+> > > =C2=A0}
+> > > =C2=A0
+> > > +/**
+> > > + * xe_shrinker_min_age_ms() - Get the shrinker minimum BO age
+> > > + * @shrinker: Pointer to the struct xe_shrinker.
+> > > + *
+> > > + * Return: Minimum age, in ms, a BO must reach before it may be
+> > > backed up.
+> > > + */
+> > > +unsigned int xe_shrinker_min_age_ms(struct xe_shrinker
+> > > *shrinker)
+> > > +{
+> > > +	return READ_ONCE(shrinker->min_age_ms);
+> > > +}
+> > > +
+> > > +/**
+> > > + * xe_shrinker_set_min_age_ms() - Set the shrinker minimum BO
+> > > age
+> > > + * @shrinker: Pointer to the struct xe_shrinker.
+> > > + * @ms: Minimum age, in ms. 0 disables the gate.
+> > > + *
+> > > + * See DOC: Shrinker minimum age. A non-zero value can lead to
+> > > OOM.
+> > > + */
+> > > +void xe_shrinker_set_min_age_ms(struct xe_shrinker *shrinker,
+> > > unsigned int ms)
+> > > +{
+> > > +	WRITE_ONCE(shrinker->min_age_ms, ms);
+> > > +}
+> > > +
+> > > =C2=A0/**
+> > > =C2=A0 * xe_shrinker_create() - Create an xe per-device shrinker
+> > > =C2=A0 * @xe: Pointer to the xe device.
+> > > @@ -415,6 +560,7 @@ int xe_shrinker_create(struct xe_device *xe)
+> > > =C2=A0
+> > > =C2=A0	INIT_WORK(&shrinker->pm_worker, xe_shrinker_pm);
+> > > =C2=A0	shrinker->xe =3D xe;
+> > > +	shrinker->min_age_ms =3D
+> > > CONFIG_DRM_XE_SHRINKER_MIN_AGE_MS;
+> > > =C2=A0	rwlock_init(&shrinker->lock);
+> > > =C2=A0
+> > > =C2=A0	shrinker->purge_shrink->count_objects =3D
+> > > xe_shrinker_count_purgeable;
+> > > diff --git a/drivers/gpu/drm/xe/xe_shrinker.h
+> > > b/drivers/gpu/drm/xe/xe_shrinker.h
+> > > index 4b3c73689619..586d7772bd58 100644
+> > > --- a/drivers/gpu/drm/xe/xe_shrinker.h
+> > > +++ b/drivers/gpu/drm/xe/xe_shrinker.h
+> > > @@ -18,4 +18,7 @@ int xe_shrinker_non_purgeable_seeks(struct
+> > > xe_shrinker *shrinker);
+> > > =C2=A0int xe_shrinker_set_non_purgeable_seeks(struct xe_shrinker
+> > > *shrinker,
+> > > =C2=A0					unsigned int seeks);
+> > > =C2=A0
+> > > +unsigned int xe_shrinker_min_age_ms(struct xe_shrinker
+> > > *shrinker);
+> > > +void xe_shrinker_set_min_age_ms(struct xe_shrinker *shrinker,
+> > > unsigned int ms);
+> > > +
+> > > =C2=A0#endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > > b/drivers/gpu/drm/xe/xe_vm.c
+> > > index 86c3b4fd232f..583c55b7f97d 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > > @@ -463,13 +463,15 @@ void xe_vm_bump_lru(struct xe_vm *vm,
+> > > struct
+> > > drm_exec *exec)
+> > > =C2=A0	spinlock_t *lru_lock =3D &vm->xe->ttm.lru_lock;
+> > > =C2=A0	struct drm_gem_object *obj;
+> > > =C2=A0
+> > > +	WRITE_ONCE(vm->lru_stamp, jiffies);
+> > > +
+> > > =C2=A0	spin_lock(lru_lock);
+> > > =C2=A0	ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
+> > > =C2=A0	drm_exec_for_each_locked_object(exec, obj) {
+> > > =C2=A0		if (!drm_gpuvm_is_extobj(&vm->gpuvm, obj))
+> > > =C2=A0			continue;
+> > > =C2=A0
+> > > -		ttm_bo_move_to_lru_tail(&gem_to_xe_bo(obj)-
+> > > >ttm);
+> > > +		xe_bo_bump_lru_locked(gem_to_xe_bo(obj));
+> > > =C2=A0		cond_resched_lock(lru_lock);
+> > > =C2=A0	}
+> > > =C2=A0	spin_unlock(lru_lock);
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > > index fb9305124679..046505a285e9 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > > @@ -267,6 +267,14 @@ struct xe_vm {
+> > > =C2=A0	/** @lru_bulk_move: Bulk LRU move list for this VM's BOs
+> > > */
+> > > =C2=A0	struct ttm_lru_bulk_move lru_bulk_move;
+> > > =C2=A0
+> > > +	/**
+> > > +	 * @lru_stamp: jiffies at the last xe_vm_bump_lru(),
+> > > which
+> > > is where
+> > > +	 * @lru_bulk_move is moved to the LRU tail. Ages every
+> > > BO in
+> > > that
+> > > +	 * bulk move for the shrinker's minimum age gate.
+> > > Accessed
+> > > with
+> > > +	 * READ_ONCE()/WRITE_ONCE().
+> > > +	 */
+> > > +	unsigned long lru_stamp;
+> >=20
+> > Isn't the bo resv / vm resv always held then this is accessed?
+> >=20
+>=20
+> xe_bo_shrink_too_young is the lockless read side.
+
+Hm. To me it looks like all accesses have the bo resv held, eliminating
+the need for READ_ONCE() / WRITE_ONCE(), and xe_bo_shrink_too_young()
+also requires resv?=20
+
+Also another thing that came up is that during a pagefault, for a vm
+bo, the code timestamps the bo (which IMO is correct), but the shrinker
+reads the vm timestamp and never picks up the bo timestamp. I believe
+the shrinker should pick the younger of the two.
+
+Thanks,
+Thomas
+
+
+>=20
+> Matt
+> =C2=A0
+> > Thanks,
+> > Thomas
+> >=20
+> >=20
+> >=20
+> > > +
+> > > =C2=A0	u64 size;
+> > > =C2=A0
+> > > =C2=A0	struct xe_pt *pt_root[XE_MAX_TILES_PER_DEVICE];
