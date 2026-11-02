@@ -2,63 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA38606A329
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 09:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741C4606A326
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 09:49:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=aJJXff6J
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Duqge4Uz
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4840610E06A;
-	Mon,  2 Nov 2026 09:48:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 34E0810E06A
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 09:48:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 343E910E5AB;
+	Mon,  2 Nov 2026 09:49:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB4F510E06A
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Nov 2026 09:49:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793612917; x=1825148917;
+ t=1793612962; x=1825148962;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=vdcipDXmfB7zaGCh4IrfVRKFTAexZzbAyt4yLH4DpVA=;
- b=aJJXff6JZqRkHJMMD9OW9/Ac0p+7+z0dL623yOhcNKmfYHbn0/cFvxTh
- PVN5AnUbrPv5LizizRE/srRkeZjDqbzEqgF+ho9rUxTMEJCIuYdJLmaUn
- dHDZfoH7OW6UYKAJEnX4eO2oN8woxYToAGG5blCkkQZXym8YRzDubLAlJ
- tWgZhbsksdRAM/uEmj335Q0g/nGa8XZ1FY8IqrqQcyQ2QxNZlY4JPk9Og
- KAMqnCfVEGexlZ6gMvn1M57+5xiYggKdFaBCPgDVzGcpZLboexIh5rlLK
- dSNtGMjF4NNoy2YL3qTC1z2Z7FlQznTvf7oYtnqyD5sSlE4I3bsWe6aWt w==;
-X-CSE-ConnectionGUID: rxX2qOWMTomypNVCmNCbug==
-X-CSE-MsgGUID: mvLKVF8hTmqExmCKNdNF4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2290008"
+ bh=xx/bCbW/lYPgYgWQr2Rb1yAb9sydQq7o1tNPYyJ4+CA=;
+ b=Duqge4UzoQryoHFFpXfq6BDtZe1Lls5i1hoEQ0F6c93CUD0ZrvVsKRd2
+ gUDXSJmy0838p35RAxQWe8tNPmUZzb52yG0+J9UuAETZw7+yv7xX6/BS1
+ 5kvXHtPytNmA6TvlUwTIWU0+l4i4cyDZUuVK29YN8GYS305EKrcZpRRf0
+ gNk1ZCI8etO1xX7phAGrgYP9fHsK0JNUHjVd4DlATF2Vj+kwrIcocXu7P
+ r9yJhkTt94dnRxoqvUd381biCDLazl2cttP/zVlBLhtsCkZ+GENxhLDSW
+ oRSDn9idKAjD3Fo/tjZ3RkSqR+w2kU6Nfspej5X+HAs1lzhXsqNgItyz8 w==;
+X-CSE-ConnectionGUID: eWwmVnUsQjGP+FT/WOlfGA==
+X-CSE-MsgGUID: d7qQu6seSDi0kiRxaJkhDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11953"; a="2197602"
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="2290008"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 01:48:28 -0800
-X-CSE-ConnectionGUID: Q5ysvrJkRreV1FfqfgmVAw==
-X-CSE-MsgGUID: 2HndgCxYQcGgWqvXBnaXoA==
+   d="scan'208";a="2197602"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 01:49:21 -0800
+X-CSE-ConnectionGUID: SLG3E8+2RhSMGeivAm4U3Q==
+X-CSE-MsgGUID: tC0ibgKkRrOEvUKKbPPg9g==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,191,1787036400"; 
-   d="scan'208";a="5899794"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 01:48:28 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+   d="scan'208";a="6389133"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2026 01:49:22 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 01:48:28 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.56; Mon, 2 Nov 2026 01:49:13 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Mon, 2 Nov 2026 01:48:28 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.27) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.56 via Frontend Transport; Mon, 2 Nov 2026 01:49:13 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.7) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 01:48:27 -0800
+ 15.2.2562.56; Mon, 2 Nov 2026 01:49:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=J9XjIxLQeQ1rEgyOxKl10qnYMNNrkMt0Bf87OGICiq5JeJupqA21M3c669jYGXmrzg1jnRg+QQFHfkmUGK+P3ZYpgysTtnvWMTmhbXVrHQHQKGvRlnafieSWnhE5PqrKf78mdT81m+OpDpPm3YnXsFrYpV6zPAUhhpF9pHLVb+lwtzgvP33RXboTqhEfY1s/PKCST4RgpZQwbOjwSXq1T0nayHe9/kFPFW2yCcbHzrfBvYFs2may8q90FYdwyggtz3D/q8895Nq5gUGFbKhObgUM6w+qad6WkE65SvoXd4LV0rCwfbVymG7SYvapa2ghg1sOcIr3/ZAPEq/adddlUA==
+ b=mIRuTz6YB1s00d50a77MQSWwKqEiBf7y/oKxy/s7tF94ZIN4CC/zbJIPP8eLu5YGugv4jP46LbhdzMQ+tOldqZa5SWZbeusfjFte2BP7flRYastXJ4ZpSWZxFjaPcGou+6ce8+rFoKwcOBw+DSuMMuBJWR40wU9mz58O6LHB0peS+huypDc18qEne5ZfPv4tTNcjC0hBXGcmdXzMum3oC+0E0z5u26g+xuAqFpyM8D8oFeJX7afbFL+Hv38FM32TxMsn3N3bdo/6hskyWvxj335r/Y7h4ZfDTNKb2Zl0yuaggfKEjMGhlb0KFDImZAdndJwf9HdL1uUC2NgqLhNCeQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MVSLzaXuk1Ar25uNf+6/KVPFR1AamQm1hfCaGOCK8X0=;
- b=R8gPCuRtrrbR5ky1pqgLc32hZxIT+YHMPRb2xHaoTnx9ftttnqt7RoEfhQJzDwT8oCk5hrcAO2atAuB3uqqTdjuGLDxk4q2J92XPK+gkj19XZPgnIAU3W/To05pOO1i8S1xyYblIXmZhhYiclok8nU+RkDKIHXCqXLBZLgL5rNFCTblMFyteLoVjFCtf2rCrbWpeaMhq2Oo5G7j11tnt0x80yWwWu4O4k2Kccz7rIxNUjLMb7Wfhc1yibOB+KbBTXioto4wo2GANHK7G7QT9NJByS1Yi3vCTYqG6NkR1HkbmxuIkKfKYbiR7m4u9LSu7ExLwp4oEVdwS8NwWmertgg==
+ bh=j3gmKqBQrVxFUOuNWsK92RIvC98co9UKJPZQhcUGw3k=;
+ b=VmbIoia1W4vxh2Dux0CK152+RaCuMfz4FY4zw1mT8qv1azsCU9K3enmOgHKKmvcbapcS6sq3guzCDog6KGL9EFGyx9zegZ1eMUvcn7FPhmNTZU5wbp4JO6Om8LMg/AQ+iRAwacg46boXxxJs90JHupNMmb2LBMpL0GfSSIqhqupkbOogycxD9IEcPoSvQUTMlQflXumPrQyDy0/SlsLEl4PDFl+J3hr6ZDxOja1NP62joSa5SLHDLChIKrqUJWKESgAjTE+q/NzgZvDI5aArJLMlN0Fll9AEqZ2AyoCjQYhLyCQUZlLHex71+gllIi+eLnU2hXu+3Ih6WRXCIHj7wA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -68,16 +68,16 @@ Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
  PH7PR11MB6377.namprd11.prod.outlook.com (2603:10b6:510:1fb::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Mon, 2 Nov
- 2026 09:48:20 +0000
+ 2026 09:49:07 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0569.011; Mon, 2 Nov 2026
- 09:48:20 +0000
-Message-ID: <91520b1a-4e5f-472a-bca6-b1b557883614@intel.com>
-Date: Mon, 2 Nov 2026 15:18:10 +0530
+ 09:49:06 +0000
+Message-ID: <b4e8b8ce-f5f8-4ff4-837a-fb403eaa2617@intel.com>
+Date: Mon, 2 Nov 2026 15:18:58 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/9] drm/xe/xe_hw_error: Handle non-fatal errors routed
- via direct IRQ
+Subject: Re: [PATCH v2 7/9] drm/xe/xe_ras: Disable hw error worker when AER
+ handling is in progress
 To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
  <intel-xe@lists.freedesktop.org>
 CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
@@ -85,79 +85,79 @@ CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
  <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
  <tejas.upadhyay@intel.com>
 References: <20261026060459.771448-11-riana.tauro@intel.com>
- <20261026060459.771448-15-riana.tauro@intel.com>
- <37efee46-93fc-4f65-ad23-33b4666351cc@intel.com>
+ <20261026060459.771448-18-riana.tauro@intel.com>
+ <260fff8f-f1e4-4de3-862c-af96ece94b39@intel.com>
 Content-Language: en-US
 From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <37efee46-93fc-4f65-ad23-33b4666351cc@intel.com>
+In-Reply-To: <260fff8f-f1e4-4de3-862c-af96ece94b39@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0105.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b5::7) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5P287CA0113.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b5::13) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|PH7PR11MB6377:EE_
-X-MS-Office365-Filtering-Correlation-Id: a341f007-74c5-4e30-178d-08df38c66cdf
+X-MS-Office365-Filtering-Correlation-Id: 54d0fab2-42d2-4816-c1ad-08df38c6891c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|261021123027099003|261021121427099003|261022113327099003|261022105027099003|261022075727099003|261009223027099003|261026121527099003|261026140227099003|261028144727099003|4143699003|11063799006|10067099003|56012099006|260925021311599003|260925021911599003|260925022911599003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: 9Ai5fsrIKLnG/SQnHWyhbRuVaOEbhH8XQfsYSBrCZhT8UPkliRuTRhfdQznVcJ+2w2xQcevtK39ayB+P3Y2PvRC+/fdUyLr40wKttLBmTKY9sVEOf0Il9pzfuRX5NmHfiTHFKEfssya52Y/KZehpP9KZpGpnbAoAIGnIIyKcppVSHc/l18bY94YMRQllOKtMB9EoK9brDkn3Rss9uh9Y+aJIpqenNZ8U2nGId5wR7nzKGGCEgjrbaVV/x1/vvKfWBGsB+cFQhkehuqu15UxQFde7r38AmsuBsszqVPaMmzkGTheEtGMJ00LXEaHY3jblQ7fvidBUz5bU0uV8TrQdiYIqiYyKnd11bE03/DNxLY0IcGOs/BXgXBElw4S36M0SreDKHuBJnJtMIlb2mIvKO4+M732ATQ8RgDnmkcX0/taHP4vTDYmNujIgArzy18OMNqa21vk16uggYoiq49lYW3q94oXSWC/XzucbP1Ovw65Oqay+Sf8xw738HHWdkf/ygtucEKEhqGzDryvS3qF9zgDytNooRHrePEG/O6Ss0y/OB/LIYbsvgXLdNyLhdaNS3TftHkL3fzscuBT52w/nlbRJ+d1N5rs0A4/Y3WOrCBzuAdBlNSmn/qXdkLl2tPFtqQoFYWQG3ItUmpPOiYZkd1WIYx7OenINkUrNUO2rCbU=
+ ARA:13230040|23010399003|1800799024|366016|376014|261021121427099003|261022105027099003|261009220027099003|261009221727099003|261009223027099003|261009221227099003|261009223327099003|261026121527099003|261026140227099003|261028144727099003|4143699003|11063799006|10067099003|56012099006|260925021311599003|260925021911599003|260925022911599003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: KH99TkFXT2Yl/lhYk5/8reF+If7FMeW+yGI+7dWUH9khM95Pp1cHmIFLk8QBdXAkiS3RLlKn2g0vbjC1rtKWQZeOsgwxU+MIAKQlRGNnej68B2ssafv+5mWPw9j4wOOZyPzTkMvHGBNg/bVMlGNjVTpalNLgAZKWqXk46WkSf99BzYOq4u3jSnbVb6aDLhlR7CIvgXJlaNYYyTnkAlcRpsvR4rsx/4fa8h50F3Kf2l8m74fmSmnZKH360yKequesXHST67ooyEdklfzmYNdHRI2vBLIH5qgPNYEQpu80OoDGirNfTzhV2/ceS8rEbOoESW4mmcE+ksa9b7uu3JKcFRhYMGttWdRo6FOI1oYyIS+hgzkH9Wh3g/zmMCatLzbZsoIEK88MpqVNbnG1qtVnCJmSgwaQDCmDWuqVOm4flKgTXIxKWr0bbz3Lu04rHiTFsZgpBTZ6nHpt5u+urGVNfUTwORKxXLG4Ha4CCOSnzArVsH62B2yhJv035e4GCWYAEjrarix4e9nrxQkali885DrATuFKtLAeNOFOf0XY7mcrogYXFicQ++NMqOXSyGnIJ9kBMgfmtyHogEMiZbkgMVKZoWbTDKQ4nfPIWgX1P0pWBazG3AFppbgrcjm9hbYWAZrdSyPJIzFeCiZsWbBvpVtY/URC/3giQjzAwK24UHg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(261021123027099003)(261021121427099003)(261022113327099003)(261022105027099003)(261022075727099003)(261009223027099003)(261026121527099003)(261026140227099003)(261028144727099003)(4143699003)(11063799006)(10067099003)(56012099006)(260925021311599003)(260925021911599003)(260925022911599003)(18002099003)(22082099003)(6133799003);
+ SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(261021121427099003)(261022105027099003)(261009220027099003)(261009221727099003)(261009223027099003)(261009221227099003)(261009223327099003)(261026121527099003)(261026140227099003)(261028144727099003)(4143699003)(11063799006)(10067099003)(56012099006)(260925021311599003)(260925021911599003)(260925022911599003)(18002099003)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UFM2ZGdLbGhsVm5BeGhXQk9mdVVJZzNpWXA3bkJOa1JTSThwcE5ER1N5dmsr?=
- =?utf-8?B?eDBnTlhkYVZUTXBGeS9ualJVSWNUVUgyVkVEbFN5RVNNcG1seG9QL2pwOG9E?=
- =?utf-8?B?V2ppWUZnQzlKc1V0Z0p3YkdiSnJMNmpUMkZjM2d5NzNmQzFGa1lHY0JTdzNX?=
- =?utf-8?B?WDZYN251NFh1RE5jYlhwVW9YSGE0U1hwUEJLMnhuNS93NGV0N1FHa3ozMHNH?=
- =?utf-8?B?NWZhSnVCR2xpWUhiNm1OaElPR05iMDE4SitCNjlObUkzUGRsWVlna0dRd0xp?=
- =?utf-8?B?SEZ6ZU5OY2p3VzcrTGZaNlk5N2RiRUJ2UTArYlAwMmZyZHY5Tk1PZ2NPVVpl?=
- =?utf-8?B?VUlQN2dzQ21HenR4V3NkUCtXakx1ZExUUDV3YWlnMnU3dXZuZDk2dGpJaVJS?=
- =?utf-8?B?RVF6ekFwZnExNGhEL0ZoaHhUQUlneUhFdWd5NHAwZXpUazUzc3d0NTNEcG05?=
- =?utf-8?B?S1JmM1hQcjhRNndOVXVZS05kd3dOOGxyMTU0Wm90WGlXb0JvQXpwM2dKbWJs?=
- =?utf-8?B?TGtrMFhqa2RFeUNzR05XRkdDNEZNU3pHajBFb2Y0VmZkeHk1WCtmS01rOTJY?=
- =?utf-8?B?UXMwTnZCMTJ5Ym1NUVNqSFZKOXZoMjlLUGxmZFlMVEdudnNwZmNVdmJjVEU2?=
- =?utf-8?B?ZjZFT2JkNUJlamptcGpjbURDTm1XQWxnWWU0Q0NLM0F2U3pkS3lzd09kdFhU?=
- =?utf-8?B?TjU0UmRPeml0OHA3WEQ0NCtIOFlaQ2RkcTVEVTMyNUkzcVlWVldiZW5mbGVj?=
- =?utf-8?B?OVpUVm0yalJsRzhFTk1BdlJJQ3lVOWQ0Wk9CYzRuRlYyWlc1YVhCVDlKT2Vt?=
- =?utf-8?B?cW5QUmdqTUQ3bEZPMEVoaDgrVS9wZ2RvcUFHa0d4clpPVFBrZUhYVm4zR3p5?=
- =?utf-8?B?cDdvSUZqOEFldXpoVk5hVDEzTXdqV3p4U3h0SE9oRXJxMGM3dHBRK1FrTmpt?=
- =?utf-8?B?ODhTenQ1Wmw4QVZqL01teXZXTVFxc1VWMGc0VlgycS9sSTZ3M0VGLzMyLzJm?=
- =?utf-8?B?VzBMWCt1eTRXTHh3RndwUVVhaFVMVmN2aTFJUW9tQURkS04vM0J1S0JJN1Nu?=
- =?utf-8?B?Und5VzJHY0hYeU5BVi9VM0dUVVlNL3VhdEE4VEtsK1VjOGNUYVQ1RjQrcWdJ?=
- =?utf-8?B?eXpkVG1PK2lxQnJBWWZMMXhOQ2gyWFJpVEs3ZGkrdDdxWFZhZERLSmVjU3Rv?=
- =?utf-8?B?Y2FFSWJCT2IrMGlKRVpPNFl4S05FakxuTFVwektQUk9RcDFacnhMR01TeXZr?=
- =?utf-8?B?UFlsKzY2dlBydmhQV0J6L3NybEFKT0dVQlFCaGgwYk8vMndpZ0pKK3lYRFdC?=
- =?utf-8?B?ejJoVDIxVEtPMms0eG5mckZCZDYvUW8rblh3Z0d2K3NHZTEybUNGV0JKQmYx?=
- =?utf-8?B?bno0VmVaWld1QUxtS0c0bGhtRG1YdGtJMU1kaXNDWDMyenlFNkVBTHNGUFg4?=
- =?utf-8?B?VXh6dEtxZWJIR05TRW9lTDlCWXZzdUlodEZGSVNMMjFVcFpSN3g0RTFGdlRR?=
- =?utf-8?B?UERkcVVUS1MzK2ptNjBaZ2RLcmhjRXRITUFMVlZMSEMySFU1VURSdjRJMXc4?=
- =?utf-8?B?RlZPbDJnNXRFYUdDMjZ3aFMxeTZJNDFxYzJ4T1VGeGNaTnZsbm8zb3dkOWE3?=
- =?utf-8?B?WVFyaWUwWE54Q2tma3R0MTI3NnpOYmFZM2N1NDdSWU44RkYzYlJjNXBMZXls?=
- =?utf-8?B?OTgvWXpvRFZIaXB2ZU9oQzRHWFFhMWM0dnZkRUVyVVlsZXQwY0RPb0pTWHp6?=
- =?utf-8?B?ckVIQUdDRmw4NnpxWGlnVDhicnNHSGxjMitLbjc2OERqOUFZRGVNdVR0QlBo?=
- =?utf-8?B?Q0Z0YmVpSGtSQjEwZGxBVGJNaUl3b1V0QmtzYVRYU1d3Q1RCOTlhczlobWdX?=
- =?utf-8?B?TXJtTEtNWXZEUkdzaTBEREsvRHZ5NG0xVzNqUGE3MHBUTk9xN3d2Ym9kb1hr?=
- =?utf-8?B?MjZRdTZzcEprUW53Z1owUW56bmdrYUlqMk9XMmo2TzJzcno4Ym9xMkpzN0hC?=
- =?utf-8?B?OWpncEVGUHVKUi9xNjdnL2RHTlBFRWY3a0p6MGRQRE1OVkRLZm5CUXRCTHRq?=
- =?utf-8?B?a2VWR0dMckZrS21HUmxMcGQ5ZDBKRUVHdHk2bTVkdWpKS2NnQUppZW1IRGFZ?=
- =?utf-8?B?YXNHQXRpMXAvRnhDYmE5Z3lqc2VYeHY3M1dVcjA0RmM0WVVTNHR3Y2dtMUtG?=
- =?utf-8?B?M2dGbXdjYXkyMHVFaXM1d0tPcUpqbGZsQXVrWUlZSWJBdStyNUFyMzJQZVZP?=
- =?utf-8?B?ZmVsV3ZSR1BVTFBCY0xqNmxxRFV1SHh3MjRmQ0lJNENUOGx1ek5MWWlmTEZv?=
- =?utf-8?B?akl3SEI0SEgxZ0cyN3NHQVVJWjNMK0VuZjRYNkZKSkdMNjYzVURtZz09?=
-X-Exchange-RoutingPolicyChecked: Sp0YxRBC7wjyQiPlq6Z+NAlW6qHrwTztC1oYxSMYTUdMoYrEOk+AkdEaCJMigjr5YUzfwfvqtr7PPrwGvfotQ0b/ecvBPttCzYbWcYsoWEV5XtmrTUqzQydKf3uiKqEKIXETztc7ONT/3y1ZDOcng105X73NKUD+PVF2ySUxBHId8h0P4mYMXmSUU1MoQv5CIYREp3STopr/A1iTbNRL6xOJQwuSZ1osHW3Il7EzNmzk4ZciMgzNihbb2KE6WUyjm0mbHeBD4JBIEWJ+Cgq+phXsxgeDBM4uBZf6oLssPSE9cAAGiqD9qPy59adqzicgW0hwJknBYdzy1/b4ZjXZzA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a341f007-74c5-4e30-178d-08df38c66cdf
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXFlTm5JMEl6aFBPN0plSUNCSHZJS3VBN3lidmJGY0NHUHBxSU9EMmtMTE53?=
+ =?utf-8?B?WFFzUlJDZTJ4eVdmN21SelVicmRZVHpyZ3ptSkdhZ3U4N3RONEtsRHlDcWxl?=
+ =?utf-8?B?MGVObmlQZXlBZ2ZaMWZnZFFCd21BUExGVHR5bXRHUUxwUmFURm5aMzJhQlFZ?=
+ =?utf-8?B?L0c3TmJuUUtka2xiWGl4cXBJVlI5cHJtSS9kU2xoeXp2YTdsd2s1YW5hb09h?=
+ =?utf-8?B?VFVDR0xXYk55ekZ2cE1Ec0NSU2FnVGp3NmZNZ0xPOEhNZXZsc0lMczRaQmN6?=
+ =?utf-8?B?Nm5va0Nod0hzNFh4eGNJVlFDajRXN2hDQUdjQWliS0F3aFplc3pkT20zK1pU?=
+ =?utf-8?B?Y0ozZGlibFdta01RRTQwaGNCR3dIWGN0bHRqOXpzeFo5dFN0ZTl0V0dudmc1?=
+ =?utf-8?B?SXJIQVFteGZ2SnBoS1dSS3pyeURlWk14Y2RtTHFZSnNDcFJIbE9sT1NEMTg3?=
+ =?utf-8?B?WjFCbGR1TjREcjFDdVNWdjFpWTQ0b0NTUmN6NzBjM1pFYWNzVGIwNXM1cS9O?=
+ =?utf-8?B?ck1seEZFUm5UTDZkbDVOeDNXbngxSmpLQnNmNEpFZ0cyMmw1b3FkWjRXUldF?=
+ =?utf-8?B?aEU2SitLNHdmYkZ6Tm5vaUhsYzJmc01NaW9UNVdyZnR3Rk9Sb0I2TUp4TjA1?=
+ =?utf-8?B?d1Bua3dmMU5Pa0FUQUdvZHVxUWN3WlNDdFRnclNFa2dpZGh1U1R3R0tzNEJk?=
+ =?utf-8?B?cFJ6cVJ0Y3ZXNE1xaHNIcXppeU9wYUJvMExZSUppaFlReGQ2Zkx4SEw2WUw3?=
+ =?utf-8?B?ekt0WDBlZ0dxNDZhSU9xN296Ym9iYVNNTHp5Z0hGTVZVcU9HdzFFUnhEWHVN?=
+ =?utf-8?B?OVNBcXpYNDc3YU95dEY4TklGMi9xR2U5ZFVTbllkWTRSZ0JHWngyMVRSMnYr?=
+ =?utf-8?B?aS9YMTdoZUlWUUNPQjF3eDRNbGl4a3A4Rjc3WGFHcXhsdWZ2cy9kemJteHpQ?=
+ =?utf-8?B?dTFqSFR6YVV2VzBaK2FRYWdJYUFMdkVNaFJlcGQxSnErZnZiK1hXeTR3Z1hx?=
+ =?utf-8?B?Q3VoamhNZFZOMU9jQU1kTEFlVGZKaktUMWYydFZCMWRMem94QUNPMzZZb2tO?=
+ =?utf-8?B?UVJ3dE9Qd0ZJT29nU3Zxbm9CNlVqV2pnZkNteHRGcTJQVUxOcE5KNE9ubGtI?=
+ =?utf-8?B?cDI4RG1FNnFCN29HTU5yZVE3bHFudmlYL3RNY1lrQTdtNkRuMVU0WTdkMzFr?=
+ =?utf-8?B?RHZZWXdVREhpMHcxZC9KVkQrSk5GSU1yL3hibEg5R0pDQ0Jxa3hKY2hIRm9q?=
+ =?utf-8?B?bzNkSFUxVlNhT3dFOGREVGFYNnZpNWRqckhOOTI4MUthMXZmK1pmNFdmd0N2?=
+ =?utf-8?B?cVNDVDk0WTZUUEZad3RqbHRNVmRwVjFhMmU0TUI3Y2s3a3UzSGVqT3FZSmFJ?=
+ =?utf-8?B?NEFHQ21OZUV2ZlI2MHZzam5Ca2E2VFVyTFFWNVNTT215K3ErRWtVRnVaK1Fl?=
+ =?utf-8?B?ZERoVXRYbVZJZ05zSWZaL29LMWc1MDFiRzQ4TUE1RmNmaEZvbHFHK293NDcw?=
+ =?utf-8?B?Ry8zTjdvWnI1OE5kT2owb1hQcVNDMmQ4a0Ewd1NBMVg2Z2MxZlFIQkczN1p5?=
+ =?utf-8?B?T01ORk5JbThEYmFNVFk2a0VBZkt1aExoalFSa2oxY0Exa1llQ2lZZ2MxU0k5?=
+ =?utf-8?B?a25manloQUJpSFJYWTZscTNrb0kweVMxTHJLYlZrMEVkY2dRN1hPZ3dWV3pk?=
+ =?utf-8?B?Sk1xMFNOMlY5bCswMEhsaXRadTJwR013Y1BtRE03OW5pT0VxYmVMalVpSUp3?=
+ =?utf-8?B?M2dIckFTL3cwOXJuMVpRaFF5T0E4dTBJQjlNaHhHRm5ISG81cnJaT2pZc25r?=
+ =?utf-8?B?ejVSQ0RSc3JHRGlHUTZpa3hSTzZJRU9tdG1rdUNqR2hOUFRDbjgwTldyUkJm?=
+ =?utf-8?B?Tm9NdDNKK2NMTmpJaUVDWGg1L0dSOUROUkNTMzlvdjNqQXd5Q0kyTmZRZ0Vs?=
+ =?utf-8?B?djBhbWRBVmlIUHVBdGZsbHNzSGRyMi8vTmdqMkxhUmJIQ1NnSnh3enpJdjJZ?=
+ =?utf-8?B?eUx6ZWg4cnhJL3BXQk51Nk5FVjY3RWZwNkxENUJJdlZyd1R5WEMvV3U2dWVx?=
+ =?utf-8?B?dVVCSThmOE9vK3R6UUVDYnkvUFlYRXFvTGh5eUJPZno5VEtKTTliTHplMXpL?=
+ =?utf-8?B?ekVmOFpSV09tU1lOSHVZYnZwM0lnNGw5ZzZFZFZPWnBPdVVzZW1jelBsTDlB?=
+ =?utf-8?B?MG9BZytBTkphSW1WYXk3TGFvNEFScjhJb2Nub1ZWOFhxb1kwNi9WNExGSHJ4?=
+ =?utf-8?B?QjRzS1U4dkVNWTZ2Q2oyNXRwSmszRWZ2OWtqZHEwak03RFV1aERabXFmNWhY?=
+ =?utf-8?B?WE95Z2h5TEpDQ0JNSGNuZzluNTVNdTdlNTlVSmF6WHcwY2c4dFZyZz09?=
+X-Exchange-RoutingPolicyChecked: Om4IjICH5+UcOWWe6WNO1HsnEzmAKBdcQ/42ycoHcTbHFqyc1JJFiOICux3O0Mljd6DMHE8cqfS/22C3RqSh78izPlXI8QTgeaL61bicwCYLl+U8gwkKAsyocKLXEw6VCYDwHJ42yBPtRq50f6OL25UGvOXJtpthrXb+2xuytFb9gLV7T26+gGb12+gq8+LfzJcEIsTQiZ6JfPu3ZX9oSCeAkmfv6INW85kywSHpwbXrmqt2wvV/HUuech0ubaRqx6bLI7hYh+bInwREx8rjuguFuAJAQIR1l0obq8+eV3u8vhOcu2WZ4swARApbeZ8IsUHXPK7/cJD+bGBcPLFt3w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 54d0fab2-42d2-4816-c1ad-08df38c6891c
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2026 09:48:20.1203 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2026 09:49:06.8505 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0putFE+9MnMahVAChDh49DPNScibN3KPrPDLBvyU6JAm5dNNvXSetKPE3mD/RS3UUCT2MvRA5vZbjyN0Av77cA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 27Q0dKIz4VFnmetu0lo3wrjBraGrZvmx04g6gPtzr6Q1cp8xRXmy4A1hE4Y/pwXagfBWQRKVMXvuuaJJaLfn5g==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6377
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -179,191 +179,161 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
-On 30-10-2026 19:43, Mallesh, Koujalagi wrote:
+On 30-10-2026 11:57, Mallesh, Koujalagi wrote:
 >
 > On 26-10-2026 11:35 am, Riana Tauro wrote:
->> Process, log and recover non-fatal errors routed via direct IRQ.
->> Double-bit ecc errors belong to non-fatal error category and are 
->> reported
->> via irq. For pages that belong to critical BO, wedge the device with
->> bus-reset as the recovery action.
+>> An uncorrectable internal AER error event is triggered for device fatal
+>> errors. If non-fatal error processing is in progress, flush and disable
+>> the worker to prevent further processing, as a reset is imminent.
 >>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_hw_error.c | 37 ++++++++++++++++++++++++++++----
->>   drivers/gpu/drm/xe/xe_ras.c      |  9 +++++++-
->>   2 files changed, 41 insertions(+), 5 deletions(-)
+>>   drivers/gpu/drm/xe/xe_pci_error.c | 33 +++++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_ras.c       | 12 +++++++++++
+>>   drivers/gpu/drm/xe/xe_ras.h       |  1 +
+>>   drivers/gpu/drm/xe/xe_ras_types.h |  2 ++
+>>   4 files changed, 48 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c 
->> b/drivers/gpu/drm/xe/xe_hw_error.c
->> index f7799c3c08aa..269ce6a19a80 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->> @@ -5,6 +5,8 @@
->>     #include <linux/bitmap.h>
+>> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c 
+>> b/drivers/gpu/drm/xe/xe_pci_error.c
+>> index 9bf0da3a3d15..b27f8a0f1b17 100644
+>> --- a/drivers/gpu/drm/xe/xe_pci_error.c
+>> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+>> @@ -5,14 +5,18 @@
+>>     #include <linux/pci.h>
 >>   +#include <generated/xe_device_wa_oob.h>
 >> +
->>   #include "regs/xe_gsc_regs.h"
->>   #include "regs/xe_hw_error_regs.h"
->>   #include "regs/xe_irq_regs.h"
->> @@ -15,7 +17,9 @@
->>   #include "xe_hw_error.h"
->>   #include "xe_mmio.h"
+>>   #include "xe_device.h"
+>>   #include "xe_gt.h"
+>> +#include "xe_hw_error.h"
+>>   #include "xe_log.h"
+>>   #include "xe_pci.h"
 >>   #include "xe_pm.h"
->> +#include "xe_ras.h"
+>>   #include "xe_printk.h"
+>>   #include "xe_ras.h"
 >>   #include "xe_survivability_mode.h"
 >> +#include "xe_wa.h"
->>     #define GT_HW_ERROR_MAX_ERR_BITS        16
->>   #define HEC_UNCORR_FW_ERR_BITS            4
->> @@ -166,12 +170,36 @@ 
->> static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == 
->> XE_RAS_REG_SIZE);
->>                            pvc_master_local_fatal_err_reg : \
->>                            pvc_master_local_nonfatal_err_reg)
->>   +static const char *hw_err_to_str(const enum hardware_error hw_err)
+>>   #include "xe_wedge.h"
+>>     static void prepare_device_for_reset(struct pci_dev *pdev)
+>> @@ -54,6 +58,26 @@ static pci_ers_result_t 
+>> ras_action_to_pci_result(struct pci_dev *pdev, u8 action
+>>       }
+>>   }
+>>   +static bool is_aer_internal_error(struct pci_dev *pdev)
 >> +{
->> +    switch (hw_err) {
->> +    case HARDWARE_ERROR_CORRECTABLE:
->> +        return "Correctable";
->> +    case HARDWARE_ERROR_NONFATAL:
->> +        return "Non-Fatal";
->> +    case HARDWARE_ERROR_FATAL:
->> +        return "Fatal";
->> +    default:
->> +        return "Unknown";
+>> +    struct pci_dev *usp;
+>> +    u16 aer_cap;
+>> +    u32 status;
+>> +
+>> +    usp = xe_pci_get_usp_dev(pdev);
+>> +    if (!usp)
+>> +        return false;
+>> +
+>> +    aer_cap = pci_find_ext_capability(usp, PCI_EXT_CAP_ID_ERR);
+>> +    if (!aer_cap) {
+>> +        dev_warn(&usp->dev, "AER capability unavailable\n");
+>> +        return false;
 >> +    }
+>> +
+>> +    pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, 
+>> &status);
+>> +    return status & PCI_ERR_UNC_INTN;
 >> +}
 >> +
->>   static void hw_error_work(struct work_struct *work)
+>>   static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, 
+>> pci_channel_state_t state)
 >>   {
->>       struct xe_tile *tile = container_of(work, typeof(*tile), 
->> hw_error_work.work);
->>       struct xe_device *xe = tile_to_xe(tile);
->>         guard(xe_pm_runtime)(xe);
->> +
->> +    if (xe->info.has_sysctrl && XE_DEVICE_WA(xe, 14028434957)) {
->> +        /* If the device is in reset in AER path, skip processing 
->> hardware errors */
->> +        if (xe_device_is_in_reset(xe))
->> +            return;
->> +
->> +        xe_ras_process_errors(xe);
->> +        return;
->> +    }
->> +
->>       xe_survivability_mode_runtime_enable(xe);
->>   }
->>   @@ -433,12 +461,13 @@ static void hw_error_source_handler(struct 
->> xe_tile *tile, const enum hardware_er
->>           return;
->>         /*
->> -     * Hardware errors are reported through System Controller on the 
->> platforms that
->> -     * support it, and never routed as direct IRQ to SGUnit. So we 
->> should never be
->> -     * here for those platforms.
->> +     * Non fatal errors are routed as a direct IRQ on platforms that 
->> support
->> +     * system controller.
->>        */
->>       if (xe->info.has_sysctrl) {
->> -        drm_err_ratelimited(&xe->drm, HW_ERR "Invalid error 
->> routing\n");
->> +        drm_err_ratelimited(&xe->drm, HW_ERR "%s %s reported\n", 
->> hw_err_to_str(hw_err),
->> +                    severity_str);
->> +        schedule_delayed_work(&tile->hw_error_work, 
->> msecs_to_jiffies(MSEC_PER_SEC));
+>>       struct xe_device *xe = pdev_to_xe_device(pdev);
+>> @@ -67,6 +91,15 @@ static pci_ers_result_t 
+>> xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
+>>       if (xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe))
+>>           return PCI_ERS_RESULT_DISCONNECT;
+>>   +    /*
+>> +     * If non-fatal error processing is in progress when 
+>> uncorrectable internal error occurs,
+>> +     * flush and disable the worker to prevent further processing, 
+>> as a reset is imminent.
+>> +     */
+>> +    if (XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev)) {
+>> +        xe_ras_set_aer_path(xe, true);
 >
-> A:  Fatal error via AER
+> hmm, we are setting AER path flag true here, do we need to set false? 
+> since same flag is used IRQ path as well.
 >
-> B: Non Fatal error via IRQ/MSI
->
->
-> Did u check behavior or impact with below combination? 
-
-Since this is a race it cannot be manually tested unless a race actually 
-occurs.
-
->
-> 1.  A occurred then B occurred
->
->
-
-AER will flush and disable pending hw error work.
-
->
-> 2. B occurred then A occurred
->
-
-Same as a hw_error_work running post which an AER is triggered
+> What will happen after setting AER path true and we see Double bit 
+> memory errors occurred on IRQ path always,
 
 
->
-> 3. A occurred B then A occurred: 1 sec before and after.
->
-
-Same as 1.
-
->
-> 4. B occurred A then B occurred:  1 sec before and after.
->
-
-Same as 2.
-
->
-> 5.  AAB: 1 sec before and after
->
-
-Same as 1. Two AERs won't have any additional handling.
-
->
-> 6. BBA: 1 sec before and after combination etc.
-
-
-Same as  1.
-
->
-> Handling two asynchronous event bit tricky :). Hope it should not 
-> break it.
-
-It is indeed tricky. This is the best effort where we cancel the worker 
-processing non-fatal errors as reset is imminent.
-Also the firmware query is protected with a lock so race there shouldn't 
-cause a issue.
+Please take a look at the last patch for this query.
 
 Thanks
 Riana
 
+
+>
+> So the memory page are not going to offline right? how are we going to 
+> handle such cases?
 >
 >
-> Thanks,
+> Thanks
 >
 > -/Mallesh
 >
->>           return;
->>       }
->>   diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index db3cbc186a51..e6a0ee468b17 100644
+>> +        xe_hw_error_work_disable(xe);
+>> +    }
+>> +
+>>       switch (state) {
+>>       case pci_channel_io_normal:
+>>           return PCI_ERS_RESULT_CAN_RECOVER;
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>> index a91c3d924e8c..42fb24366a6b 100644
 >> --- a/drivers/gpu/drm/xe/xe_ras.c
 >> +++ b/drivers/gpu/drm/xe/xe_ras.c
->> @@ -628,8 +628,15 @@ static u8 handle_device_memory_errors(struct 
->> xe_device *xe, struct xe_ras_error_
->>           break;
->>       case XE_RAS_MEMORY_DB_ECC:
->>           ret = handle_page_offline(xe, info->sw_address, true);
->> -        if (ret)
->> +        /*
->> +         * Double-bit ECC errors are non-fatal errors and are 
->> reported via IRQ.
->> +         * Wedge the device with a bus reset for errors that require 
->> SBR to recover.
->> +         * TODO: Trigger SBR using pci_reset_bus
->> +         */
->> +        if (ret) {
->> +            xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET);
->>               return XE_RAS_RECOVERY_ACTION_RESET;
->> +        }
->>           break;
->>       default:
->>           return XE_RAS_RECOVERY_ACTION_RESET;
+>> @@ -1170,6 +1170,18 @@ u32 xe_ras_get_max_pages(struct xe_device *xe)
+>>       return xe->ras.state.max_pages;
+>>   }
+>>   +/**
+>> + * xe_ras_set_aer_path - Set whether errors are processed via the 
+>> AER path
+>> + * @xe: xe device instance
+>> + * @aer_path: true if errors are processed via the AER path, false 
+>> if via irq
+>> + *
+>> + * Set if errors are processed via AER
+>> + */
+>> +void xe_ras_set_aer_path(struct xe_device *xe, bool aer_path)
+>> +{
+>> +    xe->ras.state.aer_path = aer_path;
+>> +}
+>> +
+>>   /**
+>>    * xe_ras_init - Initialize Xe RAS
+>>    * @xe: xe device instance
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+>> index 1b358c7d040f..06518226db85 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras.h
+>> +++ b/drivers/gpu/drm/xe/xe_ras.h
+>> @@ -23,5 +23,6 @@ int xe_ras_init(struct xe_device *xe);
+>>   enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device 
+>> *xe);
+>>   bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
+>>   u32 xe_ras_get_max_pages(struct xe_device *xe);
+>> +void xe_ras_set_aer_path(struct xe_device *xe, bool aer_path);
+>>     #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h 
+>> b/drivers/gpu/drm/xe/xe_ras_types.h
+>> index a86f9d2b8c92..558df12bcd9b 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+>> @@ -414,6 +414,8 @@ struct xe_ras_set_health_response {
+>>    * struct xe_ras_state - RAS device and firmware state
+>>    */
+>>   struct xe_ras_state {
+>> +    /** @aer_path: True if errors are processed via the AER path, 
+>> false if via irq */
+>> +    bool aer_path;
+>>       /** @disable_vram_page_offline: cached configfs policy, 
+>> immutable after init */
+>>       bool disable_vram_page_offline;
+>>       /** @max_pages: Total number of pages that can be stored by 
+>> firmware */
