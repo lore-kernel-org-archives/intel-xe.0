@@ -2,43 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A943F606A332
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:29:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=D3ihBCSW
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04A45606A324
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Nov 2026 10:37:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71A5F10ECB0;
-	Mon,  2 Nov 2026 10:29:30 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D9A610ECB0;
- Mon,  2 Nov 2026 10:29:24 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0A99F402DE;
- Mon,  2 Nov 2026 10:29:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B36F31F000C1;
- Mon,  2 Nov 2026 10:29:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793615363;
- bh=L4XzLe+lfUxoKU7lTbmFR0JxOGLXCO2Cdx82oUei9sY=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=D3ihBCSWqWwP1rkXOWT//Hx9yxRmAu3hj7bDD6AKgOi8biNGFeYfSw2z2L08hnITp
- r9kSQteKPzFl12PMQUwo5+lsksva9rLZfjGPmf9/8sp0HBhvKIJat2zeS6VTDsZHOo
- /mBdcXeE/J73R0abCY5ZbAel8DRRafjbxK0wW63UN2KDWA58MUVjQphjBgyM5VJ/qf
- W+x1bmpAhRkk/ZNyvloYUEHeuCN0mHbMOcXP8q542rCqwidbe7m6wtdF6Eu4muG6r2
- F/kSYcTnQFCTkgKEcek4roBHx5vYGtOjDsdYCtKLeDkcGdWVebHAzYyqwtA0nBC+yY
- blxjQt9u1VL/g==
-Message-ID: <sashiko-outbox-193260@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [RFC 7/7] drm/xe/uapi: Wire up GEM_CREATE NUMA node placement
- handler
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261102101803.455921-16-himal.prasad.ghimiray@intel.com>
-References: <20261102101803.455921-9-himal.prasad.ghimiray@intel.com>
- <20261102101803.455921-16-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 02 Nov 2026 10:29:23 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id B87F910E5D1;
+	Mon,  2 Nov 2026 10:37:52 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23CC110E5BB;
+ Mon,  2 Nov 2026 10:37:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3749604886437201612=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/ras=3A_Distinguish_?=
+ =?utf-8?q?between_detailed_and_aggregate_counters?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Nov 2026 10:37:52 -0000
+Message-ID: <179361587213.101884.13275338193328100714@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261102090424.987843-1-raag.jadav@intel.com>
+In-Reply-To: <20261102090424.987843-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,159 +33,284 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential issue(=
-s) to consider:
-- [Medium] drm/xe: UAPI mismatch for VRAM-only BOs in gem_create_parse_numa=
-_node()
-- [Low] drm/xe: missing numa_node kernel-doc in xe_bo_init_locked()
---
+--===============3749604886437201612==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 4dfdcc93fc9d778a45958834231a36c288d379fc
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+== Series Details ==
 
-drm/xe/uapi: Wire up GEM_CREATE NUMA node placement handler
+Series: drm/xe/ras: Distinguish between detailed and aggregate counters
+URL   : https://patchwork.freedesktop.org/series/177428/
+State : failure
 
-This commit parses the DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE user
-extension prior to BO creation in xe_gem_create_ioctl() and passes the
-requested NUMA node ID down through the BO creation helpers to store on
-the xe_bo.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index fc9bfb436b8e7..bbbc337372641 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
+CI Bug Log - changes from xe-6040-abc364961b361ab626fa5a09568b22744f1e0393_FULL -> xe-pw-177428v1_FULL
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -2480,7 +2480,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *x=
-e, struct xe_bo *bo,
->  				struct ttm_lru_bulk_move *bulk, size_t size,
->  				u16 cpu_caching, enum ttm_bo_type type,
->  				u32 flags, struct dma_buf *dma_buf,
-> -				struct drm_exec *exec)
-> +				int numa_node, struct drm_exec *exec)
->  {
+  **WARNING**
 
-[ ... ]
+  Minor unknown changes coming with xe-pw-177428v1_FULL need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-177428v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-> @@ -2966,7 +2967,8 @@ static void xe_bo_debug_mixed_mode_cur_index_advanc=
-e(struct xe_device *xe,
->  struct xe_bo *xe_bo_create_user(struct xe_device *xe,
->  				struct xe_vm *vm, size_t size,
->  				u16 cpu_caching,
-> -				u32 flags, struct drm_exec *exec)
-> +				u32 flags, int numa_node,
-> +				struct drm_exec *exec)
->  {
+  
 
-[Severity: Low]
-This isn't a bug, but both xe_bo_init_locked() and xe_bo_create_user() have
-kernel-doc comment blocks immediately above their definitions. Should
-@numa_node be added to both kernel-doc blocks to avoid W=3D1 kernel-doc
-warnings for undescribed function parameters?
+Participating hosts (3 -> 3)
+------------------------------
 
-[ ... ]
+  No changes in participating hosts
 
-> @@ -3658,6 +3666,56 @@ static int gem_create_user_extensions(struct xe_de=
-vice *xe, struct xe_bo *bo,
->  	return 0;
->  }
-> =20
-> +/*
-> + * Parse a host NUMA node request from the extension chain. The node mus=
-t be
-> + * known before the BO is created, because the backing pages are allocat=
-ed
-> + * during creation. Returns the requested node in @numa_node (NUMA_NO_NO=
-DE if
-> + * none or a negative value is given) or a negative errno on an invalid =
-request.
-> + */
-> +static int gem_create_parse_numa_node(struct xe_device *xe, u64 extensio=
-ns,
-> +				      u32 bo_flags, int *numa_node)
-> +{
-> +	struct drm_xe_user_extension base;
-> +	struct drm_xe_ext_set_property ext;
-> +	unsigned int i =3D 0;
-> +
-> +	*numa_node =3D NUMA_NO_NODE;
-> +
-> +	while (extensions && i++ < MAX_USER_EXTENSIONS) {
-> +		u64 __user *address =3D u64_to_user_ptr(extensions);
-> +		s64 nid;
-> +
-> +		if (XE_IOCTL_DBG(xe, copy_from_user(&base, address, sizeof(base))))
-> +			return -EFAULT;
-> +
-> +		if (base.name !=3D DRM_XE_GEM_CREATE_EXTENSION_SET_PROPERTY)
-> +			goto next;
-> +
-> +		if (XE_IOCTL_DBG(xe, copy_from_user(&ext, address, sizeof(ext))))
-> +			return -EFAULT;
-> +
-> +		if (ext.property !=3D DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE)
-> +			goto next;
-> +
-> +		nid =3D (s64)ext.value;
-> +		*numa_node =3D NUMA_NO_NODE;
-> +		if (nid < 0)
-> +			goto next;
-> +
-> +		if (XE_IOCTL_DBG(xe, nid >=3D MAX_NUMNODES || !node_online(nid)))
-> +			return -EINVAL;
-> +
-> +		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_FLAG_SYSTEM)))
-> +			return -EINVAL;
-> +
-> +		*numa_node =3D nid;
-> +next:
-> +		extensions =3D base.next_extension;
-> +	}
-> +
-> +	return 0;
-> +}
+Possible new issues
+-------------------
 
-[Severity: Medium]
-Does rejecting !(bo_flags & XE_BO_FLAG_SYSTEM) with -EINVAL in
-xe_gem_create_ioctl() -> gem_create_parse_numa_node() match the UAPI
-contract in include/uapi/drm/xe_drm.h?
+  Here are the unknown changes that may have been introduced in xe-pw-177428v1_FULL:
 
-In struct drm_xe_gem_create, the comment for
-DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE states:
+### IGT changes ###
 
-	/*
-	 * Host NUMA node (as a signed value) to allocate system-memory
-	 * backing pages from. Only honored for objects with a system-memory
-	 * placement; ignored for VRAM-only objects. Use a value < 0 to keep
-	 * the default device-local placement.
-	 */
-#define   DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE	1
+#### Warnings ####
 
-However, gem_create_parse_numa_node() returns -EINVAL when nid >=3D 0 and
-!(bo_flags & XE_BO_FLAG_SYSTEM) instead of ignoring the property on
-VRAM-only objects.
+  * igt@runner@aborted:
+    - shard-ptl:          ([FAIL][1], [FAIL][2], [FAIL][3], [FAIL][4], [FAIL][5], [FAIL][6], [FAIL][7], [FAIL][8], [FAIL][9], [FAIL][10], [FAIL][11], [FAIL][12], [FAIL][13], [FAIL][14], [FAIL][15], [FAIL][16], [FAIL][17], [FAIL][18], [FAIL][19], [FAIL][20], [FAIL][21], [FAIL][22], [FAIL][23], [FAIL][24]) ([Intel XE#9694]) -> ([FAIL][25], [FAIL][26], [FAIL][27], [FAIL][28], [FAIL][29], [FAIL][30], [FAIL][31], [FAIL][32], [FAIL][33], [FAIL][34], [FAIL][35], [FAIL][36], [FAIL][37], [FAIL][38], [FAIL][39], [FAIL][40], [FAIL][41], [FAIL][42], [FAIL][43], [FAIL][44], [FAIL][45], [FAIL][46], [FAIL][47], [FAIL][48], [FAIL][49])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-3/igt@runner@aborted.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@aborted.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@aborted.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@aborted.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@aborted.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-8/igt@runner@aborted.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-8/igt@runner@aborted.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-8/igt@runner@aborted.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-1/igt@runner@aborted.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-1/igt@runner@aborted.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-1/igt@runner@aborted.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-5/igt@runner@aborted.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-5/igt@runner@aborted.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-5/igt@runner@aborted.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-4/igt@runner@aborted.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-4/igt@runner@aborted.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-4/igt@runner@aborted.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-7/igt@runner@aborted.html
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-7/igt@runner@aborted.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-7/igt@runner@aborted.html
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-3/igt@runner@aborted.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-3/igt@runner@aborted.html
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-3/igt@runner@aborted.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-3/igt@runner@aborted.html
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-6/igt@runner@aborted.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-6/igt@runner@aborted.html
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-6/igt@runner@aborted.html
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-8/igt@runner@aborted.html
+   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-8/igt@runner@aborted.html
+   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-8/igt@runner@aborted.html
+   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-1/igt@runner@aborted.html
+   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-1/igt@runner@aborted.html
+   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-1/igt@runner@aborted.html
+   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-5/igt@runner@aborted.html
+   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-5/igt@runner@aborted.html
+   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-5/igt@runner@aborted.html
+   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-4/igt@runner@aborted.html
+   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-4/igt@runner@aborted.html
+   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-4/igt@runner@aborted.html
+   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-2/igt@runner@aborted.html
+   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-2/igt@runner@aborted.html
+   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-2/igt@runner@aborted.html
+   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-7/igt@runner@aborted.html
+   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-7/igt@runner@aborted.html
+   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-7/igt@runner@aborted.html
 
-In addition, because nid < 0 jumps to next before reaching the
-!(bo_flags & XE_BO_FLAG_SYSTEM) check, a VRAM-only BO with nid < 0 is
-accepted while nid >=3D 0 fails with -EINVAL, and an extension chain on a
-VRAM-only BO that sets nid >=3D 0 followed by a later extension resetting
-nid =3D -1 will fail on the first extension.
+  
+  [Intel XE#9694]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694
 
-Should the UAPI comment and gem_create_parse_numa_node() be aligned on
-whether VRAM-only BOs ignore DRM_XE_GEM_CREATE_SET_PROPERTY_NUMA_NODE or
-reject it with -EINVAL?
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261102101803.4559=
-21-9-himal.prasad.ghimiray@intel.com?part=3D7
+Build changes
+-------------
+
+  * Linux: xe-6040-abc364961b361ab626fa5a09568b22744f1e0393 -> xe-pw-177428v1
+
+  IGT_9173: 9173
+  xe-6040-abc364961b361ab626fa5a09568b22744f1e0393: abc364961b361ab626fa5a09568b22744f1e0393
+  xe-pw-177428v1: 177428v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/index.html
+
+--===============3749604886437201612==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/ras: Distinguish between detailed and=
+ aggregate counters</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/177428/">https://patchwork.freedesktop.org/series/177428/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-177428v1/index.html">https://intel-gfx-ci.01.org/tree/i=
+ntel-xe/xe-pw-177428v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6040-abc364961b361ab626fa5a09568b22744=
+f1e0393_FULL -&gt; xe-pw-177428v1_FULL</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with xe-pw-177428v1_FULL need to be verifie=
+d<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br=
+ />
+  introduced in xe-pw-177428v1_FULL, please notify your bug team (I915-ci-i=
+nfra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in C=
+I.</p>
+<h2>Participating hosts (3 -&gt; 3)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-1774=
+28v1_FULL:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@runner@aborted:<ul>
+<li>shard-ptl:          (<a href=3D"https://intel-gfx-ci.01.org/tree/intel-=
+xe/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-3/igt@runner@=
+aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@a=
+borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
+/xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@ab=
+orted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/=
+xe-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@abo=
+rted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/x=
+e-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-6/igt@runner@abor=
+ted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe=
+-6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-8/igt@runner@abort=
+ed.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-=
+6040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-8/igt@runner@aborte=
+d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6=
+040-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-8/igt@runner@aborted=
+.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-60=
+40-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-1/igt@runner@aborted.=
+html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-604=
+0-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-1/igt@runner@aborted.h=
+tml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040=
+-abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-1/igt@runner@aborted.ht=
+ml">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-=
+abc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-5/igt@runner@aborted.htm=
+l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-a=
+bc364961b361ab626fa5a09568b22744f1e0393/shard-ptl-5/igt@runner@aborted.html=
+">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-ab=
+c364961b361ab626fa5a09568b22744f1e0393/shard-ptl-5/igt@runner@aborted.html"=
+>FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc=
+364961b361ab626fa5a09568b22744f1e0393/shard-ptl-4/igt@runner@aborted.html">=
+FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc3=
+64961b361ab626fa5a09568b22744f1e0393/shard-ptl-4/igt@runner@aborted.html">F=
+AIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc36=
+4961b361ab626fa5a09568b22744f1e0393/shard-ptl-4/igt@runner@aborted.html">FA=
+IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364=
+961b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html">FAI=
+L</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc3649=
+61b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html">FAIL=
+</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc36496=
+1b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html">FAIL<=
+/a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961=
+b361ab626fa5a09568b22744f1e0393/shard-ptl-2/igt@runner@aborted.html">FAIL</=
+a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b=
+361ab626fa5a09568b22744f1e0393/shard-ptl-7/igt@runner@aborted.html">FAIL</a=
+>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b3=
+61ab626fa5a09568b22744f1e0393/shard-ptl-7/igt@runner@aborted.html">FAIL</a>=
+, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-6040-abc364961b36=
+1ab626fa5a09568b22744f1e0393/shard-ptl-7/igt@runner@aborted.html">FAIL</a>)=
+ (<a href=3D"https://gitlab.freedesktop.org/drm/xe/kernel/issues/9694">Inte=
+l XE#9694</a>) -&gt; (<a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/=
+xe-pw-177428v1/shard-ptl-3/igt@runner@aborted.html">FAIL</a>, <a href=3D"ht=
+tps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-3/igt@runn=
+er@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/inte=
+l-xe/xe-pw-177428v1/shard-ptl-3/igt@runner@aborted.html">FAIL</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-3/ig=
+t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/intel-xe/xe-pw-177428v1/shard-ptl-6/igt@runner@aborted.html">FAIL</a>, <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl=
+-6/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
+g/tree/intel-xe/xe-pw-177428v1/shard-ptl-6/igt@runner@aborted.html">FAIL</a=
+>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shar=
+d-ptl-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-8/igt@runner@aborted.html">FA=
+IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1=
+/shard-ptl-8/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-1/igt@runner@aborted.htm=
+l">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177=
+428v1/shard-ptl-1/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-1/igt@runner@aborte=
+d.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
+w-177428v1/shard-ptl-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"https:=
+//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-5/igt@runner@a=
+borted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe=
+/xe-pw-177428v1/shard-ptl-5/igt@runner@aborted.html">FAIL</a>, <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-4/igt@run=
+ner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/int=
+el-xe/xe-pw-177428v1/shard-ptl-4/igt@runner@aborted.html">FAIL</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-4/ig=
+t@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/intel-xe/xe-pw-177428v1/shard-ptl-2/igt@runner@aborted.html">FAIL</a>, <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl=
+-2/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.01.or=
+g/tree/intel-xe/xe-pw-177428v1/shard-ptl-2/igt@runner@aborted.html">FAIL</a=
+>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1/shar=
+d-ptl-7/igt@runner@aborted.html">FAIL</a>, <a href=3D"https://intel-gfx-ci.=
+01.org/tree/intel-xe/xe-pw-177428v1/shard-ptl-7/igt@runner@aborted.html">FA=
+IL</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177428v1=
+/shard-ptl-7/igt@runner@aborted.html">FAIL</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6040-abc364961b361ab626fa5a09568b22744f1e0393 -&gt; xe-pw-177=
+428v1</li>
+</ul>
+<p>IGT_9173: 9173<br />
+  xe-6040-abc364961b361ab626fa5a09568b22744f1e0393: abc364961b361ab626fa5a0=
+9568b22744f1e0393<br />
+  xe-pw-177428v1: 177428v1</p>
+
+</body>
+</html>
+
+--===============3749604886437201612==--
