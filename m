@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2906606A32C
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:10:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A11606A32C
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MCj0xLbf
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lKJJWnoq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62A8B10F362;
-	Tue,  3 Nov 2026 06:09:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BE7810F367;
+	Tue,  3 Nov 2026 06:10:00 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0BEB10F362
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:09:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0968510F367
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:09:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793686191; x=1825222191;
+ t=1793686194; x=1825222194;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CheqQpUr28qorw5N+wHpDfH8VPS0G1gXB+AFB0DVSPo=;
- b=MCj0xLbfDZpK3ObGv4CvVN6v0ES7wGHWGk1+SrHAq9YIAId2xKTsahCr
- LCk21pFXpGnflJ4U4L+gN5VcT477p64Y9lXoP2V4deJmPAFK3bCMxEUjX
- xqsfUMqxK1n5VwTP2CcsM8qFiL3tUm+0sI8N2EbY9Os7oUd2/CFGRZMsw
- FoSKUSC/i7nZIK/quaVPU2mALyHkx18s6/J3tNTW4GclIutmmhDrshM8v
- sm2VNvgHFTgNH4gTgCZwUPU2hJ63d7kITqBrDdtTWC6xdXlFdUIHrt3dZ
- xmrjy35D9Hd0uRVfUeq3k8dbKaNIhXAKx2RArt0yQtqrlcx6jmEQ6CqKE A==;
-X-CSE-ConnectionGUID: b+gjeCUARqy/9X946E4dWA==
-X-CSE-MsgGUID: dRavoInJTFa06ShEXAvl4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2276700"
+ bh=AiGTF1ghTJCgCnnr4f9L5lk82bft7QOaaw3aRtjoRiw=;
+ b=lKJJWnoqbTDWJxU4ik3TOxPtsbB4OijJAb6mATtdzFwCqMIVdlXN5eKs
+ zYcPV3VzjS/ZlJDVYWbMVE9dDhStgdE83lPUX+Kc/NgNuQ29xpEAxjUyP
+ gPekAgodHfHq1sq30cRU+8r3FaQs/qRBd3mKNfyXTCEz5W5RzT1FysBsk
+ xHadJCKGiB5w4a361JN5plWYvyl6Z4uByU7f9QnmO11AcUKRsmGnkIREw
+ sP5y65v/j7tLxxoznWUYlhSKxsurzaP15vj/VZdAX7LXOkOj91TGB3OU1
+ 55xVc0YJVsLrAC+wEAR6bFzi9r55wWkwx4HSn4xMtjA7xT5Y5tHoQOtq9 g==;
+X-CSE-ConnectionGUID: N0swZWSST0e1XpvvR5HwRg==
+X-CSE-MsgGUID: MM2nJNssSaS32R9L0Oxjgw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2276703"
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="2276700"
+   d="scan'208";a="2276703"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:09:51 -0800
-X-CSE-ConnectionGUID: 4Y1YdxZ+RZG4gU5zXoLpmQ==
-X-CSE-MsgGUID: tIxCciKuRty6M1PamoDqmA==
+ 02 Nov 2026 22:09:54 -0800
+X-CSE-ConnectionGUID: jeWrvV4GRJC7fgs/4kzzHA==
+X-CSE-MsgGUID: wCE2rn9tTqus+312+PuJDg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="6446344"
+   d="scan'208";a="6446347"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:09:48 -0800
+ 02 Nov 2026 22:09:51 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
  ravi.kishore.koppuravuri@intel.com, mallesh.koujalagi@intel.com,
  tejas.upadhyay@intel.com
-Subject: [PATCH v3 2/7] drm/xe/hw_error: Initialize hw_error_work per tile
-Date: Tue,  3 Nov 2026 11:39:32 +0530
-Message-ID: <20261103060929.1586783-11-riana.tauro@intel.com>
+Subject: [PATCH v3 3/7] drm/xe/ras: Treat non-fatal PCIe errors as recovered
+Date: Tue,  3 Nov 2026 11:39:33 +0530
+Message-ID: <20261103060929.1586783-12-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261103060929.1586783-9-riana.tauro@intel.com>
 References: <20261103060929.1586783-9-riana.tauro@intel.com>
@@ -72,97 +72,30 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Since hw_error_work is now being reused generically, initialize it per tile
-so that we don't hit uninitialized work for non-root tile. While at it,
-disable hw_error_work on remove to prevent UAF during unwind.
+On systems lacking RAS capability, only PCIe errors are reported, via
+AER, not device errors. Non-fatal PCIe errors reported at the Upstream
+Switch Port (USP) have no impact on link or device state, so treat
+them as recovered without requiring a secondary bus reset (SBR).
 
+Fixes: 25913a062cd4 ("drm/xe/xe_ras: Add support for uncorrectable core-compute errors")
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: move disable work to xe_device_remove
-    add dgfx and sriov check (Sashiko)
----
- drivers/gpu/drm/xe/xe_device.c   |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c | 24 ++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_hw_error.h |  1 +
- 3 files changed, 26 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ras.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 07a7ab6ac083..8f498e3e3e58 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -45,6 +45,7 @@
- #include "xe_guc.h"
- #include "xe_guc_pc.h"
- #include "xe_hw_engine_group.h"
-+#include "xe_hw_error.h"
- #include "xe_hwmon.h"
- #include "xe_i2c.h"
- #include "xe_irq.h"
-@@ -1118,6 +1119,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- void xe_device_remove(struct xe_device *xe)
- {
-+	xe_hw_error_work_disable(xe);
-+
- 	xe_display_unregister(xe);
- 
- 	drm_dev_unplug(&xe->drm);
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index a934b649575c..aaa2437d40bf 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -537,6 +537,24 @@ static void process_hw_errors(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 2c01c183d02b..cd753c82b0ff 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -830,7 +830,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
  	}
- }
  
-+/**
-+ * xe_hw_error_work_disable - Disable hw error work
-+ * @xe: xe device instance
-+ *
-+ * This function disables work for hardware error handling for all tiles.
-+ */
-+void xe_hw_error_work_disable(struct xe_device *xe)
-+{
-+	struct xe_tile *tile;
-+	u8 id;
-+
-+	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
-+		return;
-+
-+	for_each_tile(tile, xe, id)
-+		disable_work_sync(&tile->hw_error_work);
-+}
-+
- /**
-  * xe_hw_error_init - Initialize hw errors
-  * @xe: xe device instance
-@@ -546,12 +564,14 @@ static void process_hw_errors(struct xe_device *xe)
-  */
- void xe_hw_error_init(struct xe_device *xe)
- {
--	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_tile *tile;
-+	u8 id;
+ 	if (!xe->info.has_sysctrl)
+-		return XE_RAS_RECOVERY_ACTION_RESET;
++		return XE_RAS_RECOVERY_ACTION_RECOVERED;
  
- 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
- 		return;
- 
--	INIT_WORK(&tile->hw_error_work, hw_error_work);
-+	for_each_tile(tile, xe, id)
-+		INIT_WORK(&tile->hw_error_work, hw_error_work);
- 
- 	process_hw_errors(xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index 5e3a11424108..944699331a93 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.h
-+++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -12,4 +12,5 @@ struct xe_device;
- 
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
- void xe_hw_error_init(struct xe_device *xe);
-+void xe_hw_error_work_disable(struct xe_device *xe);
- #endif
+ 	BUILD_BUG_ON(BITS_PER_TYPE(sent) < XE_RAS_COMP_MAX);
+ 	/* Default action */
 -- 
 2.47.1
 
