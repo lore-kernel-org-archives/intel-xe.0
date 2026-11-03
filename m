@@ -2,42 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47328606A324
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B02606A329
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:23:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SXw9dbp5
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KgLTi0IX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0178110F39A;
-	Tue,  3 Nov 2026 06:23:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5127510F3A6;
+	Tue,  3 Nov 2026 06:23:37 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F82810F39A
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:23:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8783710F39A
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:23:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0E95341AF8;
- Tue,  3 Nov 2026 06:23:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBDB11F000C1;
- Tue,  3 Nov 2026 06:23:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 7135C41282;
+ Tue,  3 Nov 2026 06:23:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FEF61F000C1;
+ Tue,  3 Nov 2026 06:23:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793686984;
- bh=kOLz5l8OQnt0nF3vjFPcf33YxPeIxfBUqw5IpbvoLf8=;
+ s=k20260515; t=1793687011;
+ bh=olMRCMkJyI9JYLh630Ygd3N7VEycXqTmipHH16gWl1g=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=SXw9dbp5gHJViTAPUk5XsOzdBZdJOIByb+b61BfzF6Vre2/9ksjeKUoxvi3BnDA8G
- T1SHOVWl6Z/Fl1iYYHJTfvExg0jx5xagUnCGdD2kN+/V1rxdf+LbIBXnnXEXqVsaHh
- cJS+DnL5keCkLA/EqRitHefWFgj7bqQiZBQo3xc3l5BAwo9cvSMoZPQNCqrTfkssjV
- JZnLDWmhvL0EXlXx98RH9A/0u6F4BoBZaKLBJl0+pZ6JqwmAfx4DTY+pQ+K+ehxiAy
- 9jVcOsV/ECeCpyBrix9e2FK8ypvD4LZawU35apacmNSm1Vu/ZYSn0qQv1rPZxwFGyZ
- 1R0EVUElyRUng==
-Message-ID: <sashiko-outbox-194619@kernel.org>
+ b=KgLTi0IXMOUid5a5jza1Ymi6KviWDi3eBoBPDfWli88eJsMuPaWkc523M1sf+ELvh
+ UVVdA7fAR1g44Vt1XyeW+C72UxzlwZ9FKGi7mG3QPwnnglnRG1jbpi9XqU54R1EuV3
+ djKZ2Zb6837S21yk2K10cqn50iY/pqnkPhP6b7iccjHP1alMo2Ge+ZMrKdfPc9Dj6x
+ sD6jvqxr/PB8W4ZUNgKZk1yfKOj5UTv78/nuSiYR6YqdnyVnPogdVYu+3FXZU9QOM8
+ 7YJXH4dCd2QWp+9YRYr/YaLZzwUsQ7cEwpYDHa3pwihgdvFES3Yc1q3v4Rw+eCM4bv
+ FvFVuymMbhp7g==
+Message-ID: <sashiko-outbox-194620@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 7/7] drm/xe/xe_ras: Skip double-bit ECC page
- offlining on AER path
+Subject: Re: [PATCH v3 2/7] drm/xe/hw_error: Initialize hw_error_work per tile
 To: "Riana Tauro" <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261103060929.1586783-16-riana.tauro@intel.com>
+In-Reply-To: <20261103060929.1586783-11-riana.tauro@intel.com>
 References: <20261103060929.1586783-9-riana.tauro@intel.com>
- <20261103060929.1586783-16-riana.tauro@intel.com>
+ <20261103060929.1586783-11-riana.tauro@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 03 Nov 2026 06:23:04 +0000
+Date: Tue, 03 Nov 2026 06:23:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,106 +58,89 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential issue(=
 s) to consider:
-- [High] drm/xe/xe_ras: duplicate handle_page_offline() call on DB_ECC erro=
-r path
+- [High] drm/xe/hw_error: missing xe_hw_error_work_disable() on probe error=
+ unwind
 --
 
-commit 3c39adabce266f3b2fd96c271c13abe952fe58d0
+commit 07d05aa9e22e61afa48de05e4142a663fa2508dd
 Author: Riana Tauro <riana.tauro@intel.com>
 
-drm/xe/xe_ras: Skip double-bit ECC page offlining on AER path
+drm/xe/hw_error: Initialize hw_error_work per tile
 
-This commit skips double-bit ECC page offlining in
-handle_device_memory_errors() when running on the AER path so pages are not
-unnecessarily offlined and dropped from the firmware queue before a Seconda=
-ry
-Bus Reset clears them.
+This commit initializes tile->hw_error_work across all tiles in
+xe_hw_error_init() and adds xe_hw_error_work_disable() in
+xe_device_remove() to stop the hardware error work items on device
+removal.
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 1809c3c893dee..32aa376555bd5 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -676,6 +676,23 @@ static u8 handle_device_memory_errors(struct xe_devi=
-ce *xe, struct xe_ras_error_
->  			    info->sw_address);
->  		/*
->  		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
-> +		 * On a race between AER for device fatal errors and non-fatal double-=
-bit ECC
-> +		 * errors, if AER pci error handlers execute first it will get all err=
-ors as
-> +		 * a single response from system controller, which can include the dou=
-ble-bit
-> +		 * ECC errors. This leads to unnecessary offlining of pages, since an =
-SBR clears
-> +		 * them on reload and firmware drops them from its queue once read.
-> +		 * Skip handling of double-bit ECC errors on the AER path to avoid thi=
-s.
-> +		 *
-> +		 * TODO: Remove this check once AER handling is optimized to retain so=
-ft
-> +		 * offlined pages.
-> +		 */
-> +		if (xe_ras_is_aer_internal_error(xe)) {
-> +			xe_info(xe, "[RAS]: Skipping double-bit ECC error handling on AER pat=
-h\n");
-> +			break;
-> +		}
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 07a7ab6ac0832..8f498e3e3e586 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+[ ... ]
+> @@ -1118,6 +1119,8 @@ int xe_device_probe(struct xe_device *xe)
+> =20
+>  void xe_device_remove(struct xe_device *xe)
+>  {
+> +	xe_hw_error_work_disable(xe);
 > +
-> +		ret =3D handle_page_offline(xe, info->sw_address, true);
+>  	xe_display_unregister(xe);
+> =20
+>  	drm_dev_unplug(&xe->drm);
 
 [Severity: High]
-Was the existing call to handle_page_offline() above xe_log_comp() in
-handle_device_memory_errors() meant to be removed or moved here?
+As reported by Sashiko on v2 [1], what happens if xe_device_probe() fails
+after xe_hw_error_init() has already run?
 
-drivers/gpu/drm/xe/xe_ras.c:handle_device_memory_errors() {
-	...
-	case XE_RAS_MEMORY_DB_ECC:
-		ret =3D handle_page_offline(xe, info->sw_address, true);
-		xe_log_comp(xe, ret ? cper_sev : CPER_SEV_INFORMATIONAL,
-			    DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
-			    "Double-bit ECC error detected at sw address 0x%llx\n",
-			    info->sw_address);
-		...
-		if (xe_ras_is_aer_internal_error(xe)) {
-			xe_info(xe, "[RAS]: Skipping double-bit ECC error handling on AER path\n=
-");
-			break;
-		}
+During probe, xe_device_probe() calls xe_irq_install(), which invokes
+xe_hw_error_init(xe) before allocating or requesting IRQs:
 
-		ret =3D handle_page_offline(xe, info->sw_address, true);
+drivers/gpu/drm/xe/xe_irq.c:xe_irq_install() {
+	xe_hw_error_init(xe);
+
+	xe_irq_reset(xe);
 	...
+	err =3D pci_alloc_irq_vectors(pdev, nvec, nvec, irq_flags);
+	if (err < 0) {
+		drm_err(&xe->drm, "Failed to allocate IRQ vectors: %d\n", err);
+		return err;
+	}
 }
 
-Because the earlier handle_page_offline() call is still present before the
-xe_ras_is_aer_internal_error() check, the AER path still soft-offlines the
-page and sends the page offline command to firmware before breaking out.
+Inside xe_hw_error_init(), process_hw_errors() -> xe_hw_error_irq_handler()
+can immediately schedule tile->hw_error_work, and once xe_irq_install()
+enables interrupts, dg1_irq_handler() can also schedule tile->hw_error_work
+while the rest of xe_device_probe() is executing.
 
-On the normal non-AER IRQ path, handle_page_offline() is now called twice in
-a row for the same info->sw_address. When the first call soft-offlines a pa=
-ge
-on its first error occurrence, the immediate second call sees -EEXIST from
-xe_ttm_vram_handle_addr_fault():
+However, in __xe_pci_probe(), xe_pci_remove() -> xe_device_remove() is
+only called if xe_pm_init() fails after xe_device_probe() has already
+succeeded:
 
-drivers/gpu/drm/xe/xe_ras.c:handle_page_offline() {
-	...
-	case -EEXIST:
-		if (xa_load(&state->offlined_pages, page_address >> XE_PTE_SHIFT))
-			action =3D XE_RAS_PAGE_ACTION_REMOVE;
-		else
-			action =3D XE_RAS_PAGE_ACTION_OFFLINE;
-	...
+drivers/gpu/drm/xe/xe_pci.c:__xe_pci_probe() {
+	err =3D xe_device_probe(xe);
+	if (err)
+		return err;
+
+	err =3D xe_pm_init(xe);
+	if (err)
+		goto err_driver_cleanup;
+
+	return 0;
+
+err_driver_cleanup:
+	xe_pci_remove(pdev);
+	return err;
 }
 
-Wouldn't this cause the second call to treat a single first-occurrence ECC
-error as a second occurrence and request XE_RAS_PAGE_ACTION_OFFLINE (or fail
-in send_page_offline_cmd() and wedge the device)?
+If xe_irq_install() fails after xe_hw_error_init(), or if any subsequent
+step in xe_device_probe() fails (such as xe_gt_init(), xe_vram_memtest(),
+or xe_heci_gsc_init()), xe_device_remove() is never called. Can
+tile->hw_error_work remain pending or running while devres_release_all()
+unmaps MMIO and frees struct xe_device, causing a use-after-free on probe
+error unwind?
 
-Also, note that xe_log_comp() evaluates ret ? cper_sev :
-CPER_SEV_INFORMATIONAL, so if the first handle_page_offline() call is
-removed, xe_log_comp() would either need to be moved after
-handle_page_offline() or updated so it does not use an uninitialized ret.
+[1] https://lore.kernel.org/r/20261026060459.771448-13-riana.tauro@intel.com
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261103060929.1586=
-783-9-riana.tauro@intel.com?part=3D7
+783-9-riana.tauro@intel.com?part=3D2
