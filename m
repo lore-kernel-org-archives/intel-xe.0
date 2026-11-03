@@ -2,53 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFD8606A32C
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:10:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC16606A32C
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OW4BlAiU
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=g0i5lDRo
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351C210F368;
-	Tue,  3 Nov 2026 06:10:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D02A10F377;
+	Tue,  3 Nov 2026 06:10:07 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D19710F368
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:09:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6C610F377
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:10:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793686198; x=1825222198;
+ t=1793686201; x=1825222201;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XtkCyW89snwGlokjfKnC1VcI/FKxYRR87s4IsvtfPMc=;
- b=OW4BlAiUYKRt3UgARrUVBpvLB1Lh/cppd/NwsaGtb7PDlYK1Mp2iUjAR
- +qO9tbBa4PH620hgN14LKo2BEy4flXx+B9Do8peQT3xh+O5uaWI5AaQFl
- rYMrT2QiHucQVYB1k9slPFKPW5tKFJTW223yKEq3MKUtoevcJbSARc9b2
- sidArT93jsZB2s7P60vByXAh46/Z6AOVWs8zvYdt9NkCJWzl5RnH/A5tT
- oHiNRQLDvI15Zd7bqR0lNAx3VxERd7uaznXOwJAlQf/E8SpOHpoqvJW0+
- xNWilzpLtgNTN2bdpemDUlu3XAl5h9VRkkd8btSsSZmlJ+eMEmiU90v6W A==;
-X-CSE-ConnectionGUID: J8lHEcwGTEC7VdkATu4/QQ==
-X-CSE-MsgGUID: FC1sSoaKTp2lkZeYo24Fsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2276709"
+ bh=OQcaIN7NOZqjVhHs1Iywalsf7K89Sy6Uw17/2pE/9lY=;
+ b=g0i5lDRoG4GJgDRF0EQ24d4Yq6Ni9OnvLMxABNd7H5OVuoeLPnyylhd4
+ w8OEfvREON8EhO1DJuM8kQvxPfTzREDJqNkR+idyIjglKQh0rkt9VXTew
+ FPYggFD+SRyMMR1f2W0+fyf0Evaj1Eu4My5IcDrDpxrIRprbRaTofwGZV
+ NGTjhMqA1b+EB/D+inxV6lCioJrKO6EbhlMbY4x8IoUmtf580NDph0Q6y
+ qXmOO0w+knHLDvp5dAE0AhY6ly8VyGvcVFsTAySYVvifZ49Bs/p49DT4Y
+ leahLtQwVI+imuhpw44iryF+rys5yeHobzrSgLfCrCBnZqDgjlVSqFWvI A==;
+X-CSE-ConnectionGUID: vDYN2d8pRbe1wPgUP+YH7w==
+X-CSE-MsgGUID: SN8K4s9OTRGwPMkyi2wwzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2276720"
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="2276709"
+   d="scan'208";a="2276720"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:09:58 -0800
-X-CSE-ConnectionGUID: mOGlwrYfTfC5Oi/lFLAg+A==
-X-CSE-MsgGUID: UMMATZJxSZ+r9+Mr7WeGtw==
+ 02 Nov 2026 22:10:01 -0800
+X-CSE-ConnectionGUID: HXq2z4ofQUy2lqzD8ElP2Q==
+X-CSE-MsgGUID: JB2zGkAWS22eHS0xQFRmQQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="6446352"
+   d="scan'208";a="6446368"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:09:55 -0800
+ 02 Nov 2026 22:09:58 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
  ravi.kishore.koppuravuri@intel.com, mallesh.koujalagi@intel.com,
- tejas.upadhyay@intel.com, Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH v3 4/7] drm/xe/pci: Add upstream switch port lookup helper
-Date: Tue,  3 Nov 2026 11:39:34 +0530
-Message-ID: <20261103060929.1586783-13-riana.tauro@intel.com>
+ tejas.upadhyay@intel.com
+Subject: [PATCH v3 5/7] drm/xe/xe_ras: Add a flag for uncorrectable internal
+ error
+Date: Tue,  3 Nov 2026 11:39:35 +0530
+Message-ID: <20261103060929.1586783-14-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261103060929.1586783-9-riana.tauro@intel.com>
 References: <20261103060929.1586783-9-riana.tauro@intel.com>
@@ -72,109 +73,121 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move the USP lookup logic out of RAS code and into the PCI
-layer so it can be reused by other callers.
-
-No functional change.
+Introduce a flag with get/set accessors to record when an
+uncorrectable internal error was reported via AER.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 23 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pci.h |  1 +
- drivers/gpu/drm/xe/xe_ras.c | 19 ++-----------------
- 3 files changed, 26 insertions(+), 17 deletions(-)
+v2: add PCI_POSSIBLE_ERROR
+    fix kernel-doc
+    rename aer_path to internal error
+---
+ drivers/gpu/drm/xe/xe_pci_error.c | 26 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.c       | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h       |  2 ++
+ drivers/gpu/drm/xe/xe_ras_types.h |  2 ++
+ 4 files changed, 50 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index d13599d79ae9..1fa9b683f045 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -1524,6 +1524,29 @@ struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev)
- 	return to_xe_device(drm);
+diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+index 9bf0da3a3d15..4ade392b47be 100644
+--- a/drivers/gpu/drm/xe/xe_pci_error.c
++++ b/drivers/gpu/drm/xe/xe_pci_error.c
+@@ -54,6 +54,29 @@ static pci_ers_result_t ras_action_to_pci_result(struct pci_dev *pdev, u8 action
+ 	}
+ }
+ 
++static bool is_aer_internal_error(struct pci_dev *pdev)
++{
++	struct pci_dev *usp;
++	u16 aer_cap;
++	u32 status;
++
++	usp = xe_pci_get_usp_dev(pdev);
++	if (!usp)
++		return false;
++
++	aer_cap = pci_find_ext_capability(usp, PCI_EXT_CAP_ID_ERR);
++	if (!aer_cap) {
++		dev_warn_once(&usp->dev, "AER capability unavailable\n");
++		return false;
++	}
++
++	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, &status);
++	if (PCI_POSSIBLE_ERROR(status))
++		return false;
++
++	return status & PCI_ERR_UNC_INTN;
++}
++
+ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_state_t state)
+ {
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+@@ -67,6 +90,9 @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
+ 	if (xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe))
+ 		return PCI_ERS_RESULT_DISCONNECT;
+ 
++	if (is_aer_internal_error(pdev))
++		xe_ras_set_aer_internal_error(xe);
++
+ 	switch (state) {
+ 	case pci_channel_io_normal:
+ 		return PCI_ERS_RESULT_CAN_RECOVER;
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 3aea4969af13..58a0b5fa676d 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -1253,6 +1253,26 @@ u32 xe_ras_get_max_pages(struct xe_device *xe)
+ 	return xe->ras.state.max_pages;
  }
  
 +/**
-+ * xe_pci_get_usp_dev() - Get the upstream switch port device.
-+ * @pdev: pci device of SGunit
++ * xe_ras_is_aer_internal_error() - Check if an uncorrectable internal error was reported via AER
++ * @xe: xe device instance
 + *
-+ * Device Hierarchy:
-+ * Upstream Switch Port (USP) --> Virtual Switch Port (VSP) --> SGunit (GPU endpoint)
-+ *
-+ * The function traverses the PCI device hierarchy to find the upstream switch port
-+ * device.
-+ *
-+ * Return: pointer to USP &pci_dev, NULL otherwise.
++ * Return: true if an uncorrectable internal error was reported via AER, false otherwise.
 + */
-+struct pci_dev *xe_pci_get_usp_dev(struct pci_dev *pdev)
++bool xe_ras_is_aer_internal_error(struct xe_device *xe)
 +{
-+	struct pci_dev *vsp;
-+
-+	vsp = pci_upstream_bridge(pdev);
-+	if (!vsp)
-+		return NULL;
-+
-+	return pci_upstream_bridge(vsp);
++	return xe->ras.state.aer_internal_error;
 +}
 +
- int xe_register_pci_driver(void)
- {
- 	return pci_register_driver(&xe_pci_driver);
-diff --git a/drivers/gpu/drm/xe/xe_pci.h b/drivers/gpu/drm/xe/xe_pci.h
-index 11bcc5fe2c5b..3dc3539c3970 100644
---- a/drivers/gpu/drm/xe/xe_pci.h
-+++ b/drivers/gpu/drm/xe/xe_pci.h
-@@ -11,5 +11,6 @@ struct pci_dev;
- int xe_register_pci_driver(void);
- void xe_unregister_pci_driver(void);
- struct xe_device *xe_pci_to_pf_device(struct pci_dev *pdev);
-+struct pci_dev *xe_pci_get_usp_dev(struct pci_dev *pdev);
++/**
++ * xe_ras_set_aer_internal_error() - Set if an uncorrectable internal error is reported via AER
++ * @xe: xe device instance
++ */
++void xe_ras_set_aer_internal_error(struct xe_device *xe)
++{
++	xe->ras.state.aer_internal_error = true;
++}
++
+ /**
+  * xe_ras_init - Initialize Xe RAS
+  * @xe: xe device instance
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index c44fa172011f..f7b587ac84e3 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -25,5 +25,7 @@ bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
+ u32 xe_ras_get_max_pages(struct xe_device *xe);
+ int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
+ 				struct xe_ras_get_counter_response *response);
++bool xe_ras_is_aer_internal_error(struct xe_device *xe);
++void xe_ras_set_aer_internal_error(struct xe_device *xe);
  
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index cd753c82b0ff..3aea4969af13 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -13,6 +13,7 @@
- #include "xe_device.h"
- #include "xe_drm_ras.h"
- #include "xe_log.h"
-+#include "xe_pci.h"
- #include "xe_pm.h"
- #include "xe_printk.h"
- #include "xe_ras.h"
-@@ -504,22 +505,6 @@ static void get_offline_list(struct xe_device *xe)
- 			      &response, sizeof(response), &response.common, false);
- }
- 
--static struct pci_dev *find_usp_dev(struct pci_dev *pdev)
--{
--	struct pci_dev *vsp;
--
--	/*
--	 * Device Hierarchy:
--	 *
--	 * Upstream Switch Port (USP) --> Virtual Switch Port (VSP) --> SGunit (GPU endpoint)
--	 */
--	vsp = pci_upstream_bridge(pdev);
--	if (!vsp)
--		return NULL;
--
--	return pci_upstream_bridge(vsp);
--}
--
- static void ras_usp_aer_init(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-@@ -527,7 +512,7 @@ static void ras_usp_aer_init(struct xe_device *xe)
- 	u16 aer_cap;
- 	u32 status;
- 
--	usp = find_usp_dev(pdev);
-+	usp = xe_pci_get_usp_dev(pdev);
- 	if (!usp)
- 		return;
- 
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+index a86f9d2b8c92..0ff5803d495b 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -414,6 +414,8 @@ struct xe_ras_set_health_response {
+  * struct xe_ras_state - RAS device and firmware state
+  */
+ struct xe_ras_state {
++	/** @aer_internal_error: true if an uncorrectable internal error was reported via AER */
++	bool aer_internal_error;
+ 	/** @disable_vram_page_offline: cached configfs policy, immutable after init */
+ 	bool disable_vram_page_offline;
+ 	/** @max_pages: Total number of pages that can be stored by firmware */
 -- 
 2.47.1
 
