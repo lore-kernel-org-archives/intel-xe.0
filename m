@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E422606A324
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 432E2606A334
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HRIvLObS
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DMFNCupJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1BA10F3A4;
-	Tue,  3 Nov 2026 06:46:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EABA610E230;
+	Tue,  3 Nov 2026 06:49:01 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 489E810F3A2
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:46:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F97A10E230
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:48:56 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 27D1440D73;
- Tue,  3 Nov 2026 06:46:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2DCD1F000C1;
- Tue,  3 Nov 2026 06:46:21 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 0C288438B1;
+ Tue,  3 Nov 2026 06:48:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C08AB1F0093A;
+ Tue,  3 Nov 2026 06:48:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793688382;
- bh=2joZP0maykx1UZfqponMJiEL4exbnfKgBFDEYQpihG4=;
+ s=k20260515; t=1793688535;
+ bh=9D8dBOOIZAILeNzWTf1D6dFluu71P+BJYb3xijnGrjg=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=HRIvLObSfAr/jPXsguzrZavlzAdPLHxlaUlRKeT2EQIdnkU6FzktH9LhPMzPBq8De
- h4VOgUJtcWHKfwsP5b3m5M2B2l9sAet8LWa4IMPig6fgojOoLkMsSCttsDvV/kfJp6
- u+25N2VwQRlBUwAmaKs2ci9YonoBw9xmEngXWVL4RSEN0uY6zCJWmgufZFkjDaFu29
- 3D61VaFU1/kFF+uMIEv+apDAzDdODMkeEjpbKlKUgDxX+CkLz2taA8vFTZ5NUmY9E3
- bA3HhEhM3L/hwrb2Y4VltFDtbQ0OB6dQ3YawmWkP5V5HaXx6+q7ZlPIM/xF2bKTsX3
- lDSZ0Yp1pd4ig==
-Message-ID: <sashiko-outbox-194668@kernel.org>
+ b=DMFNCupJKqYu3GOi3OZBM2bK309v7CoPhkK4oHpMK8DzZSBd2pqzj4FjuTfGmWIsF
+ ecP9Es1ucxHhxGY0rYruBHAg3E1O9MxZIjiigb2o3lQTeQhmaH5ZtEqdRkP5Bd3jG+
+ +fcSyFAxpeOTrrDFpUW60Nyt/65hr3quI1QvIRHggqGUeH4VwoPDcKZjlEBTVHz7B4
+ anLl8HEjesjkwBW8Kk4OC59/nVfYk9IkCmu/z/wnX76SX1CHWk5qxAennu4FJcCneQ
+ E/LAxjXHc7o/w0k56dUWgQ1Ddls1vl88uEXepAaJcc1smb6f3TXbfFG7oPZow7ah3L
+ 9GDzhgQxnthqw==
+Message-ID: <sashiko-outbox-194672@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
+Subject: Re: [PATCH v12 07/10] drm/xe/pm: Introduce xe_device_suspend/resume()
 To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261103060649.1015468-10-raag.jadav@intel.com>
+In-Reply-To: <20261103060649.1015468-8-raag.jadav@intel.com>
 References: <20261103060649.1015468-1-raag.jadav@intel.com>
- <20261103060649.1015468-10-raag.jadav@intel.com>
+ <20261103060649.1015468-8-raag.jadav@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 03 Nov 2026 06:46:21 +0000
+Date: Tue, 03 Nov 2026 06:48:55 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,308 +56,242 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] drm/xe/pci: lockless pm_runtime_active() checks in FLR callbacks
-- [High] drm/xe/pci: broken FLR error handling under non-default wedged.mode
-- [High] drm/xe/pci: missing xe->cpu_bind->q re-initialization on FLR resume
-- [High] drm/xe/migrate: unreset ULLS state and exit_work across PCIe FLR
-- [Medium] drm/xe/pci: uninitialized wedge and PM access in survivability m=
-ode
+- [High] drm/xe: work_tdr livelock and scheduler race in xe_device_suspend(=
+) FLR path
+- [High] drm/xe: missing ULLS teardown and synchronization across FLR in xe=
+_device_suspend()
+- [High] drm/xe: missing re-initialization of xe->cpu_bind->q in xe_device_=
+resume()
 --
 
-commit cf08cadf19ba560845f140c4f8eb3d6efc8fd9de
+commit c9d7243b4c02644f3740b46ba51d0f51d005d2ba
 Author: Raag Jadav <raag.jadav@intel.com>
 
-drm/xe/pci: Introduce PCIe Function Level Reset
+drm/xe/pm: Introduce xe_device_suspend/resume()
 
-This commit adds PCIe Function Level Reset (FLR) support via the
-reset_prepare and reset_done PCI error handlers. It suspends GT activity
-without VRAM eviction before the reset and re-initializes hardware state,
-kernel BOs, and kernel queues afterwards.
+This commit extracts the system suspend and resume logic from xe_pm.c into
+common xe_device_suspend() and xe_device_resume() helpers in xe_device.c,
+adding an flr parameter to support PCIe FLR preparation and
+re-initialization alongside system suspend and resume.
 
-> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pc=
-i_error.c
-> index 6a942cb6f69d9..fe8d83da1e8b6 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_error.c
-> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 07a7ab6ac0832..c54a42cdf9a47 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
 
 [ ... ]
 
-> @@ -149,9 +195,99 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
->  		xe_wedge_put(xe);
+> @@ -1384,3 +1386,150 @@ void xe_device_exit(void)
+>  		wait_var_event(&xe_device_count, !atomic_read(&xe_device_count));
+>  	}
 >  }
-> =20
-> +static inline bool xe_pci_reset_skip(struct xe_device *xe)
-> +{
-> +	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe=
-->info.probe_display;
-> +}
 > +
-> +static void xe_pci_reset_prepare(struct pci_dev *pdev)
+> +/**
+> + * xe_device_suspend() - Common helper for system suspend and FLR prepare
+> + * @xe: xe device instance
+> + * @flr: indicate FLR prepare
+> + *
+> + * Return: 0 on success, negative error code otherwise.
+> + */
+> +int xe_device_suspend(struct xe_device *xe, bool flr)
 > +{
-> +	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+> +	struct xe_gt *gt;
+> +	u8 id;
 > +	int err;
 > +
-> +	/* No guarantees by PCI core */
-> +	if (!pm_runtime_active(&pdev->dev)) {
-> +		xe_err(xe, "PCI reset: unexpected power state\n");
-> +		return;
-> +	}
+> +	err =3D xe_pxp_pm_suspend(xe->pxp);
+> +	if (err)
+> +		return err;
+> +
+> +	xe_late_bind_wait_for_worker_completion(&xe->late_bind);
+> +
+> +	for_each_gt(gt, xe, id)
+> +		xe_gt_suspend_prepare(gt);
+> +
+> +	if (flr) {
+> +		for_each_gt(gt, xe, id)
+> +			xe_gt_flr_prepare(gt);
 
 [Severity: High]
-Can checking pm_runtime_active(&pdev->dev) locklessly in both
-xe_pci_reset_prepare() and xe_pci_reset_done() without holding a runtime PM
-reference cause unbalanced xe_wedge_get() and xe_wedge_put() calls or leave
-the device unwedged after a reset?
+Can this FLR preparation path livelock on sched->base.work_tdr or leave the
+scheduler running when xe_device_resume() later calls xe_sched_reinit()?
 
-There appear to be several paths where this goes wrong:
+In xe_gt_flr_prepare() -> xe_uc_flr_prepare(), uc_flr_prepare() and
+uc_flr_sanitize() are queued and flushed back-to-back on gt->ordered_wq:
 
-1. Because reset_prepare returns void, returning early when
-!pm_runtime_active(&pdev->dev) is true does not stop the PCI core
-(pci_dev_save_and_disable() -> __pci_reset_function_locked() ->
-pci_dev_restore()) from transitioning the function to PCI_D0 and resetting
-the hardware, wiping VRAM (which is not evicted in D3hot when
-!xe->d3cold.allowed), GGTT mappings, and GuC state. If the device is still
-runtime-suspended when xe_pci_reset_done() runs, xe_pci_reset_done() also
-returns early without calling xe_wedge_declare(), leaving the wiped GPU
-unwedged on the next runtime resume.
+	INIT_WORK_ONSTACK(&flr.work, uc_flr_prepare);
+	queue_work(gt->ordered_wq, &flr.work);
+	flush_work(&flr.work);
+	destroy_work_on_stack(&flr.work);
 
-2. If !pm_runtime_active(&pdev->dev) is true in xe_pci_reset_prepare() (for
-example, during RPM_RESUMING, a failed RPM_SUSPENDING transition, or a
-concurrent runtime resume from an ioctl or sysfs read since xe_wedge_get()
-was skipped) and runtime_status becomes RPM_ACTIVE before xe_pci_reset_done=
-()
-runs, xe_pci_reset_done() sees pm_runtime_active(&pdev->dev) as true and
-!xe->flr_prepared, jumps to out:, and calls xe_wedge_put(xe) without a
-matching xe_wedge_get(xe). That drops the permanent reference just acquired
-by xe_wedge_declare() (or immediately underflows xe->wedged.ref).
+	INIT_WORK_ONSTACK(&flr.work, uc_flr_sanitize);
+	queue_work(gt->ordered_wq, &flr.work);
+	flush_work(&flr.work);
+	destroy_work_on_stack(&flr.work);
 
-3. Conversely, if pm_runtime_active(&pdev->dev) is true while
-dev->power.usage_count is 0 during the autosuspend window, xe_wedge_get(xe)
-calls xe_pm_runtime_get_noresume(xe), which triggers drm_WARN() for missing
-outer runtime PM protection. If autosuspend transitions runtime_status to
-RPM_SUSPENDING or RPM_SUSPENDED between the lockless pm_runtime_active()
-check and xe_wedge_get(xe), runtime suspend runs concurrently with
-xe_pci_reset_prepare(), and xe_pci_reset_done() returns early at
-!pm_runtime_active(&pdev->dev), leaking the wedge and runtime PM references
-and leaving xe->flr_prepared set to true.
+When an exec queue has jobs in flight, uc_flr_prepare() ->
+xe_guc_flr_prepare() -> xe_guc_submit_pause_abort() starts submission and
+calls guc_exec_queue_kill() -> xe_guc_exec_queue_trigger_cleanup() ->
+xe_sched_tdr_queue_imm(), which sets sched->base.timeout =3D 0 and queues
+sched->base.work_tdr (drm_sched_job_timedout) on gt->ordered_wq with delay =
+0.
 
-> +
-> +	err =3D xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe);
-> +	if (err)
-> +		xe_err(xe, "PCI reset: device in unexpected state\n");
-> +
-> +	/* Wedge the device to prevent userspace access but don't send the even=
-t yet */
-> +	xe_wedge_get(xe);
-> +	if (err)
-> +		return;
+When drm_sched_job_timedout() runs on gt->ordered_wq before
+uc_flr_sanitize(), guc_exec_queue_timedout_job() marks the job fence with
+-ETIME, calls xe_sched_submission_start(), and returns
+DRM_GPU_SCHED_STAT_NO_HANG. drm_sched_job_timedout() then calls
+drm_sched_job_reinsert_on_false_timeout(), which puts the signaled job back
+on sched->base.pending_list and queues work_free_job on
+sched->base.submit_wq (a separate workqueue from gt->ordered_wq), followed
+immediately by drm_sched_start_timeout_unlocked(). Unless work_free_job on
+submit_wq has already completed on another CPU and removed the job from
+pending_list before that call, drm_sched_start_timeout() sees
+sched->base.timeout =3D=3D 0 and a non-empty pending_list, re-queueing work=
+_tdr
+with delay 0 on gt->ordered_wq behind uc_flr_sanitize().
 
-[Severity: Medium]
-Should xe_pci_reset_prepare() and xe_pci_reset_done() return immediately wh=
-en
-xe_survivability_mode_is_boot_enabled(xe) is true, before calling
-xe_wedge_get(xe)?
-
-When boot survivability mode is enabled during probe, xe_device_probe_early=
-()
-returns early before calling xe_wedge_init(xe), and __xe_pci_probe() returns
-0 before calling xe_device_probe(xe) and xe_pm_init(xe):
-
-drivers/gpu/drm/xe/xe_device.c:xe_device_probe_early()
-	err =3D xe_pcode_probe_early(xe);
-	if (err) {
-		int save_err =3D err;
-
-		/*
-		 * In Boot Survivability mode, no drm card is exposed and driver
-		 * is loaded with bare minimum to allow for firmware to be
-		 * flashed through mei. Return success, if survivability mode
-		 * is enabled due to pcode failure.
-		 */
-		err =3D xe_survivability_mode_boot_enable(xe);
-		if (err)
-			return err;
-
-		return save_err;
-	}
-
-	err =3D wait_for_lmem_ready(xe);
-	if (err)
-		return err;
-
-	err =3D xe_wedge_init(xe);
-
-Because xe_pm_init(xe) was never called, runtime PM remains disabled
-(dev->power.disable_depth > 0), so pm_runtime_active(&pdev->dev) returns
-true. Calling xe_wedge_get(xe) then invokes xe_pm_runtime_get_noresume(xe) =
+Next on gt->ordered_wq, uc_flr_sanitize() -> xe_uc_stop() -> xe_guc_stop() =
 ->
-pm_runtime_get_if_in_use(), which fails with -EINVAL and triggers drm_WARN()
-for missing outer runtime PM protection, and xe_pci_reset_done() subsequent=
-ly
-calls xe_wedge_declare() and xe_wedge_put() on an uninitialized xe->wedged
-struct.
+xe_guc_submit_stop() -> guc_exec_queue_stop() calls
+xe_sched_submission_stop(), which sets sched->base.pause_submit =3D true and
+cancels work_free_job. If work_free_job had not run yet on submit_wq, the
+signaled job remains on sched->base.pending_list. When the re-queued
+work_tdr runs, guc_exec_queue_timedout_job() sees DMA_FENCE_FLAG_SIGNALED_B=
+IT
+set and returns DRM_GPU_SCHED_STAT_NO_HANG without starting the scheduler;
+drm_sched_job_reinsert_on_false_timeout() re-adds the job to pending_list
+while drm_sched_run_free_queue() is a no-op because drm_sched_is_stopped() =
+is
+true, and drm_sched_start_timeout_unlocked() re-queues work_tdr with delay 0
+in an infinite loop on gt->ordered_wq.
 
-> +
-> +	err =3D xe_pci_reset_skip(xe);
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: not supported\n");
-> +		return;
-> +	}
-> +
-> +	/*
-> +	 * The hardware could be in corrupted state and access unreliable, but =
-we try to
-> +	 * update data structures and cleanup any pending work to avoid side ef=
-fects during
-> +	 * PCIe FLR. This will be similar to system suspend flow but without ev=
-iction.
-> +	 */
-> +	err =3D xe_device_suspend(xe, true);
+Conversely, if a job was still in entity->job_queue when uc_flr_prepare()
+ran, work_run_job on sched->base.submit_wq can pop the job into pending_list
+and queue work_tdr on gt->ordered_wq after uc_flr_sanitize() was queued.
+After uc_flr_sanitize() stops the scheduler, work_tdr runs
+guc_exec_queue_timedout_job(), which calls xe_sched_submission_start() and
+leaves pause_submit =3D=3D false, triggering:
+
+	xe_gt_assert(ge->q->gt, drm_sched_is_stopped(&sched->base));
+
+in xe_sched_reinit() during xe_device_resume(xe, true).
 
 [Severity: High]
-What happens if Ultra Low Latency Submission (ULLS) mode is active on
-tile->migrate when a PCIe FLR occurs?
+What stops tile->migrate->ulls.exit_work from racing with FLR preparation
+and re-initialization or leaving stale ULLS state after reset?
 
-When xe_migrate_ulls_enter(m) is called from page fault or SVM prefetch
-paths, it takes a runtime PM reference via xe_pm_runtime_get_noresume(xe),
-submits a ULLS_ENTER job to keep m->q spinning on a semaphore in m->q->lrc[=
-0],
-sets m->ulls.enabled =3D true, and schedules m->ulls.exit_work.
+On DGFX platforms, GPU page faults (xe_pagefault_service()) and SVM
+prefetches (xe_vm_prefetch()) call xe_migrate_ulls_enter(), which sets
+m->ulls.enabled =3D true under m->job_mutex, submits a ULLS_ENTER job to m-=
+>q,
+and schedules m->ulls.exit_work (xe_migrate_ulls_exit()) on
+system_percpu_wq. Neither xe_device_suspend(xe, true) nor
+xe_device_resume(xe, true) (via xe_gt_reinit() -> xe_migrate_reinit())
+disables or flushes m->ulls.exit_work, takes m->job_mutex, or resets
+m->ulls.enabled (unlike xe_migrate_fini()).
 
-Neither xe_device_suspend(xe, true) nor xe_device_resume(xe, true) ->
-xe_gt_reinit() -> xe_migrate_reinit(m) cancels m->ulls.exit_work, resets
-m->ulls.enabled to false, or drops the ULLS runtime PM reference:
+This appears to allow three failure modes across FLR:
 
-drivers/gpu/drm/xe/xe_migrate.c:xe_migrate_reinit()
-int xe_migrate_reinit(struct xe_migrate *m)
-{
-	xe_migrate_prepare_vm(m->tile, m, m->q->vm, NULL);
-	return xe_exec_queue_reinit(m->q);
-}
+1. If m->ulls.exit_work fires while m->q->guc->sched is stopped (after
+uc_flr_sanitize() during the FLR window, or in xe_device_resume(xe, true)
+before xe_migrate_reinit()), xe_migrate_ulls_exit() sees
+xe_exec_queue_is_idle(m->q, 1) and calls __xe_migrate_job_push(m, job,
+ULLS_EXIT), which arms the job via xe_sched_job_arm() ->
+xe_lrc_init_seqno_fence(), incrementing m->q->lrc[0]->fence_ctx.next_seqno
+and queueing the job on m->q->entity. When xe_migrate_reinit() ->
+xe_exec_queue_reinit(m->q) -> xe_lrc_ctx_init() runs without m->job_mutex,
+it writes lrc->fence_ctx.next_seqno - 1 into __xe_lrc_seqno_map(lrc) and
+__xe_lrc_start_seqno_map(lrc), marking the unexecuted ULLS_EXIT job's seqno
+as completed in the hardware seqno page before the job is emitted in
+xe_guc_submit_start().
 
-After the hardware reset and xe_exec_queue_reinit(m->q) -> xe_lrc_ctx_init()
-wipe m->q->lrc[0] and terminate the spinning context on the copy engine,
-m->ulls.enabled remains true. Won't the next job pushed via
-xe_migrate_job_push() (tagged ULLS_ACTIVE) or xe_migrate_ulls_exit() (tagged
-ULLS_EXIT) have xe_sched_job_ulls_is_chained(job) =3D=3D true, causing
-submit_exec_queue() to suppress XE_GUC_ACTION_SCHED_CONTEXT and ring-tail
-updates while waiting on a semaphore that no job is parked on, hanging
-tile->migrate->q and wedging the device?
+2. If m->ulls.exit_work fires during xe_uc_flr_prepare() between
+xe_guc_submit_pause_abort() (which sets EXEC_QUEUE_STATE_KILLED on m->q) and
+uc_flr_sanitize(), guc_exec_queue_run_job() sees
+exec_queue_killed_or_banned_or_wedged(m->q), skips q->ring_ops->emit_job(jo=
+b)
+(leaving job->ptrs[0].head =3D=3D 0), and places the unsignaled ULLS_EXIT j=
+ob on
+sched->base.pending_list. During xe_device_resume(xe, true), after
+xe_lrc_ctx_init() writes MI_ARB_ON_OFF into the ring, xe_guc_submit_start()
+-> guc_exec_queue_start(m->q) finds that pending job and rewinds
+lrc->ring.tail, RING_HEAD, and RING_TAIL to job->ptrs[0].head (0),
+overwriting the ring state initialized by xe_lrc_ctx_init().
 
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: failed to prepare\n");
-> +		return;
-> +	}
-> +
-> +	xe->flr_prepared =3D true;
-> +	xe_info(xe, "PCI reset: prepared\n");
-> +}
-> +
-> +static void xe_pci_reset_done(struct pci_dev *pdev)
+3. If m->ulls.exit_work has not fired before FLR resume completes,
+m->ulls.enabled remains true even though the hardware reset wiped engine
+state, causing subsequent xe_migrate_ulls_enter() calls to skip submitting a
+ULLS_ENTER job.
+
+[ ... ]
+
+> +int xe_device_resume(struct xe_device *xe, bool flr)
 > +{
-> +	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+> +	struct xe_tile *tile;
+> +	struct xe_gt *gt;
+> +	u8 id;
 > +	int err;
 > +
-> +	/* No guarantees by PCI core */
-> +	if (!pm_runtime_active(&pdev->dev))
-> +		return;
-> +
-> +	err =3D xe_pci_reset_skip(xe);
+> +	err =3D xe_pcode_ready(xe, true);
 > +	if (err)
-> +		goto out;
+> +		return err;
 > +
-> +	if (!xe->flr_prepared)
-> +		goto out;
+> +	assert_lmem_ready(xe);
 > +
-> +	/* Unprepare early in case we fail */
-> +	xe->flr_prepared =3D false;
+> +	for_each_tile(tile, xe, id)
+> +		xe_wa_apply_tile_workarounds(tile);
 > +
-> +	/*
-> +	 * We already have the data structures intact, so try to re-initialize =
-the device.
-> +	 * This will be similar to system resume flow, except we'll also need t=
-o recreate
-> +	 * kernel bos and restore kernel queues.
-> +	 */
-> +	err =3D xe_device_resume(xe, true);
-
-[Severity: High]
-Does xe_device_resume(xe, true) leave the device-wide kernel bind queue
-(xe->cpu_bind->q) in the killed state after a PCIe FLR?
-
-During xe_pci_reset_prepare(), xe_device_suspend(xe, true) calls
-xe_gt_flr_prepare() -> xe_uc_flr_prepare() -> xe_guc_flr_prepare() ->
-xe_guc_submit_pause_abort(), which iterates over all queues in
-guc->submission_state.exec_queue_lookup and calls guc_exec_queue_kill(q) on
-each one, including xe->cpu_bind->q. That sets EXEC_QUEUE_STATE_KILLED in
-xe->cpu_bind->q->guc->state and sets sched.base.timeout =3D 0, while the
-hardware reset wipes the VRAM backing xe->cpu_bind->q->lrc[0].
-
-During xe_device_resume(xe, true), xe_gt_reinit() only re-initializes
-tile->migrate->q via xe_migrate_reinit() -> xe_exec_queue_reinit(m->q) and
-never calls xe_exec_queue_reinit(xe->cpu_bind->q). Once the device is
-unwedged, when a pipelined CPU page-table bind job is submitted on
-xe->cpu_bind->q via xe_cpu_bind_update_pgtables_job(), won't
-guc_exec_queue_run_job() see exec_queue_killed_or_banned_or_wedged(q) as tr=
-ue
-and pass force_clear =3D true to run_pt_job(), clearing page tables instead=
- of
-populating them?
-
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: re-initialization failed\n");
-> +		goto out;
+> +	if (flr) {
+> +		err =3D xe_bo_restore_map(xe);
+> +		if (err)
+> +			return err;
+> +
+> +		for_each_gt(gt, xe, id) {
+> +			err =3D xe_gt_reinit(gt);
+> +			if (err)
+> +				return err;
+> +		}
 > +	}
-> +
-> +	/* Unwedge to allow userspace access */
-> +	xe_wedge_put(xe);
-> +	xe_info(xe, "PCI reset: done\n");
-> +
-> +	return;
-> +out:
-> +	/* Most likely the device is unusable and there's nothing we can do abo=
-ut it */
-> +	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS=
-_RESET);
-> +	/* Drop local reference */
-> +	xe_wedge_put(xe);
 
 [Severity: High]
-What happens in this error path when xe->wedged.mode is non-default
-(XE_WEDGED_MODE_NEVER or XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)?
+Does the FLR re-initialization branch also need to re-initialize
+xe->cpu_bind->q?
 
-1. When xe->wedged.mode is XE_WEDGED_MODE_NEVER (via module parameter
-wedged_mode=3D0 or debugfs), xe_wedge_declare() returns early without calli=
-ng
-xe_wedge_get(xe) or xe_gt_wedge_declare(gt):
+During probe, xe_device_probe() -> xe_cpu_bind_init() creates the device-wi=
+de
+kernel bind queue xe->cpu_bind->q with EXEC_QUEUE_FLAG_KERNEL |
+EXEC_QUEUE_FLAG_MIGRATE, and guc_exec_queue_init() inserts it into
+guc->submission_state.exec_queue_lookup.
 
-drivers/gpu/drm/xe/xe_wedge.c:xe_wedge_declare()
-	if (xe->wedged.mode =3D=3D XE_WEDGED_MODE_NEVER) {
-		xe_dbg(xe, "Wedged mode is forcibly disabled\n");
-		return;
-	}
+During xe_device_suspend(xe, true), xe_gt_flr_prepare() ->
+xe_uc_flr_prepare() -> xe_guc_flr_prepare() -> xe_guc_submit_pause_abort()
+iterates over guc->submission_state.exec_queue_lookup and calls
+guc_exec_queue_kill() on every queue, which sets EXEC_QUEUE_STATE_KILLED on
+xe->cpu_bind->q and zeroes its scheduler timeout.
 
-The subsequent xe_wedge_put(xe) then drops the temporary reference taken in
-xe_pci_reset_prepare(), reducing xe->wedged.ref to 0 and unblocking userspa=
-ce
-IOCTLs on a device whose VRAM and hardware state were wiped by FLR and whose
-GTs and IRQs remain suspended.
+In xe_device_resume(xe, true), xe_gt_reinit() only re-initializes
+tile->migrate->q via xe_migrate_reinit() -> xe_exec_queue_reinit(m->q),
+leaving xe->cpu_bind->q with EXEC_QUEUE_STATE_KILLED set. When a subsequent
+pipelined page-table update is scheduled on xe->cpu_bind->q (via
+xe_vm_rebind(), xe_vma_rebind(), xe_vm_range_rebind(), or
+xe_vm_range_unbind() -> xe_cpu_bind_update_pgtables_job()),
+guc_exec_queue_run_job() sees exec_queue_killed_or_banned_or_wedged(q) as
+true:
 
-2. If xe_device_resume(xe, true) fails before xe_uc_start() restarts the DRM
-schedulers that were stopped in xe_device_suspend(xe, true) ->
-xe_gt_flr_prepare() -> xe_uc_flr_prepare() -> uc_flr_sanitize() ->
-xe_uc_stop() -> xe_guc_submit_stop(), and xe->wedged.mode is either
-XE_WEDGED_MODE_NEVER or XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET (where
-xe_guc_submit_wedge() skips xe_guc_submit_pause_abort()), the schedulers for
-all queues remain stopped (drm_sched_is_stopped(&sched->base) =3D=3D true).=
- When
-those queues are later destroyed on file close or driver unbind,
-guc_exec_queue_destroy() queues STATIC_MSG_CLEANUP, which
-xe_sched_process_msg_queue() ignores while the scheduler is stopped, leaking
-the queues and their drm_dev_get() references and hanging module unload.
+	if (is_pt_job(job)) {
+		xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
+
+		run_pt_job(guc_to_xe(guc), job,
+			   killed_or_banned_or_wedged_or_error);
+
+and passes force_clear =3D true to run_pt_job() ->
+xe_cpu_bind_update_pgtables_execute(), clearing page table entries instead =
+of
+populating them while still committing the VMA as present.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261103060649.1015=
-468-1-raag.jadav@intel.com?part=3D9
+468-1-raag.jadav@intel.com?part=3D7
