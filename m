@@ -2,41 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB0D6606A32D
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB436606A328
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Qy5uaxuE
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IujG/Pht
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6423810FC8C;
-	Wed,  4 Nov 2026 15:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 988A310FCA1;
+	Wed,  4 Nov 2026 15:02:53 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCBF410F8D2;
- Tue,  3 Nov 2026 22:42:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BAC910E1EB;
+ Tue,  3 Nov 2026 22:42:15 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id B27BE43DA7;
- Tue,  3 Nov 2026 22:42:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E152D1F00A02;
- Tue,  3 Nov 2026 22:42:30 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 53EE840A8E;
+ Tue,  3 Nov 2026 22:42:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F6741F000C1;
+ Tue,  3 Nov 2026 22:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793745752;
- bh=PE3JoFAsPWYzM/2VTWaCcmrBAhB5QjBCHLVh8VYps6c=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=Qy5uaxuEVoVv9knelReqa35dRFNHxzX5B85LqHbOGdaT7s+0YzGHAArT67qUaaN4W
- 7phmYSgI6e9NET1p2a/RGn9Ap6FU2e11OfWjhT15pfXExpYJbLJyj3bsdpb2Ofg0QT
- MloHuhWSLb77Zhj9/I/JhQpKDnSE3ynu4b8koy6BKPOb9lOxc7lIGZoZm/z87Hsf4p
- 9unACogQ9zkS+LnNd6z1LB1hCy4ijWf+8fyuh0VLMevjzqPCXcIxIvK6yW5ugxqCel
- 0aFWsd3USz3Bfdo6xz8exXkkttBaIHYILr8hF19ieORtlMx5VWlw3t2jYHJuoKzlo2
- Cj39yBmJzJc3g==
+ s=k20260515; t=1793745735;
+ bh=WxnWKT+9kKH7Du8TkvgtZkUd4TPSXvyu35Kk8ujhBxM=;
+ h=From:Subject:Date:To:Cc;
+ b=IujG/PhtwVxl+I1yUP06jnUQg/GzV8RFVlD7Puk9oWCBWR9C8j47sZ3NXbftljcfq
+ lw0hQd7wnM6BZEXdG0a+G8M+d0PgLOfQf7ihWutr+JIQw5WDncLSCqgAYYYwcztc2v
+ dHK3zZGopufbra8//b4EXrGpbasnrMM22MCXQ2lWk0lxrDPLyApu+MwrfoWRgU34PC
+ IFVWA+91/85geDcQiXNS9aIk+/EVkvE6pZy4V7ANOLMYU2fRNjzJpPMJlfmE3SRQ12
+ 3wjnsvxKkrM2ZWv9kdFTksl7PUbwqlzgNqZ5W+8tfLNbMKeUvbxz3m/HAfXqYkG3xE
+ lmLSMG4E8yHjA==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:10 -0600
-Subject: [PATCH v11 09/12] drm/nouveau: add connector luminance support
+Subject: [PATCH v11 00/12] Add support for a DRM backlight capability
+Date: Tue, 03 Nov 2026 16:42:01 -0600
+Message-Id: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261103-superm1-backlight-property-v11-9-00cce7b2ba22@kernel.org>
-References: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
-In-Reply-To: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMwQrCMAyA4VcZORtYyhD0VYaHtotbdG4laUUZe
+ 3erHv//8G1grMIG52YD5aeYrEsNokMDcfLLyChDHeBadyRqCa0k1gdh8PE+yzhlTLrWld9IzKd
+ AvguuG6ACSfkqr5/eX/5tJdw45q8I+/4B5PTr3n8AAAA=
+X-Change-ID: 20261101-superm1-backlight-property-1ee9b1a4b24d
 To: Maxime Ripard <mripard@kernel.org>, 
  Alex Deucher <alexander.deucher@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -63,406 +65,197 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-23.7 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,TRACKER_ID,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Mario Limonciello <mario.limonciello@amd.com>
+At Display Next Hackfest 2026 we reviewed progress moving brightness
+control into the DRM connector properties.
 
-Expose Nouveau panel brightness through the connector LUMINANCE property
-when DRM_LUMINANCE is enabled and atomic modesetting is exposed. Reuse
-the existing NV50 and DPCD hardware paths while preserving the backlight
-class interface otherwise, including for pre-NV50 displays.
+There is a range LUMINANCE property that will default to 0->0.
+Once a driver attaches a backlight it will be updated to 1->max.
+If the panel supports the minimum backlight turning off the display
+the range can later be updated to 0->max instead of 1->max.
 
-The panel backlight is probed and the property attached before the DRM
-device is registered. The luminance helpers are called from the NV50
-atomic commit tail.
+Version 8 had a lot of review feedback, and the biggest change is that
+this no longer has the legacy sysfs interface for brightness control.
 
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
+There is a Kconfig knob introduced that turns on the new API, and when
+the new API is available all drivers will conflict with the old backlight
+control API.
+
+This will allow us to land the new brightness control API and the transition
+to the new API separately.  *This series only tracks the new API itself.*
+
+The following compositors have implemented matching support, although they
+need to be changed again for items modified in v10 (the dropped cap):
+ * Kwin: https://invent.kde.org/plasma/kwin/-/merge_requests/9298
+ * Mutter: https://gitlab.gnome.org/swick/mutter/-/commits/wip/kms-luminance-prop
+ * Wlroots: https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/5384
+
+I've tested this series using modetest on amdgpu.
+
+The series is also available on this branch for easy testing.
+
+https://git.kernel.org/pub/scm/linux/kernel/git/superm1/linux.git/log/?h=superm1/backlight-property-v11
+
+Signed-off-by: Mario Limonciello <superm1@kernel.org>
 ---
-v11:
- * Call the luminance commit helpers from nv50_disp_atomic_commit_tail()
-   (Sashiko)
- * Attach the property before drm_dev_register() (Sashiko)
- * Keep the class device for non-atomic NV04 and nouveau.atomic=0
-   (Sashiko)
- * Fix stale brightness on eDP enable for the class device path (Sashiko)
- * Keep selecting BACKLIGHT_CLASS_DEVICE (Sashiko)
+Changes in v11:
+ * Rebased on drm-tip (fixes Intel CI failing to apply the KUnit patch)
+ * Squashed the amdgpu KUnit fixture update into the amdgpu luminance
+   patch and moved the bios_scratch_reg_offset fix before it, so every
+   commit builds and passes KUnit
+ * Dropped drm/radeon and drm/gma500 patches: both are non-atomic drivers,
+   so userspace can't use an atomic connector property there (Sashiko)
+ * Restored the unconditional select of BACKLIGHT_CLASS_DEVICE in all
+   migrated drivers, fixing ACPI_VIDEO unmet dependencies and link
+   failures (Sashiko)
+ * Core: don't call .disable_luminance when entering self refresh, and
+   only call .set_luminance when the luminance changes or on a modeset
+   that isn't a self refresh exit (Leo Li, Sashiko)
+ * Drivers on ACPI systems (amdgpu, i915/xe) only attach LUMINANCE when
+   acpi_video_backlight_use_native() allows it, keeping the acpi_video
+   fallback otherwise (Sashiko)
+ * Non-atomic paths (legacy non-DC amdgpu, nouveau NV04 and
+   nouveau.atomic=0) keep the backlight class device (Sashiko)
+ * bridge/panel: removed rebase artifacts from drm_bridge.h/drm_panel.h,
+   fixed an invalid container_of() in the panel bridge, cleaned up the
+   connector on error, and left backlight power to drm_panel_enable()/
+   drm_panel_disable() (Sashiko)
+ * bridge_connector: dropped .disable_luminance, which clobbered the
+   bridge's saved level
+ * amdgpu: restore brightness after GPU reset and modesets for LUMINANCE
+   panels, and skip programming unchanged values (Leo Li, Sashiko)
+ * amdgpu KUnit: fixed connector_type IDA mismatch (Sashiko)
+ * amdgpu: seed LUMINANCE from the hardware level; left the unrelated
+   privacy screen code in commit_tail unchanged
+ * i915: fall back to the backlight class device if attaching LUMINANCE
+   fails
+ * panel: don't attach LUMINANCE for panel bridges attached after device
+   registration, and update brightness under the backlight ops_lock
+ * ps8622: program the committed luminance in pre_enable
+ * i915: enable the backlight at the committed level, and fix the build
+   with BACKLIGHT_CLASS_DEVICE=n (Sashiko)
+ * nouveau: call the luminance helpers from the NV50 commit tail, attach
+   the property before drm_dev_register(), and fix a stale eDP brightness
+   on the class device path (Sashiko)
+ * gud: apply LUMINANCE within the atomic commit instead of a worker,
+   fixing an endless commit loop, a use-after-free on disconnect and
+   brightness clobbering; attach the property at init (Sashiko)
+ * ps8622: track internal PWM mode explicitly and don't touch I2C while
+   powered down (Sashiko)
+ * ssd130x: register the backlight device only without DRM_LUMINANCE,
+   use the committed contrast on enable, don't clobber it on disable,
+   skip writes while unpowered, and unify contrast dispatch (Sashiko)
+ * Known limitation: with DRM_LUMINANCE, amdgpu ATIF firmware brightness
+   requests are not forwarded (i915 OpRegion ASLE requests are already
+   ignored when native backlight control is in use)
+ * Link to v10: https://lore.kernel.org/dri-devel/20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org/
+
+Changes in v10:
+
+* Split patch 7 (panel/bridge connector luminance forwarding) into three
+   separate patches:
+  - drm/bridge: add connector luminance operations
+  - drm/panel: add connector luminance forwarding
+  - drm/bridge_connector: add luminance support
+ * Dropped MIPI-DBI tiny driver migrations and the new mipi_dbi connector
+   luminance helpers (Javier): backlight is always NULL when
+   CONFIG_BACKLIGHT_CLASS_DEVICE is disabled, so these drivers can't
+   support LUMINANCE without DT binding changes or a new
+   CONFIG_BACKLIGHT_SYSFS option. Will revisit later.
+ * Added IS_ENABLED(CONFIG_DRM_LUMINANCE) conditional guards to all
+   individual DRM driver patches that call drm_connector_attach_luminance_property()
+ * Moved the LUMINANCE property patch after the new "Add support for a
+   DRM backlight capability" patch to better separate backlight vs
+   luminance functionality
+ * Link to v9: https://lore.kernel.org/dri-devel/20261002190030.211356-1-mario.limonciello@amd.com/
+
+To: Maxime Ripard <mripard@kernel.org>
+To: Alex Deucher <alexander.deucher@amd.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Javier Martinez Canillas <javierm@redhat.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Harry Wentland <harry.wentland@amd.com>
+To: Leo Li <sunpeng.li@amd.com>
+To: Rodrigo Siqueira <siqueira@igalia.com>
+Cc: Xaver Hugl <xaver.hugl@gmail.com>
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org
+Cc: amd-gfx@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+
 ---
- drivers/gpu/drm/nouveau/dispnv50/disp.c     |  13 ++-
- drivers/gpu/drm/nouveau/nouveau_backlight.c | 152 ++++++++++++++++++++++++----
- drivers/gpu/drm/nouveau/nouveau_connector.c |   3 +
- drivers/gpu/drm/nouveau/nouveau_connector.h |  23 +++++
- drivers/gpu/drm/nouveau/nouveau_drm.c       |   6 ++
- 5 files changed, 174 insertions(+), 23 deletions(-)
+Mario Limonciello (11):
+      drm: add connector LUMINANCE property
+      drm/amd/display: Pass up errors reading actual brightness
+      drm/amd: add luminance property support
+      drm/i915/display: add luminance property support
+      drm/bridge: add connector luminance operations
+      drm/panel: add connector luminance forwarding
+      drm/bridge_connector: add luminance support
+      drm/nouveau: add connector luminance support
+      drm/gud: add connector luminance support
+      drm/bridge: add PS8622 connector luminance support
+      drm/solomon: add SSD130x connector luminance support
 
-diff --git a/drivers/gpu/drm/nouveau/dispnv50/disp.c b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-index e91130f93db67..57653fe720d95 100644
---- a/drivers/gpu/drm/nouveau/dispnv50/disp.c
-+++ b/drivers/gpu/drm/nouveau/dispnv50/disp.c
-@@ -1755,6 +1755,7 @@ nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_commit *st
- 	struct nouveau_connector *nv_connector;
- #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
- 	struct nouveau_backlight *backlight;
-+	u16 level;
- #endif
- 	struct nvbios *bios = &drm->vbios;
- 	bool lvds_dual = false, lvds_8bpc = false, hda = false;
-@@ -1836,9 +1837,14 @@ nv50_sor_atomic_enable(struct drm_encoder *encoder, struct drm_atomic_commit *st
- 
- #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
- 		backlight = nv_connector->backlight;
--		if (backlight && backlight->uses_dpcd)
-+		if (backlight && backlight->uses_dpcd) {
-+			if (backlight->dev)
-+				level = backlight->dev->props.brightness;
-+			else
-+				level = nv_connector->base.state->luminance;
- 			drm_edp_backlight_enable(&nv_connector->aux, &backlight->edp_info,
--						 backlight->dev->props.brightness);
-+						 level);
-+		}
- #endif
- 
- 		break;
-@@ -2188,6 +2194,7 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_commit *state)
- 	drm_dp_mst_atomic_wait_for_dependencies(state);
- 	drm_atomic_helper_update_legacy_modeset_state(dev, state);
- 	drm_atomic_helper_calc_timestamping_constants(state);
-+	drm_atomic_helper_commit_luminance_disables(state);
- 
- 	if (atom->lock_core)
- 		mutex_lock(&disp->mutex);
-@@ -2370,6 +2377,8 @@ nv50_disp_atomic_commit_tail(struct drm_atomic_commit *state)
- 	if (atom->lock_core)
- 		mutex_unlock(&disp->mutex);
- 
-+	drm_atomic_helper_commit_luminance_enables(state);
-+
- 	list_for_each_entry_safe(outp, outt, &atom->outp, head) {
- 		list_del(&outp->head);
- 		kfree(outp);
-diff --git a/drivers/gpu/drm/nouveau/nouveau_backlight.c b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-index da1ee24a2531d..2366901581077 100644
---- a/drivers/gpu/drm/nouveau/nouveau_backlight.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_backlight.c
-@@ -234,12 +234,15 @@ nv50_backlight_init(struct nouveau_backlight *bl,
- 		    const struct backlight_ops **ops)
- {
- 	struct nouveau_drm *drm = nouveau_drm(nv_encoder->base.base.dev);
-+	int brightness;
-+
-+	brightness = nvif_outp_bl_get(&nv_encoder->outp);
- 
- 	/*
- 	 * Note when this runs the connectors have not been probed yet,
- 	 * so nv_conn->base.status is not set yet.
- 	 */
--	if (nvif_outp_bl_get(&nv_encoder->outp) < 0 ||
-+	if (brightness < 0 ||
- 	    drm_helper_probe_detect(&nv_conn->base, NULL, false) != connector_status_connected)
- 		return -ENODEV;
- 
-@@ -284,11 +287,25 @@ nv50_backlight_init(struct nouveau_backlight *bl,
- 
- 	*ops = &nv50_bl_ops;
- 	props->max_brightness = 100;
-+	props->brightness = brightness;
- 	return 0;
- }
- 
--int
--nouveau_backlight_init(struct drm_connector *connector)
-+/*
-+ * LUMINANCE is an atomic connector property. Pre-NV50 hardware and
-+ * nouveau.atomic=0 don't expose atomic modesetting to userspace (even though
-+ * NV50+ still commits atomically internally), so keep the backlight class
-+ * device there.
-+ */
-+static bool
-+nouveau_backlight_use_luminance(struct drm_device *dev)
-+{
-+	return IS_ENABLED(CONFIG_DRM_LUMINANCE) &&
-+	       drm_core_check_feature(dev, DRIVER_ATOMIC);
-+}
-+
-+static int
-+nouveau_backlight_create(struct drm_connector *connector)
- {
- 	struct nouveau_drm *drm = nouveau_drm(connector->dev);
- 	struct nouveau_backlight *bl;
-@@ -317,6 +334,8 @@ nouveau_backlight_init(struct drm_connector *connector)
- 	bl = kzalloc_obj(*bl);
- 	if (!bl)
- 		return -ENOMEM;
-+	bl->id = -1;
-+	bl->encoder = nv_encoder;
- 
- 	switch (device->info.family) {
- 	case NV_DEVICE_INFO_V0_CURIE:
-@@ -349,26 +368,36 @@ nouveau_backlight_init(struct drm_connector *connector)
- 		goto fail_alloc;
- 	}
- 
--	if (!nouveau_get_backlight_name(backlight_name, bl)) {
--		NV_ERROR(drm, "Failed to retrieve a unique name for the backlight interface\n");
--		goto fail_alloc;
--	}
--
- 	props.type = BACKLIGHT_RAW;
--	bl->dev = backlight_device_register(backlight_name, connector->kdev,
--					    nv_encoder, ops, &props);
--	if (IS_ERR(bl->dev)) {
--		if (bl->id >= 0)
--			ida_free(&bl_ida, bl->id);
--		ret = PTR_ERR(bl->dev);
--		goto fail_alloc;
-+	if (nouveau_backlight_use_luminance(connector->dev)) {
-+		ret = drm_connector_attach_luminance_property(connector, 0, props.max_brightness,
-+							      props.brightness);
-+		if (ret)
-+			goto fail_alloc;
-+	} else {
-+		if (!nouveau_get_backlight_name(backlight_name, bl)) {
-+			NV_ERROR(drm,
-+				 "Failed to retrieve a unique name for the backlight interface\n");
-+			goto fail_alloc;
-+		}
-+
-+		bl->dev = backlight_device_register(backlight_name, connector->kdev,
-+						    nv_encoder, ops, &props);
-+		if (IS_ERR(bl->dev)) {
-+			if (bl->id >= 0)
-+				ida_free(&bl_ida, bl->id);
-+			ret = PTR_ERR(bl->dev);
-+			goto fail_alloc;
-+		}
- 	}
- 
- 	nouveau_connector(connector)->backlight = bl;
--	if (!bl->dev->props.brightness)
--		bl->dev->props.brightness =
--			bl->dev->ops->get_brightness(bl->dev);
--	backlight_update_status(bl->dev);
-+	if (bl->dev) {
-+		if (!bl->dev->props.brightness)
-+			bl->dev->props.brightness =
-+				bl->dev->ops->get_brightness(bl->dev);
-+		backlight_update_status(bl->dev);
-+	}
- 
- 	return 0;
- 
-@@ -384,8 +413,40 @@ nouveau_backlight_init(struct drm_connector *connector)
- 	return ret;
- }
- 
--void
--nouveau_backlight_fini(struct drm_connector *connector)
-+/* Called from .late_register, the backlight class device needs connector->kdev */
-+int
-+nouveau_backlight_init(struct drm_connector *connector)
-+{
-+	if (nouveau_backlight_use_luminance(connector->dev))
-+		return 0;
-+
-+	return nouveau_backlight_create(connector);
-+}
-+
-+/* Called before drm_dev_register(), the LUMINANCE property must exist by then */
-+int
-+nouveau_backlight_luminance_init(struct drm_device *dev)
-+{
-+	struct drm_connector_list_iter conn_iter;
-+	struct drm_connector *connector;
-+	int ret = 0;
-+
-+	if (!nouveau_backlight_use_luminance(dev))
-+		return 0;
-+
-+	drm_connector_list_iter_begin(dev, &conn_iter);
-+	nouveau_for_each_non_mst_connector_iter(connector, &conn_iter) {
-+		ret = nouveau_backlight_create(connector);
-+		if (ret)
-+			break;
-+	}
-+	drm_connector_list_iter_end(&conn_iter);
-+
-+	return ret;
-+}
-+
-+static void
-+nouveau_backlight_free(struct drm_connector *connector)
- {
- 	struct nouveau_connector *nv_conn = nouveau_connector(connector);
- 	struct nouveau_backlight *bl = nv_conn->backlight;
-@@ -401,6 +462,23 @@ nouveau_backlight_fini(struct drm_connector *connector)
- 	kfree(bl);
- }
- 
-+/* Called from .early_unregister */
-+void
-+nouveau_backlight_fini(struct drm_connector *connector)
-+{
-+	/* LUMINANCE state is needed by commits until the connector is destroyed */
-+	if (nouveau_backlight_use_luminance(connector->dev))
-+		return;
-+
-+	nouveau_backlight_free(connector);
-+}
-+
-+void
-+nouveau_backlight_destroy(struct drm_connector *connector)
-+{
-+	nouveau_backlight_free(connector);
-+}
-+
- void
- nouveau_backlight_ctor(void)
- {
-@@ -412,3 +490,35 @@ nouveau_backlight_dtor(void)
- {
- 	ida_destroy(&bl_ida);
- }
-+
-+void
-+nouveau_backlight_set_luminance(const struct drm_connector_state *conn_state)
-+{
-+	struct nouveau_connector *nv_connector = nouveau_connector(conn_state->connector);
-+	struct nouveau_backlight *bl = nv_connector->backlight;
-+	unsigned int luminance = conn_state->luminance;
-+
-+	if (!bl)
-+		return;
-+
-+	if (bl->uses_dpcd)
-+		drm_edp_backlight_set_level(&nv_connector->aux, &bl->edp_info,
-+					    luminance);
-+	else
-+		nvif_outp_bl_set(&bl->encoder->outp, luminance);
-+}
-+
-+void
-+nouveau_backlight_disable_luminance(const struct drm_connector_state *conn_state)
-+{
-+	struct nouveau_connector *nv_connector = nouveau_connector(conn_state->connector);
-+	struct nouveau_backlight *bl = nv_connector->backlight;
-+
-+	if (!bl)
-+		return;
-+
-+	if (bl->uses_dpcd)
-+		drm_edp_backlight_disable(&nv_connector->aux, &bl->edp_info);
-+	else
-+		nvif_outp_bl_set(&bl->encoder->outp, 0);
-+}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.c b/drivers/gpu/drm/nouveau/nouveau_connector.c
-index cc3caf8de64b0..cbbdd36f49bb7 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.c
-@@ -400,6 +400,7 @@ nouveau_connector_destroy(struct drm_connector *connector)
- 	cancel_work_sync(&nv_connector->irq_work);
- 	drm_edid_free(nv_connector->drm_edid);
- 	drm_connector_unregister(connector);
-+	nouveau_backlight_destroy(connector);
- 	drm_connector_cleanup(connector);
- 	if (nv_connector->aux.transfer)
- 		drm_dp_cec_unregister_connector(&nv_connector->aux);
-@@ -1225,6 +1226,8 @@ nouveau_connector_helper_funcs = {
- 	.mode_valid = nouveau_connector_mode_valid,
- 	.best_encoder = nouveau_connector_best_encoder,
- 	.atomic_check = nouveau_connector_atomic_check,
-+	.set_luminance = nouveau_backlight_set_luminance,
-+	.disable_luminance = nouveau_backlight_disable_luminance,
- };
- 
- static const struct drm_connector_funcs
-diff --git a/drivers/gpu/drm/nouveau/nouveau_connector.h b/drivers/gpu/drm/nouveau/nouveau_connector.h
-index eb292d2ba4bcd..f53107ec0bf3f 100644
---- a/drivers/gpu/drm/nouveau/nouveau_connector.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_connector.h
-@@ -50,6 +50,7 @@ struct nouveau_backlight {
- 	struct backlight_device *dev;
- 
- 	struct drm_edp_backlight_info edp_info;
-+	struct nouveau_encoder *encoder;
- 	bool uses_dpcd : 1;
- 
- 	int id;
-@@ -237,8 +238,12 @@ nouveau_conn_mode_clock_valid(const struct drm_display_mode *,
- #ifdef CONFIG_DRM_NOUVEAU_BACKLIGHT
- extern int nouveau_backlight_init(struct drm_connector *);
- extern void nouveau_backlight_fini(struct drm_connector *);
-+int nouveau_backlight_luminance_init(struct drm_device *dev);
-+void nouveau_backlight_destroy(struct drm_connector *connector);
- extern void nouveau_backlight_ctor(void);
- extern void nouveau_backlight_dtor(void);
-+void nouveau_backlight_set_luminance(const struct drm_connector_state *conn_state);
-+void nouveau_backlight_disable_luminance(const struct drm_connector_state *conn_state);
- #else
- static inline int
- nouveau_backlight_init(struct drm_connector *connector)
-@@ -250,6 +255,16 @@ static inline void
- nouveau_backlight_fini(struct drm_connector *connector) {
- }
- 
-+static inline int
-+nouveau_backlight_luminance_init(struct drm_device *dev)
-+{
-+	return 0;
-+}
-+
-+static inline void
-+nouveau_backlight_destroy(struct drm_connector *connector) {
-+}
-+
- static inline void
- nouveau_backlight_ctor(void) {
- }
-@@ -257,6 +272,14 @@ nouveau_backlight_ctor(void) {
- static inline void
- nouveau_backlight_dtor(void) {
- }
-+
-+static inline void
-+nouveau_backlight_set_luminance(const struct drm_connector_state *conn_state) {
-+}
-+
-+static inline void
-+nouveau_backlight_disable_luminance(const struct drm_connector_state *conn_state) {
-+}
- #endif
- 
- #endif /* __NOUVEAU_CONNECTOR_H__ */
-diff --git a/drivers/gpu/drm/nouveau/nouveau_drm.c b/drivers/gpu/drm/nouveau/nouveau_drm.c
-index 5e1336615cf6d..53bf7c2caa164 100644
---- a/drivers/gpu/drm/nouveau/nouveau_drm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_drm.c
-@@ -673,6 +673,10 @@ nouveau_drm_device_init(struct nouveau_drm *drm)
- 		ret = nouveau_display_init(dev, false, false);
- 		if (ret)
- 			goto fail_dispinit;
-+
-+		ret = nouveau_backlight_luminance_init(dev);
-+		if (ret)
-+			goto fail_backlight;
- 	}
- 
- 	nouveau_debugfs_init(drm);
-@@ -697,6 +701,8 @@ nouveau_drm_device_init(struct nouveau_drm *drm)
- 	}
- 
- 	return 0;
-+fail_backlight:
-+	nouveau_display_fini(dev, false, false);
- fail_dispinit:
- 	nouveau_display_destroy(dev);
- fail_dispctor:
+Mario Limonciello (AMD) (1):
+      drm/amdgpu: Check bios_scratch_reg_offset in backlight level helper
 
--- 
-2.53.0
+ drivers/gpu/drm/Kconfig                            |  14 ++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c       |   7 +-
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  16 +--
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   7 +
+ .../amd/display/amdgpu_dm/amdgpu_dm_backlight.c    |  91 +++++++++++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_backlight.h    |   5 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    |   5 +-
+ .../amdgpu_dm/tests/amdgpu_dm_backlight_test.c     |  72 ++++++++--
+ .../amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c      |   7 +-
+ drivers/gpu/drm/bridge/parade-ps8622.c             |  66 +++++++--
+ drivers/gpu/drm/display/drm_bridge_connector.c     |  39 ++++++
+ drivers/gpu/drm/drm_atomic_helper.c                |  98 ++++++++++++-
+ drivers/gpu/drm/drm_atomic_state_helper.c          |   7 +
+ drivers/gpu/drm/drm_atomic_uapi.c                  |   5 +
+ drivers/gpu/drm/drm_connector.c                    |  57 ++++++++
+ drivers/gpu/drm/drm_panel.c                        |  93 +++++++++++++
+ drivers/gpu/drm/gud/gud_connector.c                |  20 ++-
+ drivers/gpu/drm/i915/display/icl_dsi.c             |   1 +
+ drivers/gpu/drm/i915/display/intel_backlight.c     |  74 ++++++++--
+ drivers/gpu/drm/i915/display/intel_backlight.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_display.c       |   2 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |   1 +
+ drivers/gpu/drm/i915/display/intel_lvds.c          |   1 +
+ drivers/gpu/drm/i915/display/intel_panel.c         |   8 +-
+ drivers/gpu/drm/i915/display/vlv_dsi.c             |   1 +
+ drivers/gpu/drm/nouveau/dispnv50/disp.c            |  13 +-
+ drivers/gpu/drm/nouveau/nouveau_backlight.c        | 152 ++++++++++++++++++---
+ drivers/gpu/drm/nouveau/nouveau_connector.c        |   3 +
+ drivers/gpu/drm/nouveau/nouveau_connector.h        |  23 ++++
+ drivers/gpu/drm/nouveau/nouveau_drm.c              |   6 +
+ drivers/gpu/drm/solomon/ssd130x.c                  | 149 +++++++++++++-------
+ drivers/gpu/drm/solomon/ssd130x.h                  |   2 +
+ drivers/gpu/drm/tests/drm_connector_test.c         |  28 ++++
+ include/drm/drm_atomic_helper.h                    |   3 +
+ include/drm/drm_bridge.h                           |  20 +++
+ include/drm/drm_connector.h                        |  16 +++
+ include/drm/drm_modeset_helper_vtables.h           |  28 ++++
+ include/drm/drm_panel.h                            |   4 +
+ 38 files changed, 1008 insertions(+), 137 deletions(-)
+---
+base-commit: 9f54e1a5b50dc017d371c435b12ddb5300c7d5b2
+change-id: 20261101-superm1-backlight-property-1ee9b1a4b24d
+
+Best regards,
+--  
+Mario Limonciello <superm1@kernel.org>
 
