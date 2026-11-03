@@ -2,39 +2,39 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921B4606A32D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C62606A328
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PbpGCKDK
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nFWnRh1s
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2631210FC80;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C96C10FC84;
 	Wed,  4 Nov 2026 15:02:44 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B31C010F8C6;
- Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E16110E464;
+ Tue,  3 Nov 2026 22:42:18 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 8B70843AA5;
- Tue,  3 Nov 2026 22:42:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8E4D1F00A1F;
- Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 712B560254;
+ Tue,  3 Nov 2026 22:42:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74E441F00919;
+ Tue,  3 Nov 2026 22:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793745758;
- bh=qJz4Y3pmBhvfNKPCdS16oXtdOSx6Dt11DR2lDyz2UZg=;
+ s=k20260515; t=1793745737;
+ bh=wk90OFMH/tEsorghIHQMEEaSbAMOkWS6It5GiBg/p6w=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=PbpGCKDKxV5hlKimg1geLnJHi7WavKPOJXa+vAu62pVQIReLlYVMnDmyInxzVh8/s
- tkQD58PAC3Ao2qq7juLFFN/ziOrBHyyP/66tHsexB1fcrWoTyTNDqTllTuXLf4130n
- mbO0sqbRJuvOwlkLvuvtGtI/oCGHQQ7wihTCQR2xaQXyep/HL3wucEOXp0dan53v+p
- KsTfm72BNRE5N3RVYCYqZXUq4fNiQZpOopd0pPwI3swJGKdEnmMycwXsN3jnYxn5Pz
- C/hhQ+ST1Qt3ZbvyONUjAGq/Ay8Ikf1Uj9dqEgz275dL07Rb9DkcuNlAC6feSr+XzT
- ZDIbvvwZTNpqg==
+ b=nFWnRh1sUQmwiHM2Y3j302d9hYJyc6EkscYf29bxeLubSe1tGnnJuUAm9jMU2r+mj
+ kyNSwLzeLwznc24FcUzE1SRU5UvqoqUvB16VVIQpumYFtaLpbtjTm3QS9MIFLg0wuv
+ q6Q2GWXlggwSaI232nDE+jq54Pma/DTJmluHBAaG1H3Y08+j1U+A7Wy7v2qYZszn34
+ ymzwwa8uYaP+QhOyr4HU5z6VO+yNciUfE+QyWVI/NVeNiGNg5EWC9XA3DNyjr0TVZi
+ 621v4YfP1nRyINM2CbDOLBv/9sMgN4zrc8+sAmq1aVPhSPDivldduaS+XOQeg2DauX
+ ElHwYzcvvTWXw==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Tue, 03 Nov 2026 16:42:13 -0600
-Subject: [PATCH v11 12/12] drm/solomon: add SSD130x connector luminance support
+Date: Tue, 03 Nov 2026 16:42:02 -0600
+Subject: [PATCH v11 01/12] drm: add connector LUMINANCE property
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261103-superm1-backlight-property-v11-12-00cce7b2ba22@kernel.org>
+Message-Id: <20261103-superm1-backlight-property-v11-1-00cce7b2ba22@kernel.org>
 References: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 In-Reply-To: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 To: Maxime Ripard <mripard@kernel.org>, 
@@ -73,314 +73,474 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Mario Limonciello <mario.limonciello@amd.com>
 
-Expose SSD130x contrast through the connector LUMINANCE property when
-DRM_LUMINANCE is enabled. Program contrast directly and register the
-backlight class device only when DRM_LUMINANCE is disabled, so contrast
-has a single owner.
+Panel brightness is a property of a display, and thus of a DRM
+connector. Add an atomic per-connector LUMINANCE range property so
+compositors can manage relative panel luminance together with the rest
+of the display state.
 
+Keep the core backend-agnostic. Drivers create the property with their
+hardware range and implement connector helper callbacks to set luminance
+or disable panel emission. The atomic helpers sequence those callbacks
+around pipeline enable and disable, including luminance-only commits.
+The panel is left lit when the pipeline enters self refresh, and the
+luminance is only reprogrammed when it changes or a modeset enables the
+pipeline.
+
+The stored property value is independent of display power. A commit made
+while the connector is inactive is retained and applied on the next
+enable; disabling the pipeline does not overwrite it.
+
+LUMINANCE values are relative, driver-defined levels rather than
+absolute luminance in cd/m^2. The interface supports emissive panels as
+well as panels with a separate backlight.
+
+Keep the interface behind a default-off DRM_LUMINANCE option. Migrated
+drivers retain their legacy backlight class ABI unless the new interface
+is explicitly selected, allowing the DRM UAPI and legacy compatibility
+policy to remain separate.
+
+Acked-by: Javier Martinez Canillas <javierm@redhat.com>
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
 v11:
- * Keep selecting BACKLIGHT_CLASS_DEVICE and drop the guards (Sashiko)
- * Register the backlight device only without DRM_LUMINANCE (Sashiko)
- * Initialise the controller with the committed luminance and don't
-   clobber the saved contrast on disable (Sashiko)
- * Skip contrast writes while the controller is powered down (Sashiko)
- * Unify contrast dispatch and backlight ops (Sashiko)
- * Drop Reviewed-by due to the rework
+ * Don't call .disable_luminance when the CRTC enters self refresh (Sashiko)
+ * Only call .set_luminance when the luminance changes or on a modeset
+   that isn't a self refresh exit (Leo Li, Sashiko)
+ * Fix the .set_luminance self refresh documentation
 v10:
- * Guard the backlight operations and registration with
-   BACKLIGHT_CLASS_DEVICE
- * Fix Kconfig recursive issue
- * Add the Reviewed-by tag
+ * Add tag
 ---
- drivers/gpu/drm/solomon/ssd130x.c | 149 ++++++++++++++++++++++++--------------
- drivers/gpu/drm/solomon/ssd130x.h |   2 +
- 2 files changed, 98 insertions(+), 53 deletions(-)
+ drivers/gpu/drm/Kconfig                    | 14 +++++
+ drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
+ drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
+ drivers/gpu/drm/drm_connector.c            | 57 +++++++++++++++++
+ drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++++
+ include/drm/drm_atomic_helper.h            |  3 +
+ include/drm/drm_connector.h                | 16 +++++
+ include/drm/drm_modeset_helper_vtables.h   | 28 +++++++++
+ 9 files changed, 255 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/solomon/ssd130x.c b/drivers/gpu/drm/solomon/ssd130x.c
-index ee43cf0da8792..32e892194f578 100644
---- a/drivers/gpu/drm/solomon/ssd130x.c
-+++ b/drivers/gpu/drm/solomon/ssd130x.c
-@@ -627,7 +627,7 @@ static int ssd130x_init(struct ssd130x_device *ssd130x)
- static int ssd132x_init(struct ssd130x_device *ssd130x)
+diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+index 61111d50b1c65..1bbe2c2d7c76f 100644
+--- a/drivers/gpu/drm/Kconfig
++++ b/drivers/gpu/drm/Kconfig
+@@ -33,6 +33,20 @@ endmenu
+ 
+ if DRM
+ 
++config DRM_LUMINANCE
++	bool "DRM connector luminance support"
++	help
++	  Expose relative luminance as an atomic DRM connector property. Values
++	  are driver-defined levels rather than absolute luminance in cd/m^2.
++	  Drivers provide connector helper callbacks to program their hardware;
++	  the DRM core does not depend on a particular backend.
++
++	  Drivers migrated to this interface will use it instead of registering
++	  a legacy backlight class device. Leave this disabled to preserve the
++	  de-facto userspace ABI in /sys/class/backlight.
++
++	  If in doubt, say N.
++
+ config DRM_MIPI_DBI
+ 	tristate
+ 	depends on DRM
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 9d006f98413a5..856abc91ec53d 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1375,6 +1375,8 @@ EXPORT_SYMBOL(drm_atomic_helper_commit_encoder_bridge_post_disable);
+ static void
+ disable_outputs(struct drm_device *dev, struct drm_atomic_commit *state)
  {
- 	const u8 cmds[] = {
--		2, SSD13XX_CONTRAST, 0x80,
-+		2, SSD13XX_CONTRAST, ssd130x->contrast,
- 		3, SSD132X_SET_COL_RANGE, 0x00, ssd130x->width / SSD132X_SEGMENT_WIDTH - 1,
- 		3, SSD132X_SET_ROW_RANGE, 0x00, ssd130x->height - 1,
- 		/*
-@@ -696,6 +696,18 @@ static int ssd135x_set_contrast(struct ssd130x_device *ssd130x, u32 brightness)
- 	return ssd130x_write_cmd(ssd130x, 4, SSD135X_SET_CONTRAST, a, b, c);
++	drm_atomic_helper_commit_luminance_disables(state);
++
+ 	drm_atomic_helper_commit_encoder_bridge_disable(dev, state);
+ 
+ 	drm_atomic_helper_commit_encoder_bridge_post_disable(dev, state);
+@@ -1382,6 +1384,54 @@ disable_outputs(struct drm_device *dev, struct drm_atomic_commit *state)
+ 	drm_atomic_helper_commit_crtc_disable(dev, state);
  }
  
-+static int ssd130x_set_contrast(struct ssd130x_device *ssd130x, u32 contrast)
-+{
-+	switch (ssd130x->device_info->family_id) {
-+	case SSD133X_FAMILY:
-+		return ssd133x_set_contrast(ssd130x, contrast);
-+	case SSD135X_FAMILY:
-+		return ssd135x_set_contrast(ssd130x, contrast);
-+	default:
-+		return ssd130x_write_cmd(ssd130x, 2, SSD13XX_CONTRAST, contrast);
-+	}
-+}
-+
- static int ssd133x_init(struct ssd130x_device *ssd130x)
- {
- 	int ret;
-@@ -1836,6 +1848,23 @@ static const struct drm_crtc_funcs ssd130x_crtc_funcs = {
- 	.atomic_destroy_state = ssd130x_crtc_destroy_state,
- };
- 
-+/*
-+ * With DRM_LUMINANCE, initialize the controller with the committed connector
-+ * luminance, which may have changed while the display was disabled.
++/**
++ * drm_atomic_helper_commit_luminance_disables - disable panel emission
++ * @state: atomic state object being committed
++ *
++ * Invokes each connector driver's luminance disable callback before a
++ * display pipeline is disabled. The callback is not invoked when the pipeline
++ * enters self refresh, since the panel keeps displaying the last frame. The
++ * connector property's stored value is left untouched so it can be restored
++ * when the pipeline is enabled again.
 + */
-+static void ssd130x_load_luminance(struct ssd130x_device *ssd130x,
-+				   struct drm_atomic_commit *state)
++void drm_atomic_helper_commit_luminance_disables(struct drm_atomic_commit *state)
 +{
-+	struct drm_connector_state *conn_state;
++	struct drm_connector_state *old_conn_state, *new_conn_state;
++	struct drm_connector *connector;
++	int i;
 +
-+	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE))
-+		return;
++	for_each_oldnew_connector_in_state(state, connector, old_conn_state,
++					   new_conn_state, i) {
++		const struct drm_connector_helper_funcs *funcs;
++		struct drm_crtc_state *old_crtc_state, *new_crtc_state = NULL;
 +
-+	conn_state = drm_atomic_get_new_connector_state(state, &ssd130x->connector);
-+	if (conn_state)
-+		ssd130x->contrast = conn_state->luminance;
++		if (!connector->luminance_property || !old_conn_state->crtc)
++			continue;
++
++		old_crtc_state =
++			drm_atomic_get_old_crtc_state(state, old_conn_state->crtc);
++		if (new_conn_state->crtc)
++			new_crtc_state =
++				drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
++
++		if (!crtc_needs_disable(old_crtc_state, new_crtc_state) ||
++		    !drm_atomic_crtc_needs_modeset(old_conn_state->crtc->state))
++			continue;
++
++		/*
++		 * Keep the panel lit while entering self refresh, matching the
++		 * panel bridge which also leaves the panel enabled.
++		 */
++		if (new_crtc_state && new_crtc_state->self_refresh_active)
++			continue;
++
++		funcs = connector->helper_private;
++		if (funcs && funcs->disable_luminance)
++			funcs->disable_luminance(old_conn_state);
++	}
 +}
++EXPORT_SYMBOL(drm_atomic_helper_commit_luminance_disables);
 +
- static void ssd130x_encoder_atomic_enable(struct drm_encoder *encoder,
- 					  struct drm_atomic_commit *state)
+ /**
+  * drm_atomic_helper_update_legacy_modeset_state - update legacy modeset state
+  * @dev: DRM device
+@@ -1771,10 +1821,57 @@ void drm_atomic_helper_commit_modeset_enables(struct drm_device *dev,
+ 
+ 	drm_atomic_helper_commit_encoder_bridge_enable(dev, state);
+ 
++	drm_atomic_helper_commit_luminance_enables(state);
++
+ 	drm_atomic_helper_commit_writebacks(dev, state);
+ }
+ EXPORT_SYMBOL(drm_atomic_helper_commit_modeset_enables);
+ 
++/**
++ * drm_atomic_helper_commit_luminance_enables - apply luminance
++ * @state: atomic state object being committed
++ *
++ * Invokes each connector driver's luminance callback after the display
++ * pipeline has been enabled by a modeset, and for commits changing the
++ * luminance while the connector remains active. Commits that don't change
++ * the luminance only invoke the callback for a modeset other than a self
++ * refresh exit, since the panel is kept lit during self refresh. Changes
++ * committed while the connector is inactive remain stored in atomic state
++ * until a later enable.
++ */
++void drm_atomic_helper_commit_luminance_enables(struct drm_atomic_commit *state)
++{
++	struct drm_connector_state *old_conn_state, *new_conn_state;
++	struct drm_connector *connector;
++	int i;
++
++	for_each_oldnew_connector_in_state(state, connector, old_conn_state,
++					   new_conn_state, i) {
++		const struct drm_connector_helper_funcs *funcs;
++		struct drm_crtc_state *old_crtc_state, *new_crtc_state;
++
++		if (!connector->luminance_property || !new_conn_state->crtc)
++			continue;
++
++		old_crtc_state =
++			drm_atomic_get_old_crtc_state(state, new_conn_state->crtc);
++		new_crtc_state =
++			drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
++		if (!new_crtc_state->active)
++			continue;
++
++		if (old_conn_state->luminance == new_conn_state->luminance &&
++		    (!drm_atomic_crtc_needs_modeset(new_crtc_state) ||
++		     old_crtc_state->self_refresh_active))
++			continue;
++
++		funcs = connector->helper_private;
++		if (funcs && funcs->set_luminance)
++			funcs->set_luminance(new_conn_state);
++	}
++}
++EXPORT_SYMBOL(drm_atomic_helper_commit_luminance_enables);
++
+ /*
+  * For atomic updates which touch just a single CRTC, calculate the time of the
+  * next vblank, and inform all the fences of the deadline.
+@@ -4187,4 +4284,3 @@ drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
+ 	return out_fmts;
+ }
+ EXPORT_SYMBOL(drm_atomic_helper_bridge_get_hdmi_output_bus_fmts);
+-
+diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
+index 3534925636d54..bc26683db52c3 100644
+--- a/drivers/gpu/drm/drm_atomic_state_helper.c
++++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+@@ -408,7 +408,14 @@ void
+ __drm_atomic_helper_connector_state_init(struct drm_connector_state *conn_state,
+ 					 struct drm_connector *connector)
  {
-@@ -1847,12 +1876,16 @@ static void ssd130x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
++	u64 value;
 +
- 	ret = ssd130x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
+ 	conn_state->connector = connector;
++	if (connector->luminance_property &&
++	    !drm_object_property_get_default_value(&connector->base,
++						   connector->luminance_property,
++						   &value))
++		conn_state->luminance = value;
+ }
+ EXPORT_SYMBOL(__drm_atomic_helper_connector_state_init);
  
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
+diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+index 1eebcf6f5e05b..dffc51cd8d13c 100644
+--- a/drivers/gpu/drm/drm_atomic_uapi.c
++++ b/drivers/gpu/drm/drm_atomic_uapi.c
+@@ -30,6 +30,7 @@
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_atomic_uapi.h>
++#include <drm/drm_connector.h>
+ #include <drm/drm_framebuffer.h>
+ #include <drm/drm_print.h>
+ #include <drm/drm_drv.h>
+@@ -969,6 +970,8 @@ static int drm_atomic_connector_set_property(struct drm_connector *connector,
+ 		state->hdmi.broadcast_rgb = val;
+ 	} else if (property == connector->color_format_property) {
+ 		state->color_format = val;
++	} else if (property == connector->luminance_property) {
++		state->luminance = val;
+ 	} else if (connector->funcs->atomic_set_property) {
+ 		return connector->funcs->atomic_set_property(connector,
+ 				state, property, val);
+@@ -1056,6 +1059,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
+ 		*val = state->hdmi.broadcast_rgb;
+ 	} else if (property == connector->color_format_property) {
+ 		*val = state->color_format;
++	} else if (property == connector->luminance_property) {
++		*val = state->luminance;
+ 	} else if (connector->funcs->atomic_get_property) {
+ 		return connector->funcs->atomic_get_property(connector,
+ 				state, property, val);
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 893716a9e4895..ab75e8bd9991a 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -810,6 +810,47 @@ void drm_connector_attach_edid_property(struct drm_connector *connector)
+ }
+ EXPORT_SYMBOL(drm_connector_attach_edid_property);
  
-+	ssd130x->enabled = true;
++/**
++ * drm_connector_attach_luminance_property - attach luminance property
++ * @connector: connector to attach the property to
++ * @min: minimum supported relative brightness
++ * @max: maximum supported relative brightness
++ * @value: initial relative brightness
++ *
++ * Creates the atomic ``LUMINANCE`` range property for @connector.
++ * Drivers should call this during connector initialization. The property's
++ * units are driver-defined; they do not represent absolute luminance.
++ *
++ * Returns:
++ * Zero on success, a negative errno otherwise.
++ */
++int drm_connector_attach_luminance_property(struct drm_connector *connector,
++					    unsigned int min,
++					    unsigned int max,
++					    unsigned int value)
++{
++	struct drm_property *property;
 +
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1873,12 +1906,16 @@ static void ssd132x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
++	if (drm_WARN_ON(connector->dev, min > max || value < min || value > max))
++		return -EINVAL;
 +
- 	ret = ssd132x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
++	if (connector->luminance_property)
++		return 0;
 +
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1898,12 +1935,16 @@ static void ssd133x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
++	property = drm_property_create_range(connector->dev, DRM_MODE_PROP_ATOMIC,
++					     "LUMINANCE", min, max);
++	if (!property)
++		return -ENOMEM;
 +
- 	ret = ssd133x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
++	connector->luminance_property = property;
++	drm_object_attach_property(&connector->base, property, value);
++	if (connector->state)
++		connector->state->luminance = value;
 +
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1923,12 +1964,16 @@ static void ssd135x_encoder_atomic_enable(struct drm_encoder *encoder,
- 	if (ret)
- 		return;
- 
-+	ssd130x_load_luminance(ssd130x, state);
++	return 0;
++}
++EXPORT_SYMBOL(drm_connector_attach_luminance_property);
 +
- 	ret = ssd135x_init(ssd130x);
- 	if (ret)
- 		goto power_off;
- 
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_ON);
- 
-+	ssd130x->enabled = true;
-+
- 	backlight_enable(ssd130x->bl_dev);
- 
- 	return;
-@@ -1945,6 +1990,8 @@ static void ssd130x_encoder_atomic_disable(struct drm_encoder *encoder,
- 
- 	backlight_disable(ssd130x->bl_dev);
- 
-+	ssd130x->enabled = false;
-+
- 	ssd130x_write_cmd(ssd130x, 1, SSD13XX_DISPLAY_OFF);
- 
- 	ssd130x_power_off(ssd130x);
-@@ -1980,8 +2027,34 @@ static int ssd130x_connector_get_modes(struct drm_connector *connector)
- 	return drm_connector_helper_get_modes_fixed(connector, &ssd130x->mode);
+ /**
+  * drm_connector_attach_encoder - attach a connector to an encoder
+  * @connector: connector to attach
+@@ -1681,6 +1722,22 @@ EXPORT_SYMBOL(drm_hdmi_connector_get_output_format_name);
+  * 	Summarizing: Only set "DPMS" when the connector is known to be enabled,
+  * 	assume that a successful SETCONFIG call also sets "DPMS" to on, and
+  * 	never read back the value of "DPMS" because it can be incorrect.
++ * LUMINANCE:
++ *     Atomic range property for controlling a panel's relative luminance.
++ *     The unit and range are driver-defined and do not represent an absolute
++ *     luminance in cd/m^2. This name therefore also applies to emissive panels
++ *     that do not contain a separate backlight.
++ *
++ *     The property is independent of the connector's display-power state.
++ *     Changing it while the connector is inactive stores the new value without
++ *     turning the display on. The atomic helpers apply the stored value after
++ *     the display pipeline is enabled and invoke a separate driver callback
++ *     before disabling the pipeline; neither action changes the property value.
++ *
++ *     Drivers create the property with
++ *     drm_connector_attach_luminance_property() and implement the
++ *     corresponding &drm_connector_helper_funcs callbacks. Connectors that do
++ *     not support luminance control do not expose the property.
+  * panel_type:
+  * 	Immutable enum property to indicate the type of connected panel.
+  * 	Possible values are "unknown" (default), "OLED", and "LCD".
+diff --git a/drivers/gpu/drm/tests/drm_connector_test.c b/drivers/gpu/drm/tests/drm_connector_test.c
+index 3368aedd4e669..e43692d38ebb8 100644
+--- a/drivers/gpu/drm/tests/drm_connector_test.c
++++ b/drivers/gpu/drm/tests/drm_connector_test.c
+@@ -137,6 +137,33 @@ static void drm_test_drmm_connector_init_null_ddc(struct kunit *test)
+ 	KUNIT_EXPECT_EQ(test, ret, 0);
  }
  
-+static void ssd130x_connector_set_luminance(const struct drm_connector_state *conn_state)
++static void drm_test_connector_attach_luminance_property(struct kunit *test)
 +{
-+	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
++	struct drm_connector_init_priv *priv = test->priv;
++	struct drm_connector *connector = &priv->connector;
++	struct drm_property *property;
++	u64 value;
++	int ret;
 +
-+	/*
-+	 * The encoder enable already initialized the controller with the
-+	 * committed luminance. Skip if it failed to power up the controller.
++	ret = drmm_connector_init(&priv->drm, connector, &dummy_funcs,
++				  DRM_MODE_CONNECTOR_eDP, NULL);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	KUNIT_ASSERT_NULL(test, connector->state);
++
++	ret = drm_connector_attach_luminance_property(connector, 10, 100, 50);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	property = connector->luminance_property;
++	KUNIT_ASSERT_NOT_NULL(test, property);
++
++	ret = drm_object_property_get_default_value(&connector->base, property, &value);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	KUNIT_EXPECT_EQ(test, value, (u64)50);
++
++	drm_atomic_helper_connector_reset(connector);
++	KUNIT_ASSERT_NOT_NULL(test, connector->state);
++	KUNIT_EXPECT_EQ(test, connector->state->luminance, 50u);
++}
++
+ /*
+  * Test that the registration of a connector succeeds for all possible
+  * connector types.
+@@ -190,6 +217,7 @@ KUNIT_ARRAY_PARAM(drm_connector_init_type_valid,
+ static struct kunit_case drmm_connector_init_tests[] = {
+ 	KUNIT_CASE(drm_test_drmm_connector_init),
+ 	KUNIT_CASE(drm_test_drmm_connector_init_null_ddc),
++	KUNIT_CASE(drm_test_connector_attach_luminance_property),
+ 	KUNIT_CASE_PARAM(drm_test_drmm_connector_init_type_valid,
+ 			 drm_connector_init_type_valid_gen_params),
+ 	{ }
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index 4cfeec70d648a..3084dd5cd6a1f 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -116,6 +116,9 @@ void drm_atomic_helper_commit_encoder_bridge_enable(struct drm_device *dev,
+ void drm_atomic_helper_commit_modeset_enables(struct drm_device *dev,
+ 					  struct drm_atomic_commit *old_state);
+ 
++void drm_atomic_helper_commit_luminance_disables(struct drm_atomic_commit *state);
++void drm_atomic_helper_commit_luminance_enables(struct drm_atomic_commit *state);
++
+ int drm_atomic_helper_prepare_planes(struct drm_device *dev,
+ 				     struct drm_atomic_commit *state);
+ void drm_atomic_helper_unprepare_planes(struct drm_device *dev,
+diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+index 2ee7c59329aae..7f7d115b65f9f 100644
+--- a/include/drm/drm_connector.h
++++ b/include/drm/drm_connector.h
+@@ -1369,6 +1369,11 @@ struct drm_connector_state {
+ 	 * @drm_atomic_helper_connector_hdmi_check().
+ 	 */
+ 	struct drm_connector_hdmi_state hdmi;
++
++	/**
++	 * @luminance: Relative panel luminance requested by userspace.
 +	 */
-+	if (!ssd130x->enabled || ssd130x->contrast == conn_state->luminance)
-+		return;
-+
-+	ssd130x->contrast = conn_state->luminance;
-+	ssd130x_set_contrast(ssd130x, ssd130x->contrast);
-+}
-+
-+static void ssd130x_connector_disable_luminance(const struct drm_connector_state *conn_state)
-+{
-+	struct ssd130x_device *ssd130x = drm_to_ssd130x(conn_state->connector->dev);
-+
-+	/* Keep ssd130x->contrast, it is restored when the encoder is enabled */
-+	if (ssd130x->enabled)
-+		ssd130x_set_contrast(ssd130x, 0);
-+}
-+
- static const struct drm_connector_helper_funcs ssd130x_connector_helper_funcs = {
- 	.get_modes = ssd130x_connector_get_modes,
-+	.set_luminance = ssd130x_connector_set_luminance,
-+	.disable_luminance = ssd130x_connector_disable_luminance,
++	unsigned int luminance;
  };
  
- static const struct drm_connector_funcs ssd130x_connector_funcs = {
-@@ -2016,55 +2089,16 @@ static const struct drm_driver ssd130x_drm_driver = {
- };
- 
- static int ssd130x_update_bl(struct backlight_device *bdev)
--{
--	struct ssd130x_device *ssd130x = bl_get_data(bdev);
--	int brightness = backlight_get_brightness(bdev);
--	int ret;
--
--	ssd130x->contrast = brightness;
--
--	ret = ssd130x_write_cmd(ssd130x, 1, SSD13XX_CONTRAST);
--	if (ret < 0)
--		return ret;
--
--	ret = ssd130x_write_cmd(ssd130x, 1, ssd130x->contrast);
--	if (ret < 0)
--		return ret;
--
--	return 0;
--}
--
--static int ssd133x_update_bl(struct backlight_device *bdev)
--{
--	struct ssd130x_device *ssd130x = bl_get_data(bdev);
--
--	ssd130x->contrast = backlight_get_brightness(bdev);
--
--	return ssd133x_set_contrast(ssd130x, ssd130x->contrast);
--}
--
--static int ssd135x_update_bl(struct backlight_device *bdev)
- {
- 	struct ssd130x_device *ssd130x = bl_get_data(bdev);
- 
- 	ssd130x->contrast = backlight_get_brightness(bdev);
- 
--	return ssd135x_set_contrast(ssd130x, ssd130x->contrast);
-+	return ssd130x_set_contrast(ssd130x, ssd130x->contrast);
- }
- 
--static const struct backlight_ops ssd130xfb_bl_ops[] = {
--	[SSD130X_FAMILY] = {
--		.update_status	= ssd130x_update_bl,
--	},
--	[SSD132X_FAMILY] = {
--		.update_status	= ssd130x_update_bl,
--	},
--	[SSD133X_FAMILY] = {
--		.update_status	= ssd133x_update_bl,
--	},
--	[SSD135X_FAMILY] = {
--		.update_status	= ssd135x_update_bl,
--	},
-+static const struct backlight_ops ssd130xfb_bl_ops = {
-+	.update_status	= ssd130x_update_bl,
- };
- 
- static void ssd130x_parse_properties(struct ssd130x_device *ssd130x)
-@@ -2213,6 +2247,13 @@ static int ssd130x_init_modeset(struct ssd130x_device *ssd130x)
- 	}
- 
- 	drm_connector_helper_add(connector, &ssd130x_connector_helper_funcs);
-+	if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		ret = drm_connector_attach_luminance_property(connector, 0,
-+							      MAX_CONTRAST,
-+							      ssd130x->contrast);
-+		if (ret)
-+			return ret;
-+	}
- 
- 	ret = drm_connector_attach_encoder(connector, encoder);
- 	if (ret) {
-@@ -2270,16 +2311,18 @@ struct ssd130x_device *ssd130x_probe(struct device *dev, struct regmap *regmap)
- 	if (ret)
- 		return ERR_PTR(ret);
- 
--	bl = devm_backlight_device_register(dev, dev_name(dev), dev, ssd130x,
--					    &ssd130xfb_bl_ops[ssd130x->device_info->family_id],
--					    NULL);
--	if (IS_ERR(bl))
--		return ERR_PTR(dev_err_probe(dev, PTR_ERR(bl),
--					     "Unable to register backlight device\n"));
--
--	bl->props.brightness = ssd130x->contrast;
--	bl->props.max_brightness = MAX_CONTRAST;
--	ssd130x->bl_dev = bl;
-+	if (!IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
-+		bl = devm_backlight_device_register(dev, dev_name(dev), dev,
-+						    ssd130x, &ssd130xfb_bl_ops,
-+						    NULL);
-+		if (IS_ERR(bl))
-+			return ERR_PTR(dev_err_probe(dev, PTR_ERR(bl),
-+						     "Unable to register backlight device\n"));
+ struct drm_connector_hdmi_audio_funcs {
+@@ -2714,6 +2719,13 @@ struct drm_connector {
+ 	 * @cec: CEC-related data.
+ 	 */
+ 	struct drm_connector_cec cec;
 +
-+		bl->props.brightness = ssd130x->contrast;
-+		bl->props.max_brightness = MAX_CONTRAST;
-+		ssd130x->bl_dev = bl;
-+	}
++	/**
++	 * @luminance_property: Optional atomic range property for relative panel
++	 * luminance. Drivers create it with
++	 * drm_connector_attach_luminance_property().
++	 */
++	struct drm_property *luminance_property;
+ };
  
- 	ret = ssd130x_init_modeset(ssd130x);
- 	if (ret)
-diff --git a/drivers/gpu/drm/solomon/ssd130x.h b/drivers/gpu/drm/solomon/ssd130x.h
-index fd81262f2ceb9..536a5649edffc 100644
---- a/drivers/gpu/drm/solomon/ssd130x.h
-+++ b/drivers/gpu/drm/solomon/ssd130x.h
-@@ -100,6 +100,8 @@ struct ssd130x_device {
- 	u32 prechargep2;
+ #define obj_to_connector(x) container_of(x, struct drm_connector, base)
+@@ -2980,6 +2992,10 @@ const char *drm_get_colorspace_name(enum drm_colorspace colorspace);
  
- 	struct backlight_device *bl_dev;
-+	/* Controller is powered and initialized, set from atomic commits */
-+	bool enabled;
- 	struct pwm_device *pwm;
- 	struct gpio_desc *reset;
- 	struct regulator *vcc_reg;
+ int drm_connector_attach_color_format_property(struct drm_connector *connector,
+ 					       unsigned long supported_color_formats);
++int drm_connector_attach_luminance_property(struct drm_connector *connector,
++					    unsigned int min,
++					    unsigned int max,
++					    unsigned int value);
+ 
+ /**
+  * drm_for_each_connector_iter - connector_list iterator macro
+diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
+index 60b30cc269404..1c614f44de7ca 100644
+--- a/include/drm/drm_modeset_helper_vtables.h
++++ b/include/drm/drm_modeset_helper_vtables.h
+@@ -1147,6 +1147,34 @@ struct drm_connector_helper_funcs {
+ 	void (*atomic_commit)(struct drm_connector *connector,
+ 			      struct drm_atomic_commit *state);
+ 
++	/**
++	 * @set_luminance:
++	 *
++	 * Apply &drm_connector_state.luminance to an active panel. The
++	 * atomic helpers call this after a modeset enabled the display
++	 * pipeline, and for commits changing the luminance while the connector
++	 * remains active. It is not called when the luminance is unchanged,
++	 * unless a modeset other than a self refresh exit happened.
++	 *
++	 * This callback is optional and is only used by connectors exposing the
++	 * ``LUMINANCE`` property.
++	 */
++	void (*set_luminance)(const struct drm_connector_state *new_state);
++
++	/**
++	 * @disable_luminance:
++	 *
++	 * Turn panel light emission off before disabling the display pipeline.
++	 * It is not called when the pipeline enters self refresh.
++	 * This callback does not change the ``LUMINANCE`` property; the
++	 * stored value is restored through @set_luminance when the panel
++	 * is enabled again.
++	 *
++	 * This callback is optional and is only used by connectors exposing the
++	 * ``LUMINANCE`` property.
++	 */
++	void (*disable_luminance)(const struct drm_connector_state *old_state);
++
+ 	/**
+ 	 * @prepare_writeback_job:
+ 	 *
 
 -- 
 2.53.0
