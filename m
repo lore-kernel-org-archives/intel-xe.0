@@ -2,47 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22CB5606FAEC
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 10:44:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=lAvy7fRJ
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55769607151D
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 10:49:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D970710F4CD;
-	Tue,  3 Nov 2026 10:44:19 +0000 (UTC)
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C76810F4CD;
- Tue,  3 Nov 2026 10:44:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1793702652;
- bh=OpaMivqe7d52iZ6lcLVckz/GCFD53etTQkNAD34bc3Y=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=lAvy7fRJQZnPLS+Zr0eLEK2EhRjwIRQSLMqAuApIDK9LLU4oxAQCVFAnZcEApRmem
- WEVMoGhKjBx1u6vahgm8LYOWb+UceXTsjW4YsEeQH+iTVNQYUFE0qG+WVCRjPkXhTM
- EAyFhfcwsmsBYeXiTpWlLYjqSCGxKyp/DirExcAK1qM70CjHUA8lNWFR27ayHPU93L
- 4Gokx+rasSYRPQtITskOheVxbq1Jb881G0oIMmSb7dwc3Dgv8qdPLXxKEYmStqwi9T
- SXKM4HEwTFt0EWRnYWcRjsU70u2kRR095CqTlQuW/8q0ObhGcam2Ft0nKgGskNWf6V
- JLkzP8hw/4JkA==
-Message-ID: <65fae402-e053-4a4f-ba55-6b5b51690eba@lankhorst.se>
-Date: Tue, 3 Nov 2026 11:45:09 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1575910E4DE;
+	Tue,  3 Nov 2026 10:49:15 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E095A10E4DE;
+ Tue,  3 Nov 2026 10:49:13 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4331215110777250130=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/xe/display: Skip initial plane allocation from
- stolen memory on RT
-To: Junxiao Chang <junxiao.chang@intel.com>, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
- bigeasy@linutronix.de, clrkwllms@kernel.org, rostedt@goodmis.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev
-References: <20261104032732.30681-1-junxiao.chang@intel.com>
- <20261104032732.30681-2-junxiao.chang@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20261104032732.30681-2-junxiao.chang@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Add_support_?=
+ =?utf-8?q?for_the_DP_symbol_based_timing_generator_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Nov 2026 10:49:13 -0000
+Message-ID: <179370295391.110241.8605289743591257987@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261103-vlk-64036-dp-symbol-tg-v4-0-6cf8a588b54c@intel.com>
+In-Reply-To: <20261103-vlk-64036-dp-symbol-tg-v4-0-6cf8a588b54c@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,64 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hey,
+--===============4331215110777250130==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Is a single performance hit during boot allowed?
-If so, this is a better solution, as it helps on !PREEMPT_RT as well:
+== Series Details ==
 
-https://patchwork.freedesktop.org/series/170759/
+Series: drm/i915/dp: Add support for the DP symbol based timing generator (rev3)
+URL   : https://patchwork.freedesktop.org/series/177001/
+State : success
 
-The first patch in that series is a better solution than unconditionally disabling
-stolen memory, as I from what I understand the problem only exists when media gt is enabled.
+== Summary ==
 
-If not, we should probably unconditionally disable stolen framebuffer all the time.
+CI Bug Log - changes from xe-6051-279235273fc6c0a33df863b4a1cc52ec1e73aba5_BAT -> xe-pw-177001v3_BAT
+====================================================
 
-But with the series, we preserve the initial framebuffer contents and ensure a smooth
-handover, even without stolen.
+Summary
+-------
 
-The warning in 2/2 is probably fine.
+  **SUCCESS**
 
-Kind regards,
-~Maarten Lankhorst
+  No regressions found.
 
-On 11/4/26 04:27, Junxiao Chang wrote:
-> CPU access to stolen memory ranges can introduce latency spikes that
-> compromise real-time (RT) guarantees on PREEMPT_RT kernels.
-> 
-> On PREEMPT_RT configurations, bypass retrieving the initial plane's
-> framebuffer from stolen memory. This forces the driver to fall back to
-> standard allocations, preventing RT latency degradation at the expense
-> of seamless boot display takeover.
-> 
-> Signed-off-by: Junxiao Chang <junxiao.chang@intel.com>
-> ---
->  drivers/gpu/drm/xe/display/xe_initial_plane.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> index 0f86b73036d03..fd0e2962412dd 100644
-> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> @@ -87,6 +87,12 @@ initial_plane_bo(struct xe_device *xe,
->  		struct ttm_resource_manager *stolen;
->  		u64 pte;
->  
-> +		if (IS_ENABLED(CONFIG_PREEMPT_RT)) {
-> +			drm_dbg_kms(&xe->drm,
-> +				    "Skipping FB allocation from stolen mem due to PREEMPT_RT\n");
-> +			return NULL;
-> +		}
-> +
->  		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
->  		if (!stolen) {
->  			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
+  
 
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6051-279235273fc6c0a33df863b4a1cc52ec1e73aba5 -> xe-pw-177001v3
+
+  IGT_9175: 9175
+  xe-6051-279235273fc6c0a33df863b4a1cc52ec1e73aba5: 279235273fc6c0a33df863b4a1cc52ec1e73aba5
+  xe-pw-177001v3: 177001v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v3/index.html
+
+--===============4331215110777250130==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: Add support for the DP symbol based timing generator (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177001/">https://patchwork.freedesktop.org/series/177001/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177001v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6051-279235273fc6c0a33df863b4a1cc52ec1e73aba5_BAT -&gt; xe-pw-177001v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6051-279235273fc6c0a33df863b4a1cc52ec1e73aba5 -&gt; xe-pw-177001v3</li>
+</ul>
+<p>IGT_9175: 9175<br />
+  xe-6051-279235273fc6c0a33df863b4a1cc52ec1e73aba5: 279235273fc6c0a33df863b4a1cc52ec1e73aba5<br />
+  xe-pw-177001v3: 177001v3</p>
+
+</body>
+</html>
+
+--===============4331215110777250130==--
