@@ -2,47 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D682F606A826
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 11:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F58C606A32F
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 11:45:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=jd2xHX5Z
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KSxKTwZJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE5610F510;
-	Tue,  3 Nov 2026 11:21:35 +0000 (UTC)
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEFD510F512;
- Tue,  3 Nov 2026 11:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1793704886;
- bh=WsecBn/49e7uFyfqCo1gbvGorAO+WAvATYilIhVU0do=;
- h=Date:Subject:To:References:From:In-Reply-To:From;
- b=jd2xHX5ZE2f2SxpSjFFacchwNbUt1xmsp9KsjBIabSum0Nn0NalBpOZd/WdLcp5+f
- AkqXC4N/LDODtoiDbvHJByML9slvFytsVc5uXdeG1gocaUTPshjsG+OERyEnp5mqwL
- 6M/EhvOB06Gy2ruu9Ub86GuBd2MU7mv8orIAygxNR7Q0vaiAszZrzfz6Zkhfgt2Jfh
- olYslm687tgXuk2dwbqnWlX1U5/VUewQrxy+3ZqpWVjUevuI9RzzuUJOZYlD5RHtfs
- kvWCR+cxMPIj4lb3t2VX9oXXdSzpSQxMangaMJwf2iEjc+nlzQ51AkpQezboYhRHvI
- zIE0JP9atqCwA==
-Message-ID: <ec59fe20-1e22-4009-89b9-af5b3d37fcee@lankhorst.se>
-Date: Tue, 3 Nov 2026 12:22:22 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 266A310F54E;
+	Tue,  3 Nov 2026 11:45:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B51010E759
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 11:45:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793706345; x=1825242345;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Dx+iDFx6zS19t3pOBFnnqicZBmy/JPsew8WeXAxGw6U=;
+ b=KSxKTwZJ78i1D7L2av5E65O7qS1xeCtDpIRfEQ3qzX+3ziQ9jvdcBzSi
+ rGWw4b1G8mkB+BO8R1U4kNhx1CHMeT9Np4kfu0UBwcOnDqLNUHuT3UZzn
+ 2PKEmpms7rB61h/yHHm0em0zIVQ20UtrDVm/R8m0fkst0g4PxFhUPDyld
+ G1AlJtFjQYjga2E3U1kXA4+IZWZ5lIzMElwtHZTd+XiX8oex8rI+fNtbN
+ AfAXbMkKEBTPXPOq/m2+dqUWfAyIFnVFu95vM3Ess8a3hwueWxzXemvGK
+ 3IBZGJDhEXiItCftbKJ9OZcmK/Hdg3fHfhofAm7IZvN6sMVFtxx+1yJd9 g==;
+X-CSE-ConnectionGUID: gyH05IMST82o2gu9Q/nCaw==
+X-CSE-MsgGUID: e+R/0L2jQa2VLT+BTh0q1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2306293"
+X-IronPort-AV: E=Sophos;i="6.27,193,1787036400"; 
+   d="scan'208";a="2306293"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2026 03:45:45 -0800
+X-CSE-ConnectionGUID: pmtGY5joSa6oLZGK3okv2A==
+X-CSE-MsgGUID: IXzVF184Sp2cXzmdbbXpKg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,193,1787036400"; 
+   d="scan'208";a="8183038"
+Received: from gsd-build.iind.intel.com ([10.190.229.108])
+ by fmviesa012.fm.intel.com with ESMTP; 03 Nov 2026 03:45:45 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 0/1] Fix VF probe issue due to missing LMTT dir ptr
+Date: Tue,  3 Nov 2026 11:45:41 +0000
+Message-ID: <20261103114540.240284-3-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/gsc: warn about GSC stolen memory usage on RT
- kernels
-To: Junxiao Chang <junxiao.chang@intel.com>, jani.nikula@linux.intel.com,
- rodrigo.vivi@intel.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, airlied@gmail.com, simona@ffwll.ch,
- bigeasy@linutronix.de, clrkwllms@kernel.org, rostedt@goodmis.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-rt-devel@lists.linux.dev
-References: <20261104032732.30681-1-junxiao.chang@intel.com>
- <20261104032732.30681-3-junxiao.chang@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20261104032732.30681-3-junxiao.chang@intel.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,46 +60,39 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hey,
+In the recent platforms, while probing VF driver, seeing below error in
+dmesg:
 
-On 11/4/26 04:27, Junxiao Chang wrote:
-> The GSC microcontroller requires stolen memory, which can introduce
-> latency spikes and negatively impact real-time performance.
-> 
-> Print a warning on CONFIG_PREEMPT_RT kernels to inform the user that GSC
-> is active and that RT performance can be improved by disabling the GSC
-> firmware (e.g., by setting the module parameter xe.gsc_firmware_path="").
-> 
-> Signed-off-by: Junxiao Chang <junxiao.chang@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_gsc.c | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-> index aab59dc647fbd..3d06ab6fecbe0 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc.c
-> +++ b/drivers/gpu/drm/xe/xe_gsc.c
-> @@ -427,6 +427,11 @@ int xe_gsc_init(struct xe_gsc *gsc)
->  	else if (ret)
->  		goto out;
->  
-> +	if (IS_ENABLED(CONFIG_PREEMPT_RT)) {
-> +		xe_gt_warn(gt, "RT performance might be impacted by GSC stolen memory usage\n");
-> +		xe_gt_warn(gt, "Consider disabling GSC (xe.gsc_firmware_path=\"\") to improve it\n");
-> +	}
-Is this a problem on discrete as well, or only on integrated?
+*ERROR* Tile0: GT1: H2G request 0x550e failed: error 0x103 hint 0x0
+*ERROR* Tile0: GT1: failed to enable GuC opt-in features: -EIO
+*ERROR* SIGID=101 FATAL (-EIO) PROBE: driver loading failed for device '674c'
+probe with driver xe failed with error -5
 
-Kind regards,
-~Maarten Lankhorst> +
->  	ret = xe_gsc_proxy_init(gsc);
->  	if (ret && ret != -ENODEV)
->  		goto out;
+The LMTT directory pointer is configured on every GT of the tile only
+from the primary GT's init/reset flow. On new platforms, both primary and
+media GTs have their own forcewake. Primary GT's init holds only its own
+forcewake, so the media GT write can be lost.
+
+Program the LMTT directory pointer from each GT's own init and restart
+path, while that GT's forcewake is held.
+
+Also reordered include files in xe_lmtt.c.
+
+Satyanarayana K V P (1):
+  drm/xe/pf: Program LMTT directory pointer from each GT's init path
+
+ drivers/gpu/drm/xe/xe_gt.c   | 14 ++++++--------
+ drivers/gpu/drm/xe/xe_lmtt.c | 28 +++++++++++++++-------------
+ drivers/gpu/drm/xe/xe_lmtt.h |  5 +++--
+ 3 files changed, 24 insertions(+), 23 deletions(-)
+
+-- 
+2.43.0
 
