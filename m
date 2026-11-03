@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26185606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38F6F606A32D
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MuWq2jam
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ERNW35KG
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C326810FCA4;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CCFDA10FCA5;
 	Wed,  4 Nov 2026 15:02:53 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC17710F0D6;
- Mon,  2 Nov 2026 16:49:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0C3310F8A8;
+ Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C3FD044601;
- Mon,  2 Nov 2026 16:49:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BE081F00A16;
- Mon,  2 Nov 2026 16:49:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 937FC41AE6;
+ Tue,  3 Nov 2026 22:42:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2BBC1F0093A;
+ Tue,  3 Nov 2026 22:42:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793638195;
- bh=oRJRMMD3ctMEcVviiDxytRdlmLbWxJT80Ce13o2Sbyo=;
+ s=k20260515; t=1793745756;
+ bh=JDOFP0lBfi8GeV67m9asGivOpxWxqXgZkhYHVbXSUTg=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=MuWq2jamAXbNo1Xz1TG/MelTuHxU/QDkjNY8A2r74MLF0kgIrW9J9Lh9vTAH5DlvO
- wByf+MJ7ePvJsu2l+iowPAmRUqHNcmxH4pz6cwPwKQtKdyUuK+NF5Hl5AypF1dA2Ad
- IPEqidNpl1XAuUx/eqhXekQwyEZOwOkPoxfu1E3CZdzQO3542cG6xuI9n42GT4Lq5f
- kRnfbMw05gz4v9r4zlrh31fcSnRsyOP5Muky17VgkzADC5+3P4SsKFF/vkSvGZrgd4
- 9hIJkQyMZKG4osAc/yFaHFf9YBOaj6RO0YOYTJl9rbFQo/XmZ39tm+Of3t0u6WJZ4V
- ZgXhqwnCZaI5g==
+ b=ERNW35KGsHiVym8/H0/iOko9whJ/J9EGYfN9IFD9bgM6VLE8FcAbzfOHRFKVTiHno
+ nWEj6ogTZeJ6tXM22S+qUWMJlKfSNMa+RMaQzfsPCkjCLYO0m7vb8HpS49DhiwaA70
+ 8fOb2gTU6o09dPsLWNfOfsaZE48wJuMt1eMdJceMb2OCb0wgvs4ib8efRxrl0PJKcG
+ FSoL8QhaXx9Gzo23mcNC+Jb4mPm+j0jEeh2S3NE45/gxa92u/3btja60PVh4Ip3+4c
+ z/q7BPLvalkzh1p10d3J7TBrFjbmg78n6EmoHscHVndp8xxBLop7ZnjAb6SNukDls2
+ TDwj1S6egLjDw==
 From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Date: Mon, 02 Nov 2026 10:49:30 -0600
-Subject: [PATCH v10 14/15] drm/bridge: add PS8622 connector luminance support
+Date: Tue, 03 Nov 2026 16:42:12 -0600
+Subject: [PATCH v11 11/12] drm/bridge: add PS8622 connector luminance support
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261102-superm1-backlight-property-v10-14-b2a6f24131f5@kernel.org>
-References: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
-In-Reply-To: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+Message-Id: <20261103-superm1-backlight-property-v11-11-00cce7b2ba22@kernel.org>
+References: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
+In-Reply-To: <20261103-superm1-backlight-property-v11-0-00cce7b2ba22@kernel.org>
 To: Maxime Ripard <mripard@kernel.org>, 
  Alex Deucher <alexander.deucher@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -79,36 +79,39 @@ otherwise.
 
 Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
 ---
- drivers/gpu/drm/bridge/Kconfig         |  2 +-
- drivers/gpu/drm/bridge/parade-ps8622.c | 45 +++++++++++++++++++++++++---------
- 2 files changed, 34 insertions(+), 13 deletions(-)
+v11:
+ * Track internal PWM mode explicitly so it is still configured with
+   LUMINANCE (Sashiko)
+ * Don't access I2C while the bridge is powered down (Sashiko)
+ * Keep selecting BACKLIGHT_CLASS_DEVICE (Sashiko)
+ * Program the committed luminance in pre_enable
+---
+ drivers/gpu/drm/bridge/parade-ps8622.c | 66 +++++++++++++++++++++++++++-------
+ 1 file changed, 53 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index c7da6b02d7b6b..d27e9b2485fd6 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -278,7 +278,7 @@ config DRM_PARADE_PS8622
- 	depends on OF
- 	select DRM_PANEL_BRIDGE
- 	select DRM_KMS_HELPER
--	select BACKLIGHT_CLASS_DEVICE
-+	depends on DRM_LUMINANCE || BACKLIGHT_CLASS_DEVICE = y || !BACKLIGHT_CLASS_DEVICE
- 	help
- 	  Parade eDP-LVDS bridge chip driver.
- 
 diff --git a/drivers/gpu/drm/bridge/parade-ps8622.c b/drivers/gpu/drm/bridge/parade-ps8622.c
-index 3a2ec482037df..229d9d7218c4e 100644
+index 3a2ec482037df..c88bd7a97d4a4 100644
 --- a/drivers/gpu/drm/bridge/parade-ps8622.c
 +++ b/drivers/gpu/drm/bridge/parade-ps8622.c
-@@ -45,6 +45,7 @@ struct ps8622_bridge {
+@@ -45,6 +45,8 @@ struct ps8622_bridge {
  	struct drm_bridge *panel_bridge;
  	struct regulator *v12;
  	struct backlight_device *bl;
 +	u8 brightness;
++	bool internal_pwm;
  
  	struct gpio_desc *gpio_slp;
  	struct gpio_desc *gpio_rst;
-@@ -276,7 +277,7 @@ static int ps8622_send_config(struct ps8622_bridge *ps8622)
+@@ -268,7 +270,7 @@ static int ps8622_send_config(struct ps8622_bridge *ps8622)
+ 		goto error;
+ 
+ 
+-	if (ps8622->bl) {
++	if (ps8622->internal_pwm) {
+ 		/* DPCD720, internal PWM */
+ 		err = ps8622_set(cl, 0x01, 0xa5, 0xa0);
+ 		if (err)
+@@ -276,7 +278,7 @@ static int ps8622_send_config(struct ps8622_bridge *ps8622)
  
  		/* FFh for 100% brightness, 0h for 0% brightness */
  		err = ps8622_set(cl, 0x01, 0xa7,
@@ -117,7 +120,7 @@ index 3a2ec482037df..229d9d7218c4e 100644
  		if (err)
  			goto error;
  	} else {
-@@ -324,6 +325,8 @@ static int ps8622_backlight_update(struct backlight_device *bl)
+@@ -324,6 +326,8 @@ static int ps8622_backlight_update(struct backlight_device *bl)
  	struct ps8622_bridge *ps8622 = dev_get_drvdata(&bl->dev);
  	int ret, brightness = backlight_get_brightness(bl);
  
@@ -126,7 +129,7 @@ index 3a2ec482037df..229d9d7218c4e 100644
  	if (!ps8622->enabled)
  		return -EINVAL;
  
-@@ -332,6 +335,15 @@ static int ps8622_backlight_update(struct backlight_device *bl)
+@@ -332,6 +336,20 @@ static int ps8622_backlight_update(struct backlight_device *bl)
  	return ret;
  }
  
@@ -136,13 +139,41 @@ index 3a2ec482037df..229d9d7218c4e 100644
 +	struct ps8622_bridge *ps8622 = bridge_to_ps8622(bridge);
 +
 +	ps8622->brightness = luminance;
++
++	/* Applied by ps8622_send_config() on the next pre_enable */
++	if (!ps8622->enabled)
++		return;
++
 +	ps8622_set(ps8622->client, 0x01, 0xa7, luminance);
 +}
 +
  static const struct backlight_ops ps8622_backlight_ops = {
  	.update_status	= ps8622_backlight_update,
  };
-@@ -438,6 +450,7 @@ static const struct drm_bridge_funcs ps8622_bridge_funcs = {
+@@ -340,11 +358,22 @@ static void ps8622_pre_enable(struct drm_bridge *bridge,
+ 			      struct drm_atomic_commit *commit)
+ {
+ 	struct ps8622_bridge *ps8622 = bridge_to_ps8622(bridge);
++	struct drm_connector *connector;
+ 	int ret;
+ 
+ 	if (ps8622->enabled)
+ 		return;
+ 
++	/* Program the committed luminance from ps8622_send_config() */
++	connector = drm_atomic_get_new_connector_for_encoder(commit, bridge->encoder);
++	if (connector && connector->luminance_property) {
++		const struct drm_connector_state *conn_state =
++			drm_atomic_get_new_connector_state(commit, connector);
++
++		if (conn_state)
++			ps8622->brightness = conn_state->luminance;
++	}
++
+ 	gpiod_set_value(ps8622->gpio_rst, 0);
+ 
+ 	if (ps8622->v12) {
+@@ -438,6 +467,7 @@ static const struct drm_bridge_funcs ps8622_bridge_funcs = {
  	.atomic_disable = ps8622_disable,
  	.atomic_post_disable = ps8622_post_disable,
  	.attach = ps8622_attach,
@@ -150,12 +181,11 @@ index 3a2ec482037df..229d9d7218c4e 100644
  };
  
  static const struct of_device_id ps8622_devices[] = {
-@@ -502,18 +515,25 @@ static int ps8622_probe(struct i2c_client *client)
+@@ -502,18 +532,28 @@ static int ps8622_probe(struct i2c_client *client)
  		ps8622->lane_count = ps8622->max_lane_count;
  	}
  
-+	ps8622->brightness = PS8622_MAX_BRIGHTNESS;
- 	if (!of_property_read_bool(dev->of_node, "use-external-pwm")) {
+-	if (!of_property_read_bool(dev->of_node, "use-external-pwm")) {
 -		ps8622->bl = backlight_device_register("ps8622-backlight",
 -				dev, ps8622, &ps8622_backlight_ops,
 -				NULL);
@@ -164,6 +194,10 @@ index 3a2ec482037df..229d9d7218c4e 100644
 -			ret = PTR_ERR(ps8622->bl);
 -			ps8622->bl = NULL;
 -			return ret;
++	ps8622->brightness = PS8622_MAX_BRIGHTNESS;
++	ps8622->internal_pwm = !of_property_read_bool(dev->of_node,
++						      "use-external-pwm");
++	if (ps8622->internal_pwm) {
 +		if (IS_ENABLED(CONFIG_DRM_LUMINANCE)) {
 +			ps8622->bridge.ops |= DRM_BRIDGE_OP_LUMINANCE;
 +			ps8622->bridge.luminance_max = PS8622_MAX_BRIGHTNESS;
@@ -171,7 +205,8 @@ index 3a2ec482037df..229d9d7218c4e 100644
 +		} else {
 +			ps8622->bl = backlight_device_register("ps8622-backlight",
 +							       dev, ps8622,
-+							 &ps8622_backlight_ops, NULL);
++							       &ps8622_backlight_ops,
++							       NULL);
 +			if (IS_ERR(ps8622->bl)) {
 +				DRM_ERROR("failed to register backlight\n");
 +				ret = PTR_ERR(ps8622->bl);
@@ -186,16 +221,6 @@ index 3a2ec482037df..229d9d7218c4e 100644
  	}
  
  	ps8622->bridge.type = DRM_MODE_CONNECTOR_LVDS;
-@@ -529,7 +549,8 @@ static void ps8622_remove(struct i2c_client *client)
- {
- 	struct ps8622_bridge *ps8622 = i2c_get_clientdata(client);
- 
--	backlight_device_unregister(ps8622->bl);
-+	if (ps8622->bl)
-+		backlight_device_unregister(ps8622->bl);
- 	drm_bridge_remove(&ps8622->bridge);
- }
- 
 
 -- 
 2.53.0
