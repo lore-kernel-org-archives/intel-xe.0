@@ -2,158 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4531A606A324
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E422606A324
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XAg4/4FN
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HRIvLObS
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0387E10F382;
-	Tue,  3 Nov 2026 06:45:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2986510F3A2
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:45:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793688338; x=1825224338;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=y+/DdCaYvZAchPiPiGhvCl4aZCB2KCqurNj/rwxQNjE=;
- b=XAg4/4FN756aI5QylOjkoT63PshOM7LAJ68Dio3g/jFKAgwJWn7vbiio
- Ba4E0zgWOScQ7vkSZeHWEiDWQJVbg87Tjsg/CRnOWNQeF5/UHhXOck41j
- 6uHhlaaEa8/ydpahG/zRnZH8XI8zCT96mctDyZv2tpt9vmHUpkjPL6EOC
- 8e+A+haJbvI9FYnIamCsWeQ13h1qW6qvksR3Jj+iUZa4uVPEDzOQd3LEZ
- 6FrzZQN1jjbFcvv0F84LLxLgQZmgsGKj/2ojGEOqT9YBMzE65V5vupmrw
- Q9vtf/fFOnNzr/wBXUggfGsb5AimvUfkZMjELG8aWoZmaoRBVWgB0HFsK g==;
-X-CSE-ConnectionGUID: DwtaoLngSrWSWJhEOkUbzw==
-X-CSE-MsgGUID: w+eGVGFbRAm0EWBtbi1fgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2403873"
-X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="2403873"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:45:35 -0800
-X-CSE-ConnectionGUID: ePkTC1+fQdm+YgA7M5wxZw==
-X-CSE-MsgGUID: /4i5UH97Q62tNyE19sPN8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="6176561"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:45:35 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 22:45:34 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Mon, 2 Nov 2026 22:45:34 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.15)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 2 Nov 2026 22:45:34 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZvOSNmx7swdhKRs2NH4TItadGp2Jv9g65x/zmtaVx2kZjWMBvLiy/bTvfxK+kW84fKhP4+bC3h2SiKpTY64JC5dYoRceMdLHUeZf/DMLr6UpQvwsEMz5TtskUmrrOIsJ3BS6knbhqX6yE9VV4OHqmai5gNt215mpd3L+0tfscqBCjLAutUXgf2mWM8AqMlh00urutm1+FqRy7zPLHt6GfNv+NnjthhigZqvnFayc9Jx7rpE6qtoDoBsAmFcjk9uRL5uWzDmBpF3binl8DDjSZW8prPGwABYYHe398iGC9Tz7e/yf4OvpfgdMhB3Zbm7XDyBdb0TN63RJ9uPANP8a9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fugJnp94FcV5EeuDbzRtGt+9kiSzX/oDuyqqNq42mYA=;
- b=IsTcd296OPKFcDkHyfDW0OpvEMkoiB48pW8Ud9ngxh28Bpdgxj4VITWyYR24n4f1mjXKu1XVTZvBL2vnnEY2ZQSBD+QLgRQ4f/fxgyTn2NBNrLZE34xTbM+GRGn/6hfRIRwGHrDdHal/JvrXFOpkFGCpO+sMLi/eBbawolnBNMlWpabWqLhQJs4j1G/mZjl/ngG0A+hSl08SUsA5o5hq/XCvB8EmF9dpF4rs4w365eJrmdpQcE+/MTnnSWqKSwuVLkiIw8GfkH+gaH56v8HFQK0SkRNgiMZExa+E/n5J0TvC62089qVoHpRSDnaBFXyhrTngdK7+rs8hMITs/bXLFg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- DM4PR11MB7759.namprd11.prod.outlook.com (2603:10b6:8:10e::18) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.569.11; Tue, 3 Nov 2026 06:45:26 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0569.011; Tue, 3 Nov 2026
- 06:45:26 +0000
-Message-ID: <07797380-0ef6-49de-b192-414c68c691c7@intel.com>
-Date: Tue, 3 Nov 2026 12:15:19 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/7] drm/xe: Add support for wa_14028434957
-To: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
-References: <20261103060929.1586783-9-riana.tauro@intel.com>
- <20261103060929.1586783-15-riana.tauro@intel.com>
- <sashiko-outbox-194641@kernel.org>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <sashiko-outbox-194641@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0210.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ab::16) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|DM4PR11MB7759:EE_
-X-MS-Office365-Filtering-Correlation-Id: 955905e0-c418-4201-bc88-08df39760aef
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|56012099006|261102123227099003|261026121527099003|260925022911599003|260925021311599003|260925021911599003|4143699003|5023799004|261009223327099003|261009223027099003|261028144727099003|261009221727099003|261009221227099003|261009220027099003|261021135927099003|261022075727099003|261022113327099003|261026140227099003|261021121427099003|261022105027099003|11063799006|10067099003|18002099003|22082099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: h5MuSo27YCPpPCS92Yo42N6vbn5mIqnj9Oreaab/CG7N8VP8aFJCtgmSBvqLAMu7WYtNN9vJ20GEpbqV6/m17RB7B+LPt1WQRDrgua8VlblP1a3WoDmji4BAmZM91nNBCK6EZrXfaexzhFpsZ6t7SYQsDAZzB8x/GWfjtbDbB//hi84rFvzYfVxMRtR9sWTPUJIRUv+Ppp24S+tProG6jyojKClMTyxHjkx7KFbcyh0sH7pDPLmgyC+BmjlSZjfptShrI8Yr1EFuaRL8curEYz08GcdpEvg6uIRHYSt11QawMY5QfCjVVOnn8xlbKwXTjAdn5/jeMNTi6FgTbgIpKSae7mRiNmfrc8gNUN0r2teP+//X2u2TjGnVnu1nuUit1DkktJTmYveJsOIoFZTcJ1jyKR8xuHqJsXLBkHj7BiAPm7l7YLPCt6fzWTObllCo7EpYwFyZyhJzH97JUBb+G5dJOaV/wcJVvZ9xqCmu1zoD0Yp1NwWHOI4f1TwEQzCZMdtDoZMpHKdD52KQXQG84qu3wU6raypnJkuZhBy1c0dVuWBMbV38tYTW3252bA2Cx56Qa5BbzBUnak+z7DSOf41aNEGV48RuBuLI87Cnb2kI2fZgf7XJ9EEF1wSsdsx7
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(56012099006)(261102123227099003)(261026121527099003)(260925022911599003)(260925021311599003)(260925021911599003)(4143699003)(5023799004)(261009223327099003)(261009223027099003)(261028144727099003)(261009221727099003)(261009221227099003)(261009220027099003)(261021135927099003)(261022075727099003)(261022113327099003)(261026140227099003)(261021121427099003)(261022105027099003)(11063799006)(10067099003)(18002099003)(22082099003)(6133799003)(3023799007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDVxSUVCN1VtN01wSGMyWnhSRWY5MjdhRHd5aGxFODlwNGU1ZGR5R0U3SWxY?=
- =?utf-8?B?SU1ZNmxpcjZOYnhqMStTUTZ1dEtsMWNvNlNpNjd6SWNFL0JRdTg5SFZqaWtv?=
- =?utf-8?B?cWt1SGlUMTdxNW4xTnl1TDlEaTg5aTZCR1hXYUh3bkJwMTNKcTMrR252Vnlj?=
- =?utf-8?B?MmNiUkRnU2tlczR0RnRBQXNKMngveGpWTU5IT3h6Z3EzcUEwL3ppc0d1bDBF?=
- =?utf-8?B?M1U1VzVlTjVRZ0FDZnpQRWl2SElCemtYZjYvOXVNMDVheU84N3F2Smo0MWc0?=
- =?utf-8?B?K3hZbjNOZ05Db1FjbTRxNXpTSUZBSWdaM1ZtaG8vNURtMnpubWNNWGYrVy85?=
- =?utf-8?B?WDdPclJTSy8xNXZzMHhkMGtkbEJyUXBMK0NqTjRMTmpJTmtLNFBCT2M0ZlE2?=
- =?utf-8?B?eVdmR0ZpWmdYclpJNUdha08rMGdYSDlUSExYU0diTU9JaVJLSXZCaEF0WGYv?=
- =?utf-8?B?T3hFbzlJZUR1MVpVRW9tL25sa1h4bXJoc2xhZSsycHhKNUVjdW9zaENFUWJI?=
- =?utf-8?B?RXB0MXRRRjU3dFZSZTdzOG44aWplUkFGa3A0VEkrZWQyY2JQY20vL0NaMWRt?=
- =?utf-8?B?azFqTnBPWGphZGxKV1BacExzWEtGZkhCTjVTbE8vSk45Yy9BbXdvZkdyaGZT?=
- =?utf-8?B?UGtLdHA3SFdOK0RnTVVibkpYdGlDUDJ3Q2syNFhzREsxM1FIRE9iTVhRcnNO?=
- =?utf-8?B?ZE11ckR5M2JKaFFQSmoycG5xS2JQRWlwaStLcStSYS8wUzVKbW5iUjhWOHcz?=
- =?utf-8?B?YXNNKzVlSXJBT3I0QUxLbUJHblFCL1ZRUzVucUxGN1JaWkswYktHVkxTV2hR?=
- =?utf-8?B?VnR2OURyUDV3VmdlZGRtSFVKWUMvRWZreWI3MjRvcjdPU1pjaXF1MDVveUZq?=
- =?utf-8?B?aDZnQ1cvRUg0YVFBaHZkNlNxSkZ5ZEJBNW5NaFo0S3Y3cDRKeCszejZiUEV3?=
- =?utf-8?B?ekRwTG5tWStPSHcvb2h2b2VOZWxWNEwyR2paUHdKKzZPOG9sSGlmM3dGa3pC?=
- =?utf-8?B?WUdSL3RkWllLYlpiSFJ0b1U4eUI3d1dWcWtlb1JDbzgrZzh6dkFmeGZzZUpY?=
- =?utf-8?B?ZitheW5NbTU1Y2g0bk41Smo3cDFQYlFYckVSS3B2M21SUDJtMmxuZjlpRzQ0?=
- =?utf-8?B?c2Nvemt0d3Y3T2dlMTgraUI4Y0lQTXhtZDhaU1hLdVVKTHR6VHZBR2ZWOUFM?=
- =?utf-8?B?eHJWcUd6TEpJdjBScW9OSEFpMU04MEdibWI5U3QzM1lIdEU5NndlNHpPRDRn?=
- =?utf-8?B?TnRCaFhVWHFJWTlmSjN1emt1UUJ2WkdYSUpqMWp0N29YUDZaUVhPeDJvdlB6?=
- =?utf-8?B?NWMzb1lTL1d1V0pIRDZHY3pGTW5NY0Vob0RFTlNZYlVLRXpsU0dVTms3QWgy?=
- =?utf-8?B?YkNvM1JmWnkwTFA3Mkd1TEc2dklGaDlYYUJQb285RVp6ZWloUmdkSUhXMXdn?=
- =?utf-8?B?bTlubHJtaWtSbys0OFBJUFIwMmlhSGFyVGJ2UEtVU2tTN083dG1EbVV5WnV2?=
- =?utf-8?B?STlRTlE0SncvVGV4Z0tuYjFWaUp5MjFnU0dhTXlmZzJsVEJJM2JuSTZJbmUx?=
- =?utf-8?B?NDhYM1dkY1M5V0UwNFE2YkJobTZzSG0wRFJGNkxtWnRYeFZiUE9HcElERFhQ?=
- =?utf-8?B?cXZwaGUrZUZ6ZFBSeUEvYVVXSjdjaVZpNS9PSnlIR0wwY09MYVBnK0FTQll1?=
- =?utf-8?B?MjRMaFBVa0g2U3MzdndXemxNY2ZNTWl6SVc4V09ZQmVJWndOVk91TVd0UkJQ?=
- =?utf-8?B?VXpvaG5lb2F2KzBVemo2MmZ2UTRiVjIwbVJxY3dsRGJFWTh2bFRWL25iOUhq?=
- =?utf-8?B?WUxXSFR4VTd1UjdYZldDU0trbjVndk4vMVh0NnhxRFo3cUJ5dUdJallxL1Rn?=
- =?utf-8?B?bzk1RUZUQlNRT2Q3MmpQblZpVC9vbDN5TDhJT0pCcTduYThjOVFGUVJITjRR?=
- =?utf-8?B?R2hkZVZtTzh6dFE3cUJ6WFF3WnA4TFo1d0lybE03Yko3aVhNRDE1R2N3Y0Zs?=
- =?utf-8?B?Vmw5MHBDcFRZSG54bHBtZnNVUVRzVCtXcGFSMHRZU2phejVxT3U2MzcrRFpF?=
- =?utf-8?B?dkF1QmVNcGYvcTBDSmtWS0Y2K1VLY01hN0tnRGZ3dHlvblluQWpiRWtQSFRI?=
- =?utf-8?B?dWtldkdUMkpkSU9PM3RTSXo1eUV3QnRYa1p3MG5kN01aVVg4enBWMVVZUmJ1?=
- =?utf-8?B?UEFaQ1lOR21LaEU1Y21ENFhmeUdNNHNtZHZVNFhQNEZlaGZodHNscHU0MFBT?=
- =?utf-8?B?WS9VbnpwTmNrbTE2eU9UalpONGx5RHFsb0FYWDhISGNhL2k4Ukpxc20yQ0JH?=
- =?utf-8?B?Y2tDcjMzZE0zWVp0Q0h6SC9Td3JRNXE3V1pObi90aHBqbWpQbXJEQT09?=
-X-Exchange-RoutingPolicyChecked: fVHC6+Vg4Cop2eqCbez0cXBlI1XNG3MKgSJfl4j+CxQQm515gCCeiRINyqOT7snwSeO1yem9G07owgpcTbUORFXq4ed/g3R4GuxlPVLwgP/qPgzCPvEDSBSw8L66liI+/e4p8ps5Ic+WJYekAtkU8w2oHJyzbtTQRA74rSC8nsB63qB7qhKXHuRM78taosfxPkHYyiC05xp7RCR5QZNNWgMjTN93rTYLvVQ/jgIBlwtEVVVbQSRq58Uk8OGTU+vU7nfREz+18SgD6xGi5T9Fhkpl3usaLwCw0zKbXYLrydnuMzzJYnonOvn174AyARILyJ40hcfpJsHKEG78HJiWZQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 955905e0-c418-4201-bc88-08df39760aef
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2026 06:45:26.5323 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UDMxcY/mGl7h5zieDMMCGwAopJWpyHnlvXOeGKWTXWFt9nBtqk0CUUenH9jm1gWlfTkBimZAQ5z9LALTSISDMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7759
-X-OriginatorOrg: intel.com
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1BA10F3A4;
+	Tue,  3 Nov 2026 06:46:29 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 489E810F3A2
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:46:22 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 27D1440D73;
+ Tue,  3 Nov 2026 06:46:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2DCD1F000C1;
+ Tue,  3 Nov 2026 06:46:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793688382;
+ bh=2joZP0maykx1UZfqponMJiEL4exbnfKgBFDEYQpihG4=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=HRIvLObSfAr/jPXsguzrZavlzAdPLHxlaUlRKeT2EQIdnkU6FzktH9LhPMzPBq8De
+ h4VOgUJtcWHKfwsP5b3m5M2B2l9sAet8LWa4IMPig6fgojOoLkMsSCttsDvV/kfJp6
+ u+25N2VwQRlBUwAmaKs2ci9YonoBw9xmEngXWVL4RSEN0uY6zCJWmgufZFkjDaFu29
+ 3D61VaFU1/kFF+uMIEv+apDAzDdODMkeEjpbKlKUgDxX+CkLz2taA8vFTZ5NUmY9E3
+ bA3HhEhM3L/hwrb2Y4VltFDtbQ0OB6dQ3YawmWkP5V5HaXx6+q7ZlPIM/xF2bKTsX3
+ lDSZ0Yp1pd4ig==
+Message-ID: <sashiko-outbox-194668@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v12 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
+To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261103060649.1015468-10-raag.jadav@intel.com>
+References: <20261103060649.1015468-1-raag.jadav@intel.com>
+ <20261103060649.1015468-10-raag.jadav@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 03 Nov 2026 06:46:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,282 +46,318 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
+Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+s) to consider:
+- [High] drm/xe/pci: lockless pm_runtime_active() checks in FLR callbacks
+- [High] drm/xe/pci: broken FLR error handling under non-default wedged.mode
+- [High] drm/xe/pci: missing xe->cpu_bind->q re-initialization on FLR resume
+- [High] drm/xe/migrate: unreset ULLS state and exit_work across PCIe FLR
+- [Medium] drm/xe/pci: uninitialized wedge and PM access in survivability m=
+ode
+--
 
-On 03-11-2026 12:03, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 4 potential issue(s) to consider:
-> - [High] drm/xe: ignored recovery action in hw_error_work() and premature DB_ECC wedge
-> - [High] drm/xe: race between hw_error_work() and xe_pci_error_detected() on AER
-> - [High] drm/xe: use-after-free of hw_error_work on xe_device_probe() failure
-> - [Medium] drm/xe: hw_error_work not disabled during non-internal AER recovery and reset
-> --
->
-> commit 63f8e0a3987b6eb426b195e4d8f9b906ad24b22d
-> Author: Riana Tauro <riana.tauro@intel.com>
->
-> drm/xe: Add support for wa_14028434957
->
-> This commit adds support for wa_14028434957 on Crescent Island to process
-> non-fatal hardware errors routed via direct IRQ and uncorrectable internal
-> errors reported via PCIe AER.
->
->> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
->> index aaa2437d40bfe..8f2fb641f6ce2 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> [ ... ]
->> @@ -433,12 +456,12 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
->>   		return;
->>   
->>   	/*
->> -	 * Hardware errors are reported through System Controller on the platforms that
->> -	 * support it, and never routed as direct IRQ to SGUnit. So we should never be
->> -	 * here for those platforms.
->> +	 * Non-fatal errors are routed as a direct IRQ on platforms that support
->> +	 * system controller.
->>   	 */
->>   	if (xe->info.has_sysctrl) {
->> -		drm_err_ratelimited(&xe->drm, HW_ERR "Invalid error routing\n");
->> +		drm_err_ratelimited(&xe->drm, HW_ERR "Non-fatal %s reported\n", severity_str);
->> +		schedule_work(&tile->hw_error_work);
->>   		return;
->>   	}
-> [Severity: High]
-> Can scheduling tile->hw_error_work here cause a use-after-free of struct
-> xe_device if xe_device_probe() fails later during initialization?
->
-> During probe, __xe_pci_probe() -> xe_device_probe() -> xe_irq_install() ->
-> xe_hw_error_init() initializes tile->hw_error_work and calls
-> process_hw_errors(), which invokes xe_hw_error_irq_handler() ->
-> hw_error_source_handler(). Hardware error interrupts can also fire once
-> xe_irq_postinstall() enables interrupts.
->
-> If a subsequent step in xe_device_probe() fails (such as xe_gt_init(),
-> xe_vram_memtest(), xe_heci_gsc_init(), or drm_dev_register()),
-> __xe_pci_probe() returns the error directly without calling
-> xe_device_remove():
->
-> drivers/gpu/drm/xe/xe_pci.c:__xe_pci_probe() {
-> 	...
-> 	err = xe_device_probe(xe);
-> 	if (err)
-> 		return err;
-> 	...
-> }
->
-> Because xe_hw_error_work_disable() is only called in xe_device_remove() and is
-> not registered via devm_add_action_or_reset() in xe_hw_error_init(), devres
-> teardown will run ras_fini(), unmap MMIO, and free struct xe_device while
-> tile->hw_error_work is still queued or running hw_error_work() ->
-> xe_ras_process_errors(xe).
->
-> Should xe_hw_error_init() register a devm action to disable hw_error_work on
-> probe failure?
+commit cf08cadf19ba560845f140c4f8eb3d6efc8fd9de
+Author: Raag Jadav <raag.jadav@intel.com>
 
-Same as patch 2.
+drm/xe/pci: Introduce PCIe Function Level Reset
 
->> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
->> index 4ade392b47bef..c27fd22e28ac7 100644
->> --- a/drivers/gpu/drm/xe/xe_pci_error.c
->> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
-> [ ... ]
->> @@ -90,8 +94,14 @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
->>   	if (xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe))
->>   		return PCI_ERS_RESULT_DISCONNECT;
->>   
->> -	if (is_aer_internal_error(pdev))
->> +	/*
->> +	 * If non-fatal error processing is in progress when uncorrectable internal error occurs,
->> +	 * flush and disable the worker to prevent further processing, as a reset is imminent.
->> +	 */
->> +	if (XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev)) {
->>   		xe_ras_set_aer_internal_error(xe);
->> +		xe_hw_error_work_disable(xe);
->> +	}
-> [Severity: High]
-> What happens if hw_error_work() is already past the
-> xe_ras_is_aer_internal_error(xe) check when xe_pci_error_detected() runs?
->
-> In drivers/gpu/drm/xe/xe_hw_error.c:hw_error_work():
->
-> 	if (xe->info.has_sysctrl && XE_DEVICE_WA(xe, 14028434957)) {
-> 		if (xe_ras_is_aer_internal_error(xe))
-> 			return;
->
-> 		xe_ras_process_errors(xe);
-> 		return;
-> 	}
->
-> If hw_error_work() passes xe_ras_is_aer_internal_error(xe) just before
-> xe_pci_error_detected() sets aer_internal_error and calls
-> xe_hw_error_work_disable(xe), disable_work_sync() waits for the in-progress
-> hw_error_work() to finish running xe_ras_process_errors(xe).
->
-> During that call, hw_error_work() drains all pending error records from the
-> shared System Controller firmware queue (including fatal CSC firmware errors
-> that enable Runtime Survivability Mode and wedge with
-> DRM_WEDGE_RECOVERY_VENDOR, or Punit errors that wedge with
-> DRM_WEDGE_RECOVERY_COLD_RESET) and discards the recovery action returned by
-> xe_ras_process_errors(xe).
+This commit adds PCIe Function Level Reset (FLR) support via the
+reset_prepare and reset_done PCI error handlers. It suspends GT activity
+without VRAM eviction before the reset and re-initializes hardware state,
+kernel BOs, and kernel queues afterwards.
 
-Missed this. Yeah this should be above the wedged check. Will fix this 
-new rev.
+> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pc=
+i_error.c
+> index 6a942cb6f69d9..fe8d83da1e8b6 100644
+> --- a/drivers/gpu/drm/xe/xe_pci_error.c
+> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
 
->
-> When xe_hw_error_work_disable(xe) returns in xe_pci_error_detected(),
-> xe_wedged(xe) is not re-checked, so xe_pci_error_detected() returns
-> PCI_ERS_RESULT_CAN_RECOVER. Then xe_pci_error_mmio_enabled() calls
-> xe_ras_process_errors(xe) a second time on the now-empty firmware queue, gets
->   the default XE_RAS_RECOVERY_ACTION_RESET (instead of
-> XE_RAS_RECOVERY_ACTION_DISCONNECT), and triggers a Secondary Bus Reset and
-> re-probe that tears down Runtime Survivability Mode sysfs and clears
-> xe->wedged.flag in xe_pci_error_resume().
->
-> Conversely, if hw_error_work() wedges the device on a double-bit ECC error via
-> xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET) just before
-> xe_pci_error_detected() checks xe_wedged(xe), xe_pci_error_detected() returns
-> PCI_ERS_RESULT_DISCONNECT without flushing hw_error_work() or requesting the
-> bus reset.
->
-> [Severity: Medium]
-> As reported by Sashiko on v2 [1], can tile->hw_error_work also race with PCIe
-> AER recovery and device reset when is_aer_internal_error(pdev) is false?
+[ ... ]
 
-All internal errors require a reset.  For frozen errors, device will be 
-wedged
+> @@ -149,9 +195,99 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
+>  		xe_wedge_put(xe);
+>  }
+> =20
+> +static inline bool xe_pci_reset_skip(struct xe_device *xe)
+> +{
+> +	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe=
+->info.probe_display;
+> +}
+> +
+> +static void xe_pci_reset_prepare(struct pci_dev *pdev)
+> +{
+> +	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+> +	int err;
+> +
+> +	/* No guarantees by PCI core */
+> +	if (!pm_runtime_active(&pdev->dev)) {
+> +		xe_err(xe, "PCI reset: unexpected power state\n");
+> +		return;
+> +	}
 
->
-> In xe_pci_error_detected(), xe_hw_error_work_disable(xe) is only called when
-> XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev) is true.
->
-> If a non-fatal PCIe AER error occurs without PCI_ERR_UNC_INTN set on the
-> Upstream Switch Port (state == pci_channel_io_normal),
-> xe_pci_error_mmio_enabled() runs xe_ras_process_errors(xe) while
-> tile->hw_error_work may still be running xe_ras_process_errors(xe)
-> concurrently.
->
-> Similarly, when prepare_device_for_reset() runs (either for
-> pci_channel_io_frozen or when ras_action_to_pci_result() requests a reset), it
-> flushes gt->wedge.worker and calls pci_disable_device(pdev) without calling
-> xe_hw_error_work_disable(xe):
->
-> drivers/gpu/drm/xe/xe_pci_error.c:prepare_device_for_reset() {
-> 	...
-> 	for_each_gt(gt, xe, id) {
-> 		xe_gt_wedge_declare(gt);
-> 		flush_work(&gt->wedge.worker);
-> 	}
->
-> 	pci_disable_device(pdev);
-> }
->
-> If hw_error_work() already passed its initial xe_wedged(xe) check before
-> prepare_device_for_reset() set xe->wedged.flag, could it continue issuing
-> System Controller MMIO mailbox commands and page offlining while the PCI
-> device is disabled and undergoing Secondary Bus Reset?
->
->> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index 58a0b5fa676d3..1809c3c893dee 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> [ ... ]
->> @@ -671,8 +674,15 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
->>   			    DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
->>   			    "Double-bit ECC error detected at sw address 0x%llx\n",
->>   			    info->sw_address);
->> -		if (ret)
->> +		/*
->> +		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
->> +		 * Wedge the device with a bus reset for errors that require SBR to recover.
->> +		 * TODO: Trigger SBR using pci_reset_bus
->> +		 */
->> +		if (ret) {
->> +			xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET);
->>   			return XE_RAS_RECOVERY_ACTION_RESET;
->> +		}
->>   		break;
-> [Severity: High]
-> As reported by Andi Shyti on v2 [2], hw_error_work() ignores the recovery
-> action returned by xe_ras_process_errors(xe), while handle_device_memory_errors()
-> wedges the device directly for XE_RAS_MEMORY_DB_ECC. Does placing
-> xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET) inside
-> handle_device_memory_errors() instead of handling the returned recovery action
-> in hw_error_work() cause regressions across the callers of
-> xe_ras_process_errors(xe)?
+[Severity: High]
+Can checking pm_runtime_active(&pdev->dev) locklessly in both
+xe_pci_reset_prepare() and xe_pci_reset_done() without holding a runtime PM
+reference cause unbalanced xe_wedge_get() and xe_wedge_put() calls or leave
+the device unwedged after a reset?
 
-Intentional change.
+There appear to be several paths where this goes wrong:
 
-Thanks
-Riana
+1. Because reset_prepare returns void, returning early when
+!pm_runtime_active(&pdev->dev) is true does not stop the PCI core
+(pci_dev_save_and_disable() -> __pci_reset_function_locked() ->
+pci_dev_restore()) from transitioning the function to PCI_D0 and resetting
+the hardware, wiping VRAM (which is not evicted in D3hot when
+!xe->d3cold.allowed), GGTT mappings, and GuC state. If the device is still
+runtime-suspended when xe_pci_reset_done() runs, xe_pci_reset_done() also
+returns early without calling xe_wedge_declare(), leaving the wiped GPU
+unwedged on the next runtime resume.
 
+2. If !pm_runtime_active(&pdev->dev) is true in xe_pci_reset_prepare() (for
+example, during RPM_RESUMING, a failed RPM_SUSPENDING transition, or a
+concurrent runtime resume from an ioctl or sysfs read since xe_wedge_get()
+was skipped) and runtime_status becomes RPM_ACTIVE before xe_pci_reset_done=
+()
+runs, xe_pci_reset_done() sees pm_runtime_active(&pdev->dev) as true and
+!xe->flr_prepared, jumps to out:, and calls xe_wedge_put(xe) without a
+matching xe_wedge_get(xe). That drops the permanent reference just acquired
+by xe_wedge_declare() (or immediately underflows xe->wedged.ref).
 
->
-> First, in drivers/gpu/drm/xe/xe_hw_error.c:hw_error_work():
->
-> 	if (xe->info.has_sysctrl && XE_DEVICE_WA(xe, 14028434957)) {
-> 		if (xe_ras_is_aer_internal_error(xe))
-> 			return;
->
-> 		xe_ras_process_errors(xe);
-> 		return;
-> 	}
->
-> Because the return value of xe_ras_process_errors(xe) is ignored here, any
-> other error path in xe_ras_process_errors(xe) that returns
-> XE_RAS_RECOVERY_ACTION_RESET (such as sysctrl mailbox failures or response
-> flooding jumping to err:, unknown memory error categories hitting default: in
-> handle_device_memory_errors(), GLOBAL_UNCORR_ERROR in
-> handle_core_compute_errors(), non-CSC/non-Punit SoC internal errors in
-> handle_soc_internal_errors(), or unknown RAS components) neither wedges nor
-> resets the device on the direct IRQ path.
->
-> Second, xe_ras_process_errors() loops over all errors in response.arr[] to
-> compute the highest severity action:
->
-> 	/* Process and log all errors and then trigger highest recovery action */
-> 	if (action > final_action)
-> 		final_action = action;
->
-> Because xe_wedge_declare() latches xe->wedged.flag on the first call, calling
-> xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET) immediately on a
-> XE_RAS_MEMORY_DB_ECC error prevents a subsequent higher-severity
-> XE_RAS_RECOVERY_ACTION_DISCONNECT error in the same batch (such as a Punit
-> error wedging with DRM_WEDGE_RECOVERY_COLD_RESET in punit_error_handler(), or
-> a CSC firmware error wedging with DRM_WEDGE_RECOVERY_VENDOR in
-> xe_survivability_mode_runtime_enable()) from recording its recovery method and
-> sending its uevent.
->
-> Third, xe_ras_init() calls xe_ras_process_errors(xe) during xe_device_probe()
-> (with aer_internal_error == false) before xe_gt_init() and before
-> drm_dev_register(). Even if page offlining is skipped when aer_internal_error
-> is true, a boot-time or warm-reset-retained XE_RAS_MEMORY_DB_ECC error during
-> xe_ras_init() that fails handle_page_offline() will call
-> xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET) before drm_dev_register(),
-> setting xe->wedged.flag = 1 and causing GuC CT communication in xe_gt_init()
-> to fail with -ENOTRECOVERABLE.
->
-> Finally, if handle_device_memory_errors() is reached from
-> xe_pci_error_mmio_enabled() during PCIe AER recovery,
-> ras_action_to_pci_result() -> prepare_device_for_reset() intentionally sets
-> xe->wedged.flag without sending a wedged uevent or setting
-> xe->needs_flr_on_fini because the PCIe AER core performs the slot reset.
-> Calling xe_wedge_declare() inside handle_device_memory_errors() sends an
-> unintended WEDGED=bus-reset uevent and sets xe->needs_flr_on_fini = true.
->
-> Should handle_device_memory_errors() simply return
-> XE_RAS_RECOVERY_ACTION_RESET and let hw_error_work() check the final_action
-> returned by xe_ras_process_errors(xe) and call
-> xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET) when final_action ==
-> XE_RAS_RECOVERY_ACTION_RESET?
->
-> [1] https://lore.kernel.org/r/20261026060459.771448-15-riana.tauro@intel.com
-> [2] https://lore.kernel.org/r/auIedl6plynJE3ML@zenone.zhora.eu
->
+3. Conversely, if pm_runtime_active(&pdev->dev) is true while
+dev->power.usage_count is 0 during the autosuspend window, xe_wedge_get(xe)
+calls xe_pm_runtime_get_noresume(xe), which triggers drm_WARN() for missing
+outer runtime PM protection. If autosuspend transitions runtime_status to
+RPM_SUSPENDING or RPM_SUSPENDED between the lockless pm_runtime_active()
+check and xe_wedge_get(xe), runtime suspend runs concurrently with
+xe_pci_reset_prepare(), and xe_pci_reset_done() returns early at
+!pm_runtime_active(&pdev->dev), leaking the wedge and runtime PM references
+and leaving xe->flr_prepared set to true.
+
+> +
+> +	err =3D xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe);
+> +	if (err)
+> +		xe_err(xe, "PCI reset: device in unexpected state\n");
+> +
+> +	/* Wedge the device to prevent userspace access but don't send the even=
+t yet */
+> +	xe_wedge_get(xe);
+> +	if (err)
+> +		return;
+
+[Severity: Medium]
+Should xe_pci_reset_prepare() and xe_pci_reset_done() return immediately wh=
+en
+xe_survivability_mode_is_boot_enabled(xe) is true, before calling
+xe_wedge_get(xe)?
+
+When boot survivability mode is enabled during probe, xe_device_probe_early=
+()
+returns early before calling xe_wedge_init(xe), and __xe_pci_probe() returns
+0 before calling xe_device_probe(xe) and xe_pm_init(xe):
+
+drivers/gpu/drm/xe/xe_device.c:xe_device_probe_early()
+	err =3D xe_pcode_probe_early(xe);
+	if (err) {
+		int save_err =3D err;
+
+		/*
+		 * In Boot Survivability mode, no drm card is exposed and driver
+		 * is loaded with bare minimum to allow for firmware to be
+		 * flashed through mei. Return success, if survivability mode
+		 * is enabled due to pcode failure.
+		 */
+		err =3D xe_survivability_mode_boot_enable(xe);
+		if (err)
+			return err;
+
+		return save_err;
+	}
+
+	err =3D wait_for_lmem_ready(xe);
+	if (err)
+		return err;
+
+	err =3D xe_wedge_init(xe);
+
+Because xe_pm_init(xe) was never called, runtime PM remains disabled
+(dev->power.disable_depth > 0), so pm_runtime_active(&pdev->dev) returns
+true. Calling xe_wedge_get(xe) then invokes xe_pm_runtime_get_noresume(xe) =
+->
+pm_runtime_get_if_in_use(), which fails with -EINVAL and triggers drm_WARN()
+for missing outer runtime PM protection, and xe_pci_reset_done() subsequent=
+ly
+calls xe_wedge_declare() and xe_wedge_put() on an uninitialized xe->wedged
+struct.
+
+> +
+> +	err =3D xe_pci_reset_skip(xe);
+> +	if (err) {
+> +		xe_err(xe, "PCI reset: not supported\n");
+> +		return;
+> +	}
+> +
+> +	/*
+> +	 * The hardware could be in corrupted state and access unreliable, but =
+we try to
+> +	 * update data structures and cleanup any pending work to avoid side ef=
+fects during
+> +	 * PCIe FLR. This will be similar to system suspend flow but without ev=
+iction.
+> +	 */
+> +	err =3D xe_device_suspend(xe, true);
+
+[Severity: High]
+What happens if Ultra Low Latency Submission (ULLS) mode is active on
+tile->migrate when a PCIe FLR occurs?
+
+When xe_migrate_ulls_enter(m) is called from page fault or SVM prefetch
+paths, it takes a runtime PM reference via xe_pm_runtime_get_noresume(xe),
+submits a ULLS_ENTER job to keep m->q spinning on a semaphore in m->q->lrc[=
+0],
+sets m->ulls.enabled =3D true, and schedules m->ulls.exit_work.
+
+Neither xe_device_suspend(xe, true) nor xe_device_resume(xe, true) ->
+xe_gt_reinit() -> xe_migrate_reinit(m) cancels m->ulls.exit_work, resets
+m->ulls.enabled to false, or drops the ULLS runtime PM reference:
+
+drivers/gpu/drm/xe/xe_migrate.c:xe_migrate_reinit()
+int xe_migrate_reinit(struct xe_migrate *m)
+{
+	xe_migrate_prepare_vm(m->tile, m, m->q->vm, NULL);
+	return xe_exec_queue_reinit(m->q);
+}
+
+After the hardware reset and xe_exec_queue_reinit(m->q) -> xe_lrc_ctx_init()
+wipe m->q->lrc[0] and terminate the spinning context on the copy engine,
+m->ulls.enabled remains true. Won't the next job pushed via
+xe_migrate_job_push() (tagged ULLS_ACTIVE) or xe_migrate_ulls_exit() (tagged
+ULLS_EXIT) have xe_sched_job_ulls_is_chained(job) =3D=3D true, causing
+submit_exec_queue() to suppress XE_GUC_ACTION_SCHED_CONTEXT and ring-tail
+updates while waiting on a semaphore that no job is parked on, hanging
+tile->migrate->q and wedging the device?
+
+> +	if (err) {
+> +		xe_err(xe, "PCI reset: failed to prepare\n");
+> +		return;
+> +	}
+> +
+> +	xe->flr_prepared =3D true;
+> +	xe_info(xe, "PCI reset: prepared\n");
+> +}
+> +
+> +static void xe_pci_reset_done(struct pci_dev *pdev)
+> +{
+> +	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+> +	int err;
+> +
+> +	/* No guarantees by PCI core */
+> +	if (!pm_runtime_active(&pdev->dev))
+> +		return;
+> +
+> +	err =3D xe_pci_reset_skip(xe);
+> +	if (err)
+> +		goto out;
+> +
+> +	if (!xe->flr_prepared)
+> +		goto out;
+> +
+> +	/* Unprepare early in case we fail */
+> +	xe->flr_prepared =3D false;
+> +
+> +	/*
+> +	 * We already have the data structures intact, so try to re-initialize =
+the device.
+> +	 * This will be similar to system resume flow, except we'll also need t=
+o recreate
+> +	 * kernel bos and restore kernel queues.
+> +	 */
+> +	err =3D xe_device_resume(xe, true);
+
+[Severity: High]
+Does xe_device_resume(xe, true) leave the device-wide kernel bind queue
+(xe->cpu_bind->q) in the killed state after a PCIe FLR?
+
+During xe_pci_reset_prepare(), xe_device_suspend(xe, true) calls
+xe_gt_flr_prepare() -> xe_uc_flr_prepare() -> xe_guc_flr_prepare() ->
+xe_guc_submit_pause_abort(), which iterates over all queues in
+guc->submission_state.exec_queue_lookup and calls guc_exec_queue_kill(q) on
+each one, including xe->cpu_bind->q. That sets EXEC_QUEUE_STATE_KILLED in
+xe->cpu_bind->q->guc->state and sets sched.base.timeout =3D 0, while the
+hardware reset wipes the VRAM backing xe->cpu_bind->q->lrc[0].
+
+During xe_device_resume(xe, true), xe_gt_reinit() only re-initializes
+tile->migrate->q via xe_migrate_reinit() -> xe_exec_queue_reinit(m->q) and
+never calls xe_exec_queue_reinit(xe->cpu_bind->q). Once the device is
+unwedged, when a pipelined CPU page-table bind job is submitted on
+xe->cpu_bind->q via xe_cpu_bind_update_pgtables_job(), won't
+guc_exec_queue_run_job() see exec_queue_killed_or_banned_or_wedged(q) as tr=
+ue
+and pass force_clear =3D true to run_pt_job(), clearing page tables instead=
+ of
+populating them?
+
+> +	if (err) {
+> +		xe_err(xe, "PCI reset: re-initialization failed\n");
+> +		goto out;
+> +	}
+> +
+> +	/* Unwedge to allow userspace access */
+> +	xe_wedge_put(xe);
+> +	xe_info(xe, "PCI reset: done\n");
+> +
+> +	return;
+> +out:
+> +	/* Most likely the device is unusable and there's nothing we can do abo=
+ut it */
+> +	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS=
+_RESET);
+> +	/* Drop local reference */
+> +	xe_wedge_put(xe);
+
+[Severity: High]
+What happens in this error path when xe->wedged.mode is non-default
+(XE_WEDGED_MODE_NEVER or XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)?
+
+1. When xe->wedged.mode is XE_WEDGED_MODE_NEVER (via module parameter
+wedged_mode=3D0 or debugfs), xe_wedge_declare() returns early without calli=
+ng
+xe_wedge_get(xe) or xe_gt_wedge_declare(gt):
+
+drivers/gpu/drm/xe/xe_wedge.c:xe_wedge_declare()
+	if (xe->wedged.mode =3D=3D XE_WEDGED_MODE_NEVER) {
+		xe_dbg(xe, "Wedged mode is forcibly disabled\n");
+		return;
+	}
+
+The subsequent xe_wedge_put(xe) then drops the temporary reference taken in
+xe_pci_reset_prepare(), reducing xe->wedged.ref to 0 and unblocking userspa=
+ce
+IOCTLs on a device whose VRAM and hardware state were wiped by FLR and whose
+GTs and IRQs remain suspended.
+
+2. If xe_device_resume(xe, true) fails before xe_uc_start() restarts the DRM
+schedulers that were stopped in xe_device_suspend(xe, true) ->
+xe_gt_flr_prepare() -> xe_uc_flr_prepare() -> uc_flr_sanitize() ->
+xe_uc_stop() -> xe_guc_submit_stop(), and xe->wedged.mode is either
+XE_WEDGED_MODE_NEVER or XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET (where
+xe_guc_submit_wedge() skips xe_guc_submit_pause_abort()), the schedulers for
+all queues remain stopped (drm_sched_is_stopped(&sched->base) =3D=3D true).=
+ When
+those queues are later destroyed on file close or driver unbind,
+guc_exec_queue_destroy() queues STATIC_MSG_CLEANUP, which
+xe_sched_process_msg_queue() ignores while the scheduler is stopped, leaking
+the queues and their drm_dev_get() references and hanging module unload.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261103060649.1015=
+468-1-raag.jadav@intel.com?part=3D9
