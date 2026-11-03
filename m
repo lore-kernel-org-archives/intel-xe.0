@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D14606A329
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39760606A32E
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Nov 2026 06:08:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=M8N4OK/s
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=SxxGcgEY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8C1D10F362;
-	Tue,  3 Nov 2026 06:07:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6CAA10F368;
+	Tue,  3 Nov 2026 06:07:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB8E10F362
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:07:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5240910E783
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Nov 2026 06:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793686067; x=1825222067;
+ t=1793686072; x=1825222072;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e0zdlsItUzbZT1sJUO1VHLEaLZrxNZQs9hrOZkcRDp0=;
- b=M8N4OK/shUKt0jNLNLvARBsMw8M45Qc80qyFxOJ4m5TeML137YmtraeF
- Sgpt//c7iDWgAlCpU594sPpkOZajIPveQpHybnWwLmnzm5N6NpZovYtkA
- 0IB6zX8lErkyDHI7Z27KYOrgsS7fsE/UGxGoUk5gMKUu1FXOyIJgNRyNx
- AhE3VyGdM6o19g0/HDUoF+v61k6wsvsdxeKTNZJSvbK/GXX7WO667/m6P
- xkGpq0LfCjo8Cwx4AJ/zvL4hYTwiIN2nHVLuQ93HON1+DvaTBWTs4OVCW
- +XIRDjBsObpvK+DnObKLNqgC9dBEU9HPKL/OaHQQB6nJc92yeLcPdCw7L w==;
-X-CSE-ConnectionGUID: o5hSN1mcSc6FKhzDjY1fxQ==
-X-CSE-MsgGUID: Dg4I5HI7STWLoguf3W2zDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2391635"
+ bh=nmGHvva4+1NPqtskNPA1Q/9tFotb6F4Kn4/VfhqrJak=;
+ b=SxxGcgEY86+5NQKyfGrdcUCP3D7rvuSxmYL+1oQHBXBsUbAFF3rmOoaX
+ 004h/1i1NIEBQk0QKC8mAFPN0L+c9SPN99TU/hKLR5+SMGdJ0/8lmO/Wn
+ m3sw30RkBvu8jGk+L0Bb76Oby5haTdS0egaDbR2TUdLCeu5jPslXhEMAN
+ pBTiuCI+BxZ1r8fHg3VpxcCVfrCedLxP6dUWyy3Pd2045+8HPo4nED4pS
+ NycjyYeTJtjmJpqe2RVRndjfaswRw9onGoH9EP7ejiQIM32IKt5iEcYxk
+ 27ntzYtXIFChvCUUt/mNa+76HHKPtIG6ACAbc+UsJ4duNH+a1r0lxBmyJ w==;
+X-CSE-ConnectionGUID: hh8HccRNQomujw2dd1Ay9Q==
+X-CSE-MsgGUID: 9LaaVf54TryeIGVkm0gjzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11954"; a="2391644"
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="2391635"
+   d="scan'208";a="2391644"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2026 22:07:47 -0800
-X-CSE-ConnectionGUID: nmx2LWIsQmWZL9OIfqmFfw==
-X-CSE-MsgGUID: /IWRaV5yQtmUhDTu3AQveg==
+ 02 Nov 2026 22:07:51 -0800
+X-CSE-ConnectionGUID: UkM+t/F+RUShDsrIAj2d4w==
+X-CSE-MsgGUID: 7CDXpzHsTlqbG56BiCyRFg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,192,1787036400"; 
-   d="scan'208";a="6711618"
+   d="scan'208";a="6711630"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa007.fm.intel.com with ESMTP; 02 Nov 2026 22:07:43 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 02 Nov 2026 22:07:47 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, lukas@wunner.de,
  daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v12 05/10] drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
-Date: Tue,  3 Nov 2026 11:36:21 +0530
-Message-ID: <20261103060649.1015468-6-raag.jadav@intel.com>
+Subject: [PATCH v12 06/10] drm/xe/migrate: Introduce xe_migrate_reinit()
+Date: Tue,  3 Nov 2026 11:36:22 +0530
+Message-ID: <20261103060649.1015468-7-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261103060649.1015468-1-raag.jadav@intel.com>
 References: <20261103060649.1015468-1-raag.jadav@intel.com>
@@ -74,164 +74,78 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In preparation of usecases which require re-initializing exec queue
-after PCIe FLR, introduce xe_exec_queue_reinit() helper. All the exec
-queue LCRs already exist but the context is lost on PCIe FLR and needs
-re-initialization.
+In preparation of usecases which require re-initializing migrate context
+after PCIe FLR, introduce xe_migrate_reinit() helper. Migrate exec queue
+and pt_bo already exist in migrate structure but since their contents live
+on VRAM, they are lost on PCIe FLR and need re-initialization.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
 v2: Re-initialize migrate context (Matthew Brost)
-v6: Add IS_DGFX() and EXEC_QUEUE_FLAG_KERNEL asserts (Daniele)
-v9: Add negative asserts for GSC and PXP (Daniele)
-    Provide xe_lrc_ctx_init() as regular function (Daniele)
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 47 +++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
- drivers/gpu/drm/xe/xe_lrc.c        | 15 ++++++++--
- drivers/gpu/drm/xe/xe_lrc.h        |  2 ++
- 4 files changed, 59 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt.c      | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_migrate.c | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h |  1 +
+ 3 files changed, 23 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 7ade915c59a8..ddd9e38aa80b 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -29,6 +29,7 @@
- #include "xe_migrate.h"
- #include "xe_pm.h"
- #include "xe_trace.h"
-+#include "xe_uc_fw.h"
- #include "xe_vm.h"
- #include "xe_pxp.h"
- 
-@@ -391,9 +392,8 @@ static void __xe_exec_queue_fini(struct xe_exec_queue *q)
- 		xe_lrc_put(q->lrc[i]);
- }
- 
--static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
-+static u32 xe_lrc_init_flags(struct xe_exec_queue *q, u32 exec_queue_flags)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 0e0eb8de3a98..dbf023c22517 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -926,6 +926,16 @@ void xe_gt_flr_prepare(struct xe_gt *gt)
+  */
+ int xe_gt_reinit(struct xe_gt *gt)
  {
--	int i, err;
- 	u32 flags = 0;
- 
- 	/*
-@@ -416,6 +416,13 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	if (q->flags & EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX)
- 		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
- 
-+	return flags;
-+}
++	int err;
 +
-+static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
-+{
-+	int i, err;
++	if (xe_gt_is_main_type(gt)) {
++		struct xe_tile *tile = gt_to_tile(gt);
 +
- 	err = q->ops->init(q);
- 	if (err)
- 		return err;
-@@ -439,8 +446,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 
- 			marker = xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
- 
--			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state,
--					    xe_lrc_ring_size(), q->msix_vec, flags);
-+			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state, xe_lrc_ring_size(),
-+					    q->msix_vec, xe_lrc_init_flags(q, exec_queue_flags));
- 			if (IS_ERR(lrc)) {
- 				err = PTR_ERR(lrc);
- 				goto err_lrc;
-@@ -462,6 +469,38 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	return err;
- }
- 
-+/**
-+ * xe_exec_queue_reinit() - Re-initialize exec queue
-+ * @q: exec queue to re-initialize
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_exec_queue_reinit(struct xe_exec_queue *q)
-+{
-+	struct xe_gt *gt = q->gt;
-+	int i, err;
-+
-+	/* TODO: Re-initialize GSC and PXP queues */
-+	xe_gt_assert(gt, IS_DGFX(gt_to_xe(gt)));
-+	xe_gt_assert(gt, !xe_uc_fw_is_loadable(&gt->uc.gsc.fw));
-+	xe_gt_assert(gt, !xe_pxp_is_enabled(gt_to_xe(gt)->pxp));
-+
-+	/* Re-initialization only allowed for kernel queues */
-+	xe_gt_assert(gt, q->flags & EXEC_QUEUE_FLAG_KERNEL);
-+
-+	/* Re-initialize submission backend */
-+	q->ops->reinit_kernel(q);
-+
-+	for (i = 0; i < q->width; i++) {
-+		err = xe_lrc_ctx_init(q->lrc[i], q->hwe, q->vm, q->replay_state,
-+				      q->msix_vec, xe_lrc_init_flags(q, q->flags));
++		err = xe_migrate_reinit(tile->migrate);
 +		if (err)
 +			return err;
 +	}
 +
-+	return 0;
-+}
-+
- /**
-  * xe_exec_queue_create() - Create an exec queue
-  * @xe: Xe device
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index e8963f85cabd..d48775ef6baf 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -34,6 +34,7 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- void xe_exec_queue_fini(struct xe_exec_queue *q);
- void xe_exec_queue_destroy(struct kref *ref);
- void xe_exec_queue_assign_name(struct xe_exec_queue *q, u32 instance);
-+int xe_exec_queue_reinit(struct xe_exec_queue *q);
- 
- static inline struct xe_exec_queue *
- xe_exec_queue_get_unless_zero(struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 040a52f9320e..8e4f767d7f59 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1536,8 +1536,19 @@ static void xe_lrc_set_gpgpu_preemption_level(struct xe_lrc *lrc, struct xe_gt *
- 	xe_lrc_write_ctx_reg(lrc, CTX_CS_CHICKEN1, val);
+ 	return xe_uc_reinit(&gt->uc);
  }
  
--static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
--			   void *replay_state, u16 msix_vec, u32 init_flags)
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 19c37eb31589..71dfb1b3362a 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -778,6 +778,18 @@ static void xe_migrate_ulls_exit(struct work_struct *work)
+ 	drm_dev_exit(idx);
+ }
+ 
 +/**
-+ * xe_lrc_ctx_init() - Initialize LRC with context details
-+ * @lrc: Pointer to the LRC
-+ * @hwe: Hardware Engine
-+ * @vm: The VM (address space)
-+ * @replay_state: GPU hang replay state
-+ * @msix_vec: MSI-X interrupt vector (for platforms that support it)
-+ * @init_flags: LRC initialization flags
++ * xe_migrate_reinit() - Re-initialize a migrate context
++ * @m: The migration context
 + *
 + * Returns: 0 on success, negative error code otherwise.
 + */
-+int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-+		    void *replay_state, u16 msix_vec, u32 init_flags)
- {
- 	struct xe_gt *gt = hwe->gt;
- 	struct xe_tile *tile = gt_to_tile(gt);
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index f2e829e62168..840f303db97e 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -63,6 +63,8 @@ struct xe_lrc_snapshot {
- 
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
-+int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-+		    void *replay_state, u16 msix_vec, u32 init_flags);
- void xe_lrc_destroy(struct kref *ref);
- 
++int xe_migrate_reinit(struct xe_migrate *m)
++{
++	xe_migrate_prepare_vm(m->tile, m, m->q->vm, NULL);
++	return xe_exec_queue_reinit(m->q);
++}
++
  /**
+  * xe_migrate_init() - Initialize a migrate context
+  * @m: The migration context
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 2e8be10fdb71..100b485e519b 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -36,6 +36,7 @@ enum xe_migrate_copy_dir {
+ 
+ struct xe_migrate *xe_migrate_alloc(struct xe_tile *tile);
+ int xe_migrate_init(struct xe_migrate *m);
++int xe_migrate_reinit(struct xe_migrate *m);
+ 
+ struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
+ 				     unsigned long npages,
 -- 
 2.43.0
 
