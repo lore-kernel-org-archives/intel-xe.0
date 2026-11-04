@@ -2,52 +2,128 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E86606A31B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 06:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B094606A326
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 06:55:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=O4lsASC1
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=TBtAhmu1
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 884D410E853;
-	Wed,  4 Nov 2026 06:18:30 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C079F10F9BC;
- Wed,  4 Nov 2026 06:18:09 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 33EBE601F6;
- Wed,  4 Nov 2026 06:18:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B6571F000C1;
- Wed,  4 Nov 2026 06:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793773088;
- bh=Pt0XVhVjyljVhnuHMdB8TolKbfhumpMz0JRl7SseDrs=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=O4lsASC1YJuUEb7A0nH/dE2MV+kRhvTYvbgwCXk+GMza9qmqHwSriHTKtRzH3RAYP
- opdH6btYmWq+7u3V4gKNGPJDvhpTL9DrRQVx/37iXvgGr5pfhtQVk4EW9busVeaT3k
- gNRCVVjHg0JGAcxIgdxK8n47sXALCjpynlEdPoxIrXu4JLA4n1rSUhHYFnL50v0DqG
- 1qiOkxLOcVxGvXYsxf0EmykpHriJiEFgjy7ahFKQra3FrQhKVCtPyTPMoUq8EBSoV3
- LevJ9wrd/GiNeXqw+/x6pk2NJrZFcBPQpsY75XFRAydiR+LSynvaOa+CztrGriHbu+
- XJ9mz4IBTGC3Q==
-Message-ID: <sashiko-outbox-196750@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v17 12/12] drm/nouveau/svm: add support for migrate on
- fault
-To: mpenttil@redhat.com, linux-mm@kvack.org
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, "David
- Hildenbrand" <david@kernel.org>, "Jason Gunthorpe" <jgg@nvidia.com>, "Leon
- Romanovsky" <leonro@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
- "Balbir Singh" <balbirs@nvidia.com>, "Zi Yan" <ziy@nvidia.com>,
- "Matthew Brost" <matthew.brost@intel.com>, "Andrew
- Morton" <akpm@linux-foundation.org>, "Lorenzo Stoakes" <ljs@kernel.org>, "Liam
- R. Howlett" <liam@infradead.org>, "Vlastimil Babka" <vbabka@suse.cz>, "Mike
- Rapoport" <rppt@kernel.org>, "Suren Baghdasaryan" <surenb@google.com>, "Michal
- Hocko" <mhocko@suse.com>, "Lyude Paul" <lyude@redhat.com>, "Danilo
- Krummrich" <dakr@kernel.org>
-In-Reply-To: <20261103061629.972669-13-mpenttil@redhat.com>
-References: <20261103061629.972669-1-mpenttil@redhat.com>
- <20261103061629.972669-13-mpenttil@redhat.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 04 Nov 2026 06:18:07 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36FEA10E820;
+	Wed,  4 Nov 2026 06:55:32 +0000 (UTC)
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011065.outbound.protection.outlook.com [52.101.62.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 564C310E820;
+ Wed,  4 Nov 2026 06:55:26 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=VY2iidq11vlOrbMVR08TUihf+Az3cJS6FIAiDRlTGlGqqBQAJNZgn1sIWW6kmsP+tQfQgyiO73idofTOrCf2H7+Nx0Eoz1JSGRFua0agcR2w1ittOXkDMaJl8VQZcLuG4Z87mC76LT8wug/6d8Qtb+UqYt/VJWLTE8Rn4GxwVDtFaJVPDd4j7L5DvjGoLa3hQEDquMHsRgTbGmLPaOo4Asz1851MCKhczpaVj6yW0RY6kUIyHU1DMgsbDhLWejIbqD7kgk6ZJ5Xg47wFD9L16X8qUntsU9yiU2MtNtypVvH3MyuK5M9kGO4L4kVQxmufkvrU/oqTN2RPXNr0VWkGYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CwDvH+nrQgB8eVk4lz3NLaP/cHK7CbtYi463N/X9Bs4=;
+ b=P2bBiZke+p3Y6nYGpRGe0tAtDDkHvCHYZC4w6+D7qQCzojcBluNrWsZp/9dqGtdl4KJqYCBjfR9QFo9V9U/+8Fl7dRHE68naTSCfXgxG3tWLi88ELzB+F7aIlg+pxy40IJFFg9Mfr8B6ayRWqSGzvkx8qRITNQqJQL6Ax6PgXNpaB5JI1JkG5IuGPw9BnFtaEBQPPaW5KFblx5SFGx9QydlT9edEOtNOlBRsKNPywsuDy52RaHaRTVRMe/Y52PP94Tyvt0jqe7WFtumKW/5Qjc3RcECZ+Qs7HSmSZFnCKNV7FYjwTc9IwrxUiZtRHU7yaNAzUlQwFT8c8KhgtP45Vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CwDvH+nrQgB8eVk4lz3NLaP/cHK7CbtYi463N/X9Bs4=;
+ b=TBtAhmu14FT8BhnF7vzn0QBkoogjkjtoQhnpEofyczgrvAUsRBRWwARvpBQwL47xKyUebfidF0nH/XMQxqN/a+kvlM8a9K37ptyplDqG94h7Fd1+nPA28yQi3eD+T7s0I/w6YMHtx+sicJFk7WCLOIaKCXPYZgayikFYst4ZO/g=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by CH3PR12MB8210.namprd12.prod.outlook.com (2603:10b6:610:129::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.8; Wed, 4 Nov 2026
+ 06:55:12 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0569.011; Wed, 4 Nov 2026
+ 06:55:11 +0000
+Message-ID: <c0b4a12a-cef9-4913-87fc-878490c8d582@amd.com>
+Date: Wed, 4 Nov 2026 12:25:05 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] gpu/buddy: restore two-pass clear/dirty guard for
+ range-biased allocation
+To: Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ Anand.Raghavendra@amd.com
+References: <20261021121813.1820345-1-arunpravin.paneerselvam@amd.com>
+ <78a6d58b-4fa2-4325-a4c3-3cd732c15288@intel.com>
+ <b32ccb67-0e02-467a-8c29-2ac4c815390d@amd.com>
+ <428f8c9f-5cf8-46f9-8611-52e6aa71a24b@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <428f8c9f-5cf8-46f9-8611-52e6aa71a24b@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0158.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1cf::6) To DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|CH3PR12MB8210:EE_
+X-MS-Office365-Filtering-Correlation-Id: c5cb8303-03ec-4cf4-ed8a-08df3a409208
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|23010399003|366016|10067099003|22082099003|18002099003|4143699003|261022105027099003|56012099006|5023799004|11063799006|261022113327099003|261021121427099003|261026121527099003|261028144727099003|261102123227099003|261026140227099003|261009223027099003|261022075727099003;
+X-Microsoft-Antispam-Message-Info: RyV59iPU75JY8cs3iAR74xrOcROHk798ps73Gu+0HPL9l880GP20YwXx4uGM9Lok7kv+CTkC8jzQS85qAej5wY3WqyjclkwxwSOKahScUL1ZytrPNKD4reEV/TdR26SGgZX88N1cw85k6l1t+Of0sFOWPtc6vezefxtKkK6VCEzJ8Km3rAMvJvhkP4TcoLShC7aTxvxgb+qstHsC1ekyT9qnFrjwDndZxSS8WPIb5nc/2x0BV25WYEn+uqRVRJr4AJF/AblFyMBD9m7NXKYsqNLjrtM6NA6rD19bm9/DX6W1zIljnoHqIBc8Chu9KtL7lp8PxI9v0hFvBl1hEEgGSFtP+VL78lrLMqev/SKRGD2Qy6jL0R3hi+W6zZ8xzL75ihMQB4wn0wdDJuH2aqlIU0c1CFyLEdihC6dCj6x1SGujTWUcLvGRkzTnDpEZQa7Ou5fd/IerY0x+LjHcwLyMn01ym4jFcTNbdFF7c+4Sxg/ORMq6l1g5gm7r3WJunyNucdz74hXcC/tT+0PBauaEPrs/ZJ1bJ3fZWKyYdfhS/Ox9mCXmKVh5FC5e+BV4KyxSnpSE+cxcPr1C6GKGCD4eL+bY3y5uoB63WFFRCY+M6lg0v7SzgKTWArWGfJf/kXhnBVO9Gr5Q/Na+JstfDR09aLxGi6tBZ5oIDvccz41o37k=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(10067099003)(22082099003)(18002099003)(4143699003)(261022105027099003)(56012099006)(5023799004)(11063799006)(261022113327099003)(261021121427099003)(261026121527099003)(261028144727099003)(261102123227099003)(261026140227099003)(261009223027099003)(261022075727099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0lmdWhHZ21hY29kNmFyaGxtcCtKSUZwUEdtVTdmeUErWlhjNVc5Q3hFdDdZ?=
+ =?utf-8?B?N1E3TERldGl5V0VmTE56dGttMk5jNEt3QnJkVWtZeEVKUGVWaWRQZDdnNUdq?=
+ =?utf-8?B?cWVYaTZrbHFSdjVCZEFWRTJwbGhxMHcrV090UlVpdEt5QkJteVZnTmlpNGF3?=
+ =?utf-8?B?aXl3Zi85STR3T051dVZBVzdNR3RuSEc4eXFhalZBamZXU0tkRnZRTHErZUth?=
+ =?utf-8?B?WGpDQUlLZWoxYXpRQVdxMFo2VnJlY0ZwdXZHWlR2ZW1qSHpDZnJCUjhTLzRH?=
+ =?utf-8?B?bWlaeGNXYkhFMy9CMTlCY3RkYlpNV2dWd0JOS1ZrcGlqVkxpRVFlaTRxdzJj?=
+ =?utf-8?B?TG5aOFc3R2pyU2o1MzQ1M1BBKzJYei8vN1MrKzZ5WDg1QS92cVpVTkt1MGxL?=
+ =?utf-8?B?Wlh4VXRqMkRPd29HUmszdk1YVEFhU1V5M0IzNHhxOUwyRzg2MGtKN3ordXJw?=
+ =?utf-8?B?emx5bldRRlZsZnJ5ZTFud01QVG9FRUZmdVRCbnFEVlZteU9ZV3VEdlpzMDkv?=
+ =?utf-8?B?UlRCeEZobjdBeXVPOXhYZGFUM3p1M3NCMUxsa3ROQm1paERpMFkzTE9TMmJX?=
+ =?utf-8?B?UEExQ29MNFJHUlltenI2blZqT1lSOE9mdmI1OHNvWG1YcWRTS3cvckFMYVJ0?=
+ =?utf-8?B?TnlnMFh2VU1CRG9JalEyOEtiM00yN0J0anc0RkZ1a2Y5WSt2NXZEMGFYM0ln?=
+ =?utf-8?B?NURjaWRnVURZd1ZEZnpvb0JWQklocm5rLzV2SlAzRXVzeWpwcWtmTE5ER0hM?=
+ =?utf-8?B?VlMzdTZFWXhvMEpWNGNLZ2ZHLzhXVy9MQ0xCNFdQdjhOeEcwWDFyL2dHNTBt?=
+ =?utf-8?B?OC9Fb0FYVHRPSkF3V1diRnJBcE1ldklOVW1WK2RYendkeVJSRjUya21KRFZu?=
+ =?utf-8?B?V0svZHdrTnkrb1lORWJHdk1NT24wNWlkeEhvNmNsRkY3NW5WU0xKWTQ0K05Q?=
+ =?utf-8?B?VFE1UW5NOU5RQ1BLb2gvR3g2MzUyUHRaM2xsSWN6emlCS3FWRjk4MEFYQW9u?=
+ =?utf-8?B?REppTGFYbUo2VzgxTVlRSzBtZmYxQkVEN2dzalAwREk1UTRLa091MEE0d3I2?=
+ =?utf-8?B?M3I1TUM3cEl2OHM3MSs4dVAxN1doZEEzeU1RZ0RSMUdnR29XY3gxaDIvZXcv?=
+ =?utf-8?B?c2J1WmRiUEFtRmFMSVdnRTR6Nys0alVEUnBDMGRLUlVrMm9DajNJK1ZTTHFF?=
+ =?utf-8?B?dlRicGUvQ2ZtZjBDUTdqNm9MT3d5SURZaCtCcDZONmtMTmlSSlVTY3RSMUZD?=
+ =?utf-8?B?bkZtMlV6SWdUWlBxdG9ZMGtHZ2UxcXFCSG4yODBNK2ovUDQ4aU5OKzkvRXBU?=
+ =?utf-8?B?d3hjRXFsS1NIdjNBd3BkejQwS29KczltQyt2ZEd2alk4VEhjYUh5K1lTakZB?=
+ =?utf-8?B?SlhVZ2QzbFdWQlUzY1BqdTZRVE9nbFBnZkFkMGpOVnlLL1pyZzYvU1F5L3Nm?=
+ =?utf-8?B?bGJsRVNISGVkT2I1WXV6OTBQS0VJZDZnay85M2xRU0lIY2NWNDJubDh0U2px?=
+ =?utf-8?B?UFFkODh5anAxTnBXY3RMWTJTYk9JUDdtUnFKdEZEYmRJNjVFcjVCNGVkVVh4?=
+ =?utf-8?B?RVF6d3NrNSt3MjltOU55Z0Vzck5LckdtRHpiN0JLdVNrcmZ6TXVDZjY0ZW9K?=
+ =?utf-8?B?anloVllUdEN3QW1XWUtpMHlJSUk3NzFsVFlrRkppMUVHY0NUdDNKUXl6NGwv?=
+ =?utf-8?B?M1l0dFU1SGNJcTRPOUh2TjY3R1NDTkozNkdoL24yblRmcHB0RVllYk5aeXdk?=
+ =?utf-8?B?S1d2SnkzWXhmYTBwdmZ0Ti9qK3k2aU1WSUtvZjhHU3ljbDZSaUpQV2VPVEk3?=
+ =?utf-8?B?QkhobERDdnpvSzhoMTNJTlRsQWVjWUVlUUlRN2gvYmVCaXcvRGc4eUNvdjBB?=
+ =?utf-8?B?OUZiVGRwSlAvM3ZDUElLd2ExMkg4Vm9EcWRFRDdqcEpRSm91bDNMMGdRcnd5?=
+ =?utf-8?B?dWNESHFuVXJYUDc3OWRwbE1jaXUyV21GZ2RBTk1NQlE2S0dZM0UyYThTOW12?=
+ =?utf-8?B?Z2dpUWdHQ3Rtam5tajdSdE4vMzBSN0RYMzl0VkxFWjZTZVhwTWd6MS9pV3Nw?=
+ =?utf-8?B?aS9jNnVidWhCcEREMG1EVys4NmhkNVJHSkVDdVljbWgyd0ErR0ZxVGxzTk05?=
+ =?utf-8?B?NlFSTGRBc3VEb0NMWjZRSGdlc0xhOVFaL3FPNXlzRWdIVlhqd0cvN0FseFR1?=
+ =?utf-8?B?NGRXdFRXcWZybHJPY2ZWMFFUOXdVdThpa1gzM243djhYVkJYSk83OHBVQlJR?=
+ =?utf-8?B?N2ZucXJDMC9ZVkI4QXJ3czB3MFFOTXZnaVhGdStiZ1dHcndVSDYxYzNBQWlT?=
+ =?utf-8?Q?k+P0Vief9zLqbI44zh?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c5cb8303-03ec-4cf4-ed8a-08df3a409208
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2026 06:55:11.5922 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k9RuV9pU0PIKqfgEI5FqOAp7HNbNszVMRQezMe/dbQHD+KTKRXTUxIR/FuZ1yw7hIyOsPA/oFZY7pICmaDR1tQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8210
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,465 +133,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 8 potential issue(=
-s) to consider:
-- [Critical] drm/nouveau/dmem: unserialized access to shared channel drm->t=
-tm.chan
-- [Critical] drm/nouveau/dmem: folio state corrupted after nouveau_dmem_mig=
-rate_abort()
-- [High] drm/nouveau/dmem: wrong folio pinned by nouveau_dmem_migrate_abort=
-()
-- [High] drm/nouveau: unreplayed GPU faults stall CE in nouveau_dmem_fence_=
-poll()
-- [High] drm/nouveau/svm: infinite GPU write fault loop in nouveau_dmem_mig=
-rate_fault()
-- [Medium] drm/nouveau/svm: nouveau_svmm_bind() skips migration on migrate-=
-on-fault
-- [Low] drm/nouveau/svm: missing kernel-parameters.txt entry for svm_migrat=
-e_on_fault
-- [Low] drm/nouveau: unused nouveau_dmem_fence_done() return and incomplete=
- changelog
---
 
-commit e30e6f260301c1f7393cda9890d6f9d63fe3f96e
-Author: Mika Penttil=C3=A4 <mpenttil@redhat.com>
 
-drm/nouveau/svm: add support for migrate on fault
+On 11/3/2026 7:39 PM, Matthew Auld wrote:
+> On 03/11/2026 13:23, Arunpravin Paneer Selvam wrote:
+>> Hi Matthew,
+>>
+>> On 10/21/2026 6:19 PM, Matthew Auld wrote:
+>>> On 21/10/2026 13:18, Arunpravin Paneer Selvam wrote:
+>>>> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>>>>
+>>>> Range-restricted allocations (the visible-VRAM aperture) skip
+>>>> dirty_steer_window() and reach __alloc_range_bias() with no 
+>>>> clear/dirty
+>>>> eligibility guard, so a dirty allocation freely splits clear 
+>>>> extents (and
+>>>> vice versa), interleaving the two classes until no large same-class 
+>>>> run
+>>>> survives and a 4K scanout pin fails with -ENOSPC. Use a two-pass range
+>>>> search instead: block_incompatible() rejects opposite-class blocks 
+>>>> in the
+>>>> strict pass and relaxes only when the strict pass returns -ENOSPC, 
+>>>> so a
+>>>> request still succeeds when only opposite-class space remains. A KUnit
+>>>> regression test covers the interleaving pattern and fails without the
+>>>> guard.
+>>>>
+>>>> v2: the strict pass can split a block and then reject both 
+>>>> children, so
+>>>>      a split no longer implies a compatible block exists. Sashiko 
+>>>> reported
+>>>>      the resulting leaked splits; fix as suggested by Matthew:
+>>>>   - Push the parent back on the DFS stack after each split and 
+>>>> merge it
+>>>>     back with unsplit_block() if both children are still free.
+>>>>   - Make block_incompatible() judge free blocks only (split nodes 
+>>>> keep a
+>>>>     stale clear bit) and take the requested order, so mixed blocks 
+>>>> that
+>>>>     can hold a compatible block are descended instead of skipped.
+>>>>   - Extend the KUnit test with a coalesced mixed block and a check 
+>>>> that
+>>>>     a rejected split is merged back.
+>>>>
+>>>> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with 
+>>>> decoupled dirty tracker")
+>>>> Assisted-by: LLM
+>>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>>> Cc: Christian König <christian.koenig@amd.com>
+>>>> Signed-off-by: Arunpravin Paneer Selvam 
+>>>> <Arunpravin.PaneerSelvam@amd.com>
+>>>
+>>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>> This version brought back a DAL CI failure. when the range allocator 
+>> wanted a clear (or dirty) block, it would split a mixed block to look 
+>> for a pure one, throw away the mixed halves, and then use 
+>> unsplit_block to join them again.
+>> Doing this on every allocation was costly: even though the merge 
+>> cascades back up through all levels, repeating this split-and-unsplit 
+>> on every allocation added enough overhead on the display hot path 
+>> that a large scanout buffer
+>> eventually failed with -ENOSPC 
+>> (igt@kms_plane@plane-panning-bottom-right on Radeon RX 9070 XT).
+>>
+>> This change relaxes the rule for range allocations only: we just take 
+>> a mixed block as it is (the caller clears it if needed), so the first 
+>> pass never splits and never has to undo a split. Large same-class 
+>> blocks stay whole,
+>> so contiguous space is preserved and fragmentation goes down. The 
+>> behaviour is still correct, unsplit_block is no longer needed, and a 
+>> KUnit test reproduces the problem (it fails without the fix and 
+>> passes with it).
+>>
+>> Could you please just review v3 of this patch?. It is a bit urgent as 
+>> we need it to land the base dirty-tracker patch on our internal branch.
+>
+> I think sashiko is now complaining about the same thing from before?
+Yes - this is the same stranded-split leak Sashiko flagged back before 
+and in v4 I have addressed the comment Sashiko raised on v3.
 
-This commit adds migrate-on-fault support to the nouveau SVM driver using
-HMM_PFN_REQ_MIGRATE and a new nouveau_dmem_migrate_fault() helper, gated by
-the svm_migrate_on_fault module parameter. It also introduces a migration
-channel mutex and polling fence wait with abort handling for DMEM copies.
+In v3 I dropped  unsplit_block() , assuming "accept a mixed block as-is" 
+covered it, but that only handles a mixed block that's already at the 
+requested order and fully inside the range. A higher-order mixed block 
+straddling the range edge is still split, and when its in-range half is 
+the opposite class (the matching half falling out of range) the split is 
+left with both children free - that is the leak.
 
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_dmem.c b/drivers/gpu/drm/nou=
-veau/nouveau_dmem.c
-> index e74d7bb975a86..0a5d04068321b 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_dmem.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_dmem.c
-[ ... ]
-> @@ -76,6 +79,14 @@ struct nouveau_dmem_migrate {
->  	nouveau_migrate_copy_t copy_func;
->  	nouveau_clear_page_t clear_func;
->  	struct nouveau_channel *chan;
-> +	/*
-> +	 * Serializes the dmem users of chan (CPU faults in migrate_to_ram(),
-> +	 * migrate on fault, bulk migration, eviction): the copy and clear
-> +	 * commands they write to its push buffer and the fences they emit.
-> +	 * Held only around those writes, never across page allocation.
-> +	 * TTM serializes its own use of the channel with cli->mutex.
-> +	 */
-> +	struct mutex lock;
->  };
-[ ... ]
-> +static int nouveau_dmem_copy(struct nouveau_drm *drm, u64 npages,
-> +			     enum nouveau_aper dst_aper, u64 dst_addr,
-> +			     enum nouveau_aper src_aper, u64 src_addr)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&drm->dmem->migrate.lock);
-> +	ret =3D drm->dmem->migrate.copy_func(drm, npages, dst_aper, dst_addr,
-> +					   src_aper, src_addr);
-> +	mutex_unlock(&drm->dmem->migrate.lock);
-> +	return ret;
-> +}
-> +
-> +static int nouveau_dmem_clear(struct nouveau_drm *drm, u32 length,
-> +			      enum nouveau_aper dst_aper, u64 dst_addr)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&drm->dmem->migrate.lock);
-> +	ret =3D drm->dmem->migrate.clear_func(drm, length, dst_aper, dst_addr);
-> +	mutex_unlock(&drm->dmem->migrate.lock);
-> +	return ret;
-> +}
-> +
-> +static int nouveau_dmem_fence_new(struct nouveau_drm *drm,
-> +				  struct nouveau_fence **fence)
-> +{
-> +	int ret;
-> +
-> +	mutex_lock(&drm->dmem->migrate.lock);
-> +	ret =3D nouveau_fence_new(fence, drm->dmem->migrate.chan);
-> +	mutex_unlock(&drm->dmem->migrate.lock);
-> +	return ret;
-> +}
+v4 fixes it a different way: instead of splitting that block and then 
+cleaning up, the strict pass simply never splits a block that only 
+partially overlaps the range — so the stray split is never created in 
+the first place. The fallback pass still handles that block and actually 
+consumes the child it splits down to, so nothing is left stranded.  
+unsplit_block()  stays unnecessary, and the leak can't occur.
 
-[Severity: Critical]
-As reported by Sashiko on v16 [1], in drivers/gpu/drm/nouveau/nouveau_dmem.=
-c,
-nouveau_dmem_migrate_init() sets drm->dmem->migrate.chan =3D drm->ttm.chan,=
- so
-DMEM and TTM share the same struct nouveau_channel instance:
+Regards,
+Arun.
 
-    drm->dmem->migrate.copy_func =3D nvc0b5_migrate_copy;
-    drm->dmem->migrate.clear_func =3D nvc0b5_migrate_clear;
-    drm->dmem->migrate.chan =3D drm->ttm.chan;
+>
+>>
+>> Thanks,
+>> Arun.
+>>>
+>>> Are you just going to push this one by itself?
+>>
+>
 
-Meanwhile, in drivers/gpu/drm/nouveau/nouveau_bo.c, nouveau_bo_move_m2mf()
-uses drm->ttm.chan under cli->mutex without taking drm->dmem->migrate.lock:
-
-    struct nouveau_channel *chan =3D drm->ttm.chan;
-    struct nouveau_cli *cli =3D chan->cli;
-    ...
-    if (drm_drv_uses_atomic_modeset(drm->dev))
-        mutex_lock(&cli->mutex);
-    else
-        mutex_lock_nested(&cli->mutex, SINGLE_DEPTH_NESTING);
-
-Because nouveau_dmem_copy(), nouveau_dmem_clear(), and
-nouveau_dmem_fence_new() take only drm->dmem->migrate.lock while
-nouveau_bo_move_m2mf() takes only cli->mutex on the same underlying channel,
-can concurrent DMEM migrations (from nouveau_dmem_migrate_fault(),
-nouveau_dmem_migrate_to_ram(), nouveau_dmem_migrate_vma(), or
-nouveau_dmem_evict_chunk()) and TTM buffer moves race on chan->chan.push,
-interleave NVA0B5 copy engine methods in the pushbuffer, and corrupt
-++fctx->sequence and fctx->pending in nouveau_fence_emit()?
-
-> @@ -139,10 +185,12 @@ static void nouveau_dmem_folio_free(struct folio *f=
-olio)
->  	spin_unlock(&dmem->lock);
->  }
-> =20
-> -static void nouveau_dmem_fence_done(struct nouveau_fence **fence)
-> +static int nouveau_dmem_fence_done(struct nouveau_fence **fence)
->  {
-> +	int ret =3D 0;
-> +
->  	if (fence) {
-> -		nouveau_fence_wait(*fence, true, false);
-> +		ret =3D nouveau_fence_wait(*fence, true, false);
->  		nouveau_fence_unref(fence);
->  	} else {
->  		/*
-> @@ -150,6 +198,54 @@ static void nouveau_dmem_fence_done(struct nouveau_f=
-ence **fence)
->  		 * the hmem object.
->  		 */
->  	}
-> +
-> +	/* 0 on completion, -EBUSY on timeout, or other errno; propagated. */
-> +	return ret;
->  }
-
-[Severity: Low]
-This isn't a bug, but nouveau_dmem_fence_done() is changed to return int
-while its remaining callers in drivers/gpu/drm/nouveau/nouveau_dmem.c
-(nouveau_dmem_evict_chunk() and nouveau_dmem_migrate_chunk()) ignore the
-return value.
-
-Also, the commit message only describes adding HMM_PFN_REQ_MIGRATE support,
-nouveau_dmem_migrate_fault(), and the svm_migrate_on_fault parameter, witho=
-ut
-mentioning the addition of drm->dmem->migrate.lock or the rework of
-nouveau_dmem_migrate_to_ram() to use nouveau_dmem_fence_poll() and
-nouveau_dmem_migrate_abort() even when svm_migrate_on_fault is off. Could t=
-he
-unused return value be dropped and the changelog updated to cover these
-changes?
-
-> +/*
-> + * Poll the copy fence instead of the lazy (interrupt-driven) wait since
-> + * completion IRQ is randomly missed, hitting the timeout.
-> + *
-> + * Returns 0 on completion, -EBUSY on timeout. Consumes the fence refere=
-nce.
-> + */
-> +static int nouveau_dmem_fence_poll(struct nouveau_fence **fence)
-> +{
-> +	unsigned long deadline =3D jiffies + 30 * HZ;
-> +	int ret =3D 0;
-> +
-> +	while (!nouveau_fence_done(*fence)) {
-> +		if (time_after(jiffies, deadline)) {
-> +			ret =3D -EBUSY;
-> +			break;
-> +		}
-> +		schedule_timeout_uninterruptible(msecs_to_jiffies(1));
-> +	}
-> +	nouveau_fence_unref(fence);
-> +
-> +	return ret;
-> +}
-
-[Severity: High]
-As noted in nouveau_dmem_migrate_fault(), when a replayable GPU fault is
-pending, a copy engine transfer does not make progress until
-nouveau_svm_fault_replay() is issued. Can nouveau_dmem_fence_poll() stall
-for 30 seconds and time out in two scenarios?
-
-First, in nouveau_dmem_migrate_to_ram(), migrate_vma_setup() locks sfolio
-and installs a migration PTE, nouveau_svmm_invalidate() unmaps the page from
-the GPU, and nouveau_dmem_copy_folio() starts the copy before
-nouveau_dmem_fence_poll() waits for completion. If the GPU faults on that
-invalidated address while the copy is in flight, the pending GPU fault stal=
-ls
-the copy engine, while the fault worker in nouveau_svm_fault() blocks in
-hmm_range_fault() -> migration_entry_wait() waiting for sfolio to be unlock=
-ed
-by migrate_vma_finalize(). Because nouveau_dmem_migrate_to_ram() never calls
-nouveau_svm_fault_replay(), won't nouveau_dmem_fence_poll() stall until the
-30-second timeout, leak the page in nouveau_dmem_migrate_abort(), and return
-VM_FAULT_SIGBUS?
-
-Second, in nouveau_dmem_migrate_fault(), nouveau_svm_fault_replay() is call=
-ed
-once before nouveau_dmem_fence_poll(), while the GPU page table entry is
-still unmapped (__nouveau_pfns_map_locked() runs only after the fence compl=
-etes).
-If the replayed GPU access or another warp immediately refaults on the still
-unmapped address before the copy finishes, won't the GPU re-enter the fault=
-ed
-state and stall the copy engine while the fault worker is blocked inside
-nouveau_dmem_fence_poll()?
-
-> +/*
-> + * The copy could not be confirmed (fence timeout or no fence): don't mi=
-grate,
-> + * so finalize restores the original ptes and the source stays valid. Th=
-e copy
-> + * engine may still be using the pages, so keep the destination folios (=
-an
-> + * extra reference that finalize won't drop) and let the caller skip the=
- DMA
-> + * unmap: leaking is safer than freeing memory a wedged engine might wri=
-te.
-> + */
-> +static void nouveau_dmem_migrate_abort(struct nouveau_drm *drm,
-> +				       struct migrate_vma *args)
-> +{
-> +	unsigned long i;
-> +
-> +	for (i =3D 0; i < args->npages; i++) {
-> +		struct page *dpage =3D migrate_pfn_to_page(args->dst[i]);
-> +
-> +		args->src[i] &=3D ~MIGRATE_PFN_MIGRATE;
-> +		if (dpage)
-> +			folio_get(page_folio(dpage));
-> +	}
-> +	NV_ERROR(drm, "svm: copy not confirmed, migration aborted, pages leaked=
-\n");
-> +}
-[ ... ]
-> @@ -264,11 +361,21 @@ static vm_fault_t nouveau_dmem_migrate_to_ram(struc=
-t vm_fault *vmf)
->  		goto done;
->  	}
-> =20
-> -	nouveau_fence_new(&fence, dmem->migrate.chan);
-> +	/*
-> +	 * Commit the migration only once the copy is confirmed. Without a
-> +	 * fence the copy can't be confirmed: treat it as failed.
-> +	 */
-> +	fret =3D nouveau_dmem_fence_new(drm, &fence);
-> +	if (!fret)
-> +		fret =3D nouveau_dmem_fence_poll(&fence);
-> +	if (fret) {
-> +		nouveau_dmem_migrate_abort(drm, &args);
-> +		ret =3D VM_FAULT_SIGBUS;
-> +	} else {
-> +		dma_unmap_page(drm->dev->dev, dma_info.dma_addr, dma_info.size,
-> +			       DMA_BIDIRECTIONAL);
-> +	}
->  	migrate_vma_pages(&args);
-> -	nouveau_dmem_fence_done(&fence);
-> -	dma_unmap_page(drm->dev->dev, dma_info.dma_addr, dma_info.size,
-> -				DMA_BIDIRECTIONAL);
->  done:
->  	migrate_vma_finalize(&args);
-
-[Severity: Critical]
-As reported by Sashiko on v16 [2], when nouveau_dmem_fence_new() or
-nouveau_dmem_fence_poll() fails in nouveau_dmem_migrate_to_ram() or
-nouveau_dmem_migrate_fault(), nouveau_dmem_migrate_abort() clears
-MIGRATE_PFN_MIGRATE in args->src[i] while leaving args->dst[i] non-zero, and
-then the caller invokes migrate_vma_pages() and migrate_vma_finalize().
-
-In mm/migrate_device.c:__migrate_device_pages(), MIGRATE_PFN_MIGRATE is only
-checked in the !page branch; when both page (from src_pfns[i]) and newpage
-(from dst_pfns[i]) are non-NULL, __migrate_device_pages() still executes:
-
-    folio =3D page_folio(migrate_pfn_to_page(src_pfns[i+j]));
-    newfolio =3D page_folio(migrate_pfn_to_page(dst_pfns[i+j]));
-    mapping =3D folio_mapping(folio);
-    r =3D folio_migrate_mapping(mapping, newfolio, folio, extra_cnt);
-    if (r)
-        src_pfns[i+j] &=3D ~MIGRATE_PFN_MIGRATE;
-    else
-        folio_migrate_flags(newfolio, folio);
-
-This removes the source folio from the swap cache via folio_free_swap(),
-migrates mapping and page flags to newfolio, and calls
-mem_cgroup_migrate(folio, newfolio), which zeroes folio->memcg_data on the
-source folio. Then migrate_vma_finalize() sees !(src_pfns[i] &
-MIGRATE_PFN_MIGRATE) and restores the CPU PTEs to the corrupted source folio
-whose memcg charge and swapcache state were already moved to the leaked
-destination folio.
-
-Should nouveau_dmem_migrate_abort() instead unlock and release/leak dst[i]
-and clear args->dst[i] =3D 0 (or skip migrate_vma_pages() altogether when
-aborting) so __migrate_device_pages() does not touch the source folio?
-
-[Severity: High]
-In addition, when nouveau_dmem_migrate_abort() is called from
-nouveau_dmem_migrate_fault() during system-to-VRAM migration, does it pin t=
-he
-wrong folio?
-
-In nouveau_dmem_migrate_fault(), migrate.src[i] is the host system RAM folio
-that was DMA-mapped into dma_info by nouveau_dmem_migrate_copy_one(), where=
-as
-migrate.dst[i] is a device-private VRAM folio. When fret !=3D 0,
-nouveau_dmem_migrate_fault() skips dma_unmap_page() on dma_info because the
-copy engine may still be accessing the host DMA mapping, but
-nouveau_dmem_migrate_abort() only calls folio_get() on migrate.dst[i].
-
-Won't migrate_vma_finalize() drop the migration reference on the DMA-mapped
-system RAM folio in migrate.src[i] (allowing it to be freed back to the page
-allocator while still DMA-mapped), while the extra folio_get() on the
-unmapped device-private folio in migrate.dst[i] prevents chunk->callocated
-from ever reaching 0 and causes memunmap_pages(&chunk->pagemap) to hang on
-driver teardown in nouveau_dmem_evict_chunk()?
-
-[ ... ]
-> @@ -832,6 +956,238 @@ static void nouveau_dmem_migrate_chunk(struct nouve=
-au_drm *drm,
-[ ... ]
-> +		mutex_lock(&svmm->mutex);
-> +		if (fret) {
-> +			/* Copy did not complete; don't map a half-copied page. */
-> +			ret =3D -EIO;
-> +		} else if (mmu_interval_read_retry(notifier, range.notifier_seq)) {
-> +			ret =3D -EBUSY;
-> +		} else {
-> +			unsigned long map_addr =3D migrate.start;
-> +			unsigned int page_shift =3D PAGE_SHIFT + order;
-> +
-> +			/*
-> +			 * If nothing migrated might still be able to mirror.
-> +			 * In that case use the snapshot hmm_pfn.
-> +			 * npages =3D=3D 1 always today.
-> +			 */
-> +			if (npages =3D=3D 1 && !(pfns[0] & NVIF_VMM_PFNMAP_V0_V))
-> +				pfns[0] =3D nouveau_dmem_hmm_pfn_to_map(hmm_pfn0,
-> +						start, &map_addr, &page_shift);
-> +
-> +			/*
-> +			 * Nothing to map: leave the GPU mapping alone, the
-> +			 * caller falls back to nouveau_range_fault().
-> +			 */
-> +			if (pfns[0] & NVIF_VMM_PFNMAP_V0_V) {
-> +				/* On failure the caller falls back, then cancels */
-> +				ret =3D __nouveau_pfns_map_locked(svmm, map_addr,
-> +								pfns, n,
-> +								page_shift);
-> +				if (!ret) {
-> +					*out_pfn0 =3D pfns[0];
-> +					*out_addr =3D map_addr;
-> +					*out_shift =3D page_shift;
-> +				}
-> +			}
-> +		}
-> +		mutex_unlock(&svmm->mutex);
-
-[Severity: High]
-What happens in nouveau_dmem_migrate_fault() when a GPU write fault
-(hmm_flags containing HMM_PFN_REQ_WRITE) hits a read-only device-private
-VRAM PTE owned by drm->dev (for example, a page migrated to VRAM on an
-earlier GPU read fault when the CPU PTE was read-only, or after fork() or
-mprotect(PROT_READ))?
-
-In mm/hmm.c:hmm_vma_handle_pte(), when a non-present PTE is a device-private
-entry owned by range->dev_private_owner, hmm_range_fault() returns 0 with
-HMM_PFN_VALID but without HMM_PFN_WRITE (because
-softleaf_is_device_private_write(entry) is false) and without
-HMM_PFN_MIGRATE.
-
-Then in nouveau_dmem_migrate_fault(), nothing migrates, so it falls back to
-nouveau_dmem_hmm_pfn_to_map(hmm_pfn0, ...), which encodes pfns[0] with
-NVIF_VMM_PFNMAP_V0_V | NVIF_VMM_PFNMAP_V0_VRAM but without
-NVIF_VMM_PFNMAP_V0_W. __nouveau_pfns_map_locked() installs a read-only GPU
-PTE and returns 0, and nouveau_svm_fault() replays the fault without falling
-back to nouveau_range_fault(). Won't the GPU write instruction fault again
-indefinitely in an infinite fault-replay loop because write permission was
-requested in hmm_flags but not granted in hmm_pfn0?
-
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_svm.c b/drivers/gpu/drm/nouv=
-eau/nouveau_svm.c
-> index c519c28164fa0..6e109274bd77a 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_svm.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_svm.c
-[ ... ]
-> @@ -78,6 +79,13 @@ struct nouveau_svm {
->  #define SVM_DBG(s,f,a...) NV_DEBUG((s)->drm, "svm: "f"\n", ##a)
->  #define SVM_ERR(s,f,a...) NV_WARN((s)->drm, "svm: "f"\n", ##a)
-> =20
-> +/* When set, migrate the faulting range to VRAM on GPU fault (default of=
-f). */
-> +static bool nouveau_svm_migrate_on_fault;
-> +module_param_named(svm_migrate_on_fault, nouveau_svm_migrate_on_fault, b=
-ool,
-> +		   0644);
-> +MODULE_PARM_DESC(svm_migrate_on_fault,
-> +		 "migrate system memory to VRAM on GPU fault (default off)");
-
-[Severity: Low]
-As reported by Sashiko on v16 [3], this adds the nouveau.svm_migrate_on_fau=
-lt
-module parameter via module_param_named() in drivers/gpu/drm/nouveau/nouvea=
-u_svm.c
-without an entry in Documentation/admin-guide/kernel-parameters.txt (noting
-that CONFIG_DRM_NOUVEAU_SVM is marked experimental and depends on STAGING in
-drivers/gpu/drm/nouveau/Kconfig). Should this parameter be documented in
-Documentation/admin-guide/kernel-parameters.txt?
-
-> @@ -182,9 +190,10 @@ nouveau_svmm_bind(struct drm_device *dev, void *data,
-> =20
->  		addr =3D max(addr, vma->vm_start);
->  		next =3D min(vma->vm_end, end);
-> -		/* This is a best effort so we ignore errors */
-> -		nouveau_dmem_migrate_vma(cli->drm, cli->svm.svmm, vma, addr,
-> -					 next);
-> +		/* Best effort; skipped when migrate-on-fault does the migration. */
-> +		if (!nouveau_svm_migrate_on_fault)
-> +			nouveau_dmem_migrate_vma(cli->drm, cli->svm.svmm, vma,
-> +						 addr, next);
->  		addr =3D next;
->  	}
-
-[Severity: Medium]
-In drivers/gpu/drm/nouveau/nouveau_svm.c, why does nouveau_svmm_bind() skip
-nouveau_dmem_migrate_vma() when nouveau_svm_migrate_on_fault is enabled
-(while still taking mmap_read_lock(mm) and walking the VMAs in the range)?
-
-If pages in the bound range are already mapped to system memory in the GPU
-page tables (for example from a prior FAULT_ACCESS_PREFETCH fault, an atomic
-fault in nouveau_atomic_range_fault(), or an in-place fallback mapping in
-nouveau_dmem_migrate_fault()), subsequent GPU accesses will not fault, so
-skipping nouveau_dmem_migrate_vma() prevents explicit
-DRM_IOCTL_NOUVEAU_SVM_BIND requests from ever migrating those pages to VRAM.
-Furthermore, nouveau_dmem_migrate_vma() migrates compound PMD THPs with
-MIGRATE_VMA_SELECT_COMPOUND, whereas deferring to nouveau_dmem_migrate_faul=
-t()
-faults one 4KB page at a time without MIGRATE_VMA_SELECT_COMPOUND and splits
-2MB THPs. Is it intentional that enabling svm_migrate_on_fault turns the
-migration ioctl into a no-op?
-
-[1] https://lore.kernel.org/r/20261021060506.2377545-13-mpenttil@redhat.com
-[2] https://lore.kernel.org/r/20261021060506.2377545-13-mpenttil@redhat.com
-[3] https://lore.kernel.org/r/20261021060506.2377545-13-mpenttil@redhat.com
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261103061629.9726=
-69-1-mpenttil@redhat.com?part=3D12
