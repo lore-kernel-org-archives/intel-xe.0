@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D45E606A31B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 07:49:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 386F4606A31B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 07:49:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=D9pUvhhw
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=G7axIAgB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0294210FA18;
-	Wed,  4 Nov 2026 07:49:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0ECF10FA19;
+	Wed,  4 Nov 2026 07:49:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 366E610FA18
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 07:48:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF4F10FA19
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 07:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793778532; x=1825314532;
+ t=1793778536; x=1825314536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VkIrWYGxyZwzG3DSJo4pSj4f9TOa0yuXAik5TyfzeMo=;
- b=D9pUvhhwW5hWggj6j+sSnGkI6yv0b+OIr/P06IrDp0BNCIQ3Z3kzNwYP
- n0ik7pO8MyzfbAYH1Aw3IXrEaRR9YuOE6iywI7eFTwGXktFlNDvWd5FL1
- V1DOTxyR6S9pZvOA2L4XQQynGD3tDgGivX68IQMO1xBnaxpVUWCxFy891
- 93wTCLbX2maDiGdCIhxLuTDhd9SpgRe8rZGyQzjjb+x5fJ5iiwvxHPZYy
- NzU6c5dMGUHFHzd13J6Vp4pyv+rDKsDtPS9s8CGKnPwgjjLrVmv2t8efb
- M2oX8zlCjTEfdPgjcqwEHrHs8voDe7rMdL8OfEEMx9CNWIJ/2EsuB1XfV w==;
-X-CSE-ConnectionGUID: mggdvwQPRWm3UuFI8GR4+A==
-X-CSE-MsgGUID: vSLbIU5HRNOkO8ERqK5OZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2536082"
+ bh=P5m3ieZi/Ih6+LG7h2MaBPmnGPqrRtdfHbHzMuF3W8U=;
+ b=G7axIAgBxmgWxM2vfp595rlQBtSrRi4rdKz8sSg/xxtU9C92gpQAhNQ9
+ XAr/oTMhrGH6nLe/BRqaPrYIGDAuw1ckyi87VUtQ5WZ4v0gxJATadSSZp
+ Tlt1Pd3LdlyC6OWh1+lc989HQUijp3QpTk0323JtSwiK0ZtcmP/uyVY0p
+ +1xUEBBYsAlYvoelfVWoZ/ZABZRHr0nP7epsmaAuuM/PK1sE90QbA5lGo
+ ImRpJ0+b1VMEviJOW85EmzYB1/iukHZ63129+NXlM8dqnsjX/9aBY3ibt
+ LuVjcDryZzLmmGhhYqehUCQbE26KGb6fon2sQCQHho3FEnWG4H4+yWjKa w==;
+X-CSE-ConnectionGUID: QAZkSg8vRE6+McXFKlOLpQ==
+X-CSE-MsgGUID: m7wmWZqbSV2xdYinZhQ11A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2536087"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2536082"
+   d="scan'208";a="2536087"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2026 23:48:52 -0800
-X-CSE-ConnectionGUID: 2VWmwsZeQ9G8dE2ix88Tvg==
-X-CSE-MsgGUID: al0UJtu4Scqy3QCPk588Ng==
+ 03 Nov 2026 23:48:56 -0800
+X-CSE-ConnectionGUID: 2gXb93XRTz6bRemIJsWscg==
+X-CSE-MsgGUID: 2eLaIkUFR96XqTA3KkJsig==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="8520927"
+   d="scan'208";a="8520932"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa013.fm.intel.com with ESMTP; 03 Nov 2026 23:48:48 -0800
+ by fmviesa013.fm.intel.com with ESMTP; 03 Nov 2026 23:48:53 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,14 +48,16 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, lukas@wunner.de,
  daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v13 01/10] drm/xe/uc_fw: Allow re-initializing firmware
-Date: Wed,  4 Nov 2026 13:17:29 +0530
-Message-ID: <20261104074813.1415191-2-raag.jadav@intel.com>
+Subject: [PATCH v13 02/10] drm/xe/guc_submit: Introduce
+ guc_exec_queue_reinit_kernel()
+Date: Wed,  4 Nov 2026 13:17:30 +0530
+Message-ID: <20261104074813.1415191-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261104074813.1415191-1-raag.jadav@intel.com>
 References: <20261104074813.1415191-1-raag.jadav@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,121 +76,164 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In preparation of usecases which require re-initializing firmware without
-reloading the driver, introduce xe_uc_fw_reinit(). The uC firmware bo
-already exists but since it's contents are on VRAM, they are lost on PCIe
-FLR. Copy the firmware back to it's bo and mark it as loadable as part of
-re-initialization.
+In preparation of usecases which require re-initializing GuC submission
+after PCIe FLR, introduce guc_exec_queue_reinit_kernel() helper. This will
+restore kernel queues which might have been killed before PCIe FLR.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
 Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 ---
-v2: Add kernel doc (Matthew Brost)
-v6: Skip uC firmware selection during re-initialization (Daniele)
-v8: Set fw state to XE_UC_FIRMWARE_INIT_FAIL on failure (Daniele)
+v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
+v5: Re-initialize kernel queues through submission backend (Matthew Brost)
+v8: Introduce xe_sched_reinit() (Daniele)
+    Maintain timeout per scheduler instance (Daniele)
+    s/reinit/reinit_kernel (Daniele)
+v9: Move drm_sched_is_stopped() assert to xe_sched_reinit() (Daniele)
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 67 +++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_uc_fw.h |  1 +
- 2 files changed, 68 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |  2 ++
+ drivers/gpu/drm/xe/xe_execlist.c            |  6 ++++++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c       | 17 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h       |  1 +
+ drivers/gpu/drm/xe/xe_gpu_scheduler_types.h |  5 +++++
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  9 +++++++++
+ 6 files changed, 40 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 02aa97de6d3a..55bd0a12a2b9 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -837,6 +837,14 @@ static int uc_fw_copy(struct xe_uc_fw *uc_fw, const void *data, size_t size, u32
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 48c05398b016..44a41ddc7a05 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -292,6 +292,8 @@ struct xe_exec_queue {
+ struct xe_exec_queue_ops {
+ 	/** @init: Initialize exec queue for submission backend */
+ 	int (*init)(struct xe_exec_queue *q);
++	/** @reinit_kernel: Re-initialize kernel queue for submission backend */
++	void (*reinit_kernel)(struct xe_exec_queue *q);
+ 	/** @kill: Kill inflight submissions for backend */
+ 	void (*kill)(struct xe_exec_queue *q);
+ 	/** @fini: Undoes the init() for submission backend */
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index a6984999962d..47ed4c0e2bfe 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -407,6 +407,11 @@ static void execlist_exec_queue_destroy_async(struct work_struct *w)
+ 	drm_dev_put(&xe->drm);
+ }
+ 
++static void execlist_exec_queue_reinit_kernel(struct xe_exec_queue *q)
++{
++	/* NIY */
++}
++
+ static void execlist_exec_queue_kill(struct xe_exec_queue *q)
+ {
+ 	/* NIY */
+@@ -465,6 +470,7 @@ static u64 execlist_exec_queue_reset_status(struct xe_exec_queue *q)
+ 
+ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+ 	.init = execlist_exec_queue_init,
++	.reinit_kernel = execlist_exec_queue_reinit_kernel,
+ 	.kill = execlist_exec_queue_kill,
+ 	.fini = execlist_exec_queue_fini,
+ 	.destroy = execlist_exec_queue_destroy,
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+index 9c8004d5dd91..0ef77cdec51d 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+@@ -3,7 +3,10 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
++#include "xe_assert.h"
++#include "xe_exec_queue_types.h"
+ #include "xe_gpu_scheduler.h"
++#include "xe_guc_exec_queue_types.h"
+ 
+ static void xe_sched_process_msg_queue(struct xe_gpu_scheduler *sched)
+ {
+@@ -77,6 +80,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+ 	};
+ 
+ 	sched->ops = xe_ops;
++	sched->timeout = timeout;
+ 	spin_lock_init(&sched->msg_lock);
+ 	INIT_LIST_HEAD(&sched->msgs);
+ 	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
+@@ -84,6 +88,19 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+ 	return drm_sched_init(&sched->base, &args);
+ }
+ 
++void xe_sched_reinit(struct xe_gpu_scheduler *sched)
++{
++	struct xe_guc_exec_queue *ge = container_of(sched, struct xe_guc_exec_queue, sched);
++
++	xe_gt_assert(ge->q->gt, drm_sched_is_stopped(&sched->base));
++
++	/*
++	 * TODO: Implement drm_sched_reinit() instead of requiring the
++	 * driver to restore individual fields.
++	 */
++	sched->base.timeout = sched->timeout;
++}
++
+ void xe_sched_fini(struct xe_gpu_scheduler *sched)
+ {
+ 	xe_sched_submission_stop(sched);
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+index 664c2db56af3..22e24b4b7171 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+@@ -17,6 +17,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+ 		  long timeout, struct workqueue_struct *timeout_wq,
+ 		  atomic_t *score, const char *name,
+ 		  struct device *dev);
++void xe_sched_reinit(struct xe_gpu_scheduler *sched);
+ void xe_sched_fini(struct xe_gpu_scheduler *sched);
+ 
+ void xe_sched_submission_start(struct xe_gpu_scheduler *sched);
+diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+index 78ef2e8ded4f..f40764aa78e0 100644
+--- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
++++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
+@@ -54,6 +54,11 @@ struct xe_gpu_scheduler {
+ 	spinlock_t				msg_lock;
+ 	/** @work_process_msg: processes messages */
+ 	struct work_struct		work_process_msg;
++	/**
++	 * @timeout: timeout for the scheduler instance, to be restored
++	 * during exec queue re-initialization
++	 */
++	long				timeout;
+ };
+ 
+ #define xe_sched_entity		drm_sched_entity
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 9e7c2778029c..de2548358ec5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2225,6 +2225,14 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
  	return err;
  }
  
-+static void uc_fw_reinit(struct xe_uc_fw *uc_fw, const void *data)
++static void guc_exec_queue_reinit_kernel(struct xe_exec_queue *q)
 +{
-+	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++	xe_gt_assert(q->gt, q->flags & EXEC_QUEUE_FLAG_KERNEL);
 +
-+	xe_map_memcpy_to(xe, &uc_fw->bo->vmap, 0, data, uc_fw->size);
-+	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOADABLE);
++	atomic_set(&q->guc->state, 0);
++	xe_sched_reinit(&q->guc->sched);
 +}
 +
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ static void guc_exec_queue_kill(struct xe_exec_queue *q)
  {
- 	const struct firmware *fw = NULL;
-@@ -860,6 +868,65 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- }
- ALLOW_ERROR_INJECTION(xe_uc_fw_init, ERRNO); /* See xe_pci_probe() */
- 
-+/**
-+ * xe_uc_fw_reinit() - Re-initialize uC firmware into its bo
-+ * @uc_fw: uC firmware
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw)
-+{
-+	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+	struct xe_uc_fw_version old_fw, new_fw;
-+	const struct firmware *fw = NULL;
-+	int err;
-+
-+	/* Make sure the status was cleared the last time we reset the uc */
-+	xe_assert(xe, !xe_uc_fw_is_loaded(uc_fw));
-+
-+	/* We shouldn't be here for the firmware which wasn't available */
-+	if (!xe_uc_fw_is_available(uc_fw))
-+		return -ENOEXEC;
-+
-+	old_fw = uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
-+
-+	err = firmware_request_nowarn(&fw, uc_fw->path, xe->drm.dev);
-+	if (err)
-+		goto init_fail;
-+
-+	err = parse_headers(uc_fw, fw);
-+	if (err)
-+		goto restore_old;
-+
-+	new_fw = uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
-+	if (memcmp(&old_fw, &new_fw, sizeof(old_fw)) || uc_fw->size != fw->size) {
-+		drm_err(&xe->drm, "%s firmware mismatch on %s",
-+			xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
-+
-+		err = -ENOEXEC;
-+		goto restore_old;
-+	}
-+
-+	uc_fw_reinit(uc_fw, fw->data);
-+	uc_fw_release(fw);
-+	return 0;
-+
-+restore_old:
-+	/*
-+	 * parse_headers() updates version details, so restore original version
-+	 * before bailing.
-+	 *
-+	 * TODO: Create a struct of all the fields touched by parse_headers()
-+	 * and restore them all.
-+	 */
-+	uc_fw->versions.found[XE_UC_FW_VER_RELEASE] = old_fw;
-+init_fail:
-+	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_INIT_FAIL);
-+	/* OK even if fw is NULL */
-+	uc_fw_release(fw);
-+	return err;
-+}
-+
- static u32 uc_fw_ggtt_offset(struct xe_uc_fw *uc_fw)
- {
- 	return xe_bo_ggtt_addr(uc_fw->bo);
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
-index f2d3a3e7208b..6debdb924310 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.h
-@@ -15,6 +15,7 @@
- struct drm_printer;
- 
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw);
-+int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw);
- size_t xe_uc_fw_copy_rsa(struct xe_uc_fw *uc_fw, void *dst, u32 max_len);
- int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags);
- int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw);
+ 	trace_xe_exec_queue_kill(q);
+@@ -2719,6 +2727,7 @@ static u64 guc_exec_queue_reset_status(struct xe_exec_queue *q)
+  */
+ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+ 	.init = guc_exec_queue_init,
++	.reinit_kernel = guc_exec_queue_reinit_kernel,
+ 	.kill = guc_exec_queue_kill,
+ 	.fini = guc_exec_queue_fini,
+ 	.destroy = guc_exec_queue_destroy,
 -- 
 2.43.0
 
