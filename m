@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DFE606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA650606A326
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 00:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VZ2qeMcm
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NWIr1MTW
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47CFA10E66C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 87C9A10F8B3;
 	Wed,  4 Nov 2026 00:52:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CACC10F8E6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F45810E66C
  for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 00:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1793753562; x=1825289562;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KoVQ7Qch+FzWShMxLrS7p54pbgktg9YnohKdZHUQrwA=;
- b=VZ2qeMcmEbinStlBI867YTef+9qHvem1taJt1QvZdmneT5VvENEi2R+t
- EZmpCozLdCR7IqJ4h7j32q+RR5Y+BEklairMxxn+vnhZOWmszNtFwYaQD
- omtHS9riVm0tn7o2W9LpC9F2p1ahlj+flPKzE+TT+QbqYUJCktrZBuw+N
- oChrK4gLHjnEKdqY+bOdbXrMN0f5w/POHNTdVr4vxW8vA9ZG9K8SrxaP+
- InJiwuiexLw3eavkMSZk6l24EEE0LTpdJdX5bOxaon6j+UQJHrP/3z5pg
- WdTj6sLDivkNubj6BG/4BHfzs4/SFAIi+RNGb7QViryF2yOwst1OcBf9P g==;
-X-CSE-ConnectionGUID: HVfYsQEcQ0GJzX5mwBaLHQ==
-X-CSE-MsgGUID: jJgS1zA6T6ir2N+1HAL2jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2529526"
+ bh=SSGFNtu5e4pSU7IcRaz7DrdNUXafzAqQahLpy3qSgAA=;
+ b=NWIr1MTWPdBDhoXQwQ4aGFa0SVma4hZpFnBbdO4SsENLbe6MfCbSbuOW
+ GES37qin5ZKeDNn8L4clVQudCY0jx2c+I2Dd/iR19nsQ7H2bBaUopHduZ
+ 8zP7on6J7wTPaOexWlacqkHhfFNCiuTSSzjFzljE/l1NJaJc/qZupAxAB
+ nK7zp8E45RLQmQU4PRIUFAZuxkoei810iNuMCttbNDuhSQlwnoO79RgEw
+ MXIhLJlvTYsrYS39vKOguTpU4PHca5VA1zeucl27wd/DgI33OrEf8t9RA
+ wZ8nEX5Rjwbf/ASC5Mf9qiaRJkzVJmBUnsCmFrG2crWsd4w5OrJm1uPLA w==;
+X-CSE-ConnectionGUID: xLlEMMXiT9qxdMrvhQutiQ==
+X-CSE-MsgGUID: /B1vHhq9SbaU2bqkgkGTVA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2529527"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2529526"
+   d="scan'208";a="2529527"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Nov 2026 16:52:31 -0800
-X-CSE-ConnectionGUID: dm3sOu9tTmSk0Ib8yT3Pjw==
-X-CSE-MsgGUID: o3ZhRFkjRiqbGTU8+vFrhQ==
+X-CSE-ConnectionGUID: u2OHW6ExRPS0s8XfxS8Gjw==
+X-CSE-MsgGUID: P5AliUzkRf2acdTpYJOoXQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="6649331"
+   d="scan'208";a="6649334"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Nov 2026 16:52:30 -0800
@@ -44,10 +44,10 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
  Matthew Brost <matthew.brost@intel.com>
 Cc: harish.chegondi@intel.com
-Subject: [PATCH v3 3/5] drm/xe/oa: Take the runtime PM reference in
- xe_oa_destroy_locked()
-Date: Tue,  3 Nov 2026 16:52:25 -0800
-Message-ID: <20261104005221.3230003-10-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v3 4/5] drm/xe: Reject vm_ops->access on BO mappings of an
+ unplugged device
+Date: Tue,  3 Nov 2026 16:52:26 -0800
+Message-ID: <20261104005221.3230003-11-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261104005221.3230003-7-umesh.nerlige.ramappa@intel.com>
 References: <20261104005221.3230003-7-umesh.nerlige.ramappa@intel.com>
@@ -71,51 +71,54 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move the runtime PM get/put around stream destruction from
-xe_oa_release() into xe_oa_destroy_locked(), the only caller, so the
-reference is held just around the code that needs the device awake.
+A userspace mapping of a BO can outlive the device, e.g. across unbind
+or a PCI slot reset. After drm_dev_unplug() the fault handler only
+installs a dummy page, but ptrace, /proc/<pid>/mem and
+process_vm_readv() can't use get_user_pages() on these VM_PFNMAP vmas
+and fall back to vm_ops->access(), i.e. xe_bo_vm_access().
 
-This lets a following patch free a stream of a removed device without
-taking a runtime PM reference on it. No functional change.
+xe_bo_vm_access() doesn't check whether the device is still there. For
+a BO in VRAM, xe_ttm_access_memory() then either goes through the VRAM
+iomap, which is unmapped on remove, or submits a migrate job after the
+GT has been torn down. This applies to GEM mmaps and to the OA buffer
+mmap of an OA stream that outlives the device.
+
+Enter a drm_dev_enter() section in xe_bo_vm_access() and fail with
+-ENODEV once the device is unplugged, like xe_bo_cpu_fault() does.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index cc10403f51e0..7a151f338ae2 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -1691,6 +1691,8 @@ static long xe_oa_ioctl(struct file *file,
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 42a6aa1a2e4a..a74c38df2bdd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2345,9 +2345,20 @@ static int xe_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 	struct ttm_buffer_object *ttm_bo = vma->vm_private_data;
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = xe_bo_device(bo);
++	int idx, ret;
  
- static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
- {
-+	xe_pm_runtime_get(gt_to_xe(stream->gt));
+-	guard(xe_pm_runtime)(xe);
+-	return ttm_bo_vm_access(vma, addr, buf, len, write);
++	/*
++	 * A mapping can outlive the device. Once it's unplugged, VRAM is unmapped and the
++	 * migrate engines are gone, so refuse access, like the fault handler does.
++	 */
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return -ENODEV;
 +
- 	if (stream->enabled)
- 		xe_oa_disable_locked(stream);
- 
-@@ -1700,6 +1702,7 @@ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
- 		xe_exec_queue_put(stream->exec_q);
- 
- 	drm_syncobj_put(stream->ufence_syncobj);
-+	xe_pm_runtime_put(gt_to_xe(stream->gt));
- 	kfree(stream);
++	scoped_guard(xe_pm_runtime, xe)
++		ret = ttm_bo_vm_access(vma, addr, buf, len, write);
++
++	drm_dev_exit(idx);
++	return ret;
  }
  
-@@ -1708,11 +1711,9 @@ static int xe_oa_release(struct inode *inode, struct file *file)
- 	struct xe_oa_stream *stream = file->private_data;
- 	struct xe_gt *gt = stream->gt;
- 
--	xe_pm_runtime_get(gt_to_xe(gt));
- 	mutex_lock(&gt->oa.gt_lock);
- 	xe_oa_destroy_locked(stream);
- 	mutex_unlock(&gt->oa.gt_lock);
--	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	/* Release the reference the OA stream kept on the driver */
- 	drm_dev_put(&gt_to_xe(gt)->drm);
+ /**
 -- 
 2.55.0
 
