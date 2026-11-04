@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 041C2606A338
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:14:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=oGlqt+b1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444C4606A326
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:23:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE5D210E1E4;
-	Wed,  4 Nov 2026 15:14:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B11210E1E4
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 15:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793805246; x=1825341246;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9F4DTJfPTqwLbnAJBZimc191om/pYafchYphNrQ/Jfo=;
- b=oGlqt+b1BUNKJfNZ2wG0rPt8jAfORfke3LphUur1/+dOKFYExkc+m/fI
- 6mmqr5Mn1+UC7RYVviJnrNZz85mkNMaX+6V0mzYLQJDNTCOWlOYoc30ZR
- KlzB4Fl3KWdJUqkHPla5hF8TuiCaawJ3kexnYxACPjm1y8cbbb4D8aBPt
- xAA3Mk/I8bHZo8j8U13DAwkdYALbjBHkpAV+ybIIQw0GnVKbw4O0BbVhn
- hyyobx8NE8TbAIJgsSL8FQoUmQj1syFtflx3Lk8i5mlQ4g6AFHyGq4hMz
- evAVX3HsON8l70VfcKZh9Jb9zJZe7cmRXO4FsKg1ye5c7+wo+xN8EoXNA A==;
-X-CSE-ConnectionGUID: fn7C+8vcS66WzlFhP46qvg==
-X-CSE-MsgGUID: 0gClj1yxQ3ilVKqe+4+Y2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2460648"
-X-IronPort-AV: E=Sophos;i="6.27,195,1787036400"; 
-   d="scan'208";a="2460648"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 07:14:05 -0800
-X-CSE-ConnectionGUID: LvCJ/puWTYGV75X1ShGnJQ==
-X-CSE-MsgGUID: vkPwFQ/pQziJRLGWijynoA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,195,1787036400"; 
-   d="scan'208";a="7064150"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.244.20])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 07:14:03 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Subject: [PATCH v3] drm/xe: Add a per-client debugfs file reporting bo NUMA
- node distribution
-Date: Wed,  4 Nov 2026 16:13:35 +0100
-Message-ID: <20261104151335.163299-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.56.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6CDC10E4AA;
+	Wed,  4 Nov 2026 15:23:37 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6AE710E168;
+ Wed,  4 Nov 2026 15:23:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2805627453123980219=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_add_and?=
+ =?utf-8?q?_use_INTEL=5FREG=5FINVALID_macro?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Nov 2026 15:23:36 -0000
+Message-ID: <179380581680.117821.7591913815948005863@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261104133757.168881-1-jani.nikula@intel.com>
+In-Reply-To: <20261104133757.168881-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,441 +33,245 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When debugging NUMA placement of bo system memory, there is currently
-no way to tell on which nodes the pages backing a bo reside. The
-/proc/<pid>/numa_maps interface doesn't help since bo CPU mappings are
-VM_PFNMAP, and clients may have thousands of bos, so a dump of all bos
-is undesirable.
+--===============2805627453123980219==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Add a "bo_numa" file to the drm core per-client debugfs directory,
-client-<id>/. The file implements a request-response protocol per open
-file: Writing a GEM handle valid for the client takes a snapshot, under
-the bo's dma_resv lock, of the bo size, placement, and the number of
-pages on each NUMA node. A bo whose pages are swapped out, backed up
-or purged is reported as swapped/purged, and one whose pages are not
-populated as not populated. Subsequent reads return that snapshot. Once the
-snapshot has been completely read it is discarded, and a new handle
-may be written. Until then writes fail with -EBUSY, so that a pending
-snapshot can't be replaced before it is consumed. This allows querying
-many bos using a single open file.
+== Series Details ==
 
-The write-request / read-response protocol per open file follows the
-simple_transaction helpers in fs/libfs.c, used by e.g. nfsd and
-selinuxfs, and amdgpu already populates the per-client debugfs
-directory with its vm_pagetable_info file.
+Series: drm/i915/display: add and use INTEL_REG_INVALID macro
+URL   : https://patchwork.freedesktop.org/series/177727/
+State : success
 
-For sg bos, typically imported dma-bufs, the backing pages are owned
-by the exporter and can't be inspected, so only size and placement are
-reported.
+== Summary ==
 
-Example:
-  exec 3<>/sys/kernel/debug/dri/client-<id>/bo_numa
-  echo <handle1> >&3
-  cat <&3
-  echo <handle2> >&3
-  cat <&3
-  exec 3>&-
+CI Bug Log - changes from xe-6060-c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf_BAT -> xe-pw-177727v1_BAT
+====================================================
 
-The client id can be obtained from the drm-client-id fdinfo key.
+Summary
+-------
 
-v2:
-- Use drm_coredump_printer_is_full() (Andi Shyti)
-- Drop the Assisted-by tag and add a Signed-off-by (Andi Shyti)
+  **SUCCESS**
 
-v3:
-- Report swapped or purged bos as swapped/purged (Sashiko)
+  No regressions found.
 
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Andi Shyti <andi.shyti@kernel.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c      | 109 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo.h      |   6 ++
- drivers/gpu/drm/xe/xe_debugfs.c | 157 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_debugfs.h |   3 +
- drivers/gpu/drm/xe/xe_device.c  |   2 +
- 5 files changed, 277 insertions(+)
+  
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 42a6aa1a2e4a..ee232e73bc3b 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -6,12 +6,14 @@
- #include "xe_bo.h"
- 
- #include <linux/dma-buf.h>
-+#include <linux/nodemask.h>
- #include <linux/nospec.h>
- 
- #include <drm/drm_drv.h>
- #include <drm/drm_dumb_buffers.h>
- #include <drm/drm_gem_ttm_helper.h>
- #include <drm/drm_managed.h>
-+#include <drm/drm_print.h>
- #include <drm/ttm/ttm_backup.h>
- #include <drm/ttm/ttm_device.h>
- #include <drm/ttm/ttm_placement.h>
-@@ -4248,6 +4250,113 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
- 	list_del_init(&bo->vram_userfault_link);
- }
- 
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+static void xe_bo_count_numa_pages(struct ttm_tt *tt, unsigned long *nodes)
-+{
-+	pgoff_t i;
-+
-+	for (i = 0; i < tt->num_pages; ++i)
-+		nodes[page_to_nid(tt->pages[i])]++;
-+}
-+
-+static void xe_bo_print_numa_info_locked(struct xe_bo *bo, unsigned long *nodes,
-+					 struct drm_printer *p)
-+{
-+	struct ttm_resource *res = bo->ttm.resource;
-+	struct ttm_tt *tt = bo->ttm.ttm;
-+	unsigned long total = 0;
-+	const char *name;
-+	int nid;
-+
-+	xe_bo_assert_held(bo);
-+
-+	name = res ? xe_mem_type_to_name[res->mem_type] : NULL;
-+	drm_printf(p, "size: %zu\n", xe_bo_size(bo));
-+	if (name)
-+		drm_printf(p, "placement: %s\n", name);
-+	else if (res)
-+		drm_printf(p, "placement: mem_type %u\n", res->mem_type);
-+	else
-+		drm_puts(p, "placement: none\n");
-+
-+	/* The pages of sg bos are owned by the exporter and not visible. */
-+	if (bo->ttm.type == ttm_bo_type_sg) {
-+		drm_puts(p, "pages: unknown (sg bo)\n");
-+		return;
-+	}
-+
-+	if (tt && ttm_tt_is_swapped(tt)) {
-+		drm_puts(p, "pages: swapped/purged\n");
-+		return;
-+	}
-+
-+	if (tt && !ttm_tt_is_populated(tt)) {
-+		drm_puts(p, "pages: not populated\n");
-+		return;
-+	}
-+
-+	if (tt)
-+		xe_bo_count_numa_pages(tt, nodes);
-+
-+	for_each_node(nid) {
-+		if (!nodes[nid] && !node_online(nid))
-+			continue;
-+		drm_printf(p, "node%d: %lu\n", nid, nodes[nid]);
-+		total += nodes[nid];
-+	}
-+
-+	drm_printf(p, "total: %lu\n", total);
-+}
-+
-+/**
-+ * xe_bo_print_numa_info() - Print the NUMA node distribution of a bo
-+ * @file: The drm_file of the client owning @handle.
-+ * @handle: The GEM handle of the bo.
-+ * @p: The drm_printer to print to.
-+ *
-+ * Print the size and placement of the bo and, for bos with
-+ * driver-allocated system pages, the number of pages residing on each
-+ * NUMA node. If the bo's pages are currently swapped out, backed up or
-+ * purged by the shrinker, the bo is reported as swapped/purged, and if
-+ * they are not populated, as not populated. For sg bos, typically
-+ * imported dma-bufs, the backing pages are owned by the exporter and are
-+ * reported as unknown. The information is gathered under the bo's
-+ * dma_resv lock and thus represents a consistent snapshot.
-+ *
-+ * Return: 0 on success, -ENOENT if @handle doesn't refer to a bo,
-+ * negative error code on other failures.
-+ */
-+int xe_bo_print_numa_info(struct drm_file *file, u32 handle,
-+			  struct drm_printer *p)
-+{
-+	struct drm_gem_object *obj;
-+	unsigned long *nodes;
-+	int ret;
-+
-+	nodes = kcalloc(nr_node_ids, sizeof(*nodes), GFP_KERNEL_ACCOUNT);
-+	if (!nodes)
-+		return -ENOMEM;
-+
-+	obj = drm_gem_object_lookup(file, handle);
-+	if (!obj) {
-+		ret = -ENOENT;
-+		goto out_free;
-+	}
-+
-+	ret = dma_resv_lock_interruptible(obj->resv, NULL);
-+	if (!ret) {
-+		xe_bo_print_numa_info_locked(gem_to_xe_bo(obj), nodes, p);
-+		dma_resv_unlock(obj->resv);
-+	}
-+
-+	drm_gem_object_put(obj);
-+out_free:
-+	kfree(nodes);
-+
-+	return ret;
-+}
-+#endif
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_bo.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 77b3a02e9b8e..13197e4e0358 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -112,6 +112,7 @@ enum xe_madv_purgeable_state {
- 	XE_MADV_PURGEABLE_PURGED,
- };
- 
-+struct drm_printer;
- struct sg_table;
- 
- struct xe_bo *xe_bo_alloc(void);
-@@ -458,6 +459,11 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
- 		      struct drm_device *dev,
- 		      struct drm_mode_create_dumb *args);
- 
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+int xe_bo_print_numa_info(struct drm_file *file, u32 handle,
-+			  struct drm_printer *p);
-+#endif
-+
- bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
- 
- int xe_bo_decompress(struct xe_bo *bo);
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index e59d4964d811..1a74a7106462 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -11,6 +11,8 @@
- #include <linux/string_helpers.h>
- 
- #include <drm/drm_debugfs.h>
-+#include <drm/drm_file.h>
-+#include <drm/drm_print.h>
- 
- #include "regs/xe_pmt.h"
- #include "xe_bo.h"
-@@ -785,3 +787,158 @@ void xe_debugfs_register(struct xe_device *xe)
- 	else if (IS_SRIOV_VF(xe))
- 		xe_sriov_vf_debugfs_register(xe, root);
- }
-+
-+/*
-+ * Per-client "bo_numa" file: Report the NUMA node distribution of the
-+ * system pages backing a single bo.
-+ *
-+ * The file implements a request-response protocol: write() takes a GEM
-+ * handle, valid for the client, and takes a snapshot of the bo's page
-+ * distribution under the bo's dma_resv lock. Subsequent read()s return
-+ * that snapshot. Once the snapshot has been completely read, it is
-+ * discarded and a new handle may be written. Until then, writes return
-+ * -EBUSY, so that a pending snapshot is never replaced before it is
-+ * consumed.
-+ *
-+ * See xe_bo_print_numa_info() for the snapshot contents.
-+ */
-+struct bo_numa_snapshot {
-+	/* Serializes reads and writes on the open file. */
-+	struct mutex lock;
-+	/* The pending formatted snapshot, or NULL if none. */
-+	char *buf;
-+	/* Length of the formatted snapshot. */
-+	size_t len;
-+};
-+
-+static int bo_numa_open(struct inode *inode, struct file *f)
-+{
-+	struct bo_numa_snapshot *snap;
-+
-+	snap = kzalloc_obj(*snap, GFP_KERNEL_ACCOUNT);
-+	if (!snap)
-+		return -ENOMEM;
-+
-+	mutex_init(&snap->lock);
-+	f->private_data = snap;
-+
-+	return nonseekable_open(inode, f);
-+}
-+
-+static int bo_numa_release(struct inode *inode, struct file *f)
-+{
-+	struct bo_numa_snapshot *snap = f->private_data;
-+
-+	kvfree(snap->buf);
-+	mutex_destroy(&snap->lock);
-+	kfree(snap);
-+
-+	return 0;
-+}
-+
-+static ssize_t bo_numa_read(struct file *f, char __user *ubuf, size_t size,
-+			    loff_t *pos)
-+{
-+	struct bo_numa_snapshot *snap = f->private_data;
-+	ssize_t ret = 0;
-+
-+	mutex_lock(&snap->lock);
-+	if (snap->buf) {
-+		ret = simple_read_from_buffer(ubuf, size, pos, snap->buf,
-+					      snap->len);
-+		if (*pos >= snap->len) {
-+			kvfree(snap->buf);
-+			snap->buf = NULL;
-+		}
-+	}
-+	mutex_unlock(&snap->lock);
-+
-+	return ret;
-+}
-+
-+static ssize_t bo_numa_write(struct file *f, const char __user *ubuf,
-+			     size_t size, loff_t *pos)
-+{
-+	struct drm_file *file = file_inode(f)->i_private;
-+	struct bo_numa_snapshot *snap = f->private_data;
-+	struct drm_print_iterator iter;
-+	struct drm_printer p;
-+	size_t bufsize = PAGE_SIZE / 2;
-+	char *buf = NULL;
-+	u32 handle;
-+	int ret;
-+
-+	ret = kstrtou32_from_user(ubuf, size, 0, &handle);
-+	if (ret)
-+		return ret;
-+
-+	ret = mutex_lock_interruptible(&snap->lock);
-+	if (ret)
-+		return ret;
-+
-+	if (snap->buf) {
-+		ret = -EBUSY;
-+		goto out_unlock;
-+	}
-+
-+	/*
-+	 * Retry with a larger buffer until the snapshot fits. The coredump
-+	 * printer is used as a generic bounded buffer printer, and reports
-+	 * when its buffer is full.
-+	 */
-+	do {
-+		kvfree(buf);
-+		bufsize *= 2;
-+		buf = kvzalloc(bufsize, GFP_KERNEL_ACCOUNT);
-+		if (!buf) {
-+			ret = -ENOMEM;
-+			goto out_unlock;
-+		}
-+
-+		iter = (struct drm_print_iterator) {
-+			.data = buf,
-+			.remain = bufsize,
-+		};
-+		p = drm_coredump_printer(&iter);
-+		ret = xe_bo_print_numa_info(file, handle, &p);
-+		if (ret)
-+			goto out_free;
-+	} while (drm_coredump_printer_is_full(&p));
-+
-+	snap->buf = buf;
-+	snap->len = bufsize - iter.remain;
-+	*pos = 0;
-+	buf = NULL;
-+
-+out_free:
-+	kvfree(buf);
-+out_unlock:
-+	mutex_unlock(&snap->lock);
-+
-+	return ret ?: size;
-+}
-+
-+static const struct file_operations bo_numa_fops = {
-+	.owner = THIS_MODULE,
-+	.open = bo_numa_open,
-+	.release = bo_numa_release,
-+	.read = bo_numa_read,
-+	.write = bo_numa_write,
-+};
-+
-+/**
-+ * xe_debugfs_client_add() - Add xe-specific per-client debugfs files
-+ * @file: The drm_file of the client.
-+ *
-+ * Populate the drm core per-client debugfs directory with xe-specific
-+ * files. The files are removed by the drm core together with the
-+ * directory when @file is released.
-+ */
-+void xe_debugfs_client_add(struct drm_file *file)
-+{
-+	if (IS_ERR_OR_NULL(file->debugfs_client))
-+		return;
-+
-+	debugfs_create_file("bo_numa", 0600, file->debugfs_client, file,
-+			    &bo_numa_fops);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
-index 88d91c78036b..90effba271d9 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.h
-+++ b/drivers/gpu/drm/xe/xe_debugfs.h
-@@ -8,6 +8,7 @@
- 
- #include <linux/types.h>
- 
-+struct drm_file;
- struct xe_device;
- 
- #ifdef CONFIG_DEBUG_FS
-@@ -16,12 +17,14 @@ bool xe_fault_csc_hw_error(void);
- bool xe_fault_wedge_cold_reset(void);
- bool xe_fault_mempage_offline(void);
- void xe_debugfs_register(struct xe_device *xe);
-+void xe_debugfs_client_add(struct drm_file *file);
- #else
- static inline bool xe_fault_gt_reset(void) { return false; }
- static inline bool xe_fault_csc_hw_error(void) { return false; }
- static inline bool xe_fault_wedge_cold_reset(void) { return false; }
- static inline bool xe_fault_mempage_offline(void) { return false; }
- static inline void xe_debugfs_register(struct xe_device *xe) { }
-+static inline void xe_debugfs_client_add(struct drm_file *file) { }
- #endif
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 273e2c45fea9..e1f457d03b09 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -126,6 +126,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- 		put_task_struct(task);
- 	}
- 
-+	xe_debugfs_client_add(file);
-+
- 	return 0;
- }
- 
--- 
-2.56.0
+Participating hosts (14 -> 15)
+------------------------------
 
+  Additional (1): bat-bmg-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-177727v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - bat-bmg-2:          NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][2] ([Intel XE#2233])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2489] / [Intel XE#3419]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-modeset:
+    - bat-bmg-2:          NOTRUN -> [SKIP][4] ([Intel XE#2482]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-bmg-2:          NOTRUN -> [SKIP][5] ([Intel XE#2434] / [Intel XE#2548] / [Intel XE#6314])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-bmg-2:          NOTRUN -> [SKIP][6] ([Intel XE#2234] / [Intel XE#2850]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_exec_multi_queue@priority:
+    - bat-bmg-2:          NOTRUN -> [SKIP][7] ([Intel XE#8364]) +13 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][8] ([Intel XE#2229])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-bmg-2:          NOTRUN -> [SKIP][9] ([Intel XE#1420] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-bmg-2:          NOTRUN -> [SKIP][10] ([Intel XE#2245] / [Intel XE#7590])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-bmg-2:          NOTRUN -> [SKIP][11] ([Intel XE#2236] / [Intel XE#7590])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2233]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233
+  [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#2434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434
+  [Intel XE#2482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482
+  [Intel XE#2489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489
+  [Intel XE#2548]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548
+  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+  [Intel XE#3419]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419
+  [Intel XE#6314]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+
+
+Build changes
+-------------
+
+  * Linux: xe-6060-c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf -> xe-pw-177727v1
+
+  IGT_9177: 9177
+  xe-6060-c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf: c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf
+  xe-pw-177727v1: 177727v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/index.html
+
+--===============2805627453123980219==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: add and use INTEL_REG_INVALID macro</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177727/">https://patchwork.freedesktop.org/series/177727/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6060-c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf_BAT -&gt; xe-pw-177727v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 15)</h2>
+<p>Additional (1): bat-bmg-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-177727v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2233">Intel XE#2233</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2489">Intel XE#2489</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3419">Intel XE#3419</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-modeset:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2482">Intel XE#2482</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2434">Intel XE#2434</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2548">Intel XE#2548</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6314">Intel XE#6314</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234">Intel XE#2234</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177727v1/bat-bmg-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6060-c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf -&gt; xe-pw-177727v1</li>
+</ul>
+<p>IGT_9177: 9177<br />
+  xe-6060-c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf: c0cb7e7c00c9563d72c1e1b08fac139a57fd0ebf<br />
+  xe-pw-177727v1: 177727v1</p>
+
+</body>
+</html>
+
+--===============2805627453123980219==--
