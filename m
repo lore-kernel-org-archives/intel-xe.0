@@ -2,44 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B954606AC03
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 20:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55F36096090
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 20:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=LLqRlc78
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YNufB7x+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5D0210E8DC;
-	Wed,  4 Nov 2026 20:41:10 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90AB110E8CC;
- Wed,  4 Nov 2026 20:41:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1F7B10E00D;
+	Wed,  4 Nov 2026 20:47:17 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72CC710E00D;
+ Wed,  4 Nov 2026 20:47:11 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 4CEEF4367E;
- Wed,  4 Nov 2026 20:41:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0962F1F000C1;
- Wed,  4 Nov 2026 20:41:03 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 85AA160DA7;
+ Wed,  4 Nov 2026 20:47:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17B721F000C1;
+ Wed,  4 Nov 2026 20:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793824864;
- bh=7sxGtz0RumWyxvGId1/tFbbUGK66diE1YrzU61K0DmI=;
+ s=k20260515; t=1793825230;
+ bh=45TWhjjzWvYigbnjZSdrj3yUD7opZpR0l3RRZatqyLE=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=LLqRlc78cZpHByDS0LgeupwZxPO8/sHJnJRjQLha4eVgsk6maVhzR9gZn7CYcETD7
- WPJboRnNSmuXevJJZ0aRY7RJ7PRQMXjXdKLqfHJR5XAM7QzP1psM3oJNVCO5OLg5KH
- C7m+AZgFwDk1olwQHkj2VmdnwnNofQH/HUahhm6R38g7/FaSdhN4kH6tUhvjmAS5hN
- UYFDrrpUaSaZ7fWpwyTFMxxb6GBOaIsr1QY/zrJOuOnXChpLkRv3s5c9z47lE5AWuP
- qeVdjhFXXo8gM05JBgIxyRiDQ6TrBh0cOs1syLgEYbHmRNxMxY4lvGEUvF/dn/QwzM
- VbjYUvXkakUrA==
-Message-ID: <sashiko-outbox-198026@kernel.org>
+ b=YNufB7x+tLeTPX5RgLpDb9h2FGZNuNi8lPHXKU0YkL14RnlbSMi+K9gJV/LmJAhOH
+ Jj/X+Z5/ogfH0GROqSWTHFHZm1Fwgl4wF7o6JYNRqr6QHBCulyCjzZI9kQ5S6ObSVy
+ LdVHQwBrIMW6iRBVceCYotpT2MGpPclKF2QGm38WiFqbC/Na1L764DWYAKu0nfAO6Z
+ BJXNx+0AMT+7Yh1hCRVhDcQtyd+UZVTxuEPTb6qiEkP+FlA5Jw4ZQjQDlTJfV7ll47
+ +3JQQmKhvCF4FV4hNigoiNhZtkAqP4aHCpBNufeaJzmcF4RiNbVGXQ0mGu8+w4SOk7
+ 8eKyZyRrwLfpQ==
+Message-ID: <sashiko-outbox-198028@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/4] drm/ttm, drm/xe: Gate reserve-dipping backup
- retries on may_writeback
+Subject: Re: [PATCH 3/4] drm/ttm, drm/xe: Introduce TTM_TT_FLAG_PARTIAL for
+ partially backed-up tts
 To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
  intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
-In-Reply-To: <20261104201331.2462-5-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20261104201331.2462-4-thomas.hellstrom@linux.intel.com>
 References: <20261104201331.2462-1-thomas.hellstrom@linux.intel.com>
- <20261104201331.2462-5-thomas.hellstrom@linux.intel.com>
+ <20261104201331.2462-4-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 04 Nov 2026 20:41:03 +0000
+Date: Wed, 04 Nov 2026 20:47:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,268 +61,305 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 3 potential issue(=
 s) to consider:
-- [High] drm/ttm: unsplit high-order retry drains reserves in ttm_pool_back=
-up()
-- [High] drm/xe: premature scan termination in xe_shrinker_walk() and xe_bo=
-_shrink()
-- [High] drm/ttm: corrupted caching and DMA state in ttm_pool_backup() on p=
-age-0 failure
+- [High] drm/ttm: DMA mapping leak in ttm_pool_backup() on -EBUSY after res=
+tore abort
+- [High] drm/ttm: ttm_tt_backup() leaves tt populated if backup fails at fi=
+rst page
+- [Medium] drm/xe: stale remaining_pages and shrinker counts on failed ttm_=
+tt_restore()
 --
 
-commit 40d7831061e17e7b2e436a106ab6986d2645fa67
+commit fc282ba9ab604d69dff7ad175cd51a0231a6c0b3
 Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-drm/ttm, drm/xe: Gate reserve-dipping backup retries on may_writeback
+drm/ttm, drm/xe: Introduce TTM_TT_FLAG_PARTIAL for partially backed-up tts
 
-This commit gates shmem backup retries that dip into kernel memory reserves=
- on
-a new may_writeback flag while separating direct swap writeback into
-force_writeback, and threads both flags through TTM and the Xe shrinker.
+This commit introduces TTM_TT_FLAG_PARTIAL and ttm_tt::remaining_pages to
+track partially backed-up ttm_tt objects so they stay on the normal LRU
+and remain eligible for shrinker reclaim. It also adds
+ttm_pool_restore_abort() to clean up interrupted restores before backup
+and updates xe shrinker page accounting to track resident pages.
 
 > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_poo=
 l.c
-> index 8f05257e4f542..87c1ac39af94e 100644
+> index 1bf37023fed66..8f05257e4f542 100644
 > --- a/drivers/gpu/drm/ttm/ttm_pool.c
 > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+
 [ ... ]
-> @@ -1256,7 +1260,9 @@ long ttm_pool_backup(struct ttm_pool *pool, struct =
-ttm_tt *tt,
->  	else
->  		gfp =3D GFP_HIGHUSER;
+
+> @@ -1039,6 +1057,91 @@ void ttm_pool_drop_backed_up(struct ttm_tt *tt)
+>  	ttm_pool_free_range(NULL, tt, ttm_cached, start_page, tt->num_pages);
+>  }
 > =20
-> -	alloc_gfp =3D GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN | __GFP_RETRY_MAYF=
-AIL;
-> +	/* Don't dip into kernel reserves unless @flags->may_writeback is set. =
-*/
-> +	alloc_gfp =3D GFP_KERNEL | __GFP_HIGH | __GFP_NOWARN |
-> +		    __GFP_RETRY_MAYFAIL | __GFP_NOMEMALLOC;
+> +/**
+> + * ttm_pool_restore_abort() - Abort an ongoing restore of a partial tt
+> + * @tt: The struct ttm_tt with an active restore.
 
-[Severity: High]
-When ttm_pool_backup() is called with flags->may_writeback set to false (su=
-ch
-as the initial pass of xe_shrinker_walk()), can an -ENOMEM failure on the
-very first page leave tt with corrupted caching and DMA state?
+[ ... ]
 
-Before entering the backup loop, ttm_pool_backup() converts all resident pa=
-ges
-of a non-partial tt with tt->caching !=3D ttm_cached to write-back via
-set_pages_array_wb(), and unmaps and zeroes all tt->dma_address[] entries:
+> +static void ttm_pool_restore_abort(struct ttm_tt *tt)
+> +{
+> +	struct ttm_pool_tt_restore *restore =3D tt->restore;
+> +	pgoff_t i, nr, mid;
 
-drivers/gpu/drm/ttm/ttm_pool.c:ttm_pool_backup() {
-	if (!partial && tt->caching !=3D ttm_cached) {
-		...
-		if (run_count)
-			set_pages_array_wb(&tt->pages[run_start], run_count);
-	}
-	...
-	if (tt->dma_address || flags->purge) {
-		...
-			if (tt->dma_address && tt->dma_address[i]) {
-				ttm_pool_unmap(pool, tt->dma_address[i],
-					       num_pages);
-				memset(&tt->dma_address[i], 0,
-				       num_pages * sizeof(*tt->dma_address));
-			}
-	}
-}
+[ ... ]
 
-Because alloc_gfp now includes __GFP_NOMEMALLOC for all page orders (includ=
-ing
-order 0) and does not retry when flags->may_writeback is false,
-shmem_read_folio_gfp() can fail with -ENOMEM on the first page (i =3D=3D 0,
-nr_backed =3D=3D 0, shrunken =3D=3D 0), causing ttm_pool_backup() to return=
- -ENOMEM.
-
-In ttm_tt_backup(), tt->page_flags is only updated when ret > 0:
-
-drivers/gpu/drm/ttm/ttm_tt.c:ttm_tt_backup() {
-	ret =3D ttm_pool_backup(&bdev->pool, tt, &flags);
-	if (ret > 0) {
-		tt->page_flags &=3D ~TTM_TT_FLAG_PRIV_POPULATED;
-		...
-		if (tt->remaining_pages) {
-			tt->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
-			tt->page_flags |=3D TTM_TT_FLAG_PARTIAL;
-		}
-		...
-	}
-}
-
-With TTM_TT_FLAG_PRIV_POPULATED still set and TTM_TT_FLAG_PARTIAL clear, wo=
-n't
-subsequent calls to ttm_tt_populate() see ttm_tt_is_populated(tt) as true a=
-nd
-return 0 without restoring WC/UC caching or DMA mappings, while
-ttm_tt_unpopulate() -> ttm_pool_free() returns the write-back pages directly
-into the WC/UC page pool and calls ttm_pool_unmap() on the zeroed
-tt->dma_address[] entries?
-
-> =20
->  	num_pages =3D tt->num_pages;
-> =20
-> @@ -1280,14 +1286,7 @@ long ttm_pool_backup(struct ttm_pool *pool, struct=
- ttm_tt *tt,
->  		order =3D ttm_pool_page_order(pool, page);
->  		npages =3D 1UL << order;
-> =20
-> -		/*
-> -		 * We don't allow dipping kernel reserves for high order backup
-> -		 */
-> -		if (order)
-> -			alloc_gfp |=3D __GFP_NOMEMALLOC;
-> -		else
-> -			alloc_gfp &=3D ~__GFP_NOMEMALLOC;
-> -
-> +		dip_reserves =3D false;
->  		/*
->  		 * Back up the compound atomically at its native order. If
->  		 * fault injection truncated num_pages mid-compound, skip
-> @@ -1296,10 +1295,18 @@ long ttm_pool_backup(struct ttm_pool *pool, struc=
+> +	/*
+> +	 * Don't DMA-unmap committed restored pages here; their DMA
+> +	 * addresses are in tt->dma_address[] and the backup path
+> +	 * will unmap them.
+> +	 */
+> +
+> +	/* Convert non-cached committed pages to write-back. */
+> +	mid =3D restore->snapshot_alloc.caching_divide - tt->pages;
+> +#ifdef CONFIG_X86
+> +	if (mid > 0 && tt->caching !=3D ttm_cached)
+> +		set_pages_array_wb(tt->pages, mid);
+> +#endif
+> +
+> +	kfree(restore);
+> +	tt->restore =3D NULL;
+> +
+> +	for (i =3D 0, nr =3D 0; i < tt->num_pages; i++) {
+> +		struct page *p =3D tt->pages[i];
+> +
+> +		if (p && !ttm_backup_page_ptr_is_handle(p))
+> +			nr++;
+> +	}
+> +	tt->remaining_pages =3D nr;
+> +}
+> +
+>  /**
+>   * ttm_pool_backup() - Back up or purge a struct ttm_tt
+>   * @pool: The pool used when allocating the struct ttm_tt.
+> @@ -1071,10 +1174,13 @@ long ttm_pool_backup(struct ttm_pool *pool, struc=
 t ttm_tt *tt,
->  		if (unlikely(i + npages > num_pages))
->  			break;
+>  	pgoff_t shrunken =3D 0;
+>  	pgoff_t i, j, num_pages, npages;
+>  	pgoff_t nr_backed;
+> +	bool partial =3D ttm_tt_is_partial(tt);
 > =20
-> +retry:
->  		handle =3D ttm_backup_backup_folio(backup, page_folio(page),
-> -						 order, flags->writeback, i,
-> -						 gfp, alloc_gfp,
-> -						 &nr_backed);
-> +						 order, flags->force_writeback, i,
-> +						 gfp, dip_reserves ?
-> +						 alloc_gfp & ~__GFP_NOMEMALLOC :
-> +						 alloc_gfp, &nr_backed);
-> +		if (unlikely(handle =3D=3D -ENOMEM && !nr_backed &&
-> +			     flags->may_writeback && !dip_reserves)) {
-> +			dip_reserves =3D true;
-> +			goto retry;
-> +		}
+>  	if (WARN_ON(ttm_tt_is_backed_up(tt)))
+>  		return -EINVAL;
+> =20
+> +	ttm_pool_restore_abort(tt);
+> +
+>  	if ((!ttm_backup_bytes_avail() && !flags->purge) ||
+>  	    ttm_pool_uses_dma_alloc(pool) || ttm_tt_is_backed_up(tt))
+>  		return -EBUSY;
 
 [Severity: High]
-If ttm_backup_backup_folio() fails with -ENOMEM on the first subpage
-(!nr_backed) of a high-order compound page (order > 0), doesn't jumping
-directly to retry re-invoke ttm_backup_backup_folio() at the full compound
-order with __GFP_NOMEMALLOC cleared instead of splitting the compound into
-order-0 pages first?
+Can this leak DMA mappings for committed restored pages when
+ttm_pool_backup() returns -EBUSY right after ttm_pool_restore_abort(tt)?
 
-When system free memory is below normal zone watermarks during reclaim, the
-initial __GFP_NOMEMALLOC allocation fails on subpage 0 with handle =3D=3D -=
-ENOMEM
-and nr_backed =3D=3D 0. Because ttm_pool_split_for_swap() is only called fu=
-rther
-down when nr_backed > 0 and nr_backed < npages, retrying at the original
-order forces ttm_backup_backup_folio() to allocate up to 1 << order shmem
-pages from kernel memory reserves before returning to ttm_pool_backup() whe=
-re
-the source compound page can finally be freed.
+When a restore of a backed-up or partial ttm_tt (with tt->dma_address !=3D
+NULL) fails after committing one or more pages via
+ttm_pool_allocated_page_commit(), tt->pages[0 .. restore->alloced_pages - 1]
+are populated and DMA-mapped in tt->dma_address[], and tt is marked
+TTM_TT_FLAG_PARTIAL with tt->restore non-NULL.
 
-Should this path split a high-order page via ttm_pool_split_for_swap(pool,
-page) and reset order =3D 0 and npages =3D 1 before retrying with reserves,=
- as
-described in the struct ttm_backup_flags kerneldoc for may_writeback, so ea=
-ch
-order-0 subpage is backed up and freed before allocating the next shmem pag=
-e?
+When ttm_pool_backup() is later called by the shrinker, it calls
+ttm_pool_restore_abort(tt), which intentionally leaves committed restored
+pages DMA-mapped in tt->dma_address[] for the backup loop to unmap, and
+frees tt->restore (setting tt->restore =3D NULL).
+
+If ttm_pool_backup() then takes the early -EBUSY return (for example, when
+swap space is exhausted so !ttm_backup_bytes_avail() && !flags->purge), the
+DMA-unmap loop below is skipped. That leaves a partial tt with
+tt->restore =3D=3D NULL while tt->pages[0 .. alloced_pages - 1] remain
+DMA-mapped:
+
+- On teardown, ttm_tt_fini() -> ttm_pool_drop_backed_up() sees
+  tt->restore =3D=3D NULL and calls:
+
+    ttm_pool_free_range(NULL, tt, ttm_cached, 0, tt->num_pages);
+
+  Because pool is NULL, ttm_pool_unmap_and_free() skips ttm_pool_unmap()
+  and frees the still-DMA-mapped pages back to the page allocator.
+
+- On a subsequent restore, ttm_pool_restore_and_alloc() starts a fresh
+  restore at index 0, and ttm_pool_restore_commit() frees the retained
+  resident pages via __free_pages_gpu_account(p, 0, false) without
+  DMA-unmapping them and overwrites tt->dma_address[].
+
+> diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
+> index b645a18181843..2b441bf41d927 100644
+> --- a/drivers/gpu/drm/ttm/ttm_tt.c
+> +++ b/drivers/gpu/drm/ttm/ttm_tt.c
 
 [ ... ]
-> diff --git a/drivers/gpu/drm/xe/xe_shrinker.c b/drivers/gpu/drm/xe/xe_shr=
-inker.c
-> index c86455ea08d18..c24f35cbc2358 100644
-> --- a/drivers/gpu/drm/xe/xe_shrinker.c
-> +++ b/drivers/gpu/drm/xe/xe_shrinker.c
-> @@ -171,6 +171,7 @@ static int __xe_shrinker_walk(struct xe_shrinker *shr=
-inker,
->  static int xe_shrinker_walk(struct xe_shrinker *shrinker,
->  			    struct ttm_operation_ctx *ctx,
->  			    const struct xe_bo_shrink_flags flags,
-> +			    bool allow_writeback,
->  			    unsigned long to_scan, unsigned long *scanned,
->  			    unsigned long *freed)
->  {
-> @@ -179,7 +180,8 @@ static int xe_shrinker_walk(struct xe_shrinker *shrin=
-ker,
->  	int ret;
-> =20
->  	swap(no_wait_gpu, ctx->no_wait_gpu);
-> -	save_flags.writeback =3D false;
-> +	save_flags.may_writeback =3D false;
-> +	save_flags.force_writeback =3D false;
->  	ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan, scanned,
->  				 freed);
->  	swap(no_wait_gpu, ctx->no_wait_gpu);
-> @@ -187,15 +189,32 @@ static int xe_shrinker_walk(struct xe_shrinker *shr=
-inker,
->  		return ret;
-> =20
->  	if (!ctx->no_wait_gpu) {
-> +		/*
-> +		 * Blocking is now tolerated: allow retrying a failed backup
-> +		 * allocation using kernel reserves, but only if writeback is
-> +		 * permitted at all in this gfp context (i.e. __GFP_IO is
-> +		 * set); see @allow_writeback in xe_shrinker_scan().
-> +		 */
-> +		save_flags.may_writeback =3D allow_writeback;
->  		ret =3D __xe_shrinker_walk(shrinker, ctx, save_flags, to_scan, scanned,
->  					 freed);
->  		if (ret || *scanned >=3D to_scan)
->  			return ret;
+
+> @@ -289,7 +289,18 @@ long ttm_tt_backup(struct ttm_device *bdev, struct t=
+tm_tt *tt,
+>  	ret =3D ttm_pool_backup(&bdev->pool, tt, &flags);
+>  	if (ret > 0) {
+>  		tt->page_flags &=3D ~TTM_TT_FLAG_PRIV_POPULATED;
+> -		tt->page_flags |=3D TTM_TT_FLAG_BACKED_UP;
+> +		if (ret >=3D tt->remaining_pages)
+> +			tt->remaining_pages =3D 0;
+> +		else
+> +			tt->remaining_pages -=3D ret;
+> +
+> +		if (tt->remaining_pages) {
+> +			tt->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
+> +			tt->page_flags |=3D TTM_TT_FLAG_PARTIAL;
+> +		} else {
+> +			tt->page_flags &=3D ~TTM_TT_FLAG_PARTIAL;
+> +			tt->page_flags |=3D TTM_TT_FLAG_BACKED_UP;
+> +		}
 >  	}
 > =20
-> -	if (flags.writeback)
-> -		ret =3D __xe_shrinker_walk(shrinker, ctx, flags, to_scan, scanned,
-> +	if (allow_writeback) {
-> +		struct xe_bo_shrink_flags wb_flags =3D flags;
-> +
-> +		/*
-> +		 * Writeback explicitly allowed: also force writeback on any
-> +		 * retry so it actually relieves memory pressure instead of
-> +		 * just growing dirty shmem.
-> +		 */
-> +		wb_flags.may_writeback =3D true;
-> +		wb_flags.force_writeback =3D true;
-> +		ret =3D __xe_shrinker_walk(shrinker, ctx, wb_flags, to_scan, scanned,
->  					 freed);
-> +	}
+>  	return ret;
 
 [Severity: High]
-Can xe_shrinker_walk() terminate after the first pass with 0 freed pages wh=
-en
-__GFP_NOMEMALLOC shmem allocations fail under memory pressure, without ever
-reaching the passes that set may_writeback or force_writeback?
+What happens if ttm_pool_backup() fails on the very first page after it has
+already converted the pages to write-back and unmapped tt->dma_address[]?
 
-In xe_bo_shrink(), *scanned is incremented by the full old_remaining page
-count before calling ttm_bo_shrink():
+In ttm_pool_backup(), for a populated tt (!partial), all pages are first
+converted to write-back via set_pages_array_wb() (when tt->caching !=3D
+ttm_cached), and all entries in tt->dma_address[] are DMA-unmapped via
+ttm_pool_unmap() and zeroed via memset() before the folio backup loop
+starts.
 
-drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink() {
-	old_remaining =3D ttm_tt_remaining_pages(tt);
-	*scanned +=3D old_remaining;
-	lret =3D ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
-			     {.purge =3D false,
-			      .allow_move =3D true,
-			      .may_writeback =3D flags.may_writeback,
-			      .force_writeback =3D flags.force_writeback});
-}
+If ttm_backup_backup_folio() fails on the first page (i =3D=3D 0) with
+nr_backed =3D=3D 0 (or fault injection truncates num_pages mid-compound on =
+the
+first compound page), ttm_pool_backup() breaks out of the loop with
+shrunken =3D=3D 0 and returns a negative error code (or 0).
 
-During the first pass of xe_shrinker_walk() (where save_flags.may_writeback=
- is
-false), if shmem_read_folio_gfp() with __GFP_NOMEMALLOC fails with -ENOMEM =
-on
-an idle BO, ttm_pool_backup() stops without retrying and ttm_bo_shrink()
-returns -EBUSY (or a partial count if it stopped mid-BO). In
-__xe_shrinker_walk(), lret =3D=3D -EBUSY continues to the next BO on the LRU
-while keeping old_remaining added to *scanned. Once Pass 1 returns,
-*scanned >=3D to_scan is satisfied and xe_shrinker_walk() returns immediate=
-ly
-without running Pass 2 or Pass 3.
+Because ttm_tt_backup() only clears TTM_TT_FLAG_PRIV_POPULATED and sets
+TTM_TT_FLAG_PARTIAL when ret > 0, the tt remains marked
+TTM_TT_FLAG_PRIV_POPULATED (and not TTM_TT_FLAG_PARTIAL) even though its
+DMA mappings have been unmapped and zeroed and its pages have been
+converted to write-back:
 
-Additionally, if Pass 1 visits fewer than to_scan pages in idle BOs and
-reaches Pass 2 with allow_writeback set to true, Pass 2 runs with
-save_flags.may_writeback =3D true and save_flags.force_writeback =3D false.=
- Won't
-Pass 2 dip into kernel memory reserves to grow dirty shmem without writeback
-and satisfy *scanned >=3D to_scan before Pass 3 (where force_writeback =3D =
-true)
-can run?
+- Subsequent ttm_bo_populate() / ttm_tt_populate() calls see
+  ttm_tt_is_populated(tt) =3D=3D true and return 0 without restoring DMA
+  mappings or caching.
+- A subsequent ttm_pool_backup() call sees !partial and calls
+  set_pages_array_wb() a second time on pages that are already WB.
+- Subsequent ttm_tt_unpopulate() -> ttm_pool_free() calls ttm_pool_unmap()
+  on zeroed DMA addresses and returns the WB pages into the WC/UC pool via
+  ttm_pool_type_give().
+
+> @@ -300,10 +311,20 @@ int ttm_tt_restore(struct ttm_device *bdev, struct =
+ttm_tt *tt,
+>  {
+>  	int ret =3D ttm_pool_restore_and_alloc(&bdev->pool, tt, ctx);
+> =20
+> -	if (ret)
+> +	if (ret) {
+> +		/*
+> +		 * Let the shrinker reclaim pages made resident by the
+> +		 * failed restore. remaining_pages is recounted on backup.
+> +		 */
+> +		if (ttm_tt_is_backed_up(tt) &&
+> +		    ttm_pool_restore_has_resident(tt)) {
+> +			tt->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
+> +			tt->page_flags |=3D TTM_TT_FLAG_PARTIAL;
+> +		}
+>  		return ret;
+> +	}
+> =20
+> -	tt->page_flags &=3D ~TTM_TT_FLAG_BACKED_UP;
+> +	tt->page_flags &=3D ~(TTM_TT_FLAG_BACKED_UP | TTM_TT_FLAG_PARTIAL);
+> =20
+>  	return 0;
+>  }
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 2afee1a6de668..6907b683dee07 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+
+[ ... ]
+
+> @@ -676,20 +696,35 @@ static int xe_ttm_tt_populate(struct ttm_device *tt=
+m_dev, struct ttm_tt *tt,
+>  	    !(tt->page_flags & TTM_TT_FLAG_EXTERNAL_MAPPABLE))
+>  		return 0;
+> =20
+> -	if (ttm_tt_is_backed_up(tt) && !xe_tt->purgeable) {
+> +	/*
+> +	 * A purgeable backed-up tt was purged and holds neither pages nor
+> +	 * handles. Partial tts are never purgeable: madvise only marks
+> +	 * populated tts purgeable, and the shrinker purges those fully.
+> +	 */
+> +	if ((ttm_tt_is_backed_up(tt) || ttm_tt_is_partial(tt)) &&
+> +	    !xe_tt->purgeable) {
+> +		pgoff_t remaining =3D ttm_tt_remaining_pages(tt);
+> +		long backed_up_pages =3D tt->num_pages - remaining;
+> +
+>  		err =3D ttm_tt_restore(ttm_dev, tt, ctx);
+> +		if (!err) {
+> +			xe_tt->purgeable =3D false;
+> +			xe_ttm_tt_account_add(ttm_to_xe_device(ttm_dev), tt,
+> +					      backed_up_pages, !remaining);
+> +			update_global_total_pages(ttm_dev, backed_up_pages);
+> +		}
+>  	} else {
+
+[ ... ]
+
+> @@ -1478,7 +1522,8 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, st=
+ruct ttm_buffer_object *bo,
+>  	if (needs_rpm && !xe_pm_runtime_get_if_active(xe))
+>  		goto out_unref;
+> =20
+> -	*scanned +=3D tt->num_pages;
+> +	old_remaining =3D ttm_tt_remaining_pages(tt);
+> +	*scanned +=3D old_remaining;
+>  	lret =3D ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
+>  			     {.purge =3D false,
+>  			      .writeback =3D flags.writeback,
+> @@ -1486,10 +1531,7 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, s=
+truct ttm_buffer_object *bo,
+>  	if (needs_rpm)
+>  		xe_pm_runtime_put(xe);
+> =20
+> -	if (lret > 0) {
+> -		xe_ttm_tt_account_subtract(xe, tt, tt->num_pages, 1);
+> -		update_global_total_pages(bo->bdev, -(long)tt->num_pages);
+> -	}
+> +	xe_ttm_tt_account_shrunk(bo->bdev, tt, old_remaining);
+
+[Severity: Medium]
+When ttm_tt_restore() fails after making pages resident, doesn't leaving
+tt->remaining_pages and the xe shrinker counters unupdated break shrinker
+accounting and scanning?
+
+When a fully backed-up tt (with tt->remaining_pages =3D=3D 0 and 0 pages
+accounted in xe->mem.shrinker) fails in ttm_tt_restore() after committing
+or restoring pages, ttm_tt_restore() transitions it to TTM_TT_FLAG_PARTIAL,
+but tt->remaining_pages stays 0 until ttm_pool_restore_abort() runs during
+backup, and xe_ttm_tt_populate() skips xe_ttm_tt_account_add() because
+err !=3D 0:
+
+1. Because the newly resident pages were never added via
+   xe_ttm_tt_account_add(), xe_shrinker_count() does not see them and can
+   return SHRINK_EMPTY if no other BOs are populated.
+2. When xe_bo_shrink() (or xe_bo_shrink_purge()) runs on this BO, it reads
+   old_remaining =3D ttm_tt_remaining_pages(tt) (which is still 0) and does
+   *scanned +=3D old_remaining before calling ttm_bo_shrink() ->
+   ttm_tt_backup() -> ttm_pool_backup() -> ttm_pool_restore_abort(). In
+   xe_shrinker_scan(), if nr_scanned remains 0 while freed > 0, it will
+   return SHRINK_STOP instead of freed:
+
+   drivers/gpu/drm/xe/xe_shrinker.c:xe_shrinker_scan() {
+       ...
+       return nr_scanned ? freed : SHRINK_STOP;
+   }
+3. If the BO is destroyed via xe_ttm_tt_destroy() after a failed restore
+   without an intervening backup attempt, or if a backup attempt in
+   xe_bo_shrink() aborts the restore and increases tt->remaining_pages from
+   0 to N (say, when only part of those N pages are backed up),
+   xe_ttm_tt_account_shrunk() and xe_ttm_tt_destroy() will subtract pages
+   that were never added in xe_ttm_tt_populate(), underflowing the shrinker
+   counters.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261104201331.2462=
--1-thomas.hellstrom@linux.intel.com?part=3D4
+-1-thomas.hellstrom@linux.intel.com?part=3D3
