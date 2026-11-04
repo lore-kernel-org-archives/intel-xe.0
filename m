@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6456A606A32C
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 03:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21267606A330
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 03:30:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=fQ6JOXxn
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=m32L+1mw
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE2410F9A2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D563110F9A4;
 	Wed,  4 Nov 2026 03:30:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE03510F998;
- Wed,  4 Nov 2026 03:30:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45D7310F99E;
+ Wed,  4 Nov 2026 03:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793763011; x=1825299011;
+ t=1793763014; x=1825299014;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=gU55s/7e03Hub07VEY+BIh9NS9RF6T67ptNEu5sP2Lg=;
- b=fQ6JOXxnEw84l4B8AWejJBM60KWymN1a5JSbyxJd/w6XSPHnfR3b2jWS
- lwlifzxqjDItc31U3Zhs3IIsYssIUuyOZz3Nzzl9Bs4G86sHjnBBkZZns
- IzdVVIwzwrPDKnG1NwhxGNW5stktvmmSnCP++3qe9oOXiafwzmt8ytK8C
- rVcXmmwzjwPoE75jB8TpCJrG9Zl4DfjdLjryJA2FmG5pOqP1SfR/BjLUU
- 6Z8HCaVV5fomJ4fhzQe5bH1N8JRzM3YjIMS2uF2ksBbqxeWLwxYEjfndN
- 5daX0Vae6z+fE1C1V0I17ualSRTgIbaj70XTJP8FfNvKQKiJtJ7Uigu6k A==;
-X-CSE-ConnectionGUID: beLMbR7eRDOhcHMC5DnD7g==
-X-CSE-MsgGUID: J3jgckkoRQKmbSGpeSZxgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2505326"
+ bh=v38qfoqWYvB45z33IiNmsau/jG2ZGaCsa/O+J0nKyWI=;
+ b=m32L+1mw/BO34DljvQnPMqKzc087q2vUXBQLy6teJSjpFvwoMlNnnOJr
+ zkkPU77B7dxv4w6WdN2IuA99MleuWO+5upx0Ezn2fSWtwv8GjL6oiIq1o
+ KDnOeOFRlCXdISk3bzJupRvCiXiqnSb3ijXqhWpwnJsGjdIQ31iQvl01P
+ FFUvJ6D8ehgQs2u29QTvWR9weLR/APfrlZDLB+xLh7UBe2r0mW1blHLr7
+ xczcc4bkWvoSR+vNox5NSYUxftqTBtgoRBrpg9ZDn+IrjmxWf6RxGX8gz
+ 7nRpUP3Yzi8z3qdg+M8E5gWttTaf2sE9drONfNdtczxRdId9zjvEz0MI+ g==;
+X-CSE-ConnectionGUID: Db2ml8t2Tgi18Ppi4ZJlFA==
+X-CSE-MsgGUID: 1e3QpHfeTmGZzXvLupiygA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2505329"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2505326"
+   d="scan'208";a="2505329"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2026 19:30:11 -0800
-X-CSE-ConnectionGUID: qSmvK0jzQfisv9F2SvR7rg==
-X-CSE-MsgGUID: 5KY59nvITjGCPDLi9K6WWA==
+ 03 Nov 2026 19:30:14 -0800
+X-CSE-ConnectionGUID: vCdtllL3SQ6Hb8gnKfD2Lg==
+X-CSE-MsgGUID: h7jBT4ecQlCkfS1TLwvIRQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="7155692"
+   d="scan'208";a="7155709"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa010.fm.intel.com with ESMTP; 03 Nov 2026 19:30:08 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 03 Nov 2026 19:30:11 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 04 Nov 2026 08:54:49 +0530
-Subject: [PATCH v4 5/7] drm/i915/dp: Compute the DP symbol based timing
- generator parameters
+Date: Wed, 04 Nov 2026 08:54:50 +0530
+Subject: [PATCH v4 6/7] drm/i915/display: Program and enable the DP symbol
+ based timing generator
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261104-vlk-64036-dp-symbol-tg-v4-5-d06fe6c466a9@intel.com>
+Message-Id: <20261104-vlk-64036-dp-symbol-tg-v4-6-d06fe6c466a9@intel.com>
 References: <20261104-vlk-64036-dp-symbol-tg-v4-0-d06fe6c466a9@intel.com>
 In-Reply-To: <20261104-vlk-64036-dp-symbol-tg-v4-0-d06fe6c466a9@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -72,266 +72,211 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xe3p has a DP link layer (LL) symbol based timing generator, which
-makes the per-line symbol insertion for 8b/10b MST and 128b/132b
-SST/MST compliant with the DP 2.1 hblank symbol cycle count, reducing
-the line-to-line hblank jitter that some sinks can't handle.
+Program the 128 bit LL symbol Data M/N before the LINK_N write which
+arms the double buffered update, the LL symbol HACT/HTOTAL/CHUNK_SIZE
+along with the other transcoder timings, and enable the timing
+generator via TRANSCONF.DP_Symbol_TG_Enable before the transcoder is
+enabled.
 
-The Data M/N registers are 128 bits wide, so the Data M/N is computed as
-128 bit values, without reducing them apart from the GCDs of the pixel
-clock/link rate and of the SSC efficiency, to keep the full precision.
+v3: Remove redundant HAS_DP_SYMBOL_TG (Jani)
+    Use intel_de_read64_2x32()
 
-The timing generator is not used (yet) with the MSO/eDP splitter, and if
-the values don't fit the hardware the pixel based timing generator is
-kept. The Min Hblank mechanism must not be used together with the symbol
-timing generator, so clear min_hblank when it is used.
-
-v3: Move crtc parameters, checker and dump to new patch (Suraj)
-v4: dpcd caps bases ssc capability => intel_panel_use_ssc (Suraj)
-    Use gcd() from linux/gcd.h
-
-Bspec: 68922
+Bspec: 68849, 68922, 69961
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 171 ++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h     |   3 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c |   6 +
- 3 files changed, 180 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c     |   2 +
+ drivers/gpu/drm/i915/display/intel_display.c | 103 ++++++++++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display.h |   1 +
+ 3 files changed, 103 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index db7c8fcc8683aae1a2bc7050ef7c87ed5155c8dc..788c16df9801131294c73420c2c0d4d3ec848310 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -26,6 +26,7 @@
-  */
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index a46ab5d3d70fc75c6975f46e14d1b0c24dc1ba5e..c814e0740aa064f56d844e304c0a93d1047475c6 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4083,6 +4083,7 @@ static void intel_ddi_read_func_ctl_dp_sst(struct intel_encoder *encoder,
+ 			REG_FIELD_GET(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, ddi_func_ctl);
  
- #include <linux/export.h>
-+#include <linux/gcd.h>
- #include <linux/i2c.h>
- #include <linux/iopoll.h>
- #include <linux/log2.h>
-@@ -1269,6 +1270,12 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
- 	return true;
+ 	intel_cpu_transcoder_get_m1_n1(crtc, cpu_transcoder, &crtc_state->dp_m_n);
++	intel_cpu_transcoder_get_llsym_m_n(crtc_state);
+ 	intel_cpu_transcoder_get_m2_n2(crtc, cpu_transcoder, &crtc_state->dp_m2_n2);
+ 
+ 	crtc_state->enhanced_framing =
+@@ -4119,6 +4120,7 @@ static void intel_ddi_read_func_ctl_dp_mst(struct intel_encoder *encoder,
+ 			REG_FIELD_GET(TRANS_DDI_MST_TRANSPORT_SELECT_MASK, ddi_func_ctl);
+ 
+ 	intel_cpu_transcoder_get_m1_n1(crtc, cpu_transcoder, &crtc_state->dp_m_n);
++	intel_cpu_transcoder_get_llsym_m_n(crtc_state);
+ 
+ 	if (DISPLAY_VER(display) >= 11)
+ 		crtc_state->fec_enable =
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7caf5bee8718729667376b487b0584b47891f05a..1af1d589ec6410bbca3e3dcd3fe155da12ce7034 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -521,9 +521,14 @@ void intel_enable_transcoder(const struct intel_crtc_state *new_crtc_state)
+ 		return;
+ 	}
+ 
+-	/* Wa_1409098942:adlp+ */
+-	if (DISPLAY_VER(display) >= 13 &&
+-	    new_crtc_state->dsc.compression_enable) {
++	/* The early pixel count is in symbols with the DP symbol TG, no scaling */
++	if (new_crtc_state->dp_symbol_tg.enable) {
++		val &= ~TRANSCONF_PIXEL_COUNT_SCALING_MASK;
++		val |= REG_FIELD_PREP(TRANSCONF_PIXEL_COUNT_SCALING_MASK,
++				      TRANSCONF_PIXEL_COUNT_SCALING_X1);
++	} else if (DISPLAY_VER(display) >= 13 &&
++		   new_crtc_state->dsc.compression_enable) {
++		/* Wa_1409098942:adlp+ */
+ 		val &= ~TRANSCONF_PIXEL_COUNT_SCALING_MASK;
+ 		val |= REG_FIELD_PREP(TRANSCONF_PIXEL_COUNT_SCALING_MASK,
+ 				      TRANSCONF_PIXEL_COUNT_SCALING_X4);
+@@ -588,6 +593,14 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state)
+ 
+ 	if ((val & TRANSCONF_ENABLE) == 0)
+ 		intel_wait_for_pipe_off(old_crtc_state);
++
++	/* Disable the DP symbol based timing generator */
++	if (old_crtc_state->dp_symbol_tg.enable) {
++		intel_de_rmw(display, TRANSCONF(display, cpu_transcoder),
++			     TRANSCONF_DP_SYMBOL_TG_ENABLE, 0);
++		intel_de_write(display, TRANS_LLSYM_HACT(display, cpu_transcoder), 0);
++		intel_de_write(display, TRANS_LLSYM_HTOTAL(display, cpu_transcoder), 0);
++	}
  }
  
-+/* The symbol based timing generator is used for 8b/10b MST and 128b/132b SST/MST */
-+static bool intel_dp_has_symbol_tg(struct intel_display *display, bool is_mst, bool is_uhbr)
-+{
-+	return HAS_DP_SYMBOL_TG(display) && (is_mst || is_uhbr);
-+}
-+
- static int
- intel_dp_get_max_m_n_ratio(struct intel_display *display)
- {
-@@ -3734,6 +3741,165 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- 	return 0;
+ u32 intel_plane_fb_max_stride(struct intel_display *display,
+@@ -1683,6 +1696,52 @@ static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
+ 		     HSW_FRAME_START_DELAY(crtc_state->framestart_delay - 1));
  }
  
-+/* Number of symbols the transcoder link layer processes in a symbol cycle */
-+#define LL_SYMBOLS_PER_CYCLE	4
-+
-+/* 64 x 64 -> 128 bit multiplication, result as {lo, hi} */
-+static void intel_dp_mul_u64_u64(u64 a, u64 b, u64 res[2])
-+{
-+	res[0] = a * b;
-+	res[1] = mul_u64_u64_shr(a, b, 64);
-+}
-+
-+/* Compare two {lo, hi} 128 bit values */
-+static int intel_dp_cmp_u128(const u64 a[2], const u64 b[2])
-+{
-+	if (a[1] != b[1])
-+		return a[1] > b[1] ? 1 : -1;
-+
-+	if (a[0] != b[0])
-+		return a[0] > b[0] ? 1 : -1;
-+
-+	return 0;
-+}
-+
-+/* Compute the DP link layer (LL) symbol based timing generator parameters */
-+int intel_dp_compute_symbol_tg(struct intel_dp *intel_dp,
-+			       struct intel_crtc_state *crtc_state,
-+			       const struct drm_connector_state *conn_state)
++static void intel_cpu_transcoder_set_llsym_m_n(const struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_display *display = to_intel_display(crtc_state);
-+	const struct drm_display_mode *adjusted_mode =
-+					&crtc_state->hw.adjusted_mode;
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-+	struct intel_dp_symbol_tg *tg = &crtc_state->dp_symbol_tg;
-+	bool is_uhbr = intel_dp_is_uhbr(crtc_state);
-+	int symbol_size = is_uhbr ? 32 : 8;
-+	int hactive_cycles, hblank_cycles, chunk_cycles = 0;
-+	int hblank_pixels;
-+	int dsc_slices, link_bpp_x16;
-+	u32 ch_num, ch_den, ssc_num, ssc_den, spread_x1000, link_rate_mbps;
-+	u32 rate_gcd, ssc_gcd;
-+	u64 data_m[2], data_n[2];
-+	int ret;
++	enum transcoder transcoder = crtc_state->cpu_transcoder;
++	const struct intel_dp_symbol_tg *tg = &crtc_state->dp_symbol_tg;
 +
-+	memset(tg, 0, sizeof(*tg));
-+
-+	/* The symbol based timing generator is used for 8b/10b MST and 128b/132b SST/MST */
-+	if (!intel_dp_has_symbol_tg(display,
-+				    intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP_MST),
-+				    is_uhbr))
-+		return 0;
-+
-+	/* TODO: Support the symbol based timing generator with MSO/eDP splitter */
-+	if (crtc_state->splitter.enable)
-+		return 0;
-+
-+	ret = intel_dp_compute_dsc_slices_and_link_bpp(crtc_state, connector,
-+						       &dsc_slices, &link_bpp_x16);
-+	if (ret)
-+		return ret;
-+
-+	if (crtc_state->dsc.compression_enable) {
-+		int slice_width = DIV_ROUND_UP(adjusted_mode->hdisplay, dsc_slices);
-+		int chunk_bytes = DIV_ROUND_UP(slice_width * link_bpp_x16, 16 * 8);
-+
-+		chunk_cycles = DIV_ROUND_UP(chunk_bytes * 8,
-+					    LL_SYMBOLS_PER_CYCLE * symbol_size);
-+		hactive_cycles = dsc_slices * (chunk_cycles + 1);
-+	} else {
-+		int hact_width = adjusted_mode->hdisplay;
-+		int pix_bpp_x16 = link_bpp_x16;
-+
-+		/* YUV 4:2:0 without DSC: half the Hactive at twice the bpp */
-+		if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+			hact_width /= 2;
-+			pix_bpp_x16 *= 2;
-+		}
-+
-+		hactive_cycles = DIV_ROUND_UP(DIV_ROUND_UP(hact_width, LL_SYMBOLS_PER_CYCLE) *
-+					      pix_bpp_x16, 16 * symbol_size);
-+	}
-+
-+	hblank_pixels = adjusted_mode->htotal - adjusted_mode->hdisplay;
-+	hblank_cycles = DIV_ROUND_UP(DIV_ROUND_UP(hblank_pixels, LL_SYMBOLS_PER_CYCLE) *
-+				     link_bpp_x16, 16 * symbol_size);
-+
-+	/* DP 2.1: the minimum Hblank is 5 LL symbol cycles for 8b/10b, 3 for 128b/132b */
-+	hblank_cycles = max(hblank_cycles, is_uhbr ? 3 : 5);
-+
-+	if (hactive_cycles + hblank_cycles > TRANS_LLSYM_HTOTAL_MASK + 1 ||
-+	    chunk_cycles > TRANS_LLSYM_CHUNK_SIZE_MASK) {
-+		drm_dbg_kms(display->drm,
-+			    "LL symbol timings out of range (hactive %d, hblank %d, chunk %d), using pixel TG\n",
-+			    hactive_cycles, hblank_cycles, chunk_cycles);
-+		return 0;
-+	}
-+
-+	if (is_uhbr) {
-+		ch_num = 1568768;
-+		ch_den = 1622115;
-+	} else if (crtc_state->fec_enable) {
-+		ch_num = 51200;
-+		ch_den = 65537;
-+	} else {
-+		ch_num = 8;
-+		ch_den = 10;
-+	}
++	if (!tg->enable)
++		return;
 +
 +	/*
-+	 * spread_x1000 is the spread in % multiplied by 1000, so 500 means 0.5%.
-+	 * ssc_den * spread_x1000 / (200 * 1000) is ssc_den * (Spread_Amount / 200).
-+	 *
-+	 * With 0.5% spread: 100000 * 500 / 200000 = 250, so ssc_num = 99750.
-+	 * The efficiency is 99750 / 100000 = 0.9975, which equals 1 - 0.5 / 200.
-+	 * With no SSC the spread is 0, so ssc_num = ssc_den and the efficiency
-+	 * is 1.
-+	 *
-+	 * SSC is used only if both the panel/VBT policy and the sink allow it,
-+	 * same as for the PHY PLL programming.
++	 * These are double buffered, updated by the LINK_N write in
++	 * intel_set_m_n(), so must be written before that.
 +	 */
-+	ssc_den = 100000;
-+	spread_x1000 = intel_panel_use_ssc(display) &&
-+		       intel_dp->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5 ? 500 : 0;
-+	ssc_num = ssc_den - DIV_ROUND_CLOSEST(ssc_den * spread_x1000, 200 * 1000);
-+
-+	/* The link rate in Mbps, port_clock is in 10 kbps units */
-+	link_rate_mbps = crtc_state->port_clock / 100;
-+
-+	rate_gcd = gcd(adjusted_mode->crtc_clock, link_rate_mbps);
-+	ssc_gcd = gcd(ssc_num, ssc_den);
-+
-+	intel_dp_mul_u64_u64((u64)(adjusted_mode->crtc_clock / rate_gcd) *
-+			     LL_SYMBOLS_PER_CYCLE * symbol_size * ch_den,
-+			     (u64)(hactive_cycles + hblank_cycles) * (ssc_den / ssc_gcd),
-+			     data_m);
-+	intel_dp_mul_u64_u64((u64)(link_rate_mbps / rate_gcd) * crtc_state->lane_count *
-+			     adjusted_mode->htotal * 1000,
-+			     (u64)ch_num * (ssc_num / ssc_gcd),
-+			     data_n);
-+
-+	if (intel_dp_cmp_u128(data_m, data_n) > 0) {
-+		drm_dbg_kms(display->drm,
-+			    "LL symbol data M/N ratio exceeds 1.0, using pixel TG\n");
-+		return 0;
-+	}
-+
-+	tg->enable = true;
-+	tg->hactive = hactive_cycles;
-+	tg->htotal = hactive_cycles + hblank_cycles;
-+	tg->chunk_size = chunk_cycles;
-+	tg->data_m[0] = data_m[0];
-+	tg->data_m[1] = data_m[1];
-+	tg->data_n[0] = data_n[0];
-+	tg->data_n[1] = data_n[1];
-+
-+	/* The Min Hblank mechanism must not be used with the symbol TG */
-+	crtc_state->min_hblank = 0;
-+
-+	return 0;
++	intel_de_write(display, DP_LLSYM_DATAM(display, transcoder, 0),
++		       lower_32_bits(tg->data_m[0]));
++	intel_de_write(display, DP_LLSYM_DATAM(display, transcoder, 1),
++		       upper_32_bits(tg->data_m[0]));
++	intel_de_write(display, DP_LLSYM_DATAM_EXT(display, transcoder, 0),
++		       lower_32_bits(tg->data_m[1]));
++	intel_de_write(display, DP_LLSYM_DATAM_EXT(display, transcoder, 1),
++		       upper_32_bits(tg->data_m[1]));
++	intel_de_write(display, DP_LLSYM_DATAN(display, transcoder, 0),
++		       lower_32_bits(tg->data_n[0]));
++	intel_de_write(display, DP_LLSYM_DATAN(display, transcoder, 1),
++		       upper_32_bits(tg->data_n[0]));
++	intel_de_write(display, DP_LLSYM_DATAN_EXT(display, transcoder, 0),
++		       lower_32_bits(tg->data_n[1]));
++	intel_de_write(display, DP_LLSYM_DATAN_EXT(display, transcoder, 1),
++		       upper_32_bits(tg->data_n[1]));
 +}
 +
- int
- intel_dp_compute_config(struct intel_atomic_state *state,
- 			struct intel_encoder *encoder,
-@@ -3834,6 +4000,11 @@ intel_dp_compute_config(struct intel_atomic_state *state,
- 	if (ret)
- 		return ret;
- 
-+	/* Clears min_hblank if the symbol based timing generator gets enabled */
-+	ret = intel_dp_compute_symbol_tg(intel_dp, pipe_config, conn_state);
-+	if (ret)
-+		return ret;
++void intel_cpu_transcoder_get_llsym_m_n(struct intel_crtc_state *crtc_state)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	enum transcoder transcoder = crtc_state->cpu_transcoder;
++	struct intel_dp_symbol_tg *tg = &crtc_state->dp_symbol_tg;
 +
- 	/* FIXME: abstract this better */
- 	if (pipe_config->splitter.enable)
- 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 1f4a3aff9abebdb2bf8cd17a77231e5af66f47ac..352c656299e3b2d81e0612a71da6247d02b5aa17 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -215,6 +215,9 @@ int intel_dp_dsc_min_src_input_bpc(void);
- int intel_dp_dsc_min_src_compressed_bpp(void);
- int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- 				const struct drm_connector_state *conn_state);
-+int intel_dp_compute_symbol_tg(struct intel_dp *intel_dp,
-+			       struct intel_crtc_state *crtc_state,
-+			       const struct drm_connector_state *conn_state);
- 
- int intel_dp_dsc_bpp_step_x16(const struct intel_connector *connector);
- void intel_dp_dpcd_set_probe(struct intel_dp *intel_dp, bool force_on_external);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 1e6190689e6b2616ed850d61c5bfbf60a62c5422..81ac454603603df42db477ddb26cfb2f620dcfea 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -732,6 +732,12 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 	if (ret)
- 		return ret;
- 
-+	/* Clears min_hblank if the symbol based timing generator gets enabled */
-+	ret = intel_dp_compute_symbol_tg(connector->mst.dp,
-+					 pipe_config, conn_state);
-+	if (ret)
-+		return ret;
++	if (!tg->enable)
++		return;
 +
- 	return 0;
++	tg->data_m[0] = intel_de_read64_2x32(display, DP_LLSYM_DATAM(display, transcoder, 0));
++	tg->data_m[1] = intel_de_read64_2x32(display, DP_LLSYM_DATAM_EXT(display, transcoder, 0));
++	tg->data_n[0] = intel_de_read64_2x32(display, DP_LLSYM_DATAN(display, transcoder, 0));
++	tg->data_n[1] = intel_de_read64_2x32(display, DP_LLSYM_DATAN_EXT(display, transcoder, 0));
++}
++
+ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -1693,6 +1752,7 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
+ 		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+ 					       &crtc_state->fdi_m_n);
+ 	} else if (intel_crtc_has_dp_encoder(crtc_state)) {
++		intel_cpu_transcoder_set_llsym_m_n(crtc_state);
+ 		intel_cpu_transcoder_set_m1_n1(crtc, cpu_transcoder,
+ 					       &crtc_state->dp_m_n);
+ 		intel_cpu_transcoder_set_m2_n2(crtc, cpu_transcoder,
+@@ -2929,6 +2989,19 @@ void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_state,
+ 		intel_de_write(display, DP_MIN_HBLANK_CTL(transcoder),
+ 			       crtc_state->min_hblank);
+ 	}
++
++	if (crtc_state->dp_symbol_tg.enable &&
++	    transcoder != TRANSCODER_CMTG0 &&
++	    transcoder != TRANSCODER_CMTG1) {
++		const struct intel_dp_symbol_tg *tg = &crtc_state->dp_symbol_tg;
++
++		intel_de_write(display, TRANS_LLSYM_HACT(display, transcoder),
++			       TRANS_LLSYM_HACT_VAL(tg->hactive - 1));
++		intel_de_write(display, TRANS_LLSYM_HTOTAL(display, transcoder),
++			       TRANS_LLSYM_HTOTAL_VAL(tg->htotal - 1));
++		intel_de_write(display, TRANS_LLSYM_CHUNK_SIZE(display, transcoder),
++			       TRANS_LLSYM_CHUNK_SIZE_VAL(tg->chunk_size));
++	}
  }
  
+ void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc_state,
+@@ -3095,6 +3168,26 @@ static void intel_get_transcoder_timings(struct intel_crtc *crtc,
+ 	if (DISPLAY_VER(display) >= 30)
+ 		pipe_config->min_hblank = intel_de_read(display,
+ 							DP_MIN_HBLANK_CTL(cpu_transcoder));
++
++	if (HAS_DP_SYMBOL_TG(display)) {
++		tmp = intel_de_read(display, TRANSCONF(display, cpu_transcoder));
++
++		if (tmp & TRANSCONF_DP_SYMBOL_TG_ENABLE) {
++			struct intel_dp_symbol_tg *tg = &pipe_config->dp_symbol_tg;
++			u32 hact, htotal, chunk_size;
++
++			hact = intel_de_read(display, TRANS_LLSYM_HACT(display, cpu_transcoder));
++			htotal = intel_de_read(display,
++					       TRANS_LLSYM_HTOTAL(display, cpu_transcoder));
++			chunk_size = intel_de_read(display,
++						   TRANS_LLSYM_CHUNK_SIZE(display, cpu_transcoder));
++
++			tg->enable = true;
++			tg->hactive = REG_FIELD_GET(TRANS_LLSYM_HACT_MASK, hact) + 1;
++			tg->htotal = REG_FIELD_GET(TRANS_LLSYM_HTOTAL_MASK, htotal) + 1;
++			tg->chunk_size = REG_FIELD_GET(TRANS_LLSYM_CHUNK_SIZE_MASK, chunk_size);
++		}
++	}
+ }
+ 
+ static void intel_joiner_adjust_pipe_src(struct intel_crtc_state *crtc_state)
+@@ -3419,6 +3512,10 @@ static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+ 	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)
+ 		val |= TRANSCONF_OUTPUT_COLORSPACE_YUV_HSW;
+ 
++	/* Must be set before the transcoder is enabled, so only on modeset */
++	if (crtc_state->dp_symbol_tg.enable)
++		val |= TRANSCONF_DP_SYMBOL_TG_ENABLE;
++
+ 	intel_de_write(display, TRANSCONF(display, cpu_transcoder), val);
+ 	intel_de_posting_read(display, TRANSCONF(display, cpu_transcoder));
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index d53b7b4a80e75f8cb3a76d923d05648ffe505e2d..fa9ae8799a1999d9dd6a1f4e4d56983b6536ba26 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -446,6 +446,7 @@ void intel_cpu_transcoder_get_m2_n2(struct intel_crtc *crtc,
+ 				    enum transcoder cpu_transcoder,
+ 				    struct intel_link_m_n *m_n);
+ int intel_dotclock_calculate(int link_freq, const struct intel_link_m_n *m_n);
++void intel_cpu_transcoder_get_llsym_m_n(struct intel_crtc_state *crtc_state);
+ int intel_crtc_dotclock(const struct intel_crtc_state *pipe_config);
+ int intel_max_uncompressed_dotclock(struct intel_display *display);
+ enum intel_display_power_domain intel_port_to_power_domain(struct intel_digital_port *dig_port);
 
 -- 
 2.25.1
