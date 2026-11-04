@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A1C606A328
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 07:49:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8700F606A32E
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 07:49:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mL9omUHm
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=W7EB4o0e
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43DA910FA1C;
-	Wed,  4 Nov 2026 07:49:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CED910FA14;
+	Wed,  4 Nov 2026 07:49:33 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A884D10FA21
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 07:49:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03E4910FA14
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 07:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793778562; x=1825314562;
+ t=1793778567; x=1825314567;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+zK0xroejS1d59yEW+k4E+pRR87FAcGBn6IlFv7oi+w=;
- b=mL9omUHm9R3KI7cjL6KbwPjzbgQqf8pd9uH+FLWz28+dFHsNcAqpn/FH
- NO3Yn9vY9CrB78lHxqZ3RdLD6KhzY5ZFMoXR06qVYqfIVfsMIn+k4tsw5
- neOc4Ldi7OAiqxHdtceYJsL7lrNhh3oT4F2z+7/gxFbmr+ZOqnZw4bB9o
- 0Dyp0DRrgRkV7wLbYMR85EXa75xybUQCmM3+0iP9IY8PKiL/VZ1QaZQV1
- YpUqLQGlJm/iI0NI+X4mWOZvypFjVZZSa9aaPBjobKj0Xvj/nGJvaIqr0
- 0iBDnGsHAzDOO4uQdRBXTD9XPxNepxSL0OcIK6APiiZmSBNkhRU/k7Uit w==;
-X-CSE-ConnectionGUID: 8iGR2DcpRlewsOyZ5zrdUw==
-X-CSE-MsgGUID: hPv7FvNaSUiA5nvrbo7JbA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2536168"
+ bh=DBZqFhjkF2+2I53dW/ItSKDbPQQRUWmjJZdyt206nOs=;
+ b=W7EB4o0eksJ11q6rgwL13p+uEBmErV0nF4fi8xP/qxsqYdmbKabiv+sf
+ Ob0OlbAPZVG6Adihtq6/bDTPvRfaeSoto4xQiqb8ZO+eeWvb3WukEBhUI
+ LdxJg3vdHxSleFxu9dM6YsmxIHk+0CeXmA5nPmty3LNuuAHdiJwhnggFe
+ 9oGxo6l27pRbdsEWJM3M2st0w8eR4PkFxRU059AYjyabtXfRC8hio2P/D
+ Gt3I5Zvzs6yxRcjDt+v4RljKEpBemG6Hp34+Wj6LqX2ZOdw2jIl2wNC3O
+ vN6nGo5fJ0X8rUAq9nJRWJZNkfIRQIQENjP6YU1rfdPvNjBGpTRN3MRRv g==;
+X-CSE-ConnectionGUID: fdi3IaJoSNS0QJaBGVLmpQ==
+X-CSE-MsgGUID: TBQ7IWhLQ3C1JVZBAUIw/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2536179"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2536168"
+   d="scan'208";a="2536179"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2026 23:49:22 -0800
-X-CSE-ConnectionGUID: LgVgYkOwQVi7Vt9azMQCyQ==
-X-CSE-MsgGUID: Vjp8BuLMS7adcULtQVVVcw==
+ 03 Nov 2026 23:49:26 -0800
+X-CSE-ConnectionGUID: jXsUSDbuQS+1iYewQeGoNQ==
+X-CSE-MsgGUID: +Vtt9SqeQ3q/y+ncEjKDUw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="8520979"
+   d="scan'208";a="8520984"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa013.fm.intel.com with ESMTP; 03 Nov 2026 23:49:19 -0800
+ by fmviesa013.fm.intel.com with ESMTP; 03 Nov 2026 23:49:23 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, lukas@wunner.de,
  daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v13 08/10] drm/xe: Introduce temporary device wedging
-Date: Wed,  4 Nov 2026 13:17:36 +0530
-Message-ID: <20261104074813.1415191-9-raag.jadav@intel.com>
+Subject: [PATCH v13 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
+Date: Wed,  4 Nov 2026 13:17:37 +0530
+Message-ID: <20261104074813.1415191-10-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261104074813.1415191-1-raag.jadav@intel.com>
 References: <20261104074813.1415191-1-raag.jadav@intel.com>
@@ -74,314 +74,208 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Currently, wedged state is serving a single usecase where the device is
-permanently declared wedged, but this doesn't allow any wedged state
-management for runtime usecases. In preparation of usecases which require
-to facilitate temporary device wedging, convert wedged.flag to wedged.ref
-which serves as a driver internal refcount for wedged state and blocks
-critical path execution during device lifetime. While at it, introduce
-wedged.perm which signifies permanent device wedging and operates
-independent of the refcount allowing relevant cleanup action on unwind
-path.
+With bare minimum pieces in place, we can finally introduce PCIe Function
+Level Reset (FLR) support which re-initializes hardware state without the
+need for reloading the driver from userspace. All VRAM contents are lost
+along with hardware state and driver takes care of recreating the required
+kernel bos as part of re-initialization, but user still needs to recreate
+user bos and reload context after PCIe FLR.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
+Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Riana Tauro <riana.tauro@intel.com>
 ---
- v9: Redesign to prevent races (Sashiko)
-v10: Spell out temporary device wedging in subject (Lukasz)
-v11: Update GuC CT path to check against permanent wedging (Lukasz, Riana)
-     Put wedge reference only if device is wedged during resume() (Riana)
-v12: s/xe_wedge_not_recoverable/xe_wedged_permanent (Riana)
-     Refine documentation (Riana)
-v13: Prevent PM ref leak on slot reset failure (Sashiko)
+ v2: Spell out Function Level Reset (Jani)
+ v5: Prevent PM ref leak for wedged device (Matthew Brost)
+ v6: Add PCIe FLR documentation (Daniele)
+ v7: Refine PCIe FLR documentation (Daniele)
+     Introduce xe_pci_reset_skip() helper (Lukasz)
+ v9: Add 'Xe' prefix to document title (Rodrigo)
+v10: Update documentation to include PCI Error Handling (Lukasz)
+     Maintain wedge reference on FLR failure (Lukasz)
+v11: Cleanup wedge reference logic in ->reset_prepare() (Lukasz)
+     Use 'PCI reset' in logs (Riana)
+v12: Refine error logging (Riana)
 ---
- drivers/gpu/drm/xe/xe_device.c      |  8 ++---
- drivers/gpu/drm/xe/xe_guc_ct.c      |  6 ++--
- drivers/gpu/drm/xe/xe_pci.c         |  2 ++
- drivers/gpu/drm/xe/xe_pci_error.c   | 24 +++++++--------
- drivers/gpu/drm/xe/xe_wedge.c       | 48 ++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_wedge.h       | 13 +++++++-
- drivers/gpu/drm/xe/xe_wedge_types.h | 13 ++++++--
- 7 files changed, 88 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |   3 +
+ drivers/gpu/drm/xe/xe_pci_error.c    | 136 +++++++++++++++++++++++++++
+ 2 files changed, 139 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index ed23d4f0051a..a487380573f3 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -731,6 +731,10 @@ int xe_device_probe_early(struct xe_device *xe)
- 	if (IS_SRIOV_VF(xe))
- 		vf_update_device_info(xe);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index d99881c6e1d5..6dcaec224338 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -535,6 +535,9 @@ struct xe_device {
+ 	/** @pxp: Encapsulate Protected Xe Path support */
+ 	struct xe_pxp *pxp;
  
-+	err = xe_wedge_init(xe);
-+	if (err)
-+		return err;
++	/** @flr_prepared: Prepared for function-reset */
++	bool flr_prepared;
 +
- 	/*
- 	 * Check for pcode uncore_init status to confirm if the SoC
- 	 * initialization is complete. Until done, any MMIO or lmem access from
-@@ -763,10 +767,6 @@ int xe_device_probe_early(struct xe_device *xe)
- 	if (err)
- 		return err;
+ 	/** @needs_flr_on_fini: requests function-reset on fini */
+ 	bool needs_flr_on_fini;
  
--	err = xe_wedge_init(xe);
--	if (err)
--		return err;
--
- 	return 0;
- }
- ALLOW_ERROR_INJECTION(xe_device_probe_early, ERRNO); /* See xe_pci_probe() */
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 0a1b37fa0efb..5b43ca73f6dd 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -1162,7 +1162,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 	xe_gt_assert(gt, g2h_len || !num_g2h);
- 	lockdep_assert_held(&ct->lock);
- 
--	if (xe_wedged(ct_to_xe(ct))) {
-+	if (xe_wedged_permanent(ct_to_xe(ct))) {
- 		ret = -ENOTRECOVERABLE;
- 		goto out;
- 	}
-@@ -1591,7 +1591,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	if (g2h_fence.fail) {
- 		if (g2h_fence.cancel) {
- 			xe_gt_dbg(gt, "H2G request %#x canceled!\n", action[0]);
--			ret = xe_wedged(ct_to_xe(ct)) ? -ENOTRECOVERABLE : -ECANCELED;
-+			ret = xe_wedged_permanent(ct_to_xe(ct)) ? -ENOTRECOVERABLE : -ECANCELED;
- 			goto unlock;
- 		}
- 		xe_gt_err(gt, "H2G request %#x failed: error %#x hint %#x\n",
-@@ -1936,7 +1936,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
- 	lockdep_assert_held(&ct->fast_lock);
- 
- 	/* Keep in sync with g2h_err_is_fatal() */
--	if (xe_wedged(xe))
-+	if (xe_wedged_permanent(xe))
- 		return -ENOTRECOVERABLE;
- 
- 	if (ct->state == XE_GUC_CT_STATE_DISABLED)
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 3fa842c22a50..664d65149ff5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -39,6 +39,7 @@
- #include "xe_survivability_mode.h"
- #include "xe_tile.h"
- #include "xe_tile_printk.h"
-+#include "xe_wedge.h"
- 
- enum toggle_d3cold {
- 	D3COLD_DISABLE,
-@@ -1404,6 +1405,7 @@ static int xe_pci_runtime_suspend(struct device *dev)
- 	 */
- 	xe_assert(xe, !IS_SRIOV_VF(xe));
- 	xe_assert(xe, !pci_num_vf(pdev));
-+	xe_assert(xe, !xe_wedged(xe));
- 
- 	flags = memalloc_noreclaim_save();
- 	pme_enabled = xe->pme.capable && !xe->d3cold.allowed &&
 diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index 9bf0da3a3d15..46d4150771f1 100644
+index 46d4150771f1..db32725b4d96 100644
 --- a/drivers/gpu/drm/xe/xe_pci_error.c
 +++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -21,13 +21,8 @@ static void prepare_device_for_reset(struct pci_dev *pdev)
- 	struct xe_gt *gt;
- 	u8 id;
+@@ -12,9 +12,55 @@
+ #include "xe_pm.h"
+ #include "xe_printk.h"
+ #include "xe_ras.h"
++#include "xe_sriov_pf_helpers.h"
+ #include "xe_survivability_mode.h"
+ #include "xe_wedge.h"
  
--	/*
--	 * Wedge the device to prevent userspace access but do not send the uevent.
--	 * xe_wedge_fini() releases runtime pm if wedged flag is set, so acquire a runtime
--	 * pm reference to avoid underflow.
--	 */
--	if (!atomic_xchg(&xe->wedged.flag, 1))
--		xe_pm_runtime_get_noresume(xe);
-+	/* Wedge the device to prevent userspace access but do not send the uevent. */
-+	xe_wedge_get(xe);
- 
- 	xe_device_set_in_reset(xe);
- 
-@@ -41,10 +36,16 @@ static void prepare_device_for_reset(struct pci_dev *pdev)
- 
- static pci_ers_result_t ras_action_to_pci_result(struct pci_dev *pdev, u8 action)
++/**
++ * DOC: Xe PCI Error Handling
++ *
++ * Xe driver registers PCI callbacks which are called by PCI core in case of
++ * bus errors or resets.
++ *
++ * Currently both Function Level Reset (FLR) and bus error handling callbacks are
++ * supported. Both wipe the VRAM and resets the state of all the hardware units.
++ * Therefore, the contents of all exec queues and BOs in VRAM are lost, and the
++ * hardware needs a full re-initialization. The way Xe driver handles it, is
++ * pretty much similar to system suspend/resume flow with a few notable exceptions.
++ *
++ * Prepare phase:
++ *
++ * - Temporarily wedge the device to prevent userspace access
++ * - Kill exec queues which signals all fences and frees in-flight jobs
++ * - Stop the scheduler and all submissions to GuC
++ * - The fact that FLR is needed is because hardware could be in corrupted state
++ *   and access unreliable, so skip memory eviction due to untrustworthy VRAM
++ *   contents
++ * - Remove all memory mappings since VRAM contents will be lost
++ *
++ * Re-initialization phase:
++ *
++ * - Recreate kernel BOs due to skipped memory eviction in prepare phase
++ * - Restore kernel queues which were killed in prepare phase
++ * - Reload all uC firmwares
++ * - Bring up all hardware units
++ * - Unwedge the device to allow userspace access
++ *
++ * Since VRAM contents are lost, the user is expected to recreate user memory
++ * and reload context.
++ *
++ * TODO: Reuse FLR callbacks for bus error handling.
++ *
++ * Current implementation is only limited to re-initializing GT. This needs to
++ * be extended for a lot of components listed below.
++ *
++ * - Proper re-initialization of GSC and PXP for integrated platforms
++ * - SR-IOV cases which need PF and VF synchronization
++ * - Re-initialization of all child devices registered by Xe
++ * - MM corner cases
++ * - Display
++ */
++
+ static void prepare_device_for_reset(struct pci_dev *pdev)
  {
-+	struct xe_device *xe = xe_any_to_xe(pdev);
-+
- 	switch (action) {
- 	case XE_RAS_RECOVERY_ACTION_RECOVERED:
- 		return PCI_ERS_RESULT_RECOVERED;
- 	case XE_RAS_RECOVERY_ACTION_RESET:
-+		/* We should not be doing such ugly hacks, reuse FLR callbacks and drop this. */
-+		if (atomic_xchg(&xe->wedged.perm, 1))
-+			return PCI_ERS_RESULT_DISCONNECT;
-+
- 		prepare_device_for_reset(pdev);
- 		return PCI_ERS_RESULT_NEED_RESET;
- 	case XE_RAS_RECOVERY_ACTION_DISCONNECT:
-@@ -71,6 +72,10 @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
- 	case pci_channel_io_normal:
- 		return PCI_ERS_RESULT_CAN_RECOVER;
- 	case pci_channel_io_frozen:
-+		/* We should not be doing such ugly hacks, reuse FLR callbacks and drop this. */
-+		if (atomic_xchg(&xe->wedged.perm, 1))
-+			return PCI_ERS_RESULT_DISCONNECT;
-+
- 		prepare_device_for_reset(pdev);
- 		return PCI_ERS_RESULT_NEED_RESET;
- 	default:
-@@ -128,9 +133,6 @@ static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
- 
- 	xe = pdev_to_xe_device(pdev);
- 
--	/* Wedge the device to prevent I/O operations till the resume callback */
--	atomic_set(&xe->wedged.flag, 1);
--
- 	return PCI_ERS_RESULT_RECOVERED;
- }
- 
-@@ -139,8 +141,6 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
  	struct xe_device *xe = pdev_to_xe_device(pdev);
- 
+@@ -143,9 +189,99 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
  	xe_info(xe, "PCI error: resume\n");
--
--	atomic_set(&xe->wedged.flag, 0);
  }
  
- const struct pci_error_handlers xe_pci_error_handlers = {
-diff --git a/drivers/gpu/drm/xe/xe_wedge.c b/drivers/gpu/drm/xe/xe_wedge.c
-index 2f35937c5e66..8596c1a7e7c0 100644
---- a/drivers/gpu/drm/xe/xe_wedge.c
-+++ b/drivers/gpu/drm/xe/xe_wedge.c
-@@ -6,6 +6,7 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- 
-+#include "xe_assert.h"
- #include "xe_defaults.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-@@ -55,6 +56,43 @@
-  *   firmware and restore device to normal operation.
-  */
- 
-+/**
-+ * xe_wedge_get() - Acquire wedge reference
-+ * @xe: xe device instance
-+ *
-+ * Get runtime PM reference and block critical path execution.
-+ *
-+ * Use this for driver internal usecases which require temporarily blocking
-+ * userspace access to the device during autonomous recovery, like PCIe FLR
-+ * and bus reset. For everything else, use xe_wedge_declare().
-+ */
-+void xe_wedge_get(struct xe_device *xe)
++static inline bool xe_pci_reset_skip(struct xe_device *xe)
 +{
-+	int ref;
-+
-+	/* We should not be runtime suspending as long as critical paths are blocked */
-+	xe_pm_runtime_get_noresume(xe);
-+
-+	ref = atomic_inc_return(&xe->wedged.ref);
-+	xe_assert(xe, ref > 0);
++	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe->info.probe_display;
 +}
 +
-+/**
-+ * xe_wedge_put() - Relinquish wedge reference
-+ * @xe: xe device instance
-+ *
-+ * Restore critical path execution and put runtime PM reference.
-+ */
-+void xe_wedge_put(struct xe_device *xe)
++static void xe_pci_reset_prepare(struct pci_dev *pdev)
 +{
-+	int ref;
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	int err;
 +
-+	ref = atomic_dec_return(&xe->wedged.ref);
-+	xe_assert(xe, ref >= 0);
++	/* No guarantees by PCI core */
++	if (!pm_runtime_active(&pdev->dev)) {
++		xe_err(xe, "PCI reset: unexpected power state\n");
++		return;
++	}
 +
-+	xe_pm_runtime_put(xe);
-+}
++	err = xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe);
++	if (err)
++		xe_err(xe, "PCI reset: device in unexpected state\n");
 +
- static void wedge_work(struct work_struct *work)
- {
- 	struct xe_device *xe = container_of(work, struct xe_device, wedged.work);
-@@ -97,11 +135,11 @@ void xe_wedge_declare(struct xe_device *xe, unsigned long method)
- 		return;
- 	}
- 
--	if (atomic_xchg(&xe->wedged.flag, 1))
-+	if (atomic_xchg(&xe->wedged.perm, 1))
- 		return;
- 
++	/* Wedge the device to prevent userspace access but don't send the event yet */
 +	xe_wedge_get(xe);
- 	xe->needs_flr_on_fini = true;
--	xe_pm_runtime_get_noresume(xe);
- 
- 	xe_log_err_fatal(xe, WEDGED, -EIO, "Device declared wedged!\n");
- 	xe_err_once(xe, "IOCTLs and executions are now blocked!\n"
-@@ -239,8 +277,10 @@ static void xe_wedge_fini(struct drm_device *drm, void *arg)
- 
- 	disable_work_sync(&xe->wedged.work);
- 
--	if (atomic_read(&xe->wedged.flag))
--		xe_pm_runtime_put(xe);
-+	if (atomic_read(&xe->wedged.perm))
-+		xe_wedge_put(xe);
++	if (err)
++		return;
 +
-+	xe_assert(xe, !xe_wedged(xe));
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_wedge.h b/drivers/gpu/drm/xe/xe_wedge.h
-index 3b5499dfc30d..f2cab855db35 100644
---- a/drivers/gpu/drm/xe/xe_wedge.h
-+++ b/drivers/gpu/drm/xe/xe_wedge.h
-@@ -14,11 +14,22 @@
- 
- static inline bool xe_wedged(struct xe_device *xe)
- {
--	return atomic_read(&xe->wedged.flag);
-+	return atomic_read(&xe->wedged.ref);
++	err = xe_pci_reset_skip(xe);
++	if (err) {
++		xe_err(xe, "PCI reset: not supported\n");
++		return;
++	}
++
++	/*
++	 * The hardware could be in corrupted state and access unreliable, but we try to
++	 * update data structures and cleanup any pending work to avoid side effects during
++	 * PCIe FLR. This will be similar to system suspend flow but without eviction.
++	 */
++	err = xe_device_suspend(xe, true);
++	if (err) {
++		xe_err(xe, "PCI reset: failed to prepare\n");
++		return;
++	}
++
++	xe->flr_prepared = true;
++	xe_info(xe, "PCI reset: prepared\n");
 +}
 +
-+/*
-+ * Do not abuse this. Prefer xe_wedged() where possible. Only use this
-+ * as a last resort where xe_wedged() is problematic.
-+ */
-+static inline bool xe_wedged_permanent(struct xe_device *xe)
++static void xe_pci_reset_done(struct pci_dev *pdev)
 +{
-+	return atomic_read(&xe->wedged.perm);
- }
- 
- void xe_wedge_declare(struct xe_device *xe, unsigned long method);
- int xe_wedge_init(struct xe_device *xe);
- int xe_wedge_set_mode(struct xe_device *xe, enum xe_wedged_mode mode);
-+void xe_wedge_get(struct xe_device *xe);
-+void xe_wedge_put(struct xe_device *xe);
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_wedge_types.h b/drivers/gpu/drm/xe/xe_wedge_types.h
-index e472c5fcbd26..0ca9f30dbda0 100644
---- a/drivers/gpu/drm/xe/xe_wedge_types.h
-+++ b/drivers/gpu/drm/xe/xe_wedge_types.h
-@@ -29,8 +29,17 @@ enum xe_wedged_mode {
-  * struct xe_wedge - Struct to control Wedged States and mode
-  */
- struct xe_wedge {
--	/** @flag: Xe device faced a critical error and is now blocked. */
--	atomic_t flag;
-+	/**
-+	 * @ref: Refcount for wedged device, blocks critical path execution. Used for
-+	 * driver internal usecases which require temporarily blocking userspace access
-+	 * to the device during autonomous recovery, like PCIe FLR and bus reset.
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	int err;
++
++	/* No guarantees by PCI core */
++	if (!pm_runtime_active(&pdev->dev))
++		return;
++
++	err = xe_pci_reset_skip(xe);
++	if (err)
++		goto out;
++
++	if (!xe->flr_prepared)
++		goto out;
++
++	/* Unprepare early in case we fail */
++	xe->flr_prepared = false;
++
++	/*
++	 * We already have the data structures intact, so try to re-initialize the device.
++	 * This will be similar to system resume flow, except we'll also need to recreate
++	 * kernel bos and restore kernel queues.
 +	 */
-+	atomic_t ref;
-+	/**
-+	 * @perm: Permanently wedged device, not recoverable. Only to be set when
-+	 * notifying userspace of wedged device through drm wedged uevent.
-+	 */
-+	atomic_t perm;
- 	/** @mode: Mode controlled by kernel parameter and debugfs */
- 	enum xe_wedged_mode mode;
- 	/** @method: Recovery method to be sent in the drm device wedged uevent */
++	err = xe_device_resume(xe, true);
++	if (err) {
++		xe_err(xe, "PCI reset: re-initialization failed\n");
++		goto out;
++	}
++
++	/* Unwedge to allow userspace access */
++	xe_wedge_put(xe);
++	xe_info(xe, "PCI reset: done\n");
++
++	return;
++out:
++	/* Most likely the device is unusable and there's nothing we can do about it */
++	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
++	/* Drop local reference */
++	xe_wedge_put(xe);
++}
++
+ const struct pci_error_handlers xe_pci_error_handlers = {
+ 	.error_detected	= xe_pci_error_detected,
+ 	.mmio_enabled	= xe_pci_error_mmio_enabled,
+ 	.slot_reset	= xe_pci_error_slot_reset,
+ 	.resume		= xe_pci_error_resume,
++	.reset_prepare	= xe_pci_reset_prepare,
++	.reset_done	= xe_pci_reset_done,
+ };
 -- 
 2.43.0
 
