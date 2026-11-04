@@ -2,70 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15533606A31B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 12:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6DC606D801
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 12:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=fc4NRPMB
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cOFRipT7
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C790E10FBAA;
-	Wed,  4 Nov 2026 12:38:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F92210FBAC;
- Wed,  4 Nov 2026 12:38:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D65210E772;
+	Wed,  4 Nov 2026 12:58:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FF3E10E8AB
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 12:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793795880; x=1825331880;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=TeGOTZtzbFux3HFkeVTL/UCZrIbRAMrkw/FfzOYmTm0=;
- b=fc4NRPMBEFdw89R3xQsIcfOs8at37Lh6RJJ40HLxxXLCaa0ysMdv/ZvO
- Ex90q48Xa3Rm40HJntsR+fgIMAFx8C2Q6r/1Ufc7xM65DY+meQjH5xsm/
- O32xXi+3WvXyfc1C8JXXehk/otw7Qr6CSeb3bkhyHNBiYkUxZy4Re16Vk
- VSB29BdogE7BQz2YdOgHqonKja8LzApSq5sbreTPkM6FzmRQhHu8vVSfx
- n4F3yQUf6YqUoXk9kUOcjO6g2SLqNOI2Vqpel06bpNbjeA5F+3CbbRbCl
- WhMpm2Op78eZmqiO1tvnCtEEun6jg3YDIjnAOwy8nHMNsKY09J7vRHk1U A==;
-X-CSE-ConnectionGUID: P3X78w13RWSgfmC+u+2lTg==
-X-CSE-MsgGUID: QP1XQHJuQVaB+4GKp7pEuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2422880"
+ t=1793797132; x=1825333132;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Q3Vmw4aadX+cH4aG+gjsgkKq2Iy0LjOYnaRP68Pmy4Y=;
+ b=cOFRipT75jTrcxcbmB4yS+XXAZC6PpbU98y2Qw9EgCF/J528D7bSdwmc
+ QQ6NHazQJCUTWXaNe/lY1wf7A3E44MLKiYJuezqldkc+aXJMYNG8oGmu8
+ T5NxCoqNxHE+Ck98UFjJyQevVeEp6nnadIb4WbFFVcJMe3zAQDdcWMYKT
+ /wLDRC3AVgCA/J2DoqIKPhnRMePu/WkSqkIdXUU37W1zv1izvCCy8Cx80
+ 92Om44DwfHHD7c5KBX4NjxBaUn1A8CzbqCk8TO+8ThlAFMuwnnN8+kXb0
+ abUrxW1CJ3eLdosLFYsYy54Fkgn79gFHhQhcH676qwPQm63Ay+8bsTWy7 g==;
+X-CSE-ConnectionGUID: bH/fBmG/TNm+LvxD7ixT6w==
+X-CSE-MsgGUID: LexPTwsgQZm7dd0DSUauxA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2555490"
 X-IronPort-AV: E=Sophos;i="6.27,195,1787036400"; 
-   d="scan'208";a="2422880"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 04:37:59 -0800
-X-CSE-ConnectionGUID: 072pNvqFR2q0c+/8GwCksA==
-X-CSE-MsgGUID: G7KcXklsT4yV7P8jl3nKeg==
+   d="scan'208";a="2555490"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2026 04:58:50 -0800
+X-CSE-ConnectionGUID: RnLqzDhDSmSn2smoMKXoeA==
+X-CSE-MsgGUID: OayRLcitRhymV7NM60/FZw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,195,1787036400"; 
-   d="scan'208";a="7100602"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.244.43])
- ([10.245.244.43])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 04:37:56 -0800
-Message-ID: <5934a422-03bb-45a7-8cd9-7007c02531e4@intel.com>
-Date: Wed, 4 Nov 2026 12:37:53 +0000
+   d="scan'208";a="6564161"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2026 04:58:47 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 4 Nov 2026 04:58:47 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Wed, 4 Nov 2026 04:58:47 -0800
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.65) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 4 Nov 2026 04:58:45 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=XVzVr8+Ifqbm9ox7JBU8VJRL5MvNOk1/Je9XFRmryZCLN1ecq8FlnBOHX40panUEZvNMQIHWfw6GBl1sd10ebn8xaC91gwQfWvtncUX5dX2tTQIrODTjkNfZDBT5vLmXOIN3uY3go065cxnnE3SW69vr2t29SzjVlWYfH6h3K6W1Dy22poGx1V/K+bf8OP4BpEm3swEdCXYMJkISHuo4kdGTyiDRZVSvu/IOwtD9AAo6fOtmKhmUXvsILBzJmmcsbNbF6px2g2zYbv8g5UaYSge5IYWotrl616XMjzmNv5/N0OkgCk6VTA0/+3wLeMiQowvxAm2cX/QnxWvAWLEKQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5R+un5fenL/xJzz8+4xKriVYGG11DetYnKq9a5m4++g=;
+ b=SoJ7rTczjkoZE1QbEjeRkKLJL4A3zqJOQtDG2gmhGMhb4NFJ1iQbHOUeIFMYV7S0+Gvkvu7pCEXjLPjZmZr/Qw9ZW8yRzJWIP9TC8yMnp5B7pOeZPpxZ2iQpCJ6aoSlgI5Pu6f6yTv/ks2oYWdh3qWOBj1acZFzHZ1FVsVq1K9ZU0+pp5k3gEBM49O5PnuArO5t6JjXKcJFJ4pr17Lm/CBZVQmCfof9d8/2uBkoJHeBLH6ZAme8Q6UcGNvnPt8sNId6JjVxr47moZvtspkfwREfrPslZPkxdtiwbjVGtI2nLUgXsAyArLIT2tauO5hwUN7MFP+yyAV47ktV8RFZMwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
+ SN7PR11MB7115.namprd11.prod.outlook.com (2603:10b6:806:29a::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.546.22; Wed, 4 Nov
+ 2026 12:58:38 +0000
+Received: from DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
+ ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0592.009; Wed, 4 Nov 2026
+ 12:58:37 +0000
+Message-ID: <eb674144-e405-4029-acc6-858ee2ee5753@intel.com>
+Date: Wed, 4 Nov 2026 18:28:28 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] drm/xe/hw_error: Initialize hw_error_work per tile
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
+ <aravind.iddamsetty@linux.intel.com>, <raag.jadav@intel.com>,
+ <ravi.kishore.koppuravuri@intel.com>, <tejas.upadhyay@intel.com>
+References: <20261103060929.1586783-9-riana.tauro@intel.com>
+ <20261103060929.1586783-11-riana.tauro@intel.com>
+ <8ec923e1-fafa-44a6-80f0-05e9ce7b14d2@intel.com>
+Content-Language: en-US
+From: "Tauro, Riana" <riana.tauro@intel.com>
+In-Reply-To: <8ec923e1-fafa-44a6-80f0-05e9ce7b14d2@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0360.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:219::11) To DS0PR11MB7958.namprd11.prod.outlook.com
+ (2603:10b6:8:f9::19)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 17/33] drm/xe: Add xe_migrate_copy_defrag() for on-GPU
- defrag copies
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- linux-kernel@vger.kernel.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20260711025619.2540575-1-matthew.brost@intel.com>
- <20260711025619.2540575-18-matthew.brost@intel.com>
- <3bc563bf-9692-4611-a85a-9e21d43373c9@intel.com>
- <auo/Lc103kibONZC@gsse-cloud1.jf.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <auo/Lc103kibONZC@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SN7PR11MB7115:EE_
+X-MS-Office365-Filtering-Correlation-Id: df65de57-18ec-459a-3fe6-08df3a735733
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|376014|366016|261026140227099003|261022105027099003|4143699003|11063799006|56012099006|261028144727099003|261021123027099003|261009223027099003|261021121427099003|261022075727099003|22082099003|6133799003|261026121527099003|18002099003|261102123227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: b1jOmvHjPkb8CaAHu4woO2eThMttFQcpsM+EqctQe46G35EDfb/2bmB0se1PljtTYNZ2SsFqVB9qhHU1lWhKX4gpyg+kcmh5G+MrMtF6FdjpHTbH1JcJNAvqzp4HAFkByfTyo3HTv1YX1YWJtbBjC0Cab1imRuL9NVtdUoDRV4cyccMbuchwOvZtJB3BAQOxGt1KN6ZZHLdkkBr5C7uNJtqza6cqWS2efECzb0qX1oJTrNghq1uFTC5+impwh/+BHosukggdweiQK7ySV+WlvnpTrdrwgnwn2nzDym5xnucWGCrOrcqRVz50HsQkbn55tx4GmXaHTFFM96+S96BYklERt8aRCyGF33bc22yS1xYwfSLZ0nhioAoZnQwniYNItPWQZ41Ko8ycPjDH+Nh0NXtG+TIbdwaDgKIkj5vzNZylmbw17xrcDfQYbE5rP8Qbc5/KIWge+V21udXW9HSAAiojMbW2c4/b1/GBOSk4ZUDD9TMm3+EXnD/NdHlOlLbrFT1t6YkhQczeQ4XRTFL59Hy3dw2wYRrey258TWNVDsupoc6a3ZXfg0apGg6GIvji1nFpBKB1AA932vufJ0bJO4/CGsFJ6NHwiWRhjfk38515A0R4u5o170zPONTtpwF9K2pPgrsFyBS6CLRaY5BuFc7puGkUNCvX5CiwBeUMM3A=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(261026140227099003)(261022105027099003)(4143699003)(11063799006)(56012099006)(261028144727099003)(261021123027099003)(261009223027099003)(261021121427099003)(261022075727099003)(22082099003)(6133799003)(261026121527099003)(18002099003)(261102123227099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OXMyYTlJSmR0ZjZJdkZTSTdSWFNpY3hlTFE0WExUSXdGdHk1dGN4MVM2WHpt?=
+ =?utf-8?B?UHVxVEJFNUEydmo2eXlIOXRFTlZUL1Nwd0FVN1E1VXE0MVFpWFFYQ0dwdFM3?=
+ =?utf-8?B?NC9DZGUxai9LMUZqYmQwd21YUnNCWFRGcnhkMmRBRVhBL1p3R3pSYlQ4OFU0?=
+ =?utf-8?B?Vy9IMmhwbHRJdTlPeVl6QnYxMnlVVmpseWRDUEZCcHF1NWIxM3hnVUNTZ3Fo?=
+ =?utf-8?B?cmp6d1VnYlBxMHg2Q3lSZ0dZVkRVaUxjdEl0Zkp0QjhaVFFOQ2VKdEgwK28r?=
+ =?utf-8?B?QmJuTjNRa3lVM2hBRExJVkxXTmRNb3p6MVd2OVE4eFZxQVJyQ1BKWStCK1d1?=
+ =?utf-8?B?S0VNcTNvcWQzWWFPdFpuejBKVlBpVnd1QUdOaVhyc1VsaFAxbXpzOWVqMk1D?=
+ =?utf-8?B?bFdxNHRta0lmMkpwYWQ2Q1FGNUZlUC94akptcENQYnV1aGEwb3k5VTJ4aFRT?=
+ =?utf-8?B?M1BHNVJCdnVCaW9Fc2FXKzBDN1M4dUxDRGRiSmdRZHQ1L1NlUkxEUGZ2dEk2?=
+ =?utf-8?B?c2tCQXA5dUYwVlpteUlkZy92MWh0aFFXL21jZ2R0ZnZWMHNvMzVNRU13L3BO?=
+ =?utf-8?B?NHp0bnFrSktrc2U4YUNkbGNvVjBzWk5YTkp4SWpMMzRSS09YRlpCNWRyS2VN?=
+ =?utf-8?B?TE01NFRKMW1NRXhlSWk5b1pGOWkyM09HcVBRTFJ5bFg5Ry8yMXlIcjRCaHJJ?=
+ =?utf-8?B?VWlCdjVLYmUreFNnUHBBVXdGeUE2S0FqWW5Da0xFTU1VNzJMSE02YS8rUURI?=
+ =?utf-8?B?R1o3a2JZWlp1OTM0NkpzaUhWd21TT1ZpSHJPeWxTeUdRN3VsZWNuakRWQVpP?=
+ =?utf-8?B?eXBxR1pNK0QxOXAzNXJpcXhzSGxvLytENnF4S1RjNXNUT1l4QkQ2L0w4QU9a?=
+ =?utf-8?B?Sm1MdFlEWndjM1ZFSXRpcC9XbENadjEvNW1LdzZ2eDlNNXFqVzhBOXhUNE5v?=
+ =?utf-8?B?ajlSVnc2T1NNWVpOdWhZWVpMNjBVa2d4SzZuTlFuK3I2ckF4dm1HcXlEYjYy?=
+ =?utf-8?B?Sm5Lc3lMZGl3SEhDZmJFZitSeWRkT3dqcHNtZHQ5S2d3bWYwRksxS2RjTGRQ?=
+ =?utf-8?B?ejZ2YnFoU2cyMVY4eU5KVnY5b29OaS9QcmtZOEhCem5QWStpM2dIR2VuYWJs?=
+ =?utf-8?B?Mlcya1hFczBzT09DeGU5eHdFcHh5UEtTeXNuWGZtL1ZYb2QvMUt2YndsSTM2?=
+ =?utf-8?B?OGF2bzBuL3FKQzNSK3VLUmJ4N2VhRytMWEZZZFdBRmg3dnVPZnA5ZlJhWE9j?=
+ =?utf-8?B?eVlMSFZmTWs0NVFvZmM3TTFIcmQ0OEp4a2dXRlZhNTBPRkRsRzdJeGhlSkha?=
+ =?utf-8?B?K3JPM2dpNFlRWHltQ0ZzNFgwRTE2ZkxXNksvREdYUE5Ka3pPQ2pZMDRIY1p0?=
+ =?utf-8?B?cmJYR3dIN21OQTEvWTlFZ2pZK1VUL2g5eW1kWVRmdnlUeFNjWXRleGprMW00?=
+ =?utf-8?B?YXJBUWZsUVkwY0c2RGpiYU0yQzRMMHl3ODEzeFhFNWNOVkVTSFNPNXk4cFpB?=
+ =?utf-8?B?YkNSMmg4UU8wNTR4Qmdna0Y4NGhwQWNKVnYxU2pZQ3crcllaM0VkdjYzTEd4?=
+ =?utf-8?B?bGFsL3pFUnRJUnU5Rm9YeWtxTG5DZ1diYkxWaUxNc2VLOVYwRWxZdkVNd3RF?=
+ =?utf-8?B?QWtaQXhTOUlHMWlBdFdyOSt1WGZ4cDhlN0dFcVk4Sk52c3lRbUFIZVBaVDNJ?=
+ =?utf-8?B?L1cydU1KanBUK25BVkFJQi81MVY1WGZLeWJkU0xBNm1ETVZ6NGZmQnBwcWY5?=
+ =?utf-8?B?Z2VLQWhPM0NkLzd0eGIydVpDV3pOQnN2VVBTei91eHhsSFF3TmE3TzhqUzVr?=
+ =?utf-8?B?aGw2M2haMDNiMGZZNnQ4UkpuM2hSdm1FVXpwTmV1aTA1eUlqNk5mWFl3WFB1?=
+ =?utf-8?B?VEZGSExTUFFkSXI3RSt1cTlOdUp6elowelBvVENFR0o4cHpqbHRkb1VoT3JE?=
+ =?utf-8?B?ZjQ5eTZlQzc4WXZkalV4V3ZyRE5STWdrdDkraFBacS9tOCtCQ3hTNjRRaHQ2?=
+ =?utf-8?B?S3RNOWlLbWd2aDU0ekI1eDNONWIrZUVRbUZXbERXMkVOU1Bic2h3dDlBdTI3?=
+ =?utf-8?B?MnRNTHhLSFpZR0dCYzNTdTlCL0Vsa0dyU2NWMkdQSGNaOG1naFYrOWt1bHly?=
+ =?utf-8?B?eXdNakZlN2pMVm81dGlXNDB6dkEvWldxa2Q0dnlUczZRMHpVNmRTSGRMUHFL?=
+ =?utf-8?B?OVJXZXJrMG41UnhyRVZBQVY1emlkSkVXbm1EUzU0VXZqeGMvZExNL09oZzBC?=
+ =?utf-8?B?UU1ScXUza3EwSDkyS0hmclZLKzlyM3M3bnNyV2dUYTAwdSt4ZjhZYzYzTmcy?=
+ =?utf-8?B?aVVwdU43dHloS3RSVFNzbjg2Qk1ldUo0L1Vyai9jNjMwZnpDZ0cxZz09?=
+X-Exchange-RoutingPolicyChecked: tQwgm+c8hiGPJzTEeCGiWNfSK4Up7Y7iis1bm6ER6wE6NjbTFyIgG7hwhP0DxUSjhE8m+YdlXm8flcmizVerXWRAdj/Fm1YBNJHtYiUWo/88yEy1RtEwCmfSoj8P9D9v/fmb2b3t6jv37lc2YKD7P4QP94ytT7L9t1+UrQC525it2NeNBF27yx3Tt0msReTNjTixxVMzHVwMGMRA1rmTmj+JP4N5gEDFHQ1h58VA6AP57zg62pSm2BmcPJAmduyqWa5iU+rey3LbleFKtiNNjV+FRRJLe/oM5F7fru5H3Avc73HL9DP+wH1FV/kTfih6uri5N3U9v4pP0a/A6tSeyA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: df65de57-18ec-459a-3fe6-08df3a735733
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Nov 2026 12:58:37.5681 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hetjwLrCZFtsemD+lLLsTVxHrwIVXT/jLPFmHBJ5psLM1wjlzdV3Fjv41Dd8gMByBLKxjAaP6kii4sCLBkuuwg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7115
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,330 +171,117 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 03/11/2026 20:08, Matthew Brost wrote:
-> On Tue, Nov 03, 2026 at 12:58:39PM +0000, Matthew Auld wrote:
->> On 11/07/2026 03:56, Matthew Brost wrote:
->>> Add xe_migrate_copy_defrag(), a copy helper for the upcoming page
->>> defragmentation path where a single BO has its backing reallocated at a
->>> more beneficial page order and its contents must be relocated from the
->>> old pages to the new ones entirely on the GPU.
->>>
->>> The contents are relocated in up to two passes:
->>>
->>>    - Data pass (always): copy the data pages verbatim. The pages are
->>>      mapped without the compression PAT, so the (possibly compressed)
->>>      bytes are copied as-is rather than being decompressed and
->>>      recompressed, and no CCS aux copy is appended.
->>>
->>>    - CCS pass (need_ccs): copy the CCS aux (compression) state. Both the
->>>      old and new data pages are mapped with the compression PAT so the
->>>      copy engine accesses the aux state indirectly, issuing one
->>>      indirect -> indirect XY_CTRL_SURF_COPY_BLT; the data blit is skipped.
->>
->>
->> Just to double check, there were no issues with this flow for a compressed
->> surface? Not 100% sure if reading from the src with uncompressed PAT will
->> zero out the CCS state (update to uncompressed status), such that when you
->> do the CCS pass it is already gone. Quite sure it does that for a write, but
->> I guess not for a read, so we are fine here?
->>
-> 
-> This isn't my area of expertise, but IIRC I spun on this patch several
-> times before I finally got it right. In my first few attempts, when I
-> ran something like 3DMark Wildlife Extreme or WebGL applications that
-> would trigger the defragmenter, I could see visual corruption on the
-> screen (i.e., the buffers were clearly being corrupted). I eventually
-> landed on the approach detailed here and have not seen any visual issues
-> since. So I think the reads without the compressed PAT are fine, at
-> least on PTL.
 
-Ok, also went and dug up the xe2+ memory compression SAS and under 
-"verbatim copies" it matches up with how you do it here.
-
-> 
-> I also have a local update to [1] where I use the compressed PAT, and
-> the tests seem to pass. I can post an update to this test shortly.
-> 
-> Matt
-> 
-> [1] https://patchwork.freedesktop.org/patch/739244/?series=169723&rev=2
-> 
->>>
->>> The two passes are issued separately because they require opposite
->>> compression PAT settings on the data page mappings (cleared for the
->>> verbatim data copy, set for the indirect CCS access), which a single
->>> mapping cannot satisfy. Both passes run in order on the same migrate
->>> queue and are captured by the returned fence.
->>>
->>> The source pages are passed explicitly via an sg_table argument (the
->>> old, still populated backing) since they no longer match the BO's
->>> current backing. The boolean arguments to __xe_migrate_copy() are folded
->>> into struct xe_migrate_copy_flags to keep the growing set of copy
->>> variants readable.
->>>
->>> Cc: Carlos Santa <carlos.santa@intel.com>
->>> Cc: Ryan Neph <ryanneph@google.com>
->>> Cc: Christian Koenig <christian.koenig@amd.com>
->>> Cc: Huang Rui <ray.huang@amd.com>
->>> Cc: Matthew Auld <matthew.auld@intel.com>
->>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> Cc: Maxime Ripard <mripard@kernel.org>
->>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: David Airlie <airlied@gmail.com>
->>> Cc: Simona Vetter <simona@ffwll.ch>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Cc: linux-kernel@vger.kernel.org
->>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> Assisted-by: GitHub_Copilot:claude-opus-4.8
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/xe_migrate.c | 136 ++++++++++++++++++++++++++++----
->>>    drivers/gpu/drm/xe/xe_migrate.h |   8 ++
->>>    2 files changed, 128 insertions(+), 16 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->>> index 92d5e81ceac2..305c6e1942fb 100644
->>> --- a/drivers/gpu/drm/xe/xe_migrate.c
->>> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->>> @@ -858,13 +858,39 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
->>>    	return flush_flags;
->>>    }
->>> +/**
->>> + * struct xe_migrate_copy_flags - Flags for __xe_migrate_copy()
->>> + * @copy_only_ccs: Only copy the CCS aux state, aliasing the destination data
->>> + * mapping to the source (used when the data pages are shared between src/dst).
->>> + * @is_vram_resolve: Decompression (VRAM -> system) resolve; always uses the
->>> + * compression PAT index for the data copy.
->>> + * @defrag_ccs: Defrag move pass that migrates only the CCS aux state between
->>> + * two distinct page sets (old @src_sg pages -> new pages). The data blit is
->>> + * skipped (the data was copied by the @defrag_copy pass) and both the source
->>> + * and destination data pages are mapped with the compression PAT so the aux
->>> + * state is copied indirect -> indirect.
->>> + * @defrag_copy: Defrag move pass that copies the data pages between two
->>> + * distinct page sets (old @src_sg pages -> new pages) without touching the CCS
->>> + * aux state. The data pages are mapped without the compression PAT so the
->>> + * (possibly compressed) bytes are copied verbatim rather than being
->>> + * decompressed and recompressed, and no CCS aux copy is appended; the aux
->>> + * state is migrated separately by the @defrag_ccs pass. The two passes need
->>> + * opposite compression PAT settings, which is why they cannot be combined.
->>> + */
->>> +struct xe_migrate_copy_flags {
->>> +	u32 copy_only_ccs : 1;
->>> +	u32 is_vram_resolve : 1;
->>> +	u32 defrag_ccs : 1;
->>> +	u32 defrag_copy : 1;
->>> +};
->>> +
->>>    static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    					   struct xe_bo *src_bo,
->>>    					   struct xe_bo *dst_bo,
->>>    					   struct ttm_resource *src,
->>>    					   struct ttm_resource *dst,
->>> -					   bool copy_only_ccs,
->>> -					   bool is_vram_resolve)
->>> +					   struct sg_table *src_sg,
->>> +					   struct xe_migrate_copy_flags flags)
->>>    {
->>>    	struct xe_gt *gt = m->tile->primary_gt;
->>>    	struct xe_device *xe = gt_to_xe(gt);
->>> @@ -881,20 +907,29 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    	bool src_is_vram = mem_type_is_vram(src->mem_type);
->>>    	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
->>>    	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
->>> -	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
->>> +	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe) &&
->>> +		!flags.defrag_copy;
->>>    	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
->>> -		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo);
->>> -	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram);
->>> +		xe_bo_needs_ccs_pages(src_bo) && xe_bo_needs_ccs_pages(dst_bo) &&
->>> +		!flags.defrag_copy;
->>> +	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram) &&
->>> +		!flags.defrag_ccs && !flags.defrag_copy;
->>>    	/*
->>>    	 * For decompression operation, always use the compression PAT index.
->>>    	 * Otherwise, only use the compression PAT index for device memory
->>>    	 * when copying from VRAM to system memory.
->>>    	 */
->>> -	bool use_comp_pat = is_vram_resolve || (type_device &&
->>> +	bool use_comp_pat = flags.is_vram_resolve || (type_device &&
->>>    			    xe_device_has_flat_ccs(xe) &&
->>>    			    GRAPHICS_VER(xe) >= 20 && src_is_vram && !dst_is_vram);
->>> +	/*
->>> +	 * The defrag CCS pass migrates the aux state from the old pages
->>> +	 * (@src_sg) to the new pages with both sides accessed indirectly, so
->>> +	 * keep both src_is_pltt and dst_is_pltt set (no direct staging side).
->>> +	 */
->>> +
->>>    	/* Copying CCS between two different BOs is not supported yet. */
->>>    	if (XE_WARN_ON(copy_ccs && src_bo != dst_bo))
->>>    		return ERR_PTR(-EINVAL);
->>> @@ -903,7 +938,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    		return ERR_PTR(-EINVAL);
->>>    	if (!src_is_vram)
->>> -		xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
->>> +		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo), 0, size, &src_it);
->>>    	else
->>>    		xe_res_first(src, 0, size, &src_it);
->>>    	if (!dst_is_vram)
->>> @@ -912,7 +947,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    		xe_res_first(dst, 0, size, &dst_it);
->>>    	if (copy_system_ccs)
->>> -		xe_res_first_sg(xe_bo_sg(src_bo), xe_bo_ccs_pages_start(src_bo),
->>> +		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo),
->>> +				xe_bo_ccs_pages_start(src_bo),
->>>    				PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
->>>    				&ccs_it);
->>> @@ -942,7 +978,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    		batch_size += pte_update_size(m, pte_flags, src, &src_it, &src_L0,
->>>    					      &src_L0_ofs, &src_L0_pt, 0, 0,
->>>    					      avail_pts);
->>> -		if (copy_only_ccs) {
->>> +		if (flags.copy_only_ccs) {
->>>    			dst_L0_ofs = src_L0_ofs;
->>>    		} else {
->>>    			pte_flags = dst_is_vram ? PTE_UPDATE_FLAG_IS_VRAM : 0;
->>> @@ -963,7 +999,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    		}
->>>    		/* Add copy commands size here */
->>> -		batch_size += ((copy_only_ccs) ? 0 : emit_copy_cmd_len(xe)) +
->>> +		batch_size += ((flags.copy_only_ccs || flags.defrag_ccs) ? 0 :
->>> +			       emit_copy_cmd_len(xe)) +
->>>    			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
->>>    		bb = xe_bb_new(gt, batch_size, usm);
->>> @@ -975,13 +1012,15 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    		if (src_is_vram && xe_migrate_allow_identity(src_L0, &src_it))
->>>    			xe_res_next(&src_it, src_L0);
->>>    		else
->>> -			emit_pte(m, bb, src_L0_pt, src_is_vram, copy_system_ccs || use_comp_pat,
->>> +			emit_pte(m, bb, src_L0_pt, src_is_vram,
->>> +				 copy_system_ccs || use_comp_pat || flags.defrag_ccs,
->>>    				 &src_it, src_L0, src);
->>>    		if (dst_is_vram && xe_migrate_allow_identity(src_L0, &dst_it))
->>>    			xe_res_next(&dst_it, src_L0);
->>> -		else if (!copy_only_ccs)
->>> -			emit_pte(m, bb, dst_L0_pt, dst_is_vram, copy_system_ccs,
->>> +		else if (!flags.copy_only_ccs)
->>> +			emit_pte(m, bb, dst_L0_pt, dst_is_vram,
->>> +				 copy_system_ccs || flags.defrag_ccs,
->>>    				 &dst_it, src_L0, dst);
->>>    		if (copy_system_ccs)
->>> @@ -990,7 +1029,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
->>>    		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
->>>    		update_idx = bb->len;
->>> -		if (!copy_only_ccs)
->>> +		if (!flags.copy_only_ccs && !flags.defrag_ccs)
->>>    			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
->>>    		if (needs_ccs_emit)
->>> @@ -1078,7 +1117,69 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
->>>    				  struct ttm_resource *dst,
->>>    				  bool copy_only_ccs)
->>>    {
->>> -	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, copy_only_ccs, false);
->>> +	return __xe_migrate_copy(m, src_bo, dst_bo, src, dst, NULL,
->>> +				 (struct xe_migrate_copy_flags) {
->>> +					 .copy_only_ccs = copy_only_ccs,
->>> +				 });
->>> +}
->>> +
->>> +/**
->>> + * xe_migrate_copy_defrag() - Migrate a BO's backing to a reallocated page set.
->>> + * @m: The migration context.
->>> + * @bo: The buffer object being defragmented. Both @src and @dst belong to @bo.
->>> + * @src: The source TTM resource (the old backing).
->>> + * @dst: The dst TTM resource (the freshly reallocated backing).
->>> + * @src_sg: Scatter-gather table of the source (old) backing pages.
->>> + * @need_ccs: Whether the BO has CCS aux state that must be migrated too.
->>> + *
->>> + * Used by the defrag path where a single BO has its backing reallocated at a
->>> + * more beneficial page order. The contents are relocated from the old pages
->>> + * (@src_sg) to the new pages (the BO's current backing) entirely on the GPU,
->>> + * in up to two passes:
->>> + *
->>> + *  - Data pass (always): copy the data pages verbatim. The pages are mapped
->>> + *    without the compression PAT, so the (possibly compressed) bytes are copied
->>> + *    as-is rather than being decompressed and recompressed, and no CCS aux copy
->>> + *    is appended.
->>> + *
->>> + *  - CCS pass (@need_ccs): copy the CCS aux (compression) state. Both the old
->>> + *    and new data pages are mapped with the compression PAT so the copy engine
->>> + *    accesses the aux state indirectly, issuing one indirect -> indirect
->>> + *    XY_CTRL_SURF_COPY_BLT; the data blit is skipped.
->>> + *
->>> + * The two passes are issued separately because they require opposite
->>> + * compression PAT settings on the data page mappings (cleared for the verbatim
->>> + * data copy, set for the indirect CCS access), which a single mapping cannot
->>> + * satisfy. Both passes run in order on the same migrate queue.
->>> + *
->>> + * Return: Pointer to a dma_fence representing the last copy batch, or an error
->>> + * pointer on failure.
->>> + */
->>> +struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
->>> +					 struct xe_bo *bo,
->>> +					 struct ttm_resource *src,
->>> +					 struct ttm_resource *dst,
->>> +					 struct sg_table *src_sg,
->>> +					 bool need_ccs)
->>> +{
->>> +	struct dma_fence *fence2, *fence =
->>> +		__xe_migrate_copy(m, bo, bo, src, dst, src_sg,
->>> +				  (struct xe_migrate_copy_flags) {
->>> +					 .defrag_copy = true,
->>> +					 });
->>> +
->>> +	if (IS_ERR(fence) || !need_ccs)
->>> +		return fence;
->>> +
->>> +	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_sg,
->>> +				   (struct xe_migrate_copy_flags) {
->>> +				   .defrag_ccs = true,
->>> +				   });
->>> +	if (IS_ERR(fence2))
->>> +		dma_fence_wait(fence, false);
->>> +	dma_fence_put(fence);
->>> +
->>> +	return fence2;
->>>    }
->>>    /**
->>> @@ -1096,7 +1197,10 @@ struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
->>>    				     struct xe_bo *bo,
->>>    				     struct ttm_resource *res)
->>>    {
->>> -	return __xe_migrate_copy(m, bo, bo, res, res, false, true);
->>> +	return __xe_migrate_copy(m, bo, bo, res, res, NULL,
->>> +				 (struct xe_migrate_copy_flags) {
->>> +					 .is_vram_resolve = true,
->>> +				 });
->>>    }
->>>    /**
->>> diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
->>> index 965c45889c72..e4f996942a6d 100644
->>> --- a/drivers/gpu/drm/xe/xe_migrate.h
->>> +++ b/drivers/gpu/drm/xe/xe_migrate.h
->>> @@ -11,6 +11,7 @@
->>>    struct dma_fence;
->>>    struct drm_pagemap_addr;
->>>    struct iosys_map;
->>> +struct sg_table;
->>>    struct ttm_resource;
->>>    struct xe_bo;
->>> @@ -132,6 +133,13 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
->>>    				  struct ttm_resource *dst,
->>>    				  bool copy_only_ccs);
->>> +struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
->>> +					 struct xe_bo *bo,
->>> +					 struct ttm_resource *src,
->>> +					 struct ttm_resource *dst,
->>> +					 struct sg_table *src_sg,
->>> +					 bool need_ccs);
->>> +
->>>    struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
->>>    				     struct xe_bo *bo,
->>>    				     struct ttm_resource *res);
+On 04-11-2026 15:01, Mallesh, Koujalagi wrote:
+>
+>
+> On 03-11-2026 11:39 am, Riana Tauro wrote:
+>> Since hw_error_work is now being reused generically, initialize it per tile
+>> so that we don't hit uninitialized work for non-root tile. While at it,
+>> disable hw_error_work on remove to prevent UAF during unwind.
 >>
+>> Signed-off-by: Riana Tauro<riana.tauro@intel.com>
+>> ---
+>> v2: move disable work to xe_device_remove
+>>      add dgfx and sriov check (Sashiko)
+>> ---
+>>   drivers/gpu/drm/xe/xe_device.c   |  3 +++
+>>   drivers/gpu/drm/xe/xe_hw_error.c | 24 ++++++++++++++++++++++--
+>>   drivers/gpu/drm/xe/xe_hw_error.h |  1 +
+>>   3 files changed, 26 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index 07a7ab6ac083..8f498e3e3e58 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -45,6 +45,7 @@
+>>   #include "xe_guc.h"
+>>   #include "xe_guc_pc.h"
+>>   #include "xe_hw_engine_group.h"
+>> +#include "xe_hw_error.h"
+>>   #include "xe_hwmon.h"
+>>   #include "xe_i2c.h"
+>>   #include "xe_irq.h"
+>> @@ -1118,6 +1119,8 @@ int xe_device_probe(struct xe_device *xe)
+>>   
+>>   void xe_device_remove(struct xe_device *xe)
+>>   {
+>> +	xe_hw_error_work_disable(xe);
+>> +
+>>   	xe_display_unregister(xe);
+>>   
+>>   	drm_dev_unplug(&xe->drm);
+>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+>> index a934b649575c..aaa2437d40bf 100644
+>> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+>> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+>> @@ -537,6 +537,24 @@ static void process_hw_errors(struct xe_device *xe)
+>>   	}
+>>   }
+>>   
+>> +/**
+>> + * xe_hw_error_work_disable - Disable hw error work
+>> + * @xe: xe device instance
+>> + *
+>> + * This function disables work for hardware error handling for all tiles.
+>> + */
+>> +void xe_hw_error_work_disable(struct xe_device *xe)
+>> +{
+>> +	struct xe_tile *tile;
+>> +	u8 id;
+>> +
+>> +	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+>> +		return;
+>> +
+>> +	for_each_tile(tile, xe, id)
+>> +		disable_work_sync(&tile->hw_error_work);
+>> +}
+>> +
+>>   /**
+>>    * xe_hw_error_init - Initialize hw errors
+>>    * @xe: xe device instance
+>> @@ -546,12 +564,14 @@ static void process_hw_errors(struct xe_device *xe)
+>>    */
+>>   void xe_hw_error_init(struct xe_device *xe)
+>>   {
+>> -	struct xe_tile *tile = xe_device_get_root_tile(xe);
+>> +	struct xe_tile *tile;
+>> +	u8 id;
+>>   
+>>   	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+>>   		return;
+>>   
+>> -	INIT_WORK(&tile->hw_error_work, hw_error_work);
+>> +	for_each_tile(tile, xe, id)
+>> +		INIT_WORK(&tile->hw_error_work, hw_error_work);
+>
+> What will happen when probe failure occurred after xe_hw_error_ini(), 
+> how are tile workers cancel?
+>
 
+Makes sense. Will add it in xe_device_probe error path
+
+Thanks
+Riana
+
+> Thanks,
+>
+> -/Mallesh
+>
+>>   	process_hw_errors(xe);
+>>   }
+>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
+>> index 5e3a11424108..944699331a93 100644
+>> --- a/drivers/gpu/drm/xe/xe_hw_error.h
+>> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+>> @@ -12,4 +12,5 @@ struct xe_device;
+>>   
+>>   void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
+>>   void xe_hw_error_init(struct xe_device *xe);
+>> +void xe_hw_error_work_disable(struct xe_device *xe);
+>>   #endif
