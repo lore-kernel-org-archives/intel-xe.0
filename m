@@ -2,51 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38FE1606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C1B4606A334
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 03:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cTxwYzeW
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ayqkpLff
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E577610F99B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC78210F99C;
 	Wed,  4 Nov 2026 03:30:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B59710F996;
- Wed,  4 Nov 2026 03:30:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25E5610F994;
+ Wed,  4 Nov 2026 03:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793763009; x=1825299009;
+ t=1793763007; x=1825299007;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=KyclV3LvhfGmRe2G/PY1jI0XPvwtJUw/A5HluN2cFsk=;
- b=cTxwYzeWaYSRhyG7Q8/jBqBqlqPs+MU48O4eH+8cP5T976UD71Y75DWh
- JxxzgZyRsAmNxneQ6c8wr2DCaBAC3zTaAfA4oLKaJ2a6k9GOyoGcc8lgJ
- vwaolLOv9cKkt66REP5AJWCR5iOoQuVcKnAhw1F+AJpI9L2Q8p/AEioEZ
- b77XToBz2UqSoWf5b6eIPT3HUc48XGSUVwMi/yLp1j6iBc4+QsqK1wzcR
- UIWsXPmpdiv0CVn/7NkZPrAXTFujfzrjjbJhswulYNo30I64Lk2lBeg3Y
- Q9e5lLtJgR9v3GdIHDhDroQDAqfCVi3oEmHH755lk1rvyiMnpuwm2M1FY g==;
-X-CSE-ConnectionGUID: WbTEtdTIQFeDPEY4kXA0Rg==
-X-CSE-MsgGUID: G278AOX9SwuVeXsjIB15Yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2505317"
+ bh=wfx1M0GC98KCKqqIt/r4LnKKIY9fiYC6peWvlpnHTIk=;
+ b=ayqkpLffscWI/Tmruu5Uvzx5d3dM5UpPy9HOCOdteVYJQzZnt47zGNel
+ LgrslnAjtrBQ6CDslx6wE8qMRuyW/87MdG3kNW5t+OcxnwYhswTOS+EaA
+ PGfVv1rDYPnQkp4Tx8533YHn14Zrqeo5BwCvxiccuefF8p1b1und6VjCp
+ GpU+Y4p5mgX+Ge7ydZ44DRow5GHoKlw7BT3e0P0hn3/CHjZxtoz2MIMlz
+ f8z85fSPGLzivORs36SVwLNJrvOH07TFz2RoT7yiTvMkfTpsVmgXwOyzq
+ LdAIACLt0ptENDWOk/u6R9vAzCdL4MUufM59O0GI0Fq5nQuIz6/dQlFjm A==;
+X-CSE-ConnectionGUID: o8Rx9yAJTWWQ/FKO6oER2Q==
+X-CSE-MsgGUID: lkvazY+kQVaPLZbgG9L9RQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2505309"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2505317"
+   d="scan'208";a="2505309"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2026 19:30:09 -0800
-X-CSE-ConnectionGUID: UxLB6M5RSyuleufK7IrQbg==
-X-CSE-MsgGUID: FTpK7Gn7RZmquOrQiOCkUw==
+ 03 Nov 2026 19:30:06 -0800
+X-CSE-ConnectionGUID: O278Iys5Q3aZJA1TJC85iQ==
+X-CSE-MsgGUID: txJjedf4SnyHQcJf/QTKdA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="7155676"
+   d="scan'208";a="7155669"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa010.fm.intel.com with ESMTP; 03 Nov 2026 19:30:06 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 03 Nov 2026 19:30:04 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Wed, 04 Nov 2026 08:54:48 +0530
-Subject: [PATCH v4 4/7] drm/i915/display: Add HAS_DP_SYMBOL_TG()
+Date: Wed, 04 Nov 2026 08:54:47 +0530
+Subject: [PATCH v4 3/7] drm/i915/display: Add the DP symbol timing
+ generator crtc state
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261104-vlk-64036-dp-symbol-tg-v4-4-d06fe6c466a9@intel.com>
+Message-Id: <20261104-vlk-64036-dp-symbol-tg-v4-3-d06fe6c466a9@intel.com>
 References: <20261104-vlk-64036-dp-symbol-tg-v4-0-d06fe6c466a9@intel.com>
 In-Reply-To: <20261104-vlk-64036-dp-symbol-tg-v4-0-d06fe6c466a9@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -72,28 +73,87 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a macro for the display versions with the DP link layer (LL) symbol
-based timing generator.
+Add the DP link layer (LL) symbol based timing generator parameters to
+the crtc state. Dump them in the crtc state dump and compare them in
+the pipe config checker.
 
 Bspec: 68922
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_display.c         | 11 +++++++++++
+ drivers/gpu/drm/i915/display/intel_display_types.h   | 13 +++++++++++++
+ 3 files changed, 35 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index 7121e7cd95124f3df88fa39f4307db4a209feea1..9c4cafd15c19c39bc0403a05c3b2da58adce1aee 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -169,6 +169,7 @@ struct intel_display_platforms {
- #define HAS_DOUBLE_WIDE(__display)	(DISPLAY_VER(__display) < 4)
- #define HAS_DP20(__display)		((__display)->platform.dg2 || DISPLAY_VER(__display) >= 14)
- #define HAS_DPT(__display)		(DISPLAY_VER(__display) >= 13)
-+#define HAS_DP_SYMBOL_TG(__display)	(DISPLAY_VER(__display) >= 35)
- #define HAS_DP_MST(__display)		(DISPLAY_INFO(__display)->has_dp_mst)
- #define HAS_DSB(__display)		(DISPLAY_INFO(__display)->has_dsb)
- #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+index c51b21222dc6e7c0e6621b903fa0c04cb7508b60..2e10c9a5bba63b026d1ce02e4e1580fb5aeecb02 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+@@ -262,6 +262,17 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 			   pipe_config->dip.pps_sdp_tl,
+ 			   pipe_config->dip.vsc_sdp_tl,
+ 			   pipe_config->dip.vsc_ext_sdp_tl);
++
++		drm_printf(&p,
++			   "dp symbol tg: %s, hactive: %d, htotal: %d, chunk size: %d, data m: 0x%016llx%016llx, data n: 0x%016llx%016llx\n",
++			   str_enabled_disabled(pipe_config->dp_symbol_tg.enable),
++			   pipe_config->dp_symbol_tg.hactive,
++			   pipe_config->dp_symbol_tg.htotal,
++			   pipe_config->dp_symbol_tg.chunk_size,
++			   pipe_config->dp_symbol_tg.data_m[1],
++			   pipe_config->dp_symbol_tg.data_m[0],
++			   pipe_config->dp_symbol_tg.data_n[1],
++			   pipe_config->dp_symbol_tg.data_n[0]);
+ 	}
+ 
+ 	drm_printf(&p, "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index afe70e9ce34739b67e4d87754f9c361ff77f37a6..7caf5bee8718729667376b487b0584b47891f05a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5515,6 +5515,17 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 
+ 	PIPE_CONF_CHECK_I(min_hblank);
+ 
++	PIPE_CONF_CHECK_BOOL(dp_symbol_tg.enable);
++	if (pipe_config->dp_symbol_tg.enable) {
++		PIPE_CONF_CHECK_I(dp_symbol_tg.hactive);
++		PIPE_CONF_CHECK_I(dp_symbol_tg.htotal);
++		PIPE_CONF_CHECK_I(dp_symbol_tg.chunk_size);
++		PIPE_CONF_CHECK_LLI(dp_symbol_tg.data_m[0]);
++		PIPE_CONF_CHECK_LLI(dp_symbol_tg.data_m[1]);
++		PIPE_CONF_CHECK_LLI(dp_symbol_tg.data_n[0]);
++		PIPE_CONF_CHECK_LLI(dp_symbol_tg.data_n[1]);
++	}
++
+ 	if (HAS_DOUBLE_BUFFERED_M_N(display)) {
+ 		if (!fastset || !pipe_config->update_m_n)
+ 			PIPE_CONF_CHECK_M_N(dp_m_n);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d0748837ce97ce6291b36adeb0014686f7d699f9..73fc6125a84a07a002cb7202d807833c75da130c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1196,6 +1196,19 @@ struct intel_crtc_state {
+ 	int max_pipe_bpp;	/* in 1 bpp units */
+ 	int pipe_bpp;		/* in 1 bpp units */
+ 	int min_hblank;
++
++	/* DP link layer (LL) symbol based timing generator, 8b/10b MST and 128b/132b SST/MST */
++	struct intel_dp_symbol_tg {
++		bool enable;
++		/* in LL symbol cycles, as opposed to the zero based register values */
++		u16 hactive;
++		u16 htotal;
++		u16 chunk_size;
++		/* 128 bit Data M/N as {low 64 bits, high 64 bits} */
++		u64 data_m[2];
++		u64 data_n[2];
++	} dp_symbol_tg;
++
+ 	struct intel_link_m_n dp_m_n;
+ 
+ 	/* m2_n2 for eDP downclock */
 
 -- 
 2.25.1
