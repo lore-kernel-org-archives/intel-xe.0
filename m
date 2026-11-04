@@ -2,56 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23266606A85E
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 22:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6998D606A862
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 22:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LJJaWPdS
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FgPzMxbK
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D920310E1E2;
-	Wed,  4 Nov 2026 22:15:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24B5B10E1E2
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 22:15:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793830506; x=1825366506;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=78wx9Iwh1sMt3fmu4OzyuFCkgR+Pj3pvHTPYg5kD2hI=;
- b=LJJaWPdS6SnVSN4JW8Nw3xMHKeKPGlQ2LKlEZZjdOF2B4uD1hQFO7oPd
- Yzev85cCBJwXxKYjz+8x993YDu+IG6zxKXfgKKb4yHwScpaokA4Ls3W5+
- XUuMGchSd3jhAX6FHF4DrC8Lj16tatSVWecFhFvPMrt17C1pUpSJri6UA
- ADQ93F3NKj3hAHc3OganH2c554avXYDiPdVShUBc1YtCPuE+f9iQ4eIya
- z1ifBlqdSdyoM2fNX6uTmNDruC4YSJzJDIyVURqKKnF5Jgh6jfbEle0Yf
- nM327AG/o1btF4ws/XNpfaGRYyVlN8jAwE55rRVh0OuodZIQh9cJcSQKn A==;
-X-CSE-ConnectionGUID: 5C/OIEABQyCSXljsoBH76A==
-X-CSE-MsgGUID: vMAnXx6zSYe2DGswof6BMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2479557"
-X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="2479557"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 14:15:05 -0800
-X-CSE-ConnectionGUID: Hmui48WJRJ+jpvi/KNTYHA==
-X-CSE-MsgGUID: WkNSw072Q5eLyetJqBy1sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="6989135"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 14:15:05 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH] drm/xe: Flush L2 asynchronously in xe_bo_trigger_rebind()
-Date: Wed,  4 Nov 2026 14:14:59 -0800
-Message-Id: <20261104221459.1534188-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1851F10FF58;
+	Wed,  4 Nov 2026 22:15:17 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15C5D10E8F3;
+ Wed,  4 Nov 2026 22:15:07 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 15083605D5;
+ Wed,  4 Nov 2026 22:15:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AA5B1F000C1;
+ Wed,  4 Nov 2026 22:15:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793830505;
+ bh=lpuKgaKZLphGQq+nkJEMKKsf/L55t5EnBR7GyfxQ4xE=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=FgPzMxbKgXsW+GqQue6ufMN28nQ2rLkkMkO0Et1zOINbsA3Ze9S8BqbGJaVJU+T9T
+ 7lcrlM9yDm3qVMeZUwsCweHXKOF6SGW7cs/u4BmW5fPz+ZjIud+rvxdWPMeW8qlm5n
+ zbAENCSmkhsZQKv1zu2NXQ3ME6n8ZPUuvyqtlnolODpHzzqSFAMvwWntj4AXggIoul
+ jhQDyy14FDFK2bXXS0iNFa+B68woluPhRlsOcvU1Wjv0Lng8ZlLT4cj6+uVHUZuvdW
+ qGoQkL+ppgThQ/BpuwGgK4CuDS+5dPzwgqfAdzwtpL6YkQB4g2HuZzaGzShMXSdl3y
+ w8KXT6cD8MYPg==
+Message-ID: <sashiko-outbox-198211@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 2/2] drm/xe: Add debugfs stats for DMA-mapped pages per
+ order
+To: "Matthew Brost" <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+In-Reply-To: <20261104215228.1533692-2-matthew.brost@intel.com>
+References: <20261104215228.1533692-1-matthew.brost@intel.com>
+ <20261104215228.1533692-2-matthew.brost@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 04 Nov 2026 22:15:05 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,236 +48,232 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On L2-flush-optimized HW with a dma-resv (non-fault) VM, evicting a BO
-only needs to flush the L2 cache before the migration copy runs; the
-mappings themselves are torn down and rebuilt lazily via
-drm_gpuvm_bo_evict() and a subsequent rebind. Today this flush is done
-by waiting for the BO to go idle and then issuing a synchronous TLB
-invalidation per mapping VMA from inside xe_bo_trigger_rebind(). Both
-the idle wait and the synchronous invalidation stall the calling thread
-while holding the BO dma-resv lock, serializing the move behind all
-in-flight GPU work on the BO.
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+- [Medium] drm/xe: premature xe_device_assert_dma_pages_zero() before ttm_d=
+evice_fini()
+- [Low] drm/xe: duplicate dma_map_account callbacks in xe_svm.c and xe_user=
+ptr.c
+--
 
-Replace this with an asynchronous flush. Add xe_vm_flush_vm_bo_tlb_async()
-which, for each VMA mapping the BO on each present tile, queues a TLB
-invalidation job on the tile migrate (kernel) exec queue. The jobs depend
-on the BO's in-flight GPU work, captured once as a singleton over
-DMA_RESV_USAGE_BOOKKEEP, so the flush only fires once the GPU is done with
-the current mapping. Each job's completion fence is installed into the
-BO's dma-resv as a DMA_RESV_USAGE_KERNEL fence, so the migration copy -
-which waits on the resv - waits on the flush without stalling this thread.
+commit d97316f4a4863b594d6196037dc27dd4e278bdd0
+Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-No PTEs are zapped and vma->tile_invalidated is left untouched: the
-mapping stays valid until the lazy rebind, and the only work performed
-here is the L2 flush. On any failure the caller falls back to the
-existing blocking wait-idle plus xe_vm_invalidate_vma() path.
+drm/xe: Add debugfs stats for DMA-mapped pages per order
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Assisted-by: LLM
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c |   3 +
- drivers/gpu/drm/xe/xe_vm.c | 125 +++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h |   5 ++
- 3 files changed, 133 insertions(+)
+This commit adds per-order DMA-mapped system page counters for TTM buffer
+objects and GPU SVM / userptr ranges, exposes them via debugfs at
+dma_mapped_pages, and asserts that all counters return to zero during device
+teardown.
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 42a6aa1a2e4a..0ffe4cc46b3b 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -809,6 +809,9 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 			 */
- 			if (!xe_device_is_l2_flush_optimized(xe))
- 				continue;
-+
-+			if (!xe_vm_flush_vm_bo_tlb_async(vm, bo, vm_bo))
-+				continue;
- 		}
- 
- 		if (!idle) {
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a26f6b20a22e..afcf41ded425 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -43,6 +43,7 @@
- #include "xe_sync.h"
- #include "xe_tile.h"
- #include "xe_tlb_inval.h"
-+#include "xe_tlb_inval_job.h"
- #include "xe_trace_bo.h"
- #include "xe_vm_madvise.h"
- #include "xe_wa.h"
-@@ -4611,6 +4612,130 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
- 	return ret;
- }
- 
-+/*
-+ * xe_vma_tlb_flush_client - Queue an async TLB flush for one VMA on one client
-+ *
-+ * Create and push a TLB invalidation job on the tile migrate (kernel) exec
-+ * queue covering @vma's range, depending on @dep (the BO's in-flight GPU work)
-+ * so the flush only fires once the GPU is done with the current mapping. The
-+ * job's completion fence is installed into @resv as a KERNEL fence so the
-+ * subsequent migration waits on the flush. No PTEs are zapped; this only
-+ * flushes L2 via the TLB invalidation.
-+ */
-+static int xe_vma_tlb_flush_client(struct xe_vm *vm, struct xe_vma *vma,
-+				   struct xe_tile *tile, struct xe_gt *gt,
-+				   struct dma_resv *resv, struct dma_fence *dep,
-+				   int type)
-+{
-+	struct xe_exec_queue *q = xe_migrate_exec_queue(tile->migrate);
-+	struct xe_tlb_inval_job *job;
-+	struct dma_fence *fence;
-+	int err;
-+
-+	job = xe_tlb_inval_job_create(q, &gt->tlb_inval,
-+				      q->tlb_inval[type].dep_scheduler, vm,
-+				      xe_vma_start(vma), xe_vma_end(vma), type);
-+	if (IS_ERR(job))
-+		return PTR_ERR(job);
-+
-+	err = xe_tlb_inval_job_alloc_dep(job);
-+	if (err)
-+		goto out_put;
-+
-+	err = dma_resv_reserve_fences(resv, 1);
-+	if (err)
-+		goto out_put;
-+
-+	/* Cannot fail; takes its own ref on @dep and returns a referenced fence. */
-+	fence = xe_tlb_inval_job_push(job, dep);
-+	dma_resv_add_fence(resv, fence, DMA_RESV_USAGE_KERNEL);
-+	dma_fence_put(fence);
-+
-+out_put:
-+	/* Drop the creation reference (destroys the job if it was not pushed). */
-+	xe_tlb_inval_job_put(job);
-+	return err;
-+}
-+
-+/**
-+ * xe_vm_flush_vm_bo_tlb_async - Asynchronously flush TLBs for a vm_bo's mappings
-+ * @vm: The VM @vm_bo belongs to
-+ * @bo: The buffer object being moved
-+ * @vm_bo: The gpuvm_bo linking @bo into @vm
-+ *
-+ * On L2-flush-optimized HW a BO move only needs to flush L2 (via a TLB
-+ * invalidation) for the BO's live mappings; the mappings themselves are torn
-+ * down and rebuilt lazily via the eviction/rebind path, so no PTEs need to be
-+ * zapped here. Rather than blocking the caller on a synchronous invalidation,
-+ * issue a TLB invalidation job per VMA per TLB-invalidation client (per present
-+ * tile, primary and media GT). Each job waits on the BO's in-flight GPU work
-+ * (all dma-resv usages) and its completion fence is installed into the BO's
-+ * dma-resv KERNEL slots, so the following migration waits on the flush without
-+ * stalling this thread.
-+ *
-+ * The caller must hold the BO's dma-resv lock and @vm must not be in fault
-+ * mode.
-+ *
-+ * Return: 0 on success, negative error code on failure. On failure the caller
-+ * should fall back to the blocking xe_vm_invalidate_vma() path; any jobs
-+ * already queued install harmless extra flush fences.
-+ */
-+int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
-+				struct drm_gpuvm_bo *vm_bo)
-+{
-+	struct xe_device *xe = vm->xe;
-+	struct dma_resv *resv = bo->ttm.base.resv;
-+	struct dma_fence *dep = NULL;
-+	struct drm_gpuva *gpuva;
-+	int err;
-+
-+	dma_resv_assert_held(resv);
-+	xe_assert(xe, !xe_vm_in_fault_mode(vm));
-+
-+	/*
-+	 * Single fence capturing all in-flight GPU work on the BO; the TLB
-+	 * invalidation jobs depend on it so the flush fires only once the GPU
-+	 * is done with the current mapping.
-+	 */
-+	err = dma_resv_get_singleton(resv, DMA_RESV_USAGE_BOOKKEEP, &dep);
-+	if (err)
-+		return err;
-+	if (!dep)
-+		dep = dma_fence_get_stub();
-+
-+	drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
-+		struct xe_vma *vma = gpuva_to_vma(gpuva);
-+		struct xe_tile *tile;
-+		u8 id;
-+
-+		if (xe_vma_is_null(vma) || xe_vma_is_cpu_addr_mirror(vma))
-+			continue;
-+
-+		for_each_tile(tile, xe, id) {
-+			if (!(vma->tile_present & BIT(id)))
-+				continue;
-+
-+			err = xe_vma_tlb_flush_client(vm, vma, tile,
-+						      tile->primary_gt, resv, dep,
-+						      XE_EXEC_QUEUE_TLB_INVAL_PRIMARY_GT);
-+			if (err)
-+				goto out;
-+
-+			if (tile->media_gt) {
-+				err = xe_vma_tlb_flush_client(vm, vma, tile,
-+							      tile->media_gt, resv, dep,
-+							      XE_EXEC_QUEUE_TLB_INVAL_MEDIA_GT);
-+				if (err)
-+					goto out;
-+			}
-+		}
-+	}
-+
-+out:
-+	dma_fence_put(dep);
-+	return err;
-+}
-+
- int xe_vm_validate_protected(struct xe_vm *vm)
- {
- 	struct drm_gpuva *gpuva;
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index b1c5f940bcc5..d3770c7d6b53 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -19,6 +19,7 @@
- #define MAX_FAULTS_SAVED_PER_VM	50
- 
- struct drm_device;
-+struct drm_gpuvm_bo;
- struct drm_printer;
- struct drm_file;
- 
-@@ -26,6 +27,7 @@ struct ttm_buffer_object;
- 
- struct dma_fence;
- 
-+struct xe_bo;
- struct xe_exec_queue;
- struct xe_file;
- struct xe_pagefault;
-@@ -254,6 +256,9 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
- 
- int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct xe_tlb_inval_batch *batch);
- 
-+int xe_vm_flush_vm_bo_tlb_async(struct xe_vm *vm, struct xe_bo *bo,
-+				struct drm_gpuvm_bo *vm_bo);
-+
- int xe_vm_validate_protected(struct xe_vm *vm);
- 
- static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
--- 
-2.34.1
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_devic=
+e.c
+> index 273e2c45fea9b..c40bb8f7c697a 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -377,12 +377,42 @@ bool xe_device_is_admin_only(const struct xe_device=
+ *xe)
+[ ... ]
+>  static void xe_device_destroy(struct drm_device *dev, void *dummy)
+>  {
+>  	struct xe_device *xe =3D to_xe_device(dev);
+> =20
+>  	xe_bo_dev_fini(&xe->bo_device);
+> =20
+> +	/*
+> +	 * Assert the DMA-mapped-pages accounting only after xe_bo_dev_fini()
+> +	 * has flushed the async BO-free worker: BOs pending async free still
+> +	 * hold their DMA mappings (and counts) until the worker runs, so
+> +	 * asserting before the flush could trip a false positive.
+> +	 */
+> +	xe_device_assert_dma_pages_zero(xe);
+> +
+>  	if (xe->preempt_fence_wq)
+>  		destroy_workqueue(xe->preempt_fence_wq);
+> =20
+>  	if (xe->ordered_wq)
+>  		destroy_workqueue(xe->ordered_wq);
+> =20
+>  	if (xe->unordered_wq)
+>  		destroy_workqueue(xe->unordered_wq);
+> =20
+>  	if (xe->destroy_wq)
+>  		destroy_workqueue(xe->destroy_wq);
+> =20
+>  	ttm_device_fini(&xe->ttm);
 
+[Severity: Medium]
+Can xe_device_assert_dma_pages_zero() trigger a false-positive assertion he=
+re
+because it runs before ttm_device_fini(&xe->ttm)?
+
+When BOs with a populated ttm_tt and DMA-mapped xe_tt->sg are released via
+ttm_bo_put() -> ttm_bo_release(), TTM defers cleanup to bdev->wq
+(xe->ttm.wq) whenever want_init_on_free() is active or reservation fences or
+locks are busy:
+
+drivers/gpu/drm/ttm/ttm_bo.c:ttm_bo_release()
+	if (!dma_resv_test_signaled(&bo->base._resv,
+				    DMA_RESV_USAGE_BOOKKEEP) ||
+	    (want_init_on_free() && (bo->ttm !=3D NULL)) ||
+	    bo->type =3D=3D ttm_bo_type_sg ||
+	    !dma_resv_trylock(bo->base.resv)) {
+		...
+		INIT_WORK(&bo->delayed_delete, ttm_bo_delayed_delete);
+		...
+		queue_work_node(bdev->pool.nid, bdev->wq, &bo->delayed_delete);
+		return;
+	}
+
+In that case, the DMA unmap and counter decrement via:
+
+  ttm_bo_delayed_delete()
+    -> ttm_bo_cleanup_memtype_use()
+      -> ttm_bo_tt_destroy()
+        -> ttm_tt_unpopulate()
+          -> xe_ttm_tt_unpopulate()
+            -> xe_tt_unmap_sg()
+              -> xe_tt_account_dma_pages(xe, xe_tt, -1)
+
+will not complete until ttm_device_fini() drains bdev->wq. Should
+xe_device_assert_dma_pages_zero(xe) be called after ttm_device_fini(&xe->tt=
+m)
+instead?
+
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+> index 909a602d091ea..7a49882897495 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -845,10 +845,50 @@ static int xe_svm_get_pagemaps(struct xe_vm *vm)
+>  }
+>  #endif
+> =20
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +/*
+> + * xe_svm_dma_map_account - drm_gpusvm DMA-mapping accounting callback
+> + * @gpusvm: The GPU SVM the mapping belongs to
+> + * @addr: The address descriptor of the chunk being (un)mapped
+> + * @sign: +1 when @addr was DMA-mapped, -1 when it is being unmapped
+> + *
+> + * Maintain per-order counts of the system-memory pages that the full SVM
+> + * instance (SVM ranges, and userptr VMAs in fault mode) has DMA-mapped =
+for GPU
+> + * access. Only DRM_INTERCONNECT_SYSTEM entries are real DMA maps and co=
+unted;
+> + * device interconnect (VRAM, P2P) entries are skipped. The counts are s=
+olely
+> + * exposed through debugfs, so the callback is only registered when
+> + * CONFIG_DEBUG_FS is enabled.
+> + */
+> +static void xe_svm_dma_map_account(struct drm_gpusvm *gpusvm,
+> +				   const struct drm_pagemap_addr *addr,
+> +				   int sign)
+> +{
+> +	struct xe_device *xe =3D gpusvm_to_vm(gpusvm)->xe;
+> +	unsigned int order =3D addr->order;
+> +
+> +	if (addr->proto !=3D DRM_INTERCONNECT_SYSTEM)
+> +		return;
+> +
+> +	/*
+> +	 * The CPU-PTE map order reported by hmm can exceed MAX_PAGE_ORDER
+> +	 * (e.g. an order-18 1GB mapping), so clamp the array index to avoid an
+> +	 * out-of-bounds access. Clamping is symmetric across the +1/-1 calls,
+> +	 * so the per-order counters stay balanced.
+> +	 */
+> +	order =3D min(order, (unsigned int)NR_PAGE_ORDERS - 1);
+> +
+> +	atomic_long_add((long)(1UL << addr->order) * sign,
+> +			&xe->mem.dma_mapped_pages_svm[order]);
+> +}
+> +#endif
+> +
+>  static const struct drm_gpusvm_ops gpusvm_ops =3D {
+>  	.range_alloc =3D xe_svm_range_alloc,
+>  	.range_free =3D xe_svm_range_free,
+>  	.invalidate =3D xe_svm_invalidate,
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +	.dma_map_account =3D xe_svm_dma_map_account,
+> +#endif
+>  };
+[ ... ]
+> diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_user=
+ptr.c
+> index 9c1dac0fce6f1..40f97bd4751dd 100644
+> --- a/drivers/gpu/drm/xe/xe_userptr.c
+> +++ b/drivers/gpu/drm/xe/xe_userptr.c
+> @@ -8,9 +8,72 @@
+> =20
+>  #include <linux/mm.h>
+> =20
+> +#include <drm/drm_pagemap.h>
+> +
+>  #include "xe_tlb_inval.h"
+>  #include "xe_trace_bo.h"
+> =20
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +/*
+> + * xe_userptr_dma_map_account - drm_gpusvm DMA-mapping accounting callba=
+ck
+> + * @gpusvm: The GPU SVM the mapping belongs to
+> + * @addr: The address descriptor of the chunk being (un)mapped
+> + * @sign: +1 when @addr was DMA-mapped, -1 when it is being unmapped
+> + *
+> + * Account, per page order, the system-memory pages DMA-mapped for GPU a=
+ccess
+> + * through the drm_gpusvm_pages instance shared by userptr (and, in faul=
+t mode,
+> + * SVM). Only DRM_INTERCONNECT_SYSTEM entries are real DMA maps and coun=
+ted;
+> + * device interconnect (VRAM, P2P) entries are skipped. The counts are s=
+olely
+> + * exposed through debugfs, so the callback is only registered when
+> + * CONFIG_DEBUG_FS is enabled.
+> + */
+> +static void xe_userptr_dma_map_account(struct drm_gpusvm *gpusvm,
+> +				       const struct drm_pagemap_addr *addr,
+> +				       int sign)
+> +{
+> +	struct xe_vm *vm =3D container_of(gpusvm, struct xe_vm, svm.gpusvm);
+> +	unsigned int order =3D addr->order;
+> +
+> +	if (addr->proto !=3D DRM_INTERCONNECT_SYSTEM)
+> +		return;
+> +
+> +	/*
+> +	 * The CPU-PTE map order reported by hmm can exceed MAX_PAGE_ORDER
+> +	 * (e.g. an order-18 1GB mapping), so clamp the array index to avoid an
+> +	 * out-of-bounds access. Clamping is symmetric across the +1/-1 calls,
+> +	 * so the per-order counters stay balanced.
+> +	 */
+> +	order =3D min(order, (unsigned int)NR_PAGE_ORDERS - 1);
+> +
+> +	atomic_long_add((long)(1UL << addr->order) * sign,
+> +			&vm->xe->mem.dma_mapped_pages_svm[order]);
+> +}
+
+[Severity: Low]
+This isn't a bug, but the commit message and comment state that the
+dma_map_account callback is shared between the fault-mode SVM instance and =
+the
+simple userptr instance, whereas xe_svm_dma_map_account() in
+drivers/gpu/drm/xe/xe_svm.c and xe_userptr_dma_map_account() in
+drivers/gpu/drm/xe/xe_userptr.c duplicate the same implementation.
+
+Since CONFIG_DRM_XE_GPUSVM selects CONFIG_DRM_GPUSVM, could
+xe_userptr_dma_map_account() be exposed and reused in gpusvm_ops instead of
+defining two identical callbacks?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261104215228.1533=
+692-1-matthew.brost@intel.com?part=3D2
