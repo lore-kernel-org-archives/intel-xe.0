@@ -2,57 +2,60 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCC0606A328
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 13:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E607606D819
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 13:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BJML9Rhd
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=G+i2gZ9c
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D8DD10FBF6;
-	Wed,  4 Nov 2026 13:09:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BE2E10E130;
- Wed,  4 Nov 2026 13:08:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 212A710FBC4;
+	Wed,  4 Nov 2026 13:09:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24D8E10E8AC
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 13:09:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793797737; x=1825333737;
+ t=1793797748; x=1825333748;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=9xnGV4aPvOBPmwp7C1RxJUjMgP8YMSFL99mkc9PTIUk=;
- b=BJML9RhdKwejq3kiHcMnrHlERkptMHxolTDwCMHm1GnY168CC3jj2usI
- OOgm5TKLrgqfMjXtZfo8z7oz+RIi60E+p1IF4rbZseye4y0LyTf5k1fc1
- cajW/7TR/+hV7pF0P38AIN9jlXn9IuzHOdBCI4c1o//czYZzNiUU8PD90
- V68ZIQf3gmMKdjdFReoY6m9KLefN8xKNWKqyy5B4/7Anx1heVPfUTJKpH
- Jcq5N+w8ueu24+CFVGBhXWI/Nd8HEXjBtdgIDDHEWc0n90NQpzicnkI1S
- QHJVENTn947vpmSnUinMKidKE6ZSevDeRnSsnBBNdla/OS9lcKhZttrSi g==;
-X-CSE-ConnectionGUID: Vp1IZ2KIQ5S3yS6eN0XeAg==
-X-CSE-MsgGUID: MbcHu2g/TJqmljdkRj/7ug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2449880"
+ bh=o+hVEjrST4nvjI6cOs2mXSop36mbaVQn1M/cGCvxJmI=;
+ b=G+i2gZ9cULe2XCwVFjoPmcg1h3TWimvrHvtIDr4P1tqGwYubEwRtXRRL
+ vttmE4Dnh4RPi9nkKIfkRltd7gdrzA5OS93UJv6jzak5ePLQz+qXeIHH6
+ Iro3u/mY4QBlrnJc6bLx1LfZn0ui63IxHLCy62Hj95kHznQr8GfbVmRzS
+ vzBenxzwfg3xv4bZYjPFJ9XjCCTlVIMRTfngqBrx7jt1X9CbDVvFG/m0H
+ B3J++lwAwlSsOdmnpruYddq2DiL3BFziCVrUZoYuYfEbrbSMOBHCczNUR
+ eYYfGzIq71cClkrxrx5qojnpcx7obXKDbSwZAsqWZic7UI6+BSuNDeXoK Q==;
+X-CSE-ConnectionGUID: XNY+GLf4QFm+rzH6G+Wa2Q==
+X-CSE-MsgGUID: ZVSsjMfCRGuWIkGp9HF4Bw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2587196"
 X-IronPort-AV: E=Sophos;i="6.27,195,1787036400"; 
-   d="scan'208";a="2449880"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 05:08:39 -0800
-X-CSE-ConnectionGUID: YimQNA7sRiGHawK2QBNFFw==
-X-CSE-MsgGUID: pXF04wA4Q+mdfZbxXMi7Ng==
+   d="scan'208";a="2587196"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Nov 2026 05:09:08 -0800
+X-CSE-ConnectionGUID: eSlVfwTSRBaAo/0Ceo3vTA==
+X-CSE-MsgGUID: e/eRwxZdTYawtevcbLj9hg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,195,1787036400"; 
-   d="scan'208";a="7105655"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.36])
+   d="scan'208";a="6542486"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO fedora)
+ ([10.245.244.20])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 05:08:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] TEST ONLY: drm/intel: add mmio to display parent interface
-Date: Wed,  4 Nov 2026 15:08:31 +0200
-Message-ID: <20261104130831.152563-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+ 04 Nov 2026 05:09:06 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH v2] drm/xe: Add a per-client debugfs file reporting bo NUMA
+ node distribution
+Date: Wed,  4 Nov 2026 14:08:36 +0100
+Message-ID: <20261104130836.134790-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -64,453 +67,437 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Just testing, no need to review. We probably don't want this.
+When debugging NUMA placement of bo system memory, there is currently
+no way to tell on which nodes the pages backing a bo reside. The
+/proc/<pid>/numa_maps interface doesn't help since bo CPU mappings are
+VM_PFNMAP, and clients may have thousands of bos, so a dump of all bos
+is undesirable.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Add a "bo_numa" file to the drm core per-client debugfs directory,
+client-<id>/. The file implements a request-response protocol per open
+file: Writing a GEM handle valid for the client takes a snapshot, under
+the bo's dma_resv lock, of the bo size, placement, and the number of
+pages on each NUMA node. A bo whose pages are swapped out or backed
+up is reported as swapped, and one whose pages are not populated as
+not populated. Subsequent reads return that snapshot. Once the
+snapshot has been completely read it is discarded, and a new handle
+may be written. Until then writes fail with -EBUSY, so that a pending
+snapshot can't be replaced before it is consumed. This allows querying
+many bos using a single open file.
+
+The write-request / read-response protocol per open file follows the
+simple_transaction helpers in fs/libfs.c, used by e.g. nfsd and
+selinuxfs, and amdgpu already populates the per-client debugfs
+directory with its vm_pagetable_info file.
+
+For sg bos, typically imported dma-bufs, the backing pages are owned
+by the exporter and can't be inspected, so only size and placement are
+reported.
+
+Example:
+  exec 3<>/sys/kernel/debug/dri/client-<id>/bo_numa
+  echo <handle1> >&3
+  cat <&3
+  echo <handle2> >&3
+  cat <&3
+  exec 3>&-
+
+The client id can be obtained from the drm-client-id fdinfo key.
+
+v2:
+- Use drm_coredump_printer_is_full() (Andi Shyti)
+- Drop the Assisted-by tag and add a Signed-off-by (Andi Shyti)
+
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c       |  5 +-
- drivers/gpu/drm/i915/display/intel_de.c      |  6 +-
- drivers/gpu/drm/i915/display/intel_de.h      | 23 ++----
- drivers/gpu/drm/i915/display/intel_display.c |  3 +-
- drivers/gpu/drm/i915/display/intel_vblank.c  |  6 +-
- drivers/gpu/drm/i915/i915_driver.c           |  1 +
- drivers/gpu/drm/i915/intel_uncore.c          | 80 ++++++++++++++++++++
- drivers/gpu/drm/i915/intel_uncore.h          |  2 +
- drivers/gpu/drm/xe/display/xe_display.c      | 78 +++++++++++++++++++
- include/drm/intel/display_parent_interface.h | 17 +++++
- 10 files changed, 192 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c      | 109 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h      |   6 ++
+ drivers/gpu/drm/xe/xe_debugfs.c | 157 ++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_debugfs.h |   3 +
+ drivers/gpu/drm/xe/xe_device.c  |   2 +
+ 5 files changed, 277 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 0233f5053d95..785f1a7e38a1 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	const struct vlv_fifo_state *fifo_state =
-@@ -1892,7 +1891,7 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	 * intel_pipe_update_start() has already disabled interrupts
- 	 * for us, so a plain spin_lock() is sufficient here.
- 	 */
--	spin_lock(&uncore->lock);
-+	display->parent->mmio->lock(display->drm);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 42a6aa1a2e4a..bf3f6d9e4c61 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -6,12 +6,14 @@
+ #include "xe_bo.h"
  
- 	switch (crtc->pipe) {
- 	case PIPE_A:
-@@ -1952,7 +1951,7 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ #include <linux/dma-buf.h>
++#include <linux/nodemask.h>
+ #include <linux/nospec.h>
  
- 	intel_de_read_fw(display, DSPARB(display));
- 
--	spin_unlock(&uncore->lock);
-+	display->parent->mmio->unlock(display->drm);
- }
- 
- #undef VLV_FIFO
-diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index a7417905192d..3f042bbcc80f 100644
---- a/drivers/gpu/drm/i915/display/intel_de.c
-+++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -145,14 +145,14 @@ u8 intel_de_read8(struct intel_display *display, intel_reg_t reg)
- 	/* this is only used on VGA registers (possible on pre-g4x) */
- 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 5 || display->platform.g4x);
- 
--	return intel_uncore_read8(__to_uncore(display), reg);
-+	return display->parent->mmio->read8(display->drm, intel_reg_offset(reg));
- }
- 
- void intel_de_write8(struct intel_display *display, intel_reg_t reg, u8 val)
- {
- 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 5 || display->platform.g4x);
- 
--	intel_uncore_write8(__to_uncore(display), reg, val);
-+	display->parent->mmio->write8(display->drm, intel_reg_offset(reg), val);
- }
- 
- u16 intel_de_read16(struct intel_display *display, intel_reg_t reg)
-@@ -160,5 +160,5 @@ u16 intel_de_read16(struct intel_display *display, intel_reg_t reg)
- 	/* this is only used on MCHBAR registers on pre-SNB */
- 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 6);
- 
--	return intel_uncore_read16(__to_uncore(display), reg);
-+	return display->parent->mmio->read16(display->drm, intel_reg_offset(reg));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index d0a239a36980..1fddb85d5640 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -6,16 +6,11 @@
- #ifndef __INTEL_DE_H__
- #define __INTEL_DE_H__
- 
-+#include <drm/intel/display_parent_interface.h>
-+
- #include "intel_display_core.h"
- #include "intel_dmc_wl.h"
- #include "intel_dsb.h"
--#include "intel_uncore.h"
--#include "intel_uncore_trace.h"
--
--static inline struct intel_uncore *__to_uncore(struct intel_display *display)
--{
--	return to_intel_uncore(display->drm);
--}
- 
- u8 intel_de_read8(struct intel_display *display, intel_reg_t reg);
- void intel_de_write8(struct intel_display *display, intel_reg_t reg, u8 val);
-@@ -28,7 +23,7 @@ intel_de_read(struct intel_display *display, intel_reg_t reg)
- 
- 	intel_dmc_wl_get(display, reg);
- 
--	val = intel_uncore_read(__to_uncore(display), reg);
-+	val = display->parent->mmio->read32(display->drm, intel_reg_offset(reg));
- 
- 	intel_dmc_wl_put(display, reg);
- 
-@@ -58,7 +53,7 @@ intel_de_write(struct intel_display *display, intel_reg_t reg, u32 val)
- {
- 	intel_dmc_wl_get(display, reg);
- 
--	intel_uncore_write(__to_uncore(display), reg, val);
-+	display->parent->mmio->write32(display->drm, intel_reg_offset(reg), val);
- 
- 	intel_dmc_wl_put(display, reg);
- }
-@@ -107,19 +102,13 @@ int intel_de_wait_for_clear_ms(struct intel_display *display, intel_reg_t reg,
- static inline u32
- intel_de_read_fw(struct intel_display *display, intel_reg_t reg)
- {
--	u32 val;
--
--	val = intel_uncore_read_fw(__to_uncore(display), reg);
--	trace_i915_reg_rw(false, reg, val, sizeof(val), true);
--
--	return val;
-+	return display->parent->mmio->read32_fw(display->drm, intel_reg_offset(reg));
- }
- 
- static inline void
- intel_de_write_fw(struct intel_display *display, intel_reg_t reg, u32 val)
- {
--	trace_i915_reg_rw(true, reg, val, sizeof(val), true);
--	intel_uncore_write_fw(__to_uncore(display), reg, val);
-+	display->parent->mmio->write32_fw(display->drm, intel_reg_offset(reg), val);
- }
- 
- static inline u32
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c1c2b99cfb53..99864877b74d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7731,7 +7731,6 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
- 	struct intel_crtc *crtc;
- 	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] = {};
-@@ -7945,7 +7944,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 * so enable debugging for the next modeset - and hope we catch
- 		 * the culprit.
- 		 */
--		intel_uncore_arm_unclaimed_mmio_detection(uncore);
-+		display->parent->mmio->arm_unclaimed_mmio_detection(display->drm);
- 	}
- 
- 	power_async_delay = intel_display_power_select_target_dc_state(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 1d4753605675..5a0af95a7442 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -294,15 +294,13 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
- static void intel_vblank_section_enter(struct intel_display *display)
- 	__acquires(uncore->lock)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
--	spin_lock(&uncore->lock);
-+	display->parent->mmio->lock(display->drm);
- }
- 
- static void intel_vblank_section_exit(struct intel_display *display)
- 	__releases(uncore->lock)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
--	spin_unlock(&uncore->lock);
-+	display->parent->mmio->unlock(display->drm);
- }
- #else
- static void intel_vblank_section_enter(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 5787f40ac62e..451a27fed0e7 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -753,6 +753,7 @@ static const struct intel_display_parent_interface parent = {
- 	.hdcp = &i915_display_hdcp_interface,
- 	.initial_plane = &i915_display_initial_plane_interface,
- 	.irq = &i915_display_irq_interface,
-+	.mmio = &i915_display_mmio_interface,
- 	.overlay = &i915_display_overlay_interface,
- 	.panic = &i915_display_panic_interface,
- 	.pc8 = &i915_display_pc8_interface,
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index e360e4f9d9a2..b11be8acf5b3 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -26,6 +26,7 @@
- 
+ #include <drm/drm_drv.h>
+ #include <drm/drm_dumb_buffers.h>
+ #include <drm/drm_gem_ttm_helper.h>
  #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
-+#include <drm/intel/display_parent_interface.h>
- 
- #include "display/intel_display_core.h"
- #include "gt/intel_engine_regs.h"
-@@ -2923,6 +2924,85 @@ intel_uncore_forcewake_for_reg(struct intel_uncore *uncore,
- 	return fw_domains;
++#include <drm/drm_print.h>
+ #include <drm/ttm/ttm_backup.h>
+ #include <drm/ttm/ttm_device.h>
+ #include <drm/ttm/ttm_placement.h>
+@@ -4248,6 +4250,113 @@ void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
+ 	list_del_init(&bo->vram_userfault_link);
  }
  
-+static u8 i915_uncore_read8(struct drm_device *drm, u32 reg)
++#if IS_ENABLED(CONFIG_DEBUG_FS)
++static void xe_bo_count_numa_pages(struct ttm_tt *tt, unsigned long *nodes)
 +{
-+	return intel_uncore_read8(to_intel_uncore(drm), _MMIO(reg));
++	pgoff_t i;
++
++	for (i = 0; i < tt->num_pages; ++i)
++		nodes[page_to_nid(tt->pages[i])]++;
 +}
 +
-+static void i915_uncore_write8(struct drm_device *drm, u32 reg, u8 val)
++static void xe_bo_print_numa_info_locked(struct xe_bo *bo, unsigned long *nodes,
++					 struct drm_printer *p)
 +{
-+	intel_uncore_write8(to_intel_uncore(drm), _MMIO(reg), val);
++	struct ttm_resource *res = bo->ttm.resource;
++	struct ttm_tt *tt = bo->ttm.ttm;
++	unsigned long total = 0;
++	const char *name;
++	int nid;
++
++	xe_bo_assert_held(bo);
++
++	name = res ? xe_mem_type_to_name[res->mem_type] : NULL;
++	drm_printf(p, "size: %zu\n", xe_bo_size(bo));
++	if (name)
++		drm_printf(p, "placement: %s\n", name);
++	else if (res)
++		drm_printf(p, "placement: mem_type %u\n", res->mem_type);
++	else
++		drm_puts(p, "placement: none\n");
++
++	/* The pages of sg bos are owned by the exporter and not visible. */
++	if (bo->ttm.type == ttm_bo_type_sg) {
++		drm_puts(p, "pages: unknown (sg bo)\n");
++		return;
++	}
++
++	if (tt && ttm_tt_is_swapped(tt)) {
++		drm_puts(p, "pages: swapped\n");
++		return;
++	}
++
++	if (tt && !ttm_tt_is_populated(tt)) {
++		drm_puts(p, "pages: not populated\n");
++		return;
++	}
++
++	if (tt)
++		xe_bo_count_numa_pages(tt, nodes);
++
++	for_each_node(nid) {
++		if (!nodes[nid] && !node_online(nid))
++			continue;
++		drm_printf(p, "node%d: %lu\n", nid, nodes[nid]);
++		total += nodes[nid];
++	}
++
++	drm_printf(p, "total: %lu\n", total);
 +}
 +
-+static u16 i915_uncore_read16(struct drm_device *drm, u32 reg)
++/**
++ * xe_bo_print_numa_info() - Print the NUMA node distribution of a bo
++ * @file: The drm_file of the client owning @handle.
++ * @handle: The GEM handle of the bo.
++ * @p: The drm_printer to print to.
++ *
++ * Print the size and placement of the bo and, for bos with
++ * driver-allocated system pages, the number of pages residing on each
++ * NUMA node. If the bo's pages are currently swapped out or backed up,
++ * the bo is reported as swapped, and if they are not populated, as not
++ * populated. For sg bos, typically imported dma-bufs, the backing pages
++ * are owned by the exporter and are reported as unknown. The information
++ * is gathered under the bo's dma_resv lock and thus represents a
++ * consistent snapshot.
++ *
++ * Return: 0 on success, -ENOENT if @handle doesn't refer to a bo,
++ * negative error code on other failures.
++ */
++int xe_bo_print_numa_info(struct drm_file *file, u32 handle,
++			  struct drm_printer *p)
 +{
-+	return intel_uncore_read16(to_intel_uncore(drm), _MMIO(reg));
++	struct drm_gem_object *obj;
++	unsigned long *nodes;
++	int ret;
++
++	nodes = kcalloc(nr_node_ids, sizeof(*nodes), GFP_KERNEL_ACCOUNT);
++	if (!nodes)
++		return -ENOMEM;
++
++	obj = drm_gem_object_lookup(file, handle);
++	if (!obj) {
++		ret = -ENOENT;
++		goto out_free;
++	}
++
++	ret = dma_resv_lock_interruptible(obj->resv, NULL);
++	if (!ret) {
++		xe_bo_print_numa_info_locked(gem_to_xe_bo(obj), nodes, p);
++		dma_resv_unlock(obj->resv);
++	}
++
++	drm_gem_object_put(obj);
++out_free:
++	kfree(nodes);
++
++	return ret;
 +}
++#endif
 +
-+static void i915_uncore_write16(struct drm_device *drm, u32 reg, u16 val)
-+{
-+	intel_uncore_write16(to_intel_uncore(drm), _MMIO(reg), val);
-+}
-+
-+static u32 i915_uncore_read32(struct drm_device *drm, u32 reg)
-+{
-+	return intel_uncore_read(to_intel_uncore(drm), _MMIO(reg));
-+}
-+
-+static u32 i915_uncore_read32_fw(struct drm_device *drm, u32 reg)
-+{
-+	u32 val;
-+
-+	val = intel_uncore_read_fw(to_intel_uncore(drm), _MMIO(reg));
-+	trace_i915_reg_rw(false, _MMIO(reg), val, sizeof(val), true);
-+
-+	return val;
-+}
-+
-+static void i915_uncore_write32(struct drm_device *drm, u32 reg, u32 val)
-+{
-+	intel_uncore_write(to_intel_uncore(drm), _MMIO(reg), val);
-+}
-+
-+static void i915_uncore_write32_fw(struct drm_device *drm, u32 reg, u32 val)
-+{
-+	trace_i915_reg_rw(true, _MMIO(reg), val, sizeof(val), true);
-+	intel_uncore_write_fw(to_intel_uncore(drm), _MMIO(reg), val);
-+}
-+
-+static void i915_uncore_lock(struct drm_device *drm)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(drm);
-+
-+	spin_lock(&uncore->lock);
-+}
-+
-+static void i915_uncore_unlock(struct drm_device *drm)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(drm);
-+
-+	spin_unlock(&uncore->lock);
-+}
-+
-+static void i915_uncore_arm_unclaimed_mmio_detection(struct drm_device *drm)
-+{
-+	intel_uncore_arm_unclaimed_mmio_detection(to_intel_uncore(drm));
-+}
-+
-+const struct intel_display_mmio_interface i915_display_mmio_interface = {
-+	.read8 = i915_uncore_read8,
-+	.write8 = i915_uncore_write8,
-+	.read16 = i915_uncore_read16,
-+	.write16 = i915_uncore_write16,
-+	.read32 = i915_uncore_read32,
-+	.read32_fw = i915_uncore_read32_fw,
-+	.write32 = i915_uncore_write32,
-+	.write32_fw = i915_uncore_write32_fw,
-+	.lock = i915_uncore_lock,
-+	.unlock = i915_uncore_unlock,
-+	.arm_unclaimed_mmio_detection = i915_uncore_arm_unclaimed_mmio_detection,
-+};
-+
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftests/mock_uncore.c"
- #include "selftests/intel_uncore.c"
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index fafc2ca9a237..0f29fd0a6309 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -515,4 +515,6 @@ struct intel_uncore *to_intel_uncore(struct drm_device *drm);
- #define raw_reg_write(base, reg, value) \
- 	writel(value, base + i915_mmio_reg_offset(reg))
- 
-+extern const struct intel_display_mmio_interface i915_display_mmio_interface;
-+
- #endif /* !__INTEL_UNCORE_H__ */
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index aab416485e3e..42cc19009bab 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -33,6 +33,7 @@
- #include "xe_frontbuffer.h"
- #include "xe_hdcp_gsc.h"
- #include "xe_initial_plane.h"
-+#include "xe_mmio.h"
- #include "xe_module.h"
- #include "xe_panic.h"
- #include "xe_stolen.h"
-@@ -444,6 +445,82 @@ static void transient_data_flush(struct drm_device *drm)
- 	xe_device_td_flush(xe);
- }
- 
-+static struct xe_mmio *to_xe_mmio(struct drm_device *drm)
-+{
-+	return xe_root_tile_mmio(to_xe_device(drm));
-+}
-+
-+static u8 xe_uncore_read8(struct drm_device *drm, u32 reg)
-+{
-+	return xe_mmio_read8(to_xe_mmio(drm), XE_REG(reg));
-+}
-+
-+static void xe_uncore_write8(struct drm_device *drm, u32 reg, u8 val)
-+{
-+	xe_mmio_write8(to_xe_mmio(drm), XE_REG(reg), val);
-+}
-+
-+static u16 xe_uncore_read16(struct drm_device *drm, u32 reg)
-+{
-+	return xe_mmio_read16(to_xe_mmio(drm), XE_REG(reg));
-+}
-+
-+static void xe_uncore_write16(struct drm_device *drm, u32 reg, u16 val)
-+{
-+}
-+
-+static u32 xe_uncore_read32(struct drm_device *drm, u32 reg)
-+{
-+	return xe_mmio_read32(to_xe_mmio(drm), XE_REG(reg));
-+}
-+
-+static u32 xe_uncore_read32_fw(struct drm_device *drm, u32 reg)
-+{
-+	return xe_mmio_read32(to_xe_mmio(drm), XE_REG(reg));
-+}
-+
-+static void xe_uncore_write32(struct drm_device *drm, u32 reg, u32 val)
-+{
-+	xe_mmio_write32(to_xe_mmio(drm), XE_REG(reg), val);
-+}
-+
-+static void xe_uncore_write32_fw(struct drm_device *drm, u32 reg, u32 val)
-+{
-+	xe_mmio_write32(to_xe_mmio(drm), XE_REG(reg), val);
-+}
-+
-+static void xe_uncore_lock(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	spin_lock(&xe->uncore.lock);
-+}
-+
-+static void xe_uncore_unlock(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	spin_unlock(&xe->uncore.lock);
-+}
-+
-+static void xe_uncore_arm_unclaimed_mmio_detection(struct drm_device *drm)
-+{
-+}
-+
-+const struct intel_display_mmio_interface xe_display_mmio_interface = {
-+	.read8 = xe_uncore_read8,
-+	.write8 = xe_uncore_write8,
-+	.read16 = xe_uncore_read16,
-+	.write16 = xe_uncore_write16,
-+	.read32 = xe_uncore_read32,
-+	.read32_fw = xe_uncore_read32_fw,
-+	.write32 = xe_uncore_write32,
-+	.write32_fw = xe_uncore_write32_fw,
-+	.lock = xe_uncore_lock,
-+	.unlock = xe_uncore_unlock,
-+	.arm_unclaimed_mmio_detection = xe_uncore_arm_unclaimed_mmio_detection,
-+};
-+
- static const struct intel_display_parent_interface parent = {
- 	.bo = &xe_display_bo_interface,
- 	.dsb = &xe_display_dsb_interface,
-@@ -452,6 +529,7 @@ static const struct intel_display_parent_interface parent = {
- 	.hdcp = &xe_display_hdcp_interface,
- 	.initial_plane = &xe_display_initial_plane_interface,
- 	.irq = &xe_display_irq_interface,
-+	.mmio = &xe_display_mmio_interface,
- 	.panic = &xe_display_panic_interface,
- 	.pcode = &xe_display_pcode_interface,
- 	.rpm = &xe_display_rpm_interface,
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 464fb588cb60..22a90a7411cc 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -136,6 +136,20 @@ struct intel_display_irq_interface {
- 	void (*synchronize)(struct drm_device *drm);
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_bo.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 77b3a02e9b8e..13197e4e0358 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -112,6 +112,7 @@ enum xe_madv_purgeable_state {
+ 	XE_MADV_PURGEABLE_PURGED,
  };
  
-+struct intel_display_mmio_interface {
-+	u8 (*read8)(struct drm_device *drm, u32 reg);
-+	void (*write8)(struct drm_device *drm, u32 reg, u8 val);
-+	u16 (*read16)(struct drm_device *drm, u32 reg);
-+	void (*write16)(struct drm_device *drm, u32 reg, u16 val);
-+	u32 (*read32)(struct drm_device *drm, u32 reg);
-+	u32 (*read32_fw)(struct drm_device *drm, u32 reg);
-+	void (*write32)(struct drm_device *drm, u32 reg, u32 val);
-+	void (*write32_fw)(struct drm_device *drm, u32 reg, u32 val);
-+	void (*lock)(struct drm_device *drm);
-+	void (*unlock)(struct drm_device *drm);
-+	void (*arm_unclaimed_mmio_detection)(struct drm_device *drm);
++struct drm_printer;
+ struct sg_table;
+ 
+ struct xe_bo *xe_bo_alloc(void);
+@@ -458,6 +459,11 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 		      struct drm_device *dev,
+ 		      struct drm_mode_create_dumb *args);
+ 
++#if IS_ENABLED(CONFIG_DEBUG_FS)
++int xe_bo_print_numa_info(struct drm_file *file, u32 handle,
++			  struct drm_printer *p);
++#endif
++
+ bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
+ 
+ int xe_bo_decompress(struct xe_bo *bo);
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index e59d4964d811..1a74a7106462 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -11,6 +11,8 @@
+ #include <linux/string_helpers.h>
+ 
+ #include <drm/drm_debugfs.h>
++#include <drm/drm_file.h>
++#include <drm/drm_print.h>
+ 
+ #include "regs/xe_pmt.h"
+ #include "xe_bo.h"
+@@ -785,3 +787,158 @@ void xe_debugfs_register(struct xe_device *xe)
+ 	else if (IS_SRIOV_VF(xe))
+ 		xe_sriov_vf_debugfs_register(xe, root);
+ }
++
++/*
++ * Per-client "bo_numa" file: Report the NUMA node distribution of the
++ * system pages backing a single bo.
++ *
++ * The file implements a request-response protocol: write() takes a GEM
++ * handle, valid for the client, and takes a snapshot of the bo's page
++ * distribution under the bo's dma_resv lock. Subsequent read()s return
++ * that snapshot. Once the snapshot has been completely read, it is
++ * discarded and a new handle may be written. Until then, writes return
++ * -EBUSY, so that a pending snapshot is never replaced before it is
++ * consumed.
++ *
++ * See xe_bo_print_numa_info() for the snapshot contents.
++ */
++struct bo_numa_snapshot {
++	/* Serializes reads and writes on the open file. */
++	struct mutex lock;
++	/* The pending formatted snapshot, or NULL if none. */
++	char *buf;
++	/* Length of the formatted snapshot. */
++	size_t len;
 +};
 +
- struct intel_display_overlay_interface {
- 	bool (*is_active)(struct drm_device *drm);
- 
-@@ -272,6 +286,9 @@ struct intel_display_parent_interface {
- 	/** @irq: IRQ interface */
- 	const struct intel_display_irq_interface *irq;
- 
-+	/** @mmio: MMIO interface */
-+	const struct intel_display_mmio_interface *mmio;
++static int bo_numa_open(struct inode *inode, struct file *f)
++{
++	struct bo_numa_snapshot *snap;
 +
- 	/** @panic: Panic interface */
- 	const struct intel_display_panic_interface *panic;
++	snap = kzalloc_obj(*snap, GFP_KERNEL_ACCOUNT);
++	if (!snap)
++		return -ENOMEM;
++
++	mutex_init(&snap->lock);
++	f->private_data = snap;
++
++	return nonseekable_open(inode, f);
++}
++
++static int bo_numa_release(struct inode *inode, struct file *f)
++{
++	struct bo_numa_snapshot *snap = f->private_data;
++
++	kvfree(snap->buf);
++	mutex_destroy(&snap->lock);
++	kfree(snap);
++
++	return 0;
++}
++
++static ssize_t bo_numa_read(struct file *f, char __user *ubuf, size_t size,
++			    loff_t *pos)
++{
++	struct bo_numa_snapshot *snap = f->private_data;
++	ssize_t ret = 0;
++
++	mutex_lock(&snap->lock);
++	if (snap->buf) {
++		ret = simple_read_from_buffer(ubuf, size, pos, snap->buf,
++					      snap->len);
++		if (*pos >= snap->len) {
++			kvfree(snap->buf);
++			snap->buf = NULL;
++		}
++	}
++	mutex_unlock(&snap->lock);
++
++	return ret;
++}
++
++static ssize_t bo_numa_write(struct file *f, const char __user *ubuf,
++			     size_t size, loff_t *pos)
++{
++	struct drm_file *file = file_inode(f)->i_private;
++	struct bo_numa_snapshot *snap = f->private_data;
++	struct drm_print_iterator iter;
++	struct drm_printer p;
++	size_t bufsize = PAGE_SIZE / 2;
++	char *buf = NULL;
++	u32 handle;
++	int ret;
++
++	ret = kstrtou32_from_user(ubuf, size, 0, &handle);
++	if (ret)
++		return ret;
++
++	ret = mutex_lock_interruptible(&snap->lock);
++	if (ret)
++		return ret;
++
++	if (snap->buf) {
++		ret = -EBUSY;
++		goto out_unlock;
++	}
++
++	/*
++	 * Retry with a larger buffer until the snapshot fits. The coredump
++	 * printer is used as a generic bounded buffer printer, and reports
++	 * when its buffer is full.
++	 */
++	do {
++		kvfree(buf);
++		bufsize *= 2;
++		buf = kvzalloc(bufsize, GFP_KERNEL_ACCOUNT);
++		if (!buf) {
++			ret = -ENOMEM;
++			goto out_unlock;
++		}
++
++		iter = (struct drm_print_iterator) {
++			.data = buf,
++			.remain = bufsize,
++		};
++		p = drm_coredump_printer(&iter);
++		ret = xe_bo_print_numa_info(file, handle, &p);
++		if (ret)
++			goto out_free;
++	} while (drm_coredump_printer_is_full(&p));
++
++	snap->buf = buf;
++	snap->len = bufsize - iter.remain;
++	*pos = 0;
++	buf = NULL;
++
++out_free:
++	kvfree(buf);
++out_unlock:
++	mutex_unlock(&snap->lock);
++
++	return ret ?: size;
++}
++
++static const struct file_operations bo_numa_fops = {
++	.owner = THIS_MODULE,
++	.open = bo_numa_open,
++	.release = bo_numa_release,
++	.read = bo_numa_read,
++	.write = bo_numa_write,
++};
++
++/**
++ * xe_debugfs_client_add() - Add xe-specific per-client debugfs files
++ * @file: The drm_file of the client.
++ *
++ * Populate the drm core per-client debugfs directory with xe-specific
++ * files. The files are removed by the drm core together with the
++ * directory when @file is released.
++ */
++void xe_debugfs_client_add(struct drm_file *file)
++{
++	if (IS_ERR_OR_NULL(file->debugfs_client))
++		return;
++
++	debugfs_create_file("bo_numa", 0600, file->debugfs_client, file,
++			    &bo_numa_fops);
++}
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.h b/drivers/gpu/drm/xe/xe_debugfs.h
+index 88d91c78036b..90effba271d9 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.h
++++ b/drivers/gpu/drm/xe/xe_debugfs.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/types.h>
+ 
++struct drm_file;
+ struct xe_device;
+ 
+ #ifdef CONFIG_DEBUG_FS
+@@ -16,12 +17,14 @@ bool xe_fault_csc_hw_error(void);
+ bool xe_fault_wedge_cold_reset(void);
+ bool xe_fault_mempage_offline(void);
+ void xe_debugfs_register(struct xe_device *xe);
++void xe_debugfs_client_add(struct drm_file *file);
+ #else
+ static inline bool xe_fault_gt_reset(void) { return false; }
+ static inline bool xe_fault_csc_hw_error(void) { return false; }
+ static inline bool xe_fault_wedge_cold_reset(void) { return false; }
+ static inline bool xe_fault_mempage_offline(void) { return false; }
+ static inline void xe_debugfs_register(struct xe_device *xe) { }
++static inline void xe_debugfs_client_add(struct drm_file *file) { }
+ #endif
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 273e2c45fea9..e1f457d03b09 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -126,6 +126,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 		put_task_struct(task);
+ 	}
+ 
++	xe_debugfs_client_add(file);
++
+ 	return 0;
+ }
  
 -- 
-2.47.3
+2.56.0
 
