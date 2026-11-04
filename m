@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203F1606A326
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 00:52:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89DFE606A31B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 00:52:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XmIsOmyT
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VZ2qeMcm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7A4610F8F5;
-	Wed,  4 Nov 2026 00:52:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47CFA10E66C;
+	Wed,  4 Nov 2026 00:52:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8563410E4C7
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 00:52:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CACC10F8E6
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 00:52:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793753557; x=1825289557;
+ t=1793753562; x=1825289562;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=48D18ifHFde+TGBfNMlG9YZSkG9B8EZNVIkAXgBc9L4=;
- b=XmIsOmyTBbt8XBRX02Jp4OxmaGw1odmmDtKzSxHM5L3IkBupuSZlmbw6
- pMmy7r/7QBDSgIhKzJMziBgGt94VgDibHKRpanNw8BI7YYhRLBDimWc8p
- OQS2vB6F6TioOjHkxfp7ZOzfsbeOCEhwiuiSKA0SnY+sW/OFnF5PrmsXQ
- 1GY8Gu7j5Brau6dWB9OqLirxc/mrvQn107zXuvMZbYc/8zpMnQFvABjsn
- tsg7cAiEHpVe66n9ymDv8EgnSFm1OFaYM+yKZMssu/7GbjcgzSnHjjNJc
- KszpMUhF2mj+a58lEcpjDML9P5vkfA98adP/tVDVRO5mQnQyujIv60R3x w==;
-X-CSE-ConnectionGUID: mr4zgO66R/uwi8nsfMsfxA==
-X-CSE-MsgGUID: HHnPI+uLSXe1yEA1sjn1Cw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2529525"
+ bh=KoVQ7Qch+FzWShMxLrS7p54pbgktg9YnohKdZHUQrwA=;
+ b=VZ2qeMcmEbinStlBI867YTef+9qHvem1taJt1QvZdmneT5VvENEi2R+t
+ EZmpCozLdCR7IqJ4h7j32q+RR5Y+BEklairMxxn+vnhZOWmszNtFwYaQD
+ omtHS9riVm0tn7o2W9LpC9F2p1ahlj+flPKzE+TT+QbqYUJCktrZBuw+N
+ oChrK4gLHjnEKdqY+bOdbXrMN0f5w/POHNTdVr4vxW8vA9ZG9K8SrxaP+
+ InJiwuiexLw3eavkMSZk6l24EEE0LTpdJdX5bOxaon6j+UQJHrP/3z5pg
+ WdTj6sLDivkNubj6BG/4BHfzs4/SFAIi+RNGb7QViryF2yOwst1OcBf9P g==;
+X-CSE-ConnectionGUID: HVfYsQEcQ0GJzX5mwBaLHQ==
+X-CSE-MsgGUID: jJgS1zA6T6ir2N+1HAL2jw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2529526"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2529525"
+   d="scan'208";a="2529526"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Nov 2026 16:52:31 -0800
-X-CSE-ConnectionGUID: xlQab3x9QcSTFI1/PpvySg==
-X-CSE-MsgGUID: ql2Y1FKhRVW/XY8sGtCtJw==
+X-CSE-ConnectionGUID: dm3sOu9tTmSk0Ib8yT3Pjw==
+X-CSE-MsgGUID: o3ZhRFkjRiqbGTU8+vFrhQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="6649328"
+   d="scan'208";a="6649331"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Nov 2026 16:52:30 -0800
@@ -44,10 +44,10 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
  Matthew Brost <matthew.brost@intel.com>
 Cc: harish.chegondi@intel.com
-Subject: [PATCH v3 2/5] drm/xe/oa: Split OA stream destroy into HW teardown
- and resource release
-Date: Tue,  3 Nov 2026 16:52:24 -0800
-Message-ID: <20261104005221.3230003-9-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v3 3/5] drm/xe/oa: Take the runtime PM reference in
+ xe_oa_destroy_locked()
+Date: Tue,  3 Nov 2026 16:52:25 -0800
+Message-ID: <20261104005221.3230003-10-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261104005221.3230003-7-umesh.nerlige.ramappa@intel.com>
 References: <20261104005221.3230003-7-umesh.nerlige.ramappa@intel.com>
@@ -71,83 +71,51 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Split the body of xe_oa_stream_destroy() into xe_oa_stream_hw_teardown(),
-which puts back the HW state (register whitelist, metric set) and drops
-forcewake, and xe_oa_stream_free_resources(), which releases the SW
-resources (kernel exec queue, OA buffer, runtime PM reference, configs,
-xe file reference).
+Move the runtime PM get/put around stream destruction from
+xe_oa_release() into xe_oa_destroy_locked(), the only caller, so the
+reference is held just around the code that needs the device awake.
 
-This lets a following patch release the stream resources without
-touching the HW when the device is wedged.
-
-The only change in behavior is that forcewake is now dropped before the
-kernel exec queue and the OA buffer are released, neither of which
-needs it.
+This lets a following patch free a stream of a removed device without
+taking a runtime PM reference on it. No functional change.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 33 +++++++++++++++++++++------------
- 1 file changed, 21 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 09043bc90de9..cc10403f51e0 100644
+index cc10403f51e0..7a151f338ae2 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -875,33 +875,42 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE, 0);
+@@ -1691,6 +1691,8 @@ static long xe_oa_ioctl(struct file *file,
+ 
+ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
+ {
++	xe_pm_runtime_get(gt_to_xe(stream->gt));
++
+ 	if (stream->enabled)
+ 		xe_oa_disable_locked(stream);
+ 
+@@ -1700,6 +1702,7 @@ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
+ 		xe_exec_queue_put(stream->exec_q);
+ 
+ 	drm_syncobj_put(stream->ufence_syncobj);
++	xe_pm_runtime_put(gt_to_xe(stream->gt));
+ 	kfree(stream);
  }
  
--static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
-+static void xe_oa_stream_hw_teardown(struct xe_oa_stream *stream)
- {
--	struct xe_oa_unit *u = stream->oa_unit;
--	struct xe_gt *gt = stream->hwe->gt;
--
--	if (WARN_ON(stream != u->exclusive_stream))
--		return;
--
--	WRITE_ONCE(u->exclusive_stream, NULL);
--
--	mutex_destroy(&stream->stream_lock);
--
- 	if (stream->sample)
- 		xe_reg_dewhitelist_oa_regs(stream->gt);
+@@ -1708,11 +1711,9 @@ static int xe_oa_release(struct inode *inode, struct file *file)
+ 	struct xe_oa_stream *stream = file->private_data;
+ 	struct xe_gt *gt = stream->gt;
  
- 	xe_oa_disable_metric_set(stream);
-+	xe_force_wake_put(gt_to_fw(stream->hwe->gt), stream->fw_ref);
-+}
-+
-+static void xe_oa_stream_free_resources(struct xe_oa_stream *stream)
-+{
- 	xe_exec_queue_put(stream->k_exec_q);
+-	xe_pm_runtime_get(gt_to_xe(gt));
+ 	mutex_lock(&gt->oa.gt_lock);
+ 	xe_oa_destroy_locked(stream);
+ 	mutex_unlock(&gt->oa.gt_lock);
+-	xe_pm_runtime_put(gt_to_xe(gt));
  
- 	xe_oa_free_oa_buffer(stream);
- 
--	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(stream->oa->xe);
- 
- 	xe_oa_free_configs(stream);
- 	xe_file_put(stream->xef);
- }
- 
-+static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
-+{
-+	struct xe_oa_unit *u = stream->oa_unit;
-+
-+	if (WARN_ON(stream != u->exclusive_stream))
-+		return;
-+
-+	WRITE_ONCE(u->exclusive_stream, NULL);
-+
-+	mutex_destroy(&stream->stream_lock);
-+
-+	xe_oa_stream_hw_teardown(stream);
-+	xe_oa_stream_free_resources(stream);
-+}
-+
- static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
- {
- 	u32 vram = mert_wa_14026633728(stream) ?
+ 	/* Release the reference the OA stream kept on the driver */
+ 	drm_dev_put(&gt_to_xe(gt)->drm);
 -- 
 2.55.0
 
