@@ -2,41 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 750BF606A329
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 13:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6B4606A31B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 13:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dBQChdht
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kF7aQk3n
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AD9110E066;
-	Wed,  4 Nov 2026 13:22:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FF9810E066;
+	Wed,  4 Nov 2026 13:24:28 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC96910FBF3;
- Wed,  4 Nov 2026 13:22:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E35D10E066
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 13:24:22 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 769B64120B;
- Wed,  4 Nov 2026 13:22:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 313A71F00A15;
- Wed,  4 Nov 2026 13:22:20 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 0E6914074C;
+ Wed,  4 Nov 2026 13:24:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE3AB1F000C1;
+ Wed,  4 Nov 2026 13:24:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793798540;
- bh=yMONjB+yqGVxi3mDBQLWOCVu2z2UwpZBo7yc7zHamJ4=;
+ s=k20260515; t=1793798661;
+ bh=4Gp+Puqqy3ytntrDFKDS4UZTfrk5CffDQ02g/F8d9zs=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=dBQChdhtM5CuNjXHuSFZUASgSkil9aLJCyhNbP70zLLqgrDvgagvXweNAe2KbXaO+
- bodmQfuaQtLoivBO2XsmCRZ9QvrhLwG5iDhCYFSpatN7al9tkRVeX+HsarbyHBI0Gq
- gAev2uZ2WRQe7NmXDjTKJVFHnljt+t3YtfkV+H+w6qcKEStksb4F0y2nFqbER4tpu3
- 04SOR7v5cg7zT3/JC5LfWVBwWDVVxjJXoJYbKSHbQOPrx/+tEPbfLVgH+9sD+7y8/m
- 0ouI6cOP10M75mMUd7cVHV3BS5mRYaKW/19WSSUNNKOfrB0yR6CE9ofYR6OW4jzVYb
- U3C7ES5o749RQ==
-Message-ID: <sashiko-outbox-197334@kernel.org>
+ b=kF7aQk3n3Z3PgHgE96TOs8307GHZmOvroWqP91pzMMFF08NK/9SWFSDDmhqsbAnWK
+ 4X41XtCfm8rRFCV2vBMtX5NT7R708aBdM3fo5CiMdRlj9mxwbD7t2/s1SslTBl84eA
+ rmhDz+fHiMjOXtI2kl7EGm5AmDMXI+7qfGLCKtJJbDCLjZxIctU3jfjGWIPwybNCEH
+ dyPaFM41mwOd+Nxgr4kisZfgQlSyjp9pQOlHmcTnqdBPPT20d9aQRvrHZninQEoO1M
+ o0oNMYtF6Lee9mc8nkI0S20ljzC9jyDsmfbhRM61I/DR2vWUqnEszyosZ/hbzPWa/r
+ pVAuIGQfPljfQ==
+Message-ID: <sashiko-outbox-197338@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] TEST ONLY: drm/intel: add mmio to display parent interface
-To: "Jani Nikula" <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+Subject: Re: [PATCH v2] drm/xe: Add a per-client debugfs file reporting bo
+ NUMA node distribution
+To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261104130831.152563-1-jani.nikula@intel.com>
-References: <20261104130831.152563-1-jani.nikula@intel.com>
+In-Reply-To: <20261104130836.134790-1-thomas.hellstrom@linux.intel.com>
+References: <20261104130836.134790-1-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 04 Nov 2026 13:22:19 +0000
+Date: Wed, 04 Nov 2026 13:24:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,297 +49,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 5 potential issue(=
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
 s) to consider:
-- [Medium] drm/i915/display: indirect call overhead in intel_de_read_fw() a=
-nd write_fw()
-- [Low] drm/i915/display: broken context lock annotations in intel_vblank.c
-- [Low] drm/xe/display: missing static qualifier on xe_display_mmio_interfa=
-ce
-- [Low] drm/intel: unused write16 hook and silent no-op in xe_uncore_write1=
-6()
-- [Low] drm/xe: orphaned uncore compat headers and TEST ONLY commit message
+- [Medium] drm/xe: shrinker-purged BOs misreported as swapped in xe_bo_prin=
+t_numa_info()
+- [Medium] drm/xe: DEFER_BACKING VRAM BOs misreported in xe_bo_print_numa_i=
+nfo_locked()
 --
 
-commit 0609c4221fda9fb179c2667810e576a6d92944ab
-Author: Jani Nikula <jani.nikula@intel.com>
+commit 66cc9eac8b32df8912217731dcdb5be7a56a8d77
+Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-TEST ONLY: drm/intel: add mmio to display parent interface
+drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution
 
-This commit introduces an intel_display_mmio_interface to the display parent
-interface, converting display MMIO register accesses, uncore spinlock calls,
-and unclaimed MMIO detection in i915 and Xe to go through parent interface
-function pointers.
+This commit adds a per-client "bo_numa" debugfs file that implements a
+write-request / read-response protocol to report the size, placement, and
+per-NUMA-node page counts of a GEM buffer object specified by handle.
 
->     TEST ONLY: drm/intel: add mmio to display parent interface
->    =20
->     Just testing, no need to review. We probably don't want this.
->    =20
->     Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 42a6aa1a2e4a0..bf3f6d9e4c61c 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
 
 [ ... ]
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i9=
-15/display/intel_de.h
-> index d0a239a369807..1fddb85d5640a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -6,16 +6,11 @@
->  #ifndef __INTEL_DE_H__
->  #define __INTEL_DE_H__
+> @@ -4248,6 +4250,113 @@ void xe_bo_runtime_pm_release_mmap_offset(struct =
+xe_bo *bo)
+>  	list_del_init(&bo->vram_userfault_link);
+>  }
 > =20
-> +#include <drm/intel/display_parent_interface.h>
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +static void xe_bo_count_numa_pages(struct ttm_tt *tt, unsigned long *nod=
+es)
+> +{
+> +	pgoff_t i;
 > +
->  #include "intel_display_core.h"
->  #include "intel_dmc_wl.h"
->  #include "intel_dsb.h"
-> -#include "intel_uncore.h"
-> -#include "intel_uncore_trace.h"
-> -
-> -static inline struct intel_uncore *__to_uncore(struct intel_display *dis=
-play)
-> -{
-> -	return to_intel_uncore(display->drm);
-> -}
-
-[Severity: Low]
-This isn't a runtime bug, but removing the intel_uncore.h and
-intel_uncore_trace.h includes from drivers/gpu/drm/i915/display/intel_de.h
-removes the last include sites for
-drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h and
-drivers/gpu/drm/xe/compat-i915-headers/intel_uncore_trace.h.
-
-Should those two unused compatibility headers in Xe be removed as part of
-this change, and should the placeholder commit subject and message be
-updated to describe the change and its rationale?
-
->  u8 intel_de_read8(struct intel_display *display, intel_reg_t reg);
->  void intel_de_write8(struct intel_display *display, intel_reg_t reg, u8 =
-val);
-> @@ -28,7 +23,7 @@ intel_de_read(struct intel_display *display, intel_reg_=
-t reg)
-> =20
->  	intel_dmc_wl_get(display, reg);
-> =20
-> -	val =3D intel_uncore_read(__to_uncore(display), reg);
-> +	val =3D display->parent->mmio->read32(display->drm, intel_reg_offset(re=
-g));
-> =20
->  	intel_dmc_wl_put(display, reg);
-> =20
-> @@ -58,7 +53,7 @@ intel_de_write(struct intel_display *display, intel_reg=
-_t reg, u32 val)
->  {
->  	intel_dmc_wl_get(display, reg);
-> =20
-> -	intel_uncore_write(__to_uncore(display), reg, val);
-> +	display->parent->mmio->write32(display->drm, intel_reg_offset(reg), val=
-);
-> =20
->  	intel_dmc_wl_put(display, reg);
->  }
-> @@ -107,19 +102,13 @@ int intel_de_wait_for_clear_ms(struct intel_display=
- *display, intel_reg_t reg,
->  static inline u32
->  intel_de_read_fw(struct intel_display *display, intel_reg_t reg)
->  {
-> -	u32 val;
-> -
-> -	val =3D intel_uncore_read_fw(__to_uncore(display), reg);
-> -	trace_i915_reg_rw(false, reg, val, sizeof(val), true);
-> -
-> -	return val;
-> +	return display->parent->mmio->read32_fw(display->drm, intel_reg_offset(=
-reg));
->  }
-> =20
->  static inline void
->  intel_de_write_fw(struct intel_display *display, intel_reg_t reg, u32 va=
-l)
->  {
-> -	trace_i915_reg_rw(true, reg, val, sizeof(val), true);
-> -	intel_uncore_write_fw(__to_uncore(display), reg, val);
-> +	display->parent->mmio->write32_fw(display->drm, intel_reg_offset(reg), =
-val);
->  }
+> +	for (i =3D 0; i < tt->num_pages; ++i)
+> +		nodes[page_to_nid(tt->pages[i])]++;
+> +}
+> +
+> +static void xe_bo_print_numa_info_locked(struct xe_bo *bo, unsigned long=
+ *nodes,
+> +					 struct drm_printer *p)
+> +{
+> +	struct ttm_resource *res =3D bo->ttm.resource;
+> +	struct ttm_tt *tt =3D bo->ttm.ttm;
+> +	unsigned long total =3D 0;
+> +	const char *name;
+> +	int nid;
+> +
+> +	xe_bo_assert_held(bo);
+> +
+> +	name =3D res ? xe_mem_type_to_name[res->mem_type] : NULL;
+> +	drm_printf(p, "size: %zu\n", xe_bo_size(bo));
+> +	if (name)
+> +		drm_printf(p, "placement: %s\n", name);
+> +	else if (res)
+> +		drm_printf(p, "placement: mem_type %u\n", res->mem_type);
+> +	else
+> +		drm_puts(p, "placement: none\n");
+> +
+> +	/* The pages of sg bos are owned by the exporter and not visible. */
+> +	if (bo->ttm.type =3D=3D ttm_bo_type_sg) {
+> +		drm_puts(p, "pages: unknown (sg bo)\n");
+> +		return;
+> +	}
+> +
+> +	if (tt && ttm_tt_is_swapped(tt)) {
+> +		drm_puts(p, "pages: swapped\n");
+> +		return;
+> +	}
 
 [Severity: Medium]
-Won't routing intel_de_read_fw() and intel_de_write_fw() (as well as
-intel_de_read() and intel_de_write()) in
-drivers/gpu/drm/i915/display/intel_de.h through indirect function pointers
-in display->parent->mmio introduce a performance regression on hot MMIO
-paths?
+In drivers/gpu/drm/xe/xe_bo.c, can xe_bo_print_numa_info_locked() misreport
+shrinker-purged buffer objects as swapped?
 
-In particular, intel_de_read_fw() and intel_de_write_fw() are used inside
-vblank evasion critical sections with local interrupts disabled to minimize
-MMIO latency. Replacing the inlined register accesses with indirect calls
-through display->parent->mmio->read32_fw() and write32_fw() adds pointer
-chasing, indirect branch overhead, and repeated drm-to-uncore/mmio lookups
-on every register access.
+When a buffer object marked DONTNEED is reclaimed by the shrinker via
+xe_bo_shrink() -> xe_bo_shrink_purge(), it invokes ttm_bo_shrink() with
+.purge =3D true:
 
-Also, drivers/gpu/drm/i915/display/intel_de.h, i9xx_wm.c, intel_display.c,
-and intel_vblank.c dereference display->parent->mmio directly instead of
-going through helpers in drivers/gpu/drm/i915/display/intel_parent.c like
-the other parent interfaces. Is that intentional?
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_shrink_purge() {
+	lret =3D ttm_bo_shrink(ctx, bo, (struct ttm_bo_shrink_flags)
+			     {.purge =3D true,
+			      .writeback =3D false,
+			      .allow_move =3D false});
+}
 
-[ ... ]
+Inside ttm_bo_shrink() -> ttm_tt_backup(), ttm_pool_backup() frees the
+pages and returns the freed page count, causing ttm_tt_backup() to set
+TTM_TT_FLAG_BACKED_UP on tt->page_flags even when purging. For example,
+xe_ttm_tt_populate() specifically checks !xe_tt->purgeable alongside
+ttm_tt_is_backed_up(tt):
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/dr=
-m/i915/display/intel_vblank.c
-> index 1d4753605675e..5a0af95a7442b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> @@ -294,15 +294,13 @@ static int __intel_get_crtc_scanline(struct intel_c=
-rtc *crtc)
->  static void intel_vblank_section_enter(struct intel_display *display)
->  	__acquires(uncore->lock)
->  {
-> -	struct intel_uncore *uncore =3D to_intel_uncore(display->drm);
-> -	spin_lock(&uncore->lock);
-> +	display->parent->mmio->lock(display->drm);
->  }
-> =20
->  static void intel_vblank_section_exit(struct intel_display *display)
->  	__releases(uncore->lock)
->  {
-> -	struct intel_uncore *uncore =3D to_intel_uncore(display->drm);
-> -	spin_unlock(&uncore->lock);
-> +	display->parent->mmio->unlock(display->drm);
->  }
->  #else
->  static void intel_vblank_section_enter(struct intel_display *display)
+drivers/gpu/drm/xe/xe_bo.c:xe_ttm_tt_populate() {
+	if (ttm_tt_is_backed_up(tt) && !xe_tt->purgeable) {
+		err =3D ttm_tt_restore(ttm_dev, tt, ctx);
+	} else {
+		ttm_tt_clear_backed_up(tt);
+}
 
-[Severity: Low]
-Does drivers/gpu/drm/i915/display/intel_vblank.c fail to build when compiler
-context analysis (CONFIG_WARN_CONTEXT_ANALYSIS_ALL) is enabled?
-
-Both intel_vblank_section_enter() and intel_vblank_section_exit() remove the
-local uncore variable (and intel_de.h no longer includes intel_uncore.h),
-but they still retain:
-
-    __acquires(uncore->lock)
-    __releases(uncore->lock)
-
-which reference the undeclared identifier uncore when context analysis
-expands those attributes.
-
-In addition, the new lock/unlock callbacks i915_uncore_lock() and
-i915_uncore_unlock() in drivers/gpu/drm/i915/intel_uncore.c, as well as
-xe_uncore_lock() and xe_uncore_unlock() in
-drivers/gpu/drm/xe/display/xe_display.c, acquire and release spinlocks
-across function boundaries without context analysis annotations, and
-intel_vblank_section_enter() / intel_vblank_section_exit() remain guarded by
-#ifdef I915 even though mmio->lock and mmio->unlock are now part of the
-parent interface.
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
-/display/xe_display.c
-> index aab416485e3ea..42cc19009bab2 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -444,6 +445,82 @@ static void transient_data_flush(struct drm_device *=
-drm)
->  	xe_device_td_flush(xe);
->  }
-> =20
-> +static struct xe_mmio *to_xe_mmio(struct drm_device *drm)
-> +{
-> +	return xe_root_tile_mmio(to_xe_device(drm));
-> +}
-> +
-> +static u8 xe_uncore_read8(struct drm_device *drm, u32 reg)
-> +{
-> +	return xe_mmio_read8(to_xe_mmio(drm), XE_REG(reg));
-> +}
-> +
-> +static void xe_uncore_write8(struct drm_device *drm, u32 reg, u8 val)
-> +{
-> +	xe_mmio_write8(to_xe_mmio(drm), XE_REG(reg), val);
-> +}
-> +
-> +static u16 xe_uncore_read16(struct drm_device *drm, u32 reg)
-> +{
-> +	return xe_mmio_read16(to_xe_mmio(drm), XE_REG(reg));
-> +}
-> +
-> +static void xe_uncore_write16(struct drm_device *drm, u32 reg, u16 val)
-> +{
-> +}
-
-[Severity: Low]
-Why is write16 added to struct intel_display_mmio_interface in
-include/drm/intel/display_parent_interface.h with an empty no-op
-implementation in xe_uncore_write16()?
-
-The display driver has no intel_de_write16() helper and never calls
-display->parent->mmio->write16, and having xe_uncore_write16() silently
-discard writes on Xe without a warning could hide bugs if a caller is ever
-added. Also, since xe_uncore_read32_fw() and xe_uncore_write32_fw() are
-identical to xe_uncore_read32() and xe_uncore_write32() on Xe, could they
-share the same function pointers in xe_display_mmio_interface?
+Because ttm_tt_is_swapped(tt) tests TTM_TT_FLAG_SWAPPED |
+TTM_TT_FLAG_BACKED_UP without checking xe_bo_is_purged(bo) or
+xe_tt->purgeable, a BO purged by the shrinker will be reported as
+"pages: swapped" rather than purged or not populated.
 
 > +
-> +static u32 xe_uncore_read32(struct drm_device *drm, u32 reg)
-> +{
-> +	return xe_mmio_read32(to_xe_mmio(drm), XE_REG(reg));
-> +}
-> +
-> +static u32 xe_uncore_read32_fw(struct drm_device *drm, u32 reg)
-> +{
-> +	return xe_mmio_read32(to_xe_mmio(drm), XE_REG(reg));
-> +}
-> +
-> +static void xe_uncore_write32(struct drm_device *drm, u32 reg, u32 val)
-> +{
-> +	xe_mmio_write32(to_xe_mmio(drm), XE_REG(reg), val);
-> +}
-> +
-> +static void xe_uncore_write32_fw(struct drm_device *drm, u32 reg, u32 va=
-l)
-> +{
-> +	xe_mmio_write32(to_xe_mmio(drm), XE_REG(reg), val);
-> +}
-> +
-> +static void xe_uncore_lock(struct drm_device *drm)
-> +{
-> +	struct xe_device *xe =3D to_xe_device(drm);
-> +
-> +	spin_lock(&xe->uncore.lock);
-> +}
-> +
-> +static void xe_uncore_unlock(struct drm_device *drm)
-> +{
-> +	struct xe_device *xe =3D to_xe_device(drm);
-> +
-> +	spin_unlock(&xe->uncore.lock);
-> +}
-> +
-> +static void xe_uncore_arm_unclaimed_mmio_detection(struct drm_device *dr=
-m)
-> +{
-> +}
-> +
-> +const struct intel_display_mmio_interface xe_display_mmio_interface =3D {
+> +	if (tt && !ttm_tt_is_populated(tt)) {
+> +		drm_puts(p, "pages: not populated\n");
+> +		return;
+> +	}
 
-[Severity: Low]
-Should xe_display_mmio_interface in drivers/gpu/drm/xe/display/xe_display.c
-be declared static const?
+[Severity: Medium]
+What happens in xe_bo_print_numa_info_locked() in drivers/gpu/drm/xe/xe_bo.c
+when a VRAM buffer object is created with DRM_XE_GEM_CREATE_FLAG_DEFER_BACK=
+ING
+and then validated into VRAM?
 
-It has no external declaration in any header and is only used within
-xe_display.c to initialize parent.mmio, so omitting static triggers
--Wmissing-variable-declarations and Sparse -Wdecl warnings (unlike the
-sibling xe_display_irq_interface in the same file, which is marked static).
+In xe_bo_init_locked(), XE_BO_FLAG_DEFER_BACKING initially places the BO in
+sys_placement, which causes ttm_bo_validate() to allocate an unpopulated
+bo->ttm.ttm:
+
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_init_locked() {
+	/* Defer populating type_sg bos */
+	placement =3D (type =3D=3D ttm_bo_type_sg ||
+		     bo->flags & XE_BO_FLAG_DEFER_BACKING) ? &sys_placement :
+		&bo->placement;
+}
+
+When the BO is subsequently validated into VRAM via xe_bo_validate() ->
+ttm_bo_validate() -> xe_bo_move(), move_lacks_source is true because the
+ttm_tt was never populated, so xe_bo_move() takes the ttm_bo_move_null()
+path instead of ttm_bo_move_accel_cleanup():
+
+drivers/gpu/drm/xe/xe_bo.c:xe_bo_move() {
+	} else {
+		/*
+		 * ttm_bo_move_accel_cleanup() may blow up if
+		 * bo->resource =3D=3D NULL, so just attach the
+		 * fence and set the new resource.
+		 */
+		dma_resv_add_fence(ttm_bo->base.resv, fence,
+				   DMA_RESV_USAGE_KERNEL);
+		ttm_bo_move_null(ttm_bo, new_mem);
+	}
+}
+
+Because ttm_bo_move_null() does not destroy the unused bo->ttm.ttm, tt
+remains non-NULL and unpopulated while the BO is populated in VRAM. Wouldn't
+xe_bo_print_numa_info_locked() then report "placement: vram0" followed by
+"pages: not populated", unlike normal VRAM BOs where tt is NULL?
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261104130831.1525=
-63-1-jani.nikula@intel.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261104130836.1347=
+90-1-thomas.hellstrom@linux.intel.com?part=3D1
