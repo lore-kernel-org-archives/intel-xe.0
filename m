@@ -2,58 +2,65 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C620A606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8E5B606A330
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 15:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=BB62gHzL
+	dkim=pass (1024-bit key, unprotected) header.d=uniontech.com header.i=@uniontech.com header.a=rsa-sha256 header.s=onoh2408 header.b=oEvwo11g
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52F3210FC8A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EF2E10FC8B;
 	Wed,  4 Nov 2026 15:02:44 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A2D310F0B3;
- Mon,  2 Nov 2026 16:49:29 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 598E9429DE;
- Mon,  2 Nov 2026 16:49:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9151E1F00A17;
- Mon,  2 Nov 2026 16:49:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793638169;
- bh=MeedEfZsFXsP5qo2iaurGBLApo5iEvSj6gKmWJRvO/A=;
- h=From:Subject:Date:To:Cc;
- b=BB62gHzL5S97E9XvJYB4smDYnpHNqlxvxahS6WU2szl1/FNeEz43DsW74XPCqPr98
- sdhrvyqz06mInyozpQwXvvwAcxepFngu4ypP5wqOAOdpDoyKfICilM0ClliISj1wqL
- WYq0/71ap7b5bwdiUb2A3tWwLwOppwQhSkMeFzW6boc/1khLdXx8+G1z/uNTViCTf3
- BWe187Hx/m7h4ucTM0DMx5sOBI53FU04Vq3H+5X6vvX3GUcRSRW2Qt++ilUCDFkJJy
- Vy/Buh+pa1OaO+TLi3bmLVBSh5bRa5ehBIn3Kz7nZaCaQYAI7feDBUX/DwevEpwmCB
- bO1cq4159riWQ==
-From: "Mario Limonciello (AMD)" <superm1@kernel.org>
-Subject: [PATCH v10 00/15] Add support for a DRM backlight capability
-Date: Mon, 02 Nov 2026 10:49:16 -0600
-Message-Id: <20261102-superm1-backlight-property-v10-0-b2a6f24131f5@kernel.org>
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.67.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CFA10E2FA;
+ Wed,  4 Nov 2026 05:40:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=uniontech.com;
+ s=onoh2408; t=1793770776;
+ bh=XK14gn3afGjQO93vtxOK4rX2+8gn13HtO8JN2/VQ3Cw=;
+ h=From:To:Subject:Date:Message-ID:MIME-Version;
+ b=oEvwo11gNhv/l82eQawvMsHRYC9BobHE95QfaRZn3cZ6gRzaZBdD66/M22mRPfY9z
+ /OzKUGJkvaGZDrjxgpL8tt2ftayfREkAb7N10oTD2fnOynmGhqS3+T3MkrX+1blRHt
+ I9OC369Wq8yLcOrov/W3iIyLrSYtN0VnC8zQQIrs=
+X-QQ-mid: zesmtpsz8t1793770758t3d36a38e
+X-QQ-Originating-IP: i2/274j8W+IzMMKT+4D6S+IUbWiQBGVsl/7IIyWqb4A=
+Received: from localhost.localdomain ( [61.183.83.60])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Wed, 04 Nov 2026 13:39:16 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 1
+X-BIZMAIL-ID: 337138461145264766
+EX-QQ-RecipientCnt: 7
+From: Wentao Guan <guanwentao@uniontech.com>
+To: joonas.lahtinen@linux.intel.com, imre.deak@intel.com,
+ jouni.hogander@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Wentao Guan <guanwentao@uniontech.com>, stable@vger.kernel.org
+Subject: [PATCH] drm/i915/display: Don't drop the async-put delay on
+ self-requeue
+Date: Wed,  4 Nov 2026 13:39:10 +0800
+Message-ID: <134A26B6BCDD3C9C+20261104053910.1065103-1-guanwentao@uniontech.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXMTQ6CMBBA4auQWTtJpyEmehXjoi0jjD/QzBQjI
- dydqsv3Ft8KxipscG5WUH6LyTTWIHdoIA1h7BmlqwO880ciR2hzZn0RxpAeT+mHglmnusqCxHy
- KFNro2w4qkJVv8vnpl+u/bY53TuUrwrbtqRIDaH8AAAA=
-X-Change-ID: 20261101-superm1-backlight-property-1ee9b1a4b24d
-To: Maxime Ripard <mripard@kernel.org>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>
-Cc: Mario Limonciello <superm1@kernel.org>, 
- Xaver Hugl <xaver.hugl@gmail.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, 
- Mario Limonciello <mario.limonciello@amd.com>
-X-Mailer: b4 0.16.0
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:uniontech.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: No4GWyI4cWt6Kjo7qRlUDJvLUFRLYgvhJadss/tsQS75ID9ohL0hTa9z
+ /DXUWU2zg34ePTZA5xKfrdMtA0U75LIW2PC0mwjG2zd4t+ARAKhX86MozyXkPubWHyYifYQ
+ FZgh4+bVuK8OUMXik+xh+ISxd+k6NS9yFDrhG5/TzW4v9E95pCBJAEjURkxqsOePpggSNdo
+ Elwv0XUQFW6KPdO//S1eIAeyhH6gQnrEqWj6IR3HVdU68lLX7z9N3Y1f14ufLnbhYVa+qNC
+ +EeorAKFIoHzetuduPsGp1RDsljjzgJWUPOuJ0Cj9P68Sb99y29f0kOWQkNLhemmYhe3bN4
+ 3JpwTjBtvFDeMbD7gaSAJJ0BqEx2HA3OuvN8AYdBM1it3zbu4CxTKnyHb1Dmis6T5+oHsbi
+ YQEYjHU3FkaNQ/pxRQ6TwEs7NhGaRY32z5mNhPodiGd7shIyzztzyNdM4j8NY06J39/EF7B
+ 8uCbwxILxR110wjU1gOqEStRKOLD2nE7T+Mn8LdePp7MJgRrSQ+QfnpiPainH9Z9yabY+UN
+ N8o5b2ZfNyzjJK168PPTjtT+S4HnaGJ2BKOi24R7GwRY4TPfkgC44IhF+9XBbqqwgDg2V8R
+ 0XJX13qeATa0JihbbAno/uem+tPdnRV9c4ZbCaXQY0tEHP9dpYszBKjM/elrKwrSMIyV3BP
+ kCFzauAKrbEzETgaMpiYtV/1ovjgFKeij+izw1XU2RTIx7QaIO5aQavTYB+9MgZ6991CgN2
+ SdStpPa7Evql0wV64J8TBw72qJK+jzcP7FK1cT1mmWwXlv7YOzhxUNKYQOlstQL8tfmt7Hq
+ jiCq3k9CNheUb9OxPTwsp7s/MUf91OO/VCWefwmFUarn30DayODAbJdD2KP6AkGFdgQeHo7
+ 8STwGqwSR7exNVz+JKWKmMEGZkGLwpRYzKmvwFT7t5+dNLb+NEMyWIBqQhFciVfryGkNm1j
+ 73aJ7b/LIZUBTLhEi88l+6v+ybhy1plqIhfAUnS2k8gx/RaU51OfUSMrNZA6p9YqZf32KSE
+ 6xKnsJafkbjy3Y6dUejvyQXZSIX6GZ3LQD4nq6+w==
+X-QQ-XMRINFO: Nq+8W0+stu50tPAe92KXseR0ZZmBTk3gLg==
+X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Wed, 04 Nov 2026 15:02:42 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,165 +72,56 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-23.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-At Display Next Hackfest 2026 we reviewed progress moving brightness
-control into the DRM connector properties.
+cancel_async_put_work() also clears async_put_next_delay, so moving it
+ahead of the requeue in intel_display_power_put_async_work() makes the
+requeue always use a zero delay. That discards the delay accumulated by
+concurrent async puts, including the 17 ms DC-state anti-toggle delay
+requested for POWER_DOMAIN_DC_OFF.
 
-There is a range LUMINANCE property that will default to 0->0.
-Once a driver attaches a backlight it will be updated to 1->max.
-If the panel supports the minimum backlight turning off the display
-the range can later be updated to 0->max instead of 1->max.
+Use cancel_delayed_work() directly to cancel the stale instance without
+clearing the delay, and clear the delay only after the requeue has
+consumed it.
 
-Version 8 had a lot of review feedback, and the biggest change is that
-this no longer has the legacy sysfs interface for brightness control.
-
-There is a Kconfig knob introduced that turns on the new API, and when
-the new API is available all drivers will conflict with the old backlight
-control API.
-
-This will allow us to land the new brightness control API and the transition
-to the new API separately.  *This series only tracks the new API itself.*
-
-The following compositors have implemented matching support, although they
-need to be changed again for items modified in v10 (the dropped cap):
- * Kwin: https://invent.kde.org/plasma/kwin/-/merge_requests/9298
- * Mutter: https://gitlab.gnome.org/swick/mutter/-/commits/wip/kms-luminance-prop
- * Wlroots: https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/5384
-
-I've tested this series using modetest on amdgpu.
-
-The series is also available on this branch for easy testing.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/superm1/linux.git/log/?h=superm1/backlight-property-v10
-
-Signed-off-by: Mario Limonciello <superm1@kernel.org>
+Fixes: 30ca6365bb42 ("drm/i915: Fix assert on pending async-put power domain work when it requeues itself")
+Cc: <stable@vger.kernel.org> # v6.11+
+Signed-off-by: Wentao Guan <guanwentao@uniontech.com>
 ---
-Changes in v10:
+ drivers/gpu/drm/i915/display/intel_display_power.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-* Split patch 7 (panel/bridge connector luminance forwarding) into three
-   separate patches:
-  - drm/bridge: add connector luminance operations
-  - drm/panel: add connector luminance forwarding
-  - drm/bridge_connector: add luminance support
- * Dropped MIPI-DBI tiny driver migrations and the new mipi_dbi connector
-   luminance helpers (Javier): backlight is always NULL when
-   CONFIG_BACKLIGHT_CLASS_DEVICE is disabled, so these drivers can't
-   support LUMINANCE without DT binding changes or a new
-   CONFIG_BACKLIGHT_SYSFS option. Will revisit later.
- * Added IS_ENABLED(CONFIG_DRM_LUMINANCE) conditional guards to all
-   individual DRM driver patches that call drm_connector_attach_luminance_property()
- * Moved the LUMINANCE property patch after the new "Add support for a
-   DRM backlight capability" patch to better separate backlight vs
-   luminance functionality
- * Link to v9: https://lore.kernel.org/dri-devel/20261002190030.211356-1-mario.limonciello@amd.com/
-
-To: Maxime Ripard <mripard@kernel.org>
-To: Alex Deucher <alexander.deucher@amd.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-To: Javier Martinez Canillas <javierm@redhat.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>
-To: David Airlie <airlied@gmail.com>
-To: Simona Vetter <simona@ffwll.ch>
-To: Harry Wentland <harry.wentland@amd.com>
-To: Leo Li <sunpeng.li@amd.com>
-To: Rodrigo Siqueira <siqueira@igalia.com>
-Cc: Xaver Hugl <xaver.hugl@gmail.com>
-Cc: dri-devel@lists.freedesktop.org
-Cc: linux-kernel@vger.kernel.org
-Cc: amd-gfx@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: nouveau@lists.freedesktop.org
-
----
-Mario Limonciello (13):
-      drm: add connector LUMINANCE property
-      drm/amd/display: Pass up errors reading actual brightness
-      drm/amd: add luminance property support
-      drm/i915/display: add luminance property support
-      drm/bridge: add connector luminance operations
-      drm/panel: add connector luminance forwarding
-      drm/bridge_connector: add luminance support
-      drm/nouveau: add connector luminance support
-      drm/gud: add connector luminance support
-      drm/radeon: add connector luminance support
-      drm/gma500: add connector luminance support
-      drm/bridge: add PS8622 connector luminance support
-      drm/solomon: add SSD130x connector luminance support
-
-Mario Limonciello (AMD) (2):
-      drm/amdgpu: Check bios_scratch_reg_offset in backlight level helper
-      drm/amd/display: update KUnit luminance fixtures
-
- drivers/gpu/drm/Kconfig                            |  14 +++
- drivers/gpu/drm/amd/amdgpu/Kconfig                 |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_atombios.c       |   7 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_connectors.c     |  20 ++++
- drivers/gpu/drm/amd/amdgpu/atombios_encoders.c     |  17 +++-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  22 +++--
- .../amd/display/amdgpu_dm/amdgpu_dm_backlight.c    |  55 +++++++++--
- .../amd/display/amdgpu_dm/amdgpu_dm_backlight.h    |   4 +-
- .../amd/display/amdgpu_dm/amdgpu_dm_connector.c    |   7 +-
- .../amdgpu_dm/tests/amdgpu_dm_backlight_test.c     |  47 +++++++--
- .../amdgpu_dm/tests/amdgpu_dm_kunit_helpers.c      |   7 +-
- drivers/gpu/drm/bridge/Kconfig                     |   2 +-
- drivers/gpu/drm/bridge/parade-ps8622.c             |  45 ++++++---
- drivers/gpu/drm/display/drm_bridge_connector.c     |  48 +++++++++
- drivers/gpu/drm/drm_atomic_helper.c                |  73 +++++++++++++-
- drivers/gpu/drm/drm_atomic_state_helper.c          |   7 ++
- drivers/gpu/drm/drm_atomic_uapi.c                  |   5 +
- drivers/gpu/drm/drm_connector.c                    |  57 +++++++++++
- drivers/gpu/drm/drm_panel.c                        |  99 +++++++++++++++++--
- drivers/gpu/drm/gma500/Kconfig                     |   2 +-
- drivers/gpu/drm/gma500/backlight.c                 |  45 ++++++---
- drivers/gpu/drm/gma500/cdv_intel_lvds.c            |   2 +
- drivers/gpu/drm/gma500/psb_drv.c                   |   2 +-
- drivers/gpu/drm/gma500/psb_drv.h                   |   4 +-
- drivers/gpu/drm/gma500/psb_intel_lvds.c            |   3 +-
- drivers/gpu/drm/gud/Kconfig                        |   2 +-
- drivers/gpu/drm/gud/gud_connector.c                |  48 ++++++++-
- drivers/gpu/drm/i915/Kconfig                       |   2 +-
- drivers/gpu/drm/i915/display/icl_dsi.c             |   1 +
- drivers/gpu/drm/i915/display/intel_backlight.c     |  20 ++++
- drivers/gpu/drm/i915/display/intel_backlight.h     |   1 +
- drivers/gpu/drm/i915/display/intel_display.c       |   2 +
- drivers/gpu/drm/i915/display/intel_dp.c            |   1 +
- drivers/gpu/drm/i915/display/intel_lvds.c          |   1 +
- drivers/gpu/drm/i915/display/intel_panel.c         |   8 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c             |   1 +
- drivers/gpu/drm/nouveau/Kconfig                    |   4 +-
- drivers/gpu/drm/nouveau/dispnv50/disp.c            |   2 +-
- drivers/gpu/drm/nouveau/nouveau_backlight.c        | 110 +++++++++++++++++----
- drivers/gpu/drm/nouveau/nouveau_connector.c        |   2 +
- drivers/gpu/drm/nouveau/nouveau_connector.h        |  14 +++
- drivers/gpu/drm/radeon/Kconfig                     |   2 +-
- drivers/gpu/drm/radeon/atombios_encoders.c         |  32 +++++-
- drivers/gpu/drm/radeon/radeon_connectors.c         |  34 +++++++
- drivers/gpu/drm/radeon/radeon_legacy_encoders.c    |  49 +++++++--
- drivers/gpu/drm/radeon/radeon_mode.h               |   2 +
- drivers/gpu/drm/solomon/Kconfig                    |   2 +-
- drivers/gpu/drm/solomon/ssd130x.c                  |  79 +++++++++++----
- drivers/gpu/drm/tests/drm_connector_test.c         |  28 ++++++
- drivers/gpu/drm/xe/Kconfig                         |   2 +-
- include/drm/drm_atomic_helper.h                    |   3 +
- include/drm/drm_bridge.h                           |  74 ++++++++++++++
- include/drm/drm_connector.h                        |  16 +++
- include/drm/drm_modeset_helper_vtables.h           |  25 +++++
- include/drm/drm_panel.h                            |  39 +-------
- 55 files changed, 1030 insertions(+), 172 deletions(-)
----
-base-commit: 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4
-change-id: 20261101-superm1-backlight-property-1ee9b1a4b24d
-
-Best regards,
---  
-Mario Limonciello <superm1@kernel.org>
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index b000ec001ccfc..7da6eda46e9e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -873,7 +873,7 @@ intel_display_power_put_async_work(struct work_struct *work)
+ 	 * Cancel the work that got queued after this one got dequeued,
+ 	 * since here we released the corresponding async-put reference.
+ 	 */
+-	cancel_async_put_work(power_domains, false);
++	cancel_delayed_work(&power_domains->async_put_work);
+ 
+ 	/* Requeue the work if more domains were async put meanwhile. */
+ 	if (!bitmap_empty(power_domains->async_put_domains[1].bits, POWER_DOMAIN_NUM)) {
+@@ -885,9 +885,10 @@ intel_display_power_put_async_work(struct work_struct *work)
+ 		queue_async_put_domains_work(power_domains,
+ 					     fetch_and_zero(&new_work_wakeref),
+ 					     power_domains->async_put_next_delay);
+-		power_domains->async_put_next_delay = 0;
+ 	}
+ 
++	power_domains->async_put_next_delay = 0;
++
+ out_verify:
+ 	verify_async_put_domains_state(power_domains);
+ 
+-- 
+2.47.3
 
