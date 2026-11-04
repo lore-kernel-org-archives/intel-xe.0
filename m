@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8700F606A32E
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 07:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 954AB606A326
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 07:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=W7EB4o0e
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=blDklaQs
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CED910FA14;
-	Wed,  4 Nov 2026 07:49:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6238C10FA19;
+	Wed,  4 Nov 2026 07:49:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03E4910FA14
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 07:49:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC1A110FA20
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 07:49:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793778567; x=1825314567;
+ t=1793778571; x=1825314571;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DBZqFhjkF2+2I53dW/ItSKDbPQQRUWmjJZdyt206nOs=;
- b=W7EB4o0eksJ11q6rgwL13p+uEBmErV0nF4fi8xP/qxsqYdmbKabiv+sf
- Ob0OlbAPZVG6Adihtq6/bDTPvRfaeSoto4xQiqb8ZO+eeWvb3WukEBhUI
- LdxJg3vdHxSleFxu9dM6YsmxIHk+0CeXmA5nPmty3LNuuAHdiJwhnggFe
- 9oGxo6l27pRbdsEWJM3M2st0w8eR4PkFxRU059AYjyabtXfRC8hio2P/D
- Gt3I5Zvzs6yxRcjDt+v4RljKEpBemG6Hp34+Wj6LqX2ZOdw2jIl2wNC3O
- vN6nGo5fJ0X8rUAq9nJRWJZNkfIRQIQENjP6YU1rfdPvNjBGpTRN3MRRv g==;
-X-CSE-ConnectionGUID: fdi3IaJoSNS0QJaBGVLmpQ==
-X-CSE-MsgGUID: TBQ7IWhLQ3C1JVZBAUIw/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2536179"
+ bh=TcniHyGZH36HNECntk+lFMh3XVfFaESLvd1RoJoglr4=;
+ b=blDklaQsH3p0vXPPkWpzYpFHuN3BM2j4xsQD0mt0sn1OLrNCVbdRLniY
+ vqxHudnw/h1Ta+JdWMB1NT5+2PAVzomxmMzOOrPHN3jWKLYuyuafK6zZa
+ hfVyCGGpDGo3MR5My1NG5zFgfxQW+19uB5w8A60m74OgoEIxM8B+5ueM0
+ mX7Llz2wMrc/uuzEnXqA2THzAydf8uXzdHk7BExGQQDo6UESrUVgpzT8D
+ VDMcCInpNToYNqNKqCL47uB0azvJake4uZqMiZN/hpj+UBgrXscbW7+Qc
+ 28awjlavkkBuBislrlsykhOVQqma6X61lVlPPZzIy/zLOv1MFW0RQUXY0 A==;
+X-CSE-ConnectionGUID: TzurwPwSS4KlEJ5CDjGdpw==
+X-CSE-MsgGUID: IR51wG0ISGmMmwhHhhyz8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2536187"
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="2536179"
+   d="scan'208";a="2536187"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2026 23:49:26 -0800
-X-CSE-ConnectionGUID: jXsUSDbuQS+1iYewQeGoNQ==
-X-CSE-MsgGUID: +Vtt9SqeQ3q/y+ncEjKDUw==
+ 03 Nov 2026 23:49:30 -0800
+X-CSE-ConnectionGUID: 3uNkAVawTeGzvGUwjVli7Q==
+X-CSE-MsgGUID: AKRTqNJyRj6Z1X3PWq+raQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
-   d="scan'208";a="8520984"
+   d="scan'208";a="8520989"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa013.fm.intel.com with ESMTP; 03 Nov 2026 23:49:23 -0800
+ by fmviesa013.fm.intel.com with ESMTP; 03 Nov 2026 23:49:27 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  jani.nikula@intel.com, lukasz.laguna@intel.com, lukas@wunner.de,
  daniele.ceraolospurio@intel.com, badal.nilawar@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v13 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
-Date: Wed,  4 Nov 2026 13:17:37 +0530
-Message-ID: <20261104074813.1415191-10-raag.jadav@intel.com>
+Subject: [PATCH v13 10/10] drm/xe/doc: Wire up PCI Error Handling
+Date: Wed,  4 Nov 2026 13:17:38 +0530
+Message-ID: <20261104074813.1415191-11-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261104074813.1415191-1-raag.jadav@intel.com>
 References: <20261104074813.1415191-1-raag.jadav@intel.com>
@@ -74,208 +74,39 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With bare minimum pieces in place, we can finally introduce PCIe Function
-Level Reset (FLR) support which re-initializes hardware state without the
-need for reloading the driver from userspace. All VRAM contents are lost
-along with hardware state and driver takes care of recreating the required
-kernel bos as part of re-initialization, but user still needs to recreate
-user bos and reload context after PCIe FLR.
+Wire up PCI Error Handling documentation.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Tested-by: Lukasz Laguna <lukasz.laguna@intel.com>
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
- v2: Spell out Function Level Reset (Jani)
- v5: Prevent PM ref leak for wedged device (Matthew Brost)
- v6: Add PCIe FLR documentation (Daniele)
- v7: Refine PCIe FLR documentation (Daniele)
-     Introduce xe_pci_reset_skip() helper (Lukasz)
- v9: Add 'Xe' prefix to document title (Rodrigo)
-v10: Update documentation to include PCI Error Handling (Lukasz)
-     Maintain wedge reference on FLR failure (Lukasz)
-v11: Cleanup wedge reference logic in ->reset_prepare() (Lukasz)
-     Use 'PCI reset' in logs (Riana)
-v12: Refine error logging (Riana)
----
- drivers/gpu/drm/xe/xe_device_types.h |   3 +
- drivers/gpu/drm/xe/xe_pci_error.c    | 136 +++++++++++++++++++++++++++
- 2 files changed, 139 insertions(+)
+ Documentation/gpu/xe/index.rst        | 1 +
+ Documentation/gpu/xe/xe_pci_error.rst | 8 ++++++++
+ 2 files changed, 9 insertions(+)
+ create mode 100644 Documentation/gpu/xe/xe_pci_error.rst
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index d99881c6e1d5..6dcaec224338 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -535,6 +535,9 @@ struct xe_device {
- 	/** @pxp: Encapsulate Protected Xe Path support */
- 	struct xe_pxp *pxp;
- 
-+	/** @flr_prepared: Prepared for function-reset */
-+	bool flr_prepared;
+diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
+index 0247a255f7e6..497a0a4b12f6 100644
+--- a/Documentation/gpu/xe/index.rst
++++ b/Documentation/gpu/xe/index.rst
+@@ -36,3 +36,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
+    xe_configfs
+    xe_gt_stats
+    xe_sigid
++   xe_pci_error
+diff --git a/Documentation/gpu/xe/xe_pci_error.rst b/Documentation/gpu/xe/xe_pci_error.rst
+new file mode 100644
+index 000000000000..25cc5a8adf99
+--- /dev/null
++++ b/Documentation/gpu/xe/xe_pci_error.rst
+@@ -0,0 +1,8 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
 +
- 	/** @needs_flr_on_fini: requests function-reset on fini */
- 	bool needs_flr_on_fini;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index 46d4150771f1..db32725b4d96 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -12,9 +12,55 @@
- #include "xe_pm.h"
- #include "xe_printk.h"
- #include "xe_ras.h"
-+#include "xe_sriov_pf_helpers.h"
- #include "xe_survivability_mode.h"
- #include "xe_wedge.h"
- 
-+/**
-+ * DOC: Xe PCI Error Handling
-+ *
-+ * Xe driver registers PCI callbacks which are called by PCI core in case of
-+ * bus errors or resets.
-+ *
-+ * Currently both Function Level Reset (FLR) and bus error handling callbacks are
-+ * supported. Both wipe the VRAM and resets the state of all the hardware units.
-+ * Therefore, the contents of all exec queues and BOs in VRAM are lost, and the
-+ * hardware needs a full re-initialization. The way Xe driver handles it, is
-+ * pretty much similar to system suspend/resume flow with a few notable exceptions.
-+ *
-+ * Prepare phase:
-+ *
-+ * - Temporarily wedge the device to prevent userspace access
-+ * - Kill exec queues which signals all fences and frees in-flight jobs
-+ * - Stop the scheduler and all submissions to GuC
-+ * - The fact that FLR is needed is because hardware could be in corrupted state
-+ *   and access unreliable, so skip memory eviction due to untrustworthy VRAM
-+ *   contents
-+ * - Remove all memory mappings since VRAM contents will be lost
-+ *
-+ * Re-initialization phase:
-+ *
-+ * - Recreate kernel BOs due to skipped memory eviction in prepare phase
-+ * - Restore kernel queues which were killed in prepare phase
-+ * - Reload all uC firmwares
-+ * - Bring up all hardware units
-+ * - Unwedge the device to allow userspace access
-+ *
-+ * Since VRAM contents are lost, the user is expected to recreate user memory
-+ * and reload context.
-+ *
-+ * TODO: Reuse FLR callbacks for bus error handling.
-+ *
-+ * Current implementation is only limited to re-initializing GT. This needs to
-+ * be extended for a lot of components listed below.
-+ *
-+ * - Proper re-initialization of GSC and PXP for integrated platforms
-+ * - SR-IOV cases which need PF and VF synchronization
-+ * - Re-initialization of all child devices registered by Xe
-+ * - MM corner cases
-+ * - Display
-+ */
++=====================
++Xe PCI Error Handling
++=====================
 +
- static void prepare_device_for_reset(struct pci_dev *pdev)
- {
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
-@@ -143,9 +189,99 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
- 	xe_info(xe, "PCI error: resume\n");
- }
- 
-+static inline bool xe_pci_reset_skip(struct xe_device *xe)
-+{
-+	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe->info.probe_display;
-+}
-+
-+static void xe_pci_reset_prepare(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int err;
-+
-+	/* No guarantees by PCI core */
-+	if (!pm_runtime_active(&pdev->dev)) {
-+		xe_err(xe, "PCI reset: unexpected power state\n");
-+		return;
-+	}
-+
-+	err = xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe);
-+	if (err)
-+		xe_err(xe, "PCI reset: device in unexpected state\n");
-+
-+	/* Wedge the device to prevent userspace access but don't send the event yet */
-+	xe_wedge_get(xe);
-+	if (err)
-+		return;
-+
-+	err = xe_pci_reset_skip(xe);
-+	if (err) {
-+		xe_err(xe, "PCI reset: not supported\n");
-+		return;
-+	}
-+
-+	/*
-+	 * The hardware could be in corrupted state and access unreliable, but we try to
-+	 * update data structures and cleanup any pending work to avoid side effects during
-+	 * PCIe FLR. This will be similar to system suspend flow but without eviction.
-+	 */
-+	err = xe_device_suspend(xe, true);
-+	if (err) {
-+		xe_err(xe, "PCI reset: failed to prepare\n");
-+		return;
-+	}
-+
-+	xe->flr_prepared = true;
-+	xe_info(xe, "PCI reset: prepared\n");
-+}
-+
-+static void xe_pci_reset_done(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int err;
-+
-+	/* No guarantees by PCI core */
-+	if (!pm_runtime_active(&pdev->dev))
-+		return;
-+
-+	err = xe_pci_reset_skip(xe);
-+	if (err)
-+		goto out;
-+
-+	if (!xe->flr_prepared)
-+		goto out;
-+
-+	/* Unprepare early in case we fail */
-+	xe->flr_prepared = false;
-+
-+	/*
-+	 * We already have the data structures intact, so try to re-initialize the device.
-+	 * This will be similar to system resume flow, except we'll also need to recreate
-+	 * kernel bos and restore kernel queues.
-+	 */
-+	err = xe_device_resume(xe, true);
-+	if (err) {
-+		xe_err(xe, "PCI reset: re-initialization failed\n");
-+		goto out;
-+	}
-+
-+	/* Unwedge to allow userspace access */
-+	xe_wedge_put(xe);
-+	xe_info(xe, "PCI reset: done\n");
-+
-+	return;
-+out:
-+	/* Most likely the device is unusable and there's nothing we can do about it */
-+	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
-+	/* Drop local reference */
-+	xe_wedge_put(xe);
-+}
-+
- const struct pci_error_handlers xe_pci_error_handlers = {
- 	.error_detected	= xe_pci_error_detected,
- 	.mmio_enabled	= xe_pci_error_mmio_enabled,
- 	.slot_reset	= xe_pci_error_slot_reset,
- 	.resume		= xe_pci_error_resume,
-+	.reset_prepare	= xe_pci_reset_prepare,
-+	.reset_done	= xe_pci_reset_done,
- };
++.. kernel-doc:: drivers/gpu/drm/xe/xe_pci_error.c
++   :doc: Xe PCI Error Handling
 -- 
 2.43.0
 
