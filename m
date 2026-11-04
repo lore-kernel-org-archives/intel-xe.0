@@ -2,58 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F4C7606A326
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 08:07:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=dgjvMv48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D71606A326
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 08:13:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC2C10E85D;
-	Wed,  4 Nov 2026 08:07:52 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04D6310E844
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 08:07:46 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with UTF8SMTP id 2D1D160AB0;
- Wed,  4 Nov 2026 08:07:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with UTF8SMTPSA id 031CE1F00919;
- Wed,  4 Nov 2026 08:07:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793779664;
- bh=5argj3jgxjaIwdw//Cy2pyVRb1WgHueQojCsHqAHNoM=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=dgjvMv48L/DVv/5S1AfLGCLOtgbnN4sq3Pmso+syVhotcxSLf/116pypPxqtJti+O
- xh+q44Tilz8M1FYMpcHhS9yTd2GaMqjAUy1+K9QBRy92bcGa1Hb6KmsAh7Kj5Xfo/o
- tU29J4/ABuUBL1pbDg49TGAaaTE1VFdGoULURlYaCv7yUdc+GJru46ZOCCXFmJJleB
- 67hYlp93fl+PfKdHojmh5J9qn3plazUF+4QqUuVzMve6wiJqdKjYqomwnEcq5p3kbf
- yDCL6Lc3pDKmnIDw7qZZX0un0PwznmY3wGDlPVQV251mausVovoplalPtbLUfVDZHh
- uscG4noDnwecA==
-Date: Wed, 4 Nov 2026 09:07:41 +0100
-From: Bartosz Golaszewski <brgl@kernel.org>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-Cc: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, 
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Kumar G,
- Naresh" <naresh.kumar.g@intel.com>, 
- "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- "dakr@kernel.org" <dakr@kernel.org>, 
- "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>, 
- "bartosz.golaszewski@oss.qualcomm.com" <bartosz.golaszewski@oss.qualcomm.com>
-Subject: Re: [PATCH] drm/xe/i2c: Fix use-after-free on driver unload
-Message-ID: <vr6opngpmfg75pngzrkb7xnllrjnpjq5dlliishq3tm3wdm4n7@kwlo3kdvjquf>
-References: <20261009164241.923756-2-balasubramani.vivekanandan@intel.com>
- <7939f69c-bc63-4465-a578-8024e20c4eb8@intel.com>
- <aszdvyOY5zkyFTU1@bvivekan-mobl1>
- <at8_996Aarbq0_TO@black.igk.intel.com>
- <at-XhFGST5C3lFTu@ashevche-desk.local>
- <q2caxyahv532pazvrfgzartdn6433hkkz35ofwhfuizdzbd5ch@rkvjmv63kdce>
- <80e999b49fb3489a891742dc4267be740b0035c6.camel@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7752910E85D;
+	Wed,  4 Nov 2026 08:13:30 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EAC410E578;
+ Wed,  4 Nov 2026 08:13:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2019879648016313107=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <80e999b49fb3489a891742dc4267be740b0035c6.camel@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu/buddy=3A_restore_two-pa?=
+ =?utf-8?q?ss_clear/dirty_guard_for_range-biased_allocation_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arunpravin Paneer Selvam" <arunpravin.paneerselvam@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Nov 2026 08:13:29 -0000
+Message-ID: <179378000938.115294.11760307981921778625@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261104072847.2617886-1-arunpravin.paneerselvam@amd.com>
+In-Reply-To: <20261104072847.2617886-1-arunpravin.paneerselvam@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,51 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 03, 2026 at 11:43:23PM +0000, Summers, Stuart wrote:
-> On Thu, 2026-10-29 at 18:02 +0100, Bartosz Golaszewski wrote:
-> > On Mon, Oct 26, 2026 at 08:10:12PM +0200, Andy Shevchenko wrote:
-> > > > 
-> > > > The below patch actually looks more correct to me compared to the
-> > > > swnode patch above.
-> > > > 
-> > > > Andy, I'm sorry to bother you with this, but can you take a look.
-> > > 
-> > > Bart is in Cc and I believe he recently proposed some fixes against
-> > > driver
-> > > core, but I can't say now how relevant they are (at least all
-> > > keywords sounds
-> > > very similar).
-> > > 
-> > > https://lore.kernel.org/lkml/20261023-swnode-dev-notify-balance-v2-0-948d920a79f6@oss.qualcomm.com/
-> > > 
-> > > Ca you give a try and see if it resolves your issue?
-> > > 
-> >  
-> > Hi!
-> > 
-> > Sorry, I missed this thread before. This series fixes a diffent
-> > issue.
-> > I'll take a look at this one but it'll probably be a different fix.
-> > 
-> > On that note: is the swnode balancing series good to go? I haven't
-> > received any reviews.
-> > 
-> > Bart
-> 
-> I was seeing this on my side too on xe driver unbind and put a quick
-> unit test together with Claude in that reproduces if that's
-> interesting...
->
+--===============2019879648016313107==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-When the fix goes in, please consider submitting this test in an actual
-patch too.
+== Series Details ==
 
-Bart
+Series: gpu/buddy: restore two-pass clear/dirty guard for range-biased allocation (rev2)
+URL   : https://patchwork.freedesktop.org/series/177603/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-6059-d11bbfdac0f3d443b367857ffe683ae6bb80d560_BAT -> xe-pw-177603v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6059-d11bbfdac0f3d443b367857ffe683ae6bb80d560 -> xe-pw-177603v2
+
+  IGT_9177: 9177
+  xe-6059-d11bbfdac0f3d443b367857ffe683ae6bb80d560: d11bbfdac0f3d443b367857ffe683ae6bb80d560
+  xe-pw-177603v2: 177603v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177603v2/index.html
+
+--===============2019879648016313107==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>gpu/buddy: restore two-pass clear/dirty guard for range-biased allocation (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177603/">https://patchwork.freedesktop.org/series/177603/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177603v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177603v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6059-d11bbfdac0f3d443b367857ffe683ae6bb80d560_BAT -&gt; xe-pw-177603v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6059-d11bbfdac0f3d443b367857ffe683ae6bb80d560 -&gt; xe-pw-177603v2</li>
+</ul>
+<p>IGT_9177: 9177<br />
+  xe-6059-d11bbfdac0f3d443b367857ffe683ae6bb80d560: d11bbfdac0f3d443b367857ffe683ae6bb80d560<br />
+  xe-pw-177603v2: 177603v2</p>
+
+</body>
+</html>
+
+--===============2019879648016313107==--
