@@ -2,43 +2,172 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34AE0606A31B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 01:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93B6E606A31B
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Nov 2026 01:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=foUujuqq
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MmuxnoSo
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB5B110E662;
-	Wed,  4 Nov 2026 01:35:24 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F76210E662
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Nov 2026 01:35:18 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 3AECD60D83;
- Wed,  4 Nov 2026 01:35:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB5941F00A18;
- Wed,  4 Nov 2026 01:35:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793756116;
- bh=ux44AZPcWPmmoeHy9rQzaQCKkU5FUTWpVizKNG8m3EY=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=foUujuqqw+oZbkYGW9mB7WPXMigSlaH/kKNdG1mMHJOj3x5lSJ9UHqI2CwfJ1Yy8h
- nfBz0mSL8JBJ85F7LBKWclSW//mESkO+aAPJcab76b1OtlGgD6cagd9tniv6/HuiJc
- 1Zu6d8CD4DQerlAQpG4+BMH49SUvbCajqc6B3xhvgs6hICKdHp6zaRU9HhH6RQhRea
- iVpC0ogeRFT4LFjqGQSTIe3dTYTqDWBD1yHPsvBpDJ8g4SbuynovAKJx22mwXPAtAT
- k9Til1VdRqVE751wOk2Jgo0gDLsY18EWDHaN+vndUoQba8oupqquS3tuZWNORS8MzM
- x/UMa5bFkDvaw==
-Message-ID: <sashiko-outbox-196362@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 5/5] drm/xe/oa: Quiesce OA streams on driver unbind
- and PCI reset
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261104005221.3230003-12-umesh.nerlige.ramappa@intel.com>
-References: <20261104005221.3230003-7-umesh.nerlige.ramappa@intel.com>
- <20261104005221.3230003-12-umesh.nerlige.ramappa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 04 Nov 2026 01:35:16 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2295310F918;
+	Wed,  4 Nov 2026 01:35:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCFE910F8F5;
+ Wed,  4 Nov 2026 01:35:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793756132; x=1825292132;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=yyJLp4eKpWYLd/pKK0UkuFflWBwgT/HzXEXGnucQWNI=;
+ b=MmuxnoSorMRijY5Ar4h6Gb4+RO12W4T1x4MkPRs3OFOUjiUYkF1pW/c7
+ Gdmr4FyUA8U58zpdZiEL6/QOnuUvUoUM9iH+rn/eQjVdY8L6Kqni9YHl6
+ EDcph8CXB76vtk2QAxRK9gRqFN5kj2SBMBIHWd3iJzLw7l1LvkpxeKQ4F
+ G5WAK6m/QhGexdre7AFTxgnxx/ruKFOZOthGEPZun1kleqZprzTUHZOFb
+ 8RhvJwWwbSS7JW1GZ7t5M/MOdXsq4krRq63SESUilhmnLGxO9+bATZIr/
+ qiCxbb8/V202FxtEr90uh1ApF4jdsUyJN5sGsUs2ZWZLSCr+uv9kczdJO g==;
+X-CSE-ConnectionGUID: +J1jsJOvQwGK8qFZ/B1pyg==
+X-CSE-MsgGUID: uD/rKuE8So2mEo55V6cB6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11955"; a="2517837"
+X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
+   d="scan'208";a="2517837"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2026 17:35:31 -0800
+X-CSE-ConnectionGUID: Q81Yz7kbT9OpLztne4A9WQ==
+X-CSE-MsgGUID: Gmn25r1RRXOJ5XQMNy48EQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,194,1787036400"; 
+   d="scan'208";a="6911760"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2026 17:35:31 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 3 Nov 2026 17:35:30 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Tue, 3 Nov 2026 17:35:30 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.66) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 3 Nov 2026 17:35:30 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KxpIztOiMPLIm0tWkSe77DbOLNvy8WFrH9JsWUIK4APRwwIh5O20kkthU6siOKQnaoZVGJg7pa1F+Fi3H3VEw39JZfanASdNqjCTMylINPHooMDOkopr5wecnZbQynilyTrrmtLFNfo+1v3g8NQxgua7ObPUA4AoBiCuvYqJKwV2XzcS0eYrmOnokB91Zydkp8dL5vmbfas4txwEZuUZYxFaPI51s0pso41Barj0x50Ovz0wC93RRlVfWGiiuakjKEWN0OE8VE9oRrNLb7t31hH0JO1Fo0Oh/US0d3tGSkbu3n9+l+QRwPCldV1PcDf+fFRyC5xzC88dOIGK8d1P/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yyJLp4eKpWYLd/pKK0UkuFflWBwgT/HzXEXGnucQWNI=;
+ b=zDMmXADWO3QVqdi8UA8vkm1Bd/pL20Lhbx42xl6BcuNcOKMWxaKMT15+3tTMDqBAaY3HwUtkyqvXlCOObth8tNEMK1OcLRzrUMmWGapwij9KA1m4QH/x/vrOhOnpP4ChNfRc3JtyDILc/vYo7wDxTHG602H9u/fJEbs7tURybmWfUSf+vje0vtixRNxWNhQ32KHpdANzwO6rvvBvG7aBq2sotzeqbIVuDTgB8LjhVNiI5MLseajxx8n85bfbm21s5r5yXCPilJcjIhwo67TYu1cnuXWrX96f7M2B4X5fR37ZFBFpQ7ujg2yZrDqrxTT2DS75klgCE+dIVosTBOQUHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB8134.namprd11.prod.outlook.com (2603:10b6:8:15a::9) by
+ PH7PR11MB6907.namprd11.prod.outlook.com (2603:10b6:510:203::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.569.12; Wed, 4 Nov
+ 2026 01:35:27 +0000
+Received: from DS0PR11MB8134.namprd11.prod.outlook.com
+ ([fe80::d95d:cb19:df8f:1610]) by DS0PR11MB8134.namprd11.prod.outlook.com
+ ([fe80::d95d:cb19:df8f:1610%6]) with mapi id 15.21.0592.007; Wed, 4 Nov 2026
+ 01:35:26 +0000
+From: "Chang, Junxiao" <junxiao.chang@intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, "jani.nikula@linux.intel.com"
+ <jani.nikula@linux.intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "Brost, Matthew" <matthew.brost@intel.com>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>, 
+ "bigeasy@linutronix.de" <bigeasy@linutronix.de>, "clrkwllms@kernel.org"
+ <clrkwllms@kernel.org>, "rostedt@goodmis.org" <rostedt@goodmis.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-rt-devel@lists.linux.dev" <linux-rt-devel@lists.linux.dev>
+Subject: RE: [PATCH 1/2] drm/xe/display: Skip initial plane allocation from
+ stolen memory on RT
+Thread-Topic: [PATCH 1/2] drm/xe/display: Skip initial plane allocation from
+ stolen memory on RT
+Thread-Index: AQHda0Q7lDfsqfAqaUi6ti4zRu9aNLccKkKAgAD3WpA=
+Date: Wed, 4 Nov 2026 01:35:26 +0000
+Message-ID: <DS0PR11MB81344F9A6B315D482BE659CEEC682@DS0PR11MB8134.namprd11.prod.outlook.com>
+References: <20261104032732.30681-1-junxiao.chang@intel.com>
+ <20261104032732.30681-2-junxiao.chang@intel.com>
+ <65fae402-e053-4a4f-ba55-6b5b51690eba@lankhorst.se>
+In-Reply-To: <65fae402-e053-4a4f-ba55-6b5b51690eba@lankhorst.se>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB8134:EE_|PH7PR11MB6907:EE_
+x-ms-office365-filtering-correlation-id: 294e1d5e-f570-4004-dc9b-08df3a13e716
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|7416014|366016|376014|1800799024|23010399003|22082099003|18002099003|261102123227099003|56012099006|10067099003|921020|261021121427099003|261022075727099003|4143699003|11063799006|38070700021|261026121527099003;
+x-microsoft-antispam-message-info: RFY0+26eDhJiGjGjZTv9FAgvC4YbuIU5Y30f5o8MWygfZdR25WlpH8vIgC4J+Y+VD76tpUziM9/DHFp/V2842RDK5jifZqoAREqhPZNzHqRiogNRei2OAwBRqLnLqfwwNFS9QV/eDmJPXhrjaQ+jKOROXRkiCaBaUBDj9WlJgvXhwGld01h0WQKLEyf6FZQD+dC7m+4fq4g77TJBDXOTeqz3WVyHZ+JAa7krS/Io0Tu7CKWK5XlNdyPwOLc2jyI1l57ImkKqz9ndnaENacDnb0aj5TrqVMufhLbKaErvNcUdS8HN2Q/aRHQe/5eSnveI7R/IvBaEiILVfoQJQIbc5QWgzPBd+F/HGLQQD9PdtEYDX4bQ18eErxoTX3bdAKM+KDrojomS3YNyIbmEm69eSLOHEg3ev0sp/CxvNwyUVTzBxXHDK321dByOHS+y22skwQwO/AAr7ojUcFl6WUKdbqH3I3+JJynuZiGmhKTF6QS9TFcCa5KNzOSBhpu2O0KCey7TyLY3ELqjFBHP2tB4cGnwEi6kWyZJJoBCxudFupOXhR+8BNgZwK/VEtyAi3usp3AblDD0GYV9pduDsH0aDyA5rN8mSmxO/fF6X8d1RPXDnHVyaUoat7uw+nk1diS8GdCsvfdGRx/bePMNUx+BUsGa0pzcX3tH/3dqWdbBZNKpHOvvkmcJL9xaKQLD8V4H
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8134.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(366016)(376014)(1800799024)(23010399003)(22082099003)(18002099003)(261102123227099003)(56012099006)(10067099003)(921020)(261021121427099003)(261022075727099003)(4143699003)(11063799006)(38070700021)(261026121527099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MnpUNmRGaU8yaUlUSGV3YjMxaFNERlRVM2RZNWxtSmJ1VGhDNHcwcW9iT0p3?=
+ =?utf-8?B?YXJ0cVRidThPVDhLYmE1WmlzSUxsa2hieGRKZFNlVFo2cFlnWHB0c0hrMjdE?=
+ =?utf-8?B?MVFZdm9YU3VOQTlVVlJ1ZHlNSUV3eURUYzBGbzNWeW1OT2h4RXhGN3ZybjFu?=
+ =?utf-8?B?clB3QzNQc210djNKak9XT2RrOWd1UDE4S3VxNDU1QVhwZGZNa2RrMEdFaGVE?=
+ =?utf-8?B?dE9PZkt1OVJhMmlocmd2WUtVVG13RkhUN3l1RDgvUkNPTGFHTlpaL1FWWWt5?=
+ =?utf-8?B?cFk5UkxtcW5uWG12Y3JUSklFUXExNThpUHdpa1BPa25nOW5EQnBPWHJYc0F0?=
+ =?utf-8?B?bFR5cnRNVTRuSVdpQlEvZXJ2MGFZUnN3SUlQb25qZTZOTHlaYXV6UnRVMVRP?=
+ =?utf-8?B?a3VCT3JES0Q4clg2NU9FSHNpbUpYRXpjbWxmdWV1ZmFVLzU0Qk5SNHNydHZa?=
+ =?utf-8?B?WTVDQ2ZwSVdiWE40L0RuZ1IxQ0x3b1hXUm5CRUxPeU92bFVvYWxXNUVPeWpn?=
+ =?utf-8?B?bzhMWG5nV2ZUK2tIL0YrUWhKVHRDQTRaMFlUR0xvc3gzUTM5bkpWeUh0WEZl?=
+ =?utf-8?B?QTl1N3pXbVZuYkRZVGsycURGQUgvV3Nnb3R1S2h5Sjk4WEgrZUZQdm02cVN1?=
+ =?utf-8?B?NHFOMjNLQnBlRVdydmdKQkthYnJSVjhqQmpUWnlESTkxdEFmdmdqK29GWWk3?=
+ =?utf-8?B?d25aL0RoN3hMWTlFVmhSdDM4RitwWThidjhKbmdUamN5bjNGNy9kYzFnekJh?=
+ =?utf-8?B?UWNFalk1c3ZJR0dkTTMzRzQ3V205N0lvS0ZxK1NCdXpJdkkzL0dDUUh6TWxY?=
+ =?utf-8?B?aXBzWjlna2hKNGpCaGE0NTBSekVpdWpuTXhKclVoSFlUUDFCdjhZc2E2MjZO?=
+ =?utf-8?B?MEJ4N2FSN1pxcGM1YTFCMkw1dmFyQTFPTVo3QjlHNjVLSXBGRklnY2ZHUTJu?=
+ =?utf-8?B?SDBWaGtUSDZxZmpaYUxZcnhQTEJ4M0RQU1NzdnhlS0ZJZnhHWitzUFRVTG9n?=
+ =?utf-8?B?NXRFUmRyNldRdWYvVW1MZFpIY3duQk1UR3VzUjI4NEZoeGxabHpOQkRQcWJj?=
+ =?utf-8?B?cGxrT0VsSSt2NnNvK1lVc0NTdkM1dE5RNUFPcjRNSFU2VWhwaUxQcnJYeE1t?=
+ =?utf-8?B?VFk2M0loc1FsK2pMV3lDajFzSlNCREZqUHRNSTZzMXlIWjFNQ1Y4SGMwWVFC?=
+ =?utf-8?B?Y2Q3RUJtOFhUY09JaEF3b3h2RzN2dUdHSVI4ZzRuN3FJMzZIL0lSTkc0MFBP?=
+ =?utf-8?B?MWpNSnJhdThNa1gxNExmbXhOTkdMZ05yT0JlKzh4Q1NhN0VwY1k4cS94UkpT?=
+ =?utf-8?B?UHA0QTN4a2k2OGJDR09iWS9qbXhkK21mQ1dpRk9BYjYvR2JuWHpvdTFIQmlJ?=
+ =?utf-8?B?RGI5d0FnZEEycXdFcEFyWTh4VDgyMytOT1FkWmtuMWNURFcwYnhuRjlwQlcw?=
+ =?utf-8?B?eUw1ZVVPZHExTVhZMHdJRDRsRnNTMEplZlUyTmJ2UTgyUi8rRytJY3RYZ0hE?=
+ =?utf-8?B?QllMWmNxZ0xGbkVpNDUxSVVHZzBnZWdISjB2TytRNWhYYTNsMFEyS0dSTXJi?=
+ =?utf-8?B?QmF3dkVrZTN2djFyM3V5a2QwMzUvWmdCZTQwVzRzbEVLaUR4eWxKbit6WlY0?=
+ =?utf-8?B?UmFERHlLUE81VWU2RXM0ZFBicGhNay9GdzRTUVNIQ09aUGpyYi9rakJNUmNJ?=
+ =?utf-8?B?TnlDWVpUTXYrZ1VQYkRVUWZxYmx5ek0zQW55aTIxelVRcGJHNEZuSUFQZHdy?=
+ =?utf-8?B?TUloc0FZWWRKMzBqSUJQK1FFV0xiN21oQnhBQUxPRDcwUi91WW96YVZDK0Vt?=
+ =?utf-8?B?UVJKUmtFWEZsbjNYTndBNnFQS05Ha2JVSHhERU9rekwwckx6ZjdBVUYvYlMz?=
+ =?utf-8?B?eW1VRTBhRTEwUzdxeEpoY0tlTzFlYXJOWHVKV0Zzd0EyZXRsNTlZcUV2WGJ1?=
+ =?utf-8?B?ZXU3dlFYR1dqdm9OcnJTT1FEaGVWdjUvRisvTUhFdHo5eXRjWFRXcnBEUEkv?=
+ =?utf-8?B?S0x3WHhEbkxZZjBYM3FFdUtwR0pRcW85NCtvS0pZSGxoMGF5Mnlabmg4M25p?=
+ =?utf-8?B?Z1NrUTM0UWRhNXRZbFBPUGMyQXYzV1NTSFVJZWI2Smx0VktWYzVyWitWckVJ?=
+ =?utf-8?B?eWdBZURaQ25YRzI2S3NsZ2IwYzQwaEZFOEo1dWpNdVNBTDhmSHFrQ1h1Nk8v?=
+ =?utf-8?B?bU5yTmluN214R1k4ZFI2cndJR2FxK2phN0JjNHJmTGJ6S0dQUGJhSTE4T3Bk?=
+ =?utf-8?B?czhNVC9vdVNyU29HL1FDUUdVVWo4dllKTGlsYWt2UEdQY1pIREJIaUlOYTR0?=
+ =?utf-8?B?aTdBdTBuYzk0RTlRanIwVnpodndBTTdHR1psdE1vaGp6dFpHdHgyZz09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: FsWlRkavgmkEQxitNCrTcXhsxtBC31+pOJypiLOQyQGOX2GmIIMD6lE54ivQrTZML0OSkWokUwIPpQlZUvnpW2L1Utxd7t5rJcSkEWWggVTNlw1X7nkoN/G5EvIxLcoH/AWR9E9gQg5qdgeegVj9ss5Ux9QqrEOSU2l94oXNGGDGJ0+0i9KWKwOLvJiPqLlskWtNctXRUtH6JuRA1QXExZV/w3PT2k/5yiiTVtzhfI7NlfuTtAkOvQKGJUIbS/RsjTBszThajgFOB+yQptKTiI66KlXGPAQI6iXxiGZc/09vtd5eSuzbhia2zMYnMoH8+mt6H+fdkE8qf/SKqrAuPw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8134.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 294e1d5e-f570-4004-dc9b-08df3a13e716
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Nov 2026 01:35:26.5544 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Iaiy8RunopXEzlXozs9dsd5t5zH61PuqOSAsq4aC3mIvSCNooyUVGhESKoNP6t5SGt0MkRRZ1Mrl89CAvxDNEA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6907
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,283 +177,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] drm/xe/oa: incomplete teardown when xe_oa_release() precedes xe_oa=
-_quiesce()
-- [High] drm/xe/oa: missing wait on stream->last_fence in xe_oa_quiesce_oa_=
-unit()
-- [Medium] drm/xe/oa: incomplete LRI batch drain on user exec_q in xe_oa_lo=
-ad_with_lri()
---
-
-commit 3662190fcd57d2e4b3bb172dd837ebb9aa4e7e39
-Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-
-drm/xe/oa: Quiesce OA streams on driver unbind and PCI reset
-
-This commit introduces xe_oa_quiesce() called from xe_oa_fini() to clean up
-active OA streams during driver unbind or PCI reset while keeping the
-stream structure alive until the file descriptor is closed. It also wraps
-OA mmap and observation ioctls in drm_dev_enter() sections.
-
-> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> index 7a151f338ae25..b4ba8874f17eb 100644
-> --- a/drivers/gpu/drm/xe/xe_oa.c
-> +++ b/drivers/gpu/drm/xe/xe_oa.c
-
-[ ... ]
-
-> @@ -752,6 +775,20 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *=
-stream, struct xe_oa_reg *re
->  		goto free_bb;
->  	}
->  	xe_bb_free(bb, fence);
-> +
-> +	/*
-> +	 * When quiescing the stream, GuC submission and the fence irqs are tor=
-n down right
-> +	 * after, so wait for the batch. It may be queued behind other jobs of =
-the exec queue,
-> +	 * which complete or get reset within the job timeout.
-> +	 */
-> +	if (READ_ONCE(stream->dead)) {
-> +		struct xe_exec_queue *q =3D stream->exec_q ?: stream->k_exec_q;
-> +		long timeout =3D msecs_to_jiffies(q->sched_props.job_timeout_ms) + HZ;
-> +
-> +		if (!dma_fence_wait_timeout(fence, false, timeout))
-> +			drm_err(&stream->oa->xe->drm,
-> +				"Timed out waiting for OA LRI batch on quiesce\n");
-> +	}
->  	dma_fence_put(fence);
-> =20
->  	return 0;
-
-[Severity: Medium]
-As reported by Sashiko on v3 [1], when a stream is attached to a user
-stream->exec_q in drivers/gpu/drm/xe/xe_oa.c:xe_oa_load_with_lri(), is
-waiting for q->sched_props.job_timeout_ms + HZ sufficient to guarantee the
-LRI teardown batch completes before GuC submission and fence IRQs are torn
-down?
-
-When xe_device_remove() -> xe_oa_fini() -> xe_oa_quiesce() ->
-xe_oa_quiesce_oa_unit() -> xe_oa_stream_hw_teardown() ->
-xe_oa_disable_metric_set() -> xe_oa_configure_oa_context() ->
-xe_oa_load_with_lri() submits to a user stream->exec_q, it looks like
-dma_fence_wait_timeout() can time out in three situations:
-
-1. If stream->exec_q belongs to a preempt-fence (LR mode) VM,
-xe_bo_pci_dev_remove_all() evicts the VM's BOs after drm_dev_unplug() and
-suspends stream->exec_q via __guc_exec_queue_process_msg_suspend(). If the
-queue was idle when preempt_rebind_work_func() ran,
-vm->preempt.rebind_deactivated is set and xe_oa_submit_bb() does not call
-xe_vm_reactivate_rebind(), so submit_exec_queue() returns early on
-exec_queue_suspended(q) without submitting the LRI batch to GuC while the
-scheduler timeout is MAX_SCHEDULE_TIMEOUT.
-
-2. If an earlier user job on stream->exec_q->entity is blocked on an
-unsignaled input dependency in drm_sched_entity_pop_job(), the LRI job
-queued behind it never enters sched->pending_list or starts its timeout
-timer.
-
-3. If a prior user job on stream->exec_q times out after drm_dev_unplug(),
-guc_exec_queue_timedout_job() takes the !drm_dev_enter() path:
-
-drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_timedout_job() {
-	if (!drm_dev_enter(&xe->drm, &idx)) {
-		xe_sched_job_set_error(job, -ENODEV);
-		return DRM_GPU_SCHED_STAT_NO_HANG;
-	}
-}
-
-Because that only errors the single head job without disabling scheduling or
-canceling subsequent jobs, the OA LRI job behind it requires another full
-job_timeout_ms cycle.
-
-When dma_fence_wait_timeout() times out here, won't the LRI batch's
-xe_hw_fence remain on gt->fence_irq[i].pending and trigger
-XE_WARN_ON(!list_empty(&irq->pending)) in xe_hw_fence_irq_finish() during
-xe_gt_fini()?
-
-[ ... ]
-
-> @@ -1691,6 +1731,12 @@ static long xe_oa_ioctl(struct file *file,
-> =20
->  static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
->  {
-> +	if (stream->dead) {
-> +		mutex_destroy(&stream->stream_lock);
-> +		kfree(stream);
-> +		return;
-> +	}
-> +
->  	xe_pm_runtime_get(gt_to_xe(stream->gt));
-> =20
->  	if (stream->enabled)
-
-[Severity: High]
-What happens if userspace closes the OA stream file descriptor (or the
-process exits) after xe_device_remove() or xe_wedge_declare() has started,
-but before the devm callback xe_oa_fini() -> xe_oa_quiesce_gt() acquires
-gt->oa.gt_lock?
-
-In that window, xe_oa_release() -> xe_oa_destroy_locked() in
-drivers/gpu/drm/xe/xe_oa.c sees stream->dead =3D=3D false and runs the norm=
-al
-teardown path:
-
-1. In xe_oa_destroy_locked() -> xe_oa_stream_destroy() ->
-xe_oa_stream_hw_teardown() -> xe_oa_disable_metric_set() ->
-xe_oa_configure_oa_context() -> xe_oa_load_with_lri(), READ_ONCE(stream->de=
-ad)
-is false, so xe_oa_load_with_lri() does not wait for the submitted LRI
-batch fence. Because xe_oa_stream_destroy() also clears u->exclusive_stream
-to NULL, xe_oa_quiesce_oa_unit() sees !stream and returns immediately,
-allowing guc_submit_fini() and xe_gt_fini() -> xe_hw_fence_irq_finish() to
-run while the LRI batch fence is still pending on gt->fence_irq[i].pending.
-
-2. If the device is wedged (including after prepare_device_for_reset() has
-called pci_disable_device()), xe_oa_destroy_locked() does not check
-xe_wedged(xe) and still calls xe_oa_disable_locked() and
-xe_oa_stream_hw_teardown(), performing MMIO accesses and LRI batch
-submissions against a wedged or disabled device.
-
-3. If xe_oa_destroy_locked() runs after xe_bo_pci_dev_remove_all(),
-xe_oa_free_oa_buffer() calls xe_bo_unpin_map_no_vm(stream->oa_buffer.bo)
-without calling xe_bo_dma_unmap_pinned(). Since xe_bo_unpin() removes the
-BO from xe->pinned.early.kernel_bo_present, if an mmap VMA still holds a BO
-reference or ttm_bo_release() defers cleanup to bdev->wq,
-xe_bo_pinned_fini() will not unmap its DMA mapping before devres release
-completes.
-
-Should xe_oa_destroy_locked() also handle the unplugged and wedged cases
-(unmapping the pinned OA BO DMA, skipping HW access when wedged, and
-waiting for any in-flight LRI fences when unplugged)?
-
-[ ... ]
-
-> @@ -2575,6 +2643,92 @@ static void xe_oa_unregister(void *arg)
->  	oa->metrics_kobj =3D NULL;
->  }
-> =20
-> +static void xe_oa_quiesce_oa_unit(struct xe_oa_unit *u, bool hw_accessib=
-le)
-> +{
-> +	struct xe_oa_stream *stream =3D u->exclusive_stream;
-> +	unsigned long flags;
-> +
-> +	if (!stream)
-> +		return;
-> +
-> +	mutex_lock(&stream->stream_lock);
-> +	if (stream->enabled && hw_accessible)
-> +		xe_oa_disable_locked(stream);
-> +
-> +	stream->enabled =3D false;
-> +
-> +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
-> +	WRITE_ONCE(stream->dead, true);
-> +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
-> +
-> +	if (stream->sample)
-> +		hrtimer_cancel(&stream->poll_check_timer);
-> +
-> +	wake_up_all(&stream->poll_wq);
-> +
-> +	/*
-> +	 * Restore the HW state while the stream still holds its runtime PM ref=
- and exec_q.
-> +	 * The device is not reset on unbind, so this can't be left to a later =
-reset.
-> +	 */
-> +	if (hw_accessible)
-> +		xe_oa_stream_hw_teardown(stream);
-> +
-> +	/*
-> +	 * drm_dev_unplug() has already zapped the userspace mappings of the OA=
- buffer and
-> +	 * refaults get a dummy page, so the OA buffer can go. Each vma holds a=
- reference on
-> +	 * the BO, keeping the BO object itself alive until munmap. The BO is t=
-hen no longer
-> +	 * pinned when xe_bo_pinned_fini() DMA-unmaps the other kernel BOs, so =
-drop its DMA
-> +	 * mapping here, while it is still pinned.
-> +	 */
-> +	xe_bo_dma_unmap_pinned(stream->oa_buffer.bo);
-> +	xe_oa_stream_free_resources(stream);
-> +	if (stream->exec_q) {
-> +		xe_exec_queue_put(stream->exec_q);
-> +		stream->exec_q =3D NULL;
-> +	}
-> +	drm_syncobj_put(stream->ufence_syncobj);
-> +
-> +	WRITE_ONCE(u->exclusive_stream, NULL);
-> +	mutex_unlock(&stream->stream_lock);
-> +}
-
-[Severity: High]
-Does xe_oa_quiesce_oa_unit() in drivers/gpu/drm/xe/xe_oa.c also need to
-wait for or cancel stream->last_fence before tearing down hardware state
-and freeing stream resources?
-
-When userspace opens an OA stream (DRM_XE_OBSERVATION_OP_STREAM_OPEN) or
-reconfigures it (DRM_XE_OBSERVATION_IOCTL_CONFIG) with output syncs
-(num_signal > 0), xe_oa_emit_oa_config() submits oa_bo->bb via
-xe_oa_submit_bb(stream, XE_OA_SUBMIT_ADD_DEPS, oa_bo->bb), records the job
-fence in stream->last_fence via xe_oa_update_last_fence(), and returns
-without waiting:
-
-drivers/gpu/drm/xe/xe_oa.c:xe_oa_emit_oa_config() {
-	/* Update last fence too before adding callback */
-	xe_oa_update_last_fence(stream, fence);
-	...
-	/* If nothing needs to be signaled we wait synchronously */
-	if (!num_signal) {
-		dma_fence_wait(&ofence->base, false);
-		dma_fence_put(&ofence->base);
-	}
-}
-
-If xe_oa_fini() -> xe_oa_quiesce() -> xe_oa_quiesce_oa_unit() runs while
-stream->last_fence is still unsignaled:
-
-1. For streams without stream->exec_q (where batches run on
-stream->k_exec_q), streams on video engines where
-xe_oa_configure_oa_context() is a no-op, or when hw_accessible is false,
-xe_oa_load_with_lri() is never called. Neither xe_oa_quiesce_oa_unit() nor
-xe_oa_free_configs() waits for stream->last_fence.
-
-2. The in-flight oa_bo->bb LRI batch on stream->k_exec_q can execute on the
-GPU during or after xe_oa_stream_hw_teardown(), overwriting OA/NOA
-registers after xe_oa_disable_metric_set() has cleared them and after
-xe_force_wake_put() has dropped stream->fw_ref.
-
-3. When devres subsequently runs guc_submit_fini() and xe_gt_fini() ->
-xe_hw_fence_irq_finish(), an in-flight config batch job on
-sched->pending_list still has its xe_hw_fence on gt->fence_irq[i].pending,
-triggering XE_WARN_ON(!list_empty(&irq->pending)). Moreover, if that config
-batch job is still queued in q->entity waiting on an unsignaled input sync
-dependency from stream->syncs, the job holds a reference on the queue (so
-xe_exec_queue_put() in xe_oa_stream_free_resources() does not run
-xe_exec_queue_destroy() / drm_sched_entity_fini()), while
-sched->pending_list is empty so xe_guc_submit_pause_abort() does not run
-TDR, leaking the scheduler job, suballocation, xe_exec_queue, and
-drm_device reference.
-
-[1] https://lore.kernel.org/r/20261030233839.2284694-8-umesh.nerlige.ramapp=
-a@intel.com
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261104005221.3230=
-003-7-umesh.nerlige.ramappa@intel.com?part=3D5
+PkZyb206IE1hYXJ0ZW4gTGFua2hvcnN0IDxkZXZAbGFua2hvcnN0LnNlPg0KPg0KPkhleSwNCj4N
+Cj5JcyBhIHNpbmdsZSBwZXJmb3JtYW5jZSBoaXQgZHVyaW5nIGJvb3QgYWxsb3dlZD8NCj5JZiBz
+bywgdGhpcyBpcyBhIGJldHRlciBzb2x1dGlvbiwgYXMgaXQgaGVscHMgb24gIVBSRUVNUFRfUlQg
+YXMgd2VsbDoNCj4NCj5odHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzE3
+MDc1OS8NCj4NCj5UaGUgZmlyc3QgcGF0Y2ggaW4gdGhhdCBzZXJpZXMgaXMgYSBiZXR0ZXIgc29s
+dXRpb24gdGhhbiB1bmNvbmRpdGlvbmFsbHkgZGlzYWJsaW5nDQo+c3RvbGVuIG1lbW9yeSwgYXMg
+SSBmcm9tIHdoYXQgSSB1bmRlcnN0YW5kIHRoZSBwcm9ibGVtIG9ubHkgZXhpc3RzIHdoZW4gbWVk
+aWENCj5ndCBpcyBlbmFibGVkLg0KPg0KPklmIG5vdCwgd2Ugc2hvdWxkIHByb2JhYmx5IHVuY29u
+ZGl0aW9uYWxseSBkaXNhYmxlIHN0b2xlbiBmcmFtZWJ1ZmZlciBhbGwgdGhlIHRpbWUuDQo+DQo+
+QnV0IHdpdGggdGhlIHNlcmllcywgd2UgcHJlc2VydmUgdGhlIGluaXRpYWwgZnJhbWVidWZmZXIg
+Y29udGVudHMgYW5kIGVuc3VyZSBhDQo+c21vb3RoIGhhbmRvdmVyLCBldmVuIHdpdGhvdXQgc3Rv
+bGVuLg0KDQoNClRoYW5rcyBmb3IgdGhlIHJldmlldy4NCg0KWW91ciBzb2x1dGlvbiBtYWtlcyBz
+ZW5zZSB0byBtZS4gSXQgYWRkcmVzc2VzIHRoZSBpc3N1ZSB3aXRob3V0IGRpc2FibGluZyBzdG9s
+ZW4gbWVtb3J5IGdsb2JhbGx5IGFuZCBwcm92aWRlcyBiZW5lZml0cyBiZXlvbmQgUFJFRU1QVF9S
+VCBhcyB3ZWxsLiBJJ2xsIGhvbGQgb2ZmIG9uIGZ1cnRoZXIgY2hhbmdlcyBmb3Igbm93IGFuZCBm
+b2xsb3cgdXAgb25jZSB0aGlzIHNlcmllcyBoYXMgYmVlbiBtZXJnZWQuDQoNCj4NCj5UaGUgd2Fy
+bmluZyBpbiAyLzIgaXMgcHJvYmFibHkgZmluZS4NCj4NCj5LaW5kIHJlZ2FyZHMsDQo+fk1hYXJ0
+ZW4gTGFua2hvcnN0DQo+DQo=
