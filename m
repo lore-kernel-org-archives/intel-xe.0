@@ -2,51 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA502606A328
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28FA3606A31B
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XQl0Vttu
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XoAw7LmB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D831112487;
-	Thu,  5 Nov 2026 14:36:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4160112418;
+	Thu,  5 Nov 2026 14:36:10 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C53F112487
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 14:35:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5670112418
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 14:36:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793889360; x=1825425360;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aL3gcZvWVMBoB276TgO9u/Zzpvr9b/We64OJG1yB6fE=;
- b=XQl0VttuSNABOfc+GTrKoJv++4/j20zxmGylOv76JXGNQS2eddiL8D5Y
- OLoXTw1gCgLTj5CLvTyAqfTlI2an9eIArJ7JE9MatWmVgq56Irl1u6yld
- jhsIK+mDkETVS/PtOY/rFA474htSKHBVGSn3xHOoDICPC9VmKw5cL7ZrI
- L5776e48CJKHKz/6LddvkSEPLSif8pW0P/BwkzHgSi1i8sNykb7d8dt4a
- YOKlmuX4xABDa5QBCC/lURyuLLMbHR3Hn5bDVeR8NZbuwOlLn0LjjmUil
- OZbM7xJJf3bL59eer5YUbhS3IodQYO6YVBTF6gDbBMT6Os/Zt6YqbUUI5 A==;
-X-CSE-ConnectionGUID: F+iZgWsES+Ku46IR1CxKUg==
-X-CSE-MsgGUID: eeY/qTTOSGiegg713iVQVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2778575"
+ t=1793889365; x=1825425365;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=08A+2wksLXorACzO+/OC20vD+IWzI5RwkvJYDJ1nAOM=;
+ b=XoAw7LmB2uJSsi/by0P6w6DmptmcEps0zrR0xEQRZumYCzK+mlD4oyKJ
+ +Yiq3hBZPqrYtdJVIHDLUaRrBvZ1c6Q/UqmKUHAFdqm3YAPJFX8DM+ZU7
+ JZXNlRJeIuQvCwzxXw0glI+3x//d40sx93Un5xBMe8cFvIqxFnIsy7v/E
+ Riy5qEI5STt7i4UaIZQfC0SxXBj0Go6j+TUAH+1JuP4C5d4gPnIrImA7p
+ UP1bHzq6hiWuuJ9HzTVapG1K2QrDXs2yn297XEigVgDXI5BU9/pg9w6cF
+ HIrjXE0Z2hPdNj3i6boNV6jSwzDm2cFdwU7LABEWkmfjb+veCF3F8sHUl g==;
+X-CSE-ConnectionGUID: Mk3Y/LBSQjOrOurTUv0/Jg==
+X-CSE-MsgGUID: RnZt/JDSSuujhW6QkiVhuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2778577"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2778575"
+   d="scan'208";a="2778577"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 06:36:00 -0800
-X-CSE-ConnectionGUID: wb6TD0UwT526wwwM84kg4Q==
-X-CSE-MsgGUID: Dol3HAllTJqxmPjjMD7SNA==
+ 05 Nov 2026 06:36:01 -0800
+X-CSE-ConnectionGUID: BCqXzCDKQE+P5jpNKTJwOw==
+X-CSE-MsgGUID: WmZyL3UtRjabnmHaRuqmhg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7145130"
+   d="scan'208";a="7145134"
 Received: from amilburn-desk.amilburn-desk (HELO mwauld-desk.intel.com)
  ([10.245.244.225])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 06:35:59 -0800
+ 05 Nov 2026 06:36:00 -0800
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [CI 1/2] drm/xe: only evict CCS buffers from TT on iGPU
-Date: Thu,  5 Nov 2026 14:35:48 +0000
-Message-ID: <20261105143547.1089207-3-matthew.auld@intel.com>
+Subject: [CI 2/2] drm/xe/pm: skip BO eviction on iGPU for non-hibernation sleep
+Date: Thu,  5 Nov 2026 14:35:49 +0000
+Message-ID: <20261105143547.1089207-4-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261105143547.1089207-3-matthew.auld@intel.com>
+References: <20261105143547.1089207-3-matthew.auld@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -67,116 +69,145 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On iGPU platforms with Flat CCS, xe_bo_evict_all_user() currently calls
-ttm_resource_manager_evict_all() on XE_PL_TT, evicting every buffer in
-TT even if it does not use Flat CCS compression.
+On iGPU platforms, system RAM and graphics stolen memory remain powered
+during S2idle and S3 (< S4) suspend, so evicting user buffers or
+preparing pinned BOs is unnecessary and needlessly purges DONTNEED
+buffers in userspace caches.
 
-Walk the XE_PL_TT LRU using ttm_bo_lru_for_each_reserved_guarded() and
-only evict buffers with initialised CCS state (or purge them if marked
-DONTNEED), leaving non-CCS buffers in place.
+Distinguish S4 hibernation (.freeze and PM_HIBERNATION_PREPARE) from
+< S4 suspend (.suspend and PM_SUSPEND_PREPARE), and skip BO eviction on
+iGPU when not creating a hibernation image.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo_evict.c | 64 +++++++++++++++++++++++++++-----
- 1 file changed, 54 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 21 ++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_pm.c  | 25 +++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_pm.h  |  2 +-
+ 3 files changed, 38 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 7661fca7f278..1f95769c4a56 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -5,6 +5,8 @@
- 
- #include "xe_bo_evict.h"
- 
-+#include <drm/ttm/ttm_bo.h>
-+
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_ggtt.h"
-@@ -104,8 +106,46 @@ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe)
- 				    xe_bo_notifier_unprepare_pinned);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index ba23ec60477b..67be6e707361 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1335,7 +1335,7 @@ static void d3cold_toggle(struct pci_dev *pdev, enum toggle_d3cold toggle)
+ 	}
  }
  
-+static int xe_bo_evict_all_ccs(struct ttm_resource_manager *man)
+-static int xe_pci_suspend(struct device *dev)
++static int __xe_pci_suspend(struct device *dev, bool hibernate)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+ 	struct xe_device *xe = pdev_to_xe_device(pdev);
+@@ -1344,7 +1344,7 @@ static int xe_pci_suspend(struct device *dev)
+ 	if (xe_survivability_mode_is_boot_enabled(xe))
+ 		return -EBUSY;
+ 
+-	err = xe_pm_suspend(xe);
++	err = xe_pm_suspend(xe, hibernate);
+ 	if (err)
+ 		return err;
+ 
+@@ -1362,6 +1362,16 @@ static int xe_pci_suspend(struct device *dev)
+ 	return 0;
+ }
+ 
++static int xe_pci_suspend(struct device *dev)
 +{
-+	struct ttm_operation_ctx ctx = {
-+		.interruptible = false,
-+		.no_wait_gpu = false,
-+	};
-+	struct ttm_lru_walk_arg arg = {
-+		.ctx = &ctx,
-+		.sleeping_lock = true,
-+	};
-+	struct ttm_bo_lru_cursor cursor;
-+	struct ttm_buffer_object *ttm_bo;
-+	int ret = 0;
++	return __xe_pci_suspend(dev, false);
++}
 +
-+	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &arg, ttm_bo) {
-+		struct xe_bo *bo;
++static int xe_pci_freeze(struct device *dev)
++{
++	return __xe_pci_suspend(dev, true);
++}
 +
-+		if (!xe_bo_is_xe_bo(ttm_bo) || ttm_bo->deleted)
-+			continue;
-+
-+		bo = ttm_to_xe_bo(ttm_bo);
-+		if (xe_bo_is_pinned(bo) || !xe_bo_needs_ccs_pages(bo) ||
-+		    !bo->ccs_cleared)
-+			continue;
-+
-+		if (xe_bo_madv_is_dontneed(bo))
-+			ret = xe_ttm_bo_purge(ttm_bo, &ctx);
-+		else
-+			ret = xe_bo_evict(bo, NULL);
-+		if (ret)
-+			break;
-+	}
-+	if (IS_ERR(ttm_bo))
-+		return PTR_ERR(ttm_bo);
-+
-+	return ret;
+ static int xe_pci_resume(struct device *dev)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(dev);
+@@ -1491,7 +1501,12 @@ static int xe_pci_runtime_idle(struct device *dev)
+ }
+ 
+ static const struct dev_pm_ops xe_pm_ops = {
+-	SET_SYSTEM_SLEEP_PM_OPS(xe_pci_suspend, xe_pci_resume)
++	.suspend = pm_sleep_ptr(xe_pci_suspend),
++	.resume = pm_sleep_ptr(xe_pci_resume),
++	.freeze = pm_sleep_ptr(xe_pci_freeze),
++	.thaw = pm_sleep_ptr(xe_pci_resume),
++	.poweroff = pm_sleep_ptr(xe_pci_suspend),
++	.restore = pm_sleep_ptr(xe_pci_resume),
+ 	SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+ };
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index f483b565d323..a24424b0d1dd 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -166,13 +166,19 @@ static void xe_rpm_lockmap_release(const struct xe_device *xe)
+ 			 &xe_pm_runtime_d3cold_map);
+ }
+ 
++static bool xe_pm_needs_bo_evict(struct xe_device *xe, bool hibernate)
++{
++	return IS_DGFX(xe) || hibernate;
 +}
 +
  /**
-- * xe_bo_evict_all_user - evict all non-pinned user BOs from VRAM
-+ * xe_bo_evict_all_user - evict all non-pinned user BOs from VRAM (and CCS in TT)
-  * @xe: xe device
+- * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle
++ * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle / S0->S4
+  * @xe: xe device instance
++ * @hibernate: true if preparing for S4 hibernation, false for < S4 suspend
   *
-  * Evict non-pinned user BOs (via GPU).
-@@ -123,22 +163,26 @@ int xe_bo_evict_all_user(struct xe_device *xe)
- 		struct ttm_resource_manager *man =
- 			ttm_manager_type(bdev, mem_type);
+  * Return: 0 on success
+  */
+-int xe_pm_suspend(struct xe_device *xe)
++int xe_pm_suspend(struct xe_device *xe, bool hibernate)
+ {
+ 	struct xe_gt *gt;
+ 	u8 id;
+@@ -193,10 +199,12 @@ int xe_pm_suspend(struct xe_device *xe)
  
-+		if (!man)
-+			continue;
-+
- 		/*
- 		 * On igpu platforms with flat CCS we need to ensure we save and restore any CCS
- 		 * state since this state lives inside graphics stolen memory which doesn't survive
- 		 * hibernation.
--		 *
--		 * This can be further improved by only evicting objects that we know have actually
--		 * used a compression enabled PAT index.
- 		 */
--		if (mem_type == XE_PL_TT && (IS_DGFX(xe) || !xe_device_has_flat_ccs(xe)))
-+		if (mem_type == XE_PL_TT) {
-+			if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe)) {
-+				ret = xe_bo_evict_all_ccs(man);
-+				if (ret)
-+					return ret;
-+			}
- 			continue;
--
--		if (man) {
--			ret = ttm_resource_manager_evict_all(bdev, man);
--			if (ret)
--				return ret;
- 		}
-+
-+		ret = ttm_resource_manager_evict_all(bdev, man);
-+		if (ret)
-+			return ret;
- 	}
+ 	xe_display_pm_suspend(xe);
  
- 	return 0;
+-	/* FIXME: Super racey... */
+-	err = xe_bo_evict_all(xe);
+-	if (err)
+-		goto err_display;
++	if (xe_pm_needs_bo_evict(xe, hibernate)) {
++		/* FIXME: Super racey... */
++		err = xe_bo_evict_all(xe);
++		if (err)
++			goto err_display;
++	}
+ 
+ 	for_each_gt(gt, xe, id) {
+ 		err = xe_gt_suspend(gt);
+@@ -452,8 +460,13 @@ static int xe_pm_notifier_callback(struct notifier_block *nb,
+ 				   unsigned long action, void *data)
+ {
+ 	struct xe_device *xe = container_of(nb, struct xe_device, pm_notifier);
++	bool hibernate = (action == PM_HIBERNATION_PREPARE ||
++			  action == PM_POST_HIBERNATION);
+ 	int err = 0;
+ 
++	if (!xe_pm_needs_bo_evict(xe, hibernate))
++		return NOTIFY_DONE;
++
+ 	switch (action) {
+ 	case PM_HIBERNATION_PREPARE:
+ 	case PM_SUSPEND_PREPARE:
+diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
+index 16d4e6c629f1..af81f2a2975f 100644
+--- a/drivers/gpu/drm/xe/xe_pm.h
++++ b/drivers/gpu/drm/xe/xe_pm.h
+@@ -13,7 +13,7 @@
+ 
+ struct xe_device;
+ 
+-int xe_pm_suspend(struct xe_device *xe);
++int xe_pm_suspend(struct xe_device *xe, bool hibernate);
+ int xe_pm_resume(struct xe_device *xe);
+ 
+ int xe_pm_init_early(struct xe_device *xe);
 -- 
 2.56.0
 
