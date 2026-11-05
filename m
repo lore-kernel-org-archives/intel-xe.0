@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FF8606A31B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 18:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1363606A33A
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 18:12:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4702C10E2BA;
-	Thu,  5 Nov 2026 18:12:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6930710E308;
+	Thu,  5 Nov 2026 18:12:27 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4E7910E0EB;
- Thu,  5 Nov 2026 18:12:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FD5E10E2BD;
+ Thu,  5 Nov 2026 18:12:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5400254550576700812=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Transpa?=
- =?utf-8?q?rant_fallback_from_stolen_to_sysmem=2E_=28rev4=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fras=3A_Use_xe?=
+ =?utf-8?q?=5Flog=5Finfo_to_avoid_passing_zero_as_error_code_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Ethan Tidmore" <ethantidmore06@gmail.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Nov 2026 18:12:10 -0000
-Message-ID: <179390233066.128088.6012206853707271647@221881a7231d>
+Date: Thu, 05 Nov 2026 18:12:27 -0000
+Message-ID: <179390234718.128088.5325982729215446983@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261105161444.593259-7-dev@lankhorst.se>
-In-Reply-To: <20261105161444.593259-7-dev@lankhorst.se>
+References: <20261101225252.556741-1-ethantidmore06@gmail.com>
+In-Reply-To: <20261101225252.556741-1-ethantidmore06@gmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,68 +35,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============5400254550576700812==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/display: Transparant fallback from stolen to sysmem. (rev4)
-URL   : https://patchwork.freedesktop.org/series/170759/
-State : warning
+Series: drm/xe/xe_ras: Use xe_log_info to avoid passing zero as error code (rev2)
+URL   : https://patchwork.freedesktop.org/series/177448/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-3009867cd31863246e4afc138520a7a8bd37bb11
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 9237140ef2535d537085a98529db7cc5874c8366
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Thu Nov 5 17:14:50 2026 +0100
+CI Bug Log - changes from xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4_BAT -> xe-pw-177448v2_BAT
+====================================================
 
-    drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
-    
-    Pull the "do we want to use stolen for the BIOS FB?" checks into
-    a new intel_bo_fbdev_bios_fb_takeover() helper, and defer that
-    decision until we're ready to reallocate the fbdev FB. This way
-    even if we don't want to ultimately use the BIOS FB we'll keep
-    the plane enabled until the replacement FB is ready. Should
-    hopefully result in fewer display blinks during boot.
-    
-    Additionally, on some platforms this allows us to re-create the
-    framebuffer when stolen memory is not suitable, using the blitter
-    engine to copy the contents to system memory without causing
-    any flickering by not preserving the stolen memory allocation.
-    
-    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-    Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch 628d6592dbf1f5f5fb3903bcd4c019015fef3d0d drm-intel
-d310c288f69d drm/xe/display: Avoid using stolen memory for framebuffer when media gt exists.
-bb5346aeb9cf drm/xe/migrate: Support copying between sysmem and stolen
-25e7e66b50bc drm/xe: Raise gt frequency slightly earlier.
-bf9453849b0c HACK: Always fallback
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-9237140ef253 drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
--:143: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#143: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:326:
- 
-+
+  **SUCCESS**
 
--:306: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#306: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:170:
-+					    XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT,
+  No regressions found.
 
-total: 0 errors, 1 warnings, 1 checks, 325 lines checked
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_9177 -> IGT_9179
+  * Linux: xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4 -> xe-pw-177448v2
+
+  IGT_9177: 9177
+  IGT_9179: 9179
+  xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4: 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4
+  xe-pw-177448v2: 177448v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177448v2/index.html
+
+--===============5400254550576700812==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe_ras: Use xe_log_info to avoid passing zero as error code (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177448/">https://patchwork.freedesktop.org/series/177448/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177448v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177448v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4_BAT -&gt; xe-pw-177448v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9177 -&gt; IGT_9179</li>
+<li>Linux: xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4 -&gt; xe-pw-177448v2</li>
+</ul>
+<p>IGT_9177: 9177<br />
+  IGT_9179: 9179<br />
+  xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4: 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4<br />
+  xe-pw-177448v2: 177448v2</p>
+
+</body>
+</html>
+
+--===============5400254550576700812==--
