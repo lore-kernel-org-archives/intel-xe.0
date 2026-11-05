@@ -2,43 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F0B606D82B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:06:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A87E606D82B
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=qd0I7Vod
+	dkim=pass (2048-bit key, unprotected) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=wM2nZbKY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4860810F6F9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E75C10F755;
 	Thu,  5 Nov 2026 14:06:03 +0000 (UTC)
 Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB2810E14B;
- Thu,  5 Nov 2026 13:24:12 +0000 (UTC)
-Received: from smtp1.mailbox.org (smtp1.mailbox.org
- [IPv6:2001:67c:2050:b231:465::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA211123E7;
+ Thu,  5 Nov 2026 12:48:08 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest
  SHA256) (No client certificate requested)
- by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4jL31M2Q9yzKp4M;
- Thu, 05 Nov 2026 14:24:07 +0100 (CET)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4jL2Cn6kBvzKm4y;
+ Thu, 05 Nov 2026 13:48:05 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
  s=mail20150812; 
- t=1793885047; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ t=1793882885; h=from:from:reply-to:reply-to:subject:subject:date:date:
  message-id:message-id:to:to:cc:cc:mime-version:mime-version:
  content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=cr7b357bQF9gcmhhu+T4xYlpo1IDNyxkNJbpgvGxS7k=;
- b=qd0I7VodEh/YGmDacD0GpRjBefhw/+7TY4fYCETDCELlDau43W4Iv1ZAtJX5YQM/vD7F/t
- Io2f6fgGc/1F5ghEf/MwbMRYSvhnO23qAWB8qco1mS8wiPuKLqck7hVRtAjv9KvLCpRwsN
- 5BDGlkKRIyCWuqV/u+BODFeuOQ9d5alieCuk/+Y6suKKqh7/GA3zAEMoUY4UorCuzThBnx
- RAoCZP1x6JKpPOjnRBqcV4hJHO2lbA1oGvP5u59rPEgEaDAqhk/4utGymk+LRznEokAtCo
- zHJ1rjx+Yg28UFnUB1y5TF6dTQ9YwzaheqekvhLUbhZMsDBU6ghGaQzycEEhCw==
-Message-ID: <2fa6e631e133acfc7e7de1b287c8b3983168b1c6.camel@mailbox.org>
+ bh=67Meo6SWs+PIUkmgdxjnuHYFvOEQPXfe0YgYIuPIdiI=;
+ b=wM2nZbKYrnIh8WX0WuDbNcfZq7+PooA56MChjL9DGOkNxnqcR5H6N6DkYcnsMhJ91+6G9m
+ fX55ivHqzSW18hVVAspkRqwAEfvqack2bx4nNg6C/eGF1MtTa0nKvN3GpVKXCCRbUabTJc
+ 5sX8voXKpVOjjeCcOqWlvVNf2glTSSyRlGZVJ90TuoEvLRIWvoZoiNpWLMvoJRLtpGDwlO
+ dwK47qW32ajvyuYJt0YMb4iYF/gGzauu9Ahh5ANSo6IEUoxI2KQH5E/s67LcdXBmop4VBB
+ T0J8XXPRXKvLWig/4xYxl0x0zfMDF3+ztxFng0w32JjKeR77Tj/78hWdKIQIIg==
+Message-ID: <f284e3b9501acca2cf41fd19409004de84a36e15.camel@mailbox.org>
 Subject: Re: [PATCH 1/3] dma-buf: dma-fence: Add flags parameter to
  dma_fence_init()
 From: Philipp Stanner <phasta@mailbox.org>
-To: Tvrtko Ursulin <tursulin@ursulin.net>, Christian
- =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>, Philipp Stanner
- <phasta@kernel.org>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Tvrtko
+ Ursulin <tursulin@ursulin.net>, Philipp Stanner <phasta@kernel.org>
 Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
  etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
@@ -48,20 +47,19 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org, 
  linux-usb@vger.kernel.org
-Date: Thu, 05 Nov 2026 14:24:04 +0100
-In-Reply-To: <b8179edb-bc59-49af-b8d0-f62e39752f3a@ursulin.net>
+Date: Thu, 05 Nov 2026 13:48:03 +0100
+In-Reply-To: <005b77fd-5bd2-4ae5-a0c0-cff3f1f6c680@amd.com>
 References: <20261105113529.1989375-2-phasta@kernel.org>
  <20261105113529.1989375-3-phasta@kernel.org>
  <2f377d0f-2760-4465-ac68-b62210b33bd6@ursulin.net>
  <005b77fd-5bd2-4ae5-a0c0-cff3f1f6c680@amd.com>
- <b8179edb-bc59-49af-b8d0-f62e39752f3a@ursulin.net>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.60.2 (3.60.2-2.fc44) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MBO-RS-ID: bba065728d0df46fffa
-X-MBO-RS-META: 6r63pcufosrhwuio4jrkztwnqgi8ttuw
+X-MBO-RS-ID: c917e2613df30c27150
+X-MBO-RS-META: zhysmcuaysmzyh6mji5yjtb3gu8yuuhx
 X-Mailman-Approved-At: Thu, 05 Nov 2026 14:05:54 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,35 +79,42 @@ X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 2026-11-05 at 12:51 +0000, Tvrtko Ursulin wrote:
-> On 05/11/2026 12:35, Christian K=C3=B6nig wrote:
-> > Well one advantage of the Linux kernel is to avoid such wrappers. I
-> > think having more than one function for the same thing basically
-> > just adds more confusion.
+-Cc rust-for-linux, since it was typo'ed and now misses the thread anyways.=
+.
+
+On Thu, 2026-11-05 at 13:35 +0100, Christian K=C3=B6nig wrote:
+> On 11/5/26 13:06, Tvrtko Ursulin wrote:
+> >=20
+> > [I aggresively rewrote the To: list because my SMTP won't let me
+> > send this as it was.]
+> >=20
+> > On 05/11/2026 11:35, Philipp Stanner wrote:
+> > > Currently, there are two init functions for dma_fence,
+> > > dma_fence_init()
+> > > and dma_fence_init64().
+> > >=20
+> > > Since more future user options for dma_fence initialization would
+> > > require distinct init functions, too, it is better to do this in
+> > > a
+> > > unified way.
+> >=20
+> > Why not add something like dma_fence_init_flags() and leave the 99%
+> > of the callers out of the (huge) diff? Ie. just port
+> > dma_fence_init64() to dma_fence_init_flags().
 >=20
-> Sure we can churn if we really want. But as 99% of callers will be=20
-> passing 0 it's not even very readable. Another option is variadic like=
-=20
-> kmalloc_objs so flags can be optional. Anyway, for consideration only.
+> Well one advantage of the Linux kernel is to avoid such wrappers. I
+> think having more than one function for the same thing basically just
+> adds more confusion.
 
+Do you think all future users would want SEQNO64 by default, btw?
 
-It has the advantage of forcing the reader to think about whether he
-wants 64-bit sequence numbers or not. In Rust-fence, for example, we
-completely overlooked that for months:
+>=20
+> That's also why I would really like to just have one
+> dma_fence_signal() and not like five (or was it four?) variants.
 
-https://lore.kernel.org/rust-for-linux/20261023175750.2979015-2-phasta@kern=
-el.org/
-
-
-Besides unused flags fields are quite common in APIs. As I state in the
-description, this is also for future extensions, see my race-flag (if
-accepted) as one potential example.
-
-It could also be used for canonically setting the user-flags, which
-users currently do with a manual set_bit(NR, &fence.base.flags;
-
-So I think it's safe to say that it's the right thing for long-term
-reduction of churn and maintainability.
+It should be dma_fence_signal(fence, error), anihilating
+dma_fence_set_error(), which is just another massive incentive to add
+race conditions.
 
 
 P.
