@@ -2,54 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B204606A31B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 23:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5DF606A31B
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 23:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RNgSpWZU
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=l1m30pma
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 335A610E0D0;
-	Thu,  5 Nov 2026 23:32:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D6BC112A29;
+	Thu,  5 Nov 2026 23:32:44 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 355A4112A2B
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 23:32:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFF8112A33
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 23:32:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793921555; x=1825457555;
+ t=1793921557; x=1825457557;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=vOlswKwvsFBvcI+OGzfpQVP/oQ65a8hlalwh+gNhSj8=;
- b=RNgSpWZUUg3+F/uPyiBEY/eKF4Lz8rCIzvQEsxXripwxVsv5o+ldAKpx
- dMRQGQ2vdiBUtV7IiGS6uVKaj4wY8K6ZJ38TeolhbF7vo3iPY5NlTLBnB
- DW/seD7MFUg7YbAdPj6jPaApVA4wagdxV9XYKa2W/YrujMbK3/qqK4Bfr
- YaSDGz/kT/15WThU1XrIrfzAuYY2hfRi79KxLSN9uxCKpBKlMae92R7+B
- nVJ/f4iiMq2+gO55g+LffTzCG18AGU/nOk4sOLl2X4ofEPpFAcOvX0iBM
- MmRevokj+1K5lgt4cDwCwriHO8XqJUDXlUqRLx0NkPglhA+ovE46O+P8E Q==;
-X-CSE-ConnectionGUID: 37Pl+gIESCu3JAR5VmZkOw==
-X-CSE-MsgGUID: uZ9fplXjTVChsqDbsCOzLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2769911"
+ bh=mXuR4MJcr2WPj8GiFiBv/OD3hrdd8VhqvSum63+frhk=;
+ b=l1m30pma2lpYjJpqNxg6GPhay5EHDgJxFGLGP3BH6lapRevGlWt9MvJ8
+ 0qUdlh8x5ic5nzyoWeEBC5Hr//qZltX6Ne8WQQKMcb3JSPtIy2JDLdUnH
+ 4REfhc6uh36naESIGP+mnKH7RHm/y4EdTMLgzfVIDdqNZrDEn3K/yA2m5
+ LsBjtMk13KtTVN7V/DYe/gtqXrN0kvqUIH00QIN4qK2yBSYH//yHAaRZp
+ W3LnBbJa00u1sKPE5vLPaAN1imeTXAMJndCt5AaI7b1XepydN0vQFr4wR
+ o7hB5th+DBvOY+PRqwmi6E6CwYdOZwXcLWqokeknlWl34OYJSEZKGSeYv Q==;
+X-CSE-ConnectionGUID: ViyFJrraRt+X7Zbw3Mg7jg==
+X-CSE-MsgGUID: p1kV1OOQRjKexsj9thUt3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2769914"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2769911"
+   d="scan'208";a="2769914"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 15:32:31 -0800
-X-CSE-ConnectionGUID: gM81+dTLQXy+e5STc4qeJg==
-X-CSE-MsgGUID: TUUoJKabTRO1P5F7CpsAWw==
+ 05 Nov 2026 15:32:34 -0800
+X-CSE-ConnectionGUID: q3kcpQiYSkOFSX6jyyg7dA==
+X-CSE-MsgGUID: u0yeh8GIQu2dlIP1vN3WtA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7187000"
+   d="scan'208";a="7187011"
 Received: from gabaabhi-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.23])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 15:32:30 -0800
+ 05 Nov 2026 15:32:33 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Nov 2026 20:31:54 -0300
-Subject: [PATCH v3 07/10] drm/xe: Replace MAXCNT comment with a comment on
- adjust_idledly()
+Date: Thu, 05 Nov 2026 20:31:56 -0300
+Subject: [PATCH v3 09/10] drm/xe/guc: Increment regset size for
+ RING_IDLEDLY workarounds
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261105-wa_16031259911-v3-7-da6ec790aa29@intel.com>
+Message-Id: <20261105-wa_16031259911-v3-9-da6ec790aa29@intel.com>
 References: <20261105-wa_16031259911-v3-0-da6ec790aa29@intel.com>
 In-Reply-To: <20261105-wa_16031259911-v3-0-da6ec790aa29@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -73,42 +73,39 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The adjust_idledly() function does more than what the comment on the
-call site says.  Drop that outdated comment and document
-adjust_idledly() at its definition instead.
+We need to keep calculate_regset_size() in sync with
+guc_mmio_regset_write(). They became out of sync when RING_IDLEDLY was
+added.
 
-v2:
-  - Add a comment above adjust_idledly() instead of just dropping the
-    call-site comment. (Matt)
+This likely went unnoticed because ADS_REGSET_EXTRA_MAX - being
+greater than the current size of extra_regs - inadvertently provided
+some extra room in the regset, which ended up being used for
+RING_IDLEDLY.
+
+However, we should not rely on that. We should make
+ADS_REGSET_EXTRA_MAX strictly about extra_regs, and explicitly account
+for the RING_IDLEDLY register.
 
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_guc_ads.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 08bd8754ad09..7950e118ee1d 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -596,6 +596,9 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	xe_reg_whitelist_process_engine(hwe);
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 84fd02ae5fff..e4366e25a210 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -226,6 +226,9 @@ static size_t calculate_regset_size(struct xe_gt *gt)
  
-+/*
-+ * Apply workarounds that require adjustments to RING_IDLEDLY.
-+ */
- static void adjust_idledly(struct xe_hw_engine *hwe)
- {
- 	struct xe_gt *gt = hwe->gt;
-@@ -719,7 +722,6 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 			xe_hw_engine_enable_ring(hwe);
+ 		if (XE_GT_WA(gt, 1607983814) && hwe->class == XE_ENGINE_CLASS_RENDER)
+ 			count += LNCFCMOCS_REG_COUNT;
++
++		if (XE_GT_WA(hwe->gt, 16023105232) || XE_GT_WA(hwe->gt, 14025941587))
++			count++; /* RING_IDLEDLY */
  	}
  
--	/* Ensure IDLEDLY is lower than MAXCNT */
- 	adjust_idledly(hwe);
- 
- 	return devm_add_action_or_reset(xe->drm.dev, hw_engine_fini, hwe);
+ 	count += ADS_REGSET_EXTRA_MAX * XE_NUM_HW_ENGINES;
 
 -- 
 2.56.0
