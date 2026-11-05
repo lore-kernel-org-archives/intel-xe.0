@@ -2,78 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65635606CE84
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 11:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF988606A31B
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 11:49:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=gTUeBLA2
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bqx2aXhZ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 258F31123A5;
-	Thu,  5 Nov 2026 11:48:54 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A641123AD;
- Thu,  5 Nov 2026 11:48:43 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id C83AB4E407FD;
- Thu,  5 Nov 2026 11:48:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 92CCE5FF85;
- Thu,  5 Nov 2026 11:48:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 7D73E1032928A; Thu,  5 Nov 2026 12:48:32 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1793879318; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=VDPNZAab1PM8LOjgIqFcAGmLTyOIwR5dfmB79CXKQsE=;
- b=gTUeBLA2N/O/B+wx+ljwmMGwLW3XWpRyBwcJ1LUmbJ7FMJjwGp0PjVnKIwFXVqrf2sYxdm
- /62NVGRIA64/9wvmhAQM3e36EOQXGzXPsq0Pbz4Tvf7HAr3lfnBvVua5pVenkzmXuhytq2
- uk3ENuExjaGLtsdduVRr7OHoQ1rK6OFf0oBSC1tEAl6fOmK+PiP98AyRCRsq9vlYWq1Tvs
- rKjoGBwt/j3gYp47YiBr01OjvqjJJz3WFs0Mp9Tivfx8xcKBZxEiYNIJyi1gmzjVbzdZd+
- U8vxJ3TttmoVX94A1sKT4PQyMI+tje46ghusL5IPcunmBTbv0aPEgrmsjctS1w==
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99067112388;
+	Thu,  5 Nov 2026 11:49:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BC4F112388
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 11:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793879368; x=1825415368;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=10tsuD51o9lYcAA4tfuQYk3P/elnRb/oh4Df6+roIH8=;
+ b=bqx2aXhZ+RImoDDa25Xsc2MNPWj8fSsVVaz8KdUz/3wrNYBrzPhrc1oZ
+ 4GL6AjJwtZa9z9bdhrMIdUIoF70huKJu7jl/VdQgMOpnF3OOVjlOKk3XM
+ dRcw/GwKG75GCtXefhxlLGYgd0DlpfC3yQILxWkjDjVeYmhTw+0wxVdmx
+ UDsZx4XPtKH5mSYtJGdBftSUptkMAtZGBMPiA3LJddYnbAG8csWu5TF8v
+ GB0c2jYYAsGqdlhn6m0fwIDF/wuzCb/9kLc+SZU9N/O2ncVpw2DaYS3mQ
+ UrG7kPnJodeOY8gXjnDdlwPRbmlZj5We9GCgMSDsRGcRZYllhYgVymbVF Q==;
+X-CSE-ConnectionGUID: 4L9wTRE3S8WgOMwkD3MFmA==
+X-CSE-MsgGUID: lDT27NSMTlW5DvPLspsQ6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2562827"
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="2562827"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 03:49:27 -0800
+X-CSE-ConnectionGUID: CaGiPYcQSwK4xOISoszAPw==
+X-CSE-MsgGUID: 8Hmnev4CRf66I7ZwxYkdZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="7300116"
+Received: from gsd-build.iind.intel.com ([10.190.229.108])
+ by fmviesa008.fm.intel.com with ESMTP; 05 Nov 2026 03:49:27 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v2 0/1] Fix VF probe issue due to missing LMTT dir ptr
+Date: Thu,  5 Nov 2026 11:49:24 +0000
+Message-ID: <20261105114923.880265-3-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v8 9/9] usb: typec: ucsi: huawei-gaokun: pass down
- HPD_IRQ events
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Francesco Dolcini <francesco@dolcini.it>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>, 
- Chaoyi Chen <chaoyi.chen@rock-chips.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-In-Reply-To: <20261024-hpd-irq-events-v8-9-6ee949e7a384@oss.qualcomm.com>
-References: <20261024-hpd-irq-events-v8-0-6ee949e7a384@oss.qualcomm.com>
- <20261024-hpd-irq-events-v8-9-6ee949e7a384@oss.qualcomm.com>
-Date: Thu, 05 Nov 2026 12:47:24 +0100
-Message-Id: <179387924497.1025980.2920324286398089325.b4-review@b4>
-X-Mailer: b4 0.16.0
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,27 +60,49 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, 24 Oct 2026 03:35:25 +0300, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> The DisplayPort standard defines a special kind of HPD events called
-> IRQ_HPD. These events are used to notify DP Source about the events on
-> the Sink side.
-> 
-> Pass IRQ_HPD events from the EC to the HPD bridge, letting those
-> to be delivered to the DisplayPort driver.
-> 
-> [...]
+In the recent platforms, while probing VF driver, seeing below error in
+dmesg:
 
-Reviewed-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+*ERROR* Tile0: GT1: H2G request 0x550e failed: error 0x103 hint 0x0
+*ERROR* Tile0: GT1: failed to enable GuC opt-in features: -EIO
+*ERROR* SIGID=101 FATAL (-EIO) PROBE: driver loading failed for device
+'674c'
+probe with driver xe failed with error -5
+
+The LMTT directory pointer is configured on every GT of the tile only
+from the primary GT's init/reset flow. On new platforms, both primary and
+media GTs have their own forcewake. Primary GT's init holds only its own
+forcewake, so the media GT write can be lost.
+
+Program the LMTT directory pointer from each GT's own init and restart
+path, while that GT's forcewake is held.
+
+Also reordered include files in xe_lmtt.c.
+
+Used MCR registers to write to primary GT and unicast register to write to
+media GT.
+
+---
+V1 -> V2:
+- Use MCR register for primary GT and unicast register for media GT
+(Roper Matt).
+
+Satyanarayana K V P (1):
+  drm/xe/pf: Program LMTT directory pointer from each GT's init path
+
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
+ drivers/gpu/drm/xe/xe_gt.c           | 14 +++----
+ drivers/gpu/drm/xe/xe_lmtt.c         | 58 +++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_lmtt.h         |  5 ++-
+ 4 files changed, 55 insertions(+), 23 deletions(-)
 
 -- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.43.0
 
