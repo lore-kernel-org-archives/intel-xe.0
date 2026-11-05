@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C286606A332
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 16:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00FB5606A329
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 16:17:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBAC310E172;
-	Thu,  5 Nov 2026 16:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD15810E02C;
+	Thu,  5 Nov 2026 16:17:40 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15CC210E172;
- Thu,  5 Nov 2026 16:16:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3110133793622693216=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 514D710E02C;
+ Thu,  5 Nov 2026 16:17:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Demote_uncorr?=
- =?utf-8?q?ectable_local_error_log_on_CRI_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_vfio/pci=3A_Allow_hiding_?=
+ =?utf-8?q?BAR_ranges_from_the_VFIO_user?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Varun Gupta" <varun.gupta@intel.com>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Nov 2026 16:16:44 -0000
-Message-ID: <179389540408.127439.9361599786717646756@221881a7231d>
+Date: Thu, 05 Nov 2026 16:17:39 -0000
+Message-ID: <179389545932.127439.13498085484860150140@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261105145531.1847892-2-varun.gupta@intel.com>
-In-Reply-To: <20261105145531.1847892-2-varun.gupta@intel.com>
+References: <20261105153738.1938345-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20261105153738.1938345-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,108 +35,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============3110133793622693216==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Demote uncorrectable local error log on CRI (rev2)
-URL   : https://patchwork.freedesktop.org/series/175997/
-State : success
+Series: vfio/pci: Allow hiding BAR ranges from the VFIO user
+URL   : https://patchwork.freedesktop.org/series/177877/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4_BAT -> xe-pw-175997v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fe79c0d5107aeaf7130c1a68decfa1995e9c1eb9
+Author: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Date:   Thu Nov 5 16:37:38 2026 +0100
 
-Summary
--------
+    vfio/xe: Hide BAR ranges by default per device ID
+    
+    xe-vfio-pci accesses the BARs only through vfio-pci-core, so opt in to
+    hidden BAR ranges.
+    
+    Let each entry of the PCI ID table describe the ranges to hide by
+    default. The description is always looked up in the static table, so
+    binding through new_id or driver_override can't skip them.
+    
+    No device defines any ranges yet.
+    
+    Cc: Michał Winiarski <michal.winiarski@intel.com>
+    Cc: Alex Williamson <alex@shazbot.org>
+    Cc: Jason Gunthorpe <jgg@ziepe.ca>
+    Cc: Yishai Hadas <yishaih@nvidia.com>
+    Cc: Shameer Kolothum <skolothumtho@nvidia.com>
+    Cc: Kevin Tian <kevin.tian@intel.com>
+    Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
++ /mt/dim checkpatch 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4 drm-intel
+7ae78f270ddf vfio/pci: Move the excluded range handling out of vfio_pci_core_do_io_rw()
+c0c72bc85a34 vfio/pci: Allow hiding BAR ranges from the VFIO user
+-:142: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#142: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 580 lines checked
+a823e0e3a659 vfio/pci: Allow configuring hidden BAR ranges through configfs
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
 
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4 -> xe-pw-175997v2
-
-  IGT_9177: 9177
-  xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4: 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4
-  xe-pw-175997v2: 175997v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175997v2/index.html
-
---===============3110133793622693216==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 580 lines checked
+fe79c0d5107a vfio/xe: Hide BAR ranges by default per device ID
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Demote uncorrectable local error log on CRI (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175997/">https://patchwork.freedesktop.org/series/175997/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175997v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175997v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4_BAT -&gt; xe-pw-175997v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4 -&gt; xe-pw-175997v2</li>
-</ul>
-<p>IGT_9177: 9177<br />
-  xe-6070-0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4: 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4<br />
-  xe-pw-175997v2: 175997v2</p>
-
-</body>
-</html>
-
---===============3110133793622693216==--
