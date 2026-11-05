@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14F13606A31B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 00:16:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EDC1606A328
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 00:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GlNg1Iu3
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=TUpjZFRv
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D450C10E909;
-	Thu,  5 Nov 2026 00:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E21AA10FFD6;
+	Thu,  5 Nov 2026 00:16:33 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7333C10E909
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 00:16:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 593C310FFD6
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 00:16:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793837783; x=1825373783;
+ t=1793837788; x=1825373788;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VZIlILzbems6oJ78CNITfre4aTRmecLTUze8wtM7wwo=;
- b=GlNg1Iu3tkxEdCf9C2NkkUrKo+Ibkpw+D/lZafYoHIWLk+4ZUkVdyTKd
- QcBVGfPDPucUl/EIBZqWyWEzKVrkn8HMMnm5LiFvBOH02SOhFdDmL8U7p
- F3hurAGwHp8zQkAICn5gbktNf4BRxhue+mkb13liulgx5U2ddSMWjEa4r
- Q7v3zbrgqMzOeomd13L9ilP9e2XKSQia5nHHenerrMV1RAgutUdniGxUs
- QCxw2e8SG6OG58BXeY1Tvi5TjEXpj0pk5B8m4sQuYa0hp+HEiFampW14r
- VWKPnvUF/ecGOf5WelIaDHeCKrXnYfmzLY4GAjb+SgciiLJz4oEyXPcND Q==;
-X-CSE-ConnectionGUID: KLtuyZsZRVy49TlaRQns1Q==
-X-CSE-MsgGUID: HX5HjBKbQwie3oQMZ0iafA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2605968"
+ bh=SSGFNtu5e4pSU7IcRaz7DrdNUXafzAqQahLpy3qSgAA=;
+ b=TUpjZFRvM905do7CyqQePJ7rFYZSYZ2ONXU+1iT8pg9vcaxCZssMYx/T
+ 0Cp0kKZuR2XAOh33FYjJmAW0qKHAyAZzdwpazi8aGn5yyf0N0iz4pKm+v
+ kfkgFwB2DusyS5/Q6rspnBRfFaaekvoa07M1JOFLOGHXQ96pcXLBiKrVZ
+ hyt3doAD6hmC0L5IqdjZRsAtxnUJS9JQ7KnH6gQ/brZB4J/MC8P5iCbeZ
+ X7PZo8VUuQR2moMNsUaL5BVqiVtMVaiJKoBWgpFTszToCKgecKM0z3v16
+ TPymQNNCiAuGUDUFN29jF1ql+S8kNgrptKgGibfkMwaqdI/lQAya+k2kU w==;
+X-CSE-ConnectionGUID: scXnYkAARK6yUgxLcrcTpg==
+X-CSE-MsgGUID: 2WShXOT7Q2q5iuKtscm+8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2605970"
 X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="2605968"
+   d="scan'208";a="2605970"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Nov 2026 16:16:11 -0800
-X-CSE-ConnectionGUID: +DnFB6szTC2YLwhJZT1dOQ==
-X-CSE-MsgGUID: 4oMo3sAPRxKfk1bD7g4jMg==
+X-CSE-ConnectionGUID: hNIwxKJLTZSaOPEsqgULjg==
+X-CSE-MsgGUID: e8BfEcLNS2KzX+Ypg6IZCQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="6761945"
+   d="scan'208";a="6761948"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  04 Nov 2026 16:16:11 -0800
@@ -44,10 +44,10 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
  Matthew Brost <matthew.brost@intel.com>
 Cc: harish.chegondi@intel.com
-Subject: [PATCH v4 5/7] drm/xe/oa: Wait for in-flight OA batches before stream
- HW teardown
-Date: Wed,  4 Nov 2026 16:16:05 -0800
-Message-ID: <20261105001559.3288915-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v4 6/7] drm/xe: Reject vm_ops->access on BO mappings of an
+ unplugged device
+Date: Wed,  4 Nov 2026 16:16:06 -0800
+Message-ID: <20261105001559.3288915-15-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261105001559.3288915-9-umesh.nerlige.ramappa@intel.com>
 References: <20261105001559.3288915-9-umesh.nerlige.ramappa@intel.com>
@@ -64,94 +64,61 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Config batches submitted with output syncs and context LRI batches are
-not waited for. If one is still in flight when the stream is closed, it
-can program the OA registers after they were restored.
+A userspace mapping of a BO can outlive the device, e.g. across unbind
+or a PCI slot reset. After drm_dev_unplug() the fault handler only
+installs a dummy page, but ptrace, /proc/<pid>/mem and
+process_vm_readv() can't use get_user_pages() on these VM_PFNMAP vmas
+and fall back to vm_ops->access(), i.e. xe_bo_vm_access().
 
-Both go to the same exec queue, so also record the LRI batch fence in
-stream->last_fence, and wait for it before the HW teardown, bounded by
-the job timeout of the exec queue.
+xe_bo_vm_access() doesn't check whether the device is still there. For
+a BO in VRAM, xe_ttm_access_memory() then either goes through the VRAM
+iomap, which is unmapped on remove, or submits a migrate job after the
+GT has been torn down. This applies to GEM mmaps and to the OA buffer
+mmap of an OA stream that outlives the device.
+
+Enter a drm_dev_enter() section in xe_bo_vm_access() and fail with
+-ENODEV once the device is unplugged, like xe_bo_cpu_fault() does.
+
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 31 +++++++++++++++++++++++++------
- 1 file changed, 25 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 7552ace821ca..31fc1e7675de 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -733,6 +733,12 @@ static void xe_oa_free_configs(struct xe_oa_stream *stream)
- 	dma_fence_put(stream->last_fence);
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 42a6aa1a2e4a..a74c38df2bdd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2345,9 +2345,20 @@ static int xe_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 	struct ttm_buffer_object *ttm_bo = vma->vm_private_data;
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = xe_bo_device(bo);
++	int idx, ret;
+ 
+-	guard(xe_pm_runtime)(xe);
+-	return ttm_bo_vm_access(vma, addr, buf, len, write);
++	/*
++	 * A mapping can outlive the device. Once it's unplugged, VRAM is unmapped and the
++	 * migrate engines are gone, so refuse access, like the fault handler does.
++	 */
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return -ENODEV;
++
++	scoped_guard(xe_pm_runtime, xe)
++		ret = ttm_bo_vm_access(vma, addr, buf, len, write);
++
++	drm_dev_exit(idx);
++	return ret;
  }
  
-+static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
-+{
-+	dma_fence_put(stream->last_fence);
-+	stream->last_fence = dma_fence_get(fence);
-+}
-+
- static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri, u32 count)
- {
- 	struct dma_fence *fence;
-@@ -753,6 +759,7 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
- 		goto free_bb;
- 	}
- 	xe_bb_free(bb, fence);
-+	xe_oa_update_last_fence(stream, fence);
- 	dma_fence_put(fence);
- 
- 	return 0;
-@@ -876,6 +883,23 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE, 0);
- }
- 
-+/*
-+ * Wait for the last OA batch of the stream, so that it can't program the HW after the HW
-+ * teardown.
-+ */
-+static void xe_oa_stream_drain(struct xe_oa_stream *stream)
-+{
-+	struct xe_exec_queue *q = stream->exec_q ?: stream->k_exec_q;
-+	long timeout;
-+
-+	if (!stream->last_fence || dma_fence_is_signaled(stream->last_fence))
-+		return;
-+
-+	timeout = msecs_to_jiffies(q->sched_props.job_timeout_ms) + HZ;
-+	if (!dma_fence_wait_timeout(stream->last_fence, false, timeout))
-+		drm_err(&stream->oa->xe->drm, "Timed out waiting for OA batch\n");
-+}
-+
- /*
-  * Also drops forcewake, which accesses the HW too. On a wedged device this is skipped and
-  * the forcewake reference leaks, which is fine: the device needs a reset or rebind to
-@@ -913,6 +937,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 
- 	mutex_destroy(&stream->stream_lock);
- 
-+	xe_oa_stream_drain(stream);
- 	if (!xe_wedged(stream->oa->xe))
- 		xe_oa_stream_hw_teardown(stream);
- 	xe_oa_stream_free_resources(stream);
-@@ -1009,12 +1034,6 @@ xe_oa_alloc_config_buffer(struct xe_oa_stream *stream, struct xe_oa_config *oa_c
- 	return oa_bo;
- }
- 
--static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
--{
--	dma_fence_put(stream->last_fence);
--	stream->last_fence = dma_fence_get(fence);
--}
--
- static void xe_oa_fence_work_fn(struct work_struct *w)
- {
- 	struct xe_oa_fence *ofence = container_of(w, typeof(*ofence), work.work);
+ /**
 -- 
 2.55.0
 
