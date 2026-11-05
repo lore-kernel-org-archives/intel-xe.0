@@ -2,90 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9CE606A328
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 09:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC132606A332
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 09:17:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bFAS48f0
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EyI1B1SJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43C8211227F;
-	Thu,  5 Nov 2026 09:15:19 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3212411225E;
- Thu,  5 Nov 2026 09:15:13 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 30E8860F3E;
- Thu,  5 Nov 2026 09:15:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B561F000C1;
- Thu,  5 Nov 2026 09:15:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793870111;
- bh=yuu8MRbvZ8Q99gVGDEWGPtvGQgcdEiYL3ohtAsA9Mfg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=bFAS48f0dLcspAEXkjkArw9f5g1sLZat7q01f+HKggEbmSs8nuly01Er89M9cFC+E
- aJelUDSseJymE+2CsLiDv70w3W0f6o/p8FxgDHcsOPwgv1/JMp5POhaS6WYnvYb7K8
- zUzkNI/hkDRyloSNnZbNr8XotLbG+h1F+jOL0Hkb0Avr9U7fYBRpfR9C0mcxiQBR3s
- vMTD9J5x5SQw0X/qL4Os/hOqj2LHOa1MTSUUKJIb4NDus9wXA/2kpJ9BHnn9SLC4gw
- 1auncQlq+pWnfmu6Sf7Gd8Hf0QutCtTy+KqQdynzeHMD3cDRsYlcu6hbTs5fM0MRzR
- 2QGNBnbRrZdUQ==
-Date: Thu, 5 Nov 2026 10:15:08 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>
-Cc: dri-devel@lists.freedesktop.org, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- amd-gfx@lists.freedesktop.org, Russell King <linux@armlinux.org.uk>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Peter Griffin <peter.griffin@linaro.org>,
- Seung-Woo Kim <sw0312.kim@samsung.com>, 
- linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, 
- Stefan Agner <stefan@agner.ch>, Huacai Chen <chenhuacai@kernel.org>, 
- Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, 
- Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, 
- Xi Ruoyao <xry111@xry111.site>, Geert Uytterhoeven <geert+renesas@glider.be>, 
- linux-renesas-soc@vger.kernel.org,
- Marcus Folkesson <marcus.folkesson@gmail.com>, 
- Alain Volmat <alain.volmat@foss.st.com>,
- Raphael Gallais-Pou <rgallaispou@gmail.com>, 
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
- linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>, 
- Mikko Perttunen <mperttunen@nvidia.com>,
- Thierry Reding <thierry.reding@kernel.org>, 
- linux-tegra@vger.kernel.org, Alexey Brodkin <abrodkin@synopsys.com>, 
- Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
- David Airlie <airlied@redhat.com>, 
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gerd Hoffmann <kraxel@redhat.com>, 
- Gurchetan Singh <gurchetansingh@chromium.org>, virtualization@lists.linux.dev, 
- Haneen Mohammed <hamohammed.sa@gmail.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- Melissa Wen <melissa.srw@gmail.com>,
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-amlogic@lists.infradead.org, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- Danilo Krummrich <dakr@kernel.org>, Lyude Paul <lyude@redhat.com>,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-Message-ID: <auxJBtexUg6oHcs9@houat>
-References: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 780D111228F;
+	Thu,  5 Nov 2026 09:17:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F4FE11228A
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 09:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793870256; x=1825406256;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mzTpLkHIjZrngrPLXcMGMr8HXcsArCMyUG+x78V+OAI=;
+ b=EyI1B1SJQZlr5FaIWesZiJBL5NYkfR5tTSjL0MNu2hshNHXqFZwQ1sIs
+ 5RgKnBzZ5m7JTN+wq9mkBjK9ugeCBcrK1rq5fPmF13qvexjDhsRqsfA7g
+ TI+3iie4A/Zd+GE8w1PcXsCLBTXU/wv+FJY9A1WuGV78HsTXKdra13aFq
+ fg9RPCw2dJkkGDXH/2Xs2D6t6Nv+rgtXcu5irs/THfTJcS5QSG+jh5bIy
+ 5VtZC2sMpt0akl2JGikT1WfSOVONNwOpH8xU2sMwant3irbmtLj+Dkd7t
+ /D/yHVWGG5CdqyEV/esBHj+BU753UwaLe7lpntlu9nn5WCsy8khiGdElh g==;
+X-CSE-ConnectionGUID: 2rtD10U7ROabtCrwk/6Y7A==
+X-CSE-MsgGUID: CHhNcNf9SN+W+DM4W639Sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2534741"
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="2534741"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 01:17:35 -0800
+X-CSE-ConnectionGUID: GpvQQTOqQ/C7PLduHmjgNg==
+X-CSE-MsgGUID: vde+gtT7SZyPT9CPDucv8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="6972142"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 01:17:34 -0800
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH] [CI] drm/i915/dmc: Test Xe3p_LPD DMC v2.44
+Date: Thu,  5 Nov 2026 14:45:59 +0530
+Message-ID: <20261105091559.1784255-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="2zvnwa2sqytkzb4j"
-Content-Disposition: inline
-In-Reply-To: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,62 +59,35 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+NOT TO BE REVIEWED/MERGED
 
---2zvnwa2sqytkzb4j
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
- atomic_create_state and remove reset
-MIME-Version: 1.0
+Hardcode path to DMC firmware for CI purposes only.
 
-On Fri, Oct 30, 2026 at 04:13:30PM +0100, Maxime Ripard wrote:
-> This is a follow-up to the plane and CRTC reset removal series, and
-> part of a larger effort to remove the reset hook from all KMS objects.
->=20
-> The connector reset hook is overloaded: it is called both at probe
-> time to create the initial software state and during suspend/resume to
-> reset hardware and software state. These two roles have different
-> requirements, and the reset hook is not fallible, making error
-> handling difficult for the initial state allocation path.
->=20
-> While reset has the semantics to reset both the software and hardware
-> state, the vast majority of implementations and all the helpers only
-> reset the software state, making them equivalent to
-> atomic_create_state in practice. The atomic_create_state hook makes
-> this explicit: it only allocates and initializes a pristine state
-> without any side effect, and returns the state pointer or an ERR_PTR
-> on failure.
->=20
-> This series converts all connector drivers tree-wide from the reset hook
-> to atomic_create_state, then removes the reset hook from struct
-> drm_connector_funcs entirely. The conversions were done using a
-> combination of Coccinelle semantic patches, mechanical one-line
-> replacements and manual adjustments.
->=20
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied to drm-misc-next
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 56e831b2a..864b41909 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -126,7 +126,7 @@ static bool dmc_firmware_param_disabled(struct intel_display *display)
+ #define DISPLAY_VER13_DMC_MAX_FW_SIZE	0x20000
+ #define DISPLAY_VER12_DMC_MAX_FW_SIZE	ICL_DMC_MAX_FW_SIZE
+ 
+-#define XE3P_LPD_DMC_PATH		DMC_PATH(xe3p_lpd)
++#define XE3P_LPD_DMC_PATH		"i915/xe3p_lpd_dmc_ver2_44.bin"
+ MODULE_FIRMWARE(XE3P_LPD_DMC_PATH);
+ 
+ #define XE3LPD_3002_DMC_PATH		DMC_PATH(xe3lpd_3002)
+-- 
+2.43.0
 
-Maxime
-
---2zvnwa2sqytkzb4j
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCauxJHAAKCRAnX84Zoj2+
-dpi6AYDFcyxVth1IfzYJl7Mk/wdU/UrwZChOoRG3vJ2c4jm3YXPwmaZCDBG4hPm/
-E3dp1WQBf2Htv+GDvQkXS9avpT+uRjkpFRqowDqfaE0gXWHKwBFuo13bOFi12DLC
-XPBNQCk6+w==
-=O+mF
------END PGP SIGNATURE-----
-
---2zvnwa2sqytkzb4j--
