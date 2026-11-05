@@ -2,51 +2,128 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AA11606D806
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:06:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 844F5606D83E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jmtvL6JN
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28BC910E674;
-	Thu,  5 Nov 2026 14:05:57 +0000 (UTC)
-X-Greylist: delayed 377 seconds by postgrey-1.36 at gabe;
- Thu, 05 Nov 2026 10:29:34 UTC
-Received: from bulk0.mail-out.lima-city.de (bulk0.mail-out.lima-city.de
- [91.216.248.212])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DECD112336;
- Thu,  5 Nov 2026 10:29:34 +0000 (UTC)
-Date: Thu, 5 Nov 2026 11:23:10 +0100
-X-Lima-ML-UUID: ab4092fd-651d-462a-9247-000d564dfeec
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=deq.rocks;
- s=securedbylima-20251205; t=1793874195;
- bh=gXX2mnTLfth5ZTDzamsxEs+SWoSG3jV7YBbC52hKC48=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=FUhC5hHFzIKA7BDUGja/oo4cvdkaO6GJ2HhDh0NBtAHHxmzw00wPqeyb+/7GSJsLf
- kRN41MUEPiR0jv/4d56TJh05vb9tuzntjnXn+3JVGcty4G9dOJHv2AtHjlm9GADJd2
- DBSqmkI0xfZMSrWY91Yw3js5tuLtTbuRAIrLo0O19fq+LUjev17PczSGTv3yUfBa2Z
- uuRwjm1ZOtphkkCYTeeo/zzYvVE0qzOdmVQrZAWBaFV/7YPWoO00ZO/3k1GKmU1v82
- hVyuvBpJ7Ae++Z9VIvPeHE6IOk0c7RBoERjbx+6ChRYa/g3EaAM6EgXyySSrYGl/8C
- I1xDjaxnWzDMw==
-From: =?UTF-8?B?QW5kcsOp?= Eikmeyer <dev@deq.rocks>
-To: Alexander Fischer <alexander.fischer@kait2en.org>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, Lukas Wunner
- <lukas@wunner.de>, Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?B?Sm9zw6k=?= Roberto de Souza <jose.souza@intel.com>,
- =?UTF-8?B?QW5kcsOp?= Eikmeyer <andre.eikmeyer@kait2en.org>, Yossef Osman
- <yossef.osman@proton.me>, Lukas Wunner <lukas@wunner.de>
-Subject: Re: [PATCH v4] drm/i915/psr: enable PSR on Apple T2 eDP panels
-Message-ID: <20261105112310.44f7e1cd@kait2en-mbp15-1>
-In-Reply-To: <20261016140707.1900947-1-alexander.fischer@kait2en.org>
-References: <20260916072558.147343-1-alexander.fischer@kait2en.org>
- <20261016140707.1900947-1-alexander.fischer@kait2en.org>
-Organization: KaiT2en
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0999210FBB0;
+	Thu,  5 Nov 2026 14:06:09 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D7A0112372;
+ Thu,  5 Nov 2026 11:40:13 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id EAFDA61109;
+ Thu,  5 Nov 2026 11:40:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C29F1F0093A;
+ Thu,  5 Nov 2026 11:39:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793878812;
+ bh=SLxt8gL8S4bp8BkjrllqUrd84IP3TwVRmle+af4zaM8=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=jmtvL6JNx/LTuU5nwvdXJgdkdF729H39y+/gluqMOWtETW4wth76UGatWMf0UpmSL
+ KuzZP3d+OGyMwi1JkopR8sxmOk3Of7u10D1WZWJ2gOKPPKj1RyEa2MC/4Hy7vvoFyj
+ a2/wjrUg34AP+eF7GWAGrFmiJQUG1dgczg8FplZYSUrmw5ZFTGiTSTdGP6iWFawN7A
+ dICAFcjP/fVxrJAphmIGwXXYfOZiZVekEOSwLEtuVkseGkon+tOf2YsFOB3FbuDvfh
+ Ha/+C+wCHrw8KUcj/EeY3Tyq3ICLi0hwsYwYVzTcFzdOVjdIx6DIsB9NFCuCX8O6j/
+ DvUI7nvwy0POA==
+From: Philipp Stanner <phasta@kernel.org>
+To: Min Ma <mamin506@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>,
+ Oded Gabbay <ogabbay@kernel.org>, "Rob Herring (Arm)" <robh@kernel.org>,
+ Tomeu Vizoso <tomeu@tomeuvizoso.net>,
+ Karol Wachowski <karol.wachowski@linux.intel.com>,
+ Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
+ Heiko Stuebner <heiko@sntech.de>, Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas Stach <l.stach@pengutronix.de>,
+ Russell King <linux+etnaviv@armlinux.org.uk>,
+ Christian Gmeiner <christian.gmeiner@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Alessio Belle <alessio.belle@imgtec.com>,
+ Luigi Santivetti <luigi.santivetti@imgtec.com>,
+ Qiang Yu <yuq825@gmail.com>, Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>,
+ =?UTF-8?q?Adri=C3=A1n=20Larumbe?= <adrian.larumbe@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, Dave Airlie <airlied@redhat.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, Matthew Brost <matthew.brost@intel.com>,
+ Natalie Vock <nat@pixelcluster.dev>,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Melissa Wen <mwen@igalia.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Zack Rusin <zack.rusin@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Neill Kapron <nkapron@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Trevor Gross <tmgross@umich.edu>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Tamir Duberstein <tamird@kernel.org>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ =?UTF-8?q?Onur=20=C3=96zkan?= <work@onurozkan.dev>,
+ Sunil Khatri <sunil.khatri@amd.com>, Prike Liang <Prike.Liang@amd.com>,
+ Vitaly Prosyak <vitaly.prosyak@amd.com>, Jesse Zhang <Jesse.Zhang@amd.com>,
+ =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ David Rosca <david.rosca@amd.com>,
+ Marco Crivellari <marco.crivellari@suse.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Shixiong Ou <oushixiong@kylinos.cn>,
+ =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ Thadeu Lima de Souza Cascardo <cascardo@igalia.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ Al Viro <viro@zeniv.linux.org.uk>,
+ Michael Bommarito <michael.bommarito@gmail.com>, Sam Day <me@samcday.com>,
+ Gabriel Prostitis <prostitisgabriel@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
+ linux-usb@vger.kernel.org, rust-for-linux@vger.kernel.or
+Subject: [PATCH 2/3] dma-buf: Port users of dma_fence_init64()
+Date: Thu,  5 Nov 2026 12:35:29 +0100
+Message-ID: <20261105113529.1989375-4-phasta@kernel.org>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261105113529.1989375-2-phasta@kernel.org>
+References: <20261105113529.1989375-2-phasta@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 05 Nov 2026 14:05:54 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -58,19 +135,90 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 16 Oct 2026 16:07:07 +0200
-Alexander Fischer <alexander.fischer@kait2en.org> wrote:
+dma_fence_init() now natively allows for selecting 64-bit seqno support.
+Port all users of dma_fence_init64() to this unified method.
 
-> v3 did not receive any review yet, so this rebases it onto current
-> drm-tip. No functional changes.
+Signed-off-by: Philipp Stanner <phasta@kernel.org>
+---
+ drivers/dma-buf/dma-fence-chain.c                  | 4 ++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c | 7 ++++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c    | 5 +++--
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c   | 5 +++--
+ 4 files changed, 12 insertions(+), 9 deletions(-)
 
-Lukas, I am sure it slipped through the cracks. Would you mind reviewing
-v4? This little patch works a treat and makes our Macs reach pkg-c10.
-Without it we are stuck with pc7.
+diff --git a/drivers/dma-buf/dma-fence-chain.c b/drivers/dma-buf/dma-fence-chain.c
+index a588f55ea4d3..7d1495235577 100644
+--- a/drivers/dma-buf/dma-fence-chain.c
++++ b/drivers/dma-buf/dma-fence-chain.c
+@@ -261,8 +261,8 @@ void dma_fence_chain_init(struct dma_fence_chain *chain,
+ 			seqno = max(prev->seqno, seqno);
+ 	}
+ 
+-	dma_fence_init64(&chain->base, &dma_fence_chain_ops, NULL,
+-			 context, seqno);
++	dma_fence_init(&chain->base, &dma_fence_chain_ops, NULL,
++		       context, seqno, BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+ 
+ 	/*
+ 	 * dma_fence_chain_enable_signaling() is invoked while holding
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+index f8652fd0525d..2924f34da316 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c
+@@ -133,9 +133,10 @@ int amdgpu_evf_mgr_rearm(struct amdgpu_eviction_fence_mgr *evf_mgr,
+ 	ev_fence->evf_mgr = evf_mgr;
+ 	get_task_comm(ev_fence->timeline_name, current);
+ 	spin_lock_init(&ev_fence->lock);
+-	dma_fence_init64(&ev_fence->base, &amdgpu_eviction_fence_ops,
+-			 &ev_fence->lock, evf_mgr->ev_fence_ctx,
+-			 atomic_inc_return(&evf_mgr->ev_fence_seq));
++	dma_fence_init(&ev_fence->base, &amdgpu_eviction_fence_ops,
++		       &ev_fence->lock, evf_mgr->ev_fence_ctx,
++		       atomic_inc_return(&evf_mgr->ev_fence_seq),
++		       BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+ 
+ 	/* Remember it for newly added BOs */
+ 	dma_fence_put(evf_mgr->ev_fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+index c1257f530e9a..5329c13f4237 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_userq_fence.c
+@@ -274,8 +274,9 @@ static void amdgpu_userq_fence_init(struct amdgpu_usermode_queue *userq,
+ 	bool signaled = false;
+ 
+ 	spin_lock_init(&fence->lock);
+-	dma_fence_init64(&fence->base, &amdgpu_userq_fence_ops, &fence->lock,
+-			 fence_drv->context, seq);
++	dma_fence_init(&fence->base, &amdgpu_userq_fence_ops, &fence->lock,
++		       fence_drv->context, seq,
++		       BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+ 
+ 	/* Make sure the fence is visible to the hang detect worker */
+ 	dma_fence_put(userq->last_fence);
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+index b0002c898386..f8cc258dcdef 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vm_tlb_fence.c
+@@ -100,8 +100,9 @@ void amdgpu_vm_tlb_fence_create(struct amdgpu_device *adev, struct amdgpu_vm *vm
+ 	INIT_WORK(&f->work, amdgpu_tlb_fence_work);
+ 	spin_lock_init(&f->lock);
+ 
+-	dma_fence_init64(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
+-			 vm->tlb_fence_context, atomic64_read(&vm->tlb_seq));
++	dma_fence_init(&f->base, &amdgpu_tlb_fence_ops, &f->lock,
++		       vm->tlb_fence_context, atomic64_read(&vm->tlb_seq),
++		       BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
+ 
+ 	/* TODO: We probably need a separate wq here */
+ 	dma_fence_get(&f->base);
+-- 
+2.56.0
+
