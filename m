@@ -2,70 +2,90 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5BE7606A33E
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 09:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E9CE606A328
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 09:15:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=casper.20170209 header.b=A090ybic
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bFAS48f0
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F3D811227F;
-	Thu,  5 Nov 2026 09:04:53 +0000 (UTC)
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3D2F11228A;
- Thu,  5 Nov 2026 09:04:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=gz5sekZhkEN5i4KTVnJFPB0GpaceA8nVJ3ASWXSb3No=; b=A090ybicYHuJUXKX52u0Jbpa0M
- BlrGtwZwjal56BippSBYVqX582lCQV8utP4PlFbrD2s8OGq1EFIx4p8OW8BGDFupZBJqvzMayjg9k
- EtmgVO66mS2nusbHe+EafDJYftNi3sSBMwU7ajar8/ks1ufBzNiRCZgVxLCZN0PjsjquEjudf8SXI
- lme1YI+aaY9pB7ahZFF2hF4AvJUVkHF+HFP2rg5l56A5+wNJGX3m/aW2BM3jUMnzJcchB17U1mCFH
- 76wtQWSwQKZQ05B+IH5amI5jI5Vy+1WftK2ZKjz+eu+Du8gakXhjbhihIqtx7taFTky18BrRbtjUA
- 4CF9vMww==;
-Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252]
- helo=noisy.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.100.1 #2 (Red Hat Linux))
- id 1xOtOg-00000006W57-0YHQ; Thu, 05 Nov 2026 09:04:38 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id BBD9A30057E; Thu, 05 Nov 2026 10:04:37 +0100 (CET)
-Date: Thu, 5 Nov 2026 10:04:37 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Borislav Petkov <bp@alien8.de>
-Cc: Vineet Gupta <vineet.gupta@linux.dev>,
- Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- "Joerg Roedel (AMD)" <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43C8211227F;
+	Thu,  5 Nov 2026 09:15:19 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3212411225E;
+ Thu,  5 Nov 2026 09:15:13 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 30E8860F3E;
+ Thu,  5 Nov 2026 09:15:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36B561F000C1;
+ Thu,  5 Nov 2026 09:15:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793870111;
+ bh=yuu8MRbvZ8Q99gVGDEWGPtvGQgcdEiYL3ohtAsA9Mfg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=bFAS48f0dLcspAEXkjkArw9f5g1sLZat7q01f+HKggEbmSs8nuly01Er89M9cFC+E
+ aJelUDSseJymE+2CsLiDv70w3W0f6o/p8FxgDHcsOPwgv1/JMp5POhaS6WYnvYb7K8
+ zUzkNI/hkDRyloSNnZbNr8XotLbG+h1F+jOL0Hkb0Avr9U7fYBRpfR9C0mcxiQBR3s
+ vMTD9J5x5SQw0X/qL4Os/hOqj2LHOa1MTSUUKJIb4NDus9wXA/2kpJ9BHnn9SLC4gw
+ 1auncQlq+pWnfmu6Sf7Gd8Hf0QutCtTy+KqQdynzeHMD3cDRsYlcu6hbTs5fM0MRzR
+ 2QGNBnbRrZdUQ==
+Date: Thu, 5 Nov 2026 10:15:08 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ amd-gfx@lists.freedesktop.org, Russell King <linux@armlinux.org.uk>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Inki Dae <inki.dae@samsung.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Peter Griffin <peter.griffin@linaro.org>,
+ Seung-Woo Kim <sw0312.kim@samsung.com>, 
+ linux-samsung-soc@vger.kernel.org, Alison Wang <alison.wang@nxp.com>, 
+ Stefan Agner <stefan@agner.ch>, Huacai Chen <chenhuacai@kernel.org>, 
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>, Jianmin Lv <lvjianmin@loongson.cn>, 
+ Mingcong Bai <jeffbai@aosc.io>, Qianhai Wu <wuqianhai@loongson.cn>, 
+ Xi Ruoyao <xry111@xry111.site>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+ linux-renesas-soc@vger.kernel.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>, 
+ Alain Volmat <alain.volmat@foss.st.com>,
+ Raphael Gallais-Pou <rgallaispou@gmail.com>, 
+ Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ linux-sunxi@lists.linux.dev, Jonathan Hunter <jonathanh@nvidia.com>, 
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Thierry Reding <thierry.reding@kernel.org>, 
+ linux-tegra@vger.kernel.org, Alexey Brodkin <abrodkin@synopsys.com>, 
+ Alex Lanzano <lanzano.alex@gmail.com>, Chia-I Wu <olvaffe@gmail.com>,
+ David Airlie <airlied@redhat.com>, 
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gerd Hoffmann <kraxel@redhat.com>, 
+ Gurchetan Singh <gurchetansingh@chromium.org>, virtualization@lists.linux.dev, 
+ Haneen Mohammed <hamohammed.sa@gmail.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>, 
+ Melissa Wen <melissa.srw@gmail.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-amlogic@lists.infradead.org, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- "H. Peter Anvin" <hpa@zytor.com>, "Xin Li (Intel)" <xin@zytor.com>,
- Brian Gerst <brgerst@gmail.com>, Nikolay Borisov <nik.borisov@suse.com>,
- linux-kernel@vger.kernel.org, Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Steven Rostedt <rostedt@goodmis.org>,
- Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
- Valentin Schneider <vschneid@redhat.com>,
- K Prateek Nayak <kprateek.nayak@amd.com>,
- Robin Murphy <robin.murphy@arm.com>, iommu@lists.linux.dev,
- Nathan Chancellor <nathan@kernel.org>,
- Nick Desaulniers <ndesaulniers@google.com>,
- Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, llvm@lists.linux.dev
-Subject: Re: [PATCH 0/4] Fix the x86 defconfig build with GCC 17
-Message-ID: <20261105090437.GT2668804@noisy.programming.kicks-ass.net>
-References: <20261104160722.1637541-1-vineet.gupta@linux.dev>
- <20261104162747.GAautdA2q2lw2gsth2@fat_crate.local>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ Danilo Krummrich <dakr@kernel.org>, Lyude Paul <lyude@redhat.com>,
+ nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+Message-ID: <auxJBtexUg6oHcs9@houat>
+References: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="2zvnwa2sqytkzb4j"
 Content-Disposition: inline
-In-Reply-To: <20261104162747.GAautdA2q2lw2gsth2@fat_crate.local>
+In-Reply-To: <20261030-drm-no-more-connector-reset-v3-0-30e71d92c327@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,20 +96,62 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 04, 2026 at 08:27:47AM -0800, Borislav Petkov wrote:
-> On Wed, Nov 04, 2026 at 08:07:17AM -0800, Vineet Gupta wrote:
-> > Fix build warnings and failures (CONFIG_WERROR=y) with a GCC 17 build.
-> > GCC 17 adds -Wconstant-logical-operand which is strict about operands
-> > of && or || that fold to a constant other than 0 or 1.
-> 
-> Just from looking at it, my initial reaction would be to disable that option.
-> 
-> Because, frankly, I don't see the point.
 
-Yes, this. This seems like a really pointless warning to me too.
+--2zvnwa2sqytkzb4j
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v3 00/37] drm/connector: Convert all drivers to
+ atomic_create_state and remove reset
+MIME-Version: 1.0
+
+On Fri, Oct 30, 2026 at 04:13:30PM +0100, Maxime Ripard wrote:
+> This is a follow-up to the plane and CRTC reset removal series, and
+> part of a larger effort to remove the reset hook from all KMS objects.
+>=20
+> The connector reset hook is overloaded: it is called both at probe
+> time to create the initial software state and during suspend/resume to
+> reset hardware and software state. These two roles have different
+> requirements, and the reset hook is not fallible, making error
+> handling difficult for the initial state allocation path.
+>=20
+> While reset has the semantics to reset both the software and hardware
+> state, the vast majority of implementations and all the helpers only
+> reset the software state, making them equivalent to
+> atomic_create_state in practice. The atomic_create_state hook makes
+> this explicit: it only allocates and initializes a pristine state
+> without any side effect, and returns the state pointer or an ERR_PTR
+> on failure.
+>=20
+> This series converts all connector drivers tree-wide from the reset hook
+> to atomic_create_state, then removes the reset hook from struct
+> drm_connector_funcs entirely. The conversions were done using a
+> combination of Coccinelle semantic patches, mechanical one-line
+> replacements and manual adjustments.
+>=20
+> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+
+Applied to drm-misc-next
+
+Maxime
+
+--2zvnwa2sqytkzb4j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCauxJHAAKCRAnX84Zoj2+
+dpi6AYDFcyxVth1IfzYJl7Mk/wdU/UrwZChOoRG3vJ2c4jm3YXPwmaZCDBG4hPm/
+E3dp1WQBf2Htv+GDvQkXS9avpT+uRjkpFRqowDqfaE0gXWHKwBFuo13bOFi12DLC
+XPBNQCk6+w==
+=O+mF
+-----END PGP SIGNATURE-----
+
+--2zvnwa2sqytkzb4j--
