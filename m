@@ -2,42 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F7AB606A332
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:12:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JWjTVxdB
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57576606D822
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 14:14:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 388C710EE76;
-	Thu,  5 Nov 2026 14:12:53 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3B4510E2E1;
- Thu,  5 Nov 2026 14:12:41 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6CB7642E87;
- Thu,  5 Nov 2026 14:12:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1474B1F00A15;
- Thu,  5 Nov 2026 14:12:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793887961;
- bh=1L8SFwsbCq8ib1q3/FLH2P/dD3IRfBmCfNyQaGx79ds=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=JWjTVxdB3MuqR1DbV450wviKMuccNG+KozL4NydKaXiqMlNzH/wNhhC2r/w7YffzU
- nRxiNVzJWrPKmB0rQktStfFzHzUVc+zcOfsjblCX2fUID0BNEhhW3DpZh1BGsyMqt9
- YklLmmAA2cfo47Os12Fgk+xzpeMrHQN0oat8Ym6vleVFFIPdqvfac81dvAcSBQDCme
- 4rMEvAvI1Kem4FUsCm7L9HQvwXnne+zEL1ephhyWscWFiR8pj5wijIp6dp1971/Y9v
- zuMPCi11FbmobPeVQ115/V3suBbaldNxM/qKzysmNja8ZJMsoFhtkFnCLguNCx09Fa
- MbHMJJjXdMYvQ==
-Message-ID: <sashiko-outbox-199210@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/i915/dsb: Fill all padding before GOSUB
-To: "Hanson Wang" <hanson.wang@ugreen.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-In-Reply-To: <20261105134658.3724628-1-hanson.wang@ugreen.com>
-References: <20261105134658.3724628-1-hanson.wang@ugreen.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 05 Nov 2026 14:12:40 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109B110F138;
+	Thu,  5 Nov 2026 14:14:31 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A39011245A;
+ Thu,  5 Nov 2026 14:14:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dma-buf=3A_dma-fence=3A_R?=
+ =?utf-8?q?emove_dma=5Ffence=5Finit64=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Philipp Stanner" <phasta@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Nov 2026 14:14:30 -0000
+Message-ID: <179388807049.125275.14387260464556521256@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261105113529.1989375-2-phasta@kernel.org>
+In-Reply-To: <20261105113529.1989375-2-phasta@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,110 +33,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential issue(=
-s) to consider:
-- [Low] drm/i915/dsb: intel_dsb_gosub_align() duplicates intel_dsb_align_ta=
-il()
---
+== Series Details ==
 
-commit 9778ee8e90748be72ffe6e979a8d71a200d84540
-Author: Hanson Wang <hanson.wang@ugreen.com>
+Series: dma-buf: dma-fence: Remove dma_fence_init64()
+URL   : https://patchwork.freedesktop.org/series/177858/
+State : warning
 
-drm/i915/dsb: Fill all padding before GOSUB
+== Summary ==
 
-This commit updates intel_dsb_gosub_align() to zero all bytes skipped when
-aligning free_pos to a cacheline boundary before emitting a GOSUB
-instruction, rather than only zeroing the gap when at most two QW slots
-remain.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 803183dc66a6540c7670a1d1af5edf74c7411a9e
+Author: Philipp Stanner <phasta@kernel.org>
+Date:   Thu Nov 5 12:35:30 2026 +0100
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
-915/display/intel_dsb.c
-> index 299d778520a22..83aeb3fc89425 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -608,8 +608,13 @@ static void intel_dsb_gosub_align(struct intel_dsb *=
-dsb)
->  	/*
->  	 * Wa_16024917128
->  	 * "Ensure GOSUB is not placed in cacheline QW slot 6 or 7 (numbered 0-=
-7)"
-> +	 *
-> +	 * free_pos always advances to the next cacheline, so the skipped
-> +	 * bytes remain inside the programmed command range. Fill the whole
-> +	 * gap with NOPs; clearing only slots 6 and 7 leaves a larger gap
-> +	 * uninitialized.
->  	 */
-> -	if (aligned_tail - tail <=3D 2 * 8)
-> +	if (aligned_tail > tail)
->  		dsb_buffer_fill(dsb, dsb->free_pos, 0, aligned_tail - tail);
-> =20
->  	dsb->free_pos =3D aligned_tail / 4;
+    dma-buf: dma-fence: Remove dma_fence_init64()
+    
+    All users of dma_fence_init64() have been removed. They now use the
+    respective initialization flag in dma_fence_init().
+    
+    Remove dma_fence_init64().
+    
+    Signed-off-by: Philipp Stanner <phasta@kernel.org>
++ /mt/dim checkpatch 0e8b43b5a5ef2dd52c454158e7fd8a927d796eb4 drm-intel
+f4f82e165c22 dma-buf: dma-fence: Add flags parameter to dma_fence_init()
+-:56: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#56: FILE: drivers/accel/ivpu/ivpu_job.c:522:
++	dma_fence_init(&fence->base, &ivpu_fence_ops, &fence->lock, dma_fence_context_alloc(1), 1, 0);
 
-[Severity: Low]
-Wa_16024917128 states that GOSUB must not be placed in cacheline QW slot 6
-or 7 (where 0 < aligned_tail - tail <=3D 2 * 8). When tail is in QW slots 0
-through 5, GOSUB is allowed at that slot, and the trailing
-intel_dsb_align_tail(dsb) call at the end of intel_dsb_gosub() already pads
-the instructions following GOSUB within that cacheline with NOPs:
+-:125: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#125: FILE: drivers/dma-buf/dma-fence.c:1094:
++		GENMASK(
 
-drivers/gpu/drm/i915/display/intel_dsb.c:intel_dsb_gosub() {
-	...
-	intel_dsb_gosub_align(dsb);
-	...
-	intel_dsb_emit(dsb, lower_32_bits(head_tail),
-		       (DSB_OPCODE_GOSUB << DSB_OPCODE_SHIFT) |
-		       upper_32_bits(head_tail));
+-:126: CHECK:SPACING: No space is necessary after a cast
+#126: FILE: drivers/dma-buf/dma-fence.c:1095:
++			BITS_PER_TYPE(unsigned long) - 1,
 
-	/*
-	 * "NOTE: the instructions within the cacheline
-	 *  FOLLOWING the GOSUB instruction must be NOPs."
-	 */
-	intel_dsb_align_tail(dsb);
-}
+total: 0 errors, 1 warnings, 2 checks, 476 lines checked
+cf362d87ff17 dma-buf: Port users of dma_fence_init64()
+803183dc66a6 dma-buf: dma-fence: Remove dma_fence_init64()
 
-In commit 2c41d62f6fb1, intel_dsb_gosub_align() checked
-if (aligned_tail - tail <=3D 2 * 8) to detect QW slots 6 and 7, but left
-dsb->free_pos =3D aligned_tail / 4 outside the conditional block, which cau=
-sed
-free_pos to advance to the next cacheline without zeroing the skipped bytes
-when tail was in QW slots 1 through 5.
 
-With this change to if (aligned_tail > tail), intel_dsb_gosub_align()
-becomes an exact duplicate of intel_dsb_align_tail() defined immediately
-above it:
-
-static void intel_dsb_align_tail(struct intel_dsb *dsb)
-{
-	u32 aligned_tail, tail;
-
-	intel_dsb_ins_align(dsb);
-
-	tail =3D dsb->free_pos * 4;
-	aligned_tail =3D ALIGN(tail, CACHELINE_BYTES);
-
-	if (aligned_tail > tail)
-		dsb_buffer_fill(dsb, dsb->free_pos, 0, aligned_tail - tail);
-
-	dsb->free_pos =3D aligned_tail / 4;
-}
-
-Should dsb->free_pos =3D aligned_tail / 4 instead be moved inside the
-if (aligned_tail - tail <=3D 2 * 8) block so that free_pos only advances to
-the next cacheline when GOSUB would land in QW slot 6 or 7, or if
-unconditional cacheline alignment before GOSUB is intended, should
-intel_dsb_gosub() call intel_dsb_align_tail() directly instead of
-duplicating it?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261105134658.3724=
-628-1-hanson.wang@ugreen.com?part=3D1
