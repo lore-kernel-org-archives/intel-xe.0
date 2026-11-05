@@ -2,149 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C66D606D803
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 00:49:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA42606A326
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 01:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZE3r3ZEs
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=SGKztrve
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45A7910E311;
-	Thu,  5 Nov 2026 00:49:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0A0E10E311;
- Thu,  5 Nov 2026 00:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793839754; x=1825375754;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=+QAuvJWSS858eZC8t0wJL+lGU/PrgH2Drn/IteGEC7M=;
- b=ZE3r3ZEsIfFCWz1PmV92EfWlXwPSU/wxnAHyT9/YG64A0K4/aq9A8bB+
- WrhuAVbvmfSUyR84S38+uQT41IRkRPush/jh7d32K1SHvC2fSKevMHWCQ
- 4DD+lzR9ftgMD/uibWvnDEgcjd8rvvT28nSt5Bl45CTTJGsOSa0q4/w5t
- q0wfc3iHBTDcVjxNIWArm5jZN3gexfr5RgUbPiRfj44hkl5im9TsaywP8
- j1O+asapToclRUjnyfU3s1Kwfkv1DswqMqg5knCtQMBcFEpZ81VfySbyK
- fxVWnjCyoF8OpHXgtJ9gnY/464SC5V3NmlqBBbeGj8x4KNC9hOPNChvbF Q==;
-X-CSE-ConnectionGUID: oJ4QDZQCRKONuTVb0M6OzA==
-X-CSE-MsgGUID: RKXTBgQNQwiKK3iyMSMkWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2609804"
-X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="2609804"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 16:49:14 -0800
-X-CSE-ConnectionGUID: isBfxj7IQ3qkegywJgi60A==
-X-CSE-MsgGUID: ETh6k6/qRcSYRKeS74McJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="7173101"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 16:49:14 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 4 Nov 2026 16:49:13 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Wed, 4 Nov 2026 16:49:13 -0800
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.69) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 4 Nov 2026 16:49:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Lpo3y2zKAJj/jzkNmmGXrtYF280inP2z2dWNnwePtLdSMOwjZsw1gBa0R6E9KIXu6Zy7ACjV4LGDnZdPzUW0HyDcSgx7x1V0X0hvFvhKlcIV3JiUvzvvOWXfUKaEgWO+WdwF+LKDuXOMhekcanuBGfkFVDTHpM5fXJafQlQ4sMVjduyU0yar9091D2yP/gAjJql4/c5Gta72G1XJgXEmqIRc487qq+rYy3lWqza5WwIhKE6FOn2AsFLG5LSH+JYg6kNiCR6F4aDnOXaZSQiM4mpGK1Wvn3974nqiRTBkbWv9eLnaicFeNPDX4NrIoh7ObKHY2vNWgjMROP1UQQEMQg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jjE3O1RWL0D+8+0hrNKsiocButCVQ3xjy+8Bs3hAbgA=;
- b=XuOBSDbet1Sv8bx13OEgVXCeFT/M+vligc/I3I79g22N6BKsn4OnSg0bbUIJSpVWpRib6mMSMP8SvZQ36S0ZAiUOKH44TC7GPEpKDjqqYbPxoIXvViOuT8wdhsqO74Adz8EtSE5LcRzIprZG3P8aQrHC7Og6Sm+Lq9FsEFOQ1uy5HYm5MHRsGA6VRu+zedOXAqLR5a4S6El8Mv+8DV7p1BD/88pqIUwEY2P0v4zDByBahMewyr61F+iLYHtcNaikw+JckoRsHiivH4XhVJByVpQ92Crmi0cT9bLA427esXyXoFwsUPS0+gkYtfnF/lZA69jioENN40YAReUmGHs3OA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
- by SA0PR11MB4559.namprd11.prod.outlook.com (2603:10b6:806:9a::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.8; Thu, 5 Nov 2026
- 00:49:04 +0000
-Received: from MW3PR11MB4684.namprd11.prod.outlook.com
- ([fe80::2f5a:96ce:f7e4:c315]) by MW3PR11MB4684.namprd11.prod.outlook.com
- ([fe80::2f5a:96ce:f7e4:c315%7]) with mapi id 15.21.0569.011; Thu, 5 Nov 2026
- 00:49:04 +0000
-Date: Wed, 4 Nov 2026 16:49:01 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/gpusvm: Add a DMA-mapping accounting callback
-Message-ID: <auvSfdjtHnHbq8FC@nvishwa1-desk>
-References: <20261104215228.1533692-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261104215228.1533692-1-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0092.namprd13.prod.outlook.com
- (2603:10b6:a03:2c5::7) To MW3PR11MB4684.namprd11.prod.outlook.com
- (2603:10b6:303:5d::14)
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW3PR11MB4684:EE_|SA0PR11MB4559:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7e665e90-e395-49de-579d-08df3ad6969f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|23010399003|1800799024|10067099003|18002099003|22082099003|6133799003|56012099006|11063799006|261022075727099003|261022105027099003|261026121527099003|261102123227099003|261026140227099003|261028144727099003|261021123027099003|261021121427099003|5023799004|261009223027099003|261009221227099003;
-X-Microsoft-Antispam-Message-Info: ANu7JAG5FR6PHdKItN38E3SAYqcaMUPnGDOFyGiqEV2Wult0H+14tCt5XQuV2jDmG3WLZJAWma53JH0eCrN5Sy2TUviwKEqDfXS8vhsigXOyAJOaGV6R02DZPZtUvntpi4YuGEqo952ckb+Iv49ZAtH5O6ch93NCRmzbdckrFNG9rXacjOKvFrSznUkI0Izbw8ib5XgYBWnxORVOvBiWNlu9geBoivUw/hggDgfAl0fUmcMDinhiuNXbY4rBYJFNSCqNol+6UZV42aNow6jLYM/SSaGjuA/zyGnrEYZKjx9Hj7q69+3gfjLoQSXLOTnjc6DKQmm06nuITVYxym7UqKh0UHCggflUUBqKfHCVUt+hFxE2g6S+bqgG/nrXxiKkeTP0NWSAOeJtFbW4dZfAtBqLzWnlm+q4Tf/LYoe+RXY4MVgYLtwBHD6sAvxCGPy1+uo+UxkKqA8l9Hy474VQsoesHR8Cd/NBq2gDr7rMw6vRmZmZHK9EDhqKWqVq0ev4YQkI0sSwnfiPY3MXLxBr4Iybrttn3Jw35/lMZLFhexwvrDmWyobAGDiq+7PsbXI1pj8qOgOqSvC8rwhuPMcQ3bdagC5DgRwsZ5MqS7WQzGGd9M4HdxEpEZono8sNk7MsBdLtdXdCcXhmuYgPp0Ll6Y1QR74YcfzYemV5AcGBK9k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR11MB4684.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(10067099003)(18002099003)(22082099003)(6133799003)(56012099006)(11063799006)(261022075727099003)(261022105027099003)(261026121527099003)(261102123227099003)(261026140227099003)(261028144727099003)(261021123027099003)(261021121427099003)(5023799004)(261009223027099003)(261009221227099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?wVOHBHA+TBCjj8ZzGU7f3FNb7OHA79OTAYXocb/5O9lc1bnSzAGPQCBP8c?=
- =?iso-8859-1?Q?AUycbgkpibmpbu5eyC6ohEuUWuNQeVuItWYDKkjVZmJk4FFukC7POVd8+j?=
- =?iso-8859-1?Q?yfFumDjptfs2EOfXU+XfbO8ryi0+w/FMD973+GMZq/WGqYzYVnObN0/UyM?=
- =?iso-8859-1?Q?CVKO0+3qHS1Y/Les5BXQXGOpykR9sEaygdQqV9tJDr5WJ7CclYHBxnNHTL?=
- =?iso-8859-1?Q?Pg13jVciLN27HndoMLkGlsPOL3fVUWyzKLP8pXxdixyDIYNkPhSuNrbaNX?=
- =?iso-8859-1?Q?A2t5blwvRTih34MDVJMx6Bi+wsWg2dWSAptFB0ml2urzXYMOcbO79n93Hb?=
- =?iso-8859-1?Q?1vxFciXfMPDnk+d9Ud0QHq2wdIodPO2m27dRNC6b8JOpY9CXvAr3djwMBO?=
- =?iso-8859-1?Q?QIrvja3454Zyf5o25C6r0qs+pPc3ja5cjwsaXeEAQO8yWwK4W4OE//maDM?=
- =?iso-8859-1?Q?RX4DwwWlER9yzZmhP0QlSXF2kPLdC8v5uO6JcSFvDoD2m5fT+beL1TwfLT?=
- =?iso-8859-1?Q?XoFnSsKqp0S0uKudGLcm6YX53anTFciwC62mIOYslZx+8VAQdhhOgFPse/?=
- =?iso-8859-1?Q?S2MaT0uhAtmWbGEXxUiSVaSNX1tH6mVUImkBt+GRC8s9Uxievqw2YTEifV?=
- =?iso-8859-1?Q?38pJPqh+snbxgiEMnJbIWxItldL1Qxc/HddGWpQR7lkfxpgu9o1e+7sZvE?=
- =?iso-8859-1?Q?RJSAIJ4nKeW8umbT0PvxMb2dHhi837I+j+yHY08jk7kmF5gYc3VirQaquQ?=
- =?iso-8859-1?Q?ysF870i20qizLahVyVOn3e7SmifL8sQvRjHEpawWIlN2VBL79SvUju3seN?=
- =?iso-8859-1?Q?zRHdsdr9mCWm9rpR8Io3aHrv31lVA5isK7tuCM8n2kAwZQ/8ft9u3HKol5?=
- =?iso-8859-1?Q?sHW+0y4ykw6Uc/KdAmsFSdgE2LfJVXENwYNExMiD8WPwOUy4o7bicni0VN?=
- =?iso-8859-1?Q?JYGHa1K4y5bVbHlF9gr2lTlSBX1OiZmmpgfWJ4bSD9HjyqUyf4yKdaYYaO?=
- =?iso-8859-1?Q?ZoSX4afSfXnt62LowGPiT0cR/BX3oQrDhR1+Y64kQabo8ofvqBGHMqRlne?=
- =?iso-8859-1?Q?t2Z5BV7Bly4V0t3sPOQ1lgpFZKIYntNPATbYqorEa+kHfDuTABYxLic8VN?=
- =?iso-8859-1?Q?n8mbQ/xPZWhXOjaaMuMB0p7Bhl6UbUmcv7jN+SWYFllI/5Tg+lnylajutD?=
- =?iso-8859-1?Q?nMR6i+7BFVvskmQ8H2T+WJZvqWnsUuSxBxs8AkYOUUgLnDIP0ibSVb7wUt?=
- =?iso-8859-1?Q?ctDiufNOZB02rNq1vbg7RmjyHHjYODR8vfIPSzTLamioWsYIf9L47hiJNX?=
- =?iso-8859-1?Q?IB19J0VqYg8dY2DSDBPObO9ejpLHnKyMYcs0OayBGrFNt1JIhCduaDsHxx?=
- =?iso-8859-1?Q?BBMSYWwtlgC4wMOP9ezNtg98FG4C3grdPOXCUhcATk/huxvI7rNBDcpYgi?=
- =?iso-8859-1?Q?TVj68qPHRl3UJDzCnpQ1b63NcrrHPeE0Sq4Or8er+6rHJhv2mUJrypV5kj?=
- =?iso-8859-1?Q?5SCtHHyPqgCFyiVrzZUrvnoDKOzi35JxD/v075kXT5/1mjIvzlnAHEcipl?=
- =?iso-8859-1?Q?0/yzcOvBbQEvkWafJa1OGTJiUwItch4pxXivWHOgqW2JuHmUVIGa+v0bsC?=
- =?iso-8859-1?Q?jWhpkXG1JYDlIkiJBvXo1lNmMIJ0BzbYVEWx6sULUcYekD0BHNx53POizk?=
- =?iso-8859-1?Q?I8HXxbYZKZyJOAtaY/7gjjY7qjlxVEGZcoMQ9nW3H4qkkoNklff2v0XoSV?=
- =?iso-8859-1?Q?rOf+uEGnB9OEkDwGbIp5ewKejYf+IuXe0IxTlyrVNlYbWBbmP66y8DXdRw?=
- =?iso-8859-1?Q?5p2KzNSJVQ7adCuqqXrWlEsDQxuDkIZxjSRpeK27XrG22z+BWR1W?=
-X-Exchange-RoutingPolicyChecked: A1aE4r+TiWFrqFASWFynfaMFIfYYv6PNBqhk67RUmiAGS6Fbv3nYun2BsxUiPP1noDypmGduBi62+iBuxxdGXarJtOs+bk29zvXSwLh1bVTDAC9IgK4ePyT9lqFnsHREbHkc4Otr4VTKGUQQpBoxnvP9RY5JvFfANx+watzOYSnlmt6Ls+k30jCYoANBk1vkF/iQ0AFuzU4ZNH1gZCLktzS/GLcpODclyJSRc8NdJls1jQmgQc/YQ0WBEht7ltla5UStWk2ueGgDducZUbJ2iZKz7U4645DgEi0jDWNlcUzPfFmRolDsjml1T8LX6pp/kaWHjLdxVm/HxUvuV59org==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e665e90-e395-49de-579d-08df3ad6969f
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4684.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Nov 2026 00:49:03.8096 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BNicU7ldlje9ciEQxfWaeaxpK2YEN52JfXs13aL/UfZHlU/43/yRh4I5LJVLyAKPp8yLOHyDRligI0riJ/xOcxPCpOqO3+KOsls7r3DR8xo7dvxLjT3nTNqmKPmjbD7e
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4559
-X-OriginatorOrg: intel.com
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8882210F1B1;
+	Thu,  5 Nov 2026 01:03:34 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE3610E5D5
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 01:03:28 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 34F3E43D42;
+ Thu,  5 Nov 2026 01:03:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F14551F00919;
+ Thu,  5 Nov 2026 01:03:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793840608;
+ bh=8HEUrIff2fasJRXF3BG9l7B89ksogiUcL7ddZopL8IU=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=SGKztrve25f96YXk0GUxd2ih1UJ0G31IPnQ7pIirvqFj9LB8UfPtxM5bHSLbJ04D8
+ hnTHcpbskCj+wiIgcbSSlp7N0h8vio4eYOHAWEdiIFgkO8LCoY3VrdNRdR9SlaheAN
+ skoMiat9YDttxWHsT9zRec6rJOnUlSI9bF3/PZaOxiMEZM/hetWOP3yAPxgbTKQcKM
+ B/wJanK0msmHACY2RxTQE/85i3NyAKhgYnVIMIeTW007aqyj+GILKxMnd6lSE0ZSgY
+ qpLsii2VLy5NPG1RhWqVSDr5EMPUkebypKRy59awXxICX1Fst9OVWLQrORae8UCftM
+ +3Ib0YJdra2uA==
+Message-ID: <sashiko-outbox-198380@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 5/7] drm/xe/oa: Wait for in-flight OA batches before
+ stream HW teardown
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261105001559.3288915-14-umesh.nerlige.ramappa@intel.com>
+References: <20261105001559.3288915-9-umesh.nerlige.ramappa@intel.com>
+ <20261105001559.3288915-14-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 05 Nov 2026 01:03:27 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,169 +48,201 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On Wed, Nov 04, 2026 at 01:52:27PM -0800, Matthew Brost wrote:
->From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->
->Drivers that use the GPU SVM core to DMA-map system memory for GPU
->access may want to keep track of how many pages they have mapped, for
->example to expose statistics or to detect leaks. Doing this accounting
->in the driver around drm_gpusvm_get_pages() / drm_gpusvm_unmap_pages()
->is error prone: the number, order and kind of the dma_addr[] entries can
->change between map and unmap (migration, partial unmaps, the iova vs
->non-iova paths), which makes symmetric accounting hard to get right.
->
->Add an optional @dma_map_account callback to struct drm_gpusvm_ops and
->invoke it once per &drm_pagemap_addr entry at the exact points where the
->entry is DMA-mapped (sign == +1) in drm_gpusvm_get_pages() and unmapped
->(sign == -1) in __drm_gpusvm_unmap_pages(). Since the map error path and
->every unmap/free path funnel through __drm_gpusvm_unmap_pages() for the
->entries that were actually mapped, the accounting is symmetric by
->construction. The callback receives the full &drm_pagemap_addr so the
->driver can use the order and the proto field to distinguish system
->memory mappings from device interconnect mappings.
->
->The callback must also be usable by the core drm_gpusvm_pages-only API
->(mm == NULL), as used e.g. for userptr-style mappings. Relax
->drm_gpusvm_init() to allow such users to pass a restricted @ops that
->only implements the page-level hooks; the full-SVM hooks (@invalidate)
->and the chunk configuration must still be unset in that mode.
->
->Assisted-by: LLM
->Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->---
-> drivers/gpu/drm/drm_gpusvm.c | 40 ++++++++++++++++++++++++++++--------
-> include/drm/drm_gpusvm.h     | 19 +++++++++++++++++
-> 2 files changed, 50 insertions(+), 9 deletions(-)
->
->diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
->index 03dbe304e4b8..5ef9d7233491 100644
->--- a/drivers/gpu/drm/drm_gpusvm.c
->+++ b/drivers/gpu/drm/drm_gpusvm.c
->@@ -503,8 +503,15 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
-> 			return -EINVAL;
-> 		mmgrab(mm);
-> 	} else {
->-		/* No full SVM mode, only core drm_gpusvm_pages API. */
->-		if (ops || num_chunks || mm_range || notifier_size)
->+		/*
->+		 * No full SVM mode, only core drm_gpusvm_pages API. A
->+		 * restricted @ops that only implements the page-level hooks
->+		 * (e.g. @dma_map_account) is allowed; the full-SVM hooks must
->+		 * not be set.
->+		 */
->+		if (num_chunks || mm_range || notifier_size)
->+			return -EINVAL;
->+		if (ops && ops->invalidate)
-> 			return -EINVAL;
+Thank you for your contribution! Sashiko AI review found 3 potential issue(=
+s) to consider:
+- [High] drm/xe/oa: context LRI batch in xe_oa_disable_metric_set() is not =
+drained
+- [High] drm/xe/oa: post-teardown HW programming when xe_oa_stream_drain() =
+times out
+- [Medium] drm/xe/oa: missing xe_oa_stream_drain() on xe_oa_stream_init() e=
+rror path
+--
 
-Other than 'invalidate' here, should we also check for other ops like
-range_alloc, range_free etc?
+commit 82829afb190084d0c0c592c6968d740225601cf9
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Niranjana
+drm/xe/oa: Wait for in-flight OA batches before stream HW teardown
 
-> 	}
->
->@@ -1240,9 +1247,12 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
-> 		struct drm_gpusvm_pages_flags flags = {
-> 			.__flags = svm_pages->flags.__flags,
-> 		};
->+		bool contiguous;
-> 		const struct drm_pagemap_addr *addrs =
->-			drm_gpusvm_pages_first_dma(svm_pages, NULL);
->+			drm_gpusvm_pages_first_dma(svm_pages, &contiguous);
-> 		bool use_iova = dma_use_iova(&svm_pages->state);
->+		bool needs_account = gpusvm->ops &&
->+			gpusvm->ops->dma_map_account;
->
-> 		/*
-> 		 * IOVA is reserved for the whole range but only the linked
->@@ -1260,14 +1270,18 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
->
-> 		/*
-> 		 * With IOVA and no device page the unlink above tore every
->-		 * entry down, and that is also when the range may be folded
->-		 * to one entry, which must not be walked per entry. dpagemap
->-		 * is set before the first device_map(), so it is also right
->-		 * on the error path, where the flags are not published yet.
->+		 * entry down, but the per-entry walk is still needed when the
->+		 * driver accounts the mappings. A folded (inline) mapping has
->+		 * a single entry describing the whole range, so it must be
->+		 * re-read for every iteration instead of indexed by @j.
->+		 * dpagemap is set before the first device_map(), so it is also
->+		 * right on the error path, where the flags are not published
->+		 * yet.
-> 		 */
-> 		for (i = 0, j = 0;
->-		     (!use_iova || dpagemap) && i < npages; j++) {
->-			const struct drm_pagemap_addr *addr = &addrs[j];
->+		     (!use_iova || dpagemap || needs_account) && i < npages; j++) {
->+			const struct drm_pagemap_addr *addr =
->+				contiguous ? &addrs[0] : &addrs[j];
->
-> 			if (addr->proto == DRM_INTERCONNECT_SYSTEM) {
-> 				/*
->@@ -1283,6 +1297,10 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
-> 			} else if (dpagemap && dpagemap->ops->device_unmap)
-> 				dpagemap->ops->device_unmap(dpagemap,
-> 							    dev, addr);
->+
->+			if (needs_account)
->+				gpusvm->ops->dma_map_account(gpusvm, addr, -1);
->+
-> 			i += 1 << addr->order;
-> 		}
->
->@@ -1705,6 +1723,10 @@ static int drm_gpusvm_dma_map_pages(struct drm_gpusvm *gpusvm,
-> 				(addr, DRM_INTERCONNECT_SYSTEM, order,
-> 				 dma_dir);
-> 		}
->+		if (gpusvm->ops && gpusvm->ops->dma_map_account)
->+			gpusvm->ops->dma_map_account(gpusvm,
->+						     &svm_pages->dma_addr[j],
->+						     1);
-> 		i += 1 << order;
-> 		num_dma_mapped = i;
-> 		flags.has_dma_mapping = true;
->diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
->index 4d31c6bba745..637c19f7169f 100644
->--- a/include/drm/drm_gpusvm.h
->+++ b/include/drm/drm_gpusvm.h
->@@ -75,6 +75,25 @@ struct drm_gpusvm_ops {
-> 	void (*invalidate)(struct drm_gpusvm *gpusvm,
-> 			   struct drm_gpusvm_notifier *notifier,
-> 			   const struct mmu_notifier_range *mmu_range);
->+
->+	/**
->+	 * @dma_map_account: Account a DMA-mapping change (optional)
->+	 * @gpusvm: Pointer to the GPU SVM
->+	 * @addr: The address descriptor of the chunk being (un)mapped
->+	 * @sign: +1 when @addr has just been DMA-mapped, -1 when it is being
->+	 *        unmapped
->+	 *
->+	 * Called once per &drm_pagemap_addr entry, when the entry is
->+	 * DMA-mapped by drm_gpusvm_get_pages() (@sign == +1) and when it is
->+	 * unmapped (@sign == -1), so the driver can keep symmetric accounting
->+	 * of the pages it has mapped for GPU access. The @addr->proto field
->+	 * can be used to distinguish system-memory mappings from device
->+	 * interconnect mappings. May be provided in both full SVM mode and the
->+	 * core drm_gpusvm_pages-only mode.
->+	 */
->+	void (*dma_map_account)(struct drm_gpusvm *gpusvm,
->+				const struct drm_pagemap_addr *addr,
->+				int sign);
-> };
->
-> /**
->-- 
->2.34.1
->
+This commit records the fence from context LRI batches in
+stream->last_fence and adds xe_oa_stream_drain() to wait for
+stream->last_fence with a timeout before running hardware teardown when an
+OA stream is destroyed.
+
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index 7552ace821caf..31fc1e7675de0 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+> @@ -733,6 +733,12 @@ static void xe_oa_free_configs(struct xe_oa_stream *=
+stream)
+>  	dma_fence_put(stream->last_fence);
+>  }
+> =20
+> +static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct =
+dma_fence *fence)
+> +{
+> +	dma_fence_put(stream->last_fence);
+> +	stream->last_fence =3D dma_fence_get(fence);
+> +}
+> +
+>  static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa=
+_reg *reg_lri, u32 count)
+>  {
+>  	struct dma_fence *fence;
+> @@ -753,6 +759,7 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *s=
+tream, struct xe_oa_reg *re
+>  		goto free_bb;
+>  	}
+>  	xe_bb_free(bb, fence);
+> +	xe_oa_update_last_fence(stream, fence);
+
+[Severity: Medium]
+What happens if xe_oa_enable_metric_set() fails in xe_oa_emit_oa_config()
+after xe_oa_configure_oa_context(stream, true) has already submitted the
+enable LRI batch via xe_oa_load_with_lri()?
+
+In drivers/gpu/drm/xe/xe_oa.c, xe_oa_enable_metric_set() submits the
+context LRI batch before emitting the OA config:
+
+drivers/gpu/drm/xe/xe_oa.c:xe_oa_enable_metric_set() {
+	...
+	if (stream->exec_q) {
+		ret =3D xe_oa_configure_oa_context(stream, true);
+		if (ret)
+			return ret;
+	}
+
+	return xe_oa_emit_oa_config(stream, stream->oa_config);
+}
+
+If xe_oa_emit_oa_config() fails (for example, due to an allocation failure
+or xe_sync_entry_add_deps() error in xe_oa_submit_bb()),
+xe_oa_stream_init() jumps to err_put_k_exec_q:
+
+drivers/gpu/drm/xe/xe_oa.c:xe_oa_stream_init() {
+	...
+err_put_k_exec_q:
+	xe_oa_disable_metric_set(stream);
+	xe_exec_queue_put(stream->k_exec_q);
+err_free_oa_buf:
+	xe_oa_free_oa_buffer(stream);
+err_fw_put:
+	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
+	xe_pm_runtime_put(stream->oa->xe);
+	xe_oa_free_configs(stream);
+}
+
+Should this error path also call xe_oa_stream_drain(stream) so that the
+in-flight LRI batches from enabling and disabling the OA context are
+waited on before forcewake, runtime PM, and stream->last_fence are
+released?
+
+>  	dma_fence_put(fence);
+> =20
+>  	return 0;
+> @@ -876,6 +883,23 @@ static void xe_oa_disable_metric_set(struct xe_oa_st=
+ream *stream)
+>  		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE=
+, 0);
+>  }
+> =20
+> +/*
+> + * Wait for the last OA batch of the stream, so that it can't program th=
+e HW after the HW
+> + * teardown.
+> + */
+> +static void xe_oa_stream_drain(struct xe_oa_stream *stream)
+> +{
+> +	struct xe_exec_queue *q =3D stream->exec_q ?: stream->k_exec_q;
+> +	long timeout;
+> +
+> +	if (!stream->last_fence || dma_fence_is_signaled(stream->last_fence))
+> +		return;
+> +
+> +	timeout =3D msecs_to_jiffies(q->sched_props.job_timeout_ms) + HZ;
+> +	if (!dma_fence_wait_timeout(stream->last_fence, false, timeout))
+> +		drm_err(&stream->oa->xe->drm, "Timed out waiting for OA batch\n");
+> +}
+
+[Severity: High]
+Can an OA config batch still execute and program OA registers after
+xe_oa_stream_hw_teardown() if dma_fence_wait_timeout() times out here?
+
+When userspace opens a stream or calls DRM_XE_OBSERVATION_IOCTL_CONFIG
+with both an unsignaled input sync (without DRM_XE_SYNC_FLAG_SIGNAL) and
+an output sync (with DRM_XE_SYNC_FLAG_SIGNAL), xe_oa_emit_oa_config()
+calls xe_oa_submit_bb(stream, XE_OA_SUBMIT_ADD_DEPS, oa_bo->bb), which
+attaches the input sync to the job via xe_sync_entry_add_deps() and
+returns without waiting because num_signal is non-zero.
+
+While that input sync remains unsignaled, the job stays queued in
+q->entity waiting on the dependency callback and the scheduler TDR timer
+has not started. If the stream is closed before the input sync is
+signaled, dma_fence_wait_timeout() in xe_oa_stream_drain() will time out
+after q->sched_props.job_timeout_ms + HZ and return without killing the
+queue or canceling the pending job.
+
+Because the pending xe_sched_job holds a reference on job->q until
+xe_sched_job_destroy(), xe_exec_queue_put(stream->k_exec_q) in
+xe_oa_stream_free_resources() does not destroy k_exec_q or tear down its
+scheduler entity. If userspace signals the input sync after
+xe_oa_stream_destroy() has finished, wouldn't the scheduler wake up and
+run the OA config batch on the hardware after OA registers have been
+restored and forcewake has been released?
+
+[ ... ]
+
+> @@ -913,6 +937,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream =
+*stream)
+> =20
+>  	mutex_destroy(&stream->stream_lock);
+> =20
+> +	xe_oa_stream_drain(stream);
+>  	if (!xe_wedged(stream->oa->xe))
+>  		xe_oa_stream_hw_teardown(stream);
+
+[Severity: High]
+Does calling xe_oa_stream_drain(stream) before xe_oa_stream_hw_teardown()
+leave the context-restore LRI batch submitted during teardown undrained?
+
+During stream enable in xe_oa_enable_metric_set(),
+xe_oa_configure_oa_context(stream, true) is immediately followed by
+xe_oa_emit_oa_config(), which overwrites stream->last_fence with the
+config batch fence.
+
+Then, during teardown in xe_oa_stream_destroy(), xe_oa_stream_drain() runs
+before xe_oa_stream_hw_teardown():
+
+xe_oa_stream_destroy()
+  xe_oa_stream_drain()
+  xe_oa_stream_hw_teardown()
+    xe_oa_disable_metric_set()
+      if (stream->exec_q)
+        xe_oa_configure_oa_context(stream, false)
+          xe_oa_configure_oar_context() / xe_oa_configure_oac_context()
+            xe_oa_load_with_lri()
+              xe_oa_update_last_fence(stream, fence)
+    xe_force_wake_put()
+  xe_oa_stream_free_resources()
+    xe_oa_free_configs()
+      dma_fence_put(stream->last_fence)
+
+When stream->exec_q is set, xe_oa_disable_metric_set() submits a new LRI
+batch to restore OACTXCONTROL, OAR_OACONTROL or OAC_OACONTROL, and
+RING_CONTEXT_CONTROL, updating stream->last_fence after
+xe_oa_stream_drain() has already completed. xe_oa_stream_hw_teardown() and
+xe_oa_stream_free_resources() then immediately release forcewake, runtime
+PM, and stream->last_fence without waiting for that LRI batch to complete.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261105001559.3288=
+915-9-umesh.nerlige.ramappa@intel.com?part=3D5
