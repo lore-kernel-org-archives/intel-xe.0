@@ -2,57 +2,61 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C17606A31B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 23:32:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DB0D606A326
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 23:32:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kGpUcgsB
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cH/T16g1
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EAE3112A2D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC79110E6E0;
 	Thu,  5 Nov 2026 23:32:30 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9D9F10E20B
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 23:32:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20A0510E6E0
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 23:32:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793921544; x=1825457544;
+ t=1793921545; x=1825457545;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=pzwcyRByWODeZtDQ+mxg598aHDMfNwFxoPjKs3Lyw9c=;
- b=kGpUcgsB2m42+Z0fds6CKpiMdFVKfCZ++HGxyI7DBdg27TukkZvGL73y
- 6LTDdYBwhgJaI/4au10PjK3MWsXrW/zfaw8pDTPcVDJSnUDz4ASHQJTBa
- vdffwd8cwuZGCZ2pAI0RYHavj+tHr6FGKMVT2ttd9ifBAlON1JohwiwEK
- hIDfl2ZYmMQoByS/Xla0GDkUqrZnp0nyWJl5ezCoKaYKu2TvSgZsezCq0
- xhnuJ317xPlOst++bSbM7gPyCGQimMB6wS+obmmTh9SjB99ee/pizWs1y
- PCE2aCPeh1WLdxNH0jkG8fBF6t6WrXGgvXII9y+P2nNC12pQWkd5Bo3yD Q==;
-X-CSE-ConnectionGUID: F3z7rHQIRyWTFmyvz68uJA==
-X-CSE-MsgGUID: QuLk+BwNS2GkMuPZBk2sFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2769902"
+ bh=iq+cvkDTibzNRfV+orT07BYGvRTzS52dBzHwcgSBDOA=;
+ b=cH/T16g1AdkDt2zVuX2miUCytjbK9OrD9LEBuQWFDIZ69D7RhR1uswWV
+ OryevE9p4Av2KA0+8Zq+XpDv+SMGMMX3cmsnXzY0WWz7fziH/a5pCSJ8t
+ ctvP9at47MTPZSa+d+6B0qnayMmoD6fw2HZrFrM0Hd4+kjhnEJMGusk19
+ sQFJ4QPI7ugQpYxoAbYZJks52ksI5W/k5HeqDNxBLNv3aN2FFeQPZjecd
+ iM3mtKFIy5zxxnBFFHZZbqe+LUl/KwlrZC7s7sCLfjVlhPXCYvYOKAQ+v
+ Mt6tmsQ9Jciems2YBbLvQ6Pau2B3Iv8sIWoNyJSMh4fx331gSgsA1IHqZ w==;
+X-CSE-ConnectionGUID: E9nAE4HrRa2t9Bsf2Xts7g==
+X-CSE-MsgGUID: ihTZmbS/ReuxnQjf7nqDqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2769903"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2769902"
+   d="scan'208";a="2769903"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 15:32:20 -0800
-X-CSE-ConnectionGUID: mJrmJqoFQR2x8kAhY6Sc1w==
-X-CSE-MsgGUID: XjGuyd5pTwiy0MmIWautfg==
+ 05 Nov 2026 15:32:24 -0800
+X-CSE-ConnectionGUID: UxEKksjTTKSC2sn4xofZBw==
+X-CSE-MsgGUID: nPWgTkHeQ6yxB7J6jecLKA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7186917"
+   d="scan'208";a="7186932"
 Received: from gabaabhi-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.23])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 15:32:18 -0800
+ 05 Nov 2026 15:32:20 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Nov 2026 20:31:48 -0300
-Subject: [PATCH v3 01/10] drm/xe: Bail from adjust_idledly() if in VF mode
+Date: Thu, 05 Nov 2026 20:31:49 -0300
+Subject: [PATCH v3 02/10] drm/xe: Sync Wa_16023105232 in xe_was to match
+ OOB rule
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261105-wa_16031259911-v3-1-da6ec790aa29@intel.com>
+Message-Id: <20261105-wa_16031259911-v3-2-da6ec790aa29@intel.com>
 References: <20261105-wa_16031259911-v3-0-da6ec790aa29@intel.com>
 In-Reply-To: <20261105-wa_16031259911-v3-0-da6ec790aa29@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
+ Matt Roper <matthew.d.roper@intel.com>, 
+ Shekhar Chauhan <shekhar.chauhan@intel.com>, 
  Matt Atwood <matthew.s.atwood@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -72,53 +76,53 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Both Wa_14025941587 and Wa_16023105232 apply adjustments to
-RING_IDLEDLY and take different approaches to avoid SRIOV VF mode.
+Wa_16023105232 was extended in xe_wa_oob.rules to match extra IP
+releases while the respective entry in xe_was[] was overlooked.
+Update the latter to be in sync with the former.
 
-Let's converge them into a consistent approach.  Since
-adjust_idledly() should avoid SRIOV VF irrespective of what
-workarounds are enabled, choose to add an early return in that
-function instead of having each related workaround add
-FUNC(xe_rtp_match_not_sriov_vf) to their rules.
+Also add comments in the code so that we don't forget to update both
+places if new IP versions are added.
 
+Fixes: c96e0df4e9f5 ("drm/xe/xe3: Add support for media IP version 30.02")
+Fixes: 4fde66699f1c ("drm/xe/xe3: Add support for graphics IP versions 30.04 & 30.05")
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c  | 6 ++++--
- drivers/gpu/drm/xe/xe_wa_oob.rules | 4 ++--
- 2 files changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_wa.c         | 5 +++--
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 1 +
+ 2 files changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 55ee0c892c1e..50e8c5103bdc 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -611,8 +611,10 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 	bool wa_applied = false;
- 	bool clamped_below_maxcnt = false;
- 
--	if ((!IS_SRIOV_VF(gt_to_xe(gt)) && XE_GT_WA(gt, 16023105232)) ||
--	    XE_GT_WA(gt, 14025941587)) {
-+	if (IS_SRIOV_VF(gt_to_xe(gt)))
-+		return;
-+
-+	if (XE_GT_WA(gt, 16023105232) || XE_GT_WA(gt, 14025941587)) {
- 		u32 mincnt_idledly_ns = 5000;
- 
- 		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index c71318b901d6..bd556412c294 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -581,8 +581,9 @@ static const struct xe_rtp_table_sr engine_was = XE_RTP_TABLE_SR(
+ 	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, QID_WAIT_FOR_THREAD_NOT_RUN_DISABLE))
+ 	},
+ 	{ XE_RTP_NAME("16023105232"),
+-	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3000), OR,
+-		       GRAPHICS_VERSION_RANGE(2001, 3001)),
++	  /* IP versions need to be in sync with the respective entry in xe_wa_oob.rules. */
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1301, 3002), OR,
++		       GRAPHICS_VERSION_RANGE(2001, 3005)),
+ 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(0), RC_SEMA_IDLE_MSG_DISABLE,
+ 			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+ 	},
 diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 61aa50a63764..ba02a7a53b73 100644
+index ba02a7a53b73..0be1fcd38a7f 100644
 --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
 +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -74,7 +74,7 @@
- 		GRAPHICS_VERSION(3510)
- 14026539277	GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)
- 14027054324	GRAPHICS_VERSION(3511)
--14025941587	GRAPHICS_VERSION_RANGE(2001, 3511), FUNC(xe_rtp_match_not_sriov_vf)
--		MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
-+14025941587	GRAPHICS_VERSION_RANGE(2001, 3511)
-+		MEDIA_VERSION_RANGE(1301, 3503)
- 16030224309	GRAPHICS_VERSION_RANGE(3510, 3511)
- 14028709524	GRAPHICS_VERSION(3510)
+@@ -44,6 +44,7 @@
+ 18013179988	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
+ 1508761755	GRAPHICS_VERSION(1255)
++# IP versions need to be in sync with the respective entry in xe_wa.c.
+ 16023105232	GRAPHICS_VERSION_RANGE(2001, 3005)
+ 		MEDIA_VERSION_RANGE(1301, 3002)
+ 16026508708	GRAPHICS_VERSION_RANGE(1200, 3005)
 
 -- 
 2.56.0
