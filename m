@@ -2,60 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFD4606A31B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58F7E606A329
 	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 23:32:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Q98lgGiD
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UVtqCToP
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0107112A2E;
-	Thu,  5 Nov 2026 23:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CDC8112A31;
+	Thu,  5 Nov 2026 23:32:36 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EB7E112A29
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 108A9112A28
  for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 23:32:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1793921550; x=1825457550;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=S7ddcJp0Gicr48+bn18ntogizuHT17pV89GsBYOQw3A=;
- b=Q98lgGiDUtAh+k9oKm5KoJBQWUCV0GrBMxQYqbvEh8IYwjTm7f+4yCws
- pRC8aM8Bl0k5skjRdvdiUfN5ScH4Yul3bYufrcrG9TZ2aGSuL0GwZVVDO
- RHxXecP0NE1Kgs4ZUrLd0q9R4WtIBs8pl80y8inV3iIz7n5EYq85pQCmx
- XN42chU5s4swk0tJnTe15WtvwEkwlfJDwC72tLvaw+Cc+RjzTSynjBHs3
- je7M1UTr6DUrcDDRPYdU6usik43mRvVIPfncqNe0mtDA+T2DuDpUbMejO
- BZ4H4C/EdrkQYKp4+N1fG14EveGDnm03A7AQu7GkoOqJkOYf1mQi6C0lR w==;
-X-CSE-ConnectionGUID: 6uLoNiUvR2KnGdkdlO7C1Q==
-X-CSE-MsgGUID: QKyy/BnVQkO+VTZbRa+oKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2769909"
+ bh=/k1b4W7ngXSS7sHxnsme03VKvlXqNgIeywKU+UWousU=;
+ b=UVtqCToPdTgBORg/mKESCf0FkzYIyrtaDqhW6gmdpOVVoRILfOQyQEHn
+ WkaL+Gcy7OBTiXKdF9frgWa+RwzRLOOQ/b3cpdY5JcLLIPPcq4BdWyDIc
+ YVvixQZuMJXWf1tC7laEeWyJJtNPUJX/04HTGpoixTqGJWy0S/SgexlNf
+ NN9MRawheoVmckzeqNCb+kHt0CnB+nPAosEQTZAFTHT2oqEwIxXF/O9bd
+ 4040kU7CC6i6VMvjLvUu/1Sas3IvlTcPahF12e7znDGNRzQ1i8pljSLk4
+ GHlNXeFEdg3zmZiY7YRIt7UWFgZPkzH/oqamL7JV5cR24pkOhm7pA+kY+ g==;
+X-CSE-ConnectionGUID: w3qV+14wQJSkd29qnaNHTA==
+X-CSE-MsgGUID: y8xP7JR8Qe6h92Fn5KBEjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2769908"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2769909"
+   d="scan'208";a="2769908"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 15:32:28 -0800
-X-CSE-ConnectionGUID: 7umyW8mhRoinbtBuh1CpYQ==
-X-CSE-MsgGUID: icVqvhXESOqM2GAHWXnFmw==
+ 05 Nov 2026 15:32:27 -0800
+X-CSE-ConnectionGUID: HKDHzeWCSfycZKhVUNORRQ==
+X-CSE-MsgGUID: 3ThFENkeQzKjev0g61t3fA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7186983"
+   d="scan'208";a="7186972"
 Received: from gabaabhi-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.220.23])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 15:32:27 -0800
+ 05 Nov 2026 15:32:25 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Nov 2026 20:31:52 -0300
-Subject: [PATCH v3 05/10] drm/xe: Bail from adjust_idledly() if no
- applicable workaround
+Date: Thu, 05 Nov 2026 20:31:51 -0300
+Subject: [PATCH v3 04/10] drm/xe: Factor out {min,max}_idledly_ps in
+ adjust_idledly()
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261105-wa_16031259911-v3-5-da6ec790aa29@intel.com>
+Message-Id: <20261105-wa_16031259911-v3-4-da6ec790aa29@intel.com>
 References: <20261105-wa_16031259911-v3-0-da6ec790aa29@intel.com>
 In-Reply-To: <20261105-wa_16031259911-v3-0-da6ec790aa29@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>, 
- Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,82 +72,179 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Re-organize adjust_idledly() so that we return and avoid touching the
-hardware if no applicable workaround was found.
+The function adjust_idledly() currently does the following adjustments
+to the IDLEDLY register:
 
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+- Wa_14025941587 defines a minimum value for the idle delay.
+
+- Wa_16023105232 defines a maximum value for the idle delay and also
+  unsets INHIBIT_SWITCH_UNTIL_PREEMPTED.
+
+We have an upcoming workaround that will also define a minimum idle
+delay.
+
+Let's reorganize the logic in adjust_idledly() in a way to make it
+easier to reason about and also easier to extend.
+
+Do that by having the workaround-specific logic only responsible for
+defining min_idledly_ps or max_idledly_ps, and then keeping the logic of
+how to apply them to the register field (with the right rounding up or
+down) separate.
+
+This separation drops the helper function idledly_floor_ticks(), the
+clamped_below_maxcnt variable, and the extra quantization check,
+arguably making the code easier to follow.
+
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 32 +++++++++++++++++++-------------
- 1 file changed, 19 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.c | 100 ++++++++++++++++----------------------
+ 1 file changed, 41 insertions(+), 59 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 01a7baf061eb..32d33c70e7f4 100644
+index eb99284af3cc..01a7baf061eb 100644
 --- a/drivers/gpu/drm/xe/xe_hw_engine.c
 +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -605,7 +605,7 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
+@@ -596,99 +596,81 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	xe_reg_whitelist_process_engine(hwe);
+ }
+ 
+-static u32 idledly_floor_ticks(u64 idledly_ps, u64 idledly_units_ps)
+-{
+-	return DIV_ROUND_DOWN_ULL(idledly_ps, idledly_units_ps);
+-}
+-
+ static void adjust_idledly(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_gt *gt = hwe->gt;
+-	u32 idledly_reg_val, maxcnt_reg_val;
++	u32 idledly_reg_val;
++	u32 idledly;
+ 	u64 idledly_units_ps = 8 * gt->info.timestamp_base;
+-	u64 maxcnt_units_ps = 640000;
  	u64 idledly_ps, idledly_hw_ps;
- 	u64 min_idledly_ps = 0;
- 	u64 max_idledly_ps = -1;
--	bool inhibit_switch = false;
-+	bool clear_inhibit_switch = false;
+-	u64 maxcnt_ps;
++	u64 min_idledly_ps = 0;
++	u64 max_idledly_ps = -1;
+ 	bool inhibit_switch = false;
  	bool wa_applied = false;
+-	bool clamped_below_maxcnt = false;
  
  	if (IS_SRIOV_VF(gt_to_xe(gt)))
-@@ -616,12 +616,6 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
+ 		return;
+ 
+ 	if (XE_GT_WA(gt, 16023105232) || XE_GT_WA(gt, 14025941587)) {
+-		u32 mincnt_idledly_ps = 5000000;
+-
+ 		/* xe_gt_clock_init() warns and zeroes timestamp_base on unknown crystal clock. */
  		if (!idledly_units_ps)
  			return;
  
--		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
--		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
--		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
--		idledly_ps = idledly * idledly_units_ps;
--		idledly_hw_ps = idledly_ps;
--
- 		if (XE_GT_WA(gt, 14025941587))
- 			min_idledly_ps = max(min_idledly_ps, 5000000);
- 
-@@ -633,13 +627,24 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
- 					       max_idledly_ps,
- 					       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
- 
--			/* Clear the inhibit switch without disturbing a valid delay. */
--			if (inhibit_switch) {
--				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
--				wa_applied = true;
--			}
-+			clear_inhibit_switch = true;
- 		}
- 
-+		/* No applicable workaround found. */
-+		if (min_idledly_ps == 0 && max_idledly_ps == -1 && !clear_inhibit_switch)
-+			return;
-+
-+		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
-+
-+		if (clear_inhibit_switch && idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED) {
-+			idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
-+			wa_applied = true;
-+		}
-+
+ 		idledly_reg_val = xe_mmio_read32(&gt->mmio, RING_IDLEDLY(hwe->mmio_base));
+ 		inhibit_switch = idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED;
+-		idledly_ps = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val) * idledly_units_ps;
 +		idledly = REG_FIELD_GET(IDLE_DELAY, idledly_reg_val);
 +		idledly_ps = idledly * idledly_units_ps;
-+		idledly_hw_ps = idledly_ps;
-+
- 		/*
- 		 * min_idledly_ps is applied before max_idledly_ps, which takes
- 		 * priority if the two ever conflict (not expected in practice).
-@@ -671,7 +676,8 @@ static void adjust_idledly(struct xe_hw_engine *hwe)
+ 		idledly_hw_ps = idledly_ps;
  
- 			xe_gt_dbg(gt, "idledly %s: set %llups min=%llups max=%llups inh=%u ts=%ups\n",
- 				  hwe->name, idledly_ps, min_idledly_ps, max_idledly_ps,
--				  !!inhibit_switch, gt->info.timestamp_base);
-+				  !!(idledly_reg_val & INHIBIT_SWITCH_UNTIL_PREEMPTED),
-+				  gt->info.timestamp_base);
+-		maxcnt_reg_val = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
+-		maxcnt_ps = REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt_reg_val) * maxcnt_units_ps;
+-
+-		/*
+-		 * Wa_14025941587 is applied before Wa_16023105232, which takes
+-		 * priority if the two ever conflict (not expected in practice).
+-		 */
+-		if (XE_GT_WA(gt, 14025941587) &&
+-		    idledly_ps < mincnt_idledly_ps) {
+-			idledly_ps = mincnt_idledly_ps;
+-			wa_applied = true;
+-		}
++		if (XE_GT_WA(gt, 14025941587))
++			min_idledly_ps = max(min_idledly_ps, 5000000);
+ 
+ 		if (XE_GT_WA(gt, 16023105232)) {
++			u64 maxcnt_units_ps = 640000;
++			u32 maxcnt = xe_mmio_read32(&gt->mmio, RING_PWRCTX_MAXCNT(hwe->mmio_base));
++
++			max_idledly_ps = min_t(u64,
++					       max_idledly_ps,
++					       REG_FIELD_GET(IDLE_WAIT_TIME, maxcnt) * maxcnt_units_ps);
++
+ 			/* Clear the inhibit switch without disturbing a valid delay. */
+ 			if (inhibit_switch) {
+ 				idledly_reg_val &= ~INHIBIT_SWITCH_UNTIL_PREEMPTED;
+ 				wa_applied = true;
+ 			}
++		}
+ 
+-			/* Warn only on the value read from hardware. */
+-			xe_gt_WARN_ON(gt, idledly_hw_ps >= maxcnt_ps);
++		/*
++		 * min_idledly_ps is applied before max_idledly_ps, which takes
++		 * priority if the two ever conflict (not expected in practice).
++		 */
++		if (idledly_ps < min_idledly_ps) {
++			idledly = DIV_ROUND_UP_ULL(min_idledly_ps, idledly_units_ps);
++			idledly_ps = idledly * idledly_units_ps;
++			wa_applied = true;
++		}
+ 
+-			if (idledly_ps >= maxcnt_ps) {
+-				/* maxcnt may be 0 if IDLE_WAIT_TIME is unprogrammed. */
+-				idledly_ps = maxcnt_ps ? maxcnt_ps - 1 : 0;
+-				clamped_below_maxcnt = true;
+-				wa_applied = true;
++		if (idledly_ps >= max_idledly_ps) {
++			if (max_idledly_ps) {
++				idledly = DIV_ROUND_DOWN_ULL(max_idledly_ps - 1, idledly_units_ps);
++				idledly_ps = idledly * idledly_units_ps;
++			} else {
++				idledly = 0;
++				idledly_ps = 0;
+ 			}
++
++			wa_applied = true;
+ 		}
+ 
+-		if (wa_applied) {
+-			u32 idledly_ticks;
+-
+-			/*
+-			 * Wa_16023105232 requires idledly < maxcnt, so floor
+-			 * that clamp; otherwise round up to guarantee the
+-			 * Wa_14025941587 minimum survives tick quantization.
+-			 */
+-			if (clamped_below_maxcnt)
+-				idledly_ticks = idledly_floor_ticks(idledly_ps, idledly_units_ps);
+-			else
+-				idledly_ticks = DIV_ROUND_UP_ULL(idledly_ps, idledly_units_ps);
+-
+-			/*
+-			 * Tick quantization can still push the rounded-up value
+-			 * to/above maxcnt; re-floor here so Wa_16023105232 keeps
+-			 * priority even in that case.
+-			 */
+-			if (!clamped_below_maxcnt && XE_GT_WA(gt, 16023105232) &&
+-			    idledly_ticks * idledly_units_ps >= maxcnt_ps) {
+-				xe_gt_dbg(gt, "idledly %s: %u ticks would exceed maxcnt=%llups, so flooring\n",
+-					  hwe->name, idledly_ticks, maxcnt_ps);
+-				idledly_ps = maxcnt_ps ? maxcnt_ps - 1 : 0;
+-				idledly_ticks = idledly_floor_ticks(idledly_ps, idledly_units_ps);
+-			}
++		/* Warn only if the value read from *hardware* exceeds the maximum. */
++		xe_gt_WARN_ON(gt, idledly_hw_ps >= max_idledly_ps);
+ 
++		if (wa_applied) {
+ 			idledly_reg_val &= ~IDLE_DELAY;
+-			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY, idledly_ticks);
+-			xe_gt_dbg(gt, "idledly %s: set %llups max=%llups inh=%u ts=%ups\n",
+-				  hwe->name, idledly_ps, maxcnt_ps,
++			idledly_reg_val |= REG_FIELD_PREP(IDLE_DELAY, idledly);
++
++			xe_gt_dbg(gt, "idledly %s: set %llups min=%llups max=%llups inh=%u ts=%ups\n",
++				  hwe->name, idledly_ps, min_idledly_ps, max_idledly_ps,
+ 				  !!inhibit_switch, gt->info.timestamp_base);
  			xe_mmio_write32(&gt->mmio,
  					RING_IDLEDLY(hwe->mmio_base),
- 					idledly_reg_val);
 
 -- 
 2.56.0
