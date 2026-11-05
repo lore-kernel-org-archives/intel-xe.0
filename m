@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88782606A31B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 03:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=jndl5XB8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E34F606A338
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 03:56:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5071310E17C;
-	Thu,  5 Nov 2026 03:47:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2976A10E081;
- Thu,  5 Nov 2026 03:47:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793850467; x=1825386467;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GNlgRYMpprZyno9nyFl8JZ1JQyWiZO7Vptq6p2E0QKQ=;
- b=jndl5XB8mJz7t446Adfm6Q+YDsDW5ZvE+tmA6meDLn1TjlLH3JIACQjR
- E6KgSyCjRozwvKjb6d7Uu1503eAiBL2LKKQUUWgaI2kBDKCKhuxor4KUs
- EyZZCkVp/ZzDsO+EyfVZfRKR6XbBed8FVjhZWDU1Sj39EU0bswzB6Y7S+
- Cr6VWyXS66J088ClO4f8MtDMZj8CiOtSRuwJU+/iiMnMnz4vCVWtx9Qft
- n9W/aS2KeY6vIMynEHKE8PMuXTsKT4joWoyNK9ta4nKQ9v2qhMLFzKycA
- EdvMgHlQqQxp0CZTwiTdVvWkqDZDvnic3anl4PJpRfEStZVxzk4u6VzvM Q==;
-X-CSE-ConnectionGUID: qY/pMxP1RwOKqgA/y+G+YA==
-X-CSE-MsgGUID: GCHJlIHpTB2j/2wi0jtBIg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11956"; a="2630493"
-X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="2630493"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 19:47:47 -0800
-X-CSE-ConnectionGUID: wiPU3gEnSV2O1m65CRX87A==
-X-CSE-MsgGUID: idpvQEziRjKU0kBlaxGMTg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,196,1787036400"; 
-   d="scan'208";a="7241354"
-Received: from sghuge-mobl2.amr.corp.intel.com (HELO kialmah1-mobl2.lan)
- ([10.125.110.84])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Nov 2026 19:47:47 -0800
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Uma Shankar <uma.shankar@intel.com>,
- Jonathan Cavitt <jonathan.cavitt@intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v3] drm/display: Increase DP_RECEIVER_CAP_SIZE from 15 to 16
- bytes
-Date: Wed,  4 Nov 2026 19:46:58 -0800
-Message-ID: <20261105034658.18959-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.53.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EAE110E08E;
+	Thu,  5 Nov 2026 03:56:38 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 010DF10E08E;
+ Thu,  5 Nov 2026 03:56:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2899739486438367460=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_a_per-client_?=
+ =?utf-8?q?debugfs_file_reporting_bo_NUMA_node_distribution_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Nov 2026 03:56:35 -0000
+Message-ID: <179385099598.122350.6702016809925722155@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261104151335.163299-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20261104151335.163299-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,67 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Several Link Layer tests (4.2.2.1-2, 4.2.2.7-8) fail because DPTX doesn't
-read DPCD ADAPTER_CAP addresses (0x000F and 0x220F).
+--===============2899739486438367460==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-4.2.2.1 test states [1]:
-"Fail1: Source DUT failed to read the DPCD Receiver Capability field
-(DPCD:00000h:0000Fh) through AUX_CH before link training."
+== Series Details ==
 
-4.2.2.2 test states [1]:
-"Fail2: Source DUT failed to read the DPCD Extended Receiver Capability
-field (DPCD:02200h:0220Fh) through AUX_CH before link training."
+Series: drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution (rev4)
+URL   : https://patchwork.freedesktop.org/series/177016/
+State : success
 
-Additionally, the spec [2] states:
-"The Source device shall respond to Hot Plug event/Hot Re-plug event by
-first reading DPCD Link/Sink Device Status registers at DPCD 00200h
-through 00205h –or– DPCD 02002h through 0200Fh. If the link is unstable
-or lost, the Source device then reads the DPCD Receiver Capabilities
-registers at DPCD 00000h through 0000Fh to determine the appropriate
-information needed to train the link. The Source device shall then
-initiate link training."
+== Summary ==
 
-Increasing DP_RECEIVER_CAP_SIZE by 1 byte ensures passing the test
-conditions for these link layer tests.
+CI Bug Log - changes from xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d_BAT -> xe-pw-177016v4_BAT
+====================================================
 
-[1]: DisplayPort v2.1 Link Layer Compliance Test Specification
-sections 4.2.2.1 & 4.2.2.2
-[2]: DisplayPort Standard v2.1 - Sec 5.1.4 Source Device Behavior
-upon HPD Pulse Detection
+Summary
+-------
 
-v3: Rebase, drop deprecated test 4.2.2.9 from the commit message
-v2: Rebase
+  **SUCCESS**
 
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- include/drm/display/drm_dp.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+  No regressions found.
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index e63c7f075f54..a2a7338552e1 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -1715,7 +1715,7 @@ enum drm_dp_phy {
- #define DP_LINK_STATUS_SIZE	   6
- 
- #define DP_BRANCH_OUI_HEADER_SIZE	0xc
--#define DP_RECEIVER_CAP_SIZE		0xf
-+#define DP_RECEIVER_CAP_SIZE		0x10
- #define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60 through 0x6F */
- #define DP_DSC_BRANCH_CAP_SIZE		3
- #define EDP_PSR_RECEIVER_CAP_SIZE	2
--- 
-2.53.0
+  
 
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d -> xe-pw-177016v4
+
+  IGT_9177: 9177
+  xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d: 3379b0f74f31bfc3746b692822a7700aeeebe15d
+  xe-pw-177016v4: 177016v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177016v4/index.html
+
+--===============2899739486438367460==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177016/">https://patchwork.freedesktop.org/series/177016/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177016v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177016v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d_BAT -&gt; xe-pw-177016v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d -&gt; xe-pw-177016v4</li>
+</ul>
+<p>IGT_9177: 9177<br />
+  xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d: 3379b0f74f31bfc3746b692822a7700aeeebe15d<br />
+  xe-pw-177016v4: 177016v4</p>
+
+</body>
+</html>
+
+--===============2899739486438367460==--
