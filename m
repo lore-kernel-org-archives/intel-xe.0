@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D17D6606A31B
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 05:11:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5651B606A31B
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Nov 2026 05:13:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 762C610E933;
-	Thu,  5 Nov 2026 05:11:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FD1510E1AE;
+	Thu,  5 Nov 2026 05:13:46 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08EEF10E933;
- Thu,  5 Nov 2026 05:11:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 024DA10E1AE;
+ Thu,  5 Nov 2026 05:13:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6303958610400989668=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_driver_core=3A_platform?=
- =?utf-8?q?=3A_tests=3A_add_a_shared_software_node_test_case_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/ttm=2C_drm/xe=3A_Suppor?=
+ =?utf-8?q?t_partially_backed-up_ttm=5Ftts_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Summers, Stuart" <stuart.summers@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Nov 2026 05:11:38 -0000
-Message-ID: <179385549803.122507.13266210412917775816@221881a7231d>
+Date: Thu, 05 Nov 2026 05:13:43 -0000
+Message-ID: <179385562399.122507.15269469662810538024@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261104202419.30180-2-stuart.summers@intel.com>
-In-Reply-To: <20261104202419.30180-2-stuart.summers@intel.com>
+References: <20261104201331.2462-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20261104201331.2462-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,62 +35,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============6303958610400989668==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: driver core: platform: tests: add a shared software node test case (rev2)
-URL   : https://patchwork.freedesktop.org/series/177785/
-State : warning
+Series: drm/ttm, drm/xe: Support partially backed-up ttm_tts (rev2)
+URL   : https://patchwork.freedesktop.org/series/177782/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-3009867cd31863246e4afc138520a7a8bd37bb11
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ee0c4f28f3b428ceb1e7569ab283e1713e2e90b6
-Author: Stuart Summers <stuart.summers@intel.com>
-Date:   Wed Nov 4 20:24:16 2026 +0000
+CI Bug Log - changes from xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d_BAT -> xe-pw-177782v2_BAT
+====================================================
 
-    driver core: platform: tests: add a shared software node test case
-    
-    Cover the pattern used by drm/xe + i2c-designware, where a software node
-    assigned as a platform device's primary firmware node is handed to a
-    second device via device_set_node(), and make sure removing that second
-    device leaves the owner's node intact.
-    
-    A potential fix for this issue in the drm/xe driver is being discussed
-    in [1].
-    
-    The signature in this case looks like this:
-    Oops: general protection fault, probably for non-canonical address
-    0x6b6b6b6b6b6b6b73
-    RIP: platform_device_release+0x6f/0x80
-    
-    Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-    Assisted-by: LLM
-    
-    [1]: https://patchwork.freedesktop.org/series/175858/
-+ /mt/dim checkpatch 39c3efaee12b7c3e5e66247abea832c1986f15e3 drm-intel
-ee0c4f28f3b4 driver core: platform: tests: add a shared software node test case
--:21: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
-#21: 
-Assisted-by: LLM
+Summary
+-------
 
--:21: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'LLM'
-#21: 
-Assisted-by: LLM
+  **SUCCESS**
 
-total: 1 errors, 1 warnings, 0 checks, 66 lines checked
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d -> xe-pw-177782v2
+
+  IGT_9177: 9177
+  xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d: 3379b0f74f31bfc3746b692822a7700aeeebe15d
+  xe-pw-177782v2: 177782v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177782v2/index.html
+
+--===============6303958610400989668==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/ttm, drm/xe: Support partially backed-up ttm_tts (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177782/">https://patchwork.freedesktop.org/series/177782/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177782v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177782v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d_BAT -&gt; xe-pw-177782v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d -&gt; xe-pw-177782v2</li>
+</ul>
+<p>IGT_9177: 9177<br />
+  xe-6064-3379b0f74f31bfc3746b692822a7700aeeebe15d: 3379b0f74f31bfc3746b692822a7700aeeebe15d<br />
+  xe-pw-177782v2: 177782v2</p>
+
+</body>
+</html>
+
+--===============6303958610400989668==--
