@@ -2,162 +2,129 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA6D7606A326
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 13:32:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F46606D81A
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 13:45:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GresS4ho
+	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=fC7Y8J2S
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A216112D69;
-	Fri,  6 Nov 2026 13:32:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7FAE112D6A
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 13:32:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793971952; x=1825507952;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=UPxkIw2rPnCUpMU1vXtFws9vX/ZGCXLTj9FLxxO+5HU=;
- b=GresS4hoXAxNfh/L6L/IRf/tUjqIdpDx21WgyIZzFdojsWlICyVJym2y
- 44upTjG9rIj3ONdQXnNwP47jqVLRFms+udIaZHjOEHy4G1JtYwzsGuCvz
- mpDAfqZDSr3de3Cr3KazpOXACdnvF6k9R6GtCHOz5jlggwl+4oROYxhRb
- gVL8f2MJr3K7LCTOjhtT4myIDRy1P92loygcvVKlcBdEWzzFCexy6T6by
- Lx3u+rHCJsWDgncHECt2Rz4Ea6BkqfAOtviZHNgYYDd4JxTM2EacoEtys
- TTfN5VhM/spHIuQjxxMROJqpwQhBFRCh4tTxAvU1YIZnfFd35f/iwxOjO Q==;
-X-CSE-ConnectionGUID: EJeW1sUfQSSVQhhkMBIL5g==
-X-CSE-MsgGUID: 0YgkrnJWSOKDxXdT24UIng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2661226"
-X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; d="scan'208,217";a="2661226"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2026 05:32:31 -0800
-X-CSE-ConnectionGUID: AHe2NivDR6O6rCvKlIQg4w==
-X-CSE-MsgGUID: khGmT6jaQCuNWNtHKoP/9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; d="scan'208,217";a="9149605"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2026 05:32:31 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 6 Nov 2026 05:32:30 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Fri, 6 Nov 2026 05:32:30 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.46) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 6 Nov 2026 05:32:30 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id C279A112DA8;
+	Fri,  6 Nov 2026 13:45:18 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010010.outbound.protection.outlook.com [52.101.56.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55082112DA6;
+ Fri,  6 Nov 2026 13:45:12 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xK8QOgoOJo6cGx3sRR3dy3g43kQbN4pNTCY63L7vvltZoq5idb2/lga2ogPanqaY6T98l10zMWCzOwFPpMc+DNoyHR3H6lNOfHdnpT+6bLJYm0E0wYArpzXL+Y1l1yeVmhaMITrOWacpDYYIn1E59RzTw+QMmiubhv97j5tH9/IfFNIjB21D/yavzAt6zp8VEj0ugVFJS/ngySApFYM4kvTDJRJ+BMGOnXhFbB4ROrhV+eaxJFtGjCZz9C5Empn88f7qm6GNnrrqocBTp+VfJc8lV3oUuoztWpOTJPyjfCiWFFN5RsjefWM7kkF5QVi0sVONFScx/IvArk8x4eV3ng==
+ b=eF4ZvGYeClxj5czuuKApwnW+HbW/4WBP9aZzA7lEmdXxfUWGgb562ibv+jRwrcquzB+wkzdKcGg6Az9SpVG3MsElbiiGQTqQUv10fMCJyysSMu666O4XyZueY2+9yiDb4+0/4V6NcehNDaDU0AVk5AOwzVgG8dwbBdUDxzNtSSskyKxqiMFcHINnrkG8AG7AqijrJWj5Wk22TeURkqluphlqE8lD4WnVOk/0zdKHDVDtTjfd0A/iNv0kZjWfj6fM4MTIGUXuEkegXnkyZFVYk+NXB6sBrX/lUqgPiPd8gbO+ycZJnIg1VSx/WBsm4f+A7G3ZqkIDkaRLTtmzl5CbEw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7fr0u0DDk3DeN1Pro1nP09DET8P58+UyEYj+YICHYaM=;
- b=RWOa+4vL6NdrjxIFb4H2u9HrNIYce6XxDiwpeudc7Tu6OdccIKBCbmOv9lHc4Ci41ucjzNmwA8I2yXWCS8G31fwUIhfXZvYqy0LSarlseVIYGuuekNXjaODkrjAUsbsOSiwrRs087u7XvhsM9Nr03aN+0uI/PW5UBSBHBB1E8AteZGBfg1zrSrojuzFdzOIANKZwD70v7WbGfXr2V57aQ9p3REO9u2D4qHJhNnG83pZ+bqw8smhCJNaSrMeP7enZco8mvHkHsRjFgpRvc6RN0UD/3tLWA94rnrPxmEiyhkPXmBVOe5k4vTtbiZglPVTCKD4Td7xFPDl7bSyl35eJVQ==
+ bh=lsU+WeyI/a2usxTT/+q8w4Y0p7TgAvOEAIxI87Qyydk=;
+ b=q933DEaATHXOQv8ojDkLQ4W9BtVwyeaJcY5xqztTKT/EiFMTUuiOi1ZjO7wMC46mNogtymiCsW1zEcpSgSwKP6bVFA088X8Yt+ziuVYogB9O7RtZZiYtHtqfafdEz/fqpEKGQNQ+ehHy3MEoh2zsUdhMooM4uPV/fVpO2EyghKOK+Xi+vh3qFFdAlK11B6jLvsVV7j93R8mOGVqE1YPZDMhr/UXxTQqynzSC8W6d3/AdiawWGU70dOTGS0/ItUJbyLtpPA2pUlVC35GmUrzhf6JTUKPddiwe3kyc+nwc4RXDxQgS++VCsgTAmnRlzhXb1/ThBWRam5tOfGQmOxfMww==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA1PR11MB6195.namprd11.prod.outlook.com (2603:10b6:208:3e9::8)
- by PH7PR11MB5862.namprd11.prod.outlook.com (2603:10b6:510:134::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Fri, 6 Nov
- 2026 13:32:25 +0000
-Received: from IA1PR11MB6195.namprd11.prod.outlook.com
- ([fe80::9ca6:19ac:7036:d391]) by IA1PR11MB6195.namprd11.prod.outlook.com
- ([fe80::9ca6:19ac:7036:d391%5]) with mapi id 15.21.0592.009; Fri, 6 Nov 2026
- 13:32:25 +0000
-Content-Type: multipart/alternative;
- boundary="------------8ysq8UFRbsaJ9xK4Xeetv1lQ"
-Message-ID: <a4f08719-fe86-4805-ab89-aa372a76a9b8@intel.com>
-Date: Fri, 6 Nov 2026 14:32:20 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 09/10] drm/xe/pci: Introduce PCIe Function Level Reset
-To: Raag Jadav <raag.jadav@intel.com>, <intel-xe@lists.freedesktop.org>,
- <aravind.iddamsetty@intel.com>, <tejas.upadhyay@intel.com>
-CC: <matthew.brost@intel.com>, <rodrigo.vivi@intel.com>,
- <thomas.hellstrom@linux.intel.com>, <riana.tauro@intel.com>,
- <matthew.d.roper@intel.com>, <michal.winiarski@intel.com>,
- <matthew.auld@intel.com>, <dev@lankhorst.se>, <jani.nikula@intel.com>,
- <lukas@wunner.de>, <daniele.ceraolospurio@intel.com>,
- <badal.nilawar@intel.com>
-References: <20261106073921.1512530-1-raag.jadav@intel.com>
- <20261106073921.1512530-10-raag.jadav@intel.com>
-From: "Laguna, Lukasz" <lukasz.laguna@intel.com>
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lsU+WeyI/a2usxTT/+q8w4Y0p7TgAvOEAIxI87Qyydk=;
+ b=fC7Y8J2SAdhU4ykXnqvtb3vIBqYLpWbit3uiAn8Snnj5yV/kFRpgWc4RvM6vL46+L7t9ltE74ukAaEQxfgUN+OFArdkESL8lGAbzP1W6nkA2OV+GnhEdVU0RsvMtoChDirDEw5kUNqu7njk69p5HHhgPBgSKWr6VEvJn8VPumUl0zdjVjp8Xs7LemnqewwTR+5BGoaJUsmwyWB1+HLaZjeQR7Tgv+g7IIKonoiuWaLcuOClWM88FI7BBEaCFGpubI4wrLgUflAwSnqMyU2+joaAWrrPEyuqJmqq2nZvP/fCE0D/tQ7660DEplTf58KiP42qo808zm+fKErJw7tS9bg==
+Received: from DM4PR12MB7742.namprd12.prod.outlook.com (2603:10b6:8:102::18)
+ by PH7PR12MB9151.namprd12.prod.outlook.com (2603:10b6:510:2e9::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Fri, 6 Nov
+ 2026 13:45:07 +0000
+Received: from DM4PR12MB7742.namprd12.prod.outlook.com
+ ([fe80::8df:c519:298a:94f6]) by DM4PR12MB7742.namprd12.prod.outlook.com
+ ([fe80::8df:c519:298a:94f6%6]) with mapi id 15.21.0592.009; Fri, 6 Nov 2026
+ 13:45:07 +0000
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: Sanjay Kumar Yadav <sanjay.kumar.yadav@intel.com>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Matthew
+ Auld <matthew.auld@intel.com>, Arun Pravin <arunpravin.paneerselvam@amd.com>
+Subject: Re: [PATCH v4 1/1] gpu/buddy: Prune exhausted subtrees in
+ range-biased allocation
+Thread-Topic: [PATCH v4 1/1] gpu/buddy: Prune exhausted subtrees in
+ range-biased allocation
+Thread-Index: AQHdaopal3p81TVGBkq3+xP8DEM+pbcd1owAgAM+cLY=
+Date: Fri, 6 Nov 2026 13:45:07 +0000
+Message-ID: <EDC6334F-76D0-491E-B91A-0E583350F74E@nvidia.com>
+References: <20261102051633.2035348-3-sanjay.kumar.yadav@intel.com>
+ <20261102051633.2035348-4-sanjay.kumar.yadav@intel.com>
+ <e87c786b-ceb5-4907-b215-ef276910392a@intel.com>
+In-Reply-To: <e87c786b-ceb5-4907-b215-ef276910392a@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-In-Reply-To: <20261106073921.1512530-10-raag.jadav@intel.com>
-X-ClientProxiedBy: WA1P291CA0015.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:19::13) To IA1PR11MB6195.namprd11.prod.outlook.com
- (2603:10b6:208:3e9::8)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB7742:EE_|PH7PR12MB9151:EE_
+x-ms-office365-filtering-correlation-id: cc80d22f-78dc-4d81-e541-08df3c0c2b54
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|1800799024|366016|38070700021|56012099006|5023799004|11063799006|4143699003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|261102130727099003|261026140227099003|261026121527099003|261022105027099003|261028144727099003|10067099003|22082099003|18002099003|11062099010|7136999003;
+x-microsoft-antispam-message-info: DZ92NxGbzABJ6f2X28fJYNSMBdFMgo+Q2Ll6dyEA2b91ZTcuuLmukUrB1ZVuyy7JE+zOEKsZQs9XKNeV1hiZ/H/1/1Gl22/rw0PjFvMTdiCZdfqs0NR+cikXRpv4MioaX9xQ6GUIYtuUDBtzVCGJkXNz48hHy6cHsYw575ySUo8oYTYNmpBytC3zKp1dUfSAM05IYw/GhmEI4JDD8jq/1LJghaXPzaAlrLwjsFAyljLDqeDI3AN0m7qd1HuX9AKfP7ocmsDNj1cuHnOJXqkhqjq+c9RLvFn6smuFBYJOtxeb0RyGoxVl3zhTIkTCZ/FDVfRwpLxfzSg7jCeQqkYzUQQPfk6rsbdiPjwSeg1dGJZRlHW8SpNnAyuYhfkoIZpZJ6vJBlO4lGsamDGZUtBTrfzVOd/CKkY/XzMJZ5mcnY8inm/S1reWVFhqA4eBAlZtUVUHgWS96OAOu0mtN+bOHlem4MO5rSg5SjNHJTJtg0Ba2Jnqj9ZuukNSKztYdgledd3vC5VpOptgGwgk2qm44mtXlUWKyR+4eYqWcZJgJky+9uplfnZZMlGelkXyj8WVqMW3S7MFSPMkI2vsFg5UZBTLdEK1atQGdcri3LgHvw/c/Tbe9EEAF23jZ/fCOTNPuHkbjJ8rtr+k8Pf/8lZsL7wmOZ6QdDBzlmUsIMlj3EHcCvKhWtwvvnco8ISaZ+UHheVLq5Yl+IG7vA43s3X4w5dI7B7NQNGI9mkNU8DxnXU=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB7742.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(38070700021)(56012099006)(5023799004)(11063799006)(4143699003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(261102130727099003)(261026140227099003)(261026121527099003)(261022105027099003)(261028144727099003)(10067099003)(22082099003)(18002099003)(11062099010)(7136999003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bC9ZbUF1TnhqZzlzSFg2c09xdmR0Q0xuQ0o5VURCejBReHhjTGlETDdUWlhq?=
+ =?utf-8?B?SkJvN1BJYTFGU0l4U0wrTEJFcXpoRVJkWWNFdEJ3dER2ZVdYakNEcFZsaWps?=
+ =?utf-8?B?T1h2dGQyRXFVdFdDTWpyUGh4eC9JcS84cWZoOXpTZ0czZHN2a0drK3dicXYx?=
+ =?utf-8?B?RW85SVE1bUJETUExa1d3cFkzQnh2NWZFMUU2Lzk2ckpyY2FOSG5pM2R4TXRz?=
+ =?utf-8?B?a1hhbVZIb0NKYXlEVkJXWHNSdEFyK2p2VjFobERLVVBNRGFJZ09WQ0t4RGRv?=
+ =?utf-8?B?bHlVYTdDMkpPOWR0UVMyUlpNcTIrUDhtWTUxdDl6bHJrL2daMjl0dmJQSVh0?=
+ =?utf-8?B?Z0dJS01aV2h6akVPN1E3bUtpTERPdGNkUkFwbEt6YkJ5WVhBMjJGWi9DYnk0?=
+ =?utf-8?B?c2pTZTVOdFByYmIweENNbFQ2cStIYWhUdUZiUm5zbUVNK2VVd3U4QUZNbXJT?=
+ =?utf-8?B?UVZ4b2F1TVQ2NmpIV0VZeUZXUStZZjh6NExIa2lLRjlMZEZzN2VreThhRnUx?=
+ =?utf-8?B?Z3pDLzhDVkxwWGszT2NLUWhCOUhPV0EwK3dnbEZOS3Zaam11N3krV2FGVW5r?=
+ =?utf-8?B?Z3o1eEVFdmxRRTJZUVZLN3REKzczRjEvRzU2dkpyMXNIWmJRaUxKY3lScFp4?=
+ =?utf-8?B?SFRMckh4c1QydFJZbHJSRjdvSFdwd1dhQllkKzI1VS93Wm0zNkF4L080Wkp2?=
+ =?utf-8?B?NjZiT1pDODhxdVYxTk40SEpZVjQxdk91d1NMNDZ5cklUQUZpU0txcTVBOGNp?=
+ =?utf-8?B?WWhvN3lGblNuQkR0WG1hMmYyQVpOYVZwbjc1MkJBNXl1N0lCWWl0WHduKzVi?=
+ =?utf-8?B?SGdVcStVT00rVXg2cXpTKzNEVHlXWVhSZGxvcVIvcWNBNkQwRVRDT3FraWlC?=
+ =?utf-8?B?Y2c1TzBjQ0FmYzlJcUQ3MmdTK2d5TVJXMi9SRnBKbk1jVlNoMUVFdno1N0xp?=
+ =?utf-8?B?Z3VmSE1kb3dRKzRyeVBEYlhrNnVqY05LbkRwWStuVUZoMFB3bWFFaVpMdkVq?=
+ =?utf-8?B?bFR3VElZOVZwemxDRlIwR2k5aHhBNjRGckpybnZOYVYvS1ROM25IcnhvN0R5?=
+ =?utf-8?B?SUF1eE0rWFVGYmtVN3BSVGkydExxNkRGNWJ6enIyN3ZIalYrQTJMQWRNMFZN?=
+ =?utf-8?B?djU1NFc4YVpyODRDK2VlM05xTHZOdS9KWHNQNGxhZVUvYXhEQ3ZvcFltd01t?=
+ =?utf-8?B?cXJiVjFHb2FmOFI0VEVqdjZhNXpaTElYUlduWTlqM1M5YzJLUmJIVTE1dUI1?=
+ =?utf-8?B?bTlZOUhZWXp1UE1SRWhkNU9aek13Vm5sdmxUaGxMMXRDa2hFR3pNY3ZQWnJM?=
+ =?utf-8?B?Y3NpeTNPbWYrYmYwQmI5K3p1ZUpWMkI4cXVqYVFYbzF4ZEQ1eUtDcGtUMWRN?=
+ =?utf-8?B?QUFOeFhBRmlabThkNVREQzgxRU4yK2FQVDh2NU5vUGJJNnN4WGlhbS9heEFn?=
+ =?utf-8?B?OXhvKzNHaDc3cG4vYVZ6Tm1UMDFrdDY4UDFLaG8zWklEY3o0OXptczdoS091?=
+ =?utf-8?B?WW9CQk1UNTJFdmViYjRacW1nYXN5ckpwaUQzamkzWEtMNVFjbFk1Y3RiSzhq?=
+ =?utf-8?B?Y3R5a1dSRVVFL1NHRFhiaTZqOHk1aHNTZFdyQklNd2d3QVRPcWt5blhyUFlB?=
+ =?utf-8?B?TjZwKzdrYkg2SHRoajRQaDNOcHhTdWJaZUU1cmpYbUtkZjAvbUJjdTJ6Q2ZM?=
+ =?utf-8?B?Y1BVNTNqcDRwVUs4SEJoWFhMWmtUUGttaTFDZmtmcjhZYXpRZzJJWVNHNGdw?=
+ =?utf-8?B?NlZtZkdTcUpPMDJyeHMzcnJZQ2kyd211YW90cTFsVEh3TkJ3NEVsQnNoM3Mx?=
+ =?utf-8?B?RXlGbEFSV0ZJRWZLRDBYazlFV3U5WFovbWwxbFI3SGJRN0dFUzcybmhIVFpU?=
+ =?utf-8?B?cDl0WDNGK3RUVXNWenhaOVB3MVNFWEZrZW1GSVJMdThWRzBVK3diRVh6VjZ2?=
+ =?utf-8?B?dFZOUHUxU2pGYjVSOE0yY0NPcUoyQndkRXBrMlRaTDB1bG9Wc1dRU3MraHNj?=
+ =?utf-8?B?N3krTmQzS1cvb0NiNm9nQzZzTUlJTTFVK3VUemNxSjg1ODQ2R3pPWmdMWmJi?=
+ =?utf-8?B?NUt6NS9XVk52WkVrbEorV0tOUi85V21WSVpEZGdtUHM5T3FTMDExT1RtRVpS?=
+ =?utf-8?B?MnhPZWtjZ1BrbExJL3FXVzVqV3NvbHlMYjRQOC9nMGlobEdBcFVnbDhYL1lt?=
+ =?utf-8?B?VmR6WWlkajMvaWFkMjBNbHZZbWJWVDY0bHRVWDRCU29LRFRwY2RhbFZIendq?=
+ =?utf-8?B?eFhXQUlMUU93L0N1MmdGVFVlSDFtYVEvdXp5SXF4bXZ1T2xIMkhvcCtlWVcx?=
+ =?utf-8?B?M0RvdTFPVnJlTU5yQW1FVGJWUEpuamlScXE1MklCTkVsVS9EZGs4UT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA1PR11MB6195:EE_|PH7PR11MB5862:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7eacdf0f-8be0-44df-37be-08df3c0a6522
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|18002099003|22082099003|3023799007|6133799003|10067099003|8096899003|56012099006|5023799004|11063799006|4143699003|261026140227099003|261026121527099003|261102123227099003|261028144727099003|261022113327099003|261021121427099003|261022105027099003|261009220027099003|261009223327099003|261009223027099003|261009221727099003|261022075727099003|261009221227099003;
-X-Microsoft-Antispam-Message-Info: t+IvpZ1BPOc993FuYjm9SN2VRGFYlRHin015t8kciS7OIAr4qPvzn/XZm7bKxhM+pWgS/+/s/IA4Pp75Z4PrP7xYEum65tlfLo66lAXsbqs5dpDN5tbGHqvqpPpjxnqaZ6tBIAK+llaSV5Pvksc80NEGM41W8nMHqwGc0w4fAf6UXeeYEiPSxWShhGNeARuoM3M84ERcewqw8eBHAz5rwejDxFFDnF+8w5ALAiUNPrc5j+B++intx/7AjkjsplfE+TwOYUpOnrQieX9gQfcigr7JDXjm59qaEUZdL+OQsZjboImxD2WY6ZkdcaGGNJq1m6dTn0P87KuehvNemAApSwWTVqLL3aJQtdycpEkcRm3xirlBVOQRN0bw44BCG/bHOcrWvGSkHD7tFjTTjiSGHdQIAAS7glFGmFMxaP5ELlUi1z47TvJYG2iUo7Mlj/n5N05LUL2aiSbWPcCqLg0J6gHLpNrjbwTktj9racnPUc66RU4NTgXiqqviMGz7mGkGP16CdyRImelA7BaY4MNUSat7RYuTuUpFk5ILd18goiewmWtGxKocQnRUEM90avlqgTQjXojYgoNzFEint+iYOIVXTxDiFB6IayurBWdeeZUByWivH5kFr6ZKttd+HZ4gpWd45ltU1PV0hyBObY/CvIiS3paJYbX5IxUpInXpa24=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6195.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(18002099003)(22082099003)(3023799007)(6133799003)(10067099003)(8096899003)(56012099006)(5023799004)(11063799006)(4143699003)(261026140227099003)(261026121527099003)(261102123227099003)(261028144727099003)(261022113327099003)(261021121427099003)(261022105027099003)(261009220027099003)(261009223327099003)(261009223027099003)(261009221727099003)(261022075727099003)(261009221227099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L0d4bXZiMmYxNVNVN05OWTNJM2RDdkJKemp1aUNrbWpINlFvR2gwMm9xVW92?=
- =?utf-8?B?SDhCM3IrYTZidUtEcG50RTNMc1NLbFhDcEFXY0RBSWVFallqR1ptZDJpQ0pw?=
- =?utf-8?B?YThDRGpud1QxVDRmQVBtbEdnYS8vbThCYmo3SCswa2N4U3VLUkJPRDBHM3By?=
- =?utf-8?B?NjlNdWV2K1Mzc2w2aVZ2N1JBek94VjBaTFB6OUVoRzgwTjN0RW5jNjFReWww?=
- =?utf-8?B?cHJhTzdaWmxpYm1ZSHAzVVZJN3JIMmo1N1NralQyaHNNbW9lT0FjOGkzVVI1?=
- =?utf-8?B?MW5GcGZxdXF2aGpidkM0QkJDWDFhbHZ2RDVnM3pMbVB1OXlJTlRONkxGc0U3?=
- =?utf-8?B?Z0pLUVI5TG4vdmk2Sit0ai82NWJqZENFNGFyK3R5Z3FOaldBNVBmMGNWRGpr?=
- =?utf-8?B?VUhicW1MM25na3VTOVFoYk01bjR0VjA1SVZRWUY2ZlYzWUdsaXR5alZFVStn?=
- =?utf-8?B?TFk0dnBRTlZ0VWFrWndKMXpCM01QQnZPVlVUZHN5K2ErNGFFQm9mTWRUaFFv?=
- =?utf-8?B?TllCekJxL0I1N1hiUThoR0hTdGM0SVR0bFdJVll6WHI5L1VMMEJmOUdVY1I2?=
- =?utf-8?B?cHZjbXRMV0l6bjMzUVVycUhZTVNNUVdHUjNpQjVUdE5MMU5nU294WVhrVzI2?=
- =?utf-8?B?OUFjZGZqZUlTT0pDZ3NoSVlWaVprQlNlR1lwYTVwQnpCOUVLMUVNZUJIV1B6?=
- =?utf-8?B?OGRGUjBqakZyT0NzL2tUWFR0R25NNkx3Zjl0NGhUbDBxeWxKTXZ1S1pBTy9O?=
- =?utf-8?B?WEJaN1VmZnkxbmx6Q1p3OVVucEJ5bVVDQ1UzMyt5Zmc4VU0xYmtSQXhYMnEx?=
- =?utf-8?B?YmZtME9OZDBwTzRRR0pXUFFQOVlPa0o0L1lyK3pqS2JHOHk1KzVDVThrazFn?=
- =?utf-8?B?MDg4YjJVK1U0SUVwSVR4WUZqZHpzbmpkTGE0S2l6OTBZaTFOUzdNVmMraXFQ?=
- =?utf-8?B?VzNZSnA2QnBpNEU2N0MrOTdVRGJQZnJpL1ZBTTgxRzJwWko2UUpwSFNnajJS?=
- =?utf-8?B?REp1VnRLczZXRVFyYWNvSGVVT2JsR1lIc0pZVVh4bnJxM0hhL0llamt1YlRR?=
- =?utf-8?B?VExWZVBJTHg5SjF2NmdIcG13ZFhZUlBHTG8zeVVvQ3pRYUpCd2lGVHFIYVZN?=
- =?utf-8?B?WEpuL0tRVUJsN3FCS2ZVeUhKN1FqVG1ab25rUkZsaEpsSzFLbnJ5V1ppSm9M?=
- =?utf-8?B?b3dQNFZYaTRQQ0w1Y2ZPMnN1Z2JNbHhSejRpVzhiVXZMS3Q3R2hXcE1wVkpo?=
- =?utf-8?B?ZXZsdHI2OTFqOFJXVHhpQ21ibWI1VXRybjd2UzlhZWNMUG5MSUVvZmpLY1NH?=
- =?utf-8?B?M0xhL0luUHVuMk1HZkQ0NHk3aWRReXFwRnBPbGNwd1FieWxKOCtsY2RUMGhJ?=
- =?utf-8?B?cDBwNlgxSGMvdWdBdmtYN0RzV0R4aUFLM1BsZHhTQWpEWmQ0T0QySk1ydU9v?=
- =?utf-8?B?b0hwcG9tZ2ZWWm1vTGREUjRXTytiRjlyUzdvQytaSTNkbWQ5d3lndk02cWVU?=
- =?utf-8?B?MTlYdzRHMzMvVy9NNzFjNVFEWSsyMWJUci91cWpxNzFyc3R6UE5ucmtuYmZK?=
- =?utf-8?B?SnBOZWY0SnRNMlM3amJrN28wVEZGbnJvd0lNb1ZoVnhQZnhXY1JXb1N2SU9W?=
- =?utf-8?B?U1B6dWVVemxpK3J5UGpNVkYySWZNMmNUYmZTdThzWklyc09hdXU1T1JSZzZK?=
- =?utf-8?B?cHJKRU5YdUF6NVYyR0pydXhtRzk5Ky9obkk4WTNWWERnTWQ4TGJYSXE5eFc0?=
- =?utf-8?B?azc5U3luc1Z5Y2tCbkpuQTA1NWdVN3B3SEs5bVNrV2t6dFJYZVhBYmZJODZD?=
- =?utf-8?B?aW5nUFFPbG1YT3k3bGZqSzVkV21RT0l3bXduZElER0V5YjVPUXdyMU51ZjV3?=
- =?utf-8?B?aDZuY2dRVkU3TFp1eVVHQS96dUhrdTlqZjZkTFhDTHpTODVZcHJ5S0JhRUY3?=
- =?utf-8?B?L3JISG9xcVNxdkRQSmJYTXJkR2hVQzUzdmpLNmU4NzFNZ3BncUIvNjdocEVx?=
- =?utf-8?B?VzdXK0VDd1ozWnQxUEdWbnU0Y1AxeWYxS1FJRS9aS0dHTHVYdTVwRkxESEpB?=
- =?utf-8?B?N0MrWkFDc3JpN01wV0YxU2M1T0oxaFNmbzRUWkRwbUFPVEJWOTFxcHZwcGYy?=
- =?utf-8?B?UHgwbDVORmgrNDJXbTcvdDFEcnRxYXdJR0RFRUJmYTdaYmN1alp1QmpjdFN4?=
- =?utf-8?B?YlZ2eGR1YXI2VUFrZUdXUHhYWmFZTHBOeDM5VnBrTkd3aEJlVWo4RUtsWi9k?=
- =?utf-8?B?bWZIZXFpWVAra3lWWm5XT0tjb0V1QlBmVUlhaWxOaTlud2Q4NkhQTlN5ZnNO?=
- =?utf-8?B?UFlKSk96Q09RSkhHMFVCeE10d2hGMWtXL2dHeEFuT2dlLzVYQWxCUT09?=
-X-Exchange-RoutingPolicyChecked: cWE/EdWJ4M8CB30ie7kYhf6Lh3W0sNSPGdHEzqYfEjP+sZt23PTzrO9wk9DloIgWHD+e78lBCrLsmn03XtmEm8Ca2kvbNZI9PDjACYfHBWCQbzsdKj3xEkid4SfqORkm9F01GaHSDsFjz37TxIWXC4J5pZaSM0hz3PaYSqPnQ6CAXs+7yWG1ywWGc5AGQaoaiZV7vMafTLHxPVF8LVT5oXicyod02F1NxL2DX1hYuCjw/hv7cYaG8LDekR7YjDsTMnMkXSsF3tA5HsJ1crd++A/sYoclExOA6V+9pPHJ2fYFaD4XE8Bff7Uu6U5Ikwje9d/52zgFrfOy8VhPjnc8gg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7eacdf0f-8be0-44df-37be-08df3c0a6522
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6195.namprd11.prod.outlook.com
+X-OriginatorOrg: Nvidia.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Nov 2026 13:32:25.5249 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hZfQh7euqRId0orh/xuHiEysdKzyvN6DKmIpm/bd/O0JhgtyFyGKMEdkDo5CwG8Z8ZsvgVRp2P6dS+vMbKDfEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5862
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB7742.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cc80d22f-78dc-4d81-e541-08df3c0c2b54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2026 13:45:07.3570 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: RkADGfukDg9PvsS/x2TdtjyL7yWGLW1aV+9CDF7IiV1sop8vlYYU2wYj5OeFBsd5ZMqtg3Bkjd2GDsTvfZaMEg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9151
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,507 +135,148 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	HTML_MESSAGE,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---------------8ysq8UFRbsaJ9xK4Xeetv1lQ
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-
-On 11/6/2026 08:38, Raag Jadav wrote:
-> With bare minimum pieces in place, we can finally introduce PCIe Function
-> Level Reset (FLR) support which re-initializes hardware state without the
-> need for reloading the driver from userspace. All VRAM contents are lost
-> along with hardware state and driver takes care of recreating the required
-> kernel bos as part of re-initialization, but user still needs to recreate
-> user bos and reload context after PCIe FLR.
->
-> Signed-off-by: Raag Jadav<raag.jadav@intel.com>
-> Tested-by: Lukasz Laguna<lukasz.laguna@intel.com>
-> Acked-by: Rodrigo Vivi<rodrigo.vivi@intel.com>
-> Reviewed-by: Riana Tauro<riana.tauro@intel.com>
-> ---
->   v2: Spell out Function Level Reset (Jani)
->   v5: Prevent PM ref leak for wedged device (Matthew Brost)
->   v6: Add PCIe FLR documentation (Daniele)
->   v7: Refine PCIe FLR documentation (Daniele)
->       Introduce xe_pci_reset_skip() helper (Lukasz)
->   v9: Add 'Xe' prefix to document title (Rodrigo)
-> v10: Update documentation to include PCI Error Handling (Lukasz)
->       Maintain wedge reference on FLR failure (Lukasz)
-> v11: Cleanup wedge reference logic in ->reset_prepare() (Lukasz)
->       Use 'PCI reset' in logs (Riana)
-> v12: Refine error logging (Riana)
-> v14: Early return on survivability mode (Riana)
-> ---
->   drivers/gpu/drm/xe/xe_device_types.h |   3 +
->   drivers/gpu/drm/xe/xe_pci_error.c    | 139 +++++++++++++++++++++++++++
->   2 files changed, 142 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index d99881c6e1d5..6dcaec224338 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -535,6 +535,9 @@ struct xe_device {
->   	/** @pxp: Encapsulate Protected Xe Path support */
->   	struct xe_pxp *pxp;
->   
-> +	/** @flr_prepared: Prepared for function-reset */
-> +	bool flr_prepared;
-> +
->   	/** @needs_flr_on_fini: requests function-reset on fini */
->   	bool needs_flr_on_fini;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-> index be58fc9e22dc..129cf3395f16 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_error.c
-> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
-> @@ -13,9 +13,55 @@
->   #include "xe_pm.h"
->   #include "xe_printk.h"
->   #include "xe_ras.h"
-> +#include "xe_sriov_pf_helpers.h"
->   #include "xe_survivability_mode.h"
->   #include "xe_wedge.h"
->   
-> +/**
-> + * DOC: Xe PCI Error Handling
-> + *
-> + * Xe driver registers PCI callbacks which are called by PCI core in case of
-> + * bus errors or resets.
-> + *
-> + * Currently both Function Level Reset (FLR) and bus error handling callbacks are
-> + * supported. Both wipe the VRAM and resets the state of all the hardware units.
-> + * Therefore, the contents of all exec queues and BOs in VRAM are lost, and the
-> + * hardware needs a full re-initialization. The way Xe driver handles it, is
-> + * pretty much similar to system suspend/resume flow with a few notable exceptions.
-> + *
-> + * Prepare phase:
-> + *
-> + * - Temporarily wedge the device to prevent userspace access
-> + * - Kill exec queues which signals all fences and frees in-flight jobs
-> + * - Stop the scheduler and all submissions to GuC
-> + * - The fact that FLR is needed is because hardware could be in corrupted state
-> + *   and access unreliable, so skip memory eviction due to untrustworthy VRAM
-> + *   contents
-> + * - Remove all memory mappings since VRAM contents will be lost
-> + *
-> + * Re-initialization phase:
-> + *
-> + * - Recreate kernel BOs due to skipped memory eviction in prepare phase
-> + * - Restore kernel queues which were killed in prepare phase
-> + * - Reload all uC firmwares
-> + * - Bring up all hardware units
-> + * - Unwedge the device to allow userspace access
-> + *
-> + * Since VRAM contents are lost, the user is expected to recreate user memory
-> + * and reload context.
-> + *
-> + * TODO: Reuse FLR callbacks for bus error handling.
-
-I agree we should reuse the FLR callbacks for bus error handling. I 
-think it's a natural next step.
-
-Aravind, Tejas, are you aware of this? Page offlining currently relies 
-on the driver reload after SBR, so it will need to be adjusted for the 
-in-place flow.
-
-Today, when we're informed about a bad page that belongs to a critical 
-(pinned kernel) BO, we can't offline it right away and we request a 
-reset. slot_reset() then re-probes, and xe_ras_init() -> 
-get_offline_queue() reserves the page before any kernel VRAM allocation, 
-so the BO lands elsewhere.
-
-With the in-place FLR flow:
-- the offline queue isn't reprocessed (xe_ras_init() is probe-only), and
-- even if it were, pinned BOs keep their placement across the reset, so 
-the page still can't be reserved.
-
-*For VFs this is an immediate problem*: there's no SBR on a VF, so the 
-recovery for a critical BO would be a VF FLR, which follows this 
-in-place flow.
-
-It looks like we need to reprocess pending bad pages during re-init and 
-relocate the pinned kernel BOs overlapping them.
-
-Thanks,
-Lukasz
-
-> + *
-> + * Current implementation is only limited to re-initializing GT. This needs to
-> + * be extended for a lot of components listed below.
-> + *
-> + * - Proper re-initialization of GSC and PXP for integrated platforms
-> + * - SR-IOV cases which need PF and VF synchronization
-> + * - Re-initialization of all child devices registered by Xe
-> + * - MM corner cases
-> + * - Display
-> + */
-> +
->   static void prepare_device_for_reset(struct pci_dev *pdev)
->   {
->   	struct xe_device *xe = pdev_to_xe_device(pdev);
-> @@ -147,9 +193,102 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
->   	xe_info(xe, "PCI error: resume\n");
->   }
->   
-> +static inline bool xe_pci_reset_skip(struct xe_device *xe)
-> +{
-> +	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe->info.probe_display;
-> +}
-> +
-> +static void xe_pci_reset_prepare(struct pci_dev *pdev)
-> +{
-> +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> +	int err;
-> +
-> +	err = xe_survivability_mode_is_boot_enabled(xe);
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: device in survivability mode\n");
-> +		return;
-> +	}
-> +
-> +	/* No guarantees by PCI core */
-> +	err = !pm_runtime_active(&pdev->dev);
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: unexpected power state\n");
-> +		return;
-> +	}
-> +
-> +	err = xe_wedged(xe);
-> +	if (err)
-> +		xe_err(xe, "PCI reset: device in unexpected state\n");
-> +
-> +	/* Wedge the device to prevent userspace access but don't send the event yet */
-> +	xe_wedge_get(xe);
-> +	if (err)
-> +		return;
-> +
-> +	err = xe_pci_reset_skip(xe);
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: not supported\n");
-> +		return;
-> +	}
-> +
-> +	/*
-> +	 * The hardware could be in corrupted state and access unreliable, but we try to
-> +	 * update data structures and cleanup any pending work to avoid side effects during
-> +	 * PCIe FLR. This will be similar to system suspend flow but without eviction.
-> +	 */
-> +	err = xe_device_suspend(xe, true);
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: failed to prepare\n");
-> +		return;
-> +	}
-> +
-> +	xe->flr_prepared = true;
-> +	xe_info(xe, "PCI reset: prepared\n");
-> +}
-> +
-> +static void xe_pci_reset_done(struct pci_dev *pdev)
-> +{
-> +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> +	int err;
-> +
-> +	err = xe_survivability_mode_is_boot_enabled(xe) || !pm_runtime_active(&pdev->dev);
-> +	if (err)
-> +		return;
-> +
-> +	if (!xe->flr_prepared)
-> +		goto out;
-> +
-> +	/* Unprepare early in case we fail */
-> +	xe->flr_prepared = false;
-> +
-> +	/*
-> +	 * We already have the data structures intact, so try to re-initialize the device.
-> +	 * This will be similar to system resume flow, except we'll also need to recreate
-> +	 * kernel bos and restore kernel queues.
-> +	 */
-> +	err = xe_device_resume(xe, true);
-> +	if (err) {
-> +		xe_err(xe, "PCI reset: re-initialization failed\n");
-> +		goto out;
-> +	}
-> +
-> +	/* Unwedge to allow userspace access */
-> +	xe_wedge_put(xe);
-> +	xe_info(xe, "PCI reset: done\n");
-> +
-> +	return;
-> +out:
-> +	/* Most likely the device is unusable and there's nothing we can do about it */
-> +	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
-> +	/* Drop local reference */
-> +	xe_wedge_put(xe);
-> +}
-> +
->   const struct pci_error_handlers xe_pci_error_handlers = {
->   	.error_detected	= xe_pci_error_detected,
->   	.mmio_enabled	= xe_pci_error_mmio_enabled,
->   	.slot_reset	= xe_pci_error_slot_reset,
->   	.resume		= xe_pci_error_resume,
-> +	.reset_prepare	= xe_pci_reset_prepare,
-> +	.reset_done	= xe_pci_reset_done,
->   };
---------------8ysq8UFRbsaJ9xK4Xeetv1lQ
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <div class="moz-cite-prefix">On 11/6/2026 08:38, Raag Jadav wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:20261106073921.1512530-10-raag.jadav@intel.com">
-      <pre wrap="" class="moz-quote-pre">With bare minimum pieces in place, we can finally introduce PCIe Function
-Level Reset (FLR) support which re-initializes hardware state without the
-need for reloading the driver from userspace. All VRAM contents are lost
-along with hardware state and driver takes care of recreating the required
-kernel bos as part of re-initialization, but user still needs to recreate
-user bos and reload context after PCIe FLR.
-
-Signed-off-by: Raag Jadav <a class="moz-txt-link-rfc2396E" href="mailto:raag.jadav@intel.com">&lt;raag.jadav@intel.com&gt;</a>
-Tested-by: Lukasz Laguna <a class="moz-txt-link-rfc2396E" href="mailto:lukasz.laguna@intel.com">&lt;lukasz.laguna@intel.com&gt;</a>
-Acked-by: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
-Reviewed-by: Riana Tauro <a class="moz-txt-link-rfc2396E" href="mailto:riana.tauro@intel.com">&lt;riana.tauro@intel.com&gt;</a>
----
- v2: Spell out Function Level Reset (Jani)
- v5: Prevent PM ref leak for wedged device (Matthew Brost)
- v6: Add PCIe FLR documentation (Daniele)
- v7: Refine PCIe FLR documentation (Daniele)
-     Introduce xe_pci_reset_skip() helper (Lukasz)
- v9: Add 'Xe' prefix to document title (Rodrigo)
-v10: Update documentation to include PCI Error Handling (Lukasz)
-     Maintain wedge reference on FLR failure (Lukasz)
-v11: Cleanup wedge reference logic in -&gt;reset_prepare() (Lukasz)
-     Use 'PCI reset' in logs (Riana)
-v12: Refine error logging (Riana)
-v14: Early return on survivability mode (Riana)
----
- drivers/gpu/drm/xe/xe_device_types.h |   3 +
- drivers/gpu/drm/xe/xe_pci_error.c    | 139 +++++++++++++++++++++++++++
- 2 files changed, 142 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index d99881c6e1d5..6dcaec224338 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -535,6 +535,9 @@ struct xe_device {
- 	/** @pxp: Encapsulate Protected Xe Path support */
- 	struct xe_pxp *pxp;
- 
-+	/** @flr_prepared: Prepared for function-reset */
-+	bool flr_prepared;
-+
- 	/** @needs_flr_on_fini: requests function-reset on fini */
- 	bool needs_flr_on_fini;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index be58fc9e22dc..129cf3395f16 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -13,9 +13,55 @@
- #include &quot;xe_pm.h&quot;
- #include &quot;xe_printk.h&quot;
- #include &quot;xe_ras.h&quot;
-+#include &quot;xe_sriov_pf_helpers.h&quot;
- #include &quot;xe_survivability_mode.h&quot;
- #include &quot;xe_wedge.h&quot;
- 
-+/**
-+ * DOC: Xe PCI Error Handling
-+ *
-+ * Xe driver registers PCI callbacks which are called by PCI core in case of
-+ * bus errors or resets.
-+ *
-+ * Currently both Function Level Reset (FLR) and bus error handling callbacks are
-+ * supported. Both wipe the VRAM and resets the state of all the hardware units.
-+ * Therefore, the contents of all exec queues and BOs in VRAM are lost, and the
-+ * hardware needs a full re-initialization. The way Xe driver handles it, is
-+ * pretty much similar to system suspend/resume flow with a few notable exceptions.
-+ *
-+ * Prepare phase:
-+ *
-+ * - Temporarily wedge the device to prevent userspace access
-+ * - Kill exec queues which signals all fences and frees in-flight jobs
-+ * - Stop the scheduler and all submissions to GuC
-+ * - The fact that FLR is needed is because hardware could be in corrupted state
-+ *   and access unreliable, so skip memory eviction due to untrustworthy VRAM
-+ *   contents
-+ * - Remove all memory mappings since VRAM contents will be lost
-+ *
-+ * Re-initialization phase:
-+ *
-+ * - Recreate kernel BOs due to skipped memory eviction in prepare phase
-+ * - Restore kernel queues which were killed in prepare phase
-+ * - Reload all uC firmwares
-+ * - Bring up all hardware units
-+ * - Unwedge the device to allow userspace access
-+ *
-+ * Since VRAM contents are lost, the user is expected to recreate user memory
-+ * and reload context.
-+ *
-+ * TODO: Reuse FLR callbacks for bus error handling.</pre>
-    </blockquote>
-    <br>
-    I agree we should reuse the FLR callbacks for bus error handling. I
-    think it's a natural next step.<br>
-    <br>
-    Aravind, Tejas, are you aware of this? Page offlining currently
-    relies on the driver reload after SBR, so it will need to be
-    adjusted for the in-place flow.<br>
-    <br>
-    Today, when we're informed about a bad page that belongs to a
-    critical (pinned kernel) BO, we can't offline it right away and we
-    request a reset. slot_reset() then re-probes, and xe_ras_init()
-    -&gt; get_offline_queue() reserves the page before any kernel VRAM
-    allocation, so the BO lands elsewhere.<br>
-    <br>
-    With the in-place FLR flow:<br>
-    - the offline queue isn't reprocessed (xe_ras_init() is probe-only),
-    and<br>
-    - even if it were, pinned BOs keep their placement across the reset,
-    so the page still can't be reserved.<br>
-    <br>
-    <b>For VFs this is an immediate problem</b>: there's no SBR on a VF,
-    so the recovery for a critical BO would be a VF FLR, which follows
-    this in-place flow.<br>
-    <br>
-    It looks like we need to reprocess pending bad pages during re-init
-    and relocate the pinned kernel BOs overlapping them.<br>
-    <br>
-    Thanks,<br>
-    Lukasz<br>
-    <br>
-    <blockquote type="cite" cite="mid:20261106073921.1512530-10-raag.jadav@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-+ *
-+ * Current implementation is only limited to re-initializing GT. This needs to
-+ * be extended for a lot of components listed below.
-+ *
-+ * - Proper re-initialization of GSC and PXP for integrated platforms
-+ * - SR-IOV cases which need PF and VF synchronization
-+ * - Re-initialization of all child devices registered by Xe
-+ * - MM corner cases
-+ * - Display
-+ */
-+
- static void prepare_device_for_reset(struct pci_dev *pdev)
- {
- 	struct xe_device *xe = pdev_to_xe_device(pdev);
-@@ -147,9 +193,102 @@ static void xe_pci_error_resume(struct pci_dev *pdev)
- 	xe_info(xe, &quot;PCI error: resume\n&quot;);
- }
- 
-+static inline bool xe_pci_reset_skip(struct xe_device *xe)
-+{
-+	return !IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe_sriov_pf_num_vfs(xe) || xe-&gt;info.probe_display;
-+}
-+
-+static void xe_pci_reset_prepare(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int err;
-+
-+	err = xe_survivability_mode_is_boot_enabled(xe);
-+	if (err) {
-+		xe_err(xe, &quot;PCI reset: device in survivability mode\n&quot;);
-+		return;
-+	}
-+
-+	/* No guarantees by PCI core */
-+	err = !pm_runtime_active(&amp;pdev-&gt;dev);
-+	if (err) {
-+		xe_err(xe, &quot;PCI reset: unexpected power state\n&quot;);
-+		return;
-+	}
-+
-+	err = xe_wedged(xe);
-+	if (err)
-+		xe_err(xe, &quot;PCI reset: device in unexpected state\n&quot;);
-+
-+	/* Wedge the device to prevent userspace access but don't send the event yet */
-+	xe_wedge_get(xe);
-+	if (err)
-+		return;
-+
-+	err = xe_pci_reset_skip(xe);
-+	if (err) {
-+		xe_err(xe, &quot;PCI reset: not supported\n&quot;);
-+		return;
-+	}
-+
-+	/*
-+	 * The hardware could be in corrupted state and access unreliable, but we try to
-+	 * update data structures and cleanup any pending work to avoid side effects during
-+	 * PCIe FLR. This will be similar to system suspend flow but without eviction.
-+	 */
-+	err = xe_device_suspend(xe, true);
-+	if (err) {
-+		xe_err(xe, &quot;PCI reset: failed to prepare\n&quot;);
-+		return;
-+	}
-+
-+	xe-&gt;flr_prepared = true;
-+	xe_info(xe, &quot;PCI reset: prepared\n&quot;);
-+}
-+
-+static void xe_pci_reset_done(struct pci_dev *pdev)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	int err;
-+
-+	err = xe_survivability_mode_is_boot_enabled(xe) || !pm_runtime_active(&amp;pdev-&gt;dev);
-+	if (err)
-+		return;
-+
-+	if (!xe-&gt;flr_prepared)
-+		goto out;
-+
-+	/* Unprepare early in case we fail */
-+	xe-&gt;flr_prepared = false;
-+
-+	/*
-+	 * We already have the data structures intact, so try to re-initialize the device.
-+	 * This will be similar to system resume flow, except we'll also need to recreate
-+	 * kernel bos and restore kernel queues.
-+	 */
-+	err = xe_device_resume(xe, true);
-+	if (err) {
-+		xe_err(xe, &quot;PCI reset: re-initialization failed\n&quot;);
-+		goto out;
-+	}
-+
-+	/* Unwedge to allow userspace access */
-+	xe_wedge_put(xe);
-+	xe_info(xe, &quot;PCI reset: done\n&quot;);
-+
-+	return;
-+out:
-+	/* Most likely the device is unusable and there's nothing we can do about it */
-+	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RESET);
-+	/* Drop local reference */
-+	xe_wedge_put(xe);
-+}
-+
- const struct pci_error_handlers xe_pci_error_handlers = {
- 	.error_detected	= xe_pci_error_detected,
- 	.mmio_enabled	= xe_pci_error_mmio_enabled,
- 	.slot_reset	= xe_pci_error_slot_reset,
- 	.resume		= xe_pci_error_resume,
-+	.reset_prepare	= xe_pci_reset_prepare,
-+	.reset_done	= xe_pci_reset_done,
- };
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------8ysq8UFRbsaJ9xK4Xeetv1lQ--
+DQoNCj4gT24gTm92IDQsIDIwMjYsIGF0IDc6MTPigK9BTSwgWWFkYXYsIFNhbmpheSBLdW1hciA8
+c2FuamF5Lmt1bWFyLnlhZGF2QGludGVsLmNvbT4gd3JvdGU6DQo+IA0KPiDvu78NCj4+IE9uIDAy
+LTExLTIwMjYgMTA6NDYsIFNhbmpheSBZYWRhdiB3cm90ZToNCj4+IF9fYWxsb2NfcmFuZ2VfYmlh
+cygpIHdhbGtzIHRoZSBidWRkeSB0cmVlIGRlcHRoLWZpcnN0LCBoaWdoZXIgYWRkcmVzcw0KPj4g
+Zmlyc3QsIGFuZCBkZXNjZW5kcyBldmVyeSBTUExJVCBibG9jayBldmVuIHdoZW4gbm90aGluZyBi
+ZWxvdyBpdCBpcw0KPj4gZnJlZS4gUmFuZ2UgYWxsb2NhdGlvbnMgYXJlIHBsYWNlZCB0b3AtZG93
+biwgc28gdGhleSBwYWNrIGJlbG93IHRoZQ0KPj4gcmFuZ2UgZW5kIGFuZCBlYWNoIG5ldyBvbmUg
+d2Fsa3MgZXZlcnkgYmxvY2sgYWxyZWFkeSBhbGxvY2F0ZWQgdGhlcmU6DQo+PiBPKE4pIHBlciBh
+bGxvY2F0aW9uIGFuZCBPKE5eMikgZm9yIE4gYWxsb2NhdGlvbnMsIHVuZGVyIHRoZSBhbGxvY2F0
+b3INCj4+IGxvY2suDQo+PiANCj4+IFRyYWNrIGluIGVhY2ggYmxvY2sgdGhlIGxhcmdlc3Qgb3Jk
+ZXIgb2YgYW55IEZSRUUgYmxvY2sgaW4gaXRzIHN1YnRyZWUNCj4+IChHUFVfQlVERFlfTk9fRlJF
+RV9PUkRFUiBpZiBub25lKSwgdXBkYXRlIGl0IHdoZW4gYSBibG9jayBpcyBhbGxvY2F0ZWQNCj4+
+IG9yIGZyZWVkLCBhbmQgc2tpcCBzdWJ0cmVlcyB0aGF0IGNhbm5vdCBzYXRpc2Z5IHRoZSByZXF1
+ZXN0ZWQgb3JkZXIuDQo+PiBTcGxpdHRpbmcgbmVlZHMgbm8gdXBkYXRlIG9mIGl0cyBvd24sIGFz
+IGJvdGggY2hpbGRyZW4gYXJlIG1hcmtlZCBmcmVlDQo+PiByaWdodCBhZnRlciBhbmQgdGhhdCBw
+cm9wYWdhdGVzIHRoZSBuZXcgdmFsdWUgdXAuDQo+PiBncHVfYnVkZHlfYmxvY2tfdHJpbSgpIGRl
+dGFjaGVzIHRoZSBibG9jayBiZWZvcmUgZnJlZWluZyBpdCwgc28gdXBkYXRlcw0KPj4gc3RvcCB0
+aGVyZSB3aGlsZSByZS1hbGxvY2F0aW5nIGluc2lkZSBpdDsgcmVjb21wdXRlIGZyb20gdGhlIHBh
+cmVudA0KPj4gb25jZSBpdCBpcyByZWF0dGFjaGVkLg0KPj4gDQo+PiBTa2lwcGVkIHN1YnRyZWVz
+IGNvbnRhaW4gbm8gRlJFRSBibG9jayBvZiB0aGUgcmVxdWVzdGVkIG9yZGVyIG9yDQo+PiBsYXJn
+ZXIsIHNvIHRoZSBvbGQgd2FsayBjb3VsZCBuZWl0aGVyIHNwbGl0IG5vciByZXR1cm4gYW55dGhp
+bmcgdGhlcmUuDQo+PiBUaGUgcmVtYWluaW5nIGJsb2NrcyBhcmUgdmlzaXRlZCBpbiB0aGUgc2Ft
+ZSBvcmRlciwgc28gdGhlIHNlbGVjdGVkDQo+PiBibG9jayBhbmQgcGxhY2VtZW50IGFyZSB1bmNo
+YW5nZWQuDQo+PiANCj4+IHY0OiAoTWF0dCBBKQ0KPj4gLSBEcm9wIHRoZSB1cGRhdGUgaW4gbWFy
+a19zcGxpdCgpLCB0aGUgY2hpbGRyZW4gYmVpbmcgbWFya2VkIGZyZWUNCj4+ICAgdXBkYXRlcyB0
+aGUgcGFyZW50DQo+PiAtIERldGFjaCB0aGUgYmxvY2sgYmVmb3JlIF9fbWFya19mcmVlKCkgaW4g
+Z3B1X2J1ZGR5X2Jsb2NrX3RyaW0oKSwgc28NCj4+ICAgb25seSB0aGUgZmluYWwgdXBkYXRlIGZy
+b20gdGhlIHBhcmVudCBwcm9wYWdhdGVzIHVwDQo+PiAtIERyb3AgdGhlIG9yZGVyLCBpc19hbGxv
+Y2F0ZWQoKSBhbmQgaXNfZnJlZSgpIGNoZWNrcyBpbg0KPj4gICBfX2FsbG9jX3JhbmdlX2JpYXMo
+KSB0aGF0IHRoZSBwcnVuaW5nIGNoZWNrIG5vdyBjb3ZlcnMNCj4+IA0KPj4gQ2M6IE1hdHRoZXcg
+QXVsZCA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4NCj4+IENjOiBBcnVuIFByYXZpbiA8YXJ1bnBy
+YXZpbi5wYW5lZXJzZWx2YW1AYW1kLmNvbT4NCj4+IENjOiBKb2VsIEZlcm5hbmRlcyA8am9lbGFn
+bmVsZkBudmlkaWEuY29tPg0KPj4gQXNzaXN0ZWQtYnk6IExMTQ0KPj4gU2lnbmVkLW9mZi1ieTog
+U2FuamF5IFlhZGF2IDxzYW5qYXkua3VtYXIueWFkYXZAaW50ZWwuY29tPg0KPiBHZW50bGUgcGlu
+Zw0KDQpDYW4geW91IHByb3ZpZGUgcGVyZm9ybWFuY2UgbnVtYmVycyB3aXRoIHRoaXMgY2hhbmdl
+IHRvbz8NCg0KVGhhbmtzDQoNCg0KPj4gLS0tDQo+PiAgZHJpdmVycy9ncHUvYnVkZHkuYyAgICAg
+ICB8IDU2ICsrKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tLS0tLS0tLQ0KPj4gIGluY2x1
+ZGUvbGludXgvZ3B1X2J1ZGR5LmggfCAgNyArKysrKw0KPj4gIDIgZmlsZXMgY2hhbmdlZCwgNDYg
+aW5zZXJ0aW9ucygrKSwgMTcgZGVsZXRpb25zKC0pDQo+PiANCj4+IGRpZmYgLS1naXQgYS9kcml2
+ZXJzL2dwdS9idWRkeS5jIGIvZHJpdmVycy9ncHUvYnVkZHkuYw0KPj4gaW5kZXggMjhjZmY5N2Q1
+N2RjLi45M2Y3MGM5OGIyMzUgMTAwNjQ0DQo+PiAtLS0gYS9kcml2ZXJzL2dwdS9idWRkeS5jDQo+
+PiArKysgYi9kcml2ZXJzL2dwdS9idWRkeS5jDQo+PiBAQCAtNjAyLDYgKzYwMiw3IEBAIHN0YXRp
+YyBzdHJ1Y3QgZ3B1X2J1ZGR5X2Jsb2NrICpncHVfYmxvY2tfYWxsb2Moc3RydWN0IGdwdV9idWRk
+eSAqbW0sDQo+PiAgICAgIGJsb2NrLT5oZWFkZXIgPSBvZmZzZXQ7DQo+PiAgICAgIGJsb2NrLT5o
+ZWFkZXIgfD0gb3JkZXI7DQo+PiAgICAgIGJsb2NrLT5wYXJlbnQgPSBwYXJlbnQ7DQo+PiArICAg
+IGJsb2NrLT5zdWJ0cmVlX21heF9mcmVlX29yZGVyID0gR1BVX0JVRERZX05PX0ZSRUVfT1JERVI7
+DQo+PiAgICAgICAgUkJfQ0xFQVJfTk9ERSgmYmxvY2stPnJiKTsNCj4+ICBAQCAtNzE3LDYgKzcx
+OCwyNyBAQCBzdGF0aWMgdm9pZCByYnRyZWVfcmVtb3ZlKHN0cnVjdCBncHVfYnVkZHkgKm1tLA0K
+Pj4gICAgICBSQl9DTEVBUl9OT0RFKCZibG9jay0+cmIpOw0KPj4gIH0NCj4+ICArc3RhdGljIHZv
+aWQgdXBkYXRlX3N1YnRyZWVfbWF4X2ZyZWVfb3JkZXIoc3RydWN0IGdwdV9idWRkeV9ibG9jayAq
+YmxvY2spDQo+PiArew0KPj4gKyAgICB3aGlsZSAoYmxvY2spIHsNCj4+ICsgICAgICAgIHM4IG1h
+eF9mcmVlOw0KPj4gKw0KPj4gKyAgICAgICAgaWYgKGdwdV9idWRkeV9ibG9ja19pc19mcmVlKGJs
+b2NrKSkNCj4+ICsgICAgICAgICAgICBtYXhfZnJlZSA9IGdwdV9idWRkeV9ibG9ja19vcmRlcihi
+bG9jayk7DQo+PiArICAgICAgICBlbHNlIGlmIChncHVfYnVkZHlfYmxvY2tfaXNfc3BsaXQoYmxv
+Y2spKQ0KPj4gKyAgICAgICAgICAgIG1heF9mcmVlID0gbWF4KGJsb2NrLT5sZWZ0LT5zdWJ0cmVl
+X21heF9mcmVlX29yZGVyLA0KPj4gKyAgICAgICAgICAgICAgICAgICAgICAgYmxvY2stPnJpZ2h0
+LT5zdWJ0cmVlX21heF9mcmVlX29yZGVyKTsNCj4+ICsgICAgICAgIGVsc2UNCj4+ICsgICAgICAg
+ICAgICBtYXhfZnJlZSA9IEdQVV9CVUREWV9OT19GUkVFX09SREVSOw0KPj4gKw0KPj4gKyAgICAg
+ICAgaWYgKGJsb2NrLT5zdWJ0cmVlX21heF9mcmVlX29yZGVyID09IG1heF9mcmVlKQ0KPj4gKyAg
+ICAgICAgICAgIGJyZWFrOw0KPj4gKw0KPj4gKyAgICAgICAgYmxvY2stPnN1YnRyZWVfbWF4X2Zy
+ZWVfb3JkZXIgPSBtYXhfZnJlZTsNCj4+ICsgICAgICAgIGJsb2NrID0gYmxvY2stPnBhcmVudDsN
+Cj4+ICsgICAgfQ0KPj4gK30NCj4+ICsNCj4+ICBzdGF0aWMgdm9pZCBtYXJrX2FsbG9jYXRlZChz
+dHJ1Y3QgZ3B1X2J1ZGR5ICptbSwNCj4+ICAgICAgICAgICAgICAgICBzdHJ1Y3QgZ3B1X2J1ZGR5
+X2Jsb2NrICpibG9jaykNCj4+ICB7DQo+PiBAQCAtNzI5LDYgKzc1MSw3IEBAIHN0YXRpYyB2b2lk
+IG1hcmtfYWxsb2NhdGVkKHN0cnVjdCBncHVfYnVkZHkgKm1tLA0KPj4gICAgICBtbS0+dXNlZF9z
+Y29yZWJvYXJkW2dwdV9idWRkeV9ibG9ja19vcmRlcihibG9jayldKys7DQo+PiAgICAgICAgcmJ0
+cmVlX3JlbW92ZShtbSwgYmxvY2spOw0KPj4gKyAgICB1cGRhdGVfc3VidHJlZV9tYXhfZnJlZV9v
+cmRlcihibG9jayk7DQo+PiAgfQ0KPj4gICAgc3RhdGljIHZvaWQgX19tYXJrX2ZyZWUoc3RydWN0
+IGdwdV9idWRkeSAqbW0sDQo+PiBAQCAtNzUwLDYgKzc3Myw3IEBAIHN0YXRpYyB2b2lkIF9fbWFy
+a19mcmVlKHN0cnVjdCBncHVfYnVkZHkgKm1tLA0KPj4gICAgICBtbS0+ZnJlZV9zY29yZWJvYXJk
+W2dwdV9idWRkeV9ibG9ja19vcmRlcihibG9jayldKys7DQo+PiAgICAgICAgcmJ0cmVlX2luc2Vy
+dChtbSwgYmxvY2spOw0KPj4gKyAgICB1cGRhdGVfc3VidHJlZV9tYXhfZnJlZV9vcmRlcihibG9j
+ayk7DQo+PiAgfQ0KPj4gICAgc3RhdGljIHZvaWQgbWFya19mcmVlKHN0cnVjdCBncHVfYnVkZHkg
+Km1tLA0KPj4gQEAgLTg2OSw2ICs4OTMsOCBAQCBpbnQgZ3B1X2J1ZGR5X2luaXQoc3RydWN0IGdw
+dV9idWRkeSAqbW0sIHU2NCBzaXplLCB1NjQgY2h1bmtfc2l6ZSkNCj4+ICAgICAgICBzaXplID0g
+cm91bmRfZG93bihzaXplLCBjaHVua19zaXplKTsNCj4+ICArICAgIEJVSUxEX0JVR19PTihHUFVf
+QlVERFlfTUFYX09SREVSID4gUzhfTUFYKTsNCj4+ICsNCj4+ICAgICAgbW0tPnNpemUgPSBzaXpl
+Ow0KPj4gICAgICBtbS0+YXZhaWwgPSBzaXplOw0KPj4gICAgICBtbS0+Y2h1bmtfc2l6ZSA9IGNo
+dW5rX3NpemU7DQo+PiBAQCAtMTI3Nyw3ICsxMzAzLDcgQEAgX19hbGxvY19yYW5nZV9iaWFzKHN0
+cnVjdCBncHVfYnVkZHkgKm1tLA0KPj4gICAgICAgICAgICBsaXN0X2RlbCgmYmxvY2stPnRtcF9s
+aW5rKTsNCj4+ICAtICAgICAgICBpZiAoZ3B1X2J1ZGR5X2Jsb2NrX29yZGVyKGJsb2NrKSA8IG9y
+ZGVyKQ0KPj4gKyAgICAgICAgaWYgKGJsb2NrLT5zdWJ0cmVlX21heF9mcmVlX29yZGVyIDwgKGlu
+dClvcmRlcikNCj4+ICAgICAgICAgICAgICBjb250aW51ZTsNCj4+ICAgICAgICAgICAgYmxvY2tf
+c3RhcnQgPSBncHVfYnVkZHlfYmxvY2tfb2Zmc2V0KGJsb2NrKTsNCj4+IEBAIC0xMjg2LDkgKzEz
+MTIsNiBAQCBfX2FsbG9jX3JhbmdlX2JpYXMoc3RydWN0IGdwdV9idWRkeSAqbW0sDQo+PiAgICAg
+ICAgICBpZiAoIW92ZXJsYXBzKHN0YXJ0LCBlbmQsIGJsb2NrX3N0YXJ0LCBibG9ja19lbmQpKQ0K
+Pj4gICAgICAgICAgICAgIGNvbnRpbnVlOw0KPj4gIC0gICAgICAgIGlmIChncHVfYnVkZHlfYmxv
+Y2tfaXNfYWxsb2NhdGVkKGJsb2NrKSkNCj4+IC0gICAgICAgICAgICBjb250aW51ZTsNCj4+IC0N
+Cj4+ICAgICAgICAgIGlmIChibG9ja19zdGFydCA8IHN0YXJ0IHx8IGJsb2NrX2VuZCA+IGVuZCkg
+ew0KPj4gICAgICAgICAgICAgIHU2NCBhZGp1c3RlZF9zdGFydCA9IG1heChibG9ja19zdGFydCwg
+c3RhcnQpOw0KPj4gICAgICAgICAgICAgIHU2NCBhZGp1c3RlZF9lbmQgPSBtaW4oYmxvY2tfZW5k
+LCBlbmQpOw0KPj4gQEAgLTEyOTgsMTYgKzEzMjEsMTAgQEAgX19hbGxvY19yYW5nZV9iaWFzKHN0
+cnVjdCBncHVfYnVkZHkgKm1tLA0KPj4gICAgICAgICAgICAgICAgICBjb250aW51ZTsNCj4+ICAg
+ICAgICAgIH0NCj4+ICArICAgICAgICAvKiBOb3QgcHJ1bmVkIGF0IEBvcmRlciwgc28gdGhpcyBi
+bG9jayBpdHNlbGYgaXMgRlJFRSAqLw0KPj4gICAgICAgICAgaWYgKGNvbnRhaW5zKHN0YXJ0LCBl
+bmQsIGJsb2NrX3N0YXJ0LCBibG9ja19lbmQpICYmDQo+PiAtICAgICAgICAgICAgb3JkZXIgPT0g
+Z3B1X2J1ZGR5X2Jsb2NrX29yZGVyKGJsb2NrKSkgew0KPj4gLSAgICAgICAgICAgIC8qDQo+PiAt
+ICAgICAgICAgICAgICogRmluZCB0aGUgZnJlZSBibG9jayB3aXRoaW4gdGhlIHJhbmdlLg0KPj4g
+LSAgICAgICAgICAgICAqLw0KPj4gLSAgICAgICAgICAgIGlmIChncHVfYnVkZHlfYmxvY2tfaXNf
+ZnJlZShibG9jaykpDQo+PiAtICAgICAgICAgICAgICAgIHJldHVybiBibG9jazsNCj4+IC0NCj4+
+IC0gICAgICAgICAgICBjb250aW51ZTsNCj4+IC0gICAgICAgIH0NCj4+ICsgICAgICAgICAgICBv
+cmRlciA9PSBncHVfYnVkZHlfYmxvY2tfb3JkZXIoYmxvY2spKQ0KPj4gKyAgICAgICAgICAgIHJl
+dHVybiBibG9jazsNCj4+ICAgICAgICAgICAgaWYgKCFncHVfYnVkZHlfYmxvY2tfaXNfc3BsaXQo
+YmxvY2spKSB7DQo+PiAgICAgICAgICAgICAgZXJyID0gc3BsaXRfYmxvY2sobW0sIGJsb2NrKTsN
+Cj4+IEBAIC0xODU2LDEzICsxODczLDE3IEBAIGludCBncHVfYnVkZHlfYmxvY2tfdHJpbShzdHJ1
+Y3QgZ3B1X2J1ZGR5ICptbSwNCj4+ICAgICAgICAgICAgICAgICAgICAgICAgICAgZ3B1X2J1ZGR5
+X2Jsb2NrX29mZnNldChibG9jayksDQo+PiAgICAgICAgICAgICAgICAgICAgICAgICAgIGdwdV9i
+dWRkeV9ibG9ja19zaXplKG1tLCBibG9jaykpOw0KPj4gIC0gICAgX19tYXJrX2ZyZWUobW0sIGJs
+b2NrLCB3YXNfY2xlYXIgPyBHUFVfQkxPQ0tfQ0xFQVIgOiBHUFVfQkxPQ0tfRElSVFkpOw0KPj4g
+LSAgICBtbS0+YXZhaWwgKz0gZ3B1X2J1ZGR5X2Jsb2NrX3NpemUobW0sIGJsb2NrKTsNCj4+IC0N
+Cj4+IC0gICAgLyogUHJldmVudCByZWN1cnNpdmVseSBmcmVlaW5nIHRoaXMgbm9kZSAqLw0KPj4g
+KyAgICAvKg0KPj4gKyAgICAgKiBEZXRhY2ggdGhlIGJsb2NrIHRvIHByZXZlbnQgcmVjdXJzaXZl
+bHkgZnJlZWluZyB0aGlzIG5vZGUsIGFuZCB0bw0KPj4gKyAgICAgKiBrZWVwIGZyZWUtb3JkZXIg
+dXBkYXRlcyBmcm9tIHByb3BhZ2F0aW5nIGFib3ZlIGl0IHVudGlsIHRoZSB0cmltDQo+PiArICAg
+ICAqIGlzIGRvbmUuDQo+PiArICAgICAqLw0KPj4gICAgICBwYXJlbnQgPSBibG9jay0+cGFyZW50
+Ow0KPj4gICAgICBibG9jay0+cGFyZW50ID0gTlVMTDsNCj4+ICArICAgIF9fbWFya19mcmVlKG1t
+LCBibG9jaywgd2FzX2NsZWFyID8gR1BVX0JMT0NLX0NMRUFSIDogR1BVX0JMT0NLX0RJUlRZKTsN
+Cj4+ICsgICAgbW0tPmF2YWlsICs9IGdwdV9idWRkeV9ibG9ja19zaXplKG1tLCBibG9jayk7DQo+
+PiArDQo+PiAgICAgIGxpc3RfYWRkKCZibG9jay0+dG1wX2xpbmssICZkZnMpOw0KPj4gICAgICBl
+cnIgPSAgX19hbGxvY19yYW5nZShtbSwgJmRmcywgbmV3X3N0YXJ0LCBuZXdfc2l6ZSwNCj4+ICAg
+ICAgICAgICAgICAgICAgIHdhc19jbGVhciA/IEdQVV9CVUREWV9DTEVBUl9BTExPQ0FUSU9OIDog
+MCwNCj4+IEBAIC0xODgxLDYgKzE5MDIsNyBAQCBpbnQgZ3B1X2J1ZGR5X2Jsb2NrX3RyaW0oc3Ry
+dWN0IGdwdV9idWRkeSAqbW0sDQo+PiAgICAgIH0NCj4+ICAgICAgICBibG9jay0+cGFyZW50ID0g
+cGFyZW50Ow0KPj4gKyAgICB1cGRhdGVfc3VidHJlZV9tYXhfZnJlZV9vcmRlcihwYXJlbnQpOw0K
+Pj4gICAgICByZXR1cm4gZXJyOw0KPj4gIH0NCj4+ICBFWFBPUlRfU1lNQk9MKGdwdV9idWRkeV9i
+bG9ja190cmltKTsNCj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2xpbnV4L2dwdV9idWRkeS5oIGIv
+aW5jbHVkZS9saW51eC9ncHVfYnVkZHkuaA0KPj4gaW5kZXggZGRjNGVjYTg0MTc1Li44MDM3ZjVh
+MGZlYjEgMTAwNjQ0DQo+PiAtLS0gYS9pbmNsdWRlL2xpbnV4L2dwdV9idWRkeS5oDQo+PiArKysg
+Yi9pbmNsdWRlL2xpbnV4L2dwdV9idWRkeS5oDQo+PiBAQCAtMTQxLDggKzE0MSwxNSBAQCBzdHJ1
+Y3QgZ3B1X2J1ZGR5X2Jsb2NrIHsNCj4+ICAgICAgdW5zaWduZWQgaW50IHN1YnRyZWVfbWF4X2Fs
+aWdubWVudDsNCj4+ICAgICAgc3RydWN0IGxpc3RfaGVhZCB0bXBfbGluazsNCj4+ICAgICAgYm9v
+bCBoYXNfY2xlYXI7DQo+PiArICAgIC8qDQo+PiArICAgICAqIExhcmdlc3Qgb3JkZXIgb2YgYW55
+IEZSRUUgYmxvY2sgaW4gdGhpcyBibG9jaydzIGJ1ZGR5IHN1YnRyZWUsIG9yDQo+PiArICAgICAq
+IEdQVV9CVUREWV9OT19GUkVFX09SREVSIGlmIG5vbmUuIFByb3RlY3RlZCBieSB0aGUgZHJpdmVy
+IGxvY2suDQo+PiArICAgICAqLw0KPj4gKyAgICBzOCBzdWJ0cmVlX21heF9mcmVlX29yZGVyOw0K
+Pj4gIH07DQo+PiAgKyNkZWZpbmUgR1BVX0JVRERZX05PX0ZSRUVfT1JERVIgKC0xKQ0KPj4gKw0K
+Pj4gIC8qIE9yZGVyLXplcm8gbXVzdCBiZSBhdCBsZWFzdCBTWl80SyAqLw0KPj4gICNkZWZpbmUg
+R1BVX0JVRERZX01BWF9PUkRFUiAoNjMgLSAxMikNCj4+ICANCg==
