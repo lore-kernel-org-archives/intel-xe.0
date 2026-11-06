@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09D3606A335
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 08:13:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA6E606A326
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 08:13:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C81610E3C6;
-	Fri,  6 Nov 2026 08:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6522F10E385;
+	Fri,  6 Nov 2026 08:13:35 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E543F10E3AE;
- Fri,  6 Nov 2026 08:13:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5334842355600757065=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C06B10E385;
+ Fri,  6 Nov 2026 08:13:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Handle_non-fatal_errors_rou?=
- =?utf-8?q?ted_via_IRQ_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_Xe_PCIe_FLR_=28?=
+ =?utf-8?q?rev14=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
+To: "Raag Jadav" <raag.jadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Nov 2026 08:13:10 -0000
-Message-ID: <179395279093.130592.1779223101167330274@221881a7231d>
+Date: Fri, 06 Nov 2026 08:13:34 -0000
+Message-ID: <179395281424.130592.15923563333103331636@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261106071944.2693854-10-riana.tauro@intel.com>
-In-Reply-To: <20261106071944.2693854-10-riana.tauro@intel.com>
+References: <20261106073921.1512530-1-raag.jadav@intel.com>
+In-Reply-To: <20261106073921.1512530-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,108 +35,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============5334842355600757065==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Handle non-fatal errors routed via IRQ (rev4)
-URL   : https://patchwork.freedesktop.org/series/173001/
-State : success
+Series: Introduce Xe PCIe FLR (rev14)
+URL   : https://patchwork.freedesktop.org/series/162055/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6077-0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1_BAT -> xe-pw-173001v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5e7335a85babe2b068e772e7bd0fdb412d7ed07a
+Author: Raag Jadav <raag.jadav@intel.com>
+Date:   Fri Nov 6 13:08:51 2026 +0530
 
-Summary
--------
+    drm/xe/doc: Wire up PCI Error Handling
+    
+    Wire up PCI Error Handling documentation.
+    
+    Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+    Reviewed-by: Lukasz Laguna <lukasz.laguna@intel.com>
++ /mt/dim checkpatch a3e19d73c21539b24a45ced208247913ae622bab drm-intel
+37a4fcaff70a drm/xe/uc_fw: Allow re-initializing firmware
+ac04f8f3cebb drm/xe/guc_submit: Introduce guc_exec_queue_reinit_kernel()
+f25d0df4958e drm/xe/gt: Introduce FLR helpers
+dee0cab8a4cf drm/xe/bo_evict: Introduce xe_bo_restore_map()
+72ddf02a5318 drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+ac06c0c10bf9 drm/xe/migrate: Introduce xe_migrate_reinit() and xe_cpu_bind_reinit()
+46bc251b7f70 drm/xe/pm: Introduce xe_device_suspend/resume()
+24ed8d2d7120 drm/xe: Introduce temporary device wedging
+efe4c8ad4c3d drm/xe/pci: Introduce PCIe Function Level Reset
+5e7335a85bab drm/xe/doc: Wire up PCI Error Handling
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6077-0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1 -> xe-pw-173001v4
-
-  IGT_9180: 9180
-  xe-6077-0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1: 0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1
-  xe-pw-173001v4: 173001v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173001v4/index.html
-
---===============5334842355600757065==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 12 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Handle non-fatal errors routed via IRQ (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/173001/">https://patchwork.freedesktop.org/series/173001/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173001v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-173001v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6077-0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1_BAT -&gt; xe-pw-173001v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6077-0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1 -&gt; xe-pw-173001v4</li>
-</ul>
-<p>IGT_9180: 9180<br />
-  xe-6077-0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1: 0ab021ad358e391fc2f0b2f0d37d10cf3b8cf1e1<br />
-  xe-pw-173001v4: 173001v4</p>
-
-</body>
-</html>
-
---===============5334842355600757065==--
