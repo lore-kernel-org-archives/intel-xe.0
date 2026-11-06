@@ -2,60 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CE3D606A326
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 07:20:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bhaBrvTu
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6035606A328
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 07:27:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C0F310E3EF;
-	Fri,  6 Nov 2026 07:20:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82D9010E3EF
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 07:20:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793949631; x=1825485631;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JmmYjv1xi1Y4bg6RvuDCnr9WYDm80n062Wa8Vih907U=;
- b=bhaBrvTuOWJudu8KdDQYH3LPCQd9B5FZPgK7spTQXHHGj144NVBV4JcU
- /Au76WGQN5Rp9QvzSXs+XsUTWDATmRMbr6NlBwTdrK46ZYqqFG1IQLbvJ
- O5wzn19ntCNMCSE5Fn96z8e/aClGz/N8KcyJRCB0UnTaRxip4I/GtFjro
- Zymh1YYme/V1Y1tYmOVSD6RUj/qFeLg/Udqr8KMq0MMw9ugARsYWUpV2i
- fwiDb7tySfv37zqLS3dwfpqOyd+RnTJnqgzNWtyeMyXZh0kJbdobPeGcr
- Sr3Tp8Do7r1CZfrmHW++ie1krtCJG/hU1OHhpoYPjHZEaJi140SWLnaAR w==;
-X-CSE-ConnectionGUID: Jh+ltZ8QTqKDV/j0Soch7g==
-X-CSE-MsgGUID: rK9jxrQdSz6rkfgM5Dh0aQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2659361"
-X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2659361"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 23:20:31 -0800
-X-CSE-ConnectionGUID: 1Fy4LV5RS1OUGlR8I0seTg==
-X-CSE-MsgGUID: xk+UTzxJSrmYOmGUPsfUEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7549131"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 23:20:28 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
- mallesh.koujalagi@intel.com, badal.nilawar@intel.com,
- Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH v4 8/8] drm/xe/xe_ras: Skip double-bit ECC page offlining on
- AER path
-Date: Fri,  6 Nov 2026 12:49:53 +0530
-Message-ID: <20261106071944.2693854-18-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20261106071944.2693854-10-riana.tauro@intel.com>
-References: <20261106071944.2693854-10-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3694310E3EF;
+	Fri,  6 Nov 2026 07:27:07 +0000 (UTC)
+Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62ACC10E3EF;
+ Fri,  6 Nov 2026 07:27:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Handle_non-fatal_errors_r?=
+ =?utf-8?q?outed_via_IRQ_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Nov 2026 07:27:05 -0000
+Message-ID: <179395002540.130482.599456041713835914@221881a7231d>
+X-Patchwork-Hint: ignore
+References: <20261106071944.2693854-10-riana.tauro@intel.com>
+In-Reply-To: <20261106071944.2693854-10-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,68 +33,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Device fatal errors trigger AER, which can race with non-fatal
-double-bit ECC errors reported via IRQ. If the AER PCI error handler
-runs first, it receives all errors as a single response from the
-system controller firmware, which can include the double-bit ECC errors.
+== Series Details ==
 
-Handling these on the AER path leads to unnecessary page offlining,
-since an SBR clears the offlined pages on reload and firmware drops them
-from its queue once read. Skip double-bit ECC handling when on the AER
-path to avoid this.
+Series: Handle non-fatal errors routed via IRQ (rev4)
+URL   : https://patchwork.freedesktop.org/series/173001/
+State : warning
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
----
-v2: fix duplicate handling issue due to rebase (Sashiko)
----
- drivers/gpu/drm/xe/xe_ras.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 1809c3c893de..0fb891d00b36 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -669,13 +669,29 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
- 				 "Data parity error detected\n");
- 		break;
- 	case XE_RAS_MEMORY_DB_ECC:
-+		/*
-+		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
-+		 * On a race between AER for device fatal errors and non-fatal double-bit ECC
-+		 * errors, if AER pci error handlers execute first it will get all errors as
-+		 * a single response from system controller, which can include the double-bit
-+		 * ECC errors. This leads to unnecessary offlining of pages, since an SBR clears
-+		 * them on reload and firmware drops them from its queue once read.
-+		 * Skip handling of double-bit ECC errors on the AER path to avoid this.
-+		 *
-+		 * TODO: Remove this check once AER handling is optimized to retain soft
-+		 * offlined pages.
-+		 */
-+		if (xe_ras_is_aer_internal_error(xe)) {
-+			xe_info(xe, "[RAS]: Skipping double-bit ECC error handling on AER path\n");
-+			break;
-+		}
-+
- 		ret = handle_page_offline(xe, info->sw_address, true);
- 		xe_log_comp(xe, ret ? cper_sev : CPER_SEV_INFORMATIONAL,
- 			    DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
- 			    "Double-bit ECC error detected at sw address 0x%llx\n",
- 			    info->sw_address);
- 		/*
--		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
- 		 * Wedge the device with a bus reset for errors that require SBR to recover.
- 		 * TODO: Trigger SBR using pci_reset_bus
- 		 */
--- 
-2.47.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 52c84590cc44ccd28237bd035d19dab14d63c434
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Fri Nov 6 12:49:53 2026 +0530
+
+    drm/xe/xe_ras: Skip double-bit ECC page offlining on AER path
+    
+    Device fatal errors trigger AER, which can race with non-fatal
+    double-bit ECC errors reported via IRQ. If the AER PCI error handler
+    runs first, it receives all errors as a single response from the
+    system controller firmware, which can include the double-bit ECC errors.
+    
+    Handling these on the AER path leads to unnecessary page offlining,
+    since an SBR clears the offlined pages on reload and firmware drops them
+    from its queue once read. Skip double-bit ECC handling when on the AER
+    path to avoid this.
+    
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+    Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
++ /mt/dim checkpatch a3e19d73c21539b24a45ced208247913ae622bab drm-intel
+c2e0ea6f8b8b drm/xe/hw_error: Reuse CSC worker for generic error handling
+7cda931b8507 drm/xe/hw_error: Initialize hw_error_work per tile
+fb1128d80424 drm/xe/survivability: Guard runtime survivability enable against unbind
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+the device is being removed. This is incorrect, as runtime survivability mode
+
+total: 0 errors, 1 warnings, 0 checks, 34 lines checked
+81308e4553a1 drm/xe/ras: Treat non-fatal PCIe errors as recovered
+4544f080663a drm/xe/pci: Add upstream switch port lookup helper
+d210bc9e4a07 drm/xe/xe_ras: Add a flag for uncorrectable internal error
+2c9ae91ae583 drm/xe: Add support for wa_14028434957
+52c84590cc44 drm/xe/xe_ras: Skip double-bit ECC page offlining on AER path
+
 
