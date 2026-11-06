@@ -2,53 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07671606A326
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 07:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E327606A326
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 07:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=l4mWblwi
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Sj6Lo7hE
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFD0C10ED60;
-	Fri,  6 Nov 2026 07:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5154410E3CD;
+	Fri,  6 Nov 2026 07:20:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31BFA10EC81
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 07:20:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DE0810E3CD
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 07:20:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793949615; x=1825485615;
+ t=1793949618; x=1825485618;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tdJL/yP80LhGIUYSOncyV9CfxRYBv6APJAEtZTCrgec=;
- b=l4mWblwi+uvTZhvtzB3XB55bi3BnVhamp31VKxv3SPy5jOvF6K1tltAx
- FoC8f2LKywDK3fvniNS6a+eEACnY/OS65s0PLE+1MSrD8mtk5pK1qc4Ea
- H56NSma9OwjHo+k3oI75ErSKHW8EAU/MW5eKa1lzuBxD0oBSCioe4RdnU
- vxOCEOjFq5ni568xB/bNUjciMCpwsLmx8VtcLULXfme4t36gYpe+gSUQu
- za6P2ZMvzJEhS0Oe7z7SdEFfaAAcRqCEwsrChIZwDnp311OMvn4PIZg2H
- REv6mBCgXfMaIFGXSUsfQrhdUVHWc1VWYbJ5uKwacDVH9z+4htYlMwAq2 w==;
-X-CSE-ConnectionGUID: TU2GF8O+RV6g7rUeXvCs9w==
-X-CSE-MsgGUID: VN7LTab7SomDcLTfed20QA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2659346"
+ bh=c1K2Sx2CqXH5GeXdgmBkGBNt3RT4EZzIJVHwJx56Wqo=;
+ b=Sj6Lo7hERQt1gip2ZROWYQj9DGYtbtG41fWH15rZcDOYe1zk2NY9hAbb
+ a9F2AgOoo36+XdFnOvMTp4J0C93l6v4sPSSSTvahLRH1Ubn213NykuFnV
+ 6bbk3MYHOYIZa7XA03Ws8QI49Sj4Men7aQcMBbAxK5XhPrROPaKdP/JtU
+ GNEeXafn0oU2xgjIUak4aKQUazPrjaVpJPHPGx78NEsHTKxh0Y5Synb06
+ gWniUo2wND7c1tYMsTuXuHG7VckM/RnRpzH3xAEEXOLG/S118lnaXkJD5
+ O0kXpIeVM+xA//0CkWddBIMjNwvAhiDYFBD9oyKZwpIJJ/vGbTRvADnNV Q==;
+X-CSE-ConnectionGUID: ga4GgQt8SgmOd1M91aCIsA==
+X-CSE-MsgGUID: 9xk7oi0nQEqHA89++90YmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2659347"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2659346"
+   d="scan'208";a="2659347"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 23:20:15 -0800
-X-CSE-ConnectionGUID: Y8XKsuUgQjyS0nLFtbKXPQ==
-X-CSE-MsgGUID: ajNv7GK3Q2+OrD4IDiRTTg==
+ 05 Nov 2026 23:20:18 -0800
+X-CSE-ConnectionGUID: ZloO33ejRNOwEjYXlWy0JA==
+X-CSE-MsgGUID: /vYanDnUR5CeNkglqko+jA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7549019"
+   d="scan'208";a="7549042"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2026 23:20:12 -0800
+ 05 Nov 2026 23:20:15 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
  mallesh.koujalagi@intel.com, badal.nilawar@intel.com
-Subject: [PATCH v4 3/8] drm/xe/survivability: Guard runtime survivability
- enable against unbind
-Date: Fri,  6 Nov 2026 12:49:48 +0530
-Message-ID: <20261106071944.2693854-13-riana.tauro@intel.com>
+Subject: [PATCH v4 4/8] drm/xe/ras: Treat non-fatal PCIe errors as recovered
+Date: Fri,  6 Nov 2026 12:49:49 +0530
+Message-ID: <20261106071944.2693854-14-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261106071944.2693854-10-riana.tauro@intel.com>
 References: <20261106071944.2693854-10-riana.tauro@intel.com>
@@ -72,65 +71,31 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Runtime surivability mode creates sysfs and declares the device as
-wedged in a worker thread. This can race with unbind.
+On systems lacking RAS capability, only PCIe errors are reported, via
+AER, not device errors. Non-fatal PCIe errors reported at the Upstream
+Switch Port (USP) have no impact on link or device state, so treat
+them as recovered without requiring a secondary bus reset (SBR).
 
-During unbind, devres actions such as disabling the worker run as part of
-teardown. A runtime survivability enable that is still in flight or gets
-scheduled in that window can create the survivability sysfs entries while
-the device is being removed. This is incorrect, as runtime survivability mode 
-must not be entered once during devres teardown.
-
-Use the DRM device enter/exit protection so that the enable path
-synchronizes with device unplug and returns early if the device is
-already being unbound.
-
+Fixes: 25913a062cd4 ("drm/xe/xe_ras: Add support for uncorrectable core-compute errors")
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_survivability_mode.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/xe/xe_ras.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index d73cdad0b3a9..e8d618b47322 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -10,6 +10,8 @@
- #include <linux/pci.h>
- #include <linux/sysfs.h>
- 
-+#include <drm/drm_drv.h>
-+
- #include "xe_configfs.h"
- #include "xe_device.h"
- #include "xe_heci_gsc.h"
-@@ -435,12 +437,18 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
- {
- 	struct xe_survivability *survivability = &xe->survivability;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	int idx;
-+
- 
- 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || xe->info.platform < XE_BATTLEMAGE) {
- 		xe_log_err(xe, SURVIVABILITY, -EOPNOTSUPP, "Runtime Mode not supported!\n");
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 2c01c183d02b..cd753c82b0ff 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -830,7 +830,7 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
  	}
  
-+	/* Synchronize with unbind, do not enter runtime survivability mode during unbind */
-+	if (!drm_dev_enter(&xe->drm, &idx))
-+		return;
-+
- 	populate_survivability_info(xe);
- 	create_survivability_sysfs(pdev);
+ 	if (!xe->info.has_sysctrl)
+-		return XE_RAS_RECOVERY_ACTION_RESET;
++		return XE_RAS_RECOVERY_ACTION_RECOVERED;
  
-@@ -452,6 +460,8 @@ void xe_survivability_mode_runtime_enable(struct xe_device *xe)
- 	xe_log_err(xe, SURVIVABILITY, 0, "Firmware flash required!\n");
- 	xe_info(xe, "Please refer to the userspace documentation for more details how to flash the firmware on %s!\n",
- 		xe->info.platform_name);
-+
-+	drm_dev_exit(idx);
- }
- 
- /**
+ 	BUILD_BUG_ON(BITS_PER_TYPE(sent) < XE_RAS_COMP_MAX);
+ 	/* Default action */
 -- 
 2.47.1
 
