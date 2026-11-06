@@ -2,41 +2,153 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75764606A329
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 03:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D89606A31B
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 03:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=V5Ohci//
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AxV5VYQG
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DAD010E0BC;
-	Fri,  6 Nov 2026 03:29:58 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56E6E10E0BC
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 03:29:51 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 06692414C2;
- Fri,  6 Nov 2026 03:29:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE8051F0089F;
- Fri,  6 Nov 2026 03:29:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1793935790;
- bh=zK3s/YJvWcvzi0pXg6ZwUe3aFTiABZBxGR/C9p17Go0=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=V5Ohci//fIHDzWFiFmil995k9Jjpyn9PNMru26FOgXAssYBiip9/o0TpWMhp99hX+
- 5moIr7mQglwl/2mBRCGei/f55r32XH60S+zvARd1vIP5Y08/nuCk+rQzoSNzhv1QyO
- Z/ulHZ6nK6l1id1i1HIlL8mzIoxBAWhJKRod7J5qBQF4RVtTcw/muJrYABpuOZYesg
- gRfCnv6Ny+Svc6oOhbmarB5VRTLkbuXTQ2+Z7Wbxv2bWchavtOaqq/wwHWBQin25A/
- QCXfFCrKzOBwDkUE1V8wD7k90LdrCEQCTFJpcPndrwe/YdQAASh53ogLBpvhBYFgJ1
- YReWEXlbGD34A==
-Message-ID: <sashiko-outbox-200646@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/1] drm/xe: Preserve healthy preempted LR queues across
- system suspend
-To: "Huajun Li" <huajun.li@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261106042332.412621-1-huajun.li@intel.com>
-References: <20261106042332.412621-1-huajun.li@intel.com>
-Content-Type: text/plain; charset=utf-8
+	by gabe.freedesktop.org (Postfix) with ESMTP id 276BA10E259;
+	Fri,  6 Nov 2026 03:37:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 842E210E114
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 03:37:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793936263; x=1825472263;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=scqtf01DraKQBmPaIj9xuHDcTO7nzuhdmMPxmlfbe70=;
+ b=AxV5VYQGZ0Ho57Ul3/6zZlv3QMMiVPonb+skeF4RkFdxhBnrwy/iVfl4
+ ugI2/VEmJjp1k2q+PJPVL//9IxFuH2rtLnXfWLsGVXIWJO2DJqvHezxEo
+ EGPDT5XWY/YILMEn6+TzS+9+x2BXNsZnVsRn/Itp9CHwkUxwSxrR7HoYt
+ 2IPL3aHVY140Z/IkiQgpE6blKRtB6wAgTbH86ciib946O94aepKaDnOW0
+ Avng6i42/E4b0//UzxfWtZg0RMtRpFkNuo1JjVWKEXxtlBrhHOUIU6NKN
+ yem0/wvFXxds0YKcTLkUIMseTAA515hkCFQC3a5ikGRdATuqfklt28h4F A==;
+X-CSE-ConnectionGUID: uUKVZY3RQwyafJvLczF2Ng==
+X-CSE-MsgGUID: 3VlERZeEQLKSEGdQ6C4uNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2648683"
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="2648683"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 19:37:42 -0800
+X-CSE-ConnectionGUID: KkZPYMpVSE2RZbGamJ+r5g==
+X-CSE-MsgGUID: +o+iBC4aTgCotgxkuKk3Cw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="7510366"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 19:37:43 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 5 Nov 2026 19:37:41 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Thu, 5 Nov 2026 19:37:41 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.29) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 5 Nov 2026 19:37:41 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=gwdyEJDZuIJyuXHERRuPUpqAg2i9GLE/CwAd7SL9oViJrfiDEbAMQCPnImHsRfGObba8Hw1w/m/r/Ox+rZqzQ5HaBGRpbZko89JKv7C7snWY/Vx7mqJgaVcP2a/++g+luhsVz7YiX8PuVO/5T8iQr12QwxFakQV1/7eLdKWMCQNvT89YX9WUK9wv60FeFYvDTdDI5ciTGGPzkFNclFERniqOAz7AY/JuBPPy1z9JvOJOowgEv2DYCj7aG5VVzDARduwhT1eGOx3lFy3j7l0O/GrENavtYKjMsPMNZ7/cR/+n9HP/XxDUnghjGpNNUQ2iiNGEmHtagAWzSPSW0FdHRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Lk0du1LHmWeWFhtGzFKWUX30IXFgQ0h/591IEKZUrYc=;
+ b=mu7TUCpFaWFV2oGYjuO7Aqahu7xnFJYki6YFvohejUiMFZwbXMXe4MCkY3nAfMSH3PehPbSz5WvrTbDa0MgLhQDAzNV1Rguym/GL+cAhJbzkdRsZTeK0yTmzAoyq0c0HIPbbtRDIvHyFi/lpbw16C+kBrDLOsPUFNdlVfDouKlPL3YdHajhojZaOrFPqaAjqeWX99vXosGH+kpwrMrYAi/vSro2UKy6//dz5zxaRBQAyRQD41pIclPAYUUbMssQB6QJjoaqNM9a71QIsuAD26HI8Y4rsqre1p+FtieojeJKn4wPST1nKARLEGFhJmRxqbCbbIQIN6JmaA14aN+X7OA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB8718.namprd11.prod.outlook.com (2603:10b6:8:1b9::20)
+ by MN2PR11MB4743.namprd11.prod.outlook.com (2603:10b6:208:260::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Fri, 6 Nov
+ 2026 03:37:39 +0000
+Received: from DS0PR11MB8718.namprd11.prod.outlook.com
+ ([fe80::6aa:411d:4bfa:619c]) by DS0PR11MB8718.namprd11.prod.outlook.com
+ ([fe80::6aa:411d:4bfa:619c%4]) with mapi id 15.21.0592.009; Fri, 6 Nov 2026
+ 03:37:38 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "Gupta, Varun" <varun.gupta@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>, "Tauro, Riana" <riana.tauro@intel.com>
+Subject: RE: [PATCH v4] drm/xe/guc: Demote uncorrectable local error log on CRI
+Thread-Topic: [PATCH v4] drm/xe/guc: Demote uncorrectable local error log on
+ CRI
+Thread-Index: AQHdbTXW8M/iwxWVWEC4RjEboh55vLcgZR4g
+Date: Fri, 6 Nov 2026 03:37:38 +0000
+Message-ID: <DS0PR11MB8718B114A0B310519E2A796A81762@DS0PR11MB8718.namprd11.prod.outlook.com>
+References: <20261105145531.1847892-2-varun.gupta@intel.com>
+In-Reply-To: <20261105145531.1847892-2-varun.gupta@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB8718:EE_|MN2PR11MB4743:EE_
+x-ms-office365-filtering-correlation-id: f681f55a-09b5-4339-d9ad-08df3bb74de4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|376014|366016|1800799024|22082099003|6133799003|18002099003|10067099003|38070700021|56012099006|261022113327099003|11063799006|261026140227099003|261028144727099003|261022105027099003|261021121427099003|261021123027099003|261026121527099003|261009223027099003|261102123227099003|261022075727099003;
+x-microsoft-antispam-message-info: cB/66xuMfupnsHCvPWwan3DuQvHJCrC9zFB0HShN2W/s6kraDnyLYiUkaIICoFQNErAHGnUP8shy2iYL/WG97DsOPaetLfQXG77rbQWKBEpmKRLerfiMObGXyy5L8u7f0nsfyPohsyuXlib5v9P5izS7C9jAK9WdddaQ6sweqpUmVvlyYzpIHe70AOyJUNwI33Mz2EC++jRP7TP3Ld23kPkLMNFhzceCFeL8jBXjeAY/h2Drb/RJ+Py8CQPjehwD1lZ+8SmvEFhIjN0//d/XU3rO/T7oFCkaE/AWgalFZRFVCb6N0eis030atDHWndWRKoREQyzPqhXzaghN6hGE231AVsSxxwEtAbIE71ApJpWOd/leAAxhvgIt1LJxhuwtNbG1ZzgV/JkGOXPqO7W8OPjUd/zWAIvTOFk8ybs8bnmBQtG7rpuzL7myv6h10o5p1005tXuIWO3OjW1PRZ7GWi4pxt7K7+ax2xaO7FfKDwlI6lw6E0B5h6J0Gm4LR43HwFQTlLVuVVgZSvjYSFHoFmcnJt5UkEruGs74oAR7Lh1XIzbhP3jePFInTmr2JEAaU3aYR2BlAKAqFqSXsC/xneetBUoRCnTpn3fjv+lHSgne8iRqp5f7Kbopoo2ao2IngSUzfRpQZFbFi8DZYphRGMdfNbKk6+TiBXQH6FOwjpO8sNRDxGxOuu2JwAM0yFy9F+6Xi48HkDFEj2Pg6h3L8YWHhvnEGJ2SJWkbjhtmppg=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8718.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(22082099003)(6133799003)(18002099003)(10067099003)(38070700021)(56012099006)(261022113327099003)(11063799006)(261026140227099003)(261028144727099003)(261022105027099003)(261021121427099003)(261021123027099003)(261026121527099003)(261009223027099003)(261102123227099003)(261022075727099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tEvCYhKEz20ZPnR1wLY9782TkWapiRt7x0FgFA0rlmfM+qDwlmfSC6+IrSe4?=
+ =?us-ascii?Q?DMa+ch4EbS9P4O4DrlVIVP4qno4smy7z7neLeRTjtB3j0HWjor4z1Fc4iz56?=
+ =?us-ascii?Q?D4S7gPc7H/05MX/oNVFoqxkpGV/J9tB00sEdZVby38WQkij8e3ulHcHsywmm?=
+ =?us-ascii?Q?KUkxaLrFeKX4AHdSQaHwEt6lcXmlLe/GcSSH7fGJetZFWWvJTRxbWJseOzur?=
+ =?us-ascii?Q?ezbWDk6o7JuKSrKBDo/YnuzDno7DOYrgf7b4oSngK+/IHOLOoSGtQO/ZpOiI?=
+ =?us-ascii?Q?TFRi/w55kUe8yl/RlP6Eso1ZCV70Gc1SK0y9JFipRtjBcBQ2yDxSTH6dKbTX?=
+ =?us-ascii?Q?3KyR6kqn6RfHgDvfVKEcuXF/G+D4nLydvYv7XwH6jF3ybiZm2rkRP1b5ejOw?=
+ =?us-ascii?Q?eSCsbIdeEOonaJw4WiVOrkREdX63rrQsdJ3B1h/saBkpYmKakXLTw72GSZKr?=
+ =?us-ascii?Q?waw1gqzTRahTTg2CENwl3VvWrvmfFvsGJi9OZgJqpDorkkQfzUyhrunH5t5N?=
+ =?us-ascii?Q?49J/9cWZd6te7gOCdbWtZNj5FafYDDNvwlCBs/34//6r3NgOsbblE+gQCxAn?=
+ =?us-ascii?Q?qH+zluSe5NthR83bV1OkBCZPMWZq6sltz2ztoIthaMDn+F8JmyEU+I8OZ5QW?=
+ =?us-ascii?Q?JAIChVTc/y4bRUQfc4OIgnb9Ny866Cn6EdeVmCHuu+2oZmL+05cSyZPukO4B?=
+ =?us-ascii?Q?4VQq3R2erXpoB+nd1+sLdcHAg5OxZWdneI44k06xGQF5TM76t7sx4wB/rug/?=
+ =?us-ascii?Q?b/xk+RgVSmN+KN/kZp50eZLRjFEfRubagoC/Vd8PY+vX3OiYoozba9HEvkA2?=
+ =?us-ascii?Q?DzQaWsj+xdLlc3iqlEf9r6sbjFqlxMVyEheVnCVJfHKqw6yznec4E9JJSnmU?=
+ =?us-ascii?Q?w2vF58ZLosp0sqIOAqNkoGxXyQb77FdSxCnEn/hz4OHI8oCcO2z5DSVoa1Dy?=
+ =?us-ascii?Q?1ow1V9qnWj7iPmi6XrdiRVG4LuFk/ZXvXsQ2+sHwSqQurUo2kDEOgsFgarci?=
+ =?us-ascii?Q?iMVwctJVG391VPXFiSK0AAQMca4WiUUqcptUhp6ol2Ssssnt6puCGoXGoWUf?=
+ =?us-ascii?Q?mzqw7SamKt967Wt0ZmevA2VDd6ctEv5TUfUAYv9KmojrRNsuEa2ly6wea39s?=
+ =?us-ascii?Q?KUUYOsEbn22vYlUidixx343LOsgP6JrdFAgdAHUZNQT8caPpbug8NCAZV5Gz?=
+ =?us-ascii?Q?CynPegbQzJetONQbQLbAv9B/+RGPXPKBRiUxkoGpPmS6pDjSjQGoUaSPic+R?=
+ =?us-ascii?Q?caE1X6P7TThSY7b2f5j6GMNjWPhuyuIi2SEzRwz/P2935DbLQ3g+CqzT32yQ?=
+ =?us-ascii?Q?ErD8DG/QK0MBvSHHO/Hwj+iXObCkQJF5a5ZUonetSGr7lWH3dJaMkXH0AKqw?=
+ =?us-ascii?Q?kqR9YX9boxxeD1ftL0xtctUCzmZuvjNFP8AEAkaT0slRfNbIFhMUMz9N1qhq?=
+ =?us-ascii?Q?Dze2Ch/frp69WsVs0EuojdctfFv4p2Cuc/L223YLwCUtCWnRm2auPZikHwUj?=
+ =?us-ascii?Q?LKjAuI6W+7IeC5t7VzUT2bjoGAo2C1f9PZ1zhSuqAqden/J19nJXgWoYMuol?=
+ =?us-ascii?Q?M/hxowlDOqwmRrBRFaTEJ0dz4tNgjurj5ixPRTnDiHN+nGJVv6LtHysBksLB?=
+ =?us-ascii?Q?JACR2Jd9xVEJKtSZpWHDepQmnMpNlCkvpCHR8ATvWfIDe87S2ZhDl9l7p17c?=
+ =?us-ascii?Q?bfTf932NiTBEdq2RyQ9VXdp/a2eVU0bQFXZKgHTnxwGOkCbWEw9K86WrQPg/?=
+ =?us-ascii?Q?Yni3HpPhpw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 06 Nov 2026 03:29:50 +0000
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: n+uv95xDkv+Im6dBCKUzLqpPuFCnPatgFH3EgQZgfsOaxTbAd2kuXkpAIT6Bp+S+n97BNwV8GeGA+M5/gjBsOGDUUhWs3v5YIWAn+PrVPsNfza/lDwUNNtFl+mAYCnyJ5aBRaKBf2WBE59gQlHypbq+6YSYrXDzxtCUm8wnZ0kk4pc3pPYkSlxnJYCXcI1J1Hhh1rmXi8CLAQCqrVB+NZdQ7JLkwOSVHlyS4XWqfEHrX//GQlxx6mHnsJvEByPck/KZYc6Xo2I7/qjjUp2ddgryqlB1PCBQ/bXFnRKzJg2nQEcU5tZfR/DdqAFyjeYvp/M5wZOp4ODP/Qw9lCMfsEA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8718.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f681f55a-09b5-4339-d9ad-08df3bb74de4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2026 03:37:38.1485 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7AIZ+yfb1Prz4zKZ4H2Ml5IxYaBhad67sBzc0LhBIiFv5tH04564eu22cdNum9byJkzODQV4IM2Wmjw0RoCzd7lpQoSbI9L2zQKIx7rH1IU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4743
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,304 +158,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential issue(=
-s) to consider:
-- [High] drm/xe: missing primary checks in guc_exec_queue_should_preserve_l=
-r()
-- [High] drm/xe: late-restore LRC/CGP BO use-before-restore in guc_exec_que=
-ue_start()
-- [High] drm/xe: unpreempted LR queues banned in guc_exec_queue_should_pres=
-erve_lr()
---
 
-commit 7d7f69499735f49cbdb7c12c448c779bd3342556
-Author: Huajun Li <huajun.li@intel.com>
 
-drm/xe: Preserve healthy preempted LR queues across system suspend
+> -----Original Message-----
+> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Varu=
+n
+> Gupta
+> Sent: 05 November 2026 20:26
+> To: intel-xe@lists.freedesktop.org
+> Cc: Roper, Matthew D <matthew.d.roper@intel.com>; Vivi, Rodrigo
+> <rodrigo.vivi@intel.com>; Ghimiray, Himal Prasad
+> <himal.prasad.ghimiray@intel.com>; Tauro, Riana <riana.tauro@intel.com>
+> Subject: [PATCH v4] drm/xe/guc: Demote uncorrectable local error log on C=
+RI
+>=20
+> The UNCORRECTABLE_LOCAL_ERROR notification sent by the GuC indicates a
+> local, queue-level context termination rather than a global device or dri=
+ver
+> failure. On CRI, due to a hardware limitation, the platform cannot distin=
+guish
+> GT translation faults from true RAS conditions, meaning standard workload=
+s
+> routinely trigger this error.
+>=20
+> Printing this at ERROR level is too noisy and causes false-positive dmesg=
+-warn
+> failures in CI. Demote the log level to INFO for CRI.
 
-This commit introduces a suspend-specific GuC submission-stop path that
-preserves healthy long-running (LR) exec queues whose preemption has
-completed, rather than banning them during system suspend. It also stops CT
-and synchronizes with the G2H worker before sampling queue state and issuing
-a GuC soft reset.
+Nit, You are demoting to DEBUG I think?
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
-uc_submit.c
-> index 9e7c2778029ca..bccd7cba03ee0 100644
+>=20
+> v4:
+>   - Change to _dbg instead of _info. (Matt)
+> v3:
+>   - Limit the demotion to CRI and add comment explaining the HW limitatio=
+n
+>     (Rodrigo)
+> v2:
+>   - Also ratelimit the GUC_ID_UNKNOWN to match the CAT error handler.
+>     (Himal)
+>=20
+> Fixes: 4e57574fa3a3 ("drm/xe/guc: Handle GuC local uncorrectable error
+> notifications")
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_submit.c | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
+> b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 9e7c2778029c..abc2c3d67f29 100644
 > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
 > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -2733,14 +2733,51 @@ static const struct xe_exec_queue_ops guc_exec_qu=
-eue_ops =3D {
->  	.reset_status =3D guc_exec_queue_reset_status,
->  };
-> =20
-> -static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue=
- *q)
-> +static bool guc_exec_queue_should_preserve_lr(struct xe_guc *guc,
-> +				struct xe_exec_queue *q, bool suspend)
-> +{
-> +	if (!suspend || !xe_exec_queue_is_lr(q))
-> +		return false;
-> +
+> @@ -3610,7 +3610,7 @@ int xe_guc_uncorrectable_error_handler(struct
+> xe_guc *guc, u32 *msg, u32 len)
+>  	guc_id =3D msg[0];
+>=20
+>  	if (guc_id =3D=3D GUC_ID_UNKNOWN) {
+> -		xe_gt_err(gt, "GuC: Uncorrectable local error with unknown
+> GuC id\n");
+> +		xe_gt_err_ratelimited(gt, "GuC: Uncorrectable local error with
+> +unknown GuC id\n");
+>  		return 0;
+>  	}
+>=20
+> @@ -3618,9 +3618,19 @@ int xe_guc_uncorrectable_error_handler(struct
+> xe_guc *guc, u32 *msg, u32 len)
+>  	if (unlikely(!q))
+>  		return -EPROTO;
+>=20
+> -	xe_gt_err(gt,
+> -		  "GuC: Uncorrectable local error! guc_id=3D%d class=3D%s,
+> logical_mask=3D0x%x",
+> -		  guc_id, xe_hw_engine_class_to_str(q->class), q-
+> >logical_mask);
 > +	/*
-> +	 * Do not preserve unhealthy LR queues that have already encountered
-> +	 * a reset, ban, or fatal error prior to system suspend.
+> +	 * On CRI, the hardware cannot distinguish GT translation faults
+> +	 * from true RAS conditions. Demote to info to avoid false-positive
+> +	 * hardware error logs.
 > +	 */
-> +	if (exec_queue_killed_or_banned_or_wedged(q) || exec_queue_reset(q))
-> +		return false;
-> +
-> +	/*
-> +	 * SUSPENDED is set before requesting scheduling disable. The suspend
-> +	 * fence and pending-disable state must also show completion before we
-> +	 * can rely on the saved context surviving system sleep.
-> +	 */
-> +	if (!exec_queue_suspended(q) || READ_ONCE(q->guc->suspend_pending) ||
-> +	    exec_queue_pending_disable(q)) {
 
-[Severity: High]
-Does guc_exec_queue_should_preserve_lr() improperly preserve multi-queue
-secondary LR queues when the group's primary queue failed to complete
-preemption or was reset?
+Nit, info -> debug in comment
 
-In a multi-queue group, only the primary queue
-(xe_exec_queue_multi_queue_primary(q)) owns a GuC scheduling context and
-sends XE_GUC_ACTION_SCHED_CONTEXT_MODE_SET to GuC. On a secondary queue,
-__guc_exec_queue_process_msg_suspend() either takes the
-!exec_queue_enabled(q) branch immediately or calls disable_scheduling(),
-which short-circuits on the CPU without waiting for GuC to preempt the
-primary context:
+With that LGTM,
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-drivers/gpu/drm/xe/xe_guc_submit.c:disable_scheduling() {
-	...
-	if (xe_exec_queue_is_multi_queue_secondary(q))
-		handle_multi_queue_secondary_sched_done(guc, q, 0);
-	else
-		xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action),
-			       G2H_LEN_DW_SCHED_CONTEXT_MODE_SET, 1);
-}
+Tejas
+> +	if (gt_to_xe(gt)->info.platform =3D=3D XE_CRESCENTISLAND)
+> +		xe_gt_dbg(gt,
+> +			  "GuC: Uncorrectable local error! guc_id=3D%d class=3D%s,
+> logical_mask=3D0x%x",
+> +			  guc_id, xe_hw_engine_class_to_str(q->class), q-
+> >logical_mask);
+> +	else
+> +		xe_gt_err(gt,
+> +			  "GuC: Uncorrectable local error! guc_id=3D%d class=3D%s,
+> logical_mask=3D0x%x",
+> +			  guc_id, xe_hw_engine_class_to_str(q->class), q-
+> >logical_mask);
+>=20
+>  	trace_xe_guc_uncorrectable_error(q);
+>=20
+> --
+> 2.43.0
 
-As a result, EXEC_QUEUE_STATE_SUSPENDED is set and q->guc->suspend_pending
-and EXEC_QUEUE_STATE_PENDING_DISABLE are cleared on the secondary queue
-before GuC has preempted the hardware context on the primary queue. Likewis=
-e,
-GuC reset notifications and CGP context errors target primary->guc->id and
-set EXEC_QUEUE_STATE_RESET or ban state on the primary queue. However,
-guc_exec_queue_should_preserve_lr() only inspects q and never checks
-xe_exec_queue_multi_queue_primary(q).
-
-Furthermore, guc_submit_stop() iterates guc->submission_state.exec_queue_lo=
-okup
-in a single pass and guc_exec_queue_stop() mutates each queue in place:
-
-drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_stop() {
-	...
-	xe_sched_msg_lock(sched);
-	if (q->guc->suspend_pending) {
-		set_exec_queue_suspended(q);
-		suspend_fence_signal(q);
-	}
-	xe_sched_msg_unlock(sched);
-	atomic_and(EXEC_QUEUE_STATE_WEDGED | EXEC_QUEUE_STATE_BANNED |
-		   EXEC_QUEUE_STATE_KILLED | EXEC_QUEUE_STATE_DESTROYED |
-		   EXEC_QUEUE_STATE_SUSPENDED,
-		   &q->guc->state);
-}
-
-Because the primary queue is created before its secondaries and normally ha=
-s a
-lower guc_id, guc_exec_queue_stop() runs on the primary queue first, cleari=
-ng
-primary->guc->suspend_pending, EXEC_QUEUE_STATE_PENDING_DISABLE, and
-EXEC_QUEUE_STATE_RESET (and only calling set_exec_queue_banned(primary)
-rather than set_exec_queue_group_banned(primary)) before the secondary queu=
-es
-are visited.
-
-Additionally, if a multi-queue LR queue with a pending job is preserved, wo=
-n't
-restarting it on resume via xe_guc_submit_start() -> guc_exec_queue_start()=
- ->
-xe_sched_resubmit_jobs() -> guc_exec_queue_run_job() -> register_exec_queue=
-()
-call xe_guc_exec_queue_group_cgp_sync() and sleep waiting for GuC's
-CGP_SYNC_DONE G2H while holding the reclaim-primed
-guc->submission_state.lock?
-
-> +		xe_gt_dbg(guc_to_gt(guc),
-> +			  "LR exec queue %d failed to suspend prior to stop; will be banned\n=
-",
-> +			  q->guc->id);
-> +		return false;
-> +	}
-
-[Severity: High]
-Will guc_exec_queue_should_preserve_lr() still fail on healthy LR queues th=
-at
-are not preempt-suspended during xe_bo_evict_all_user()?
-
-Nothing in the system suspend path explicitly invokes q->ops->suspend(q) on=
- LR
-exec queues; instead, preempt-fence LR queues are only suspended as a side
-effect when xe_bo_evict_all_user() evicts a TTM BO whose dma_resv holds
-q->lr.pfence:
-
-drivers/gpu/drm/xe/xe_bo_evict.c:xe_bo_evict_all_user() {
-	...
-		if (mem_type =3D=3D XE_PL_TT && (IS_DGFX(xe) || !xe_device_has_flat_ccs(x=
-e)))
-			continue;
-
-		if (man) {
-			ret =3D ttm_resource_manager_evict_all(bdev, man);
-			if (ret)
-				return ret;
-		}
-}
-
-Because of this, q->ops->suspend(q) is never called before xe_guc_suspend()
-(leaving exec_queue_suspended(q) false) for:
-- fault-mode LR VMs (xe_vm_in_fault_mode(q->vm)), which do not use preempt
-  fences;
-- iGPU platforms without FlatCCS (!IS_DGFX(xe) && !xe_device_has_flat_ccs(x=
-e)),
-  where xe_bo_evict_all_user() skips XE_PL_TT; and
-- preempt-fence LR VMs whose bound buffers only use userptr VMAs or dGPU
-  XE_PL_TT system memory BOs.
-
-When xe_guc_submit_suspend() runs, won't guc_exec_queue_should_preserve_lr()
-see !exec_queue_suspended(q) and return false, causing guc_exec_queue_stop()
-to ban active LR queues in all of those configurations (and log that idle LR
-queues "will be banned" even when they have no pending jobs)?
-
-> +
-> +	return true;
-> +}
-> +
-> +static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue=
- *q,
-> +				bool suspend)
->  {
->  	struct xe_gpu_scheduler *sched =3D &q->guc->sched;
->  	bool do_destroy =3D false;
-> +	bool preserve_lr;
-> =20
->  	/* Stop scheduling + flush any DRM scheduler operations */
->  	xe_sched_submission_stop(sched);
-> =20
-> +	/*
-> +	 * Sample acknowledged preemption before synthesizing lost G2H state.
-> +	 * Only healthy, cleanly preempted LR queues are preserved across sleep.
-> +	 */
-> +	preserve_lr =3D guc_exec_queue_should_preserve_lr(guc, q, suspend);
-> +
->  	/* Clean up lost G2H + reset engine state */
->  	if (exec_queue_registered(q)) {
->  		if (exec_queue_destroyed(q))
-> @@ -2764,7 +2801,11 @@ static void guc_exec_queue_stop(struct xe_guc *guc=
-, struct xe_exec_queue *q)
->  	 * started but not complete job or if a job has gone through a GT reset
->  	 * more than twice.
->  	 */
-> -	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM))) {
-> +	/*
-> +	 * Preempted LR jobs normally remain unfinished. System sleep must keep
-> +	 * their saved contexts, while reset recovery retains its ban policy.
-> +	 */
-> +	if (!(q->flags & (EXEC_QUEUE_FLAG_KERNEL | EXEC_QUEUE_FLAG_VM)) && !pre=
-serve_lr) {
-
-[Severity: High]
-When a userspace LR queue with a pending job is preserved here, does
-guc_exec_queue_start() on resume access and register its LRC and CGP BOs
-before xe_bo_restore_late() has restored them?
-
-In xe_lrc_init() and xe_exec_queue_group_init(), userspace LRC BOs
-(q->lrc[i]->bo) and multi-queue CGP BOs (group->cgp_bo) are created with
-XE_BO_FLAG_PINNED_LATE_RESTORE:
-
-drivers/gpu/drm/xe/xe_lrc.c:xe_lrc_init() {
-	...
-	bo_flags =3D XE_BO_FLAG_VRAM_IF_DGFX(tile) | XE_BO_FLAG_GGTT |
-		   XE_BO_FLAG_GGTT_INVALIDATE;
-
-	if ((vm && vm->xef) || init_flags & XE_LRC_CREATE_USER_CTX) /* userspace */
-		bo_flags |=3D XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER_VRAM;
-}
-
-During xe_pm_resume() (and D3cold xe_pm_runtime_resume()), xe_gt_resume() r=
-uns
-before xe_bo_restore_late():
-
-drivers/gpu/drm/xe/xe_pm.c:xe_pm_resume() {
-	...
-	err =3D xe_bo_restore_early(xe);
-	if (err)
-		goto err;
-	...
-	for_each_gt(gt, xe, id) {
-		err =3D xe_gt_resume(gt);
-		if (err)
-			break;
-	}
-	...
-	err =3D xe_bo_restore_late(xe);
-}
-
-Inside xe_gt_resume() -> do_gt_restart() -> xe_uc_start() ->
-xe_guc_submit_start() -> guc_exec_queue_start(), any unbanned queue with a
-pending job reads and writes q->lrc[i]->bo and resubmits jobs via
-xe_sched_resubmit_jobs():
-
-drivers/gpu/drm/xe/xe_guc_submit.c:guc_exec_queue_start() {
-	...
-	if (!exec_queue_killed_or_banned_or_wedged(q)) {
-		struct xe_sched_job *job =3D xe_sched_first_pending_job(sched);
-		int i;
-
-		trace_xe_exec_queue_resubmit(q);
-		if (job) {
-			for (i =3D 0; i < q->width; ++i) {
-				q->lrc[i]->ring.tail =3D job->ptrs[i].head;
-				if (xe_sched_job_is_ulls(job))
-					xe_lrc_set_ring_head(q->lrc[i],
-							     job->ptrs[i].head);
-				xe_lrc_set_ring_tail(q->lrc[i],
-						     xe_lrc_ring_head(q->lrc[i]));
-			}
-		}
-		xe_sched_resubmit_jobs(sched);
-	}
-}
-
-Because xe_bo_restore_late() has not run yet when guc_exec_queue_start()
-executes:
-1. xe_lrc_ring_head() reads CTX_RING_HEAD / INDIRECT_CTX_RING_HEAD from
-   un-restored VRAM, and xe_lrc_set_ring_tail(), emit_job(), and
-   submit_exec_queue() write ring commands, CTX_RING_TAIL, and parallel
-   workqueue items into un-restored VRAM.
-2. register_exec_queue() registers q->lrc[i]->bo (and group->cgp_bo for
-   multi-queue) with GuC before xe_bo_restore_late() has restored their GGTT
-   PTEs via xe_bo_restore_and_map_ggtt().
-3. When xe_bo_restore_late() subsequently runs, it copies bo->backup_obj ba=
-ck
-   over q->lrc[i]->bo and group->cgp_bo in VRAM, overwriting the ring, tail,
-   parallel WQ, and CGP updates made by guc_exec_queue_start().
-
-Can a preserved userspace LR queue safely be restarted and have its jobs
-resubmitted in xe_gt_resume() before xe_bo_restore_late() restores its LRC =
-and
-CGP BOs?
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261106042332.4126=
-21-1-huajun.li@intel.com?part=3D1
