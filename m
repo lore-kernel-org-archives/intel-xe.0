@@ -2,88 +2,72 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA833606A32A
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 995C0606A321
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=onaG9FOW
+	dkim=pass (1024-bit key, unprotected) header.d=ugreen.com header.i=@ugreen.com header.a=rsa-sha256 header.s=pkvm2402 header.b=WK0uuDtx
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FD9A10F30F;
-	Mon,  9 Nov 2026 13:57:02 +0000 (UTC)
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
- [209.85.128.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7E4B10E37D
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 16:32:45 +0000 (UTC)
-Received: by mail-wm1-f41.google.com with SMTP id
- 5b1f17b1804b1-4b4571ff080so22664765e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 05 Nov 2026 08:32:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1793896364; x=1794501164; darn=lists.freedesktop.org;
- h=mime-version:user-agent:content-transfer-encoding:content-type
- :references:in-reply-to:date:cc:to:from:subject:message-id:from:to
- :cc:subject:date:message-id:reply-to:content-type;
- bh=d4uIAeI9pE7bf79BRULVqsTB5We4Hv2szuGRJya4Up0=;
- b=onaG9FOWDCi9/OKN30rPfaGRZ4homjdTxr0Ypgg/zUzKhkLjDNVWwKfYkpHhvLzZ21
- vecmg46bUYX3O2f1gQlirjKSWy91lmZjZsjJ5Gu9Ujx7f+RWg0eFn6ZfBKJKm7vcb6So
- USQ0/HSEfuN6txu5JUvU9lQ1FpNWFeCyo9CWqWuLBJlyBlH/k/61PH4Tab7H1LeyX86X
- xVSHYbyjfxl21dkmZ2Q3WXNrICxPEQrQThfFalQHpHatjp1CQN5+ouG+gkDye5GQPDzN
- mfrg9q87zSxRSeV3PUNIWZBYd22u8GEe9jVLSqx9HEeCz8gkT7zmL2DgUzlyOYi6FDFg
- Btiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1793896364; x=1794501164;
- h=mime-version:user-agent:content-transfer-encoding:content-type
- :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=d4uIAeI9pE7bf79BRULVqsTB5We4Hv2szuGRJya4Up0=;
- b=sLYjx38lVEmpKLlgqSFnoz4U9QML4cVURVlw11nR18+kd7YfRdSUaKYaNUw3Xktdpc
- NGfxb0NQFgGUaL7Ki3UHdhaol8ncrlohtZ3m/ZeMRQFbaUklC45XH2jodxF3dSHTU5sn
- bRt2H/HuM4I51THHbTZa9nCoMzA0jVOmlMyOSwuXijsBhJbWpGzfNPgM/6uatLS7dF6H
- /bHhNOhoi/68/ZVMtC7RvwC20fNX76e1gwkLFppBHi/qe1gQcxrYLlP2Yz2Xn6jt5JQR
- fG3YvcMuomb4MMWjsVVxM54hFGaTI1Vjblhs/fKMC7WFjJg9TTarm9LrmatV03swzhsO
- vICQ==
-X-Forwarded-Encrypted: i=1;
- AKwUvByeQ56sb9gkr26CiAPFUoh1+h3ytkL2fVu3yr9777fto86xUH9ACxP8Ksb8GXMt0gRcw0FNYkJaEQ==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+neNyE1Myztt9pPXKADL9ZXM74vvwrWTmxikvsbhp6BDULNFDc
- BPWYZRXKMXA1jXZsUsU1gHvaNq1CRaBw/Xm7pXcFk+Vi1Crj+Dzzl/x3
-X-Gm-Gg: AYBFou1mJQjahmDsaQyWKqFnZPCvlLUa3WFxfDBjjNR77SHGk74BYYkVaj2GOHXN1+H
- TKkuRZDgE01aYKNzKXYV2ib/q7lZX4FloUWVARi4olJ6/734SIkKpXPYhNt0lbhnIgdaVcQF2/A
- Hqdpc755hMw3SdUGG/tjPhEzREimkozsG6KxAhpaKaSBLssLbkfcpW+Rca2tKGF33Lw/vaE2XQq
- 4UEV89lEhADbLvSEsSrLM/2eBasqOsRQbwx1vHJYFwrlEmoncmSWFAEzbnHWg7bKKMQsVcoXERx
- aXZAmucXgBuhQIMEPRaRbJ0huLThiEZvrxNL4zom8qVgARlzGkIQ/DEVtnlqJnu4kUUSFygNcYL
- YaPbhngAAaXrxdaq4Wa0wJTyF33geXrwxgsJyR265dfDZAbDEQQWkDM+lBBm1mCf6gSOtBni2zt
- /wH/eKxw8eZEHTOn4goflMc5lreZA4UnZxaqKjH5CFFhJo+IrSsGbiq2I3ykgVJVMheCDBHuiLt
- FtDKmqq+vsA7GlzbiboZ69qGtBJunqA43VE3rYlrbIFvgGHi8GZjbpftv123hSA9Xpo8Eq5nQsh
- zFFzEAzJ2Mdcj36/mInPPJ82jDEbYIsVfbPuJBEopL8hk0amvXODdKBPzut4wU/wBYktYCqATs0
- nOkMKcOVl
-X-Received: by 2002:a05:600c:3b87:b0:4a2:150f:1607 with SMTP id
- 5b1f17b1804b1-4ac1709ad56mr464115355e9.13.1793896363894; 
- Thu, 05 Nov 2026 08:32:43 -0800 (PST)
-Received: from [192.168.1.86] (240.red-79-154-229.dynamicip.rima-tde.net.
- [79.154.229.240]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4b56fca22e1sm89764875e9.14.2026.11.05.08.32.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Nov 2026 08:32:43 -0800 (PST)
-Message-ID: <0e3689d102abf41b1e788402cc9da354d5c2d969.camel@gmail.com>
-Subject: Re: [PATCH 0/3] dma-buf: dma-fence: Remove dma_fence_init64()
-From: Timur =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>
-To: Philipp Stanner <phasta@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev, 
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org, 
- linux-usb@vger.kernel.org, rust-for-linux@vger.kernel.or
-Date: Thu, 05 Nov 2026 17:32:42 +0100
-In-Reply-To: <20261105113529.1989375-2-phasta@kernel.org>
-References: <20261105113529.1989375-2-phasta@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.60.2 (3.60.2-3.fc44) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 453E510F31A;
+	Mon,  9 Nov 2026 13:57:05 +0000 (UTC)
+X-Greylist: delayed 74172 seconds by postgrey-1.36 at gabe;
+ Fri, 06 Nov 2026 10:23:54 UTC
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.58.6])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0D0710E220;
+ Fri,  6 Nov 2026 10:23:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ugreen.com;
+ s=pkvm2402; t=1793960612;
+ bh=9AfE/cfKfBtCctU1Gai/X++88Iu6z+gq2zm4ryifuSg=;
+ h=From:To:Subject:Date:Message-Id:MIME-Version;
+ b=WK0uuDtxaPPzmKOUMwakGUNc990TLe4iy0Ajf8hsFR7OJEVfXWcEM5a3CI0Izd9n7
+ nHKkLKLSzmbcwxsrXYpfzZG8jMXZXzz7ZLzGyagB7t5DG9wNbrLsDj5WES9sq8tsZB
+ GG4X+UgWh07ob3vJHkm/KQM6FqoFbVg2Np8kPDn4=
+X-QQ-mid: zesmtpsz3t1793960606t071e06aa
+X-QQ-Originating-IP: S3UmKB0bvoMHHcYgWAGxlLQXFmqsu4Zb9qoHPz9nc7A=
+Received: from exmail.qq.com ( [183.16.164.172])
+ by bizesmtp.qq.com (ESMTP) with 
+ id ; Fri, 06 Nov 2026 18:23:17 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 8634473018609808824
+From: Hanson Wang <hanson.wang@ugreen.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Animesh Manna <animesh.manna@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+Subject: [PATCH v2] drm/i915/dsb: Realign GOSUB only for QW slots 6 and 7
+Date: Fri,  6 Nov 2026 18:23:15 +0800
+Message-Id: <20261106102315.1361645-1-hanson.wang@ugreen.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20261105134658.3724628-1-hanson.wang@ugreen.com>
+References: <20261105134658.3724628-1-hanson.wang@ugreen.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:ugreen.com:qybglogicsvrgz:qybglogicsvrgz3a-0
+X-QQ-XMAILINFO: MpvVxjO9l39xd6tLpiMIVI1u2Nmd3/JrG0kWbNZAaKMafAJgdk5O34BZ
+ b8LlY20ubhQwNuUMI+yJbNXTXCnDYaJyKEV4bsg0/xyjoVrg6ZbqnhLOp0u3m0bsDrhT657
+ odl25FSZIPdg7Rtzur0qQAleJL08gtUXd0Cgeef7cW1ewMyVV4ojDV8IfcDRAGEBx5Zt5+s
+ fsgiQv+eYlrnB4pYPRJZO94uO94CdDvFKw2m/buImn6+qrstPEa3dCRebIeyOSEQOxCgNxk
+ VYdCz9SGvM1P1uaKMgNV8fqoZfS+1Z2abbeq9lyBYSjkl4vnwVR/jo6yfvH69nSe0nSwwZ7
+ e+bsj1D4ruuyZGs2+VNQx+4LCgesHK9xLI4/DIZnf+cC4H8kGRGVH0aADkaHgrOX9eDmzwb
+ TFAj4lXCZjJwy8yMfDt+87blroD73jgsI71LbQrHaOfAK7aeMvzbLpGzZpV7J6K4J5n0eIh
+ 6IH5QcSGa/M/35GdPX6rTw2wXJW9PaAsUJMA2z8a2q6B/rkoHuh6NX1hqMj9jKU1vFvsBm1
+ eRDwBGBuTGTCGvz5dw9X0PUrdeFeEV3xe8aNBW5PGRmi7o6sfP0rWElMTudTKDdkLWhrKTi
+ 5d8wZ1S8Rg9rJCKzUaDWzBctr8Al/asIxaKggaL1jv4CquBINKgTiYVDLfH7fs0784pleP9
+ sleqcpxZPu3xU4zc0Ja38MTMzSWxHouCdvaBqYPHfysZJhaSHL/Q0kNdCpjMCrCPLGKoWLG
+ tf9DIUosiggNCM3sWVT0qO5eZZVtjHbvqIclgsEEWn9LasnvjjvgRSHmYYpjlDgjSrMTkxm
+ kywdjBi6F+vxBIncWM/9Xs9FY7PJ3ttbLUVd5WyNm+xzwdTbNfan1E1ksjVQR+MwqC4HRNC
+ eISgIp7lT5DXv7SmNKh9Uon8IAPeE4g0QjDa/rsySQG49apeA/zoK/s0dztSR9HybXflqPM
+ F9DMcMBHSTd9GEGuLuf96TnBLqZa7MeLEQtJRPmNvYYW6q1rayCmN3sG8JOVdkiDHj0+RP/
+ rVoz0DeJj7hzQVJMdoABSEzz2PFNyCjou2JcniFgHSPB7WF8Pp
+X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Mon, 09 Nov 2026 13:57:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,100 +79,84 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gVGh1LCAyMDI2LTExLTA1IGF0IDEyOjM1ICswMTAwLCBQaGlsaXBwIFN0YW5uZXIgd3JvdGU6
-Cj4gV2UgcmVjZW50bHkgaGFkIGEgZGlzY3Vzc2lvbiBhYm91dCByZXdvcmtpbmcgZG1hX2ZlbmNl
-IGluaXQgdG8gY2xvc2UKPiBhCj4gcmFjZS13aW5kb3cgWzFdLgo+IAo+IFRoZSBjb21tdW5pdHkg
-YWdyZWVtZW50IHNlZW1zIHRvIGhhdmUgYmVlbiB0aGF0IHdlIGNhbiBnZXQgcmlkIG9mCj4gZG1h
-X2ZlbmNlX2luaXQ2NCgpLCBzbyBsZXQncyBkbyB0aGF0IGFscmVhZHkuIEluIHRoZSBtZWFudGlt
-ZSB3ZSBjYW4KPiBjb250aW51ZSBvdXIgZGlzY3Vzc2lvbnMgcmVnYXJkaW5nIHRoZSByYWNlIGlu
-IFsxXS4KPiAKPiBUaGlzIGFsc28gdG91Y2hlcyB0aGUgUnVzdCBkbWFfZmVuY2UsIHdoaWNoIGFj
-dHVhbGx5IHNob3VsZCB1c2UgNjQtCj4gYml0Cj4gc2Vxbm9zICh3YXMgZm9yZ290dGVuIHNvIGZh
-cikuIFJ1c3QgZmVuY2UgaGFzIG5vIHVzZXJzIGN1cnJlbnRseSwgc28KPiBuZWVkcyBubyBiYWNr
-cG9ydGluZywgc28gSSB3b3VsZCBsaWtlIHRvIGFkZHJlc3MgdGhhdCBpbiBhIGRpc3RpbmN0Cj4g
-cGF0Y2guCj4gCj4gVGVzdGVkIG9uIE5vdXZlYXUgd2l0aCBhbmQgd2l0aG91dCB0aGUgU0VRTk82
-NCBmbGFnLiBOb3V2ZWF1IGFsc28KPiB1c2VzCj4gdGhlIFVTRVIgZmxhZywgc28gSSBob3BlIHdl
-J3JlIGZpbmUuCj4gCj4gCj4gUC4KPiAKPiBbMV0KPiBodHRwczovL2xvcmUua2VybmVsLm9yZy9k
-cmktZGV2ZWwvMjAyNjEwMjkwOTU1NDIuMTUyNjc1MC0zLXBoYXN0YUBrZXJuZWwub3JnLwoKTWFr
-ZXMgZ29vZCBzZW5zZSB0byBtZS4KRm9yIHRoZSBlbnRpcmUgc2VyaWVzOgoKUmV2aWV3ZWQtYnk6
-IFRpbXVyIEtyaXN0w7NmIDx0aW11ci5rcmlzdG9mQGdtYWlsLmNvbT4KCihwcy4gSSBoYWQgdG8g
-cmVtb3ZlIHNvbWUgcmVjaXBpZW50cyBmcm9tIHRoaXMgZW1haWwgYmVjYXVzZSB0aGUKb3JpZ2lu
-YWwgaGFkIG1vcmUgdGhhbiAxMDAgcmVjaXBpZW50cyBhbmQgZ21haWwgd291bGRuJ3QgbGV0IG1l
-IHJlcGx5CnRvIGFsbCBvZiB0aGVtLiBBcG9sb2dpZXMgZm9yIHRoYXQuKQoKPiAKPiAKPiBQaGls
-aXBwIFN0YW5uZXIgKDMpOgo+IMKgIGRtYS1idWY6IGRtYS1mZW5jZTogQWRkIGZsYWdzIHBhcmFt
-ZXRlciB0byBkbWFfZmVuY2VfaW5pdCgpCj4gwqAgZG1hLWJ1ZjogUG9ydCB1c2VycyBvZiBkbWFf
-ZmVuY2VfaW5pdDY0KCkKPiDCoCBkbWEtYnVmOiBkbWEtZmVuY2U6IFJlbW92ZSBkbWFfZmVuY2Vf
-aW5pdDY0KCkKPiAKPiDCoGRyaXZlcnMvYWNjZWwvYW1keGRuYS9hbWR4ZG5hX2N0eC5jwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvYWNjZWwvZXRob3N1L2V0aG9zdV9q
-b2IuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9hY2NlbC9p
-dnB1L2l2cHVfam9iLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+
-IMKgZHJpdmVycy9hY2NlbC9yb2NrZXQvcm9ja2V0X2pvYi5jwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoCAyICstCj4gwqBkcml2ZXJzL2RtYS1idWYvZG1hLWZlbmNlLWFycmF5LmPCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZG1hLWJ1Zi9kbWEtZmVuY2Ut
-Y2hhaW4uY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgNCArLQo+IMKgZHJpdmVycy9kbWEt
-YnVmL2RtYS1mZW5jZS5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHwgNTgg
-KysrKysrKysrLS0tLS0tLS0KPiAtLQo+IMKgZHJpdmVycy9kbWEtYnVmL3N0LWRtYS1mZW5jZS1j
-aGFpbi5jwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBkcml2ZXJzL2RtYS1idWYvc3Qt
-ZG1hLWZlbmNlLXVud3JhcC5jwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9k
-bWEtYnVmL3N0LWRtYS1mZW5jZS5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAy
-ICstCj4gwqBkcml2ZXJzL2RtYS1idWYvc3QtZG1hLXJlc3YuY8KgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBkcml2ZXJzL2RtYS1idWYvc3dfc3luYy5jwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgLi4uL2dwdS9k
-cm0vYW1kL2FtZGdwdS9hbWRncHVfYW1ka2ZkX2ZlbmNlLmPCoCB8wqAgMiArLQo+IMKgLi4uL2Ry
-bS9hbWQvYW1kZ3B1L2FtZGdwdV9ldmljdGlvbl9mZW5jZS5jwqDCoMKgIHzCoCA3ICsrLQo+IMKg
-ZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X2ZlbmNlLmPCoMKgwqDCoCB8wqAgMiAr
-LQo+IMKgLi4uL2dwdS9kcm0vYW1kL2FtZGdwdS9hbWRncHVfdXNlcnFfZmVuY2UuY8KgwqAgfMKg
-IDUgKy0KPiDCoC4uLi9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZtX3RsYl9mZW5jZS5jwqAg
-fMKgIDUgKy0KPiDCoGRyaXZlcnMvZ3B1L2RybS9kcm1fY3J0Yy5jwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZ3B1L2RybS9kcm1fd3Jp
-dGViYWNrLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBkcml2ZXJz
-L2dwdS9kcm0vZXRuYXZpdi9ldG5hdml2X2dwdS5jwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+
-IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZ2VtL2k5MTVfZ2VtX3R0bV9tb3ZlLmPCoCB8wqAgMiAr
-LQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZXF1ZXN0LmPCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9zd19mZW5jZV93b3Jr
-LmPCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV92bWFfcmVz
-b3VyY2UuY8KgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoC4uLi9ncHUvZHJtL2k5MTUvc2VsZnRlc3Rz
-L2k5MTVfc3dfZmVuY2UuY8KgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL2ltYWdp
-bmF0aW9uL3B2cl9jY2IuY8KgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZ3B1
-L2RybS9pbWFnaW5hdGlvbi9wdnJfcXVldWUuY8KgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJp
-dmVycy9ncHUvZHJtL2xpbWEvbGltYV9zY2hlZC5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzC
-oCAyICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vbXNtL21zbV9mZW5jZS5jwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL25vdXZlYXUvbm91dmVh
-dV9mZW5jZS5jwqDCoMKgwqDCoMKgIHzCoCA0ICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vcGFuZnJv
-c3QvcGFuZnJvc3Rfam9iLmPCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZ3B1L2Ry
-bS9wYW50aG9yL3BhbnRob3Jfc2NoZWQuY8KgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVy
-cy9ncHUvZHJtL3F4bC9xeGxfcmVsZWFzZS5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAy
-ICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vcmFkZW9uL3JhZGVvbl9mZW5jZS5jwqDCoMKgwqDCoMKg
-wqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL3NjaGVkdWxlci9zY2hlZF9mZW5jZS5j
-wqDCoMKgwqDCoMKgIHzCoCA0ICstCj4gwqAuLi4vZ3B1L2RybS9zY2hlZHVsZXIvdGVzdHMvbW9j
-a19zY2hlZHVsZXIuY8KgIHzCoCAyICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vdHRtL3Rlc3RzL3R0
-bV9ib190ZXN0LmPCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoC4uLi9ncHUvZHJtL3R0bS90ZXN0
-cy90dG1fYm9fdmFsaWRhdGVfdGVzdC5jwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZ3B1L2RybS92
-M2QvdjNkX2ZlbmNlLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBk
-cml2ZXJzL2dwdS9kcm0vdmM0L3ZjNF9nZW0uY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoCAyICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vdmdlbS92Z2VtX2ZlbmNlLmPCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZ3B1L2RybS92aXJ0aW8vdmly
-dGdwdV9mZW5jZS5jwqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvZ3B1L2RybS92
-bXdnZngvdm13Z2Z4X2ZlbmNlLmPCoMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBkcml2ZXJz
-L2dwdS9kcm0veGUveGVfaHdfZmVuY2UuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAy
-ICstCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfb2EuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfcHJlZW1w
-dF9mZW5jZS5jwqDCoMKgwqDCoMKgwqDCoCB8wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL3hl
-L3hlX3RsYl9pbnZhbC5jwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBkcml2
-ZXJzL2dwdS9ob3N0MXgvZmVuY2UuY8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgIHzCoCAyICstCj4gwqBkcml2ZXJzL2lpby9pbmR1c3RyaWFsaW8tYnVmZmVyLmPCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKy0KPiDCoGRyaXZlcnMvdXNiL2dhZGdldC9mdW5jdGlv
-bi9mX2ZzLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqBpbmNsdWRlL2xpbnV4
-L2RtYS1mZW5jZS5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8IDE0
-ICsrKy0tCj4gwqBydXN0L2tlcm5lbC9kbWFfYnVmL2RtYV9mZW5jZS5yc8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoCAyICstCj4gwqA1MiBmaWxlcyBjaGFuZ2VkLCA5NSBpbnNlcnRpb25z
-KCspLCA5NCBkZWxldGlvbnMoLSkKPiAKPiAKPiBiYXNlLWNvbW1pdDogODI1OGEzNzcwMmI5Yjlj
-ZjI3ZjVjMGVhMDc2MjVlM2U2YmQ3NGY1YQo=
+intel_dsb_gosub_align() moves free_pos to the next cacheline
+unconditionally, but only clears the skipped bytes when at most two
+QW slots remain. Wa_16024917128 forbids GOSUB in slots 6 and 7 only.
+A larger gap is still executed. A Panther Lake DSB dump showed
+nonzero data in that gap, with the tail at 0x58 and GOSUB at 0x80.
+
+Advance free_pos only when the instruction would land in slot 6 or 7,
+and fill that gap with NOPs. Emit GOSUB in place for every other slot.
+intel_dsb_align_tail() still clears the rest of the cacheline.
+
+Update free_pos inside the existing gap check in intel_dsb_align_tail()
+as well, so the two helpers keep the same shape.
+
+Fixes: 2c41d62f6fb1 ("drm/i915/dsb: Implement intel_dsb_gosub()")
+Cc: stable@vger.kernel.org # v6.17+
+Signed-off-by: Hanson Wang <hanson.wang@ugreen.com>
+---
+v2:
+- Advance free_pos only for QW slots 6 and 7, and NOP-fill that gap
+  (Ville)
+- Update free_pos inside the existing check in intel_dsb_align_tail()
+  so the two helpers stay in the same shape
+
+Hardware: Intel Core Ultra 5 336H (Panther Lake), 6.18-based kernel
+Build:    6.18 backport; both xe and i915 intel_dsb.o
+Upstream: not built or booted
+Reboots:  7/100 DSB idle timeouts before either fix
+          v1 (always align): 0/200
+          v2 (this patch):   0/200
+
+ drivers/gpu/drm/i915/display/intel_dsb.c | 16 ++++++++++------
+ 1 file changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index d9a270362a82..07d864039e82 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -589,10 +589,10 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
+ 	tail = dsb->free_pos * 4;
+ 	aligned_tail = ALIGN(tail, CACHELINE_BYTES);
+ 
+-	if (aligned_tail > tail)
++	if (aligned_tail > tail) {
+ 		dsb_buffer_fill(dsb, dsb->free_pos, 0, aligned_tail - tail);
+-
+-	dsb->free_pos = aligned_tail / 4;
++		dsb->free_pos = aligned_tail / 4;
++	}
+ }
+ 
+ static void intel_dsb_gosub_align(struct intel_dsb *dsb)
+@@ -607,11 +607,15 @@ static void intel_dsb_gosub_align(struct intel_dsb *dsb)
+ 	/*
+ 	 * Wa_16024917128
+ 	 * "Ensure GOSUB is not placed in cacheline QW slot 6 or 7 (numbered 0-7)"
++	 *
++	 * Move to the next cacheline only for those two slots. The skipped
++	 * bytes stay in the programmed range, so fill them with NOPs. Any
++	 * other slot can take the GOSUB directly.
+ 	 */
+-	if (aligned_tail - tail <= 2 * 8)
++	if (aligned_tail - tail <= 2 * 8) {
+ 		dsb_buffer_fill(dsb, dsb->free_pos, 0, aligned_tail - tail);
+-
+-	dsb->free_pos = aligned_tail / 4;
++		dsb->free_pos = aligned_tail / 4;
++	}
+ }
+ 
+ void intel_dsb_gosub(struct intel_dsb *dsb,
+-- 
+2.34.1
 
