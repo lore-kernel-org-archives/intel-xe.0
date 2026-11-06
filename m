@@ -2,164 +2,73 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4959A606A326
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 13:23:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8DD606A32C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 13:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=COg7BF2Q
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=beXxF0Qy
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0987F1128A2;
-	Fri,  6 Nov 2026 13:23:29 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00012112921;
- Fri,  6 Nov 2026 13:23:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71345112D93;
+	Fri,  6 Nov 2026 13:30:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EADB112D81;
+ Fri,  6 Nov 2026 13:30:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793971403; x=1825507403;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=vq0BoH9sc7XFDAR0R2+5AjwdFilHWXeE8pCwK76WrBY=;
- b=COg7BF2QMrUHfopVDCJDMNKmXRJ6fZSdAnTsZDqGvqg972eaC8UbkCKb
- NEpKGMrD4VPa96QEXL40O6vvbgpzT/U1gobMiQb3PNR/DHqFLIBg5JYjr
- VG45bZzkOkzgpBVSZscPMDdoGFe36u3ItcCoznfa2z2cVTeVjvaB4U0jt
- 7xcfKpOyztHDbvwOK/kK5fDXz2+uW8Z4Nqm8l+1X5bs6XlrsA60HJaQHe
- HEFrUaEsy3vGJIgc3jlC+kcQ7kbFs6Nn0IGCFXwu5/8l4yKj0Wyu2EDds
- CVlcLqh6GC8r/Vbh/olIBKmrryq67mwy/pn33wpjjHuw3CsuDYmW1PkMa w==;
-X-CSE-ConnectionGUID: RH/HPy9XS42HNnYguSRRbA==
-X-CSE-MsgGUID: 0lzmQVn0ReGJUDfWi7KD3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2668857"
+ t=1793971829; x=1825507829;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Hg3E2tV8t/r3xvA5nyxI35xq+Jk6OiCkXu5R71On+t8=;
+ b=beXxF0QyKy3tt1JpwiQAzPabxFOuyfaowtXO0t2+89vfuW4eNFggaKMT
+ rtmWriqCfyBfpwkp62gKxDAzWKKofMnZNLsu7n1N1oqpmrckGB4uVZ7oy
+ c8cPt2a/kUSkoIGxsRrlndadah55gs8Zh5nAwJf+JMOP0NbsdGWAD/Ncc
+ S38xvCBFXClV2R8CJYtlBAs+EPtiYVt3Y9eM73bf5eNuF0aZRdEOpBLgQ
+ 0NKvHfop0tTbWeRfYvrEX0DCCCgrNr+Vdad5mOM+kw5zlulhVDw4ZVF2I
+ tf3w8KXdBIk5c2GsZo/8qrg+cDwd5Rthu75QETyMpjc37/B46w1ewQmta Q==;
+X-CSE-ConnectionGUID: 5drREmZfQHa6sAf314/noQ==
+X-CSE-MsgGUID: YLk4uYDmTkGJnj8OnhL3Eg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2775395"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2668857"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2026 05:23:23 -0800
-X-CSE-ConnectionGUID: Ji8CZ412QUqMQRMCp71Cgw==
-X-CSE-MsgGUID: GH/Es4UER1+Wq1f3JUqjeA==
+   d="scan'208";a="2775395"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2026 05:30:16 -0800
+X-CSE-ConnectionGUID: X3MEUOGvQgyeCvaHWnjegg==
+X-CSE-MsgGUID: MyRyuK9DTWKlwEdX2DelYw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="7149451"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2026 05:23:23 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 6 Nov 2026 05:23:21 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Fri, 6 Nov 2026 05:23:21 -0800
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.37) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 6 Nov 2026 05:23:21 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bJx+UlLwBi2KmBa8B+9V1H6k5vOduR2iHfFKlrjb73abclTDoMNYrwdUnNXerlYWNcNeWRlj6d0vr7R8c4LTvhps2i4t3s7cpwHNioj01q9yxtUAuh6KfdQFy3PH6XgHPau+KeRjkdVho5TNPyJgZW028DF53YCP8FW94IYPPN5h8zeVEYt9hmdBmPSEs5SMqixbeo11/5FYPc+H2J/zDqHq+9ovsGrObgPRkDOcZ3OBf9v7UsVHs5fZ1CXb7SO9AFOFnc31Ddw95beNJh0fdGnl8iwS2uMdfXBp5jT0I1sPNx5Sqs1VsU96wFO0KNZ1O2me1QGUW4QZAu12gJocTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vq0BoH9sc7XFDAR0R2+5AjwdFilHWXeE8pCwK76WrBY=;
- b=fAcx2wvKk/02/R7qqir/74L/zAuM+utQjjKbeyCoHUa7k5NlfUteV1u0y+6j0+gv64VNE12sCVzg6+xpOCBeqHATruA0Xf5kp9XRAS6spCdnmAyu+cvJfUHO9Ndc6BC2DR0TCMm3/h7l8WSm8GnLlcatEGpGTiRA6e/pHXfB4Ip4I+BAkepGZx4vrO208sm6KRetVinN0MxhwXIjlEx1nNTt0M2RQ1AcO1Z3FUFHN92KFM3BrAsynfHmiBlb1B2phPZktVLoID5lYsoUkzYfBq09uUksONiyXc03G59FsuEPAi6yAKIwA7CHKSf69qsZkw/DkiHYoShquEydo7dgog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- (2603:10b6:f:fc02::28) by MW4PR11MB6837.namprd11.prod.outlook.com
- (2603:10b6:303:221::16) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Fri, 6 Nov
- 2026 13:23:14 +0000
-Received: from DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::79ab:f4ae:b1c2:61d9]) by DS4PPF69154114F.namprd11.prod.outlook.com
- ([fe80::79ab:f4ae:b1c2:61d9%5]) with mapi id 15.21.0592.009; Fri, 6 Nov 2026
- 13:23:13 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Hogander, Jouni" <jouni.hogander@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: RE: [PATCH v2 4/4] drm/i915/display: Flush the fbdev frontbuffer
-Thread-Topic: [PATCH v2 4/4] drm/i915/display: Flush the fbdev frontbuffer
-Thread-Index: AQHdarKaVfdrwvTSkUGcc7iRp0jLfLchDnlg
-Date: Fri, 6 Nov 2026 13:23:13 +0000
-Message-ID: <DS4PPF69154114FBE160E451745B6B32EEEEF762@DS4PPF69154114F.namprd11.prod.outlook.com>
-References: <20261102100051.272137-1-jouni.hogander@intel.com>
- <20261102100051.272137-5-jouni.hogander@intel.com>
-In-Reply-To: <20261102100051.272137-5-jouni.hogander@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|MW4PR11MB6837:EE_
-x-ms-office365-filtering-correlation-id: fb3e5e58-e083-47fb-8be0-08df3c091c53
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|10070799003|1800799024|22082099003|18002099003|10067099003|38070700021|4143699003|11063799006|261102123227099003|261026140227099003|261028144727099003|261021123027099003|261022105027099003|261021121427099003|56012099006|261009223027099003;
-x-microsoft-antispam-message-info: YFOEhJjCEnJ25J+hisRYfLZFxQ7uceNn3J2WUOPy81xAggPaZD852b/Y2C7aT3nVMsnIbsI6J05uYQUdpeuoond1phP0Rc6tgYWBxxjkOGAolUeTEIaxXytqCfmoHs9dEZ0yx1hAtt+cn1JaMZ4DGip9m7wXu67MGsulIWHASqk4KSE1fd0ily/yC1BvViWiOECRaqN3ZnLdeRuAxsr1wgn6s9e7Mh7u00yvMEPW5BNaqFHHGds59iSoIAxPonZ8UTxOr8Je5geOR8Llx5CpXSoa+wGWPYdvnTVnIyle0rOtd8OSeoPcZ9JJRNa/rfPVb97cqv/GNhawJRAvEIlnVuhL9i1KDuFhu5DRiz0tGAEG6Gz467L+Yf7LWxI03kF1B8pOpoxLr+EWGQ3wtD/1+Xt5P/JRB+yjLbgVjDtbO3yTz/E6TTy3kgiX3DVObcrnnSUsCF2La2mAj+5NTb+WVUIpGrDBF5TQpRVgLLc2iuuq7wBO9nLnLpCQl05N3Z1nbtto87rhJrsbLjJz/eLnxoRgWSv6pf/0Nn7fONKo1yMKIUZT8Kei/X89LtvhVls4t8LMWgy6uL8q/Ty5RMiIIwAOol8aOgWGIZGVNk0A0gOfcdDAKjBqzv3lqULeMoRFo7+hDDrsRjv3pipBEWa+EGTOcCPi3qPeNNUsN70RjPF+6LdL/2BAnG1i2GhIZqYLwbg8ovzTda8yMDpF65alKJTP0tNBHhqJaHxD7zS7mAU=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(10070799003)(1800799024)(22082099003)(18002099003)(10067099003)(38070700021)(4143699003)(11063799006)(261102123227099003)(261026140227099003)(261028144727099003)(261021123027099003)(261022105027099003)(261021121427099003)(56012099006)(261009223027099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?c1h0dkcvNDNvOEszaW55azZucmw1eXA5Y1Q1YnBNcEVyUW1OckhqSzRTYUtu?=
- =?utf-8?B?WmtaOXVtMGtQeFg5TzMrdXJ3bkVzUFp2L1R3NXZENFZ6NWVXdkswbGFGWUdQ?=
- =?utf-8?B?ODhzNGZya2RvZEtMWnM4L1IyT3Y4ZHFBMnZ4M1gyczRwd0w5bHNDTVByR2F0?=
- =?utf-8?B?TkpMOTc2ZENhaFlZOWhkT1BUanBwQStnWVFiNFJLK0tvNnhxTWN6Mjl1SWxz?=
- =?utf-8?B?US9RSFJmWllmemNmV1Z4RjA2SENINDYzLzJaN253aHFUNFlnUG1UTFFMb0dT?=
- =?utf-8?B?QXJBZU45ZVR5R0g3blV5T29KcE5UcTlsVy9GZXJhbmwveXI3RTZIaUxpTDdJ?=
- =?utf-8?B?WHl0UXkzaTNVbTB5UHRGNE9oM2oxQm4vZmh3MUs5bk1wb0FQZm04K3MvNTdH?=
- =?utf-8?B?NUxzb0Vra2hjUXhndzBRaVJMWGVrQnFjR2JabERSZHhQOFQzU3FKdXgwL0xF?=
- =?utf-8?B?SmIxNkoxM1l6TjVWei8wTlNtSHQzRVFDblhvb2xMVVZBaUxwb3pTOCtZM3ky?=
- =?utf-8?B?WXZYekpTMXhuaWQvUjlJTFRLcXNDRHJuSllwYTNxK1U5YzJYTDFyVnNISFU0?=
- =?utf-8?B?TEpEREpHaXZKaGpuODhocEVNM1RQb0xhZjJvd2owcVo1dTBjOVQwbDNzZXBY?=
- =?utf-8?B?NjR6TktkS0t0aEgrWDdNSmJPUHJLN0prU1ExenpESlRlMm1OMU1ISjlQQkpU?=
- =?utf-8?B?aWFkTHp6UU9rOWhCdGZ5ZGwyYTN1Wm1kUFhqK3dBeTFLRDJLSEdZQWJhWHVY?=
- =?utf-8?B?cW5pa05ISWI2OTNLNExYS3cxdGVNR251V1B2SnBMbU5keEZFWnZTR2luc0ht?=
- =?utf-8?B?S0lvdXZwUERZem5OSmYwVWlxaFNTSjFYSXdtK3BMd2hab2hGOSt6SU4yb1VY?=
- =?utf-8?B?eFMzYkNCUVBBR2VmcXQ2ZmxHaGlrb2o2WGE2cHJ0aXFOLzRXSCtYQ1pzSjBE?=
- =?utf-8?B?U00zcEdHU3pMRDZCQURueHdLeGk2ZTN6YkM4UENqWFNySlgwY3pSS0hPSmto?=
- =?utf-8?B?MnZhd0ZZb3VCOUtoK3RpUmxqZkZaOTRtKzFLVGl2citNekhham5Zc0wycVZI?=
- =?utf-8?B?RnZBbWJrTVR0V2t0N3ZoZjBjR3ppNnVVSE5GV1YrVUdvdUhzSjJGZnRtbS9l?=
- =?utf-8?B?T3JJdGRLK2tpYVZUUFNTL0ZhQmpWbTlVYm80SUNlcnhRVyt6akVpcDIxV0Fw?=
- =?utf-8?B?blZlVEMyMGFBMXJZdWRNaEZ4WExXbDhvQUNRbTMxQlFCelYwV3ZCL3ZXUTU3?=
- =?utf-8?B?VC8vQ1J6WnljUXFqcWkvc2UyQml4MG51OWpJenU3RmZseDBqMW5JUmZmYisy?=
- =?utf-8?B?Z1hzekVXc09zWXR1SmJFNTJSQzlrZ01JREhPVDU0eVErOS9UbTBxL0J1QUlj?=
- =?utf-8?B?Rll1UnorYWgrTkNUM3Q3ejJSK3ByY3ZaOHJNVDFLK3V1YnYrUmRFMTRWV2lR?=
- =?utf-8?B?NGdkTGtTTUM4M2dvRElnK3lPUE9mOWpkQjJuZW5ETG81NGJjRE8veUpPUWMw?=
- =?utf-8?B?TlJIdkNYaXFaWk90dDZXZmRqa05rZHYzNjVWYkdSUXlGeW9pY24rVmlWS25S?=
- =?utf-8?B?bzk0aFNmNXh1WGdpRldHTjRRSGxuUDZRdzZDUExDMFR4Vzh2OENEMHZlQWc2?=
- =?utf-8?B?YTVmWjZhYVhuQjN0R3dKWS9Xc0hVWVA5YlhDOFBscnlwUEkwdGZQbWNON3lk?=
- =?utf-8?B?Rkp2Y3E2ZVI5bDhtaExmR2lHL1VmUzRITllSMXBMVUEzbHAwUFoyOHBZS2li?=
- =?utf-8?B?N0NweXdWdTVsMzBYeGtMUG1nSzJWYXVCZjN4cDd4TkxDWThEek1QTDBMZTZQ?=
- =?utf-8?B?eWN5RjE4YWZUbnBtWHE5V2lzeVk3YlgrOFRzaGx3eHZhU3NUbmNUcTg0YnFk?=
- =?utf-8?B?ZmF5WkVEZXkrR0x0SC9NUVdTSzd4N2paRXNiTE1Oays2N3dBbGl3TGZMVE5k?=
- =?utf-8?B?RVE0ZVVYdWZ5dmNNbTZMWlp3TFBRallTZWxkNER4b0lDUUtKNmdUaW1xZzM4?=
- =?utf-8?B?ZFlTMnBCUFIwanhjREhCZjVycnZZQ0RPMENiOTFWaTVHZGRjRkI3V0RhSkZy?=
- =?utf-8?B?dVYrVzdMZFFmM3JhQnBtWWpTNk41RlFVTWFTVUo0TEx1MTg1WmpXMEtQaUVF?=
- =?utf-8?B?SDhIdHRNenhFQUcyUDVsYTl5Q2p5Y2haNUJVSGNPcERvZFB2WFZsTzY1amFF?=
- =?utf-8?B?UU9ETmxoY296MlJZc3NGbkhSU3FWWWNwWllRUEU0NFBNVVNsTnpvanFZQU5k?=
- =?utf-8?B?UnYzd1h5OVRmSzhyS0I5bEMrNWtVVW4wdmE1L0xCZkg3UjFhdC8zRDkybmd3?=
- =?utf-8?B?aUlOQUhyQUlLdTk4c2pLbHhDQkFGZlZJZjJtUy8raDVVUVVjN0xuMkhCYUhj?=
- =?utf-8?Q?/KzeJCIuyXHiY1sOZXH9snA5aGe2XpDA4ppLm?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+   d="scan'208";a="7159162"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.101])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2026 05:30:10 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Takashi Iwai
+ <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
+ linux-sound@vger.kernel.org, Harry Wentland <harry.wentland@amd.com>, Leo
+ Li <sunpeng.li@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ amd-gfx@lists.freedesktop.org, Lyude Paul <lyude@redhat.com>, Danilo
+ Krummrich <dakr@kernel.org>, =?utf-8?B?VG9tw6HFoQ==?= Hnyk
+ <tomashnyk@gmail.com>, Wim Taymans
+ <wtaymans@redhat.com>, nouveau@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Subject: Re: [PATCH 0/2] drm: Populate ELD Port_ID to identify audio endpoints
+In-Reply-To: <20261105160240.2850042-1-kai.vehmanen@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261105160240.2850042-1-kai.vehmanen@linux.intel.com>
+Date: Fri, 06 Nov 2026 15:30:06 +0200
+Message-ID: <e3f0bf049faf6222781eb61e23cdaacc62eccfd7@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: 1m42E4A7IqyqMTlJ5xIBcq+BtHrm1eNUn0mUOJDFxvH+89P0T+1fn1/RyXXiDBxo1h27ozSdwZTo/jj+Eg1bBCBT10rEOA8MsraauIzrWaBZr7XmPFojLZpTA44dfUKHLoOEleR95GCpmJHdKkLbYXogjbNCZmC8lwAy/qxfHxm8bmvt+0JRLBxYmBjXNWxwX4bFDNl722zXeVRfOHQy826qd+IdXXdNHQ2lu5+te4xKzoE8RVWbSXEPuXp3mCuRimHcX33TvuSXJRZSXyYZNTG03c+sPsw44uQ2sJsyMEeM7BT42KsWWt2Sy0n0m3zZ5RTMbhH31EvjwR7ylBF0cw==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb3e5e58-e083-47fb-8be0-08df3c091c53
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Nov 2026 13:23:13.6263 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: egNMm7qxYrZn8Pft5ISlm9xXKgZNz+l0iC6JDF0k0VyoVHAqFiu3eyspzNsam8Sb623qo5xLxTC3Ilz4eQ/+Ww==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6837
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,64 +79,65 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
 	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
-eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEpvdW5pIEjDtmdh
-bmRlcg0KPiBTZW50OiBNb25kYXksIDIgTm92ZW1iZXIgMjAyNiAxMi4wMQ0KPiBUbzogaW50ZWwt
-Z2Z4QGxpc3RzLmZyZWVkZXNrdG9wLm9yZzsgaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3Jn
-DQo+IENjOiBIb2dhbmRlciwgSm91bmkgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT47IE1hYXJ0
-ZW4gTGFua2hvcnN0IDxtYWFydGVuLmxhbmtob3JzdEBsaW51eC5pbnRlbC5jb20+OyBzdGFibGVA
-dmdlci5rZXJuZWwub3JnDQo+IFN1YmplY3Q6IFtQQVRDSCB2MiA0LzRdIGRybS9pOTE1L2Rpc3Bs
-YXk6IEZsdXNoIHRoZSBmYmRldiBmcm9udGJ1ZmZlcg0KPiANCj4gZmJkZXYgaW52YWxpZGF0ZXMg
-b24gc2V0X3BhciwgYmxhbmssIHBhbl9kaXNwbGF5IGFuZCByZXN0b3JlLCBidXQgbmV2ZXINCj4g
-Zmx1c2hlcy4gT24gaTkxNSwgdW5yZWxhdGVkIHJlbmRlcmluZyBtYXkgY2xlYXIgdGhlIGJpdHM7
-IFhlIGhhcyBubw0KPiBPUklHSU5fQ1MgaW52YWxpZGF0aW9uLCBzbyBQU1IgYW5kIEZCQyBjYW4g
-cmVtYWluIGRpc2FibGVkIGluZGVmaW5pdGVseS4NCj4gDQo+IEZsdXNoIGFmdGVyIHRoZXNlIG9w
-ZXJhdGlvbnM7IHRoZXkgYXJlIGFscmVhZHkgY29tcGxldGUuDQo+IA0KPiBGaXhlczogNDRlNjk0
-OTU4Yjk1ICgiZHJtL3hlL2Rpc3BsYXk6IEltcGxlbWVudCBkaXNwbGF5IHN1cHBvcnQiKQ0KPiBD
-YzogTWFhcnRlbiBMYW5raG9yc3QgPG1hYXJ0ZW4ubGFua2hvcnN0QGxpbnV4LmludGVsLmNvbT4N
-Cj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwub3JnPiAjIHY2LjgrDQoNClJldmlld2VkLWJ5OiBN
-aWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPg0KDQo+IFNpZ25lZC1vZmYtYnk6IEpv
-dW5pIEjDtmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiAtLS0NCj4gIGRyaXZl
-cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYyB8IDEzICsrKysrKystLS0tLS0N
-Cj4gIDEgZmlsZSBjaGFuZ2VkLCA3IGluc2VydGlvbnMoKyksIDYgZGVsZXRpb25zKC0pDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5j
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYmRldi5jDQo+IGluZGV4IDIx
-OWVlMTdkZTNmNjguLmMwOTI0NmE5ODY1Y2QgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2Ry
-bS9pOTE1L2Rpc3BsYXkvaW50ZWxfZmJkZXYuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkx
-NS9kaXNwbGF5L2ludGVsX2ZiZGV2LmMNCj4gQEAgLTc1LDkgKzc1LDEwIEBAIHN0YXRpYyBzdHJ1
-Y3QgaW50ZWxfZnJvbnRidWZmZXIgKnRvX2Zyb250YnVmZmVyKHN0cnVjdCBpbnRlbF9mYmRldiAq
-aWZiZGV2KQ0KPiAgCXJldHVybiBpZmJkZXYtPmZiLT5mcm9udGJ1ZmZlcjsNCj4gIH0NCj4gDQo+
-IC1zdGF0aWMgdm9pZCBpbnRlbF9mYmRldl9pbnZhbGlkYXRlKHN0cnVjdCBpbnRlbF9mYmRldiAq
-aWZiZGV2KQ0KPiArLyogVGhlIGNvbnNvbGUgb3BlcmF0aW9uIGhhcyBhbHJlYWR5IGNvbXBsZXRl
-ZCwgaGVuY2UgZmx1c2ggbm90IGludmFsaWRhdGUuICovDQo+ICtzdGF0aWMgdm9pZCBpbnRlbF9m
-YmRldl9mbHVzaChzdHJ1Y3QgaW50ZWxfZmJkZXYgKmlmYmRldikNCj4gIHsNCj4gLQlpbnRlbF9m
-cm9udGJ1ZmZlcl9pbnZhbGlkYXRlKHRvX2Zyb250YnVmZmVyKGlmYmRldiksIE9SSUdJTl9DUFUp
-Ow0KPiArCWludGVsX2Zyb250YnVmZmVyX2ZsdXNoKHRvX2Zyb250YnVmZmVyKGlmYmRldiksIE9S
-SUdJTl9DUFUpOw0KPiAgfQ0KPiANCj4gIEZCX0dFTl9ERUZBVUxUX0RFRkVSUkVEX0lPTUVNX09Q
-UyhpbnRlbF9mYmRldiwNCj4gQEAgLTkxLDcgKzkyLDcgQEAgc3RhdGljIGludCBpbnRlbF9mYmRl
-dl9zZXRfcGFyKHN0cnVjdCBmYl9pbmZvICppbmZvKQ0KPiANCj4gIAlyZXQgPSBkcm1fZmJfaGVs
-cGVyX3NldF9wYXIoaW5mbyk7DQo+ICAJaWYgKHJldCA9PSAwKQ0KPiAtCQlpbnRlbF9mYmRldl9p
-bnZhbGlkYXRlKGlmYmRldik7DQo+ICsJCWludGVsX2ZiZGV2X2ZsdXNoKGlmYmRldik7DQo+IA0K
-PiAgCXJldHVybiByZXQ7DQo+ICB9DQo+IEBAIC0xMDMsNyArMTA0LDcgQEAgc3RhdGljIGludCBp
-bnRlbF9mYmRldl9ibGFuayhpbnQgYmxhbmssIHN0cnVjdCBmYl9pbmZvICppbmZvKQ0KPiANCj4g
-IAlyZXQgPSBkcm1fZmJfaGVscGVyX2JsYW5rKGJsYW5rLCBpbmZvKTsNCj4gIAlpZiAocmV0ID09
-IDApDQo+IC0JCWludGVsX2ZiZGV2X2ludmFsaWRhdGUoaWZiZGV2KTsNCj4gKwkJaW50ZWxfZmJk
-ZXZfZmx1c2goaWZiZGV2KTsNCj4gDQo+ICAJcmV0dXJuIHJldDsNCj4gIH0NCj4gQEAgLTExNiw3
-ICsxMTcsNyBAQCBzdGF0aWMgaW50IGludGVsX2ZiZGV2X3Bhbl9kaXNwbGF5KHN0cnVjdCBmYl92
-YXJfc2NyZWVuaW5mbyAqdmFyLA0KPiANCj4gIAlyZXQgPSBkcm1fZmJfaGVscGVyX3Bhbl9kaXNw
-bGF5KHZhciwgaW5mbyk7DQo+ICAJaWYgKHJldCA9PSAwKQ0KPiAtCQlpbnRlbF9mYmRldl9pbnZh
-bGlkYXRlKGlmYmRldik7DQo+ICsJCWludGVsX2ZiZGV2X2ZsdXNoKGlmYmRldik7DQo+IA0KPiAg
-CXJldHVybiByZXQ7DQo+ICB9DQo+IEBAIC0xODAsNyArMTgxLDcgQEAgc3RhdGljIHZvaWQgaW50
-ZWxmYl9yZXN0b3JlKHN0cnVjdCBkcm1fZmJfaGVscGVyICpmYl9oZWxwZXIpDQo+ICB7DQo+ICAJ
-c3RydWN0IGludGVsX2ZiZGV2ICppZmJkZXYgPSB0b19pbnRlbF9mYmRldihmYl9oZWxwZXIpOw0K
-PiANCj4gLQlpbnRlbF9mYmRldl9pbnZhbGlkYXRlKGlmYmRldik7DQo+ICsJaW50ZWxfZmJkZXZf
-Zmx1c2goaWZiZGV2KTsNCj4gIH0NCj4gDQo+ICBzdGF0aWMgdm9pZCBpbnRlbGZiX3NldF9zdXNw
-ZW5kKHN0cnVjdCBkcm1fZmJfaGVscGVyICpmYl9oZWxwZXIsIGJvb2wgc3VzcGVuZCkNCj4gLS0N
-Cj4gMi41My4wDQoNCg==
+On Thu, 05 Nov 2026, Kai Vehmanen <kai.vehmanen@linux.intel.com> wrote:
+> The ELD Port_ID field (bytes 8..15 of the baseline block) is typically
+> zero on Linux today: drm_edid_to_eld() leaves it empty and no in-tree driver
+> fills it in. amdgpu, radeon and nouveau pass the raw connector->eld to
+> the audio component. On the amdgpu DC Azalia register path the value
+> is a hardcoded constant, the same for every port.
+> Only closed display drivers fill the value.
+>
+> Pipewire added support for "Port_ID" in merge request:
+> https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/3025
+>
+> As a result, when two identical monitors are connected their ELDs are
+> byte-identical, and userspace (e.g. PipeWire/WirePlumber) cannot
+> passively tell which HDMI/DP PCM belongs to which DRM connector.
+>
+> This series adds a DRM helper that fills Port_ID with a common layout,
+> and uses it in i915:
+>
+>   bits 63:48 - PCI domain of the DRM device
+>   bits 47:32 - PCI bus/device/function of the DRM device
+>   bits 31:0  - DRM connector object ID
+>
+> The upper half follows the layout documented for the AMD Azalia sink
+> info registers (dce_audio.c: "PORT_ID1 = 16bit BDF"). The aim is for
+> this to become a convention other drivers can opt into. For drivers
+> that copy connector->eld to the audio component (amdgpu DM, radeon,
+> nouveau), adopting it would be a one-line change. Comments from the
+> AMD and nouveau folks on whether the layout works for them are very
+> welcome.
+>
+> An alternative would be to fill Port_ID directly in drm_edid_to_eld(),
+> so every driver gets it without changes. I went with an opt-in helper
+> to avoid changing the ELD contents seen by all drivers and existing
+> userspace at once.
+>
+> The value is exposed to userspace via the ALSA ELD control and
+> /proc/asound/cardX/eld#Y.
+
+We might want drm_edid_to_eld() to do this automatically for everyone in
+the future, but I think this is a good, cautious first step.
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+>
+> Kai Vehmanen (2):
+>   drm/eld: Add drm_eld_set_port_id() helper
+>   drm/i915/audio: Populate ELD Port_ID
+>
+>  drivers/gpu/drm/drm_eld.c                  | 42 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_audio.c |  2 ++
+>  include/drm/drm_eld.h                      |  3 ++
+>  3 files changed, 47 insertions(+)
+
+-- 
+Jani Nikula, Intel
