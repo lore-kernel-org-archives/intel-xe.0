@@ -2,48 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83FB606A329
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 14:57:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CE05606A326
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 14:59:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=igalia.com header.i=@igalia.com header.a=rsa-sha256 header.s=20170329 header.b=OU7AUQIV
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MoBJXGaF
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D08110F202;
-	Fri,  6 Nov 2026 14:57:14 +0000 (UTC)
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6364C10F91F;
- Fri,  6 Nov 2026 14:57:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:From:Reply-To;
- bh=cwZ+WophZbD5EZ+IEm2J/v9FXuVOIifsozqAD8M0f9I=; t=1793977028; x=2109337028; 
- b=OU7AUQIVcDi+EJbE2ZNWiDJVtfFsDlRlcV1bf/0E7IFnw2vEkL34Md03zuP/v1BH349ovzTjnaR
- 4xq1uxTi7/DeWimxLxsEvwHHR0DblG2gG0U80HzncTC/OI2j1IhWYYTZQEBP0Hm9IH1apzV9BiHZh
- 8QDZCxrkFJW1ed9yVJNZGJHrOc9YaFiXGYEhV2kon2zbmi3lC9I/z41jviMwLzoU7EI/DV+1zyXh/
- 0Qg0wGYn769epadDqTXY9aeJj7I1OzBgj02RckC3RF7Y1J1l164zJU/iT2KmeqUL4HbqP16s0frED
- Kimvh0sjmA9RX9FPdtiYNPyLrmMXlHTMTG1Q==;
-Received: from [81.79.79.1] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1xPLNK-004Vmh-9n; Fri, 06 Nov 2026 15:57:06 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Philipp Stanner <phasta@kernel.org>, intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/7] drm/sched: Replace completion with a flush
-Date: Fri,  6 Nov 2026 14:56:58 +0000
-Message-ID: <20261106145702.61640-4-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261106145702.61640-1-tvrtko.ursulin@igalia.com>
-References: <20261106145702.61640-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41E9D10F202;
+	Fri,  6 Nov 2026 14:59:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2060010F202;
+ Fri,  6 Nov 2026 14:59:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793977141; x=1825513141;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=yAMRKQdaqvBVDNNs/6nOpVo1aEWWIIROZum/fiAJv/M=;
+ b=MoBJXGaFClcDdaMk5nWCZpnm5n8ERod2oExVDbgS8P2ENENq/ROtAj8V
+ nSglkN4tsFcO2YsWVAaLURQVJuR7wRk32hHz8CbOUAvH8bqfpXn+QNqSe
+ 32sXaCLaDBnk+n/tp2O/5q7Po+rPc0zwcMmfM5EF+Q++xNopnIglfvqtA
+ TZScB0I3S4+eFSsLytW6wtuEul2r10PiL/QpsVh2oGiXRZnOUMilK/uPi
+ /E15J6BkznrRKzjbtcF6f1sWXxXfh2Z6JNDRKddaNXkUG6laVfQGzuMD6
+ dnOJ9sxfz52wY1knu+q5XKf7jEdm6/Bxj3AWiH67anoUSDEfo18PsRu10 Q==;
+X-CSE-ConnectionGUID: q9rYrzkYTw2uK85XnjWGaQ==
+X-CSE-MsgGUID: 4uB092zDT3yxFU5oj8zU2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2891314"
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="2891314"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2026 06:59:00 -0800
+X-CSE-ConnectionGUID: 06Qjt/wlSJmkYWUfcs0Y2Q==
+X-CSE-MsgGUID: cJiSiCxMTpGZdAjde/WRgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="7190402"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.101])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Nov 2026 06:58:59 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 6/9] drm/i915/uncore: Don't meddle with mmio debug upon
+ user forcewake
+In-Reply-To: <20261104221842.18799-7-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261104221842.18799-1-ville.syrjala@linux.intel.com>
+ <20261104221842.18799-7-ville.syrjala@linux.intel.com>
+Date: Fri, 06 Nov 2026 16:58:56 +0200
+Message-ID: <f8a0ccccfd1929ef7d845507f2cb8eb960d9fcad@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,217 +68,135 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,HK_RANDOM_FROM,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Due the scheduler locking design, and the inability to always lock both
-the entity and the run-queue in the consistent order, a completion exists
-which effectively marks the entity as in use from a call path which is not
-able to lock it.
+On Thu, 05 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Currently when userspace takes the forcewake via debugfs, the
+> kernel will stop looking for unclaimed mmio accesses. That link
+> is kinda weird since forcewake is for GT stuff and unclaimed
+> mmio detection is for display stuff.
+>
+> Just kill the mmio debug suspend/resume upon user forcewake.
+> One should almost always use IGT_NO_FORCEWAKE=3D1 when poking
+> at display register from userspace anyway so as to not
+> perturb the rest of the system.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-When entity is selected from the run job worker, its completion is marked
-as non-idle all until the code is sure it will not be dereferencing it any
-more, at which point it signals it as idle, releasing the potential
-parallel cleanup path.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-We can remove the need for this completion by implementing the identical
-guarantee by simply flushing the run job work from the cleanup path, after
-having removed the entity from the run queue.
+> ---
+>  drivers/gpu/drm/i915/intel_uncore.c | 46 ++---------------------------
+>  drivers/gpu/drm/i915/intel_uncore.h |  2 --
+>  2 files changed, 2 insertions(+), 46 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/i=
+ntel_uncore.c
+> index e360e4f9d9a2..abd695e880c1 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -65,41 +65,6 @@ intel_uncore_mmio_debug_init_early(struct drm_i915_pri=
+vate *i915)
+>  	i915->uncore.debug =3D &i915->mmio_debug;
+>  }
+>=20=20
+> -static void mmio_debug_suspend(struct intel_uncore *uncore)
+> -{
+> -	if (!uncore->debug)
+> -		return;
+> -
+> -	spin_lock(&uncore->debug->lock);
+> -
+> -	/* Save and disable mmio debugging for the user bypass */
+> -	if (!uncore->debug->suspend_count++) {
+> -		uncore->debug->saved_mmio_check =3D uncore->debug->unclaimed_mmio_chec=
+k;
+> -		uncore->debug->unclaimed_mmio_check =3D 0;
+> -	}
+> -
+> -	spin_unlock(&uncore->debug->lock);
+> -}
+> -
+> -static bool check_for_unclaimed_mmio(struct intel_uncore *uncore);
+> -
+> -static void mmio_debug_resume(struct intel_uncore *uncore)
+> -{
+> -	if (!uncore->debug)
+> -		return;
+> -
+> -	spin_lock(&uncore->debug->lock);
+> -
+> -	if (!--uncore->debug->suspend_count)
+> -		uncore->debug->unclaimed_mmio_check =3D uncore->debug->saved_mmio_chec=
+k;
+> -
+> -	if (check_for_unclaimed_mmio(uncore))
+> -		drm_info(&uncore->i915->drm,
+> -			 "Invalid mmio detected during user access\n");
+> -
+> -	spin_unlock(&uncore->debug->lock);
+> -}
+> -
+>  static const char * const forcewake_domain_names[] =3D {
+>  	"render",
+>  	"gt",
+> @@ -598,9 +563,6 @@ check_for_unclaimed_mmio(struct intel_uncore *uncore)
+>=20=20
+>  	lockdep_assert_held(&uncore->debug->lock);
+>=20=20
+> -	if (uncore->debug->suspend_count)
+> -		return false;
+> -
+>  	if (intel_uncore_has_fpga_dbg_unclaimed(uncore))
+>  		ret |=3D fpga_check_for_unclaimed_mmio(uncore);
+>=20=20
+> @@ -733,10 +695,8 @@ void intel_uncore_forcewake_get(struct intel_uncore =
+*uncore,
+>  void intel_uncore_forcewake_user_get(struct intel_uncore *uncore)
+>  {
+>  	spin_lock_irq(&uncore->lock);
+> -	if (!uncore->user_forcewake_count++) {
+> +	if (!uncore->user_forcewake_count++)
+>  		intel_uncore_forcewake_get__locked(uncore, FORCEWAKE_ALL);
+> -		mmio_debug_suspend(uncore);
+> -	}
+>  	spin_unlock_irq(&uncore->lock);
+>  }
+>=20=20
+> @@ -750,10 +710,8 @@ void intel_uncore_forcewake_user_get(struct intel_un=
+core *uncore)
+>  void intel_uncore_forcewake_user_put(struct intel_uncore *uncore)
+>  {
+>  	spin_lock_irq(&uncore->lock);
+> -	if (!--uncore->user_forcewake_count) {
+> -		mmio_debug_resume(uncore);
+> +	if (!--uncore->user_forcewake_count)
+>  		intel_uncore_forcewake_put__locked(uncore, FORCEWAKE_ALL);
+> -	}
+>  	spin_unlock_irq(&uncore->lock);
+>  }
+>=20=20
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/i=
+ntel_uncore.h
+> index fafc2ca9a237..4ec7c545d04e 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.h
+> +++ b/drivers/gpu/drm/i915/intel_uncore.h
+> @@ -42,8 +42,6 @@ struct intel_gt;
+>  struct intel_uncore_mmio_debug {
+>  	spinlock_t lock; /** lock is also taken in irq contexts. */
+>  	int unclaimed_mmio_check;
+> -	int saved_mmio_check;
+> -	u32 suspend_count;
+>  };
+>=20=20
+>  enum forcewake_domain_id {
 
-We then know that the entity is no longer reachable by the run queue
-selection logic, so as soon as any pending work is done the cleanup can
-safely proceed. And because we have marked the entity as stopped, we also
-know that the entity cannot re-enter the run queue.
-
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Danilo Krummrich <dakr@kernel.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Philipp Stanner <phasta@kernel.org>
-Cc: amd-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
----
- drivers/gpu/drm/scheduler/sched_entity.c   | 18 ++++++++++--------
- drivers/gpu/drm/scheduler/sched_internal.h | 14 ++++++++++++--
- drivers/gpu/drm/scheduler/sched_main.c     |  2 --
- drivers/gpu/drm/scheduler/sched_rq.c       | 19 +++++++++++++------
- include/drm/gpu_scheduler.h                |  9 ---------
- 5 files changed, 35 insertions(+), 27 deletions(-)
-
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index a18f637f9e99..2a827522e23f 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -161,11 +161,6 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
- 			      DRM_SCHED_PRIORITY_KERNEL : priority;
- 	entity->rq = sched_list[0]->sched_rq[entity->rq_priority];
- 
--	init_completion(&entity->entity_idle);
--
--	/* We start in an idle state. */
--	complete_all(&entity->entity_idle);
--
- 	spin_lock_init(&entity->lock);
- 	spsc_queue_init(&entity->job_queue);
- 
-@@ -312,16 +307,23 @@ static void drm_sched_entity_kill_jobs_cb(struct dma_fence *f,
-  */
- void drm_sched_entity_kill(struct drm_sched_entity *entity)
- {
-+	struct drm_gpu_scheduler *sched;
- 	struct drm_sched_job *job;
- 	struct dma_fence *prev;
- 
- 	spin_lock(&entity->lock);
- 	entity->stopped = true;
--	drm_sched_rq_remove_entity(entity->rq, entity);
-+	sched = drm_sched_rq_remove_entity(entity->rq, entity);
- 	spin_unlock(&entity->lock);
- 
--	/* Make sure this entity is not used by the scheduler at the moment */
--	wait_for_completion(&entity->entity_idle);
-+	/*
-+	 * Make sure this entity is not used by the scheduler at the moment.
-+	 *
-+	 * Scheduler is guaranteed to be stable after the entity was stopped and
-+	 * removed from the run-queue.
-+	 */
-+	if (sched)
-+		drm_sched_flush_run_work(sched);
- 
- 	spin_lock(&entity->lock);
- 	prev = dma_fence_get(entity->last_scheduled);
-diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
-index 32d3ddb820be..ca724a8a4433 100644
---- a/drivers/gpu/drm/scheduler/sched_internal.h
-+++ b/drivers/gpu/drm/scheduler/sched_internal.h
-@@ -42,13 +42,23 @@ bool drm_sched_can_queue(struct drm_gpu_scheduler *sched,
- 			 struct drm_sched_entity *entity);
- void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
- 
-+/**
-+ * drm_sched_flush_run_work - flush the run-job work
-+ * @sched: scheduler instance
-+ */
-+static inline void drm_sched_flush_run_work(struct drm_gpu_scheduler *sched)
-+{
-+	flush_work(&sched->work_run_job);
-+}
-+
- void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
- 		       struct drm_sched_rq *rq);
- 
- struct drm_gpu_scheduler *
- drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts);
--void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
--				struct drm_sched_entity *entity);
-+struct drm_gpu_scheduler *
-+drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
-+			   struct drm_sched_entity *entity);
- void drm_sched_rq_pop_entity(struct drm_sched_entity *entity);
- 
- struct drm_sched_entity *
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 2355acc2b867..338050390fc8 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -1033,7 +1033,6 @@ static void drm_sched_run_job_work(struct work_struct *w)
- 
- 	sched_job = drm_sched_entity_pop_job(entity);
- 	if (!sched_job) {
--		complete_all(&entity->entity_idle);
- 		drm_sched_run_job_queue(sched);
- 		return;
- 	}
-@@ -1049,7 +1048,6 @@ static void drm_sched_run_job_work(struct work_struct *w)
- 	 * refcount has been incremented for the scheduler already.
- 	 */
- 	fence = sched->ops->run_job(sched_job);
--	complete_all(&entity->entity_idle);
- 	drm_sched_fence_scheduled(s_fence, fence);
- 
- 	if (!IS_ERR_OR_NULL(fence)) {
-diff --git a/drivers/gpu/drm/scheduler/sched_rq.c b/drivers/gpu/drm/scheduler/sched_rq.c
-index 23f46ec610e7..79f7bdb5b3f0 100644
---- a/drivers/gpu/drm/scheduler/sched_rq.c
-+++ b/drivers/gpu/drm/scheduler/sched_rq.c
-@@ -297,23 +297,32 @@ drm_sched_rq_add_entity(struct drm_sched_entity *entity, ktime_t ts)
-  * @entity: scheduler entity
-  *
-  * Removes a scheduler entity from the run queue.
-+ *
-+ * Return: DRM scheduler selected to handle this entity or NULL if entity has
-+ * already been removed.
-  */
--void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
--				struct drm_sched_entity *entity)
-+struct drm_gpu_scheduler *
-+drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
-+			   struct drm_sched_entity *entity)
- {
-+	struct drm_gpu_scheduler *sched;
-+
- 	lockdep_assert_held(&entity->lock);
- 
- 	if (list_empty(&entity->list))
--		return;
-+		return NULL;
- 
- 	spin_lock(&rq->lock);
- 
--	atomic_dec(rq->sched->score);
-+	sched = rq->sched;
-+	atomic_dec(sched->score);
- 	list_del_init(&entity->list);
- 
- 	drm_sched_rq_remove_fifo_locked(entity, rq);
- 
- 	spin_unlock(&rq->lock);
-+
-+	return sched;
- }
- 
- static ktime_t
-@@ -407,8 +416,6 @@ drm_sched_rq_select_entity(struct drm_gpu_scheduler *sched,
- 				spin_unlock(&rq->lock);
- 				return ERR_PTR(-ENOSPC);
- 			}
--
--			reinit_completion(&entity->entity_idle);
- 			break;
- 		}
- 	}
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 3b0978fa8cf0..c89a581f54bf 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -27,7 +27,6 @@
- #include <drm/spsc_queue.h>
- #include <linux/average.h>
- #include <linux/dma-fence.h>
--#include <linux/completion.h>
- #include <linux/xarray.h>
- #include <linux/workqueue.h>
- 
-@@ -232,14 +231,6 @@ struct drm_sched_entity {
- 	 */
- 	bool 				stopped;
- 
--	/**
--	 * @entity_idle:
--	 *
--	 * Signals when entity is not in use, used to sequence entity cleanup in
--	 * drm_sched_entity_fini().
--	 */
--	struct completion		entity_idle;
--
- 	/**
- 	 * @oldest_job_waiting:
- 	 *
--- 
-2.56.0
-
+--=20
+Jani Nikula, Intel
