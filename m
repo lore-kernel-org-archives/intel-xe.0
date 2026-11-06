@@ -2,102 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 604CC606A31B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 05:08:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057BD606A328
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 06:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Fy763ARJ
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=QbDQrMrk
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23FAF10E197;
-	Fri,  6 Nov 2026 05:08:11 +0000 (UTC)
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
- [209.85.160.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D181A10E0C4
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 05:08:04 +0000 (UTC)
-Received: by mail-qt1-f182.google.com with SMTP id
- d75a77b69052e-5364042eecfso3084361cf.2
- for <intel-xe@lists.freedesktop.org>; Thu, 05 Nov 2026 21:08:04 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1793941684; cv=none;
- d=google.com; s=arc-20260327;
- b=BMSnuP0xbl6ljW7Yv3R/MxWhYYwAsNfm+pL8eMJdYEFfsRsCBhwk8euzjdfrKdOiuJ
- bCiZ23MX6pagZQXnKrVu5rP4D4phFUe1fSw3oOPURhV2Rf/5AYfGubo/5YdSkfntpeXx
- Ya2d1GLZpMEvXphqry2ZPSV0MWe3Y1YcQ3sktATX/ZbnAtOHHgNca93kG3Y59O7ytgcj
- 579r9kyw2Gn/sB2VhmfKaJLryiDzwzKJVvkxwVt98p0PGLVkZHpCdHq4DFkjIl5lN4a5
- +wnljutNDVqu9S5x9aA1Ka4HKfTAfPqRuoa9TyV0QQTvxAcRi+S/tLqWb8IQcdSNp12i
- wlbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=huVl+IlIYSdVDEO2gdFrs3mcLTIebTCw/xfvvqFw3UI=;
- fh=RhOnCGrCyWrYX32gH7BgKdSVm+n4BcfIKOEjoHdsNfo=;
- b=tA+W4guHpCUybMWGbK8pRlQ1QkODylsMRqp9N2c2iZNdZLUkkCSAdE+z+g1CumkdTL
- QsBSLaKHzzUjk3nI72MJCmpR8Mv+YE/nvdVLhfmlCNAMyrGvqHli8oLR6oXmWb41tXsK
- JZaqN9W6pHarWz0fTpVvqpd9oKnquVOUq6UxKECNLNlMNsAKdw3R3ZTFfPFCLdkZPuD7
- WAwUngKA/zN+njSY/bYgeCgN96ZWJAkFedmpLPy2PnX4jAX09dsuK3N9+0MGOr6E2bkk
- z4LPfswJ7hfz99va3LsR3e6LH35GNy9LXo7kkgXf16XaZytV7OJPnX/RrrGFAQzvEghE
- xsfg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1793941684; x=1794546484; darn=lists.freedesktop.org;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=huVl+IlIYSdVDEO2gdFrs3mcLTIebTCw/xfvvqFw3UI=;
- b=Fy763ARJpbLOLHMl9HpFCdXWCmexPCeSvdFcvqZYv49dk/4hjpsNCGOrnKeZvLvqQP
- fPxV7GaqVybRb6l/j0Id8nKK1ro2pOr4zl4CDI9FDrvztY58oJHikBgl4ERt2hGF43Bo
- eZ49vv1IbxnzejRS/1ZD8LmUbQpt50N7VUvAF26OP1IQNv/q1NhEPLLbGCJey5Pa590z
- v1MaTiU7QvXOIfPFDNinQBPHy4VtPCHuvqP569O3ZkztQ6R+fb7UWH1+1XCaY25OlSQB
- 6Bs4tWQUZ4mZ4kXh9ih4BtDdntIHzj/hTZ/IWNRwZkgYlgCCKLF4buBwYXLaLPDiuZaj
- +Z9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1793941684; x=1794546484;
- h=content-type:cc:to:subject:message-id:date:from:in-reply-to
- :references:mime-version:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=huVl+IlIYSdVDEO2gdFrs3mcLTIebTCw/xfvvqFw3UI=;
- b=DPG7R/8sTpYlETOxrLIht3nJU86SaddnjuIc9oA6R5e1ZxUv/JFP/r8opVB100r20q
- gvAhu+b6+l/XUnwy0wOvevO6XsA9B8vj+7cjcGIMaqE823hRL7DHJsBBW1r8rb4fOBLB
- QOF6Q+TOy+NqRk3BsTpq7D7xa/WD/VDTThSlVxpax1bf1jjYgkai+3sqScVweLlmnbUu
- njYAJZFU++xm/cN9+J51Q8tQ5Znh3nvu+VSCcckpG0UsS2Wq3pILEacFVPBMcmMuW01p
- HhJEQ+SuKO0uUcQMvNM4ojorPVXaKMr33tUtbChSZM/9UBsQztKojS12B04hybc8OkcZ
- 6F9w==
-X-Forwarded-Encrypted: i=1;
- AKwUvBxYl4/wRugvOI3630CXgiLbXgGYpNFGyeXcADdk1Pc1KTFCfO+dnBCzi45JPllEl+sfT8V6AiyamQ==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/ZNEOFhPgnB6NBJ/dYXwS7V/8HRMqDikLPeJyLr6Jr7daJeg7B
- TfsWLFD0Jx4S2h88uJwXCRD7fD5Yj7RtyFQbxzKdA01J4fXJrw6rHvsPZFAh4Z3yQRXPaHXCeIE
- zydGG0dnlyWTYmW/VJWptP2NituoT/cw=
-X-Gm-Gg: AYBFou3/j2GCU4sy2TN65vscziEzsPcVur9tWKhFp1OUFcOZIuITidKqnEObQPRQvuA
- HB5jo+d+KDFRNCsBQ/K/hxIjd4sSgDZcoCjFr7/iyc8Cz6z+OGukIfI3r/NsUSHzNXMfHD6xyiE
- Zx5iajHanx2UbHghDy385fcUKi2aWuA6QmVglHb2x5+JcFeXUpf0G+fv0/tIuu6J0i/jIdeGXCT
- cR0Fw2GlaKacBxCFNBM0WBQivqFBxkcLQmcFC4xi167cwMjEK+iUwKO3xUIbSMccC9peo2jjW+I
- 7tpkKwJlz0qWlKMdaPSkkRVPTPKa7zMLds0dsLVxsM6HtJ8Lzt6SqZ6IO6oGO5WIKXCBTT4IfTN
- 9QgVmJoI6W7bVwMIUZLonJx4z1vn6/krU0+BP8UuiVwKQLTIPzHz5jl3DhQqE3BVUPrgxCuNsOY
- aLa5zs6jVgu5jxSMtZ+YFhsg==
-X-Received: by 2002:a05:622a:114b:b0:54d:6b3a:d22f with SMTP id
- d75a77b69052e-54e1309deb9mr23285741cf.22.1793941683728; Thu, 05 Nov 2026
- 21:08:03 -0800 (PST)
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-References: <au06WTroGBQ/Gqbt@gsse-cloud1.jf.intel.com>
- <au09iOI78yeru3BK@gsse-cloud1.jf.intel.com>
-In-Reply-To: <au09iOI78yeru3BK@gsse-cloud1.jf.intel.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Fri, 6 Nov 2026 15:07:51 +1000
-X-Gm-Features: AclHuK-Tzf2viDf_stMcddnJZaRm6-IN9felbic9bp3B876AGg3rzgiWvizNEeY
-Message-ID: <CAPM=9twYRmFoaibBZQA2+-qRe=dTc8z9fC0WjgudM=HD+QzDGQ@mail.gmail.com>
-Subject: Re: [PULL] drm-xe-fixes
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dim-tools@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0B2C10E46E;
+	Fri,  6 Nov 2026 06:44:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A96610E46E;
+ Fri,  6 Nov 2026 06:43:59 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 2739E605F2;
+ Fri,  6 Nov 2026 06:43:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 821611F008A1;
+ Fri,  6 Nov 2026 06:43:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1793947437;
+ bh=8JY5aYoae4gvBbGk4R/fq3xUEJBzbKgMtlay4eixobA=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=QbDQrMrkPXpwdJ515CqCnJKHunE0bw/QVPFTeeFwSipUdFcS1rxJvGwGXHVt0Vl5N
+ Nq11O6ftPpVVX6JkkuzwhfYzRXOqUBxq/a5CIhFG5v17CSqsBXKb6dGbB0iY1F+ENG
+ ZTO4tdBdYb5boCwYCI5q4QxVCm30PW42W1WzewE/sGxdWNLZ5Tn7o204dME3M7qW0R
+ EVMqUicXUUYBZIclN+4PXkaI93AqT+zK0mSx9aCSH501OQYQevmasMNten7MsMQH5q
+ +2PAv/pV/1xRtVhQjjhxpY+dcQTEQYLvhnu6X8CzC6pBGU5uZrEhlrrIIo98MG8NMG
+ JXgtCczkedcyw==
+Message-ID: <sashiko-outbox-200933@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2 17/23] RDMA/uverbs: Use the SGT_P2P mapping type
+To: "Alistair Popple" <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-nvme@lists.infradead.org
+Cc: media-ci@linuxtv.org
+In-Reply-To: <20261105-dma_mapping_type_v4-v2-17-78b8dc9ae80a@nvidia.com>
+References: <20261105-dma_mapping_type_v4-v2-0-78b8dc9ae80a@nvidia.com>
+ <20261105-dma_mapping_type_v4-v2-17-78b8dc9ae80a@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 06 Nov 2026 06:43:57 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,41 +49,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-2.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
->
-> I'm not sure why patches below bac6deafcd2b are in this PR?
->
-> I did have to force-push drm-xe-fixes today, likewise had to force the
-> PR generation as patches which were not Xe's complained about a missing
-> SoB.
->
-> Not sure what is going here. If you need to drop this PR, I can sync
-> with my fellow Intel maintainers and try again after rc2. Again apologie.
->
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Medium] RDMA/uverbs: commit message contradicts
+  uverbs_dmabuf_match_mapping()
+--
 
-Something is very messed up, you don't have v7.4-rc1 so it seems like
-somebody rebased back too far and screwed up the tree history.
+commit f919774da72af458231453cd6f22c8076d245156
+Author: Jason Gunthorpe <jgg@ziepe.ca>
 
-Please rebase onto Linus v7.4-rc1 tag
+RDMA/uverbs: Use the SGT_P2P mapping type
 
-commit 6628e7d4c6b25c8d18f1345e3a20d21829aae7e4 (tag: v7.4-rc1)
+This commit converts uverbs dmabuf from an attach callback checking
+attachment->peer2peer to a match_mapping callback using
+DMA_BUF_EMAPPING_SGT_REQUIRES_P2P().
 
-In your tree
+>     RDMA/uverbs: Use the SGT_P2P mapping type
+>    =20
+>     Very similar to habana, except the rejection of unsupported
+>     pci_p2p_dma_distance() is done inside map not attach via
+>     dma_buf_phys_vec_to_sgt().
+>    =20
+>     Convert this directly to a SGT_P2P match which will prevent matching =
+if
+>     dma_buf_phys_vec_to_sgt() would fail.
+>    =20
+>     Remove the now empty attach function.
+>    =20
+>     Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+>     Signed-off-by: Alistair Popple <apopple@nvidia.com>
+>=20
+> diff --git a/drivers/infiniband/core/uverbs_std_types_dmabuf.c b/drivers/=
+infiniband/core/uverbs_std_types_dmabuf.c
+> index 8d8c997a48834..0bae578c3d78e 100644
+> --- a/drivers/infiniband/core/uverbs_std_types_dmabuf.c
+> +++ b/drivers/infiniband/core/uverbs_std_types_dmabuf.c
 
-commit 8f26dd9c8361a9428cad2ffa40bad672577be6c6
-Author: Linus Torvalds <torvalds@linux-foundation.org>
-Commit: Matthew Brost <matthew.brost@intel.com>
+[ ... ]
 
-    Linux 7.4-rc1
+> @@ -95,13 +86,30 @@ static void uverbs_dmabuf_release(struct dma_buf *dma=
+buf)
+>  	uverbs_uobject_put(&priv->uobj);
+>  }
+> =20
+> -static const struct dma_buf_ops uverbs_dmabuf_ops =3D {
+> -	.attach =3D uverbs_dmabuf_attach,
+> +static const struct dma_buf_mapping_sgt_exp_ops uverbs_dma_buf_sgt_ops =
+=3D {
+>  	.map_dma_buf =3D uverbs_dmabuf_map,
+>  	.unmap_dma_buf =3D uverbs_dmabuf_unmap,
+> +};
+> +
+> +static int uverbs_dmabuf_match_mapping(struct dma_buf_match_args *args)
+> +{
+> +	struct dma_buf_mapping_match sgt_match[1];
+> +
+> +	/*
+> +	 * MMIO, so the importer must accept P2P. The provider is only valid
+> +	 * under the dma_resv lock while not revoked, so the distance check is
+> +	 * left to dma_buf_phys_vec_to_sgt() at map time, as before.
+> +	 */
+> +	sgt_match[0] =3D DMA_BUF_EMAPPING_SGT_REQUIRES_P2P(&uverbs_dma_buf_sgt_=
+ops);
 
-Something went wrong in a rebase land, force pushing was probably not
-the right answer.
+[Severity: Medium]
+Does the commit message match the implementation in
+uverbs_dmabuf_match_mapping()?
 
-Dave.
+The commit title and changelog state that this converts uverbs to a SGT_P2P
+match which prevents matching if dma_buf_phys_vec_to_sgt() would fail due to
+an unsupported pci_p2p_dma_distance().
+
+However, uverbs_dmabuf_match_mapping() uses
+DMA_BUF_EMAPPING_SGT_REQUIRES_P2P() rather than DMA_BUF_EMAPPING_SGT_P2P().
+As noted in the code comment, DMA_BUF_EMAPPING_SGT_REQUIRES_P2P() only chec=
+ks
+that the importer accepts P2P (replacing the !attachment->peer2peer check in
+uverbs_dmabuf_attach()) and leaves the P2P distance check to
+dma_buf_phys_vec_to_sgt() at map time because priv->provider is only valid
+under the dma_resv lock while not revoked.
+
+Should the commit title and message be updated to reflect that
+DMA_BUF_EMAPPING_SGT_REQUIRES_P2P() is used instead of SGT_P2P, and that the
+distance check remains at map time?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261105-dma_mappin=
+g_type_v4-v2-0-78b8dc9ae80a@nvidia.com?part=3D17
