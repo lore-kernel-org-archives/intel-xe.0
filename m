@@ -2,62 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4ADA606A326
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 15:12:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E29CA606A329
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 15:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VdF6IIer
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=fhbR9rLV
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76B1F10FA9A;
-	Fri,  6 Nov 2026 15:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F182112DB8;
+	Fri,  6 Nov 2026 15:25:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D43DA10F881
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 15:12:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF6C5112BF5;
+ Fri,  6 Nov 2026 15:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1793977923; x=1825513923;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=3CzQ1THjKjMdyDvM2gJJmG7kFzSZOIEapT7HjIh3790=;
- b=VdF6IIerle8Mo4+Hi1IGr+Aadyv5otsasYAlC2VAUINcwd0O4k/d7a8h
- 9/FaYb+yndk1eTRZtaZ44QFWGAePR6UfHdDAn7Sm1Z1ymxl/jLPK/p9Vn
- O71xm2T4nkOD0HI0/PG2VQG5RjY8oIo+dq9COr0Gj9xQjNWHqNe4igXVj
- bzAf2RzqpfCn+TAt6zopqKz3UTqdqc/u3bAiUCL1tgEvtnXcn3tOrQAWO
- KVHdbNaIcggG789f6pytJ7czjvnQCG6Lb+ruMr6WITAxfaN33vCUQTSMc
- MoRxlIQwsMPHl6Tzw2lytofyF9SBc9rKcE3DkC4RpiSL8SYuwOheXh4fj w==;
-X-CSE-ConnectionGUID: iCM4lBY7TAa/CqqIxwAVYA==
-X-CSE-MsgGUID: 1CaWmAnXStuNHpjuvXGFyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2670578"
+ t=1793978709; x=1825514709;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=d1/Y5G9+5zVvePFZ8Hs1aZF6AphgwiBGZuVZUCXXyBA=;
+ b=fhbR9rLVK35aagVCNpWMg8+2+uysigjthYWXvOEaa3L1J7iUPRo5ym0D
+ IxEvyljNexnUdKo3fdzt/zIlkce/lV1/568bvEjlGmR1Tarm3Vz1XuE8N
+ GK6BpsHHVfsbyx400VxlWXQH8hEzVK2DPWw2rv0xWMaFPzQtCjURrBYR3
+ ag++bwNKXSNhGdylMlAcgIg6MH3doFEJps82cdKaol6nnF1YQNAcXW/JQ
+ cmZodIOA5fFUm4m/hFZhotSnO+xPcIDRROuOl42DIfVXi8KFxGOegeGZC
+ 82jY1BwgvxwAUcbtPsHhNerW/1sXdjE5XYWeExEGBE5DntLjD+pBKrFRy Q==;
+X-CSE-ConnectionGUID: +wKyK+6hTJKseWfCvbryzA==
+X-CSE-MsgGUID: 5rK50uKjTrmjV0oknETEhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2671554"
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="2670578"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+   d="scan'208";a="2671554"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2026 07:12:02 -0800
-X-CSE-ConnectionGUID: EVEeE+ZITmO2wSZ4KZFMLg==
-X-CSE-MsgGUID: hbBwS1z6Tr2yzfHUCgEKKA==
+ 06 Nov 2026 07:25:08 -0800
+X-CSE-ConnectionGUID: lWzr2PeeQsqM2vo46KyDTQ==
+X-CSE-MsgGUID: e0eLURlNTeqXdltqpmPYTw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
-   d="scan'208";a="9162409"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.125])
- ([10.245.245.125])
+   d="scan'208";a="7137679"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.52])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2026 07:12:00 -0800
-Message-ID: <95fc1b6fd8dad1cf3ec620e1ef535a5ec9a391e1.camel@linux.intel.com>
-Subject: Re: [PATCH 2/2] drm/xe/pm: skip BO eviction on iGPU for
- non-hibernation sleep
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Carlos Santa
- <carlos.santa@intel.com>
-Date: Fri, 06 Nov 2026 16:11:58 +0100
-In-Reply-To: <20261106-s4-opti-v1-2-5edaea2c6d31@intel.com>
-References: <20261106-s4-opti-v1-0-5edaea2c6d31@intel.com>
- <20261106-s4-opti-v1-2-5edaea2c6d31@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
+ 06 Nov 2026 07:25:07 -0800
+Date: Fri, 6 Nov 2026 17:25:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Mika Kahola <mika.kahola@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: Limit the eDP joiner to the pipe A and
+ B pair
+Message-ID: <au3xT5fiaiEdpIN-@intel.com>
+References: <20261106094113.2917630-1-mika.kahola@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261106094113.2917630-1-mika.kahola@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,176 +71,81 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 2026-11-06 at 10:16 +0000, Matthew Auld wrote:
-> On iGPU platforms, system RAM and graphics stolen memory remain
-> powered
-> during S2idle and S3 (< S4) suspend, so evicting user buffers or
-> preparing pinned BOs is unnecessary and needlessly purges DONTNEED
-> buffers in userspace caches.
->=20
-> Distinguish S4 hibernation (.freeze and PM_HIBERNATION_PREPARE) from
-> < S4 suspend (.suspend and PM_SUSPEND_PREPARE), and skip BO eviction
-> on
-> iGPU when not creating a hibernation image.
->=20
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Carlos Santa <carlos.santa@intel.com>
+On Fri, Nov 06, 2026 at 09:41:13AM +0000, Mika Kahola wrote:
+> eDP only works joined as the pipe A and B pair, other consecutive pairs
+> fail to come up.
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+There is no such restriction. Just tried it on a PTL here and it works
+just fine.
 
-
-
+> Keep the eDP joiner primary on pipe A. DP and unjoined
+> eDP are unaffected.
+> 
+> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_pci.c | 21 ++++++++++++++++++---
-> =C2=A0drivers/gpu/drm/xe/xe_pm.c=C2=A0 | 26 ++++++++++++++++++++------
-> =C2=A0drivers/gpu/drm/xe/xe_pm.h=C2=A0 |=C2=A0 2 +-
-> =C2=A03 files changed, 39 insertions(+), 10 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c
-> b/drivers/gpu/drm/xe/xe_pci.c
-> index ba23ec60477b..67be6e707361 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -1335,7 +1335,7 @@ static void d3cold_toggle(struct pci_dev *pdev,
-> enum toggle_d3cold toggle)
-> =C2=A0	}
-> =C2=A0}
-> =C2=A0
-> -static int xe_pci_suspend(struct device *dev)
-> +static int __xe_pci_suspend(struct device *dev, bool hibernate)
-> =C2=A0{
-> =C2=A0	struct pci_dev *pdev =3D to_pci_dev(dev);
-> =C2=A0	struct xe_device *xe =3D pdev_to_xe_device(pdev);
-> @@ -1344,7 +1344,7 @@ static int xe_pci_suspend(struct device *dev)
-> =C2=A0	if (xe_survivability_mode_is_boot_enabled(xe))
-> =C2=A0		return -EBUSY;
-> =C2=A0
-> -	err =3D xe_pm_suspend(xe);
-> +	err =3D xe_pm_suspend(xe, hibernate);
-> =C2=A0	if (err)
-> =C2=A0		return err;
-> =C2=A0
-> @@ -1362,6 +1362,16 @@ static int xe_pci_suspend(struct device *dev)
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +static int xe_pci_suspend(struct device *dev)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index ef164a797618..b359a66a018f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1362,16 +1362,27 @@ static int intel_dp_mso_pixel_clock(struct intel_dp *intel_dp, int pixel_clock)
+>  	return pixel_clock / intel_dp->mso_link_count;
+>  }
+>  
+> +/* eDP can only be joined as the pipe A and B pair. */
+> +static u8 intel_dp_joiner_valid_primary_pipe_mask(struct intel_dp *intel_dp,
+> +						  int num_joined_pipes)
 > +{
-> +	return __xe_pci_suspend(dev, false);
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	u8 pipe_mask = intel_joiner_valid_primary_pipe_mask(display, num_joined_pipes);
+> +
+> +	if (num_joined_pipes > 1 && intel_dp_is_edp(intel_dp))
+> +		pipe_mask &= BIT(PIPE_A);
+> +
+> +	return pipe_mask;
 > +}
 > +
-> +static int xe_pci_freeze(struct device *dev)
-> +{
-> +	return __xe_pci_suspend(dev, true);
-> +}
-> +
-> =C2=A0static int xe_pci_resume(struct device *dev)
-> =C2=A0{
-> =C2=A0	struct pci_dev *pdev =3D to_pci_dev(dev);
-> @@ -1491,7 +1501,12 @@ static int xe_pci_runtime_idle(struct device
-> *dev)
-> =C2=A0}
-> =C2=A0
-> =C2=A0static const struct dev_pm_ops xe_pm_ops =3D {
-> -	SET_SYSTEM_SLEEP_PM_OPS(xe_pci_suspend, xe_pci_resume)
-> +	.suspend =3D pm_sleep_ptr(xe_pci_suspend),
-> +	.resume =3D pm_sleep_ptr(xe_pci_resume),
-> +	.freeze =3D pm_sleep_ptr(xe_pci_freeze),
-> +	.thaw =3D pm_sleep_ptr(xe_pci_resume),
-> +	.poweroff =3D pm_sleep_ptr(xe_pci_suspend),
-> +	.restore =3D pm_sleep_ptr(xe_pci_resume),
-> =C2=A0	SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend,
-> xe_pci_runtime_resume, xe_pci_runtime_idle)
-> =C2=A0};
-> =C2=A0#endif
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 61d68c09189f..e73192b03074 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -166,13 +166,19 @@ static void xe_rpm_lockmap_release(const struct
-> xe_device *xe)
-> =C2=A0			 &xe_pm_runtime_d3cold_map);
-> =C2=A0}
-> =C2=A0
-> +static bool xe_pm_needs_bo_evict(struct xe_device *xe, bool
-> hibernate)
-> +{
-> +	return IS_DGFX(xe) || hibernate;
-> +}
-> +
-> =C2=A0/**
-> - * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0-
-> >S2idle
-> + * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0-
-> >S2idle / S0->S4
-> =C2=A0 * @xe: xe device instance
-> + * @hibernate: true if preparing for S4 hibernation, false for < S4
-> suspend
-> =C2=A0 *
-> =C2=A0 * Return: 0 on success
-> =C2=A0 */
-> -int xe_pm_suspend(struct xe_device *xe)
-> +int xe_pm_suspend(struct xe_device *xe, bool hibernate)
-> =C2=A0{
-> =C2=A0	struct xe_gt *gt;
-> =C2=A0	u8 id;
-> @@ -193,10 +199,12 @@ int xe_pm_suspend(struct xe_device *xe)
-> =C2=A0
-> =C2=A0	xe_display_pm_suspend(xe);
-> =C2=A0
-> -	/* FIXME: Super racey... */
-> -	err =3D xe_bo_evict_all(xe);
-> -	if (err)
-> -		goto err_display;
-> +	if (xe_pm_needs_bo_evict(xe, hibernate)) {
-> +		/* FIXME: Super racey... */
-> +		err =3D xe_bo_evict_all(xe);
-> +		if (err)
-> +			goto err_display;
-> +	}
-> =C2=A0
-> =C2=A0	for_each_gt(gt, xe, id) {
-> =C2=A0		err =3D xe_gt_suspend(gt);
-> @@ -461,6 +469,9 @@ static int xe_pm_notifier_callback(struct
-> notifier_block *nb,
-> =C2=A0		struct xe_validation_ctx ctx;
-> =C2=A0
-> =C2=A0		reinit_completion(&xe->pm_block);
-> +		if (!xe_pm_needs_bo_evict(xe, action =3D=3D
-> PM_HIBERNATION_PREPARE))
-> +			break;
-> +
-> =C2=A0		xe_pm_block_begin_signalling();
-> =C2=A0		xe_pm_runtime_get(xe);
-> =C2=A0		(void)xe_validation_ctx_init(&ctx, &xe->val, NULL,
-> @@ -485,6 +496,9 @@ static int xe_pm_notifier_callback(struct
-> notifier_block *nb,
-> =C2=A0	case PM_POST_SUSPEND:
-> =C2=A0		complete_all(&xe->pm_block);
-> =C2=A0		xe_pm_wake_rebind_workers(xe);
-> +		if (!xe_pm_needs_bo_evict(xe, action =3D=3D
-> PM_POST_HIBERNATION))
-> +			break;
-> +
-> =C2=A0		xe_bo_notifier_unprepare_all_pinned(xe);
-> =C2=A0		xe_pm_runtime_put(xe);
-> =C2=A0		break;
-> diff --git a/drivers/gpu/drm/xe/xe_pm.h b/drivers/gpu/drm/xe/xe_pm.h
-> index 16d4e6c629f1..af81f2a2975f 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.h
-> +++ b/drivers/gpu/drm/xe/xe_pm.h
-> @@ -13,7 +13,7 @@
-> =C2=A0
-> =C2=A0struct xe_device;
-> =C2=A0
-> -int xe_pm_suspend(struct xe_device *xe);
-> +int xe_pm_suspend(struct xe_device *xe, bool hibernate);
-> =C2=A0int xe_pm_resume(struct xe_device *xe);
-> =C2=A0
-> =C2=A0int xe_pm_init_early(struct xe_device *xe);
+>  static
+>  bool intel_dp_can_join(struct intel_dp *intel_dp,
+>  		       int num_joined_pipes)
+>  {
+> -	struct intel_display *display = to_intel_display(intel_dp);
+> -
+>  	if (num_joined_pipes > 1 && !intel_dp_has_joiner(intel_dp))
+>  		return false;
+>  
+> -	return intel_joiner_valid_primary_pipe_mask(display, num_joined_pipes);
+> +	return intel_dp_joiner_valid_primary_pipe_mask(intel_dp, num_joined_pipes);
+>  }
+>  
+>  bool intel_dp_dotclk_valid(struct intel_display *display,
+> @@ -3083,7 +3094,6 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>  			     struct drm_connector_state *conn_state,
+>  			     bool respect_downstream_limits)
+>  {
+> -	struct intel_display *display = to_intel_display(encoder);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  	struct intel_connector *connector =
+>  		to_intel_connector(conn_state->connector);
+> @@ -3099,7 +3109,8 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>  
+>  	for_each_joiner_candidate(connector, adjusted_mode, num_joined_pipes) {
+>  		/* If the pipe can't be a joiner primary, skip early. */
+> -		if (!(intel_joiner_valid_primary_pipe_mask(display, num_joined_pipes) & BIT(crtc->pipe)))
+> +		if (!(intel_dp_joiner_valid_primary_pipe_mask(intel_dp, num_joined_pipes) &
+> +		      BIT(crtc->pipe)))
+>  			continue;
+>  
+>  		/*
+> -- 
+> 2.43.0
+
+-- 
+Ville Syrjälä
+Intel
