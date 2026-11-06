@@ -2,111 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D91C606A328
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 07:16:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11213606A332
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Nov 2026 07:20:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=ZtngVeIz;
-	dkim=pass header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=lLu+zf76;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.a=rsa-sha256 header.s=susede2_rsa header.b=ZtngVeIz;
-	dkim=neutral header.d=suse.de header.i=@suse.de header.a=ed25519-sha256 header.s=susede2_ed25519 header.b=lLu+zf76
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CFUkDYch
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3559410EC81;
-	Fri,  6 Nov 2026 07:16:36 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2555410E212;
- Fri,  6 Nov 2026 07:16:14 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 953F71FB91;
- Fri,  6 Nov 2026 07:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1793949372; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wEtBKDb0MJ/hesgLaUZ1AmZ8Y49zDVocm3g03+nRNeE=;
- b=ZtngVeIz/TscJr8b9y5RTN9n5X+bg/cNRN00Oz2g+hFPMmLSmqsADPx22wIU+tW5frtTXf
- IWsmAsZ4rOlHuhJBlnrm/4U0uvbiJZCYS1DlBvBc4iO3kgpSMb8MxJgF+27T7U4KqY2x7/
- YeIetPUkth5XD3Y94Co75NmVA/cfwbk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1793949372;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wEtBKDb0MJ/hesgLaUZ1AmZ8Y49zDVocm3g03+nRNeE=;
- b=lLu+zf76rfClxEuSsGW0Ae6rkgGtWxyCr+fsvMkHXRmrwdiVDnipU6nREaSTFb11PVlnOU
- LX3GWXoWdJd0BjDw==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1793949372; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wEtBKDb0MJ/hesgLaUZ1AmZ8Y49zDVocm3g03+nRNeE=;
- b=ZtngVeIz/TscJr8b9y5RTN9n5X+bg/cNRN00Oz2g+hFPMmLSmqsADPx22wIU+tW5frtTXf
- IWsmAsZ4rOlHuhJBlnrm/4U0uvbiJZCYS1DlBvBc4iO3kgpSMb8MxJgF+27T7U4KqY2x7/
- YeIetPUkth5XD3Y94Co75NmVA/cfwbk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1793949372;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=wEtBKDb0MJ/hesgLaUZ1AmZ8Y49zDVocm3g03+nRNeE=;
- b=lLu+zf76rfClxEuSsGW0Ae6rkgGtWxyCr+fsvMkHXRmrwdiVDnipU6nREaSTFb11PVlnOU
- LX3GWXoWdJd0BjDw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id CABA6134E9;
- Fri,  6 Nov 2026 07:16:11 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id eUSTJ7t+7WpeLQAAD6G6ig
- (envelope-from <tiwai@suse.de>); Fri, 06 Nov 2026 07:16:11 +0000
-Date: Fri, 06 Nov 2026 08:16:11 +0100
-Message-ID: <87ld76qvk4.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org,	intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org,	Jani Nikula <jani.nikula@linux.intel.com>,
- Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,	Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,	Tvrtko Ursulin <tursulin@ursulin.net>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,	Maxime Ripard
- <mripard@kernel.org>,	Thomas Zimmermann <tzimmermann@suse.de>,	David Airlie
- <airlied@gmail.com>,	Simona Vetter <simona@ffwll.ch>,	Takashi Iwai
- <tiwai@suse.com>,	Jaroslav Kysela <perex@perex.cz>,
- linux-sound@vger.kernel.org,	Harry Wentland <harry.wentland@amd.com>,	Leo
- Li <sunpeng.li@amd.com>,	Alex Deucher <alexander.deucher@amd.com>,
- amd-gfx@lists.freedesktop.org,	Lyude Paul <lyude@redhat.com>,	Danilo
- Krummrich <dakr@kernel.org>,	=?ISO-8859-2?Q?Tom=E1=B9?= Hnyk
- <tomashnyk@gmail.com>,	Wim Taymans <wtaymans@redhat.com>,
- nouveau@lists.freedesktop.org,	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] drm: Populate ELD Port_ID to identify audio endpoints
-In-Reply-To: <20261105160240.2850042-1-kai.vehmanen@linux.intel.com>
-References: <20261105160240.2850042-1-kai.vehmanen@linux.intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/30.2 Mule/6.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAD5810E8CE;
+	Fri,  6 Nov 2026 07:20:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D2D410E3CD
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Nov 2026 07:20:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1793949606; x=1825485606;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=083AcC2/adpUKwhQuSoeIbT8odn2L1aZ0QnbcJCaKeo=;
+ b=CFUkDYchdnneF9y1bNkZ1vXyHrNeikkOj8M02mUF2vbr42O39yFoj2Ud
+ vaNBeAftLq2NM51fN3NYfkMpuLu1dwgMFUv6mv7XVtJiIVILI5kEMEXI8
+ Mfxt3/P8P2pqA/JBABgy/ZMQdYoVlgOu3xCWqrZwhgMbkO24/t1UayrzS
+ 36/vWO3x0KGBOPV91PIWtWtJukEQtWMvLco7C/5ECzU1Ncf2QsZWNQydJ
+ dkyBJUMGSf1t9AZZUyW3D3V1opMhiuPzpOnmb/O7bO8a7UBf/+xWDaUl3
+ 6PqXd9KpRj/h0XPGk3JTFt9hpV8mglGBxE5aO7EIOWqRiGW6p1WQaAuiV A==;
+X-CSE-ConnectionGUID: 18KWXjDXRPCurDzVLBEyWA==
+X-CSE-MsgGUID: N9PZf8PjRViVFhjIxdh/8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11957"; a="2659318"
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="2659318"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 23:20:05 -0800
+X-CSE-ConnectionGUID: khtJ3Wb4S8ubq8hdRdJTPQ==
+X-CSE-MsgGUID: 51UtMA9sQ3mGRXh8mgW3LA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,197,1787036400"; 
+   d="scan'208";a="7548948"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2026 23:20:02 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
+ mallesh.koujalagi@intel.com, badal.nilawar@intel.com
+Subject: [PATCH v4 0/8] Handle non-fatal errors routed via IRQ
+Date: Fri,  6 Nov 2026 12:49:45 +0530
+Message-ID: <20261106071944.2693854-10-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spamd-Result: default: False [-12.30 / 50.00]; SUSE_INTERNAL_BYPASS(-9.00)[];
- BAYES_HAM(-3.00)[100.00%]; MID_CONTAINS_FROM(1.00)[];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- ARC_NA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- MIME_TRACE(0.00)[0:+]; TO_DN_SOME(0.00)[];
- RCPT_COUNT_TWELVE(0.00)[27]; RCVD_TLS_ALL(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- FROM_HAS_DN(0.00)[];
- FREEMAIL_CC(0.00)[lists.freedesktop.org,linux.intel.com,intel.com,ursulin.net,kernel.org,suse.de,gmail.com,ffwll.ch,suse.com,perex.cz,vger.kernel.org,amd.com,redhat.com];
- R_RATELIMIT(0.00)[to_ip_from(RL9y5169nakf5i7mj5a3kbj5yk)];
- FROM_EQ_ENVFROM(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- RCVD_COUNT_TWO(0.00)[2];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Score: -12.30
-X-Spam-Level: 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -117,60 +62,71 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 05 Nov 2026 17:02:38 +0100,
-Kai Vehmanen wrote:
-> 
-> The ELD Port_ID field (bytes 8..15 of the baseline block) is typically
-> zero on Linux today: drm_edid_to_eld() leaves it empty and no in-tree driver
-> fills it in. amdgpu, radeon and nouveau pass the raw connector->eld to
-> the audio component. On the amdgpu DC Azalia register path the value
-> is a hardcoded constant, the same for every port.
-> Only closed display drivers fill the value.
-> 
-> Pipewire added support for "Port_ID" in merge request:
-> https://gitlab.freedesktop.org/pipewire/pipewire/-/merge_requests/3025
-> 
-> As a result, when two identical monitors are connected their ELDs are
-> byte-identical, and userspace (e.g. PipeWire/WirePlumber) cannot
-> passively tell which HDMI/DP PCM belongs to which DRM connector.
-> 
-> This series adds a DRM helper that fills Port_ID with a common layout,
-> and uses it in i915:
-> 
->   bits 63:48 - PCI domain of the DRM device
->   bits 47:32 - PCI bus/device/function of the DRM device
->   bits 31:0  - DRM connector object ID
-> 
-> The upper half follows the layout documented for the AMD Azalia sink
-> info registers (dce_audio.c: "PORT_ID1 = 16bit BDF"). The aim is for
-> this to become a convention other drivers can opt into. For drivers
-> that copy connector->eld to the audio component (amdgpu DM, radeon,
-> nouveau), adopting it would be a one-line change. Comments from the
-> AMD and nouveau folks on whether the layout works for them are very
-> welcome.
-> 
-> An alternative would be to fill Port_ID directly in drm_edid_to_eld(),
-> so every driver gets it without changes. I went with an opt-in helper
-> to avoid changing the ELD contents seen by all drivers and existing
-> userspace at once.
-> 
-> The value is exposed to userspace via the ALSA ELD control and
-> /proc/asound/cardX/eld#Y.
-> 
-> Kai Vehmanen (2):
->   drm/eld: Add drm_eld_set_port_id() helper
->   drm/i915/audio: Populate ELD Port_ID
+Implement wa_14028434957 on platform CRI
 
-Reviewed-by: Takashi Iwai <tiwai@suse.de>
+Process, log and recover non-fatal errors routed via direct IRQ.
+Double-bit ECC errors are also reported as non-fatal errors. Process and 
+offline pages for user bos. Critical Bo's require a SBR to recover.
+Wedge the device with bus reset.
 
+Race Case Handling:
 
-thanks,
+There is a potential race between errors reported via AER that require
+an SBR (Secondary Bus Reset) and non-fatal errors still being processed
+by the worker. Since a reset is imminent once AER reports such an
+error, the worker processing non-fatal errors is flushed and disabled.
 
-Takashi
+There is also a possibility of the AER handler running first, in which
+case firmware reports all pending errors including non-fatal ones as a
+single response, since it maintains a single queue for all error types. 
+Skip handling of double-bit ECC errors in that case, since the SBR already
+clears the offlined pages on reload and firmware drops them from its queue
+once read, so offlining them here would be unnecessary and could leave the 
+queue and the soft-offlined pages list out of sync.
+
+Rev2: Handle Race between AER
+      Use WA number
+
+Rev3: Reorder patches to fix sashiko comments
+      squash all WA patches
+      remove delayed worker
+
+Rev4: fix survivability issue on unload
+      disable worker before wedged check
+
+Raag Jadav (2):
+  drm/xe/hw_error: Reuse CSC worker for generic error handling
+  drm/xe/hw_error: Initialize hw_error_work per tile
+
+Riana Tauro (6):
+  drm/xe/survivability: Guard runtime survivability enable against
+    unbind
+  drm/xe/ras: Treat non-fatal PCIe errors as recovered
+  drm/xe/pci: Add upstream switch port lookup helper
+  drm/xe/xe_ras: Add a flag for uncorrectable internal error
+  drm/xe: Add support for wa_14028434957
+  drm/xe/xe_ras: Skip double-bit ECC page offlining on AER path
+
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules  |  1 +
+ drivers/gpu/drm/xe/xe_hw_error.c           | 65 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_hw_error.h           |  1 +
+ drivers/gpu/drm/xe/xe_pci.c                | 23 +++++++
+ drivers/gpu/drm/xe/xe_pci.h                |  1 +
+ drivers/gpu/drm/xe/xe_pci_error.c          | 43 +++++++++++-
+ drivers/gpu/drm/xe/xe_ras.c                | 78 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_ras.h                |  2 +
+ drivers/gpu/drm/xe/xe_ras_types.h          |  2 +
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 10 +++
+ drivers/gpu/drm/xe/xe_tile_types.h         |  4 +-
+ 11 files changed, 196 insertions(+), 34 deletions(-)
+
+-- 
+2.47.1
+
