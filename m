@@ -2,97 +2,84 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618BF606A323
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BECA606A321
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=XQQP1utw
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=BvSMr85Z
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD60A10F306;
-	Mon,  9 Nov 2026 13:57:06 +0000 (UTC)
-Received: from MW6PR02CU001.outbound.protection.outlook.com
- (mail-westus2azon11012037.outbound.protection.outlook.com [52.101.48.37])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 776F310E1D4;
- Mon,  9 Nov 2026 13:44:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c3EU2A2CRH9mj7HVat/rAkg3GivUzJbXfmSbLe5rShAA/3XnNas5Ybz+VuMTnb/lUhrN+DcNtAhiYJNqpVvghi1DL5S2gU/TEWvXSeLqP2Z5g+mQdE5hjSv19D1UgVHdbTVzUqMeuTPA70q6wd00qDJsuerDhkoBhgyRJBuTE15LP2zAqzUfeRX06KuAzA0XQ1RK7ZnZq/g+VeunnNbICQTE9idFi3UctuULfxaBddezkmpGPnqUemFTOkxmKFhPTGUOjKyM64wuqSgpZo5svf6zzVdZ3Rn1K5qVfzl0BomYyfUKhsDieHIekLaXzbcBIpvdSa0MV3Dm0mE+a00t0g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RRMDM4CM0eRZra1yMGc/VjW1CkLBNg7tdg5qZsQ2+vM=;
- b=IBWGfzdFLfy/t0oZxavvq96h3ip8lYdK9DY9f0BmhUAe8gb/yfDZGvX2N3IJfan3S0ABaSn1JQW3sf0wINU/pz7+jCEcI3F7CMIDzJvyBWjWg7LZMc89jnAO5bl2+9baHwIRhNy4X1kCzKcqq9n814x6fEQZB2r+De2Vbacg1GzJpZY59jtBDhnmRzK9yzLx0YQXKu7mk6UyH9z/wk6g9g7Dh3iB1f0l2MkC5q9+bEZf4UgaxZe8U3A00KWMXRDx4pzuIRvY88B6j27WiLvRw61P9Ia1j8eNEK54AeVzf17gXX7FxdGD90tSL7VXjrgIyDiJKdE76vh94bvZ3WxVGg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RRMDM4CM0eRZra1yMGc/VjW1CkLBNg7tdg5qZsQ2+vM=;
- b=XQQP1utwN+GhiAdjyih7U0iqgi9tPyuoQ4sFidCydPTcHiBa+5zNvJ3PKIJI3Cp9OYIcxkySB7VRZZxSHoKwPeanhCSRW3u+hqhwErWx15O0I6Atgymh+9R5RGIMc2vEsvuxkF3r6VPp3RBX3s6T5Cx0Ep2tq27eryj4TVj7Gvg=
-Received: from PH8P221CA0061.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:349::17)
- by CH2PR12MB4038.namprd12.prod.outlook.com (2603:10b6:610:7b::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Mon, 9 Nov
- 2026 13:43:58 +0000
-Received: from MW3PEPF00001659.namprd21.prod.outlook.com
- (2603:10b6:510:349:cafe::16) by PH8P221CA0061.outlook.office365.com
- (2603:10b6:510:349::17) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.13 via Frontend Transport; Mon, 9
- Nov 2026 13:43:58 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- MW3PEPF00001659.mail.protection.outlook.com (10.167.249.203) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.592.0 via Frontend Transport; Mon, 9 Nov 2026 13:43:57 +0000
-Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
- 2026 07:43:56 -0600
-From: William Palacek <William.Palacek@amd.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>,
- <arunpravin.paneerselvam@amd.com>, <joelagnelf@nvidia.com>,
- <sanjay.kumar.yadav@intel.com>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 0/2] gpu/buddy: find range-biased blocks in the free trees
-Date: Mon, 9 Nov 2026 08:43:44 -0500
-Message-ID: <20261109134346.3169162-1-William.Palacek@amd.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D198C10F328;
+	Mon,  9 Nov 2026 13:57:07 +0000 (UTC)
+Received: from mail-dy1-f173.google.com (mail-dy1-f173.google.com
+ [74.125.82.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04F0110E0C8
+ for <intel-xe@lists.freedesktop.org>; Sun,  8 Nov 2026 04:07:30 +0000 (UTC)
+Received: by mail-dy1-f173.google.com with SMTP id
+ 5a478bee46e88-36dc4797082so17947eec.2
+ for <intel-xe@lists.freedesktop.org>; Sat, 07 Nov 2026 20:07:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20260707; t=1794110849; x=1794715649; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=GRtN9zT+RI+2mfrHlzv7j/45DTS+Jv89S927Nei8sc0=;
+ b=BvSMr85ZiFbeV6aeZoNyisTVaFfhqP961QGrTYXpdWervsufytSsPrwnCuRD2XmOi7
+ QpbGyrlDWLU3TblY5mvHy/4WLTcDpuD4UbLDd84j/eTMucBvOaWNlcp6HTYS0OP82qmJ
+ CC1uQ9/Wg80fWO8jtu8dbxjPhiZjDpXwqm/wgl0jGla79YCtF20mgcle92Pa+AJ1+STE
+ T03JQxn3pllE+9tozTqZmG/T37U915A3H52X1nRCBJZ7Jk28ffC/IQkK2UqQndCz81qz
+ Q5Z2HYWeJGPbI8OzGtrrYstbVss0XYx7+dkKYIPvLDfxpG2WpKDMZGcD3bGl7fwEm7Vy
+ nAfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1794110849; x=1794715649;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=GRtN9zT+RI+2mfrHlzv7j/45DTS+Jv89S927Nei8sc0=;
+ b=pAhjxcYlFsNmXcXvPBwdbbfYklu4FygOVCms7dCP103+U/CTqNI+nndLbdvUAddiWu
+ nQuig2VJ7tMywscWsnw/yOF1gGqm69PkkmVX8bDCzhOm4wtVPMlh/8b+msZjkWhL+h7l
+ 0NHkr34+IvH6SZINm3HHECev61glQAR0XSnZLwd8VurCM22nnesxTKr1Dy2y9aCdtBXJ
+ JHeBYRaOytmC2WK+phqIMybdhEfO3uXNPTvFk0+fLjCxrPE932yEE5q5jC/473vYXYWt
+ VlkOyW/IwGRj4pNtMVj1sKjb7Bv/EGadvV2lT5lKG4QzguClHIRylG6/M9LmhctVl2gN
+ b0bw==
+X-Forwarded-Encrypted: i=1;
+ AL+hErE7ej1/O9Nv4ReE6Zcro5t4dc/HV8XZcYiHqfeQjSrAsh9letz+PmPUopOa36lyNhX2HS5ufjf/hA==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/TT/MFALVRJwdpNBUlU8UGkgubhC/7DBKTkwi5FlloZwsTFGP1
+ XsiqJA7MAYkwAlgmNJmXHzsdHhGY4MEzbkKwldGkGDZj4ZoynXsqFYwu
+X-Gm-Gg: AYBFou2/Jw5R2PAEONiOe5FdmXZN2Fz6KMbJzk2JN/uMV0uC1ZCz8WvWjYqHZ7HOwGS
+ BqjpUdJT8qnLmlRGaaIpXoYTNgLVoZm6isDk6EGG6uv68Qd0ED7r0Mk3zbzfUNA9tZ51m8I53xm
+ Nj3etnTiCFoVoDpC9D7pM2BuRwnqkzs489LJKbRwGaLWsTUMeWUaBNStuyqu6p908EfKBPZHeb4
+ qzddzHELvpIKyyj01CyUSzhYzycjy7td+Ku1UBoXoN1fOeJphiroIDUVyz0r3mcXPtxlGaMyQgu
+ HHNyZH8KMEKPsGrQBhnqzQqg/xjLmzw+M3pAhqQXiGY7EBT2dG5IjNAk3vrikmA0nJYZgxMAFmJ
+ E4cHuAgeswpBzc/jfj3VfFBXXSwyH0h/aB1bbmagfcek3zxZ8su3nNiJu56VjkMdvZO6/mkOruc
+ 7eDNwOUBef7p5mZDk+vUZMVoRNEjbr77D9QsR05I+99VnycmDD5wqqMgs5VvRGH6nyi7kzIvWoX
+ BW1Ps5jzCNd718SNvz5sqo3uMeWrbr9ZknenPxBMeAXiowutW20Lr0XUz3RqTJ+E6TIUCJWliNz
+ uYT0tMPfLoE8d+HucSO0MEhmMmuFGp67lxbw8QcJfv6gSotBZhVqMlTej7FLpxHy42HHffc7dE4
+ gFAxie74GNm/iiwF1DbsxP/PPFoUfetF3oOztQy8td4unEiA404C2XQS0PDqJdLWxkqg6RMdvbT
+ ju5/rG4uJ0yg==
+X-Received: by 2002:a05:693c:62cc:b0:36e:66d8:1424 with SMTP id
+ 5a478bee46e88-3725024039amr2449285eec.0.1794110848938; 
+ Sat, 07 Nov 2026 20:07:28 -0800 (PST)
+Received: from cachyos-aura ([45.112.151.150])
+ by smtp.gmail.com with ESMTPSA id
+ 5a478bee46e88-37265a16f9csm2291812eec.12.2026.11.07.20.07.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 07 Nov 2026 20:07:28 -0800 (PST)
+From: Navon John Lukose <navonjohnlukose@gmail.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: stable@vger.kernel.org, patches@lists.linux.dev,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ =?UTF-8?q?Tales=20A=2E=20Mendon=C3=A7a?= <talesam@gmail.com>,
+ Matthew Brost <matthew.brost@intel.com>, Sasha Levin <sashal@kernel.org>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 7.3 0001/1257] drm/xe: Implement Wa_22016122933
+Date: Sun,  8 Nov 2026 09:37:21 +0530
+Message-ID: <20261108040721.203040-1-navonjohnlukose@gmail.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261107134939.482764241@linuxfoundation.org>
+References: <20261107134939.482764241@linuxfoundation.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW3PEPF00001659:EE_|CH2PR12MB4038:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4eb34394-879a-4d26-5199-08df3e678126
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|82310400026|36860700016|11063799006|261021121427099003|56012099006|261021123027099003|261022105027099003|261009223027099003|261026140227099003|261026121527099003|261028144727099003|261102123227099003|10067099003|18002099003|13003099007;
-X-Microsoft-Antispam-Message-Info: FLPfXNReEMOmvQkVS/i9aQhx1icvlP+CM16+5MUYKwVTSmP4yilcbMzTDlHO6uKHZI8Pc3JPU3XtogZXZweK8KVBlqvauTKOtZmqWQnsfLTOhhv8P+m/vd7QFGCiZAcASPeLlP8Faku83VBgvzL7UuyybtGhCjexf7g2L0XTatKeQcK1QPKiT0WcKheAMBy0TRQlHdsuQskLAgX402mDgBjL9YMDAsgjXdKlS1W5yhV9osSbz9G7YqCfQ3LQvkx1tZyyZudwPZPLU8C6knB7ZQTya8bxDDj5HZZl8hLPy8D5NkQQQnCp4IIdlG3n08BRP63s9SDeCPfanmMRAZMmtqQVkKNoKMRTj7YnF3+8tsBYtCav2GzO3Vi0tChPk8NlqTZiKLyke4oun2JgckzDkBnZudk8MZdvX3NihyA2dbATqJBxm1FgnwIL3SSkiELsn1tva7jNVfcOe6Glf+Hsdt88AWEr9SQqw0PlWoN9shJpVHd79kUpcvAFbxe1iqLO73wtozdBt6uzqWS/hEPsNOJQVlZOIDnE99pGmYuCsyZ4bJPlE+R+MUy3P5rkRebheTomYG/stPsiPcX8nA3hjGH59qTOhnorOKmvRIzBT+Jjua2HbRHg8qx8dpRUmeS/GiN5KZTDvSotz/B6vGtbEA==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(82310400026)(36860700016)(11063799006)(261021121427099003)(56012099006)(261021123027099003)(261022105027099003)(261009223027099003)(261026140227099003)(261026121527099003)(261028144727099003)(261102123227099003)(10067099003)(18002099003)(13003099007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: Nxb3kogZjizEfMZH374GpbcQm8gHou/E1QCsLPpvdWMKwBI7EN+0ZHhcHjPOTd4Jr7aSVJvV95Q8l3mUxJgrZDsyXLyV3DWK3o6fK5I+uEqOJzRYU8mHuqCADivlsAzy1w3vrHvHv2uSnYE1v0iPXWdLR3cZjaGIksriCHrkhIz3wfBnKURVDw+GZZUFM0smV6Ga1IWbospUqHQuDG6xmfg7KFik79wuouRZ9sMrngKtykny8kUeVCQWXTei2c1CC5AoLqLNRcIFI71x1h42Y07QK67SLEEBkCqDv1PgMk+FICGqgFbByp7TaDoQhN+UeuvAhJqwUfscuxm48dFqA08VzqU7QROU0jC9jU0vz/ZeTsyj+TmxyMlgwT1q5Ml01MtBuqOmrjVKVVSfPLXKzv6gDDETdaRqCbjIeAjr1nBZF4ZRjMsriAy5r+FqZu4f
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 13:43:57.7870 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4eb34394-879a-4d26-5199-08df3e678126
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: MW3PEPF00001659.namprd21.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR12MB4038
 X-Mailman-Approved-At: Mon, 09 Nov 2026 13:57:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -104,45 +91,23 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A range-restricted allocation walks every split block in the range, so
-its cost grows linearly with the number of live allocations there.
-amdgpu restricts every VRAM allocation to its memory partition under
-NPS2/NPS4, so on MI300X in CPX/NPS4 KFD allocation latency grows with
-every live BO, under a VRAM manager lock shared by the compute
-partitions.
+On ARL-H at least, this commit adds about 3 s to xe probe and 2.5 s to
+every s2idle resume, because the GuC buffers are now mapped UC on the CPU
+side. A follow-up maps them WC and keeps the TLB fix. It has Tales's
+Reviewed-by and Tested-by and a Fixes: tag for this commit, but is not
+merged yet:
 
-Patch 1 narrows the walk to the highest free block wholly inside the
-range, found in the offset-sorted free trees. Patch 2 adds a KUnit test
-for the NPS4 pattern (range-biased, cleared, top-down, 64 KiB) that
-also checks placement: 1190 ms before, 3 ms after.
+https://lore.kernel.org/intel-xe/20261003222145.67240-1-navonjohnlukose@gmail.com/
 
-v2:
-- rebased onto drm-misc-next (single free tree) (Arun)
-- take the highest contained block, keeping the walk's top-down
-  placement, including for GPU_BUDDY_TOPDOWN_ALLOCATION (Arun)
-- the test checks top-down placement
-- placement differs from the full walk only for blocks straddling the
-  upper range edge and for clear steering across blocks (see patch 1)
+Whether to take this now or wait for the follow-up is up to you and the
+xe maintainers (added to Cc).
 
-v1: https://patchwork.freedesktop.org/series/176957/
-
-William Palacek (2):
-  gpu/buddy: find range-biased blocks in the free trees
-  gpu/tests/buddy: add range-biased allocation performance test
-
- drivers/gpu/buddy.c                | 35 +++++++++++++++++++++++++++++-
- drivers/gpu/tests/gpu_buddy_test.c | 27 +++++++++++++++++++++++
- 2 files changed, 61 insertions(+), 1 deletion(-)
-
-
-base-commit: 6f7098738fff3ec7393f924343188cb8e6ebc5d2
--- 
-2.43.0
-
+Thanks,
+Navon
