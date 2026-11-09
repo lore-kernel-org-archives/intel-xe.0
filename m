@@ -2,45 +2,45 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72617606D806
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:10:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57F8B606D819
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:10:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BYHDOMsH
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UFlDN21a
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C25B10F284;
-	Mon,  9 Nov 2026 13:10:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21CF10F283;
- Mon,  9 Nov 2026 13:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E36010F280;
+	Mon,  9 Nov 2026 13:10:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3DBF10F280;
+ Mon,  9 Nov 2026 13:10:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794229836; x=1825765836;
+ t=1794229847; x=1825765847;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T7LXLzC0gRylbqBTsZD+y1ZkJOs+qcyQ4bV2Qg0srZE=;
- b=BYHDOMsHkZ3cZB5Qglwav12tgQlrC0K2sePFcZ/27aIWDU/H+Pxod473
- Z+CfcWZV9Nm8pVtqoPG5zz5AHU1S1I+WrkltfnFPx9i3XExfPvVPmFLrR
- tY3fCIWGPRUgzXLraZHqfh/TnB9dPBJVe1mvJ6tHNYxflMUKzdIJlpyZc
- I/6QJn0STWqCGoIZ4zRJifqy6p6Q+OWBxw89XEmiwgY4kIvF/cBQDTdYU
- 8BWJRGGcoJK2l4w8dkHNFKC08kmzSi9GJU8sVr7FjL9PbgK+v9nyTdbEu
- yGvCppdDVxwZddpxSXxFsOFRAEAwSSvI4Tsah9iNNUv4vQjgktvPR1SBd Q==;
-X-CSE-ConnectionGUID: RRY5JtcDRCaF7BD8HhGhFA==
-X-CSE-MsgGUID: qRruxJLITt2+DcgMrxO8Cw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="3039510"
+ bh=rVfe0EdQ0ADK9rlXStdj2gNQkQxng4CaytjOvju+JrI=;
+ b=UFlDN21aMqFmRK3oaPS37hGXAPdt3k3xMCH5/cOUwShNsnG1pHonyGbW
+ adhoD1/2mBn7IvLZNMPRvq0i0xc76ckJqZPX/HiLMKIZwVGUGtaD0sJ9Z
+ DRtcKi0MrXudHLjLGBxUPB1gyMwi+X+1PLZhituz8cztmZWhzgFuj/24f
+ NCLVnw1vp135H1f1+HHvSrt5wF5TX+vWvolefPfsSY6t+A6h9B8b0Xo5Y
+ +ceafZGc4kpYt3XDDVIYyCwiTPbDBA3bvMXTx7dxP4ucHLcMQyxmT15FM
+ +y83F2dy2LY6li6oIG+HvQIL4LLsSLHhY8xG3Bf1C+xBQwckdUdDhE4JT Q==;
+X-CSE-ConnectionGUID: Bh23wO6dTZyeBp+ljD0Fvw==
+X-CSE-MsgGUID: QosFYfeDQ2qdoeZRQJcoeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2843604"
 X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="3039510"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 05:10:36 -0800
-X-CSE-ConnectionGUID: 5PUYAd50QkGEZoKjws36ng==
-X-CSE-MsgGUID: GEPSSIKzSdKrJQUQbEOh0w==
+   d="scan'208";a="2843604"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 05:10:47 -0800
+X-CSE-ConnectionGUID: 4fBXfPgtRFGEsMcsVR789w==
+X-CSE-MsgGUID: Z21x23CJTFGEmtrWRwK2Nw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="7905762"
+   d="scan'208";a="7683709"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.139])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 05:10:31 -0800
+ 09 Nov 2026 05:10:42 -0800
 From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
 To: Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
  linux-kernel@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>,
@@ -50,9 +50,10 @@ To: Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
  dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Subject: [PATCH 1/3] PCI/sysfs: Remove resource assignment after BAR resize
-Date: Mon,  9 Nov 2026 15:10:08 +0200
-Message-ID: <20261109131011.1815-2-ilpo.jarvinen@linux.intel.com>
+Subject: [PATCH 2/3] drm/xe: Remove driver side resource assignment after BAR
+ resize
+Date: Mon,  9 Nov 2026 15:10:09 +0200
+Message-ID: <20261109131011.1815-3-ilpo.jarvinen@linux.intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20261109131011.1815-1-ilpo.jarvinen@linux.intel.com>
 References: <20261109131011.1815-1-ilpo.jarvinen@linux.intel.com>
@@ -85,34 +86,25 @@ call manages to assign more resources in some scenario, the problem
 should be fixed inside pci_resize_resource() instead.
 
 Remove the pci_assign_unassigned_bus_resources() call from
-__resource_resize_store().
+xe_pci_rebar_resize().
 
 Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
 ---
- drivers/pci/pci-sysfs.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/xe/xe_pci_rebar.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index 6669e9ad5bd3..bccd0bd5091b 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -1731,7 +1731,6 @@ static ssize_t __resource_resize_store(struct device *dev, int n,
- 				       const char *buf, size_t count)
- {
- 	struct pci_dev *pdev = to_pci_dev(dev);
--	struct pci_bus *bus = pdev->bus;
- 	unsigned long size;
- 	int ret;
- 	u16 cmd;
-@@ -1768,8 +1767,6 @@ static ssize_t __resource_resize_store(struct device *dev, int n,
- 		pci_warn(pdev, "Failed to resize BAR %d: %pe\n",
- 			 n, ERR_PTR(ret));
+diff --git a/drivers/gpu/drm/xe/xe_pci_rebar.c b/drivers/gpu/drm/xe/xe_pci_rebar.c
+index 7e2c7079b6ff..f47b3c039abd 100644
+--- a/drivers/gpu/drm/xe/xe_pci_rebar.c
++++ b/drivers/gpu/drm/xe/xe_pci_rebar.c
+@@ -100,7 +100,5 @@ void xe_pci_rebar_resize(struct xe_device *xe)
+ 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd & ~PCI_COMMAND_MEMORY);
  
--	pci_assign_unassigned_bus_resources(bus);
+ 	resize_bar(xe, LMEM_BAR, rebar_size);
 -
- 	if (sysfs_create_groups(&pdev->dev.kobj, pci_dev_resource_attr_groups))
- 		pci_warn(pdev, "Failed to recreate resource groups after BAR resizing\n");
- 
+-	pci_assign_unassigned_bus_resources(pdev->bus);
+ 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+ }
 -- 
 2.47.3
 
