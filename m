@@ -2,50 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F39B606A31C
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 11:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790CB606A323
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 11:46:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RXbn50IO
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RBn50/4W
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDAF10F1D6;
-	Mon,  9 Nov 2026 11:46:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2652010F1E9;
+	Mon,  9 Nov 2026 11:46:18 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1564B10F1E1
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Nov 2026 11:46:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4602810F1E5
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Nov 2026 11:46:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794224767; x=1825760767;
+ t=1794224771; x=1825760771;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=RqbbpOQkOLSwZZ3fe+8wNOHaiXv0m/HWBdt3wAVq7wI=;
- b=RXbn50IOuC6ul7na48CLkTdTADAdnfLxRCD5ugRfVt7yzOyVGJU459Ua
- 1zzoESRMAv3e6p2rzi0uxF8Tu5DpZfDRGVU1a9OXC9DhNn+mkO9sAnR2d
- W3AmAqE+p3Rt8QFCDaW10tuY9/D6ZZ9x3dV10hcB1JbptfxQtAZ9SoA1S
- J85Q5UJHsJAihxPjalENGhxZOmlcy+86XaaLSFqLh1+u8qMgtSF1rdkCO
- JDWskapz1YHwTQTlMh8H78iEi+2RtktmQOqAjUoH4SDiHrjle2XUoCocB
- 56gCWDqhYvs43G8cq9EWth9MkbUTf4nThIRsTojsMbS/jTSf/dJsIboKm g==;
-X-CSE-ConnectionGUID: GLSFVMmkQiCN3t0Ig/GNcQ==
-X-CSE-MsgGUID: anV/vCaSSx+R0NIiexOTBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2944064"
+ bh=2qLhpyVOUFLziyAfzE5mc3haZvWIiHW59PktCirbtcM=;
+ b=RBn50/4WTGSE06YqGooljtzSFhQYB8+AseeWn8Ro286/+EybbGJ7dbhh
+ BaLzr2ldmxzgc1g3PV8SA8DazvAz/URT0q7SljSt+5NdHXhQQvPBCOl4Y
+ /cCyrW8Sikc1QXBSaBmydr3kEXjCaq80mlPF3/WBoMvjtsWRRhIeUoTKj
+ aIrpakH7Y8F43Q+xYvL3ZSymdV05sJcKFn6tMP9wBD+GX5HLQIODIP9tK
+ txsv9eUa1518zgXNnTYtDm1VycGiKzXmFv8K4ljnfDQ+cQlOJ5wHwg85H
+ VJ3+iQifbH3Bfqrj3BlQKA93y3DwKkuDLIwB1UlmI+0up6kVHt0mUk664 g==;
+X-CSE-ConnectionGUID: nyAZoJbiQQe8JqJvRWKn9A==
+X-CSE-MsgGUID: MMXHpc+ZSQKzVnYY7PXoTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2944068"
 X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="2944064"
+   d="scan'208";a="2944068"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 03:46:07 -0800
-X-CSE-ConnectionGUID: LleliCFtQb+vGaNg8cImBQ==
-X-CSE-MsgGUID: gBFaBm18TZKfomALIqfwLQ==
+ 09 Nov 2026 03:46:11 -0800
+X-CSE-ConnectionGUID: jpVgKqX6QTO5rvTR+nxqpw==
+X-CSE-MsgGUID: l+UVcaXFSraOmFv3E0rOwg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="8174663"
+   d="scan'208";a="8174669"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.244.135])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 03:46:06 -0800
+ 09 Nov 2026 03:46:11 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/4] drm/xe: Extract xe_gu_misc_irq_{postinstall,reset}()
-Date: Mon,  9 Nov 2026 13:45:52 +0200
-Message-ID: <20261109114554.19597-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/4] drm/xe: Only enable the GSE interrupt when display needs
+ it
+Date: Mon,  9 Nov 2026 13:45:53 +0200
+Message-ID: <20261109114554.19597-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261109114554.19597-1-ville.syrjala@linux.intel.com>
 References: <20261109114554.19597-1-ville.syrjala@linux.intel.com>
@@ -74,73 +75,83 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Make the GU_MISC interrupt setup a bit nicer by extracting
-it to its own functions.
+Display is the only user of the GSE interrupt. Only enable
+it when the display needs it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c | 27 ++++++++++++++++++---------
- 1 file changed, 18 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 17 +++++++++++++++++
+ drivers/gpu/drm/xe/display/xe_display.h |  2 ++
+ drivers/gpu/drm/xe/xe_irq.c             |  7 ++-----
+ 3 files changed, 21 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 320fc64e7d4f..7c39d7a3cf8a 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -645,6 +645,12 @@ static void vf_irq_reset(struct xe_device *xe)
- 	}
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index f5538e450e3e..21692408f9be 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -195,6 +195,23 @@ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
+ 		intel_display_irq_handler(display, NULL);
  }
  
-+static void xe_gu_misc_irq_reset(struct xe_device *xe)
++u32 xe_display_gse_irq_bit(struct xe_device *xe)
 +{
-+	mask_and_disable(xe_device_get_root_tile(xe),
-+			 GU_MISC_IRQ_OFFSET);
-+}
++	struct intel_display *display = xe->display;
 +
- static void xe_irq_reset(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -665,8 +671,7 @@ static void xe_irq_reset(struct xe_device *xe)
- 			xelp_irq_reset(tile);
- 	}
- 
--	tile = xe_device_get_root_tile(xe);
--	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
-+	xe_gu_misc_irq_reset(xe);
- 	xe_display_irq_reset(xe);
- 	xe_i2c_irq_reset(xe);
- 
-@@ -696,6 +701,16 @@ static void vf_irq_postinstall(struct xe_device *xe)
- 		xe_assert(xe, xe_device_has_memirq(xe));
- }
- 
-+static void xe_gu_misc_irq_postinstall(struct xe_device *xe)
-+{
++	if (!xe->info.probe_display)
++		return 0;
++
++	if (!intel_display_device_present(display))
++		return 0;
++
 +	/*
 +	 * ASLE backlight operations are reported via GUnit GSE interrupts
 +	 * on the root tile.
 +	 */
-+	unmask_and_enable(xe_device_get_root_tile(xe),
-+			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
++	return GU_MISC_GSE;
 +}
 +
- static void xe_irq_postinstall(struct xe_device *xe)
+ void xe_display_gse_irq_handler(struct xe_device *xe, u32 gu_misc_iir)
  {
- 	if (IS_SRIOV_VF(xe))
-@@ -711,13 +726,7 @@ static void xe_irq_postinstall(struct xe_device *xe)
+ 	struct intel_display *display = xe->display;
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 370be8ec1044..6c580d9593b0 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -33,6 +33,7 @@ void xe_display_shutdown(struct xe_device *xe);
+ void xe_display_shutdown_late(struct xe_device *xe);
  
- 	xe_display_irq_postinstall(xe);
- 	xe_i2c_irq_postinstall(xe);
--
+ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl);
++u32 xe_display_gse_irq_bit(struct xe_device *xe);
+ void xe_display_gse_irq_handler(struct xe_device *xe, u32 gu_misc_iir);
+ void xe_display_irq_reset(struct xe_device *xe);
+ void xe_display_irq_postinstall(struct xe_device *xe);
+@@ -71,6 +72,7 @@ static inline void xe_display_shutdown(struct xe_device *xe) {}
+ static inline void xe_display_shutdown_late(struct xe_device *xe) {}
+ 
+ static inline void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl) {}
++static inline u32 xe_display_gse_irq_bit(struct xe_device *xe) { return 0; }
+ static inline void xe_display_gse_irq_handler(struct xe_device *xe, u32 gu_misc_iir) {}
+ static inline void xe_display_irq_reset(struct xe_device *xe) {}
+ static inline void xe_display_irq_postinstall(struct xe_device *xe) {}
+diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+index 7c39d7a3cf8a..050c73283bbd 100644
+--- a/drivers/gpu/drm/xe/xe_irq.c
++++ b/drivers/gpu/drm/xe/xe_irq.c
+@@ -703,12 +703,9 @@ static void vf_irq_postinstall(struct xe_device *xe)
+ 
+ static void xe_gu_misc_irq_postinstall(struct xe_device *xe)
+ {
 -	/*
 -	 * ASLE backlight operations are reported via GUnit GSE interrupts
 -	 * on the root tile.
 -	 */
--	unmask_and_enable(xe_device_get_root_tile(xe),
+ 	unmask_and_enable(xe_device_get_root_tile(xe),
 -			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
-+	xe_gu_misc_irq_postinstall(xe);
++			  GU_MISC_IRQ_OFFSET,
++			  xe_display_gse_irq_bit(xe));
+ }
  
- 	/* Enable top-level interrupts */
- 	if (GRAPHICS_VERx100(xe) >= 1210)
+ static void xe_irq_postinstall(struct xe_device *xe)
 -- 
 2.56.0
 
