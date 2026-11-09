@@ -2,107 +2,100 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C6B606A321
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CC0606A31C
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=permerror header.d=shazbot.org header.i=@shazbot.org header.a=rsa-sha1 header.s=fm2 header.b=0tMbQth0;
-	dkim=permerror header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha1 header.s=fm3 header.b=qshhmKdc
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=whUukJrP
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 165BF10F339;
-	Mon,  9 Nov 2026 13:57:14 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="0tMbQth0";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="qshhmKdc";
-	dkim-atps=neutral
-Received: from fout-a2-smtp.messagingengine.com
- (fout-a2-smtp.messagingengine.com [103.168.172.145])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 947B11128E5
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 15:58:28 +0000 (UTC)
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
- by mailfout.phl.internal (Postfix) with ESMTP id 193C0EC01C1
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 10:50:36 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-04.internal (MEProxy); Thu, 05 Nov 2026 10:50:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1793893836;
- x=1793980236; bh=NZay7L2nryhfKnNMEqZkGMSJNXNIWBCGAWm4vFCRCqw=; b=
- 0tMbQth0NQkeucnyD4pkjvlZIplB32NHkn7gDWXcul7odnqIdd2R1jhLLCYM1IEr
- GmY4zRZMirpAZwiyVKF155d3IS49NUsl8lGh7iCWFVk6vxek9FytUXvfJKwIjIMm
- 1RdKsCvG/bH7IGLfCpmIjtUlN21JflxZvjBxrMhyQ/7etugY8FXWJD7QY3noBJeG
- I8VHYc8AvAesoPuVuVgxJ1dZmEK0Y8TbUitZihkAzZ0DLet2RFUhact0/CmsBkH3
- UKW7gJwhM+RvJmyH5EPr/zchaYwDfM6qs6wYVmgkG6fFXjggHVd4ga1tJ0Y86JaL
- 1J9UTM+C98+C1QDfcOO0Ug==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1793893836; x=
- 1793980236; bh=NZay7L2nryhfKnNMEqZkGMSJNXNIWBCGAWm4vFCRCqw=; b=q
- shhmKdcCRMesRoKxOq2445nS5tbya/hufPlil42QSWFUPlDNV5Hpsu77VYZn/isv
- t28ooYUwsjtw6TMTKJ9OIv9xhf3XPS+9jORge8ebYcpSwqLtietu5hU4rqhS+7+9
- d2RuZJ52J7RuEsCScL9GQs5bbEJl4mQwd4FKzoBHz+Jamhwl7WGdFsbSPtIQ8TKr
- YOMOioHE13eODk5lN5q3D7Hx0bH/LL1rOBg3e6Mb5IcsYJH6Q7sbEiZEEPrKQj6X
- MgDzmVglmHq6k58YoSPYqth3pbFOlv2PTSLd+ZYdykiPYbpLbln8oXVNscDudmNc
- p1n7RviYmWUbk0U13gESA==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
- repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
- action=sign d=shazbot.org a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1793893836; d=shazbot.org;
- mf=PGFsZXhAc2hhemJvdC5vcmc+;
- rt=PGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4=;
- s=fm2:rsa-sha256:sJEozpGcE0tTJlRC/1Wq9j6OUWpjyrNHGPXF9+0tRusdHdQ
- vVR5AnqTGVgpQ5DrHEjWXaIrCuVQHomDOkL5lt0HtCmal+UviTkAeK0X8v121CTg
- l6QU0VPKDwXugbMPJaOFKbkFFpfjIl4YmeiOKfDtyNvETvKVfenUduaSiUO3XYhY
- pq1efjEDA7h0/YV+3HsPTwXz8vfcNe6WHgh2bP+JJRNd2o/mvxBWgnP2UJJHVmvC
- 3WDPNrHF1NBa8IZsf7A1Gy6e/CJ7BgZYdqTI4uqrs+pwoYPLwCTjMi7c81tXdRfZ
- PJ5U4oionuoQpqdahP5TwvjyuRXfuF7EHfMn9Tw==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
- repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
- action=mi-m=1; hc=12;
- hn=cc,content-transfer-encoding,content-type,date,feedback-id,
- from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1;
- h=sha256:YFus3HutPXTLvZFoFGpqPzl3xKeJzNug8nJycK/gXBM=:RwtE1ERIc4WaoKgPKbvPbHAii5aWb9hJhqoJC/CVX0U=;
-X-ME-Sender: <xms:y6Xsat29eO3y9O1K1DvuAa1GQW64tu32quiEgZMWzHw2ok0Tv4kHWQ>
- <xme:y6XsalmPWsqaLgMh9_xbnxoz_Y6H9P5Wn26A28tYiV6ijWJXE_qkKPbPehKgIR6vT
- FUREoG4EFwDPwa-mQcgUGt_d9bZfqAxKQlRAiQ9JM9VYJR9x9V31Cs>
-X-ME-Received: <xmr:y6Xsat-7eg4PlVwUf6IyR-5CGCsrK6h0usnb4sn0X3dT38ROpBR1Bg4KKiAX6Q>
-X-ME-Proxy-Cause: dmFkZTGanw37Gl7H+UY/qwa9sgu8ZldFdK0gFO7vrPMMnDhzvv+CR4Z5hCBoD9CiDxtN7+
- HIAaFfGuZlfoo5UCG7JE+CbDI2irM6kY7c1vZrgXfXPkJf5eUIXzfSrPuJdAzrSofyTOU4
- ALro7wZXyu1FKfDKNHv5IbmacSfi81DJ1K+O8o2VfOcuIIy7QyHyoGGQtkC7N4zRzYWHKG
- Cz2jCpaNwweDVvnFPV0W2MUgASr37JCtd5y52Z5PWAbFBmYpYgmQsO1purHJYgz93cwpGw
- NDgHSzKiV+cXs4b9C1Ss5AKAlkxNUV1OzzgYXPjl11xwHjY18H54X+r0zjENuffb59ButI
- a0cqgluvKe13xiUwCD+VpfiPzY74M6vUZxB5EIPGrWblRg/uiS7cEXMnGXdI8thpJdy78M
- mLV7dr76d3AJ4Pl+q9cHCz7IbELMcHgKBhI0qoetTh/qSz/QpjYxbKcaePsrWCuXV9Jkto
- hkRXz7RitSG5/ylRDDz2qugSIqAwxDGFAWtw2qckXSvdHGz4Xym/1A1KlRqMv/Hv8NEybt
- XJadHT2TMBqGjWh+iRlgmBUtdiHxvIDg943EUJl81uBU2VMVh8nllqR5kLi0LgP0H55owL
- zT2CbNOUiKkWzFhMCH5Nk79yG2AVdGRCdVKja2wvznbV9ZKoyh4l1DBaup3Q
-X-ME-Proxy: <xmx:y6XsaqqxnAYp1TQ7huqZCb95bZFD1fMvK1aeB8OjYhMlEg_W3ObvZw>
- <xmx:y6XsammpRyOH1H2648T-7lQOOcoTtEjUjXuCfIGhnvgmxRm44XciHA>
- <xmx:y6Xsahi59Jm8iNN89pt546nQ6IyKDiVYBNnRyuLouALa6hhTe3lWeQ>
- <xmx:y6Xsaue5YSaZqaYRTDaO584u_5CQazyfMCgLqMzos0EUxP6gixEXbA>
- <xmx:zKXsav6FkWe6A4Bv5z1b3UuPGduz6to2vTmBoHo13igUxuDquhSq7diW>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 5 Nov 2026 10:50:35 -0500 (EST)
-Date: Thu, 5 Nov 2026 08:50:32 -0700
-From: Alex Williamson <alex@shazbot.org>
-To: "=?UTF-8?B?UGnDs3Jrb3dza2ks?= Piotr" <piotr.piorkowski@intel.com>
-Cc: <kvm@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
- alex@shazbot.org, Manish Honap <mhonap@nvidia.com>
-Subject: Re: [RFC PATCH 0/4] vfio/pci: Allow hiding BAR ranges from the VFIO
- user
-Message-ID: <20261105085032.679881ff@shazbot.org>
-In-Reply-To: <20261105153738.1938345-1-piotr.piorkowski@intel.com>
-References: <20261105153738.1938345-1-piotr.piorkowski@intel.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 584C910F321;
+	Mon,  9 Nov 2026 13:57:10 +0000 (UTC)
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012069.outbound.protection.outlook.com
+ [40.93.195.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BECDE10E130;
+ Mon,  9 Nov 2026 13:44:06 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NMqEeBdDXMK8CrgHBAYycgmSjqehoqpe+j2GqC6VY8W+SDFwNPfoN9YcwjQi5nPuzPK9li5pzdnT7+Zjile194k0KybenuIR0CsVw+NmSVtlZQgR1LfEHRF1OAq3lxDdfsmwXYW7f7AnZIpKQG3SDyL0KiV8OHlVl0Ufq+5y3+63Sxt/qrblLf6wv9lMAvXBA9tc8QZS8Qj0XgE83F7WILvD1Q6C10s4nSaX23iNqbAL9US9NqrBa7JYGXDZM2pBPXY1SoBDdrkVO30OXYFgXBbWUnA60kxDdDRvUNwT0tdFAqf42ipFMd3Wbf70MCNJVYEPaLxzQ0ofw5YoeSmrjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2M1o1ba4v3PCbCAr1JPtXsbnZdmsAOyg2ETasB2wEuE=;
+ b=WVMGApHSgK5VyDJ/TUcFHJRJQOS0IqohFdfw7zu4mlbro+2xCtsIuhcVsSa1pHgcLNGAAVcksnPJBtNS61kFAMrRTxnOiSeIm0j3pH2ce/ycxMkodu+9NGeAbWhRWsWLJDkBkH9HB8JIhqYgPUwYhZjN081zPJDDcPbkcrniGA9UbxkVKzKYBN8X+n4fP5Q0mvs4eSblC/KEmEcegG+8z5RG+wi8yo5iDRw81FhY467QtB8xTFZmrfZUqJCgoFtO7JK5ykx6OLwcO8m+66sI6ATexQHPnFmHb+iErYF+xsZGRt8IGbzr3H8Ez1vdc/5Wtnn4lCPdoOSFu9cpVaztEQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2M1o1ba4v3PCbCAr1JPtXsbnZdmsAOyg2ETasB2wEuE=;
+ b=whUukJrPrwfRtUbqy/nZOgd+LuSSdBUivCdUnm999qdT/5UkLE6k4VpeOu1tzUcbP68hieQHDpm9BReP15nPXMI/s5uydSmTUh2r+6JpxNTiGNVOXp7OXD58u3SpKYNNvFMXnJPKm0eeSsr9gZUhJEAsaF1kcvkE16ii/MPX4XU=
+Received: from PH8P221CA0064.NAMP221.PROD.OUTLOOK.COM (2603:10b6:510:349::16)
+ by SA1PR12MB7151.namprd12.prod.outlook.com (2603:10b6:806:2b1::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
+ 2026 13:44:00 +0000
+Received: from MW3PEPF00001659.namprd21.prod.outlook.com
+ (2603:10b6:510:349:cafe::10) by PH8P221CA0064.outlook.office365.com
+ (2603:10b6:510:349::16) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.592.13 via Frontend Transport; Mon, 9
+ Nov 2026 13:43:59 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ MW3PEPF00001659.mail.protection.outlook.com (10.167.249.203) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.592.0 via Frontend Transport; Mon, 9 Nov 2026 13:43:59 +0000
+Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.53; Mon, 9 Nov
+ 2026 07:43:57 -0600
+From: William Palacek <William.Palacek@amd.com>
+To: <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>,
+ <arunpravin.paneerselvam@amd.com>, <joelagnelf@nvidia.com>,
+ <sanjay.kumar.yadav@intel.com>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 1/2] gpu/buddy: find range-biased blocks in the free trees
+Date: Mon, 9 Nov 2026 08:43:45 -0500
+Message-ID: <20261109134346.3169162-2-William.Palacek@amd.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261109134346.3169162-1-William.Palacek@amd.com>
+References: <20261109134346.3169162-1-William.Palacek@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW3PEPF00001659:EE_|SA1PR12MB7151:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9f5e98a-ffef-493a-a5b3-08df3e678227
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|36860700016|1800799024|82310400026|11063799006|56012099006|261021121427099003|261021123027099003|261022105027099003|261009223027099003|261026140227099003|261026121527099003|261028144727099003|261102123227099003|10067099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: BOEg2n/GxdASp4XjMD9oct2nJ5LqZ6/MEMgsi0eCwvNgITEPmVxx3d5SzrOihj1hUpEjVN4KP5oSuVSWobO3lGeqjAho1tGJOwZARt/yeVIdYzXiyy9C37r4ftbePt63wYchU0QgWAyAKY6dg7DAzJAnpb7eTIVpjdNOQJB46t9UrmfCQXM3uSg5Whs5YLkT3YMbN9LhHnTckW50JVLmJM0n27pV9pnbHpitUA7v/8zEQKsP8MJFnyZWFXlm6OsDcNKCQyMRQWGoje44YSb/ckroUUsfUSF1DPNXdNqL09Jx3RioHzyRfc/0hRB31gKV9/FfzKcWwcvjm1mUpsXCHsv3yO2DbKGtGhVD1++gASGeaOPG+yYs3kcimdmLlzYZBHFCET8YsZ5+olz7pB8r0gzEoQW7uyi18dwVI2F40tRKcut/rit9cFu1HCmyjoVoPPvCk3nSLHyolgwf6n53q8aefqTpsYUnmDs0MYWnx9ZK+DohhCJyyVXFjWPUZqIj6cnTnZayGqeKwX/Mak3CLRucQHaRgCm1a8dk9pUP28aPtds7Z2PN44erM12fQ9kZg6W8HsqSQQV0CZAhG+Q3EXGk3+3MO5jundLv5FcLq22VLZCXtNGiNBcOSdPbEcy1iTCQkw/ZJX39JeRtBmNr403jr8DEwIdotY9/HiA5ilHmcpekX9+RtdulbcAHCsuMa+yle+4CAfe3huRiWELdrA==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(36860700016)(1800799024)(82310400026)(11063799006)(56012099006)(261021121427099003)(261021123027099003)(261022105027099003)(261009223027099003)(261026140227099003)(261026121527099003)(261028144727099003)(261102123227099003)(10067099003)(18002099003)(22082099003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: I9MNNPuDM/kEEj/V1Yr155QCwiRF3d9B1xREb5Gk6HKkpYaiw/igNoyOZ/f492oa96MliehkSuAtM5oPAnpDBOOEjs5iBspZmR9zkgJJ/kMcDnbK2v00HOen3g8Nc4ywIapLmFWVufBS93sniV44gRKGj8nXRtg0nwTOkrd1Xmhp3dWnuhdaiRt19hOpVXgJ1QdVnyGCUu8WnhoJND06cTYawOKm+WwPHGVml28Q3XSrVgkx6teCs8AGn6uaUfwr10NjXuCFMU7FUpZbSv4VlgkTgqpYl4ruwxS/k7+Thth9pGC/1V+/lpjmV3PYzn81PsT1Gq6xOf5ioIxFOy0M9sWc/8j2LnWDrPTMR14d0DxeaY4BmUFhSeeGiZOjBHwWUFjOnIBuNAf/JP/BtGOayGkEvgyn8Yv82hx8fWcdM/ehX6nkuVVv4lIR2RKDXXWm
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 13:43:59.4748 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9f5e98a-ffef-493a-a5b3-08df3e678227
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: MW3PEPF00001659.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7151
 X-Mailman-Approved-At: Mon, 09 Nov 2026 13:57:00 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -114,77 +107,113 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_2
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 5 Nov 2026 16:37:34 +0100
-"Pi=C3=B3rkowski, Piotr" <piotr.piorkowski@intel.com> wrote:
+__alloc_range_bias() walks the block tree from the roots and visits
+every split block overlapping [start, end) until it finds a suitable
+free block, so a range-restricted allocation costs time linear in the
+number of live allocations in the range.
 
-> From: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
->=20
-> Some devices have BAR ranges which shouldn't be exposed to the VFIO
-> user, but vfio-pci exposes the memory BARs as a whole, apart from the
-> MSI-X table.
->=20
-> This series lets the host hide ranges of the memory BARs. Reads of a
-> hidden range return ones, writes to it are dropped, the pages containing
-> it are never mapped (a sparse mmap capability advertises the rest of the
-> BAR), and ioeventfds and dma-bufs covering it are rejected. The ranges
-> are fixed while the device is bound and listed in
-> /sys/.../vfio-dev/vfioX/hidden_bar_ranges.
->=20
-> The ranges can be hidden by the driver, with
-> vfio_pci_core_hide_bar_ranges(), and by the host administrator, through
-> configfs (CONFIG_VFIO_PCI_CONFIGFS). Only drivers which access their
-> BARs exclusively through vfio-pci-core can hide ranges; vfio-pci and
-> xe-vfio-pci declare it.
->=20
-> Patch 1 is a preparatory refactor, patch 2 adds the core mechanism,
-> patch 3 the configfs interface and patch 4 per-device-ID defaults in
-> xe-vfio-pci, with no ranges defined yet.
->=20
-> Sent as RFC for feedback on the approach and the interfaces.
+amdgpu pays this on every VRAM allocation when memory is partitioned
+(NPS2/NPS4): each BO, including the page-table BOs created when memory
+is mapped, is restricted to its partition's range, and KFD requests
+cleared VRAM. On MI300X in CPX/NPS4 the compute partitions that share a
+memory partition also share the VRAM manager lock, so the walk is
+serialised across processes. hipMalloc latency grows linearly with the
+number of live allocations, and vLLM piecewise graph capture slows down
+with every captured graph.
 
-See Manish's proposal for a generic excluded range interface to
-generalize MSI-X table read/write and disable all access to CXL HDM
-decoders:
+The free trees are sorted by offset. Before walking, look up the highest
+free block that lies wholly inside the range in each free tree from the
+requested order up, and narrow the walk to the highest of them: it then
+only visits that block's ancestors and keeps the existing split and
+error handling. The full-range walk remains for space that is only
+available in blocks straddling the range edges.
 
-https://lore.kernel.org/all/20261016161839.2765592-9-mhonap@nvidia.com/
+Placement changes in two cases: a free block straddling the upper range
+edge is no longer used ahead of a lower block wholly inside the range,
+and for a clear request without GPU_BUDDY_TOPDOWN_ALLOCATION the clear
+steering only applies within the chosen block, so a lower clear block
+is not preferred over a higher one that is not clear. Otherwise blocks
+are placed top-down as before, including with
+GPU_BUDDY_TOPDOWN_ALLOCATION.
 
-Granting users the ability to manipulate excluded ranges through
-configfs seems like a terrible idea, frankly.  Thanks,
+Filling 1 GiB of a 4 GiB manager with 64 KiB range-biased allocations
+that request cleared memory takes 1190 ms before, 3 ms after (KUnit,
+UML). On MI300X in CPX/NPS4, with 8000 live 2 MiB hipMalloc allocations
+on one partition, the median latency of the last 800 over the first 800
+is 1.60x and 4.45x before (two runs), 0.98x to 1.03x after (four runs).
 
-Alex
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Signed-off-by: William Palacek <William.Palacek@amd.com>
+---
+ drivers/gpu/buddy.c | 35 ++++++++++++++++++++++++++++++++++-
+ 1 file changed, 34 insertions(+), 1 deletion(-)
 
->=20
-> Piotr Pi=C3=B3rkowski (4):
->   vfio/pci: Move the excluded range handling out of
->     vfio_pci_core_do_io_rw()
->   vfio/pci: Allow hiding BAR ranges from the VFIO user
->   vfio/pci: Allow configuring hidden BAR ranges through configfs
->   vfio/xe: Hide BAR ranges by default per device ID
->=20
->  Documentation/ABI/testing/configfs-vfio-pci   |  49 +++
->  .../ABI/testing/sysfs-devices-vfio-dev        |  13 +
->  drivers/vfio/pci/Kconfig                      |  13 +
->  drivers/vfio/pci/Makefile                     |   4 +-
->  drivers/vfio/pci/nvgrace-gpu/main.c           |   4 +-
->  drivers/vfio/pci/vfio_pci.c                   |   1 +
->  drivers/vfio/pci/vfio_pci_configfs.c          | 312 +++++++++++++++++
->  drivers/vfio/pci/vfio_pci_core.c              |  42 ++-
->  drivers/vfio/pci/vfio_pci_dmabuf.c            |  11 +
->  drivers/vfio/pci/vfio_pci_hidden_bar_ranges.c | 313 ++++++++++++++++++
->  drivers/vfio/pci/vfio_pci_priv.h              |  53 +++
->  drivers/vfio/pci/vfio_pci_rdwr.c              | 156 +++++++--
->  drivers/vfio/pci/xe/main.c                    |  60 +++-
->  include/linux/vfio_pci_core.h                 |  36 +-
->  14 files changed, 1009 insertions(+), 58 deletions(-)
->  create mode 100644 Documentation/ABI/testing/configfs-vfio-pci
->  create mode 100644 drivers/vfio/pci/vfio_pci_configfs.c
->  create mode 100644 drivers/vfio/pci/vfio_pci_hidden_bar_ranges.c
->=20
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index 28cff97d57dc8..8652ae35d323c 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -665,6 +665,26 @@ rbtree_last_clear_free_block(struct rb_root *root,
+ 	return block;
+ }
+ 
++/* Return the highest free block with lo <= offset <= hi. */
++static struct gpu_buddy_block *
++rbtree_last_free_block_in(struct rb_root *root, u64 lo, u64 hi)
++{
++	struct gpu_buddy_block *block, *last = NULL;
++	struct rb_node *node = root->rb_node;
++
++	while (node) {
++		block = rbtree_get_free_block(node);
++		if (gpu_buddy_block_offset(block) > hi) {
++			node = node->rb_left;
++		} else {
++			last = block;
++			node = node->rb_right;
++		}
++	}
++
++	return last && gpu_buddy_block_offset(last) >= lo ? last : NULL;
++}
++
+ static void rbtree_insert(struct gpu_buddy *mm,
+ 			  struct gpu_buddy_block *block)
+ {
+@@ -1247,11 +1267,24 @@ __alloc_range_bias(struct gpu_buddy *mm,
+ 		   unsigned long flags)
+ {
+ 	u64 req_size = mm->chunk_size << order;
+-	struct gpu_buddy_block *block;
++	struct gpu_buddy_block *block = NULL, *tmp;
++	unsigned int o;
+ 	LIST_HEAD(dfs);
+ 	int err;
+ 	int i;
+ 
++	/* Narrow the walk to the highest free block wholly in range (top-down). */
++	for (o = order; o <= mm->max_order && start + (mm->chunk_size << o) <= end; o++) {
++		tmp = rbtree_last_free_block_in(&mm->free_tree[o], start,
++						end - (mm->chunk_size << o));
++		if (tmp && (!block || gpu_buddy_block_offset(tmp) > gpu_buddy_block_offset(block)))
++			block = tmp;
++	}
++	if (block) {
++		start = gpu_buddy_block_offset(block);
++		end = start + gpu_buddy_block_size(mm, block);
++	}
++
+ 	end = end - 1;
+ 
+ 	/*
+-- 
+2.43.0
 
