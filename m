@@ -2,44 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A016B606A322
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 14:24:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA041606A31C
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 14:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GBy9Q0uQ
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=lsWEU2Il
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B58610F3C1;
-	Mon,  9 Nov 2026 14:24:45 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BF5110F3BD;
- Mon,  9 Nov 2026 14:24:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 655D510F370;
+	Mon,  9 Nov 2026 14:35:40 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC65210F2FB;
+ Mon,  9 Nov 2026 14:35:33 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id CBC3142A99;
- Mon,  9 Nov 2026 14:24:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E85C1F0089F;
- Mon,  9 Nov 2026 14:24:38 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id D4BEE63366;
+ Mon,  9 Nov 2026 14:35:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C0DC1F008A1;
+ Mon,  9 Nov 2026 14:35:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794234278;
- bh=vEtjykBn4MbKhX/Ba1zgM5WeS7HPcd4bmcpQAg5a5oY=;
+ s=k20260515; t=1794234932;
+ bh=YOOe7Kh928MF/9g/e+ebiKeOOvxwkJVdEZAugjwpAZs=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=GBy9Q0uQrU78tNzrOFfe3wHvK2wEMRkIIdfOg/6QkqLMwhBTSNGCi6alZ6p0M6K2U
- Ubblqw4rbEde9xPXnG2a1O5gpRDZkwCXo2ZgTBkTAaP6YZ2xIenKUnRUQcggDhMv1I
- KJtQpJwFmVbddKMGDT2RxPPKKVSa1hxLs+4GqvjT9HCYitgg9qVKoa9W8lnCCvl/Ik
- Nb/iGigk9IKL1mTA7FxZQpFYwlVJRnlSdeKFeh+t1eFQ9erQR+H2RiuNtalmihS9Z8
- 6W3/tNRpehc6AyCrwRZLZJAHsWLyGiaqIONvSKQgJu7W8St5NRtr+KfemeLLL6ZSjI
- eDyO9cVVFEmaw==
-Message-ID: <sashiko-outbox-205088@kernel.org>
+ b=lsWEU2IlJ1ALU1vGcQYcSWNE7p0l9q78fBtNerMYRKriy6W2U//bLK3Nt+NEj8N6H
+ vYJSKMWAkBA+D7JMsWxsHFrTfozabc+wMHBNEsf/ZJm7FNn4xWVQEHXV4USOvn5nZa
+ pA+P7IpqLMwyf844OdtJVhAgGzOhLpEZwHN5dOmKuuL+xPI7I94/m5sOdmlTHj+ICm
+ 2V0gzSBrn7f/ljLzjPdrTEnfJiPmkYYvT5Y4YQG+qmP9+WW6+gb7tStHmXT+QQB7/Z
+ qWXcFy1epGPnZPLnFQjkUWbOA4OITrWwohHKYn+XDIMPKpvcXh2t8onLthnlUsgAhM
+ +p4nnx2GXemEg==
+Message-ID: <sashiko-outbox-205119@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 18/20] drm/xe/eudebug: Introduce per device attention
- scan worker
+Subject: Re: [PATCH 17/20] drm/xe/eudebug: Introduce EU control interface
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>,
  intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org
-In-Reply-To: <20261109135549.4128280-19-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20261109135549.4128280-18-mika.kuoppala@linux.intel.com>
 References: <20261109135549.4128280-1-mika.kuoppala@linux.intel.com>
- <20261109135549.4128280-19-mika.kuoppala@linux.intel.com>
+ <20261109135549.4128280-18-mika.kuoppala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Mon, 09 Nov 2026 14:24:38 +0000
+Date: Mon, 09 Nov 2026 14:35:31 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,145 +60,156 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [Medium] drm/xe/eudebug: attention seqno race with discover_client()
-  queue create
+- [Medium] drm/xe/eudebug: missing wedged and unplug guards in
+  do_eu_control()
+It also noticed 1 related pre-existing issue this patch does not
+introduce:
+- [High] drm/xe/oa: unbalanced de-whitelisting in
+  xe_oa_stream_open_ioctl_locked() [1]
 --
 
-commit 9b3fd09a4bd67b0862bac3d3c0bc36809193f44f
+commit c12aefb410d72e1670863e0bab5fd107ad1622e4
 Author: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 
-drm/xe/eudebug: Introduce per device attention scan worker
+drm/xe/eudebug: Introduce EU control interface
 
-This commit introduces a periodic per-device delayed worker to scan for EU
-debugging attention bits and send DRM_XE_EUDEBUG_EVENT_EU_ATTENTION events
-when an attached debugger is present, or reset the GT if no debugger will
-service the halted threads.
+This commit adds the DRM_XE_EUDEBUG_IOCTL_EU_CONTROL ioctl to let an EU
+debugger interrupt, query, and resume EU threads on debuggable execution
+queues, and makes eudebug and OA streams mutually exclusive.
 
-> diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eude=
-bug.c
-> index 4fab8304046b3..9b1f2f97b603b 100644
-> --- a/drivers/gpu/drm/xe/xe_eudebug.c
-> +++ b/drivers/gpu/drm/xe/xe_eudebug.c
+> diff --git a/drivers/gpu/drm/xe/xe_eudebug_hw.c b/drivers/gpu/drm/xe/xe_e=
+udebug_hw.c
+> index 7388facfe0a5d..3c025f279488f 100644
+> --- a/drivers/gpu/drm/xe/xe_eudebug_hw.c
+> +++ b/drivers/gpu/drm/xe/xe_eudebug_hw.c
 [ ... ]
-> @@ -2218,6 +2233,362 @@ static const struct file_operations fops =3D {
->  	.compat_ioctl	=3D compat_ptr_ioctl,
->  };
-> =20
-> +/*
-> + * The uapi tells userspace the attention bitmask sits 8 byte aligned wi=
-thin
-> + * the event, so it may be scanned as u32 or u64 words. That holds today
-> + * because the preceding members are u64, but a field added ahead of the
-> + * array could quietly break it, so pin it down here. Only the offset can
-> + * be: plain __u64 members are 4 byte aligned on i386.
-> + */
-> +static_assert(offsetof(struct drm_xe_eudebug_event_eu_attention, bitmask=
-) %
-> +	      sizeof(__u64) =3D=3D 0);
-> +
-> +static int send_attention_event(struct xe_eudebug *d, struct xe_exec_que=
-ue *q,
-> +				int lrc_idx, void *bitmap, unsigned int size,
-> +				u64 seqno)
+> +static int do_eu_control(struct xe_eudebug *d,
+> +			 const struct drm_xe_eudebug_eu_control * const arg,
+> +			 struct drm_xe_eudebug_eu_control __user * const user_ptr)
 > +{
-> +	struct drm_xe_eudebug_event_eu_attention *e;
-> +	struct drm_xe_eudebug_event *event;
-> +	const u32 sz =3D struct_size(e, bitmask, size);
-> +	int h_queue, h_lrc;
-> +	int ret;
+[ ... ]
+> +	lrc =3D xe_eudebug_find_lrc(d, arg->lrc_handle);
+> +	if (XE_IOCTL_DBG(xe, !lrc)) {
+> +		ret =3D -EINVAL;
+> +		goto queue_put;
+> +	}
 > +
-> +	if (lrc_idx < 0 || lrc_idx >=3D q->width)
-> +		return -EINVAL;
+> +	if (!xe_pm_runtime_get_if_active(xe)) {
+> +		ret =3D -EIO;
+> +		goto queue_put;
+> +	}
 > +
-> +	h_queue =3D find_handle(d, XE_EUDEBUG_RES_TYPE_EXEC_QUEUE, q);
-> +	if (h_queue < 0)
-> +		return h_queue;
-> +
-> +	h_lrc =3D find_handle(d, XE_EUDEBUG_RES_TYPE_LRC, q->lrc[lrc_idx]);
-> +	if (h_lrc < 0)
-> +		return h_lrc;
-> +
-> +	mutex_lock(&d->lock);
-> +	event =3D xe_eudebug_prepare_event(d, DRM_XE_EUDEBUG_EVENT_EU_ATTENTION,
-> +					 seqno, DRM_XE_EUDEBUG_EVENT_STATE_CHANGE,
-> +					 sz);
-> +
-> +	e =3D cast_event(e, event);
-> +	e->exec_queue_handle =3D h_queue;
-> +	e->lrc_handle =3D h_lrc;
-> +	e->bitmask_size =3D size;
-> +
-> +	memcpy(e->bitmask, bitmap, size);
-> +	ret =3D xe_eudebug_queue_event(d, event);
-> +	mutex_unlock(&d->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int relay_gt_attention(struct xe_eudebug *d, struct xe_exec_queue=
- *q,
-> +			      struct xe_hw_engine *hwe, int lrc_idx)
-> +{
-> +	const u32 size =3D xe_gt_eu_attention_bitmap_size(q->gt);
-> +	void *bitmask;
-> +	u64 seqno;
-> +	int ret;
-> +
-> +	/* If we fail at this time, assume we manage to send eventually */
-> +	bitmask =3D kvzalloc(size, GFP_KERNEL);
-> +	if (!bitmask)
-> +		return 0;
-> +
-> +	/*
-> +	 * Attention is state, so the event is stamped where that state is
-> +	 * observed: as the bits are read. That is also before the handle
-> +	 * lookups in send_attention_event(), so a handle still found there is
-> +	 * destroyed with a later seqno. A round that ends up sending nothing
-> +	 * leaves a gap in the numbering, which the uapi allows.
-> +	 */
-> +	seqno =3D atomic64_inc_return(&d->events.seqno);
-> +
-> +	ret =3D xe_gt_eu_attention_bitmap(q->gt, bitmask, size);
+> +	active =3D xe_gt_runalone_active_queue_get(q->gt, &active_hwe, &lrc_idx=
+);
+> +	if (XE_IOCTL_DBG(xe, IS_ERR(active))) {
+> +		ret =3D PTR_ERR(active);
+> +		goto out_pm;
+> +	}
 
 [Severity: Medium]
-Can relay_gt_attention() send a DRM_XE_EUDEBUG_EVENT_EU_ATTENTION event
-with a smaller seqno than the queue's DRM_XE_EUDEBUG_EVENT_CREATE event
-when racing with discover_client()?
+Can do_eu_control() race with PCI device unbind or run on a wedged device
+to dereference a NULL hwe->gt or access unmapped MMIO registers?
 
-In xe_eudebug_attach(), add_debugger() publishes xef->eudebug.debugger
-before discover_client() runs, and handle_gt_attention() looks up the
-debugger via xe_eudebug_get_nolock() without holding xef->eudebug.ioctl_loc=
-k:
+Unlike DRM character device ioctls, DRM_XE_EUDEBUG_IOCTL_EU_CONTROL is
+dispatched directly on the anonymous [xe_eudebug] file, which holds a
+drm_dev_get() reference that keeps struct xe_device alive after PCI
+unbind.  xe_pm_runtime_get_if_active(xe) does not stop callers during or
+after unbind because xe_pm_runtime_fini() calls pm_runtime_get_sync() and
+pm_runtime_forbid(), leaving runtime PM active while devres tears down
+the device:
 
-CPU0 (attention_wq)               CPU1 (connect ioctl)
-handle_gt_attention()             xe_eudebug_attach()
-  d =3D xe_eudebug_get_nolock(...)    discover_client()
-  relay_gt_attention()                ...
-    seqno =3D atomic64_inc_return()       exec_queue_create_event()
-      --> S1                              _xe_eudebug_add_handle(LRC)
-    xe_gt_eu_attention_bitmap()           mutex_lock(&d->lock)
-                                          __handle_insert(EXEC_QUEUE)
-                                            --> seqno =3D S2 (S2 > S1)
-                                          mutex_unlock(&d->lock)
-    send_attention_event()
-      find_handle(EXEC_QUEUE)
-      find_handle(LRC)
-      mutex_lock(&d->lock)
-      xe_eudebug_queue_event(S1)
-      mutex_unlock(&d->lock)
-                                          send_exec_queue_event(S2)
+CPU0                                  CPU1
+do_eu_control()
+  xe_pm_runtime_get_if_active(xe)
+  ...
+  memdup_user() / usleep_range()
+                                      xe_pci_remove()
+                                        drm_dev_unplug(&xe->drm)
+                                        ...
+                                        devres_release_all()
+                                          hw_engine_fini()
+                                            hwe->gt =3D NULL
+                                          pcim_iomap_release()
+  check_lrc_active(active_hwe, lrc)
+    read_hw_lrca(hwe, &lrc_hw)
+      gt_to_fw(hwe->gt)  <-- NULL pointer dereference
 
-The attention event for q is stamped with seqno S1 < S2 and can also be
-queued into d->events.fifo ahead of the EXEC_QUEUE CREATE event because
-exec_queue_create_event() drops d->lock between __handle_insert() and
-send_exec_queue_event(), so userspace sees an attention event for handles
-that have not been created yet.
+If hwe->gt is instead cleared during get_runalone_active_hw_engine(),
+engine_status() dereferences hwe->gt as well, and after mmio_fini() clears
+xe->mmio.regs, MMIO accesses trigger device warnings.  Sibling anonymous
+fd callbacks in drivers/gpu/drm/xe/xe_eudebug_vm.c guard against both
+cases via vm_file_enter(), which checks xe_wedged(xe) and wraps hardware
+accesses in drm_dev_enter() / drm_dev_exit().
 
-Looking up h_queue and h_lrc before stamping seqno in relay_gt_attention()
-(and re-checking that the handles still exist before queueing, or holding
-xef->eudebug.ioctl_lock) would ensure discovery has already assigned the
-CREATE seqno first.
+> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+> index fe91abaccb14a..52b3f342344a3 100644
+> --- a/drivers/gpu/drm/xe/xe_oa.c
+> +++ b/drivers/gpu/drm/xe/xe_oa.c
+[ ... ]
+> @@ -1880,6 +1914,21 @@ static int xe_oa_stream_open_ioctl_locked(struct x=
+e_oa *oa,
+>  		goto exit;
+>  	}
+> =20
+> +	/*
+> +	 * eudebug and OA both change EU and engine state that the other
+> +	 * relies on, such as the debug registers and workarounds eudebug
+> +	 * keeps in hwe->reg_sr and the settings OA changes and restores
+> +	 * around a stream. They do not have to run at the same time, so
+> +	 * refuse rather than interleave. xe_eudebug_enable() checks the
+> +	 * other direction with xe_oa_stream_active(), under the same
+> +	 * gt_lock held here.
+> +	 */
+> +	if (xe_eudebug_is_enabled_oa(param->hwe->gt)) {
+> +		drm_dbg(&oa->xe->drm, "OA not available while eudebug is enabled\n");
+> +		ret =3D -EBUSY;
+> +		goto exit;
+> +	}
+
+[Severity: High]
+This problem wasn't introduced by this patch, but can
+xe_oa_stream_open_ioctl_locked() cause an unbalanced
+xe_reg_dewhitelist_oa_regs() call [1] when opening a stream with
+DRM_XE_OA_PROPERTY_SAMPLE_OA fails?
+
+xe_oa_stream_init() sets stream->sample =3D param->sample, but
+xe_reg_whitelist_oa_regs() is only called after xe_oa_enable_locked() and
+anon_inode_getfd() both succeed:
+
+drivers/gpu/drm/xe/xe_oa.c:xe_oa_stream_open_ioctl_locked() {
+    ...
+	if (!param->disabled) {
+		ret =3D xe_oa_enable_locked(stream);
+		if (ret)
+			goto err_destroy;
+	}
+
+	stream_fd =3D anon_inode_getfd("[xe_oa]", &xe_oa_fops, stream, 0);
+	if (stream_fd < 0) {
+		ret =3D stream_fd;
+		goto err_disable;
+	}
+
+	if (stream->sample)
+		xe_reg_whitelist_oa_regs(stream->gt);
+    ...
+err_disable:
+	if (!param->disabled)
+		xe_oa_disable_locked(stream);
+err_destroy:
+	xe_oa_stream_destroy(stream);
+    ...
+}
+
+If anon_inode_getfd() fails (for example with -EMFILE) or
+xe_oa_enable_locked() fails, xe_oa_stream_destroy() sees stream->sample
+set and calls xe_reg_dewhitelist_oa_regs(stream->gt) without a matching
+xe_reg_whitelist_oa_regs().  That triggers xe_assert() and underflows
+gt->oa.whitelist_count from 0 to U32_MAX (or drops another active OA
+unit's whitelist reference on the same GT).
+
+[1] https://sashiko.dev/#/bug/linux-44e618e3-ff9f-4811-9ea1-86af519616cc
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261109135549.4128=
-280-1-mika.kuoppala@linux.intel.com?part=3D18
+280-1-mika.kuoppala@linux.intel.com?part=3D17
