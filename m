@@ -2,28 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F785606A325
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 18:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23CA8606A31C
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 20:37:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HVF1e2ai
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7E0310E140;
-	Mon,  9 Nov 2026 18:13:51 +0000 (UTC)
-Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2435510E140;
- Mon,  9 Nov 2026 18:13:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1484855352632930563=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCCA310E250;
+	Mon,  9 Nov 2026 20:37:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A28D10E250
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Nov 2026 20:37:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794256633; x=1825792633;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bYME9wPMtQD/rhAODinVfmYFGjbWVxSEcDrTIN/HSYg=;
+ b=HVF1e2aieD/D1xjqrtRYpuMxelEWJj+0a8VPPPtHNIjiFyGZKYD1P6St
+ ICOtp8NtBlUuxBYFlvE4u5IffEyikM4q3Lqwt7ppeytXU0BuPdR7HMq4/
+ PD6MtB0cAXKkhzac+dNvRau0PxyWW1ZyUHgiFvlpQosU1yJ3VganSlSWc
+ ISy7O5La2LJaeRiDBGN5mWN2Cuo9wgbA7wFcvST2dQ7qVeNKD4j8+DYX5
+ IFsK+8BwWP0kn8ETcz97z6sXYCpW4o/4Zq0hS224wsv0Rrn5hlCy1k/m6
+ UErTPfv6OCspAtfG/apvWEJrsS4zMT/7/1Zg8Jdt3+fcqRIueXtXrqV5o g==;
+X-CSE-ConnectionGUID: wKDhMo9DRMacPwmGFxvUrg==
+X-CSE-MsgGUID: OgoKoJgSQ2qfNQOTrGwURg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="2889126"
+X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
+   d="scan'208";a="2889126"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 12:37:12 -0800
+X-CSE-ConnectionGUID: MIzKwf9/Sx+JMMRXa++BHw==
+X-CSE-MsgGUID: VllaX9V4TnGtrvf2ogNd6Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
+   d="scan'208";a="7979019"
+Received: from cyp07.fm.intel.com (HELO pallavi-cyp07.fm.intel.com)
+ ([10.36.54.237])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 12:37:12 -0800
+From: Pallavi Mishra <pallavi.mishra@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: gustavo.sousa@intel.com
+Subject: [PATCH v3 0/2] drm/xe: Store GMD_ID subunit during GT init
+Date: Mon,  9 Nov 2026 12:36:59 -0800
+Message-ID: <20261109203701.814007-1-pallavi.mishra@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Optimise_suspend_handling_f?=
- =?utf-8?q?or_CCS_igpu_platforms_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Auld" <matthew.auld@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Nov 2026 18:13:51 -0000
-Message-ID: <179424803113.141008.10273471921476032393@221881a7231d>
-X-Patchwork-Hint: ignore
-References: <20261106-s4-opti-v2-0-a3cdae711a3b@intel.com>
-In-Reply-To: <20261106-s4-opti-v2-0-a3cdae711a3b@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,241 +60,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============1484855352632930563==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Replace the separate GMD_ID and subunit fields with struct xe_gmdid,
+then initialize that struct from the value already read during probe.
 
-== Series Details ==
+This is v3 of:
 
-Series: Optimise suspend handling for CCS igpu platforms (rev3)
-URL   : https://patchwork.freedesktop.org/series/177963/
-State : success
+https://patchwork.freedesktop.org/patch/763681/
 
-== Summary ==
+v2:
+- Store GMD_ID in struct xe_gmdid instead of a u32 plus a separate subip field.(Gustavo)
+- Initialize the struct from xe_probed_info in xe_info_init() instead of reading GMD_ID again during GT init.(Gustavo)
 
-CI Bug Log - changes from xe-6095-d72707a042b6aff601449a9cf87e5fe55decbc5c_BAT -> xe-pw-177963v3_BAT
-====================================================
+v3:
+- Rebase.
 
-Summary
--------
+Pallavi Mishra (2):
+  drm/xe: Store GMD_ID as a struct
+  drm/xe: Initialize GT GMD_ID from probed info
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 13)
-------------------------------
-
-  Additional (1): bat-wcl-1 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-177963v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-wcl-1:          NOTRUN -> [SKIP][1] ([Intel XE#7245])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-wcl-1:          NOTRUN -> [SKIP][2] ([Intel XE#8265])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@kms_dsc@dsc-basic.html
-
-  * igt@xe_evict@evict-small-multi-vm:
-    - bat-wcl-1:          NOTRUN -> [SKIP][3] ([Intel XE#7238]) +11 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_evict@evict-small-multi-vm.html
-
-  * igt@xe_exec_balancer@twice-virtual-rebind:
-    - bat-wcl-1:          NOTRUN -> [SKIP][4] ([Intel XE#7482]) +17 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_exec_balancer@twice-virtual-rebind.html
-
-  * igt@xe_exec_multi_queue@many-queues-priority:
-    - bat-wcl-1:          NOTRUN -> [SKIP][5] ([Intel XE#8364]) +13 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_exec_multi_queue@many-queues-priority.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - bat-wcl-1:          NOTRUN -> [SKIP][6] ([Intel XE#9657])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-wcl-1:          NOTRUN -> [SKIP][7] ([Intel XE#7239]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-wcl-1:          NOTRUN -> [SKIP][8] ([Intel XE#7243])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-wcl-1:          NOTRUN -> [SKIP][9] ([Intel XE#7247] / [Intel XE#7590])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-wcl-1:          NOTRUN -> [SKIP][10] ([Intel XE#7242] / [Intel XE#7590])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-wcl-1:          NOTRUN -> [SKIP][11] ([Intel XE#7248] / [Intel XE#7590])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#7238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238
-  [Intel XE#7239]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7239
-  [Intel XE#7242]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7242
-  [Intel XE#7243]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7243
-  [Intel XE#7245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7245
-  [Intel XE#7247]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7247
-  [Intel XE#7248]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7248
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-  [Intel XE#9657]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657
+ drivers/gpu/drm/xe/xe_device.c   |  6 ++--
+ drivers/gpu/drm/xe/xe_gt.c       |  6 ----
+ drivers/gpu/drm/xe/xe_gt_types.h | 17 +++++++++--
+ drivers/gpu/drm/xe/xe_guc.c      | 12 ++++----
+ drivers/gpu/drm/xe/xe_pci.c      | 50 +++++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_query.c    | 11 ++++---
+ 6 files changed, 68 insertions(+), 34 deletions(-)
 
 
-Build changes
--------------
+base-commit: d72707a042b6aff601449a9cf87e5fe55decbc5c
+-- 
+2.43.0
 
-  * Linux: xe-6095-d72707a042b6aff601449a9cf87e5fe55decbc5c -> xe-pw-177963v3
-
-  IGT_9181: 9181
-  xe-6095-d72707a042b6aff601449a9cf87e5fe55decbc5c: d72707a042b6aff601449a9cf87e5fe55decbc5c
-  xe-pw-177963v3: 177963v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/index.html
-
---===============1484855352632930563==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Optimise suspend handling for CCS igpu platforms (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/177963/">https://patchwork.freedesktop.org/series/177963/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6095-d72707a042b6aff601449a9cf87e5fe55decbc5c_BAT -&gt; xe-pw-177963v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 13)</h2>
-<p>Additional (1): bat-wcl-1 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-177963v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7245">Intel XE#7245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-multi-vm:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-virtual-rebind:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_exec_balancer@twice-virtual-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-priority:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_exec_multi_queue@many-queues-priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657">Intel XE#9657</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7239">Intel XE#7239</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7243">Intel XE#7243</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7247">Intel XE#7247</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7242">Intel XE#7242</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-177963v3/bat-wcl-1/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7248">Intel XE#7248</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6095-d72707a042b6aff601449a9cf87e5fe55decbc5c -&gt; xe-pw-177963v3</li>
-</ul>
-<p>IGT_9181: 9181<br />
-  xe-6095-d72707a042b6aff601449a9cf87e5fe55decbc5c: d72707a042b6aff601449a9cf87e5fe55decbc5c<br />
-  xe-pw-177963v3: 177963v3</p>
-
-</body>
-</html>
-
---===============1484855352632930563==--
