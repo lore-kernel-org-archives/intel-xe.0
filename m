@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 436DC606A31C
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 15:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA66D606A321
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 15:37:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09EE710E21E;
-	Mon,  9 Nov 2026 15:31:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB49110E2B0;
+	Mon,  9 Nov 2026 15:37:26 +0000 (UTC)
 Received: from 221881a7231d (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCF2010E21E;
- Mon,  9 Nov 2026 15:31:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73C3210E2B0;
+ Mon,  9 Nov 2026 15:37:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5609167964090176441=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/xe=3A_Remov?=
- =?utf-8?q?e_unused_xe=5Fvm=5Frestart_tracepoint_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_PCI=3A_remove_redundant_res?=
+ =?utf-8?q?ource_assignments_done_after_BAR_resize?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Torra Sowmya" <sowmyatorra@gmail.com>
+To: =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Nov 2026 15:31:20 -0000
-Message-ID: <179423828083.140556.7104561467555854089@221881a7231d>
+Date: Mon, 09 Nov 2026 15:37:25 -0000
+Message-ID: <179423864546.140606.8379498936983143928@221881a7231d>
 X-Patchwork-Hint: ignore
-References: <20261101125808.9770-1-sowmyatorra@gmail.com>
-In-Reply-To: <20261101125808.9770-1-sowmyatorra@gmail.com>
+References: <20261109131011.1815-1-ilpo.jarvinen@linux.intel.com>
+In-Reply-To: <20261109131011.1815-1-ilpo.jarvinen@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,22 +35,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============5609167964090176441==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe: Remove unused xe_vm_restart tracepoint (rev2)
-URL   : https://patchwork.freedesktop.org/series/178107/
-State : failure
+Series: PCI: remove redundant resource assignments done after BAR resize
+URL   : https://patchwork.freedesktop.org/series/178102/
+State : success
 
 == Summary ==
 
-Series author address 'sowmyatorra@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
-If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
-Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1337261/ (on master)
+CI Bug Log - changes from xe-6093-5cd64b7b38f36620fbc117c53b4866b0590a3a93_BAT -> xe-pw-178102v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 13)
+------------------------------
+
+  Missing    (2): bat-bmg-vm bat-ptl-vm 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6093-5cd64b7b38f36620fbc117c53b4866b0590a3a93 -> xe-pw-178102v1
+
+  IGT_9181: 9181
+  xe-6093-5cd64b7b38f36620fbc117c53b4866b0590a3a93: 5cd64b7b38f36620fbc117c53b4866b0590a3a93
+  xe-pw-178102v1: 178102v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178102v1/index.html
+
+--===============5609167964090176441==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PCI: remove redundant resource assignments done after BAR resize</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178102/">https://patchwork.freedesktop.org/series/178102/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178102v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178102v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6093-5cd64b7b38f36620fbc117c53b4866b0590a3a93_BAT -&gt; xe-pw-178102v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 13)</h2>
+<p>Missing    (2): bat-bmg-vm bat-ptl-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6093-5cd64b7b38f36620fbc117c53b4866b0590a3a93 -&gt; xe-pw-178102v1</li>
+</ul>
+<p>IGT_9181: 9181<br />
+  xe-6093-5cd64b7b38f36620fbc117c53b4866b0590a3a93: 5cd64b7b38f36620fbc117c53b4866b0590a3a93<br />
+  xe-pw-178102v1: 178102v1</p>
+
+</body>
+</html>
+
+--===============5609167964090176441==--
