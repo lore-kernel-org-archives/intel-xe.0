@@ -2,57 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D9B606A323
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 11:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A68606A326
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 12:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NoHxVciW
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=fQJtJr+P
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E88510F1B7;
-	Mon,  9 Nov 2026 11:59:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBC1710F1B7
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Nov 2026 11:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B72A10F1B7;
+	Mon,  9 Nov 2026 12:00:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43DB210F1B7
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Nov 2026 12:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794225552; x=1825761552;
+ t=1794225623; x=1825761623;
  h=from:to:subject:in-reply-to:references:date:message-id:
  mime-version:content-transfer-encoding;
- bh=F8hxeSJO384T7H99NhmtKMEWPHZ9yMgXss99tHmrNLo=;
- b=NoHxVciWXK51MCmi9epyxjOWnbgZm+No60S6/opxtKVz0eAK+tNxPHQ4
- 1yOD/Kw1unmpWSO3/yU6iMCl/8yAHkDHKD2bp7K/vfMab7vbJYV20ML/W
- mLgMeV8TVYBc0l0RBMB/SHXUJ+PXy9nkUDC7gL+pw0BO7LSOk3sUrfngZ
- CHbVDluKMeAaDCrIy1k8jyaO1hM9VmvP08q8nxkhzvjycturtcWZNunt+
- LtwtSDsBbmYZjt2auMvABFbtKXxDJ9gC4hRN1WSYB2eTDGXQdoxYC3VbO
- kTsFjhjSpKcUknoeLPCOq/iLa7h/FMBULDaX6/4mZ21p5A5KweBZMzLH2 Q==;
-X-CSE-ConnectionGUID: 5KHP5wzQQj+uPGLOF9wQnA==
-X-CSE-MsgGUID: en/A2JGXQvOGHxEcWuNETQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="3046976"
+ bh=SFBRcL1DYLj1ZvWrqKT99OpolrOD2CDVWJNM3lnQTaw=;
+ b=fQJtJr+P2O0TWYeXEwFJROSmXtTMl2H0Z9sr00HAJirX+yuod59W0b/Y
+ KkwBxWs4K+c5F1nczEDxDuxCfuAHpHLLMmn2xZAjP4GxoGe+PaqsZtKxS
+ wTc/+/laxqOd5tjc/zE0tj+aHXC0Uc9myIB9SAQ1iUqaAE+jjheA9oUdU
+ gyq7sm7HXCr2et0O/2Usr7fpBa/SjAlgcXN5b2Z/uhuFq3fAOBWBNcvRo
+ kXMBEbf7N1hMDOO/l11VJhua0YWQGLkbwso5tcyeobff5jWyJL9d1DHfb
+ OtFfRrBYR5wC1QKzWV6EWRw4P+1FIRyQzseByeoozIA3tdOJ0SNuDDwnq g==;
+X-CSE-ConnectionGUID: UCQQn1K3TJ+65cnLtFj3Cg==
+X-CSE-MsgGUID: s2Xfmal6SlyWZdcNXUK6Sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2934646"
 X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="3046976"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 03:59:12 -0800
-X-CSE-ConnectionGUID: QBZcpviYTZCTK0UoXzQeiw==
-X-CSE-MsgGUID: N81CpDdDTqGBHf2ygWRcpg==
+   d="scan'208";a="2934646"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 04:00:22 -0800
+X-CSE-ConnectionGUID: 5DmQfEOxQya8sHzlk+nl3g==
+X-CSE-MsgGUID: RgyZe2R7T1WejNCtK3m3mA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="9706731"
+   d="scan'208";a="7883799"
 Received: from conormcd-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.244.93])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 03:59:11 -0800
+ 09 Nov 2026 04:00:20 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] drm/xe:
- s/xe_display_irq_enable()/xe_display_gse_irq_handler()/
-In-Reply-To: <20261109114554.19597-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 2/4] drm/xe: Extract xe_gu_misc_irq_{postinstall,reset}()
+In-Reply-To: <20261109114554.19597-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20261109114554.19597-1-ville.syrjala@linux.intel.com>
- <20261109114554.19597-2-ville.syrjala@linux.intel.com>
-Date: Mon, 09 Nov 2026 13:59:08 +0200
-Message-ID: <9a85df445910c4485b29db9b3f3e01eee819be8b@intel.com>
+ <20261109114554.19597-3-ville.syrjala@linux.intel.com>
+Date: Mon, 09 Nov 2026 14:00:16 +0200
+Message-ID: <724fccfff0c8aa0f4b2146a9a3ef25656f10ca4c@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -77,85 +76,76 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Mon, 09 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> xe_display_irq_enable() is actually the GSE interrupt *handler*,
-> not some irq enable function. Rename it accordingly.
+> Make the GU_MISC interrupt setup a bit nicer by extracting
+> it to its own functions.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/display/xe_display.c | 2 +-
->  drivers/gpu/drm/xe/display/xe_display.h | 4 ++--
->  drivers/gpu/drm/xe/xe_irq.c             | 5 +++--
->  3 files changed, 6 insertions(+), 5 deletions(-)
+>  drivers/gpu/drm/xe/xe_irq.c | 27 ++++++++++++++++++---------
+>  1 file changed, 18 insertions(+), 9 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
-/display/xe_display.c
-> index aab416485e3e..f5538e450e3e 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -195,7 +195,7 @@ void xe_display_irq_handler(struct xe_device *xe, u32=
- master_ctl)
->  		intel_display_irq_handler(display, NULL);
->  }
->=20=20
-> -void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
-> +void xe_display_gse_irq_handler(struct xe_device *xe, u32 gu_misc_iir)
->  {
->  	struct intel_display *display =3D xe->display;
->=20=20
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe=
-/display/xe_display.h
-> index 0babb50bfc77..370be8ec1044 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.h
-> +++ b/drivers/gpu/drm/xe/display/xe_display.h
-> @@ -33,7 +33,7 @@ void xe_display_shutdown(struct xe_device *xe);
->  void xe_display_shutdown_late(struct xe_device *xe);
->=20=20
->  void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl);
-> -void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
-> +void xe_display_gse_irq_handler(struct xe_device *xe, u32 gu_misc_iir);
->  void xe_display_irq_reset(struct xe_device *xe);
->  void xe_display_irq_postinstall(struct xe_device *xe);
->=20=20
-> @@ -71,7 +71,7 @@ static inline void xe_display_shutdown(struct xe_device=
- *xe) {}
->  static inline void xe_display_shutdown_late(struct xe_device *xe) {}
->=20=20
->  static inline void xe_display_irq_handler(struct xe_device *xe, u32 mast=
-er_ctl) {}
-> -static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_mi=
-sc_iir) {}
-> +static inline void xe_display_gse_irq_handler(struct xe_device *xe, u32 =
-gu_misc_iir) {}
->  static inline void xe_display_irq_reset(struct xe_device *xe) {}
->  static inline void xe_display_irq_postinstall(struct xe_device *xe) {}
->=20=20
 > diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index b394c8edf89c..320fc64e7d4f 100644
+> index 320fc64e7d4f..7c39d7a3cf8a 100644
 > --- a/drivers/gpu/drm/xe/xe_irq.c
 > +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -435,7 +435,7 @@ static irqreturn_t xelp_irq_handler(int irq, void *ar=
-g)
->=20=20
->  	xelp_intr_enable(xe, false);
->=20=20
-> -	xe_display_irq_enable(xe, gu_misc_iir);
-> +	xe_display_gse_irq_handler(xe, gu_misc_iir);
->=20=20
->  	return IRQ_HANDLED;
+> @@ -645,6 +645,12 @@ static void vf_irq_reset(struct xe_device *xe)
+>  	}
 >  }
-> @@ -533,7 +533,8 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+>=20=20
+> +static void xe_gu_misc_irq_reset(struct xe_device *xe)
+> +{
+> +	mask_and_disable(xe_device_get_root_tile(xe),
+> +			 GU_MISC_IRQ_OFFSET);
+> +}
+> +
+>  static void xe_irq_reset(struct xe_device *xe)
+>  {
+>  	struct xe_tile *tile;
+> @@ -665,8 +671,7 @@ static void xe_irq_reset(struct xe_device *xe)
+>  			xelp_irq_reset(tile);
 >  	}
 >=20=20
->  	dg1_intr_enable(xe, false);
-> -	xe_display_irq_enable(xe, gu_misc_iir);
-> +
-> +	xe_display_gse_irq_handler(xe, gu_misc_iir);
+> -	tile =3D xe_device_get_root_tile(xe);
+> -	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
+> +	xe_gu_misc_irq_reset(xe);
+>  	xe_display_irq_reset(xe);
+>  	xe_i2c_irq_reset(xe);
 >=20=20
->  	return IRQ_HANDLED;
+> @@ -696,6 +701,16 @@ static void vf_irq_postinstall(struct xe_device *xe)
+>  		xe_assert(xe, xe_device_has_memirq(xe));
 >  }
+>=20=20
+> +static void xe_gu_misc_irq_postinstall(struct xe_device *xe)
+> +{
+> +	/*
+> +	 * ASLE backlight operations are reported via GUnit GSE interrupts
+> +	 * on the root tile.
+> +	 */
+> +	unmask_and_enable(xe_device_get_root_tile(xe),
+> +			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+> +}
+> +
+>  static void xe_irq_postinstall(struct xe_device *xe)
+>  {
+>  	if (IS_SRIOV_VF(xe))
+> @@ -711,13 +726,7 @@ static void xe_irq_postinstall(struct xe_device *xe)
+>=20=20
+>  	xe_display_irq_postinstall(xe);
+>  	xe_i2c_irq_postinstall(xe);
+> -
+> -	/*
+> -	 * ASLE backlight operations are reported via GUnit GSE interrupts
+> -	 * on the root tile.
+> -	 */
+> -	unmask_and_enable(xe_device_get_root_tile(xe),
+> -			  GU_MISC_IRQ_OFFSET, GU_MISC_GSE);
+> +	xe_gu_misc_irq_postinstall(xe);
+>=20=20
+>  	/* Enable top-level interrupts */
+>  	if (GRAPHICS_VERx100(xe) >=3D 1210)
 
 --=20
 Jani Nikula, Intel
