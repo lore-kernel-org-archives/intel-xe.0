@@ -2,113 +2,68 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2611F606A31C
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B1FE606D804
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 13:57:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=permerror header.d=shazbot.org header.i=@shazbot.org header.a=rsa-sha1 header.s=fm2 header.b=Tp7vFy+m;
-	dkim=permerror header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha1 header.s=fm3 header.b=lWtYIO5u
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XYAs8Ef5
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D224C10F307;
-	Mon,  9 Nov 2026 13:57:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="Tp7vFy+m";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="lWtYIO5u";
-	dkim-atps=neutral
-X-Greylist: delayed 326 seconds by postgrey-1.36 at gabe;
- Thu, 05 Nov 2026 15:56:02 UTC
-Received: from fhigh-a7-smtp.messagingengine.com
- (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2324211294E
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 15:56:02 +0000 (UTC)
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 42FA81400064
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Nov 2026 10:56:01 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-03.internal (MEProxy); Thu, 05 Nov 2026 10:56:01 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1793894161;
- x=1793980561; bh=+w/qXuZYlkYWda1Xs168VpdBCh2Dw2DrXwv9zMQs/hE=; b=
- Tp7vFy+ml/J+qoAsN9LR30B9FH0eTmcjDBsCzs7Gtz7KXXOIayDZ3Mw8x7+C4Lqj
- SxxWmB8uDfQAyCh6IdiyBtFU6hMcFqshBxBgzJdgGGO58D2XIfbdiVWzVJ0mnJvB
- 9nkBfSHntLRYWfVi4GS6UNzKijwBGO0fVeSVIgTy/ewxQ8pi4Ri8m2/HySpNX6Ur
- Go15IvpdpOtkxOjSbDhaV9SHK/K3pj/TqSnaYZo+dGuz9DUiYpZLdWIzn8JiLNUy
- VTdzqKbEJ943zSlFP7f0hP32uExRVW5Tydm7dFi5ZcvjBmo2Bxktmy5yjtXRR/Yl
- 5S9Ta/29t/CKwg/uP+93WA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1793894161; x=
- 1793980561; bh=+w/qXuZYlkYWda1Xs168VpdBCh2Dw2DrXwv9zMQs/hE=; b=l
- WtYIO5u+p+RS5RW199ijq7wEp1HC3vwa9ey20jbF3rPtwkk8h8VC7GLdS0kOKZbU
- r2LD9u0BEixRC3EZ/4O+6JC+1xs5/UZ9nvHCiZr/b6ldVTGxqdTdCbweGLx0MU41
- uzHkyNwGC/MsOAlMWtHhJuJaOBu7wjWYwGYoVtK/tEodO/YJfHSQrmPoZGak0ZhM
- ffl/IbitJnsdXLcn/p11W83dBSntYB3TvPM+LSwYogAQhCAAyF3f9pqxBCZDodJe
- yUqbBp+toMB49yj/q7j+7Hfbs0ovoD20m1N2NJtAU/Fqp0lbSNaPJmznm8Ak+CiX
- KfBmcqQZzLpJ8w5hp+e0Q==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
- repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
- action=sign d=shazbot.org a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1793894161; d=shazbot.org;
- mf=PGFsZXhAc2hhemJvdC5vcmc+;
- rt=PGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4=;
- s=fm2:rsa-sha256:i3JOJb5PY5+C9J9aWvMYYVYnDvokz1zH7xlLcZmIx/3D642
- lbSZXWJEnbihw+YajSo+Dfs5n6EjNb0pMFKwZE0OVsOw2aXv2fyzlwyaUyZi1wQ6
- tnTForLaj0FSc0cf+cWKfmBte3qfKvlSdMK4gvqeUnb51F2SifX2pubEYoMuOOkX
- x2thovha8alqdkNoXDNZ1PpcP5G/q1mt6mzxN+mMNUsW0E1P6funsv22sAIIF85R
- aFzCWrxzpOXg4Pppv/QuUbBQeZx+do8cRd9ojpdqyXtdW0Dq6INxEIKgWiEu2+1V
- 6WzFLrfKluNv/5UOns8nXrF+gwa9m9eSnIndnug==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
- repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
- action=mi-m=1; hc=12;
- hn=cc,content-transfer-encoding,content-type,date,feedback-id,
- from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1;
- h=sha256:QA3IHDmvKSgxkp/sTa87qrbZu/nPmIWtFO2Jb4VWasw=:IlYIUMRd+p2tmJ/4ATkU1O6vMgxes57IUB7wLLb0i6E=;
-X-ME-Sender: <xms:Eafsal1wc3Yowo0VN7Gaa9xb5VpYRlEG4Rr9sI53NztFzt0xOH4lLg>
- <xme:EafsahAbY2_WoTA46vzl1WLPvvpsd6m5aWGnhlZEAPhMRFDmn7QD9BmNeFVmzltLg
- cnrR_xI6KgmxzDAf21DPo5NVkTBCbQ6DhMsWBtJ7gOd2Fp41p-W3Zj0>
-X-ME-Received: <xmr:EafsaqIVw8uf_MhkBJ6jnadbOz8inXaERR2vWU53CjZHMhGa-kjAv5uBLtVizQ>
-X-ME-Proxy-Cause: dmFkZTEJhUV9GZq7jdzC1PgG1hjRQjI1vid1nMaRF6RGvBf7WUx3vry9QM7nA0rfpPyMf/
- sEBD95XaWRz4mwDvZqHXIogCQgZM1tHEMOSqY23kipvUMEjh8OIVW6cfaNTqmEzpCn3U0F
- C6Y9pPuN1CmwoY9tvMQUy2h6eSp+j7mB2I7o6JT9zWUFe5MV/vPGe0jWhP8ys9CIhA9feY
- hviLgVlq2yiQXwC7vUlGk6sEz+ztaGL2InuBNu1lxdD6Vr5rjwC6WyTdkkoy0R6JIxYB9r
- EDnaVcHII3u7J3UMZEgVrV0yQGz1yIuz6vNL/upsSBImEXLEmAL6fcUhAwYDqwvs12xRSb
- 94/BkP06WB4Z3TM4h6mF9plJaxBmY8bQxyYwEOTtYph3goq1GcLEs/Uw/FqMtGUNhaPd7l
- mkppxuYQ7SYZRlusznAjYIdG1/BSWgA1Y9KOyYkAP68pAmhRiZ//FhnvEOK92+kzeFKO/v
- v7AFP+Z77uEb6pD4tTjNhH7sWFMWEcuIdF+9fvyfq/bHM1RsDjTGpZR13NMLkeGoVNzlh3
- cpF8M7/FP6tH519Hx3RoHkZ7AKouddXvfIwmQiAGIXFmdIFeUHkqffsRHoR11ImVHc7Q6t
- l0kOzaOiIhmz0V1BERuH5mEUOsazzRVNAqXbvA9qnxD8+5+JNoqCL5roMbSg
-X-ME-Proxy: <xmx:Eafsail4eYaOBZymuQNEtFOoESTo5-m_YnEN7kwa5kveTJD2-QJiNA>
- <xmx:Eafsarb7f4BTpsCYrrnEBzgvlOFuThtg55ELeATkxcX6gdSr5a2cOw>
- <xmx:Eafsam-XNwr-3Y972gYt_9Ig3HMYKCMpSBzBXJ-9_RQO9xghbvf7UA>
- <xmx:EafsaiZts5tFDquDe8Vsxu8SLKOu9l-xYU9IcG-u6tPAkMRbEqD76w>
- <xmx:EafsalHCZ-DcDQRxgDVNEn4bboqbz_iP3siSLvNihXqRwcsu4LhAvHf1>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 5 Nov 2026 10:56:00 -0500 (EST)
-Date: Thu, 5 Nov 2026 08:55:58 -0700
-From: Alex Williamson <alex@shazbot.org>
-To: "=?UTF-8?B?UGnDs3Jrb3dza2ks?= Piotr" <piotr.piorkowski@intel.com>,
- Shameer Kolothum <skolothumtho@nvidia.com>
-Cc: <kvm@vger.kernel.org>, <intel-xe@lists.freedesktop.org>,
- =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>, Jason
- Gunthorpe <jgg@ziepe.ca>, Yishai Hadas <yishaih@nvidia.com>, Kevin Tian
- <kevin.tian@intel.com>, alex@shazbot.org
-Subject: Re: [RFC PATCH 4/4] vfio/xe: Hide BAR ranges by default per device ID
-Message-ID: <20261105085558.75666f25@shazbot.org>
-In-Reply-To: <20261105153738.1938345-5-piotr.piorkowski@intel.com>
-References: <20261105153738.1938345-1-piotr.piorkowski@intel.com>
- <20261105153738.1938345-5-piotr.piorkowski@intel.com>
-X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-pc-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14CBE10F2FB;
+	Mon,  9 Nov 2026 13:57:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89F0610F2FB;
+ Mon,  9 Nov 2026 13:56:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794232615; x=1825768615;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2fpDmJ1/m0lUPhfNhMfIZXvPhVp7akPXQxCW8gZKqAc=;
+ b=XYAs8Ef5zTLmj/gymwMYYvmm8JCaygV+zouENjHJA9pz66/CFIzCsGJq
+ 5GWWQUpVqQD8tkQ5TzXq+rxxPd1jgY2s/7ursEvlRYoawxmj+4Hy25Ubv
+ DsqLxp7wKZsJLkg7qZv8n/bb86uiNLWPtqjrbBmh9preSni0RyxRJBhxT
+ uD71+xUbOrdqnJTTusCBupIDnUxyZije2/1GjD60gDBXTfb+looABd2K2
+ f8R30F2Y2kHYuXksrm+8oqmu1GJc6jzxrPQs5PF4KsJPxcK85mUwZw9R8
+ 56nYyGCDh/PVV97guJ+E3GTLNQIXhF3UAMWUP01jdL8/SKoxoXuMHooib Q==;
+X-CSE-ConnectionGUID: P3WaXaaKTAahhRPbMI7L7A==
+X-CSE-MsgGUID: TfOjoYcrSO2XUL1j23qyCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2850804"
+X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
+   d="scan'208";a="2850804"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 05:56:54 -0800
+X-CSE-ConnectionGUID: utY9dRPFTpyQq0kjgjO/uA==
+X-CSE-MsgGUID: FJ9Z8MFeRySuN6RQ16gtJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
+   d="scan'208";a="8202733"
+Received: from pgcooper-mobl2.ger.corp.intel.com (HELO
+ mkuoppal-desk.home.arpa) ([10.245.246.220])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 05:56:48 -0800
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
+ thomas.hellstrom@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ gustavo.sousa@intel.com, jan.maslak@intel.com,
+ dominik.karol.piatkowski@intel.com, rodrigo.vivi@intel.com,
+ andrzej.hajda@intel.com, matthew.auld@intel.com,
+ maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
+ michal.wajdeczko@intel.com, dri-devel@lists.freedesktop.org,
+ Mika Kuoppala <mika.kuoppala@linux.intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Jan Sokolowski <jan.sokolowski@intel.com>,
+ Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Subject: [PATCH 09/20] drm/xe/eudebug: Mark guc contexts as debuggable
+Date: Mon,  9 Nov 2026 15:55:34 +0200
+Message-ID: <20261109135549.4128280-10-mika.kuoppala@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261109135549.4128280-1-mika.kuoppala@linux.intel.com>
+References: <20261109135549.4128280-1-mika.kuoppala@linux.intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 09 Nov 2026 13:57:00 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,142 +74,257 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_2 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, 5 Nov 2026 16:37:38 +0100
-"Pi=C3=B3rkowski, Piotr" <piotr.piorkowski@intel.com> wrote:
+Inform the GuC which contexts are debuggable, as their
+handling differs from ordinary contexts.
 
-> From: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
->=20
-> xe-vfio-pci accesses the BARs only through vfio-pci-core, so opt in to
-> hidden BAR ranges.
->=20
-> Let each entry of the PCI ID table describe the ranges to hide by
-> default. The description is always looked up in the static table, so
-> binding through new_id or driver_override can't skip them.
->=20
-> No device defines any ranges yet.
+v2: void return, use xe_gt_dbg, no need for lrc (Matt)
+v3: add the workaround enabling (Daniele)
+v4: version needed to 70.49.4
+v5: bail out early before registering eq (Daniele)
+v6: export the guc action for future (Mika)
+v7: remove redundant xe_gt_info (Sashiko)
 
-We don't merge dead code, so the whole series is to justify the
-configfs mechanism to introduce excluded ranges without publishing them
-to the community?  Hard no.  Thanks,
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Jan Sokolowski <jan.sokolowski@intel.com>
+Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ drivers/gpu/drm/xe/abi/guc_actions_abi.h |  5 ++++
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h    |  1 +
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  5 ++++
+ drivers/gpu/drm/xe/xe_guc.c              | 15 +++++++++++
+ drivers/gpu/drm/xe/xe_guc.h              |  6 +++++
+ drivers/gpu/drm/xe/xe_guc_ads.c          |  5 ++++
+ drivers/gpu/drm/xe/xe_guc_submit.c       | 34 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  2 ++
+ include/uapi/drm/xe_drm.h                |  5 ++--
+ 9 files changed, 76 insertions(+), 2 deletions(-)
 
-Alex
-
->=20
-> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
-> Cc: Alex Williamson <alex@shazbot.org>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Yishai Hadas <yishaih@nvidia.com>
-> Cc: Shameer Kolothum <skolothumtho@nvidia.com>
-> Cc: Kevin Tian <kevin.tian@intel.com>
-> Signed-off-by: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
-> ---
->  drivers/vfio/pci/xe/main.c | 60 ++++++++++++++++++++++++++++----------
->  1 file changed, 45 insertions(+), 15 deletions(-)
->=20
-> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-> index 7dab3e024aa8a..e63af6123f598 100644
-> --- a/drivers/vfio/pci/xe/main.c
-> +++ b/drivers/vfio/pci/xe/main.c
-> @@ -24,6 +24,16 @@ struct xe_vfio_pci_migration_file {
->  	u8 disabled:1;
->  };
-> =20
-> +/**
-> + * struct xe_vfio_pci_desc - device specific description
-> + * @hidden_ranges: BAR ranges hidden from the VFIO user by default
-> + * @num_hidden_ranges: number of entries in @hidden_ranges
-> + */
-> +struct xe_vfio_pci_desc {
-> +	const struct vfio_pci_bar_range *hidden_ranges;
-> +	unsigned int num_hidden_ranges;
-> +};
-> +
->  struct xe_vfio_pci_core_device {
->  	struct vfio_pci_core_device core_device;
->  	struct xe_device *xe;
-> @@ -543,8 +553,32 @@ static const struct vfio_device_ops xe_vfio_pci_ops =
-=3D {
->  	.detach_ioas =3D vfio_iommufd_physical_detach_ioas,
->  };
-> =20
-> +#define INTEL_PCI_VFIO_DEVICE(_id, _desc) { \
-> +	PCI_DRIVER_OVERRIDE_DEVICE_VFIO(PCI_VENDOR_ID_INTEL, (_id)), \
-> +	.driver_data =3D (kernel_ulong_t)(_desc), \
-> +}
-> +
-> +static const struct pci_device_id xe_vfio_pci_table[] =3D {
-> +	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE, NULL),
-> +	INTEL_CRI_IDS(INTEL_PCI_VFIO_DEVICE, NULL),
-> +	INTEL_NVLS_IDS(INTEL_PCI_VFIO_DEVICE, NULL),
-> +	INTEL_NVLP_IDS(INTEL_PCI_VFIO_DEVICE, NULL),
-> +	INTEL_PTL_IDS(INTEL_PCI_VFIO_DEVICE, NULL),
-> +	INTEL_WCL_IDS(INTEL_PCI_VFIO_DEVICE, NULL),
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(pci, xe_vfio_pci_table);
-> +
->  static int xe_vfio_pci_probe(struct pci_dev *pdev, const struct pci_devi=
-ce_id *id)
->  {
-> +	/*
-> +	 * Dynamic IDs added through new_id are matched before the static ones
-> +	 * and carry no driver data, look the description up in the static
-> +	 * table so that they can't bypass the default hidden ranges.
-> +	 */
-> +	const struct pci_device_id *match =3D pci_match_id(xe_vfio_pci_table, p=
-dev);
-> +	const struct xe_vfio_pci_desc *desc =3D
-> +		match ? (const void *)match->driver_data : NULL;
->  	struct xe_vfio_pci_core_device *xe_vdev;
->  	int ret;
-> =20
-> @@ -554,6 +588,17 @@ static int xe_vfio_pci_probe(struct pci_dev *pdev, c=
-onst struct pci_device_id *i
->  		return PTR_ERR(xe_vdev);
-> =20
->  	dev_set_drvdata(&pdev->dev, xe_vdev);
-> +	xe_vdev->core_device.hidden_ranges_supported =3D true;
-> +
-> +	if (desc) {
-> +		ret =3D vfio_pci_core_hide_bar_ranges(&xe_vdev->core_device,
-> +						    desc->hidden_ranges,
-> +						    desc->num_hidden_ranges);
-> +		if (ret) {
-> +			vfio_put_device(&xe_vdev->core_device.vdev);
-> +			return ret;
-> +		}
-> +	}
-> =20
->  	ret =3D vfio_pci_core_register_device(&xe_vdev->core_device);
->  	if (ret) {
-> @@ -572,21 +617,6 @@ static void xe_vfio_pci_remove(struct pci_dev *pdev)
->  	vfio_put_device(&xe_vdev->core_device.vdev);
->  }
-> =20
-> -#define INTEL_PCI_VFIO_DEVICE(_id) { \
-> -	PCI_DRIVER_OVERRIDE_DEVICE_VFIO(PCI_VENDOR_ID_INTEL, (_id)) \
-> -}
-> -
-> -static const struct pci_device_id xe_vfio_pci_table[] =3D {
-> -	INTEL_BMG_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_CRI_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_NVLS_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_NVLP_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_PTL_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	INTEL_WCL_IDS(INTEL_PCI_VFIO_DEVICE),
-> -	{}
-> -};
-> -MODULE_DEVICE_TABLE(pci, xe_vfio_pci_table);
-> -
->  static struct pci_driver xe_vfio_pci_driver =3D {
->  	.name =3D "xe-vfio-pci",
->  	.id_table =3D xe_vfio_pci_table,
+diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+index f5c9b37038d4..48ba41fd8ccb 100644
+--- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
+@@ -162,6 +162,7 @@ enum xe_guc_action {
+ 	XE_GUC_ACTION_NOTIFY_FLUSH_LOG_BUFFER_TO_FILE = 0x8003,
+ 	XE_GUC_ACTION_NOTIFY_CRASH_DUMP_POSTED = 0x8004,
+ 	XE_GUC_ACTION_NOTIFY_EXCEPTION = 0x8005,
++	XE_GUC_ACTION_EU_KERNEL_DEBUG = 0x8006,
+ 	XE_GUC_ACTION_TEST_G2G_SEND = 0xF001,
+ 	XE_GUC_ACTION_TEST_G2G_RECV = 0xF002,
+ 	XE_GUC_ACTION_LIMIT
+@@ -285,4 +286,8 @@ enum xe_guc_g2g_type {
+ /* invalid type for XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR */
+ #define XE_GUC_CAT_ERR_TYPE_INVALID 0xdeadbeef
+ 
++enum xe_guc_eu_kernel_debug_request_type {
++	XE_GUC_EU_KERNEL_DEBUG_ENABLE = 0x3,
++};
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index 4bcdc1a96785..147a1d0a1472 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -522,6 +522,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
+ 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
+ 	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
++	GUC_WA_KLV_RESET_DEP_ENGINES_ON_DEBUG_CTX_SWITCH				= 0x900d,
+ 	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
+ 	GUC_WA_KLV_REMAP_RANGED_TLB_INV							= 0x900f,
+ 	GUC_WA_KLV_IGNORE_MMIO_READ_SEM_TOKEN_64					= 0x9010,
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 3eeb8a108b40..870abbf08d2e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -21,6 +21,7 @@
+ #include "xe_gt.h"
+ #include "xe_gt_sriov_pf.h"
+ #include "xe_gt_sriov_vf.h"
++#include "xe_guc.h"
+ #include "xe_hw_engine_class_sysfs.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_irq.h"
+@@ -1058,6 +1059,7 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+ 				  u64 value)
+ {
+ 	const u64 known_flags = DRM_XE_EXEC_QUEUE_EUDEBUG_FLAG_ENABLE;
++	struct xe_guc *guc = &q->gt->uc.guc;
+ 
+ 	if (XE_IOCTL_DBG(xe, !xe_engine_supports_eudebug(q->class)))
+ 		return -EINVAL;
+@@ -1068,6 +1070,9 @@ static int exec_queue_set_eudebug(struct xe_device *xe, struct xe_exec_queue *q,
+ 	if (XE_IOCTL_DBG(xe, !IS_ENABLED(CONFIG_DRM_XE_EUDEBUG)))
+ 		return -EOPNOTSUPP;
+ 
++	if (XE_IOCTL_DBG(xe, !xe_guc_has_debug_contexts(guc)))
++		return -EOPNOTSUPP;
++
+ 	/*
+ 	 * The preemption timeout below is infinite, which is only safe where
+ 	 * no dma-fence waits for the queue to be preempted: a fault mode vm
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 300126e6624f..8b9af0c483b5 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -823,6 +823,13 @@ int xe_guc_init(struct xe_guc *guc)
+ 		return 0;
+ 	}
+ 
++	if (IS_ENABLED(CONFIG_DRM_XE_EUDEBUG) && XE_GT_WA(gt, 14022766366) &&
++	    !xe_guc_has_debug_contexts(guc))
++		xe_gt_info(gt, "eudebug needs GuC version %u.%u.%u or greater\n",
++			   XE_GUC_VER_DEBUG_CONTEXTS_MAJOR,
++			   XE_GUC_VER_DEBUG_CONTEXTS_MINOR,
++			   XE_GUC_VER_DEBUG_CONTEXTS_PATCH);
++
+ 	ret = xe_guc_log_init(&guc->log);
+ 	if (ret)
+ 		goto out;
+@@ -1959,6 +1966,14 @@ u16 xe_hwe_guc_logical_instance(struct xe_hw_engine *hwe)
+ 	return hwe->logical_instance;
+ }
+ 
++bool xe_guc_has_debug_contexts(struct xe_guc *guc)
++{
++	return GUC_FIRMWARE_VER_AT_LEAST(guc,
++					 XE_GUC_VER_DEBUG_CONTEXTS_MAJOR,
++					 XE_GUC_VER_DEBUG_CONTEXTS_MINOR,
++					 XE_GUC_VER_DEBUG_CONTEXTS_PATCH);
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ #include "tests/xe_guc_g2g_test.c"
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 543ba4e5981e..79d76970995d 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -29,6 +29,11 @@
+ #define GUC_FIRMWARE_VER_AT_LEAST(guc, ver...) \
+ 	xe_guc_fw_version_at_least((guc), MAKE_GUC_VER_ARGS(ver))
+ 
++/* Lowest GuC version that knows how to handle debuggable contexts */
++#define XE_GUC_VER_DEBUG_CONTEXTS_MAJOR	70
++#define XE_GUC_VER_DEBUG_CONTEXTS_MINOR	49
++#define XE_GUC_VER_DEBUG_CONTEXTS_PATCH	4
++
+ struct drm_printer;
+ struct xe_gt;
+ 
+@@ -66,6 +71,7 @@ int xe_guc_start(struct xe_guc *guc);
+ void xe_guc_wedge_declare(struct xe_guc *guc);
+ bool xe_guc_using_main_gamctrl_queues(struct xe_guc *guc);
+ bool xe_guc_has_paging_engine(struct xe_guc *guc);
++bool xe_guc_has_debug_contexts(struct xe_guc *guc);
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
+ int xe_guc_g2g_test_notification(struct xe_guc *guc, u32 *payload, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index c3ce3c8c905a..0b1bdb40230b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -402,6 +402,11 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 				 GUC_FEATURE_KLV_DISABLE_MULTI_QUEUE);
+ 	}
+ 
++	if (IS_ENABLED(CONFIG_DRM_XE_EUDEBUG) && XE_GT_WA(gt, 14022766366) &&
++	    xe_guc_has_debug_contexts(&gt->uc.guc))
++		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
++				 GUC_WA_KLV_RESET_DEP_ENGINES_ON_DEBUG_CTX_SWITCH);
++
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+ 		return;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b14b37b767f5..61a7d731f7d1 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1023,6 +1023,37 @@ static u32 xe_hwe_guc_logical_to_submit_mask(struct xe_hw_engine *hwe, u32 logic
+ 	return logical_mask;
+ }
+ 
++static int guc_action_eu_kernel_debug(struct xe_guc *guc, u32 id, u32 cmd)
++{
++	const u32 action[] = {
++		XE_GUC_ACTION_EU_KERNEL_DEBUG,
++		id,
++		cmd,
++		0, /* reserved */
++	};
++
++	return xe_guc_ct_send(&guc->ct, action,
++			      ARRAY_SIZE(action), 0, 0);
++}
++
++static void set_eu_kernel_debug(struct xe_exec_queue *q)
++{
++	struct xe_guc *guc = exec_queue_to_guc(q);
++	struct xe_gt *gt = guc_to_gt(guc);
++	int ret;
++
++	ret = guc_action_eu_kernel_debug(guc, q->guc->id,
++					 XE_GUC_EU_KERNEL_DEBUG_ENABLE);
++
++	if (ret)
++		xe_gt_err_ratelimited(gt,
++				      "GuC ctx=%u debug enabling failed with %d\n",
++				      q->guc->id, ret);
++	else
++		xe_gt_dbg(gt,
++			  "GuC ctx=%u debug enable requested\n", q->guc->id);
++}
++
+ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+@@ -1084,6 +1115,9 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
+ 
+ 	if (xe_exec_queue_is_multi_queue_secondary(q))
+ 		guc_exec_queue_send_cgp_sync(q, CGP_SYNC_REGISTRATION);
++
++	if (xe_exec_queue_is_debuggable(q))
++		set_eu_kernel_debug(q);
+ }
+ 
+ static u32 wq_space_until_wrap(struct xe_exec_queue *q)
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 61aa50a63764..da774e17cb69 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -78,3 +78,5 @@
+ 		MEDIA_VERSION_RANGE(1301, 3503), FUNC(xe_rtp_match_not_sriov_vf)
+ 16030224309	GRAPHICS_VERSION_RANGE(3510, 3511)
+ 14028709524	GRAPHICS_VERSION(3510)
++14022766366	GRAPHICS_VERSION_RANGE(2001, 2004)
++		GRAPHICS_VERSION_RANGE(3000, 3005)
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 1a157bf1589c..759e76b7ac52 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1404,8 +1404,9 @@ struct drm_xe_vm_get_property {
+  *    %DRM_XE_VM_CREATE_FLAG_FAULT_MODE,
+  *    not combined with %DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE or
+  *    %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP. Fails with
+- *    -EOPNOTSUPP if the kernel is built without CONFIG_DRM_XE_EUDEBUG,
+- *    and with -EPERM if eudebug is not enabled through sysfs.
++ *    -EOPNOTSUPP if the kernel is built without CONFIG_DRM_XE_EUDEBUG
++ *    or the GuC does not support debug contexts, and with -EPERM if
++ *    eudebug is not enabled through sysfs.
+  *
+  * The example below shows how to use &struct drm_xe_exec_queue_create to create
+  * a simple exec_queue (no parallel submission) of class
+-- 
+2.53.0
 
