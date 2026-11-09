@@ -2,157 +2,126 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8678606A31C
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 04:34:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727A9606A321
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Nov 2026 06:41:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RoehDnAO
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=y/P4b37e
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D88010F009;
-	Mon,  9 Nov 2026 04:34:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5317710F009;
- Mon,  9 Nov 2026 04:34:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794198865; x=1825734865;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=a5yAsM2ArfnJ82919SOECnhUtIe1OwnTp2CXvDgUU60=;
- b=RoehDnAOdyPwjoGKVgcyVCFi9CaMbqfh1XtseY4UtH+1fsV/fRqe72Ws
- O+xHb+TKHllF+TYynnw8GGE0bkoz9wEWl4KWCpV4bZ+rZ8LyS9XtjB7hI
- g7zlxAsPlj8Xitg4udAJg39Es9xX50BCCKOdSei9VCA7TMYAr8o57N2fa
- YVnjtpCpOVOYlnwmANucA9JBHzFwo5OYqKOgNu1nLrDqT3wew6S9Aenc5
- ucgRnJHoRu1PExW1uf9/G0h2kJfu0r7Ed1ntE2fwzpJaSpOiMZvLknnIL
- RKz+5wOX89Ujd1VvtABQwtPnQa9n6agfJhSkeq+phcuthxWmgQo5O/DdA w==;
-X-CSE-ConnectionGUID: sl4+waZoQWWoTxvqGExsQg==
-X-CSE-MsgGUID: A+XuicR0R2SnxK0HcZNwtA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11960"; a="2819574"
-X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="2819574"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2026 20:34:24 -0800
-X-CSE-ConnectionGUID: DkoXC/0+Qfitg6bQnqp0Gg==
-X-CSE-MsgGUID: cDMfWOS6TmGMVPkZi32fXg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,203,1787036400"; 
-   d="scan'208";a="7940071"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2026 20:34:25 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Sun, 8 Nov 2026 20:34:24 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Sun, 8 Nov 2026 20:34:24 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.24) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Sun, 8 Nov 2026 20:34:24 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30AC210E680;
+	Mon,  9 Nov 2026 06:41:13 +0000 (UTC)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013003.outbound.protection.outlook.com
+ [40.93.196.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0CCC10E680;
+ Mon,  9 Nov 2026 06:41:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DtU8O0Crd9kDD2rDkwDnnNeJiptqRdnEK+PZ2wGCNbivoS/s/ITKpdoCqn+d5C6ElaslXT6wRseWD/EBRt2KtqeoG9xN1B5vFXeNZtXkXCnyN762YOzvZN9K7kZEXljKuEsKoFx/F2Aeb3CVYGv9t81jy4RjIAcH4+hxjNqhphBaLoEc4bbuUfD5fy8fLV3XNEm7c2+VZWo8LtBh4AJuepe66Pm1wv4+EcHglatcvdtfWDAroOIJLcBQ9jUK/eAY2NDG5NCZAT2sWS+8luSdzyVdSktENDSSNt7GK+mjHCLPNxrJ9KqrHNivgHE2cqu0EStg8ZzyWJZ79O1V4LZveg==
+ b=DZSsN8bWlZu/D+AzYBRfVlyBIHyxEV9/mmE/VLPhweJ3tXEhQoJdGxZJXF1dz6hK8iEeJKiBYTB8l7lB5cUPBNHrDZcotcoyRCkZ3t9d0vE4XxiXNyfEqSUbPqMpwEOKDNaFovFjEuHf8O2baEZSQr2Z6+7BMG5nsd9D4hSyGd3WY6NSV+2S5mpTG0SEf09xbOa61AU5zykfK/EO6wt6K+8PDS9I+L/0/VmV+jCdgwEjbfW4Vz6HaIH7YFYHGRMu1Ctedux9OJlcjZzlotmUIsf//0nG7mhIA82tU/+ofz25s5ApkVnjwE+IYA4vgmN6MO9sn95AlsSVCXBn+mST0g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xdXyFIBxuV087j5YzfqQlOqvfr+ZGSU5Wqne6ftSAxM=;
- b=kd0XYc+k7TFbgVm+O9N99tupVGo/gCbToq117wUcPM1o2h0y8U0C1r0i+vzCYlUWWfVLOPEuGXyZ2r9ssitnjdItiE3YU/KN7Fc5abvPpoWqscTTxgo0l4g6dJF+1VjoFj2z9EyZtu6wC3U2QgsJA5xNmX2Ccdn6twiKE+eYK0SbefejyWZw+K7D6okKlBVxef+J8XsQ/h4m5aX/SXDZCmAlLmX89GVYd/tNfzQPaqWIElFRO7uc5LPnckqJ3qAG/9Ct15zaHIClkNKjZGAtBM6pr3yeuq9LFTkfjobyKkF2SZ7RirfJOOUI0ANxUBq42BuhO01iRWDKfeKNuXnMFQ==
+ bh=GW5fgzL3TdtSArO1Vdu30HgF8DCJ3MF1SLMAxa0u5vE=;
+ b=eynhEv/kHddiSFxvUQQo5/Qss0tr9Z5sxWfbF3u8UHVIxsVMt96oIEOk4NNRm+YvC2/qzdmlVqjR0ZUHzZshiEmcPEtoqFsPDj7JJOwpqMSrVJYLs/nQb7vioP/UbKOnoSxAoaCGXDAp8gdnivynHGAMYta0L1QnOM537jIAa8F9a14CWx2iKc0BItXT45oirNFE0SSbX3j6ptj1RLA8tZ+bPQgoNqVzp02tO/0FGi50mohj17YVZf9jLyz3DFtw/e1BI71FVHxhpunckX0qxew20eqZbIWPuT+hzgDUOBP2QRlrHizRDPyg9dwwOBitvYwoPbjggbb/gTumpFxgIQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GW5fgzL3TdtSArO1Vdu30HgF8DCJ3MF1SLMAxa0u5vE=;
+ b=y/P4b37e/s2vSUr+sKxjeykhbQxTou05bSyUkIDUUKSI6Ha+l9s3QYncaw8io9iedsUD0sySmRIurrdMmJgeP9qdE466eaM6aC0Ud3feUGByitXVr70BYTEnYBswvdOYWeMBlnKZmTR4RdrmrukLVOepLHc32M7DnI3qely+hh8=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
- by CH3PR11MB196721.namprd11.prod.outlook.com (2603:10b6:610:364::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Mon, 9 Nov
- 2026 04:34:22 +0000
-Received: from MW3PR11MB4684.namprd11.prod.outlook.com
- ([fe80::2f5a:96ce:f7e4:c315]) by MW3PR11MB4684.namprd11.prod.outlook.com
- ([fe80::2f5a:96ce:f7e4:c315%7]) with mapi id 15.21.0592.010; Mon, 9 Nov 2026
- 04:34:21 +0000
-Date: Sun, 8 Nov 2026 20:34:18 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>, Thomas
- =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 24/33] drm/xe: Add defrag profiling tracepoints
-Message-ID: <avFNSl7oIffZTPi8@nvishwa1-desk>
-References: <20260711025619.2540575-1-matthew.brost@intel.com>
- <20260711025619.2540575-25-matthew.brost@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by MN0PR12MB5713.namprd12.prod.outlook.com (2603:10b6:208:370::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.12; Mon, 9 Nov
+ 2026 06:41:04 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0592.012; Mon, 9 Nov 2026
+ 06:41:03 +0000
+Message-ID: <b07e279a-67f2-4d38-ba24-9ff2ca9a90fb@amd.com>
+Date: Mon, 9 Nov 2026 12:10:56 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/1] gpu/buddy: Prune exhausted subtrees in
+ range-biased allocation
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>,
+ dri-devel@lists.freedesktop.org, William Palacek <William.Palacek@amd.com>
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>
+References: <20261102051633.2035348-3-sanjay.kumar.yadav@intel.com>
+ <20261102051633.2035348-4-sanjay.kumar.yadav@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <20261102051633.2035348-4-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260711025619.2540575-25-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0002.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::7) To MW3PR11MB4684.namprd11.prod.outlook.com
- (2603:10b6:303:5d::14)
+X-ClientProxiedBy: MA5P287CA0209.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1ab::6) To DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW3PR11MB4684:EE_|CH3PR11MB196721:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2f8099b-78aa-4446-6147-08df3e1ab9be
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|MN0PR12MB5713:EE_
+X-MS-Office365-Filtering-Correlation-Id: f0a8d22f-47e7-45bc-5eef-08df3e2c6c44
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|7416014|376014|366016|1800799024|11063799006|4143699003|56012099006|261021123027099003|261021121427099003|261022105027099003|261022075727099003|261009223027099003|261026140227099003|261026121527099003|261028144727099003|261102123227099003|10067099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: HAC7MKkGngzdZn8p0I/DQL8Av3OD6DL/DIM5VZXVexYztpIDS2PwXFYo9X9Eqd+qkiQgj5rC/AUX/+pTSdPvg59KBO3gEDgqDr2X2APQLHKNWE2/EwGD6SB1na14fgR41CnrICqZK1xxNgALVpohQH/bgTc2pLwvbnHe3M9kWgLNFxrfi1H12pHl9ZzUQ3XZcn6vzZ8ll9x9qJ8Qqkmj7UpiLlvG8tYmSXQU5Z8/15no/Z6LfR4eW66mPzupnjf9JgsUGPFAX0LRgZufOoZ2DF57JrhB1Qul2UVFd0+4OWftBw72vGXsNTSl1e+vHjo8vaxOYcZFSbb5S+psyXsvfke9HbilfrU8IvLoVzuJI0ITkoOvd1DBSg1IsnqR/F096BTthVxAbTVlbwIATPX4CI5X1p03OnZTVy9kYQxJ9Phgfysffi/kdCXo0Y0ueV3LwVHuSXxKUkMYOdMtSYAPtjVV3jlY7aykv4Q2l2CjnyG7VsJlUB2U1DXb2w36Fk+qkmf829GgB2Y9i8GZanFj9FuGPHlZjBl8hn1CxycDRRkDpBNhXGeXzXunkJqLRJvjhXvFZadYDM0N3M6idxkOS3yf2bmf7TigrE6QwtNHibEYtMabRogPwBDunniEO0WWXNWKDRufz55A2zbTU8tJPaC3dFTf7gVs2N+u1ln6m6g=
+ ARA:13230040|366016|1800799024|23010399003|376014|18002099003|11062099010|22082099003|7136999003|10067099003|4143699003|11063799006|5023799004|261028144727099003|261026121527099003|261102130727099003|261102123227099003|261022075727099003|261022105027099003|261021121427099003|261021123027099003|56012099006|261026140227099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: yVU8fXHM2iv+XluRg0FlIGWLEdTIfaqf4yP1UcT3vYWpq3Le/HUEe49nPtC/ZjzG0k/Fa6lBFD/9qGlqtev1QOPLL0+PUjuWL4pPgT/l4P0XoRdCF/JNkclUNMypwrblA5EhByDGvRHy3qVtSBnEoiF4FP+iCHKum2lnZx+bw+kZ8lW6JRHwzxM1REsLceSS4oxMbx+MK+i4/YQaOMIT6zu/4qzmDXTQISId8AfuEKSMKrsPXxkHcGlAFtembCzCjAJaRh/1n4zfzVqwTDfiMCZ2Xvnx12GW/vHTc33O4gHjuSliQQ0vAJ/HMk0O3XIDMo13xOKAYyNFvHL5pSec/aUuhS2Y8XQGwLmA/labwFeChRETJV3wexymoyKRwVVc/Iut0YvKzX0VErCkq3oODjOe5W+gyCg72NLAk1k60rLoTLtMD3Kq+HOBd+lkGLZdMxGu8A1ykbYN/83CaJFo4wc1/tdFiP1D+hBHgNu0d4S8nh0QoWly0qyHghLoTLpSgKX/Y6nlmH4KEQgQuWcjs43CH1GiKUNL11jdRrEwbGQkG4SAcHp0aUnq5rDteBgyrJ2YiXhi/7rNonfTQ8lnkZXygWau2xJhHsyELpkRRSkbz+R8YPgAP9As8W4TTIFw
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR11MB4684.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(11063799006)(4143699003)(56012099006)(261021123027099003)(261021121427099003)(261022105027099003)(261022075727099003)(261009223027099003)(261026140227099003)(261026121527099003)(261028144727099003)(261102123227099003)(10067099003)(18002099003)(22082099003)(6133799003);
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(18002099003)(11062099010)(22082099003)(7136999003)(10067099003)(4143699003)(11063799006)(5023799004)(261028144727099003)(261026121527099003)(261102130727099003)(261102123227099003)(261022075727099003)(261022105027099003)(261021121427099003)(261021123027099003)(56012099006)(261026140227099003)(261009223027099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?BUI9UQGb1vbxtGObGd6okkjCbvLKusFqkqAaBBmZtC1vHrtWdbQN77mMph?=
- =?iso-8859-1?Q?bgNfTs24Uc98eONFHaPp81t3e+M9j7ecMThLrGljO/UkM7DbzmmdsX27o+?=
- =?iso-8859-1?Q?7il3LgwDWNhEM41jvYG3pQXgkeMhvsm1pka0QsLi/NolW6m6HN3l+2kc27?=
- =?iso-8859-1?Q?ylqAnKHtxZ4hUlazOTKaimv0VyATxTvNFNUbKwV8fuIQ8I6EB44LPhhxXg?=
- =?iso-8859-1?Q?jmi1WAXW5k6UXuw7NyA+oYwRF8ciNCTbvxIey7UFui6hIhllJDqPrtvi0C?=
- =?iso-8859-1?Q?1Fhqkqh9IzQJ4Zu5Ta+0rR3AGTpnEcauwDTOUumE1N5EOc+ZAnzDr9FBul?=
- =?iso-8859-1?Q?82b7Eze3Cw36UIcZmNQY+w+/VJZv0E61UYGNHpStHqAzDum0P4IoqZ04SU?=
- =?iso-8859-1?Q?ENYkQIvOO2PW1amDhrlPTUtetoDkZio4woAhAu5FGvgx+dkTxhezHjJ8na?=
- =?iso-8859-1?Q?tbzo1Wd6RMUCoRy0A5CEJpAjjHFPeQuSn/T+owde6VuCuLZrPy5KvEEzup?=
- =?iso-8859-1?Q?88bLSN+srh8Ohbkm/UC/movanEXxQEvE/AeVhIevIBWLYl6bOvM6aqXay8?=
- =?iso-8859-1?Q?Mzvc/nJuyI+VZ4R0t3ooHtDd2EQz3TZfqktMdYPjku1nAujfg4twmMZ5xV?=
- =?iso-8859-1?Q?DDsjCqHpDYx482a1mE3ILGf/TocoeuIlKVaMuanUed+gZEwG0teV8EaI1S?=
- =?iso-8859-1?Q?HHUosH7f+3AEJT0xAGR/G+4+99zwwFo1CilQ8MjubamR0pG539hIXDYjqz?=
- =?iso-8859-1?Q?OE9AwJihaVp8nh7iHCAsv7xs2Avs01h3zirBxJ+xzFyu/2xGgq3lFWywcP?=
- =?iso-8859-1?Q?DFbQcw89Ye8AZJCFbfENTW38SPPSBrU/vlk5n9dhYXWrcnImM6pThgSiNm?=
- =?iso-8859-1?Q?nIjp7ck/RW2ak4d9Tv7EAOOnIvjY4b4xSbWBh4cJXH60MT7rEeuvdT8y5b?=
- =?iso-8859-1?Q?lzCJSlqWuWXECuT5GcX672XpmETQyjjCiH7SLO/uxJv55i5baB1UCj1mY+?=
- =?iso-8859-1?Q?J5fuDmh6FbDNuuzBo4CtUL48vbwGt2XLD/UdTamIAIVtXgRx+z7xg6YU48?=
- =?iso-8859-1?Q?eUlGUs/B8UW7N++DYN9drZjSDKV9BRtsNtOgnnKuowwrZDsTcB3fWSWv3F?=
- =?iso-8859-1?Q?col9Xz3ofhcIjyfaYo6yeldb+8T/FRy2R5U1r0cXyCazGd169oYi0enKVm?=
- =?iso-8859-1?Q?C7rAq+tOM3EgvFFboKv/EwYkJFlV6bW2ClgSIpV0wkmd0SXfWCFpI1kcgX?=
- =?iso-8859-1?Q?s21M3PRHSV61NQfzYjtsMFCkfHM0CGC1WtbJQck6zMMyDCBBVghK+oVWJj?=
- =?iso-8859-1?Q?7NOKhxJGx1fc+MNs7VQHPKzl1OZoLqElnsDFtbbDYbHIHU/554XbR5/upN?=
- =?iso-8859-1?Q?zQO9yaphBVrldn4WouvMMVYg84JN39xHXzVCnl+aaUPivT3tQlYbxRpjiq?=
- =?iso-8859-1?Q?k5sYjGPBFfTjRKo/juKVnfypQ4uZQEnMZZuhJaDU9dIMi+53eSdabcYKus?=
- =?iso-8859-1?Q?p4skiYBgRGnwhBel2c0E0bZd+TJsvzjIQu3a35ZkpjCkdvK3VqZePWvu5Z?=
- =?iso-8859-1?Q?MzYqeFj7zZMfXwqPHwEa8+HwgLPBFFwZwItmAu76bevFnnLh3VX6zYH/mP?=
- =?iso-8859-1?Q?la4pW9ITVoDL4ON0b/NplkPyYTE6JVLFELTYb+Xv74n+6BMJE+jlU7bP5O?=
- =?iso-8859-1?Q?KlY0HV2NmRP5C9BI7d0kjNN76euBgVljVMQr76FwqLkbWEaRxs+4GXg7xB?=
- =?iso-8859-1?Q?auYzaiw4LCPs/oLQ/qKLS4TmkxvgBeJilKNR8nMjkp8hhWMo4nJgWSRidu?=
- =?iso-8859-1?Q?4KxhyYaN3HaYp6sNiQ7CxQGGldUgt3eWOWy6RuFrhWVmjtB4MIKD?=
-X-Exchange-RoutingPolicyChecked: BtpcfFqVADn5jbJ9gPtwdG6FNM4a7HV25F+ZWdJj/t7/N1GXioK0gb9gFsYCd7NmSAuGaTLlMn/+At4iypC8QYeY+g+qAU+XrcUd9FnTGAYX7H5Ev/6an2gUGC8u1qodQRWp1zFSHYvWWH9CA/eBg2LVT2M9azSBcIUbqVPgs4FV8vFtXMmltaLaZJoqv7wF26GByaUmAupNom/pKj2uPgB/tEjwg+PBEK4WWedqXR+cemulzluclFb9M26NuHS/K13aCQLt+AnfRG/Iv8hFvB2y8uqWGtfd8xz84mwwkwP38TuexMxW4Vpbs86CfvtttWnCd1VXcXr/lJY5J1GzTQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2f8099b-78aa-4446-6147-08df3e1ab9be
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4684.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y29LTDNCcnJ4dWVHaHhoKzZkd20yclIrSkllOE14aGRsOVdUVi9VSlcxOUZ2?=
+ =?utf-8?B?MkxyTTZmbWVIdkQrUmdGVy9HLzdrMjVIanFrbzN0ZmYvL1RQRktveW5ybTVX?=
+ =?utf-8?B?T1EwcmszVkdKN3FocDB0d2U2a2FxbWl5WVJZeVl3MUk1cERtN0syVHVtN1VM?=
+ =?utf-8?B?WFVZZ3p0SEZuVUw3YzdzUllzdWd5WmoxSUp1UVFRV3U2bE0rdmRBbjduZFFm?=
+ =?utf-8?B?RE9xMUxMWlJqQXFubHpzNmU5anAvMFRHcnovZnczYmlQSDAwRHdrMjR4R3g4?=
+ =?utf-8?B?RDI3SGI0bjUzTTl5Zk96UVNDdGVIdm04K3NpanNOajdsZkFJMHhDNU9QdldX?=
+ =?utf-8?B?eFpOaDBsVGFZUHN3dk5LTmQ0R1NnOEhGaFJGN1p3eTRxSU1NM2hjSVc5cnlW?=
+ =?utf-8?B?WHRZTE5FMlhEYjYvekVQOUJoZTZjeE40aGp3QlBsd0RqdW1RMkp0RmRHMkI2?=
+ =?utf-8?B?QnhDMGtkUHczNG9DKzA1UGhJVVY2bURWZEVzL2VrVDBEVkRHZlBzZ1dtMHlE?=
+ =?utf-8?B?TUF3eHdUSktMdVA0VytwMEFUekgxOFp6ZUhLem9zL3VmRTY3V254Sm8zTUNv?=
+ =?utf-8?B?T1crelNQRENNMlJyZVJnSDZIbHFycnhtZERUS0o4dEQrVTVHWWpublZ3Ulpm?=
+ =?utf-8?B?N08xZlFyS3RFeDEvQitJUkRvSEJBY3RIQ2hmWlJyeFZDN2svVzE4U2VJd0ZZ?=
+ =?utf-8?B?Z2hZY1p2Wko1VmtPakFBWCt1RldHK2w2QkI2ZjYydFJRTEpqU3R3amtRaEMx?=
+ =?utf-8?B?YkN3N1VKSVJ1Ujllb2U1aFhXQmRMRWF6bFFDOU9qbTJFblNUMzBpY3BVYmZx?=
+ =?utf-8?B?RXlJQXFrdVRPR1lHTUtQRlBlUnMybHNkcHE2MFF3UmRJUlA0eUszbFAvd3Bu?=
+ =?utf-8?B?UkdhdnRISEhIZVBiRGFkS2lHUU9ldHFFejViY2gwK2REcXFjak0vTk9HNkxu?=
+ =?utf-8?B?b3BteW9NSjl5VXg1SnU0NTNFZE4rMVJ3WWc2Z2ZTYU95Qk94SDhHOVhZTzJr?=
+ =?utf-8?B?REtjZW5XeC95amUwb2ROOStqeG9JemprNm9va3djanFUQWR5N2tkeTE2UzRJ?=
+ =?utf-8?B?dUhCYVUxYUdNSEdoWjZhNnN6b1JLRyszWDVmV2pqUHpYTDNrVVVob3JKUFNR?=
+ =?utf-8?B?OThYdW9VbGZoMWg5RjN6NHk0dFF2VmJFVDdHVW8rM001M01PdmNsZDUyNmhR?=
+ =?utf-8?B?RHU4Yk12d05LQkw2bXh6WnBDbWpOT1hPZ2N5bXFBNkJaTDZZencrK1dIZytD?=
+ =?utf-8?B?eEJuZGpaeVlENm9MWDBSSGg1Um55TnhISU9KdzdHUmRWUlZjTnhoQ0N3UzZS?=
+ =?utf-8?B?K0NBZUhJcG1KaGs1Wkh3aXdya2ZVV1F1akt5SVFiNi9YRVRCOFlzY1h2YW5t?=
+ =?utf-8?B?R29KdThYenZ3L1pNWjNUWGF0WTh1L1QzdXRvalFiTXNSRWRDdnVabzR6TVJ3?=
+ =?utf-8?B?UVlEU01HWjJZcTc0aTNDSVdNZklvRVdTeUVCMUpxZDJRdnBoQ3FCbkpKWlRG?=
+ =?utf-8?B?b0FQTGNDWmVyUVEvdTFveUdCbFV2Unh1T0grUWt5d1cyNlZsMVhCeVhTUU9C?=
+ =?utf-8?B?aFFJdXdXb1h2OWlqdy9Va1JKR0dSU3NxQVNURlUybnFzWlJsTXNjdkNYaFBV?=
+ =?utf-8?B?UFN1VmZOUExyU3ErTjhTalJWZ2ZZV2hMV09oa2lpamNZKzU1MUcrcWtCZVJJ?=
+ =?utf-8?B?b0ZRWEJSYlAwMTFkNGlDeWNFYisya3J6Y0hqMmRCcnRwcU9jSkpCOUdONndm?=
+ =?utf-8?B?cndhemVMQjk3TlpsdS9qZkJjWGUzMWFKSEkvMGFza241YUZhaFFvR1plKzZP?=
+ =?utf-8?B?MEFKbUFtT2Z6T1NaOHZUdHdyT3MzSFdvWmQvRm9SK0pjRW1vcjJRakdWUVpC?=
+ =?utf-8?B?akNSTHhYZzBRaHJlYS8waC9IOHgrL1YvTmtTZWl3WlFCaGp5ZzE3TnMwa2Fp?=
+ =?utf-8?B?VExkckY0aUdUQ0w0QkZlYm5qa2Q2Y1VQWXJ0VUtvd3NxSzJpYW1Ndkh5dlRI?=
+ =?utf-8?B?djI0ekFXaTJXZVQ2a1YwM29ycDI3QlZBQnZBbjkxelBPbWxOYjhXVHZhMml0?=
+ =?utf-8?B?eXFWaG14OVNKWGgrc2k3ZFEweENSTkF1RFE3bTNlUExESWRhRjN6L1hyUW1G?=
+ =?utf-8?B?YWkrUi9JT1k3UEU3VzlXWTlLdzFqWmNlUU5GMWF0TWVlaUdGcE9ZS1NpTHRt?=
+ =?utf-8?B?YkpEKzFuVVI4TFhPbW40Ukg0eVhWQzFJbUlqTXA4SEc5a09ucjFQbGpxUjdZ?=
+ =?utf-8?B?QlRhTjh3eDUxVkZhV1lvUEpEY3ZpR2hQbFB1M0NQUFpYNWdwa05MY1RQU3BL?=
+ =?utf-8?Q?+vS2YP640EuTep02f4?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f0a8d22f-47e7-45bc-5eef-08df3e2c6c44
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 04:34:21.7730 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Nov 2026 06:41:02.7346 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pv71sKL+nHEqSSEu0q6ZnOxhjMelP25lF9UZ11xko3xr354MJxjOH7hipm3/FCkzoqQlkq+041HPikxVk+vm/tKF/2eSGsZlnBiAocW3lW49yQU9ye1fvRBE+v+52LCq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB196721
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: X85fCzooPH5TebF3Ctz0YH3GTfBSq34OUuT+EMDBcrQryxwnXFEjcAqus0y9Wm4YGNlQeynjjXaTedlRnuhNZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR12MB5713
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,202 +132,240 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Jul 10, 2026 at 07:56:10PM -0700, Matthew Brost wrote:
->Add two tracepoints to profile the page defragmentation worker:
->
-> - xe_bo_defrag_worker: emitted on worker entry and exit with the
->   current defrag list count and the bytes processed in the run.
-> - xe_bo_defrag_one: emitted per BO with the run budget, the prealloc
->   fill ratio (got/want) and the lock-held, lock-wait and prealloc
->   durations, plus the bytes consumed and the result.
->
->These break down the cost of a defrag attempt into its locked vs
->unlocked phases, making it possible to confirm that the expensive
->beneficial-order allocation and cpu cache mode change happen outside
->the BO dma-resv lock and that the residual lock-held time is copy-bound
->(with the tail dominated by lock-wait behind active rendering).
->
->Cc: Carlos Santa <carlos.santa@intel.com>
->Cc: Ryan Neph <ryanneph@google.com>
->Cc: Christian Koenig <christian.koenig@amd.com>
->Cc: Huang Rui <ray.huang@amd.com>
->Cc: Matthew Auld <matthew.auld@intel.com>
->Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->Cc: Maxime Ripard <mripard@kernel.org>
->Cc: Thomas Zimmermann <tzimmermann@suse.de>
->Cc: David Airlie <airlied@gmail.com>
->Cc: Simona Vetter <simona@ffwll.ch>
->Cc: dri-devel@lists.freedesktop.org
->Cc: linux-kernel@vger.kernel.org
->Cc: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
->Assisted-by: GitHub_Copilot:claude-opus-4.8
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->
->---
->
->v3:
-> - Move the ns-to-us division into TP_fast_assign() to avoid a 64-bit
->   divide in TP_printk() (Sashiko)
->---
-> drivers/gpu/drm/xe/xe_bo.c       | 18 +++++++++-
-> drivers/gpu/drm/xe/xe_trace_bo.h | 59 ++++++++++++++++++++++++++++++++
-> 2 files changed, 76 insertions(+), 1 deletion(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->index 8b89d34f37d4..25e5b72f870c 100644
->--- a/drivers/gpu/drm/xe/xe_bo.c
->+++ b/drivers/gpu/drm/xe/xe_bo.c
->@@ -1263,7 +1263,9 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
-> 	struct ttm_placement placement;
-> 	struct ttm_place place;
-> 	enum ttm_caching tt_caching;
->-	unsigned int order, want = 0;
->+	unsigned int order, want = 0, got = 0;
->+	u64 lock_ns = 0, prealloc_ns = 0, lockwait_ns = 0;
->+	ktime_t t0;
-> 	int ret = 0;
->
-> 	*consumed = 0;
->@@ -1294,6 +1296,7 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
->
-> 	/* Phase 2: preallocate outside the lock; */
-> 	if (want) {
->+		t0 = ktime_get();
-> 		ret = ttm_pool_prealloc_fill(pool, tt_caching, &pp, want);
-> 		if (ret || !pp.count) {
-> 			ret = ret ?: -ENOMEM;
->@@ -1301,12 +1304,16 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
-> 					 XE_GT_STATS_ID_DEFRAG_FAILED_COUNT, 1);
-> 			goto out_err;
-> 		}
->+		prealloc_ns = ktime_to_ns(ktime_sub(ktime_get(), t0));
-> 	}
->
-> 	/*
-> 	 * Phase 3: re-take the lock, re-check, and validate using the prealloc.
-> 	 */
->+	t0 = ktime_get();
-> 	xe_bo_lock(bo, false);
->+	lockwait_ns = ktime_to_ns(ktime_sub(ktime_get(), t0));
->+	t0 = ktime_get();
+Hi Sanjay,
 
-Here only phase 3 locking is profiled. What about phase 1 locking?
+On 11/2/2026 10:46 AM, Sanjay Yadav wrote:
+> __alloc_range_bias() walks the buddy tree depth-first, higher address
+> first, and descends every SPLIT block even when nothing below it is
+> free. Range allocations are placed top-down, so they pack below the
+> range end and each new one walks every block already allocated there:
+> O(N) per allocation and O(N^2) for N allocations, under the allocator
+> lock.
+>
+> Track in each block the largest order of any FREE block in its subtree
+> (GPU_BUDDY_NO_FREE_ORDER if none), update it when a block is allocated
+> or freed, and skip subtrees that cannot satisfy the requested order.
+> Splitting needs no update of its own, as both children are marked free
+> right after and that propagates the new value up.
+> gpu_buddy_block_trim() detaches the block before freeing it, so updates
+> stop there while re-allocating inside it; recompute from the parent
+> once it is reattached.
+>
+> Skipped subtrees contain no FREE block of the requested order or
+> larger, so the old walk could neither split nor return anything there.
+> The remaining blocks are visited in the same order, so the selected
+> block and placement are unchanged.
+I am not receiving some of the emails you are. sending me. I think there 
+may be an issue with my mailbox, so I need to check that on my side.
+William has also been working on improving the range-allocation 
+performance in drm_buddy. His patch is here:
 
-Niranjana
+https://patchwork.freedesktop.org/patch/763478/
 
+Since both patches are trying to improve the same range-allocation path, 
+I would like to converge on a single upstream approach rather than carry 
+separate optimizations.
+I have put together a version based on William’s offset-sorted free-tree 
+approach, extending the search to be class-aware:
+
+https://gitlab.freedesktop.org/arunpravin24/drm-buddy-range-wip/-/commit/72414977d38f4bcf7a364c64f24aa7f25cf699d9
+
+With this approach, we can remove the buddy-tree DFS walk entirely. 
+Cleared blocks are located using the existing subtree_block_state 
+augmentation, and top-down placement comes directly from the 
+offset-sorted free trees, reducing the lookup to an O(log n) free-tree 
+search followed by a small bounded scan.
+
+@Sanjay, could you take a look at the version above? I think it would be 
+better to follow this approach upstream and create a patch with the test 
+cases around it.
+
+@William, could you also take a look at the version above? Hopefully we 
+can follow the same approach when porting this optimization to the older 
+dual-free-tree branch
+used by the ROCm versions you are targeting.
+
+Thanks,
+  Arun
 >
-> 	if (!xe_bo_needs_defrag(bo)) {
-> 		xe_bo_defrag_remove(bo);
->@@ -1362,9 +1369,13 @@ static int xe_bo_defrag_one(struct xe_device *xe, struct xe_bo *bo,
+> v4: (Matt A)
+> - Drop the update in mark_split(), the children being marked free
+>    updates the parent
+> - Detach the block before __mark_free() in gpu_buddy_block_trim(), so
+>    only the final update from the parent propagates up
+> - Drop the order, is_allocated() and is_free() checks in
+>    __alloc_range_bias() that the pruning check now covers
 >
-> unlock:
-> 	xe_bo_unlock(bo);
->+	lock_ns = ktime_to_ns(ktime_sub(ktime_get(), t0));
->+	got = pp.used;
-> out_err:
-> 	ttm_pool_prealloc_fini(pool, &pp);
-> out:
->+	trace_xe_bo_defrag_one(bo, budget, want, got, lock_ns, prealloc_ns,
->+			       lockwait_ns, *consumed, ret);
-> 	return ret;
-> }
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
+> Cc: Joel Fernandes <joelagnelf@nvidia.com>
+> Assisted-by: LLM
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+> ---
+>   drivers/gpu/buddy.c       | 56 +++++++++++++++++++++++++++------------
+>   include/linux/gpu_buddy.h |  7 +++++
+>   2 files changed, 46 insertions(+), 17 deletions(-)
 >
->@@ -1396,6 +1407,9 @@ static void xe_bo_defrag_worker(struct work_struct *w)
-> 		return;
-> 	}
->
->+	trace_xe_bo_defrag_worker(xe, 0, atomic_read(&xe->mem.defrag.count),
->+				  true);
->+
-> 	/*
-> 	 * Process at most XE_BO_DEFRAG_SIZE_LIMIT bytes of newly (re)allocated
-> 	 * backing per run rather than draining the whole list in one go. Only
->@@ -1503,6 +1517,8 @@ static void xe_bo_defrag_worker(struct work_struct *w)
->
-> 	xe_pm_runtime_put(xe);
-> 	drm_dev_exit(idx);
->+	trace_xe_bo_defrag_worker(xe, defrag_bytes,
->+				  atomic_read(&xe->mem.defrag.count), false);
-> }
->
-> static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
->index 86323cf3be2c..b159d37d39a1 100644
->--- a/drivers/gpu/drm/xe/xe_trace_bo.h
->+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
->@@ -85,6 +85,65 @@ TRACE_EVENT(xe_bo_move,
-> 		      __get_str(new_placement_name), __get_str(device_id))
-> );
->
->+TRACE_EVENT(xe_bo_defrag_worker,
->+	    TP_PROTO(struct xe_device *xe, u64 defrag_bytes, int count,
->+		     bool enter),
->+	    TP_ARGS(xe, defrag_bytes, count, enter),
->+	    TP_STRUCT__entry(
->+		     __string(dev, dev_name(xe->drm.dev))
->+		     __field(u64, defrag_bytes)
->+		     __field(int, count)
->+		     __field(bool, enter)
->+		     ),
->+	    TP_fast_assign(
->+		   __assign_str(dev);
->+		   __entry->defrag_bytes = defrag_bytes;
->+		   __entry->count = count;
->+		   __entry->enter = enter;
->+		   ),
->+	    TP_printk("dev=%s %s defrag_bytes=%llu count=%d",
->+		      __get_str(dev), __entry->enter ? "enter" : "exit",
->+		      __entry->defrag_bytes, __entry->count)
->+);
->+
->+TRACE_EVENT(xe_bo_defrag_one,
->+	    TP_PROTO(struct xe_bo *bo, u64 budget, unsigned int prealloc_want,
->+		     unsigned int prealloc_got, u64 lock_ns, u64 prealloc_ns,
->+		     u64 lockwait_ns, u64 consumed, int ret),
->+	    TP_ARGS(bo, budget, prealloc_want, prealloc_got, lock_ns,
->+		    prealloc_ns, lockwait_ns, consumed, ret),
->+	    TP_STRUCT__entry(
->+		     __string(dev, __dev_name_bo(bo))
->+		     __field(size_t, size)
->+		     __field(u64, budget)
->+		     __field(unsigned int, prealloc_want)
->+		     __field(unsigned int, prealloc_got)
->+		     __field(u64, lock_us)
->+		     __field(u64, prealloc_us)
->+		     __field(u64, lockwait_us)
->+		     __field(u64, consumed)
->+		     __field(int, ret)
->+		     ),
->+	    TP_fast_assign(
->+		   __assign_str(dev);
->+		   __entry->size = xe_bo_size(bo);
->+		   __entry->budget = budget;
->+		   __entry->prealloc_want = prealloc_want;
->+		   __entry->prealloc_got = prealloc_got;
->+		   __entry->lock_us = div_u64(lock_ns, 1000);
->+		   __entry->prealloc_us = div_u64(prealloc_ns, 1000);
->+		   __entry->lockwait_us = div_u64(lockwait_ns, 1000);
->+		   __entry->consumed = consumed;
->+		   __entry->ret = ret;
->+		   ),
->+	    TP_printk("dev=%s size=%zu budget=%llu prealloc=%u/%u lock_us=%llu lockwait_us=%llu prealloc_us=%llu consumed=%llu ret=%d",
->+		      __get_str(dev), __entry->size, __entry->budget,
->+		      __entry->prealloc_got, __entry->prealloc_want,
->+		      __entry->lock_us, __entry->lockwait_us,
->+		      __entry->prealloc_us, __entry->consumed,
->+		      __entry->ret)
->+);
->+
-> DECLARE_EVENT_CLASS(xe_vma,
-> 		    TP_PROTO(struct xe_vma *vma),
-> 		    TP_ARGS(vma),
->-- 
->2.34.1
->
+> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> index 28cff97d57dc..93f70c98b235 100644
+> --- a/drivers/gpu/buddy.c
+> +++ b/drivers/gpu/buddy.c
+> @@ -602,6 +602,7 @@ static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
+>   	block->header = offset;
+>   	block->header |= order;
+>   	block->parent = parent;
+> +	block->subtree_max_free_order = GPU_BUDDY_NO_FREE_ORDER;
+>   
+>   	RB_CLEAR_NODE(&block->rb);
+>   
+> @@ -717,6 +718,27 @@ static void rbtree_remove(struct gpu_buddy *mm,
+>   	RB_CLEAR_NODE(&block->rb);
+>   }
+>   
+> +static void update_subtree_max_free_order(struct gpu_buddy_block *block)
+> +{
+> +	while (block) {
+> +		s8 max_free;
+> +
+> +		if (gpu_buddy_block_is_free(block))
+> +			max_free = gpu_buddy_block_order(block);
+> +		else if (gpu_buddy_block_is_split(block))
+> +			max_free = max(block->left->subtree_max_free_order,
+> +				       block->right->subtree_max_free_order);
+> +		else
+> +			max_free = GPU_BUDDY_NO_FREE_ORDER;
+> +
+> +		if (block->subtree_max_free_order == max_free)
+> +			break;
+> +
+> +		block->subtree_max_free_order = max_free;
+> +		block = block->parent;
+> +	}
+> +}
+> +
+>   static void mark_allocated(struct gpu_buddy *mm,
+>   			   struct gpu_buddy_block *block)
+>   {
+> @@ -729,6 +751,7 @@ static void mark_allocated(struct gpu_buddy *mm,
+>   	mm->used_scoreboard[gpu_buddy_block_order(block)]++;
+>   
+>   	rbtree_remove(mm, block);
+> +	update_subtree_max_free_order(block);
+>   }
+>   
+>   static void __mark_free(struct gpu_buddy *mm,
+> @@ -750,6 +773,7 @@ static void __mark_free(struct gpu_buddy *mm,
+>   	mm->free_scoreboard[gpu_buddy_block_order(block)]++;
+>   
+>   	rbtree_insert(mm, block);
+> +	update_subtree_max_free_order(block);
+>   }
+>   
+>   static void mark_free(struct gpu_buddy *mm,
+> @@ -869,6 +893,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 size, u64 chunk_size)
+>   
+>   	size = round_down(size, chunk_size);
+>   
+> +	BUILD_BUG_ON(GPU_BUDDY_MAX_ORDER > S8_MAX);
+> +
+>   	mm->size = size;
+>   	mm->avail = size;
+>   	mm->chunk_size = chunk_size;
+> @@ -1277,7 +1303,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   
+>   		list_del(&block->tmp_link);
+>   
+> -		if (gpu_buddy_block_order(block) < order)
+> +		if (block->subtree_max_free_order < (int)order)
+>   			continue;
+>   
+>   		block_start = gpu_buddy_block_offset(block);
+> @@ -1286,9 +1312,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   		if (!overlaps(start, end, block_start, block_end))
+>   			continue;
+>   
+> -		if (gpu_buddy_block_is_allocated(block))
+> -			continue;
+> -
+>   		if (block_start < start || block_end > end) {
+>   			u64 adjusted_start = max(block_start, start);
+>   			u64 adjusted_end = min(block_end, end);
+> @@ -1298,16 +1321,10 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>   				continue;
+>   		}
+>   
+> +		/* Not pruned at @order, so this block itself is FREE */
+>   		if (contains(start, end, block_start, block_end) &&
+> -		    order == gpu_buddy_block_order(block)) {
+> -			/*
+> -			 * Find the free block within the range.
+> -			 */
+> -			if (gpu_buddy_block_is_free(block))
+> -				return block;
+> -
+> -			continue;
+> -		}
+> +		    order == gpu_buddy_block_order(block))
+> +			return block;
+>   
+>   		if (!gpu_buddy_block_is_split(block)) {
+>   			err = split_block(mm, block);
+> @@ -1856,13 +1873,17 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+>   					     gpu_buddy_block_offset(block),
+>   					     gpu_buddy_block_size(mm, block));
+>   
+> -	__mark_free(mm, block, was_clear ? GPU_BLOCK_CLEAR : GPU_BLOCK_DIRTY);
+> -	mm->avail += gpu_buddy_block_size(mm, block);
+> -
+> -	/* Prevent recursively freeing this node */
+> +	/*
+> +	 * Detach the block to prevent recursively freeing this node, and to
+> +	 * keep free-order updates from propagating above it until the trim
+> +	 * is done.
+> +	 */
+>   	parent = block->parent;
+>   	block->parent = NULL;
+>   
+> +	__mark_free(mm, block, was_clear ? GPU_BLOCK_CLEAR : GPU_BLOCK_DIRTY);
+> +	mm->avail += gpu_buddy_block_size(mm, block);
+> +
+>   	list_add(&block->tmp_link, &dfs);
+>   	err =  __alloc_range(mm, &dfs, new_start, new_size,
+>   			     was_clear ? GPU_BUDDY_CLEAR_ALLOCATION : 0,
+> @@ -1881,6 +1902,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+>   	}
+>   
+>   	block->parent = parent;
+> +	update_subtree_max_free_order(parent);
+>   	return err;
+>   }
+>   EXPORT_SYMBOL(gpu_buddy_block_trim);
+> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+> index ddc4eca84175..8037f5a0feb1 100644
+> --- a/include/linux/gpu_buddy.h
+> +++ b/include/linux/gpu_buddy.h
+> @@ -141,8 +141,15 @@ struct gpu_buddy_block {
+>   	unsigned int subtree_max_alignment;
+>   	struct list_head tmp_link;
+>   	bool has_clear;
+> +	/*
+> +	 * Largest order of any FREE block in this block's buddy subtree, or
+> +	 * GPU_BUDDY_NO_FREE_ORDER if none. Protected by the driver lock.
+> +	 */
+> +	s8 subtree_max_free_order;
+>   };
+>   
+> +#define GPU_BUDDY_NO_FREE_ORDER (-1)
+> +
+>   /* Order-zero must be at least SZ_4K */
+>   #define GPU_BUDDY_MAX_ORDER (63 - 12)
+>   
+
