@@ -2,59 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C619F606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 10:45:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC095606A32A
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 10:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nsNQRWNY
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Mxh9m3G6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B94010E093;
-	Tue, 10 Nov 2026 10:45:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A619610E093;
+	Tue, 10 Nov 2026 10:46:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF52310EFAC
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Nov 2026 10:45:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 252F610E093
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Nov 2026 10:46:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794307502; x=1825843502;
+ t=1794307574; x=1825843574;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=NwfED7qdgWy5v7Q8aelilEwkEWRZdrFIGWr1kC0pxLo=;
- b=nsNQRWNY+lSEW7E4YuSSSGLr7xPDydn7e03rs2uKAzaCdF235ngRCpJf
- HWWq389NMqUG7tfPwlQdAIkovGqBBZR/JB67CWQ3EB+OE53LwhhXOzk/+
- aBCK+vXHgVS41HhXX7bhpCKD0Nu+P5y/6s5sVkWjgfteZ6cVcQ0MiT72X
- CFR+oyLhfZRTfKCtj3xrwf66qL982uht6tiDRmmZaFPZ4yDbG0W94iqOl
- YtbbOhHgAF9c5n+/AL9ONGaxwX/xc4AOBZRsRBvFUbnXTtY3mmRu+suNu
- uC0CCTcZjvhrtxYnDoZnMC3a9LgjXmOMUIYAwNmgVZvgq4M0mxGiOp1+k g==;
-X-CSE-ConnectionGUID: d6wsHeu9QDaOvvjXReFOrw==
-X-CSE-MsgGUID: 9ZKHDzefTaKua4HXztxk1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3082884"
+ bh=KAFd7gq2I3X8ugYXIwbRLn0BU00q9RTshhe064yLtwY=;
+ b=Mxh9m3G64ne9xtXeOiHQRwt/Ej9GtDlCzb6brzmeBfbIcGJufpK7SxVy
+ tPdMwg/dr6IK6tgcSSgZUoxWEWejNZhIVhUK2FPW7BVt3MNMQnAJQ56sH
+ UZKkOi6ioPGePWIh7FUAdYDQtTrpPsJYf3h/toYI4MEBTnYuq1AJTQYR1
+ tDJX9RwZZhdLbl5W0chnQeEThURUOrYRFl09z6rifwi0h3iPJTK33HhNn
+ 0eGyttglChY/fTCQIbSdoAuOcRGoWS1e4G20yYEzVNHUiugH3m3uPUAaV
+ AIxae6jD39HnJ00QZOU/ZL46WihRl+yxDKH7JPoEaGbwURCD1QNuxbQJJ A==;
+X-CSE-ConnectionGUID: kTmI0IlISRWwhvuQHE2pQw==
+X-CSE-MsgGUID: C8Yi0GZaSGSOMURnFakwMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3082980"
 X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
-   d="scan'208";a="3082884"
+   d="scan'208";a="3082980"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 02:45:01 -0800
-X-CSE-ConnectionGUID: dsjE+dfIRwydNOlMEeqkYg==
-X-CSE-MsgGUID: NlUdbBU3RDqiQCB8Hp/fFw==
+ 10 Nov 2026 02:46:14 -0800
+X-CSE-ConnectionGUID: lyjxJCkTQ7ufGfzyd7XhQQ==
+X-CSE-MsgGUID: L5xxt82tS/WO95WR2RKjtg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
-   d="scan'208";a="7992096"
+   d="scan'208";a="7992363"
 Received: from soc-5cg43972f8.clients.intel.com (HELO [172.28.182.154])
  ([172.28.182.154])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 02:45:00 -0800
-Message-ID: <7e9b4208-ec8f-45fa-8ed7-bafc8b447e89@linux.intel.com>
-Date: Tue, 10 Nov 2026 11:44:58 +0100
+ 10 Nov 2026 02:46:12 -0800
+Message-ID: <9e2a7049-bfc4-4016-90e1-fa8f2ba9509a@linux.intel.com>
+Date: Tue, 10 Nov 2026 11:46:10 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/5] drm/xe/pf: Split the bulk priority provisioning
- function
+Subject: Re: [PATCH v1 2/5] drm/xe/pf: Change provisioning mode under mutex
 To: =?UTF-8?Q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>,
  intel-xe@lists.freedesktop.org
 References: <20261027103009.1259199-1-piotr.piorkowski@intel.com>
- <20261027103009.1259199-2-piotr.piorkowski@intel.com>
+ <20261027103009.1259199-3-piotr.piorkowski@intel.com>
 Content-Language: en-US
 From: "Bernatowicz, Marcin" <marcin.bernatowicz@linux.intel.com>
-In-Reply-To: <20261027103009.1259199-2-piotr.piorkowski@intel.com>
+In-Reply-To: <20261027103009.1259199-3-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -82,85 +81,50 @@ Reviewed-by: Marcin Bernatowicz <marcin.bernatowicz@linux.intel.com>
 On 10/27/2026 11:30 AM, Piórkowski, Piotr wrote:
 > From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 >
-> During VGPU profile provisioning we will want to reuse the current
-> code that converts the scheduling priority into the schedule-if-idle
-> policy, while already holding the master mutex.
->
-> Move that code into a static helper that expects the caller to hold
-> the master mutex, and let the public function take that mutex. As a
-> side effect, the schedule-if-idle policy is now updated on all GTs
-> under a single lock, instead of taking the lock separately for each
-> GT.
+> The provisioning mode is changed from the debugfs handlers, but it is
+> also checked when VFs are disabled, without any locking. Since we now
+> have xe_gt_sriov_pf_config_release_locked(), we can release the VFs
+> configuration while holding the master mutex, and do a proper locking
+> while changing the provisioning mode and while unprovisioning the VFs.
 >
 > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 35 ++++++++++++++--------
->   1 file changed, 22 insertions(+), 13 deletions(-)
+>   drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 8 +++++++-
+>   1 file changed, 7 insertions(+), 1 deletion(-)
 >
 > diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-> index c37e422b5a5c..91670063f706 100644
+> index 91670063f706..e713a24b8864 100644
 > --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
 > +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-> @@ -376,18 +376,7 @@ int xe_sriov_pf_provision_query_vf_pt(struct xe_device *xe, unsigned int vfid, u
->   	return !count ? -ENODATA : 0;
->   }
->   
-> -/**
-> - * xe_sriov_pf_provision_bulk_apply_priority() - Change scheduling priority of all VFs and PF.
-> - * @xe: the PF &xe_device
-> - * @prio: scheduling priority to set
-> - *
-> - * Change the scheduling priority provisioning on all tiles/GTs.
-> - *
-> - * This function can only be called on PF.
-> - *
-> - * Return: 0 on success or a negative error code on failure.
-> - */
-> -int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio)
-> +static int pf_bulk_apply_priority(struct xe_device *xe, u32 prio)
->   {
->   	bool sched_if_idle;
->   	struct xe_gt *gt;
-> @@ -395,6 +384,8 @@ int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio)
->   	int result = 0;
->   	int err;
+> @@ -56,9 +56,11 @@ static void pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
+>   	unsigned int id;
+>   	unsigned int n;
 >   
 > +	lockdep_assert_held(xe_sriov_pf_master_mutex(xe));
 > +
->   	/*
->   	 * Currently, priority changes that involves VFs are only allowed using
->   	 * the 'sched_if_idle' policy KLV, so only LOW and NORMAL are supported.
-> @@ -403,13 +394,31 @@ int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio)
->   	sched_if_idle = prio == GUC_SCHED_PRIORITY_NORMAL;
->   
->   	for_each_gt(gt, xe, id) {
-> -		err = xe_gt_sriov_pf_policy_set_sched_if_idle(gt, sched_if_idle);
-> +		err = xe_gt_sriov_pf_policy_set_sched_if_idle_locked(gt, sched_if_idle);
->   		result = result ?: err;
->   	}
->   
->   	return result;
+>   	for_each_gt(gt, xe, id)
+>   		for (n = 1; n <= num_vfs; n++)
+> -			xe_gt_sriov_pf_config_release(gt, n, true);
+> +			xe_gt_sriov_pf_config_release_locked(gt, n, true);
 >   }
 >   
-> +/**
-> + * xe_sriov_pf_provision_bulk_apply_priority() - Change scheduling priority of all VFs and PF.
-> + * @xe: the PF &xe_device
-> + * @prio: scheduling priority to set
-> + *
-> + * Change the scheduling priority provisioning on all tiles/GTs.
-> + *
-> + * This function can only be called on PF.
-> + *
-> + * Return: 0 on success or a negative error code on failure.
-> + */
-> +int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio)
-> +{
+>   static void pf_unprovision_all_vfs(struct xe_device *xe)
+> @@ -98,6 +100,8 @@ int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs)
+>   {
+>   	xe_assert(xe, IS_SRIOV_PF(xe));
+>   
 > +	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 > +
-> +	return pf_bulk_apply_priority(xe, prio);
-> +}
+>   	if (!pf_auto_provisioning_mode(xe))
+>   		return 0;
+>   
+> @@ -166,6 +170,8 @@ int xe_sriov_pf_provision_set_mode(struct xe_device *xe, enum xe_sriov_provision
+>   {
+>   	xe_assert(xe, IS_SRIOV_PF(xe));
+>   
+> +	guard(mutex)(xe_sriov_pf_master_mutex(xe));
 > +
->   /**
->    * xe_sriov_pf_provision_apply_vf_priority() - Change VF's scheduling priority.
->    * @xe: the PF &xe_device
+>   	if (mode == xe->sriov.pf.provision.mode)
+>   		return 0;
+>   
