@@ -2,54 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE2F4606A326
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 10:35:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7CA606A321
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 10:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DFntUND+
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=B8M3feG/
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84E5210EFA4;
-	Tue, 10 Nov 2026 10:35:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE4910EFA9;
+	Tue, 10 Nov 2026 10:35:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0656F10EFA4;
- Tue, 10 Nov 2026 10:35:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A3EA10EFA5;
+ Tue, 10 Nov 2026 10:35:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794306928; x=1825842928;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=yPteFp1cDk+IUdWkYrFiD6yt+i+f1RegoqF8t35Oyx4=;
- b=DFntUND+onJwKv/p/grPRcAboRPJXFHNleiIj2sxV4f4g0JIhW3LreCW
- W8E7EI65Ma0VxEqN4uvx3+um4IWBPcGtqJEUavDo5j1Qq9THlcwR3UhlM
- m9/M1wKNSnwWpUGAfmSMXQjdhto3VpV5aEjvPni6yacxuyA75It9M1KlZ
- i1i5o5GcYxdAPSdxLRufiBSqrUpypyIPCuLg/jX3uqRsmWj6E9GJNXIL9
- ZXuNpNfd3AylK2k1S8lkMqD8gJLhW/EtGQxr9NnoVMenelX9EuP8u7rhJ
- akYDB1zx7s9IWOgbhPyGwIGzkjUkC8h4a0wXyAFmGKTncTti/na+vCnUK A==;
-X-CSE-ConnectionGUID: h8zggiq1QzyvM/790BVyFg==
-X-CSE-MsgGUID: C+7jWSDeTYW97tZbFAjeCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3131565"
+ t=1794306932; x=1825842932;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=8+xXGU097wA1eSNbxYOGHOjVew61434oqUAKxMfCrfo=;
+ b=B8M3feG/bRMYb4GikwzLt6+MSt6YLHohVhY+gFgFZsuyQPo3nSacFqSk
+ xukvdIf2Gij+tM+tGtgX41DJAW9VOkeK2Nw7CqSF0vn97x9cLzyM2iEnm
+ YPtIhDkCtHC1EGObzqWdn1Wj/yhbBwDXy7R/9FcCkp2v5SB7V0aWZ1M1A
+ Zq67SiafKIWNOah/6FphJiUlrftooy/2hHWTo1X6lgO6lBlCeDiZIdfUJ
+ 1m2bhsb4dLrfdn9KJYTQRn01cJl40qmbZpqrX7adagPApTGEhVYS4KJ+L
+ fnoiMhabMHV5F9mbjLbAoIeGxDzFfDRW383jiXxmjaEwU+aqr7okzJsQe Q==;
+X-CSE-ConnectionGUID: mrFP2ZndQ/qRcA0U4OObHg==
+X-CSE-MsgGUID: b55npGa9TeW0JGRiKky3sQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3131572"
 X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
-   d="scan'208";a="3131565"
+   d="scan'208";a="3131572"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 02:35:27 -0800
-X-CSE-ConnectionGUID: ekEi59QQSSC3aBBJ/eJ5Kw==
-X-CSE-MsgGUID: qowsiaAiQym+plsxHEz1VA==
+ 10 Nov 2026 02:35:31 -0800
+X-CSE-ConnectionGUID: c2dOLU6UR/6Vzhi4DwnFcQ==
+X-CSE-MsgGUID: BNX1GzGYStaQj2r3IkivSA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
-   d="scan'208";a="8116674"
+   d="scan'208";a="8116680"
 Received: from alekseim-mobl.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.244.241])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 02:35:26 -0800
+ 10 Nov 2026 02:35:29 -0800
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com, ville.syrjala@intel.com,
  juha-pekka.heikkila@intel.com
-Subject: [PATCH v4 1/2] drm/i915/fbc: update the supported FP16 formats
-Date: Tue, 10 Nov 2026 12:35:12 +0200
-Message-ID: <20261110103513.176529-1-vinod.govindapillai@intel.com>
+Subject: [PATCH v4 2/2] drm/i915/fbc: Apply Wa_14028723391
+Date: Tue, 10 Nov 2026 12:35:13 +0200
+Message-ID: <20261110103513.176529-2-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261110103513.176529-1-vinod.govindapillai@intel.com>
+References: <20261110103513.176529-1-vinod.govindapillai@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -72,100 +74,31 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-FBC is supported with FP16 formats with or without alpha. Update
-the platform specific format check function to list all the
-supported formats as it is. Also add a separate function to check
-if the format is float because the pixel normalizer block must be
-active to have FBC enabled for FP16 formats.
+Screen corruption with FBC enabled on a plane with the FP16.
+The recommended workaround is to disable FBC in case of FP16
+format with alpha. So remove the DRM_FORMAT_ARGB16161616F and
+DRM_FORMAT_ABGR16161616F from the supported formats list from
+the affected platforms.
 
-v2: list the supported formats per platform as it is and introduce
-    format_is_float() (Ville)
-
-v3: update intel_fbc_need_pixel_normalizer()
-
-Bspec: 68904
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 44 ++++++++++++++----------
- 1 file changed, 26 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbc.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 5694d20773f8..2e437b969451 100644
+index 2e437b969451..26dc8b088521 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbc.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1180,14 +1180,15 @@ static bool lnl_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_
- 	}
- }
- 
--static bool
--xe3p_lpd_fbc_fp16_format_is_valid(const struct intel_plane_state *plane_state)
-+static bool format_is_float(const struct intel_plane_state *plane_state)
- {
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 
- 	switch (fb->format->format) {
- 	case DRM_FORMAT_ARGB16161616F:
-+	case DRM_FORMAT_XRGB16161616F:
- 	case DRM_FORMAT_ABGR16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
+@@ -1205,9 +1205,7 @@ static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *p
+ 	case DRM_FORMAT_ARGB8888:
+ 	case DRM_FORMAT_ABGR8888:
+ 	case DRM_FORMAT_RGB565:
+-	case DRM_FORMAT_ARGB16161616F:
+ 	case DRM_FORMAT_XRGB16161616F:
+-	case DRM_FORMAT_ABGR16161616F:
+ 	case DRM_FORMAT_XBGR16161616F:
  		return true;
  	default:
- 		return false;
-@@ -1196,24 +1197,22 @@ xe3p_lpd_fbc_fp16_format_is_valid(const struct intel_plane_state *plane_state)
- 
- static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_state)
- {
--	if (lnl_fbc_pixel_format_is_valid(plane_state))
--		return true;
--
--	if (xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
--		return true;
--
--	return false;
--}
--
--bool intel_fbc_need_pixel_normalizer(const struct intel_plane_state *plane_state)
--{
--	struct intel_display *display = to_intel_display(plane_state);
-+	const struct drm_framebuffer *fb = plane_state->hw.fb;
- 
--	if (HAS_PIXEL_NORMALIZER(display) &&
--	    xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
-+	switch (fb->format->format) {
-+	case DRM_FORMAT_XRGB8888:
-+	case DRM_FORMAT_XBGR8888:
-+	case DRM_FORMAT_ARGB8888:
-+	case DRM_FORMAT_ABGR8888:
-+	case DRM_FORMAT_RGB565:
-+	case DRM_FORMAT_ARGB16161616F:
-+	case DRM_FORMAT_XRGB16161616F:
-+	case DRM_FORMAT_ABGR16161616F:
-+	case DRM_FORMAT_XBGR16161616F:
- 		return true;
--
--	return false;
-+	default:
-+		return false;
-+	}
- }
- 
- static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
-@@ -1230,6 +1229,15 @@ static bool pixel_format_is_valid(const struct intel_plane_state *plane_state)
- 		return i8xx_fbc_pixel_format_is_valid(plane_state);
- }
- 
-+bool intel_fbc_need_pixel_normalizer(const struct intel_plane_state *plane_state)
-+{
-+	struct intel_display *display = to_intel_display(plane_state);
-+
-+	return HAS_PIXEL_NORMALIZER(display) &&
-+	       pixel_format_is_valid(plane_state) &&
-+	       format_is_float(plane_state);
-+}
-+
- static bool i8xx_fbc_rotation_is_valid(const struct intel_plane_state *plane_state)
- {
- 	return plane_state->hw.rotation == DRM_MODE_ROTATE_0;
 -- 
 2.43.0
 
