@@ -2,126 +2,158 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3278A606A321
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 04:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F12F606A333
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 04:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=TwwMYAl5
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UMwLA+Oa
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D693C10E163;
-	Tue, 10 Nov 2026 04:18:05 +0000 (UTC)
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012008.outbound.protection.outlook.com [52.101.43.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E434910E163;
- Tue, 10 Nov 2026 04:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E434B10E91C;
+	Tue, 10 Nov 2026 04:25:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D08210EDA0;
+ Tue, 10 Nov 2026 04:25:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794284707; x=1825820707;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=0hUuLZe2f4PsoYMWiNrkzSV2w/SoW2zKbSOehklcMq0=;
+ b=UMwLA+Oa/lblVPHFxv7TSXgaZEMhfwKYqLpB+68eJdryveTSPp2/COgO
+ M2wdXRKbzW1NLQ9nXb4cWdkK1JAfXELHh8Nm/gvYxvb/rsK4cJtdrjXMJ
+ sCiS62bp01s47vfwxwye+g0lxQMS0TsESbvGcblgZ8yArK2IGK+ktdLq0
+ mMBbRh0AU1X8WReQb+3eKJA8OkThxNSZ8BtxDvLahKdcahVDQI7s/6zfo
+ DOMIqxaFMZ6K9501oXEUaf8gd9g1YR/5l+fLPAKzsCaFBsLPsKqtKyJoI
+ 2ww8OVjbU/DMb6EWeOfqMnLfWPP0iapwrsts+t2TYAIXUDNgiQU8oGbF8 g==;
+X-CSE-ConnectionGUID: XFisFaBcTvyPYzxK6JSxyw==
+X-CSE-MsgGUID: uuzIZ/OyQiCbf5TVmPJy8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="2901898"
+X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
+   d="scan'208";a="2901898"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 20:25:06 -0800
+X-CSE-ConnectionGUID: I1QbqUs/T/mAuBFLnN9Tmw==
+X-CSE-MsgGUID: yzX5KffWRGGeTGbITsWTNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,205,1787036400"; 
+   d="scan'208";a="7913320"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Nov 2026 20:25:06 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Mon, 9 Nov 2026 20:25:05 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Mon, 9 Nov 2026 20:25:05 -0800
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.4) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Mon, 9 Nov 2026 20:25:05 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mW12NP9TzOyvxwAp5ibSzkUGW6kdNfLUntd3/fq2Ezcdap/LyjOLJZ6JeoqesgQWoGuTLfR9jG9Vagm3zcPpDVxzvYzqvzCsyqistIQebNa9exJgl9FjduRu0Fk/Pl9JX4BsTLCc9BSv+oEsjI6OmX6CRqc1x3viSwWKrQfymSAhIhpves+89NJnUt6HqvgkOYvIPbIlUVFxNuNqD301zL8EmMt5rXb1IT9cfJ4LTysQbXufM0bS1WepPvKJdFXrT1N/kdCz388CsKgIGs++X939T/sTzaReClD7//00BTiF4iUxKcpZbT202SV0Kd9/GABXfaoCtflxaWIa+H1MUw==
+ b=In49pA3QLosLuTrTi/qXkW4cexvAHBaX9ESSDBeme9CHv+CzPEV1Q73oinLvQuej9qeAqYfusmfkLonXhf9O4Um6HPg9oicys1xjkzwh0X03bYgzuqOKG/UmaHrGAzQH+06bVfgKixtqq9x6Ik61L6LrP2Zpt3WYh8mvod1lURN/YmAa5f1dBdQ3RZoQsqN0FSJ++nldXTSZm/fxRfIHDdwwD1pBiLgghGy4wD5U02obtpw0CNE22RclCwUwaEb4UN+bhmo1s220nX2HI0zAGjSNWcuKWBN5zMy46Dm1aZVL3fzxk3g/wn2Utb/xt2BtbodJ8KFNLPOtAioTHfrvRg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c6kYukEkSFLL4JlkRDsBQm2C2WyNDoKzdqXslAgHPGI=;
- b=sO6d+EZp5Gp/K2+NxG0fcbv6OjzFzmtJb9r7U7JKvZMbpyrmJr1t7tLiRT2VzIxAWQX/sw7UlbOTa4kDjuwJazFanNRNQfZ/enRS7ej5Vfo1IRPfWWwVzIEopBeuhKyQhFa2+DGg+Yk3k/Wxinqa5TRVRNNWADmcbCvBvC0OEUp3RQTc3r7GJiGZzP0+bup/2fmzZOgM+ZBfzrmK1eI47jeGH3G5De+Lb2nQxbQB6gpVfBQQnLqhQ7fAwBrNTtEjfgAEw1yk5GSqQ221VSX7JXPu5CCDBo3psp5aH7a6HdROe8A9f3wdOcu3D7vftVKefdiUswHz5JU/PY14E9j0Ew==
+ bh=KySfYpPewmyr4iOP6wjyabw0UVkMbg4kGhIiMGli41U=;
+ b=xtyRH/k4SASZLI3ViFqClhJkbKgmmUGM7O35vwD89fqUpVb8dvPwbA0X847fVg41Os7foK5Z0KouQxKzGLaDQdFSDVrpy1C775GSu18FBx1+5wa1A400UDSBfZHgGdukhAI+YKa8Cac8yh7nxuho6l6l4mUJn4Zr7tRXUq8LrITzJNzQUKEkDsPGeMv55ApHgtFM6w04NIG5f41J+hORam+3XJZzct26tBOFEhQ1i+ivDergXk2AW/xvjJ6J0sDD32BdHqlH/2lQ6vZ1LokR4yWu3x6gq5AweQG7kW1bg8GQYCvUNJWi0XJ5lbPdSCz0fZ4MIItvjXQp+dax9uqcYw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c6kYukEkSFLL4JlkRDsBQm2C2WyNDoKzdqXslAgHPGI=;
- b=TwwMYAl5lq/k8mt1It1JPAt8qdkgKiDDM8qMML4QH22wmOTx8YrCNxYUMM5uf4d/ZFk+WdmWUHnJDxSRZMrUSXkhSK4jqHLtfmJq5/SPxI0K7wqnD39y2MAyp+wBXUNGCuk1dcIGy0/H1uZrCaQD7QElYPvQ938j+n3+aEGGjSA=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
- by LV2PR12MB127395.namprd12.prod.outlook.com (2603:10b6:404:300::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Tue, 10 Nov
- 2026 04:17:57 +0000
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0592.012; Tue, 10 Nov 2026
- 04:17:57 +0000
-Message-ID: <e61742c6-1295-48ac-afb1-f047a8dc7b81@amd.com>
-Date: Tue, 10 Nov 2026 09:47:50 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4] gpu/buddy: restore two-pass clear/dirty guard for
- range-biased allocation
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-To: matthew.auld@intel.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
- Anand.Raghavendra@amd.com
-References: <20261104072847.2617886-1-arunpravin.paneerselvam@amd.com>
- <bc02f8db-8d1f-41b5-b930-c5d46151db73@amd.com>
-Content-Language: en-US
-In-Reply-To: <bc02f8db-8d1f-41b5-b930-c5d46151db73@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
+ by CY8PR11MB7747.namprd11.prod.outlook.com (2603:10b6:930:91::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.10; Tue, 10 Nov
+ 2026 04:25:02 +0000
+Received: from MW3PR11MB4684.namprd11.prod.outlook.com
+ ([fe80::2f5a:96ce:f7e4:c315]) by MW3PR11MB4684.namprd11.prod.outlook.com
+ ([fe80::2f5a:96ce:f7e4:c315%7]) with mapi id 15.21.0615.007; Tue, 10 Nov 2026
+ 04:25:02 +0000
+Date: Mon, 9 Nov 2026 20:25:00 -0800
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v3 19/33] drm/xe: Skip self-copies for borrowed pages on
+ defrag moves
+Message-ID: <avKcnNcgR_e0mXNN@nvishwa1-desk>
+References: <20260711025619.2540575-1-matthew.brost@intel.com>
+ <20260711025619.2540575-20-matthew.brost@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0222.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1f3::15) To DM4PR12MB5039.namprd12.prod.outlook.com
- (2603:10b6:5:38a::18)
+In-Reply-To: <20260711025619.2540575-20-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0111.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::26) To MW3PR11MB4684.namprd11.prod.outlook.com
+ (2603:10b6:303:5d::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|LV2PR12MB127395:EE_
-X-MS-Office365-Filtering-Correlation-Id: e0da4c2c-f552-4209-68af-08df3ee19923
+X-MS-TrafficTypeDiagnostic: MW3PR11MB4684:EE_|CY8PR11MB7747:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5be06526-ac49-462d-c2da-08df3ee296a8
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|366016|1800799024|22082099003|18002099003|10067099003|5023799004|11063799006|4143699003|261102123227099003|261026121527099003|261028144727099003|261022105027099003|261009223027099003|261022075727099003|261021121427099003|261021123027099003|56012099006|261026140227099003;
-X-Microsoft-Antispam-Message-Info: NWIeOhyiXbYgdayCSlPqRkTyvMkHKlNZggKU5CHAKdtcBZM2Gypp5R2gOxyW8AYiNhFRZI1gtdKDpRP+5hgAHO4F7Xa8dgzqd2k3E8Gy8hIMFok5fMdPRPxVl1pUQPUiCjjsekdlLTMG5htp4V0PvNJ2bAVM/YDZ5mbYoWTmJ0OIzusjCi5R7bnMLAsyMLQhQuXxtO7vfijfTdGTlMA+EQXa8bahEy8JXLacuG/n0ejZjFL7/f0/GiX8xyvkMzz7TMELPvtEQuoPPP6rZPfwG3WgolSo5a4vHdllmiX/YzCfuzgBcHWlRP828jly4R4dB5P3S0mZJQ/ej6d8rpW8Z7Vqsstq2i1e5Ow9pmXi/sfUT+lu2HM0UkMQYGwAwuxJ80bf8u5KY92aVDOGhtIVIssarLqLDXAS0PxelPdmTjgQCbbMXQicOzzqb4EVEAZjAJRCISNMudni3NTprPBmrsieJhHLt599H5n+idjAp6Rr2hYa0+g9QKIYAmb+cD1mZkc6YWfQ//8bZrxDvO+/cIG4ho8jnPTKgFTMlGQr9y1d4iWxGtW5iLaKNJ2FPRVdjJ8GEAmKW3V5NJQlORqaZwPc3yYE0M138ajDGlDmmhzzDWZduvj3k17QbYq+nuPJuV/4n50k8ExOHFv1qcBMWOiNtZnUg4uuJkAqanwAY0o=
+ ARA:13230040|23010399003|7416014|1800799024|376014|366016|6133799003|18002099003|22082099003|3023799007|10067099003|5023799004|261021123027099003|4143699003|11063799006|261028144727099003|261009223027099003|261026140227099003|261026121527099003|261022105027099003|261022075727099003|261102123227099003|261021121427099003|56012099006;
+X-Microsoft-Antispam-Message-Info: Hi3lPdwJGK+6fUQL5s2xg9xelLDVATsr2hEGrdMHQqqEDj7bAzJzR8UtKb4D5YbCo1N613s79RmPXrPp089e8teAtLGiR6ahBscYLVM+LITzliezhXE7E2OA/jl/AeAx6MevxP5/FpA98dXguRHAUllsvV7uEBimvOvN5dYTx2YW2BzuFfWpAFdkRYnL6I0QmVPoeXnc3TX3AsFlHBSzLNS10WLzGvcNVKG0IyFYfx9/bmcjYd7MsQsbbfrX03m7DlAfeh5cKIXz50VPQyHe6X/FV1spZi5s59XXuHvqFK/NmBGIGtUfrIpe9Cr6Y+RvcnGopEjsgVUMXnS114UM8EERAcE1zdA7aG9OwTNw3z9wpwpv0jUyFUKTyXCd3OfPnkHgyX+J2zOU2BcHCckGaxiSHpawpqkIzAi0xRC8lrUcs52veh1ANpyAcB/s5fHeiXiVmtIAf7/cBDP7Z4dGT+LDenvr6Zi6hSaIYuiz7lkbDfkuRoLU+c1QBHUUrpEkCl/GU60itLrvAm1SYFyTDTP3LRnV3TYVAfvBc/n0xrl3NO45BlmmFvjzV4Fn3lqaZqg8isgpYaTx9lyEl26PMF3Syiurs0+Mt8O2IX9JR+TCvT7lkfY0EzISANgjWxg2XOphGc79k23KD2Rkl/1v4kuTBkSFeBAPz9QnzwuyIBw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(22082099003)(18002099003)(10067099003)(5023799004)(11063799006)(4143699003)(261102123227099003)(261026121527099003)(261028144727099003)(261022105027099003)(261009223027099003)(261022075727099003)(261021121427099003)(261021123027099003)(56012099006)(261026140227099003);
+ IPV:NLI; SFV:NSPM; H:MW3PR11MB4684.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(7416014)(1800799024)(376014)(366016)(6133799003)(18002099003)(22082099003)(3023799007)(10067099003)(5023799004)(261021123027099003)(4143699003)(11063799006)(261028144727099003)(261009223027099003)(261026140227099003)(261026121527099003)(261022105027099003)(261022075727099003)(261102123227099003)(261021121427099003)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VnphZlJ4SWxpQVdDTmJrRUtCN0pscXRVN3JQT0s2WEU3Qm9IU1hGQkZZK21Q?=
- =?utf-8?B?MGc2QWkwM2tPakFjOE1xQzZKNnA5eW9IMHcxQ3RYdEVPY3pxZ0NtckFaQkVT?=
- =?utf-8?B?Z0NoTUNiV1pVTDZOa3RicTlWS0FpZ1IwUGprRlZ0QmZqTEkra1FDUEdoc0hL?=
- =?utf-8?B?dGVHeVJQdlVmc09oWjd0eWVoYXZnOUhieDRCNCsvQWl6Mis3QUgrdC95SDNR?=
- =?utf-8?B?WG9QMlNpWTBOR0NDTFFoRWQvYkoyZ2JUTENRYy9OQ2dSL1pvQVc3WVY2SG1D?=
- =?utf-8?B?dzhOWkVtYnBrb0pHMUU4TlhvcjhERGZoM2hhVXdPMms0anZnZGg5QWNVNlB2?=
- =?utf-8?B?dGFnWU5wZFpLazNjQXpkdUEzWDRlUkNSSSt3MXlvSjBKdmVHeXk0a0JNK1Nz?=
- =?utf-8?B?cHA1bFQvM1p2TEtpaWhlS2JjZHl3YUhldlQ5eTdGZnpNZTlpVFhqQnVHUlZq?=
- =?utf-8?B?R2xVVDcxZVdIR3RWUDcvYzFQWTdudTVBR2VoZzA1UVhScmlncWtjd3dzWjNh?=
- =?utf-8?B?WlhhaUxNellBWDZJczlYMzRDVFUxYi9tZFVsdlZ1NFFsN1Y3dmw0eHhkdFFP?=
- =?utf-8?B?QmtFc3hGc3Y4a3ZSczEvbGNFQjFxWXYrd25ZcnAzVUZYSkZraWFvbHExQnB1?=
- =?utf-8?B?djZEUW5qUFlpcE5abVlEZU84SGVmQ3pZWUhPSHh2cFFKNFBKYTlJbXZoRnRl?=
- =?utf-8?B?eG5YTHBDVEJ2ZkFRUStGdU9LNkpwSk92bUoydXdBaHYwMC9uUWNCOEU0d1pu?=
- =?utf-8?B?WFhLNXRqUFlwMlBpbGt2YkVWdE1rZkNETlV3Y2lWL1BpNGJub3BJajFsczY1?=
- =?utf-8?B?dmx3eWRjeTJ5ZmNGNzhYTWNmZXo2bzJSN3JoWEo4OXpQYTRxU2ZUOHhnMU5X?=
- =?utf-8?B?NFpoSGo5RmRiY29wTWFiU0NTYkxEUlVIT3lGSjlKZmJXaHl5VXR0U0xKbnhE?=
- =?utf-8?B?aTd3NzlvVEs5dmFURk85YUc0SDZXcjRTVnIzZkMyc1VyOE84LzBQbDJwei9j?=
- =?utf-8?B?Ty80bnFIZC95TWp5c3F2WXhKdENMa21hQlZORHFmV0tCUjJnN3BDSTRwWndj?=
- =?utf-8?B?d1hFVHNXUCtOVWMwL0w5YkdWdFl3RlIwZHN5NHFOa25YQkVzTy9NYjdXd1ds?=
- =?utf-8?B?dlNwZW4rWlpKU0g0MERzQk5ZeEJlN3VCVkhWQWpzcWtOWm1iWjQvbGw3bFlF?=
- =?utf-8?B?dHFobWtLdm9oU0FhcGcyOEZpMGtaQVVuTjF2b2JRaHBqY0hoQzk0am5vL3V0?=
- =?utf-8?B?SDloUkhtdkxFK2lvcExXb0RseEpISnB3amRSYXNwcjAxMy9WbGJJUy80Wjcx?=
- =?utf-8?B?dlRyRGo0d3Q1VXhBdlpNRmpFNWxRRFBPaUxsZjZVS1ZXZG5vbjBRSzZuakxl?=
- =?utf-8?B?T3JKb3pydDdpYmU1Z1VHRlM2M2RIdmxRT2R4aXdLU3VGSWo0aFR2YkhZT2Jv?=
- =?utf-8?B?YTFCaHRUN1N0TE9GUGFDZHdHSzZsd1RzdTRZSko3MEN4UEFSNytSVDZ2QW9Z?=
- =?utf-8?B?bXJEazliMUwrOFNOa1dmT1NqTlVJTTJZaFRseTNST29KK1gyYVppV3V4WEFQ?=
- =?utf-8?B?VkJ3eDlROFNtTHNqckw4MDE4WUNGcWJhTmlxRHBQanVFdTBpMVhjbVhqRzJJ?=
- =?utf-8?B?dzlRSG1oRDJTZytFcUJyYWRkMWFybjZXcWNjVjY1d1AyY2c4cklsekJqWkJm?=
- =?utf-8?B?SDJRLzhrRGJXRzU0YUtOTWJyNS9oZTJsK3lPbzRkcGp6ZHdhTTFPUW9ZM0I4?=
- =?utf-8?B?LzRlZHFZcGhpMHZrY3Yyc1YxdGZWeGFZZTJjUHZqMUtJOW1hZktvNktRT0F2?=
- =?utf-8?B?N1V1alp1MEtjNkZOR2dCTzEyZmYreUIrMjZicUxGSnlsV0dYSkdqVFhxSnVz?=
- =?utf-8?B?QnprZjNtS2ZGdEpreVpERmJRc29KQXVuSjBneDFMSXkzQW5ZRWh0dXQzcHBQ?=
- =?utf-8?B?RVJxL1M4RFJ6bVo5bFhSeUg5V29tVFVVUDZRZld3SzlJUjJSNGhXdEhZZlZL?=
- =?utf-8?B?TFJYWlBOVDVqbXBGTmoyWE4zRy9JUUZ6Y1VPNFRiU3ZIOGZOQ2NramRYbk1Z?=
- =?utf-8?B?Yk1LTVQreDlOeHBwdExSL3hwbmxxMU42YXIwNnNTZzJzdFVxOUQrbDVTcU5p?=
- =?utf-8?B?a3IvVloyZVFweTcxSmNFYTU1VndQM3BHa0FJUkEvcHRCUmxWVVJFRHVKNk96?=
- =?utf-8?B?TEV0V0pwOVVaNkZQaWJsMkRWcjRTZzZFS21Nb0ZJV1FJOEpZbVI4ZU9rdFNZ?=
- =?utf-8?B?d2Z5b2ttaHUrblo1TXp3dGdNNXE5OG9SM3hhSFdPbzZ5NDBKaDZ2S0g5VjBY?=
- =?utf-8?Q?tlcYVP28XbOjG/diIB?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e0da4c2c-f552-4209-68af-08df3ee19923
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?168RtIchvU0yMnYLamcLC0GQomsu0htG0CT5mLXyhtk1XLlb7od73pXs3V?=
+ =?iso-8859-1?Q?zciLbcm9fFFpvrZqJE6PT6fzxoNapN32ECRVuy7nthiPpQn4JQJatOQG2P?=
+ =?iso-8859-1?Q?lDBNkMaULHB7jteBLzG0mezzHJ8gg4m8Tx2JdsoNAU1FZbYwwG2ncoiosP?=
+ =?iso-8859-1?Q?/jZyjadZ49N60pfnpv4B6VXDeiOEe2kfK73kxMrrAQ37gkaZKXi1wyCPYB?=
+ =?iso-8859-1?Q?ldhATOKkMDeIwnssdSFXDt9CEYQ2LJgz7wcIgO1Dgavql4bU7sWDE8iq6u?=
+ =?iso-8859-1?Q?QMmmXEvR7SWjcZApSBtBmkdCRUuqeE3rgzzqtM/gwFnHhS38egN9FiwMVZ?=
+ =?iso-8859-1?Q?eF6CUTXuXTRfvw99svHExDN0+Lu6H90aN4I2YbWYHbZoEi6QEJHTO1RSoq?=
+ =?iso-8859-1?Q?lqflrH25V+8AENC4Ad/pDIi76qy/i2fXidn58dNaxHDNMuIdhKVTth8RrV?=
+ =?iso-8859-1?Q?sVmO7dB2wed7o669/6OyKZQ5y0Wmjh9tISSt0/OoeFhN8ctJiqFKjEgLl4?=
+ =?iso-8859-1?Q?U3Zw81v80qzbZj01h77vyCjrMcCvFkz00sQuqHug3+NEvER+XxkLSI60cX?=
+ =?iso-8859-1?Q?5+c6O1hY+XDsgCKKlkQzYJ/4JJfDrNXUcMv87bridZyg/3K4kPiHd1vsWB?=
+ =?iso-8859-1?Q?hV22H+fYg3koCp5zG+iSXrYbJtzHwLNV9/AJeM1no/I8l/UzWblLMb1e3M?=
+ =?iso-8859-1?Q?zlSksP2aQSel2Qrs+iDgvzLSW5ghgXFnqCOvqgGBLlciJCdZuYHs6raVNx?=
+ =?iso-8859-1?Q?zfYF3MMWrGBaUeJ9+Hqcc36OwvNYz03pkeUsTwB2NsGMBkQguMRqcW4Mad?=
+ =?iso-8859-1?Q?ipanLNsDfGP5q9ZPaDzlHmHorR3afmufoYNDYwEpzKAMgB7ehDMC1Puofv?=
+ =?iso-8859-1?Q?+dlCLVmYsuiKj+4JK0il9Ap5Yq/Bswv7UMupSak0GG75gLqurQz1ZIdUEf?=
+ =?iso-8859-1?Q?JFZ9KyW//VFA1NGpaByYBEpBoQl77Dpu64SSWlVDlUXQWQPJnMeH+Zs2c5?=
+ =?iso-8859-1?Q?bW87xGrsznRxjh2l6I+LGLNQcV9wLj4HMqpHQaYFh/0KREuwyEd8Dste15?=
+ =?iso-8859-1?Q?WrMAHuQ81Srh9zDBY6KgfkJ1K9qBG1Sd/zamrhf7VZ188R+0bIP24y/xMs?=
+ =?iso-8859-1?Q?Ixv95nOXW1iY2IdBbrCMULSQcwH4TnabhZNd2r9FAKPWwt6ZKxgQ/3aHAJ?=
+ =?iso-8859-1?Q?c3ZQsDkoR5qCT5gTLbeIZqoQqY/V044VEATpJj8uYY+lq2/39NFXGoKQ8Z?=
+ =?iso-8859-1?Q?0RFWgzyyfFr4SBnaOtsa8lU1PZM26wU3+Vst8K78nf/nlw1Glvg3+T/3uL?=
+ =?iso-8859-1?Q?NQ4XGz41qLlYP1Gyzu/mayxeH2qQ3h+D/y0k3XPHB7dtDmGaK9dz246S08?=
+ =?iso-8859-1?Q?Vasg+oBWH6aimasZU14o29KuqV2omEiQwfiKOzHWuLQSrD15t7Qs38zi9D?=
+ =?iso-8859-1?Q?iECIbetsnBMxXKbDthdpvqjZLmrk1W2uXKQzX5iXWcVIQV3KXtTaHbCTS/?=
+ =?iso-8859-1?Q?aI/pHbS2iZcgv6niqb3jLuRFV3OPBC0CNUzSZhgSWNi84L+ybAwXMU5uKJ?=
+ =?iso-8859-1?Q?aoq3un8QWoCRrWJGoHPh1JnUfQTZda8WTVmz4l6TlH/cgzJAJvR8hUJz6N?=
+ =?iso-8859-1?Q?PMerhcI1nkhr9s5rW3uhXIIyCm3ONoekCuQFVLJh5mcl7ZNZdqvg20kcrd?=
+ =?iso-8859-1?Q?EDzvSKjUcRi+vDY0rz/I4CPWvkHMhQx5kqGOyY9rdV6XJCnDbJluTdsZ5z?=
+ =?iso-8859-1?Q?NkKEdaXoW84sTML8l2gHqVMqWqgs5yrZMn0f9a5SIib4U6mjC3ofiv6JK2?=
+ =?iso-8859-1?Q?eq2aEpM/98Lo+T8Vca6+udZD+TQV9OSFN3rElFrN4Nsf633i45Mf?=
+X-Exchange-RoutingPolicyChecked: J8T9sSx81NIIzoBU6Irz2JGqkZNGOWOlvEctKm6sUGWpbmcrXBD6m81EU5l4e7NqDWtmgQWSpHYbaRINECt9MnRV1aVkwu4xdokvxxgltb8aHE765P0sHCqJ2Clz+IJJKxu6Gh+NgQo/NDjOVwUWx+Sfzz9Z0qOnSFYQEojDh32X7umhtEQ1e/YXwlJxaH/dIFEI/yvvran8pVvEzLWc4XiLTfMuSiyZvkU6oZKffdYFaKCIiNvop5u14N47aRSEc4zKTdPsxP7Rltl72nBOeYdzCI4sm0jJz3Oy+/fqkE+Vydw5TStrBX6a4P7sxSVWn6TLpU7kf9msZjo4s0WE8w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5be06526-ac49-462d-c2da-08df3ee296a8
+X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4684.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 04:17:57.0694 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 04:25:02.3557 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0/UEnQY0WepaylSZLYFrn0wH31hy5rAeRhwcMKXJK9p9EH3PZ0qA0bhOMhKHc/bj6L4iWqbRCI1WIT0G7rVvIQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB127395
+X-MS-Exchange-CrossTenant-UserPrincipalName: c+661NeQUxqxv46VqLHxw0UWAqAPe6rxRovrM60u14PJ3jUv/bCESv9U1y4cpxdRKh5aEifQTeMVv5iPvcEzghZcDH4kWUoB5dhU/VB22ebeA9IoVwk/G3Qy8ZplaSpP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7747
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,404 +164,426 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Matthew,
+On Fri, Jul 10, 2026 at 07:56:05PM -0700, Matthew Brost wrote:
+>A defrag move may harvest already beneficial-order chunks from the old
+>tt, so the freshly reallocated backing borrows (references) some of the
+>same physical pages. For those pages the source and destination GPU
+>mappings alias the same memory, making the data blit a pointless
+>self-copy.
+>
+>Pass the source (old) tt into __xe_migrate_copy() instead of just its sg
+>table, so the data pass can compare the src and dst tt page arrays at the
+>matching offset and only blit runs of pages that actually differ. A new
+>emit_copy_chunks() helper walks each L0 chunk, skips borrowed-page runs,
+>and coalesces contiguous to-copy pages into a single emit_copy(). It runs
+>twice per chunk: once with a NULL batch buffer to count the blits for
+>batch sizing, then again to emit them.
+>
+>When an entire L0 chunk turns out to be borrowed, skip it outright: no
+>batch buffer is allocated and no GPU commands are issued, the cursors are
+>just advanced past the chunk. If every chunk of the move is borrowed the
+>copy is a complete no-op, so hand back a signaled stub fence.
+>
+>The comparison is a cheap per-page pointer test (src page != dst page)
+>that coalesces contiguous to-copy pages into a single blit. PTEs are
+>still emitted for partially borrowed chunks, since that setup is cheap and
+>only the data copies are worth skipping. Only the defrag data pass is
+>affected; the separate CCS pass still migrates all aux state.
+>
+>Since the Xe tt sg lives in the xe_ttm_tt subclass rather than the base
+>ttm_tt, add an xe_tt_sg() helper to fetch it from a struct ttm_tt.
+>
+>Cc: Carlos Santa <carlos.santa@intel.com>
+>Cc: Ryan Neph <ryanneph@google.com>
+>Cc: Christian Koenig <christian.koenig@amd.com>
+>Cc: Huang Rui <ray.huang@amd.com>
+>Cc: Matthew Auld <matthew.auld@intel.com>
+>Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>Cc: Maxime Ripard <mripard@kernel.org>
+>Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>Cc: David Airlie <airlied@gmail.com>
+>Cc: Simona Vetter <simona@ffwll.ch>
+>Cc: dri-devel@lists.freedesktop.org
+>Cc: linux-kernel@vger.kernel.org
+>Cc: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
+>Assisted-by: GitHub_Copilot:claude-opus-4.8
+>Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>
+>----
+>
+>v3:
+> - Fix start_page page-shift and blit pitch for src-natural to
+>   dst-packed copies (Sashiko)
+>---
+> drivers/gpu/drm/xe/xe_bo.c      |  22 +++++-
+> drivers/gpu/drm/xe/xe_bo.h      |   2 +
+> drivers/gpu/drm/xe/xe_migrate.c | 136 ++++++++++++++++++++++++++++----
+> drivers/gpu/drm/xe/xe_migrate.h |   3 +-
+> 4 files changed, 142 insertions(+), 21 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>index bdcc9bed5d36..7f6ee9b8d12e 100644
+>--- a/drivers/gpu/drm/xe/xe_bo.c
+>+++ b/drivers/gpu/drm/xe/xe_bo.c
+>@@ -473,6 +473,22 @@ struct sg_table *xe_bo_sg(struct xe_bo *bo)
+> 	return xe_tt->sg;
+> }
+>
+>+/**
+>+ * xe_tt_sg() - Return the DMA scatter-gather table backing a ttm_tt.
+>+ * @tt: The ttm_tt to query.
+>+ *
+>+ * Like xe_bo_sg(), but takes the ttm_tt directly. Used by the defrag copy
+>+ * path which needs the old (source) tt's sg table without a backing xe_bo.
+>+ *
+>+ * Return: The sg table, or NULL if the tt is not currently mapped.
+>+ */
+>+struct sg_table *xe_tt_sg(struct ttm_tt *tt)
+>+{
+>+	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
+>+
+>+	return xe_tt->sg;
+>+}
 
-Do you have any objections to this fix? I think we can push this first, 
-as it fixes the range-allocation path issue introduced by the base 
-patch, “gpu/buddy: replace dual-tree/force_merge with decoupled dirty 
-tracker.”
+Assisted-by: LLM
 
-The work William and Sanjay are doing to improve alloc_range_bias() can 
-come separately. This fix is also needed for CI to complete its runs and 
-allows us to move these patches forward, as clients are waiting for this 
-version in the next release.
+xe_tt->sg can be potentially NULL (though probably not in current usecase).
+Probably an explicit assert better?
 
-Thanks,
-Arun.
+>+
+> /*
+>  * Account ttm pages against the device shrinker's shrinkable and
+>  * purgeable counts.
+>@@ -1290,11 +1306,9 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>
+> 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
+> 	} else if (ttm_bo->defrag_old_tt) {
+>-		struct xe_ttm_tt *old_xe_tt =
+>-			container_of(ttm_bo->defrag_old_tt, struct xe_ttm_tt, ttm);
+>-
+> 		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
+>-					       old_xe_tt->sg, handle_system_ccs);
+>+					       ttm_bo->defrag_old_tt,
+>+					       handle_system_ccs);
+> 	} else {
+> 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+> 					handle_system_ccs);
+>diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+>index 4186cb51af87..32211016a722 100644
+>--- a/drivers/gpu/drm/xe/xe_bo.h
+>+++ b/drivers/gpu/drm/xe/xe_bo.h
+>@@ -110,6 +110,7 @@ enum xe_madv_purgeable_state {
+> };
+>
+> struct sg_table;
+>+struct ttm_tt;
+>
+> struct xe_bo *xe_bo_alloc(void);
+> void xe_bo_free(struct xe_bo *bo);
+>@@ -547,6 +548,7 @@ void xe_bo_dev_init(struct xe_bo_dev *bo_device);
+> void xe_bo_dev_fini(struct xe_bo_dev *bo_device);
+>
+> struct sg_table *xe_bo_sg(struct xe_bo *bo);
+>+struct sg_table *xe_tt_sg(struct ttm_tt *tt);
+>
+> /*
+>  * xe_sg_segment_size() - Provides upper limit for sg segment size.
+>diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+>index 305c6e1942fb..9990a7144a9f 100644
+>--- a/drivers/gpu/drm/xe/xe_migrate.c
+>+++ b/drivers/gpu/drm/xe/xe_migrate.c
+>@@ -811,6 +811,63 @@ static void emit_copy(struct xe_gt *gt, struct xe_bb *bb,
+> 		emit_xy_fast_copy(gt, bb, src_ofs, dst_ofs, size, pitch);
+> }
+>
+>+/*
+>+ * emit_copy_chunks() - Emit the data blits for one defrag L0 chunk, skipping
+>+ * borrowed pages.
+>+ * @gt: The GT.
+>+ * @bb: The batch buffer to emit into, or NULL to only count the blits needed.
+>+ * @src_L0_ofs: GPU offset of the source pages mapped for this L0 chunk.
+>+ * @dst_L0_ofs: GPU offset of the destination pages mapped for this L0 chunk.
+>+ * @src_L0: Byte size of the L0 chunk (page aligned).
+>+ * @src_tt: Source (old) tt providing the page pointers.
+>+ * @dst_tt: Destination (new) tt providing the page pointers.
+>+ * @start_page: Page offset of this L0 chunk within the tt page arrays.
+>+ *
+>+ * A defragmentation move may harvest already beneficial-order chunks from the
+>+ * old tt, so the new tt references (borrows) some of the same physical pages.
+>+ * For those pages the source and destination GPU mappings alias the same
+>+ * memory and the data blit is a pointless self-copy. Walk the L0 chunk and
+>+ * only blit runs of pages that actually differ (src page != dst page),
+>+ * coalescing contiguous to-copy pages into a single blit.
+>+ *
+>+ * Return: The number of blits emitted (or that would be emitted when @bb is
+>+ * NULL).
+>+ */
+>+static u32 emit_copy_chunks(struct xe_gt *gt, struct xe_bb *bb,
+>+			    u64 src_L0_ofs, u64 dst_L0_ofs, u32 src_L0,
+>+			    struct ttm_tt *src_tt, struct ttm_tt *dst_tt,
+>+			    pgoff_t start_page)
+>+{
 
-On 11/6/2026 4:36 PM, Arunpravin Paneer Selvam wrote:
-> Hi Matthew,
->
-> Both Sashiko findings on v4 are intentional - no code change:
->
-> 1. Strict pass skips straddling free blocks: This is intended. If the 
-> strict pass split a free block that crosses the range edge, part of it 
-> would fall outside the range and get rejected, leaving the split 
-> behind - and the strict pass has no way to merge it back. That was the 
-> v3 leak, so we now skip such blocks instead of splitting them.
->
-> The clear/dirty check ( block_incompatible() ) only looks at blocks 
-> that fit entirely inside the range, so it keeps clear and dirty apart 
-> correctly whenever such blocks exist. It is skipped in just one case: 
-> when the only option is a single big free block crossing the range 
-> edge. That happens when the area is still unused - nothing is 
-> allocated in it yet - so there are no existing clear or dirty 
-> allocations there that could get interleaved or broken up. The guard 
-> has nothing to protect in that case, so skipping it does no harm. At 
-> worst the fallback pass picks a block of the other class and it has to 
-> be cleared again - a re-clear cost, not fragmentation.
->
-> 2. Dropped clear-child preference for mixed blocks: On purpose. 
-> Carrying that preference down through mixed blocks splits them to 
-> carve out a same-class leaf, which interleaves allocated clear and 
-> dirty blocks and regresses range allocations to  -ENOSPC . Taking the 
-> mixed child whole strands nothing, and the wholly-clear sibling stays 
-> free and usable, so the only cost is a possible re-clear.
->
->
->
-> Why we don't steer  has_clear  splits in mixed blocks:
-> Old dual-tree kept clear and dirty in separate pools (same-class-only 
-> merge), so every split came from a pure pool and never stranded the 
-> opposite class. The new design merges across classes into large MIXED 
-> blocks, so class-aware steering had to keep splitting those big blocks 
-> to carve out a same-class leaf - breaking contiguous space and leaving 
-> allocations of the two classes mixed together, so freed blocks can't 
-> reform a large run →  -ENOSPC . v4 drops steering: it still splits a 
-> mixed block that's larger than the request (for size only, spatially, 
-> no class bias) but takes the block whole once it reaches the requested 
-> order instead of splitting further to isolate a same-class leaf. Using 
-> only the block_incompatible  guard - which accepts or rejects a whole 
-> block by class and never traverses inside a mixed block to pick a 
-> clear/dirty child - it keeps large blocks intact and avoids the 
-> interleaving.
->
-> Could you please check and review the v4.
->
-> Thanks,
-> Arun.
->
-> On 11/4/2026 12:58 PM, Arunpravin Paneer Selvam wrote:
->> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
->>
->> Range-restricted allocations (the visible-VRAM aperture) skip
->> dirty_steer_window() and reach __alloc_range_bias() with no clear/dirty
->> eligibility guard, so a dirty allocation freely splits clear extents 
->> (and
->> vice versa), interleaving the two classes until no large same-class run
->> survives and a 4K scanout pin fails with -ENOSPC. Use a two-pass range
->> search instead: block_incompatible() rejects opposite-class blocks in 
->> the
->> strict pass and relaxes only when the strict pass returns -ENOSPC, so a
->> request still succeeds when only opposite-class space remains. A KUnit
->> regression test covers the interleaving pattern and fails without the
->> guard.
->>
->> v2: the strict pass can split a block and then reject both children, so
->>      a split no longer implies a compatible block exists. Sashiko 
->> reported
->>      the resulting leaked splits; fix as suggested by Matthew:
->>   - Push the parent back on the DFS stack after each split and merge it
->>     back with unsplit_block() if both children are still free.
->>   - Make block_incompatible() judge free blocks only (split nodes keep a
->>     stale clear bit) and take the requested order, so mixed blocks that
->>     can hold a compatible block are descended instead of skipped.
->>   - Extend the KUnit test with a coalesced mixed block and a check that
->>     a rejected split is merged back.
->>
->> v3: igt@kms_plane@plane-panning-bottom-right failed on Radeon RX 9070 XT
->>      with -ENOSPC: the range allocator's strict pass split mixed 
->> blocks to
->>      look for a wholly-clear (or wholly-dirty) leaf, discarded the mixed
->>      leaves it found, and ran unsplit_block to merge the splits back, 
->> whose
->>      per-allocation cost and residual fragmentation starved the large
->>      pipe-A scanout. Fix: accept a mixed block at the requested order 
->> as-is
->>      (caller re-clears), so the first pass no longer splits and discards
->>      mixed blocks. This clear/dirty compatibility relaxation applies 
->> only
->>      to range-biased allocation, where keeping blocks intact reduces
->>      fragmentation and preserves large contiguous spaces. The 
->> now-unneeded
->>      unsplit_block helper is dropped.
->>
->> v4: a higher-order free mixed block straddling the range edge was 
->> split in
->>      the strict pass then abandoned, leaving both children free under 
->> a split
->>      parent that never coalesces, tripping gpu_buddy_fini()'s 
->> free-root assert
->>      and leaking the children (reported by Sashiko). Fix: in the 
->> strict pass
->>      don't split a free block that only partially overlaps the range; 
->> the
->>      fallback pass consumes it (either class accepted).
->>
->> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with 
->> decoupled dirty tracker")
->> Assisted-by: LLM
->> Cc: Matthew Auld <matthew.auld@intel.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Signed-off-by: Arunpravin Paneer Selvam 
->> <Arunpravin.PaneerSelvam@amd.com>
->> ---
->>   drivers/gpu/buddy.c                | 83 ++++++++++++++++-------------
->>   drivers/gpu/tests/gpu_buddy_test.c | 84 ++++++++++++++++++++++++++++++
->>   2 files changed, 130 insertions(+), 37 deletions(-)
->>
->> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
->> index 28cff97d57dc..d9749cbaf05d 100644
->> --- a/drivers/gpu/buddy.c
->> +++ b/drivers/gpu/buddy.c
->> @@ -1240,11 +1240,23 @@ static void __gpu_buddy_undo_splits(struct 
->> gpu_buddy *mm,
->>       }
->>   }
->>   +static bool block_incompatible(struct gpu_buddy_block *block, 
->> unsigned int flags)
->> +{
->> +    bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
->> +
->> +    if (!gpu_buddy_block_is_free(block))
->> +        return false;
->> +
->> +    return needs_clear ? !block->has_clear :
->> +                 gpu_buddy_block_is_clear(block);
->> +}
->> +
->>   static struct gpu_buddy_block *
->>   __alloc_range_bias(struct gpu_buddy *mm,
->>              u64 start, u64 end,
->>              unsigned int order,
->> -           unsigned long flags)
->> +           unsigned long flags,
->> +           bool fallback)
->>   {
->>       u64 req_size = mm->chunk_size << order;
->>       struct gpu_buddy_block *block;
->> @@ -1258,9 +1270,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>        * This range-constrained search hands back the highest/right-most
->>        * address that satisfies the request: the roots are seeded 
->> high-to-low
->>        * and the right (higher-address) child is descended first, making
->> -     * top-down the default placement here. A non-top-down clear 
->> request is
->> -     * the only exception, where the descent is biased towards clear or
->> -     * clear-containing subtrees to satisfy the clear preference.
->> +     * top-down the default placement here.
->>        */
->>       for (i = mm->n_roots - 1; i >= 0; --i)
->>           list_add_tail(&mm->roots[i]->tmp_link, &dfs);
->> @@ -1296,8 +1306,19 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>               if (round_down(adjusted_end + 1, req_size) <=
->>                   round_up(adjusted_start, req_size))
->>                   continue;
->> +
->> +            /*
->> +             * Strict pass: don't split a partially-overlapping free
->> +             * block; rejecting its child would strand the split. Let
->> +             * the fallback pass consume it (either class accepted).
->> +             */
->> +            if (!fallback && gpu_buddy_block_is_free(block))
->> +                continue;
->>           }
->>   +        if (!fallback && block_incompatible(block, flags))
->> +            continue;
->> +
->>           if (contains(start, end, block_start, block_end) &&
->>               order == gpu_buddy_block_order(block)) {
->>               /*
->> @@ -1315,38 +1336,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>                   goto err_undo;
->>           }
->>   -        /*
->> -         * Top-down is a strict address-placement policy, so when it is
->> -         * requested we ignore clear steering and simply descend the
->> -         * right (higher-address) child first. Only a non-top-down 
->> clear
->> -         * request biases the descent towards clear/has_clear subtrees.
->> -         */
->> -        if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
->> -            !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
->> -            struct gpu_buddy_block *prefer;
->> -
->> -            if (gpu_buddy_block_is_clear(block->right))
->> -                prefer = block->right;
->> -            else if (gpu_buddy_block_is_clear(block->left))
->> -                prefer = block->left;
->> -            else if (block->right->has_clear)
->> -                prefer = block->right;
->> -            else if (block->left->has_clear)
->> -                prefer = block->left;
->> -            else
->> -                prefer = block->right;
->> -
->> -            if (prefer == block->right) {
->> -                list_add(&block->left->tmp_link, &dfs);
->> -                list_add(&block->right->tmp_link, &dfs);
->> -            } else {
->> -                list_add(&block->right->tmp_link, &dfs);
->> -                list_add(&block->left->tmp_link, &dfs);
->> -            }
->> -        } else {
->> -            list_add(&block->left->tmp_link, &dfs);
->> -            list_add(&block->right->tmp_link, &dfs);
->> -        }
->> +        list_add(&block->left->tmp_link, &dfs);
->> +        list_add(&block->right->tmp_link, &dfs);
->>       } while (1);
->>         return ERR_PTR(-ENOSPC);
->> @@ -1361,6 +1352,24 @@ __alloc_range_bias(struct gpu_buddy *mm,
->>       return ERR_PTR(err);
->>   }
->>   +static struct gpu_buddy_block *
->> +__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
->> +                 u64 start, u64 end,
->> +                 unsigned int order,
->> +                 unsigned long flags)
->> +{
->> +    struct gpu_buddy_block *block;
->> +    bool fallback = false;
->> +
->> +    block = __alloc_range_bias(mm, start, end, order,
->> +                   flags, fallback);
->> +    if (IS_ERR(block))
->> +        return __alloc_range_bias(mm, start, end, order,
->> +                      flags, !fallback);
->> +
->> +    return block;
->> +}
->> +
->>   /* Return the highest-address free block of at least @order. */
->>   static struct gpu_buddy_block *
->>   get_maxblock(struct gpu_buddy *mm,
->> @@ -1924,7 +1933,7 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
->>         if (flags & GPU_BUDDY_RANGE_ALLOCATION) {
->>           /* Allocate traversing within the range */
->> -        block = __alloc_range_bias(mm, start, end, order, flags);
->> +        block = __gpu_buddy_alloc_range_bias(mm, start, end, order, 
->> flags);
->>           if (!IS_ERR(block) || !steered)
->>               return block;
->>   diff --git a/drivers/gpu/tests/gpu_buddy_test.c 
->> b/drivers/gpu/tests/gpu_buddy_test.c
->> index 2c6f1da1a6d1..9aaca2fc6a02 100644
->> --- a/drivers/gpu/tests/gpu_buddy_test.c
->> +++ b/drivers/gpu/tests/gpu_buddy_test.c
->> @@ -1606,6 +1606,89 @@ static int gpu_buddy_suite_init(struct 
->> kunit_suite *suite)
->>       return 0;
->>   }
->>   +static void gpu_test_buddy_alloc_range_clear_guard(struct kunit 
->> *test)
->> +{
->> +    const unsigned long chunk = SZ_1M, mm_size = SZ_4M;
->> +    struct gpu_buddy_block *block;
->> +    LIST_HEAD(low_dirty);
->> +    LIST_HEAD(high_a);
->> +    LIST_HEAD(high_b);
->> +    LIST_HEAD(barrier);
->> +    LIST_HEAD(dirty_res);
->> +    LIST_HEAD(clear_res);
->> +    struct gpu_buddy mm;
->> +
->> +    KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, chunk),
->> +                   "buddy_init failed\n");
->> +
->> +    /*
->> +     * Idea is to lay out a range allocation as a low dirty block, an
->> +     * allocated barrier, and a high naturally-aligned clear extent, 
->> then
->> +     * issue a dirty range allocation. It must take the low dirty 
->> block and
->> +     * leave the clear extent intact; if it instead cuts the clear 
->> extent,
->> +     * a following same-class clear allocation can no longer find a
->> +     * contiguous clear run and fails with -ENOSPC.
->> +     *
->> +     *   [0,  1M)   dirty free
->> +     *   [1M, 2M)   allocated  (barrier, keeps the halves un-mergeable)
->> +     *   [2M, 4M)   clear free (one naturally aligned 2 MiB extent)
->> +     */
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 0, chunk, chunk, chunk,
->> +                              &low_dirty, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [0, 1M) failed\n");
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, chunk, 2 * chunk, 
->> chunk, chunk,
->> +                              &barrier, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [1M, 2M) failed\n");
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 2 * chunk, 3 * chunk, 
->> chunk, chunk,
->> +                              &high_a, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [2M, 3M) failed\n");
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 3 * chunk, 4 * chunk, 
->> chunk, chunk,
->> +                              &high_b, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "alloc [3M, 4M) failed\n");
->> +
->> +    /* [2M, 4M) coalesces into one aligned clear extent; [0, 1M) 
->> stays dirty. */
->> +    gpu_buddy_free_list(&mm, &low_dirty, 0);
->> +    gpu_buddy_free_list(&mm, &high_a, GPU_BUDDY_CLEARED);
->> +    gpu_buddy_free_list(&mm, &high_b, GPU_BUDDY_CLEARED);
->> +
->> +    /* Dirty 1 MiB range alloc: must land at [0, 1M), not cut the 
->> clear extent. */
->> +    KUNIT_ASSERT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 0, mm_size, chunk, 
->> chunk,
->> +                              &dirty_res, GPU_BUDDY_RANGE_ALLOCATION),
->> +                   "dirty range alloc failed\n");
->> +    block = list_first_entry(&dirty_res, struct gpu_buddy_block, link);
->> +    KUNIT_EXPECT_FALSE_MSG(test, gpu_buddy_block_is_clear(block),
->> +                   "dirty range alloc cut the clear extent 
->> (offset=%llx)\n",
->> +                   gpu_buddy_block_offset(block));
->> +    KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block), 0ULL);
->> +
->> +    /*
->> +     * The 2 MiB clear extent must still be intact: a clear order-1 
->> range
->> +     * allocation has to succeed. Without the guard the extent was cut
->> +     * above and this returns -ENOSPC.
->> +     */
->> +    KUNIT_EXPECT_FALSE_MSG(test,
->> +                   gpu_buddy_alloc_blocks(&mm, 0, mm_size, 2 * 
->> chunk, 2 * chunk,
->> +                              &clear_res,
->> +                              GPU_BUDDY_RANGE_ALLOCATION |
->> +                              GPU_BUDDY_CLEAR_ALLOCATION),
->> +                   "clear 2M range alloc failed: clear extent was 
->> fragmented (-ENOSPC)\n");
->> +    if (!list_empty(&clear_res)) {
->> +        block = list_first_entry(&clear_res, struct gpu_buddy_block, 
->> link);
->> +        KUNIT_EXPECT_TRUE(test, gpu_buddy_block_is_clear(block));
->> +        KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block), (u64)(2 
->> * chunk));
->> +    }
->> +
->> +    gpu_buddy_free_list(&mm, &clear_res, GPU_BUDDY_CLEARED);
->> +    gpu_buddy_free_list(&mm, &dirty_res, 0);
->> +    gpu_buddy_free_list(&mm, &barrier, 0);
->> +    gpu_buddy_fini(&mm);
->> +}
->> +
->>   static struct kunit_case gpu_buddy_tests[] = {
->>       KUNIT_CASE(gpu_test_buddy_alloc_limit),
->>       KUNIT_CASE(gpu_test_buddy_alloc_optimistic),
->> @@ -1615,6 +1698,7 @@ static struct kunit_case gpu_buddy_tests[] = {
->>       KUNIT_CASE(gpu_test_buddy_alloc_clear),
->>       KUNIT_CASE(gpu_test_buddy_alloc_range),
->>       KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
->> +    KUNIT_CASE(gpu_test_buddy_alloc_range_clear_guard),
->>       KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
->>       KUNIT_CASE_SLOW(gpu_test_buddy_dirty_tracker_performance),
->>       KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
->>
->> base-commit: 49f40f15d20f5b4073d517da7efbcea079f1b9e3
->
+emit_copy() doesn't have L0 in parameter names. Probably it is worth keeping
+it consistent here also?
 
+>+	u32 npages = src_L0 >> PAGE_SHIFT;
+>+	u32 i = 0, nblits = 0;
+>+
+>+	while (i < npages) {
+>+		u32 run = 0;
+>+
+>+		/* Skip a run of borrowed pages (src and dst alias). */
+>+		if (src_tt->pages[start_page + i] ==
+>+		    dst_tt->pages[start_page + i]) {
+>+			i++;
+>+			continue;
+>+		}
+>+
+>+		/* Coalesce a run of pages that actually need copying. */
+>+		while (i + run < npages &&
+>+		       src_tt->pages[start_page + i + run] !=
+>+		       dst_tt->pages[start_page + i + run])
+>+			run++;
+>+
+>+		if (bb)
+>+			emit_copy(gt, bb, src_L0_ofs + (u64)i * PAGE_SIZE,
+>+				  dst_L0_ofs + (u64)i * PAGE_SIZE,
+>+				  run * PAGE_SIZE, XE_PAGE_SIZE);
+>+		nblits++;
+>+		i += run;
+>+	}
+>+
+>+	return nblits;
+>+}
+
+Would it be good or possible to have similar counterpart for emit_copy_ccs()?
+
+>+
+> static u64 xe_migrate_batch_base(struct xe_migrate *m, bool usm)
+> {
+> 	return usm ? m->usm_batch_base_ofs : m->batch_base_ofs;
+>@@ -865,13 +922,15 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
+>  * @is_vram_resolve: Decompression (VRAM -> system) resolve; always uses the
+>  * compression PAT index for the data copy.
+>  * @defrag_ccs: Defrag move pass that migrates only the CCS aux state between
+>- * two distinct page sets (old @src_sg pages -> new pages). The data blit is
+>+ * two distinct page sets (old @src_tt pages -> new pages). The data blit is
+>  * skipped (the data was copied by the @defrag_copy pass) and both the source
+>  * and destination data pages are mapped with the compression PAT so the aux
+>  * state is copied indirect -> indirect.
+>  * @defrag_copy: Defrag move pass that copies the data pages between two
+>- * distinct page sets (old @src_sg pages -> new pages) without touching the CCS
+>- * aux state. The data pages are mapped without the compression PAT so the
+>+ * distinct page sets (old @src_tt pages -> new pages) without touching the CCS
+>+ * aux state. Pages the new tt borrowed from @src_tt (harvested already
+>+ * beneficial-order chunks) alias the same memory on both sides and are skipped.
+>+ * The data pages are mapped without the compression PAT so the
+>  * (possibly compressed) bytes are copied verbatim rather than being
+>  * decompressed and recompressed, and no CCS aux copy is appended; the aux
+>  * state is migrated separately by the @defrag_ccs pass. The two passes need
+>@@ -889,7 +948,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 					   struct xe_bo *dst_bo,
+> 					   struct ttm_resource *src,
+> 					   struct ttm_resource *dst,
+>-					   struct sg_table *src_sg,
+>+					   struct ttm_tt *src_tt,
+> 					   struct xe_migrate_copy_flags flags)
+> {
+> 	struct xe_gt *gt = m->tile->primary_gt;
+>@@ -914,6 +973,14 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 		!flags.defrag_copy;
+> 	bool copy_system_ccs = copy_ccs && (!src_is_vram || !dst_is_vram) &&
+> 		!flags.defrag_ccs && !flags.defrag_copy;
+>+	/*
+>+	 * On the defrag data pass the new (destination) tt may have borrowed
+>+	 * already beneficial-order pages from the old (source) tt, so skip the
+>+	 * self-copy for any page they share. Compare the tt page arrays at the
+>+	 * matching offset.
+>+	 */
+>+	struct ttm_tt *dst_tt = dst_bo->ttm.ttm;
+>+	bool skip_borrowed = flags.defrag_copy && src_tt && dst_tt;
+
+I think for our case src_tt and and dst_tt check is redundant here as they will
+always be set for defrag_copy. May be add an assert instead of checking?
+
+Niranjana
+
+>
+> 	/*
+> 	 * For decompression operation, always use the compression PAT index.
+>@@ -926,7 +993,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+>
+> 	/*
+> 	 * The defrag CCS pass migrates the aux state from the old pages
+>-	 * (@src_sg) to the new pages with both sides accessed indirectly, so
+>+	 * (@src_tt) to the new pages with both sides accessed indirectly, so
+> 	 * keep both src_is_pltt and dst_is_pltt set (no direct staging side).
+> 	 */
+>
+>@@ -938,7 +1005,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 		return ERR_PTR(-EINVAL);
+>
+> 	if (!src_is_vram)
+>-		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo), 0, size, &src_it);
+>+		xe_res_first_sg(src_tt ? xe_tt_sg(src_tt) : xe_bo_sg(src_bo), 0, size, &src_it);
+> 	else
+> 		xe_res_first(src, 0, size, &src_it);
+> 	if (!dst_is_vram)
+>@@ -947,7 +1014,7 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 		xe_res_first(dst, 0, size, &dst_it);
+>
+> 	if (copy_system_ccs)
+>-		xe_res_first_sg(src_sg ? src_sg : xe_bo_sg(src_bo),
+>+		xe_res_first_sg(src_tt ? xe_tt_sg(src_tt) : xe_bo_sg(src_bo),
+> 				xe_bo_ccs_pages_start(src_bo),
+> 				PAGE_ALIGN(xe_device_ccs_bytes(xe, size)),
+> 				&ccs_it);
+>@@ -961,6 +1028,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 		u64 ccs_ofs, ccs_size;
+> 		u32 ccs_pt;
+> 		u32 pte_flags;
+>+		pgoff_t start_page = (xe_bo_size(src_bo) - size) >> PAGE_SHIFT;
+>+		u32 ndata_blits = 1;
+>
+> 		bool usm = xe->info.has_usm;
+> 		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+>@@ -998,9 +1067,30 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+> 		}
+>
+>-		/* Add copy commands size here */
+>+		/*
+>+		 * Add copy commands size here. On the defrag data pass the blit
+>+		 * is split into one command per run of non-borrowed pages, so
+>+		 * size for the number of runs actually needed.
+>+		 */
+>+		if (skip_borrowed)
+>+			ndata_blits = emit_copy_chunks(gt, NULL, 0, 0, src_L0,
+>+						       src_tt, dst_tt, start_page);
+>+
+>+		/*
+>+		 * If every page in this chunk was borrowed there is nothing to
+>+		 * copy: don't build a batch or issue any GPU commands, just
+>+		 * advance the cursors past the chunk. The non-vram tt cursors
+>+		 * would otherwise be advanced by emit_pte().
+>+		 */
+>+		if (skip_borrowed && !ndata_blits) {
+>+			xe_res_next(&src_it, src_L0);
+>+			xe_res_next(&dst_it, src_L0);
+>+			size -= src_L0;
+>+			continue;
+>+		}
+>+
+> 		batch_size += ((flags.copy_only_ccs || flags.defrag_ccs) ? 0 :
+>-			       emit_copy_cmd_len(xe)) +
+>+			       ndata_blits * emit_copy_cmd_len(xe)) +
+> 			((needs_ccs_emit ? EMIT_COPY_CCS_DW : 0));
+>
+> 		bb = xe_bb_new(gt, batch_size, usm);
+>@@ -1029,7 +1119,10 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+> 		update_idx = bb->len;
+>
+>-		if (!flags.copy_only_ccs && !flags.defrag_ccs)
+>+		if (skip_borrowed)
+>+			emit_copy_chunks(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
+>+					 src_tt, dst_tt, start_page);
+>+		else if (!flags.copy_only_ccs && !flags.defrag_ccs)
+> 			emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0, XE_PAGE_SIZE);
+>
+> 		if (needs_ccs_emit)
+>@@ -1088,6 +1181,14 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
+> 		return ERR_PTR(err);
+> 	}
+>
+>+	/*
+>+	 * Every chunk of a defrag data pass may have been borrowed (nothing
+>+	 * copied), leaving no job and a NULL fence. Hand back a signaled stub
+>+	 * so callers always get a valid fence to wait on.
+>+	 */
+>+	if (!fence)
+>+		return dma_fence_get_stub();
+>+
+> 	return fence;
+> }
+>
+>@@ -1129,18 +1230,21 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+>  * @bo: The buffer object being defragmented. Both @src and @dst belong to @bo.
+>  * @src: The source TTM resource (the old backing).
+>  * @dst: The dst TTM resource (the freshly reallocated backing).
+>- * @src_sg: Scatter-gather table of the source (old) backing pages.
+>+ * @src_tt: The source (old) backing tt, providing both the scatter-gather
+>+ * table and page pointers of the old pages.
+>  * @need_ccs: Whether the BO has CCS aux state that must be migrated too.
+>  *
+>  * Used by the defrag path where a single BO has its backing reallocated at a
+>  * more beneficial page order. The contents are relocated from the old pages
+>- * (@src_sg) to the new pages (the BO's current backing) entirely on the GPU,
+>+ * (@src_tt) to the new pages (the BO's current backing) entirely on the GPU,
+>  * in up to two passes:
+>  *
+>  *  - Data pass (always): copy the data pages verbatim. The pages are mapped
+>  *    without the compression PAT, so the (possibly compressed) bytes are copied
+>  *    as-is rather than being decompressed and recompressed, and no CCS aux copy
+>- *    is appended.
+>+ *    is appended. Pages the new backing borrowed from @src_tt (harvested
+>+ *    already beneficial-order chunks) alias the same memory on both sides and
+>+ *    are skipped.
+>  *
+>  *  - CCS pass (@need_ccs): copy the CCS aux (compression) state. Both the old
+>  *    and new data pages are mapped with the compression PAT so the copy engine
+>@@ -1159,11 +1263,11 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
+> 					 struct xe_bo *bo,
+> 					 struct ttm_resource *src,
+> 					 struct ttm_resource *dst,
+>-					 struct sg_table *src_sg,
+>+					 struct ttm_tt *src_tt,
+> 					 bool need_ccs)
+> {
+> 	struct dma_fence *fence2, *fence =
+>-		__xe_migrate_copy(m, bo, bo, src, dst, src_sg,
+>+		__xe_migrate_copy(m, bo, bo, src, dst, src_tt,
+> 				  (struct xe_migrate_copy_flags) {
+> 					 .defrag_copy = true,
+> 					 });
+>@@ -1171,7 +1275,7 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
+> 	if (IS_ERR(fence) || !need_ccs)
+> 		return fence;
+>
+>-	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_sg,
+>+	fence2 = __xe_migrate_copy(m, bo, bo, src, dst, src_tt,
+> 				   (struct xe_migrate_copy_flags) {
+> 				   .defrag_ccs = true,
+> 				   });
+>diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+>index e4f996942a6d..4094ea1c19c1 100644
+>--- a/drivers/gpu/drm/xe/xe_migrate.h
+>+++ b/drivers/gpu/drm/xe/xe_migrate.h
+>@@ -13,6 +13,7 @@ struct drm_pagemap_addr;
+> struct iosys_map;
+> struct sg_table;
+> struct ttm_resource;
+>+struct ttm_tt;
+>
+> struct xe_bo;
+> struct xe_gt;
+>@@ -137,7 +138,7 @@ struct dma_fence *xe_migrate_copy_defrag(struct xe_migrate *m,
+> 					 struct xe_bo *bo,
+> 					 struct ttm_resource *src,
+> 					 struct ttm_resource *dst,
+>-					 struct sg_table *src_sg,
+>+					 struct ttm_tt *src_tt,
+> 					 bool need_ccs);
+>
+> struct dma_fence *xe_migrate_resolve(struct xe_migrate *m,
+>-- 
+>2.34.1
+>
