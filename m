@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB9E606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 12:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2070B606A326
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 12:14:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fCsoQJtN
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=I6QKhh0o
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3866C10F642;
-	Tue, 10 Nov 2026 12:14:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D627210F643;
+	Tue, 10 Nov 2026 12:14:28 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD8A10F641;
- Tue, 10 Nov 2026 12:14:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03BA010F643;
+ Tue, 10 Nov 2026 12:14:23 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id CAB96638CF;
- Tue, 10 Nov 2026 12:14:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46E0A1F008A2;
- Tue, 10 Nov 2026 12:14:11 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 7D939638CF;
+ Tue, 10 Nov 2026 12:14:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 094301F0089F;
+ Tue, 10 Nov 2026 12:14:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794312851;
- bh=G3C/1UyHpacjXntTkhBBWlF+5hfJWEfoPjsp+mD/PKw=;
+ s=k20260515; t=1794312862;
+ bh=0q+IpIU5/zKMLQVg9mTp1sn4euIxNR2Sjqe7xlaPajA=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=fCsoQJtNY6fPgjedMVxxU7dvyFz8WbW/gcMjWvbqmPzHrNWvfO6VQi2tSvNw9zE3N
- UtTaIPgD6VVy8M5pn1QzSlQEWyi7CUx8bSwwQyArYGMrPU4lAVdmiQsHkOnZqPtKyO
- eoNKgCk0G4aT5XJd/eTj5dee0rdVTzOSHclk36w1yIVneH+lsNcOxNeAF05TvIJjFa
- Dyi48KJRbjB38SrQa7uamKqhNJ/XC3gn+OLOTn0XH2lhyZ1E7FPxAamSeR/W4yqxrp
- 0rKweZayF8dI2lvWso3UEqq5+FCJ2w4C/LGipqlM6eNl7EZAXba5589cEnJf1uD2Er
- SRK15Pjhkwfqw==
-Message-ID: <sashiko-outbox-206989@kernel.org>
+ b=I6QKhh0obyxXsTCAmoatk+4i+Qc3OHy1yTqeSCrJIGtxCTKo7i7v/lZNQS4VCx8E6
+ Ik4rJC/dHJUj6xE1kSpl9Tr2viKwxZieY2iU6Tsk5iWh58GqCj7Q6D+wGhNtgTWwcM
+ i7ku0ENoCTBOF0YtA0H67HFbfXLsM1qQbHpY/YmCtaqJpvdB7ZuLb0KL4Uz86jsfq9
+ dvQgztH8MEfSeN/7qG4KHBfmDhdvTGYKyKTxsjMx/SNUtTSnrpfz80WELrpBDkpLTM
+ lDQ75TqZJSMz5hf5JQE928qRBww/JwN/c4zXr5k3sbe9yEIP12W7vVNn8vtDlr1pQe
+ QNu1l585khx9g==
+Message-ID: <sashiko-outbox-206990@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 3/4] drm/i915/dp: Start eDP link training from VBT fast
- link train vswing/pre-emphasis levels
+Subject: Re: [PATCH 4/4] drm/i915/dp: Use the VBT fast link training link
+ config for eDP
 To: "Lee Shawn C" <shawn.c.lee@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261110115432.894616-4-shawn.c.lee@intel.com>
+In-Reply-To: <20261110115432.894616-5-shawn.c.lee@intel.com>
 References: <20261110115432.894616-1-shawn.c.lee@intel.com>
- <20261110115432.894616-4-shawn.c.lee@intel.com>
+ <20261110115432.894616-5-shawn.c.lee@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 10 Nov 2026 12:14:10 +0000
+Date: Tue, 10 Nov 2026 12:14:21 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,94 +58,159 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/i915/dp: intel_dp_link_training_clock_recovery() assumes
-  initial level 0
+Thank you for your contribution! Sashiko AI review found 2 potential
+issues to consider:
+- [High] drm/i915/dp: use_max_params overrides
+  intel_dp_apply_vbt_edp_link_config()
+- [High] drm/i915/dp: no M/N or BW fallback in
+  intel_dp_apply_vbt_edp_link_config()
 --
 
-commit 6c36eea023572273fb066c2544c30e572e659dc6
+commit 46497d5cbedd717d0790bb659b620e0c9e18c67c
 Author: Lee Shawn C <shawn.c.lee@intel.com>
 
-drm/i915/dp: Start eDP link training from VBT fast link train vswing/pre-em=
-phasis levels
+drm/i915/dp: Use the VBT fast link training link config for eDP
 
-This commit initializes intel_dp->train_set from the VBT fast link
-training voltage swing and pre-emphasis levels at the start of eDP clock
-recovery when link recovery is idle.
+This commit restricts the candidate eDP link configurations during compute
+config to the rate and lane count specified by the VBT fast link training
+parameters when fast link training is enabled.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
-ers/gpu/drm/i915/display/intel_dp_link_training.c
-> index ac1aff6edf052..3de74eb1d3d4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-[ ... ]
-> @@ -1032,6 +1104,10 @@ intel_dp_reset_link_train(struct intel_dp *intel_d=
-p,
->  			  u8 dp_train_pat)
->  {
->  	memset(intel_dp->train_set, 0, sizeof(intel_dp->train_set));
-> +
-> +	if (intel_dp_use_vbt_fast_link_levels(intel_dp, crtc_state, dp_phy))
-> +		intel_dp_init_train_set_from_vbt(intel_dp, crtc_state, dp_phy);
-> +
->  	intel_dp_set_signal_levels(intel_dp, crtc_state, dp_phy);
->  	return intel_dp_set_link_train(intel_dp, crtc_state, dp_phy, dp_train_p=
-at);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index ef164a7976187..0390bd62d7596 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2824,6 +2824,62 @@ intel_dp_compute_m_n_ratio_limits(struct intel_dp =
+*intel_dp,
+>  	return true;
 >  }
+> =20
+> +/*
+> + * If the VBT enables eDP fast link training for the panel, restrict the
+> + * candidate link configs to the VBT fast link training link rate and/or
+> + * lane count (a zero value means no restriction for that parameter). The
+> + * filter is intersected with any filter already set in @limits. If no
+> + * allowed config matches (e.g. the VBT values are not supported by the
+> + * source/sink, or link training fallback has disabled all such configs),
+> + * the VBT params are ignored.
+> + */
+> +static void
+> +intel_dp_apply_vbt_edp_link_config(struct intel_dp *intel_dp,
+> +				   struct intel_connector *connector,
+> +				   struct link_config_limits *limits)
+> +{
+> +	struct intel_display *display =3D to_intel_display(intel_dp);
+> +	struct intel_dp_link_caps *link_caps =3D intel_dp->link.caps;
+> +	struct intel_dp_link_caps_filter vbt_filter =3D INTEL_DP_LINK_CAPS_FILT=
+ER_NONE;
+> +	struct intel_dp_link_caps_iter iter;
+> +	struct intel_dp_link_config config;
+> +	int vbt_rate =3D connector->panel.vbt.edp.rate;
+> +	int vbt_lanes =3D connector->panel.vbt.edp.lanes;
+> +
+> +	if (!intel_dp_is_edp(intel_dp) ||
+> +	    !connector->panel.vbt.edp.fast_link_training ||
+> +	    (!vbt_rate && !vbt_lanes))
+> +		return;
+> +
+> +	intel_dp_link_caps_iter_start(&iter, link_caps,
+> +				      intel_dp_link_caps_connector_compute_order(connector),
+> +				      limits->link_config_filter);
+> +	for_each_dp_link_config(&iter, &config) {
+> +		if (vbt_rate && config.rate !=3D vbt_rate)
+> +			continue;
+> +		if (vbt_lanes && config.lane_count !=3D vbt_lanes)
+> +			continue;
+> +
+> +		intel_dp_link_caps_filter_add(link_caps, &vbt_filter, &config);
+> +	}
+> +	intel_dp_link_caps_iter_end(&iter);
+> +
+> +	if (!vbt_filter.config_mask) {
+> +		drm_dbg_kms(display->drm,
+> +			    "[CONNECTOR:%d:%s] VBT eDP link config (lanes %d, rate %d) not in=
+ allowed link configs, ignoring\n",
+> +			    connector->base.base.id, connector->base.name,
+> +			    vbt_lanes, vbt_rate);
+> +		return;
+> +	}
+> +
+> +	drm_dbg_kms(display->drm,
+> +		    "[CONNECTOR:%d:%s] Limiting link configs to VBT eDP lanes %d, rate=
+ %d\n",
+> +		    connector->base.base.id, connector->base.name,
+> +		    vbt_lanes, vbt_rate);
+> +
+> +	limits->link_config_filter =3D vbt_filter;
+> +}
+> +
+>  bool
+>  intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+>  			       struct drm_connector_state *conn_state,
+> @@ -2940,6 +2996,8 @@ intel_dp_compute_config_limits(struct intel_dp *int=
+el_dp,
+>  		limits->link_config_filter =3D new_filter;
+>  	}
+> =20
+> +	intel_dp_apply_vbt_edp_link_config(intel_dp, connector, limits);
 
-[Severity: Medium]
-Does starting intel_dp_reset_link_train() at non-zero VBT levels throw off
-the retry and max-vswing tracking in
-intel_dp_link_training_clock_recovery()?
+[Severity: High]
+Does calling intel_dp_apply_vbt_edp_link_config() after the
+intel_dp->use_max_params block cause non-maximum VBT configs to be
+ignored whenever use_max_params is set?
 
-drivers/gpu/drm/i915/display/intel_dp_link_training.c:intel_dp_link_trainin=
-g_clock_recovery() {
-	u8 old_link_status[DP_LINK_STATUS_SIZE] =3D {};
-	int voltage_tries, cr_tries, max_cr_tries;
-	u8 link_status[DP_LINK_STATUS_SIZE];
-	bool max_vswing_reached =3D false;
-    ...
-	if (!intel_dp_reset_link_train(intel_dp, crtc_state, dp_phy,
-				       DP_TRAINING_PATTERN_1 |
-				       DP_LINK_SCRAMBLING_DISABLE)) {
-    ...
-	voltage_tries =3D 1;
-	for (cr_tries =3D 0; cr_tries < max_cr_tries; ++cr_tries) {
-    ...
-		if (max_vswing_reached) {
-			intel_dp_dump_link_status(intel_dp, dp_phy, link_status);
-			lt_dbg(intel_dp, dp_phy, "Max Voltage Swing reached\n");
-			return false;
-		}
-    ...
-		if (!intel_dp_adjust_request_changed(crtc_state, old_link_status, link_st=
-atus))
-			++voltage_tries;
-		else
-			voltage_tries =3D 1;
+intel_edp_init_dpcd() initializes intel_dp->use_max_params =3D true for all
+eDP < 1.4 panels, and intel_dp_compute_config_limits() narrows
+limits->link_config_filter to the single max_config entry before calling
+intel_dp_apply_vbt_edp_link_config().  Any VBT rate or lane count lower
+than max_config will not match that single-entry filter, so the VBT config
+is ignored and intel_dp_use_vbt_fast_link_levels() also returns false.
 
-		memcpy(old_link_status, link_status, sizeof(link_status));
+On eDP >=3D 1.4 panels, if link training fails on the VBT config, the first
+fallback step in intel_dp_get_link_train_fallback_values() sets
+intel_dp->use_max_params =3D true and returns 0 without disabling the
+failed config in link_caps:
 
-		if (intel_dp_link_max_vswing_reached(intel_dp, crtc_state))
-			max_vswing_reached =3D true;
+drivers/gpu/drm/i915/display/intel_dp_link_training.c:intel_dp_get_link_tra=
+in_fallback_values() {
+	if (intel_dp_is_edp(intel_dp) && !intel_dp->use_max_params) {
+		lt_dbg(intel_dp, DP_PHY_DPRX,
+		       "Retrying Link training for eDP with max parameters\n");
+		intel_dp->use_max_params =3D true;
+		return 0;
 	}
 }
 
-old_link_status starts zero-initialized, representing voltage swing 0 and
-pre-emphasis 0.  When intel_dp_reset_link_train() programs non-zero VBT
-levels and the first poll does not lock, intel_dp_adjust_request_changed()
-compares the sink's first adjust request against (0, 0) instead of the VBT
-levels: if the sink requests the same VBT levels, voltage_tries is reset
-to 1 instead of incrementing to 2 (trying those levels 6 times instead of
-5), whereas if the sink requests (0, 0), voltage_tries increments to 2 on
-the first attempt at (0, 0) (aborting after 4 tries instead of 5).
+If the VBT config was already max_config, the retry repeats the exact
+same failed config; if it was lower than max_config, the failed VBT
+config stays enabled in link_caps and will be selected again if
+max_config later fails and falls back.
 
-Also, max_vswing_reached is initialized to false before
-intel_dp_reset_link_train(), so if the initial VBT levels already hit the
-maximum voltage swing, the first loop iteration does not notice that max
-vswing was already reached.
+> +
+>  	if (!intel_dp_compute_m_n_ratio_limits(intel_dp, conn_state, crtc_state=
+, limits))
+>  		return false;
+
+[Severity: High]
+Can restricting limits->link_config_filter to vbt_filter cause the
+modeset to fail instead of falling back when the VBT config cannot
+support the mode's M/N ratio or required bandwidth?
+
+If the VBT specifies a rate or lane count that is present in link_caps
+(for example RBR 1.62 Gbps, which is encoded as 0 in VBT versions
+182..223) but is too low for the panel's mode, vbt_filter is non-empty
+and overwrites limits->link_config_filter.
+
+When vbt_rate violates the Link M/N ratio limit,
+intel_dp_compute_m_n_ratio_limits() then sees no valid configs in
+limits->link_config_filter and fails intel_dp_compute_config_limits()
+even if higher rates in link_caps would pass.  Even if the M/N check
+passes, intel_dp_compute_link_config_wide() only searches
+limits->link_config_filter and returns -EINVAL when the VBT config lacks
+bandwidth for the mode, which fails the modeset on non-DSC eDP panels (or
+picks the under-provisioned VBT config without a bandwidth check in
+dsc_compute_compressed_bpp() on DSC-capable eDP panels).
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261110115432.8946=
-16-1-shawn.c.lee@intel.com?part=3D3
+16-1-shawn.c.lee@intel.com?part=3D4
