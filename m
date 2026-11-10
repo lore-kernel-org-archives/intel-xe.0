@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1715B606A321
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 19:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15F36606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 19:01:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=aNFPMTga
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=U7D70hoj
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C750610EDDD;
-	Tue, 10 Nov 2026 19:01:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8E3910EE7C;
+	Tue, 10 Nov 2026 19:01:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 982DE10E969
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABB710E952
  for <intel-xe@lists.freedesktop.org>; Tue, 10 Nov 2026 19:01:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1794337268; x=1825873268;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fwn4wKZWzaXz43nN1j3Z9mqkNFwyJRI7IoifxXfRjwQ=;
- b=aNFPMTgajD+RUaRMl9agp1YmVcsgBxVisvrUad2SXNf+DEq03FWE4gHM
- 4ovNB6Caqbai4rjdHnIQzceKW8iOnCrQwH0bvGeNVjtP+T61+lzTzx2/t
- 4YN4tLcwAAeiN5LE4tZQeKTvzp49k/XLDVpRPWoh/P/E8p2e7rlXpmENL
- aEe4JntEqRp647NGXOGU91E8g1TK87KzMyrXwGudBeBksN6cs6usQH30X
- KQuxzvUQI0qHY7CB767GFTScrZmQUnBdasXts3LZSC+6JyO/px7bwe8U7
- Uzx0EYUkIxs1dn7blGzOPvYNZd6rEqpOfit01q2oO9jO4Kx3Vu8SRg7ml Q==;
-X-CSE-ConnectionGUID: sFqIMFNGS+eF2AYTdeuIGw==
-X-CSE-MsgGUID: AxhIwkSnT2K16IE7vGq+7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3116717"
+ bh=2ejPmAUsUImIuyyIdPLsvqLv6Kn9DqImqhFtZGTOBM4=;
+ b=U7D70hojDgyG3qqYCBDUYlpljYSzW6TV9VOlzqiAyzl3zeaJ685o+6fi
+ I1IBgOo2mtSxn9FwKGpUGNhBMvRoeriaYu/PgFLyEmSehnTHeSogmT8Nu
+ BmCNKpkYIpQzqDgQ17h/OTCM//iKZGzRBXTCWUF/bwPDqQIZLwsrqaDEm
+ asgWVktJ9DmU/+4X2aAgPlLrVBL/cNvBgmsJl+ZSeSs4qieh4gTBjyX/o
+ e2tEwBelXJnp3FfnT4K4zEEtSEAoaSOc9ymoQzmCu1FTeeAwfaY0ortL5
+ tEjMdVQNtz3CscwtRX6wnLlwVCzC78mVGw6v8iWzC2mIxhkTqHM9YTTGz Q==;
+X-CSE-ConnectionGUID: es8ZoZlzSQ+PZ5ohVHnOdA==
+X-CSE-MsgGUID: DOWwZe7GS2mtDmTNCAWvBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3116716"
 X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
-   d="scan'208";a="3116717"
+   d="scan'208";a="3116716"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 11:01:01 -0800
-X-CSE-ConnectionGUID: QsmhkiXdSoC0v0heP8bwoA==
-X-CSE-MsgGUID: 8w5fDXj/SZqxPu4fDHJUwQ==
+ 10 Nov 2026 11:01:00 -0800
+X-CSE-ConnectionGUID: KD0fbKrmToKSicEyV+B7sg==
+X-CSE-MsgGUID: U+U+4xTASFSPjnvwJMmxUw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
-   d="scan'208";a="8300618"
+   d="scan'208";a="8300615"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Nov 2026 11:01:00 -0800
@@ -44,10 +44,9 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	shekhar.chauhan@intel.com
 Cc: harish.chegondi@intel.com
-Subject: [PATCH v5 5/7] drm/xe/oa: Wait for in-flight OA batches before stream
- HW teardown
-Date: Tue, 10 Nov 2026 11:00:58 -0800
-Message-ID: <20261110190052.3514226-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v5 4/7] drm/xe/oa: Skip OA HW teardown on a wedged device
+Date: Tue, 10 Nov 2026 11:00:57 -0800
+Message-ID: <20261110190052.3514226-13-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261110190052.3514226-9-umesh.nerlige.ramappa@intel.com>
 References: <20261110190052.3514226-9-umesh.nerlige.ramappa@intel.com>
@@ -71,89 +70,72 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Config batches submitted with output syncs and context LRI batches are
-not waited for. If one is still in flight when the stream is closed, it
-can program the OA registers after they were restored.
+Closing a stream on a wedged device still disables the OA unit and
+restores the OA HW state, including MMIO waits and batch submissions to
+a device that may be unresponsive or, on a PCI error, disabled.
 
-Both go to the same exec queue, so also record the LRI batch fence in
-stream->last_fence, and wait for it before the HW teardown, bounded by
-the job timeout of the exec queue.
+Skip that HW access when the device is wedged. The OA disable also
+cancels the poll timer, so cancel it when destroying the stream instead,
+so that it's never left armed on a freed stream.
+
+Skipping the HW teardown also skips the forcewake put, which accesses
+the HW as well, leaking the forcewake reference. That is fine, the
+device needs a reset or rebind to recover, which reinitializes
+forcewake.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 31 +++++++++++++++++++++++++------
- 1 file changed, 25 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 8a3e1ac2a068..f3d3b2eaddd8 100644
+index 3ddccc7e6f90..8a3e1ac2a068 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -733,6 +733,12 @@ static void xe_oa_free_configs(struct xe_oa_stream *stream)
- 	dma_fence_put(stream->last_fence);
- }
+@@ -43,6 +43,7 @@
+ #include "xe_sriov.h"
+ #include "xe_sync.h"
+ #include "xe_wa.h"
++#include "xe_wedge.h"
  
-+static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
-+{
-+	dma_fence_put(stream->last_fence);
-+	stream->last_fence = dma_fence_get(fence);
-+}
-+
- static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri, u32 count)
- {
- 	struct dma_fence *fence;
-@@ -753,6 +759,7 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
- 		goto free_bb;
- 	}
- 	xe_bb_free(bb, fence);
-+	xe_oa_update_last_fence(stream, fence);
- 	dma_fence_put(fence);
- 
- 	return 0;
-@@ -876,6 +883,23 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ #define DEFAULT_POLL_FREQUENCY_HZ 200
+ #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
+@@ -875,6 +876,11 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
  		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE, 0);
  }
  
 +/*
-+ * Wait for the last OA batch of the stream, so that it can't program the HW after the HW
-+ * teardown.
++ * Also drops forcewake, which accesses the HW too. On a wedged device this is skipped and
++ * the forcewake reference leaks, which is fine: the device needs a reset or rebind to
++ * recover, which reinitializes forcewake.
 + */
-+static void xe_oa_stream_drain(struct xe_oa_stream *stream)
-+{
-+	struct xe_exec_queue *q = stream->exec_q ?: stream->k_exec_q;
-+	long timeout;
-+
-+	if (!stream->last_fence || dma_fence_is_signaled(stream->last_fence))
-+		return;
-+
-+	timeout = msecs_to_jiffies(q->sched_props.job_timeout_ms) + HZ;
-+	if (!dma_fence_wait_timeout(stream->last_fence, false, timeout))
-+		drm_err(&stream->oa->xe->drm, "Timed out waiting for OA batch\n");
-+}
-+
- /*
-  * Also drops forcewake, which accesses the HW too. On a wedged device this is skipped and
-  * the forcewake reference leaks, which is fine: the device needs a reset or rebind to
-@@ -914,6 +938,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 	/* The poll timer may still be armed if the OA disable was skipped */
- 	hrtimer_cancel(&stream->poll_check_timer);
- 
-+	xe_oa_stream_drain(stream);
- 	if (!xe_wedged(stream->oa->xe))
- 		xe_oa_stream_hw_teardown(stream);
- 
-@@ -1012,12 +1037,6 @@ xe_oa_alloc_config_buffer(struct xe_oa_stream *stream, struct xe_oa_config *oa_c
- 	return oa_bo;
- }
- 
--static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
--{
--	dma_fence_put(stream->last_fence);
--	stream->last_fence = dma_fence_get(fence);
--}
--
- static void xe_oa_fence_work_fn(struct work_struct *w)
+ static void xe_oa_stream_hw_teardown(struct xe_oa_stream *stream)
  {
- 	struct xe_oa_fence *ofence = container_of(w, typeof(*ofence), work.work);
+ 	if (stream->sample)
+@@ -905,7 +911,12 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+ 
+ 	mutex_destroy(&stream->stream_lock);
+ 
+-	xe_oa_stream_hw_teardown(stream);
++	/* The poll timer may still be armed if the OA disable was skipped */
++	hrtimer_cancel(&stream->poll_check_timer);
++
++	if (!xe_wedged(stream->oa->xe))
++		xe_oa_stream_hw_teardown(stream);
++
+ 	xe_oa_free_oa_buffer(stream);
+ 	xe_oa_stream_free_resources(stream);
+ }
+@@ -1704,7 +1715,8 @@ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
+ {
+ 	xe_pm_runtime_get(gt_to_xe(stream->gt));
+ 
+-	if (stream->enabled)
++	/* A wedged device may be unresponsive, skip HW access */
++	if (stream->enabled && !xe_wedged(gt_to_xe(stream->gt)))
+ 		xe_oa_disable_locked(stream);
+ 
+ 	xe_oa_stream_destroy(stream);
 -- 
 2.55.0
 
