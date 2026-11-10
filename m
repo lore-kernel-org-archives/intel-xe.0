@@ -2,52 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42716606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 18:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DCE3606A320
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 18:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hqXRdz+N
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CoVf4tv6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0593F10F06D;
-	Tue, 10 Nov 2026 18:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4083410F146;
+	Tue, 10 Nov 2026 18:47:06 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B956510F06D;
- Tue, 10 Nov 2026 18:46:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B9F4510F0E4;
+ Tue, 10 Nov 2026 18:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794336417; x=1825872417;
+ t=1794336421; x=1825872421;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rRpsNfv6s63FeVXMzSE4HTrCbQNYLZS8oBu0xbeYebw=;
- b=hqXRdz+NnG8B1MqboJZZ5kOHU0Oj8hI2OmY7PbWGsV8zEQxCFeaZtMzJ
- 556M170y/82VgaWNwoulpf8lXUe51bpp675BEF6jV2eJO94qpEa9deZ8j
- BYV+LG+DbKy32oNyg3FZgPOzXLaHsy+6wU6zvOGlWtAwuEG4ZJRNn5nuc
- CRAMZE8kgMHv8LZcSbk+7VJyqcrS6dl6+KuIEvYYPY/nl9zzg9Zdbi3wF
- OJrp7T5YZ+CebPcjOSzPWT+67hHEg8INqL9Wkd3iaxG19s0uk37SYOTwz
- Y/xGF0bJf+KjGP8LYk5FaLl9/BdwNRQ1pjKXu6Q+NPsqoemAbv7TLjpSh Q==;
-X-CSE-ConnectionGUID: k83dnCniR+abYlwcNqK1Rw==
-X-CSE-MsgGUID: /4va1NEjSVa8MbN5kL1dNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="2975331"
+ bh=zzQy76ISap8pTamGcp78u8HhnUEUVDEz4WNPU55WFr4=;
+ b=CoVf4tv6jpIVNJo11Ory4HgVeQp++YI6O2q8gnfHkFLZOm5aPkJRJBUv
+ kuSyNAj62G4yj5OYgsvBnrL41t9mRotcXMcUNYjL+uPAQK+ybBuN9rfjW
+ 2BKqXXgVN9Oi2fTM1dTkCFDYCYEpZ0qK8v7MtZRkuukLvTDtSJqlCy8wU
+ u9/HkMYR+EsDOrqTrPif+v4TJbVDsCxW60MIDXfh2ZCMGV1QGnC8xOIZp
+ JADtlWsnqGTxQa7PRL6zF/G4pCtZG/ENV419awxWPfUnugXsmj6EK9xyJ
+ h/Kir64RfYWqJLF5DmGlzygLmUdAFGWvp9vM7TOL2+8mEWDtXPAcDAcG+ w==;
+X-CSE-ConnectionGUID: KmdZl84QQBiTYiUAzAZG7A==
+X-CSE-MsgGUID: iJ8u0jc3SLaVEqVGFa0T0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="2975344"
 X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
-   d="scan'208";a="2975331"
+   d="scan'208";a="2975344"
 Received: from fmviesa011.fm.intel.com ([10.60.135.151])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 10:46:57 -0800
-X-CSE-ConnectionGUID: qb+/kFApRtmjQXPS657MZQ==
-X-CSE-MsgGUID: G42k5PTgScmNsP/NSp/1ww==
+ 10 Nov 2026 10:47:01 -0800
+X-CSE-ConnectionGUID: asCigTylTBWNQngJmWSCzQ==
+X-CSE-MsgGUID: ysZCbVGBSqCWwimu5ZqWqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; d="scan'208";a="10007697"
+X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; d="scan'208";a="10007700"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.86])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 10:46:55 -0800
+ 10 Nov 2026 10:46:59 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 07/10] drm/i915/de: Move unclaimed mmio detection into
- display code
-Date: Tue, 10 Nov 2026 20:46:18 +0200
-Message-ID: <20261110184622.1721-8-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 08/10] drm/i915: Nuke HAS_FPGA_DBG_UNCLAIMED()/.has_fpga_dbg
+Date: Tue, 10 Nov 2026 20:46:19 +0200
+Message-ID: <20261110184622.1721-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261110184622.1721-1-ville.syrjala@linux.intel.com>
 References: <20261110184622.1721-1-ville.syrjala@linux.intel.com>
@@ -76,906 +74,103 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The FPGA_DBG/CLAIM_ER unclaimed mmio access detection only
-works for display registers. Therefore checking it for GT
-registers/etc is completely pointless. Hoist the whole thing
-into the display code. Eventually we'll also want to hook this
-up for xe, but for now we keep it i915 only to avoid too many
-functional changes in one go.
+HAS_FPGA_DBG_UNCLAIMED() and the underlying .has_fpga_dbg device
+flag is now unused. Nuke it all.
 
-Note that i915 used a separate spinlock to protect the
-mmio debug tracking. But basically whenever it would grab that
-lock it was already holding uncore.lock, so the double locking
-was rather pointless. When moving this into the display code
-we'll just protect it all with the same display mmio.lock that
-already provides any needed serialization of register accesses.
-
-This will of course speed up the non-fw GT register accesses
-with mmio debug enabled since we never do the two extra
-FPGA_DBG/CLAIM_ER reads for them.
-
-Note that we do lose the FPGA_DBG!=0xffffffff sanity check for
-non-display register accesses now. Possibly the GT side should
-use some harmless GT register for that instead. But I didn't
-bother looking for one at this time.
-
-The .mmio_debug modparam will now appear for xe as well, but
-it won't do anything there (yet).
-
-v2: Drop the unused mmio.mmio_debug
-    FPGA_DBG unclaimed bit is hsw+, not ivb+
-    Skip mmio suspend/resume for !HAS_DISPLAY
-    Clear out unclaimed bit left by the previous guy
-    Document that the lock also protects the rmw of the modparam
-    Mention the modparam
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.c       | 180 +++++++++++++++-
- drivers/gpu/drm/i915/display/intel_de.h       |   3 +
- drivers/gpu/drm/i915/display/intel_display.c  |   3 +-
- .../gpu/drm/i915/display/intel_display_core.h |   6 +
- .../drm/i915/display/intel_display_driver.c   |  21 ++
- .../drm/i915/display/intel_display_driver.h   |   3 +
- .../drm/i915/display/intel_display_params.c   |   4 +
- .../drm/i915/display/intel_display_params.h   |   1 +
- .../gpu/drm/i915/display/intel_display_regs.h |   8 +
- drivers/gpu/drm/i915/i915_driver.c            |  12 +-
- drivers/gpu/drm/i915/i915_drv.h               |   1 -
- drivers/gpu/drm/i915/i915_params.c            |   4 -
- drivers/gpu/drm/i915/i915_params.h            |   1 -
- drivers/gpu/drm/i915/i915_reg.h               |   8 -
- drivers/gpu/drm/i915/intel_uncore.c           | 193 +-----------------
- drivers/gpu/drm/i915/intel_uncore.h           |  24 ---
- 16 files changed, 232 insertions(+), 240 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 8 --------
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 --
+ 2 files changed, 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index 5a1ea696247c..451d6db3c560 100644
---- a/drivers/gpu/drm/i915/display/intel_de.c
-+++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_print.h>
- 
- #include "intel_de.h"
-+#include "intel_display_regs.h"
- 
- static int intel_de_wait_for_register(struct intel_display *display,
- 				      intel_reg_t reg, u32 mask, u32 value,
-@@ -163,8 +164,127 @@ u16 intel_de_read16(struct intel_display *display, intel_reg_t reg)
- 	return intel_uncore_read16(__to_uncore(display), reg);
- }
- 
-+static bool hsw_check_for_unclaimed_mmio(struct intel_display *display)
-+{
-+	u32 dbg;
-+
-+	dbg = intel_de_read_fw(display, FPGA_DBG);
-+	if (likely(!(dbg & FPGA_DBG_RM_NOCLAIM)))
-+		return false;
-+
-+	/*
-+	 * Bugs in PCI programming (or failing hardware) can occasionally cause
-+	 * us to lose access to the MMIO BAR.  When this happens, register
-+	 * reads will come back with 0xFFFFFFFF for every register and things
-+	 * go bad very quickly.  Let's try to detect that special case and at
-+	 * least try to print a more informative message about what has
-+	 * happened.
-+	 *
-+	 * During normal operation the FPGA_DBG register has several unused
-+	 * bits that will always read back as 0's so we can use them as canaries
-+	 * to recognize when MMIO accesses are just busted.
-+	 */
-+	if (unlikely(dbg == ~0))
-+		drm_err(display->drm,
-+			"Lost access to MMIO BAR; all registers now read back as 0xFFFFFFFF!\n");
-+
-+	intel_de_write_fw(display, FPGA_DBG, FPGA_DBG_RM_NOCLAIM);
-+
-+	return true;
-+}
-+
-+static bool vlv_check_for_unclaimed_mmio(struct intel_display *display)
-+{
-+	u32 cer;
-+
-+	cer = intel_de_read_fw(display, CLAIM_ER);
-+	if (likely(!(cer & (CLAIM_ER_OVERFLOW | CLAIM_ER_CTR_MASK))))
-+		return false;
-+
-+	intel_de_write_fw(display, CLAIM_ER, CLAIM_ER_CLR);
-+
-+	return true;
-+}
-+
-+static void check_unclaimed_mmio_pre(struct intel_display *display,
-+				     intel_reg_t reg, bool write)
-+{
-+	lockdep_assert_held(&display->mmio.lock);
-+
-+	if (!display->params.mmio_debug)
-+		return;
-+
-+	if (display->mmio.funcs->check_for_unclaimed_mmio(display))
-+		drm_dbg_kms(display->drm,
-+			    "Unclaimed access detected before %s register 0x%x\n",
-+			    write ? "write to" : "read from",
-+			    i915_mmio_reg_offset(reg));
-+}
-+
-+static void check_unclaimed_mmio_post(struct intel_display *display,
-+				      intel_reg_t reg, bool write)
-+{
-+	lockdep_assert_held(&display->mmio.lock);
-+
-+	if (!display->params.mmio_debug)
-+		return;
-+
-+	if (drm_WARN(display->drm,
-+		     display->mmio.funcs->check_for_unclaimed_mmio(display),
-+		     "Unclaimed %s register 0x%x\n",
-+		     write ? "write to" : "read from",
-+		     i915_mmio_reg_offset(reg)))
-+		/* Only report the first N failures */
-+		display->params.mmio_debug--;
-+}
-+
-+bool intel_de_unclaimed_mmio_detected(struct intel_display *display)
-+{
-+	bool ret;
-+
-+	if (!display->mmio.funcs->check_for_unclaimed_mmio)
-+		return false;
-+
-+	spin_lock_irq(&display->mmio.lock);
-+	ret = display->mmio.funcs->check_for_unclaimed_mmio(display);
-+	spin_unlock_irq(&display->mmio.lock);
-+
-+	return ret;
-+}
-+
-+bool intel_de_arm_unclaimed_mmio_detection(struct intel_display *display)
-+{
-+	bool ret = false;
-+
-+	if (!display->mmio.funcs->check_for_unclaimed_mmio)
-+		return false;
-+
-+	spin_lock_irq(&display->mmio.lock);
-+
-+	if (display->mmio.unclaimed_mmio_check <= 0)
-+		goto out;
-+
-+	if (display->mmio.funcs->check_for_unclaimed_mmio(display)) {
-+		if (!display->params.mmio_debug) {
-+			drm_dbg_kms(display->drm,
-+				    "Unclaimed register detected, "
-+				    "enabling oneshot unclaimed register reporting. "
-+				    "Please use i915.mmio_debug=N for more information.\n");
-+			display->params.mmio_debug++;
-+		}
-+		display->mmio.unclaimed_mmio_check--;
-+		ret = true;
-+	}
-+
-+out:
-+	spin_unlock_irq(&display->mmio.lock);
-+
-+	return ret;
-+}
-+
- #define __MMIO_WAKELOCK		BIT(0)
- #define __MMIO_LOCK		BIT(1)
-+#define __MMIO_UNCLAIMED	BIT(2)
- 
- static __always_inline void
- __mmio_wakelock_pre(struct intel_display *display, intel_reg_t reg,
-@@ -198,6 +318,22 @@ __mmio_lock_post(struct intel_display *display, unsigned long irqflags,
- 		spin_unlock_irqrestore(&display->mmio.lock, irqflags);
- }
- 
-+static __always_inline void
-+__mmio_unclaimed_pre(struct intel_display *display, intel_reg_t reg,
-+		     const bool write, const unsigned int mmio_flags)
-+{
-+	if (mmio_flags & __MMIO_UNCLAIMED)
-+		check_unclaimed_mmio_pre(display, reg, write);
-+}
-+
-+static __always_inline void
-+__mmio_unclaimed_post(struct intel_display *display, intel_reg_t reg,
-+		      const bool write, const unsigned int mmio_flags)
-+{
-+	if (mmio_flags & __MMIO_UNCLAIMED)
-+		check_unclaimed_mmio_post(display, reg, write);
-+}
-+
- static __always_inline u32
- __intel_de_read(struct intel_display *display, intel_reg_t reg,
- 		const unsigned int mmio_flags)
-@@ -207,9 +343,11 @@ __intel_de_read(struct intel_display *display, intel_reg_t reg,
- 
- 	__mmio_wakelock_pre(display, reg, mmio_flags);
- 	__mmio_lock_pre(display, &irqflags, mmio_flags);
-+	__mmio_unclaimed_pre(display, reg, false, mmio_flags);
- 
- 	val = intel_uncore_read(__to_uncore(display), reg);
- 
-+	__mmio_unclaimed_post(display, reg, false, mmio_flags);
- 	__mmio_lock_post(display, irqflags, mmio_flags);
- 	__mmio_wakelock_post(display, reg, mmio_flags);
- 
-@@ -224,9 +362,11 @@ __intel_de_write(struct intel_display *display, intel_reg_t reg, u32 val,
- 
- 	__mmio_wakelock_pre(display, reg, mmio_flags);
- 	__mmio_lock_pre(display, &irqflags, mmio_flags);
-+	__mmio_unclaimed_pre(display, reg, true, mmio_flags);
- 
- 	intel_uncore_write(__to_uncore(display), reg, val);
- 
-+	__mmio_unclaimed_post(display, reg, true, mmio_flags);
- 	__mmio_lock_post(display, irqflags, mmio_flags);
- 	__mmio_wakelock_post(display, reg, mmio_flags);
- }
-@@ -269,6 +409,32 @@ static const struct intel_mmio_funcs snb_mmio_funcs = {
- 	.write = snb_mmio_write,
- };
- 
-+#define HSW_MMIO_FLAGS (__MMIO_LOCK | __MMIO_UNCLAIMED)
-+
-+static u32 hsw_mmio_read(struct intel_display *display, intel_reg_t reg)
-+{
-+	return __intel_de_read(display, reg, HSW_MMIO_FLAGS);
-+}
-+
-+static void hsw_mmio_write(struct intel_display *display, intel_reg_t reg, u32 val)
-+{
-+	__intel_de_write(display, reg, val, HSW_MMIO_FLAGS);
-+}
-+
-+#undef HSW_MMIO_FLAGS
-+
-+static const struct intel_mmio_funcs hsw_mmio_funcs = {
-+	.read = hsw_mmio_read,
-+	.write = hsw_mmio_write,
-+	.check_for_unclaimed_mmio = hsw_check_for_unclaimed_mmio,
-+};
-+
-+static const struct intel_mmio_funcs vlv_mmio_funcs = {
-+	.read = hsw_mmio_read,
-+	.write = hsw_mmio_write,
-+	.check_for_unclaimed_mmio = vlv_check_for_unclaimed_mmio,
-+};
-+
- #define LNL_MMIO_FLAGS __MMIO_WAKELOCK
- 
- static u32 lnl_mmio_read(struct intel_display *display, intel_reg_t reg)
-@@ -309,7 +475,12 @@ void intel_de_init(struct intel_display *display)
- 	 * rid of driver_is_i915().
- 	 */
- 	if (driver_is_i915()) {
--		if (DISPLAY_VER(display) >= 6)
-+		if (DISPLAY_VER(display) >= 9 ||
-+		    display->platform.broadwell || display->platform.haswell)
-+			display->mmio.funcs = &hsw_mmio_funcs;
-+		else if (display->platform.valleyview || display->platform.cherryview)
-+			display->mmio.funcs = &vlv_mmio_funcs;
-+		else if (DISPLAY_VER(display) >= 6)
- 			display->mmio.funcs = &snb_mmio_funcs;
- 		else
- 			display->mmio.funcs = &i9xx_mmio_funcs;
-@@ -319,4 +490,11 @@ void intel_de_init(struct intel_display *display)
- 		else
- 			display->mmio.funcs = &i9xx_mmio_funcs;
- 	}
-+
-+	if (display->mmio.funcs->check_for_unclaimed_mmio)
-+		display->mmio.unclaimed_mmio_check = 1;
-+
-+	/* clear out unclaimed reg detection bit someone else left behind */
-+	if (intel_de_unclaimed_mmio_detected(display))
-+		drm_dbg_kms(display->drm, "unclaimed mmio detected on init, clearing\n");
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 760b8bc31f9b..310f81edc09d 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -14,6 +14,7 @@
- struct intel_mmio_funcs {
- 	u32 (*read)(struct intel_display *display, intel_reg_t reg);
- 	void (*write)(struct intel_display *display, intel_reg_t reg, u32 val);
-+	bool (*check_for_unclaimed_mmio)(struct intel_display *display);
- };
- 
- static inline struct intel_uncore *__to_uncore(struct intel_display *display)
-@@ -22,6 +23,8 @@ static inline struct intel_uncore *__to_uncore(struct intel_display *display)
- }
- 
- void intel_de_init(struct intel_display *display);
-+bool intel_de_unclaimed_mmio_detected(struct intel_display *display);
-+bool intel_de_arm_unclaimed_mmio_detection(struct intel_display *display);
- 
- u8 intel_de_read8(struct intel_display *display, intel_reg_t reg);
- void intel_de_write8(struct intel_display *display, intel_reg_t reg, u8 val);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index cf9190969da7..1077cc27052d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7740,7 +7740,6 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
- static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
- 	struct intel_crtc *crtc;
- 	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] = {};
-@@ -7954,7 +7953,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 * so enable debugging for the next modeset - and hope we catch
- 		 * the culprit.
- 		 */
--		intel_uncore_arm_unclaimed_mmio_detection(uncore);
-+		intel_de_arm_unclaimed_mmio_detection(display);
- 	}
- 
- 	power_async_delay = intel_display_power_select_target_dc_state(state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index aded2af8c92a..d68ecc19b8a8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -539,11 +539,17 @@ struct intel_display {
- 		 * serializes all display register accesses done
- 		 * using intel_de_{read,write}(), but not those
- 		 * done using intel_de_{read,write}_fw().
-+		 *
-+		 * The lock also protects mmio.unclaimed_mmio_check
-+		 * and read-modify-write of display->params.mmio_debug.
- 		 */
- 		spinlock_t lock;
- 
- 		struct intel_uncore *uncore;
- 		const struct intel_mmio_funcs *funcs;
-+
-+		/* protected by mmio.lock */
-+		int unclaimed_mmio_check;
- 	} mmio;
- 
- 	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 0c7bec7d7f01..c13471a5a10e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -30,6 +30,7 @@
- #include "intel_crtc.h"
- #include "intel_cursor.h"
- #include "intel_dbuf_bw.h"
-+#include "intel_de.h"
- #include "intel_display_clock_gating.h"
- #include "intel_display_core.h"
- #include "intel_display_debugfs.h"
-@@ -973,3 +974,23 @@ void intel_display_driver_pm_runtime_resume(struct intel_display *display)
- 
- 	skl_watermark_ipc_update(display);
- }
-+
-+void intel_display_driver_mmio_resume_early(struct intel_display *display)
-+{
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	if (intel_de_unclaimed_mmio_detected(display))
-+		drm_dbg_kms(display->drm,
-+			    "Unclaimed access during suspend, bios?\n");
-+}
-+
-+void intel_display_driver_mmio_suspend_late(struct intel_display *display)
-+{
-+	if (!HAS_DISPLAY(display))
-+		return;
-+
-+	if (intel_de_arm_unclaimed_mmio_detection(display))
-+		drm_err(display->drm,
-+			"Unclaimed access detected prior to suspending\n");
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index 1ae2ad7e95f6..6f04a92902fa 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -32,6 +32,9 @@ void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2
- void intel_display_driver_pm_resume_early(struct intel_display *display);
- void intel_display_driver_pm_resume(struct intel_display *display);
- 
-+void intel_display_driver_mmio_suspend_late(struct intel_display *display);
-+void intel_display_driver_mmio_resume_early(struct intel_display *display);
-+
- /* interface for intel_display_reset.c */
- int __intel_display_driver_resume(struct intel_display *display,
- 				  struct drm_atomic_commit *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.c b/drivers/gpu/drm/i915/display/intel_display_params.c
-index ca0ef466bb10..ace3081461de 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.c
-@@ -143,6 +143,10 @@ intel_display_param_named_unsafe(enable_dmc_wl, int, 0400,
- 	"(-1=use per-chip default, 0=disabled, 1=enabled, 2=match any register, 3=always locked) "
- 	"Default: -1");
- 
-+intel_display_param_named(mmio_debug, int, 0400,
-+	"Enable the MMIO debug code for the first N failures (default: off). "
-+	"This may negatively affect performance.");
-+
- __maybe_unused
- static void _param_print_bool(struct drm_printer *p, const char *driver_name,
- 			      const char *name, bool val)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-index 5c5a1a1358c3..bcbca95318d6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_params.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-@@ -51,6 +51,7 @@ struct drm_printer;
- 	param(bool, psr_safest_params, false, 0400) \
- 	param(bool, enable_psr2_sel_fetch, true, 0400) \
- 	param(int, enable_dmc_wl, -1, 0400) \
-+	param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0600) \
- 	/*
- 	 * Debugfs-only knob (per-device): no matching module_param is registered
- 	 * in intel_display_params.c on purpose. Runtime-toggle via debugfs.
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index bbdbc27629d7..f213bdffcc8d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -3287,4 +3287,12 @@ enum skl_power_gate {
- #define   FW_BLC_SELF_FIFO_MASK    REG_BIT(16) /* 945 only */
- #define   FW_BLC_SELF_EN           REG_BIT(15) /* 945 only */
- 
-+#define FPGA_DBG		_MMIO(0x42300)
-+#define   FPGA_DBG_RM_NOCLAIM	REG_BIT(31)
-+
-+#define CLAIM_ER		_MMIO(VLV_DISPLAY_BASE + 0x2028)
-+#define   CLAIM_ER_CLR		REG_BIT(31)
-+#define   CLAIM_ER_OVERFLOW	REG_BIT(16)
-+#define   CLAIM_ER_CTR_MASK	REG_GENMASK(15, 0)
-+
- #endif /* __INTEL_DISPLAY_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 5787f40ac62e..923b239714b7 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -238,8 +238,6 @@ static int i915_driver_early_probe(struct drm_i915_private *dev_priv)
- 
- 	intel_step_init(dev_priv);
- 
--	intel_uncore_mmio_debug_init_early(dev_priv);
--
- 	spin_lock_init(&dev_priv->gpu_error.lock);
- 
- 	intel_sbi_init(display);
-@@ -1281,6 +1279,8 @@ static int i915_drm_resume_early(struct drm_device *dev)
- 		drm_err(&dev_priv->drm,
- 			"Resume prepare failed: %d, continuing anyway\n", ret);
- 
-+	intel_display_driver_mmio_resume_early(display);
-+
- 	for_each_gt(gt, dev_priv, i)
- 		intel_gt_resume_early(gt);
- 
-@@ -1546,9 +1546,7 @@ static int i915_pm_runtime_suspend(struct device *kdev)
- 	enable_rpm_wakeref_asserts(rpm);
- 	intel_runtime_pm_driver_release(rpm);
- 
--	if (intel_uncore_arm_unclaimed_mmio_detection(&dev_priv->uncore))
--		drm_err(&dev_priv->drm,
--			"Unclaimed access detected prior to suspending\n");
-+	intel_display_driver_mmio_suspend_late(display);
- 
- 	/*
- 	 * FIXME: Temporary hammer to avoid freezing the machine on our DGFX
-@@ -1587,9 +1585,7 @@ static int i915_pm_runtime_resume(struct device *kdev)
- 	if (root_pdev)
- 		pci_d3cold_enable(root_pdev);
- 
--	if (intel_uncore_unclaimed_mmio(&dev_priv->uncore))
--		drm_dbg(&dev_priv->drm,
--			"Unclaimed access during suspend, bios?\n");
-+	intel_display_driver_mmio_resume_early(display);
- 
- 	intel_display_driver_pm_runtime_resume_early(display);
- 
-diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
-index dafee3dcd1c5..95637ada00d7 100644
---- a/drivers/gpu/drm/i915/i915_drv.h
-+++ b/drivers/gpu/drm/i915/i915_drv.h
-@@ -185,7 +185,6 @@ struct drm_i915_private {
- 	struct i915_dsm dsm;
- 
- 	struct intel_uncore uncore;
--	struct intel_uncore_mmio_debug mmio_debug;
- 
- 	struct i915_virtual_gpu vgpu;
- 
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 34ed82bb1b1a..377d3c005580 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -88,10 +88,6 @@ i915_param_named_unsafe(force_probe, charp, 0400,
- i915_param_named(memtest, bool, 0400,
- 	"Perform a read/write test of all device memory on module load (default: off)");
- 
--i915_param_named(mmio_debug, int, 0400,
--	"Enable the MMIO debug code for the first N failures (default: off). "
--	"This may negatively affect performance.");
--
- i915_param_named_unsafe(enable_guc, int, 0400,
- 	"Enable GuC load for GuC submission and/or HuC load. "
- 	"Required functionality can be selected using bitmask values. "
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 4d9d4cd3220d..0cb46609f4a3 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -53,7 +53,6 @@ struct drm_printer;
- 	param(char *, huc_firmware_path, NULL, 0400) \
- 	param(char *, gsc_firmware_path, NULL, 0400) \
- 	param(bool, memtest, false, 0400) \
--	param(int, mmio_debug, -IS_ENABLED(CONFIG_DRM_I915_DEBUG_MMIO), 0600) \
- 	param(unsigned int, reset, 3, 0600) \
- 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index d873072b7a92..7c836bcc6fdc 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -325,14 +325,6 @@
- #define GEN7_MEDIA_MAX_REQ_COUNT	_MMIO(0x4070)
- #define GEN7_GFX_MAX_REQ_COUNT		_MMIO(0x4074)
- 
--#define FPGA_DBG		_MMIO(0x42300)
--#define   FPGA_DBG_RM_NOCLAIM	REG_BIT(31)
--
--#define CLAIM_ER		_MMIO(VLV_DISPLAY_BASE + 0x2028)
--#define   CLAIM_ER_CLR		REG_BIT(31)
--#define   CLAIM_ER_OVERFLOW	REG_BIT(16)
--#define   CLAIM_ER_CTR_MASK	REG_GENMASK(15, 0)
--
- #define VLV_GU_CTL0	_MMIO(VLV_DISPLAY_BASE + 0x2030)
- #define VLV_GU_CTL1	_MMIO(VLV_DISPLAY_BASE + 0x2034)
- #define GEN2_IER	_MMIO(0x20a0)
-diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/intel_uncore.c
-index abd695e880c1..b53059c1a782 100644
---- a/drivers/gpu/drm/i915/intel_uncore.c
-+++ b/drivers/gpu/drm/i915/intel_uncore.c
-@@ -56,15 +56,6 @@ fw_domains_get(struct intel_uncore *uncore, enum forcewake_domains fw_domains)
- 	uncore->fw_get_funcs->force_wake_get(uncore, fw_domains);
- }
- 
--void
--intel_uncore_mmio_debug_init_early(struct drm_i915_private *i915)
--{
--	spin_lock_init(&i915->mmio_debug.lock);
--	i915->mmio_debug.unclaimed_mmio_check = 1;
--
--	i915->uncore.debug = &i915->mmio_debug;
--}
--
- static const char * const forcewake_domain_names[] = {
- 	"render",
- 	"gt",
-@@ -512,66 +503,6 @@ intel_uncore_forcewake_reset(struct intel_uncore *uncore)
- 	return fw; /* track the lost user forcewake domains */
- }
- 
--static bool
--fpga_check_for_unclaimed_mmio(struct intel_uncore *uncore)
--{
--	u32 dbg;
--
--	dbg = __raw_uncore_read32(uncore, FPGA_DBG);
--	if (likely(!(dbg & FPGA_DBG_RM_NOCLAIM)))
--		return false;
--
--	/*
--	 * Bugs in PCI programming (or failing hardware) can occasionally cause
--	 * us to lose access to the MMIO BAR.  When this happens, register
--	 * reads will come back with 0xFFFFFFFF for every register and things
--	 * go bad very quickly.  Let's try to detect that special case and at
--	 * least try to print a more informative message about what has
--	 * happened.
--	 *
--	 * During normal operation the FPGA_DBG register has several unused
--	 * bits that will always read back as 0's so we can use them as canaries
--	 * to recognize when MMIO accesses are just busted.
--	 */
--	if (unlikely(dbg == ~0))
--		drm_err(&uncore->i915->drm,
--			"Lost access to MMIO BAR; all registers now read back as 0xFFFFFFFF!\n");
--
--	__raw_uncore_write32(uncore, FPGA_DBG, FPGA_DBG_RM_NOCLAIM);
--
--	return true;
--}
--
--static bool
--vlv_check_for_unclaimed_mmio(struct intel_uncore *uncore)
--{
--	u32 cer;
--
--	cer = __raw_uncore_read32(uncore, CLAIM_ER);
--	if (likely(!(cer & (CLAIM_ER_OVERFLOW | CLAIM_ER_CTR_MASK))))
--		return false;
--
--	__raw_uncore_write32(uncore, CLAIM_ER, CLAIM_ER_CLR);
--
--	return true;
--}
--
--static bool
--check_for_unclaimed_mmio(struct intel_uncore *uncore)
--{
--	bool ret = false;
--
--	lockdep_assert_held(&uncore->debug->lock);
--
--	if (intel_uncore_has_fpga_dbg_unclaimed(uncore))
--		ret |= fpga_check_for_unclaimed_mmio(uncore);
--
--	if (intel_uncore_has_dbg_unclaimed(uncore))
--		ret |= vlv_check_for_unclaimed_mmio(uncore);
--
--	return ret;
--}
--
- static void forcewake_early_sanitize(struct intel_uncore *uncore,
- 				     unsigned int restore_forcewake)
- {
-@@ -617,9 +548,6 @@ void intel_uncore_resume_early(struct intel_uncore *uncore)
- {
- 	unsigned int restore_forcewake;
- 
--	if (intel_uncore_unclaimed_mmio(uncore))
--		drm_dbg(&uncore->i915->drm, "unclaimed mmio detected on resume, clearing\n");
--
- 	if (!intel_uncore_has_forcewake(uncore))
- 		return;
- 
-@@ -1734,59 +1662,6 @@ ilk_dummy_write(struct intel_uncore *uncore)
- 	__raw_uncore_write32(uncore, RING_MI_MODE(RENDER_RING_BASE), 0);
- }
- 
--static void
--__unclaimed_reg_debug(struct intel_uncore *uncore,
--		      const i915_reg_t reg,
--		      const bool read)
--{
--	if (drm_WARN(&uncore->i915->drm,
--		     check_for_unclaimed_mmio(uncore),
--		     "Unclaimed %s register 0x%x\n",
--		     read ? "read from" : "write to",
--		     i915_mmio_reg_offset(reg)))
--		/* Only report the first N failures */
--		uncore->i915->params.mmio_debug--;
--}
--
--static void
--__unclaimed_previous_reg_debug(struct intel_uncore *uncore,
--			       const i915_reg_t reg,
--			       const bool read)
--{
--	if (check_for_unclaimed_mmio(uncore))
--		drm_dbg(&uncore->i915->drm,
--			"Unclaimed access detected before %s register 0x%x\n",
--			read ? "read from" : "write to",
--			i915_mmio_reg_offset(reg));
--}
--
--static inline bool __must_check
--unclaimed_reg_debug_header(struct intel_uncore *uncore,
--			   const i915_reg_t reg, const bool read)
--{
--	if (likely(!uncore->i915->params.mmio_debug) || !uncore->debug)
--		return false;
--
--	/* interrupts are disabled and re-enabled around uncore->lock usage */
--	lockdep_assert_held(&uncore->lock);
--
--	spin_lock(&uncore->debug->lock);
--	__unclaimed_previous_reg_debug(uncore, reg, read);
--
--	return true;
--}
--
--static inline void
--unclaimed_reg_debug_footer(struct intel_uncore *uncore,
--			   const i915_reg_t reg, const bool read)
--{
--	/* interrupts are disabled and re-enabled around uncore->lock usage */
--	lockdep_assert_held(&uncore->lock);
--
--	__unclaimed_reg_debug(uncore, reg, read);
--	spin_unlock(&uncore->debug->lock);
--}
--
- #define __vgpu_read(x) \
- static u##x \
- vgpu_read##x(struct intel_uncore *uncore, i915_reg_t reg, bool trace) { \
-@@ -1842,15 +1717,11 @@ __gen2_read(64)
- #define GEN6_READ_HEADER(x) \
- 	u32 offset = i915_mmio_reg_offset(reg); \
- 	unsigned long irqflags; \
--	bool unclaimed_reg_debug; \
- 	u##x val = 0; \
- 	assert_rpm_wakelock_held(uncore->rpm); \
--	spin_lock_irqsave(&uncore->lock, irqflags); \
--	unclaimed_reg_debug = unclaimed_reg_debug_header(uncore, reg, true)
-+	spin_lock_irqsave(&uncore->lock, irqflags)
- 
- #define GEN6_READ_FOOTER \
--	if (unclaimed_reg_debug) \
--		unclaimed_reg_debug_footer(uncore, reg, true);	\
- 	spin_unlock_irqrestore(&uncore->lock, irqflags); \
- 	trace_i915_reg_rw(false, reg, val, sizeof(val), trace); \
- 	return val
-@@ -1948,15 +1819,11 @@ __gen2_write(32)
- #define GEN6_WRITE_HEADER \
- 	u32 offset = i915_mmio_reg_offset(reg); \
- 	unsigned long irqflags; \
--	bool unclaimed_reg_debug; \
- 	trace_i915_reg_rw(true, reg, val, sizeof(val), trace); \
- 	assert_rpm_wakelock_held(uncore->rpm); \
--	spin_lock_irqsave(&uncore->lock, irqflags); \
--	unclaimed_reg_debug = unclaimed_reg_debug_header(uncore, reg, false)
-+	spin_lock_irqsave(&uncore->lock, irqflags)
- 
- #define GEN6_WRITE_FOOTER \
--	if (unclaimed_reg_debug) \
--		unclaimed_reg_debug_footer(uncore, reg, false); \
- 	spin_unlock_irqrestore(&uncore->lock, irqflags)
- 
- #define __gen6_write(x) \
-@@ -2490,7 +2357,6 @@ static int sanity_check_mmio_access(struct intel_uncore *uncore)
- int intel_uncore_init_mmio(struct intel_uncore *uncore)
- {
- 	struct drm_i915_private *i915 = uncore->i915;
--	struct intel_display *display = i915->display;
- 	int ret;
- 
- 	ret = sanity_check_mmio_access(uncore);
-@@ -2525,19 +2391,9 @@ int intel_uncore_init_mmio(struct intel_uncore *uncore)
- 	GEM_BUG_ON(intel_uncore_has_forcewake(uncore) != !!uncore->funcs.read_fw_domains);
- 	GEM_BUG_ON(intel_uncore_has_forcewake(uncore) != !!uncore->funcs.write_fw_domains);
- 
--	if (HAS_FPGA_DBG_UNCLAIMED(display))
--		uncore->flags |= UNCORE_HAS_FPGA_DBG_UNCLAIMED;
--
--	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915))
--		uncore->flags |= UNCORE_HAS_DBG_UNCLAIMED;
--
- 	if (IS_GRAPHICS_VER(i915, 6, 7))
- 		uncore->flags |= UNCORE_HAS_FIFO;
- 
--	/* clear out unclaimed reg detection bit */
--	if (intel_uncore_unclaimed_mmio(uncore))
--		drm_dbg(&i915->drm, "unclaimed mmio detected on uncore init, clearing\n");
--
- 	return 0;
- }
- 
-@@ -2800,51 +2656,6 @@ int __intel_wait_for_register(struct intel_uncore *uncore,
- 	return ret;
- }
- 
--bool intel_uncore_unclaimed_mmio(struct intel_uncore *uncore)
--{
--	bool ret;
--
--	if (!uncore->debug)
--		return false;
--
--	spin_lock_irq(&uncore->debug->lock);
--	ret = check_for_unclaimed_mmio(uncore);
--	spin_unlock_irq(&uncore->debug->lock);
--
--	return ret;
--}
--
--bool
--intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
--{
--	bool ret = false;
--
--	if (drm_WARN_ON(&uncore->i915->drm, !uncore->debug))
--		return false;
--
--	spin_lock_irq(&uncore->debug->lock);
--
--	if (unlikely(uncore->debug->unclaimed_mmio_check <= 0))
--		goto out;
--
--	if (unlikely(check_for_unclaimed_mmio(uncore))) {
--		if (!uncore->i915->params.mmio_debug) {
--			drm_dbg(&uncore->i915->drm,
--				"Unclaimed register detected, "
--				"enabling oneshot unclaimed register reporting. "
--				"Please use i915.mmio_debug=N for more information.\n");
--			uncore->i915->params.mmio_debug++;
--		}
--		uncore->debug->unclaimed_mmio_check--;
--		ret = true;
--	}
--
--out:
--	spin_unlock_irq(&uncore->debug->lock);
--
--	return ret;
--}
--
- /**
-  * intel_uncore_forcewake_for_reg - which forcewake domains are needed to access
-  * 				    a register
-diff --git a/drivers/gpu/drm/i915/intel_uncore.h b/drivers/gpu/drm/i915/intel_uncore.h
-index 4ec7c545d04e..9047d7d4d855 100644
---- a/drivers/gpu/drm/i915/intel_uncore.h
-+++ b/drivers/gpu/drm/i915/intel_uncore.h
-@@ -39,11 +39,6 @@ struct intel_runtime_pm;
- struct intel_uncore;
- struct intel_gt;
- 
--struct intel_uncore_mmio_debug {
--	spinlock_t lock; /** lock is also taken in irq contexts. */
--	int unclaimed_mmio_check;
--};
--
- enum forcewake_domain_id {
- 	FW_DOMAIN_ID_RENDER = 0,
- 	FW_DOMAIN_ID_GT,        /* also includes blitter engine */
-@@ -142,8 +137,6 @@ struct intel_uncore {
- 
- 	unsigned int flags;
- #define UNCORE_HAS_FORCEWAKE		BIT(0)
--#define UNCORE_HAS_FPGA_DBG_UNCLAIMED	BIT(1)
--#define UNCORE_HAS_DBG_UNCLAIMED	BIT(2)
- #define UNCORE_HAS_FIFO			BIT(3)
- #define UNCORE_NEEDS_FLR_ON_FINI	BIT(4)
- 
-@@ -180,8 +173,6 @@ struct intel_uncore {
- 	} *fw_domain[FW_DOMAIN_ID_COUNT];
- 
- 	unsigned int user_forcewake_count;
--
--	struct intel_uncore_mmio_debug *debug;
- };
- 
- /* Iterate over initialised fw domains */
-@@ -198,18 +189,6 @@ intel_uncore_has_forcewake(const struct intel_uncore *uncore)
- 	return uncore->flags & UNCORE_HAS_FORCEWAKE;
- }
- 
--static inline bool
--intel_uncore_has_fpga_dbg_unclaimed(const struct intel_uncore *uncore)
--{
--	return uncore->flags & UNCORE_HAS_FPGA_DBG_UNCLAIMED;
--}
--
--static inline bool
--intel_uncore_has_dbg_unclaimed(const struct intel_uncore *uncore)
--{
--	return uncore->flags & UNCORE_HAS_DBG_UNCLAIMED;
--}
--
- static inline bool
- intel_uncore_has_fifo(const struct intel_uncore *uncore)
- {
-@@ -228,15 +207,12 @@ intel_uncore_set_flr_on_fini(struct intel_uncore *uncore)
- 	return uncore->flags |= UNCORE_NEEDS_FLR_ON_FINI;
- }
- 
--void intel_uncore_mmio_debug_init_early(struct drm_i915_private *i915);
- void intel_uncore_init_early(struct intel_uncore *uncore,
- 			     struct intel_gt *gt);
- int intel_uncore_setup_mmio(struct intel_uncore *uncore, phys_addr_t phys_addr);
- int intel_uncore_init_mmio(struct intel_uncore *uncore);
- void intel_uncore_prune_engine_fw_domains(struct intel_uncore *uncore,
- 					  struct intel_gt *gt);
--bool intel_uncore_unclaimed_mmio(struct intel_uncore *uncore);
--bool intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore);
- void intel_uncore_cleanup_mmio(struct intel_uncore *uncore);
- void intel_uncore_fini_mmio(struct drm_device *dev, void *data);
- void intel_uncore_suspend(struct intel_uncore *uncore);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 69046d0cd5e9..055396f85e4a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -571,7 +571,6 @@ static const struct platform_desc hsw_desc = {
+ 	.info = &(const struct intel_display_device_info) {
+ 		.has_ddi = 1,
+ 		.has_dp_mst = 1,
+-		.has_fpga_dbg = 1,
+ 		.has_hotplug = 1,
+ 		.has_psr = 1,
+ 		.has_psr_hw_tracking = 1,
+@@ -624,7 +623,6 @@ static const struct platform_desc bdw_desc = {
+ 	.info = &(const struct intel_display_device_info) {
+ 		.has_ddi = 1,
+ 		.has_dp_mst = 1,
+-		.has_fpga_dbg = 1,
+ 		.has_hotplug = 1,
+ 		.has_psr = 1,
+ 		.has_psr_hw_tracking = 1,
+@@ -665,7 +663,6 @@ static const struct intel_display_device_info skl_display = {
+ 	.dbuf.slice_mask = BIT(DBUF_S1),
+ 	.has_ddi = 1,
+ 	.has_dp_mst = 1,
+-	.has_fpga_dbg = 1,
+ 	.has_hotplug = 1,
+ 	.has_ipc = 1,
+ 	.has_psr = 1,
+@@ -815,7 +812,6 @@ static const struct platform_desc cml_desc = {
+ 	.dbuf.slice_mask = BIT(DBUF_S1), \
+ 	.has_dp_mst = 1, \
+ 	.has_ddi = 1, \
+-	.has_fpga_dbg = 1, \
+ 	.has_hotplug = 1, \
+ 	.has_ipc = 1, \
+ 	.has_psr = 1, \
+@@ -874,7 +870,6 @@ static const struct platform_desc glk_desc = {
+ 	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2), \
+ 	.has_ddi = 1, \
+ 	.has_dp_mst = 1, \
+-	.has_fpga_dbg = 1, \
+ 	.has_hotplug = 1, \
+ 	.has_ipc = 1, \
+ 	.has_psr = 1, \
+@@ -965,7 +960,6 @@ static const struct platform_desc ehl_desc = {
+ 	.has_ddi = 1, \
+ 	.has_dp_mst = 1, \
+ 	.has_dsb = 1, \
+-	.has_fpga_dbg = 1, \
+ 	.has_hotplug = 1, \
+ 	.has_ipc = 1, \
+ 	.has_psr = 1, \
+@@ -1133,7 +1127,6 @@ static const struct platform_desc adl_s_desc = {
+ 	.has_ddi = 1,								\
+ 	.has_dp_mst = 1,							\
+ 	.has_dsb = 1,								\
+-	.has_fpga_dbg = 1,							\
+ 	.has_hotplug = 1,							\
+ 	.has_ipc = 1,								\
+ 	.has_psr = 1,								\
+@@ -1313,7 +1306,6 @@ static const struct platform_desc dg2_desc = {
+ 	.has_ddi = 1,								\
+ 	.has_dp_mst = 1,							\
+ 	.has_dsb = 1,								\
+-	.has_fpga_dbg = 1,							\
+ 	.has_hotplug = 1,							\
+ 	.has_ipc = 1,								\
+ 	.has_psr = 1,								\
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index 7121e7cd9512..4f82520ef960 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -134,7 +134,6 @@ struct intel_display_platforms {
+ 	func(has_ddi); \
+ 	func(has_dp_mst); \
+ 	func(has_dsb); \
+-	func(has_fpga_dbg); \
+ 	func(has_gmch); \
+ 	func(has_hotplug); \
+ 	func(has_hti); \
+@@ -177,7 +176,6 @@ struct intel_display_platforms {
+ #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+ #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+ #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
+-#define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
+ #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >= 3)
+ #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >= 10 || (__display)->platform.kabylake)
+ #define HAS_GMBUS_IRQ(__display)	(DISPLAY_VER(__display) >= 4)
 -- 
 2.56.0
 
