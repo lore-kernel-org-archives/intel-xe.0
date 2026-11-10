@@ -2,158 +2,126 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336F1606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 02:44:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3278A606A321
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 04:18:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kZq/6TwA
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=TwwMYAl5
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA97E10E841;
-	Tue, 10 Nov 2026 02:44:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD4B10E1C3;
- Tue, 10 Nov 2026 02:44:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794278658; x=1825814658;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=m2Lg/O8FpNqFBHaES2iBsPx96KSV9uJu+KXOIpV1qcg=;
- b=kZq/6TwAiQnHhAyEtuJtuxB4EO78bzmZmKEGPYqz2yjWA9Ia6h7ZgBQX
- zDSZaNEZzJ/W0a57vxhGhB5AhaHjFTLfRkskYehvuOY7f1BjcdMk9f7N8
- qQ7swiSXfZdOGoLk+5+9B9TlJWSrmfyqFCisQdEFcpHAKpOt05N1L+mM/
- NSal5+B1Nqdqlt/laqwQwhdZYTQaDslnCj4dTTRY7fDuG33wifU2pMFqw
- U2Qr/QRsYBR3LtQb/3mRZQ+boo9FM+Do3HU2cr8DAziOwYhbh0BCZyS3N
- YNbAX96jTHuLkWIw8YNf1Eri4oruIKIZRjiHI9FWOfun9921b7Q55hDd7 w==;
-X-CSE-ConnectionGUID: Vy9WejcRQXKiS20TWHgE6g==
-X-CSE-MsgGUID: K93iGx7hRGu8cf6eFbROqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11961"; a="3052184"
-X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
-   d="scan'208";a="3052184"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 18:44:14 -0800
-X-CSE-ConnectionGUID: NXswh0GjQ2iEEaj/uJ0F9w==
-X-CSE-MsgGUID: /LAtMG1sSO+/HPr08qRDJA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,204,1787036400"; 
-   d="scan'208";a="9884375"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2026 18:44:13 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 9 Nov 2026 18:44:12 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Mon, 9 Nov 2026 18:44:12 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.49) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 9 Nov 2026 18:44:12 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id D693C10E163;
+	Tue, 10 Nov 2026 04:18:05 +0000 (UTC)
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012008.outbound.protection.outlook.com [52.101.43.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E434910E163;
+ Tue, 10 Nov 2026 04:17:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WRyfGgw5vMHd7/UtRHi5imVHEE7rpxsTZPEbl4ipxglWEXFsoTdHAvVvPvLsMuDv7/f4c1Aah/qFBLZsm1t0wCFvCjoqgDL2c4eceg6PmnWrLPYZna5oiLBjppsfSrbyOFQ0qdu2A4J4YHdGemzwxUDdCTgbh0zADcYjF/ozZM9agNUR7taIgaXT7JOLjd7J1PBRPxn2lloHhAbLr0k/gQchQkXQYmV3dF0SdAcImNf4+l8yPXVgBU2LlpwQE99O2ntr5VTYHHVjRyXkVsCunI18Y52aiBT1Jo0thKWL4W9bhKgHqpSXUZyMk3uR15vmfoMdXzMdBRmgRUZf5srABg==
+ b=mW12NP9TzOyvxwAp5ibSzkUGW6kdNfLUntd3/fq2Ezcdap/LyjOLJZ6JeoqesgQWoGuTLfR9jG9Vagm3zcPpDVxzvYzqvzCsyqistIQebNa9exJgl9FjduRu0Fk/Pl9JX4BsTLCc9BSv+oEsjI6OmX6CRqc1x3viSwWKrQfymSAhIhpves+89NJnUt6HqvgkOYvIPbIlUVFxNuNqD301zL8EmMt5rXb1IT9cfJ4LTysQbXufM0bS1WepPvKJdFXrT1N/kdCz388CsKgIGs++X939T/sTzaReClD7//00BTiF4iUxKcpZbT202SV0Kd9/GABXfaoCtflxaWIa+H1MUw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tKJVXzsRANETgoFVQ4KfuwazeholpIyt9bgGIRpG4DQ=;
- b=yaW3RlouL5zcmoZYKKzPAT5LzUxYxJKWfOthFtSg8S+uMIlvxiVamzmrcnc2IpLrLSc4MBCuptnjaTHKhV1tsjVfnotu1tU8rwMLF73eW3JSR3BZ7vv7qqddBD90lHjGsXhT/yT8VWHllHtIt7noCY8g4Qs/sUs/cJeFkyfB2bS9e3wzc66hm7BJCv+qgaBtaHkSEtdcGaprU5wMIWu7+RlkqRHEiCO+TYioOY26rZDVSPxZIOizV7/DwOfjQhZ00bS0fYrFQY2QALE+HggUVrX0oh2zxi84B/hE+nN9RYHrR6oS+r7xL9ulXbMiytDQ8LVJE1isqwu5s0qoEAoVNA==
+ bh=c6kYukEkSFLL4JlkRDsBQm2C2WyNDoKzdqXslAgHPGI=;
+ b=sO6d+EZp5Gp/K2+NxG0fcbv6OjzFzmtJb9r7U7JKvZMbpyrmJr1t7tLiRT2VzIxAWQX/sw7UlbOTa4kDjuwJazFanNRNQfZ/enRS7ej5Vfo1IRPfWWwVzIEopBeuhKyQhFa2+DGg+Yk3k/Wxinqa5TRVRNNWADmcbCvBvC0OEUp3RQTc3r7GJiGZzP0+bup/2fmzZOgM+ZBfzrmK1eI47jeGH3G5De+Lb2nQxbQB6gpVfBQQnLqhQ7fAwBrNTtEjfgAEw1yk5GSqQ221VSX7JXPu5CCDBo3psp5aH7a6HdROe8A9f3wdOcu3D7vftVKefdiUswHz5JU/PY14E9j0Ew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c6kYukEkSFLL4JlkRDsBQm2C2WyNDoKzdqXslAgHPGI=;
+ b=TwwMYAl5lq/k8mt1It1JPAt8qdkgKiDDM8qMML4QH22wmOTx8YrCNxYUMM5uf4d/ZFk+WdmWUHnJDxSRZMrUSXkhSK4jqHLtfmJq5/SPxI0K7wqnD39y2MAyp+wBXUNGCuk1dcIGy0/H1uZrCaQD7QElYPvQ938j+n3+aEGGjSA=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
- by CH8PR11MB407363.namprd11.prod.outlook.com (2603:10b6:610:32d::23)
- with Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by LV2PR12MB127395.namprd12.prod.outlook.com (2603:10b6:404:300::23) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Tue, 10 Nov
- 2026 02:44:09 +0000
-Received: from MW3PR11MB4684.namprd11.prod.outlook.com
- ([fe80::2f5a:96ce:f7e4:c315]) by MW3PR11MB4684.namprd11.prod.outlook.com
- ([fe80::2f5a:96ce:f7e4:c315%7]) with mapi id 15.21.0592.012; Tue, 10 Nov 2026
- 02:44:09 +0000
-Date: Mon, 9 Nov 2026 18:44:06 -0800
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>, Thomas
- =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 08/33] drm/ttm: Bound page (re)allocation per
- defragmentation move
-Message-ID: <avKE9ruZsQwbsQEa@nvishwa1-desk>
-References: <20260711025619.2540575-1-matthew.brost@intel.com>
- <20260711025619.2540575-9-matthew.brost@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
-Content-Disposition: inline
+ 2026 04:17:57 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0592.012; Tue, 10 Nov 2026
+ 04:17:57 +0000
+Message-ID: <e61742c6-1295-48ac-afb1-f047a8dc7b81@amd.com>
+Date: Tue, 10 Nov 2026 09:47:50 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] gpu/buddy: restore two-pass clear/dirty guard for
+ range-biased allocation
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+To: matthew.auld@intel.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: christian.koenig@amd.com, alexander.deucher@amd.com,
+ Anand.Raghavendra@amd.com
+References: <20261104072847.2617886-1-arunpravin.paneerselvam@amd.com>
+ <bc02f8db-8d1f-41b5-b930-c5d46151db73@amd.com>
+Content-Language: en-US
+In-Reply-To: <bc02f8db-8d1f-41b5-b930-c5d46151db73@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260711025619.2540575-9-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0080.namprd03.prod.outlook.com
- (2603:10b6:a03:331::25) To MW3PR11MB4684.namprd11.prod.outlook.com
- (2603:10b6:303:5d::14)
+X-ClientProxiedBy: MA5PR01CA0222.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1f3::15) To DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW3PR11MB4684:EE_|CH8PR11MB407363:EE_
-X-MS-Office365-Filtering-Correlation-Id: 374edf55-a133-41dc-c470-08df3ed47ed6
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|LV2PR12MB127395:EE_
+X-MS-Office365-Filtering-Correlation-Id: e0da4c2c-f552-4209-68af-08df3ee19923
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|7416014|18002099003|22082099003|10067099003|4143699003|11063799006|56012099006|261102123227099003|261028144727099003|261102130727099003|261021123027099003|261022105027099003|261022113327099003|261009220027099003|261022075727099003|261021121427099003|261026140227099003|261009223027099003|261026121527099003|261009223327099003|261009221227099003|261009221727099003;
-X-Microsoft-Antispam-Message-Info: KNmEJY739bfGe0ze10fd+dLJMKqGO5UvRAEHAgJ05rxRmge4yU2S1KXYwZP3tsj/xw5AxHX0PdbJ0bMneiwfhGTeb854wcH2i7eNP5ISiKXFzxwdx9wD6qjDyr6v4r1q2csCIOOW3RGUj0jLR8TYHKrmVfhIY755OQTv87XlzKtRnA7PcO6zHSX2rvVWGlpG3wfGXMOAMjzSUVdyLW/AhoO4SDNJL1vuOuJ16jQG0VKn1pAN89xFney0uNqbGdCAUSRDomXE0Eu0ozCR6Zee0t9UFeoyPCGLzEGGt0tL9F1vwFVhvjPymwsAo6nROG5BlOzUzrNZ8kNvXqlz7f2+vsfj+58cvinFFR5+19DLpnzhl2kCLYd4NcimbfGD59CVgyUqrlEYgCMXY1HEcsYUmVYIDVYYwAMnNFk57/3LjXPib9zU599CeVl7yNym8tYLJRFx4Qim7GdR97umubAsDnnvUsYtPOg9FPZloD7wsmOnoUOOypVk29CtZEMvnoB5xMcWbWQeXynZ8e0bUqym9j7MJZ0Z5co5E36HHhsPrl0dJYKakzTt+j12o6OEPOvUgxaONn7BlOZvjwScGe89eCtkun2lhp31W9Iz/m87TpXuhlYvCaXRwAMBw4HAXloG4BJj8iH+ihF9LRGFQvFf65AubxzXAyr2ZcXKrU5DPQQ=
+ ARA:13230040|376014|23010399003|366016|1800799024|22082099003|18002099003|10067099003|5023799004|11063799006|4143699003|261102123227099003|261026121527099003|261028144727099003|261022105027099003|261009223027099003|261022075727099003|261021121427099003|261021123027099003|56012099006|261026140227099003;
+X-Microsoft-Antispam-Message-Info: NWIeOhyiXbYgdayCSlPqRkTyvMkHKlNZggKU5CHAKdtcBZM2Gypp5R2gOxyW8AYiNhFRZI1gtdKDpRP+5hgAHO4F7Xa8dgzqd2k3E8Gy8hIMFok5fMdPRPxVl1pUQPUiCjjsekdlLTMG5htp4V0PvNJ2bAVM/YDZ5mbYoWTmJ0OIzusjCi5R7bnMLAsyMLQhQuXxtO7vfijfTdGTlMA+EQXa8bahEy8JXLacuG/n0ejZjFL7/f0/GiX8xyvkMzz7TMELPvtEQuoPPP6rZPfwG3WgolSo5a4vHdllmiX/YzCfuzgBcHWlRP828jly4R4dB5P3S0mZJQ/ej6d8rpW8Z7Vqsstq2i1e5Ow9pmXi/sfUT+lu2HM0UkMQYGwAwuxJ80bf8u5KY92aVDOGhtIVIssarLqLDXAS0PxelPdmTjgQCbbMXQicOzzqb4EVEAZjAJRCISNMudni3NTprPBmrsieJhHLt599H5n+idjAp6Rr2hYa0+g9QKIYAmb+cD1mZkc6YWfQ//8bZrxDvO+/cIG4ho8jnPTKgFTMlGQr9y1d4iWxGtW5iLaKNJ2FPRVdjJ8GEAmKW3V5NJQlORqaZwPc3yYE0M138ajDGlDmmhzzDWZduvj3k17QbYq+nuPJuV/4n50k8ExOHFv1qcBMWOiNtZnUg4uuJkAqanwAY0o=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW3PR11MB4684.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(7416014)(18002099003)(22082099003)(10067099003)(4143699003)(11063799006)(56012099006)(261102123227099003)(261028144727099003)(261102130727099003)(261021123027099003)(261022105027099003)(261022113327099003)(261009220027099003)(261022075727099003)(261021121427099003)(261026140227099003)(261009223027099003)(261026121527099003)(261009223327099003)(261009221227099003)(261009221727099003);
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(366016)(1800799024)(22082099003)(18002099003)(10067099003)(5023799004)(11063799006)(4143699003)(261102123227099003)(261026121527099003)(261028144727099003)(261022105027099003)(261009223027099003)(261022075727099003)(261021121427099003)(261021123027099003)(56012099006)(261026140227099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?cBmK23P72fCSbufnVRE38vsAvBaRX40PkOqZJsul+PP6R+q+i58grCrxny?=
- =?iso-8859-1?Q?hW+BeMy/Day6DkDpsGEOggCJ6cxDo300AZ8TCEEwSdE/F1roVRk2DOwA2s?=
- =?iso-8859-1?Q?4qJ68yXW6xCD9pTPDsipHnzor4tmLQ6Hl6aHfE7azTbNM6C+bP4F3nQ5iw?=
- =?iso-8859-1?Q?w7l1q/HWO9qa6Jw8jzMTk4lndO2lpqmm2soU7+5XLArGzqskrTtYADBIJ1?=
- =?iso-8859-1?Q?yL/pbDJU6LZtAnAuqwxCETWmgMMEZ7meQDxZvEBF5TL/XiQXMGdfTFQD+p?=
- =?iso-8859-1?Q?qybpdWVwLeIBXEwyC+ibsJoSOcupco8JDp+/KLooC68ubfUneJsTD4YY/+?=
- =?iso-8859-1?Q?PV1Jf6v8PanzUKxXP9Lu3wewpQH8cJZL/NjAKdhShFjWjUd7QhdgnM4hXs?=
- =?iso-8859-1?Q?xGb7U6ruaAN7K6b7QP2OkNvVEdNCB+FSJE/pwMQoLtfDwksKTOvuKPVSlH?=
- =?iso-8859-1?Q?CSia+kL5SsHPc50eTpKGE0Qr5B5GJ3YKNgIw8JkzryJpePgzakx7dCQr3X?=
- =?iso-8859-1?Q?3qRxGG0IKAUaIoJZSBo3Q1HOLoB7Ny5fitPJovR6CgQyokYidO/mkIPdXf?=
- =?iso-8859-1?Q?3r8Bb2Xbb5YBgjVSUX51IcybCir13XDmoodbTcYA1rmbf7mh/lZP7l092p?=
- =?iso-8859-1?Q?8vopAd2kzyUeRY0/jV67GGW1aHKj0h59puiC9q83AmjSXvsd5ne4l76iF2?=
- =?iso-8859-1?Q?MQ5HVuxQoTcK6HmOduZB925dWIWmw8+2E5kvUlZ45wA1SGKUOPote1xfZl?=
- =?iso-8859-1?Q?BNpghupW9ACmTzCDqLj5IUH1LQOcZQkoZNk1fkbwwf0MBEEVp84fxbFWYt?=
- =?iso-8859-1?Q?+FVApZ6vECv3mNf5lISejaeJfKIg3sn5Hf3Ld9yKSWB2dX25dME/+JpNGP?=
- =?iso-8859-1?Q?1nGwMD63XqMUZSPqELMizwjq4JoIMkf5iQVBX6XtAVsfUaMy7KTOiLGMT8?=
- =?iso-8859-1?Q?bSbnnvgupjGOfZ8pBRUHhNQYuSfJGQn5u8B+eJCF0jw8ZtZSrjY+ljcuLJ?=
- =?iso-8859-1?Q?HfOEDronD+qgzS3gCJMtft0dmYbm1yX1q0yql1DIY7ohGnNLBiEN8DAmw1?=
- =?iso-8859-1?Q?ut64LRVlQFkFwFK5ioJLRnhLgD2XAbi0ZZeM1zxsvwisifD8y5O8bwJcV/?=
- =?iso-8859-1?Q?Km2LYiEvkepFoGU7B8Betil7Y2TFVelfnvxtv7bYUoueyAC13N76DHqHuL?=
- =?iso-8859-1?Q?Q7DOJ9ESVGpNB2wHyJWkHJ74qgvyFjO3ILLh28TAmMxmsMoH06bGO5iOw9?=
- =?iso-8859-1?Q?lhWHo5LAh/yNKcqCpVDZKT38qMzBRlSjrbJRas7FM+jzcV76XrvvmDHwe/?=
- =?iso-8859-1?Q?hbNwHe2Rx5rSG5u/JhkrpdDBusv7KNzNorPK/HyzVcWfKq9yxcVn2bxREk?=
- =?iso-8859-1?Q?eRbDQ0QThJk0GQJuNHTst95Mtw+YMz80MJCEKqYaHkarh6ql8IfrDLldR8?=
- =?iso-8859-1?Q?pJ4mWIG/WK7cYkIA5gKYN4Giw0jvG0QM0EfRd5TQQ8HAtR1cWwXWAOXpDy?=
- =?iso-8859-1?Q?Zhgmdkptttzb0zl1uL09oMW7qSDMC2pDrs8ang2ju2obup6wXY7JBIM6oH?=
- =?iso-8859-1?Q?YR3UlQDD0ZMw0GjP9f8qB2cQK+XLMTqGPKcfRoDRjfxqiEE5m1XNBz4MG7?=
- =?iso-8859-1?Q?ja4qufqzeB2YD3z2DtwaMLdVz9rqAxZQ9kewAOtRRNuhW4JG7k+lU5H1O+?=
- =?iso-8859-1?Q?qZYmZHAy2wITXiAFBtcKXoizcEZLAKoMA94vTgWSsenRNvy0rMEUA71swL?=
- =?iso-8859-1?Q?OW+g73r5N8FA+8fIioBj+aczzy1Zju50cUQznPuQQpMhdOkRx6WS1jc+5d?=
- =?iso-8859-1?Q?1BEzgJCqdhZud/QDYwAaiTKzMb9kqXKLFCT6y5abG9tJ0CwELOqH?=
-X-Exchange-RoutingPolicyChecked: DxtUa/d/Vv/kDDA2Tsfjgd7aAV6IwxnN62Aw2sCD/67uhGL2TZ3ugvRy7SFeIsCq4EfyTzSTaeSCO5SOtPat2rc328DRn2ywZxVp9w26Mgz2Oomp0Z1SWTUnGPRgbrT5haBms71lSbMLs0CE1wejUlI6uPElk1OMAZdeoyJOeUGLIruviTixvO/PE3FfVjO4SqVS3Z80prxqVyKKgYgctllX1mno8FMmcd/RA5cL7+31uIpODapX+aUj8wnWZ8n8E1legzsHSqlQqEvII/pAlhGui9Dhfcnh5J18/i9S0Ax+iPv2pfYtuyhnxMYlaWnTVZ4kcN4ou0JsGM7u33BSWg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 374edf55-a133-41dc-c470-08df3ed47ed6
-X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4684.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VnphZlJ4SWxpQVdDTmJrRUtCN0pscXRVN3JQT0s2WEU3Qm9IU1hGQkZZK21Q?=
+ =?utf-8?B?MGc2QWkwM2tPakFjOE1xQzZKNnA5eW9IMHcxQ3RYdEVPY3pxZ0NtckFaQkVT?=
+ =?utf-8?B?Z0NoTUNiV1pVTDZOa3RicTlWS0FpZ1IwUGprRlZ0QmZqTEkra1FDUEdoc0hL?=
+ =?utf-8?B?dGVHeVJQdlVmc09oWjd0eWVoYXZnOUhieDRCNCsvQWl6Mis3QUgrdC95SDNR?=
+ =?utf-8?B?WG9QMlNpWTBOR0NDTFFoRWQvYkoyZ2JUTENRYy9OQ2dSL1pvQVc3WVY2SG1D?=
+ =?utf-8?B?dzhOWkVtYnBrb0pHMUU4TlhvcjhERGZoM2hhVXdPMms0anZnZGg5QWNVNlB2?=
+ =?utf-8?B?dGFnWU5wZFpLazNjQXpkdUEzWDRlUkNSSSt3MXlvSjBKdmVHeXk0a0JNK1Nz?=
+ =?utf-8?B?cHA1bFQvM1p2TEtpaWhlS2JjZHl3YUhldlQ5eTdGZnpNZTlpVFhqQnVHUlZq?=
+ =?utf-8?B?R2xVVDcxZVdIR3RWUDcvYzFQWTdudTVBR2VoZzA1UVhScmlncWtjd3dzWjNh?=
+ =?utf-8?B?WlhhaUxNellBWDZJczlYMzRDVFUxYi9tZFVsdlZ1NFFsN1Y3dmw0eHhkdFFP?=
+ =?utf-8?B?QmtFc3hGc3Y4a3ZSczEvbGNFQjFxWXYrd25ZcnAzVUZYSkZraWFvbHExQnB1?=
+ =?utf-8?B?djZEUW5qUFlpcE5abVlEZU84SGVmQ3pZWUhPSHh2cFFKNFBKYTlJbXZoRnRl?=
+ =?utf-8?B?eG5YTHBDVEJ2ZkFRUStGdU9LNkpwSk92bUoydXdBaHYwMC9uUWNCOEU0d1pu?=
+ =?utf-8?B?WFhLNXRqUFlwMlBpbGt2YkVWdE1rZkNETlV3Y2lWL1BpNGJub3BJajFsczY1?=
+ =?utf-8?B?dmx3eWRjeTJ5ZmNGNzhYTWNmZXo2bzJSN3JoWEo4OXpQYTRxU2ZUOHhnMU5X?=
+ =?utf-8?B?NFpoSGo5RmRiY29wTWFiU0NTYkxEUlVIT3lGSjlKZmJXaHl5VXR0U0xKbnhE?=
+ =?utf-8?B?aTd3NzlvVEs5dmFURk85YUc0SDZXcjRTVnIzZkMyc1VyOE84LzBQbDJwei9j?=
+ =?utf-8?B?Ty80bnFIZC95TWp5c3F2WXhKdENMa21hQlZORHFmV0tCUjJnN3BDSTRwWndj?=
+ =?utf-8?B?d1hFVHNXUCtOVWMwL0w5YkdWdFl3RlIwZHN5NHFOa25YQkVzTy9NYjdXd1ds?=
+ =?utf-8?B?dlNwZW4rWlpKU0g0MERzQk5ZeEJlN3VCVkhWQWpzcWtOWm1iWjQvbGw3bFlF?=
+ =?utf-8?B?dHFobWtLdm9oU0FhcGcyOEZpMGtaQVVuTjF2b2JRaHBqY0hoQzk0am5vL3V0?=
+ =?utf-8?B?SDloUkhtdkxFK2lvcExXb0RseEpISnB3amRSYXNwcjAxMy9WbGJJUy80Wjcx?=
+ =?utf-8?B?dlRyRGo0d3Q1VXhBdlpNRmpFNWxRRFBPaUxsZjZVS1ZXZG5vbjBRSzZuakxl?=
+ =?utf-8?B?T3JKb3pydDdpYmU1Z1VHRlM2M2RIdmxRT2R4aXdLU3VGSWo0aFR2YkhZT2Jv?=
+ =?utf-8?B?YTFCaHRUN1N0TE9GUGFDZHdHSzZsd1RzdTRZSko3MEN4UEFSNytSVDZ2QW9Z?=
+ =?utf-8?B?bXJEazliMUwrOFNOa1dmT1NqTlVJTTJZaFRseTNST29KK1gyYVppV3V4WEFQ?=
+ =?utf-8?B?VkJ3eDlROFNtTHNqckw4MDE4WUNGcWJhTmlxRHBQanVFdTBpMVhjbVhqRzJJ?=
+ =?utf-8?B?dzlRSG1oRDJTZytFcUJyYWRkMWFybjZXcWNjVjY1d1AyY2c4cklsekJqWkJm?=
+ =?utf-8?B?SDJRLzhrRGJXRzU0YUtOTWJyNS9oZTJsK3lPbzRkcGp6ZHdhTTFPUW9ZM0I4?=
+ =?utf-8?B?LzRlZHFZcGhpMHZrY3Yyc1YxdGZWeGFZZTJjUHZqMUtJOW1hZktvNktRT0F2?=
+ =?utf-8?B?N1V1alp1MEtjNkZOR2dCTzEyZmYreUIrMjZicUxGSnlsV0dYSkdqVFhxSnVz?=
+ =?utf-8?B?QnprZjNtS2ZGdEpreVpERmJRc29KQXVuSjBneDFMSXkzQW5ZRWh0dXQzcHBQ?=
+ =?utf-8?B?RVJxL1M4RFJ6bVo5bFhSeUg5V29tVFVVUDZRZld3SzlJUjJSNGhXdEhZZlZL?=
+ =?utf-8?B?TFJYWlBOVDVqbXBGTmoyWE4zRy9JUUZ6Y1VPNFRiU3ZIOGZOQ2NramRYbk1Z?=
+ =?utf-8?B?Yk1LTVQreDlOeHBwdExSL3hwbmxxMU42YXIwNnNTZzJzdFVxOUQrbDVTcU5p?=
+ =?utf-8?B?a3IvVloyZVFweTcxSmNFYTU1VndQM3BHa0FJUkEvcHRCUmxWVVJFRHVKNk96?=
+ =?utf-8?B?TEV0V0pwOVVaNkZQaWJsMkRWcjRTZzZFS21Nb0ZJV1FJOEpZbVI4ZU9rdFNZ?=
+ =?utf-8?B?d2Z5b2ttaHUrblo1TXp3dGdNNXE5OG9SM3hhSFdPbzZ5NDBKaDZ2S0g5VjBY?=
+ =?utf-8?Q?tlcYVP28XbOjG/diIB?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0da4c2c-f552-4209-68af-08df3ee19923
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 02:44:09.3230 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Nov 2026 04:17:57.0694 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7xgbkaxgKwHUdodiuTIjsQGLrDbBtmmOgILUD+z2iFGD165fDQJSbqQcD5TTEM/ncqhWmPG+T+CzxmM2ewKTNBLEua3OePsl5s8sABSS61lRyGHsY4yD82eO2cF6gZh3
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH8PR11MB407363
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0/UEnQY0WepaylSZLYFrn0wH31hy5rAeRhwcMKXJK9p9EH3PZ0qA0bhOMhKHc/bj6L4iWqbRCI1WIT0G7rVvIQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB127395
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,304 +132,404 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Jul 10, 2026 at 07:55:54PM -0700, Matthew Brost wrote:
->A defragmentation move reallocates an object's backing at the device's
->beneficial order and harvests whatever the allocator cannot upgrade from
->the old tt. For a very large object this can reallocate (and have the
->driver re-copy) the entire backing in one move, which is expensive and
->can stall concurrent work for an unbounded stretch.
+Hi Matthew,
 
-Assisted-by: LLM
+Do you have any objections to this fix? I think we can push this first, 
+as it fixes the range-allocation path issue introduced by the base 
+patch, “gpu/buddy: replace dual-tree/force_merge with decoupled dirty 
+tracker.”
 
-NIT...So, a time budge would also be helpful here along with the size
-budge?
+The work William and Sanjay are doing to improve alloc_range_bias() can 
+come separately. This fix is also needed for CI to complete its runs and 
+allows us to move these patches forward, as clients are waiting for this 
+version in the next release.
 
->
->Add an optional per-move byte budget so a large object can be upgraded in
->slices across successive moves. Plumb a new
->ttm_operation_ctx::defrag_bytes_remaining through to the pool allocator:
->only pages actually (re)allocated at the beneficial order are charged
->against it; pages harvested (borrowed) from defrag_old_tt are free and do
->not count. Once the budget is exhausted the allocator stops upgrading and
->completes the new tt by harvesting the remainder of the old tt as-is,
->marking the tt sub-optimal (TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED) so the
->driver re-queues it and a later move resumes the upgrade. The slices
->already upgraded come back as free already-beneficial harvests on the
->next pass, so each move spends budget only on new forward progress.
->
->The allocator decrements the budget as it allocates and writes the unused
->remainder back on success, letting the caller compute how many bytes were
->actually spent. A value of 0 means unlimited (upgrade the whole object in
->one move), preserving the previous behaviour. This is only consulted on a
->defragmentation move, i.e. when defrag_old_tt is set.
->
->Cc: Carlos Santa <carlos.santa@intel.com>
->Cc: Ryan Neph <ryanneph@google.com>
->Cc: Christian Koenig <christian.koenig@amd.com>
->Cc: Huang Rui <ray.huang@amd.com>
->Cc: Matthew Auld <matthew.auld@intel.com>
->Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->Cc: Maxime Ripard <mripard@kernel.org>
->Cc: Thomas Zimmermann <tzimmermann@suse.de>
->Cc: David Airlie <airlied@gmail.com>
->Cc: Simona Vetter <simona@ffwll.ch>
->Cc: dri-devel@lists.freedesktop.org
->Cc: linux-kernel@vger.kernel.org
->Cc: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
->Assisted-by: GitHub_Copilot:claude-opus-4.8
->Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->---
-> drivers/gpu/drm/ttm/ttm_pool.c | 101 ++++++++++++++++++++++++++++++++-
-> include/drm/ttm/ttm_bo.h       |  14 +++++
-> 2 files changed, 112 insertions(+), 3 deletions(-)
->
->diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
->index 52f5e64f05dd..1673e81b8df8 100644
->--- a/drivers/gpu/drm/ttm/ttm_pool.c
->+++ b/drivers/gpu/drm/ttm/ttm_pool.c
->@@ -77,6 +77,11 @@ struct ttm_pool_dma {
->  * @dma_addr: Pointer to the next tt dma_address entry to populate if any.
->  * @remaining_pages: Remaining pages to populate.
->  * @tt_caching: The requested cpu-caching for the pages allocated.
->+ * @defrag_bytes_remaining: Byte budget for newly (re)allocated pages on a
->+ * defragmentation move, seeded from ttm_operation_ctx::defrag_bytes_remaining.
->+ * Pages harvested (borrowed) from the old tt are free and do not count; once
->+ * this drops to zero the allocator stops upgrading and harvests the remainder.
->+ * On completion it holds the unused budget. 0 means unlimited (no defrag cap).
->  */
-> struct ttm_pool_alloc_state {
-> 	struct page **pages;
->@@ -84,6 +89,7 @@ struct ttm_pool_alloc_state {
-> 	dma_addr_t *dma_addr;
-> 	pgoff_t remaining_pages;
-> 	enum ttm_caching tt_caching;
->+	s64 defrag_bytes_remaining;
-> };
->
-> /**
->@@ -780,6 +786,7 @@ static void ttm_pool_alloc_state_init(const struct ttm_tt *tt,
-> 	alloc->dma_addr = tt->dma_address;
-> 	alloc->remaining_pages = tt->num_pages;
-> 	alloc->tt_caching = tt->caching;
->+	alloc->defrag_bytes_remaining = 0;
-> }
->
-> /*
->@@ -885,8 +892,12 @@ static int ttm_pool_harvest_page(struct ttm_tt *old_tt, unsigned int order,
->
-> static int ttm_pool_harvest_remaining(struct ttm_pool *pool,
-> 				      struct ttm_tt *old_tt, pgoff_t off,
->-				      struct ttm_pool_alloc_state *alloc)
->+				      struct ttm_pool_alloc_state *alloc,
->+				      bool *suboptimal)
-> {
->+	unsigned int beneficial = ttm_pool_beneficial_order(pool);
->+	pgoff_t bnr = 1UL << beneficial;
->+
-> 	/*
-> 	 * @off is always an old-tt chunk head here, never a tail page, so
-> 	 * reading the per-chunk order below is safe. This holds because:
->@@ -906,8 +917,23 @@ static int ttm_pool_harvest_remaining(struct ttm_pool *pool,
-> 		struct page *p = old_tt->pages[off];
-> 		unsigned int order = ttm_pool_page_order(pool, p);
-> 		pgoff_t nr = 1UL << order;
->+		pgoff_t num_pages = off + alloc->remaining_pages;
+Thanks,
+Arun.
 
-num_pages seems loop invariant. May be move it out of the loop as total_pages
-or something?
+On 11/6/2026 4:36 PM, Arunpravin Paneer Selvam wrote:
+> Hi Matthew,
+>
+> Both Sashiko findings on v4 are intentional - no code change:
+>
+> 1. Strict pass skips straddling free blocks: This is intended. If the 
+> strict pass split a free block that crosses the range edge, part of it 
+> would fall outside the range and get rejected, leaving the split 
+> behind - and the strict pass has no way to merge it back. That was the 
+> v3 leak, so we now skip such blocks instead of splitting them.
+>
+> The clear/dirty check ( block_incompatible() ) only looks at blocks 
+> that fit entirely inside the range, so it keeps clear and dirty apart 
+> correctly whenever such blocks exist. It is skipped in just one case: 
+> when the only option is a single big free block crossing the range 
+> edge. That happens when the area is still unused - nothing is 
+> allocated in it yet - so there are no existing clear or dirty 
+> allocations there that could get interleaved or broken up. The guard 
+> has nothing to protect in that case, so skipping it does no harm. At 
+> worst the fallback pass picks a block of the other class and it has to 
+> be cleared again - a re-clear cost, not fragmentation.
+>
+> 2. Dropped clear-child preference for mixed blocks: On purpose. 
+> Carrying that preference down through mixed blocks splits them to 
+> carve out a same-class leaf, which interleaves allocated clear and 
+> dirty blocks and regresses range allocations to  -ENOSPC . Taking the 
+> mixed child whole strands nothing, and the wholly-clear sibling stays 
+> free and usable, so the only cost is a possible re-clear.
+>
+>
+>
+> Why we don't steer  has_clear  splits in mixed blocks:
+> Old dual-tree kept clear and dirty in separate pools (same-class-only 
+> merge), so every split came from a pure pool and never stranded the 
+> opposite class. The new design merges across classes into large MIXED 
+> blocks, so class-aware steering had to keep splitting those big blocks 
+> to carve out a same-class leaf - breaking contiguous space and leaving 
+> allocations of the two classes mixed together, so freed blocks can't 
+> reform a large run →  -ENOSPC . v4 drops steering: it still splits a 
+> mixed block that's larger than the request (for size only, spatially, 
+> no class bias) but takes the block whole once it reaches the requested 
+> order instead of splitting further to isolate a same-class leaf. Using 
+> only the block_incompatible  guard - which accepts or rejects a whole 
+> block by class and never traverses inside a mixed block to pick a 
+> clear/dirty child - it keeps large blocks intact and avoids the 
+> interleaving.
+>
+> Could you please check and review the v4.
+>
+> Thanks,
+> Arun.
+>
+> On 11/4/2026 12:58 PM, Arunpravin Paneer Selvam wrote:
+>> From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+>>
+>> Range-restricted allocations (the visible-VRAM aperture) skip
+>> dirty_steer_window() and reach __alloc_range_bias() with no clear/dirty
+>> eligibility guard, so a dirty allocation freely splits clear extents 
+>> (and
+>> vice versa), interleaving the two classes until no large same-class run
+>> survives and a 4K scanout pin fails with -ENOSPC. Use a two-pass range
+>> search instead: block_incompatible() rejects opposite-class blocks in 
+>> the
+>> strict pass and relaxes only when the strict pass returns -ENOSPC, so a
+>> request still succeeds when only opposite-class space remains. A KUnit
+>> regression test covers the interleaving pattern and fails without the
+>> guard.
+>>
+>> v2: the strict pass can split a block and then reject both children, so
+>>      a split no longer implies a compatible block exists. Sashiko 
+>> reported
+>>      the resulting leaked splits; fix as suggested by Matthew:
+>>   - Push the parent back on the DFS stack after each split and merge it
+>>     back with unsplit_block() if both children are still free.
+>>   - Make block_incompatible() judge free blocks only (split nodes keep a
+>>     stale clear bit) and take the requested order, so mixed blocks that
+>>     can hold a compatible block are descended instead of skipped.
+>>   - Extend the KUnit test with a coalesced mixed block and a check that
+>>     a rejected split is merged back.
+>>
+>> v3: igt@kms_plane@plane-panning-bottom-right failed on Radeon RX 9070 XT
+>>      with -ENOSPC: the range allocator's strict pass split mixed 
+>> blocks to
+>>      look for a wholly-clear (or wholly-dirty) leaf, discarded the mixed
+>>      leaves it found, and ran unsplit_block to merge the splits back, 
+>> whose
+>>      per-allocation cost and residual fragmentation starved the large
+>>      pipe-A scanout. Fix: accept a mixed block at the requested order 
+>> as-is
+>>      (caller re-clears), so the first pass no longer splits and discards
+>>      mixed blocks. This clear/dirty compatibility relaxation applies 
+>> only
+>>      to range-biased allocation, where keeping blocks intact reduces
+>>      fragmentation and preserves large contiguous spaces. The 
+>> now-unneeded
+>>      unsplit_block helper is dropped.
+>>
+>> v4: a higher-order free mixed block straddling the range edge was 
+>> split in
+>>      the strict pass then abandoned, leaving both children free under 
+>> a split
+>>      parent that never coalesces, tripping gpu_buddy_fini()'s 
+>> free-root assert
+>>      and leaking the children (reported by Sashiko). Fix: in the 
+>> strict pass
+>>      don't split a free block that only partially overlaps the range; 
+>> the
+>>      fallback pass consumes it (either class accepted).
+>>
+>> Fixes: 1ad5e807f716 ("gpu/buddy: replace dual-tree/force_merge with 
+>> decoupled dirty tracker")
+>> Assisted-by: LLM
+>> Cc: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Arunpravin Paneer Selvam 
+>> <Arunpravin.PaneerSelvam@amd.com>
+>> ---
+>>   drivers/gpu/buddy.c                | 83 ++++++++++++++++-------------
+>>   drivers/gpu/tests/gpu_buddy_test.c | 84 ++++++++++++++++++++++++++++++
+>>   2 files changed, 130 insertions(+), 37 deletions(-)
+>>
+>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>> index 28cff97d57dc..d9749cbaf05d 100644
+>> --- a/drivers/gpu/buddy.c
+>> +++ b/drivers/gpu/buddy.c
+>> @@ -1240,11 +1240,23 @@ static void __gpu_buddy_undo_splits(struct 
+>> gpu_buddy *mm,
+>>       }
+>>   }
+>>   +static bool block_incompatible(struct gpu_buddy_block *block, 
+>> unsigned int flags)
+>> +{
+>> +    bool needs_clear = flags & GPU_BUDDY_CLEAR_ALLOCATION;
+>> +
+>> +    if (!gpu_buddy_block_is_free(block))
+>> +        return false;
+>> +
+>> +    return needs_clear ? !block->has_clear :
+>> +                 gpu_buddy_block_is_clear(block);
+>> +}
+>> +
+>>   static struct gpu_buddy_block *
+>>   __alloc_range_bias(struct gpu_buddy *mm,
+>>              u64 start, u64 end,
+>>              unsigned int order,
+>> -           unsigned long flags)
+>> +           unsigned long flags,
+>> +           bool fallback)
+>>   {
+>>       u64 req_size = mm->chunk_size << order;
+>>       struct gpu_buddy_block *block;
+>> @@ -1258,9 +1270,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>        * This range-constrained search hands back the highest/right-most
+>>        * address that satisfies the request: the roots are seeded 
+>> high-to-low
+>>        * and the right (higher-address) child is descended first, making
+>> -     * top-down the default placement here. A non-top-down clear 
+>> request is
+>> -     * the only exception, where the descent is biased towards clear or
+>> -     * clear-containing subtrees to satisfy the clear preference.
+>> +     * top-down the default placement here.
+>>        */
+>>       for (i = mm->n_roots - 1; i >= 0; --i)
+>>           list_add_tail(&mm->roots[i]->tmp_link, &dfs);
+>> @@ -1296,8 +1306,19 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>               if (round_down(adjusted_end + 1, req_size) <=
+>>                   round_up(adjusted_start, req_size))
+>>                   continue;
+>> +
+>> +            /*
+>> +             * Strict pass: don't split a partially-overlapping free
+>> +             * block; rejecting its child would strand the split. Let
+>> +             * the fallback pass consume it (either class accepted).
+>> +             */
+>> +            if (!fallback && gpu_buddy_block_is_free(block))
+>> +                continue;
+>>           }
+>>   +        if (!fallback && block_incompatible(block, flags))
+>> +            continue;
+>> +
+>>           if (contains(start, end, block_start, block_end) &&
+>>               order == gpu_buddy_block_order(block)) {
+>>               /*
+>> @@ -1315,38 +1336,8 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>                   goto err_undo;
+>>           }
+>>   -        /*
+>> -         * Top-down is a strict address-placement policy, so when it is
+>> -         * requested we ignore clear steering and simply descend the
+>> -         * right (higher-address) child first. Only a non-top-down 
+>> clear
+>> -         * request biases the descent towards clear/has_clear subtrees.
+>> -         */
+>> -        if ((flags & GPU_BUDDY_CLEAR_ALLOCATION) &&
+>> -            !(flags & GPU_BUDDY_TOPDOWN_ALLOCATION)) {
+>> -            struct gpu_buddy_block *prefer;
+>> -
+>> -            if (gpu_buddy_block_is_clear(block->right))
+>> -                prefer = block->right;
+>> -            else if (gpu_buddy_block_is_clear(block->left))
+>> -                prefer = block->left;
+>> -            else if (block->right->has_clear)
+>> -                prefer = block->right;
+>> -            else if (block->left->has_clear)
+>> -                prefer = block->left;
+>> -            else
+>> -                prefer = block->right;
+>> -
+>> -            if (prefer == block->right) {
+>> -                list_add(&block->left->tmp_link, &dfs);
+>> -                list_add(&block->right->tmp_link, &dfs);
+>> -            } else {
+>> -                list_add(&block->right->tmp_link, &dfs);
+>> -                list_add(&block->left->tmp_link, &dfs);
+>> -            }
+>> -        } else {
+>> -            list_add(&block->left->tmp_link, &dfs);
+>> -            list_add(&block->right->tmp_link, &dfs);
+>> -        }
+>> +        list_add(&block->left->tmp_link, &dfs);
+>> +        list_add(&block->right->tmp_link, &dfs);
+>>       } while (1);
+>>         return ERR_PTR(-ENOSPC);
+>> @@ -1361,6 +1352,24 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>       return ERR_PTR(err);
+>>   }
+>>   +static struct gpu_buddy_block *
+>> +__gpu_buddy_alloc_range_bias(struct gpu_buddy *mm,
+>> +                 u64 start, u64 end,
+>> +                 unsigned int order,
+>> +                 unsigned long flags)
+>> +{
+>> +    struct gpu_buddy_block *block;
+>> +    bool fallback = false;
+>> +
+>> +    block = __alloc_range_bias(mm, start, end, order,
+>> +                   flags, fallback);
+>> +    if (IS_ERR(block))
+>> +        return __alloc_range_bias(mm, start, end, order,
+>> +                      flags, !fallback);
+>> +
+>> +    return block;
+>> +}
+>> +
+>>   /* Return the highest-address free block of at least @order. */
+>>   static struct gpu_buddy_block *
+>>   get_maxblock(struct gpu_buddy *mm,
+>> @@ -1924,7 +1933,7 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>         if (flags & GPU_BUDDY_RANGE_ALLOCATION) {
+>>           /* Allocate traversing within the range */
+>> -        block = __alloc_range_bias(mm, start, end, order, flags);
+>> +        block = __gpu_buddy_alloc_range_bias(mm, start, end, order, 
+>> flags);
+>>           if (!IS_ERR(block) || !steered)
+>>               return block;
+>>   diff --git a/drivers/gpu/tests/gpu_buddy_test.c 
+>> b/drivers/gpu/tests/gpu_buddy_test.c
+>> index 2c6f1da1a6d1..9aaca2fc6a02 100644
+>> --- a/drivers/gpu/tests/gpu_buddy_test.c
+>> +++ b/drivers/gpu/tests/gpu_buddy_test.c
+>> @@ -1606,6 +1606,89 @@ static int gpu_buddy_suite_init(struct 
+>> kunit_suite *suite)
+>>       return 0;
+>>   }
+>>   +static void gpu_test_buddy_alloc_range_clear_guard(struct kunit 
+>> *test)
+>> +{
+>> +    const unsigned long chunk = SZ_1M, mm_size = SZ_4M;
+>> +    struct gpu_buddy_block *block;
+>> +    LIST_HEAD(low_dirty);
+>> +    LIST_HEAD(high_a);
+>> +    LIST_HEAD(high_b);
+>> +    LIST_HEAD(barrier);
+>> +    LIST_HEAD(dirty_res);
+>> +    LIST_HEAD(clear_res);
+>> +    struct gpu_buddy mm;
+>> +
+>> +    KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, chunk),
+>> +                   "buddy_init failed\n");
+>> +
+>> +    /*
+>> +     * Idea is to lay out a range allocation as a low dirty block, an
+>> +     * allocated barrier, and a high naturally-aligned clear extent, 
+>> then
+>> +     * issue a dirty range allocation. It must take the low dirty 
+>> block and
+>> +     * leave the clear extent intact; if it instead cuts the clear 
+>> extent,
+>> +     * a following same-class clear allocation can no longer find a
+>> +     * contiguous clear run and fails with -ENOSPC.
+>> +     *
+>> +     *   [0,  1M)   dirty free
+>> +     *   [1M, 2M)   allocated  (barrier, keeps the halves un-mergeable)
+>> +     *   [2M, 4M)   clear free (one naturally aligned 2 MiB extent)
+>> +     */
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 0, chunk, chunk, chunk,
+>> +                              &low_dirty, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [0, 1M) failed\n");
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, chunk, 2 * chunk, 
+>> chunk, chunk,
+>> +                              &barrier, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [1M, 2M) failed\n");
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 2 * chunk, 3 * chunk, 
+>> chunk, chunk,
+>> +                              &high_a, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [2M, 3M) failed\n");
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 3 * chunk, 4 * chunk, 
+>> chunk, chunk,
+>> +                              &high_b, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "alloc [3M, 4M) failed\n");
+>> +
+>> +    /* [2M, 4M) coalesces into one aligned clear extent; [0, 1M) 
+>> stays dirty. */
+>> +    gpu_buddy_free_list(&mm, &low_dirty, 0);
+>> +    gpu_buddy_free_list(&mm, &high_a, GPU_BUDDY_CLEARED);
+>> +    gpu_buddy_free_list(&mm, &high_b, GPU_BUDDY_CLEARED);
+>> +
+>> +    /* Dirty 1 MiB range alloc: must land at [0, 1M), not cut the 
+>> clear extent. */
+>> +    KUNIT_ASSERT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 0, mm_size, chunk, 
+>> chunk,
+>> +                              &dirty_res, GPU_BUDDY_RANGE_ALLOCATION),
+>> +                   "dirty range alloc failed\n");
+>> +    block = list_first_entry(&dirty_res, struct gpu_buddy_block, link);
+>> +    KUNIT_EXPECT_FALSE_MSG(test, gpu_buddy_block_is_clear(block),
+>> +                   "dirty range alloc cut the clear extent 
+>> (offset=%llx)\n",
+>> +                   gpu_buddy_block_offset(block));
+>> +    KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block), 0ULL);
+>> +
+>> +    /*
+>> +     * The 2 MiB clear extent must still be intact: a clear order-1 
+>> range
+>> +     * allocation has to succeed. Without the guard the extent was cut
+>> +     * above and this returns -ENOSPC.
+>> +     */
+>> +    KUNIT_EXPECT_FALSE_MSG(test,
+>> +                   gpu_buddy_alloc_blocks(&mm, 0, mm_size, 2 * 
+>> chunk, 2 * chunk,
+>> +                              &clear_res,
+>> +                              GPU_BUDDY_RANGE_ALLOCATION |
+>> +                              GPU_BUDDY_CLEAR_ALLOCATION),
+>> +                   "clear 2M range alloc failed: clear extent was 
+>> fragmented (-ENOSPC)\n");
+>> +    if (!list_empty(&clear_res)) {
+>> +        block = list_first_entry(&clear_res, struct gpu_buddy_block, 
+>> link);
+>> +        KUNIT_EXPECT_TRUE(test, gpu_buddy_block_is_clear(block));
+>> +        KUNIT_EXPECT_EQ(test, gpu_buddy_block_offset(block), (u64)(2 
+>> * chunk));
+>> +    }
+>> +
+>> +    gpu_buddy_free_list(&mm, &clear_res, GPU_BUDDY_CLEARED);
+>> +    gpu_buddy_free_list(&mm, &dirty_res, 0);
+>> +    gpu_buddy_free_list(&mm, &barrier, 0);
+>> +    gpu_buddy_fini(&mm);
+>> +}
+>> +
+>>   static struct kunit_case gpu_buddy_tests[] = {
+>>       KUNIT_CASE(gpu_test_buddy_alloc_limit),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_optimistic),
+>> @@ -1615,6 +1698,7 @@ static struct kunit_case gpu_buddy_tests[] = {
+>>       KUNIT_CASE(gpu_test_buddy_alloc_clear),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_range),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
+>> +    KUNIT_CASE(gpu_test_buddy_alloc_range_clear_guard),
+>>       KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
+>>       KUNIT_CASE_SLOW(gpu_test_buddy_dirty_tracker_performance),
+>>       KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
+>>
+>> base-commit: 49f40f15d20f5b4073d517da7efbcea079f1b9e3
+>
 
-> 		int r;
->
->+		/*
->+		 * Only report a sub-optimal backing when a chunk we cannot
->+		 * upgrade (out of budget/prealloc) sits in a beneficial-order
->+		 * aligned region that fully fits in the tt: that region could
->+		 * have been upgraded with more budget. A chunk below the
->+		 * beneficial order is expected for the unaligned tail (the last
->+		 * partial beneficial-order region) and for already beneficial-
->+		 * order harvests - neither leaves real defrag work, so they must
->+		 * not flag the tt for re-queue.
->+		 */
->+		if (beneficial && order < beneficial &&
->+		    round_down(off, bnr) + bnr <= num_pages)
->+			*suboptimal = true;
->+
-> 		r = ttm_pool_harvest_page(old_tt, order, off, alloc);
-> 		if (r)
-> 			return r;
->@@ -951,6 +977,7 @@ struct ttm_pool_alloc_iter {
-> 	struct ttm_tt *defrag_old_tt;
-> 	unsigned int beneficial_order;
-> 	gfp_t gfp_flags;
->+	bool defrag_capped;
->
-> 	/* Mutated as the loop walks the orders. */
-> 	unsigned int order;
->@@ -962,6 +989,44 @@ struct ttm_pool_alloc_iter {
-> 	struct page *p;
-> };
->
->+/*
->+ * Defrag move budget exhausted: the upgrade can make no further progress this
->+ * pass. Snapshot @defrag_capped is set only when a byte budget was in force at
->+ * entry.
->+ */
->+static bool ttm_pool_iter_defrag_exhausted(const struct ttm_pool_alloc_iter *it)
->+{
->+	if (!it->defrag_old_tt)
->+		return false;
->+
->+	return it->defrag_capped && it->alloc->defrag_bytes_remaining <= 0;
->+}
->+
->+/*
->+ * Complete the new tt by harvesting the rest of the old tt as-is (borrowing its
->+ * pages, including any still below beneficial order). Never fall back to in-lock
->+ * reclaim for the shortfall - that would reintroduce the stall we preallocated
->+ * to avoid. Only re-queue (flag) the tt when the harvested remainder is
->+ * genuinely sub-optimal; if every remaining old chunk was already at beneficial
->+ * order the move fully upgraded the object.
->+ */
->+static int ttm_pool_iter_harvest_rest(struct ttm_pool_alloc_iter *it)
->+{
->+	pgoff_t off = it->tt->num_pages - it->alloc->remaining_pages;
->+	bool suboptimal = false;
->+	int r;
->+
->+	r = ttm_pool_harvest_remaining(it->pool, it->defrag_old_tt, off,
->+				       it->alloc, &suboptimal);
->+	if (r)
->+		return r;
->+
->+	if (suboptimal)
->+		it->tt->page_flags |= TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED;
->+
->+	return 0;
->+}
->+
-> /*
->  * Defrag move: reuse an already beneficial-order chunk from the old tt at this
->  * offset rather than reallocating it. Harvest whatever order the old chunk has
->@@ -1062,11 +1127,12 @@ static int ttm_pool_iter_lower_order(struct ttm_pool_alloc_iter *it)
-> 		if (it->alloc_count && it->defrag_old_tt) {
-> 			pgoff_t off = it->tt->num_pages -
-> 				      it->alloc->remaining_pages;
->+			bool suboptimal = false;
-> 			int r;
->
-> 			r = ttm_pool_harvest_remaining(it->pool,
-> 						       it->defrag_old_tt, off,
->-						       it->alloc);
->+						       it->alloc, &suboptimal);
-
-As suboptimal is not required here, probably send a NULL here and have
-ttm_pool_harvest_remaining handle that NULL.
-
-> 			if (r)
-> 				return r;
->
->@@ -1121,10 +1187,23 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> 		gfp_flags |= GFP_HIGHUSER;
->
-> 	it.gfp_flags = gfp_flags;
->+	it.defrag_capped = it.defrag_old_tt && alloc->defrag_bytes_remaining > 0;
->
-> 	for (it.order = ttm_pool_alloc_find_order(MAX_PAGE_ORDER, alloc);
-> 	     alloc->remaining_pages;
-> 	     it.order = ttm_pool_alloc_find_order(it.order, alloc)) {
->+		/*
->+		 * Out of defrag budget: harvest the rest of the old tt as-is and
->+		 * stop (the tt is re-queued if the remainder is still
->+		 * sub-optimal).
->+		 */
->+		if (ttm_pool_iter_defrag_exhausted(&it)) {
->+			r = ttm_pool_iter_harvest_rest(&it);
->+			if (r)
->+				goto error_free_all;
->+			break;
->+		}
->+
-> 		/* Reuse an already beneficial-order chunk from the old tt. */
-> 		r = ttm_pool_iter_reuse_old(&it);
-> 		if (r < 0)
->@@ -1155,6 +1234,15 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> 				goto error_free_all;
-> 		}
->
->+		/*
->+		 * Charge a newly (re)allocated chunk against the defrag move
->+		 * budget. Harvested chunks borrow the old tt's pages for free
->+		 * and never reach here.
->+		 */
->+		if (it.defrag_capped)
->+			alloc->defrag_bytes_remaining -=
->+				(s64)(1UL << it.order) << PAGE_SHIFT;
->+
-> 		it.alloc_count++;
-> 	}
->
->@@ -1204,14 +1292,21 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> 		   struct ttm_operation_ctx *ctx)
-> {
-> 	struct ttm_pool_alloc_state alloc;
->+	int ret;
->
-> 	if (WARN_ON(ttm_tt_is_backed_up(tt)))
-> 		return -EINVAL;
->
-> 	tt->page_flags &= ~TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED;
-> 	ttm_pool_alloc_state_init(tt, &alloc);
->+	alloc.defrag_bytes_remaining = ctx->defrag_bytes_remaining;
->+
->+	ret = __ttm_pool_alloc(pool, tt, ctx, &alloc, NULL);
->+
->+	/* Report the unused defrag budget back to the caller. */
->+	ctx->defrag_bytes_remaining = alloc.defrag_bytes_remaining;
->
->-	return __ttm_pool_alloc(pool, tt, ctx, &alloc, NULL);
->+	return ret;
-> }
-> EXPORT_SYMBOL(ttm_pool_alloc);
->
->diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
->index fcaba5fb8bf7..6124d2627b47 100644
->--- a/include/drm/ttm/ttm_bo.h
->+++ b/include/drm/ttm/ttm_bo.h
->@@ -223,6 +223,20 @@ struct ttm_operation_ctx {
-> 	 * NULL for non-defrag operations.
-> 	 */
-> 	struct ttm_tt *defrag_old_tt;
->+	/**
->+	 * @defrag_bytes_remaining: Byte budget for newly allocated pages during
->+	 * a defragmentation move. Only pages that are actually (re)allocated at
->+	 * the beneficial order count against it; pages harvested (borrowed) from
->+	 * @defrag_old_tt are free and do not. When the budget is exhausted the
->+	 * pool allocator stops upgrading and completes the new tt by harvesting
->+	 * the remainder of @defrag_old_tt, marking the tt sub-optimal so the
->+	 * driver can resume on a later pass. The allocator decrements this as it
->+	 * allocates, so on return it holds the unused budget (which the caller
->+	 * can use to compute how many bytes were spent). A value of 0 means
->+	 * unlimited (upgrade the whole object). Only consulted when
->+	 * @defrag_old_tt is set.
->+	 */
->+	s64 defrag_bytes_remaining;
-
-If user specifies -ve value, currently it means unlimited. So, may be update the
-documentation here to say "A value of <= 0 means unlimited"? Or, better only accept
->=0 value from the user ctx here.
-
-Niranjana
-
-> 	/**
-> 	 * @resv: Reservation object to be used together with
-> 	 * @allow_res_evict.
->-- 
->2.34.1
->
