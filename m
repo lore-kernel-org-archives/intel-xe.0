@@ -2,51 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031CE606A321
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 18:35:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B198606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Nov 2026 18:35:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UGySZPn1
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cRfOFcRh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE85510EE74;
-	Tue, 10 Nov 2026 18:35:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE29D10EB03;
+	Tue, 10 Nov 2026 18:35:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A748010E957
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Nov 2026 18:35:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D863510E971
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Nov 2026 18:35:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794335717; x=1825871717;
+ t=1794335726; x=1825871726;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=j0BnPlxq7JEVz6/6T9RbZkc1vLTA9xc7qG1Pv5i3+VE=;
- b=UGySZPn199RaoxopiRVnRN7VossK+7mBe538LsN4n9UOO4l3nV7T2BKA
- Sz2Eibve3lAkOr4XE94BElzTVlhZgN7z7AVzHwIax2vY52oOkndA5PKuk
- F+VurMBJnJTvIpNua6YWcLWZxp8p5zhYJMQZUkPTpzklWsGBwDEOFmEvt
- GduKASCv/OJQOXiLegdFcuAcspSPKky7Mo6J0k6yYyUUq+W3SuApNQ2Yw
- fDosYNhrXw1HMfB05J6mGgD/ahMUnAQv8nhK7pA2WhXie1kx0kUSCeM+7
- e4UttIeUpgxzz4d1XTyPrpxUu1v1SP3m3slz25VnyKXu+NHX+RGsIp6sc w==;
-X-CSE-ConnectionGUID: g1lcdGLnR1a9U//04Aa+cQ==
-X-CSE-MsgGUID: dRwudwXyQdqeaLAXZQKU7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="2990073"
-X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; d="scan'208,146";a="2990073"
+ bh=TyJ53LuPqkQPnbRdszEy2APb37wg4scl1rSpniqjTrM=;
+ b=cRfOFcRhbhB1p5lTWJ75WZXku27lcHstSI5ZEjngjQzqcJpVsupnpoKT
+ DcV2YIzrSX95oNJI1bYp5f7I5DAZJMEBu5Fstpzsm1HlFhCgg3XulsLnj
+ QjnH4WCkovQqicTNdNKtIFBsnnDynbSfcJNMTQjhkqYp3d6iZ8gWw3DVV
+ L6+5OMfpKUSEzRWBLs8Me9OYlCNlWJPDp/fsaK+ylxXcicVdWBLqJwMXn
+ OokXEajtMp696TM0TQGopFwIUeB2scgEAThI7JNJRUUyfc9ILPhySWzRY
+ brl/XaGAWF5yzpFOXOEzqai8GbZ1cJHYkz/MwB3BdOX5BQ/TQQWvN51Ou Q==;
+X-CSE-ConnectionGUID: jUHfpztGQ4W5MCzG27Atxg==
+X-CSE-MsgGUID: sne70RVxRr+BXDr9iuAnQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="2990089"
+X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
+   d="scan'208";a="2990089"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 10:35:14 -0800
-X-CSE-ConnectionGUID: h+56Cr6YQN2cR4mZ545Zog==
-X-CSE-MsgGUID: uKDux+nxSmmtA9d07vCJ3g==
+ 10 Nov 2026 10:35:16 -0800
+X-CSE-ConnectionGUID: Jqv6rferSeiRaBBYJrG3tA==
+X-CSE-MsgGUID: Dtu5sbXXRC+fyVzz8da6dA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; d="scan'208,146";a="8253105"
+X-IronPort-AV: E=Sophos;i="6.27,206,1787036400"; 
+   d="scan'208";a="8253123"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2026 10:35:15 -0800
+ 10 Nov 2026 10:35:16 -0800
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v14 02/17] drm/xe/vsec: Do not register BMG PMT for VF
-Date: Tue, 10 Nov 2026 10:35:07 -0800
-Message-ID: <20261110183505.694124-21-michael.j.ruhl@intel.com>
+Subject: [PATCH v14 07/17] drm/xe/vsec: Refactor BattleMage PMT defines
+Date: Tue, 10 Nov 2026 10:35:12 -0800
+Message-ID: <20261110183505.694124-26-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261110183505.694124-19-michael.j.ruhl@intel.com>
 References: <20261110183505.694124-19-michael.j.ruhl@intel.com>
@@ -70,49 +72,77 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-BMG PMT is not supported for VF nodes.
-
-If IS_SRIOV_VF() is true, do NOT register with PMT.
+Rename generic defines to be BMG specific.
+Define several magic numbers.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 29 +++++++++++++++++------------
+ 1 file changed, 17 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index a9baf0bfe572..178f22db4046 100644
+index c0e06b2aeca6..ebe56c85bc05 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -149,6 +149,8 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 	u32 offset;
- 	int ret;
+@@ -90,10 +90,15 @@ static struct intel_vsec_platform_info xe_vsec_info[] = {
+ #define GUID_CAP_TYPE		GENMASK(29, 28)
+ #define GUID_RECORD_ID		GENMASK(31, 30)
  
-+	xe_assert(xe, !IS_SRIOV_VF(xe));
+-#define PUNIT_TELEMETRY_OFFSET		0x0200
+-#define PUNIT_WATCHER_OFFSET		0x14A0
+-#define OOBMSM_0_WATCHER_OFFSET		0x18D8
+-#define OOBMSM_1_TELEMETRY_OFFSET	0x1000
++#define BMG_IDX_TELEM_PUNIT		0x00
++#define BMG_IDX_TELEM_OOBMSM		0x01
++#define BMG_IDX_CRASHLOG_PUNIT		0x02
++#define BMG_IDX_CRASHLOG_OOBMSM		0x04
 +
- 	ret = xe_guid_decode(guid, &mem_region, &offset);
- 	if (ret)
- 		return ret;
-@@ -157,9 +159,6 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
++#define BMG_PUNIT_TELEMETRY_OFFSET	0x0200
++#define BMG_PUNIT_WATCHER_OFFSET	0x14A0
++#define BMG_OOBMSM_0_WATCHER_OFFSET	0x18D8
++#define BMG_OOBMSM_1_TELEMETRY_OFFSET	0x1000
  
- 	guard(mutex)(&xe->pmt.lock);
+ enum record_id {
+ 	PUNIT,
+@@ -122,29 +127,29 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+ 	*offset = 0;
  
--	if (!xe->soc_remapper.set_telem_region)
--		return -ENODEV;
--
- 	/* indicate that we are not at an appropriate power level */
- 	if (!xe_pm_runtime_get_if_active(xe))
- 		return -ENODATA;
-@@ -186,6 +185,9 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
- 	if (xe->info.platform > XE_BATTLEMAGE)
- 		return XE_VSEC_UNKNOWN;
+ 	if (cap_type == CRASHLOG) {
+-		*index = record_id == PUNIT ? 2 : 4;
++		*index = record_id == PUNIT ? BMG_IDX_CRASHLOG_PUNIT : BMG_IDX_CRASHLOG_OOBMSM;
+ 		return 0;
+ 	}
  
-+	if (IS_SRIOV_VF(xe) && xe->info.platform == XE_BATTLEMAGE)
-+		return XE_VSEC_UNKNOWN;
-+
- 	return vsec_platforms[xe->info.platform];
- }
+ 	switch (record_id) {
+ 	case PUNIT:
+-		*index = 0;
++		*index = BMG_IDX_TELEM_PUNIT;
+ 		if (cap_type == TELEMETRY)
+-			*offset = PUNIT_TELEMETRY_OFFSET;
++			*offset = BMG_PUNIT_TELEMETRY_OFFSET;
+ 		else
+-			*offset = PUNIT_WATCHER_OFFSET;
++			*offset = BMG_PUNIT_WATCHER_OFFSET;
+ 		break;
  
+ 	case OOBMSM_0:
+-		*index = 1;
++		*index = BMG_IDX_TELEM_OOBMSM;
+ 		if (cap_type == WATCHER)
+-			*offset = OOBMSM_0_WATCHER_OFFSET;
++			*offset = BMG_OOBMSM_0_WATCHER_OFFSET;
+ 		break;
+ 
+ 	case OOBMSM_1:
+-		*index = 1;
++		*index = BMG_IDX_TELEM_OOBMSM;
+ 		if (cap_type == TELEMETRY)
+-			*offset = OOBMSM_1_TELEMETRY_OFFSET;
++			*offset = BMG_OOBMSM_1_TELEMETRY_OFFSET;
+ 		break;
+ 	default:
+ 		return -EINVAL;
 -- 
 2.43.0
 
