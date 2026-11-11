@@ -2,43 +2,64 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 454F4606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:31:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D34B0606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PX6bIc+s
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=crLYjJvg
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AAB610FB25;
-	Wed, 11 Nov 2026 11:31:14 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D011010FB25;
- Wed, 11 Nov 2026 11:31:07 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 43C6363AAC;
- Wed, 11 Nov 2026 11:31:07 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA9451F00A0C;
- Wed, 11 Nov 2026 11:31:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794396667;
- bh=0BpYr2HaG+XIQswyWaeo7nT3gnPdQqXfUG5VEQ9030M=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=PX6bIc+sMo9EwGj1lmQuwbTCRfj8V0SfkrNaWwrrBXR5+DQo/wzo+l8+54GzdGiN5
- sSnrPHFMvvr7rOw0f5Bq/W3ZgEpcGDVWLDX7w2yK3Th/gxNMZm4gm2BJXLkfeLhZUS
- 9ahlyJVPU8XRPE0uM6WrTEoPPkyezVQn2KdbpmNyjFlsPABLcaBnkPp1eBtQMi9iwv
- zKhvP2j4PvXQNT6ImEBU/7tekEeCcZpfX9pmArErsPdHXI9pwOFWYq9d9lkiJslh+D
- qh+QCGfD1q8CqY2cx7OXMCtle3RTQi4oq7PW1AjZ/fgfkYnrigiFnMrA83a1cZF7EP
- B++PToCOcMs9Q==
-Message-ID: <sashiko-outbox-208882@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 06/13] drm/i915/dpt: Compute DPT size in the DPT code
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261111112007.16790-7-ville.syrjala@linux.intel.com>
-References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
- <20261111112007.16790-7-ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 11 Nov 2026 11:31:06 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AC1910FB60;
+	Wed, 11 Nov 2026 11:36:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8A2D10FB10;
+ Wed, 11 Nov 2026 11:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794396966; x=1825932966;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=VR/ULc1l89b0Tm5UZIMhrFP8YU8fjtZ2wGba6ZkP2pg=;
+ b=crLYjJvgsseoq3kfP5tO1BvIXUI50vX2pMKcQD188jwu7YEFyDYx8GTJ
+ o2SGMv8mZTtsxiP2FO8ab8a/ERG51oSVjP4O/Gr0U/RiTF8DcJZXmLAeb
+ m+BwmCx36j2+rR3vxkM5Qy+sxmi6/Oe632mCLkw7Atzcz6uhYeNFPtvaP
+ GqyfhJKFYLV5/WxTNvKyV0NvlTPzJw+jaIqfCXqNrhSA3Brgmmcx/zwfS
+ zfhOaeoe4SXSilITSCGrBIhA1XbaddipWRntadQYygksbfsYjxMQfQ8Xg
+ 0tHz03RLt5LrfdAs7XD5WFTRygSxUfbpEwt4cJst/Z8FBUXzVx7czk5de A==;
+X-CSE-ConnectionGUID: SD1HZbroROGEk2Uy632aHg==
+X-CSE-MsgGUID: CJlIRANgRKyUGZjeoJdcFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3059530"
+X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
+   d="scan'208";a="3059530"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 03:36:05 -0800
+X-CSE-ConnectionGUID: SemcX0+rT2qqB/WsrzV6gw==
+X-CSE-MsgGUID: a03hI+ZJTyGaUcmhpWXN6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
+   d="scan'208";a="8290207"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.181])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 03:36:04 -0800
+Date: Wed, 11 Nov 2026 13:36:00 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ stable@vger.kernel.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/dip: Write the DIP header last with SDP
+ transmission lines
+Message-ID: <avRTIDPwI3uOHQyo@intel.com>
+References: <20261111103542.4093652-1-chaitanya.kumar.borah@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261111103542.4093652-1-chaitanya.kumar.borah@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,92 +69,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found no new issues
-in this patch, but noticed 1 related pre-existing issue it does not
-introduce:
-- [High] drm/xe/display: double BO unpin on __intel_fbdev_fb_alloc()
-  error path [1]
---
+On Wed, Nov 11, 2026 at 04:05:42PM +0530, Chaitanya Kumar Borah wrote:
+> On platforms with SDP transmission line registers, the packets anchored
+> to them are double buffered in the transcoder (TC) clock domain. The packet
+> registers are in the core display (CD) clock domain and the whole packet is
+> clock crossed on the write of the header (dword 0), so Bspec requires the
+> data to be programmed first and the header last.
+> 
+> hsw_write_infoframe() writes the header first, so the packet is crossed
+> before its payload is in place and the previous payload keeps being sent.
+> This hits the AS SDP, and the VSC SDP whenever an AS SDP is enabled, which
+> is whenever VRR is possible since commit 6a1712052859 ("drm/i915/dp: Enable
+> AS SDP whenever VRR is possible or PR !async"). With CMN_SDP_TL, enabled by
+> commit bfa597238073 ("drm/i915/dip: Enable Common SDP Transmission line"),
+> it also hits the GMP and VSC SDPs: on NVL, entering HDR on an eDP panel
+> leaves the image discoloured and scaled until the headers are rewritten.
+> 
+> Write the payload, including the ECC zero fill, first and the header last
+> on platforms with EMP_AS_SDP_TL. CD domain packets have no ordering
+> requirement and Bspec recommends the same order for all packets, so use it
+> for all of them. Older platforms keep the current order.
+> 
+> Bspec: 75640, 71197, 74384
+> Fixes: e1123e617e51 ("drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17732
+> Cc: <stable@vger.kernel.org> # v6.17+
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+> 
+> Notes:
+>     Fixes tag rationale
+>     
+>     The Fixes tag points at commit e1123e617e51 ("drm/i915/vrr: Program
+>     EMP_AS_SDP_TL for DP AS SDP"). The AS SDP has been written header first
+>     since it was added by commit 8845021b7331 ("drm/i915/display: Read/Write
+>     Adaptive Sync SDP"), but EMP_AS_SDP_TL, which holds the double buffer
+>     point and the transmission line of the AS SDP on BMG and LNL+, was only
+>     programmed from that commit on. From then on the driver relies on that
+>     register to anchor the AS SDP, and the VSC SDP whenever an AS SDP is
+>     enabled, and the programming note of the register asks for the packet
+>     data first and the header last. The two later commits cited in the commit
+>     message only widened the exposure: the first enabled the AS SDP whenever
+>     VRR is possible and the second added CMN_SDP_TL for the GMP and VSC SDPs.
+>     
+>     Alternatives considered:
+>      - 6a1712052859 (v7.2): AS SDP on whenever VRR is possible. The PTL
+>        report is fixed by reverting it. Narrower than the spec argument, as
+>        it only covers v7.2 and later.
+>      - bfa597238073 (7.4): CMN_SDP_TL. The NVL regression, verified on
+>        hardware, but covered by the older tag as every kernel with it also
+>        has e1123e617e51.
+>      - 8845021b7331 (v6.10): first header first AS SDP write, but
+>        EMP_AS_SDP_TL was not programmed until e1123e617e51, so exposure
+>        before it could not be shown.
+>     
+>     Not verified:
+>      - The failure was observed on NVL with CMN_SDP_TL (rewriting the GMP and
+>        VSC headers makes the panel recover). The AS SDP and the VSC SDP with
+>        an AS SDP on BMG, LNL and PTL follow from the Bspec requirement and
+>        were not reproduced here.
+>      - No reproduction on kernels older than v7.2.
+>      - Stable backports need the HAS_EMP_AS_SDP_TL gate adapted, as it is
+>        defined in intel_dip.h, which is new in 7.4.
+> 
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 21 +++++++++++++++++----
+>  1 file changed, 17 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 4ec0db8d93fb..3ecf017b3176 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -51,6 +51,7 @@
+>  #include "intel_cx0_phy.h"
+>  #include "intel_ddi.h"
+>  #include "intel_de.h"
+> +#include "intel_dip.h"
+>  #include "intel_display_driver.h"
+>  #include "intel_display_regs.h"
+>  #include "intel_display_types.h"
+> @@ -524,6 +525,15 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+>  	const u32 *data = frame;
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>  	intel_reg_t ctl_reg = HSW_TVIDEO_DIP_CTL(display, cpu_transcoder);
+> +	/*
+> +	 * On platforms with the SDP transmission line registers some of the
+> +	 * packets are double buffered in the transcoder clock domain, and the
+> +	 * packet is clock crossed on the write of the header (dword 0). Program
+> +	 * the payload first and the header last, so that the whole packet gets
+> +	 * crossed. Packets double buffered in the core display clock domain
+> +	 * have no ordering requirement, so use the same order for all of them.
+> +	 */
+> +	bool header_last = HAS_EMP_AS_SDP_TL(display);
+>  	int data_size;
+>  	int i;
+>  	u32 val = intel_de_read(display, ctl_reg);
+> @@ -535,18 +545,21 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+>  	val &= ~hsw_infoframe_enable(type);
+>  	intel_de_write(display, ctl_reg, val);
+>  
+> -	for (i = 0; i < len; i += 4) {
+> +	for (i = header_last ? 4 : 0; i < len; i += 4)
 
-commit ae1435739339ed58396679163558aae13db1d253
-Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+IMO just always use the "write header last" approach. 
 
-drm/i915/dpt: Compute DPT size in the DPT code
+>  		intel_de_write(display,
+>  			       hsw_dip_data_reg(display, cpu_transcoder, type, i >> 2),
+> -			       *data);
+> -		data++;
+> -	}
+> +			       data[i >> 2]);
 
-This commit passes the GTT view instead of a precomputed size to
-intel_parent_dpt_create() so that the DPT code computes the DPT size for
-both normal and remapped views.
+Making 'i' the dword index rather than the byte index might make this
+code a bit nicer. The only slight concern is whether len%4!=0 might
+be true. Maybe just have the caller always align it for good measure.
+But let's stick to the byte based thing for now to avoid adding more
+noise to this patch, and clean it up later.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index b3344e3f187fb..35f1d5dd31d7d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -2275,13 +2275,15 @@ int intel_framebuffer_init(struct intel_framebuff=
-er *intel_fb,
-> =20
->  	if (intel_fb_uses_dpt(fb)) {
->  		struct drm_gem_object *obj =3D intel_fb_bo(&intel_fb->base);
-> +		const struct intel_gtt_view *view;
->  		struct intel_dpt *dpt;
-> -		size_t size =3D 0;
-> =20
->  		if (intel_fb_needs_pot_stride_remap(intel_fb))
-> -			size =3D intel_remapped_info_size(&intel_fb->remapped_view.gtt.remapp=
-ed);
-> +			view =3D &intel_fb->remapped_view.gtt;
-> +		else
-> +			view =3D &intel_fb->normal_view.gtt;
-> =20
-> -		dpt =3D intel_parent_dpt_create(display, obj, size);
-> +		dpt =3D intel_parent_dpt_create(display, obj, view);
->  		if (IS_ERR(dpt)) {
->  			drm_dbg_kms(display->drm, "failed to create DPT\n");
->  			ret =3D PTR_ERR(dpt);
+>  	/* Write every possible data byte to force correct ECC calculation. */
+>  	for (; i < data_size; i += 4)
+>  		intel_de_write(display,
+>  			       hsw_dip_data_reg(display, cpu_transcoder, type, i >> 2),
+>  			       0);
+>  
+> +	if (header_last)
+> +		intel_de_write(display,
+> +			       hsw_dip_data_reg(display, cpu_transcoder, type, 0),
+> +			       data[0]);
+> +
+>  	/* Wa_14013475917 */
+>  	if (!(IS_DISPLAY_VER(display, 13, 14) && crtc_state->has_psr &&
+>  	      !crtc_state->has_panel_replay && type == DP_SDP_VSC))
+> -- 
+> 2.50.1
 
-[Severity: High]
-This problem wasn't introduced by this patch, but can failing in
-intel_framebuffer_init() after intel_bo_framebuffer_init() cause a double
-BO unpin on Xe when called from __intel_fbdev_fb_alloc() [1]?
-
-In __intel_fbdev_fb_alloc(), intel_bo_fbdev_create() allocates the BO via
-xe_bo_create_pin_map_novm() with XE_BO_FLAG_PINNED set and a pin count of
-1, and xe_display_bo_framebuffer_init() only takes a reference without
-pinning it again.  If a later step in intel_framebuffer_init() fails and
-jumps to err_bo_framebuffer_fini, xe_display_bo_framebuffer_fini() sees
-XE_BO_FLAG_PINNED and unpins the BO:
-
-drivers/gpu/drm/xe/display/xe_display_bo.c:xe_display_bo_framebuffer_fini()=
- {
-	struct xe_bo *bo =3D gem_to_xe_bo(obj);
-
-	if (bo->flags & XE_BO_FLAG_PINNED) {
-		/* Unpin our kernel fb first */
-		xe_bo_lock(bo, false);
-		xe_bo_unpin(bo);
-		xe_bo_unlock(bo);
-	}
-	xe_bo_put(bo);
-}
-
-When control returns to __intel_fbdev_fb_alloc(), error handling calls
-intel_bo_fbdev_destroy() -> xe_display_bo_fbdev_destroy() ->
-xe_bo_unpin_map_no_vm(), which unpins the BO a second time, triggering
-assertions in xe_bo_unpin() and underflowing bo->pin_count in
-ttm_bo_unpin().
-
-[1] https://sashiko.dev/#/bug/linux-227b0044-5f2a-4c7c-81e6-93b67cb4f477
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261111112007.1679=
-0-1-ville.syrjala@linux.intel.com?part=3D6
+-- 
+Ville Syrjälä
+Intel
