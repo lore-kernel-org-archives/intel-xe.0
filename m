@@ -2,29 +2,29 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26C49606A32A
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 16:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CB85606A336
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 16:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.a=rsa-sha256 header.s=20170329 header.b=NVH5P6hv
+	dkim=pass (2048-bit key) header.d=igalia.com header.i=@igalia.com header.a=rsa-sha256 header.s=20170329 header.b=lzjeIqu+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5009510FDC0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C4610FDC6;
 	Wed, 11 Nov 2026 16:09:09 +0000 (UTC)
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4575110FD64;
- Wed, 11 Nov 2026 16:08:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C769010FD62;
+ Wed, 11 Nov 2026 16:09:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:From:Reply-To; bh=l8ufin4b6JTIr8GwZJXnQtcoiPIiiHXtK7fdPA9GJTg=;
- t=1794413336; x=2109773336; b=NVH5P6hvI9UHdov/HNuGQpFuG/oXU7SSRYo0CcppaQEhgp1
- +N2xWVYvUnKm5fRpGrZwrMsqEIrHodefL8uWaML4xCJeAlluoYqrcl75A7B/i/82ZAJXBtTmijEk+
- 46+asvsKch4WaaJ6sloENqiTHUtkv9KMe/XqLA+JeyylTQ77UQZIb8yzm4IvDwweFsgZBwanq+K8+
- yrQCoBU8fiuqbCg5dgL+Tui+Rf5r4rueR/4AlHkSZEZ/v6q5F8czVKuvTmiF/ec+vv8bgYXF4H4Pt
- TPsY37yB0FWFPAZcK5CNhwD+AqumYygwh6TjyhZ/ePlFIWfMJbOxVbMpbxH41wMw==;
+ Cc:To:From:From:Reply-To; bh=IH1IrCh1AI5My9yEGrI2C/SDhX0IyneiDvEbL4p4nLg=;
+ t=1794413342; x=2109773342; b=lzjeIqu+dRTexTYq9BVvjii6GF5RHnEDBqs1lAU8qREtYCG
+ btb/VE+9vc/AYyy0IDtYEXzbVQdz6sXDrwVPxXXBl6Sbt6b52CymeYI3QkcDHefx4yl9FVDuMDzEU
+ EmyB95EyyNus8mJU9GQ8IM8b7coahBuuhnw7e9dCS6R3xzfbiREwkqHmrrkt4b8i0LppOkD1sEyvV
+ AEAaeZMYbIyfVOKrgham6mOmRg2Qc60fJ6vhE7RmmZJfpSkcDgwTO/hSUN9+tQurJziSwv87low/l
+ Aj+71ACVJZxdHFqxmfHY7YyM81NHoOTCPJJoHqd8ZyW3HCzhZq5f/l4nxbfadmbQ==;
 Received: from 193.red-79-147-123.dynamicip.rima-tde.net ([79.147.123.193]
  helo=killbill) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1xRAsD-008u8Y-Ox; Wed, 11 Nov 2026 17:08:33 +0100
+ id 1xRAsK-008u8Y-AZ; Wed, 11 Nov 2026 17:08:40 +0100
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
  aurabindo.pillai@amd.com, christian.koenig@amd.com, contact@emersion.fr,
@@ -45,10 +45,9 @@ Cc: Uma Shankar <uma.shankar@intel.com>,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, louis.chauvet@bootlin.com,
  John Harrison <John.Harrison@igalia.com>
-Subject: [PATCH v5 04/15] drm/amd/display: add plane to commit on KUnit cursor
- mode tests
-Date: Wed, 11 Nov 2026 17:05:17 +0100
-Message-ID: <20261111160814.21326-5-mwen@igalia.com>
+Subject: [PATCH v5 10/15] drm/amd/display: make shaper bypass mode cleaner
+Date: Wed, 11 Nov 2026 17:05:23 +0100
+Message-ID: <20261111160814.21326-11-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261111160814.21326-1-mwen@igalia.com>
 References: <20261111160814.21326-1-mwen@igalia.com>
@@ -73,109 +72,61 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-KUnit tests for cursor mode were also taking into account inactive
-colorops where its color pipeline and plane state weren't active. Add
-the plane state to the atomic commit state and activate the colorop
-color pipeline by setting it to the plane state color_pipeline.
+Start shaper transfer function setup in bypass mode, i.e. tf->type ==
+TF_TYPE_BYPASS and let the helper checks set it to a different mode
+according to userspace request. It's aligned with current blend setup.
 
+Reviewed-by: Harry Wentland <harry.wentland@amd.com>
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- .../amdgpu_dm/tests/amdgpu_dm_cursor_test.c   | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
+ .../drm/amd/display/amdgpu_dm/amdgpu_dm_color.c   | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_cursor_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_cursor_test.c
-index 2212451043fb..c1765dababe4 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_cursor_test.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_cursor_test.c
-@@ -179,11 +179,43 @@ static void dm_test_add_cursor_mode_colorop(struct kunit *test,
- 	fixture->state->colorops[0].ptr = colorop;
- 	fixture->state->colorops[0].old_state = old_colorop_state;
- 	fixture->state->colorops[0].new_state = new_colorop_state;
-+	colorop->index = 0;
- 	colorop->plane = fixture->primary;
- 	old_colorop_state->colorop = colorop;
- 	old_colorop_state->bypass = old_bypass;
- 	new_colorop_state->colorop = colorop;
- 	new_colorop_state->bypass = new_bypass;
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+index 59dfae5a4a26..6455898e2da9 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
+@@ -1766,10 +1766,12 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
+ 	struct dc_transfer_func *tf = &dc_plane_state->cm.shaper_func;
+ 	const struct drm_color_lut32 *shaper_lut;
+ 	struct drm_device *dev = colorop->dev;
+-	bool enabled = false;
+ 	u32 shaper_size;
+ 	int i = 0, ret = 0;
+ 
++	tf->type = TF_TYPE_BYPASS;
++	dc_plane_state->cm.flags.bits.shaper_enable = 0;
 +
-+	/* Colorop needs to be part of an active plane color pipeline */
-+	fixture->old_primary_state->color_pipeline = colorop;
-+	fixture->primary_state->color_pipeline = colorop;
-+}
-+
-+/* Add plane to atomic commit state and make pipeline active by setting it to
-+ * old/new_state color pipeline.
-+ */
-+static void dm_test_add_plane_to_commit(struct kunit *test,
-+					struct drm_atomic_commit *state,
-+					struct drm_plane *plane,
-+					struct drm_colorop *pipeline)
-+{
-+	struct drm_plane_state *old_state;
-+	struct drm_plane_state *new_state;
-+	unsigned int i = drm_plane_index(plane);
-+
-+	old_state = kunit_kzalloc(test, sizeof(*old_state), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, old_state);
-+	new_state = kunit_kzalloc(test, sizeof(*new_state), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, new_state);
-+
-+	old_state->plane = plane;
-+	old_state->color_pipeline = pipeline;
-+	*new_state = *old_state;
-+	new_state->state = state;
-+
-+	state->planes[i].ptr = plane;
-+	state->planes[i].old_state = old_state;
-+	state->planes[i].new_state = new_state;
+ 	/* 1D Curve - SHAPER TF: find state */
+ 	old_colorop = colorop;
+ 	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
+@@ -1803,7 +1805,7 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
+ 		ret = __set_output_tf(tf, 0, 0, false);
+ 		if (ret)
+ 			return ret;
+-		enabled = true;
++		dc_plane_state->cm.flags.bits.shaper_enable = 1;
+ 	}
+ 
+ 	if (lut_state && !lut_state->bypass) {
+@@ -1819,17 +1821,10 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
+ 			ret = __set_output_tf_32(tf, shaper_lut, shaper_size, false);
+ 			if (ret)
+ 				return ret;
+-			enabled = true;
++			dc_plane_state->cm.flags.bits.shaper_enable = 1;
+ 		}
+ 	}
+ 
+-	if (!enabled) {
+-		tf->type = TF_TYPE_BYPASS;
+-		dc_plane_state->cm.flags.bits.shaper_enable = 0;
+-	} else {
+-		dc_plane_state->cm.flags.bits.shaper_enable = 1;
+-	}
+-
+ 	return 0;
  }
- 
- static int dm_test_get_cursor_mode(struct dm_cursor_mode_fixture *fixture,
-@@ -447,14 +479,21 @@ static void dm_test_plane_color_pipeline_active(struct kunit *test)
- 	KUNIT_ASSERT_NOT_NULL(test, new_colorop_state);
- 	plane = kunit_kzalloc(test, sizeof(*plane), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, plane);
-+	state->planes = kunit_kzalloc(test, sizeof(*state->planes), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, state->planes);
- 	state->colorops = kunit_kzalloc(test, sizeof(*state->colorops), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, state->colorops);
- 
-+	adev->ddev.mode_config.num_total_plane = 1;
- 	adev->ddev.mode_config.num_colorop = 1;
- 	state->dev = &adev->ddev;
-+	plane->dev = &adev->ddev;
-+	plane->index = 0;
-+	dm_test_add_plane_to_commit(test, state, plane, colorop);
- 	state->colorops[0].ptr = colorop;
- 	state->colorops[0].old_state = old_colorop_state;
- 	state->colorops[0].new_state = new_colorop_state;
-+	colorop->index = 0;
- 	colorop->plane = plane;
- 	old_colorop_state->colorop = colorop;
- 	old_colorop_state->bypass = true;
-@@ -488,13 +527,23 @@ static void dm_test_plane_color_pipeline_ignores_other_plane(struct kunit *test)
- 	KUNIT_ASSERT_NOT_NULL(test, colorop_plane);
- 	other_plane = kunit_kzalloc(test, sizeof(*other_plane), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, other_plane);
-+	state->planes = kunit_kcalloc(test, 2, sizeof(*state->planes), GFP_KERNEL);
-+	KUNIT_ASSERT_NOT_NULL(test, state->planes);
- 	state->colorops = kunit_kzalloc(test, sizeof(*state->colorops), GFP_KERNEL);
- 	KUNIT_ASSERT_NOT_NULL(test, state->colorops);
- 
-+	adev->ddev.mode_config.num_total_plane = 2;
- 	adev->ddev.mode_config.num_colorop = 1;
- 	state->dev = &adev->ddev;
-+	colorop_plane->dev = &adev->ddev;
-+	colorop_plane->index = 0;
-+	other_plane->dev = &adev->ddev;
-+	other_plane->index = 1;
-+	dm_test_add_plane_to_commit(test, state, colorop_plane, colorop);
-+	dm_test_add_plane_to_commit(test, state, other_plane, NULL);
- 	state->colorops[0].ptr = colorop;
- 	state->colorops[0].new_state = colorop_state;
-+	colorop->index = 0;
- 	colorop->plane = colorop_plane;
- 	colorop_state->colorop = colorop;
  
 -- 
 2.53.0
