@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D9D606A324
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21E8D606A321
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:20:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Ye9Udwrl
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mPNCpzH9
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B0210FB37;
-	Wed, 11 Nov 2026 11:20:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B88F10FB2E;
- Wed, 11 Nov 2026 11:20:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9A1310FB3F;
+	Wed, 11 Nov 2026 11:20:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B686510FB1A;
+ Wed, 11 Nov 2026 11:20:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794396038; x=1825932038;
+ t=1794396042; x=1825932042;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qpaJGXIvmR3/Zn/thV5br2kbyhwUyxK5kpvtnNMLE1M=;
- b=Ye9UdwrlTnDCAqaL7Y2e6ipi1848dtE0I2lryx2jcjxk1dKQg0WlIDfw
- LmENVPGQm+DI4TJVJw4uLG8u7AbrkRwODU2nDKbX6x3BLyReHBTGVaJGO
- 7djsxf2jlBl0RqWDRvYUBPcwLuFXJDv9Biu7xm8XBIl7r6UWqKLC/wKed
- 4fuxdq/DKRLHa9r3O13IH1WN9QQIKwKU5V0/5Ri6aojbFHmYZUrCvsFl/
- 0NxWAtco3AH4Zm25UH6xqdKCxyFbJVrEqWPd14H8MVuzB7R9TYZ4zqwqk
- MxkTaJkGLTN7357vjKvf5QXDjF10jO9ewXm4dagBMVDFoYXXpcgcySfds g==;
-X-CSE-ConnectionGUID: D7HiJn+qRwmY69Q1qarKYw==
-X-CSE-MsgGUID: 1bCscOlURLKugY5hER8VgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3186438"
+ bh=0oRqKH6vsKVuuVzCj+fyGh4OspDQpJUjTehxcOEehy4=;
+ b=mPNCpzH9+aY6N9BGKRvDmQuc5HDVFB4Wn0p7QhSc/B2QkZ43zWom8iWa
+ B+7suLP2E18UAgQ7PKQLdel7njOJ57x2WjlOBuCSUL386vz9AQjYMp/mP
+ 3IMPy+k94yfKyNWZaS8xpGj16vMeHtyL9mgHb18YCu0zZ3JNsz4tYZfA5
+ 2ZfNTB1FYSIFC+4bz/i+4qGdCCxpsBaT11Qlt2w3+2FbK7BM5vGAzqI/Y
+ hV+uZ7l8/iPbnjq9nHaVvpD3BDliD7BZQ1eHHjE1PQsuW/adNZcwuZFIz
+ yndWiq2+a4KxTOiblmlBfCVZv8lLfb7zOO5Xuxjxc+KQ4zFbBrhSGP5Gc w==;
+X-CSE-ConnectionGUID: z9dJj4eeR+6E47nFIHmyWA==
+X-CSE-MsgGUID: D45aoPRXTsufl2+D2xUBfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3162131"
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="3186438"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 03:20:38 -0800
-X-CSE-ConnectionGUID: sKUgZjHGTs6qllwCiwtNWQ==
-X-CSE-MsgGUID: ok7sPyQQQ7mXymWEVyuV7Q==
+   d="scan'208";a="3162131"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 03:20:42 -0800
+X-CSE-ConnectionGUID: 4yQVGxZfSyaXpYZtRWAk9w==
+X-CSE-MsgGUID: Ed7lQX7NS6SiEs5qBmQpbg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="8828997"
+   d="scan'208";a="8493223"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 03:20:36 -0800
+ 11 Nov 2026 03:20:40 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/13] drm/i915/vma: Extract intel_gtt_view_compare()
-Date: Wed, 11 Nov 2026 13:20:01 +0200
-Message-ID: <20261111112007.16790-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/13] drm/i915/vma: Introduce i915_vma_lookup()
+Date: Wed, 11 Nov 2026 13:20:02 +0200
+Message-ID: <20261111112007.16790-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
 References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
@@ -76,84 +76,100 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Split intel_gtt_view_compare() out from i915_vma_compare().
-We'll soon need to compare gtt views in the DPT code without
-vmas being present.
+Expose a "lookup only" variant of i915_vma_instance()
+(which will create the vma if it didn't exist before)
+as i915_vma_lookup(). This can be used when we know that
+the vma must already exists (eg. it's currently pinned).
+Not magically creating the vma if we screw up badly could
+help with catching the bug earlier.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_vma.h | 44 ++++++++++++++++++++-------------
- 1 file changed, 27 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/i915_vma.c | 39 ++++++++++++++++++++++++++-------
+ drivers/gpu/drm/i915/i915_vma.h |  5 +++++
+ 2 files changed, 36 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
-index b0aca10bf8e7..85c2408f1823 100644
---- a/drivers/gpu/drm/i915/i915_vma.h
-+++ b/drivers/gpu/drm/i915/i915_vma.h
-@@ -204,25 +204,19 @@ static inline void i915_vma_put(struct i915_vma *vma)
- 	i915_gem_object_put(vma->obj);
+diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_vma.c
+index 52f82772a1c0..daf933036ce0 100644
+--- a/drivers/gpu/drm/i915/i915_vma.c
++++ b/drivers/gpu/drm/i915/i915_vma.c
+@@ -285,9 +285,9 @@ vma_create(struct drm_i915_gem_object *obj,
  }
  
-+/* a is never NULL, b may be NULL (assumed normal view) or not */
- static inline long
--i915_vma_compare(struct i915_vma *vma,
--		 struct i915_address_space *vm,
--		 const struct intel_gtt_view *view)
-+intel_gtt_view_compare(const struct intel_gtt_view *a,
-+		       const struct intel_gtt_view *b)
+ static struct i915_vma *
+-i915_vma_lookup(struct drm_i915_gem_object *obj,
+-	   struct i915_address_space *vm,
+-	   const struct intel_gtt_view *view)
++__i915_vma_lookup(struct drm_i915_gem_object *obj,
++		  struct i915_address_space *vm,
++		  const struct intel_gtt_view *view)
  {
- 	ptrdiff_t cmp;
+ 	struct rb_node *rb;
  
--	GEM_BUG_ON(view && !i915_is_ggtt_or_dpt(vm));
--
--	cmp = ptrdiff(vma->vm, vm);
--	if (cmp)
--		return cmp;
--
- 	BUILD_BUG_ON(INTEL_GTT_VIEW_NORMAL != 0);
--	cmp = vma->gtt_view.type;
--	if (!view)
-+	cmp = a->type;
-+	if (!b)
- 		return cmp;
+@@ -309,6 +309,34 @@ i915_vma_lookup(struct drm_i915_gem_object *obj,
+ 	return NULL;
+ }
  
--	cmp -= view->type;
-+	cmp -= b->type;
- 	if (cmp)
- 		return cmp;
- 
-@@ -241,11 +235,27 @@ i915_vma_compare(struct i915_vma *vma,
- 	BUILD_BUG_ON(INTEL_GTT_VIEW_NORMAL >= INTEL_GTT_VIEW_PARTIAL);
- 	BUILD_BUG_ON(INTEL_GTT_VIEW_PARTIAL >= INTEL_GTT_VIEW_ROTATED);
- 	BUILD_BUG_ON(INTEL_GTT_VIEW_ROTATED >= INTEL_GTT_VIEW_REMAPPED);
--	BUILD_BUG_ON(offsetof(typeof(*view), rotated) !=
--		     offsetof(typeof(*view), partial));
--	BUILD_BUG_ON(offsetof(typeof(*view), rotated) !=
--		     offsetof(typeof(*view), remapped));
--	return memcmp(&vma->gtt_view.partial, &view->partial, view->type);
-+	BUILD_BUG_ON(offsetof(typeof(*b), rotated) !=
-+		     offsetof(typeof(*b), partial));
-+	BUILD_BUG_ON(offsetof(typeof(*b), rotated) !=
-+		     offsetof(typeof(*b), remapped));
-+	return memcmp(&a->partial, &b->partial, b->type);
-+}
-+
-+static inline long
-+i915_vma_compare(struct i915_vma *vma,
-+		 struct i915_address_space *vm,
-+		 const struct intel_gtt_view *view)
++/**
++ * i915_vma_lookup - return the singleton instance of the VMA if it exists
++ * @obj: parent &struct drm_i915_gem_object to be mapped
++ * @vm: address space in which the mapping is located
++ * @view: additional mapping requirements
++ *
++ * i915_vma_lookup() look up an existinbg VMA of the @obj in the @vm with
++ * the same @view characteristics. If no match is not found NULL is returned.
++ *
++ * Returns the vma, or NULL.
++ */
++struct i915_vma *
++i915_vma_lookup(struct drm_i915_gem_object *obj,
++		struct i915_address_space *vm,
++		const struct intel_gtt_view *view)
 +{
-+	ptrdiff_t cmp;
++	struct i915_vma *vma;
 +
 +	GEM_BUG_ON(view && !i915_is_ggtt_or_dpt(vm));
++	GEM_BUG_ON(!kref_read(&vm->ref));
 +
-+	cmp = ptrdiff(vma->vm, vm);
-+	if (cmp)
-+		return cmp;
++	spin_lock(&obj->vma.lock);
++	vma = __i915_vma_lookup(obj, vm, view);
++	spin_unlock(&obj->vma.lock);
 +
-+	return intel_gtt_view_compare(&vma->gtt_view, view);
- }
++	return vma;
++}
++
+ /**
+  * i915_vma_instance - return the singleton instance of the VMA
+  * @obj: parent &struct drm_i915_gem_object to be mapped
+@@ -329,12 +357,7 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
+ {
+ 	struct i915_vma *vma;
  
- struct i915_vma_work *i915_vma_work(void);
+-	GEM_BUG_ON(view && !i915_is_ggtt_or_dpt(vm));
+-	GEM_BUG_ON(!kref_read(&vm->ref));
+-
+-	spin_lock(&obj->vma.lock);
+ 	vma = i915_vma_lookup(obj, vm, view);
+-	spin_unlock(&obj->vma.lock);
+ 
+ 	/* vma_create() will resolve the race if another creates the vma */
+ 	if (unlikely(!vma))
+diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_vma.h
+index 85c2408f1823..5327cafa6edb 100644
+--- a/drivers/gpu/drm/i915/i915_vma.h
++++ b/drivers/gpu/drm/i915/i915_vma.h
+@@ -45,6 +45,11 @@ i915_vma_instance(struct drm_i915_gem_object *obj,
+ 		  struct i915_address_space *vm,
+ 		  const struct intel_gtt_view *view);
+ 
++struct i915_vma *
++i915_vma_lookup(struct drm_i915_gem_object *obj,
++		struct i915_address_space *vm,
++		const struct intel_gtt_view *view);
++
+ void i915_vma_unpin_and_release(struct i915_vma **p_vma, unsigned int flags);
+ #define I915_VMA_RELEASE_MAP BIT(0)
+ 
 -- 
 2.56.0
 
