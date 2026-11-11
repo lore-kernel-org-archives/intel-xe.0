@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A80606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1315C606A324
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:21:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PRRVpcZP
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=T49UlE+p
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F9F610FB47;
-	Wed, 11 Nov 2026 11:21:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D12BE10FB4A;
+	Wed, 11 Nov 2026 11:21:06 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB2E910FB47;
- Wed, 11 Nov 2026 11:20:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9765F10FB46;
+ Wed, 11 Nov 2026 11:21:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794396057; x=1825932057;
+ t=1794396060; x=1825932060;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QLJiMyDPB7JJmajaNPWj92TIZ/C4jyi7PlFKCI34bPA=;
- b=PRRVpcZPIx/V7YjQF5ufW1v/bbdjHSxIDXtT9LUb4ldyMsMZhiOip39I
- FceDO91xajrAa5+XqWOGdjxpmnge+M3DOYZ7efZfHh6JCekrFhP4GSx4b
- HXX3vH30H2IrX9lkMxfMVWfO4Jhzy2RGml+3+c1t+uKFO/rkFN3QkdNEI
- cD+DDyHhoQNcrR/PRYa78AJdwz4jS7ppGasdonROa09BFaE1q6cV3/1qR
- OMRBkVY039vQ1/bwQ0oEln+CDjehlhgHAya/2cEHPgoiWGIOpoUJtGaEX
- k2no0+WUWZPbj4MJDvLz7V3MLt8ZERDT61hWxsMEPuVNSvGbtMCE3PMEa A==;
-X-CSE-ConnectionGUID: KLrL1eAUS7eWiTuL0QdtFw==
-X-CSE-MsgGUID: 5JRDaKJ+R7mN5Ug/FOBKgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3195916"
+ bh=qlnfn+RJ5mt8dPQWBqJlZYXmFOagziQOIVmHod5l5ho=;
+ b=T49UlE+pU2V4fuPY4e5r7zJc29v7JV2xmnVe1fuzEJCdF+x8whKapnl/
+ /TXQu0hSCYfH+lLN3LrwwuF+j9ErRo1Mjl1Aht+AfVI7MDBSgaX38PLS+
+ 0nqk04eqpsFz06PyoVMAAdktjKidePPedsKJKH3CLchOMGiFyHFyUlOUk
+ 9V36t0pL5Y7CErkOOK0BBK+ehinx5QW8LWE0EWl+isaXvfuhUYxuShzbz
+ IOjBEDgCSA3A/VmjGV8zTxhOSTnQZFySNGDtz/47qWcyBaoZjbn0JKfam
+ 2YU1Tg2Hie4WeMgzm9f+WGHdMKdfFMxuhHLp+eIprKPy3177K/m243Gl1 w==;
+X-CSE-ConnectionGUID: ZmkO+Y/iTdWwT36+h4WNdA==
+X-CSE-MsgGUID: qyHjaTwLTXyl4BU1N4inXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3195921"
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="3195916"
+   d="scan'208";a="3195921"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 03:20:56 -0800
-X-CSE-ConnectionGUID: MesVHJXJSf6bBE55FDeCHw==
-X-CSE-MsgGUID: hGxGQsKOTkmFDWBArd66tg==
+ 11 Nov 2026 03:21:00 -0800
+X-CSE-ConnectionGUID: WAZdijX9QkeaBhnZbTYaOg==
+X-CSE-MsgGUID: YHFuxcENT4i+jJrnWpcz0Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="8287816"
+   d="scan'208";a="8287863"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 03:20:56 -0800
+ 11 Nov 2026 03:20:59 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/13] drm/i915/dpt: Remove dpt->vma
-Date: Wed, 11 Nov 2026 13:20:06 +0200
-Message-ID: <20261111112007.16790-13-ville.syrjala@linux.intel.com>
+Subject: [PATCH 13/13] drm/i915/dpt: s/struct intel_dpt/struct i915_dpt/
+Date: Wed, 11 Nov 2026 13:20:07 +0200
+Message-ID: <20261111112007.16790-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
 References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
@@ -69,94 +69,274 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We don't actually have to keep the vma pointer around in the
-dpt. It'll anyway be available in the caller (the fb unpin
-code) so just get it from there instead of keeping it around.
-This also makes the code a bit more uniform with the ggtt
-counterpart.
+struct intel_dpt is now completely encased inside i915 code, so
+rename it to struct i915_dpt.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_dpt.c    | 8 +++-----
- drivers/gpu/drm/i915/i915_dpt.h    | 2 +-
- drivers/gpu/drm/i915/i915_fb_pin.c | 4 ++--
- 3 files changed, 6 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/i915_dpt.c    | 60 +++++++++++++++---------------
+ drivers/gpu/drm/i915/i915_dpt.h    | 16 ++++----
+ drivers/gpu/drm/i915/i915_fb_pin.c |  6 +--
+ 3 files changed, 41 insertions(+), 41 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
-index 53cb07144552..4957e172340e 100644
+index 4957e172340e..525c5c7d0815 100644
 --- a/drivers/gpu/drm/i915/i915_dpt.c
 +++ b/drivers/gpu/drm/i915/i915_dpt.c
-@@ -17,7 +17,6 @@ struct intel_dpt {
+@@ -13,7 +13,7 @@
+ #include "i915_dpt.h"
+ #include "i915_drv.h"
+ 
+-struct intel_dpt {
++struct i915_dpt {
  	struct i915_address_space vm;
  
  	struct drm_i915_gem_object *obj;
--	struct i915_vma *vma;
- 	void __iomem *iomem;
- 	struct intel_gtt_view view;
- 	struct list_head obj_link;
-@@ -159,7 +158,6 @@ struct i915_vma *i915_dpt_pin_to_ggtt(struct intel_dpt *dpt, unsigned int alignm
- 			continue;
- 		}
+@@ -23,14 +23,14 @@ struct intel_dpt {
+ 	struct list_head ggtt_link;
+ };
  
--		dpt->vma = vma;
- 		dpt->iomem = iomem;
- 
- 		i915_vma_get(vma);
-@@ -172,10 +170,10 @@ struct i915_vma *i915_dpt_pin_to_ggtt(struct intel_dpt *dpt, unsigned int alignm
- 	return err ? ERR_PTR(err) : vma;
- }
- 
--void i915_dpt_unpin_from_ggtt(struct intel_dpt *dpt)
-+void i915_dpt_unpin_from_ggtt(struct i915_vma *vma)
+-struct intel_dpt *i915_vm_to_dpt(struct i915_address_space *vm)
++struct i915_dpt *i915_vm_to_dpt(struct i915_address_space *vm)
  {
--	i915_vma_unpin_iomap(dpt->vma);
--	i915_vma_put(dpt->vma);
-+	i915_vma_unpin_iomap(vma);
-+	i915_vma_put(vma);
+-	BUILD_BUG_ON(offsetof(struct intel_dpt, vm));
++	BUILD_BUG_ON(offsetof(struct i915_dpt, vm));
+ 	drm_WARN_ON(&vm->i915->drm, !vm->is_dpt);
+-	return container_of(vm, struct intel_dpt, vm);
++	return container_of(vm, struct i915_dpt, vm);
  }
  
- static void i915_dpt_get(struct intel_dpt *dpt)
+-struct i915_address_space *i915_dpt_to_vm(struct intel_dpt *dpt)
++struct i915_address_space *i915_dpt_to_vm(struct i915_dpt *dpt)
+ {
+ 	return &dpt->vm;
+ }
+@@ -46,7 +46,7 @@ static void dpt_insert_page(struct i915_address_space *vm,
+ 			    unsigned int pat_index,
+ 			    u32 flags)
+ {
+-	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
++	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
+ 	gen8_pte_t __iomem *base = dpt->iomem;
+ 
+ 	gen8_set_pte(base + offset / I915_GTT_PAGE_SIZE,
+@@ -58,7 +58,7 @@ static void dpt_insert_entries(struct i915_address_space *vm,
+ 			       unsigned int pat_index,
+ 			       u32 flags)
+ {
+-	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
++	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
+ 	gen8_pte_t __iomem *base = dpt->iomem;
+ 	const gen8_pte_t pte_encode = vm->pte_encode(0, pat_index, flags);
+ 	struct sgt_iter sgt_iter;
+@@ -118,12 +118,12 @@ static void dpt_unbind_vma(struct i915_address_space *vm,
+ 
+ static void dpt_cleanup(struct i915_address_space *vm)
+ {
+-	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
++	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
+ 
+ 	i915_gem_object_put(dpt->obj);
+ }
+ 
+-struct i915_vma *i915_dpt_pin_to_ggtt(struct intel_dpt *dpt, unsigned int alignment)
++struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_dpt *dpt, unsigned int alignment)
+ {
+ 	struct drm_i915_private *i915 = dpt->vm.i915;
+ 	struct ref_tracker *wakeref;
+@@ -176,26 +176,26 @@ void i915_dpt_unpin_from_ggtt(struct i915_vma *vma)
+ 	i915_vma_put(vma);
+ }
+ 
+-static void i915_dpt_get(struct intel_dpt *dpt)
++static void i915_dpt_get(struct i915_dpt *dpt)
+ {
+ 	i915_vm_get(&dpt->vm);
+ }
+ 
+-static void i915_dpt_put(struct intel_dpt *dpt)
++static void i915_dpt_put(struct i915_dpt *dpt)
+ {
+ 	i915_vm_put(&dpt->vm);
+ }
+ 
+-static void i915_dpt_free(struct intel_dpt *dpt)
++static void i915_dpt_free(struct i915_dpt *dpt)
+ {
+ 	dpt->obj->is_dpt = false;
+ 	i915_dpt_put(dpt);
+ }
+ 
+-static struct intel_dpt *__i915_dpt_lookup(struct drm_i915_gem_object *obj,
+-					   const struct intel_gtt_view *view)
++static struct i915_dpt *__i915_dpt_lookup(struct drm_i915_gem_object *obj,
++					  const struct intel_gtt_view *view)
+ {
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
+ 
+ 	lockdep_assert_held(&obj->dpt_lock);
+ 
+@@ -207,10 +207,10 @@ static struct intel_dpt *__i915_dpt_lookup(struct drm_i915_gem_object *obj,
+ 	return NULL;
+ }
+ 
+-struct intel_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
+-				  const struct intel_gtt_view *view)
++struct i915_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
++				 const struct intel_gtt_view *view)
+ {
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
+ 
+ 	spin_lock(&obj->dpt_lock);
+ 	dpt = __i915_dpt_lookup(obj, view);
+@@ -219,12 +219,12 @@ struct intel_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
+ 	return dpt;
+ }
+ 
+-static struct intel_dpt *i915_dpt_add(struct drm_i915_gem_object *obj,
+-				      struct intel_dpt *new_dpt)
++static struct i915_dpt *i915_dpt_add(struct drm_i915_gem_object *obj,
++				     struct i915_dpt *new_dpt)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+-	struct intel_dpt *old_dpt;
++	struct i915_dpt *old_dpt;
+ 
+ 	spin_lock(&obj->dpt_lock);
+ 
+@@ -250,14 +250,14 @@ static struct intel_dpt *i915_dpt_add(struct drm_i915_gem_object *obj,
+ 	return new_dpt;
+ }
+ 
+-static struct intel_dpt *dpt_create(struct drm_i915_gem_object *obj,
+-				    const struct intel_gtt_view *view)
++static struct i915_dpt *dpt_create(struct drm_i915_gem_object *obj,
++				   const struct intel_gtt_view *view)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+ 	struct drm_i915_gem_object *dpt_obj;
+ 	struct i915_address_space *vm;
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
+ 	size_t size;
+ 	int ret;
+ 
+@@ -321,10 +321,10 @@ static struct intel_dpt *dpt_create(struct drm_i915_gem_object *obj,
+ 	return dpt;
+ }
+ 
+-struct intel_dpt *i915_dpt_instance(struct drm_i915_gem_object *obj,
+-				    const struct intel_gtt_view *view)
++struct i915_dpt *i915_dpt_instance(struct drm_i915_gem_object *obj,
++				   const struct intel_gtt_view *view)
+ {
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
+ 
+ 	/* already have one? */
+ 	dpt = i915_dpt_lookup(obj, view);
+@@ -342,7 +342,7 @@ void i915_dpt_obj_free(struct drm_i915_gem_object *obj)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+ 	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
+-	struct intel_dpt *dpt, *next;
++	struct i915_dpt *dpt, *next;
+ 	LIST_HEAD(dpt_list);
+ 
+ 	spin_lock(&obj->dpt_lock);
+@@ -364,7 +364,7 @@ void i915_dpt_suspend(struct i915_ggtt *ggtt)
+ 	LIST_HEAD(dpt_list);
+ 
+ 	for (;;) {
+-		struct intel_dpt *dpt;
++		struct i915_dpt *dpt;
+ 
+ 		spin_lock(&ggtt->dpt_lock);
+ 
+@@ -395,7 +395,7 @@ void i915_dpt_suspend(struct i915_ggtt *ggtt)
+ 
+ void i915_dpt_resume(struct i915_ggtt *ggtt)
+ {
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
+ 
+ 	/*
+ 	 * i915_ggtt_resume_vm() with evict_all==true
 diff --git a/drivers/gpu/drm/i915/i915_dpt.h b/drivers/gpu/drm/i915/i915_dpt.h
-index 3f05311a7e73..5fdd9923ca74 100644
+index 5fdd9923ca74..42620dbcc84e 100644
 --- a/drivers/gpu/drm/i915/i915_dpt.h
 +++ b/drivers/gpu/drm/i915/i915_dpt.h
-@@ -22,7 +22,7 @@ struct intel_dpt *i915_dpt_instance(struct drm_i915_gem_object *obj,
+@@ -8,20 +8,20 @@
  
- struct i915_address_space *i915_dpt_to_vm(struct intel_dpt *dpt);
- struct i915_vma *i915_dpt_pin_to_ggtt(struct intel_dpt *dpt, unsigned int alignment);
--void i915_dpt_unpin_from_ggtt(struct intel_dpt *dpt);
-+void i915_dpt_unpin_from_ggtt(struct i915_vma *vma);
+ struct drm_i915_gem_object;
+ struct i915_address_space;
++struct i915_dpt;
+ struct i915_ggtt;
+ struct i915_vma;
+-struct intel_dpt;
+ struct intel_gtt_view;
+ 
+-struct intel_dpt *i915_vm_to_dpt(struct i915_address_space *vm);
++struct i915_dpt *i915_vm_to_dpt(struct i915_address_space *vm);
+ void i915_dpt_obj_free(struct drm_i915_gem_object *obj);
+-struct intel_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
+-				  const struct intel_gtt_view *view);
+-struct intel_dpt *i915_dpt_instance(struct drm_i915_gem_object *obj,
+-				    const struct intel_gtt_view *view);
++struct i915_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
++				 const struct intel_gtt_view *view);
++struct i915_dpt *i915_dpt_instance(struct drm_i915_gem_object *obj,
++				   const struct intel_gtt_view *view);
+ 
+-struct i915_address_space *i915_dpt_to_vm(struct intel_dpt *dpt);
+-struct i915_vma *i915_dpt_pin_to_ggtt(struct intel_dpt *dpt, unsigned int alignment);
++struct i915_address_space *i915_dpt_to_vm(struct i915_dpt *dpt);
++struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_dpt *dpt, unsigned int alignment);
+ void i915_dpt_unpin_from_ggtt(struct i915_vma *vma);
  u64 i915_dpt_offset(struct i915_vma *dpt_vma);
  
- void i915_dpt_suspend(struct i915_ggtt *ggtt);
 diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-index 831baf0c6898..81f5b0c4618a 100644
+index 81f5b0c4618a..0ee561d07211 100644
 --- a/drivers/gpu/drm/i915/i915_fb_pin.c
 +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -269,7 +269,7 @@ static int i915_fb_pin_dpt_pin(struct drm_gem_object *_obj,
+@@ -15,7 +15,7 @@
+ #include "i915_vma.h"
  
- 	dpt_vma = intel_fb_pin_to_dpt(obj, dpt, pin_params);
- 	if (IS_ERR(dpt_vma)) {
--		i915_dpt_unpin_from_ggtt(dpt);
-+		i915_dpt_unpin_from_ggtt(ggtt_vma);
- 		return PTR_ERR(dpt_vma);
- 	}
+ static struct i915_vma *
+-intel_fb_pin_to_dpt(struct drm_i915_gem_object *obj, struct intel_dpt *dpt,
++intel_fb_pin_to_dpt(struct drm_i915_gem_object *obj, struct i915_dpt *dpt,
+ 		    const struct intel_fb_pin_params *pin_params)
+ {
+ 	struct drm_i915_private *i915 = to_i915(obj->base.dev);
+@@ -257,7 +257,7 @@ static int i915_fb_pin_dpt_pin(struct drm_gem_object *_obj,
+ {
+ 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
+ 	struct i915_vma *ggtt_vma, *dpt_vma;
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
  
-@@ -304,7 +304,7 @@ static void i915_fb_pin_dpt_unpin(struct drm_gem_object *_obj,
- 	drm_WARN_ON(obj->base.dev, !dpt_vma->vm->is_dpt);
+ 	dpt = i915_dpt_instance(obj, pin_params->view);
+ 	if (IS_ERR(dpt))
+@@ -289,7 +289,7 @@ static void i915_fb_pin_dpt_unpin(struct drm_gem_object *_obj,
+ {
+ 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
+ 	struct i915_vma *dpt_vma;
+-	struct intel_dpt *dpt;
++	struct i915_dpt *dpt;
  
- 	intel_fb_unpin_vma(dpt_vma, -1);
--	i915_dpt_unpin_from_ggtt(dpt);
-+	i915_dpt_unpin_from_ggtt(ggtt_vma);
- }
- 
- static void i915_fb_pin_get_map(struct i915_vma *vma, struct iosys_map *map)
+ 	dpt = i915_dpt_lookup(obj, view);
+ 	if (drm_WARN_ON(obj->base.dev, !dpt))
 -- 
 2.56.0
 
