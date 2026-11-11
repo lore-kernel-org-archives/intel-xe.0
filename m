@@ -2,43 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04014606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 04:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835E9606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 04:37:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KzjpzKiy
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GD7cP8Kt
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B91C410E114;
-	Wed, 11 Nov 2026 04:25:12 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC05810E089
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Nov 2026 04:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37E6B10E114;
+	Wed, 11 Nov 2026 04:37:18 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EC0E10E114;
+ Wed, 11 Nov 2026 04:37:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id A95C7611BB;
- Wed, 11 Nov 2026 04:25:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41BEC1F0089F;
- Wed, 11 Nov 2026 04:25:05 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 38C1C4016D;
+ Wed, 11 Nov 2026 04:37:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDE4F1F0089F;
+ Wed, 11 Nov 2026 04:37:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794371105;
- bh=PV8ZagC6yy94ZAwGKAf+XxRAas1Vdpys18CSgjG6H54=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=KzjpzKiyVDYgk9sbLO2Rz4pZBprEE0VAVyUGgz8B2EuHhDDeLURU1i4PV2eOMiKoi
- hsiY5clAM/j7EjsZMvHnv15h+gbwv/j9ExOpssVsBGpj+eQxITZzvEWTjFTRGrO4vh
- QW8UYpUybolootXZmvjBqwyTpDm8hKp3lo5yQPDmAFMY1noPglx7qRWwOBqziGUK4B
- vwJCqljHJvGLBRjFOJG+WMd7sNUFrx8NEnso0FB79FXoLPZ5UGfCX6iOintipTZuAe
- ///SZ2av13mwpDNs/zYOM+FiB+1CC8QJKQruzIqLAHkcN9HxmiIfvOlBoipapTIzWb
- jfk2P3WiWl76A==
-Message-ID: <sashiko-outbox-208281@kernel.org>
+ s=k20260515; t=1794371832;
+ bh=HphaHthz6m3Ffk2nH4vmXS1PlpqrukSCOXelepA84YY=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=GD7cP8Ktjtee+eMwYgwCWv7IJjnrbWrglZB3M7biBNZX7QAZoiOPDoY2jpax+pP1B
+ h8csezPOW3NwmfWp3U3sI84gpleGh9r/f/KaB5N+lF4Vc5F06eS3tC6hvGe/AFDzPa
+ Hek/sb4cY32neGTePBvmGkDHigsL0EuJ8BraYBDu6OiyIgkOqh3GcqFIoARv8ckOi7
+ FstLVkiR1QqZmCnfz0dR7pGMiuAlrjEQcCupLPFY2Zw829FahfddWYQyrzkzs+HyBf
+ TI9RdajjOWrXIdQB7sSAB1BqZIa63ulNrYnf05aqATlELnQMuYB4I72KIQu8Y3sPqx
+ t+Ihmh/jXDHEQ==
+Message-ID: <sashiko-outbox-208303@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 09/11] drm/xe: Fall back to CPU copies when the tile
- cannot blit
-To: "Stuart Summers" <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261110231442.218721-22-stuart.summers@intel.com>
-References: <20261110231442.218721-13-stuart.summers@intel.com>
- <20261110231442.218721-22-stuart.summers@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Avoid YCbCr420 on HDMI2.1 PCONs due to the
+ TMDS CLK limit
+To: "Xiao Lu" <xiaolu.xie@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261111040636.3932240-1-xiaolu.xie@intel.com>
+References: <20261111040636.3932240-1-xiaolu.xie@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Wed, 11 Nov 2026 04:25:04 +0000
+Date: Wed, 11 Nov 2026 04:37:11 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,251 +57,85 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 6 potential
-issues to consider:
-- [High] drm/xe: WARN_ON and -EINVAL in xe_bo_move() on initial VRAM BO
-  clear
-- [High] drm/xe: invalid BAR mapping in xe_bo_move() for non-contiguous
-  VRAM BOs
-- [High] drm/xe: WARN_ON in xe_bo_vmap() during pinned BO save and
-  restore
-- [High] drm/xe: missing fence wait before ttm_bo_move_memcpy() in
-  xe_bo_move()
-- [Medium] drm/xe: blitter commands emitted in xe_ttm_access_memory()
-  and memtest
-- [Medium] drm/xe: missing fence wait before CPU copy in
-  xe_bo_evict_pinned_copy()
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [High] drm/i915/dp: intel_dp_frl_bw_valid() overestimates FRL bw by
+  applying 18/16 to blanking
 --
 
-commit fcb1ac36084339205a63d9c4c32dc0af3e3062ff
-Author: Stuart Summers <stuart.summers@intel.com>
+commit 7a66c4150ea1de9c9395550f545e6f8a16fa6852
+Author: Xiao Lu <xiaolu.xie@intel.com>
 
-drm/xe: Fall back to CPU copies when the tile cannot blit
+drm/i915/dp: Avoid YCbCr420 on HDMI2.1 PCONs due to the TMDS CLK limit
 
-This commit adds an xe_migrate_can_blit() helper and falls back to CPU
-copies in xe_bo_move(), xe_bo_evict_pinned_copy(), and
-xe_bo_restore_pinned() when a tile has no primary GT copy engine.
+This commit checks HDMI 2.1 FRL bandwidth limits instead of TMDS clock limi=
+ts
+in intel_dp_hdmi_compute_bpc() and intel_dp_mode_valid_downstream() when a
+DP-to-HDMI PCON drives an HDMI 2.1 sink using FRL.
 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 42a6aa1a2e4a0..49a3d4df77f62 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1275,6 +1275,19 @@ static int xe_bo_move(struct ttm_buffer_object *tt=
-m_bo, bool evict,
->  		xe_pm_runtime_get_noresume(xe);
->  	}
-> =20
-> +	/*
-> +	 * A tile with no copy engine cannot blit, so move the data with the
-> +	 * CPU instead.  For VRAM that means going over the PCIe BAR, which is
-> +	 * slow, but a device with no graphics IP offers no alternative.
-> +	 * ttm_bo_move_memcpy() covers the clear case too, by way of an
-> +	 * unpopulated source.
-> +	 */
-> +	if (!xe_migrate_can_blit(migrate)) {
-> +		ret =3D ttm_bo_move_memcpy(ttm_bo, ctx, new_mem);
-> +		xe_pm_runtime_put(xe);
-> +		goto out;
-> +	}
-
-[Severity: High]
-Does calling ttm_bo_move_memcpy() here hit WARN_ON(!src_mem) and return
--EINVAL when clearing a newly created VRAM BO?
-
-When xe_bo_init_locked() creates a standard user VRAM BO without
-XE_BO_FLAG_DEFER_BACKING, ttm_bo_validate() calls xe_bo_move() while
-ttm_bo->resource is still NULL (move_lacks_source is true and needs_clear
-is true).  ttm_bo_move_memcpy() only supports clearing from an existing
-non-NULL use_tt resource with an unpopulated ttm_tt, and rejects a NULL
-bo->resource at the start of the function:
-
-drivers/gpu/drm/ttm/ttm_bo_util.c:ttm_bo_move_memcpy() {
-	struct ttm_resource *src_mem =3D bo->resource;
-	...
-	if (WARN_ON(!src_mem))
-		return -EINVAL;
-}
-
-Every non-deferred VRAM BO allocation on a tile that cannot blit will
-warn and fail with -EINVAL.
-
-[Severity: High]
-Can passing a non-contiguous VRAM BO to ttm_bo_move_memcpy() corrupt
-memory at the start of the VRAM BAR?
-
-Unpinned user VRAM BOs do not set TTM_PL_FLAG_CONTIGUOUS, so when
-xe_ttm_vram_mgr_new() allocates multiple discontiguous buddy blocks it
-sets vres->base.start to XE_BO_INVALID_OFFSET (LONG_MAX).
-ttm_bo_move_memcpy() uses ttm_kmap_iter_linear_io_init(), which calls
-xe_ttm_io_mem_reserve():
-
-drivers/gpu/drm/xe/xe_bo.c:xe_ttm_io_mem_reserve() {
-	case XE_PL_VRAM0:
-	case XE_PL_VRAM1: {
-		...
-		mem->bus.offset =3D mem->start << PAGE_SHIFT;
-
-		if (vram->mapping &&
-		    mem->placement & TTM_PL_FLAG_CONTIGUOUS)
-			mem->bus.addr =3D (u8 __force *)vram->mapping +
-				mem->bus.offset;
-
-		mem->bus.offset +=3D vram->io_start;
-		mem->bus.is_iomem =3D true;
-}
-
-With mem->start =3D=3D LONG_MAX and TTM_PL_FLAG_CONTIGUOUS clear,
-mem->bus.addr stays NULL and mem->bus.offset wraps to
-vram->io_start - PAGE_SIZE.  ttm_kmap_iter_linear_io_init() then ioremaps
-mem->size bytes starting one page before the VRAM BAR and
-ttm_move_memcpy() linearly reads, writes, or zeroes across that address
-range instead of walking the BO's buddy blocks.
-
-[Severity: High]
-Does ttm_bo_move_memcpy() also run without waiting for in-flight GPU
-fences on ttm_bo->base.resv?
-
-In the GPU migration path, xe_migrate_copy() and xe_migrate_clear() chain
-the migration job behind existing fences in ttm_bo->base.resv.
-ttm_bo_move_memcpy(), however, performs the synchronous CPU copy in
-ttm_move_memcpy() before ttm_bo_move_sync_cleanup() waits on the
-reservation object.  When xe_bo_trigger_rebind() does not idle the BO
-(for example on a non-fault-mode VM when !xe_device_is_l2_flush_optimized(x=
-e),
-or when move_lacks_source is true and new_mem carries pipelined eviction
-fences), the CPU copy or clear races with active media GT jobs and ignores
-ctx->no_wait_gpu unless ttm_bo_wait_ctx(ttm_bo, ctx) is called first.
-
-> @@ -1576,17 +1589,18 @@ int xe_bo_notifier_unprepare_pinned(struct xe_bo =
-*bo)
->  static int xe_bo_evict_pinned_copy(struct xe_bo *bo, struct xe_bo *backu=
-p)
->  {
->  	struct xe_device *xe =3D xe_bo_device(bo);
-> +	struct xe_migrate *migrate;
->  	bool unmap =3D false;
->  	int ret =3D 0;
-> =20
-> -	if (xe_bo_is_user(bo) || (bo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)) {
-> -		struct xe_migrate *migrate;
-> -		struct dma_fence *fence;
-> +	if (bo->tile)
-> +		migrate =3D bo->tile->migrate;
-> +	else
-> +		migrate =3D mem_type_to_migrate(xe, bo->ttm.resource->mem_type);
-> =20
-> -		if (bo->tile)
-> -			migrate =3D bo->tile->migrate;
-> -		else
-> -			migrate =3D mem_type_to_migrate(xe, bo->ttm.resource->mem_type);
-> +	if ((xe_bo_is_user(bo) || (bo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE))=
- &&
-> +	    xe_migrate_can_blit(migrate)) {
-> +		struct dma_fence *fence;
-
-[Severity: Medium]
-When xe_bo_evict_pinned_copy() falls back to the else branch for a
-XE_BO_FLAG_PINNED_LATE_RESTORE or user BO, does the CPU copy race with
-in-flight GPU work?
-
-xe_bo_evict_all() runs before xe_gt_suspend().  The xe_migrate_copy()
-branch orders the copy behind DMA_RESV_USAGE_BOOKKEEP fences in
-bo->ttm.base.resv, but the CPU fallback calls xe_map_memcpy_from()
-immediately without waiting on bo->ttm.base.resv, so it can snapshot
-stale VRAM while media GT jobs or page-table updates are still running.
-
-> @@ -1715,6 +1729,7 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
->  	};
->  	struct xe_device *xe =3D ttm_to_xe_device(bo->ttm.bdev);
->  	struct xe_bo *backup =3D bo->backup_obj;
-> +	struct xe_migrate *migrate;
->  	bool unmap =3D false;
->  	int ret;
-> =20
-> @@ -1729,14 +1744,14 @@ int xe_bo_restore_pinned(struct xe_bo *bo)
->  			goto out_unlock_bo;
->  	}
-> =20
-> -	if (xe_bo_is_user(bo) || (bo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE)) {
-> -		struct xe_migrate *migrate;
-> -		struct dma_fence *fence;
-> +	if (bo->tile)
-> +		migrate =3D bo->tile->migrate;
-> +	else
-> +		migrate =3D mem_type_to_migrate(xe, bo->ttm.resource->mem_type);
-> =20
-> -		if (bo->tile)
-> -			migrate =3D bo->tile->migrate;
-> -		else
-> -			migrate =3D mem_type_to_migrate(xe, bo->ttm.resource->mem_type);
-> +	if ((xe_bo_is_user(bo) || (bo->flags & XE_BO_FLAG_PINNED_LATE_RESTORE))=
- &&
-> +	    xe_migrate_can_blit(migrate)) {
-> +		struct dma_fence *fence;
-
-[Severity: High]
-Can the CPU fallback in xe_bo_evict_pinned_copy() and
-xe_bo_restore_pinned() hit the drm_WARN_ON() in xe_bo_vmap() and fail
-suspend/resume with -EINVAL?
-
-When !xe_migrate_can_blit(migrate), both functions fall back to calling
-xe_bo_vmap(bo) whenever iosys_map_is_null(&bo->vmap):
-
-drivers/gpu/drm/xe/xe_bo.c:xe_bo_vmap() {
-	if (drm_WARN_ON(&xe->drm, !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS) ||
-			!force_contiguous(bo->flags)))
-		return -EINVAL;
-}
-
-User BOs pinned via xe_dma_buf_pin() -> xe_bo_pin_external() do not have
-XE_BO_FLAG_PINNED set, so force_contiguous(bo->flags) is false (and they
-may also be non-contiguous or lack XE_BO_FLAG_NEEDS_CPU_ACCESS).
-Likewise, late-restore kernel BOs created without
-XE_BO_FLAG_NEEDS_CPU_ACCESS, such as VF LMEM BOs in
-pf_provision_vf_lmem(), will fail xe_bo_vmap(bo) during suspend and
-resume.
-
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index 754592c5cf881..c06f43fc9e4fe 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -2093,6 +2093,22 @@ void xe_migrate_wait(struct xe_migrate *m)
->  		dma_fence_wait(m->fence, false);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
+15/display/intel_dp.c
+> index 47741957935ae..0836398c086ca 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1146,6 +1146,40 @@ static int intel_dp_max_tmds_clock(struct intel_dp=
+ *intel_dp)
+>  	return max_tmds_clock;
 >  }
 > =20
-> +/**
-> + * xe_migrate_can_blit() - Whether a migration context can issue blits
-> + * @m: The migration context
-> + *
-> + * xe_migrate_copy() and xe_migrate_clear() emit blitter commands, which=
- only
-> + * the copy engine understands, and the copy engine lives on the primary=
- GT.
-> + * A tile without one can still update page tables, so its migration con=
-text
-> + * is usable, but callers that want to move data have to do it themselve=
-s.
-> + *
-> + * Return: true if blit based copy and clear are available on @m.
-> + */
-> +bool xe_migrate_can_blit(struct xe_migrate *m)
+> +static bool intel_dp_is_hdmi_2_1_sink(struct intel_dp *intel_dp);
+> +static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
+> +
+> +static int frl_required_bw(int clock, int bpc,
+> +			   enum intel_output_format sink_format)
 > +{
-> +	return m->tile->primary_gt;
+> +	if (sink_format =3D=3D INTEL_OUTPUT_FORMAT_YCBCR420)
+> +		clock /=3D 2;
+> +
+> +	return clock * bpc * 3;
+> +}
+> +
+> +/* Max HDMI FRL rate in Gbps if the PCON will use FRL to the sink, 0 for=
+ TMDS */
+> +static int intel_dp_hdmi_frl_max_bw(struct intel_dp *intel_dp)
+> +{
+> +	if (!(intel_dp->downstream_ports[2] & DP_PCON_SOURCE_CTL_MODE) ||
+> +	    !intel_dp_is_hdmi_2_1_sink(intel_dp))
+> +		return 0;
+> +
+> +	return min(intel_dp->dfp.pcon_max_frl_bw,
+> +		   intel_dp_hdmi_sink_max_frl(intel_dp));
+> +}
+> +
+> +/* Check the pixel data fits the FRL link, including the 16b/18b encodin=
+g overhead */
+> +static enum drm_mode_status
+> +intel_dp_frl_bw_valid(int max_frl_bw, int clock, int bpc,
+> +		      enum intel_output_format sink_format)
+> +{
+> +	u64 required_bw =3D (u64)frl_required_bw(clock, bpc, sink_format) * 18;
+> +	u64 available_bw =3D (u64)max_frl_bw * 1000000 * 16;
+> +
+> +	return required_bw > available_bw ? MODE_CLOCK_HIGH : MODE_OK;
 > +}
 
-[Severity: Medium]
-Should xe_ttm_access_memory() and xe_vram_memtest() also check
-xe_migrate_can_blit() before issuing blitter commands?
+[Severity: High]
+Does multiplying frl_required_bw() by 18/16 overestimate the required FRL
+bandwidth and cause a regression for standard HDMI 2.1 modes?
 
-In xe_ttm_access_memory(), accesses with len >=3D SZ_16K unconditionally
-call xe_migrate_access_memory(), which emits blitter copy instructions via
-xe_migrate_vram() instead of using the CPU BAR memcpy loop right below it.
-In xe_vram_memtest() (when CONFIG_DRM_XE_DEBUG_MEM is enabled), the probe
-path checks tile->migrate and calls xe_migrate_clear(), which emits
-blitter commands to the media migration queue and fails device probe with
--EIO.
+frl_required_bw() uses the total pixel clock (including horizontal and
+vertical blanking) as if the entire frame were 3-channel active video, wher=
+eas
+HDMI 2.1 FRL encodes horizontal blanking with 1-byte TBlank characters and
+Repeat Count compression.  Scaling the full pixel clock by 18/16 pushes
+standard modes past the FRL link rates designed to carry them: for example,
+4K120 (1188000 kHz) 8bpc RGB requires 1188000 * 24 * 18 =3D 513216000 vs
+32 * 1000000 * 16 =3D 512000000 on a 32 Gbps FRL link, and 10bpc and 12bpc =
+RGB
+similarly fail at 40 Gbps and 48 Gbps, causing intel_dp_mode_valid_downstre=
+am()
+and intel_dp_hdmi_compute_bpc() to reject them with MODE_CLOCK_HIGH.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261110231442.2187=
-21-13-stuart.summers@intel.com?part=3D9
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261111040636.3932=
+240-1-xiaolu.xie@intel.com?part=3D1
