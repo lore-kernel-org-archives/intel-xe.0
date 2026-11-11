@@ -2,63 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DBA606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 12:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E27D5606A32A
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 12:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YMMItjn+
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Y0x0vjnh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2DAC110FB0C;
-	Wed, 11 Nov 2026 12:39:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B58210FB3F;
- Wed, 11 Nov 2026 12:39:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98F4010EA00;
+	Wed, 11 Nov 2026 12:56:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EF6B10E9BE;
+ Wed, 11 Nov 2026 12:56:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794400773; x=1825936773;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=grBxa0NUtC5bERIvoQ5jPW8d/jQtYdKDGq7rJ7f68ns=;
- b=YMMItjn+9uj/rdqEQGDzOJAH6xkDLacMwTE737bGL1aLFfODJctVMHvK
- ADxXMbgel3zg2mWTkVueAgIN/bf4TsOG6QlHl7QPi6j7VwrNZphl6Uujv
- g9xJeWwop/asyguLJ3ZsMlKUlXSz2ZIrXhiQBVImrw447k06IRJw8wWN3
- 8MPOcH0CkErDOCpd9hzxueGL2zyyS2Z1pIhil44ng4UC9D8ciGY5bawM3
- Q1Jwa6Z3UOV41L+axXpomeqxTLdDrJzTcx0BuzixAAvyZhpBoqZUFX2vE
- 3X+N/ljgIFgux7aotNy6FcVjTpS8+jxvBeCXwMzEkFaPQgJylj0+pWt68 w==;
-X-CSE-ConnectionGUID: RvPbgXYBQMGg1jSs5wgYSg==
-X-CSE-MsgGUID: yBxEQsEOSf+QR4uNv0TeZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3192116"
+ t=1794401809; x=1825937809;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=i8kcxNqNi9iTUO6lGXL+TkvmKtZdSy7yjfEYLT4vI/g=;
+ b=Y0x0vjnhSw6y3jIm++kVA6r0MoJxqDSSm/vk4qnXlN+z6kPznf/rjWsB
+ xsbKvuW2aAGxtR9ajVnDpW0paqbWYW/rinJUge9Gif/Ge0Z2M+6XAwlPV
+ Q7WnWH5wl1ySacQmnv+PFJyqmbuiaguVJ1HplO3JJYbLyiyNBjExmC4aE
+ UwRi0yPX29y4TgvlZMkn4+/LTJtBf6WfalfBrYp4WnFSBvHevNOWRPGlQ
+ o0B9DNBYJW12PtwfUSYBHwnDA4HzklWU6X10Yfp6mdiPLIYnseibxBRoX
+ pD9JIBRaUiRv4WCNSb1fJc0esALB5WI5ZIyEgGdlMj4M64T3rBxBkERsj A==;
+X-CSE-ConnectionGUID: 3uCLZr2wTsKCEKkkuOggkQ==
+X-CSE-MsgGUID: kzT8itTuSfG5lQ7talDFEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3092630"
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="3192116"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 04:39:32 -0800
-X-CSE-ConnectionGUID: G6ZJNYzOQtucNSojye1SrA==
-X-CSE-MsgGUID: fue2UZDwS2+3f4+YW5bvvA==
+   d="scan'208";a="3092630"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 04:56:49 -0800
+X-CSE-ConnectionGUID: CxB0rO4US9iUgFf5gVfMAQ==
+X-CSE-MsgGUID: BHviZAVyQvOA84Rozj970A==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="8585926"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.181])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 04:39:31 -0800
-Date: Wed, 11 Nov 2026 14:39:27 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/13] drm/i915/dpt: Compute DPT size in the DPT code
-Message-ID: <avRh_5mkErMktGqN@intel.com>
-References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
- <20261111112007.16790-7-ville.syrjala@linux.intel.com>
- <sashiko-outbox-208882@kernel.org>
+   d="scan'208";a="8238120"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 04:56:48 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 11 Nov 2026 04:56:48 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Wed, 11 Nov 2026 04:56:48 -0800
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.38) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Wed, 11 Nov 2026 04:56:48 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=T3xY60ZzkoQX6oTB2DW1jQL4J+FEmkJ31RgktrgMsHGMU5cik4z07kGxy8xMCbIi1K/hoV2YF+60siN2hBVXYYsLAdFukqr1wzElcQrA1Fk66uAUHyO25S2i1xHhIRU5nyyp53jeS/iIYuK9Kfyp6016Lp3xoFHPz8bp/xIjed/i8hXQsDC2+14dSH1X5Xw+FCXoG7JitSNHaa3sMcSNC/TDZBBlko1bVHKp4MZRWWe48PJaGFV/sKpTi55imuEqJapYRinzZ2rKl9zQ6LkAmJOtXjz0scvRq1f7NY/lxH+/21Rf/FWTWGXsTicfRT4fAqhmEueOf3CCHdnDPy41Rg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=bCgwTs8ks9Bir5OuYgxx3uKLF48qG9wwpt2IpX75EDU=;
+ b=DZppywFfoxGh4YeHy5BV8PCZqWopfreg1+GFwN9Hu9fCDYkP8XeIbzIuBuBLGuGCOuXg1IEaTMFabxQSBtc6bfU1yTe888sBsLvKkHS0PcTIvxvx/731fkdpxVoVP8n8f32+s8bXHNy8LAud3aGnM4731B0IzHPbgpjUaOazgDUigobj31lSSDBdo1fYXSuwh7tk2buTpthaYqp2A3sw6NHxJVAEC3Xy0skEX8ntCYq4sld8XCs2wHz9m6m0hUK0m+s0rAqekO5W3VfV5tayELNF948/XMsDsNWfw3XGfxrXJHhfqLcOlZJjkR9rkIbZS/3qYksS5KQhkJAdgDODDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LY0PR11MB357627.namprd11.prod.outlook.com
+ (2603:10b6:404:21a::11) by PH0PR11MB5781.namprd11.prod.outlook.com
+ (2603:10b6:510:14a::14) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Wed, 11 Nov
+ 2026 12:56:39 +0000
+Received: from LY0PR11MB357627.namprd11.prod.outlook.com
+ ([fe80::71fd:d139:945b:a71c]) by LY0PR11MB357627.namprd11.prod.outlook.com
+ ([fe80::71fd:d139:945b:a71c%5]) with mapi id 15.21.0615.007; Wed, 11 Nov 2026
+ 12:56:39 +0000
+Message-ID: <3b255202-bf65-4048-8d53-6bbc3ab98993@intel.com>
+Date: Wed, 11 Nov 2026 18:26:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/dip: Write the DIP header last with SDP
+ transmission lines
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <stable@vger.kernel.org>, Ankit Nautiyal <ankit.k.nautiyal@intel.com>, "Suraj
+ Kandpal" <suraj.kandpal@intel.com>
+References: <20261111103542.4093652-1-chaitanya.kumar.borah@intel.com>
+ <avRTIDPwI3uOHQyo@intel.com>
+Content-Language: en-GB
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+In-Reply-To: <avRTIDPwI3uOHQyo@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA0PR01CA0110.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::7) To LY0PR11MB357627.namprd11.prod.outlook.com
+ (2603:10b6:404:21a::11)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <sashiko-outbox-208882@kernel.org>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LY0PR11MB357627:EE_|PH0PR11MB5781:EE_
+X-MS-Office365-Filtering-Correlation-Id: c6488f59-fbda-4342-7585-08df3ff339c4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|366016|260925021311599003|260925022911599003|260925021911599003|10067099003|11063799006|4143699003|56012099006|261021123027099003|261021121427099003|261021135927099003|261009223027099003|261102123227099003|261026140227099003|261022115727099003|261026121527099003|261022105027099003|261022075727099003|261028144727099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: QyzYAUnkSzAWQAvfKt0HkoFkQ6LK18AjFjZG+fieIzT2tzpDdsBH97b1+bPtVr/0sMloFTDHBPgk+iZNuxrZT91d2YpTNZnx7oX0u0M93+9cFrZrjxS6EWZhjgkEPEIupmybhfXvvokJFlJREB1BZzZbjvCIq7cRDv2kYvKlO8iQehQIW9FvIxhcFEnsWNA6N3yW78g/7El9rKwQwTviI8NoLClBdyQWL54IVG5bE0pxC8lfQ1MM2GtpJMKp/9X4WbLITaEy648FvWFtevBx/UetYEZteioFjGvwT77IQ/kXx/uJwAdRiQ+6p/4+qxHj3E2m0V5lkevK3YmjTboYAXPm/JKcjKnNYWiZN3E9cWUtmXydNhcjh0s3I6RygarKIu3IAI+f0HfvMXq1cjEXO5eSPaVR+DtBJZl4tfBe1ckgM8yNkzz/c9HcifNspNTwLQEBevkCWCxCd2blscU+xw2y+rxrZbJPZRLC/Nm/+Cw56dlNZ60MNIP91EOc4U0fPqb8Jht64CExkoO89sadpn1imZC21L4lewoH7qjJt9yTH2iy+zi4C3y28anB8HzXjkIVvN5JrP9OZMfYbEdAdh1Paw/QjqcJN/UwPFt2VO8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LY0PR11MB357627.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(366016)(260925021311599003)(260925022911599003)(260925021911599003)(10067099003)(11063799006)(4143699003)(56012099006)(261021123027099003)(261021121427099003)(261021135927099003)(261009223027099003)(261102123227099003)(261026140227099003)(261022115727099003)(261026121527099003)(261022105027099003)(261022075727099003)(261028144727099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?amtGZEZBUndGVk0xRGpBeUNCUkJlT3Zld3BFUmRTaHQwWld5L2lPUUcyL2F3?=
+ =?utf-8?B?d2lyM0lqczh3SzhwazJCWGg3ZkxaRUpQYitnb01VTGF5WGd4MStZa2Rlc3Vk?=
+ =?utf-8?B?U3UwcmtjWmQ1TmNhMGRvNVBlY1FaSlBzdk5SdjFUVkNZU1ZlRlhwdFVDbzdE?=
+ =?utf-8?B?a1pjRUh0UUJyaHRxQjBCYzFpK2lVNkhKR0tlYWpWbTN6VkhTVk5pU2IvbE5O?=
+ =?utf-8?B?ZXkzSS9pT01IZDBndnA4MG1WY0tTMVRHbWhSbGc1dkRjeFVmeXU0V05BRjMy?=
+ =?utf-8?B?WFJmVllJZzJlMDdjNGVNSUF0L2Rkdzh4QWZwTk9HS1N1SUtMOW1vNmxsWWpn?=
+ =?utf-8?B?MnZGbjFMc3RyZy9lc2QrdStoRW1YWERjZVRHVWR2WWpoS3o1Zm1CQVdHcXRO?=
+ =?utf-8?B?RGdnOVN3L0lUUlBMVHQwZklYWU1GZ0RPRVJSQ1lJUU5Dd2dqZ0dQblY0SCtj?=
+ =?utf-8?B?UmdFWENOa21VaURFU2xIU2JHTFhhTkpxNFlxL2dCRGtBbGFwdXVHVVJ1THl2?=
+ =?utf-8?B?UHcrY0s2a2RadWs2WEkwdDZ6cVF0YkRoOER3NENlMFlrUEQzcjNmMVVjWnls?=
+ =?utf-8?B?ZXN3YnBCRmtybEF3S2N4T3UwNmdPM3czL3FCelNxa0c2bXlnSlpFVGRmYks1?=
+ =?utf-8?B?YnRBS1VZdTdYQWkrRitzNXZIMWFSQ1hLb3JKdGxUOTJVQVBtYW51TFJYU1RS?=
+ =?utf-8?B?Z1RXVWprZDJNM1JkQkF6bHViVkJPQlhvbzJBL3M3VHcrVTNYMjVLdjR4MExp?=
+ =?utf-8?B?R1lGUGwwSE9QcjZVTmt0c0J5MWVmbHZDZk8rdm1QWjFxRFJnamZTditVajgr?=
+ =?utf-8?B?WDBwbXplTTZET3R4TUdNeTJ4M1VIbTJZc001Tms3ZHhSbThBS1didTljTll3?=
+ =?utf-8?B?YnlMOEdLR3BGQng1QWlnRVBlRkFocnZva2h3NU9QYjVsUUxiakRQV205YkVM?=
+ =?utf-8?B?MnVYdjNqTEtNT0RlU2E0cWdyZ0wvOWJJVllDbkV3bWdtVE1Ud3NYanJZVVcv?=
+ =?utf-8?B?RU83N2U1cUNHclNlemc2UzhTNVU5U2F1NHlRUkdNSzRqY0Y4am9pY28rWkxx?=
+ =?utf-8?B?cERVRnkzMEttRU5pWm5PaEorMzFJLzVFRUl4RThxdnpQdFk4V2ZteVZIamg5?=
+ =?utf-8?B?V2lNOGhBM055dTY4ZUxYU2VzYjdCMGlkMElkSWRibzlIV1hnZWNJbkNSUVNC?=
+ =?utf-8?B?cExudzJ4S1cwNEgwaXJwWmxSZ3hwWUFvODZ5ZU1PM21Ma3k3NEsxcE1nRVpv?=
+ =?utf-8?B?aGNpVlpKOHJwQ1h4NHphYW1kbTRLS1pNMXJWZE1tRUV5WGsybzljNHkydk1S?=
+ =?utf-8?B?T0ZLRnFhanppcSt0ZWtzcW9LK2hncEU1MWJERkxIa0w5Z1NjSUFINy9XTWhF?=
+ =?utf-8?B?SzJBSGdGMjF0eUhITStERHIwc0I1TzVhS21GcVo0OVN1UVhza3pBWFpKRkU2?=
+ =?utf-8?B?endoL2NtV01xaWRxL3ordTFDK21rSXVQSHFxNTdCYkpnd0ZiazE0bWg2Tkg3?=
+ =?utf-8?B?TXJzOTlnMWpxQjVOMWlsVU8wNWhPVjhldWdxMktZWGxYdXN2Q1UvVzhIVFlP?=
+ =?utf-8?B?L3RySGRyd3NRTkcwOVZWLzBqT3JkTG5QRlFqWEJRTlpGME40VEZPZUM2ZGNr?=
+ =?utf-8?B?d1NhYnBhYzNMSHpxcERwdUxNREkrUFprQUFhYjVLa1lFYkRPTnVWWDczUHRE?=
+ =?utf-8?B?MnFWcUQ3YWU5Y0s2azZIa1J4cHRYN2pFUFc0U3czaW9tS3NjbytyQUxqcGtp?=
+ =?utf-8?B?ZCtWQjlrNWJ6UU5wcDVCRFBuUm05MFRMTXd4c1M3T0JueFRDb0YrMHowbG9y?=
+ =?utf-8?B?NVl2RXA3S3UwbmpteXRtMVFhQ0xVQ0NVaUhlSUE4NmlNRGFqeVJLbVhQQWw3?=
+ =?utf-8?B?dmVMRFBnZnlLZy9NY2Z4eHVVSUxBQzRZakhHaTBGbnErL05PSU5rMWZXVjl3?=
+ =?utf-8?B?M1ZFQ0tjTUUxRmYyZnZvU2dEaW10UDQ5cWhDWlduK0hXZHFHalh5eFVTenFR?=
+ =?utf-8?B?YkRJb3hKYnFLd2JTWkdwQ2xCVllxSWZGd1lNWGJjQ1lnQjhwR21neXlSK2dR?=
+ =?utf-8?B?U3c0dlpvOGN4ZzVhdjYzNzBxVU9LVzJUWGVMYWovMHgzNkk0Vlp2UnVRREY5?=
+ =?utf-8?B?SWZkd05SUlNNMG5ld3pPY25OTzI5NWI0NzRlNFpyVDdZQUhJUEZ1Ylk5bU4v?=
+ =?utf-8?B?SGk2SmFpNnB1K0pOWVlUNFlNSzBreS80ZXI4RitHWEZuaVNOemlWZ0xGZ3dD?=
+ =?utf-8?B?YlRHbzdUMjN0QXpXUGNFbG1SZ2ZRVVVhczVMazAzRmxhZDF4Wm9mNzdxVitZ?=
+ =?utf-8?B?TzFQTk44SndPbnpHUjZMdVRzY2Nuc1V3dlNrcE9rYXZ5aXdSODF1YXFQaFky?=
+ =?utf-8?Q?tTCE9HTjexEsMKXM=3D?=
+X-Exchange-RoutingPolicyChecked: he764md0i7T8RLEGFUQrK13mYa5HIzJWzo7tNQ3+eruHhKEb2TcBtmG0Zv57f7l8VnlJvd84ZOTZsmVA7amSZW2rhG4122P/7aenH0WWjm6Bx2NlIacLKcZULj6ThMCDKOAOsypzo0NZb72Lkop/IfTql2K9Nls4u1dP+hApc6zrLLYCcZAxLPKuUr8muNEbrzx1k7O3vUKzhrjrtxit0bc072j63zz7BR9QfZbLSFox8i2BFd/ihsAntJ2abO/5LIMNfsHtWpGHJIWT8xyPurhpM5i51iUNfA+ImDVmIPF7C6d/Qd24i5rd2JOz26Lp7Ziip6IHhcf2kWamUXhZUQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c6488f59-fbda-4342-7585-08df3ff339c4
+X-MS-Exchange-CrossTenant-AuthSource: LY0PR11MB357627.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Nov 2026 12:56:39.1907 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7yTJRNynpdR0CtwBCNpj5EbhQLg1+ZFMqT+q7lH9lg5Pz8l5EyIzC2A0kpEKHvAdpBOKmuzw91yoDii5wgp6STp6lGnL10zZFXfOr85s86g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5781
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,95 +168,158 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 11, 2026 at 11:31:06AM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found no new issues
-> in this patch, but noticed 1 related pre-existing issue it does not
-> introduce:
-> - [High] drm/xe/display: double BO unpin on __intel_fbdev_fb_alloc()
->   error path [1]
-> --
-> 
-> commit ae1435739339ed58396679163558aae13db1d253
-> Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> drm/i915/dpt: Compute DPT size in the DPT code
-> 
-> This commit passes the GTT view instead of a precomputed size to
-> intel_parent_dpt_create() so that the DPT code computes the DPT size for
-> both normal and remapped views.
-> 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> > index b3344e3f187fb..35f1d5dd31d7d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> > @@ -2275,13 +2275,15 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
-> >  
-> >  	if (intel_fb_uses_dpt(fb)) {
-> >  		struct drm_gem_object *obj = intel_fb_bo(&intel_fb->base);
-> > +		const struct intel_gtt_view *view;
-> >  		struct intel_dpt *dpt;
-> > -		size_t size = 0;
-> >  
-> >  		if (intel_fb_needs_pot_stride_remap(intel_fb))
-> > -			size = intel_remapped_info_size(&intel_fb->remapped_view.gtt.remapped);
-> > +			view = &intel_fb->remapped_view.gtt;
-> > +		else
-> > +			view = &intel_fb->normal_view.gtt;
-> >  
-> > -		dpt = intel_parent_dpt_create(display, obj, size);
-> > +		dpt = intel_parent_dpt_create(display, obj, view);
-> >  		if (IS_ERR(dpt)) {
-> >  			drm_dbg_kms(display->drm, "failed to create DPT\n");
-> >  			ret = PTR_ERR(dpt);
-> 
-> [Severity: High]
-> This problem wasn't introduced by this patch, but can failing in
-> intel_framebuffer_init() after intel_bo_framebuffer_init() cause a double
-> BO unpin on Xe when called from __intel_fbdev_fb_alloc() [1]?
-> 
-> In __intel_fbdev_fb_alloc(), intel_bo_fbdev_create() allocates the BO via
-> xe_bo_create_pin_map_novm() with XE_BO_FLAG_PINNED set and a pin count of
-> 1, and xe_display_bo_framebuffer_init() only takes a reference without
-> pinning it again.  If a later step in intel_framebuffer_init() fails and
-> jumps to err_bo_framebuffer_fini, xe_display_bo_framebuffer_fini() sees
-> XE_BO_FLAG_PINNED and unpins the BO:
-> 
-> drivers/gpu/drm/xe/display/xe_display_bo.c:xe_display_bo_framebuffer_fini() {
-> 	struct xe_bo *bo = gem_to_xe_bo(obj);
-> 
-> 	if (bo->flags & XE_BO_FLAG_PINNED) {
-> 		/* Unpin our kernel fb first */
-> 		xe_bo_lock(bo, false);
-> 		xe_bo_unpin(bo);
-> 		xe_bo_unlock(bo);
-> 	}
-> 	xe_bo_put(bo);
-> }
-> 
-> When control returns to __intel_fbdev_fb_alloc(), error handling calls
-> intel_bo_fbdev_destroy() -> xe_display_bo_fbdev_destroy() ->
-> xe_bo_unpin_map_no_vm(), which unpins the BO a second time, triggering
-> assertions in xe_bo_unpin() and underflowing bo->pin_count in
-> ttm_bo_unpin().
 
-Yes, the xe pin_map() stuff is broken by design. I've mentioned it
-before, and I think the correct way to fix it is by making it a
-custom object type in xe, and have the object destructor itself do
-the needed cleanup.
 
+On 11/11/2026 5:06 PM, Ville SyrjÃ¤lÃ¤ wrote:
+> On Wed, Nov 11, 2026 at 04:05:42PM +0530, Chaitanya Kumar Borah wrote:
+>> On platforms with SDP transmission line registers, the packets anchored
+>> to them are double buffered in the transcoder (TC) clock domain. The packet
+>> registers are in the core display (CD) clock domain and the whole packet is
+>> clock crossed on the write of the header (dword 0), so Bspec requires the
+>> data to be programmed first and the header last.
+>>
+>> hsw_write_infoframe() writes the header first, so the packet is crossed
+>> before its payload is in place and the previous payload keeps being sent.
+>> This hits the AS SDP, and the VSC SDP whenever an AS SDP is enabled, which
+>> is whenever VRR is possible since commit 6a1712052859 ("drm/i915/dp: Enable
+>> AS SDP whenever VRR is possible or PR !async"). With CMN_SDP_TL, enabled by
+>> commit bfa597238073 ("drm/i915/dip: Enable Common SDP Transmission line"),
+>> it also hits the GMP and VSC SDPs: on NVL, entering HDR on an eDP panel
+>> leaves the image discoloured and scaled until the headers are rewritten.
+>>
+>> Write the payload, including the ECC zero fill, first and the header last
+>> on platforms with EMP_AS_SDP_TL. CD domain packets have no ordering
+>> requirement and Bspec recommends the same order for all packets, so use it
+>> for all of them. Older platforms keep the current order.
+>>
+>> Bspec: 75640, 71197, 74384
+>> Fixes: e1123e617e51 ("drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP")
+>> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17732
+>> Cc: <stable@vger.kernel.org> # v6.17+
+>> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+>> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>> ---
+>>
+>> Notes:
+>>      Fixes tag rationale
+>>      
+>>      The Fixes tag points at commit e1123e617e51 ("drm/i915/vrr: Program
+>>      EMP_AS_SDP_TL for DP AS SDP"). The AS SDP has been written header first
+>>      since it was added by commit 8845021b7331 ("drm/i915/display: Read/Write
+>>      Adaptive Sync SDP"), but EMP_AS_SDP_TL, which holds the double buffer
+>>      point and the transmission line of the AS SDP on BMG and LNL+, was only
+>>      programmed from that commit on. From then on the driver relies on that
+>>      register to anchor the AS SDP, and the VSC SDP whenever an AS SDP is
+>>      enabled, and the programming note of the register asks for the packet
+>>      data first and the header last. The two later commits cited in the commit
+>>      message only widened the exposure: the first enabled the AS SDP whenever
+>>      VRR is possible and the second added CMN_SDP_TL for the GMP and VSC SDPs.
+>>      
+>>      Alternatives considered:
+>>       - 6a1712052859 (v7.2): AS SDP on whenever VRR is possible. The PTL
+>>         report is fixed by reverting it. Narrower than the spec argument, as
+>>         it only covers v7.2 and later.
+>>       - bfa597238073 (7.4): CMN_SDP_TL. The NVL regression, verified on
+>>         hardware, but covered by the older tag as every kernel with it also
+>>         has e1123e617e51.
+>>       - 8845021b7331 (v6.10): first header first AS SDP write, but
+>>         EMP_AS_SDP_TL was not programmed until e1123e617e51, so exposure
+>>         before it could not be shown.
+>>      
+>>      Not verified:
+>>       - The failure was observed on NVL with CMN_SDP_TL (rewriting the GMP and
+>>         VSC headers makes the panel recover). The AS SDP and the VSC SDP with
+>>         an AS SDP on BMG, LNL and PTL follow from the Bspec requirement and
+>>         were not reproduced here.
+>>       - No reproduction on kernels older than v7.2.
+>>       - Stable backports need the HAS_EMP_AS_SDP_TL gate adapted, as it is
+>>         defined in intel_dip.h, which is new in 7.4.
+>>
+>>   drivers/gpu/drm/i915/display/intel_hdmi.c | 21 +++++++++++++++++----
+>>   1 file changed, 17 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> index 4ec0db8d93fb..3ecf017b3176 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -51,6 +51,7 @@
+>>   #include "intel_cx0_phy.h"
+>>   #include "intel_ddi.h"
+>>   #include "intel_de.h"
+>> +#include "intel_dip.h"
+>>   #include "intel_display_driver.h"
+>>   #include "intel_display_regs.h"
+>>   #include "intel_display_types.h"
+>> @@ -524,6 +525,15 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+>>   	const u32 *data = frame;
+>>   	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>>   	intel_reg_t ctl_reg = HSW_TVIDEO_DIP_CTL(display, cpu_transcoder);
+>> +	/*
+>> +	 * On platforms with the SDP transmission line registers some of the
+>> +	 * packets are double buffered in the transcoder clock domain, and the
+>> +	 * packet is clock crossed on the write of the header (dword 0). Program
+>> +	 * the payload first and the header last, so that the whole packet gets
+>> +	 * crossed. Packets double buffered in the core display clock domain
+>> +	 * have no ordering requirement, so use the same order for all of them.
+>> +	 */
+>> +	bool header_last = HAS_EMP_AS_SDP_TL(display);
+>>   	int data_size;
+>>   	int i;
+>>   	u32 val = intel_de_read(display, ctl_reg);
+>> @@ -535,18 +545,21 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+>>   	val &= ~hsw_infoframe_enable(type);
+>>   	intel_de_write(display, ctl_reg, val);
+>>   
+>> -	for (i = 0; i < len; i += 4) {
+>> +	for (i = header_last ? 4 : 0; i < len; i += 4)
 > 
-> [1] https://sashiko.dev/#/bug/linux-227b0044-5f2a-4c7c-81e6-93b67cb4f477
+> IMO just always use the "write header last" approach.
 > 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20261111112007.16790-1-ville.syrjala@linux.intel.com?part=6
 
--- 
-Ville Syrjälä
-Intel
+Agreed. I was trying to keep the exposure minimal but this should be 
+harmless given the registers are either not double-buffered or double 
+buffered without an arming register in the older platforms.
+
+>>   		intel_de_write(display,
+>>   			       hsw_dip_data_reg(display, cpu_transcoder, type, i >> 2),
+>> -			       *data);
+>> -		data++;
+>> -	}
+>> +			       data[i >> 2]);
+> 
+> Making 'i' the dword index rather than the byte index might make this
+> code a bit nicer. The only slight concern is whether len%4!=0 might
+> be true. Maybe just have the caller always align it for good measure.
+> But let's stick to the byte based thing for now to avoid adding more
+> noise to this patch, and clean it up later.
+> 
+
+Noted for later.
+
+>>   	/* Write every possible data byte to force correct ECC calculation. */
+>>   	for (; i < data_size; i += 4)
+>>   		intel_de_write(display,
+>>   			       hsw_dip_data_reg(display, cpu_transcoder, type, i >> 2),
+>>   			       0);
+>>   
+>> +	if (header_last)
+>> +		intel_de_write(display,
+>> +			       hsw_dip_data_reg(display, cpu_transcoder, type, 0),
+>> +			       data[0]);
+>> +
+>>   	/* Wa_14013475917 */
+>>   	if (!(IS_DISPLAY_VER(display, 13, 14) && crtc_state->has_psr &&
+>>   	      !crtc_state->has_panel_replay && type == DP_SDP_VSC))
+>> -- 
+>> 2.50.1
+> 
+
