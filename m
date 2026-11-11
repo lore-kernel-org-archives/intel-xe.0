@@ -2,28 +2,29 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF5F8606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 00:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1DBD606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 00:56:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BEF010F88B;
-	Wed, 11 Nov 2026 00:54:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A375010F3BE;
+	Wed, 11 Nov 2026 00:56:15 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49B8510F3BE;
- Wed, 11 Nov 2026 00:54:34 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0991820560986262640=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D23310F3BE;
+ Wed, 11 Nov 2026 00:56:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Store_GMD=5FID_su?=
- =?utf-8?q?bunit_during_GT_init_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?2=2C1/2=5D_drm/xe/wopcm=3A_Use_the_size_from_HW_when_excluding_th?=
+ =?utf-8?q?e_wopcm_range_from_GGTT_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Pallavi Mishra" <pallavi.mishra@intel.com>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Nov 2026 00:54:34 -0000
-Message-ID: <179435847429.5914.13638814500026531669@9ac1b63fe3ea>
+Date: Wed, 11 Nov 2026 00:56:13 -0000
+Message-ID: <179435857350.5914.7515517859446157732@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261110232328.842758-1-pallavi.mishra@intel.com>
-In-Reply-To: <20261110232328.842758-1-pallavi.mishra@intel.com>
+References: <20261105004254.262075-3-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20261105004254.262075-3-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,108 +36,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============0991820560986262640==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Store GMD_ID subunit during GT init (rev3)
-URL   : https://patchwork.freedesktop.org/series/176997/
-State : success
+Series: series starting with [v2,1/2] drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT (rev2)
+URL   : https://patchwork.freedesktop.org/series/177807/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6105-a6a3cf6cc0759788b1b0ce63f9cfd855d5785449_BAT -> xe-pw-176997v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4e76d0fcfe68a66410b222bfc6071e436e42fa12
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Thu Nov 5 00:42:54 2026 +0000
 
-Summary
--------
+    drm/xe/wopcm: Simplify GuC WOPCM programming
+    
+    Starting from PVC, the GuC WOPCM registers are programmed by BIOS/IFWI,
+    which is a trusted entity, so we don't really need to double-check the
+    programmed values; therefore, if we find the WOPCM registers already
+    locked we can just return early and keep going.
+    For legacy platform (which are not officially supported by the Xe
+    driver), we still need to do the math ourselves.
+    By switching to use the WOPCM size from the HW instead of using an
+    hardcoded value, we make it impossible for the programming to end up
+    incorrect when using the official binaries (because those are sized so
+    that they're guaranteed to fit), so in this case we can drop the layout
+    check as well. If a malicious user is using modified binaries, we'll
+    still catch the error and fail at either parse or load time.
+    
+    Given these simplifications and the fact that the only user left for this
+    is the uC code, we can move the code in the xe_uc.c file. As part of
+    this, the wopcm re-programming post-reset/resume has been moved from
+    do_gt_restart to xe_uc_load_hw.
+    The documentation has also been dropped, both because it's wrong for
+    platforms officially supported by the Xe driver (the WOPCM is now shared
+    by root and media GTs and the GSC FW is also stored there) and because we
+    don't use the layout anymore so we don't really care.
+    
+    v2: Don't check against the WOPCM size on VFs, rework WOPCM base and
+    size log to not look like base and end.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 2ccdda2d799a18f4f5aae513e475bc6b937760f0 drm-intel
+1fdc2b78afe4 drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT
+4e76d0fcfe68 drm/xe/wopcm: Simplify GuC WOPCM programming
+-:359: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#359: 
+deleted file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6105-a6a3cf6cc0759788b1b0ce63f9cfd855d5785449 -> xe-pw-176997v3
-
-  IGT_9186: 9186
-  xe-6105-a6a3cf6cc0759788b1b0ce63f9cfd855d5785449: a6a3cf6cc0759788b1b0ce63f9cfd855d5785449
-  xe-pw-176997v3: 176997v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176997v3/index.html
-
---===============0991820560986262640==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Store GMD_ID subunit during GT init (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/176997/">https://patchwork.freedesktop.org/series/176997/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176997v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-176997v3/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 269 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-6105-a6a3cf6cc0759788b1b0ce63f9cfd855d5785449_BAT -&gt; xe-pw-176997v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6105-a6a3cf6cc0759788b1b0ce63f9cfd855d5785449 -&gt; xe-pw-176997v3</li>
-</ul>
-<p>IGT_9186: 9186<br />
-  xe-6105-a6a3cf6cc0759788b1b0ce63f9cfd855d5785449: a6a3cf6cc0759788b1b0ce63f9cfd855d5785449<br />
-  xe-pw-176997v3: 176997v3</p>
-
-</body>
-</html>
-
---===============0991820560986262640==--
