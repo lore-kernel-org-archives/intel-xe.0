@@ -2,58 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5251606A88B
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 12:30:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78DBA606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 12:39:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O7KgAKT7
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YMMItjn+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6242910FB57;
-	Wed, 11 Nov 2026 12:30:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F153A10FB57
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Nov 2026 12:30:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DAC110FB0C;
+	Wed, 11 Nov 2026 12:39:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B58210FB3F;
+ Wed, 11 Nov 2026 12:39:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794400237; x=1825936237;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8fG2HkwDp6EiiH/CgTFaV/N3HPRj9l7jn0V1iBQaBlc=;
- b=O7KgAKT75+qlFqtoCni3POs6PqlUtsBsYAHocaAUn9wPQvNVKY90a6Wy
- BzEhoAn4FtIEbzvJHSmgTKttqGhupQZToBCwPNLgA2cTnNA7BgwEuKWW+
- KZKIVEgLI/mC6IFCyTV4sFoSw9mEAGk4FmLCLZXUB0WMgndnk8Kj1KLa1
- 3RLn1vIKDpDIyR2+eiH/f68RUg3hYYMMnUZJIKincV6JybW/C0iIFzxE3
- QoIhpAfrtZzIWNKctv/j4k/FsZQqpnh6xq4f+NFknK6p0LwHcdoPWnpTO
- 1MzQfmi0aUmdYcCDU5K7xyjRuvOY+PCytB0hMVfs/QGP1c95vY0IHeRkL g==;
-X-CSE-ConnectionGUID: b2wT0YeIRtOABIV14VWR4g==
-X-CSE-MsgGUID: f9LN6ixVS7e1S+J47mk/Cg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3200832"
+ t=1794400773; x=1825936773;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=grBxa0NUtC5bERIvoQ5jPW8d/jQtYdKDGq7rJ7f68ns=;
+ b=YMMItjn+9uj/rdqEQGDzOJAH6xkDLacMwTE737bGL1aLFfODJctVMHvK
+ ADxXMbgel3zg2mWTkVueAgIN/bf4TsOG6QlHl7QPi6j7VwrNZphl6Uujv
+ g9xJeWwop/asyguLJ3ZsMlKUlXSz2ZIrXhiQBVImrw447k06IRJw8wWN3
+ 8MPOcH0CkErDOCpd9hzxueGL2zyyS2Z1pIhil44ng4UC9D8ciGY5bawM3
+ Q1Jwa6Z3UOV41L+axXpomeqxTLdDrJzTcx0BuzixAAvyZhpBoqZUFX2vE
+ 3X+N/ljgIFgux7aotNy6FcVjTpS8+jxvBeCXwMzEkFaPQgJylj0+pWt68 w==;
+X-CSE-ConnectionGUID: RvPbgXYBQMGg1jSs5wgYSg==
+X-CSE-MsgGUID: yBxEQsEOSf+QR4uNv0TeZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3192116"
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="3200832"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 04:30:37 -0800
-X-CSE-ConnectionGUID: BxRf0me4TZutt+TEVWSWnw==
-X-CSE-MsgGUID: LIJFMzzORx6UV2mCTAJ54w==
+   d="scan'208";a="3192116"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 04:39:32 -0800
+X-CSE-ConnectionGUID: G6ZJNYzOQtucNSojye1SrA==
+X-CSE-MsgGUID: fue2UZDwS2+3f4+YW5bvvA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="8844669"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+   d="scan'208";a="8585926"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 04:30:34 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
- aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
- badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com
-Subject: [PATCH v3] drm/xe/xe_ras: Add support for PCIe error component
- handling
-Date: Wed, 11 Nov 2026 18:00:22 +0530
-Message-ID: <20261111123021.3253044-2-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
+ 11 Nov 2026 04:39:31 -0800
+Date: Wed, 11 Nov 2026 14:39:27 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 06/13] drm/i915/dpt: Compute DPT size in the DPT code
+Message-ID: <avRh_5mkErMktGqN@intel.com>
+References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
+ <20261111112007.16790-7-ville.syrjala@linux.intel.com>
+ <sashiko-outbox-208882@kernel.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <sashiko-outbox-208882@kernel.org>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,74 +69,95 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for handling PCIe subsystem errors. PCIe subsystem power
-management errors require a Seconday bus reset(SBR) for recovery. Treat all
-others as recovered and take no further action.
+On Wed, Nov 11, 2026 at 11:31:06AM +0000, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found no new issues
+> in this patch, but noticed 1 related pre-existing issue it does not
+> introduce:
+> - [High] drm/xe/display: double BO unpin on __intel_fbdev_fb_alloc()
+>   error path [1]
+> --
+> 
+> commit ae1435739339ed58396679163558aae13db1d253
+> Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> 
+> drm/i915/dpt: Compute DPT size in the DPT code
+> 
+> This commit passes the GTT view instead of a precomputed size to
+> intel_parent_dpt_create() so that the DPT code computes the DPT size for
+> both normal and remapped views.
+> 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> > index b3344e3f187fb..35f1d5dd31d7d 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
+> > @@ -2275,13 +2275,15 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+> >  
+> >  	if (intel_fb_uses_dpt(fb)) {
+> >  		struct drm_gem_object *obj = intel_fb_bo(&intel_fb->base);
+> > +		const struct intel_gtt_view *view;
+> >  		struct intel_dpt *dpt;
+> > -		size_t size = 0;
+> >  
+> >  		if (intel_fb_needs_pot_stride_remap(intel_fb))
+> > -			size = intel_remapped_info_size(&intel_fb->remapped_view.gtt.remapped);
+> > +			view = &intel_fb->remapped_view.gtt;
+> > +		else
+> > +			view = &intel_fb->normal_view.gtt;
+> >  
+> > -		dpt = intel_parent_dpt_create(display, obj, size);
+> > +		dpt = intel_parent_dpt_create(display, obj, view);
+> >  		if (IS_ERR(dpt)) {
+> >  			drm_dbg_kms(display->drm, "failed to create DPT\n");
+> >  			ret = PTR_ERR(dpt);
+> 
+> [Severity: High]
+> This problem wasn't introduced by this patch, but can failing in
+> intel_framebuffer_init() after intel_bo_framebuffer_init() cause a double
+> BO unpin on Xe when called from __intel_fbdev_fb_alloc() [1]?
+> 
+> In __intel_fbdev_fb_alloc(), intel_bo_fbdev_create() allocates the BO via
+> xe_bo_create_pin_map_novm() with XE_BO_FLAG_PINNED set and a pin count of
+> 1, and xe_display_bo_framebuffer_init() only takes a reference without
+> pinning it again.  If a later step in intel_framebuffer_init() fails and
+> jumps to err_bo_framebuffer_fini, xe_display_bo_framebuffer_fini() sees
+> XE_BO_FLAG_PINNED and unpins the BO:
+> 
+> drivers/gpu/drm/xe/display/xe_display_bo.c:xe_display_bo_framebuffer_fini() {
+> 	struct xe_bo *bo = gem_to_xe_bo(obj);
+> 
+> 	if (bo->flags & XE_BO_FLAG_PINNED) {
+> 		/* Unpin our kernel fb first */
+> 		xe_bo_lock(bo, false);
+> 		xe_bo_unpin(bo);
+> 		xe_bo_unlock(bo);
+> 	}
+> 	xe_bo_put(bo);
+> }
+> 
+> When control returns to __intel_fbdev_fb_alloc(), error handling calls
+> intel_bo_fbdev_destroy() -> xe_display_bo_fbdev_destroy() ->
+> xe_bo_unpin_map_no_vm(), which unpins the BO a second time, triggering
+> assertions in xe_bo_unpin() and underflowing bo->pin_count in
+> ttm_bo_unpin().
 
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
----
-v2: add mapping to cper severity (Badal, Rodrigo)
-    add abbreviations
-    fix punctuations (Raag)
----
- drivers/gpu/drm/xe/xe_ras.c       | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_ras_types.h |  2 ++
- 2 files changed, 18 insertions(+)
+Yes, the xe pin_map() stuff is broken by design. I've mentioned it
+before, and I think the correct way to fix it is by making it a
+custom object type in xe, and have the object destructor itself do
+the needed cleanup.
 
-diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 2c01c183d02b..bd3ad017f013 100644
---- a/drivers/gpu/drm/xe/xe_ras.c
-+++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -698,6 +698,19 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
- 	return XE_RAS_RECOVERY_ACTION_RECOVERED;
- }
- 
-+static u8 handle_pcie_errors(struct xe_device *xe, struct xe_ras_error_array *arr)
-+{
-+	struct xe_ras_ieh_error *info = (void *)arr->details;
-+
-+	xe_log_comp(xe, ras_sev_to_cper_sev(arr->counter.common.severity), PCIE, &arr->counter,
-+		    sizeof(arr->counter), "error detected\n");
-+
-+	if (info->global_error_status & XE_RAS_PCIE_IEH_GPMA)
-+		return XE_RAS_RECOVERY_ACTION_RESET;
-+
-+	return XE_RAS_RECOVERY_ACTION_RECOVERED;
-+}
-+
- void xe_ras_counter_threshold_crossed(struct xe_device *xe,
- 				      struct xe_sysctrl_event_response *response)
- {
-@@ -889,6 +902,9 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 			case XE_RAS_COMP_DEVICE_MEMORY:
- 				action = handle_device_memory_errors(xe, arr);
- 				break;
-+			case XE_RAS_COMP_PCIE:
-+				action = handle_pcie_errors(xe, arr);
-+				break;
- 			default:
- 				/* For any other component, reset */
- 				action = XE_RAS_RECOVERY_ACTION_RESET;
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index a86f9d2b8c92..36435a3f52e7 100644
---- a/drivers/gpu/drm/xe/xe_ras_types.h
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -14,6 +14,8 @@
- #define XE_RAS_NUM_PAGES			25
- /* Error bits in IEH global error status register */
- #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
-+#define XE_RAS_PCIE_IEH_GPMA			BIT(5)
-+
- /* Device memory error categories */
- #define XE_RAS_MEMORY_DB_ECC			BIT(1)
- #define XE_RAS_MEMORY_POISON			BIT(2)
+> 
+> [1] https://sashiko.dev/#/bug/linux-227b0044-5f2a-4c7c-81e6-93b67cb4f477
+> 
+> -- 
+> Sashiko AI review · https://sashiko.dev/#/patchset/20261111112007.16790-1-ville.syrjala@linux.intel.com?part=6
+
 -- 
-2.47.1
-
+Ville Syrjälä
+Intel
