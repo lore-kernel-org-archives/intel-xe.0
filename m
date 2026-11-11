@@ -2,51 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411B9606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:20:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F8A1606A324
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 11:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mXCS0t8S
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GgA5c049
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06B4910FB0D;
-	Wed, 11 Nov 2026 11:20:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE59D10FB0D;
- Wed, 11 Nov 2026 11:20:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CF9410FB23;
+	Wed, 11 Nov 2026 11:20:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EFBD10FB09;
+ Wed, 11 Nov 2026 11:20:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794396012; x=1825932012;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=McpTB0qufurn81IejOdnNgfYVg2NR6RfO09mGlCY7Y0=;
- b=mXCS0t8SW9VRDIyP4JHALC6IEY8/G9BbaiVuLMSddNUiQX+n4dtqV23W
- /517q1Jlwtj4CjFjWm+hrFPOCqT67yVH403sEE915hs27RIMfC0G/qLDD
- ruZJ56iVucYLOrhD5UF7TKXYjxZievK2JL+HQUenS9if0Ufw//6Q5bS4I
- KJiqtQTKopw00I2w8AW7l5og1bd/y8rghsJSaqe7dkwb254+xbs9Lv5BN
- zX5moe6xuvJnRt5656bplAZMOLr67Gne7WXxhxclnYYvi42t5oT24P+h/
- X31Ya2EuZXv/KfGDY13Tfie845iMM0HcsRTPpIPGccn+CPnW62F0FBczr g==;
-X-CSE-ConnectionGUID: nzAgtCCJRUqEBB31lAgylQ==
-X-CSE-MsgGUID: 6uvD9gCDQZaVNQJdVXGC/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3074228"
+ t=1794396017; x=1825932017;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qNLc7C/ksAcsb1zqBb542iU+5OkYDuDq/tXyx0DCpHw=;
+ b=GgA5c049Hq+s8nzLx67wzZX8lcsTSjvRvM10ZuxSg29msPwymDH3F3zg
+ s9aEAdsCEWfkHTxP5y81WFIMQXjkIpN1mJDXJRn9XiajPIK1Ub1C6dWE5
+ zWL9M+XKQDjGszjKKwp37IVZ8eOqE+plEsnUV19aeiEd+AHv6iWFZTx9s
+ 905yTcuavA4XAm+jxpbEFTe48YfnfSBM6TxRX+zjf1XfK/EixbKWiv9ET
+ YraER4FKiRM5YfB+Zt+jOKI0KE9lI3b9KQp5ywXzIxYkqXsTsdc/Y5Jqt
+ 69skc8pWqNap6LTkZbJE8RjWoBHFi2RooOWMwP9hUcuyoqYJW09PSbzSR g==;
+X-CSE-ConnectionGUID: 9MUMiVp4TC+NkPMQr1dfzQ==
+X-CSE-MsgGUID: /FtTD2FmSPqlZx/UN60Feg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3209257"
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="3074228"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 03:20:12 -0800
-X-CSE-ConnectionGUID: citwpFO4SYmfFxmdEstjBg==
-X-CSE-MsgGUID: hyD+uS6tTJCMoDbUxAtXUQ==
+   d="scan'208";a="3209257"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 03:20:16 -0800
+X-CSE-ConnectionGUID: b8OHYNjWTOWVHwESFYhbWw==
+X-CSE-MsgGUID: 5KUBlb3aQSyITb2L3zFDRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; d="scan'208";a="10264114"
+X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
+   d="scan'208";a="8560457"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 03:20:10 -0800
+ 11 Nov 2026 03:20:14 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/13] drm/i915/dpt: Optimize i915 DPT
-Date: Wed, 11 Nov 2026 13:19:54 +0200
-Message-ID: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+	stable@vger.kernel.org
+Subject: [PATCH 01/13] drm/i915: Bump surface alignment to 32k on MTL for
+ async flips
+Date: Wed, 11 Nov 2026 13:19:55 +0200
+Message-ID: <20261111112007.16790-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
+References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -63,73 +68,55 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-My original i915 DPT implementation has one annoying performance
-flaw. It creates a new DPT for every new framebuffers, which
-given your typical dumb userspace implementation happens every
-single frame. The intel ddx might be the only userspace implementation
-with a userspace side cache of framebuffers, but the intel ddx
-does not even support any platform with DPT, so not relevant
-here.
+MTL is seeing tons of GTT/ATS faults on async flips. Bump the
+alignment to 32k to work around the issue. The magic number
+was determined empirically. We already have a similar
+workaround for ADL, but there we only needed 16k alignment.
 
-Take a page out of the i915 vma book and cache the DPTs in the 
-gem object instead. This way the same DPT will get reused as
-long as userspace keeps rotating through the same set of gem 
-objects (which is the case).
+I looked at this case already some time ago, but didn't really
+manage to root cause it. It seems to be a bit more nuanced than
+a simple "always need this much alignment" because IIRC I was
+also able to work around by adding some guard pages around
+the DPT mapping in the GGTT while leaving PLANE_SURF itself
+still misaligned. So maybe some kind of prefetch thing or
+something...
 
-As a bonus the whole DPT parent interface disappears from the
-display side.
+Cc: stable@vger.kernel.org
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Ville Syrjälä (13):
-  drm/i915: Bump surface alignment to 32k on MTL for async flips
-  drm/i915/fb: Fix error handling onion in intel_framebuffer_init()
-  drm/i915/dpt: Stop allocation DPTs from stolen
-  drm/i915/fb_pin: Remove overzealous vma NULL checks
-  drm/i915: intel_{remapped,rotation}_info_size() into
-    intel/gtt_view_types.h
-  drm/i915/dpt: Compute DPT size in the DPT code
-  drm/i915/vma: Extract intel_gtt_view_compare()
-  drm/i915/vma: Introduce i915_vma_lookup()
-  drm/i915/dpt: Make i915_dpt_{suspend,resume}() internal to i915
-  drm/i915/dpt: Cache DPTs in the gem object
-  drm/i915/dpt: Hide the DPT even more from the display code
-  drm/i915/dpt: Remove dpt->vma
-  drm/i915/dpt: s/struct intel_dpt/struct i915_dpt/
-
- .../drm/i915/display/intel_display_driver.c   |   2 +-
- .../drm/i915/display/intel_display_types.h    |   3 -
- drivers/gpu/drm/i915/display/intel_dpt.c      |  58 -----
- drivers/gpu/drm/i915/display/intel_dpt.h      |   2 -
- drivers/gpu/drm/i915/display/intel_fb.c       |  64 +----
- drivers/gpu/drm/i915/display/intel_fb.h       |   3 -
- drivers/gpu/drm/i915/display/intel_parent.c   |  40 +--
- drivers/gpu/drm/i915/display/intel_parent.h   |  14 +-
- drivers/gpu/drm/i915/display/intel_plane.c    |  13 +-
- .../drm/i915/display/skl_universal_plane.c    |   9 +
- drivers/gpu/drm/i915/gem/i915_gem_object.c    |   6 +
- .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +
- drivers/gpu/drm/i915/gt/intel_ggtt.c          |  10 +
- drivers/gpu/drm/i915/gt/intel_gtt.h           |   4 +
- drivers/gpu/drm/i915/i915_dpt.c               | 233 ++++++++++++++----
- drivers/gpu/drm/i915/i915_dpt.h               |  21 +-
- drivers/gpu/drm/i915/i915_driver.c            |   8 -
- drivers/gpu/drm/i915/i915_fb_pin.c            |  56 +++--
- drivers/gpu/drm/i915/i915_vma.c               |  42 +++-
- drivers/gpu/drm/i915/i915_vma.h               |  49 ++--
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  15 +-
- drivers/gpu/drm/xe/display/xe_initial_plane.c |   3 +-
- include/drm/intel/display_parent_interface.h  |  17 +-
- include/drm/intel/gtt_view_types.h            |  38 +++
- 24 files changed, 400 insertions(+), 316 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index def4798f8502..667abfc31464 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -591,6 +591,15 @@ static u32 tgl_plane_min_alignment(struct intel_plane *plane,
+ 	if (intel_fb_is_ccs_aux_plane(fb, color_plane))
+ 		return mult * 4 * 1024;
+ 
++	/*
++	 * FIXME MTL sees GGTT/ATS faults with async
++	 * flips unless we align to 32k at least.
++	 * Figure out what's going on here...
++	 */
++	if (display->platform.meteorlake &&
++	    intel_plane_can_async_flip(plane, fb->format, fb->modifier))
++		return mult * 32 * 1024;
++
+ 	/*
+ 	 * FIXME ADL sees GGTT/DMAR faults with async
+ 	 * flips unless we align to 16k at least.
 -- 
 2.56.0
 
