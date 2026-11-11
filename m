@@ -2,62 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B51606A326
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 10:57:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EB6A606A321
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 10:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PBqMHCuf
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=n7dkZqTx
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0995910E9CB;
-	Wed, 11 Nov 2026 10:57:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680E510E9CB;
- Wed, 11 Nov 2026 10:57:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF6810FAB4;
+	Wed, 11 Nov 2026 10:58:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AF8710FACB;
+ Wed, 11 Nov 2026 10:58:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794394642; x=1825930642;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Bw/0JIsAPfNobDe1chKDTWjvhw1N4JcVeTEbAacVPRM=;
- b=PBqMHCufaao3uIeovW6A0mz2GB1KV4ui2F+C3NHwvuwXsVk6VZOUGGDA
- sqgvxM8SgjkUECCDv+RG4KSC69+Wr0OIp1fV95fPdubkreyUihCoyCvEx
- VpX/UnbLVNNrcAGiVWz+KNAPQNslbWNwJA675l4coPyO07UZAa3IWKuiU
- 8ybQOy8nc4/gNxcmWwQ2DhgWU+YSWMIS0LuhqV6H7VuE/D5zJF0kAc/sj
- ZjJ4IShL7IYi0PdQLI0e4Kq1y1esy8VY1ZweBstRHFprY+iMlaF5Pw/iw
- edyytjmRt0A1irCJ29htjW5EcRdnfutK5MK0ikeY2RBxARf9uTjcy1cAt w==;
-X-CSE-ConnectionGUID: 3qspwKTOQo24HNya7INXQA==
-X-CSE-MsgGUID: LxK7McgkRMG1Qg6n+d2QBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3184834"
+ t=1794394733; x=1825930733;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wAxIcKnQLFuEIpR+gtRgDnl+FmtnM4Ewvlsw7sKz1jw=;
+ b=n7dkZqTxEnqocclq0IA3V5C46ypk05A9sacgiW7KACk+53KPcuEkbf6d
+ BZGFlUBcRF/xWJ87Uo8VD32YuP91zETXNJkJR5ZyuMBKTUNqub24zakUk
+ Jdj/jj4WtB6o7HB/jEmXkFvMPxfQF8MHs3oMvEoVOB7Ej/8vlF6vm8MtA
+ +tFde3Q9f37DjuvT6WCBS+8nXkczDOsSYedKYBfgLFnTLXXzIcQhiktBO
+ LQmdmnf7CFVZw5bTdV1pWgHczXz3A8o2q9IZ1wUve4QTlBvXSWoDGhx8b
+ DjtPUW9YZB2TZP+YOFMG+PtbdrOYM4oMxyAnUJQPiwYJSx2ztmOm8rykZ Q==;
+X-CSE-ConnectionGUID: RW6o40DmSQSd9tEnoUIJFQ==
+X-CSE-MsgGUID: u3vDnL5QRbeYGJ526csZ7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11962"; a="3064423"
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="3184834"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 02:57:22 -0800
-X-CSE-ConnectionGUID: rdf+EHu8Q9OLeboDIiuCmA==
-X-CSE-MsgGUID: ZTsXSVYoSxODFK5lvW5qKQ==
+   d="scan'208";a="3064423"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 02:58:52 -0800
+X-CSE-ConnectionGUID: 4VajYzGfTKeSOMtMoe96gA==
+X-CSE-MsgGUID: 7PgorDSwSK2UdINBsoYILg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,207,1787036400"; 
-   d="scan'208";a="8822697"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.124])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 02:57:19 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 08/10] drm/i915: Nuke
- HAS_FPGA_DBG_UNCLAIMED()/.has_fpga_dbg
-In-Reply-To: <20261110184622.1721-9-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261110184622.1721-1-ville.syrjala@linux.intel.com>
- <20261110184622.1721-9-ville.syrjala@linux.intel.com>
-Date: Wed, 11 Nov 2026 12:57:17 +0200
-Message-ID: <6bb3d1e896f78a744efa26a6d2f167ac17cec2fd@intel.com>
+   d="scan'208";a="8962332"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa010.fm.intel.com with ESMTP; 11 Nov 2026 02:58:50 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ stable@vger.kernel.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/dip: Write the DIP header last with SDP transmission
+ lines
+Date: Wed, 11 Nov 2026 16:05:42 +0530
+Message-ID: <20261111103542.4093652-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.50.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,123 +63,135 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 10 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> HAS_FPGA_DBG_UNCLAIMED() and the underlying .has_fpga_dbg device
-> flag is now unused. Nuke it all.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On platforms with SDP transmission line registers, the packets anchored
+to them are double buffered in the transcoder (TC) clock domain. The packet
+registers are in the core display (CD) clock domain and the whole packet is
+clock crossed on the write of the header (dword 0), so Bspec requires the
+data to be programmed first and the header last.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+hsw_write_infoframe() writes the header first, so the packet is crossed
+before its payload is in place and the previous payload keeps being sent.
+This hits the AS SDP, and the VSC SDP whenever an AS SDP is enabled, which
+is whenever VRR is possible since commit 6a1712052859 ("drm/i915/dp: Enable
+AS SDP whenever VRR is possible or PR !async"). With CMN_SDP_TL, enabled by
+commit bfa597238073 ("drm/i915/dip: Enable Common SDP Transmission line"),
+it also hits the GMP and VSC SDPs: on NVL, entering HDR on an eDP panel
+leaves the image discoloured and scaled until the headers are rewritten.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display_device.c | 8 --------
->  drivers/gpu/drm/i915/display/intel_display_device.h | 2 --
->  2 files changed, 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/driver=
-s/gpu/drm/i915/display/intel_display_device.c
-> index 69046d0cd5e9..055396f85e4a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> @@ -571,7 +571,6 @@ static const struct platform_desc hsw_desc =3D {
->  	.info =3D &(const struct intel_display_device_info) {
->  		.has_ddi =3D 1,
->  		.has_dp_mst =3D 1,
-> -		.has_fpga_dbg =3D 1,
->  		.has_hotplug =3D 1,
->  		.has_psr =3D 1,
->  		.has_psr_hw_tracking =3D 1,
-> @@ -624,7 +623,6 @@ static const struct platform_desc bdw_desc =3D {
->  	.info =3D &(const struct intel_display_device_info) {
->  		.has_ddi =3D 1,
->  		.has_dp_mst =3D 1,
-> -		.has_fpga_dbg =3D 1,
->  		.has_hotplug =3D 1,
->  		.has_psr =3D 1,
->  		.has_psr_hw_tracking =3D 1,
-> @@ -665,7 +663,6 @@ static const struct intel_display_device_info skl_dis=
-play =3D {
->  	.dbuf.slice_mask =3D BIT(DBUF_S1),
->  	.has_ddi =3D 1,
->  	.has_dp_mst =3D 1,
-> -	.has_fpga_dbg =3D 1,
->  	.has_hotplug =3D 1,
->  	.has_ipc =3D 1,
->  	.has_psr =3D 1,
-> @@ -815,7 +812,6 @@ static const struct platform_desc cml_desc =3D {
->  	.dbuf.slice_mask =3D BIT(DBUF_S1), \
->  	.has_dp_mst =3D 1, \
->  	.has_ddi =3D 1, \
-> -	.has_fpga_dbg =3D 1, \
->  	.has_hotplug =3D 1, \
->  	.has_ipc =3D 1, \
->  	.has_psr =3D 1, \
-> @@ -874,7 +870,6 @@ static const struct platform_desc glk_desc =3D {
->  	.dbuf.slice_mask =3D BIT(DBUF_S1) | BIT(DBUF_S2), \
->  	.has_ddi =3D 1, \
->  	.has_dp_mst =3D 1, \
-> -	.has_fpga_dbg =3D 1, \
->  	.has_hotplug =3D 1, \
->  	.has_ipc =3D 1, \
->  	.has_psr =3D 1, \
-> @@ -965,7 +960,6 @@ static const struct platform_desc ehl_desc =3D {
->  	.has_ddi =3D 1, \
->  	.has_dp_mst =3D 1, \
->  	.has_dsb =3D 1, \
-> -	.has_fpga_dbg =3D 1, \
->  	.has_hotplug =3D 1, \
->  	.has_ipc =3D 1, \
->  	.has_psr =3D 1, \
-> @@ -1133,7 +1127,6 @@ static const struct platform_desc adl_s_desc =3D {
->  	.has_ddi =3D 1,								\
->  	.has_dp_mst =3D 1,							\
->  	.has_dsb =3D 1,								\
-> -	.has_fpga_dbg =3D 1,							\
->  	.has_hotplug =3D 1,							\
->  	.has_ipc =3D 1,								\
->  	.has_psr =3D 1,								\
-> @@ -1313,7 +1306,6 @@ static const struct platform_desc dg2_desc =3D {
->  	.has_ddi =3D 1,								\
->  	.has_dp_mst =3D 1,							\
->  	.has_dsb =3D 1,								\
-> -	.has_fpga_dbg =3D 1,							\
->  	.has_hotplug =3D 1,							\
->  	.has_ipc =3D 1,								\
->  	.has_psr =3D 1,								\
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/driver=
-s/gpu/drm/i915/display/intel_display_device.h
-> index 7121e7cd9512..4f82520ef960 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -134,7 +134,6 @@ struct intel_display_platforms {
->  	func(has_ddi); \
->  	func(has_dp_mst); \
->  	func(has_dsb); \
-> -	func(has_fpga_dbg); \
->  	func(has_gmch); \
->  	func(has_hotplug); \
->  	func(has_hti); \
-> @@ -177,7 +176,6 @@ struct intel_display_platforms {
->  #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask !=
-=3D 0)
->  #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >=3D 30)
->  #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >=3D 35 && =
-!(__display)->platform.dgfx)
-> -#define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_=
-fpga_dbg)
->  #define HAS_FW_BLC(__display)		(DISPLAY_VER(__display) >=3D 3)
->  #define HAS_GMBUS_BURST_READ(__display)	(DISPLAY_VER(__display) >=3D 10 =
-|| (__display)->platform.kabylake)
->  #define HAS_GMBUS_IRQ(__display)	(DISPLAY_VER(__display) >=3D 4)
+Write the payload, including the ECC zero fill, first and the header last
+on platforms with EMP_AS_SDP_TL. CD domain packets have no ordering
+requirement and Bspec recommends the same order for all packets, so use it
+for all of them. Older platforms keep the current order.
 
---=20
-Jani Nikula, Intel
+Bspec: 75640, 71197, 74384
+Fixes: e1123e617e51 ("drm/i915/vrr: Program EMP_AS_SDP_TL for DP AS SDP")
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17732
+Cc: <stable@vger.kernel.org> # v6.17+
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+
+Notes:
+    Fixes tag rationale
+    
+    The Fixes tag points at commit e1123e617e51 ("drm/i915/vrr: Program
+    EMP_AS_SDP_TL for DP AS SDP"). The AS SDP has been written header first
+    since it was added by commit 8845021b7331 ("drm/i915/display: Read/Write
+    Adaptive Sync SDP"), but EMP_AS_SDP_TL, which holds the double buffer
+    point and the transmission line of the AS SDP on BMG and LNL+, was only
+    programmed from that commit on. From then on the driver relies on that
+    register to anchor the AS SDP, and the VSC SDP whenever an AS SDP is
+    enabled, and the programming note of the register asks for the packet
+    data first and the header last. The two later commits cited in the commit
+    message only widened the exposure: the first enabled the AS SDP whenever
+    VRR is possible and the second added CMN_SDP_TL for the GMP and VSC SDPs.
+    
+    Alternatives considered:
+     - 6a1712052859 (v7.2): AS SDP on whenever VRR is possible. The PTL
+       report is fixed by reverting it. Narrower than the spec argument, as
+       it only covers v7.2 and later.
+     - bfa597238073 (7.4): CMN_SDP_TL. The NVL regression, verified on
+       hardware, but covered by the older tag as every kernel with it also
+       has e1123e617e51.
+     - 8845021b7331 (v6.10): first header first AS SDP write, but
+       EMP_AS_SDP_TL was not programmed until e1123e617e51, so exposure
+       before it could not be shown.
+    
+    Not verified:
+     - The failure was observed on NVL with CMN_SDP_TL (rewriting the GMP and
+       VSC headers makes the panel recover). The AS SDP and the VSC SDP with
+       an AS SDP on BMG, LNL and PTL follow from the Bspec requirement and
+       were not reproduced here.
+     - No reproduction on kernels older than v7.2.
+     - Stable backports need the HAS_EMP_AS_SDP_TL gate adapted, as it is
+       defined in intel_dip.h, which is new in 7.4.
+
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 21 +++++++++++++++++----
+ 1 file changed, 17 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 4ec0db8d93fb..3ecf017b3176 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -51,6 +51,7 @@
+ #include "intel_cx0_phy.h"
+ #include "intel_ddi.h"
+ #include "intel_de.h"
++#include "intel_dip.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+@@ -524,6 +525,15 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+ 	const u32 *data = frame;
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	intel_reg_t ctl_reg = HSW_TVIDEO_DIP_CTL(display, cpu_transcoder);
++	/*
++	 * On platforms with the SDP transmission line registers some of the
++	 * packets are double buffered in the transcoder clock domain, and the
++	 * packet is clock crossed on the write of the header (dword 0). Program
++	 * the payload first and the header last, so that the whole packet gets
++	 * crossed. Packets double buffered in the core display clock domain
++	 * have no ordering requirement, so use the same order for all of them.
++	 */
++	bool header_last = HAS_EMP_AS_SDP_TL(display);
+ 	int data_size;
+ 	int i;
+ 	u32 val = intel_de_read(display, ctl_reg);
+@@ -535,18 +545,21 @@ void hsw_write_infoframe(struct intel_encoder *encoder,
+ 	val &= ~hsw_infoframe_enable(type);
+ 	intel_de_write(display, ctl_reg, val);
+ 
+-	for (i = 0; i < len; i += 4) {
++	for (i = header_last ? 4 : 0; i < len; i += 4)
+ 		intel_de_write(display,
+ 			       hsw_dip_data_reg(display, cpu_transcoder, type, i >> 2),
+-			       *data);
+-		data++;
+-	}
++			       data[i >> 2]);
+ 	/* Write every possible data byte to force correct ECC calculation. */
+ 	for (; i < data_size; i += 4)
+ 		intel_de_write(display,
+ 			       hsw_dip_data_reg(display, cpu_transcoder, type, i >> 2),
+ 			       0);
+ 
++	if (header_last)
++		intel_de_write(display,
++			       hsw_dip_data_reg(display, cpu_transcoder, type, 0),
++			       data[0]);
++
+ 	/* Wa_14013475917 */
+ 	if (!(IS_DISPLAY_VER(display, 13, 14) && crtc_state->has_psr &&
+ 	      !crtc_state->has_panel_replay && type == DP_SDP_VSC))
+-- 
+2.50.1
+
