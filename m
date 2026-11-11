@@ -2,41 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB1AE606A327
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 21:58:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WLUIuEjk
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36B5C606A327
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Nov 2026 22:07:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90B0D10E3D0;
-	Wed, 11 Nov 2026 21:58:04 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDED910E3D0
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Nov 2026 21:57:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 9400D62D4C;
- Wed, 11 Nov 2026 21:57:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22EAE1F00A06;
- Wed, 11 Nov 2026 21:57:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794434277;
- bh=f+0NcLWx/xTR763Zy/hih8raOYA3Tl6J36sFdqw7yeI=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=WLUIuEjkNG3rrtKTQwqfqSkF57PCyX4JZJ/Z8wphwtSmAnY9BjM4X0eKQelQGNRmv
- ottb6zRA0xiEGspLUKrIA6Jq79Lygk3eSy2Xm4qfOi2ocarOIIgPC6rhZhX4k0FXQv
- FNA32WpGybWnJxo8z1RYuWVtBYwgbJc1HVgrf6Wx0bV8Qfyq5AZvStme5AbJVhIrNx
- Xdeiw9wPubeBa5Lof4Yh7jq+KEQKoPT+HuBYYEIQWDwJqzt4D81v129+k3iFNgFjYE
- uRJxN/CpmLoW5/VHt8++DCGtcjQnOtrPcHSaH5RlsAbs5Jq5xYmb35WdsWb3aGnpmG
- uN/Qj+j2E1KVQ==
-Message-ID: <sashiko-outbox-209728@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/xe: Add sysfs to disable RPe
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261111212150.3738637-2-vinay.belgaumkar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE06810E480;
+	Wed, 11 Nov 2026 22:07:39 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D6110E480;
+ Wed, 11 Nov 2026 22:07:39 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6424934428118684035=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Add_sysfs_to_disa?=
+ =?utf-8?q?ble_RPe?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Nov 2026 22:07:39 -0000
+Message-ID: <179443485935.12115.3106827733888143113@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
 References: <20261111212150.3738637-2-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Wed, 11 Nov 2026 21:57:56 +0000
+In-Reply-To: <20261111212150.3738637-2-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,169 +33,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issues to consider:
-- [High] drm/xe/guc_pc: pc_set_min_freq() breaks Wa_22019338487 and pins
-  min_freq to RPe
-- [Medium] drm/xe/guc_pc: race and missing freq_ready check in
-  xe_guc_pc_set_use_rpe()
-- [Low] drm/xe/guc_pc: xe_guc_pc_set_use_rpe() logs inverted value !val
-  on error
---
+--===============6424934428118684035==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 64d4db3f839aa54f062c511fa3457dc84a1c5dbf
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+== Series Details ==
 
-drm/xe: Add sysfs to disable RPe
+Series: drm/xe: Add sysfs to disable RPe
+URL   : https://patchwork.freedesktop.org/series/178352/
+State : failure
 
-This commit adds a per-GT use_rpe sysfs attribute to control
-SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY directly and removes the automatic
-SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY update from pc_set_min_freq().
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_p=
-c.c
-> index 9558d7196a51a..8f7044b49e135 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+CI Bug Log - changes from xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca_BAT -> xe-pw-178352v1_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -353,13 +368,6 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32=
- freq)
->  	if (freq < pc->rpn_freq || freq > pc->rp0_freq)
->  		return -EINVAL;
-> =20
-> -	/*
-> -	 * GuC policy is to elevate minimum frequency to the efficient levels
-> -	 * Our goal is to have the admin choices respected.
-> -	 */
-> -	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
-> -			    freq < xe_guc_pc_get_rpe_freq(pc));
-> -
->  	return pc_action_set_param(pc,
->  				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
->  				   freq);
-> @@ -1166,6 +1174,26 @@ static int pc_action_set_strategy(struct xe_guc_pc=
- *pc, u32 val)
+  **FAILURE**
 
-[Severity: High]
-Does removing SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY from pc_set_min_freq()
-break Wa_22019338487 in pc_set_mert_freq_cap() and leave min_freq pinned
-at RPe after xe_guc_pc_restore_stashed_freq()?
+  Serious unknown changes coming with xe-pw-178352v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-178352v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-drivers/gpu/drm/xe/xe_guc_pc.c:pc_set_mert_freq_cap() {
-	...
-	ret =3D xe_guc_pc_get_min_freq_locked(pc, &pc->stashed_min_freq);
-	if (!ret)
-		ret =3D xe_guc_pc_get_max_freq_locked(pc, &pc->stashed_max_freq);
-	if (ret)
-		return ret;
+  
 
-	/*
-	 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
-	 */
-	ret =3D pc_set_min_freq(pc, min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_ca=
-p(pc)));
-	...
-}
+Participating hosts (15 -> 15)
+------------------------------
 
-When pc->use_rpe is true, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY is 0, so
-pc_set_min_freq() can no longer lower the minimum frequency to
-pc_max_freq_cap(pc) when RPe > pc_max_freq_cap(pc) during driver load, GSC
-load, or GT reset.
+  No changes in participating hosts
 
-In addition, xe_guc_pc_get_min_freq_locked() reads the RPe-elevated
-minimum frequency from GuC into pc->stashed_min_freq, and
-xe_gt_sanitize_freq() -> xe_guc_pc_restore_stashed_freq() then explicitly
-programs SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ to RPe.  Because
-xe_guc_pc_set_use_rpe() only toggles SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
-later writing 0 to use_rpe will not drop min_freq back to RPn or
-pc->user_requested_min.
+Possible new issues
+-------------------
 
->  	return ret;
->  }
-> =20
-> +int xe_guc_pc_set_use_rpe(struct xe_guc_pc *pc, u32 val)
-> +{
-> +	int ret;
-> +
-> +	guard(mutex)(&pc->freq_lock);
-> +
-> +	/* If use_rpe =3D=3D 1, ignore_eff_freq =3D false */
-> +	ret =3D pc_set_ignore_eff_freq(pc, !val);
-> +	if (ret) {
-> +		xe_gt_err_once(pc_to_gt(pc),
-> +			       "Failed to set use_rpe to %d: %pe\n",
-> +			       !val, ERR_PTR(ret));
-> +		return ret;
-> +	}
+  Here are the unknown changes that may have been introduced in xe-pw-178352v1_BAT:
 
-[Severity: Low]
-Does this error message log !val (the inverted ignore_eff_freq value)
-instead of val (the requested use_rpe value), while duplicating the
-xe_gt_err_once() already logged inside pc_set_ignore_eff_freq()?
+### IGT changes ###
 
-> +
-> +	pc->use_rpe =3D val;
-> +
-> +	return ret;
-> +}
-> +
->  static const char *power_profile_to_string(struct xe_guc_pc *pc)
->  {
->  	switch (pc->power_profile) {
-> @@ -1314,6 +1342,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
->  	if (ret)
->  		return ret;
-> =20
-> +	ret =3D pc_set_ignore_eff_freq(pc, !pc->use_rpe);
-> +	if (unlikely(ret))
-> +		return ret;
-> +
->  	ret =3D pc_init_freqs(pc);
->  	if (ret)
->  		return ret;
+#### Possible regressions ####
 
-[Severity: Medium]
-Can xe_guc_pc_set_use_rpe() race with GT reset and xe_guc_pc_start()
-because xe_guc_pc_set_use_rpe() does not check pc->freq_ready and
-xe_guc_pc_start() updates SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY outside
-pc->freq_lock?
+  * igt@xe_gt_freq@freq_basic_api:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
+    - bat-atsm-2:         [PASS][3] -> [FAIL][4] +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html
+    - bat-wcl-2:          [PASS][5] -> [FAIL][6] +1 other test fail
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html
+    - bat-nvls-1:         [PASS][7] -> [FAIL][8] +1 other test fail
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html
+    - bat-lnl-2:          [PASS][9] -> [FAIL][10] +1 other test fail
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html
+    - bat-nvls-2:         [PASS][11] -> [FAIL][12] +1 other test fail
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html
+    - bat-ptl-2:          [PASS][13] -> [FAIL][14] +1 other test fail
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html
+    - bat-wcl-1:          [PASS][15] -> [FAIL][16] +1 other test fail
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html
 
-CPU0                              CPU1
-xe_guc_pc_start()
-  !pc->use_rpe (reads 0)
-                                  use_rpe_store()
-                                    xe_guc_pc_set_use_rpe(pc, 0)
-                                      mutex_lock(&pc->freq_lock)
-                                      pc_set_ignore_eff_freq(pc, 1)
-                                      pc->use_rpe =3D 0
-                                      mutex_unlock(&pc->freq_lock)
-  pc_set_ignore_eff_freq(pc, 0)
-    <-- overwrites GuC state with stale value
-  pc_init_freqs()
-    mutex_lock(&pc->freq_lock)
-    pc->freq_ready =3D true
-    mutex_unlock(&pc->freq_lock)
+  * igt@xe_gt_freq@freq_fixed_idle:
+    - bat-ptl-1:          [PASS][17] -> [FAIL][18] +1 other test fail
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html
+    - bat-lnl-1:          [PASS][19] -> [FAIL][20] +1 other test fail
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html
 
-Unlike xe_guc_pc_set_min_freq() and xe_guc_pc_set_max_freq(),
-xe_guc_pc_set_use_rpe() also does not check pc->freq_ready under
-pc->freq_lock, so a sysfs write after xe_guc_pc_stop() can send an H2G
-request while GuC PC is stopped instead of returning -EAGAIN.  Checking
-pc->freq_ready in xe_guc_pc_set_use_rpe() and moving
-pc_set_ignore_eff_freq() inside pc_init_freqs() under pc->freq_lock would
-avoid both issues.
+  
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261111212150.3738=
-637-2-vinay.belgaumkar@intel.com?part=3D1
+
+Build changes
+-------------
+
+  * Linux: xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca -> xe-pw-178352v1
+
+  IGT_9186: 9186
+  xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca: 29f974d0092e26a6933ce1d82045f726f85b63ca
+  xe-pw-178352v1: 178352v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/index.html
+
+--===============6424934428118684035==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add sysfs to disable RPe</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178352/">https://patchwork.freedesktop.org/series/178352/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca_BAT -&gt; xe-pw-178352v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-178352v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-178352v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-178352v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_gt_freq@freq_basic_api:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_gt_freq@freq_fixed_idle:</p>
+<ul>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html">FAIL</a> +1 other test fail</li>
+<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178352v1/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca -&gt; xe-pw-178352v1</li>
+</ul>
+<p>IGT_9186: 9186<br />
+  xe-6116-29f974d0092e26a6933ce1d82045f726f85b63ca: 29f974d0092e26a6933ce1d82045f726f85b63ca<br />
+  xe-pw-178352v1: 178352v1</p>
+
+</body>
+</html>
+
+--===============6424934428118684035==--
