@@ -2,59 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76327606A321
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 09:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010A8606A323
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 09:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BNOcuk8s
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Na35lenq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C6AC10FF81;
-	Thu, 12 Nov 2026 09:48:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B32010FF8E;
- Thu, 12 Nov 2026 09:47:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCB5C10FFBD;
+	Thu, 12 Nov 2026 09:48:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF9DA10E1AF;
+ Thu, 12 Nov 2026 09:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794476876; x=1826012876;
+ t=1794476928; x=1826012928;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=k8+jYxtpWS/AN3gg/uvzACBE6cKDM6tD9Q7nTN+gEIY=;
- b=BNOcuk8sbChFfWifyG3l5PDtBH8goxNfAXQ9+zeUpLLL33Q8FQjSYjp3
- 6yvlBzWbqLeyoe1cQz35kiuFft4oazfaEoSDrx0Qo+rEhL6sP9nsrmDd8
- cFM7nhf7ZsAWdocuORDiIoBekHj3SdQAyB3sak+9HGnvu0Cdex4uYqxaS
- 5VH4qwaCHFJWbtYo1w21cf3MqgJddzaOgBeKcvIyp3TZXOY9bFOdGPsjF
- ulKTvvRryQzMHjlttxaho6aNP6ahZxVJaNG8DbNdYcvhJIphuNiKrmpvk
- VzJO2NLwHNLR01KZM7UiBEzra4H1Q6i4TxOGXvaW4gyBnhHp7zycOOvQk w==;
-X-CSE-ConnectionGUID: oDOUMCRPRVCj8uDxO5CHnw==
-X-CSE-MsgGUID: a71U1gd0SxCxV33rxCCFlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3286542"
+ bh=+GR/dSv68czyfOrYp6bbGg0NrfRsl+ptzb/0Uc0kOn4=;
+ b=Na35lenqBZnBT2rfMcCG354kI0L8CcYCCPRfbB7f0zdhr7cU+xzKOlBY
+ DIaHbOtvAcxniUbCw+Kxw5lgDlBnotf/IQBYOEsQoA8n1bOl5JipgVJbu
+ 7tcaIwTBJXV13APdGD4mwiql1Y51Gai0NSShXRcH20e2FSoNcizhxvH2m
+ Nfa6q3xVUKByCzMbVkcS9jFGxtle4UN7mx0eIMbIDhzm23oDab4Pk+SGW
+ 99Q6vRyBHnvzGnMB159yXlX4mIHIeyihI4Vwl3OkmjW0JQjb12cynOFUW
+ 3A/ynMCjB87Uvm0WydXMPeJ97qKbVJvaSaUPrcUD+PPq+Uo5gBGZY2uQw g==;
+X-CSE-ConnectionGUID: 47FgFTZTQu+70B/MfZooAA==
+X-CSE-MsgGUID: GCuB6bzxTEeUUTwHZ5rMcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3155337"
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="3286542"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 01:47:55 -0800
-X-CSE-ConnectionGUID: GFFRj1YmQlOu2xp4z/0g9g==
-X-CSE-MsgGUID: JmgjeILSQTWJqWX4DxzpEQ==
+   d="scan'208";a="3155337"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2026 01:48:47 -0800
+X-CSE-ConnectionGUID: Xd+vA4w4Rgmd2Me3fbMniA==
+X-CSE-MsgGUID: hpvgRS0iTqO1eDsfV4tGCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="8960932"
+X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; d="scan'208";a="10505268"
 Received: from dev-417.igk.intel.com (HELO dev-417) ([10.91.214.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 01:47:55 -0800
-Date: Thu, 12 Nov 2026 10:47:47 +0100
+ 12 Nov 2026 01:48:39 -0800
+Date: Thu, 12 Nov 2026 10:48:33 +0100
 From: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 14/15] drm/i915/pfit: Account for pfit downscaling in
- pixel rate on GMCH platforms
-Message-ID: <shbezg62hmcqseiclkdfdgmcqef2x6dcqzg4xwh6lorkshydkq@2ihuuarp5vj7>
-References: <20261019135309.23578-1-ville.syrjala@linux.intel.com>
- <20261019135309.23578-15-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 15/15] drm/i915/pfit: Allow downscaling on i966+
+Message-ID: <v7agf7wnm4vnw5iwairhdygsw7tm2pwjjikymi72stzmsyymg3@m3wmh3ljt4lj>
+References: <20261019135309.23578-16-ville.syrjala@linux.intel.com>
+ <20261020184111.5513-1-ville.syrjala@linux.intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261019135309.23578-15-ville.syrjala@linux.intel.com>
+In-Reply-To: <20261020184111.5513-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,82 +66,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Oct 19, 2026 at 04:53:08PM GMT, Ville Syrjala wrote:
+On Tue, Oct 20, 2026 at 09:41:11PM GMT, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> Now that we have crtc_state->pch.dst populated on GMCH platforms
-> we can use the existing ILK+ code to calculate the downscale
-> adjusted pixel rate correctly on GMCH platforms.
+> The i965+ panel fitter supports downscaling. Allow it.
+> 
+> v2: Limit to <2.0 instead of <=2.0 (sashiko)
 > 
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 23 +++++++-------------
->  1 file changed, 8 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 200426bf0c59..6b813efff955 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2278,7 +2278,8 @@ static bool intel_crtc_supports_double_wide(const struct intel_crtc *crtc)
->  		(crtc->pipe == PIPE_A || display->platform.i915g);
->  }
->  
-> -static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
-> +static unsigned int
-
-Is there any consensus on when to use u32 and when unsigned int? I see
-that here it is because of pixel_rate_cdclk being defined as unsigned
-int, but asking for general guidance.
-
-Since that's a side question:
 
 Reviewed-by: Michał Grzelak <michal.grzelak@linux.intel.com>
 
 BR,
 Michał
 
-> +intel_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
->  {
->  	u32 pixel_rate = crtc_state->hw.pipe_mode.crtc_clock;
+> ---
+>  drivers/gpu/drm/i915/display/intel_pfit.c | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
+> index 42d087b406e0..293ec2aae095 100644
+> --- a/drivers/gpu/drm/i915/display/intel_pfit.c
+> +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
+> @@ -563,7 +563,10 @@ static int i9xx_pfit_check_scaling(const struct intel_crtc_state *crtc_state)
+>  	int hscale, vscale, max_scale;
 >  	struct drm_rect src;
-> @@ -2299,7 +2300,8 @@ static u32 ilk_pipe_pixel_rate(const struct intel_crtc_state *crtc_state)
->  				   pixel_rate);
->  }
 >  
-> -static u32 ilk_pipe_pixel_rate_cdclk(const struct intel_crtc_state *crtc_state)
-> +static unsigned int
-> +intel_pipe_pixel_rate_cdclk(const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	u32 pixel_rate = crtc_state->hw.pipe_mode.crtc_clock;
-> @@ -2345,19 +2347,10 @@ static void intel_mode_from_crtc_timings(struct drm_display_mode *mode,
+> -	max_scale = 0x10000;
+> +	if (DISPLAY_VER(display) >= 4)
+> +		max_scale = 0x20000 - 1;
+> +	else
+> +		max_scale = 0x10000;
 >  
->  static void intel_crtc_compute_pixel_rate(struct intel_crtc_state *crtc_state)
->  {
-> -	struct intel_display *display = to_intel_display(crtc_state);
-> -
-> -	if (HAS_GMCH(display)) {
-> -		/* FIXME calculate proper pipe pixel rate for GMCH pfit */
-> -		crtc_state->pixel_rate =
-> -			crtc_state->hw.pipe_mode.crtc_clock;
-> -		crtc_state->pixel_rate_cdclk = crtc_state->pixel_rate;
-> -	} else {
-> -		crtc_state->pixel_rate =
-> -			ilk_pipe_pixel_rate(crtc_state);
-> -		crtc_state->pixel_rate_cdclk =
-> -			ilk_pipe_pixel_rate_cdclk(crtc_state);
-> -	}
-> +	crtc_state->pixel_rate =
-> +		intel_pipe_pixel_rate(crtc_state);
-> +	crtc_state->pixel_rate_cdclk =
-> +		intel_pipe_pixel_rate_cdclk(crtc_state);
->  }
+>  	drm_rect_init(&src, 0, 0, pipe_src_w << 16, pipe_src_h << 16);
 >  
->  static void intel_joiner_adjust_timings(const struct intel_crtc_state *crtc_state,
 > -- 
 > 2.55.0
 > 
