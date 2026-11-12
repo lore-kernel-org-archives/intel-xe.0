@@ -2,66 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6098F606A321
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 09:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9E6606A33B
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 09:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dRU513k0
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=F2cnH7Zq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26F9110FF36;
-	Thu, 12 Nov 2026 09:10:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 842F510FF3E;
- Thu, 12 Nov 2026 09:10:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9755810FF36;
+	Thu, 12 Nov 2026 09:11:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6527F10E59B
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 09:11:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794474600; x=1826010600;
- h=date:from:to:cc:subject:message-id:mime-version:
+ t=1794474667; x=1826010667;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=D+KrG+Uev7dIQStbteS+EXo9ZQQi74+39Xfll8JsYMk=;
- b=dRU513k0roxXs5frjniTCfnDxClalkDY9KEE1tQrFPVHXX96ty5cVSQo
- FIZVVhQRndgZPDfAkSKat4c2iPBy8ZUaRVnBfut88MkrYdUpXlNI3p9oS
- voR5rAsWoypjR1BTSVmS1/oEJQ7+ReSsgE4DjYvl82sPMNsDeEOAa+/ZZ
- V0kX5NOFaRQFLC/YKmL/VU9Sxeqwpa+SWnOT0VVEaykSDSvOE0QTCbXos
- ZUeSWt0urvta0JlU+7x7bktV84Bo7XEmbdlCDStddMxRsqqah7eVdU6gV
- AWKPrdsNWs1+2KeJFPZ5KsflcWxjq3FDWwb/NK95zt7y6FTU+A7A+8tRN A==;
-X-CSE-ConnectionGUID: 9DpVhIHLRKKzLB9WlVLW8w==
-X-CSE-MsgGUID: zYHISLRySYGlcxwRAdJeQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3350977"
+ bh=oY4x0juxvWvjsAfVoEPeJLdGkhUudbbyPzcnjeWfB2E=;
+ b=F2cnH7Zqy3Ooar2jt6Ba+h5s14nyCs6yAFl9yWIZXA9lQQIuUgXzApA9
+ VsJJdsAXPSBXX93S6dzIl23/TGcuHUEbRRdtoSQIEp6+LIKzQgYv/U9It
+ zr14v9B69WsVW6saqHYNBhwHq/vr0jv+PNw5832m2qhJtME0+uPLZupH4
+ ModVgpr+QEbMbfUff1xU6DxePwBFLNThNXMjV4OKKpv3sVjChj+Q8HAIB
+ /CWXjvo5Zh9/vNGHeTQn5Kpy9WjmXFjUs78LFIB06qTTA0FbZNMiBtHTe
+ fkpd0Lr6gcEECJmS0UgewDGd7mjdZTIkSiymOMdVKdvMqCI7JrElqReaJ w==;
+X-CSE-ConnectionGUID: YXPUhWRNQEeIYWTsGDOztw==
+X-CSE-MsgGUID: ySmYc9KARKuM9KA2oCnnVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3153887"
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="3350977"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 01:10:00 -0800
-X-CSE-ConnectionGUID: FoYJbgqhS9S4LxKG1a/UiQ==
-X-CSE-MsgGUID: x8x/O8pTSf+oxETqKbqhLw==
+   d="scan'208";a="3153887"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2026 01:11:06 -0800
+X-CSE-ConnectionGUID: XdJ3bu/0QOWbTL0AOTU/ww==
+X-CSE-MsgGUID: 4H3KaeXgRaOuYdYnUwGzug==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="8778610"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.13])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 01:09:56 -0800
-Date: Thu, 12 Nov 2026 11:09:53 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <avWCYSLHWGPjYq7z@jlahtine-mobl>
+   d="scan'208";a="8769698"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa003.fm.intel.com with ESMTP; 12 Nov 2026 01:10:59 -0800
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
+ matthew.d.roper@intel.com, michal.winiarski@intel.com,
+ matthew.auld@intel.com, dev@lankhorst.se, jani.nikula@intel.com,
+ lukasz.laguna@intel.com, lukas@wunner.de, daniele.ceraolospurio@intel.com,
+ badal.nilawar@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v15 00/10] Introduce Xe PCIe FLR
+Date: Thu, 12 Nov 2026 14:39:39 +0530
+Message-ID: <20261112091033.1813803-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,64 +65,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=ham autolearn_force=no version=4.0.1
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Dave & Sima,
+Here's my humble attempt at introducing PCIe Function Level Reset (FLR)
+support in xe driver. This is ofcourse a half baked implementation and
+only limited to re-initializing GT. This needs to be extended for a lot
+of components which are expected to be added as a follow up.
 
-Here goes drm-intel-fixes PR towards v7.4-rc3.
+Detailed description in commit message and documentation.
 
-Fixes to address ASUS Zenbook Duo display issues and bunch of PSR fixes.
+PS: All xe_exec_basic tests and clpeak run smoothly after FLR. Give it
+a spin and let me know if any regressions.
 
-Regards, Joonas
+Trigger it with:
 
-***
+$ echo 1 > /sys/bus/pci/devices/<BDF>/reset
 
-drm-intel-fixes-2026-11-12:
+ v2: Re-initialize migrate context (Matthew Brost)
+     Add kernel doc (Matthew Brost)
+     Spell out Function Level Reset (Jani)
 
-- Fix for PTL GitLab #9196: eDP-2 on DDI B ends up in a state where any enable fails
-- PSR fixes
+ v3: Cancel in-flight jobs before FLR
 
-The following changes since commit 7475ea8b58616b33c04afb976cf0fbaad9dd63fb:
+ v4: Teardown exec queues instead of mangling scheduler pending list (Matthew Brost)
 
-  Linux 7.4-rc2 (2026-11-08 16:22:20 -0800)
+ v5: Re-initialize kernel queues through submission backend (Matthew Brost)
+     Prevent PM ref leak for wedged device (Matthew Brost)
 
-are available in the Git repository at:
+ v6: Skip uC firmware selection during re-initialization (Daniele)
+     Add IS_DGFX() and EXEC_QUEUE_FLAG_KERNEL asserts (Daniele)
+     s/flr_done/reinit (Daniele)
+     Repurpose system suspend/resume helpers for FLR (Daniele)
+     Add PCIe FLR documentation (Daniele)
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-11-12
+ v7: Refine PCIe FLR documentation (Daniele)
+     Introduce xe_pci_reset_skip() helper (Lukasz)
 
-for you to fetch changes up to 9bf9ced37e60a6c947a481385cd9ed919f14cf36:
+ v8: Set fw state to XE_UC_FIRMWARE_INIT_FAIL on failure (Daniele)
+     Introduce xe_sched_reinit() (Daniele)
+     Maintain timeout per scheduler instance (Daniele)
+     s/reinit/reinit_kernel (Daniele)
 
-  drm/i915/psr: Clear CFF state on flip flush (2026-11-11 10:17:05 +0200)
+ v9: Move drm_sched_is_stopped() assert to xe_sched_reinit() (Daniele)
+     Add negative asserts for GSC and PXP (Daniele)
+     Provide xe_lrc_ctx_init() as regular function (Daniele)
+     Redesign wedged state management to prevent races (Sashiko)
+     Add 'Xe' prefix to document title (Rodrigo)
 
-----------------------------------------------------------------
-- Fix for PTL GitLab #9196: eDP-2 on DDI B ends up in a state where any enable fails
-- PSR fixes
+v10: Spell out temporary device wedging in subject (Lukasz)
+     Update documentation to include PCI Error Handling (Lukasz)
+     Maintain wedge reference on FLR failure (Lukasz)
 
-----------------------------------------------------------------
-Imre Deak (6):
-      drm/i915/dp_aux: Take the TypeC port lock after the PPS lock
-      drm/i915/pps: Hold a TypeC link reference for PPS VDD
-      drm/i915/pps: Reset PPS state after TypeC port init on resume
-      drm/i915/ptl+: Add TypeC HPD pin selection for port B
-      drm/i915/mtl+: Use PHY type to identify TypeC ports in PLL ID lookup
-      drm/i915/ptl+: Fix TypeC detection for eDP on port B
+v11: Wait for xe_pcode_ready() before resume (Riana)
+     Update GuC CT path to check against permanent wedging (Lukasz, Riana)
+     Put wedge reference only if device is wedged during resume() (Riana)
+     Cleanup wedge reference logic in ->reset_prepare() (Lukasz)
+     Use 'PCI reset' in logs (Riana)
 
-Jouni Högander (4):
-      drm/i915/psr: Flush on cursor update also when not using Selective Fetch
-      drm/i915/display: Flush the fbdev frontbuffer
-      drm/i915/psr: Re-arm PSR after flush
-      drm/i915/psr: Clear CFF state on flip flush
+v12: s/xe_wedge_not_recoverable/xe_wedged_permanent (Riana)
+     Refine error logging and documentation (Riana)
 
- drivers/gpu/drm/i915/display/intel_ddi.c      |  6 ++--
- drivers/gpu/drm/i915/display/intel_display.c  | 11 ++++++
- drivers/gpu/drm/i915/display/intel_dp_aux.c   | 39 ++++++++++----------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 13 +++----
- drivers/gpu/drm/i915/display/intel_pps.c      | 14 ++++++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 52 ++++++++++++++-------------
- drivers/gpu/drm/i915/display/intel_tc.c       |  9 +++--
- 8 files changed, 91 insertions(+), 56 deletions(-)
+v13: Handle ULLS fini (Sashiko)
+     Re-initialize cpu bind queue (Sashiko)
+     Prevent PM ref leak on slot reset failure (Sashiko)
+
+v14: Early return on survivability mode (Riana)
+
+v15: Rebase
+
+Raag Jadav (10):
+  drm/xe/uc_fw: Allow re-initializing firmware
+  drm/xe/guc_submit: Introduce guc_exec_queue_reinit_kernel()
+  drm/xe/gt: Introduce FLR helpers
+  drm/xe/bo_evict: Introduce xe_bo_restore_map()
+  drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+  drm/xe/migrate: Introduce xe_migrate_reinit() and xe_cpu_bind_reinit()
+  drm/xe/pm: Introduce xe_device_suspend/resume()
+  drm/xe: Introduce temporary device wedging
+  drm/xe/pci: Introduce PCIe Function Level Reset
+  drm/xe/doc: Wire up PCI Error Handling
+
+ Documentation/gpu/xe/index.rst              |   1 +
+ Documentation/gpu/xe/xe_pci_error.rst       |   8 +
+ drivers/gpu/drm/xe/xe_bo_evict.c            |  43 +++++-
+ drivers/gpu/drm/xe/xe_bo_evict.h            |   1 +
+ drivers/gpu/drm/xe/xe_cpu_bind.c            |  11 ++
+ drivers/gpu/drm/xe/xe_cpu_bind.h            |   1 +
+ drivers/gpu/drm/xe/xe_device.c              | 155 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_device.h              |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   3 +
+ drivers/gpu/drm/xe/xe_exec_queue.c          |  47 +++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h          |   1 +
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |   2 +
+ drivers/gpu/drm/xe/xe_execlist.c            |   6 +
+ drivers/gpu/drm/xe/xe_gpu_scheduler.c       |  17 ++
+ drivers/gpu/drm/xe/xe_gpu_scheduler.h       |   1 +
+ drivers/gpu/drm/xe/xe_gpu_scheduler_types.h |   5 +
+ drivers/gpu/drm/xe/xe_gsc.c                 |  14 ++
+ drivers/gpu/drm/xe/xe_gsc.h                 |   1 +
+ drivers/gpu/drm/xe/xe_gt.c                  |  42 +++++
+ drivers/gpu/drm/xe/xe_gt.h                  |   2 +
+ drivers/gpu/drm/xe/xe_guc.c                 |  29 ++++
+ drivers/gpu/drm/xe/xe_guc.h                 |   2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c              |   6 +-
+ drivers/gpu/drm/xe/xe_guc_submit.c          |   9 ++
+ drivers/gpu/drm/xe/xe_huc.c                 |  14 ++
+ drivers/gpu/drm/xe/xe_huc.h                 |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c                 |  15 +-
+ drivers/gpu/drm/xe/xe_lrc.h                 |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c             |  39 ++++-
+ drivers/gpu/drm/xe/xe_migrate.h             |   2 +
+ drivers/gpu/drm/xe/xe_pci.c                 |   2 +
+ drivers/gpu/drm/xe/xe_pci_error.c           | 163 ++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_pm.c                  | 114 ++------------
+ drivers/gpu/drm/xe/xe_pm.h                  |   1 +
+ drivers/gpu/drm/xe/xe_uc.c                  |  75 +++++++++
+ drivers/gpu/drm/xe/xe_uc.h                  |   2 +
+ drivers/gpu/drm/xe/xe_uc_fw.c               |  67 ++++++++
+ drivers/gpu/drm/xe/xe_uc_fw.h               |   1 +
+ drivers/gpu/drm/xe/xe_uc_types.h            |  14 ++
+ drivers/gpu/drm/xe/xe_wedge.c               |  48 +++++-
+ drivers/gpu/drm/xe/xe_wedge.h               |  13 +-
+ drivers/gpu/drm/xe/xe_wedge_types.h         |  13 +-
+ 42 files changed, 859 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_pci_error.rst
+
+-- 
+2.43.0
+
