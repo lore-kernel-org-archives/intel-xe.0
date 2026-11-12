@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAA66606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6E5606A323
 	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 21:35:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KQBP2lJ+
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UrFOrsAy
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A2AA10FC7A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83F7310FC85;
 	Thu, 12 Nov 2026 21:35:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4409B10EA09
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 21:35:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7838C10E6C0
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 21:35:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794519312; x=1826055312;
+ t=1794519316; x=1826055316;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ffDS2vgrLdXS519+Nt6LTcY5Mrobsy41KulPQTzor3I=;
- b=KQBP2lJ+txWemyYAx/Sn9JujF3D2qzNE1SbOEXFLxjEQk0zlMn4MWm49
- tApGkI3lvadwRZFFZQ0t+VWEBeFcdyntFcWOy6kiwtQE3q2aezCZWSozH
- ORV57NYhCmaGO4NlCwj5CNeyqnOxLBgp2pxMTkzmmQ+sEDkYwJiMYIS0S
- DQd+92M8tknayA7l/lkcAuLmgRKJ3D2FcB/FBeCr3a3Yt6zzCKt0AlPwh
- REltP19wrEgUINvo/nhJM1iXju+7Ke6FKo/54UaR4Zkgc0Il0tW8wNZEz
- KBPa6M65HhSl9GMZHenBTQR+JhP1Fyd3OwSuPy3pR5oSnwWcapgMkm9ZV Q==;
-X-CSE-ConnectionGUID: mI5cI1rNSz6HnkcB1wTr8g==
-X-CSE-MsgGUID: 5a/EI54PRfK0wvMRR8Cu3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3351720"
+ bh=idqNXFe5CIiOSRYIoMWH+y+HVX2MAPk9MU/qPITgwXI=;
+ b=UrFOrsAyPBx3ta3IaUXl24YL2PoxVMvjKfR/1W1PFDSIwEqEgOUG0GGa
+ +7MIURCP98Qbit7me8RHufPDevBYND0xgCLAXH1vbc/sSkV2lHvFgOXrs
+ 4Qn4TqrhMCrQHrLG1QkLV+fkAqT6Hc0hr9hWMWU0Jd1EUNxgx0M+LvwEn
+ HCH+ZexIizryBxsWfdxROrzdmmLMr7gnRdasoitZ9Uiel8Gwji+JIEvRm
+ /QVjnPVW3QqXMlZaITVs/qQR4ne3+ZwbNJj0gW5l2pi0kt/Uo/TOJlp/G
+ qXYVUtbPz1F0CiJgdXdbD8oyxSWQLkJ11blGkm6YLVvnqcQ02an7iVJam A==;
+X-CSE-ConnectionGUID: pzlwRz/eTm66IKKy16wnfg==
+X-CSE-MsgGUID: iKfE7AdVRqCMQREiFPI54w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3351723"
 X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
-   d="scan'208";a="3351720"
+   d="scan'208";a="3351723"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Nov 2026 13:35:11 -0800
-X-CSE-ConnectionGUID: aGuL8qCcSlyaxcSF+CiDiQ==
-X-CSE-MsgGUID: fGFJlHNRRCqvRC2T30sdaw==
+X-CSE-ConnectionGUID: r853UVIBTyS311Fr4yJE4A==
+X-CSE-MsgGUID: z9QATnWYRqCjSLgUtj8CLw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,210,1787036400"; 
-   d="scan'208";a="8754517"
+   d="scan'208";a="8754523"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 13:35:10 -0800
+ 12 Nov 2026 13:35:11 -0800
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.d.roper@intel.com, gustavo.sousa@intel.com,
  Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 1/8] drm/xe: Guard configfs attribute reads in getters
-Date: Thu, 12 Nov 2026 21:35:06 +0000
-Message-ID: <20261112213508.457213-11-stuart.summers@intel.com>
+Subject: [PATCH 3/8] drm/xe/configfs: Copy wa_bb out under the configfs lock
+Date: Thu, 12 Nov 2026 21:35:08 +0000
+Message-ID: <20261112213508.457213-13-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261112213508.457213-10-stuart.summers@intel.com>
 References: <20261112213508.457213-10-stuart.summers@intel.com>
@@ -71,111 +71,219 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The configfs getters read dev->config members without holding dev->lock,
-so a concurrent store can tear the value being returned. The store paths
-and a few of the getters already take the lock; make it consistent by
-wrapping every read of dev->config in the getters with a scoped_guard(),
-covering the surrounding checks that consume those values as well.
+The ctx_restore_{mid,post}_bb getters handed the caller a pointer into
+storage owned by the configfs group and then dropped both the lock and
+the group reference. A concurrent store can krealloc() that buffer and
+an rmdir can free it outright, leaving the caller in xe_lrc.c to
+memcpy() from freed memory. Copy the batch into a caller supplied
+buffer while the lock is still held instead, which also folds the
+length check the callers were doing into the getters.
+
+Fixes: 6c6988c5e03d ("drm/xe/lrc: Allow to add user commands on context switch")
+Fixes: 39ac06f70062 ("drm/xe/configfs: Add post context restore bb")
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c | 32 +++++++++++++++++++++-----------
- 1 file changed, 21 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_configfs.c | 52 ++++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_configfs.h | 12 ++++----
+ drivers/gpu/drm/xe/xe_lrc.c      | 38 +++++++----------------
+ 3 files changed, 53 insertions(+), 49 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 2ddd707a6dbd..cc442014cf12 100644
+index c844155afe52..c4fbf737b907 100644
 --- a/drivers/gpu/drm/xe/xe_configfs.c
 +++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -1282,7 +1282,8 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.survivability_mode;
+@@ -1441,25 +1441,34 @@ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
+  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
+  * @pdev: pci device
+  * @class: hw engine class
+- * @cs: pointer to the bb to use - only valid during probe
++ * @cs: destination buffer for the batch, or NULL to only query the length
++ * @max_len: capacity of @cs, in dwords
+  *
+- * Return: Number of dwords used in the mid_ctx_restore setting in configfs
++ * Copy the configured batch into @cs while holding the configfs lock, so the
++ * caller never gets a pointer to storage owned by the configfs group.
++ *
++ * Return: Number of dwords used in the mid_ctx_restore setting in configfs, or
++ * -ENOSPC if it does not fit in @max_len
+  */
+-u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+-				       enum xe_engine_class class,
+-				       const u32 **cs)
++ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
++					   enum xe_engine_class class,
++					   u32 *cs, size_t max_len)
+ {
+ 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	u32 len;
++	ssize_t len;
  
--	mode = dev->config.survivability_mode;
-+	scoped_guard(mutex, &dev->lock)
-+		mode = dev->config.survivability_mode;
+ 	if (!dev)
+ 		return 0;
+ 
+ 	scoped_guard(mutex, &dev->lock) {
+-		if (cs)
+-			*cs = dev->config.ctx_restore_mid_bb[class].cs;
+-
+ 		len = dev->config.ctx_restore_mid_bb[class].len;
++		if (cs && len) {
++			if (len > max_len)
++				len = -ENOSPC;
++			else
++				memcpy(cs, dev->config.ctx_restore_mid_bb[class].cs,
++				       len * sizeof(u32));
++		}
+ 	}
  	config_group_put(&dev->group);
  
- 	return mode;
-@@ -1296,7 +1297,8 @@ static u64 get_gt_types_allowed(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.gt_types_allowed;
+@@ -1470,23 +1479,34 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+  * xe_configfs_get_ctx_restore_post_bb - get configfs ctx_restore_post_bb setting
+  * @pdev: pci device
+  * @class: hw engine class
+- * @cs: pointer to the bb to use - only valid during probe
++ * @cs: destination buffer for the batch, or NULL to only query the length
++ * @max_len: capacity of @cs, in dwords
+  *
+- * Return: Number of dwords used in the post_ctx_restore setting in configfs
++ * Copy the configured batch into @cs while holding the configfs lock, so the
++ * caller never gets a pointer to storage owned by the configfs group.
++ *
++ * Return: Number of dwords used in the post_ctx_restore setting in configfs, or
++ * -ENOSPC if it does not fit in @max_len
+  */
+-u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+-					enum xe_engine_class class,
+-					const u32 **cs)
++ssize_t xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
++					    enum xe_engine_class class,
++					    u32 *cs, size_t max_len)
+ {
+ 	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
+-	u32 len;
++	ssize_t len;
  
--	mask = dev->config.gt_types_allowed;
-+	scoped_guard(mutex, &dev->lock)
-+		mask = dev->config.gt_types_allowed;
+ 	if (!dev)
+ 		return 0;
+ 
+ 	scoped_guard(mutex, &dev->lock) {
+-		*cs = dev->config.ctx_restore_post_bb[class].cs;
+ 		len = dev->config.ctx_restore_post_bb[class].len;
++		if (cs && len) {
++			if (len > max_len)
++				len = -ENOSPC;
++			else
++				memcpy(cs, dev->config.ctx_restore_post_bb[class].cs,
++				       len * sizeof(u32));
++		}
+ 	}
  	config_group_put(&dev->group);
  
- 	return mask;
-@@ -1340,7 +1342,8 @@ u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.engines_allowed;
- 
--	engines_allowed = dev->config.engines_allowed;
-+	scoped_guard(mutex, &dev->lock)
-+		engines_allowed = dev->config.engines_allowed;
- 	config_group_put(&dev->group);
- 
- 	return engines_allowed;
-@@ -1360,7 +1363,8 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- 	if (!dev)
- 		return false;
- 
--	ret = dev->config.enable_psmi;
-+	scoped_guard(mutex, &dev->lock)
-+		ret = dev->config.enable_psmi;
- 	config_group_put(&dev->group);
- 
- 	return ret;
-@@ -1381,7 +1385,8 @@ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev)
- 	if (!dev)
+diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
+index d726800de26a..98154beabd5a 100644
+--- a/drivers/gpu/drm/xe/xe_configfs.h
++++ b/drivers/gpu/drm/xe/xe_configfs.h
+@@ -25,12 +25,12 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+ bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+ u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev);
+ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
+-u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+-				       enum xe_engine_class class,
+-				       const u32 **cs);
+-u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
+-					enum xe_engine_class class,
+-					const u32 **cs);
++ssize_t xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
++					   enum xe_engine_class class,
++					   u32 *cs, size_t max_len);
++ssize_t xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
++					    enum xe_engine_class class,
++					    u32 *cs, size_t max_len);
+ #ifdef CONFIG_PCI_IOV
+ unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
+ bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 040a52f9320e..e17853427eec 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -94,7 +94,7 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
  		return true;
  
--	ret = dev->config.enable_multi_queue;
-+	scoped_guard(mutex, &dev->lock)
-+		ret = dev->config.enable_multi_queue;
- 	config_group_put(&dev->group);
+ 	if (xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev),
+-					       class, NULL))
++					       class, NULL, 0) > 0)
+ 		return true;
  
- 	return ret;
-@@ -1421,7 +1426,8 @@ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
- 	if (!dev)
- 		return device_defaults.disable_vram_page_offline;
+ 	if (gt->ring_ops[class]->emit_aux_table_inv)
+@@ -1186,17 +1186,12 @@ static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
+ 						  bool indirect)
+ {
+ 	struct xe_device *xe = gt_to_xe(lrc->gt);
+-	const u32 *user_batch;
+-	u32 *cmd = batch;
+-	u32 count;
++	ssize_t count;
  
--	ret = dev->config.disable_vram_page_offline;
-+	scoped_guard(mutex, &dev->lock)
-+		ret = dev->config.disable_vram_page_offline;
- 	config_group_put(&dev->group);
+ 	count = xe_configfs_get_ctx_restore_post_bb(to_pci_dev(xe->drm.dev),
+-						    hwe->class, &user_batch);
+-	if (!count)
+-		return 0;
+-
+-	if (count > max_len)
+-		return -ENOSPC;
++						    hwe->class, batch, max_len);
++	if (count <= 0)
++		return count;
  
- 	return ret;
-@@ -1445,10 +1451,12 @@ u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 	if (!dev)
- 		return 0;
+ 	/*
+ 	 * This should be used only for tests and validation. Taint the kernel
+@@ -1204,10 +1199,7 @@ static ssize_t setup_configfs_post_ctx_restore_bb(struct xe_lrc *lrc,
+ 	 */
+ 	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
  
--	if (cs)
--		*cs = dev->config.ctx_restore_mid_bb[class].cs;
-+	scoped_guard(mutex, &dev->lock) {
-+		if (cs)
-+			*cs = dev->config.ctx_restore_mid_bb[class].cs;
+-	memcpy(cmd, user_batch, count * sizeof(u32));
+-	cmd += count;
+-
+-	return cmd - batch;
++	return count;
+ }
  
--	len = dev->config.ctx_restore_mid_bb[class].len;
-+		len = dev->config.ctx_restore_mid_bb[class].len;
-+	}
- 	config_group_put(&dev->group);
+ static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
+@@ -1216,17 +1208,12 @@ static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
+ 						 bool indirect)
+ {
+ 	struct xe_device *xe = gt_to_xe(lrc->gt);
+-	const u32 *user_batch;
+-	u32 *cmd = batch;
+-	u32 count;
++	ssize_t count;
  
- 	return len;
-@@ -1472,8 +1480,10 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- 	if (!dev)
- 		return 0;
+ 	count = xe_configfs_get_ctx_restore_mid_bb(to_pci_dev(xe->drm.dev),
+-						   hwe->class, &user_batch);
+-	if (!count)
+-		return 0;
+-
+-	if (count > max_len)
+-		return -ENOSPC;
++						   hwe->class, batch, max_len);
++	if (count <= 0)
++		return count;
  
--	*cs = dev->config.ctx_restore_post_bb[class].cs;
--	len = dev->config.ctx_restore_post_bb[class].len;
-+	scoped_guard(mutex, &dev->lock) {
-+		*cs = dev->config.ctx_restore_post_bb[class].cs;
-+		len = dev->config.ctx_restore_post_bb[class].len;
-+	}
- 	config_group_put(&dev->group);
+ 	/*
+ 	 * This should be used only for tests and validation. Taint the kernel
+@@ -1234,10 +1221,7 @@ static ssize_t setup_configfs_mid_ctx_restore_bb(struct xe_lrc *lrc,
+ 	 */
+ 	add_taint(TAINT_TEST, LOCKDEP_STILL_OK);
  
- 	return len;
+-	memcpy(cmd, user_batch, count * sizeof(u32));
+-	cmd += count;
+-
+-	return cmd - batch;
++	return count;
+ }
+ 
+ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
 -- 
 2.43.0
 
