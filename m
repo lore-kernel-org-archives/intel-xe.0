@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF0E4606A32A
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 13:47:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A8F606A333
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 13:47:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=f1coKdF8
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kSQ+NpuA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 826CF10F2A6;
-	Thu, 12 Nov 2026 13:47:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D469410E5E9;
+	Thu, 12 Nov 2026 13:47:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C32FA10E602
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 13:47:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 617DC10EA4A
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 13:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794491245; x=1826027245;
+ t=1794491248; x=1826027248;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tCuCUOvl7vXViEiwAk1lXT+qzs79RoEH104fwY5c8uM=;
- b=f1coKdF8IfobNPWEsYxPssRp18NUUOc67nYbZYfRzZt2EQ5l22J7/kps
- 5i+c17LKZ3LHQ+qvVD3ix+LlxIJcsKYzZ4tMASJjMOaunZntTCNvNLXbF
- W2U2tebZJZzkkFzYmX8HE/go4xTQ14wx6p7sJIlFu2pPhL3Mn5WnYmF1W
- mXvA0iRpEJDYpwUKQ71YfZXWbiE1dXNQRgReE+EQ5SJ9/nI+YzzscWYDp
- 1KMQ5/7gIf/5Rzwsq3XTAauGQ8QExVFI6PLl/+iN3OMwad2H1pith+D68
- LQ/vX1MiQ0E9k+bnI8wUknuTtU6E3tI7M+Cset1QkVVru29IDZUmNKqAF g==;
-X-CSE-ConnectionGUID: RUV/1/MsQeaEKtRA/oak1w==
-X-CSE-MsgGUID: H7HdpHkdRqizAbAUAR+QgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3306691"
+ bh=U9d3kMOhj3TK8HbRhyxc4nJP28EUiwNi5PNDfDpC4yQ=;
+ b=kSQ+NpuAsBRdIsqCrMsBjgRO59Cfkac+zqPTM0J4e4UdZUlwfLEgQg2K
+ 5KgSEjQFY8WklUV5urXFSNri0kJjg0XWcUfApCnnyHEczibz02+6vBNLu
+ DQ3W1oTXse7bmBo0K4XGsR3IbDG08aMA9ftHin+/ZzBqULYiSthLg8ovo
+ LvWuCm23MOsFZv4GRiI0ve/BplnKaV4d+9DcQ3YThMa4fkXfIxVhm3cXn
+ kaxxFVUBfrtIPJbdJwXJTAOJgwPny4R76C7wQvYXhhYZerRt9Rse1XgPY
+ 3m1AEEybnriJhrCT7VBmtCixMYr+Xl8/ILHj95z26JVHjqSesJNsw1Xvw g==;
+X-CSE-ConnectionGUID: bN4naSg6SKiAogfhcWgavA==
+X-CSE-MsgGUID: +hfGm2ACSGOtuMI3vgfGRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3306683"
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="3306691"
+   d="scan'208";a="3306683"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 05:47:08 -0800
-X-CSE-ConnectionGUID: Rc2Xw3lNRea/8BGYbnDYig==
-X-CSE-MsgGUID: Wpfdmc2FQbCVpGkl3Iypkw==
+ 12 Nov 2026 05:47:05 -0800
+X-CSE-ConnectionGUID: scTVRlyTToGUJK/+wofSxw==
+X-CSE-MsgGUID: RAZB+NxUT6uP/3o1df2IXw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="8527913"
+   d="scan'208";a="8527909"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa005.jf.intel.com with ESMTP; 12 Nov 2026 05:47:04 -0800
+ by orviesa005.jf.intel.com with ESMTP; 12 Nov 2026 05:47:01 -0800
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -47,9 +47,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  sk.anirban@intel.com, raag.jadav@intel.com,
  aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v4 4/6] drm/xe/cper: Make software CPER emission atomic-safe
-Date: Thu, 12 Nov 2026 19:16:41 +0530
-Message-ID: <20261112134636.1860446-12-mallesh.koujalagi@intel.com>
+Subject: [PATCH v4 3/6] drm/xe/cper: Emit software CPER records
+Date: Thu, 12 Nov 2026 19:16:40 +0530
+Message-ID: <20261112134636.1860446-11-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261112134636.1860446-8-mallesh.koujalagi@intel.com>
 References: <20261112134636.1860446-8-mallesh.koujalagi@intel.com>
@@ -73,75 +73,63 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Use GFP_ATOMIC for software CPER records, as software
-SIGID logging may occur in atomic context.
-
-Keep hardware CPER handling unchanged.
+Emit CPER records for software SIGIDs and attach the
+formatted log message as record data.
 
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v3:
-- Handle atomic context when SIGIDs are logged. (Sashiko)
-
 v4:
-- Add can_sleep bool parameter in per_record_emit. (Badal)
+- Emit complete message. (Badal/Aravind)
 ---
- drivers/gpu/drm/xe/xe_cper.c | 13 ++++++++-----
- 1 file changed, 8 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_cper.c       | 9 +++++++++
+ drivers/gpu/drm/xe/xe_cper_types.h | 4 ++++
+ 2 files changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index 5a776aa571d0..61095007b5c2 100644
+index b23f8bc9f993..5a776aa571d0 100644
 --- a/drivers/gpu/drm/xe/xe_cper.c
 +++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -176,15 +176,16 @@ static void cper_init_section_desc(struct xe_device *xe, u8 severity,
- static void cper_record_emit(struct xe_device *xe, u8 severity,
- 			     const guid_t *notification_type,
- 			     const struct xe_cper_intel_hdr *ihdr,
--			     const void *einfo, u32 einfo_len)
-+			     const void *einfo, u32 einfo_len, bool can_sleep)
- {
- 	struct cper_section_descriptor *sdesc;
- 	struct xe_cper_nonstd_record *rec;
- 	struct cper_record_header *rhdr;
-+	gfp_t gfp = can_sleep ? GFP_KERNEL : (GFP_ATOMIC | __GFP_NOWARN);
- 	u32 total_len;
- 
- 	total_len = sizeof(struct xe_cper_nonstd_record) + einfo_len;
--	rec = kzalloc(total_len, GFP_KERNEL);
-+	rec = kzalloc(total_len, gfp);
- 	if (!rec)
- 		return;
- 
-@@ -231,7 +232,8 @@ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigi
- 
- 	cper_init_intel_hdr(xe, &error_class, response->timestamp,
- 			    sigid, response->value, &ihdr);
--	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
-+	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0,
-+			 true);
- }
- 
- static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-@@ -258,7 +260,7 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+@@ -258,7 +258,12 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
  	union xe_cper_error_class error_class = {};
  	struct xe_cper_intel_hdr ihdr = {};
  	struct xe_cper_driver_error_class *driver = &error_class.driver;
--	char *msg = kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
-+	char *msg = kvasprintf(GFP_ATOMIC, vaf->fmt, *vaf->va);
++	char *msg = kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
  	u64 timestamp = ktime_get_real_ns();
- 	size_t msg_len;
++	size_t msg_len;
++
++	if (!msg)
++		return;
  
-@@ -274,7 +276,8 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
- 	msg_len = strlen(msg) + 1;
+ 	driver->error_type = cper_sev;
+ 	driver->error_component = component;
+@@ -266,7 +271,11 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+ 	if (IS_ERR(data))
+ 		driver->cause = -PTR_ERR(data);
  
++	msg_len = strlen(msg) + 1;
++
  	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, &ihdr);
--	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len);
-+	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len,
-+			 false);
- 	kfree(msg);
++	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len);
++	kfree(msg);
  }
  
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+index 8e90a3220919..0178a5521212 100644
+--- a/drivers/gpu/drm/xe/xe_cper_types.h
++++ b/drivers/gpu/drm/xe/xe_cper_types.h
+@@ -40,6 +40,10 @@
+ 	GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
+ 		  0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
+ 
++#define INTEL_CPER_NOTIFY_DRV_ERROR \
++	GUID_INIT(0xcef7e934, 0x51e7, 0x535f, \
++		  0xa6, 0x78, 0x5a, 0x4c, 0xcc, 0xb6, 0x96, 0x09)
++
+ /* Section Types */
+ #define INTEL_CPER_SECTION_ACCEL_GENERIC \
+ 	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
 -- 
 2.48.1
 
