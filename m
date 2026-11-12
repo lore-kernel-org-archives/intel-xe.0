@@ -2,58 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC1A606A321
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 05:50:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75E33606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 06:07:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XV1zsJKa
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BE/URG+r
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 918DE10E4C1;
-	Thu, 12 Nov 2026 05:50:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7853C10E4C1;
- Thu, 12 Nov 2026 05:50:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B9ED10E4F8;
+	Thu, 12 Nov 2026 06:07:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07D2910E4C1
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 06:07:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794462629; x=1825998629;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=gSulcHrIkUANm+NsGpY4cGWQZPW7PEXcbkOaNRGvBRM=;
- b=XV1zsJKa2mJTgdcQOM//abIXQJFkO1gPSyzIKmN1exNSBP3rWzql5Etx
- pVWCBHL3evlFueEiS/1S5yO+viAF1dpPTWdAhqjtnNxaawnaoLmOey9ys
- bCExazJqinalfQcrjOUi9pwXO5RZ7OYgsTt2gunWQyx//SezHq7pkCui1
- 9RLlg9bz4R9otfnHFla6x7V3imwG71iLfoFt54NZQZWSkY58k3wSG44yp
- gQtzR73lgEqVUSJIEvyjACan8qyaB+EIow4eGdzm0gR1I4PFkjSX+I8/R
- fqoGVvWAR6oW6tb2IKY8QIevdXaXch6HxbieizuUwNT28ooygn3DIpt6P A==;
-X-CSE-ConnectionGUID: X28gG4plT+qfiBoyUZHyXw==
-X-CSE-MsgGUID: frmeoI3HSJWRBDOQ1tVFVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3335546"
+ t=1794463635; x=1825999635;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fz1dnuyRdASHsRZQV5cpiMPZTXGB2B0hD6cIWHrOXsc=;
+ b=BE/URG+r23dognDdRYy9pBZo5EqVgwpxrm5gDulqBVAYDdUv7RdlXKpr
+ wOSMHPZ5sysYMi0JlqYaTco0u2qi2W+GbePV6/caOV0C22YJJleU0mrN9
+ aZ/1BwS1wWsVWFdvfwSQVpnoGNsl+wBCbXwIw26RCXL5+IRNIMji9vbma
+ kkE2a6ip8eeEbY2uwlJHJ85RNPHtPkCnQ8HgifFspn+Vbvqm/59oi9G1O
+ +PFIUEh0EeHq/uwkoe232ggjmpzI5WuimSrMpV/jPGH3V9C3YDkVRoZ7Y
+ YZPajVMOFjYVROpVEJWUmNAv00vZOAmI2ojGs/NtFVbUS6OGk+y3xzEC2 w==;
+X-CSE-ConnectionGUID: 5ossC7/OSgmELXh0CnAIGQ==
+X-CSE-MsgGUID: xS3ycrN/Tvm2WY8x2+1l6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3264990"
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="3335546"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 21:50:28 -0800
-X-CSE-ConnectionGUID: JznElEXNQFuh06GEzNYiBA==
-X-CSE-MsgGUID: kqDaBprWQ/mC0IjVS6IfrQ==
+   d="scan'208";a="3264990"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 22:07:14 -0800
+X-CSE-ConnectionGUID: 2fCp1zGuSteC18l14ufHtQ==
+X-CSE-MsgGUID: ZGKuz5ScRr2NIk+LSmj7tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; d="scan'208";a="10292864"
-Received: from xiaolu.sh.intel.com ([10.239.146.103])
- by fmviesa012.fm.intel.com with ESMTP; 11 Nov 2026 21:50:25 -0800
-From: Xiao Lu <xiaolu.xie@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Xiao Lu <xiaolu.xie@intel.com>, Sam Raskauskas <git@starsam80.net>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>
-Subject: Re: [PATCH v2] drm/i915/dp: Avoid YCbCr420 on HDMI2.1 PCONs due to
- the TMDS CLK limit
-Date: Thu, 12 Nov 2026 13:48:16 +0800
-Message-ID: <20261112054816.246137-1-xiaolu.xie@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261111050542.3935869-1-xiaolu.xie@intel.com>
-References: <20261111040636.3932240-1-xiaolu.xie@intel.com>
- <20261111050542.3935869-1-xiaolu.xie@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
+   d="scan'208";a="8576173"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Nov 2026 22:07:11 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
+ aravind.iddamsetty@linux.intel.com, raag.jadav@intel.com,
+ badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com
+Subject: [PATCH v5 0/8] Handle non-fatal errors routed via IRQ
+Date: Thu, 12 Nov 2026 11:37:02 +0530
+Message-ID: <20261112060701.3327125-10-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -69,55 +65,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
 	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The reporter of the issue this patch fixes tested v2 on drm-tip
-(1434742f20cf) and confirmed it in the issue:
+Implement wa_14028434957 on platform CRI
 
-  https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/17800
+Process, log and recover non-fatal errors routed via direct IRQ.
+Double-bit ECC errors are also reported as non-fatal errors. Process and 
+offline pages for user bos. Critical Bo's require a SBR to recover.
+Wedge the device with bus reset.
 
-The dmesg he posted in the issue shows RGB 10 bpc for 3840x2160@120 on
-the PCON, with FRL trained at 40 Gbps, where it was YCbCr 4:2:0 before.
-He gave the tag below in the issue and asked for it to be added here.
-I will also add the issue link as a Closes: tag in the next version.
+Race Case Handling:
 
-For reference, the commit message of v2:
+There is a potential race between errors reported via AER that require
+an SBR (Secondary Bus Reset) and non-fatal errors still being processed
+by the worker. Since a reset is imminent once AER reports such an
+error, the worker processing non-fatal errors is flushed and disabled.
 
-> drm/i915/dp: Avoid YCbCr420 on HDMI2.1 PCONs due to the TMDS CLK limit
->
-> When the DP->HDMI PCON drives an HDMI 2.1 sink using FRL, the sink's
-> max TMDS clock is irrelevant: the HDMI link doesn't carry a TMDS clock
-> at all. However intel_dp_hdmi_compute_bpc() always compares the TMDS
-> clock against the EDID/DPCD max TMDS clock when the downstream limits
-> are respected.
->
-> For a 4k120 sink behind a PCON with a 600 MHz max TMDS clock this makes
-> RGB 8bpc (1188 MHz) fail, so intel_dp_max_bpp() returns 0 for RGB.
-> YCbCr 4:2:0 halves the TMDS clock to 594 MHz and passes, so the driver
-> ends up sending 4:2:0 to the sink (using DSC to fit the DP link), even
-> though the FRL link has plenty of bandwidth for RGB.
->
-> Check the FRL bandwidth instead when the PCON will use FRL, i.e. when
-> it supports source control mode and the sink is HDMI 2.1, limited by
-> the lower of the PCON and sink max FRL rate. The TMDS clock check is
-> unchanged for TMDS links.
->
-> intel_dp_mode_valid_downstream() already checked the FRL bandwidth, but
-> with a different set of conditions. Use the same helper there so that
-> the mode list and the bpc/format selection agree. As a result:
->
-> - Modes that need more than the lower of the PCON and sink max FRL rate
->   are no longer listed, even if they fit the PCON max FRL rate.
-> - If the PCON won't use FRL (e.g. an HDMI 2.0 sink), the TMDS limits are
->   applied to the mode list instead of the FRL bandwidth. RGB-only modes
->   above the max TMDS clock are no longer listed.
-> - Modes that were previously capped to 8bpc by the TMDS clock limit can
->   now use a higher bpc, up to what the sink, the PCON and the FRL
->   bandwidth allow.
->
-> Signed-off-by: Xiao Lu <xiaolu.xie@intel.com>
+There is also a possibility of the AER handler running first, in which
+case firmware reports all pending errors including non-fatal ones as a
+single response, since it maintains a single queue for all error types. 
+Skip handling of double-bit ECC errors in that case, since the SBR already
+clears the offlined pages on reload and firmware drops them from its queue
+once read, so offlining them here would be unnecessary and could leave the 
+queue and the soft-offlined pages list out of sync.
 
-Tested-by: Sam Raskauskas <git@starsam80.net>
+Rev2: Handle Race between AER
+      Use WA number
+
+Rev3: Reorder patches to fix sashiko comments
+      squash all WA patches
+      remove delayed worker
+
+Rev4: fix survivability issue on unload
+      disable worker before wedged check
+
+Rev5: move dgfx and sriov check
+      fix typo
+      fix checkpatch
+
+Raag Jadav (2):
+  drm/xe/hw_error: Reuse CSC worker for generic error handling
+  drm/xe/hw_error: Initialize hw_error_work per tile
+
+Riana Tauro (6):
+  drm/xe/survivability: Guard runtime survivability enable against
+    unbind
+  drm/xe/ras: Treat non-fatal PCIe errors as recovered
+  drm/xe/pci: Add upstream switch port lookup helper
+  drm/xe/xe_ras: Add a flag for uncorrectable internal error
+  drm/xe: Add support for wa_14028434957
+  drm/xe/xe_ras: Skip double-bit ECC page offlining on AER path
+
+ drivers/gpu/drm/xe/xe_device_wa_oob.rules  |  1 +
+ drivers/gpu/drm/xe/xe_hw_error.c           | 65 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_hw_error.h           |  1 +
+ drivers/gpu/drm/xe/xe_pci.c                | 23 +++++++
+ drivers/gpu/drm/xe/xe_pci.h                |  1 +
+ drivers/gpu/drm/xe/xe_pci_error.c          | 43 +++++++++++-
+ drivers/gpu/drm/xe/xe_ras.c                | 78 ++++++++++++++++------
+ drivers/gpu/drm/xe/xe_ras.h                |  2 +
+ drivers/gpu/drm/xe/xe_ras_types.h          |  2 +
+ drivers/gpu/drm/xe/xe_survivability_mode.c | 10 +++
+ drivers/gpu/drm/xe/xe_tile_types.h         |  4 +-
+ 11 files changed, 196 insertions(+), 34 deletions(-)
+
+-- 
+2.47.1
+
