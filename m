@@ -2,42 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CE49606A887
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 12:56:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R/rtrH+3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA486606A32A
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 12:56:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1CAF51120F3;
-	Thu, 12 Nov 2026 12:56:04 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 875021120F3
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 12:55:57 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id A9E8F61CFC;
- Thu, 12 Nov 2026 12:55:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BB7E1F00A05;
- Thu, 12 Nov 2026 12:55:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794488156;
- bh=IpbJeKHHx55ATaEcQFlAioULFRpPel4bng3Ki9Tx7Lk=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=R/rtrH+3l7wkak0OX0JoG7FNPkXbm79nEikGfx9MLTjD+dFp/76QzeBZ+9gLxbeno
- /mpuRQgPLVN6JvfLICny6+fd7CItpqeAdYeZKBnuW/r7iz6dS28NVlE4O2y2oK9jZ2
- nbwFRlXsh0OjsVHE4yEwGE8zE1hmxAGkmtTOfEi+M7z17yLO3W3hAqk+asxaXHgPBa
- SwEJa9ulSRn5LAYON66aR0Iu964RQYeK3abgZS8pvuJF13FquMJ6u9WF+yTynElLEn
- obCWHuChPYKREpTrn00vn5Wt6g7FCv/8u1TPSp7umPVzj7J/Do2QHuribZTXKphQQz
- V/1iFdOvPJZ5A==
-Message-ID: <sashiko-outbox-211122@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH V2 3/3] drm/xe/vram: stop decay worker from rescheduling
- itself forever
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261112124329.2960272-8-tejas.upadhyay@intel.com>
-References: <20261112124329.2960272-5-tejas.upadhyay@intel.com>
- <20261112124329.2960272-8-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 12 Nov 2026 12:55:55 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 863721120F3;
+	Thu, 12 Nov 2026 12:56:49 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B8CB110E5B6;
+ Thu, 12 Nov 2026 12:56:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1733531750581836185=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Separate_GGTT_pools_for_sub?=
+ =?utf-8?q?missions_and_VFs_provisioning_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Nov 2026 12:56:48 -0000
+Message-ID: <179448820875.15346.13255292059768985560@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261112115147.2329912-1-piotr.piorkowski@intel.com>
+In-Reply-To: <20261112115147.2329912-1-piotr.piorkowski@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,112 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/xe/vram: soft-offlined pages via queued_pages never arm
-  decay_gc_work
---
+--===============1733531750581836185==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 22ff2c502172a757420f34aa8acb6ee7e2f6e05c
-Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+== Series Details ==
 
-drm/xe/vram: stop decay worker from rescheduling itself forever
+Series: Separate GGTT pools for submissions and VFs provisioning (rev8)
+URL   : https://patchwork.freedesktop.org/series/171735/
+State : success
 
-This commit changes xe_ttm_vram_decay_gc_worker() to only reschedule
-mgr->decay_gc_work when XE_PAGE_OFFLINE_SOFT entries remain on
-mgr->offlined_pages after a sweep.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
-_ttm_vram_mgr.c
-> index 07360ab7b0722..7613024a1410a 100644
-> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-> @@ -373,17 +373,20 @@ static void xe_ttm_vram_decay_gc_worker(struct work=
-_struct *work)
->  	struct xe_device *xe =3D ttm_to_xe_device(mgr->manager.bdev);
->  	unsigned long now =3D jiffies;
->  	unsigned long decay;
-> +	bool soft_remaining =3D false;
-> =20
->  	mutex_lock(&mgr->lock);
->  	decay =3D mgr->decay_interval_jiffies;
->  	if (!decay)
-> -		goto reschedule;
-> +		goto unlock;
-> =20
->  	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
->  		if (pos->mode !=3D XE_PAGE_OFFLINE_SOFT)
->  			continue;
-> -		if (!time_after(now, pos->last_seen + decay))
-> +		if (!time_after(now, pos->last_seen + decay)) {
-> +			soft_remaining =3D true;
->  			continue;
-> +		}
-> =20
->  		list_del(&pos->offlined_link);
->  		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
-> @@ -394,9 +397,11 @@ static void xe_ttm_vram_decay_gc_worker(struct work_=
-struct *work)
->  		kfree(pos);
->  	}
-> =20
-> -reschedule:
-> -	schedule_delayed_work(&mgr->decay_gc_work,
-> -			      xe_ttm_vram_decay_gc_period(mgr));
-> +	/* Nothing left to track; re-armed on demand when a new SOFT entry appe=
-ars */
-> +	if (soft_remaining)
-> +		schedule_delayed_work(&mgr->decay_gc_work,
-> +				      xe_ttm_vram_decay_gc_period(mgr));
-> +unlock:
->  	mutex_unlock(&mgr->lock);
->  }
+CI Bug Log - changes from xe-6121-020bf044c3c299e9b0961753bf5f8b92c3b505ce_BAT -> xe-pw-171735v8_BAT
+====================================================
 
-[Severity: Medium]
-Can soft-offlined pages that go through mgr->queued_pages be left on
-mgr->offlined_pages forever without arming mgr->decay_gc_work?
+Summary
+-------
 
-In xe_ttm_vram_reserve_page_at_addr(), schedule_delayed_work() is only
-called when block is NULL and xe_ttm_vram_buddy_alloc() succeeds
-immediately.  When a transient fault hits an allocated page, nentry is
-placed on vram_mgr->queued_pages while the owning BO is purged, and
-xe_ttm_vram_retry_queued_pages() later moves it to mgr->offlined_pages
-without scheduling the worker:
+  **SUCCESS**
 
-drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:xe_ttm_vram_retry_queued_pages() {
-	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-		if (xe_ttm_vram_buddy_alloc(mgr, pos->addr, pos->addr + PAGE_SIZE,
-					    PAGE_SIZE, PAGE_SIZE, &pos->blocks,
-					    GPU_BUDDY_RANGE_ALLOCATION, NULL,
-					    &pos->used_visible_size)) {
-			pos->status =3D XE_PAGE_RESERVE_FAIL;
-			continue;
-		}
-		--mgr->n_queued_pages;
-		list_del(&pos->queued_link);
-		++mgr->n_offlined_pages;
-		list_add(&pos->offlined_link, &mgr->offlined_pages);
-	}
-}
+  No regressions found.
 
-Once mgr->decay_gc_work is idle (either because no free page was offlined
-earlier, or because xe_ttm_vram_decay_gc_worker() ran while the entry was
-still on mgr->queued_pages), any XE_PAGE_OFFLINE_SOFT entry promoted via
-xe_ttm_vram_retry_queued_pages() will never decay and remains offlined
-until driver unbind.  Arming mgr->decay_gc_work in
-xe_ttm_vram_retry_queued_pages() when a XE_PAGE_OFFLINE_SOFT entry is
-moved to mgr->offlined_pages would avoid this.
+  
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261112124329.2960=
-272-5-tejas.upadhyay@intel.com?part=3D3
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6121-020bf044c3c299e9b0961753bf5f8b92c3b505ce -> xe-pw-171735v8
+
+  IGT_9187: 9187
+  xe-6121-020bf044c3c299e9b0961753bf5f8b92c3b505ce: 020bf044c3c299e9b0961753bf5f8b92c3b505ce
+  xe-pw-171735v8: 171735v8
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171735v8/index.html
+
+--===============1733531750581836185==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Separate GGTT pools for submissions and VFs provisioning (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/171735/">https://patchwork.freedesktop.org/series/171735/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171735v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-171735v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6121-020bf044c3c299e9b0961753bf5f8b92c3b505ce_BAT -&gt; xe-pw-171735v8_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6121-020bf044c3c299e9b0961753bf5f8b92c3b505ce -&gt; xe-pw-171735v8</li>
+</ul>
+<p>IGT_9187: 9187<br />
+  xe-6121-020bf044c3c299e9b0961753bf5f8b92c3b505ce: 020bf044c3c299e9b0961753bf5f8b92c3b505ce<br />
+  xe-pw-171735v8: 171735v8</p>
+
+</body>
+</html>
+
+--===============1733531750581836185==--
