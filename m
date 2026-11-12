@@ -2,52 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF58606A334
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 14:27:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42363606A887
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 14:27:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=arm.com header.i=@arm.com header.a=rsa-sha256 header.s=foss header.b=QJu4I9ui
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=lhfdsElg
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95D3810E829;
-	Fri, 13 Nov 2026 14:27:49 +0000 (UTC)
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id 98840112064;
- Thu, 12 Nov 2026 11:56:15 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id F3CE8153B;
- Thu, 12 Nov 2026 03:56:11 -0800 (PST)
-Received: from raptor (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF9343F632;
- Thu, 12 Nov 2026 03:56:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
- t=1794484575; bh=jLwZvor016x+TzfEywYXeOWteUmG2ue9bXaXatigxyg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=QJu4I9uiQFFvC3WPCjDRK/KwBHVWaMDKODaqCT5puw101H172umhqeXcWf8ceOhW/
- 1DC/yi0K4CrY0pwYUNJGU3o9Ej8c61VepdlGN1xrZHlHb09BJS5/CjgaSjF6mKrdMP
- ReGobp5hWGzdQXEB3jNcrNOn8pypVnlWXrF8/obA=
-Date: Thu, 12 Nov 2026 11:56:08 +0000
-From: Alexandru Elisei <alexandru.elisei@arm.com>
-To: mpenttil@redhat.com
-Cc: linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- David Hildenbrand <david@kernel.org>, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <ljs@kernel.org>, "Liam R. Howlett" <liam@infradead.org>,
- Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH v17 00/12] migrate on fault for device pages
-Message-ID: <avWpWBl1nPcRVmpQ@raptor>
-References: <20261103061629.972669-1-mpenttil@redhat.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C37112596;
+	Fri, 13 Nov 2026 14:27:50 +0000 (UTC)
+X-Greylist: delayed 365 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Nov 2026 17:06:32 UTC
+Received: from mta1.migadu.com (out-134.mta1.migadu.com [95.215.58.134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B189112243
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 17:06:32 +0000 (UTC)
+X-Envelope-To: intel-xe@lists.freedesktop.org
+DKIM-Signature: a=rsa-sha256; bh=yKUtsHF/2fwhRnmNjv/gYBbo8M716rJzJqy5QbQim/g=; 
+ c=simple/simple; d=linux.dev;
+ h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
+ t=1794503190; v=1; x=1795107990;
+ b=lhfdsElgJApfH80wZi6ElmUKF6zSNBeKVNxXkuW/33p6nBo82r5IXKfmjdPv9nbceR3gUT/M
+ DeLEErMEqediHmUVbaNnrhJPkqUcD1dm4HKGwXa58eTw6Wa9xWiYktjOnfFpPrLZCAEoxu8ASp6
+ 7QdEyjZlwDDWJL6BDqDXf6Ug=
+X-Envelope-To: intel-xe@lists.freedesktop.org
+Received: by smtp.migadu.com with ESMTPS id 584a0733ec27085c;
+ Thu, 12 Nov 2026 17:00:23 +0000
+X-Mizu-Trace-ID: 584a0733ec27085c
+X-Migadu-Flow: FLOW_OUT
+From: Aditya Garg <aditya.garg@linux.dev>
+To: Lukas Wunner <lukas@wunner.de>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Andre Eikmeyer <dev@deq.rocks>, Yossef Osman <yossef.osman@proton.me>,
+ Alexander Fischer <alexander.fischer@kait2en.org>
+Subject: [PATCH RESEND] drm/i915/psr: enable PSR on Apple T2 eDP panels
+Date: Thu, 12 Nov 2026 22:29:56 +0530
+Message-ID: <20261112165956.61633-1-aditya.garg@linux.dev>
+X-Mailer: git-send-email 2.56.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261103061629.972669-1-mpenttil@redhat.com>
 X-Mailman-Approved-At: Fri, 13 Nov 2026 14:27:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,226 +57,209 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-3.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Mika,
+From: Alexander Fischer <alexander.fischer@kait2en.org>
 
-I want to help getting this series merged, and I've been familiarizing myself
-with hmm and device migration, please bare with me if the questions I'm asking
-are obvious or downright silly.
+Commit 1035f4a65f58 ("drm/i915: Disable PSR in Apple panels")
+disabled PSR on all Apple sinks until i915 gained the required panel
+handling.
 
-On Tue, Nov 03, 2026 at 08:16:17AM +0200, mpenttil@redhat.com wrote:
-> From: Mika Penttilä <mpenttil@redhat.com>
-> 
-> Currently, the way device page faulting and migration works
-> is not optimal, if you want to do both fault handling and
-> migration at once.
-> 
-> Being able to migrate not present pages (or pages mapped with incorrect
-> permissions, eg. COW) to the GPU requires doing either of the
-> following sequences:
-> 
-> 1. hmm_range_fault() - fault in non-present pages with correct permissions, etc.
-> 2. migrate_vma_*() - migrate the pages
-> 
-> Or:
-> 
-> 1. migrate_vma_*() - migrate present pages
-> 2. If non-present pages detected by migrate_vma_*():
->    a) call hmm_range_fault() to fault pages in
->    b) call migrate_vma_*() again to migrate now present pages
+An AUX trace on a MacBookPro16,2 running macOS 15.7.7 shows the
+following writes when the panel is powered on:
 
-Regarding both sequences, I'm trying to get a better understanding of what
-the issue is. I assume the caller wants to fault in system memory, and then
-migrate it to the device. Is that correct?
+  DPCD 0x321 = 0x3c
+  DPCD 0x4d2 = 0x01
+  DPCD 0x4d1 = 0x03
+  DPCD 0x170 = 0x01 (DP_PSR_ENABLE without CRC verification)
 
-In my analysis I'm also not going to refer to THPs, since that would make
-things even more complicated than they are. I think we can come back to
-THPs later if we think it would be useful.
+Five seconds later, a write of 0x01 to DPCD 0x4d4 occurs between the
+BanksiaTcon FIFOEnter() and SRDEnter() events. This register is the
+vendor trigger for entering self refresh.
 
-For the !pte_present() case:
+With the three setup writes, CRC verification disabled, and the 0x4d4
+trigger added to i915's existing PSR enable sequence, the tested panels
+enter PSR1.
 
-Sequence 1: hmm_range_fault() -> .. -> hmm_vma_handle_pte() handles
-!pte_present() pages in two ways: faults in swap pages and device private
-pages belonging to a different device, and waits on migration entries. Then
-the migrate_vma_*() flow is used to migrate the range.
+Implement this handling as an i915 DPCD quirk. Match the Apple PCI
+subsystem vendor in the quirk table, and limit the quirk to Apple-OUI
+eDP sinks on systems containing an Apple T2. All other Apple sinks
+retain the existing NO_PSR quirk. Override the VBT PSR flag for
+matching panels because Apple leaves it clear.
 
-Sequence 2: migrate_vma_setup() ignores !pte_present() page table entries
-After this, the caller follows the same steps as in sequence 1 -
-hmm_range_fault() faults in !pte_present() pages, and migrate_vma_*() is
-called again to migrate the pages that were faulted in/waited on by
-hmm_range_fault().
+The same sink-side protocol may also be present on T1 and Apple silicon
+systems, but leave those systems unchanged until it has been tested
+with their display drivers.
 
-Now, for the CoW case that you mentioned, I'm going to assume that the
-caller wants write permissions otherwise nothing needs to be done:
+Tested on MacBookPro15,1, MacBookPro15,2, MacBookPro16,1,
+MacBookPro16,2 and MacBookAir9,1, covering four panel device IDs. All
+five enter PSR1 after boot and across suspend/resume, report
+DP_PSR_SINK_ACTIVE_SINK_SYNCED, and show no sink errors.
 
-Sequence 1: hmm_range_fault() -> hmm_vma_handle_pte() records a fault
-(hmm_pte_need_fault() returns HMM_NEED_FAULT | HMM_NEED_WRITE_FAULT),
-handle_mm_fault() -> .. -> do_wp_page() breaks CoW and maps an exclusive
-folio with write permissions, then the migrate_vma_* flow will take care of
+Tested-by: Andre Eikmeyer <dev@deq.rocks>
+Tested-by: Yossef Osman <yossef.osman@proton.me>
+Signed-off-by: Alexander Fischer <alexander.fischer@kait2en.org>
+Signed-off-by: Aditya Garg <aditya.garg@linux.dev>
+---
+Changes in v4:
+- Rebase onto drm-tip; use drm_dp_dpcd_write_byte() for the new
+  writes to match the conversion of intel_psr.c
 
-Sequence 2, migrate_vma_setup() installs migration entries for the page,
-then migrate_vma_finalize() replaces the migration entries with device
-private entries.
+Changes in v3:
+- Match the Apple PCI subsystem vendor in the DPCD quirk table
+  (Lukas Wunner)
 
-Looks to me that for CoW pages, all that's needed is migrate_vma_*(), and
-the subsequent calls to hmm_range_fault() and migrate_vma_*() are not
-necessary. Is that your conclusion too?
+Changes in v2:
+- Use pci_dev_present() instead of pci_get_device()/pci_dev_put(),
+  which also drops the local PCI_DEVICE_ID define (Lukas Wunner)
+---
+ drivers/gpu/drm/i915/display/intel_psr.c    | 28 +++++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_quirks.c | 28 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+ 3 files changed, 55 insertions(+), 2 deletions(-)
 
-> 
-> The problem with the first sequence is that you always have to do two
-> page walks even when most of the time the pages are present or zero page
-> mappings so the common case takes a performance hit.
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 00d0146b2..c3bde5b64 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -228,6 +228,9 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
+ 
+ 	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
+ 	case I915_PSR_DEBUG_DEFAULT:
++		if (intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE))
++			return true;
++
+ 		return intel_dp_is_edp(intel_dp) ?
+ 			connector->panel.vbt.psr.enable : true;
+ 	case I915_PSR_DEBUG_DISABLE:
+@@ -667,7 +670,8 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
+ 	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
+ 		    connector->dp.psr_caps.dpcd[0]);
+ 
+-	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
++	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR) &&
++	    !intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "PSR support not currently available for this panel\n");
+ 		return;
+@@ -807,19 +811,36 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
+ 	drm_dp_dpcd_write_byte(&intel_dp->aux, PANEL_REPLAY_CONFIG3, panel_replay_config_3);
+ }
+ 
++/* Undocumented Apple eDP sink registers */
++#define APPLE_PSR_SETUP_1	0x321
++#define APPLE_PSR_SETUP_2	0x4d2
++#define APPLE_PSR_SETUP_3	0x4d1
++#define APPLE_PSR_TRIGGER	0x4d4
++
++static void psr_apple_prepare_sink(struct intel_dp *intel_dp)
++{
++	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_1, 0x3c);
++	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_2, 0x01);
++	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_3, 0x03);
++}
++
+ static void _psr_enable_sink(struct intel_dp *intel_dp,
+ 			     const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
++	bool apple_psr = intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
+ 	u8 val = 0;
+ 
++	if (apple_psr)
++		psr_apple_prepare_sink(intel_dp);
++
+ 	if (crtc_state->has_sel_update) {
+ 		val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
+ 	} else {
+ 		if (intel_dp->psr.link_standby)
+ 			val |= DP_PSR_MAIN_LINK_ACTIVE;
+ 
+-		if (DISPLAY_VER(display) >= 8)
++		if (DISPLAY_VER(display) >= 8 && !apple_psr)
+ 			val |= DP_PSR_CRC_VERIFICATION;
+ 	}
+ 
+@@ -835,6 +856,9 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
+ 
+ 	val |= DP_PSR_ENABLE;
+ 	drm_dp_dpcd_write_byte(&intel_dp->aux, DP_PSR_EN_CFG, val);
++
++	if (apple_psr)
++		drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_TRIGGER, 0x01);
+ }
+ 
+ static void intel_psr_enable_sink(struct intel_dp *intel_dp,
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 7d7db774d..8e9c851c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -9,6 +9,7 @@
+ 
+ #include "intel_display_core.h"
+ #include "intel_display_types.h"
++#include "intel_dp.h"
+ #include "intel_quirks.h"
+ 
+ static void intel_set_quirk(struct intel_display *display, enum intel_quirk_id quirk)
+@@ -100,6 +101,25 @@ static void quirk_disable_psr2(struct intel_display *display)
+ 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
+ }
+ 
++static void quirk_apple_psr_handshake(struct intel_dp *intel_dp)
++{
++	static const struct pci_device_id t2_ids[] = {
++		/* Apple T2 */
++		{PCI_DEVICE(PCI_VENDOR_ID_APPLE, 0x1801)},
++		{}
++	};
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	if (!intel_dp_is_edp(intel_dp))
++		return;
++
++	if (!pci_dev_present(t2_ids))
++		return;
++
++	intel_set_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
++	drm_info(display->drm, "Applying Apple PSR handshake quirk\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -289,6 +309,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
++	/* Apple T2 eDP panels */
++	{
++		.device = DEVICE_ID_ANY,
++		.subsystem_vendor = PCI_VENDOR_ID_APPLE,
++		.subsystem_device = PCI_ANY_ID,
++		.sink_oui = SINK_OUI(0x00, 0x10, 0xfa),
++		.hook = quirk_apple_psr_handshake,
++	},
+ };
+ 
+ void intel_init_quirks(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index 970a4fe52..7b863d408 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -23,6 +23,7 @@ enum intel_quirk_id {
+ 	QUIRK_EDP_LIMIT_RATE_HBR2,
+ 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
+ 	QUIRK_DISABLE_PSR2,
++	QUIRK_APPLE_PSR_HANDSHAKE,
+ };
+ 
+ void intel_init_quirks(struct intel_display *display);
+-- 
+2.56.0
 
-This is the first mention of the zero page. Is the caller specifying
-HMM_PFN_REQ_WRITE? That makes a difference, because it triggers fault
-handling for the zero page, and that's an extra walk. Can you give more
-details here?
-
-Let's count page table walks when a page is mapped with a valid entry, and
-with the required permissions. Let's say N is the number of mappings for
-the page (equivalent to the number of VMAs that map the page):
-
-hmm_range_fault() -> .. -> hmm_vma_handle_pte() does one page table walk,
-migrate_vma_setup() does N page tables walks, to replace all valid mappings
-of the page with migration entries, migrate_vma_finalize() does N page
-table walks, to replace the migration entries with device entries.
-
-In total 1 + 2*N walks. Best case scenario, N == 1 (PageAnonExclusive()),
-that's three walks.
-
-Do you have any data regarding how often the best case scenario happens?
-That's what you seem to be referring to in your comment.
-
-Now let's count the number of walks for a !pte_present() page mapped in P
-VMAs, where P != N: one from hmm_range_fault(), if the entry is not a
-migration entry, another walk in the fault handler, then 2*P walks from the
-migrate_vma_*() flow.
-
-If it's a migration entry, it requires 1 + 2*P walks, PLUS waiting on
-migration to complete, which cannot be skipped.
-
-If it's a swap entry, it requires 2 + 2*P walks, PLUS waiting on swap.
-
-If it's a device private entry belonging to a different device, it requires
-2 + 2*P walks, plus waiting on the device to sync the memory with the
-device in migrate_to_ram().
-
-To summarize:
-
-pte_present()	1 + 2*N walks
-migration entry	1 + 2*P walks + waiting on migration
-swap entry	2 + 2*P walks + waiting on swap
-device private	2 + 2*P walks + waiting on device->memory sync
-
-> 
-> The second sequence is better for the common case, but far worse if
-> pages aren't present because now you have to walk the page tables three
-> times (once to find the page is not present, once so hmm_range_fault()
-> can find a non-present page to fault in and once again to setup the
-> migration). It is also tricky to code correctly. One page table walk
-
-Valid entry, the page is mapped in N VMAs: migrate_vma_*() does 2*N walks,
-best case scenario (PageAnonExclusive) two walks.
-
-!pte_present, the page is mapped in P VMAs:
-
-migrate_vma_setup() -> migrate_vma_collect() will always do one page table
-walk, regardless of what it finds, valid or invalid entries.
-migrate_vma_collect() ignores !pte_present() entries, and they will not
-trigger new walks in the next steps in the migrate_vma_* flow. Worst case
-is that all the pages are !pte_present(), that's one walk to find them all
-which I would say it translates to zero extra walks for an individual page.
-
-For hmm_range_fault(), it's the same situation as above: 1 + 2*P or 2 + 2*P
-walks.
-
-To summarize:
-
-pte_present()	2*N walks
-migration_entry	1 + 2*P walks + waiting on migration
-swap entry	2 + 2*P walks + waiting on migration
-device private	2 + 2*P walks + waiting on device memory->memory sync
-
-I agree with you, this second sequence is better for the common case.
-
-I think it would interesting to know:
-
-1. Is there a relationship between N and P, and if there is, what is it?
-Are they equal, on average? I doubt it. Is a !pte_present() page likely to
-be mapped in more VMAs than a pte_present() page, or fewer?
-
-2. What is the likelyhood of P being equal to 1 (PageAnonExclusive)? That
-would be interesting to know because the larger P is, the contribution of
-that extra walk (or two walks) to the total time becomes less and less
-significant.
-
-3. How does the time to do the walk compare to the time spent waiting on
-migration, or waiting on swap, or waiting on device to memory sync? How
-often each of them happen? I have a hunch that these will tend to dominate
-the total time.
-
-> could costs over 1000 cpu cycles on X86-64, which is a significant hit.
-> 
-> We should be able to walk the page table once, faulting
-> pages in as required and replacing them with migration entries if
-> requested.
-> 
-> Add a new flag to HMM APIs, HMM_PFN_REQ_MIGRATE,
-> which tells to prepare for migration also during fault handling.
-> For the migrate_vma_setup() call paths, new flags, MIGRATE_VMA_FAULT,
-> and MIGRATE_VMA_WRITE are added to tell to add fault handling to migrate.
-> 
-> An extra benefit of migrating with hmm_range_fault() path
-> is the migrate_vma.vma gets populated, so no need to
-> retrieve that separataly.
-> 
-> This series avoids the problems in current collecting implementation,
-> where racing MADV_DONTNEED could make the collecting arrays overflow.
-
-Can you provide more details here? How does it happen?
-
-> This is achieved mainly by having a rollback mechanism and
-> populating the collecting array as the last step.
-> 
-> Tested in X86-64 VM with HMM test device, passing the selftests.
-
-Have you tested that this series doesn't regress other architectures?
-
-> The main goal of this patchset is to provide a new feature,
-> migrate efficiently on fault, and not directly improve performance
-> of current migrate_vma_setup() (which is now routed thru
-
-I'm a bit confused by what 'on fault' means in this context? Userspace
-accesses a device entry, access that causes a fault, or using
-hmm_range_fault()? I assume the latter, but it pays to make sure.
-
-Also, can you define efficiently? Usually that's related in some way to
-performance, but immediately you say that the series doesn't aim to improve
-performance.
-
-> hmm_range_fault()) callers. That said, the migrate throughput tests
-> from the selftests show that there is at least no regression for
-> current migrate_vma_setup() callers.
-
-If the premise of the series is to reduce the number of page table walks in
-the !pte_present() case, then I think benchmarks that show a performance
-improvement would make a compelling case for this approach.
-
-Some thoughts, if I may:
-
-- Perhaps the existing test is not the right test to highlight the
-  performance gains?
-
-- Perhaps there are other parts of the migration process that dominate the
-  walks? If so, maybe we should be focusing our attention on those?
-
-- Perhaps the series adds overhead that reduces or cancels the gains from
-  reducing the number of walks?
-
-Thanks,
-Alex
