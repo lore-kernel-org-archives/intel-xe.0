@@ -2,57 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010A8606A323
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 09:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B23D606A321
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 09:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Na35lenq
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MQvFVbip
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCB5C10FFBD;
-	Thu, 12 Nov 2026 09:48:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF9DA10E1AF;
- Thu, 12 Nov 2026 09:48:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE00110FF88;
+	Thu, 12 Nov 2026 09:57:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24DB010FF6A;
+ Thu, 12 Nov 2026 09:57:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794476928; x=1826012928;
+ t=1794477433; x=1826013433;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=+GR/dSv68czyfOrYp6bbGg0NrfRsl+ptzb/0Uc0kOn4=;
- b=Na35lenqBZnBT2rfMcCG354kI0L8CcYCCPRfbB7f0zdhr7cU+xzKOlBY
- DIaHbOtvAcxniUbCw+Kxw5lgDlBnotf/IQBYOEsQoA8n1bOl5JipgVJbu
- 7tcaIwTBJXV13APdGD4mwiql1Y51Gai0NSShXRcH20e2FSoNcizhxvH2m
- Nfa6q3xVUKByCzMbVkcS9jFGxtle4UN7mx0eIMbIDhzm23oDab4Pk+SGW
- 99Q6vRyBHnvzGnMB159yXlX4mIHIeyihI4Vwl3OkmjW0JQjb12cynOFUW
- 3A/ynMCjB87Uvm0WydXMPeJ97qKbVJvaSaUPrcUD+PPq+Uo5gBGZY2uQw g==;
-X-CSE-ConnectionGUID: 47FgFTZTQu+70B/MfZooAA==
-X-CSE-MsgGUID: GCuB6bzxTEeUUTwHZ5rMcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3155337"
+ bh=6YSnhZ8LkQ7XFTpkUeBPF5HWzcbqMrn6eDgdELwmTlM=;
+ b=MQvFVbipXZ//012yTVEnp1kFhXpVjTy+1eybyQmJtBdEK2EclrZRdP/f
+ 6oBXLLRCkrS4TRK3aJbBKq9qrCLp8YVLBTgV9h6NFUhufsWaLVHxzRJXl
+ gf6Y/Z+UWi4Mtlgx/rp4jyyaMvOXgWXletwmcZBaR5OCrjW4qk3FSQT8J
+ 3p8p9XEJ+sc2FEVoUq473Gopd4qWGcaNMf/fszVcZC6uTzmjnegwpvOPQ
+ QmHfG7m6iAUmNMRwIoupLpHgDTFusi/ABlr7dZErR1+x6Hr7dU6Gfg8Rx
+ rCNRSDDXLg9dPWrl6/tVo7xPUNUYz8UdCWJNDmpnoTporW+i5JZiAKr6C w==;
+X-CSE-ConnectionGUID: lpV1HxNnQ4uZb5w8+d88hg==
+X-CSE-MsgGUID: 9m2nsV6VTxqp4lzbvFyvNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3127907"
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="3155337"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 01:48:47 -0800
-X-CSE-ConnectionGUID: Xd+vA4w4Rgmd2Me3fbMniA==
-X-CSE-MsgGUID: hpvgRS0iTqO1eDsfV4tGCA==
+   d="scan'208";a="3127907"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2026 01:57:12 -0800
+X-CSE-ConnectionGUID: XZo4O6fcRyiorKT/q8hQqQ==
+X-CSE-MsgGUID: EwBG0a3vTZyiTAxl79RA3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; d="scan'208";a="10505268"
+X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
+   d="scan'208";a="8661934"
 Received: from dev-417.igk.intel.com (HELO dev-417) ([10.91.214.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Nov 2026 01:48:39 -0800
-Date: Thu, 12 Nov 2026 10:48:33 +0100
+ 12 Nov 2026 01:57:10 -0800
+Date: Thu, 12 Nov 2026 10:57:03 +0100
 From: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 15/15] drm/i915/pfit: Allow downscaling on i966+
-Message-ID: <v7agf7wnm4vnw5iwairhdygsw7tm2pwjjikymi72stzmsyymg3@m3wmh3ljt4lj>
-References: <20261019135309.23578-16-ville.syrjala@linux.intel.com>
- <20261020184111.5513-1-ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [PATCH v2 06/15] drm/i915/pfit: Extract i965_pfit_get_config()
+Message-ID: <pdge7elm432id5djkqfiuxtngxbj6v2nownf4iggduvb4ltznj@ouexxq5lzxvd>
+References: <20261019135309.23578-7-ville.syrjala@linux.intel.com>
+ <20261020183842.5218-1-ville.syrjala@linux.intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261020184111.5513-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20261020183842.5218-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,40 +72,129 @@ X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Oct 20, 2026 at 09:41:11PM GMT, Ville Syrjala wrote:
+On Tue, Oct 20, 2026 at 09:38:42PM GMT, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > 
-> The i965+ panel fitter supports downscaling. Allow it.
+> Split i965_pfit_get_config() out from i9xx_pfit_get_config() to
+> unconfuse things a bit.
 > 
-> v2: Limit to <2.0 instead of <=2.0 (sashiko)
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Note that we stop reading PFIT_PGM_RATIOS into
+> crtc_state->gmch_pfit.pgm_ratios since wen ever use the
+> progammed ratios on i965+. The .compute_config() path doesn't
+> populate crtc_state->gmch_pfit.pgm_ratios either.
 
+I got lost a bit here. Maybe:
+s/wen ever/whenever we/
+s/progammed/programmed/
+s/i965+. The/i965+ the/
+
+But that's just suggestion, not a blocker:
 Reviewed-by: Michał Grzelak <michal.grzelak@linux.intel.com>
 
 BR,
 Michał
 
+> 
+> v2: Highlight the crtc_state->gmch_pfit.pgm_ratios change (Jani)
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_pfit.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_pfit.c | 58 +++++++++++++++--------
+>  1 file changed, 38 insertions(+), 20 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-> index 42d087b406e0..293ec2aae095 100644
+> index 972218346362..82804159d0a1 100644
 > --- a/drivers/gpu/drm/i915/display/intel_pfit.c
 > +++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-> @@ -563,7 +563,10 @@ static int i9xx_pfit_check_scaling(const struct intel_crtc_state *crtc_state)
->  	int hscale, vscale, max_scale;
->  	struct drm_rect src;
+> @@ -720,38 +720,51 @@ void i9xx_pfit_disable(const struct intel_crtc_state *old_crtc_state)
+>  	intel_de_write(display, PFIT_CONTROL(display), 0);
+>  }
 >  
-> -	max_scale = 0x10000;
-> +	if (DISPLAY_VER(display) >= 4)
-> +		max_scale = 0x20000 - 1;
-> +	else
-> +		max_scale = 0x10000;
+> -static bool i9xx_has_pfit(struct intel_display *display)
+> +static void i965_pfit_get_config(struct intel_crtc_state *crtc_state)
+>  {
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	enum pipe pipe;
+> +	u32 tmp;
+> +
+> +	tmp = intel_de_read(display, PFIT_CONTROL(display));
+> +	if (!(tmp & PFIT_ENABLE))
+> +		return;
+> +
+> +	/* Check whether the pfit is attached to our pipe. */
+> +	pipe = REG_FIELD_GET(PFIT_PIPE_MASK, tmp);
+> +	if (pipe != crtc->pipe)
+> +		return;
+> +
+> +	crtc_state->gmch_pfit.control = tmp;
+> +}
+> +
+> +static bool i9xx_has_pfit(struct intel_crtc *crtc)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc);
+> +
+> +	if (crtc->pipe != PIPE_B)
+> +		return false;
+> +
+>  	if (display->platform.i830)
+>  		return false;
 >  
->  	drm_rect_init(&src, 0, 0, pipe_src_w << 16, pipe_src_h << 16);
+> -	return DISPLAY_VER(display) >= 4 ||
+> -		display->platform.pineview || display->platform.mobile;
+> +	return display->platform.pineview || display->platform.mobile;
+>  }
 >  
+>  static void i9xx_pfit_get_config(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> -	enum pipe pipe;
+>  	u32 tmp;
+>  
+> -	if (!i9xx_has_pfit(display))
+> +	if (!i9xx_has_pfit(crtc))
+>  		return;
+>  
+>  	tmp = intel_de_read(display, PFIT_CONTROL(display));
+>  	if (!(tmp & PFIT_ENABLE))
+>  		return;
+>  
+> -	/* Check whether the pfit is attached to our pipe. */
+> -	if (DISPLAY_VER(display) >= 4)
+> -		pipe = REG_FIELD_GET(PFIT_PIPE_MASK, tmp);
+> -	else
+> -		pipe = PIPE_B;
+> -
+> -	if (pipe != crtc->pipe)
+> -		return;
+> -
+>  	crtc_state->gmch_pfit.control = tmp;
+>  	crtc_state->gmch_pfit.pgm_ratios =
+>  		intel_de_read(display, PFIT_PGM_RATIOS(display));
+> @@ -761,10 +774,15 @@ void intel_pfit_get_config(struct intel_crtc_state *crtc_state)
+>  {
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  
+> -	if (HAS_GMCH(display))
+> -		i9xx_pfit_get_config(crtc_state);
+> -	else if (DISPLAY_VER(display) >= 9)
+> -		skl_scaler_get_config(crtc_state);
+> -	else
+> -		ilk_pfit_get_config(crtc_state);
+> +	if (HAS_GMCH(display)) {
+> +		if (DISPLAY_VER(display) >= 4)
+> +			i965_pfit_get_config(crtc_state);
+> +		else
+> +			i9xx_pfit_get_config(crtc_state);
+> +	} else {
+> +		if (DISPLAY_VER(display) >= 9)
+> +			skl_scaler_get_config(crtc_state);
+> +		else
+> +			ilk_pfit_get_config(crtc_state);
+> +	}
+>  }
 > -- 
 > 2.55.0
 > 
