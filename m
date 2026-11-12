@@ -2,123 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF312606A334
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 12:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3552D606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 13:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=sMLw28aE
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oM6uLllo
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99BFA112112;
-	Thu, 12 Nov 2026 12:59:22 +0000 (UTC)
-Received: from DM1PR04CU001.outbound.protection.outlook.com
- (mail-centralusazon11010056.outbound.protection.outlook.com [52.101.61.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8928E11210D;
- Thu, 12 Nov 2026 12:59:16 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yO4QZfNwecywWYAX9IO5fTTrKe+xlECSKFvpdc9hUviCSbdCWE4QLRVLCF/hzDuqV21YFXa51H44U0rdylayCZZRCmswSo4ATXddxFBPYxGP5iFAK/+PABaqdIwbdhFaziKsxn70h0a+YMwUl/e23G6C8tqZq0h4YJLJm99oLyy4ynkPsogjvg3fh1sQ6QUS5f/+TfLsCjiBj95+whjrgajdedEROPywLOMJdpEg25JY/i+X8c4kI+pLkieNsgpYLX46hFHSory23bbK1Frja1bRFbEogLlw/GH6bTCpCgOOWtFQ16bKQ3sOX57Y6TP5duzo4YcP5VcQiKMoh+TLWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HFslsDgRwmBp86bYFvapdkEadzdtuev1jB06ZxRfm+Q=;
- b=qubeDc3NFcyNKNacsFLNYmFpjAt5muuSV+aRTQmsins3kObivk5eNFH8iBZcIdPqZJ+Asvs3tKTUOvAas+dEf2NP7Xl4S4fy9y7hvfk7Dj2tWQLnQP2FZXn9eZR3AW3RNf6eY8T3jWE+iEfdSMNPoll71dNbUe73Duk7icdSZqyAVMs+azpnqbmoQCGH1S/K8gYu7/xK+EwfSLYrfDPdte5ao15aTLVmylPgJ71JRT0PK1f98xGg4Uyhi/sT70wOeKeZyykX9YppXKp15DQV/aEcOKiT9PpVbV79Audwb8W55XLWwW6aJOnWnZbD89DzegQprytK9NlTrfUXnYoqcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HFslsDgRwmBp86bYFvapdkEadzdtuev1jB06ZxRfm+Q=;
- b=sMLw28aEVa4buyHOlScKC1rPHpW8FqZuFBoPNjt7SM6qMFow/82nApkq3QGru1fcqAQ3SBORHY+NiO0kpjCnjX76jL+0sd4Pkhv0EMs4tJ6FZMC9uICKoO+uSI/Y4lskZbJyum344bLQ+QZOp0bbkfyNThSbHKuBafHSqoSTFis=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA3PR12MB7974.namprd12.prod.outlook.com (2603:10b6:806:307::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.8; Thu, 12 Nov
- 2026 12:58:25 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0615.007; Thu, 12 Nov 2026
- 12:58:25 +0000
-Message-ID: <007c58e6-9af5-4d42-b307-0827df55fbb4@amd.com>
-Date: Thu, 12 Nov 2026 13:58:22 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm: increase 64-bit mmap_range size to 8TB
-To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20261112122049.1990826-2-matthew.auld@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20261112122049.1990826-2-matthew.auld@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0269.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e8::16) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA3PR12MB7974:EE_
-X-MS-Office365-Filtering-Correlation-Id: f128cf95-73bc-483d-072b-08df40bca384
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|23010399003|22082099003|18002099003|261009221227099003|261009223027099003|56012099006|11063799006|261028144727099003|261102123227099003|261021121427099003|261026140227099003|261022105027099003|261021123027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: LJhc/+JsOtzNYJjJCS50hca7FNNhn9BtBSTrUAPnbYOWbaY3ETA2JrCc7B0dHQIA4pqcTyuqGp98QtPNzOoA6xyGY45pXYY1+i3Est8JhCzt8NDWQk30LkT3Cw7mZhPXhK2FfsCdHS/HIQGxer/ZmaXdza51v58pBoG0yrNvUM/RYLKXwZbss9RHfpidx4cDHA9x4bfQCRiTygQt1Dc8UBIPTE7frEXfM//yGSErzFwC64S/T6VbujQHFqZVtgDdA+7Z61srQ7W4wOupZ/7Z/qbKfdKmHhENp0tNugpe8BdHrRkqRrx+kwjSyQAnRIdm1EmDDPgKajGg7gMh6fDSsO7DjQuWSPD7WfIoIF67YYIhqDUUenhtSBBCaqEkji/qw3t9iyUw48U/9E44jxxEN+TMdiZ5d5tACQvTHh+Lm/P3/cbgljrszKYsNp8u5LNO6sS8la+5JAlfgP00XBrEC/9dhnHArPgAa8vU3jMfd9t4MzdxdK/ofP/zzmgGk3sU6lYnHfeqG92QlcFWapp/i8nu/cehFmEF4uYFygdGLrRytJymPTVAlENwV/zJGo6Ulh3oXW2XjQQpiz9q9X79392en01d7XPYKsHBudMYcD4gJIMGime+vbXbtt6RBUgXncS1efhjXA1EMeEyJwqAAV9gEIWgbB4M4B+abw4/M80=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(22082099003)(18002099003)(261009221227099003)(261009223027099003)(56012099006)(11063799006)(261028144727099003)(261102123227099003)(261021121427099003)(261026140227099003)(261022105027099003)(261021123027099003)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QnBkUmtGb2FMd05xNHdRNHJmZ0k4dEFSUlk0WTZyNEhkOGRJaitYTHZ3VGNm?=
- =?utf-8?B?S3ZGdnRCMzdoWWR3UXdLTlAwVngzMGpqN09WVTRMb01DVmVDdWdPVGVZc1FJ?=
- =?utf-8?B?U1RpT0h5T2dqMHhneHpVd2lLR2g0Y08wNENlVDhvdmVOWWMzMCtrL3VtY2Nr?=
- =?utf-8?B?V1N0dWQxcVJJcStHT2NpSExIaE4zSW9BZWtWZjF0TlBFUWV6Vjg2aytTMHJK?=
- =?utf-8?B?b25ta1VqUWNSd2FhUmlFTjJucGJFMGlzTExyUm84V1AvNTN2cllOT2s3Q2xW?=
- =?utf-8?B?S3l4eTFyMW5lNjgyckdUT2RuYnRKTkh2M3FxQ2VPUmtqU1RzVDN6NnRCWStm?=
- =?utf-8?B?VHJiaFBUKzR1ZnY2UElhR3k0Q3BBOEZWbFZPcERjczNhRGdVQXBKcDdwQ2pL?=
- =?utf-8?B?Yk5ISU1LYkNWYUY1RVlQdFlJMytmWlNPbTZmWndlV0F1SDBKK3V0NjUwM3Fw?=
- =?utf-8?B?Vk1TNzlSZmVTTXR5NTkwMmpqYllXSlZpb2ExZ2F6Si9lTG4wbEVoUVd5NFVw?=
- =?utf-8?B?VjJPNHlTaEhvT2F0MHZ1N0VqR0ZpcnV4VzF4UFM3bW43b3hnQ3NPcnFtanBN?=
- =?utf-8?B?U0Fuc2FPSlhCMFB2b2ZvNjMveUE4OHljRmNsL3NyVWFVOExQZGgyOE8xL3o0?=
- =?utf-8?B?cmFGa3pBbzJCeXR5dGliaXdITnVWV3dYMzFKQ2lPMUhPWG8wUnl2WnFNRXZW?=
- =?utf-8?B?ZUV1WUtiQ1NoMTk0NmpDWmlJWE1QWDlOa1UwYUpacWZHa3h3SStvb2ZsMFQ0?=
- =?utf-8?B?SkdLVWNoeGtoSWJpLytFaDJ1dzlHdXJGZzVQQ01hTWwxbkI3MmI3U1VmZEw2?=
- =?utf-8?B?TlVOVWxaUGxiaXNHVVRVNDhtbktxWWJubUFCMmZVMGJ2S1lmWHNtMUVtd244?=
- =?utf-8?B?bWtsaTVXU2gvbGdkSERBUmpWeENrTnluaEZFVmxLNlBtb05tZTlxcWZjWTkw?=
- =?utf-8?B?bFJZUGZOeVdrWWgyUGRQbVEva3Y1eGc5TGtyd1FyS0xBN3YwQThPczY4ZWds?=
- =?utf-8?B?eDJFS2Z6OGhwS3BnYkZZV2hLb29vcHJCWHNBUnMzeS9ucjVHeHNuT2gyUThs?=
- =?utf-8?B?OXhsb1UvQlZWOWRiMGxSMllVR3lYR2RmamFqaSszdDJaK29UWWV0N1N2MGIy?=
- =?utf-8?B?YUNxU0h5SGc0NFVZVCtHdk5Vb05SUkVQUXVyVjkvdjFoYi9sYjBjaXB5Y0tE?=
- =?utf-8?B?blM1TzVybWQ1V2xnbXNvdzFtYytjOUlYZVdjWVlrQWUyOG9QRnlvQ25DbGtq?=
- =?utf-8?B?dkJZUlBob3h1dEFCcVkzTDk2Mm4wM3o0SVBBaEUxQmY4K0VyWmxiaDlob1Rk?=
- =?utf-8?B?QVFYR0R6bWpvcHYweWIvRHdOdmMyVlROWXY0K2pkbm1PdzNCUklFdHh3dy9N?=
- =?utf-8?B?aDFRbmIxZ25COHFuenVaZGxHNldqWVQ5QVVCNEVqcjljQTB1YXNnZzBtVkdI?=
- =?utf-8?B?czZDNkJzanNjR1pmeXFkZW1tM29GTFpLNi9NcFdTUWp6ajd4cHc5K2FLUVVP?=
- =?utf-8?B?TFhsTWRIdmtCS2xaNzNqK1lOV1lGSUtLYU9rcmhvRXU3eHNNNEtrb242VXZr?=
- =?utf-8?B?RWwyRFcvVVRiYlVJQmMranVpVk5EekM1R0VJdzl2c1lpck5LbHVDdjB6aVkw?=
- =?utf-8?B?eG1FYWtmeExzVXBNMlpSVUJFa3FsbXdLcXNDMmJRVEx0bm1DUXV0ZmRuaFg3?=
- =?utf-8?B?ZXlPcldyNWVBU1RxR3ljS0xPd1cyWXFwSENMRWN6Q2kralppNm56MmNpNlh5?=
- =?utf-8?B?eTR6bjVMc2JraE5wRWpId1JtMityN1RYMm9YeDR6WGpUS1M5ZW1LR01pdEhJ?=
- =?utf-8?B?b25HdVVqZlY3OUxKWXFrUHhKbHRSQXp6V0J3dHlnc2czaDRDZkdCZG1xd3Zo?=
- =?utf-8?B?dnByMjhWVGtzNlJ3UkRwQWVKVkx5UFRzaHNYb2hOaVdydFB6dERHN2I5YzBK?=
- =?utf-8?B?Q1dIMWkwWjArWE8zYkI1VzkranB3R0xVZWVzSm1jSWtRYXlpUXpKeHVaNUZH?=
- =?utf-8?B?SmVCUjJJREdpTTFFb1dYZzc2OE5vNHhrU3JxT1c3SmdIajl6MDArMmxpRmt2?=
- =?utf-8?B?Ynp3U0NtZURmZjZrNEVqSUFGR2dNV2FXWHRCa3lsdk80WXV3cFRWbXZGVVNh?=
- =?utf-8?B?UzRFbGRmc0krL21tb3FidGgybE5mak9va3M4L1grUVZVSVExa25WOWlncjRk?=
- =?utf-8?B?WDVpUFJJYnBkZnk3K1ZvdTlRVHI5dmIzOXpVTUlwVFpvaTQrc29CZEh4azdt?=
- =?utf-8?B?ZGpSeVBzZytTdHY0V0k3UG0ySVE2Lzk4bkdJVGdNSC9oUUZFaUxzeUo5T3Fa?=
- =?utf-8?Q?wG+fJ0GqC3iRNV6Q5o?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f128cf95-73bc-483d-072b-08df40bca384
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Nov 2026 12:58:25.3968 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: i/Mm6OSbWplfXl2YMgFsV7HJycOe41FxJnQBrdY0rSgMVXUCmHjAKw5Yh6mQ5wpY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB7974
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAA2510E605;
+	Thu, 12 Nov 2026 13:03:22 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8529410E605
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 13:03:16 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id C56E563219;
+ Thu, 12 Nov 2026 13:03:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F17B1F00A05;
+ Thu, 12 Nov 2026 13:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1794488595;
+ bh=xEPLRE4nSl2nwm2cNXMgKj4BVE619Wv9/EJb5Qumhag=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=oM6uLllob5WGwGY3sQl5/h4oIs+XOfWSbxe3qxdtZsPWa3DaqlPegGjRHN5LYV2oq
+ iYbz6I9cE/+JsaY1qO4Fl33HXEdfSKK1W5b0tda6Kkh/n3PbZhZAm4RyH0dppkuFcJ
+ bW3IQsTIsR577GjhxzVJnBnqQXR3XKj2+A6eHvi2cVGzkpZO3JzrRtzg61kfkb1bBP
+ 5k7l7rVbIzG+//w7LNbTqeQO2vPVq47QJ9DnCIgSS8oMnRUHbS5T7AYu9p6plZwxT7
+ +G11+so9Fr3CuoX6mE0NZjCf7/RpIyJeV3Oq78MJBWOa8LLGwtF9zIgtZxlRXOiWzb
+ b54OiTDFrdroA==
+Message-ID: <sashiko-outbox-211135@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH V2 1/3] drm/xe/vram: add decay-based reinstatement of
+ soft-offlined VRAM pages
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261112124329.2960272-6-tejas.upadhyay@intel.com>
+References: <20261112124329.2960272-5-tejas.upadhyay@intel.com>
+ <20261112124329.2960272-6-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 12 Nov 2026 13:03:15 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,73 +47,192 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On 11/12/26 13:20, Matthew Auld wrote:
-> Every GEM/TTM buffer object, including imported dma-bufs, allocates a
-> fake mmap offset from the per-device drm_vma_offset_manager. On multi-GPU
-> systems with large VRAM, peer-to-peer dma-buf imports across devices and
-> processes can exhaust the current 1 TiB 64-bit range and fail BO creation
-> or PRIME import with -ENOSPC. Skipping mmap offset allocation for
-> imported sg buffers is not straightforward without risking userspace
-> regressions, as existing userspace (such as Intel compute-runtime) still
-> queries mmap_offset on imported host dma-bufs even when mapping the
-> dma-buf fd directly.
+Thank you for your contribution! Sashiko AI review found 4 potential
+issues to consider:
+- [High] drm/xe: missing configfs stub for
+  xe_configfs_get_bad_page_decay_secs()
+- [Medium] drm/xe: missing decay_gc_work scheduling in
+  xe_ttm_vram_retry_queued_pages()
+- [Medium] drm/xe: queued pages not promoted to HARD on repeat VRAM
+  fault
+- [Low] drm/xe: xe_ttm_vram_decay_gc_period() clamps period above
+  configured decay
+--
 
-I was just about to ask why the heck we grab mmap offsets for imported DMA-bufs :)
+commit 09a44ea2bd1a1ebe78a3a684e47f0dc29c05f989
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
 
-> Increase DRM_FILE_PAGE_OFFSET_SIZE on 64-bit kernels so the fake offset
-> range spans up to 8 TiB (SZ_8T). This stays strictly below panthor's
-> DRM_PANTHOR_USER_MMIO_OFFSET_32BIT (1ULL << 43) carveout and within
-> 32-bit compat mmap2's pgoff limit (16 TiB with 4K pages).
-> 
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
+drm/xe/vram: add decay-based reinstatement of soft-offlined VRAM pages
 
-Acked-by: Christian König <christian.koenig@amd.com>
+This commit adds a per-VRAM-manager delayed work timer to reinstate
+soft-offlined VRAM pages after a configurable decay interval, while
+promoting pages with repeat faults to permanent hard retirement.
 
-> ---
->  include/drm/drm_vma_manager.h | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/include/drm/drm_vma_manager.h b/include/drm/drm_vma_manager.h
-> index 6c2a2f21dbf0..2c3233f9dec4 100644
-> --- a/include/drm/drm_vma_manager.h
-> +++ b/include/drm/drm_vma_manager.h
-> @@ -26,16 +26,23 @@
->  #include <drm/drm_mm.h>
->  #include <linux/mm.h>
->  #include <linux/rbtree.h>
-> +#include <linux/sizes.h>
->  #include <linux/spinlock.h>
->  #include <linux/types.h>
->  
-> -/* We make up offsets for buffer objects so we can recognize them at
-> +/*
-> + * We make up offsets for buffer objects so we can recognize them at
->   * mmap time. pgoff in mmap is an unsigned long, so we need to make sure
-> - * that the faked up offset will fit
-> + * that the faked up offset will fit.
-> + *
-> + * On 64-bit, cap the range at 8 TiB (SZ_8T) so offsets remain below both
-> + * panthor's DRM_PANTHOR_USER_MMIO_OFFSET_32BIT (1ULL << 43) and 32-bit
-> + * compat mmap2's pgoff ceiling (16 TiB with 4K pages).
->   */
->  #if BITS_PER_LONG == 64
->  #define DRM_FILE_PAGE_OFFSET_START ((0xFFFFFFFFUL >> PAGE_SHIFT) + 1)
-> -#define DRM_FILE_PAGE_OFFSET_SIZE ((0xFFFFFFFFUL >> PAGE_SHIFT) * 256)
-> +#define DRM_FILE_PAGE_OFFSET_SIZE ((SZ_8T >> PAGE_SHIFT) - \
-> +				   DRM_FILE_PAGE_OFFSET_START)
->  #else
->  #define DRM_FILE_PAGE_OFFSET_START ((0xFFFFFFFUL >> PAGE_SHIFT) + 1)
->  #define DRM_FILE_PAGE_OFFSET_SIZE ((0xFFFFFFFUL >> PAGE_SHIFT) * 16)
+> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_con=
+figfs.h
+> index 327b648944ffa..406b722247020 100644
+> --- a/drivers/gpu/drm/xe/xe_configfs.h
+> +++ b/drivers/gpu/drm/xe/xe_configfs.h
+> @@ -26,6 +26,7 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
+>  bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
+>  u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev);
+>  bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
+> +u32 xe_configfs_get_bad_page_decay_secs(struct pci_dev *pdev);
+>  u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
+>  				       enum xe_engine_class class,
+>  				       const u32 **cs);
 
+[Severity: High]
+Does this break the build when CONFIG_CONFIGFS_FS is not reachable?
+
+__xe_ttm_vram_mgr_init() calls xe_configfs_get_bad_page_decay_secs()
+unconditionally, but xe_configfs.h only declares it inside the
+#if IS_REACHABLE(CONFIG_CONFIGFS_FS) block without a static inline stub in
+the #else branch.  Also, XE_BAD_PAGE_DECAY_SECS_DEFAULT is added in
+xe_ttm_vram_mgr_types.h but never used (device_defaults in xe_configfs.c
+open-codes 24 * 60 * 60).
+
+> diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe=
+_ttm_vram_mgr.c
+> index 36d47de8b11ba..ed0ca5f2b1449 100644
+> --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+> @@ -355,6 +355,51 @@ static const struct ttm_resource_manager_func xe_ttm=
+_vram_mgr_func =3D {
+>  	.debug	=3D xe_ttm_vram_mgr_debug
+>  };
+> =20
+> +static unsigned long xe_ttm_vram_decay_gc_period(struct xe_ttm_vram_mgr =
+*mgr)
+> +{
+> +	unsigned long period =3D mgr->decay_interval_jiffies / 8;
+> +
+> +	if (period < msecs_to_jiffies(60 * 1000))
+> +		period =3D msecs_to_jiffies(60 * 1000);
+> +	return period;
+> +}
+> +
+> +static void xe_ttm_vram_decay_gc_worker(struct work_struct *work)
+> +{
+> +	struct xe_ttm_vram_mgr *mgr =3D container_of(to_delayed_work(work),
+> +						   struct xe_ttm_vram_mgr,
+> +						   decay_gc_work);
+> +	struct xe_ttm_vram_offline_resource *pos, *n;
+> +	struct xe_device *xe =3D ttm_to_xe_device(mgr->manager.bdev);
+> +	unsigned long now =3D jiffies;
+> +	unsigned long decay;
+> +
+> +	mutex_lock(&mgr->lock);
+> +	decay =3D mgr->decay_interval_jiffies;
+> +	if (!decay)
+> +		goto reschedule;
+> +
+> +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
+> +		if (pos->mode !=3D XE_PAGE_OFFLINE_SOFT)
+> +			continue;
+> +		if (!time_after(now, pos->last_seen + decay))
+> +			continue;
+
+[Severity: Low]
+When bad_page_decay_secs is configured between 1 and 59 seconds, does
+xe_ttm_vram_decay_gc_period() delay reinstatement to at least 60 seconds?
+
+xe_ttm_vram_decay_gc_period() clamps period up to 60 seconds without
+capping it at mgr->decay_interval_jiffies.  In addition, when
+bad_page_decay_secs is 60 seconds, period equals decay, so if the worker
+runs on the exact expiration tick (now =3D=3D pos->last_seen + decay), the
+strict time_after() check evaluates to false and defers reinstatement for
+another 60 seconds.
+
+[ ... ]
+
+> @@ -725,8 +776,12 @@ static bool xe_ttm_vram_page_already_processed(struc=
+t xe_ttm_vram_mgr *mgr,
+>  	lockdep_assert_held(&mgr->lock);
+> =20
+>  	list_for_each_entry(pos, &mgr->offlined_pages, offlined_link) {
+> -		if (pos->addr =3D=3D addr)
+> +		if (pos->addr =3D=3D addr) {
+> +			if (pos->mode =3D=3D XE_PAGE_OFFLINE_SOFT)
+> +				pos->mode =3D XE_PAGE_OFFLINE_HARD;
+> +			pos->last_seen =3D jiffies;
+>  			return true;
+> +		}
+>  	}
+> =20
+>  	list_for_each_entry(pos, &mgr->queued_pages, queued_link) {
+
+[Severity: Medium]
+Should a repeat fault matching an entry on mgr->queued_pages also promote
+pos->mode to XE_PAGE_OFFLINE_HARD and update pos->last_seen?
+
+When a fault hits an allocated or busy page, the entry is placed on
+mgr->queued_pages with XE_PAGE_OFFLINE_SOFT until the owning BO is freed.
+If a second fault arrives at the same address before
+xe_ttm_vram_retry_queued_pages() moves it to mgr->offlined_pages, the
+mgr->queued_pages loop returns true (causing handle_page_offline() in
+xe_ras.c to see -EEXIST and permanently retire the page in firmware via
+XE_RAS_PAGE_ACTION_OFFLINE), but leaves pos->mode as XE_PAGE_OFFLINE_SOFT
+so xe_ttm_vram_decay_gc_worker() will later reinstate the page into the
+buddy allocator.
+
+> @@ -804,6 +859,8 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe=
+_device *xe, u64 addr,
+>  		INIT_LIST_HEAD(&nentry->blocks);
+>  		nentry->status =3D XE_PAGE_RESERVE_PENDING;
+>  		nentry->addr =3D addr;
+> +		nentry->mode =3D XE_PAGE_OFFLINE_SOFT;
+> +		nentry->last_seen =3D jiffies;
+> =20
+>  		if (block) {
+>  			pbo =3D xe_ttm_vram_block_owner_get(xe, block);
+> @@ -843,6 +900,11 @@ static int xe_ttm_vram_reserve_page_at_addr(struct x=
+e_device *xe, u64 addr,
+>  			}
+>  			++vram_mgr->n_offlined_pages;
+>  			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
+> +			if (vram_mgr->decay_interval_jiffies &&
+> +			    !delayed_work_pending(&vram_mgr->decay_gc_work)) {
+> +				schedule_delayed_work(&vram_mgr->decay_gc_work,
+> +						      xe_ttm_vram_decay_gc_period(vram_mgr));
+> +			}
+>  			return ret;
+>  		}
+>  	}
+
+[Severity: Medium]
+Will soft-offlined pages that were allocated to a BO at fault time ever
+schedule decay_gc_work?
+
+When block is non-NULL (or when xe_ttm_vram_buddy_alloc() defers a busy
+page), nentry is placed on vram_mgr->queued_pages and later moved to
+mgr->offlined_pages by xe_ttm_vram_mgr_del() ->
+xe_ttm_vram_retry_queued_pages():
+
+drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:xe_ttm_vram_retry_queued_pages() {
+    ...
+		--mgr->n_queued_pages;
+		list_del(&pos->queued_link);
+		++mgr->n_offlined_pages;
+		list_add(&pos->offlined_link, &mgr->offlined_pages);
+	}
+}
+
+Because xe_ttm_vram_retry_queued_pages() does not schedule
+mgr->decay_gc_work, any soft-offlined page that passes through
+queued_pages will stay offline permanently unless an unallocated page also
+faults and starts the worker.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261112124329.2960=
+272-5-tejas.upadhyay@intel.com?part=3D1
