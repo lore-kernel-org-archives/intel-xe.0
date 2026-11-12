@@ -2,44 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57B6606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 06:07:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0989606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Nov 2026 06:07:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CkYFR4wG
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ba8QdwVl
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B01910E4B5;
-	Thu, 12 Nov 2026 06:07:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7712C10E4D9;
+	Thu, 12 Nov 2026 06:07:46 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8A2E10E4B5
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 06:07:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62D7410E4F9
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 06:07:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794463657; x=1825999657;
+ t=1794463661; x=1825999661;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JQv/giR5ix4/whrkHZXfh43uUp9+PvHlgcgcs60mqlQ=;
- b=CkYFR4wGz8rEdrCNz3f3FM/bS4WRIGuWy8PQJdyAa8E0rzsjeFWxBeF6
- 0nSom+cWvF2TR5I2hgXdpWlIXj6FWAoqcKny9ETmvZQ8BIv2D/oa33/6S
- yk7zt3d9xh6sVHl8vieLrTnvNhTqg4FFscCcD/XvaY8X+eYgHK2nEW9K8
- gvxwcHVX2M2XBUn9UHjJrDSWRQLykVAPqilTiB11g9+MU3PPh2X6Xofpc
- UN0HcxUVC//1zXDQ6iHMckXz8MSYSQNZYaQUwjHfdqqVG4jC+rm2XSjPu
- 3zbIgWPOSddvdvYwbUhdYkcbQICukMCR0Lbg9liFtzy7NW2i3jBdRdJzx w==;
-X-CSE-ConnectionGUID: lQkq+9U2SuefSFkRWZTNfw==
-X-CSE-MsgGUID: nixYtnCISyWHyignwG6nhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3265024"
+ bh=JmmYjv1xi1Y4bg6RvuDCnr9WYDm80n062Wa8Vih907U=;
+ b=ba8QdwVl1oBMT1Ug1LLR3IE50Tq++R2maMzSz5GJO5EKN7AqaNhnhKoK
+ vCK8ipXHVKrhloD1ybhzrOenwZ0sHBSwZgX+7mlpnMQPSFkTOdRf9wKdS
+ QnBs1d41ZsXZc95guh80/PLu0ZY0BK++iupFDiufeV9p0e2VuAz6DJuXP
+ YUahYCakQQSIyOalnvquzPszsiS5dksVy7oGgOt+qK4ouMBXjs99xxEgf
+ wYBVHylvrBBR23zjrBiZAHjPps9z3A6UEJVi+RB3R/jNpmHIPNgUjJa9I
+ FLVCHJhHAe4DhpS9YKkVXt7jcaTrtD4oBPYie0yH9dXOr/A0YuC8x1dNQ g==;
+X-CSE-ConnectionGUID: waaUcfVCSxidGMCmpNqt7Q==
+X-CSE-MsgGUID: UPeSD4BOSUWgHHjpiiTKWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11963"; a="3265031"
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="3265024"
+   d="scan'208";a="3265031"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 22:07:37 -0800
-X-CSE-ConnectionGUID: +9M7CopwTZC19dfMpUKxgg==
-X-CSE-MsgGUID: thUwS4sHTbyOF7zlC2a1DA==
+ 11 Nov 2026 22:07:41 -0800
+X-CSE-ConnectionGUID: qyURX3VxRAad8kEtDRs03Q==
+X-CSE-MsgGUID: LsWflXdnQTKL9H4EPqecVA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,209,1787036400"; 
-   d="scan'208";a="8576276"
+   d="scan'208";a="8576280"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Nov 2026 22:07:33 -0800
+ 11 Nov 2026 22:07:38 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
@@ -47,9 +47,10 @@ Cc: riana.tauro@intel.com, anshuman.gupta@intel.com,
  badal.nilawar@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
  Andi Shyti <andi.shyti@linux.intel.com>
-Subject: [PATCH v5 7/8] drm/xe: Add support for wa_14028434957
-Date: Thu, 12 Nov 2026 11:37:09 +0530
-Message-ID: <20261112060701.3327125-17-riana.tauro@intel.com>
+Subject: [PATCH v5 8/8] drm/xe/xe_ras: Skip double-bit ECC page offlining on
+ AER path
+Date: Thu, 12 Nov 2026 11:37:10 +0530
+Message-ID: <20261112060701.3327125-18-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261112060701.3327125-10-riana.tauro@intel.com>
 References: <20261112060701.3327125-10-riana.tauro@intel.com>
@@ -73,264 +74,60 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add support for wa_14028434957 on platform CRI.
+Device fatal errors trigger AER, which can race with non-fatal
+double-bit ECC errors reported via IRQ. If the AER PCI error handler
+runs first, it receives all errors as a single response from the
+system controller firmware, which can include the double-bit ECC errors.
 
-Non-fatal device errors are reported via a direct IRQ, while fatal
-device errors are downgraded to non-fatal uncorrectable internal
-errors and reported via AER.
+Handling these on the AER path leads to unnecessary page offlining,
+since an SBR clears the offlined pages on reload and firmware drops them
+from its queue once read. Skip double-bit ECC handling when on the AER
+path to avoid this.
 
-Add support to process and log non-fatal errors routed via the direct
-IRQ path. Most non-fatal errors require no reset, except double-bit
-ECC errors affecting a critical BO, for which the device is wedged
-with a bus reset as the recovery action.
-
-For uncorrectable internal errors reported via AER, request a
-secondary bus reset to recover. To avoid a race between the two
-paths, if non-fatal error processing is in progress when an
-uncorrectable internal error occurs, flush and disable the worker
-to prevent further processing, since a reset is
-imminent.
-
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
-v2: use platform instead of graphics version (Gustavo)
-    combine patches (Tejas, Mallesh)
-    remove 1sec delayed worker (Andi)
-
-v3: re-order disable hw error worker before wedged check (Sashiko)
-
-v4: move dgfx and sriov check from previous patch(Raag)
+v2: fix duplicate handling issue due to rebase (Sashiko)
 ---
- drivers/gpu/drm/xe/xe_device_wa_oob.rules |  1 +
- drivers/gpu/drm/xe/xe_hw_error.c          | 44 +++++++++++++++++++----
- drivers/gpu/drm/xe/xe_hw_error.h          |  1 +
- drivers/gpu/drm/xe/xe_pci_error.c         | 19 ++++++++--
- drivers/gpu/drm/xe/xe_ras.c               | 21 +++++++++--
- 5 files changed, 75 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_ras.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index 753b2a4a1006..300207596893 100644
---- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -7,3 +7,4 @@
- 14026746987	PLATFORM(CRESCENTISLAND)
- 14026779378	PLATFORM(CRESCENTISLAND)
- 14028586678	PLATFORM(CRESCENTISLAND)
-+14028434957	PLATFORM(CRESCENTISLAND)
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index ef41bd24ece0..86b29f282837 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -5,6 +5,8 @@
- 
- #include <linux/bitmap.h>
- 
-+#include <generated/xe_device_wa_oob.h>
-+
- #include "regs/xe_gsc_regs.h"
- #include "regs/xe_hw_error_regs.h"
- #include "regs/xe_irq_regs.h"
-@@ -15,7 +17,11 @@
- #include "xe_hw_error.h"
- #include "xe_mmio.h"
- #include "xe_pm.h"
-+#include "xe_ras.h"
- #include "xe_survivability_mode.h"
-+#include "xe_wa.h"
-+#include "xe_wedge.h"
-+
- 
- #define GT_HW_ERROR_MAX_ERR_BITS		16
- #define HEC_UNCORR_FW_ERR_BITS			4
-@@ -171,7 +177,24 @@ static void hw_error_work(struct work_struct *work)
- 	struct xe_tile *tile = container_of(work, typeof(*tile), hw_error_work);
- 	struct xe_device *xe = tile_to_xe(tile);
- 
-+	/* Skip hw error processing if device is already wedged */
-+	if (xe_wedged(xe))
-+		return;
-+
- 	guard(xe_pm_runtime)(xe);
-+
-+	if (xe->info.has_sysctrl && XE_DEVICE_WA(xe, 14028434957)) {
-+		/*
-+		 * Skip handling if an uncorrectable internal error is reported as
-+		 * reset is imminent
-+		 */
-+		if (xe_ras_is_aer_internal_error(xe))
-+			return;
-+
-+		xe_ras_process_errors(xe);
-+		return;
-+	}
-+
- 	xe_survivability_mode_runtime_enable(xe);
- }
- 
-@@ -433,12 +456,12 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
- 		return;
- 
- 	/*
--	 * Hardware errors are reported through System Controller on the platforms that
--	 * support it, and never routed as direct IRQ to SGUnit. So we should never be
--	 * here for those platforms.
-+	 * Non-fatal errors are routed as a direct IRQ on platforms that support
-+	 * system controller.
- 	 */
- 	if (xe->info.has_sysctrl) {
--		drm_err_ratelimited(&xe->drm, HW_ERR "Invalid error routing\n");
-+		drm_err_ratelimited(&xe->drm, HW_ERR "Non-fatal %s reported\n", severity_str);
-+		schedule_work(&tile->hw_error_work);
- 		return;
- 	}
- 
-@@ -537,12 +560,21 @@ static void process_hw_errors(struct xe_device *xe)
- 	}
- }
- 
--static void hw_error_fini(void *arg)
-+/**
-+ * xe_hw_error_work_disable - Disable hw error work
-+ * @arg: xe device instance
-+ *
-+ * This function disables work for hardware error handling for all tiles.
-+ */
-+void xe_hw_error_work_disable(void *arg)
- {
- 	struct xe_device *xe = arg;
- 	struct xe_tile *tile;
- 	u8 id;
- 
-+	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
-+		return;
-+
- 	for_each_tile(tile, xe, id)
- 		disable_work_sync(&tile->hw_error_work);
- }
-@@ -566,5 +598,5 @@ void xe_hw_error_init(struct xe_device *xe)
- 		INIT_WORK(&tile->hw_error_work, hw_error_work);
- 
- 	process_hw_errors(xe);
--	devm_add_action_or_reset(xe->drm.dev, hw_error_fini, xe);
-+	devm_add_action_or_reset(xe->drm.dev, xe_hw_error_work_disable, xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index 5e3a11424108..c2c0bfa6d9f9 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.h
-+++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -12,4 +12,5 @@ struct xe_device;
- 
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
- void xe_hw_error_init(struct xe_device *xe);
-+void xe_hw_error_work_disable(void *arg);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index 472b85d0ccc3..67920751ecf1 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -5,8 +5,11 @@
- 
- #include <linux/pci.h>
- 
-+#include <generated/xe_device_wa_oob.h>
-+
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_hw_error.h"
- #include "xe_log.h"
- #include "xe_pci.h"
- #include "xe_pcode.h"
-@@ -14,6 +17,7 @@
- #include "xe_printk.h"
- #include "xe_ras.h"
- #include "xe_survivability_mode.h"
-+#include "xe_wa.h"
- #include "xe_wedge.h"
- 
- static void prepare_device_for_reset(struct pci_dev *pdev)
-@@ -87,12 +91,21 @@ static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
- 	if (state == pci_channel_io_perm_failure)
- 		return PCI_ERS_RESULT_DISCONNECT;
- 
--	/* If the device is already wedged or in survivability mode, do not attempt recovery */
--	if (xe_survivability_mode_is_boot_enabled(xe) || xe_wedged(xe))
-+	/* If the device is already in survivability mode, do not attempt recovery */
-+	if (xe_survivability_mode_is_boot_enabled(xe))
- 		return PCI_ERS_RESULT_DISCONNECT;
- 
--	if (is_aer_internal_error(pdev))
-+	/*
-+	 * If non-fatal error processing is in progress when uncorrectable internal error occurs,
-+	 * flush and disable the worker to prevent further processing, as a reset is imminent.
-+	 */
-+	if (XE_DEVICE_WA(xe, 14028434957) && is_aer_internal_error(pdev)) {
- 		xe_ras_set_aer_internal_error(xe);
-+		xe_hw_error_work_disable(xe);
-+	}
-+
-+	if (xe_wedged(xe))
-+		return PCI_ERS_RESULT_DISCONNECT;
- 
- 	switch (state) {
- 	case pci_channel_io_normal:
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 58a0b5fa676d..1809c3c893de 100644
+index 1809c3c893de..0fb891d00b36 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -5,6 +5,8 @@
- 
- #include <linux/bitfield.h>
- 
-+#include <generated/xe_device_wa_oob.h>
+@@ -669,13 +669,29 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+ 				 "Data parity error detected\n");
+ 		break;
+ 	case XE_RAS_MEMORY_DB_ECC:
++		/*
++		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
++		 * On a race between AER for device fatal errors and non-fatal double-bit ECC
++		 * errors, if AER pci error handlers execute first it will get all errors as
++		 * a single response from system controller, which can include the double-bit
++		 * ECC errors. This leads to unnecessary offlining of pages, since an SBR clears
++		 * them on reload and firmware drops them from its queue once read.
++		 * Skip handling of double-bit ECC errors on the AER path to avoid this.
++		 *
++		 * TODO: Remove this check once AER handling is optimized to retain soft
++		 * offlined pages.
++		 */
++		if (xe_ras_is_aer_internal_error(xe)) {
++			xe_info(xe, "[RAS]: Skipping double-bit ECC error handling on AER path\n");
++			break;
++		}
 +
- #include "xe_assert.h"
- #include "xe_bo.h"
- #include "xe_configfs.h"
-@@ -23,6 +25,7 @@
- #include "xe_sysctrl_mailbox.h"
- #include "xe_sysctrl_mailbox_types.h"
- #include "xe_ttm_vram_mgr.h"
-+#include "xe_wa.h"
- #include "xe_wedge.h"
- 
- /* Any non-null entry marks the page as offlined by firmware */
-@@ -671,8 +674,15 @@ static u8 handle_device_memory_errors(struct xe_device *xe, struct xe_ras_error_
+ 		ret = handle_page_offline(xe, info->sw_address, true);
+ 		xe_log_comp(xe, ret ? cper_sev : CPER_SEV_INFORMATIONAL,
  			    DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
  			    "Double-bit ECC error detected at sw address 0x%llx\n",
  			    info->sw_address);
--		if (ret)
-+		/*
-+		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
-+		 * Wedge the device with a bus reset for errors that require SBR to recover.
-+		 * TODO: Trigger SBR using pci_reset_bus
-+		 */
-+		if (ret) {
-+			xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_BUS_RESET);
- 			return XE_RAS_RECOVERY_ACTION_RESET;
-+		}
- 		break;
- 	default:
- 		xe_log_comp(xe, cper_sev, DEVICE_MEMORY, &arr->counter, sizeof(arr->counter),
-@@ -818,9 +828,16 @@ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
- 		return XE_RAS_RECOVERY_ACTION_RECOVERED;
- 
- 	BUILD_BUG_ON(BITS_PER_TYPE(sent) < XE_RAS_COMP_MAX);
--	/* Default action */
-+	/* Default action for PCIe bus errors */
- 	final_action = XE_RAS_RECOVERY_ACTION_RECOVERED;
- 
-+	/*
-+	 * Device fatal errors are downgraded to non-fatal and reported as an uncorrectable
-+	 * internal error. Set the default action to reset.
-+	 */
-+	if (XE_DEVICE_WA(xe, 14028434957) && xe_ras_is_aer_internal_error(xe))
-+		final_action = XE_RAS_RECOVERY_ACTION_RESET;
-+
- 	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_SOC_ERROR,
- 				  NULL, 0, &response, sizeof(response));
- 
+ 		/*
+-		 * Double-bit ECC errors are non-fatal errors and are reported via IRQ.
+ 		 * Wedge the device with a bus reset for errors that require SBR to recover.
+ 		 * TODO: Trigger SBR using pci_reset_bus
+ 		 */
 -- 
 2.47.1
 
