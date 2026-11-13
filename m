@@ -2,80 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6FC606A337
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 14:28:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6219606A32D
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 14:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nPn9TgdS
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=A3JqoxZ8
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B333C1125D8;
-	Fri, 13 Nov 2026 14:28:00 +0000 (UTC)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
- [209.85.160.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E6010E103
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 04:42:45 +0000 (UTC)
-Received: by mail-qt1-f169.google.com with SMTP id
- d75a77b69052e-54d9ac78f2eso6906171cf.0
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 20:42:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794544964; x=1795149764; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=Tk5rSAMyMBpK/2/Y0715hQ2D01LoATP9Sswc4ObGJoY=;
- b=nPn9TgdS63Iblu/WgiRHUNX+v18QHudMuImF4k7iqOjB+zysIh5VYaRPSq7VfkcJRn
- etyvw1KcDPR2ynOMRVwXEzscz+/hJ88sgatFaErrZ3pCm604VLuiKq2+YTUqWJrvB2lv
- m6hO4JbNNSsNONZTMvhj7HI6gNHofL0NDdbqS+0O01wnJ1/ao/w92Kr8sqfy+MPDXFcd
- im9CyI1SoTjyvL1YeEajvWQdd7cPpBBI3eDgnjimbYuhkCpSu49rxcqhFAeoY1HoXeki
- OpcC7P6dFzpa0Ksri0iEFR9sCsR31nGqs5gKDXr/glplulJxYJLHIA6JzdTtnsQYYVAR
- pbVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794544964; x=1795149764;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=Tk5rSAMyMBpK/2/Y0715hQ2D01LoATP9Sswc4ObGJoY=;
- b=ZVMYlCCjiSitrO81Kaox/Xaoq7vaVjtamUe4G7TIyhGIHRamwCE8d+3geCRwe2ZeuD
- SgGuwlL43GnurHaka/Fs1/8xd7xALo7ue4x8gvWq0AkSG0FkxTRVnfnrlqqTvgADdBef
- L+sng7H2OVpEC25c6dm6Vp9lWpHPvEYjI7Rmbs+x7IvflMtk0zzfBm1m1JsT1lxj1a6X
- vpXu/PjZfpHpib6zUkkvMdiNP4K3kWeObe6LGgCxkhF0XCIolyU/OwX/1ulbv6CeQt1c
- XywUjLACNqZtf+/u0mrqllkO8gEdgsY3s5f/rmEzITK1iiYSKri6qJ+pcyCKgvzjcTY5
- 2sdg==
-X-Forwarded-Encrypted: i=1;
- AL+hErHjkCMvM5HTNpp1542pLhFiIGOTxinoFw+aOb77/Ggej2R6+b0yvdnC1PkL4cERqH/mAvloFmXr6A==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/Nv+j7FSZyoU8qY5m7McQPielK4bTLN6UtsLHSK41QGAVLt/n0
- 8vyrfQ/EjvtTOnD96cAoKY0Y+ibHMKPMXUxARsYXtmu+57y8h6TmUtiG
-X-Gm-Gg: AYBFou3I/Inq36TQ0Lzjp4tuPOKyFa3KStVFwy6WSwPDEFbWBmu5ZxiGzKhaAhLuTY9
- lXSyKQFYvhwygEq7PmLZj+m2GUXaoRH1WrfAv9qb13WfMJEchTAXeWiMiT66XMHIJSLcrA2dR/h
- q0zTlsfYkfcOe84oRwgHrRBApL9MlgqKLnOzd5L8jNCJupRt3UkPzGup91nSt11HsZBDN7b0+NW
- 48Vj/i0Mp2fiEdiCtkzTYNFkQHKUFwZuLZf7HPqWjKJF+s9nGPC8fkaWgJUnQnylxzLMsDNkmAl
- iJdSbgRF/FWpMDrHN+m3QZJ/sw4TS40IDhS5l6QQAdbr+i8O3zSjnFnFU1LJpVkwTES2COqQUi+
- kuiFNLK6ubYzqMbnNO0KHMzYn8CZBukdDVQQiDJslDSdRd4I6Uv7Z6r5LpNg0wX6T2Opx+A6/D3
- MMK2F4xCVry6xXqF/KeSWsHpMntLGaEp3eDPnqkAxK46UeHjWfdHQvl/0AOuWhpP/PR/aUO1K+D
- Lh0WlU35DLb6sn6WYaWP+zpbI9MQ7L7liyI2W1U7f/9lC220sPd0mjHwpATxYXjpMdD7+bZgTTp
- VKMzSrHBMcNTLkgU+PKSH4ch1HWsucqr1KZLD1jJexf0HqyJZpKtQCt3IPa+ZMf7KKxLVNc2N5M
- =
-X-Received: by 2002:a05:622a:590b:b0:532:c181:8fe9 with SMTP id
- d75a77b69052e-55ac448c6e7mr23800341cf.9.1794544964243; 
- Thu, 12 Nov 2026 20:42:44 -0800 (PST)
-Received: from linux.. ([8.34.174.240]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-55ad14f1ebbsm10605221cf.23.2026.11.12.20.42.42
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 12 Nov 2026 20:42:43 -0800 (PST)
-From: Changyul Lee <lcy8047@gmail.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Changyul Lee <lcy8047@gmail.com>
-Subject: [PATCH] drm/xe: Release the SVM prefetch ranges of unparsed ops
-Date: Thu, 12 Nov 2026 23:42:39 -0500
-Message-ID: <20261113044239.2185984-1-lcy8047@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D50410EC04;
+	Fri, 13 Nov 2026 14:31:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20C0110EC04;
+ Fri, 13 Nov 2026 14:31:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794580305; x=1826116305;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=Nfwhi8aFB0DyY1GzjuYFfFqrVUFGR3Zcbza+EE1ck+o=;
+ b=A3JqoxZ83bVoNwLpe3/34q4EgHMrbjFPGOvDMTFO0eJJ2j2ag/Qd9CX9
+ Hauu0p8pIL7CqZb3neyTKFUydSHCneKSX/3p8as/nXtfWdWx3FdvbWRPT
+ 1JWTS1zxDBOgpQIolV8sYBIiFFxry07JKn1pJjWdhJC8C8DoDecn0e/+L
+ kfan9hxDJ4kvdnrPVWidZneCJ6Hz3eKqXbM8BI1Leg9W4n55eWR4TGnJ0
+ dwzUoiPIn/rDodYlVOKeW9NiO87DOtcPVy4HMPHj2mTCVAkwrGOJP+tba
+ 1jnDKhsMhHnbfIO1ZeF2wvknSIpgyuhyIOQVkycCyp51oRlFFZVzCB/sc Q==;
+X-CSE-ConnectionGUID: 1wvW023ySwm1J8XzO0636w==
+X-CSE-MsgGUID: HvHSE5HnSsSykVue5nDqQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3277430"
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="3277430"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 06:31:45 -0800
+X-CSE-ConnectionGUID: Yeb3lTBOSX6wkOeinXqiWA==
+X-CSE-MsgGUID: H5WdEdvyQIWMP07K2FbFIA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="9097717"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.126])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 06:31:42 -0800
+Date: Fri, 13 Nov 2026 16:31:39 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/8] drm/i915/de: Pimp the intel_de_{read, write}_fw() docs
+Message-ID: <avcfS-j_eUkkswiM@intel.com>
+References: <20261113134355.14579-1-ville.syrjala@linux.intel.com>
+ <20261113134355.14579-3-ville.syrjala@linux.intel.com>
+ <f472ab77b47162fac4185465c3e19956d4e7d43e@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Fri, 13 Nov 2026 14:27:48 +0000
+In-Reply-To: <f472ab77b47162fac4185465c3e19956d4e7d43e@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,56 +69,70 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-vm_bind_ioctl_ops_create() stores SVM ranges, each with a reference, in
-op->prefetch_range.range for every PREFETCH op on a CPU address mirror
-VMA. xe_vma_ops_fini() releases them only for the ops on vops->list.
-When vm_bind_ioctl_ops_parse() fails, the ops after the failing one are
-never added to that list, and xe_vm_bind_ioctl() frees them with
-drm_gpuva_ops_free(), leaking their XArray nodes and range references.
-A PREFETCH that covers a userptr VMA and a CPU address mirror VMA after
-it does this when pinning the userptr pages fails.
+On Fri, Nov 13, 2026 at 04:12:51PM +0200, Jani Nikula wrote:
+> On Fri, 13 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Include a bit more guidance on when to use or not use
+> > intel_de_{read,write}_fw(), and what the extra caveats
+> > are.
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_de.h | 13 ++++++++++---
+> >  1 file changed, 10 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+> > index a6dcb91b36f2..2c469a2d6a20 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_de.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> > @@ -87,12 +87,19 @@ int intel_de_wait_for_clear_ms(struct intel_display *display, intel_reg_t reg,
+> >  			       u32 mask, unsigned int timeout_ms);
+> >  
+> >  /*
+> > - * Unlocked mmio-accessors, think carefully before using these.
+> > + * Unlocked mmio-accessors, think carefully before using these. Generally only
+> > + * highly performance sensitive code should use these (eg. vblank evade critical
+> > + * section, or interrupt handlers).
+> >   *
+> >   * Certain architectures will die if the same cacheline is concurrently accessed
+> > - * by different clients (e.g. on Ivybridge). Access to registers should
+> > - * therefore generally be serialised, by either the dev_priv->uncore.lock or
+> > + * by different clients (e.g. on Ivybridge/Haswell). Access to registers should
+> > + * therefore generally be serialised, by either the display->mmio.lock or
+> >   * a more localised lock guarding all access to that bank of registers.
+> > + *
+> > + * DMC wakelock will not be taken by these. It must be done manually,
+> > + * if needed.
+> 
+> Is there anything we could mention here about what "if needed" really
+> means?
 
-Release the prefetch ranges of all ops before freeing them. Ranges
-already released through vops->list leave an empty XArray, which
-xe_vma_svm_prefetch_ranges_fini() skips.
+"See intel_dmc_wl.c which registers need the wakelock."
+?
 
-Fixes: 09ba0a8f06cd ("drm/xe/svm: Implement prefetch support for SVM ranges")
-Signed-off-by: Changyul Lee <lcy8047@gmail.com>
----
-Found with a static analysis tool we are developing.
+> 
+> Regardless,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> > + *
+> > + * These will also skip the mmio_debug unclaimed register detection.
+> >   */
+> >  u32 intel_de_read_fw(struct intel_display *display, intel_reg_t reg);
+> >  void intel_de_write_fw(struct intel_display *display, intel_reg_t reg, u32 val);
+> 
+> -- 
+> Jani Nikula, Intel
 
-Compile-tested only, with x86_64_defconfig plus DRM_XE, DRM_XE_GPUSVM
-and W=1.
-
- drivers/gpu/drm/xe/xe_vm.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d25de5652767..ee35ead79371 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4208,8 +4208,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
- 	xe_vma_ops_fini(&vops);
- 	for (i = args->num_binds - 1; i >= 0; --i)
--		if (ops[i])
-+		if (ops[i]) {
-+			xe_svm_prefetch_gpuva_ops_fini(ops[i]);
- 			drm_gpuva_ops_free(&vm->gpuvm, ops[i]);
-+		}
- free_syncs:
- 	if (err == -ENODATA)
- 		err = vm_bind_ioctl_signal_fences(vm, q, syncs, num_syncs);
-
-base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
