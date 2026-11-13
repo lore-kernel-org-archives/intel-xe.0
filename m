@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EA88606A323
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65A43606A330
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WTe86Zld
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=UPJQEb6A
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 652D410E1B7;
-	Fri, 13 Nov 2026 19:33:09 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7F0310E1B7
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 19:33:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAFF10E19D;
+	Fri, 13 Nov 2026 19:39:18 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3608510E19D
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 19:39:11 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 962F345797;
- Fri, 13 Nov 2026 19:33:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52AB81F000C4;
- Fri, 13 Nov 2026 19:33:03 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 2D3156263B;
+ Fri, 13 Nov 2026 19:39:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB3CF1F000C4;
+ Fri, 13 Nov 2026 19:39:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794598383;
- bh=qeSCTWn78Q18JjaF8xFC7CsluYUqkSccMXstor6koAI=;
+ s=k20260515; t=1794598749;
+ bh=hHu6ZFOr1uIqlVZFzpikqOhI9C+kO1CnHl8RgfsntKI=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=WTe86Zld0yQZh6pMk97mngZ8Ny7MWypYteqb5uW9NmqJLGFw8abZWvDKXpxCYEO1Z
- qTz1VPL1m4pIIbl1vz28CiOkulsMHFsmyt5DEVz5nGcbMdCFh13QCCG5r/Sp0Q4AsN
- cZRgJrFCralgPXUEIdPXskTCqTYP5GvXzWmAXNvxzCH651BeFqhoCI11TuB0rT7+Xt
- Zau0I5l+EvP0MyMyPZBZklMq7P20XcM6DS0X8MmJFsS1AqaewmEIVlI79zKK4IE1uD
- GYRtKXQ/8iu144E6afGczUnwpjkTEmPZThudIRGCyb7+6JmHBcgh2ACBnlWDOYBL8L
- hUXEXctk6sfmw==
-Message-ID: <sashiko-outbox-213554@kernel.org>
+ b=UPJQEb6Aunmofi/Biz27EWWqmR5lbtfnH7V8L98F98YVrENuCCReLa7yL3wVgAWvI
+ rFjXka3s3m7iwEtJ55jsS2LBg+w4qm7Zc+Tu/mczP3clPbZ7fTMaAi+DU4rJtKgj0w
+ uuIDqd3GIKH/XuvN2ycAvkHRrYgT1Fwa3slxa/wE5GX5Zq8irEAaKpG/q9VYzb0h2V
+ ncVI6exJ4BzWQX61t5zrktdz+iEmo6X1hu3vDZQQQYVOH/jo85BXyJbSWiw5yyBMMy
+ P5E44brMsQSCMCsgCTMrkejtQ5FV0Y8XiUT3L8acUTKJ5sdY4Lq9Zad+jPRhz1f0Av
+ +CoG0N7wPPRng==
+Message-ID: <sashiko-outbox-213558@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [CI 2/2] drm/xe/wopcm: Simplify GuC WOPCM programming
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261113191739.1447747-4-daniele.ceraolospurio@intel.com>
-References: <20261113191739.1447747-3-daniele.ceraolospurio@intel.com>
- <20261113191739.1447747-4-daniele.ceraolospurio@intel.com>
+Subject: Re: [PATCH v3 2/2] drm/xe: Add debugfs stats for DMA-mapped pages
+ per order
+To: "Matthew Brost" <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261113190128.2118723-2-matthew.brost@intel.com>
+References: <20261113190128.2118723-1-matthew.brost@intel.com>
+ <20261113190128.2118723-2-matthew.brost@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 13 Nov 2026 19:33:02 +0000
+Date: Fri, 13 Nov 2026 19:39:09 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,158 +57,56 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issues to consider:
-- [High] drm/xe: call to undefined xe_tile_wopcm_size() breaks
-  compilation
-- [High] drm/xe: deleting xe_wopcm.h and xe_wopcm_size() breaks
-  xe_ggtt.c build
-- [Medium] drm/xe: u32 underflow in uc_program_wopcm() locks invalid
-  WOPCM regs
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [High] drm/xe: build failure in xe_userptr.c when
+  CONFIG_DRM_XE_GPUSVM=3Dn
 --
 
-commit 9298b958426645b9eb36c22dda929d9b3a5d552b
-Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+commit cdf22e3bf1d70b7d0f7e88b6b7825cfa6ceeb290
+Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-drm/xe/wopcm: Simplify GuC WOPCM programming
+drm/xe: Add debugfs stats for DMA-mapped pages per order
 
-This commit simplifies GuC WOPCM register programming by returning early
-when WOPCM registers are already locked, dropping layout validation checks,
-and moving the remaining WOPCM setup into xe_uc.c while removing the
-separate xe_wopcm files.
+This commit adds per-order DMA-mapped system page counters for TTM buffer
+objects and GPU SVM / userptr ranges, and exposes them in debugfs at
+dma_mapped_pages.
 
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index c4fb34e64cd6d..e7e818897bf50 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -47,15 +47,16 @@
->  #include "xe_sleep.h"
->  #include "xe_sriov.h"
->  #include "xe_sriov_pf_migration.h"
-> +#include "xe_tile.h"
->  #include "xe_uc.h"
->  #include "xe_uc_fw.h"
->  #include "xe_wa.h"
-> -#include "xe_wopcm.h"
+> diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_user=
+ptr.c
+> index 9c1dac0fce6f1..e657d7886a96b 100644
+> --- a/drivers/gpu/drm/xe/xe_userptr.c
+> +++ b/drivers/gpu/drm/xe/xe_userptr.c
+> @@ -8,9 +8,38 @@
 > =20
->  static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
->  			    struct xe_bo *bo)
->  {
-> -	struct xe_device *xe =3D guc_to_xe(guc);
-> +	struct xe_tile *tile =3D gt_to_tile(guc_to_gt(guc));
-> +	struct xe_device *xe =3D tile_to_xe(tile);
->  	u32 addr;
+>  #include <linux/mm.h>
 > =20
->  	/*
-> @@ -64,10 +65,12 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
->  	 * might be different for each tile. So, just always ask for the address
->  	 * on the target GuC.
->  	 */
-> -	addr =3D __xe_bo_ggtt_addr(bo, gt_to_tile(guc_to_gt(guc))->id);
-> +	addr =3D __xe_bo_ggtt_addr(bo, tile->id);
+> +#include <drm/drm_pagemap.h>
 > +
-> +	if (!IS_SRIOV_VF(xe))
-> +		xe_assert(xe, addr >=3D xe_tile_wopcm_size(tile));
+> +#include "xe_svm.h"
+>  #include "xe_tlb_inval.h"
+>  #include "xe_trace_bo.h"
+> =20
+> +#if IS_ENABLED(CONFIG_DEBUG_FS)
+> +static const struct drm_gpusvm_ops xe_userptr_gpusvm_ops =3D {
+> +	.dma_map_account =3D xe_svm_dma_map_account,
+> +};
+> +#endif
 
 [Severity: High]
-Does calling xe_tile_wopcm_size() here and in uc_program_wopcm() break the
-build?  xe_tile_wopcm_size() is neither declared in xe_tile.h nor defined
-anywhere in the tree.
+Does xe_userptr.c fail to build when CONFIG_DRM_XE_GPUSVM=3Dn,
+CONFIG_DRM_GPUSVM=3Dy and CONFIG_DEBUG_FS=3Dy?
 
-[ ... ]
+xe_userptr.o is built under CONFIG_DRM_GPUSVM, whereas
+xe_svm_dma_map_account() is declared in the #if
+IS_ENABLED(CONFIG_DRM_XE_GPUSVM) block of xe_svm.h and defined in xe_svm.c
+(which is only built under CONFIG_DRM_XE_GPUSVM).  Moving
+xe_svm_dma_map_account() to a header or into xe_userptr.c so both
+configurations can use it would avoid the undeclared identifier error.
 
-> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-> index b32ba504041c5..501961c2cc8f9 100644
-> --- a/drivers/gpu/drm/xe/xe_uc.c
-> +++ b/drivers/gpu/drm/xe/xe_uc.c
-> @@ -52,6 +55,126 @@ int xe_uc_init_noalloc(struct xe_uc *uc)
-
-[ ... ]
-
-> +static int uc_program_wopcm(struct xe_uc *uc)
-> +{
-> +	struct xe_gt *gt =3D uc_to_gt(uc);
-> +	struct xe_tile *tile =3D gt_to_tile(gt);
-> +	u32 huc_fw_size =3D xe_uc_fw_get_upload_size(&gt->uc.huc.fw);
-> +	u32 wopcm_size =3D xe_tile_wopcm_size(tile);
-> +	u32 guc_wopcm_base;
-> +	u32 guc_wopcm_size;
-> +	bool locked;
-
-[ ... ]
-
-> +	/*
-> +	 * On legacy HW (pre-PVC) where the driver is responsible for
-> +	 * programming the WOPCM registers, the WOPCM is divided into three
-> +	 * regions, in order from bottom to top:
-> +	 * 1 - The HuC region, which contains the HuC firmware + a 16KB reserved
-> +	 *     section.
-> +	 * 2 - The GuC region, which contains the GuC firmware + a reserved
-> +	 *     section for GuC's usage.
-> +	 * 3 - A reserved region for HW contexts, which is 36KB in size.
-> +	 *
-> +	 * To keep the math simple, we remove the HW context region from the
-> +	 * WOPCM size, calculate the size of region 1 and then leave the
-> +	 * remaining area for region 2. The official binaries are guaranteed to
-> +	 * fit in the WOPCM, so the math below can only go wrong if a user is
-> +	 * manipulating the blobs. In such a scenario, we'll catch the error at
-> +	 * FW load time, so no need to double verify it here.
-> +	 */
-> +	wopcm_size -=3D (SZ_32K + SZ_4K);
-> +
-> +	guc_wopcm_base =3D huc_fw_size + SZ_16K;
-> +	guc_wopcm_base =3D ALIGN(guc_wopcm_base, 1UL << GUC_WOPCM_OFFSET_SHIFT);
-> +
-> +	guc_wopcm_size =3D wopcm_size - guc_wopcm_base; /* already 4KB aligned =
-*/
-> +
-> +	return __wopcm_init_regs(gt, guc_wopcm_base, guc_wopcm_size);
-> +}
-
-[Severity: Medium]
-Can wopcm_size and guc_wopcm_size underflow here and lock bogus values into
-the write-once WOPCM registers before firmware load?
-
-The firmware header parser in parse_css_header() and parse_cpd_header() only
-verifies that the buffer is large enough for the headers, uCode, and RSA
-data, without checking ucode_size against WOPCM size, and xe_uc_init() calls
-uc_program_wopcm() before any firmware upload happens.  On pre-PVC hardware,
-if an overridden HuC blob causes guc_wopcm_base >=3D wopcm_size (or if
-wopcm_size is smaller than 36KB), the u32 subtractions underflow or yield 0.
-Because the low 12 bits remain clear, __wopcm_init_regs() passes its mask
-assertions and locks the corrupted values into GUC_WOPCM_SIZE and
-DMA_GUC_WOPCM_OFFSET, which then cannot be cleared by a GT reset.
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/xe_wopcm.h b/drivers/gpu/drm/xe/xe_wopcm.h
-> deleted file mode 100644
-> index 0197a282460be..0000000000000
-> --- a/drivers/gpu/drm/xe/xe_wopcm.h
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -/* SPDX-License-Identifier: MIT */
-> -/*
-> - * Copyright =C2=A9 2022 Intel Corporation
-> - */
-> -
-> -#ifndef _XE_WOPCM_H_
-> -#define _XE_WOPCM_H_
-> -
-> -#include "xe_wopcm_types.h"
-> -
-> -struct xe_device;
-> -
-> -int xe_wopcm_init(struct xe_wopcm *wopcm);
-> -u32 xe_wopcm_size(struct xe_device *xe);
-> -
-> -#endif
-
-[Severity: High]
-Does deleting xe_wopcm.h and xe_wopcm_size() break compiling xe_ggtt.c?
-drivers/gpu/drm/xe/xe_ggtt.c still includes xe_wopcm.h and calls
-xe_wopcm_size() in xe_ggtt_init_early() and xe_ggtt_shift_nodes().
+Also, xe_userptr.c already includes "xe_svm.h" at the top of the file, so
+the new #include "xe_svm.h" is a duplicate.
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261113191739.1447=
-747-4-daniele.ceraolospurio@intel.com?part=3D1
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261113190128.2118=
+723-1-matthew.brost@intel.com?part=3D2
