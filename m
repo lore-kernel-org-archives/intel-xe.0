@@ -2,58 +2,163 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E7F606A32D
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:52:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8392606A331
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 20:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=j2D8IiX/
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NI5UMxZp;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=mcdHuiOR
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 894D510E775;
-	Fri, 13 Nov 2026 19:52:30 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1230610E826
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 19:52:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4A110E826;
+	Fri, 13 Nov 2026 20:09:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D14D10E826
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 20:09:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794599544; x=1826135544;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2qzvkjxYU+jsDrAXSpEgV1zFEEeUhlqem9l3h1k76/A=;
- b=j2D8IiX/kQqjUmsztxJ1iYzvcd9O8kBBCqSEd75iP4iHzpcE/LNNOTq3
- TLnX8QgsjfPMyhdVEa3C5+bN/qWAAUFrkvVj5Lkwik9x7lov6HTAeT3ww
- Rrb2s5+HZEO4DNk9+hnysITsHrhBQMB6krLv8UOygam2KZHxzcsbZ4cb+
- GnK57TllIMIsucnPv0SQM9cw6pyi/tlJO7J3QJ9svH/9q/LxTWdZcr1CP
- PQ2Uhk4fStWj75q8W6zXE4JNH1FtpNk/fTmigwcnjCpH1FqSVOum0rf8Z
- 76jzianZH4UCdl0Yn7eblJkVFmj748qk+9evOe+lekg3dhCPfa3akm8uG g==;
-X-CSE-ConnectionGUID: LHQvSz8+TjSME7m2IMjB2w==
-X-CSE-MsgGUID: 3DUXMY53QpOxviSDdnwcpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3423920"
+ t=1794600569; x=1826136569;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=Ic5VoUGQXGRMf7KTSI90O2q8TfRAsdx/qZKTQfnAYkw=;
+ b=NI5UMxZpIWOnMqZJUXPwJV8dbKg+Mwj/6eS8CvuChEXSqVGMl4ca5Y8g
+ J9+FRJXRCIRHtn7qvxvrq8kC4OnLWhm1xqMFMHE+tk01uarzsD6aRHdhS
+ tXLb9ktPFvrIEfEGw7Vr/+iYvWoHCmIRKIRhdjz1PypSq2v9HtZOd2Tph
+ hsnJuKICqAT2I3mE2ypz04GjECCREsEExs4QzsENL0mPry76k2r9Q3KUT
+ MNjNWglc4Gr+3N05tv4oJjFF3fD3Ee/MUJqqfmKKPP4pg3v/6Nrm7uKMv
+ jHY7A1N5gTsGiN1T8uNL+YQm+Js1vToworWPmR8uqLq4VOPL9bvftKwvw Q==;
+X-CSE-ConnectionGUID: FyFioNKsScy5q1831v7v8Q==
+X-CSE-MsgGUID: B+BdB2heSBOh+R76I7q7/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3450747"
 X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="3423920"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2026 11:52:19 -0800
-X-CSE-ConnectionGUID: OkS3EwlXTSOel79tT97ZTw==
-X-CSE-MsgGUID: HPjDj/NWS82ZbfXU7XfMXQ==
+   d="scan'208";a="3450747"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 12:09:28 -0800
+X-CSE-ConnectionGUID: LqlTrlm9SXqD0qRpXjQqHA==
+X-CSE-MsgGUID: 2ECtFtnmSQaKPTYkAxXwUA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="8812156"
-Received: from gsse-cloud1.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2026 11:52:18 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v4 2/2] drm/xe: Add debugfs stats for DMA-mapped pages per
- order
-Date: Fri, 13 Nov 2026 11:52:12 -0800
-Message-Id: <20261113195212.2124791-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261113195212.2124791-1-matthew.brost@intel.com>
-References: <20261113195212.2124791-1-matthew.brost@intel.com>
+   d="scan'208";a="9177556"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 12:09:28 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Fri, 13 Nov 2026 12:09:27 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Fri, 13 Nov 2026 12:09:27 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.63)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Fri, 13 Nov 2026 12:09:27 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=W3KdhoXdRX+vn6JfuMit671NTaxAZ8fAEjbP4ubQWTwmmZlQrQpa1XKq7C6O2jZ39JWD9ZvNDhTgX6+SuRTL5KDOXeDrgF1qdRb4ck8unbrhSv+rQ4RsNKVwZ4TalojtSfRyxNYpwH3PAtVnkG6NGQ5gccveMDJrTbKvPc9YtnuM/bcTBBOn4mYpf+T0MNE1UEJyO/VedQqx43jWqwAwnv+nJoql0NKRMxEZ6FIJc6ppyUEN+z2F3zt9RAdHvpOIsuz01hGLAjikH9ZFOnxnqCdY19meLq11PIeAxxkCYU7utCSli8X0EdgidBGBzb1dlT0j/z++nyb42EtrSgikQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0VCd+yR/Cb8v7vtZZJbwR0z8hB8Cm2reze8ePojp7rY=;
+ b=sAT81LAljWF7jIOx5EjY4OYOat2B1YxzPQXFIyybyEnjPtmf5oszXyTd6Bl0f4/53W3PlYHccgGuVK3HfXMsTHKTFtfY0WQGPz1eH3YS4kzT72BKt7KL3xDx/CPq+ecXKuPJH3B9GqC8rM8QgzjZCaVW3jgND02IyAmgRD6igyP/BMAQxWkEfk2M5QgbyfglM8/c2UlHDesUDKPV+7GYLqGmMj11HnLmhwbdA59o7rdff2OCnts1laKa3C28xRL0/v0rQUo+w8X2NzVXlXOHAP5i+MSujOO9BVCuVf2iEv7I/izk/intgWCHpisJovqZPnNY13p5ZGLg9nEc2ISoIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0VCd+yR/Cb8v7vtZZJbwR0z8hB8Cm2reze8ePojp7rY=;
+ b=mcdHuiORjrMemttoGNxTqG6tEnm/bYPGDt2yQGs4e1wGZBoPbO8hek811NVDTrOt2OUFZeFR4hKoSS4n7tMwAR8EQRpUaqWf3ljmJjE7DpA4XTjGNRwE55tFulFpDoxlqg77AEhn1dPWmsyVn6UcIqQliFMxPk4ZqCA+1P4hGvE=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV2PR11MB183078.namprd11.prod.outlook.com
+ (2603:10b6:408:417::8) by LV2PR11MB940045.namprd11.prod.outlook.com
+ (2603:10b6:408:3b3::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Fri, 13 Nov
+ 2026 19:17:51 +0000
+Received: from LV2PR11MB183078.namprd11.prod.outlook.com
+ ([fe80::74b6:e45c:3f37:ff0f]) by LV2PR11MB183078.namprd11.prod.outlook.com
+ ([fe80::74b6:e45c:3f37:ff0f%4]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
+ 19:17:51 +0000
+Message-ID: <c0029489-3522-4d0f-8516-305fb48cdd05@intel.com>
+Date: Fri, 13 Nov 2026 11:17:49 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe: Add sysfs to disable RPe
+To: "Anirban, Sk" <sk.anirban@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20261111212150.3738637-2-vinay.belgaumkar@intel.com>
+ <8dfa8e4b-89af-4955-afb7-79cc01529445@intel.com>
+Content-Language: en-US
+From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
+In-Reply-To: <8dfa8e4b-89af-4955-afb7-79cc01529445@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW4PR03CA0030.namprd03.prod.outlook.com
+ (2603:10b6:303:8f::35) To LV2PR11MB183078.namprd11.prod.outlook.com
+ (2603:10b6:408:417::8)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV2PR11MB183078:EE_|LV2PR11MB940045:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5c832fe6-5f10-4877-dc1a-08df41bacfcb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|376014|1800799024|22082099003|18002099003|6133799003|4143699003|11063799006|56012099006|261021123027099003|261028144727099003|261102123227099003|261026140227099003|261022105027099003|261021121427099003|261009223027099003|261026121527099003|10067099003;
+X-Microsoft-Antispam-Message-Info: TFWmEuvRla4c25tXCzvNbGI3sZop6bQubalbHG5FUfVTHTYDvw4Ag/C4HJAI0DoEBZrmtG2LPA2jrGptWAIuMOPivhGvXL/gYSofo45ypnukuYJGbMlsE+OLcZQiviWNuHYoRdeIRPsgobHJFryuGc1PkhlFzp8Pi1w7Mg2PSRVm9Lb9FHzCR3HYxzkTaWwFK3jInbRxmeafKoWNoq+kZH1je2jV+Gi+S7GEBybgJ2C4aKB9ox4hkchX8RfVzI1FJCZL10rE5hbvcKxSagF5rwtOBwqtwzSij5CPij1I+TOuJjDTuXVMqFlHn0YK48MO1ig6DKpr59FgMsICLz0JePUPf2BlkaefKhbhxRE6iniwFippMKAHWTW2A7SYhCqQqpb03T79qOltJe5lCzQca4VsfuXpqIAQiHPnj1PdEnehuCVPSNdoSHfmaa3X4lSuSJob/370nUw0HBazIkES7Grh0hfLlbyh4YKXDayxwYOAVqZrF+BZRHL8Ux8cGIJ8/dYqlAL6wFiJBLXshCJ9ITclSOv3tV1ovT4h8d4S0F6EivLkbZvJLoPe4pQfZ/nzPBM6QanmakAPMff4rk+uOqMKf0+mS2DNwsyWVWqmtm0RDTTc1bDSnlQdFfsof/brumDgEpWOPOE/rhkRYiKQv3HMA/r0eXxjzS8ygKEQzCc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV2PR11MB183078.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(22082099003)(18002099003)(6133799003)(4143699003)(11063799006)(56012099006)(261021123027099003)(261028144727099003)(261102123227099003)(261026140227099003)(261022105027099003)(261021121427099003)(261009223027099003)(261026121527099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dndXNU5qT2xPK1l1b3prM0t5UnY4YjB0MEJleFZaTEpoOXpXVDdOb0c0Skd6?=
+ =?utf-8?B?eXYyM1J5WU0vSUxHeDYvUmRRUVdvMHBRL1AweWV6TmZEaU43TEF2YVFMcVBM?=
+ =?utf-8?B?Qnh2MG9oTE84ZCsrN2tvcHdod2cxSG5BTlh4M016eWVuQ1d1WDc3YnRieWs2?=
+ =?utf-8?B?dGZiTXpuOVkyYytITHZMZ3J6bTlmbzlBUWVRcDhXZXg4SlViN3dsVW9rTkZy?=
+ =?utf-8?B?R1p3WmlwODVZWTdIdmJYWHJDSDNDOXhPbHlZcVJNMmQ3d1N1SlZnSmJtSll5?=
+ =?utf-8?B?OGdmZW9vRzBlY2xCdGVCdWwzNWo2SmM2QU5NWnJHN083VWIvN2JObTlBQy9z?=
+ =?utf-8?B?cFpzaXdIaHpDQ05SS2dkWENCQkc3bE5nV3pKN2FLMXpiVlVYRlF0TVRSOXZT?=
+ =?utf-8?B?dEUzRy9DZ0dCaE03cmxZWWVhQ21LN09sbi83R1l0SHFxN291dmtnM3VGWWxy?=
+ =?utf-8?B?OEgwL0Z0RFlDLzk0U0NVWjVtQ0xwOXByenpiVFVsQVlnNWZoNFJlWm5LMkpr?=
+ =?utf-8?B?VzVDQTVUNTNxZzFYKzFVMFJaMXNRM1ZZR09zUit0V1ZPMm1VemFpUEZSMlVv?=
+ =?utf-8?B?SVM3MzlSazJNU0xFeHQrbnZJQnBWOEpmNnFtR0FCVHpLdkVoMDJxd05lVWgv?=
+ =?utf-8?B?aFlxaEpoREZXVmJPM3RUdHI4YXllM1VxVjdMUTRna3lrTkFHaUpXK0pEQitQ?=
+ =?utf-8?B?SFgrWm8xa1phbnVBWWl2RURvVEkvbEppelRUYVdVNjlnbldVa1JmanNBbGRU?=
+ =?utf-8?B?VkExcDJSRXc5UitVY0pBa2tETGVuVzZ5dXF0QjBtRysvSjFkVDltVWVVNnJJ?=
+ =?utf-8?B?UFQzVC92MjJIVXBsSVJOS0tGZWE5MFgyUWYyMGxZT2dQSnJjZWNOUVBrTXhp?=
+ =?utf-8?B?Rm9rTU94SkhUcEZhbXJ2SGMwTUIrSDlJU00zblFVT1g0dzg5R25hQ1Y1QjlV?=
+ =?utf-8?B?bFAwTGladExYOTgvY2pFN2dMTjFKdTVveEhCVVRHOTBmd29taFdOZXdPRlAw?=
+ =?utf-8?B?ZStOTVFpcTgyZU1ENThJMWpOdTNBZkV6dDkxM1lWcGNUMnc0ekJTbGRLNVFx?=
+ =?utf-8?B?NE56NkRFbEE4VU5OU04wM2dCMGFYa3dnSWVRRXRiQStpL0V2aVVGaVd6dUta?=
+ =?utf-8?B?bUNjczBIaDA2clpkVXpKWGtEOWZzZm9ZcGZ2Z01WK3JsMFEzSHFwOFJGTks3?=
+ =?utf-8?B?cDVCSllDOUNUWWtVNTYzc2JuNDJpKytscXlUcDMyUSs3Qlk0MHdsbU1ia2dF?=
+ =?utf-8?B?djU2RFlMcTZJNUVhLzZFVjlGQzd0dHZ5QlFnT0lDOW93dDk2MXdRSjJpZTh2?=
+ =?utf-8?B?bG5hU3FtL3p2VjB2SEp5OXpYbzIzWUxpRkJxV1p0c1NIUTJHVkJwU09RZnIx?=
+ =?utf-8?B?dlFkWmRqWUJhNFNTbHh6eFcvNzRrMi90U3o2bmltY2RwbW1ZSGNrR3hFTzVs?=
+ =?utf-8?B?TXJ0VWJXTmNLRmMyaVNURjB0VVhPdzdueUFVTTMxVE12RXZYK1ZyVW51ZFRu?=
+ =?utf-8?B?THNPbTBWWjkrdUNIOVp3K1p0MmJqN1pyM2s5TWVqZUV1a3cwTWdLczQxZHpF?=
+ =?utf-8?B?UDl2eXdIKzZ5dE1QVVFMSVJzZXRJQ0lDWFFaSmlISXljenZSTWZSUWgwVTNq?=
+ =?utf-8?B?dVFOOCt2dnl4djdBTXg2MVZQbitRVEJ3U1l6YVhRb0ZMNnVtUk1XUy81THFv?=
+ =?utf-8?B?K3RkUkxSV0w3Qmt1Q2dpa0JWTDNUNEFPaXNVcFJrYlhvWlhUN1plRTJaamM4?=
+ =?utf-8?B?OHVzMFEwWlNGNjBqYjJneURRNlgrRGtWa2txM0IrZGNtVEtFeWVzSGx1eTAw?=
+ =?utf-8?B?M3pzYU1SUC8xVnVSTkdLWFpzS1owKytYZ09CZ0JKVlg4NDVwd0VRMEZRY0cz?=
+ =?utf-8?B?cHc2Z2hNM05rMm1UM21oWE9xL3VWaHJJMDVxRURxaDJ0anJNeUxEdmhMbXd2?=
+ =?utf-8?B?OVN3cVZBdGtQTzBRcHVidjhjM2JDSjRjUWNqS2l0OXB1bkFmcm9uRXVaZDZu?=
+ =?utf-8?B?ZG9LTU9CSkdNNW9Ec1E2bWpLZy9rTnIzZmg1Y3BiQjRla3FvcmEwREo5SG5o?=
+ =?utf-8?B?aGxodzVzRW1vbWZLL3o4MFhIYTdEb3RBVjREQUVaZ2hRa0ZPdzVMMUVLYm83?=
+ =?utf-8?B?OENWUXUxbDF4VWxjajlhekVVeXJqQkVBTkh2SHJ3VUp1aEFGSFBlaTdPR054?=
+ =?utf-8?B?aGM5Y1kwVjBkck9La2ZuajhWQVg3bFIyeVdYVHVsdnZPbnorNHE1YjB2RVBD?=
+ =?utf-8?B?ajdiWjJXRXZ2TFMxZ3l3YmlqL0RaanJKQjhVME10ZlZKTHZTZXNYbS9pSzRZ?=
+ =?utf-8?B?b3ZyeTdoZ0ExYzVNenBzNjNqT254d01DSi8rTTdlL0dFdlFnK1B2YzBFTWx2?=
+ =?utf-8?Q?NC2tIRXGUlsohvj8=3D?=
+X-Exchange-RoutingPolicyChecked: GlS+qlZZ9mbvJQXTQxutoCLcKuC6QbV3Mbpen6cGA2AmZuKBsZ0AWOOKFRFsO2BKgo6kmF8xoKY8st5kdLr09IISKkGv5JIn1UgcqnUj2X+YAUF7/jXYyBLh0KJJYPYafivEiRqnXH76VPdqPE+woXuOmT5dgXkT5Rovk3b8SebY66pdCdy7BXRGyUJqdL7ZJqvwawtNqIsMB8oONvcutf73zuG/S5VZMd9+VsIaBkonABt86ri38RzekQM3HNYbb4LgcFa2kCoim+8Tlaw7pGo0zUlN/m5NA7watSFdPlA6pYZIpvGtuCxeNq24P1g0QdXeXnak+N1OyAGbrRpwiw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c832fe6-5f10-4877-dc1a-08df41bacfcb
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB183078.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 19:17:51.6536 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: EB7CaCWuWMYtkBlRHSVs099tYFsDX/l1wODgQT2KWsdSvXGp5tKRC9ExB9HFCrr5xt0EnWIXr1V6Ej3wo0PyEHLzNmR9QWxCsXgxBv3VScE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB940045
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,450 +169,237 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Expose per-page-order DMA mapping counts for the system memory that the
-xe driver maps for GPU access, split into two categories: TTM buffer
-objects, and the GPU SVM / userptr ranges (which share a single
-drm_gpusvm instance per VM).
+On 11/13/2026 6:52 AM, Anirban, Sk wrote:
+> Hi Vinay,
+>
+> On 12-11-2026 02:51, Vinay Belgaumkar wrote:
+>> When SLPC is initialized, GuC sets the GT min freq to RPe(efficient) by
+>> default. This frequency is desgined for optimal perf/power ratio. 
+>> However,
+>> certain use cases may want to run at lower frequencies. This sysfs 
+>> allows
+>> user to disable use of default RPe behavior.
+>>
+>> Efficient frequency will now be controlled by this interface alone. 
+>> Setting
+>> min_freq < efficient will not affect the flag. Disabling use_rpe will 
+>> cause
+> imo it will be better to convey that setting min_freq < RPe will not 
+> disable the flag anymore
+>> GuC to bring back min_freq to whatever level it was set before and 
+>> enabling
+>> it will bring up the min_Freq to rpe_freq.
+>>
+>> $ cat /sys/class/drm/card0/device/tile0/gt1/freq0/use_rpe
+>> 1
+>>
+>> Cc: Sk Anirban <sk.anirban@intel.com>
+>> Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_gt_freq.c      | 34 ++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc_pc.c       | 47 +++++++++++++++++++++++-----
+>>   drivers/gpu/drm/xe/xe_guc_pc.h       |  1 +
+>>   drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 ++
+>>   4 files changed, 77 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c 
+>> b/drivers/gpu/drm/xe/xe_gt_freq.c
+>> index a40dd074106f..f9542848c1d2 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_freq.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_freq.c
+>> @@ -242,6 +242,39 @@ static ssize_t power_profile_store(struct 
+>> kobject *kobj,
+>>   }
+>>   static struct kobj_attribute attr_power_profile = 
+>> __ATTR_RW(power_profile);
+>>   +static ssize_t use_rpe_show(struct kobject *kobj,
+>> +                struct kobj_attribute *attr,
+>> +                char *buff)
+>> +{
+>> +    struct device *dev = kobj_to_dev(kobj);
+>> +    struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", pc->use_rpe);
+>> +}
+>> +
+>> +static ssize_t use_rpe_store(struct kobject *kobj,
+>> +                 struct kobj_attribute *attr,
+>> +                 const char *buff, size_t count)
+>> +{
+>> +    struct device *dev = kobj_to_dev(kobj);
+>> +    struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +    int err;
+>> +    u32 val;
+>> +
+>> +    err = kstrtou32(buff, 0, &val);
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    if (val > 1)
+>> +        return -EINVAL;
+>> +
+>> +    guard(xe_pm_runtime)(dev_to_xe(dev));
+>> +    err = xe_guc_pc_set_use_rpe(pc, val);
+>> +
+>> +    return err ?: count;
+>> +}
+>> +static struct kobj_attribute attr_use_rpe = __ATTR_RW(use_rpe);
+>> +
+>>   static const struct attribute *freq_attrs[] = {
+>>       &attr_act_freq.attr,
+>>       &attr_cur_freq.attr,
+>> @@ -252,6 +285,7 @@ static const struct attribute *freq_attrs[] = {
+>>       &attr_min_freq.attr,
+>>       &attr_max_freq.attr,
+>>       &attr_power_profile.attr,
+>> +    &attr_use_rpe.attr,
+>>       NULL
+>>   };
+>>   diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c 
+>> b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index 9558d7196a51..8f7044b49e13 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -344,6 +344,21 @@ static void pc_set_cur_freq(struct xe_guc_pc 
+>> *pc, u32 freq)
+>>       pc_set_manual_rp_ctrl(pc, false);
+>>   }
+>>   +static int pc_set_ignore_eff_freq(struct xe_guc_pc *pc, u32 val)
+>> +{
+>> +    struct xe_gt *gt = pc_to_gt(pc);
+>> +    int ret;
+>> +
+>> +    xe_device_assert_mem_access(pc_to_xe(pc));
+>> +
+>> +    ret = pc_action_set_param(pc, 
+>> SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY, val);
+> Once this param is set, does it stay stable on the GuC side when the 
+> user later changes min/max freq, or can it get reset? I recall hitting 
+> a case where it got reset, though I don't remember the exact condition.
+GuC does not change this flag by itself for any reason.
+>> +    if (ret)
+>> +        xe_gt_err_once(gt, "Failed to set ignore_eff_freq to %u, 
+>> %pe\n",
+>> +                   val, ERR_PTR(ret));
+> Double error logging,pc_action_set_param() also will display error in 
+> case of failure.
+Ok.
+>
+> Also do we need to set min_freq to RPn here, as we are doing in i915.
+This is not needed. When we disable eff_freq flag, GuC brings min to the 
+value which had been set before. We don't need to de-escalate from KMD 
+side. We may need to fix this on i915 as well.
+>
+>> +
+>> +    return ret;
+>> +}
+>> +
+>>   static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
+>>   {
+>>       /*
+>> @@ -353,13 +368,6 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, 
+>> u32 freq)
+>>       if (freq < pc->rpn_freq || freq > pc->rp0_freq)
+>>           return -EINVAL;
+>>   -    /*
+>> -     * GuC policy is to elevate minimum frequency to the efficient 
+>> levels
+>> -     * Our goal is to have the admin choices respected.
+>> -     */
+>> -    pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
+>> -                freq < xe_guc_pc_get_rpe_freq(pc));
+>> -
+>>       return pc_action_set_param(pc,
+>>                      SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
+>>                      freq);
+>> @@ -1166,6 +1174,26 @@ static int pc_action_set_strategy(struct 
+>> xe_guc_pc *pc, u32 val)
+>>       return ret;
+>>   }
+>
+> It's a non static function, better to use description maybe.
 
-The stats are visible at:
+Will do. Thanks,
 
-  <debugfs>/dri/<N>/dma_mapped_pages
+Vinay.
 
-and are broken out into two rows (bo, svm/userptr), one column per page
-order, mirroring the layout of the TTM pool page_pool stat.
-
-For TTM BOs the per-order counts are derived from the DMA scatter-gather
-table: each mapped segment is physically contiguous, so its page count is
-split into the largest power-of-two runs (a segment of N pages contributes
-a 2^k chunk for the largest k with 2^k <= N, repeated for the remainder).
-Driving the accounting off the sg table rather than the pages[] array keeps
-it correct even when pages[] entries are cleared while still DMA-mapped,
-as happens on the defrag page-borrowing path. Dma-buf BOs are not
-accounted for in dma_mapped_pages stats.
-
-For the SVM and userptr ranges the accounting is driven by the
-drm_gpusvm @dma_map_account callback, which fires once per dma_addr[]
-entry at the exact point the entry is DMA-mapped and unmapped. This
-makes the accounting symmetric by construction and avoids driver-side
-walks that could drift across migration, partial unmaps and the iova vs
-non-iova paths. Only DRM_INTERCONNECT_SYSTEM entries are real DMA maps
-and counted; device interconnect (VRAM, P2P) entries are skipped, so the
-counter reflects only system pages actually mapped through the DMA layer.
-
-The callback is shared between the full SVM instance (fault mode) and the
-core drm_gpusvm_pages-only instance used for userptr, so userptr
-mappings are accounted in both the CONFIG_DRM_XE_GPUSVM=y and =n (but
-CONFIG_DRM_GPUSVM=y) configurations, into the same svm/userptr counter.
-
-Since the counts are only ever consumed through debugfs, gate the counter
-storage and all accounting on CONFIG_DEBUG_FS so that builds without
-debugfs carry no extra atomic traffic or device state; the drm_gpusvm
-callback is simply left unregistered in that case.
-
-On device teardown assert that every counter has returned to zero, to
-catch any unbalanced accounting (a leaked DMA mapping) during testing.
-
-Assisted-by: LLM
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-
----
-v3:
- - Move assert after TTM fini (Sashiko)
- - Combine svm / userptr account functions (Niranjana)
- - s/%lu/%ld (Nirajana)
-v4:
- - Move acount function to userptr to fix certain builds (Sashiko, CI)
----
- drivers/gpu/drm/xe/xe_bo.c           | 53 ++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_debugfs.c      | 26 ++++++++++++
- drivers/gpu/drm/xe/xe_device.c       | 24 +++++++++++
- drivers/gpu/drm/xe/xe_device_types.h | 17 ++++++++
- drivers/gpu/drm/xe/xe_svm.c          |  8 +++-
- drivers/gpu/drm/xe/xe_svm.h          |  4 +-
- drivers/gpu/drm/xe/xe_userptr.c      | 63 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_userptr.h      |  7 ++++
- 8 files changed, 194 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 42a6aa1a2e4a..a8031cb9c74f 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -396,6 +396,50 @@ struct xe_ttm_tt {
- 	bool purgeable;
- };
- 
-+/*
-+ * xe_tt_account_dma_pages - account DMA-mapped tt pages per order
-+ * @xe: the xe device
-+ * @xe_tt: the xe_ttm_tt whose sg table to walk
-+ * @sign: +1 to add, -1 to subtract
-+ *
-+ * Walk the tt's DMA scatter-gather table and split each (physically
-+ * contiguous) segment into the largest power-of-two page runs: a segment of N
-+ * pages contributes a 2^k chunk for the largest k with 2^k <= N, repeated for
-+ * the remainder. Accumulate the count of 2^k pages into
-+ * xe->mem.dma_mapped_pages[k]. Driving this off the sg table rather than
-+ * tt->pages keeps the accounting correct even when pages[] entries are cleared
-+ * while still DMA-mapped (e.g. the defrag page-borrowing path).
-+ */
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+static void xe_tt_account_dma_pages(struct xe_device *xe,
-+				    struct xe_ttm_tt *xe_tt, int sign)
-+{
-+	struct scatterlist *sg;
-+	unsigned int i;
-+
-+	for_each_sgtable_sg(xe_tt->sg, sg, i) {
-+		unsigned long nr_pages = sg->length >> PAGE_SHIFT;
-+
-+		while (nr_pages) {
-+			unsigned int order = min_t(unsigned int,
-+						   __fls(nr_pages),
-+						   MAX_PAGE_ORDER);
-+			unsigned long chunk = 1UL << order;
-+
-+			atomic_long_add((long)chunk * sign,
-+					&xe->mem.dma_mapped_pages[order]);
-+
-+			nr_pages -= chunk;
-+		}
-+	}
-+}
-+#else
-+static void xe_tt_account_dma_pages(struct xe_device *xe,
-+				    struct xe_ttm_tt *xe_tt, int sign)
-+{
-+}
-+#endif
-+
- static int xe_tt_map_sg(struct xe_device *xe, struct ttm_tt *tt)
- {
- 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
-@@ -425,6 +469,7 @@ static int xe_tt_map_sg(struct xe_device *xe, struct ttm_tt *tt)
- 		return ret;
- 	}
- 
-+	xe_tt_account_dma_pages(xe, xe_tt, 1);
- 	return 0;
- }
- 
-@@ -433,6 +478,7 @@ static void xe_tt_unmap_sg(struct xe_device *xe, struct ttm_tt *tt)
- 	struct xe_ttm_tt *xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
- 
- 	if (xe_tt->sg) {
-+		xe_tt_account_dma_pages(xe, xe_tt, -1);
- 		dma_unmap_sgtable(xe->drm.dev, xe_tt->sg,
- 				  DMA_BIDIRECTIONAL, 0);
- 		sg_free_table(xe_tt->sg);
-@@ -1800,11 +1846,8 @@ int xe_bo_dma_unmap_pinned(struct xe_bo *bo)
- 			ttm_bo->sg = NULL;
- 			xe_tt->sg = NULL;
- 		} else if (xe_tt->sg) {
--			dma_unmap_sgtable(ttm_to_xe_device(ttm_bo->bdev)->drm.dev,
--					  xe_tt->sg,
--					  DMA_BIDIRECTIONAL, 0);
--			sg_free_table(xe_tt->sg);
--			xe_tt->sg = NULL;
-+			xe_tt_unmap_sg(ttm_to_xe_device(ttm_bo->bdev),
-+				       &xe_tt->ttm);
- 		}
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index e59d4964d811..b383da53e82f 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -7,6 +7,7 @@
- 
- #include <linux/bits.h>
- #include <linux/debugfs.h>
-+#include <linux/mmzone.h>
- #include <linux/fault-inject.h>
- #include <linux/string_helpers.h>
- 
-@@ -345,6 +346,28 @@ static int dgfx_pcie_link_residencies_show(struct seq_file *m, void *data)
- 	return 0;
- }
- 
-+static int dma_mapped_pages_show(struct seq_file *m, void *data)
-+{
-+	struct xe_device *xe = m->private;
-+	unsigned int i;
-+
-+	seq_printf(m, "%-11s ", "");
-+	for (i = 0; i < NR_PAGE_ORDERS; i++)
-+		seq_printf(m, " ---%2u---", i);
-+	seq_printf(m, "\n%-11s:", "bo");
-+	for (i = 0; i < NR_PAGE_ORDERS; i++)
-+		seq_printf(m, " %8ld",
-+			   atomic_long_read(&xe->mem.dma_mapped_pages[i]));
-+	seq_printf(m, "\n%-11s:", "svm/userptr");
-+	for (i = 0; i < NR_PAGE_ORDERS; i++)
-+		seq_printf(m, " %8ld",
-+			   atomic_long_read(&xe->mem.dma_mapped_pages_svm[i]));
-+	seq_puts(m, "\n");
-+
-+	return 0;
-+}
-+DEFINE_SHOW_ATTRIBUTE(dma_mapped_pages);
-+
- static const struct drm_info_list debugfs_list[] = {
- 	{"info", info, 0},
- 	{ .name = "sriov_info", .show = sriov_info, },
-@@ -765,6 +788,9 @@ void xe_debugfs_register(struct xe_device *xe)
- 
- 	xe_ttm_vram_debugfs_init(xe, root);
- 
-+	debugfs_create_file("dma_mapped_pages", 0444, root, xe,
-+			    &dma_mapped_pages_fops);
-+
- 	for_each_tile(tile, xe, tile_id)
- 		xe_tile_debugfs_register(tile);
- 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6911c2ac39f8..8566f4c0db05 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -378,6 +378,28 @@ bool xe_device_is_admin_only(const struct xe_device *xe)
- /* Number of allocated struct xe_device */
- static atomic_t xe_device_count;
- 
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+static void xe_device_assert_dma_pages_zero(struct xe_device *xe)
-+{
-+	unsigned int i;
-+
-+	/*
-+	 * All BOs, userptr VMAs and SVM ranges must have been torn down by the
-+	 * time the device is destroyed, so every DMA-mapped-pages counter must
-+	 * have returned to zero. A non-zero value indicates unbalanced
-+	 * accounting, i.e. a missing unmap-side decrement.
-+	 */
-+	for (i = 0; i < NR_PAGE_ORDERS; i++) {
-+		xe_assert(xe, !atomic_long_read(&xe->mem.dma_mapped_pages[i]));
-+		xe_assert(xe, !atomic_long_read(&xe->mem.dma_mapped_pages_svm[i]));
-+	}
-+}
-+#else
-+static void xe_device_assert_dma_pages_zero(struct xe_device *xe)
-+{
-+}
-+#endif
-+
- static void xe_device_destroy(struct drm_device *dev, void *dummy)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -398,6 +420,8 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 
- 	ttm_device_fini(&xe->ttm);
- 
-+	xe_device_assert_dma_pages_zero(xe);
-+
- 	if (atomic_dec_and_test(&xe_device_count))
- 		wake_up_var(&xe_device_count);
- }
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 8f2a31949073..db5a3315c1ca 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -6,6 +6,7 @@
- #ifndef _XE_DEVICE_TYPES_H_
- #define _XE_DEVICE_TYPES_H_
- 
-+#include <linux/mmzone.h>
- #include <linux/pci.h>
- 
- #include <drm/drm_device.h>
-@@ -304,6 +305,22 @@ struct xe_device {
- 		struct xe_shrinker *shrinker;
- 		/** @mem.stolen_mgr: stolen memory manager. */
- 		struct xe_ttm_stolen_mgr *stolen_mgr;
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+		/**
-+		 * @mem.dma_mapped_pages: number of DMA-mapped pages per page
-+		 * order currently live for this device, for TTM BOs. Only
-+		 * accounted when CONFIG_DEBUG_FS is enabled, since it is solely
-+		 * exposed through debugfs.
-+		 */
-+		atomic_long_t dma_mapped_pages[NR_PAGE_ORDERS];
-+		/**
-+		 * @mem.dma_mapped_pages_svm: number of DMA-mapped pages per
-+		 * page order currently live for this device, for SVM ranges
-+		 * and userptr VMAs (both share a single drm_gpusvm instance).
-+		 * Only accounted when CONFIG_DEBUG_FS is enabled.
-+		 */
-+		atomic_long_t dma_mapped_pages_svm[NR_PAGE_ORDERS];
-+#endif
- 	} mem;
- 
- 	/** @sriov: device level virtualization data */
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index bc6902b5bf57..3f90b8314132 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -24,6 +24,7 @@
- #include "xe_tile.h"
- #include "xe_tlb_inval.h"
- #include "xe_ttm_vram_mgr.h"
-+#include "xe_userptr.h"
- #include "xe_vm.h"
- #include "xe_vm_types.h"
- #include "xe_vram_types.h"
-@@ -850,6 +851,9 @@ static const struct drm_gpusvm_ops gpusvm_ops = {
- 	.range_alloc = xe_svm_range_alloc,
- 	.range_free = xe_svm_range_free,
- 	.invalidate = xe_svm_invalidate,
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+	.dma_map_account = xe_userptr_dma_map_account,
-+#endif
- };
- 
- static const unsigned long fault_chunk_sizes[] = {
-@@ -947,8 +951,8 @@ int xe_svm_init(struct xe_vm *vm)
- 		}
- 	} else {
- 		err = drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
--				      NULL, 0, 0, 0, NULL,
--				      NULL, 0);
-+				      NULL, 0, 0, 0,
-+				      xe_userptr_gpusvm_ops_get(), NULL, 0);
- 		if (err)
- 			goto out_err;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index ffc1cc808102..f8b908a74ba9 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -249,6 +249,7 @@ struct drm_pagemap *xe_drm_pagemap_from_fd(int fd, u32 region_instance);
- 
- #else
- #include <linux/interval_tree.h>
-+#include "xe_userptr.h"
- #include "xe_vm.h"
- 
- struct drm_pagemap_addr;
-@@ -296,7 +297,8 @@ int xe_svm_init(struct xe_vm *vm)
- {
- #if IS_ENABLED(CONFIG_DRM_GPUSVM)
- 	return drm_gpusvm_init(&vm->svm.gpusvm, "Xe SVM (simple)",
--			       NULL, 0, 0, 0, NULL, NULL, 0);
-+			       NULL, 0, 0, 0,
-+			       xe_userptr_gpusvm_ops_get(), NULL, 0);
- #else
- 	return 0;
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index 9c1dac0fce6f..a65c6ddb607b 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -8,9 +8,72 @@
- 
- #include <linux/mm.h>
- 
-+#include <drm/drm_pagemap.h>
-+
- #include "xe_tlb_inval.h"
- #include "xe_trace_bo.h"
- 
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+/*
-+ * xe_userptr_dma_map_account() - drm_gpusvm DMA-mapping accounting callback
-+ * @gpusvm: The GPU SVM the mapping belongs to
-+ * @addr: The address descriptor of the chunk being (un)mapped
-+ * @sign: +1 when @addr was DMA-mapped, -1 when it is being unmapped
-+ *
-+ * Account, per page order, the system-memory pages DMA-mapped for GPU access
-+ * through the drm_gpusvm_pages instance shared by userptr (and, in fault mode,
-+ * SVM). Only DRM_INTERCONNECT_SYSTEM entries are real DMA maps and counted;
-+ * device interconnect (VRAM, P2P) entries are skipped. The counts are solely
-+ * exposed through debugfs, so the callback is only registered when
-+ * CONFIG_DEBUG_FS is enabled.
-+ */
-+void xe_userptr_dma_map_account(struct drm_gpusvm *gpusvm,
-+				const struct drm_pagemap_addr *addr,
-+				int sign)
-+{
-+	struct xe_vm *vm = container_of(gpusvm, struct xe_vm, svm.gpusvm);
-+	unsigned int order = addr->order;
-+
-+	if (addr->proto != DRM_INTERCONNECT_SYSTEM)
-+		return;
-+
-+	/*
-+	 * The CPU-PTE map order reported by hmm can exceed MAX_PAGE_ORDER
-+	 * (e.g. an order-18 1GB mapping), so clamp the array index to avoid an
-+	 * out-of-bounds access. Clamping is symmetric across the +1/-1 calls,
-+	 * so the per-order counters stay balanced.
-+	 */
-+	order = min(order, (unsigned int)NR_PAGE_ORDERS - 1);
-+
-+	atomic_long_add((long)(1UL << addr->order) * sign,
-+			&vm->xe->mem.dma_mapped_pages_svm[order]);
-+}
-+
-+static const struct drm_gpusvm_ops xe_userptr_gpusvm_ops = {
-+	.dma_map_account = xe_userptr_dma_map_account,
-+};
-+#endif
-+
-+/**
-+ * xe_userptr_gpusvm_ops_get() - Accounting ops for the simple gpusvm instance
-+ *
-+ * The core drm_gpusvm_pages-only instance used for userptr (and, in fault
-+ * mode, shared with SVM) is initialised with these ops so that DMA-mapped
-+ * system pages are accounted and exposed through debugfs. Returns NULL when
-+ * CONFIG_DEBUG_FS is disabled, in which case no accounting is kept and the
-+ * instance is initialised without ops.
-+ *
-+ * Return: Pointer to the restricted &drm_gpusvm_ops, or NULL.
-+ */
-+const struct drm_gpusvm_ops *xe_userptr_gpusvm_ops_get(void)
-+{
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+	return &xe_userptr_gpusvm_ops;
-+#else
-+	return NULL;
-+#endif
-+}
-+
- static void xe_userptr_assert_in_notifier(struct xe_vm *vm)
- {
- 	lockdep_assert(lockdep_is_held_type(&vm->svm.gpusvm.notifier_lock, 0) ||
-diff --git a/drivers/gpu/drm/xe/xe_userptr.h b/drivers/gpu/drm/xe/xe_userptr.h
-index 2a3cd1b5efbb..21af49b5b904 100644
---- a/drivers/gpu/drm/xe/xe_userptr.h
-+++ b/drivers/gpu/drm/xe/xe_userptr.h
-@@ -98,6 +98,12 @@ struct xe_userptr {
- };
- 
- #if IS_ENABLED(CONFIG_DRM_GPUSVM)
-+
-+#if IS_ENABLED(CONFIG_DEBUG_FS)
-+void xe_userptr_dma_map_account(struct drm_gpusvm *gpusvm,
-+				const struct drm_pagemap_addr *addr, int sign);
-+#endif
-+
- void xe_userptr_remove(struct xe_userptr_vma *uvma);
- int xe_userptr_setup(struct xe_userptr_vma *uvma, unsigned long start,
- 		     unsigned long range);
-@@ -108,6 +114,7 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm);
- int xe_vm_userptr_check_repin(struct xe_vm *vm);
- int xe_vma_userptr_pin_pages(struct xe_userptr_vma *uvma);
- int xe_vma_userptr_check_repin(struct xe_userptr_vma *uvma);
-+const struct drm_gpusvm_ops *xe_userptr_gpusvm_ops_get(void);
- #else
- static inline void xe_userptr_remove(struct xe_userptr_vma *uvma) {}
- 
--- 
-2.34.1
-
+>
+> Thanks,
+> Anirban
+>
+>> +int xe_guc_pc_set_use_rpe(struct xe_guc_pc *pc, u32 val)
+>> +{
+>> +    int ret;
+>> +
+>> +    guard(mutex)(&pc->freq_lock);
+>> +
+>> +    /* If use_rpe == 1, ignore_eff_freq = false */
+>> +    ret = pc_set_ignore_eff_freq(pc, !val);
+>> +    if (ret) {
+>> +        xe_gt_err_once(pc_to_gt(pc),
+>> +                   "Failed to set use_rpe to %d: %pe\n",
+>> +                   !val, ERR_PTR(ret));
+>> +        return ret;
+>> +    }
+>> +
+>> +    pc->use_rpe = val;
+>> +
+>> +    return ret;
+>> +}
+>> +
+>>   static const char *power_profile_to_string(struct xe_guc_pc *pc)
+>>   {
+>>       switch (pc->power_profile) {
+>> @@ -1314,6 +1342,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+>>       if (ret)
+>>           return ret;
+>>   +    ret = pc_set_ignore_eff_freq(pc, !pc->use_rpe);
+>> +    if (unlikely(ret))
+>> +        return ret;
+>> +
+>>       ret = pc_init_freqs(pc);
+>>       if (ret)
+>>           return ret;
+>> @@ -1400,6 +1432,7 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>>       pc->bo = bo;
+>>         pc->power_profile = SLPC_POWER_PROFILE_BASE;
+>> +    pc->use_rpe = true;
+>>         return devm_add_action_or_reset(xe->drm.dev, 
+>> xe_guc_pc_fini_hw, pc);
+>>   }
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h 
+>> b/drivers/gpu/drm/xe/xe_guc_pc.h
+>> index 1025a2b15f5f..dc52f349a6a2 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+>> @@ -31,6 +31,7 @@ int xe_guc_pc_get_max_freq(struct xe_guc_pc *pc, 
+>> u32 *freq);
+>>   int xe_guc_pc_set_max_freq(struct xe_guc_pc *pc, u32 freq);
+>>   int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char 
+>> *buf);
+>>   void xe_guc_pc_get_power_profile(struct xe_guc_pc *pc, char *profile);
+>> +int xe_guc_pc_set_use_rpe(struct xe_guc_pc *pc, u32 val);
+>>     enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
+>>   u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h 
+>> b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> index 711bbcdcb0d3..61654ee7d8d6 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> @@ -35,6 +35,8 @@ struct xe_guc_pc {
+>>       bool freq_ready;
+>>       /** @power_profile: Base or power_saving profile */
+>>       u32 power_profile;
+>> +    /** @use_rpe: Toggle use of efficient frequency */
+>> +    u32 use_rpe;
+>>   };
+>>     #endif    /* _XE_GUC_PC_TYPES_H_ */
