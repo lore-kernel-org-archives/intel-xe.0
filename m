@@ -2,70 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76797606D840
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 17:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EZnoo3NZ
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B5C606B460
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 17:53:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3937911272E;
-	Fri, 13 Nov 2026 17:51:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A875A10E533;
- Fri, 13 Nov 2026 17:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794592304; x=1826128304;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=ot8aUgvttzN3zhP6CmenM57WhZx/wtpRsYm0cuIyEHE=;
- b=EZnoo3NZvmcGgFi7IcJyP/rwtnkdlDaQW+LwCM4/YQcTOmJgwO6Nupa+
- qC07ooTjBVhDBHIv6gJAJkbYWsxMXQ+rEeBQGQJWhCZYuP+TH2hs521UX
- Q3EtH9OipKHa8CMkDM1wYKt5RHuyjMANaOtif/f/qiSqfk92b0c6FC799
- E+xMS7DEuCR+WHRI5riTys2W2EtTYjD0cC03wXQtHzDO2LN3LYaZ6/L46
- OQqDeGs/UWpYjZfeCSQFoRjUvf2L9On1I/Tw36pOF2ZFMD58aR79/atqD
- AF55cL/gHMIYZRuhLjInL+Ny2rAOoW3tfpzTBXk7TTHexzHSdRdC2pRL9 A==;
-X-CSE-ConnectionGUID: W/qHUSPyQH+46l1jG1yTBg==
-X-CSE-MsgGUID: iC1Hiae/QF2ABz49BW0D/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3396822"
-X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="3396822"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2026 09:51:43 -0800
-X-CSE-ConnectionGUID: RWBCcPdcRdOXUO4f8jkJ1g==
-X-CSE-MsgGUID: PepsrX++TK6EbR3/6QVo0g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="9410690"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2026 09:51:40 -0800
-Date: Fri, 13 Nov 2026 18:51:36 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, Arnd Bergmann <arnd@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Lucas De Marchi <demarchi@kernel.org>,
- Riana Tauro <riana.tauro@intel.com>, Arnd Bergmann <arnd@arndb.de>,
- Matthew Auld <matthew.auld@intel.com>,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Armin Wolf <W_Armin@gmx.de>, Zhanjun Dong <zhanjun.dong@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Piotr =?iso-8859-1?Q?Pi=F3rkowski?= <piotr.piorkowski@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm: xe: select configfs
-Message-ID: <avdOKFx63ZPNTTJ2@black.igk.intel.com>
-References: <20261026102603.2045493-1-arnd@kernel.org>
- <avS7mZMrS7nQv_RK@intel.com> <20261113162212.GB7214@mdroper-desk1>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C5410E533;
+	Fri, 13 Nov 2026 17:53:21 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC3410E533;
+ Fri, 13 Nov 2026 17:53:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261113162212.GB7214@mdroper-desk1>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Crescent_Island_PMT_suppo?=
+ =?utf-8?q?rt_=28rev17=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Nov 2026 17:53:20 -0000
+Message-ID: <179459240044.21881.13112724903166327147@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261113165127.1989471-19-michael.j.ruhl@intel.com>
+In-Reply-To: <20261113165127.1989471-19-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,83 +33,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 13, 2026 at 08:22:12AM -0800, Matt Roper wrote:
-> On Wed, Nov 11, 2026 at 02:01:45PM -0500, Rodrigo Vivi wrote:
-> > On Mon, Oct 26, 2026 at 11:25:50AM +0100, Arnd Bergmann wrote:
-> > > From: Arnd Bergmann <arnd@arndb.de>
-> > > 
-> > > The original addition of configfs to xe missed a compile-time dependency,
-> > > which leads to a link failure when configfs is enabled as a loadable module:
-> > > 
-> > > ld.lld-21: error: undefined symbol: xe_configfs_get_survivability_mode
-> > > >>> referenced by xe_survivability_mode.c:224
-> > > >>>               drivers/gpu/drm/xe/xe_survivability_mode.o:(xe_survivability_mode_is_requested) in archive vmlinux.a
-> > > 
-> > > A recent workaround added a 'IS_REACHABLE()' check around the calls into
-> > > configfs, which makes it link in this configuration, but this is generally
-> > > a bad idea because it makes the actual behavior inconsistent and confusing
-> > > to users that expect configfs to work if both xe and configfs are enabled.
-> > > 
-> > > Use 'select CONFIGFS_FS' instead, like every other configfs user does,
-> > > and remove the unnecessary stub functions. There is little practical
-> > > difference here as anyone using XE graphics is likely to have a complex
-> > > configuration that already selects configfs anyway, and the link error
-> > > or the IS_REACHABLE() would only manifest during randconfig testing.
-> > > 
-> > > Fixes: 30499cbd7961 ("drm/xe: Fix build with DRM_XE=y and CONFIGFS_FS=m")
-> > > Fixes: 16280ded45fb ("drm/xe: Add configfs to enable survivability mode")
-> > > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> > > ---
-> > >  drivers/gpu/drm/xe/Kconfig       |  1 +
-> > >  drivers/gpu/drm/xe/xe_configfs.h | 30 ------------------------------
-> > >  2 files changed, 1 insertion(+), 30 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-> > > index 4fc8abdc5cb6..b52a8dc28f97 100644
-> > > --- a/drivers/gpu/drm/xe/Kconfig
-> > > +++ b/drivers/gpu/drm/xe/Kconfig
-> > > @@ -11,6 +11,7 @@ config DRM_XE
-> > >  	# the shmem_readpage() which depends upon tmpfs
-> > >  	select SHMEM
-> > >  	select TMPFS
-> > > +	select CONFIGFS_FS
-> > 
-> > Perhaps another option would be what Jani had suggested:
-> > 
-> > config DRM_XE_CONFIGFS
-> > 	def_bool y
-> > 	depends on DRM_XE && CONFIGFS_FS
-> > 	depends on CONFIGFS_FS=y || DRM_XE=m
-> > 
-> > But anyway, we are depending more and more on the configfs for
-> > production choices. So, let's go with you select and close this
-> > for good.
-> 
-> I really don't think this patch was the way we wanted to go.
-> IS_REACHABLE was giving us exactly the behavior that we wanted, but now
-> we're getting behavior that we did not want.  Xe absolutely does not
-> depend on configfs in any way.  _If_ configfs is there we'll enable some
-> config options in it, but none of those are mandatory for our driver as
-> a whole.  We're perfectly happy to build and run without configfs if
-> it's not selected in the config.  We're also happy to build and run
-> without configfs functionality if the user wanted Xe built directly into
-> the kernel, but configfs was built as an unreachable module solely for
-> other non-Xe purposes.
-> 
-> While this change won't matter to 99% of the cases where someone is
-> running with a typical distro kernel, this is the kind of thing that
-> makes embedded users unhappy since they're very carefully managing their
-> configurations and we've taken away their ability to avoid configfs now.
+== Series Details ==
 
-+1'ing on this. People go to great lengths to save a few bytes, only to
-be undone by a non-essential config.
+Series: Crescent Island PMT support (rev17)
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : warning
 
-Raag
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ce5473821d9c9ed732099019e015eaf03b55d75d
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Fri Nov 13 08:51:43 2026 -0800
+
+    drm/xe/vsec: Support survivability mode for CRI
+    
+    For survivability mode, CRI can only support access to the
+    PUNIT CRASHLOG PMT function.
+    
+    Create a special config to support survivability mode.
+    
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch eab65769b90f4957759eac53d9e22b9fa4312f60 drm-intel
+9aeec7b93342 drm/xe/vsec: VSEC requires soc-remapper
+990311e6421b drm/xe/vsec: Do not register BMG PMT for VF
+d7a60ece6f37 drm/xe/vsec: Correct locking order
+f953e805269f drm/xe/vsec: Use correct pm state get
+982e7472ae3d drm/xe/vsec: Add DOC text for VSEC
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
+feea628e389b drm/xe/vsec: Support possible hotplug exit
+864e8bd39840 drm/xe/vsec: Refactor BattleMage PMT defines
+5cca428d53e7 drm/xe/vsec: Update VSEC probe order
+796888295c62 drm/xe/vsec: Add base_offset to allow for more flexibilty
+0bb2586ef01c drm/xe/vsec: Support Crescent Island PMT
+6b9c850cfe05 drm/xe/vsec: Crescent Island PMT decode
+35d24f7acff4 drm/xe/vsec: Crescent Island PMT callbacks
+0c51260e5237 drm/xe/vsec: Support late bind fw information
+a3c9c4c18adb drm/xe/vsec: Add PMT GUID internal access
+0c2727f27be8 drm/xe/vsec: Update PMT internal access
+3d3ef8507167 drm/xe/vsec: Refactor platform check
+ce5473821d9c drm/xe/vsec: Support survivability mode for CRI
+
+
