@@ -2,103 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F285606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 09:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55002606A327
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 09:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.a=rsa-sha256 header.s=mimecast20190719 header.b=Bbcq+flr
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QAID9ZNA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDC2111234A;
-	Fri, 13 Nov 2026 09:12:15 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AC7110E79E
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 09:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1794561123;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=l9qjP3EolVZNhFJ6yU6oKwddBCb6NF0vJywntTMZ9kE=;
- b=Bbcq+flrN8v/wCVVGVAvLeQHYqeHKGAKvnYn2qguXzBp3Y11tHYrehbqA7hrqEWLYmYbrs
- Apvgyz+aHNgkFzXQSGg1f8nGbrsPSFLeLE/5lUlURaaFZ4825exN9Zg83Fic8FRjtdHuoo
- 0PepzX+FKVqKyn7WLblblOXgl6J96iQ=
-Received: from mail-lj1-f200.google.com (mail-lj1-f200.google.com
- [209.85.208.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-685-0GhVeWlIM8qxx3D82jhtzA-1; Fri, 13 Nov 2026 04:12:01 -0500
-X-MC-Unique: 0GhVeWlIM8qxx3D82jhtzA-1
-X-Mimecast-MFC-AGG-ID: 0GhVeWlIM8qxx3D82jhtzA_1794561120
-Received: by mail-lj1-f200.google.com with SMTP id
- 38308e7fff4ca-3acd4b46482so4276361fa.2
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 01:12:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794561120; x=1795165920;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=l9qjP3EolVZNhFJ6yU6oKwddBCb6NF0vJywntTMZ9kE=;
- b=ZoRHDjfGvBQlFnBJ3N8MzJSOsQ1pEYJf6hjTMIhJz8g5lrAcYKH7eYxfe6fs9lZ4GJ
- keqoHTthea/zxWoHcMyljUspLrfQsdnmZ6Es2pK9Fq2agpwBncLR3kq2g0Bu+oEF9eer
- PZrn1PfNYZW6Oy7sfK0llD6vcwwNZGmc2vBciQ1dpmn5YkKX87fJFf7iEIvuPv33lfj8
- 8wR0pRGTUn4+6VhCvSL4iI55w2iyCpgJxQ4R+3ird6E7bxYqe9+kdOToxhfD9CjvZHYP
- w1o/1KpWwNHqcMbfsltCLupAwAGGiefw+gUBttfrHgnNLZKvAJ68jw4sBmGNVy+XrPfN
- 0Qiw==
-X-Forwarded-Encrypted: i=1;
- AL+hErGduBgFmCPh8/rjACRrVjRpZ3NO1Raw3XAFJvbaqBEYcCMcV8tRHa7iTIzGRFIGzVsMLwENxJpt8Q==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+V9qFo/Vcc9qeGIjpwW0Wv6TQQy3Ve8XVT0V/LF79cCbcYbY5R
- PaC/QZppmtcmAO1oUI0f6jvh9vMGETpXnD/AFNuDk+8drJIlP/Bwoe2j69L1gqFoSRiSbSP7A51
- pBbZpWpwmP4RN9Ng3KpntkAtQtQ8ny3x0bcq/ANAFx3h4ZyCoHuEVd5+D1Pf2a3l43pk=
-X-Gm-Gg: AYBFou3vRT1iwvRD2shxfdTQBBhE7HLNzxRXywfSLaTjPMWNdYLWh9AoXXkPyIrTlUI
- C31UBYu9kVdqizfg1MyCq4NUms/EtPq8KEz/9q6z9sTl684FhxlzyhUqzK05bQpyaSezuLjPtIT
- Qvuyvd1DV20C9jpdg8yRHME22n72cMtBprj9NjwnpFJq4RiFbqJwayrFmKr/xs5xb7xlccw2h2v
- rKTcn0wCAPr4S1G8L44tZjQkIN3vkmUORSyhhchWKoD1tPrRvKD4hCEMl+y/cDIR/FypBK8QxCw
- 8FMQl9ZjGMNiVfct+Ls6Hu0RAltplyCrImLxLLnjU5mJ349/yXYlDH/tl1GndgGmyjGkgYCsYc8
- QQpC3sZxi0enlDcgBHexWMNbNh/x8tLA/+jX2HpBDc27vDUoU0GYyaBIF9g9zXIbJDZ+HL2OxWH
- 2dcqs+
-X-Received: by 2002:a05:651c:a347:b0:3ad:f8cc:390 with SMTP id
- 38308e7fff4ca-3ae2b4bc3f1mr7065961fa.11.1794561120257; 
- Fri, 13 Nov 2026 01:12:00 -0800 (PST)
-X-Received: by 2002:a05:651c:a347:b0:3ad:f8cc:390 with SMTP id
- 38308e7fff4ca-3ae2b4bc3f1mr7065831fa.11.1794561119826; 
- Fri, 13 Nov 2026 01:11:59 -0800 (PST)
-Received: from [192.168.1.86] (89-27-86-246.bb.dnainternet.fi. [89.27.86.246])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-3ae2b76a91fsm6490801fa.8.2026.11.13.01.11.58
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 13 Nov 2026 01:11:58 -0800 (PST)
-Message-ID: <2ad4f730-0656-4b2e-8cbb-4aaae44de1cd@redhat.com>
-Date: Fri, 13 Nov 2026 11:11:57 +0200
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v17 00/12] migrate on fault for device pages
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Jason Gunthorpe <jgg@nvidia.com>,
- Alexandru Elisei <alexandru.elisei@arm.com>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, David Hildenbrand <david@kernel.org>,
- Leon Romanovsky <leonro@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Zi Yan <ziy@nvidia.com>,
- Matthew Brost <matthew.brost@intel.com>, Lorenzo Stoakes <ljs@kernel.org>,
- "Liam R. Howlett" <liam@infradead.org>, Vlastimil Babka <vbabka@suse.cz>,
- Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
- Michal Hocko <mhocko@suse.com>, Lyude Paul <lyude@redhat.com>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20261103061629.972669-1-mpenttil@redhat.com>
- <avWpWBl1nPcRVmpQ@raptor> <79f33ab0-2e43-4efb-94d0-addaf40745ec@redhat.com>
- <avXoJSGh5xjGFgod@raptor> <20261112164752.GA3692174@nvidia.com>
- <ec4431f1-e70d-477c-b09a-eedc35d97691@redhat.com>
- <20261112162738.d689b46268e077ac06f41d91@linux-foundation.org>
-From: =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>
-In-Reply-To: <20261112162738.d689b46268e077ac06f41d91@linux-foundation.org>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: hCAok99GhSqAOzU5B15xDONWzj55WbUzSe2NRAJQXwo_1794561120
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07703112332;
+	Fri, 13 Nov 2026 09:35:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BF0611236A
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 09:35:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794562510; x=1826098510;
+ h=date:from:to:cc:subject:message-id;
+ bh=1xygAOY+ZR3tL7hB/1tspRIabNGgOFYta/bjaZM41OU=;
+ b=QAID9ZNAOtl0v1EgoUqI9tyhqHlutyzjDb9IcK8c1nTPXhMMHjG0e1hu
+ uIgRR4UppKsszCjNcVtbXGfVvY3V5jCR5Wu1KP1EZ6ot8yW0iHRijLdyU
+ aK3kVVrDYhyF7qHCMkRJl924C1Um6TB/JFgkH348VNqxnzVfgAmmSHuSp
+ ShzFYh/QHQnUNgyqW2Y6W0iygZy43VcM67B0o5dviJLkjOb/MEK504783
+ P+hep6y+yWagfKh4IGsep4NAP73UhlYANZjNas4E3XVXvYKBDL7FBIr0b
+ yKX9evX5mGQ22HorYHJRNVMJkionbmEm8zzeDN4fF0AI4YZFZu28f5Li/ Q==;
+X-CSE-ConnectionGUID: 9QQg3xC/SMGxRtFmGqWSMg==
+X-CSE-MsgGUID: bImXP5SnSdOqOJdzQ0ge4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3370939"
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="3370939"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 01:35:10 -0800
+X-CSE-ConnectionGUID: VE4v/61wTjSF255rRopPsQ==
+X-CSE-MsgGUID: Rl0mhLbiRVmoLSWa5TIumA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="8776664"
+Received: from lkp-server01.sh.intel.com (HELO 0caa9d2d175c) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 13 Nov 2026 01:35:09 -0800
+Received: from kbuild by 0caa9d2d175c with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1xRngY-000000012dj-29ij;
+ Fri, 13 Nov 2026 09:35:06 +0000
+Date: Fri, 13 Nov 2026 17:34:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ c1234293de147949bf9cf06e3ed59ad8766e29a0
+Message-ID: <20261113173424.NoY5Eh1X-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -109,99 +59,196 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On 11/13/26 02:27, Andrew Morton wrote:
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: c1234293de147949bf9cf06e3ed59ad8766e29a0  drm: xe: select configfs
 
-> On Thu, 12 Nov 2026 19:01:58 +0200 Mika Penttilä <mpenttil@redhat.com> wrote:
->
->> On 11/12/26 18:47, Jason Gunthorpe wrote:
->>> On Thu, Nov 12, 2026 at 04:24:05PM +0000, Alexandru Elisei wrote:
->>>> Hi Mika,
->>>>
->>>> On Thu, Nov 12, 2026 at 04:00:09PM +0200, Mika Penttilä wrote:
->>>>> Hi Alexandru!
->>>>>
->>>>> On 11/12/26 13:56, Alexandru Elisei wrote:
->>>>>> Hi Mika,
->>>>>>
->>>>>> I want to help getting this series merged, and I've been familiarizing myself
->>>>>> with hmm and device migration, please bare with me if the questions I'm asking
->>>>>> are obvious or downright silly.
->>>>> Thanks for the interest and willing to help! I am preparing a v18 of the
->>>>> series and plan to post it early next week.
->>>> The series is big, and as far as I can tell the MM people are hard at work
->>>> reviewing bug fixes. It might be better to wait a while, to give people a
->>>> chance to have a look? I know that if I see a series being reposted often,
->>>> I am less inclined to review the patches since probably a new iteration
->>>> will be posted soon. But I can only speak for myself, you know best.
->>> It is at v17 and it is still getting high severity sashiko errors
->> v14 was first that sashiko managed to review. There was a regression in
->> last posting, but also false potsitives, and sashiko reports same issue
->> then 3-4 times, so the reality is not that bad. 
-> Pining for the days when all we had to deal with was checkpatch.  
+elapsed time: 1476m
 
-Yeah.. running sashiko locally now. Interesting enough, refactoring the
-series (end result being the same) made most of the "high errors" disappear.
+configs tested: 169
+configs skipped: 11
 
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-> Mika, afaict the entire patchset is a performance optimization, yet you
-> say "I don't have a benchmark showing a gain".
+tested configs:
+alpha                             alldefconfig    gcc-16.2.0
+alpha                              allnoconfig    gcc-16.2.0
+alpha                             allyesconfig    gcc-16.2.0
+alpha                                defconfig    gcc-16.2.0
+arc                               allmodconfig    clang-24
+arc                               allmodconfig    gcc-16.2.0
+arc                                allnoconfig    gcc-16.2.0
+arc                               allyesconfig    clang-24
+arc                                  defconfig    gcc-16.2.0
+arc                   randconfig-1000-20261112    clang-24
+arc                   randconfig-1000-20261113    gcc-10.5.0
+arc                   randconfig-1001-20261112    clang-24
+arc                   randconfig-1001-20261113    gcc-10.5.0
+arm                                allnoconfig    gcc-16.2.0
+arm                               allyesconfig    clang-24
+arm                                  defconfig    gcc-16.2.0
+arm                   randconfig-1000-20261112    clang-24
+arm                   randconfig-1000-20261113    gcc-10.5.0
+arm                   randconfig-1001-20261112    clang-24
+arm                   randconfig-1001-20261113    gcc-10.5.0
+arm                   randconfig-1002-20261112    clang-24
+arm                   randconfig-1002-20261113    gcc-10.5.0
+arm                   randconfig-1003-20261112    clang-24
+arm                   randconfig-1003-20261113    gcc-10.5.0
+arm64                             allmodconfig    clang-24
+arm64                              allnoconfig    gcc-16.2.0
+arm64                                defconfig    gcc-16.2.0
+csky                              allmodconfig    gcc-16.2.0
+csky                               allnoconfig    gcc-16.2.0
+csky                                 defconfig    gcc-16.2.0
+hexagon                           allmodconfig    gcc-16.2.0
+hexagon                            allnoconfig    gcc-16.2.0
+hexagon                              defconfig    gcc-16.2.0
+hexagon               randconfig-1000-20261113    clang-24
+hexagon               randconfig-1001-20261113    clang-24
+i386                              allmodconfig    clang-22
+i386                               allnoconfig    gcc-16.2.0
+i386                              allyesconfig    clang-22
+i386        buildonly-randconfig-1000-20261113    clang-22
+i386        buildonly-randconfig-1001-20261113    clang-22
+i386        buildonly-randconfig-1002-20261113    clang-22
+i386        buildonly-randconfig-1003-20261113    clang-22
+i386        buildonly-randconfig-1004-20261113    clang-22
+i386        buildonly-randconfig-1005-20261113    clang-22
+i386                                 defconfig    gcc-16.2.0
+i386                  randconfig-1007-20261112    clang-22
+i386                  randconfig-1007-20261113    clang-22
+i386                  randconfig-1008-20261112    clang-22
+i386                  randconfig-1008-20261113    clang-22
+i386                  randconfig-1009-20261112    clang-22
+i386                  randconfig-1009-20261113    clang-22
+i386                  randconfig-1010-20261112    clang-22
+i386                  randconfig-1010-20261113    clang-22
+i386                  randconfig-1011-20261112    clang-22
+i386                  randconfig-1011-20261113    clang-22
+i386                  randconfig-1012-20261112    clang-22
+i386                  randconfig-1012-20261113    clang-22
+i386                  randconfig-1013-20261112    clang-22
+i386                  randconfig-1013-20261113    clang-22
+loongarch                         allmodconfig    clang-24
+loongarch                          allnoconfig    gcc-16.2.0
+loongarch                            defconfig    clang-24
+loongarch             randconfig-1000-20261113    clang-24
+loongarch             randconfig-1001-20261113    clang-24
+m68k                              allmodconfig    gcc-16.2.0
+m68k                               allnoconfig    gcc-16.2.0
+m68k                              allyesconfig    clang-24
+m68k                              allyesconfig    gcc-16.2.0
+m68k                                 defconfig    clang-24
+m68k                             mac_defconfig    gcc-16.2.0
+microblaze                         allnoconfig    gcc-16.2.0
+microblaze                        allyesconfig    gcc-16.2.0
+microblaze                           defconfig    clang-24
+mips                              allmodconfig    gcc-16.2.0
+mips                               allnoconfig    gcc-16.2.0
+mips                              allyesconfig    gcc-16.2.0
+mips                       pic32mzda_defconfig    gcc-16.2.0
+mips                        rbtx49xx_defconfig    gcc-16.2.0
+nios2                             allmodconfig    clang-20
+nios2                              allnoconfig    clang-24
+nios2                                defconfig    clang-24
+nios2                 randconfig-1000-20261113    clang-24
+nios2                 randconfig-1001-20261113    clang-24
+openrisc                          allmodconfig    clang-20
+openrisc                           allnoconfig    clang-24
+openrisc                             defconfig    gcc-16.2.0
+parisc                            allmodconfig    gcc-16.2.0
+parisc                             allnoconfig    clang-24
+parisc                            allyesconfig    clang-17
+parisc                               defconfig    gcc-16.2.0
+parisc                randconfig-1000-20261113    gcc-13.5.0
+parisc                randconfig-1001-20261113    gcc-13.5.0
+parisc64                             defconfig    clang-24
+powerpc                           allmodconfig    gcc-16.2.0
+powerpc                            allnoconfig    clang-24
+powerpc                  mpc832x_rdb_defconfig    gcc-16.2.0
+powerpc                       ppc64e_defconfig    gcc-16.2.0
+powerpc               randconfig-1000-20261113    gcc-13.5.0
+powerpc               randconfig-1001-20261113    gcc-13.5.0
+powerpc64             randconfig-1000-20261113    gcc-13.5.0
+powerpc64             randconfig-1001-20261113    gcc-13.5.0
+riscv                             allmodconfig    clang-24
+riscv                              allnoconfig    clang-24
+riscv                             allyesconfig    clang-24
+riscv                                defconfig    gcc-16.2.0
+riscv                 randconfig-1000-20261112    gcc-9.5.0
+riscv                 randconfig-1001-20261112    gcc-9.5.0
+s390                              allmodconfig    clang-17
+s390                               allnoconfig    clang-24
+s390                              allyesconfig    gcc-16.2.0
+s390                                 defconfig    gcc-16.2.0
+s390                  randconfig-1000-20261112    gcc-9.5.0
+s390                  randconfig-1001-20261112    gcc-9.5.0
+sh                                allmodconfig    gcc-16.2.0
+sh                                 allnoconfig    clang-24
+sh                                allyesconfig    clang-17
+sh                                   defconfig    gcc-14
+sh                           kfr2r09_defconfig    gcc-16.2.0
+sh                    randconfig-1000-20261112    gcc-9.5.0
+sh                    randconfig-1001-20261112    gcc-9.5.0
+sh                      sh7710voipgw_defconfig    gcc-16.2.0
+sparc                              allnoconfig    clang-24
+sparc                                defconfig    gcc-16.2.0
+sparc                 randconfig-1000-20261112    gcc-8.5.0
+sparc                 randconfig-1001-20261112    gcc-8.5.0
+sparc64                           allmodconfig    clang-20
+sparc64                              defconfig    gcc-14
+sparc64               randconfig-1000-20261112    gcc-8.5.0
+sparc64               randconfig-1001-20261112    gcc-8.5.0
+um                                allmodconfig    clang-17
+um                                 allnoconfig    clang-24
+um                                allyesconfig    gcc-16.2.0
+um                                   defconfig    gcc-14
+um                              i386_defconfig    gcc-14
+um                    randconfig-1000-20261112    gcc-8.5.0
+um                    randconfig-1001-20261112    gcc-8.5.0
+um                            x86_64_defconfig    gcc-14
+x86_64                             allnoconfig    clang-24
+x86_64      buildonly-randconfig-1000-20261113    clang-22
+x86_64      buildonly-randconfig-1001-20261113    clang-22
+x86_64      buildonly-randconfig-1002-20261113    clang-22
+x86_64      buildonly-randconfig-1003-20261113    clang-22
+x86_64      buildonly-randconfig-1004-20261113    clang-22
+x86_64      buildonly-randconfig-1005-20261113    clang-22
+x86_64                               defconfig    gcc-14
+x86_64                                   kexec    clang-22
+x86_64                randconfig-1000-20261113    clang-22
+x86_64                randconfig-1001-20261113    clang-22
+x86_64                randconfig-1002-20261113    clang-22
+x86_64                randconfig-1003-20261113    clang-22
+x86_64                randconfig-1004-20261113    clang-22
+x86_64                randconfig-1005-20261113    clang-22
+x86_64                randconfig-1006-20261113    clang-22
+x86_64                randconfig-1007-20261113    clang-22
+x86_64                randconfig-1008-20261113    clang-22
+x86_64                randconfig-1009-20261113    clang-22
+x86_64                randconfig-1010-20261113    clang-22
+x86_64                randconfig-1011-20261113    clang-22
+x86_64                                rhel-9.4    clang-22
+x86_64                            rhel-9.4-bpf    gcc-14
+x86_64                           rhel-9.4-func    clang-22
+x86_64                     rhel-9.4-kselftests    clang-22
+x86_64                          rhel-9.4-kunit    gcc-14
+x86_64                            rhel-9.4-ltp    gcc-14
+x86_64                           rhel-9.4-rust    clang-22
+xtensa                             allnoconfig    clang-24
+xtensa                            allyesconfig    clang-20
+xtensa                randconfig-1000-20261112    gcc-8.5.0
+xtensa                randconfig-1001-20261112    gcc-8.5.0
 
-No not a performance optimization as is, in the latest cover I explain it:
-
-"The main goal of this patchset is to provide a new feature,
-migrate efficiently on fault, and not directly improve performance
-of current migrate_vma_setup() (which is now routed thru
-hmm_range_fault()) callers."
-
-The "efficiently" is wrong word, I should say "in one walk".  In the
-beginning of the cover, I explain the benefits of having one walk. Also,
-I think it is sensible to have one implementation for it in HMM, instead
-of each driver trying to do something similar.
-
-We don't currently have in kernel the capability to do migrate on fault
-in one walk, so I can't show a performance gain with a simple apples to
-apples test.
-
-Also :
-
-"the selftests show that there is at least no regression for
-current migrate_vma_setup() callers."
-
-So the test is to show there is no regression still for current callers
-(X86-64), not to show if there would be gains.
-
->
-> Recipients look at patchsets wondering "why should I spend time on
-> this", especially in these times.  It's best to answer this question
-> right there in the first sentence of the [0/N].  That means numbers,
-> and the better they are, the more attention the patchset will get.
->
->>  Documentation/mm/hmm.rst               |   45 +
->>  drivers/gpu/drm/nouveau/nouveau_dmem.c |  402 ++++++++-
->>  drivers/gpu/drm/nouveau/nouveau_dmem.h |   12 +
->>  drivers/gpu/drm/nouveau/nouveau_svm.c  |  155 ++--
->>  drivers/gpu/drm/nouveau/nouveau_svm.h  |    5 +
->>  include/linux/hmm.h                    |   51 +-
->>  include/linux/migrate.h                |   59 +-
->>  lib/test_hmm.c                         |  174 +++-
->>  lib/test_hmm_uapi.h                    |   21 +-
->>  mm/Kconfig                             |    1 +
->>  mm/hmm.c                               | 1075 ++++++++++++++++++++++--
->>  mm/migrate_device.c                    |  618 +++-----------
->>  tools/testing/selftests/mm/hmm-tests.c |   56 ++
->>  13 files changed, 1984 insertions(+), 690 deletions(-)
-> also, yikes!
-
-Yeah, the nouveau made the numbers bigger - but we have a real user!
-
---Mika
-
-
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
