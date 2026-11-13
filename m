@@ -2,52 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34111606AE0F
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 16:17:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72775606A330
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 16:20:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ou9UlLra
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=hfrdAEPR
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D1D101126B7;
-	Fri, 13 Nov 2026 16:16:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB2C1126AF;
+	Fri, 13 Nov 2026 16:20:32 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D53F210EC47;
- Fri, 13 Nov 2026 16:16:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78A3F1126AF
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 16:20:25 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 9F22046830;
- Fri, 13 Nov 2026 16:16:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBD991F000C5;
- Fri, 13 Nov 2026 16:16:49 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 9A0C341335;
+ Fri, 13 Nov 2026 16:20:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5528B1F000C4;
+ Fri, 13 Nov 2026 16:20:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794586612;
- bh=CVtKY2baAFqQRZbKIAhuVTcQeg51Dsb2Tf0U1oZ+Jro=;
- h=Date:From:To:Cc:Subject;
- b=ou9UlLra4LK+xJLE/zAyTNqUJTN29nb19guDGIaorpNjG7Yg41XCOF26QNTvepmcJ
- XzJn03IadGfZcWNl5WsW/z3Nc5+4sHoWXsWendDUDEOHjuPqQIvsgIhyU17Wo5hkCX
- GcMwc1+EBRMv3i/iTMzf+HLSo52CXKhDiCgsNsruntVpiLi+d6WOAxdzcN4lFxg20A
- uIEzdaTDyZ3HLCb9LedBOV6wfJy1N7+Oj0bnUh3XPIoyn2B/LmZcSiEY4kIEuV6L8d
- DcYy7BWVFLzb1rmQbRNRM/Z2tkT26t8vcmyfJBpSRVu5olldaKBLtY2QMAV9m38MGw
- v9tMLMSjpRqFg==
-Date: Fri, 13 Nov 2026 16:16:47 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Daniel Charles <daniel.charles@intel.com>,
- Dave Airlie <airlied@redhat.com>, DRI <dri-devel@lists.freedesktop.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Raag Jadav <raag.jadav@intel.com>,
- Riana Tauro <riana.tauro@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-Subject: linux-next: manual merge of the drm-xe tree with the drm-fixes tree
-Message-ID: <avc376Z6nj4HlOnJ@sirena.org.uk>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="XMSiqA4Qoh9OzPbI"
-Content-Disposition: inline
+ s=k20260515; t=1794586820;
+ bh=38xcnl3oQULXVYfrKGDJ473zylrTtjuEl5gtQWkUI5s=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=hfrdAEPRyddzmt0L6QD9smx2g6I7wp0CZzO6sTpRX6W0O3m/6jMuvBtqts/5gjgt7
+ L36H+3SwYvruSEarm7hmAg6yTre5gJGqSbB35YlHW8taX2T4Si37eHVjupdqAlx88j
+ st0xKylWF3uz6M72TqjT+dWzghxxj9SHT9g2xPceUgSEHqJNn3Xp9kfRuei5EUEJ3z
+ dpfEzWky9XKYV4Rx6ONPEEDIrr12ccUs0+weshgTzNaLf8EXfI+TMSn1fKLknV7l04
+ QdzgOT1BVcEac0dLB/D3c55TNReZT+PwPGpyopLfhhp8v0tZqlLMcJDd179ZtwiZ8u
+ JoLs+L+yPh8fw==
+Message-ID: <sashiko-outbox-213185@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH 1/4] drm/xe: Add has_sem64 bit to graphics/media IP
+ descriptors
+To: tilak.tirumalesh.tangudu@intel.com, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261113155734.4164230-2-tilak.tirumalesh.tangudu@intel.com>
+References: <20261113155734.4164230-1-tilak.tirumalesh.tangudu@intel.com>
+ <20261113155734.4164230-2-tilak.tirumalesh.tangudu@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 13 Nov 2026 16:20:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,6 +47,7 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
@@ -64,268 +55,86 @@ X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
+Thank you for your contribution! Sashiko AI review found 2 potential
+issues to consider:
+- [Medium] drm/xe: missing has_sem64 in graphics_xe3p_xpc disables sem64
+  on 35.11 and 35.03
+- [Low] drm/xe: commit message mismatch with has_sem64 resolution in
+  xe_info_init()
+--
 
---XMSiqA4Qoh9OzPbI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+commit aa9a045209e3c606e5aa5ffac66c1d9a9153a146
+Author: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-Hi all,
+drm/xe: Add has_sem64 bit to graphics/media IP descriptors
 
-Today's linux-next merge of the drm-xe tree got conflicts in:
+This commit adds a has_sem64 capability bit to the graphics and media IP
+descriptors and populates gt->info.has_sem64 for Xe3p platforms.
 
-  drivers/gpu/drm/xe/xe_lmtt.c
-  drivers/gpu/drm/xe/xe_pm.c
+>     The bit indicates whether the GT's command streamer supports the
+>     MI_SEMAPHORE_WAIT_64 instruction. A platform's CS must not mix
+>     MI_SEMAPHORE_WAIT and MI_SEMAPHORE_WAIT_64 within a context or across
+>     context submissions, so both the primary and media GT must agree befo=
+re
+>     either one enables sem64; resolve has_sem64 once in xe_info_init() and
+>     hand the single value to both GT allocators.
 
-between commits:
+[Severity: Low]
+Does the commit message match how has_sem64 is resolved?
+alloc_primary_gt() and alloc_media_gt() each compute gt->info.has_sem64
+independently from their IP descriptor and stepping, and xe_info_init()
+afterwards clears both fields if either GT does not support it, rather
+than resolving a single value in xe_info_init() and passing it to the GT
+allocators.
 
-  fc0ba46fd8278 ("drm/xe: Access GT MMIO after pcode init")
-  a17c5ed0dc715 ("drm/xe/pm: Apply tile workarounds after PCODE initializat=
-ion")
-  3654a4d734df9 ("drm/xe/pf: Program LMTT directory pointer from each GT's =
-init path")
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 7fba5295c33e6..5a147a577a098 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -127,6 +127,7 @@ static const struct xe_graphics_desc graphics_xe3p_lp=
+g =3D {
+>  	.multi_queue_engine_class_mask =3D BIT(XE_ENGINE_CLASS_COPY) | BIT(XE_E=
+NGINE_CLASS_COMPUTE),
+>  	.num_geometry_xecore_fuse_regs =3D 3,
+>  	.num_compute_xecore_fuse_regs =3D 3,
+> +	.has_sem64 =3D 1,
+>  };
+> =20
+>  static const struct xe_graphics_desc graphics_xe3p_xpc =3D {
+> @@ -153,11 +154,20 @@ static const struct xe_media_desc media_xelpmp =3D {
+>  	.hw_engine_mask =3D
+>  		GENMASK(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0) |
+>  		GENMASK(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0) |
+> -		BIT(XE_HW_ENGINE_GSCCS0)
+> +		BIT(XE_HW_ENGINE_GSCCS0),
+> +};
+> +
+> +static const struct xe_media_desc media_xe3p_lpm =3D {
+> +	.hw_engine_mask =3D
+> +		GENMASK(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0) |
+> +		GENMASK(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0) |
+> +		BIT(XE_HW_ENGINE_GSCCS0),
+> +	.has_sem64 =3D 1,
+>  };
+> =20
+>  static const struct xe_media_desc media_xe3p_hpm =3D {
+>  	.has_uncorrectable_error_reporting =3D 1,
+> +	.has_sem64 =3D 1,
 
-=66rom the drm-fixes tree and commits:
+[Severity: Medium]
+Should graphics_xe3p_xpc also set .has_sem64 =3D 1?
 
-  641ffb2132839 ("drm/xe/pm: Apply tile workarounds after PCODE initializat=
-ion")
-  a8653bee6a040 ("drm/xe/pf: Program LMTT directory pointer from each GT's =
-init path")
-  c9edd9cf7e613 ("drm/xe/pf: Use multicast writes for early-generation LMTT=
- config")
-  be082ef8157b7 ("drm/xe/pm: skip BO eviction on iGPU for non-hibernation s=
-leep")
-  ff03d9510426e ("drm/xe/pm: Introduce xe_device_suspend/resume()")
+alloc_primary_gt() scopes the stepping B0 check to GRAPHICS_VERx100(xe) =3D=
+=3D
+3510 (graphics_xe3p_lpg), and media_xe3p_hpm (35.03) enables has_sem64.
+Because graphics_xe3p_xpc (35.11) omits .has_sem64 =3D 1,
+tile->primary_gt->info.has_sem64 is false on Xe3p_XPC platforms, and the
+cross-GT check in xe_info_init() then clears
+tile->media_gt->info.has_sem64 on the paired Xe3p_HPM media GT as well,
+leaving sem64 disabled on both GTs.
 
-=66rom the drm-xe tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index 8fba3c01fac29..ea2a3eeefccd7 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -220,14 +220,8 @@ static void lmtt_setup_dir_ptr_gt(struct xe_gt *gt, u3=
-2 config)
- 	struct xe_reg reg;
- 	u32 val_read;
-=20
--	if (GRAPHICS_VER(xe) < 20) {
--		reg =3D LMEM_CFG;
--		xe_mmio_write32(&gt->mmio, reg, config);
--		return;
--	}
--
- 	if (xe_gt_is_main_type(gt)) {
--		reg_mcr =3D XE2_LMEM_CFG_MCR;
-+		reg_mcr =3D GRAPHICS_VER(xe) < 20 ? LMEM_CFG_MCR : XE2_LMEM_CFG_MCR;
- 		xe_gt_mcr_multicast_write(gt, reg_mcr, config);
- 		val_read =3D xe_gt_mcr_unicast_read_any(gt, reg_mcr);
- 		xe_gt_assert_msg(gt, val_read =3D=3D config, "LMEM_CFG_MCR: %#x !=3D %#x=
-\n",
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 61d68c09189f7..f73f68bd449b8 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -167,59 +167,38 @@ static void xe_rpm_lockmap_release(const struct xe_de=
-vice *xe)
- }
-=20
- /**
-- * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle
-+ * xe_pm_needs_bo_evict() - Check if bo eviction is needed
-+ * @xe: The xe device.
-+ * @hibernate: Hibernation event
-+ *
-+ * Return: %true if bo eviction is needed, %false otherwise.
-+ */
-+bool xe_pm_needs_bo_evict(struct xe_device *xe, bool hibernate)
-+{
-+	return IS_DGFX(xe) || hibernate;
-+}
-+
-+/**
-+ * xe_pm_suspend - Helper for System suspend, i.e. S0->S3 / S0->S2idle / S=
-0->S4
-  * @xe: xe device instance
-+ * @hibernate: true if preparing for S4 hibernation, false for < S4 suspend
-  *
-  * Return: 0 on success
-  */
--int xe_pm_suspend(struct xe_device *xe)
-+int xe_pm_suspend(struct xe_device *xe, bool hibernate)
- {
--	struct xe_gt *gt;
--	u8 id;
- 	int err;
-=20
- 	drm_dbg(&xe->drm, "Suspending device\n");
- 	xe_pm_block_begin_signalling();
- 	trace_xe_pm_suspend(xe, __builtin_return_address(0));
-=20
--	err =3D xe_pxp_pm_suspend(xe->pxp);
-+	err =3D xe_device_suspend(xe, hibernate, false);
- 	if (err)
--		goto err;
-+		drm_dbg(&xe->drm, "Device suspend failed %d\n", err);
-+	else
-+		drm_dbg(&xe->drm, "Device suspended\n");
-=20
--	xe_late_bind_pm_suspend(&xe->late_bind);
--
--	for_each_gt(gt, xe, id)
--		xe_gt_suspend_prepare(gt);
--
--	xe_display_pm_suspend(xe);
--
--	/* FIXME: Super racey... */
--	err =3D xe_bo_evict_all(xe);
--	if (err)
--		goto err_display;
--
--	for_each_gt(gt, xe, id) {
--		err =3D xe_gt_suspend(gt);
--		if (err)
--			goto err_display;
--	}
--
--	xe_irq_suspend(xe);
--
--	xe_display_pm_suspend_late(xe);
--
--	xe_i2c_pm_suspend(xe);
--
--	drm_dbg(&xe->drm, "Device suspended\n");
--	xe_pm_block_end_signalling();
--
--	return 0;
--
--err_display:
--	xe_display_pm_resume(xe);
--	xe_pxp_pm_resume(xe->pxp);
--err:
--	drm_dbg(&xe->drm, "Device suspend failed %d\n", err);
- 	xe_pm_block_end_signalling();
- 	return err;
- }
-@@ -232,71 +211,18 @@ int xe_pm_suspend(struct xe_device *xe)
-  */
- int xe_pm_resume(struct xe_device *xe)
- {
--	struct xe_tile *tile;
--	struct xe_gt *gt;
--	u8 id;
- 	int err;
-=20
- 	xe_pm_block_begin_signalling();
- 	drm_dbg(&xe->drm, "Resuming device\n");
- 	trace_xe_pm_resume(xe, __builtin_return_address(0));
-=20
--	err =3D xe_pcode_ready(xe, true);
-+	err =3D xe_device_resume(xe, false);
- 	if (err)
--		return err;
-+		drm_dbg(&xe->drm, "Device resume failed %d\n", err);
-+	else
-+		drm_dbg(&xe->drm, "Device resumed\n");
-=20
--	for_each_tile(tile, xe, id)
--		xe_wa_apply_tile_workarounds(tile);
--
--	for_each_gt(gt, xe, id)
--		xe_gt_resume_early(gt);
--
--	xe_display_pm_resume_early(xe);
--
--	/*
--	 * This only restores pinned memory which is the memory required for the
--	 * GT(s) to resume.
--	 */
--	err =3D xe_bo_restore_early(xe);
--	if (err)
--		goto err;
--
--	xe_i2c_pm_resume(xe, true);
--
--	xe_sysctrl_pm_resume(xe);
--
--	xe_irq_resume(xe);
--
--	for_each_gt(gt, xe, id) {
--		err =3D xe_gt_resume(gt);
--		if (err)
--			break;
--	}
--
--	/*
--	 * Try to bring up display before bailing from GT resume failure,
--	 * so we don't leave the user clueless with a blank screen.
--	 */
--	xe_display_pm_resume(xe);
--	if (err)
--		goto err;
--
--	err =3D xe_bo_restore_late(xe);
--	if (err)
--		goto err;
--
--	xe_pxp_pm_resume(xe->pxp);
--
--	if (IS_VF_CCS_READY(xe))
--		xe_sriov_vf_ccs_register_context(xe);
--
--	xe_late_bind_pm_resume(&xe->late_bind);
--
--	drm_dbg(&xe->drm, "Device resumed\n");
--	xe_pm_block_end_signalling();
--	return 0;
--err:
--	drm_dbg(&xe->drm, "Device resume failed %d\n", err);
- 	xe_pm_block_end_signalling();
- 	return err;
- }
-@@ -461,6 +387,9 @@ static int xe_pm_notifier_callback(struct notifier_bloc=
-k *nb,
- 		struct xe_validation_ctx ctx;
-=20
- 		reinit_completion(&xe->pm_block);
-+		if (!xe_pm_needs_bo_evict(xe, action =3D=3D PM_HIBERNATION_PREPARE))
-+			break;
-+
- 		xe_pm_block_begin_signalling();
- 		xe_pm_runtime_get(xe);
- 		(void)xe_validation_ctx_init(&ctx, &xe->val, NULL,
-@@ -485,6 +414,9 @@ static int xe_pm_notifier_callback(struct notifier_bloc=
-k *nb,
- 	case PM_POST_SUSPEND:
- 		complete_all(&xe->pm_block);
- 		xe_pm_wake_rebind_workers(xe);
-+		if (!xe_pm_needs_bo_evict(xe, action =3D=3D PM_POST_HIBERNATION))
-+			break;
-+
- 		xe_bo_notifier_unprepare_all_pinned(xe);
- 		xe_pm_runtime_put(xe);
- 		break;
-
---XMSiqA4Qoh9OzPbI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmr3N+4ACgkQJNaLcl1U
-h9BLqAf/a3VOhfxKmfNmCvWN2ecgw9zW1XzW85UjqSaB8G+zpEtW4dYS6Z1nfuoi
-uKQfq5WhY/uibOk++SEfu7ImvrcesgyeIiyfKyud1NZOU9gHtjqBLY6QNmoEdrbY
-QizOViLZzd/2EdDSnSrxvK8CfVvbhBPiQHrm58s1Dh54f3IGCQZZsWL7XU5Kdblv
-vjt7r0ukVD0amxvJOqisObSOhRhLFBtfzLbaDLHhiirkB7TdmMwgVjq6yg1YPS1+
-Z4Cx4E1FVDPm/NAQamngiBzyosfZGK/M+4RIKkqB41f9uv3QJ3FfYfWmcCe2W2GZ
-LNtT6dfWmMA28P9x/UTgh2IwQAwvmg==
-=+BY7
------END PGP SIGNATURE-----
-
---XMSiqA4Qoh9OzPbI--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261113155734.4164=
+230-1-tilak.tirumalesh.tangudu@intel.com?part=3D1
