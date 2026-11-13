@@ -2,49 +2,78 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42363606A887
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 14:27:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED6FC606A337
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 14:28:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=linux.dev header.i=@linux.dev header.a=rsa-sha256 header.s=key1 header.b=lhfdsElg
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=nPn9TgdS
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08C37112596;
-	Fri, 13 Nov 2026 14:27:50 +0000 (UTC)
-X-Greylist: delayed 365 seconds by postgrey-1.36 at gabe;
- Thu, 12 Nov 2026 17:06:32 UTC
-Received: from mta1.migadu.com (out-134.mta1.migadu.com [95.215.58.134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B189112243
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 17:06:32 +0000 (UTC)
-X-Envelope-To: intel-xe@lists.freedesktop.org
-DKIM-Signature: a=rsa-sha256; bh=yKUtsHF/2fwhRnmNjv/gYBbo8M716rJzJqy5QbQim/g=; 
- c=simple/simple; d=linux.dev;
- h=from:to:subject:date:message-id:mime-version:content-type; s=key1;
- t=1794503190; v=1; x=1795107990;
- b=lhfdsElgJApfH80wZi6ElmUKF6zSNBeKVNxXkuW/33p6nBo82r5IXKfmjdPv9nbceR3gUT/M
- DeLEErMEqediHmUVbaNnrhJPkqUcD1dm4HKGwXa58eTw6Wa9xWiYktjOnfFpPrLZCAEoxu8ASp6
- 7QdEyjZlwDDWJL6BDqDXf6Ug=
-X-Envelope-To: intel-xe@lists.freedesktop.org
-Received: by smtp.migadu.com with ESMTPS id 584a0733ec27085c;
- Thu, 12 Nov 2026 17:00:23 +0000
-X-Mizu-Trace-ID: 584a0733ec27085c
-X-Migadu-Flow: FLOW_OUT
-From: Aditya Garg <aditya.garg@linux.dev>
-To: Lukas Wunner <lukas@wunner.de>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- Andre Eikmeyer <dev@deq.rocks>, Yossef Osman <yossef.osman@proton.me>,
- Alexander Fischer <alexander.fischer@kait2en.org>
-Subject: [PATCH RESEND] drm/i915/psr: enable PSR on Apple T2 eDP panels
-Date: Thu, 12 Nov 2026 22:29:56 +0530
-Message-ID: <20261112165956.61633-1-aditya.garg@linux.dev>
-X-Mailer: git-send-email 2.56.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id B333C1125D8;
+	Fri, 13 Nov 2026 14:28:00 +0000 (UTC)
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+ [209.85.160.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80E6010E103
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 04:42:45 +0000 (UTC)
+Received: by mail-qt1-f169.google.com with SMTP id
+ d75a77b69052e-54d9ac78f2eso6906171cf.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Nov 2026 20:42:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20260707; t=1794544964; x=1795149764; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=Tk5rSAMyMBpK/2/Y0715hQ2D01LoATP9Sswc4ObGJoY=;
+ b=nPn9TgdS63Iblu/WgiRHUNX+v18QHudMuImF4k7iqOjB+zysIh5VYaRPSq7VfkcJRn
+ etyvw1KcDPR2ynOMRVwXEzscz+/hJ88sgatFaErrZ3pCm604VLuiKq2+YTUqWJrvB2lv
+ m6hO4JbNNSsNONZTMvhj7HI6gNHofL0NDdbqS+0O01wnJ1/ao/w92Kr8sqfy+MPDXFcd
+ im9CyI1SoTjyvL1YeEajvWQdd7cPpBBI3eDgnjimbYuhkCpSu49rxcqhFAeoY1HoXeki
+ OpcC7P6dFzpa0Ksri0iEFR9sCsR31nGqs5gKDXr/glplulJxYJLHIA6JzdTtnsQYYVAR
+ pbVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1794544964; x=1795149764;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=Tk5rSAMyMBpK/2/Y0715hQ2D01LoATP9Sswc4ObGJoY=;
+ b=ZVMYlCCjiSitrO81Kaox/Xaoq7vaVjtamUe4G7TIyhGIHRamwCE8d+3geCRwe2ZeuD
+ SgGuwlL43GnurHaka/Fs1/8xd7xALo7ue4x8gvWq0AkSG0FkxTRVnfnrlqqTvgADdBef
+ L+sng7H2OVpEC25c6dm6Vp9lWpHPvEYjI7Rmbs+x7IvflMtk0zzfBm1m1JsT1lxj1a6X
+ vpXu/PjZfpHpib6zUkkvMdiNP4K3kWeObe6LGgCxkhF0XCIolyU/OwX/1ulbv6CeQt1c
+ XywUjLACNqZtf+/u0mrqllkO8gEdgsY3s5f/rmEzITK1iiYSKri6qJ+pcyCKgvzjcTY5
+ 2sdg==
+X-Forwarded-Encrypted: i=1;
+ AL+hErHjkCMvM5HTNpp1542pLhFiIGOTxinoFw+aOb77/Ggej2R6+b0yvdnC1PkL4cERqH/mAvloFmXr6A==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/Nv+j7FSZyoU8qY5m7McQPielK4bTLN6UtsLHSK41QGAVLt/n0
+ 8vyrfQ/EjvtTOnD96cAoKY0Y+ibHMKPMXUxARsYXtmu+57y8h6TmUtiG
+X-Gm-Gg: AYBFou3I/Inq36TQ0Lzjp4tuPOKyFa3KStVFwy6WSwPDEFbWBmu5ZxiGzKhaAhLuTY9
+ lXSyKQFYvhwygEq7PmLZj+m2GUXaoRH1WrfAv9qb13WfMJEchTAXeWiMiT66XMHIJSLcrA2dR/h
+ q0zTlsfYkfcOe84oRwgHrRBApL9MlgqKLnOzd5L8jNCJupRt3UkPzGup91nSt11HsZBDN7b0+NW
+ 48Vj/i0Mp2fiEdiCtkzTYNFkQHKUFwZuLZf7HPqWjKJF+s9nGPC8fkaWgJUnQnylxzLMsDNkmAl
+ iJdSbgRF/FWpMDrHN+m3QZJ/sw4TS40IDhS5l6QQAdbr+i8O3zSjnFnFU1LJpVkwTES2COqQUi+
+ kuiFNLK6ubYzqMbnNO0KHMzYn8CZBukdDVQQiDJslDSdRd4I6Uv7Z6r5LpNg0wX6T2Opx+A6/D3
+ MMK2F4xCVry6xXqF/KeSWsHpMntLGaEp3eDPnqkAxK46UeHjWfdHQvl/0AOuWhpP/PR/aUO1K+D
+ Lh0WlU35DLb6sn6WYaWP+zpbI9MQ7L7liyI2W1U7f/9lC220sPd0mjHwpATxYXjpMdD7+bZgTTp
+ VKMzSrHBMcNTLkgU+PKSH4ch1HWsucqr1KZLD1jJexf0HqyJZpKtQCt3IPa+ZMf7KKxLVNc2N5M
+ =
+X-Received: by 2002:a05:622a:590b:b0:532:c181:8fe9 with SMTP id
+ d75a77b69052e-55ac448c6e7mr23800341cf.9.1794544964243; 
+ Thu, 12 Nov 2026 20:42:44 -0800 (PST)
+Received: from linux.. ([8.34.174.240]) by smtp.gmail.com with ESMTPSA id
+ d75a77b69052e-55ad14f1ebbsm10605221cf.23.2026.11.12.20.42.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 12 Nov 2026 20:42:43 -0800 (PST)
+From: Changyul Lee <lcy8047@gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Changyul Lee <lcy8047@gmail.com>
+Subject: [PATCH] drm/xe: Release the SVM prefetch ranges of unparsed ops
+Date: Thu, 12 Nov 2026 23:42:39 -0500
+Message-ID: <20261113044239.2185984-1-lcy8047@gmail.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Fri, 13 Nov 2026 14:27:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -57,209 +86,56 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Alexander Fischer <alexander.fischer@kait2en.org>
+vm_bind_ioctl_ops_create() stores SVM ranges, each with a reference, in
+op->prefetch_range.range for every PREFETCH op on a CPU address mirror
+VMA. xe_vma_ops_fini() releases them only for the ops on vops->list.
+When vm_bind_ioctl_ops_parse() fails, the ops after the failing one are
+never added to that list, and xe_vm_bind_ioctl() frees them with
+drm_gpuva_ops_free(), leaking their XArray nodes and range references.
+A PREFETCH that covers a userptr VMA and a CPU address mirror VMA after
+it does this when pinning the userptr pages fails.
 
-Commit 1035f4a65f58 ("drm/i915: Disable PSR in Apple panels")
-disabled PSR on all Apple sinks until i915 gained the required panel
-handling.
+Release the prefetch ranges of all ops before freeing them. Ranges
+already released through vops->list leave an empty XArray, which
+xe_vma_svm_prefetch_ranges_fini() skips.
 
-An AUX trace on a MacBookPro16,2 running macOS 15.7.7 shows the
-following writes when the panel is powered on:
-
-  DPCD 0x321 = 0x3c
-  DPCD 0x4d2 = 0x01
-  DPCD 0x4d1 = 0x03
-  DPCD 0x170 = 0x01 (DP_PSR_ENABLE without CRC verification)
-
-Five seconds later, a write of 0x01 to DPCD 0x4d4 occurs between the
-BanksiaTcon FIFOEnter() and SRDEnter() events. This register is the
-vendor trigger for entering self refresh.
-
-With the three setup writes, CRC verification disabled, and the 0x4d4
-trigger added to i915's existing PSR enable sequence, the tested panels
-enter PSR1.
-
-Implement this handling as an i915 DPCD quirk. Match the Apple PCI
-subsystem vendor in the quirk table, and limit the quirk to Apple-OUI
-eDP sinks on systems containing an Apple T2. All other Apple sinks
-retain the existing NO_PSR quirk. Override the VBT PSR flag for
-matching panels because Apple leaves it clear.
-
-The same sink-side protocol may also be present on T1 and Apple silicon
-systems, but leave those systems unchanged until it has been tested
-with their display drivers.
-
-Tested on MacBookPro15,1, MacBookPro15,2, MacBookPro16,1,
-MacBookPro16,2 and MacBookAir9,1, covering four panel device IDs. All
-five enter PSR1 after boot and across suspend/resume, report
-DP_PSR_SINK_ACTIVE_SINK_SYNCED, and show no sink errors.
-
-Tested-by: Andre Eikmeyer <dev@deq.rocks>
-Tested-by: Yossef Osman <yossef.osman@proton.me>
-Signed-off-by: Alexander Fischer <alexander.fischer@kait2en.org>
-Signed-off-by: Aditya Garg <aditya.garg@linux.dev>
+Fixes: 09ba0a8f06cd ("drm/xe/svm: Implement prefetch support for SVM ranges")
+Signed-off-by: Changyul Lee <lcy8047@gmail.com>
 ---
-Changes in v4:
-- Rebase onto drm-tip; use drm_dp_dpcd_write_byte() for the new
-  writes to match the conversion of intel_psr.c
+Found with a static analysis tool we are developing.
 
-Changes in v3:
-- Match the Apple PCI subsystem vendor in the DPCD quirk table
-  (Lukas Wunner)
+Compile-tested only, with x86_64_defconfig plus DRM_XE, DRM_XE_GPUSVM
+and W=1.
 
-Changes in v2:
-- Use pci_dev_present() instead of pci_get_device()/pci_dev_put(),
-  which also drops the local PCI_DEVICE_ID define (Lukas Wunner)
----
- drivers/gpu/drm/i915/display/intel_psr.c    | 28 +++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_quirks.c | 28 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
- 3 files changed, 55 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 00d0146b2..c3bde5b64 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -228,6 +228,9 @@ static bool psr_global_enabled(struct intel_dp *intel_dp)
- 
- 	switch (intel_dp->psr.debug & I915_PSR_DEBUG_MODE_MASK) {
- 	case I915_PSR_DEBUG_DEFAULT:
-+		if (intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE))
-+			return true;
-+
- 		return intel_dp_is_edp(intel_dp) ?
- 			connector->panel.vbt.psr.enable : true;
- 	case I915_PSR_DEBUG_DISABLE:
-@@ -667,7 +670,8 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
- 	drm_dbg_kms(display->drm, "eDP panel supports PSR version %x\n",
- 		    connector->dp.psr_caps.dpcd[0]);
- 
--	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR)) {
-+	if (drm_dp_has_quirk(&intel_dp->desc, DP_DPCD_QUIRK_NO_PSR) &&
-+	    !intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE)) {
- 		drm_dbg_kms(display->drm,
- 			    "PSR support not currently available for this panel\n");
- 		return;
-@@ -807,19 +811,36 @@ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
- 	drm_dp_dpcd_write_byte(&intel_dp->aux, PANEL_REPLAY_CONFIG3, panel_replay_config_3);
- }
- 
-+/* Undocumented Apple eDP sink registers */
-+#define APPLE_PSR_SETUP_1	0x321
-+#define APPLE_PSR_SETUP_2	0x4d2
-+#define APPLE_PSR_SETUP_3	0x4d1
-+#define APPLE_PSR_TRIGGER	0x4d4
-+
-+static void psr_apple_prepare_sink(struct intel_dp *intel_dp)
-+{
-+	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_1, 0x3c);
-+	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_2, 0x01);
-+	drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_SETUP_3, 0x03);
-+}
-+
- static void _psr_enable_sink(struct intel_dp *intel_dp,
- 			     const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	bool apple_psr = intel_has_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
- 	u8 val = 0;
- 
-+	if (apple_psr)
-+		psr_apple_prepare_sink(intel_dp);
-+
- 	if (crtc_state->has_sel_update) {
- 		val |= DP_PSR_ENABLE_PSR2 | DP_PSR_IRQ_HPD_WITH_CRC_ERRORS;
- 	} else {
- 		if (intel_dp->psr.link_standby)
- 			val |= DP_PSR_MAIN_LINK_ACTIVE;
- 
--		if (DISPLAY_VER(display) >= 8)
-+		if (DISPLAY_VER(display) >= 8 && !apple_psr)
- 			val |= DP_PSR_CRC_VERIFICATION;
- 	}
- 
-@@ -835,6 +856,9 @@ static void _psr_enable_sink(struct intel_dp *intel_dp,
- 
- 	val |= DP_PSR_ENABLE;
- 	drm_dp_dpcd_write_byte(&intel_dp->aux, DP_PSR_EN_CFG, val);
-+
-+	if (apple_psr)
-+		drm_dp_dpcd_write_byte(&intel_dp->aux, APPLE_PSR_TRIGGER, 0x01);
- }
- 
- static void intel_psr_enable_sink(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 7d7db774d..8e9c851c2 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -9,6 +9,7 @@
- 
- #include "intel_display_core.h"
- #include "intel_display_types.h"
-+#include "intel_dp.h"
- #include "intel_quirks.h"
- 
- static void intel_set_quirk(struct intel_display *display, enum intel_quirk_id quirk)
-@@ -100,6 +101,25 @@ static void quirk_disable_psr2(struct intel_display *display)
- 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
- }
- 
-+static void quirk_apple_psr_handshake(struct intel_dp *intel_dp)
-+{
-+	static const struct pci_device_id t2_ids[] = {
-+		/* Apple T2 */
-+		{PCI_DEVICE(PCI_VENDOR_ID_APPLE, 0x1801)},
-+		{}
-+	};
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	if (!intel_dp_is_edp(intel_dp))
-+		return;
-+
-+	if (!pci_dev_present(t2_ids))
-+		return;
-+
-+	intel_set_dpcd_quirk(intel_dp, QUIRK_APPLE_PSR_HANDSHAKE);
-+	drm_info(display->drm, "Applying Apple PSR handshake quirk\n");
-+}
-+
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -289,6 +309,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
- 		.hook = quirk_disable_edp_panel_replay,
- 	},
-+	/* Apple T2 eDP panels */
-+	{
-+		.device = DEVICE_ID_ANY,
-+		.subsystem_vendor = PCI_VENDOR_ID_APPLE,
-+		.subsystem_device = PCI_ANY_ID,
-+		.sink_oui = SINK_OUI(0x00, 0x10, 0xfa),
-+		.hook = quirk_apple_psr_handshake,
-+	},
- };
- 
- void intel_init_quirks(struct intel_display *display)
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 970a4fe52..7b863d408 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -23,6 +23,7 @@ enum intel_quirk_id {
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
- 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
- 	QUIRK_DISABLE_PSR2,
-+	QUIRK_APPLE_PSR_HANDSHAKE,
- };
- 
- void intel_init_quirks(struct intel_display *display);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d25de5652767..ee35ead79371 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -4208,8 +4208,10 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
+ 	xe_vma_ops_fini(&vops);
+ 	for (i = args->num_binds - 1; i >= 0; --i)
+-		if (ops[i])
++		if (ops[i]) {
++			xe_svm_prefetch_gpuva_ops_fini(ops[i]);
+ 			drm_gpuva_ops_free(&vm->gpuvm, ops[i]);
++		}
+ free_syncs:
+ 	if (err == -ENODATA)
+ 		err = vm_bind_ioctl_signal_fences(vm, q, syncs, num_syncs);
+
+base-commit: 7475ea8b58616b33c04afb976cf0fbaad9dd63fb
 -- 
-2.56.0
+2.43.0
 
