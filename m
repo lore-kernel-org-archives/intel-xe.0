@@ -2,34 +2,34 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70FDA606A32D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A594D606A32E
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 12:44:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=cszfzQWS
+	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=Y328bCNU
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09D2A112406;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EEBD112423;
 	Fri, 13 Nov 2026 12:43:55 +0000 (UTC)
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D23BB10E7E4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 463001123B3;
  Fri, 13 Nov 2026 12:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1794573826;
- bh=G+gNUw7+jDF5GThuk8K3MpfJv+LQzoYTTw+8Eipmftc=;
+ bh=YaMTH2wykcP3miWOyfepOmpgVoSReR/hI6xxmSLHdPo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=cszfzQWS991XGofY1SAw+k04q8nPx2wKZ9ZJSDFHBwC5sFreBKVyJiCOD/Y5qiIwT
- u0CR8xvrg6VAM3U4nh/4k3DyUow1jgkzHfBH8GUR4d+N7UtMvZNgRScbifYYSkYk34
- FQKYFaCjC2wvLb9FeYcW6IwQV70HrIT0GFslkOfcz8YTtwc63kY+wkJnZqvxWoZShh
- Gdzk9OuJ4jiDLWpc3eq/hljZjX0dSMdGS+C1cOstRJbNZ2CBS1T4wAkkTcNaKty6VT
- jlOTWQ84e74102yIpNCeI30lRFVbB+/J0iXucvLezblz0dd9WjRveupitaTbN2EGNU
- PkeiqF5G979UA==
+ b=Y328bCNUHcwlesY8Pgf0talsLSeyage4YtwXsMFr6cuXbB6h0C61VCXNe7Kdhi4E2
+ kq/LfCPuU21SXbV8/wCqTs2HEVHVaVI3MdCoUeiy9Tb/g4SfXkLW84ck1yocbxC5hs
+ 4+2nXxYRNhaXgUyuWcTtxaI2tYpz2YeheH/i4l8iIQ2dpcpASAVaXcduxY+cngkHYv
+ MdfguB0sHrx7uhBaq//yqnjatUkkkI1PtlEYY0Db9a9gMolW359MWRR9yQcZS8xygV
+ vXZGsz4kI5bQMWkzR+k3XXm3vc4cPC0TdDV2hClp29mysR/IkhbU8hQSa4AOVlV+zc
+ iEa2yLW53/8XA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH v5 2/5] drm/xe/migrate: Support copying between sysmem and
- stolen
-Date: Fri, 13 Nov 2026 13:44:56 +0100
-Message-ID: <20261113124453.144408-9-dev@lankhorst.se>
+ Matthew Auld <matthew.auld@intel.com>, Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v5 1/5] drm/xe/display: Avoid using stolen memory for
+ framebuffer when media gt exists.
+Date: Fri, 13 Nov 2026 13:44:55 +0100
+Message-ID: <20261113124453.144408-8-dev@lankhorst.se>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261113124453.144408-7-dev@lankhorst.se>
 References: <20261113124453.144408-7-dev@lankhorst.se>
@@ -54,66 +54,43 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In order to copy out the stolen BO, we have to add some support to
-xe_migrate_copy, since otherwise it tries to use the VRAM identity
-mapping on integrated, which obviously doesn't do the right thing.
+On systems with media GT, extra latency is added when accessing stolen
+memory when the GT is in MC6.
 
+Simply disable allocating stolen memory for framebuffers when media gt
+is found.
+
+Thanks to the previous patch, it will be possible to preserve the
+contents.
+
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Link: https://patch.msgid.link/20260630135523.1775379-3-dev@lankhorst.se
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 18 +++++++++++++++---
- 1 file changed, 15 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display_bo.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 102c96d6cea9a..f3ec0343e4af3 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -943,6 +943,10 @@ static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_cursor *cur)
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index f5102cd0e95d6..9385026a80b97 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -131,6 +131,14 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	if (IS_DGFX(xe))
+ 		return false;
  
- static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
- {
-+	/* Stolen is not mapped into identity mapping */
-+	if (cur->mem_type == XE_PL_STOLEN)
++	/*
++	 * Avoid stolen memory when the media_gt exists,
++	 * because a lot of latency is added when media gt is in MC6
++	 */
++	if (xe_device_get_root_tile(xe)->media_gt)
 +		return false;
 +
- 	/* If the chunk is not fragmented, allow identity map. */
- 	return cur->size >= size;
- }
-@@ -1248,6 +1252,14 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 	return flush_flags;
- }
++	/* machine hang when doing lots of LMEMBAR accesses */
+ 	if (XE_DEVICE_WA(xe, 22019338487_display))
+ 		return false;
  
-+static bool is_devmem(struct xe_bo *bo, struct ttm_resource *res)
-+{
-+	if (mem_type_is_vram(res->mem_type))
-+		return true;
-+
-+	return xe_bo_is_stolen_devmem(bo);
-+}
-+
- static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 					   struct xe_bo *src_bo,
- 					   struct xe_bo *dst_bo,
-@@ -1268,8 +1280,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 	int err;
- 	bool src_is_pltt = src->mem_type == XE_PL_TT;
- 	bool dst_is_pltt = dst->mem_type == XE_PL_TT;
--	bool src_is_vram = mem_type_is_vram(src->mem_type);
--	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
-+	bool src_is_vram = is_devmem(src_bo, src);
-+	bool dst_is_vram = is_devmem(dst_bo, dst);
- 	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
- 	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
- 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
-@@ -1969,7 +1981,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 				   struct ttm_resource *dst,
- 				   u32 clear_flags)
- {
--	bool clear_vram = mem_type_is_vram(dst->mem_type);
-+	bool clear_vram = is_devmem(bo, dst);
- 	bool clear_bo_data = XE_MIGRATE_CLEAR_FLAG_BO_DATA & clear_flags;
- 	bool clear_ccs = XE_MIGRATE_CLEAR_FLAG_CCS_DATA & clear_flags;
- 	struct xe_gt *gt = m->tile->primary_gt;
 -- 
 2.55.0
 
