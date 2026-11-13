@@ -2,173 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F020606A333
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:15:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45E65606A330
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:18:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CxfXGP9o;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Am6sSzf8
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=f8kZaUj7
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5883C10E6CE;
-	Fri, 13 Nov 2026 19:15:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D64810E6C5;
- Fri, 13 Nov 2026 19:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05EA910E189;
+	Fri, 13 Nov 2026 19:18:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C593210E04E
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 19:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794597317; x=1826133317;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=wMPIjnDWruOGl/PgEXQNEDx7gGVD5guutGs8Rbh8NZE=;
- b=CxfXGP9oEOaRC9efZCsaUN3aZYWV9dZh7YHO624mseJkNka5ayKc7npA
- WKJrwkVqGPFb/y8Qrlp8uhmBxWlYnTtUpU+420WkhcSGdj7f5Ey2sG+DF
- 5t1/Cb4HtHSTAQTeb9pvmKLtIVgqc/TBF+RqSAUmDyGnS73o6CiXaDXVl
- v89ZKlS5t0seNah12Zcrs5HN4Vlp/waPLhyUV6f4xxjNZbNkPcwSsOdRD
- IzJeYyafs5lgeF/KB/UfJ8A3dOIrZ3dcd8FilxCt6KT+Quh8d7t9TK/or
- XPn+X9s3iOyQhit+ijdwpqTxNA8Q2ZsSKoqFQpWmr6ctqtr4Kg5caYHYY A==;
-X-CSE-ConnectionGUID: 1wmCNIiBRdG3NLOn66cE4A==
-X-CSE-MsgGUID: hwGOvvpIQ5ihI7yQNfeMrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3304716"
+ t=1794597477; x=1826133477;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KDxAolGryMhiCoxrXDeTrNMd3ZGR3BB/Fkl/zTKq9nk=;
+ b=f8kZaUj7aGKd5oh5GSa/CA8xMt1coxrZUN7/YnT4VnNbqhTSkYvJZwCk
+ 4x5B1CuAbvpPyOt+ocCTWWj0CxYY602rwD3AohJwo7q884qwGO+xgwxsP
+ uRZh8kqHi8h1ybM23iw0VeBbLdJFA01cVrGlzezPz46fVyD/VxBLm8B0o
+ bHsKE7+nr+sGZ6MgXOA5N6LVdjjpWKi8vtq46AndC9Y97W2fDteX5Bqha
+ MYyaayrGhfGsQhn2/bosgyM3pj1f2fqk7fKEJRO0ibhquPWkHNiCwPljA
+ YX1sOdNhoAbVhQdwcvc7dtqlhqcXx/1bArizLRXS0oI1juYCYnVPY7TqJ A==;
+X-CSE-ConnectionGUID: mxx5mdc2RjWFvo1HORIIQw==
+X-CSE-MsgGUID: i3WMuXtQTLa35xa9BVjBwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3514433"
 X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="3304716"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2026 11:15:15 -0800
-X-CSE-ConnectionGUID: su0UGyveQNK5vsQbkQkHbg==
-X-CSE-MsgGUID: kt5G4S5gQWyUUTC+uxrwVQ==
+   d="scan'208";a="3514433"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 11:17:47 -0800
+X-CSE-ConnectionGUID: ZYSqHwdfQ+W8KfkjTapCDQ==
+X-CSE-MsgGUID: otvUPBMISya8d5RiU5jBGg==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="9089059"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2026 11:15:15 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 13 Nov 2026 11:15:15 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Fri, 13 Nov 2026 11:15:15 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.7) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 13 Nov 2026 11:15:14 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LraPb6gIcAiLXIMeNZS3TBH8Dbl8bITcF/TG0NXt2L6bVxSPmw9QYjEbMZ6fl4tTHUPDcRe6MnEGSCG5gJPPzIzI4LOiIMt6KPfCI9jDFQhVwaskXRvGd3cutSRBrtADTje0qFsBfVvt0e4k003p4G24aSaN+NI9FEVgTy9ahqD/C+vf3pwCM/8c3BuTnGP/OD/3tkivzi3F/pZfOqWEV9EtIX/EmmoJ56OsE9j+zex/0oJN36B7PC2WbqNSi/kzEVPZJIEGxedyHbNbZMkxnE3BlVzt7JNGfY6Oj7DBbM89/g/XuLBPCUZHOscecZlAJm7wbYmWWDvdRkzAbOqWLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vKeQrwBhco6sfIJU7pB0nHmVLf9n3EoHh3i3ywgXPfo=;
- b=AaLep8ONQ4CM80ZwyfzNk3WQf1wNCiSq1gTxPRKQA8Q11J9YZjA0lVU1yADJmHyxcr6FObteOetIUKU87SgUGJyoiaVLga7NEG2B3JV//ieXn5QrsdYIlVWywgcJhyLpMqMoMgm1zpv0frj3x4maWbZEYnTge01f5c2m8XRU1KySmI3Nw9WoShg9U106cPzIF/PuvFZDbUKk/rneu8NYHq/jWCcZpXKcQ74cdcu2nmaqsuTAajH34yYF717A7VHMJ5xXnVKTd1Fiod6Mz32VjvoSoELDNt/g8x+Qo1uNVziUS5VpUelwaUJhaIT12CCl/EFQ8v9I+2VNbQCKimPTIA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vKeQrwBhco6sfIJU7pB0nHmVLf9n3EoHh3i3ywgXPfo=;
- b=Am6sSzf8Jr+SXmx2AB3W3/f/EdSiSdMEmvDB/UGg3l1clYh4ry5mtQcM4i/q7xg4S7vEY8MtdPNbZumxJF3hn+porJUC7qri6YBGJTC9GO6HV667/3vaAVVeQqEBVbuCtqUzppX1OEZzwLtgiYd5JUoj5IedQcwFMd0KTItIX0E=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CH0PR11MB5524.namprd11.prod.outlook.com (2603:10b6:610:d7::6)
- by SA3PR11MB467332.namprd11.prod.outlook.com (2603:10b6:806:513::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.13; Fri, 13 Nov
- 2026 19:09:06 +0000
-Received: from CH0PR11MB5524.namprd11.prod.outlook.com
- ([fe80::21eb:d2a4:d1af:5d46]) by CH0PR11MB5524.namprd11.prod.outlook.com
- ([fe80::21eb:d2a4:d1af:5d46%3]) with mapi id 15.21.0615.009; Fri, 13 Nov 2026
- 19:09:05 +0000
-Message-ID: <3a2a052d-19ab-445c-9073-e49dbe2dd737@intel.com>
-Date: Fri, 13 Nov 2026 11:09:04 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/20] drm/ttm: Add ttm_bo_access_locked()
-To: Mika Kuoppala <mika.kuoppala@linux.intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <simona.vetter@ffwll.ch>, <matthew.brost@intel.com>,
- <christian.koenig@amd.com>, <thomas.hellstrom@linux.intel.com>,
- <joonas.lahtinen@linux.intel.com>, <gustavo.sousa@intel.com>,
- <jan.maslak@intel.com>, <dominik.karol.piatkowski@intel.com>,
- <rodrigo.vivi@intel.com>, <andrzej.hajda@intel.com>,
- <matthew.auld@intel.com>, <maciej.patelczyk@intel.com>,
- <michal.wajdeczko@intel.com>, <dri-devel@lists.freedesktop.org>, "Felix
- Kuehling" <Felix.Kuehling@amd.com>, =?UTF-8?Q?Michel_D=C3=A4nzer?=
- <michel.daenzer@amd.com>, Alex Deucher <alexander.deucher@amd.com>
-References: <20261109135549.4128280-1-mika.kuoppala@linux.intel.com>
- <20261109135549.4128280-2-mika.kuoppala@linux.intel.com>
-Content-Language: en-US
-From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
-In-Reply-To: <20261109135549.4128280-2-mika.kuoppala@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MW4PR04CA0126.namprd04.prod.outlook.com
- (2603:10b6:303:84::11) To CH0PR11MB5524.namprd11.prod.outlook.com
- (2603:10b6:610:d7::6)
+   d="scan'208";a="8833139"
+Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
+ ([10.121.64.151])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 11:17:48 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI 1/2] drm/xe/wopcm: Use the size from HW when excluding the wopcm
+ range from GGTT
+Date: Fri, 13 Nov 2026 19:17:39 +0000
+Message-ID: <20261113191739.1447747-3-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH0PR11MB5524:EE_|SA3PR11MB467332:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6850ea8a-4704-4c9e-5d29-08df41b99633
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|7416014|376014|366016|1800799024|261009223027099003|11063799006|56012099006|261026121527099003|261021121427099003|4143699003|261021123027099003|261026140227099003|261022105027099003|261028144727099003|261009221227099003|261102130727099003|22082099003|18002099003|261102123227099003|6133799003|10067099003|3023799007;
-X-Microsoft-Antispam-Message-Info: pL9rJX2sjA27ZKTLPjLWjef3N/pJlFcpfAml0k/YftqeGmYRaomJCxcXEo1GwXy8qpK/4zA3r8JkoAmOb3A0n9CrsdxGUhERPkjnJEMM6FJdhxNKRhRRHO9VttH1X2BXGSCADMguozJH9BXlbiKZdq/Pxhw11UNFlcNg/K5ZDAWoIvJsGdWZr8l5mZoSt8J4FcXyGMpFrD87A4EDvhk9IHCipcrzzTzJsTBo1Sn1as3HcOLLGxJ1vA/uyEXywRqDyYAaa8shNsWYtf8vN9ysChS2g8h8G4ygXeWcSApdco/WwQjTy/52NkeGBPZZ9EyPcLfad0tLLMmmqRHJS08Wo7zQEINuSrhkPncl9ykNizzp8BKNLNnGTd+DnRkMnKYCoVnM73FsbZIfxmi3bEw25iA3wnAGqg3TEw5ysKls+5Xu3At7j+hUzVNfv7Rn6y/EDg490qkqvRHCkx+8qU7lbDg0Kx2Mp30ZH77F3bfmB0ige6pm74Smd77FQmEzyEQeavXUKOtkyChTAcst7AHtgk7DxIQOqj1E8VLlbY+NJ0Fp82pCXCXFWNKjvo1cf+fNNDW7EYfmckE4UHyJabNfPLd6OYzBUI6+Zd+XnRDmJXH9SyObKsxdidTwvsqSrg/49RGd9X8A7MZ4uRP+4spE/mD82W79s2C1TWZyaTWhaYA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5524.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(7416014)(376014)(366016)(1800799024)(261009223027099003)(11063799006)(56012099006)(261026121527099003)(261021121427099003)(4143699003)(261021123027099003)(261026140227099003)(261022105027099003)(261028144727099003)(261009221227099003)(261102130727099003)(22082099003)(18002099003)(261102123227099003)(6133799003)(10067099003)(3023799007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cktraGpDclJVNWV3M0N1dXYyNVFkU2I1eWRabnVnSzFTQmlTL0dHQXVTMWNt?=
- =?utf-8?B?TnpjbGxJejhNcXRjbmwzUzVYZ1R5RDA2NDA5RlVHK0Q1L1NUWVBiN3ozOUtq?=
- =?utf-8?B?V0xjRmlnMzdYOWR1UkMrVFhyN21yTzZ6RFQ4bEdOYTdyWXl2MDZ0anhBb2c5?=
- =?utf-8?B?UGNGNUtkQ3dlZUVMK0N4cWV5WjhuUStTMVUzU202eVFkakJVbG0rZ1JzUEYw?=
- =?utf-8?B?WU9valpucGdqa0NocC9zR3V0ZEpjWVZtMmEzc2VkOUZMMzdyUmcwVDIrS1Rx?=
- =?utf-8?B?UEN3cU9obFRPY3J6Q0laVGd2ei9jRTQvdmZvcWRrM214NGV5Q1dETllwcVo3?=
- =?utf-8?B?aFNCSEl6anp6NlUyYjhINERHaTgrMWVDbExPWUpiM2FPWEtjR3JkWWw4UXVn?=
- =?utf-8?B?bnV1S3JicGtGV0cwb215c2wyQ0E5VVZlMDNCWTJsZUhHWVkydEI4eFhzZDBi?=
- =?utf-8?B?TElLV2NBRG1mbldyUUVSeGZQdUlDdzlKZ1lPb21wY2pYaks5YzM3d0VWY3pH?=
- =?utf-8?B?aEF5djFGQzlBRzAza0RpVFN1MWZkWHFNa0lsbTJpSUZWOHBKOGFVUC9xSUha?=
- =?utf-8?B?cDdnOGQ3cnZRZGtidExoK3Njb2JkeGkzNkEzaXRCUXFRQ2pqaXMvdzhmeWZk?=
- =?utf-8?B?dzVwUEVFQU1xRzdTenM3cjF4WFhIUFdWMTZ0U1E4VzREenVRZ1Q2L3RKd2o5?=
- =?utf-8?B?RDJaa0xPeTFXRk1Zcmd4ZkJxMVB3QmNXa2k4UDRvTnRhWDNjTkorM01YVlZm?=
- =?utf-8?B?TXora2hMZWxaTlpzK3o5OU1zZGNqa1I5dkZMTDg5WFdxUHVYNlIybFRoTmpv?=
- =?utf-8?B?TXBONWhzSVduR2o2VmorUEVVVFpGNGpteWc5YzZtT1VKNUVYUGhTakRPU1R1?=
- =?utf-8?B?WG42OWRZdXJLbnQrNThuY1ZQdXJUT05kU1RWdnJrSFhwckU4OThSQVhjUmpF?=
- =?utf-8?B?KzY4RWRzVDdZNW9IRCtMVzcyWU8za1JuOEc3U1dYOFpBZlF1dDNDUVB3YS9z?=
- =?utf-8?B?T3lCcEowNmNNS3Y0VVRnZnc1MkY1Y2xnOXZVRXRMUlRYVU9BU1RlNmhQQ2xv?=
- =?utf-8?B?dlNqcHk4SjhSODRLL3FMTVNyZ3g4QnFGQ2xhb2xWMVhBRzNXSDVxODZPeGtT?=
- =?utf-8?B?RXdobVpjVXZqRmFJYzVJNDA5RG0vTVNCUHJBYmt1dldPOW1uWkY0Q1lFMzU2?=
- =?utf-8?B?TFJlV1psbXlvRmVGME5TL3NYQ0lZNmFhZTVpejdPQmVkQWxBQm1nTVg4ZUZi?=
- =?utf-8?B?eFVMYXF6QktJY1lvVDkxZXVVQy9wTGRYNytiMWhwdGErZEdtSHlJR3RiKy80?=
- =?utf-8?B?NUF3NkIzUHpESzNZR3ZmTkxoTTlGQ0NBL0FuUjd0MGV2UzdkNmRnbmRLbEkx?=
- =?utf-8?B?ajRVODJyRHUwWEp5VmJXQUp6ZmJnNzJQWDFGcW9HaktadDJ2M0hGdWJ6N2Jw?=
- =?utf-8?B?QlNZMUYzL1hxdVhwbmg3amdicStISFJNTzNBR1JnSi9JbXR2OTJiaWhoZ0tz?=
- =?utf-8?B?SlVtV1l2MzZFMjNsaCtPbTBpMmE2WllaMG9oUXZ4bnMyUzUzL2J1bm52UWUr?=
- =?utf-8?B?SGFpSjkweTJlU1FmM3ZYYW0wcFlSVnZvZ3d0QlFNMWFJNFZPS2xMVVJaeGZV?=
- =?utf-8?B?NlJhTDVLcFQ1ZmtNQWUvcHAvM0djY1hlelhCd0NTdHFnMU5nTkdZZStmVFBu?=
- =?utf-8?B?TTNpU0lJbEU0V0FuZ0l6NmN1Y0c3TVVqdVpnaFRLZ0t6RUsxWXRmRGVteldn?=
- =?utf-8?B?UXdmNC9PdGZQWm9WaWdodlMyRWV1OW8zYXR6UjM0Q0Q4R2t5U0VJMWNGOExs?=
- =?utf-8?B?QWtOeGpPUWdkZWc4Sk52Y2xtd1daWXA1S1J5Um9aVVJaTHVaNzNvemJnVFAz?=
- =?utf-8?B?SytCRjIwMWdsaG9TQVNEWXlyQTUySEM4SzV1azNuNDhDUzgzd3gzYVI1Q3No?=
- =?utf-8?B?K1VlRC9rRnZmUEQvUXdRWFVXMjFYUTlXMEpZVGVaQVpVczM1MEdiMXpVUWlx?=
- =?utf-8?B?N1A3ekVzajFYaXpPSVVOajBuNmJyR0tqVWxla3AwaytDQ1RaRk9DRHNCWlBy?=
- =?utf-8?B?T0pUQkpyTU12c1BwRjNnTXNkaFpSVjUrMjZLQ1M0ZU9JRDlYYjB6cFlVRDZC?=
- =?utf-8?B?Wjdnb3M5VkpVR1ZBQVRpbC8zRVZrT0JkWktwakxBdjhSWlNjdmJlQ1VJYTBs?=
- =?utf-8?B?djBTNDA0TnBSbVphS0liRGhBZ1JualpCTUJiWWkrUndKSjZiU3JqRENWRE5U?=
- =?utf-8?B?aXBYSEYwSU1Qckx2SmIvRllDTExnTmkzZDNuQ3l3Smp6TFU1L0dkbWdJa2Rm?=
- =?utf-8?B?ejVnejc4SlcwcFZOMyt1U1VBWmpCUExaOWF3TWVyWk9sam9wajQ5OFFOMmJC?=
- =?utf-8?Q?ALClQOMG7rt1ugjU=3D?=
-X-Exchange-RoutingPolicyChecked: cHBtWYhZBL0wKcXiCJvZEJ1sR1tuh2D+cx2yWgA+rulqaRJZ65jEC9L3NuS6v7v6kZiIglWxquvyGtPSWE3yjcNp1+SjuVvVxXyJkHNA70w6kfOZfiqLbSgoTsztiSiooP2HQOuY+dVNtVgCm3n0cAIOlGLfSZeTeAmIHsDpIov6zllQvQAdWteaLSEu3noC+HUdViyDnVZH8nOltKDVV7LXCxFCqSLscj7T1YL8nb/mNPiSg2XgWdiuVRlXPCxUTU5Rqsoa+8giYQLWh5ADDGuWxwJi0yDB2NHeEANlytwYCGSn3TgLSIg9kgNiiSvwj/ZkpbDLpDE4pA0mTnhDdw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6850ea8a-4704-4c9e-5d29-08df41b99633
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5524.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Nov 2026 19:09:05.6460 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iZKFm8tWU3WEdmRup52QRA4GBAEP/C+Z+7BWPUJ66o8M56vpunuDVZda+ofM90ms/vLl2z2IEh/cqxNo3cE8IhtCN9vjY3aqROLS5TvDN6M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB467332
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,145 +61,304 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Mika,
-the description of the "ttm_bo_access()" API states, "Should not be 
-directly exported to user space via a peak/poke interface."
+The WOPCM size is available in HW (we read it during the stolen memory
+init), so when excluding the WOPCM range from the base of GGTT we can
+use the HW value instead of an hardcoded one (which needs to be updated
+any time the config changes on newer HW). This value is not available to
+VFs, but the only use VF has for it is to make sure that the PF has done
+its programming correctly, so we can just trust PF and drop the checks.
+Since the WOPCM is a per-tile value, we can store its size in the tile
+structure and re-use it for both GGTT and stolen memory setup.
 
-When the newly added "ttm_bo_access_locked()" is used in "eudebug", it 
-is ultimately exposed to user space via functions such as "pread" and 
-"pwrite". @Mattew Brost,I would like to inquire whether this violates 
-the considerations made when the "ttm_bo_access()" API was initially 
-designed.
+v2: drop wopcm size usage from VF
 
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c         |  4 ++
+ drivers/gpu/drm/xe/xe_ggtt.c           | 15 +++++---
+ drivers/gpu/drm/xe/xe_tile.c           | 38 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tile.h           |  3 ++
+ drivers/gpu/drm/xe/xe_tile_types.h     |  3 ++
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 53 +++++++++++---------------
+ 6 files changed, 79 insertions(+), 37 deletions(-)
 
-Aside from the above point, the added "ttm_bo_access_locked()" API 
-appears to be a simple refactoring, so this patch itself does not seem 
-to pose any issues.
-
-Br,
-G.G.
-
-On 11/9/26 5:55 AM, Mika Kuoppala wrote:
-> ttm_bo_access() reserves the buffer object itself, so a caller that
-> already holds the reservation cannot use it. Split the body out as
-> ttm_bo_access_locked(), which asserts the reservation is held, and leave
-> ttm_bo_access() as reserve, access, unreserve.
-> 
-> The first user, eudebug vm access, has to wait for the move fences and
-> access the object under one reservation.
-> 
-> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Michel Dänzer <michel.daenzer@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> ---
->   drivers/gpu/drm/ttm/ttm_bo_vm.c | 61 +++++++++++++++++++++++----------
->   include/drm/ttm/ttm_bo.h        |  2 ++
->   2 files changed, 44 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_bo_vm.c b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> index 872bf444b1f0..9a252bce9091 100644
-> --- a/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> +++ b/drivers/gpu/drm/ttm/ttm_bo_vm.c
-> @@ -405,6 +405,47 @@ static int ttm_bo_vm_access_kmap(struct ttm_buffer_object *bo,
->   	return len;
->   }
->   
-> +/**
-> + * ttm_bo_access_locked - Helper to access a reserved buffer object
-> + *
-> + * @bo: ttm buffer object, reserved by the caller
-> + * @offset: access offset into buffer object
-> + * @buf: pointer to caller memory to read into or write from
-> + * @len: length of access
-> + * @write: write access
-> + *
-> + * Same as ttm_bo_access(), for a caller that already holds the reservation,
-> + * for instance to wait for fences before the access without the placement
-> + * changing in between.
-> + *
-> + * Returns:
-> + * @len if successful, negative error code on failure.
-> + */
-> +int ttm_bo_access_locked(struct ttm_buffer_object *bo, unsigned long offset,
-> +			 void *buf, int len, int write)
-> +{
-> +	dma_resv_assert_held(bo->base.resv);
-> +
-> +	if (len < 1 || (offset + len) > bo->base.size)
-> +		return -EIO;
-> +
-> +	if (!bo->resource)
-> +		return -ENODATA;
-> +
-> +	switch (bo->resource->mem_type) {
-> +	case TTM_PL_SYSTEM:
-> +		fallthrough;
-> +	case TTM_PL_TT:
-> +		return ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
-> +	default:
-> +		if (bo->bdev->funcs->access_memory)
-> +			return bo->bdev->funcs->access_memory
-> +				(bo, offset, buf, len, write);
-> +		return -EIO;
-> +	}
-> +}
-> +EXPORT_SYMBOL(ttm_bo_access_locked);
-> +
->   /**
->    * ttm_bo_access - Helper to access a buffer object
->    *
-> @@ -433,26 +474,8 @@ int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
->   	if (ret)
->   		return ret;
->   
-> -	if (!bo->resource) {
-> -		ret = -ENODATA;
-> -		goto unlock;
-> -	}
-> -
-> -	switch (bo->resource->mem_type) {
-> -	case TTM_PL_SYSTEM:
-> -		fallthrough;
-> -	case TTM_PL_TT:
-> -		ret = ttm_bo_vm_access_kmap(bo, offset, buf, len, write);
-> -		break;
-> -	default:
-> -		if (bo->bdev->funcs->access_memory)
-> -			ret = bo->bdev->funcs->access_memory
-> -				(bo, offset, buf, len, write);
-> -		else
-> -			ret = -EIO;
-> -	}
-> +	ret = ttm_bo_access_locked(bo, offset, buf, len, write);
->   
-> -unlock:
->   	ttm_bo_unreserve(bo);
->   
->   	return ret;
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index 32791c4db2a9..3b08baa33ffd 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -441,6 +441,8 @@ s64 ttm_bo_evict_cgroup(struct ttm_device *bdev,
->   			struct dmem_cgroup_pool_state *limit_pool,
->   			s64 target_bytes,
->   			struct ttm_operation_ctx *ctx);
-> +int ttm_bo_access_locked(struct ttm_buffer_object *bo, unsigned long offset,
-> +			 void *buf, int len, int write);
->   int ttm_bo_access(struct ttm_buffer_object *bo, unsigned long offset,
->   		  void *buf, int len, int write);
->   vm_fault_t ttm_bo_vm_reserve(struct ttm_buffer_object *bo,
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6911c2ac39f8..93cd91fb620d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -934,6 +934,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	override_has_cached_pt(xe);
+ 
+ 	for_each_tile(tile, xe, id) {
++		err = xe_tile_wopcm_init(tile);
++		if (err)
++			return err;
++
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 9ef2ce743770..cd8b9000046c 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -30,11 +30,11 @@
+ #include "xe_pm.h"
+ #include "xe_res_cursor.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
+ #include "xe_tile_printk.h"
+ #include "xe_tile_sriov_vf.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_wa.h"
+-#include "xe_wopcm.h"
+ 
+ /**
+  * DOC: Global Graphics Translation Table (GGTT)
+@@ -394,11 +394,13 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	u64 ggtt_start, ggtt_size;
+ 	unsigned int gsm_size;
+-	u64 ggtt_start, wopcm = xe_wopcm_size(xe), ggtt_size;
+ 	int err;
+ 
+ 	if (!IS_SRIOV_VF(xe)) {
++		u64 wopcm = xe_tile_wopcm_size(ggtt->tile);
++
+ 		if (GRAPHICS_VERx100(xe) >= 1250)
+ 			gsm_size = SZ_8M; /* GGTT is expected to be 4GiB */
+ 		else
+@@ -414,8 +416,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 		ggtt_start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
+ 		ggtt_size = xe_tile_sriov_vf_ggtt(ggtt->tile);
+ 
+-		if (ggtt_start < wopcm ||
+-		    ggtt_start + ggtt_size > GUC_GGTT_TOP) {
++		if (ggtt_start + ggtt_size > GUC_GGTT_TOP) {
+ 			xe_log_err_fatal(ggtt->tile, GGTT, -ERANGE,
+ 					 "Invalid GGTT configuration: %#llx-%#llx\n",
+ 					 ggtt_start, ggtt_start + ggtt_size - 1);
+@@ -647,13 +648,15 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
+  * This function may be called multiple times during recovery, but if
+  * @new_start is unchanged from the current base, it's a noop.
+  *
+- * @new_start should be a value between xe_wopcm_size() and #GUC_GGTT_TOP.
++ * @new_start should be a value above the wopcm size and below #GUC_GGTT_TOP.
++ * VFs can't access the register with the wopcm size info, so we trust that PF
++ * has done the correct programming for that and we just assert on the upper
++ * bound.
+  */
+ void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_start)
+ {
+ 	guard(mutex)(&ggtt->lock);
+ 
+-	xe_tile_assert(ggtt->tile, new_start >= xe_wopcm_size(tile_to_xe(ggtt->tile)));
+ 	xe_tile_assert(ggtt->tile, new_start + ggtt->size <= GUC_GGTT_TOP);
+ 
+ 	/* pairs with READ_ONCE in xe_ggtt_node_addr() */
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 810dfd98d830..6478b9d4a05d 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -13,15 +13,18 @@
+ #include "xe_ggtt.h"
+ #include "xe_memirq.h"
+ #include "xe_migrate.h"
++#include "xe_mmio.h"
+ #include "xe_pcode.h"
+ #include "xe_sa.h"
+ #include "xe_svm.h"
+ #include "xe_tile.h"
++#include "xe_tile_printk.h"
+ #include "xe_tile_sysfs.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_vram_types.h"
+ #include "xe_wa.h"
++#include "regs/xe_regs.h"
+ 
+ /**
+  * DOC: Multi-tile Design
+@@ -225,6 +228,41 @@ void xe_tile_migrate_wait(struct xe_tile *tile)
+ 	xe_migrate_wait(tile->migrate);
+ }
+ 
++int xe_tile_wopcm_init(struct xe_tile *tile)
++{
++	u32 wopcm_size;
++	u64 val;
++
++	if (IS_SRIOV_VF(tile_to_xe(tile)))
++		return 0;
++
++	val = xe_mmio_read64_2x32(&tile->mmio, STOLEN_RESERVED);
++	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
++
++	switch (val) {
++	case 0x5 ... 0x6:
++		val--;
++		fallthrough;
++	case 0x0 ... 0x3:
++		wopcm_size = (1U << val) * SZ_1M;
++		break;
++	default:
++		WARN(1, "Missing case wopcm_size=%llx\n", val);
++		return -EIO;
++	}
++
++	tile->mem.wopcm_size = wopcm_size;
++
++	xe_tile_info(tile, "WOPCM size: %uKB\n", wopcm_size / 1024);
++	return 0;
++}
++
++u32 xe_tile_wopcm_size(struct xe_tile *tile)
++{
++	xe_assert(tile_to_xe(tile), tile->mem.wopcm_size != 0);
++	return tile->mem.wopcm_size;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ /**
+  * xe_tile_local_pagemap() - Return a pointer to the tile's local drm_pagemap if any
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index a2a2c0e936b8..5ae9f6753f96 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -19,6 +19,9 @@ int xe_tile_alloc_vram(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
++int xe_tile_wopcm_init(struct xe_tile *tile);
++u32 xe_tile_wopcm_size(struct xe_tile *tile);
++
+ static inline bool xe_tile_is_root(struct xe_tile *tile)
+ {
+ 	return tile->id == 0;
+diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
+index 3dc011f111a4..dea17282501c 100644
+--- a/drivers/gpu/drm/xe/xe_tile_types.h
++++ b/drivers/gpu/drm/xe/xe_tile_types.h
+@@ -84,6 +84,9 @@ struct xe_tile {
+ 		/** @mem.ggtt: Global graphics translation table */
+ 		struct xe_ggtt *ggtt;
+ 
++		/** @mem.wopcm_size: Size of the WOPCM for this tile */
++		u32 wopcm_size;
++
+ 		/**
+ 		 * @mem.kernel_bb_pool: Pool from which batchbuffers are allocated.
+ 		 *
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 60f39efb02d0..5983b6c0ac3f 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -20,6 +20,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_wa.h"
+@@ -38,34 +39,12 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
+ 	return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
+ }
+ 
+-static u32 get_wopcm_size(struct xe_device *xe)
+-{
+-	u32 wopcm_size;
+-	u64 val;
+-
+-	val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
+-	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
+-
+-	switch (val) {
+-	case 0x5 ... 0x6:
+-		val--;
+-		fallthrough;
+-	case 0x0 ... 0x3:
+-		wopcm_size = (1U << val) * SZ_1M;
+-		break;
+-	default:
+-		WARN(1, "Missing case wopcm_size=%llx\n", val);
+-		wopcm_size = 0;
+-	}
+-
+-	return wopcm_size;
+-}
+-
+ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+-	struct xe_vram_region *tile_vram = xe_device_get_root_tile(xe)->mem.vram;
++	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
++	struct xe_vram_region *tile_vram = root_tile->mem.vram;
+ 	resource_size_t tile_io_start = xe_vram_region_io_start(tile_vram);
+-	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	struct xe_mmio *mmio = &root_tile->mmio;
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	u64 stolen_size, wopcm_size;
+ 	u64 tile_offset;
+@@ -79,8 +58,14 @@ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *m
+ 	if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
+ 		return 0;
+ 
+-	/* Carve out the top of DSM as it contains the reserved WOPCM region */
+-	wopcm_size = get_wopcm_size(xe);
++	/*
++	 * Carve out the top of DSM as it contains the reserved WOPCM region.
++	 * Note that the WOPCM region is per-tile, but the code below only looks
++	 * at the root tile values for both stolen and WOPCM; this works because
++	 * on PVC there is no driver-usable stolen, so stolen_size is 0 for
++	 * both tiles, but if that changes we'll need to rework this.
++	 */
++	wopcm_size = xe_tile_wopcm_size(root_tile);
+ 	if (drm_WARN_ON(&xe->drm, !wopcm_size))
+ 		return 0;
+ 
+@@ -105,11 +90,12 @@ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *m
+ static u32 detect_lmembar_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	struct xe_gt *media_gt = xe_device_get_root_tile(xe)->media_gt;
++	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
++	struct xe_gt *media_gt = root_tile->media_gt;
+ 	u32 stolen_size, wopcm_size;
+ 	u32 ggc, gms;
+ 
+-	ggc = xe_mmio_read32(xe_root_tile_mmio(xe), GGC);
++	ggc = xe_mmio_read32(&root_tile->mmio, GGC);
+ 
+ 	/*
+ 	 * Check GGMS: it should be fixed 0x3 (8MB), which corresponds to the
+@@ -141,8 +127,13 @@ static u32 detect_lmembar_integrated(struct xe_device *xe, struct xe_ttm_stolen_
+ 		return 0;
+ 	}
+ 
+-	/* Carve out the top of DSM as it contains the reserved WOPCM region */
+-	wopcm_size = get_wopcm_size(xe);
++	/*
++	 * Carve out the top of DSM as it contains the reserved WOPCM region. We
++	 * assume only the root tile is present, so we don't need to worry about
++	 * the WOPCM size for the remote tiles.
++	 */
++	xe_assert(xe, xe->info.tile_count == 1);
++	wopcm_size = xe_tile_wopcm_size(root_tile);
+ 	if (drm_WARN_ON(&xe->drm, !wopcm_size))
+ 		return 0;
+ 
+-- 
+2.53.0
 
