@@ -2,41 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22FA3606BCBF
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 16:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15EB4606CDC9
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 16:51:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IUi4p4vW
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZYn2LZdQ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D395110E7F8;
-	Fri, 13 Nov 2026 16:51:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA4F28914B;
+	Fri, 13 Nov 2026 16:51:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C52C810E3A8
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 16:51:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0E9B8914B
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 16:51:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794588702; x=1826124702;
+ t=1794588703; x=1826124703;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=rayEZ0+oT/Iyk+FY8Hj0Rn8qFu76Ec9MdIYQCC7fDsI=;
- b=IUi4p4vWc9bHQ5UqEbyiDKHngWN0lzWABtnynHsuwNKzwUtjP4VA//55
- aqBr9a5VRgfzeIc+rb8nymzBbSiRWXzFWnRrpHutcwH7In23sdGJiUraH
- uoDmC7QWLMohtE2B1rN45Wanz7i98hQu3fSZolc+KAeWrXYQ58+h6q/MD
- 4Z5EbP6vGOoZep14jFKq+syZiamI+ygJzrULvrSBjHQEPXdJqMrV6ReXD
- l3vLuX3bMyGia/UoXPMBfcyQxpkL+ZmUZGuxwbQC214771XeSEgarpCsB
- vQfvk0X7OticdjI/NBNYc8EmnSz1Pp9xT4RIljK5lRuvc+V+5Qfw+UU/A g==;
-X-CSE-ConnectionGUID: N+QOrsecShCNdKFJnytbPA==
-X-CSE-MsgGUID: LcddhC7OTtCbUjL7yWq15Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3392125"
+ bh=dFi7+7rVkMJZpmYSBBYKQvigbHpbltpr5YECkuyw3fs=;
+ b=ZYn2LZdQsC1rmHL5w2m7KtlSH2p0SzQfM2B/uokvjAFJqtusqHmK9QQj
+ 51pQv/4SXjEk5mISYorBqCeF1nALJ1l5yJHnEAqNMFPmS9hVhjBhtu3oG
+ YW0Qm3EMdzdbvROrOql5lVQ2NJWHBGGkxJzBPGMuWnnimG2/087Jwd7EB
+ rk3/EkILq6Et+ATA2dzd1AP129wJc0XO/VqiAsdYcQcY3LxjdI8ZhxQzC
+ Kccvnqzeb3/+fZ8BuwwVmSpyNIae461ewM4G7lE3fN1JrBLKq99RnPfUz
+ HZa8R/f/PZHWFjHqxeeRlNWxg/LQVo/ErXMdBx5Uesdp35vXwT1no/tSb w==;
+X-CSE-ConnectionGUID: YOSe4ZEzQPCE8UVCwiLZlw==
+X-CSE-MsgGUID: sSgpK7pNSKSvADMstKl9hQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3392128"
 X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="3392125"
+   d="scan'208";a="3392128"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Nov 2026 08:51:36 -0800
-X-CSE-ConnectionGUID: LMOsxaubSDGnUOvsHik4ew==
-X-CSE-MsgGUID: TOGQ+kSJQGmDcpq6EgykVA==
+X-CSE-ConnectionGUID: Uy5hLQfhTZWX4f1qGqA9mg==
+X-CSE-MsgGUID: Aa/DZ2ieRYuMYGcsUXG0yw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
-   d="scan'208";a="9230790"
+   d="scan'208";a="9230793"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Nov 2026 08:51:36 -0800
@@ -46,9 +46,9 @@ To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v15 03/17] drm/xe/vsec: Correct locking order
-Date: Fri, 13 Nov 2026 08:51:29 -0800
-Message-ID: <20261113165127.1989471-22-michael.j.ruhl@intel.com>
+Subject: [PATCH v15 04/17] drm/xe/vsec: Use correct pm state get
+Date: Fri, 13 Nov 2026 08:51:30 -0800
+Message-ID: <20261113165127.1989471-23-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261113165127.1989471-19-michael.j.ruhl@intel.com>
 References: <20261113165127.1989471-19-michael.j.ruhl@intel.com>
@@ -72,43 +72,56 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xe locking order is power state first, and then local locks.
+Crashlog needs to be collected at all times.  The current pm check
+assumes telemetry only.
 
-Reorder locking for correct usage.
+Update read path to enable device for crashlog instances.
+
+Include check of the WATCHER CAP_TYPE for completeness.
+WATCHER is a possible type and needs to be accounted for, but is not
+supported.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Fixes: 0c45e76fcc62 ("drm/xe/vsec: Support BMG devices")
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 178f22db4046..d93c042cf25b 100644
+index d93c042cf25b..38081dacd307 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -157,16 +157,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+@@ -145,6 +145,7 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ {
+ 	struct xe_device *xe = kdev_to_xe_device(dev);
+ 	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
++	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
+ 	u32 mem_region;
+ 	u32 offset;
+ 	int ret;
+@@ -157,9 +158,18 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
  
  	telem_addr += offset + user_offset;
  
--	guard(mutex)(&xe->pmt.lock);
--
- 	/* indicate that we are not at an appropriate power level */
- 	if (!xe_pm_runtime_get_if_active(xe))
- 		return -ENODATA;
- 
--	/* set SoC re-mapper index register based on GUID memory region */
--	xe->soc_remapper.set_telem_region(xe, mem_region);
-+	scoped_guard(mutex, &xe->pmt.lock) {
-+		/* set SoC re-mapper index register based on GUID memory region */
-+		xe->soc_remapper.set_telem_region(xe, mem_region);
-+
-+		memcpy_fromio(data, telem_addr, count);
+-	/* indicate that we are not at an appropriate power level */
+-	if (!xe_pm_runtime_get_if_active(xe))
+-		return -ENODATA;
++	/* Always allow crashlog. Telemetry, only when powered */
++	switch (cap_type) {
++	case CRASHLOG:
++		xe_pm_runtime_get(xe);
++		break;
++	case TELEMETRY:
++		if (!xe_pm_runtime_get_if_active(xe))
++			return -ENODATA;
++		break;
++	case WATCHER:
++		return -EINVAL;
 +	}
  
--	memcpy_fromio(data, telem_addr, count);
- 	xe_pm_runtime_put(xe);
- 
- 	return count;
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+ 		/* set SoC re-mapper index register based on GUID memory region */
 -- 
 2.43.0
 
