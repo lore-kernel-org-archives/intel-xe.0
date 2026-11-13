@@ -2,28 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F077B606A33E
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 13:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73919606A330
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 13:22:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LO0r8DU4
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7EF71124D5;
-	Fri, 13 Nov 2026 13:22:17 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CF0E1124D1;
- Fri, 13 Nov 2026 13:22:17 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39CFF1124C3;
+	Fri, 13 Nov 2026 13:22:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B7CB1124C3
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 13:22:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794576136; x=1826112136;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=aUPX1L17biFkyr914QlvTL3HJiXGM8XlIJ7zC/TPAhs=;
+ b=LO0r8DU49IQ9RhaFpQZkbzEpgMkLQWimk/3w2OlHBlmq3u18SSN4yY2e
+ JXbC35oUUU0Vn0x9dXNDHy2vqNKOkDx6PtdRt2gErpcK32Eapj5dQlzYL
+ Z0njhO++2VU2s/F5Pf31KmpFlc4HuU4+Z2eN8RQfrwpC9adbuvQKODYnO
+ Yt1cZyId0myzJy+Adlqr3+iWj5U5gM5OLKsKPyGgGPkOHfUzFZ5lDaXsZ
+ eaarwgsu9P+sPJ3m3rMhRNKNz8pfnyZTLZaKEer3UX2rI8eH6At7NBrFW
+ I2yN2drgIx3Ttx2oTah/93G9p0f5WaDJ2XbsKPdpT6Zqmf+AOLkZeGvRR w==;
+X-CSE-ConnectionGUID: 32qV/Sl4RtqQy4uttVGSIQ==
+X-CSE-MsgGUID: EDyV44PKRpmnnj09nkEbUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3380175"
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="3380175"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 05:22:15 -0800
+X-CSE-ConnectionGUID: ttBzuaxcQ8GO6rdvW8H8dA==
+X-CSE-MsgGUID: imotCmM6RU6hBTi+ouZYYQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="8773680"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 05:22:13 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, matthew.brost@intel.com,
+ arvind.yadav@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH] drm/xe: fix UAF race between exec-queue teardown and GuC CT
+ pause-abort
+Date: Fri, 13 Nov 2026 18:51:50 +0530
+Message-ID: <20261113132149.2989667-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/display=3A_Transpa?=
- =?utf-8?q?rant_fallback_from_stolen_to_sysmem=2E_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Nov 2026 13:22:17 -0000
-Message-ID: <179457613717.19925.10569305815025259168@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261113124453.144408-7-dev@lankhorst.se>
-In-Reply-To: <20261113124453.144408-7-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,70 +62,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-== Series Details ==
+xe_guc_submit_pause_abort() walks guc->submission_state.exec_queue_lookup
+and unconditionally calls guc_exec_queue_kill() on every entry found,
+without verifying the queue hasn't already begun/finished its own
+independent teardown. guc_exec_queue_fini() (run once a queue's own
+refcount drops to zero via the normal close path) only erases its xarray
+entry partway through its body, via release_guc_id() -- so there is a
+window where a queue's refcount is already 0 but its xarray entry is
+still present.
 
-Series: drm/xe/display: Transparant fallback from stolen to sysmem. (rev5)
-URL   : https://patchwork.freedesktop.org/series/170759/
-State : warning
+This was caught as a debug assertion firing on both BMG and CRI:
 
-== Summary ==
+	xe 0000:00:03.0: [drm] Assertion `kref_read(&q->refcount)` failed!
+	WARNING: drivers/gpu/drm/xe/xe_guc_submit.c:2242 at guc_exec_queue_kill+0x2e2/0x360 [xe]
+	Call Trace:
+	 guc_exec_queue_kill+0x2e2/0x360 [xe]
+	 xe_guc_submit_pause_abort+0x8e/0xf0 [xe]
+	 guc_submit_fini+0x11f/0x180 [xe]
+	 devm_action_release+0x15/0x30
+	 ...
+	 device_release_driver_internal+0x230/0x270
+	 unbind_store+0xac/0xc0                          [BMG: igt@xe_configfs, sysfs unbind]
+	 pci_iov_remove_virtfn+0xd1/0x140
+	 sriov_disable+0x42/0x100
+	 pci_disable_sriov+0x23/0x40
+	 xe_pci_sriov_configure+0x2b9/0x1350 [xe]
+	 sriov_numvfs_store+0x136/0x1f0           [CRI: igt@xe_pmu, SR-IOV VF disable]
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-3009867cd31863246e4afc138520a7a8bd37bb11
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f697e7af00379209fdde0adbfd0bb5e60f75d018
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Fri Nov 13 13:44:59 2026 +0100
+Pin the queue with kref_get_unless_zero() before touching it, skipping entries
+that have already independently reached a zero refcount instead of operating on
+an object that's already being torn down elsewhere.
 
-    drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
-    
-    Pull the "do we want to use stolen for the BIOS FB?" checks into
-    a new intel_bo_fbdev_bios_fb_takeover() helper, and defer that
-    decision until we're ready to reallocate the fbdev FB. This way
-    even if we don't want to ultimately use the BIOS FB we'll keep
-    the plane enabled until the replacement FB is ready. Should
-    hopefully result in fewer display blinks during boot.
-    
-    Additionally, on some platforms this allows us to re-create the
-    framebuffer when stolen memory is not suitable, using the blitter
-    engine to copy the contents to system memory without causing
-    any flickering by not preserving the stolen memory allocation.
-    
-    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-    Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch d41695c479e8bb24eb941e5ba916e42784af6f4d drm-intel
-e7f6e4ab6e40 drm/xe/display: Avoid using stolen memory for framebuffer when media gt exists.
-fa2ba5b3240c drm/xe/migrate: Support copying between sysmem and stolen
-ca0e9886aa47 drm/xe: Raise gt frequency slightly earlier.
-d426805e91f2 HACK: Always fallback
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-f697e7af0037 drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
--:139: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#139: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:327:
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index d76f125f9c3a..7a3bd698f217 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -3306,12 +3306,18 @@ void xe_guc_submit_pause_abort(struct xe_guc *guc)
+ 	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
+ 		struct xe_gpu_scheduler *sched = &q->guc->sched;
  
-+
-
--:299: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#299: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:170:
-+					    XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT,
-
-total: 0 errors, 1 warnings, 1 checks, 325 lines checked
-
+-		/* Prevent redundant attempts to stop parallel queues */
+-		if (q->guc->id != index)
++		/*
++		 * Prevent redundant attempts to stop parallel queues, and skip
++		 * queues already dropped to a zero refcount via their own
++		 * independent teardown (guc_exec_queue_fini(), xarray entry
++		 * not yet erased)
++		 */
++		if (q->guc->id != index || !kref_get_unless_zero(&q->refcount))
+ 			continue;
+ 
+ 		xe_sched_submission_start(sched);
+ 		guc_exec_queue_kill(q);
++		xe_exec_queue_put(q);
+ 	}
+ 	mutex_unlock(&guc->submission_state.lock);
+ }
+-- 
+2.52.0
 
