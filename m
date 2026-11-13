@@ -2,28 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A914D606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 07:35:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA04606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 07:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JLTAV0ga
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4476B10E0FE;
-	Fri, 13 Nov 2026 07:35:12 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA7710E0FE;
- Fri, 13 Nov 2026 07:35:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6553610990730758235=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63E0610E74F;
+	Fri, 13 Nov 2026 07:36:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A78D10E74F
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 07:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794555359; x=1826091359;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wgqOdKQKd2DykSAujgWDzDJ94QJFwJOeGCEgIkSmcHA=;
+ b=JLTAV0gaH+RVMDPyRg0oyO+WAu3wOlW73iyg0ANhPatgzDAueRHUFjz8
+ /u/Je5KXcV5dHDVPOUaj6SdlYoYTV8L31h1LCYJs85+5X61gHC99S+8E5
+ lIGqWMBDklQoBZ4M8w3p9Z+nySjtyIZLd/wpDAzTnxRe/tTlRhhnNWgkA
+ /Wvd6tU+buS2lThgNzVAxuk7kBKGgSJJmD6dzptdzlaz/SY7PZquDEriq
+ SoNiz1qFX0LsUuxNgeqgQBy6O1Mg94iVqCnNOJYdMMPHxCdh0K85hb78I
+ sQ99ZbtldS5O2s6+4HYzulMEUv1Y6Piif6vSWKghpHP3zSHjE8cc9Yzjt Q==;
+X-CSE-ConnectionGUID: t9GKUhb5T2qfm1n0DM4ibw==
+X-CSE-MsgGUID: 41op8aSjS3uowqR1ZzttJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11964"; a="3347931"
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="3347931"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2026 23:35:59 -0800
+X-CSE-ConnectionGUID: NsEoY/i8QsO+q8NAh6UMRw==
+X-CSE-MsgGUID: QttGmXInT8iVLk2hInmjjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,211,1787036400"; 
+   d="scan'208";a="9030590"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Nov 2026 23:35:58 -0800
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 0/3] CI-ONLY Fix VM teardown and migration queue recovery
+Date: Fri, 13 Nov 2026 13:05:46 +0530
+Message-ID: <20261113073549.352746-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Account_for_exec_?=
- =?utf-8?q?queue_cleanup_after_handle_allocation_fails?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Nov 2026 07:35:11 -0000
-Message-ID: <179455531110.18509.8167101089194804842@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261113065437.249640-1-arvind.yadav@intel.com>
-In-Reply-To: <20261113065437.249640-1-arvind.yadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,114 +58,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============6553610990730758235==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Arvind Yadav (3):
+  drm/xe: Hold a device reference across deferred VM destruction
+  drm/xe: Mark VMs as closing before queue cleanup
+  CI-ONLY:Defer VM teardown until exec queue cleanup
 
-== Series Details ==
+ drivers/gpu/drm/xe/xe_device.c     |  20 ++-
+ drivers/gpu/drm/xe/xe_exec.c       |   9 ++
+ drivers/gpu/drm/xe/xe_exec_queue.c |  22 +++-
+ drivers/gpu/drm/xe/xe_pagefault.c  |  85 +++++++++++--
+ drivers/gpu/drm/xe/xe_svm.c        |   3 +-
+ drivers/gpu/drm/xe/xe_vm.c         | 197 ++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_vm.h         |  14 +-
+ drivers/gpu/drm/xe/xe_vm_types.h   |  16 +++
+ 8 files changed, 323 insertions(+), 43 deletions(-)
 
-Series: drm/xe: Account for exec queue cleanup after handle allocation fails
-URL   : https://patchwork.freedesktop.org/series/178457/
-State : success
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-6134-05f78ff3e7ecc6c78d5080c89c55a492fbc913d6_BAT -> xe-pw-178457v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 13)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9189 -> IGT_9190
-  * Linux: xe-6134-05f78ff3e7ecc6c78d5080c89c55a492fbc913d6 -> xe-pw-178457v1
-
-  IGT_9189: 9189
-  IGT_9190: 9190
-  xe-6134-05f78ff3e7ecc6c78d5080c89c55a492fbc913d6: 05f78ff3e7ecc6c78d5080c89c55a492fbc913d6
-  xe-pw-178457v1: 178457v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178457v1/index.html
-
---===============6553610990730758235==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Account for exec queue cleanup after handle allocation fails</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178457/">https://patchwork.freedesktop.org/series/178457/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178457v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178457v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6134-05f78ff3e7ecc6c78d5080c89c55a492fbc913d6_BAT -&gt; xe-pw-178457v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9189 -&gt; IGT_9190</li>
-<li>Linux: xe-6134-05f78ff3e7ecc6c78d5080c89c55a492fbc913d6 -&gt; xe-pw-178457v1</li>
-</ul>
-<p>IGT_9189: 9189<br />
-  IGT_9190: 9190<br />
-  xe-6134-05f78ff3e7ecc6c78d5080c89c55a492fbc913d6: 05f78ff3e7ecc6c78d5080c89c55a492fbc913d6<br />
-  xe-pw-178457v1: 178457v1</p>
-
-</body>
-</html>
-
---===============6553610990730758235==--
