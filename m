@@ -2,28 +2,39 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E654606A323
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 12:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44630606A323
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 12:43:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=Q+gXGkbm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F100710E7E4;
-	Fri, 13 Nov 2026 12:42:24 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB7410E7E4;
- Fri, 13 Nov 2026 12:42:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3955624089357110174=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02E061121A7;
+	Fri, 13 Nov 2026 12:43:53 +0000 (UTC)
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 316E31121A7;
+ Fri, 13 Nov 2026 12:43:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1794573825;
+ bh=ZkePPFysDD1e7SfQs5NSkeM6/CpGx+CCTMKFWV29gK0=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Q+gXGkbmtXeHm5daqj1cMNr2HfVIUZx2VsHOdsrg0CGadRzN+qCKCuWIIVQx+k+R3
+ n1s7KIsd6hHSumYHUXLbvSjKxaPixLi+YI/Qj4s1HXqU1Io1cHX7Cf0UuxgHo5WSYL
+ Jv0vQP9v9RcpIzLu90Xfvo9VPjTiEwDjuDjje4mN7unA0l+5j8AHctOnP/Au5v3y45
+ MiQEITafPMOPtT0dhikCRFCFKjhwTb6qawAJJhzMNKQBB2+45j4A254TJZs7oxtAGC
+ vjSOlFVnwTIXDZYgFmlBahUjJOgTrWkZuGyjjrMTk8wsP+X424wg6LvfXm9GDZZlfO
+ I8GSV4psxeXtg==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v5 0/5] drm/xe/display: Transparant fallback from stolen to
+ sysmem.
+Date: Fri, 13 Nov 2026 13:44:54 +0100
+Message-ID: <20261113124453.144408-7-dev@lankhorst.se>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_KUnit_tests_for_CPER_GU?=
- =?utf-8?q?ID_mappings?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Nov 2026 12:42:23 -0000
-Message-ID: <179457374357.19601.3051913958360076079@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261113115827.1913629-6-mallesh.koujalagi@intel.com>
-In-Reply-To: <20261113115827.1913629-6-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,114 +44,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============3955624089357110174==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fix all issues reported by sashiko, especially the migration code has become a lot
+cleaner, and I'm happy with it now.
 
-== Series Details ==
+Sashiko should be a lot happier too!
 
-Series: Add KUnit tests for CPER GUID mappings
-URL   : https://patchwork.freedesktop.org/series/178476/
-State : success
+Maarten Lankhorst (5):
+  drm/xe/display: Avoid using stolen memory for framebuffer when media
+    gt exists.
+  drm/xe/migrate: Support copying between sysmem and stolen
+  drm/xe: Raise gt frequency slightly earlier.
+  HACK: Always fallback
+  drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
 
-== Summary ==
+ drivers/gpu/drm/i915/display/intel_bo.c       |  7 ++
+ drivers/gpu/drm/i915/display/intel_bo.h       |  1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 68 +++++++++++++++---
+ drivers/gpu/drm/i915/i915_bo.c                | 14 +++-
+ drivers/gpu/drm/i915/i915_bo.h                |  6 --
+ drivers/gpu/drm/i915/i915_initial_plane.c     | 14 ----
+ drivers/gpu/drm/xe/display/xe_display_bo.c    | 72 ++++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_display_bo.h    |  6 --
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |  8 ---
+ drivers/gpu/drm/xe/xe_device.c                |  6 +-
+ drivers/gpu/drm/xe/xe_migrate.c               | 18 ++++-
+ include/drm/intel/display_parent_interface.h  |  1 +
+ 12 files changed, 168 insertions(+), 53 deletions(-)
 
-CI Bug Log - changes from xe-6136-d41695c479e8bb24eb941e5ba916e42784af6f4d_BAT -> xe-pw-178476v1_BAT
-====================================================
+-- 
+2.55.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 12)
-------------------------------
-
-  Missing    (1): bat-bmg-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9190 -> IGT_9191
-  * Linux: xe-6136-d41695c479e8bb24eb941e5ba916e42784af6f4d -> xe-pw-178476v1
-
-  IGT_9190: 9190
-  IGT_9191: 9191
-  xe-6136-d41695c479e8bb24eb941e5ba916e42784af6f4d: d41695c479e8bb24eb941e5ba916e42784af6f4d
-  xe-pw-178476v1: 178476v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178476v1/index.html
-
---===============3955624089357110174==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add KUnit tests for CPER GUID mappings</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178476/">https://patchwork.freedesktop.org/series/178476/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178476v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178476v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6136-d41695c479e8bb24eb941e5ba916e42784af6f4d_BAT -&gt; xe-pw-178476v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 12)</h2>
-<p>Missing    (1): bat-bmg-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9190 -&gt; IGT_9191</li>
-<li>Linux: xe-6136-d41695c479e8bb24eb941e5ba916e42784af6f4d -&gt; xe-pw-178476v1</li>
-</ul>
-<p>IGT_9190: 9190<br />
-  IGT_9191: 9191<br />
-  xe-6136-d41695c479e8bb24eb941e5ba916e42784af6f4d: d41695c479e8bb24eb941e5ba916e42784af6f4d<br />
-  xe-pw-178476v1: 178476v1</p>
-
-</body>
-</html>
-
---===============3955624089357110174==--
