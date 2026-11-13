@@ -2,40 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30243606A333
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DBC606A323
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Nov 2026 19:23:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=WkMFeWQW
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DrQVC00H
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E68D510E04E;
-	Fri, 13 Nov 2026 19:19:38 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19B3210E04E
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 19:19:32 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 281D360623;
- Fri, 13 Nov 2026 19:19:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B66641F000C4;
- Fri, 13 Nov 2026 19:19:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794597570;
- bh=3ebX2m9KeuCV5J1WO/saEL76nMse3ixRs1JSF/joas0=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=WkMFeWQWgm/CHJcmtGhb0saLEErUQDzhWIhjDPwOgHAzx48r8XdVpgoc8PWYjKwpt
- I8mPUE8HaxVPck1940E9/RPKtaPuQPTMZp9vPRqNP6C73jFuuhhQdn11hLzhtUiSXa
- OTln4suvIAQ08aRpFWEBw+1VJSU6VFlNfL6wBKit/kImChYksKneqZF6U681dpmnWt
- bUpD7Fk/eYqI3yBu+bhu19VGDFYRODehn51roupisnFj3j415tmFXMs1ETwlRwrc33
- 3K7q8oyz7Ub/1hmPtKmg4mVgZm5cMVNp7yaTHERF9UUC4qgof8Nw6S2wosyrGUryU/
- fTikyPqkZWYcg==
-Message-ID: <sashiko-outbox-213540@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v3 1/2] drm/gpusvm: Add a DMA-mapping accounting callback
-To: "Matthew Brost" <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261113190128.2118723-1-matthew.brost@intel.com>
-References: <20261113190128.2118723-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 13 Nov 2026 19:19:30 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 627D110E037;
+	Fri, 13 Nov 2026 19:23:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5453010E037
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 19:23:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794597804; x=1826133804;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MTYQtFwRIlTxSOSRLKdhCSUozBmBCWKD9BATWFLO9R4=;
+ b=DrQVC00HJbIgByuDmLMrqyt+jH8EBX1NuOBzHksx1RIPNiu8datwDGrI
+ WR9OCPXH+J4VtBoi3P9CcXx9QayP+6B8LYUUT211/CXxUye5pLYZhNwOe
+ RcyQp8553X8zlrv16JenX6jQSWujLkVVySigES/DNYmAKkagfkrKvJ+dZ
+ VOTEiWN9PH2cxAKp8tX6BYpBkeNI5e8AuIU4atz/mRNmlrNEcUNv5WYxe
+ YLiohFqWajL4vZiNl2Owdp3R/w5pBc8cc4o0to2pxsLYY6hVCOOPJdvKP
+ L+LGvsD70KACgN9iHTnPiP2fRKVMw5j4NSgt6pcGcK3lcW9yMhijuKY0q w==;
+X-CSE-ConnectionGUID: l9PLgUYgRNOs4CNgpZ/y6g==
+X-CSE-MsgGUID: r8MZ4AHUTwa7u2jmp+eC9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11965"; a="3444053"
+X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
+   d="scan'208";a="3444053"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 11:23:24 -0800
+X-CSE-ConnectionGUID: f7lsOrQLT6yly+4S0F9o1Q==
+X-CSE-MsgGUID: ev1x2g4CTaGMRGJMpYEh6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,212,1787036400"; 
+   d="scan'208";a="9340920"
+Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
+ ([10.121.64.151])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2026 11:23:23 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Subject: [CI] drm/xe/gsc: Test NVL GSC 108.0.0.1242
+Date: Fri, 13 Nov 2026 19:23:12 +0000
+Message-ID: <20261113192311.1455041-2-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.53.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,105 +60,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issues to consider:
-- [Low] drm/gpusvm: incomplete full-SVM ops check and doc in
-  drm_gpusvm_init()
-- [Low] drm/gpusvm: document locking context for
-  drm_gpusvm_ops.dma_map_account
---
+This patch is for testing only. If the testing is ok, the current
+nvl_gsc_1.bin binary will be replaced with this one.
 
-commit 8cdf85308b0a5f01cbf31357b5001cfa11f7973f
-Author: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+Note that the GSC FW macros use the compatibility version, so we can't
+use them to produce the path of a binary based on the release version.
+Since this is a ci-only patch to test a specific FW release, instead
+of updating the macros we can just hardcode the path.
 
-drm/gpusvm: Add a DMA-mapping accounting callback
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-This commit adds an optional dma_map_account callback to struct
-drm_gpusvm_ops for symmetric DMA-mapping accounting and allows a restricted
-ops table with page-level hooks when initializing drm_gpusvm without an mm.
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index c042075a36e5..44ea31da066e 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -146,8 +146,8 @@ struct fw_blobs_by_type {
+ 	fw_def(TIGERLAKE,	GT_TYPE_ANY,	no_ver(i915,	huc,		tgl))
+ 
+ /* for the GSC FW we match the compatibility version and not the release one */
+-#define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
+-	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	major_ver(xe,	gsc,	nvl,	108, 1, 0))	\
++#define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver, path_ver)		\
++	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	path_ver(xe,	gsc,	nvl,	108, 1, 0, "xe/nvl_gsc_108.0.0.1242.bin"))	\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	ptl,	105, 1, 0))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	lnl,	104, 1, 0))	\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	gsc,	mtl,	102, 1, 0))
+@@ -163,6 +163,8 @@ struct fw_blobs_by_type {
+ 	MAKE_FW_PATH(dir_, uc_, shortname_, "")
+ #define fw_filename_gsc(dir_, uc_, shortname_, a, b, c)				\
+ 	MAKE_FW_PATH(dir_, uc_, shortname_, "_" __stringify(b))
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
+ 
+ #define uc_fw_entry_mmp_ver(dir_, uc_, shortname_, a, b, c)			\
+ 	{ fw_filename_mmp_ver(dir_, uc_, shortname_, a, b, c),			\
+@@ -176,6 +178,8 @@ struct fw_blobs_by_type {
+ #define uc_fw_entry_gsc(dir_, uc_, shortname_, a, b, c)				\
+ 	{ fw_filename_gsc(dir_, uc_, shortname_, a, b, c),			\
+ 	  a, b, c }
++#define uc_fw_entry_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	{ path_, a, b, c }
+ 
+ /* All blobs need to be declared via MODULE_FIRMWARE() */
+ #define XE_UC_MODULE_FIRMWARE(platform__, gt_type__, fw_filename)		\
+@@ -192,7 +196,7 @@ XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
+ 		     fw_filename_mmp_ver, fw_filename_major_ver)
+ XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
+ 		     fw_filename_mmp_ver, fw_filename_no_ver)
+-XE_GSC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE, fw_filename_gsc)
++XE_GSC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE, fw_filename_gsc, fw_filename_gsc_path)
+ 
+ static struct xe_gt *
+ __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)
+@@ -246,7 +250,7 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+ 				     uc_fw_entry_no_ver)
+ 	};
+ 	static const struct uc_fw_entry entries_gsc[] = {
+-		XE_GSC_FIRMWARE_DEFS(XE_UC_FW_ENTRY, uc_fw_entry_gsc)
++		XE_GSC_FIRMWARE_DEFS(XE_UC_FW_ENTRY, uc_fw_entry_gsc, uc_fw_entry_gsc_path)
+ 	};
+ 	static const struct fw_blobs_by_type blobs_all[XE_UC_FW_NUM_TYPES] = {
+ 		[XE_UC_FW_TYPE_GUC] = { entries_guc, ARRAY_SIZE(entries_guc) },
+-- 
+2.53.0
 
-> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> index 45169eb6de619..18b51be7d6df3 100644
-> --- a/drivers/gpu/drm/drm_gpusvm.c
-> +++ b/drivers/gpu/drm/drm_gpusvm.c
-> @@ -503,8 +503,16 @@ int drm_gpusvm_init(struct drm_gpusvm *gpusvm,
->  			return -EINVAL;
->  		mmgrab(mm);
->  	} else {
-> -		/* No full SVM mode, only core drm_gpusvm_pages API. */
-> -		if (ops || num_chunks || mm_range || notifier_size)
-> +		/*
-> +		 * No full SVM mode, only core drm_gpusvm_pages API. A
-> +		 * restricted @ops that only implements the page-level hooks
-> +		 * (e.g. @dma_map_account) is allowed; the full-SVM hooks must
-> +		 * not be set.
-> +		 */
-> +		if (num_chunks || mm_range || notifier_size)
-> +			return -EINVAL;
-> +		if (ops && (ops->invalidate || ops->range_alloc ||
-> +			    ops->range_free))
->  			return -EINVAL;
->  	}
-
-[Severity: Low]
-Should this check also reject ops->notifier_alloc and ops->notifier_free
-when mm is NULL, as those are full-SVM hooks on struct drm_gpusvm_ops as
-well?
-
-Also, the kernel-doc above drm_gpusvm_init() still says that only @gpusvm
-and @name are expected when using the simple drm_gpusvm_pages API.
-
-[ ... ]
-
-> diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-> index 4d31c6bba7455..637c19f7169f1 100644
-> --- a/include/drm/drm_gpusvm.h
-> +++ b/include/drm/drm_gpusvm.h
-> @@ -75,6 +75,25 @@ struct drm_gpusvm_ops {
->  	void (*invalidate)(struct drm_gpusvm *gpusvm,
->  			   struct drm_gpusvm_notifier *notifier,
->  			   const struct mmu_notifier_range *mmu_range);
-> +
-> +	/**
-> +	 * @dma_map_account: Account a DMA-mapping change (optional)
-> +	 * @gpusvm: Pointer to the GPU SVM
-> +	 * @addr: The address descriptor of the chunk being (un)mapped
-> +	 * @sign: +1 when @addr has just been DMA-mapped, -1 when it is being
-> +	 *        unmapped
-> +	 *
-> +	 * Called once per &drm_pagemap_addr entry, when the entry is
-> +	 * DMA-mapped by drm_gpusvm_get_pages() (@sign =3D=3D +1) and when it is
-> +	 * unmapped (@sign =3D=3D -1), so the driver can keep symmetric account=
-ing
-> +	 * of the pages it has mapped for GPU access. The @addr->proto field
-> +	 * can be used to distinguish system-memory mappings from device
-> +	 * interconnect mappings. May be provided in both full SVM mode and the
-> +	 * core drm_gpusvm_pages-only mode.
-> +	 */
-> +	void (*dma_map_account)(struct drm_gpusvm *gpusvm,
-> +				const struct drm_pagemap_addr *addr,
-> +				int sign);
->  };
-
-[Severity: Low]
-Could the kernel-doc for @dma_map_account document its locking and
-execution context, similar to @invalidate and @devmem_fn?
-
-It is called under gpusvm->notifier_lock in read mode during
-drm_gpusvm_dma_map_pages() and non-notifier unmaps (allowing concurrent
-calls), and in write mode from MMU notifier invalidation context when
-ctx->in_notifier is set in drm_gpusvm_unmap_pages().
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261113190128.2118=
-723-1-matthew.brost@intel.com?part=3D1
