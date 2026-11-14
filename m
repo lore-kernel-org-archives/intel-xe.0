@@ -2,67 +2,67 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7553D606A88C
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1DAA606A31C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=fAamMi8M
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=PSlAsAlB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36CE010F232;
-	Mon, 16 Nov 2026 14:38:04 +0000 (UTC)
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com
- [209.85.218.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1556B10E55A
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Nov 2026 01:43:59 +0000 (UTC)
-Received: by mail-ej1-f49.google.com with SMTP id
- a640c23a62f3a-c40e30c26a4so358769766b.0
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 17:43:58 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99E8F10F239;
+	Mon, 16 Nov 2026 14:38:08 +0000 (UTC)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com
+ [209.85.218.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF1FB10E1EA
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Nov 2026 01:44:03 +0000 (UTC)
+Received: by mail-ej1-f46.google.com with SMTP id
+ a640c23a62f3a-c50a4a2132cso211291766b.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 17:44:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794620637; x=1795225437; darn=lists.freedesktop.org;
+ d=gmail.com; s=20260707; t=1794620642; x=1795225442; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to:content-type;
- bh=ln/RngDaBKEnJFXqfKaXLiW2drDb5LIdcMJafwzjtfA=;
- b=fAamMi8M1XatpkG2C72yQttqUVQGl0beWVEH8mopdMselkrRq8zyDEOQ1kqYo8c/wK
- Mtipv6PYv7EL7RHVgOE3ymJCTzU7jsFKN17f87znGTZgQ1iQNl+GGEwqWIc41Q9xj8sK
- DfyJecdWE959QjwuZyaBnSM+vE6FugyaroNLC0kP3LOELbItMusbMYO1ugLEWG+OsaFv
- qbggafHWHB+DEa8Sq+B/TKTXwB92AKxpuTKXa/nF/2kBlNaJ7SIa0ze/yPeYsFTbS+J/
- 8yKR58CDFglbiuSc5joApMXrEP5H7hGoTSXTJuwH93SU6/Xfot8kCKBrN1Rt6IfUsZ7e
- U5JA==
+ bh=gVcYrHxuKjjRDsavX/u54wCI8Z5NBBro/KfpNW0Hgew=;
+ b=PSlAsAlBKR1eJfNX0s3CCrfiFEzTUQqfrqtOZ4XRAIAMeGPMVzd7wfkCDRtrSfwD3C
+ DOLLejzMzrOBfVsSV4F7z/47Yd/OVor5z5MaNNPdpOvLmkz0a6XM44QIlPRLSYbDps2t
+ kEskpE1m0ue68ot1HyVvJN7Hp2V89tGnBfa8nUeUVcJmQfqLV2yvZdhXKTjiTvknNOke
+ LdqBAEfD/OSCToueU9OijOwTdc8Iak1M2OzaP7h167/L+LseKBIpfslLiEQDICW1l/T6
+ AAg5h0naC5EsL4KLp0SIEUWYr7vS1qVJMegalcYKXru+vwwo+4Am4oKsJUPiGKtIhfZV
+ yYVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794620637; x=1795225437;
+ d=1e100.net; s=20260707; t=1794620642; x=1795225442;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to:content-type;
- bh=ln/RngDaBKEnJFXqfKaXLiW2drDb5LIdcMJafwzjtfA=;
- b=JJ3JkZcdHsXrMwFvnhHFUnWMJAtMEexfEbNjNqiUhSqxfcIIgeU8fwPo0dyb5TjUx9
- 44hNx6/4Zh5SbIiDioGffeGP0HRAdyAm8EPPxEZ5kHCWvZJxzszxpuAr3DeYr3ZUPePh
- 7Rr4xzKE+NT5h7aePP2n16Bq2xc44k9CvUUwYCZtjTfSufeRZLFhCkw07ykBJ6s8NbeG
- k28ImwiH7xCoyd45ky1jm0KCPfAiAo7y01h1BAoBmBoNLtPMEUjnlzdJVVDcOtisulKl
- r+JV4cO7WztXVqCh12bD3URVTTwPlTEE5VN7wiiSgo0HW6mFT6aK4GfPDiSIbdMsMld6
- bOgQ==
+ bh=gVcYrHxuKjjRDsavX/u54wCI8Z5NBBro/KfpNW0Hgew=;
+ b=w/wpm582goTdiqukYpbABZXohlOJRMs4OHtypghBXf6BP9812+CFG1ctRCszlz+8Xu
+ 3GJ2NTWUPqpphSMHMdQ5iYaJETF1B8+lljaNMF0R7blYg5vk9oLWPUEkVMcIlt4Ik4Hh
+ 8Ou/eFoOxBLOEn7/Bry1PgJd3dycvaC939ZCQyfsiV8D28kOiu3JDE/p5X0pJHhDzjyl
+ 63wl6jt5ECBpiWJP0yE6BFpOFsjlydqdBMY77Nh0Nge8ixdytw7tG1OXMeQwZ0O7M+Xr
+ 74gUIYQLejAUfUJotLA96i0UHSoLgz8gidMbstf+NEfY3Prbt+Eul2kzBonRzvLEUmP2
+ AltQ==
 X-Forwarded-Encrypted: i=1;
- AL+hErHvgAamDxR5hF7m+YY13CRRufFzciLB/p8PJj2pAnwwCSJypx3kyzva28vveym52Y1EV77sSbMf3w==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/y1VJgxZ+7vgFmoH79saG8MWY/PPsu1Gt0RCfAvxBCdF8Qgku+
- s7GYyRF8Oq7oW/yggwMGOeCHQZ0shHYivKO/vatPJdYf4FKJSSz/oW6D
-X-Gm-Gg: AYBFou1zW55xzswlnCN2ITKIpQKNcfTkBuN2+JR9GEb/0ccHl8CCybs7Efawe67nXOv
- izWx5OjhSQkw7GdvWG3ADt30eRBPWEiVSlHyrlRyG6LvFkCReWXkLy08zKi0JHsqNr8TUGjnca0
- WS9i+R2C3ytcb75M66A8FfuXWKog32ZIBkKEFTqxgYhPSN5BjvRSGVhf2vd0CqbeiwDmn42BEgE
- cj0DD9f7n+eZggnj7NtPu0XLtBU3k4F6T2C01rrq5ownWc12DWPisg2ICa2xQDfoj3EuHNclarI
- mm35tf225Ai1IXSEqO6F5THjcPuml3vjLVQYzyw9+YNnpOzvEncW5GeMfoYkH8hr89/q7vd8vtp
- 2caHFS37dvCp5h1Uu+FHY0rkrcp9yUesE45PxE3cddFkvNT1lBhMoFK/lffa5uCUiQtTC9QWIim
- Z0VEPjdZp7xY5HKa3gHX5hVVn81gf1gDc3+8OTbAJkWnZUgegZMyvffSGp+4AW4NiGfZ/geVEdW
- Gcd6a3QYvSwqo12bJMtysl/36nsNKNVaV5PoHCER/P4UhjsvJ/7XLltRTavjhS6bDiKmMCZT4aW
- qfHnOoxuwHa3nf4yDwIPQ0JfOaAIH7E1qh08YcnhKWWebofBryhL01NZZ3HFDkFSv+WImRHVSU+
- jJrp/WoTvU0lJmkuW20lUBHo=
-X-Received: by 2002:a17:907:849:b0:c2e:7fe7:2898 with SMTP id
- a640c23a62f3a-c509634b3fcmr384987366b.12.1794620637178; 
- Fri, 13 Nov 2026 17:43:57 -0800 (PST)
+ AL+hErGuehb1fKr6QEk9aEnePTFrGw0eCDN5ryVRGH1NddeXGMHgsA1xGomM0C23Ps7AwZilnakM4LNKBQ==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z8nEDG+FvSe4cP76iQynqfrvweBhTvaRL2fXTK2jL/SjKj8Pxre
+ n74A8yOMw65Hhvdp9m7vsxZM+dhfD+W/R+qRMjUu2G5yCAY89QJBw6br
+X-Gm-Gg: AYBFou0hvdvOtP/yqMTouQUkpuukoyRaTpfUymcz7dODhOB5TVoNgP14EHBYkv56UPb
+ l82cQtl7TS+BKPvlclDGMJqzaoJNZE6U8nA2Zc9ENyy+2LXA9kBXcXPWZTynpkmxiqNpdLydbZe
+ qXbqmjeonku52L0ehwDam4W0c3d7Wz3vWiuVFEcxMiIzknd0oH1exGU9qhVtnkeLqWK6XxM/35P
+ KApBTkqxq8Z5ShTIup8n4OwS6l3UPaC5AJ+prQmWo3v6iZ4ot6aVwwrHy7+GcO3+RGLmb0PItTh
+ /254OVNu6K/sR9XsR42RhM1+eRh79KxwvQ4BMCoGpYm3HDN8deLhSYWMs+40Dl2fjgpnZmPJAbo
+ cCwnUtUMJ1oXMqATKeBOoIQs77YiaaT9FKTIfM1PS3DlmmYeI4tDG6lBqQfa8jWssGfO23ZYed1
+ wQEr0VJlaojoH4ICkox8hltZ5caR43Xim0KOrKgqmKY0KFmwR+f5UHqtXis+16kyXgWSW832zBL
+ vkEgjddi+M9M95IyaFTKmfsI09wx142zybKYSv8VRsD/ZbOAomy7CFK5FQZZoU9asMElo3Fiu3m
+ 8ilEDVJ+cHzFMnAVsDqKionRl5mDFyChiJGNysA2P+lliksUhQoITXOHvjHrqArZkiFBKl3ga8P
+ hCDQ8BuWmiUdTyQR0vKYuGTM=
+X-Received: by 2002:a17:907:96ac:b0:c29:3c97:c994 with SMTP id
+ a640c23a62f3a-c50963bd677mr349321366b.35.1794620642059; 
+ Fri, 13 Nov 2026 17:44:02 -0800 (PST)
 Received: from SMOK.angora-ide.ts.net
  (mm-156-219-126-178.vitebsk.dynamic.pppoe.byfly.by. [178.126.219.156])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c5095b5a4c1sm161402666b.48.2026.11.13.17.43.56
+ a640c23a62f3a-c5095b5a4c1sm161402666b.48.2026.11.13.17.44.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Nov 2026 17:43:56 -0800 (PST)
+ Fri, 13 Nov 2026 17:44:01 -0800 (PST)
 From: ElXreno <elxreno@gmail.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -72,10 +72,10 @@ Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
  mitulkumar.ajitkumar.golani@intel.com, airlied@gmail.com, simona@ffwll.ch,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  ElXreno <elxreno@gmail.com>
-Subject: [PATCH 1/7] drm/i915/panel: Fix the pixel clock overflow in the VRR
- vtotal
-Date: Sat, 14 Nov 2026 04:43:29 +0300
-Message-ID: <20261114014335.2132756-2-elxreno@gmail.com>
+Subject: [PATCH 5/7] drm/i915: Arm joined pipes within one vblank evasion for
+ VRR
+Date: Sat, 14 Nov 2026 04:43:33 +0300
+Message-ID: <20261114014335.2132756-6-elxreno@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261114014335.2132756-1-elxreno@gmail.com>
 References: <20261114014335.2132756-1-elxreno@gmail.com>
@@ -101,39 +101,192 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-intel_panel_compute_config_vrr() multiplies the pixel clock in kHz by
-1000 in a signed int. A 3840x2400@240 timing has a 2342.4 MHz pixel
-clock, the product overflows, and the vertical total computed for a
-refresh rate other than that of the fixed mode comes out negative.
+All joined pipes run off the transcoder of the primary, so one vblank
+latches every one of them. On the MMIO path each pipe nevertheless
+goes through its own intel_pipe_update_start()/intel_pipe_update_end()
+critical section, one pipe after another. When the vblank falls
+between two of them the earlier pipe latches its new state a frame
+ahead of the later one, and for that frame the halves of the screen
+come from different frames.
 
-Do the multiplication in 64 bits.
+With VRR that gets worse, as the commit ends the frame itself: the
+push at the end of the primary's section latches whatever has been
+armed by then. Commit the joined pipes together when VRR is in use:
+do the vblank evasion once, on the primary, arm all of them inside
+that critical section and let the primary send the push at its end.
+The evasion accounting, the trace events and the atomic update
+failure check then run once as well, for the primary.
 
-This needs a fixed mode above 2147 MHz, so one that uses the joiner,
-inside the VRR range of the panel, and a request for another refresh
-rate that ends up on that fixed mode, as the allow_modeset=false path
-does for a mode that is VRR compatible with the current one.
+Armed this way the critical section takes 15 us on average for two
+pipes on Arrow Lake (71983 commits at 240 fps: 71918 under 30 us, 16
+between 30 and 60 us, 49 between 60 and 188 us), against the 100 us
+the evasion allows for. The window is not scaled with the number of
+pipes. The 49 are single MMIO writes that stall, not more work: the
+instruction count is that of an ordinary section, the CPU stays in
+C0, there is no SMI or NMI, and the register differs from case to
+case. The per pipe sections of the same mode without VRR and with
+the DSB turned off show the same stalls (15 of 72002 sections over
+60 us), so they do not come from arming two pipes in one section.
+None of them ran into a vblank.
 
-Fixes: a2da67028cd0 ("drm/i915: Allow arbitrary refresh rates with VRR eDP panels")
+The per pipe sequence is kept where the critical section has per
+pipe work attached or the pipes need sequencing against others:
+modesets, the atomic fallback of a legacy cursor update, async flips,
+commits that need the vblank worker for the LUT load and commits that
+change the DDB allocation of a joined pipe. The vblank worker is
+needed on the platforms without double buffered LUTs, when a colour
+update or a fastset has LUTs to load that can neither be preloaded
+nor be left to a colour DSB. Commits that go through the DSB or the
+flip queue are not affected, and neither is the commit sequence of a
+joined configuration without VRR. The latter has the same race
+against the fixed vblank, it is left alone only to keep this change
+to the case that can be tested with it.
+
+On the platforms with double buffered LUTs there is no vblank worker.
+Where no colour DSB is used the LUTs are loaded with MMIO inside the
+critical section, which here is the joined one and then loads them
+for all joined pipes. I have no such hardware and have not tested
+that.
+
+No functional change yet, VRR is not allowed with the joiner.
+
 Signed-off-by: ElXreno <elxreno@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_panel.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_crtc.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_display.c | 88 ++++++++++++++++++++
+ 3 files changed, 90 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
-index 81e638d0c7b3..157be3153c7e 100644
---- a/drivers/gpu/drm/i915/display/intel_panel.c
-+++ b/drivers/gpu/drm/i915/display/intel_panel.c
-@@ -277,8 +277,8 @@ static int intel_panel_compute_config_vrr(struct intel_atomic_state *state,
- 		int vsync_end_offset = adjusted_mode->vtotal - adjusted_mode->vsync_end;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 139c9dae536e..f41616a060b5 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -487,7 +487,7 @@ int intel_crtc_get_pipe_from_crtc_id_ioctl(struct drm_device *dev, void *data,
+ 	return 0;
+ }
  
- 		adjusted_mode->vtotal =
--			DIV_ROUND_CLOSEST(adjusted_mode->clock * 1000,
--					  adjusted_mode->htotal * vrefresh);
-+			DIV_ROUND_CLOSEST_ULL(mul_u32_u32(adjusted_mode->clock, 1000),
-+					      adjusted_mode->htotal * vrefresh);
+-static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
++bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
  
- 		adjusted_mode->vsync_start = adjusted_mode->vtotal - vsync_start_offset;
- 		adjusted_mode->vsync_end = adjusted_mode->vtotal - vsync_end_offset;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+index 12507b51ee77..0478394b01e8 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.h
++++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+@@ -50,6 +50,7 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
+ 			     struct intel_crtc *crtc);
+ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 			   struct intel_crtc *crtc);
++bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state);
+ void intel_wait_for_vblank_workers(struct intel_atomic_state *state);
+ struct intel_crtc *intel_first_crtc(struct intel_display *display);
+ struct intel_crtc *intel_crtc_for_pipe(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index aa03f674d93b..1fda1bb15674 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7151,12 +7151,100 @@ static void intel_post_update_crtc(struct intel_atomic_state *state,
+ 	}
+ }
+ 
++/*
++ * All joined pipes run off the transcoder of the primary, so one
++ * vblank latches every one of them, and with VRR the commit itself
++ * ends the frame with a push. The arming registers of all joined
++ * pipes then have to be written within a single vblank evasion
++ * critical section, with the push at its end, or the pipes may
++ * latch in different frames.
++ */
++static bool intel_crtc_needs_joined_update(struct intel_atomic_state *state,
++					   struct intel_crtc *crtc)
++{
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_crtc_state *old_crtc_state =
++		intel_atomic_get_old_crtc_state(state, crtc);
++	const struct intel_crtc_state *new_crtc_state =
++		intel_atomic_get_new_crtc_state(state, crtc);
++	struct intel_crtc *pipe_crtc;
++
++	if (!new_crtc_state->joiner_pipes)
++		return false;
++
++	/* FIXME do this for the fixed refresh rate case as well */
++	if (!old_crtc_state->vrr.enable && !new_crtc_state->vrr.enable)
++		return false;
++
++	/* FIXME the cursor unpin works are set up per pipe */
++	if (state->base.legacy_cursor_update)
++		return false;
++
++	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
++					 intel_crtc_joined_pipe_mask(new_crtc_state)) {
++		const struct intel_crtc_state *old_pipe_crtc_state =
++			intel_atomic_get_old_crtc_state(state, pipe_crtc);
++		const struct intel_crtc_state *new_pipe_crtc_state =
++			intel_atomic_get_new_crtc_state(state, pipe_crtc);
++
++		/* The DSB and the flip queue do their own vblank evasion */
++		if (new_pipe_crtc_state->commit_type != INTEL_COMMIT_MMIO)
++			return false;
++
++		if (intel_crtc_needs_modeset(new_pipe_crtc_state) ||
++		    new_pipe_crtc_state->do_async_flip)
++			return false;
++
++		/* FIXME the vblank work is set up per pipe */
++		if (intel_crtc_needs_vblank_work(new_pipe_crtc_state))
++			return false;
++
++		/*
++		 * A changed DDB allocation must be sequenced
++		 * against the other pipes one pipe at a time.
++		 */
++		if (!skl_ddb_entry_equal(&old_pipe_crtc_state->wm.skl.ddb,
++					 &new_pipe_crtc_state->wm.skl.ddb))
++			return false;
++	}
++
++	return true;
++}
++
++static void intel_update_joined_crtcs(struct intel_atomic_state *state,
++				      struct intel_crtc *primary_crtc)
++{
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_crtc_state *new_crtc_state =
++		intel_atomic_get_new_crtc_state(state, primary_crtc);
++	u8 pipe_mask = intel_crtc_joined_pipe_mask(new_crtc_state);
++	struct intel_crtc *pipe_crtc;
++
++	/* Perform vblank evasion around the commit of all joined pipes */
++	intel_pipe_update_start(state, primary_crtc);
++
++	for_each_intel_crtc_in_pipe_mask_reverse(display, pipe_crtc, pipe_mask)
++		commit_pipe_arm(state, pipe_crtc);
++
++	intel_pipe_update_end(state, primary_crtc);
++
++	for_each_intel_crtc_in_pipe_mask_reverse(display, pipe_crtc, pipe_mask)
++		intel_post_update_crtc(state, pipe_crtc);
++}
++
+ static void intel_update_crtc(struct intel_atomic_state *state,
+ 			      struct intel_crtc *crtc)
+ {
+ 	struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 
++	if (intel_crtc_needs_joined_update(state, crtc)) {
++		/* The secondaries are committed along with the primary */
++		if (intel_crtc_is_joiner_primary(new_crtc_state))
++			intel_update_joined_crtcs(state, crtc);
++		return;
++	}
++
+ 	switch (new_crtc_state->commit_type) {
+ 	case INTEL_COMMIT_FLIPQ:
+ 		intel_flipq_enable(new_crtc_state);
 -- 
 2.56.0
 
