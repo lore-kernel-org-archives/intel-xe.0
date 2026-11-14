@@ -2,67 +2,67 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8796C606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B406B606A332
 	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:38:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=SiwMuH9q
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Mgkuo664
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B83510F23C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 705CD10F23F;
 	Mon, 16 Nov 2026 14:38:09 +0000 (UTC)
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com
- [209.85.218.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2807610E561
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Nov 2026 01:44:05 +0000 (UTC)
-Received: by mail-ej1-f41.google.com with SMTP id
- a640c23a62f3a-c4d30639709so282023266b.0
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 17:44:05 -0800 (PST)
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com
+ [209.85.218.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D8BA10E664
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Nov 2026 01:44:00 +0000 (UTC)
+Received: by mail-ej1-f48.google.com with SMTP id
+ a640c23a62f3a-c45551fa84eso388391866b.3
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 17:44:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794620643; x=1795225443; darn=lists.freedesktop.org;
+ d=gmail.com; s=20260707; t=1794620638; x=1795225438; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to:content-type;
- bh=uLsjaTn65LaFIAzBSRyBBq8jlmudpJnh9O4lsKxLsso=;
- b=SiwMuH9qc3rf30NiD4l3sQdI1J/+IpBBV05k06/s5ooru7KqS6LooOhxg1EMXjKR/D
- KWxoSFhsheogizSQJdkDcE4D0zru9UhTsiG9iXyaYfAo9kJPnn99oDOYnGgWvIvE1iWi
- jqPm2+fMuXjMlJhL3G9E+9PDBch7PX8InLOVDAa14AH/FXkM0g8baSOvhVlpMhenqJbd
- jevswEV3Q94IGhGkDS6Zs1rQf9qjoEQ/I74O44M0unY/jlDJoAZN6lWAbPsnxFxPzUgc
- HgFUOJRti3peU+HIdae5ZoIzsWsb+z70uKcL3UKiyjawLfVh46VeRxSZf4cdb5ROLF6R
- Qd9A==
+ bh=0Pz+qENIdDsgTiQZzFFYd3dQorXrNLOkeSm/a1z1K+E=;
+ b=Mgkuo664Kc+3FoLbPLfohgPkMkYSwge8DcAzrSxtpUw3aG4PAkt7zZdUAPr1OchCvI
+ F5ps4O14wr6hmecGyGD+5tQPKHId2pmrruSfIGmyjZD5EbNV2zVtGfQvzSTmbGwWI/Un
+ PgtnXnU/8YtfZoKVg0ZPpgFqyX+eckaI/UEc7qe6RGBKGfaUbpr6gXk7wOAUwxtkqCAv
+ mceKMX4jGNq6b0y/MWhBbVsnNZoYoqnAfmrc0MkLEWkaokaVdv2bIyuZyJTEs//xdWOs
+ vD3MK20+OhflObUxL3h7hxIPbHAFo66KyaEYUqwGiRTX+k9hx3np2up2lOPSdtXbtqeF
+ lkdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794620643; x=1795225443;
+ d=1e100.net; s=20260707; t=1794620638; x=1795225438;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to:content-type;
- bh=uLsjaTn65LaFIAzBSRyBBq8jlmudpJnh9O4lsKxLsso=;
- b=u6PwSI4qAr6Ze1lFav/ZxxsCZRzgNutUW0V9/3EBKzbixhuseieuCH3AQ/2zpno3n0
- KN4aX1Ctj6At7S5S5fhqBtq/XMektvJmdSxpvHWVWi6uktXcYV5oSMUm7F8hcoPtJOFF
- eMmW8rCc/LL9+CXnGH0B82ts2Bj8aGahS5bqd9doqQ1CtC7jBgepbMRWDzDxciN+/LPO
- e4Dm8+QN7RBmmRmmLLEHpl6FW36o6vseJ7uriNVDu+3zfg42HIR0pcTr0eKb2oMfi61Q
- N820gPhJGt94zv0i9tPNYpLcBNmNiaM5AM4w8nOMIbWS64OzAhwclbfaD+QL3Q1d8uwx
- N6tQ==
+ bh=0Pz+qENIdDsgTiQZzFFYd3dQorXrNLOkeSm/a1z1K+E=;
+ b=WJTL80l03RdBZKA396knQmB9UXoyYt35w6HTNGGpz4FtKRPvGgukRI7BB9u7c1h6yJ
+ HSlXN+dwF/ED0PBbcUiPopv1AhVRkYIxyEi5whdq82na3Kcb2NHjLwRN/egmTLqE+wjc
+ J4hnSO4N+tpkhqKca14JfdHQY7ijRe7hou3mp6vnR2t0/g1d+Ha2OJAeiUWYsj0GUvns
+ PXFK3Zy3XO+niBTZQNzdi8EG1Q2utDxgFSKVSCM4Mkc8pGi187zaX/Bf4OsNiNPY8744
+ phwDKFErqYTMmQ2x8Knx858ONTRFZN6zuBlDigTdOZgr+7td3PgPiTSrBYp2U/5fq5GS
+ d00g==
 X-Forwarded-Encrypted: i=1;
- AL+hErFeIdQZjXesvRydVij9xZXQKjDZmqHbqQQkYeb8t2eUwNr7W4g58YOUnbPswcNY/eMccYvnsx0rAw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9sg285J4Xn2DjmzYL/BEFj30G+NCZrAcxJ6c82xiyNTd+fvGxM
- PtRopoO26ZL7/TP2B8hAz8JF/L8kKV64K6NU5G0/q3NQQHbt1OXq3FML
-X-Gm-Gg: AYBFou3eZragyYIgAWOH10JoGTBAtDMEWoj7T8tFHl9MnrUur5rvG06sodHzDeIVnis
- n8Uyq/EOw2UTA5wPhHvlny9746ufJJ4ArYDeRrnUY5QOoI73SBn0vlohSApXzCIvCsOT0YTx3pd
- pIoXqsSw9GWAegoeabI1nErB6oD2yb0Rdn5buSnz/9OnBCgfIeZesn9tH8wXHCnNTco2D5jBYHu
- UaPH/vsfGWaC2hTmVDZgMqlEunlnvq382thBwfYaZDo7aasx0SjN+sEUlZona4NmoumO607Odlo
- 1tSEe/m/jqyhZhyUPTXbFREUPvW/eRicTNxG0RANIVd6tIxuiCcReDD9TnRFWXMIo8uxbWHVdC2
- OlcWvT8qTGui/F4ZHv9asvpke7YJpfzW/A0tzPs3vFmXwTuNsp3HaLhcn9zX+EOpGUdUJurmME8
- 7XDvZqoHv9V8/UcffMj1qLpJj2mvc2hhkDbwtm6xDBwjLz0NjTCQTJvRQNG1iaptNoB2Xavm//E
- rWxmC0R5+1QGktlc57x+FKwBkbzmn7gtHuZnAkUMk6rzzBeCV/oq1/eM61amvrbIz7C3F2cFmNN
- bgc2yO8YYrWgHDy64vv+pWbfP4qfJOg7rGnUqRD69qB9JN8tuJGog/6+x8CgHEdCZ2otIy5amwM
- gQq9VBKH/uK1pOSs5eLIbOFg=
-X-Received: by 2002:a17:907:3f23:b0:c50:93b6:52fa with SMTP id
- a640c23a62f3a-c509614e782mr364785766b.2.1794620643332; 
- Fri, 13 Nov 2026 17:44:03 -0800 (PST)
+ AL+hErHzbssJ/luNKQvfqzsCxP411BvjOuv71vEzQnZ4hR904/huZLed7VmysJxTdwvmzZ9OI3cSeiFqWQ==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+blDz0Ea+glRWXZJN1c5ojIIwSB48BxuyR4VnnGAKBnbMzBrb3
+ ZkZjovt9WSyjRIviwEHVsHc4MxQNLRbAV7GqaL8KiV9aRTV7Rn56Vek7/X210RSH9L4=
+X-Gm-Gg: AYBFou1lxZVtufxD53RlBW3QNfZXoEeD8kQwYvSgSHAhpGgBFPfIwdX/GQUkzIoLvCT
+ cBNosAF/NSOIZTiYc5b4vJArLupDmJ9D0hwzNKCNpviFA9QMgn0Hk18UGxZd+REkpIpaQxuYOTF
+ +VZ5WJwmOnOx3muZQohsKSUgXSSLjCq7hUcHGIm1F6o9Sk7xVnbDaPOHc49IGSrCkAciZzBgnuw
+ t2Q5EwrvVVGJAjYsxLnaB8p7KmprHA7HPQ0cR39nBoRmCQ2nvQIiukosrIH03tYaXcsrtk834BU
+ KsF+t4/ONLoXxatirNj1LEunVxUOcSZ83qw7tDZRQ5Ket9caDddQ3I/FucfxwdhBG2hUo70oNx4
+ dAdTVnpULnhfqMcK6Tj/0aU+cQsFEloR4tyyUaPpWyv34ZXVlRBZfYhey6AmIRZelj48mLCB4hT
+ 4FCaK3RKjWOnfwAKXYy2BO8sMCxD0HncPtmvo1HDqC70lclWNFSz2eLNiZPOkTbbUSme1ywXnOJ
+ o/y2p+n+WkeVRBBbdtOwbV9YG5U/tTnMxiNLLPpbVbp5J8LCzOfCtQCF24Di1yrr6o9grlOVPMj
+ /wcSXA5udaIUYjFYkPCPCzMFlmrx0ssOYS+wnbA31MSHmESI4eR1Z3RtitztDkVmH1S56rJVbpX
+ LckMgQL+PVRrIbpswYB+mKQM=
+X-Received: by 2002:a17:907:7b85:b0:c46:a72:e0c3 with SMTP id
+ a640c23a62f3a-c5096398905mr356309566b.16.1794620638353; 
+ Fri, 13 Nov 2026 17:43:58 -0800 (PST)
 Received: from SMOK.angora-ide.ts.net
  (mm-156-219-126-178.vitebsk.dynamic.pppoe.byfly.by. [178.126.219.156])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c5095b5a4c1sm161402666b.48.2026.11.13.17.44.02
+ a640c23a62f3a-c5095b5a4c1sm161402666b.48.2026.11.13.17.43.57
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Nov 2026 17:44:03 -0800 (PST)
+ Fri, 13 Nov 2026 17:43:58 -0800 (PST)
 From: ElXreno <elxreno@gmail.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -72,10 +72,10 @@ Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
  mitulkumar.ajitkumar.golani@intel.com, airlied@gmail.com, simona@ffwll.ch,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  ElXreno <elxreno@gmail.com>
-Subject: [PATCH 6/7] drm/i915: Evade the vblank on the scanline of the joiner
- primary
-Date: Sat, 14 Nov 2026 04:43:34 +0300
-Message-ID: <20261114014335.2132756-7-elxreno@gmail.com>
+Subject: [PATCH 2/7] drm/i915/vrr: Fix the pixel clock overflow in the vmax
+ computation
+Date: Sat, 14 Nov 2026 04:43:30 +0300
+Message-ID: <20261114014335.2132756-3-elxreno@gmail.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261114014335.2132756-1-elxreno@gmail.com>
 References: <20261114014335.2132756-1-elxreno@gmail.com>
@@ -101,96 +101,39 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The scanline counter of a joiner secondary pipe was observed to wrap
-at 8192 lines on Arrow Lake, with pipes A and B joined. Sampling
-PIPEDSL of both pipes, they agree up to line 8191, which is the
-largest value pipe B ever returns, while pipe A counts on up to the
-vmax vtotal. From line 8192 on pipe B reads 8192 lines less than
-pipe A. This comes from measurement only, I have no documentation for
-it, and I could not check whether it is a property of the joiner
-secondary or of that pipe.
+intel_vrr_compute_vmax() multiplies crtc_clock, which is in kHz, by
+1000 in a signed int. A 3840x2400@240 timing has a 2342.4 MHz pixel
+clock, so the product overflows, the quotient turns negative and vmax
+is clamped to crtc_vtotal. vmin then equals vmax and VRR is never
+enabled for the mode, although it is within the range of the panel.
 
-It is harmless as long as vtotal stays below 8192, which every fixed
-refresh rate mode that needs the joiner does. With VRR the vmax
-vtotal can be larger, 12200 for a 3840x2400@240 mode with a 48 Hz
-lower limit. The vmax vblank start at line 12160 then reads as 3968
-on the secondary, vblank evasion on that pipe never sees its evasion
-window, and the pipe gets armed across the vblank:
+Do the multiplication in 64 bits.
 
- Atomic update failure on pipe B (start=48480 end=48481) time 8 us, min 12101, max 12159, scanline start 3965, end 3969
-
-All joined pipes run off the timings of the primary, so look at the
-scanline counter of the primary when evading the vblank on a
-secondary. This matters for the commits that still take the per pipe
-critical sections with the joiner.
-
-Only the evasion is changed. The vblank timestamps of a secondary
-still come from its own counter, and so does the end scanline in the
-message above, while the start scanline is now the primary's.
+No Fixes tag: intel_vrr_compute_vmax() is only called for a mode
+within the VRR range, such a pixel clock needs the joiner, and
+intel_vrr_compute_config() takes joined modes out of the range so
+far.
 
 Signed-off-by: ElXreno <elxreno@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 12 ++++++++++--
- drivers/gpu/drm/i915/display/intel_vblank.h |  2 +-
- 2 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index fc9d1e14ec87..6654ef590da6 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -11,6 +11,7 @@
- #include "intel_color.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-+#include "intel_display.h"
- #include "intel_display_jiffies.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-@@ -683,6 +684,13 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
- 	/* TODO: maybe just use the active timings here? */
- 	crtc_state = pre_commit_crtc_state(old_crtc_state, new_crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index e59345bd1d33..a5a5d11380a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -416,8 +416,8 @@ int intel_vrr_compute_vmax(struct intel_connector *connector,
+ 	const struct drm_display_info *info = &connector->base.display_info;
+ 	int vmax;
  
-+	/*
-+	 * The scanline counter of a joiner secondary pipe has been
-+	 * seen to wrap at 8192 lines (on ARL), which the VRR vmax can
-+	 * exceed. The primary runs off the same timings and counts on.
-+	 */
-+	evade->scanline_crtc = intel_primary_crtc(crtc_state);
-+
- 	adjusted_mode = &crtc_state->hw.adjusted_mode;
+-	vmax = adjusted_mode->crtc_clock * 1000 /
+-		(adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
++	vmax = div_u64(mul_u32_u32(adjusted_mode->crtc_clock, 1000),
++		       adjusted_mode->crtc_htotal * info->monitor_range.min_vfreq);
+ 	vmax = max_t(int, vmax, adjusted_mode->crtc_vtotal);
  
- 	if (crtc->mode_flags & I915_MODE_FLAG_VRR) {
-@@ -738,7 +746,7 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 		 */
- 		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
- 
--		scanline = intel_get_crtc_scanline(crtc);
-+		scanline = intel_get_crtc_scanline(evade->scanline_crtc);
- 		if (scanline < evade->min || scanline > evade->max)
- 			break;
- 
-@@ -774,7 +782,7 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 	 * FIXME figure out if BXT+ DSI suffers from this as well
- 	 */
- 	while (evade->need_vlv_dsi_wa && scanline == evade->vblank_start)
--		scanline = intel_get_crtc_scanline(crtc);
-+		scanline = intel_get_crtc_scanline(evade->scanline_crtc);
- 
- 	return scanline;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
-index 98d04cacd65f..28b4c458fa18 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.h
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.h
-@@ -16,7 +16,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- 
- struct intel_vblank_evade_ctx {
--	struct intel_crtc *crtc;
-+	struct intel_crtc *crtc, *scanline_crtc;
- 	int min, max, vblank_start;
- 	bool need_vlv_dsi_wa;
- };
+ 	return vmax;
 -- 
 2.56.0
 
