@@ -2,50 +2,49 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AED31606A31F
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Nov 2026 08:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF526606A31A
+	for <intel-xe@archiver.kernel.org>; Sun, 15 Nov 2026 08:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JaXdbIdw
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Y+SEjb5U
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 783B310E1D1;
-	Sun, 15 Nov 2026 08:55:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72A1010E298;
+	Sun, 15 Nov 2026 08:56:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AC2210E1BA
- for <intel-xe@lists.freedesktop.org>; Sun, 15 Nov 2026 08:55:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 576DA10E298
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Nov 2026 08:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794732950; x=1826268950;
+ t=1794732953; x=1826268953;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=tNsJhT+PTWyeKNfB6Uw5B6Ycv0atPLREpEYZoIWs6tU=;
- b=JaXdbIdwthyVjgU39lmkQdFELPGBEHiGzJgm88WZhvapVE5AASi3Md50
- bCHAB3wIPHOC0agNQI9yvKD2EV824osW/JiaidjKp2sUWVEM4Ufx69Ief
- 1xqfpkVDexDV4xt5qfjOHS0Fh9OncQ98rEYbt5CbSLfJcNiJFNtDLa2t0
- L0njvf3WpS+3QmVBpRLRLdN+5/5pMHd6IpFmFI96VsHSDrt8s9KTCgv7R
- wFURx3/DjfbydK0ap97/afBlxPgIXwbjxndho3geC3peIGdryfvNkFm8M
- cv+RF3GLALAjNZf1Gh5hJEu7i4uT1XSpCE+KBMa0h5AYcqO9yLAmBeVh+ g==;
-X-CSE-ConnectionGUID: 50hmLX8rSTyEZtrmsCb9Ag==
-X-CSE-MsgGUID: cXkHcbi+TlmfktAm0cCmIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11966"; a="3496478"
+ bh=Y5a7QS6h0F8DmI7kUdX+fWeMJvXXA8fL0lpNZCwQ2jA=;
+ b=Y+SEjb5UHtx5ssSOqqi+jM9Skae6EeZu1G91E8dA75CdiZWa1Nxc7noi
+ Yj/O3Zf+dJ7ZeGNP4Lm9VkGBVbszZJSaeyHkuFqPlNTboeAvkymQ983zJ
+ hoBuQ1JkhTVuKWBv3OoJSP7ATbCc9GbgFuHX+IsIrK+fC0oD1Gdk+7Rxo
+ 8y/LPUeOQRdJq4GB/tJGhUksmgS69ZGJ4cgseN0itjSHLDmthmNjLRmLz
+ VyaqiqQiem/HFScAfQQ86zs9dRlDzDkzQRd2/56Q1cCTSWQ/fVyqO9uno
+ bfAmDunqO4WHAs86pWsDEAw13/rrERpjVJq/AOqxTOLauOufWPuf1kBVt g==;
+X-CSE-ConnectionGUID: DLFkXZFbROmJB5jEKu0RhA==
+X-CSE-MsgGUID: wEoDRCujRpSBFQbcHpMlyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11966"; a="3496483"
 X-IronPort-AV: E=Sophos;i="6.27,214,1787036400"; 
-   d="scan'208";a="3496478"
+   d="scan'208";a="3496483"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2026 00:55:49 -0800
-X-CSE-ConnectionGUID: APsDtEaOSaWi+TVkDD2rEA==
-X-CSE-MsgGUID: ildXNorZRyKCixO0rluM9Q==
+ 15 Nov 2026 00:55:51 -0800
+X-CSE-ConnectionGUID: G5Y5fnTYRf+jMv8m3DFdaQ==
+X-CSE-MsgGUID: JLSCROZGSZ6AIX/n8Ovruw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,214,1787036400"; 
-   d="scan'208";a="9306637"
+   d="scan'208";a="9306643"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2026 00:55:48 -0800
+ 15 Nov 2026 00:55:50 -0800
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 1/3] CI-ONLY Hold a device reference across deferred VM
- destruction
-Date: Sun, 15 Nov 2026 14:25:16 +0530
-Message-ID: <20261115085518.1135138-2-arvind.yadav@intel.com>
+Subject: [PATCH v3 3/3] CI-ONLY:Defer VM teardown until exec queue cleanup
+Date: Sun, 15 Nov 2026 14:25:18 +0530
+Message-ID: <20261115085518.1135138-4-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261115085518.1135138-1-arvind.yadav@intel.com>
 References: <20261115085518.1135138-1-arvind.yadav@intel.com>
@@ -69,64 +68,452 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-xe_vm_free() queues vm_destroy_work_func() and returns.
-drm_gpuvm_free() then drops its device reference, but the worker
-still accesses device state while finishing VM destruction.
+Exec queue destruction continues after xe_exec_queue_put() returns.
+User queues can also outlive the VM handle. Closing the VM before
+those queues finish cleanup can remove mappings still in use.
 
-Take a device reference before queueing the work and release it
-after the worker has finished using the device.
+Track user exec queues and user-created bind queues until final queue
+destruction. Add each close count under vm->lock so VM close cannot
+miss a queue being created. Keep the bind queue's user_vm reference
+until final queue destruction.
 
-Run the worker on the module-lifetime destroy workqueue. Releasing
-the last device reference can call xe_device_destroy(), which drains
-xe->destroy_wq. Running on that per-device workqueue would make the
-worker wait for itself.
+If tracked queues remain, retain the mappings and defer VM close
+until the last queue is freed. Keep the existing scheduling-disable
+wait on file close without adding a wait for the close count.
+
+VM destroy can therefore return while mappings remain. Userspace
+must destroy the remaining queue handles or close the DRM file
+before those queues can finish cleanup.
+
+Let pending user bind jobs drain during file close and queue destroy.
+Killing these queues can make pending PT bind jobs clear mappings
+while hardware queues still use them.
+
+Exclude the VM-owned bind queue from the close count. Release it
+after xe_vm_close() has waited for DMA_RESV_USAGE_BOOKKEEP fences.
+
+Reject exec requests on closing VMs before userptr pinning, out-sync
+signaling and rebind. Run deferred close on the module-lifetime
+destroy workqueue and hold an extra VM reference until the worker
+has released its runtime-PM reference and unplug guard.
 
 v3:
-- Move final VM destruction to the module-lifetime destroy workqueue
-  in this patch to avoid self-deadlock on the last device put. (Sashiko)
+- Remove the deadline calculation and use zero wait explicitly on file close.
+  (Tejas)
+- Document that internal bind queue cleanup can also defer VM teardown.
+  (Sashiko)
+- Clarify that mappings remain until all tracked exec queues finish cleanup.
+  (Sashiko)
 
-Fixes: 61e18525023a ("drm/xe: Route deferred xe_vma/xe_vm teardown off system_dfl_wq")
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c           |  20 ++-
+ drivers/gpu/drm/xe/xe_exec.c             |   9 ++
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  32 ++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   6 +
+ drivers/gpu/drm/xe/xe_vm.c               | 156 +++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h               |   4 +
+ drivers/gpu/drm/xe/xe_vm_types.h         |  16 +++
+ 7 files changed, 220 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dd855876f571..12afb3363e79 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2109,6 +2109,8 @@ static void vm_destroy_work_func(struct work_struct *w)
- 		xe_file_put(vm->xef);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 1ef9e276bbca..f632398f59c9 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -177,6 +177,7 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	struct xe_file *xef = file->driver_priv;
+ 	struct xe_vm *vm;
+ 	struct xe_exec_queue *q;
++	bool close_deferred = false;
+ 	unsigned long idx;
  
- 	kfree(vm);
-+
-+	drm_dev_put(&xe->drm);
- }
- 
- static void xe_vm_free(struct drm_gpuvm *gpuvm)
-@@ -2116,11 +2118,18 @@ static void xe_vm_free(struct drm_gpuvm *gpuvm)
- 	struct xe_vm *vm = container_of(gpuvm, struct xe_vm, gpuvm);
- 
- 	/*
--	 * To destroy the VM we need to be able to sleep.
--	 * drm_gpuvm keeps at least one device reference at this
--	 * point so xe->destroy_wq must still be alive.
-+	 * drm_gpuvm drops its device reference as soon as this callback
-+	 * returns, but vm_destroy_work_func() still uses device state. Hold a
-+	 * reference across the deferred work.
-+	 */
-+	drm_dev_get(&vm->xe->drm);
+ 	guard(xe_pm_runtime)(xe);
+@@ -194,11 +195,26 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	xa_for_each(&xef->exec_queue.xa, idx, q) {
+ 		if (q->vm && q->hwe->hw_engine_group)
+ 			xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
+-		xe_exec_queue_kill(q);
++		/*
++		 * Killing a bind queue can force pending PT jobs to clear
++		 * mappings while hardware exec queues are still running.
++		 * Let bind jobs drain before their queue is destroyed.
++		 */
++		if (!(q->flags & EXEC_QUEUE_FLAG_VM))
++			xe_exec_queue_kill(q);
+ 		xe_exec_queue_put(q);
+ 	}
 +
 +	/*
-+	 * The worker may release the last device reference. Use the
-+	 * module-lifetime workqueue so device destruction cannot drain
-+	 * the workqueue running this worker.
- 	 */
--	queue_work(vm->xe->destroy_wq, &vm->destroy_work);
-+	xe_destroy_wq_queue(&vm->destroy_work);
++	 * The scheduling-disable wait above remains synchronous. Defer VM
++	 * close if tracked queues still await final destruction.
++	 */
+ 	xa_for_each(&xef->vm.xa, idx, vm)
+-		xe_vm_close_and_put(vm);
++		close_deferred |= xe_vm_close_and_put_deferred(vm);
++
++	if (close_deferred)
++		drm_dbg(&xe->drm,
++			"VM teardown deferred until exec queue cleanup completes\n");
+ 
+ 	scoped_guard(mutex, &xef->mmio_gem.lock) {
+ 		if (xef->mmio_gem.pci_barrier) {
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 1949fb103fad..1c6f820eb17c 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -233,6 +233,15 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		goto err_hw_exec_mode;
+ 
++	if (xe_vm_is_closed_or_banned(vm)) {
++		err = -ECANCELED;
++		if (write_locked)
++			up_write(&vm->lock);
++		else
++			up_read(&vm->lock);
++		goto err_hw_exec_mode;
++	}
++
+ 	if (write_locked) {
+ 		err = xe_vm_userptr_pin(vm);
+ 		downgrade_write(&vm->lock);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 7ade915c59a8..c9b3909b6327 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -155,9 +155,17 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
+ 
+ 	if (q->vm) {
+ 		xe_vm_remove_exec_queue(q->vm, q);
++		if (q->vm->xef)
++			xe_vm_remove_close_queue(q->vm);
+ 		xe_vm_put(q->vm);
+ 	}
+ 
++	if (q->user_vm) {
++		if (q->user_vm_close_tracked)
++			xe_vm_remove_close_queue(q->user_vm);
++		xe_vm_put(q->user_vm);
++	}
++
+ 	if (q->xef)
+ 		xe_file_put(q->xef);
+ 
+@@ -253,8 +261,12 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 		}
+ 	}
+ 
+-	if (vm)
++	if (vm) {
+ 		q->vm = xe_vm_get(vm);
++		/* vm->xef stays unchanged until final VM destruction. */
++		if (vm->xef)
++			xe_vm_add_close_queue(vm);
++	}
+ 
+ 	if (extensions) {
+ 		/*
+@@ -653,11 +665,6 @@ void xe_exec_queue_destroy(struct kref *ref)
+ 	for_each_tlb_inval(q, i)
+ 		xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, i);
+ 
+-	if (q->user_vm) {
+-		xe_vm_put(q->user_vm);
+-		q->user_vm = NULL;
+-	}
+-
+ 	q->ops->destroy(q);
  }
  
- struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
+@@ -1391,6 +1398,11 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 		q = xe_exec_queue_create_bind(xe, xe_device_get_root_tile(xe),
+ 					      vm, flags, args->extensions);
++		if (!IS_ERR(q)) {
++			/* Serialize close tracking with xe_vm_close_start(). */
++			q->user_vm_close_tracked = true;
++			xe_vm_add_close_queue(vm);
++		}
+ 		up_read(&vm->lock);
+ 		xe_vm_put(vm);
+ 		if (IS_ERR(q)) {
+@@ -1466,6 +1478,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 	}
+ 
+ 	q->xef = xe_file_get(xef);
++
+ 	if (eci[0].engine_class != DRM_XE_ENGINE_CLASS_VM_BIND)
+ 		xe_vm_add_exec_queue(vm, q);
+ 
+@@ -1657,7 +1670,12 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+ 	if (q->vm && q->hwe->hw_engine_group)
+ 		xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
+ 
+-	xe_exec_queue_kill(q);
++	/*
++	 * Let bind jobs drain. Killing their queue can turn pending PT binds
++	 * into PTE clears while hardware queues still use the VM.
++	 */
++	if (!(q->flags & EXEC_QUEUE_FLAG_VM))
++		xe_exec_queue_kill(q);
+ 
+ 	trace_xe_exec_queue_close(q);
+ 	xe_exec_queue_put(q);
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 48c05398b016..c0a739c1ccd6 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -110,6 +110,12 @@ struct xe_exec_queue {
+ 	 * only)
+ 	 */
+ 	struct xe_vm *user_vm;
++	/**
++	 * @user_vm_close_tracked: This user bind queue holds a close count on
++	 * @user_vm. Set under user_vm->lock before publishing the queue and
++	 * unchanged until final free. VM-owned bind queues are not counted.
++	 */
++	bool user_vm_close_tracked;
+ 
+ 	/** @class: class of this exec queue */
+ 	enum xe_engine_class class;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e6e53912448f..c091aceab56d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1623,7 +1623,9 @@ static const struct xe_pt_ops xelp_pt_ops = {
+ 	.pde_encode_bo = xelp_pde_encode_bo,
+ };
+ 
++static void vm_close_work_func(struct work_struct *w);
+ static void vm_destroy_work_func(struct work_struct *w);
++static void xe_vm_kill_bind_queues(struct xe_vm *vm);
+ 
+ /**
+  * xe_vm_create_scratch() - Setup a scratch memory pagetable tree for the
+@@ -1766,6 +1768,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags, struct xe_file *xef)
+ 	ttm_lru_bulk_move_init(&vm->lru_bulk_move);
+ 
+ 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
++	atomic_set(&vm->close.num_exec_queues, 0);
++	spin_lock_init(&vm->close.lock);
++	INIT_WORK(&vm->close.work, vm_close_work_func);
+ 
+ 	INIT_LIST_HEAD(&vm->preempt.exec_queues);
+ 	for (id = 0; id < XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE; ++id)
+@@ -2011,19 +2016,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	if (xe_vm_in_fault_mode(vm))
+ 		xe_svm_close(vm);
+ 
+-	if (vm->q) {
+-		int i;
+-
+-		down_write(&vm->lock);
+-		xe_exec_queue_last_fence_put(vm->q, vm);
+-		for_each_tlb_inval(vm->q, i)
+-			xe_exec_queue_tlb_inval_last_fence_put(vm->q, vm, i);
+-		up_write(&vm->lock);
+-
+-		xe_exec_queue_kill(vm->q);
+-		xe_exec_queue_put(vm->q);
+-		vm->q = NULL;
+-	}
++	xe_vm_kill_bind_queues(vm);
+ 
+ 	down_write(&vm->lock);
+ 	xe_vm_lock(vm, false);
+@@ -2093,6 +2086,134 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	xe_vm_put(vm);
+ }
+ 
++static void vm_close_work_func(struct work_struct *w)
++{
++	struct xe_vm *vm = container_of(w, struct xe_vm, close.work);
++	struct xe_device *xe = vm->xe;
++	int idx;
++
++	/* Keep the VM and device alive until the PM and unplug guards unwind. */
++	xe_vm_get(vm);
++
++	if (drm_dev_enter(&xe->drm, &idx)) {
++		xe_pm_runtime_get(xe);
++		xe_vm_close_and_put(vm);
++		xe_pm_runtime_put(xe);
++		drm_dev_exit(idx);
++	} else {
++		/*
++		 * The device is gone. Drop the VM without a runtime PM reference.
++		 * xe_vm_close() guards its own register access.
++		 */
++		xe_vm_close_and_put(vm);
++	}
++
++	xe_vm_put(vm);
++}
++
++/**
++ * xe_vm_kill_bind_queues() - Kill and release the VM bind queue
++ * @vm: The VM whose bind queue should be stopped
++ *
++ * Called after xe_vm_close() has waited for pending bind fences. VM teardown
++ * is serialized by the caller.
++ */
++static void xe_vm_kill_bind_queues(struct xe_vm *vm)
++{
++	struct xe_exec_queue *q;
++	int i;
++
++	if (!vm->q)
++		return;
++
++	down_write(&vm->lock);
++	q = vm->q;
++	vm->q = NULL;
++	xe_exec_queue_last_fence_put(q, vm);
++	for_each_tlb_inval(q, i)
++		xe_exec_queue_tlb_inval_last_fence_put(q, vm, i);
++	up_write(&vm->lock);
++
++	xe_exec_queue_kill(q);
++	xe_exec_queue_put(q);
++}
++
++/**
++ * xe_vm_add_close_queue() - Track an exec queue using the VM
++ * @vm: The VM used by the exec queue
++ *
++ * The queue is tracked until its asynchronous destruction completes.
++ */
++void xe_vm_add_close_queue(struct xe_vm *vm)
++{
++	atomic_inc(&vm->close.num_exec_queues);
++}
++
++/**
++ * xe_vm_remove_close_queue() - Stop tracking an exec queue
++ * @vm: The VM used by the exec queue
++ *
++ * If this is the last tracked queue and VM close was deferred, schedule
++ * the deferred VM close.
++ */
++void xe_vm_remove_close_queue(struct xe_vm *vm)
++{
++	bool queue_close = false;
++
++	if (!atomic_dec_and_test(&vm->close.num_exec_queues))
++		return;
++
++	spin_lock(&vm->close.lock);
++	if (vm->close.deferred) {
++		vm->close.deferred = false;
++		queue_close = true;
++	}
++	spin_unlock(&vm->close.lock);
++
++	if (queue_close)
++		xe_destroy_wq_queue(&vm->close.work);
++}
++
++/**
++ * xe_vm_close_and_put_deferred() - Close a VM immediately or defer the close
++ * @vm: The VM reference to consume
++ *
++ * The VM must already be marked closing, and callers must serialize teardown.
++ * Only user exec queues and user-created bind queues are tracked. Keep the
++ * VM-owned bind queue alive until xe_vm_close() has waited for pending bind
++ * fences. xe_vm_close_and_put() releases that queue afterwards.
++ *
++ * The caller's VM reference is consumed on both paths.
++ *
++ * Return: %true if VM close was deferred, or %false if it completed now.
++ */
++bool xe_vm_close_and_put_deferred(struct xe_vm *vm)
++{
++	bool queue_close = false;
++
++	/*
++	 * Keep the VM-owned bind queue alive. xe_vm_close_and_put() waits
++	 * for pending binds in xe_vm_close() before killing that queue.
++	 */
++	if (!atomic_read(&vm->close.num_exec_queues)) {
++		xe_vm_close_and_put(vm);
++		return false;
++	}
++
++	spin_lock(&vm->close.lock);
++	vm->close.deferred = true;
++	if (!atomic_read(&vm->close.num_exec_queues)) {
++		vm->close.deferred = false;
++		queue_close = true;
++	}
++	spin_unlock(&vm->close.lock);
++
++	if (queue_close)
++		xe_destroy_wq_queue(&vm->close.work);
++
++	return true;
++}
++
+ static void vm_destroy_work_func(struct work_struct *w)
+ {
+ 	struct xe_vm *vm =
+@@ -2289,7 +2410,14 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ 
+ 	if (!err) {
+ 		xe_vm_close_start(vm);
+-		xe_vm_close_and_put(vm);
++
++		/*
++		 * User exec queues and user-created bind queues can outlive the
++		 * VM handle. Retain mappings until those queues finish cleanup.
++		 * The VM-owned bind queue is released by xe_vm_close_and_put().
++		 * The helper consumes the caller's VM reference.
++		 */
++		xe_vm_close_and_put_deferred(vm);
+ 	}
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index c90c9dc1351c..5632f0757b6a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -221,6 +221,10 @@ int xe_vm_get_property_ioctl(struct drm_device *dev, void *data,
+ 
+ void xe_vm_close_and_put(struct xe_vm *vm);
+ void xe_vm_close_start(struct xe_vm *vm);
++bool xe_vm_close_and_put_deferred(struct xe_vm *vm);
++
++void xe_vm_add_close_queue(struct xe_vm *vm);
++void xe_vm_remove_close_queue(struct xe_vm *vm);
+ 
+ static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 6ca9ef9d0c0b..bd2898c5ffb1 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -314,6 +314,22 @@ struct xe_vm {
+ 	 */
+ 	struct work_struct destroy_work;
+ 
++	/** @close: State used to defer VM teardown until exec queues are gone. */
++	struct {
++		/**
++		 * @close.num_exec_queues: User exec and user-created bind queues
++		 * that have not completed final free. Excludes the VM-owned bind
++		 * queue, which is released by xe_vm_close_and_put().
++		 */
++		atomic_t num_exec_queues;
++		/** @close.lock: Protects deferred and work scheduling. */
++		spinlock_t lock;
++		/** @close.deferred: VM close is waiting for queue teardown. */
++		bool deferred;
++		/** @close.work: Completes a deferred VM close. */
++		struct work_struct work;
++	} close;
++
+ 	/**
+ 	 * @rftree: range fence tree to track updates to page table structure.
+ 	 * Used to implement conflict tracking between independent bind engines.
 -- 
 2.43.0
 
