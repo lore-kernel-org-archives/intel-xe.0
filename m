@@ -2,85 +2,93 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61E4D606A333
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69EF8606A339
 	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:37:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=eofjXEM5
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=l5RObEtl
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D64410F1A6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E95D10F1EF;
 	Mon, 16 Nov 2026 14:37:54 +0000 (UTC)
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com
- [209.85.218.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91F0710ECFB
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Nov 2026 01:44:01 +0000 (UTC)
-Received: by mail-ej1-f54.google.com with SMTP id
- a640c23a62f3a-c4cac7a7d3cso255593366b.3
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 17:44:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794620639; x=1795225439; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=Z5fnz0J6vpb3Ewmw43nxWynz3ZbXtBhlPwMnvHWjbog=;
- b=eofjXEM5vDw7L1u3KnLxhI2MWDbxAYYqtKCndBsQgO/XHPmnRdwFopDTWnmRGMYlsk
- iqCd54YSxu/qVRz/aN6mqxW0h1YOKCtYjPymFLwcrzyJyKxqlas+pvXcc+alq7Q+/0vO
- cm5d6Fue/cm54jisW5GrLtJBO1BaZtF/JsRQP563S2VYPNWUvtA8l/bU89ySFf6QEGI1
- UK9RE5rvPeYUAKQh2UBXKeSffSm0WdlI78z0P51Vw2v8B48DOpkKrCSC16ej7m0gaNm+
- Rlt0f6UEgDhe8fi/NQRFuFqgM2rHySUm2zyXytohFYTZOQimsqJ709D2570uKI43UGN9
- bajQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794620639; x=1795225439;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=Z5fnz0J6vpb3Ewmw43nxWynz3ZbXtBhlPwMnvHWjbog=;
- b=GvkH0fa+N2pnroJeakVKJlHZkvBeWJY6yepf6HY3r7J4OslPqYyWIH5prDD0KwIyaS
- XD2epNx7M+NU4tUBQFBIiZMBs9uqhvcIjb5PoorokDmdZVHzLuFw1zLOd1fjzhiCzH2A
- rrYU5ozMaACVNRNCbGQINYV8z2KagSzMXlsJ1N00e+lJ5kmfABssIhFNGMrQg5fiWNis
- 9942FAXD6HvQjYsR27zlj04bw9RfZjf3h4ToyOTw6sutmc9ZB7FJcbSweeU/WXPGEjzE
- FR9yH+F5WRca75iFvJObCppYUpxN7ukldlLTOhyCUu4aRJTKk4YdMRo6sb9jXyUd5VMF
- OqWg==
-X-Forwarded-Encrypted: i=1;
- AL+hErGHLujmNlDqWqJbsGw8mrMvb34c7sDGJfCHIggWkzeDwrlKZX8fBOLJ5Yz8VDgmoLJs9hNDk00CPw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z8UcL5teIEcJ84mctjeZsXpOohYYt9av7CIvNlRTnup6MhUy+0s
- i5lD3KFy0TwAWUquqGYPQv0ul4mIHvPpWj0y7Kpmrwv0xm1zSYGj9v9Y
-X-Gm-Gg: AYBFou3EfLhkNupenLwrzphWlBS0yeHAis4JKwJaGm9CsYU5KKuAA2FOoBa5+C/Y7PY
- omGDrtjBYoIatlb4uxzUL9cQ8NpJlkrkEQsL+Moz2CfG7UHdlh87d7jHdxWufylYk37MBiFPQ44
- rIT0sbNZTk7mHOofPN/6gXotabc+O3wYGNxsn+sUTXPPYGsPTVkGKzAUGi98+tFYTFjZJu68LBa
- 9FipRDcsD9t2jSBmo/79TsgCpTZk/kxM8a8h+Cqas5y/VaIKEwLQOtNgGNCvexUHBKyu8n2b0pv
- KWFaHjhPOHANKQlsTd8wKO2agNxYrQC5O5nSMYBNki4bm3X9cLMU90rEOGAnq1fHL6W3e0Erkg9
- cQd/cR0ABwUutNEMbtfmRBJOKr7iEK4e+f8hhouatS/XrBzhRYPdKXC3Hwdv5mwoszXjLNIr1Cm
- pDJGfq2rGGxcjNmQ0hdOvsVGYWkOytUZZDfR54OWCWfl7ZWA5AQpgGDQ/MVH76ph/dra4ctWzjK
- ziZ3Bl139Y6vakmsnJ6ewNcr18nIbRsUSNU8SGtbguSeg/7zGv85FKcSAlG0fSdAYuAjFTCiwEG
- dFjcwDavkRNLcFeU+XFAlI8Ur5/TbQ+CK5e9nIy269eozu0d6Q+ifKx8Sp1gI1Y74sJ7MGTy5o0
- +1yVH15ZYp6HXLrtY1erC3gx5wcC9SX7nkSXX3g4cjR/6
-X-Received: by 2002:a17:907:9305:b0:c2e:4e08:19ab with SMTP id
- a640c23a62f3a-c50963d50e5mr364215466b.16.1794620639602; 
- Fri, 13 Nov 2026 17:43:59 -0800 (PST)
-Received: from SMOK.angora-ide.ts.net
- (mm-156-219-126-178.vitebsk.dynamic.pppoe.byfly.by. [178.126.219.156])
- by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c5095b5a4c1sm161402666b.48.2026.11.13.17.43.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Nov 2026 17:43:59 -0800 (PST)
-From: ElXreno <elxreno@gmail.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- ville.syrjala@linux.intel.com, ankit.k.nautiyal@intel.com,
- mitulkumar.ajitkumar.golani@intel.com, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- ElXreno <elxreno@gmail.com>
-Subject: [PATCH 3/7] drm/i915/vrr: Leave the transcoder to the joiner primary
-Date: Sat, 14 Nov 2026 04:43:31 +0300
-Message-ID: <20261114014335.2132756-4-elxreno@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261114014335.2132756-1-elxreno@gmail.com>
-References: <20261114014335.2132756-1-elxreno@gmail.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C518F10E120;
+ Sun, 15 Nov 2026 15:43:38 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 6365D43414;
+ Sun, 15 Nov 2026 15:43:38 +0000 (UTC)
+Authentication-Results: smtp.kernel.org; arc=none smtp.remote-ip=100.80.115.77
+ARC-Seal: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256; cv=none;
+ t=1794757418;
+ b=EH74RwYHmBjT1enx8Ve38Pj/r9ZDdk8aGdJw7eGm55q1hURZemxnR15ZlnItt038xkeL
+ P1cgCODrCNIkDhWiUWWKzal3bh7aYYHet0/osKo3BDHp0EDN+zCmrJHT56BlxncAtuBNC
+ +dcwWSBffMrGjVBTcxNeZuVYcrPaEWHvVW351fgDTi5FptOZ7PhUgzXQdVl+NWqtKZt1k
+ zFunAT9Z5O6shkIwvDTJtuUIzQYVumwU3ak+FYY3DrAEL1tWoldI75FQl7PAKHyELKC9J
+ grR0Xbe+bUdwM3z36uVp6dZCpahPQ8PiYudjezPE1fRN0TVejvISh2ptSoNGGgG894g==
+ARC-Message-Signature: i=1; d=kernel.org; s=arc20260519; a=rsa-sha256;
+ c=relaxed/relaxed; t=1794757418;
+ h=DKIM-Signature:Received:From:Date:Subject:MIME-Version:Content-Type:
+ Message-Id:X-B4-Tracking:X-Change-ID:To:Cc:X-Mailer:
+ X-Developer-Signature:X-Developer-Key:X-Endpoint-Received:
+ X-Original-From:Reply-To:Content-Transfer-Encoding;
+ bh=l4NLEemGUOy+YBlXDlbjz7M3tyL0nsq1r6J6SOYrX9E=;
+ b=y0b66Gri0CeE/QP7S3B7e4cs1GnKciA/M4LrCm/eBHdxDbZMtIW0bZ9xJbJs3e37n64W
+ DgFk73KVssYokpjYFJp4q+V42CyhMJjfiPvYwf7Vff+To0Pm1oTBKPn8ujMErIu1G3mMi
+ Mhun/em/BU7GhqB0V/9DVplBS1ozMxLgn0kjA7euhRW1LpTTx1dvFPfq8d4HaxxbFLD0Y
+ qU0zT2IqQ8dRL9REo8+F1F+JYV8Cn9v10aI+4ullhvSt/D3969PYP9AnGtqhLdbrPt5SH
+ p2lzkvbC+I9bwB0V4/dw27MhFNxoT2UkLbbbrrWi5C1fDr17TwYmkuyMJgLJfo3MrRg==
+ARC-Authentication-Results: i=1; smtp.kernel.org; 
+ arc=none smtp.remote-ip=100.80.115.77
+Received: from lkml.kernel.org (nexus.subspace.kernel.org [100.80.115.77])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPS id ABE311F000C4;
+ Sun, 15 Nov 2026 15:43:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1794757418;
+ bh=l4NLEemGUOy+YBlXDlbjz7M3tyL0nsq1r6J6SOYrX9E=;
+ h=From:Date:Subject:To:Cc:Reply-To;
+ b=l5RObEtlUyyPseOizt/ZEuGNwAw0YlWVr7rQS+obuU/gDFKjOp3vZsKI7DIYK1b/b
+ 6gQVAQtkp/jMAV7QJi35MwvLd8c0GySlNwzX050/J04Ke4fMOX/BmmVHQplXjv+zys
+ KXzZgc73GiNq0VmlVZYbDoBmlYye3kglQXA+HCbMj/jotnxa55YkxzG9nnHWrGLi0p
+ TL/tfa/yTOKsyhgO2Z7ay8aX74yK67Feu1Czz6l9lVQ2xP4ltVTzA1n7fBFP8XuWQt
+ GbGF3qf77ie9SEfpPJxjKxMAsCSPD/mzxOZIOJ78gZYnB/i6Wt6CKnxoQ98khQQk/H
+ UGpQuWn5kHxxQ==
+Received: from nexus.subspace.kernel.org (localhost [IPv6:::1])
+ by lkml.kernel.org (Postfix) with ESMTP id 0961E4A0F8;
+ Sun, 15 Nov 2026 15:43:37 +0000 (UTC)
+From: Erwin Springer via B4 Relay <devnull+aot.lerwin.gmail.com@kernel.org>
+Date: Sun, 15 Nov 2026 16:43:35 +0100
+Subject: [PATCH v2] drm/i915/display: Ignore disabled planes in async flip
+ checks
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Message-Id: <20261115-i915-async-planes-v2-1-c5163dfea5b2@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/32NzQqDMBCEX0Vyboobf6g99T2Kh7hZdYsmklipi
+ O/eaO+9DHww880mAnmmIO7JJjwtHNjZCOqSCOy17UiyiSxUqkoAKCRXMXRYLcpp0JaCNEWmUFc
+ 5thmKuJs8tfw5nc/6x+HdvAjnQ3Q0eg6z8+t5usDR++dfQII0kOXVzaRN2dCjGzUPV3SjqPd9/
+ wIx7/NoxAAAAA==
+X-Change-ID: 20261115-i915-async-planes-d532ca94cf3c
+To: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ Erwin Springer <aot.lerwin@gmail.com>
+X-Mailer: b4 0.15.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794757416; l=3821;
+ i=aot.lerwin@gmail.com; s=20261115; h=from:subject:message-id;
+ bh=mp77voJK9qaE913+ZVMfV5BypZtyZmNXVgJbz4MPjx0=;
+ b=OA43Y8dQG94I+l83wmcmVvaLNFvJPaCZx/sIKsmc/F8ew3ZhgCYzQ8a1L8XPVE94KkqPcZ8Tw
+ 0iwCSmNx3ceBBcQQ6Sq7Onj82WLsAhdLD3mLJoVUynF3Lcvgdzm1Cvi
+X-Developer-Key: i=aot.lerwin@gmail.com; a=ed25519;
+ pk=nbZwBfXFrLeFJg8vZmODCUcYskhldfPhOapnbey95tI=
+X-Endpoint-Received: by B4 Relay for aot.lerwin@gmail.com/20261115 with
+ auth_id=1534
+X-Original-From: Erwin Springer <aot.lerwin@gmail.com>
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 16 Nov 2026 14:37:53 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -91,144 +99,102 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: aot.lerwin@gmail.com
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-All joined pipes run off the transcoder of the primary, and the crtc
-states of the secondaries are copies of the primary's state, the VRR
-state included. The commit therefore reaches the transcoder level VRR
-functions for every joined pipe: intel_pre_update_crtc() calls
-intel_vrr_set_transcoder_timings() for each crtc whose VRR parameters
-changed, intel_pre_plane_update() and commit_pipe_post_planes() call
-intel_vrr_disable() and intel_vrr_enable(), and both commit paths
-call intel_vrr_send_push() and intel_vrr_check_push_sent() per crtc.
+From: Erwin Springer <aot.lerwin@gmail.com>
 
-Do these once, from the primary. When disabling VRR also switch the
-active timings of all joined pipes as soon as the transcoder has left
-VRR mode, rather than leaving the secondaries on the VRR timings
-until their own turn comes.
+Atomic async flips may carry properties that don't change, so compositors
+tend to send their whole plane state with every commit. KWin for example
+adds all planes of the pipe, including the ones that are disabled and stay
+disabled (CRTC_ID=0, FB_ID=0).
 
-The check in intel_vrr_set_transcoder_timings() drops the second,
-identical programming of the transcoder that a joined fixed refresh
-rate configuration gets today. Everything else depends on vrr.enable,
-which is never set with the joiner yet, so there is no other
-functional change. In particular the push a secondary sends for the
-PSR and Panel Replay frame change is left as it is.
+intel_async_flip_check_uapi() fails the commit as soon as the state
+contains any plane of the pipe that can't do async flips:
 
-The checks in intel_vrr_set_transcoder_timings(), intel_vrr_send_push(),
-intel_vrr_enable() and intel_vrr_disable() are the ones Ankit Nautiyal
-posted in "drm/i915/vrr: Handle joiner with vrr", last in [1].
+  [drm:intel_atomic_check [i915]] [PLANE:66:plane 2A] async flip not supported
+  [drm:drm_atomic_check_only.cold] atomic driver check for ... failed: -22
 
-[1] https://lore.kernel.org/intel-gfx/20250224061717.1095226-14-ankit.k.nautiyal@intel.com/
+So with such a compositor tearing never works on a pipe with sprite or
+cursor planes, even though only the FB of the primary plane changes. KWin
+silently falls back to vsynced flips, about 60 rejected commits per second.
 
-Suggested-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: ElXreno <elxreno@gmail.com>
+A plane without a framebuffer before and after the commit takes no part in
+the flip. Skip it in both async flip checks.
+
+A plane that is disabled in uapi may still be used by the hardware as the
+Y plane of a planar framebuffer on another plane (planar_linked_plane on
+ICL+). Don't skip such a plane in the uapi check, so the commit is still
+rejected there as before, instead of the linked planes being pulled into
+the state later and tripping the drm_WARN_ON() in
+intel_async_flip_check_hw().
+
+Tested on Raptor Lake-U (Iris Xe) with the patch applied to the i915 of
+Linux 7.3.4, unmodified KWin 6.8.2 and a fullscreen client that requests
+tearing through wp_tearing_control_v1. Before, none of about 350 frames per
+run was presented without vsync. With the patch 3334 of 3340 frames tear
+and the message above is gone. What is still rejected is the first flip
+after the modifier or format changed, once per run, as intended.
+
+Signed-off-by: Erwin Springer <aot.lerwin@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 15 ++++++++++++--
- drivers/gpu/drm/i915/display/intel_vrr.c     | 21 ++++++++++++++++++++
- 2 files changed, 34 insertions(+), 2 deletions(-)
+Changes in v2:
+- Don't skip a disabled plane that is in use as the Y plane of a planar
+  framebuffer, it would trip the drm_WARN_ON() in
+  intel_async_flip_check_hw() (found by the Sashiko review)
+  The device test was done with v1, no planar framebuffer was in use
+  there. v2 is compile-tested (W=1).
+- Link to v1: https://patch.msgid.link/20261115-i915-async-planes-v1-1-d13498d0b6be@gmail.com
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9a503b25ae47..20b1103e3de4 100644
+index f4d9148ef..9be7596fa 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1237,10 +1237,21 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
+@@ -6281,6 +6281,16 @@ static int intel_async_flip_check_uapi(struct intel_atomic_state *state,
+ 		if (plane->pipe != crtc->pipe)
+ 			continue;
  
- 	intel_psr_pre_plane_update(state, crtc);
- 
--	if (intel_crtc_vrr_disabling(state, crtc)) {
-+	/* The joined pipes are handled in one go from the primary */
-+	if (intel_crtc_vrr_disabling(state, crtc) &&
-+	    !intel_crtc_is_joiner_secondary(old_crtc_state)) {
-+		struct intel_crtc *pipe_crtc;
++		/*
++		 * Userspace may add planes it doesn't change to the commit.
++		 * A plane that is disabled and stays disabled takes no part
++		 * in the async flip, unless it is in use as the Y plane of
++		 * a planar format on another plane.
++		 */
++		if (!old_plane_state->uapi.fb && !new_plane_state->uapi.fb &&
++		    !old_plane_state->planar_linked_plane)
++			continue;
 +
- 		intel_vrr_disable(old_crtc_state);
- 		intel_vrr_dcb_reset(old_crtc_state, crtc);
--		intel_crtc_update_active_timings(old_crtc_state, false);
-+
-+		for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
-+						 intel_crtc_joined_pipe_mask(old_crtc_state)) {
-+			const struct intel_crtc_state *old_pipe_crtc_state =
-+				intel_atomic_get_old_crtc_state(state, pipe_crtc);
-+
-+			intel_crtc_update_active_timings(old_pipe_crtc_state, false);
-+		}
- 
  		/*
- 		 * VRR is being disabled seamlessly (no modeset, Panel Replay
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index a5a5d11380a4..668c495e7407 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -19,6 +19,7 @@
- #include "intel_de.h"
- #include "intel_dip.h"
- #include "intel_dip_regs.h"
-+#include "intel_display.h"
- #include "intel_display_limits.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-@@ -674,6 +675,10 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 	if (!HAS_VRR(display))
- 		return;
+ 		 * TODO: Async flip is only supported through the page flip IOCTL
+ 		 * as of now. So support currently added for primary plane only.
+@@ -6346,6 +6356,10 @@ static int intel_async_flip_check_hw(struct intel_atomic_state *state, struct in
+ 		if (plane->pipe != crtc->pipe)
+ 			continue;
  
-+	/* The joined pipes drive one transcoder, so program it once. */
-+	if (intel_crtc_is_joiner_secondary(crtc_state))
-+		return;
++		/* Disabled planes that stay disabled take no part in the flip. */
++		if (!old_plane_state->hw.fb && !new_plane_state->hw.fb)
++			continue;
 +
- 	/*
- 	 * Bspec says:
- 	 * "(note: VRR needs to be programmed after
-@@ -773,6 +778,13 @@ void intel_vrr_send_push(struct intel_dsb *dsb,
- 	if (!crtc_state->vrr.enable && !intel_psr_use_trans_push(crtc_state))
- 		return;
- 
-+	/*
-+	 * A VRR push latches all joined pipes at once, it is up to the
-+	 * primary to send it once every one of them has been armed.
-+	 */
-+	if (crtc_state->vrr.enable && intel_crtc_is_joiner_secondary(crtc_state))
-+		return;
-+
- 	if (dsb)
- 		intel_dsb_nonpost_start(dsb);
- 
-@@ -793,6 +805,9 @@ void intel_vrr_check_push_sent(struct intel_dsb *dsb,
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
-+	if (intel_crtc_is_joiner_secondary(crtc_state))
-+		return;
-+
- 	/*
- 	 * Make sure the push send bit has cleared. This should
- 	 * already be the case as long as the caller makes sure
-@@ -1005,6 +1020,9 @@ void intel_vrr_enable(const struct intel_crtc_state *crtc_state)
- 	if (!crtc_state->vrr.enable)
- 		return;
- 
-+	if (intel_crtc_is_joiner_secondary(crtc_state))
-+		return;
-+
- 	intel_vrr_set_vrr_timings(crtc_state);
- 	intel_vrr_enable_dc_balancing(crtc_state);
- 
-@@ -1019,6 +1037,9 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 	if (!old_crtc_state->vrr.enable)
- 		return;
- 
-+	if (intel_crtc_is_joiner_secondary(old_crtc_state))
-+		return;
-+
- 	if (!intel_vrr_always_use_vrr_tg(display))
- 		intel_vrr_tg_disable(old_crtc_state);
- 
--- 
-2.56.0
+ 		/*
+ 		 * Only async flip capable planes should be in the state
+ 		 * if we're really about to ask the hardware to perform
+
+---
+base-commit: 419bb0e4cadd214a0847010c02ade95e5fc511f7
+change-id: 20261115-i915-async-planes-d532ca94cf3c
+
+Best regards,
+--  
+Erwin Springer <aot.lerwin@gmail.com>
+
 
