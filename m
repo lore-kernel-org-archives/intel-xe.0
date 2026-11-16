@@ -2,100 +2,100 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D730E606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C85606A320
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:03:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=c0qyRX7U
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=reM2ZjY4
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A28310FC12;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B501910FC14;
 	Wed, 18 Nov 2026 13:03:44 +0000 (UTC)
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com
- [209.85.167.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3DF10F378
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 18:15:06 +0000 (UTC)
-Received: by mail-oi1-f179.google.com with SMTP id
- 5614622812f47-571eb508edaso761805b6e.3
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 10:15:06 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1794852905; cv=none;
- d=google.com; s=arc-20260327;
- b=g6DysBTqT/mhaQvgumtbAWQLd+ek2+oqjuZU9tZD06wXHNo9AnYueJ2jlXJRa++QS5
- R8sEB+N5qDq7w5ht9ueltH71pvOvlszqm2w5wjJVsQ6Qw2CD21fyvifGzDnCTc1jNyBb
- HPEz/7Yt+2WztLXlwgLv/zja89D1hf12SitGZba38HNCs9A/39GsOrTTB0lOpJ/wKKhA
- Nla6amtmT5gIig9Tua5TG5UJ2rRMd+G3r8CQzv+tujM4ZwSWnSuyG2nLQH9+t16iNvTl
- J1fslvI5G9Rwolynwpa1nxk5iqSqVxg73ubpjrUtbZmB6uoPuOzDtTg1kxKvDEYju5mh
- 1svQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20260327; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=Y9VFYmn0OLSOPuVThwD952io40l2TovP2T7RuvsEtdM=;
- fh=uV299MhVNeS7inzicY3g+4CFq/tSPN1yLART4V7B+iY=;
- b=fHjk6a7ipw4j7RGbiwbdG6iYURJerkShNm+iCefYwZ5VDUS23kKGa3m/vHlYLLLWLl
- KltFZ8rxuCBKRlwkHY2+hEN/VUyeNkkswZa/5HtOEOs0BfZ9Il1751qoj9H4AIGG1UHm
- UoJp+/pvkHdSkGGR9OJ30Riuu3IrgCmfwNxjcS7dvXw+GE/3K4lFY2BG+7T9nj9mU/3/
- D3A62gi+YPDFoWSB7lR5L3HpknPQqP8TYGTV8NjdP7gTv15BMjER3Iu+aocPN30IZfyN
- OpsFJM/HBtPZUzX6jNbwZpFGCEmMG/jGFeZugg3pz21iLRjlKdFDWoVPG5m9GXRbVYHs
- +EXw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794852905; x=1795457705; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=Y9VFYmn0OLSOPuVThwD952io40l2TovP2T7RuvsEtdM=;
- b=c0qyRX7UdV90LvNizrajXTM0opkb5lod5vS3/U2DNIxHTa1TjM6uff6yJfdy+Zd8Zv
- /LugjRmVcboaareQmhBqgr2tqaoNUCXbqYFM0GOhiz/Pe56OsSCFh/Bp7jw9p3vlDjud
- j7wc6xYQSe5fbtqHC0AaenOCLhFES+93LQj3PD9A2i+T2Q973YQXBrtCQtXmgcVdpASy
- gcgI6uA8NfT/h/rw1Fsq5Yh1d2gn+a7/trHwFjugHksvA8N+RuhG5g5xAKOkSjs3zixc
- zR2drf9qUNVDn6hSwz5P5lDleeInVWpWhG30By6jPEKbzT1RMW9yzpC+0VF5GVvIvArD
- yNPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794852905; x=1795457705;
- h=content-transfer-encoding:content-type:cc:to:subject:message-id
- :date:from:in-reply-to:references:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=Y9VFYmn0OLSOPuVThwD952io40l2TovP2T7RuvsEtdM=;
- b=r1lpTn2yyne7VvixEMRoGHUVQp8jaOb2UeZKL6anW8O6hNbgiX6NN/7m2NrPolF1Uy
- kGxUuq2Y0Q47xtB2dJ+F/VhCmwgL7DocGxHQHV8fJxoKAPljBF8wNwRVX198ot7pXBfp
- PP/b0s0IYaE2Z9Bq2pf7zOQPPMEGGI9PVerSF+g61Ak4UwItD6brZWiPiK7W2PDg8i0c
- k/5W4RlhP9UOqkiGVTth0okJvsIYBsVlKRzHJebE3q2+jplYhfItRs2Oi25Bg0fvGXR1
- LF0qcs9SgzixelA9BSXU2Dq7lzzEWSfcv/yggexWYaXykIAF/TQVlTIgwH0LJCLbs5pM
- WbRw==
-X-Forwarded-Encrypted: i=1;
- AL+hErF5+PThWNitaLCB+CIbmpYlf+3p/9qCS/0UyXoRumfZfe6b1gGEEE1/BDLTpcWiUljSPnNZxagLJA==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z8n4i9pvlPpYD6OmtjVIKLtJLwZ1ByfMi/rhNKHopfESTiICD/+
- i0mbCnHQe52TpKJyJZJEPwCG6RBCqh7j4UsyuBW5bBmaBNV/gJqyjpN2SmKG3hm5bxSMffoJw+y
- z4CL1BZHnpypxeQKk0b0oNVpJA/0pizk=
-X-Gm-Gg: AYBFou11tZnw/fwevvVyRvP+nE3BSqVvsfc4k2ECMx81DdnEatNdFZpfKhkJirUtK1q
- 0TsVocno8LaAIp2Q8nMaKDMhh83Tep/4CKJ0NLJywoC2XTqMNz5WaLNMcWpvTm1K5tJAIUsRAeB
- kKaoZm4V4dsV4CRfYzUMgP9q3v51/kRPVLaB9bbzEZCpZTIdCvXVSLHPc7GRPbYMngl2Lt5V7Gf
- EDYSDj0vebi3R6dfwPY6zkqh4lDlpaiSS2642EswpeiEdarqKe+l0rjUHn8LXWUfrNZXvbD2nzO
- mWSKdjZ1lUUm0vlcRDkxhdwVSnijcGbFuzV7YRGUhoP+ZTY96XYAB9mao8A5GUQ1ajeRruw0ysH
- G66+s8G9WeC1zyVO6+LMbS7oIMkqXjPIJwaDZsLR39OPkTjvb8jxecmgDGqsDYtdGGe3tUWtgl3
- dNjDYeNfFdJTlPgzBE5a5z/gUIIuouwHXZNWmU0SchMWpqacCpbQ==
-X-Received: by 2002:a05:6808:4f5e:b0:53b:11c7:2da0 with SMTP id
- 5614622812f47-56e63285bd9mr11614093b6e.21.1794852905260; Mon, 16 Nov 2026
- 10:15:05 -0800 (PST)
+Received: from SA9PR02CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11013046.outbound.protection.outlook.com
+ [40.93.196.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0672810F2CE;
+ Mon, 16 Nov 2026 16:11:25 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ouh2VAuudoW3tP/SR7BJi9pKMkud5aubfYAzbo0+8ZiO4z26YfUf0Kwr4HyTXdJSmV3iSmagCpanDD5iTQInhV+V0PDotzQt0l8siItlaCUl9XGOToo1E1iHXnnsHoaT3lLz/h+9RTCnELIGjOqX0ReU8KpsK8g9/40M+Fm8335AREE8eI+sQu9KpuY/gTtSbx+9geB7Jf0Z8ciAru4u7ag3gu1OzqlG1vZ8PeYF0QYBv5Ql8nnjer4vmOX7UbMkkB3xzUL9Wl9LtfbsuJnrFGJSu4hUj6MEun1umUtRo0jkxe3ELicjrZt7+Nv9jZAwH5QQvyNWyM1ABZ1UI4bPrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LHpl87zmF1/4nKJH4W4E7I3trP5FZmdyQm1H9rGiW2k=;
+ b=NScXw6tyx51GYPND4TB9FCDL/YcEggeqPLSfk2JzkctG9wrod91nZ7QNvVag0ij9rWlXqj+mCoDlLn6SQnGSw+oAxtjcysO2mn9DtGKPE7DrBPs7Xjan7Vp0gRDCI2fBXTfFlv2FyLc14Im/ZIblqsi2Ql0irYyhbmQxJzx0KD3sBpqxhD5/mA3ZdCnuBrtwqAJX/Lq7PZxD5ZBsvtIhfEUv07DvRv6wXssBYIrBwyW7mqMtinjFLwJQ/je2++B4JTuWKXNCAlZPAe2pq+KdBO16Rj+zWS9c1/ArArISTxArKQbi/wexPwf6KtP+e67RXye5QLRoNsbvFDDOdXOtug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LHpl87zmF1/4nKJH4W4E7I3trP5FZmdyQm1H9rGiW2k=;
+ b=reM2ZjY4SI77nPIjOS+mkgBeEp6agKH2FKag47LhN+0397skXHwz6kgkyk1OYM4zNImSIVvbj2698lwQAXu2hjR1ezwJJ0s+AxdgP+8n4T2W+fhpwkEut3ZW0ADFi0naTM28nH2h9IqxV6JqN96TWAe0/oC49i0m3EOKNYUwrx4=
+Received: from BN0PR04CA0196.namprd04.prod.outlook.com (2603:10b6:408:e9::21)
+ by DM4PR12MB5914.namprd12.prod.outlook.com (2603:10b6:8:67::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 16:11:16 +0000
+Received: from LV8PEPF00000059.namprd02.prod.outlook.com
+ (2603:10b6:408:e9:cafe::17) by BN0PR04CA0196.outlook.office365.com
+ (2603:10b6:408:e9::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Mon,
+ 16 Nov 2026 16:11:15 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ LV8PEPF00000059.mail.protection.outlook.com (10.167.245.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 16:11:15 +0000
+Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 16 Nov
+ 2026 10:11:13 -0600
+From: William Palacek <William.Palacek@amd.com>
+To: <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>, Sanjay Yadav
+ <sanjay.kumar.yadav@intel.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ <linux-kernel@vger.kernel.org>, William Palacek <William.Palacek@amd.com>
+Subject: [PATCH v3 0/2] gpu/buddy: find range-biased blocks in the free trees
+Date: Mon, 16 Nov 2026 11:11:00 -0500
+Message-ID: <cover.1794845083.git.William.Palacek@amd.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261108060418.4554-1-sowmyatorra@gmail.com>
- <20261108075335.13248-1-sowmyatorra@gmail.com>
-In-Reply-To: <20261108075335.13248-1-sowmyatorra@gmail.com>
-From: Sowmya Torra <sowmyatorra@gmail.com>
-Date: Mon, 16 Nov 2026 23:44:54 +0530
-X-Gm-Features: AclHuK80DRIS82kx7xBKjBoqWiP5iWpB5RL4yuJG733QwPO3EG-EZ7zh6pOiZ0o
-Message-ID: <CAFsBPPnsv2xbLXHQfM66h6RdK1+mGR91S=D86OzKzmds1cTPnA@mail.gmail.com>
-Subject: Re: [PATCH v4] drm/xe: Remove unused xe_vm_restart and xe_vma_flush
- tracepoints
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com, 
- rodrigo.vivi@intel.com
-Cc: airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- outreachy@lists.linux.dev, rostedt@goodmis.org, julianbraha@gmail.com, 
- julia.lawall@inria.fr
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PEPF00000059:EE_|DM4PR12MB5914:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7f08652c-bc4b-4e16-4a56-08df43fc3daa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|36860700016|82310400026|10067099003|11063799006|56012099006|261026121527099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003;
+X-Microsoft-Antispam-Message-Info: dSJH5cNoL8YBSALz7YLbBgYJkhNI/947Ysg8zACe5Qa4vSHPMc0glntBhHjnsAbLIg3GpbmP2+yp+wKbVp1hEFyQAq+3PF7I9fAWWu4gLNX9UxSmBEy57y8Q4nUNjkqHQAdfgjveS/YsawutkurucFs5iI0bavUre+mtb8lgE1sYJJMiYn6+4Ne4BxmmyWt/R5yPZYtm0kZ2CAjjmjb8DJdqRCepxUT1efURkujFINFMXvNStvhDtcVeOryouCTkzjGwB92t41J48gduBIc+x0yKwSA1pt9JREbJWUFuWijM3DVnTVCNYdPPjsE6GxaPq6giTlxmedVQa0WMsu3SjG0eSPBqGhEYAD5DL3UA09feQRAg8KlNGErjg/CRQpwfGwKFACcM5n0qFgRG/OmjkDdh04jhdARgTIzpNS27+GXlcjZb/EtAKELRzzeEdd/DvB4zKUhS6rrdGzGa8Isqd46wzsPWzEE9kRVSBxvU9XxlLZwf4LoJuago0AeUK+qc0uavJHLSYGyu1CvshS+9QMv52nAAilL4A6/VR38yZmiwaPqyYAsCpKzLhaye6KQOoh3Me0Q3PJpmKYI9c3AS7UZ2nKvGBvksobWoKmkh0jC3oAFBZkaeyaUpQjpYwDBbP2eQQIH94frYHeCpssMcgg==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(36860700016)(82310400026)(10067099003)(11063799006)(56012099006)(261026121527099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: +xKzFCUTprhW0QlJ4Z80lLKyE0eiapPQKQcoRtGR/J9HbivvkgodRReVuYr5p1H5tNDLKutlF3dW71sc1Ceajea8cboeNOD0jI/8+mmDSCV/Hu4O2krnZv3NJeEfjyJ3HJVL1gdvZS3k3C7zfY5loXB9BO973WjM23tZcxhiF3qr6dhJDbBbvM4GwBjck5E+/i1h+cxEH8v2sq3PpObiZKV/xBEbPUonpyJEWbxIAV7JbAQZWLCy98t0ydz5SxJ8LGSJvZMIalKYygFOXPb3h3M4zWj7By8dPdjs9JV4LkLbZpfeoght5y9C2Xgrkf4dvEu7rmr9aT+1ZL8CChQ0ElJZNgH10y4CGOoMtTIDTuptljUBn1Er8z/VaAMgLAmIHUzbwOjQ4WNX/YJa2GXImLrETo7jO8rZ1E98qCwT0N9Pg53DsMP0dp0q1vAKkBRa
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:11:15.4855 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f08652c-bc4b-4e16-4a56-08df43fc3daa
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: LV8PEPF00000059.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5914
 X-Mailman-Approved-At: Wed, 18 Nov 2026 13:03:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -107,89 +107,38 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-12.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi everyone,
+A range-restricted allocation walks every split block in the range, so
+its cost grows linearly with the number of live allocations there.
+amdgpu restricts every VRAM allocation to its memory partition under
+NPS2/NPS4, so on MI300X in CPX/NPS4 KFD allocation latency grows with
+every live BO, under a VRAM manager lock shared by the compute
+partitions.
 
-I received a CI notification saying that testing could not start
-because my email address is not on the allowlist.
+Patch 1 replaces the walk with an O(log n) lookup in the offset-sorted
+free trees, based on Arun's class-aware version of v1; placement is
+unchanged. Patch 2 adds a KUnit test for the NPS4 pattern (range-biased,
+cleared, top-down, 64 KiB) that also checks placement: 1103 ms before,
+2 ms after.
 
-The notification refers to my earlier patch removing only
-xe_vm_restart. I have since sent v4, which combines the removal of
-xe_vm_restart and xe_vma_flush.
+v2: https://patchwork.freedesktop.org/series/178108/
+v1: https://patchwork.freedesktop.org/series/176957/
 
-Could someone trigger CI for v4? Please let me know if I need to do
-anything on my side.
+William Palacek (2):
+  gpu/buddy: find range-biased blocks in the free trees
+  gpu/tests/buddy: add range-biased allocation performance test
 
-Thanks,
-Sowmya
+ drivers/gpu/buddy.c                | 214 +++++++++++++++++++----------
+ drivers/gpu/tests/gpu_buddy_test.c |  27 ++++
+ include/linux/gpu_buddy.h          |   1 +
+ 3 files changed, 172 insertions(+), 70 deletions(-)
 
-On Sun, Nov 8, 2026 at 1:28=E2=80=AFPM Torra Sowmya <sowmyatorra@gmail.com>=
- wrote:
->
-> Commit f3e9b1f43458 ("drm/xe: Remove async worker and rework sync
-> binds") removed the calls to trace_xe_vm_restart() and
-> trace_xe_vma_flush(), but left both event definitions behind.
->
-> Remove the unused definitions from xe_trace_bo.h to avoid
-> generating code and data for events with no remaining callers.
->
-> With the tested x86-64 configuration, size reports a reduction of
-> 888 bytes in xe_trace_bo.o, from 20262 to 19374 bytes: 296 bytes
-> in text and 592 bytes in data.
->
-> Fixes: f3e9b1f43458 ("drm/xe: Remove async worker and rework sync binds")
-> Signed-off-by: Torra Sowmya <sowmyatorra@gmail.com>
-> ---
-> Changes in v4:
-> - Combine the xe_vm_restart and xe_vma_flush removals as requested
->   by Steven. This replaces the separate patches for these events.
-> - Report the measured combined object-size reduction.
->
-> Changes in v3:
-> - Add the Fixes tag.
->
-> Changes in v2:
-> - Document the measured object-size reduction.
->
->  drivers/gpu/drm/xe/xe_trace_bo.h | 10 ----------
->  1 file changed, 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_tra=
-ce_bo.h
-> index 86323cf3be2c..a6802f6d3a01 100644
-> --- a/drivers/gpu/drm/xe/xe_trace_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-> @@ -115,11 +115,6 @@ DECLARE_EVENT_CLASS(xe_vma,
->                               __entry->end, __entry->ptr)
->  )
->
-> -DEFINE_EVENT(xe_vma, xe_vma_flush,
-> -            TP_PROTO(struct xe_vma *vma),
-> -            TP_ARGS(vma)
-> -);
-> -
->  DEFINE_EVENT(xe_vma, xe_vma_pagefault,
->              TP_PROTO(struct xe_vma *vma),
->              TP_ARGS(vma)
-> @@ -228,11 +223,6 @@ DEFINE_EVENT(xe_vm, xe_vm_cpu_bind,
->              TP_ARGS(vm)
->  );
->
-> -DEFINE_EVENT(xe_vm, xe_vm_restart,
-> -            TP_PROTO(struct xe_vm *vm),
-> -            TP_ARGS(vm)
-> -);
-> -
->  DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_enter,
->              TP_PROTO(struct xe_vm *vm),
->              TP_ARGS(vm)
-> --
-> 2.47.3
->
+-- 
+2.43.0
+
