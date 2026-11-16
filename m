@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84AA0606A330
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 09:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56330606A88C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 09:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HUUMzg3D;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=GuQTOPxX
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=j7eoLVhM;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Q2/LV9cU
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46EE810E22D;
-	Mon, 16 Nov 2026 09:47:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96A1210E28A
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 09:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 183E410EDCB;
+	Mon, 16 Nov 2026 09:47:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11D6D10E1F4
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 09:46:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794822414; x=1826358414;
+ t=1794822417; x=1826358417;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=+KOQWPCVzNmTMnCYfodC1wSOqhiJRiVY1cuLWr4GnrI=;
- b=HUUMzg3DKGVQTHNZEMWCgn0WAR2nM5SoBGaYgV+k5uPisPp3xpBRDhaB
- lsNXlYCB8MxDF9i9VW9XWSuKJt7tQg0sIiHCYmOmv9RzPZJm2o9Rh8R8o
- +pCi5BFX94UyEzcl3IQDE0rLBnEfbel3Inlryf8KSf9JLxAlViVJjyzyP
- wTtCiO0vs4KNIDBLCUGB7mr51z0jb+dRxRDV7a/Q7j5ShSJvRWYzltZfW
- OTt2fBRTVYxN9yjVtgtRmacFJ25BKm4sg46ooY+QDssreTpcX7zoz4BTq
- dr/JX9q+dZ488itpwW6Wu8YVLp8LiJSJrx7WFKlq5kTTuVEX+BCKT6JGQ Q==;
-X-CSE-ConnectionGUID: j90RqA0BSc2fjOnd4JHemg==
-X-CSE-MsgGUID: tySw58CZSXijaj6gqdF7xg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3461546"
+ bh=ClzYyLhcNm1ShelvlE5MgWPPhhe9hpWqDUgGh0C8Rgs=;
+ b=j7eoLVhMQ3W5CPQta7h9eYS+BoUFQ6hx+5mrZ/4gGc1L8PmqS1h3qoVQ
+ IjgYeFBdQUDjsjImG6L0YFX7GpCFZHbhkkWr+PZO2yZYSiTMnTOdwhzIU
+ AbH3+AssI4qOJ9RZTWKMOWukglgikykAfomHg1WcrO+U0gcjzbKAe5n5f
+ nqUVWeVvjGI1rkef1spvImYlh0Rhi8nUlGgQ+xkUcex7auKSrogHcjtyR
+ uAiNKCrAA2nwhgBe8W5wUahREDly0JWYl51hDPycaa+u185GFRcoJLBNH
+ n45DFLPhCMRoXYmUk7G5QgEawtY9phaK8nKJExVhQZfLkDRt5Hq+sNbcH Q==;
+X-CSE-ConnectionGUID: tJN6sZaXR2q5IqXZ8htiog==
+X-CSE-MsgGUID: smdMayHdSaSPYshsMM8dQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3426446"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="3461546"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:46:53 -0800
-X-CSE-ConnectionGUID: ip8PvE+xR0i+UHXULzgNAg==
-X-CSE-MsgGUID: PFQL7wMPTfyFfudzdcDZ9Q==
+   d="scan'208";a="3426446"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:46:57 -0800
+X-CSE-ConnectionGUID: OplI6RPyTuCCRucWowPfeA==
+X-CSE-MsgGUID: oeFREhhtSVWJJ7Dwjrk4qA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="9497159"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:46:52 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+   d="scan'208";a="9312403"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:46:54 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.2562.56; Mon, 16 Nov 2026 01:46:51 -0800
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.2562.56 via Frontend Transport; Mon, 16 Nov 2026 01:46:51 -0800
 Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.23) by
@@ -54,108 +54,108 @@ Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.23) by
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
  15.2.2562.56; Mon, 16 Nov 2026 01:46:51 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Kg0QmO3zkZq1FlQ4JhNyetTsdsUQpqqhiK/9uwRvJBCNdjeCPcTSs5ny5Abx+5A/RzNRfyOXcEoMxgsWElCzqFI4jEL1yfrybMfQ49PPClOnpRVu/kwNiAQA19G61IZIurwTrYEea4mURnakzwtzUj0jq5j+rblYNz8JteEHAZu72twEnWeDEeTeCu+7ETl/CoGtqL/SXtYmARx1SJWowyOxdBOeOT4X+0ciuL19eESUhqrJ1pvKUVaqDzkWRfJJSymGPBCr4lnB0jIkJcoe1j2JixMyAfIdYC02PK7TVY4CcrwGX114xgMQ/tgyxoGxKy/39L2eVHSXh5sVWVLT3w==
+ b=eLpBl2n06jTTHaQ/LpWak1dy6StIk3Mb4R268HfjIs8ArgC32YEo3CDxKy7wu3xR8q5cE8zzPypfu0gNmhaiLLv49EMVM05mRc9U/l4QJRwWrrLCJeTJq1ISWAjCb65XXwAMJ8Z1dK9h8IzcIke+LuRi23OKwJPTp6eJtYUkTmR1PQummGBGsIrnZWxbVvfVFDIXYT/2c5vlSCJL8DUCb6kHkUeeyRqDh3Wxkwf5b6mU9XlrOkQR+h+BUBQ09Vipf5+PkCHHU6u0WxXh8QwW81yKNJszBp5IuMzLTniul7pYZiu8MPCWe4iGBQGWR9MirOvbyNVmS+8DkwgXr+KXVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KFI00JbG7gTJ2ULQGyJ92SkJzYB9T1S9Dv4LPVclB08=;
- b=mQ4dbtBt2IZfKp3Qox8A1bIjwoUXj1fiMzrygKZboBcWi3HkEA1np32Jw18LIOWfYXIElMFWOIzkmgFb8hEAvDgSc/+AAC8yhMMKlk8zBxbwRgHWLvOfObKATFGkS8h1rL/OhVbijFSZdiA8uucOpYhTiCbpUO8kxW7QfxgqPtjuuaMR859ziYehoWixgqoplUV1F7++fYFgpCi6JDUE+P5jt5aFjuuPRiIhoXHtKuJ1nn/fwn/Ef8p/LyWmKOuUn7KHQD2glKBzQq2bkYSWJDx8tm4R8s0MwYs5AIsN5DUkl3BvvhOb0HbCnbNVw6lP5m3/GOJ8MnDQLEB9lJrCXQ==
+ bh=awXbvxTtTufT+7uHG9M6z90hdfdl7bG9uDmKfgIv6oY=;
+ b=TeLi0MBEvPisS8CjLaAhWy/qClb/mdVw+HZGyJrAyQJfWqXLDeK1gKjaUM/dZ7yqU8j46XdZ1Sgbj/v5oCkGU5IZk/KNiVTttgQu+CKhz2p+qVzmkxxliFM4ZYUBm6DD7mfhEulOqrfpCicN1lwOwcZBKXfUYYxckcnm76nuRPjGiwqpD4TbO0pFusOvJGvlGsgFYtjNd9rpj1qs/eCGtl+n/YY+rtJBsFz6G/Eqbw1tp7sM6Adtj4K2HFbdeyBnAouPoNI7OHxv56mptk50XZ2jgKQDdf5RlsyG6UzDZaHzkQU52Z7SWGO3XMRzNKALeXM75w5s6aa6ffLQLsIsSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KFI00JbG7gTJ2ULQGyJ92SkJzYB9T1S9Dv4LPVclB08=;
- b=GuQTOPxXHBPn/3B5/V2TiDBaPZ42hLkVIqW5w1Y2Lhk8MJBh1hKBe52Wz1b8Z9P6gg/20FNSbDdJHM790G1ZKNOKJ55ufLRlr49aLLEPtlicrcp+PKAk22L0L3sMh2VdwhH21XrEzxIj8dfZoZJpAr//bNYudSQkiWz54MX/L8I=
+ bh=awXbvxTtTufT+7uHG9M6z90hdfdl7bG9uDmKfgIv6oY=;
+ b=Q2/LV9cUMO9KXAlu0jNmTrljeWmHxt2NOYrrrkA+NEdSxB2vIW1xA1hPEYTTAUlrKIcc5rJTP+cZApSFKYtu5nlVVjjYyRnKBrBoE96OxbfLtOzVJHHjm8kXsptYZ35ggRO3YCC5s8oUTwE3u90ljbHYJ01dxlq9Y6vsRw0VFUc=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by IA3PPFED21B01E3.namprd11.prod.outlook.com
  (2603:10b6:20f:fc04::cd) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 09:46:00 +0000
+ 2026 09:45:56 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%3]) with mapi id 15.21.0615.012; Mon, 16 Nov 2026
- 09:46:00 +0000
+ 09:45:56 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v4 7/7] drm/xe/kunit: Test VRAM pool allocation
-Date: Mon, 16 Nov 2026 10:45:23 +0100
-Message-Id: <20261116094523.2484301-8-piotr.piorkowski@intel.com>
+Subject: [PATCH v4 6/7] drm/xe/kunit: Test partitioned VRAM manager
+Date: Mon, 16 Nov 2026 10:45:22 +0100
+Message-Id: <20261116094523.2484301-7-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261116094523.2484301-1-piotr.piorkowski@intel.com>
 References: <20261116094523.2484301-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR04CA0107.eurprd04.prod.outlook.com
- (2603:10a6:803:64::42) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: VI1P190CA0039.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:800:1bb::20) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|IA3PPFED21B01E3:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5036bf8c-a62e-4986-336c-08df43c66bf3
+X-MS-Office365-Filtering-Correlation-Id: c9af80f6-8f57-4a8c-3531-08df43c6694f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|23010399003|1800799024|18002099003|22082099003|11063799006|56012099006|10067099003|261022075727099003|261022113327099003|261022115727099003|261026121527099003|261021121427099003|261009223027099003|261102123227099003|261102130727099003;
-X-Microsoft-Antispam-Message-Info: iKhXMa86cqFBDyde89fkhM7a9VEUswVGLVG7gB3RU8IyqRtG70+a9Rog+5gS83lyopsjjpNr0CjzknhyR7EpDHmoK36jg1xVPeZbLNyGV8hfE+qxwogLP5t63z0uGQS5WvXoGiI0g8T6mECf8fFHnM1wtZ+OS0kEYadXqHbEDcNZOC5k42yKcm+rba3O/3qYqetmE/BTqkSCD+Uj7k0gsZVitDxiMVKubllhBrUmFyz+gilRsluYQVW9ryloBklBdIfB0X35iPKPRUcaWJl2dJ5qBGLzOL+zA21Ty6YPoQpaXVTe1/C/J5/0098yKKdejjkaoHMAhwJFnfBI7xovxA1uo/vi0ladi4kR0nuXOFzqMDtbKu9f+L+oZzkU70DWBhALcGSUqFOrMgCf+Gc+N9m7jqFnTOhWhqCV/GassnBBYQszQ+/7Dhn4BB9xBcyxlw9k08p8DNGyub0inP/z3JlkPkA+AIcXrt14QWFSVxxIvHh5dj5MuqmzK0glH8JlFUSMSsJmvuuSQNaZe/Ho+dO7MOWgCTDGii0PVxO/fBz9mwmealCRFXxD/bAkuyTjxWLi8F5RBC8MuL+djJ8Bz7cH2zjJ6Rx6sFMaz0Or5n7+/qHg3Tvr4BWh/5r0CwEiTQJwzSfNoz3guJQMDYFRC69GIEoexqC4ma6MRDKQMlg=
+ ARA:13230040|376014|366016|23010399003|1800799024|18002099003|22082099003|11063799006|56012099006|10067099003|261022105027099003|261022075727099003|261028144727099003|261022113327099003|261026121527099003|261021121427099003|261009223027099003|261102123227099003|261026140227099003;
+X-Microsoft-Antispam-Message-Info: Y29J6FtNleAX0d9c5weu9+7pt+h/62sgTGktDXhe4AMZ8EGkGNfEEAdavXB++Wwct/2vitThJAcjN2N9g58lHdMMdwegGIeNcyDvG2n1dYknaEhWpGx8rDThreM79Gia52I9sTAvUSxe7N1maj6xQUPDIlNnSzWNTrTzUuUX0t52qRZE4aBoxXwvN8AGK0hdpaZdS0H7ItNL7GJmyvdb1hGh9zg18NV0aGroYTE4XmXDjZ5N8my118qT19CM0L+w2vxsvheEL2sycxGGi8up+0p1lQ0KkeT47oZHu1uS++nxiyJ6XSKgZQ8/ia+7HpngKy/Hks2FX75ekxdyYOn/AkaYmrZH3vIJJujLzGQ8H0cSP1Y8HvLphTfWDVek1pnm4Yz6ipMaB5wSctSbgjC34EnGJOcvApVXB4ehqCBZmfs1U0ZLIVjLepr4ablEsETo9IYj3a1iLTp+TlXyt+/N64Dii/ihzA8x19UOtqEzcvKZhfzAxjxuvZspGQQuI2FOtOPkJeIaDz8KNpBXgmJHjfDQN6VeW+xPeWuGEw+KWhLiby/1e140g1n6p/blb2lg8T9n8ocGHM9J2K0BDiJg6+Iv08jC9hCxDQVaEK8aYW7y+HbSaFu+02Z36p+0f60l4VJwPk9bqHRMXcu6cUNJ+8cAyS//wNHUTKUFLZLnWf4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003)(261022075727099003)(261022113327099003)(261022115727099003)(261026121527099003)(261021121427099003)(261009223027099003)(261102123227099003)(261102130727099003);
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(18002099003)(22082099003)(11063799006)(56012099006)(10067099003)(261022105027099003)(261022075727099003)(261028144727099003)(261022113327099003)(261026121527099003)(261021121427099003)(261009223027099003)(261102123227099003)(261026140227099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SjNPNlUvZVB6cWYxWk5BOS9PYkhEQjNucHNYK3lWajNUOE5UcUpuVHVJQTBY?=
- =?utf-8?B?S0ZKZ3RQUXdFYTExajV3MThYTnZaaCs1blVDclVIMGorMUIzVFAxbXByZk92?=
- =?utf-8?B?YTFQYVYwVzhtcDJyNlB4cEhCOWdGRkJRVUdaeSs4Q0EzVlNGUklrTkFDN2N5?=
- =?utf-8?B?bGhXNHZLb0pyckhqTzd0WG5WTHNLdmxOZkc3QXF3WkJrNU5xTkgxNTFPL0d3?=
- =?utf-8?B?OFpNbmc2cDdabXVSaHpaRFQxa2IyUGlHd2xrL2NCb3hFVElwYzE1alNyZGdx?=
- =?utf-8?B?U0tTemQ4QVpmRlltL0Q4MHF0K21tZmFmalpmVUV0aVNPZDJpYW00bEhLUGhM?=
- =?utf-8?B?Y1E2MDFJVGV3alc4MzhycWFsT1hqSU5rYkdiYWk0VStXYkRsSUNaNU1tTVZY?=
- =?utf-8?B?OUY0ekF2azd3MFhkcUkzR25TQ3dxY3RGZXYwc3pxOHJaaTZEa0tndjR4cnYv?=
- =?utf-8?B?cWFuZDNKaGQycUVjcm5TYWxyVzhkUXJ5TWlucnR1dmxlZmZJMzFiWUNiWmdY?=
- =?utf-8?B?dE91MDI0dHVxZEpwQW52SDRyUTVNR2ZnNWxKOU1UemIyVjNSOEphYTgvKy82?=
- =?utf-8?B?MEFJSzRBa3p4cjhzMThLVnVCc09NQUtsUVI2TmE2MjN0NDY2N3IvWlRoa0p0?=
- =?utf-8?B?UWwrOUZhclVsZWtuYjdPRGxZcW01OTcvVmNjMVU0WXZtWmhTU2Y5RWZ0SzNq?=
- =?utf-8?B?eVYya29MMFY0blBHUTB0bzF0dUhxaFpDUk9XK2lUbk50STZHdlpXZjBCM3hs?=
- =?utf-8?B?UXhkeEFYN0ZYU2dVVXBVMlVwcnpQc1FqWlJHYlBra0VNWXlUMURWaHVUWjRL?=
- =?utf-8?B?ODFES1ZxQ25mbm9Pb3pYQm9vU28wcTAvVEVWWkJSUlJ2NlB4a3U5TXNuRHV5?=
- =?utf-8?B?TjVBaTNXeWNSU1JZQllCY3hqdDQ2aUJTWU5XNFpNUWR6OTNCOEJ0b1BxclRp?=
- =?utf-8?B?NnJqcnJaQktyZVFXdE1US09jYzlydjEzVE1GcGRwb0kxc1k1NFovOGxXVFR4?=
- =?utf-8?B?Z1RnbVdFVnFHV1dLZzFQMExJeWp4UVM5bEV1RHZjLzRhUk42OHFJZ015VVRT?=
- =?utf-8?B?NmdTUDNLRDgxeEEyWUYyellFemRTNG5pRi9EQXNGUXk1WHd2ekFNbWE0Rm9P?=
- =?utf-8?B?Tm9kRHNuSUN3U2tWdXc0elJZanJsNWFFSXpQcExpUHNwMVZoaDVJd21MVWlT?=
- =?utf-8?B?VXpRdG9Geml0cnNEU1Y4UzFoYWZicTBmWVQvNHhwM1BEa1RhMkluQWVnRE9E?=
- =?utf-8?B?WDRNWkZHbTZ3cVBvZjdjTEZFSTAraG8wWlcvMFRrVHBSYUs0YWZIdFd2endN?=
- =?utf-8?B?Z0lpZXVrMmlVRmhNajYzdDBPcTFtTHEydVhzL0R2Z2lFSGV4Nzh3VWxnR1I5?=
- =?utf-8?B?ZExaOFJlL25jOFRsZ3pKUlNhakhURjNMNUhLcXIyYm5rdFY3WE43Y0hmT25V?=
- =?utf-8?B?cUNYREJ3YmhheVN3eVBqWDlZYk8yMnNpVE40QUF4OW1heVRqT2pScS9sSi8r?=
- =?utf-8?B?NlJ5OWUyOWJBeWlRU0R1QkVJV0pKbUkweC9kekFJbmNla2QyVDVaUnhUTi96?=
- =?utf-8?B?Qm1PY09ZYXBYbGY5QXZ0aEJ0eVp0Z3U0a3NvL1hGNStNRGhhL3pBOHBQK3p0?=
- =?utf-8?B?bDF1STVPQjJvTkprV2hrNExXbHI0cUZ3YkdRbDNQTHArcUVxUGJOakRRZEkz?=
- =?utf-8?B?eUxQU25PbE1PVjlBa2RiR3VFRmoremZvRDJvNENOQTlqZFF4aHZZS3podjQ2?=
- =?utf-8?B?V0ZiWW4vNDQ3M21mTDNMcjNrUjdHNlcxVFFZcHB4cXh5OVhiczdXUnJwNkVj?=
- =?utf-8?B?a3ViUzRZMlh1TGEwNUgvNUxvVEhzU1l5bGx4aWlXZm92UjFhK1BLZnZKb1cw?=
- =?utf-8?B?emlrbnFhRjBMUVRncGhOOTdxSE9nRzR2dWhDeWplQTQ1K0Q0N0NLR3BFZGg5?=
- =?utf-8?B?c05KMjhiNWE3aDVIYkpHZE95MFZjZzR0aHh3NVU2VmVCQjVvUmNQU0orOWdz?=
- =?utf-8?B?NXZJMmNwdzAvWXNiRXZYSWQzNUNGVXA1L3VnZ2NoZktHbHgvS1lOME1QbXlI?=
- =?utf-8?B?SlVHdTNZY3R2U1l0ZUorMDFPd1JNcDNlWUtKdWh2T2ZTelhLZzRpZm9lUFRm?=
- =?utf-8?B?dGpjNVVldmgrZndlelFvWnFMeFhIZXM1dWU3UGkrZjlERjRrUWIxZ3EwS3Mw?=
- =?utf-8?B?dlNUYndSV3hhQVY5dTB0WXVOY3piOUpFZkdsU0xBV2J4b1U4T2I0Qkd0WEp2?=
- =?utf-8?B?QUFCZjM1QWNTZ1RkQWZTS1ZqeStkcG15eGNqWXhkaG90b0NlNXFVUTgwM0xt?=
- =?utf-8?B?UU9rSlZrbCtwKzlBejJ4cEpKOGw1LzFVejhsNUxOdHZKTTBTKzNqWkxtVXll?=
- =?utf-8?Q?oGCmXJ07lEBJ4RTo=3D?=
-X-Exchange-RoutingPolicyChecked: kI6QiXm+K+gxCHljbJRcT/qNo6EqqqzPT8nSp5gpAPJHlgXLM15ZMIeiBe93fWChPjTdVoNBhW8fkC8VoIF6KNFa4CV51zv95GzRNfWJwYcIlsayxj8jYa3G3zBlCDVvfUac0/q9rTFgv0HuYiYi/Hd1mvCPu+kH/EbFpkEJE80ZMpFr1Sx8Lr7yjbrBWIRc+rqqgZHdoXj17ibTls24mMUV7i6abIO8KEHEyfIoScYQ1gyaBV8v5XQxvmbgLG8GJqOoxW4oaCqnthywzTeGsSAIZ7RAENvfr442WVrp389493c3l/jp2K3XYjoqCtbhSwZMD8YdRrLM1l9NK0bDJw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5036bf8c-a62e-4986-336c-08df43c66bf3
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?anNFTnNjT2tvUTVaM051Rmh1QkhzOTFhMW9MNXBLSXNzU3FuRGpSVGx0Sk82?=
+ =?utf-8?B?eTlyZG1MRk0xUzR4bXFoNmdYbmg3eWhia09DTnkyZVZiM2QwOXYrN0pMZ1dB?=
+ =?utf-8?B?YkFSckJadWVyVHkzdXQ2NEg0UUZnNFEvVmZKTXVoZzR2SDFEVGthWGxyb3Vi?=
+ =?utf-8?B?RGhqRkFUZVQ1aGJlYS81ck9LYitMTEh2aEszWHhGT3MyZG51SE9CdTErVWN3?=
+ =?utf-8?B?cUJRMTl6djIvbmg5V2I4SkZrSDJySFR5bUFITlR6NHAyU010bHZBbHhDRTB2?=
+ =?utf-8?B?UFRvclRwNktDSkYwK2grbmVpR1lQTGlFbElCUE11OWYyc0g3dEZzRjdKdUJz?=
+ =?utf-8?B?UzRZcHhzaXJFYlF3S2k4VXZZTGQxWkcxdXVCS09UUlN4QXlSSmk2RDFnWXhL?=
+ =?utf-8?B?L1l6WGNxNkltS1M2NVJoTEVYQWJqVTNuQlBuQjJseFgzVVpwL0dUOXNuZUY3?=
+ =?utf-8?B?VllIY1pCK3dmSFptRjVYT0hRYWtKSHdsa3J4RDREQUNXTHNhRzhIaldRTnB4?=
+ =?utf-8?B?bDVSSWRDNjkvMGM1M21KZHBuZUw2bEM4NlFQUU4wcXRkMjBlWWdKVG5GNXpZ?=
+ =?utf-8?B?Mk5RcURlRy93R2NrWVFTRUxySkJMczB3RXExbGF5QUJWYm1wRnU4S0lPWDhz?=
+ =?utf-8?B?M0x0THE5cmJCUEJVUlM2VGthbnpBZlhOQmdkTHlLb0ZGekwrR1llK0ZSbUhk?=
+ =?utf-8?B?RTgwYVVYcWNhNE9UVVZMQUF0bDRueXNXWmx1VlJveCtLQ0pFYWZzb1pyekow?=
+ =?utf-8?B?bWdzVUVjN2VWVDdodUVZdFR6cm14Z1RJY1cxeElyT2h1bGhzYkFFOTZGSlFz?=
+ =?utf-8?B?KzlVNk1ZUDNnVTFma2JGUm8zK3Z5d280SGMrWlQwbERRQk8zNUQyQW9zUk5P?=
+ =?utf-8?B?V01IbXRWOFYveEFWL2daY0g3YlhkRHNsbmRYUlV0bHdCcElNOTBuWUtmOFVp?=
+ =?utf-8?B?VDd6ZjQ2OFA4YnFUR2JBTlF2eUtTSGZmR2VtVmZVNDgzL25uTk5WOGdDb01Y?=
+ =?utf-8?B?NGIvcFA0VGJEQmxIbXZaUmJFZzlLTjZFanVZRE1iNFUyVUozNlBKRm1aRmlC?=
+ =?utf-8?B?c0hUNE5HczVJOUY3QlJ1eHc4UkhuMDdNaTRxOGpkNnZIZVZsNjQ3R1MvWmdu?=
+ =?utf-8?B?bXkyRkNsQno5K3NWUmRpM0NDalpXTEJsMXM2Z1U3MFA4alJmZVA3VzB2UUlX?=
+ =?utf-8?B?b3BiODlFQWRYUktXWnF2bkZqNkxUeGlqcXBoTGQ0d3pvZGh4Z2RrK2RmNFVK?=
+ =?utf-8?B?SVJhZmEyVVpsS3pBWHpUTlVjOGVvbEtTTThGK1V3dmM0cmVXNFhiQ3o0ek1U?=
+ =?utf-8?B?Uml4aVRFalZFbWUzSk01dFUvWG9FRzZBUUdJVkZDZGVaY1ZXVHIrZHVSUW9O?=
+ =?utf-8?B?RWwxNnpka0h1bEhWVWVhdXQxT0tIN2Q1Nm51Tk1WT20zekV5VXl0bHplV3BR?=
+ =?utf-8?B?UDJUZHhveTdOSFBqQUlGS1JsRzVaMERBbzNHZUZHZXlwc3gvc3Fub1d6RTA3?=
+ =?utf-8?B?RmZURnByc0l3S0JPUE9oM1NNdk52YmNSL3JTWVExdEZoK3h3V29LaWdKaE9y?=
+ =?utf-8?B?TUFQZ2RsOHVrVmJBQWUzekNpWnkweUNvS2dEVWNHRkVGQVpEZSt5ajRqSUFJ?=
+ =?utf-8?B?ZTVpTy8zUUtyWTJIeHdzcnoyMnB1MnJlekhrYVJ1eVVrWmlsbG5RN1hoNXMy?=
+ =?utf-8?B?dEpIQ3VHSHdUTGlHZ0lnRTVueDNteUQxbEw4b1dWb0w0RDh3cXVvc2Vxa3lm?=
+ =?utf-8?B?LzFhT2tnZU85SDQwbFRKc25keENnUHBPYjdxTFZyc3RmcFVDMDBDWGpDenFh?=
+ =?utf-8?B?UmpiazZadElGOFJmWFI0cGIwTjRZaXFaNlc2N1RoaUpGK1VtYTBXTzV3UHZq?=
+ =?utf-8?B?L0IxNEdNTE10Mk5WTWpkWVNkZmhaKzZCTlVuWkZRZzJYQkRzOGFEMytjNmtJ?=
+ =?utf-8?B?Wkt0Y3hmVkg2TVBSUGFpUDBsMkdKRmNSWkRVYUxIa3laNDNjTnpNS21rcHZI?=
+ =?utf-8?B?UVNldnlFYkNNU3JKWGl0Q0lQQmFIMktmcnFVcFBScjR0aTF0Um1WRE9veHA4?=
+ =?utf-8?B?N25nNVhsanVnNG55d01URktqcmZ2aUFYYlVucHdZREd0a1I2ck16NnNpd3Fp?=
+ =?utf-8?B?YjM5UFNEeEFMaTNnU2NiUFE1SVRoLzJWVExzV3Z3NHFlWDBuVEhaK24wNFNM?=
+ =?utf-8?B?aWxTNjFTZUtyZGNETHdPQTFybHJabjgrcEVsVDY3eU1Za25vZ25kSzRpRy9z?=
+ =?utf-8?B?ODZxTGd0ZHRiVzVKb2k5d1J4bnJnV1p3TFdRTnAxcE9ET0hFMzU2eE51bjMw?=
+ =?utf-8?B?S2RIUGxMc3B2RUlFVnJ4TDc2YzF1Q01USGRxRXoySlg3OEZDQVhJcW1mWndZ?=
+ =?utf-8?Q?6DOvMSO9doNPbEuQ=3D?=
+X-Exchange-RoutingPolicyChecked: G83bDhAzHWkNh+K6DQ0H+F+4gwoOwvzQp2Z57ocLqbwBLkPqOCCBPLcMtA0ytf4mM0Vo1FBWvs/mDbRqqrKZR1Lwf04tXJlQ8r21awaVmEImPpCgo4TGJTxHRokN0LbKnhm3AjnhrM77teu5SAseEFhVIY03Gsgq2M5SQB7f4gGEzW+ZCfXAFZDJHmaN73Vgu+fEsIB/h6dg5NDyQ29F5uhf0DYMXmJwv78V17mvOiX9zcgkO/4tKuj95FQkWAvaElu+qe0Ea44hyLwzkKQUavi4nCfa742ukAdl3MnSvHeb9OXiqNfQiRG8Ca99gVlap+T9EMQNfLTP4x9MFsEjBg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9af80f6-8f57-4a8c-3531-08df43c6694f
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 09:46:00.5784 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 09:45:56.0367 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RAtlxq7GFvdukOBgueU3HLiHNajKSZGHTIWCLA+9BHV6DOqagPHQZ4J/r7HCncxcNvj33CtEmf/dnTMsDFYaBuhhfRpMdQPyEb3QiI/1Fmc=
+X-MS-Exchange-CrossTenant-UserPrincipalName: ywP9hd/RVtymvV8jWXIOd86vBfaQOFbCfkBGd7pwFtvoEPOaXs6l/wT+MvS3ZqGAU9p81N23JQvvpu7LSQEcQh/LeoP58tvXa5E74kKhHj0=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PPFED21B01E3
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -168,36 +168,37 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Exercise default pool setup, pool splitting and partition limits, and
-TTM placement range narrowing.
+Exercise partition selection and address lookup, plus pool usage and
+CPU-visible memory accounting across partitions.
 
 v2:
  - Guard the test include with IS_BUILTIN() instead of IS_ENABLED(), so
    that the suite is not built into xe.ko when the KUnit tests are
-   modular, as reported by Sashiko for the partitioned VRAM manager test.
+   modular (Sashiko).
 
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_vram.c | 177 +++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vram.c       |   4 +
- 2 files changed, 181 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_vram.c
+ drivers/gpu/drm/xe/tests/xe_ttm_vram_mgr.c | 147 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       |   4 +
+ 2 files changed, 151 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_ttm_vram_mgr.c
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_vram.c b/drivers/gpu/drm/xe/tests/xe_vram.c
+diff --git a/drivers/gpu/drm/xe/tests/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/tests/xe_ttm_vram_mgr.c
 new file mode 100644
-index 0000000000000..de4cc3bff0f03
+index 0000000000000..1ad3186e6d5be
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_vram.c
-@@ -0,0 +1,177 @@
++++ b/drivers/gpu/drm/xe/tests/xe_ttm_vram_mgr.c
+@@ -0,0 +1,147 @@
 +// SPDX-License-Identifier: GPL-2.0 AND MIT
 +/*
 + * Copyright © 2026 Intel Corporation
@@ -205,191 +206,158 @@ index 0000000000000..de4cc3bff0f03
 +
 +#include <kunit/test.h>
 +
-+#include "xe_kunit_helpers.h"
-+#include "xe_pci_test.h"
++#include "xe_vram_types.h"
 +
-+static int xe_vram_test_init(struct kunit *test)
++/* The layout xe_ttm_vram_mgr_init() derives from the pools of a region */
++static struct xe_ttm_vram_mgr *split_mgr(struct kunit *test, u64 kernel_size, u64 size)
 +{
-+	struct xe_pci_fake_data fake = {
-+		.platform = XE_BATTLEMAGE,
-+		.graphics_verx100 = 2001,
-+	};
++	struct xe_ttm_vram_mgr *mgr;
++	struct xe_vram_pool *pools;
 +
-+	test->priv = &fake;
-+	xe_kunit_helper_xe_device_test_init(test);
++	mgr = kunit_kzalloc(test, sizeof(*mgr), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, mgr);
++	pools = kunit_kcalloc(test, 2, sizeof(*pools), GFP_KERNEL);
++	KUNIT_ASSERT_NOT_NULL(test, pools);
 +
-+	return 0;
++	pools[0].offset = 0;
++	pools[0].size = kernel_size;
++	pools[0].purpose = XE_VRAM_POOL_KERNEL;
++	pools[1].offset = kernel_size;
++	pools[1].size = size - kernel_size;
++	pools[1].purpose = XE_VRAM_POOL_GENERAL;
++	mgr->parts[0].pool = &pools[0];
++	mgr->parts[1].pool = &pools[1];
++	mgr->num_parts = 2;
++
++	return mgr;
 +}
 +
-+static struct xe_vram_pool *tile_pool(struct kunit *test, struct xe_device *xe)
++static void select_part(struct kunit *test)
 +{
-+	struct xe_vram_region *vram = xe_vram_region_alloc_tile(xe, 0);
-+	struct xe_vram_pool *pool;
++	struct xe_ttm_vram_mgr *mgr = split_mgr(test, SZ_128M, SZ_1G);
++	struct xe_ttm_vram_mgr_part *part;
++	bool exact = false;
 +
-+	KUNIT_ASSERT_NOT_NULL(test, vram);
-+	vram->usable_size = SZ_64M;
-+	vram->io_size = SZ_64M;
-+	pool = xe_vram_region_default_pool(vram);
-+	pool->size = SZ_64M;
-+	pool->purpose = XE_VRAM_POOL_GENERAL;
-+	vram->num_partitions = 1;
++	/* The ranges a pool resolves to cover a whole partition */
++	part = xe_ttm_vram_mgr_select_part(mgr, 0, SZ_128M, &exact);
++	KUNIT_EXPECT_PTR_EQ(test, part, &mgr->parts[0]);
++	KUNIT_EXPECT_TRUE(test, exact);
 +
-+	return pool;
++	part = xe_ttm_vram_mgr_select_part(mgr, SZ_128M, SZ_1G, &exact);
++	KUNIT_EXPECT_PTR_EQ(test, part, &mgr->parts[1]);
++	KUNIT_EXPECT_TRUE(test, exact);
++
++	/* A narrower range still resolves, but needs a range allocation */
++	part = xe_ttm_vram_mgr_select_part(mgr, SZ_256M, SZ_512M, &exact);
++	KUNIT_EXPECT_PTR_EQ(test, part, &mgr->parts[1]);
++	KUNIT_EXPECT_FALSE(test, exact);
++
++	/* Partitions are a hard split */
++	part = xe_ttm_vram_mgr_select_part(mgr, 0, SZ_256M, &exact);
++	KUNIT_EXPECT_NULL(test, part);
++	part = xe_ttm_vram_mgr_select_part(mgr, 0, SZ_2G, &exact);
++	KUNIT_EXPECT_NULL(test, part);
 +}
 +
-+static void kernel_pool_defaults_to_general(struct kunit *test)
++static void addr_to_part(struct kunit *test)
 +{
-+	struct xe_device *xe = test->priv;
-+	struct xe_vram_pool *general = tile_pool(test, xe);
-+	struct xe_tile *tile = &xe->tiles[0];
++	struct xe_ttm_vram_mgr *mgr = split_mgr(test, SZ_128M, SZ_1G);
 +
-+	tile->mem.vram = general;
-+	tile->mem.kernel_vram = NULL;
-+
-+	KUNIT_ASSERT_EQ(test, xe_vram_tile_alloc_kernel(tile), 0);
-+	KUNIT_EXPECT_PTR_EQ(test, tile->mem.kernel_vram, tile->mem.vram);
++	KUNIT_EXPECT_PTR_EQ(test, xe_ttm_vram_mgr_addr_to_part(mgr, 0), &mgr->parts[0]);
++	KUNIT_EXPECT_PTR_EQ(test, xe_ttm_vram_mgr_addr_to_part(mgr, SZ_128M - PAGE_SIZE),
++			    &mgr->parts[0]);
++	KUNIT_EXPECT_PTR_EQ(test, xe_ttm_vram_mgr_addr_to_part(mgr, SZ_128M), &mgr->parts[1]);
++	KUNIT_EXPECT_PTR_EQ(test, xe_ttm_vram_mgr_addr_to_part(mgr, SZ_1G - PAGE_SIZE),
++			    &mgr->parts[1]);
++	KUNIT_EXPECT_NULL(test, xe_ttm_vram_mgr_addr_to_part(mgr, SZ_1G));
 +}
 +
-+static void partition_carve(struct kunit *test)
++static void general_pool_usage(struct kunit *test)
 +{
-+	struct xe_device *xe = test->priv;
-+	struct xe_vram_pool *general = tile_pool(test, xe);
-+	struct xe_vram_region *vram = general->region;
-+	struct xe_vram_pool *kernel0 = &vram->partitions[1];
-+
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, 0), NULL);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_1M), NULL);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_64M), NULL);
-+	KUNIT_EXPECT_EQ(test, vram->num_partitions, 1u);
-+
-+	KUNIT_ASSERT_NOT_NULL(test, xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_8M));
-+	KUNIT_ASSERT_EQ(test, vram->num_partitions, 2u);
-+	KUNIT_EXPECT_EQ(test, kernel0->purpose, XE_VRAM_POOL_KERNEL);
-+	KUNIT_EXPECT_EQ(test, kernel0->offset, 0ull);
-+	KUNIT_EXPECT_EQ(test, kernel0->size, (u64)SZ_8M);
-+	KUNIT_EXPECT_EQ(test, general->purpose, XE_VRAM_POOL_GENERAL);
-+	KUNIT_EXPECT_EQ(test, general->offset, (u64)SZ_8M);
-+	KUNIT_EXPECT_EQ(test, general->size, (u64)(SZ_64M - SZ_8M));
-+
-+	/* Both partitions keep sharing the region, its manager and its placement */
-+	KUNIT_EXPECT_PTR_EQ(test, kernel0->region, vram);
-+	KUNIT_EXPECT_PTR_EQ(test, general->region, vram);
-+	KUNIT_EXPECT_EQ(test, vram->placement, (u32)XE_PL_VRAM0);
-+
-+	KUNIT_EXPECT_EQ(test, xe_vram_pool_usable_size(kernel0), (resource_size_t)SZ_8M);
-+	KUNIT_EXPECT_EQ(test, xe_vram_pool_usable_size(general),
-+			(resource_size_t)(SZ_64M - SZ_8M));
-+}
-+
-+static void partition_limit(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_vram_pool *general = tile_pool(test, xe);
-+	struct xe_vram_region *vram = general->region;
-+	struct xe_vram_pool *pool;
++	struct xe_ttm_vram_mgr *mgr = split_mgr(test, SZ_128M, SZ_1G);
++	LIST_HEAD(kernel_blocks);
++	LIST_HEAD(general_blocks);
++	u64 kernel_visible = 0;
++	u64 general_visible = 0;
++	u64 used, used_visible;
 +	unsigned int i;
++	int err;
 +
-+	for (i = 1; i < XE_VRAM_MAX_PARTITIONS; i++) {
-+		pool = xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_2M);
-+		KUNIT_ASSERT_NOT_NULL(test, pool);
++	mutex_init(&mgr->lock);
++	/* Only the bottom 256M are CPU visible */
++	mgr->visible_size = SZ_256M;
++	mgr->visible_avail = SZ_256M;
++	for (i = 0; i < mgr->num_parts; ++i) {
++		KUNIT_ASSERT_EQ(test, gpu_buddy_init(&mgr->parts[i].mm,
++						     mgr->parts[i].pool->size,
++						     PAGE_SIZE), 0);
++		gpu_buddy_driver_set_lock(&mgr->parts[i].mm, &mgr->lock);
 +	}
 +
-+	KUNIT_EXPECT_EQ(test, vram->num_partitions, XE_VRAM_MAX_PARTITIONS);
-+	KUNIT_EXPECT_PTR_EQ(test,
-+			    xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_2M),
-+			    NULL);
++	mutex_lock(&mgr->lock);
++	err = xe_ttm_vram_buddy_alloc(mgr, &mgr->parts[0], 0, SZ_128M, SZ_8M,
++				      PAGE_SIZE, &kernel_blocks,
++				      GPU_BUDDY_RANGE_ALLOCATION, NULL,
++				      &kernel_visible);
++	KUNIT_EXPECT_EQ(test, err, 0);
++	/* Straddles the end of the CPU visible window */
++	err = xe_ttm_vram_buddy_alloc(mgr, &mgr->parts[1], SZ_256M - SZ_4M,
++				      SZ_256M + SZ_4M, SZ_8M, PAGE_SIZE,
++				      &general_blocks,
++				      GPU_BUDDY_RANGE_ALLOCATION, NULL,
++				      &general_visible);
++	KUNIT_EXPECT_EQ(test, err, 0);
++	mutex_unlock(&mgr->lock);
++
++	KUNIT_EXPECT_EQ(test, kernel_visible, (u64)SZ_8M);
++	KUNIT_EXPECT_EQ(test, general_visible, (u64)SZ_4M);
++	KUNIT_EXPECT_EQ(test, mgr->visible_avail, (u64)(SZ_256M - SZ_8M - SZ_4M));
++
++	/* Memory taken from the kernel-only pool is not reported */
++	xe_ttm_vram_get_general_pool_used(&mgr->manager, &used, &used_visible);
++	KUNIT_EXPECT_EQ(test, used, (u64)SZ_8M);
++	KUNIT_EXPECT_EQ(test, used_visible, (u64)SZ_4M);
++
++	mutex_lock(&mgr->lock);
++	xe_ttm_vram_buddy_free(mgr, &mgr->parts[0], &kernel_blocks, kernel_visible);
++	xe_ttm_vram_buddy_free(mgr, &mgr->parts[1], &general_blocks, general_visible);
++	mutex_unlock(&mgr->lock);
++
++	xe_ttm_vram_get_general_pool_used(&mgr->manager, &used, &used_visible);
++	KUNIT_EXPECT_EQ(test, used, 0ull);
++	KUNIT_EXPECT_EQ(test, used_visible, 0ull);
++	KUNIT_EXPECT_EQ(test, mgr->visible_avail, (u64)SZ_256M);
++
++	for (i = 0; i < mgr->num_parts; ++i)
++		gpu_buddy_fini(&mgr->parts[i].mm);
++	mutex_destroy(&mgr->lock);
 +}
 +
-+static void pool_place(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_vram_pool *general = tile_pool(test, xe);
-+	struct xe_vram_region *vram = general->region;
-+	struct xe_vram_pool *kernel = &vram->partitions[1];
-+	struct ttm_place place = {};
-+
-+	/* A pool spanning the region only resolves to its placement */
-+	xe_vram_pool_place(general, &place);
-+	KUNIT_EXPECT_EQ(test, place.mem_type, (u32)XE_PL_VRAM0);
-+	KUNIT_EXPECT_EQ(test, place.fpfn, 0u);
-+	KUNIT_EXPECT_EQ(test, place.lpfn, 0u);
-+
-+	KUNIT_ASSERT_NOT_NULL(test, xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_8M));
-+
-+	place = (struct ttm_place) {};
-+	xe_vram_pool_place(kernel, &place);
-+	KUNIT_EXPECT_EQ(test, place.fpfn, 0u);
-+	KUNIT_EXPECT_EQ(test, place.lpfn, SZ_8M >> PAGE_SHIFT);
-+
-+	place = (struct ttm_place) {};
-+	xe_vram_pool_place(general, &place);
-+	KUNIT_EXPECT_EQ(test, place.fpfn, SZ_8M >> PAGE_SHIFT);
-+	KUNIT_EXPECT_EQ(test, place.lpfn, SZ_64M >> PAGE_SHIFT);
-+
-+	/* A caller supplied range, e.g. the CPU visible one, is only narrowed */
-+	place = (struct ttm_place) { .lpfn = SZ_4M >> PAGE_SHIFT };
-+	xe_vram_pool_place(kernel, &place);
-+	KUNIT_EXPECT_EQ(test, place.fpfn, 0u);
-+	KUNIT_EXPECT_EQ(test, place.lpfn, SZ_4M >> PAGE_SHIFT);
-+
-+	place = (struct ttm_place) { .lpfn = SZ_32M >> PAGE_SHIFT };
-+	xe_vram_pool_place(general, &place);
-+	KUNIT_EXPECT_EQ(test, place.fpfn, SZ_8M >> PAGE_SHIFT);
-+	KUNIT_EXPECT_EQ(test, place.lpfn, SZ_32M >> PAGE_SHIFT);
-+}
-+
-+static void pool_by_addr(struct kunit *test)
-+{
-+	struct xe_device *xe = test->priv;
-+	struct xe_vram_pool *general = tile_pool(test, xe);
-+	struct xe_vram_region *vram = general->region;
-+	struct xe_vram_pool *kernel = &vram->partitions[1];
-+
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, 0), general);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, SZ_64M - SZ_4K), general);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, SZ_64M), NULL);
-+
-+	KUNIT_ASSERT_NOT_NULL(test, xe_vram_pool_create(vram, XE_VRAM_POOL_KERNEL, SZ_8M));
-+
-+	/* An address resolves to the pool covering it, whatever its purpose */
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, 0), kernel);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, SZ_8M - SZ_4K), kernel);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, SZ_8M), general);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, SZ_64M - SZ_4K), general);
-+	KUNIT_EXPECT_PTR_EQ(test, xe_vram_region_addr_to_pool(vram, SZ_64M), NULL);
-+}
-+
-+static struct kunit_case xe_vram_tests[] = {
-+	KUNIT_CASE(kernel_pool_defaults_to_general),
-+	KUNIT_CASE(partition_carve),
-+	KUNIT_CASE(partition_limit),
-+	KUNIT_CASE(pool_place),
-+	KUNIT_CASE(pool_by_addr),
++static struct kunit_case xe_ttm_vram_mgr_tests[] = {
++	KUNIT_CASE(select_part),
++	KUNIT_CASE(addr_to_part),
++	KUNIT_CASE(general_pool_usage),
 +	{}
 +};
 +
-+static struct kunit_suite xe_vram_test_suite = {
-+	.name = "xe_vram",
-+	.test_cases = xe_vram_tests,
-+	.init = xe_vram_test_init,
++static struct kunit_suite xe_ttm_vram_mgr_test_suite = {
++	.name = "xe_ttm_vram_mgr",
++	.test_cases = xe_ttm_vram_mgr_tests,
 +};
 +
-+kunit_test_suite(xe_vram_test_suite);
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 6e0f5c4660e4e..c9d8c26e88fea 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -672,6 +672,10 @@ resource_size_t xe_vram_region_actual_physical_size(const struct xe_vram_region
++kunit_test_suite(xe_ttm_vram_mgr_test_suite);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 83baeec2ef9b1..886b2712ff848 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -1303,3 +1303,7 @@ void xe_ttm_vram_debugfs_init(struct xe_device *xe, struct dentry *root)
+ 		return;
+ 	debugfs_create_file("vram_bad_pages", 0444, root, xe, &vram_bad_pages_fops);
  }
- EXPORT_SYMBOL_IF_KUNIT(xe_vram_region_actual_physical_size);
- 
-+#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_vram.c"
-+#endif
 +
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
- static void memtest_bo_cleanup(void *arg)
- {
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_ttm_vram_mgr.c"
++#endif
 -- 
 2.34.1
 
