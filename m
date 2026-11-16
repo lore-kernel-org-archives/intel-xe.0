@@ -2,61 +2,66 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50373606A881
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 08:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4966606A31C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 08:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=S511PxC9
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HzVe681A
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F4610E3E6;
-	Mon, 16 Nov 2026 08:12:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69ED510E989;
- Mon, 16 Nov 2026 08:12:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C1610E2B6;
+	Mon, 16 Nov 2026 08:39:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B93910E242;
+ Mon, 16 Nov 2026 08:39:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794816745; x=1826352745;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=6lw33cBp7WIFgQLeDZMRehcoG3PH+753sISz6rd1P+k=;
- b=S511PxC9Sjz2CUiVoWVpHMBS+oOUmAMCG/LUckmcU/Tdt+g9TQj77hNF
- r5lcsxBB4bstI0cWKpoR4AfOHyVxE4WnVoyUXGR8KiMEeqMJlTFpsjhnT
- v9OVA44I9SMwO3T2+gt0hZ0k6L6hT8RJxD5N8BNDFwpUwh9uononn5wgq
- Cxa3Wh0JkGUg+kHCNgMAfMjeblrH8lxwtaUCL6RRCOUsyoksKeZgi+ivf
- 96qOYyLQUYJ7TuWWAAe6cnzh42nFH4AyyiADO5vQtxZBavI3a91DQyguR
- +Amr+5t41Zap/YfD8CpBMaZX5D7b+Qoy4U0xE+JePS7JH7cEsiYcafoLj A==;
-X-CSE-ConnectionGUID: kc1lhdGORnqf57WRtT70Zg==
-X-CSE-MsgGUID: VZQdQlwKRjGAv2/B7kF8lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3553579"
+ t=1794818385; x=1826354385;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Ponfat1/q3JT/qiKw+w9w6BSScu+K9xI4e3DrPd/6Ww=;
+ b=HzVe681AjCYXEBszSs6SdduUqpAyrM1Zounyvg/cerb3xQ+PDVPK2zeu
+ WqTgNX0kQ4A3sgVISSxokIcuXcjwtVh0JINovJn/C6M4EhQNgLjjJiF16
+ LmjLGTJdPpNiTi/ACcX7bVY5F6FsviDVJZono4sbdvcy0d953S0AwsChi
+ QffNhOe3mPjYqPqn2w6Agqu6virUezPAzQ2nS0t9Ah9jYykpVG33yAEzK
+ If5O0rnHhDq9/6VW4UCyTQYZt1aINmPTIOXCce3QeS+Y8f73Pqzmqqof3
+ aC6w2uPOWnmRG2KU3I0Y4TFWh73Emai2YCY2kfkHqV0K4b9LOkigtjFzW A==;
+X-CSE-ConnectionGUID: gTyn2DIfRFuLIweaOWHMrA==
+X-CSE-MsgGUID: AMWJ8WKmR2WFmNIrFmsN8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3578196"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="3553579"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 00:11:16 -0800
-X-CSE-ConnectionGUID: ESgxfahOSgmmdz5AqnYjyQ==
-X-CSE-MsgGUID: W250r73KRhSVXqACSRrsgw==
+   d="scan'208";a="3578196"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 00:39:45 -0800
+X-CSE-ConnectionGUID: gwpAQ6Q4Q8miECw2Cy0wXA==
+X-CSE-MsgGUID: s1HeY7N6SgKwNfFkhRPfiQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="9557752"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.93])
+   d="scan'208";a="9413260"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.117])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 00:11:15 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/7] drm/i915/dsb: Skip redundant zeroing of every second
- indexed write DW
-Date: Mon, 16 Nov 2026 10:10:40 +0200
-Message-ID: <20261116081041.6519-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261116081041.6519-1-ville.syrjala@linux.intel.com>
-References: <20261116081041.6519-1-ville.syrjala@linux.intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+ 16 Nov 2026 00:39:41 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Baoli Zhang <baoli.zhang@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, matthew.auld@intel.com,
+ airlied@gmail.com, simona@ffwll.ch, andriy.shevchenko@linux.intel.com,
+ Baoli Zhang <baoli.zhang@linux.intel.com>, Yanx L Liu
+ <yanx.l.liu@intel.com>
+Subject: Re: [PATCH 2/3] drm/i915/display: Let the drivers free the KMS objects
+In-Reply-To: <20261116011504.3910139-3-baoli.zhang@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+References: <20261116011504.3910139-1-baoli.zhang@linux.intel.com>
+ <20261116011504.3910139-3-baoli.zhang@linux.intel.com>
+Date: Mon, 16 Nov 2026 10:39:37 +0200
+Message-ID: <171277546a58621d8b771fd7043dad0fa0559da1@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,74 +72,130 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Mon, 16 Nov 2026, Baoli Zhang <baoli.zhang@linux.intel.com> wrote:
+> intel_display_driver_remove_noirq() frees all the KMS objects through
+> drm_mode_config_cleanup(), while userspace may still hold the DRM fd
+> open with references to them, e.g. framebuffers it created. Such
+> objects must only be freed with the last reference to the DRM device.
+>
+> As a first step, move drm_mode_config_cleanup() into the new
+> intel_display_driver_mode_config_cleanup() and call it from i915 and xe
+> right after intel_display_driver_remove_noirq(), so each driver can
+> then move it to the right place.
+>
+> drm_mode_config_cleanup() now runs after the rest of the noirq teardown
+> (DP tunnel manager, overlay, GMBUS, workqueues and FBC). After the
+> previous patch the KMS object destroy callbacks no longer depend on any
+> of that.
+>
+> No functional change intended.
+>
+> Tested-by: Yanx L Liu <yanx.l.liu@intel.com>
+> Signed-off-by: Baoli Zhang <baoli.zhang@linux.intel.com>
 
-Currently intel_dsb_reg_write_indexed() assumes that it may be
-the last register write into the same register, and proceeds
-to zero out the last misaligned DW. But if another indexed write
-to the same register follows (as it usually does) that zeroed DW
-will again be overwritten with the new register value.
+Please don't add new display calls to i915 or xe core drivers. The
+direction must be the opposite, there needs to be fewer calls. Move the
+functionality in existing higher level display functions.
 
-So every second indexed register write in a sequence will
-perform a completely redundant DW write. Considering that the
-DSB buffer will be in device memory on discrete GPUs we
-probably don't want to do these redundant writes.
+I see that patch 3/3 then changes i915 and xe to behave differently
+here. That's also the wrong direction. We need to make the drivers
+behave more similarly. Can't have one driver make some calls, and the
+other not.
 
-Defer the extra DW write to intel_dsb_ins_align() which gets
-called ahead of every new DSB instruction emitted. There we'll
-just have to write a single DW, if the previous indexed write
-left us with an odd number of DWs.
+The approach here makes future changes harder.
 
-Eliminating these and other redundant writes speeds up the
-DSB buffer writes for a 1024 entry LUT update from ~75 usec
-to ~45 usec on my DG2.
+BR,
+Jani.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_driver.c | 12 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display_driver.h |  1 +
+>  drivers/gpu/drm/i915/i915_driver.c                  |  2 ++
+>  drivers/gpu/drm/xe/display/xe_display.c             |  2 ++
+>  4 files changed, 17 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index d513cfc881069..62a4d95d78b53 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -160,6 +160,18 @@ static void intel_mode_config_cleanup(struct intel_display *display)
+>  {
+>  	intel_atomic_global_obj_cleanup(display);
+>  	intel_encoder_remove_all(display);
+> +}
+> +
+> +/*
+> + * Free the KMS objects, including the encoders torn down by
+> + * intel_display_driver_remove_noirq(). Userspace can keep referring to them
+> + * until the last reference to the DRM device is gone.
+> + */
+> +void intel_display_driver_mode_config_cleanup(struct intel_display *display)
+> +{
+> +	if (!HAS_DISPLAY(display))
+> +		return;
+> +
+>  	drm_mode_config_cleanup(display->drm);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
+> index 1ae2ad7e95f6c..88d9028e86e4b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
+> @@ -23,6 +23,7 @@ void intel_display_driver_register(struct intel_display *display);
+>  void intel_display_driver_remove(struct intel_display *display);
+>  void intel_display_driver_remove_noirq(struct intel_display *display);
+>  void intel_display_driver_remove_nogem(struct intel_display *display);
+> +void intel_display_driver_mode_config_cleanup(struct intel_display *display);
+>  void intel_display_driver_unregister(struct intel_display *display);
+>  void intel_display_driver_shutdown(struct intel_display *display);
+>  void intel_display_driver_shutdown_late(struct intel_display *display);
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index aeb7b24c81c8b..d29b37ab2833e 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -906,6 +906,7 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  	intel_display_driver_remove(display);
+>  	intel_irq_uninstall(i915);
+>  	intel_display_driver_remove_noirq(display);
+> +	intel_display_driver_mode_config_cleanup(display);
+>  	goto out_cleanup_modeset;
+>  out_cleanup_irq:
+>  	intel_irq_uninstall(i915);
+> @@ -951,6 +952,7 @@ void i915_driver_remove(struct drm_i915_private *i915)
+>  	intel_irq_uninstall(i915);
+>  
+>  	intel_display_driver_remove_noirq(display);
+> +	intel_display_driver_mode_config_cleanup(display);
+>  
+>  	i915_reset_error_state(i915);
+>  	i915_gem_driver_remove(i915);
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index 506f26e9c59a8..d33052a98d942 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -73,6 +73,7 @@ static void xe_display_fini_early(void *arg)
+>  		return;
+>  
+>  	intel_display_driver_remove_noirq(display);
+> +	intel_display_driver_mode_config_cleanup(display);
+>  	intel_display_driver_remove_nogem(display);
+>  	intel_display_power_cleanup(display);
+>  }
+> @@ -110,6 +111,7 @@ int xe_display_init_early(struct xe_device *xe)
+>  	return devm_add_action_or_reset(xe->drm.dev, xe_display_fini_early, xe);
+>  err_noirq:
+>  	intel_display_driver_remove_noirq(display);
+> +	intel_display_driver_mode_config_cleanup(display);
+>  	intel_display_power_cleanup(display);
+>  
+>  	return err;
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index f8ca64a3c076..f7a54dc44894 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -336,14 +336,11 @@ static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb)
- static void intel_dsb_ins_align(struct intel_dsb *dsb)
- {
- 	/*
--	 * Every instruction should be 8 byte aligned.
--	 *
--	 * The only way to get unaligned free_pos is via
--	 * intel_dsb_reg_write_indexed() which already
--	 * makes sure the next dword is zeroed, so no need
--	 * to clear it here.
-+	 * Every instruction must be 8 byte aligned.
-+	 * Indexed register writes may leave free_pos misaligned.
- 	 */
--	dsb->free_pos = ALIGN(dsb->free_pos, 2);
-+	if (dsb->free_pos & 1)
-+		dsb_buffer_write(dsb, dsb->free_pos++, 0);
- }
- 
- static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
-@@ -417,9 +414,6 @@ void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
- 	dsb_buffer_write(dsb, dsb->ins_start_offset + 0, dsb->ins[0]);
- 
- 	dsb_buffer_write(dsb, dsb->free_pos++, val);
--	/* if number of data words is odd, then the last dword should be 0.*/
--	if (dsb->free_pos & 0x1)
--		dsb_buffer_write(dsb, dsb->free_pos, 0);
- }
- 
- void intel_dsb_reg_write(struct intel_dsb *dsb,
 -- 
-2.56.0
-
+Jani Nikula, Intel
