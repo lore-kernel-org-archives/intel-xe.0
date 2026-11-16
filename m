@@ -2,41 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50F19606A31C
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 12:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A616606A323
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 12:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=U+tZJjUL
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RSrD+QV8
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1391210E9FD;
-	Mon, 16 Nov 2026 12:56:22 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 994A310E9FD
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 12:56:15 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 95EE360E14;
- Mon, 16 Nov 2026 12:56:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24EEA1F000C4;
- Mon, 16 Nov 2026 12:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794833774;
- bh=9pBt2bZ2xYwtK1Qm9QDo0WKpvw14d0zD7/+4uLL9uZw=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=U+tZJjULstZLw9ptSqye8+XxdZG6HdjVvPouWYHAcRkVZuGAhUkrPj2xTxVOzuVSG
- Ofw9ACm5St/uUqqvFS+LNI6Hu4vuF1XHDjr83FP//GbFdlGcZMsk72KYUyCRISFSDJ
- BlZBWU/3QUiQdHl7lzzZq8D4nZ8hIEp6QxA2LuSIICJvmR7hnGmx9FhOqv+M/KA6OO
- MAzVE0ShB14UEs+AC7nGPPD1fhGZ+kdSDAXgyYvsBxRP+mvNIXhpQMIfvn8jkQqu03
- iP3tcTxE37GCB8ug98NTJNymoyQVEMYpOd1P0+4K7M8JeHJd+w13IgM8j3GImk0Ud4
- OJHb2RNLPaizw==
-Message-ID: <sashiko-outbox-217026@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 5/6] drm/xe/display: Remove duplicated code
-To: "Maarten Lankhorst" <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261116122828.266113-13-dev@lankhorst.se>
-References: <20261116122828.266113-8-dev@lankhorst.se>
- <20261116122828.266113-13-dev@lankhorst.se>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 16 Nov 2026 12:56:13 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F2210F0BE;
+	Mon, 16 Nov 2026 12:57:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E453710F076;
+ Mon, 16 Nov 2026 12:56:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794833815; x=1826369815;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4OAGayESIziXLisRKeSx6FVwZVvJDBSiokho3moF1MU=;
+ b=RSrD+QV8PwjBv0ql6x9fqtWp4WCKFdpOj9f7jbsSAJ1DaUI7xuIgVzWL
+ OZxhKgqRQFINfyL6OA/e5RTrm0W9x19Sox7zLtiBOyjywFo5Fuhov/QT9
+ mG6hPwa/Thjz43kG0wrr4j06rPba6VdKU9KJzMsneooMNKTiAurklwSkF
+ GZa42V8rc/o7UEhRxzo7yDB5Kq6SN0te3bVqyPzXr42l6q58r6QUN/uHF
+ BYTh0Sa/Zd2dgk7gQ691KJDJeTjR5rN1gDkrgqXLPuGUzQfWCkob5KbBt
+ pMPNIy850zQsMqo34ggJdEu7nmuralY+ISAm9PnqFWrWNoCcB8vhLBBfu w==;
+X-CSE-ConnectionGUID: ALgNNTjfT2W1YO0dXQdodQ==
+X-CSE-MsgGUID: F96/F83HTt6X8tUHltzrKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3583024"
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="3583024"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 04:56:54 -0800
+X-CSE-ConnectionGUID: lJB5dGT3Ta+sb4Xki5QwgA==
+X-CSE-MsgGUID: x9vGu3IBQn6zv/bab2kYfQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="9344321"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.93])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 04:56:53 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/4] drm/atomic: Simplify vblank event lifetime/ownership
+Date: Mon, 16 Nov 2026 14:56:45 +0200
+Message-ID: <20261116125649.15742-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.56.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,99 +64,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Low] drm/xe/display: spurious drm_err in initial_plane_bo() without
-  stolen memory
---
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-commit bab2c79797477724bcda99b81e670f98a25a3bee
-Author: Maarten Lankhorst <dev@lankhorst.se>
+The vblank event lifetime/ownership is a mess. Various bits of code
+examine the event's internals to determine whether they think they
+own the event (and thus should free it) or not. Mistakes are very
+likely to happen here.
 
-drm/xe/display: Remove duplicated code
+Simplify this down to a simple rule:
+"Unconsumed crtc_state->event is owned by the crtc_state,
+ and freed from its destructor".
 
-This commit moves the GGTT PTE read and local-memory bit check out of the
-discrete and integrated branches in initial_plane_bo().
+The one slight exception is drm_atomic_helper_page_flip()
+because the event is allocated and owned by the caller.
+Thus the crtc_state must relinquish ownership of the event
+before returning with an error or we get a double free.
 
-> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/=
-drm/xe/display/xe_initial_plane.c
-> index 451c24a4ed8d5..1366b68f43fc2 100644
-> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-[ ... ]
-> @@ -58,16 +58,14 @@ initial_plane_bo(struct xe_device *xe,
->  			page_size);
->  	size -=3D base;
-> =20
-> -	if (IS_DGFX(xe)) {
-> -		u64 pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> -
-> -		if (is_pte_local(pte) !=3D need_pte_local(xe)) {
-> -			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> -			return NULL;
-> -		}
-> -
-> -		phys_base =3D pte & ~(page_size - 1);
-> +	pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> +	phys_base =3D pte & ~(page_size - 1);
-> +	if (is_pte_local(pte) !=3D need_pte_local(xe)) {
-> +		drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> +		return NULL;
-> +	}
-> =20
-> +	if (IS_DGFX(xe)) {
->  		flags |=3D XE_BO_FLAG_VRAM0;
-> =20
->  		/*
-> @@ -85,24 +83,13 @@ initial_plane_bo(struct xe_device *xe,
->  			    "Using phys_base=3D%pa, based on initial plane programming\n",
->  			    &phys_base);
->  	} else {
-> -		struct ttm_resource_manager *stolen;
-> -		u64 pte;
-> -
-> -		stolen =3D ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-> -		if (!stolen) {
-> +		if (!ttm_manager_type(&xe->ttm, XE_PL_STOLEN)) {
->  			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
->  			return NULL;
->  		}
-> =20
-> -		pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> -
-> -		if (is_pte_local(pte) !=3D need_pte_local(xe)) {
-> -			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> -			return NULL;
-> -		}
-> -
-> -		phys_base =3D (pte & ~(page_size - 1)) - xe_ttm_stolen_gpu_offset(xe);
->  		flags |=3D XE_BO_FLAG_STOLEN;
-> +		phys_base -=3D xe_ttm_stolen_gpu_offset(xe);
+Quickly smoke tested with kms_flip and kms_atomic* on a TGL,
+and ran the new kunits of course.
 
-[Severity: Low]
-Can moving the PTE local-memory bit check ahead of the stolen memory manager
-check cause a spurious drm_err() on integrated platforms without stolen
-memory?
+Assisted by Claude Sonnet 5.5.
 
-On integrated platforms with has_lmembar(xe) where XE_PL_STOLEN is
-unavailable, firmware can place the initial framebuffer in system memory
-without XE_GGTT_PTE_DM set.  Previously, initial_plane_bo() checked
-ttm_manager_type(&xe->ttm, XE_PL_STOLEN) first and returned NULL with a
-drm_dbg_kms() message, as added in 1d2a6c96f6f7 ("drm/xe: Print a debug
-message if we have no stolen for the initial FB").  With this change, it
-logs "Initial plane PTE has bad local memory bit" via drm_err() before
-reaching the stolen check.
+Ville Syrjälä (4):
+  drm: Add drm_event_release_completion()
+  drm/atomic-helper: Detach the caller's event on page flip failure
+  drm/atomic: Free unconsumed events in the CRTC state destructor
+  drm/tests: Test event ownership in atomic states
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261116122828.2661=
-13-8-dev@lankhorst.se?part=3D5
+ drivers/gpu/drm/drm_atomic_helper.c           |  41 +++-
+ drivers/gpu/drm/drm_atomic_state_helper.c     |  29 ++-
+ drivers/gpu/drm/drm_atomic_uapi.c             |  24 +--
+ drivers/gpu/drm/drm_file.c                    |  28 ++-
+ .../gpu/drm/tests/drm_atomic_commit_test.c    | 201 +++++++++++++++++-
+ include/drm/drm_atomic.h                      |  15 --
+ include/drm/drm_file.h                        |   1 +
+ 7 files changed, 277 insertions(+), 62 deletions(-)
+
+-- 
+2.56.0
+
