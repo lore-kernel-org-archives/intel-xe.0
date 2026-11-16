@@ -2,33 +2,33 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6AF606A329
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 13:12:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BD09606A31C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 13:12:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=X+gasLrs
+	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=h/ZR3i+A
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 557E410F14B;
-	Mon, 16 Nov 2026 13:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5FC4510F150;
+	Mon, 16 Nov 2026 13:12:49 +0000 (UTC)
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64D4710F14B;
- Mon, 16 Nov 2026 13:12:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14F6610F14F;
+ Mon, 16 Nov 2026 13:12:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1794834761;
- bh=veIzabU++axDdL/czso3gMtAmDO8RPomzf2ZET+Af6c=;
+ bh=Y2Q7J7r26GdZ8w8odEi97wVNI17w7xFkRfXmRboNsIU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=X+gasLrsXg7lHF/cGItFWFxWk4MaB9n9HXnDWosa6fcFiNHcO1c/6ZP00iFZh5kMb
- 94a/M36PZpeZYIliOjkvgr7UU9Op95VCrrmc/L5OIWViZgllfKHuP4dnjw9A8gFSY4
- HZeKSHoC0UabGlB0ZkFmQpncii37wMkOxbdEwJFV3QNDR3dT3yfV0jh7CNUCY4pKLN
- SbUovOyoWzmC8VOC1DmZwlyalPl4JP7u4qur+8Y00SjqradoxELMFpz2CtpohY7Zqj
- 4pVmWIgCEBxh2IRFIwPa6pWZoY3R8Z3DW8y5/QbPVrnqK/+aWEalcyYu3X3HVbUmDt
- HESSyH0V9SLFA==
+ b=h/ZR3i+AYVOX2w1xNI2fde64DVyGl+MwChM3ksGnXRnLMfXAt1g0a8XGk6vxVE8sL
+ N1zou389tccaJ0Jl53UUWEnKxFA1qwQ5nKW50tvaHgoZ4eRkLkFGLOraS3RlSDZ6Sa
+ rH+AG2esOWnU+M4GhrbPII6NR9OQ3A948Ay0Y16+b8ElX54NFEOfwfUs+mbagkkW9d
+ nPRoGgpqbVNweLPFKmOSqV5vLAfM15wIxPBCrQL2fpdU3Lf1G7QN3HnesEau9+zK17
+ mvHj8/dGfmw8YUXXsBMP1Te3LHekq1s1DeQ8rntfSVwKx3iuenmqfAPRaR7Zn1mjwu
+ TAsV+JKJCa3KA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v5 3/5] drm/xe: Raise gt frequency slightly earlier.
-Date: Mon, 16 Nov 2026 14:13:53 +0100
-Message-ID: <20261116131349.333818-10-dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v5 4/5] HACK: Always fallback
+Date: Mon, 16 Nov 2026 14:13:54 +0100
+Message-ID: <20261116131349.333818-11-dev@lankhorst.se>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261116131349.333818-7-dev@lankhorst.se>
 References: <20261116131349.333818-7-dev@lankhorst.se>
@@ -52,40 +52,24 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move raising the gt frequency to before display_register, so the
-blit that's potentially performed to copy stolen memory to system
-memory will run at full speed.
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_device.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display_bo.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6911c2ac39f82..616e02066ae6d 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1069,6 +1069,9 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index 9385026a80b97..d78d893210c4f 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -142,6 +142,8 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	if (XE_DEVICE_WA(xe, 22019338487_display))
+ 		return false;
  
-+	for_each_gt(gt, xe, id)
-+		xe_gt_sanitize_freq(gt);
++	return false;
 +
- 	xe_display_register(xe);
- 
- 	err = xe_oa_register(xe);
-@@ -1093,9 +1096,6 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
- 
--	for_each_gt(gt, xe, id)
--		xe_gt_sanitize_freq(gt);
--
- 	xe_vsec_init(xe);
- 
- 	err = xe_sriov_init_late(xe);
+ 	/*
+ 	 * If the FB is too big, just don't use it since fbdev is not very
+ 	 * important and we should probably use that space with FBC or other
 -- 
 2.55.0
 
