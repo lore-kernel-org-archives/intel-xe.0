@@ -2,41 +2,79 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B891606A323
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 09:07:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48FF606A329
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 09:11:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=kAJZmqWN
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JiiRgnob
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5417810ED4A;
-	Mon, 16 Nov 2026 09:07:32 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B330010ED6C
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 09:07:26 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6F935408FA;
- Mon, 16 Nov 2026 09:07:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A8CF1F000C4;
- Mon, 16 Nov 2026 09:07:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794820046;
- bh=du6EiwRCMnt7VVpc0bQV9V4JsJprjTZTSNKkxgnzh70=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=kAJZmqWNlB89UnmnU4KvkSXKpgP4hX+3wQOvN6dhnKXV8WUkiApWr3BwZPCdOig6Q
- l/jth67GGCwXWbH2IdATWnGwtVgahhiZht5RuQ3jAODJcmfCTf1yTf/cUs+CBwm1Vv
- xekCVFKtDU7ojzmsYwGP2/CXusTVjZBcXaCa4c4ZNiO1QaOVwXsoBLM8nGiV2iEaCH
- anlIGF+W28qqZy4FLxQ2MfSkPuCcCVIZiV2hwU+Usk3uiJyuz3zmOzPlFvkKVuvuSS
- 3JJ+Hh7k1Fu+VcQpOMqooRUwqen38nIi5fi/C/P4fd2VZIPrZKFFqvMoIz8xaW8XOr
- wOtRXdBHigjsg==
-Message-ID: <sashiko-outbox-216583@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1] drm/xe/drm_ras: Protect against unplugged or wedged
- device
-To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261116085343.1972825-1-raag.jadav@intel.com>
-References: <20261116085343.1972825-1-raag.jadav@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 16 Nov 2026 09:07:25 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABB0010ED7C;
+	Mon, 16 Nov 2026 09:11:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC4110ED7C;
+ Mon, 16 Nov 2026 09:11:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794820302; x=1826356302;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l353EF9EPl54Khh5AMtA/qBDbCWKicb1AKbM4kMTiUU=;
+ b=JiiRgnobXQY/vsywjXjWEHZe2DOZDejuwek9/2OJLOdp5kBDuOW1BEEh
+ ws32kyiQ2SHFy9JMN6wtztGsDBrsFwvr7EbbP1Jn2q79gN4Ll2468zKM7
+ JL4GvEpvJhiknGtRl0JbzaJA22I8oHLl41w0ya/6mj8yQoEuWcaT0tdJM
+ VWHRTc+BBoLI9lIGBYG2merIFRN56A1Vdb+7Km2+RZFK9CnZdS70CtdPI
+ fW82dchUAgf8R+OoKmklLtLg0EJg29sJE8nUYyY6GWDmsPeZ2JhnngCs0
+ bi+tOSdUO0jfYtXAA4s1do6QAM48EWQAXQWkcANXS7nUP3aOTzttrha+O A==;
+X-CSE-ConnectionGUID: 4ViDgMiCR2iLBiyiiRsvqA==
+X-CSE-MsgGUID: vcZHJIQtQWy6Qe/q5AuiaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3441636"
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="3441636"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:11:41 -0800
+X-CSE-ConnectionGUID: oDjVyYydS6al3Wos2dGXfg==
+X-CSE-MsgGUID: 8mptrhgqRVSxBju7Y/d8gw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="9636207"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.93])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:11:33 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Erwin Springer <aot.lerwin@gmail.com>, amd-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Andr=C3=A9=20Almeida?= <andrealmeid@igalia.com>,
+ Boris Brezillon <bbrezillon@kernel.org>,
+ Christopher Snowhill <chris@kode54.net>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Dharma Balasubiramani <dharma.b@microchip.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, freedreno@lists.freedesktop.org,
+ Gustavo Padovan <gustavo.padovan@collabora.com>,
+ Huacai Chen <chenhuacai@kernel.org>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Jianmin Lv <lvjianmin@loongson.cn>, linux-arm-msm@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, Liviu Dudau <liviu.dudau@arm.com>,
+ =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>, Mingcong Bai <jeffbai@aosc.io>,
+ nouveau@lists.freedesktop.org, Qianhai Wu <wuqianhai@loongson.cn>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Simon Ser <contact@emersion.fr>, wayland-devel@lists.freedesktop.org,
+ Xaver Hugl <xaver.hugl@kde.org>, Xi Ruoyao <xry111@xry111.site>
+Subject: [PATCH 00/12] drm/atomic: Try to make atomic+async usable,
+ and clear up the "async update" helper confusion
+Date: Mon, 16 Nov 2026 11:11:18 +0200
+Message-ID: <20261116091130.13950-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.56.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,101 +84,108 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found no new issues
-in this patch, but noticed 1 related pre-existing issue it does not
-introduce:
-- [Critical] drm/ras: use-after-free in drm_ras_nl_list_nodes_dumpit()
-  [1]
---
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-commit f10baa8a8d01dd4d47e42403a4abd3c074961edc
-Author: Raag Jadav <raag.jadav@intel.com>
+The weird uapi semantics of the atomic async flip support make it
+really hard for drivers to implement. Try to fix that by filtering
+out the no-op junk from the commit that userspace likes to put there.
 
-drm/xe/drm_ras: Protect against unplugged or wedged device
+Also a lot of people are apparently confusing the
+.atomic_async_{update,check}() hack with async flips. The two
+are completely orthogonal, so try to clear up that mess by
+renaming the hack to .atomic_bypass_{update,check}().
 
-This commit adds drm_dev_enter() and xe_wedged() checks around DRM RAS
-counter and threshold callbacks and event reporting to prevent accesses on
-unplugged or wedged devices.
+TODO: atomic+async is in serious need to proper tests, somehow
+      all that seems to have gotten skipped when the feature
+      was added :(
 
-> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_=
-ras.c
-> index 7554803aae11a..c0c1acb84e890 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-> @@ -5,6 +5,7 @@
-> =20
->  #include <linux/bitmap.h>
-> =20
-> +#include <drm/drm_drv.h>
->  #include <drm/drm_managed.h>
->  #include <drm/drm_print.h>
->  #include <drm/drm_ras.h>
-> @@ -12,10 +13,33 @@
->  #include "xe_device_types.h"
->  #include "xe_drm_ras.h"
->  #include "xe_ras.h"
-> +#include "xe_wedge.h"
-> =20
->  static const char * const error_components[] =3D DRM_XE_RAS_ERROR_COMPON=
-ENT_NAMES;
->  static const char * const error_severity[] =3D DRM_XE_RAS_ERROR_SEVERITY=
-_NAMES;
-> =20
-> +static int drm_ras_counter_get(struct xe_device *xe, struct xe_drm_ras_c=
-ounter *info,
-> +			       u32 error_id, int *idx)
-> +{
-> +	if (xe_wedged(xe))
-> +		return -ECANCELED;
-> +
-> +	if (!info || !info[error_id].name)
-> +		return -ENOENT;
-> +
-> +	/* Must be last */
-> +	if (!drm_dev_enter(&xe->drm, idx))
-> +		return -ENODEV;
+Cc: amd-gfx@lists.freedesktop.org
+Cc: André Almeida <andrealmeid@igalia.com>
+Cc: Boris Brezillon <bbrezillon@kernel.org>
+Cc: Christopher Snowhill <chris@kode54.net>
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Dmitry Baryshkov <lumag@kernel.org>
+Cc: freedreno@lists.freedesktop.org
+Cc: Gustavo Padovan <gustavo.padovan@collabora.com>
+Cc: Huacai Chen <chenhuacai@kernel.org>
+Cc: Icenowy Zheng <zhengxingda@iscas.ac.cn>
+Cc: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: Jianmin Lv <lvjianmin@loongson.cn>
+Cc: linux-arm-msm@vger.kernel.org
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-rockchip@lists.infradead.org
+Cc: linux-tegra@vger.kernel.org
+Cc: Liviu Dudau <liviu.dudau@arm.com>
+Cc: Maíra Canal <mcanal@igalia.com>
+Cc: Manikandan Muralidharan <manikandan.m@microchip.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Mingcong Bai <jeffbai@aosc.io>
+Cc: nouveau@lists.freedesktop.org
+Cc: Qianhai Wu <wuqianhai@loongson.cn>
+Cc: Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+Cc: Simon Ser <contact@emersion.fr>
+Cc: wayland-devel@lists.freedesktop.org
+Cc: Xaver Hugl <xaver.hugl@kde.org>
+Cc: Xi Ruoyao <xry111@xry111.site>
 
-[Severity: Critical]
-This problem wasn't introduced by this patch, but can
-drm_ras_nl_list_nodes_dumpit() race with device teardown and trigger a
-use-after-free or NULL pointer dereference on node and node->device_name
-[1]?
+Ville Syrjälä (12):
+  drm/atomic: Remove tall tales about tearing vs. "async updates"
+  drm/atomic: s/async/bypass/
+  drm/atomic: Add FIXMEs around the incorrect use of the
+    .atomic_bypass_check() for async flips
+  drm/atomic: Highlight that bypass commits need care
+  drm/atomic/uapi: Eliminate the confusing
+    drm_atomic_check_prop_changes()
+  drm/atomic/uapi: Improve the async flip property rejection debugs
+  drm/atomic/uapi: Document the non-obvious fence/fb_id prop behaviour
+  drm/atomic/uapi: Add a FIXME about colorop vs. async flips
+  drm/atomic-helper: Mark drm_atomic_crtc_state_for_each_plane_state()
+    unsafe
+  drm/i915: Complete no-op "async flips" by hand
+  drm/atomic/uapi: Make async flips a bit more palatable through atomic
+  drm/atomic/uapi: Extract {connector,crtc,plane}_async_flip_check()
 
-CPU0                                    CPU1
-cleanup_node()                          drm_ras_nl_list_nodes_dumpit()
-                                          xa_for_each_start(&drm_ras_xa, ..=
-.)
-  drm_ras_node_unregister(node)
-    xa_erase(&drm_ras_xa, node->id)
-  cleanup_node_param(node)
-    kfree(node->device_name)
-    node->device_name =3D NULL
-  /* node freed via drmm */
-                                          nla_put_u32(..., node->id)
-                                          nla_put_string(...,
-                                            node->device_name)  <-- UAF / N=
-ULL
+ .clang-format                                 |   2 +-
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  12 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  20 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_plane.h   |   6 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_trace.h   |  16 +-
+ .../amdgpu_dm/tests/amdgpu_dm_plane_test.c    |  32 +--
+ drivers/gpu/drm/arm/malidp_crtc.c             |   6 +-
+ drivers/gpu/drm/drm_atomic.c                  |  97 ++++++++
+ drivers/gpu/drm/drm_atomic_helper.c           |  49 ++---
+ drivers/gpu/drm/drm_atomic_uapi.c             | 208 ++++++++++++++----
+ drivers/gpu/drm/drm_crtc_internal.h           |   9 +
+ drivers/gpu/drm/drm_self_refresh_helper.c     |   4 +-
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |   2 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  38 ++++
+ drivers/gpu/drm/i915/display/intel_display.h  |   4 +-
+ drivers/gpu/drm/loongson/lsdc_plane.c         |  18 +-
+ drivers/gpu/drm/mediatek/mtk_plane.c          |  12 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c |   2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c      |   2 +-
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_crtc.c     |   2 +-
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_plane.c    |  12 +-
+ drivers/gpu/drm/msm/msm_atomic.c              |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop.c   |  12 +-
+ drivers/gpu/drm/tegra/dc.c                    |  18 +-
+ drivers/gpu/drm/vc4/vc4_hvs.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_plane.c               |  16 +-
+ include/drm/drm_atomic.h                      |  10 +-
+ include/drm/drm_atomic_helper.h               |  20 +-
+ include/drm/drm_modeset_helper_vtables.h      |  50 +++--
+ 29 files changed, 482 insertions(+), 201 deletions(-)
 
-drm_ras_nl_family enables parallel_ops, and xa_for_each_start() only holds
-rcu_read_lock() inside xa_find() and xa_find_after(), returning node to the
-loop body without any lock, RCU protection, or reference held.  Meanwhile,
-cleanup_node() in xe_drm_ras.c unregisters the node with xa_erase(), frees
-and clears node->device_name, and lets drmm free the drm_ras_node itself, so
-a concurrent netlink dump can dereference NULL in strlen() or read freed
-memory.
+-- 
+2.56.0
 
-[1] https://sashiko.dev/#/bug/linux-f54f18de-e95f-4d99-b86c-f90c2c59b668
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261116085343.1972=
-825-1-raag.jadav@intel.com?part=3D1
