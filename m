@@ -2,29 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 935EB606A322
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 18:29:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D2E606A32C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 18:33:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5774210F3A7;
-	Mon, 16 Nov 2026 18:29:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F0BD10F316;
+	Mon, 16 Nov 2026 18:33:19 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3674410F3A7;
- Mon, 16 Nov 2026 18:29:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33EBB10F3A7;
+ Mon, 16 Nov 2026 18:33:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2999088615548721618=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/bios?=
- =?utf-8?q?=3A_Fix_reset_sequence_order_on_GLK_VBTs_with_DEASSERT=5FRESET_in?=
- =?utf-8?q?_INIT=5FOTP?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/backlight=3A_Keep_?=
+ =?utf-8?q?ACPI_brightness_requests_while_the_display_is_off?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas Moreno" <lucasgabmoreno@gmail.com>
+To: "Alexis Calin via B4 Relay" <devnull+alexiscalin.protonmail.com@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Nov 2026 18:29:13 -0000
-Message-ID: <179485375320.33881.10218241626628834840@9ac1b63fe3ea>
+Date: Mon, 16 Nov 2026 18:33:18 -0000
+Message-ID: <179485399820.33850.16382979605395342358@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261116000030.8978-1-lucasgabmoreno@gmail.com>
-In-Reply-To: <20261116000030.8978-1-lucasgabmoreno@gmail.com>
+References: <20261114-i915-acpi-backlight-display-off-v1-1-9306f19d605a@protonmail.com>
+In-Reply-To: <20261114-i915-acpi-backlight-display-off-v1-1-9306f19d605a@protonmail.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,22 +35,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============2999088615548721618==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915/bios: Fix reset sequence order on GLK VBTs with DEASSERT_RESET in INIT_OTP
-URL   : https://patchwork.freedesktop.org/series/178714/
-State : failure
+Series: drm/i915/backlight: Keep ACPI brightness requests while the display is off
+URL   : https://patchwork.freedesktop.org/series/178713/
+State : success
 
 == Summary ==
 
-Series author address 'lucasgabmoreno@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
-If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
-Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1344073/ (on master)
+CI Bug Log - changes from xe-6152-301355bfc109114743d4ce1d0512779923bbec0c_BAT -> xe-pw-178713v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-178713v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6152-301355bfc109114743d4ce1d0512779923bbec0c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178713v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
 
 
+Build changes
+-------------
+
+  * IGT: IGT_9193 -> IGT_9194
+  * Linux: xe-6152-301355bfc109114743d4ce1d0512779923bbec0c -> xe-pw-178713v1
+
+  IGT_9193: 9193
+  IGT_9194: 9194
+  xe-6152-301355bfc109114743d4ce1d0512779923bbec0c: 301355bfc109114743d4ce1d0512779923bbec0c
+  xe-pw-178713v1: 178713v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178713v1/index.html
+
+--===============2999088615548721618==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/backlight: Keep ACPI brightness requests while the display is off</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178713/">https://patchwork.freedesktop.org/series/178713/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178713v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178713v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6152-301355bfc109114743d4ce1d0512779923bbec0c_BAT -&gt; xe-pw-178713v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-178713v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6152-301355bfc109114743d4ce1d0512779923bbec0c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178713v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9193 -&gt; IGT_9194</li>
+<li>Linux: xe-6152-301355bfc109114743d4ce1d0512779923bbec0c -&gt; xe-pw-178713v1</li>
+</ul>
+<p>IGT_9193: 9193<br />
+  IGT_9194: 9194<br />
+  xe-6152-301355bfc109114743d4ce1d0512779923bbec0c: 301355bfc109114743d4ce1d0512779923bbec0c<br />
+  xe-pw-178713v1: 178713v1</p>
+
+</body>
+</html>
+
+--===============2999088615548721618==--
