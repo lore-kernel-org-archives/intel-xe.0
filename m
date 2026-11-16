@@ -2,82 +2,79 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B21E606A334
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1B60606A323
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=UeGeggtV
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=Aw3gATfw
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9694010E9F8;
-	Mon, 16 Nov 2026 14:38:14 +0000 (UTC)
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com
- [209.85.218.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3954410E664
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Nov 2026 01:44:06 +0000 (UTC)
-Received: by mail-ej1-f42.google.com with SMTP id
- a640c23a62f3a-c3f04e0e65fso370462966b.2
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Nov 2026 17:44:06 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63BBF10F240;
+	Mon, 16 Nov 2026 14:38:19 +0000 (UTC)
+Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com
+ [74.125.224.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDE4010E38C
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 00:02:36 +0000 (UTC)
+Received: by mail-yx1-f41.google.com with SMTP id
+ 956f58d0204a3-6798af41644so1981561d50.2
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Nov 2026 16:02:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794620644; x=1795225444; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=VhzDk/0P7t86MVcw1NLuypzKVGHVFOfLDCe4I/LxAp8=;
- b=UeGeggtVAjDTXN7azPpByWLzSwA0+rjoHpvbPjgt59WVjgjOowv7CYrCaL5V42h4If
- F3koh+yAELG/44SmHlLX0GidnQdF1JhImOEDCnR1IUStQmh4H8OftlhIxNJWZz6PNdMS
- I7ag4f3Xwxc4lFqPBOiyDe8eE1TauUgjYfsQXPTMmAZMfa1fHC66zn6/iilvCV2wyfss
- bjnKdxl69yqp/TmBG45s+zc/nOHdQH6rBLonXW+MZwN+6AZ5U1AmM6/DKO6GkW0egDHn
- dVmYCElxZuPN3qmC5wMR+h2Ho10MH50Qjdsr3ndx8NULpQ04aME+GAZL6jMxdSS68Znu
- WeqA==
+ d=gmail.com; s=20260707; t=1794787355; x=1795392155; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
+ bh=y5g9gX+PiRwxc1Lcoo4j5plcZ5ytlB3/FlKk63qNKGI=;
+ b=Aw3gATfwKCJXaDERQa2BcE2LN6pt5Crr0mF2bjorPi8LG6VfedaaHJq5LalhOdVfvP
+ khx5aOeitfrfNTwHC3eaKQ1nFUXhVg85MJThG1o26YmB1FfeLChHI8kV25RlLxL9P8/Y
+ z5LBE3qQuGxit4wKZm/5BfNPwvYqtJw5UrwTZn2iPDuDBMGyDnOIcftA4T9NT4PzqTKV
+ 1LwFSSZrB/bttPD1e86g1RL0Njeu6H9SeTUaKxuavTWyFhCefNMv0X74LQGtwTSCYEER
+ xa68+yXtFyL81AhL9eScCywpBGJwPHKqUoxd+I3sDw75nWFGZlrVA3GCjZHFfR1oktv5
+ A6/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794620644; x=1795225444;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to:content-type;
- bh=VhzDk/0P7t86MVcw1NLuypzKVGHVFOfLDCe4I/LxAp8=;
- b=apuxR50p+1CPWTOKgV4guDFu2QDIkyDDJfHBSut5781ILA4CHHZ9cBQ8GwDJ3EE3nh
- SBMPZZc1X7evR7sr6d8iVPck4142QugK44AVpe7uiRUee0k2MVcbvy5KlNbCfPaKoq3g
- M4EuNGQeUjwXqZ3DhiYDrSiXfRMUhhNPQ+caWvmsut0hnEr51qPgfXKlbIFeksURMLiC
- foAl2t6qHsN0tyzihKolaSEerMv0vZWLewq0lPf0Ce4GL+KqkubPJAsFQEji4Ylchaui
- f46iENOi+/Iw0m2brEqteeJDmSc3kBnuQMb8hYoMZlVHvuO65pViCURmugUh1jWL54HY
- Q07A==
+ d=1e100.net; s=20260707; t=1794787355; x=1795392155;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=y5g9gX+PiRwxc1Lcoo4j5plcZ5ytlB3/FlKk63qNKGI=;
+ b=xkW6PjyqWttQGkc+65jcEzPzOS5jxBTVhZRA2xKokMOorOx4go2KIAvhT29SBKI2jZ
+ 4UEqhxxtfRVvKt7Jpjz4iNVke49u7V0mCkqL74m+8ZMZIzFKw4dhn+OOPuDSDHt+gHel
+ +tvPYW/MIceb/UaqeNJNfDXsrOPuwOBx0tzJMIL3DoF/85JTtyMYMxGlrwhcSlJo8B6E
+ 1wDen6cUBlq9qpxtWIY+Hkz3akRJPf719WBx4SJFWc8i8UPLMMSooulGpnnjsLxlr2JA
+ KjO/NdPJd6oYcxiNvxsSoBgx2fX19xR4b/8NOofu/MDZMuuAhX9UIRHxZ78DnotJ7fs9
+ IByQ==
 X-Forwarded-Encrypted: i=1;
- AL+hErFp37dZm/3Xn0Q/m3TgVEkzNhMsYFZurm7cLmKRrIfOfDl70Z4STm6ja1qR0h5VnqPaqNTC7IpueQ==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9c3qfFdCvRwzYiGOb187OjWc9gjF/aFFMVD8ei9L34/IeXv6fe
- aMLHyUkIrh3OiMWYLPr0PsQ1hsgKpH9QDUhZRJ7qfACSOqZrf1XCoNvz
-X-Gm-Gg: AYBFou3EqzxjfpOaaVI6yVjuJWk+zIThLdXGCR4Ig6feLzCFk1GRbmMpdWCm4f9V84+
- ltg0C435PD3WtL65mN+rGeVLJP/2ga6JUZ6iRuJVfMDH5QhHaFnPRpnEymTGsKF3niWrk8doLUp
- S1P5rYLdll7riRE/uD/nzTX9viOoEdGAxsE+VQxal9ND/V2wEaFLpB7VoSiCWDC7phQGW/tJCEs
- 3EfuDJPmcvunb65mUHVTm8WUu+Av0LFy4lX6LoNwLGmi8D4hBkuacCADZMP4bNXrouqjyymjqtL
- oOp65oqux+69he5FpcNUZy382evylrC2KXZO/WbW0as7R8kuMsepcO4Iv6VZee4xyZwfYQjJ7FA
- J68qRQIyb1EDrVgHpQ7dfwGxPKh55ozVlsNDZwpz1hom6CwPUh+Osz61855kYakygPWH/7SQ1Nj
- 8MIvbKrnrGXpKpESqt26Sv5DUq6zf2FScmcmGmm1Fnx7mean7bYj/CjnRHqH5LFqlq5f57jttPv
- xyUPDXggjerzu1LVvqrcrqbcZ+aRwGE4fE7GuLQJMysY4LjJUYoEU3Yn4bK7jQrLzjssXtwmz4i
- kb64DaeSuXbn9VurT3QH8NJoXrtlCebgx3vriJGAXvHpzrdAfESI1JOHWTw00Fs5+PvLEDJdzLL
- 5iGDH4p2qj79OQNbp8V4VVi4=
-X-Received: by 2002:a17:907:3e07:b0:c4d:4d5b:849b with SMTP id
- a640c23a62f3a-c50963408demr386393866b.19.1794620644542; 
- Fri, 13 Nov 2026 17:44:04 -0800 (PST)
-Received: from SMOK.angora-ide.ts.net
- (mm-156-219-126-178.vitebsk.dynamic.pppoe.byfly.by. [178.126.219.156])
+ AL+hErFoiE9xEkvHMUEltluAj6sZwWic4u4i1J3aVx9xQCZYT2Y2aynqZDJ6p/V3aehckavYPSKGGSoruA==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+cJVv1TGWhyNnLBd+9HioLmBfRR+2pQlBLofJq1LieJTzYfwBV
+ SrXNod/IsYnxmc/7wJgg7/kWoEDjSCscwceJ9Xf80+6zuYpD3md9qmsn
+X-Gm-Gg: AZFdTZc56cOuLKg5G3STpFh1hqPfBigM0UjnPcZ76U9m9TjQoxpVWq7sWgeamI1XMsF
+ q3cRyCoVktjMb1VS5nc9IPqzsDekTIqNPmfR7qXoTw+Tkf5AHnZCUd6HFwD2qhJB4OGuTx3pqdY
+ eT3lr4wcssDfk4C6UetaK3GT2y4IFELjTU9hGNewjUSCxcEcCGJauzT4U524kR2qy7v7ViY17fH
+ kRqNEwDHCbtY/kLDFXbeSlENRfFC+MSAC7jg4eY+7ZTw4MIioQttHHubQMBxGYwb1tEzrg8XGkG
+ ZunMvf3iuET5TscKv7kuMCYC4JI/bvNnbPnJeGJMEoniRaeX0d9XPForHPWa7WUhrCJz5H0ZeUv
+ 5j4Rho2JD8QqWdCNKo5iu0EN/etuarCql72H3rPYmO3JFXPd0vdeXRcb3MxQ+nnXyoeKkh0aDPJ
+ uorgxr3MyukkAci0E/1YCq1r+Qu++Oo7XzVoaDpZ7aYBncjUJKAWUQS6xFhCIXpdrIqLyYgLlkg
+ PmlGAAbIpFgBv+kqkOvnVbiJrerIfhfE4yfPc4Usui38B89n0AYQZ3QsvYCMqbH4gsN/0n8mmWF
+ 5/kWYhqccLjbrAgK3Jht26mt4ErCypWvu02sSS67di1/w5Mt/tsPk4+AyMhsB1H7x4CkshOCwZG
+ WTQ==
+X-Received: by 2002:a05:690e:803:10b0:677:d180:d39c with SMTP id
+ 956f58d0204a3-67d8965a4damr3708220d50.20.1794787355165; 
+ Sun, 15 Nov 2026 16:02:35 -0800 (PST)
+Received: from localhost.localdomain ([190.13.90.101])
  by smtp.gmail.com with ESMTPSA id
- a640c23a62f3a-c5095b5a4c1sm161402666b.48.2026.11.13.17.44.03
+ 956f58d0204a3-67d8a6210ffsm8400263d50.20.2026.11.15.16.02.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Nov 2026 17:44:04 -0800 (PST)
-From: ElXreno <elxreno@gmail.com>
+ Sun, 15 Nov 2026 16:02:34 -0800 (PST)
+From: Lucas Moreno <lucasgabmoreno@gmail.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- ville.syrjala@linux.intel.com, ankit.k.nautiyal@intel.com,
- mitulkumar.ajitkumar.golani@intel.com, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- ElXreno <elxreno@gmail.com>
-Subject: [PATCH 7/7] drm/i915/vrr: Allow VRR with the pipe joiner
-Date: Sat, 14 Nov 2026 04:43:35 +0300
-Message-ID: <20261114014335.2132756-8-elxreno@gmail.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261114014335.2132756-1-elxreno@gmail.com>
-References: <20261114014335.2132756-1-elxreno@gmail.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, i915-ci-infra@lists.freedesktop.org,
+ Lucas Moreno <lucasgabmoreno@gmail.com>
+Subject: [PATCH RESEND] drm/i915/bios: Fix reset sequence order on GLK VBTs
+ with DEASSERT_RESET in INIT_OTP
+Date: Sun, 15 Nov 2026 21:00:30 -0300
+Message-ID: <20261116000030.8978-1-lucasgabmoreno@gmail.com>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -100,170 +97,147 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-VRR has been limited to the fixed refresh rate timing generator with
-the joiner, as the transcoder level VRR operations were not sequenced
-against the pipe level updates of the joined pipes. That keeps VRR
-away from every mode that needs the joiner, such as 3840x2400@240 on
-the eDP panels of current 18" laptops.
+Some Gemini Lake VBTs, such as the one on the Lenovo IdeaPad
+D330-10IGL, have an empty MIPI_SEQ_DEASSERT_RESET and perform the whole
+panel reset pulse (GPIO set/clear/set with delays) from
+MIPI_SEQ_INIT_OTP. The driver runs INIT_OTP after the DSI host has been
+brought up, so the panel gets reset with the link already active. On
+the affected machine this leaves the panel black with the backlight on
+after S3 resume (the driver reports success at every step), and
+randomly on boot and on output off/on cycles.
 
-The transcoder is now programmed only by the joiner primary, and on
-the MMIO path all joined pipes are armed inside one vblank evasion
-critical section, with the push sent at its end. Take that path for
-VRR with the joiner and let VRR through.
+vlv_fixup_mipi_sequences() already handles the same kind of VBT bug on
+VLV, but only for version 1 sequence blocks. The D330 uses a version 3
+block, so add an equivalent fixup for GLK: if DEASSERT_RESET is
+missing or empty, ASSERT_RESET exists, the panel is in video mode and
+INIT_OTP only contains GPIO and delay elements, run INIT_OTP as
+DEASSERT_RESET and leave INIT_OTP empty (or swap them if an empty
+DEASSERT_RESET was present).
 
-A commit whose new state has VRR enabled with the joiner does not use
-the DSB. The push must not be sent before every joined pipe has been
-armed, but each pipe runs its own DSB and nothing orders them against
-each other. Leaving the push to the DSB of the primary, on the
-grounds that it is committed last, is not enough. The secondary's DSB
-waits for the safe window after it has armed (DSB_OPCODE_WAIT_VBLANKS
-with the safe window chicken bits, then the wait in
-intel_dsb_wait_for_delayed_vblank()). When the primary's push ends
-the safe window before the secondary's DSB gets there, that DSB waits
-for the safe window of the next frame, and it is still busy when
-intel_dsb_wait() gives it 1 ms after the flip of the primary has
-completed:
+Tested on a Lenovo IdeaPad D330-10IGL (BIOS G0CN14WW, Celeron N4020)
+with an otherwise unmodified v6.12.107 i915: 10/10 S3 resumes, 10/10
+rotations and output off/on cycles, and 10/10 reboots with a working
+display, where it failed every time before.
 
- [CRTC:271:pipe B] DSB 0 timed out waiting for idle (current head=0x100, head=0x0, tail=0x140)
-
-That is what a port which only skips the push on the secondaries
-gives, 13 times in 27 minutes of desktop use on Arrow Lake. The DSB
-of a secondary can't check on the push either: commit c3571a239e10
-("drm/i915/vrr: Check that the push send bit is clear after delayed
-vblank") notes that reading TRANS_PUSH from it ends in a DSB response
-timeout.
-
-The LUT load has the same ordering problem: a colour DSB either sends
-the push itself or has to be ordered against the push that the CPU
-sends, on each pipe. So no colour DSB is prepared for such a commit
-either, and the LUTs are loaded the way they are without one: ahead
-of the commit when they can be preloaded, by the vblank worker after
-it otherwise, in which case the commit takes the per pipe critical
-sections, or with MMIO inside the critical section on the platforms
-with double buffered LUTs. The commit that turns VRR off has no VRR
-push to order and keeps its colour DSBs, which are then started from
-inside the joined critical section.
-
-One thing changes for joined modes even while VRR is off, as it
-follows vrr.in_range: the sink is told to ignore the MSA timing
-parameters during link training, as for any other mode within the
-VRR range.
-
-intel_vrr_compute_config() does not ask for LRR with the joiner, and
-DC balance is kept off, each with a FIXME. The vblank delay fastset
-that reuses the LRR code is not touched: where it applies (inherited
-state, or the always on VRR timing generator) it still writes the
-transcoder timings from every joined pipe, with identical values.
-
-Signed-off-by: ElXreno <elxreno@gmail.com>
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13225
+Signed-off-by: Lucas Moreno <lucasgabmoreno@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c   |  4 +++
- drivers/gpu/drm/i915/display/intel_display.c |  4 +++
- drivers/gpu/drm/i915/display/intel_vrr.c     | 31 ++++++++++++--------
- drivers/gpu/drm/i915/display/intel_vrr.h     |  1 +
- 4 files changed, 28 insertions(+), 12 deletions(-)
+Resending: the original posting (Oct 13) has had no comments so far, and
+Intel GFX CI did not run on it because my author address is not on the
+allowlist (LGCI.VerificationFailed, Patchwork series 176138). I also
+asked in the thread and on i915-ci-infra, with no reply yet.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 4070dc8d97d9..08d1c999637e 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -2023,6 +2023,10 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
- 	if (!crtc_state->pre_csc_lut && !crtc_state->post_csc_lut)
- 		return;
- 
-+	/* TODO sequence the LUT load vs. the VRR push for joined pipes via DSB */
-+	if (intel_vrr_needs_mmio_commit(crtc_state))
-+		return;
-+
- 	if (HAS_DOUBLE_BUFFERED_LUT(display))
- 		crtc_state->dsb_color = intel_dsb_prepare(state, crtc, INTEL_DSB_0, 1024);
- 	else
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1fda1bb15674..8f30337c8967 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7681,6 +7681,10 @@ intel_atomic_commit_type(struct intel_atomic_state *state,
- 	if (new_crtc_state->do_async_flip)
- 		return INTEL_COMMIT_MMIO;
- 
-+	/* TODO sequence the VRR push for joined pipes via DSB */
-+	if (intel_vrr_needs_mmio_commit(new_crtc_state))
-+		return INTEL_COMMIT_MMIO;
-+
- 	/* TODO handle VRR with flip queue */
- 	if (intel_flipq_supported(display) &&
- 	    !new_crtc_state->vrr.enable &&
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 668c495e7407..6543c140e2b5 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -450,6 +450,10 @@ intel_vrr_dc_balance_compute_config(struct intel_crtc_state *crtc_state)
- 	    !crtc_state->vrr.enable || !display->params.enable_dc_balance)
- 		return;
- 
-+	/* FIXME figure out DC balance with joined pipes */
-+	if (crtc_state->joiner_pipes)
-+		return;
-+
- 	crtc_state->vrr.dc_balance.vmax = crtc_state->vrr.vmax;
- 	crtc_state->vrr.dc_balance.vmin = crtc_state->vrr.vmin;
- 	crtc_state->vrr.dc_balance.max_increase =
-@@ -495,21 +499,11 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
- 	crtc_state->vrr.in_range =
- 		intel_vrr_is_in_range(connector, drm_mode_vrefresh(adjusted_mode));
- 
--	/*
--	 * Allow fixed refresh rate with VRR Timing Generator.
--	 * For now set the vrr.in_range to 0, to allow fixed_rr but skip actual
--	 * VRR and LRR.
--	 * #TODO For actual VRR with joiner, we need to figure out how to
--	 * correctly sequence transcoder level stuff vs. pipe level stuff
--	 * in the commit.
--	 */
--	if (crtc_state->joiner_pipes)
--		crtc_state->vrr.in_range = false;
--
- 	vmin = intel_vrr_compute_vmin(crtc_state);
- 
- 	if (crtc_state->vrr.in_range) {
--		if (HAS_LRR(display))
-+		/* FIXME sequence the LRR timing update for joined pipes */
-+		if (HAS_LRR(display) && !crtc_state->joiner_pipes)
- 			crtc_state->update_lrr = true;
- 		vmax = intel_vrr_compute_vmax(connector, adjusted_mode);
- 	} else {
-@@ -832,6 +826,19 @@ void intel_vrr_check_push_sent(struct intel_dsb *dsb,
+Tested on v6.12.107 on a Lenovo IdeaPad D330-10IGL. This version is
+ported to current mainline, where only the platform check differs
+(display->platform.geminilake instead of IS_GEMINILAKE()). I could
+not build or test it on mainline on this machine. See the discussion
+in the issue linked above, where Ville pointed at the empty
+MIPI_SEQ_DEASSERT_RESET in this VBT.
+
+Question: should this apply to all GLK with this VBT shape, or be
+limited with a DMI quirk? I only have one unit.
+
+ drivers/gpu/drm/i915/display/intel_bios.c | 80 +++++++++++++++++++++++
+ 1 file changed, 80 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 97cbae2..d1c48d9 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2056,6 +2056,84 @@ static void icl_fixup_mipi_sequences(struct intel_display *display,
  	}
  }
  
 +/*
-+ * A VRR push latches all joined pipes at once, so it may be sent only
-+ * after every one of them has been armed. Each pipe runs its own DSB
-+ * and nothing orders the DSBs of the joined pipes against each other,
-+ * so they can't sequence that between themselves. Such commits take
-+ * the MMIO path, where the joined pipes are armed inside one vblank
-+ * evasion critical section.
++ * Count the elements of a v3 MIPI sequence, and report whether all of
++ * them are GPIO or delay elements (i.e. nothing that needs the DSI host
++ * to be up, like sending a packet).
 + */
-+bool intel_vrr_needs_mmio_commit(const struct intel_crtc_state *crtc_state)
++static int mipi_seq_v3_count_elems(const u8 *seq, bool *gpio_delay_only)
 +{
-+	return crtc_state->vrr.enable && crtc_state->joiner_pipes;
++	const u8 *p = seq + 5;	/* skip the sequence byte and the size */
++	const u8 *end = seq + 5 + *((const u32 *)(seq + 1));
++	int count = 0;
++
++	*gpio_delay_only = true;
++
++	while (p < end) {
++		u8 op = *p++;
++
++		if (op == MIPI_SEQ_ELEM_END)
++			break;
++		if (p >= end) {
++			*gpio_delay_only = false;
++			break;
++		}
++		if (op != MIPI_SEQ_ELEM_GPIO && op != MIPI_SEQ_ELEM_DELAY)
++			*gpio_delay_only = false;
++
++		p += 1 + *p;	/* length byte + payload */
++		count++;
++	}
++
++	return count;
 +}
 +
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state)
++/*
++ * Some GLK VBTs (e.g. Lenovo IdeaPad D330-10IGL) have an empty
++ * MIPI_SEQ_DEASSERT_RESET and do the whole panel reset pulse from
++ * MIPI_SEQ_INIT_OTP instead. INIT_OTP runs after the DSI host has been
++ * brought up, but the panel reset must happen before that. When
++ * INIT_OTP only contains GPIO and delay elements, run it as
++ * DEASSERT_RESET instead.
++ */
++static void glk_fixup_mipi_sequences(struct intel_display *display,
++				     struct intel_panel *panel)
++{
++	u8 *deassert = (u8 *)panel->vbt.dsi.sequence[MIPI_SEQ_DEASSERT_RESET];
++	u8 *init_otp = (u8 *)panel->vbt.dsi.sequence[MIPI_SEQ_INIT_OTP];
++	bool gpio_delay_only;
++
++	if (panel->vbt.dsi.seq_version != 3 ||
++	    panel->vbt.dsi.config->is_cmd_mode)
++		return;
++
++	if (!init_otp || !panel->vbt.dsi.sequence[MIPI_SEQ_ASSERT_RESET])
++		return;
++
++	/* Only if DEASSERT_RESET is missing or empty */
++	if (deassert && mipi_seq_v3_count_elems(deassert, &gpio_delay_only))
++		return;
++
++	/* And INIT_OTP only toggles GPIOs and waits */
++	if (!mipi_seq_v3_count_elems(init_otp, &gpio_delay_only) ||
++	    !gpio_delay_only)
++		return;
++
++	drm_dbg_kms(display->drm,
++		    "Running INIT_OTP (GPIO/delay only) as DEASSERT_RESET\n");
++
++	/* The sequence executor checks the id byte of each sequence */
++	init_otp[0] = MIPI_SEQ_DEASSERT_RESET;
++	panel->vbt.dsi.sequence[MIPI_SEQ_DEASSERT_RESET] = init_otp;
++
++	if (deassert) {
++		deassert[0] = MIPI_SEQ_INIT_OTP;
++		panel->vbt.dsi.sequence[MIPI_SEQ_INIT_OTP] = deassert;
++	} else {
++		panel->vbt.dsi.sequence[MIPI_SEQ_INIT_OTP] = NULL;
++	}
++}
++
+ static void fixup_mipi_sequences(struct intel_display *display,
+ 				 struct intel_panel *panel)
  {
- 	struct intel_display *display = to_intel_display(crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 19c7990be1b2..a72ffba47a80 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.h
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -32,6 +32,7 @@ void intel_vrr_check_push_sent(struct intel_dsb *dsb,
- 			       const struct intel_crtc_state *crtc_state);
- void intel_vrr_dcb_increment_flip_count(struct intel_crtc_state *crtc_state,
- 					struct intel_crtc *crtc);
-+bool intel_vrr_needs_mmio_commit(const struct intel_crtc_state *crtc_state);
- bool intel_vrr_is_push_sent(const struct intel_crtc_state *crtc_state);
- void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state);
- void intel_vrr_psr_frame_change_enable(const struct intel_crtc_state *crtc_state);
+@@ -2063,6 +2141,8 @@ static void fixup_mipi_sequences(struct intel_display *display,
+ 		icl_fixup_mipi_sequences(display, panel);
+ 	else if (display->platform.valleyview)
+ 		vlv_fixup_mipi_sequences(display, panel);
++	else if (display->platform.geminilake)
++		glk_fixup_mipi_sequences(display, panel);
+ }
+ 
+ static void
 -- 
-2.56.0
+2.43.0
 
