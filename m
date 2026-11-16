@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1430606A88C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABBA606A888
 	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 22:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=K0A5enk4
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NVOHbfBs
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FBC810E208;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E4BE10E478;
 	Mon, 16 Nov 2026 22:30:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0EAC10E478
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 22:30:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6024210E559
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 22:30:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794868212; x=1826404212;
+ t=1794868214; x=1826404214;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dNl6P+h4/Mn0M/Hbd2FiZ9JngJ3Kfg7CnryYstDa1Cg=;
- b=K0A5enk4r027W1cic9lYRrrXDE+t8eeQfLwi/IWzP2/aZuXse3QJJYUC
- soA3kviGAtBu6cBpgBbKzuO/us08Bjxvy5vcS2fV7JNNngK3Y2q4ihyvQ
- LpWvcAD9gGllwzVBHs1qJfPItqwIKb8tqZvi6bj8EMAv1t/aUt8xom6NO
- zp2UgcPHwBF2GHjbMm8jQCos/VVelR80CShbYKlm9wvKeQ5MdD3pN6SpG
- LGOJK6VEWyuJebnYe7S0K2s/j6cTuzSWFB2TbOINMapdlN+YNZfuzBhUW
- chmBKvQ/yfWFLItxGeJtk/jh1y0H5RGhILkQLrEcpwqcHHCMtABzwXGr/ Q==;
-X-CSE-ConnectionGUID: gNRhY3OHQ0O5LjEsZqVbzg==
-X-CSE-MsgGUID: Ra8yFrWoSQ2DNWZc/VI+yQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3699699"
+ bh=SSGFNtu5e4pSU7IcRaz7DrdNUXafzAqQahLpy3qSgAA=;
+ b=NVOHbfBszqlcLaS5KmJcsJ2KKvkU2kL/W4keXvtQ4qG4WEzsj+B4/8wg
+ +/9EyV3ri8gwzoHxwgBhkvgQMkt6WsvGavaEFIJYYo0vDRvFUB9pRUI3w
+ Wq8Xfwfmjk0zUf9EiRKaA1Sa+IvCFKg18OWTvCs1+mV8YYy/8vVdp4M4L
+ ehXnV8BTeGYoDI2vMDRlFnO3U7cDETd3bjJ7d3KyI0nMFT/ARXl+zfsyT
+ 9fkaKYZqIXRHSs0axNo8pseRv/Lg6KEQI/U4psSQvZ6lp+QLUlM4g4uW1
+ Cw+OrL2P5h3vVOLpwPRQqUAlpYdDELUykh2nhAKlZQBmNynZbQidhlVRh Q==;
+X-CSE-ConnectionGUID: ZqOHL917Qs2EXDVZdul/eQ==
+X-CSE-MsgGUID: xkgXUA98QdCM6uw3qYprYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3699703"
 X-IronPort-AV: E=Sophos;i="6.27,217,1787036400"; 
-   d="scan'208";a="3699699"
+   d="scan'208";a="3699703"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 14:28:05 -0800
-X-CSE-ConnectionGUID: toso2hY2QC2/uNoInNrx3w==
-X-CSE-MsgGUID: E1jNO1CnTVu5Wzfq503z3w==
+ 16 Nov 2026 14:28:06 -0800
+X-CSE-ConnectionGUID: S0kw5PUDRHyt5lZisHUhWg==
+X-CSE-MsgGUID: E7C+gYgCTqeW+fg9tWnRhw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,217,1787036400"; 
-   d="scan'208";a="9705053"
+   d="scan'208";a="9705060"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 14:28:04 -0800
+ 16 Nov 2026 14:28:05 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: shekhar.chauhan@intel.com, harish.chegondi@intel.com,
  intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com
-Subject: [PATCH v6 5/7] drm/xe/oa: Wait for in-flight OA batches before stream
- HW teardown
-Date: Mon, 16 Nov 2026 14:27:58 -0800
-Message-ID: <20261116222752.3677159-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v6 6/7] drm/xe: Reject vm_ops->access on BO mappings of an
+ unplugged device
+Date: Mon, 16 Nov 2026 14:27:59 -0800
+Message-ID: <20261116222752.3677159-15-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261116222752.3677159-9-umesh.nerlige.ramappa@intel.com>
 References: <20261116222752.3677159-9-umesh.nerlige.ramappa@intel.com>
@@ -71,111 +71,54 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Config batches submitted with output syncs and context LRI batches are
-not waited for. If one is still in flight when the stream is closed, it
-can program the OA registers after they were restored.
+A userspace mapping of a BO can outlive the device, e.g. across unbind
+or a PCI slot reset. After drm_dev_unplug() the fault handler only
+installs a dummy page, but ptrace, /proc/<pid>/mem and
+process_vm_readv() can't use get_user_pages() on these VM_PFNMAP vmas
+and fall back to vm_ops->access(), i.e. xe_bo_vm_access().
 
-Both go to the same exec queue, so also record the LRI batch fence in
-stream->last_fence, and wait for it before the HW teardown, bounded by
-the job timeout of the exec queue.
+xe_bo_vm_access() doesn't check whether the device is still there. For
+a BO in VRAM, xe_ttm_access_memory() then either goes through the VRAM
+iomap, which is unmapped on remove, or submits a migrate job after the
+GT has been torn down. This applies to GEM mmaps and to the OA buffer
+mmap of an OA stream that outlives the device.
 
-A config batch with an input sync that doesn't signal sits in the
-scheduler, where no TDR times it out, and would still run once the sync
-signals. Kill the exec queue if the wait times out, so the batch is
-dropped instead.
+Enter a drm_dev_enter() section in xe_bo_vm_access() and fail with
+-ENODEV once the device is unplugged, like xe_bo_cpu_fault() does.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 ---
-v2: Kill the exec queue if the wait times out (Sashiko)
----
- drivers/gpu/drm/xe/xe_oa.c | 46 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 40 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 8ed427ad67b4..1a37312de099 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -733,6 +733,12 @@ static void xe_oa_free_configs(struct xe_oa_stream *stream)
- 	dma_fence_put(stream->last_fence);
- }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 42a6aa1a2e4a..a74c38df2bdd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2345,9 +2345,20 @@ static int xe_bo_vm_access(struct vm_area_struct *vma, unsigned long addr,
+ 	struct ttm_buffer_object *ttm_bo = vma->vm_private_data;
+ 	struct xe_bo *bo = ttm_to_xe_bo(ttm_bo);
+ 	struct xe_device *xe = xe_bo_device(bo);
++	int idx, ret;
  
-+static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
-+{
-+	dma_fence_put(stream->last_fence);
-+	stream->last_fence = dma_fence_get(fence);
-+}
-+
- static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *reg_lri, u32 count)
- {
- 	struct dma_fence *fence;
-@@ -753,6 +759,7 @@ static int xe_oa_load_with_lri(struct xe_oa_stream *stream, struct xe_oa_reg *re
- 		goto free_bb;
- 	}
- 	xe_bb_free(bb, fence);
-+	xe_oa_update_last_fence(stream, fence);
- 	dma_fence_put(fence);
- 
- 	return 0;
-@@ -876,6 +883,38 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
- 		xe_mmio_rmw32(mmio, OAM_COMPRESSION_T3_CONTROL, OAM_LAT_MEASURE_ENABLE, 0);
- }
- 
-+/*
-+ * Wait for the last OA batch of the stream, so that it can't program the HW after the HW
-+ * teardown.
-+ */
-+static void xe_oa_stream_drain(struct xe_oa_stream *stream)
-+{
-+	struct xe_exec_queue *q = stream->exec_q ?: stream->k_exec_q;
-+	long timeout;
-+
-+	if (!stream->last_fence || dma_fence_is_signaled(stream->last_fence))
-+		return;
-+
-+	timeout = msecs_to_jiffies(q->sched_props.job_timeout_ms) + HZ;
-+	if (dma_fence_wait_timeout(stream->last_fence, false, timeout))
-+		return;
-+
-+	drm_err(&stream->oa->xe->drm, "Timed out waiting for OA batch, killing exec queue\n");
-+
+-	guard(xe_pm_runtime)(xe);
+-	return ttm_bo_vm_access(vma, addr, buf, len, write);
 +	/*
-+	 * The batch is most likely still waiting for an input sync, which no TDR covers. Kill
-+	 * the exec queue, so the batch is dropped instead of run when the input sync signals.
-+	 * A batch already on the HW gets cleaned up by the TDR the kill triggers, give it a
-+	 * moment.
++	 * A mapping can outlive the device. Once it's unplugged, VRAM is unmapped and the
++	 * migrate engines are gone, so refuse access, like the fault handler does.
 +	 */
-+	if (q->vm)
-+		xe_exec_queue_kill(q);
-+	else
-+		q->ops->kill(q);
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return -ENODEV;
 +
-+	dma_fence_wait_timeout(stream->last_fence, false, HZ);
-+}
++	scoped_guard(xe_pm_runtime, xe)
++		ret = ttm_bo_vm_access(vma, addr, buf, len, write);
 +
- static void xe_oa_stream_hw_teardown(struct xe_oa_stream *stream)
- {
- 	if (stream->sample)
-@@ -909,6 +948,7 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 	/* The poll timer may still be armed if the OA disable was skipped */
- 	hrtimer_cancel(&stream->poll_check_timer);
- 
-+	xe_oa_stream_drain(stream);
- 	if (!xe_wedged(stream->oa->xe))
- 		xe_oa_stream_hw_teardown(stream);
- 
-@@ -1007,12 +1047,6 @@ xe_oa_alloc_config_buffer(struct xe_oa_stream *stream, struct xe_oa_config *oa_c
- 	return oa_bo;
++	drm_dev_exit(idx);
++	return ret;
  }
  
--static void xe_oa_update_last_fence(struct xe_oa_stream *stream, struct dma_fence *fence)
--{
--	dma_fence_put(stream->last_fence);
--	stream->last_fence = dma_fence_get(fence);
--}
--
- static void xe_oa_fence_work_fn(struct work_struct *w)
- {
- 	struct xe_oa_fence *ofence = container_of(w, typeof(*ofence), work.work);
+ /**
 -- 
 2.55.0
 
