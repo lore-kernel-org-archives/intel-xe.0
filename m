@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3055A60A2616
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A90F606A888
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 14:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=S01Yc05z
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nD1hXGaC
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDFA910F1F6;
-	Mon, 16 Nov 2026 14:01:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41DE910F1FD;
+	Mon, 16 Nov 2026 14:01:07 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7865310F1EF;
- Mon, 16 Nov 2026 14:01:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5557B10EA12;
+ Mon, 16 Nov 2026 14:00:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794837661; x=1826373661;
+ t=1794837656; x=1826373656;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wIu20ODrQ1AgpX4dPo/SaTf61iHyzonVeH7FiS0GazI=;
- b=S01Yc05zeDCukohuG4HuGiIWZCdgP7dEce/xPO2QweWEpDg8OP5UBntv
- dy98FwglaypJvCctfp/ikIZQ38zj+Dkd4cF0hYqzVGChrA8dYzXCblPtb
- IbfCvrvhR4nMc7CpGR4PGrmwCguzedQCHCJxzEmXNJzQpy4y7Ea66aDlh
- Jh1xmbk55l2H2ViNP4VdDZmUD/vn10n2z8Oc7vZv5mEZlHXfIjxeGvKUr
- wLBYG1Ahdkv/vIWQ8iFitXi0SybEo5zjpMLZ7CTgEsgZrDLXtdhixNkjn
- +hrRY0BiZL1LNH3EJxM++TWILsGcnmP2iOyNFXUzD3+XlCoefEJwXlFSI Q==;
-X-CSE-ConnectionGUID: UEQFEqNrQ0yGwT+WE/eJSg==
-X-CSE-MsgGUID: ckUZVHfSQkCaxIj4ebCsjA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3609192"
+ bh=EifxuHU+59pcsFW4LRQG4q+WKAgW8rfaQvPqF5Gwxxc=;
+ b=nD1hXGaCIzpBXl92FPVPyI4rla3beIer1i04bfmVd6/hayncnLo00iEz
+ GUdcIr7loVtaVuvmotDhOL+Qt9AFHK5YOtN+WQjt1Qnq6Bil4RjViqZqZ
+ 2YYl4fblkpjMyesY5qslPg6iTKQEHKxusMClyPrPtrY0F4AX2A+a9/IRK
+ ofd1GhXG1EFSF4Q5mAGkkzy4lFriQjjfNcGb8B9rU8Ntqq2V/buxlMR0O
+ aV0UFa38bZOPQre+vkpHnwEElLrX5WM1LYbq5B1QxJNas6vl9TbnBpQX8
+ OJ+PYNUTuEQsqqI6nhibjgDO6+d4LuDtXWXkQTMz3M0LHzA9lIPk8ZyVU g==;
+X-CSE-ConnectionGUID: FsaPVpOnRTy4DnANxEzyzw==
+X-CSE-MsgGUID: JHrIo251Q7GNHFXzkb0WwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3609175"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="3609192"
+   d="scan'208";a="3609175"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 06:00:59 -0800
-X-CSE-ConnectionGUID: WDzuX+BnRgCdgJmodiGXrA==
-X-CSE-MsgGUID: YjW6A7ROT1+dlhCCHtzNmg==
+ 16 Nov 2026 06:00:55 -0800
+X-CSE-ConnectionGUID: a4pavs5CReOIFnCh7hvvuw==
+X-CSE-MsgGUID: MKZo6ofpSM2OXalaKkv4FA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="9552092"
+   d="scan'208";a="9552044"
 Received: from shawnle1-z890-eagle-wifi7.itwn.intel.com ([10.225.64.208])
- by orviesa006.jf.intel.com with ESMTP; 16 Nov 2026 06:00:58 -0800
+ by orviesa006.jf.intel.com with ESMTP; 16 Nov 2026 06:00:54 -0800
 From: Lee Shawn C <shawn.c.lee@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v2 4/4] drm/i915/dp: Use the VBT fast link training link
- config for eDP
-Date: Mon, 16 Nov 2026 13:59:04 +0000
-Message-ID: <20261116135904.59365-5-shawn.c.lee@intel.com>
+Subject: [PATCH v2 1/4] drm/i915/bios: Split out parsing the eDP fast link
+ training params
+Date: Mon, 16 Nov 2026 13:59:01 +0000
+Message-ID: <20261116135904.59365-2-shawn.c.lee@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261116135904.59365-1-shawn.c.lee@intel.com>
 References: <20261116135904.59365-1-shawn.c.lee@intel.com>
@@ -67,91 +67,104 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When eDP fast link training is enabled in the VBT and the sink supports
-link training without AUX handshake, restrict the link configs
-considered during compute config to the VBT fast link training link
-rate and lane count.
+Move parsing the eDP fast link training link rate, lane count,
+pre-emphasis and voltage swing params from parse_edp() to a separate
+function, in preparation for parsing these params only if fast link
+training is enabled for the panel.
 
-If none of the allowed link configs match, ignore the VBT params and
-select the link config as before.
+No functional change.
 
 Signed-off-by: Lee Shawn C <shawn.c.lee@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 50 +++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 61 +++++++++++++----------
+ 1 file changed, 35 insertions(+), 26 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ef164a797618..d5829bef801a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2824,6 +2824,54 @@ intel_dp_compute_m_n_ratio_limits(struct intel_dp *intel_dp,
- 	return true;
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 7b6a6f8c3cf1..6b2924c56cae 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -1440,34 +1440,13 @@ static void vbt_edp_to_pps_delays(struct intel_pps_delays *pps,
  }
  
-+static void
-+intel_dp_apply_vbt_edp_link_config(struct intel_dp *intel_dp,
-+				   struct intel_connector *connector,
-+				   struct link_config_limits *limits)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
-+	struct intel_dp_link_caps_filter vbt_filter = INTEL_DP_LINK_CAPS_FILTER_NONE;
-+	struct intel_dp_link_caps_iter iter;
-+	struct intel_dp_link_config config;
-+	int vbt_rate = connector->panel.vbt.edp.rate;
-+	int vbt_lanes = connector->panel.vbt.edp.lanes;
-+
-+	if (!intel_dp_is_edp(intel_dp) ||
-+	    !connector->panel.vbt.edp.fast_link_training ||
-+	    !drm_dp_fast_training_cap(intel_dp->dpcd) ||
-+	    (!vbt_rate && !vbt_lanes))
-+		return;
-+
-+	intel_dp_link_caps_iter_start(&iter, link_caps,
-+				      intel_dp_link_caps_connector_compute_order(connector),
-+				      limits->link_config_filter);
-+	for_each_dp_link_config(&iter, &config) {
-+		if (vbt_rate && config.rate != vbt_rate)
-+			continue;
-+		if (vbt_lanes && config.lane_count != vbt_lanes)
-+			continue;
-+
-+		intel_dp_link_caps_filter_add(link_caps, &vbt_filter, &config);
-+	}
-+	intel_dp_link_caps_iter_end(&iter);
-+
-+	if (!vbt_filter.config_mask) {
-+		drm_dbg_kms(display->drm,
-+			    "[CONNECTOR:%d:%s] VBT eDP link config (lanes %d, rate %d) not in allowed link configs, ignoring\n",
-+			    connector->base.base.id, connector->base.name,
-+			    vbt_lanes, vbt_rate);
-+		return;
-+	}
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CONNECTOR:%d:%s] Limiting link configs to VBT eDP lanes %d, rate %d\n",
-+		    connector->base.base.id, connector->base.name,
-+		    vbt_lanes, vbt_rate);
-+
-+	limits->link_config_filter = vbt_filter;
+ static void
+-parse_edp(struct intel_display *display,
+-	  struct intel_panel *panel)
++parse_edp_fast_link_params(struct intel_display *display,
++			   struct intel_panel *panel,
++			   const struct bdb_edp *edp)
+ {
+-	const struct bdb_edp *edp;
+-	const struct edp_fast_link_params *edp_link_params;
+ 	int panel_type = panel->vbt.panel_type;
+-
+-	edp = bdb_find_section(display, BDB_EDP);
+-	if (!edp)
+-		return;
+-
+-	switch (panel_bits(edp->color_depth, panel_type, 2)) {
+-	case EDP_18BPP:
+-		panel->vbt.edp.bpp = 18;
+-		break;
+-	case EDP_24BPP:
+-		panel->vbt.edp.bpp = 24;
+-		break;
+-	case EDP_30BPP:
+-		panel->vbt.edp.bpp = 30;
+-		break;
+-	}
+-
+-	/* Get the eDP sequencing and link info */
+-	edp_link_params = &edp->fast_link_params[panel_type];
+-
+-	vbt_edp_to_pps_delays(&panel->vbt.edp.pps,
+-			      &edp->power_seqs[panel_type]);
++	const struct edp_fast_link_params *edp_link_params =
++		&edp->fast_link_params[panel_type];
+ 
+ 	if (display->vbt.version >= 224) {
+ 		panel->vbt.edp.rate =
+@@ -1547,6 +1526,36 @@ parse_edp(struct intel_display *display,
+ 			    edp_link_params->vswing);
+ 		break;
+ 	}
 +}
 +
- bool
- intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 			       struct drm_connector_state *conn_state,
-@@ -2940,6 +2988,8 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 		limits->link_config_filter = new_filter;
- 	}
- 
-+	intel_dp_apply_vbt_edp_link_config(intel_dp, connector, limits);
++static void
++parse_edp(struct intel_display *display,
++	  struct intel_panel *panel)
++{
++	const struct bdb_edp *edp;
++	int panel_type = panel->vbt.panel_type;
 +
- 	if (!intel_dp_compute_m_n_ratio_limits(intel_dp, conn_state, crtc_state, limits))
- 		return false;
++	edp = bdb_find_section(display, BDB_EDP);
++	if (!edp)
++		return;
++
++	switch (panel_bits(edp->color_depth, panel_type, 2)) {
++	case EDP_18BPP:
++		panel->vbt.edp.bpp = 18;
++		break;
++	case EDP_24BPP:
++		panel->vbt.edp.bpp = 24;
++		break;
++	case EDP_30BPP:
++		panel->vbt.edp.bpp = 30;
++		break;
++	}
++
++	/* Get the eDP sequencing info */
++	vbt_edp_to_pps_delays(&panel->vbt.edp.pps,
++			      &edp->power_seqs[panel_type]);
++
++	parse_edp_fast_link_params(display, panel, edp);
  
+ 	if (display->vbt.version >= 173) {
+ 		u8 vswing;
 -- 
 2.53.0
 
