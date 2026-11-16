@@ -2,148 +2,80 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3331B606A336
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 12:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3E8606A323
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 13:11:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=LTB7ktJB
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Db7RY90V
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8B8010F117;
-	Mon, 16 Nov 2026 12:58:10 +0000 (UTC)
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012034.outbound.protection.outlook.com
- [40.93.195.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CEB310F0F7;
- Mon, 16 Nov 2026 12:58:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UM3/DMFJ2RQXohHDT6VLfgkwG7ONDcUg2nM6lOH4Madcj5TaHqs6Lo1TWrngKCMDVDISSF3lbu/ER7NK3M2xkF8XoALznWnFtXP7nBrdL2oFwsJi4THDLQKr2xXlhqGUfCtgqb3ULpUQynSxnlsCOnVaPqf35HT/HCKysjpvVThZJqYifJsz4FsDhmKlRSxlPbFUK9Spp497x2PevQ+QPGxhHDlYNP50EhpIIYQqt43KTRoJs/V/HXwQVOaRqvQBkb8P1zxD5tn/cS2bkBguzWfjKHTo/HK6PI2pnd7sqBM9mycTESNofr3fbzQfXuAECG5RAtdvbkcdHSXpi12Tgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hYciQj3SKQaeterWqoO2WWlbcMQ4WfWLOXZDSmdLoMU=;
- b=ORO0edwr1w5WJblaP1SB8KvO5w+3o0w2ae6cRK+6Fegk78ElL6qDZ1g3ZaKF+Aci79ZfcfQfVATx7k4O9mqsdm0qhGjA8LWUOWQyK2kj1AGOc3cN4uFD2Q9+AJ4CwldxHuEkGyXcf+DTfJagxWPvqW86sczTMniPlleHlh7ACFDXD6KPPNw6Hl8xdut7UK6J/qUPXsznQAShgdLNbBweulPRyWWYJciIcpLjTgnYkzAUQZolY/N/J0OUeA8fy4gNawpZri6FZtvD/U7Hdpx+Rldtg4+UEdE9NemPi8XI3nAfln/RYcLUdV7yCKES8Zrs/SEPR9dF+bAd9Zxfk9M/oA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hYciQj3SKQaeterWqoO2WWlbcMQ4WfWLOXZDSmdLoMU=;
- b=LTB7ktJBRH3xPIPnGuhmu8fwcys9kRSflGfBdrbI86SRU1rbhEoRmuXCP4ICCXiODMWXPX8TbQjSidKnKPxkxjF8lVc4HRy2tFEiIjpU19kZlR+jhwyBAmIIK8Uojh8q+S7D203niKBkPZpFi0ibRFQONl0TtKlOgbxApCtcWZ0=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA1PR12MB6068.namprd12.prod.outlook.com (2603:10b6:208:3ec::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 12:57:59 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%3]) with mapi id 15.21.0615.013; Mon, 16 Nov 2026
- 12:57:58 +0000
-Message-ID: <8768b2e1-e944-46a0-8508-84a9ff491412@amd.com>
-Date: Mon, 16 Nov 2026 13:57:39 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 06/23] dma-buf: Let the exporter select mapping type at
- pin/map
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Karl Mehltretter <kmehltretter@gmail.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- Dongwon Kim <dongwon.kim@intel.com>, Kevin Tian <kevin.tian@intel.com>,
- Xu Yilun <yilun.xu@linux.intel.com>, Baolu Lu <baolu.lu@linux.intel.com>,
- Felix Kuehling <felix.kuehling@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev,
- Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@kernel.dk>,
- Christoph Hellwig <hch@lst.de>, Sagi Grimberg <sagi@grimberg.me>,
- linux-nvme@lists.infradead.org, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
- Mina Almasry <almasrymina@google.com>, netdev@vger.kernel.org,
- Alexey Kardashevskiy <aik@amd.com>, zhipingz@meta.com, treding@nvidia.com,
- jhubbard@nvidia.com, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>
-References: <20261105-dma_mapping_type_v4-v2-0-78b8dc9ae80a@nvidia.com>
- <20261105-dma_mapping_type_v4-v2-6-78b8dc9ae80a@nvidia.com>
- <au7mBMbRC8q6NILj@gmail.com> <avE0QsqV5RZoaWc3@nvdebian.thelocal>
- <de268b0f-19fd-4e05-a8d2-e0f436aaedfc@amd.com>
- <avqgQ1k8zx0_N4rM@nvdebian.thelocal>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <avqgQ1k8zx0_N4rM@nvdebian.thelocal>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BN9PR03CA0601.namprd03.prod.outlook.com
- (2603:10b6:408:106::6) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 012FE10F13F;
+	Mon, 16 Nov 2026 13:10:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 161AE10F12D;
+ Mon, 16 Nov 2026 13:10:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794834644; x=1826370644;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=FE8Eb/o2jNhMmUkY0cmLF5+hbV0dzwgrgopBYqNs/2g=;
+ b=Db7RY90VJBMp0IobypR/45LHYchBIG55PtBnIF62pvPKlws3a0zSfHpJ
+ FqdpSYbOXsu5Vko1Qlqk4SYO9cPLQrM3C6XhGOd6GmvrKtW7zc19lIDhG
+ Bw/McS3IAwLu1cWrpaG8snjCyFORJTj+JKn42P/U1bhQdsUscvnIPEi3I
+ mxkde87AKXLpvIROSwA+2vC8VoM80yZI32Gqll8OovpH0J6GoYSk4cd8G
+ /m/RsaudiU7b1+1rjyvtZb4jKuvE179SVNZqyUSaZhq9ZWu3qLRClpdi4
+ gWRZY5SJ9/20MP4Kk1hdTCqYGhHL8ickdcN+lxYMciEvKrdJu/weypXoq A==;
+X-CSE-ConnectionGUID: sAmTLOMWTm20BhMkZW3rig==
+X-CSE-MsgGUID: 45avBj4RS56S7amHHLiQPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3464635"
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="3464635"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 05:10:43 -0800
+X-CSE-ConnectionGUID: neqRBvN9TSuOXPoowwyZdg==
+X-CSE-MsgGUID: HJr8YL80TZmLcafdJ7R4kA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
+   d="scan'208";a="9388760"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.117])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 05:10:34 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kory Maincent <kory.maincent@bootlin.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Andrzej Hajda <andrzej.hajda@intel.com>, Neil
+ Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
+ <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Mark Yacoub
+ <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, Manasi Navare
+ <navaremanasi@google.com>, Drew Davenport <ddavenport@google.com>, Louis
+ Chauvet <louis.chauvet@bootlin.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Kory Maincent
+ <kory.maincent@bootlin.com>
+Subject: Re: [PATCH RFC v3 0/8] Add support for DisplayPort link training
+ information report
+In-Reply-To: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
+Date: Mon, 16 Nov 2026 15:10:30 +0200
+Message-ID: <51ec15feef9a88e460ab6fefc48b5b982f4857c0@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB6068:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f7a7d3c-22b2-41c0-c9c3-08df43e13d2f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|7416014|261102123227099003|261028144727099003|261102130727099003|261022075727099003|261022105027099003|261021135927099003|261021121427099003|261026121527099003|261026140227099003|11063799006|4143699003|56012099006|10067099003|18002099003|22082099003|261009223027099003|3023799007;
-X-Microsoft-Antispam-Message-Info: bUTXmXzBj5NAF6d8lYILsVTGtOpLbAzFmBibZuErWbvGHLguWWBeENOpI8rI3KbLe7AiT+NhD4Qf4q2SzRNrLoy6psqhAaly1rm3Cr/GNRXSNJb1cE9p1lM99vkXwQuazlVegKr852pc1m/vaS4V0V/DX8deEGXX7vH/2thFMrlmVdWn5bc8P0VQSOMzGXkZvDG+ffkRGR56fmygr8itz4O3Dg0AQiue7tkI8nctqgQMk9/vFd1qvRoGiPuZds4VPNVgNrY36h2QYizxegEpDZbhmXtBmP/oJpcVKY58rUHulQgm38jV3nHftrGEnmsapNbS/81vaM9RfjT9qG9uyiFwhpn6C34I5dABhPRqu481u1P48ezqj+uEN8N86lNw4BwFCWfie71jlEwH+wvohdKe4lv1B7oHPusPQuZTmOzAeNp66utau0sNrmHMgncllMAemnYSGQn0tBnosDPV8pqLPZuePIMO5bXyF4pLHZD9u/ifB0uWxNUXHIM7PNJJTZGtnzO+waXAIaTwQlUSMRcozA1wCgKxDqUe5seddBXjOMP413nJZVne+CdCxIOwepDuwwmmeJ2pgXhUMipHDOz3BKrBi/nNgQm4dJKq1vqjyusxMiGQGZCrtK1Jn3xBsDNVPO+aN28YYZcYctEq3hwZWJvce7CRiFZpDMdiqCE=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(7416014)(261102123227099003)(261028144727099003)(261102130727099003)(261022075727099003)(261022105027099003)(261021135927099003)(261021121427099003)(261026121527099003)(261026140227099003)(11063799006)(4143699003)(56012099006)(10067099003)(18002099003)(22082099003)(261009223027099003)(3023799007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VVp5cGJtYW5vblhHdFlacDd1anZnYk9ta2JoRkRBWTlCV29zTGVxL2VHcS9j?=
- =?utf-8?B?QjVsaGJOM2JZUzJ4cWR4Z2V5YlA1ZDZucy9EWjhHUWFEcU1JR1RWWFJ3bmpH?=
- =?utf-8?B?VmZDZHJBMDBsWmQwOEhOVHM4eHVuYmFPeHdGZFZLcS9qWDFPdUh4QmZmZmxa?=
- =?utf-8?B?S0ZsMkdSZGpuR0dCc0w5dXVOTk1yRHZVaytJQW9RUHFXUkZiMWdQdzFDamxR?=
- =?utf-8?B?RTBYYUxobENpQW15ODRtWk9KSXRhaEZzZHp1ZEgwa0Q5V2h0d1FGaHF0bStS?=
- =?utf-8?B?dGhNOEtDNU0vK0NUdmNneGhmazh0cTdmMjFZZUJIR0RnRWJlQlN3ckFlODEv?=
- =?utf-8?B?NFllTUIvak41dEN3SGxvc3VOTFFmVjBqa2lJcjZiUTlqeVdIUHBrYWVsTUtx?=
- =?utf-8?B?bTBpNkN2Nm1WY0wxZm92SitHbXRibzJvRjI1TGw0NGJzQmo2VE92ZXpDU1kw?=
- =?utf-8?B?OFo0ZjBnUDhJNVhhNjhYUTA1VDExZStJRUZleFhsNmN1QUdKYVlpMFYxWGEz?=
- =?utf-8?B?TlZQbjB5SmZkVWZlMC9TZUk3Uml3d0lnc2Foa0d3TjRFNEE0QmVjVWM1MVJZ?=
- =?utf-8?B?cU9EWHhLUXpvVDA3RWl3TjV1RWkzbC9tSXNzcU5qNzZCNlE5SjJzcmZ4dUlS?=
- =?utf-8?B?Szd0SFNRWTFhc1FYOTZiVlFURW93SGgza1hyMllTa1VGb3NhVEhYYy85SC9w?=
- =?utf-8?B?MUJCTDNYNENWMkZieXFLTVZ1cE1kdk9Eem9ZKzNveU5MbjBLOVBoYklBVVYr?=
- =?utf-8?B?bTUraGExTGE2SHhKSG1YSFp6U2ViUTBpcUd0dkR6NHRzT29YVk5iWGhTV1Js?=
- =?utf-8?B?WEFMVFZ2bFI2WTZRdFdtUE1FVDYxV29RNTZDUTNEclRLQ1cwUTVtb0RBQ3Fx?=
- =?utf-8?B?T1llNld2M3Q2RWthQ1cvTXlpamhGZWIrTkdzeXBVTTh6MitHcWlsdjNVT1lu?=
- =?utf-8?B?VTVEa1pSZzEvZWR2WllKNmVGdllURC9mTloydm1zY3pCZ3JaZEl2VjRydlRP?=
- =?utf-8?B?b1BGb1dyTEFlNGtDWWpITnEyMTVpQ21GZko0b2xhK2M5NWhBV2ZjcjdlTXlh?=
- =?utf-8?B?U2ZVREFhN0lsOGoxWHpJcEx2R0lxMnJyNGZybjM2dXdnQUtLRWllYlhvdGl2?=
- =?utf-8?B?Q2U2N1VZKytLN3FPZ2pTeW1aMTg0R2NKcm1DdEtpZUlGVjl6RnFwYVZLdXVM?=
- =?utf-8?B?dnRpL0NTUjkxbVRzOFZ0SkE1dmtFeHp5SFJZQkVwaXZHaE5Rbk1kNW9VWnFM?=
- =?utf-8?B?QkZvNG9NQU9ITkg4MVFSb3NsYXRNNHZUYUJGZ0pQQzVzMktmT0dVdlVLQUI0?=
- =?utf-8?B?bzdvMEFDRWk3VHpFandRbG5kKzIvUlBLRU5hOXc4R0VuRFNMWk5UOU9WTXVm?=
- =?utf-8?B?OG1aWk95Um00VktwVGU3QXN6Mjg2MDdPUFlMRUpBeHdNZkNvY0JoRW9tdmI4?=
- =?utf-8?B?TTc0SUMzZ09ERVJyS2F2b1JjdjdGR3NSbGpjS0dNSU9WczdMd3RZajZFTWF0?=
- =?utf-8?B?OHFHeG43TmxpbnpqZGJ2S1M4U253MnJqRU5lekNlSW9DSGgwUHFTMjFXdER3?=
- =?utf-8?B?YjFlcnc0MTJ6Ly9OSklpYWVETThaT3luT1BQcU1xa1Q2ZGRDc3gyV2tHWXFS?=
- =?utf-8?B?L3hkWWV1NkJsNGhtcnhUR2xQU3FzcVJZZ0pJdXM0TEhhaGY3L3dPdTI2aGYx?=
- =?utf-8?B?SVhuMnZrV3BUY0g0MGRIZFZVd2kzUnM1ZldIcFFobm9QdGFsTVJjUmxiU2NF?=
- =?utf-8?B?Yzk5WUIrd3M1UkowcEtpOHRxeWwyRm1lVVBTM1l0bDhmUUpLV0NGdHcrTEVM?=
- =?utf-8?B?M2ZaZzJ2dW5ybDhRYUo1c2g4b3FXeXNrNmd3N1c5dFlQWnRDcC9QeGdsZjhq?=
- =?utf-8?B?YkxUc09LTGNmcFdSVis5cnNTR1YxeVdaSGhLc0lIVGdzclFjVVNJbG5XR2E2?=
- =?utf-8?B?aUJobHJUU01DQTJrVVA2d0J2TmZ5TXJ1ZXFvRnhvanp0OGoxUDZrYm9PMFIx?=
- =?utf-8?B?Y3c5SXQrdVN0TzRsYkczeVhxT1U2RXJ4Si9mbFhLOHdaVHJpR3FPSFVScmhj?=
- =?utf-8?B?cXp1QWZFYTVUZTdRcHlPLzlRVXJsZE5EY1hXaGVyNDNTS2xFU2xDa09uTnFT?=
- =?utf-8?B?Tk93YTBZRWorbENqVFFrWGo4Qm94L0hicG1Tb1B1RWNGaThRWkpWWXlsRjVH?=
- =?utf-8?B?SUhRS0JJT0R0MmVQV05KRy9JSndRWU8rVVpuWjdOOGpraGFCam8ya2FHa01a?=
- =?utf-8?B?WjRpRW1yRW5ySCs2TmFzblRoVjlkSlRHdjJ0RlJheXdsVzE0UmtNN29nYzFq?=
- =?utf-8?Q?47fBIFgJbCbjZaw8sE?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f7a7d3c-22b2-41c0-c9c3-08df43e13d2f
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 12:57:58.5489 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NfsjKpikeXvk0eFUXeC36vVisqiFEDJ62gQvE1j6B7OvZ7a0iG3co00NSvADw4lX
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6068
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,130 +86,175 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/26 07:27, Alistair Popple wrote:
-> On 2026-11-09 at 21:59 +1100, Christian König <christian.koenig@amd.com> wrote...
->> On 11/9/26 03:58, Alistair Popple wrote:
->>> On 2026-11-07 at 19:57 +1100, Karl Mehltretter <kmehltretter@gmail.com> wrote...
->>>> On Thu, Nov 05, 2026 at 05:40:41PM +0100, Alistair Popple wrote:
->>>>> + * A pin or map that fails after dma_buf_mapping_select() may reopen the
->>>>> + * choice only if it was the one that made it. A selection that predates the
->>>>> + * call belongs to a live pin or mapping and must survive, otherwise the next
->>>>> + * pin or map would reselect under it without an invalidate.
->>>>> + */
->>>>> +void dma_buf_mapping_unselect(struct dma_buf_attachment *attach,
->>>>> +			      bool was_selected)
->>>>> +{
->>>>> +	dma_resv_assert_held(attach->dmabuf->resv);
->>>>> +
->>>>> +	if (was_selected)
->>>>> +		return;
->>>>> +
->>>>> +	attach->selected = false;
->>>>> +	attach->selected_idx = 0;
->>>>> +}
->>>>> +
->>>>
->>>> After dma_buf_invalidate_mappings(), attach->selected is false while
->>>> attach->selected_idx still holds that mapping's entry for a pending
->>>> unmap. 
->>>>
->>>> If a pin/map fails before that unmap runs, was_selected is false and
->>>> dma_buf_mapping_unselect() resets attach->selected_idx to 0.
->>>>
->>>> A subsequent dma_buf_unmap_sgt() then uses matches[0].
->>>
->>> Actually there's a bigger issue here. The contract at the moment states that
->>> mapping type may change after invalidation. However that doesn't account for the
->>> fact mappings can outlive the invalidation.
->>>
->>> This could be dealt with by switching everything over to the generic
->>> dma_buf_mapping_map/unmap() path, but that requires an allocation per mapping
->>> just to track the mapping type.
->>
->> You need an allocation per mapping anyway to identify the mapping anyway.
->>
->> We currently abuse the sg_table for that, but essentially the idea of having a structure/object to represent the mapping needs to stay around as far as I can see.
-> 
-> Oh right, I see that now.
-> 
-> Do you think it makes sense to convert all exporters to return a mapping type
-> specific struct (eg. dma_buf_sgt_mapping) rather than the sgt directly?
+On Mon, 12 Oct 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
+> DisplayPort link training negotiates the physical-layer parameters needed
+> for a reliable connection: lane count, link rate, and optionally Display
+> Stream Compression (DSC). Currently, each driver exposes this state in
+> its own way, often through driver-specific debugfs entries, with no
+> standard interface for userspace diagnostic and monitoring tools.
+>
+> This series introduces generic helpers, for exposing DP link capabilities
+> and state as standard sysfs entries.
 
-No, we essentially want to get away from the whole sgt approach.
+So how did we end up with sysfs here?
 
-The whole purpose of DMA-buf was to exchange DMA addresses between drivers and sgt is problematic for that job because it mixed both the input as well as the output of the DMA mapping operation into one structure.
+> The aim of such development is to guide users to select the most suitable
+> DisplayPort connector for their needs. For example, if you have a USB-C
+> hub with lesser capabilities than your computer=E2=80=99s native DisplayP=
+ort
+> connector (such as HBR2 versus HBR3 support), the system could recommend
+> connecting high-resolution displays directly to the computer=E2=80=99s po=
+rt
+> instead of through the hub to ensure optimal performance.
 
-What we need is the functionality to either say map the buffer at this specific address in that address space (IOMMU domain, internal address space whatever) or just to return DMA addresses plus the information in which address space those addresses are valid.
+I do wonder how all this is supposed to work in more complex real world
+scenarios, though.
 
-Regards,
-Christian.
+I believe the user primarily cares about *modes*. Which display modes
+can be used with each display/connector pair.
 
-> Ie. change map_dma_buf() callbacks to return *dma_buf_sgt_mapping instead of
-> *sg_table and convert exporters to allocate that instead of a *sg_table.
-> 
-> I've taken a look at doing that and whilst it touches all the exporters the
-> changes are fairly mechanical in nature, with only two or three annoying
-> exporters that have slightly different patterns (one of which is buggy).
-> 
->  - Alistair
-> 
->> Regards,
->> Christian.
->>
->>>
->>> The alternate is we update the contract to say mapping type cannot change until
->>> after all importers have unmapped. Enforcing this would require tracking the
->>> number of live mappings/pins per-attachment, but I think this is the better
->>> solution so will add that for the next version.
->>>
->>>>>  int dma_buf_pin(struct dma_buf_attachment *attach)
->>>>>  {
->>>>>  	struct dma_buf *dmabuf = attach->dmabuf;
->>>>> +	bool selected = attach->selected;
->>>>>  	int ret = 0;
->>>>>  
->>>>>  	WARN_ON(!attach->importer_ops);
->>>>>  
->>>>>  	dma_resv_assert_held(dmabuf->resv);
->>>>>  
->>>>> -	if (dmabuf->ops->pin)
->>>>> +	ret = dma_buf_mapping_select(attach);
->>>>> +	if (ret)
->>>>> +		return ret;
->>>>> +
->>>>> +	if (dmabuf->ops->pin) {
->>>>>  		ret = dmabuf->ops->pin(attach);
->>>>> +		if (ret)
->>>>> +			dma_buf_mapping_unselect(attach, selected);
->>>>> +	}
->>>>
->>>> dma_buf_mapping_select() sets attach->selected = true before ops->pin()
->>>> and the map callbacks run.
->>>>
->>>> In patches 14/15, xe/amdgpu migrate a VRAM buffer to system memory
->>>> during pin and map when the attachment does not accept P2P.
->>>>
->>>> That migration calls dma_buf_invalidate_mappings() and clears
->>>> attach->selected on every attachment, also the one being pinned/mapped. 
->>>>
->>>> When the callback succeeds, the attachment stays pinned or mapped with
->>>> attach->selected == false.
->>>>
->>>> A later map/pin on the same attachment can then reselect without an
->>>> invalidation.
->>>
->>> Argh. Thanks. Will fix.
->>>
->>>  - Alistair
->>>
->>>> Thanks,
->>>> Karl
->>
+With the low level link information, are you proposing to compute the
+required bandwidth for modes in userspace? I think it's going to be a
+lot of work to compute the bandwidth requirements, taking into account
+DP SST vs. MST vs. UHBR and DSC and bit depth and everything, and you'll
+still miss any driver/GPU specific contraints. Or are you just proposing
+to match the physical characteristics only?
 
+Given all the connectors and displays and their modes on a system, you
+could estimate a) for each display, what modes could be used on each
+connector, and b) for each connector, what modes could be used on a
+display, if connected. From the user POV, they could be shown why some
+display mode is not available on the current connector, and crucially,
+on which connector it could be available.
+
+In general, I'm wondering if you're really after higher level
+information, something like "connector max available bandwidth
+with/without DSC", that would more directly map to the user needs as I
+see them than low level link details.
+
+Do you have the userspace somewhere? That's needed for merging UABI
+anyway [1].
+
+[1] https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-require=
+ments
+
+>
+> The new drm_dp_source_set_caps and drm_dp_sink_set_caps helper expose
+> source and sink training capabilities to userspace via sysfs attributes
+> under dp_link. Finally drm_dp_set_cur_link_params helper is provided to
+> report current link information at runtime.
+>
+> Three drivers are updated as reference implementations: i915 (direct
+> connector path), ANX7625 and MediaTek (via the bridge connector framework
+> using a new DRM_BRIDGE_OP_DP flag).
+>
+> Here is a sysfs example:
+>
+> cur_link_info_dsc            sink_link_caps_nlanes
+> cur_link_info_link_rate      source_link_caps_dsc
+> cur_link_info_nlanes         source_link_caps_link_rates
+> sink_link_caps_dsc           source_link_caps_nlanes
+> sink_link_caps_link_rates
+>
+> 1620000 2160000 2700000 3240000 4320000 5400000
+>
+> 1620000 2700000 5400000 10000000 20000000
+>
+> 5400000
+>
+> This series is rebased on top of drm-misc and may conflict with the
+> current state of the drm i915 tree. Which tree should pick this up,
+> given that it mixes core development with driver changes?
+
+For development, please just base your work on top of drm-tip, and the
+tree(s) will be sorted out later.
+
+BR,
+Jani.
+
+
+> Patch 1,2: Move helpers out of i915
+> Patch 3: Introduce DisplayPort link training capabilities and state helpe=
+rs
+> Patch 4: Read i915 DSC capabilities in any case
+> Patch 5  Use dp_connector helpers in i915 to expose link training state
+> Patch 6: Introduce DRM_BRIDGE_OP_DP and wire bridge connectors
+> Patch 7: Use dp_connector helpers in anx7625 to expose link training state
+> Patch 8: Use dp_connector helpers in mediatek to expose link training sta=
+te
+>
+> Changes in v3:
+> - Rework the core to use new helpers instead of an extension of
+>   drmm_connector_init().
+> - Add a new mutex to protect sysfs read write access instead of using
+>   the global connection_mutex.
+> - Move helpers out of i915.
+> - Add the support in the anx7625 driver.
+> - Link to v2: https://patch.msgid.link/20260619-feat_link_cap-v2-0-a3dec4=
+c02ad9@bootlin.com
+>
+> Changes in v2:
+> - Removed work converting i915 to DRM managed resource
+> - Remove voltage swing and pre-emphasis properties
+> - Expose link training state via sysfs dp_link/ group instead of
+>   connector properties
+> - Add comprehensive sysfs attributes for both source and sink capabilities
+> - Add new helpers for managing sink capabilities and for current link
+>   parameters
+> - Link to v1: https://lore.kernel.org/r/20260409-feat_link_cap-v1-0-7069e=
+8199ce2@bootlin.com
+>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> Kory Maincent (8):
+>       drm: Move sink link rates reading helpers out of i915
+>       drm: Move DSC capability reading helper out of i915
+>       drm: Introduce DisplayPort link training capabilities and state hel=
+pers
+>       drm/i915/display/dp: Read DPCD DSC capabilities in any case
+>       drm/i915/display/dp: Use dp_connector helpers to expose link traini=
+ng state
+>       drm/bridge: Expose link training state via new DRM_BRIDGE_OP_DP flag
+>       drm/analogix/anx7625: Use dp_connector helpers to expose link train=
+ing state
+>       drm/mediatek: Use dp_connector helpers to expose link training state
+>
+>  Documentation/ABI/testing/sysfs-class-drm-dp       |  85 +++
+>  drivers/gpu/drm/bridge/analogix/anx7625.c          |  68 +++
+>  drivers/gpu/drm/bridge/analogix/anx7625.h          |   1 +
+>  drivers/gpu/drm/display/Kconfig                    |   1 +
+>  drivers/gpu/drm/display/drm_bridge_connector.c     |  29 ++
+>  drivers/gpu/drm/display/drm_dp_helper.c            | 571 +++++++++++++++=
+++++++
+>  drivers/gpu/drm/drm_connector.c                    |  11 +
+>  drivers/gpu/drm/drm_sysfs.c                        | 155 ++++++
+>  drivers/gpu/drm/i915/display/intel_display_types.h |   2 +
+>  drivers/gpu/drm/i915/display/intel_dp.c            | 249 ++++-----
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  |  14 +
+>  drivers/gpu/drm/mediatek/mtk_dp.c                  |  79 ++-
+>  include/drm/display/drm_dp.h                       |   1 +
+>  include/drm/display/drm_dp_helper.h                |  25 +
+>  include/drm/drm_bridge.h                           |  13 +
+>  include/drm/drm_connector.h                        |  53 ++
+>  include/drm/drm_sysfs.h                            |   1 +
+>  17 files changed, 1202 insertions(+), 156 deletions(-)
+> ---
+> base-commit: 34e9ab0182494d7599dc9759bc216550d814b396
+> change-id: 20260226-feat_link_cap-20cbb6f31d40
+>
+> Best regards,
+> --=20=20
+> K=C3=B6ry Maincent, Bootlin
+> Embedded Linux and kernel engineering
+> https://bootlin.com
+>
+
+--=20
+Jani Nikula, Intel
