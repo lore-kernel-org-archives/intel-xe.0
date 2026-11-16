@@ -2,168 +2,101 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E72D606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F06E606A320
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=pps01 header.b=IpXx2n9+;
-	dkim=pass (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=lionmail header.b=XBHTkLel
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=mUYdUOxp
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03B4910FC20;
-	Wed, 18 Nov 2026 13:04:00 +0000 (UTC)
-Received: from mx0a-00364e01.pphosted.com (mx0a-00364e01.pphosted.com
- [148.163.135.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B651B10E475
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 20:49:16 +0000 (UTC)
-Received: from pps.filterd (m0167070.ppops.net [127.0.0.1])
- by mx0a-00364e01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6AGJXJEk2978967
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 15:04:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=columbia.edu; h=
- cc:content-transfer-encoding:content-type:date:from:message-id
- :mime-version:subject:to; s=pps01; bh=x1GSlTdxCDOcwaCkl039quhS7j
- O/y0dxq7PSFe5uI1Y=; b=IpXx2n9+RamcocPRGOPd8XPboIKjiztrAkZU6DcuMR
- owrO1L9jYZPfd7Bix1u2o6xBqkvtiLeQSkquPaLF4IvEnS52FWTuHflsrx6FB9/p
- /B9pEuUxFFNQmGfo8VUZUjGlIsXMKi7dBRHWAdp+W2JfP1C5b+6ic5mq0PCMhvqr
- 4E+5fohvAFveb7oCnY0baP2Zj2hHvARpdMapPW47/6QRXbCKyU17S9hVOf1jPaKE
- Eb+KHBWE58OnqIkTxmTlfbP/A9yuNf0uG0wB1tQUjv5iZi7SlNyV3zJ6lB6lyAJB
- NDxqTJoECbwU0nuSRrbFAXkldL6eVYJIxY8e7Knd+nDg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198])
- by mx0a-00364e01.pphosted.com (PPS) with ESMTPS id 4j059sa2hp-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 15:04:24 -0500 (EST)
-Received: by mail-qk1-f198.google.com with SMTP id
- af79cd13be357-93f37c94ceeso35915085a.1
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 12:04:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=columbia.edu; s=lionmail; t=1794859464; x=1795464264;
- darn=lists.freedesktop.org; 
- h=cc:to:content-transfer-encoding:content-type:mime-version
- :message-id:date:subject:from:from:to:cc:subject:date:message-id
- :reply-to:content-type;
- bh=x1GSlTdxCDOcwaCkl039quhS7jO/y0dxq7PSFe5uI1Y=;
- b=XBHTkLelJ1sfyO4qmJMLWfW1uwXZac/Yf9hSH9S4C/ZlUd6GJMbAQVM3TutGVZUw03
- ASGVq7juM8ueh+yBEncOwVjniYY5TXQ40wNKSQ+jzMlNY/qt2VLfg+wZGc7YkEXQCazf
- kX7Ab8txMPsV//uCNgfgZjnIV38YkvlOko/PQrDMAoG9n6FM3sSf3Tv1WCFy4DInNdXv
- kP/PTnR45ebHkQUGHvMLgcR0l3/xbTsYzgyBu+eMJFLEHl/odA7mBPBP6QPQEXMWzeMr
- re49LqkE2cYQzN3uiRZa8S6bz73YSXIAvIE0rSnrCTQlcTzhYkR3ASJlcB72iPyoR9EH
- XvWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794859464; x=1795464264;
- h=cc:to:content-transfer-encoding:content-type:mime-version
- :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=x1GSlTdxCDOcwaCkl039quhS7jO/y0dxq7PSFe5uI1Y=;
- b=aed1TjwZy8EH7UoUiTKi/dKvnUuGEueXbYMPiXeS3H2USd1uYrQOgXRv9N1EQ/IfG9
- ooSYXypAxw3EJ+zFGXXdRpX++PqYn5Q2BObcMkSD5DBpdqE4ryd2zfjOls7P+Ghs5PZ0
- 7hoWMLttll9Z9nY4KgVxeeIKF1rvY9SG2oMfLTkyYzEXDxL+idpskZq6OBVIVJjnUPmI
- c//CabLDQRTv2v1a30zOBJLXMV5PPFXnRNEUbmpRc7qPIC5avK4dI+tx5k9F+JbgLjzA
- /NL5V3X+J5dvL9lRjFTVqvSq9v4b/HfXM92sigNE3R30iPFOrgX59NHGijg7q/qB7F6M
- D/1A==
-X-Forwarded-Encrypted: i=1;
- AL+hErEz9mw/dPevXUbWsRcrGULzBPfpGuooicwYuaqhYRYDXYl9+vFYUGuNa0Py+hQYeFKsNX0YesHV1A==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z83QvQKJpZnXHX8SuIM2SkdZP57+H8Cyh95KPeEXA/bEXQYaOG7
- gd7jpRS8lVTQQyeaZtiRXa5UQisTevjz4Wrmk0H8IGJuYer3EjR75ycb9xVVBdoX0XRjLdnDzSo
- w+SsM4Bflts8tc+o7UmXPjvL0z368bEQ9ggbqLw0zoQ4/lWm/grL55ZLDzB+iVij2
-X-Gm-Gg: AYBFou3Blim1m+7e9jhzYXQmjm9AfP9W0ireBTmki8TSGM1Cx7g2VEKj3H//mTyVu9r
- Bi8rrshwwhwPtewZRxF7PKE7vKZjbmVSABJrUbAse1JnQAaOk8Ef5GxfwXE8glbn6GLuoxIbm49
- UYS2D2M2Rpx1MQseI8JUWDTLlo/HvxdT/nwy26CtdfKlRqh36wrCakFQE1+vYbzoqHioaCMTC4e
- NOXfF0s8C0tEU5m59bNUuyDBh18c/yGevfKc2Fs6534y9YkktQdVkDT0Gtjca28YsCwmIG7AjIh
- KEd1aYtwrgzJmn8TbvPzUFkH40NwJT7jk27FPUv9BvdNPMkT/0a9LriVVroP3X2GrDBdpzo3RhW
- unBFxugXxZnBx2+6i1+17zkJjOMhoF2Ihz1fit9a4GoXGRzyDWl9hCNjkdA8vB+4mnTKLioiW3L
- c0ljTvXoFTwx41znMr0Giy
-X-Received: by 2002:a05:622a:5883:b0:536:723f:5de7 with SMTP id
- d75a77b69052e-55d49300e66mr9489321cf.4.1794859463687; 
- Mon, 16 Nov 2026 12:04:23 -0800 (PST)
-X-Received: by 2002:a05:622a:5883:b0:536:723f:5de7 with SMTP id
- d75a77b69052e-55d49300e66mr9488661cf.4.1794859463022; 
- Mon, 16 Nov 2026 12:04:23 -0800 (PST)
-Received: from [127.0.1.1] (nat-128-59-176-174.net.columbia.edu.
- [128.59.176.174]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91f23efa2edsm93065426d6.15.2026.11.16.12.04.21
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 16 Nov 2026 12:04:22 -0800 (PST)
-From: Tal Zussman <tz2294@columbia.edu>
-Subject: [PATCH v2 0/9] userfaultfd: assorted fixes (part 1)
-Date: Mon, 16 Nov 2026 15:02:42 -0500
-Message-Id: <20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC4910FC23;
+	Wed, 18 Nov 2026 13:04:05 +0000 (UTC)
+Received: from PH8PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11012012.outbound.protection.outlook.com [40.107.209.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB19510F1F6;
+ Mon, 16 Nov 2026 16:11:22 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lju2r4tTT00fVukRlmbTV53nMBI7T8KKPd7JlJx7M3fDaQeOldmd0tQGxF2q/kDM5Y0kfoOekkIHqlDS3jLpP899TqsYr6+ps+6rJUsnT38apo4QVC2bxv0gASGD91NfxcaudwIy6orXbRPbc2Uuz9OhBWbMPY/B9aM1XxPga2XpIjbag1UxSfTXTc+2sJY/BlpVLbNDrKXXrUkAZptXuOwNsc6lSFUvi4mUiHol9BFr2NieDWJEqB0u16EKWTSDv4KTQgX/Cu7tg30IwVcEBOV0zO/P1w3GQ+A4XeQtz2+t1rYhVHq4cJE4lyaq5uNvNt2XuZ6YQtA9yPBqiLcBXg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E/4JHD9nD2cFTa90eYhcW8Ic0V2bZbgUfL1/kyLgzSg=;
+ b=FP4eu5JyuVPh9JhWWp7LHoPF74oFhd9+EulHDM7ORua2gvBYbqwDXBBCuhaj5oVte74EHs5q14PspDHG48rWEEHWRJKtz1dVD4qzuEMs6mJ4IMX8bIBl+zw1g6ZvWYVXjLsdL8s4BVxi2XB5rgG0aOd9fYtEhTTQjgiCaKcLRFEpS40YBUWL2/gOEV0BAy0Z/2mxTRujy1p/lVQpEca9NIWe3oqEOL+yOvm04RqtHopZIgWN6FxV5mWmgocC9yp32F52+UDI0eCo/SGOPaibAKFj81LXRScMjgSmVU1aRwPVkYjP3SxJPNnzLOXpphid2krDqZ7YU65LUGUmH5u1Rg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=E/4JHD9nD2cFTa90eYhcW8Ic0V2bZbgUfL1/kyLgzSg=;
+ b=mUYdUOxpIrvAX+Job9yQC7uGCvUOUOo14beo/Vg5BifQ9AsCvpGTHxufIO7mqk7WSznHmJRk6Aji8BdvHXkqSox+gHPqTRVkNbJsSxYtk6GXeqpKxI7WvBf2DaUnI6iTvBGcO+CG2BVICfkipH5dwopvQxnG5LPJ3T8CfnzAi6w=
+Received: from BLAPR05CA0004.namprd05.prod.outlook.com (2603:10b6:208:36e::8)
+ by CH4PR12MB088503.namprd12.prod.outlook.com (2603:10b6:610:50a::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
+ 2026 16:11:16 +0000
+Received: from LV8PEPF0000005C.namprd02.prod.outlook.com
+ (2603:10b6:208:36e:cafe::36) by BLAPR05CA0004.outlook.office365.com
+ (2603:10b6:208:36e::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.6 via Frontend Transport; Mon, 16
+ Nov 2026 16:11:16 +0000
+X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
+ is 165.204.84.17) smtp.mailfrom=amd.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
+Received: from satlexmb07.amd.com (165.204.84.17) by
+ LV8PEPF0000005C.mail.protection.outlook.com (10.167.245.132) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 16:11:15 +0000
+Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 16 Nov
+ 2026 10:11:14 -0600
+From: William Palacek <William.Palacek@amd.com>
+To: <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>, Sanjay Yadav
+ <sanjay.kumar.yadav@intel.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ <linux-kernel@vger.kernel.org>, William Palacek <William.Palacek@amd.com>
+Subject: [PATCH v3 1/2] gpu/buddy: find range-biased blocks in the free trees
+Date: Mon, 16 Nov 2026 11:11:01 -0500
+Message-ID: <17f2a6366ba845edc799dbeb712c12f8d060afad.1794845083.git.William.Palacek@amd.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <cover.1794845083.git.William.Palacek@amd.com>
+References: <cover.1794845083.git.William.Palacek@amd.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGJh+2oC/2WNzQ6CMBCEX4X07JpuMQU9+R6GQ6GLrFFq+kM0h
- He3oDePX2bmm1kE8kxBnIpZeJo4sBszqF0husGMVwK2mYWSSiNKDanvLYRoIkHPLwpgFSKSMq0
- 91CLPnp62IK8uzZdDam/UxdWzNgYO0fn39jnh2vvpEf/1E4IEKSssbanrY6XPnbunR8tmTzaJZ
- lmWD8zFP/bFAAAA
-X-Change-ID: 20261106-uffd-state-fixes-d2111e2abd48
-To: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
- Peter Xu <peterx@redhat.com>, James Houghton <jthoughton@google.com>,
- Andrea Arcangeli <aarcange@redhat.com>,
- Suren Baghdasaryan <surenb@google.com>, Balbir Singh <balbirs@nvidia.com>,
- "Liam R. Howlett" <liam@infradead.org>,
- Lorenzo Stoakes <ljs@kernel.org>, Vlastimil Babka <vbabka@kernel.org>,
- Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
- David Hildenbrand <david@kernel.org>, Michal Hocko <mhocko@suse.com>,
- =?utf-8?q?Micha=C5=82_Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
- Andrei Vagin <avagin@gmail.com>,
- Muhammad Usama Anjum <usama.anjum@arm.com>,
- Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
- Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
- Joshua Hahn <joshua.hahnjy@gmail.com>,
- Byungchul Park <byungchul@sk.com>, Gregory Price <gourry@gourry.net>,
- Ying Huang <ying.huang@linux.alibaba.com>,
- Alistair Popple <apopple@nvidia.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>,
- Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
- Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
- Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
- Oscar Salvador <osalvador@suse.de>,
- =?utf-8?q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
-Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
- Tal Zussman <tz2294@columbia.edu>, Breno Leitao <leitao@debian.org>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794859460; l=4488;
- i=tz2294@columbia.edu; s=20250528; h=from:subject:message-id;
- bh=Q9vtBat7EPzKier5uhGvIcHrOmBQit4JDniJ4SvUP3U=;
- b=PuIj7+LRsMk4tLVOsesIjArbol6E2+mE6zXf9UwUvZaWh2Se6zEfg4r4N9uXEER+0YOQl25l8
- ZbFg9uq1kztBgkEFbRdYqBvvGW1Tl6vFNKqc30ZQz4B5pydamoG5nJC
-X-Developer-Key: i=tz2294@columbia.edu; a=ed25519;
- pk=BIj5KdACscEOyAC0oIkeZqLB3L94fzBnDccEooxeM5Y=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE2MDA4MCBTYWx0ZWRfX4dbeniE/9H+U
- cp7OyNtHP9DqREcIfQAdnpvgfAQgxI7lZP5nWozQqfYsMrj4FcpyHC/Of7U76R1057+23FhAfIv
- zCJ5eu2GyNaW02HyLWLb1OVjprNiYODdNLEmHbw3vU5xlJ6cDei2utwQWOFMdt4mpuclNdpCo0u
- EfPUJkIAv0nfvAn++t8cTza0dI9Dah4HYSu3HAFJbgAyjy2ZuXHbGtMs1IHqtA2FGrHva3oMg3i
- UdRH8CBO0zAR2z1QbXkBm2EDytU11zehVkJ1ItsCiXxz4xJBEIa5CIZstcI81cvL9df8WRPtkVn
- 6j0tQKi7U457JOaRd6qR5QBeUq3vaeed0Vyb+mxbbbDjsk/thN6dCefbALfk3RVICvV5BFzWB/2
- LDdjJaSskEWeefukdcCplAW9KLUVtiKlLrTwGtq4oIBY3SMr6jz4HIEuA9P45gLXqlIV69rvLDV
- qJarCg1be7xxsWT6S6Q==
-X-Proofpoint-ORIG-GUID: Kh2lz7Vb0QHimfY6fCCgG7ptxMXUJBBo
-X-Proofpoint-GUID: Kh2lz7Vb0QHimfY6fCCgG7ptxMXUJBBo
-X-Authority-Analysis: v=2.4 cv=D63SufRj c=1 sm=1 tr=0 ts=6afb61c8 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=KPY1cyGZ6h6m4ASiENTC8Q==:17
- a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=x7bEGLp0ZPQA:10 a=A0y_DWxS2BwA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Da8U98TiO7q1upZEImrf:22 a=svvvyxlR1OQQkelhaPoB:22
- a=bC-a23v3AAAA:8 a=zAoRp05x23iGVPMylqYA:9 a=QEXdDO2ut3YA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=FO4_E8m0qiDe52t0p3_H:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE2MDA4MCBTYWx0ZWRfX58gE8PBxi2pQ
- EAa7bkncF9cuWOCPpgXZQ4ZF8LM262lyON1MglPyl3y668XCMHQudxdEd2m60E3pGjzICo5dqcS
- A2fLeCEy4Z75u08rl+tKpd3CIoE04+fNIuNcfOGvzCUwDrDYhXkK
-X-Proofpoint-Virus-Version: vendor=nai engine=6900 definitions=11968
- signatures=596817
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=10 priorityscore=1501 clxscore=1011 lowpriorityscore=10
- spamscore=0 malwarescore=0 adultscore=0 phishscore=0 suspectscore=0
- bulkscore=10 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611160080
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
+ (10.181.42.216)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PEPF0000005C:EE_|CH4PR12MB088503:EE_
+X-MS-Office365-Filtering-Correlation-Id: 68cf00ce-a266-4757-b0e8-08df43fc3ddc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|23010399003|1800799024|36860700016|82310400026|10067099003|11063799006|56012099006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: ZcWj5uSmIzkSMSJT4pXHzceEel47tKg5JesaWqLvJhTGSTUBNXGenf9hi2DnRKpnxyie7gPQek7jQN4gIxUT9/QUR35w9/fdLwItgncC5/uArS6uGLajCPqwi03Jf2Xt5/l3wHpQKvl8J8auLaUMyXyPTUSVAYLqxTUM5sQJYGBrnCxauJWmo43TdJSQgc2Qafny4rwoCWVU0pAvSerWqgNZ8J8biNDjTbdeVNfqTKDFK7akzEelbCpGGm5mayQE4pOrvwSrbeJ9XiNk35CJwk5EBsY8eu6HNBRAQKjTgrIpw+8DAIyJI2kwbR5b2Swfi8/f84gZ/vPHRcN/tlOctiInqxr9e3JBI/ColWiR8oFVtBwK0+E5xZOIu6/uRuFCiiTfMg2ra3vpLYQHPDNe9G/dc+C1KmjWYMoMoRVrcr/tlNZuRH0LZ2o87HbP7JpzpQhM7EaZoj7cf9fdy95N9iJqDsX5DtUvdUyLxMqdGV/J8rh8J3diyJzI3FLXgxZBF5BI9pjE96B21TueFAGhr+hlzwoPLBSee160y2zbJqvOHXwJLm1dT9kPvB6TR9NO37f9AZ8V++hCab7jv0Ch+QQF0vQxHyvEitmC4dw3WYA82hTLS8cp8AyAyX+8rpP73LuQflg/2KbVHZfHgRM+Vnw168kZ/ShKSylNp2GGN8fux3xbh6+26jVOz3GhNRepa2KVqmHnYRA4VaKngTKWnQ==
+X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
+ SFS:(13230040)(376014)(23010399003)(1800799024)(36860700016)(82310400026)(10067099003)(11063799006)(56012099006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: fVSePWkxPlyS3oHTEsAtBmYfGEpeyxqH94pvKL8Ue0MpqBQkRSbHRkf4BVZKEX59uezO4nt4MmIEA6ULt9lFksk65RRSNW0kkbmg6V9ttOllQZx6T5yXC1gz1b4+bjvBOLs7ZbkHxxxkHHAu8M4hxhMj75lkrtvb0UDsDRuMvrKiJSBoK+UKokLMm+sYnNxddZXeI6Kz6nWQRbQmYQk80YAcmrm1/zYZINO/awdS/GVkj0alJE1r2ZhxzOLfbXVMEcYyFuLz/lMrxH5p2/lHZfGfC4SI/ean0OKpIZqzxuKYpMMKyn18/qL69CDzXHyxf6f9cO46O9FGYCgkIW9+n1QGvVxIG/wxe/Q8U+6yakP1AkFkZUHfniFI/5hwLixba9MAI+B44iqgA0HG1vmqXkOvJWDmQ4+s3RLj/i7PuqsVzzzlcFQIMpXQTT1zHW6E
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:11:15.8163 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68cf00ce-a266-4757-b0e8-08df43fc3ddc
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
+ Helo=[satlexmb07.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: LV8PEPF0000005C.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH4PR12MB088503
 X-Mailman-Approved-At: Wed, 18 Nov 2026 13:03:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,103 +108,417 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This is a first batch of userfaultfd fixes, with more to come.
+__alloc_range_bias() walks the block tree from the roots and visits
+every split block overlapping [start, end) until it finds a suitable
+free block, so a range-restricted allocation costs time linear in the
+number of live allocations in the range. When both clear and dirty
+space exist, a request that the strict pass cannot serve walks the
+range twice.
 
-These were found by a mix of regular old LLM review and by having an LLM
-write a TLA+ model of uffd interactions with PTE bits and other state
-and seeing what issues fell out.
+amdgpu pays this on every VRAM allocation when memory is partitioned
+(NPS2/NPS4): each BO, including the page-table BOs created when memory
+is mapped, is restricted to its partition's range, and KFD requests
+cleared VRAM. On MI300X in CPX/NPS4 the compute partitions that share a
+memory partition also share the VRAM manager lock, so the walk is
+serialised across processes. hipMalloc latency grows linearly with the
+number of live allocations, and vLLM piecewise graph capture slows down
+with every captured graph.
 
-Most of these fix places where mm code loses uffd-wp or RWP protection
-while moving or migrating an entry. Userspace then either misses writes
-and accesses, or gets pages reported that nobody touched.
-There is also a hang in UFFDIO_MOVE, and UFFDIO_ZEROPAGE modifying a
-file through a private mapping.
+The free trees are sorted by offset, so find the block there instead.
+For each order from the requested one up, look up the highest free
+block that can hold the request, then split the highest of them down to
+the requested order. The strict pass only takes blocks wholly inside
+the range whose class suits the request: subtree_block_state lets a
+clear request skip subtrees without a clear or mixed block, and a new
+subtree_has_dirty augment lets a dirty request skip subtrees that hold
+only clear blocks. The fallback pass takes the highest block of either
+class and may split one that straddles the range edge. Each lookup is
+O(log n) and the walk is gone.
 
-Patches 1-2:   UFFDIO_ZEROPAGE and UFFDIO_MOVE fixes, cc stable
-Patches 3-5:   PAGEMAP_SCAN write-protect vs. migration and
-               device-private entries, patch 3 cc stable
-Patch 6:       UFFDIO_MOVE of the huge zero page from an RWP source
-Patch 7:       mremap() losing uffd state when a move fails halfway
-Patch 8:       migrate_vma losing uffd state of a zero page
-Patch 9:       UFFDIO_UNREGISTER with a misaligned hugetlb end
+Placement is unchanged. A seeded random workload of 42218 allocations
+mixing range, clear and top-down requests and cleared and dirty frees
+places every block at the same offset, order and clear state as the
+walk.
 
-A few of the fixes change what userspace sees:
+Filling 1 GiB of a 4 GiB manager with 64 KiB range-biased allocations
+that request cleared memory takes 1103 ms before, 2 ms after (KUnit,
+UML). With 8192 free cleared 64 KiB blocks interleaved with allocated
+ones in the range, 4096 dirty range allocations take 541 to 567 ms
+before and 0 ms after, and 4096 cleared ones 106 to 110 ms before and
+0 ms after.
 
- - UFFDIO_ZEROPAGE on a private file mapping no longer fails with
-   -EEXIST where the file already has a page, on an mm that cannot use
-   the zero page (patch 1)
- - UFFDIO_MOVE returns -EEXIST for any huge destination PMD, not only
-   for a present THP (patch 2)
- - UFFDIO_UNREGISTER with a misaligned hugetlb end fails before
-   unregistering anything (patch 9)
+On MI300X in CPX/NPS4, with 8000 live 2 MiB hipMalloc allocations on
+one partition, the median latency of the last 800 over the first 800 is
+1.56x and 7.97x before and 0.52x and 1.06x after (two runs each; the
+first run after loading the driver starts slow). vLLM piecewise graph
+capture with tensor parallelism over all 64 partitions stays at 4 to 6 s
+per graph for all 51 graphs.
 
-Patch 6 has little user impact on its own. It is included because,
-together with patch 7, it allows removing clear_uffd_wp_pmd().
-
-Patch 7 adds spurious write faults on shmem and hugetlb after mremap():
-when dropping uffd protection there, change_protection() makes writable
-pages that were never protected read-only. UFFDIO_UNREGISTER and
-UFFDIO_WRITEPROTECT already behave this way and lead to the same
-spurious faults. This will be fixed in change_protection() in a separate
-series.
-
-Based on mm-new.
-
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Signed-off-by: William Palacek <William.Palacek@amd.com>
 ---
-Changes in v2:
-- Collect tags (Thanks Kiryl, Lorenzo, Gregory, Alistair!)
-- Patch 2: say "softleaf entry" in the commit message, per Lorenzo
-- Patch 3: add softleaf_is_writable() and softleaf_mkreadable() to
-  leafops.h and rename the helpers to say softleaf, per Lorenzo
-- Patch 3: add Reported-by and Closes for Breno's report, and cc stable
-- Patch 4: explain in the commit message how PAGEMAP_SCAN set the uffd
-  bit on writable migration entries, per Lorenzo
-- Patch 5: use pmd_is_valid_softleaf() rather than open-coding it, per
-  Lorenzo
-- Patch 7: say "write faults" rather than "minor faults" in the commit
-  message, per Kiryl
-- Patch 7: trim the commit message, per Lorenzo and Gregory
-- Patch 8: trim the commit message, per Gregory
-- Patch 8: Cc the GPU driver maintainers and lists, per Gregory and
-  Alistair
-- Patch 9: use IS_ALIGNED() and a local variable for the VMA's ctx, and
-  shorten the comment, per Lorenzo
-- Drop the three guard region patches, per Lorenzo
-- Link to v1: https://patch.msgid.link/20261111-uffd-state-fixes-v1-0-00713d368976@columbia.edu
 
----
-Tal Zussman (9):
-      userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
-      userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
-      fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
-      mm/migrate: keep the uffd bit when restoring a writable migration entry
-      fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
-      mm/huge_memory: build the moved huge zero PMD from the destination VMA
-      mm/mremap: resolve uffd state when the context is dropped, not during the move
-      mm/migrate_device: do not migrate a uffd-protected zero page
-      mm/userfaultfd: check hugetlb end alignment in UFFDIO_UNREGISTER pre-scan
+Notes:
+    v3:
+    - rebased onto the merged clear/dirty guard (cb0a63f0c96e) (Arun)
+    - take Arun's free-tree lookup and drop the walk instead of narrowing it
+      (Arun)
+    - strict pass O(log n) for both classes: subtree_block_state for clear
+      requests, new subtree_has_dirty augment for dirty ones
+    - placement now matches the walk exactly, including the guard
+    
+    v2:
+    - rebased onto drm-misc-next (single free tree) (Arun)
+    - take the highest contained block, keeping top-down placement (Arun)
 
- fs/proc/task_mmu.c      | 42 +++++++++++++++++++++++++++---
- include/linux/leafops.h | 51 ++++++++++++++++++++++++++++++++++++
- mm/huge_memory.c        | 31 +++-------------------
- mm/hugetlb.c            | 27 +------------------
- mm/migrate.c            |  2 +-
- mm/migrate_device.c     | 23 +++++++++++++++--
- mm/mremap.c             | 46 +--------------------------------
- mm/userfaultfd.c        | 69 ++++++++++++++++++++++++-------------------------
- 8 files changed, 150 insertions(+), 141 deletions(-)
----
-base-commit: 67f3b04b277373438f17300e056306adbd9edf7b
-change-id: 20261106-uffd-state-fixes-d2111e2abd48
+ drivers/gpu/buddy.c       | 214 +++++++++++++++++++++++++-------------
+ include/linux/gpu_buddy.h |   1 +
+ 2 files changed, 145 insertions(+), 70 deletions(-)
 
-Best regards,
---  
-Tal Zussman <tz2294@columbia.edu>
+diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+index e7d2212bcec9..baf17700ffba 100644
+--- a/drivers/gpu/buddy.c
++++ b/drivers/gpu/buddy.c
+@@ -62,6 +62,8 @@ static struct kmem_cache *slab_extents;
+  *     of any block in the subtree, maintained as a max augment. A value of
+  *     >= MIXED means a clear-or-mixed block exists; == CLEAR means a
+  *     fully-clear block exists.
++ *   - subtree_has_dirty: some block in the subtree is not fully clear,
++ *     so range allocations can skip all-clear subtrees for dirty requests.
+  *
+  * Block classes
+  * -------------
+@@ -510,9 +512,11 @@ static inline void gpu_buddy_augment_compute(struct gpu_buddy_block *block)
+ 	struct gpu_buddy_block *right;
+ 	struct gpu_buddy_block *left;
+ 	unsigned int max_align;
++	bool has_dirty;
+ 
+ 	max_align = gpu_buddy_block_offset_alignment(block);
+ 	block_state = gpu_block_cached_state(block);
++	has_dirty = block_state != GPU_BLOCK_CLEAR;
+ 
+ 	left = rb_entry_safe(block->rb.rb_left, struct gpu_buddy_block, rb);
+ 	if (left) {
+@@ -520,6 +524,7 @@ static inline void gpu_buddy_augment_compute(struct gpu_buddy_block *block)
+ 			max_align = left->subtree_max_alignment;
+ 
+ 		block_state = max(block_state, left->subtree_block_state);
++		has_dirty |= left->subtree_has_dirty;
+ 	}
+ 
+ 	right = rb_entry_safe(block->rb.rb_right, struct gpu_buddy_block, rb);
+@@ -528,10 +533,12 @@ static inline void gpu_buddy_augment_compute(struct gpu_buddy_block *block)
+ 			max_align = right->subtree_max_alignment;
+ 
+ 		block_state = max(block_state, right->subtree_block_state);
++		has_dirty |= right->subtree_has_dirty;
+ 	}
+ 
+ 	block->subtree_max_alignment = max_align;
+ 	block->subtree_block_state = block_state;
++	block->subtree_has_dirty = has_dirty;
+ }
+ 
+ static void gpu_buddy_augment_propagate(struct rb_node *rb, struct rb_node *stop)
+@@ -540,14 +547,17 @@ static void gpu_buddy_augment_propagate(struct rb_node *rb, struct rb_node *stop
+ 		struct gpu_buddy_block *block;
+ 		unsigned int old_align;
+ 		enum gpu_block_state old_block_state;
++		bool old_has_dirty;
+ 
+ 		block = rb_entry(rb, struct gpu_buddy_block, rb);
+ 		old_align = block->subtree_max_alignment;
+ 		old_block_state = block->subtree_block_state;
++		old_has_dirty = block->subtree_has_dirty;
+ 
+ 		gpu_buddy_augment_compute(block);
+ 		if (block->subtree_max_alignment == old_align &&
+-		    block->subtree_block_state == old_block_state)
++		    block->subtree_block_state == old_block_state &&
++		    block->subtree_has_dirty == old_has_dirty)
+ 			break;
+ 
+ 		rb = rb_parent(&block->rb);
+@@ -564,6 +574,7 @@ static void gpu_buddy_augment_copy(struct rb_node *rb_old, struct rb_node *rb_ne
+ 
+ 	new->subtree_max_alignment = old->subtree_max_alignment;
+ 	new->subtree_block_state = old->subtree_block_state;
++	new->subtree_has_dirty = old->subtree_has_dirty;
+ }
+ 
+ static void gpu_buddy_augment_rotate(struct rb_node *rb_old, struct rb_node *rb_new)
+@@ -576,6 +587,7 @@ static void gpu_buddy_augment_rotate(struct rb_node *rb_old, struct rb_node *rb_
+ 
+ 	new->subtree_max_alignment = old->subtree_max_alignment;
+ 	new->subtree_block_state = old->subtree_block_state;
++	new->subtree_has_dirty = old->subtree_has_dirty;
+ 
+ 	gpu_buddy_augment_compute(old);
+ }
+@@ -695,6 +707,8 @@ static void rbtree_insert(struct gpu_buddy *mm,
+ 			node->subtree_max_alignment = block_alignment;
+ 		if (node->subtree_block_state < block_state)
+ 			node->subtree_block_state = block_state;
++		if (block_state != GPU_BLOCK_CLEAR)
++			node->subtree_has_dirty = true;
+ 
+ 		if (gpu_buddy_block_offset(block) < gpu_buddy_block_offset(node))
+ 			link = &parent->rb_left;
+@@ -704,6 +718,7 @@ static void rbtree_insert(struct gpu_buddy *mm,
+ 
+ 	block->subtree_max_alignment = block_alignment;
+ 	block->subtree_block_state = block_state;
++	block->subtree_has_dirty = block_state != GPU_BLOCK_CLEAR;
+ 	rb_link_node(&block->rb, parent, link);
+ 	rb_insert_augmented(&block->rb, root, &gpu_buddy_augment_cb);
+ }
+@@ -1247,96 +1262,155 @@ static bool block_incompatible(struct gpu_buddy_block *block, unsigned int flags
+ 			     gpu_buddy_block_is_clear(block);
+ }
+ 
+-static struct gpu_buddy_block *
+-__alloc_range_bias(struct gpu_buddy *mm,
+-		   u64 start, u64 end,
+-		   unsigned int order,
+-		   unsigned long flags,
+-		   bool fallback)
++/* Does the subtree at @node hold a block the strict pass may take? */
++static bool range_subtree_ok(struct rb_node *node, unsigned long flags)
+ {
+-	u64 req_size = mm->chunk_size << order;
+-	struct gpu_buddy_block *block;
+-	LIST_HEAD(dfs);
+-	int err;
+-	int i;
++	struct gpu_buddy_block *block = rbtree_get_free_block(node);
+ 
+-	end = end - 1;
++	if (!block)
++		return false;
++	if (flags & GPU_BUDDY_CLEAR_ALLOCATION)
++		return block->subtree_block_state >= GPU_BLOCK_MIXED;
++	return block->subtree_has_dirty;
++}
+ 
+-	/*
+-	 * This range-constrained search hands back the highest/right-most
+-	 * address that satisfies the request: the roots are seeded high-to-low
+-	 * and the right (higher-address) child is descended first, making
+-	 * top-down the default placement here.
+-	 */
+-	for (i = mm->n_roots - 1; i >= 0; --i)
+-		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
++/*
++ * Highest-offset free block in @root with offset < @limit that the strict
++ * pass may take (any block when @fallback). Subtrees without such a block
++ * are skipped through the augments, so this is O(log n) per call.
++ */
++static struct gpu_buddy_block *
++rbtree_last_range_block(struct rb_root *root, u64 limit,
++			unsigned long flags, bool fallback)
++{
++	struct rb_node *node = root->rb_node;
++	struct rb_node *prev = NULL;
+ 
+-	do {
+-		u64 block_start;
+-		u64 block_end;
++	while (node) {
++		if (gpu_buddy_block_offset(rbtree_get_free_block(node)) < limit) {
++			prev = node;
++			node = node->rb_right;
++		} else {
++			node = node->rb_left;
++		}
++	}
+ 
+-		block = list_first_entry_or_null(&dfs,
+-						 struct gpu_buddy_block,
+-						 tmp_link);
+-		if (!block)
+-			break;
++	for (node = prev; node; node = rb_parent(node)) {
++		if (fallback ||
++		    !block_incompatible(rbtree_get_free_block(node), flags))
++			return rbtree_get_free_block(node);
+ 
+-		list_del(&block->tmp_link);
++		if (range_subtree_ok(node->rb_left, flags)) {
++			/* The left subtree holds one: take its highest. */
++			node = node->rb_left;
++			while (node) {
++				struct gpu_buddy_block *block = rbtree_get_free_block(node);
+ 
+-		if (gpu_buddy_block_order(block) < order)
+-			continue;
++				if (range_subtree_ok(node->rb_right, flags)) {
++					node = node->rb_right;
++					continue;
++				}
++				if (!block_incompatible(block, flags))
++					return block;
++				node = node->rb_left;
++			}
++			return NULL;
++		}
+ 
+-		block_start = gpu_buddy_block_offset(block);
+-		block_end = block_start + gpu_buddy_block_size(mm, block) - 1;
++		/* Climb to the next lower ancestor. */
++		while (rb_parent(node) && node == rb_parent(node)->rb_left)
++			node = rb_parent(node);
++	}
+ 
+-		if (!overlaps(start, end, block_start, block_end))
+-			continue;
++	return NULL;
++}
+ 
+-		if (gpu_buddy_block_is_allocated(block))
+-			continue;
++/*
++ * Return the order-@order block at the highest @req_size-aligned offset in
++ * [@start, @end) that lies inside a free block, splitting as needed. The
++ * strict pass only takes free blocks wholly inside the range whose class
++ * suits @flags; splitting a block that straddles the range edge is left to
++ * the fallback pass, which takes either class.
++ */
++static struct gpu_buddy_block *
++__alloc_range_bias(struct gpu_buddy *mm,
++		   u64 start, u64 end,
++		   unsigned int order,
++		   unsigned long flags,
++		   bool fallback)
++{
++	u64 req_size = mm->chunk_size << order;
++	struct gpu_buddy_block *block = NULL;
++	u64 best = 0;
++	unsigned int i;
++	int err;
+ 
+-		if (block_start < start || block_end > end) {
+-			u64 adjusted_start = max(block_start, start);
+-			u64 adjusted_end = min(block_end, end);
++	for (i = order; i <= mm->max_order; i++) {
++		struct rb_root *root = &mm->free_tree[i];
++		u64 size = mm->chunk_size << i;
++		struct gpu_buddy_block *found;
++		u64 offset = 0;
+ 
+-			if (round_down(adjusted_end + 1, req_size) <=
+-			    round_up(adjusted_start, req_size))
+-				continue;
++		if (!fallback) {
++			if (end - start < size)
++				break;
+ 
+-			/*
+-			 * Strict pass: don't split a partially-overlapping free
+-			 * block; rejecting its child would strand the split. Let
+-			 * the fallback pass consume it (either class accepted).
+-			 */
+-			if (!fallback && gpu_buddy_block_is_free(block))
++			found = rbtree_last_range_block(root, end - size + 1,
++							flags, false);
++			if (!found || gpu_buddy_block_offset(found) < start)
+ 				continue;
+-		}
+-
+-		if (!fallback && block_incompatible(block, flags))
+-			continue;
+ 
+-		if (contains(start, end, block_start, block_end) &&
+-		    order == gpu_buddy_block_order(block)) {
+-			/*
+-			 * Find the free block within the range.
+-			 */
+-			if (gpu_buddy_block_is_free(block))
+-				return block;
++			offset = gpu_buddy_block_offset(found) + size - req_size;
++		} else {
++			/* At most the blocks straddling @end and @start miss. */
++			for (found = rbtree_last_range_block(root, end, flags, true);
++			     found;
++			     found = rbtree_get_free_block(rb_prev(&found->rb))) {
++				u64 lo = max(gpu_buddy_block_offset(found), start);
++				u64 hi = min(gpu_buddy_block_offset(found) + size, end);
++
++				if (hi <= start) {
++					found = NULL;
++					break;
++				}
+ 
+-			continue;
++				if (hi >= lo + req_size) {
++					offset = round_down(hi - req_size, req_size);
++					if (offset >= lo)
++						break;
++				}
++			}
++			if (!found)
++				continue;
+ 		}
+ 
+-		if (!gpu_buddy_block_is_split(block)) {
+-			err = split_block(mm, block);
+-			if (unlikely(err))
+-				goto err_undo;
++		if (!block || offset > best) {
++			block = found;
++			best = offset;
+ 		}
++	}
+ 
+-		list_add(&block->left->tmp_link, &dfs);
+-		list_add(&block->right->tmp_link, &dfs);
+-	} while (1);
++	if (!block)
++		return ERR_PTR(-ENOSPC);
++
++	while (gpu_buddy_block_order(block) > order) {
++		err = split_block(mm, block);
++		if (unlikely(err))
++			goto err_undo;
+ 
+-	return ERR_PTR(-ENOSPC);
++		/*
++		 * Fallback: the child holding @best. Strict: the higher child
++		 * unless its class does not suit, as the old walk did.
++		 */
++		if (fallback)
++			block = best >= gpu_buddy_block_offset(block->right) ?
++				block->right : block->left;
++		else
++			block = block_incompatible(block->right, flags) ?
++				block->left : block->right;
++	}
++
++	return block;
+ 
+ err_undo:
+ 	/*
+diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+index ddc4eca84175..6abc66125935 100644
+--- a/include/linux/gpu_buddy.h
++++ b/include/linux/gpu_buddy.h
+@@ -141,6 +141,7 @@ struct gpu_buddy_block {
+ 	unsigned int subtree_max_alignment;
+ 	struct list_head tmp_link;
+ 	bool has_clear;
++	bool subtree_has_dirty;
+ };
+ 
+ /* Order-zero must be at least SZ_4K */
+-- 
+2.43.0
 
