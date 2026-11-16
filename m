@@ -2,161 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E51E7606A31C
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 09:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACC2A606A31C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 09:02:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PWN/Q3US;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=hgV7OXX9
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=M+Rh0T/P;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=S81pg7CB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA0AE10ED5A;
-	Mon, 16 Nov 2026 09:02:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76D7510ED5A
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 09:02:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67F7310ED5C;
+	Mon, 16 Nov 2026 09:02:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5150710ED5C
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 09:02:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794819744; x=1826355744;
+ t=1794819748; x=1826355748;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=/3wpxeoBxigG+ir+nNfkb+4Ur3/VQML3zvBZfrTyo9s=;
- b=PWN/Q3US9vfNmZQSqQU6gT+y1kTFsIaxGVgd6TFWMoh5tjf/44W8oQui
- Hk98rIHlhq8JoJdLoJSiqAzFq0sCScVsj6/K0OJQckazb9/xIqTiBh9qt
- /X2X/NsY9Lt5KFJglD+w2NlLO92GbFwV6wLBrSrtxacTDkRljXRR8bHFm
- fiEhWhGoVn+WRa3pX7+wS7sud954tKXSBNxgOn/N3qrUhVpKaYQbMnT4y
- qhZFlU6xXyq6i4GjyDxj7PxFA1KDnx8HPPIjah2X9mbOjRxLk1kRluWzi
- 8UagGVXTAoKZHWrn9EWsBVXA8D1YvMESSg34VpbgzemjkUNcs7GhEg/lU A==;
-X-CSE-ConnectionGUID: 24GfKcUeRVOstZGDyNtshA==
-X-CSE-MsgGUID: FXLf98W8TFSIFpdFOVGGFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3456650"
+ bh=5XHn1fErZ0sqhFDPMqeeadTkMNYPAcV4Qq2c6mncS9E=;
+ b=M+Rh0T/Py0NQ6OOTgsBHa47E/9L37jG58ey3iARXPyrMX6Se99Lk0u75
+ d9H6lYCT/2eTkzDJgD380PNop9mKvUX3RXyq7XvP0sL+tWmCEWI9NqH2S
+ ge4L4dLnLl3Ud0SRLWKXRhF/YwRmdoeEbbJV8BKpNh1pIoZYNATZ6m+3o
+ KMBU1sHIOBbNcR4Mbcd4gwmvJrb4JCLdKCedi0Ed9iUg/1bIHhtS+OYl7
+ yCp6R6VkOsDFNcMso1JQIfBnQl1edJqRBr4HBVKVRm3ooQmJ1qctCPY+A
+ rPaQYMVGe0ZjDlcbx+PCXANLalgMfFWv47BYHkTR9NG7eybPCQdMn3R8t Q==;
+X-CSE-ConnectionGUID: T/YjXMZsRu+D3YGJU8plbg==
+X-CSE-MsgGUID: PNqjYWYIT0iCVSHoOX43sA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3561111"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="3456650"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:02:17 -0800
-X-CSE-ConnectionGUID: Cgyyuc3WSxa6FSzDq/DVug==
-X-CSE-MsgGUID: q/u6p/yqS3O4XzMs81A4zg==
+   d="scan'208";a="3561111"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:02:18 -0800
+X-CSE-ConnectionGUID: 6CvsNGqGSi2M5vaBtW6d9w==
+X-CSE-MsgGUID: ly2ZGMQgSJ+rlu6ezwmZFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; d="scan'208";a="10030857"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 01:02:15 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; d="scan'208";a="11275698"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2026 01:02:18 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 16 Nov 2026 01:02:12 -0800
+ 15.2.2562.56; Mon, 16 Nov 2026 01:02:13 -0800
 Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Mon, 16 Nov 2026 01:02:12 -0800
+ 15.2.2562.56 via Frontend Transport; Mon, 16 Nov 2026 01:02:13 -0800
 Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.26) by
  edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 16 Nov 2026 01:02:11 -0800
+ 15.2.2562.56; Mon, 16 Nov 2026 01:02:13 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F5ke2psbwKxYwPA9tzci11RruUsvKgWUaCAq10GllsSqyZ9neXGgZGa7WUguYz4Gxl3IgJaHxX6eJajRE28Kr0rpU9WUiRPF95o2n4/sXPTH469iHjRNLG80yPT6ia8qX+uoo+TwkjZK+m+v/WQJftrHl4Beaxl5vsAUDS5Zen7uv5KxxUNYGSqT+gW97jKqAa7pkG26RfWjO3kE+IcNJuk3iKew6b6Z9Y972/d+aUdknnHA34EjiXx1BZeIwqD8xlFyVGfkSgv/xffh7VSThlHiGpWiHYBOx9hepj08wl9l2nYKWoWnDZ0fGExpgyoNR6rfN4JeynPleIGX/XfpoA==
+ b=dij9sxS+pWuuQjLdmpIFEI5IXUtFBLWxKVzh1jVEA3fOVGn6r53iZVVh+lHxl9HGsErhIME0Ls8VPHXBSAypteJG+G+UOzyC2Lt+2GkOvrmbhUKzs74Ju68Qyubyl8RfYRWPYPW80UebqCDEK4WRr8qZnTGNop+hVswwZYWkRK0LLKRkAcgUMJ4oTokUKhwZpewQ0WHKE08hqDC0CqXb0b551k/fOFFtRifpxHpINTcdf5v7xWqLahoA/TDOOAd5ibRe/ZXlGiGHgt0tl+X8dGoiWOJIitml7hMLyA0i5hoAj2j/OS8fiAX7xkX1U3h3KYbPXlFqxIC5D1n/jEVndA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YolO/r/TLMRyK3XWjlMj8+AL7OGE9PD9G0C/8nYGIQY=;
- b=NC6IXZeLs+sohEJkP9BhLpEr95lNeAFK8VWQOHJRPQ5Dg+XQaeeyfEfreIKYGAXmgDygbcrX2DxYU74DhdprFRpVze82sngBt8/qaBL88kL5IkvE1a6bcTp6JVyj5QGFuPzcQxt/jDjbygWWGRA2H9eryoK4KM8M4LUt4WMlh+gkslypdQWex8qV0wAe1ZzxtycjDjEbMur1cq/cL49APZ3VX82anO79FzqrbP1oXnrXU5TobQmxGBiyGu/JCRmUbOFzs0PwqUJvAPAhB3pfVbF7XKt3v6FydbG0WxGzvOmFNVkqmATyebRIPWE+N+WKfi2ilLwuhjljKVfqT9uByw==
+ bh=RMuujwBZXhE/bXhCHILGdH+dF+mAhgIqCD4896xjP1I=;
+ b=ZMrCKNkMj5/YhKswWYcFc8kqkwJIAE5QgijpAa4f0ABJcOOX0hMYJspnHlyBcw0zgFlkOlhOn0q8ekek6MUtoaQ9iLDdb7GcrF+LACFIOUgYW8QLAo6CoQ5xgrfy3mQFTiYUPN4nYKB2W1K1RZfUGtFr49Af1mB/2p4o+ioLr73pIR6lryLlvFN3zla4Ll8RWNP1yhajJViaybhBtKugev3xlGCKOiQ2b/othwyu2fhnC2TQYWEgs0t+1pm3BQIXKIFBIHQxiuyfSZUVMF/yeCK6FyAdWTMgvMYcJL+ZgmJJ+X1gsYydbqURDuSP27yXpIacTGbCKJrg25Gb5FbdRw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YolO/r/TLMRyK3XWjlMj8+AL7OGE9PD9G0C/8nYGIQY=;
- b=hgV7OXX99AjF7CGrN7OlDH8eck646yEnciHS412Au2qFrG65fR66nvd5piK96cN4OLrHeVje2p9RjYhPZXmq/FzkqEERz3N7m1s2Vg7m3WXPYGDyWTUV2Mo7cnzbf/T6wxY4zZZU8X4zlM+lrKPzdSgpqh+b/fyLdsTA5LiigFE=
+ bh=RMuujwBZXhE/bXhCHILGdH+dF+mAhgIqCD4896xjP1I=;
+ b=S81pg7CBQ+w9r2CFSyrJVrpLI1bFAfeq1UfgNH93UFsVezDA7Jy8Cfxmp4ttKWvGhPsajEvGvTJ7G9eiadH2R9aoWQe6UEE4fBfMpDXlISusLTAn4l9QPft5/as0A6cHgUBC5i7iZALwGYnY0GPjYKckkkQVrKJka04fTJgR6Lw=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
  by SJ2PR11MB7620.namprd11.prod.outlook.com (2603:10b6:a03:4d1::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 09:01:19 +0000
+ 2026 09:01:46 +0000
 Received: from PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
  ([fe80::42df:f465:90a8:df92%3]) with mapi id 15.21.0615.012; Mon, 16 Nov 2026
- 09:01:19 +0000
+ 09:01:46 +0000
 From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
 To: <intel-xe@lists.freedesktop.org>
 CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>, Tomasz Lis <tomasz.lis@intel.com>
-Subject: [PATCH v9 3/5] drm/xe/ggtt: Split GGTT into usable and shareable pools
-Date: Mon, 16 Nov 2026 10:00:51 +0100
-Message-Id: <20261116090053.2466938-4-piotr.piorkowski@intel.com>
+ Maarten Lankhorst <dev@lankhorst.se>, Lukasz Laguna <lukasz.laguna@intel.com>
+Subject: [PATCH v9 5/5] drm/xe/ggtt: Add KUnit tests for usable and shareable
+ pools
+Date: Mon, 16 Nov 2026 10:00:53 +0100
+Message-Id: <20261116090053.2466938-6-piotr.piorkowski@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261116090053.2466938-1-piotr.piorkowski@intel.com>
 References: <20261116090053.2466938-1-piotr.piorkowski@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: WA2P291CA0017.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1e::17) To PH8PR11MB8039.namprd11.prod.outlook.com
+X-ClientProxiedBy: WA1P291CA0012.POLP291.PROD.OUTLOOK.COM
+ (2603:10a6:1d0:19::9) To PH8PR11MB8039.namprd11.prod.outlook.com
  (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|SJ2PR11MB7620:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6a6e4a30-9e92-4374-18cb-08df43c02db6
+X-MS-Office365-Filtering-Correlation-Id: 247c2af2-dcf5-4d14-fcbb-08df43c03df4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|22082099003|18002099003|6133799003|261009223027099003|56012099006|11063799006|261102123227099003|261102130727099003|261028144727099003|261026121527099003|261026140227099003|261026130827099003|261021123027099003|261022105027099003|261022113327099003|261021121427099003|261022075727099003|261021135927099003|261021130227099003|261022115727099003|10067099003;
-X-Microsoft-Antispam-Message-Info: ryYUKnepd9iL+ONFutBdp7jRcGuv7yBgOmLty9RtAdC3Cr0hPMRRs6+dHECLP8SPPt53wXsMKhDW7uv7EuJaCDwCG4xlv2al6JKY4/KHzBcpZX3hPV7eyFjXB00xo3Kgl7G//RHMXw2yrkk0xHex6E4jGxP/LffYLWsRwqtLtxNF8lOehLShDz0a2u7/fYoklC3dRFWXUITRcgpQya08L53eQ6eCWhZPBX1o2Aw2xgO+1IEjEHt2aEtoVVJzC5nhBC8hJxaTlTN9chcfpyJ1r66jhHENfne8PqOxJz2T2cq73fUE3OTKxFfC6n6afhMRl9+ULMa50S/yOkZqTWJ8U9kUGxMkFsdxr9OlgLw5mVjGY7Fym1tgncg1+9aPPPXzTqLiwJvRiJXU82QnqN/rf7WbazdURFwmVhfMf+5mM6HDNusg3uM0IYvEmfu803KOp3npWYRgjVqpRjJ3jC4fvbUbmmt7QytQiOq7oaDGDEoX8A4djU5JmdYYfIj//C1VcEYEdXN8rCidFDvB8pYe0CvujZRtjK9O8vXlGlEB7+qtpeb4tZSUzUnarp62fd8xYazY7Ck53nSqskcB0yvD4wT0PqMD01XV28FiVru8RleShh2bPPdrANBVN4NcuqjkMNmVspC8GntLcP7aLbmvqKpvkNpkMUBF8CzUgb6H2Yg=
+ ARA:13230040|1800799024|376014|23010399003|366016|22082099003|18002099003|6133799003|261009223027099003|56012099006|11063799006|261102123227099003|261028144727099003|261026121527099003|261026140227099003|261022105027099003|261022113327099003|261021121427099003|261022075727099003|10067099003;
+X-Microsoft-Antispam-Message-Info: Tf7PrZCHUx645n+xtdBZ86W3sNS/rH4Ek8OuF7ZZzCtrt+8OjFU6xEMwuFQmaxP9GWLNwVyp99DLQ88cBkv6Q9aIxO3oEcH8IMqOmnTwmZIl+ViMWL5jCs4kUPjMfOjllSf/B9ztZstid5ccY+nfFfQtkzylNvUIkIHMfBLtbimn+Bx9SFpDEpAHcMvn9Zk7mTMBj2BCO/v1S+ezx6T4MoVH/rDaJJ/2Xyjh6MYfVlyNbxWCCQKW/LzNNimrxMXVEXLWPha3UBtNAb3hTzbVe+9wvsUnH/bPAA5Ye7a4mt2+PUkgeDvCaCA3sSfEohbyw8K7duKQi9HVst/EDZPLCZZv8efJn5nI0ItgLH+yk9Vo8hqlZ6ji6kII9d8/RwVk/W4HvsiegBsPTRp/T7ApMS9ojSJoguzZ5plM0fH+nNN7Zk2zV1rQLiihJj3RjJzOzX5bgiLjMU7PGkHNY4qI2jQXXdCqaAo7YbNzcDLNZXQo5y4s/CXSRRCZUh6VR3IotByeSr3xUvlyAJ2LmhiFkoFjgVooMNQlo2PL/qHJt/JSfzy4d4qrvpe/hyCFiBAOT73ZYofhzNVX3qAV39NWgredwsNNQj3u9jjmyd9NVJpYRNL2QSvGf+R9Xjo7wYx09z1tZpXkDID4h/0BCxGgL6krO5u9iAaVP/sjx/mt43o=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(22082099003)(18002099003)(6133799003)(261009223027099003)(56012099006)(11063799006)(261102123227099003)(261102130727099003)(261028144727099003)(261026121527099003)(261026140227099003)(261026130827099003)(261021123027099003)(261022105027099003)(261022113327099003)(261021121427099003)(261022075727099003)(261021135927099003)(261021130227099003)(261022115727099003)(10067099003);
+ SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(22082099003)(18002099003)(6133799003)(261009223027099003)(56012099006)(11063799006)(261102123227099003)(261028144727099003)(261026121527099003)(261026140227099003)(261022105027099003)(261022113327099003)(261021121427099003)(261022075727099003)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TVl5L0NHNFNMUTNEcEUvZkxhSlNHNThZQ1ZZWUNnMmdIaXlhNkYwakpkVVF4?=
- =?utf-8?B?UmEvc2lac1RPTStOWGtZby9DMWM5ZEx5ZmcyRXFBT2hrWnFxaVhWdUE3cW1s?=
- =?utf-8?B?RUJTNk1jc2M5Wm1yRW1HTXYwelQ0aTJEUlFTUkFCRHVOYmlsZHRIZ3dleTRT?=
- =?utf-8?B?TUZ6c3gzOTBpMkJKREFBbFk3b3hIRFFOT3l3SlVNVmwvdkoxSXBHa3FFNEwr?=
- =?utf-8?B?Qi80Yms3ZlRaS01xYVVmem1qNUNIYllHNHd5UmxPMGpUMzVEekN4TTJJOU5W?=
- =?utf-8?B?N2IrczVCRDhvU29ZUk43b21PRlRNMlM0Zk5DZ0wva0RBUHhiYS9iRlZPUk1n?=
- =?utf-8?B?VC9XVGRrUDhGTjlkdlBSeklLSFVyUEtjNmRkUGFQanN1QUdNV0s0N25VcWFl?=
- =?utf-8?B?ZjdSaERCVGNRUll1Y2NqdEhHV3ZXNkRndFVLcktYK3pTSm1GSk5QT3dSalN1?=
- =?utf-8?B?ZTlVOUFhTE5iN05MSk0xMG5DaWZUOUV4WGFQb3Nua1NTcTl2MGtmbDRiMWZa?=
- =?utf-8?B?YzhQeTgrTUdNRXYycFNwaXltNHFwQ202ekNORWxGZlRSNFhGMExHMHQrdXRZ?=
- =?utf-8?B?ZXArVWlob05vWjUzVTltbjIvZmR3UktKeHpkcldlMm1kY1h5eWFJelo4N2oz?=
- =?utf-8?B?eUpsa1ZmcDYvYTlFUU03VE95dEk4MGJFZnNHVTgyQnhwTlptWFpvQ3Nwalo3?=
- =?utf-8?B?UGVDaDhVUVF5NTFJWkpWaGRmNXR6YU40OXJwM3BtUGpFK2prRTcrSjN1Mlpt?=
- =?utf-8?B?RU85YUJNL1IycHZ6OHhJd2kza2R0Q05CTGxZLzNiM01sOEJlcDhrdFE5WWxL?=
- =?utf-8?B?VFFqMG1Od1JGT2pqS2p2WTc0NHVTdUJJMzZqYS94U1UxdTBsaDdmbkZuME9H?=
- =?utf-8?B?b2l1cnh4Qmk0YkZHZWQ1dDZnNU1JWVFCcmd1ZlNMVWlXZVBHdWNOMVdkSjBi?=
- =?utf-8?B?SEVNaWhZSGhYVjUvUG1ZZnNRN3lEdDQyNzNMRXY3K0RRWUlzWlZUSm0zQUZr?=
- =?utf-8?B?U3FVQStXVCtLWEpmVENEVG5yTENwTXJUbzl3UWVxR2RESWhMbHBGRy9OVWhG?=
- =?utf-8?B?VDNCRXg4M05VVGFKL0lHa1h5cGI4Nm91cCtjUEVxT05tNnpFRmZ2bkFTcE1S?=
- =?utf-8?B?OUNsMHFQM3JDN0NERzUvUlZKa2QzOHN2cVJhdVJaNDJleUtiaXgvQWptd0sw?=
- =?utf-8?B?VlpGTWVkUHBoNGRTMlJmWE5YclNQSUJqSjlkZ003a1BUK2dPWEEwVU55bUlR?=
- =?utf-8?B?ZGo5TW1pbFcwQ25sclZEZFlKZkk5cG9GZTQ0aEQvcGVZdGlrTUV4bllPaTFk?=
- =?utf-8?B?alQrN1AycTJHeFQzSWZEQTVoazU1ZFRCYUpVbUUzRktLaDA0NG85TWsrU3lW?=
- =?utf-8?B?QUx6NGQyR0x5cWlpc3Z1aC8raHB5TW9MZWNFOVhMVGNEYmU4dlpsait3SzJ5?=
- =?utf-8?B?NTFXdmJycVR5M1V3T0Nmd0lJSzdVM1Y2Zm1BQm5hQmdyM3NFczdmZTh3c01w?=
- =?utf-8?B?cTBXNFNNRG1Pb3VIbTk4RmZEYXJMV3l0ZjJSWEdJa21tbVA4aEFTczhnbmZ1?=
- =?utf-8?B?bG9xUlY0a3NKQnJkeTNpK0xJZCtucVRxN01Zc2pNdFZZbjQrcURmVERINHZm?=
- =?utf-8?B?Nlh3R0RTUTg5SkhPSWJXb1llMEU2a2sxNkRzNkU0VkYvSm5LSnNUY3BTSUhF?=
- =?utf-8?B?bTZhdlRLR3RJZG5CYmUvWmFxZjQ3OEI0YVh3WDV1am9wOUZVc3lUem1jQzQw?=
- =?utf-8?B?bjhTRVBoNUpLbDh6eU5ENEkwczFQMzZZenMrN1dmMXpsYm5zZmdQSGFXSzJK?=
- =?utf-8?B?aGhpS2lsVEhxUlhHLzBCYVhGOERRclQ1RjFGeGxrUVU4VVg2UkZQcDkrcisw?=
- =?utf-8?B?anArck5tQ2w5L05waEZaMkpSdmNBUU01VENhK2lHS05kNTBwSVhvM1JPazNU?=
- =?utf-8?B?ajhaMnJja2prampUellMZEVZYnJJQTgzaXdQZFFGYU8zVUkwaEhXSGdNbDJK?=
- =?utf-8?B?bmFSaUJGelJ2Qk1yN3RFdFZFdmJCT1pVSWFtaEgvcmlpckphL0RiM251bFMw?=
- =?utf-8?B?ZS9GUnY0MzBkN1N3SGEvNVNBRnpzYlZCUHlnZW5xREtldEd3OEpCd3NldUxa?=
- =?utf-8?B?N3diemI0bW1WbThSc05RZ0dTeHpia1FBbXdzNFkvYWhlU21yU2ZvMnlpRmhz?=
- =?utf-8?B?YzZVUUFTMkppUU5UbFV2YUp3bHlYMHJNMVpqanY1WU00V0ZLM2poYktmNS9q?=
- =?utf-8?B?RUxKUVJkNDhvdWZQL3I4ZTd2M21vcG00M1NSRTd0WnFBQVVMc25NdGxYYVA4?=
- =?utf-8?B?UXNYOFdUNGx2d29VNnE3UU1KeUVqcWdwbFg5U09jeUJGSVlhNUxqQlh1NkVZ?=
- =?utf-8?Q?/jaPyR1uwSW66lZc=3D?=
-X-Exchange-RoutingPolicyChecked: O1LfYl+umkuhaduySfqGL0gPhHcrYfUJwe+V4LoKuWsOJ2CCGQfMJHZAvM4pAHBVvPQkMp7LMCaZx5f3feLv5Y5lgtBfVUi+k3XH8mMPBAiIUGb7ZjYwMNtJRtU1cpB7NY8spmqXi3Mfs6VgSU/lDpRQka7KbGUHjk8ZumtlaPiAjL9oybWZS+k+b5dGX3V9Sh3e906O1IawYWwlfssKrcf5q8O5xSXlBTy5wO8ofUTVfbwi+bjaRK4zuRpmnvXTAiIVikgOMvZK3JdxlUWzDKBrHJr6PECwqwBGWlwncIixOWNW1ad6e+DCQM8VK2QVp8YTWBDUEqqtWpi7F+qSiw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a6e4a30-9e92-4374-18cb-08df43c02db6
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZWNqalBSQjBBamNHaE5qMkVYTDhhWWJESmlUTG56Q3BSN084aHZxQnE3S2N3?=
+ =?utf-8?B?OVFUbW92R0Y3cTRUUlRHdjRkaklLQitmNWw2MXVaNTAwMUV6VGZWaldiVUtT?=
+ =?utf-8?B?OFhsR1E3WHRscm5oZU1ISzA2eUpYbnd4aWI0TUcwNVc0M0dsOHZwUjVzUkFm?=
+ =?utf-8?B?N1lzRWZod0t1QUg5eHRid2xrS3RDOHVhai9zb3dtOGhPUDdCZkNTMU5ua0N5?=
+ =?utf-8?B?cUF5Q3ZRZjZoRVNSb3kwb29aTE9uRFZoQXMyajc2Ym4wVHhuY2pVSzR2dWxL?=
+ =?utf-8?B?UUJCd0JGK2hRMS9xUkJTT3RPdWRQTXcxWnI3MTFnNVZ4Y293a2NwWDRDK01p?=
+ =?utf-8?B?L3BKN1IwWlRuK1JRbnhHdkRFMVp6dzFnRDNCUWpKSHpxZEF5SXVSTUo5T20x?=
+ =?utf-8?B?TUtjNnIxUStORnRvWnFJY1h4ZWFTWjVDdCtBRWEraEpzQTVZanJzM1dmdWY5?=
+ =?utf-8?B?eEJUUEhEWm0xUExxcDkrWFhxQzV5NFJ1Wkk5L3RJVEVDYnNvaGdqQ0g3Mmgz?=
+ =?utf-8?B?eXFwN1FTRmpINnBoNFB2WTdKYXpEOFl4bXkrNjE0cjV4ZzE4WTlDTmZiT0hB?=
+ =?utf-8?B?MnJPby9DTy9oMGpyY3o2YkRDNnN3NUc2emtXUUNHYm92ZytrRko5Wmw0cTU0?=
+ =?utf-8?B?ZEJnWHpQOVI1SG9rMDNiKzdhMzQxRnZRcDV4NTh0V0dZNkVKLzNGMmZwS1B6?=
+ =?utf-8?B?RHdNcFg5NytCazN5RS81UmtFaEMxUEhha255ZkRLWmFVa2ljcmh3SDRJUldr?=
+ =?utf-8?B?V0Q5UVYra0R0eEkxQ0VlYUQyK3p0OHBFMW91a2h0Qmo3ZWdlNVRWekwvZm5z?=
+ =?utf-8?B?dFk4K3FzazRPVUdXNG43SzVqYk9mNUZYZVBaVlFtcWY4Rk1yZFZxL3d2Q0RB?=
+ =?utf-8?B?bkk2QTR6eGhGNFhuWkRtY09BSW9CS25PM2pIVGxhakJhZ1lJYitrZHMyQnRL?=
+ =?utf-8?B?RXFEN3pxT0d5cExUNHpONEZQa0lBQW11dDNnRW5ObkcyLzV0MlhDKzJzSDhX?=
+ =?utf-8?B?dExSV0Nobjd2TnJ2b1luUDBTaFRiWDFlcm9heEVjcWlSbDRWV0pTa0pIRDQx?=
+ =?utf-8?B?N1haeVpId2NPUmtidTZPdnhXRG1LWElBekNSc1hKa0k2cmp5b0VpdmtZVnNE?=
+ =?utf-8?B?bEYwa1lUN29jaVBXU1lHQmpoMGc5TlVJQStQTzZ6Y1k5RWhxTWFQNUs2YlRo?=
+ =?utf-8?B?VDVBTkpxSkFHajFUdS9Sc1NoS1NDazl1L2VOeU8yQW92NjdGbml6MjJEei9S?=
+ =?utf-8?B?TEVDUnFHMnNReFhRUmdvVWRhWE9obGN5TGhxRVp1NTlJdld4UUN5YmpGNEZK?=
+ =?utf-8?B?SXJ1STkxSXNsSDhLblhKOGRTckdCeDJ6WWFyWmlSUDVNeElLcTArZ3pNNnNv?=
+ =?utf-8?B?V1Y1d01WVmp3TnFFV3N6blhHeVFvTkY1S3VMcjA3Q3VZREMxcXlXVmUrVmx2?=
+ =?utf-8?B?OVF3dFBIcE5tTEUyWGRZK3FvNWRoZ2NBRm5kRWtLVExqNHZzdnRpQ2dJbEpT?=
+ =?utf-8?B?aVdjS3dndnkyTFcvYzlSdFRBcGlYMHdGZSt5NW9tYXdnUjZmZ29ML3NFVWYv?=
+ =?utf-8?B?anNvMHRScDFYOW5YTEVHdDFabytjQzNheDJHd21nNGo4d0ZNZHVNYjhSUjg4?=
+ =?utf-8?B?N1VxQW1aZWVrdnZzZ285UnFFQysyTWpRTHlNS2UxekVtNGdOOUJiZ1gvRTZF?=
+ =?utf-8?B?Ly9aZGVLNjloeHBCNUJPcHE2bTBKTFBHUGlRSmVJRTBkZnpUbk9Uc3dDZ0hR?=
+ =?utf-8?B?L1ZUT2xsbVpyYXJZVmdxbmdTVUhURDFpelVzdHRwVC9OeXFERlNTMUZSNlI5?=
+ =?utf-8?B?NW5LTE1vdTBxb3owVTg0MFFEdVg4YWo4SXcweTcrUHFycHNuUVZtOTZ6RTF4?=
+ =?utf-8?B?WUpqMVpxdlJiM0VNak5pSjZ2c3ZRSzJLd1l5bC9DcTdhVy9WaVUrZUpOc2lX?=
+ =?utf-8?B?ajdLZVhuQmxFaGlJekFRT1JSWUozYmVmclRTUFowRkNPbGJMSzRzSWtPWTRW?=
+ =?utf-8?B?ZE5LMzYwYnBsMWx0bHlpUURaWW1LUUROY0dIblBDY3pkVWJDYkxKVElGaWdK?=
+ =?utf-8?B?RlJKaFhFS01DREU0bVJTVk85VUluaWFRL3B0ekxVNXFGK2xUQzdyd3J6Y3B5?=
+ =?utf-8?B?OWpwUEVZN0NHcWVtdmp2eHJnL05jTEpXeHpJUFVGYjFiK0J5RVNuZHI0Wm43?=
+ =?utf-8?B?YnYrTzRYWWppWEs1N2o3VFZteHVva0UvbHBEWGFKeW9jdkw2MUVBN284QW55?=
+ =?utf-8?B?d0VuelN6amIyYlM4UloxeEJ4Q055aVVLTWVUL1AvNG8wcTNLbDhYV2Z1ckdY?=
+ =?utf-8?B?TUhCT3RJZVUzWmU1cnNCRTN4dk80cUxPMWxpcisycGhQb1E3MWFzVXI4Q1gy?=
+ =?utf-8?Q?c6+QxtQCkJWc/zF0=3D?=
+X-Exchange-RoutingPolicyChecked: BvE1mEt4pWzl4wxu5VJZBtuoKXNEcwI5DL0pqWL/hm9zeTIsHTpqjHkjMYaamYIRmYXfJTL0Vo8XPn48Umau7j3RlbFaPaXUDn8ibPEEI2/+gWsW9Wehb54ePgaN3VcWRXX477LOcZ+KJDtC+e2ErEHgcruv/RifUQljkn7gP+OoguvfcWyXTW8qxM4u9H4KVYfcvZJliCIpuEtinTIvHOg2JncpvIHtbovs+1HfQh6aXUMYj8jJ3uxAlfvyNJj/HE2otJxyxkVm6KOfEr2h5zK/1ejyDn1d7rFD0Rf81+tOB1ynH4C9kIxtwNAjJ/K3+5IhfDxWBbJEyzvYqVg16w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 247c2af2-dcf5-4d14-fcbb-08df43c03df4
 X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 09:01:19.0590 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 09:01:46.4423 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: X44osPRrVuswvAqFV+WpnPmA65g7ebsrtLlO2leDAZX0qlma4AQGt83t8LYZzFTH2vN5egQPAVTxwDo/033bCTfgY/H2wb1R4IFPU+wz0Ok=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 07X7zMINXDkdtKOWn5kv2hVSm561D8JhnQI5RTlaWClGZjeHSWDORnaYvCPBV1WgN51f7nEIN2D2I24omcnY5Wu//sEhw1WnnMVIIa8MFXk=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7620
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -178,348 +179,399 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
-Driver-owned GGTT allocations and VF provisioning currently use a single
-GGTT pool. Split it into a usable pool for driver-owned allocations and a
-shareable pool for VF provisioning.
+Add GGTT KUnit tests focused on the newly introduced usable and
+shareable pools.
 
-The pools are separate logical ranges and may overlap, but allocations are
-limited to the configured size of their corresponding pool. Allocate from
-the bottom of the usable pool and from the top of the shareable pool when a
-shareable pool is present.
-
-Add separate insertion APIs for the usable and shareable pools and use the
-shareable one for VF GGTT provisioning on the PF. Without a shareable pool,
-keep the existing best-fit placement for driver-owned allocations.
+Cover range initialization for native and PF modes, including partially
+overlapping pools. Exercise allocation direction and conflicts between
+the pools, as well as the unavailable shareable pool and requests
+exceeding pool capacity.
 
 v2:
- - Rename ggtt->usable_size back to ggtt->size.
- - Remove the ggtt_insert_node_in_range() helper.
+ - Init ggtt.lock with mutex_init() in each test.
 v3:
- - Introduce the full_size struct field instead of the ggtt_accessible_size
-   function.
+ - Rename the test file to use the _kunit.c suffix.
+ - Use shared GGTT setup and cleanup helpers.
+ - Split PCI IOV coverage into a separate KUnit suite.
 v4:
- - Set the shareable pool size only for SR-IOV PF,
- - Return -ENOSPC instead of asserting when a large BO no longer fits after
-   end is clamped to ggtt->size.
+ - Release allocated nodes through KUnit deferred actions, so that an
+   aborted test does not leak them into drm_mm_takedown() (Sashiko).
 v5:
- - Move range initializer rename and full_size parameter here.
- - Use shareable_size and compute the shareable start on demand.
- - Constrain regular allocations to the usable pool.
+ - Move ggtt_test_insert_node_shareable() under CONFIG_PCI_IOV to fix
+   the !CONFIG_PCI_IOV build (Sashiko).
 v6:
- - Rename ggtt_shareable_start() to ggtt_shareable_offset(), as it returns
-   an offset within the GGTT range, not a GGTT address. (Tomasz)
- - Explain why the pool sizes are checked separately. (Tomasz)
- - Drop the guard() conversion in __xe_ggtt_insert_bo_at(), so the GGTT
-   lock is again released before the invalidation. (Tomasz)
+ - Use the root tile's GGTT allocated by the fake device instead of
+   a locally allocated one (Lukasz).
+ - Reuse ggtt_node_remove(), ggtt_init_native() and ggtt_init_shared()
+   instead of open-coding them in the tests.
 v7:
- - Keep best-fit placement instead of top-down when there is no shareable
-   pool, so that stolen BOs stay within the CPU mappable aperture on older
-   integrated platforms. (Sashiko)
- - Provision VF GGTT from the shareable pool. (Sashiko)
+ - Rename ggtt_test_ggtt() to ggtt_test_get() (Lukasz).
+ - Expect the native usable pool allocation at the bottom of the GGTT, as
+   it now keeps the best-fit placement.
 
 Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Tomasz Lis <tomasz.lis@intel.com>
+Cc: Lukasz Laguna <lukasz.laguna@intel.com>
+Reviewed-by: Lukasz Laguna <lukasz.laguna@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c               | 159 ++++++++++++++++++---
- drivers/gpu/drm/xe/xe_ggtt.h               |   4 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |   2 +-
- 3 files changed, 144 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c | 334 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ggtt.c             |   4 +
+ 2 files changed, 338 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 73c45eecae2be..8bc888f6274cc 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -145,8 +145,19 @@ struct xe_ggtt {
- 	unsigned int access_count;
- 	/** @wq: Dedicated unordered work queue to process node removals */
- 	struct workqueue_struct *wq;
-+#ifdef CONFIG_PCI_IOV
-+	/** @shareable_size: Size of the GGTT range reserved for sharing with VFs */
-+	u64 shareable_size;
-+#endif
- };
- 
-+#ifdef CONFIG_PCI_IOV
-+static inline u64 ggtt_shareable_offset(struct xe_ggtt *ggtt)
+diff --git a/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c b/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
+new file mode 100644
+index 0000000000000..25471317d7816
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
+@@ -0,0 +1,334 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <kunit/test.h>
++
++#include "xe_device.h"
++#include "xe_kunit_helpers.h"
++
++#define GGTT_TEST_START		SZ_1M
++
++static u64 ggtt_test_accessible_size(struct kunit *test)
 +{
-+	return ggtt->full_size - ggtt->shareable_size;
-+}
-+#endif
++	struct xe_tile *tile = xe_device_get_root_tile(test->priv);
 +
- static u64 xelp_ggtt_pte_flags(struct xe_bo *bo, u16 pat_index)
- {
- 	u64 pte = XE_PAGE_PRESENT;
-@@ -360,17 +371,35 @@ static const struct xe_ggtt_pt_ops xelpg_pt_wa_ops = {
- 	.ggtt_get_pte = xe_ggtt_get_pte,
- };
- 
--static void __xe_ggtt_init_early(struct xe_ggtt *ggtt, u64 start, u64 size)
-+static void ggtt_init_ranges(struct xe_ggtt *ggtt, u64 start, u64 full_size,
-+			     u64 usable_size, u64 shareable_size)
- {
-+	struct xe_gt *gt = ggtt->tile->primary_gt;
-+
-+	xe_gt_assert(gt, full_size);
-+	xe_gt_assert(gt, usable_size);
-+	/*
-+	 * The usable and shareable pools are separate logical ranges within the
-+	 * full range and may overlap, so each is checked against the full size
-+	 * on its own. drm_mm keeps the allocations from both pools apart.
-+	 */
-+	xe_gt_assert(gt, usable_size <= full_size);
-+	xe_gt_assert(gt, shareable_size <= full_size);
-+
- 	ggtt->start = start;
--	ggtt->full_size = size;
--	ggtt->size = size;
--	drm_mm_init(&ggtt->mm, 0, size);
-+	ggtt->full_size = full_size;
-+	ggtt->size = usable_size;
-+
-+#ifdef CONFIG_PCI_IOV
-+	if (shareable_size)
-+		ggtt->shareable_size = shareable_size;
-+#endif
-+	drm_mm_init(&ggtt->mm, 0, ggtt->full_size);
- }
- 
- int xe_ggtt_init_kunit(struct xe_ggtt *ggtt, u32 start, u32 size)
- {
--	__xe_ggtt_init_early(ggtt, start, size);
-+	ggtt_init_ranges(ggtt, start, size, size, 0);
- 	return 0;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_ggtt_init_kunit);
-@@ -447,7 +476,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	if (!ggtt->wq)
- 		return -ENOMEM;
- 
--	__xe_ggtt_init_early(ggtt, ggtt_start, ggtt_size);
-+	ggtt_init_ranges(ggtt, ggtt_start, ggtt_size, ggtt_size,
-+			 IS_SRIOV_PF(xe) ? ggtt_size : 0);
- 
- 	err = drmm_add_action_or_reset(&xe->drm, ggtt_fini_early, ggtt);
- 	if (err)
-@@ -641,6 +671,11 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
- 	ggtt_invalidate_gt_engine_tlb(ggtt->tile->media_gt);
- }
- 
-+static inline u64 xe_ggtt_bottom(struct xe_ggtt *ggtt)
-+{
-+	return xe_wopcm_size(tile_to_xe(ggtt->tile));
++	return GUC_GGTT_TOP - xe_wopcm_size(tile_to_xe(tile));
 +}
 +
- /**
-  * xe_ggtt_shift_nodes() - Shift GGTT nodes to adjust for a change in usable address range.
-  * @ggtt: the &xe_ggtt struct instance
-@@ -652,24 +687,65 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
-  * This function may be called multiple times during recovery, but if
-  * @new_start is unchanged from the current base, it's a noop.
-  *
-- * @new_start should be a value between xe_wopcm_size() and #GUC_GGTT_TOP.
-+ * @new_start should be a value between the GGTT bottom and #GUC_GGTT_TOP.
-  */
- void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_start)
- {
- 	guard(mutex)(&ggtt->lock);
- 
--	xe_tile_assert(ggtt->tile, new_start >= xe_wopcm_size(tile_to_xe(ggtt->tile)));
-+	xe_tile_assert(ggtt->tile, new_start >= xe_ggtt_bottom(ggtt));
- 	xe_tile_assert(ggtt->tile, new_start + ggtt->size <= GUC_GGTT_TOP);
-+#ifdef CONFIG_PCI_IOV
-+	xe_tile_assert(ggtt->tile, ggtt->shareable_size == 0);
-+#endif
- 
- 	/* pairs with READ_ONCE in xe_ggtt_node_addr() */
- 	WRITE_ONCE(ggtt->start, new_start);
- }
- 
--static int xe_ggtt_insert_node_locked(struct xe_ggtt_node *node,
--				      u32 size, u32 align, u32 mm_flags)
-+static int ggtt_insert_node_in_range_locked(struct xe_ggtt_node *node, u32 size,
-+					    u32 align, u64 range_start,
-+					    u64 range_size, u32 mm_flags)
- {
--	return drm_mm_insert_node_generic(&node->ggtt->mm, &node->base, size, align, 0,
--					  mm_flags);
-+	struct xe_ggtt *ggtt = node->ggtt;
-+	u64 range_end = range_start + range_size;
++static void ggtt_test_fini(void *data)
++{
++	struct xe_ggtt *ggtt = data;
 +
-+	lockdep_assert_held(&ggtt->lock);
++	drm_mm_takedown(&ggtt->mm);
++}
 +
-+	if (!range_size || range_end <= range_start)
-+		return -EINVAL;
++static struct xe_ggtt *ggtt_test_get(struct kunit *test)
++{
++	return xe_device_get_root_tile(test->priv)->mem.ggtt;
++}
 +
-+	if (range_end > ggtt->full_size)
-+		return -ERANGE;
++/* Must be called after the GGTT ranges are initialized. */
++static int ggtt_test_track_ggtt(struct kunit *test, struct xe_ggtt *ggtt)
++{
++	return kunit_add_action_or_reset(test, ggtt_test_fini, ggtt);
++}
 +
-+	if (size > range_size)
-+		return -ENOSPC;
++static struct xe_ggtt *ggtt_test_create(struct kunit *test, u64 full_size,
++					u64 usable_size, u64 shareable_size)
++{
++	struct xe_ggtt *ggtt = ggtt_test_get(test);
 +
-+	return drm_mm_insert_node_in_range(&ggtt->mm, &node->base, size, align, 0,
-+					  range_start, range_end, mm_flags);
++	ggtt_init_ranges(ggtt, GGTT_TEST_START, full_size, usable_size, shareable_size);
++
++	if (ggtt_test_track_ggtt(test, ggtt))
++		return NULL;
++
++	return ggtt;
++}
++
++static void ggtt_test_remove_node(void *data)
++{
++	ggtt_node_remove(data);
 +}
 +
 +/*
-+ * When the shareable range is present, allocations start from the bottom
-+ * to leave space at the top for the shareable pool. Otherwise keep the
-+ * best-fit placement, so that allocations stay low in the GGTT, e.g. within
-+ * the CPU mappable aperture used to access stolen memory on older platforms.
++ * Release the node on test exit, before the GGTT is torn down, so that an
++ * aborted test does not leave it in the drm_mm.
 + */
-+static u32 ggtt_usable_insert_flags(struct xe_ggtt *ggtt)
++static struct xe_ggtt_node *ggtt_test_track_node(struct kunit *test,
++						 struct xe_ggtt_node *node)
 +{
-+#ifdef CONFIG_PCI_IOV
-+	if (ggtt->shareable_size > 0)
-+		return DRM_MM_INSERT_LOW;
-+#endif
-+	return DRM_MM_INSERT_BEST;
-+}
-+
-+static int xe_ggtt_insert_node_locked(struct xe_ggtt_node *node, u32 size, u32 align)
-+{
-+	struct xe_ggtt *ggtt = node->ggtt;
-+
-+	return ggtt_insert_node_in_range_locked(node, size, align, 0,
-+						ggtt->size, ggtt_usable_insert_flags(ggtt));
- }
- 
- static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
-@@ -686,12 +762,12 @@ static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
- }
- 
- /**
-- * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
-+ * xe_ggtt_insert_node() - Insert a &xe_ggtt_node into the GGTT
-  * @ggtt: the &xe_ggtt into which the node should be inserted.
-  * @size: size of the node
-  * @align: alignment constrain of the node
-  *
-- * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
-+ * Return: &xe_ggtt_node on success or an ERR_PTR on failure.
-  */
- struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
- {
-@@ -703,8 +779,45 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 		return node;
- 
- 	guard(mutex)(&ggtt->lock);
--	ret = xe_ggtt_insert_node_locked(node, size, align,
--					 DRM_MM_INSERT_HIGH);
-+
-+	ret = xe_ggtt_insert_node_locked(node, size, align);
-+	if (ret) {
-+		ggtt_node_fini(node);
-+		return ERR_PTR(ret);
-+	}
++	if (!IS_ERR_OR_NULL(node) &&
++	    kunit_add_action_or_reset(test, ggtt_test_remove_node, node))
++		return ERR_PTR(-ENOMEM);
 +
 +	return node;
 +}
 +
-+#ifdef CONFIG_PCI_IOV
-+/**
-+ * xe_ggtt_insert_node_shareable() - Insert a new node in the shareable GGTT range
-+ * @ggtt: the &xe_ggtt into which the node should be inserted.
-+ * @size: size of the node
-+ * @align: alignment constrain of the node
-+ *
-+ * Allocations always start from the top (DRM_MM_INSERT_HIGH).
-+ *
-+ * Return: &xe_ggtt_node on success or an ERR_PTR on failure.
-+ */
-+struct xe_ggtt_node *xe_ggtt_insert_node_shareable(struct xe_ggtt *ggtt, u32 size, u32 align)
++static struct xe_ggtt_node *ggtt_test_insert_node(struct kunit *test,
++						  struct xe_ggtt *ggtt, u32 size)
 +{
++	return ggtt_test_track_node(test, xe_ggtt_insert_node(ggtt, size, XE_PAGE_SIZE));
++}
++
++static void init_native(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = min_t(u64, SZ_1G, accessible);
++	struct xe_ggtt *ggtt = ggtt_test_get(test);
++
++	ggtt_init_native(ggtt, GGTT_TEST_START, usable);
++	KUNIT_ASSERT_EQ(test, ggtt_test_track_ggtt(test, ggtt), 0);
++
++	KUNIT_EXPECT_EQ(test, ggtt->start, GGTT_TEST_START);
++	KUNIT_EXPECT_EQ(test, ggtt->size, usable);
++	KUNIT_EXPECT_EQ(test, ggtt->full_size, usable);
++}
++
++static void alloc_usable_pool_native(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	struct xe_ggtt_node *usable_node;
++	struct xe_ggtt *ggtt;
++
++	ggtt = ggtt_test_create(test, usable, usable, 0);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	usable_node = ggtt_test_insert_node(test, ggtt, XE_PAGE_SIZE);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, usable_node);
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_addr(usable_node), GGTT_TEST_START);
++}
++
++static void alloc_usable_pool_oversized(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
 +	struct xe_ggtt_node *node;
-+	int ret;
++	struct xe_ggtt *ggtt;
 +
-+	if (!ggtt->shareable_size)
-+		return ERR_PTR(-ENOSPC);
++	KUNIT_ASSERT_LE(test, usable + XE_PAGE_SIZE, (u64)U32_MAX);
 +
-+	node = ggtt_node_init(ggtt);
-+	if (IS_ERR(node))
-+		return node;
++	ggtt = ggtt_test_create(test, usable, usable, 0);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
 +
-+	guard(mutex)(&ggtt->lock);
++	node = ggtt_test_insert_node(test, ggtt, usable + XE_PAGE_SIZE);
++	KUNIT_ASSERT_TRUE(test, IS_ERR(node));
++	KUNIT_EXPECT_EQ(test, PTR_ERR(node), -ENOSPC);
++}
 +
-+	ret = ggtt_insert_node_in_range_locked(node, size, align,
-+					       ggtt_shareable_offset(ggtt),
-+					       ggtt->shareable_size,
-+					       DRM_MM_INSERT_HIGH);
- 	if (ret) {
- 		ggtt_node_fini(node);
- 		return ERR_PTR(ret);
-@@ -712,6 +825,7 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 
- 	return node;
++static struct kunit_case ggtt_test_cases[] = {
++	KUNIT_CASE(init_native),
++	KUNIT_CASE(alloc_usable_pool_native),
++	KUNIT_CASE(alloc_usable_pool_oversized),
++	{}
++};
++
++static struct kunit_suite ggtt_suite = {
++	.name = "xe_ggtt",
++	.test_cases = ggtt_test_cases,
++	.init = xe_kunit_helper_xe_device_test_init,
++};
++
++#if IS_ENABLED(CONFIG_PCI_IOV)
++static struct xe_ggtt_node *ggtt_test_insert_node_shareable(struct kunit *test,
++							    struct xe_ggtt *ggtt, u32 size)
++{
++	return ggtt_test_track_node(test,
++				    xe_ggtt_insert_node_shareable(ggtt, size, XE_PAGE_SIZE));
++}
++
++static void init_shared_pf(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	struct xe_ggtt *ggtt = ggtt_test_get(test);
++
++	ggtt_init_shared(ggtt, GGTT_TEST_START, accessible);
++	KUNIT_ASSERT_EQ(test, ggtt_test_track_ggtt(test, ggtt), 0);
++
++	KUNIT_EXPECT_EQ(test, ggtt->size, accessible);
++	KUNIT_EXPECT_EQ(test, ggtt_shareable_offset(ggtt), 0);
++	KUNIT_EXPECT_EQ(test, ggtt->shareable_size, accessible);
++	KUNIT_EXPECT_EQ(test, ggtt->full_size, accessible);
++}
++
++static void init_partial_overlap(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt *ggtt;
++
++	KUNIT_ASSERT_GT(test, accessible, 0ULL);
++	KUNIT_ASSERT_GT(test, usable, shareable);
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	KUNIT_EXPECT_EQ(test, ggtt->size, usable);
++	KUNIT_EXPECT_EQ(test, ggtt_shareable_offset(ggtt), accessible - shareable);
++	KUNIT_EXPECT_EQ(test, ggtt->shareable_size, shareable);
++	KUNIT_EXPECT_LT(test, ggtt_shareable_offset(ggtt), usable);
++	KUNIT_EXPECT_EQ(test, ggtt->full_size, accessible);
++}
++
++static void alloc_usable_pool_low(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt_node *usable_node;
++	struct xe_ggtt *ggtt;
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	usable_node = ggtt_test_insert_node(test, ggtt, XE_PAGE_SIZE);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, usable_node);
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_addr(usable_node), GGTT_TEST_START);
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_size(usable_node), (u64)XE_PAGE_SIZE);
++}
++
++static void alloc_shareable_pool_high(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt_node *shareable_node;
++	struct xe_ggtt *ggtt;
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	shareable_node = ggtt_test_insert_node_shareable(test, ggtt, XE_PAGE_SIZE);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, shareable_node);
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_addr(shareable_node),
++			GGTT_TEST_START + accessible - XE_PAGE_SIZE);
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_size(shareable_node), (u64)XE_PAGE_SIZE);
++}
++
++static void alloc_partial_overlap(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt_node *shareable_node;
++	struct xe_ggtt_node *usable_node;
++	struct xe_ggtt *ggtt;
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	usable_node = ggtt_test_insert_node(test, ggtt, XE_PAGE_SIZE);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, usable_node);
++	shareable_node = ggtt_test_insert_node_shareable(test, ggtt, XE_PAGE_SIZE);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, shareable_node);
++
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_addr(usable_node), GGTT_TEST_START);
++	KUNIT_EXPECT_EQ(test, xe_ggtt_node_addr(shareable_node),
++			GGTT_TEST_START + accessible - XE_PAGE_SIZE);
++}
++
++static void alloc_partial_overlap_usable_full(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt_node *shareable_node;
++	struct xe_ggtt_node *usable_node;
++	struct xe_ggtt *ggtt;
++
++	KUNIT_ASSERT_LE(test, usable, (u64)U32_MAX);
++	KUNIT_ASSERT_LE(test, shareable, (u64)U32_MAX);
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	usable_node = ggtt_test_insert_node(test, ggtt, usable);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, usable_node);
++	shareable_node = ggtt_test_insert_node_shareable(test, ggtt, shareable);
++	KUNIT_ASSERT_TRUE(test, IS_ERR(shareable_node));
++	KUNIT_EXPECT_EQ(test, PTR_ERR(shareable_node), -ENOSPC);
++}
++
++static void alloc_partial_overlap_shareable_full(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt_node *shareable_node;
++	struct xe_ggtt_node *usable_node;
++	struct xe_ggtt *ggtt;
++
++	KUNIT_ASSERT_LE(test, usable, (u64)U32_MAX);
++	KUNIT_ASSERT_LE(test, shareable, (u64)U32_MAX);
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	shareable_node = ggtt_test_insert_node_shareable(test, ggtt, shareable);
++	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, shareable_node);
++	usable_node = ggtt_test_insert_node(test, ggtt, usable);
++	KUNIT_ASSERT_TRUE(test, IS_ERR(usable_node));
++	KUNIT_EXPECT_EQ(test, PTR_ERR(usable_node), -ENOSPC);
++}
++
++static void alloc_shareable_pool_unavailable(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	struct xe_ggtt_node *node;
++	struct xe_ggtt *ggtt;
++
++	ggtt = ggtt_test_create(test, usable, usable, 0);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	node = ggtt_test_insert_node_shareable(test, ggtt, XE_PAGE_SIZE);
++	KUNIT_ASSERT_TRUE(test, IS_ERR(node));
++	KUNIT_EXPECT_EQ(test, PTR_ERR(node), -ENOSPC);
++}
++
++static void alloc_shareable_pool_oversized(struct kunit *test)
++{
++	u64 accessible = ggtt_test_accessible_size(test);
++	u64 usable = (accessible * 3) / 4;
++	u64 shareable = accessible / 2;
++	struct xe_ggtt_node *node;
++	struct xe_ggtt *ggtt;
++
++	KUNIT_ASSERT_LE(test, shareable + XE_PAGE_SIZE, (u64)U32_MAX);
++
++	ggtt = ggtt_test_create(test, accessible, usable, shareable);
++	KUNIT_ASSERT_NOT_NULL(test, ggtt);
++
++	node = ggtt_test_insert_node_shareable(test, ggtt, shareable + XE_PAGE_SIZE);
++	KUNIT_ASSERT_TRUE(test, IS_ERR(node));
++	KUNIT_EXPECT_EQ(test, PTR_ERR(node), -ENOSPC);
++}
++
++static struct kunit_case ggtt_iov_test_cases[] = {
++	KUNIT_CASE(init_shared_pf),
++	KUNIT_CASE(init_partial_overlap),
++	KUNIT_CASE(alloc_usable_pool_low),
++	KUNIT_CASE(alloc_shareable_pool_high),
++	KUNIT_CASE(alloc_partial_overlap),
++	KUNIT_CASE(alloc_partial_overlap_usable_full),
++	KUNIT_CASE(alloc_partial_overlap_shareable_full),
++	KUNIT_CASE(alloc_shareable_pool_unavailable),
++	KUNIT_CASE(alloc_shareable_pool_oversized),
++	{}
++};
++
++static struct kunit_suite ggtt_iov_suite = {
++	.name = "xe_ggtt_iov",
++	.test_cases = ggtt_iov_test_cases,
++	.init = xe_kunit_helper_xe_device_test_init,
++};
++#endif
++
++kunit_test_suites(&ggtt_suite);
++#if IS_ENABLED(CONFIG_PCI_IOV)
++kunit_test_suites(&ggtt_iov_suite);
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 3adce6a540135..44480fad27679 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -1397,3 +1397,7 @@ u64 xe_ggtt_node_size(const struct xe_ggtt_node *node)
+ {
+ 	return node->base.size;
  }
++
++#if IS_BUILTIN(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_ggtt_kunit.c"
 +#endif
- 
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-@@ -795,6 +909,7 @@ void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo)
-  *
-  * This function allows inserting a GGTT node with a custom transformation function.
-  * This is useful for display to allow inserting rotated framebuffers to GGTT.
-+ * Allocates from the usable range only.
-  *
-  * Return: A pointer to %xe_ggtt_node struct on success. An ERR_PTR otherwise.
-  */
-@@ -815,7 +930,7 @@ struct xe_ggtt_node *xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- 		goto err;
- 	}
- 
--	ret = xe_ggtt_insert_node_locked(node, size, align, 0);
-+	ret = xe_ggtt_insert_node_locked(node, size, align);
- 	if (ret)
- 		goto err_unlock;
- 
-@@ -882,10 +997,14 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	else
- 		end = 0;
- 
--	xe_tile_assert(ggtt->tile, end >= start + xe_bo_size(bo));
-+	end = min(end, ggtt->size);
- 
--	err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
--					  xe_bo_size(bo), alignment, 0, start, end, 0);
-+	if (end < start + xe_bo_size(bo))
-+		err = -ENOSPC;
-+	else
-+		err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
-+						  xe_bo_size(bo), alignment, 0, start, end,
-+						  ggtt_usable_insert_flags(ggtt));
- 	if (err) {
- 		ggtt_node_fini(bo->ggtt_node[tile_id]);
- 		bo->ggtt_node[tile_id] = NULL;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index c864cc975a695..59b2f02870195 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -24,6 +24,10 @@ u64 xe_ggtt_size(struct xe_ggtt *ggtt);
- 
- struct xe_ggtt_node *
- xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align);
-+#ifdef CONFIG_PCI_IOV
-+struct xe_ggtt_node *
-+xe_ggtt_insert_node_shareable(struct xe_ggtt *ggtt, u32 size, u32 align);
-+#endif
- struct xe_ggtt_node *
- xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- 			      struct xe_bo *bo, u64 pte,
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index cca2f837e90b5..93c3b55bd1ee7 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -531,7 +531,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 	if (!size)
- 		return 0;
- 
--	node = xe_ggtt_insert_node(ggtt, size, alignment);
-+	node = xe_ggtt_insert_node_shareable(ggtt, size, alignment);
- 	if (IS_ERR(node))
- 		return PTR_ERR(node);
- 
 -- 
 2.34.1
 
