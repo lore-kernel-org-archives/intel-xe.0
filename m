@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21423606A338
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 08:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50373606A881
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 08:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ic4aWxlX
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=S511PxC9
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC03110E9A8;
-	Mon, 16 Nov 2026 08:12:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12F4610E3E6;
+	Mon, 16 Nov 2026 08:12:34 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AFD510E3E6;
- Mon, 16 Nov 2026 08:12:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69ED510E989;
+ Mon, 16 Nov 2026 08:12:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794816743; x=1826352743;
+ t=1794816745; x=1826352745;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LVY9VPluB3NYFCzignmIHJw3jGKnDlO434hUEASphz8=;
- b=ic4aWxlX10sw5JC1C3GZnPuWZJ3V+BaNl7Ehhgdqj0XQNbip1NXHJAmj
- CH8T8szfp04zfkuw4onNUTnH9Ssck/s8gdv38fH2kkjHLMGRCm6quu53s
- Wt+Pd/ktKVHUgDn0zOLrPfkE3xxecW78I9wyYN0ETaW8PYprXYMRxjhnR
- /krVqpdKFLyCTkA+Jnr9BaPrb70BG3dEmJQ1ht9SZPntt4oJMYJ8Olau5
- R3ywPgZwFRT9mRyPrauIi8FwIKIWB1L/jqvHAM2jwJOO4WU4Ann+KC0pQ
- BDWGOCyEQONUX/c3D5C+Q2B9EkMk/jMDsQ8LbmOqabe1oSQAmuODF/mJB A==;
-X-CSE-ConnectionGUID: 3gY5WyGASJmLi/lscUwunQ==
-X-CSE-MsgGUID: Ks0xkLm9RmSTA9Ldzi3eaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3553573"
+ bh=6lw33cBp7WIFgQLeDZMRehcoG3PH+753sISz6rd1P+k=;
+ b=S511PxC9Sjz2CUiVoWVpHMBS+oOUmAMCG/LUckmcU/Tdt+g9TQj77hNF
+ r5lcsxBB4bstI0cWKpoR4AfOHyVxE4WnVoyUXGR8KiMEeqMJlTFpsjhnT
+ v9OVA44I9SMwO3T2+gt0hZ0k6L6hT8RJxD5N8BNDFwpUwh9uononn5wgq
+ Cxa3Wh0JkGUg+kHCNgMAfMjeblrH8lxwtaUCL6RRCOUsyoksKeZgi+ivf
+ 96qOYyLQUYJ7TuWWAAe6cnzh42nFH4AyyiADO5vQtxZBavI3a91DQyguR
+ +Amr+5t41Zap/YfD8CpBMaZX5D7b+Qoy4U0xE+JePS7JH7cEsiYcafoLj A==;
+X-CSE-ConnectionGUID: kc1lhdGORnqf57WRtT70Zg==
+X-CSE-MsgGUID: VZQdQlwKRjGAv2/B7kF8lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11967"; a="3553579"
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="3553573"
+   d="scan'208";a="3553579"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 00:11:11 -0800
-X-CSE-ConnectionGUID: yLg+CympQf2eIocU5sAz7g==
-X-CSE-MsgGUID: LycasLKKRnCVAG767A1FXA==
+ 16 Nov 2026 00:11:16 -0800
+X-CSE-ConnectionGUID: ESgxfahOSgmmdz5AqnYjyQ==
+X-CSE-MsgGUID: W250r73KRhSVXqACSRrsgw==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,216,1787036400"; 
-   d="scan'208";a="9557740"
+   d="scan'208";a="9557752"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.93])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 00:11:10 -0800
+ 16 Nov 2026 00:11:15 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/i915/dsb: Update previous instruction tracking in
- intel_dsb_align_tail() & co.
-Date: Mon, 16 Nov 2026 10:10:39 +0200
-Message-ID: <20261116081041.6519-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 6/7] drm/i915/dsb: Skip redundant zeroing of every second
+ indexed write DW
+Date: Mon, 16 Nov 2026 10:10:40 +0200
+Message-ID: <20261116081041.6519-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261116081041.6519-1-ville.syrjala@linux.intel.com>
 References: <20261116081041.6519-1-ville.syrjala@linux.intel.com>
@@ -77,40 +77,64 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_dsb_align_tail() and intel_dsb_gosub_align() simply memset
-a bunch of QWs to 0. What that actually does is emit a bunch of
-NOOP instructions. For complete correctness let's keep the
-previous instruction tracking up to date, instead of leaving
-it pointing at whatever instruction preceded the alignment
-NOOPs.
+Currently intel_dsb_reg_write_indexed() assumes that it may be
+the last register write into the same register, and proceeds
+to zero out the last misaligned DW. But if another indexed write
+to the same register follows (as it usually does) that zeroed DW
+will again be overwritten with the new register value.
+
+So every second indexed register write in a sequence will
+perform a completely redundant DW write. Considering that the
+DSB buffer will be in device memory on discrete GPUs we
+probably don't want to do these redundant writes.
+
+Defer the extra DW write to intel_dsb_ins_align() which gets
+called ahead of every new DSB instruction emitted. There we'll
+just have to write a single DW, if the previous indexed write
+left us with an odd number of DWs.
+
+Eliminating these and other redundant writes speeds up the
+DSB buffer writes for a 1024 entry LUT update from ~75 usec
+to ~45 usec on my DG2.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dsb.c | 14 ++++----------
+ 1 file changed, 4 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 75f98b31c780..f8ca64a3c076 100644
+index f8ca64a3c076..f7a54dc44894 100644
 --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -601,6 +601,8 @@ static void intel_dsb_align_tail(struct intel_dsb *dsb)
- 	if (aligned_tail > tail) {
- 		dsb_buffer_fill(dsb, dsb->free_pos, 0, aligned_tail - tail);
- 		dsb->free_pos = aligned_tail / 4;
-+
-+		intel_dsb_set_ins(dsb, dsb->free_pos - 2, 0, 0);
- 	}
+@@ -336,14 +336,11 @@ static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb)
+ static void intel_dsb_ins_align(struct intel_dsb *dsb)
+ {
+ 	/*
+-	 * Every instruction should be 8 byte aligned.
+-	 *
+-	 * The only way to get unaligned free_pos is via
+-	 * intel_dsb_reg_write_indexed() which already
+-	 * makes sure the next dword is zeroed, so no need
+-	 * to clear it here.
++	 * Every instruction must be 8 byte aligned.
++	 * Indexed register writes may leave free_pos misaligned.
+ 	 */
+-	dsb->free_pos = ALIGN(dsb->free_pos, 2);
++	if (dsb->free_pos & 1)
++		dsb_buffer_write(dsb, dsb->free_pos++, 0);
  }
  
-@@ -624,6 +626,8 @@ static void intel_dsb_gosub_align(struct intel_dsb *dsb)
- 	if (aligned_tail - tail <= 2 * 8) {
- 		dsb_buffer_fill(dsb, dsb->free_pos, 0, aligned_tail - tail);
- 		dsb->free_pos = aligned_tail / 4;
-+
-+		intel_dsb_set_ins(dsb, dsb->free_pos - 2, 0, 0);
- 	}
+ static void intel_dsb_emit(struct intel_dsb *dsb, u32 ldw, u32 udw)
+@@ -417,9 +414,6 @@ void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
+ 	dsb_buffer_write(dsb, dsb->ins_start_offset + 0, dsb->ins[0]);
+ 
+ 	dsb_buffer_write(dsb, dsb->free_pos++, val);
+-	/* if number of data words is odd, then the last dword should be 0.*/
+-	if (dsb->free_pos & 0x1)
+-		dsb_buffer_write(dsb, dsb->free_pos, 0);
  }
  
+ void intel_dsb_reg_write(struct intel_dsb *dsb,
 -- 
 2.56.0
 
