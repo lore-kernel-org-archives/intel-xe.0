@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EBF4606A323
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 12:07:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62CBD606A335
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 12:14:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 41CFE10EB02;
-	Mon, 16 Nov 2026 12:07:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B0C010EFC8;
+	Mon, 16 Nov 2026 12:14:09 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5812B10EB02;
- Mon, 16 Nov 2026 12:07:15 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9130167141466639837=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FBA210EFC8;
+ Mon, 16 Nov 2026 12:14:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_purpose-specific_?=
- =?utf-8?q?VRAM_pools_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_tty=3A_vblank_waiting_out?=
+ =?utf-8?q?_on_crtc_0_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Pi=C3=B3rkowski=2C_Piotr?= <piotr.piorkowski@intel.com>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Nov 2026 12:07:15 -0000
-Message-ID: <179483083535.30636.13612604312719738209@9ac1b63fe3ea>
+Date: Mon, 16 Nov 2026 12:14:07 -0000
+Message-ID: <179483124758.30722.10828598297305717626@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261116094523.2484301-1-piotr.piorkowski@intel.com>
-In-Reply-To: <20261116094523.2484301-1-piotr.piorkowski@intel.com>
+References: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
+In-Reply-To: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,142 +35,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============9130167141466639837==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce purpose-specific VRAM pools (rev4)
-URL   : https://patchwork.freedesktop.org/series/175411/
-State : success
+Series: tty: vblank waiting out on crtc 0 (rev2)
+URL   : https://patchwork.freedesktop.org/series/178607/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0_BAT -> xe-pw-175411v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b35f2e165ef78c79ecd20b83bac15a4068357c7b
+Author: Michał Grzelak <michal.grzelak@linux.intel.com>
+Date:   Sun Nov 15 13:24:41 2026 +0100
 
-Summary
--------
+    Revert "serial: 8250: Switch to nbcon console, take 2"
+    
+    This reverts commit d3539347022ad4eeb9dbd29c50bfca17b9d8a146.
+    
+    This revert consists of 6 additional reverts; all of them in order of
+    applying:
+    - Revert "serial: 8250: export and rename wait_for_xmitr()" [2c5942fd0300cb966339dd0366890be626b405e8]
+    - Revert "printk: fix kernel-doc name for nbcon_write_context_is_braille" [19ed235c1adcaf40f05997dfe8b96eb209effd35]
+    - Revert "braille: nbcon: Allow to use a serial console with NBCON API as Braille console" [c83e3d2912432107148cc5e288ddd153a84c0f43]
+    - Revert "serial: 8250: Change console_msr_work to IRQ_WORK_LAZY" [37aba16e7943634eb3e5e2e7e850ebb38500d935]
+    - Reapply "serial: 8250: drop lockdep annotation from serial8250_clear_IER()" [bbbb07f9fad6518090b7171dd8f5f737d8ddb63b]
+    - Revert "serial: 8250: Switch to nbcon console, take 2" [d3539347022ad4eeb9dbd29c50bfca17b9d8a146]
+    - Revert "serial: 8250_mid: wait for LSR tx empty before setting termios" [1c305d5f1daabd317a60b6a2e2ac6b1aff7e05df]
+    
+    removed 2 conflicting #include's on top.
+    
+    Signed-off-by: Michał Grzelak <michal.grzelak@linux.intel.com>
++ /mt/dim checkpatch 038b4cc7dba91006374b26c220bdad77c5d6bb42 drm-intel
+b35f2e165ef7 Revert "serial: 8250: Switch to nbcon console, take 2"
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+- Revert "serial: 8250: export and rename wait_for_xmitr()" [2c5942fd0300cb966339dd0366890be626b405e8]
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 13)
-------------------------------
-
-  Missing    (2): bat-bmg-vm bat-ptl-vm 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-175411v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2] ([Intel XE#9463])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][3] ([Intel XE#9463]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+total: 0 errors, 1 warnings, 0 checks, 737 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0 -> xe-pw-175411v4
-
-  IGT_9192: 9192
-  xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0: 5bb208452f267a62584fc2c559a6b6feb18356f0
-  xe-pw-175411v4: 175411v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/index.html
-
---===============9130167141466639837==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce purpose-specific VRAM pools (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175411/">https://patchwork.freedesktop.org/series/175411/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0_BAT -&gt; xe-pw-175411v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 13)</h2>
-<p>Missing    (2): bat-bmg-vm bat-ptl-vm </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-175411v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175411v4/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0 -&gt; xe-pw-175411v4</li>
-</ul>
-<p>IGT_9192: 9192<br />
-  xe-6149-5bb208452f267a62584fc2c559a6b6feb18356f0: 5bb208452f267a62584fc2c559a6b6feb18356f0<br />
-  xe-pw-175411v4: 175411v4</p>
-
-</body>
-</html>
-
---===============9130167141466639837==--
