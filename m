@@ -2,50 +2,70 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C8E2606A323
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 20:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6696606A339
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Nov 2026 20:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bFAorTwu
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=drc8du8+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64ABE10E3FA;
-	Mon, 16 Nov 2026 20:12:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D35310E452;
+	Mon, 16 Nov 2026 20:45:32 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAA0310E3FA;
- Mon, 16 Nov 2026 20:12:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C28310E439;
+ Mon, 16 Nov 2026 20:45:26 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id E2C346271B;
- Mon, 16 Nov 2026 20:12:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 696C11F000C4;
- Mon, 16 Nov 2026 20:12:45 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 384E5631A9;
+ Mon, 16 Nov 2026 20:45:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D470D1F000CA;
+ Mon, 16 Nov 2026 20:45:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794859967;
- bh=3/T98WVUUlelLAAHqGHAXLZt1KhHqbJmfxjYziitH7U=;
+ s=k20260515; t=1794861924;
+ bh=rwV+CduKpWQJoCRPZIlILxfKvb0nTXIIWgUe+Ye3x2A=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=bFAorTwu5j+G1q4RpJxdlpz7CDg7F8FzK5Sxi74cKmk7qMNnx2tUJ/JuWmNOzZ3p8
- VopJ+QNZ3XkQ1IjsvySKurn3hWDKSaUaEechMytGaVAwlRPwaa61xIYV8mKRMjhgpv
- Nolv7ZmjHggmfiNt/HgBuiQKRXkeR1jU2Qs5huaXoCBh9I5xE5DNnEOTC/w8npVVm9
- PSzBzOtNVmsdpzG/oAcle2Jx+8z58qdXvRTD8u0hxpp0MlRqqRRr2KrX6m0beBJYR6
- s/jjiO6K5mgy6tiCn8SRKchuC2z3wT+csO6PbSdSFBQgU5/1NW8ijSWJsUQQekHdns
- G7SdRkrpUDDHQ==
-Message-ID: <f81bd37a-9637-44be-83fd-be7e717fa182@kernel.org>
-Date: Mon, 16 Nov 2026 21:12:42 +0100
+ b=drc8du8++3DkBV0wEc8BrSLfGdJOp8FtwbC3YENA2Lky1R9FhvCqiSAuzQFLSVUhr
+ vyA4Q4SY9Mt/s2oHHgA4lj/MoKO19wdGpeh1IHLrbx7epjumZGDslX2kLig4qgnz/D
+ TNhAuJWMWbKcZEzpu4N746szAsNL/oJjtbRW3rH3yEx3rv5uyzwidt2MDo4B5rQf/O
+ Hbutp48StX5eHKHJPSiRVcePHW5covIW4ENkIN1IdHqve5H/HinPQfIppc2tm98SJn
+ glfg6yXixuedKpcW6/AK0NiiitVTRpigvbkASaq01nj87X113X36Sh9LYR1bItCz4Z
+ WMGfkA17HtPUg==
+Message-ID: <a384d75c-2134-407a-924f-ee511f65a2d1@kernel.org>
+Date: Mon, 16 Nov 2026 21:45:09 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mm/hmm: skip NUMA balancing on protnone faults
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>, linux-mm@kvack.org
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>, =?UTF-8?Q?Mika_Penttil=C3=A4?=
- <mpenttil@redhat.com>, Leon Romanovsky <leon@kernel.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>
-References: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
- <b32fb02a-68b4-4db9-83dd-254147dbf215@kernel.org>
- <1993e931e6a4b0cda5c04e72b1a8d5fb924f950a.camel@linux.intel.com>
- <9ec3e8b9-064a-47a7-8d00-566ff371b846@kernel.org>
- <0b794f803517c27ea818a2e894761095300b4da4.camel@linux.intel.com>
- <6af3d5d2-4fab-4a3f-85d9-34564fca8ffe@kernel.org>
- <58755e3cb51d534b749d70847a5478a40c1c10fa.camel@linux.intel.com>
+Subject: Re: [PATCH v2 8/9] mm/migrate_device: do not migrate a uffd-protected
+ zero page
+To: Tal Zussman <tz2294@columbia.edu>,
+ Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
+ Peter Xu <peterx@redhat.com>, James Houghton <jthoughton@google.com>,
+ Andrea Arcangeli <aarcange@redhat.com>,
+ Suren Baghdasaryan <surenb@google.com>, Balbir Singh <balbirs@nvidia.com>,
+ "Liam R. Howlett" <liam@infradead.org>, Lorenzo Stoakes <ljs@kernel.org>,
+ Vlastimil Babka <vbabka@kernel.org>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Michal Hocko <mhocko@suse.com>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Andrei Vagin <avagin@gmail.com>, Muhammad Usama Anjum <usama.anjum@arm.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
+ Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
+ Joshua Hahn <joshua.hahnjy@gmail.com>, Byungchul Park <byungchul@sk.com>,
+ Gregory Price <gourry@gourry.net>, Ying Huang
+ <ying.huang@linux.alibaba.com>, Alistair Popple <apopple@nvidia.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+ Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
+ Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>,
+ =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
+Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu>
+ <20261116-uffd-state-fixes-v2-8-4397a0196479@columbia.edu>
 From: "David Hildenbrand (Arm)" <david@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=david@kernel.org; keydata=
@@ -92,7 +112,7 @@ Autocrypt: addr=david@kernel.org; keydata=
  3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
  CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
  qIws/H2t
-In-Reply-To: <58755e3cb51d534b749d70847a5478a40c1c10fa.camel@linux.intel.com>
+In-Reply-To: <20261116-uffd-state-fixes-v2-8-4397a0196479@columbia.edu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -105,48 +125,71 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 11/16/26 15:53, Thomas Hellström wrote:
-> On Fri, 2026-11-13 at 22:19 +0100, David Hildenbrand (Arm) wrote:
->> On 11/13/26 21:56, Thomas Hellström wrote:
->>>
->>> Wouldn't the net effect be that content stays put instead of being
->>> migrated? In both cases a later CPU access will not trigger NUMA
->>> hinting except that the proposed change doesn't send content to an
->>> irrelevant node?
->>
->> My point is that you are essentially disabling NUMA hinting because
->> the CPU will
->> no longer trigger NUMA hinting faults.
+On 11/16/26 21:02, Tal Zussman wrote:
+> Device migration replaces a PTE that maps the zero page with a new PTE
+> that is built only from the VMA flags, so its userfaultfd WP or RWP
+> protection is lost. The same applies to the huge zero PMD. Writes and
+> accesses to the page are then no longer reported to userfaultfd.
 > 
-> Yes, I got that part, but that's is only for a single scan, right?
-
-Well, one NUMA-hinting protects again, you would get an MMU notifier, and fault
-again here?
-
-It all gets pretty unpredictable for these PTEs, no?
-
-
->> But then, just disable it entirely. Maybe John knows what to do.
+> To fix it, do not migrate a uffd-protected zero page. Skip it during
+> collection, and check again under the page table lock before inserting,
+> as another thread can protect the page after it was collected.
 > 
-> We can't do that globally, really, for these type of apps. But one
-> remedy might be recommending the app to mbind() with a no-migration-on-
-> fault policy.
-
-Yeah, something like this. I mean, it's hard to see how NUMA balancing makes any
-sense here. You're just trying to fight the mechanism because it ends up causing
-more harm then good.
-
+> The alternative would be to carry the uffd state over to the new entry,
+> but a uffd-protected zero page in a range that a driver migrates should
+> be rare.
 > 
-> Also the hmm O(n²) complexity in this situation isn't really ideal. We
-> might need to look at that as well.
-I didn't quite get that, can you elaborate?
+> Fixes: 292924b26024 ("userfaultfd: wp: apply _PAGE_UFFD_WP bit")
+> Fixes: a30b48bf1b24 ("mm/migrate_device: implement THP migration of zone device pages")
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Lyude Paul <lyude@redhat.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Leon Romanovsky <leon@kernel.org>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: nouveau@lists.freedesktop.org
+> Cc: amd-gfx@lists.freedesktop.org
+> Reviewed-by: Alistair Popple <apopple@nvidia.com>
+> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
+> ---
+>  mm/migrate_device.c | 23 +++++++++++++++++++++--
+>  1 file changed, 21 insertions(+), 2 deletions(-)
+> 
+> diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+> index 9e19fadfa65c..140b99f72508 100644
+> --- a/mm/migrate_device.c
+> +++ b/mm/migrate_device.c
+> @@ -159,7 +159,16 @@ static int migrate_vma_collect_huge_pmd(pmd_t *pmdp, unsigned long start,
+>  
+>  		folio = pmd_folio(*pmdp);
+>  		if (is_huge_zero_folio(folio)) {
+> +			/*
+> +			 * Nothing carries the uffd state of the zero page
+> +			 * over, so skip it if its uffd bit is set.
+> +			 */
+> +			bool protected = userfaultfd_protected(walk->vma) &&
+> +					 pmd_uffd(*pmdp);
+
+Now that I read it 3 times in a row below, these needs a helper.
+
+userfaultfd_pte_protected() ? userfaultfd_pte?
+
+That might help you to get rid of the local variable (that should have been
+called something that includes uffd and should have been const)
+
+
+Maybe just add a simple helper for the pmd as well and use it below.
+
 
 -- 
 Cheers,
