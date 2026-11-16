@@ -2,100 +2,93 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1C85606A320
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E28606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:03:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=reM2ZjY4
+	dkim=pass (2048-bit key, unprotected) header.d=gourry.net header.i=@gourry.net header.a=rsa-sha256 header.s=google header.b=BjTQbKVQ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B501910FC14;
-	Wed, 18 Nov 2026 13:03:44 +0000 (UTC)
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013046.outbound.protection.outlook.com
- [40.93.196.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0672810F2CE;
- Mon, 16 Nov 2026 16:11:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ouh2VAuudoW3tP/SR7BJi9pKMkud5aubfYAzbo0+8ZiO4z26YfUf0Kwr4HyTXdJSmV3iSmagCpanDD5iTQInhV+V0PDotzQt0l8siItlaCUl9XGOToo1E1iHXnnsHoaT3lLz/h+9RTCnELIGjOqX0ReU8KpsK8g9/40M+Fm8335AREE8eI+sQu9KpuY/gTtSbx+9geB7Jf0Z8ciAru4u7ag3gu1OzqlG1vZ8PeYF0QYBv5Ql8nnjer4vmOX7UbMkkB3xzUL9Wl9LtfbsuJnrFGJSu4hUj6MEun1umUtRo0jkxe3ELicjrZt7+Nv9jZAwH5QQvyNWyM1ABZ1UI4bPrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LHpl87zmF1/4nKJH4W4E7I3trP5FZmdyQm1H9rGiW2k=;
- b=NScXw6tyx51GYPND4TB9FCDL/YcEggeqPLSfk2JzkctG9wrod91nZ7QNvVag0ij9rWlXqj+mCoDlLn6SQnGSw+oAxtjcysO2mn9DtGKPE7DrBPs7Xjan7Vp0gRDCI2fBXTfFlv2FyLc14Im/ZIblqsi2Ql0irYyhbmQxJzx0KD3sBpqxhD5/mA3ZdCnuBrtwqAJX/Lq7PZxD5ZBsvtIhfEUv07DvRv6wXssBYIrBwyW7mqMtinjFLwJQ/je2++B4JTuWKXNCAlZPAe2pq+KdBO16Rj+zWS9c1/ArArISTxArKQbi/wexPwf6KtP+e67RXye5QLRoNsbvFDDOdXOtug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LHpl87zmF1/4nKJH4W4E7I3trP5FZmdyQm1H9rGiW2k=;
- b=reM2ZjY4SI77nPIjOS+mkgBeEp6agKH2FKag47LhN+0397skXHwz6kgkyk1OYM4zNImSIVvbj2698lwQAXu2hjR1ezwJJ0s+AxdgP+8n4T2W+fhpwkEut3ZW0ADFi0naTM28nH2h9IqxV6JqN96TWAe0/oC49i0m3EOKNYUwrx4=
-Received: from BN0PR04CA0196.namprd04.prod.outlook.com (2603:10b6:408:e9::21)
- by DM4PR12MB5914.namprd12.prod.outlook.com (2603:10b6:8:67::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 16:11:16 +0000
-Received: from LV8PEPF00000059.namprd02.prod.outlook.com
- (2603:10b6:408:e9:cafe::17) by BN0PR04CA0196.outlook.office365.com
- (2603:10b6:408:e9::21) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Mon,
- 16 Nov 2026 16:11:15 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- LV8PEPF00000059.mail.protection.outlook.com (10.167.245.133) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 16:11:15 +0000
-Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 16 Nov
- 2026 10:11:13 -0600
-From: William Palacek <William.Palacek@amd.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>, Sanjay Yadav
- <sanjay.kumar.yadav@intel.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- <linux-kernel@vger.kernel.org>, William Palacek <William.Palacek@amd.com>
-Subject: [PATCH v3 0/2] gpu/buddy: find range-biased blocks in the free trees
-Date: Mon, 16 Nov 2026 11:11:00 -0500
-Message-ID: <cover.1794845083.git.William.Palacek@amd.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA1510FC1D;
+	Wed, 18 Nov 2026 13:03:45 +0000 (UTC)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
+ [209.85.219.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A71C10E49B
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 23:57:54 +0000 (UTC)
+Received: by mail-qv1-f41.google.com with SMTP id
+ 6a1803df08f44-91f0274f88cso66542686d6.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Nov 2026 15:57:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gourry.net; s=google; t=1794873473; x=1795478273; darn=lists.freedesktop.org;
+ h=message-id:date:references:in-reply-to:cc:to:from:subject
+ :content-transfer-encoding:content-type:mime-version:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=kNMtaHpahG58C4CDJTpyGiQEPKrM5bilgLdnVmpa1D8=;
+ b=BjTQbKVQGLxLjrPYR/qNvpCQkKHEYRBzLdBf86Bxqk6N+fAEExkWKBfnj+EtMXfcq7
+ qVO2cDx8hMvKWs4jNaUViomDFcY+ggGFxu1WwYw16QwWngqdsg5vAzgvQaLL6gRl/Nny
+ n7BKGyUuWLq4DQsU6shEViebdtX9f3u5xd4m8m7n4dbsQi+dLEWTN7yCiVZVFSQ/oraE
+ 0sV49KdJ+YAAhYBn9tnLz5l2X9KoLGsavMO2TxmxV+cp7Vf9GfAmKnHNOeyEHyDFX3lB
+ V8NhPVC4A4HHr+pfTG1fvUsFoXHwacwybCX+D4T0BFMXQ9SqI/nlAQyO3ZKUXBug+vPN
+ F07g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1794873473; x=1795478273;
+ h=message-id:date:references:in-reply-to:cc:to:from:subject
+ :content-transfer-encoding:content-type:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=kNMtaHpahG58C4CDJTpyGiQEPKrM5bilgLdnVmpa1D8=;
+ b=NC4qobhP2RLN5gh9RtJEDHieNJqOx6C7+BqUc4L2sv8XL029BSNJ/Igy/L+vSh1wIN
+ Gzs5Y6CpG0FuH/469Yy4rWQseA4xRGiYir+j1f3NXOYtV39UWO+A/EHjxbHrWTwK+7DA
+ 8YUe1U2eBveZ8c0w+qt13C0lMyYuxWLETR41PCfXUXi2kBDEp8WNwnUNmQt0IMysbNEK
+ ej6/tRra7UUEKgv3oT4BVPHB9+zdYEQWDhNamnsWEmiE5luWTZUM1q4lW/mUMJZpk7IH
+ lF/Pod2s/VrCkxwdhVStwvlCOC4NAEMd1fX3MiMTuK/XpgpP8SZtmq+avSoc/SEpSwcm
+ nBBA==
+X-Forwarded-Encrypted: i=1;
+ AL+hErFobfpWf2KduXyw/hO7OaUoiBVgnmHLqpGqpq+mOrGTyzZTNgpmI+IgQogNIgnRn2l3iB+MdfII6A==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/+wl5NhMY0JkvAEQFoqqbdM9m6QfmC3zIUPJisnTx161KolsxA
+ vGHNTndDVkz9vVRhOU7VQ0I6VOOnIqOSIeGhv7DJOqC2jj77AckCBJUKEgdNkw4GSYo=
+X-Gm-Gg: AZFdTZfFLe6+1LHQUo+ah3IINCg37mXbb6Byv4Z00zjt6gYgCuwE6iAwExwsZy5NL6n
+ gDYg5hNQk4bZ7zSt0LSgHDmI5AeUOiM2pDaiokWbYIghQlmWmZNvoDUrcLN3HJ5ZjzqP2UNcZjB
+ vqbEs9ptq7t13EoSGeUxxCa/V7ALoPwF2pa4z3rn88o5knQKTFsFsu9eo8gUAf7RTBocOVkjOLf
+ YKCuqEzY8HQoOMpK0bOb28YJitMbMOpuLx/6dBnGGe15K8uL8T1kuxoWOXRLHwXgc1uSFoySeIr
+ rQsHVkEz/HHi3Np1SmijOvQnuRNN9X2X2mb3nD+8ANwJPvUDAvjq3C80eq06n8QiIevUnOLmvKl
+ FShFSM5XYyjcqm1Ayc/EiGmu03Z6wd1NK1HnE6/qO3QUKl5sa/hNX+ykSkPJiA09tiz842vu/nd
+ 2+aoOj+IF873zN53QYke6x3utMzmdiFM3LboeHXZODw15Lv9DACmFSvdJM2zHvld2w3ladfsF5Y
+ LIt0l4iLMhRIvzmg5VZEF8dgAAJI8/b3rinMBBL4UN5MGe9nTRTlBLvQ6Z0fqe3k1tlK0cwNnIZ
+ 0xUlf5Cna+QVE/nxe+sl5BSRGkN149AlZ+SX0/6I8tHzCyGLJDfWbHV9uY2ydpa5H/+e0Hmxhtp
+ /4O1zUs0=
+X-Received: by 2002:a05:6214:4019:b0:91e:a219:fed9 with SMTP id
+ 6a1803df08f44-91f2400c99emr200139666d6.1.1794873473078; 
+ Mon, 16 Nov 2026 15:57:53 -0800 (PST)
+Received: from [192.168.50.231] (pool-71-191-145-202.washdc.fios.verizon.net.
+ [71.191.145.202]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-91f23d453casm97144106d6.10.2026.11.16.15.57.52
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 16 Nov 2026 15:57:52 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PEPF00000059:EE_|DM4PR12MB5914:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f08652c-bc4b-4e16-4a56-08df43fc3daa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|23010399003|1800799024|36860700016|82310400026|10067099003|11063799006|56012099006|261026121527099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003;
-X-Microsoft-Antispam-Message-Info: dSJH5cNoL8YBSALz7YLbBgYJkhNI/947Ysg8zACe5Qa4vSHPMc0glntBhHjnsAbLIg3GpbmP2+yp+wKbVp1hEFyQAq+3PF7I9fAWWu4gLNX9UxSmBEy57y8Q4nUNjkqHQAdfgjveS/YsawutkurucFs5iI0bavUre+mtb8lgE1sYJJMiYn6+4Ne4BxmmyWt/R5yPZYtm0kZ2CAjjmjb8DJdqRCepxUT1efURkujFINFMXvNStvhDtcVeOryouCTkzjGwB92t41J48gduBIc+x0yKwSA1pt9JREbJWUFuWijM3DVnTVCNYdPPjsE6GxaPq6giTlxmedVQa0WMsu3SjG0eSPBqGhEYAD5DL3UA09feQRAg8KlNGErjg/CRQpwfGwKFACcM5n0qFgRG/OmjkDdh04jhdARgTIzpNS27+GXlcjZb/EtAKELRzzeEdd/DvB4zKUhS6rrdGzGa8Isqd46wzsPWzEE9kRVSBxvU9XxlLZwf4LoJuago0AeUK+qc0uavJHLSYGyu1CvshS+9QMv52nAAilL4A6/VR38yZmiwaPqyYAsCpKzLhaye6KQOoh3Me0Q3PJpmKYI9c3AS7UZ2nKvGBvksobWoKmkh0jC3oAFBZkaeyaUpQjpYwDBbP2eQQIH94frYHeCpssMcgg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(376014)(23010399003)(1800799024)(36860700016)(82310400026)(10067099003)(11063799006)(56012099006)(261026121527099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: +xKzFCUTprhW0QlJ4Z80lLKyE0eiapPQKQcoRtGR/J9HbivvkgodRReVuYr5p1H5tNDLKutlF3dW71sc1Ceajea8cboeNOD0jI/8+mmDSCV/Hu4O2krnZv3NJeEfjyJ3HJVL1gdvZS3k3C7zfY5loXB9BO973WjM23tZcxhiF3qr6dhJDbBbvM4GwBjck5E+/i1h+cxEH8v2sq3PpObiZKV/xBEbPUonpyJEWbxIAV7JbAQZWLCy98t0ydz5SxJ8LGSJvZMIalKYygFOXPb3h3M4zWj7By8dPdjs9JV4LkLbZpfeoght5y9C2Xgrkf4dvEu7rmr9aT+1ZL8CChQ0ElJZNgH10y4CGOoMtTIDTuptljUBn1Er8z/VaAMgLAmIHUzbwOjQ4WNX/YJa2GXImLrETo7jO8rZ1E98qCwT0N9Pg53DsMP0dp0q1vAKkBRa
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:11:15.4855 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f08652c-bc4b-4e16-4a56-08df43fc3daa
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: LV8PEPF00000059.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5914
+Subject: Re: [PATCH] mm/hmm: skip NUMA balancing on protnone faults
+From: "Gregory Price (Meta)" <gourry@gourry.net>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: "Gregory Price (Meta)" <gourry@gourry.net>, 
+ "David Hildenbrand (Arm)" <david@kernel.org>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>, linux-mm@kvack.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>, 
+ Leon Romanovsky <leon@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ John Hubbard <jhubbard@nvidia.com>
+In-Reply-To: <avuN2eIrlqrO0u6O@nvdebian.thelocal>
+References: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
+ <b32fb02a-68b4-4db9-83dd-254147dbf215@kernel.org>
+ <1993e931e6a4b0cda5c04e72b1a8d5fb924f950a.camel@linux.intel.com>
+ <9ec3e8b9-064a-47a7-8d00-566ff371b846@kernel.org>
+ <179460319801.482102.15329919214055018110.b4-reply@b4>
+ <avuN2eIrlqrO0u6O@nvdebian.thelocal>
+Date: Mon, 16 Nov 2026 18:57:52 -0500
+Message-Id: <179487347201.482102.6428415219993123805.b4-reply@b4>
+X-Mailer: b4 0.17-dev
 X-Mailman-Approved-At: Wed, 18 Nov 2026 13:03:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -107,38 +100,59 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A range-restricted allocation walks every split block in the range, so
-its cost grows linearly with the number of live allocations there.
-amdgpu restricts every VRAM allocation to its memory partition under
-NPS2/NPS4, so on MI300X in CPX/NPS4 KFD allocation latency grows with
-every live BO, under a VRAM manager lock shared by the compute
-partitions.
+On 2026-11-17 10:24 +1100, Alistair Popple wrote:
+> On 2026-11-14 at 07:53 +1100, "Gregory Price (Meta)" <gourry@gourry.net> wrote...
+> > On 2026-11-13 21:43 +0100, David Hildenbrand (Arm) wrote:
+> > > On 11/13/26 21:34, Thomas Hellström wrote:
+> > 
+> > > I recall that John (cc) kept saying "GPUs and NUMA balancing is inherently
+> > > incompatible, you have to disable NUMA balancing".
+> > > 
+> > 
+> > If this is a NUMA-hotplugged GPU, then this is resolved by a private
+> > node, because this:
+> > 
+> > @@ -6404,6 +6404,9 @@ static vm_fault_t do_numa_page(struct vm_fault *vmf)
+> >         if (!folio || folio_is_zone_device(folio))
+> > 
+> > 
+> > changes to
+> > 
+> >         if (!folio || folio_is_common_memory(folio))
+> > 
+> > And all folios on the GPU node are never subject to NUMA Balancing
+> > 
+> > so balancing can stay enabled while the GPU memory is not subject to
+> > PROT_NONE spew.
+> 
+> Hi Gregory, just to hopefully help clarify understanding a bit here this isn't
+> related to folio location and therefore private node won't help much.
+> 
+> This about a driver getting a snapshot of current PTE state to program a
+> secondary MMU (in this case on a GPU, but can equally be a NIC or other device).
+> 
+> Even CPU memory being subject to NUMA balancing can have quite an adverse impact
+> on GPU performance due to increased incidence of GPU faults, hence why John says
+> GPUs (using SVM) are inherently incompatible with NUMA balancing.
+> 
 
-Patch 1 replaces the walk with an O(log n) lookup in the offset-sorted
-free trees, based on Arun's class-aware version of v1; placement is
-unchanged. Patch 2 adds a KUnit test for the NPS4 pattern (range-biased,
-cleared, top-down, 64 KiB) that also checks placement: 1103 ms before,
-2 ms after.
+Ah, I follow.  I'm still working through the performance implications of
+mmu_notifiers in the presence of PROT_NONE faults, but if i'm
+understanding correctly it tracks that you'd say it's incompatible.
 
-v2: https://patchwork.freedesktop.org/series/178108/
-v1: https://patchwork.freedesktop.org/series/176957/
+I presume here the driver needs a global view of memory (or at least all
+memory it can potentially DMA), rather than simply just a subset
+(some set of VMAs)?
 
-William Palacek (2):
-  gpu/buddy: find range-biased blocks in the free trees
-  gpu/tests/buddy: add range-biased allocation performance test
-
- drivers/gpu/buddy.c                | 214 +++++++++++++++++++----------
- drivers/gpu/tests/gpu_buddy_test.c |  27 ++++
- include/linux/gpu_buddy.h          |   1 +
- 3 files changed, 172 insertions(+), 70 deletions(-)
+~Gregory
 
 -- 
-2.43.0
+~Gregory
 
