@@ -2,57 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97BD606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:48:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B24606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OdeK1Bus
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bQm7q6QV
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A11C210E9EC;
-	Tue, 17 Nov 2026 15:48:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5D710E9EC;
- Tue, 17 Nov 2026 15:48:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D594810E9EC;
+	Tue, 17 Nov 2026 15:49:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFED010E9EC;
+ Tue, 17 Nov 2026 15:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794930494; x=1826466494;
+ t=1794930564; x=1826466564;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=8rgvOg1U8EJeEf7YmOiX59D9R3gdnmZlNvLZHCI6x3I=;
- b=OdeK1BusKFUjIwRqh19bRWq9BhBLCZYOrnyL4ia6KUA0Fc0mr+pVa9wu
- MFOE7TWwxeLSEvQkiRWe3Zj1UxyrxqIGe69soc1d5isvcQ4UtAl6KDMLg
- eWg/RS3mGpk9g8GErM97AYjTI2K9qpZvGnVKmZGHZAAywpdr5TZzea5B6
- U8tDOzcLgu9JiCd3Y8bVpOmqrSpJAhozg9tlE8C7TklrENgkW/jk8hBaV
- 5rD1QncoG2QuLiqJSzpJL03+TzHAIFyuaK8pUZug/P+va3nvpzc95dslN
- EOVak3s3ao2Zt4dzG+iiDa2ZDCeYFXdEaEHqFBpGAL5LBqtP0kyIb0aCH g==;
-X-CSE-ConnectionGUID: rdiIMTX6RFWsBTMguCKpPg==
-X-CSE-MsgGUID: PJGRL76gT2G5rxk2Ptu5JA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3696451"
+ bh=64jzBWOoQ2TegFn1wmGlMYnPp09auZjOB5AMLqJb+qw=;
+ b=bQm7q6QVbyDqP3w0bxuPV29X6oEnKSvqDLWZc5P3z4jiQD7jUZ9XFXfZ
+ DeEaOpcRV/E6qFhqK+c5ZfiLwRCBbYsWcXmku8b96RNF4al2YS9KXxCQu
+ 34116kv9HgZMckdc+j4/1H0h+5U82+cjZEaMHtRZ2ezAokKmbDW3I24rC
+ YFK5CDWxwDU8LxaB7tEDzAr80YxP/x/fIgeM2OTYYj+rA56Z1P+glg74n
+ pgEE8moeRq1ZOyYECqm3ZlPdkyoJ3/+FIJDCY93J48C51CGA0hRfilDQs
+ mKLajal7cz6FvAwddUfniw8P7gIlyIX8jqjLnO63H5VsMkDMHozM0yTKV g==;
+X-CSE-ConnectionGUID: QqyeeLz9T22/AsqLIfHw8Q==
+X-CSE-MsgGUID: 2EHz/OZjSgeonFbz32Ev/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3699592"
 X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3696451"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2026 07:48:14 -0800
-X-CSE-ConnectionGUID: axvTAejXSxS6+W2HvTrYIw==
-X-CSE-MsgGUID: JuyJzi4yT7aK9XSezveSRg==
+   d="scan'208";a="3699592"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 07:47:24 -0800
+X-CSE-ConnectionGUID: exDvlrwXSV+j63oCeIqmTA==
+X-CSE-MsgGUID: bHiy6aNbTMm4HhhJnvHGog==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="9944418"
+   d="scan'208";a="9719490"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.94])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2026 07:48:12 -0800
+ 17 Nov 2026 07:47:23 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 4/7] drm/i915/dsb: Extract intel_dsb_set_ins()
-In-Reply-To: <20261116081041.6519-5-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 3/7] drm/i915/dsb: Carve up
+ intel_dsb_prev_ins_is_indexed_write()
+In-Reply-To: <20261116081041.6519-4-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20261116081041.6519-1-ville.syrjala@linux.intel.com>
- <20261116081041.6519-5-ville.syrjala@linux.intel.com>
-Date: Tue, 17 Nov 2026 17:48:09 +0200
-Message-ID: <72a8a263d785c3f85a92691e3d8f7ddf39507153@intel.com>
+ <20261116081041.6519-4-ville.syrjala@linux.intel.com>
+Date: Tue, 17 Nov 2026 17:47:20 +0200
+Message-ID: <de9948c3347d9370e83f26e98c0f133b90dc0cca@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -77,62 +78,92 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 On Mon, 16 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> We're adjusting the previous instruction tracking data in
-> a few places. Extract that to a helper. I'll be adding a
-> few other uses soon.
+> Currently intel_dsb_prev_ins_is_indexed_write() checks both the
+> opcode and the register offset. I'll be needing the opcode
+> only part for a second use, so carve the function up into
+> two parts:
+> - intel_dsb_prev_ins_is_indexed_write() which just checks
+>   the opcode
+> - intel_dsb_prev_ins_is_indexed_write_to_reg() which checks
+>   both the opcode and the register offset
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_dsb.c | 17 +++++++++++------
->  1 file changed, 11 insertions(+), 6 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 29 ++++++++++++++++--------
+>  1 file changed, 20 insertions(+), 9 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
 915/display/intel_dsb.c
-> index fa4964c17163..75f98b31c780 100644
+> index 8357c712a20e..fa4964c17163 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dsb.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-> @@ -310,6 +310,15 @@ static unsigned int intel_dsb_tail(struct intel_dsb =
+> @@ -310,6 +310,20 @@ static unsigned int intel_dsb_tail(struct intel_dsb =
 *dsb)
 >  	return dsb_buffer_ggtt_offset(dsb) + intel_dsb_size(dsb);
 >  }
 >=20=20
-> +static void intel_dsb_set_ins(struct intel_dsb *dsb,
-> +			      unsigned int ins_start_offset,
-> +			      u32 ldw, u32 udw)
+> +static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb)
 > +{
-> +	dsb->ins_start_offset =3D ins_start_offset;
-> +	dsb->ins[0] =3D ldw;
-> +	dsb->ins[1] =3D udw;
+> +	u32 opcode =3D DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT;
+> +	u32 prev_opcode;
+> +
+> +	/* Nothing emitted yet? */
+> +	if (dsb->free_pos =3D=3D 0)
+> +		return false;
+> +
+> +	prev_opcode =3D dsb->ins[1] & ~DSB_REG_VALUE_MASK;
+> +
+> +	return prev_opcode =3D=3D opcode;
 > +}
 > +
->  static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb)
+
+Surprising location far away from the "to_reg" counterpart, but okay.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>  static void intel_dsb_ins_align(struct intel_dsb *dsb)
 >  {
->  	u32 opcode =3D DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT;
-> @@ -344,9 +353,7 @@ static void intel_dsb_emit(struct intel_dsb *dsb, u32=
- ldw, u32 udw)
->=20=20
->  	intel_dsb_ins_align(dsb);
->=20=20
-> -	dsb->ins_start_offset =3D dsb->free_pos;
-> -	dsb->ins[0] =3D ldw;
-> -	dsb->ins[1] =3D udw;
-> +	intel_dsb_set_ins(dsb, dsb->free_pos, ldw, udw);
->=20=20
->  	dsb_buffer_write(dsb, dsb->free_pos++, dsb->ins[0]);
+>  	/*
+> @@ -338,20 +352,17 @@ static void intel_dsb_emit(struct intel_dsb *dsb, u=
+32 ldw, u32 udw)
 >  	dsb_buffer_write(dsb, dsb->free_pos++, dsb->ins[1]);
-> @@ -1023,9 +1030,7 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+>  }
 >=20=20
->  	/* Attempt to reset it */
->  	dsb->free_pos =3D 0;
-> -	dsb->ins_start_offset =3D 0;
-> -	dsb->ins[0] =3D 0;
-> -	dsb->ins[1] =3D 0;
-> +	intel_dsb_set_ins(dsb, 0, 0, 0);
+> -static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb,
+> -						intel_reg_t reg)
+> +static bool intel_dsb_prev_ins_is_indexed_write_to_reg(struct intel_dsb =
+*dsb,
+> +						       intel_reg_t reg)
+>  {
+> -	u32 opcode =3D DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT;
+> -	u32 prev_opcode, prev_reg;
+> +	u32 prev_reg;
 >=20=20
->  	intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id), 0);
+> -	/* Nothing emitted yet? */
+> -	if (dsb->free_pos =3D=3D 0)
+> +	if (!intel_dsb_prev_ins_is_indexed_write(dsb))
+>  		return false;
+>=20=20
+> -	prev_opcode =3D dsb->ins[1] & ~DSB_REG_VALUE_MASK;
+>  	prev_reg =3D  dsb->ins[1] & DSB_REG_VALUE_MASK;
+>=20=20
+> -	return prev_opcode =3D=3D opcode && prev_reg =3D=3D intel_reg_offset(re=
+g);
+> +	return prev_reg =3D=3D intel_reg_offset(reg);
+>  }
+>=20=20
+>  /**
+> @@ -386,7 +397,7 @@ void intel_dsb_reg_write_indexed(struct intel_dsb *ds=
+b,
+>  	 * we are writing odd no of dwords, Zeros will be added in the end for
+>  	 * padding.
+>  	 */
+> -	if (!intel_dsb_prev_ins_is_indexed_write(dsb, reg))
+> +	if (!intel_dsb_prev_ins_is_indexed_write_to_reg(dsb, reg))
+>  		intel_dsb_emit(dsb, 0, /* count */
+>  			       (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
+>  			       intel_reg_offset(reg));
 
 --=20
 Jani Nikula, Intel
