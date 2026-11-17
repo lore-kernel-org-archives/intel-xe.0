@@ -2,43 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7D8606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=BLj4xPkp
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4DA7606A32A
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:57:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B186110EB97;
-	Tue, 17 Nov 2026 15:56:49 +0000 (UTC)
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B32F10EB91;
- Tue, 17 Nov 2026 15:56:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1794931001;
- bh=lT1DStF0diOJrAhQojkKde1uSUXG5CvuzA/3fseiE6c=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=BLj4xPkpLuCIFqiNyedN0mXGwocAMQvk+kLCwzP46cifR9CF72AvdkItw3yzUd14+
- acRFDhr6qjgg2n1OkANzVwrzNOoxFvYbtDyYuKmvih2Ks20/Gu7j+sPAtYuT0sIj/R
- TvSqQKMUAPEtaQFf40fci8RHdDGHLLoMW0bzCCD39MMX+rpaWGM9hRlXWwdWSyLKUH
- zjzMKCkUWinpyXlHzauLzXaTB06fnSFqwBpaQdtEYPRFiEzXNn1eJm0Q8ArpqNA+ot
- suNckx5iG/4eETceaouhpwyvlMxjRyXDtjlYvI9b7PtmmK4h/ZgVJ0PgJrqZC+dw+P
- Yl6nimHfL94rQ==
-Message-ID: <7fa6546b-9330-41f3-907c-9ac9fcae938e@lankhorst.se>
-Date: Tue, 17 Nov 2026 16:57:56 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7829C10EB9A;
+	Tue, 17 Nov 2026 15:57:50 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1D0E10EB9A;
+ Tue, 17 Nov 2026 15:57:49 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7542476002304650548=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 5/5] drm/i915: Introduce
- intel_bo_fbdev_bios_fb_takeover()
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Uma Shankar <uma.shankar@intel.com>
-References: <20261116131349.333818-7-dev@lankhorst.se>
- <20261116131349.333818-12-dev@lankhorst.se> <avsEcPjp0TdD1JDp@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <avsEcPjp0TdD1JDp@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu/buddy=3A_Fix_quadratic_?=
+ =?utf-8?q?cost_of_range-biased_allocation_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Nov 2026 15:57:49 -0000
+Message-ID: <179493106978.38389.10380495525797411535@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261117145435.1629839-3-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20261117145435.1629839-3-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,117 +33,252 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hey,
+--===============7542476002304650548==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 11/16/26 14:26, Ville Syrjälä wrote:
-> On Mon, Nov 16, 2026 at 02:13:55PM +0100, Maarten Lankhorst wrote:
->> Pull the "do we want to use stolen for the BIOS FB?" checks into
->> a new intel_bo_fbdev_bios_fb_takeover() helper, and defer that
->> decision until we're ready to reallocate the fbdev FB. This way
->> even if we don't want to ultimately use the BIOS FB we'll keep
->> the plane enabled until the replacement FB is ready. Should
->> hopefully result in fewer display blinks during boot.
->>
->> Additionally, on some platforms this allows us to re-create the
->> framebuffer when stolen memory is not suitable, using the blitter
->> engine to copy the contents to system memory without causing
->> any flickering by not preserving the stolen memory allocation.
->>
->> This patch is a modification the original patch by Ville.
->> Originally only the decision to drop stolen fb was deferred.
->>
->> The modifications allow it to flip to a different fb that still
->> contains the contents of the previous framebuffer to preserve
->> the flicker free property of boot, even when the original stolen
->> framebuffer is dropped. Additionally, bios_fb_ok() was renamed
->> to bios_fb_takeover() with a different function signature.
->>
->> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/i915/display/intel_bo.c       |  7 ++
->>  drivers/gpu/drm/i915/display/intel_bo.h       |  1 +
->>  drivers/gpu/drm/i915/display/intel_fbdev.c    | 68 ++++++++++++++++---
->>  drivers/gpu/drm/i915/i915_bo.c                | 14 +++-
->>  drivers/gpu/drm/i915/i915_bo.h                |  6 --
->>  drivers/gpu/drm/i915/i915_initial_plane.c     | 14 ----
->>  drivers/gpu/drm/xe/display/xe_display_bo.c    | 62 ++++++++++++++++-
->>  drivers/gpu/drm/xe/display/xe_display_bo.h    |  6 --
->>  drivers/gpu/drm/xe/display/xe_initial_plane.c | 10 +--
->>  include/drm/intel/display_parent_interface.h  |  1 +
->>  10 files changed, 141 insertions(+), 48 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/display/intel_bo.c
->> index 8ecdbb7e39f3d..878c62cb48b4f 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bo.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bo.c
->> @@ -92,6 +92,13 @@ u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 stride)
->>  	return display->parent->bo->fbdev_pitch_align(stride);
->>  }
->>  
->> +struct drm_gem_object *intel_bo_fbdev_bios_fb_takeover(struct drm_gem_object *obj)
->> +{
->> +	struct intel_display *display = to_intel_display(obj->dev);
->> +
->> +	return display->parent->bo->fbdev_bios_fb_takeover(obj);
->> +}
->> +
->>  struct drm_gem_object *intel_bo_fbdev_create(struct intel_display *display, int size)
->>  {
->>  	return display->parent->bo->fbdev_create(display->drm, size);
->> diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i915/display/intel_bo.h
->> index 348f7fa669608..0410ee9c6d2e1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bo.h
->> +++ b/drivers/gpu/drm/i915/display/intel_bo.h
->> @@ -34,6 +34,7 @@ struct drm_gem_object *intel_bo_framebuffer_lookup(struct intel_display *display
->>  						   const struct drm_mode_fb_cmd2 *user_mode_cmd);
->>  
->>  u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 stride);
->> +struct drm_gem_object *intel_bo_fbdev_bios_fb_takeover(struct drm_gem_object *obj);
->>  struct drm_gem_object *intel_bo_fbdev_create(struct intel_display *display, int size);
->>  void intel_bo_fbdev_destroy(struct drm_gem_object *obj);
->>  int intel_bo_fbdev_fill_info(struct drm_gem_object *obj, struct fb_info *info,
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> index c09246a9865cd..8ef522df7f172 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> @@ -229,8 +229,8 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
->>  		       struct drm_fb_helper_surface_size *sizes)
->>  {
->>  	struct drm_mode_fb_cmd2 mode_cmd = {};
->> -	struct drm_framebuffer *fb;
->>  	struct drm_gem_object *obj;
->> +	struct drm_framebuffer *fb;
->>  	int size;
->>  
->>  	intel_fbdev_fill_mode_cmd(display, sizes, &mode_cmd);
->> @@ -263,32 +263,68 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
->>  
->>  }
->>  
->> -static bool bios_fb_ok(const struct intel_framebuffer *fb,
->> -		       const struct drm_fb_helper_surface_size *sizes)
-> 
-> You seem to have ignored my previous comments completely.
-It seems I overlooked those!
+== Series Details ==
 
-I've spun a new version with the feedback.
+Series: gpu/buddy: Fix quadratic cost of range-biased allocation (rev6)
+URL   : https://patchwork.freedesktop.org/series/175945/
+State : success
 
-Sashiko also had some comments about double unpin.
+== Summary ==
 
-After looking carefully, the only times it can fail are with an invalid configuration.
-Since we already created the framebuffer once, this failure path will not happen when
-re-creating the fb.
+CI Bug Log - changes from xe-6160-1bcf6d6c4e900492a190123010854ee3e5f6a6c7_BAT -> xe-pw-175945v6_BAT
+====================================================
 
-Kind regards,
-~Maarten Lankhorst
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 15)
+------------------------------
+
+  Additional (2): bat-bmg-vm bat-ptl-vm 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-175945v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][1] ([Intel XE#5764]) +11 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][2] ([Intel XE#7482]) +17 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
+
+  * igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#8364]) +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html
+
+  * igt@xe_exec_multi_queue@many-queues-userptr-invalidate:
+    - bat-bmg-vm:         NOTRUN -> [SKIP][4] ([Intel XE#8364]) +13 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][5] ([Intel XE#5775]) +2 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-vm:         NOTRUN -> [SKIP][6] ([Intel XE#2229])
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#9657])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][8] ([Intel XE#5776])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][9] ([Intel XE#5777] / [Intel XE#7590])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
+    - bat-bmg-vm:         NOTRUN -> [SKIP][10] ([Intel XE#1420] / [Intel XE#7590])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][11] ([Intel XE#5771] / [Intel XE#7590])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
+    - bat-bmg-vm:         NOTRUN -> [SKIP][12] ([Intel XE#2245] / [Intel XE#7590])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][13] ([Intel XE#5780] / [Intel XE#7590])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
+    - bat-bmg-vm:         NOTRUN -> [SKIP][14] ([Intel XE#2236] / [Intel XE#7590])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1420]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+  [Intel XE#2245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+  [Intel XE#9657]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657
+
+
+Build changes
+-------------
+
+  * Linux: xe-6160-1bcf6d6c4e900492a190123010854ee3e5f6a6c7 -> xe-pw-175945v6
+
+  IGT_9196: 9196
+  xe-6160-1bcf6d6c4e900492a190123010854ee3e5f6a6c7: 1bcf6d6c4e900492a190123010854ee3e5f6a6c7
+  xe-pw-175945v6: 175945v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/index.html
+
+--===============7542476002304650548==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>gpu/buddy: Fix quadratic cost of range-biased allocation (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/175945/">https://patchwork.freedesktop.org/series/175945/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6160-1bcf6d6c4e900492a190123010854ee3e5f6a6c7_BAT -&gt; xe-pw-175945v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 15)</h2>
+<p>Additional (2): bat-bmg-vm bat-ptl-vm </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-175945v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_exec_multi_queue@many-queues-preempt-mode-close-fd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-userptr-invalidate:</p>
+<ul>
+<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657">Intel XE#9657</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1420">Intel XE#1420</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2245">Intel XE#2245</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+<li>bat-bmg-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-175945v6/bat-bmg-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236">Intel XE#2236</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6160-1bcf6d6c4e900492a190123010854ee3e5f6a6c7 -&gt; xe-pw-175945v6</li>
+</ul>
+<p>IGT_9196: 9196<br />
+  xe-6160-1bcf6d6c4e900492a190123010854ee3e5f6a6c7: 1bcf6d6c4e900492a190123010854ee3e5f6a6c7<br />
+  xe-pw-175945v6: 175945v6</p>
+
+</body>
+</html>
+
+--===============7542476002304650548==--
