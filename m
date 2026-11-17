@@ -2,43 +2,61 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8742D606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97BD606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:48:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YwMcUzqA
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OdeK1Bus
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5B210E9EC;
-	Tue, 17 Nov 2026 15:45:51 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5045310E9EC;
- Tue, 17 Nov 2026 15:45:45 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C6E9760F7B;
- Tue, 17 Nov 2026 15:45:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555251F000C4;
- Tue, 17 Nov 2026 15:45:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794930344;
- bh=MNCwVTkEKVi9nKzG3pyN5bIR8vGxO4pn4o7PuDZ2pTY=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=YwMcUzqA5PR24b0YBgor+dGRp3O2RnceAbn2K0cwsL/6Nl2sV2L6otcxfKxnSoNeg
- Jc1kQSjz8P0g4FuU3lo2fYiNb65kIgAO5WOJRtpkGGVqniwZvptJUhMarhpop4n4Xd
- WirxbiPXXTqk22SuTb/ry6qnQJarTmwQ/FfoJiMR7ytDHnT6Zjv2KHJgyPans5M65I
- tH925CdhzWoER1PQQ5ogCv2KgB13n0SLzUOwLvzKwcDD7Q0OSIBO/OZRqBfXHk71Yc
- WtQl0pUzZy2ZHj7c94vk/YsTfjzJmCXGi7bhre3wv2cPpJb5qSYZCFQ0TphXtnprzq
- vaGxjpMpcGnRg==
-Message-ID: <sashiko-outbox-219104@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 5/5] drm/i915: Introduce
- intel_bo_fbdev_bios_fb_takeover()
-To: "Maarten Lankhorst" <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20261117143038.479557-12-dev@lankhorst.se>
-References: <20261117143038.479557-7-dev@lankhorst.se>
- <20261117143038.479557-12-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A11C210E9EC;
+	Tue, 17 Nov 2026 15:48:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F5D710E9EC;
+ Tue, 17 Nov 2026 15:48:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794930494; x=1826466494;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=8rgvOg1U8EJeEf7YmOiX59D9R3gdnmZlNvLZHCI6x3I=;
+ b=OdeK1BusKFUjIwRqh19bRWq9BhBLCZYOrnyL4ia6KUA0Fc0mr+pVa9wu
+ MFOE7TWwxeLSEvQkiRWe3Zj1UxyrxqIGe69soc1d5isvcQ4UtAl6KDMLg
+ eWg/RS3mGpk9g8GErM97AYjTI2K9qpZvGnVKmZGHZAAywpdr5TZzea5B6
+ U8tDOzcLgu9JiCd3Y8bVpOmqrSpJAhozg9tlE8C7TklrENgkW/jk8hBaV
+ 5rD1QncoG2QuLiqJSzpJL03+TzHAIFyuaK8pUZug/P+va3nvpzc95dslN
+ EOVak3s3ao2Zt4dzG+iiDa2ZDCeYFXdEaEHqFBpGAL5LBqtP0kyIb0aCH g==;
+X-CSE-ConnectionGUID: rdiIMTX6RFWsBTMguCKpPg==
+X-CSE-MsgGUID: PJGRL76gT2G5rxk2Ptu5JA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3696451"
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="3696451"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 07:48:14 -0800
+X-CSE-ConnectionGUID: axvTAejXSxS6+W2HvTrYIw==
+X-CSE-MsgGUID: JuyJzi4yT7aK9XSezveSRg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="9944418"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.94])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 07:48:12 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 4/7] drm/i915/dsb: Extract intel_dsb_set_ins()
+In-Reply-To: <20261116081041.6519-5-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261116081041.6519-1-ville.syrjala@linux.intel.com>
+ <20261116081041.6519-5-ville.syrjala@linux.intel.com>
+Date: Tue, 17 Nov 2026 17:48:09 +0200
+Message-ID: <72a8a263d785c3f85a92691e3d8f7ddf39507153@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 17 Nov 2026 15:45:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,305 +66,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 5 potential
-issues to consider:
-- [Medium] drm/i915/fbdev: deferred BIOS FB takeover breaks FBC and
-  drm_panic
-- [Medium] drm/xe/display: missing fence wait in
-  xe_display_bo_fbdev_bios_fb_takeover()
-- [Medium] drm/xe/display: unconditional return false in
-  xe_display_bo_fbdev_prefer_stolen()
-- [Medium] drm/i915/fbdev: double unpin on error in
-  __intel_fbdev_fb_realloc()
-- [Low] drm/i915/fbdev: commit message mismatch on bios_fb_ok() rename
---
+On Mon, 16 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We're adjusting the previous instruction tracking data in
+> a few places. Extract that to a helper. I'll be adding a
+> few other uses soon.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-commit 9269db9d41cf2915da41de1cbfd42a10b2dd2198
-Author: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
-
-This commit defers the decision to keep or replace a stolen-memory BIOS
-framebuffer from initial plane readout to fbdev probing via a new
-intel_bo_fbdev_bios_fb_takeover() parent interface callback, copying the
-BIOS framebuffer to system memory with the blitter on Xe when stolen
-memory is not preferred.
-
-> Additionally, bios_fb_ok() was renamed
-> to bios_fb_takeover() with a different function signature.
-
-[Severity: Low]
-This isn't a bug, but bios_fb_ok() is kept unchanged in intel_fbdev.c while
-intel_fbdev_fb_takeover() and intel_bo_fbdev_bios_fb_takeover() are added
-alongside it.
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
-/i915/display/intel_fbdev.c
-> index 219ee17de3f68..31f4dd2660c07 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -262,6 +262,50 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
-> =20
+> ---
+>  drivers/gpu/drm/i915/display/intel_dsb.c | 17 +++++++++++------
+>  1 file changed, 11 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i=
+915/display/intel_dsb.c
+> index fa4964c17163..75f98b31c780 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+> @@ -310,6 +310,15 @@ static unsigned int intel_dsb_tail(struct intel_dsb =
+*dsb)
+>  	return dsb_buffer_ggtt_offset(dsb) + intel_dsb_size(dsb);
 >  }
-> =20
-> +static struct intel_framebuffer *
-> +__intel_fbdev_fb_realloc(struct intel_display *display,
-> +			 const struct drm_framebuffer *orig_fb,
-> +			 struct drm_gem_object *obj)
+>=20=20
+> +static void intel_dsb_set_ins(struct intel_dsb *dsb,
+> +			      unsigned int ins_start_offset,
+> +			      u32 ldw, u32 udw)
 > +{
-> +	struct drm_framebuffer *new_fb;
-> +	struct drm_mode_fb_cmd2 mode_cmd =3D {
-> +		.flags =3D DRM_MODE_FB_MODIFIERS,
-> +		.width =3D orig_fb->width,
-> +		.height =3D orig_fb->height,
-> +		.pitches[0] =3D orig_fb->pitches[0],
-> +		.offsets[0] =3D orig_fb->offsets[0],
-> +		.pixel_format =3D orig_fb->format->format,
-> +		.modifier[0] =3D orig_fb->modifier,
-> +	};
-> +
-> +	new_fb =3D intel_framebuffer_create(obj, orig_fb->format, &mode_cmd);
-> +
-> +	if (IS_ERR(new_fb)) {
-> +		intel_bo_fbdev_destroy(obj);
-> +		return ERR_CAST(new_fb);
-> +	}
-
-[Severity: Medium]
-Can this error path unpin obj twice on Xe when intel_framebuffer_create()
-fails after intel_bo_framebuffer_init()?
-
-xe_display_bo_fbdev_bios_fb_takeover() allocates copy_bo via
-xe_bo_create_pin_map_novm() with XE_BO_FLAG_PINNED set and pin_count =3D=3D=
- 1.
-Inside intel_framebuffer_init(), xe_display_bo_framebuffer_init() takes a
-reference on the BO without pinning it, but if a later step in
-intel_framebuffer_init() fails (such as drm_framebuffer_init()), its error
-unwind calls intel_bo_framebuffer_fini() -> xe_display_bo_framebuffer_fini(=
-):
-
-drivers/gpu/drm/xe/display/xe_display_bo.c:xe_display_bo_framebuffer_fini()=
- {
-	struct xe_bo *bo =3D gem_to_xe_bo(obj);
-
-	if (bo->flags & XE_BO_FLAG_PINNED) {
-		/* Unpin our kernel fb first */
-		xe_bo_lock(bo, false);
-		xe_bo_unpin(bo);
-		xe_bo_unlock(bo);
-	}
-	xe_bo_put(bo);
-}
-
-intel_bo_fbdev_destroy() -> xe_bo_unpin_map_no_vm() then calls
-xe_bo_unpin() a second time on copy_bo, triggering the pinned assertions in
-xe_bo_unpin() and WARN_ON_ONCE(!bo->pin_count) in ttm_bo_unpin().
-
-> +
-> +	drm_gem_object_put(obj);
-> +	return to_intel_framebuffer(new_fb);
+> +	dsb->ins_start_offset =3D ins_start_offset;
+> +	dsb->ins[0] =3D ldw;
+> +	dsb->ins[1] =3D udw;
 > +}
-
-[ ... ]
-
-> @@ -305,13 +349,26 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_he=
-lper *helper,
-> =20
->  	ifbdev->fb =3D NULL;
-> =20
-> -	if (fb && !bios_fb_ok(fb, sizes)) {
-> +	wakeref =3D intel_display_rpm_get(display);
 > +
-> +	if (fb && bios_fb_ok(fb, sizes)) {
-> +		struct intel_framebuffer *bios_fb =3D
-> +			intel_fbdev_fb_takeover(display, fb);
-> +
-> +		if (IS_ERR(bios_fb)) {
-> +			drm_dbg_kms(display->drm, "Re-using BIOS fb failed (%pe).", bios_fb);
-> +			bios_fb =3D NULL;
-> +		}
-> +
-> +		if (fb !=3D bios_fb) {
-> +			drm_framebuffer_put(&fb->base);
-> +			fb =3D bios_fb;
-> +		}
-> +	} else if (fb) {
->  		drm_framebuffer_put(&fb->base);
->  		fb =3D NULL;
->  	}
-
-[Severity: Medium]
-Does deferring the stolen-memory check to intel_fbdev_driver_fbdev_probe()
-and swapping ifbdev->fb without a plane commit regress FBC, stolen-memory
-workarounds, and drm_panic?
-
-Because initial_plane_vma() and initial_plane_bo() now unconditionally wrap
-the BIOS framebuffer in stolen memory, it remains allocated during
-intel_initial_commit() before intel_fbdev_setup() runs.  When the BIOS
-framebuffer occupies more than half of stolen memory, intel_fbc_alloc_cfb()
--> find_compression_limit() during intel_initial_commit() either fails with
--ENOSPC or permanently degrades fbc->limit to 1:2 or 1:4, as
-intel_fbc_is_cfb_ok() does not upgrade the CFB once the stolen BIOS
-framebuffer is freed.
-
-In addition, when intel_fbdev_fb_takeover() replaces the stolen framebuffer
-with a system-memory framebuffer, drm_framebuffer_put(&fb->base) only drops
-ifbdev->fb's reference; the active primary plane's plane_state->uapi.fb and
-plane_state->hw.fb still hold the original stolen framebuffer until an
-atomic commit flips the plane.  When
-CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=3Dy or
-CONFIG_FRAMEBUFFER_CONSOLE=3Dn, register_framebuffer() returns without
-calling fb_set_par(), leaving the hardware plane scanning out the stolen
-framebuffer (and leaving MTL Wa_22018444074, Xe Wa_22019338487_display, and
-media GT MC6 latency unmitigated) while ifbdev->fb and /dev/fb0 point to
-the new system-memory buffer.
-
-While plane_state->hw.fb still points to the stolen BIOS framebuffer and
-display->fbdev.fbdev->fb points to the replacement framebuffer,
-intel_get_scanout_buffer() also no longer matches
-intel_fbdev_framebuffer(display->fbdev.fbdev) and falls back to
-intel_parent_panic_setup() on the stolen BO, which fails on both i915 and
-Xe.
-
-[ ... ]
-
-> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm=
-/xe/display/xe_display_bo.c
-> index d78d893210c4f..43d05a58bcb47 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-> @@ -120,7 +121,7 @@ static u32 xe_display_bo_fbdev_pitch_align(u32 stride)
->  	return ALIGN(stride, XE_PAGE_SIZE);
->  }
-> =20
-> -bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned in=
-t size)
-> +static bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsi=
-gned int size)
+>  static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb)
 >  {
->  	struct ttm_resource_manager *stolen;
-> =20
-> @@ -152,6 +153,64 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_dev=
-ice *xe, unsigned int size)
->  	return stolen->size >=3D (size * 2) >> PAGE_SHIFT;
->  }
-> =20
-> +static struct drm_gem_object *xe_display_bo_fbdev_bios_fb_takeover(struc=
-t drm_gem_object *obj)
-> +{
-> +	struct xe_bo *orig_bo =3D gem_to_xe_bo(obj), *copy_bo;
-> +	struct xe_device *xe =3D xe_bo_device(orig_bo);
-> +	struct xe_validation_ctx ctx;
-> +	struct drm_exec exec;
-> +	int err;
-> +
-> +	if (IS_DGFX(xe) ||
-> +	    xe_display_bo_fbdev_prefer_stolen(xe, xe_bo_size(orig_bo)))
-> +		return obj;
-
-[Severity: Medium]
-Does xe_display_bo_fbdev_prefer_stolen() unconditionally return false here?
-
-Earlier commit "HACK: Always fallback" in this series left an unconditional
-"return false;" right before the size check in
-xe_display_bo_fbdev_prefer_stolen():
-
-drivers/gpu/drm/xe/display/xe_display_bo.c:xe_display_bo_fbdev_prefer_stole=
-n() {
-    ...
-	/* machine hang when doing lots of LMEMBAR accesses */
-	if (XE_DEVICE_WA(xe, 22019338487_display))
-		return false;
-
-	return false;
-
-	/*
-	 * If the FB is too big, just don't use it since fbdev is not very
-	 * important and we should probably use that space with FBC or other
-	 * features.
-	 */
-	return stolen->size >=3D (size * 2) >> PAGE_SHIFT;
-}
-
-Because of that statement, the stolen size check is unreachable and
-xe_display_bo_fbdev_bios_fb_takeover() always rejects stolen memory on
-every integrated Xe platform.
-
-> +
-> +	copy_bo =3D xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), =
-xe_bo_size(orig_bo),
-> +					    ttm_bo_type_kernel,
-> +					    XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT,
-> +					    false);
-> +	if (IS_ERR(copy_bo))
-> +		return ERR_CAST(copy_bo);
-> +
-> +	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, er=
-r) {
-> +		struct dma_fence *fence;
-> +
-> +		err =3D drm_exec_lock_obj(&exec, &orig_bo->ttm.base);
-> +		drm_exec_retry_on_contention(&exec);
-> +		if (err)
-> +			break;
-> +
-> +		err =3D drm_exec_lock_obj(&exec, &copy_bo->ttm.base);
-> +		drm_exec_retry_on_contention(&exec);
-> +		if (err)
-> +			break;
-> +
-> +		err =3D dma_resv_reserve_fences(orig_bo->ttm.base.resv, 1);
-> +		if (err)
-> +			break;
-> +
-> +		err =3D dma_resv_reserve_fences(copy_bo->ttm.base.resv, 1);
-> +		if (err)
-> +			break;
-> +
-> +		fence =3D xe_migrate_copy(xe_device_get_root_tile(xe)->migrate, orig_b=
-o, copy_bo,
-> +					orig_bo->ttm.resource, copy_bo->ttm.resource, false);
-> +		if (IS_ERR(fence)) {
-> +			err =3D PTR_ERR(fence);
-> +			break;
-> +		}
-> +
-> +		dma_resv_add_fence(copy_bo->ttm.base.resv, fence, DMA_RESV_USAGE_KERNE=
-L);
-> +		dma_resv_add_fence(orig_bo->ttm.base.resv, fence, DMA_RESV_USAGE_BOOKK=
-EEP);
-> +		dma_fence_put(fence);\n+\n+\t\treturn &copy_bo->ttm.base;\n+\t}
-
-[Severity: Medium]
-Can CPU accesses to info->screen_base race with the asynchronous
-xe_migrate_copy() blit into copy_bo?
-
-copy_bo is created already pinned via xe_bo_create_pin_map_novm(), so when
-intel_fbdev_driver_fbdev_probe() subsequently calls
-intel_parent_fb_pin_ggtt_pin() -> __xe_pin_fb_vma() -> xe_bo_validate(),
-xe_bo_validate() returns early because xe_bo_is_pinned(copy_bo) is true
-without waiting on copy_bo's reservation fences.
-intel_bo_fbdev_fill_info() then exposes copy_bo->vmap.vaddr_iomem as
-info->screen_base and register_framebuffer() registers /dev/fb0.  If
-fb_set_par() is not called immediately (for example with
-CONFIG_FRAMEBUFFER_CONSOLE_DEFERRED_TAKEOVER=3Dy) or if
-drm_client_modeset_commit() in drm_fb_helper_set_par() returns -EBUSY,
-nothing waits for fence before CPU reads or writes hit info->screen_base,
-allowing the in-flight GPU blit to overwrite newly rendered fbdev pixels or
-expose incomplete copy data.
+>  	u32 opcode =3D DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT;
+> @@ -344,9 +353,7 @@ static void intel_dsb_emit(struct intel_dsb *dsb, u32=
+ ldw, u32 udw)
+>=20=20
+>  	intel_dsb_ins_align(dsb);
+>=20=20
+> -	dsb->ins_start_offset =3D dsb->free_pos;
+> -	dsb->ins[0] =3D ldw;
+> -	dsb->ins[1] =3D udw;
+> +	intel_dsb_set_ins(dsb, dsb->free_pos, ldw, udw);
+>=20=20
+>  	dsb_buffer_write(dsb, dsb->free_pos++, dsb->ins[0]);
+>  	dsb_buffer_write(dsb, dsb->free_pos++, dsb->ins[1]);
+> @@ -1023,9 +1030,7 @@ void intel_dsb_wait(struct intel_dsb *dsb)
+>=20=20
+>  	/* Attempt to reset it */
+>  	dsb->free_pos =3D 0;
+> -	dsb->ins_start_offset =3D 0;
+> -	dsb->ins[0] =3D 0;
+> -	dsb->ins[1] =3D 0;
+> +	intel_dsb_set_ins(dsb, 0, 0, 0);
+>=20=20
+>  	intel_de_write_fw(display, DSB_CTRL(pipe, dsb->id), 0);
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261117143038.4795=
-57-7-dev@lankhorst.se?part=3D5
+Jani Nikula, Intel
