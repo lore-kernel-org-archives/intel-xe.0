@@ -2,158 +2,167 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C65F606A33F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 08:42:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24931606A893
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 08:49:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mhF8g56r;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=hs3T+wP9
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ltW38bZ8;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=lmkhZUOa
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0318810EADC;
-	Tue, 17 Nov 2026 08:42:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EB5710EADC
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 08:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DCEEF10EB6A;
+	Tue, 17 Nov 2026 08:49:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5F3510EB6A
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 08:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794904919; x=1826440919;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jKkdi6wuFyLZda3atJat34cZChEwRLobJFnKJOPcXKc=;
- b=mhF8g56rrMf7r/cYoZLARNJVfKxiYBWcuTnU62hfqs8DhwgvhOAkwqqN
- PXR30NxREE8NPOwTdFW/AMbp+zPyqe/KP2yHlMwRoESdebWyuFL4lBS4i
- 4f1bhPv8ujx5vmC8qatILEQ/XXvYqUCuQ+fppG5UXHfyvy5n+kW5HDBee
- 6+cwevwab5sic3VZrGXoU+2Fa6xrJm7PhuWxV9y94gh5VarQdZXTieb1a
- YsY22dCSeozDQuElp9IGT5lQoNQWq8BQBP+6Umx0v0E6rUm0wb56+Vyin
- 6p+pzERmGn4MXffEZfoNBfse/Fl62UDWOM5ewltcNwfvFNMCLVP7EHilq g==;
-X-CSE-ConnectionGUID: QcOOKOwmRO2nVnR6zRZPTA==
-X-CSE-MsgGUID: 7F2iB4roR3uEaazX/qaKyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3520671"
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3520671"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2026 00:41:58 -0800
-X-CSE-ConnectionGUID: MTKu33waT4OltFwvFqP+BA==
-X-CSE-MsgGUID: BFczk+RcQTOJ4lxZP/u/JA==
+ t=1794905359; x=1826441359;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:mime-version;
+ bh=p9znOew7DLt46wLHJlwvPjIXzftMB9bwNvoIKMP2FsE=;
+ b=ltW38bZ87QwyX3h6kGUzzT8769GMMtZCoPUKIyJHiY1oTxJ0y56Q/eR1
+ paFpzQ0IvBHi5Jsf8HTFa9Ey7CXQiA7b7tDQRGcgo46T30hSSjkAYMp0n
+ NPm2TC+Thlss+HL5ax3mDk+5d6LwqDmtoXOSmDqRyLkydr4/u5GTyQHXB
+ Rkv9bdiW/YCS/FKD3th9LASCctTutoTi/Iilf6GcpBy18zuxwT4xgmSCt
+ 8zsC779rcd2RhA04lnC+wYAma2CIOp7QiOc4dFNVFRVix8Yjh3Mkm/PDF
+ A5yVx9g1vXEWZF3oI92jiq55plit/D7PLRBUHOi6e+Eat+xRatHYUp8q1 Q==;
+X-CSE-ConnectionGUID: ZEe6jiloTDWv0krfTd+ayg==
+X-CSE-MsgGUID: Y325JYywSjeYDH2LZJpLKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3580865"
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; d="scan'208,217";a="3580865"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 00:49:09 -0800
+X-CSE-ConnectionGUID: rPJ0xuU1Rne+AiiXCiy4Bg==
+X-CSE-MsgGUID: x4tpqlXmT9GF2H5mby5E0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="9682661"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2026 00:41:58 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; d="scan'208,217";a="9914024"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 00:49:07 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Tue, 17 Nov 2026 00:41:58 -0800
+ 15.2.2562.56; Tue, 17 Nov 2026 00:49:07 -0800
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Tue, 17 Nov 2026 00:41:58 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.58) by
+ 15.2.2562.56 via Frontend Transport; Tue, 17 Nov 2026 00:49:07 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.40) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Tue, 17 Nov 2026 00:41:58 -0800
+ 15.2.2562.56; Tue, 17 Nov 2026 00:49:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O93RfmKaMwmhq6adezw+rZ4R9zJMW9aKPKuEjltXsJV0YG5b138Nd98hs9uG7B81l/tZhUoatjWo87jTmRtabez3hhSEUge8E6TwpQRqIZ1wSD61k3HpmE8UB6A6/XWXFyzAqaqCKy5hZuhzfjweRSagkM+4gm8RU9jV6TaSkDKNow3/lr1MsX6jfqbzDSnQBfP5L924PG2GLiC84bF1Slayvh5EA6zqPIOwljhd8ZXcscidbWh5IZxxAxO5EBrXQp/judW/EJ9ajsnemX/JlxSNQUbVF7AH72gy4MmGaN3/VNwyMveedlYYGq2TjFzAY5Sd1DV4WM42QkEwCRBqFg==
+ b=lVoXlfHs/TRfOLR5bzHO19D5u1XVTsLP4wEsUNfNk6PgKhGWIs9gSbcYuuK2IyB4DTxvsos5bCUeV/z29B2fhtlCB0pbugTCu3eRgyKGT1beWGDnY+OUxjDWhZ4RSA4uk3z4G81jH8rMC2/scMe1+q0treXu3jIRt6Uoe0fWl8TrvKfSkDwCSQgH+ASsKPMAKgEiloWeHxtBq+61itwVfCf1E5wmy/xFyGfwwNIZXmMhj6rYf0kBcXndiKmndksrlkuDUl703L2/lczQF0lRn1iIrVaI9msLQQ2CyDN4rzw8QUeBOW5PtzOBm2Cf3H2XD5UCPCYOLj7Ae2uT9g1hUA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rcd08QmfNV3ch2Kd/W71TUYKSmnnQ31uxZfhmDq/ops=;
- b=E+uFXVb9UVYEKrJKgHvo27nlubyaMDta0C/1w/LzP6Yc+MnqXh3QjuSI9CrqamnIxCE74DRgA/59LXwVa5SFNfZFb+h1XJ1JKNMI++xLd6RzXFi+3VOWAIzn16jCVVYGBdtgYEQy0iOlKzkrGd84IIW2D+fTwUSVqsOLHm7J8+G5BNSYKxHNFCMARSj+6LG4g+0t5etLvVPw6KzOvZBKd1jDTUPPap1UoEg0T+dqx+3sBE3iXASWgqvDprFb4cVtsag2TyhORYYyrut7sMJYk9F6C1LWTQzktotLvGcJM24ZvIyBFCpiHrp2ej2h4y1iQWyVEGGs25e2OhudB1P4HQ==
+ bh=FbfP9XLYP/mk58DLr5kO7zXq9oDOWbqB6TJGOBjMU5w=;
+ b=NIb+hMOCIat/uLYAUMIf6nn9lXyLPuKGgLZyRiDpjyzOWX8kuyAoVt05CaiGXO5MQyOU1SDvLqwtVl7UqPPLldPaNyJHtxNQKB/eeUUFqbZmS0hME7+5otdYck4p1GDKKGS/szegSnTswMsaubfbUUc8J8YQFRN8jp/mij9RE+oyaKMcz/XnMEAnCRxMrV0jtVT2wzmqYINZmUejzyJFu/PwMmOK6se2Vmmr1tWLXgSqYtdtx12wj8d3wRNBJnqtsLbm+oErgyvJXjUXiLAmmhuFXqtFz0cX+n20Ccu4gPCKovxMJo4E8fanwqz5B/Buq9m/T1da+bBkIbfh6iUIKQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rcd08QmfNV3ch2Kd/W71TUYKSmnnQ31uxZfhmDq/ops=;
- b=hs3T+wP9zDSwAvORLlvxNWyB0z65E2XPdJkPHvlGSE+SLCIL+5kc3x0jkEjNgMB8XMTvkyWD2FjbQRI+WB/oPx4WVObNZmtSkIoipN22rVuIqyCCuFLfhb3B8Y0Qksjapv0fIg3rl1lB7Wf4+zQ+FCUqxjzLNGymHZDZGvNmv3E=
-Received: from DM3PPF4C5964328.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f1e) by DS0PR11MB7457.namprd11.prod.outlook.com
- (2603:10b6:8:140::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
- 2026 08:41:50 +0000
-Received: from DM3PPF4C5964328.namprd11.prod.outlook.com
- ([fe80::2eab:ee79:1a42:8a2e]) by DM3PPF4C5964328.namprd11.prod.outlook.com
- ([fe80::2eab:ee79:1a42:8a2e%6]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
- 08:41:50 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Jadav, Raag" <raag.jadav@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Brost, Matthew"
- <matthew.brost@intel.com>, "Yadav, Arvind" <arvind.yadav@intel.com>
-Subject: RE: [PATCH] drm/xe: fix UAF race between exec-queue teardown and GuC
- CT pause-abort
-Thread-Topic: [PATCH] drm/xe: fix UAF race between exec-queue teardown and GuC
- CT pause-abort
-Thread-Index: AQHdc3wNW904rLqauU+F9Hqi2hVXBLcsHfqAgAXZtnA=
-Date: Tue, 17 Nov 2026 08:41:50 +0000
-Message-ID: <DM3PPF4C5964328A1BB96EA16C59508A419817B2@DM3PPF4C5964328.namprd11.prod.outlook.com>
-References: <20261113132149.2989667-2-tejas.upadhyay@intel.com>
- <avcqq9J7MHnVKlWv@black.igk.intel.com>
-In-Reply-To: <avcqq9J7MHnVKlWv@black.igk.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
+ bh=FbfP9XLYP/mk58DLr5kO7zXq9oDOWbqB6TJGOBjMU5w=;
+ b=lmkhZUOabM8buJnCH7lFcYawPY2WvyOKYFGlIJxXWT/GDRedx4wfxizY4tqATeaswUD/g7zQ3HwjyAgQQQooPufE1o4BdxRxp/RG3Q61wDFkrqBw/zB0hjdaPpa8XT4ZbMSnjBTIiNybOL9z3P6MD632s2h9mR5ZwL2g75P/utA=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF4C5964328:EE_|DS0PR11MB7457:EE_
-x-ms-office365-filtering-correlation-id: 0d2946e2-daf1-4da5-80f2-08df44869fc0
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|38070700021|11063799006|4143699003|56012099006|10067099003|261021121427099003|261021123027099003|261102123227099003|261009223027099003|261026140227099003|261022105027099003|261026121527099003|261022075727099003|261028144727099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: eHQaOgY1nV6BjBetE4OXA9uu+0kkEeTq8dGpMSX/aU14Qe2PjCVOo7E96n8NlofTPxNgaUV4ecsMOyXyP0SXb47tetcxxW2apnxKN4UhntoG9pm7npZdByjoTz6dPibCh0FygBUXswtbGtjSSjWX/iNNZBNFsbufG5kbkcdEPAfKkJifaESmTBqqZFMet8Af/rBa5XqcPQUAg8DrFrd78oCBLnnzLUslmUI+BX+W7IVuvvhaZobZU6ZFbkYBvYrZ/el73aNDTA+duUGMHiKb9wN11TmkWAkPFO5J/FmhS+Nprrxv7iOBse3cIJDC5qazGn5x/R4irFW2oVrkH3mG5kbJaRNDnvnUleF6kX/5F98nV2aLHIBf1Ec6H8NsoE1Yj2S3mbeKgI9wO5LoMx9Yxq0NztxqFxPgjPxhcpTnRd2mMsu+Wl8ouCGkzcsEYNTJGozBBrWxD4WGu9oG/WVcEretnKreh047vs2MI6h7PHeZ5sya2+HUpMuC3O8WXUbRs6ZBWoh2khUuQsNof84QY9U/PPzM+LaOUcEeeGBouua1R4fD56Cdz6pkAs6WypdYESwRxlITY4APoBW9ZJQtVX1kVCqSUgdrFwF1Dsvz4lK3kTbrAcR0h/a1UvgkyG54V93iBUY9UmqbxXhcx32UraWb6bvzppFQhcakmr8XZSzhffTIJBbuKXIzTBLG+c/rJueHR5EC/bU9rLcgqk8boH6XHs0USNGkVKYg6VMBa0I=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF4C5964328.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(38070700021)(11063799006)(4143699003)(56012099006)(10067099003)(261021121427099003)(261021123027099003)(261102123227099003)(261009223027099003)(261026140227099003)(261022105027099003)(261026121527099003)(261022075727099003)(261028144727099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?X+Ncg8KBh9mIqc3bVcq1HfZ9Ve4xBkwJTypszHvD3EJHGZKPVIuMb96+iYza?=
- =?us-ascii?Q?wqxPDYpNJtP5bizcisy0WlJ5P7r1uvYGm6J/Z3HEdOEGrU5r1J0BdWsBkgFg?=
- =?us-ascii?Q?T46O3q9/KpjBhpoFImKjK0YgLV4B11tjL9WZRnsmFkJ1abWmYcB665PAMsMZ?=
- =?us-ascii?Q?nMXG03S7ExIIeifONIlH2RU/gcZtOCQzWUN9tP3ShkLjCwtlUC7UBY20Z9Xa?=
- =?us-ascii?Q?5bfrLaW8JsYWldfdqdewJYCDnQgE4m3UN9jRCAqOaE8MIL3PgveV1l4Sg74x?=
- =?us-ascii?Q?r98BTqidBFxRXHKRYtpJRiydtvq2qUirzBXhnK7NTtcoIoOeeFJP1wHqDGM9?=
- =?us-ascii?Q?cc6znuEYiyCjcX7rP0jJ9I4OSk18AAIlfGUI5WUNHTmsrqCapq+bcX6zRNId?=
- =?us-ascii?Q?zkEbe9KEh05wj49uHKgAtosVFX0Q5pNtYmnCZhIABV3NNKvhJinPPagEBoMt?=
- =?us-ascii?Q?A/BIgR1gKao8VNNE1TpRxahRzJsdihoxU7JrI6hbrbUe+TeUdH2bLmXkmWMw?=
- =?us-ascii?Q?ylugM/aCjIteWTgAScGJniB4kV/t4l7f2i/GwCzhw//kfaXmr1jXodO76WTX?=
- =?us-ascii?Q?iYWpKN42jV9aSpp4NM3E0oL03iyFeEXmyKoWYNrSP74TaJ9HPfdHUmkjiYSq?=
- =?us-ascii?Q?Xpnh0vH7LhGWoz0N0x3RFJ7MShG4/kiv77hX8MUwf04UsdwsF5VgfKXgaTM4?=
- =?us-ascii?Q?pOo5BTScI+aaMcjdDsYFKcGplyvuWJYF33didQB4Yn74l3cHU/u7UhX2XLyo?=
- =?us-ascii?Q?cjgkwGYOj/kRZjh8/HHWxWJ9czftx4CwmLuYsngvPWQYQPfQuCXMXUdrB5+g?=
- =?us-ascii?Q?9EFbtE/p3UQYUlLYH6VJSmAV8ymQhaNPfwh77R+3grxImVfyqjuLk7OyixuP?=
- =?us-ascii?Q?2hPpi840in9AHrBDvMFqXj6jg7p4HPShthyHzoHKtqoi1xR1ggtB77ui00NH?=
- =?us-ascii?Q?SR9DMFQpv1/QJnpuGNNv96vDWluIqRgEXycTgJl4Z2Akkbi2/hvHVsw0Akzd?=
- =?us-ascii?Q?iWlzKaLpb+6ZWDXTzp0TO1wWodE2WCCFphIKdg9kbQgv4hqsnY9mlZE8uDJ9?=
- =?us-ascii?Q?PuBgtUv/ooVUwfIinPvEq/3cG/b2TN/uIDdJmYhOH690B8OyOQoA82fh0mYO?=
- =?us-ascii?Q?+q9dSsgjM29XH5LzfC6aQVtXkxrarqhgSN5xzKucA+qHp0vRW30QZmjbzIjk?=
- =?us-ascii?Q?HeDyLQ1SBPz/fi4aCJ1/RzrXTvV5BYH2UmqrcQYsgKO9zzspx01blJlPk5/Z?=
- =?us-ascii?Q?isXyq2b/twUFyCvTn34QeCWcpYYSPVuhlltUExEbXVvrpmIeEwPC7NEK0+PN?=
- =?us-ascii?Q?qqQJ3NxlPiTGTYwnHixcZ6H0hQ7JYx/TMywcOXxu3uNgWUXN/QsZXEkIwUnk?=
- =?us-ascii?Q?2UYkeCCPk0t/ymwzvCd/LbQM6GmaxqEgSf6ysshbbzE8CsRa/ZTOaUi6Drlu?=
- =?us-ascii?Q?qFuvUV5ifGqkSYLktyqQ2X2PM+FOdXOInH1ZgEcstc8F7xiyscqE6iCzOEPc?=
- =?us-ascii?Q?LLq7rAkyrN0YSo8R6nTjBJrKRmI10NISbbcNjmUo91fU9PH6NULBod84Vqf6?=
- =?us-ascii?Q?GUIAFRtpElIbsnq5XkO9ORXU88jgYvXen3Bn3EHWBiIyDb6+9Yqw2nRwEq8m?=
- =?us-ascii?Q?7TxAvuqLm3QKZWSUAMzHipNgQ1KwPak6qoPnZ+OPy2w9Cu2w6r9OqkHzL1Oi?=
- =?us-ascii?Q?t18yADhwTxqM8cAyiP3dby2iar4bZzfgH4DAwd9cbZ94H2Im+ZGO2pU8AVDU?=
- =?us-ascii?Q?Saq8/VM8Kg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from IA0PR11MB7862.namprd11.prod.outlook.com (2603:10b6:208:3dc::8)
+ by SA1PR11MB5801.namprd11.prod.outlook.com (2603:10b6:806:23d::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 08:49:02 +0000
+Received: from IA0PR11MB7862.namprd11.prod.outlook.com
+ ([fe80::3b4e:43a6:6e22:22f]) by IA0PR11MB7862.namprd11.prod.outlook.com
+ ([fe80::3b4e:43a6:6e22:22f%5]) with mapi id 15.21.0615.009; Tue, 17 Nov 2026
+ 08:49:01 +0000
+Content-Type: multipart/alternative;
+ boundary="------------8d1tZmOEGkhWSX0giROnAlVE"
+Message-ID: <995b59c3-e985-464a-8917-f88c8b9abf02@intel.com>
+Date: Tue, 17 Nov 2026 14:18:51 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] drm/xe/cper: Add software CPER emission entry point
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
+ <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
+ <raag.jadav@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <jani.nikula@linux.intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20261112134636.1860446-8-mallesh.koujalagi@intel.com>
+ <20261112134636.1860446-9-mallesh.koujalagi@intel.com>
+ <986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com>
+Content-Language: en-US
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com>
+X-ClientProxiedBy: MA5P287CA0336.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:222::14) To IA0PR11MB7862.namprd11.prod.outlook.com
+ (2603:10b6:208:3dc::8)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: hnuv29qrWb5ivKmXh9RdNkjGDsz8+6vunlyX09XRzfVXL+QZwX1IRk6Xeh7wUuO97mnG6EN13mdXbNFSXSlITQbLwCbXjG7XmFLPZjOBiKbPXwc5Ok3cR2tji/NPTrXlzCzsCSL4NWUJhOsIh6MtXRvShiiPXQ15MGIjBQbGsgwdBcTR1PimqGIJkWiCVj0Z9XKugEfoEqZRn4MZXz+xhzRoPLFTCSca14eMUDCCPOM65iTK14wEDMvn/JHauV1pvbPzdESJC0kAHS55h9Yas2u7agsw6qNeCKO+m57m+INjNafP9GTq0+UwduFZXEpkA9lS+yTyHdjhLNGcjFph4Q==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7862:EE_|SA1PR11MB5801:EE_
+X-MS-Office365-Filtering-Correlation-Id: acda2a3b-183a-4c57-f097-08df4487a00a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|23010399003|1800799024|56012099006|4143699003|11063799006|261022113327099003|261022105027099003|261026140227099003|261026121527099003|10067099003|261021123027099003|261021121427099003|261028144727099003|261102123227099003|261009223027099003|22082099003|18002099003|6133799003|8096899003;
+X-Microsoft-Antispam-Message-Info: dWwV+21mkhYz9LOhJkaWMXCr4KDq6JWlUpfMaWLWlhNsitntMGnZcLoYo6Ozv8gvjpddRyZ5MXpxJUNk2AOEtU5YALB1MFWUxEgIzp0OxnVRLVxtNIGFdRwiOxJ/O6QkeAIc5DlvGqOUPj40D/bXrYkrTtU0Boiq3o86n1Vgcyf7jSeaikTs+RsntQ9x/yMtruYqVRV9kp7GDNCYl/DOY1MRDIsHyFWaAZ6RK3kDiAOly3wB7oUxtLmdObiKKm9uCn35FD0Cyd1bwE9un4y6+6G4QsUppFQRaIv4cAW6lwhD66ReC+H9ltKV923odKuJYS8OcwmLPci6p8aRldagCOex/ooSl0G8RX+S4ig+pMpwGo3ZmBeSKlzLXrev85/criSR05Hkt6Zrb7JvpInvmVKplRQY6zEP2dH6q+4ueTf6Ty+JGbfqzgAizZOZRj5We421Dv6EPYmoyrqKlASOK/2PuhXf8d01olovf4GJsVTVvd+lA4n4abvR55Fmyy8jABk7Kh3gczWIfwzUaiBIv8gxJ7ASeY/nS+/GSfRCS3kl94ZuCqiLbVB7/spNP/IYEnhaXtmobojj2G9HwoP5xzvBjYvUprWIODlOlYOKH+6exR9XFIeEqXpqBL+tKkwAfmrU/QFSR2oTvhT2QrDHBwTl96tqUBwP526vokkePjU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7862.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(56012099006)(4143699003)(11063799006)(261022113327099003)(261022105027099003)(261026140227099003)(261026121527099003)(10067099003)(261021123027099003)(261021121427099003)(261028144727099003)(261102123227099003)(261009223027099003)(22082099003)(18002099003)(6133799003)(8096899003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VlVtUW5sdkt6VXdqSDdrQTVSSDNVYlpSNEdNdVgzbEJjNUhCbW5IVEVia1Vp?=
+ =?utf-8?B?b1V1SWRENlVTZk1zaFlqYlV3Y2U2bW9mNklCMFVLaG16eWh1Qm4yN0kzSWZl?=
+ =?utf-8?B?TzRab2J4S3lBSGs4MmpYL3o0NldOdEtIM3VjcnYyQnB3S0RIWTkrZ0pYSHlY?=
+ =?utf-8?B?bXNkRkFXeE9CMHgxS3RtcThpMEpnUlFuR2c0ODdwYURkQmFMWTNXbjNqYjd4?=
+ =?utf-8?B?YkRSTWwxUlZ3TlVCL1hCMmpReVRvcjJLSEtXSWc5a3lFbjFwcDhOSkU2OVM1?=
+ =?utf-8?B?cUdmdEF2eTBaTk1nOVRvSnp0TGVORGE0YUVXUVhpZGpuRHp3LzVpYURhR1hE?=
+ =?utf-8?B?dTIzQXBuNXNvTTdwWHdOZ05pSGlvcG1mNE8wSEs4L3ZPN21xcWxyTXUwb00x?=
+ =?utf-8?B?TlVPa1QvZ1lrRmNSV1N0QTA0OEg0NG5FU0NhZU93Mk9nYnpaVFU2TjQ5bG5l?=
+ =?utf-8?B?aTR0RFZ2QkxaWUFybDU1OFVNbGNoN3YzeCtweUowU3hYY2prRUxzd0ZuK3oz?=
+ =?utf-8?B?QlRWT1poQmlVbHhoam95T2RWM2p4THpRREt4c1Arc0IrMDA3WU95bWljNFp5?=
+ =?utf-8?B?N2JyU001VzdzMnVuVzA0U1UvN21PZnZvQmN1UUhmaTFkcHBnYk14N2VzMjc2?=
+ =?utf-8?B?UnF0eStsMk5MUDVZczNMamNLK3dlQzBjMXFueFBwYmtKME0wWTBySTJyNzZJ?=
+ =?utf-8?B?WlNQTi9lQXczelZvMW5wZHJxQ3NaZDhjOWo4TmgrY2FYbmFNVmR1V3lyZGtv?=
+ =?utf-8?B?Z3M0TzdNTVV6VFBBYUFVUkRGNnFiazYveVhpNGgzTGR3NUtISDhtUUxrMHBX?=
+ =?utf-8?B?cEF3ZTdQemdCMDdqYkFqUkJ3OWRjTlVqeG05amJKUGVpVW82dUNYM2dSbFVq?=
+ =?utf-8?B?Snh0QUYyaUtyRTducDgzeU50L2k5em9NYmtZeXR2bTV4d29FNUMxcjNpYVdy?=
+ =?utf-8?B?T25rUkFERlhIaEtGc2RhNVpoU1pFellOYlY2aU1kMU1rYk9wS0FLTG9ZNW1D?=
+ =?utf-8?B?VUVlc1I3eWhBUmpQYkgybDIxTGRUVFRNRUZrL2txOGhTWkl6a2xNcXU1RDlH?=
+ =?utf-8?B?N0FUUjNXYzdEMzY0d1JNaG5YT1hCbHEwSXpNdzczUWtacitqQkZkZjI5azVZ?=
+ =?utf-8?B?dkhvRFNhSUd2dXVFbUhBTGZuZENUOHpsUVZ4RElZQ2w4QlFrSEVyaTEzM2Ur?=
+ =?utf-8?B?cmJsaXh3cTBYYjV6cDI1SC85R0JLelZvdmZteVJOSjhzYXk2aUFlYWVJM0My?=
+ =?utf-8?B?dFZaWSt5R3JrblNZTVhiMHFhNWdVNlJjNnRVYXovYmxrUkEyM09IZHhOa0Z5?=
+ =?utf-8?B?Q2NYcTB3RVlGUTlTRHphZW9qbEt1R2FRZWNXTUlEVVFpU1hTVHYvTk0zNFVu?=
+ =?utf-8?B?RFBGVXdTUzNYYytucFV2OWFEZEtnZENUNFRJZEdkeVN2T1BmVE1VSzNNSTBB?=
+ =?utf-8?B?TUtMUmJjd2NzZ1FpSG4vdm5UNjFBY2ZLbzdJby81WWZGQWh4V0hqOGphNDZo?=
+ =?utf-8?B?cnZQTGtjZXVvU01CTkxtZmRIaUdiVEZoNjRBRXZIMWd3NnpCV3dIUlVOL2pi?=
+ =?utf-8?B?WGd3dlRyV1VMUlBJa3dybnJpdXo2QkFBOVo2VjVyOHQwUkZhVTdDbnZCTnJY?=
+ =?utf-8?B?R1pGR2hrS0U3NzY0aFZQOHo1a2pjYTBsd2dURkFPaWkxV0xXaUJLOEp4dWs1?=
+ =?utf-8?B?eUxIUHh2ZC8vamdtbWdaQitYdkRyRWR4SzhOVERSRVBJS1p6UnlDekJFa3g5?=
+ =?utf-8?B?OC9taGk0a0MwK2NyZTQ2eDlyeDRQR0VHcFNkc2NIbjUvdEx0Sm1vYlZMQjkv?=
+ =?utf-8?B?YWozcmoxVzByeWlPUXRSanNQNWpBUnY3ZS9LQTJMSy9va3ZvY0s5Qm5LN3pX?=
+ =?utf-8?B?V25Xd1MwMk5qdVUrWW9oK1dVOXRlOUd2R0h6bFFtaC9oelRZaDJTV1Viemtu?=
+ =?utf-8?B?bVBBSnUwdXVqOEMwOFh2bVFEOStoVVNCa1NidldkY0UwOThtKzlmYVE5MUNh?=
+ =?utf-8?B?SlpVZThzQmgyYjZoYjV5N3F2ZHlROU5Hc3VNSDFmeUVjYVJOYXVsSUpwUUxT?=
+ =?utf-8?B?T2h5czB3RUQ2VUdZeGtEVUIrUTBsSFVlb3NsZjVzenUveGY1MHpmNndaRk1Z?=
+ =?utf-8?B?Szc5blpnK0pRaFB2RGdrdjlOTE03V2l0dnZ1d2dtRHRiNnI3aFJTaW8xeXpH?=
+ =?utf-8?B?NDN4bUxhNzhMNkZGdStyc2kzbWJTbHBZR1NqczViaDFtaU15dzJOeHRuL3M5?=
+ =?utf-8?B?UFRBVDlLY0RPbE9BR24vMk5wOSs2bHZrRGJVd1hOQWhDcVZlOVVLNnA2bzhl?=
+ =?utf-8?B?QTgxcDFrc1ZNOStpNWtOUlE0aVlUaitjU0FCM0ZQOGVKREZRZ1d5NVYrcVVn?=
+ =?utf-8?Q?YEeKxAegZZQ465nM=3D?=
+X-Exchange-RoutingPolicyChecked: xKKnSgfBvtEKOcNsTWMgKvM7hezz6FV8WGncHqu7JEnzcRrkBL5sBGQkMfm0loDbPQ32mGLLaabNSvvLlbNfTZ0Ng6XlQbQ+tzRfAkjd7OG2XxE6OBX37AmVwtsyZS5OhPUPinYoVGBCtkwY6pj4aI5bgsV9cnv6VJFVXpf01diiEEJQACWVjFGt64qkYmXhVU1xQ80Q/pz+f5MNKXB2K7yX+wqSdP6j6h6LojCvzsZpvU4gnqQWG13ETJhj89PXO5241N4YQYfLrFKJu0drpiChkMg9k6vs4qah5woYSPHqtcYjsmSyroLmve6tPum+HX7kAXMekKxQvJCpdVG22g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: acda2a3b-183a-4c57-f097-08df4487a00a
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7862.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF4C5964328.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d2946e2-daf1-4da5-80f2-08df44869fc0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Nov 2026 08:41:50.6186 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: wNi/iax/QYyn7KRjHPNYMT94H/JqUGtJAc0IM7i1HMCE9oRaJZCeYXj0MgYGVzALI7RhiLIUTb98pMYXUcbV8mbz2LVe4wO1MoGnPKSU3Ss=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7457
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 08:49:01.0189 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DnTyAOJXLycZyla7gsn0Vy7DqNmoYR4WCSUHmIgJvrSv696WHk4ZdI31+ynSYFaDkfFRU9LIihB2J8B2QOuXcFSUfbu1+LqpoZbrxTxJvSk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5801
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -165,108 +174,347 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-14.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	HTML_MESSAGE,INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1 autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--------------8d1tZmOEGkhWSX0giROnAlVE
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
 
-> -----Original Message-----
-> From: Jadav, Raag <raag.jadav@intel.com>
-> Sent: 13 November 2026 20:50
-> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; Ghimiray, Himal Prasad
-> <himal.prasad.ghimiray@intel.com>; Brost, Matthew
-> <matthew.brost@intel.com>; Yadav, Arvind <arvind.yadav@intel.com>
-> Subject: Re: [PATCH] drm/xe: fix UAF race between exec-queue teardown and
-> GuC CT pause-abort
->=20
-> On Fri, Nov 13, 2026 at 06:51:50PM +0530, Tejas Upadhyay wrote:
-> > xe_guc_submit_pause_abort() walks
-> > guc->submission_state.exec_queue_lookup
-> > and unconditionally calls guc_exec_queue_kill() on every entry found,
-> > without verifying the queue hasn't already begun/finished its own
-> > independent teardown. guc_exec_queue_fini() (run once a queue's own
-> > refcount drops to zero via the normal close path) only erases its
-> > xarray entry partway through its body, via release_guc_id() -- so
-> > there is a window where a queue's refcount is already 0 but its xarray
-> > entry is still present.
-> >
-> > This was caught as a debug assertion firing on both BMG and CRI:
-> >
-> > 	xe 0000:00:03.0: [drm] Assertion `kref_read(&q->refcount)` failed!
-> > 	WARNING: drivers/gpu/drm/xe/xe_guc_submit.c:2242 at
-> guc_exec_queue_kill+0x2e2/0x360 [xe]
-> > 	Call Trace:
-> > 	 guc_exec_queue_kill+0x2e2/0x360 [xe]
-> > 	 xe_guc_submit_pause_abort+0x8e/0xf0 [xe]
-> > 	 guc_submit_fini+0x11f/0x180 [xe]
-> > 	 devm_action_release+0x15/0x30
-> > 	 ...
-> > 	 device_release_driver_internal+0x230/0x270
-> > 	 unbind_store+0xac/0xc0                          [BMG: igt@xe_configfs=
-, sysfs
-> unbind]
-> > 	 pci_iov_remove_virtfn+0xd1/0x140
-> > 	 sriov_disable+0x42/0x100
-> > 	 pci_disable_sriov+0x23/0x40
-> > 	 xe_pci_sriov_configure+0x2b9/0x1350 [xe]
-> > 	 sriov_numvfs_store+0x136/0x1f0           [CRI: igt@xe_pmu, SR-IOV VF
-> disable]
-> >
-> > Pin the queue with kref_get_unless_zero() before touching it, skipping
-> > entries that have already independently reached a zero refcount
-> > instead of operating on an object that's already being torn down elsewh=
-ere.
-> >
-> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_guc_submit.c | 10 ++++++++--
-> >  1 file changed, 8 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > index d76f125f9c3a..7a3bd698f217 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> > @@ -3306,12 +3306,18 @@ void xe_guc_submit_pause_abort(struct
-> xe_guc *guc)
-> >  	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-> >  		struct xe_gpu_scheduler *sched =3D &q->guc->sched;
-> >
-> > -		/* Prevent redundant attempts to stop parallel queues */
-> > -		if (q->guc->id !=3D index)
-> > +		/*
-> > +		 * Prevent redundant attempts to stop parallel queues, and
-> skip
-> > +		 * queues already dropped to a zero refcount via their own
-> > +		 * independent teardown (guc_exec_queue_fini(), xarray entry
-> > +		 * not yet erased)
-> > +		 */
-> > +		if (q->guc->id !=3D index || !kref_get_unless_zero(&q-
-> >refcount))
-> >  			continue;
-> >
-> >  		xe_sched_submission_start(sched);
-> >  		guc_exec_queue_kill(q);
-> > +		xe_exec_queue_put(q);
->=20
-> Please make sure this doesn't regress FLR flow, where we need to keep the
-> exec queues around to reinit them later.
+On 17-11-2026 01:00 pm, Nilawar, Badal wrote:
+>
+>
+> On 12-11-2026 19:16, Mallesh Koujalagi wrote:
+>> Add a software CPER emission handler for CRI SIGIDs.
+>>
+>> Keep hardware CPER handling unchanged and return early
+>> when the Xe device is unavailable.
+>
+> I think no need to mention this explicitly.
+>
+hmm, ok
+>> Cc: Badal Nilawar<badal.nilawar@intel.com>
+>> Signed-off-by: Mallesh Koujalagi<mallesh.koujalagi@intel.com>
+>> ---
+>> v3:
+>> - Handle early PCI probe where xe device is null. (Sashiko)
+>>
+>> v4:
+>> - Add has_driver_cper flag. (Badal)
+>> ---
+>>   drivers/gpu/drm/xe/xe_cper.c         | 22 +++++++++++++++++++++-
+>>   drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+>>   drivers/gpu/drm/xe/xe_pci.c          |  2 ++
+>>   drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+>>   4 files changed, 26 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+>> index bb90030bcd2d..dd6d4251dd1d 100644
+>> --- a/drivers/gpu/drm/xe/xe_cper.c
+>> +++ b/drivers/gpu/drm/xe/xe_cper.c
+>> @@ -32,6 +32,11 @@ static bool is_hw_sigid(enum xe_sigid sigid)
+>>   	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
+>>   }
+>>   
+>> +static bool is_sw_sigid(enum xe_sigid sigid)
+>> +{
+>> +	return in_range(sigid, INTEL_SIGID_GPU_XE_SOFTWARE_START, INTEL_SIGID_BATCH);
+>> +}
+>> +
+>>   /* CPER platform_id GUIDs (RFC 9562 UUIDv5) for each PCI device ID. */
+>>   static const struct xe_device_guid_entry xe_device_guids[] = {
+>>   	{ 0x674C, GUID_INIT(0x9046afe5, 0x9041, 0x5124,
+>> @@ -240,6 +245,12 @@ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+>>   	xe_cper_emit_counter(xe, cper_sev, sigid, counter, &response);
+>>   }
+>>   
+>> +static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+>> +			     u32 component, u32 location, const void *data,
+>> +			     struct va_format *vaf)
+>> +{
+>> +}
+>> +
+>>   /**
+>>    * xe_cper_emit() - Emit a CPER record for a SIGID log entry
+>>    * @xe: The &xe_device
+>> @@ -268,12 +279,21 @@ void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+>>   		  u32 component, u32 location, const void *data, size_t len,
+>>   		  struct va_format *vaf)
+>>   {
+>> +	if (!xe)
+>> +		return;
+>
+> Add a TO DO to track a future enhancement to handle this using pdev 
+> instead of xe.
+>
+Ok, will update it like
 
-Yes it needs to restart, I have split the check in next revision to restart=
- submission.
+/* TODO:  Handle using pdev instead of xe */
 
-Tejas
->=20
-> Raag
->=20
-> >  	}
-> >  	mutex_unlock(&guc->submission_state.lock);
-> >  }
-> > --
-> > 2.52.0
-> >
+>> +
+>>   	if (is_hw_sigid(sigid) && !IS_ERR_OR_NULL(data)) {
+>>   		cper_emit_hw_err(xe, cper_sev, sigid, data);
+>>   		return;
+>>   	}
+>>   
+>> -	/* TODO software CPER */
+>> +	if (xe->info.has_driver_cper) {
+>> +		if (is_sw_sigid(sigid) &&
+>> +		    (cper_sev == CPER_SEV_RECOVERABLE ||
+>> +		     cper_sev == CPER_SEV_FATAL))
+>
+> Nit: Severity check can fit on a single line.
+>
+Ok
+
+>
+> With comments addressed this is
+>
+> Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+>
+Thanks Badal!
+>
+> Thanks,
+> Badal
+>
+>> +			cper_emit_sw_err(xe, cper_sev, sigid, component, location, data, vaf);
+>> +		return;
+>> +	}
+>>   }
+>>   
+>>   static ssize_t cper_on_query_show(struct device *dev, struct device_attribute *attr, char *buf)
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>> index 933f5d27aa62..d992ff8d2fc9 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -170,6 +170,8 @@ struct xe_device {
+>>   		u8 has_device_atomics_on_smem:1;
+>>   		/** @info.has_device_uid: Device supports unique 64-bit GPU SOC ID */
+>>   		u8 has_device_uid:1;
+>> +		/** @info.has_driver_cper: Device supports driver-generated CPER records */
+>> +		u8 has_driver_cper:1;
+>>   		/** @info.has_drm_ras: Device supports drm_ras (Reliability, Availability, Serviceability) */
+>>   		u8 has_drm_ras:1;
+>>   		/** @info.has_fan_control: Device supports fan control */
+>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>> index ce231069880a..c615eddb2abc 100644
+>> --- a/drivers/gpu/drm/xe/xe_pci.c
+>> +++ b/drivers/gpu/drm/xe/xe_pci.c
+>> @@ -475,6 +475,7 @@ static const struct xe_device_desc cri_desc = {
+>>   	.dma_mask_size = 52,
+>>   	.has_display = false,
+>>   	.has_device_uid = true,
+>> +	.has_driver_cper = true,
+>>   	.has_drm_ras = true,
+>>   	.has_flat_ccs = false,
+>>   	.has_gsc_nvm = 1,
+>> @@ -802,6 +803,7 @@ static int xe_info_init_early(struct xe_device *xe,
+>>   	xe->info.is_dgfx = desc->is_dgfx;
+>>   	xe->info.has_cached_pt = desc->has_cached_pt;
+>>   	xe->info.has_device_uid = desc->has_device_uid;
+>> +	xe->info.has_driver_cper = desc->has_driver_cper;
+>>   	xe->info.has_drm_ras = desc->has_drm_ras;
+>>   	xe->info.has_fan_control = desc->has_fan_control;
+>>   	xe->info.has_fixed_vram_channels = desc->has_fixed_vram_channels;
+>> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+>> index 74a6cd461b21..e7bf46ea729f 100644
+>> --- a/drivers/gpu/drm/xe/xe_pci_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+>> @@ -42,6 +42,7 @@ struct xe_device_desc {
+>>   	u8 has_cached_pt:1;
+>>   	u8 has_display:1;
+>>   	u8 has_device_uid:1;
+>> +	u8 has_driver_cper:1;
+>>   	u8 has_drm_ras:1;
+>>   	u8 has_fan_control:1;
+>>   	u8 has_fixed_vram_channels:1;
+--------------8d1tZmOEGkhWSX0giROnAlVE
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 17-11-2026 01:00 pm, Nilawar, Badal
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com">
+      
+      <p><br>
+      </p>
+      <div class="moz-cite-prefix">On 12-11-2026 19:16, Mallesh
+        Koujalagi wrote:<br>
+      </div>
+      <blockquote type="cite" cite="mid:20261112134636.1860446-9-mallesh.koujalagi@intel.com">
+        <pre wrap="" class="moz-quote-pre">Add a software CPER emission handler for CRI SIGIDs.
+
+Keep hardware CPER handling unchanged and return early
+when the Xe device is unavailable.</pre>
+      </blockquote>
+      <p>I think no need to mention this explicitly.&nbsp;</p>
+    </blockquote>
+    hmm, ok
+    <blockquote type="cite" cite="mid:986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com">
+      <blockquote type="cite" cite="mid:20261112134636.1860446-9-mallesh.koujalagi@intel.com">
+        <pre wrap="" class="moz-quote-pre">Cc: Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com" moz-do-not-send="true">&lt;badal.nilawar@intel.com&gt;</a>
+Signed-off-by: Mallesh Koujalagi <a class="moz-txt-link-rfc2396E" href="mailto:mallesh.koujalagi@intel.com" moz-do-not-send="true">&lt;mallesh.koujalagi@intel.com&gt;</a>
+---
+v3:
+- Handle early PCI probe where xe device is null. (Sashiko)
+
+v4:
+- Add has_driver_cper flag. (Badal)
+---
+ drivers/gpu/drm/xe/xe_cper.c         | 22 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_pci.c          |  2 ++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+ 4 files changed, 26 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+index bb90030bcd2d..dd6d4251dd1d 100644
+--- a/drivers/gpu/drm/xe/xe_cper.c
++++ b/drivers/gpu/drm/xe/xe_cper.c
+@@ -32,6 +32,11 @@ static bool is_hw_sigid(enum xe_sigid sigid)
+ 	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
+ }
+ 
++static bool is_sw_sigid(enum xe_sigid sigid)
++{
++	return in_range(sigid, INTEL_SIGID_GPU_XE_SOFTWARE_START, INTEL_SIGID_BATCH);
++}
++
+ /* CPER platform_id GUIDs (RFC 9562 UUIDv5) for each PCI device ID. */
+ static const struct xe_device_guid_entry xe_device_guids[] = {
+ 	{ 0x674C, GUID_INIT(0x9046afe5, 0x9041, 0x5124,
+@@ -240,6 +245,12 @@ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+ 	xe_cper_emit_counter(xe, cper_sev, sigid, counter, &amp;response);
+ }
+ 
++static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
++			     u32 component, u32 location, const void *data,
++			     struct va_format *vaf)
++{
++}
++
+ /**
+  * xe_cper_emit() - Emit a CPER record for a SIGID log entry
+  * @xe: The &amp;xe_device
+@@ -268,12 +279,21 @@ void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+ 		  u32 component, u32 location, const void *data, size_t len,
+ 		  struct va_format *vaf)
+ {
++	if (!xe)
++		return;</pre>
+      </blockquote>
+      <p>Add a TO DO to track a future enhancement to handle this using
+        pdev instead of xe.</p>
+    </blockquote>
+    <p>Ok, will update it like</p>
+    <p>/* TODO:&nbsp; Handle using pdev instead of xe */</p>
+    <blockquote type="cite" cite="mid:986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com">
+      <blockquote type="cite" cite="mid:20261112134636.1860446-9-mallesh.koujalagi@intel.com">
+        <pre wrap="" class="moz-quote-pre">+
+ 	if (is_hw_sigid(sigid) &amp;&amp; !IS_ERR_OR_NULL(data)) {
+ 		cper_emit_hw_err(xe, cper_sev, sigid, data);
+ 		return;
+ 	}
+ 
+-	/* TODO software CPER */
++	if (xe-&gt;info.has_driver_cper) {
++		if (is_sw_sigid(sigid) &amp;&amp;
++		    (cper_sev == CPER_SEV_RECOVERABLE ||
++		     cper_sev == CPER_SEV_FATAL))</pre>
+      </blockquote>
+      <style>@scope { a {
+    text-decoration: none;
+    color: #464feb;
+}tr th, tr td {
+    border: 1px solid #e6e6e6;
+}tr th {
+    background-color: #f5f5f5;
+} }</style>
+      <p style="font-style: normal; font-weight: 400; line-height: 20px;">Nit:
+        Severity check can fit on a single line.</p>
+    </blockquote>
+    <p>Ok</p>
+    <blockquote type="cite" cite="mid:986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com">
+      <p style="font-style: normal; font-weight: 400; line-height: 20px;"><br>
+      </p>
+      <p style="font-style: normal; font-weight: 400; line-height: 20px;">With
+        comments addressed this is&nbsp;</p>
+      <p style="font-style: normal; font-weight: 400; line-height: 20px;">Reviewed-by:
+        Badal Nilawar <a class="moz-txt-link-rfc2396E" href="mailto:badal.nilawar@intel.com" moz-do-not-send="true">&lt;badal.nilawar@intel.com&gt;</a></p>
+    </blockquote>
+    Thanks Badal!
+    <blockquote type="cite" cite="mid:986988d2-acc0-4dac-a5d5-60d7d0fe5c82@intel.com">
+      <p style="font-style: normal; font-weight: 400; line-height: 20px;">Thanks,<br>
+        Badal&nbsp;</p>
+      <blockquote type="cite" cite="mid:20261112134636.1860446-9-mallesh.koujalagi@intel.com">
+        <pre wrap="" class="moz-quote-pre">+			cper_emit_sw_err(xe, cper_sev, sigid, component, location, data, vaf);
++		return;
++	}
+ }
+ 
+ static ssize_t cper_on_query_show(struct device *dev, struct device_attribute *attr, char *buf)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 933f5d27aa62..d992ff8d2fc9 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -170,6 +170,8 @@ struct xe_device {
+ 		u8 has_device_atomics_on_smem:1;
+ 		/** @info.has_device_uid: Device supports unique 64-bit GPU SOC ID */
+ 		u8 has_device_uid:1;
++		/** @info.has_driver_cper: Device supports driver-generated CPER records */
++		u8 has_driver_cper:1;
+ 		/** @info.has_drm_ras: Device supports drm_ras (Reliability, Availability, Serviceability) */
+ 		u8 has_drm_ras:1;
+ 		/** @info.has_fan_control: Device supports fan control */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index ce231069880a..c615eddb2abc 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -475,6 +475,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.dma_mask_size = 52,
+ 	.has_display = false,
+ 	.has_device_uid = true,
++	.has_driver_cper = true,
+ 	.has_drm_ras = true,
+ 	.has_flat_ccs = false,
+ 	.has_gsc_nvm = 1,
+@@ -802,6 +803,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe-&gt;info.is_dgfx = desc-&gt;is_dgfx;
+ 	xe-&gt;info.has_cached_pt = desc-&gt;has_cached_pt;
+ 	xe-&gt;info.has_device_uid = desc-&gt;has_device_uid;
++	xe-&gt;info.has_driver_cper = desc-&gt;has_driver_cper;
+ 	xe-&gt;info.has_drm_ras = desc-&gt;has_drm_ras;
+ 	xe-&gt;info.has_fan_control = desc-&gt;has_fan_control;
+ 	xe-&gt;info.has_fixed_vram_channels = desc-&gt;has_fixed_vram_channels;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 74a6cd461b21..e7bf46ea729f 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -42,6 +42,7 @@ struct xe_device_desc {
+ 	u8 has_cached_pt:1;
+ 	u8 has_display:1;
+ 	u8 has_device_uid:1;
++	u8 has_driver_cper:1;
+ 	u8 has_drm_ras:1;
+ 	u8 has_fan_control:1;
+ 	u8 has_fixed_vram_channels:1;
+</pre>
+      </blockquote>
+    </blockquote>
+  </body>
+</html>
+
+--------------8d1tZmOEGkhWSX0giROnAlVE--
