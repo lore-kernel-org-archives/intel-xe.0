@@ -2,126 +2,128 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6C7F606A323
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 03:51:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18205606A323
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 04:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=AtbilPwy
+	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=Dx6njUn0
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5706810E396;
-	Tue, 17 Nov 2026 03:51:44 +0000 (UTC)
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011013.outbound.protection.outlook.com [52.101.52.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2613710E2AB;
- Tue, 17 Nov 2026 03:51:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FFC210E479;
+	Tue, 17 Nov 2026 04:57:48 +0000 (UTC)
+Received: from CH5PR02CU005.outbound.protection.outlook.com
+ (mail-northcentralusazon11012026.outbound.protection.outlook.com
+ [40.107.200.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9B110E4B0;
+ Tue, 17 Nov 2026 04:57:41 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oQEXlwlJ2JPOlvP6rEPFk/fBpFz+1sOeuf3c2kO9Ea6N3N4j5Irk9qhukN/nhK8K+ytU0K7SSMkxSEqutJtdNzHi5mQ7/tGxWOh5s6InLGBMWDN7NKJE3qiwrUG32mScqVVc+zygZPpnK33GaixTXBoJS4DnDLfEQWL+RBEM5aOAXLXzJsBPnrxI2s35ZOWDCRdxW9CN2bBJYCKrVf3nFXdimKbkQtFEK8Fk8p/OHL/CKaFf8FDbI77WPSwSFI8QwzFOp4nbQuucyLbgnaEPkOreA6VguBEnuqUEPfLZ972fPi9DaPU+sgOgm7XcFDDKWPjf+H19GXPpojGB/4q/vQ==
+ b=Vo3O+L2basSR0ZdrXHauSsl+MpxpzW0rhQtokVBmlc7lKkry+DeWoYRlU3/oP0QY8xF/MDf8uU1NRh14iW6iMszF9+lFCNUAF0MB9Eni4un1QvTFbnTBRcazxf5LGBOCCTP0fgXTL+bBiFgJvWmYn/k/sQqAeZQmkxX2aVsUtDAyTC8OzOl9NpfxayozQYbRg+vR84QFC+Wo+v5iiTvf5WbE1B8iDKScAEuAQ/aXOJO/qeA7QQmWLiMXIZm4qjiWAkr26vjTR8uU18xcaVFbgXoR1FsZmmv1tZYQp/3PtUAVxtUdFPp9zxOmC3pwyRgn1UKM3dSigb+8nVBVc8m2iQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mrwk+4ssAmP8D1VgyVEK2Q49Io6fjXb8k3Ll1ccYCLg=;
- b=eOODcm8vxwNU9Gm1ugJW0RwxpLV4AZlzW2Vq1Giv2se+/L+rkF1Ho9qn1DbB53H3qT+ttc8t6lJPk0V5zRbGaAEvr0qnW+/QEL70rsbBQ1RCwa/ETrYsfKLXK6hnSolNd/tWoO31VjMudNBB/W5ejf/jNKbUg+NcN8bCzNpCS4t6Rxsrj3rjQwPETJfowyf9XWeznuOnmrw6KOhGC/WLnMlPiFKxf/NKXv1deZmo23GZpXU9/lD7CRS2jUNyZNZKtTKPvuSmIL4fuC09RwCo9Y9LXmmnitDwCYSpIvw1MTFclZDlShHa1BsDelyG3r001ns6g2wRt7gpLpEqEtqQ+g==
+ bh=hAjcLX0gzc9IzooIs4+vELEJUBnDev/ZvXu+TXP7xbI=;
+ b=ZnIQ6cNOHdEIQL8/W1TnEv0BNLb4BzUxq/xbaMviFL83WPycGmCtVaAYe0Z6g8I4geO4BOKgQ9T57BI08Qx4ZKNZZ1x1wiIGDDV6O0uayI9vo8JvzgIVo7KnaruuSltRfu2Ne+NwnIcAJh+kehOeeIX+W3EWgGdnb+Aza7QneRLcpOHfpZb9zvAMf0MPFw91tvF8OhodHnMP81NF42OkzeQ7r3IfYbqxXfGC3IuZkPYHBmi3dYMZiUSqtbWUhiVRT9hRo+Pyv5MErfRDmXalddAn4xAxqt64SsR+NsntoQf5RbjLeeZV5ZpgNlMgf81JQH30aMBwmuTFf+8gUsnN3g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mrwk+4ssAmP8D1VgyVEK2Q49Io6fjXb8k3Ll1ccYCLg=;
- b=AtbilPwynr9wrXTkzL7j+Sm/AoHZCNCpSetwtu6zJidfwHzKZVmXlKkNX6AKgKU9vVFzxfueK9mUInmMG6cIarugxugG1bfqdgzz4G256SyyjcyEa9N9fld4b8VOpCqFpuykqgE1jftlExwBUhr990Z95JL9fb22DOYKOaGeaVKDnUCPJPgOHq8EgqbTJvufcJrYrhJeST51cgi1c/YWFRYd+kPQv1dXQwevjXi1JVnH5Q/y7AAeExkdlXj+PBM0Qx+3bFnTmotZcjk1RSAaiimv42+CE+txdPbfh4ccG+zCgfHIkQkx7NUF/I41FB5QiQnrcajzPeNXhIhWED2Ywg==
+ bh=hAjcLX0gzc9IzooIs4+vELEJUBnDev/ZvXu+TXP7xbI=;
+ b=Dx6njUn0SzisBggA729P3KlhIgL6RSeNzvNbB8fVvoZ4OlcLLgSOSfKlJ1l7F8KOn55VEdjXTitDqaGSrB8PIxs6wpd9ascaruqtjVAtpz/sq4XqdpydtAHdAGDgU+DYUe48hokGyNtElAB4MmwWiqJr0ccoihFtBC1CMWf3nuM=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SA3PR12MB598757.namprd12.prod.outlook.com
- (2603:10b6:806:52d::14) by IA1PR12MB8286.namprd12.prod.outlook.com
- (2603:10b6:208:3f8::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.592.11; Tue, 17 Nov
- 2026 03:51:31 +0000
-Received: from SA3PR12MB598757.namprd12.prod.outlook.com
- ([fe80::e206:100:5946:a777]) by SA3PR12MB598757.namprd12.prod.outlook.com
- ([fe80::e206:100:5946:a777%5]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
- 03:51:31 +0000
-Date: Tue, 17 Nov 2026 14:51:25 +1100
-From: Alistair Popple <apopple@nvidia.com>
-To: "Gregory Price (Meta)" <gourry@gourry.net>
-Cc: "David Hildenbrand (Arm)" <david@kernel.org>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Auld <matthew.auld@intel.com>, linux-mm@kvack.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Matthew Brost <matthew.brost@intel.com>,
- Mika =?utf-8?B?UGVudHRpbMOk?= <mpenttil@redhat.com>, 
- Leon Romanovsky <leon@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
- John Hubbard <jhubbard@nvidia.com>
-Subject: Re: [PATCH] mm/hmm: skip NUMA balancing on protnone faults
-Message-ID: <avvJZtN88gLXA6Uz@nvdebian.thelocal>
-References: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
- <b32fb02a-68b4-4db9-83dd-254147dbf215@kernel.org>
- <1993e931e6a4b0cda5c04e72b1a8d5fb924f950a.camel@linux.intel.com>
- <9ec3e8b9-064a-47a7-8d00-566ff371b846@kernel.org>
- <179460319801.482102.15329919214055018110.b4-reply@b4>
- <avuN2eIrlqrO0u6O@nvdebian.thelocal>
- <179487347201.482102.6428415219993123805.b4-reply@b4>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
+ by CH3PR12MB7545.namprd12.prod.outlook.com (2603:10b6:610:146::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 04:57:36 +0000
+Received: from DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
+ ([fe80::762:6408:ca99:701d%4]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
+ 04:57:35 +0000
+Message-ID: <3d156a96-ca2d-479b-b6af-d31b862b9467@amd.com>
+Date: Tue, 17 Nov 2026 10:27:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/1] gpu/buddy: Prune exhausted subtrees in
+ range-biased allocation
+To: "Yadav, Sanjay Kumar" <sanjay.kumar.yadav@intel.com>,
+ dri-devel@lists.freedesktop.org, William Palacek <William.Palacek@amd.com>
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>
+References: <20261102051633.2035348-3-sanjay.kumar.yadav@intel.com>
+ <20261102051633.2035348-4-sanjay.kumar.yadav@intel.com>
+ <b07e279a-67f2-4d38-ba24-9ff2ca9a90fb@amd.com>
+ <91f03c24-2bee-4872-bf09-ca54f81ccf50@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <91f03c24-2bee-4872-bf09-ca54f81ccf50@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <179487347201.482102.6428415219993123805.b4-reply@b4>
-X-ClientProxiedBy: SYYP282CA0003.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:10:b4::13) To SA3PR12MB598757.namprd12.prod.outlook.com
- (2603:10b6:806:52d::14)
+X-ClientProxiedBy: MA5PR01CA0291.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:21b::18) To DM4PR12MB5039.namprd12.prod.outlook.com
+ (2603:10b6:5:38a::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA3PR12MB598757:EE_|IA1PR12MB8286:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9fa6263e-6ac8-4fea-78d5-08df445e1121
+X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|CH3PR12MB7545:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6bc8c2ba-fb9a-4869-0141-08df44674be6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|23010399003|261026140227099003|261026121527099003|261022105027099003|261021135927099003|261028144727099003|261022075727099003|261102123227099003|261021121427099003|10067099003|18002099003|11063799006|22082099003|4143699003|56012099006;
-X-Microsoft-Antispam-Message-Info: 2ft1/BTqq3EzYaVwaQEFOu12yR88BiZDA3MgnDuV+1jnsu6U1XPekjVaDesdwWu2Br2bX2SqR7Io3NLIPER020zl9i4q/ExuOp0ADG5xBQzo4FOT3XVugL2BPKIPPpM0EskNOD040iAXjv1f/hzoIiklfqjgTmCALP82DZdkgt3T0ow4WJBzUmn86BN0qIzA08X7XaKVQpeyqlLPtXbN/+gbQZI6CvaT3QZlgWCwx5O92Q3cB0Ob/AeKldBRP2jVpYujvrf42x6/Z727lBziLdheiTWHvH6VYToZ641FbroT/xnDwVsyxhRrx+7vfObUVP8lkw/PiF2rFXSKc6yY74vd13HHBJh3EusypMKAtViEBvY2g0NbPXr3sm7izUUHcNnQ55Rm71sqmRpxnVQ4gSjGaCgKr8+j4w+NxTdjONaVWcQ4h9Ugd3z0BEZyxKT+7lNX0ZQYLkX4nmXkaTDNTVoZOxu2pgfnJx90X+iRQG3LnleJyR/Uisi4d7A465m9jJEyOm5oVvsCyGMBG1xL070V+gJGWtnSxEc8OirVjK861nsKmVfl6lN/KbzQvIvgjGN+J6G1OuerTOAjqa0q9DA3kWozmi14a0hDP9NZujY9/KXsyfb0iW1RizV24G6sClY/7OXq7WCJjdcHhcBF8Ae+X+1qdJatv+6j5YFeGcg=
+ ARA:13230040|1800799024|376014|366016|23010399003|10067099003|11063799006|5023799004|56012099006|4143699003|261009223027099003|261021121427099003|261021123027099003|261102123227099003|261102130727099003|261026140227099003|261022105027099003|261026121527099003|261022075727099003|261028144727099003|7136999003|22082099003|11062099010|18002099003;
+X-Microsoft-Antispam-Message-Info: T+lXMmOXVK/wzldgnXkVKLTdc/lHDUPFpLG6bn9jg+5l9xFiOC/pgiKu0PNgYgI6/YBMqzAH7MWDhT38azGzwoCevELWq5iOiokr7HGc4iPkNKAuTUC85PyMQwLJ6GwIcIEjtaTRaTfpyP4PqL5KaTiftZWJZgzcAeqPKuz3RFSS3N5nFVy7o/ivWFKn4hiZ0+/lj+AERAMnXapFbmFLEaYNNZCbaogzwO5nCKLLWg/gj/WHkTt3IpyerAEaZE/JAyvmQGIE/BVGyce0PL7OPsSW7yREy4CkWiMTD+JG+c1n6GA/eNYejBhinKY1vu0wzoKrqeW7jPy7kw4sL+ZkzsuUQHK3DZg0IxZaUrrLrJiJ2v/NWe3xYCXdULofl6lUriNIljMkGlHMhnyqKUL+glvn0Vd8XQxEw8kd0X1n1B7uwi46e9dpS1f5z4D+Wse155c+c2yf24SSskU8wxEIYLm8fNCZ9LxVU0gh/DhGzQrDnvPFmhzDkeBRYusAqd5hS6PE9HACRdoqj9B695LF9uV3mAaJa+Znn3A7yGe46ldKuJG2+sp1a0Ttls6R7mwyjJc0lR81X0WTOZOhjDeIfTpbq0qi0xorw1hgNGbw+KGUby4e4qLBJOLvonNVJDtu
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR12MB598757.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(23010399003)(261026140227099003)(261026121527099003)(261022105027099003)(261021135927099003)(261028144727099003)(261022075727099003)(261102123227099003)(261021121427099003)(10067099003)(18002099003)(11063799006)(22082099003)(4143699003)(56012099006);
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(10067099003)(11063799006)(5023799004)(56012099006)(4143699003)(261009223027099003)(261021121427099003)(261021123027099003)(261102123227099003)(261102130727099003)(261026140227099003)(261022105027099003)(261026121527099003)(261022075727099003)(261028144727099003)(7136999003)(22082099003)(11062099010)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ys7IGdBxyoippuG0hWUx1PTg8tun/ER+eMsUcTtNf6zVikBXx0ae5gky72?=
- =?iso-8859-1?Q?vYMT7cJYEfIlUgDOBX2eMY0M6ZvbiBOpzebaPA76s6Y6+HLCckTLA7ftj8?=
- =?iso-8859-1?Q?SpUdKApyeLbnic3LZJ2r8yGlWRASwkfPraJpjxL3uD0nPuzmD9WFR3K134?=
- =?iso-8859-1?Q?aW1XjaEUS6luw96i0q8P1LhgzRjtuKaL9L+zMFKrO3laca2UrvE3OEd38R?=
- =?iso-8859-1?Q?m13jhhvN3Wy0iw2gOLa91ZE4CCv4T5Iho8Yu2vi3cfcYKzG+fvDSIyLhif?=
- =?iso-8859-1?Q?Zil5jC1f3WvNMxk525CyJa8g3u5tR021keqq/wyaqWoOz7LHiUVJqtoOWV?=
- =?iso-8859-1?Q?gngD+DdUZ5XzcYqBHycTmk397elr+A/aURRTa20C2LWSpXY/3ENevSm/BJ?=
- =?iso-8859-1?Q?46foRZR72z8oMK11lj67T/jii2UI7AZm2ZxdNxNm1uPKFB5F8z2YWcbh0y?=
- =?iso-8859-1?Q?NS7oT8DgxDKdDpZmcuzvYgndxqDcVNrIGslnMNKSagYktDb/73CCG2JHAw?=
- =?iso-8859-1?Q?NBw+SWoFopIqIoHsWH7XskkdXDPmY+hwJDx1n8gSih6wA82VxwrOunptM/?=
- =?iso-8859-1?Q?9NbKsBs+hUKek/FxxjIAokJdCdD1/lzX6ZDKIiEBMFiApy+AhMg6wvRiG1?=
- =?iso-8859-1?Q?RCFn8HiHCEQPwdvEObO8yYCkKF0UTvlECetvAwIluWidlB9aPWflhK5JTE?=
- =?iso-8859-1?Q?Ot3WMGG/xK0wJZb7WdzbBIKZwOUZ7CWMSdawDPUzhkwKBc2m1rFyB4FXGb?=
- =?iso-8859-1?Q?/huLDl228HTFZnlpIVIkpgzSs/e9wC0CZqkrr9sm5HrPoK3k1+Hhh35swh?=
- =?iso-8859-1?Q?BOIruM7aRaO7TE/xwDlLlzH++gxOpKGF4l71NNN6ToobZyMpvrr4MgrFRG?=
- =?iso-8859-1?Q?N0P0bU6wgzMYMfq57ScXLUd5KugvzCMOB0L2+b7OFJANk4qUb5v6LBJocR?=
- =?iso-8859-1?Q?DvJk0Xf/NZVNHXD5aBuSWS5RfBOH13u/kp2pxveYIdRMfHkN+K842NfqE0?=
- =?iso-8859-1?Q?FIIyQkTS3C6bMZCdcc9OkXIi2PXb8M/lCR8fD5xaL/jR60bRGX4V+G3QkB?=
- =?iso-8859-1?Q?f1bRdTtI1jEmWkrlZ1NFS3O7m3yqiowq4ghLG6tADO2s90r1gtjNrLVI5u?=
- =?iso-8859-1?Q?gE3nUIowBY02FmFpoWsQlyK4MTFXda5reCVWI48XFA0hocQC/nyHn5T8Rb?=
- =?iso-8859-1?Q?RIQ+7LXZhrGSDKSiV9vpCaw+kbAROBrEQmQpteJWXKR6u5dx3g56OGVMxg?=
- =?iso-8859-1?Q?+u6VGvQ727y40PiSD/i9NvBfX4gFjMwfshX3guWlBimRgaNW7A6zSQdj5N?=
- =?iso-8859-1?Q?LsIY4rAcJUoAp9UjUyiyNHdg3teaS7b+LElqGkfSIhxkCJcM0EnGsMLkwg?=
- =?iso-8859-1?Q?6iElwjovUtvVorcPkmDs7CZ9X1TTpZJjS8g1MWYyX0LqHKM7vgfjtN4xzU?=
- =?iso-8859-1?Q?BevrXvG8mhUjyOvHUlVmAaNwxLqhkgP9yzbODrYxpYEsF8hzmAfTxSlTpi?=
- =?iso-8859-1?Q?hA04y+gQ/hqqg0lFH9QqtOomcso13WrC/bWNrpCbNmj35gga0L0CZPpk7g?=
- =?iso-8859-1?Q?uIWOcq8UpCx0Xlwx2hjnH88Q+HFnJahWqvQb99dxdUTiJ6YyiJrIanyYWY?=
- =?iso-8859-1?Q?PqC7xGkzd4pPrl8TYpSHr/OxHisd8AZcruL9TPnmZAiMYpTrddlf9CWvAH?=
- =?iso-8859-1?Q?ewqyzU6rZNtDD4iN/Vq4doBlpiv/SGU5ujQQt7kG1hxHREkHFvDhHJZsYo?=
- =?iso-8859-1?Q?YZDrLAuCkJXlj4FixKJUGmiQxsTjXQTvfutquVRM9hzIeNqQmWCSm+FjGy?=
- =?iso-8859-1?Q?F1mtAKawEQ=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fa6263e-6ac8-4fea-78d5-08df445e1121
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR12MB598757.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eGZtRFkyblZFSU1Ya0lHWm40YUR6OWdBOVNMK0hMYktPKzd2WExXK0FzR1JY?=
+ =?utf-8?B?Y2hMMEtoWDVXamVTdGFFb2pXMktrU3ZRYjVtYi9GbDM4cytGd21qZ2t0ZnNW?=
+ =?utf-8?B?UHhBVTJuejhSZ2FYYXJ2bzNGbWRrREpzOEZyd0tTR1RxazNYY3dvZkZxZjNY?=
+ =?utf-8?B?WXZVK0NpYVFieUJGTlJ6b3pjSG9pV3NMVGQrdUZIc1BkWXlmVXhaUFRuQjgz?=
+ =?utf-8?B?dXhYRk9Cem9LZmxiMVJ3NW11ZXk0eERoNHRBL0w0VGNJYksvUXhrVUlhYWs3?=
+ =?utf-8?B?NDhvdzQ1WXhreHc0Ync4OUhqRytEMHZTVWh1YW11eEN2ejVTbWRvaGdwZG9F?=
+ =?utf-8?B?UU5FUE1YRFhRbkFkL0RiUmxRWlNRM0xjdE0va3BES3N4YmZCNVRIbThyRzEy?=
+ =?utf-8?B?ZFVYNUhsSmtNVEpBZ1Q3VGNJdS9qVy9pdFl2dUdQZnZyUUd1VlFHNEUwMlpD?=
+ =?utf-8?B?Rkcrc3l3am9CNW9vd1o3QnN4TmNCUWQ2dmNiUG16dUtTcVV1cnBjSUduWEZO?=
+ =?utf-8?B?M1N6elJOeGFQcHdYUE9IaDNGK054eVhIOTNxb3k4WkliSG5FOHIvaWVOYU9V?=
+ =?utf-8?B?cHhNODRIaHRoSCtNYlJQc2p1Z0ZhSlVORWxuWkc0djRYOWtxU01jdE55dDZl?=
+ =?utf-8?B?TmFPRHd5OC9KT1dmdzV1UkF5Qit4Y1RnancyNTVueDBpQVM0a3ZJUVZ0RkFw?=
+ =?utf-8?B?Y3VtS2JJRGhoUk5XclFPKzI3MVA2dDZrODhERDVmais3ZWxtWk5hUmE5ZHVo?=
+ =?utf-8?B?ZW5NeU1wWU9PSHhQSTZrVVU4MjFQa0ozSnpIbWRtakNsci8xMzJDNEU4TFVk?=
+ =?utf-8?B?UEEvZ3lFcHAwRi9TMktoUlgvS2lqbHlOc1NIZCtsaEN5QWFheDNNSS9wWDlP?=
+ =?utf-8?B?bWZBbC8wby9adDFDc1dvUnZ1MG01ZkhvL0hlWE5nQi81T2VzUEkwdFJVRjVP?=
+ =?utf-8?B?QnAwOUdmMU94aEJTMmI3WEREV3RtYnpEYWkzTXNucUpHeFlHejRxdFBzbDRr?=
+ =?utf-8?B?QjdtbDdNZWFHN2wwbEl5V3pISEVUQ09uZldBSXFNZnZGeXJxNjhJU1pCb0RC?=
+ =?utf-8?B?b2tnbTFKalJNallFRUJPTjZRbzc4aWdqVmNaYStwNFBuUWF5S1kvSURvYWtH?=
+ =?utf-8?B?V0h5d05vU1BsUjBFclBvUHhQMzNac3hteEZ6WFhDOGhsUTg0NDFtenZoeWVl?=
+ =?utf-8?B?dkFRME5UNlNNSGt3N0RxTklGSE1nRDVmak9BYmE0dzRXNWdHZm1iRlB6U1pm?=
+ =?utf-8?B?N0ZKYldxa3F2bW5DeWxWOENNWWh5b2lRclNjYjgzaGNHQzZFMWxRRFpqZFVP?=
+ =?utf-8?B?RVU2Umt5MTdCRnFQOVNVWEJ6dlN4ZU5JQ2F0eFc0ZTBVK1R6R1p2dnBJcmp6?=
+ =?utf-8?B?T203ZjVYOExsU2ZrTUlIQlFHRFFpbnQ2YmVEVG1uTm1kNnJUcFFXRlBHblFi?=
+ =?utf-8?B?UnV1eDV6SmNQbGVvWmo4VXQ2MzhycmpXOXVxTWpnbnFuMnMwRFE2RlV2RGs0?=
+ =?utf-8?B?RGJmZVdHd1BlUGxlTTl4SWpNMit2TzgzVFZURkRuZDF1SXR2WmxaR0RMUVRB?=
+ =?utf-8?B?TTNyc3pGRFhmaDVOdCtwa3hIMkRCV0RWTTFEZ3BTWlYxY2txVzRTMzZLK2t6?=
+ =?utf-8?B?eHQxSGg2bDBKVVlyS2ZrNC9kejFoVzhwNHYrWCtuYndZdmtEMDIzWXlwNk9R?=
+ =?utf-8?B?TStCUUhtcTZIY0Q0NHNtVEg0amd4VS9hRnhLTW1GTWpDVzF5VTVCVlplYXVY?=
+ =?utf-8?B?ZzR1cFg3VUM5WVo3bVI4Y3MrSEtMNUEwcGxHVHoybFpFS3V3dE9rUkFlRGlT?=
+ =?utf-8?B?MUtPdEZTN01QSUF1QkFQMzVKSG9JZHJjZGZ4eUdjNFV4NitOS1d1QWpobEg3?=
+ =?utf-8?B?b0gyK0RjR29CSXZITDVqVEYvanpUUWRyai9xZTA1dTJiQjFHL3hzOVZpWE05?=
+ =?utf-8?B?cTRScmdycDNFdnhEN1F4LzFIbXp5ZHg1UGpCNnpTTTloNFprWnlMQUtkR2FB?=
+ =?utf-8?B?SzM0dlpKSHEzZ3MzRXBuWkpDUDZ3eHZCaXZHM1FCUk85WHN4S1JlU0FrZDJ6?=
+ =?utf-8?B?S1JZT2pjWTNtVnRSYmVlZ25TUlNpREp4WVBuK0RqWWc5bm85YkVZNnBhWUtZ?=
+ =?utf-8?B?a1VPeHFjd3dIUm0xRmVheEhzYmtBcFpPekpSVmRKMUU1U1ZJRWxCNW5wWUVU?=
+ =?utf-8?B?Qm9SNkQrcmZJeTRuWEZCbU9DbXNkbU9uR0xGL1NwSVoyVFlkV1dwSkxpYU13?=
+ =?utf-8?B?dnl0bnBOTG96L05qeTcrTG1TNnBuTVBZR1lOWWpTSURvcGtsY1FHYis4SU9Q?=
+ =?utf-8?Q?NwsRPNAx+LiVJa9zbR?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6bc8c2ba-fb9a-4869-0141-08df44674be6
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 03:51:31.6380 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 04:57:35.9161 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lV1T40L7Wo9Rp94FFmYKsmYnuG0usMu+/4xXhrX12KJP7UvoSy0gfy1zphLIDbMim7Rd2wkQts36aZSc1idKIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB8286
+X-MS-Exchange-CrossTenant-UserPrincipalName: M87wwP7IdemKIYZfUJh4ABQwyIWacD40khjF5RakJoCJX68MP5yV5Ghj3XKE7ulRqi0mD+ipfq8+qgnOtI/mQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7545
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,96 +134,255 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-17 at 10:57 +1100, "Gregory Price (Meta)" <gourry@gourry.net> wrote...
-> On 2026-11-17 10:24 +1100, Alistair Popple wrote:
-> > On 2026-11-14 at 07:53 +1100, "Gregory Price (Meta)" <gourry@gourry.net> wrote...
-> > > On 2026-11-13 21:43 +0100, David Hildenbrand (Arm) wrote:
-> > > > On 11/13/26 21:34, Thomas Hellstr�m wrote:
-> > > 
-> > > > I recall that John (cc) kept saying "GPUs and NUMA balancing is inherently
-> > > > incompatible, you have to disable NUMA balancing".
-> > > > 
-> > > 
-> > > If this is a NUMA-hotplugged GPU, then this is resolved by a private
-> > > node, because this:
-> > > 
-> > > @@ -6404,6 +6404,9 @@ static vm_fault_t do_numa_page(struct vm_fault *vmf)
-> > >         if (!folio || folio_is_zone_device(folio))
-> > > 
-> > > 
-> > > changes to
-> > > 
-> > >         if (!folio || folio_is_common_memory(folio))
-> > > 
-> > > And all folios on the GPU node are never subject to NUMA Balancing
-> > > 
-> > > so balancing can stay enabled while the GPU memory is not subject to
-> > > PROT_NONE spew.
-> > 
-> > Hi Gregory, just to hopefully help clarify understanding a bit here this isn't
-> > related to folio location and therefore private node won't help much.
-> > 
-> > This about a driver getting a snapshot of current PTE state to program a
-> > secondary MMU (in this case on a GPU, but can equally be a NIC or other device).
-> > 
-> > Even CPU memory being subject to NUMA balancing can have quite an adverse impact
-> > on GPU performance due to increased incidence of GPU faults, hence why John says
-> > GPUs (using SVM) are inherently incompatible with NUMA balancing.
-> > 
-> 
-> Ah, I follow.  I'm still working through the performance implications of
-> mmu_notifiers in the presence of PROT_NONE faults, but if i'm
-> understanding correctly it tracks that you'd say it's incompatible.
 
-Incompatible is probably not the correct term as it still works. It's just that
-GPU faults are really expensive, and to be avoided at all costs. So having NUMA
-balancing running around randomly unmapping pages the GPU is using (regardless
-of whether or not they are on the device) results in more GPU faults and
-therefore a huge perf impact for basically no (or in fact sometimes negative)
-gain.
 
-> I presume here the driver needs a global view of memory (or at least all
-> memory it can potentially DMA), rather than simply just a subset
-> (some set of VMAs)?
+On 11/15/2026 9:23 PM, Yadav, Sanjay Kumar wrote:
+>
+> On 09-11-2026 12:10, Arunpravin Paneer Selvam wrote:
+>> Hi Sanjay,
+>>
+>> On 11/2/2026 10:46 AM, Sanjay Yadav wrote:
+>>> __alloc_range_bias() walks the buddy tree depth-first, higher address
+>>> first, and descends every SPLIT block even when nothing below it is
+>>> free. Range allocations are placed top-down, so they pack below the
+>>> range end and each new one walks every block already allocated there:
+>>> O(N) per allocation and O(N^2) for N allocations, under the allocator
+>>> lock.
+>>>
+>>> Track in each block the largest order of any FREE block in its subtree
+>>> (GPU_BUDDY_NO_FREE_ORDER if none), update it when a block is allocated
+>>> or freed, and skip subtrees that cannot satisfy the requested order.
+>>> Splitting needs no update of its own, as both children are marked free
+>>> right after and that propagates the new value up.
+>>> gpu_buddy_block_trim() detaches the block before freeing it, so updates
+>>> stop there while re-allocating inside it; recompute from the parent
+>>> once it is reattached.
+>>>
+>>> Skipped subtrees contain no FREE block of the requested order or
+>>> larger, so the old walk could neither split nor return anything there.
+>>> The remaining blocks are visited in the same order, so the selected
+>>> block and placement are unchanged.
+>> I am not receiving some of the emails you are. sending me. I think 
+>> there may be an issue with my mailbox, so I need to check that on my 
+>> side.
+>> William has also been working on improving the range-allocation 
+>> performance in drm_buddy. His patch is here:
+>>
+>> https://patchwork.freedesktop.org/patch/763478/
+>>
+>> Since both patches are trying to improve the same range-allocation 
+>> path, I would like to converge on a single upstream approach rather 
+>> than carry separate optimizations.
+>> I have put together a version based on William’s offset-sorted 
+>> free-tree approach, extending the search to be class-aware:
+>>
+>> https://gitlab.freedesktop.org/arunpravin24/drm-buddy-range-wip/-/commit/72414977d38f4bcf7a364c64f24aa7f25cf699d9 
+>>
+>>
+>> With this approach, we can remove the buddy-tree DFS walk entirely. 
+>> Cleared blocks are located using the existing subtree_block_state 
+>> augmentation, and top-down placement comes directly from the 
+>> offset-sorted free trees, reducing the lookup to an O(log n) 
+>> free-tree search followed by a small bounded scan.
+>>
+>> @Sanjay, could you take a look at the version above? I think it would 
+>> be better to follow this approach upstream and create a patch with 
+>> the test cases around it.
+> I tested your WIP on our side (applied on current drm-tip, on top of
+> the merged two-pass guard).
+>
+> BMG, CPU-visible BAR resized to 4GB, xe_pat@pt-caching-random-offsets:
+>
+>   drm-tip                 ~48-51s
+>   drm-tip + my v4         ~0.7s
+>   drm-tip + your WIP      ~0.75s
+>  (drm-tip, full BAR       ~0.7s, range path not used)
+> So your version fixes the xe small-BAR case as well as v4 and looks 
+> good to me.
+> v4(already R-b/T-b by Joel) could go in first as the small fix and your
+> series replace the walk on top. Whichever you and Matt prefer.
+Okay, please confirm with Matthew. If this is the final version, I will 
+merge it upstream.
 
-The basic process is this:
+Regards,
+Arun.
+>>
+>> @William, could you also take a look at the version above? Hopefully 
+>> we can follow the same approach when porting this optimization to the 
+>> older dual-free-tree branch
+>> used by the ROCm versions you are targeting.
+>>
+>> Thanks,
+>>  Arun
+>>>
+>>> v4: (Matt A)
+>>> - Drop the update in mark_split(), the children being marked free
+>>>    updates the parent
+>>> - Detach the block before __mark_free() in gpu_buddy_block_trim(), so
+>>>    only the final update from the parent propagates up
+>>> - Drop the order, is_allocated() and is_free() checks in
+>>>    __alloc_range_bias() that the pruning check now covers
+>>>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
+>>> Cc: Joel Fernandes <joelagnelf@nvidia.com>
+>>> Assisted-by: LLM
+>>> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+>>> ---
+>>>   drivers/gpu/buddy.c       | 56 
+>>> +++++++++++++++++++++++++++------------
+>>>   include/linux/gpu_buddy.h |  7 +++++
+>>>   2 files changed, 46 insertions(+), 17 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>>> index 28cff97d57dc..93f70c98b235 100644
+>>> --- a/drivers/gpu/buddy.c
+>>> +++ b/drivers/gpu/buddy.c
+>>> @@ -602,6 +602,7 @@ static struct gpu_buddy_block 
+>>> *gpu_block_alloc(struct gpu_buddy *mm,
+>>>       block->header = offset;
+>>>       block->header |= order;
+>>>       block->parent = parent;
+>>> +    block->subtree_max_free_order = GPU_BUDDY_NO_FREE_ORDER;
+>>>         RB_CLEAR_NODE(&block->rb);
+>>>   @@ -717,6 +718,27 @@ static void rbtree_remove(struct gpu_buddy *mm,
+>>>       RB_CLEAR_NODE(&block->rb);
+>>>   }
+>>>   +static void update_subtree_max_free_order(struct gpu_buddy_block 
+>>> *block)
+>>> +{
+>>> +    while (block) {
+>>> +        s8 max_free;
+>>> +
+>>> +        if (gpu_buddy_block_is_free(block))
+>>> +            max_free = gpu_buddy_block_order(block);
+>>> +        else if (gpu_buddy_block_is_split(block))
+>>> +            max_free = max(block->left->subtree_max_free_order,
+>>> + block->right->subtree_max_free_order);
+>>> +        else
+>>> +            max_free = GPU_BUDDY_NO_FREE_ORDER;
+>>> +
+>>> +        if (block->subtree_max_free_order == max_free)
+>>> +            break;
+>>> +
+>>> +        block->subtree_max_free_order = max_free;
+>>> +        block = block->parent;
+>>> +    }
+>>> +}
+>>> +
+>>>   static void mark_allocated(struct gpu_buddy *mm,
+>>>                  struct gpu_buddy_block *block)
+>>>   {
+>>> @@ -729,6 +751,7 @@ static void mark_allocated(struct gpu_buddy *mm,
+>>>       mm->used_scoreboard[gpu_buddy_block_order(block)]++;
+>>>         rbtree_remove(mm, block);
+>>> +    update_subtree_max_free_order(block);
+>>>   }
+>>>     static void __mark_free(struct gpu_buddy *mm,
+>>> @@ -750,6 +773,7 @@ static void __mark_free(struct gpu_buddy *mm,
+>>>       mm->free_scoreboard[gpu_buddy_block_order(block)]++;
+>>>         rbtree_insert(mm, block);
+>>> +    update_subtree_max_free_order(block);
+>>>   }
+>>>     static void mark_free(struct gpu_buddy *mm,
+>>> @@ -869,6 +893,8 @@ int gpu_buddy_init(struct gpu_buddy *mm, u64 
+>>> size, u64 chunk_size)
+>>>         size = round_down(size, chunk_size);
+>>>   +    BUILD_BUG_ON(GPU_BUDDY_MAX_ORDER > S8_MAX);
+>>> +
+>>>       mm->size = size;
+>>>       mm->avail = size;
+>>>       mm->chunk_size = chunk_size;
+>>> @@ -1277,7 +1303,7 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>>             list_del(&block->tmp_link);
+>>>   -        if (gpu_buddy_block_order(block) < order)
+>>> +        if (block->subtree_max_free_order < (int)order)
+>>>               continue;
+>>>             block_start = gpu_buddy_block_offset(block);
+>>> @@ -1286,9 +1312,6 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>>           if (!overlaps(start, end, block_start, block_end))
+>>>               continue;
+>>>   -        if (gpu_buddy_block_is_allocated(block))
+>>> -            continue;
+>>> -
+>>>           if (block_start < start || block_end > end) {
+>>>               u64 adjusted_start = max(block_start, start);
+>>>               u64 adjusted_end = min(block_end, end);
+>>> @@ -1298,16 +1321,10 @@ __alloc_range_bias(struct gpu_buddy *mm,
+>>>                   continue;
+>>>           }
+>>>   +        /* Not pruned at @order, so this block itself is FREE */
+>>>           if (contains(start, end, block_start, block_end) &&
+>>> -            order == gpu_buddy_block_order(block)) {
+>>> -            /*
+>>> -             * Find the free block within the range.
+>>> -             */
+>>> -            if (gpu_buddy_block_is_free(block))
+>>> -                return block;
+>>> -
+>>> -            continue;
+>>> -        }
+>>> +            order == gpu_buddy_block_order(block))
+>>> +            return block;
+>>>             if (!gpu_buddy_block_is_split(block)) {
+>>>               err = split_block(mm, block);
+>>> @@ -1856,13 +1873,17 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+>>>                            gpu_buddy_block_offset(block),
+>>>                            gpu_buddy_block_size(mm, block));
+>>>   -    __mark_free(mm, block, was_clear ? GPU_BLOCK_CLEAR : 
+>>> GPU_BLOCK_DIRTY);
+>>> -    mm->avail += gpu_buddy_block_size(mm, block);
+>>> -
+>>> -    /* Prevent recursively freeing this node */
+>>> +    /*
+>>> +     * Detach the block to prevent recursively freeing this node, 
+>>> and to
+>>> +     * keep free-order updates from propagating above it until the 
+>>> trim
+>>> +     * is done.
+>>> +     */
+>>>       parent = block->parent;
+>>>       block->parent = NULL;
+>>>   +    __mark_free(mm, block, was_clear ? GPU_BLOCK_CLEAR : 
+>>> GPU_BLOCK_DIRTY);
+>>> +    mm->avail += gpu_buddy_block_size(mm, block);
+>>> +
+>>>       list_add(&block->tmp_link, &dfs);
+>>>       err =  __alloc_range(mm, &dfs, new_start, new_size,
+>>>                    was_clear ? GPU_BUDDY_CLEAR_ALLOCATION : 0,
+>>> @@ -1881,6 +1902,7 @@ int gpu_buddy_block_trim(struct gpu_buddy *mm,
+>>>       }
+>>>         block->parent = parent;
+>>> +    update_subtree_max_free_order(parent);
+>>>       return err;
+>>>   }
+>>>   EXPORT_SYMBOL(gpu_buddy_block_trim);
+>>> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+>>> index ddc4eca84175..8037f5a0feb1 100644
+>>> --- a/include/linux/gpu_buddy.h
+>>> +++ b/include/linux/gpu_buddy.h
+>>> @@ -141,8 +141,15 @@ struct gpu_buddy_block {
+>>>       unsigned int subtree_max_alignment;
+>>>       struct list_head tmp_link;
+>>>       bool has_clear;
+>>> +    /*
+>>> +     * Largest order of any FREE block in this block's buddy 
+>>> subtree, or
+>>> +     * GPU_BUDDY_NO_FREE_ORDER if none. Protected by the driver lock.
+>>> +     */
+>>> +    s8 subtree_max_free_order;
+>>>   };
+>>>   +#define GPU_BUDDY_NO_FREE_ORDER (-1)
+>>> +
+>>>   /* Order-zero must be at least SZ_4K */
+>>>   #define GPU_BUDDY_MAX_ORDER (63 - 12)
+>>
 
-* GPU needs to access some user space virtual address (eg. allocated with mmap/malloc)
-* Therefore GPU driver needs to setup GPU page tables to point to the physical
-  memory[1] backing the user space virtual address
-* To find the physical address the GPU driver uses hmm_range_fault() on the
-  range, possibly faulting pages in if required (ie. if CPU PTE permissions
-  don't match what's required).
-* hmm_range_fault() relies on mmu_notifiers for synchronisation with CPU PTE state.
-* An mmu_notifier firing causes a driver to do two things:
-  a) Must invalidate any GPU page tables / TLBs mapping the notified virtual address.
-  b) Increments a sequence number for any concurrent hmm_range_faults(), which must
-     retry as their view of CPU PTEs is now out-dated. This is the problem
-     this patch series hits - the migration on fault causes an mmu_notifier to fire
-     resulting in a hmm_range_fault() retry and associated overhead.
-
-So the driver doesn't need a global view of memory, just a view of the memory
-the GPU needs, or likely needs, to access. Determining that depends on the
-driver - some might require pre-registration of the ranges (eg. via an ioctl)
-prior to launching work whilst others might wait until the GPU work faults on an
-address not in the GPU page tables. Or some combination thereof.
-
- - Alistair
-
-[1] - Well technically the IOVA / DMA address mapping physical system memory
-but that's not relevant for this discussion. We can assume there are no IOMMUs
-present.
-
-> ~Gregory
-> 
-> -- 
-> ~Gregory
-> 
-> 
