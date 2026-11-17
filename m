@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29F22606A8AB
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 07:21:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9E54606A32C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 07:21:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=g7eZaylq
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Tyql7vNI
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D51A310E522;
-	Tue, 17 Nov 2026 07:21:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A884910E57F;
+	Tue, 17 Nov 2026 07:21:36 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC65C10E522
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 07:21:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60E6410E549
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 07:21:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794900088; x=1826436088;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=K4LBwKKa8gnZu/RwqcSiGP/ZAKGNwy7DpJvX5oaR/jI=;
- b=g7eZaylqJuTHcYOoRwcgLazwUtp0Te6F7TBdDLNIVrTHlm6UU/Uh0YUt
- VGy6QzPLJ6JLjE1ElvmOPrIjMtvgYrBH7iK8PTHVfdIx1jmL+3Z+RA/IR
- UsTY3BmJoAk5RrHODU0Gr89l4rbzARZNLgW6ufjIHzH8YY6cDtepHLizm
- 6c91kp1tc/t5y2c/ulpLJ8ifRjDZSSSbTAjTRh4Ifkudmz9VzespOshsV
- hboNasGTxbV5v3LdzSR0bGH25FGEPVpdqN6Ot5bMRx8n3odyerXVSZ4XH
- F1IVylLDEnSDIF9OHdkCdm5eo5fi2gYNsTf4sja617dJPuXVYPI5TsdHs A==;
-X-CSE-ConnectionGUID: 2oF4PrFAT8OWv531AhDzGw==
-X-CSE-MsgGUID: hn8vyemQRkSARxE13dyUxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3688703"
+ t=1794900089; x=1826436089;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oxtyyisF1iJ6Z/Ma1LPklEC4D/+weo4LBEMTC9um7cU=;
+ b=Tyql7vNIBjlcOLdLiCAl6L3uOHlBIVDjeNuu7jg64o0AQPx3g4a9bO8H
+ jpDORS3nHjvYpKWSX9YeALKjwQa/qTMmUmcfFiNEGBrxtoYp1f/6gyhvx
+ ARSIZVl0RNsZpSdm1c9ifZl24GjYKPHWhtS0ubNFB7inuxNh00dHJstGy
+ VmOzItuYXicT0wBoC0tAJW3ZYZE1Rptb15Hj1P53OoOCbqQm1zFXPntaO
+ gd4W8myutnc+NbIji6iCaWtZKn9TMGzXX3r3dpvenH9JpqJ364USlJEFr
+ MWy7jeONS9ecVKole5h2jdtY3ygP0qCsWDRVQkGbLs7o9pE8X/lI2jk0b g==;
+X-CSE-ConnectionGUID: Cvb8CZPjSZeOyMp5Ij3mLA==
+X-CSE-MsgGUID: QvQYJMEaRvq7rlqigSScBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3688711"
 X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3688703"
+   d="scan'208";a="3688711"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 23:21:25 -0800
-X-CSE-ConnectionGUID: qqLHGNggQSyRuMdqCLdYuQ==
-X-CSE-MsgGUID: f1PPT0NBRZOAez0+5+yafg==
+ 16 Nov 2026 23:21:29 -0800
+X-CSE-ConnectionGUID: y0qE+IomRkS7gw5/aFWYDQ==
+X-CSE-MsgGUID: Ieee/TaKQ6+BYjMeGjhAEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; d="scan'208";a="10284167"
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; d="scan'208";a="10284171"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2026 23:21:21 -0800
+ 16 Nov 2026 23:21:25 -0800
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
@@ -47,10 +47,12 @@ Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
  arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
  nitin.r.gote@intel.com, matthew.d.roper@intel.com
-Subject: [PATCH v7 0/3] Extend CPER records with RAS info queue data
-Date: Tue, 17 Nov 2026 12:51:19 +0530
-Message-ID: <20261117072118.4051706-5-badal.nilawar@intel.com>
+Subject: [PATCH v7 1/3] drm/xe/cper: Drop redundant counter argument
+Date: Tue, 17 Nov 2026 12:51:20 +0530
+Message-ID: <20261117072118.4051706-6-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261117072118.4051706-5-badal.nilawar@intel.com>
+References: <20261117072118.4051706-5-badal.nilawar@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -64,30 +66,101 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This series continues the RAS info queue support from
-https://patchwork.freedesktop.org/series/169692/#rev5
+The RAS counter response already contains the queried error class.
+Use it in the CPER emitter instead of passing the counter separately.
 
-Badal Nilawar (3):
-  drm/xe/cper: Drop redundant counter argument
-  drm/xe/xe_ras: Add support to retrieve info queue data
-  drm/xe/cper: Prepare Intel CPER info records
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_cper.c | 8 +++-----
+ drivers/gpu/drm/xe/xe_cper.h | 3 ---
+ drivers/gpu/drm/xe/xe_ras.c  | 3 +--
+ 3 files changed, 4 insertions(+), 10 deletions(-)
 
- drivers/gpu/drm/xe/xe_cper.c                  | 269 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_cper.h                  |   3 -
- drivers/gpu/drm/xe/xe_cper_types.h            |  59 +++-
- drivers/gpu/drm/xe/xe_ras.c                   | 187 +++++++++++-
- drivers/gpu/drm/xe/xe_ras.h                   |   6 +-
- drivers/gpu/drm/xe/xe_ras_types.h             | 117 +++++++-
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
- 7 files changed, 623 insertions(+), 20 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+index bb90030bcd2d..dda82eb4690c 100644
+--- a/drivers/gpu/drm/xe/xe_cper.c
++++ b/drivers/gpu/drm/xe/xe_cper.c
+@@ -205,20 +205,18 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
+  * @xe: The &xe_device
+  * @cper_sev: CPER severity
+  * @sigid: Error signature identifier
+- * @counter: RAS error class
+- * @response: Counter response returned by firmware for @counter
++ * @response: Counter response returned by firmware
+  *
+  * Build and emit a CPER record from @response.
+  */
+ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+-			  const struct xe_ras_error_class *counter,
+ 			  const struct xe_ras_get_counter_response *response)
+ {
+ 	struct xe_cper_intel_hdr ihdr = {};
+ 
+ 	xe_assert(xe, is_hw_sigid(sigid));
+ 
+-	cper_init_intel_hdr(xe, counter, response->timestamp,
++	cper_init_intel_hdr(xe, &response->counter, response->timestamp,
+ 			    sigid, response->value, &ihdr);
+ 	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
+ }
+@@ -237,7 +235,7 @@ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+ 		return;
+ 	}
+ 
+-	xe_cper_emit_counter(xe, cper_sev, sigid, counter, &response);
++	xe_cper_emit_counter(xe, cper_sev, sigid, &response);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_cper.h b/drivers/gpu/drm/xe/xe_cper.h
+index 89fb8432f027..b37ff39089ca 100644
+--- a/drivers/gpu/drm/xe/xe_cper.h
++++ b/drivers/gpu/drm/xe/xe_cper.h
+@@ -12,7 +12,6 @@
+ 
+ struct va_format;
+ struct xe_device;
+-struct xe_ras_error_class;
+ struct xe_ras_get_counter_response;
+ 
+ #if IS_ENABLED(CONFIG_UEFI_CPER)
+@@ -20,7 +19,6 @@ void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+ 		  u32 component, u32 location, const void *data, size_t len,
+ 		  struct va_format *vaf);
+ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
+-			  const struct xe_ras_error_class *counter,
+ 			  const struct xe_ras_get_counter_response *response);
+ int xe_cper_sysfs_init(struct xe_device *xe);
+ #else
+@@ -29,7 +27,6 @@ static inline void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigi
+ 				struct va_format *vaf) {}
+ static inline void xe_cper_emit_counter(struct xe_device *xe, int cper_sev,
+ 					enum xe_sigid sigid,
+-					const struct xe_ras_error_class *counter,
+ 					const struct xe_ras_get_counter_response *response) {}
+ static inline int xe_cper_sysfs_init(struct xe_device *xe) { return 0; }
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 0fb891d00b36..e8984c966876 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -763,8 +763,7 @@ static int get_counter(struct xe_device *xe, struct xe_ras_error_class *counter,
+ 	*value = response.value;
+ 	if (emit_cper)
+ 		xe_cper_emit_counter(xe, ras_sev_to_cper_sev(counter->common.severity),
+-				     ras_comp_to_hw_sigid(counter->common.component),
+-				     counter, &response);
++				     ras_comp_to_hw_sigid(counter->common.component), &response);
+ 	return 0;
+ }
+ 
 -- 
 2.56.0
 
