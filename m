@@ -2,81 +2,170 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC133606A882
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 12:03:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B8B3606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 12:39:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=DlJXUD+N
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=m4h3C1oo;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=UMyS1it/
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C60D10F680;
-	Tue, 17 Nov 2026 12:03:06 +0000 (UTC)
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
- [209.85.210.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4975610F680
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 12:03:00 +0000 (UTC)
-Received: by mail-pf1-f171.google.com with SMTP id
- d2e1a72fcca58-8b2382bf051so2565654b3a.3
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 04:03:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1794916980; x=1795521780; darn=lists.freedesktop.org;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:from:to:cc:subject:date:message-id:reply-to
- :content-type; bh=lsj+W+dztmJjTNrJoBYvQiFoO2Mec9ITL0HnwrtrNmQ=;
- b=DlJXUD+NvHEv+apF022It5/j0WxbPC85balHEKMa+0HlCnLtSCVoSrIZD5wJIG6z5R
- 6urgNtVDKERiKzNqNnvXxgRoZ4QooESjoQs2hCyJC4BRu0g+b+S7lhoYAM+OorlPnq7K
- j18nXMpT7UaqcP0Cg7C81HpDdZFK/VXKbLtIUPkmafeOsnpCZQrJZAe4Cg2RlNxupsB6
- FeZkouTpF/Jj4GwKIDnHAWEPv02Kf1z45BgM61k9dkYmX6Evov2/OmmVARBhFDd1gQYN
- 98AO3woOiJXpatuOEfYQbgh3N8L9SGUVUsMEn0DfZYQtQWdSFMy1k5ubDG+/2r0jEGjz
- 0w1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794916980; x=1795521780;
- h=content-transfer-encoding:content-type:in-reply-to:from
- :content-language:references:cc:to:subject:user-agent:mime-version
- :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=lsj+W+dztmJjTNrJoBYvQiFoO2Mec9ITL0HnwrtrNmQ=;
- b=cVHUXscHezuV5wp4r/9zO4A7a052T8+AizeZGYE2PEYly3NNiUuSE3YLVVqpAtwlG2
- N59pV8+QlsqKQ5DecWVp1oVdgl3U+0bAkUfOCW6fEbPFHwyDiov+XxLghjTCwKjUYVO/
- 74+2YU67R1gdV7WLVRw/ae1+x4mAlK9IOv7GsbELnHkYiEm69yKjVQ25Z1jFGO43jhGb
- zemwCWBeaVMevPP+1LVY8/UZmFHGJW3m+JU3at6gqQf3ZZl3Gfl4bVsKJ5lTCqqnYa4/
- hrytbEPwJIo60P95jZ6LNGRuPKvRIceDuqQoSZ9/jl3WFb7xR+5ElTMGx/J9wK98A5uV
- +GKA==
-X-Gm-Message-State: APuU4Z8oiSXwrq1I1eFGnSoVBIVMgslNrksH791HYGe2YhrgAj+wG4Pb
- JExgX8AyS7+0s1E4StbcJPA+58uo7fVChg8Kxr+V5olc0qUTyV+dCsB1h1B7T49dBhE=
-X-Gm-Gg: AYBFou0pz68ehIsiQFogklP5NcZ6hWtrUDqANyIweuUp2fevk4/ngxwu8aD+HFm3Cui
- IknW0US+iq5+Go/egHZP6fiCyjSb8ejp2JiNPseFtMC7u5Q6HC4udu9ANhrDwCUsZQGCoE0Cjac
- NKs07G2NoGPX5g5cjs7sa+3677fge0pdSVc/xfblBL4JwFcUBOdD1Z4VDv1DHch4/yEMR6eHNh7
- vvoXBTFi0yVcB48JlQINYj/GEe6Hj+HcJAxwUm9sRt1rPx6jSGhwxzZ1PprVqDwAxU5Lko4Zdme
- oSS3xIqV0tI7XIhPNP+pHdh5WSERzvTZkM4naYFAWJoK3ZnLUPOQ7yl3L3tzIel0wbgMOe6xUGd
- ok2JYRbmczHUxtX//GibA6b98Cq3HvQ+O8D3UNuzmWTn4qnf7Vqj8jAZBLMiE3TveCENI6rwSea
- eg12lRcdO6ys6dSba6wWOMia8baRCTnxD4Y8Rjx8b10SgIZ16zW6GmizG5+z/nMbgEquXVGUYg1
- EJqja0HmMF5+KKu5YNJg7VL7mOFzIb7Y0VGOmYMkocY11Exmd39jUMoYlv+QQUapwNTYeFszgUN
- tf9bBN+5xMFGCqTzjQwvZahlXB8pxvln+wMkZV2CYsVDPm5/z+TvIbAMVKMp6CntPVhwut+CRu9
- p
-X-Received: by 2002:a05:6a21:8203:b0:3e2:490d:5127 with SMTP id
- adf61e73a8af0-3f7a4dbe495mr15470232637.2.1794916979374; 
- Tue, 17 Nov 2026 04:02:59 -0800 (PST)
-Received: from [134.134.139.69] ([134.134.139.69])
- by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-8bed204f7d6sm5232183b3a.35.2026.11.17.04.02.57
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 17 Nov 2026 04:02:58 -0800 (PST)
-Message-ID: <c8f03306-1b2b-4729-b9ed-7036d0f8ff44@gmail.com>
-Date: Tue, 17 Nov 2026 14:02:54 +0200
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA14D10E5C4;
+	Tue, 17 Nov 2026 12:38:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C79910E5C4
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 12:38:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794919123; x=1826455123;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=WagX7SrZZYYt0Mg/Bsfe+kw+SQILul40dz42WjbLr4g=;
+ b=m4h3C1oovUnPozzfN8pvjfnqG5etexA06i9ntfjUR1ABQeiEIs1ZGCDx
+ NPZu0BTZHoS2HT/fkX8+L6kWpLfGsu5r0CTS7yNAJSWUHa8XP21YgAYD6
+ SlaE6qV1RpBmftHm1Df10dDrqAbSD4hNEs/6jnKmoI3VsscZr2cbWN6kT
+ TrNJ/lOtbcoZGx0mq7mO0eKWLZqYkiLodUM0bvCTC3uT/IEbVlvYHQA59
+ dRp3sq4nmR8HTrpR/4gcmNLQGhiMDVX+3yA7tvUxt+R4vCxN1bug7o65m
+ nXQj6wYKvj6SHP3kd5yfjLEJI5UQLHIJEtluDPviwFe/qXrgshx055HAu A==;
+X-CSE-ConnectionGUID: QTn6H2oUQpWNawggzFdqVQ==
+X-CSE-MsgGUID: lQQ0nwCyRSeo2sFopwUH5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3553197"
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="3553197"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 04:38:42 -0800
+X-CSE-ConnectionGUID: UmLBRNsSQ/iLobGfwMsYcg==
+X-CSE-MsgGUID: SL+uTtrYRF25TEi4pK+vxg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="9888669"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 04:38:42 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 17 Nov 2026 04:38:41 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Tue, 17 Nov 2026 04:38:41 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.57) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 17 Nov 2026 04:38:41 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NF/Me2Y3g/8/PSWK5MBNv2ICEgXudAyewVrXBILlqdwIPEOGSlcYwew+6XnwCrxc9JCXGThSs1gr1Vb36uFG4wrJppbnJEg1yX9s+/Be+9sLHigLi2QcXwsScGuNSKBLlBQN2iBfL0ebddj22kxR7AKB7St9SebnznYgRyFSSNZ1I/Ta+FI817oguxyAEcu3Q8KMkUyX0ORAym5rajAQGMXDQWENlKTuabMf3J1udZ35fnNyx5GnDlZ5m68qeHA9lPawBKhzWJcVGZIrzOdApJu4NNdAEu6PhqDafmpAI0qEntdSqewi7QsV1hg0tGZfkCmlkY6OatuKYHaKNhNCSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=a8KFV0m/ROHabjZ8PFKuqUpKBugeTtqTAcs4/Uj+5bg=;
+ b=thawdqJ61RAWD+j2fTLAnJaYpJgje91pgH2A+DY/K1xHy+zWhGFz/eEUOzjuUbY9EAsVrus5umH0vOL1OP6Bf8LKu865bwEE+FsoR24IvwUX1SijY6xnPp9l0xrae/H56jtAzeBZPtZR6CYU6f+wkTxQcETaNG91F0K3AcIiaMZfr+1sVP477eo5lbVKi5dfLIEzsEHAS0q5yeSlKDFD6kwtdZLoIpkHScvn5/XUwMnRxn/QOb9o0fR8owDQ7UReOY+yHEW8ybimqLelRw/dFV1Z9SlV39Do2boTgRrQG9Bx9O0JAH07qRdTttAJHNrILlnfLvYg6RXXl8B0Q0kInA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a8KFV0m/ROHabjZ8PFKuqUpKBugeTtqTAcs4/Uj+5bg=;
+ b=UMyS1it/XbNSy97bpSvh1mYwJ2kQNl5SzPfjCHOg0PWafvYkw2c7wOL2MuZWiIGZWEkj5r2fltXZlDalTMLuiQkwxbFOuDrmNpBcwveLGV0rr0lg9OZ251cVYipKI9V8HJhSook/xKFo2Pzsq9TfDb+wOaLVzeTtxh/RCg5obzg=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA0PR11MB7862.namprd11.prod.outlook.com (2603:10b6:208:3dc::8)
+ by CO1PR11MB4851.namprd11.prod.outlook.com (2603:10b6:303:9b::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 12:38:39 +0000
+Received: from IA0PR11MB7862.namprd11.prod.outlook.com
+ ([fe80::3b4e:43a6:6e22:22f]) by IA0PR11MB7862.namprd11.prod.outlook.com
+ ([fe80::3b4e:43a6:6e22:22f%5]) with mapi id 15.21.0615.009; Tue, 17 Nov 2026
+ 12:38:39 +0000
+Message-ID: <2c5c78c3-9954-4aec-8265-4006fc5502d9@intel.com>
+Date: Tue, 17 Nov 2026 18:08:28 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/13] drm/i915/dpt: Cache DPTs in the gem object
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-References: <20261111112007.16790-1-ville.syrjala@linux.intel.com>
- <20261111112007.16790-11-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v4 3/6] drm/xe/cper: Emit software CPER records
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <matthew.brost@intel.com>
+CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
+ <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
+ <raag.jadav@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <jani.nikula@linux.intel.com>
+References: <20261112134636.1860446-8-mallesh.koujalagi@intel.com>
+ <20261112134636.1860446-11-mallesh.koujalagi@intel.com>
+ <55e3f454-bdba-4385-bcf2-be08de32e618@intel.com>
 Content-Language: en-US
-From: =?UTF-8?Q?Juha-Pekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
-In-Reply-To: <20261111112007.16790-11-ville.syrjala@linux.intel.com>
+From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+In-Reply-To: <55e3f454-bdba-4385-bcf2-be08de32e618@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0196.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b2::16) To IA0PR11MB7862.namprd11.prod.outlook.com
+ (2603:10b6:208:3dc::8)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7862:EE_|CO1PR11MB4851:EE_
+X-MS-Office365-Filtering-Correlation-Id: b83bdd75-45d0-432d-684a-08df44a7b47d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|6133799003|18002099003|261009223027099003|3023799007|22082099003|261021121427099003|261022105027099003|261102123227099003|261028144727099003|261026140227099003|261022113327099003|56012099006|11063799006|10067099003|4143699003;
+X-Microsoft-Antispam-Message-Info: ivJJxELmDS+wILqUcjLI8lWbQIuXBdjHxql0p99dAEPuoFxpuHW+Go+MDx8v/lwWayqzYtr7VZwXBenoxs58kdFXvU16a9tKBxZ6jG+JJKRkq8tpmS0Vd0LB5Lb7VPMVzFxmzJCuKTcPB1pDs+EcoTqCRbYF9eam/3WuLoofhZfXxSDasU+kcPCXMQSqp9/SeytpwYWw37bb/G9VBabOWnaPgGBPhldvjtGnlrwyqGhN3tQCilBXtkVhT9pe91k5/FDT5V7DVEhfwiBCiUj7fR1YtzxPdQqVb+m6tWQLswuFHauwZ45Epqyv6GhJ8qZH4dY0W/weDJF4EYwucS0WY0qmVnx6U2SJXqqFgbJHifIbEcD5k60BYH+7z8R3io9jPdEAQ5jxrswXCUUDKJQ8PKb53X56uXt3eQm3E59C/TK+QNGFTpfxXA9Eq6s7DQqe1hJJMYr7MTY0Iv7d3wXVHp12/pdRrApAUAlSywc7EEmJsC51EvTNYr8Q5L2XMDtsVEqMU5FNq/Bl7+Yae79JR8Lt82dbuI2TsEO2/YQnkUHf0BQnzxfgdKQbKSfzbyGLs86zVbk1xzACecZVZSIRgZshpsnrxyt1J59s/1TWUZiPfs3jO0vHkuBY3iRL+lLPHZfQztki4GSozcna8SoBIEY7KbK8ECSIsffRPBWFNSY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7862.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(6133799003)(18002099003)(261009223027099003)(3023799007)(22082099003)(261021121427099003)(261022105027099003)(261102123227099003)(261028144727099003)(261026140227099003)(261022113327099003)(56012099006)(11063799006)(10067099003)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?azZLS0d4V1I2aFZGRlJFaWJuMUt6UWljckdIbDRBeWdpSERlV00yTVZzZWJj?=
+ =?utf-8?B?OVBuaXFwbm9XWDFONTZUN2VtQ0hRaGVoNjBpMmltK1U4NnMwYmV3d3h5bzg1?=
+ =?utf-8?B?bnVXdm9nenFBNmtxU0RzeWNmK3dwYmdZOTA5bmRZZDNBeFJxdUdDQnpnSDNH?=
+ =?utf-8?B?Z05nV09HQjhMZy9hTGRmT3pEWjgzS2pBOXltanJBS3I1RS9tYklCd0JVditP?=
+ =?utf-8?B?RzZENC9JYzNZTmZLUXJldmU2Nk50T0ROUjc1MFJMbkk5aEVYMWZDQkppcnM5?=
+ =?utf-8?B?am5QWDBxUldLUHFOYkhaT3pETnRhMHBxaDlleWJFUXNDM3JveFFFUHFkOGxo?=
+ =?utf-8?B?d20zbVA1ZnZvaTVtclFYRnNrd0loQ1pEMFhXUG41TDNBSDBXM3lDNmdjdGMv?=
+ =?utf-8?B?T2dFUlYxVDlFeUJJalRCZnBQT2tzb2R4bDRoSjJuY0cvMG55bUVCYlpjNHk0?=
+ =?utf-8?B?RXI1QzRGbHV1UkFCaFMzRGVSUHc2Wmxxa2plQkl5YVdXSER0S2lPRThxUWxQ?=
+ =?utf-8?B?d0JOelk2aGNTNlBzazVxbkwzVHViMUhhQTFWdU5aSlhUTmhFYW1pbElCb0Ji?=
+ =?utf-8?B?cm1BZlNVZ3hqMkx5SDh4TUlabHIzMUJtRVVHNm41VXR5amRBQ25vcTF5QmFw?=
+ =?utf-8?B?ZFZJNTZGcXhZV21ldXE5SUlVT1labEdEbmI0SVpXMUxFTzFDYytETThKYlUr?=
+ =?utf-8?B?YVB0RktaRHIrQUFHVURsS25RSHEraWVkSTNkZkp6ajZSUjJQbWR1ckVuNkhV?=
+ =?utf-8?B?MndjNXEvd0hnbXlpSTlZYjl1dFRTNENEcDU4RWVNMlZUbEtTdk1TWjl2dmQ2?=
+ =?utf-8?B?dWt2b05rZk1rNkl4MjNiMGwxcC90dDZvdkZucFBiMEw5eGUrRHRqNUZqSlI5?=
+ =?utf-8?B?aHBUSUY1VDNGOSs2Z2s5cFNsV1pTUHIvUmpYcFJNeDBwVUZCb0Ryb1Y3R3Zx?=
+ =?utf-8?B?U05EbVFzbmVrTUxUajNsTUNxdklwY3VNaDhHMjJqMWV6REFzdlZjNUpUNFB2?=
+ =?utf-8?B?MDRydXIxdndrVHd6bENrL1VMM2ZJRXBBSlpTeU9BV0lZemk4Z0ZHSGtLcGND?=
+ =?utf-8?B?VDRKTWdmcFNONjkwZ1dKQzlFMERjWnZIcWxYMk9KL3NzcVdkUTVCVGVVS1RH?=
+ =?utf-8?B?TE5VSVBIcUVlRGQwbWk2QUpic3FiNDJqMW4wZEovT2dYRnRzMUE2cHJDanZ3?=
+ =?utf-8?B?UnZEcWtJS2VnMEVvWWFyZ0FuWnB2RC9tcitPQUFCc0NrdWFNVkhSZytMdG1N?=
+ =?utf-8?B?U1FDNldPV0hqSFdTVUZXaEVNV0wxUmVtRldSL2ZGaTJjT0hQSGcvVStENTVS?=
+ =?utf-8?B?dVpsWkYxMis2WDZWUEloR2hVS3NXN3pwKzM0ek1ZZk85c2J4ZFhhdjZzTlQz?=
+ =?utf-8?B?MTJCc2VGLzVDQStVRVBUZ1VZUjQ1ZFJOOS9tTllBT0thRk9TNFlOUDZ1NFZV?=
+ =?utf-8?B?bnpXQkRJa2VkMENMbEhhMmtTdEdXbUhrOCtFRWNYVGtsUFB5eitBVE40S1VF?=
+ =?utf-8?B?UUhEWkJOVC9HNmdVNllSSnM0M0NXTkoyaTNyRENWYWk3VzlqcERuK0dnZ2hp?=
+ =?utf-8?B?Vi9hYXVwRlFXTlJLbTdXbDZ4SktIeXJrdVRKQWEzU0sveFJSWm5tVlpGalRY?=
+ =?utf-8?B?dTNRbU1QcVo0dHBJS0M1NXBXSngvK3dzY2V2YzgyWFUrL3NyYnZ4SGQwbXhv?=
+ =?utf-8?B?eVJFZUNRZXBYT1FMdk5WY3l4VVo0WGRTSHUydUlobFdpdi9KSnE4L1Y0V0Vk?=
+ =?utf-8?B?SURjLzdNZzBzMnRWeEd6R0gyenBJOHVvUkhkUmFxYUhyeEhxcnFsUmdBSy9P?=
+ =?utf-8?B?OFZyN1psL2I4Z29yMFN2OC9yVlpHQm9tbFpVQ3lOYzVLb1Z0SGlNVFcyWFo1?=
+ =?utf-8?B?Rndkb2JIQUovTW5tbmJpWFJDMlFVNkN6OWYxLzhPMnQrVGtVQ212ZXBQS2dB?=
+ =?utf-8?B?M0RqWVlFTURPR21tU1FESjIvcHRienFtQXlDcG1UNGNEb2xjcmhWNTViN2sy?=
+ =?utf-8?B?TndsRlNRL1pRbXQrdTc3cDBxdjhkQ2NsbGpKL3pBTjByR3Rsc2J5V01zOVF0?=
+ =?utf-8?B?NDF3bUFndmtJc2tQck0wejZGMU5Va2s3NFN4SFNDK1NqT3lZNC8zcWsrSjdl?=
+ =?utf-8?B?YWhlcS9qNjdkcFh4elBRUGlaeUxqVjQ3dHAwWUlCN3J1dGROdS9HTkppR2gv?=
+ =?utf-8?B?OWF2Vk5kQ0h0ZVRuN0FERFVXeUkzRE8yWVR0VEdZTVliWFRGeVY1VmxsUTVq?=
+ =?utf-8?B?dmgzN2FMYVg4ZDNsRENYK3Z0clhtbmZvNmtrUllnN2YrckhSbXM2b2t2NWd4?=
+ =?utf-8?B?VFlTQ0gvL2c5aUQrQnE1M08yRE9ycW9wUUxvWHhYclJHNjQ5ajZrRWxCamZa?=
+ =?utf-8?Q?FwlMOWMiInEBGX4w=3D?=
+X-Exchange-RoutingPolicyChecked: XK+BY7/FDctzymKlB2vBFrNw/0/ypECNFuoxSpJAfc9PAUrH8Qy5d8SW1ZF6hjRz6ZT+CZ0JRkqITq9bCS0bq+6/zpVisZ8Kf1NJYVPQ5lSpgts0Q7j3pExOYJ6SIcetaPJnf7y8zZi8be0xyVpyWdHg1fl2ETMNE97CGFM8Np9eEXiyJ/UHMDgJ5SpJ/BfXr2xO07mc6YuzxSzpK4YesoUlmtNzRMRCQb8iwaDX18MsfQe8VWoqSqT2yxNvtJuLsZHoW6JvgB9DJ95DTYofPDXM79GTCsE6f0bYa+gDeFlK0Kn21hQnVJuds6HWuqlgdHUCZTagNkRQ37zAG3h8cQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b83bdd75-45d0-432d-684a-08df44a7b47d
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7862.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 12:38:39.2126 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hiegBB09rOT1ktzUUgvWMuputi9hqoegnjqgQSl+Onk7Bb4VEHYRjAfvJFrex/X2hrgboPFRkFrLR/ppYkQnLza6egTzxc+UAWtewcXcpTk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4851
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,727 +176,98 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.2 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 
+On 17-11-2026 01:04 pm, Nilawar, Badal wrote:
+>
+> On 12-11-2026 19:16, Mallesh Koujalagi wrote:
+>> Emit CPER records for software SIGIDs and attach the
+>> formatted log message as record data.
+>>
+>> Cc: Badal Nilawar <badal.nilawar@intel.com>
+>> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+>> ---
+>> v4:
+>> - Emit complete message. (Badal/Aravind)
+>> ---
+>>   drivers/gpu/drm/xe/xe_cper.c       | 9 +++++++++
+>>   drivers/gpu/drm/xe/xe_cper_types.h | 4 ++++
+>>   2 files changed, 13 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+>> index b23f8bc9f993..5a776aa571d0 100644
+>> --- a/drivers/gpu/drm/xe/xe_cper.c
+>> +++ b/drivers/gpu/drm/xe/xe_cper.c
+>> @@ -258,7 +258,12 @@ static void cper_emit_sw_err(struct xe_device 
+>> *xe, int cper_sev, enum xe_sigid s
+>>       union xe_cper_error_class error_class = {};
+>>       struct xe_cper_intel_hdr ihdr = {};
+>>       struct xe_cper_driver_error_class *driver = &error_class.driver;
+>> +    char *msg = kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
+> move initialization closer to its use.
+Ok
+>>       u64 timestamp = ktime_get_real_ns();
+>> +    size_t msg_len;
+>> +
+>> +    if (!msg)
+>> +        return;
+> This silently drops CPER record if allocation fails, xe_warn here?
 
-On 11/11/2026 13.20, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> 
-> Currently DPTs are tracked in the framebuffer. Each new
-> framebuffer gets a fresh DPT. On first glance that seems fine,
-> but the problem is that your typical userspace doesn't
-> cache framebuffers at all. Each new frame gets a whole new
-> framebuffer, and we have to therefore start with a new DPT
-> as well and populate it (and its GGTT mapping) from scratch.
-> This is all rather expensive.
-> 
-> Fix the situation by tracking the DPTs in the gem object instead.
-> The whole thing is somewhat modeled after the already existing
-> vma tracking. Each time a new framebuffer is created we first
-> look through the already existing DPTs on the gem object, and
-> if one with an identical gtt view is found it gets reused.
-> 
-> The one major difference between this and the vma stuff is that
-> vmas can get unbound when not pinned, if there is sufficient
-> pressure on the address space. I didn't bother implementing
-> a similar mechanism for DPTs, and instead any created DPT will
-> simply stay around as long as the actual gem object will stay
-> around. I'm thinking large gem objects at least shouldn't stay
-> around long past their use as a framebuffer. Should that turn
-> out to be false we might need to add some kind of reaping stuff,
-> or perhaps just limit the number of cached DPTs per gem object.
-> 
-> With this the display code no longer has to even see the
-> DPT object pointer. Though we do have to pass the obj+view
-> also the unpin functions so that we can find the right DPT
-> there. Technically we could now even stop passing around
-> the vma pointers through the display code, except that
-> would probably break the vma reuse hacks that xe has..
-> 
-> As for some performance numbers, just a quick
-> 'vblank_mode=0 glxgears -fullscreen' run on MTL with a
-> debug heavy kernel used to spend ~20% of the time in
-> .prepare_fb(), and now it's about 5%. And an optimized
-> kernel on a DG2 shows approximately 6% -> 1%.
-> 
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> ---
->   .../drm/i915/display/intel_display_types.h    |   3 -
->   drivers/gpu/drm/i915/display/intel_fb.c       |  16 +--
->   drivers/gpu/drm/i915/display/intel_parent.c   |  26 ++--
->   drivers/gpu/drm/i915/display/intel_parent.h   |  13 +-
->   drivers/gpu/drm/i915/display/intel_plane.c    |  13 +-
->   drivers/gpu/drm/i915/gem/i915_gem_object.c    |   6 +
->   .../gpu/drm/i915/gem/i915_gem_object_types.h  |   6 +
->   drivers/gpu/drm/i915/i915_dpt.c               | 119 +++++++++++++++---
->   drivers/gpu/drm/i915/i915_dpt.h               |   7 ++
->   drivers/gpu/drm/i915/i915_fb_pin.c            |  44 +++++--
->   drivers/gpu/drm/xe/display/xe_fb_pin.c        |  12 +-
->   include/drm/intel/display_parent_interface.h  |  11 +-
->   12 files changed, 180 insertions(+), 96 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 90a5d29169c6..afe0c6134534 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -147,8 +147,6 @@ struct intel_framebuffer {
->   		struct intel_fb_view remapped_view;
->   	};
->   
-> -	struct intel_dpt *dpt;
-> -
->   	unsigned int min_alignment;
->   	unsigned int vtd_guard;
->   
-> @@ -690,7 +688,6 @@ struct intel_plane_state {
->   	} hw;
->   
->   	struct i915_vma *ggtt_vma;
-> -	struct i915_vma *dpt_vma;
->   
->   	struct intel_fb_view view;
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 35f1d5dd31d7..dba2d5ec6688 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -2078,9 +2078,6 @@ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
->   
->   	drm_framebuffer_cleanup(fb);
->   
-> -	if (intel_fb_uses_dpt(fb))
-> -		intel_parent_dpt_destroy(display, intel_fb->dpt);
-> -
->   	intel_bo_framebuffer_fini(intel_fb_bo(fb));
->   
->   	intel_parent_frontbuffer_put(display, intel_fb->frontbuffer);
-> @@ -2276,34 +2273,27 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
->   	if (intel_fb_uses_dpt(fb)) {
->   		struct drm_gem_object *obj = intel_fb_bo(&intel_fb->base);
->   		const struct intel_gtt_view *view;
-> -		struct intel_dpt *dpt;
->   
->   		if (intel_fb_needs_pot_stride_remap(intel_fb))
->   			view = &intel_fb->remapped_view.gtt;
->   		else
->   			view = &intel_fb->normal_view.gtt;
->   
-> -		dpt = intel_parent_dpt_create(display, obj, view);
-> -		if (IS_ERR(dpt)) {
-> +		ret = intel_parent_dpt_create(display, obj, view);
-> +		if (ret) {
->   			drm_dbg_kms(display->drm, "failed to create DPT\n");
-> -			ret = PTR_ERR(dpt);
->   			goto err_bo_framebuffer_fini;
->   		}
-> -
-> -		intel_fb->dpt = dpt;
->   	}
->   
->   	ret = drm_framebuffer_init(display->drm, fb, &intel_fb_funcs);
->   	if (ret) {
->   		drm_err(display->drm, "framebuffer init failed %d\n", ret);
-> -		goto err_free_dpt;
-> +		goto err_bo_framebuffer_fini;
->   	}
->   
->   	return 0;
->   
-> -err_free_dpt:
-> -	if (intel_fb_uses_dpt(fb))
-> -		intel_parent_dpt_destroy(display, intel_fb->dpt);
->   err_bo_framebuffer_fini:
->   	intel_bo_framebuffer_fini(obj);
->   err_frontbuffer_put:
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-> index 8497694b29d7..22be54098b3d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.c
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
-> @@ -25,20 +25,14 @@
->   #include "intel_parent.h"
->   
->   /* dpt */
-> -struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
-> -					  struct drm_gem_object *obj,
-> -					  const struct intel_gtt_view *view)
-> +int intel_parent_dpt_create(struct intel_display *display,
-> +			    struct drm_gem_object *obj,
-> +			    const struct intel_gtt_view *view)
->   {
->   	if (display->parent->dpt)
->   		return display->parent->dpt->create(obj, view);
->   
-> -	return NULL;
-> -}
-> -
-> -void intel_parent_dpt_destroy(struct intel_display *display, struct intel_dpt *dpt)
-> -{
-> -	if (display->parent->dpt)
-> -		display->parent->dpt->destroy(dpt);
-> +	return 0;
->   }
->   
->   /* fb_pin */
-> @@ -62,22 +56,20 @@ void intel_parent_fb_pin_ggtt_unpin(struct intel_display *display,
->   
->   int intel_parent_fb_pin_dpt_pin(struct intel_display *display,
->   				struct drm_gem_object *obj,
-> -				struct intel_dpt *dpt,
->   				const struct intel_fb_pin_params *pin_params,
-> -				struct i915_vma **out_dpt_vma,
->   				struct i915_vma **out_ggtt_vma,
->   				u32 *out_offset)
->   {
-> -	return display->parent->fb_pin->dpt_pin(obj, dpt, pin_params,
-> -						out_dpt_vma, out_ggtt_vma, out_offset);
-> +	return display->parent->fb_pin->dpt_pin(obj, pin_params,
-> +						out_ggtt_vma, out_offset);
->   }
->   
->   void intel_parent_fb_pin_dpt_unpin(struct intel_display *display,
-> -				   struct intel_dpt *dpt,
-> -				   struct i915_vma *dpt_vma,
-> +				   struct drm_gem_object *obj,
-> +				   const struct intel_gtt_view *view,
->   				   struct i915_vma *ggtt_vma)
->   {
-> -	return display->parent->fb_pin->dpt_unpin(dpt, dpt_vma, ggtt_vma);
-> +	return display->parent->fb_pin->dpt_unpin(obj, view, ggtt_vma);
->   }
->   
->   struct i915_vma *intel_parent_fb_pin_reuse_vma(struct intel_display *display,
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-> index b22f92404f65..e95710e115be 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.h
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
-> @@ -23,10 +23,9 @@ struct intel_stolen_node;
->   struct iosys_map;
->   
->   /* dpt */
-> -struct intel_dpt *intel_parent_dpt_create(struct intel_display *display,
-> -					  struct drm_gem_object *obj,
-> -					  const struct intel_gtt_view *view);
-> -void intel_parent_dpt_destroy(struct intel_display *display, struct intel_dpt *dpt);
-> +int intel_parent_dpt_create(struct intel_display *display,
-> +			    struct drm_gem_object *obj,
-> +			    const struct intel_gtt_view *view);
->   
->   /* fb_pin */
->   int intel_parent_fb_pin_ggtt_pin(struct intel_display *display,
-> @@ -40,14 +39,12 @@ void intel_parent_fb_pin_ggtt_unpin(struct intel_display *display,
->   				    int fence_id);
->   int intel_parent_fb_pin_dpt_pin(struct intel_display *display,
->   				struct drm_gem_object *obj,
-> -				struct intel_dpt *dpt,
->   				const struct intel_fb_pin_params *pin_params,
-> -				struct i915_vma **out_dpt_vma,
->   				struct i915_vma **out_ggtt_vma,
->   				u32 *out_offset);
->   void intel_parent_fb_pin_dpt_unpin(struct intel_display *display,
-> -				   struct intel_dpt *dpt,
-> -				   struct i915_vma *dpt_vma,
-> +				   struct drm_gem_object *obj,
-> +				   const struct intel_gtt_view *view,
->   				   struct i915_vma *ggtt_vma);
->   struct i915_vma *intel_parent_fb_pin_reuse_vma(struct intel_display *display,
->   					       struct i915_vma *old_ggtt_vma,
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-> index d23de0f34e4b..40e9b1ac4e11 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-> @@ -137,7 +137,6 @@ intel_plane_duplicate_state(struct drm_plane *plane)
->   	__drm_atomic_helper_plane_duplicate_state(plane, &intel_state->uapi);
->   
->   	intel_state->ggtt_vma = NULL;
-> -	intel_state->dpt_vma = NULL;
->   	intel_state->fence_id = -1;
->   	intel_state->damage = DRM_RECT_INIT(0, 0, 0, 0);
->   	intel_state->psr2_sel_fetch_area = DRM_RECT_INIT(0, 0, 0, 0);
-> @@ -173,7 +172,6 @@ intel_plane_destroy_state(struct drm_plane *plane,
->   	struct intel_plane_state *plane_state = to_intel_plane_state(state);
->   
->   	drm_WARN_ON(plane->dev, plane_state->ggtt_vma);
-> -	drm_WARN_ON(plane->dev, plane_state->dpt_vma);
->   
->   	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
->   	if (plane_state->hw.fb)
-> @@ -1371,7 +1369,6 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
->   	const struct intel_framebuffer *old_fb =
->   		to_intel_framebuffer(old_plane_state->hw.fb);
->   	struct i915_vma *ggtt_vma = NULL;
-> -	struct i915_vma *dpt_vma = NULL;
->   	int fence_id = -1;
->   	u32 offset = 0;
->   	int ret;
-> @@ -1410,14 +1407,12 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
->   		};
->   
->   		ret = intel_parent_fb_pin_dpt_pin(display, intel_fb_bo(&fb->base),
-> -						  fb->dpt, &pin_params,
-> -						  &dpt_vma, &ggtt_vma, &offset);
-> +						  &pin_params, &ggtt_vma, &offset);
->   	}
->   	if (ret)
->   		return ret;
->   
->   got_vma:
-> -	plane_state->dpt_vma = dpt_vma;
->   	plane_state->ggtt_vma = ggtt_vma;
->   	plane_state->fence_id = fence_id;
->   
-> @@ -1440,11 +1435,11 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
->   		old_plane_state->ggtt_vma = NULL;
->   		old_plane_state->fence_id = -1;
->   	} else {
-> -		intel_parent_fb_pin_dpt_unpin(display, fb->dpt,
-> -					      old_plane_state->dpt_vma,
-> +		intel_parent_fb_pin_dpt_unpin(display,
-> +					      intel_fb_bo(&fb->base),
-> +					      &old_plane_state->view.gtt,
->   					      old_plane_state->ggtt_vma);
->   
-> -		old_plane_state->dpt_vma = NULL;
->   		old_plane_state->ggtt_vma = NULL;
->   	}
->   }
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> index 9e01f8b2079a..f5873e59666b 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-> @@ -32,6 +32,7 @@
->   #include "display/intel_frontbuffer.h"
->   #include "pxp/intel_pxp.h"
->   
-> +#include "i915_dpt.h"
->   #include "i915_drv.h"
->   #include "i915_file_private.h"
->   #include "i915_gem_clflush.h"
-> @@ -116,6 +117,9 @@ void i915_gem_object_init(struct drm_i915_gem_object *obj,
->   	INIT_LIST_HEAD(&obj->lut_list);
->   	spin_lock_init(&obj->lut_lock);
->   
-> +	INIT_LIST_HEAD(&obj->dpt_list);
-> +	spin_lock_init(&obj->dpt_lock);
-> +
->   	spin_lock_init(&obj->mmo.lock);
->   	obj->mmo.offsets = RB_ROOT;
->   
-> @@ -402,6 +406,8 @@ void __i915_gem_free_object(struct drm_i915_gem_object *obj)
->   	if (obj->shares_resv_from)
->   		i915_vm_resv_put(obj->shares_resv_from);
->   
-> +	i915_dpt_obj_free(obj);
-> +
->   	__i915_gem_object_fini(obj);
->   }
->   
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> index 969f6ea2b855..2a2735bfc7c9 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object_types.h
-> @@ -288,6 +288,12 @@ struct drm_i915_gem_object {
->   	struct list_head lut_list;
->   	spinlock_t lut_lock; /* guards lut_list */
->   
-> +	/**
-> +	 * @dpt_list: List of DPTs backed by this object
-> +	 */
-> +	struct list_head dpt_list;
-> +	spinlock_t dpt_lock; /* protects dpt_list */
-> +
->   	/**
->   	 * @obj_link: Link into @i915_gem_ww_ctx.obj_list
->   	 *
-> diff --git a/drivers/gpu/drm/i915/i915_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
-> index e625ec293c5c..27f9a648bb26 100644
-> --- a/drivers/gpu/drm/i915/i915_dpt.c
-> +++ b/drivers/gpu/drm/i915/i915_dpt.c
-> @@ -20,16 +20,15 @@ struct intel_dpt {
->   	struct drm_i915_gem_object *obj;
->   	struct i915_vma *vma;
->   	void __iomem *iomem;
-> +	struct intel_gtt_view view;
-> +	struct list_head obj_link;
->   	struct list_head ggtt_link;
->   };
->   
-> -#define i915_is_dpt(vm) ((vm)->is_dpt)
-> -
-> -static inline struct intel_dpt *
-> -i915_vm_to_dpt(struct i915_address_space *vm)
-> +struct intel_dpt *i915_vm_to_dpt(struct i915_address_space *vm)
->   {
->   	BUILD_BUG_ON(offsetof(struct intel_dpt, vm));
-> -	drm_WARN_ON(&vm->i915->drm, !i915_is_dpt(vm));
-> +	drm_WARN_ON(&vm->i915->drm, !vm->is_dpt);
->   	return container_of(vm, struct intel_dpt, vm);
->   }
->   
-> @@ -196,10 +195,66 @@ static void i915_dpt_free(struct intel_dpt *dpt)
->   	i915_dpt_put(dpt);
->   }
->   
-> -static struct intel_dpt *i915_dpt_create(struct drm_gem_object *obj,
-> -					 const struct intel_gtt_view *view)
-> +static struct intel_dpt *__i915_dpt_lookup(struct drm_i915_gem_object *obj,
-> +					   const struct intel_gtt_view *view)
-> +{
-> +	struct intel_dpt *dpt;
-> +
-> +	lockdep_assert_held(&obj->dpt_lock);
-> +
-> +	list_for_each_entry(dpt, &obj->dpt_list, obj_link) {
-> +		if (!intel_gtt_view_compare(&dpt->view, view))
-> +			return dpt;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
-> +struct intel_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
-> +				  const struct intel_gtt_view *view)
-> +{
-> +	struct intel_dpt *dpt;
-> +
-> +	spin_lock(&obj->dpt_lock);
-> +	dpt = __i915_dpt_lookup(obj, view);
-> +	spin_unlock(&obj->dpt_lock);
-> +
-> +	return dpt;
-> +}
-> +
-> +static void i915_dpt_add(struct drm_i915_gem_object *obj,
-> +			 struct intel_dpt *new_dpt)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-> +	struct intel_dpt *old_dpt;
-> +
-> +	spin_lock(&obj->dpt_lock);
-> +
-> +	/*
-> +	 * If someone else inserted a suitable DPT in the
-> +	 * meantime we keep that and throw away the new one.
-> +	 */
-> +	old_dpt = __i915_dpt_lookup(obj, &new_dpt->view);
-> +	if (old_dpt) {
-> +		spin_unlock(&obj->dpt_lock);
-> +		i915_dpt_free(new_dpt);
-> +		return;
-> +	}
-> +
-> +	list_add_tail(&new_dpt->obj_link, &obj->dpt_list);
-> +
-> +	spin_unlock(&obj->dpt_lock);
-> +
-> +	spin_lock(&ggtt->dpt_lock);
-> +	list_add_tail(&new_dpt->ggtt_link, &ggtt->dpt_list);
-> +	spin_unlock(&ggtt->dpt_lock);
-> +}
-> +
-> +static struct intel_dpt *dpt_create(struct drm_i915_gem_object *obj,
-> +				    const struct intel_gtt_view *view)
->   {
-> -	struct drm_i915_private *i915 = to_i915(obj->dev);
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
->   	struct drm_i915_gem_object *dpt_obj;
->   	struct i915_address_space *vm;
-> @@ -211,7 +266,7 @@ static struct intel_dpt *i915_dpt_create(struct drm_gem_object *obj,
->   		size = intel_remapped_info_size(&view->remapped);
->   	} else {
->   		drm_WARN_ON(&i915->drm, !intel_gtt_view_is_normal(view));
-> -		size = DIV_ROUND_UP_ULL(obj->size, I915_GTT_PAGE_SIZE);
-> +		size = DIV_ROUND_UP_ULL(obj->base.size, I915_GTT_PAGE_SIZE);
->   	}
->   
->   	size = round_up(size * sizeof(gen8_pte_t), I915_GTT_PAGE_SIZE);
-> @@ -241,6 +296,8 @@ static struct intel_dpt *i915_dpt_create(struct drm_gem_object *obj,
->   
->   	vm = &dpt->vm;
->   
-> +	dpt->view = *view;
-> +
->   	vm->gt = to_gt(i915);
->   	vm->i915 = i915;
->   	vm->dma = i915->drm.dev;
-> @@ -262,22 +319,47 @@ static struct intel_dpt *i915_dpt_create(struct drm_gem_object *obj,
->   	dpt->obj = dpt_obj;
->   	dpt->obj->is_dpt = true;
->   
-> -	spin_lock(&ggtt->dpt_lock);
-> -	list_add_tail(&dpt->ggtt_link, &ggtt->dpt_list);
-> -	spin_unlock(&ggtt->dpt_lock);
-> -
->   	return dpt;
->   }
->   
-> -static void i915_dpt_destroy(struct intel_dpt *dpt)
-> +static int i915_dpt_create(struct drm_gem_object *_obj,
-> +			   const struct intel_gtt_view *view)
->   {
-> -	struct i915_ggtt *ggtt = i915_dpt_to_vm(dpt)->gt->ggtt;
-> +	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-> +	struct intel_dpt *dpt;
-> +
-> +	/* already have one? */
-> +	dpt = i915_dpt_lookup(obj, view);
-> +	if (dpt)
-> +		return 0;
-> +
-> +	dpt = dpt_create(obj, view);
-> +	if (IS_ERR(dpt))
-> +		return PTR_ERR(dpt);
-> +
-> +	i915_dpt_add(obj, dpt);
-> +
-> +	return 0;
-> +}
-> +
-> +void i915_dpt_obj_free(struct drm_i915_gem_object *obj)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-> +	struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-> +	struct intel_dpt *dpt, *next;
-> +	LIST_HEAD(dpt_list);
-> +
-> +	spin_lock(&obj->dpt_lock);
-> +	list_splice_init(&obj->dpt_list, &dpt_list);
-> +	spin_unlock(&obj->dpt_lock);
->   
->   	spin_lock(&ggtt->dpt_lock);
-> -	list_del_init(&dpt->ggtt_link);
-> +	list_for_each_entry(dpt, &dpt_list, obj_link)
-> +		list_del_init(&dpt->ggtt_link);
->   	spin_unlock(&ggtt->dpt_lock);
->   
-> -	i915_dpt_free(dpt);
-> +	list_for_each_entry_safe(dpt, next, &dpt_list, obj_link)
-> +		i915_dpt_free(dpt);
->   }
->   
->   void i915_dpt_suspend(struct i915_ggtt *ggtt)
-> @@ -321,7 +403,7 @@ void i915_dpt_resume(struct i915_ggtt *ggtt)
->   
->   	/*
->   	 * i915_ggtt_resume_vm() with evict_all==true
-> -	 * only does a quick sanity check, so OK to call
-> +	 * only does a sanity check, so OK to call
->   	 * with ggtt->dpt_lock held.
->   	 */
->   	spin_lock(&ggtt->dpt_lock);
-> @@ -339,5 +421,4 @@ u64 i915_dpt_offset(struct i915_vma *dpt_vma)
->   
->   const struct intel_display_dpt_interface i915_display_dpt_interface = {
->   	.create = i915_dpt_create,
-> -	.destroy = i915_dpt_destroy,
->   };
-> diff --git a/drivers/gpu/drm/i915/i915_dpt.h b/drivers/gpu/drm/i915/i915_dpt.h
-> index 51a497abb5e1..5e88d8881db1 100644
-> --- a/drivers/gpu/drm/i915/i915_dpt.h
-> +++ b/drivers/gpu/drm/i915/i915_dpt.h
-> @@ -6,10 +6,17 @@
->   
->   #include <linux/types.h>
->   
-> +struct drm_i915_gem_object;
->   struct i915_address_space;
->   struct i915_ggtt;
->   struct i915_vma;
->   struct intel_dpt;
-> +struct intel_gtt_view;
-> +
-> +struct intel_dpt *i915_vm_to_dpt(struct i915_address_space *vm);
-> +void i915_dpt_obj_free(struct drm_i915_gem_object *obj);
-> +struct intel_dpt *i915_dpt_lookup(struct drm_i915_gem_object *obj,
-> +				  const struct intel_gtt_view *view);
->   
->   struct i915_address_space *i915_dpt_to_vm(struct intel_dpt *dpt);
->   struct i915_vma *i915_dpt_pin_to_ggtt(struct intel_dpt *dpt, unsigned int alignment);
-> diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-> index b5672b2cf5bd..91385c17e564 100644
-> --- a/drivers/gpu/drm/i915/i915_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-> @@ -15,11 +15,10 @@
->   #include "i915_vma.h"
->   
->   static struct i915_vma *
-> -intel_fb_pin_to_dpt(struct drm_gem_object *_obj, struct intel_dpt *dpt,
-> +intel_fb_pin_to_dpt(struct drm_i915_gem_object *obj, struct intel_dpt *dpt,
->   		    const struct intel_fb_pin_params *pin_params)
->   {
-> -	struct drm_i915_private *i915 = to_i915(_obj->dev);
-> -	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-> +	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   	struct i915_address_space *vm = i915_dpt_to_vm(dpt);
->   	struct i915_gem_ww_ctx ww;
->   	struct i915_vma *vma;
-> @@ -225,6 +224,8 @@ static int i915_fb_pin_ggtt_pin(struct drm_gem_object *obj,
->   	if (IS_ERR(ggtt_vma))
->   		return PTR_ERR(ggtt_vma);
->   
-> +	drm_WARN_ON(obj->dev, ggtt_vma->vm->is_dpt);
-> +
->   	*out_ggtt_vma = ggtt_vma;
->   
->   	/*
-> @@ -244,18 +245,23 @@ static int i915_fb_pin_ggtt_pin(struct drm_gem_object *obj,
->   static void i915_fb_pin_ggtt_unpin(struct i915_vma *ggtt_vma,
->   				   int fence_id)
->   {
-> +	WARN_ON(ggtt_vma->vm->is_dpt);
-> +
->   	intel_fb_unpin_vma(ggtt_vma, fence_id);
->   }
->   
-> -static int i915_fb_pin_dpt_pin(struct drm_gem_object *obj, struct intel_dpt *dpt,
-> +static int i915_fb_pin_dpt_pin(struct drm_gem_object *_obj,
->   			       const struct intel_fb_pin_params *pin_params,
-> -			       struct i915_vma **out_dpt_vma,
->   			       struct i915_vma **out_ggtt_vma,
->   			       u32 *out_offset)
->   {
-> +	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
->   	struct i915_vma *ggtt_vma, *dpt_vma;
-> +	struct intel_dpt *dpt;
->   
-> -	WARN_ON(!dpt);
-> +	dpt = i915_dpt_lookup(obj, pin_params->view);
-> +	if (drm_WARN_ON(obj->base.dev, !dpt))
-> +		return -EINVAL;
->   
->   	ggtt_vma = i915_dpt_pin_to_ggtt(dpt, pin_params->alignment / 512);
->   	if (IS_ERR(ggtt_vma))
-> @@ -267,20 +273,36 @@ static int i915_fb_pin_dpt_pin(struct drm_gem_object *obj, struct intel_dpt *dpt
->   		return PTR_ERR(dpt_vma);
->   	}
->   
-> -	drm_WARN_ON(obj->dev, ggtt_vma == dpt_vma);
-> +	drm_WARN_ON(obj->base.dev, ggtt_vma == dpt_vma);
-> +	drm_WARN_ON(obj->base.dev, ggtt_vma->vm->is_dpt);
-> +	drm_WARN_ON(obj->base.dev, !dpt_vma->vm->is_dpt);
->   
->   	*out_ggtt_vma = ggtt_vma;
-> -	*out_dpt_vma = dpt_vma;
-> -
->   	*out_offset = i915_ggtt_offset(ggtt_vma);
->   
->   	return 0;
->   }
->   
-> -static void i915_fb_pin_dpt_unpin(struct intel_dpt *dpt,
-> -				  struct i915_vma *dpt_vma,
-> +static void i915_fb_pin_dpt_unpin(struct drm_gem_object *_obj,
-> +				  const struct intel_gtt_view *view,
->   				  struct i915_vma *ggtt_vma)
->   {
-> +	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
-> +	struct i915_vma *dpt_vma;
-> +	struct intel_dpt *dpt;
-> +
-> +	dpt = i915_dpt_lookup(obj, view);
-> +	if (drm_WARN_ON(obj->base.dev, !dpt))
-> +		return;
-> +
-> +	dpt_vma = i915_vma_lookup(obj, i915_dpt_to_vm(dpt), view);
-> +	if (drm_WARN_ON(obj->base.dev, !dpt_vma))
-> +		return;
-> +
-> +	drm_WARN_ON(obj->base.dev, ggtt_vma == dpt_vma);
-> +	drm_WARN_ON(obj->base.dev, ggtt_vma->vm->is_dpt);
-> +	drm_WARN_ON(obj->base.dev, !dpt_vma->vm->is_dpt);
-> +
->   	intel_fb_unpin_vma(dpt_vma, -1);
->   	i915_dpt_unpin_from_ggtt(dpt);
+Sure, will handle in next revision: like
 
-Later in series here dpt is changed to be ggtt_vma which is unpinned.
-If those lookups above failed this will leave ggtt_vma pinned?
+if (!msg)
+     xe_warn(xe, "Failed to allocate CPER message\n");
 
-This was the only thing I noticed in this series; all the *other* 
-patches in this series are
+>>         driver->error_type = cper_sev;
+>>       driver->error_component = component;
+>> @@ -266,7 +271,11 @@ static void cper_emit_sw_err(struct xe_device 
+>> *xe, int cper_sev, enum xe_sigid s
+>>       if (IS_ERR(data))
+>>           driver->cause = -PTR_ERR(data);
+>>   +    msg_len = strlen(msg) + 1;
+>> +
+>>       cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, &ihdr);
+>> +    cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, 
+>> &ihdr, msg, msg_len);
+>
+> if message allocation fails it is make sense to emit CPER record just 
+> with header?
 
-Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Make sense, I'll update the code with when msg allocation failed.
+
+  msg_len = msg ? strlen(msg) + 1 : 0;
 
 
->   }
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index 8df844120ea8..5cf02eb5b380 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -421,33 +421,27 @@ static void xe_fb_pin_ggtt_unpin(struct i915_vma *ggtt_vma,
->   	__xe_unpin_fb_vma(ggtt_vma);
->   }
->   
-> -static int xe_fb_pin_dpt_pin(struct drm_gem_object *obj, struct intel_dpt *dpt,
-> +static int xe_fb_pin_dpt_pin(struct drm_gem_object *obj,
->   			     const struct intel_fb_pin_params *pin_params,
-> -			     struct i915_vma **out_dpt_vma,
->   			     struct i915_vma **out_ggtt_vma,
->   			     u32 *out_offset)
->   {
->   	struct i915_vma *ggtt_vma;
->   
-> -	WARN_ON(dpt);
-> -
->   	ggtt_vma = __xe_pin_fb_vma(obj, true, pin_params);
->   	if (IS_ERR(ggtt_vma))
->   		return PTR_ERR(ggtt_vma);
->   
-> -	*out_dpt_vma = NULL; /* not used on xe */
->   	*out_ggtt_vma = ggtt_vma;
->   	*out_offset = xe_ggtt_node_addr(ggtt_vma->node);
->   
->   	return 0;
->   }
->   
-> -static void xe_fb_pin_dpt_unpin(struct intel_dpt *dpt,
-> -				struct i915_vma *dpt_vma,
-> +static void xe_fb_pin_dpt_unpin(struct drm_gem_object *obj,
-> +				const struct intel_gtt_view *view,
->   				struct i915_vma *ggtt_vma)
->   {
-> -	WARN_ON(dpt || dpt_vma);
-> -
->   	__xe_unpin_fb_vma(ggtt_vma);
->   }
->   
-> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-> index 00f8e27be9f3..d905d59cc43e 100644
-> --- a/include/drm/intel/display_parent_interface.h
-> +++ b/include/drm/intel/display_parent_interface.h
-> @@ -66,9 +66,8 @@ struct intel_display_bo_interface {
->   };
->   
->   struct intel_display_dpt_interface {
-> -	struct intel_dpt *(*create)(struct drm_gem_object *obj,
-> -				    const struct intel_gtt_view *view);
-> -	void (*destroy)(struct intel_dpt *dpt);
-> +	int (*create)(struct drm_gem_object *obj,
-> +		      const struct intel_gtt_view *view);
->   };
->   
->   struct intel_display_dsb_interface {
-> @@ -90,13 +89,11 @@ struct intel_display_fb_pin_interface {
->   	void (*ggtt_unpin)(struct i915_vma *ggtt_vma,
->   			   int fence_id);
->   	int (*dpt_pin)(struct drm_gem_object *obj,
-> -		       struct intel_dpt *dpt,
->   		       const struct intel_fb_pin_params *pin_params,
-> -		       struct i915_vma **out_dpt_vma,
->   		       struct i915_vma **out_ggtt_vma,
->   		       u32 *out_offset);
-> -	void (*dpt_unpin)(struct intel_dpt *dpt,
-> -			  struct i915_vma *dpt_vma,
-> +	void (*dpt_unpin)(struct drm_gem_object *obj,
-> +			  const struct intel_gtt_view *view,
->   			  struct i915_vma *ggtt_vma);
->   	struct i915_vma *(*reuse_vma)(struct i915_vma *old_ggtt_vma,
->   				      struct drm_gem_object *old_obj,
+Thanks,
 
+-/Mallesh
+
+>
+> Thanks,
+> Badal
+>
+>> +    kfree(msg);
+>>   }
+>>     /**
+>> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h 
+>> b/drivers/gpu/drm/xe/xe_cper_types.h
+>> index 8e90a3220919..0178a5521212 100644
+>> --- a/drivers/gpu/drm/xe/xe_cper_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+>> @@ -40,6 +40,10 @@
+>>       GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
+>>             0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
+>>   +#define INTEL_CPER_NOTIFY_DRV_ERROR \
+>> +    GUID_INIT(0xcef7e934, 0x51e7, 0x535f, \
+>> +          0xa6, 0x78, 0x5a, 0x4c, 0xcc, 0xb6, 0x96, 0x09)
+>> +
+>>   /* Section Types */
+>>   #define INTEL_CPER_SECTION_ACCEL_GENERIC \
+>>       GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
