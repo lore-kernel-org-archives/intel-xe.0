@@ -2,60 +2,70 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 740C6606A33E
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 08:51:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97382606A329
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 09:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qv1aPZE8
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.a=rsa-sha256 header.s=mail header.b=MMjHPJxO
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC0110F280;
-	Tue, 17 Nov 2026 08:51:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B4DE10F280
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 08:51:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1794905461; x=1826441461;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mYQzUc13HeGBB+W+GEthoTDnA/KkWUL/PdZ8cO8JGQg=;
- b=Qv1aPZE83tLayxMZd/9oIYpR6Gz561AkTCV6OQB26cRkLYEHHgeeE05U
- c+29LwdJ8rmaK08f3i7l+nn2pP0F6lZVhppXzAIlM16t3N6Nc6W76a2Cm
- Z+6PwmDUs7yCpfVDWi5G+4IfHzeanUD6jyOeL9Q0Bd1AaA0mcU65IwdpQ
- hOFo7pzqCNb3oFRVxkUUgf2dsz7QAu40Tf0nBUvCAI+gw2tNtD2t++F6M
- ghJUBSqNvk77X9u/QriMv/KraxgRWyx6eQnrqan7ZQQb/ZIWBlSuPBRZT
- nNbg9tBJthWDlNAUKKELWyy5UmbcBtDhenkt8bqB6Ne6F4GSwVL+t0saf Q==;
-X-CSE-ConnectionGUID: ExB/VzDbQ4OYjW3qzRLkmg==
-X-CSE-MsgGUID: 8bTOtn/XQ/+7tci778LYVA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11968"; a="3558973"
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="3558973"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2026 00:51:01 -0800
-X-CSE-ConnectionGUID: POIitPwaSKef4j7tyN+cuw==
-X-CSE-MsgGUID: MM7KAokGRBSbszoEkJKz5w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
-   d="scan'208";a="9791295"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2026 00:51:00 -0800
-Date: Tue, 17 Nov 2026 09:50:57 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Tauro, Riana" <riana.tauro@intel.com>, ravi.kishore.koppuravuri@intel.com
-Subject: Re: [PATCH v1] drm/xe/drm_ras: Protect against unplugged or wedged
- device
-Message-ID: <avwVcXpCWxo2xMgF@black.igk.intel.com>
-References: <20261116085343.1972825-1-raag.jadav@intel.com>
- <85d0eb950789c3d413fb91dc02b9c53751207c57.camel@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 493F410E5C0;
+	Tue, 17 Nov 2026 09:11:33 +0000 (UTC)
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
+ [213.167.242.64])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBC6A10E568;
+ Tue, 17 Nov 2026 09:11:20 +0000 (UTC)
+Received: from killaraus.ideasonboard.com
+ (2001-14ba-7086-3000--a06.rev.dnainternet.fi [IPv6:2001:14ba:7086:3000::a06])
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9A3F4177;
+ Tue, 17 Nov 2026 10:08:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+ s=mail; t=1794906531;
+ bh=KUFK5SRjTDmkX8fMf4Me0mjN4nDeO27cOzJsCIsYw84=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=MMjHPJxOkzofEgWsMCPdy/py0r8ulpcFPYc3Vf1zCCbf94cGuQ3E7X7zWdPJN+D/A
+ xxtRpjF8XOMaDz50oyN+eqb0dVyddYDrKLByR1wSBMIxqd1zsvek/BZGwibYGcZ9kg
+ Ytz9zPftXJccBUr6hhs+/CgwTeplKuEwVXE4F6NU=
+Date: Tue, 17 Nov 2026 11:11:17 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Daniel Stone <daniels@collabora.com>,
+ Manasi Navare <navaremanasi@google.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>,
+ Drew Davenport <ddavenport@google.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH RFC v3 0/8] Add support for DisplayPort link training
+ information report
+Message-ID: <20261117091117.GA1851633@killaraus.ideasonboard.com>
+References: <20261012-feat_link_cap-v3-0-7517f4aba0f3@bootlin.com>
+ <51ec15feef9a88e460ab6fefc48b5b982f4857c0@intel.com>
+ <dfe3ce17-8153-4cd1-b9df-fe0d61cec9c4@bootlin.com>
+ <20261116154931.GA1763340@killaraus.ideasonboard.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <85d0eb950789c3d413fb91dc02b9c53751207c57.camel@intel.com>
+In-Reply-To: <20261116154931.GA1763340@killaraus.ideasonboard.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,257 +76,125 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 17, 2026 at 04:58:23AM +0530, Summers, Stuart wrote:
-> On Mon, 2026-11-16 at 14:23 +0530, Raag Jadav wrote:
-> > Xe driver exposes drm_ras counters to userspace through netlink
-> > interface,
-> > which the user can access during the device lifetime. But this should
-> > not
-> > be done in case of unplugged or wedged device. Protect against such
-> > cases.
+On Mon, Nov 16, 2026 at 05:49:31PM +0200, Laurent Pinchart wrote:
+> On Mon, Nov 16, 2026 at 04:13:52PM +0100, Kory Maincent wrote:
+> > On 11/16/26 14:10, Jani Nikula wrote:
+> > > On Mon, 12 Oct 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
+> > >> DisplayPort link training negotiates the physical-layer parameters needed
+> > >> for a reliable connection: lane count, link rate, and optionally Display
+> > >> Stream Compression (DSC). Currently, each driver exposes this state in
+> > >> its own way, often through driver-specific debugfs entries, with no
+> > >> standard interface for userspace diagnostic and monitoring tools.
+> > >>
+> > >> This series introduces generic helpers, for exposing DP link capabilities
+> > >> and state as standard sysfs entries.
+> > > 
+> > > So how did we end up with sysfs here?
 > > 
-> > Fixes: b40db12b542f ("drm/xe/xe_drm_ras: Add support for XE DRM RAS")
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> 
-> Hm.. I'm not fully convinced on the sashiko issue, particularly after
-> we have the get/put in this patch. I think we'll need some digging
-> there to see if that's really still a problem after this one gets
-> merged. Anyway as it called out, it's pre-existing.
-> 
-> I agree with the changes here. Functionally looks correct and makes
-> sense to include the wedge here too.
-> 
-> Should we have a test that injects an error after wedge with a netlink
-> hook enabled just to prove this works in CI?
-
-+ Ravi and Riana for IGT, this sounds like good extension to our suite[1].
-
-[1] https://patchwork.freedesktop.org/series/171275/
-
-> Either way, for the kernel change:
-> Reviewed-by: Stuart Summers <stuart.summers@intel.com>
-
-Awesome.
-
-Raag
-
-> > ---
-> >  drivers/gpu/drm/xe/xe_drm_ras.c | 93 ++++++++++++++++++++++++-------
-> > --
-> >  1 file changed, 69 insertions(+), 24 deletions(-)
+> > In the first RFC it was in DRM properties. I presented it in the display 
+> > hackfest in Nice last years. People suggested to use sysfs instead but 
+> > if the need appears later in the development move back to DRM 
+> > properties. I first though DRM properties seems better as it is the user 
+> > interface used by distros but I had no strong argument about the change 
+> > to sysfs, so I moved on to it.
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c
-> > b/drivers/gpu/drm/xe/xe_drm_ras.c
-> > index 7554803aae11..c0c1acb84e89 100644
-> > --- a/drivers/gpu/drm/xe/xe_drm_ras.c
-> > +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-> > @@ -5,6 +5,7 @@
-> >  
-> >  #include <linux/bitmap.h>
-> >  
-> > +#include <drm/drm_drv.h>
-> >  #include <drm/drm_managed.h>
-> >  #include <drm/drm_print.h>
-> >  #include <drm/drm_ras.h>
-> > @@ -12,10 +13,33 @@
-> >  #include "xe_device_types.h"
-> >  #include "xe_drm_ras.h"
-> >  #include "xe_ras.h"
-> > +#include "xe_wedge.h"
-> >  
-> >  static const char * const error_components[] =
-> > DRM_XE_RAS_ERROR_COMPONENT_NAMES;
-> >  static const char * const error_severity[] =
-> > DRM_XE_RAS_ERROR_SEVERITY_NAMES;
-> >  
-> > +static int drm_ras_counter_get(struct xe_device *xe, struct
-> > xe_drm_ras_counter *info,
-> > +                              u32 error_id, int *idx)
-> > +{
-> > +       if (xe_wedged(xe))
-> > +               return -ECANCELED;
-> > +
-> > +       if (!info || !info[error_id].name)
-> > +               return -ENOENT;
-> > +
-> > +       /* Must be last */
-> > +       if (!drm_dev_enter(&xe->drm, idx))
-> > +               return -ENODEV;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static void drm_ras_counter_put(int idx)
-> > +{
-> > +       /* Pair with drm_ras_counter_get() */
-> > +       drm_dev_exit(idx);
-> > +}
-> > +
-> >  static bool drm_ras_counter_is_valid(u32 severity, u32 component)
-> >  {
-> >         if (!in_range(severity, DRM_XE_RAS_ERR_SEV_CORRECTABLE,
-> > DRM_XE_RAS_ERR_SEV_MAX))
-> > @@ -33,19 +57,23 @@ static int query_error_counter(struct xe_device
-> > *xe,
-> >  {
-> >         struct xe_drm_ras *ras = &xe->ras.nl_data;
-> >         struct xe_drm_ras_counter *info = ras->info[severity];
-> > +       int idx, ret;
-> >  
-> > -       if (!info || !info[error_id].name)
-> > -               return -ENOENT;
-> > -
-> > -       *name = info[error_id].name;
-> > +       ret = drm_ras_counter_get(xe, info, error_id, &idx);
-> > +       if (ret)
-> > +               return ret;
-> >  
-> >         /* Fetch counter from system controller if supported */
-> >         if (xe->info.has_sysctrl)
-> > -               return xe_ras_get_counter(xe, severity, error_id,
-> > val);
-> > +               ret = xe_ras_get_counter(xe, severity, error_id,
-> > val);
-> > +       else
-> > +               *val = atomic_read(&info[error_id].counter);
-> >  
-> > -       *val = atomic_read(&info[error_id].counter);
-> > +       if (!ret)
-> > +               *name = info[error_id].name;
-> >  
-> > -       return 0;
-> > +       drm_ras_counter_put(idx);
-> > +       return ret;
-> >  }
-> >  
-> >  static int clear_error_counter(struct xe_device *xe,
-> > @@ -54,17 +82,20 @@ static int clear_error_counter(struct xe_device
-> > *xe,
-> >  {
-> >         struct xe_drm_ras *ras = &xe->ras.nl_data;
-> >         struct xe_drm_ras_counter *info = ras->info[severity];
-> > +       int idx, ret;
-> >  
-> > -       if (!info || !info[error_id].name)
-> > -               return -ENOENT;
-> > +       ret = drm_ras_counter_get(xe, info, error_id, &idx);
-> > +       if (ret)
-> > +               return ret;
-> >  
-> >         /* Clear counter from system controller if supported */
-> >         if (xe->info.has_sysctrl)
-> > -               return xe_ras_clear_counter(xe, severity, error_id);
-> > +               ret = xe_ras_clear_counter(xe, severity, error_id);
-> > +       else
-> > +               atomic_set(&info[error_id].counter, 0);
-> >  
-> > -       atomic_set(&info[error_id].counter, 0);
-> > -
-> > -       return 0;
-> > +       drm_ras_counter_put(idx);
-> > +       return ret;
-> >  }
-> >  
-> >  static int query_uncorrectable_error_counter(struct drm_ras_node
-> > *ep, u32 error_id,
-> > @@ -103,15 +134,21 @@ static int
-> > query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
-> >         struct xe_device *xe = ep->priv;
-> >         struct xe_drm_ras *ras = &xe->ras.nl_data;
-> >         struct xe_drm_ras_counter *info = ras-
-> > >info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
-> > -
-> > -       if (!info || !info[error_id].name)
-> > -               return -ENOENT;
-> > +       int idx, ret;
-> >  
-> >         if (!xe->info.has_sysctrl)
-> >                 return -EOPNOTSUPP;
-> >  
-> > -       *name = info[error_id].name;
-> > -       return xe_ras_get_threshold(xe,
-> > DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-> > +       ret = drm_ras_counter_get(xe, info, error_id, &idx);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       ret = xe_ras_get_threshold(xe,
-> > DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-> > +       if (!ret)
-> > +               *name = info[error_id].name;
-> > +
-> > +       drm_ras_counter_put(idx);
-> > +       return ret;
-> >  }
-> >  
-> >  static int set_correctable_error_threshold(struct drm_ras_node *ep,
-> > u32 error_id, u32 threshold)
-> > @@ -119,14 +156,19 @@ static int
-> > set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id
-> >         struct xe_device *xe = ep->priv;
-> >         struct xe_drm_ras *ras = &xe->ras.nl_data;
-> >         struct xe_drm_ras_counter *info = ras-
-> > >info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
-> > -
-> > -       if (!info || !info[error_id].name)
-> > -               return -ENOENT;
-> > +       int idx, ret;
-> >  
-> >         if (!xe->info.has_sysctrl)
-> >                 return -EOPNOTSUPP;
-> >  
-> > -       return xe_ras_set_threshold(xe,
-> > DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-> > +       ret = drm_ras_counter_get(xe, info, error_id, &idx);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       ret = xe_ras_set_threshold(xe,
-> > DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-> > +
-> > +       drm_ras_counter_put(idx);
-> > +       return ret;
-> >  }
-> >  
-> >  static struct xe_drm_ras_counter *allocate_and_copy_counters(struct
-> > xe_device *xe)
-> > @@ -244,7 +286,7 @@ void xe_drm_ras_event(struct xe_device *xe, u32
-> > component, u32 severity, u32 val
-> >         struct xe_drm_ras *ras = &xe->ras.nl_data;
-> >         struct xe_drm_ras_counter *info;
-> >         struct drm_ras_node *node;
-> > -       int ret;
-> > +       int idx, ret;
-> >  
-> >         /* Event is supported only if drm-ras is enabled */
-> >         if (!xe->info.has_drm_ras)
-> > @@ -256,13 +298,16 @@ void xe_drm_ras_event(struct xe_device *xe, u32
-> > component, u32 severity, u32 val
-> >         node = &ras->node[severity];
-> >         info = ras->info[severity];
-> >  
-> > -       if (!info || !info[component].name)
-> > +       ret = drm_ras_counter_get(xe, info, component, &idx);
-> > +       if (ret)
-> >                 return;
-> >  
-> >         ret = drm_ras_nl_error_event(node, component,
-> > info[component].name, value);
-> >         if (ret)
-> >                 drm_err_ratelimited(&xe->drm, "drm-ras error-event
-> > failed: %d for %s %s\n", ret,
-> >                                     info[component].name,
-> > error_severity[severity]);
-> > +
-> > +       drm_ras_counter_put(idx);
-> >  }
-> >  
-> >  /**
+> > >> The aim of such development is to guide users to select the most suitable
+> > >> DisplayPort connector for their needs. For example, if you have a USB-C
+> > >> hub with lesser capabilities than your computerâ€™s native DisplayPort
+> > >> connector (such as HBR2 versus HBR3 support), the system could recommend
+> > >> connecting high-resolution displays directly to the computerâ€™s port
+> > >> instead of through the hub to ensure optimal performance.
+> > > 
+> > > I do wonder how all this is supposed to work in more complex real world
+> > > scenarios, though.
+> > > 
+> > > I believe the user primarily cares about *modes*. Which display modes
+> > > can be used with each display/connector pair.
+> > > 
+> > > With the low level link information, are you proposing to compute the
+> > > required bandwidth for modes in userspace? I think it's going to be a
+> > > lot of work to compute the bandwidth requirements, taking into account
+> > > DP SST vs. MST vs. UHBR and DSC and bit depth and everything, and you'll
+> > > still miss any driver/GPU specific contraints. Or are you just proposing
+> > > to match the physical characteristics only?
+> > 
+> > This is a requirement from Google, yes they want to compute the 
+> > bandwidth for modes in the userspace side.
+> > @Manasi could describe in detail how would you implement it?
+> > 
+> > > Given all the connectors and displays and their modes on a system, you
+> > > could estimate a) for each display, what modes could be used on each
+> > > connector, and b) for each connector, what modes could be used on a
+> > > display, if connected. From the user POV, they could be shown why some
+> > > display mode is not available on the current connector, and crucially,
+> > > on which connector it could be available.
+> > > 
+> > > In general, I'm wondering if you're really after higher level
+> > > information, something like "connector max available bandwidth
+> > > with/without DSC", that would more directly map to the user needs as I
+> > > see them than low level link details.
+> > > 
+> > > Do you have the userspace somewhere? That's needed for merging UABI
+> > > anyway [1].
+> > > 
+> > > [1] https://docs.kernel.org/gpu/drm-uapi.html#open-source-userspace-requirements
+> > 
+> > I wanted to add it to IGT GPU tools, but I was hopping for community 
+> > review on this RFC before the IGT development.
 > 
+> Note the following requirement:
+> 
+>   The open-source userspace must not be a toy/test application, but the
+>   real thing. Specifically it needs to handle all the usual error and
+>   corner cases. These are often the places where new uAPI falls apart
+>   and hence essential to assess the fitness of a proposed interface.
+> 
+> I think think IGT qualifies. An implementation in a desktop environment
+
+I meant I *don't* think IGT qualifies.
+
+> would likely be needed.
+> 
+> > >> The new drm_dp_source_set_caps and drm_dp_sink_set_caps helper expose
+> > >> source and sink training capabilities to userspace via sysfs attributes
+> > >> under dp_link. Finally drm_dp_set_cur_link_params helper is provided to
+> > >> report current link information at runtime.
+> > >>
+> > >> Three drivers are updated as reference implementations: i915 (direct
+> > >> connector path), ANX7625 and MediaTek (via the bridge connector framework
+> > >> using a new DRM_BRIDGE_OP_DP flag).
+> > >>
+> > >> Here is a sysfs example:
+> > >>
+> > >> cur_link_info_dsc            sink_link_caps_nlanes
+> > >> cur_link_info_link_rate      source_link_caps_dsc
+> > >> cur_link_info_nlanes         source_link_caps_link_rates
+> > >> sink_link_caps_dsc           source_link_caps_nlanes
+> > >> sink_link_caps_link_rates
+> > >>
+> > >> 1620000 2160000 2700000 3240000 4320000 5400000
+> > >>
+> > >> 1620000 2700000 5400000 10000000 20000000
+> > >>
+> > >> 5400000
+> > >>
+> > >> This series is rebased on top of drm-misc and may conflict with the
+> > >> current state of the drm i915 tree. Which tree should pick this up,
+> > >> given that it mixes core development with driver changes?
+> > > 
+> > > For development, please just base your work on top of drm-tip, and the
+> > > tree(s) will be sorted out later.
+> > 
+> > Oh, ok, thanks you.
+
+-- 
+Regards,
+
+Laurent Pinchart
