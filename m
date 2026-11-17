@@ -2,42 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12720606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:09:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PfCHvOG1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42B4F606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:16:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C9C1710E1D8;
-	Tue, 17 Nov 2026 15:09:25 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E84889BE8;
- Tue, 17 Nov 2026 15:09:19 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 378C643C40;
- Tue, 17 Nov 2026 15:09:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5BEF1F000C6;
- Tue, 17 Nov 2026 15:09:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794928159;
- bh=MbRPfuQhmJBtJ3xls+7kZycnTp4jpYyXnuMa2kgefOw=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=PfCHvOG18E49luQSwWSw7mE4gUXkMMB09053tn8rODlxUdEE1HuLb+PB68f77f0Vy
- +jqrq7qrp/5FQUd9P/n3aMBnkiYbdPbMMjFpM5wLs+o+VWXCTpWrfr843gVnka6DSM
- MmxGkEbt4svRbq8vmpcApBn8BF4+XBbdFFffZaYBB/IM3bxZeS3vAToOrSn5JFyLyK
- wMq+/c7IFy11leOsrNxJ0yQQ3ebJc9eGm5gqs7B/O2PnhXGxATS/uZoVq8DYwwzrm5
- Nt5AD+MMfxxZG7n9gnJaXJat/6qHXvPZnJ/C+sZkdLY7tyvgeCrW+sd120MtLSn5gD
- DnuzIug41WIcA==
-Message-ID: <sashiko-outbox-219022@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 4/5] HACK: Always fallback
-To: "Maarten Lankhorst" <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org
-In-Reply-To: <20261117143038.479557-11-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05D6E10E629;
+	Tue, 17 Nov 2026 15:16:47 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A448910E628;
+ Tue, 17 Nov 2026 15:16:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8661448996642729138=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/display=3A_Transpara?=
+ =?utf-8?q?nt_fallback_from_stolen_to_sysmem=2E_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Nov 2026 15:16:46 -0000
+Message-ID: <179492860666.37914.11530660072289836202@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
 References: <20261117143038.479557-7-dev@lankhorst.se>
- <20261117143038.479557-11-dev@lankhorst.se>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 17 Nov 2026 15:09:18 +0000
+In-Reply-To: <20261117143038.479557-7-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,50 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/xe/display: debug return false in
-  xe_display_bo_fbdev_prefer_stolen()
---
+--===============8661448996642729138==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 8d3266f209006e137bb998d9c4625324bf01b453
-Author: Maarten Lankhorst <dev@lankhorst.se>
+== Series Details ==
 
-HACK: Always fallback
+Series: drm/xe/display: Transparant fallback from stolen to sysmem. (rev7)
+URL   : https://patchwork.freedesktop.org/series/170759/
+State : success
 
-This commit adds an unconditional false return in
-xe_display_bo_fbdev_prefer_stolen().
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm=
-/xe/display/xe_display_bo.c
-> index 9385026a80b97..d78d893210c4f 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-> @@ -142,6 +142,8 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_devi=
-ce *xe, unsigned int size)
->  	if (XE_DEVICE_WA(xe, 22019338487_display))
->  		return false;
-> =20
-> +	return false;
+CI Bug Log - changes from xe-6158-1bcf6d6c4e900492a190123010854ee3e5f6a6c7_BAT -> xe-pw-170759v7_BAT
+====================================================
 
-[Severity: Medium]
-Was this temporary debugging patch meant to be dropped before submission?
+Summary
+-------
 
-Returning false unconditionally leaves the stolen->size check below as
-unreachable code and causes initial_plane_bo() to always discard the BIOS
-initial framebuffer in stolen memory on integrated platforms when
-CONFIG_FRAMEBUFFER_CONSOLE and CONFIG_DRM_FBDEV_EMULATION are enabled.
+  **SUCCESS**
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261117143038.4795=
-57-7-dev@lankhorst.se?part=3D4
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6158-1bcf6d6c4e900492a190123010854ee3e5f6a6c7 -> xe-pw-170759v7
+
+  IGT_9196: 9196
+  xe-6158-1bcf6d6c4e900492a190123010854ee3e5f6a6c7: 1bcf6d6c4e900492a190123010854ee3e5f6a6c7
+  xe-pw-170759v7: 170759v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170759v7/index.html
+
+--===============8661448996642729138==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Transparant fallback from stolen to sysmem. (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/170759/">https://patchwork.freedesktop.org/series/170759/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170759v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-170759v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6158-1bcf6d6c4e900492a190123010854ee3e5f6a6c7_BAT -&gt; xe-pw-170759v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6158-1bcf6d6c4e900492a190123010854ee3e5f6a6c7 -&gt; xe-pw-170759v7</li>
+</ul>
+<p>IGT_9196: 9196<br />
+  xe-6158-1bcf6d6c4e900492a190123010854ee3e5f6a6c7: 1bcf6d6c4e900492a190123010854ee3e5f6a6c7<br />
+  xe-pw-170759v7: 170759v7</p>
+
+</body>
+</html>
+
+--===============8661448996642729138==--
