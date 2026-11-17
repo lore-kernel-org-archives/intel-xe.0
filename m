@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78496606A31C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 01:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1D59606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 01:14:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2769110EAD8;
-	Tue, 17 Nov 2026 01:13:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6525A10EADF;
+	Tue, 17 Nov 2026 01:14:45 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C874610EAD8;
- Tue, 17 Nov 2026 01:13:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3005638576203936719=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0BE510EAEF;
+ Tue, 17 Nov 2026 01:14:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/xe/gsc=3A_Define_GSC_firmware_for_NVL-P?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Handle_GuC_sema?=
+ =?utf-8?q?phore_instruction_field_check_error?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+To: "Jesus Narvaez" <jesus.narvaez@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Nov 2026 01:13:32 -0000
-Message-ID: <179487801281.34859.17275655100527199643@9ac1b63fe3ea>
+Date: Tue, 17 Nov 2026 01:14:43 -0000
+Message-ID: <179487808398.34844.18383600069778266636@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261117002529.1925156-3-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20261117002529.1925156-3-daniele.ceraolospurio@intel.com>
+References: <20261117005534.2322094-4-jesus.narvaez@intel.com>
+In-Reply-To: <20261117005534.2322094-4-jesus.narvaez@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,108 +35,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============3005638576203936719==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe/gsc: Define GSC firmware for NVL-P
-URL   : https://patchwork.freedesktop.org/series/178746/
-State : success
+Series: drm/xe: Handle GuC semaphore instruction field check error
+URL   : https://patchwork.freedesktop.org/series/178748/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6155-ccb10a534282f16c6d068bc06e5c722680045dda_BAT -> xe-pw-178746v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cf16eb7b0e32a857d9fc2373d73b4972316eb0e6
+Author: Jesus Narvaez <jesus.narvaez@intel.com>
+Date:   Tue Nov 17 02:55:37 2026 +0200
 
-Summary
--------
+    drm/xe/guc: Handle GuC semaphore instruction field check error
+    
+    On platforms that support 64 bit semaphores with the has_sem64 flag, opt
+    in to have the GuC check the SW Token Info field of the semaphore
+    instruction.
+    
+    The 64 bit semaphore instruction has a SW Token Info field that is not
+    used by HW for execution and is instead passed to the CSB, which is
+    consumed by the GuC. If the GuC detects an unsupported value in this
+    field, it sends a G2H message back indicating the failure. Therefore,
+    add a handler for the context that the GuC has marked as unrunnable.
+    
+    Rejecting unsupported values now means that if the values start being
+    used later on (e.g. to send hints about the semaphore to the GuC), there
+    is no risk of a userspace regression due to the change in behavior.
+    
+    v2:
+    - Updated commit message to explain why GuC checks the instruction field
+      (Daniele)
+    - Use "instruction field" in comments, but kept KLV name to match GuC
+      specs (Daniele)
+    - Removed LRCA variable and print out in handler (Daniele)
+    
+    v3:
+    - Updated commit message and KLV documentation to clarify which field
+      the GuC is checking (Daniele)
+    
+    v4:
+    - Switch to using has_sem64 GT flag to opt in to KLV instead of a
+      platform check and update commit message and comment to match.
+    
+    Signed-off-by: Jesus Narvaez <jesus.narvaez@intel.com>
+    Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
++ /mt/dim checkpatch ccb10a534282f16c6d068bc06e5c722680045dda drm-intel
+929128a6ecba drm/xe: Add has_sem64 bit to graphics/media IP descriptors
+-:18: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#18: 
+Assisted-by: LLM
 
-  **SUCCESS**
+-:18: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'LLM'
+#18: 
+Assisted-by: LLM
 
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 13)
-------------------------------
-
-  Missing    (2): bat-bmg-vm bat-ptl-vm 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6155-ccb10a534282f16c6d068bc06e5c722680045dda -> xe-pw-178746v1
-
-  IGT_9195: 9195
-  xe-6155-ccb10a534282f16c6d068bc06e5c722680045dda: ccb10a534282f16c6d068bc06e5c722680045dda
-  xe-pw-178746v1: 178746v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178746v1/index.html
-
---===============3005638576203936719==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/gsc: Define GSC firmware for NVL-P</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178746/">https://patchwork.freedesktop.org/series/178746/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178746v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178746v1/index.html</a></td></tr>
-
-</table>
+total: 1 errors, 1 warnings, 0 checks, 89 lines checked
+cf16eb7b0e32 drm/xe/guc: Handle GuC semaphore instruction field check error
 
 
-    <h1>CI Bug Log - changes from xe-6155-ccb10a534282f16c6d068bc06e5c722680045dda_BAT -&gt; xe-pw-178746v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 13)</h2>
-<p>Missing    (2): bat-bmg-vm bat-ptl-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6155-ccb10a534282f16c6d068bc06e5c722680045dda -&gt; xe-pw-178746v1</li>
-</ul>
-<p>IGT_9195: 9195<br />
-  xe-6155-ccb10a534282f16c6d068bc06e5c722680045dda: ccb10a534282f16c6d068bc06e5c722680045dda<br />
-  xe-pw-178746v1: 178746v1</p>
-
-</body>
-</html>
-
---===============3005638576203936719==--
