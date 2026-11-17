@@ -2,39 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DD00606A31C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 816C9606A32A
 	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 14:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=KZnQNlw2
+	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=GazbeOCH
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 250C310F797;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 254FB10F79C;
 	Tue, 17 Nov 2026 14:29:43 +0000 (UTC)
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8125D10F798;
- Tue, 17 Nov 2026 14:29:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2534610F7A4;
+ Tue, 17 Nov 2026 14:29:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1794925769;
- bh=jcSlj3Y7LgaV5hdx0L8fbaX98oeE5ltVxEn3uBvEUBA=;
+ s=default; t=1794925771;
+ bh=G4dBcxK6A+2pyd1sK4CC3D6weos95og1QZwLdqJtZmM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KZnQNlw2VoT9T9qiURhnW0tcxKkBcSQ1Zn/a/RB0YkBbjH0FBLjpX+Zl08YNvATA+
- KSExIGiBruG8t6arWPIiGw2SIp2kXpmRoBTvNxiL9YsptBvhawh8bx3A8JfsKzg67I
- EpPDKLEP7v44OgTpLWIPi/OfIwk3RN3dMgP7oBVNYa5RJs2oIgwtSj+MoFVh06E7Zz
- TEHqCiabxZ+3ZFDbZig95qWj7VUvl+NyrnLyolIoDX0lgnG+mB21ZnNGnTIoUwqeRK
- lzXeU1xdSmGy5iy3j7c9VSVIxyLn/xGyF4dysKL/2uK1hQeuU9zCZvwLVLaKLDna8Q
- UgHZjDsv7oIAA==
+ b=GazbeOCHkO/fou7kjHEn0lMahVvvUOtCX/trNPPr/m/pzk/EfHsy4BK+U5I7fkML/
+ MvimtIOTJuT5tyb2Deyc2K56s+vRba8/cdyVcKxt8wZOGLvMkwcVTrZ+cO6fR+T+GV
+ ArR8oAix+CFer/qCihn548AFwRrhQ9zOHmTRy6FjuwNu2linFYx/PpD1iQan7e+25H
+ 1/MvKYkYQrajzWxpIEQ1EOjo89PLZn+4DCgrapWMPv9c+U94xGezG+g7Oyyxo0KCX0
+ FLguMUFxi6DZUSC4KxG08Y9g48oJt5BDXkRNpzqSMBt78pjQzApjd1B0WJYBQA8taG
+ YvPaVBYyL7aEw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v6 2/5] drm/xe/migrate: Support copying between sysmem and
- stolen
-Date: Tue, 17 Nov 2026 15:30:41 +0100
-Message-ID: <20261117143038.479557-9-dev@lankhorst.se>
+Cc: intel-gfx@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v6 5/5] drm/i915: Introduce intel_bo_fbdev_bios_fb_takeover()
+Date: Tue, 17 Nov 2026 15:30:44 +0100
+Message-ID: <20261117143038.479557-12-dev@lankhorst.se>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261117143038.479557-7-dev@lankhorst.se>
 References: <20261117143038.479557-7-dev@lankhorst.se>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,149 +50,399 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-In order to copy out the stolen BO, we have to add some support to
-xe_migrate_copy, since otherwise it tries to use the VRAM identity
-mapping on integrated, which obviously doesn't do the right thing.
+Pull the "do we want to use stolen for the BIOS FB?" checks into
+a new intel_bo_fbdev_bios_fb_takeover() helper, and defer that
+decision until we're ready to reallocate the fbdev FB. This way
+even if we don't want to ultimately use the BIOS FB we'll keep
+the plane enabled until the replacement FB is ready. Should
+hopefully result in fewer display blinks during boot.
 
-For debugging and completeness, allow clears in stolen memory as well.
-This makes it silghtly easier to test that the copy is correctly done.
+Additionally, on some platforms this allows us to re-create the
+framebuffer when stolen memory is not suitable, using the blitter
+engine to copy the contents to system memory without causing
+any flickering by not preserving the stolen memory allocation.
 
+This patch is a modification the original patch by Ville.
+Originally only the decision to drop stolen fb was deferred.
+
+The modifications allow it to flip to a different fb that still
+contains the contents of the previous framebuffer to preserve
+the flicker free property of boot, even when the original stolen
+framebuffer is dropped. Additionally, bios_fb_ok() was renamed
+to bios_fb_takeover() with a different function signature.
+
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 54 ++++++++++++++++++++++-----------
- 1 file changed, 37 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bo.c       |  7 +++
+ drivers/gpu/drm/i915/display/intel_bo.h       |  1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 63 ++++++++++++++++++-
+ drivers/gpu/drm/i915/i915_bo.c                | 14 ++++-
+ drivers/gpu/drm/i915/i915_bo.h                |  6 --
+ drivers/gpu/drm/i915/i915_initial_plane.c     | 14 -----
+ drivers/gpu/drm/xe/display/xe_display_bo.c    | 62 +++++++++++++++++-
+ drivers/gpu/drm/xe/display/xe_display_bo.h    |  6 --
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |  8 ---
+ include/drm/intel/display_parent_interface.h  |  1 +
+ 10 files changed, 143 insertions(+), 39 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 102c96d6cea9a..d7a8d8ecffe63 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -44,6 +44,7 @@
- #include "xe_svm.h"
- #include "xe_sync.h"
- #include "xe_trace_bo.h"
-+#include "xe_ttm_stolen_mgr.h"
- #include "xe_validation.h"
- #include "xe_vm.h"
- #include "xe_vram.h"
-@@ -943,6 +944,10 @@ static u64 xe_migrate_res_sizes(struct xe_migrate *m, struct xe_res_cursor *cur)
- 
- static bool xe_migrate_allow_identity(u64 size, const struct xe_res_cursor *cur)
- {
-+	/* Stolen is not mapped into identity mapping */
-+	if (cur->mem_type == XE_PL_STOLEN)
-+		return false;
-+
- 	/* If the chunk is not fragmented, allow identity map. */
- 	return cur->size >= size;
- }
-@@ -1024,26 +1029,23 @@ static void emit_pte(struct xe_migrate *m,
- 
- 		while (chunk--) {
- 			u64 addr, flags = 0;
--			bool devmem = false;
- 
- 			addr = xe_res_dma(cur) & PAGE_MASK;
--			if (is_vram) {
--				if (vm->flags & XE_VM_FLAG_64K) {
--					u64 va = cur_ofs * XE_PAGE_SIZE / 8;
-+			/* Stolen sysmem also needs gpu offset */
-+			addr += vram_region_gpu_offset(res);
- 
--					xe_assert(xe, (va & (SZ_64K - 1)) ==
--						  (addr & (SZ_64K - 1)));
-+			if (is_vram && vm->flags & XE_VM_FLAG_64K) {
-+				u64 va = cur_ofs * XE_PAGE_SIZE / 8;
- 
--					flags |= XE_PTE_PS64;
--				}
-+				xe_assert(xe, (va & (SZ_64K - 1)) ==
-+					  (addr & (SZ_64K - 1)));
- 
--				addr += vram_region_gpu_offset(res);
--				devmem = true;
-+				flags |= XE_PTE_PS64;
- 			}
- 
- 			addr = vm->pt_ops->pte_encode_addr(m->tile->xe,
- 							   addr, pat_index,
--							   0, devmem, flags);
-+							   0, is_vram, flags);
- 			bb->cs[bb->len++] = lower_32_bits(addr);
- 			bb->cs[bb->len++] = upper_32_bits(addr);
- 
-@@ -1248,6 +1250,24 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
- 	return flush_flags;
+diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/display/intel_bo.c
+index 8ecdbb7e39f3d..878c62cb48b4f 100644
+--- a/drivers/gpu/drm/i915/display/intel_bo.c
++++ b/drivers/gpu/drm/i915/display/intel_bo.c
+@@ -92,6 +92,13 @@ u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 stride)
+ 	return display->parent->bo->fbdev_pitch_align(stride);
  }
  
-+static bool is_devmem(struct xe_bo *bo, struct ttm_resource *res)
++struct drm_gem_object *intel_bo_fbdev_bios_fb_takeover(struct drm_gem_object *obj)
 +{
-+	if (mem_type_is_vram(res->mem_type))
-+		return true;
++	struct intel_display *display = to_intel_display(obj->dev);
 +
-+	/*
-+	 * Stolen is only device memory on newer platforms.
-+	 *
-+	 * On older platforms where stolen is mapped to GGTT,
-+	 * it is mapped as system memory.
-+	 */
-+	if (res->mem_type != XE_PL_STOLEN ||
-+	    xe_ttm_stolen_cpu_access_needs_ggtt(xe_bo_device(bo)))
-+		return false;
-+
-+	return true;
++	return display->parent->bo->fbdev_bios_fb_takeover(obj);
 +}
 +
- static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 					   struct xe_bo *src_bo,
- 					   struct xe_bo *dst_bo,
-@@ -1268,8 +1288,8 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 	int err;
- 	bool src_is_pltt = src->mem_type == XE_PL_TT;
- 	bool dst_is_pltt = dst->mem_type == XE_PL_TT;
--	bool src_is_vram = mem_type_is_vram(src->mem_type);
--	bool dst_is_vram = mem_type_is_vram(dst->mem_type);
-+	bool src_is_vram = is_devmem(src_bo, src);
-+	bool dst_is_vram = is_devmem(dst_bo, dst);
- 	bool type_device = src_bo->ttm.type == ttm_bo_type_device;
- 	bool needs_ccs_emit = type_device && xe_migrate_needs_ccs_emit(xe);
- 	bool copy_ccs = xe_device_has_flat_ccs(xe) &&
-@@ -1292,11 +1312,11 @@ static struct dma_fence *__xe_migrate_copy(struct xe_migrate *m,
- 	if (src_bo != dst_bo && XE_WARN_ON(xe_bo_size(src_bo) != xe_bo_size(dst_bo)))
- 		return ERR_PTR(-EINVAL);
- 
--	if (!src_is_vram)
-+	if (!src_is_vram && src->mem_type != XE_PL_STOLEN)
- 		xe_res_first_sg(xe_bo_sg(src_bo), 0, size, &src_it);
- 	else
- 		xe_res_first(src, 0, size, &src_it);
--	if (!dst_is_vram)
-+	if (!dst_is_vram && dst->mem_type != XE_PL_STOLEN)
- 		xe_res_first_sg(xe_bo_sg(dst_bo), 0, size, &dst_it);
- 	else
- 		xe_res_first(dst, 0, size, &dst_it);
-@@ -1969,7 +1989,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 				   struct ttm_resource *dst,
- 				   u32 clear_flags)
+ struct drm_gem_object *intel_bo_fbdev_create(struct intel_display *display, int size)
  {
--	bool clear_vram = mem_type_is_vram(dst->mem_type);
-+	bool clear_vram = is_devmem(bo, dst);
- 	bool clear_bo_data = XE_MIGRATE_CLEAR_FLAG_BO_DATA & clear_flags;
- 	bool clear_ccs = XE_MIGRATE_CLEAR_FLAG_CCS_DATA & clear_flags;
- 	struct xe_gt *gt = m->tile->primary_gt;
-@@ -1987,7 +2007,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 	if (!clear_bo_data && clear_ccs && !IS_DGFX(xe))
- 		clear_only_system_ccs = true;
+ 	return display->parent->bo->fbdev_create(display->drm, size);
+diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i915/display/intel_bo.h
+index 348f7fa669608..0410ee9c6d2e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_bo.h
++++ b/drivers/gpu/drm/i915/display/intel_bo.h
+@@ -34,6 +34,7 @@ struct drm_gem_object *intel_bo_framebuffer_lookup(struct intel_display *display
+ 						   const struct drm_mode_fb_cmd2 *user_mode_cmd);
  
--	if (!clear_vram)
-+	if (!clear_vram && dst->mem_type != XE_PL_STOLEN)
- 		xe_res_first_sg(xe_bo_sg(bo), 0, xe_bo_size(bo), &src_it);
- 	else
- 		xe_res_first(src, 0, xe_bo_size(bo), &src_it);
+ u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 stride);
++struct drm_gem_object *intel_bo_fbdev_bios_fb_takeover(struct drm_gem_object *obj);
+ struct drm_gem_object *intel_bo_fbdev_create(struct intel_display *display, int size);
+ void intel_bo_fbdev_destroy(struct drm_gem_object *obj);
+ int intel_bo_fbdev_fill_info(struct drm_gem_object *obj, struct fb_info *info,
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index c09246a9865cd..d171519caddfc 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -263,6 +263,50 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
+ 
+ }
+ 
++static struct intel_framebuffer *
++__intel_fbdev_fb_realloc(struct intel_display *display,
++			 const struct drm_framebuffer *orig_fb,
++			 struct drm_gem_object *obj)
++{
++	struct drm_framebuffer *new_fb;
++	struct drm_mode_fb_cmd2 mode_cmd = {
++		.flags = DRM_MODE_FB_MODIFIERS,
++		.width = orig_fb->width,
++		.height = orig_fb->height,
++		.pitches[0] = orig_fb->pitches[0],
++		.offsets[0] = orig_fb->offsets[0],
++		.pixel_format = orig_fb->format->format,
++		.modifier[0] = orig_fb->modifier,
++	};
++
++	new_fb = intel_framebuffer_create(obj, orig_fb->format, &mode_cmd);
++
++	if (IS_ERR(new_fb)) {
++		intel_bo_fbdev_destroy(obj);
++		return ERR_CAST(new_fb);
++	}
++
++	drm_gem_object_put(obj);
++	return to_intel_framebuffer(new_fb);
++}
++
++static struct intel_framebuffer *
++intel_fbdev_fb_takeover(struct intel_display *display,
++			struct intel_framebuffer *orig_fb)
++{
++	struct drm_gem_object *new_fb_obj;
++
++	new_fb_obj = intel_bo_fbdev_bios_fb_takeover(orig_fb->base.obj[0]);
++	if (IS_ERR(new_fb_obj))
++		return ERR_CAST(new_fb_obj);
++
++	if (orig_fb->base.obj[0] == new_fb_obj)
++		return orig_fb;
++
++	/* Different object, re-create an intel_framebuffer around it */
++	return __intel_fbdev_fb_realloc(display, &orig_fb->base, new_fb_obj);
++}
++
+ static bool bios_fb_ok(const struct intel_framebuffer *fb,
+ 		       const struct drm_fb_helper_surface_size *sizes)
+ {
+@@ -306,13 +350,26 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 
+ 	ifbdev->fb = NULL;
+ 
+-	if (fb && !bios_fb_ok(fb, sizes)) {
++	wakeref = intel_display_rpm_get(display);
++
++	if (fb && bios_fb_ok(fb, sizes)) {
++		struct intel_framebuffer *bios_fb =
++			intel_fbdev_fb_takeover(display, fb);
++
++		if (IS_ERR(bios_fb)) {
++			drm_dbg_kms(display->drm, "Re-using BIOS fb failed (%pe).", bios_fb);
++			bios_fb = NULL;
++		}
++
++		if (fb != bios_fb) {
++			drm_framebuffer_put(&fb->base);
++			fb = bios_fb;
++		}
++	} else if (fb) {
+ 		drm_framebuffer_put(&fb->base);
+ 		fb = NULL;
+ 	}
+ 
+-	wakeref = intel_display_rpm_get(display);
+-
+ 	if (!fb || drm_WARN_ON(display->drm, !intel_fb_bo(&fb->base))) {
+ 		drm_dbg_kms(display->drm,
+ 			    "no BIOS fb, allocating a new one\n");
+diff --git a/drivers/gpu/drm/i915/i915_bo.c b/drivers/gpu/drm/i915/i915_bo.c
+index 559341103ca7d..fe11c0be81013 100644
+--- a/drivers/gpu/drm/i915/i915_bo.c
++++ b/drivers/gpu/drm/i915/i915_bo.c
+@@ -150,7 +150,7 @@ static u32 i915_bo_fbdev_pitch_align(u32 stride)
+ 	return ALIGN(stride, 64);
+ }
+ 
+-bool i915_bo_fbdev_prefer_stolen(struct drm_i915_private *i915, unsigned int size)
++static bool i915_bo_fbdev_prefer_stolen(struct drm_i915_private *i915, unsigned int size)
+ {
+ 	/* Skip stolen on MTL as Wa_22018444074 mitigation. */
+ 	if (IS_METEORLAKE(i915))
+@@ -164,6 +164,17 @@ bool i915_bo_fbdev_prefer_stolen(struct drm_i915_private *i915, unsigned int siz
+ 	return i915->dsm.usable_size >= size * 2;
+ }
+ 
++static struct drm_gem_object *i915_bo_fbdev_bios_fb_takeover(struct drm_gem_object *obj)
++{
++	struct drm_i915_private *i915 = to_i915(obj->dev);
++
++	if (HAS_LMEM(i915) ||
++	    i915_bo_fbdev_prefer_stolen(i915, obj->size))
++		return obj;
++
++	return ERR_PTR(-EIO);
++}
++
+ static struct drm_gem_object *i915_bo_fbdev_create(struct drm_device *drm, int size)
+ {
+ 	struct drm_i915_private *i915 = to_i915(drm);
+@@ -262,6 +273,7 @@ const struct intel_display_bo_interface i915_display_bo_interface = {
+ 	.framebuffer_fini = i915_bo_framebuffer_fini,
+ 	.framebuffer_lookup = i915_bo_framebuffer_lookup,
+ #if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
++	.fbdev_bios_fb_takeover = i915_bo_fbdev_bios_fb_takeover,
+ 	.fbdev_create = i915_bo_fbdev_create,
+ 	.fbdev_destroy = i915_bo_fbdev_destroy,
+ 	.fbdev_fill_info = i915_bo_fbdev_fill_info,
+diff --git a/drivers/gpu/drm/i915/i915_bo.h b/drivers/gpu/drm/i915/i915_bo.h
+index 39ba62696550e..57255d052dd9a 100644
+--- a/drivers/gpu/drm/i915/i915_bo.h
++++ b/drivers/gpu/drm/i915/i915_bo.h
+@@ -4,12 +4,6 @@
+ #ifndef __I915_BO_H__
+ #define __I915_BO_H__
+ 
+-#include <linux/types.h>
+-
+-struct drm_i915_private;
+-
+-bool i915_bo_fbdev_prefer_stolen(struct drm_i915_private *i915, unsigned int size);
+-
+ extern const struct intel_display_bo_interface i915_display_bo_interface;
+ 
+ #endif /* __I915_BO_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
+index 98858a78e46a3..d7792b65ec150 100644
+--- a/drivers/gpu/drm/i915/i915_initial_plane.c
++++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+@@ -12,7 +12,6 @@
+ #include "gem/i915_gem_lmem.h"
+ #include "gem/i915_gem_region.h"
+ 
+-#include "i915_bo.h"
+ #include "i915_drv.h"
+ #include "i915_initial_plane.h"
+ 
+@@ -102,19 +101,6 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 			mem->min_page_size);
+ 	size -= base;
+ 
+-	/*
+-	 * If the FB is too big, just don't use it since fbdev is not very
+-	 * important and we should probably use that space with FBC or other
+-	 * features.
+-	 */
+-	if (IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
+-	    IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+-	    mem == i915->mm.stolen_region &&
+-	    !i915_bo_fbdev_prefer_stolen(i915, size)) {
+-		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of stolen, discarding\n");
+-		return NULL;
+-	}
+-
+ 	obj = i915_gem_object_create_region_at(mem, phys_base, size,
+ 					       I915_BO_ALLOC_USER |
+ 					       I915_BO_PREALLOC);
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index d78d893210c4f..43d05a58bcb47 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -9,6 +9,7 @@
+ #include "intel_fb.h"
+ #include "xe_bo.h"
+ #include "xe_display_bo.h"
++#include "xe_migrate.h"
+ #include "xe_pxp.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_wa.h"
+@@ -120,7 +121,7 @@ static u32 xe_display_bo_fbdev_pitch_align(u32 stride)
+ 	return ALIGN(stride, XE_PAGE_SIZE);
+ }
+ 
+-bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
++static bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ {
+ 	struct ttm_resource_manager *stolen;
+ 
+@@ -152,6 +153,64 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
+ 	return stolen->size >= (size * 2) >> PAGE_SHIFT;
+ }
+ 
++static struct drm_gem_object *xe_display_bo_fbdev_bios_fb_takeover(struct drm_gem_object *obj)
++{
++	struct xe_bo *orig_bo = gem_to_xe_bo(obj), *copy_bo;
++	struct xe_device *xe = xe_bo_device(orig_bo);
++	struct xe_validation_ctx ctx;
++	struct drm_exec exec;
++	int err;
++
++	if (IS_DGFX(xe) ||
++	    xe_display_bo_fbdev_prefer_stolen(xe, xe_bo_size(orig_bo)))
++		return obj;
++
++	copy_bo = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), xe_bo_size(orig_bo),
++					    ttm_bo_type_kernel,
++					    XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_SYSTEM | XE_BO_FLAG_GGTT,
++					    false);
++	if (IS_ERR(copy_bo))
++		return ERR_CAST(copy_bo);
++
++	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
++		struct dma_fence *fence;
++
++		err = drm_exec_lock_obj(&exec, &orig_bo->ttm.base);
++		drm_exec_retry_on_contention(&exec);
++		if (err)
++			break;
++
++		err = drm_exec_lock_obj(&exec, &copy_bo->ttm.base);
++		drm_exec_retry_on_contention(&exec);
++		if (err)
++			break;
++
++		err = dma_resv_reserve_fences(orig_bo->ttm.base.resv, 1);
++		if (err)
++			break;
++
++		err = dma_resv_reserve_fences(copy_bo->ttm.base.resv, 1);
++		if (err)
++			break;
++
++		fence = xe_migrate_copy(xe_device_get_root_tile(xe)->migrate, orig_bo, copy_bo,
++					orig_bo->ttm.resource, copy_bo->ttm.resource, false);
++		if (IS_ERR(fence)) {
++			err = PTR_ERR(fence);
++			break;
++		}
++
++		dma_resv_add_fence(copy_bo->ttm.base.resv, fence, DMA_RESV_USAGE_KERNEL);
++		dma_resv_add_fence(orig_bo->ttm.base.resv, fence, DMA_RESV_USAGE_BOOKKEEP);
++		dma_fence_put(fence);
++
++		return &copy_bo->ttm.base;
++	}
++
++	xe_bo_unpin_map_no_vm(copy_bo);
++	return ERR_PTR(err);
++}
++
+ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm, int size)
+ {
+ 	struct xe_device *xe = to_xe_device(drm);
+@@ -214,6 +273,7 @@ const struct intel_display_bo_interface xe_display_bo_interface = {
+ 	.framebuffer_fini = xe_display_bo_framebuffer_fini,
+ 	.framebuffer_lookup = xe_display_bo_framebuffer_lookup,
+ #if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
++	.fbdev_bios_fb_takeover = xe_display_bo_fbdev_bios_fb_takeover,
+ 	.fbdev_create = xe_display_bo_fbdev_create,
+ 	.fbdev_destroy = xe_display_bo_fbdev_destroy,
+ 	.fbdev_fill_info = xe_display_bo_fbdev_fill_info,
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.h b/drivers/gpu/drm/xe/display/xe_display_bo.h
+index c72056884ff41..6879c104b0b1f 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.h
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.h
+@@ -4,12 +4,6 @@
+ #ifndef __XE_DISPLAY_BO_H__
+ #define __XE_DISPLAY_BO_H__
+ 
+-#include <linux/types.h>
+-
+-struct xe_device;
+-
+-bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size);
+-
+ extern const struct intel_display_bo_interface xe_display_bo_interface;
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 0f86b73036d03..8988c07e61934 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -14,7 +14,6 @@
+ #include "intel_display_types.h"
+ 
+ #include "xe_bo.h"
+-#include "xe_display_bo.h"
+ #include "xe_display_vma.h"
+ #include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+@@ -102,13 +101,6 @@ initial_plane_bo(struct xe_device *xe,
+ 
+ 		phys_base = base;
+ 		flags |= XE_BO_FLAG_STOLEN;
+-
+-		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+-		    IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
+-		    !xe_display_bo_fbdev_prefer_stolen(xe, plane_config->size)) {
+-			drm_info(&xe->drm, "Initial FB size exceeds half of stolen, discarding\n");
+-			return NULL;
+-		}
+ 	}
+ 
+ 	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
+diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
+index 464fb588cb60f..fd799980c9419 100644
+--- a/include/drm/intel/display_parent_interface.h
++++ b/include/drm/intel/display_parent_interface.h
+@@ -58,6 +58,7 @@ struct intel_display_bo_interface {
+ 						     struct drm_file *filp,
+ 						     const struct drm_mode_fb_cmd2 *user_mode_cmd);
+ #if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
++	struct drm_gem_object *(*fbdev_bios_fb_takeover)(struct drm_gem_object *obj);
+ 	struct drm_gem_object *(*fbdev_create)(struct drm_device *drm, int size);
+ 	void (*fbdev_destroy)(struct drm_gem_object *obj);
+ 	int (*fbdev_fill_info)(struct drm_gem_object *obj, struct fb_info *info, struct i915_vma *vma);
 -- 
 2.55.0
 
