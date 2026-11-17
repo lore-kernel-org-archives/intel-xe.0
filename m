@@ -2,41 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D10606A329
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 10:11:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=aRMUPK9f
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6AF606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 10:39:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7473210E5B8;
-	Tue, 17 Nov 2026 10:11:52 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91B6910F602
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 10:11:45 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 5C61D404A1;
- Tue, 17 Nov 2026 10:11:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1632D1F000C5;
- Tue, 17 Nov 2026 10:11:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794910305;
- bh=wKZBv/0FkFSTWLf6gxkDnjm74+WfW3aKL5sDSEm5c+s=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=aRMUPK9fK0aVibwnIU02wVv4WAAzznt4fRRR2VM9rXotSUpxSMCWQkUifXUBQxUVG
- 5414Ag04nJJGLcFxhqb5ZGLbb6jWOFfniDDjRgEKw2ubcsVzLjYwrma2BejwnU0YmC
- /1Wvs+w9NeMhTVL139MY20praUVdYxXT+HvoCSuxf0UnhXrRoGTUhyP177QNgyfWWY
- Hn+Jx8xgZH/RtwNdrJqDTBejOk3QZxDw4kx9SqMvzo3wnK4jQjQlb7njk9wMIPIYG5
- xjdWvH7lCSSmujLUvCNf2xlc/7IjvjLhwJoSKmsoqX3Vaxi2S26dK4mC0Sxjl7IUXc
- QYXEWWJCe7YUA==
-Message-ID: <sashiko-outbox-218574@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/xe/ras: Add RAS config command to downgrade AER
- uncorrectable internal error
-To: "Riana Tauro" <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261117095701.404369-2-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BDA110F5EF;
+	Tue, 17 Nov 2026 10:39:55 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 340F510F5EF;
+ Tue, 17 Nov 2026 10:39:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1760184750144395959=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/ras=3A_Add_RAS_confi?=
+ =?utf-8?q?g_command_to_downgrade_AER_uncorrectable_internal_error?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Nov 2026 10:39:54 -0000
+Message-ID: <179491199420.36204.17088385328674922298@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
 References: <20261117095701.404369-2-riana.tauro@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 17 Nov 2026 10:11:41 +0000
+In-Reply-To: <20261117095701.404369-2-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,79 +33,332 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Low] drm/xe/ras: pcie_aer_is_native() precedes aer_cap check in
-  ras_usp_aer_init()
---
+--===============1760184750144395959==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 023f37be15fd1e9b09b34f30302beed059ea93be
-Author: Riana Tauro <riana.tauro@intel.com>
+== Series Details ==
 
-drm/xe/ras: Add RAS config command to downgrade AER uncorrectable internal =
-error
+Series: drm/xe/ras: Add RAS config command to downgrade AER uncorrectable internal error
+URL   : https://patchwork.freedesktop.org/series/178774/
+State : success
 
-This commit adds support for the XE_SYSCTRL_CMD_RAS_CONFIG mailbox command
-and uses it in ras_usp_aer_init() to request firmware to downgrade the USP
-AER uncorrectable internal error severity when the OS does not have native
-control of AER.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index 0fb891d00b36a..4f732e9723f9f 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-[ ... ]
-> @@ -508,17 +509,80 @@ static void get_offline_list(struct xe_device *xe)
-[ ... ]
->  static void ras_usp_aer_init(struct xe_device *xe)
->  {
->  	struct pci_dev *pdev =3D to_pci_dev(xe->drm.dev);
-> +	enum xe_ras_config config;
->  	struct pci_dev *usp;
->  	u16 aer_cap;
->  	u32 status;
-> +	int ret;
-> =20
->  	usp =3D xe_pci_get_usp_dev(pdev);
->  	if (!usp)
->  		return;
-> =20
-> +	if (!pcie_aer_is_native(usp)) {
-> +		config =3D XE_RAS_CONFIG_USP_AER_UNCOR_INTERNAL_NONFATAL;
-> +
-> +		ret =3D ras_config(xe, config, XE_RAS_CONFIG_ACTION_SET);
-> +		if (ret)
-> +			return;
-> +
-> +		/* Read the configuration */
-> +		ras_config(xe, config, XE_RAS_CONFIG_ACTION_GET);
-> +		return;
-> +	}
-> +
->  	aer_cap =3D pci_find_ext_capability(usp, PCI_EXT_CAP_ID_ERR);
->  	if (!aer_cap) {
->  		dev_warn(&usp->dev, "AER capability unavailable\n");
+CI Bug Log - changes from xe-6157-db48dbf452968dc67982a615cd37cd54fe774049_BAT -> xe-pw-178774v1_BAT
+====================================================
 
-[Severity: Low]
-Should pci_find_ext_capability(usp, PCI_EXT_CAP_ID_ERR) be checked before
-pcie_aer_is_native(usp)?
+Summary
+-------
 
-pcie_aer_is_native() returns 0 whenever usp->aer_cap is 0, before checking
-host->native_aer.  If usp lacks the AER capability on a system with native
-OS AER control, ras_usp_aer_init() sends the firmware RAS config command
-instead of logging the warning and returning, and the !aer_cap check below
-becomes unreachable.
+  **SUCCESS**
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261117095701.4043=
-69-2-riana.tauro@intel.com?part=3D1
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  Additional (1): bat-nvls-2 
+  Missing    (1): bat-nvls-1 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-178774v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@eof:
+    - bat-nvls-2:         NOTRUN -> [SKIP][1] ([Intel XE#8742]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@fbdev@eof.html
+
+  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
+    - bat-nvls-2:         NOTRUN -> [SKIP][2] ([Intel XE#8757])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-nvls-2:         NOTRUN -> [SKIP][3] ([Intel XE#8756] / [Intel XE#8783]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-nvls-2:         NOTRUN -> [SKIP][4] ([Intel XE#8761] / [Intel XE#8773])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-nvls-2:         NOTRUN -> [SKIP][5] ([Intel XE#8755]) +13 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-nvls-2:         NOTRUN -> [SKIP][6] ([Intel XE#8758] / [Intel XE#8784]) +2 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_evict@evict-small-multi-vm:
+    - bat-nvls-2:         NOTRUN -> [SKIP][7] ([Intel XE#8777]) +9 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_evict@evict-small-multi-vm.html
+
+  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
+    - bat-nvls-2:         NOTRUN -> [SKIP][8] ([Intel XE#8744]) +1 other test skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+
+  * igt@xe_exec_balancer@no-exec-virtual-basic:
+    - bat-nvls-2:         NOTRUN -> [SKIP][9] ([Intel XE#8741]) +17 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_exec_balancer@no-exec-virtual-basic.html
+
+  * igt@xe_exec_multi_queue@many-queues-basic-smem:
+    - bat-nvls-2:         NOTRUN -> [SKIP][10] ([Intel XE#8377]) +13 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_exec_multi_queue@many-queues-basic-smem.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-nvls-2:         NOTRUN -> [SKIP][11] ([Intel XE#8746])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-nvls-2:         NOTRUN -> [SKIP][12] ([Intel XE#8792])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
+    - bat-nvls-2:         NOTRUN -> [SKIP][13] ([Intel XE#8791] / [Intel XE#8792])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - bat-nvls-2:         NOTRUN -> [SKIP][14] ([Intel XE#9657])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-nvls-2:         NOTRUN -> [SKIP][15] ([Intel XE#8791])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-nvls-2:         NOTRUN -> [SKIP][16] ([Intel XE#8747])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-nvls-2:         NOTRUN -> [SKIP][17] ([Intel XE#8748])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-nvls-2:         NOTRUN -> [SKIP][18] ([Intel XE#8743])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-nvls-2:         NOTRUN -> [SKIP][19] ([Intel XE#8745])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#8377]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377
+  [Intel XE#8741]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741
+  [Intel XE#8742]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8742
+  [Intel XE#8743]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743
+  [Intel XE#8744]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744
+  [Intel XE#8745]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745
+  [Intel XE#8746]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746
+  [Intel XE#8747]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747
+  [Intel XE#8748]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748
+  [Intel XE#8755]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8755
+  [Intel XE#8756]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8756
+  [Intel XE#8757]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757
+  [Intel XE#8758]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8758
+  [Intel XE#8761]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8761
+  [Intel XE#8773]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8773
+  [Intel XE#8777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777
+  [Intel XE#8783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8783
+  [Intel XE#8784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8784
+  [Intel XE#8791]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791
+  [Intel XE#8792]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792
+  [Intel XE#9657]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657
+
+
+Build changes
+-------------
+
+  * Linux: xe-6157-db48dbf452968dc67982a615cd37cd54fe774049 -> xe-pw-178774v1
+
+  IGT_9196: 9196
+  xe-6157-db48dbf452968dc67982a615cd37cd54fe774049: db48dbf452968dc67982a615cd37cd54fe774049
+  xe-pw-178774v1: 178774v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/index.html
+
+--===============1760184750144395959==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/ras: Add RAS config command to downgrade AER uncorrectable internal error</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178774/">https://patchwork.freedesktop.org/series/178774/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6157-db48dbf452968dc67982a615cd37cd54fe774049_BAT -&gt; xe-pw-178774v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>Additional (1): bat-nvls-2 <br />
+  Missing    (1): bat-nvls-1 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-178774v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8742">Intel XE#8742</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8757">Intel XE#8757</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_flip@basic-flip-vs-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8756">Intel XE#8756</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8783">Intel XE#8783</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8761">Intel XE#8761</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8773">Intel XE#8773</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8755">Intel XE#8755</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8758">Intel XE#8758</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8784">Intel XE#8784</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-multi-vm:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8777">Intel XE#8777</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8744">Intel XE#8744</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@no-exec-virtual-basic:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_exec_balancer@no-exec-virtual-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8741">Intel XE#8741</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@many-queues-basic-smem:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_exec_multi_queue@many-queues-basic-smem.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377">Intel XE#8377</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8746">Intel XE#8746</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8792">Intel XE#8792</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657">Intel XE#9657</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8791">Intel XE#8791</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8747">Intel XE#8747</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8748">Intel XE#8748</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8743">Intel XE#8743</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-nvls-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178774v1/bat-nvls-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8745">Intel XE#8745</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6157-db48dbf452968dc67982a615cd37cd54fe774049 -&gt; xe-pw-178774v1</li>
+</ul>
+<p>IGT_9196: 9196<br />
+  xe-6157-db48dbf452968dc67982a615cd37cd54fe774049: db48dbf452968dc67982a615cd37cd54fe774049<br />
+  xe-pw-178774v1: 178774v1</p>
+
+</body>
+</html>
+
+--===============1760184750144395959==--
