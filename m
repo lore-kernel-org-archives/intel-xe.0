@@ -2,102 +2,95 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72588606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497F1606A320
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=BUqpzaBU
+	dkim=pass (2048-bit key) header.d=gourry.net header.i=@gourry.net header.a=rsa-sha256 header.s=google header.b=QoEJ9Io8
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC2110FC2A;
-	Wed, 18 Nov 2026 13:04:10 +0000 (UTC)
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012047.outbound.protection.outlook.com [52.101.43.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F3610E835;
- Mon, 16 Nov 2026 16:11:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ifwYybOTsRd8XXbHSahSAp1fUH7Zmh9cnr4dKZZBV8noBXQGJDh5NOcYiCVllXyXIV1puvDmQvz0FHMt3wdgfxdQYjxgknyXeyQ3ruqtgjwa0+AWtCR0bphlhh2j4kKLO2Pp7i6cF3Yat8PPhreQ+a67Mnan5UlHSfzZ6Iz4DVjDqAWNU3yYXW2fGLspu8WwXOixvcMdql8cIu/F2nhkIlA8kzuxtJHZ5tryrV+XjhwTdRUA2fjN9LuaZGHVdDKX0Yqb+46pU7DinpJMKdiQbsYs61WjGchlCMqkw7XbcFqTEJbHqhi+kmMyFcb27pVgcpKxzB1qcKWM96ZUpRNgiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1CYGVv49n4roaq+kYmssLi+IvD7btNE0VFtk2rNMQcs=;
- b=PwHRW2y97u+r9xV5lJrzcCf7RRLuSsvE2ZAmmSli121S+NTR+7+vEv31bwPLhRXLIGHw/pI2PAVPMDNMRfA//G2bNCN9m9YZoimipfOCnbuumbny7VXfiA87qVjsCJKY9iuMCUJUneeO9kz3Xr1QWIehbXYGDa/LIfBzcFeZ1futtevXB1jPKeKOYwj+Qrxy6x5lh7ztgylKa+LzP/Y4N7BWfvSl5Svi8ER67O6dfa7+1mmdV9zaCcRmY6fiUA+BR7qyNupcGEbCNjbxfcvh2jOezR6pJF24KpSMUoHY1Chi0qhtIZonm9oecNHm/cGfDQcfPuN3J4Hq/vW4YuRZbw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=lists.freedesktop.org smtp.mailfrom=amd.com; 
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1CYGVv49n4roaq+kYmssLi+IvD7btNE0VFtk2rNMQcs=;
- b=BUqpzaBUEr4RdJEvHHn0b0ldpqV3MNYi85UHYT5VrW4+tNsdk95SEG+Pfwjhhics9dgUY/+CM/IR3yMSIsHz34RvdrFSYkMN15nZ4RhQkomLb569p9VTAyxSxOpv7ZRZ4ojCUjVtVUHwLcPrCwMg93JKOxPUsDToEXeeHszjRTs=
-Received: from BLAPR05CA0020.namprd05.prod.outlook.com (2603:10b6:208:36e::23)
- by SA1PR12MB7101.namprd12.prod.outlook.com (2603:10b6:806:29d::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Mon, 16 Nov
- 2026 16:11:16 +0000
-Received: from LV8PEPF0000005C.namprd02.prod.outlook.com
- (2603:10b6:208:36e:cafe::23) by BLAPR05CA0020.outlook.office365.com
- (2603:10b6:208:36e::23) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.639.7 via Frontend Transport; Mon, 16
- Nov 2026 16:11:16 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- LV8PEPF0000005C.mail.protection.outlook.com (10.167.245.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.615.4 via Frontend Transport; Mon, 16 Nov 2026 16:11:16 +0000
-Received: from alysaliu-dev.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Mon, 16 Nov
- 2026 10:11:15 -0600
-From: William Palacek <William.Palacek@amd.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>, Sanjay Yadav
- <sanjay.kumar.yadav@intel.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- <linux-kernel@vger.kernel.org>, William Palacek <William.Palacek@amd.com>
-Subject: [PATCH v3 2/2] gpu/tests/buddy: add range-biased allocation
- performance test
-Date: Mon, 16 Nov 2026 11:11:02 -0500
-Message-ID: <1cd56b1074ceee96ad4cfb59122d09315a62fa78.1794845083.git.William.Palacek@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1794845083.git.William.Palacek@amd.com>
-References: <cover.1794845083.git.William.Palacek@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA2F010FC2E;
+	Wed, 18 Nov 2026 13:04:12 +0000 (UTC)
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
+ [209.85.160.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B08210E584
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 08:06:04 +0000 (UTC)
+Received: by mail-qt1-f182.google.com with SMTP id
+ d75a77b69052e-53639b8903bso8473221cf.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 00:06:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gourry.net; s=google; t=1794902764; x=1795507564; darn=lists.freedesktop.org;
+ h=message-id:date:references:in-reply-to:cc:to:from:subject
+ :content-transfer-encoding:content-type:mime-version:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=phkLAVe2PWOa6jK368c9XEugs4HUA+7j+Ko3Mk6IPVk=;
+ b=QoEJ9Io8bLXap+t4spAFzyhRBTH2su4UYf5wPX2QVEtPaFTAzFFMJscYEeQiZ00079
+ ZgnA0CnIULrHJXtsxa4mkhN1+A/OnwKBq9ynNNLcDy8muMfcCg2aKzcM6I3+qw7URmAk
+ pxJkSUJJ/CWrl0EzD1ZDkTYern8IMqgjtWsVXzEkr0fnVg6RJwQzvuycS+vwUfUcu2Dn
+ MZoXCRbacWKSr+5namc8pU63gGtG7EhYNscZ/EJqnlriUaubrFjtWjntbf/8fkM/w5/w
+ Ug7Pk5YR+/IpIf8zm+m15y4WrXnP6YqTOEQe+5lcS5bPZcAXLB5c0JSdLwsjGw/HKfWi
+ +3ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1794902764; x=1795507564;
+ h=message-id:date:references:in-reply-to:cc:to:from:subject
+ :content-transfer-encoding:content-type:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=phkLAVe2PWOa6jK368c9XEugs4HUA+7j+Ko3Mk6IPVk=;
+ b=VMOKXfvVt1DS5qgoFMKkJpMPAY7BMu93Lk7zW4BcTxMEjVAiF85JhxlqrBEQyrDBEI
+ p9Y6VW9sAGM81VA4iuUpYNCqYMsKVCP8q3EYS007GBP8YZ6HuivQ2Jz2JJwPf8ega2Ye
+ H4MJ7chjtMRtwfVcjjD5/x6AHVt9SeIuVj6w+rlchFYlhf1d1kjWyowjdvao97y5qzY+
+ /l39rGoZw8toy14jf5XKx1r9D2ffSuWgjQIQzupxDXco74dnL2mLxHvRBxp04qgsJ2SA
+ quZ55LP68Ebub2Pyd5+qrDo5k53UfGkDNeqxGsGhMRbCfKjarzQNuYjE3wDBvqEEn5OQ
+ 33QQ==
+X-Forwarded-Encrypted: i=1;
+ AL+hErH04Yv7P1EtUTFLNgSMP8/+56GJ/25KvDU0W91fC9tLNjPRK8fyUOx/aZ3cfqXkdyfYfsQNaqciBg==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z9fzSfFK2SVdt2fj3IQvtDIjIeQ2o1P4oe+49juZXm018qcRpYh
+ 7l1XndVKRbrEOAqYeEq+r3ngW5D5r/4Y2JHJSHPGdwBfVYrKv/Zu5Xr96TbbS8ZGKDU=
+X-Gm-Gg: AYBFou1jk6aW3CQc6tcnbvfmf2lBPrUrBIJXArGJQbwsXT97p0rk/2cPO1SfddOelxT
+ nciZk9zYt1van/8SeuW/m+ViGL+oggLvbydxmRNZimax/0lxFi9GL8Suxd/rd+99INXFUOGBbc9
+ DxZZtKyzdNjNFgSEwjjLe3SA4fGALtXIA1IVVRio2z7ExreFLCgYb2st2kKfACQWN1ukMvfrAsy
+ 4e4uVTHuc5iUnbApwvugmjhqNkKU8jlqIF4dD/u7ZRwQ3vg5siH+cfhqXPGIjcGo0ZWA1njgLE/
+ /b6T0eyuiEkQCVBTsr2HXFc4BRB8/bDUvBCrL9zyo+8yoeqiP5avjLIlgiNktPSNu6aLMcHmr4y
+ M9n1U+379hVGNAk5zo0VVAZxFxA8qnRJjpy1Eo4Pn0Jg7qt+6sgwf5HVtZLjz1+0JlSDyexZ7JY
+ 7Z4+o3RsOBGqmx78RgJ3D0cHdmHU0kdbXkuUN0Mo38sZuQQULLFvailu8UMtNg4p5KtZqWWqqXd
+ pX02uvhtUENFKVDgy0b+krpaaWTfQgYh+w0N64QBcTpNNkyllRn6ZA6XG4nz6e4qDFPi/tlu9Az
+ 48izGPZcTpHjm8DXki9xueW1tVeTxnnxG1XQiQ7armeqmAIIYEQFDDhIFhSVrh0jXYrmj+EBA2Y
+ o4rAUw07NIrcRH+Kv4vCBQ/weZyp0
+X-Received: by 2002:a05:622a:5a17:b0:55d:31ac:d86f with SMTP id
+ d75a77b69052e-55d494553e7mr26563541cf.13.1794902763822; 
+ Tue, 17 Nov 2026 00:06:03 -0800 (PST)
+Received: from [192.168.50.231] (pool-71-191-145-202.washdc.fios.verizon.net.
+ [71.191.145.202]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-91f23d7fad3sm105812516d6.29.2026.11.17.00.06.02
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Nov 2026 00:06:03 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PEPF0000005C:EE_|SA1PR12MB7101:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e803baa-74d6-4385-d1bd-08df43fc3e4e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|376014|1800799024|82310400026|36860700016|10067099003|56012099006|11063799006|261026121527099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: YgqkuAhnuq0JXowT/Hdu4+TKtWmzzMHp4qkoXLUYeVCSVZWTmJvBSZoT1c4IFt25TCst4Dhyx+zi+LgW/flhFLuNW92FMXU6Frl+DmxWQUjteGl7oelg0lxAql9V5QSRYmnidi1013VSe54EibTliryYi5F4mu4I0nk0vSOR/28YVPsgAgIQIJ+1f/y/0uMQGPMPE8SlO/DZ/553T3HXe8OwZpEq6xAj4axelqjb8ibtbPtN6KItkHfPIQYmF74sHr03KaVGpVuYwQPhQwb2v+5XpWFrmLubBBjGe0mmXW6cC8byalINSs/4k/4A+uykrztnC5DJNC75zw+imKXSHv8WOfFITnVt4mrEAmr2v7X3FJfHO2YeFPqSG16uSzjh/GdXg6Q3QVmIZTTTEtEMFXVOYIVQL8AYFGih+4ND555WgDg1ZDv9DlwrrCiHrj6xM1gZbcFypDwgqKmfjwzzQfMfEy6/NDKLWcj2g+ND2sdvv//yKc1M+GlAtQUA3FB98gP44Gj2BRnjtZPPlFO0Yt9la7G4u+GnfoyDTR1Q2CcEshw6i3PcyBzYc1s0GG5nzbbIqEvkbB7SfuHO4jci2Cu0fQ/OSBYmusIyZp/HNhDDtwaccJCqHNFD7vy8Kv6IpQiCDPeqCzsc/XnYNn+TSsOef3le1UWmqt3BMt7giqCYkWbVlFV1vKavi7DwO4NLTKY15ror+TykVWXvXAUv7A==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(23010399003)(376014)(1800799024)(82310400026)(36860700016)(10067099003)(56012099006)(11063799006)(261026121527099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: mOfhm+qX2dPMbDGvDX3Ya1Ru+C2HaauxC5eE+wT9OH+EoLXJDhBuwOKQXlGnPpZh6Wr4PgX2cmPndFmmiKpfOXgHFGoyI4ZrhiSTPJOdGJg+M07UilWHosjM0aqfY2wWcBEudxGb12D9sb225G4dTXSraw0D6U2l4I8gKq64sea4/xmo8pO66SU7nQgQxkXfrsPdEHvKNcFS35anha/DlgO/VUyobBwQnQ4XbkuFBxR/YFYQIgOEnCn3kGkecAFIQCalH5AwxR9pHypQ9Mc4VUReH4SeC0xoSVhKjoPV64TYqYckSZAx0QjgEt+Kf3HKTuL2amnEe52uamvNmEW+edo3LnQlaFWRq7QGUT5LF6vJubiUFAi3Mjnm1nhIJ+3SsITtE32AdaQz3hGBZJn/NZM/EjSM9u82097IPKBKHuJLz+gn72DHNgmme5x2TLCl
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2026 16:11:16.5650 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e803baa-74d6-4385-d1bd-08df43fc3e4e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: LV8PEPF0000005C.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7101
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] mm/hmm: skip NUMA balancing on protnone faults
+From: "Gregory Price (Meta)" <gourry@gourry.net>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: "Gregory Price (Meta)" <gourry@gourry.net>, 
+ "David Hildenbrand (Arm)" <david@kernel.org>, 
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Matthew Auld <matthew.auld@intel.com>, linux-mm@kvack.org, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?utf-8?q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>, 
+ Leon Romanovsky <leon@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
+ John Hubbard <jhubbard@nvidia.com>
+In-Reply-To: <avvJZtN88gLXA6Uz@nvdebian.thelocal>
+References: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
+ <b32fb02a-68b4-4db9-83dd-254147dbf215@kernel.org>
+ <1993e931e6a4b0cda5c04e72b1a8d5fb924f950a.camel@linux.intel.com>
+ <9ec3e8b9-064a-47a7-8d00-566ff371b846@kernel.org>
+ <179460319801.482102.15329919214055018110.b4-reply@b4>
+ <avuN2eIrlqrO0u6O@nvdebian.thelocal>
+ <179487347201.482102.6428415219993123805.b4-reply@b4>
+ <avvJZtN88gLXA6Uz@nvdebian.thelocal>
+Date: Tue, 17 Nov 2026 03:06:02 -0500
+Message-Id: <179490276245.482102.13112734238511841101.b4-reply@b4>
+X-Mailer: b4 0.17-dev
 X-Mailman-Approved-At: Wed, 18 Nov 2026 13:03:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -109,80 +102,130 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Fill a 1 GiB range of a 4 GiB manager top-down with 64 KiB range-biased
-allocations that request cleared memory, as amdgpu does for KFD VRAM on
-NPS4 partitions, check that each one is placed directly below the
-previous one, and report the time taken: 1103 ms with the walk, 2 ms
-with the free tree lookup.
+On 2026-11-17 14:51 +1100, Alistair Popple wrote:
+> On 2026-11-17 at 10:57 +1100, "Gregory Price (Meta)" <gourry@gourry.net> wrote...
+> > 
+> > Ah, I follow.  I'm still working through the performance implications of
+> > mmu_notifiers in the presence of PROT_NONE faults, but if i'm
+> > understanding correctly it tracks that you'd say it's incompatible.
+> 
+> Incompatible is probably not the correct term as it still works. It's just that
+> GPU faults are really expensive, and to be avoided at all costs. So having NUMA
+> balancing running around randomly unmapping pages the GPU is using (regardless
+> of whether or not they are on the device) results in more GPU faults and
+> therefore a huge perf impact for basically no (or in fact sometimes negative)
+> gain.
+> 
+> > I presume here the driver needs a global view of memory (or at least all
+> > memory it can potentially DMA), rather than simply just a subset
+> > (some set of VMAs)?
+> 
+> The basic process is this:
+> 
+> * GPU needs to access some user space virtual address (eg. allocated with mmap/malloc)
+> * Therefore GPU driver needs to setup GPU page tables to point to the physical
+>   memory[1] backing the user space virtual address
+> * To find the physical address the GPU driver uses hmm_range_fault() on the
+>   range, possibly faulting pages in if required (ie. if CPU PTE permissions
+>   don't match what's required).
+> * hmm_range_fault() relies on mmu_notifiers for synchronisation with CPU PTE state.
+> * An mmu_notifier firing causes a driver to do two things:
+>   a) Must invalidate any GPU page tables / TLBs mapping the notified virtual address.
+>   b) Increments a sequence number for any concurrent hmm_range_faults(), which must
+>      retry as their view of CPU PTEs is now out-dated. This is the problem
+>      this patch series hits - the migration on fault causes an mmu_notifier to fire
+>      resulting in a hmm_range_fault() retry and associated overhead.
+> 
+> So the driver doesn't need a global view of memory, just a view of the memory
+> the GPU needs, or likely needs, to access. Determining that depends on the
+> driver - some might require pre-registration of the ranges (eg. via an ioctl)
+> prior to launching work whilst others might wait until the GPU work faults on an
+> address not in the GPU page tables. Or some combination thereof.
+> 
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-Signed-off-by: William Palacek <William.Palacek@amd.com>
----
+I feel like i'm missing something here.
 
-Notes:
-    v3:
-    - times for the new base and lookup (1103 ms, 2 ms)
-    
-    v2:
-    - check top-down placement
+Why can't this be solved by just setting MPOL_LOCAL (or any bind policy)
+without MPOL_F_NUMA_BALANCING on the VMA to prevent the VMA from being
+NUMA scanned in the first place?
 
- drivers/gpu/tests/gpu_buddy_test.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+mpol_misplaced() already checks whether it should migrate with the
+MPOL_F_MOF flag:
 
-diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/gpu_buddy_test.c
-index 9aaca2fc6a02..e48a99136e68 100644
---- a/drivers/gpu/tests/gpu_buddy_test.c
-+++ b/drivers/gpu/tests/gpu_buddy_test.c
-@@ -283,6 +283,32 @@ static void gpu_test_buddy_fragmentation_performance(struct kunit *test)
- 	gpu_buddy_fini(&mm);
- }
- 
-+static void gpu_test_buddy_range_bias_performance(struct kunit *test)
-+{
-+	struct gpu_buddy_block *block;
-+	LIST_HEAD(allocated);
-+	struct gpu_buddy mm;
-+	ktime_t t0;
-+	u64 i;
-+
-+	/* Fill one NPS4-like quarter top-down with cleared 64 KiB allocations. */
-+	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, SZ_4G, SZ_4K));
-+	t0 = ktime_get();
-+	for (i = 1; i <= SZ_1G / SZ_64K; i++) {
-+		KUNIT_ASSERT_FALSE(test, gpu_buddy_alloc_blocks(&mm, SZ_1G, SZ_2G, SZ_64K,
-+								SZ_64K, &allocated,
-+								GPU_BUDDY_RANGE_ALLOCATION |
-+								GPU_BUDDY_CLEAR_ALLOCATION |
-+								GPU_BUDDY_TOPDOWN_ALLOCATION));
-+		block = list_last_entry(&allocated, struct gpu_buddy_block, link);
-+		KUNIT_ASSERT_EQ(test, gpu_buddy_block_offset(block), SZ_2G - i * SZ_64K);
-+	}
-+	kunit_info(test, "Range-biased fill took %lld ms\n",
-+		   ktime_ms_delta(ktime_get(), t0));
-+	gpu_buddy_free_list(&mm, &allocated, 0);
-+	gpu_buddy_fini(&mm);
-+}
-+
- static void gpu_test_buddy_dirty_tracker_performance(struct kunit *test)
- {
- 	struct gpu_buddy_block *block, *tmp;
-@@ -1701,6 +1727,7 @@ static struct kunit_case gpu_buddy_tests[] = {
- 	KUNIT_CASE(gpu_test_buddy_alloc_range_clear_guard),
- 	KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
- 	KUNIT_CASE_SLOW(gpu_test_buddy_dirty_tracker_performance),
-+	KUNIT_CASE_SLOW(gpu_test_buddy_range_bias_performance),
- 	KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
- 	KUNIT_CASE(gpu_test_buddy_offset_aligned_allocation),
- 	KUNIT_CASE(gpu_test_buddy_subtree_offset_alignment_stress),
+    pol = get_vma_policy(vma, addr, folio_order(folio), &ilx);
+    if (!(pol->flags & MPOL_F_MOF))
+        goto out;
+
+and task_numa_work never scans VMA's without MOF:
+
+    for (; vma; vma = vma_next(&vmi)) {
+        if (!vma_migratable(vma) || !vma_policy_mof(vma) ... )
+                trace_sched_skip_vma_numa(mm, vma, NUMAB_SKIP_UNSUITABLE);
+                continue;
+        }
+    ...
+    }
+
+So any stray (already scanned) pages at least won't migrate, and
+NUMA balancing skips re-arming for VMAs that don't set MPOL_F_MOF.
+
+You'd only have to worry about a user setting a mempolicy after
+it becomes hmm tracked - and i think we could work around that
+by locking a VMA policy in place.
+
+Gets a little tricky for pagecache i suppose, but the plumbing
+exists to handle this.
+
+Anyway, MOF gets set is if you inherit the default policy:
+
+void __init numa_policy_init(void)
+{
+...
+    for_each_node(nid) {
+        preferred_node_policy[nid] = (struct mempolicy) {
+            .refcnt = ATOMIC_INIT(1),
+            .mode = MPOL_PREFERRED,
+            .flags = MPOL_F_MOF | MPOL_F_MORON,
+            .nodes = nodemask_of_node(nid),
+        };
+    }
+...
+}
+
+or you set MPOL_F_NUMA_BALANCING on the policy:
+
+static inline int sanitize_mpol_flags(int *mode, unsigned short *flags)
+{
+...
+    if (*flags & MPOL_F_NUMA_BALANCING) {
+        if (*mode == MPOL_BIND || *mode == MPOL_PREFERRED_MANY)
+            *flags |= (MPOL_F_MOF | MPOL_F_MORON);
+        else
+            return -EINVAL;
+    }
+...
+}
+
+If the memory is tmpfs/shmem, you can even set a default mempolicy at
+mount time that does not set numa balancing.  If we need that for
+another filesystem, it can be added trivially.
+
+If there's a need for a driver or hmm to update a VMA mempolicy as part
+of the hmm runtime process so userland doesn't have to know about it
+under the hood - i think we could do that too.
+
+Am I missing something?  Seems we can just rid hmm-tracked regions of
+NUMA Balancing PROT_NONE faults entirely instead of ignoring them.
+
+~Gregory
+
 -- 
-2.43.0
+~Gregory
 
