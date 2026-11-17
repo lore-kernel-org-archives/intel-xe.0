@@ -2,45 +2,155 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E895606A335
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C732606A31C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Nov 2026 15:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=akJKf4vk
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IWImwhQx;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=jG2L+Pxh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF51910E63E;
-	Tue, 17 Nov 2026 15:25:36 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36C9E10E632;
- Tue, 17 Nov 2026 15:25:30 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 642F4635AD;
- Tue, 17 Nov 2026 15:25:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9FE9B1F000C7;
- Tue, 17 Nov 2026 15:25:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1794929129;
- bh=geAZF0Il5WD1+26bR5uT5bi5MaP/KecTvi/DYJOMYhE=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=akJKf4vkqfnvJ5nLABh28AJjppT5zPwlLXoXjZQB/2wXkKK4pB8bQUdHm8STv03w2
- v5x2dHdQszcgDmB2oabeMJALqxf0f2VyWG8bpxGzpFr+hskhv12JpBI7BKlsXcsjGX
- 8e2nkqOgP6TX6bFXvqLEEKhIzUiL7UmgMpLnDsaL9c+jVZyknVNz00Y7tUtCI98DHE
- WcuE8fpSI3e5Zvbsj2hE1Pt7Hk/vt8UnlBgl+Ys9QUFb/stbOWK965mTMusgbm5xl9
- QeIzgxmhoDStywlrGlJPhfmvcsG8w060cX+mRuD4VnD5AZ9iOnJuWY0CWqVqHwANjx
- 1jpS9XNscsKPg==
-Message-ID: <sashiko-outbox-219062@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v2 1/2] PM: runtime: fix stub pm_runtime_get_if_active()
- for !CONFIG_PM
-To: Frank.Li@oss.nxp.com
-Cc: linux-usb@vger.kernel.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-hwmon@vger.kernel.org, imx@lists.linux.dev, Frank.Li@kernel.org,
- media-ci@linuxtv.org
-In-Reply-To: <20261116152513.2676573-1-Frank.Li@oss.nxp.com>
-References: <20261116152513.2676573-1-Frank.Li@oss.nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 17 Nov 2026 15:25:28 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13C7D10E07B;
+	Tue, 17 Nov 2026 15:27:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95AA910E07B
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 15:27:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794929243; x=1826465243;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=vWIjYSmqFFN5oyQZwF/fvNs2U9rVfztH1rMNa0J7qsA=;
+ b=IWImwhQxqFMLFLFt97krtU3Ktsjt0UUUhCw0Pvf05ss9fEVuw01aNTq0
+ Xig5YDFttJ+l4Zjj2CgdTYh9UQXTBi3aXA4c3eJGXqoZq/+LjzmC1kJTM
+ y1vFvUqw4ooP9hjgz7pCZnyqEGJlc7CigoxkOZhFQyQ6vre8p5vpuiId5
+ bjBOow+1V4x7sMG1/IoFVw8yUdl6tt6CWzB2OH3PLsEvzyjB8gf0DmAjx
+ F+7B4QOVQ4sZ0uqdOAzBndUtDqDtQzcgPf7go/4Ok7OvAGHjZgm75Gxxi
+ hmDByYyi874nEuSPS35X7BQxBIqNHyrV+jRe3taqQTFSM2L8TphUFM106 A==;
+X-CSE-ConnectionGUID: z3NRM+U6TS+975eITuNUMA==
+X-CSE-MsgGUID: FTsPcUH2SBa9LiR/I5/Cag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3602243"
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="3602243"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 07:27:22 -0800
+X-CSE-ConnectionGUID: uBASZmwrQuCucgY3QBkhwA==
+X-CSE-MsgGUID: QT+4vTj0Sm6UzpXn4apNzQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,218,1787036400"; 
+   d="scan'208";a="9999184"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 07:27:22 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 17 Nov 2026 07:27:21 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Tue, 17 Nov 2026 07:27:21 -0800
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.21) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Tue, 17 Nov 2026 07:27:21 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iOfyXGNCSAPC4YejqB+XDcm83aKlm5laAfosJVvDeM1u4iuVzf7jVrjelN66L0uNzq+lCNyqEO/BN+yp8chzkTd61l8o6s3FxMnZS24R6RljITM9pvDjavELq63Z98rNxymV1WOFj/RbVAW83Jh0mx2GDT5xfeqeUgViKeDJjCWrc7c9MZs2H3hH0h5TBtkIrsnd0gA9ZPWHPNIhvenq3deJnX1AlfdJ7t7cOlMmzIyWuNt++IW2JJ/kNElvGs7l6x2whKDN7e7EDtMelJBD386YXNUAtv/UU6fhiKXf8Sq/JsATcFdZdSpJee4n6QfgBttJdsDSoEGwilxVkO1LKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=q2/vaBVKDLP3qhsLKFZZCIWDxBCr31II82DAJFtU5RI=;
+ b=HV/4K64hS60ASATz06vGTtT/Mnj+gjwl8FY3qFmSnNXkGQ/2CK1gbpQOVhiWSYCYKbceUVilS3HpSb8mTQdlJPGMDWO9SaKFh6XedbsQ4zneWkrcAEYRRDYp4Mq83xT9BfTLbyezJPBK8603bA8zE2//8xsZv+SlLNIv9L91mNQNjt3W1EBtskY1napAa62b+GEXDMhafRzDarbSyzagxJzj62TJppeLVdbVnVR9yOd4RaK79UlhW5G5qphk7wrfUbkRpTYPjPinMusr96FEKoSo0zMNDKBCXIAFv8qQG8KYfTXB8PbVWHPpeYv4x4f15RjCMTMoQNeSYs1AmiRnTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q2/vaBVKDLP3qhsLKFZZCIWDxBCr31II82DAJFtU5RI=;
+ b=jG2L+PxhwL3p0oq2NMV+ed7/vjpga1qkmsPACcfPdOkQB9TtIrVZbA1Q+2iB1yekxsqOJ5SZMRQ/qY+4RmPpBhYHuKqeTE3Nq2lAeXdqXTAeL6y8WXP8CkemRU0/9GuWDGqeZBsDpBDQ/vhiu2/lfscphQQkVsRLAhJg6ejbaI0=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com (2603:10b6:208:441::12)
+ by CYYPR11MB8387.namprd11.prod.outlook.com (2603:10b6:930:c8::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Tue, 17 Nov
+ 2026 15:27:18 +0000
+Received: from IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565]) by IA0PR11MB7187.namprd11.prod.outlook.com
+ ([fe80::be96:3f58:953d:6565%4]) with mapi id 15.21.0615.013; Tue, 17 Nov 2026
+ 15:27:18 +0000
+Date: Tue, 17 Nov 2026 10:27:13 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Sk Anirban <sk.anirban@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
+ <mallesh.koujalagi@intel.com>
+Subject: Re: [PATCH] drm/xe/xe_late_bind_fw: Skip OCODE late bind if same
+ version is already running
+Message-ID: <avxyUc1VLSYm7DbG@intel.com>
+References: <20261117125904.2877468-2-sk.anirban@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261117125904.2877468-2-sk.anirban@intel.com>
+X-ClientProxiedBy: BY3PR04CA0005.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::10) To IA0PR11MB7187.namprd11.prod.outlook.com
+ (2603:10b6:208:441::12)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7187:EE_|CYYPR11MB8387:EE_
+X-MS-Office365-Filtering-Correlation-Id: d0463360-0a61-4c30-2d23-08df44bf4416
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|376014|366016|18002099003|22082099003|261009223027099003|261009221227099003|56012099006|11063799006|261026140227099003|261028144727099003|261021121427099003|261022105027099003|261102123227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: DTM4W7SFBEp2jqym28NFPf60lUFw+2FsPg+aGYMj/93TSu0msGiQ8dAroztgc/4BBtaYW2gReM+TqSRpvm/10LLBLWMPoy89/GG5nO9QQL9D/w03usw0WlBqK3BkBZW4e9X9ryLarh4ieDaf5oudkbTkfHwvbmCdYrx98qUp9gXXW4mLUqCxYoFeSUV38/m3B7abDgkjF1LOph19yn7DBI9+FQXBnQaKv5xBBpsaWjHAxvqRTBLpWI2OTQO+1vG7Rqbb8OZxIR+nh75rOfAkL2KJV1L8VmalM6lPS8jH1mNBDmLdFTK61GvXDdVotTTLgc4xzvPLMJ/7WrGv33J8ibprNi4soSnPZgvMkaYflEnJ42+UqvD+xUTDDPai6Qh5KaKPmBk8kjLZkTgV2eryq6QwzTUD0H7dxreHvB3MiEG9EsL6atiZqBvgBo/KxABlwvOQb+GW07qmtz9yArQ0XcapBG6RWHhdqCvsea3AMSEcnFhIcCpGWvqI0s5ILAJP87h66tF5c4ANBIC3o6I9WFpS44Jx/Glwwu2MXnKLAQScTzjTxSJvlbbeXqiTSG2/ZYOz7HO9iHVzPFfoXam7ysPGlmrRbukzmZaUmmawCL8U3/YQ8SwYoq3oTLJOdXXNaHixOZ7bQp1fWu1sKSjaT9SdN9761MqB7pagKZVfOEI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7187.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(18002099003)(22082099003)(261009223027099003)(261009221227099003)(56012099006)(11063799006)(261026140227099003)(261028144727099003)(261021121427099003)(261022105027099003)(261102123227099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Jg00gUFzX80lkqaAlmRJ90FyEeYjzqO9IWKNuaW/2jxB67q47TbDxI3gn6YK?=
+ =?us-ascii?Q?HGbP/0BGKXrm3r2uNrTzgDG4CLiBdush128UlsNUlbVXaYJ4iycK+2J3WQHh?=
+ =?us-ascii?Q?0lg2P42BadHyonH49Sv+7vJkRNtZw1YQRyhR9BAMAPLQsUWwXF6EN4eZhMgJ?=
+ =?us-ascii?Q?F73p3USEfqV6UnF2L+RRzJBXlc8HLFwR4PO5vWmwLSn+6JmNOsWa96qO8MjJ?=
+ =?us-ascii?Q?QY66WQuEoArIib58EbJxreeI34TjJ+xyHtltIzwAGYJWJfB+FOxi3e5sSjNN?=
+ =?us-ascii?Q?HT+lnt+0DLpwosY+ekmLTu7uNaYR8yJGTRiAK8ICqaByOW64X1sJgaVeUHLk?=
+ =?us-ascii?Q?dcXNh4UAvkKws4dQSay95vk39cN/rxkobs/Dw8Zo7Krml6qt+yKM5wgFkXcM?=
+ =?us-ascii?Q?W+4gcLLIMotrq/k3aUpf81qD054meuZxv15Ly2HVOHTO2k5z5vxYfade9uLh?=
+ =?us-ascii?Q?cNQImExBSIRvQMKyX4/ZVnqtX20kNm29O6OYYY4U0sT4fkxtTj3Jm/Utp48Z?=
+ =?us-ascii?Q?BFTNkNQ/bMMQoOL/PGk1K/c8RHG4NnXgXwClwqp//04FFYVc0USW8tRBEkct?=
+ =?us-ascii?Q?3hQcg0wOSa5f6RnlywPZ1PeEL+WyroPa++rwVyPdsiWMBZXZD+Wt8sB69YQ7?=
+ =?us-ascii?Q?wzeBow+kp/0uGeidFLvI8DkpisQ0F3WpWtc459XpWU6HUL9F1K0dmjZG8+BL?=
+ =?us-ascii?Q?+nROqHIbg+iUBSNBiReYVs1mzpowuAuvtdIF3ybce3pM8dW6gW5BL3M+NbN8?=
+ =?us-ascii?Q?tPXHZbKy+vg2pdkJ8xAZB1ytuo4lvL/oNCx4adLAjYpm9cgIiE5zShTMqovz?=
+ =?us-ascii?Q?7yyYxXi9JmQg4ClzbtdLbo1FELzsb3mjbcq26zg3rxPVE0QAE/Wl4tFWUVc2?=
+ =?us-ascii?Q?Yqxeb392+8+mo57uxPC7rZbAAyDZAITT6fmVPZub5qg6iURd6AtVqPx8vfNR?=
+ =?us-ascii?Q?/X1UxUrWg70qcogt4PH93IOjNwMooh82lxgiVNgy/Hh3K5uQ0uTAYHbX8dl9?=
+ =?us-ascii?Q?gueNpFlOhCqY3YWNgLFUheKGllaO+rexVYMV7Z8oq5Be87AcV17tylQRaGQx?=
+ =?us-ascii?Q?L+l/iLUNAjGxPkwyCaTlgnNpm9GvkHN9t8Q+fxEQB9wu9+7H+LQPyJtKnt2s?=
+ =?us-ascii?Q?QZhPeX5H2O5UEdkj4UPwEbQiAr3WBFIizPtBO3xu0sB9J4o//C4tJzzk7Muk?=
+ =?us-ascii?Q?dAfCBNAy9YN4A0OL32vZprqOYtD/7/21PX8KGbz+p8E6idOFIOuVAlgjnioZ?=
+ =?us-ascii?Q?hkhIoguUuTUdqglnuqPMAgfDrei/YZN97bpFJPHiIXqpDR8CoE/3TcI8Sp61?=
+ =?us-ascii?Q?ftRkdAGbHjWlvycXi7OTX7EqZge6ea1HZjxI6utCXC2p8uifHPwryKsGT05B?=
+ =?us-ascii?Q?2bS6LE57v0cxCeILxIyNI7//LIHD5cZLwfrHk3w/LIcAs1g8HNP6XBNMP2tO?=
+ =?us-ascii?Q?scXp3B7WuaYDxf+/1cVbeCM3xN/4Vj6dKn46MAVtUn0p0zcWU/BwLBkBppLZ?=
+ =?us-ascii?Q?t/bJ0ecuqV/o2cp+H5cxi2RIKCzgNvhuOx9+01uZa4VO0flB5s7k0TqgAiPZ?=
+ =?us-ascii?Q?GVFAvOVriSF2DbZK+WgZfjlFCMm4GTK5pziBkC2Xi6AxGuJ9HkRyB7Wcr9gy?=
+ =?us-ascii?Q?tzFqTtaWviNjJJEOPUeNUK4J1srgjitiwRtAnyDdGUupQNTHAIl/zs04cZGF?=
+ =?us-ascii?Q?O+2TL2p22FG0v+9gd7vFFWvoc5xm2O6k5zoYmxiOA17q8rqFdCPmtSOf+3NU?=
+ =?us-ascii?Q?WmSuTe2TKA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: Xy7O7Eb2MzcFa6RA8PeIl101a/5873loaq87oTkfLDnAAu2VYskxgKfeiHXVoluQQ9l3GBgyHwHlU4UyK0h8UNKeg1Av67CUiRCl0wrLc1TwvTByJoqvAyUfkpCdZhKpduLSc2RycSN5Xq786Y69Kc0DDYemJf+DaK42blX2MmWBTR5r4PbJIzB5dvo+UsYLugtDDVm3kKV0kGXgdHlfoPGEdBZ+PmxDzJsyAFFCkCbw3G+yS8yTwXlqmojmj3NKgEeQKQOxKiEGuTojd7Q1c1atvFH/LNnvPPNBF24LkJ80Soj4D373ZyySPyreW4N5P7YLI0xYv+jJgZHwNT5QJQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0463360-0a61-4c30-2d23-08df44bf4416
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7187.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2026 15:27:18.4108 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: fq9e1G0Sx3MJ1i0ujCXYnbpltqsOKN2fxN+gXMqi4BLIo5t6pkw4nQtLm0neOfIU9rX0Haz7MLgbJqMWjBeP9A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8387
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,129 +160,89 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Low] PM: runtime: inaccurate Fixes trailers and caller analysis in
-  commit message
---
+On Tue, Nov 17, 2026 at 06:29:05PM +0530, Sk Anirban wrote:
+> Late binding currently uploads OCODE without checking what is already
+> running. Before the upload, check whether OCODE is initialized and
+> compare its version with the payload's. Skip the push when they
+> match.
+> 
+> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_late_bind_fw.c | 31 ++++++++++++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> index 355d7c841871..4b8c48871d8c 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> @@ -246,6 +246,31 @@ static void wait_for_worker_completion(struct xe_late_bind *late_bind)
+>  	}
+>  }
+>  
+> +static bool xe_late_bind_ocode_is_current(struct xe_late_bind_fw *lbfw)
+> +{
+> +	struct xe_device *xe = late_bind_fw_to_xe(lbfw);
+> +	u16 running_ver;
+> +	int ret;
+> +
+> +	if (lbfw->type != INTEL_LB_TYPE_OCODE || !xe->info.has_sysctrl)
+> +		return false;
+> +
+> +	if (!xe_sysctrl_is_oobmsm_fw_ready(xe))
+> +		return false;
+> +
+> +	ret = xe_sysctrl_sdk_api_version(xe, &running_ver);
+> +	if (ret) {
+> +		drm_dbg(&xe->drm, "Failed to get running OCODE SDK API version: %pe\n",
+> +			ERR_PTR(ret));
+> +		return false;
+> +	}
+> +
+> +	drm_dbg(&xe->drm, "OCODE SDK API version running %u, payload %u\n",
+> +		running_ver, lbfw->sdk_api_version);
+> +
+> +	return running_ver == lbfw->sdk_api_version;
 
-commit ef3656b915b0fdf6f58ce6d87b9638c3f1514d1a
-Author: Frank Li <Frank.Li@nxp.com>
+This is always true: __xe_late_bind_fw_init() already drops blobs with a
+different SDK API version. It isn't the oCode version either.
 
-> PM: runtime: fix stub pm_runtime_get_if_active() for !CONFIG_PM
->
-> When CONFIG_PM is not enabled, should be treated as if runtime PM were
-> enabled for the device and the runtime status is active.
->
-> It's a subtle distinction but the previous behavior returned -EINVAL, whi=
-ch
-> means "runtime PM is disabled for the device"
->
-> __pm_runtime_resume() returns 1 (called by pm_runtime_get()).
-> pm_runtime_get_if_active() is the try-and-get version of pm_runtime_get().
-> stub pm_runtime_active() also returns true. So pm_runtime_get_if_active()
-> should return the same value as the stub pm_runtime_get(), which is 1.
->
-> Analysis of all callers and their behavior with old (-EINVAL) vs new (1):
->
-> Pattern A: if (!pm_runtime_get_if_active(dev)) -- no impact
->   Both -EINVAL and 1 are non-zero, so !ret is false in both cases.
->   Callers: drivers/accel/ethosu/ethosu_perfmon.c,
->            drivers/gpu/drm/msm/adreno/a6xx_gmu.c,
->            drivers/gpu/drm/msm/msm_perfcntr.c,
->            drivers/gpu/drm/v3d/v3d_mmu.c,
->            drivers/gpu/drm/v3d/v3d_perfmon.c (x4),
->            drivers/media/i2c/gc08a3.c gc05a2.c og0ve1b.c ov6211.c,
->            drivers/media/i2c/ccs/ccs-core.c s5kjn1.c lm3560.c (x2),
->            drivers/media/i2c/s5k3m5.c thp7312.c imx283.c ov64a40.c,
->            drivers/media/pci/intel/ipu6/ipu6-buttress.c,
->            sound/hda/core/device.c
->
-> Pattern B: if (!ret) after get -- no impact
->   Both -EINVAL and 1 are non-zero, !ret is false in both cases.
->   drivers/gpu/drm/amd/pm/amdgpu_pm.c (comment says "allow access"
->     in kernels without CONFIG_PM), drivers/pci/pci.c
->
-> Pattern C: ret > 0 / ret <=3D 0 / ret !=3D 1 checks -- FIXED
->   drivers/usb/core/offload.c: checks (!=3D 1), old -EINVAL caused
->     -EBUSY even with !CONFIG_PM. Fixed: now returns 1, proceeds.
->   drivers/accel/ivpu/ivpu_job.c: drm_WARN_ON(<=3D 0), old -EINVAL
->     spuriously triggered WARN. Fixed: 1 > 0, no warn.
->   drivers/gpu/drm/i915/intel_runtime_pm.c: checks (<=3D 0), old
->     -EINVAL triggered error path. Fixed: 1 > 0, correct path.
->   drivers/accel/ivpu/ivpu_sysfs.c: (> 0), old skipped freq read.
->     Fixed: proceeds correctly without CONFIG_PM.
->   drivers/gpu/drm/xe/xe_pm.c: wraps (> 0), all xe callers
->     (xe_bo.c, xe_shrinker.c, xe_vsec.c, xe_ggtt.c, xe_guc_ct.c,
->     xe_pxp.c) now correctly treat !CONFIG_PM as active.
->   drivers/net/ipa/ipa_smp2p.c: power_on =3D (> 0), now correctly true.
->   drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c: (> 0), now correctly
->     executes stall register update.
->   drivers/staging/media/ipu7/ipu7-buttress.c: active (<=3D 0) early
->     return now skipped, correctly proceeds.
->
-> Pattern D: explicit -EINVAL check
->   drivers/hwmon/prom21-xhci.c: checks (> 0) then (=3D=3D -EINVAL).
->     Old: took -EINVAL fallback. New: takes (> 0) fast path.
->     Both succeed when CONFIG_PM is disabled; functionally equivalent.
->   drivers/hwmon/eic7700-pvt.c: call is guarded by IS_ENABLED(CONFIG_PM),
->     stub is never reached. No impact.
->
-> Fixes: bd3d245b0fef5 ("usb: core: use dedicated spinlock for offload stat=
-e")
-> Fixes: 7806bad76ac39 ("accel/ivpu: Prevent runtime suspend during context=
- abort work")
-> Fixes: 9d58aa46291d4 ("drm/i915: Fix the GT fence revocation runtime PM l=
-ogic")
-> Fixes: 1524c28b99527 ("accel/ivpu: Show NPU frequency in sysfs")
-> Fixes: 30c399529f4c6 ("drm/xe: Document Xe PM component")
-> Fixes: 0d08026ac6099 ("net: ipa: kill ipa_clock_get_additional()")
-> Fixes: 70892277ca2db ("iommu/arm-smmu-qcom: Make set_stall work when the =
-device is on")
-> Fixes: 9ad65684b9285 ("media: staging/ipu7: Ignore interrupts when device=
- is suspended")
-> Acked-by: Alex Elder <elder@riscstar.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Overall we need this behavior, but it needs some changes. Please:
 
-[Severity: Low]
-Are some of the Fixes: tags and caller notes in the commit message
-pointing to the wrong commits or config guards?
+- Drop the sdk_api_version check (it also saves a mailbox call). Just check
+  xe_sysctrl_is_oobmsm_fw_ready().
+- Subject: "Skip OCODE late bind if already running".
+- Adjust the commit message to match: if oCode is already running, keep it;
+  a new blob takes effect at the next device reset.
 
-The !CONFIG_PM stub for pm_runtime_get_if_active() was introduced
-returning -EINVAL in c111566bea7c ("PM: runtime: Add
-pm_runtime_get_if_active()") and updated in c0ef3df8dbae ("PM: runtime:
-Simplify pm_runtime_get_if_active() usage"), neither of which is listed in
-Fixes:.
+Thanks,
+Rodrigo
 
-For the caller-specific tags and descriptions:
-
-- 30c399529f4c ("drm/xe: Document Xe PM component") only touched kernel-doc
-  comments; the > 0 check in xe_pm_runtime_get_if_active() came from
-  46edb0a3eb16 ("drm/xe: Fix xe_pm_runtime_get_if_active return").
-
-- In __intel_runtime_pm_get_if_active() in
-  drivers/gpu/drm/i915/intel_runtime_pm.c, the pm_runtime_get_if_active()
-  call is guarded by if (IS_ENABLED(CONFIG_PM)), so the !CONFIG_PM stub is
-  never reached there and 9d58aa46291d ("drm/i915: Fix the GT fence
-  revocation runtime PM logic") was not affected.  Similarly,
-  snd_hdac_keep_power_up() in sound/hda/core/device.c is inside #ifdef
-  CONFIG_PM and also checks if (ret < 0).
-
-- 0d08026ac609 ("net: ipa: kill ipa_clock_get_additional()") only inlined
-  ipa_clock_get_additional() into ipa_smp2p_notify(); the
-  pm_runtime_get_if_active() > 0 check was introduced in a71aeff3dd0a
-  ("net: ipa: kill IPA clock reference count").
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261116152513.2676=
-573-1-Frank.Li@oss.nxp.com?part=3D1
+> +}
+> +
+>  static void xe_late_bind_work(struct work_struct *work)
+>  {
+>  	struct xe_late_bind_fw *lbfw = container_of(work, struct xe_late_bind_fw, work);
+> @@ -258,6 +283,12 @@ static void xe_late_bind_work(struct work_struct *work)
+>  
+>  	xe_device_assert_mem_access(xe);
+>  
+> +	if (xe_late_bind_ocode_is_current(lbfw)) {
+> +		drm_dbg(&xe->drm, "%s firmware already loaded, skipping\n",
+> +			fw_id_to_name[lbfw->id]);
+> +		goto out;
+> +	}
+> +
+>  	/* we can queue this before the component is bound */
+>  	for (slept = 0; slept < LB_INIT_TIMEOUT_MS; slept += 100) {
+>  		if (late_bind->component.ops)
+> -- 
+> 2.43.0
+> 
