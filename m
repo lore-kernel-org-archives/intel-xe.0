@@ -2,44 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E567606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:21:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF26860A2602
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:21:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=azzDLDJH
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=J/n7RQw6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFED8899D4;
-	Wed, 18 Nov 2026 13:21:43 +0000 (UTC)
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 533C310E085;
- Wed, 18 Nov 2026 13:21:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1795008096;
- bh=/Uj5q/KjhKqO3uslk8VWWy4ZW0ReiuI5BvK9tbNkv9o=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=azzDLDJHKgoBB8XlEiv7iocOXOE3Oyoj7wDQmjzj4tqPZFTX/GQzRZ/z5MmJhtu+Z
- ON1KpdqjOvwBK6/OX2OzzffI4igK9LrbeiwuRK9TNEuXGlR4MHP60Ac/Z4mtVq9t/W
- ndjPdMTKxfYgR5bOJpw37Kw/prqcUEtKz1sOveJB4Ob/ZyVpoIwKDezKsAia0ms3Pi
- 0Qrsj1bHZDsLT64/RPijJF9+zIHtJ8ZqPMf7fDaBs77DYtIgFDzdkhq3oBlu11j3Wg
- pVMtnCvqyi5l9yf2e913iMDLbtV5w481wJY87ShQkcqL4te7PVjGspPSyKfTjlmwYy
- y7fz6cqXq3XxA==
-Message-ID: <d71c136b-b4d4-49bd-b817-958a696580e1@lankhorst.se>
-Date: Wed, 18 Nov 2026 14:22:52 +0100
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 1/5] drm/xe/display: Avoid using stolen memory for
- framebuffer when media gt exists.
-To: Jani Nikula <jani.nikula@linux.intel.com>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-References: <20261117143038.479557-7-dev@lankhorst.se>
- <20261117143038.479557-8-dev@lankhorst.se>
- <db7ccaec935c5df651a6c1d051d70185b06872b0@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <db7ccaec935c5df651a6c1d051d70185b06872b0@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7E9810E148;
+	Wed, 18 Nov 2026 13:21:50 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2812410E148;
+ Wed, 18 Nov 2026 13:21:45 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0A9CF60D5D;
+ Wed, 18 Nov 2026 13:21:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F3B41F000C4;
+ Wed, 18 Nov 2026 13:21:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795008103;
+ bh=YZZrDeTXdpYotDfA7TfV36hmlS+KRsIIEIpU0lT1b6Y=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=J/n7RQw6HplNAKxAg1sBQbmrV0IFYarHTdb1e3AExO98VnZHC3oaERvIx+ENiHQOb
+ 5zmFR84kNgc7ebjkTMSQRVtcYTXq+fVkzJvT1kI66IodKyH1+kYhphNzIrHWyPWrVA
+ w6sySx/HlS9HK3lYSGXaYEsr3YptlL/hTwTCNq79i1J3VjWi2rksrmlUiij8Lowo+0
+ AT31N5P5og4RXO548BJgf9Pa64NgJJiXMFFzDS+nx3yfx308BW6RWPz/rR5wKHnDiC
+ TnM/B87Fgb2M8ENcAvht5TJMzxaYgmc1GuJyojSgQcT3+sQUoAkLWlIGB82lgnAYXh
+ /fZqL8V75IavA==
+Message-ID: <sashiko-outbox-221003@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/i915/dip: Clear VSC_SELECT before setting it
+To: "Eriksen Xie" <xiaolu.xie@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261118131441.2023100-1-xiaolu.xie@intel.com>
+References: <20261118131441.2023100-1-xiaolu.xie@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Wed, 18 Nov 2026 13:21:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,65 +46,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-Hey,
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/i915/dip: missing Fixes trailer for VSC_SELECT in
+  hsw_write_infoframe()
+--
 
-On 11/18/26 11:24, Jani Nikula wrote:
-> On Tue, 17 Nov 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
->> On systems with media GT, extra latency is added when accessing stolen
->> memory when the GT is in MC6.
->>
->> Simply disable allocating stolen memory for framebuffers when media gt
->> is found.
->>
->> Thanks to the previous patch, it will be possible to preserve the
->> contents.
->>
->> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7513
-> 
-> Closes: instead?
-I believe it's related, but not sufficient on its own to close that bug.
-In particular DPT in stolen memory was a bigger factor.Hence the link
-to that bug without closing it.
+commit f244e26161b0f3b5713588fd3abc78616009d0e8
+Author: Eriksen Xie <xiaolu.xie@intel.com>
 
-> 
->> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
->> Link: https://patch.msgid.link/20260630135523.1775379-3-dev@lankhorst.se
-> 
-> What's this needed for?
-Yeah I dropped it on final review before pushing.
-> 
->> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/xe/display/xe_display_bo.c | 8 ++++++++
->>  1 file changed, 8 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
->> index f5102cd0e95d6..9385026a80b97 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
->> @@ -131,6 +131,14 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
->>  	if (IS_DGFX(xe))
->>  		return false;
->>  
->> +	/*
->> +	 * Avoid stolen memory when the media_gt exists,
->> +	 * because a lot of latency is added when media gt is in MC6
->> +	 */
->> +	if (xe_device_get_root_tile(xe)->media_gt)
->> +		return false;
->> +
->> +	/* machine hang when doing lots of LMEMBAR accesses */
->>  	if (XE_DEVICE_WA(xe, 22019338487_display))
->>  		return false;
-> 
+> drm/i915/dip: Clear VSC_SELECT before setting it
+>
+> VSC_SELECT in VIDEO_DIP_CTL is a two bit field selecting whether the
+> header and the data of the VSC SDP are generated by the hardware or
+> taken from the DIP data registers. hsw_write_infoframe() ORs
+> VSC_DIP_HW_DATA_SW_HEA into the value read back from the register
+> without clearing the field first, so a different value left in it,
+> e.g. by the firmware, isn't replaced but combined with the new one
+> (VSC_DIP_HW_HEA_SW_DATA | VSC_DIP_HW_DATA_SW_HEA results in
+> VSC_DIP_SW_HEA_DATA).
+>
+> Clear the field before setting it.
+>
+> Signed-off-by: Eriksen Xie <xiaolu.xie@intel.com>
 
+[Severity: Low]
+This fixes the unmasked VSC_SELECT bitfield update in
+hsw_write_infoframe().  Should this include:
+
+  Fixes: bac2d7d8e64b ("drm/i915/display: Take care of VSC select field in =
+video dip ctl register")
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261118131441.2023=
+100-1-xiaolu.xie@intel.com?part=3D1
