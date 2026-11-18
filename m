@@ -2,28 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA785606A336
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:11:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D629606A32C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:11:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=lankhorst.se header.i=@lankhorst.se header.a=rsa-sha256 header.s=default header.b=Q60Rts0E
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 988BD10FC5D;
-	Wed, 18 Nov 2026 13:11:15 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B602F10FC5D;
- Wed, 18 Nov 2026 13:11:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7979055292135659693=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E8810FC62;
+	Wed, 18 Nov 2026 13:11:22 +0000 (UTC)
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C02A10FC60;
+ Wed, 18 Nov 2026 13:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1795007475;
+ bh=BJKgK4rnjMBUoIE65yC9O6WlmPrGKQogGNbO+GnFuNs=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=Q60Rts0EIyZFurnJmHItqUf8vsoZAm/ZpmJsZeZKEsarpaKhLAu3Sj1M09cPN8nQm
+ pbOOYB9uyG/YPTrXwzRc/JgrE2l04bWuhdarnTnrZl0UzaI5cIyu3Ik80GzVm3dLur
+ 765xwgaRdy8T7GGxyPoz/zkEYqGkMCddKHVB+LO+PlTnTVjrrAH2Xbmt7LY8l+CyXb
+ EywVQi5EpBFu/pRjW/HpnJ3egYf/0ayf96sY5pVPrg+eIl7i0j0tTYpExJRp7giRuN
+ my6vWdjaroCbQ8zwWeH9qZ8NXx5azug2aEfJD9GJMiIstxb2VN8Q4CkvDncWs5o6Wf
+ AbEPoNbtxhIcw==
+Message-ID: <b3eb291e-be9c-4b61-bbba-441037272aca@lankhorst.se>
+Date: Wed, 18 Nov 2026 14:12:30 +0100
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Adjust_Xiao?=
- =?utf-8?q?mi_Book_Pro_14_2026_psr2_disable_quirk?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Nov 2026 13:11:14 -0000
-Message-ID: <179500747473.42570.16303086959008502830@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261118110220.77370-1-jouni.hogander@intel.com>
-In-Reply-To: <20261118110220.77370-1-jouni.hogander@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 2/5] drm/xe/migrate: Support copying between sysmem and
+ stolen
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+References: <20261117143038.479557-7-dev@lankhorst.se>
+ <20261117143038.479557-9-dev@lankhorst.se>
+ <57c81b2e-61fd-4c48-81f4-095a80a3b1e5@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <57c81b2e-61fd-4c48-81f4-095a80a3b1e5@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +48,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============7979055292135659693==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+On 11/18/26 10:18, Matthew Auld wrote:
+> On 17/11/2026 14:30, Maarten Lankhorst wrote:
+>> In order to copy out the stolen BO, we have to add some support to
+>> xe_migrate_copy, since otherwise it tries to use the VRAM identity
+>> mapping on integrated, which obviously doesn't do the right thing.
+>>
+>> For debugging and completeness, allow clears in stolen memory as well.
+>> This makes it silghtly easier to test that the copy is correctly done.
+>>
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> 
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Thank you for reviewing this.
 
-Series: drm/i915/psr: Adjust Xiaomi Book Pro 14 2026 psr2 disable quirk
-URL   : https://patchwork.freedesktop.org/series/178884/
-State : success
+Seems to be adding stolen support in a clean way was non-trivial,
+fortunately CI flushed out all issues.
 
-== Summary ==
-
-CI Bug Log - changes from xe-6171-b06015536eeea9b106eccd274e6f8b7bbc180e9f_BAT -> xe-pw-178884v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6171-b06015536eeea9b106eccd274e6f8b7bbc180e9f -> xe-pw-178884v1
-
-  IGT_9196: 9196
-  xe-6171-b06015536eeea9b106eccd274e6f8b7bbc180e9f: b06015536eeea9b106eccd274e6f8b7bbc180e9f
-  xe-pw-178884v1: 178884v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178884v1/index.html
-
---===============7979055292135659693==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Adjust Xiaomi Book Pro 14 2026 psr2 disable quirk</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178884/">https://patchwork.freedesktop.org/series/178884/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178884v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178884v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6171-b06015536eeea9b106eccd274e6f8b7bbc180e9f_BAT -&gt; xe-pw-178884v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6171-b06015536eeea9b106eccd274e6f8b7bbc180e9f -&gt; xe-pw-178884v1</li>
-</ul>
-<p>IGT_9196: 9196<br />
-  xe-6171-b06015536eeea9b106eccd274e6f8b7bbc180e9f: b06015536eeea9b106eccd274e6f8b7bbc180e9f<br />
-  xe-pw-178884v1: 178884v1</p>
-
-</body>
-</html>
-
---===============7979055292135659693==--
+Pushed now, with a slight rewording of the last commit message
+and adding co-authored-by for Ville.
+Sashiko was confused about what bios_fb_ok was referred to.
