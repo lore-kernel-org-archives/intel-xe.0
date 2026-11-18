@@ -2,53 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53C28606A32C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 21:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBD1B606A325
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 21:32:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MMulZWQc
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IKZBoGYo
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C80610EC87;
-	Wed, 18 Nov 2026 21:32:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B26AB11201C;
+	Wed, 18 Nov 2026 21:32:52 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41F3610EC87
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 21:32:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8F2811201C
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 21:32:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795037564; x=1826573564;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=IO8923yW2SEF6p7qwZbSbOes/ZLuEhbhepbLHgXTS5I=;
- b=MMulZWQc8EHR6EoVqteYjbyNJ1yEJEkvyMxdSM0b49e7eKcsUpO32Mcy
- yznYQgJIL0JF4A06bu8LRflqa+IAIuKnmE75dtxei0xUfqu1PFmxK6cOu
- Dhsmy4b+0qbBcQIgqt95enSoF+rlHJy1xXGSiAV+QKG9oFvbwHE0QyYrS
- F8Dx0pgt9UGhcJD6yyBZ3xT3vG0X2f96ba+3aAMx2GwUiX5o1egJZQ1Dj
- Il9ZnYAXb7rfw32HMtX60YIPMTE2lsQFZJOacmKzWaromEGpSv0h4Zp0+
- RiFG86SLOSmgZw3UWPSWmcTE1BVnJgkOtxGWCBj/eUAwDBcZwO16Z/8ek g==;
-X-CSE-ConnectionGUID: u5mIdxEqRYW7wRxAOn85sQ==
-X-CSE-MsgGUID: kzqc+kHyR+ilMCIR1h4URA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3762398"
+ t=1795037566; x=1826573566;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9klYbx6cEiHJk+fG6bYvchESBBSloHqX9APlFWpymIs=;
+ b=IKZBoGYo54gPiA3KeiotMYZT+Ibw4S98NKvhO6SzacQZU6vM83kYhdY2
+ jBXkCCaFnVrR2ytHMg8iIKuGYyjLnUKjR/+MudPOsyXBD1bXY4Yi1wsKV
+ 1qfOQ4xzvQv7ln1n/Vl1PxdDa1W01i5rHRf1Vzh4qwFytmFRw7Bs/Ey1D
+ 6SrQSa2jzrC1c535s33hwGqGOUxzdvEGSMVmeIvqqlyPRKNli/4Y9Fust
+ PkdEDaieKl941sxB09apjjT4WiymA2vL+MRWa4TWC7EhT2gRaqt4L0cp/
+ 1qyBSvXzquewQMjehNmm8cWjJo93pMZpsIVUlTpLxKhw+0mo32dfwDlyh g==;
+X-CSE-ConnectionGUID: L8Ghgcl4RZq97b1TTzSxNQ==
+X-CSE-MsgGUID: CVfY/L36St6E6HYASG+KZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3762399"
 X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3762398"
+   d="scan'208";a="3762399"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 13:32:44 -0800
-X-CSE-ConnectionGUID: nvgKKd1UQEeb9AfvQxUskw==
-X-CSE-MsgGUID: /4RP78IFS0ilyCNPC7o8YQ==
+ 18 Nov 2026 13:32:46 -0800
+X-CSE-ConnectionGUID: fy2IQx6aTv6e7twEplbWCg==
+X-CSE-MsgGUID: Vly5MXUGTyeA2CYu7nN53Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10494898"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10494911"
 Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
  ([10.121.64.151])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 13:32:44 -0800
+ 18 Nov 2026 13:32:46 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Alan Previn <alan.previn.teres.alexis@intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v2 1/2] drm/xe/gsc: Define GSC firmware for NVL-P
-Date: Wed, 18 Nov 2026 21:32:35 +0000
-Message-ID: <20261118213234.59171-3-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/pxp: Enable PXP for NVL-P
+Date: Wed, 18 Nov 2026 21:32:36 +0000
+Message-ID: <20261118213234.59171-4-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20261118213234.59171-3-daniele.ceraolospurio@intel.com>
+References: <20261118213234.59171-3-daniele.ceraolospurio@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -69,53 +71,29 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-NVL-P uses the same GSC image as NVL-S, but requires a newer version (at
-least build 1242).
+Now that GSC is in place, we can enable PXP for NVL-P. No changes
+required compared to previous platforms.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
+Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
-v2: Use EOPNOTSUPP (checkpatch), check the full GSC version number and
-not just the build number
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index c042075a36e5..64b1e51c02ab 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -147,6 +147,7 @@ struct fw_blobs_by_type {
- 
- /* for the GSC FW we match the compatibility version and not the release one */
- #define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
-+	fw_def(NOVALAKE_P,	GT_TYPE_ANY,	major_ver(xe,	gsc,	nvl,	108, 1, 0))	\
- 	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	major_ver(xe,	gsc,	nvl,	108, 1, 0))	\
- 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	ptl,	105, 1, 0))	\
- 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	lnl,	104, 1, 0))	\
-@@ -778,6 +779,21 @@ static int uc_fw_request(struct xe_uc_fw *uc_fw, const struct firmware **firmwar
- 			goto fail;
- 	}
- 
-+	/*
-+	 * NVL-S and NVL-P use the same GSC binary, but NVL-P requires a
-+	 * newer version (at least build 108.0.0.1242)
-+	 */
-+	if (uc_fw->type == XE_UC_FW_TYPE_GSC && xe->info.platform == XE_NOVALAKE_P) {
-+		struct xe_uc_fw_version *ver = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
-+
-+		if (ver->major == 108 && ver->minor == 0 && ver->patch == 0 && ver->build < 1242) {
-+			xe_gt_info(gt, "%s firmware too old (got build %u, wanted at least 1242)\n",
-+				   xe_uc_fw_type_repr(uc_fw->type), ver->build);
-+			err = -EOPNOTSUPP;
-+			goto fail;
-+		}
-+	}
-+
- 	*firmware_p = fw;
- 
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 619653c68f2c..44ca50964bed 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -506,6 +506,7 @@ static const struct xe_device_desc nvlp_desc = {
+ 	.has_flat_ccs = 1,
+ 	.has_page_reclaim_hw_assist = true,
+ 	.has_pre_prod_wa = true,
++	.has_pxp = true,
+ 	.has_sriov = true,
+ 	.max_gt_per_tile = 2,
+ 	MULTI_LRC_MASK,
 -- 
 2.53.0
 
