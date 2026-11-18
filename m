@@ -2,57 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79505606A32C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:30:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YjugnXSe
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31F5B606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:40:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3875310ECCF;
-	Wed, 18 Nov 2026 22:30:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21B9111209C
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 22:30:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795041031; x=1826577031;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4zGIZsdmuPzvRgSJ4qawFG5d4oixYPrNtASyWnLjLpc=;
- b=YjugnXSefIhETDonqLMAoMQKkMNLxQOV5U81KoLYT+LbQ/F5h4hUnhTB
- vt9rb3R+YYs39QNkJRMiJPJuJq3jhZjigbVlKKh6YX9wBrODW/iWcroB7
- nPZPmCH4LkLTz/V1SVEDmZZVgJzLms5b9yFv946S+Zab49B7cz26qbsF2
- n0sD/XlWKbb3YWlMS/RfGwRUVRMFs24nswvbN6KuZj4HMd0kIie1yCSiS
- 7+rXry9vR/YWOPeu/NGolE0DBiSh4mm1SC9trL5KzLoW68ALOoGYhrHLe
- NNUP9nL4CBDJVQJ43Ay0aTbRwzzPVmvZcEzFHDS952Ppc0cjKXnASJIyq w==;
-X-CSE-ConnectionGUID: k72CE9T0QL2EKEgOvgO9pg==
-X-CSE-MsgGUID: WhdP+nF4TqWXT7BSOCACeg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3758834"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3758834"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 14:30:26 -0800
-X-CSE-ConnectionGUID: b8LnhNXSTvaKsoDPcsocAA==
-X-CSE-MsgGUID: 6fQ3npixTQWzEj2o4eUH4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10655814"
-Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 14:30:26 -0800
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: driver-core@lists.linux.dev, bartosz.golaszewski@oss.qualcomm.com,
- balasubramani.vivekanandan@intel.com, intel-xe@lists.freedesktop.org,
- heikki.krogerus@linux.intel.com, dakr@kernel.org,
- andriy.shevchenko@linux.intel.com,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 0/1]  Add a shared software node test case to driver core
-Date: Wed, 18 Nov 2026 22:30:22 +0000
-Message-ID: <20261118223023.19653-3-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED5801120A0;
+	Wed, 18 Nov 2026 22:40:37 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10A2C1120A0;
+ Wed, 18 Nov 2026 22:40:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3802408919697858969=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/pf=3A_Reset_PF_sched?=
+ =?utf-8?q?uling_defaults_on_auto_provisioning_restore_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rachapalli Bandi Jagadeesh" <jagadeesh.rachapalli.bandi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Nov 2026 22:40:37 -0000
+Message-ID: <179504163706.46521.16985568530971305960@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261118162346.1204457-1-jagadeesh.rachapalli.bandi@intel.com>
+In-Reply-To: <20261118162346.1204457-1-jagadeesh.rachapalli.bandi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Original patch was posted here:
-https://patchwork.freedesktop.org/series/177785/
+--===============3802408919697858969==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This is just a resubmit with a fixed up commit message and this
-cover letter.
+== Series Details ==
 
-After dropping that assisted-by tag, just a quick note that I did
-use claude opus in the development here.
+Series: drm/xe/pf: Reset PF scheduling defaults on auto provisioning restore (rev2)
+URL   : https://patchwork.freedesktop.org/series/178227/
+State : success
 
-Stuart Summers (1):
-  driver core: platform: tests: add a shared software node test case
+== Summary ==
 
- drivers/base/test/platform-device-test.c | 57 ++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
+CI Bug Log - changes from xe-6178-966607dba8b9ce2ffc4eceee0c0047daf3923dc1_BAT -> xe-pw-178227v2_BAT
+====================================================
 
--- 
-2.43.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-bmg-3 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6178-966607dba8b9ce2ffc4eceee0c0047daf3923dc1 -> xe-pw-178227v2
+
+  IGT_9197: 9197
+  xe-6178-966607dba8b9ce2ffc4eceee0c0047daf3923dc1: 966607dba8b9ce2ffc4eceee0c0047daf3923dc1
+  xe-pw-178227v2: 178227v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178227v2/index.html
+
+--===============3802408919697858969==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pf: Reset PF scheduling defaults on auto provisioning restore (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178227/">https://patchwork.freedesktop.org/series/178227/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178227v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178227v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6178-966607dba8b9ce2ffc4eceee0c0047daf3923dc1_BAT -&gt; xe-pw-178227v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-bmg-3 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6178-966607dba8b9ce2ffc4eceee0c0047daf3923dc1 -&gt; xe-pw-178227v2</li>
+</ul>
+<p>IGT_9197: 9197<br />
+  xe-6178-966607dba8b9ce2ffc4eceee0c0047daf3923dc1: 966607dba8b9ce2ffc4eceee0c0047daf3923dc1<br />
+  xe-pw-178227v2: 178227v2</p>
+
+</body>
+</html>
+
+--===============3802408919697858969==--
