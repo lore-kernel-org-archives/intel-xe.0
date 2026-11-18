@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B0F606A325
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:21:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13C3B606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hjF0/Ovx
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=c1xdsCt+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C46F9112082;
-	Wed, 18 Nov 2026 22:21:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD38311207E;
+	Wed, 18 Nov 2026 22:21:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D350611207E
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 22:21:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED5A6112081
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 22:21:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795040497; x=1826576497;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aUJcHj4zJ8hKTk2Jnn003U6khfthgNK2H063SnamW3s=;
- b=hjF0/Ovx28FemN2bU6gx8OqVaQOJRhizRsgDsJlTeyrzqlTszej6D89a
- TIMBOE2g3lidkpmHvCgV6kb9OqmJDBOlk50h+AePNuPJ2l2CZ+uAfZUdU
- gmIh6HMVV8igY2L0q48xi1uO+GlEAfdI6c6dQLMrudGrmxoMnH9TWN+Xt
- QN482N0ENS+HcqP14FLuz+rhrZS3zpETSx8fiUMZzDdInfKfa75MVrzOg
- h8K38uVmB0wxC26knZ6d9HTYLexa8x8Nq+ftb0TGEUJQ5rGTr/3zavy6a
- G1vtLEs2tTfY9gLs5hdud7EJvQGTQjHGIepRyRxTR8CPMevGveGm7oWQ7 g==;
-X-CSE-ConnectionGUID: cQIRVnV3SsGgF+FDoStbAQ==
-X-CSE-MsgGUID: WEIeu06AT52atCj14gxV+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3758160"
+ t=1795040502; x=1826576502;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=S6q4CoHx00wX9ayNpHzhHf1RM3dQTEKLx+xiO1g8tN4=;
+ b=c1xdsCt++CpidC39Jfd4AHxhAhakcblQrtmqcgMK7ATa6b7j3G6f24sh
+ XRlRPuwhFFdgZauzSYUi9i8MJJOnH+0Xy7qnlKHDUvc2So0oY4yxMofDd
+ 9LGjRqp8135WzOxjwpWsu3W5U2RAZ4wPFOrs8M7gPO1azJ2J5he+APlq3
+ 3fQSVZ4LORh8lQJPuG7WN/7FP2+JZbqDJSBVyRLvbC09tmw8Q2Pj3gH71
+ VwPSGd1EApa1jwgfQLEFlXzryf+NGgYOSPa4bIlKIbpABisYcQaXrFFag
+ rVJmCtbnXLDCsuD2MKBJcHcBxnyUvbH9sYxml+y4rVEIlSAha15au5yLL w==;
+X-CSE-ConnectionGUID: UoZPsb/1TFasUVhM510t/Q==
+X-CSE-MsgGUID: hWzPL6gpQbmLoeXWWxU/bg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3758166"
 X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3758160"
+   d="scan'208";a="3758166"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Nov 2026 14:21:36 -0800
-X-CSE-ConnectionGUID: WsPAU9DpTEeOQmMFm8HJhw==
-X-CSE-MsgGUID: 2mpp4ry8TTuPjUYKuZBn7w==
+X-CSE-ConnectionGUID: xuTiafxsQJmWAgv4pweWyg==
+X-CSE-MsgGUID: 5kamJ2kQQ3yLr0fW5f5f0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10508331"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10508337"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Nov 2026 14:21:36 -0800
@@ -45,10 +45,13 @@ To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v18 00/19] Crescent Island PMT support
-Date: Wed, 18 Nov 2026 14:21:27 -0800
-Message-ID: <20261118222127.3550266-21-michael.j.ruhl@intel.com>
+Subject: [PATCH v18 02/19] platform/x86/intel/pmt: Use the pre-populated
+ header info for crashlog
+Date: Wed, 18 Nov 2026 14:21:29 -0800
+Message-ID: <20261118222127.3550266-23-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261118222127.3550266-21-michael.j.ruhl@intel.com>
+References: <20261118222127.3550266-21-michael.j.ruhl@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,185 +65,76 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Crescent Island (CRI) GPU supports PMT via Xe driver
-registration.
+Discovery data is pre-populated.
 
-The CRI PMT MMIO mapping is shared for each PMT feature and it is
-necessary to set an index register value to access the correct memory
-space.
+Use the data for crashlog probe.
 
-The PMT driver has a callback infrastructure to access data areas with
-driver specific access. It is does not support the PMT control access.
+Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+---
+ drivers/platform/x86/intel/pmt/crashlog.c | 24 +++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-CRI discovery/control spaces are part of the access window so a driver
-callback is necessary to allow for the correct window to be exposed.
-
-Add control path callback support to the PMT driver.
-
-Add CRI PMT discovery information.
-
-Update the Xe driver to support the CRI PMT access.
-
-The crashlog access needs to be done with power enabled (telem is only
-available when the device is powered).
-
-Determine which access is requested, and do the appropriate power
-request.
-
-CRI FW is loaded at device power.  Support the late-binding API to
-wait for FW readiness. (pending sysctl patch set implements the API).
-
-v2:
-  Address AI feedback:
-  - add missing entry->cb check
-  - address SRIOV VF concerns
-  - use xe_pm_runtime_put instead of _get in error path
-
-  Address review comments:
-  - redo power/lock sequencing
-  - support device hotplug events
-
-v3:
-  - cleanup power manangement flow
-  - fixed an out of order power management locking issue
-  - add a GUID caching mechanism, for GUID read
-  - removed unused parameter (mmio)
-
-v4:
- - address various review comments
- - refactor crashlog to allow for return values
- - for callback usage, decouple PMT remap of data areas
- - use IS_SRIOV_VF() rather than expose soc-remapper internals
- - separate locking fixes intos distinct steps
- - refactor define update patches to seperate BMG and CRI updates
- - separate internal GUID into separate steps
-
-v5:
- - removed callback helpers
- - do not return error message with sysfs
- - fix missed return code check in trigger_store
- - return error value not false
- - use DEFINE_RES_MEM
- - document when base is unused
- - return error on invalid GUID request
-
-v6:
- - fix enabled/disabled inversion
- - fix missing DOC reference
- - change memcpy_to/fromio to readl/writel for register read
- - guid cache comment and update on valid guid
-
-v7:
- - reordered to have BMG updates followed by CRI support
- - separate base_offset usage for clarity
- - added EAGAIN usage to block uninitialized use of the API
-
-v8:
- - fix punit crashlog offset (should be 0xE60 not 0xE78)
- - remove EAGAIN support and re-order probe steps to initialize
-   VSEC before other features use it
-
-v9:
- - added appropriate reviewed-bys
- - use dev_err instead of pr_err
- - enforce defined base usage when callbacks are in plcace
- - move SRIOV check to get_platform_info
- - assert SRIOV for API check
- - use scoped_guard() where possible
- - update to use correct sysctrl helper
-
-v10:
- - fix incorrect return type (broken in refactor, int -> bool)
- - fix incorrectly documented error return values
- - doc text cleanup
-
-v11:
- - add reviewed-by
- - fix minor checkpatch issue
- - use xe_assert() for a consistent API check
-
-v12:
- - add survivability mode support
- - add reviewed-by
-
-v13:
- - PMT patches (original commits 1 - 5) are merged upstream
- - resubmitting XeKMD patches
-
-v14:
- - address AI review comments
- - init soc-remapper in survivability path
- - reset soc-remapper index to the discovery index after access
- - re-order read/write to eliminate need for goto
- - check for signals in wait_for_fw
- - add appropriate doc updates
- - use system_freezable_wq vs system_wq
- - cache survivability mode to avoid error path issues
-
-v15:
- - add/correct fixes tags
- - replace devm_add with xe_vsec_remove() to avoid error path race
-
-v16:
- - fix xe_vsec_remove path to verify CRI usage before cleanup
-
-v17:
- - one last AI review fix
- - return error GUID == 0
-
-v18:
- - use a callback to prefill discovery records
-   this corrects a locking issue during probe
- - use the prefilled header for crashlog
- - setting the soc-remapper index now only occurs with the lock held
-   
-
-
-Michael J. Ruhl (19):
-  platform/x86/intel/pmt: Introduce a callback for discovery data
-  platform/x86/intel/pmt: Use the pre-populated header info for crashlog
-  drm/xe/vsec: VSEC requires soc-remapper
-  drm/xe/vsec: Do not register BMG PMT for VF
-  drm/xe/vsec: Correct locking order
-  drm/xe/vsec: Use correct pm state get
-  drm/xe/vsec: Add DOC text for VSEC
-  drm/xe/vsec: Support possible hotplug exit
-  drm/xe/vsec: Refactor BattleMage PMT defines
-  drm/xe/vsec: Update VSEC probe order
-  drm/xe/vsec: Add base_offset to allow for more flexibilty
-  drm/xe/vsec: Support Crescent Island PMT
-  drm/xe/vsec: Crescent Island PMT decode
-  drm/xe/vsec: Crescent Island PMT callbacks
-  drm/xe/vsec: Support late bind fw information
-  drm/xe/vsec: Add PMT GUID internal access
-  drm/xe/vsec: Update PMT internal access
-  drm/xe/vsec: Refactor platform check
-  drm/xe/vsec: Support survivability mode for CRI
-
- Documentation/gpu/xe/index.rst             |   1 +
- Documentation/gpu/xe/xe_vsec.rst           |  14 +
- drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
- drivers/gpu/drm/xe/xe_debugfs.c            |  45 +-
- drivers/gpu/drm/xe/xe_device.c             |   7 +-
- drivers/gpu/drm/xe/xe_device_types.h       |  11 +
- drivers/gpu/drm/xe/xe_hwmon.c              |  10 +-
- drivers/gpu/drm/xe/xe_pcode.c              |  10 +-
- drivers/gpu/drm/xe/xe_survivability_mode.c |   2 +
- drivers/gpu/drm/xe/xe_vsec.c               | 655 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vsec.h               |   2 +
- drivers/platform/x86/intel/pmt/class.c     |  18 +-
- drivers/platform/x86/intel/pmt/crashlog.c  |  24 +-
- include/linux/intel_vsec.h                 |   6 +
- 14 files changed, 722 insertions(+), 95 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_vsec.rst
-
+diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
+index d7018b495217..f7c391d145ff 100644
+--- a/drivers/platform/x86/intel/pmt/crashlog.c
++++ b/drivers/platform/x86/intel/pmt/crashlog.c
+@@ -27,10 +27,10 @@
+ #define CRASH_TYPE_OOBMSM	1
+ 
+ /* Crashlog Discovery Header */
+-#define CONTROL_OFFSET		0x0
+-#define GUID_OFFSET		0x4
+-#define BASE_OFFSET		0x8
+-#define SIZE_OFFSET		0xC
++#define STATUS_IDX		0
++#define GUID_IDX		1
++#define BASE_IDX		2
++#define SIZE_IDX		3
+ #define GET_ACCESS(v)		((v) & GENMASK(3, 0))
+ #define GET_TYPE(v)		(((v) & GENMASK(7, 4)) >> 4)
+ #define GET_VERSION(v)		(((v) & GENMASK(19, 16)) >> 16)
+@@ -208,10 +208,10 @@ static int pmt_crashlog_disabled(struct crashlog_entry *crashlog, bool *state)
+ 
+ static bool pmt_crashlog_supported(struct intel_pmt_entry *entry, u32 *crash_type, u32 *version)
+ {
+-	u32 discovery_header = readl(entry->disc_table + CONTROL_OFFSET);
++	u32 *disc_header = entry->disc_header;
+ 
+-	*crash_type = GET_TYPE(discovery_header);
+-	*version = GET_VERSION(discovery_header);
++	*crash_type = GET_TYPE(disc_header[STATUS_IDX]);
++	*version = GET_VERSION(disc_header[STATUS_IDX]);
+ 
+ 	/*
+ 	 * Currently we only recognize OOBMSM (type 1) and version 0 or 2
+@@ -608,15 +608,15 @@ static int pmt_crashlog_pre_decode(struct intel_vsec_device *ivdev,
+ static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
+ 				      struct device *dev)
+ {
+-	void __iomem *disc_table = entry->disc_table;
+ 	struct intel_pmt_header *header = &entry->header;
++	u32 *disc_header = entry->disc_header;
+ 
+-	header->access_type = GET_ACCESS(readl(disc_table));
+-	header->guid = readl(disc_table + GUID_OFFSET);
+-	header->base_offset = readl(disc_table + BASE_OFFSET);
++	header->access_type = GET_ACCESS(disc_header[STATUS_IDX]);
++	header->guid = disc_header[GUID_IDX];
++	header->base_offset = disc_header[BASE_IDX];
+ 
+ 	/* Size is measured in DWORDS, but accessor returns bytes */
+-	header->size = GET_SIZE(readl(disc_table + SIZE_OFFSET));
++	header->size = GET_SIZE(disc_header[SIZE_IDX]);
+ 
+ 	return 0;
+ }
 -- 
 2.43.0
 
