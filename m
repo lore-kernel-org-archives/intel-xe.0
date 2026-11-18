@@ -2,56 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 080DF606A320
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:59:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C002606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HIoWCFJM
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HCYOchnE
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C305210FCF2;
-	Wed, 18 Nov 2026 13:59:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15BE210FCC1;
+	Wed, 18 Nov 2026 13:59:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87EF610FCC7
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 13:58:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA4510FCE7
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 13:58:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795010335; x=1826546335;
+ t=1795010337; x=1826546337;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2r1+0T+YoynkTuf+nOHmUJtwtm4HM3tMz33/adqNG6M=;
- b=HIoWCFJMgq/l2boZEYikS5drcwahOWvIuFKjavLo+O/BkSU8dv3u0r5o
- BCs7d57g3XfS0EgFWazRkQ8+dYy68WrZRAQyPKU/f2u3kKyBblCKLPbgo
- dL4BLhb0c4nrRIacyHUsEJQn/fhf13wMfJLg83ru4NdGQ3bMYA4sRx0Jz
- C3agi+69C6pIwBNu3NeU+M3IDIPzQOhenvukbwgn6TGJojMWhiIYhI9Ce
- 0oGc7MpCLBqoA0NiLkEu+YeBEl4cOBcn01kf91yUULTQcedgUNG6LBZJA
- +0PV4Ut0UtZQJfOjeJP50C6yY4VpHyNzx/yAL88D7WIYIhYyb5dbUfIUZ Q==;
-X-CSE-ConnectionGUID: CNA8E7PQQY23AermtPciYg==
-X-CSE-MsgGUID: JwuOY0kaQKOeaUn7ov5ufw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3719481"
+ bh=QkECygbJHnLMQaINXaAF9cXET0l+oyVc62fSJZ2n4iw=;
+ b=HCYOchnEFQXqxVKn5HTdzuGTCKjO5tRzyBd1qfxYBLF5+r5b7iu2DB3q
+ /8vswI5dmKoyw+of/YpNNS2+7OTjpDBNQ5S9fshLiGn8aiFJYhuVAX4V9
+ 8De2FoSXadMLgu3n4qdTn6qhMMZhwKw2B222Yi2UTeX0II22vHbGH+r08
+ 3Y+Xe+QUE15/lDBnYsGQi+gzUWsB4SgN8UkW6RuEJFk58ol7iFvBIeasF
+ o0lgSzd1qEpWzdkn276aKPzfMAqVnfiu5ubdlD4S+xKpHr2SUBKvM2Bkh
+ kdUDyuhkK21iec4gne/XxTAPN9HMMaD7P5t/ArsKwakHggV9OovNrqQjq Q==;
+X-CSE-ConnectionGUID: OXcGz2NqSrG7zeHFpwDPoA==
+X-CSE-MsgGUID: W+uKUom7TcubJ2UAU8bFhA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3719483"
 X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3719481"
+   d="scan'208";a="3719483"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 05:58:55 -0800
-X-CSE-ConnectionGUID: fKbN5GkwTuCW93L6NEC/Mw==
-X-CSE-MsgGUID: a66v26xfTB6a5+SYYh+Lrg==
+ 18 Nov 2026 05:58:56 -0800
+X-CSE-ConnectionGUID: xGdnTWsYQm2pBRkLsQ7mtQ==
+X-CSE-MsgGUID: EthR8qQhQ9OJvZw+Ve6dJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10091392"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10091406"
 Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
- by orviesa007.jf.intel.com with ESMTP; 18 Nov 2026 05:58:52 -0800
+ by orviesa007.jf.intel.com with ESMTP; 18 Nov 2026 05:58:54 -0800
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: badal.nilawar@intel.com, sk.anirban@intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v2 2/3] drm/xe: Rename xe_vram_freq to xe_vram_config
-Date: Wed, 18 Nov 2026 19:25:34 +0530
-Message-ID: <20261118135536.293953-3-naresh.kumar.g@intel.com>
+Subject: [PATCH v2 3/3] drm/xe: Expose CRI maximum memory frequency and
+ bandwidth in sysfs
+Date: Wed, 18 Nov 2026 19:25:35 +0530
+Message-ID: <20261118135536.293953-4-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261118135536.293953-1-naresh.kumar.g@intel.com>
 References: <20261118135536.293953-1-naresh.kumar.g@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,137 +72,268 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-The tile memory sysfs component is about to expose memory configuration
-beyond frequency, such as maximum bandwidth. Rename xe_vram_freq.c
-and xe_vram_freq.h to xe_vram_config.c xe_vram_config.h.
-xe_vram_freq_sysfs_init() to xe_vram_config_sysfs_init() to reflect that.
+Expose the maximum achievable memory frequency and bandwidth reported
+by PCODE MEMORY_CONFIG as read-only tile#/memory/max_freq (MHz) and
+tile#/memory/max_bw on Crescent Island.
 
-No functional change.
+These are capability limits, not the current memory frequency or
+bandwidth usage. The existing PVC memory/freq0 entries are unchanged.
+
+Document both attributes in the Xe sysfs ABI.
+
+v2:(Sashiko)
+1. Fixed CFI violation by updating attribute types and callback signatures
+2. Added a check for xe->info.skip_pcode in memory_groups() to prevent
+   exposing these attributes on Virtual Functions,
+   where PCODE access is disabled.
+3. Changed kernel version in documentation from 7.4 to 7.5(Badal)
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                         |  2 +-
- drivers/gpu/drm/xe/xe_tile_sysfs.c                  |  4 ++--
- .../gpu/drm/xe/{xe_vram_freq.c => xe_vram_config.c} |  8 ++++----
- drivers/gpu/drm/xe/xe_vram_config.h                 | 13 +++++++++++++
- drivers/gpu/drm/xe/xe_vram_freq.h                   | 13 -------------
- 5 files changed, 20 insertions(+), 20 deletions(-)
- rename drivers/gpu/drm/xe/{xe_vram_freq.c => xe_vram_config.c} (94%)
- create mode 100644 drivers/gpu/drm/xe/xe_vram_config.h
- delete mode 100644 drivers/gpu/drm/xe/xe_vram_freq.h
+ .../ABI/testing/sysfs-driver-intel-xe-gpu     |  26 +++-
+ drivers/gpu/drm/xe/xe_vram_config.c           | 122 ++++++++++++++++--
+ 2 files changed, 133 insertions(+), 15 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 4377f60f5dabe..b0ce47fbac9d5 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -150,7 +150,7 @@ xe-y += xe_bb.o \
- 	xe_vm.o \
- 	xe_vm_madvise.o \
- 	xe_vram.o \
--	xe_vram_freq.o \
-+	xe_vram_config.o \
- 	xe_vsec.o \
- 	xe_wa.o \
- 	xe_wait_user_fence.o \
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-index 510aa0ac44287..c944579a17c85 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-@@ -10,7 +10,7 @@
- #include "xe_device_types.h"
- #include "xe_pm.h"
- #include "xe_tile_sysfs.h"
--#include "xe_vram_freq.h"
-+#include "xe_vram_config.h"
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+index 4dc4afc3961d9..13d471e0ea082 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-gpu
+@@ -1,6 +1,6 @@
+ What:		/sys/bus/pci/drivers/xe/.../device_uid
+ Date:		October 2026
+-KernelVersion:	7.4
++KernelVersion:	7.5
+ Contact:	intel-xe@lists.freedesktop.org
+ Description:
+ 		RO. Unique 64-bit identifier of the GPU SoC device, exposed as
+@@ -8,3 +8,27 @@ Description:
  
- static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
- {
-@@ -49,7 +49,7 @@ int xe_tile_sysfs_init(struct xe_tile *tile)
- 
- 	tile->sysfs = &kt->base;
- 
--	err = xe_vram_freq_sysfs_init(tile);
-+	err = xe_vram_config_sysfs_init(tile);
- 	if (err)
- 		goto err_object;
- 
-diff --git a/drivers/gpu/drm/xe/xe_vram_freq.c b/drivers/gpu/drm/xe/xe_vram_config.c
-similarity index 94%
-rename from drivers/gpu/drm/xe/xe_vram_freq.c
-rename to drivers/gpu/drm/xe/xe_vram_config.c
-index 8717367ccd4c7..31a3405c39abd 100644
---- a/drivers/gpu/drm/xe/xe_vram_freq.c
+ 		This sysfs file is present only on supported Intel Xe platforms.
+ 		Accessible only to users with administrative privileges.
++
++What:		/sys/bus/pci/drivers/xe/.../tile<N>/memory/max_bw
++Date:		October 2026
++KernelVersion:	7.5
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		RO. Maximum achievable memory bandwidth reported by firmware, in
++		megabits per second (Mbps), as a decimal integer.
++		This is not a measurement of current memory bandwidth usage.
++
++		This sysfs file is present only on Crescent Island devices.
++		It is readable by all users.
++
++What:		/sys/bus/pci/drivers/xe/.../tile<N>/memory/max_freq
++Date:		October 2026
++KernelVersion:	7.5
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		RO. Maximum achievable memory frequency reported by firmware,
++		in MHz, as a decimal integer.
++		This is not the current memory frequency.
++
++		This sysfs file is present only on Crescent Island devices.
++		It is readable by all users.
+diff --git a/drivers/gpu/drm/xe/xe_vram_config.c b/drivers/gpu/drm/xe/xe_vram_config.c
+index 31a3405c39abd..130a8f76e6663 100644
+--- a/drivers/gpu/drm/xe/xe_vram_config.c
 +++ b/drivers/gpu/drm/xe/xe_vram_config.c
-@@ -9,10 +9,10 @@
+@@ -8,13 +8,14 @@
+ #include "xe_device_types.h"
  #include "xe_pcode.h"
  #include "xe_pcode_api.h"
++#include "xe_pm.h"
  #include "xe_tile_sysfs.h"
--#include "xe_vram_freq.h"
-+#include "xe_vram_config.h"
+ #include "xe_vram_config.h"
  
  /**
-- * DOC: Xe VRAM freq
-+ * DOC: Xe VRAM config
+  * DOC: Xe VRAM config
   *
-  * Provides sysfs entries for vram frequency in tile
+- * Provides sysfs entries for vram frequency in tile
++ * Provides sysfs entries for vram frequency and bandwidth in tile
   *
-@@ -93,14 +93,14 @@ static void vram_freq_sysfs_fini(void *arg)
+  * device/tile#/memory/freq0/max_freq - This is maximum frequency. This value is read-only as it
+  *					is the fixed fuse point P0. It is not the system
+@@ -22,17 +23,22 @@
+  * device/tile#/memory/freq0/min_freq - This is minimum frequency. This value is read-only as it
+  *					is the fixed fuse point PN. It is not the system
+  *					configuration.
++ *
++ * On Crescent Island, the following entries are provided instead:
++ *
++ * device/tile#/memory/max_freq - Maximum achievable memory frequency in MHz. Read-only.
++ * device/tile#/memory/max_bw - Maximum achievable memory bandwidth in Mbps. Read-only.
+  */
+ 
+-static struct xe_tile *dev_to_tile(struct device *dev)
++static struct xe_tile *kobj_to_tile_parent(struct kobject *kobj)
+ {
+-	return kobj_to_tile(dev->kobj.parent);
++	return kobj_to_tile(kobj->parent);
  }
  
- /**
-- * xe_vram_freq_sysfs_init - Initialize vram frequency sysfs component
-+ * xe_vram_config_sysfs_init - Initialize vram configuration sysfs component
-  * @tile: Xe Tile object
-  *
-  * It needs to be initialized after the main tile component is ready
-  *
-  * Returns: 0 on success, negative error code on error.
-  */
--int xe_vram_freq_sysfs_init(struct xe_tile *tile)
-+int xe_vram_config_sysfs_init(struct xe_tile *tile)
+-static ssize_t max_freq_show(struct device *dev, struct device_attribute *attr,
++static ssize_t max_freq_show(struct kobject *kobj, struct kobj_attribute *attr,
+ 			     char *buf)
+ {
+-	struct xe_tile *tile = dev_to_tile(dev);
++	struct xe_tile *tile = kobj_to_tile_parent(kobj);
+ 	u32 val = 0, mbox;
+ 	int err;
+ 
+@@ -49,12 +55,16 @@ static ssize_t max_freq_show(struct device *dev, struct device_attribute *attr,
+ 
+ 	return sysfs_emit(buf, "%u\n", val);
+ }
+-static DEVICE_ATTR_RO(max_freq);
+ 
+-static ssize_t min_freq_show(struct device *dev, struct device_attribute *attr,
++static struct kobj_attribute kobj_attr_max_freq = {
++	.attr = { .name = "max_freq", .mode = 0444 },
++	.show = max_freq_show,
++};
++
++static ssize_t min_freq_show(struct kobject *kobj, struct kobj_attribute *attr,
+ 			     char *buf)
+ {
+-	struct xe_tile *tile = dev_to_tile(dev);
++	struct xe_tile *tile = kobj_to_tile_parent(kobj);
+ 	u32 val = 0, mbox;
+ 	int err;
+ 
+@@ -71,11 +81,15 @@ static ssize_t min_freq_show(struct device *dev, struct device_attribute *attr,
+ 
+ 	return sysfs_emit(buf, "%u\n", val);
+ }
+-static DEVICE_ATTR_RO(min_freq);
++
++static struct kobj_attribute kobj_attr_min_freq = {
++	.attr = { .name = "min_freq", .mode = 0444 },
++	.show = min_freq_show,
++};
+ 
+ static struct attribute *freq_attrs[] = {
+-	&dev_attr_max_freq.attr,
+-	&dev_attr_min_freq.attr,
++	&kobj_attr_max_freq.attr,
++	&kobj_attr_min_freq.attr,
+ 	NULL
+ };
+ 
+@@ -84,11 +98,90 @@ static const struct attribute_group freq_group_attrs = {
+ 	.attrs = freq_attrs,
+ };
+ 
++static const struct attribute_group *pvc_memory_groups[] = {
++	&freq_group_attrs,
++	NULL
++};
++
++static int memory_config_read(struct kobject *kobj, u32 subcmd, u32 *val)
++{
++	struct xe_tile *tile = kobj_to_tile_parent(kobj);
++
++	guard(xe_pm_runtime)(tile_to_xe(tile));
++
++	return xe_pcode_read(tile, PCODE_MBOX(PCODE_MEMORY_CONFIG, subcmd, 0),
++			     val, NULL);
++}
++
++static ssize_t cri_max_freq_show(struct kobject *kobj, struct kobj_attribute *attr,
++				 char *buf)
++{
++	u32 val = 0;
++	int err;
++
++	err = memory_config_read(kobj, MEMORY_CONFIG_SUBCOMMAND_READ_MAX_FREQUENCY, &val);
++	if (err)
++		return err;
++
++	return sysfs_emit(buf, "%u\n", val);
++}
++
++static struct kobj_attribute kobj_attr_cri_max_freq = {
++	.attr = { .name = "max_freq", .mode = 0444 },
++	.show = cri_max_freq_show,
++};
++
++static ssize_t max_bw_show(struct kobject *kobj, struct kobj_attribute *attr,
++			   char *buf)
++{
++	u32 val = 0;
++	int err;
++
++	err = memory_config_read(kobj, MEMORY_CONFIG_SUBCOMMAND_READ_MAX_BANDWIDTH, &val);
++	if (err)
++		return err;
++
++	return sysfs_emit(buf, "%u\n", val);
++}
++
++static struct kobj_attribute kobj_attr_max_bw = {
++	.attr = { .name = "max_bw", .mode = 0444 },
++	.show = max_bw_show,
++};
++
++static struct attribute *cri_memory_attrs[] = {
++	&kobj_attr_cri_max_freq.attr,
++	&kobj_attr_max_bw.attr,
++	NULL
++};
++
++static const struct attribute_group cri_memory_group_attrs = {
++	.attrs = cri_memory_attrs,
++};
++
++static const struct attribute_group *cri_memory_groups[] = {
++	&cri_memory_group_attrs,
++	NULL
++};
++
++static const struct attribute_group **memory_groups(struct xe_device *xe)
++{
++	if (xe->info.skip_pcode)
++		return NULL;
++
++	if (xe->info.platform == XE_PVC)
++		return pvc_memory_groups;
++	if (xe->info.platform == XE_CRESCENTISLAND)
++		return cri_memory_groups;
++	return NULL;
++}
++
+ static void vram_freq_sysfs_fini(void *arg)
+ {
+ 	struct kobject *kobj = arg;
++	struct xe_tile *tile = kobj_to_tile(kobj->parent);
+ 
+-	sysfs_remove_group(kobj, &freq_group_attrs);
++	sysfs_remove_groups(kobj, memory_groups(tile_to_xe(tile)));
+ 	kobject_put(kobj);
+ }
+ 
+@@ -103,17 +196,18 @@ static void vram_freq_sysfs_fini(void *arg)
+ int xe_vram_config_sysfs_init(struct xe_tile *tile)
  {
  	struct xe_device *xe = tile_to_xe(tile);
++	const struct attribute_group **groups = memory_groups(xe);
  	struct kobject *kobj;
-diff --git a/drivers/gpu/drm/xe/xe_vram_config.h b/drivers/gpu/drm/xe/xe_vram_config.h
-new file mode 100644
-index 0000000000000..98903911f6583
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_vram_config.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_VRAM_CONFIG_H_
-+#define _XE_VRAM_CONFIG_H_
-+
-+struct xe_tile;
-+
-+int xe_vram_config_sysfs_init(struct xe_tile *tile);
-+
-+#endif /* _XE_VRAM_CONFIG_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_vram_freq.h b/drivers/gpu/drm/xe/xe_vram_freq.h
-deleted file mode 100644
-index bf726bc5881f2..0000000000000
---- a/drivers/gpu/drm/xe/xe_vram_freq.h
-+++ /dev/null
-@@ -1,13 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#ifndef _XE_VRAM_FREQ_H_
--#define _XE_VRAM_FREQ_H_
--
--struct xe_tile;
--
--int xe_vram_freq_sysfs_init(struct xe_tile *tile);
--
--#endif /* _XE_VRAM_FREQ_H_ */
+ 	int err;
+ 
+-	if (xe->info.platform != XE_PVC)
++	if (!groups)
+ 		return 0;
+ 
+ 	kobj = kobject_create_and_add("memory", tile->sysfs);
+ 	if (!kobj)
+ 		return -ENOMEM;
+ 
+-	err = sysfs_create_group(kobj, &freq_group_attrs);
++	err = sysfs_create_groups(kobj, groups);
+ 	if (err) {
+ 		kobject_put(kobj);
+ 		return err;
 -- 
 2.43.0
 
