@@ -2,62 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D8B606A32A
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 20:15:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JtRsFGJv
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E28606A320
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 20:31:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A6F010FFF4;
-	Wed, 18 Nov 2026 20:14:55 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E0A410FFF9
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 20:14:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795032890; x=1826568890;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=RP/rxU3ZKK4+PWUMexH2Rkf1hN/LVaO2jAvDZBkGsSY=;
- b=JtRsFGJvM7nt1X84Ypb3orfpX2HMz5Kr9jPp5TUQ3zviaySxyRDNXIHN
- hU4jmh1Ig9vHHgPcmTm0Vv7wGJDvMkJfm0AbIGPuLLnlV4NrJou/q2fkq
- qoQEgcEocI2X5lgYeW2SMfusEVUYRrGdcVSk6hNfdLoiynTtRYZlp4z1v
- NcIVyLxw9HzUREpZPV5bAmwTJ/Uz32t9ox9gu3cB+Q99R5AB1XzEAWU0M
- gIJWYrRmETkgZ23SNR4ZOIycz0oW7eMPUfWAPPQj2h1YxLH8v7mrlu1gb
- yt7ik8r6On7ava8cVciCMTd/c9Y5cYkBlMVkJYemiQZI/zyQR8EYbuqGT w==;
-X-CSE-ConnectionGUID: OegHOrm2RV+ZpX/V/kabWA==
-X-CSE-MsgGUID: 3VoMM5YXSbWMMHsqs0MA1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3887571"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3887571"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 12:14:49 -0800
-X-CSE-ConnectionGUID: vrk2ifOdTFCUBhm7FNdYQw==
-X-CSE-MsgGUID: WZOH9ng3RGyX1TawEwOguQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10455274"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.16])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 12:14:48 -0800
-Date: Wed, 18 Nov 2026 22:14:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: sashiko-reviews@lists.linux.dev
-Cc: Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 5/6] drm/xe/display: Remove duplicated code
-Message-ID: <av4HNDaMwb6UShP2@intel.com>
-References: <20261116122828.266113-8-dev@lankhorst.se>
- <20261116122828.266113-13-dev@lankhorst.se>
- <sashiko-outbox-217026@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA0AF10EC99;
+	Wed, 18 Nov 2026 20:31:31 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00C2B10EC99;
+ Wed, 18 Nov 2026 20:31:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4581659733034969924=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <sashiko-outbox-217026@kernel.org>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvl-p=3A_Add_Wa=5F14?=
+ =?utf-8?q?028564128?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Nov 2026 20:31:30 -0000
+Message-ID: <179503389099.46521.15931488057893965763@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261118145429.3281059-2-tejas.upadhyay@intel.com>
+In-Reply-To: <20261118145429.3281059-2-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,105 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 12:56:13PM +0000, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Low] drm/xe/display: spurious drm_err in initial_plane_bo() without
->   stolen memory
-> --
-> 
-> commit bab2c79797477724bcda99b81e670f98a25a3bee
-> Author: Maarten Lankhorst <dev@lankhorst.se>
-> 
-> drm/xe/display: Remove duplicated code
-> 
-> This commit moves the GGTT PTE read and local-memory bit check out of the
-> discrete and integrated branches in initial_plane_bo().
-> 
-> > diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > index 451c24a4ed8d5..1366b68f43fc2 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> [ ... ]
-> > @@ -58,16 +58,14 @@ initial_plane_bo(struct xe_device *xe,
-> >  			page_size);
-> >  	size -= base;
-> >  
-> > -	if (IS_DGFX(xe)) {
-> > -		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> > -
-> > -		if (is_pte_local(pte) != need_pte_local(xe)) {
-> > -			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> > -			return NULL;
-> > -		}
-> > -
-> > -		phys_base = pte & ~(page_size - 1);
-> > +	pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> > +	phys_base = pte & ~(page_size - 1);
-> > +	if (is_pte_local(pte) != need_pte_local(xe)) {
-> > +		drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> > +		return NULL;
-> > +	}
-> >  
-> > +	if (IS_DGFX(xe)) {
-> >  		flags |= XE_BO_FLAG_VRAM0;
-> >  
-> >  		/*
-> > @@ -85,24 +83,13 @@ initial_plane_bo(struct xe_device *xe,
-> >  			    "Using phys_base=%pa, based on initial plane programming\n",
-> >  			    &phys_base);
-> >  	} else {
-> > -		struct ttm_resource_manager *stolen;
-> > -		u64 pte;
-> > -
-> > -		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-> > -		if (!stolen) {
-> > +		if (!ttm_manager_type(&xe->ttm, XE_PL_STOLEN)) {
-> >  			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
-> >  			return NULL;
-> >  		}
-> >  
-> > -		pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-> > -
-> > -		if (is_pte_local(pte) != need_pte_local(xe)) {
-> > -			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
-> > -			return NULL;
-> > -		}
-> > -
-> > -		phys_base = (pte & ~(page_size - 1)) - xe_ttm_stolen_gpu_offset(xe);
-> >  		flags |= XE_BO_FLAG_STOLEN;
-> > +		phys_base -= xe_ttm_stolen_gpu_offset(xe);
-> 
-> [Severity: Low]
-> Can moving the PTE local-memory bit check ahead of the stolen memory manager
-> check cause a spurious drm_err() on integrated platforms without stolen
-> memory?
-> 
-> On integrated platforms with has_lmembar(xe) where XE_PL_STOLEN is
-> unavailable, firmware can place the initial framebuffer in system memory
-> without XE_GGTT_PTE_DM set.
+--===============4581659733034969924==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Never happens. The firmware framebuffer is either in stolen or local
-memory.
+== Series Details ==
 
-> Previously, initial_plane_bo() checked
-> ttm_manager_type(&xe->ttm, XE_PL_STOLEN) first and returned NULL with a
-> drm_dbg_kms() message, as added in 1d2a6c96f6f7 ("drm/xe: Print a debug
-> message if we have no stolen for the initial FB").  With this change, it
-> logs "Initial plane PTE has bad local memory bit" via drm_err() before
-> reaching the stolen check.
-> 
-> -- 
-> Sashiko AI review · https://sashiko.dev/#/patchset/20261116122828.266113-8-dev@lankhorst.se?part=5
+Series: drm/xe/nvl-p: Add Wa_14028564128
+URL   : https://patchwork.freedesktop.org/series/178936/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-6176-e2f954ea951b668430703f19387784f203ad71d0_BAT -> xe-pw-178936v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-bmg-2 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6176-e2f954ea951b668430703f19387784f203ad71d0 -> xe-pw-178936v1
+
+  IGT_9197: 9197
+  xe-6176-e2f954ea951b668430703f19387784f203ad71d0: e2f954ea951b668430703f19387784f203ad71d0
+  xe-pw-178936v1: 178936v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178936v1/index.html
+
+--===============4581659733034969924==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/nvl-p: Add Wa_14028564128</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178936/">https://patchwork.freedesktop.org/series/178936/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178936v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178936v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6176-e2f954ea951b668430703f19387784f203ad71d0_BAT -&gt; xe-pw-178936v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-bmg-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6176-e2f954ea951b668430703f19387784f203ad71d0 -&gt; xe-pw-178936v1</li>
+</ul>
+<p>IGT_9197: 9197<br />
+  xe-6176-e2f954ea951b668430703f19387784f203ad71d0: e2f954ea951b668430703f19387784f203ad71d0<br />
+  xe-pw-178936v1: 178936v1</p>
+
+</body>
+</html>
+
+--===============4581659733034969924==--
