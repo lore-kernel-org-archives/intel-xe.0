@@ -2,28 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA00606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 07:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB60606A332
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 07:27:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bZC+ybpb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2363710E44D;
-	Wed, 18 Nov 2026 07:10:20 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09BE510E44D;
- Wed, 18 Nov 2026 07:10:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6755517788842976269=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07F0510E637;
+	Wed, 18 Nov 2026 07:27:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E2C610E637
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 07:26:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794986818; x=1826522818;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8gyE7tVrWsWa+U+fnxsxNTk8w8wk3v5KJ+woC/Fre5k=;
+ b=bZC+ybpbc2Owwo1men8oPcNKiH65DD/X0yu5Mq+BTVGmpt8bNfEbp8HR
+ nJ3q6lYj5clL9hQTDkjYaQJMLAGt6SAPpRvyyBZOXlecIN6yeIloC4YA3
+ kIBMe0bWpilQcokLoAJOME0m/DeuUrX/NvECjJU1jlLdLoNJ4Pr5JZUhy
+ 5ixS+Z0pbCFeJAvATZdFNmCbAfXnOx3VcR55pbnGaUHuP9rRQcx/vyUfT
+ lOBMP5kxDeAI4LuRkLdMAPkyAmHWYXWDZ4SVuoQfLYrP17Fc19rkpcYVF
+ v87xcSv5f28ATcfW6GD6brpA04b/0Gx/Dz9iHT9DNFJkEacCn2K5R/JuI g==;
+X-CSE-ConnectionGUID: ljUjJLccQGG9tMmozLTR6g==
+X-CSE-MsgGUID: 1RjD61H6QeuYTpUAwHq+Xg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3645060"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="3645060"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 23:26:57 -0800
+X-CSE-ConnectionGUID: h5uaBk1hTvaNRqteCdDR3A==
+X-CSE-MsgGUID: fXNGecdxSjS4YfFfVkwzFw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="9943929"
+Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
+ by orviesa005.jf.intel.com with ESMTP; 17 Nov 2026 23:26:55 -0800
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: badal.nilawar@intel.com, sk.anirban@intel.com,
+ Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Subject: [PATCH 0/3] drm/xe: Expose CRI memory capability limits via sysfs
+Date: Wed, 18 Nov 2026 12:53:38 +0530
+Message-ID: <20261118072344.4158760-1-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/3?=
- =?utf-8?q?=5D_drm/xe/pcode=3A_Add_MEMORY=5FCONFIG_mailbox_definitions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nareshkumar Gollakoti" <naresh.kumar.g@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Nov 2026 07:10:19 -0000
-Message-ID: <179498581903.41175.12985158907257844729@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261118062301.4135537-1-naresh.kumar.g@intel.com>
-In-Reply-To: <20261118062301.4135537-1-naresh.kumar.g@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +59,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============6755517788842976269==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series adds read-only sysfs attributes for CRI devices to expose the
+maximum supported memory frequency and memory bandwidth.
 
-== Series Details ==
+These attributes allow userspace to discover platform memory capability
+limits. They are needed by compute runtime software, including NEO [1], for
+capability discovery on CRI.
 
-Series: series starting with [1/3] drm/xe/pcode: Add MEMORY_CONFIG mailbox definitions
-URL   : https://patchwork.freedesktop.org/series/178849/
-State : success
+The existing tile memory sysfs support currently focuses on frequency-
+related handling. Since it is now being extended to cover broader memory
+configuration information, rename the component/files from "freq" to
+"config" to better reflect their scope.
 
-== Summary ==
+The new attributes provide a stable userspace interface for discovering
+platform memory capability limits.
 
-CI Bug Log - changes from xe-6168-fb078d17b966f7a24720b6e3a5de06d43c2e184a_BAT -> xe-pw-178849v1_BAT
-====================================================
+The series consists of:
+  1. Add PCODE MEMORY_CONFIG mailbox definitions and subcommands
+  2. Rename xe_vram_freq to xe_vram_config
+  3. Expose maximum memory frequency and bandwidth through sysfs for CRI
 
-Summary
--------
+Reference:[1]
+https://github.com/intel-innersource/drivers.gpu.compute.runtime/pull/57544
 
-  **SUCCESS**
+Himal Prasad Ghimiray (3):
+  drm/xe/pcode: Add MEMORY_CONFIG mailbox definitions
+  drm/xe: Rename xe_vram_freq to xe_vram_config
+  drm/xe: Expose CRI maximum memory frequency and bandwidth in sysfs
 
-  No regressions found.
+ .../ABI/testing/sysfs-driver-intel-xe-gpu     | 24 +++++
+ drivers/gpu/drm/xe/Makefile                   |  2 +-
+ drivers/gpu/drm/xe/xe_pcode_api.h             |  4 +
+ drivers/gpu/drm/xe/xe_tile_sysfs.c            |  4 +-
+ .../xe/{xe_vram_freq.c => xe_vram_config.c}   | 93 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vram_config.h           | 13 +++
+ drivers/gpu/drm/xe/xe_vram_freq.h             | 13 ---
+ 7 files changed, 129 insertions(+), 24 deletions(-)
+ rename drivers/gpu/drm/xe/{xe_vram_freq.c => xe_vram_config.c} (53%)
+ create mode 100644 drivers/gpu/drm/xe/xe_vram_config.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_vram_freq.h
 
-  
+-- 
+2.43.0
 
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6168-fb078d17b966f7a24720b6e3a5de06d43c2e184a -> xe-pw-178849v1
-
-  IGT_9196: 9196
-  xe-6168-fb078d17b966f7a24720b6e3a5de06d43c2e184a: fb078d17b966f7a24720b6e3a5de06d43c2e184a
-  xe-pw-178849v1: 178849v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178849v1/index.html
-
---===============6755517788842976269==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] drm/xe/pcode: Add MEMORY_CONFIG mailbox definitions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178849/">https://patchwork.freedesktop.org/series/178849/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178849v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178849v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6168-fb078d17b966f7a24720b6e3a5de06d43c2e184a_BAT -&gt; xe-pw-178849v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6168-fb078d17b966f7a24720b6e3a5de06d43c2e184a -&gt; xe-pw-178849v1</li>
-</ul>
-<p>IGT_9196: 9196<br />
-  xe-6168-fb078d17b966f7a24720b6e3a5de06d43c2e184a: fb078d17b966f7a24720b6e3a5de06d43c2e184a<br />
-  xe-pw-178849v1: 178849v1</p>
-
-</body>
-</html>
-
---===============6755517788842976269==--
