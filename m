@@ -2,95 +2,138 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 497F1606A320
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5CC606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gourry.net header.i=@gourry.net header.a=rsa-sha256 header.s=google header.b=QoEJ9Io8
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=MUylF5m2
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA2F010FC2E;
-	Wed, 18 Nov 2026 13:04:12 +0000 (UTC)
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
- [209.85.160.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B08210E584
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 08:06:04 +0000 (UTC)
-Received: by mail-qt1-f182.google.com with SMTP id
- d75a77b69052e-53639b8903bso8473221cf.0
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 00:06:04 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 614DF10FC19;
+	Wed, 18 Nov 2026 13:04:15 +0000 (UTC)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+ [209.85.221.50])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13DD210FB8E
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 12:08:37 +0000 (UTC)
+Received: by mail-wr1-f50.google.com with SMTP id
+ ffacd0b85a97d-491f34b4e0fso363039f8f.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 04:08:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gourry.net; s=google; t=1794902764; x=1795507564; darn=lists.freedesktop.org;
- h=message-id:date:references:in-reply-to:cc:to:from:subject
- :content-transfer-encoding:content-type:mime-version:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=phkLAVe2PWOa6jK368c9XEugs4HUA+7j+Ko3Mk6IPVk=;
- b=QoEJ9Io8bLXap+t4spAFzyhRBTH2su4UYf5wPX2QVEtPaFTAzFFMJscYEeQiZ00079
- ZgnA0CnIULrHJXtsxa4mkhN1+A/OnwKBq9ynNNLcDy8muMfcCg2aKzcM6I3+qw7URmAk
- pxJkSUJJ/CWrl0EzD1ZDkTYern8IMqgjtWsVXzEkr0fnVg6RJwQzvuycS+vwUfUcu2Dn
- MZoXCRbacWKSr+5namc8pU63gGtG7EhYNscZ/EJqnlriUaubrFjtWjntbf/8fkM/w5/w
- Ug7Pk5YR+/IpIf8zm+m15y4WrXnP6YqTOEQe+5lcS5bPZcAXLB5c0JSdLwsjGw/HKfWi
- +3ZA==
+ d=baylibre.com; s=google; t=1795003715; x=1795608515;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=ZqIfHdJWGskORflhidLcXHU0GNeut3EmsuGrPNz6McQ=;
+ b=MUylF5m20l2kQ7Lk+WAHofu6RnRaIzDBpHyyaR3kT8UfFBV0AYoGakQDFzWJQFOak4
+ o6VeWI80tFNmLaTJvHC+eChmjd+rf7XbJWf9WGh7PRBFPEMDOp1Wg9aZ1zbbvrlnXSEJ
+ JQinhqEVPBJmmP+53XZAI0BtHQoxXUDjIIfu/GuhT65ChFL1ERGDQMK4oMgkkklSfTp+
+ zsJX3z6NWmp/FNxkJbXHfAS7rtvAnNxw8GipkY7AMBJ/FbkJRZ2ilsZUAy4uXGqH7tZq
+ CPFV3MQKoCTj6ZAeP+aaUM5BAIYyB0pGLORDPPSObEfpU35ALfeZUcIn+SfC/j8Bilv/
+ ReEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794902764; x=1795507564;
- h=message-id:date:references:in-reply-to:cc:to:from:subject
- :content-transfer-encoding:content-type:mime-version:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=phkLAVe2PWOa6jK368c9XEugs4HUA+7j+Ko3Mk6IPVk=;
- b=VMOKXfvVt1DS5qgoFMKkJpMPAY7BMu93Lk7zW4BcTxMEjVAiF85JhxlqrBEQyrDBEI
- p9Y6VW9sAGM81VA4iuUpYNCqYMsKVCP8q3EYS007GBP8YZ6HuivQ2Jz2JJwPf8ega2Ye
- H4MJ7chjtMRtwfVcjjD5/x6AHVt9SeIuVj6w+rlchFYlhf1d1kjWyowjdvao97y5qzY+
- /l39rGoZw8toy14jf5XKx1r9D2ffSuWgjQIQzupxDXco74dnL2mLxHvRBxp04qgsJ2SA
- quZ55LP68Ebub2Pyd5+qrDo5k53UfGkDNeqxGsGhMRbCfKjarzQNuYjE3wDBvqEEn5OQ
- 33QQ==
+ d=1e100.net; s=20260707; t=1795003715; x=1795608515;
+ h=content-transfer-encoding:content-type:mime-version:message-id:date
+ :subject:cc:to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=ZqIfHdJWGskORflhidLcXHU0GNeut3EmsuGrPNz6McQ=;
+ b=AUU1OD7PtxRKfTafdR3EKgJAtnHbSCSrHmkZO7dPOmxQa2FycFrt/J1CUrg9zS9Oyn
+ 8Xeym8l7GL1SD7I3IMkmqtdn6oUDnLM2faDXPlehoaoH0Nafv8pMwtU1op0d1I9oIxJS
+ NWumShwFgCrNjo8xdiGC2JCD6PMT+Pct3OhfOy4PGwemoq65yKSQzCJ3ttf9Y0nH9QW9
+ NqGb/mN5278LDUIOfvsuwZuGPrAVpdVIBmdcv3r9HdC3RyHBCFvdcidA6oiuV55rrYQf
+ 3DTooSyHcVsWMWoXbJ2/a8uymiyGIHu4qMCGk4XGdxcd79YEcf3Xr/JKWeaTlKKKxX3W
+ l0kw==
 X-Forwarded-Encrypted: i=1;
- AL+hErH04Yv7P1EtUTFLNgSMP8/+56GJ/25KvDU0W91fC9tLNjPRK8fyUOx/aZ3cfqXkdyfYfsQNaqciBg==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9fzSfFK2SVdt2fj3IQvtDIjIeQ2o1P4oe+49juZXm018qcRpYh
- 7l1XndVKRbrEOAqYeEq+r3ngW5D5r/4Y2JHJSHPGdwBfVYrKv/Zu5Xr96TbbS8ZGKDU=
-X-Gm-Gg: AYBFou1jk6aW3CQc6tcnbvfmf2lBPrUrBIJXArGJQbwsXT97p0rk/2cPO1SfddOelxT
- nciZk9zYt1van/8SeuW/m+ViGL+oggLvbydxmRNZimax/0lxFi9GL8Suxd/rd+99INXFUOGBbc9
- DxZZtKyzdNjNFgSEwjjLe3SA4fGALtXIA1IVVRio2z7ExreFLCgYb2st2kKfACQWN1ukMvfrAsy
- 4e4uVTHuc5iUnbApwvugmjhqNkKU8jlqIF4dD/u7ZRwQ3vg5siH+cfhqXPGIjcGo0ZWA1njgLE/
- /b6T0eyuiEkQCVBTsr2HXFc4BRB8/bDUvBCrL9zyo+8yoeqiP5avjLIlgiNktPSNu6aLMcHmr4y
- M9n1U+379hVGNAk5zo0VVAZxFxA8qnRJjpy1Eo4Pn0Jg7qt+6sgwf5HVtZLjz1+0JlSDyexZ7JY
- 7Z4+o3RsOBGqmx78RgJ3D0cHdmHU0kdbXkuUN0Mo38sZuQQULLFvailu8UMtNg4p5KtZqWWqqXd
- pX02uvhtUENFKVDgy0b+krpaaWTfQgYh+w0N64QBcTpNNkyllRn6ZA6XG4nz6e4qDFPi/tlu9Az
- 48izGPZcTpHjm8DXki9xueW1tVeTxnnxG1XQiQ7armeqmAIIYEQFDDhIFhSVrh0jXYrmj+EBA2Y
- o4rAUw07NIrcRH+Kv4vCBQ/weZyp0
-X-Received: by 2002:a05:622a:5a17:b0:55d:31ac:d86f with SMTP id
- d75a77b69052e-55d494553e7mr26563541cf.13.1794902763822; 
- Tue, 17 Nov 2026 00:06:03 -0800 (PST)
-Received: from [192.168.50.231] (pool-71-191-145-202.washdc.fios.verizon.net.
- [71.191.145.202]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-91f23d7fad3sm105812516d6.29.2026.11.17.00.06.02
+ AL+hErE7uDeCiwqT7rvcGwlPxfpx8SnObMprJ+ptxR0h7Mo78MF3JZxr5zQQ1NNaf/KFcL8owKECWm4uQQ==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z8K+AbndQjPSSV0F6HSgskny/8yN6DcWMO6kFe/EvVzJ2G3xdbV
+ swsqNTFAyPqMLVyL/brtvQEGNJYPvrRqUM4/vNK0BwUgGC1Co/jyqnC69ML0No03z7k=
+X-Gm-Gg: AZFdTZeL4/QmxN7RTikYPFdUbIuKUQH6eRVUTbXoXtsuINKcYwi4eQb7dUhYLJ/lwmA
+ BPu4KdrOR2QZlxu8zUROqPyZNmpjt8SWnmhMTEF4du2SmVH+23jtUrfVuSxIEHX2SZgsWkHbvHc
+ h5xfh5op+3GB88Q3G2fpVYVZ1BQ2ZrBFbRFlKNn170ofJvQgceZvGJKPmWrop3saEqpDkbculgq
+ +mT84jH1YR9kZsiV8ZTej3926iU33DnS8jZlJ3/CnvVDvA9kgp6LdKn5YrGkxhJuq46YYkvNANs
+ tH0lwEXs4kLQzto5NWcPD2rVDboVbeUsgYYj00QlQimthtSeRsEw5YMV8teoDDn2Y2dQzitIveg
+ XtiKSouAyI55VyecTzrdl+TnUoMkuCJXx9V1pHwUklfFjtGwa+/J60UdruL/uEQZ42saivoDsj8
+ cEcvu3XF3LK1VDL0rCaQsLGKBEyH/a8lVNveK7/kDNot/8An7WDXYR+HRNpIWf+aocEZQEczeBV
+ tx0R+fbx15r5pzAajHyaU/+8qGPx+JA/W+JQ4FXWQACPm/25Kj7H/0jGmaRAq14EPmyxv1/MlNS
+ lTG9EFmE66YxIPE3Yb0DxNlW49NPL7zhIS1oHi0j532PQ6M5NeYq0kU2GO8X2kC7L0vXLHAiiGP
+ ZMibHwJnEH1UdAtY=
+X-Received: by 2002:a05:6000:470a:b0:4a5:a777:b5d5 with SMTP id
+ ffacd0b85a97d-4a63d1da532mr5045850f8f.55.1795003714869; 
+ Wed, 18 Nov 2026 04:08:34 -0800 (PST)
+Received: from localhost
+ (p200300f65f19a904dea20c2220232395.dip0.t-ipconnect.de.
+ [2003:f6:5f19:a904:dea2:c22:2023:2395])
+ by smtp.gmail.com with UTF8SMTPSA id
+ ffacd0b85a97d-4a65541f3b3sm4537428f8f.23.2026.11.18.04.08.34
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Nov 2026 00:06:03 -0800 (PST)
+ Wed, 18 Nov 2026 04:08:34 -0800 (PST)
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>
+Cc: Alex Deucher <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Lijo Lazar <lijo.lazar@amd.com>,
+ Mario Limonciello <mario.limonciello@amd.com>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>,
+ "Yo-Jung Leo Lin (AMD)" <Leo.Lin@amd.com>, Hugo Sales <hugo@hsal.es>,
+ Wentao Liang <vulab@iscas.ac.cn>, Zhigang Luo <Zhigang.Luo@amd.com>,
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Marcus Folkesson <marcus.folkesson@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jesszhan0024@gmail.com>,
+ David Lechner <david@lechnology.com>,
+ Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+ Alex Lanzano <lanzano.alex@gmail.com>,
+ LiangCheng Wang <zaq14760@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Dave Airlie <airlied@redhat.com>, Jani Nikula <jani.nikula@intel.com>,
+ Kees Cook <kees+treewide@kernel.org>, Michael Walle <mwalle@kernel.org>,
+ Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+ Linus Walleij <linusw@kernel.org>, Jagan Teki <jagan@amarulasolutions.com>,
+ Iker Pedrosa <ikerpedrosam@gmail.com>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>, nouveau@lists.freedesktop.org,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ Jocelyn Falempe <jfalempe@redhat.com>,
+ Yongbang Shi <shiyongbang@huawei.com>, Tian Tao <tiantao6@hisilicon.com>,
+ Xinwei Kong <kong.kongxinwei@hisilicon.com>,
+ Sasha Finkelstein <k@chaosmail.tech>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ asahi@lists.linux.dev, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
+ linux-riscv@lists.infradead.org, etnaviv@lists.freedesktop.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, imagination@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, lima@lists.freedesktop.org,
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, virtualization@lists.linux.dev,
+ spice-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org
+Subject: [PATCH v1 0/9] drm: Improvements around device-id arrays
+Date: Wed, 18 Nov 2026 13:08:07 +0100
+Message-ID: <cover.1795002467.git.ukleinek@kernel.org>
+X-Mailer: git-send-email 2.47.3
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] mm/hmm: skip NUMA balancing on protnone faults
-From: "Gregory Price (Meta)" <gourry@gourry.net>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: "Gregory Price (Meta)" <gourry@gourry.net>, 
- "David Hildenbrand (Arm)" <david@kernel.org>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Matthew Auld <matthew.auld@intel.com>, linux-mm@kvack.org, 
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?utf-8?q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>, 
- Leon Romanovsky <leon@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>, 
- John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <avvJZtN88gLXA6Uz@nvdebian.thelocal>
-References: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
- <b32fb02a-68b4-4db9-83dd-254147dbf215@kernel.org>
- <1993e931e6a4b0cda5c04e72b1a8d5fb924f950a.camel@linux.intel.com>
- <9ec3e8b9-064a-47a7-8d00-566ff371b846@kernel.org>
- <179460319801.482102.15329919214055018110.b4-reply@b4>
- <avuN2eIrlqrO0u6O@nvdebian.thelocal>
- <179487347201.482102.6428415219993123805.b4-reply@b4>
- <avvJZtN88gLXA6Uz@nvdebian.thelocal>
-Date: Tue, 17 Nov 2026 03:06:02 -0500
-Message-Id: <179490276245.482102.13112734238511841101.b4-reply@b4>
-X-Mailer: b4 0.17-dev
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=17437;
+ i=u.kleine-koenig@baylibre.com; h=from:subject:message-id;
+ bh=cusi/boMbD+x1Pm/G4pa0m2BbrVcm185QOqhPTSRPB4=;
+ b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBq/ZUnzEwB4mHy5ZgAJ72PvaAQv4DmXs/I31u7G
+ NTyp2l7bSCJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCav2VJwAKCRCPgPtYfRL+
+ Tv7RB/9msZyqIvVeGaXtwizzwzzkwmEvZBogp403ClUyjQf6dOFf8vD9xdMFNWtqzOwvKhQuXfM
+ SzT9hOFo8OtXAMVgH/GaZrDV2ErZPyGgUIjEDufg9GVearhhRaUM/g83kesoE+IHiG96xKUxBOD
+ wL4cb1gnIAp7Dn7K1azJGWD11ofvPUxBn73KunSE/xmaBZCStfgyl+oMAtdi3ZLcKZwJ3Sud7Lj
+ HBSJhoawj/nWfTauw3Nl/dIZ7tmkEa1Fu8SdGXIk7YEACZ5uawffoHOn9kd1F58wzXUuoCKMmFj
+ NOForLt+l8rIVAUuwfgytSa5MwOZMoz+ZcOSMlzTgvdmZwID
+X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
+ fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 18 Nov 2026 13:03:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,130 +145,328 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-8.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
 	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 2026-11-17 14:51 +1100, Alistair Popple wrote:
-> On 2026-11-17 at 10:57 +1100, "Gregory Price (Meta)" <gourry@gourry.net> wrote...
-> > 
-> > Ah, I follow.  I'm still working through the performance implications of
-> > mmu_notifiers in the presence of PROT_NONE faults, but if i'm
-> > understanding correctly it tracks that you'd say it's incompatible.
-> 
-> Incompatible is probably not the correct term as it still works. It's just that
-> GPU faults are really expensive, and to be avoided at all costs. So having NUMA
-> balancing running around randomly unmapping pages the GPU is using (regardless
-> of whether or not they are on the device) results in more GPU faults and
-> therefore a huge perf impact for basically no (or in fact sometimes negative)
-> gain.
-> 
-> > I presume here the driver needs a global view of memory (or at least all
-> > memory it can potentially DMA), rather than simply just a subset
-> > (some set of VMAs)?
-> 
-> The basic process is this:
-> 
-> * GPU needs to access some user space virtual address (eg. allocated with mmap/malloc)
-> * Therefore GPU driver needs to setup GPU page tables to point to the physical
->   memory[1] backing the user space virtual address
-> * To find the physical address the GPU driver uses hmm_range_fault() on the
->   range, possibly faulting pages in if required (ie. if CPU PTE permissions
->   don't match what's required).
-> * hmm_range_fault() relies on mmu_notifiers for synchronisation with CPU PTE state.
-> * An mmu_notifier firing causes a driver to do two things:
->   a) Must invalidate any GPU page tables / TLBs mapping the notified virtual address.
->   b) Increments a sequence number for any concurrent hmm_range_faults(), which must
->      retry as their view of CPU PTEs is now out-dated. This is the problem
->      this patch series hits - the migration on fault causes an mmu_notifier to fire
->      resulting in a hmm_range_fault() retry and associated overhead.
-> 
-> So the driver doesn't need a global view of memory, just a view of the memory
-> the GPU needs, or likely needs, to access. Determining that depends on the
-> driver - some might require pre-registration of the ranges (eg. via an ioctl)
-> prior to launching work whilst others might wait until the GPU work faults on an
-> address not in the GPU page tables. Or some combination thereof.
-> 
+the motivation for this series is the wish to replace .driver_data in
+various *_device_id structs by an anonymous union. See
+https://lore.kernel.org/all/cover.1780048925.git.u.kleine-koenig@baylibre.com/
+for the idea behind that and the added benefit.
 
-I feel like i'm missing something here.
+This bases on top of yesterday's next. (Note:
+https://lore.kernel.org/all/cover.1794469153.git.u.kleine-koenig@baylibre.com/
+is also needed for my quest, but this is orthogonal to this series.)
 
-Why can't this be solved by just setting MPOL_LOCAL (or any bind policy)
-without MPOL_F_NUMA_BALANCING on the VMA to prevent the VMA from being
-NUMA scanned in the first place?
+I didn't split the patches per driver or maintainer team, and I hope I
+don't need to because that is quite some effort for very little gain.
+I'm happy to provide a stable branch for the unsplit series if desired.
+For that I'd rebase on top of v7.4-rc1 in the hope that there aren't too
+many changes that were introduced after that point that need adaption
+here.
 
-mpol_misplaced() already checks whether it should migrate with the
-MPOL_F_MOF flag:
+All but the last patch is necessary to progress with the quest pointed
+out above. If you consider the last patch churn, that's fine for me,
+just drop it then.
 
-    pol = get_vma_policy(vma, addr, folio_order(folio), &ilx);
-    if (!(pol->flags & MPOL_F_MOF))
-        goto out;
+I didn't add everyone to Cc: who was emitted by get_maintainer.pl to not
+trigger mail server limits. Even only keeping maintainers and lists was too
+much.
 
-and task_numa_work never scans VMA's without MOF:
+Best regards
+Uwe
 
-    for (; vma; vma = vma_next(&vmi)) {
-        if (!vma_migratable(vma) || !vma_policy_mof(vma) ... )
-                trace_sched_skip_vma_numa(mm, vma, NUMAB_SKIP_UNSUITABLE);
-                continue;
-        }
-    ...
-    }
+Uwe Kleine-König (9):
+  drm/amdgpu: Use named initializer for acpi_device_id array
+  drm/sitronix/st7571-i2c: Drop unused assignment of i2c_device_id
+    driver data
+  drm: Drop unused assignment of spi_device_id driver_data
+  drm: Use designated initializers for spi_device_id arrays
+  drm: Use designated initializers for i2c_device_id arrays
+  drm: Use designated initializers for of_device_id arrays
+  drm: Use an empty initializer as pci_device_id array terminator
+  drm/pl111: Use an empty initializer as amba_id array terminator
+  drm: Unify coding style for *_device_id arrays
 
-So any stray (already scanned) pages at least won't migrate, and
-NUMA balancing skips re-arming for VMAs that don't set MPOL_F_MOF.
+ drivers/gpu/drm/adp/adp-mipi.c                |   4 +-
+ drivers/gpu/drm/adp/adp_drv.c                 |   4 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_acpi.c      |   2 +-
+ .../gpu/drm/arm/display/komeda/komeda_drv.c   |   8 +-
+ drivers/gpu/drm/arm/hdlcd_drv.c               |   4 +-
+ drivers/gpu/drm/arm/malidp_drv.c              |   8 +-
+ drivers/gpu/drm/armada/armada_crtc.c          |   2 +-
+ drivers/gpu/drm/aspeed/aspeed_gfx_drv.c       |   2 +-
+ drivers/gpu/drm/ast/ast_drv.c                 |   2 +-
+ drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c  |   4 +-
+ .../drm/bridge/analogix/analogix-anx6345.c    |   4 +-
+ .../drm/bridge/analogix/analogix-anx78xx.c    |   2 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c     |   4 +-
+ drivers/gpu/drm/bridge/chipone-icn6211.c      |   2 +-
+ drivers/gpu/drm/bridge/chrontel-ch7033.c      |   2 +-
+ drivers/gpu/drm/bridge/display-connector.c    |   2 +-
+ drivers/gpu/drm/bridge/fsl-ldb.c              |  23 +-
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c  |   7 +-
+ .../drm/bridge/imx/imx8qxp-pixel-combiner.c   |   4 +-
+ .../gpu/drm/bridge/imx/imx8qxp-pixel-link.c   |   4 +-
+ drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c  |   2 +-
+ drivers/gpu/drm/bridge/imx/imx93-mipi-dsi.c   |   2 +-
+ drivers/gpu/drm/bridge/imx/imx93-pdfc.c       |   4 +-
+ drivers/gpu/drm/bridge/ite-it6263.c           |   2 +-
+ drivers/gpu/drm/bridge/lontium-lt8912b.c      |   4 +-
+ drivers/gpu/drm/bridge/lontium-lt9211.c       |   2 +-
+ drivers/gpu/drm/bridge/lvds-codec.c           |   2 +-
+ .../bridge/megachips-stdpxxxx-ge-b850v3-fw.c  |   4 +-
+ drivers/gpu/drm/bridge/microchip-lvds.c       |   6 +-
+ drivers/gpu/drm/bridge/nwl-dsi.c              |   2 +-
+ drivers/gpu/drm/bridge/nxp-ptn3460.c          |   2 +-
+ drivers/gpu/drm/bridge/parade-ps8622.c        |   6 +-
+ drivers/gpu/drm/bridge/sii902x.c              |   2 +-
+ drivers/gpu/drm/bridge/sii9234.c              |   2 +-
+ drivers/gpu/drm/bridge/sil-sii8620.c          |   2 +-
+ drivers/gpu/drm/bridge/tc358767.c             |   2 +-
+ drivers/gpu/drm/bridge/tc358768.c             |   4 +-
+ drivers/gpu/drm/bridge/tc358775.c             |   4 +-
+ drivers/gpu/drm/bridge/tda998x_drv.c          |   2 +-
+ drivers/gpu/drm/bridge/th1520-dw-hdmi.c       |   2 +-
+ drivers/gpu/drm/bridge/thc63lvd1024.c         |   4 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi83.c         |   2 +-
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c         |   4 +-
+ drivers/gpu/drm/bridge/ti-tfp410.c            |   2 +-
+ drivers/gpu/drm/bridge/ti-tpd12s015.c         |   4 +-
+ drivers/gpu/drm/bridge/waveshare-dsi.c        |   4 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gpu.c         |   2 +-
+ drivers/gpu/drm/exynos/exynos5433_drm_decon.c |   6 +-
+ drivers/gpu/drm/exynos/exynos7_drm_decon.c    |   2 +-
+ drivers/gpu/drm/exynos/exynos_dp.c            |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_fimc.c      |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_fimd.c      |  33 +-
+ drivers/gpu/drm/exynos/exynos_drm_g2d.c       |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_gsc.c       |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_rotator.c   |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_scaler.c    |   2 +-
+ drivers/gpu/drm/exynos/exynos_hdmi.c          |   5 +-
+ drivers/gpu/drm/exynos/exynos_mixer.c         |  15 +-
+ drivers/gpu/drm/fsl-dcu/fsl_dcu_drm_drv.c     |   2 +-
+ .../gpu/drm/hisilicon/hibmc/hibmc_drm_drv.c   |   2 +-
+ drivers/gpu/drm/hisilicon/kirin/dw_drm_dsi.c  |   2 +-
+ .../gpu/drm/hisilicon/kirin/kirin_drm_drv.c   |   7 +-
+ .../drm/i915/display/intel_display_device.c   |   2 +-
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   6 +-
+ drivers/gpu/drm/i915/i915_pci.c               |   2 +-
+ drivers/gpu/drm/imagination/pvr_drv.c         |   2 +-
+ drivers/gpu/drm/imx/dc/dc-drv.c               |   2 +-
+ drivers/gpu/drm/imx/dc/dc-ic.c                |   2 +-
+ drivers/gpu/drm/imx/dc/dc-pe.c                |   2 +-
+ drivers/gpu/drm/imx/dcss/dcss-drv.c           |   4 +-
+ drivers/gpu/drm/imx/ipuv3/dw_hdmi-imx.c       |  11 +-
+ drivers/gpu/drm/imx/ipuv3/imx-drm-core.c      |   4 +-
+ drivers/gpu/drm/imx/ipuv3/imx-ldb.c           |   4 +-
+ drivers/gpu/drm/imx/ipuv3/imx-tve.c           |   2 +-
+ drivers/gpu/drm/imx/ipuv3/parallel-display.c  |   2 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |   2 +-
+ drivers/gpu/drm/ingenic/ingenic-dw-hdmi.c     |   2 +-
+ drivers/gpu/drm/ingenic/ingenic-ipu.c         |   2 +-
+ drivers/gpu/drm/kmb/kmb_drv.c                 |   4 +-
+ drivers/gpu/drm/lima/lima_drv.c               |   2 +-
+ drivers/gpu/drm/logicvc/logicvc_drm.c         |   2 +-
+ drivers/gpu/drm/mcde/mcde_drv.c               |   2 +-
+ drivers/gpu/drm/mcde/mcde_dsi.c               |   2 +-
+ drivers/gpu/drm/mediatek/mtk_cec.c            |   4 +-
+ drivers/gpu/drm/mediatek/mtk_disp_ccorr.c     |  14 +-
+ drivers/gpu/drm/mediatek/mtk_disp_color.c     |  20 +-
+ drivers/gpu/drm/mediatek/mtk_disp_gamma.c     |  20 +-
+ drivers/gpu/drm/mediatek/mtk_disp_merge.c     |   4 +-
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c       |  50 ++-
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |  26 +-
+ drivers/gpu/drm/mediatek/mtk_dp.c             |   2 +-
+ drivers/gpu/drm/mediatek/mtk_dpi.c            |   2 +-
+ drivers/gpu/drm/mediatek/mtk_drm_drv.c        | 395 +++++++++++-------
+ drivers/gpu/drm/mediatek/mtk_ethdr.c          |   4 +-
+ drivers/gpu/drm/mediatek/mtk_hdmi_ddc.c       |   4 +-
+ drivers/gpu/drm/mediatek/mtk_mdp_rdma.c       |   4 +-
+ drivers/gpu/drm/meson/meson_drv.c             |  28 +-
+ drivers/gpu/drm/meson/meson_dw_hdmi.c         |  24 +-
+ drivers/gpu/drm/meson/meson_dw_mipi_dsi.c     |   2 +-
+ drivers/gpu/drm/msm/adreno/adreno_device.c    |   2 +-
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |  70 ++--
+ drivers/gpu/drm/msm/disp/mdp5/mdp5_kms.c      |   6 +-
+ drivers/gpu/drm/msm/dp/dp_display.c           |   2 +-
+ drivers/gpu/drm/msm/dsi/dsi.c                 |   2 +-
+ drivers/gpu/drm/msm/hdmi/hdmi.c               |   2 +-
+ drivers/gpu/drm/msm/hdmi/hdmi_phy.c           |  38 +-
+ drivers/gpu/drm/msm/msm_drv.c                 |   2 +-
+ drivers/gpu/drm/msm/msm_mdss.c                |   2 +-
+ drivers/gpu/drm/mxsfb/mxsfb_drv.c             |   6 +-
+ .../gpu/drm/nouveau/dispnv04/i2c/ch7006_drv.c |   2 +-
+ .../gpu/drm/nouveau/dispnv04/i2c/sil164_drv.c |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_drm.c         |   2 +-
+ drivers/gpu/drm/omapdrm/dss/dispc.c           |   2 +-
+ drivers/gpu/drm/omapdrm/dss/dsi.c             |   8 +-
+ drivers/gpu/drm/omapdrm/dss/dss.c             |   2 +-
+ drivers/gpu/drm/omapdrm/dss/hdmi4.c           |   4 +-
+ drivers/gpu/drm/omapdrm/dss/hdmi5.c           |   6 +-
+ drivers/gpu/drm/omapdrm/dss/venc.c            |   8 +-
+ drivers/gpu/drm/omapdrm/omap_dmm_tiler.c      |   2 +-
+ drivers/gpu/drm/panel/panel-arm-versatile.c   |   4 +-
+ drivers/gpu/drm/panel/panel-auo-a030jtn01.c   |   5 +-
+ drivers/gpu/drm/panel/panel-boe-himax8279d.c  |   4 +-
+ .../drm/panel/panel-boe-th101mb31ig002-28a.c  |   4 +-
+ .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    |  47 ++-
+ drivers/gpu/drm/panel/panel-dsi-cm.c          |   6 +-
+ drivers/gpu/drm/panel/panel-edp.c             |   5 +-
+ .../gpu/drm/panel/panel-feixin-k101-im2ba02.c |   2 +-
+ .../drm/panel/panel-feiyang-fy07024di26a30d.c |   2 +-
+ .../gpu/drm/panel/panel-focaltech-ota7290b.c  |   4 +-
+ drivers/gpu/drm/panel/panel-himax-hx83102.c   |  47 ++-
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c  |   2 +-
+ .../gpu/drm/panel/panel-ilitek-ili9806e-spi.c |   2 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9881c.c |   4 +-
+ drivers/gpu/drm/panel/panel-ilitek-ili9882t.c |  17 +-
+ drivers/gpu/drm/panel/panel-innolux-p079zca.c |  11 +-
+ .../gpu/drm/panel/panel-jadard-jd9365da-h3.c  |  30 +-
+ drivers/gpu/drm/panel/panel-jdi-lpm102a188a.c |   2 +-
+ .../gpu/drm/panel/panel-jdi-lt070me05000.c    |   2 +-
+ drivers/gpu/drm/panel/panel-khadas-ts050.c    |   4 +-
+ .../drm/panel/panel-kingdisplay-kd097d04.c    |   2 +-
+ drivers/gpu/drm/panel/panel-lg-lb035q02.c     |   6 +-
+ drivers/gpu/drm/panel/panel-lg-sw43408.c      |   4 +-
+ .../gpu/drm/panel/panel-lincolntech-lcd197.c  |   2 +-
+ drivers/gpu/drm/panel/panel-lvds.c            |   4 +-
+ .../drm/panel/panel-magnachip-d53e6ea8966.c   |   4 +-
+ drivers/gpu/drm/panel/panel-nec-nl8048hl11.c  |   6 +-
+ .../gpu/drm/panel/panel-newvision-nv3052c.c   |   6 +-
+ drivers/gpu/drm/panel/panel-novatek-nt35950.c |   2 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36523.c |   2 +-
+ .../gpu/drm/panel/panel-novatek-nt36672a.c    |   2 +-
+ drivers/gpu/drm/panel/panel-novatek-nt36850.c |   2 +-
+ drivers/gpu/drm/panel/panel-novatek-nt37801.c |   2 +-
+ .../gpu/drm/panel/panel-orisetech-ota5601a.c  |   2 +-
+ .../drm/panel/panel-osd-osd101t2587-53ts.c    |   5 +-
+ .../drm/panel/panel-panasonic-vvx10f034n00.c  |   2 +-
+ drivers/gpu/drm/panel/panel-raydium-rm67191.c |   2 +-
+ drivers/gpu/drm/panel/panel-renesas-r63419.c  |   2 +-
+ drivers/gpu/drm/panel/panel-ronbo-rb070d30.c  |   2 +-
+ .../gpu/drm/panel/panel-samsung-atna33xc20.c  |   2 +-
+ drivers/gpu/drm/panel/panel-samsung-db7430.c  |   8 +-
+ drivers/gpu/drm/panel/panel-samsung-ld9040.c  |   2 +-
+ drivers/gpu/drm/panel/panel-samsung-s6d27a1.c |   4 +-
+ drivers/gpu/drm/panel/panel-samsung-s6d7aa0.c |   6 +-
+ .../panel/panel-samsung-s6e88a0-ams427ap24.c  |   2 +-
+ .../panel/panel-samsung-s6e88a0-ams452ef01.c  |   2 +-
+ drivers/gpu/drm/panel/panel-seiko-43wvf1g.c   |   5 +-
+ .../gpu/drm/panel/panel-sharp-lq101r1sx01.c   |   2 +-
+ .../gpu/drm/panel/panel-sharp-ls037v7dw01.c   |   4 +-
+ .../gpu/drm/panel/panel-sharp-ls043t1le01.c   |   2 +-
+ drivers/gpu/drm/panel/panel-simple.c          |  70 ++--
+ drivers/gpu/drm/panel/panel-sitronix-st7701.c |   2 +-
+ .../gpu/drm/panel/panel-sitronix-st7789v.c    |  26 +-
+ drivers/gpu/drm/panel/panel-sony-acx565akm.c  |   6 +-
+ .../drm/panel/panel-startek-kd070fhfid015.c   |   2 +-
+ drivers/gpu/drm/panel/panel-summit.c          |   2 +-
+ drivers/gpu/drm/panel/panel-tdo-tl070wsh30.c  |   2 +-
+ drivers/gpu/drm/panel/panel-tpo-td028ttec1.c  |   8 +-
+ drivers/gpu/drm/panel/panel-tpo-td043mtea1.c  |   6 +-
+ drivers/gpu/drm/panel/panel-tpo-tpg110.c      |   8 +-
+ drivers/gpu/drm/panel/panel-visionox-r66451.c |   2 +-
+ .../gpu/drm/panel/panel-visionox-rm69299.c    |  12 +-
+ .../gpu/drm/panel/panel-widechips-ws2401.c    |   8 +-
+ drivers/gpu/drm/panfrost/panfrost_drv.c       |  36 +-
+ drivers/gpu/drm/panthor/panthor_drv.c         |   4 +-
+ drivers/gpu/drm/pl111/pl111_drv.c             |   2 +-
+ drivers/gpu/drm/pl111/pl111_versatile.c       |   4 +-
+ drivers/gpu/drm/qxl/qxl_drv.c                 |   6 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_cmm.c    |   6 +-
+ drivers/gpu/drm/renesas/rcar-du/rcar_dsc.c    |   2 +-
+ .../gpu/drm/renesas/rcar-du/rcar_dw_hdmi.c    |   2 +-
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    |   6 +-
+ .../gpu/drm/rockchip/analogix_dp-rockchip.c   |  12 +-
+ drivers/gpu/drm/rockchip/cdn-dp-core.c        |   8 +-
+ .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |  32 +-
+ .../gpu/drm/rockchip/dw-mipi-dsi2-rockchip.c  |   2 +-
+ drivers/gpu/drm/rockchip/dw_dp-rockchip.c     |   2 +-
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c   |  32 +-
+ .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    |   6 +-
+ drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c |  12 +-
+ drivers/gpu/drm/rockchip/rk3066_hdmi.c        |   2 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c   |   4 +-
+ drivers/gpu/drm/rockchip/rockchip_lvds.c      |   6 +-
+ drivers/gpu/drm/rockchip/rockchip_vop2_reg.c  |   4 +-
+ drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |  92 ++--
+ drivers/gpu/drm/sitronix/st7571-i2c.c         |   6 +-
+ drivers/gpu/drm/sitronix/st7571-spi.c         |   6 +-
+ drivers/gpu/drm/sitronix/st7586.c             |   6 +-
+ drivers/gpu/drm/sitronix/st7735r.c            |   8 +-
+ drivers/gpu/drm/sitronix/st7920.c             |   2 +-
+ drivers/gpu/drm/sprd/sprd_dpu.c               |   2 +-
+ drivers/gpu/drm/sprd/sprd_drm.c               |   4 +-
+ drivers/gpu/drm/sprd/sprd_dsi.c               |   2 +-
+ drivers/gpu/drm/sti/sti_compositor.c          |   5 +-
+ drivers/gpu/drm/sti/sti_drv.c                 |   4 +-
+ drivers/gpu/drm/sti/sti_dvo.c                 |   2 +-
+ drivers/gpu/drm/sti/sti_hda.c                 |   4 +-
+ drivers/gpu/drm/sti/sti_hdmi.c                |   5 +-
+ drivers/gpu/drm/sti/sti_hqvdp.c               |   2 +-
+ drivers/gpu/drm/sti/sti_tvout.c               |   2 +-
+ drivers/gpu/drm/sti/sti_vtg.c                 |   2 +-
+ drivers/gpu/drm/stm/drv.c                     |   8 +-
+ drivers/gpu/drm/stm/dw_mipi_dsi-stm.c         |   4 +-
+ drivers/gpu/drm/stm/lvds.c                    |   2 +-
+ drivers/gpu/drm/sun4i/sun4i_frontend.c        |   8 +-
+ drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c        |   6 +-
+ drivers/gpu/drm/sun4i/sun6i_mipi_dsi.c        |  12 +-
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         |   2 +-
+ drivers/gpu/drm/sun4i/sun8i_tcon_top.c        |   6 +-
+ drivers/gpu/drm/sysfb/ofdrm.c                 |   4 +-
+ drivers/gpu/drm/sysfb/simpledrm.c             |   4 +-
+ drivers/gpu/drm/tegra/dc.c                    |   5 +-
+ drivers/gpu/drm/tegra/dpaux.c                 |   2 +-
+ drivers/gpu/drm/tegra/drm.c                   |  84 ++--
+ drivers/gpu/drm/tegra/dsi.c                   |   2 +-
+ drivers/gpu/drm/tegra/gr2d.c                  |   2 +-
+ drivers/gpu/drm/tegra/hdmi.c                  |   2 +-
+ drivers/gpu/drm/tegra/hub.c                   |   9 +-
+ drivers/gpu/drm/tegra/nvdec.c                 |   2 +-
+ drivers/gpu/drm/tegra/nvjpg.c                 |   2 +-
+ drivers/gpu/drm/tegra/sor.c                   |   2 +-
+ drivers/gpu/drm/tegra/vic.c                   |   2 +-
+ drivers/gpu/drm/tidss/tidss_drv.c             |  12 +-
+ drivers/gpu/drm/tilcdc/tilcdc_drv.c           |   6 +-
+ drivers/gpu/drm/tiny/arcpgu.c                 |   4 +-
+ drivers/gpu/drm/tiny/hx8357d.c                |   2 +-
+ drivers/gpu/drm/tiny/ili9163.c                |   2 +-
+ drivers/gpu/drm/tiny/ili9225.c                |   6 +-
+ drivers/gpu/drm/tiny/ili9341.c                |   2 +-
+ drivers/gpu/drm/tiny/ili9486.c                |   8 +-
+ drivers/gpu/drm/tiny/mi0283qt.c               |   6 +-
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c         |   6 +-
+ drivers/gpu/drm/tiny/pixpaper.c               |   7 +-
+ drivers/gpu/drm/tiny/repaper.c                |  12 +-
+ drivers/gpu/drm/tiny/sharp-memory.c           |  44 +-
+ drivers/gpu/drm/tve200/tve200_drv.c           |   2 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_crtc.c                |   2 +-
+ drivers/gpu/drm/vc4/vc4_dpi.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_drv.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_dsi.c                 |   8 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                |   2 +-
+ drivers/gpu/drm/vc4/vc4_hvs.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_txp.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_v3d.c                 |   2 +-
+ drivers/gpu/drm/vc4/vc4_vec.c                 |   2 +-
+ drivers/gpu/drm/verisilicon/vs_dc.c           |   2 +-
+ drivers/gpu/drm/xlnx/zynqmp_dpsub.c           |   4 +-
+ drivers/gpu/host1x/dev.c                      |  20 +-
+ drivers/gpu/host1x/tegra114-mipi.c            |   2 +-
+ drivers/gpu/ipu-v3/ipu-common.c               |   8 +-
+ drivers/gpu/ipu-v3/ipu-pre.c                  |   4 +-
+ drivers/gpu/ipu-v3/ipu-prg.c                  |   4 +-
+ 272 files changed, 1238 insertions(+), 1017 deletions(-)
 
-You'd only have to worry about a user setting a mempolicy after
-it becomes hmm tracked - and i think we could work around that
-by locking a VMA policy in place.
 
-Gets a little tricky for pagecache i suppose, but the plumbing
-exists to handle this.
-
-Anyway, MOF gets set is if you inherit the default policy:
-
-void __init numa_policy_init(void)
-{
-...
-    for_each_node(nid) {
-        preferred_node_policy[nid] = (struct mempolicy) {
-            .refcnt = ATOMIC_INIT(1),
-            .mode = MPOL_PREFERRED,
-            .flags = MPOL_F_MOF | MPOL_F_MORON,
-            .nodes = nodemask_of_node(nid),
-        };
-    }
-...
-}
-
-or you set MPOL_F_NUMA_BALANCING on the policy:
-
-static inline int sanitize_mpol_flags(int *mode, unsigned short *flags)
-{
-...
-    if (*flags & MPOL_F_NUMA_BALANCING) {
-        if (*mode == MPOL_BIND || *mode == MPOL_PREFERRED_MANY)
-            *flags |= (MPOL_F_MOF | MPOL_F_MORON);
-        else
-            return -EINVAL;
-    }
-...
-}
-
-If the memory is tmpfs/shmem, you can even set a default mempolicy at
-mount time that does not set numa balancing.  If we need that for
-another filesystem, it can be added trivially.
-
-If there's a need for a driver or hmm to update a VMA mempolicy as part
-of the hmm runtime process so userland doesn't have to know about it
-under the hood - i think we could do that too.
-
-Am I missing something?  Seems we can just rid hmm-tracked regions of
-NUMA Balancing PROT_NONE faults entirely instead of ignoring them.
-
-~Gregory
-
+base-commit: 7cfbf79c66c63e807ea452abf0546e6f6d6833a6
 -- 
-~Gregory
+2.56.0.rc1
 
