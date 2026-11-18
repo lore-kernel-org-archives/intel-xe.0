@@ -2,89 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD9D2606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 00:50:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB8A5606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 01:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=dv+UlE7D
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=F6+QFYYy
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9929E10FA44;
-	Wed, 18 Nov 2026 00:50:37 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C6C010E688;
- Wed, 18 Nov 2026 00:49:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=X1mRNb9No3wdnTR/cMHZKezqf8q53Bzdh8b1/a21plE=; b=dv+UlE7D0vybkp2FFYzNVNv6tm
- zuETQaw8E6xBRIiGf3XrdmMTGCImEG/hGKGwMuJ7CT58L6L1y6BHWR1FYaQve6JaIFsv0ISM2sMJx
- 8jAWIyB13E0JYfbhkuwbqpTPS9B2dOpD2JlFRWg8y9c1FQiQhBb4rKxPs1Hgycu2lCiv7O43j4UPS
- 7RA3u1p6jp7RnjHRo7iObXjiXdgaou2K+XNoFnLv/G+NOYOowQFgY7dqYq1ReDt5U2TnxKsVY+WD0
- 8/o+99/RZuj1sQMk2r3zRJ/Xp4lmlrEtBAp5LKX9JOjA2VYJlOnSYRluHFMJFWl7bKg/+hNKg3ahe
- 3rwqX+mw==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.100.1 #2 (Red Hat Linux))
- id 1xTTrj-00000007PFp-2tTG; Wed, 18 Nov 2026 00:49:35 +0000
-Message-ID: <aab3bd74-80c6-4d51-a433-140b1d27946e@infradead.org>
-Date: Tue, 17 Nov 2026 16:49:32 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C89710E58C;
+	Wed, 18 Nov 2026 01:25:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7BF10E58C
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 01:25:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794965103; x=1826501103;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=TuB5OVr0pk8mA/E0zvRp9u09DnaDdkYK41o7G1eHeIc=;
+ b=F6+QFYYyEu3K1leCZtM5rwB+OizoMo67HCr/kan/NLg8zd3de0LA42g7
+ Nu9kWGQy1hKHKNqcP+AV4/WL3zFMauih6gZriBFfg64HbZMi1NFTut6lM
+ cj9bu9X8Qq2CmXUJwQ+LI+gznrigw1UPCdJH9qpNkaXOlknQPAsvAu5aT
+ OjoxWhlBT1ZPSgG7v7HhF8POokPNPe5LAOTFjs+ux1DGNx4SyOZ0IjNVr
+ AAFMIbYfdfY2HiTEm1PHmWGrRaq00uCWW3DBTpBqV1WSVFo3UqwSM1Ov4
+ vYFi4UQH3A6nlPFwGTPe48u4hN8F1V9F/Jyy9amNAAbc+fGHB3nMje7DW g==;
+X-CSE-ConnectionGUID: 5VIGuIjUTty7PA1aECwftg==
+X-CSE-MsgGUID: O02WaFzkQPSOVITUhWt+IQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3775352"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="3775352"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 17:25:03 -0800
+X-CSE-ConnectionGUID: 9GKNBoSORBmD3qyN19O1kA==
+X-CSE-MsgGUID: pSiAmLpRQju7KvFLdk6p8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="9875518"
+Received: from vbelgaum-desk1.fm.intel.com ([10.121.64.203])
+ by orviesa004.jf.intel.com with ESMTP; 17 Nov 2026 17:25:03 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Subject: [PATCH v3 1/2] drm/xe: Disallow freq changes while mert cap is active
+Date: Tue, 17 Nov 2026 17:24:54 -0800
+Message-ID: <20261118012453.626087-3-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/12] docs: ioctl-number: update FS entries
-To: sashiko-reviews@lists.linux.dev
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- David Hildenbrand <david@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, linux-mm@kvack.org,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Willem de Bruijn <willemdebruijn.kernel@gmail.com>,
- Jason Wang <jasowangio@gmail.com>, David Heidelberg <david@ixit.cz>,
- Chas Williams <3chas3@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Helge Deller <deller@gmx.de>,
- dri-devel@lists.freedesktop.org, MPT-FusionLinux.pdl@broadcom.com,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <mkp@kernel.org>, linux-scsi@vger.kernel.org,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Zhihao Cheng <chengzhihao1@huawei.com>, linux-mtd@lists.infradead.org,
- Neill Kapron <nkapron@google.com>, Andrey Konovalov <andreyknvl@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
- Juergen Gross <jgross@suse.com>, Stefano Stabellini
- <sstabellini@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, "Michael S. Tsirkin" <mst@redhat.com>,
- =?UTF-8?Q?Eugenio_P=C3=A9rez?= <eperezma@redhat.com>,
- Sean Christopherson <seanjc@google.com>, Paolo Bonzini
- <pbonzini@redhat.com>, kvm@vger.kernel.org, virtualization@lists.linux.dev,
- Jan Kara <jack@suse.cz>, Theodore Ts'o <tytso@mit.edu>,
- linux-ext4@vger.kernel.org, Mike Marshall <hubcap@omnibond.com>,
- devel@lists.orangefs.org, Paulo Alcantara <pc@manguebit.org>,
- Namjae Jeon <linkinjeon@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Chao Yu <chao@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Benson Leung <bleung@chromium.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20261114202653.3113381-1-rdunlap@infradead.org>
- <20261114202653.3113381-11-rdunlap@infradead.org>
- <sashiko-outbox-215810@kernel.org>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <sashiko-outbox-215810@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,55 +59,169 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+When Wa_22019338487 is applied, GT freq is capped until GSC load is done.
+During this time, it is possible that users can access sysfs to set min/max
+GT frequencies. Modifying the frequencies between save/restore could cause
+inconsistency. Prevent this by introducing a flag which tracks if the cap
+is active and defer user min/max requests until the cap is lifted.
 
+Fixes: 3b1592fb7835 ("drm/xe/lnl: Apply Wa_22019338487")
+Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 66 +++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 +
+ 2 files changed, 48 insertions(+), 20 deletions(-)
 
-On 11/15/26 12:27 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Low] docs: ioctl-number: ext4 00-2F ioctl range points to
->   fs/ext4/ext4.h instead of uapi/linux/ext4.h
-> --
-> 
-> commit 9072a8199d2be085dc5ab2567392180faf810c6d
-> Author: Randy Dunlap <rdunlap@infradead.org>
-> 
-> docs: ioctl-number: update FS entries
-> 
-> This commit updates the header file paths and sequence number ranges for
-> filesystem ioctls in Documentation/userspace-api/ioctl/ioctl-number.rst.
-> 
->> diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
->> index 87e547be9e2ac..abc89b6288ba3 100644
->> --- a/Documentation/userspace-api/ioctl/ioctl-number.rst
->> +++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
-> 
-> [ ... ]
-> 
->> @@ -275,7 +276,7 @@ Code  Seq#    Include File                                             Comments
->>  'f'   00-1F  linux/ext2_fs.h                                           conflict!
->>  'f'   00-1F  linux/ext3_fs.h                                           conflict!
->>  'f'   00-0F  fs/jfs/jfs_dinode.h                                       conflict!
->> -'f'   00-0F  fs/ext4/ext4.h                                            conflict!
->> +'f'   00-2F  fs/ext4/ext4.h                                            conflict!
-> 
-> [Severity: Low]
-> Should this entry point to uapi/linux/ext4.h (or both headers) instead of
-> only fs/ext4/ext4.h?
-> 
-> Commit 519fe1bae7e2 ("ext4: Add a uapi header for ext4 userspace APIs")
-> moved the EXT4_IOC_* definitions spanning 0x03 through 0x2E into
-> include/uapi/linux/ext4.h, leaving only the compat EXT4_IOC32_* definitions
-> (0x03 through 0x08) in fs/ext4/ext4.h.
-
-Done.
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 9558d7196a51..ea47b0ded83a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -344,13 +344,18 @@ static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
+ 	pc_set_manual_rp_ctrl(pc, false);
+ }
+ 
+-static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
++static bool pc_freq_in_range(struct xe_guc_pc *pc, u32 freq)
+ {
+ 	/*
+ 	 * Let's only check for the rpn-rp0 range. If max < min,
+ 	 * min becomes a fixed request.
+ 	 */
+-	if (freq < pc->rpn_freq || freq > pc->rp0_freq)
++	return freq >= pc->rpn_freq && freq <= pc->rp0_freq;
++}
++
++static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
++{
++	if (!pc_freq_in_range(pc, freq))
+ 		return -EINVAL;
+ 
+ 	/*
+@@ -377,12 +382,8 @@ static int pc_get_max_freq(struct xe_guc_pc *pc)
+ 
+ static int pc_set_max_freq(struct xe_guc_pc *pc, u32 freq)
+ {
+-	/*
+-	 * Let's only check for the rpn-rp0 range. If max < min,
+-	 * min becomes a fixed request.
+-	 * Also, overclocking is not supported.
+-	 */
+-	if (freq < pc->rpn_freq || freq > pc->rp0_freq)
++	/* Overclocking is not supported. */
++	if (!pc_freq_in_range(pc, freq))
+ 		return -EINVAL;
+ 
+ 	return pc_action_set_param(pc,
+@@ -638,17 +639,26 @@ int xe_guc_pc_get_min_freq(struct xe_guc_pc *pc, u32 *freq)
+ 
+ static int xe_guc_pc_set_min_freq_locked(struct xe_guc_pc *pc, u32 freq)
+ {
+-	int ret;
+-
+ 	lockdep_assert_held(&pc->freq_lock);
+ 
+ 	/* Might be in the middle of a gt reset */
+ 	if (!pc->freq_ready)
+ 		return -EAGAIN;
+ 
+-	ret = pc_set_min_freq(pc, freq);
+-	if (ret)
+-		return ret;
++	/*
++	 * While the Wa_22019338487 cap is active, defer applying the new min
++	 * to GuC; xe_guc_pc_restore_stashed_freq() will apply it once the
++	 * cap is removed.
++	 */
++	if (pc->mert_freq_cap_active) {
++		if (!pc_freq_in_range(pc, freq))
++			return -EINVAL;
++	} else {
++		int ret = pc_set_min_freq(pc, freq);
++
++		if (ret)
++			return ret;
++	}
+ 
+ 	pc->user_requested_min = freq;
+ 
+@@ -707,17 +717,26 @@ int xe_guc_pc_get_max_freq(struct xe_guc_pc *pc, u32 *freq)
+ 
+ static int xe_guc_pc_set_max_freq_locked(struct xe_guc_pc *pc, u32 freq)
+ {
+-	int ret;
+-
+ 	lockdep_assert_held(&pc->freq_lock);
+ 
+ 	/* Might be in the middle of a gt reset */
+ 	if (!pc->freq_ready)
+ 		return -EAGAIN;
+ 
+-	ret = pc_set_max_freq(pc, freq);
+-	if (ret)
+-		return ret;
++	/*
++	 * While the Wa_22019338487 cap is active, defer applying the new max
++	 * to GuC; xe_guc_pc_restore_stashed_freq() will apply it once the
++	 * cap is lifted.
++	 */
++	if (pc->mert_freq_cap_active) {
++		if (!pc_freq_in_range(pc, freq))
++			return -EINVAL;
++	} else {
++		int ret = pc_set_max_freq(pc, freq);
++
++		if (ret)
++			return ret;
++	}
+ 
+ 	pc->user_requested_max = freq;
+ 
+@@ -1094,6 +1113,9 @@ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+ 	if (!ret)
+ 		ret = pc_set_max_freq(pc, min(pc->rp0_freq, pc_max_freq_cap(pc)));
+ 
++	if (!ret)
++		pc->mert_freq_cap_active = true;
++
+ 	return ret;
+ }
+ 
+@@ -1112,9 +1134,13 @@ int xe_guc_pc_restore_stashed_freq(struct xe_guc_pc *pc)
+ 		return 0;
+ 
+ 	mutex_lock(&pc->freq_lock);
+-	ret = pc_set_max_freq(pc, pc->stashed_max_freq);
++	/* Apply any user min/max request made while the cap was active, else the stash. */
++	ret = pc_set_max_freq(pc, pc->user_requested_max ?: pc->stashed_max_freq);
++
++	if (!ret)
++		ret = pc_set_min_freq(pc, pc->user_requested_min ?: pc->stashed_min_freq);
+ 	if (!ret)
+-		ret = pc_set_min_freq(pc, pc->stashed_min_freq);
++		pc->mert_freq_cap_active = false;
+ 	mutex_unlock(&pc->freq_lock);
+ 
+ 	return ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+index 711bbcdcb0d3..9a6ea2904e33 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+@@ -35,6 +35,8 @@ struct xe_guc_pc {
+ 	bool freq_ready;
+ 	/** @power_profile: Base or power_saving profile */
+ 	u32 power_profile;
++	/** @mert_freq_cap_active: Wa_22019338487 min/max cap is currently in force */
++	bool mert_freq_cap_active;
+ };
+ 
+ #endif	/* _XE_GUC_PC_TYPES_H_ */
 -- 
-~Randy
+2.53.0
 
