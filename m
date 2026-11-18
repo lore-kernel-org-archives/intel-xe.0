@@ -2,100 +2,100 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F7B60A2600
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:03:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C8F606A33B
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:03:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=pps01 header.b=XcKb/MaK;
-	dkim=pass (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=lionmail header.b=bt94kWjZ
+	dkim=pass (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=pps01 header.b=W0M1fBkG;
+	dkim=pass (2048-bit key) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=lionmail header.b=vxeoH+kx
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8BF010FC16;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76D9310FC0F;
 	Wed, 18 Nov 2026 13:03:44 +0000 (UTC)
 Received: from mx0b-00364e01.pphosted.com (mx0b-00364e01.pphosted.com
  [148.163.139.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3108210E271
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 04:29:11 +0000 (UTC)
-Received: from pps.filterd (m0167075.ppops.net [127.0.0.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 114F310E0A6
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 04:29:21 +0000 (UTC)
+Received: from pps.filterd (m0499198.ppops.net [127.0.0.1])
  by mx0b-00364e01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6AI1XiAO3280512
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 23:29:10 -0500
+ 6AI1XPID3917853
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 23:29:21 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=columbia.edu; h=
- cc:content-transfer-encoding:content-type:date:from:message-id
- :mime-version:subject:to; s=pps01; bh=rqAEWub6b+VNUKauWaWsmC6HlM
- EYDyZPR4KLlxu12zc=; b=XcKb/MaK0eyLn/5OAfV8yBM2KRS2M6b5kR5SMr6EFm
- CWnmQAF2vdwVgdMUDq9LQ0B1kytwzgnyCHTWOs93YThc0KuTvsQ7CyIyQ6JAqsTV
- Vo6jACRz1trjeOQMhdWiAi67KSg8HHnKjoHZxfXLgexeC7XX/nXfNR5TghfdcWs9
- 82JWEd7BocL6iqzZD8yUP0rTVLepl/bIT6esC2voCKjI4lBaTYN6n5inDvO5NPKj
- On7x8D2GIiZH7BRMNehP59V5pbtScQPMsHQW9s4RMZ2FMmTPuhdw5wwBdi3nvERz
- AUrzScQCknu8WiqXoILhp7DXNRWCD+iuhydQEqmBaQaw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0b-00364e01.pphosted.com (PPS) with ESMTPS id 4j0yu6sg87-1
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pps01; bh=oNP9
+ a6jLUlKCdTaahR8z6VO1PL6EFsLdkPdFbzFnzHQ=; b=W0M1fBkGR74M9DrJBxNr
+ Sy35Rs/B5YmTpzC+TrBM7+r6DY5gyJ7+eaqRnl+tm7543UEpFfUWSpIg4M8KQoXs
+ WHOvGW/GBRG6FqJbriLuUUbINLHSwlNj+D/i2tfYh8ZXxHlLFIYloWEk1f1bLd0a
+ 3sbrZWmN3lwWupdLp6+FOl4iGD90mujCP23YEsk71gxz828lxX3044MrZ14bhkzr
+ HpcKOyeUxEkP95yVz4+/TikS4sprev/fsSKvY9f5cZ1eI1U9GPWhay2176YStBXA
+ NLf61FGInRcqnbvaesSIvLfD8l+R9I5QC4AZOrRFIq7MzmIQWrXXf8vwNBtbUrN2
+ Cw==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200])
+ by mx0b-00364e01.pphosted.com (PPS) with ESMTPS id 4j0yu99f2b-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 23:29:09 -0500 (EST)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-944138ed63fso12888285a.3
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 20:29:09 -0800 (PST)
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 23:29:20 -0500 (EST)
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-93e92aad34aso116459185a.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Nov 2026 20:29:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=columbia.edu; s=lionmail; t=1794976149; x=1795580949;
+ d=columbia.edu; s=lionmail; t=1794976160; x=1795580960;
  darn=lists.freedesktop.org; 
- h=cc:to:content-transfer-encoding:content-type:mime-version
- :message-id:date:subject:from:from:to:cc:subject:date:message-id
- :reply-to:content-type;
- bh=rqAEWub6b+VNUKauWaWsmC6HlMEYDyZPR4KLlxu12zc=;
- b=bt94kWjZxnotzbRyoghWeLkVTY91qUBQ/U2mMoMNxq/BzAwnMCjpqvf3INguSkaIO/
- wqXTikFt97xjHh3xWI/idRSeYzIUgzxzzz4T5azJAm5v20vs0eAVuuyR1oDKvHTQ3IHu
- tdvmWvUBniQqneAW6qPaT+Injh2E9TM2OLu9op3nmPa7pgb0dvErwybVQKzA3EwYQSaB
- iLguOjUeO+AYlR07jX4PJVCBT2jg4EaOO/M5G1AVTTgibCFfxW7pFqtELA5KhxSO/8FQ
- eRgRp+IBdf+XJfFqCj/z+BeOIsy5zGybJKDED82cfAkWdTMp4NQVr3lcKvohHSg1GTvn
- n40A==
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :content-type:mime-version:subject:date:from:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=oNP9a6jLUlKCdTaahR8z6VO1PL6EFsLdkPdFbzFnzHQ=;
+ b=vxeoH+kx1tW8kfQUzcwv7EvMbL7qh2Jss3qsmnJPIT8IQ/9SpYH3cxnZlz4YwGGPf2
+ c2Tx7LlCHfz3dsMBBravujeXUqaLppG0K9Ey47OtlQSo15HEuI6HuMWCPO7OZb4aMGnb
+ Y8fmQW/K9E4qVCkKHPnTEKPDZI1hvSkpCsLM0gwz7mnxnL8Aqml0y77H4kxYTXBBtnRL
+ YozF5VCRylnaJNi+aABXa/GIBjJzr7Xy6Iyd63TXuWN9sO4OZl2PebLUgIpJRwjJBQox
+ hwHwz4wNIkYzCRbDjQC/H9oYH1zH3FrR88mfl2t04SUbx3FNG3Lve6wutQK2tEoi8tUG
+ jqsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1794976149; x=1795580949;
- h=cc:to:content-transfer-encoding:content-type:mime-version
- :message-id:date:subject:from:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to:content-type;
- bh=rqAEWub6b+VNUKauWaWsmC6HlMEYDyZPR4KLlxu12zc=;
- b=VngLnwzs2LabP5+q2VhARVQlhLA4/EyaK8dujq6AwXv4KheuwA4//jg0ChIJWsD0x+
- zKj4JCCJKcCw++FvEKtwHT91kQFK/oCPDlpInb6KirkkujlhcspkWjy73RC4TSWoCWsf
- fsdQDQKoga7TlYPLqK982nrtpthSMZdjIGjMdnts6CR0qPlJoGYAf2WWDspKhHcfo0hH
- h+IUAO91BUxYsI6nVv/0msE8TN/YfiiERRmzj6SAT/iMUuM0s2v+bT24P5ffrlWXYV5s
- cy62rydmm4i1tkLD6sLJqoYXmdYxHiQ//397+GcCfG/KJlfyZebxVn8b1aSX7KPa8Zq/
- 7Wrg==
+ d=1e100.net; s=20260707; t=1794976160; x=1795580960;
+ h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+ :content-type:mime-version:subject:date:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=oNP9a6jLUlKCdTaahR8z6VO1PL6EFsLdkPdFbzFnzHQ=;
+ b=wdTk3UGSRnKTfFN/9YHTaahEAJLoalWv0vS+Wrzv+zSOYoJm1KovWJZDDeHnHNWLSG
+ Ym+YEhl0gR/E2SJ8YL0uYHL6I1LewlEkAK5/FxV5eTsiiW35ilt9qSHQ8TQCqWD97w3R
+ lLoNLpynbpN1/xuBxyH2yxr1DUb+EM730ldy5ZSpyuHMWQegK0symaOhkUxoUYmuWOMm
+ bfpOU+RpfbNmHCKKSeMtaZzl07m9e6CZSO2wYsOm9o8mT53e69p5VpVvfWSvC5no8mpt
+ hr7CZafMOI6oZ2FOvXNkFO1T3gxMShLks+iP+ocOnFWyNY92onXeZKSVfa2NC8m8Ni7L
+ Txgw==
 X-Forwarded-Encrypted: i=1;
- AL+hErHw6sxaKV5svuimNVben540czjPqRcOQ3/NNQTOhBzOGqhS/AzKImCLv5yATZVW8Uq6SmVNXD+Bqw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+UOHce/bkODySoR//6mjVrzqJ1fgnep2rOs4/hLfoygC6irLPF
- hRkzirelGlOKT9WiUgDNQ4GgGIVLOuOgTmD7xQbk6Vb6u0FQvzNKSnitJnJ4WjonVLdcPkC45om
- I9J3AWTQEWLoYAC3l5S57nuErCTDhB2YqiWOq9cw8wRM+CVVIEeHOe92EWWn4bFZy
-X-Gm-Gg: AYBFou1y+Ij+ow9++8fyVwzVtcdiZ7k4+KElr0fNquiRAx8DD7XSet0HSbquPSgc2Yy
- PVZc4wJVEWnceeiBMcfgdLo8M0H8cL1B/3Z34z//kWRqj3vZXxAtJumBK8zb2qXTDsFr4eLWM6+
- fi8wXLXrsbbh0F2kI4YSaqNMQqxKMFPI+NygnL7Di/jMrSmgTttxmJGON9FfvDpIhqxmVd60+dd
- eV4p0T29Hq6jQcKz/UiTXouvm/UR0skvm2X7tyafNF+ZhTz6SGQjYHgyjugHRiFDnkVKT+eD9mF
- 9IiervgxIaRgPWY+mHme4cPE9IyopbVfRtx3+bON+EFOrVC4+FoVCQS+mQ0fBseesXx5jDIva/B
- cemEKRKleaJi0nAz8y64QPfNvOKOh+lJ3rDAe7hGtvUqsh8U5d67gYMxFq4QMLAX7Itrd+KPQH4
- QVOZifUVZ6ri0YXOmqLA==
-X-Received: by 2002:a05:620a:462c:b0:949:6655:1dc6 with SMTP id
- af79cd13be357-949995581e2mr304667485a.1.1794976149083; 
- Tue, 17 Nov 2026 20:29:09 -0800 (PST)
-X-Received: by 2002:a05:620a:462c:b0:949:6655:1dc6 with SMTP id
- af79cd13be357-949995581e2mr304662385a.1.1794976148573; 
- Tue, 17 Nov 2026 20:29:08 -0800 (PST)
+ AL+hErH4CItiW8gUP1lxRWrYul/uo/87Lo4bAeTB2o3x/b94deCGRyU2FwpNAGNQ9tr+yU3PprQJVxZ12g==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+lBpLdBSSV6VRWN4WLFhxwrsqgNpbKBvrhuskSkFdzW196Mlx8
+ 0ueJE0UssXprQ9Hq/AFuhl57ImeftNMeQ6+k1XS1wekvyX1WD++I9j7BKZlfiiXosVuoOJj7aLc
+ EZHs5wxLEigxd9TsYgoUSUgzMR456gWLwykkpDyg0kL3F19zzCArwWIHc9ODn44MU
+X-Gm-Gg: AYBFou3JvTOjjLVQBEOOYkIyIVU1cgjCLfIPfUL2ehHU29SA3QtEDW8uct4aXpnXkt1
+ 4T9Fa2sjNFOrkJ1ISdlv7I8r4aagrTVbeQG046lqnQYVhvRcnivnov40lB4VJrvoNfcWvdQJnU4
+ Fsy3/mGUlPka/ZFaEcWcfgje71KI/OnsZ8jUsqcF9wkAaaZz90Ni7F1XBoAUfkgLrnPPqip+dmS
+ ph2BiU7HvCxtDzDNw5TNle6qpRKtXU2v2qjBXX/qvdrTzeHkMXagffMqTdmjU0MtYApws/Y0k47
+ 49jlTWP/Zd1pPqkBTD9tU3+sTO1OE+gJZu1rdpChUSJmcQDEzWF3ghhkmOeyR9Dzi50jTRskhWC
+ +OGY9bUCfmD1T00/Nq3x4Eg4jf44/H2HwiLCdTVAtCUGTWHhsWWs4u6dtDg4V5fCKscrEJHCvlY
+ ZKEjSKa+2P/Lb3yvbT8Q==
+X-Received: by 2002:a05:620a:6c8a:b0:93f:1f22:96a4 with SMTP id
+ af79cd13be357-94999574eacmr293093885a.29.1794976160344; 
+ Tue, 17 Nov 2026 20:29:20 -0800 (PST)
+X-Received: by 2002:a05:620a:6c8a:b0:93f:1f22:96a4 with SMTP id
+ af79cd13be357-94999574eacmr293089285a.29.1794976159730; 
+ Tue, 17 Nov 2026 20:29:19 -0800 (PST)
 Received: from [127.0.1.1] (dyn-160-39-33-242.dyn.columbia.edu.
  [160.39.33.242]) by smtp.gmail.com with ESMTPSA id
- af79cd13be357-9499b743a8bsm89678085a.17.2026.11.17.20.29.06
+ af79cd13be357-9499b743a8bsm89678085a.17.2026.11.17.20.29.18
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Nov 2026 20:29:08 -0800 (PST)
+ Tue, 17 Nov 2026 20:29:19 -0800 (PST)
 From: Tal Zussman <tz2294@columbia.edu>
-Subject: [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
-Date: Tue, 17 Nov 2026 23:28:40 -0500
-Message-Id: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
+Date: Tue, 17 Nov 2026 23:28:48 -0500
+Subject: [PATCH v3 8/9] mm/migrate_device: do not migrate a uffd-protected
+ zero page
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAHgp/WoC/22OQQ7CIBBFr9KwFsNAA8WV9zAuaJlajLamUKJpe
- nehujDq8mX+f39m4nF06MmumMmI0Xk39AnEpiBNZ/oTUmcTE864BGCSTm1rqQ8mIG3dHT21HAC
- Qm9qWFUm124jrIbUOxxf7qT5jE7InJzrnwzA+1s0IOffWA/zqI1BGGVMgrJCVVnLfDJfpWjuzR
- TuRvBD5p+PPi5EnRym0Mgy0LJX+cizL8gQt+SI3CQEAAA==
-X-Change-ID: 20261106-uffd-state-fixes-d2111e2abd48
+Content-Transfer-Encoding: 8bit
+Message-Id: <20261117-uffd-state-fixes-v3-8-b617009d1a4a@columbia.edu>
+References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
+In-Reply-To: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
 To: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
  Peter Xu <peterx@redhat.com>, James Houghton <jthoughton@google.com>,
  Andrea Arcangeli <aarcange@redhat.com>,
@@ -121,49 +121,50 @@ To: Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
  Oscar Salvador <osalvador@suse.de>,
  =?utf-8?q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
 Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
- Tal Zussman <tz2294@columbia.edu>, Breno Leitao <leitao@debian.org>,
+ linux-fsdevel@vger.kernel.org,
  =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
  Felix Kuehling <Felix.Kuehling@amd.com>,
  Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
  dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ Tal Zussman <tz2294@columbia.edu>
 X-Mailer: b4 0.17-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1794976146; l=5552;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1794976146; l=5760;
  i=tz2294@columbia.edu; s=20250528; h=from:subject:message-id;
- bh=bXJ7iH6e45hLHohGwDiKQ9KsP+1zcP933ybsR6EgSrU=;
- b=dqh64GH8I96mPK7VNluwWf3s4AmFQRkzSpniRlUIwEYtg3kFz4EHguoBj2QLxVBG1mkCZeBug
- 0LRNUk3kmaPDIqzhQnW/BSVWhwsMA7urrdIkuDWhgi5/FPZBC9tkQ3O
+ bh=yLBeSaScpfcnWP3GTIZB32bGuoptmvLUEbtIcAlGdHM=;
+ b=My0spsbuiHMwD39tEUzhalSGpyI1KepnMNGVOGi0pW44BxpyK1b2D+HcpBD6q4XsiHcZ7YUx1
+ 8Nb13C9ol+0DOkyotphEWf/Xp7KcNWOmkctH3ozT4GAn41fre1wcM22
 X-Developer-Key: i=tz2294@columbia.edu; a=ed25519;
  pk=BIj5KdACscEOyAC0oIkeZqLB3L94fzBnDccEooxeM5Y=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDAxNyBTYWx0ZWRfX/aWa1qRkG3CT
- bFj2qCH59i88kc0PfITWXii5HwGXHaN+gZz5JW5NJbycpmqWFgWFj30Ajt9/zNHO+asiO75IxIk
- zR519bmAD/yhaa1MRBgcM5uIcwKIzL/Z2TWYovJT+dVZaTWrheMrTiJaQOjVbkhna2u8rtcFFLO
- o9c+cLpO0DiJZp5xLTktancEu1ExrqAMiR2ncUUcfzGlOCqsUm9zjCafMDN4UTimNq5EZPc8s+k
- Mqt5iGE1rN+04TRzWoNrKYWlJdGkt2cQk/b1Mf+cF+DscxG7pdxcTX4NUBRCywfK+ErJpI/DpLt
- cjYpZtbayOxDskqUxe1c3I9rk0uAJuCLCFnG4KyLYC+WZ56KwVgufgIVUARa5OhxWsNgZwS6VbR
- tnBP327c6xcAE79Du1QsWIPIJepdZgcuYtyiEEpXy7bXGWRO+fpsTTyDqJDGvAsbNzv/l9kL53y
- ZNwGtua7sOud93/GxYQ==
-X-Proofpoint-GUID: sTRI7cEWWQHOoSanVdwJlBuhtnk5nRDb
-X-Proofpoint-ORIG-GUID: sTRI7cEWWQHOoSanVdwJlBuhtnk5nRDb
-X-Authority-Analysis: v=2.4 cv=ZIJCCn7b c=1 sm=1 tr=0 ts=6afd2995 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=GaPK54s0Se3oFqK5NkZy0g==:17
+X-Authority-Analysis: v=2.4 cv=S6FMU4sP c=1 sm=1 tr=0 ts=6afd29a0 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=GaPK54s0Se3oFqK5NkZy0g==:17
  a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=x7bEGLp0ZPQA:10 a=A0y_DWxS2BwA:10
- a=VkNPw1HP01LnGYTKEx00:22 a=Da8U98TiO7q1upZEImrf:22 a=HpS3TJQ9O3Ob1ozEcmik:22
- a=bC-a23v3AAAA:8 a=28s7c6AVXC2H7J1PSfAA:9 a=QEXdDO2ut3YA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=FO4_E8m0qiDe52t0p3_H:22
-X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDAxNyBTYWx0ZWRfXw5RcAxsyfhwj
- K+v0pxXW4U6bDEGVZK4BGW2czK6If/zqKvQfzXPJpObQh0hFSgUL1eZKSk5D4QoIGI9fCLrb39m
- pJeSB+e9dcj4eYOIRzpOew8LGtHpQSkVEybItffI2x6hfC6VV9ie
+ a=VkNPw1HP01LnGYTKEx00:22 a=Da8U98TiO7q1upZEImrf:22 a=BpGzv1V74M3SfeTrGa8v:22
+ a=QyXUC8HyAAAA:8 a=20KFwNOVAAAA:8 a=VwQbUJbxAAAA:8 a=zd2uoN0lAAAA:8
+ a=9jRdOu3wAAAA:8 a=e5mUnYsNAAAA:8 a=Ikd4Dj_1AAAA:8 a=cMyuK6MtPHKtACrh3PYA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
+ a=ZE6KLimJVUuLrTuGpvhn:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTE4MDAxNyBTYWx0ZWRfX+rfNWf0tju+d
+ hXVfkP2z2ezwEqD9i/fbqQnezxgvnhk6PFw1p7gfbr9jNBOvw8c+MHOLwpyydbT6mEuQikuQSMh
+ gLe9EdY0SdD7jff6YLa/ZZqY2m4T4LboYvaobJljAhlAVI2AiDqm7J+YfzTebUefKNV/K5AAnb2
+ 6vkO9Lt/UvA3RU5fGh39nxY+gWKH0Ke6VrfH7ORc0xubsvgUzQM7GlkKu0Wi50mir3zbEbltvhi
+ ATZEKIwbOv+qPAUbrO18NbYbHyuo+MORi2pXqKJ50vXoRoT0xk2QRJpneM6lDM3XuBa0+oX0Sey
+ OOIiQYsf+ALXClH4VqJr//LKYEg5qIS1g2ys+O08SjKlhg6If1jsLOb5W+kZTBVDekrFOYMgpt1
+ K9dW97Igl64vsSwE9/QxjU5kvQKVOZiSow0UKQ08rLkt9Fd+0XrC70inwrfIywSI/4VXC/cYs1z
+ qJdM/GY4VaHnucefXjw==
+X-Proofpoint-ORIG-GUID: UHCCO2FhORFEmobtwTfygTmPsTCGHNO0
+X-Proofpoint-GUID: UHCCO2FhORFEmobtwTfygTmPsTCGHNO0
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTE4MDAxNyBTYWx0ZWRfX0a0nE90DtIYA
+ 23t0dzNvaHguhxkjK8vr+mCFMZNbpihax8HYOfham1T9Opk0yE9rv3PNhI6jOW8HSiB12ENAv/s
+ aRwVjVxqmV3o51FbCyZjz7dAui39RJiAcU1+auF6u6GR+u/kUzrh
 X-Proofpoint-Virus-Version: vendor=nai engine=6900 definitions=11969
  signatures=596817
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 bulkscore=10 clxscore=1015 lowpriorityscore=10
- priorityscore=1501 malwarescore=0 impostorscore=10 phishscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
- definitions=main-2611180017
+ clxscore=1015 suspectscore=0 malwarescore=0 phishscore=0 impostorscore=10
+ spamscore=0 lowpriorityscore=10 priorityscore=1501 adultscore=0 bulkscore=10
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611180017
 X-Mailman-Approved-At: Wed, 18 Nov 2026 13:03:43 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,124 +176,178 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-This is a first batch of userfaultfd fixes, with more to come.
+Device migration replaces a PTE that maps the zero page with a new PTE
+that is built only from the VMA flags, so its userfaultfd WP or RWP
+protection is lost. The same applies to the huge zero PMD. Writes and
+accesses to the page are then no longer reported to userfaultfd.
 
-These were found by a mix of regular old LLM review and by having an LLM
-write a TLA+ model of uffd interactions with PTE bits and other state
-and seeing what issues fell out.
+To fix it, do not migrate a uffd-protected zero page. Skip it during
+collection, and check again under the page table lock before inserting,
+as another thread can protect the page after it was collected.
 
-Most of these fix places where mm code loses uffd-wp or RWP protection
-while moving or migrating an entry. Userspace then either misses writes
-and accesses, or gets pages reported that nobody touched.
-There is also a hang in UFFDIO_MOVE, and UFFDIO_ZEROPAGE modifying a
-file through a private mapping.
+The alternative would be to carry the uffd state over to the new entry,
+but a uffd-protected zero page in a range that a driver migrates should
+be rare.
 
-Patches 1-2:   UFFDIO_ZEROPAGE and UFFDIO_MOVE fixes, cc stable
-Patch 3:       PAGEMAP_SCAN write-protect vs. writable migration
-               entries, cc stable
-Patch 4:       warn on a writable migration entry with the uffd bit set
-Patch 5:       PAGEMAP_SCAN write-protect vs. device-private THPs
-Patch 6:       UFFDIO_MOVE of the huge zero page from an RWP source
-Patch 7:       mremap() losing uffd state when a move fails halfway
-Patch 8:       migrate_vma losing uffd state of a zero page
-Patch 9:       hugetlb alignment checks in UFFDIO_REGISTER and
-               UFFDIO_UNREGISTER
+While at it, read the PMD once with pmdp_get() in
+migrate_vma_collect_huge_pmd().
 
-A few of the fixes change what userspace sees:
-
- - UFFDIO_ZEROPAGE on a private file mapping no longer fails with
-   -EEXIST where the file already has a page, on an mm that cannot use
-   the zero page (patch 1)
- - UFFDIO_MOVE returns -EEXIST for any huge destination PMD, not only
-   for a present THP (patch 2)
- - UFFDIO_UNREGISTER with a misaligned hugetlb end fails before
-   unregistering anything, also if that hugetlb VMA is not registered
-   (patch 9)
- - UFFDIO_REGISTER and UFFDIO_UNREGISTER accept a misaligned start that
-   lies in a gap before the first hugetlb VMA of the range (patch 9)
- - UFFDIO_REGISTER returns -EINVAL rather than -EPERM for a misaligned
-   end in a hugetlb VMA without VM_MAYWRITE (patch 9)
-
-Patch 6 has little user impact on its own. It is included because,
-together with patch 7, it allows removing clear_uffd_wp_pmd().
-
-Patch 7 adds spurious write faults on shmem and hugetlb after mremap():
-when dropping uffd protection there, change_protection() makes writable
-pages that were never protected read-only. UFFDIO_UNREGISTER and
-UFFDIO_WRITEPROTECT already behave this way and lead to the same
-spurious faults. This will be fixed in change_protection() in a separate
-series.
-
-Based on mm-new.
-
+Fixes: 292924b26024 ("userfaultfd: wp: apply _PAGE_UFFD_WP bit")
+Fixes: a30b48bf1b24 ("mm/migrate_device: implement THP migration of zone device pages")
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Lyude Paul <lyude@redhat.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Felix Kuehling <Felix.Kuehling@amd.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Leon Romanovsky <leon@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Cc: nouveau@lists.freedesktop.org
+Cc: amd-gfx@lists.freedesktop.org
+Reviewed-by: Alistair Popple <apopple@nvidia.com>
+Signed-off-by: Tal Zussman <tz2294@columbia.edu>
 ---
-Changes in v3:
-- Collect tags (Thanks David!)
-- Patch 1: use vma_is_cow_mapping(), per David
-- Patch 4: warn on a writable migration entry with the uffd bit set, and
-  make the PMD path match the PTE path, per David.
-- Patch 4: Drop the Fixes: tag and the review tags due to changes
-- Patch 8: add helpers and read the PMD once with pmdp_get(), per
-  David
-- Patch 9: move the hugetlb alignment checks into a helper and use it in
-  both ioctls, per David
-- Link to v2: https://patch.msgid.link/20261116-uffd-state-fixes-v2-0-4397a0196479@columbia.edu
+ include/linux/userfaultfd_k.h | 24 ++++++++++++++++++++++++
+ mm/migrate_device.c           | 34 ++++++++++++++++++++++++++--------
+ 2 files changed, 50 insertions(+), 8 deletions(-)
 
-Changes in v2:
-- Collect tags (Thanks Kiryl, Lorenzo, Gregory, Alistair!)
-- Patch 2: say "softleaf entry" in the commit message, per Lorenzo
-- Patch 3: add softleaf_is_writable() and softleaf_mkreadable() to
-  leafops.h and rename the helpers to say softleaf, per Lorenzo
-- Patch 3: add Reported-by and Closes for Breno's report, and cc stable
-- Patch 4: explain in the commit message how PAGEMAP_SCAN set the uffd
-  bit on writable migration entries, per Lorenzo
-- Patch 5: use pmd_is_valid_softleaf() rather than open-coding it, per
-  Lorenzo
-- Patch 7: say "write faults" rather than "minor faults" in the commit
-  message, per Kiryl
-- Patch 7: trim the commit message, per Lorenzo and Gregory
-- Patch 8: trim the commit message, per Gregory
-- Patch 8: Cc the GPU driver maintainers and lists, per Gregory and
-  Alistair
-- Patch 9: use IS_ALIGNED() and a local variable for the VMA's ctx, and
-  shorten the comment, per Lorenzo
-- Drop the three guard region patches, per Lorenzo
-- Link to v1: https://patch.msgid.link/20261111-uffd-state-fixes-v1-0-00713d368976@columbia.edu
+diff --git a/include/linux/userfaultfd_k.h b/include/linux/userfaultfd_k.h
+index 5768a3902c7c..54850cdabf5e 100644
+--- a/include/linux/userfaultfd_k.h
++++ b/include/linux/userfaultfd_k.h
+@@ -246,6 +246,18 @@ static inline bool userfaultfd_huge_pmd_rwp(struct vm_area_struct *vma,
+ 	return userfaultfd_rwp(vma) && pmd_uffd(pmd);
+ }
+ 
++static inline bool userfaultfd_pte_protected(struct vm_area_struct *vma,
++					     pte_t pte)
++{
++	return userfaultfd_protected(vma) && pte_uffd(pte);
++}
++
++static inline bool userfaultfd_huge_pmd_protected(struct vm_area_struct *vma,
++						  pmd_t pmd)
++{
++	return userfaultfd_protected(vma) && pmd_uffd(pmd);
++}
++
+ static inline bool userfaultfd_armed(struct vm_area_struct *vma)
+ {
+ 	return vma_test_any_mask(vma, __VMA_UFFD_FLAGS);
+@@ -390,6 +402,18 @@ static inline bool userfaultfd_huge_pmd_rwp(struct vm_area_struct *vma,
+ 	return false;
+ }
+ 
++static inline bool userfaultfd_pte_protected(struct vm_area_struct *vma,
++					     pte_t pte)
++{
++	return false;
++}
++
++static inline bool userfaultfd_huge_pmd_protected(struct vm_area_struct *vma,
++						  pmd_t pmd)
++{
++	return false;
++}
++
+ static inline bool userfaultfd_armed(struct vm_area_struct *vma)
+ {
+ 	return false;
+diff --git a/mm/migrate_device.c b/mm/migrate_device.c
+index 9e19fadfa65c..60985e9bec8b 100644
+--- a/mm/migrate_device.c
++++ b/mm/migrate_device.c
+@@ -142,30 +142,38 @@ static int migrate_vma_collect_huge_pmd(pmd_t *pmdp, unsigned long start,
+ 	struct folio *folio;
+ 	struct migrate_vma *migrate = walk->private;
+ 	spinlock_t *ptl;
++	pmd_t pmd;
+ 	int ret;
+ 	unsigned long write = 0;
+ 
+ 	ptl = pmd_lock(mm, pmdp);
+-	if (pmd_none(*pmdp)) {
++	pmd = pmdp_get(pmdp);
++	if (pmd_none(pmd)) {
+ 		spin_unlock(ptl);
+ 		return migrate_vma_collect_hole(start, end, -1, walk);
+ 	}
+ 
+-	if (pmd_trans_huge(*pmdp)) {
++	if (pmd_trans_huge(pmd)) {
+ 		if (!(migrate->flags & MIGRATE_VMA_SELECT_SYSTEM)) {
+ 			spin_unlock(ptl);
+ 			return migrate_vma_collect_skip(start, end, walk);
+ 		}
+ 
+-		folio = pmd_folio(*pmdp);
++		folio = pmd_folio(pmd);
+ 		if (is_huge_zero_folio(folio)) {
+ 			spin_unlock(ptl);
++			/*
++			 * Nothing carries the uffd state of the zero page
++			 * over, so skip it if its uffd bit is set.
++			 */
++			if (userfaultfd_huge_pmd_protected(walk->vma, pmd))
++				return migrate_vma_collect_skip(start, end, walk);
+ 			return migrate_vma_collect_hole(start, end, -1, walk);
+ 		}
+-		if (pmd_write(*pmdp))
++		if (pmd_write(pmd))
+ 			write = MIGRATE_PFN_WRITE;
+-	} else if (!pmd_present(*pmdp)) {
+-		const softleaf_t entry = softleaf_from_pmd(*pmdp);
++	} else if (!pmd_present(pmd)) {
++		const softleaf_t entry = softleaf_from_pmd(pmd);
+ 
+ 		if (!softleaf_is_device_private(entry) ||
+ 		    !(migrate->flags & MIGRATE_VMA_SELECT_DEVICE_PRIVATE)) {
+@@ -337,6 +345,9 @@ static int migrate_vma_collect_pmd(pmd_t *pmdp,
+ 			pfn = pte_pfn(pte);
+ 			if (is_zero_pfn(pfn) &&
+ 			    (migrate->flags & MIGRATE_VMA_SELECT_SYSTEM)) {
++				/* See migrate_vma_collect_huge_pmd(). */
++				if (userfaultfd_pte_protected(vma, pte))
++					goto next;
+ 				mpfn = MIGRATE_PFN_MIGRATE;
+ 				migrate->cpages++;
+ 				goto next;
+@@ -871,10 +882,14 @@ static int migrate_vma_insert_huge_pmd_page(struct migrate_vma *migrate,
+ 	if (userfaultfd_missing(vma))
+ 		goto unlock_abort;
+ 
+-	if (is_huge_zero_pmd(*pmdp))
++	if (is_huge_zero_pmd(*pmdp)) {
++		/* The uffd bit can have been set since the collection. */
++		if (userfaultfd_huge_pmd_protected(vma, *pmdp))
++			goto unlock_abort;
+ 		flush = true;
+-	else if (!pmd_none(*pmdp))
++	} else if (!pmd_none(*pmdp)) {
+ 		goto unlock_abort;
++	}
+ 
+ 	add_mm_counter(vma->vm_mm, MM_ANONPAGES, HPAGE_PMD_NR);
+ 	folio_add_new_anon_rmap(folio, vma, addr, RMAP_EXCLUSIVE);
+@@ -1074,6 +1089,9 @@ static void migrate_vma_insert_page(struct migrate_vma *migrate,
+ 
+ 		if (!is_zero_pfn(pfn))
+ 			goto unlock_abort;
++		/* The uffd bit can have been set since the collection. */
++		if (userfaultfd_pte_protected(vma, orig_pte))
++			goto unlock_abort;
+ 		flush = true;
+ 	} else if (!pte_none(orig_pte))
+ 		goto unlock_abort;
 
----
-Tal Zussman (9):
-      userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
-      userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
-      fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
-      mm/migrate: warn on a writable migration entry with the uffd bit set
-      fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
-      mm/huge_memory: build the moved huge zero PMD from the destination VMA
-      mm/mremap: resolve uffd state when the context is dropped, not during the move
-      mm/migrate_device: do not migrate a uffd-protected zero page
-      mm/userfaultfd: check the hugetlb alignment of every VMA in the pre-scan
-
- fs/proc/task_mmu.c            |  42 ++++++++++++++--
- include/linux/leafops.h       |  51 +++++++++++++++++++
- include/linux/userfaultfd_k.h |  24 +++++++++
- mm/huge_memory.c              |  38 +++-----------
- mm/hugetlb.c                  |  27 +---------
- mm/migrate.c                  |   7 ++-
- mm/migrate_device.c           |  34 ++++++++++---
- mm/mremap.c                   |  46 +----------------
- mm/userfaultfd.c              | 112 ++++++++++++++++--------------------------
- 9 files changed, 195 insertions(+), 186 deletions(-)
----
-base-commit: 25fee5b1762b8799dd8b72c2f6d666eb01680cc7
-change-id: 20261106-uffd-state-fixes-d2111e2abd48
-
-Best regards,
---  
-Tal Zussman <tz2294@columbia.edu>
+-- 
+2.39.5
 
