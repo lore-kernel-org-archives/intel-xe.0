@@ -2,61 +2,67 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A41606A320
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 15:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACBF2606A320
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 15:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mUCgV5Uo
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Tj3HNqCq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19E2510E153;
-	Wed, 18 Nov 2026 15:02:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9438510E153
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 15:02:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795014123; x=1826550123;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=kpgKsN1Wy7ZsN5WYBqODY8ojepjK480nsr7fnI3mMTo=;
- b=mUCgV5UoL5xnaBIiOE3tRlHulo7zVbqMIzOvG8DUs71rX+F169p5tg3t
- 0xvE7dqFKWvSjnKAwDQrSYnkGpjQceAPsWAQPHLHSqAm2rkQfe3l5E85C
- iNXgzYmhuAHJRBpDTKX4I1g/k5B/UbD1tiTYxxG6sZMaDTf8K3/zmgM69
- UwxppplC/awq8KG6+IE9m/l+KQqdmb/JMErOwg1/KZxwoqoNAi6wyIdjm
- sF3cQaK+aJxiQZiucxCTgcAnYWdtwQf9MDxiXDpCZjhnJmCZvZeXnv5Cu
- +DiNNgnzmvlnB91p0uSvPsuWPiVLW1QyeZ2o2JNUhr/YZcZVkASINP3T4 A==;
-X-CSE-ConnectionGUID: IFpAH1PMTHmphPRHq2vV+Q==
-X-CSE-MsgGUID: TGxquoSYSeOCFnK6IDnmGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3844073"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3844073"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 07:01:28 -0800
-X-CSE-ConnectionGUID: tK6nWilUSHqaSrgtoVlcpg==
-X-CSE-MsgGUID: 63tTN+zPT7eFfSijHc6ODQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10499815"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO [10.245.244.222])
- ([10.245.244.222])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 07:01:25 -0800
-Message-ID: <eb25eaec041bad67aa7d7241d79f22d61b50b07a.camel@linux.intel.com>
-Subject: Re: [PATCH v3] drm/xe: Add a per-client debugfs file reporting bo
- NUMA node distribution
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, Rodrigo Vivi	
- <rodrigo.vivi@intel.com>, Matthew Brost <matthew.brost@intel.com>, Matthew
- Auld	 <matthew.auld@intel.com>, Andi Shyti <andi.shyti@kernel.org>
-Date: Wed, 18 Nov 2026 16:01:22 +0100
-In-Reply-To: <20261118134203.646500-1-thomas.hellstrom@linux.intel.com>
-References: <20261118134203.646500-1-thomas.hellstrom@linux.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6340F10FD9E;
+	Wed, 18 Nov 2026 15:03:04 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DA7910FD73
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 15:02:58 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 897FC622D0
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 15:02:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA3181F000CE
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 15:02:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795014177;
+ bh=XO0aAzWDhIW2AbP/uOOiKlVOm5Pa+x2D19tm3r0Y5QQ=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc;
+ b=Tj3HNqCqzM+nqxMTKtpZJ3gxW2h0HFRwyzNfPgr/6os0p3XjqYD8Cm0tpj9Vo/1vw
+ lDVaV9GUBTZIktDChAWzzWhnDTdXpyVNDq07JLYBocwobVI6SGQobJqdZAKLlK56mC
+ 22oT2ZiDd6zAVsbSo2gOjNQYYG3i8IY878CSMMyOPSSE3C/XCp4bDSJaM+mLNFEkL4
+ wD9GmbZHbsNb6DUVShP9/HPxF/G/jSPPnm14IIS+dBlEUOoUY/xGoD7+kDYJ4evQHy
+ TY8UoKhjZ6sNysTRneP6JIW4z7a+XU2x1RunZkOkCZXRzobDOR4z8X3s0YbqJ329Vf
+ OYtuRKDafbyXg==
+Received: by mail-lf1-f53.google.com with SMTP id
+ 2adb3069b0e04-5c0a520df2eso1008198e87.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 07:02:56 -0800 (PST)
+X-Forwarded-Encrypted: i=1;
+ AL+hErFsAp7/lQxBCOnzbyBCGbSPVH0CdgcDoarOaqpTJOcpO05Vu+ks79NnM1fUC6gAFuMzPPoGHtf51A==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+QSpNkQTQ6WPxYkp33Gs7M11swG2zkQ7cynaoiyR79fQOeqb/d
+ JzIUD1QXbIN4UlFQ6klOZdMVDBUZ455rB9PG51Ishu5UhNi0yq81egFpMRdRD3twrA9n3bSEU7O
+ gqcQyrzyX4z3vxm4TSpetsman5ThKTYc=
+X-Received: by 2002:a05:6512:8346:b0:5c1:acf1:337c with SMTP id
+ 2adb3069b0e04-5c1acf13427mr571815e87.36.1795014175093; Wed, 18 Nov 2026
+ 07:02:55 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+References: <6065833.DvuYhMxLoT@rafael.j.wysocki>
+ <4796894.LvFx2qVVIh@rafael.j.wysocki>
+ <efcb1647-46fd-442a-bbda-283560d9df53@intel.com>
+In-Reply-To: <efcb1647-46fd-442a-bbda-283560d9df53@intel.com>
+From: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
+Date: Wed, 18 Nov 2026 16:02:42 +0100
+X-Gmail-Original-Message-ID: <CAJZ5v0htcKjiWbDW-Oxn1qXAYX8myfyWFxkaxnMTaS0hYC4CCQ@mail.gmail.com>
+X-Gm-Features: AclHuK-pkj8aiMuk8sSym9Lz5BFHtcdWaN92Z8KsI9AbvHIcSFTU3URo6er5lpw
+Message-ID: <CAJZ5v0htcKjiWbDW-Oxn1qXAYX8myfyWFxkaxnMTaS0hYC4CCQ@mail.gmail.com>
+Subject: Re: [REGRESSION: [PATCH v2 1/3] cpufreq: Improve suspend-resume
+ synchronization
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Linux PM <linux-pm@vger.kernel.org>, 
+ Viresh Kumar <viresh.kumar@linaro.org>,
+ Christian Loehle <christian.loehle@arm.com>, 
+ Doug Smythies <dsmythies@telus.net>, Zak <zakbrightonknight@gmail.com>, 
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>, 
+ Mario Limonciello <superm1@kernel.org>, 
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ ravitejax.veesam@intel.com
+Content-Type: multipart/mixed; boundary="00000000000046276706608e4ee7"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,497 +73,454 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-20.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Subject above should ofc be v4.
+--00000000000046276706608e4ee7
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-/Thomas
+On Wed, Nov 18, 2026 at 2:05=E2=80=AFPM Borah, Chaitanya Kumar
+<chaitanya.kumar.borah@intel.com> wrote:
+>
+>
+> Hello Rafael,
+>
+> On 11/4/2026 1:15 AM, Rafael J. Wysocki wrote:
+> > From: "Rafael J. Wysocki" <rafael.j.wysocki@intel.com>
+> >
+> > The suspend-resume synchronization in the cpufreq core is not perfect
+> > because the global cpufreq_suspended variable is set at the end of
+> > cpufreq_suspend() after stopping governors for all of the active
+> > policies, so the governor .limits() callback may run via
+> > cpufreq_governor_limits() after stopping the governor and before
+> > setting cpufreq_suspended which is questionable.  Likewise, the
+> > governor .limits() callback may run between clearing cpufreq_suspended
+> > in cpufreq_resume() and starting the governor.
+> >
+> > Address this by adding a per-policy "suspended" flag that is always
+> > read under the policy rwsem and is updated under it when the governor
+> > is stopped in cpufreq_suspend() and when the governor is restarted in
+> > cpufreq_resume().
+> >
+> > Also make cpufreq_resume() use the cpus_read_lock guard to reflect
+> > what is done in cpufreq_suspend() and call cpufreq_exit_governor() for
+> > policies that were suspended during a system suspend transition and
+> > are inactive during the subsequent system resume (to avoid leaking an
+> > inactive policy with a stopped governor that has not exited yet).
+> >
+>
+> This seems to be causing regression in our CI [1] (affecting dg1 and
+> dg2). We could not revert the patch cleanly but resetting to its parent
+> heals the issue.
+>
+> <4> [510.751891] =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> <4> [510.751907] WARNING: possible circular locking dependency detected
+> <4> [510.751925] 7.4.0-rc3-CI_DRM_19546-gfb078d17b966+ #1 Tainted: G S
+> U       L
+> <4> [510.751946] ------------------------------------------------------
+> <4> [510.751962] rtcwake/4256 is trying to acquire lock:
+> <4> [510.751977] ffffffff83ce0f40
+> (intel_pstate_driver_lock){+.+.}-{3:3}, at: set_power_ctl_ee_state+0x1a/0=
+x90
+> <4> [510.752022]
+> but task is already holding lock:
+> <4> [510.752038] ffffffff83886890 (cpu_hotplug_lock){++++}-{0:0}, at:
+> cpufreq_resume+0x23/0x250
+> <4> [510.752074]
+> which lock already depends on the new lock.
+> <4> [510.752094]
+> the existing dependency chain (in reverse order) is:
+> <4> [510.752112]
+> -> #1 (cpu_hotplug_lock){++++}-{0:0}:
+> <4> [510.752137]        cpus_read_lock+0x3c/0x100
+> <4> [510.752157]        cpufreq_register_driver+0xca/0x380
+> <4> [510.752175]        intel_pstate_register_driver+0x9e/0x1d0
+> <4> [510.752192]        intel_pstate_init+0x3e3/0xb30
+> <4> [510.752211]        do_one_initcall+0x59/0x3d0
+> <4> [510.752229]        kernel_init_freeable+0x3dc/0x6b0
+> <4> [510.752249]        kernel_init+0x20/0x210
+> <4> [510.752264]        ret_from_fork+0x3bf/0x470
+> <4> [510.752282]        ret_from_fork_asm+0x1a/0x30
+> <4> [510.752299]
+> -> #0 (intel_pstate_driver_lock){+.+.}-{3:3}:
+> <4> [510.752325]        __lock_acquire+0x1700/0x29c0
+> <4> [510.752341]        lock_acquire+0xd9/0x2f0
+> <4> [510.752355]        __mutex_lock+0xae/0x1030
+> <4> [510.752372]        mutex_lock_nested+0x1b/0x30
+> <4> [510.752390]        set_power_ctl_ee_state+0x1a/0x90
+> <4> [510.752409]        intel_pstate_resume+0x109/0x110
+> <4> [510.752428]        cpufreq_resume+0x153/0x250
+> <4> [510.752445]        dpm_resume+0x1f1/0x390
+> <4> [510.752459]        dpm_resume_end+0x11/0x30
+> <4> [510.752474]        suspend_devices_and_enter+0x372/0xcb0
+> <4> [510.752491]        pm_suspend+0x372/0x840
+> <4> [510.752506]        state_store+0x6e/0xe0
+> <4> [510.752523]        kobj_attr_store+0x12/0x40
+> <4> [510.752541]        sysfs_kf_write+0x4d/0x80
+> <4> [510.752559]        kernfs_fop_write_iter+0x193/0x240
+> <4> [510.752576]        vfs_write+0x285/0x530
+> <4> [510.752591]        ksys_write+0x6f/0xf0
+> <4> [510.752606]        __x64_sys_write+0x19/0x30
+> <4> [510.752622]        x64_sys_call+0x1285/0x27e0
+> <4> [510.752637]        do_syscall_64+0xec/0x680
+> <4> [510.752654]        entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>
+> Could you please check why the patch causes this regression and provide
+> a fix if necessary?
 
+That's because set_power_ctl_ee_state() acquires
+intel_pstate_driver_lock which is held around cpu_hotplug_lock during
+driver mode changes, so adding cpu_hotplug_lock around
+intel_pstate_resume(), which calls set_power_ctl_ee_state(), causes
+lockdep to complain.  Note that the deadlock is not real, but
+set_power_ctl_ee_state() need not use that particular lock either
+AFAICS.
 
+The attached patch should address this.
 
-On Wed, 2026-11-18 at 14:42 +0100, Thomas Hellstr=C3=B6m wrote:
-> When debugging NUMA placement of bo system memory, there is currently
-> no way to tell on which nodes the pages backing a bo reside. The
-> /proc/<pid>/numa_maps interface doesn't help since bo CPU mappings
-> are
-> VM_PFNMAP, and clients may have thousands of bos, so a dump of all
-> bos
-> is undesirable.
->=20
-> Add a "bo_numa" file to the drm core per-client debugfs directory,
-> client-<id>/. The file implements a request-response protocol per
-> open
-> file: Writing a GEM handle valid for the client takes a snapshot,
-> under
-> the bo's dma_resv lock, of the bo size, placement, and the number of
-> pages on each NUMA node. A bo whose pages are swapped out, backed up
-> or purged is reported as swapped/purged, and one whose pages are not
-> populated as not populated. Subsequent reads return that snapshot.
-> Once the
-> snapshot has been completely read it is discarded, and a new handle
-> may be written. Until then writes fail with -EBUSY, so that a pending
-> snapshot can't be replaced before it is consumed. This allows
-> querying
-> many bos using a single open file.
->=20
-> The write-request / read-response protocol per open file follows the
-> simple_transaction helpers in fs/libfs.c, used by e.g. nfsd and
-> selinuxfs, and amdgpu already populates the per-client debugfs
-> directory with its vm_pagetable_info file.
->=20
-> For sg bos, typically imported dma-bufs, the backing pages are owned
-> by the exporter and can't be inspected, so only size and placement
-> are
-> reported.
->=20
-> Example:
-> =C2=A0 exec 3<>/sys/kernel/debug/dri/client-<id>/bo_numa
-> =C2=A0 echo <handle1> >&3
-> =C2=A0 cat <&3
-> =C2=A0 echo <handle2> >&3
-> =C2=A0 cat <&3
-> =C2=A0 exec 3>&-
->=20
-> The client id can be obtained from the drm-client-id fdinfo key.
->=20
-> v2:
-> - Use drm_coredump_printer_is_full() (Andi Shyti)
-> - Drop the Assisted-by tag and add a Signed-off-by (Andi Shyti)
->=20
-> v3:
-> - Report swapped or purged bos as swapped/purged (Sashiko)
->=20
-> v4:
-> - Also report bos purged via xe_ttm_bo_purge() as swapped/purged
-> (Sashiko)
->=20
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Andi Shyti <andi.shyti@kernel.org>
-> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> # v3
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 113 ++++=
-+++++++++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
-=A0 6 ++
-> =C2=A0drivers/gpu/drm/xe/xe_debugfs.c | 157
-> ++++++++++++++++++++++++++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_debugfs.h |=C2=A0=C2=A0 3 +
-> =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0 |=C2=A0=C2=A0 2 +
-> =C2=A05 files changed, 281 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 42a6aa1a2e4a..353ac1e9a9d6 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -6,12 +6,14 @@
-> =C2=A0#include "xe_bo.h"
-> =C2=A0
-> =C2=A0#include <linux/dma-buf.h>
-> +#include <linux/nodemask.h>
-> =C2=A0#include <linux/nospec.h>
-> =C2=A0
-> =C2=A0#include <drm/drm_drv.h>
-> =C2=A0#include <drm/drm_dumb_buffers.h>
-> =C2=A0#include <drm/drm_gem_ttm_helper.h>
-> =C2=A0#include <drm/drm_managed.h>
-> +#include <drm/drm_print.h>
-> =C2=A0#include <drm/ttm/ttm_backup.h>
-> =C2=A0#include <drm/ttm/ttm_device.h>
-> =C2=A0#include <drm/ttm/ttm_placement.h>
-> @@ -4248,6 +4250,117 @@ void
-> xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
-> =C2=A0	list_del_init(&bo->vram_userfault_link);
-> =C2=A0}
-> =C2=A0
-> +#if IS_ENABLED(CONFIG_DEBUG_FS)
-> +static void xe_bo_count_numa_pages(struct ttm_tt *tt, unsigned long
-> *nodes)
-> +{
-> +	pgoff_t i;
-> +
-> +	for (i =3D 0; i < tt->num_pages; ++i)
-> +		nodes[page_to_nid(tt->pages[i])]++;
-> +}
-> +
-> +static void xe_bo_print_numa_info_locked(struct xe_bo *bo, unsigned
-> long *nodes,
-> +					 struct drm_printer *p)
-> +{
-> +	struct ttm_resource *res =3D bo->ttm.resource;
-> +	struct ttm_tt *tt =3D bo->ttm.ttm;
-> +	unsigned long total =3D 0;
-> +	const char *name;
-> +	int nid;
-> +
-> +	xe_bo_assert_held(bo);
-> +
-> +	name =3D res ? xe_mem_type_to_name[res->mem_type] : NULL;
-> +	drm_printf(p, "size: %zu\n", xe_bo_size(bo));
-> +	if (name)
-> +		drm_printf(p, "placement: %s\n", name);
-> +	else if (res)
-> +		drm_printf(p, "placement: mem_type %u\n", res-
-> >mem_type);
-> +	else
-> +		drm_puts(p, "placement: none\n");
-> +
-> +	/* The pages of sg bos are owned by the exporter and not
-> visible. */
-> +	if (bo->ttm.type =3D=3D ttm_bo_type_sg) {
-> +		drm_puts(p, "pages: unknown (sg bo)\n");
-> +		return;
-> +	}
-> +
-> +	/*
-> +	 * Purging via xe_ttm_bo_purge() guts the bo without setting
-> any
-> +	 * swapped or backed-up flag on the tt.
-> +	 */
-> +	if (xe_bo_is_purged(bo) || (tt && ttm_tt_is_swapped(tt))) {
-> +		drm_puts(p, "pages: swapped/purged\n");
-> +		return;
-> +	}
-> +
-> +	if (tt && !ttm_tt_is_populated(tt)) {
-> +		drm_puts(p, "pages: not populated\n");
-> +		return;
-> +	}
-> +
-> +	if (tt)
-> +		xe_bo_count_numa_pages(tt, nodes);
-> +
-> +	for_each_node(nid) {
-> +		if (!nodes[nid] && !node_online(nid))
-> +			continue;
-> +		drm_printf(p, "node%d: %lu\n", nid, nodes[nid]);
-> +		total +=3D nodes[nid];
-> +	}
-> +
-> +	drm_printf(p, "total: %lu\n", total);
-> +}
-> +
-> +/**
-> + * xe_bo_print_numa_info() - Print the NUMA node distribution of a
-> bo
-> + * @file: The drm_file of the client owning @handle.
-> + * @handle: The GEM handle of the bo.
-> + * @p: The drm_printer to print to.
-> + *
-> + * Print the size and placement of the bo and, for bos with
-> + * driver-allocated system pages, the number of pages residing on
-> each
-> + * NUMA node. If the bo's pages are currently swapped out, backed up
-> or
-> + * purged by the shrinker, the bo is reported as swapped/purged, and
-> if
-> + * they are not populated, as not populated. For sg bos, typically
-> + * imported dma-bufs, the backing pages are owned by the exporter
-> and are
-> + * reported as unknown. The information is gathered under the bo's
-> + * dma_resv lock and thus represents a consistent snapshot.
-> + *
-> + * Return: 0 on success, -ENOENT if @handle doesn't refer to a bo,
-> + * negative error code on other failures.
-> + */
-> +int xe_bo_print_numa_info(struct drm_file *file, u32 handle,
-> +			=C2=A0 struct drm_printer *p)
-> +{
-> +	struct drm_gem_object *obj;
-> +	unsigned long *nodes;
-> +	int ret;
-> +
-> +	nodes =3D kcalloc(nr_node_ids, sizeof(*nodes),
-> GFP_KERNEL_ACCOUNT);
-> +	if (!nodes)
-> +		return -ENOMEM;
-> +
-> +	obj =3D drm_gem_object_lookup(file, handle);
-> +	if (!obj) {
-> +		ret =3D -ENOENT;
-> +		goto out_free;
-> +	}
-> +
-> +	ret =3D dma_resv_lock_interruptible(obj->resv, NULL);
-> +	if (!ret) {
-> +		xe_bo_print_numa_info_locked(gem_to_xe_bo(obj),
-> nodes, p);
-> +		dma_resv_unlock(obj->resv);
-> +	}
-> +
-> +	drm_gem_object_put(obj);
-> +out_free:
-> +	kfree(nodes);
-> +
-> +	return ret;
-> +}
-> +#endif
-> +
-> =C2=A0#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-> =C2=A0#include "tests/xe_bo.c"
-> =C2=A0#endif
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 77b3a02e9b8e..13197e4e0358 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -112,6 +112,7 @@ enum xe_madv_purgeable_state {
-> =C2=A0	XE_MADV_PURGEABLE_PURGED,
-> =C2=A0};
-> =C2=A0
-> +struct drm_printer;
-> =C2=A0struct sg_table;
-> =C2=A0
-> =C2=A0struct xe_bo *xe_bo_alloc(void);
-> @@ -458,6 +459,11 @@ int xe_bo_dumb_create(struct drm_file
-> *file_priv,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_device *dev,
-> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_mode_create_dumb *args)=
-;
-> =C2=A0
-> +#if IS_ENABLED(CONFIG_DEBUG_FS)
-> +int xe_bo_print_numa_info(struct drm_file *file, u32 handle,
-> +			=C2=A0 struct drm_printer *p);
-> +#endif
-> +
-> =C2=A0bool xe_bo_needs_ccs_pages(struct xe_bo *bo);
-> =C2=A0
-> =C2=A0int xe_bo_decompress(struct xe_bo *bo);
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.c
-> b/drivers/gpu/drm/xe/xe_debugfs.c
-> index e59d4964d811..1a74a7106462 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.c
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.c
-> @@ -11,6 +11,8 @@
-> =C2=A0#include <linux/string_helpers.h>
-> =C2=A0
-> =C2=A0#include <drm/drm_debugfs.h>
-> +#include <drm/drm_file.h>
-> +#include <drm/drm_print.h>
-> =C2=A0
-> =C2=A0#include "regs/xe_pmt.h"
-> =C2=A0#include "xe_bo.h"
-> @@ -785,3 +787,158 @@ void xe_debugfs_register(struct xe_device *xe)
-> =C2=A0	else if (IS_SRIOV_VF(xe))
-> =C2=A0		xe_sriov_vf_debugfs_register(xe, root);
-> =C2=A0}
-> +
-> +/*
-> + * Per-client "bo_numa" file: Report the NUMA node distribution of
-> the
-> + * system pages backing a single bo.
-> + *
-> + * The file implements a request-response protocol: write() takes a
-> GEM
-> + * handle, valid for the client, and takes a snapshot of the bo's
-> page
-> + * distribution under the bo's dma_resv lock. Subsequent read()s
-> return
-> + * that snapshot. Once the snapshot has been completely read, it is
-> + * discarded and a new handle may be written. Until then, writes
-> return
-> + * -EBUSY, so that a pending snapshot is never replaced before it is
-> + * consumed.
-> + *
-> + * See xe_bo_print_numa_info() for the snapshot contents.
-> + */
-> +struct bo_numa_snapshot {
-> +	/* Serializes reads and writes on the open file. */
-> +	struct mutex lock;
-> +	/* The pending formatted snapshot, or NULL if none. */
-> +	char *buf;
-> +	/* Length of the formatted snapshot. */
-> +	size_t len;
-> +};
-> +
-> +static int bo_numa_open(struct inode *inode, struct file *f)
-> +{
-> +	struct bo_numa_snapshot *snap;
-> +
-> +	snap =3D kzalloc_obj(*snap, GFP_KERNEL_ACCOUNT);
-> +	if (!snap)
-> +		return -ENOMEM;
-> +
-> +	mutex_init(&snap->lock);
-> +	f->private_data =3D snap;
-> +
-> +	return nonseekable_open(inode, f);
-> +}
-> +
-> +static int bo_numa_release(struct inode *inode, struct file *f)
-> +{
-> +	struct bo_numa_snapshot *snap =3D f->private_data;
-> +
-> +	kvfree(snap->buf);
-> +	mutex_destroy(&snap->lock);
-> +	kfree(snap);
-> +
-> +	return 0;
-> +}
-> +
-> +static ssize_t bo_numa_read(struct file *f, char __user *ubuf,
-> size_t size,
-> +			=C2=A0=C2=A0=C2=A0 loff_t *pos)
-> +{
-> +	struct bo_numa_snapshot *snap =3D f->private_data;
-> +	ssize_t ret =3D 0;
-> +
-> +	mutex_lock(&snap->lock);
-> +	if (snap->buf) {
-> +		ret =3D simple_read_from_buffer(ubuf, size, pos, snap-
-> >buf,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 snap->len);
-> +		if (*pos >=3D snap->len) {
-> +			kvfree(snap->buf);
-> +			snap->buf =3D NULL;
-> +		}
-> +	}
-> +	mutex_unlock(&snap->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static ssize_t bo_numa_write(struct file *f, const char __user
-> *ubuf,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, loff_t *pos)
-> +{
-> +	struct drm_file *file =3D file_inode(f)->i_private;
-> +	struct bo_numa_snapshot *snap =3D f->private_data;
-> +	struct drm_print_iterator iter;
-> +	struct drm_printer p;
-> +	size_t bufsize =3D PAGE_SIZE / 2;
-> +	char *buf =3D NULL;
-> +	u32 handle;
-> +	int ret;
-> +
-> +	ret =3D kstrtou32_from_user(ubuf, size, 0, &handle);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret =3D mutex_lock_interruptible(&snap->lock);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (snap->buf) {
-> +		ret =3D -EBUSY;
-> +		goto out_unlock;
-> +	}
-> +
-> +	/*
-> +	 * Retry with a larger buffer until the snapshot fits. The
-> coredump
-> +	 * printer is used as a generic bounded buffer printer, and
-> reports
-> +	 * when its buffer is full.
-> +	 */
-> +	do {
-> +		kvfree(buf);
-> +		bufsize *=3D 2;
-> +		buf =3D kvzalloc(bufsize, GFP_KERNEL_ACCOUNT);
-> +		if (!buf) {
-> +			ret =3D -ENOMEM;
-> +			goto out_unlock;
-> +		}
-> +
-> +		iter =3D (struct drm_print_iterator) {
-> +			.data =3D buf,
-> +			.remain =3D bufsize,
-> +		};
-> +		p =3D drm_coredump_printer(&iter);
-> +		ret =3D xe_bo_print_numa_info(file, handle, &p);
-> +		if (ret)
-> +			goto out_free;
-> +	} while (drm_coredump_printer_is_full(&p));
-> +
-> +	snap->buf =3D buf;
-> +	snap->len =3D bufsize - iter.remain;
-> +	*pos =3D 0;
-> +	buf =3D NULL;
-> +
-> +out_free:
-> +	kvfree(buf);
-> +out_unlock:
-> +	mutex_unlock(&snap->lock);
-> +
-> +	return ret ?: size;
-> +}
-> +
-> +static const struct file_operations bo_numa_fops =3D {
-> +	.owner =3D THIS_MODULE,
-> +	.open =3D bo_numa_open,
-> +	.release =3D bo_numa_release,
-> +	.read =3D bo_numa_read,
-> +	.write =3D bo_numa_write,
-> +};
-> +
-> +/**
-> + * xe_debugfs_client_add() - Add xe-specific per-client debugfs
-> files
-> + * @file: The drm_file of the client.
-> + *
-> + * Populate the drm core per-client debugfs directory with xe-
-> specific
-> + * files. The files are removed by the drm core together with the
-> + * directory when @file is released.
-> + */
-> +void xe_debugfs_client_add(struct drm_file *file)
-> +{
-> +	if (IS_ERR_OR_NULL(file->debugfs_client))
-> +		return;
-> +
-> +	debugfs_create_file("bo_numa", 0600, file->debugfs_client,
-> file,
-> +			=C2=A0=C2=A0=C2=A0 &bo_numa_fops);
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_debugfs.h
-> b/drivers/gpu/drm/xe/xe_debugfs.h
-> index 88d91c78036b..90effba271d9 100644
-> --- a/drivers/gpu/drm/xe/xe_debugfs.h
-> +++ b/drivers/gpu/drm/xe/xe_debugfs.h
-> @@ -8,6 +8,7 @@
-> =C2=A0
-> =C2=A0#include <linux/types.h>
-> =C2=A0
-> +struct drm_file;
-> =C2=A0struct xe_device;
-> =C2=A0
-> =C2=A0#ifdef CONFIG_DEBUG_FS
-> @@ -16,12 +17,14 @@ bool xe_fault_csc_hw_error(void);
-> =C2=A0bool xe_fault_wedge_cold_reset(void);
-> =C2=A0bool xe_fault_mempage_offline(void);
-> =C2=A0void xe_debugfs_register(struct xe_device *xe);
-> +void xe_debugfs_client_add(struct drm_file *file);
-> =C2=A0#else
-> =C2=A0static inline bool xe_fault_gt_reset(void) { return false; }
-> =C2=A0static inline bool xe_fault_csc_hw_error(void) { return false; }
-> =C2=A0static inline bool xe_fault_wedge_cold_reset(void) { return false; =
-}
-> =C2=A0static inline bool xe_fault_mempage_offline(void) { return false; }
-> =C2=A0static inline void xe_debugfs_register(struct xe_device *xe) { }
-> +static inline void xe_debugfs_client_add(struct drm_file *file) { }
-> =C2=A0#endif
-> =C2=A0
-> =C2=A0#endif
-> diff --git a/drivers/gpu/drm/xe/xe_device.c
-> b/drivers/gpu/drm/xe/xe_device.c
-> index 616e02066ae6..f5a581d39c96 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -127,6 +127,8 @@ static int xe_file_open(struct drm_device *dev,
-> struct drm_file *file)
-> =C2=A0		put_task_struct(task);
-> =C2=A0	}
-> =C2=A0
-> +	xe_debugfs_client_add(file);
-> +
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
+> [1]
+> https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_19546/shard-dg1-14/igt@i9=
+15_suspend@basic-s2idle-without-i915.html
+>
+> --Bisect Logs--
+> git bisect start
+> # status: waiting for both good and bad commits
+> # bad: [cfe67bbcfc37474cbb4482d750d4fba34bbc5a24] drm-tip:
+> 2026y-11m-17d-05h-12m-00s UTC integration manifest
+> git bisect bad cfe67bbcfc37474cbb4482d750d4fba34bbc5a24
+> # status: waiting for good commit(s), bad commit known
+> # good: [39e407b553ec15d4a233b651531ad431ed7542be] drm/sun4i: dw-hdmi:
+> Deinit PHY in bind error path
+> git bisect good 39e407b553ec15d4a233b651531ad431ed7542be
+> # bad: [715f145f6204363a50853eb15719dc860db0bc01] drm/i915/dsb: Realign
+> GOSUB only for QW slots 6 and 7
+> git bisect bad 715f145f6204363a50853eb15719dc860db0bc01
+> # bad: [7e1392a42ea288d70a266f6553fe06f57f8647ea] Merge tag
+> 'net-7.4-rc3' of git://git.kernel.org/pub/scm/linux/kernel/git/netdev/net
+> git bisect bad 7e1392a42ea288d70a266f6553fe06f57f8647ea
+> # good: [0359338fd8cf1a2dc001d0cd69c331c17decee88] af_unix: Inherit
+> SO_INQ in unix_stream_connect()
+> git bisect good 0359338fd8cf1a2dc001d0cd69c331c17decee88
+> # good: [79eb6679ef6a0d5ea68da53a8321fb1dc72299b9] Merge tag
+> 'loongarch-fixes-7.4-1' of
+> git://git.kernel.org/pub/scm/linux/kernel/git/chenhuacai/linux-loongson
+> git bisect good 79eb6679ef6a0d5ea68da53a8321fb1dc72299b9
+> # bad: [baa6744dc939a927e2c94e5f20aff01ac538aef1] Merge tag
+> 'acpi-7.4-rc3' of
+> git://git.kernel.org/pub/scm/linux/kernel/git/rafael/linux-pm
+> git bisect bad baa6744dc939a927e2c94e5f20aff01ac538aef1
+> # good: [2cca8a6f6ae690755862f5b633125119dcf6bd0c] Merge patch series
+> "ns: fixes identifier fixes"
+> git bisect good 2cca8a6f6ae690755862f5b633125119dcf6bd0c
+> # bad: [df42809bd599109660bd3f95e2e22330c80993df] Merge branches
+> 'pm-cpufreq' and 'pm-runtime'
+> git bisect bad df42809bd599109660bd3f95e2e22330c80993df
+> # bad: [6bc092a0fc4d331a4adbbb664078af149c580834] cpufreq: acpi-cpufreq:
+> fix P-state index mismatch in extract_io()
+> git bisect bad 6bc092a0fc4d331a4adbbb664078af149c580834
+> # bad: [02e77af824d5be3a94fdd885835a352f90d24c5c] cpufreq: intel_pstate:
+> Clear last written P-state value on suspend
+> git bisect bad 02e77af824d5be3a94fdd885835a352f90d24c5c
+> # bad: [eee2a44e4e2b41c0699919a550d41cc38daa4f42] cpufreq: Improve
+> suspend-resume synchronization
+> git bisect bad eee2a44e4e2b41c0699919a550d41cc38daa4f42
+> # good: [e6f50e602e373583423654ec000cad8b8d08f7bc] cpufreq: Hold the
+> policy write lock when changing boost state
+> git bisect good e6f50e602e373583423654ec000cad8b8d08f7bc
+> # first bad commit: [eee2a44e4e2b41c0699919a550d41cc38daa4f42] cpufreq:
+> Improve suspend-resume synchronization
+>
+> > Fixes: 8e30444e1530 ("cpufreq: fix cpufreq suspend/resume for intel_pst=
+ate")
+> > Fixes: b1b12babe3b7 ("cpufreq: update 'cpufreq_suspended' after stoppin=
+g governors")
+> > Cc: All applicable <stable@vger.kernel.org>
+> > Signed-off-by: Rafael J. Wysocki <rafael.j.wysocki@intel.com>
+> > ---
+> >
+> > v1 -> v2:
+> >     * Retain all of the cpufreq_suspended checks to avoid carrying out
+> >       governor operations after suspending cpufreq during system
+> >       shutdown and during hibernation resume on systems with SMT (Sashi=
+ko)
+> >
+> >     * Rearrange cpufreq_resume() to walk all cpufreq policies and call
+> >       cpufreq_resume_policy() for all of them
+> >
+> >     * Call cpufreq_exit_governor() in cpufreq_resume_policy() for
+> >       policies that were suspended during a system suspend transition a=
+nd
+> >       are inactive during the subsequent system resume (Sashiko)
+> >
+> >     * Update cpufreq_suspended under cpus_read_lock in cpufreq_resume()
+> >       for more symmetry with cpufreq_suspend()
+> >
+> >     * Update changelog
+> >
+> > ---
+> >   drivers/cpufreq/cpufreq.c |   86 +++++++++++++++++++++++++++++++++---=
+----------
+> >   include/linux/cpufreq.h   |    3 +
+> >   2 files changed, 66 insertions(+), 23 deletions(-)
+> >
+> > --- a/drivers/cpufreq/cpufreq.c
+> > +++ b/drivers/cpufreq/cpufreq.c
+> > @@ -35,6 +35,9 @@
+> >   static LIST_HEAD(cpufreq_policy_list);
+> >
+> >   /* Macros to iterate over CPU policies */
+> > +#define for_each_policy(__policy)    \
+> > +     list_for_each_entry(__policy, &cpufreq_policy_list, policy_list)
+> > +
+> >   #define for_each_suitable_policy(__policy, __active)                 =
+        \
+> >       list_for_each_entry(__policy, &cpufreq_policy_list, policy_list) =
+\
+> >               if ((__active) =3D=3D !policy_is_inactive(__policy))
+> > @@ -1956,6 +1959,14 @@ int cpufreq_generic_suspend(struct cpufr
+> >   }
+> >   EXPORT_SYMBOL(cpufreq_generic_suspend);
+> >
+> > +static void cpufreq_suspend_policy(struct cpufreq_policy *policy)
+> > +{
+> > +     guard(cpufreq_policy_write)(policy);
+> > +
+> > +     cpufreq_stop_governor(policy);
+> > +     policy->suspended =3D true;
+> > +}
+> > +
+> >   /**
+> >    * cpufreq_suspend() - Suspend CPUFreq governors.
+> >    *
+> > @@ -1978,11 +1989,8 @@ void cpufreq_suspend(void)
+> >       pr_debug("%s: Suspending Governors\n", __func__);
+> >
+> >       for_each_active_policy(policy) {
+> > -             if (has_target()) {
+> > -                     scoped_guard(cpufreq_policy_write, policy) {
+> > -                             cpufreq_stop_governor(policy);
+> > -                     }
+> > -             }
+> > +             if (has_target())
+> > +                     cpufreq_suspend_policy(policy);
+> >
+> >               if (cpufreq_driver->suspend && cpufreq_driver->suspend(po=
+licy))
+> >                       pr_err("%s: Failed to suspend driver: %s\n", __fu=
+nc__,
+> > @@ -1994,6 +2002,32 @@ suspend:
+> >       cpus_read_unlock();
+> >   }
+> >
+> > +static void cpufreq_resume_policy(struct cpufreq_policy *policy, bool =
+start)
+> > +{
+> > +     guard(cpufreq_policy_write)(policy);
+> > +
+> > +     if (!policy->suspended)
+> > +             return;
+> > +
+> > +     policy->suspended =3D false;
+> > +
+> > +     if (policy_is_inactive(policy)) {
+> > +             /*
+> > +              * The policy was active when it was suspended, so its go=
+vernor
+> > +              * is still there.  Let the governor go.
+> > +              */
+> > +             cpufreq_exit_governor(policy);
+> > +             return;
+> > +     }
+> > +
+> > +     if (!start)
+> > +             return;
+> > +
+> > +     if (cpufreq_start_governor(policy))
+> > +             pr_err("%s: Failed to start governor for CPU%u's policy\n=
+",
+> > +                    __func__, policy->cpu);
+> > +}
+> > +
+> >   /**
+> >    * cpufreq_resume() - Resume CPUFreq governors.
+> >    *
+> > @@ -2003,11 +2037,12 @@ suspend:
+> >   void cpufreq_resume(void)
+> >   {
+> >       struct cpufreq_policy *policy;
+> > -     int ret;
+> >
+> >       if (!cpufreq_driver)
+> >               return;
+> >
+> > +     guard(cpus_read_lock)();
+> > +
+> >       if (unlikely(!cpufreq_suspended))
+> >               return;
+> >
+> > @@ -2018,19 +2053,18 @@ void cpufreq_resume(void)
+> >
+> >       pr_debug("%s: Resuming Governors\n", __func__);
+> >
+> > -     for_each_active_policy(policy) {
+> > -             if (cpufreq_driver->resume && cpufreq_driver->resume(poli=
+cy)) {
+> > -                     pr_err("%s: Failed to resume driver: %s\n", __fun=
+c__,
+> > -                             cpufreq_driver->name);
+> > -             } else if (has_target()) {
+> > -                     scoped_guard(cpufreq_policy_write, policy) {
+> > -                             ret =3D cpufreq_start_governor(policy);
+> > -                     }
+> > +     for_each_policy(policy) {
+> > +             int ret =3D 0;
+> >
+> > +             if (cpufreq_driver->resume && !policy_is_inactive(policy)=
+) {
+> > +                     ret =3D cpufreq_driver->resume(policy);
+> >                       if (ret)
+> > -                             pr_err("%s: Failed to start governor for =
+CPU%u's policy\n",
+> > -                                    __func__, policy->cpu);
+> > +                             pr_err("%s: Failed to resume driver: %s\n=
+", __func__,
+> > +                                    cpufreq_driver->name);
+> >               }
+> > +
+> > +             if (has_target())
+> > +                     cpufreq_resume_policy(policy, ret =3D=3D 0);
+> >       }
+> >   }
+> >
+> > @@ -2412,12 +2446,17 @@ __weak struct cpufreq_governor *cpufreq_
+> >       return NULL;
+> >   }
+> >
+> > +static bool cpufreq_is_suspended(struct cpufreq_policy *policy)
+> > +{
+> > +     return cpufreq_suspended || policy->suspended;
+> > +}
+> > +
+> >   static int cpufreq_init_governor(struct cpufreq_policy *policy)
+> >   {
+> >       int ret;
+> >
+> > -     /* Don't start any governor operations if we are entering suspend=
+ */
+> > -     if (cpufreq_suspended)
+> > +     /* Don't start any governor operations for suspended policies. */
+> > +     if (cpufreq_is_suspended(policy))
+> >               return 0;
+> >       /*
+> >        * Governor might not be initiated here if ACPI _PPC changed
+> > @@ -2460,7 +2499,7 @@ static int cpufreq_init_governor(struct
+> >
+> >   static void cpufreq_exit_governor(struct cpufreq_policy *policy)
+> >   {
+> > -     if (cpufreq_suspended || !policy->governor)
+> > +     if (cpufreq_is_suspended(policy) || !policy->governor)
+> >               return;
+> >
+> >       pr_debug("%s: for CPU %u\n", __func__, policy->cpu);
+> > @@ -2475,7 +2514,7 @@ int cpufreq_start_governor(struct cpufre
+> >   {
+> >       int ret;
+> >
+> > -     if (cpufreq_suspended)
+> > +     if (cpufreq_is_suspended(policy))
+> >               return 0;
+> >
+> >       if (!policy->governor)
+> > @@ -2499,7 +2538,7 @@ int cpufreq_start_governor(struct cpufre
+> >
+> >   void cpufreq_stop_governor(struct cpufreq_policy *policy)
+> >   {
+> > -     if (cpufreq_suspended || !policy->governor)
+> > +     if (cpufreq_is_suspended(policy) || !policy->governor)
+> >               return;
+> >
+> >       pr_debug("%s: for CPU %u\n", __func__, policy->cpu);
+> > @@ -2510,7 +2549,7 @@ void cpufreq_stop_governor(struct cpufre
+> >
+> >   static void cpufreq_governor_limits(struct cpufreq_policy *policy)
+> >   {
+> > -     if (cpufreq_suspended || !policy->governor)
+> > +     if (cpufreq_is_suspended(policy) || !policy->governor)
+> >               return;
+> >
+> >       pr_debug("%s: for CPU %u\n", __func__, policy->cpu);
+> > @@ -2747,7 +2786,8 @@ static void cpufreq_policy_refresh(struc
+> >        * -> ask driver for current freq and notify governors about a ch=
+ange
+> >        */
+> >       if (cpufreq_driver->get && has_target() &&
+> > -         (cpufreq_suspended || WARN_ON(!cpufreq_verify_current_freq(po=
+licy, false))))
+> > +         (cpufreq_is_suspended(policy) ||
+> > +          WARN_ON(!cpufreq_verify_current_freq(policy, false))))
+> >               return;
+> >
+> >       refresh_frequency_limits(policy);
+> > --- a/include/linux/cpufreq.h
+> > +++ b/include/linux/cpufreq.h
+> > @@ -149,6 +149,9 @@ struct cpufreq_policy {
+> >       /* Pending policy->min/max update for the driver */
+> >       bool                    update_limits;
+> >
+> > +     /* The policy has been suspended. */
+> > +     bool                    suspended;
+> > +
+> >        /* Cached frequency lookup from cpufreq_driver_resolve_freq. */
+> >       unsigned int cached_target_freq;
+> >       unsigned int cached_resolved_idx;
+>
+>
+
+--00000000000046276706608e4ee7
+Content-Type: text/x-patch; charset="US-ASCII"; name="intel_pstate-power-ctl-ee-state.patch"
+Content-Disposition: attachment; 
+	filename="intel_pstate-power-ctl-ee-state.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_mwm9242f0>
+X-Attachment-Id: f_mwm9242f0
+
+LS0tCiBkcml2ZXJzL2NwdWZyZXEvaW50ZWxfcHN0YXRlLmMgfCAgIDI0ICsrKysrKysrKysrKysr
+KystLS0tLS0tLQogMSBmaWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKyksIDggZGVsZXRpb25z
+KC0pCgotLS0gYS9kcml2ZXJzL2NwdWZyZXEvaW50ZWxfcHN0YXRlLmMKKysrIGIvZHJpdmVycy9j
+cHVmcmVxL2ludGVsX3BzdGF0ZS5jCkBAIC0xMzUyLDEzICsxMzUyLDEyIEBAIHN0YXRpYyB2b2lk
+IGludGVsX3BzdGF0ZV9od3Bfb2ZmbGluZShzdHIKICNkZWZpbmUgUE9XRVJfQ1RMX0RFQ19FTkFC
+TEUJMjcKIAogc3RhdGljIGludCBwb3dlcl9jdGxfZWVfc3RhdGU7CitzdGF0aWMgREVGSU5FX01V
+VEVYKHBvd2VyX2N0bF9lZV9zdGF0ZV9sb2NrKTsKIAotc3RhdGljIHZvaWQgc2V0X3Bvd2VyX2N0
+bF9lZV9zdGF0ZShib29sIGlucHV0KQorc3RhdGljIHZvaWQgX19zZXRfcG93ZXJfY3RsX2VlX3N0
+YXRlKGJvb2wgaW5wdXQpCiB7CiAJdTY0IHBvd2VyX2N0bDsKIAotCWd1YXJkKG11dGV4KSgmaW50
+ZWxfcHN0YXRlX2RyaXZlcl9sb2NrKTsKLQogCXJkbXNycShNU1JfSUEzMl9QT1dFUl9DVEwsIHBv
+d2VyX2N0bCk7CiAJaWYgKGlucHV0KSB7CiAJCXBvd2VyX2N0bCAmPSB+QklUKE1TUl9JQTMyX1BP
+V0VSX0NUTF9CSVRfRUUpOwpAQCAtMTM3MCw2ICsxMzY5LDEzIEBAIHN0YXRpYyB2b2lkIHNldF9w
+b3dlcl9jdGxfZWVfc3RhdGUoYm9vbAogCXdybXNycShNU1JfSUEzMl9QT1dFUl9DVEwsIHBvd2Vy
+X2N0bCk7CiB9CiAKK3N0YXRpYyB2b2lkIHNldF9wb3dlcl9jdGxfZWVfc3RhdGUoYm9vbCBlbmFi
+bGUpCit7CisJZ3VhcmQobXV0ZXgpKCZwb3dlcl9jdGxfZWVfc3RhdGVfbG9jayk7CisKKwlfX3Nl
+dF9wb3dlcl9jdGxfZWVfc3RhdGUoZW5hYmxlKTsKK30KKwogc3RhdGljIHZvaWQgaW50ZWxfcHN0
+YXRlX2h3cF9lbmFibGUoc3RydWN0IGNwdWRhdGEgKmNwdWRhdGEpOwogCiBzdGF0aWMgdm9pZCBp
+bnRlbF9wc3RhdGVfaHdwX3JlZW5hYmxlKHN0cnVjdCBjcHVkYXRhICpjcHUpCkBAIC0xMzk4LDEx
+ICsxNDA0LDEzIEBAIHN0YXRpYyBpbnQgaW50ZWxfcHN0YXRlX3Jlc3VtZShzdHJ1Y3QgY3AKIAog
+CXByX2RlYnVnKCJDUFUgJWQgcmVzdW1pbmdcbiIsIGNwdS0+Y3B1KTsKIAotCS8qIE9ubHkgcmVz
+dG9yZSBpZiB0aGUgc3lzdGVtIGRlZmF1bHQgaXMgY2hhbmdlZCAqLwotCWlmIChwb3dlcl9jdGxf
+ZWVfc3RhdGUgPT0gUE9XRVJfQ1RMX0VFX0VOQUJMRSkKLQkJc2V0X3Bvd2VyX2N0bF9lZV9zdGF0
+ZSh0cnVlKTsKLQllbHNlIGlmIChwb3dlcl9jdGxfZWVfc3RhdGUgPT0gUE9XRVJfQ1RMX0VFX0RJ
+U0FCTEUpCi0JCXNldF9wb3dlcl9jdGxfZWVfc3RhdGUoZmFsc2UpOworCXNjb3BlZF9ndWFyZCht
+dXRleCwgJnBvd2VyX2N0bF9lZV9zdGF0ZV9sb2NrKSB7CisJCS8qIE9ubHkgcmVzdG9yZSBpZiB0
+aGUgc3lzdGVtIGRlZmF1bHQgaGFzIGNoYW5nZWQgKi8KKwkJaWYgKHBvd2VyX2N0bF9lZV9zdGF0
+ZSA9PSBQT1dFUl9DVExfRUVfRU5BQkxFKQorCQkJX19zZXRfcG93ZXJfY3RsX2VlX3N0YXRlKHRy
+dWUpOworCQllbHNlIGlmIChwb3dlcl9jdGxfZWVfc3RhdGUgPT0gUE9XRVJfQ1RMX0VFX0RJU0FC
+TEUpCisJCQlfX3NldF9wb3dlcl9jdGxfZWVfc3RhdGUoZmFsc2UpOworCX0KIAogCWlmIChjcHUt
+PnN1c3BlbmRlZCAmJiBod3BfYWN0aXZlKSB7CiAJCW11dGV4X2xvY2soJmludGVsX3BzdGF0ZV9s
+aW1pdHNfbG9jayk7Cg==
+--00000000000046276706608e4ee7--
