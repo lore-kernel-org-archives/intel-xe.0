@@ -2,139 +2,104 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 964F2606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 109DF606A325
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=permerror header.d=shazbot.org header.i=@shazbot.org header.a=rsa-sha1 header.s=fm2 header.b=jhChCI27;
-	dkim=permerror header.d=messagingengine.com header.i=@messagingengine.com header.a=rsa-sha1 header.s=fm3 header.b=oKNtFcR7
+	dkim=pass (2048-bit key) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=I2c9NUvq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 587D111253C;
-	Thu, 19 Nov 2026 15:25:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="jhChCI27";
-	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="oKNtFcR7";
-	dkim-atps=neutral
-Received: from flow-a6-smtp.messagingengine.com
- (flow-a6-smtp.messagingengine.com [103.168.172.141])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C47810E159
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 23:57:29 +0000 (UTC)
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
- by mailflow.phl.internal (Postfix) with ESMTP id 8EE7A13819DF
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 18:57:28 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-06.internal (MEProxy); Wed, 18 Nov 2026 18:57:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
- cc:cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1795046248;
- x=1795053448; bh=B4zFjEL5hlhQrSt2smgrlHZVn55qIbn5+9S0rz2RBas=; b=
- jhChCI27TV0AUe3b/OxSOD4nN2iBvo0mrgoeO6U99iuz/83bXfUyuTNSNKQTRno4
- MU4OLYd12tVJtLPOC4q3YKounCyXILO8+Dce3nwTC277Qq/bX6TwMeCRXf3DC780
- qbxJLTdiiwXghIba0ZyVnIBlsIAUGSvnl/wtHcHHbL9eWeJLo9HTg7AeYm4wu52y
- WW5ksSo4mW7ABZgWHmkHOZn5Z/sOPQ5AWllSji1yfzMGYwuhgBOleoB59ROkK/67
- fnGLXf3DB0KHURCzbwnpM0ebq3nmoPPYWU+M555JuKHRroRUVGyRadl8I0oO9LIj
- 5Kx45kJPSRX5aWlL8eHWEA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1795046248; x=
- 1795053448; bh=B4zFjEL5hlhQrSt2smgrlHZVn55qIbn5+9S0rz2RBas=; b=o
- KNtFcR70DVjYBfQi1evQJ2By4kJtIi0MW4f71HgMh9FX69hVTo3SPkTZpPr1eoW2
- fkRlTLtN+Ij+6RuMKKvr/hYrps+MDdwlDnU63FxILssh7XBdzIpKWt4kNs2kkgGF
- zAaP0ONbV1XQhJcW3VdfDZSlPd8mYA6l68hckKA94RF5x323FWK9zdsANjw5Ue91
- gtlOt9aCHV9EvNIFf/1toXez4eZG+zrntjM+FqYQnPacW4vxBAxW87zOGd35qPvu
- b1rZYCwiB3LMG2xHatxYGd/pKQW8N2b4lFMg7Q8e08ijwzrCABlgmKOntZ3Oolsp
- P8wOI0uy5r/STHlS41fww==
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
- repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
- action=sign d=shazbot.org a=rsa-sha256;
-DKIM2-Signature: i=1; m=1; t=1795046248; d=shazbot.org;
- mf=PGFsZXhAc2hhemJvdC5vcmc+;
- rt=PGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4=;
- s=fm2:rsa-sha256:JyBNl+bCZNEEWsLgwjazHaqbQdNfb6SsJOAZoJ1COpqDnn4
- tU/V2P5X/xse6C18oxs/Ewsph0GFYc60V5YyFbgM3Oar7mBBSUbwz+t9VRqZN9R4
- XDYz+z2SyVZ3LNGZDQU1vhgoP3ksWYHdlJIsA8dZKAwlNH0+RdJgQzO9LTE742T9
- MxePlDz8Ne4IhSphfLE1rHLC0PQ9/KrzqZE/Ls6NQ9ZsnOSQXmukwj088aSx403r
- f1IofPejWV/7w58pksNkMCI7bxG94tF2clfVQQSuMoPNNOs4uwThsiFBUYEwS9Cd
- eq2u0SRZmhPIuExuiVUuc31YPwDpo830juPYMsQ==;
-X-DKIM2-Info: draft=ietf-dkim-dkim2-spec-09;
- repo=github.com/dkim2wg/interop; date=2026-11-03; sw=lmtpprox;
- action=mi-m=1; hc=12;
- hn=cc,content-transfer-encoding,content-type,date,feedback-id,
- from,in-reply-to,message-id,mime-version,references,subject,to;
-Message-Instance: m=1;
- h=sha256:qog/qb0ddv/KJY5cf9DNh/IItNoaVRZb1M1r5Mk/ZL0=:zdUGlLVrHk0sg6/jTFIok0PVKmmRpFzoo1hWrECnnaY=;
-X-ME-Sender: <xms:Zjv-aqfnz5xmurs_GHsqTWy6lXiC0lL2J1trjzRetqE9iXsPfAHA9A>
- <xme:Zjv-arPTiRXQ_nYvYXkFMB5hr9FlB4VMtPzWshvTyK-QC0xlM9jJbOyrfhNR_Op40
- ZfqKomxiUCilnEtutoYyJ13lFEywsc3rpEAdnOzkDxCE2ns2xSQcg>
-X-ME-Received: <xmr:Zjv-an0yUoDjq_5V2rAUugRk4GcrVzcsLEpbentKeOXxYwzEK38B2WPHWTFajMnTQ7_KQc6S3u4>
-X-ME-Proxy-Cause: dmFkZTETr3a90om7ZcxKHjLHiqlEITvFRz7EG4g8nD0o633cA3uUqXNQzqyRCqHNmFHd0d
- zzK7udLaJMcv0zL0xjQNuLrOosegpV0KyCxl59ibhiuUcdaPuW0gIZ/BO5XlQ24ypBWVMX
- c+3koyrttcdMTEx6oKP82WiXEOp2ZY2ktCOIEZstACd6F+alceiHjDBixJEKURxmB9PUEY
- As8xQ+NktmnMGJIPT2ravKfkS4AvdxWe7CxmkHGqjCUif+f7TZm5FrutIqEazF8ylYiwSd
- lfR2xIhVUJgfis7MYUtXAG4tw5UUZ5KM0TY0M61y0jv5NwUbtXsOR/u6AhRD1A5l5Rofcy
- MdExTJQ2HeZuU8vuLrFvl7X7bh2ObYgm62G/Q/CS3qUEiJ3Meo6fWxZhI8FK8Qg8wEzyHF
- Ob1e1xavbZ+rXIy/Qld57huC2fxa9HIUaAxoC36fOkjrhV2CYCf17C+9q99ANiZ2SI3zOl
- pBTcJe5PUTfgs63+2Mk2TWommQzhhm9+KR4jEzdzbHvUoFzTAGJpRXU6+oDQNns2ebmqWg
- S+dEzIHXPA4/4UwaITH+b7kbX9D0Z0LvcSlw+zJ5laplspIyz6QRx6ax1qb4AbCgvhlH+X
- KU4Jt0oomr1gCRGwiUyuZdmNQztO+VkcjXafPorfNIk7xYzscAIBFhCR10SQ
-X-ME-Proxy: <xmx:Zjv-au1jFUxaVkqvTf2_nGHRo7pEFwmRIYqfWMIz-PTGEkOIyNR08g>
- <xmx:Zjv-atV6qbBh_xJ8tB0a0RxVNialdFZXQI2TkGrZM3go_j4scCwaOA>
- <xmx:Zjv-aggzyYqS6mcl6Ey1awRnIhE-m_e8Ge6vqf3sRdgFpCsQ8ckVnQ>
- <xmx:Zjv-agIcA0qovO-trbGtL7hLD3B4qd41NvIRWEpMpdyfKV7a8xnPfA>
- <xmx:aDv-anCw6RIdfILW7MNW1DXCVNCv0UKHb6z_PrXssdXRW1kCf4EsoqIQ>
-Feedback-ID: i03f14258:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 18 Nov 2026 18:57:22 -0500 (EST)
-From: Alex Williamson <alex@shazbot.org>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Alex Williamson <alex@shazbot.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- David Lechner <dlechner@baylibre.com>, Armin Wolf <W_Armin@gmx.de>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Karl Mehltretter <kmehltretter@gmail.com>,
- "Paul E . McKenney" <paulmck@kernel.org>, Borislav Petkov <bp@alien8.de>,
- Dapeng Mi <dapeng1.mi@linux.intel.com>, Marco Elver <elver@google.com>,
- Ethan Nelson-Moore <enelsonmoore@gmail.com>,
- Jeff Layton <jlayton@kernel.org>, Bradley Morgan <brads@mainlining.org>,
- Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>,
- Pnina Feder <pnina.feder@mobileye.com>, Mete Durlu <meted@linux.ibm.com>,
- Aaron Tomlin <atomlin@atomlin.com>, Rio <rioo.tsukatsukii@gmail.com>,
- Feng Tang <feng.tang@linux.alibaba.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
- linux-trace-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Yishai Hadas <yishaih@nvidia.com>,
- Longfang Liu <liulongfang@huawei.com>, Ankit Agrawal <ankita@nvidia.com>,
- Brett Creeley <brett.creeley@amd.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- Julian Ruess <julianr@linux.ibm.com>, Nipun Gupta <nipun.gupta@amd.com>,
- Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Eric Auger <eric.auger@redhat.com>, Mostafa Saleh <smostafa@google.com>,
- Pranjal Shrivastava <praan@google.com>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, qat-linux@intel.com,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- kvm@vger.kernel.org
-Subject: [PATCH] vfio: Allow untainted use of driver_override
-Date: Wed, 18 Nov 2026 16:56:44 -0700
-Message-ID: <20261118235645.2907908-2-alex@shazbot.org>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <DMYH4ED3GWDO.29DGXPK4M82VR@kernel.org>
-References: <DMYH4ED3GWDO.29DGXPK4M82VR@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB19B11252F;
+	Thu, 19 Nov 2026 15:25:28 +0000 (UTC)
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
+ [209.85.128.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E22A510E7F3
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 14:06:45 +0000 (UTC)
+Received: by mail-wm1-f44.google.com with SMTP id
+ 5b1f17b1804b1-4a5177d78c7so8953095e9.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 06:06:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=baylibre.com; s=google; t=1795010804; x=1795615604;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:content-type:mime-version
+ :references:message-id:subject:cc:to:from:date:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=O8kUxWwNMGGKdJF+2JBGIvhWCx8VFS9Gq0fs2XPEP3c=;
+ b=I2c9NUvq+C5FWl6oDgcyVl2svEUbTiDltKnvnXOJUTtS5VF8lE4PF4TXnpIfmKhhLc
+ FePg2dHSUPMK1ZfSD2kd42QnFIq0u0XYarUdIiwFma6iJF4p7lt1no6qF0A1CODDLXrH
+ VCfGF4h8mlr2vkDNeRdryTV2j8W245lGCJlr+4ZCDUaolWRTZLANpx1Gt9a8lzqbVeWx
+ oNgmr4XPecY3ySeavDFfDyMc8mKcP050Q3WCxdLiklx2DRMGDHYrxxr14kI2XXmCxxfs
+ 92bwsUeDezBQsgUGfwY8TR+fvQ/Hn87fwEIk9OWrAdPaTjSc2o8MwjvEo3nbnm0DJ0w6
+ ZXLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1795010804; x=1795615604;
+ h=in-reply-to:content-disposition:content-type:mime-version
+ :references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=O8kUxWwNMGGKdJF+2JBGIvhWCx8VFS9Gq0fs2XPEP3c=;
+ b=fAwuJXbzzbP2PHk654EvZURw6aEmnftIZBE8V6CLv8GSTXr2Bj0iQ80xHRVcXeGkYe
+ 9hZDIR2pdyTNSxlvreAzi1PIqgbZKSsaNs1s4ZhjBzUDToHt4kQ8exLtIGa505G4bf90
+ M6ZZsKX5g7CQqvEaRbZ6lEE5hS6n9D+BGoSJ3Vc/bb5MG4s07bSoRWE82sDixqkTT0ci
+ FjUIvF4dTyW1Xdlw4Hle6k5zPbDD5XJuTV72nXaqC3F3h9ly6YibVSN9So7cCHjSqzvI
+ m1plneMSZYDx2Xs3xiL5xJA+2fxyuXa3o16aWokzS2tbTZA+V0PKi8iyX3nlqVlDwijE
+ Iz7A==
+X-Forwarded-Encrypted: i=1;
+ AL+hErGXxCkIFDut2vr+jcbSZ1s3Tz+BkySzQ6xnSHtZaPwQNgOseMMPfKR1pjKHLVmILERgJUYKebhAZQ==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+HFYRJPO1wVNIbCxg05iqToHLxOdeFfjhgsnLYsFehFWs9zRI6
+ ok1mtmgin1oeQCcNQE55RtiFNQwiyti0zWnLzKmignSPkIKBE2YtFQSGc8/VKEgbbBQ=
+X-Gm-Gg: AYBFou1cZ/qz41eDpo4OG6f8zW/GkKoFeRfKha4WJMMpHfibuFC0/ONxYbMBYbmSk0V
+ Pwp2L25vtFxtjtUxdNGaZBf91Z7qaqHcmVwrvVb0DR9OVvBExSPNIIPkyCxbXoHCErxNmW46SpT
+ BdDHzkXWdZlzc8nG7pmABWe0Ie41X2kmvZBjie3kSvGXcweg7oBY23s0+l3JDP87v+i2r2xA6Zl
+ 0rknDFQC/Iz12MU+teQdJQFWmIk4nzcQVJvLE8fazbaUwjrA3Zuj5j6uTFlNMaHmu4Nn6sp4zWL
+ ZRB0T24qCDsQpkJm/GOG1F+CqPhyDUN4c8eV+TV7Qv0GSm5W/lCcFb2a8kyfyAVO9k6KFYyC5GG
+ kwKewU9nHVCsP67Q/Sgu06wQG0/cZrMXIXkwrUJeDlEjpr/sZGdIW+j5qsfN6x6LE0rZaMK3uqn
+ Ur+DVzYafaYAYO5frpnwWJ3bQU1VWLIYxe/KQXL2EafFh5HLcZiJzKN72ngMbgXa0pDXrSCPCej
+ YhkLa1RTiMsviGAAwzujUTd5k+jPhQQFWqs49WnMRiqaYUkht2hKQLHikkHiPMLf3cu+ol6lXYA
+ 0qpsIgmmlXjD6UZrPwmZMeYCLvwz7bbBWog=
+X-Received: by 2002:a05:600c:3509:b0:4bb:68b9:f610 with SMTP id
+ 5b1f17b1804b1-4bb7da03954mr52120315e9.9.1795010803953; 
+ Wed, 18 Nov 2026 06:06:43 -0800 (PST)
+Received: from localhost ([2a02:8071:56d1:2de0:1d24:d58d:2b65:c291])
+ by smtp.gmail.com with UTF8SMTPSA id
+ 5b1f17b1804b1-4bb7d256f64sm61534715e9.1.2026.11.18.06.06.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 18 Nov 2026 06:06:43 -0800 (PST)
+Date: Wed, 18 Nov 2026 15:06:41 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sasha Finkelstein <k@chaosmail.tech>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, dri-devel@lists.freedesktop.org,
+ asahi@lists.linux.dev, 
+ linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+ imx@lists.linux.dev, 
+ linux-riscv@lists.infradead.org, etnaviv@lists.freedesktop.org,
+ linux-samsung-soc@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ imagination@lists.freedesktop.org, linux-mips@vger.kernel.org,
+ lima@lists.freedesktop.org, 
+ linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-amlogic@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, spice-devel@lists.freedesktop.org, 
+ linux-renesas-soc@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
+ linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v1 9/9] drm: Unify coding style for *_device_id arrays
+Message-ID: <av2rKJQ0AKU9CFZI@monoceros>
+References: <cover.1795002467.git.ukleinek@kernel.org>
+ <a2d5ce256b8ec150de4a6494c177b19693a33222.1795002467.git.ukleinek@kernel.org>
+ <7692c160e418e7ad0528739fcc879b11fbac8ab0@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="5c6ped4sw6nigwko"
+Content-Disposition: inline
+In-Reply-To: <7692c160e418e7ad0528739fcc879b11fbac8ab0@intel.com>
 X-Mailman-Approved-At: Thu, 19 Nov 2026 15:25:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -146,236 +111,100 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Driver overrides are the standard mechanism for binding vfio drivers
-to devices.  With the introduction of the support_driver_override flag
-in the core driver struct, it's now required for drivers to declare
-themselves as driver_override compatible, otherwise driver_override
-bindings will be denied or generate a kernel taint.
 
-Set the support_driver_override flag on the driver struct across all
-vfio drivers.
+--5c6ped4sw6nigwko
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v1 9/9] drm: Unify coding style for *_device_id arrays
+MIME-Version: 1.0
 
-Cc: Yishai Hadas <yishaih@nvidia.com>
-Cc: Longfang Liu <liulongfang@huawei.com>
-Cc: Ankit Agrawal <ankita@nvidia.com>
-Cc: Brett Creeley <brett.creeley@amd.com>
-Cc: Giovanni Cabiddu <giovanni.cabiddu@intel.com>
-Cc: Michał Winiarski <michal.winiarski@intel.com>
-Cc: Julian Ruess <julianr@linux.ibm.com>
-Cc: Nipun Gupta <nipun.gupta@amd.com>
-Cc: Nikhil Agarwal <nikhil.agarwal@amd.com>
-Cc: Eric Auger <eric.auger@redhat.com>
-Cc: Mostafa Saleh <smostafa@google.com>
-Cc: Pranjal Shrivastava <praan@google.com>
-Cc: Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc: qat-linux@intel.com
-Cc: virtualization@lists.linux.dev
-Cc: intel-xe@lists.freedesktop.org
-Cc: kvm@vger.kernel.org
-Signed-off-by: Alex Williamson <alex@shazbot.org>
----
+Hello Jani,
 
-Uwe, this should cover all the vfio drivers that expect to use
-driver_override.  Thanks,
+On Wed, Nov 18, 2026 at 03:27:40PM +0200, Jani Nikula wrote:
+> > [...]
+> >  drivers/gpu/ipu-v3/ipu-common.c               |   8 +-
+> >  drivers/gpu/ipu-v3/ipu-pre.c                  |   4 +-
+> >  drivers/gpu/ipu-v3/ipu-prg.c                  |   4 +-
+> >  254 files changed, 1155 insertions(+), 940 deletions(-)
+>=20
+> How do you expect a patch of this size be merged?
 
-Alex
+Using b4 am :-) Honestly, in the cover letter I wrote about an immutable
+branch and offered to rebase to 7.4-rc1. When trying to apply this
+series on top ov 7.4-rc1 there are only 6 conflicts (1x modify/delete
+and 5x content); these are all not so hard to resolve (and even dropping
+the respective hunks (i.e. resolving using `git checkout HEAD`) is fine
+for me.)
 
- drivers/vfio/cdx/main.c                        | 1 +
- drivers/vfio/fsl-mc/vfio_fsl_mc.c              | 1 +
- drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c | 3 ++-
- drivers/vfio/pci/ism/main.c                    | 3 ++-
- drivers/vfio/pci/mlx5/main.c                   | 3 ++-
- drivers/vfio/pci/nvgrace-gpu/main.c            | 3 ++-
- drivers/vfio/pci/pds/pci_drv.c                 | 3 ++-
- drivers/vfio/pci/qat/main.c                    | 3 ++-
- drivers/vfio/pci/vfio_pci.c                    | 3 ++-
- drivers/vfio/pci/virtio/main.c                 | 3 ++-
- drivers/vfio/pci/xe/main.c                     | 3 ++-
- drivers/vfio/platform/vfio_amba.c              | 1 +
- drivers/vfio/platform/vfio_platform.c          | 1 +
- 13 files changed, 22 insertions(+), 9 deletions(-)
+> > diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i91=
+5_pci.c
+> > index 84a7dc6ab5db..faceb3de4fa3 100644
+> > --- a/drivers/gpu/drm/i915/i915_pci.c
+> > +++ b/drivers/gpu/drm/i915/i915_pci.c
+> > @@ -870,7 +870,7 @@ static const struct pci_device_id pciidlist[] =3D {
+> >  	INTEL_ATS_M_IDS(INTEL_VGA_DEVICE, &ats_m_info),
+> >  	INTEL_ARL_IDS(INTEL_VGA_DEVICE, &mtl_info),
+> >  	INTEL_MTL_IDS(INTEL_VGA_DEVICE, &mtl_info),
+> > -	{}
+> > +	{ }
+>=20
+> Personally, I would *always* use {} instead of { }, and would rather not
+> change.
+>=20
+> Across the tree, {} is slightly more common than { }. IMO changing them
+> is pointless churn.
 
-diff --git a/drivers/vfio/cdx/main.c b/drivers/vfio/cdx/main.c
-index 28dc8c825600..fb7679bf92fd 100644
---- a/drivers/vfio/cdx/main.c
-+++ b/drivers/vfio/cdx/main.c
-@@ -358,6 +358,7 @@ static struct cdx_driver vfio_cdx_driver = {
- 	.match_id_table	= vfio_cdx_table,
- 	.driver	= {
- 		.name	= "vfio-cdx",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/fsl-mc/vfio_fsl_mc.c b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-index 15b05b8c0c90..1603f81e0257 100644
---- a/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-+++ b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-@@ -597,6 +597,7 @@ static struct fsl_mc_driver vfio_fsl_mc_driver = {
- 	.remove		= vfio_fsl_mc_remove,
- 	.driver	= {
- 		.name	= "vfio-fsl-mc",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-index c82c59246a3f..5c56aff8db01 100644
---- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-+++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-@@ -1737,7 +1737,8 @@ static struct pci_driver hisi_acc_vfio_pci_driver = {
- 	.id_table = hisi_acc_vfio_pci_table,
- 	.probe = hisi_acc_vfio_pci_probe,
- 	.remove = hisi_acc_vfio_pci_remove,
--	.driver = { .pm = pm_ptr(&hisi_acc_vf_pm_ops) },
-+	.driver = { .pm = pm_ptr(&hisi_acc_vf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &hisi_acc_vf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/ism/main.c b/drivers/vfio/pci/ism/main.c
-index cce3bdf1f070..263b377e87c4 100644
---- a/drivers/vfio/pci/ism/main.c
-+++ b/drivers/vfio/pci/ism/main.c
-@@ -399,7 +399,8 @@ static struct pci_driver ism_vfio_pci_driver = {
- 	.id_table = ism_device_table,
- 	.probe = ism_vfio_pci_probe,
- 	.remove = ism_vfio_pci_remove,
--	.driver	= { .pm = pm_ptr(&ism_vfio_pm_ops) },
-+	.driver	= { .pm = pm_ptr(&ism_vfio_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &ism_vfio_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/mlx5/main.c b/drivers/vfio/pci/mlx5/main.c
-index 18a6d224b1fd..63c89e461be8 100644
---- a/drivers/vfio/pci/mlx5/main.c
-+++ b/drivers/vfio/pci/mlx5/main.c
-@@ -1451,7 +1451,8 @@ static struct pci_driver mlx5vf_pci_driver = {
- 	.id_table = mlx5vf_pci_table,
- 	.probe = mlx5vf_pci_probe,
- 	.remove = mlx5vf_pci_remove,
--	.driver	= { .pm = pm_ptr(&mlx5vf_pm_ops) },
-+	.driver	= { .pm = pm_ptr(&mlx5vf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &mlx5vf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/nvgrace-gpu/main.c b/drivers/vfio/pci/nvgrace-gpu/main.c
-index 5ddec340b73b..946da32c61ff 100644
---- a/drivers/vfio/pci/nvgrace-gpu/main.c
-+++ b/drivers/vfio/pci/nvgrace-gpu/main.c
-@@ -1438,7 +1438,8 @@ static struct pci_driver nvgrace_gpu_vfio_pci_driver = {
- 	.id_table = nvgrace_gpu_vfio_pci_table,
- 	.probe = nvgrace_gpu_probe,
- 	.remove = nvgrace_gpu_remove,
--	.driver = { .pm = pm_ptr(&nvgrace_gpu_pm_ops) },
-+	.driver = { .pm = pm_ptr(&nvgrace_gpu_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &nvgrace_gpu_vfio_pci_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/pds/pci_drv.c b/drivers/vfio/pci/pds/pci_drv.c
-index cf7e33d4d17b..1fcef987f1b0 100644
---- a/drivers/vfio/pci/pds/pci_drv.c
-+++ b/drivers/vfio/pci/pds/pci_drv.c
-@@ -184,7 +184,8 @@ static struct pci_driver pds_vfio_pci_driver = {
- 	.id_table = pds_vfio_pci_table,
- 	.probe = pds_vfio_pci_probe,
- 	.remove = pds_vfio_pci_remove,
--	.driver = { .pm = pm_ptr(&pds_vfio_pm_ops) },
-+	.driver = { .pm = pm_ptr(&pds_vfio_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &pds_vfio_pci_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/qat/main.c b/drivers/vfio/pci/qat/main.c
-index 69448fa57df4..8a616f9b6494 100644
---- a/drivers/vfio/pci/qat/main.c
-+++ b/drivers/vfio/pci/qat/main.c
-@@ -695,7 +695,8 @@ static struct pci_driver qat_vf_vfio_pci_driver = {
- 	.id_table = qat_vf_vfio_pci_table,
- 	.probe = qat_vf_vfio_pci_probe,
- 	.remove = qat_vf_vfio_pci_remove,
--	.driver	= { .pm = pm_ptr(&qat_vf_pm_ops) },
-+	.driver	= { .pm = pm_ptr(&qat_vf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &qat_vf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
-index e7c012febe91..fde2c3fc88eb 100644
---- a/drivers/vfio/pci/vfio_pci.c
-+++ b/drivers/vfio/pci/vfio_pci.c
-@@ -260,7 +260,8 @@ static struct pci_driver vfio_pci_driver = {
- 	.remove			= vfio_pci_remove,
- 	.sriov_configure	= vfio_pci_sriov_configure,
- 	.err_handler		= &vfio_pci_err_handlers,
--	.driver		= { .pm = pm_ptr(&vfio_pci_pm_ops) },
-+	.driver		= { .pm = pm_ptr(&vfio_pci_pm_ops),
-+			    .support_driver_override = true },
- 	.driver_managed_dma	= true,
- };
- 
-diff --git a/drivers/vfio/pci/virtio/main.c b/drivers/vfio/pci/virtio/main.c
-index 123ff5193812..1e02a8fd4a61 100644
---- a/drivers/vfio/pci/virtio/main.c
-+++ b/drivers/vfio/pci/virtio/main.c
-@@ -222,7 +222,8 @@ static struct pci_driver virtiovf_pci_driver = {
- 	.id_table = virtiovf_pci_table,
- 	.probe = virtiovf_pci_probe,
- 	.remove = virtiovf_pci_remove,
--	.driver = { .pm = pm_ptr(&virtiovf_pm_ops) },
-+	.driver = { .pm = pm_ptr(&virtiovf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &virtiovf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-index 7dab3e024aa8..e0ab61f604de 100644
---- a/drivers/vfio/pci/xe/main.c
-+++ b/drivers/vfio/pci/xe/main.c
-@@ -592,7 +592,8 @@ static struct pci_driver xe_vfio_pci_driver = {
- 	.id_table = xe_vfio_pci_table,
- 	.probe = xe_vfio_pci_probe,
- 	.remove = xe_vfio_pci_remove,
--	.driver = { .pm = pm_ptr(&xe_vfio_pm_ops) },
-+	.driver = { .pm = pm_ptr(&xe_vfio_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &xe_vfio_pci_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/platform/vfio_amba.c b/drivers/vfio/platform/vfio_amba.c
-index fa754f203b2d..2c87caf1b7f7 100644
---- a/drivers/vfio/platform/vfio_amba.c
-+++ b/drivers/vfio/platform/vfio_amba.c
-@@ -137,6 +137,7 @@ static struct amba_driver vfio_amba_driver = {
- 	.id_table = vfio_amba_ids,
- 	.drv = {
- 		.name = "vfio-amba",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/platform/vfio_platform.c b/drivers/vfio/platform/vfio_platform.c
-index a4d3ace3e02d..93d06032cdde 100644
---- a/drivers/vfio/platform/vfio_platform.c
-+++ b/drivers/vfio/platform/vfio_platform.c
-@@ -116,6 +116,7 @@ static struct platform_driver vfio_platform_driver = {
- 	.remove		= vfio_platform_remove,
- 	.driver	= {
- 		.name	= "vfio-platform",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
--- 
-2.54.0
+It depends on how you count. My statistic looks as follows (on top of
+next-20261117):
 
+	$ git grep -l device_id | xargs -n 1 perl -g -n -e 'print "$1\n" if m/devi=
+ce_id\s*[a-zA-Z_0-9]*\[\]\s*=3D\s*{(?:\s*{[^}]*},\s*({\s*}))/' | sort | uni=
+q -c
+	      2 	}
+	      2 {
+	      6 {  }
+	   2598 { }
+	   1262 {}
+
+So over all *_device_id { } is more common by a factor of > 2. This
+series fixes one {  } and reduces the number of {} by 37. For only
+pci_device_id it's:
+
+	$ git grep -l pci_device_id | xargs -n 1 perl -g -n -e 'print "$1\n" if m/=
+pci_device_id\s*[a-zA-Z_0-9]*\[\]\s*=3D\s*{(?:\s*{[^}]*},\s*({\s*}))/' | so=
+rt | uniq -c
+	    159 { }
+	     32 {}
+
+Without the context of an array initializer there are many empty
+code blocks (function bodys or `do {} while (0)`), empty dt nodes, and
+{} in Rust code, which IMHO have to be considered off-topic for this
+statistic.
+
+Best regards
+Uwe
+
+--5c6ped4sw6nigwko
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmr9sOcACgkQj4D7WH0S
+/k4vggf+PQfM4MkbLgaQRCdXRWWsc4/Fa0tTMBQAl4gjx2p5NE/N7TDUO571o3+N
+oWcelzY5O1uRcc2qHZVnu3vAxFqzk4YHfGjsbGHsxQAibxnIFW7ttYTzt0w5a9NH
+v65V6+sebCdwLrPVE5ilcqzFFSgmnv1wTNm2vCEUxdKGacifySaGRmg4+ax+fLb1
+CL+RS7fM2EkQxG1k4iDEPv1Onrm9S4DtwTts0wxkK780rWYD9FoSLjHyX/x21Y8x
+SZKaXeNZlxtHJpQLq8ub8AL/t6k82nC020wYZOUbUmvPyqxhNoUuuS0/RVlz9xT6
+kXiliIwWzcMtAKt4ik8nbTRO5JERhQ==
+=0alU
+-----END PGP SIGNATURE-----
+
+--5c6ped4sw6nigwko--
