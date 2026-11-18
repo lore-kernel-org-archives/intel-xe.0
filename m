@@ -2,55 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B37E60A2613
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 16:28:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Fg9JY9ap
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B1C606A332
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 16:46:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5330389D60;
-	Wed, 18 Nov 2026 16:28:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30D7489D60
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 16:28:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795019306; x=1826555306;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iDlRzO9nlp47waA/uGLuVOnpXdueRygc5JKfkYUJyx0=;
- b=Fg9JY9ap1LAqm18/6zgiN3gaIdiJGW/LpXmN/SjHwcBQ0LZy8tuzKHUj
- r4ZhVqqefrknyNjcJF5xLL/0YsnmTw5IsN7zYtXjA2M+qwI0yBO/T2Kf7
- rk8Tn9PX+7rfOKOHfxERjEP/QU6tLvch7ZH5166TROHO2YstG4gBoz4zY
- Qe3DlVkQbQy8Xz4A95PlkKG+6UBvP3uGuNSEOwk0ZKWsKBfK6QhyC0H2R
- R9YIUaKCtlet+sE8nD7TvJZz9A0lcJeabRmyXU97e6hXea1pHFns3iUYg
- Ft/wJyH6J1YDEuAeoK2gbeE1TZWck1Nd36Kshk6rYkeTBCiDhsP8qStbW A==;
-X-CSE-ConnectionGUID: mANB8v83QIimYej8cP16zw==
-X-CSE-MsgGUID: HtNhUhzXQJ2bgeCkuO1arw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3729330"
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3729330"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 08:28:18 -0800
-X-CSE-ConnectionGUID: d5vz0qiDTZutTKgvfUPJdw==
-X-CSE-MsgGUID: jvY9cEc0T1mK/BGHzL6aPw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10407617"
-Received: from jagadeesh-ms-7d25.iind.intel.com ([10.190.239.11])
- by fmviesa002.fm.intel.com with ESMTP; 18 Nov 2026 08:28:17 -0800
-From: Rachapalli Bandi Jagadeesh <jagadeesh.rachapalli.bandi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: piotr.piorkowski@intel.com,
- Rachapalli Bandi Jagadeesh <jagadeesh.rachapalli.bandi@intel.com>
-Subject: [PATCH v2] drm/xe/pf: Reset PF scheduling defaults on auto
- provisioning restore
-Date: Wed, 18 Nov 2026 21:53:46 +0530
-Message-ID: <20261118162346.1204457-1-jagadeesh.rachapalli.bandi@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CC1B10EC43;
+	Wed, 18 Nov 2026 16:46:52 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D86410EC43;
+ Wed, 18 Nov 2026 16:46:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7088869234938213892=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_tty=3A_vblank_waiting_out_o?=
+ =?utf-8?q?n_crtc_0_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Nov 2026 16:46:51 -0000
+Message-ID: <179502041137.45308.3476195396061022107@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
+In-Reply-To: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,59 +33,163 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Restoring auto provisioning releases VF configs, but leaves PF scheduling
-overrides from debugfs in place. As a result, the next VF enable may skip
-fair scheduling reprovisioning, leaving VFs with infinite EQ/PT and
-causing VF probe or FLR timeouts.
+--===============7088869234938213892==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reset PF scheduling defaults when switching back to auto provisioning
-so subsequent VF enable reprovisions PF/VFs with fair scheduling again.
+== Series Details ==
 
-PF: Tile0: GT0: VF24 resource sanitizing failed (-ETIMEDOUT)
-PF: Tile0: GT0: VF24 FLR didn't finish in 5000 ms (-ETIMEDOUT)
+Series: tty: vblank waiting out on crtc 0 (rev3)
+URL   : https://patchwork.freedesktop.org/series/178607/
+State : failure
 
-ERROR Tile0: GT0: hwe rcs0: emit_wa_job failed (-ETIME) guc_id=1
-ERROR SIGID=101 FATAL (-ETIME) PROBE: driver loading failed for device
+== Summary ==
 
-Fixes: 4af7fae27dc66 ("drm/xe/pf: Split the provisioning mode change function")
-Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Signed-off-by: Rachapalli Bandi Jagadeesh <jagadeesh.rachapalli.bandi@intel.com>
----
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+CI Bug Log - changes from xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed_BAT -> xe-pw-178607v3_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-index 7357b9369522..598fd77c230f 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-@@ -162,12 +162,19 @@ static int pf_change_mode(struct xe_device *xe, enum xe_sriov_provisioning_mode
- 		return 0;
- 
- 	if (mode == XE_SRIOV_PROVISIONING_MODE_AUTO) {
-+		int err;
-+
- 		if (xe_sriov_pf_num_vfs(xe)) {
- 			xe_sriov_dbg(xe, "can't restore %s: VFs must be disabled!\n",
- 				     mode_to_string(mode));
- 			return -EBUSY;
- 		}
- 		pf_unprovision_all_vfs(xe);
-+
-+		/* custom PF EQ/PT/sched_if_idle would block fair VF scheduling */
-+		err = pf_reprovision_default(xe);
-+		if (err)
-+			return err;
- 	}
- 
- 	xe_sriov_dbg(xe, "mode %s changed to %s by %ps\n",
--- 
-2.43.0
+Summary
+-------
 
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-178607v3_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-178607v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-178607v3_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_multigpu_svm@mgpu-coherency-conflict:
+    - bat-bmg-3:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed/bat-bmg-3/igt@xe_multigpu_svm@mgpu-coherency-conflict.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/bat-bmg-3/igt@xe_multigpu_svm@mgpu-coherency-conflict.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-178607v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-1:          [ABORT][3] ([Intel XE#9463]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9463]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463
+
+
+Build changes
+-------------
+
+  * Linux: xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed -> xe-pw-178607v3
+
+  IGT_9196: 9196
+  xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed: b40bd4a05b393f4cbb538056dbcb2f254f935bed
+  xe-pw-178607v3: 178607v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/index.html
+
+--===============7088869234938213892==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>tty: vblank waiting out on crtc 0 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178607/">https://patchwork.freedesktop.org/series/178607/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed_BAT -&gt; xe-pw-178607v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-178607v3_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-178607v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-178607v3_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_multigpu_svm@mgpu-coherency-conflict:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed/bat-bmg-3/igt@xe_multigpu_svm@mgpu-coherency-conflict.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/bat-bmg-3/igt@xe_multigpu_svm@mgpu-coherency-conflict.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-178607v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9463">Intel XE#9463</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178607v3/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed -&gt; xe-pw-178607v3</li>
+</ul>
+<p>IGT_9196: 9196<br />
+  xe-6174-b40bd4a05b393f4cbb538056dbcb2f254f935bed: b40bd4a05b393f4cbb538056dbcb2f254f935bed<br />
+  xe-pw-178607v3: 178607v3</p>
+
+</body>
+</html>
+
+--===============7088869234938213892==--
