@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CEFA606A320
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FF2606A320
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=gpnjFCjF
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YliIvoWJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0874811208C;
-	Wed, 18 Nov 2026 22:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4206E112094;
+	Wed, 18 Nov 2026 22:22:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35F3811208C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E1711208E
  for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 22:21:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1795040512; x=1826576512;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ezlzVcHtVeoHglV01p3bjkxy2KglS2VRWAzc2hftpZw=;
- b=gpnjFCjFjZQyueOc2WhPEoWb/vOOtr15yT1IyZUhFPgP9HZLXW8aagPP
- axlCFr2/E/ngv1PGrVZb2K6Hzv4XlNBRomfdWxIFExJg9gD7wKgZV+iN1
- y88ioRdS6CLRlatgY874Q81hbHrk3sDy4dk9rXQjSvx6RG5rAhpGUzNGb
- x7/oUG8W/ODC/9cjqKE7p8ZaWA5VgIeJq2ZRj+LKC6E6EEM6zRowp5ByC
- i7W80R0RDT+7teBZV8S1vRWKJHSBqa16AA/I3cC1rXGEvfFOdWoipjZ45
- r0NKftBvql1uL2NiK+z2Rap39uEVWMbJg/6uqB8LfsOxUnygzU1O6RliH Q==;
-X-CSE-ConnectionGUID: kLn3XxfHTyySFNCTuIabgg==
-X-CSE-MsgGUID: Zy8qcpM8TIC1KuqlnFVzxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3758182"
+ bh=sNBZBhODUIN+kKI9C5cmSmwZHsUjWRmkortTjnqPaoo=;
+ b=YliIvoWJrNcAnTbbEsv+aABeCN2IyUEvZp3EhS/yOvZfs2biKWb7BCYQ
+ /ZpyjE6mNeRe9TX00cAr4uzZ98QimBM53D/PZZt8F5f0pbb1UMw/sGI1Y
+ 18XEJFsh+D/d9zG/6DwpLQyp5T7Z9HnxmSsIDOsvy4zZueKNWAhVCYG70
+ L2NN4SbaR893EHP7b43rWNdlBDegBx8aQH83x57e12IafGMPSBPqGgPyP
+ b/e4MK1jv9RGFDwWmUAPoiOzibYFkC/tALL1pFOR3hvPzSuFqre9gdiI4
+ DFQwQR4jbPE2O0YB9CPjEF+0A7envmKHdlZhEyUfKwkVRQab4/4Gb1Cj2 Q==;
+X-CSE-ConnectionGUID: ObigKRdNQqyd0SvkC+Fe2g==
+X-CSE-MsgGUID: Gq51AkDZSEKlKvutOl4qMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3758194"
 X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3758182"
+   d="scan'208";a="3758194"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Nov 2026 14:21:37 -0800
-X-CSE-ConnectionGUID: WRrL0RDmR9WpWIheXvyqww==
-X-CSE-MsgGUID: Wf7FbdR5QqeXUOjmkzNrMg==
+X-CSE-ConnectionGUID: wsIcKN5vR9eXzSApTuN3BA==
+X-CSE-MsgGUID: 0RNu+TP+Qdu0z8H7b5PAWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10508351"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10508364"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Nov 2026 14:21:36 -0800
@@ -45,9 +45,10 @@ To: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v18 07/19] drm/xe/vsec: Add DOC text for VSEC
-Date: Wed, 18 Nov 2026 14:21:34 -0800
-Message-ID: <20261118222127.3550266-28-michael.j.ruhl@intel.com>
+Subject: [PATCH v18 11/19] drm/xe/vsec: Add base_offset to allow for more
+ flexibilty
+Date: Wed, 18 Nov 2026 14:21:38 -0800
+Message-ID: <20261118222127.3550266-32-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261118222127.3550266-21-michael.j.ruhl@intel.com>
 References: <20261118222127.3550266-21-michael.j.ruhl@intel.com>
@@ -71,88 +72,75 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the necessary files and text to use the DOC system.
+Current pmt_telem_read() usage is a fixed (for BMG) offset.
+In order to support other devices this must be settable.
+
+Add a base offset for more flexibility.
+Add a check to verify that it has been set before allowing
+device access.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- Documentation/gpu/xe/index.rst   |  1 +
- Documentation/gpu/xe/xe_vsec.rst | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.c     | 24 ++++++++++++++++++++++++
- 3 files changed, 39 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_vsec.rst
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_vsec.c         | 9 ++++++++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 497a0a4b12f6..de829aecf8f1 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -37,3 +37,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
-    xe_gt_stats
-    xe_sigid
-    xe_pci_error
-+   xe_vsec
-diff --git a/Documentation/gpu/xe/xe_vsec.rst b/Documentation/gpu/xe/xe_vsec.rst
-new file mode 100644
-index 000000000000..1a87548489ea
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_vsec.rst
-@@ -0,0 +1,14 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+=====
-+VSEC
-+=====
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
-+   :doc: VSEC
-+
-+Internal API
-+============
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
-+   :internal:
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 8f2a31949073..28b1669a14d8 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -485,6 +485,8 @@ struct xe_device {
+ 	struct {
+ 		/** @pmt.lock: protect access for telemetry data */
+ 		struct mutex lock;
++		/** @pmt.base_offset: device specific base offset */
++		u64 base_offset;
+ 	} pmt;
+ 
+ 	/** @soc_remapper: SoC remapper object */
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 38081dacd307..082b25b017db 100644
+index ebe56c85bc05..04aec1e5c15c 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -19,6 +19,17 @@
- 
- #include "regs/xe_pmt.h"
- 
-+/**
-+ * DOC: VSEC
-+ *
-+ * Some GPUs support the PMT feature.  For those that do, this API provides
-+ * probe, discovery and usage (control and access) for GPUs that have PMT.
-+ *
-+ * PMT is usually accessed through a PCI function.  However, that is not always
-+ * available, so the PMT intel_vsec_register() function can be used to set up
-+ * PMT usage.
-+ */
-+
- /* PMT GUID value for BMG devices.  NOTE: this is NOT a PCI id */
- #define BMG_DEVICE_ID 0xE2F8
- 
-@@ -140,6 +151,19 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	return 0;
- }
- 
-+/**
-+ * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a buffer
-+ * @dev: valid Xe device
-+ * @guid: PMT GUID (from the PMT discovery struct)
-+ * @data: buffer to place data in
-+ * @user_offset: a user offset relative to the beginning of the data to read
-+ * @count: bytes to read
-+ *
-+ * Return:
-+ * * -ENODATA for incorrect power state
-+ * * -EINVAL for unsupported PMT feature
-+ * * count   number of bytes read on success
-+ */
- int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset,
+@@ -172,6 +172,7 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+  *
+  * Return:
+  * * -ENODEV device is not available (hotplug)
++ * * -EAGAIN base_offset has not been set, so init path has not yet been done.
+  * * -ENODATA for incorrect power state
+  * * -EINVAL for unsupported PMT feature
+  * * count   number of bytes read on success
+@@ -180,8 +181,8 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
  		      u32 count)
  {
+ 	struct xe_device *xe = kdev_to_xe_device(dev);
+-	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+ 	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
++	void __iomem *telem_addr = xe->mmio.regs + xe->pmt.base_offset;
+ 	u32 mem_region;
+ 	u32 offset;
+ 	int ret = 0;
+@@ -192,6 +193,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 	if (!drm_dev_enter(&xe->drm, &idx))
+ 		return -ENODEV;
+ 
++	if (!xe->pmt.base_offset) {
++		ret = -EAGAIN;
++		goto dev_exit;
++	}
++
+ 	ret = xe_guid_decode(guid, &mem_region, &offset);
+ 	if (ret)
+ 		goto dev_exit;
+@@ -269,6 +275,7 @@ void xe_vsec_init(struct xe_device *xe)
+ 
+ 	switch (platform) {
+ 	case XE_VSEC_BMG:
++		xe->pmt.base_offset = BMG_TELEMETRY_OFFSET;
+ 		info->priv_data = &xe_pmt_cb;
+ 		break;
+ 	default:
 -- 
 2.43.0
 
