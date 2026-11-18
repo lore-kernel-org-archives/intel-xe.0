@@ -2,170 +2,60 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9D4606A331
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:00:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186D3606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 22:01:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BQjVwwtc;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=S2DHay5P
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QTH13Sov
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F146710E6E1;
-	Wed, 18 Nov 2026 22:00:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25BA510E6E1
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 21:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC83510E756;
+	Wed, 18 Nov 2026 22:01:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32F5710E775
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 22:01:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795039199; x=1826575199;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=GpmOnWqv8HURoDoYY90g5eRF0ozaWWSQxAwAkDuzCV8=;
- b=BQjVwwtc4qnJJtPdhfruHBWcqW0xEbIyjrTJ/hMfjoggTJCIeYJc8vKm
- orv0WRlu4aW1IZVAfW1pEoGyTeQsJHlID8XiWDk5TkoiXT2IutGjw86/2
- cBF4sRRB2H3PfaVieVqpQ/HfHFYhlYbR+5wrZt4fLgvLiS1nxzuB/Jdq0
- it+ikiC4pzMOFz2aXj9/09XpsK4v0VWk9tvzcxLK/kz7WGdLAO2SqkF2G
- QngmaQHMMB7oHucJFmqvCEB6OzakQjU/Jb/a/h6TEbYXCPmqpVgUicwO3
- WvVt7OzocjFgecam5fV0dheW8cGOp5UqbrOKl6FGe0SgsjpNtjAQL+t7D Q==;
-X-CSE-ConnectionGUID: /i+yPbhISjyI5NHNUZ4P/A==
-X-CSE-MsgGUID: iW0HbtXJTNyaEuM6Yqmlvg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3917351"
+ t=1795039289; x=1826575289;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5/ayum9g3LkI9U6pL0Sxsl79JQMnVixUmZDsNX+nVSQ=;
+ b=QTH13SovX9jRaQ64yJmPnRi2qBrE9r4zWVmDEKewJZSuu89sFcGrAebg
+ +gO27PyLWtj563zEqkJ39i1k/ts2QdTWNWfUvVaE8aZMdXPGvYlSq37rN
+ pq61X5dPQtQk6lrrfWpdFzoSXmS4D2VCt5auqgmx3yC3u3Kj3nI36YhX4
+ 343ELrpLrhvaB/XkQ7xtI6Ookn6qOa5zSjCVWAGXpdr+k6XJ7wR3K7U8Y
+ LjE84XhDFvn6OAtORs6yU54ppLzN+aybU9Z0RxQtk1HbqrXOT4iugKSIE
+ tb4YYOrmz/t0KRgbtO+0x1OlOMjNglDRD7oBox1JNYI1NJVI/7i1NpbQs A==;
+X-CSE-ConnectionGUID: EtdKPAPTT+ufaV9YAJJaBQ==
+X-CSE-MsgGUID: AL6ukxkUQqalfmaRbe27PA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3731459"
 X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3917351"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 13:59:58 -0800
-X-CSE-ConnectionGUID: hRAIOaPfTKyC6bZpcmzanw==
-X-CSE-MsgGUID: tlkjLbt2ROy5TldKqQK/Ig==
+   d="scan'208";a="3731459"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2026 14:01:29 -0800
+X-CSE-ConnectionGUID: TqnPtLfVShiHbx9Y9aas0g==
+X-CSE-MsgGUID: yIg40bqKQMu8lPQ/OSckAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10343790"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 13:59:57 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 18 Nov 2026 13:59:57 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Wed, 18 Nov 2026 13:59:57 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.47) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 18 Nov 2026 13:59:57 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mfr5wDoib/sVniY0+LW+CaV3SgRbMxMUuAJddHnfCaj4Aur/mDrFOwktmiJehprWQ9qkr5buaFugQb9ZyQF/BawDkBIhSKmEsAFsqT8ISB/E75FNkO/6E8OAevDFqfaONDNKblJfai9Ue43ZuPjNDvvI6L81dMP1Fo08c3eHcw79BleO6ZUsrD7C2sLC1VuukkTMBW6D+O7X1RlT8FIqSjelwnD1CoyQ8HRiv06d5n53Qfx+WGdDt7fti4AQSxuSVzaS7NQfyZQvWc28SO2keL5y47JA09+4hbOw5Lb4qERwaTNLY9Hfl2xH8j4qbXT4wRgp+KyEKv93fRw4A1aUvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GpmOnWqv8HURoDoYY90g5eRF0ozaWWSQxAwAkDuzCV8=;
- b=BlYEcbw6xkiJBaIUdrepJ+AI+xLeHqX/iL1SC8hSJ8N9op3x11kaP55RhSRYW6TXZJ3iuEtHpWb1MlHyxravkgd+uu6HDulhSNdkEwvCw7tUASVpoHJz1qeOITGKPWvyV4lz8AwT8SIg4dO1O2k5ywrsnx4zB0W8Zcw5BLUfnyKHkN8vY6ymzaIYPXaVBTWCkLfPy1HcuOxU2Tp8Z4CKoK5Ll9yljk3kVyrUtbR6QO4hSN4ackoSqI0BkZOz4DPfC2SFPrOg7XgzCOxOpK6qMGS7zpvbZ0rwVGfD2O8zPnbKrq4LyA4WJh+vR9+vByzVe6xhyKci/m7X1bducYtzlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GpmOnWqv8HURoDoYY90g5eRF0ozaWWSQxAwAkDuzCV8=;
- b=S2DHay5PGJ0cJSowyxNmIbOSSP3lvc5XqZkQGb1+7KlLxJTeiRDMtf31aRvI+pyZ3mJokOqeM0w7U0c10RmYcUWhjw3uwdAFIwUWFnWBEwwdW7FQxYUEawbLc57t7fD9u2+IIvWtYSs4RZP1Rpk8I7EnkbJnAg/5QWYUXJwis4g=
-Received: from AT6PR11MB072844.namprd11.prod.outlook.com
- (2603:10b6:170:10a::16) by DM4PR11MB6432.namprd11.prod.outlook.com
- (2603:10b6:8:ba::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Wed, 18 Nov
- 2026 21:59:54 +0000
-Received: from AT6PR11MB072844.namprd11.prod.outlook.com
- ([fe80::520a:561:ace1:e64b]) by AT6PR11MB072844.namprd11.prod.outlook.com
- ([fe80::520a:561:ace1:e64b%6]) with mapi id 15.21.0615.013; Wed, 18 Nov 2026
- 21:59:54 +0000
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Tauro, 
- Riana" <riana.tauro@intel.com>, "Vijay, Anoop C" <anoop.c.vijay@intel.com>
-Subject: Re: [PATCH 2/3] drm/xe: Process device OOB workarounds during early
- info init
-Thread-Topic: [PATCH 2/3] drm/xe: Process device OOB workarounds during early
- info init
-Thread-Index: AQHdbKcDlqONgszPy0auTe5TP8/v0rcpVH8AgAsieQA=
-Date: Wed, 18 Nov 2026 21:59:54 +0000
-Message-ID: <3ace9322fa49eb38d56624407316007e391d5dd3.camel@intel.com>
-References: <20261104215353.234314-5-stuart.summers@intel.com>
- <20261104215353.234314-7-stuart.summers@intel.com>
- <avTIsmNyx96rMfWP@intel.com>
-In-Reply-To: <avTIsmNyx96rMfWP@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AT6PR11MB072844:EE_|DM4PR11MB6432:EE_
-x-ms-office365-filtering-correlation-id: 9379fc01-a590-4d1a-133b-08df45bf470f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|376014|366016|22082099003|261009223027099003|18002099003|11063799006|4143699003|56012099006|261026121527099003|261102123227099003|261028144727099003|261026140227099003|261021121427099003|261022105027099003|38070700021|261021123027099003|10067099003;
-x-microsoft-antispam-message-info: CLEEu00SuPlmdCj1mu3T9oDDsMkjU5K63bdWPhkd9iv6NGH2Bk1cRU4vV/vzS7By9m1T54vS4RPvUpQUNgxns44H/FOExX3LUsIp6rIyvOYWPZheqf62MNp+zf3enn73lJWSXPP5S20DLVT0yvHsKl7RUKtjbn67Fev/r2YwZZlbFX0Bf3PUoCJfO8lfbUsosxzFBILWkK8WeU+NSRh1Wo0QY0lohA76G5XA+4cEsASiQ1Vg4ZpX97e6Dk7D8NYGEJio79XRX53Aiwa3hiAqv9krPqGMpPU1KVm2va97P95s8/soLOEOulWq9iAOP9Lji3pzBECVB9eXvQ20970/Y8+879qo5tQ5KChYyPXiW63npR1wb4TQs2FFVU8nJ7t/1acxVUlgaEecWaDTvg93kg9Ry2VHiYOMjChc9DR9QGsuUu9sLIguwQgfzBUS42mFHNbFQJ3o0d/sRP+4vOQWYvDrDu3Db7u1e9hWrXt9xewTrut0f+tgdqnfQbACwT+8z6zJsIjgfUfXHJeunhoCmglqiEEk6zSrpYL3CyTi7LtlsoqDhxGCr8pJ/UBCV5kMhVgigjWSr7QNWpB7MsgfNWFpJloz8hvwQTIZli+y4ASZynNgO9E7N2pG1qLWCYvCtvh9JrozlpCEX55dLwL6TKDfLu0VBxYJ+HfFFQscnmu7ByuGkbxeCwDb8JLv5TU+wcVwWYkWqpW0OW5KZoDWtNafgY3fR2Sn1qhOo7WrRTE=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AT6PR11MB072844.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(22082099003)(261009223027099003)(18002099003)(11063799006)(4143699003)(56012099006)(261026121527099003)(261102123227099003)(261028144727099003)(261026140227099003)(261021121427099003)(261022105027099003)(38070700021)(261021123027099003)(10067099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MmNFc1doNU9rbGZuVW1KMExNWkl0anU0RzR5ajJpM3JlWWU5RTIzK3RJVFJY?=
- =?utf-8?B?TEhORkFFVWVJSFFKR3o1RlJ6Y1lFVkRreXE0TkpsVTl1NldKL3BnWjFiWWVk?=
- =?utf-8?B?UktwVjhabCtoQWh3NXlxbHUvMVIvQkxsVXp1WCsxYWczcW9TcHU2SWs1Yzc2?=
- =?utf-8?B?U2hFY2tBbTBKU1Zvdlh0RXVwaXpKTWhubW9YSm5VeEQzWkpmVThKZTVZK0Iz?=
- =?utf-8?B?b2RGejJJa01SUjBROG1rSy9VQlprSWhEMWw3Kzd1WnRVVGlqci9BbnhHU3VU?=
- =?utf-8?B?WG5CT3huRkdzK0VoZHA1aitMWVVNYmo4VHE2dWJ5U3hnVVU5WStXL1hHMEVr?=
- =?utf-8?B?czlrUnljeXkxNXluMnhGSmpvb1B6QnBGalJXcjBKRGlYR3BGOVFwenpLWUhQ?=
- =?utf-8?B?clFWVXR6dlRRbjc4SzE1U045Nlc2bk9hWVdZUzlQK1EwM1M4enhCQWwwY1hj?=
- =?utf-8?B?U2VidEdweTlBN3VWU25oUUhVYWcvOEI4Mk5ab2hBOEhoUldlWktiREFzZ1RK?=
- =?utf-8?B?YmcvNDZyOHVrb0pXY2tpMHRwcFMvWXlxUWJ5SUcxYjVoa3N0Qm9vd2YxdXc3?=
- =?utf-8?B?MUVBMFUwN0pHUGcrMmZ4TUNEdzlXeTFnTEV1ZHFFT2tsTktvWDZPUll3RkpB?=
- =?utf-8?B?emFMZTFBTTNOdTRsQm1iME43RHY1akIwS3dsL2lCdmNIcGJoUVczRml2Q2xn?=
- =?utf-8?B?WlpxRjAvOStidkorM0hhbUNjbnkzQldUOVZKOTlZRXlQM3dTMmVJOS94YmVH?=
- =?utf-8?B?R3lOb3kxR1JBTi9WQWFYY05mQm95alNzQlRyYzh0by93NHdhZ0JkY3ppaXpF?=
- =?utf-8?B?c09qbVl1VWFCeTNKVlBESlNEcVk5Rk04MzFUckdjWForNmsvNEtvTzZDaE1N?=
- =?utf-8?B?V1pJWWtTWllOclZwZmNxOHF1ZDR6Nk9DQmV1dFY2Q0o5MHFJcHBaUWVTcXkv?=
- =?utf-8?B?MFBOeDRtODFHZU9MVnF0all2anBDYS9jaWZZZ0J2NDJaS1ljNDIzVWl2eXR5?=
- =?utf-8?B?d1IxK0ZwazVISWphb0xHNUR2NEJHVFZGejQ5N3g0cm5lVkN4a1U1cDdLZ2Fh?=
- =?utf-8?B?Vk5ndm1Tdm5EeTJIeDJYZ2NKVm4rZ05Jc1d5UHBGUmFGd1d4cG9TbGk4Snlk?=
- =?utf-8?B?Vi9HSldUekIxUTBrTjlVV3ZKeG1XQVZ2TWNrK285cWM4elo5T0xPV2hqRWhx?=
- =?utf-8?B?eU50UW1QaDFodWowM2lCclhxclhXbWpKcmM2Z3NkSDBxTkovUUNRZXlhMkNC?=
- =?utf-8?B?ME4zWkhNWWc4N0hHd1dLOUdNV09kWmsvbHdqUnlySXMyT3MydG5ocFdRU0RY?=
- =?utf-8?B?UjVrWFFmZ0hWTmlzTzFmZFF1SXk1YW5YSno5YUtvMTZvMVZHWjlJazB5aVpj?=
- =?utf-8?B?dW9HTGpSTmY4L202eDBhd3U0LzM0bHlVOW53ZkNiTjdmWTQ2R1JoUzhRNUhM?=
- =?utf-8?B?c2tZSmxFU05HdkV1NlNZUkx6TXFobGhYQ2w5STIvMFdadjZIZkxwaFRicXRK?=
- =?utf-8?B?bmlnbnp3eWFuS1BEalhvUnk3enJUSHhoRGVkbU53L1hway82L2lyNWsxY0Qv?=
- =?utf-8?B?emdRMU4zS0p3TmFEOGtqZldidWhRWm1WZEJnaTMyUk5qN21WR2JKRnYxK3Vs?=
- =?utf-8?B?cHVRVjlHMWViNmlpTldsZEpxVDA2citrOHBoa1RBYUFvUUlSWWFmaWNybnZj?=
- =?utf-8?B?LzB1V2pQOVlNYUVIVGRWRmR2M0xXMnBjUXBEd3QzenFVT3JoWFkzR0paRUdu?=
- =?utf-8?B?YUN5TE5KTHAxS3BkdUkwMlhEMTUyOEFEK2k1c2Z2M3RKejRvUFV1YWdQdFVN?=
- =?utf-8?B?aXZHd0duLy92cy9rRHVDbW12cDdGRE00QmFDSURDNjd3aWFRSXdmRXZZQ2Rh?=
- =?utf-8?B?aWxkYXY4QmNxaXJaSkRQajNBYVNhcTJ4N0xmaURLcXlJZld4ZjBGQUx0d2Rt?=
- =?utf-8?B?cnpQZ3h3SjkyWURtRkRQTE5ReGdmeUNGM1Rkdld5cDg0Q1FrbGFUbExHcm5o?=
- =?utf-8?B?SDJqT3poM2p1Ync4NnB4cVltSG9kcUJSeityaXVXVmZxemdoWFJyVXp3aFZi?=
- =?utf-8?B?L1A1bVE0Q0d6UGd0V2JKeEtLK3BkRXhhMXpXU3MxY3c5SXZaNnNvU1FvZWF4?=
- =?utf-8?B?RmpCTUxieGxnK0VCeER3YVdwQTdOVU9paUNjQnJ6NVozUGRwTVZWZWl4RXdD?=
- =?utf-8?B?dHdlYStlZTFlN0hzVGtBUExYc3Myb2wwbExtMCtjTThOSEdzU3lZdnJ1aGZM?=
- =?utf-8?B?eC9YRHUyelQ3aWhXRkV4enpYVnI1U2txYW1iVzhkb0pVdk9ZZzcrdTZYYk1K?=
- =?utf-8?B?NDRwRGZLQzdsVlZNcTZCVDAyVlFzN3dIMXZQNlFIKzVHeUN2NVFCTVFBTjRh?=
- =?utf-8?Q?fw1xsOkjTuL/EQcE=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <37680D64D6E19F4282776CE825682D77@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10588313"
+Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
+ ([10.121.64.151])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2026 14:01:28 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v4 1/2] drm/xe/wopcm: Use the size from HW when excluding the
+ wopcm range from GGTT
+Date: Wed, 18 Nov 2026 22:01:20 +0000
+Message-ID: <20261118220120.109186-3-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.53.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: J7bxX3mgDWOZOCCDGiTf/BiLR9BiX5zOM6JI3z4a/4Sc4dIqgVU54itx3GuC5CpJ2EtuXdp4cYnoCh+fSM1wwCsj+VJy00rxSnIr4b68Jodrukj3fz7zOPxA02duwpP2YkSYnAXCD4MxOldWgUodWXmipmZO874SnPV+dY5Y22syUlNQ1AH34vQfmn3QL0Q5HE61vknExSJzcBqJtH8WbKGXcRvcEyP8hYjqtvt1E+KI9IsKlrs2F6svWaMr4d1kG/JxlqN3qmMEnBU/J+z4uCZxQobe2hSTKtcTsKLXqdjQOyi3G9oDRiQ9nJmEGqa6XRwwtj3AJHZqbLDz/tjR4g==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AT6PR11MB072844.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9379fc01-a590-4d1a-133b-08df45bf470f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Nov 2026 21:59:54.2741 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Va4WpypVQbqbZo8FqIzoYRaPywmxF/7mkIeHhGKl84IG1mcbvYHvV3DlwqiNFXo6M7FNvvOTfhaqpvgp5yqkEZfHQcO8rNv/cyB4BcoAqrk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6432
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,71 +66,399 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gV2VkLCAyMDI2LTExLTExIGF0IDE0OjU3IC0wNTAwLCBSb2RyaWdvIFZpdmkgd3JvdGU6DQo+
-IE9uIFdlZCwgTm92IDA0LCAyMDI2IGF0IDA5OjUzOjU1UE0gKzAwMDAsIFN0dWFydCBTdW1tZXJz
-IHdyb3RlOg0KPiA+IERldmljZSBPT0Igd29ya2Fyb3VuZHMgb25seSBtYXRjaCBvbiBwbGF0Zm9y
-bSwgc3VicGxhdGZvcm0gYW5kDQo+ID4gcGxhdGZvcm0NCj4gPiBzdGVwLCBhbGwgb2Ygd2hpY2gg
-YXJlIGtub3duIG9uY2UgeGVfaW5mb19pbml0X2Vhcmx5KCkgaGFzIGNvcGllZA0KPiA+IHRoZW0N
-Cj4gPiBvdXQgb2YgdGhlIGRldmljZSBkZXNjcmlwdG9yLiBQcm9jZXNzaW5nIHRoZW0gdGhlcmUg
-aW5zdGVhZCBvZiBpbg0KPiA+IHhlX2RldmljZV9wcm9iZV9lYXJseSgpIG1ha2VzIFhFX0RFVklD
-RV9XQSgpIHVzYWJsZSBmb3IgdGhlIHJlc3Qgb2YNCj4gPiBlYXJseSBwcm9iZSwgd2hpY2ggcnVu
-cyBiZWZvcmUgeGVfZGV2aWNlX3Byb2JlX2Vhcmx5KCkuDQo+ID4gDQo+ID4gV2hpbGUgbW92aW5n
-IHRoZSBjYWxsLCBjaGVjayB0aGUgcmV0dXJuIHZhbHVlIG9mDQo+ID4geGVfd2FfZGV2aWNlX2lu
-aXQoKSwNCj4gPiB3aGljaCB0aGUgb2xkIGNhbGwgc2l0ZSBzaWxlbnRseSBkcm9wcGVkLg0KPiA+
-IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFN0dWFydCBTdW1tZXJzIDxzdHVhcnQuc3VtbWVyc0BpbnRl
-bC5jb20+DQo+ID4gLS0tDQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlLmMgfMKg
-IDMgLS0tDQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfcGNpLmPCoMKgwqAgfCAxNCArKysr
-KysrKysrKysrKw0KPiA+IMKgMiBmaWxlcyBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspLCAzIGRl
-bGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVf
-ZGV2aWNlLmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2UuYw0KPiA+IGluZGV4
-IDI3M2UyYzQ1ZmVhOS4uYWUyODU4NGUxZTk1IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1
-L2RybS94ZS94ZV9kZXZpY2UuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZp
-Y2UuYw0KPiA+IEBAIC03MTIsOSArNzEyLDYgQEAgaW50IHhlX2RldmljZV9wcm9iZV9lYXJseShz
-dHJ1Y3QgeGVfZGV2aWNlICp4ZSkNCj4gPiDCoHsNCj4gPiDCoMKgwqDCoMKgwqDCoMKgaW50IGVy
-cjsNCj4gPiDCoA0KPiA+IC3CoMKgwqDCoMKgwqDCoHhlX3dhX2RldmljZV9pbml0KHhlKTsNCj4g
-PiAtwqDCoMKgwqDCoMKgwqB4ZV93YV9wcm9jZXNzX2RldmljZV9vb2IoeGUpOw0KPiA+IC0NCj4g
-PiDCoMKgwqDCoMKgwqDCoMKgZXJyID0geGVfbW1pb19wcm9iZV9lYXJseSh4ZSk7DQo+ID4gwqDC
-oMKgwqDCoMKgwqDCoGlmIChlcnIpDQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqByZXR1cm4gZXJyOw0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcGNp
-LmMNCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2kuYw0KPiA+IGluZGV4IGJhMjNlYzYw
-NDc3Yi4uZWUzNzY2ZTJiOTM4IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9wY2kuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9wY2kuYw0KPiA+IEBAIC0x
-NSw2ICsxNSw4IEBADQo+ID4gwqAjaW5jbHVkZSA8ZHJtL2RybV9kcnYuaD4NCj4gPiDCoCNpbmNs
-dWRlIDxkcm0vaW50ZWwvcGNpaWRzLmg+DQo+ID4gwqANCj4gPiArI2luY2x1ZGUgPGdlbmVyYXRl
-ZC94ZV9kZXZpY2Vfd2Ffb29iLmg+DQo+ID4gKw0KPiA+IMKgI2luY2x1ZGUgImRpc3BsYXkveGVf
-ZGlzcGxheS5oIg0KPiA+IMKgI2luY2x1ZGUgInJlZ3MveGVfZ3RfcmVncy5oIg0KPiA+IMKgI2lu
-Y2x1ZGUgInJlZ3MveGVfcmVncy5oIg0KPiA+IEBAIC0zOSw2ICs0MSw3IEBADQo+ID4gwqAjaW5j
-bHVkZSAieGVfc3Vydml2YWJpbGl0eV9tb2RlLmgiDQo+ID4gwqAjaW5jbHVkZSAieGVfdGlsZS5o
-Ig0KPiA+IMKgI2luY2x1ZGUgInhlX3RpbGVfcHJpbnRrLmgiDQo+ID4gKyNpbmNsdWRlICJ4ZV93
-YS5oIg0KPiA+IMKgDQo+ID4gwqBlbnVtIHRvZ2dsZV9kM2NvbGQgew0KPiA+IMKgwqDCoMKgwqDC
-oMKgwqBEM0NPTERfRElTQUJMRSwNCj4gPiBAQCAtNzk0LDYgKzc5NywxNyBAQCBzdGF0aWMgaW50
-IHhlX2luZm9faW5pdF9lYXJseShzdHJ1Y3QgeGVfZGV2aWNlDQo+ID4gKnhlLA0KPiA+IMKgwqDC
-oMKgwqDCoMKgwqB4ZS0+aW5mby5zdWJwbGF0Zm9ybSA9IHN1YnBsYXRmb3JtX2Rlc2MgPw0KPiA+
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3VicGxhdGZvcm1fZGVzYy0+c3VicGxh
-dGZvcm0gOg0KPiA+IFhFX1NVQlBMQVRGT1JNX05PTkU7DQo+ID4gwqANCj4gPiArwqDCoMKgwqDC
-oMKgwqAvKg0KPiA+ICvCoMKgwqDCoMKgwqDCoCAqIERldmljZSBPT0Igd29ya2Fyb3VuZHMgb25s
-eSBtYXRjaCBvbiBwbGF0Zm9ybSwNCj4gPiBzdWJwbGF0Zm9ybSBhbmQNCj4gPiArwqDCoMKgwqDC
-oMKgwqAgKiBwbGF0Zm9ybSBzdGVwLCB3aGljaCBhcmUgYWxsIGtub3duIGJ5IG5vdywgc28gcHJv
-Y2Vzcw0KPiA+IHRoZW0gaGVyZSBhbmQNCj4gPiArwqDCoMKgwqDCoMKgwqAgKiBtYWtlIFhFX0RF
-VklDRV9XQSgpIHVzYWJsZSBmb3IgdGhlIHJlbWFpbmRlciBvZiBlYXJseQ0KPiA+IHByb2JlLg0K
-PiA+ICvCoMKgwqDCoMKgwqDCoCAqLw0KPiANCj4gSSBkb24ndCBiZWxpZXZlIHRoaXMgY29tbWVu
-dCBpcyBuZWNlc3NhcnkgaGVyZS4gUHJvYmFibHkgQUkgYmVpbmcNCj4gb3ZlciB2ZXJib3NlPw0K
-DQpZZWFoIHRoaXMgcmVhbGx5IG5lZWRlZCB0byBiZSBpbiB0aGUgY29tbWl0IG1lc3NhZ2Ugb25s
-eS4uLiBTb3JyeSBhYm91dA0KdGhhdCwgSSdsbCBkcm9wIHRoaXMgaW4gYSByZXB1c2ggd2l0aCB0
-aGUgci1iJ3MuIEFwcHJlY2lhdGUgdGhlIHJldmlld3MNCmhlcmUhDQoNCi1TdHVhcnQNCg0KPiAN
-Cj4gQW55d2F5LA0KPiANCj4gUmV2aWV3ZWQtYnk6IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZp
-QGludGVsLmNvbT4NCj4gDQo+ID4gK8KgwqDCoMKgwqDCoMKgZXJyID0geGVfd2FfZGV2aWNlX2lu
-aXQoeGUpOw0KPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChlcnIpDQo+ID4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHJldHVybiBlcnI7DQo+ID4gKw0KPiA+ICvCoMKgwqDCoMKgwqDCoHhl
-X3dhX3Byb2Nlc3NfZGV2aWNlX29vYih4ZSk7DQo+ID4gKw0KPiA+IMKgwqDCoMKgwqDCoMKgwqB4
-ZS0+aW5mby5kbWFfbWFza19zaXplID0gZGVzYy0+ZG1hX21hc2tfc2l6ZTsNCj4gPiDCoMKgwqDC
-oMKgwqDCoMKgeGUtPmluZm8udmFfYml0cyA9IGRlc2MtPnZhX2JpdHM7DQo+ID4gwqDCoMKgwqDC
-oMKgwqDCoHhlLT5pbmZvLnZtX21heF9sZXZlbCA9IGRlc2MtPnZtX21heF9sZXZlbDsNCj4gPiAt
-LSANCj4gPiAyLjQzLjANCj4gPiANCg0K
+The WOPCM size is available in HW (we read it during the stolen memory
+init), so when excluding the WOPCM range from the base of GGTT we can
+use the HW value instead of a hardcoded one (which needs to be updated
+any time the config changes on newer HW). This value is not available to
+VFs, but the only use VF has for it is to make sure that the PF has done
+its programming correctly, so we can just trust PF and drop the checks.
+Since the WOPCM is a per-tile value, we can store its size in the tile
+structure and re-use it for both GGTT and stolen memory setup.
+We also have a kunit that uses the wopcm size, but as a static kunit it
+doesn't actually require a real value but just a non-zero one for
+testing, so we can use the already defined GGTT_TEST_START.
+
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com> #v2
+---
+v2: drop wopcm size usage from VF
+v3: move guc_ggtt assert from next patch to this one (Sashiko), rebase
+on SRIOV updates, add kernel-doc for new functions.
+v4: fix kunit
+---
+ drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c |  4 +-
+ drivers/gpu/drm/xe/xe_device.c           |  4 ++
+ drivers/gpu/drm/xe/xe_ggtt.c             | 19 +++-----
+ drivers/gpu/drm/xe/xe_guc.c              | 11 +++--
+ drivers/gpu/drm/xe/xe_tile.c             | 61 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_tile.h             |  3 ++
+ drivers/gpu/drm/xe/xe_tile_types.h       |  3 ++
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c   | 53 +++++++++-----------
+ 8 files changed, 107 insertions(+), 51 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c b/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
+index 25471317d781..202b48b0c984 100644
+--- a/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
+@@ -12,9 +12,7 @@
+ 
+ static u64 ggtt_test_accessible_size(struct kunit *test)
+ {
+-	struct xe_tile *tile = xe_device_get_root_tile(test->priv);
+-
+-	return GUC_GGTT_TOP - xe_wopcm_size(tile_to_xe(tile));
++	return GUC_GGTT_TOP - GGTT_TEST_START;
+ }
+ 
+ static void ggtt_test_fini(void *data)
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 6911c2ac39f8..93cd91fb620d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -934,6 +934,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	override_has_cached_pt(xe);
+ 
+ 	for_each_tile(tile, xe, id) {
++		err = xe_tile_wopcm_init(tile);
++		if (err)
++			return err;
++
+ 		err = xe_ggtt_init_early(tile->mem.ggtt);
+ 		if (err)
+ 			return err;
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 44480fad2767..1bc5b8c0f2b9 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -30,11 +30,11 @@
+ #include "xe_pm.h"
+ #include "xe_res_cursor.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
+ #include "xe_tile_printk.h"
+ #include "xe_tile_sriov_vf.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_wa.h"
+-#include "xe_wopcm.h"
+ 
+ /**
+  * DOC: Global Graphics Translation Table (GGTT)
+@@ -414,7 +414,7 @@ static int ggtt_probe(struct xe_ggtt *ggtt, u64 *start, u64 *size)
+ 		return -ENOMEM;
+ 	}
+ 
+-	*start = xe_wopcm_size(xe);
++	*start = xe_tile_wopcm_size(ggtt->tile);
+ 	*size = (gsm_size / 8) * (u64)XE_PAGE_SIZE - *start;
+ 
+ 	return 0;
+@@ -422,13 +422,11 @@ static int ggtt_probe(struct xe_ggtt *ggtt, u64 *start, u64 *size)
+ 
+ static int ggtt_get_range_from_guc(struct xe_ggtt *ggtt, u64 *start, u64 *size)
+ {
+-	struct xe_device *xe = tile_to_xe(ggtt->tile);
+-	u64 wopcm = xe_wopcm_size(xe);
+-
+ 	*start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
+ 	*size = xe_tile_sriov_vf_ggtt(ggtt->tile);
+ 
+-	if (*start < wopcm || *start + *size > GUC_GGTT_TOP) {
++	/* We can't check start against WOPCM as VF doesn't have access to the WOPCM size */
++	if (*size > GUC_GGTT_TOP) {
+ 		xe_log_err_fatal(ggtt->tile, GGTT, -ERANGE,
+ 				 "Invalid GGTT configuration: %#llx-%#llx\n",
+ 				 *start, *start + *size - 1);
+@@ -734,11 +732,6 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
+ 	ggtt_invalidate_gt_engine_tlb(ggtt->tile->media_gt);
+ }
+ 
+-static inline u64 xe_ggtt_bottom(struct xe_ggtt *ggtt)
+-{
+-	return xe_wopcm_size(tile_to_xe(ggtt->tile));
+-}
+-
+ /**
+  * xe_ggtt_shift_nodes() - Shift GGTT nodes to adjust for a change in usable address range.
+  * @ggtt: the &xe_ggtt struct instance
+@@ -750,13 +743,13 @@ static inline u64 xe_ggtt_bottom(struct xe_ggtt *ggtt)
+  * This function may be called multiple times during recovery, but if
+  * @new_start is unchanged from the current base, it's a noop.
+  *
+- * @new_start should be a value between the GGTT bottom and #GUC_GGTT_TOP.
++ * @new_start should be a value between the WOPCM size and #GUC_GGTT_TOP. VFs
++ * don't have access to the WOPCM size so we can't test against that.
+  */
+ void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_start)
+ {
+ 	guard(mutex)(&ggtt->lock);
+ 
+-	xe_tile_assert(ggtt->tile, new_start >= xe_ggtt_bottom(ggtt));
+ 	xe_tile_assert(ggtt->tile, new_start + ggtt->size <= GUC_GGTT_TOP);
+ #ifdef CONFIG_PCI_IOV
+ 	xe_tile_assert(ggtt->tile, ggtt->shareable_size == 0);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index c4fb34e64cd6..e7e818897bf5 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -47,15 +47,16 @@
+ #include "xe_sleep.h"
+ #include "xe_sriov.h"
+ #include "xe_sriov_pf_migration.h"
++#include "xe_tile.h"
+ #include "xe_uc.h"
+ #include "xe_uc_fw.h"
+ #include "xe_wa.h"
+-#include "xe_wopcm.h"
+ 
+ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+ 			    struct xe_bo *bo)
+ {
+-	struct xe_device *xe = guc_to_xe(guc);
++	struct xe_tile *tile = gt_to_tile(guc_to_gt(guc));
++	struct xe_device *xe = tile_to_xe(tile);
+ 	u32 addr;
+ 
+ 	/*
+@@ -64,10 +65,12 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
+ 	 * might be different for each tile. So, just always ask for the address
+ 	 * on the target GuC.
+ 	 */
+-	addr = __xe_bo_ggtt_addr(bo, gt_to_tile(guc_to_gt(guc))->id);
++	addr = __xe_bo_ggtt_addr(bo, tile->id);
++
++	if (!IS_SRIOV_VF(xe))
++		xe_assert(xe, addr >= xe_tile_wopcm_size(tile));
+ 
+ 	/* GuC addresses above GUC_GGTT_TOP don't map through the GTT */
+-	xe_assert(xe, addr >= xe_wopcm_size(guc_to_xe(guc)));
+ 	xe_assert(xe, addr < GUC_GGTT_TOP);
+ 	xe_assert(xe, xe_bo_size(bo) <= GUC_GGTT_TOP - addr);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+index 810dfd98d830..014b5efdb152 100644
+--- a/drivers/gpu/drm/xe/xe_tile.c
++++ b/drivers/gpu/drm/xe/xe_tile.c
+@@ -13,15 +13,18 @@
+ #include "xe_ggtt.h"
+ #include "xe_memirq.h"
+ #include "xe_migrate.h"
++#include "xe_mmio.h"
+ #include "xe_pcode.h"
+ #include "xe_sa.h"
+ #include "xe_svm.h"
+ #include "xe_tile.h"
++#include "xe_tile_printk.h"
+ #include "xe_tile_sysfs.h"
+ #include "xe_ttm_vram_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_vram_types.h"
+ #include "xe_wa.h"
++#include "regs/xe_regs.h"
+ 
+ /**
+  * DOC: Multi-tile Design
+@@ -225,6 +228,64 @@ void xe_tile_migrate_wait(struct xe_tile *tile)
+ 	xe_migrate_wait(tile->migrate);
+ }
+ 
++/**
++ * xe_tile_wopcm_init() - cache the WOPCM size for the tile.
++ * @tile: The tile for which to cache the WOPCM size.
++ *
++ * This function reads the WOPCM size from the hardware and caches it in the tile
++ * structure. It does not perform any memory allocations. The cached value can
++ * be retrieved later using xe_tile_wopcm_size().
++ * This function can't be called on VFs since VFs don't have access to the
++ * register holding the WOPCM size.
++ *
++ * Returns: 0 on success, negative error code on error.
++ */
++int xe_tile_wopcm_init(struct xe_tile *tile)
++{
++	u32 wopcm_size;
++	u64 val;
++
++	if (IS_SRIOV_VF(tile_to_xe(tile)))
++		return 0;
++
++	val = xe_mmio_read64_2x32(&tile->mmio, STOLEN_RESERVED);
++	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
++
++	switch (val) {
++	case 0x5 ... 0x6:
++		val--;
++		fallthrough;
++	case 0x0 ... 0x3:
++		wopcm_size = (1U << val) * SZ_1M;
++		break;
++	default:
++		WARN(1, "Missing case wopcm_size=%llx\n", val);
++		return -EIO;
++	}
++
++	tile->mem.wopcm_size = wopcm_size;
++
++	xe_tile_info(tile, "WOPCM size: %uKB\n", wopcm_size / 1024);
++	return 0;
++}
++
++/**
++ * xe_tile_wopcm_size() - get the WOPCM size for the tile.
++ * @tile: The tile for which to get the WOPCM size.
++ *
++ * This function returns the cached WOPCM size for the tile. This function must
++ * be called after xe_tile_wopcm_init() has been called for the tile.
++ * This function can't be called on VFs since VFs don't have access to the
++ * register holding the WOPCM size.
++ *
++ * Returns: The cached WOPCM size in bytes.
++ */
++u32 xe_tile_wopcm_size(struct xe_tile *tile)
++{
++	xe_assert(tile_to_xe(tile), tile->mem.wopcm_size != 0);
++	return tile->mem.wopcm_size;
++}
++
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ /**
+  * xe_tile_local_pagemap() - Return a pointer to the tile's local drm_pagemap if any
+diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
+index a2a2c0e936b8..5ae9f6753f96 100644
+--- a/drivers/gpu/drm/xe/xe_tile.h
++++ b/drivers/gpu/drm/xe/xe_tile.h
+@@ -19,6 +19,9 @@ int xe_tile_alloc_vram(struct xe_tile *tile);
+ 
+ void xe_tile_migrate_wait(struct xe_tile *tile);
+ 
++int xe_tile_wopcm_init(struct xe_tile *tile);
++u32 xe_tile_wopcm_size(struct xe_tile *tile);
++
+ static inline bool xe_tile_is_root(struct xe_tile *tile)
+ {
+ 	return tile->id == 0;
+diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
+index 3dc011f111a4..dea17282501c 100644
+--- a/drivers/gpu/drm/xe/xe_tile_types.h
++++ b/drivers/gpu/drm/xe/xe_tile_types.h
+@@ -84,6 +84,9 @@ struct xe_tile {
+ 		/** @mem.ggtt: Global graphics translation table */
+ 		struct xe_ggtt *ggtt;
+ 
++		/** @mem.wopcm_size: Size of the WOPCM for this tile */
++		u32 wopcm_size;
++
+ 		/**
+ 		 * @mem.kernel_bb_pool: Pool from which batchbuffers are allocated.
+ 		 *
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 60f39efb02d0..5983b6c0ac3f 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -20,6 +20,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
++#include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_vram.h"
+ #include "xe_wa.h"
+@@ -38,34 +39,12 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
+ 	return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
+ }
+ 
+-static u32 get_wopcm_size(struct xe_device *xe)
+-{
+-	u32 wopcm_size;
+-	u64 val;
+-
+-	val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
+-	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
+-
+-	switch (val) {
+-	case 0x5 ... 0x6:
+-		val--;
+-		fallthrough;
+-	case 0x0 ... 0x3:
+-		wopcm_size = (1U << val) * SZ_1M;
+-		break;
+-	default:
+-		WARN(1, "Missing case wopcm_size=%llx\n", val);
+-		wopcm_size = 0;
+-	}
+-
+-	return wopcm_size;
+-}
+-
+ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+-	struct xe_vram_region *tile_vram = xe_device_get_root_tile(xe)->mem.vram;
++	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
++	struct xe_vram_region *tile_vram = root_tile->mem.vram;
+ 	resource_size_t tile_io_start = xe_vram_region_io_start(tile_vram);
+-	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	struct xe_mmio *mmio = &root_tile->mmio;
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+ 	u64 stolen_size, wopcm_size;
+ 	u64 tile_offset;
+@@ -79,8 +58,14 @@ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *m
+ 	if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
+ 		return 0;
+ 
+-	/* Carve out the top of DSM as it contains the reserved WOPCM region */
+-	wopcm_size = get_wopcm_size(xe);
++	/*
++	 * Carve out the top of DSM as it contains the reserved WOPCM region.
++	 * Note that the WOPCM region is per-tile, but the code below only looks
++	 * at the root tile values for both stolen and WOPCM; this works because
++	 * on PVC there is no driver-usable stolen, so stolen_size is 0 for
++	 * both tiles, but if that changes we'll need to rework this.
++	 */
++	wopcm_size = xe_tile_wopcm_size(root_tile);
+ 	if (drm_WARN_ON(&xe->drm, !wopcm_size))
+ 		return 0;
+ 
+@@ -105,11 +90,12 @@ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *m
+ static u32 detect_lmembar_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+-	struct xe_gt *media_gt = xe_device_get_root_tile(xe)->media_gt;
++	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
++	struct xe_gt *media_gt = root_tile->media_gt;
+ 	u32 stolen_size, wopcm_size;
+ 	u32 ggc, gms;
+ 
+-	ggc = xe_mmio_read32(xe_root_tile_mmio(xe), GGC);
++	ggc = xe_mmio_read32(&root_tile->mmio, GGC);
+ 
+ 	/*
+ 	 * Check GGMS: it should be fixed 0x3 (8MB), which corresponds to the
+@@ -141,8 +127,13 @@ static u32 detect_lmembar_integrated(struct xe_device *xe, struct xe_ttm_stolen_
+ 		return 0;
+ 	}
+ 
+-	/* Carve out the top of DSM as it contains the reserved WOPCM region */
+-	wopcm_size = get_wopcm_size(xe);
++	/*
++	 * Carve out the top of DSM as it contains the reserved WOPCM region. We
++	 * assume only the root tile is present, so we don't need to worry about
++	 * the WOPCM size for the remote tiles.
++	 */
++	xe_assert(xe, xe->info.tile_count == 1);
++	wopcm_size = xe_tile_wopcm_size(root_tile);
+ 	if (drm_WARN_ON(&xe->drm, !wopcm_size))
+ 		return 0;
+ 
+-- 
+2.53.0
+
