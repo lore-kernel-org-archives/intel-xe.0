@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9359606A320
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 15:22:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203F9606A33D
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 15:28:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EB5010E534;
-	Wed, 18 Nov 2026 15:22:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8CBB10FDD0;
+	Wed, 18 Nov 2026 15:28:56 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 501E410E807;
- Wed, 18 Nov 2026 15:22:04 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40AB010E7FE;
+ Wed, 18 Nov 2026 15:28:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2946779392084087311=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/bw=3A_?=
- =?utf-8?q?sync_global_BW_after_non-atomic_plane_disable?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu/buddy=3A_find_range-bia?=
+ =?utf-8?q?sed_blocks_in_the_free_trees_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hanson Wang" <hanson.wang@ugreen.com>
+To: "William Palacek" <william.palacek@amd.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Nov 2026 15:22:04 -0000
-Message-ID: <179501532431.44809.13833260746466414533@9ac1b63fe3ea>
+Date: Wed, 18 Nov 2026 15:28:55 -0000
+Message-ID: <179501573525.44809.14928300132652641421@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261118033312.902366-1-hanson.wang@ugreen.com>
-In-Reply-To: <20261118033312.902366-1-hanson.wang@ugreen.com>
+References: <cover.1794845083.git.William.Palacek@amd.com>
+In-Reply-To: <cover.1794845083.git.William.Palacek@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,22 +35,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-4.0 required=3.0 tests=BAYES_00,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS autolearn=no autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============2946779392084087311==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/i915/bw: sync global BW after non-atomic plane disable
-URL   : https://patchwork.freedesktop.org/series/178908/
-State : failure
+Series: gpu/buddy: find range-biased blocks in the free trees (rev2)
+URL   : https://patchwork.freedesktop.org/series/178108/
+State : success
 
 == Summary ==
 
-Series author address 'hanson.wang@ugreen.com' is not on the allowlist, which prevents CI from being automatically triggered.
-If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
-Exception occurred during validation, bailing out!
-Build URL: http://intel-gfx-ci-public.igk.intel.com:8080/job/xe_pw_trigger/1345677/ (on master)
+CI Bug Log - changes from xe-6172-e97c4df5795036e92099261d470174cf1e600c05_BAT -> xe-pw-178108v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-bmg-vm 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6172-e97c4df5795036e92099261d470174cf1e600c05 -> xe-pw-178108v2
+
+  IGT_9196: 9196
+  xe-6172-e97c4df5795036e92099261d470174cf1e600c05: e97c4df5795036e92099261d470174cf1e600c05
+  xe-pw-178108v2: 178108v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178108v2/index.html
+
+--===============2946779392084087311==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>gpu/buddy: find range-biased blocks in the free trees (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178108/">https://patchwork.freedesktop.org/series/178108/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178108v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178108v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6172-e97c4df5795036e92099261d470174cf1e600c05_BAT -&gt; xe-pw-178108v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-bmg-vm </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6172-e97c4df5795036e92099261d470174cf1e600c05 -&gt; xe-pw-178108v2</li>
+</ul>
+<p>IGT_9196: 9196<br />
+  xe-6172-e97c4df5795036e92099261d470174cf1e600c05: e97c4df5795036e92099261d470174cf1e600c05<br />
+  xe-pw-178108v2: 178108v2</p>
+
+</body>
+</html>
+
+--===============2946779392084087311==--
