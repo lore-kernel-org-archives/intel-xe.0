@@ -2,66 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3169C606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:46:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEAB606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 13:59:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Et88hbJB
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EWvWtPeR
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D0C10FCAF;
-	Wed, 18 Nov 2026 13:46:19 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8887210FCC8;
- Wed, 18 Nov 2026 13:46:12 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6C5C0446F3;
- Wed, 18 Nov 2026 13:46:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A8611F000CB;
- Wed, 18 Nov 2026 13:46:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795009572;
- bh=sDJGspNFkUyu8KxOLu1jE5eutQREHyym7I9CvkghZBo=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=Et88hbJBRGxCGoNpGGEEpOInHeVF2PPHct24eJZfCN58VJ/QUk+bBjz3PPlnEHEvv
- M/k+Fv5cuwhXXOdab4BEWxpbTB2zijxONxjiWc2NSqpr7OTQNPjsZsJkQGrr98tOlN
- 5TJOosp3QtfF8xTFqjhlYrFmpjf1n40YXxV3QNy8PVqvcf2SOWWbNA7+roaW7ADmBZ
- 8jmwTNoTugKWl4srTRmwRr7XJjCN3IsPtBZ4Vsl+aKdEirLZV14I7EDGTXNJXGzwFG
- 4FvZTeDqbELFlCPM9+s3QaDV3x1yATofQTzCdGz6u6TkbTKA6SPE8UWti/RbKP5JQG
- Jz6zt5eJMdsVw==
-From: Philipp Stanner <phasta@kernel.org>
-To: Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Philipp Stanner <phasta@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Sunil Khatri <sunil.khatri@amd.com>,
- Vitaly Prosyak <vitaly.prosyak@amd.com>, Prike Liang <Prike.Liang@amd.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- David Rosca <david.rosca@amd.com>,
- =?UTF-8?q?Timur=20Krist=C3=B3f?= <timur.kristof@gmail.com>,
- Maxime Ripard <mripard@kernel.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?q?Ma=C3=ADra=20Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- imagination@lists.freedesktop.org, lima@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, virtualization@lists.linux.dev,
- spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org,
- linux-usb@vger.kernel.org, rust-for-linux@vger.kernel.or
-Subject: [PATCH v2 3/3] dma-buf: dma-fence: Remove dma_fence_init64()
-Date: Wed, 18 Nov 2026 14:45:23 +0100
-Message-ID: <20261118134522.1646892-5-phasta@kernel.org>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261118134522.1646892-2-phasta@kernel.org>
-References: <20261118134522.1646892-2-phasta@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67FC210E4DE;
+	Wed, 18 Nov 2026 13:58:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 217E510E4DE
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 13:58:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795010332; x=1826546332;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8SBYWkulnUjSsrIxGVEQD0o+BPamyEXjeii76EoE9RY=;
+ b=EWvWtPeRdOzxGOrtGgfp3taX00mFyDRDbRydO/yButGj5JoMnsQM8dsh
+ RwG8d8wrR9Pw8QkvWA3yOind69iGdIjZXoBaUMVZISawe00j/gxwDLL5K
+ ZYoLZ//GaHX9d17ODUaHGyuGfFM3F4MIr4rbsed8zc5ty03Lx6+etqp70
+ QdwcxIq72La4UNhPAnpOZlmFMwaFSneiMHIW3ezLAGFqq8laQsJsQKlG1
+ rztS7ydw6SdCSSH2C/pZ5SvWz5wcLIi+UKwPX0+XQpcLOIhs8m3vdrEcR
+ gd5GATloEo+fcKC9JuaRRNw3tm4UCZviN7lY4RAKhc63xbiIOOCUNEAZU w==;
+X-CSE-ConnectionGUID: P86SrD5MRhCKCoDRnWf4FQ==
+X-CSE-MsgGUID: WBYTDVVIR8usx5sgIpwXmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3719476"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="3719476"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Nov 2026 05:58:51 -0800
+X-CSE-ConnectionGUID: m81GcxdvRNejV9N+Fyr2Ww==
+X-CSE-MsgGUID: 6apFg0zeTGK+gsyY+ZiwgA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10091368"
+Received: from gfx-coremm-kmd15.iind.intel.com ([10.223.55.8])
+ by orviesa007.jf.intel.com with ESMTP; 18 Nov 2026 05:58:49 -0800
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: badal.nilawar@intel.com, sk.anirban@intel.com,
+ Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Subject: [PATCH v2 0/3] drm/xe: Expose CRI memory capability limits via sysfs
+Date: Wed, 18 Nov 2026 19:25:32 +0530
+Message-ID: <20261118135536.293953-1-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,76 +61,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,MENTIONS_GIT_HOSTING,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-All users of dma_fence_init64() have been removed. They now use the
-respective initialization flag in dma_fence_init().
+This series adds read-only sysfs attributes for CRI devices to expose the
+maximum supported memory frequency and memory bandwidth.
 
-Remove dma_fence_init64().
+These attributes allow userspace to discover platform memory capability
+limits. They are needed by compute runtime software, including NEO [1], for
+capability discovery on CRI.
 
-Signed-off-by: Philipp Stanner <phasta@kernel.org>
-Reviewed-by: Timur Kristóf <timur.kristof@gmail.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/dma-buf/dma-fence.c | 27 ---------------------------
- include/linux/dma-fence.h   |  2 --
- 2 files changed, 29 deletions(-)
+The existing tile memory sysfs support currently focuses on frequency-
+related handling. Since it is now being extended to cover broader memory
+configuration information, rename the component/files from "freq" to
+"config" to better reflect their scope.
 
-diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
-index 7bc925793e24..0776ca7c795e 100644
---- a/drivers/dma-buf/dma-fence.c
-+++ b/drivers/dma-buf/dma-fence.c
-@@ -1139,33 +1139,6 @@ dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
- }
- EXPORT_SYMBOL(dma_fence_init);
- 
--/**
-- * dma_fence_init64 - Initialize a custom fence with 64-bit seqno support.
-- * @fence: the fence to initialize
-- * @ops: the dma_fence_ops for operations on this fence
-- * @lock: optional irqsafe spinlock to use for locking this fence
-- * @context: the execution context this fence is run on
-- * @seqno: a linear increasing sequence number for this context
-- *
-- * Initializes an allocated fence, the caller doesn't have to keep its
-- * refcount after committing with this fence, but it will need to hold a
-- * refcount again if &dma_fence_ops.enable_signaling gets called.
-- *
-- * Context and seqno are used for easy comparison between fences, allowing
-- * to check which fence is later by simply using dma_fence_later().
-- *
-- * New users MUST NOT use external locks. Check the documentation in
-- * dma_fence_init() to understand the motives behind the legacy use cases.
-- */
--void
--dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
--		 spinlock_t *lock, u64 context, u64 seqno)
--{
--	__dma_fence_init(fence, ops, lock, context, seqno,
--			 BIT(DMA_FENCE_FLAG_SEQNO64_BIT));
--}
--EXPORT_SYMBOL(dma_fence_init64);
--
- /**
-  * dma_fence_driver_name - Access the driver name
-  * @fence: the fence to query
-diff --git a/include/linux/dma-fence.h b/include/linux/dma-fence.h
-index 6f5c245d89ec..56c4e5beaafe 100644
---- a/include/linux/dma-fence.h
-+++ b/include/linux/dma-fence.h
-@@ -288,8 +288,6 @@ struct dma_fence_ops {
- void dma_fence_init(struct dma_fence *fence, const struct dma_fence_ops *ops,
- 		    spinlock_t *lock, u64 context, u64 seqno,
- 		    unsigned long flags);
--void dma_fence_init64(struct dma_fence *fence, const struct dma_fence_ops *ops,
--		      spinlock_t *lock, u64 context, u64 seqno);
- void dma_fence_release(struct kref *kref);
- void dma_fence_free(struct dma_fence *fence);
- void dma_fence_describe(struct dma_fence *fence, struct seq_file *seq);
+The new attributes provide a stable userspace interface for discovering
+platform memory capability limits.
+
+The series consists of:
+  1. Add PCODE MEMORY_CONFIG mailbox definitions and subcommands
+  2. Rename xe_vram_freq to xe_vram_config
+  3. Expose maximum memory frequency and bandwidth through sysfs for CRI
+
+Reference:[1]
+https://github.com/intel-innersource/drivers.gpu.compute.runtime/pull/57544
+
+v2:(Sashiko/Badal)
+RB'd as per [2]
+[2]https://patchwork.freedesktop.org/patch/770315/?series=178849&rev=1
+
+1. Fixed CFI violation by updating attribute types and callback signatures
+2. Added a check for xe->info.skip_pcode in memory_groups() to prevent
+   exposing these attributes on Virtual Functions,
+   where PCODE access is disabled.
+3. Changed kernel version in documentation from 7.4 to 7.5
+
+Himal Prasad Ghimiray (3):
+  drm/xe/pcode: Add MEMORY_CONFIG mailbox definitions
+  drm/xe: Rename xe_vram_freq to xe_vram_config
+  drm/xe: Expose CRI maximum memory frequency and bandwidth in sysfs
+
+ .../ABI/testing/sysfs-driver-intel-xe-gpu     |  26 ++-
+ drivers/gpu/drm/xe/Makefile                   |   2 +-
+ drivers/gpu/drm/xe/xe_pcode_api.h             |   4 +
+ drivers/gpu/drm/xe/xe_tile_sysfs.c            |   4 +-
+ drivers/gpu/drm/xe/xe_vram_config.c           | 217 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vram_config.h           |  13 ++
+ drivers/gpu/drm/xe/xe_vram_freq.c             | 123 ----------
+ drivers/gpu/drm/xe/xe_vram_freq.h             |  13 --
+ 8 files changed, 262 insertions(+), 140 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_vram_config.c
+ create mode 100644 drivers/gpu/drm/xe/xe_vram_config.h
+ delete mode 100644 drivers/gpu/drm/xe/xe_vram_freq.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_vram_freq.h
+
 -- 
-2.56.0
+2.43.0
 
