@@ -2,28 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C74F606A31C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 02:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99258606A31C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 02:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VWV53WIb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D675210E4B6;
-	Wed, 18 Nov 2026 02:48:59 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10A8E10E3DA;
- Wed, 18 Nov 2026 02:48:59 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6491011699241084273=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C33D10E4B6;
+	Wed, 18 Nov 2026 02:51:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1AC910E086
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 02:51:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1794970312; x=1826506312;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=cHgBPOYBjQ94X12048tz1+d/5amYnUA6TW4ITyOudeY=;
+ b=VWV53WIb7YFCWsOhYHV5mCet8s50GNyGPCvex70kEwV2y+VtDFNkUZot
+ MQOtdFsTx79kWChfo9poLilWSMt4FGaGqvA+tzE9y68UpnXdHGVvLJnkn
+ mQqFmgMhumOcOuHOfhpZCG7QSrXNe9ko25WjPd/ll1nplym6KF7ZSGFw/
+ ii4SZsGplMhgTR2WcfsQOkZ5i90edCRasj9QWL9W6F+CbFAQV2Wx2HyE5
+ +ApyRAxuSDA+D9/mtc7OFy8KAL8eoJTuRzA23mYig4WlKvhnGpzJ3W2Wd
+ EUDM2VXJ4WJYRJzOMR7nJ4Idqf87MhFTEJfysOvrHmCHVbCWaUDLpcBiW g==;
+X-CSE-ConnectionGUID: fPNdUcXPTBaOWI1K+dVD2w==
+X-CSE-MsgGUID: yzMvD04uTna3sO9rWpTPDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11969"; a="3614548"
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="3614548"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 18:51:51 -0800
+X-CSE-ConnectionGUID: o2doeRCXREubUm3NICCHiA==
+X-CSE-MsgGUID: FLzPOca0Qe+SRc7fqcp0Zw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
+   d="scan'208";a="9888990"
+Received: from orsosgc001.jf.intel.com ([10.54.56.63])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2026 18:51:51 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: shekhar.chauhan@intel.com, harish.chegondi@intel.com,
+ intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com
+Subject: [PATCH v7 0/7] Cleanup OA stream on PCI unbind/remove
+Date: Tue, 17 Nov 2026 18:51:41 -0800
+Message-ID: <20261118025140.3782678-9-umesh.nerlige.ramappa@intel.com>
+X-Mailer: git-send-email 2.55.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/panel=3A_Restrict_?=
- =?utf-8?q?highest_mode_to_DRRS-compatible_modes?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Fred Gao" <fred.gao@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Nov 2026 02:48:59 -0000
-Message-ID: <179497013906.40746.10171312369951767681@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261118014949.399026-1-fred.gao@intel.com>
-In-Reply-To: <20261118014949.399026-1-fred.gao@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +60,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============6491011699241084273==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When an OA stream FD is open, removing the PCI device due to PCIe errors
+or doing an unbind causes a NPD and system reboots. While OA registers a
+fini handler with devm, the handler does not take into account active OA
+connections.
 
-== Series Details ==
+Add code to quiesce OA connection on PCI remove/unbind.
 
-Series: drm/i915/panel: Restrict highest mode to DRRS-compatible modes
-URL   : https://patchwork.freedesktop.org/series/178838/
-State : success
+v2 - v7: Sashiko Comments
 
-== Summary ==
+Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-CI Bug Log - changes from xe-6165-6faeea4d5058d20e3a6e7edba8c13e4918636cd9_BAT -> xe-pw-178838v1_BAT
-====================================================
+Umesh Nerlige Ramappa (7):
+  drm/xe/oa: Use the drm device address_space for the OA stream fd
+  drm/xe/oa: Split OA stream destroy into HW teardown and resource
+    release
+  drm/xe/oa: Take the runtime PM reference in xe_oa_destroy_locked()
+  drm/xe/oa: Skip OA HW teardown on a wedged device
+  drm/xe/oa: Wait for in-flight OA batches before stream HW teardown
+  drm/xe: Reject vm_ops->access on BO mappings of an unplugged device
+  drm/xe/oa: Quiesce OA streams on driver unbind and PCI reset
 
-Summary
--------
+ drivers/gpu/drm/xe/xe_bo.c          |  15 +-
+ drivers/gpu/drm/xe/xe_oa.c          | 368 ++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_oa_types.h    |   3 +
+ drivers/gpu/drm/xe/xe_observation.c |  20 +-
+ 4 files changed, 357 insertions(+), 49 deletions(-)
 
-  **SUCCESS**
+-- 
+2.55.0
 
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6165-6faeea4d5058d20e3a6e7edba8c13e4918636cd9 -> xe-pw-178838v1
-
-  IGT_9196: 9196
-  xe-6165-6faeea4d5058d20e3a6e7edba8c13e4918636cd9: 6faeea4d5058d20e3a6e7edba8c13e4918636cd9
-  xe-pw-178838v1: 178838v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178838v1/index.html
-
---===============6491011699241084273==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/panel: Restrict highest mode to DRRS-compatible modes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178838/">https://patchwork.freedesktop.org/series/178838/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178838v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178838v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6165-6faeea4d5058d20e3a6e7edba8c13e4918636cd9_BAT -&gt; xe-pw-178838v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6165-6faeea4d5058d20e3a6e7edba8c13e4918636cd9 -&gt; xe-pw-178838v1</li>
-</ul>
-<p>IGT_9196: 9196<br />
-  xe-6165-6faeea4d5058d20e3a6e7edba8c13e4918636cd9: 6faeea4d5058d20e3a6e7edba8c13e4918636cd9<br />
-  xe-pw-178838v1: 178838v1</p>
-
-</body>
-</html>
-
---===============6491011699241084273==--
