@@ -2,61 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76C13606A333
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 20:09:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DF4D606A32A
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Nov 2026 20:13:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=WjNrGbt+
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HRxdwLi7
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F20810FFE6;
-	Wed, 18 Nov 2026 20:09:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F30AD10EC91;
+	Wed, 18 Nov 2026 20:13:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E64210E81B
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 20:09:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9E110EC91
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Nov 2026 20:13:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795032586; x=1826568586;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=XvcZdfbRnAvx6F2mXRwUv/OUrJ/WNUFS1jkFJzdQLo8=;
- b=WjNrGbt+LXNtK4141v7uEKMSxG1Yad7na7n3X059PAWEL0NdkGwnSFz7
- i7XZrDv+nicFPQ9NSuSR7ZpJ43onjfztpkciWt2aXxQl2t4v+0N1zfMZz
- dWJINbNlEcNKhMslF/6sKpBIP4aPEDtUYvsb7h6AK9drK6bRKzngQ3MoA
- GucpYQEATYyWtfi6SFXY4yfWyPZ0czaZpR42zDKOVRmUhf0HOkdC0LB6i
- tdj6OnNCYbY229CrEx/Xbw9ccVp/h26166df1fTmDqJyi7hJJBff0+pA7
- /ffn2dhrmCdlRe7hQjTSWglqbz+Ou4xOaNbCP3Q8cbK0lD/ZsWQburWM/ Q==;
-X-CSE-ConnectionGUID: fK4fZgJDR3Cm0zRDgIQO/g==
-X-CSE-MsgGUID: NuwVEF3wSuKQLxJqL7T12g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3746373"
+ t=1795032784; x=1826568784;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uQMpYsBm6rmn1h654QEtqbsfzvUDx3Ip6O+vvThiIvA=;
+ b=HRxdwLi7IBOCwhBT0zf2HsRYU0OrsAO9DFvJQLVJ0r5nGp03I5xcAngx
+ Cbyoynsc0nZHJ0E5LNfEkjO/ZAvyMFGvd+WJPZsde4z1MlGn8jk/S1NLN
+ X7J2B7lrXC7o2CHWliF/1aV9awkHEhNxFRt0vk26CWf0h8I+de77DZEek
+ We30pVEvtNcCsP72rQxrL0YJkICZdpX2yIOxP6Xrq67uW+2xetnPn5weW
+ OVbakpNCrmlkc2TMpuTrFXxWoflwioREdnqs7cNx3My1Zk/A97VPV8ay4
+ TyKFmfoDmtZgpOGF8dZWtDST4glwpnHCFR3BEREE+vnOM3gWw5etX7qwZ w==;
+X-CSE-ConnectionGUID: nrKjYiKtRtSsNZLz0fdCiQ==
+X-CSE-MsgGUID: ZS5QOBSiTeaT0n5fHkW9fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3746595"
 X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; 
-   d="scan'208";a="3746373"
+   d="scan'208";a="3746595"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 12:09:45 -0800
-X-CSE-ConnectionGUID: nDtjTb/PR26/wfgzESSqCA==
-X-CSE-MsgGUID: 8ulnK6WDTJKDzTpcxYuCwg==
+ 18 Nov 2026 12:13:04 -0800
+X-CSE-ConnectionGUID: YYFXhwovR/6f1RVMg87hwQ==
+X-CSE-MsgGUID: mTqUqsdRTEqEQ3+eF/OPZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10777834"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.16])
+X-IronPort-AV: E=Sophos;i="6.27,219,1787036400"; d="scan'208";a="10778262"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 12:09:43 -0800
-Date: Wed, 18 Nov 2026 22:09:40 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v4 1/6] drm/xe/ggtt: Add xe_ggtt_reserve_area
-Message-ID: <av4GBGvSkQttjqfn@intel.com>
-References: <20261116122828.266113-8-dev@lankhorst.se>
- <20261116122828.266113-9-dev@lankhorst.se>
+ 18 Nov 2026 12:13:00 -0800
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
+ mallesh.koujalagi@intel.com, rodrigo.vivi@intel.com,
+ Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH v2] drm/xe/xe_late_bind_fw: Skip OCODE late bind if already
+ running
+Date: Thu, 19 Nov 2026 01:27:06 +0530
+Message-ID: <20261118195705.3231462-2-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261116122828.266113-9-dev@lankhorst.se>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,158 +63,79 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Mon, Nov 16, 2026 at 01:28:30PM +0100, Maarten Lankhorst wrote:
-> Create a new function xe_ggtt_reserve_area() which will be used
-> for reserving the part of GGTT where the initial framebuffer was
-> allocated, while ensuring the reservation fits within mappable
-> GGTT boundaries.
-> 
-> This will allow us to either take over the initial mapping, or
-> reserve it to have the newly allocated GGTT mapping not overwriting
-> the initial mapping, which would cause flickering.
-> 
-> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c | 69 +++++++++++++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
->  2 files changed, 67 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 9ef2ce743770f..ca38d51f41441 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -681,14 +681,17 @@ static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
->  }
->  
->  /**
-> - * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
-> + * xe_ggtt_insert_node_at - Insert a &xe_ggtt_node into the GGTT
->   * @ggtt: the &xe_ggtt into which the node should be inserted.
->   * @size: size of the node
->   * @align: alignment constrain of the node
-> + * @start: Starting offset of range to insert node
-> + * @end: Last offset for node insertion
->   *
->   * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
->   */
-> -struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
-> +static struct xe_ggtt_node *xe_ggtt_insert_node_at(struct xe_ggtt *ggtt, u32 size,
-> +						   u32 align, u64 start, u64 end)
->  {
->  	struct xe_ggtt_node *node;
->  	int ret;
-> @@ -698,8 +701,19 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
->  		return node;
->  
->  	guard(mutex)(&ggtt->lock);
-> -	ret = xe_ggtt_insert_node_locked(node, size, align,
-> -					 DRM_MM_INSERT_HIGH);
-> +	if (start >= ggtt->start)
-> +		start -= ggtt->start;
-> +	else
-> +		start = 0;
-> +
-> +	/* Should never happen, but since we handle start, fail graciously for end */
-> +	if (end >= ggtt->start)
-> +		end -= ggtt->start;
-> +	else
-> +		end = 0;
-> +
-> +	ret = drm_mm_insert_node_in_range(&ggtt->mm, &node->base, size, align,
-> +					  0, start, end, DRM_MM_INSERT_HIGH);
->  	if (ret) {
->  		ggtt_node_fini(node);
->  		return ERR_PTR(ret);
-> @@ -708,6 +722,53 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
->  	return node;
->  }
->  
-> +/**
-> + * xe_ggtt_reserve_area - Ensure an area of the GGTT is reserved.
-> + * @ggtt: the &xe_ggtt where the area should be reserved.
-> + * @start: Starting offset of range to reserve
-> + * @size: size of the reservation
-> + *
-> + * This function ensures the area of [start...start+size)
-> + * is reserved, while taking care of any clipping due to start or start+size
-> + * falling outside of the adressable GGTT. The size of the returned node may
-> + * be smaller if part of the region falls outside the accessible GGTT, or a
-> + * NULL node may be returned.
-> + *
-> + * Return: &xe_ggtt_node or NULL on success or a ERR_PTR on failure.
-> + */
-> +struct xe_ggtt_node *xe_ggtt_reserve_area(struct xe_ggtt *ggtt, u32 base, u32 size)
-> +{
-> +	u64 ggtt_start = xe_ggtt_start(ggtt), ggtt_end = ggtt_start + xe_ggtt_size(ggtt);
-> +
-> +	/* Completely truncated? */
-> +	if (base + size <= ggtt_start || base >= ggtt_end)
-> +		return NULL;
-> +
-> +	/* Partially truncated? */
-> +	if (base <= ggtt_start) {
-> +		size -= ggtt_start - base;
-> +		base = ggtt_start;
-> +	}
-> +
-> +	if (base + size >= ggtt_end)
-> +		size = ggtt_end - base;
+On resume, skip the OCODE push if OCODE is already running.
+A new blob takes effect at the next device reset. Probe still
+pushes unconditionally, version-based skipping on probe will
+follow once a running-version mailbox is available.
 
-We seem to be doing the same chop both here and in
-xe_ggtt_insert_node_at(). Isn't one place enough?
+v2: Split patches (Badal)
+    Modify the subject and commit message (Rodrigo)
 
-Sashiko's comments about the 32bit overflow seem potentially valid
-to me. I don't recall how high in the ggtt the GOP now places the
-FB, but if it's at the very top, and there is no extra padding then
-we could have the FB extend all the way to the 4 GiB mark.
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+---
+ drivers/gpu/drm/xe/xe_late_bind_fw.c | 21 ++++++++++++++++++---
+ 1 file changed, 18 insertions(+), 3 deletions(-)
 
-We also have a 32bit 'plane_config->base + plane_config->size' in
-both i915 and xe initial plane code, where that overflow would also
-hit us.
-
-> +
-> +	return xe_ggtt_insert_node_at(ggtt, size, XE_PAGE_SIZE, base, base + size);
-> +}
-> +
-> +/**
-> + * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
-> + * @ggtt: the &xe_ggtt into which the node should be inserted.
-> + * @size: size of the node
-> + * @align: alignment constrain of the node
-> + *
-> + * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
-> + */
-> +struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
-> +{
-> +	return xe_ggtt_insert_node_at(ggtt, size, align, 0, ~0ULL);
-> +}
-> +
->  /**
->   * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
->   * @node: the &xe_ggtt_node
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-> index c864cc975a695..15e62ecec2287 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
-> @@ -22,6 +22,8 @@ void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_base);
->  u64 xe_ggtt_start(struct xe_ggtt *ggtt);
->  u64 xe_ggtt_size(struct xe_ggtt *ggtt);
->  
-> +struct xe_ggtt_node *
-> +xe_ggtt_reserve_area(struct xe_ggtt *ggtt, u32 base, u32 size);
->  struct xe_ggtt_node *
->  xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align);
->  struct xe_ggtt_node *
-> -- 
-> 2.55.0
-
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+index 355d7c841871..36e8e72c03a2 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+@@ -306,7 +306,17 @@ static void xe_late_bind_work(struct work_struct *work)
+ 	xe_pm_runtime_put(xe);
+ }
+ 
+-static void xe_late_bind_fw_load(struct xe_late_bind *late_bind)
++static bool xe_late_bind_ocode_is_loaded(struct xe_late_bind_fw *lbfw)
++{
++	struct xe_device *xe = late_bind_fw_to_xe(lbfw);
++
++	if (lbfw->type != INTEL_LB_TYPE_OCODE || !xe->info.has_sysctrl)
++		return false;
++
++	return xe_sysctrl_is_oobmsm_fw_ready(xe);
++}
++
++static void xe_late_bind_fw_load(struct xe_late_bind *late_bind, bool resume)
+ {
+ 	struct xe_device *xe = late_bind_to_xe(late_bind);
+ 	struct xe_late_bind_fw *lbfw;
+@@ -314,6 +324,11 @@ static void xe_late_bind_fw_load(struct xe_late_bind *late_bind)
+ 
+ 	for (fw_id = 0; fw_id < XE_LB_FW_MAX_ID; fw_id++) {
+ 		lbfw = &late_bind->late_bind_fw[fw_id];
++		if (resume && lbfw->payload && xe_late_bind_ocode_is_loaded(lbfw)) {
++			drm_dbg(&xe->drm, "%s firmware already loaded, skipping\n",
++				fw_id_to_name[lbfw->id]);
++			continue;
++		}
+ 		if (lbfw->payload) {
+ 			xe_pm_runtime_get_noresume(xe);
+ 			queue_work(late_bind->wq, &lbfw->work);
+@@ -511,7 +526,7 @@ void xe_late_bind_pm_resume(struct xe_late_bind *late_bind)
+ 	if (!late_bind->component_added || late_bind->disable)
+ 		return;
+ 
+-	xe_late_bind_fw_load(late_bind);
++	xe_late_bind_fw_load(late_bind, true);
+ }
+ 
+ /**
+@@ -550,7 +565,7 @@ int xe_late_bind_init(struct xe_late_bind *late_bind)
+ 	if (err)
+ 		return err;
+ 
+-	xe_late_bind_fw_load(late_bind);
++	xe_late_bind_fw_load(late_bind, false);
+ 
+ 	return 0;
+ }
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
