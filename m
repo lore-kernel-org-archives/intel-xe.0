@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF05606A324
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53D28606A325
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:55:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=N9g0nz3i
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ipxKSFeW
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 795A611261F;
-	Thu, 19 Nov 2026 15:55:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A40B112620;
+	Thu, 19 Nov 2026 15:55:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C90FA112620
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 15:55:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 884A2112613
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 15:55:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795103709; x=1826639709;
+ t=1795103705; x=1826639705;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9rp74QyDTfCjDpcOMHKQUWyqWQzn+hnKSJBSp5vLyeQ=;
- b=N9g0nz3iiqk7lGPV+gbI9K/RDXsuDnHTGcrBjrgm5ivWPyVPAFY0eMO4
- dNtt/DP2H9c1w/jxJUQvtCjESMkfhbxUveWsu77xsB1sfDWOizb6FU1dO
- l6/+jvJJ4DLtgr+UON00kQI+655jZwnPQe0hkffwV8dR3WGWKdQ8PBEvy
- d8WNKODZ8+l9oRBi2h5WlsFukyTBeDcNTVrHeHusywueDcfAZpNIbBP4H
- nfVwN25oCtEhaBuStK9T2hSugnF5TvjxYPRGpCzAag0jQ+7fJf/1+7J6r
- z5L4qvmgPyNFuZ2xePPqOOoo35rGhxic16EVxkdahYIG1PfFPGrkj3c2g Q==;
-X-CSE-ConnectionGUID: BkBV6SQCTTGzOk3VvksrFQ==
-X-CSE-MsgGUID: duqxC2RMTvCRQnNrxyOz2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3848990"
+ bh=aSExY6XUYC0oEPjDcj/taKCl3VRcUT5EAxgzrFJNEf4=;
+ b=ipxKSFeW1uAHnUq/e5ulwNbAyS99TlGlN1UIW627FNjrhuqfBXUATzo0
+ uPciM2w6lLUxiwc8+GNWpAQjK9apPBCvDtJumMVAgwv813VaclkERFC43
+ JKLE7qJ7TNNjjJdDZ3/xEHYKk4bTKmrWyP2D+VKytCd1VT6Drktk06/i1
+ ykkggh75RrMUu+trTLoJLVpRJoH3+G3hbNzbcBfiCHTcoIh0jPiEK9T1t
+ kO2tBs0nhbRYceWyJPu6RgKSAjO/CYw7W7fTd5sKE4bzGKYkhgRPfL5EU
+ EY2A40JhRhLFauR3vOlGWExytA3TK97XE3euU+4x3XB0ur5CvZJLjY74x g==;
+X-CSE-ConnectionGUID: xPUk1uZaQR+2IkgcoOhTLw==
+X-CSE-MsgGUID: f07uprdkQuaZzHYbAZpnfw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3848981"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3848990"
+   d="scan'208";a="3848981"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 07:54:53 -0800
-X-CSE-ConnectionGUID: c1qOIiOZRDG5KMvHP0rjAA==
-X-CSE-MsgGUID: atzNtiaMSUqHmrgBOvQlpQ==
+X-CSE-ConnectionGUID: PhYcTxIdR6uqqT674XKpIw==
+X-CSE-MsgGUID: LdlGkyKVQ6i7x9w5HD/Ujg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10263413"
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10263404"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 07:54:52 -0800
@@ -46,9 +46,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v19 10/19] drm/xe/vsec: Update VSEC probe order
-Date: Thu, 19 Nov 2026 07:54:48 -0800
-Message-ID: <20261119155438.40762-31-michael.j.ruhl@intel.com>
+Subject: [PATCH v19 08/19] drm/xe/vsec: Support possible hotplug exit
+Date: Thu, 19 Nov 2026 07:54:46 -0800
+Message-ID: <20261119155438.40762-29-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261119155438.40762-21-michael.j.ruhl@intel.com>
 References: <20261119155438.40762-21-michael.j.ruhl@intel.com>
@@ -73,43 +73,93 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Both debugfs and hwmon access the PMT data area before PMT is
-initialized.
+DRM has an API that will verify that a device is valid in the hotplug
+context.
 
-Hardwired offset usage allows this to work by accident.
-Upcoming changes will break this usage.
-
-Re-order the probe steps to initialize VSEC before the other
-features are initialized.
+Verify device is valid before access in the VSEC callback API.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 29 +++++++++++++++++++++++------
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index f5a581d39c96..ba1f49a56794 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1088,6 +1088,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
+diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
+index 082b25b017db..c0e06b2aeca6 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.c
++++ b/drivers/gpu/drm/xe/xe_vsec.c
+@@ -10,6 +10,8 @@
+ #include <linux/pci.h>
+ #include <linux/types.h>
  
-+	xe_vsec_init(xe);
++#include <drm/drm_drv.h>
 +
- 	xe_debugfs_register(xe);
+ #include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_mmio.h"
+@@ -159,7 +161,12 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+  * @user_offset: a user offset relative to the beginning of the data to read
+  * @count: bytes to read
+  *
++ * This is a callback API.  I.e this can be accessed external to the XE driver
++ * (PMT driver scope).  Because of this, DRM hotplug needs to be verified
++ * (drm_dev_enter()).
++ *
+  * Return:
++ * * -ENODEV device is not available (hotplug)
+  * * -ENODATA for incorrect power state
+  * * -EINVAL for unsupported PMT feature
+  * * count   number of bytes read on success
+@@ -172,13 +179,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
+ 	u32 mem_region;
+ 	u32 offset;
+-	int ret;
++	int ret = 0;
++	int idx;
  
- 	err = xe_hwmon_register(xe);
-@@ -1098,8 +1100,6 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
+ 	xe_assert(xe, !IS_SRIOV_VF(xe));
  
--	xe_vsec_init(xe);
--
- 	err = xe_sriov_init_late(xe);
- 	if (err)
- 		goto err_unregister_display;
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return -ENODEV;
++
+ 	ret = xe_guid_decode(guid, &mem_region, &offset);
+ 	if (ret)
+-		return ret;
++		goto dev_exit;
+ 
+ 	telem_addr += offset + user_offset;
+ 
+@@ -188,11 +199,14 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		xe_pm_runtime_get(xe);
+ 		break;
+ 	case TELEMETRY:
+-		if (!xe_pm_runtime_get_if_active(xe))
+-			return -ENODATA;
++		if (!xe_pm_runtime_get_if_active(xe)) {
++			ret = -ENODATA;
++			goto dev_exit;
++		}
+ 		break;
+ 	case WATCHER:
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto dev_exit;
+ 	}
+ 
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+@@ -204,7 +218,10 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 
+ 	xe_pm_runtime_put(xe);
+ 
+-	return count;
++dev_exit:
++	drm_dev_exit(idx);
++
++	return ret == 0 ? count : ret;
+ }
+ 
+ static struct pmt_callbacks xe_pmt_cb = {
 -- 
 2.43.0
 
