@@ -2,60 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3863D606A326
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 14:37:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65E47606A333
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 14:52:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KSXyXbhg
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IuU5xy9G
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A584210F000;
-	Thu, 19 Nov 2026 14:37:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCBD31124C8
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 14:37:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795099054; x=1826635054;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=yPWos+XuT4I9KxPbbwzQZAvGtZ0Os9qixQA7RpGiVis=;
- b=KSXyXbhgF/MxEmhrfKgEzJRRq7CLESSEifoXchnCAoEdoyJ90aqG8yyo
- AEFGfvQsjYNuNxJRe03dsXXrXeG/m8mMYthv9F542W/rSpk9z9Jq/NZRO
- Fm8QxdQdjHPYSejwqTOK/olCbqGlCyf6+MeD/Ktm05Q71p4W09yTdjeSR
- j53o8Qk5aAy+MXwLK77Ryj9utMg42Ec6JlyGABcmjISMvQ72yANXJ7bvx
- gXj9mSCpi2WhFY2GkcX3Y7QA0XJF7ozPDShtnxiqPeF2PsalJaaJFNdNF
- 013lzAa/dgXIg0baU7EyADVfYMtIblBQ2HaNcVQUvdBCgIfuqGSbJg4eK A==;
-X-CSE-ConnectionGUID: 70j9eC2TRn29Jdiv4OQI9A==
-X-CSE-MsgGUID: 9wlex8pfRHeiv4wFPn2uBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3968808"
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3968808"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 06:37:33 -0800
-X-CSE-ConnectionGUID: UmQ2XVe5TYCQmcOwAlFSFg==
-X-CSE-MsgGUID: Iua1DR2SSeyrtDSoXkn+mA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10524795"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [192.168.0.182])
- ([10.245.245.108])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 06:37:33 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-Date: Thu, 19 Nov 2026 14:36:53 +0000
-Subject: [PATCH] drm/xe/vm: restore userptr invalidations on VMA op unwind
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20261119-userptr-race-v1-1-b344c9ad5511@intel.com>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzNDQ0NL3VKghoKSIt2ixORUXfMkc1MTsxQDoEyyElBLQVFqWmYF2Ljo2Np
- aAMhL/w1eAAAA
-X-Change-ID: 20261119-userptr-race-7b7546d0111c
-To: Matthew Brost <matthew.brost@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
-X-Mailer: b4 0.14.3
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CD011124FA;
+	Thu, 19 Nov 2026 14:52:33 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7B001124F2
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 14:52:26 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 90D5441410;
+ Thu, 19 Nov 2026 14:52:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55A121F000C4;
+ Thu, 19 Nov 2026 14:52:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795099946;
+ bh=bnCzvPyoCC4kqxvAsg3+E6trroIYWAt2Fjo/I27eCtE=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=IuU5xy9GkLSYRN/5ixWNH3n8mtAWFNuMqY7ju7VhmChba0MU3KjV9ZizbPkmZKeIv
+ gru8GJAIJyKzXUEoXmnsDTJUCKFS3j/wFWlNKYzonylXB7UYOdFgSxlN8OrueD8Awl
+ Axt8hoWY6m3sKqP8yGdiIp7ELKj9lbWsHxWZ/lazTDwp3EdPmGC8DHFkgCTrp5omfw
+ R5djx3FIN3sVHXQOdCxn7P8ScDi0wTV733I2DruE9YMg1VxlwP0KsZsv71+UXtzQq9
+ 4jOx85K+sQzs8Vb1USa/9t/Q42dG4JAu68+kIQ7S1g+5tkmHboUEtrPpeUCLxBJfmM
+ DTWfNFeu49dCg==
+Message-ID: <sashiko-outbox-223323@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 2/2] drm/xe: After VF migration, repeat BO mapping in
+ progress
+To: "Tomasz Lis" <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119141741.1720650-3-tomasz.lis@intel.com>
+References: <20261119141741.1720650-1-tomasz.lis@intel.com>
+ <20261119141741.1720650-3-tomasz.lis@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 14:52:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,137 +47,139 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-When xe_vma_op_commit() commits DRM_GPUVA_OP_UNMAP or
-DRM_GPUVA_OP_REMAP, prep_vma_destroy() sets XE_VMA_DESTROYED while the
-old VMA's GPU page tables remain live. If a subsequent step fails and
-unwinds (for example splitting a userptr VMA where new_vma() fails, or a
-later op in an array of binds failing), a concurrent MMU notifier
-invalidation is lost on non-fault-mode VMs:
+Thank you for your contribution! Sashiko AI review found 2 potential
+issues to consider:
+- [High] drm/xe: UAF and double free of ggtt_node in
+  __xe_ggtt_insert_bo_at()
+- [Medium] drm/xe: race in __xe_ggtt_insert_bo_at() on VF migration
+  recovery abort
+--
 
-  CPU0 (VM_BIND / MADVISE)            CPU1 (MMU notifier)
-  ------------------------            -------------------
-  down_write(&vm->lock)
-  xe_vma_op_commit()
-    prep_vma_destroy(vma)
-      flags |= XE_VMA_DESTROYED
+commit ffaea991a62518238992d72726824a9a18cd6e5d
+Author: Tomasz Lis <tomasz.lis@intel.com>
+
+drm/xe: After VF migration, repeat BO mapping in progress
+
+This commit moves the post-migration retry loop from LRC creation to GGTT
+BO insertion so that any GGTT PTE writes racing with VF migration are
+redone once recovery updates the GGTT range.
+
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 44480fad27679..2a7b4322c7a5f 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+
+[ ... ]
+
+> @@ -1080,6 +1086,41 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *=
+ggtt, struct xe_bo *bo,
+>  	}
+>  	mutex_unlock(&ggtt->lock);
+> =20
+> +	if (!err) {
+> +		/*
+> +		 * If VF migration happens during BO mapping, some PTE value writes may
+> +		 * be ignored by HW. This can happen in case GGTT range changed; alrea=
+dy
+> +		 * set PTEs are moved by the VF restore, but xe_ggtt_map_bo() within VM
+> +		 * may still loop at old position. To be sure, redo all PTE writes.
+> +		 * Make this a loop as another VF migration could start immediately.
+> +		 */
+> +		while (marker !=3D xe_vf_migration_fixups_complete_count(ggtt->tile->p=
+rimary_gt)) {
+> +			u16 cache_mode =3D bo->flags & XE_BO_FLAG_NEEDS_UC ?
+> +					 XE_CACHE_NONE : XE_CACHE_WB;
+> +			u16 pat_index =3D xe_cache_pat_idx(tile_to_xe(ggtt->tile), cache_mode=
+);
+> +			u64 pte =3D ggtt->pt_ops->pte_encode_flags(bo, pat_index);
+> +
+> +			marker =3D xe_gt_sriov_vf_wait_valid_ggtt(ggtt->tile->primary_gt);
+> +			/*
+> +			 * Only abort fixing the PTEs if we're wedged; if the wait timeouts,
+> +			 * the cause may be that VF migration recovery was just repeated or
+> +			 * prolonged, so do not treat that as bailout condition.
+> +			 * If the VF migration was detected, we can be sure that recovery
+> +			 * will start or already has started. The recovery worker assures
+> +			 * on finish that this loop will exit - either by marker or by wedge.
+> +			 */
+> +			if (xe_wedged(tile_to_xe(ggtt->tile))) {
+> +				xe_ggtt_remove_bo(ggtt, bo);
+> +				err =3D -ECANCELED;
+> +				break;
+> +			}
+
+[Severity: High]
+Does this leave a dangling pointer in bo->ggtt_node[tile_id] after
+xe_ggtt_remove_bo() frees the node?
+
+Unlike the earlier error paths in __xe_ggtt_insert_bo_at(),
+xe_ggtt_remove_bo() frees bo->ggtt_node[tile_id] via
+xe_ggtt_node_remove() without clearing the pointer to NULL.  When
+__xe_bo_create_locked() sees -ECANCELED and drops the BO with
+xe_bo_put(), xe_ttm_bo_destroy() finds bo->ggtt_node[id] still non-NULL
+and calls xe_ggtt_remove_bo() a second time, causing a use-after-free and
+double free of the GGTT node.
+
+> +
+> +			mutex_lock(&ggtt->lock);
+> +			xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
+> +			mutex_unlock(&ggtt->lock);
+> +		}
+> +	}
+
+[Severity: Medium]
+Can this loop exit with err =3D=3D 0 if VF migration recovery fails and
+aborts before fixups_complete_count is incremented?
+
+In vf_post_migration_recovery(), the failure path calls
+vf_post_migration_abort() before xe_wedge_declare():
+
+drivers/gpu/drm/xe/xe_gt_sriov_vf.c:vf_post_migration_recovery() {
+    ...
+fail:
+	vf_post_migration_abort(gt);
+	xe_gt_sriov_err(gt, "migration recovery failed (%pe)\n", ERR_PTR(err));
+	xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_REBIND | DRM_WEDGE_RECOVERY_BUS_RE=
+SET);
+	return;
+}
+
+vf_post_migration_abort() clears ggtt_need_fixes and wakes migration.wq
+without incrementing fixups_complete_count:
+
+CPU0                                  CPU1 (recovery worker)
+__xe_ggtt_insert_bo_at()
+  marker =3D N
   ...
-  /* later step fails */
-                                      xe_vma_userptr_invalidate_start()
-                                        down_write(&notifier_lock)
-                                        mmu_interval_set_seq()
-                                        /* XE_VMA_DESTROYED set: skips
-                                         * vm->userptr.invalidated
-                                         */
-                                        drm_gpusvm_unmap_pages()
-                                        up_write(&notifier_lock)
-  xe_vma_op_unwind()
-    flags &= ~XE_VMA_DESTROYED
-    xe_vm_insert_vma(vm, vma)
-  up_write(&vm->lock)
+  xe_gt_sriov_vf_wait_valid_ggtt()
+                                      vf_post_migration_recovery()
+                                        vf_post_migration_abort()
+                                          ggtt_need_fixes =3D false
+                                          wake_up_all(&migration.wq)
+    returns N
+  if (xe_wedged(xe))  (false)
+  xe_ggtt_map_bo()
+  while (marker !=3D
+         xe_vf_migration_fixups_complete_count())
+    (N !=3D N is false, exits with err =3D 0)
+                                        xe_wedge_declare(xe, ...)
 
-Once vm->lock is dropped, the VMA remains in the VM with live GPU PTEs
-pointing at unmapped pages, while neither exec nor the rebind worker
-knows to repin and rebind it.
+If CPU0 reaches the while condition after vf_post_migration_abort()
+clears ggtt_need_fixes, xe_vf_migration_fixups_complete_count() also
+returns the unchanged count N, so the retry loop and its xe_wedged()
+check are bypassed altogether and __xe_ggtt_insert_bo_at() succeeds with
+PTEs written to the unfixed GGTT range.
 
-Add unprep_vma_destroy() to check xe_vma_userptr_check_repin() while
-clearing XE_VMA_DESTROYED under the notifier lock and queue invalidated
-non-fault-mode userptr VMAs onto vm->userptr.invalidated.
-
-Fixes: b06d47be7c83 ("drm/xe: Port Xe to GPUVA")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: stable@vger.kernel.org # v6.12+
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 35 ++++++++++++++++++++++++-----------
- 1 file changed, 24 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dd855876f571..75be5e5329bd 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -44,6 +44,7 @@
- #include "xe_tile.h"
- #include "xe_tlb_inval.h"
- #include "xe_trace_bo.h"
-+#include "xe_userptr.h"
- #include "xe_vm_madvise.h"
- #include "xe_wa.h"
- 
-@@ -2401,6 +2402,26 @@ static void prep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
- 		xe_vm_remove_vma(vm, vma);
- }
- 
-+static void unprep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
-+			       bool post_commit)
-+{
-+	xe_svm_notifier_lock(vm);
-+	vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-+	if (IS_ENABLED(CONFIG_DRM_GPUSVM) && !xe_vm_in_fault_mode(vm) &&
-+	    xe_vma_is_userptr(vma) &&
-+	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
-+		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
-+
-+		spin_lock(&vm->userptr.invalidated_lock);
-+		list_move_tail(&uvma->userptr.invalidate_link,
-+			       &vm->userptr.invalidated);
-+		spin_unlock(&vm->userptr.invalidated_lock);
-+	}
-+	xe_svm_notifier_unlock(vm);
-+	if (post_commit)
-+		xe_vm_insert_vma(vm, vma);
-+}
-+
- #undef ULL
- #define ULL	unsigned long long
- 
-@@ -3093,13 +3114,8 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 
- 		xe_vm_assert_write_mode_or_garbage_collector(vm);
- 
--		if (vma) {
--			xe_svm_notifier_lock(vm);
--			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
--			xe_svm_notifier_unlock(vm);
--			if (post_commit)
--				xe_vm_insert_vma(vm, vma);
--		}
-+		if (vma)
-+			unprep_vma_destroy(vm, vma, post_commit);
- 		break;
- 	}
- 	case DRM_GPUVA_OP_REMAP:
-@@ -3117,9 +3133,6 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 			xe_vma_destroy_unlocked(op->remap.next);
- 		}
- 		if (vma) {
--			xe_svm_notifier_lock(vm);
--			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
--			xe_svm_notifier_unlock(vm);
- 			if (post_commit) {
- 				/*
- 				 * Restore the old va range, in case of the
-@@ -3131,8 +3144,8 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 					op->remap.old_start;
- 				op->base.remap.unmap->va->va.range =
- 					op->remap.old_range;
--				xe_vm_insert_vma(vm, vma);
- 			}
-+			unprep_vma_destroy(vm, vma, post_commit);
- 		}
- 		break;
- 	}
-
----
-base-commit: d05450d36ef3d0f6e4ce4b26a831003847a7e75d
-change-id: 20261119-userptr-race-7b7546d0111c
-
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119141741.1720=
+650-1-tomasz.lis@intel.com?part=3D2
