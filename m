@@ -2,28 +2,66 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBAA0606A32A
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 08:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08ADD606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 08:05:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JpnSstNM
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 856EA10FFD4;
-	Thu, 19 Nov 2026 08:05:28 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2ED510FFC2;
- Thu, 19 Nov 2026 08:05:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4321641570973218633=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B11E610FFC2;
+	Thu, 19 Nov 2026 08:05:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B61EB10FFE8;
+ Thu, 19 Nov 2026 08:05:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795075537; x=1826611537;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=IJ6joWbz1UgYrLRxC/e1sHS4cHsf7fO4DIgbtXHJzbk=;
+ b=JpnSstNMw4nbA63kd1UcUQb8CTQWeWI6NbPRmFOr1v40S2a91Y9/NRCR
+ c4jwbD1Bcw7/x+RCOLWk6qTVFJ2/6AxuGyBD9feg8vfDrSuPSkh+R/2P/
+ 6YbwItwqPTDXvlJpsnt4qBiM0d6vd7gt8jb2LqcB0d0t30Nv+75W1Jnta
+ J9dVGoK96+2OVMRrAS6EGO1iyQP7MsqWnhqVpD9PaepUcHe/mz4n52Kld
+ pi8X5It8zacWDbh18xDeX5u0GrvkC4S72SVv2+U55URJMBswTTpvgFJaM
+ 5WP1URFGbf9Ku3InmPnrQd1ftDEF4uA87GJ/6f45gismdBA4AgoAfmFn7 g==;
+X-CSE-ConnectionGUID: sv3H0Uy4Sr6i8H0U0+i01g==
+X-CSE-MsgGUID: +PMtZ450Rcmd1TLmmiHUqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3964663"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
+   d="scan'208";a="3964663"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 00:05:37 -0800
+X-CSE-ConnectionGUID: D6bImurKT2eZ4VbNJMzLdw==
+X-CSE-MsgGUID: vXx2w6UcTcqQeuVtZxjJGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10513346"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.76])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 00:05:32 -0800
+Date: Thu, 19 Nov 2026 10:05:30 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <av6tygXTIOlGV7vc@jlahtine-mobl>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_docs=3A_ioctl-number=3A_upd?=
- =?utf-8?q?ate_entries_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Randy Dunlap" <rdunlap@infradead.org>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Nov 2026 08:05:27 -0000
-Message-ID: <179507552785.49421.18132393275638203995@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261119053514.255348-1-rdunlap@infradead.org>
-In-Reply-To: <20261119053514.255348-1-rdunlap@infradead.org>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +71,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============4321641570973218633==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave & Sima,
 
-== Series Details ==
+Here goes drm-intel-fixes PR towards v7.4-rc4.
 
-Series: docs: ioctl-number: update entries (rev2)
-URL   : https://patchwork.freedesktop.org/series/178589/
-State : success
+One regression fix for CML/KBL 4K displays and one DSB programming fix.
 
-== Summary ==
+Regards, Joonas
 
-CI Bug Log - changes from xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291_BAT -> xe-pw-178589v2_BAT
-====================================================
+***
 
-Summary
--------
+drm-intel-fixes-2026-11-19:
 
-  **SUCCESS**
+- Regression fix for GitLab #16595 and #17423: 4K displays corrupt/black on CML/KBL
+- DSB programming fix for GOSUB
 
-  No regressions found.
+The following changes since commit aebb7274476403040d582c61478df8f4a7bf9cd3:
 
-  
+  Linux 7.4-rc3 (2026-11-15 14:30:11 -0800)
 
-Participating hosts (15 -> 15)
-------------------------------
+are available in the Git repository at:
 
-  No changes in participating hosts
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-11-19
 
+for you to fetch changes up to 715f145f6204363a50853eb15719dc860db0bc01:
 
-Changes
--------
+  drm/i915/dsb: Realign GOSUB only for QW slots 6 and 7 (2026-11-16 11:12:07 +0200)
 
-  No changes found
+----------------------------------------------------------------
+- Regression fix for GitLab #16595 and #17423: 4K displays corrupt/black on CML/KBL
+- DSB programming fix for GOSUB
 
+----------------------------------------------------------------
+Hanson Wang (1):
+      drm/i915/dsb: Realign GOSUB only for QW slots 6 and 7
 
-Build changes
--------------
+Ville Syrjälä (1):
+      drm/i915/cdclk: Ignore SWF18 in SKL CDCLK sanitization
 
-  * Linux: xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291 -> xe-pw-178589v2
-
-  IGT_9198: 9198
-  xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291: 2bdca9b1f8638ef27955d61c149bc6fac856d291
-  xe-pw-178589v2: 178589v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178589v2/index.html
-
---===============4321641570973218633==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>docs: ioctl-number: update entries (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178589/">https://patchwork.freedesktop.org/series/178589/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178589v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178589v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291_BAT -&gt; xe-pw-178589v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291 -&gt; xe-pw-178589v2</li>
-</ul>
-<p>IGT_9198: 9198<br />
-  xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291: 2bdca9b1f8638ef27955d61c149bc6fac856d291<br />
-  xe-pw-178589v2: 178589v2</p>
-
-</body>
-</html>
-
---===============4321641570973218633==--
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 13 +------------
+ drivers/gpu/drm/i915/display/intel_dsb.c   | 16 ++++++++++------
+ 2 files changed, 11 insertions(+), 18 deletions(-)
