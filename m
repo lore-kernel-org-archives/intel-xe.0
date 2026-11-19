@@ -2,55 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C01DE606A325
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 17:22:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D48060A2600
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 17:24:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UfL9Z3zQ
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kfgTh1Wc
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85B9410ECA9;
-	Thu, 19 Nov 2026 17:22:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C97A10E5AD;
- Thu, 19 Nov 2026 17:22:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE5D210F003;
+	Thu, 19 Nov 2026 17:24:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9543810EEE1;
+ Thu, 19 Nov 2026 17:24:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795108948; x=1826644948;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bI4/yJI19LpfwRreqXrGmSQsYYRm4+Xlf05gPkY87mY=;
- b=UfL9Z3zQOyxfodoiIlh7u4KOTtHHedGQK0nM7C2rVHvC8CkTD+RwF6C+
- f1SmWWUIbMODCe3MpxZ8rfDz8k5bkwBmWlzY8GlbgjJMRnshqYzAe59qm
- QksuefcM3BS//J42GNAvecxmPeV+7DKhJHpXU7u8AeMczjNURNYpLHiGs
- PEnXfbJEnye1WtL0gj+/S54Jqu6zTlai16wNRyNsdAzk6O9lRs9zT3GZ1
- EXoJqcNdQHf2Dey2zOdhn5iI3n1qzdENhBA6bnDT/mQysZ/TaeLpWZchY
- QRzThe/j3qZnspWRo2bw59no9RcNQdH/Pv9LHpLHhS7HKbUlsyanwTKXt A==;
-X-CSE-ConnectionGUID: T2qKyq+YTUSxKvBlqzu/FA==
-X-CSE-MsgGUID: QUr1CuBGTQePHorEo59Acw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3961730"
+ t=1795109049; x=1826645049;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=UQ71sU6zYzd/SSWqHxnzrNKZt+CZBGWiDB4bggmKr3k=;
+ b=kfgTh1WcQwnkrhwKKeVBF3w/WnPUfv3VcQ67Edex+06qexo8m3fVgnXq
+ Wmn5sUKadCZLiepHwf6RY/nD4MWMlTAgCG3Qsiuyyre9KmqtUQx7Chgfp
+ IjNsUPNWjbDvz22faxBYv7ntT5vANwBG6sC4Zg8PkCEuQwMWHN8xJgtp4
+ cIYY7Xv273CnjmgJgD1uE5JsG0MoBytdca02iKXqoumtjqRjeLvI6Wm1G
+ 81BEJjnwF+VL6L3PpP3JEAyccF7abo6feI821tE7ESW1XceYKolESnb+2
+ Dva3APf8VD91TaNO6Vhuvvcoedx4SjmTgUrnrzGeQ5n6ILcGsIA+wgnZV g==;
+X-CSE-ConnectionGUID: TwXmbOT4Qfi9sv5Bsjvexw==
+X-CSE-MsgGUID: qV25pJaKQL2prvEi/QvSJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3960123"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3961730"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 09:22:27 -0800
-X-CSE-ConnectionGUID: HWFSRE5FRVa/faNlVQwf3w==
-X-CSE-MsgGUID: hR2VtrSFS4G0kTjTSMkHsA==
+   d="scan'208";a="3960123"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 09:24:09 -0800
+X-CSE-ConnectionGUID: 2wAT42UiTw2ulVwHCNzVNw==
+X-CSE-MsgGUID: QgwcaKoZQ6qy+oLWx4PU1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10515021"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa002.jf.intel.com with ESMTP; 19 Nov 2026 09:22:26 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH] drm/i915/color: Program the 3D LUT on the plane's own pipe
- with joiner
-Date: Thu, 19 Nov 2026 22:29:25 +0530
-Message-ID: <20261119165925.683691-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.50.1
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10871779"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.91])
+ ([10.245.245.91])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 09:24:07 -0800
+Message-ID: <7aa15f50ed768eae3d192312d90568c81956fcb9.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/xe/svm: Initialize xpagemap to NULL in
+ xe_svm_get_pagemaps()
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Ian Rogers <irogers@google.com>, Matthew Brost
+ <matthew.brost@intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, llvm@lists.linux.dev, Elkin Cruz
+ <elkin@google.com>
+Date: Thu, 19 Nov 2026 18:24:04 +0100
+In-Reply-To: <20261119170716.1523667-1-irogers@google.com>
+References: <20261119170716.1523667-1-irogers@google.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,50 +69,61 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With joiner, a secondary pipe plane's uapi.crtc points at the primary
-CRTC. intel_color_load_3dlut() and intel_color_plane_commit_arm() use
-it, so the 3D LUT is loaded and enabled twice on the primary pipe and
-never on the secondary, leaving the secondary pipe's part of the screen
-without it.
+On Thu, 2026-11-19 at 09:07 -0800, Ian Rogers wrote:
+> On integrated Intel Xe GPUs (!IS_DGFX), xe->info.mem_region_mask has
+> no
+> per-tile VRAM bits set, so every iteration of for_each_tile() in
+> xe_svm_get_pagemaps() hits 'continue' without assigning 'xpagemap'.
+> The
+> post-loop IS_ERR(xpagemap) check then evaluates an uninitialized
+> stack
+> pointer on every fault/SVM VM creation.
+>=20
+> Initialize 'xpagemap' to NULL so IS_ERR(xpagemap) evaluates false
+> when no
+> VRAM regions exist.
+>=20
+> Found via an x86_64 LLVM=3D1 (Clang 21.1.8) allyesconfig audit with
+> -Wconditional-uninitialized enabled; fix and changelog drafted with
+> an AI
+> coding assistant. Build-tested under LLVM=3D1 W=3D1 (-Werror) and
+> -Wconditional-uninitialized; not runtime-tested on Intel Xe hardware.
+>=20
+> Fixes: 8a52f4d9b1ef ("drm/xe: Use the drm_pagemap cache and
+> shrinker")
+> Signed-off-by: Ian Rogers <irogers@google.com>
 
-Use hw.crtc, the CRTC the plane is actually on.
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-Cc: Uma Shankar <uma.shankar@intel.com>
-Fixes: 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thanks. Will add relevant Ccs from ("dim fixes") and push after CI
+completes.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 4070dc8d97d9..9060c29de533 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4278,7 +4278,7 @@ void intel_color_plane_commit_arm(struct intel_dsb *dsb,
- 				  const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
--	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
-+	struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
- 
- 	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
- 		glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
-@@ -4318,7 +4318,7 @@ intel_color_load_3dlut(struct intel_dsb *dsb,
- 		       const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
--	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
-+	struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
- 
- 	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
- 		glk_load_lut_3d(dsb, crtc, plane_state->hw.lut_3d);
--- 
-2.50.1
+/Thomas
 
+
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_svm.c | 2 +-
+> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_svm.c
+> b/drivers/gpu/drm/xe/xe_svm.c
+> index bc6902b5bf57..22cc7ed19d8a 100644
+> --- a/drivers/gpu/drm/xe/xe_svm.c
+> +++ b/drivers/gpu/drm/xe/xe_svm.c
+> @@ -2055,7 +2055,7 @@ xe_pagemap_find_or_create(struct xe_device *xe,
+> struct drm_pagemap_cache *cache,
+> =C2=A0static int xe_svm_get_pagemaps(struct xe_vm *vm)
+> =C2=A0{
+> =C2=A0	struct xe_device *xe =3D vm->xe;
+> -	struct xe_pagemap *xpagemap;
+> +	struct xe_pagemap *xpagemap =3D NULL;
+> =C2=A0	struct xe_tile *tile;
+> =C2=A0	int id;
+> =C2=A0
