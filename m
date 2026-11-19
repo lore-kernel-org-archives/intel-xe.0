@@ -2,114 +2,71 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D848606A32C
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC464606A320
 	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=FJ5z9NUD
+	dkim=pass (2048-bit key, unprotected) header.d=mailbox.org header.i=@mailbox.org header.a=rsa-sha256 header.s=mail20150812 header.b=wrFrTipr
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB17411251F;
-	Thu, 19 Nov 2026 15:25:28 +0000 (UTC)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
- [209.85.128.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E27DC1124F3
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 14:56:25 +0000 (UTC)
-Received: by mail-wm1-f49.google.com with SMTP id
- 5b1f17b1804b1-4bb5b33e2ffso44695e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 06:56:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20260707; t=1795100184; x=1795704984;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-transfer-encoding:content-disposition
- :content-type:mime-version:references:message-id:subject:cc:to:from
- :date:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=bMbyjACtLzAau3mHjynkxDTW6eWUIU5ieVZSzXwOIHE=;
- b=FJ5z9NUDZ3OWI8Us/hE1R93t1ND1Qr+aR6DXb5P6lLPfszWJJijl79lLXoQL5DU4+i
- O8VnF4wgdqMxhgtBuI5zv2s4OqpGHyGTCNzrlK0BWaMJY0egbb4G7FWeepE6H5T9i3VO
- PIB36XmAlj99Xg5OXOsHE7+zMlHTQzgA5mjocbKKVO5sAvCn86yI8OlQ86gHqFOIlkI8
- 7YYkxVN/UASDwCn5sRXteq49+xm47cZNRqXu6yCww8rFWqG+M/qCulC1ufS2kOLS8wB0
- jM2moB8eT3nw53iFkuiMRQjjYyBm1DLYCgq3LOmAKQhSmCYSwgZarGBQ7qZ3Mf7hbf2X
- Kqvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1795100184; x=1795704984;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :content-type:mime-version:references:message-id:subject:cc:to:from
- :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to:content-type;
- bh=bMbyjACtLzAau3mHjynkxDTW6eWUIU5ieVZSzXwOIHE=;
- b=wHKgaEsoEazbvKcxCxI71M7Gf+DXIgcO4GBEygS/UBZdCq9NKGlzKFo6PQiNa2OhdF
- k0EwL0H2bQQOLpBile0YFVmJNV2TkVVMVlRSwC3mCeJdJsxIpfpfNiGbnj3NiwP6344p
- cx/lI/CsI7b0VkUfRFnBTX6ruO+YMwJrAHWBn9y/2oOA5Sd1qeY5f38x096/ji0OBo5I
- tz1jhMxn3ew5HD5XlBvrfutnZd8BgFOg1ba4JJTRao/dVB/LmQVaxUgsJ4DDRdCw42Ex
- NrEZbSdDABWZDTin3uHD4eJdDSyeScTxRz+sn9fJbgwLPktWtzxc3RntIFsGHPrI7K7G
- IQbw==
-X-Forwarded-Encrypted: i=1;
- AL+hErFv11IRoVUBCaoPRUfKXGv131vnKhW4SUCEZNyBf4pKTkwXR3uzBsZuqvqINHaujeMeDNT/1Nelcw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z8KC+l983E9glu7N0bRqsxIduDOP7o6eQjyoQRCLNNuJbxWM/aN
- 3RbgfBuU976gTyw3rvItY/D0DCM9Xmcj22EyBc0TSRTDpJdBicPkVr+iFqKnIOfkYA==
-X-Gm-Gg: AYBFou047z+CU1wlYtziyTyL+fXKHWJUiRMMGLnFXbLRAGmohuXpwoMIdKzjM0c07me
- GW6NpNMXDtR1cPPzkgke84C8GaVXpgTffB9IXMqTCUUv0AGQVo6M2TlLPuLC9jrmV583L2yE4sM
- CbgrbGVyP1tetWtAbSgLxjGNPqxwZaRWHbGFLBQPnuIcI5qkLqT5X+CahrmgRy/ehOwNFBzKbdp
- bkX6YbkGTwYGAX2BCDWUBpADrrQwFZNXNEaWBT7ipeB20kKHzKfaY/vSQvMHHvngUydPpzcfSxQ
- 45XtiGrehr3FOKWIHNys0bxHAFgRDDkhrmQjvIyBdFwjN2/jfG9QKuDB3aV4+EOE00gNXHSewei
- bHo0Nzri22yS0NIcfVvR7pkN4aoY/tQ79OQ8SnlqYdjOJYIT3fDxC4viFvkyd0xQr1p5p2QTF59
- fiz806bhFA7kPBEPJKAFgLdDc6CW6okZZd6+wP7FOYa4fwedUS8JrwXEXo+ECfYnDBFoLAcnjcS
- yHh4ySb3C3vb8orvTJ1+WUcYwnIDHSUbhML+2v+qw9c0oBo5uChk109gkafKa1reWzLUaRh6IED
- GLswWI7aVzw8l5xAIoMjRNRTxRUVS0wadlhahoWyGRUPcsOeduI51qmsw6AfEhgNo2DLDSM=
-X-Received: by 2002:a05:600c:1d01:b0:4a1:e384:5e12 with SMTP id
- 5b1f17b1804b1-4bb85193dc1mr748295e9.7.1795100183663; 
- Thu, 19 Nov 2026 06:56:23 -0800 (PST)
-Received: from google.com (160.193.189.35.bc.googleusercontent.com.
- [35.189.193.160]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4bb853b216esm43338685e9.12.2026.11.19.06.56.22
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 19 Nov 2026 06:56:22 -0800 (PST)
-Date: Thu, 19 Nov 2026 14:56:18 +0000
-From: Mostafa Saleh <smostafa@google.com>
-To: Alex Williamson <alex@shazbot.org>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Randy Dunlap <rdunlap@infradead.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>,
- Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- David Lechner <dlechner@baylibre.com>, Armin Wolf <W_Armin@gmx.de>,
- Thierry Reding <thierry.reding@kernel.org>,
- Mike Rapoport <rppt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
- Karl Mehltretter <kmehltretter@gmail.com>,
- "Paul E . McKenney" <paulmck@kernel.org>, Borislav Petkov <bp@alien8.de>,
- Dapeng Mi <dapeng1.mi@linux.intel.com>, Marco Elver <elver@google.com>,
- Ethan Nelson-Moore <enelsonmoore@gmail.com>,
- Jeff Layton <jlayton@kernel.org>, Bradley Morgan <brads@mainlining.org>,
- Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>,
- Pnina Feder <pnina.feder@mobileye.com>, Mete Durlu <meted@linux.ibm.com>,
- Aaron Tomlin <atomlin@atomlin.com>, Rio <rioo.tsukatsukii@gmail.com>,
- Feng Tang <feng.tang@linux.alibaba.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
- linux-trace-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Yishai Hadas <yishaih@nvidia.com>,
- Longfang Liu <liulongfang@huawei.com>, Ankit Agrawal <ankita@nvidia.com>,
- Brett Creeley <brett.creeley@amd.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>,
- Julian Ruess <julianr@linux.ibm.com>, Nipun Gupta <nipun.gupta@amd.com>,
- Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Eric Auger <eric.auger@redhat.com>, Pranjal Shrivastava <praan@google.com>,
- Ioana Ciornei <ioana.ciornei@nxp.com>, qat-linux@intel.com,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- kvm@vger.kernel.org
-Subject: Re: [PATCH] vfio: Allow untainted use of driver_override
-Message-ID: <av8OEgaW0jEJC1OF@google.com>
-References: <DMYH4ED3GWDO.29DGXPK4M82VR@kernel.org>
- <20261118235645.2907908-2-alex@shazbot.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1885111252E;
+	Thu, 19 Nov 2026 15:25:29 +0000 (UTC)
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E93310E680;
+ Thu, 19 Nov 2026 10:20:22 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519MLKEM768 server-signature RSA-PSS (4096 bits) server-digest
+ SHA256) (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4jVZGq6rjlzMm1S;
+ Thu, 19 Nov 2026 11:20:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1795083620; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=kMLYuvKF8dKdiwmDA59a1qSto363i7DFLCqovWncpVM=;
+ b=wrFrTiprp0Ygwj7fisQqKLfMWazzJwQS8HPNFqbCcn3xMC23c+XlYnmWGpPY6OwTsCFYcG
+ pjdBV2XlPMgXizD5IHA860ywzUkD+zPnBEGC3P1iYty0h7dFnuiza4M6w6o0En4MdrFa29
+ +z8/8pstoFJyzCxAaLcosYSfYnFvqRobT36nmnUt0/xlqfaGVRZ2fcD0Ifm0zgDEtu/5+n
+ P8Q5PrjWKULrK0PMh7Putf64gTqx4d0cgQar9yKkwd/OUN6051FoFULV5Tr2btX33lJYti
+ 3up4UWipIuXn1wiDtyGvTg7fYqQDSjJUVFutoAn1IjQz0zTDogOUfQ0NPiL7ZQ==
+Message-ID: <11c1451c97fa27ec3379965d13a6eea64e386cc3.camel@mailbox.org>
+Subject: Re: [PATCH v2 0/3] dma-buf: dma-fence: Remove dma_fence_init64()
+From: Philipp Stanner <phasta@mailbox.org>
+To: Philipp Stanner <phasta@kernel.org>, Sumit Semwal
+ <sumit.semwal@linaro.org>,  Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Sunil Khatri
+ <sunil.khatri@amd.com>,  Vitaly Prosyak <vitaly.prosyak@amd.com>, Prike
+ Liang <Prike.Liang@amd.com>, Thomas =?ISO-8859-1?Q?Hellstr=F6m?=	
+ <thomas.hellstrom@linux.intel.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>,  David Rosca <david.rosca@amd.com>, Timur
+ =?ISO-8859-1?Q?Krist=F3f?= <timur.kristof@gmail.com>, Maxime Ripard
+ <mripard@kernel.org>, Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ =?ISO-8859-1?Q?Ma=EDra?= Canal	 <mcanal@igalia.com>, Raspberry Pi Kernel
+ Maintenance	 <kernel-list@raspberrypi.com>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ imagination@lists.freedesktop.org, lima@lists.freedesktop.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, virtualization@lists.linux.dev, 
+ spice-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-tegra@vger.kernel.org, linux-iio@vger.kernel.org, 
+ linux-usb@vger.kernel.org, rust-for-linux@vger.kernel.org
+Date: Thu, 19 Nov 2026 11:20:14 +0100
+In-Reply-To: <20261118134522.1646892-2-phasta@kernel.org>
+References: <20261118134522.1646892-2-phasta@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.2 (3.60.2-3.fc44) 
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261118235645.2907908-2-alex@shazbot.org>
+X-MBO-RS-ID: e0df46cc69f1b87359b
+X-MBO-RS-META: 4qqptwxqro4tns8nyafutn165yabqokk
 X-Mailman-Approved-At: Thu, 19 Nov 2026 15:25:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -120,245 +77,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-23.3 required=3.0 tests=BAYES_00,DKIMWL_WL_MED,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_IN_DEF_DKIM_WL autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 04:56:44PM -0700, Alex Williamson wrote:
-> Driver overrides are the standard mechanism for binding vfio drivers
-> to devices.  With the introduction of the support_driver_override flag
-> in the core driver struct, it's now required for drivers to declare
-> themselves as driver_override compatible, otherwise driver_override
-> bindings will be denied or generate a kernel taint.
-> 
-> Set the support_driver_override flag on the driver struct across all
-> vfio drivers.
-> 
-> Cc: Yishai Hadas <yishaih@nvidia.com>
-> Cc: Longfang Liu <liulongfang@huawei.com>
-> Cc: Ankit Agrawal <ankita@nvidia.com>
-> Cc: Brett Creeley <brett.creeley@amd.com>
-> Cc: Giovanni Cabiddu <giovanni.cabiddu@intel.com>
-> Cc: Michał Winiarski <michal.winiarski@intel.com>
-> Cc: Julian Ruess <julianr@linux.ibm.com>
-> Cc: Nipun Gupta <nipun.gupta@amd.com>
-> Cc: Nikhil Agarwal <nikhil.agarwal@amd.com>
-> Cc: Eric Auger <eric.auger@redhat.com>
-> Cc: Mostafa Saleh <smostafa@google.com>
-> Cc: Pranjal Shrivastava <praan@google.com>
-> Cc: Ioana Ciornei <ioana.ciornei@nxp.com>
-> Cc: qat-linux@intel.com
-> Cc: virtualization@lists.linux.dev
-> Cc: intel-xe@lists.freedesktop.org
-> Cc: kvm@vger.kernel.org
-> Signed-off-by: Alex Williamson <alex@shazbot.org>
+On Wed, 2026-11-18 at 14:45 +0100, Philipp Stanner wrote:
+> Philipp Stanner (3):
+> =C2=A0 dma-buf: dma-fence: Add flags parameter to dma_fence_init()
+> =C2=A0 dma-buf: Port users of dma_fence_init64()
+> =C2=A0 dma-buf: dma-fence: Remove dma_fence_init64()
 
-Reviewed-by: Mostafa Saleh <smostafa@google.com>
+Applied to drm-misc-next with the Rbs.
 
-Thanks,
-Mostafa
+Thx guys.
 
-> ---
-> 
-> Uwe, this should cover all the vfio drivers that expect to use
-> driver_override.  Thanks,
-> 
-> Alex
-> 
->  drivers/vfio/cdx/main.c                        | 1 +
->  drivers/vfio/fsl-mc/vfio_fsl_mc.c              | 1 +
->  drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c | 3 ++-
->  drivers/vfio/pci/ism/main.c                    | 3 ++-
->  drivers/vfio/pci/mlx5/main.c                   | 3 ++-
->  drivers/vfio/pci/nvgrace-gpu/main.c            | 3 ++-
->  drivers/vfio/pci/pds/pci_drv.c                 | 3 ++-
->  drivers/vfio/pci/qat/main.c                    | 3 ++-
->  drivers/vfio/pci/vfio_pci.c                    | 3 ++-
->  drivers/vfio/pci/virtio/main.c                 | 3 ++-
->  drivers/vfio/pci/xe/main.c                     | 3 ++-
->  drivers/vfio/platform/vfio_amba.c              | 1 +
->  drivers/vfio/platform/vfio_platform.c          | 1 +
->  13 files changed, 22 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/vfio/cdx/main.c b/drivers/vfio/cdx/main.c
-> index 28dc8c825600..fb7679bf92fd 100644
-> --- a/drivers/vfio/cdx/main.c
-> +++ b/drivers/vfio/cdx/main.c
-> @@ -358,6 +358,7 @@ static struct cdx_driver vfio_cdx_driver = {
->  	.match_id_table	= vfio_cdx_table,
->  	.driver	= {
->  		.name	= "vfio-cdx",
-> +		.support_driver_override = true,
->  	},
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/fsl-mc/vfio_fsl_mc.c b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-> index 15b05b8c0c90..1603f81e0257 100644
-> --- a/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-> +++ b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-> @@ -597,6 +597,7 @@ static struct fsl_mc_driver vfio_fsl_mc_driver = {
->  	.remove		= vfio_fsl_mc_remove,
->  	.driver	= {
->  		.name	= "vfio-fsl-mc",
-> +		.support_driver_override = true,
->  	},
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> index c82c59246a3f..5c56aff8db01 100644
-> --- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> +++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-> @@ -1737,7 +1737,8 @@ static struct pci_driver hisi_acc_vfio_pci_driver = {
->  	.id_table = hisi_acc_vfio_pci_table,
->  	.probe = hisi_acc_vfio_pci_probe,
->  	.remove = hisi_acc_vfio_pci_remove,
-> -	.driver = { .pm = pm_ptr(&hisi_acc_vf_pm_ops) },
-> +	.driver = { .pm = pm_ptr(&hisi_acc_vf_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &hisi_acc_vf_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/ism/main.c b/drivers/vfio/pci/ism/main.c
-> index cce3bdf1f070..263b377e87c4 100644
-> --- a/drivers/vfio/pci/ism/main.c
-> +++ b/drivers/vfio/pci/ism/main.c
-> @@ -399,7 +399,8 @@ static struct pci_driver ism_vfio_pci_driver = {
->  	.id_table = ism_device_table,
->  	.probe = ism_vfio_pci_probe,
->  	.remove = ism_vfio_pci_remove,
-> -	.driver	= { .pm = pm_ptr(&ism_vfio_pm_ops) },
-> +	.driver	= { .pm = pm_ptr(&ism_vfio_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &ism_vfio_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/mlx5/main.c b/drivers/vfio/pci/mlx5/main.c
-> index 18a6d224b1fd..63c89e461be8 100644
-> --- a/drivers/vfio/pci/mlx5/main.c
-> +++ b/drivers/vfio/pci/mlx5/main.c
-> @@ -1451,7 +1451,8 @@ static struct pci_driver mlx5vf_pci_driver = {
->  	.id_table = mlx5vf_pci_table,
->  	.probe = mlx5vf_pci_probe,
->  	.remove = mlx5vf_pci_remove,
-> -	.driver	= { .pm = pm_ptr(&mlx5vf_pm_ops) },
-> +	.driver	= { .pm = pm_ptr(&mlx5vf_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &mlx5vf_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/nvgrace-gpu/main.c b/drivers/vfio/pci/nvgrace-gpu/main.c
-> index 5ddec340b73b..946da32c61ff 100644
-> --- a/drivers/vfio/pci/nvgrace-gpu/main.c
-> +++ b/drivers/vfio/pci/nvgrace-gpu/main.c
-> @@ -1438,7 +1438,8 @@ static struct pci_driver nvgrace_gpu_vfio_pci_driver = {
->  	.id_table = nvgrace_gpu_vfio_pci_table,
->  	.probe = nvgrace_gpu_probe,
->  	.remove = nvgrace_gpu_remove,
-> -	.driver = { .pm = pm_ptr(&nvgrace_gpu_pm_ops) },
-> +	.driver = { .pm = pm_ptr(&nvgrace_gpu_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &nvgrace_gpu_vfio_pci_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/pds/pci_drv.c b/drivers/vfio/pci/pds/pci_drv.c
-> index cf7e33d4d17b..1fcef987f1b0 100644
-> --- a/drivers/vfio/pci/pds/pci_drv.c
-> +++ b/drivers/vfio/pci/pds/pci_drv.c
-> @@ -184,7 +184,8 @@ static struct pci_driver pds_vfio_pci_driver = {
->  	.id_table = pds_vfio_pci_table,
->  	.probe = pds_vfio_pci_probe,
->  	.remove = pds_vfio_pci_remove,
-> -	.driver = { .pm = pm_ptr(&pds_vfio_pm_ops) },
-> +	.driver = { .pm = pm_ptr(&pds_vfio_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &pds_vfio_pci_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/qat/main.c b/drivers/vfio/pci/qat/main.c
-> index 69448fa57df4..8a616f9b6494 100644
-> --- a/drivers/vfio/pci/qat/main.c
-> +++ b/drivers/vfio/pci/qat/main.c
-> @@ -695,7 +695,8 @@ static struct pci_driver qat_vf_vfio_pci_driver = {
->  	.id_table = qat_vf_vfio_pci_table,
->  	.probe = qat_vf_vfio_pci_probe,
->  	.remove = qat_vf_vfio_pci_remove,
-> -	.driver	= { .pm = pm_ptr(&qat_vf_pm_ops) },
-> +	.driver	= { .pm = pm_ptr(&qat_vf_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &qat_vf_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
-> index e7c012febe91..fde2c3fc88eb 100644
-> --- a/drivers/vfio/pci/vfio_pci.c
-> +++ b/drivers/vfio/pci/vfio_pci.c
-> @@ -260,7 +260,8 @@ static struct pci_driver vfio_pci_driver = {
->  	.remove			= vfio_pci_remove,
->  	.sriov_configure	= vfio_pci_sriov_configure,
->  	.err_handler		= &vfio_pci_err_handlers,
-> -	.driver		= { .pm = pm_ptr(&vfio_pci_pm_ops) },
-> +	.driver		= { .pm = pm_ptr(&vfio_pci_pm_ops),
-> +			    .support_driver_override = true },
->  	.driver_managed_dma	= true,
->  };
->  
-> diff --git a/drivers/vfio/pci/virtio/main.c b/drivers/vfio/pci/virtio/main.c
-> index 123ff5193812..1e02a8fd4a61 100644
-> --- a/drivers/vfio/pci/virtio/main.c
-> +++ b/drivers/vfio/pci/virtio/main.c
-> @@ -222,7 +222,8 @@ static struct pci_driver virtiovf_pci_driver = {
->  	.id_table = virtiovf_pci_table,
->  	.probe = virtiovf_pci_probe,
->  	.remove = virtiovf_pci_remove,
-> -	.driver = { .pm = pm_ptr(&virtiovf_pm_ops) },
-> +	.driver = { .pm = pm_ptr(&virtiovf_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &virtiovf_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-> index 7dab3e024aa8..e0ab61f604de 100644
-> --- a/drivers/vfio/pci/xe/main.c
-> +++ b/drivers/vfio/pci/xe/main.c
-> @@ -592,7 +592,8 @@ static struct pci_driver xe_vfio_pci_driver = {
->  	.id_table = xe_vfio_pci_table,
->  	.probe = xe_vfio_pci_probe,
->  	.remove = xe_vfio_pci_remove,
-> -	.driver = { .pm = pm_ptr(&xe_vfio_pm_ops) },
-> +	.driver = { .pm = pm_ptr(&xe_vfio_pm_ops),
-> +		    .support_driver_override = true },
->  	.err_handler = &xe_vfio_pci_err_handlers,
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/platform/vfio_amba.c b/drivers/vfio/platform/vfio_amba.c
-> index fa754f203b2d..2c87caf1b7f7 100644
-> --- a/drivers/vfio/platform/vfio_amba.c
-> +++ b/drivers/vfio/platform/vfio_amba.c
-> @@ -137,6 +137,7 @@ static struct amba_driver vfio_amba_driver = {
->  	.id_table = vfio_amba_ids,
->  	.drv = {
->  		.name = "vfio-amba",
-> +		.support_driver_override = true,
->  	},
->  	.driver_managed_dma = true,
->  };
-> diff --git a/drivers/vfio/platform/vfio_platform.c b/drivers/vfio/platform/vfio_platform.c
-> index a4d3ace3e02d..93d06032cdde 100644
-> --- a/drivers/vfio/platform/vfio_platform.c
-> +++ b/drivers/vfio/platform/vfio_platform.c
-> @@ -116,6 +116,7 @@ static struct platform_driver vfio_platform_driver = {
->  	.remove		= vfio_platform_remove,
->  	.driver	= {
->  		.name	= "vfio-platform",
-> +		.support_driver_override = true,
->  	},
->  	.driver_managed_dma = true,
->  };
-> -- 
-> 2.54.0
-> 
+P.
