@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7705A606A901
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 20:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=E8fUEhyX
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE93F606A32A
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 20:55:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27CF710E8D5;
-	Thu, 19 Nov 2026 20:51:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7247C10F0E9;
- Thu, 19 Nov 2026 20:51:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795121475; x=1826657475;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YmNhKhHw+OyNl2UvecsUKm7lh+53yjye/thIK72lKbc=;
- b=E8fUEhyXQ49McdssNQG4BO1iStg4dDGH9eJN/XdTVFMmxx9Q+QcksG4w
- YWIqXa7txs0IQ5TjsNFu49s+ZCVPFP4BYwwOaAybOlAAAWVBhAbKcpDpl
- B4KyWInWHvyDsSXNJ30fqzGusEV0Gxv5Nej2WfdbuItKpCvfKwdFQgUdr
- L/5Nx2mqhYc9bGvOD74A3NLJ7WOhttB7YwYdyNg5Ob7AfwKcsk3wiz8pj
- G1aYI7Uggxvpaa3aYjXynT10Rk7E+VVes0ZqvNKAttmJUjwygFBupC7Dn
- deYrwlcSF6wTv74IFc//0/w22MzfDSLyHX1o+uEp5jhkIhItEyfmMym54 g==;
-X-CSE-ConnectionGUID: RihSph1dT6mm0+GUQwP1nA==
-X-CSE-MsgGUID: eskRsEXkQ8GVM7mhOi4YKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4030647"
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="4030647"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 12:51:14 -0800
-X-CSE-ConnectionGUID: 37AMoNCUT/eLc0CsTM5urw==
-X-CSE-MsgGUID: lhUXGxVeRgeWdpvpksJIew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="12511741"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.54])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 12:51:13 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 6/6] drm/i915/de: Make display registers unlocked for TGL+ on
- i915
-Date: Thu, 19 Nov 2026 22:50:40 +0200
-Message-ID: <20261119205040.31935-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261119205040.31935-1-ville.syrjala@linux.intel.com>
-References: <20261119205040.31935-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A85EC10F116;
+	Thu, 19 Nov 2026 20:55:33 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A473010E5CE;
+ Thu, 19 Nov 2026 20:55:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1263214064046123683=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Crescent_Island_PMT_support?=
+ =?utf-8?q?_=28rev20=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Nov 2026 20:55:31 -0000
+Message-ID: <179512173166.54497.11425035613845694327@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261119155438.40762-21-michael.j.ruhl@intel.com>
+In-Reply-To: <20261119155438.40762-21-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,76 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============1263214064046123683==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Now that the unclaimed register detection should survive
-without the lock there should be no reason to use the lock
-on most platforms.
+== Series Details ==
 
-Start by weaning TGL+ off the lock. Since some people have
-been using the (lockless) xe driver on TGL/etc. it should
-be fairly well established that serializing all register
-accesses is not needed on these platforms.
+Series: Crescent Island PMT support (rev20)
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : success
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_de.c | 26 +++++++++++++++++++++++--
- 1 file changed, 24 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index ebe3789e5441..5f7997a13764 100644
---- a/drivers/gpu/drm/i915/display/intel_de.c
-+++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -482,6 +482,26 @@ static const struct intel_mmio_funcs vlv_mmio_funcs = {
- 	.check_for_unclaimed_mmio_needs_lock = true,
- };
- 
-+#define TGL_MMIO_FLAGS __MMIO_UNCLAIMED
-+
-+static u32 tgl_mmio_read(struct intel_display *display, intel_reg_t reg)
-+{
-+	return __intel_de_read(display, reg, TGL_MMIO_FLAGS);
-+}
-+
-+static void tgl_mmio_write(struct intel_display *display, intel_reg_t reg, u32 val)
-+{
-+	__intel_de_write(display, reg, val, TGL_MMIO_FLAGS);
-+}
-+
-+#undef TGL_MMIO_FLAGS
-+
-+static const struct intel_mmio_funcs tgl_mmio_funcs = {
-+	.read = tgl_mmio_read,
-+	.write = tgl_mmio_write,
-+	.check_for_unclaimed_mmio = hsw_check_for_unclaimed_mmio,
-+};
-+
- #define LNL_MMIO_FLAGS __MMIO_WAKELOCK
- 
- static u32 lnl_mmio_read(struct intel_display *display, intel_reg_t reg)
-@@ -522,8 +542,10 @@ void intel_de_init(struct intel_display *display)
- 	 * rid of driver_is_i915().
- 	 */
- 	if (driver_is_i915()) {
--		if (DISPLAY_VER(display) >= 9 ||
--		    display->platform.broadwell || display->platform.haswell)
-+		if (DISPLAY_VER(display) >= 12)
-+			display->mmio.funcs = &tgl_mmio_funcs;
-+		else if (DISPLAY_VER(display) >= 9 ||
-+			 display->platform.broadwell || display->platform.haswell)
- 			display->mmio.funcs = &hsw_mmio_funcs;
- 		else if (display->platform.valleyview || display->platform.cherryview)
- 			display->mmio.funcs = &vlv_mmio_funcs;
--- 
-2.56.0
+CI Bug Log - changes from xe-6189-859a3f2c44944276c49ab8d35f0ffd31b02b19c5_BAT -> xe-pw-160717v20_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 14)
+------------------------------
+
+  Missing    (1): bat-bmg-3 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6189-859a3f2c44944276c49ab8d35f0ffd31b02b19c5 -> xe-pw-160717v20
+
+  IGT_9199: f28241ac1ad57574315e7bd31b174294cca2f29c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-6189-859a3f2c44944276c49ab8d35f0ffd31b02b19c5: 859a3f2c44944276c49ab8d35f0ffd31b02b19c5
+  xe-pw-160717v20: 160717v20
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v20/index.html
+
+--===============1263214064046123683==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Crescent Island PMT support (rev20)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160717/">https://patchwork.freedesktop.org/series/160717/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v20/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v20/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6189-859a3f2c44944276c49ab8d35f0ffd31b02b19c5_BAT -&gt; xe-pw-160717v20_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-bmg-3 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6189-859a3f2c44944276c49ab8d35f0ffd31b02b19c5 -&gt; xe-pw-160717v20</li>
+</ul>
+<p>IGT_9199: f28241ac1ad57574315e7bd31b174294cca2f29c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-6189-859a3f2c44944276c49ab8d35f0ffd31b02b19c5: 859a3f2c44944276c49ab8d35f0ffd31b02b19c5<br />
+  xe-pw-160717v20: 160717v20</p>
+
+</body>
+</html>
+
+--===============1263214064046123683==--
