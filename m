@@ -2,53 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11167606A325
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:39:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCCE606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:44:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=agmQRaBl
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=de7PTetd
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC24A1127C5;
-	Thu, 19 Nov 2026 23:39:41 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98CDF1127C5
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 23:39:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 845E910E8C3;
+	Thu, 19 Nov 2026 23:44:02 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84AB810E8C2;
+ Thu, 19 Nov 2026 23:43:56 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 9D2FF61407;
- Thu, 19 Nov 2026 23:39:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17E111F000C4;
- Thu, 19 Nov 2026 23:39:32 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 49E214393F;
+ Thu, 19 Nov 2026 23:43:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E73221F000CA;
+ Thu, 19 Nov 2026 23:43:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795131574;
- bh=cI7neNdWWYht8R2pRpPC6a7OtjZ1bTsM5Lm87GMQJ8Q=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To;
- b=agmQRaBlnRQz+4i2K34hHiWFet3cqNaGy+rIIuGNDMQyS6CCXYGX4f48su1vNmqTH
- lcWPu/37Ig2eOx3MisZbCN8uOn0eYQYK4As+PXpuBL8RPb6yhiBgIkTN7uCe9ip4RD
- ASwPDmxcgqVeGE0ekThVF+/G3URZLtIhCnE01BUQnMutEtMI5kKzV5e7CTMmgt3XiG
- u0iTgpes0A5UD9jLbGmE8Vtzf57UKmzeCEDWgFyTnRK7ooazfern61n/++lcQ4djh7
- 37YrgNelUeFr05yRxj5FJ4ooavph5VVbSDca7+8KQ48JgRk+pTQJN2O7Y7mXrCIU1n
- 8BVcyjloWlN2w==
-X-Archived-By: <archiver.kernel.org>
-Mime-Version: 1.0
+ s=k20260515; t=1795131836;
+ bh=t1eCgcy9b3WNHyq3M9rz9JT7lPvD4AfVY8O6VHdOGUc=;
+ h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+ b=de7PTetdNXzA9qjyadz+Vh65j+r/uKwfjt0VWP3zCPkr+BEnQlaBZ4MntPdES+VuC
+ VtdbHHXM5OCP8lRq4Mg5GUO6++0EiDuHfWvJk0PneluxNKHnJTYkCsuv1sX/wteqP+
+ YMMAA3fqm49DBdbP4mLX7rbs6zAm41wun4wlLgeLsYB7HzUCy9fnIA9vDBzsM3vAej
+ 6xySeD9l9rJ25ibO/asoU5H9eOcharVtTXJalVwWpd3K2DA5/ULRJ+OlFKHncZ+fH3
+ kszCYT5tFyHy0ys5sZvD+SVOWhW5yrNFNpNQnv8rpJbL0zxzkuWms1HUH8uC5/NhRc
+ oLz7k17wyTJLA==
+Message-ID: <sashiko-outbox-224212@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v12 10/12] drm/gud: add connector luminance support
+To: "Mario Limonciello" <mario.limonciello@amd.com>
+Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119-superm1-backlight-property-v12-10-89d5217d3618@amd.com>
+References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
+ <20261119-superm1-backlight-property-v12-10-89d5217d3618@amd.com>
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Nov 2026 00:39:31 +0100
-Message-Id: <DMZL176U197K.X7ODAO4CRAOY@kernel.org>
-Subject: Re: [PATCH 1/1] driver core: platform: tests: add a shared software
- node test case
-Cc: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- "driver-core@lists.linux.dev" <driver-core@lists.linux.dev>,
- "bartosz.golaszewski@oss.qualcomm.com"
- <bartosz.golaszewski@oss.qualcomm.com>, "heikki.krogerus@linux.intel.com"
- <heikki.krogerus@linux.intel.com>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20261118223023.19653-3-stuart.summers@intel.com>
- <20261118223023.19653-4-stuart.summers@intel.com>
- <av9hGMZz0SZyxCQR@ashevche-desk.local>
- <c45020ffef39314cee4093ba54e6ce7e0b1b187a.camel@intel.com>
-In-Reply-To: <c45020ffef39314cee4093ba54e6ce7e0b1b187a.camel@intel.com>
+Date: Thu, 19 Nov 2026 23:43:55 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,42 +48,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On Thu Nov 19, 2026 at 11:37 PM CET, Stuart Summers wrote:
-> On Thu, 2026-11-19 at 22:50 +0200, Andy Shevchenko wrote:
->> On Wed, Nov 18, 2026 at 10:30:23PM +0000, Stuart Summers wrote:
->> > Cover the pattern used by drm/xe + i2c-designware, where a software
->> > node
->> > assigned as a platform device's primary firmware node is handed to
->> > a
->> > second device via device_set_node(), and make sure removing that
->> > second
->> > device leaves the owner's node intact.
->> >=20
->> > A potential fix for this issue in the drm/xe driver is being
->> > discussed
->> > in [1].
->> >=20
->> > The signature in this case looks like this:
->>=20
->> > Oops: general protection fault, probably for non-canonical address
->> > 0x6b6b6b6b6b6b6b73
->>=20
->> This probably was a single line, make it so in the commit message
->> despite its
->> length.
->
-> Thanks for the review! Would you like me to fix that up and resend?
-> I'll likely need help merging so is this something that can be fixed up
-> as part of the merge?
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Medium] drm/gud: race on staged state in
+  gud_connector_set_luminance()
+--
 
-This can be fixed up on apply.
+commit 5745bfa73995dabc57cdf0005257260438071d7c
+Author: Mario Limonciello <mario.limonciello@amd.com>
 
-Did you check the Sashiko feedback?
+drm/gud: add connector luminance support
+
+This commit exposes GUD display brightness through the connector LUMINANCE
+property when CONFIG_DRM_LUMINANCE is enabled, resending the current
+display state and committing it from the .set_luminance callback on
+luminance-only updates.
+
+> diff --git a/drivers/gpu/drm/gud/gud_connector.c b/drivers/gpu/drm/gud/gu=
+d_connector.c
+> index ddbf3b3ebbca8..f00272f030c1c 100644
+> --- a/drivers/gpu/drm/gud/gud_connector.c
+> +++ b/drivers/gpu/drm/gud/gud_connector.c
+> @@ -13,6 +13,7 @@
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_encoder.h>
+>  #include <drm/drm_file.h>
+> +#include <drm/drm_framebuffer.h>
+>  #include <drm/drm_modeset_helper_vtables.h>
+>  #include <drm/drm_print.h>
+>  #include <drm/drm_probe_helper.h>
+> @@ -314,17 +315,52 @@ static int gud_connector_atomic_check(struct drm_co=
+nnector *connector,
+>  	return 0;
+>  }
+> =20
+> +/*
+> + * The device receives brightness as part of its display state, there is=
+ no
+> + * dedicated request. Resend the current configuration with the new lumi=
+nance
+> + * and apply it, so that a luminance change doesn't need a modeset.
+> + */
+> +static void gud_connector_set_luminance(const struct drm_connector_state=
+ *conn_state)
+> +{
+> +	struct drm_connector *connector =3D conn_state->connector;
+> +	struct gud_device *gdrm =3D to_gud_device(connector->dev);
+> +	struct drm_crtc_state *crtc_state =3D conn_state->crtc->state;
+> +	struct drm_plane_state *plane_state =3D gdrm->plane.state;
+> +	int idx, ret;
+> +
+> +	/*
+> +	 * gud_plane_atomic_check() sent the committed luminance with
+> +	 * GUD_REQ_SET_STATE_CHECK for these changes and gud_crtc_atomic_enable=
+()
+> +	 * applied it. A modeset that only changed the active state didn't.
+> +	 */
+> +	if (crtc_state->mode_changed || crtc_state->connectors_changed)
+> +		return;
+> +
+> +	if (drm_WARN_ON_ONCE(connector->dev, !plane_state->fb))
+> +		return;
+> +
+> +	ret =3D gud_state_check(gdrm, &crtc_state->mode, plane_state->fb->forma=
+t,
+> +			      plane_state->rotation, conn_state);
+> +	if (!ret && drm_dev_enter(connector->dev, &idx)) {
+> +		ret =3D gud_usb_set(gdrm, GUD_REQ_SET_STATE_COMMIT, 0, NULL, 0);
+> +		drm_dev_exit(idx);
+> +	}
+> +	if (ret)
+> +		gud_conn_err(connector, "Failed to set luminance", ret);
+> +}
+
+[Severity: Medium]
+Can a nonblocking luminance commit race with gud_plane_atomic_check() and
+clobber the display state staged on the device with GUD_REQ_SET_STATE_CHECK?
+
+For commits where mode_changed or connectors_changed is set,
+gud_plane_atomic_check() stages the new configuration on the device during
+drm_atomic_check_only(), before drm_atomic_helper_swap_state() waits for an
+in-flight nonblocking commit's hw_done completion, and
+gud_crtc_atomic_enable() later applies it with a payload-less
+GUD_REQ_SET_STATE_COMMIT.  Because commit_work runs
+gud_connector_set_luminance() after modeset locks are dropped, it can
+interleave with a subsequent modeset or property commit:
+
+CPU0 (commit B: modeset/rotation)   kworker (commit A: nonblocking luminanc=
+e)
+drm_mode_atomic_ioctl()
+  drm_atomic_check_only()
+    gud_plane_atomic_check()
+      gud_state_check()
+        /* stages B on device */
+  drm_atomic_helper_commit()
+    drm_atomic_helper_swap_state()
+      wait_for_completion(A->hw_done)
+                                    commit_tail()
+                                      ...
+                                      gud_connector_set_luminance()
+                                        gud_state_check()
+                                          /* overwrites device with A */
+                                        gud_usb_set(SET_STATE_COMMIT)
+                                      drm_atomic_helper_commit_hw_done()
+    ...
+    gud_crtc_atomic_enable()
+      gud_usb_set(SET_STATE_COMMIT)
+        /* re-commits A; B is lost */
+    gud_connector_set_luminance()
+      if (mode_changed || ...)
+        return;
+
+Similarly, because gud_connector_set_luminance() drops gdrm->ctrl_lock
+between gud_state_check() and gud_usb_set(GUD_REQ_SET_STATE_COMMIT), a
+concurrent DRM_MODE_ATOMIC_TEST_ONLY ioctl can run gud_plane_atomic_check()
+-> gud_state_check() between the two transfers and have its test-only state
+committed to the device.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119-superm1-ba=
+cklight-property-v12-0-89d5217d3618@amd.com?part=3D10
