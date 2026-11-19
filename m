@@ -2,42 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE575606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 12:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B6DF606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 12:51:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=eHBiF7iD
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mZh/YsjJ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A64AA10ECE3;
-	Thu, 19 Nov 2026 12:51:16 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3F9010ECE3
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 12:51:09 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id C919962531;
- Thu, 19 Nov 2026 12:51:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6300D1F000C6;
- Thu, 19 Nov 2026 12:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795092668;
- bh=9OQpEPmXCTT7fAdOGRulAaZvh2zZevnui6SrM5jr37U=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=eHBiF7iDEuzmxBYRWfNtpdjFpJuH8R3aV19XUnYxFGbPbWIp8us8kasPoBBEPPrv5
- K52tSY3oorHj1CvP+r8f7xNaE44CupT51VwsIkPnPKwESsVzl2a8wEvXifokeaRtML
- uAF9LmG0tO66+2hztDYyicYEeAU9OtDmLmDPeZP5R7FzIpUQDNfZMaz34rCuYjoyPv
- CopbzfS4lQiyXPEgbu6tZyty+NpQwtYB+suiWIUR3GqI1QoZaQfRhASRVFAmEVyBxN
- DmC/BtjUoBHjwuig/4NPyuh6T0xqXdB3xTj+k6JPW+OpOyYHLPnhGLMh+qMkQoRFYC
- t/6rEgWOF0t6A==
-Message-ID: <sashiko-outbox-223118@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v4 2/2] drm/xe: After VF migration, repeat BO mapping in
- progress
-To: "Tomasz Lis" <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261119123514.1658712-3-tomasz.lis@intel.com>
-References: <20261119123514.1658712-1-tomasz.lis@intel.com>
- <20261119123514.1658712-3-tomasz.lis@intel.com>
-Content-Type: text/plain; charset=utf-8
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5487610ED40;
+	Thu, 19 Nov 2026 12:51:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6630010ED40
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 12:51:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795092698; x=1826628698;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=wa8YLARvU2rZx7I34wSb+PzDux8J+SUwr3+OQQnA2yo=;
+ b=mZh/YsjJUvbsaAYRUV8PlHPAMohnaL3+IQotWC0mIxOk0aX9pgZ6V8cY
+ eXcXJvCjpiNEC9eQEAdpbnax2SU6qWLOuJevS5NF4fODCGAy1qqNDgtaH
+ FhHlGQ+bQ4rAEyGREY1AepL1+Z4KMWFThDCkTXPIfYX7imucgiA4DS+7u
+ HIzOM0njhqCdVgwyBGwamhIrOecHrUus7wP8YmIjJSk/C3HBDGQ6juyY+
+ n1tyNpJPKMcDBN10Y58n2dR12DuHsa/Br2KJestD4hwXdNo9eNdATZR2z
+ 2hsNQ1jUDaP8FEuIQDVIIvJbJikbW/mc249yv5FSvBCn8gG7inowHdSg6 g==;
+X-CSE-ConnectionGUID: GhjudJN3TWemQHhzTRLNlQ==
+X-CSE-MsgGUID: lmEJ903QSA+DzFthqn3VGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3821772"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
+   d="scan'208";a="3821772"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 04:51:37 -0800
+X-CSE-ConnectionGUID: uiDLpAaoTcyI0T5poYvmzw==
+X-CSE-MsgGUID: C4fDx3U7T0OsTIQd9D81QA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10677099"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.245.91])
+ ([10.245.245.91])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 04:51:36 -0800
+Message-ID: <d2c8112c02a1324473e3808aec2df793f60b9397.camel@linux.intel.com>
+Subject: Re: [PATCH 2/5] drm/xe: Requeue the rebind worker instead of
+ retrying in-line on -EAGAIN
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, Matthew Brost	
+ <matthew.brost@intel.com>, Himal Prasad Ghimiray	
+ <himal.prasad.ghimiray@intel.com>, Stuart Summers <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Nov 2026 13:51:33 +0100
+In-Reply-To: <20261119-userptr-repin-v1-2-af2e327833a9@intel.com>
+References: <20261119-userptr-repin-v1-0-af2e327833a9@intel.com>
+ <20261119-userptr-repin-v1-2-af2e327833a9@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 19 Nov 2026 12:51:07 +0000
+User-Agent: Evolution 3.58.3 (3.58.3-2.fc43) 
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,111 +67,193 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [High] drm/xe: dead -ERESTARTSYS check and busy-spin in
-  __xe_ggtt_insert_bo_at()
---
+On Thu, 2026-11-19 at 11:14 +0000, Matthew Auld wrote:
+> From: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+>=20
+> When the preempt rebind worker needs to retry, it currently jumps
+> back
+> and keeps holding vm->lock in write mode across the retry. Only VFs
+> with migration support drop the lock and requeue the worker.
+>=20
+> Holding the vm lock across retries needlessly blocks other users of
+> the
+> lock and other work on the ordered workqueue, and makes the retry
+> unfit
+> for conditions that may last for a while, like repeatedly invalidated
+> userptrs.
+>=20
+> Always drop the vm lock and requeue the worker on -EAGAIN. This also
+> fixes a leak of the preempt fences allocated in the failed attempt on
+> the existing VF path.
 
-commit b16142a275191b42c8c4d7d66be1c8cd542936f0
-Author: Tomasz Lis <tomasz.lis@intel.com>
+Do we need a Fixes: here?=20
 
-drm/xe: After VF migration, repeat BO mapping in progress
+Also needs a separate reviewer.
 
-This commit moves the VF post-migration retry loop from LRC creation in
-__xe_exec_queue_init() to GGTT BO insertion in __xe_ggtt_insert_bo_at() so
-that all GGTT BO mappings rewrite their PTEs if a VF migration occurs while
-mapping is in progress.
-
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 44480fad27679..ec770f2968a95 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-[ ... ]
-> @@ -1080,6 +1086,38 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *=
-ggtt, struct xe_bo *bo,
->  	}
->  	mutex_unlock(&ggtt->lock);
-> =20
-> +	if (!err) {
-> +		/*
-> +		 * If VF migration happens during BO mapping, some PTE value writes may
-> +		 * be ignored by HW. This can happen in case GGTT range changed; alrea=
-dy
-> +		 * set PTEs are moved by the VF restore, but xe_ggtt_map_bo() within VM
-> +		 * may still loop at old position. To be sure, redo all PTE writes.
-> +		 * Make this a loop as another VF migration could start immediately.
+>=20
+> The userptr invalidation injection state that forces one retry per
+> rebind sequence was a local variable that would be reset by a
+> requeue.
+> Move it to the vm.
+>=20
+> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 59=
+ ++++++++++++++++++++++++++----
+> ----------
+> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h |=C2=A0 8 ++++++
+> =C2=A02 files changed, 46 insertions(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 75be5e5329bd..ff8d355728fc 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -542,6 +542,31 @@ void xe_vm_resume_rebind_worker(struct xe_vm
+> *vm)
+> =C2=A0	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
+> =C2=A0}
+> =C2=A0
+> +#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+> +/*
+> + * Force one retry per rebind sequence. The sequence spans requeues
+> of the
+> + * worker, so the state must live in the vm.
+> + */
+> +static bool xe_vm_rebind_worker_inject_retry(struct xe_vm *vm)
+> +{
+> +	return !vm->preempt.inval_inject_tries++;
+> +}
+> +
+> +static void xe_vm_rebind_worker_reset_inject(struct xe_vm *vm)
+> +{
+> +	vm->preempt.inval_inject_tries =3D 0;
+> +}
+> +#else
+> +static bool xe_vm_rebind_worker_inject_retry(struct xe_vm *vm)
+> +{
+> +	return false;
+> +}
+> +
+> +static void xe_vm_rebind_worker_reset_inject(struct xe_vm *vm)
+> +{
+> +}
+> +#endif
+> +
+> =C2=A0static void preempt_rebind_work_func(struct work_struct *w)
+> =C2=A0{
+> =C2=A0	struct xe_vm *vm =3D container_of(w, struct xe_vm,
+> preempt.rebind_work);
+> @@ -551,7 +576,6 @@ static void preempt_rebind_work_func(struct
+> work_struct *w)
+> =C2=A0	LIST_HEAD(preempt_fences);
+> =C2=A0	int err =3D 0;
+> =C2=A0	long wait;
+> -	int __maybe_unused tries =3D 0;
+> =C2=A0
+> =C2=A0	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+> =C2=A0	trace_xe_vm_rebind_worker_enter(vm);
+> @@ -564,7 +588,6 @@ static void preempt_rebind_work_func(struct
+> work_struct *w)
+> =C2=A0		return;
+> =C2=A0	}
+> =C2=A0
+> -retry:
+> =C2=A0	if (!try_wait_for_completion(&vm->xe->pm_block) &&
+> vm_suspend_rebind_worker(vm)) {
+> =C2=A0		up_write(&vm->lock);
+> =C2=A0		/* We don't actually block but don't make progress.
+> */
+> @@ -614,20 +637,14 @@ static void preempt_rebind_work_func(struct
+> work_struct *w)
+> =C2=A0		goto out_unlock;
+> =C2=A0	}
+> =C2=A0
+> -#define retry_required(__tries, __vm) \
+> -	(IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT) ? \
+> -	(!(__tries)++ || __xe_vm_userptr_needs_repin(__vm)) : \
+> -	__xe_vm_userptr_needs_repin(__vm))
+> -
+> =C2=A0	xe_svm_notifier_lock(vm);
+> -	if (retry_required(tries, vm)) {
+> +	if (xe_vm_rebind_worker_inject_retry(vm) ||
+> +	=C2=A0=C2=A0=C2=A0 __xe_vm_userptr_needs_repin(vm)) {
+> =C2=A0		xe_svm_notifier_unlock(vm);
+> =C2=A0		err =3D -EAGAIN;
+> =C2=A0		goto out_unlock;
+> =C2=A0	}
+> =C2=A0
+> -#undef retry_required
+> -
+> =C2=A0	xe_vm_bump_lru(vm, &exec);
+> =C2=A0
+> =C2=A0	/* Point of no return. */
+> @@ -642,20 +659,20 @@ static void preempt_rebind_work_func(struct
+> work_struct *w)
+> =C2=A0		trace_xe_vm_rebind_worker_retry(vm);
+> =C2=A0
+> =C2=A0		/*
+> -		 * We can't block in workers on a VF which supports
+> migration
+> -		 * given this can block the VF post-migration
+> workers from
+> -		 * getting scheduled.
+> +		 * Drop all locks and requeue rather than retrying
+> in-line.
+> +		 * This avoids blocking other work items, such as VF
+> +		 * post-migration workers, and lets other users of
+> the vm
+> +		 * lock make progress between attempts.
+> =C2=A0		 */
+> -		if (IS_SRIOV_VF(vm->xe) &&
+> -		=C2=A0=C2=A0=C2=A0 xe_sriov_vf_migration_supported(vm->xe)) {
+> -			up_write(&vm->lock);
+> -			xe_vm_queue_rebind_worker(vm);
+> -			return;
+> -		}
+> -
+> -		goto retry;
+> +		up_write(&vm->lock);
+> +		free_preempt_fences(&preempt_fences);
+> +		xe_vm_queue_rebind_worker(vm);
+> +		trace_xe_vm_rebind_worker_exit(vm);
+> +		return;
+> =C2=A0	}
+> =C2=A0
+> +	xe_vm_rebind_worker_reset_inject(vm);
+> +
+> =C2=A0	if (err) {
+> =C2=A0		drm_warn(&vm->xe->drm, "VM worker error: %d\n",
+> err);
+> =C2=A0		xe_vm_kill(vm, true);
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> b/drivers/gpu/drm/xe/xe_vm_types.h
+> index fb9305124679..756cf2dbee8a 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -350,6 +350,14 @@ struct xe_vm {
+> =C2=A0		 * kicked on resume.
+> =C2=A0		 */
+> =C2=A0		struct list_head pm_activate_link;
+> +#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+> +		/**
+> +		 * @inval_inject_tries: Number of rebind attempts in
+> the
+> +		 * current rebind sequence. Used to force a retry
+> for testing.
+> +		 * Protected by @lock.
 > +		 */
-> +		while (marker !=3D xe_vf_migration_fixups_complete_count(ggtt->tile->p=
-rimary_gt)) {
-> +			u16 cache_mode =3D bo->flags & XE_BO_FLAG_NEEDS_UC ?
-> +					 XE_CACHE_NONE : XE_CACHE_WB;
-> +			u16 pat_index =3D xe_cache_pat_idx(tile_to_xe(ggtt->tile), cache_mode=
-);
-> +			u64 pte =3D ggtt->pt_ops->pte_encode_flags(bo, pat_index);
-> +
-> +			marker =3D xe_gt_sriov_vf_wait_valid_ggtt(ggtt->tile->primary_gt);
-> +			/*
-> +			 * Only abort fixing the PTEs if we're signalled or wedged; in
-> +			 * case of timeout the migration recovery may be just repeated
-> +			 * or prolonged, so do not treat that as bailout condition.
-> +			 * If the VF migration was detected, we can be sure that recovery
-> +			 * will start or already has started. The recovery worker assures
-> +			 * on finish that this loop will exit.
-> +			 */
-> +			if (marker =3D=3D -ERESTARTSYS || xe_wedged(tile_to_xe(ggtt->tile)))
-> +				break;
-> +
-> +			mutex_lock(&ggtt->lock);
-> +			xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
-> +			mutex_unlock(&ggtt->lock);
-> +		}
-> +	}
-
-[Severity: High]
-Can marker =3D=3D -ERESTARTSYS ever be true here, or will a pending signal =
-during
-VF migration cause this loop to busy-spin?
-
-xe_gt_sriov_vf_wait_valid_ggtt() discards the return value from
-wait_event_interruptible_timeout() and always returns the non-negative
-fixups_complete_count:
-
-drivers/gpu/drm/xe/xe_gt_sriov_vf.c:xe_gt_sriov_vf_wait_valid_ggtt() {
-    ...
-	ret =3D wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
-					       vf_valid_ggtt(gt),
-					       HZ * 5);
-	xe_gt_WARN_ON(gt, !ret);
-
-	return atomic_read(&gt->sriov.vf.migration.fixups_complete_count);
-}
-
-Meanwhile, xe_vf_migration_fixups_complete_count() returns -1 while
-!vf_valid_ggtt(gt).  If a thread has a pending signal during VF migration
-recovery, wait_event_interruptible_timeout() returns -ERESTARTSYS immediate=
-ly
-without sleeping, marker receives the non-negative fixups_complete_count, a=
-nd
-the loop spins without sleeping while repeatedly acquiring ggtt->lock and
-rewriting all BO PTEs over MMIO.  On a single-vCPU guest VM without
-involuntary preemption, this can starve the migration recovery worker and
-cause a soft lockup.
-
-Also, when the loop breaks out (on xe_wedged(), or if -ERESTARTSYS were
-propagated), err is still 0 and bo->ggtt_node[tile_id] remains inserted, so
-__xe_ggtt_insert_bo_at() returns success with stale or unfixed GGTT PTEs.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119123514.1658=
-712-1-tomasz.lis@intel.com?part=3D2
+> +		unsigned int inval_inject_tries;
+> +#endif
+> =C2=A0	} preempt;
+> =C2=A0
+> =C2=A0	/** @exec_queues: Manages list of exec queues attached to
+> this VM, protected by lock. */
