@@ -2,40 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0990B606A324
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oDTAK6hL
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EB7C606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:48:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A605410E595;
-	Thu, 19 Nov 2026 10:47:57 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E670210E595
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 10:47:51 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 969F74662F;
- Thu, 19 Nov 2026 10:47:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 506D11F000C4;
- Thu, 19 Nov 2026 10:47:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795085271;
- bh=H1v0nqci8q/GxDriGPoJCaLF3Md9rnPgS9Fb3UYkmPU=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=oDTAK6hLyd1c6jh60oAgnGQWz3hd2u/NDOjz95qBaspd+4NhUc/mgG99CVwqQ1VDo
- jvIBumecZLbND6Xql0L+xwkETNG394v4hYl5w+EC1z9eyZ3w3f5w7OXslE2Q9ACzTN
- 2tjIT0vvNOpDeudY9zhoTUm8BF9Dah1f6Sxs88akWHV6gVwh8KX5oqNtPZfSruiC4Z
- 8adlz2YlARQQL4GnFTA7YXClUvUWswdaChvG2QfSvAW9p5FZbnnhcae/2Hdj7NjnCc
- ZaRR7M4PA61I6AkOLBQJHL1A9t2nNBLOoZfptwx33oBQudVdx7Q8uqJDzfBQI8MOAs
- t1MXUoaHFDTrA==
-Message-ID: <sashiko-outbox-222985@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/xe/hwmon: Expose powerX_cap_max
-To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261119104029.3066660-1-karthik.poosa@intel.com>
-References: <20261119104029.3066660-1-karthik.poosa@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 19 Nov 2026 10:47:50 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 195E210E0FA;
+	Thu, 19 Nov 2026 10:48:51 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 982D510E0FA;
+ Thu, 19 Nov 2026 10:48:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_tty=3A_vblank_waiting_out?=
+ =?utf-8?q?_on_crtc_0_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Nov 2026 10:48:49 -0000
+Message-ID: <179508532961.50512.4242947465367564174@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
+In-Reply-To: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,74 +33,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found no new issues
-in this patch, but noticed 1 related pre-existing issue it does not
-introduce:
-- [High] drm/xe/hwmon: power limit clamped to 0 in
-  xe_hwmon_power_max_write() [1]
---
+== Series Details ==
 
-commit 26f9457c44502cd969a84eaf5b2ee961f51b7a3e
-Author: Karthik Poosa <karthik.poosa@intel.com>
+Series: tty: vblank waiting out on crtc 0 (rev4)
+URL   : https://patchwork.freedesktop.org/series/178607/
+State : warning
 
-drm/xe/hwmon: Expose powerX_cap_max
+== Summary ==
 
-This commit adds a read-only power<i>_cap_max sysfs attribute on platforms
-with mailbox power limits to report the default PL2 (burst) power limit
-set by firmware at boot.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c6fcdeeccc57c19b2a8bca747fb8ac2beb6ca06c
+Author: Michał Grzelak <michal.grzelak@linux.intel.com>
+Date:   Sun Nov 15 13:24:41 2026 +0100
 
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index defe8aaca7c11..8e0d295aabc88 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-[ ... ]
-> @@ -1423,6 +1424,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u=
-32 attr, int channel)
->  	struct xe_mmio *mmio =3D xe_root_tile_mmio(hwmon->xe);
-> =20
->  	switch (attr) {
-> +	case hwmon_power_cap_max:
-> +		return hwmon->pl2_on_boot[channel] ? 0444 : 0;
+    Revert "serial: 8250: Switch to nbcon console, take 2"
+    
+    This reverts commit d3539347022ad4eeb9dbd29c50bfca17b9d8a146.
+    
+    This revert consists of 6 additional reverts; all of them in order of
+    applying:
+    - Revert "serial: 8250: export and rename wait_for_xmitr()" [2c5942fd0300cb966339dd0366890be626b405e8]
+    - Revert "printk: fix kernel-doc name for nbcon_write_context_is_braille" [19ed235c1adcaf40f05997dfe8b96eb209effd35]
+    - Revert "braille: nbcon: Allow to use a serial console with NBCON API as Braille console" [c83e3d2912432107148cc5e288ddd153a84c0f43]
+    - Revert "serial: 8250: Change console_msr_work to IRQ_WORK_LAZY" [37aba16e7943634eb3e5e2e7e850ebb38500d935]
+    - Reapply "serial: 8250: drop lockdep annotation from serial8250_clear_IER()" [bbbb07f9fad6518090b7171dd8f5f737d8ddb63b]
+    - Revert "serial: 8250: Switch to nbcon console, take 2" [d3539347022ad4eeb9dbd29c50bfca17b9d8a146]
+    - Revert "serial: 8250_mid: wait for LSR tx empty before setting termios" [1c305d5f1daabd317a60b6a2e2ac6b1aff7e05df]
+    
+    removed 2 conflicting #include's on top.
+    
+    Signed-off-by: Michał Grzelak <michal.grzelak@linux.intel.com>
++ /mt/dim checkpatch 84508686117ca3be5756049acdf15e3e47fd2683 drm-intel
+c6fcdeeccc57 Revert "serial: 8250: Switch to nbcon console, take 2"
+-:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#13: 
+- Revert "serial: 8250: export and rename wait_for_xmitr()" [2c5942fd0300cb966339dd0366890be626b405e8]
 
-[Severity: High]
-This problem wasn't introduced by this patch, but can a pcode read failure
-during probe cause xe_hwmon_power_max_write() to clamp user power limits
-to 0 [1]?
+total: 0 errors, 1 warnings, 0 checks, 737 lines checked
 
-If reading the initial power limits in xe_hwmon_get_preregistration_info()
-fails, pl1_on_boot[] and pl2_on_boot[] remain zero while hwmon registration
-still proceeds:
 
-drivers/gpu/drm/xe/xe_hwmon.c:xe_hwmon_get_preregistration_info() {
-	if (hwmon->xe->info.has_mbx_power_limits) {
-		if (xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_CARD,
-						    &hwmon->pl1_on_boot[CHANNEL_CARD]) |
-		    ...
-		    xe_hwmon_pcode_read_power_limit(hwmon, PL2_HWMON_ATTR, CHANNEL_PKG,
-						    &hwmon->pl2_on_boot[CHANNEL_PKG])) {
-			drm_warn(&hwmon->xe->drm,
-				 "Failed to read power limits, check GPU firmware !\n");
-		} else {
-}
-
-If the subsequent pcode read in xe_hwmon_power_is_visible() succeeds, the
-writable powerX_max and powerX_cap attributes are exposed, and any value
-userspace writes is clamped to the zeroed pl1_on_boot[] or pl2_on_boot[]
-entry in xe_hwmon_power_max_write(), programming a 0W power limit into
-firmware and severely throttling the GPU.
-
-[1] https://sashiko.dev/#/bug/linux-9f11cfb5-f9c5-490e-879e-791ecaae33e5
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119104029.3066=
-660-1-karthik.poosa@intel.com?part=3D1
