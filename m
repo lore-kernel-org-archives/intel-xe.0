@@ -2,55 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566F5606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 09:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7464B606A324
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 09:59:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HoRUjzDS
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=jv/iZngk
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C148112227;
-	Thu, 19 Nov 2026 09:52:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95320112227
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 09:52:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795081939; x=1826617939;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PuJQ4bJp4QNkXFnPC3vPtsdRsI7/1s1D0MkBrXxXot4=;
- b=HoRUjzDSXQbopTpc2JoGb+mPDu/q4UB+3HeubG5jNh3u3APMlb3/Hceh
- UL+7qYSZGT4C9k7VPE1kPUadsT6GaM3beMlLPLxGjrdqn1huTNImDXGzD
- +M6lWWCqRzY0SxAUAA+u2boO6ANERzrS2E6K45yuiob1vfI1But79qqOC
- 2swNqk9TkwF9EM0I+LvLpXcMC09KQPP9p8mKRUcZsiG/Al8g0IgSS+Ar6
- kDa4mQ+PmnJ7nqf2G7ClhT4R+fSCkrgwC2utoQDyeRd3Oqfpsak4dbl2h
- jA51/vNpVT19Zx75j+fr0sMOFkOjWW1A2dNs5OvyblJeAZ/TjHZ4d1Cu/ g==;
-X-CSE-ConnectionGUID: uCNgV/tYSYqCSVfmxTz22A==
-X-CSE-MsgGUID: rah0P+zVSqq8LkMu1OvWFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="4004858"
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="4004858"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 01:52:18 -0800
-X-CSE-ConnectionGUID: uz2FT4vnRu6RSDmWJYCS1Q==
-X-CSE-MsgGUID: S+rZ3C6TT+mTYtsCmYCctA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10749171"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa009.fm.intel.com with ESMTP; 19 Nov 2026 01:52:16 -0800
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, stuart.summers@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 2/2] drm/xe/wedge: Introduce xe_wedge_mode_is_no_reset()
-Date: Thu, 19 Nov 2026 15:21:31 +0530
-Message-ID: <20261119095151.2041411-3-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261119095151.2041411-1-raag.jadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0DB112246;
+	Thu, 19 Nov 2026 09:59:06 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 712D8112245
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 09:58:59 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 15D1E43BEB;
+ Thu, 19 Nov 2026 09:58:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE87F1F000C4;
+ Thu, 19 Nov 2026 09:58:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795082339;
+ bh=qnrVbTfTcz8pUYxYySHoEzo3E4+p0K+muFXvY2groAw=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=jv/iZngkyulg5buq8Z6NQBjXHktAqnob44RXNFshvrGHCRyfrK/30vdM1ALw8gEpq
+ HS4aSLub8i86WO34AjLKB+Svz99KMDuyyg26+Glh1z+BvqHXWOeXWSsKT/fGpdDOBi
+ GRDWga893RDEZbzN8W5yILiNqkPhHg9h5BSVCusADkeYdD3RxCEXRX3e+S9My4Z0Gd
+ RytFJUktgK1EbaRvystX46kJnEor9YSeWdD/CInbh7hgqtEgg7P9/+bYSWdtH/xMDB
+ rjwCU3uEr8C9aOOa8+4QVwCYGFauQRP0ZbzpDLQro85rQYqNCAWS5zIK3u0S0idwLl
+ LQRFwg+SaFKZA==
+Message-ID: <sashiko-outbox-222890@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v3 2/2] drm/xe/wedge: Introduce xe_wedge_mode_is_no_reset()
+To: "Raag Jadav" <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119095151.2041411-3-raag.jadav@intel.com>
 References: <20261119095151.2041411-1-raag.jadav@intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20261119095151.2041411-3-raag.jadav@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 09:58:58 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,151 +46,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-Convert open-coded XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET check into its
-own helper.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/xe: unconverted no-reset wedge check in
+  guc_submit_hint_wedged()
+--
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
-v2: Introduce xe_wedge_mode_is_no_reset()
-v3: Fix wedge_validate_mode() to check for local mode (Sashiko)
----
- drivers/gpu/drm/xe/xe_drm_ras.c     | 2 +-
- drivers/gpu/drm/xe/xe_guc_ads.c     | 3 ++-
- drivers/gpu/drm/xe/xe_guc_capture.c | 3 ++-
- drivers/gpu/drm/xe/xe_guc_submit.c  | 2 +-
- drivers/gpu/drm/xe/xe_pci_error.c   | 2 +-
- drivers/gpu/drm/xe/xe_wedge.c       | 5 ++---
- drivers/gpu/drm/xe/xe_wedge.h       | 5 +++++
- 7 files changed, 14 insertions(+), 8 deletions(-)
+commit 639a1a01865e9d03bd91aba733177709c6405dcb
+Author: Raag Jadav <raag.jadav@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index 3ca6c82345dd..86c589437a9f 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras.c
-+++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -21,7 +21,7 @@ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
- static int drm_ras_counter_get(struct xe_device *xe, struct xe_drm_ras_counter *info,
- 			       u32 error_id, int *idx)
- {
--	if (xe_wedged(xe) && xe->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+	if (xe_wedged(xe) && !xe_wedge_mode_is_no_reset(xe))
- 		return -ECANCELED;
- 
- 	if (!info || !info[error_id].name)
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index 0e1674a394b6..f333480f94e5 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -30,6 +30,7 @@
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_wa.h"
-+#include "xe_wedge.h"
- 
- /* Slack of a few additional entries per engine */
- #define ADS_REGSET_EXTRA_MAX	8
-@@ -544,7 +545,7 @@ static void guc_policies_init(struct xe_guc_ads *ads)
- 	ads_blob_write(ads, policies.max_num_work_items,
- 		       GLOBAL_POLICY_MAX_NUM_WI);
- 
--	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+	if (xe_wedge_mode_is_no_reset(xe))
- 		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
- 
- 	ads_blob_write(ads, policies.global_flags, global_flags);
-diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
-index 0fd68b41d412..e528b3e9d158 100644
---- a/drivers/gpu/drm/xe/xe_guc_capture.c
-+++ b/drivers/gpu/drm/xe/xe_guc_capture.c
-@@ -35,6 +35,7 @@
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_sched_job.h"
-+#include "xe_wedge.h"
- 
- /*
-  * struct __guc_capture_bufstate
-@@ -1962,7 +1963,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
- 
- 	xe = gt_to_xe(q->gt);
- 
--	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+	if (xe_wedge_mode_is_no_reset(xe))
- 		return NULL;
- 
- 	if (!xe_device_uc_enabled(xe))
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index b5c916a764db..fc0f50307f2f 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1435,7 +1435,7 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	if (!guc->submission_state.initialized)
- 		return;
- 
--	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
-+	if (xe_wedge_mode_is_no_reset(xe)) {
- 		mutex_lock(&guc->submission_state.lock);
- 		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
- 			if (xe_exec_queue_get_unless_zero(q))
-diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
-index d288bb291aa1..fc6ff71d84a0 100644
---- a/drivers/gpu/drm/xe/xe_pci_error.c
-+++ b/drivers/gpu/drm/xe/xe_pci_error.c
-@@ -179,7 +179,7 @@ static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)
- 	action = xe_ras_process_errors(xe);
- 
- 	/* User wants to debug the error, prevent reset */
--	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
-+	if (xe_wedge_mode_is_no_reset(xe)) {
- 		xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_NONE);
- 		return PCI_ERS_RESULT_DISCONNECT;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_wedge.c b/drivers/gpu/drm/xe/xe_wedge.c
-index 827fae058976..e48cca34d660 100644
---- a/drivers/gpu/drm/xe/xe_wedge.c
-+++ b/drivers/gpu/drm/xe/xe_wedge.c
-@@ -157,7 +157,7 @@ void xe_wedge_declare(struct xe_device *xe, unsigned long method)
- 	 * hangs, so wedge the device with 'none' recovery method and have
- 	 * it available to the user for debugging.
- 	 */
--	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+	if (xe_wedge_mode_is_no_reset(xe))
- 		xe->wedged.method = DRM_WEDGE_RECOVERY_NONE;
- 	else
- 		xe->wedged.method = method;
-@@ -203,8 +203,7 @@ static bool wedge_mode_needs_policy_update(struct xe_device *xe, enum xe_wedged_
- 	if (xe->wedged.mode == mode)
- 		return false;
- 
--	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET ||
--	    mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+	if (xe_wedge_mode_is_no_reset(xe) || mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
- 		return true;
- 
- 	return false;
-diff --git a/drivers/gpu/drm/xe/xe_wedge.h b/drivers/gpu/drm/xe/xe_wedge.h
-index f2cab855db35..edb5174c5a75 100644
---- a/drivers/gpu/drm/xe/xe_wedge.h
-+++ b/drivers/gpu/drm/xe/xe_wedge.h
-@@ -26,6 +26,11 @@ static inline bool xe_wedged_permanent(struct xe_device *xe)
- 	return atomic_read(&xe->wedged.perm);
- }
- 
-+static inline bool xe_wedge_mode_is_no_reset(struct xe_device *xe)
-+{
-+	return xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET;
-+}
-+
- void xe_wedge_declare(struct xe_device *xe, unsigned long method);
- int xe_wedge_init(struct xe_device *xe);
- int xe_wedge_set_mode(struct xe_device *xe, enum xe_wedged_mode mode);
--- 
-2.43.0
+drm/xe/wedge: Introduce xe_wedge_mode_is_no_reset()
 
+This commit introduces the xe_wedge_mode_is_no_reset() helper and replaces
+open-coded XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET checks across the driver.
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_g=
+uc_submit.c
+> index b5c916a764dbe..fc0f50307f2f5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1435,7 +1435,7 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+>  	if (!guc->submission_state.initialized)
+>  		return;
+> =20
+> -	if (xe->wedged.mode =3D=3D XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
+> +	if (xe_wedge_mode_is_no_reset(xe)) {
+>  		mutex_lock(&guc->submission_state.lock);
+>  		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+>  			if (xe_exec_queue_get_unless_zero(q))
+
+[Severity: Low]
+Should guc_submit_hint_wedged() right below xe_guc_submit_wedge() also use
+!xe_wedge_mode_is_no_reset(xe), like drm_ras_counter_get()?
+
+drivers/gpu/drm/xe/xe_guc_submit.c:guc_submit_hint_wedged() {
+	struct xe_device *xe =3D guc_to_xe(guc);
+
+	if (xe->wedged.mode !=3D XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+		return false;
+    ...
+}
+
+It is the only remaining open-coded check of xe->wedged.mode against
+XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET outside xe_wedge_mode_is_no_reset().
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119095151.2041=
+411-1-raag.jadav@intel.com?part=3D2
