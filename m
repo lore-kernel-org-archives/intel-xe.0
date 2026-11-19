@@ -2,57 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFA0606A325
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 00:29:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C75A3606A32C
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 00:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hYTIvWIa
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=ncIkBu0F
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ABE2D1120E6;
-	Thu, 19 Nov 2026 00:29:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B976C1120EA
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 00:29:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795048157; x=1826584157;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rxb+LmKSSPeSq6zqGr9T0bGQr0I2tf0OoEuOQDZDF58=;
- b=hYTIvWIaWBbgJ7vaTNl+l8CEMYq8HTw05/lUzjt6S5N+U6lVR9/nDQw7
- 8+gtfmGA6nq6/j/eyIaSV3YH+WxbsroTte+Q2tiGI4LRGSx6opUfSurPz
- J9zvcsKT/yD6ecoS5ciUk+rhZKbLYTvHNlmkmoA4B10sh0f0xGPXTNuCS
- 6xfuR8riCAXd8R9ksZAxItd6B1JRfeVX66ZITsMDId64RFyaUSmWqVf6X
- Oa4Zp5hpTLyXI1wKmcJmjbi4WJtPj9ib+LLXKNa0bblbDJztnL9OmTB+d
- 1HBUJTtjwlrlcX/ZbuXSk3JaLxxOvHph6gd9Fmk6VM9ZkeKFtK6yX/jaN w==;
-X-CSE-ConnectionGUID: Yqv1jISUR/WT8gu2ot+/kg==
-X-CSE-MsgGUID: PD+xsm07QyqsFg8joootFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3876668"
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="3876668"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 16:29:01 -0800
-X-CSE-ConnectionGUID: AYtRtPHhQUOzGF5nl2Fgpg==
-X-CSE-MsgGUID: qAvaxQJASfOQ4TqbSBwFrQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10081564"
-Received: from orsosgc001.jf.intel.com ([10.54.56.63])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 16:29:01 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
- harish.chegondi@intel.com
-Cc: matthew.brost@intel.com
-Subject: [PATCH v8 7/8] drm/xe/oa: Free the OA buffer and the stream after the
- stream destroy
-Date: Wed, 18 Nov 2026 16:27:45 -0800
-Message-ID: <20261119002737.3899877-17-umesh.nerlige.ramappa@intel.com>
-X-Mailer: git-send-email 2.55.0
-In-Reply-To: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3BB10E00F;
+	Thu, 19 Nov 2026 00:39:34 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53C5C10E00F
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 00:39:28 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 5FF2A6438A;
+ Thu, 19 Nov 2026 00:39:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEF161F000C5;
+ Thu, 19 Nov 2026 00:39:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795048767;
+ bh=TY6S7HF/xFzAvnABrPkF0ig09DyGdlZPuvokAfmlbe0=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=ncIkBu0FMtHgzUKYeILCIdBHYYU2FUZiGlAVccisaT9ESeAJwFahSLuedRPS6QQZn
+ hgYoxTq9S9cjzQbB7fcw3lCYezi9jK7DMmDTyooi2xGBJ6QkaeQTwaMMN4L7+uIADS
+ 48c0TRkdyW/fEtvrEQ8wnCGktOhCVBRh/ST5MvJakWCcPJ7TcEb/hXZhe+GMxJZWaQ
+ AF3FVsd0d43rcT2Igpv7Qg8EYq822jw9ovcuo47Z0vaG/mCENuIlo7FPiZx6Y2Vaub
+ zq6rSQ8A50DHjTO6eABu8XpSpaFyV81LRt0ZSHmXgyAZDfaASdcoiXIZgvZoRbNprk
+ ohVI/2EN5Ltxg==
+Message-ID: <sashiko-outbox-222249@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v8 2/8] drm/xe/oa: Use the drm device address_space for
+ the OA stream fd
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119002737.3899877-12-umesh.nerlige.ramappa@intel.com>
 References: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20261119002737.3899877-12-umesh.nerlige.ramappa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 00:39:26 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,81 +48,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-Free the OA buffer, destroy stream_lock and free the stream struct in
-the callers, xe_oa_release() and the stream open error path, after
-xe_oa_stream_destroy() and xe_oa_destroy_locked() have released the
-rest of the stream.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/xe/oa: missing Fixes trailer for OA buffer mmap
+  address_space fix
+--
 
-This lets a following patch release the stream resources when the
-device goes away, while keeping the stream struct and the OA buffer,
-which an mmap may still reference, until the stream fd is released.
+commit 578317c3691785f24541d656435be9897f349165
+Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-The OA buffer is now freed after the runtime PM reference is dropped.
-Removing its GGTT node wakes the device if it is suspended by then.
+> drm/xe/oa: Use the drm device address_space for the OA stream fd
+>
+> anon_inode_getfd() hands back a file whose f_mapping points at the
+> address_space of the kernel-wide singleton anon_inode_inode, shared by
+> every other anon_inode_getfd()/anon_inode_getfile() user in the system.
+> Any code that needs to invalidate userspace mappings of the OA buffer
+> via that mapping (e.g. unmap_mapping_range()) would end up operating on
+> an address_space it doesn't own, with the potential to affect unrelated
+> mappings.
+>
+> Keep the anon inode singleton and only point the file's f_mapping at the
+> drm device's address_space (drm.anon_inode->i_mapping), same as drm_file
+> does for drm fds. f_mapping must be set before the fd is visible to
+> userspace, so reserve the fd with get_unused_fd_flags(), create the file
+> with anon_inode_getfile() and install it with fd_install() after setting
+> f_mapping.
+>
+> To keep the OA buffer mmaps of different streams apart from each other
+> and from GEM mmaps in that shared address_space, reserve a GEM fake
+> offset for the OA buffer with drm_gem_create_mmap_offset(), and move
+> the vma to that offset in xe_oa_mmap() by setting vm_pgoff, the same
+> way drm_gem_prime_mmap() does. f_op->mmap runs before the vma is linked
+> into the address_space, so the vma is tracked at the OA buffer's own
+> range, and drm_vma_node_unmap() on the OA buffer only zaps mappings of
+> that buffer. The TTM fault handler already subtracts the fake offset
+> from vm_pgoff, so faults resolve to the right pages unchanged.
+>
+> drm_dev_unplug() now also zaps OA buffer mmaps along with all other
+> mmaps of the drm device.
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
----
- drivers/gpu/drm/xe/xe_oa.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+[Severity: Low]
+Without setting file->f_mapping to oa->xe->drm.anon_inode->i_mapping and
+assigning a per-BO fake offset in vma->vm_pgoff, splitting an OA buffer
+VMA triggers WARN_ON(bo->bdev->dev_mapping !=3D vma->vm_file->f_mapping) in
+ttm_bo_vm_open(), non-zero mmap offsets miscalculate page_offset in
+ttm_bo_vm_fault_reserved(), and drm_vma_node_unmap() and drm_dev_unplug()
+fail to unmap OA buffer mappings.
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index f3eceeb34e7b..223419347eb7 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -929,8 +929,6 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 
- 	WRITE_ONCE(u->exclusive_stream, NULL);
- 
--	mutex_destroy(&stream->stream_lock);
--
- 	xe_oa_stream_drain(stream);
- 
- 	if (stream->sample)
-@@ -939,8 +937,6 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 	xe_oa_disable_metric_set(stream);
- 	xe_exec_queue_put(stream->k_exec_q);
- 
--	xe_oa_free_oa_buffer(stream);
--
- 	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
- 	xe_pm_runtime_put(stream->oa->xe);
- 
-@@ -1772,7 +1768,6 @@ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
- 
- 	drm_syncobj_put(stream->ufence_syncobj);
- 	xe_pm_runtime_put(gt_to_xe(stream->gt));
--	kfree(stream);
- }
- 
- static int xe_oa_release(struct inode *inode, struct file *file)
-@@ -1784,6 +1779,10 @@ static int xe_oa_release(struct inode *inode, struct file *file)
- 	xe_oa_destroy_locked(stream);
- 	mutex_unlock(&gt->oa.gt_lock);
- 
-+	xe_oa_free_oa_buffer(stream);
-+	mutex_destroy(&stream->stream_lock);
-+	kfree(stream);
-+
- 	/* Release the reference the OA stream kept on the driver */
- 	drm_dev_put(&gt_to_xe(gt)->drm);
- 
-@@ -2052,6 +2051,8 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
- 		xe_oa_disable_locked(stream);
- err_destroy:
- 	xe_oa_stream_destroy(stream);
-+	xe_oa_free_oa_buffer(stream);
-+	mutex_destroy(&stream->stream_lock);
- err_free:
- 	kfree(stream);
- err_syncobj:
--- 
-2.55.0
+Should this include Fixes tags for the commits that introduced OA buffer
+mmap and switched it to drm_gem_mmap_obj()?
 
+  Fixes: 392bf22238ff ("drm/xe/oa/uapi: OA buffer mmap")
+  Fixes: 41255b2f1e03 ("drm/xe/oa: Use drm_gem_mmap_obj for OA buffer mmap")
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119002737.3899=
+877-10-umesh.nerlige.ramappa@intel.com?part=3D2
