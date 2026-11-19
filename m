@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3121B606A90D
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 20:51:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7705A606A901
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 20:51:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=jcCy0O4V
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=E8fUEhyX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5B3E10F0D3;
-	Thu, 19 Nov 2026 20:51:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27CF710E8D5;
+	Thu, 19 Nov 2026 20:51:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEA4010E8D5;
- Thu, 19 Nov 2026 20:51:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7247C10F0E9;
+ Thu, 19 Nov 2026 20:51:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795121470; x=1826657470;
+ t=1795121475; x=1826657475;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oDtiC29BSEVsuHTzMby83o6O/X8McvItIpmqt285m98=;
- b=jcCy0O4V42hN0qvhiijs7tzLHul8QAueXOWeYWr9lTuXUQyts6wxjabj
- 5HYAob7v07Rhr7aGSdC7TY1O2vC0Hg8ufYsKSPLOcJY5wwaq6Qe7oHf5S
- +ie49ob5tNI8S9iNlccGKlMuChcJGa4GeNZYd0Qaiy0cWr03nzOt3m/m7
- rArkg8Ew64FGv/Mm5CUwlWY170WbIQlzRk1sq99IfoiTJs0aBWiYDlp6c
- NIApW5Gtp7aZrPNDII7p+txCDVipVQnEzIuUmoCQ2ZGr6DK8iQUmimZQA
- qWxiiwOD0I+SvObucJhAD+e+mHjDMJxSKxwSmd2pj7n7GL8Vooikwijqi A==;
-X-CSE-ConnectionGUID: 6rvzoZf4Q5m1sEQIZakmpQ==
-X-CSE-MsgGUID: C+JlkcT+QNWyTgPcfdVAfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4030632"
+ bh=YmNhKhHw+OyNl2UvecsUKm7lh+53yjye/thIK72lKbc=;
+ b=E8fUEhyXQ49McdssNQG4BO1iStg4dDGH9eJN/XdTVFMmxx9Q+QcksG4w
+ YWIqXa7txs0IQ5TjsNFu49s+ZCVPFP4BYwwOaAybOlAAAWVBhAbKcpDpl
+ B4KyWInWHvyDsSXNJ30fqzGusEV0Gxv5Nej2WfdbuItKpCvfKwdFQgUdr
+ L/5Nx2mqhYc9bGvOD74A3NLJ7WOhttB7YwYdyNg5Ob7AfwKcsk3wiz8pj
+ G1aYI7Uggxvpaa3aYjXynT10Rk7E+VVes0ZqvNKAttmJUjwygFBupC7Dn
+ deYrwlcSF6wTv74IFc//0/w22MzfDSLyHX1o+uEp5jhkIhItEyfmMym54 g==;
+X-CSE-ConnectionGUID: RihSph1dT6mm0+GUQwP1nA==
+X-CSE-MsgGUID: eskRsEXkQ8GVM7mhOi4YKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4030647"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="4030632"
+   d="scan'208";a="4030647"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 12:51:10 -0800
-X-CSE-ConnectionGUID: WAK+yfUmRq2o7Ftgg0N17Q==
-X-CSE-MsgGUID: 2OQQLrqAR2aCIEql2RFj9Q==
+ 19 Nov 2026 12:51:14 -0800
+X-CSE-ConnectionGUID: 37AMoNCUT/eLc0CsTM5urw==
+X-CSE-MsgGUID: lhUXGxVeRgeWdpvpksJIew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="12511693"
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="12511741"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.54])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 12:51:08 -0800
+ 19 Nov 2026 12:51:13 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 5/6] drm/i915/de: Optimize the mmio_debug checks in
- intel_de_{read, write}()
-Date: Thu, 19 Nov 2026 22:50:39 +0200
-Message-ID: <20261119205040.31935-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 6/6] drm/i915/de: Make display registers unlocked for TGL+ on
+ i915
+Date: Thu, 19 Nov 2026 22:50:40 +0200
+Message-ID: <20261119205040.31935-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.0
 In-Reply-To: <20261119205040.31935-1-ville.syrjala@linux.intel.com>
 References: <20261119205040.31935-1-ville.syrjala@linux.intel.com>
@@ -67,147 +67,75 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Currently we do the "is mmio_debug enabled?" check from
-the non-inlined check_unclaimed_mmio_{pre,post}(). That means
-we pay for two extra function calls for every register access
-even when mmio_debug is disabled.
+Now that the unclaimed register detection should survive
+without the lock there should be no reason to use the lock
+on most platforms.
 
-Inline the checks into the actual intel_de_{read,write}() to
-avoid the pointless overhead. We have to hand hold the compiler
-a bit (by using a bitwise OR instead of logical OR) or else
-it'll emit a separate branch for each boolean.
-
-v2: mmio_debug is still an int
+Start by weaning TGL+ off the lock. Since some people have
+been using the (lockless) xe driver on TGL/etc. it should
+be fairly well established that serializing all register
+accesses is not needed on these platforms.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.c | 44 ++++++++++++++-----------
- 1 file changed, 24 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/display/intel_de.c | 26 +++++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index 82ed1c6a55c9..ebe3789e5441 100644
+index ebe3789e5441..5f7997a13764 100644
 --- a/drivers/gpu/drm/i915/display/intel_de.c
 +++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -242,18 +242,9 @@ static bool vlv_check_for_unclaimed_mmio(struct intel_display *display)
- 	return true;
- }
+@@ -482,6 +482,26 @@ static const struct intel_mmio_funcs vlv_mmio_funcs = {
+ 	.check_for_unclaimed_mmio_needs_lock = true,
+ };
  
--static bool mmio_debug_is_enabled(struct intel_display *display)
--{
--	return !!READ_ONCE(display->params.mmio_debug) ||
--		READ_ONCE(display->mmio.mmio_debug_oneshot);
--}
--
- static void check_unclaimed_mmio_pre(struct intel_display *display,
- 				     intel_reg_t reg, bool write)
- {
--	if (!mmio_debug_is_enabled(display))
--		return;
--
- 	if (!display->mmio.funcs->check_for_unclaimed_mmio(display))
- 		return;
- 
-@@ -266,9 +257,6 @@ static void check_unclaimed_mmio_pre(struct intel_display *display,
- static void check_unclaimed_mmio_post(struct intel_display *display,
- 				      intel_reg_t reg, bool write)
- {
--	if (!mmio_debug_is_enabled(display))
--		return;
--
- 	if (!display->mmio.funcs->check_for_unclaimed_mmio(display))
- 		return;
- 
-@@ -355,19 +343,29 @@ __mmio_lock_post(struct intel_display *display, unsigned long irqflags,
- 		spin_unlock_irqrestore(&display->mmio.lock, irqflags);
- }
- 
-+static __always_inline bool
-+__mmio_debug_is_enabled(struct intel_display *display)
++#define TGL_MMIO_FLAGS __MMIO_UNCLAIMED
++
++static u32 tgl_mmio_read(struct intel_display *display, intel_reg_t reg)
 +{
-+	/* with || gcc emits two branches for this */
-+	return unlikely(!!READ_ONCE(display->params.mmio_debug) |
-+			READ_ONCE(display->mmio.mmio_debug_oneshot));
++	return __intel_de_read(display, reg, TGL_MMIO_FLAGS);
 +}
 +
- static __always_inline void
- __mmio_unclaimed_pre(struct intel_display *display, intel_reg_t reg,
--		     const bool write, const unsigned int mmio_flags)
-+		     const bool write, const bool mmio_debug_is_enabled,
-+		     const unsigned int mmio_flags)
- {
--	if (mmio_flags & __MMIO_UNCLAIMED)
-+	if (mmio_flags & __MMIO_UNCLAIMED && mmio_debug_is_enabled)
- 		check_unclaimed_mmio_pre(display, reg, write);
- }
++static void tgl_mmio_write(struct intel_display *display, intel_reg_t reg, u32 val)
++{
++	__intel_de_write(display, reg, val, TGL_MMIO_FLAGS);
++}
++
++#undef TGL_MMIO_FLAGS
++
++static const struct intel_mmio_funcs tgl_mmio_funcs = {
++	.read = tgl_mmio_read,
++	.write = tgl_mmio_write,
++	.check_for_unclaimed_mmio = hsw_check_for_unclaimed_mmio,
++};
++
+ #define LNL_MMIO_FLAGS __MMIO_WAKELOCK
  
- static __always_inline void
- __mmio_unclaimed_post(struct intel_display *display, intel_reg_t reg,
--		      const bool write, const unsigned int mmio_flags)
-+		      const bool write, const bool mmio_debug_is_enabled,
-+		      const unsigned int mmio_flags)
- {
--	if (mmio_flags & __MMIO_UNCLAIMED)
-+	if (mmio_flags & __MMIO_UNCLAIMED && mmio_debug_is_enabled)
- 		check_unclaimed_mmio_post(display, reg, write);
- }
- 
-@@ -375,6 +373,7 @@ static __always_inline u32
- __intel_de_read(struct intel_display *display, intel_reg_t reg,
- 		const unsigned int mmio_flags)
- {
-+	const bool mmio_debug_is_enabled = __mmio_debug_is_enabled(display);
- 	unsigned long irqflags;
- 	u32 val;
- 
-@@ -382,11 +381,13 @@ __intel_de_read(struct intel_display *display, intel_reg_t reg,
- 
- 	__mmio_wakelock_pre(display, reg, mmio_flags);
- 	__mmio_lock_pre(display, &irqflags, mmio_flags);
--	__mmio_unclaimed_pre(display, reg, false, mmio_flags);
-+	__mmio_unclaimed_pre(display, reg, false,
-+			     mmio_debug_is_enabled, mmio_flags);
- 
- 	val = __intel_de_read_fw(display, reg);
- 
--	__mmio_unclaimed_post(display, reg, false, mmio_flags);
-+	__mmio_unclaimed_post(display, reg, false,
-+			      mmio_debug_is_enabled, mmio_flags);
- 	__mmio_lock_post(display, irqflags, mmio_flags);
- 	__mmio_wakelock_post(display, reg, mmio_flags);
- 
-@@ -397,17 +398,20 @@ static __always_inline void
- __intel_de_write(struct intel_display *display, intel_reg_t reg, u32 val,
- 		 const unsigned int mmio_flags)
- {
-+	const bool mmio_debug_is_enabled = __mmio_debug_is_enabled(display);
- 	unsigned long irqflags;
- 
- 	assert_display_rpm_held(display);
- 
- 	__mmio_wakelock_pre(display, reg, mmio_flags);
- 	__mmio_lock_pre(display, &irqflags, mmio_flags);
--	__mmio_unclaimed_pre(display, reg, true, mmio_flags);
-+	__mmio_unclaimed_pre(display, reg, true,
-+			     mmio_debug_is_enabled, mmio_flags);
- 
- 	__intel_de_write_fw(display, reg, val);
- 
--	__mmio_unclaimed_post(display, reg, true, mmio_flags);
-+	__mmio_unclaimed_post(display, reg, true,
-+			      mmio_debug_is_enabled, mmio_flags);
- 	__mmio_lock_post(display, irqflags, mmio_flags);
- 	__mmio_wakelock_post(display, reg, mmio_flags);
- }
+ static u32 lnl_mmio_read(struct intel_display *display, intel_reg_t reg)
+@@ -522,8 +542,10 @@ void intel_de_init(struct intel_display *display)
+ 	 * rid of driver_is_i915().
+ 	 */
+ 	if (driver_is_i915()) {
+-		if (DISPLAY_VER(display) >= 9 ||
+-		    display->platform.broadwell || display->platform.haswell)
++		if (DISPLAY_VER(display) >= 12)
++			display->mmio.funcs = &tgl_mmio_funcs;
++		else if (DISPLAY_VER(display) >= 9 ||
++			 display->platform.broadwell || display->platform.haswell)
+ 			display->mmio.funcs = &hsw_mmio_funcs;
+ 		else if (display->platform.valleyview || display->platform.cherryview)
+ 			display->mmio.funcs = &vlv_mmio_funcs;
 -- 
 2.56.0
 
