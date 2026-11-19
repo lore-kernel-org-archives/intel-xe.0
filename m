@@ -2,56 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32240606A335
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:59:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DFCC606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 11:04:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KZSS7n5R
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=OvHtpg00
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEE8111229C;
-	Thu, 19 Nov 2026 10:59:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88D0E1122A1
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 10:58:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795085938; x=1826621938;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Ncj6XZ4T7vSFZxoa1tpW6TAYB2ZvpygkPokfRc48R68=;
- b=KZSS7n5Rw4qSu7Av4gdhgcMZMrKT5ij8X1mymEJ5DV2uQikgZo4sVKy4
- oh88jQ2J75P/4QZSpqt2gx/1hRWrwN1DTQcA2l4OmhJvWvuPvby2xL9Fz
- AuXDlcoC7+UfA1zn5Ke6/L2mWqufet5DV/1rt0tWR2mg/UuzByZhxR/xi
- AP53d5tKMwydC1bQ/GS4nC3rZITMn6wUwVJroZG7RJQe9SCm850DObVwe
- /DajD1hIuso5UFpUYsbDKDACiIWIyYB8azXUXQbOMer0AchyeoEh6AbWN
- JBgvX4Ww9QGv6LJ0o8D6VHFLzpHi3OU1QEkM4XWA28jW2828Or1XIIPiA A==;
-X-CSE-ConnectionGUID: ZJiforZUQq+k5RM7SwyX5g==
-X-CSE-MsgGUID: YrGbbzsETqaqObcJh2mD7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="4030914"
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="4030914"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 02:58:58 -0800
-X-CSE-ConnectionGUID: 7AY4OgFiSKuPsnDUammLMg==
-X-CSE-MsgGUID: Gr4oqqD4SAmyCv3dVkHTcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10493857"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 02:58:55 -0800
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
- mallesh.koujalagi@intel.com, Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v2] drm/xe/survivability: Fix infinite loop in aux info
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23EF410E43B;
+	Thu, 19 Nov 2026 11:04:52 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 571AB10E43B
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 11:04:46 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 17A86407C0;
+ Thu, 19 Nov 2026 11:04:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D167A1F000C4;
+ Thu, 19 Nov 2026 11:04:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795086286;
+ bh=26LVQHYasPbb4XQ1P0sptpfWJjDZVrCOtUqGB/hMDW4=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=OvHtpg00dsi5vyxEWe0Ak0RZhBYt8jWKvR5U1FqoxGMFxBmsb/d/40wm5ARdlcRn5
+ Zr0ydJuyaHrSOHGE78If+Z5HOrmlXE6OZ/X5LCfUDidbh/nl3pNufGHp4mm5c0W1HZ
+ BHN/4L5nJa/UlN817vHjfyTJLvjNk2XJ6Wfq0ExwLEP0lu5YKytWmGKPobmWuUd6pL
+ h9BtDDmc/T7xKvK5I7FFkVmKflNlBAJlOgOg3w5xGwHB9LaNLZSOq4PlFbJhqopR5a
+ KJb5e40ssBbFD9jHO5rTEUd0lUJpTFWc7EZRrPqy03lvOGPuQ1Xipf10ym+8S4cNqL
+ 1KiG+hCWVX9rw==
+Message-ID: <sashiko-outbox-223004@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2] drm/xe/survivability: Fix infinite loop in aux info
  traversal
-Date: Thu, 19 Nov 2026 16:13:01 +0530
-Message-ID: <20261119104300.3401464-2-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.43.0
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+To: "Sk Anirban" <sk.anirban@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119104300.3401464-2-sk.anirban@intel.com>
+References: <20261119104300.3401464-2-sk.anirban@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 11:04:45 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,49 +46,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-AUX info register traversal can loop indefinitely when a register
-points back to itself. Avoid revisiting registers by reading each
-register once and collecting the entries that contain data.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/xe/survivability: duplicate MMIO read in
+  populate_survivability_info()
+--
 
-v2: Add fixes (Riana)
-    Modify loop (Riana)
+commit e6c70594563ece060377037415229cf64bafe989
+Author: Sk Anirban <sk.anirban@intel.com>
 
-Fixes: 5e940312a2ac ("drm/xe: Add functions and sysfs for boot survivability")
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/xe/xe_survivability_mode.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+drm/xe/survivability: Fix infinite loop in aux info traversal
 
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 91a0680e449b..5fd40bc0dec0 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -168,12 +168,12 @@ static void populate_survivability_info(struct xe_device *xe)
- 			set_survivability_info(mmio, info, POSTCODE_TRACE_OVERFLOW);
- 	}
- 
--	/* Traverse the linked list of aux info registers */
-+	/* Read all aux info registers and store the non-zero ones */
- 	if (reg_value & AUXINFO_SUPPORT) {
--		for (id = REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
--		     id >= AUX_INFO0 && id < MAX_SCRATCH_REG;
--		     id =  REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id]))
--			set_survivability_info(mmio, info, id);
-+		for (id = AUX_INFO0; id < MAX_SCRATCH_REG; id++) {
-+			if (xe_mmio_read32(mmio, PCODE_SCRATCH(id)))
-+				set_survivability_info(mmio, info, id);
-+		}
- 	}
- }
- 
--- 
-2.43.0
+This commit replaces the linked-list traversal of AUX info scratch
+registers in populate_survivability_info() with a linear loop from
+AUX_INFO0 to MAX_SCRATCH_REG to avoid infinite loops when a register
+points to itself.
 
+> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm=
+/xe/xe_survivability_mode.c
+> index d73cdad0b3a9c..b3b6c89bed6f4 100644
+> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
+> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
+> @@ -166,12 +166,12 @@ static void populate_survivability_info(struct xe_d=
+evice *xe)
+>  			set_survivability_info(mmio, info, POSTCODE_TRACE_OVERFLOW);
+>  	}
+> =20
+> -	/* Traverse the linked list of aux info registers */
+> +	/* Read all aux info registers and store the non-zero ones */
+>  	if (reg_value & AUXINFO_SUPPORT) {
+> -		for (id =3D REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
+> -		     id >=3D AUX_INFO0 && id < MAX_SCRATCH_REG;
+> -		     id =3D  REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id]))
+> -			set_survivability_info(mmio, info, id);
+> +		for (id =3D AUX_INFO0; id < MAX_SCRATCH_REG; id++) {
+> +			if (xe_mmio_read32(mmio, PCODE_SCRATCH(id)))
+> +				set_survivability_info(mmio, info, id);
+> +		}
+>  	}
+>  }
+
+[Severity: Low]
+Does this read every non-zero PCODE_SCRATCH(id) register twice over MMIO?
+set_survivability_info() is just:
+
+drivers/gpu/drm/xe/xe_survivability_mode.c:set_survivability_info() {
+	info[id] =3D xe_mmio_read32(mmio, PCODE_SCRATCH(id));
+}
+
+Calling set_survivability_info(mmio, info, id) directly in the loop would
+read each register once.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119104300.3401=
+464-2-sk.anirban@intel.com?part=3D1
