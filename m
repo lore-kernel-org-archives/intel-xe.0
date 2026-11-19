@@ -2,174 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A45D606A331
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 22:38:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C691606A325
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 22:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=glR7hmTp;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=j1TVxXN0
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=CeoaHwhD
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C258011277A;
-	Thu, 19 Nov 2026 22:38:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1206211277A
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 22:37:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795127870; x=1826663870;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=KUFu/t/mV5pHO8gQjtZN29ECFZDCqzhz2vUelKrBLOc=;
- b=glR7hmTpa0MJlm4gBaQQZ4mpSOpR2CMiz7FvZRykzbarDwVPMi2tPXUc
- /EzN+q6Axae3QnFFJg9nE1U61JaRzaw396iiItcQH28AWsY6vS+288oiw
- n985Mdej9OAfVqUoPXYqyDbH/kaVf+QmES7UawOMZTHgM1o9ybZLNUlRZ
- PVJh8jZcQaV8b6wdFo6z4AwmxHejrTukKr12r1reJyjjFDvRSLHSlkWd+
- 8WdxG3Yxrtr0a69kt437q5Q4MT7IiiNPIYOVfb0t0eX3wD9skOg8Yqru2
- dkxFtneuejcVzNDT+ETk5OgMNfSWW2Wg7J8itY5TRR/EF+TOHp7yjt80z w==;
-X-CSE-ConnectionGUID: wlWGk8HLSyGVluzb7N/WdA==
-X-CSE-MsgGUID: PwNV4yAFTmKe66aEGWTBzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3894000"
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3894000"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 14:37:19 -0800
-X-CSE-ConnectionGUID: eqFBC1BNQ8Sw8h0W2S2O6g==
-X-CSE-MsgGUID: ua1nPB3ZTuK4i5xr4iDqQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10632263"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 14:37:18 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 14:37:18 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 14:37:18 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.30) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 14:37:17 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EWW9h/L6b7ubC17GjYzWbeoxGDYJvig/Ezu35cIpIAf3rM+qi22IcELvM/P0RUNTiORX509ZsTrQ8kANCgCnFz1GgIQcCx/b906Xmsrr01UGXBB6JwFEjHZG1DCl6EqtqlchzYkZY8L9EWIImae5BG9bPr9xCcKXcPyHWP3rmbHY4SFQi1B4xnxUrIfXTAUNq6rLSHP6Wn0RqYP31AtefPcVCx/CgUmHQXXaXZeiUi77K266PTrYY8jYBnFXSmqibG6mGpcjFS5Yt5DGJWCdYViR2oF6IvR+4ySbJJxXLIe8WgGAv+p/mgYQLYM1wfI84k21UHPsHn5aHV9oA2OMYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KUFu/t/mV5pHO8gQjtZN29ECFZDCqzhz2vUelKrBLOc=;
- b=ZOCuRXXqMrn7V2ZU9CzOPNp2TAKAznxxTyhKuW/diNca8ual/RSteFUJGpfL3/HHwwuGZgiMfoRNjC/ldGBefsZlGUVYW7y0iFhi7MSZaXIxJPV547Ulv6fGrumCMLSFm7l3QXF4eHfAbZ4aA7NfZtGqJg2F8ZUdo4TVjUca6NZdPEIv/goxYho4tZ9WFFtW3cSoIsANr524SSdlOARHQsfF54MHxQg9vnwdfyxaseZGkvNigps/nwDxnljm9mJDhTh/nel16q/i450Fpheu38cu3FCIDEl1H+OmlhJjwhH7JmYNXqXeMjfih0CU0pzQmZn9S0lYN2jmI5MLDyK1iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KUFu/t/mV5pHO8gQjtZN29ECFZDCqzhz2vUelKrBLOc=;
- b=j1TVxXN0Xgc6hmY5uFNRo3YvbNjZuyqZNK+Or1+RkhfKZMdtTnrxew5vDTbluxuTp7yz4Vq2rRfT0WPJVk9SRsL6hFaEsTFpSGgbQ4L6DiQJ72U7iGJd45OXOFIn6lRLBwvbCuUwjV8JCoqrsuUN6uvM9a0bGJnIICEE8p4NMEg=
-Received: from AT6PR11MB072844.namprd11.prod.outlook.com
- (2603:10b6:170:10a::16) by LV3PR11MB8604.namprd11.prod.outlook.com
- (2603:10b6:408:1ae::18) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 22:37:14 +0000
-Received: from AT6PR11MB072844.namprd11.prod.outlook.com
- ([fe80::520a:561:ace1:e64b]) by AT6PR11MB072844.namprd11.prod.outlook.com
- ([fe80::520a:561:ace1:e64b%6]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
- 22:37:14 +0000
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Vivekanandan, Balasubramani" <balasubramani.vivekanandan@intel.com>,
- "driver-core@lists.linux.dev" <driver-core@lists.linux.dev>,
- "bartosz.golaszewski@oss.qualcomm.com"
- <bartosz.golaszewski@oss.qualcomm.com>, "dakr@kernel.org" <dakr@kernel.org>,
- "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>
-Subject: Re: [PATCH 1/1] driver core: platform: tests: add a shared software
- node test case
-Thread-Topic: [PATCH 1/1] driver core: platform: tests: add a shared software
- node test case
-Thread-Index: AQHdd6x5MZX0/FRaVUKF18s/TKog8rc13+MAgAAdzQA=
-Date: Thu, 19 Nov 2026 22:37:14 +0000
-Message-ID: <c45020ffef39314cee4093ba54e6ce7e0b1b187a.camel@intel.com>
-References: <20261118223023.19653-3-stuart.summers@intel.com>
- <20261118223023.19653-4-stuart.summers@intel.com>
- <av9hGMZz0SZyxCQR@ashevche-desk.local>
-In-Reply-To: <av9hGMZz0SZyxCQR@ashevche-desk.local>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AT6PR11MB072844:EE_|LV3PR11MB8604:EE_
-x-ms-office365-filtering-correlation-id: 56a5725e-a19e-4b96-003c-08df468da8da
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|38070700021|56012099006|4143699003|11063799006|10067099003|261009223027099003|261021135927099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: 9hDAVFOHAe0CuPvPVU7KlFE/CpSyXAjpByGok/DK9Fb029IxRJdUc3GRfsNOJEa9y0MbYHv3zs89phtD8PHyFE8A3FT3S4IyI90lJCRanjrDpOKAO84/jRyMLbdmqVzPrQSBfpcMr2r9geS7TN2uUmbT+MO/rQTHKzNbf8moA9h+j9pKOcl3cOiGdrXUHDGQ/TLYlOL9d80SQzszzIi8ntuOpLaX00r6xgWNdOI3WYbEyH5hkR4h9Q0zZxZn2VUUBV/xNF6P5SOH1aHfq6toMuiy+H67XCE5yptQ5Ajch4KG763SPHtVEhQw+aikGhzotVEYHjng+1kyc1LBKYnewhBmgEengOuJ0ekW3u56tj9EsQ/7JFL2Oh1zoepOhsWOTmVDPvSWtmtTQu8i4Abq0EbcI5EXEgRXo2ZzfDVBLL7OpnNoCfd4spZ+z2unDV/oz7x47kJlrj0mP78LbdFQus6KEC1jfCnvHpmCIE9vyPXClxfmZQ3S7R7kqIgQtpRVozm3Mwf+MLPVCvp09EvfKJRIGTCwicKhmQg0oOh9NMF0mFdxoKRHwMhYiglMtDQ2Tf7Pj8I4rKNeQ9ljYq3wbVnGL0PtVR0XMZsOcv0fNSfdgcNz7M2psP41OxodMTYXx4qh0BZBC7/mBAmhsJFgdSVuPDH+qZxySceYbkDAgrzWo2lQgqSnDonoljNkgRfVWjfXcRQZ8H1SsmZH+UvZovnEfSoyv2QwKOr2AUMUhdw=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:AT6PR11MB072844.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(38070700021)(56012099006)(4143699003)(11063799006)(10067099003)(261009223027099003)(261021135927099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MTUwN1BQMnBsRUNPRDl5QThKL0pQYk1LbGI2bndoZ2VGYjlyekJWdmxHMWV5?=
- =?utf-8?B?L3pVNHk5ODJ3SnJ2TEtxK2N1VkFxMzhiR0NYMnVVZENFSnU3SzJRS1F2dEZP?=
- =?utf-8?B?TGFsb1VQRVJPM3hvMXI0eERwTGs2U1hqV2hNa1ZJVmlLcGtUUHBpTFdmM1Z5?=
- =?utf-8?B?V21wb0wrUUJzU3oxdkNteEhaelVWS09CV29EQXoyY3BzK3lkSWxOYWx4QWZi?=
- =?utf-8?B?ZE5iblVXVHZsZUMyd1BVQXRxY0RDWW5TYTRidERFTWszQnBTSEROZkkvNTlj?=
- =?utf-8?B?UXk0ZVVKUzJVZk15bExrZGRCYmtndm5pSytOaDRQQ1R1S1F6ZklRQURvS3Zk?=
- =?utf-8?B?eFZGRHJFUEkvZEk3dGFLdFVrSGhsKzZPbk5EeTJBSnY1T01mY3Q2cDlhc2p2?=
- =?utf-8?B?WUs2NWp2V3BRa0F1S2ZBejVYTjAwMk12S3Y2MUVVbURRblB1TTJBSGdHZk8z?=
- =?utf-8?B?RG5JSjg1N25Xdzlid0NwRzM3THl3TXpXZVpJNHpFK2E0UG5nV0s4SWgrcWZx?=
- =?utf-8?B?TDh5T2lPL1RseVJRQVpsYnAyUHhsZmMyOHdNQ2pLZU5pNFN3LzRxYXJvRUMw?=
- =?utf-8?B?aGttYXQ3UVpvM1JLQVREK2h2cHdnSi80TTF0Y2JmaytDL2dZb2tqei95Ukti?=
- =?utf-8?B?cXRDK3ltZUI5S2MrWVROMGZjVU5USk9YNjNwdUdMVnFQemEzOUZGTDZqcktm?=
- =?utf-8?B?NmcxWnJGNXlKc1pPQ2ZBNkw4U2tIOWhQYWRlTkJLaWRvaHpFMURsQ2VicEZT?=
- =?utf-8?B?UjdqeTZPTStKbU5scnE0L2h5SW5lbitReVlzV0VMdjVoVVFYMmloOTRrNXdx?=
- =?utf-8?B?L3dxTmtzendzNkF1QW5EL04zZUxhTUtrbU8vQ1ZnY0JnUTFNcllheW1qN2Zj?=
- =?utf-8?B?RzV4UDRibG5HQlZJMGs0UjIybE9xNTE5Z0pKQnVFQTBaV2hLbWxiLzFkU1Vy?=
- =?utf-8?B?SWNZSFk4WktjaVhSNmFBeUN1UEV2TTQzUEZPZ1BzM1hmTkVrZzdNZUJORDVU?=
- =?utf-8?B?bWZycDVYSnVUWlpPMkhEMitQdmh4UDh2cjE2YmNNcW05NVB2YmJzYzBaMGRP?=
- =?utf-8?B?T2hXSnlERTBOSnVJNnN3MUk3TElWY2lvMXEyR1Rob2lWYTdHVXBUWC96VWZD?=
- =?utf-8?B?OUFpZC9mRUFRVUZpeTgyQUVOQXg4a0RzR09SaVJhLzBYRlc2bEUrVVM2WjZP?=
- =?utf-8?B?L0U5ejB5ZGlsM3R5Y3JsVk5OZ0VqRU5rZ0pqQ2Y4dUcrSXFiRGVWaHpVcnE0?=
- =?utf-8?B?Um9GR3drRkZaUVl2UEpGOTBUOHcvcmxPU1ZYU0ZHVUsrQlFMUnpFeitWdGtZ?=
- =?utf-8?B?VCs0aDlPYWJvUEh4Q2J1MDdHaGFxKzR5TnJnOTVyQlJUR1hmTmg0K3ZIUkMx?=
- =?utf-8?B?VnpLNGFzVURoeDFMd2pRSkpQSkdkdDZycDhYanFvbkg1elVZR1c2eUpzSWV3?=
- =?utf-8?B?L2wzNzE4RmpsY0huRlIyV1RYK1Y1OWVnazNlRElFa3BNRE4yei9jN3JQV1J5?=
- =?utf-8?B?Qm9tNEpQKzBTaGJ5dERuS3JiV1lNd3JhTEp0ZFBHRnVEVC9IUHhyWTlwYlJm?=
- =?utf-8?B?NmxkSW8vQk4rSFBZbUZUMUtDL3dtb0hMcGpVZUovVVJYU2VRalk3UkVUaC94?=
- =?utf-8?B?QTMrNmFnV1BpaHhISU5OWXNyaGxXbDlGeXFUbGhOeWZBVXczSzNhN29OanBY?=
- =?utf-8?B?YW15RlBwTzV1cFhjckU0bkZYZ09pWDU4NThOUDdVUVNEZ0dOb0UvQ2JCa0lC?=
- =?utf-8?B?b0plM0NmK2pGUER0TUFRME84aDR0dlBOTGQvcTZxZmQ1dVlKWFp0MzlrUTJK?=
- =?utf-8?B?Tk9OdGtRWE1FNnZuSUVHWDZEbXpmcG9keWNKaklKc0g2MERLZEc1TERkU09s?=
- =?utf-8?B?TXZHa1NnZ2h2Ky9XbW5xQXdyYTZtSjI2dXJGNXg3Tis3d1UzUGxScWpFSVZ6?=
- =?utf-8?B?K1hFZDBpZVVKVTh2NTZoUmppMzlnaC9KdHBMNlA2Ylg2YWJzU3lIMFhKVWox?=
- =?utf-8?B?NVRoVjF5ZlBJWklyYzZsMGVYM1JydWUxeGxyVHRWeEVVZE1MczhXVldtdXhJ?=
- =?utf-8?B?Ui9vWUIybG9ESzN6eXZGMmdNVVlzaVhtdTdXMW5ucW1iVTJhQlpmaXVrZlBn?=
- =?utf-8?B?bTErS0VRQnUvSVBGaFI4TkhFTCtpNnh1cEVPc2ZMZDFkZmdSQWJSUmFBU29V?=
- =?utf-8?B?Z2dpNHQ4dFZHcTJJTFgxL0RyUm1VT1h6QmVxTTgwU3NMWnRPcEFJRzdWMlNS?=
- =?utf-8?B?MEJJdzgrL2Njc2lod3kvVngzalNpbFozWUdPVyt4V29oNDhoVHNHb3RSWkJi?=
- =?utf-8?B?clhubEwwOU04eTFWZWtSeWFXRUFLd1p0RzZ3MGtjcFJxcU5hT09JaDhYTlNE?=
- =?utf-8?Q?QOKU4HQ7F3D0w96Y=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5BA72FC506F3DF4BB933D4C6C0EA5768@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: rZFnthOz65g6KQKaLOqwi0fLSQAssRtClggAHJbRaZKxBNIhyI+z5EjP4WsgUCb8uJtcgZAiL1zlq8/A6ap1aUJ6fCZqOrSH+vyPxkB/wZsVWrgtOl4liWFHDkUAsHuRxT5IhYLkhoT/WKsp2CUq+u7pC9LQFL68j3F+z1MihJz+IDbF7/JO4dNsuMWPw4vNNB7EsvpalOmkN1/ZRjbYP+p0c4/9aGKhFHfWnrQqi6POrSiwyQa9xqWoCwtn2KNpMtn0ZBUa0Yaxfw2AdLC9iuCT/jfrad/yVipffLBtEMf+0PsgyNgOV7kc0kKnaKx55b0xpzw3lRqnUEy/k6jyjQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AT6PR11MB072844.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 56a5725e-a19e-4b96-003c-08df468da8da
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2026 22:37:14.6874 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LJjaxh5njeWg54D8W/0Z1QIZ5EHpf6W8bjCyw5i7V/9BYG7BlFyPmBC9TKWupzczk/JQk1lyJSkorkYS0xAkyxsouEkeCpefd3ojZq7axN4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8604
-X-OriginatorOrg: intel.com
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0661010E6D2;
+	Thu, 19 Nov 2026 22:50:47 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A226010E82C
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 22:50:41 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 8DFBB60D29;
+ Thu, 19 Nov 2026 22:50:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 29A601F000C0;
+ Thu, 19 Nov 2026 22:50:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795128640;
+ bh=D4N3buEhF/JU+FdhTZz6dzvcofTkAXs0RYlaOSt8/iY=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=CeoaHwhDLg2avlvOpqQb7zqYmw6v7icgt9qhG4Vl+c/HWWQPF9AomuYFztRX2/nsf
+ 4n36RLbd1WxCE59+f7rBnfWUw65VEYPg8Ah+InAYeVbLV1XYbTD8MLDTmWbpPI+eAV
+ PTMwyW6HQCDujZlRFp1SsQ9Z1saZ2iTmrEUuEnXLzeviCx2p4l1uvN9FVYFYPjR43L
+ RL0PYNFzTBhaaHwR3kqU/2VaTg9LMoLjaAbP0zIzU7poPhr2QUoD13bKdLwxsH2/Me
+ w6hOVW1+OabmZlYvGlpx/43BwmHUTYT6WNDdThjVm39iedscPmOu7S4bfEzXLReKCI
+ TEVzeb+VG141g==
+Message-ID: <sashiko-outbox-224160@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 2/2] drm/xe: Add sysfs to disable RPe
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119222958.1239889-4-vinay.belgaumkar@intel.com>
+References: <20261119222958.1239889-3-vinay.belgaumkar@intel.com>
+ <20261119222958.1239889-4-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 22:50:39 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,31 +47,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-T24gVGh1LCAyMDI2LTExLTE5IGF0IDIyOjUwICswMjAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6
-DQo+IE9uIFdlZCwgTm92IDE4LCAyMDI2IGF0IDEwOjMwOjIzUE0gKzAwMDAsIFN0dWFydCBTdW1t
-ZXJzIHdyb3RlOg0KPiA+IENvdmVyIHRoZSBwYXR0ZXJuIHVzZWQgYnkgZHJtL3hlICsgaTJjLWRl
-c2lnbndhcmUsIHdoZXJlIGEgc29mdHdhcmUNCj4gPiBub2RlDQo+ID4gYXNzaWduZWQgYXMgYSBw
-bGF0Zm9ybSBkZXZpY2UncyBwcmltYXJ5IGZpcm13YXJlIG5vZGUgaXMgaGFuZGVkIHRvDQo+ID4g
-YQ0KPiA+IHNlY29uZCBkZXZpY2UgdmlhIGRldmljZV9zZXRfbm9kZSgpLCBhbmQgbWFrZSBzdXJl
-IHJlbW92aW5nIHRoYXQNCj4gPiBzZWNvbmQNCj4gPiBkZXZpY2UgbGVhdmVzIHRoZSBvd25lcidz
-IG5vZGUgaW50YWN0Lg0KPiA+IA0KPiA+IEEgcG90ZW50aWFsIGZpeCBmb3IgdGhpcyBpc3N1ZSBp
-biB0aGUgZHJtL3hlIGRyaXZlciBpcyBiZWluZw0KPiA+IGRpc2N1c3NlZA0KPiA+IGluIFsxXS4N
-Cj4gPiANCj4gPiBUaGUgc2lnbmF0dXJlIGluIHRoaXMgY2FzZSBsb29rcyBsaWtlIHRoaXM6DQo+
-IA0KPiA+IE9vcHM6IGdlbmVyYWwgcHJvdGVjdGlvbiBmYXVsdCwgcHJvYmFibHkgZm9yIG5vbi1j
-YW5vbmljYWwgYWRkcmVzcw0KPiA+IDB4NmI2YjZiNmI2YjZiNmI3Mw0KPiANCj4gVGhpcyBwcm9i
-YWJseSB3YXMgYSBzaW5nbGUgbGluZSwgbWFrZSBpdCBzbyBpbiB0aGUgY29tbWl0IG1lc3NhZ2UN
-Cj4gZGVzcGl0ZSBpdHMNCj4gbGVuZ3RoLg0KDQpUaGFua3MgZm9yIHRoZSByZXZpZXchIFdvdWxk
-IHlvdSBsaWtlIG1lIHRvIGZpeCB0aGF0IHVwIGFuZCByZXNlbmQ/DQpJJ2xsIGxpa2VseSBuZWVk
-IGhlbHAgbWVyZ2luZyBzbyBpcyB0aGlzIHNvbWV0aGluZyB0aGF0IGNhbiBiZSBmaXhlZCB1cA0K
-YXMgcGFydCBvZiB0aGUgbWVyZ2U/DQoNClRoYW5rcywNClN0dWFydA0KDQo+IA0KPiA+IFJJUDog
-cGxhdGZvcm1fZGV2aWNlX3JlbGVhc2UrMHg2Zi8weDgwDQo+IA0KPiAuLi4NCj4gDQo+IFRlc3Qg
-Y2FzZXMgYXJlIGFsd2F5cyB3YXJtbHkgd2VsY29tZSENCj4gUmV2aWV3ZWQtYnk6IEFuZHkgU2hl
-dmNoZW5rbyA8YW5kcml5LnNoZXZjaGVua29AbGludXguaW50ZWwuY29tPg0KPiANCg0K
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Medium] drm/xe: unlocked pc_set_ignore_eff_freq() call in
+  xe_guc_pc_start()
+--
+
+commit 92347c09642635b15512f302b19f351ec5e6cc4f
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+
+drm/xe: Add sysfs to disable RPe
+
+This commit adds a per-GT use_rpe sysfs attribute to control SLPC
+efficient frequency behavior independently of min_freq and disables RPe
+before querying min_freq during frequency bounds setup and MERT frequency
+capping.
+
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_p=
+c.c
+> index ea47b0ded83a4..0f98e8e48c577 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+
+[ ... ]
+
+> @@ -1192,6 +1224,31 @@ static int pc_action_set_strategy(struct xe_guc_pc=
+ *pc, u32 val)
+>  	return ret;
+>  }
+> =20
+> +int xe_guc_pc_set_use_rpe(struct xe_guc_pc *pc, u32 val)
+> +{
+> +	int ret =3D 0;
+> +
+> +	guard(mutex)(&pc->freq_lock);
+> +
+> +	/* Might be in the middle of a gt reset */
+> +	if (!pc->freq_ready)
+> +		return -EAGAIN;
+> +
+> +	if (!pc->mert_freq_cap_active) {
+> +		/*
+> +		 * If use_rpe =3D=3D 1, ignore_eff_freq =3D false. GuC elevates min_fr=
+eq to
+> +		 * RPe when enabled, and resets it back to the previously set min
+> +		 * when disabled, so no explicit set_min_freq request is needed here.
+> +		 */
+> +		ret =3D pc_set_ignore_eff_freq(pc, !val);
+> +	}
+> +
+> +	if (!ret)
+> +		pc->use_rpe =3D val;
+> +
+> +	return ret;
+> +}
+> +
+>  static const char *power_profile_to_string(struct xe_guc_pc *pc)
+>  {
+>  	switch (pc->power_profile) {
+> @@ -1344,6 +1401,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+>  	if (ret)
+>  		return ret;
+> =20
+> +	ret =3D pc_set_ignore_eff_freq(pc, !pc->use_rpe);
+> +	if (unlikely(ret))
+> +		return ret;
+> +
+>  	ret =3D pc_set_mert_freq_cap(pc);
+>  	if (ret)
+>  		return ret;
+
+[Severity: Medium]
+Can calling pc_set_ignore_eff_freq(pc, !pc->use_rpe) outside pc->freq_lock
+after pc_init_freqs() has already set pc->freq_ready =3D true race with
+sysfs accesses?
+
+Inside pc_init_freqs(), pc_adjust_freq_bounds() forces ignore_eff_freq to
+1 under pc->freq_lock, and pc_init_freqs() then sets pc->freq_ready =3D true
+and unlocks pc->freq_lock before pc->use_rpe is applied here:
+
+CPU0                              CPU1
+xe_guc_pc_start()
+  pc_init_freqs()
+    mutex_lock(&pc->freq_lock)
+    pc_adjust_freq_bounds()
+      pc_set_ignore_eff_freq(pc, 1)
+    ...
+    pc->freq_ready =3D true
+    mutex_unlock(&pc->freq_lock)
+  !pc->use_rpe (reads old value)
+                                  use_rpe_store()
+                                    xe_guc_pc_set_use_rpe()
+                                      mutex_lock(&pc->freq_lock)
+                                      pc_set_ignore_eff_freq(pc, !val)
+                                      pc->use_rpe =3D val
+                                      mutex_unlock(&pc->freq_lock)
+  pc_set_ignore_eff_freq(pc, old) <-- overwrites GuC state with stale value
+
+This leaves SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY in GuC out of sync with
+pc->use_rpe.
+
+In that same window between pc_init_freqs() dropping pc->freq_lock and
+pc_set_ignore_eff_freq(pc, !pc->use_rpe) completing, a concurrent
+min_freq_show() sees pc->freq_ready =3D=3D true while ignore_eff_freq is st=
+ill
+1 from pc_adjust_freq_bounds() and reports the un-elevated min_freq even
+when pc->use_rpe is true.  Also, if pc_set_ignore_eff_freq() or
+pc_set_mert_freq_cap() fails here, xe_guc_pc_start() returns an error with
+pc->freq_ready left set to true, and on Wa_22019338487 platforms this
+briefly re-enables RPe right before pc_set_mert_freq_cap() disables it
+again.
+
+Could pc_set_ignore_eff_freq(pc, !pc->use_rpe) be moved inside
+pc_init_freqs() under pc->freq_lock before pc->freq_ready is set (or
+skipped when pc_set_mert_freq_cap() will keep RPe disabled)?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119222958.1239=
+889-3-vinay.belgaumkar@intel.com?part=3D2
