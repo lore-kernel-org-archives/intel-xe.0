@@ -2,107 +2,163 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 36A08606A325
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1318606A32C
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=F8mxWKbL
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PnKWOzUW;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=BbGCrMZq
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E3F3D1127BE;
-	Thu, 19 Nov 2026 23:29:56 +0000 (UTC)
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010063.outbound.protection.outlook.com [52.101.85.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E52911279F;
- Thu, 19 Nov 2026 23:29:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 754BF1127A3;
+	Thu, 19 Nov 2026 23:31:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DBD51127C8
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 23:31:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795131100; x=1826667100;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=4ZAb8DMjgG/J5R7OaMr1I1+etS1MfB++E1EcnAcRK2g=;
+ b=PnKWOzUWZ/btON4WRFftbKe7CCmSWzTm87vY/wZ7sagkahTnCM0LV5WT
+ 2qkoFHyEzRuD7OrcyeY76EXkMnFWor68M381GtJMjlSuhnKs5PyHRm8u0
+ d21NY4e0L5x3UG4Fiy5y5egKiYP6PQiid7Uex2mawqZwK1ceTJ6MeGnp4
+ U1dsMnGWtos7Pn5gba13Llr5KXfy/S5mijUMWd5/cJ+5gT6o75fpFGlig
+ +scI5hAIvsvET/B9zxymi9ixnld5qFRSQut5IsyjRar7VLajgIUBfGKa8
+ MZv5z4+OEenAIUr0rybmygRngzeYpWxmDwHUKKAW/kKnK/xOP5T57lCjv w==;
+X-CSE-ConnectionGUID: KiHEy8enS++PhcWeiMur/g==
+X-CSE-MsgGUID: irUTbMdoSee7tOR+xTq4WQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4019475"
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
+   d="scan'208";a="4019475"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 15:31:39 -0800
+X-CSE-ConnectionGUID: +Hr1iM+4QGCn8U2JDX9gYQ==
+X-CSE-MsgGUID: lIqYcrOaQm6NNfmZ3sl/mQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10888953"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 15:31:38 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 19 Nov 2026 15:31:37 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 15:31:37 -0800
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.68) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Thu, 19 Nov 2026 15:31:37 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EkQhS3WeKd+SuqZ1iW7gAp+6PovhC3fUsF5pG8vKC1zLObwMBxwwK5tAfG6vCJqN92M3VAKghwanwt+Uri+Y3yFeR1n4nPTXq/doby86Ixd3ikdIjXA09twJffjcOnay8mKfSi+ibhA1EsgOGEOrqKTosqQh84OStgyPioBjQjyadlTUKxzLlZ17SN5jVXOp/tkOKVlFgegGIEgtKHDPV8Be9YS2aaJK6zP94qCYpIfpr5hDNp9PH3VdfNXXDyATAjFiSceB6RgrM0inXkOMN8zqPmnJHH6NvVbSjGdd0c/HmKfGLu1xyLsl+kJ0HrokBziSFiPZ+Q32y6Px17IzTA==
+ b=oe6KQFS+9tPADzkf7bxC8lbrDftsiHgP8RWkNuvrx7coXmY7vCsQAxE4dpqUZx2DGB7ywHz4mfmZ/LjSWbsG7HJGDyooXz0Q02SzCfVI34r7173X29zWY7xqmeoKCCb6ljQ/xKmYLlDfFW9MLxyksUVVKzPhPvRKnZIg/o0KH0swZxLyMxPqiFiLNCJmHoWz1W4U+DF7Tvo7QxWtj4x6pAPjsvbT19N9DvdV7s48MaNJWVjyj530m/oBk0izJ8B6aJ4GZRHYAx5u/3ja2N/9OeWh2X8bFe6+WgPvVJc0GhjN6fIs9vIukLUX6m3V20PcFKVyB27LrzcDhJn7kvwDrA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MeMocPa7Lil9k6tv0y/oQ+AAmh2oTdJhlet1p19Jyw4=;
- b=fvw7a4UbKZCEVia4NXuhwmSAK2ibG55Bb7c6UYWIM5I7C26Q+TdfO8DS9HZDWUZOG0GYbQtVbhlv5yUH9BFko0GsbB2cm/5eyJiTI/IQdK9BPRgJQGzbCmAfm38ROMQtX5PYC2VPRdbyAlF1N6BUQ/IHq7xYYziDj+c8H4X/zSlM7W1E15xmvBInlKloujikPywraelOnlih1kA7cPdi/RRKyUDQSyfemwBOggtEqZzC1qJXn3rQGAownBBQvXaTzMZkNQOBpVPb67/1qDJlOAn89lCH1g68NNqn74HMymzRWKYPTTxgenFSgV7ANkTwd4utDDAlgjBkMAS97PKoSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linux.intel.com smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ bh=E1ToPjqF85KTBNMBll0aEoEsDVYbfN8/dKqblu1TF4M=;
+ b=TMCquAWxQvwinenDxXq9DYK31dJ5CoewkaTmNrCGTxdeZj5aRck/Y+WnEALwsURkmEmuouFN4i6BMHPp+JQLElVrkpqtzp1lvwweZtDDStue8eBPeTmvNG+MXDdj4Pw6N4ShFlgG5NxfWhQwKEyQiY9RUQRw+pSwc97no39MeKOHr+exSsdGymCdkL8lC8DfFzqUZOE+ZBamwbTeSWPG8rVcoLIXPUuiPlPjJI9Ixdk1TUfWb24yu3CEOvUVh99UvAog+A0VS0BgxA3qM0B86xsGOGIN/M7XHfxEcvUChUdoINPwHMafx+mmaULDjUfc0mIQCplLOFxbk5d4GKxtnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MeMocPa7Lil9k6tv0y/oQ+AAmh2oTdJhlet1p19Jyw4=;
- b=F8mxWKbL37nIirNYxEBxWHq+24V06tvRPTwfqPsAIoDFsxeDxphcFvHqIkKYpTDaphDx/0rtf/CUX/ob+EXwZs2ZFx8WYSBpEbWx0Ylr/domMLi92jQcI2nstx6OXK++3drzg3/jxBQs6d2r8cbHtaI3h5eqnM6LZDUSUO425TI=
-Received: from PH8P220CA0026.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:348::12)
- by SA1PR12MB7296.namprd12.prod.outlook.com (2603:10b6:806:2ba::21)
+ bh=E1ToPjqF85KTBNMBll0aEoEsDVYbfN8/dKqblu1TF4M=;
+ b=BbGCrMZqWz2CrSdLMl4PqpoprQ7UfTBOkt0QSRzwD9F7ZTI3jVjaQU/d83sJDveYtpAblzFNEFRfq78s45CfVTi++fPMJOz3isw2+DyrTIJD9+2qj2B/rhZY2RJi6Q/TJxqJefef//mDu+FlADcUSq5HueeKB+hr/DRnzN/CCnY=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SA2PR11MB4985.namprd11.prod.outlook.com (2603:10b6:806:111::8)
+ by MW4PR11MB7161.namprd11.prod.outlook.com (2603:10b6:303:212::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Thu, 19 Nov
- 2026 23:27:43 +0000
-Received: from PH7PEPF00000007.namprd04.prod.outlook.com
- (2603:10b6:510:348:cafe::62) by PH8P220CA0026.outlook.office365.com
- (2603:10b6:510:348::12) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.615.13 via Frontend Transport; Thu,
- 19 Nov 2026 23:27:43 +0000
-X-MS-Exchange-Authentication-Results: mx.microsoft.com 1; spf=pass (sender IP
- is 165.204.84.17) smtp.mailfrom=amd.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- PH7PEPF00000007.mail.protection.outlook.com (10.167.243.38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.5 via Frontend Transport; Thu, 19 Nov 2026 23:27:43 +0000
-Received: from [127.0.1.1] (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.57; Thu, 19 Nov
- 2026 17:27:40 -0600
-From: Mario Limonciello <mario.limonciello@amd.com>
-Date: Thu, 19 Nov 2026 17:27:28 -0600
-Subject: [PATCH v12 01/12] drm: add connector LUMINANCE property
+ 2026 23:31:35 +0000
+Received: from SA2PR11MB4985.namprd11.prod.outlook.com
+ ([fe80::4fb4:c6d2:2c42:1e4f]) by SA2PR11MB4985.namprd11.prod.outlook.com
+ ([fe80::4fb4:c6d2:2c42:1e4f%4]) with mapi id 15.21.0639.010; Thu, 19 Nov 2026
+ 23:31:34 +0000
+Message-ID: <5745ab1f-ed23-4005-80fa-cf90a1749467@intel.com>
+Date: Thu, 19 Nov 2026 15:31:32 -0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/2] drm/xe/wopcm: Simplify GuC WOPCM programming
+To: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
+References: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
+ <20261119230423.322057-4-daniele.ceraolospurio@intel.com>
+ <sashiko-outbox-224176@kernel.org>
+Content-Language: en-US
+From: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+In-Reply-To: <sashiko-outbox-224176@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BY3PR10CA0025.namprd10.prod.outlook.com
+ (2603:10b6:a03:255::30) To SA2PR11MB4985.namprd11.prod.outlook.com
+ (2603:10b6:806:111::8)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
-References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
-In-Reply-To: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
-To: Maxime Ripard <mripard@kernel.org>, Alex Deucher
- <alexander.deucher@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, "Harry
- Wentland" <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, "Rodrigo
- Siqueira" <siqueira@igalia.com>
-CC: Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>, 
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <nouveau@lists.freedesktop.org>, "Mario
- Limonciello" <mario.limonciello@amd.com>
-X-Mailer: b4 0.15.1
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PEPF00000007:EE_|SA1PR12MB7296:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2355f40a-2e26-42e9-1995-08df4694b601
+X-MS-TrafficTypeDiagnostic: SA2PR11MB4985:EE_|MW4PR11MB7161:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7482df7d-2158-44d1-0bf2-08df46953ffa
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|23010399003|7416014|376014|36860700016|1800799024|6133799003|22082099003|18002099003|3023799007|5023799004|11063799006|260925021311599003|260925022911599003|260925021911599003|921020|261022075727099003|261026140227099003|261022105027099003|261028144727099003|56012099006|10067099003|261026121527099003|261021123027099003|261021121427099003|261009223027099003|261009221227099003|261102130727099003|261102123227099003;
-X-Microsoft-Antispam-Message-Info: slutxArgM2gcXP3ZBqmbgHlLlVSILZnoGaZjZfuhWdxqpG2b6Kk+Ryhh+Z4f/Ur5a0th6ITgwtXyCojhkaej+AxQG5YouaBHvMJyss9hZMBYgHz02aMPF6EbC48HLiNid1kAyUNXi9Y4px+wu3Pf3wp0jE5IuZ9Fagq+4Isg3V4Xi+CP/GNqpMz32rZAFKY59HYD06fl6zEa3q6bRqdWoszlpwiqXJtAWdXWdd6b+En+tz6UiAuilequRgWSM1XkG9njD9B4yeSq8RLaNXA2sVh7JAlxosqGYiwPYAKBlzgzbtJcz6z/egNr6UWcuP2o8RO0qyxT9sEqHvOnSCAKQsTEMnTKSG/xkIv7IBQMnccPj0NCrbP/Qmrqgb7zoe98mWywyjupJecPS9WJUtFn9pE+CM0uBzps/VY3ZfRUTDUWzHG3aJftwZlnD/z4kuceVuuRRYl9KR+fvHiG0cag8L7oTj8ZxKWBhJr5iurWPp/cRmN07hoO/J1MV11nLAgJeK+QNFYJp+EAwdqPySNG2esHxHAL5jxtc4jKv1S5/tweErNJVWWuanrXflflC7xZATjDGBMHm1PWN6KnvfBoYH7Gs86a2kLWxYZWNcSW1ZqGn27SY6zi+B5IWDce+q47Rag26kE7c5LC5QQpdQhAFi03mw3NBssx9fcLz1K9ZZmaHkvFWWledXAzgMgLgbICEr7iLptf+Q+TZFYVayFDP9jopkX7149cn/b+t899zs1G40ccgNm5NQTePg9u+Ghc
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(82310400026)(23010399003)(7416014)(376014)(36860700016)(1800799024)(6133799003)(22082099003)(18002099003)(3023799007)(5023799004)(11063799006)(260925021311599003)(260925022911599003)(260925021911599003)(921020)(261022075727099003)(261026140227099003)(261022105027099003)(261028144727099003)(56012099006)(10067099003)(261026121527099003)(261021123027099003)(261021121427099003)(261009223027099003)(261009221227099003)(261102130727099003)(261102123227099003);
+ ARA:13230040|366016|1800799024|23010399003|376014|18002099003|22082099003|4143699003|11063799006|261022075727099003|261026121527099003|261022105027099003|10067099003|261026140227099003|56012099006|261028144727099003|261021121427099003|261009223027099003|261102123227099003;
+X-Microsoft-Antispam-Message-Info: CQ/lrEitDFl+bp4jOK2PfZq9bwPd7lSeBn0Z4FNKPbKatQKESrxd4RphFEbBV5x5z4fHKodyXO7vwbMHYE9P2/Kejtt8LIsASbTxUjVtFuvZ3RxHrIxpIw0UIrg96pDlbPT4f0tDYfr3fdz8EtfmGWKNhGneEr1rNrIBsRGdsxQmc91RIEfuSP8LYSVkd8w30Cx6NdsuYHwfe78VU6zQc4Zy8BZ/y31Lbw+7cyRgpSExHNA5XZcY5ZaO0OLUuLiEDXrcfcv/zO46CJn1cXTiFxFLkf8ZGDbRl8UR2+i54y8v1Ptc3CFxcF4gm4mybxlbjkABunFXNIIzWo8Bh36NSpv3vdnaxobR5J9TCZNPu1K7lS3wRXDShqCjeM3S5nNB3SHkBipPgwJEuA+gYWniAY+s56zPTm5QQtNZ5vvvzl7ohf6S7dSzgvxN3eVUyZ5N3WkuII8dDC3MM5oCilKdlUPdLglUYckO1BEgTSkoXzRx5OrMLSFNkXzBeSdDmWNBZVedcJ5fY5Qa0XHslHUm2exHxlT6vHFa8a9s5iredaGO65747OqEOlwDkwUwoh8Jn7JLYx9+9LfM6wzoxf2FKf8Wc0wq53joj0p9M057u3c7GvvLRPbtp4p/iy3jsL7K1yWizx0ZxMHKoFINTvr+MZNS1dTI7wQWbPkCXXDUtio=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA2PR11MB4985.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(23010399003)(376014)(18002099003)(22082099003)(4143699003)(11063799006)(261022075727099003)(261026121527099003)(261022105027099003)(10067099003)(261026140227099003)(56012099006)(261028144727099003)(261021121427099003)(261009223027099003)(261102123227099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: KGWB2R/QxGsuhFAwAsUlnmoN8OHT4x/VUik0WuHbIDGClDz2DCpbfp/51B88ACN5MfM/dZ3OBvH2o9aJG4H4cIH9tsPDMKdq077Zt1WbPtQ1vDJFlcZBniUL+k5yJ4fmvrY5mOVnvQf2hVC3cF2EPU4LRWjeykXYB3MnuE4KY3duqHRPoCnKfeusA0wGwDnxHylXQWeWBKZUNg7bwtXzPVw+Y37kYnix/mZpJ+obEBt+x7vBvmrv+szZ5Xuo/V3yawZ98kiwUIg1g9jd5x9U5rVKF/aeS7JpPJ/v6Zqykgi7lpOz1tYPrN8Sj/ZB+u7GA7fCm1rI+CjMtbLKdxm5+DEsXVAFPR8azN3N8bkAvGpNcctQy3cN/dhC3eZ6FUr7iHA3YY4CuSOrkgiHpzzMOEl56DulK9AXAolOO+Op0mJrVX25CtxKSjqSaF90CC0y
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 23:27:43.1306 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2355f40a-2e26-42e9-1995-08df4694b601
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: PH7PEPF00000007.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7296
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXZjRHJWQmxoYmNpTUdaM1BQdFA2cDl5STJMSEQ1UklpU1J1UnQwV0ZhV2Ix?=
+ =?utf-8?B?Q0FyMk1yV0lVSkxqeEszM2xLcEpnWXNiQTEyZGhjYm9nc0N4dFVWMDFkRWo0?=
+ =?utf-8?B?b0ZMYXNmRytGUUd3dHNtT1NTZ0pzMFlSbHQ0UFlwVmFGcVVPeVNSL2NvelI1?=
+ =?utf-8?B?bXdubVJBOVVFa1FBUnBXM3ByS0IvWC9ROXhIUEJheTBKenIydlBCMW1BT2NJ?=
+ =?utf-8?B?bUVyd0N5c0E0NU51Q1JqWVBoQzNLZkNCekp1cTJibDQ2T25TbWNDWDJWS2JU?=
+ =?utf-8?B?Sld3Z1cxUm00L0h5SzQ0RzZzdVpna3l0c25EeFRxQmgzSnZTZkdXZ1NBUzIv?=
+ =?utf-8?B?amJRMlhjdXEwVjZYZUx4WlMvakkxR0hCNW9pMkRIZU5jbUJtZ2JWUzhsYmdO?=
+ =?utf-8?B?Skt4Ui9ncHkrYjBhRy9weTBlMTFLMkJBZitlUFlmU1dVdWtHNEEyTUxkYXIv?=
+ =?utf-8?B?WkkxV2tVaitodTVuSGYyMkRCWWJBYmljQ2hiMmljblIvN2pMRFVSRWI1MXVL?=
+ =?utf-8?B?TWNnZEE5VXZXcFpodkRxekZndlQrMkcrMy9MaDYya1o4dkhNRE9aZlJpL0VS?=
+ =?utf-8?B?cUgvNndIMFlOcHNxS2RhVEFpWkh6R1NmV2lmM05Qb0FEM0pNckUwU0UyOGYx?=
+ =?utf-8?B?QWtDQ0xsRUM5RWI5N09oaUkvaGNSOVJKbTh2Q1JBVy8velEwTEVRbFRLRjJG?=
+ =?utf-8?B?K1V6QnQ4SEZtZlhiaFg2eVJ4MmZzUW1oRzVHdGZYRVZQODMzWTg3WFBKRm1F?=
+ =?utf-8?B?MSs1dXBoeHJHS0xPRm1xSC9MeXNHTTRabkJQSVZKUzVqRDhJTjkyQkZjYlNt?=
+ =?utf-8?B?VUovb3k5R3V3SW4yYVlDNUZDQXlVS3dSNEtKR2hsMDBnYmlzeFRnVW1GRXVu?=
+ =?utf-8?B?d3ROd01LMkF4TEVKME1MSW5MSmJBMG5wc1V1R09DRWYwZ2JzdDRvN2RtdmZT?=
+ =?utf-8?B?cXB3dTdKaTMrSDVqNUVLcUJUWjU5U3hCY1V0cExBNkdoSUdPM0Z0dm9aVHZv?=
+ =?utf-8?B?RTAwa1JraDNESEFQNU03K3o2Zm8rVnF6ei9WQjNzRGNWZGMwZVE0QlF0Unlm?=
+ =?utf-8?B?ak9SVGRMQVF6NjUxVC9GV1hNcERDQ2podjRUYUt1bm85VlRWeDFoUUxtR1Z4?=
+ =?utf-8?B?VHJ5Zm9EeEhCcUFCT0xJbnU0UEczRGZFREdNcXhidVhHendNUnpOOXdjcTEv?=
+ =?utf-8?B?NGxOcjYrYUJIR0JxRnhkeXJ0elFtY2UvZzZtQ1lWbExUVWEzRHY0VTZVSzZQ?=
+ =?utf-8?B?WFdOc1JPYjZsK0k0RWR4U1RramltdG9aTnIwQndPbkRsdjBtRTZPSDhsUUo4?=
+ =?utf-8?B?alFCaVBIaUI0L0Z3N2pUUktHRDFZK3hvb1cxSEFHVmlYdGcwa2l3SzNCNEJR?=
+ =?utf-8?B?ZWk5UnhOQWh2T2lVMG9tSi9vSjFQdVNlNEtSZ0YrQW5QN2V0NXBtVUYzeXM3?=
+ =?utf-8?B?YlRNMjI5eldVMnM3WlljWDd0cnYvOTU5ZWhrMGt5VW01YXVKVE0wcFV0WnhN?=
+ =?utf-8?B?bGNJRkNiMnA0TUk4TlRUaVBzR2NzczZ2MzUzRzJxOCtXRm1ZekdkVjBOUUx4?=
+ =?utf-8?B?eWR1MTAxTTh0SURCUXdaSmY1UlZ5Y3h0SWgxcG5pRStzeExDQ09HaEMrN3NC?=
+ =?utf-8?B?OWVIdDJnK1FKVEtTeHJTa1VHWWR4d3B1UEZUUEhXK3R3QlNsSU9mOVUxZU5a?=
+ =?utf-8?B?c1p3VzN4T3Y3Z29OUjlyZWg4akoxSk5VakgzVlVVbG1pelBGL2Npd2Rxa1hq?=
+ =?utf-8?B?NEhQNy9QWVk4UlNraWdQbWpkaEU0OWxzSDBqQk1NMzVtNklvVFNCMjQxc3di?=
+ =?utf-8?B?NVdSNk5Mc2ZxSDZObXZ2TFJxK1o5eTJXZWsydk1BYVV4SG8xaFVMbFRBZ3Yw?=
+ =?utf-8?B?Ti9LYVd1OTFBNnBHYUszK0lIbnQ4RjhkVmJYMVRNekJwMHF0OU1lL0JEa1BW?=
+ =?utf-8?B?SVNYeFBFdkZvTDBWbXBZdGNJYmFrK1QwVlNsNitZQTZCcUNaT3poc2VtZjV5?=
+ =?utf-8?B?dytqNXg2V3l2MytTL2s0OVhVckZZd0tmQzJkMk5sZUtVYk42aFRWVU40ay9u?=
+ =?utf-8?B?RzBGNlBYajJ4OEszeVp1YW90MEtmWVpZSjUxd0tzclBhRVJiS3FtNUxiME1x?=
+ =?utf-8?B?UUR2M2FwTFM4Z2Q5dkdmdnhoMDEvVG05Rk5PL1FqdTVLd0JHN2ZJQ3A5MkdC?=
+ =?utf-8?B?WkV5NnhLb1lJL3NUOGRyb3FrYWlKZ3RDaFpocTBNbnRqNHVUQWVEV3Q1WnpD?=
+ =?utf-8?B?OGpLMDZ0dkRveVlCaGJNbDRoVDFWbkhwQzR4bzgrRUhUNlhzNEtpSFNNOFF1?=
+ =?utf-8?B?b283cE1RUTZFVVVMUUhVdDBMNERQc2xqMDNYWmt2QnNDQTM5WThjM1pYREFK?=
+ =?utf-8?Q?Q+59hMKM40TS/VDU=3D?=
+X-Exchange-RoutingPolicyChecked: aPzvdWySd8OfuzhDu2ZqFLkAQk2gHgK7P1VOugM05GWqZfzAOMUgMUnXnC6QdmzFy7SWeDF922l+d39Wm3DxdZkipcnKohBqXmEwnjJE75GXqaW4sUFlGHfgtnFmnAyV/Dp4f1wAgSGr+3oDp8fRrWgQWDaMuaNeFFqxnODCjHuwUrwUV01NzXAT9hAz4B/AVpT8KNN8F6aSllXyBkcJNS+jVMovZV0URwJgNTrd128eW/oLfRm6xgYS9caC2QA1aJlhxMM6/AigFburUIDG9D+EHYN+cW0AMt+jbT2XQWsGMu6hcXRvzsJjKHHJM8Jn/6+0FoIg5rNFWph67ukkdA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7482df7d-2158-44d1-0bf2-08df46953ffa
+X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4985.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 23:31:34.8564 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SZ4/sm7JRUYsC+Ntjnb/trr9MER4btjgPQpFlRlu6WhBwN1pgieVJlstbygLs9pbJf6FXcIUyFoG2Hhh2aJVb/qWWs38zRU44/BkKCkgQSk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7161
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,483 +169,151 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Panel brightness is a property of a display, and thus of a DRM
-connector. Add an atomic per-connector LUMINANCE range property so
-compositors can manage relative panel luminance together with the rest
-of the display state.
 
-Keep the core backend-agnostic. Drivers create the property with their
-hardware range and implement connector helper callbacks to set luminance
-or disable panel emission. The atomic helpers sequence those callbacks
-around pipeline enable and disable, including luminance-only commits.
-The panel is left lit when the pipeline enters self refresh, and the
-luminance is only reprogrammed when it changes or a modeset enables the
-pipeline.
 
-The stored property value is independent of display power. A commit made
-while the connector is inactive is retained and applied on the next
-enable; disabling the pipeline does not overwrite it.
+On 11/19/2026 3:15 PM, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue to consider:
+> - [Medium] drm/xe: u32 underflow of guc_wopcm_size in uc_program_wopcm()
+> --
+>
+> commit 2876ad005940248a7d3945230ac1cf31aa3198e3
+> Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>
+> drm/xe/wopcm: Simplify GuC WOPCM programming
+>
+> This commit removes the separate WOPCM module and layout checks, moving
+> GuC WOPCM register programming into xe_uc.c.
+>
+>> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+>> index b32ba504041c5..ff13f6e6ccb66 100644
+>> --- a/drivers/gpu/drm/xe/xe_uc.c
+>> +++ b/drivers/gpu/drm/xe/xe_uc.c
+> [ ... ]
+>
+>> @@ -52,6 +55,126 @@ int xe_uc_init_noalloc(struct xe_uc *uc)
+>>   	return ret;
+>>   }
+>>   
+>> +static bool __wopcm_regs_locked(struct xe_gt *gt,
+>> +				u32 *guc_wopcm_base, u32 *guc_wopcm_size)
+>> +{
+>> +	u32 reg_base = xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET);
+>> +	u32 reg_size = xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE);
+>> +
+>> +	if (!(reg_size & GUC_WOPCM_SIZE_LOCKED) ||
+>> +	    !(reg_base & GUC_WOPCM_OFFSET_VALID))
+>> +		return false;
+>> +
+>> +	*guc_wopcm_base = reg_base & GUC_WOPCM_OFFSET_MASK;
+>> +	*guc_wopcm_size = reg_size & GUC_WOPCM_SIZE_MASK;
+>> +	return true;
+>> +}
+>> +
+>> +static int __wopcm_init_regs(struct xe_gt *gt, u32 base, u32 size)
+>> +{
+>> +	u32 huc_agent = xe_uc_fw_is_available(&gt->uc.huc.fw) ? HUC_LOADING_AGENT_GUC : 0;
+>> +	u32 mask;
+>> +	int err;
+>> +
+>> +	xe_gt_assert(gt, !(base & ~GUC_WOPCM_OFFSET_MASK));
+>> +	xe_gt_assert(gt, !(size & ~GUC_WOPCM_SIZE_MASK));
+>> +
+>> +	mask = GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
+>> +	err = xe_mmio_write32_and_verify(&gt->mmio, GUC_WOPCM_SIZE, size, mask,
+>> +					 size | GUC_WOPCM_SIZE_LOCKED);
+>> +	if (err)
+>> +		goto err_out;
+>> +
+>> +	mask = GUC_WOPCM_OFFSET_MASK | GUC_WOPCM_OFFSET_VALID | huc_agent;
+>> +	err = xe_mmio_write32_and_verify(&gt->mmio, DMA_GUC_WOPCM_OFFSET,
+>> +					 base | huc_agent, mask,
+>> +					 base | huc_agent |
+>> +					 GUC_WOPCM_OFFSET_VALID);
+>> +	if (err)
+>> +		goto err_out;
+>> +
+>> +	xe_gt_dbg(gt, "Programmed GuC WOPCM [b=%uK, s=%uK]\n", base / SZ_1K, size / SZ_1K);
+>> +
+>> +	return 0;
+>> +
+>> +err_out:
+>> +	xe_gt_notice(gt, "Failed to init uC WOPCM registers to [b=%uK, s=%uK]!\n",
+>> +		     base / SZ_1K, size / SZ_1K);
+>> +	xe_gt_notice(gt, "%s(%#x)=%#x\n", "DMA_GUC_WOPCM_OFFSET",
+>> +		     DMA_GUC_WOPCM_OFFSET.addr,
+>> +		     xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET));
+>> +	xe_gt_notice(gt, "%s(%#x)=%#x\n", "GUC_WOPCM_SIZE",
+>> +		     GUC_WOPCM_SIZE.addr,
+>> +		     xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE));
+>> +
+>> +	return err;
+>> +}
+>> +
+>> +static int uc_program_wopcm(struct xe_uc *uc)
+>> +{
+>> +	struct xe_gt *gt = uc_to_gt(uc);
+>> +	struct xe_tile *tile = gt_to_tile(gt);
+>> +	u32 huc_fw_size = xe_uc_fw_get_upload_size(&gt->uc.huc.fw);
+>> +	u32 wopcm_size = xe_tile_wopcm_size(tile);
+>> +	u32 guc_wopcm_base;
+>> +	u32 guc_wopcm_size;
+>> +	bool locked;
+> [ ... ]
+>
+>> +	/*
+>> +	 * On legacy HW (pre-PVC) where the driver is responsible for
+>> +	 * programming the WOPCM registers, the WOPCM is divided into three
+>> +	 * regions, in order from bottom to top:
+>> +	 * 1 - The HuC region, which contains the HuC firmware + a 16KB reserved
+>> +	 *     section.
+>> +	 * 2 - The GuC region, which contains the GuC firmware + a reserved
+>> +	 *     section for GuC's usage.
+>> +	 * 3 - A reserved region for HW contexts, which is 36KB in size.
+>> +	 *
+>> +	 * To keep the math simple, we remove the HW context region from the
+>> +	 * WOPCM size, calculate the size of region 1 and then leave the
+>> +	 * remaining area for region 2. The official binaries are guaranteed to
+>> +	 * fit in the WOPCM, so the math below can only go wrong if a user is
+>> +	 * manipulating the blobs. In such a scenario, we'll catch the error at
+>> +	 * FW load time, so no need to double verify it here.
+>> +	 */
+>> +	wopcm_size -= (SZ_32K + SZ_4K);
+>> +
+>> +	guc_wopcm_base = huc_fw_size + SZ_16K;
+>> +	guc_wopcm_base = ALIGN(guc_wopcm_base, 1UL << GUC_WOPCM_OFFSET_SHIFT);
+>> +
+>> +	guc_wopcm_size = wopcm_size - guc_wopcm_base; /* already 4KB aligned */
+>> +
+>> +	return __wopcm_init_regs(gt, guc_wopcm_base, guc_wopcm_size);
+>> +}
+> [Severity: Medium]
+> Can guc_wopcm_size underflow u32 here when a modified or oversized HuC
+> firmware blob is supplied?
 
-LUMINANCE values are relative, driver-defined levels rather than
-absolute luminance in cd/m^2. The interface supports emissive panels as
-well as panels with a separate backlight.
+Not with real binaries. If the user is manipulating the binaries to 
+purposely cause a value underflow, we'll fail gracefully later at load 
+time. The comment above the calculation explains this.
+Also to note that this path only applies to pre-MTL platforms, for which 
+the official support comes from the i915 driver.
 
-Keep the interface behind a default-off DRM_LUMINANCE option. Migrated
-drivers retain their legacy backlight class ABI unless the new interface
-is explicitly selected, allowing the DRM UAPI and legacy compatibility
-policy to remain separate.
+Daniele
 
-Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
----
-v11:
- * Don't call .disable_luminance when the CRTC enters self refresh (Sashiko)
- * Only call .set_luminance when the luminance changes or on a modeset
-   that isn't a self refresh exit (Leo Li, Sashiko)
- * Fix the .set_luminance self refresh documentation
-v10:
- * Add tag
----
- drivers/gpu/drm/Kconfig                    | 14 +++++
- drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++++++++++++++++++++++++-
- drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
- drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
- drivers/gpu/drm/drm_connector.c            | 57 +++++++++++++++++
- drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++++
- include/drm/drm_atomic_helper.h            |  3 +
- include/drm/drm_connector.h                | 16 +++++
- include/drm/drm_modeset_helper_vtables.h   | 28 +++++++++
- 9 files changed, 255 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index 61111d50b1c65..1bbe2c2d7c76f 100644
---- a/drivers/gpu/drm/Kconfig
-+++ b/drivers/gpu/drm/Kconfig
-@@ -33,6 +33,20 @@ endmenu
- 
- if DRM
- 
-+config DRM_LUMINANCE
-+	bool "DRM connector luminance support"
-+	help
-+	  Expose relative luminance as an atomic DRM connector property. Values
-+	  are driver-defined levels rather than absolute luminance in cd/m^2.
-+	  Drivers provide connector helper callbacks to program their hardware;
-+	  the DRM core does not depend on a particular backend.
-+
-+	  Drivers migrated to this interface will use it instead of registering
-+	  a legacy backlight class device. Leave this disabled to preserve the
-+	  de-facto userspace ABI in /sys/class/backlight.
-+
-+	  If in doubt, say N.
-+
- config DRM_MIPI_DBI
- 	tristate
- 	depends on DRM
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index 9d006f98413a5..856abc91ec53d 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -1375,6 +1375,8 @@ EXPORT_SYMBOL(drm_atomic_helper_commit_encoder_bridge_post_disable);
- static void
- disable_outputs(struct drm_device *dev, struct drm_atomic_commit *state)
- {
-+	drm_atomic_helper_commit_luminance_disables(state);
-+
- 	drm_atomic_helper_commit_encoder_bridge_disable(dev, state);
- 
- 	drm_atomic_helper_commit_encoder_bridge_post_disable(dev, state);
-@@ -1382,6 +1384,54 @@ disable_outputs(struct drm_device *dev, struct drm_atomic_commit *state)
- 	drm_atomic_helper_commit_crtc_disable(dev, state);
- }
- 
-+/**
-+ * drm_atomic_helper_commit_luminance_disables - disable panel emission
-+ * @state: atomic state object being committed
-+ *
-+ * Invokes each connector driver's luminance disable callback before a
-+ * display pipeline is disabled. The callback is not invoked when the pipeline
-+ * enters self refresh, since the panel keeps displaying the last frame. The
-+ * connector property's stored value is left untouched so it can be restored
-+ * when the pipeline is enabled again.
-+ */
-+void drm_atomic_helper_commit_luminance_disables(struct drm_atomic_commit *state)
-+{
-+	struct drm_connector_state *old_conn_state, *new_conn_state;
-+	struct drm_connector *connector;
-+	int i;
-+
-+	for_each_oldnew_connector_in_state(state, connector, old_conn_state,
-+					   new_conn_state, i) {
-+		const struct drm_connector_helper_funcs *funcs;
-+		struct drm_crtc_state *old_crtc_state, *new_crtc_state = NULL;
-+
-+		if (!connector->luminance_property || !old_conn_state->crtc)
-+			continue;
-+
-+		old_crtc_state =
-+			drm_atomic_get_old_crtc_state(state, old_conn_state->crtc);
-+		if (new_conn_state->crtc)
-+			new_crtc_state =
-+				drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
-+
-+		if (!crtc_needs_disable(old_crtc_state, new_crtc_state) ||
-+		    !drm_atomic_crtc_needs_modeset(old_conn_state->crtc->state))
-+			continue;
-+
-+		/*
-+		 * Keep the panel lit while entering self refresh, matching the
-+		 * panel bridge which also leaves the panel enabled.
-+		 */
-+		if (new_crtc_state && new_crtc_state->self_refresh_active)
-+			continue;
-+
-+		funcs = connector->helper_private;
-+		if (funcs && funcs->disable_luminance)
-+			funcs->disable_luminance(old_conn_state);
-+	}
-+}
-+EXPORT_SYMBOL(drm_atomic_helper_commit_luminance_disables);
-+
- /**
-  * drm_atomic_helper_update_legacy_modeset_state - update legacy modeset state
-  * @dev: DRM device
-@@ -1771,10 +1821,57 @@ void drm_atomic_helper_commit_modeset_enables(struct drm_device *dev,
- 
- 	drm_atomic_helper_commit_encoder_bridge_enable(dev, state);
- 
-+	drm_atomic_helper_commit_luminance_enables(state);
-+
- 	drm_atomic_helper_commit_writebacks(dev, state);
- }
- EXPORT_SYMBOL(drm_atomic_helper_commit_modeset_enables);
- 
-+/**
-+ * drm_atomic_helper_commit_luminance_enables - apply luminance
-+ * @state: atomic state object being committed
-+ *
-+ * Invokes each connector driver's luminance callback after the display
-+ * pipeline has been enabled by a modeset, and for commits changing the
-+ * luminance while the connector remains active. Commits that don't change
-+ * the luminance only invoke the callback for a modeset other than a self
-+ * refresh exit, since the panel is kept lit during self refresh. Changes
-+ * committed while the connector is inactive remain stored in atomic state
-+ * until a later enable.
-+ */
-+void drm_atomic_helper_commit_luminance_enables(struct drm_atomic_commit *state)
-+{
-+	struct drm_connector_state *old_conn_state, *new_conn_state;
-+	struct drm_connector *connector;
-+	int i;
-+
-+	for_each_oldnew_connector_in_state(state, connector, old_conn_state,
-+					   new_conn_state, i) {
-+		const struct drm_connector_helper_funcs *funcs;
-+		struct drm_crtc_state *old_crtc_state, *new_crtc_state;
-+
-+		if (!connector->luminance_property || !new_conn_state->crtc)
-+			continue;
-+
-+		old_crtc_state =
-+			drm_atomic_get_old_crtc_state(state, new_conn_state->crtc);
-+		new_crtc_state =
-+			drm_atomic_get_new_crtc_state(state, new_conn_state->crtc);
-+		if (!new_crtc_state->active)
-+			continue;
-+
-+		if (old_conn_state->luminance == new_conn_state->luminance &&
-+		    (!drm_atomic_crtc_needs_modeset(new_crtc_state) ||
-+		     old_crtc_state->self_refresh_active))
-+			continue;
-+
-+		funcs = connector->helper_private;
-+		if (funcs && funcs->set_luminance)
-+			funcs->set_luminance(new_conn_state);
-+	}
-+}
-+EXPORT_SYMBOL(drm_atomic_helper_commit_luminance_enables);
-+
- /*
-  * For atomic updates which touch just a single CRTC, calculate the time of the
-  * next vblank, and inform all the fences of the deadline.
-@@ -4187,4 +4284,3 @@ drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
- 	return out_fmts;
- }
- EXPORT_SYMBOL(drm_atomic_helper_bridge_get_hdmi_output_bus_fmts);
--
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-index 3534925636d54..bc26683db52c3 100644
---- a/drivers/gpu/drm/drm_atomic_state_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-@@ -408,7 +408,14 @@ void
- __drm_atomic_helper_connector_state_init(struct drm_connector_state *conn_state,
- 					 struct drm_connector *connector)
- {
-+	u64 value;
-+
- 	conn_state->connector = connector;
-+	if (connector->luminance_property &&
-+	    !drm_object_property_get_default_value(&connector->base,
-+						   connector->luminance_property,
-+						   &value))
-+		conn_state->luminance = value;
- }
- EXPORT_SYMBOL(__drm_atomic_helper_connector_state_init);
- 
-diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 1eebcf6f5e05b..dffc51cd8d13c 100644
---- a/drivers/gpu/drm/drm_atomic_uapi.c
-+++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -30,6 +30,7 @@
- #include <drm/drm_atomic.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_atomic_uapi.h>
-+#include <drm/drm_connector.h>
- #include <drm/drm_framebuffer.h>
- #include <drm/drm_print.h>
- #include <drm/drm_drv.h>
-@@ -969,6 +970,8 @@ static int drm_atomic_connector_set_property(struct drm_connector *connector,
- 		state->hdmi.broadcast_rgb = val;
- 	} else if (property == connector->color_format_property) {
- 		state->color_format = val;
-+	} else if (property == connector->luminance_property) {
-+		state->luminance = val;
- 	} else if (connector->funcs->atomic_set_property) {
- 		return connector->funcs->atomic_set_property(connector,
- 				state, property, val);
-@@ -1056,6 +1059,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
- 		*val = state->hdmi.broadcast_rgb;
- 	} else if (property == connector->color_format_property) {
- 		*val = state->color_format;
-+	} else if (property == connector->luminance_property) {
-+		*val = state->luminance;
- 	} else if (connector->funcs->atomic_get_property) {
- 		return connector->funcs->atomic_get_property(connector,
- 				state, property, val);
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 893716a9e4895..ab75e8bd9991a 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -810,6 +810,47 @@ void drm_connector_attach_edid_property(struct drm_connector *connector)
- }
- EXPORT_SYMBOL(drm_connector_attach_edid_property);
- 
-+/**
-+ * drm_connector_attach_luminance_property - attach luminance property
-+ * @connector: connector to attach the property to
-+ * @min: minimum supported relative brightness
-+ * @max: maximum supported relative brightness
-+ * @value: initial relative brightness
-+ *
-+ * Creates the atomic ``LUMINANCE`` range property for @connector.
-+ * Drivers should call this during connector initialization. The property's
-+ * units are driver-defined; they do not represent absolute luminance.
-+ *
-+ * Returns:
-+ * Zero on success, a negative errno otherwise.
-+ */
-+int drm_connector_attach_luminance_property(struct drm_connector *connector,
-+					    unsigned int min,
-+					    unsigned int max,
-+					    unsigned int value)
-+{
-+	struct drm_property *property;
-+
-+	if (drm_WARN_ON(connector->dev, min > max || value < min || value > max))
-+		return -EINVAL;
-+
-+	if (connector->luminance_property)
-+		return 0;
-+
-+	property = drm_property_create_range(connector->dev, DRM_MODE_PROP_ATOMIC,
-+					     "LUMINANCE", min, max);
-+	if (!property)
-+		return -ENOMEM;
-+
-+	connector->luminance_property = property;
-+	drm_object_attach_property(&connector->base, property, value);
-+	if (connector->state)
-+		connector->state->luminance = value;
-+
-+	return 0;
-+}
-+EXPORT_SYMBOL(drm_connector_attach_luminance_property);
-+
- /**
-  * drm_connector_attach_encoder - attach a connector to an encoder
-  * @connector: connector to attach
-@@ -1681,6 +1722,22 @@ EXPORT_SYMBOL(drm_hdmi_connector_get_output_format_name);
-  * 	Summarizing: Only set "DPMS" when the connector is known to be enabled,
-  * 	assume that a successful SETCONFIG call also sets "DPMS" to on, and
-  * 	never read back the value of "DPMS" because it can be incorrect.
-+ * LUMINANCE:
-+ *     Atomic range property for controlling a panel's relative luminance.
-+ *     The unit and range are driver-defined and do not represent an absolute
-+ *     luminance in cd/m^2. This name therefore also applies to emissive panels
-+ *     that do not contain a separate backlight.
-+ *
-+ *     The property is independent of the connector's display-power state.
-+ *     Changing it while the connector is inactive stores the new value without
-+ *     turning the display on. The atomic helpers apply the stored value after
-+ *     the display pipeline is enabled and invoke a separate driver callback
-+ *     before disabling the pipeline; neither action changes the property value.
-+ *
-+ *     Drivers create the property with
-+ *     drm_connector_attach_luminance_property() and implement the
-+ *     corresponding &drm_connector_helper_funcs callbacks. Connectors that do
-+ *     not support luminance control do not expose the property.
-  * panel_type:
-  * 	Immutable enum property to indicate the type of connected panel.
-  * 	Possible values are "unknown" (default), "OLED", and "LCD".
-diff --git a/drivers/gpu/drm/tests/drm_connector_test.c b/drivers/gpu/drm/tests/drm_connector_test.c
-index 3368aedd4e669..e43692d38ebb8 100644
---- a/drivers/gpu/drm/tests/drm_connector_test.c
-+++ b/drivers/gpu/drm/tests/drm_connector_test.c
-@@ -137,6 +137,33 @@ static void drm_test_drmm_connector_init_null_ddc(struct kunit *test)
- 	KUNIT_EXPECT_EQ(test, ret, 0);
- }
- 
-+static void drm_test_connector_attach_luminance_property(struct kunit *test)
-+{
-+	struct drm_connector_init_priv *priv = test->priv;
-+	struct drm_connector *connector = &priv->connector;
-+	struct drm_property *property;
-+	u64 value;
-+	int ret;
-+
-+	ret = drmm_connector_init(&priv->drm, connector, &dummy_funcs,
-+				  DRM_MODE_CONNECTOR_eDP, NULL);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+	KUNIT_ASSERT_NULL(test, connector->state);
-+
-+	ret = drm_connector_attach_luminance_property(connector, 10, 100, 50);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+	property = connector->luminance_property;
-+	KUNIT_ASSERT_NOT_NULL(test, property);
-+
-+	ret = drm_object_property_get_default_value(&connector->base, property, &value);
-+	KUNIT_ASSERT_EQ(test, ret, 0);
-+	KUNIT_EXPECT_EQ(test, value, (u64)50);
-+
-+	drm_atomic_helper_connector_reset(connector);
-+	KUNIT_ASSERT_NOT_NULL(test, connector->state);
-+	KUNIT_EXPECT_EQ(test, connector->state->luminance, 50u);
-+}
-+
- /*
-  * Test that the registration of a connector succeeds for all possible
-  * connector types.
-@@ -190,6 +217,7 @@ KUNIT_ARRAY_PARAM(drm_connector_init_type_valid,
- static struct kunit_case drmm_connector_init_tests[] = {
- 	KUNIT_CASE(drm_test_drmm_connector_init),
- 	KUNIT_CASE(drm_test_drmm_connector_init_null_ddc),
-+	KUNIT_CASE(drm_test_connector_attach_luminance_property),
- 	KUNIT_CASE_PARAM(drm_test_drmm_connector_init_type_valid,
- 			 drm_connector_init_type_valid_gen_params),
- 	{ }
-diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
-index 4cfeec70d648a..3084dd5cd6a1f 100644
---- a/include/drm/drm_atomic_helper.h
-+++ b/include/drm/drm_atomic_helper.h
-@@ -116,6 +116,9 @@ void drm_atomic_helper_commit_encoder_bridge_enable(struct drm_device *dev,
- void drm_atomic_helper_commit_modeset_enables(struct drm_device *dev,
- 					  struct drm_atomic_commit *old_state);
- 
-+void drm_atomic_helper_commit_luminance_disables(struct drm_atomic_commit *state);
-+void drm_atomic_helper_commit_luminance_enables(struct drm_atomic_commit *state);
-+
- int drm_atomic_helper_prepare_planes(struct drm_device *dev,
- 				     struct drm_atomic_commit *state);
- void drm_atomic_helper_unprepare_planes(struct drm_device *dev,
-diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-index 2ee7c59329aae..7f7d115b65f9f 100644
---- a/include/drm/drm_connector.h
-+++ b/include/drm/drm_connector.h
-@@ -1369,6 +1369,11 @@ struct drm_connector_state {
- 	 * @drm_atomic_helper_connector_hdmi_check().
- 	 */
- 	struct drm_connector_hdmi_state hdmi;
-+
-+	/**
-+	 * @luminance: Relative panel luminance requested by userspace.
-+	 */
-+	unsigned int luminance;
- };
- 
- struct drm_connector_hdmi_audio_funcs {
-@@ -2714,6 +2719,13 @@ struct drm_connector {
- 	 * @cec: CEC-related data.
- 	 */
- 	struct drm_connector_cec cec;
-+
-+	/**
-+	 * @luminance_property: Optional atomic range property for relative panel
-+	 * luminance. Drivers create it with
-+	 * drm_connector_attach_luminance_property().
-+	 */
-+	struct drm_property *luminance_property;
- };
- 
- #define obj_to_connector(x) container_of(x, struct drm_connector, base)
-@@ -2980,6 +2992,10 @@ const char *drm_get_colorspace_name(enum drm_colorspace colorspace);
- 
- int drm_connector_attach_color_format_property(struct drm_connector *connector,
- 					       unsigned long supported_color_formats);
-+int drm_connector_attach_luminance_property(struct drm_connector *connector,
-+					    unsigned int min,
-+					    unsigned int max,
-+					    unsigned int value);
- 
- /**
-  * drm_for_each_connector_iter - connector_list iterator macro
-diff --git a/include/drm/drm_modeset_helper_vtables.h b/include/drm/drm_modeset_helper_vtables.h
-index 60b30cc269404..1c614f44de7ca 100644
---- a/include/drm/drm_modeset_helper_vtables.h
-+++ b/include/drm/drm_modeset_helper_vtables.h
-@@ -1147,6 +1147,34 @@ struct drm_connector_helper_funcs {
- 	void (*atomic_commit)(struct drm_connector *connector,
- 			      struct drm_atomic_commit *state);
- 
-+	/**
-+	 * @set_luminance:
-+	 *
-+	 * Apply &drm_connector_state.luminance to an active panel. The
-+	 * atomic helpers call this after a modeset enabled the display
-+	 * pipeline, and for commits changing the luminance while the connector
-+	 * remains active. It is not called when the luminance is unchanged,
-+	 * unless a modeset other than a self refresh exit happened.
-+	 *
-+	 * This callback is optional and is only used by connectors exposing the
-+	 * ``LUMINANCE`` property.
-+	 */
-+	void (*set_luminance)(const struct drm_connector_state *new_state);
-+
-+	/**
-+	 * @disable_luminance:
-+	 *
-+	 * Turn panel light emission off before disabling the display pipeline.
-+	 * It is not called when the pipeline enters self refresh.
-+	 * This callback does not change the ``LUMINANCE`` property; the
-+	 * stored value is restored through @set_luminance when the panel
-+	 * is enabled again.
-+	 *
-+	 * This callback is optional and is only used by connectors exposing the
-+	 * ``LUMINANCE`` property.
-+	 */
-+	void (*disable_luminance)(const struct drm_connector_state *old_state);
-+
- 	/**
- 	 * @prepare_writeback_job:
- 	 *
-
--- 
-2.43.0
+>
+> Firmware header parsing in parse_headers() only checks that ucode_size and
+> rsa_size fit within the loaded file, not within the tile's WOPCM size.  If
+> guc_wopcm_base exceeds wopcm_size (or equals it), wopcm_size -
+> guc_wopcm_base wraps around (or becomes 0) while remaining 4KB-aligned, so
+> it passes the GUC_WOPCM_SIZE_MASK check in __wopcm_init_regs() and locks
+> the write-once GUC_WOPCM_SIZE and DMA_GUC_WOPCM_OFFSET hardware registers
+> with corrupt values before firmware load runs.
+>
 
