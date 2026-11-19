@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80DBC606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39CCB606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:38:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kAHdPMoA
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=SljB8JDR
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47CBE112259;
-	Thu, 19 Nov 2026 10:24:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 913D010E680
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 10:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4BDB10E881;
+	Thu, 19 Nov 2026 10:38:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF54110E881
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 10:38:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795083873; x=1826619873;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ykKRbx2eECQjWecNodfkTO1bX4jbmbpF/qMleQRpXO8=;
- b=kAHdPMoAn8LqbLhO6biZloOSMErrB3PTujzibVYCIZ1HhyehArUmQOW6
- 7TF3Jo+AX7uxiBE1SaSXI7BOPACoiJ01otpuHaDN7drgWQTo6XEMOQLe9
- 2+/1B+WDR5ITQlrdg4EZW8X5bDISML2NSkMEDRlRT6035fQMpDi8eMP1U
- sBrhevmZELck/mpUy1ZpOqiox98+QnhcZujc3OxZOeBeVIrcyryegDhdO
- VTORfXduYSXaMfNMaG3MP4P3azxokwDamauUthbyiPXQuQ5J4G6Wu+XZq
- f4ugVbIV4YmuY+eXDPsyYtytMjKsOM9H8HSnIMG+lUkMzyToihOz/MOgl Q==;
-X-CSE-ConnectionGUID: t5cGjOZqSpCrx7LMqU/PsA==
-X-CSE-MsgGUID: Ha3+Hl4oRimxPogqGBRNEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3957623"
+ t=1795084727; x=1826620727;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Xcvi+6SVr8HcohDhQgjZBA69y6ZlAgieV+9SO0XV354=;
+ b=SljB8JDRn24iN+dQSuPbPNDlLBLRyE/Le5PD70UeEDF8CeRnOyA6Tqwy
+ q7wOA5G49mhLTc8s+Xnk6dKkviAxo0sa8yyhs7mnPktJzMxIqV82zfZba
+ ke/HQulwzz8/+aWzvFVCnfiyjQKAFi4DyDB42k+bhU6q2w8+tKDW0Owvr
+ dNA4WC+2kvQq0oUGeIu5pk9q6+q/Lyqg0jYuD+5jTbzaxOmrEtDPhbFO9
+ 5Wj1FY1HCEfhF0JziGJivIYMQqYh+piNDzo77GLhXwBu5PbEXGCZOCNI3
+ XmrFJuSXop8pjWxf4uR6wON87nu5HuHfDuuWWsIJ4thShuTWWFiqoEtWG A==;
+X-CSE-ConnectionGUID: 6WIgq/u7RlKGDLyPNMWDfA==
+X-CSE-MsgGUID: zughJzxmSlqYIEmXQ+ThGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3935980"
 X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="3957623"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 02:24:33 -0800
-X-CSE-ConnectionGUID: FsuRnfW6S6e4qDELKuAsmA==
-X-CSE-MsgGUID: cbYW65l3SkGhw8yXbah0Rw==
+   d="scan'208";a="3935980"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 02:38:47 -0800
+X-CSE-ConnectionGUID: rmWa8tz6QVmxkFeBOXw9AQ==
+X-CSE-MsgGUID: RnBtU4CRTP+AlqDwNvEGXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10473892"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa005.fm.intel.com with ESMTP; 19 Nov 2026 02:24:31 -0800
-From: Raag Jadav <raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10958450"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 02:38:43 -0800
+From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: riana.tauro@intel.com, stuart.summers@intel.com,
- Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v4 1/2] drm/xe/drm_ras: Protect against unplugged or wedged
- device
-Date: Thu, 19 Nov 2026 15:52:17 +0530
-Message-ID: <20261119102344.2053821-2-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261119102344.2053821-1-raag.jadav@intel.com>
-References: <20261119102344.2053821-1-raag.jadav@intel.com>
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH] drm/xe/hwmon: Expose powerX_cap_max
+Date: Thu, 19 Nov 2026 16:10:29 +0530
+Message-Id: <20261119104029.3066660-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -69,201 +69,89 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xe driver exposes drm_ras counters to userspace through netlink interface,
-which the user can access during the device lifetime. But this should not
-be done in case of unplugged or wedged device. Protect against such cases.
+Add a read-only power<i>_cap_max attribute for the card and package
+channels. It reports the PL2 (burst) power limit that firmware sets at
+boot, which is the highest value userspace can write to power<i>_cap.
+The attribute is present only on platforms using mailbox power limits
+where PL2 is enabled at boot.
 
-Fixes: b40db12b542f ("drm/xe/xe_drm_ras: Add support for XE DRM RAS")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
-v2: Allow counter access with XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET (Riana)
----
- drivers/gpu/drm/xe/xe_drm_ras.c | 93 ++++++++++++++++++++++++---------
- 1 file changed, 69 insertions(+), 24 deletions(-)
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 24 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 11 +++++++--
+ 2 files changed, 33 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index 7554803aae11..3ca6c82345dd 100644
---- a/drivers/gpu/drm/xe/xe_drm_ras.c
-+++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -5,6 +5,7 @@
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index 0da739d9a816..097902fd8346 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -296,6 +296,30 @@ Description:	RW. Package burst (PL2) power limit in microwatts.
  
- #include <linux/bitmap.h>
+ 		Only supported for particular Intel Xe graphics platforms.
  
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- #include <drm/drm_ras.h>
-@@ -12,10 +13,33 @@
- #include "xe_device_types.h"
- #include "xe_drm_ras.h"
- #include "xe_ras.h"
-+#include "xe_wedge.h"
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap_max
++Date:		November 2026
++KernelVersion:	7.4
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Card default burst (PL2) power limit in microwatts.
++
++		This is the firmware-provided default limit and the maximum
++		value accepted for power1_cap.
++
++		Only supported for particular Intel Xe graphics platforms where
++		PL2 is enabled.
++
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power2_cap_max
++Date:		November 2026
++KernelVersion:	7.4
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Package default burst (PL2) power limit in microwatts.
++
++		This is the firmware-provided default limit and the maximum
++		value accepted for power2_cap.
++
++		Only supported for particular Intel Xe graphics platforms where
++		PL2 is enabled.
++
+ What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap_interval
+ Date:		May 2025
+ KernelVersion:	6.15
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 515b288f18e5..023a317a443e 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -865,8 +865,9 @@ static const struct hwmon_channel_info hwmon_temp_info = {
+ static const struct hwmon_channel_info * const hwmon_info[] = {
+ 	&hwmon_temp_info,
+ 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CRIT |
+-			   HWMON_P_CAP,
+-			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP),
++			   HWMON_P_CAP | HWMON_P_CAP_MAX,
++			   HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_LABEL | HWMON_P_CAP |
++			   HWMON_P_CAP_MAX),
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+ 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
+@@ -1423,6 +1424,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
+ 	struct xe_mmio *mmio = xe_root_tile_mmio(hwmon->xe);
  
- static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
- static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
- 
-+static int drm_ras_counter_get(struct xe_device *xe, struct xe_drm_ras_counter *info,
-+			       u32 error_id, int *idx)
-+{
-+	if (xe_wedged(xe) && xe->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+		return -ECANCELED;
-+
-+	if (!info || !info[error_id].name)
-+		return -ENOENT;
-+
-+	/* Must be last */
-+	if (!drm_dev_enter(&xe->drm, idx))
-+		return -ENODEV;
-+
-+	return 0;
-+}
-+
-+static void drm_ras_counter_put(int idx)
-+{
-+	/* Pair with drm_ras_counter_get() */
-+	drm_dev_exit(idx);
-+}
-+
- static bool drm_ras_counter_is_valid(u32 severity, u32 component)
+ 	switch (attr) {
++	case hwmon_power_cap_max:
++		return hwmon->pl2_on_boot[channel] ? 0444 : 0;
+ 	case hwmon_power_max:
+ 	case hwmon_power_cap:
+ 		if (hwmon->xe->info.has_mbx_power_limits) {
+@@ -1486,6 +1489,10 @@ static int
+ xe_hwmon_power_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
  {
- 	if (!in_range(severity, DRM_XE_RAS_ERR_SEV_CORRECTABLE, DRM_XE_RAS_ERR_SEV_MAX))
-@@ -33,19 +57,23 @@ static int query_error_counter(struct xe_device *xe,
- {
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[severity];
-+	int idx, ret;
- 
--	if (!info || !info[error_id].name)
--		return -ENOENT;
--
--	*name = info[error_id].name;
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
- 
- 	/* Fetch counter from system controller if supported */
- 	if (xe->info.has_sysctrl)
--		return xe_ras_get_counter(xe, severity, error_id, val);
-+		ret = xe_ras_get_counter(xe, severity, error_id, val);
-+	else
-+		*val = atomic_read(&info[error_id].counter);
- 
--	*val = atomic_read(&info[error_id].counter);
-+	if (!ret)
-+		*name = info[error_id].name;
- 
--	return 0;
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static int clear_error_counter(struct xe_device *xe,
-@@ -54,17 +82,20 @@ static int clear_error_counter(struct xe_device *xe,
- {
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[severity];
-+	int idx, ret;
- 
--	if (!info || !info[error_id].name)
--		return -ENOENT;
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
- 
- 	/* Clear counter from system controller if supported */
- 	if (xe->info.has_sysctrl)
--		return xe_ras_clear_counter(xe, severity, error_id);
-+		ret = xe_ras_clear_counter(xe, severity, error_id);
-+	else
-+		atomic_set(&info[error_id].counter, 0);
- 
--	atomic_set(&info[error_id].counter, 0);
--
--	return 0;
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_id,
-@@ -103,15 +134,21 @@ static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
- 	struct xe_device *xe = ep->priv;
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
--
--	if (!info || !info[error_id].name)
--		return -ENOENT;
-+	int idx, ret;
- 
- 	if (!xe->info.has_sysctrl)
- 		return -EOPNOTSUPP;
- 
--	*name = info[error_id].name;
--	return xe_ras_get_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
-+
-+	ret = xe_ras_get_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+	if (!ret)
-+		*name = info[error_id].name;
-+
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id, u32 threshold)
-@@ -119,14 +156,19 @@ static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id
- 	struct xe_device *xe = ep->priv;
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
--
--	if (!info || !info[error_id].name)
--		return -ENOENT;
-+	int idx, ret;
- 
- 	if (!xe->info.has_sysctrl)
- 		return -EOPNOTSUPP;
- 
--	return xe_ras_set_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
-+
-+	ret = xe_ras_set_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
-@@ -244,7 +286,7 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info;
- 	struct drm_ras_node *node;
--	int ret;
-+	int idx, ret;
- 
- 	/* Event is supported only if drm-ras is enabled */
- 	if (!xe->info.has_drm_ras)
-@@ -256,13 +298,16 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
- 	node = &ras->node[severity];
- 	info = ras->info[severity];
- 
--	if (!info || !info[component].name)
-+	ret = drm_ras_counter_get(xe, info, component, &idx);
-+	if (ret)
- 		return;
- 
- 	ret = drm_ras_nl_error_event(node, component, info[component].name, value);
- 	if (ret)
- 		drm_err_ratelimited(&xe->drm, "drm-ras error-event failed: %d for %s %s\n", ret,
- 				    info[component].name, error_severity[severity]);
-+
-+	drm_ras_counter_put(idx);
- }
- 
- /**
+ 	switch (attr) {
++	case hwmon_power_cap_max:
++		*val = mul_u32_u32(REG_FIELD_GET(PWR_LIM_VAL, hwmon->pl2_on_boot[channel]),
++				   SF_POWER) >> hwmon->scl_shift_power;
++		return 0;
+ 	case hwmon_power_max:
+ 	case hwmon_power_cap:
+ 		return xe_hwmon_power_max_read(hwmon, attr, channel, val);
 -- 
-2.43.0
+2.34.1
 
