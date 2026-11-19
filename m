@@ -2,50 +2,49 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3866D606A324
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 09:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566F5606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 09:52:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Vfdz3qju
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HoRUjzDS
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDC76112223;
-	Thu, 19 Nov 2026 09:52:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C148112227;
+	Thu, 19 Nov 2026 09:52:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BFDB112223
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 09:52:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95320112227
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 09:52:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795081936; x=1826617936;
+ t=1795081939; x=1826617939;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ykKRbx2eECQjWecNodfkTO1bX4jbmbpF/qMleQRpXO8=;
- b=Vfdz3qjunKlt4/ZseLrvY2QmaDendv2Th+IxOtZ5w8cWhz+T6Rb3ZzPt
- xu5kLnsZMdY/IeomWkfM7ch4bsLw9UiOMIFBu5EDSW7ExDAFcpDdQuqP+
- xZvuGJWW4XMcEBciJTsIeStEEU2Heywvw5z6rp7Ki29MmS9ZqqDGDtyKK
- eO74a9sibPGsHQqTgL9kOUowe5ELDeq7KlLKRVJclcXAK7A8FUciT466F
- E9IeUppfUXPsjUfS0/g0me5XM6/boUyY4l6DpIVpQhLGmgMQnhbkNg4vw
- QiJIZf/vR+suQy35T77HcdL/aE2x3LBATVR4S8x5NHRzSpFhPxS1E4c7X A==;
-X-CSE-ConnectionGUID: xgQBP5ADR866NCnnk2jvKQ==
-X-CSE-MsgGUID: e2pxzgHaRby8MoSwH+daLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="4004856"
+ bh=PuJQ4bJp4QNkXFnPC3vPtsdRsI7/1s1D0MkBrXxXot4=;
+ b=HoRUjzDSXQbopTpc2JoGb+mPDu/q4UB+3HeubG5jNh3u3APMlb3/Hceh
+ UL+7qYSZGT4C9k7VPE1kPUadsT6GaM3beMlLPLxGjrdqn1huTNImDXGzD
+ +M6lWWCqRzY0SxAUAA+u2boO6ANERzrS2E6K45yuiob1vfI1But79qqOC
+ 2swNqk9TkwF9EM0I+LvLpXcMC09KQPP9p8mKRUcZsiG/Al8g0IgSS+Ar6
+ kDa4mQ+PmnJ7nqf2G7ClhT4R+fSCkrgwC2utoQDyeRd3Oqfpsak4dbl2h
+ jA51/vNpVT19Zx75j+fr0sMOFkOjWW1A2dNs5OvyblJeAZ/TjHZ4d1Cu/ g==;
+X-CSE-ConnectionGUID: uCNgV/tYSYqCSVfmxTz22A==
+X-CSE-MsgGUID: rah0P+zVSqq8LkMu1OvWFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="4004858"
 X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="4004856"
+   d="scan'208";a="4004858"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 01:52:15 -0800
-X-CSE-ConnectionGUID: FUQIIAysQ4yCXcMKK+vneA==
-X-CSE-MsgGUID: QGEncq+uRHujHa3GoKHaZQ==
+ 19 Nov 2026 01:52:18 -0800
+X-CSE-ConnectionGUID: uz2FT4vnRu6RSDmWJYCS1Q==
+X-CSE-MsgGUID: S+rZ3C6TT+mTYtsCmYCctA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10749160"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10749171"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa009.fm.intel.com with ESMTP; 19 Nov 2026 01:52:14 -0800
+ by fmviesa009.fm.intel.com with ESMTP; 19 Nov 2026 01:52:16 -0800
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, stuart.summers@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 1/2] drm/xe/drm_ras: Protect against unplugged or wedged
- device
-Date: Thu, 19 Nov 2026 15:21:30 +0530
-Message-ID: <20261119095151.2041411-2-raag.jadav@intel.com>
+Subject: [PATCH v3 2/2] drm/xe/wedge: Introduce xe_wedge_mode_is_no_reset()
+Date: Thu, 19 Nov 2026 15:21:31 +0530
+Message-ID: <20261119095151.2041411-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261119095151.2041411-1-raag.jadav@intel.com>
 References: <20261119095151.2041411-1-raag.jadav@intel.com>
@@ -69,201 +68,143 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xe driver exposes drm_ras counters to userspace through netlink interface,
-which the user can access during the device lifetime. But this should not
-be done in case of unplugged or wedged device. Protect against such cases.
+Convert open-coded XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET check into its
+own helper.
 
-Fixes: b40db12b542f ("drm/xe/xe_drm_ras: Add support for XE DRM RAS")
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 ---
-v2: Allow counter access with XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET (Riana)
+v2: Introduce xe_wedge_mode_is_no_reset()
+v3: Fix wedge_validate_mode() to check for local mode (Sashiko)
 ---
- drivers/gpu/drm/xe/xe_drm_ras.c | 93 ++++++++++++++++++++++++---------
- 1 file changed, 69 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_drm_ras.c     | 2 +-
+ drivers/gpu/drm/xe/xe_guc_ads.c     | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_capture.c | 3 ++-
+ drivers/gpu/drm/xe/xe_guc_submit.c  | 2 +-
+ drivers/gpu/drm/xe/xe_pci_error.c   | 2 +-
+ drivers/gpu/drm/xe/xe_wedge.c       | 5 ++---
+ drivers/gpu/drm/xe/xe_wedge.h       | 5 +++++
+ 7 files changed, 14 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
-index 7554803aae11..3ca6c82345dd 100644
+index 3ca6c82345dd..86c589437a9f 100644
 --- a/drivers/gpu/drm/xe/xe_drm_ras.c
 +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
-@@ -5,6 +5,7 @@
+@@ -21,7 +21,7 @@ static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+ static int drm_ras_counter_get(struct xe_device *xe, struct xe_drm_ras_counter *info,
+ 			       u32 error_id, int *idx)
+ {
+-	if (xe_wedged(xe) && xe->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++	if (xe_wedged(xe) && !xe_wedge_mode_is_no_reset(xe))
+ 		return -ECANCELED;
  
- #include <linux/bitmap.h>
- 
-+#include <drm/drm_drv.h>
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- #include <drm/drm_ras.h>
-@@ -12,10 +13,33 @@
- #include "xe_device_types.h"
- #include "xe_drm_ras.h"
- #include "xe_ras.h"
+ 	if (!info || !info[error_id].name)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 0e1674a394b6..f333480f94e5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -30,6 +30,7 @@
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_wa.h"
 +#include "xe_wedge.h"
  
- static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
- static const char * const error_severity[] = DRM_XE_RAS_ERROR_SEVERITY_NAMES;
+ /* Slack of a few additional entries per engine */
+ #define ADS_REGSET_EXTRA_MAX	8
+@@ -544,7 +545,7 @@ static void guc_policies_init(struct xe_guc_ads *ads)
+ 	ads_blob_write(ads, policies.max_num_work_items,
+ 		       GLOBAL_POLICY_MAX_NUM_WI);
  
-+static int drm_ras_counter_get(struct xe_device *xe, struct xe_drm_ras_counter *info,
-+			       u32 error_id, int *idx)
-+{
-+	if (xe_wedged(xe) && xe->wedged.mode != XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+		return -ECANCELED;
-+
-+	if (!info || !info[error_id].name)
-+		return -ENOENT;
-+
-+	/* Must be last */
-+	if (!drm_dev_enter(&xe->drm, idx))
-+		return -ENODEV;
-+
-+	return 0;
-+}
-+
-+static void drm_ras_counter_put(int idx)
-+{
-+	/* Pair with drm_ras_counter_get() */
-+	drm_dev_exit(idx);
-+}
-+
- static bool drm_ras_counter_is_valid(u32 severity, u32 component)
- {
- 	if (!in_range(severity, DRM_XE_RAS_ERR_SEV_CORRECTABLE, DRM_XE_RAS_ERR_SEV_MAX))
-@@ -33,19 +57,23 @@ static int query_error_counter(struct xe_device *xe,
- {
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[severity];
-+	int idx, ret;
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++	if (xe_wedge_mode_is_no_reset(xe))
+ 		global_flags |= GLOBAL_POLICY_DISABLE_ENGINE_RESET;
  
--	if (!info || !info[error_id].name)
--		return -ENOENT;
--
--	*name = info[error_id].name;
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
+ 	ads_blob_write(ads, policies.global_flags, global_flags);
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+index 0fd68b41d412..e528b3e9d158 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture.c
++++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+@@ -35,6 +35,7 @@
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+ #include "xe_sched_job.h"
++#include "xe_wedge.h"
  
- 	/* Fetch counter from system controller if supported */
- 	if (xe->info.has_sysctrl)
--		return xe_ras_get_counter(xe, severity, error_id, val);
-+		ret = xe_ras_get_counter(xe, severity, error_id, val);
-+	else
-+		*val = atomic_read(&info[error_id].counter);
+ /*
+  * struct __guc_capture_bufstate
+@@ -1962,7 +1963,7 @@ xe_guc_capture_get_matching_and_lock(struct xe_exec_queue *q)
  
--	*val = atomic_read(&info[error_id].counter);
-+	if (!ret)
-+		*name = info[error_id].name;
+ 	xe = gt_to_xe(q->gt);
  
--	return 0;
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++	if (xe_wedge_mode_is_no_reset(xe))
+ 		return NULL;
  
- static int clear_error_counter(struct xe_device *xe,
-@@ -54,17 +82,20 @@ static int clear_error_counter(struct xe_device *xe,
- {
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[severity];
-+	int idx, ret;
- 
--	if (!info || !info[error_id].name)
--		return -ENOENT;
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
- 
- 	/* Clear counter from system controller if supported */
- 	if (xe->info.has_sysctrl)
--		return xe_ras_clear_counter(xe, severity, error_id);
-+		ret = xe_ras_clear_counter(xe, severity, error_id);
-+	else
-+		atomic_set(&info[error_id].counter, 0);
- 
--	atomic_set(&info[error_id].counter, 0);
--
--	return 0;
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_id,
-@@ -103,15 +134,21 @@ static int query_correctable_error_threshold(struct drm_ras_node *ep, u32 error_
- 	struct xe_device *xe = ep->priv;
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
--
--	if (!info || !info[error_id].name)
--		return -ENOENT;
-+	int idx, ret;
- 
- 	if (!xe->info.has_sysctrl)
- 		return -EOPNOTSUPP;
- 
--	*name = info[error_id].name;
--	return xe_ras_get_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
-+
-+	ret = xe_ras_get_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+	if (!ret)
-+		*name = info[error_id].name;
-+
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id, u32 threshold)
-@@ -119,14 +156,19 @@ static int set_correctable_error_threshold(struct drm_ras_node *ep, u32 error_id
- 	struct xe_device *xe = ep->priv;
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
--
--	if (!info || !info[error_id].name)
--		return -ENOENT;
-+	int idx, ret;
- 
- 	if (!xe->info.has_sysctrl)
- 		return -EOPNOTSUPP;
- 
--	return xe_ras_set_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+	ret = drm_ras_counter_get(xe, info, error_id, &idx);
-+	if (ret)
-+		return ret;
-+
-+	ret = xe_ras_set_threshold(xe, DRM_XE_RAS_ERR_SEV_CORRECTABLE, error_id, threshold);
-+
-+	drm_ras_counter_put(idx);
-+	return ret;
- }
- 
- static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
-@@ -244,7 +286,7 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
- 	struct xe_drm_ras *ras = &xe->ras.nl_data;
- 	struct xe_drm_ras_counter *info;
- 	struct drm_ras_node *node;
--	int ret;
-+	int idx, ret;
- 
- 	/* Event is supported only if drm-ras is enabled */
- 	if (!xe->info.has_drm_ras)
-@@ -256,13 +298,16 @@ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 val
- 	node = &ras->node[severity];
- 	info = ras->info[severity];
- 
--	if (!info || !info[component].name)
-+	ret = drm_ras_counter_get(xe, info, component, &idx);
-+	if (ret)
+ 	if (!xe_device_uc_enabled(xe))
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b5c916a764db..fc0f50307f2f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1435,7 +1435,7 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+ 	if (!guc->submission_state.initialized)
  		return;
  
- 	ret = drm_ras_nl_error_event(node, component, info[component].name, value);
- 	if (ret)
- 		drm_err_ratelimited(&xe->drm, "drm-ras error-event failed: %d for %s %s\n", ret,
- 				    info[component].name, error_severity[severity]);
-+
-+	drm_ras_counter_put(idx);
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
++	if (xe_wedge_mode_is_no_reset(xe)) {
+ 		mutex_lock(&guc->submission_state.lock);
+ 		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+ 			if (xe_exec_queue_get_unless_zero(q))
+diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
+index d288bb291aa1..fc6ff71d84a0 100644
+--- a/drivers/gpu/drm/xe/xe_pci_error.c
++++ b/drivers/gpu/drm/xe/xe_pci_error.c
+@@ -179,7 +179,7 @@ static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)
+ 	action = xe_ras_process_errors(xe);
+ 
+ 	/* User wants to debug the error, prevent reset */
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
++	if (xe_wedge_mode_is_no_reset(xe)) {
+ 		xe_wedge_declare(xe, DRM_WEDGE_RECOVERY_NONE);
+ 		return PCI_ERS_RESULT_DISCONNECT;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_wedge.c b/drivers/gpu/drm/xe/xe_wedge.c
+index 827fae058976..e48cca34d660 100644
+--- a/drivers/gpu/drm/xe/xe_wedge.c
++++ b/drivers/gpu/drm/xe/xe_wedge.c
+@@ -157,7 +157,7 @@ void xe_wedge_declare(struct xe_device *xe, unsigned long method)
+ 	 * hangs, so wedge the device with 'none' recovery method and have
+ 	 * it available to the user for debugging.
+ 	 */
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++	if (xe_wedge_mode_is_no_reset(xe))
+ 		xe->wedged.method = DRM_WEDGE_RECOVERY_NONE;
+ 	else
+ 		xe->wedged.method = method;
+@@ -203,8 +203,7 @@ static bool wedge_mode_needs_policy_update(struct xe_device *xe, enum xe_wedged_
+ 	if (xe->wedged.mode == mode)
+ 		return false;
+ 
+-	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET ||
+-	    mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
++	if (xe_wedge_mode_is_no_reset(xe) || mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
+ 		return true;
+ 
+ 	return false;
+diff --git a/drivers/gpu/drm/xe/xe_wedge.h b/drivers/gpu/drm/xe/xe_wedge.h
+index f2cab855db35..edb5174c5a75 100644
+--- a/drivers/gpu/drm/xe/xe_wedge.h
++++ b/drivers/gpu/drm/xe/xe_wedge.h
+@@ -26,6 +26,11 @@ static inline bool xe_wedged_permanent(struct xe_device *xe)
+ 	return atomic_read(&xe->wedged.perm);
  }
  
- /**
++static inline bool xe_wedge_mode_is_no_reset(struct xe_device *xe)
++{
++	return xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET;
++}
++
+ void xe_wedge_declare(struct xe_device *xe, unsigned long method);
+ int xe_wedge_init(struct xe_device *xe);
+ int xe_wedge_set_mode(struct xe_device *xe, enum xe_wedged_mode mode);
 -- 
 2.43.0
 
