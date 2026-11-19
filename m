@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063FB606A324
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF05606A324
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IXrVGGN/
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=N9g0nz3i
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8282112611;
-	Thu, 19 Nov 2026 15:55:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 795A611261F;
+	Thu, 19 Nov 2026 15:55:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0DA112615
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 15:54:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C90FA112620
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 15:55:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795103700; x=1826639700;
+ t=1795103709; x=1826639709;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=rayEZ0+oT/Iyk+FY8Hj0Rn8qFu76Ec9MdIYQCC7fDsI=;
- b=IXrVGGN/QVtjPpJX0zlMeJgno0Zo1jErcLERT+qqTIQHyf81ZoZXZ58j
- Xze/6r+Xocgezvry05dYxNdTF5mi5OKGuwyWoprjWsDHih1eUqJp5IhbF
- BefbYnRB/gCuFldNppM2EZGu8HIRAr9+cnYUWqRUn8OvRU0OOrXX32oM/
- yXc+l1fhDDmoIlVaLFbOCQWKjSNgOtw3SE8Yz0WLzN3kR2TCF3cjRQ0pA
- DL47C3KafbyGZ/0EvaSmBloLB8Xqo4q/l7iAALEO7QeWuYTl0UXiQbTRi
- qvYlIk9BO1ZOhk71udCSs18afewUtj36xQO/yKsdkS0KWFGoOc7QGsKhQ w==;
-X-CSE-ConnectionGUID: dMF3X7T4SdWKaGVErfzhjg==
-X-CSE-MsgGUID: J+b4tYhjSdy+TgQkhmdeRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3848962"
+ bh=9rp74QyDTfCjDpcOMHKQUWyqWQzn+hnKSJBSp5vLyeQ=;
+ b=N9g0nz3iiqk7lGPV+gbI9K/RDXsuDnHTGcrBjrgm5ivWPyVPAFY0eMO4
+ dNtt/DP2H9c1w/jxJUQvtCjESMkfhbxUveWsu77xsB1sfDWOizb6FU1dO
+ l6/+jvJJ4DLtgr+UON00kQI+655jZwnPQe0hkffwV8dR3WGWKdQ8PBEvy
+ d8WNKODZ8+l9oRBi2h5WlsFukyTBeDcNTVrHeHusywueDcfAZpNIbBP4H
+ nfVwN25oCtEhaBuStK9T2hSugnF5TvjxYPRGpCzAag0jQ+7fJf/1+7J6r
+ z5L4qvmgPyNFuZ2xePPqOOoo35rGhxic16EVxkdahYIG1PfFPGrkj3c2g Q==;
+X-CSE-ConnectionGUID: BkBV6SQCTTGzOk3VvksrFQ==
+X-CSE-MsgGUID: duqxC2RMTvCRQnNrxyOz2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3848990"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3848962"
+   d="scan'208";a="3848990"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 07:54:52 -0800
-X-CSE-ConnectionGUID: VNfohx3MSY2GSVHKRAe8SA==
-X-CSE-MsgGUID: ltHLArEkQSSID6m/SdF86g==
+ 19 Nov 2026 07:54:53 -0800
+X-CSE-ConnectionGUID: c1qOIiOZRDG5KMvHP0rjAA==
+X-CSE-MsgGUID: atzNtiaMSUqHmrgBOvQlpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10263391"
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10263413"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 07:54:51 -0800
+ 19 Nov 2026 07:54:52 -0800
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -46,9 +46,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v19 05/19] drm/xe/vsec: Correct locking order
-Date: Thu, 19 Nov 2026 07:54:43 -0800
-Message-ID: <20261119155438.40762-26-michael.j.ruhl@intel.com>
+Subject: [PATCH v19 10/19] drm/xe/vsec: Update VSEC probe order
+Date: Thu, 19 Nov 2026 07:54:48 -0800
+Message-ID: <20261119155438.40762-31-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261119155438.40762-21-michael.j.ruhl@intel.com>
 References: <20261119155438.40762-21-michael.j.ruhl@intel.com>
@@ -73,43 +73,43 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Xe locking order is power state first, and then local locks.
+Both debugfs and hwmon access the PMT data area before PMT is
+initialized.
 
-Reorder locking for correct usage.
+Hardwired offset usage allows this to work by accident.
+Upcoming changes will break this usage.
+
+Re-order the probe steps to initialize VSEC before the other
+features are initialized.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 178f22db4046..d93c042cf25b 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -157,16 +157,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f5a581d39c96..ba1f49a56794 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1088,6 +1088,8 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
  
- 	telem_addr += offset + user_offset;
- 
--	guard(mutex)(&xe->pmt.lock);
--
- 	/* indicate that we are not at an appropriate power level */
- 	if (!xe_pm_runtime_get_if_active(xe))
- 		return -ENODATA;
- 
--	/* set SoC re-mapper index register based on GUID memory region */
--	xe->soc_remapper.set_telem_region(xe, mem_region);
-+	scoped_guard(mutex, &xe->pmt.lock) {
-+		/* set SoC re-mapper index register based on GUID memory region */
-+		xe->soc_remapper.set_telem_region(xe, mem_region);
++	xe_vsec_init(xe);
 +
-+		memcpy_fromio(data, telem_addr, count);
-+	}
+ 	xe_debugfs_register(xe);
  
--	memcpy_fromio(data, telem_addr, count);
- 	xe_pm_runtime_put(xe);
+ 	err = xe_hwmon_register(xe);
+@@ -1098,8 +1100,6 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
  
- 	return count;
+-	xe_vsec_init(xe);
+-
+ 	err = xe_sriov_init_late(xe);
+ 	if (err)
+ 		goto err_unregister_display;
 -- 
 2.43.0
 
