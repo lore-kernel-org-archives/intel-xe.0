@@ -2,63 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF8AC606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 13:38:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08AC2606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 13:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CcEKnn5m
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=g0+SWQQF
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72D511123F6;
-	Thu, 19 Nov 2026 13:38:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 023031123F6
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 13:38:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC22610E8A8;
+	Thu, 19 Nov 2026 13:49:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5975510E8A8
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 13:49:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795095502; x=1826631502;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Qq1g4dWFMbCOiNOad3jXmsPjENGEXw4xMGQW/A5rrLw=;
- b=CcEKnn5mDgexfEQzBNyRexfrfhk0c1Jv0cQlxjqCJO1Q2ZaZOcbbSSJz
- mcrKLJ5qez0v6oEUxZU5XZu+DEcTfce+Wwm0WDg03LxXicKcWl9rHbNpE
- CoUZ3vjmZg3gpL9eOV8+e9VADxoJAqdWPk8MkGqFAqvFlWRbiexnVuXPR
- cPno46wlHk8Ay9Ju5ZGUBBy0FoIaSKgAu5h5v2lXBb8Fg+bra0KYG3UXO
- Kn5gV1JpNhJ0rXXwncs3wzlLSdbBbj3lpFnVUMliP1dHEkn+pg4aeuL+b
- L4xjQpPnkv5t0sYZwBIbgQ3LfqLu+KGgZlaXM2jKhis+ZrjNWTpLUDBd2 A==;
-X-CSE-ConnectionGUID: WTtRj2KNTwmKD3h5Crzjaw==
-X-CSE-MsgGUID: /1iNYXNcTuq3QzBWiJfuow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3832198"
+ t=1795096141; x=1826632141;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=2mTEb2xwcnGUG9JBnK+/8cYdyEA+TyGAxZ6RQA1eJ28=;
+ b=g0+SWQQFYH2j9KDcpUzLrD+LNY2YNnj+h5MOeyiAVVxQ2/rMrKlgsDNr
+ n6zU8zr/YYtxS5NkDINgiSB1hUhIFjOp6dEWb6ELr2Aa3kfeAYhYE/bz5
+ Oqzgk4w6ZeFum0vcGmMV80yiBDX8qR+u0sU808CMPxM3xoo16s41hmwne
+ bngiHuig2DfIZV4U9Y87w7s0d6eypVnIp2lqZNKnBPq6vL57lLIPU+lbs
+ I6+0zei7j6QV/NgSl5i4SWOEHZDd7t3qwxIf90/nyoX96j7zoZwkafswB
+ L9cozBReyniz8y7S/LEYEG7ZsU9xPV+3t276im2hpxTAz6iGw52eAcAY6 Q==;
+X-CSE-ConnectionGUID: 03H2SVe8TZWda1Njf1ZQrQ==
+X-CSE-MsgGUID: pE+yZ2jVQcasW6oQjtfQyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3992271"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3832198"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 05:38:22 -0800
-X-CSE-ConnectionGUID: Se6G9eMLQsqKgiI9ji4Enw==
-X-CSE-MsgGUID: vBBfRX6bQQCZa1f0tYcQCw==
+   d="scan'208";a="3992271"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 05:49:00 -0800
+X-CSE-ConnectionGUID: hUdOJPTtQ3Gka4kwZoDX2Q==
+X-CSE-MsgGUID: gTnp7ipWQmqVB4Gdwp6Bkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10995874"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.245.108])
- ([10.245.245.108])
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10707742"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.54])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 05:38:20 -0800
-Message-ID: <5380ab8f-f972-40a7-bab6-45e6b183bdfd@intel.com>
-Date: Thu, 19 Nov 2026 13:38:18 +0000
+ 19 Nov 2026 05:48:59 -0800
+Date: Thu, 19 Nov 2026 15:48:55 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v4 1/6] drm/xe/ggtt: Add xe_ggtt_reserve_area
+Message-ID: <av7-R6YyAeyJdseW@intel.com>
+References: <20261116122828.266113-8-dev@lankhorst.se>
+ <20261116122828.266113-9-dev@lankhorst.se>
+ <av4GBGvSkQttjqfn@intel.com>
+ <1719eff8-784a-41f4-904c-bd821eda0ff3@lankhorst.se>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] drm/xe: run compute rebind worker on device NUMA node
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-References: <20261119-userptr-repin-v1-0-af2e327833a9@intel.com>
- <20261119-userptr-repin-v1-5-af2e327833a9@intel.com>
- <f29cef0f95344993fc9d098f548dcde0dba8bfe8.camel@linux.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <f29cef0f95344993fc9d098f548dcde0dba8bfe8.camel@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1719eff8-784a-41f4-904c-bd821eda0ff3@lankhorst.se>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,251 +69,183 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 19/11/2026 13:11, Thomas Hellström wrote:
-> On Thu, 2026-11-19 at 11:14 +0000, Matthew Auld wrote:
->> preempt_rebind_work_func() currently runs on xe->ordered_wq, whose
->> unbound worker pool spans all NUMA nodes. On multi-socket systems, if
->> the rebind worker runs on a remote socket when faulting userptr pages
->> marked PROT_NONE by AutoNUMA, hmm_range_fault() invokes
->> do_numa_page()
->> using the worker's NUMA node and triggers migrate_misplaced_folio(),
->> pulling pages away from the GPU's local node and causing self-
->> inflicted
->> MMU notifier invalidations.
->>
->> Move vm->preempt.rebind_work onto a dedicated WQ_UNBOUND workqueue
->> (max_active = 1) queued via queue_work_node() with dev_to_node(),
->> leaving user-fence signalling on xe->ordered_wq. Guard
->> preempt_rebind_work_func() with a per-device mutex so compute rebinds
->> remain strictly 1-at-a-time even when queue_work_node() falls back
->> across nodes (such as NUMA_NO_NODE or CPU-less nodes).
+On Thu, Nov 19, 2026 at 12:59:55PM +0100, Maarten Lankhorst wrote:
+> Hey,
 > 
-> I don't remember fully why we have this 1-at-a-time rebind worker. I
-> wonder whether it was because of concurrent validations causing VMs to
-> outcompete eachother for memory. If that was the case, then we might be
-> able to lift that restriction due to the validation guard.
-
-If that is the case, then yeah that would make this a lot nicer.
-
+> On 11/18/26 21:09, Ville Syrj�l� wrote:
+> > On Mon, Nov 16, 2026 at 01:28:30PM +0100, Maarten Lankhorst wrote:
+> >> Create a new function xe_ggtt_reserve_area() which will be used
+> >> for reserving the part of GGTT where the initial framebuffer was
+> >> allocated, while ensuring the reservation fits within mappable
+> >> GGTT boundaries.
+> >>
+> >> This will allow us to either take over the initial mapping, or
+> >> reserve it to have the newly allocated GGTT mapping not overwriting
+> >> the initial mapping, which would cause flickering.
+> >>
+> >> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> >> ---
+> >>  drivers/gpu/drm/xe/xe_ggtt.c | 69 +++++++++++++++++++++++++++++++++---
+> >>  drivers/gpu/drm/xe/xe_ggtt.h |  2 ++
+> >>  2 files changed, 67 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> >> index 9ef2ce743770f..ca38d51f41441 100644
+> >> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> >> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> >> @@ -681,14 +681,17 @@ static struct xe_ggtt_node *ggtt_node_init(struct xe_ggtt *ggtt)
+> >>  }
+> >>  
+> >>  /**
+> >> - * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
+> >> + * xe_ggtt_insert_node_at - Insert a &xe_ggtt_node into the GGTT
+> >>   * @ggtt: the &xe_ggtt into which the node should be inserted.
+> >>   * @size: size of the node
+> >>   * @align: alignment constrain of the node
+> >> + * @start: Starting offset of range to insert node
+> >> + * @end: Last offset for node insertion
+> >>   *
+> >>   * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
+> >>   */
+> >> -struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
+> >> +static struct xe_ggtt_node *xe_ggtt_insert_node_at(struct xe_ggtt *ggtt, u32 size,
+> >> +						   u32 align, u64 start, u64 end)
+> >>  {
+> >>  	struct xe_ggtt_node *node;
+> >>  	int ret;
+> >> @@ -698,8 +701,19 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
+> >>  		return node;
+> >>  
+> >>  	guard(mutex)(&ggtt->lock);
+> >> -	ret = xe_ggtt_insert_node_locked(node, size, align,
+> >> -					 DRM_MM_INSERT_HIGH);
+> >> +	if (start >= ggtt->start)
+> >> +		start -= ggtt->start;
+> >> +	else
+> >> +		start = 0;
+> >> +
+> >> +	/* Should never happen, but since we handle start, fail graciously for end */
+> >> +	if (end >= ggtt->start)
+> >> +		end -= ggtt->start;
+> >> +	else
+> >> +		end = 0;
+> >> +
+> >> +	ret = drm_mm_insert_node_in_range(&ggtt->mm, &node->base, size, align,
+> >> +					  0, start, end, DRM_MM_INSERT_HIGH);
+> >>  	if (ret) {
+> >>  		ggtt_node_fini(node);
+> >>  		return ERR_PTR(ret);
+> >> @@ -708,6 +722,53 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
+> >>  	return node;
+> >>  }
+> >>  
+> >> +/**
+> >> + * xe_ggtt_reserve_area - Ensure an area of the GGTT is reserved.
+> >> + * @ggtt: the &xe_ggtt where the area should be reserved.
+> >> + * @start: Starting offset of range to reserve
+> >> + * @size: size of the reservation
+> >> + *
+> >> + * This function ensures the area of [start...start+size)
+> >> + * is reserved, while taking care of any clipping due to start or start+size
+> >> + * falling outside of the adressable GGTT. The size of the returned node may
+> >> + * be smaller if part of the region falls outside the accessible GGTT, or a
+> >> + * NULL node may be returned.
+> >> + *
+> >> + * Return: &xe_ggtt_node or NULL on success or a ERR_PTR on failure.
+> >> + */
+> >> +struct xe_ggtt_node *xe_ggtt_reserve_area(struct xe_ggtt *ggtt, u32 base, u32 size)
+> >> +{
+> >> +	u64 ggtt_start = xe_ggtt_start(ggtt), ggtt_end = ggtt_start + xe_ggtt_size(ggtt);
+> >> +
+> >> +	/* Completely truncated? */
+> >> +	if (base + size <= ggtt_start || base >= ggtt_end)
+> >> +		return NULL;
+> >> +
+> >> +	/* Partially truncated? */
+> >> +	if (base <= ggtt_start) {
+> >> +		size -= ggtt_start - base;
+> >> +		base = ggtt_start;
+> >> +	}
+> >> +
+> >> +	if (base + size >= ggtt_end)
+> >> +		size = ggtt_end - base;
+> > 
+> > We seem to be doing the same chop both here and in
+> > xe_ggtt_insert_node_at(). Isn't one place enough?
+> They're complementary, and there for different reasons.
 > 
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_device.c       | 11 ++++++++++-
->>   drivers/gpu/drm/xe/xe_device_types.h | 10 +++++++++-
->>   drivers/gpu/drm/xe/xe_vm.c           |  8 +++++++-
->>   drivers/gpu/drm/xe/xe_vm.h           |  6 +++++-
->>   4 files changed, 31 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device.c
->> b/drivers/gpu/drm/xe/xe_device.c
->> index 4e54a1b7fc51..f75a32bb48e3 100644
->> --- a/drivers/gpu/drm/xe/xe_device.c
->> +++ b/drivers/gpu/drm/xe/xe_device.c
->> @@ -8,7 +8,9 @@
->>   #include <linux/aperture.h>
->>   #include <linux/delay.h>
->>   #include <linux/error-injection.h>
->> +#include <linux/mutex.h>
->>   #include <linux/units.h>
->> +#include <linux/workqueue.h>
->>   
->>   #include <drm/drm_client.h>
->>   #include <drm/drm_gem_ttm_helper.h>
->> @@ -396,6 +398,11 @@ static void xe_device_destroy(struct drm_device
->> *dev, void *dummy)
->>   	if (xe->destroy_wq)
->>   		destroy_workqueue(xe->destroy_wq);
->>   
->> +	if (xe->rebind_wq)
->> +		destroy_workqueue(xe->rebind_wq);
+> The math in node_at() converts the raw ggtt addresses from [0...full_ggtt_size) to the
+> range of [0...ggtt_size) in drm_mm_init.
 > 
-> Hm. It looks safer if we destroy this wq earlier than the destroy wq?
-> Is there a chance that we put something on the destroy wq from the
-> rebind wq?
+> The truncation in reserve_area is there to physically adjust the size
+> to fit inside a valid area, or return a NULL node if it's entirely outside it.
 
-Can move.
+I find the whole thing rather confusing. So what we're saying here is
+that xe_ggtt_insert_node_at() start/end parameters are to be specified 
+in terms of the full hw ggtt range. And if other users would like to
+call it, they will potentially have to do the drm_mm->hw range conversion
+before calling it. If we leave it like this, then I think it really
+needs to be documented to avoid people shooting themselves in to foot.
 
-> 
-> 
-> 
->> +
->> +	mutex_destroy(&xe->rebind_lock);
->> +
->>   	ttm_device_fini(&xe->ttm);
->>   
->>   	if (atomic_dec_and_test(&xe_device_count))
->> @@ -472,6 +479,7 @@ int xe_device_init_early(struct xe_device *xe)
->>   		return err;
->>   
->>   	xe_bo_dev_init(&xe->bo_device);
->> +	mutex_init(&xe->rebind_lock);
->>   	atomic_inc(&xe_device_count);
->>   	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy,
->> NULL);
->>   	if (err)
->> @@ -518,10 +526,11 @@ int xe_device_init_early(struct xe_device *xe)
->>   
->>   	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-
->> fence-wq",
->>   						
->> WQ_MEM_RECLAIM);
->> +	xe->rebind_wq = alloc_workqueue("xe-rebind-wq", WQ_UNBOUND,
->> 1);
->>   	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq",
->> 0);
->>   	xe->unordered_wq = alloc_workqueue("xe-unordered-wq",
->> WQ_PERCPU, 0);
->>   	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU
->> | WQ_MEM_RECLAIM, 0);
->> -	if (!xe->ordered_wq || !xe->unordered_wq ||
->> +	if (!xe->ordered_wq || !xe->unordered_wq || !xe->rebind_wq
->> ||
->>   	    !xe->preempt_fence_wq || !xe->destroy_wq) {
->>   		/*
->>   		 * Cleanup done in xe_device_destroy via
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
->> b/drivers/gpu/drm/xe/xe_device_types.h
->> index fc80cd2c766e..c30d64296869 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -6,7 +6,9 @@
->>   #ifndef _XE_DEVICE_TYPES_H_
->>   #define _XE_DEVICE_TYPES_H_
->>   
->> +#include <linux/mutex.h>
->>   #include <linux/pci.h>
->> +#include <linux/workqueue.h>
->>   
->>   #include <drm/drm_device.h>
->>   #include <drm/drm_file.h>
->> @@ -375,7 +377,13 @@ struct xe_device {
->>   	/** @preempt_fence_wq: used to serialize preempt fences */
->>   	struct workqueue_struct *preempt_fence_wq;
->>   
->> -	/** @ordered_wq: used to serialize compute mode resume */
->> +	/** @rebind_wq: used to run compute mode rebind work on
->> device node */
->> +	struct workqueue_struct *rebind_wq;
->> +
->> +	/** @rebind_lock: serializes compute mode rebind workers per
->> device */
->> +	struct mutex rebind_lock;
->> +
->> +	/** @ordered_wq: used to serialize ordered work */
->>   	struct workqueue_struct *ordered_wq;
->>   
->>   	/** @unordered_wq: used to serialize unordered work */
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index 0c5121361f8e..1436d09ee560 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -18,6 +18,7 @@
->>   #include <linux/delay.h>
->>   #include <linux/kthread.h>
->>   #include <linux/mm.h>
->> +#include <linux/mutex.h>
->>   #include <linux/sched/signal.h>
->>   #include <linux/swap.h>
->>   
->> @@ -540,7 +541,7 @@ static bool vm_suspend_rebind_worker(struct xe_vm
->> *vm)
->>    */
->>   void xe_vm_resume_rebind_worker(struct xe_vm *vm)
->>   {
->> -	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
->> +	xe_vm_queue_rebind_worker(vm);
->>   }
->>   
->>   #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
->> @@ -581,16 +582,19 @@ static void preempt_rebind_work_func(struct
->> work_struct *w)
->>   	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
->>   	trace_xe_vm_rebind_worker_enter(vm);
->>   
->> +	mutex_lock(&vm->xe->rebind_lock);
->>   	down_write(&vm->lock);
->>   
->>   	if (xe_vm_is_closed_or_banned(vm)) {
->>   		up_write(&vm->lock);
->> +		mutex_unlock(&vm->xe->rebind_lock);
->>   		trace_xe_vm_rebind_worker_exit(vm);
->>   		return;
->>   	}
->>   
->>   	if (!try_wait_for_completion(&vm->xe->pm_block) &&
->> vm_suspend_rebind_worker(vm)) {
->>   		up_write(&vm->lock);
->> +		mutex_unlock(&vm->xe->rebind_lock);
->>   		/* We don't actually block but don't make progress.
->> */
->>   		xe_pm_might_block_on_suspend();
->>   		return;
->> @@ -666,6 +670,7 @@ static void preempt_rebind_work_func(struct
->> work_struct *w)
->>   		 * lock make progress between attempts.
->>   		 */
->>   		up_write(&vm->lock);
->> +		mutex_unlock(&vm->xe->rebind_lock);
->>   		free_preempt_fences(&preempt_fences);
->>   		xe_vm_queue_rebind_worker(vm);
->>   		trace_xe_vm_rebind_worker_exit(vm);
->> @@ -679,6 +684,7 @@ static void preempt_rebind_work_func(struct
->> work_struct *w)
->>   		xe_vm_kill(vm, true);
->>   	}
->>   	up_write(&vm->lock);
->> +	mutex_unlock(&vm->xe->rebind_lock);
->>   
->>   	free_preempt_fences(&preempt_fences);
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
->> index b1c5f940bcc5..ed590bad892c 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.h
->> +++ b/drivers/gpu/drm/xe/xe_vm.h
->> @@ -6,6 +6,9 @@
->>   #ifndef _XE_VM_H_
->>   #define _XE_VM_H_
->>   
->> +#include <linux/device.h>
->> +#include <linux/workqueue.h>
->> +
->>   #include "xe_assert.h"
->>   #include "xe_bo_types.h"
->>   #include "xe_macros.h"
->> @@ -259,7 +262,8 @@ int xe_vm_validate_protected(struct xe_vm *vm);
->>   static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
->>   {
->>   	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
->> -	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
->> +	queue_work_node(dev_to_node(vm->xe->drm.dev), vm->xe-
->>> rebind_wq,
->> +			&vm->preempt.rebind_work);
-> 
-> Is a NUMA_NO_NODE dev_to_node() return OK here?
-
-Yeah, select_numa_node_cpu() checks this:
-
-if (node < 0 || node >= MAX_NUMNODES || !node_online(node))
-             return WORK_CPU_UNBOUND;
-
-And here NUMA_NO_NODE = -1
+xe_ggtt_reserve_area() docs should also clearly point out that it 
+operates on the full hw ggtt range. Right now it's only implied
+by the statement about clipping.
 
 > 
-> Thanks,
-> Thomas
-> 
-> 
-> 
->>   }
->>   
->>   /**
+> > 
+> > Sashiko's comments about the 32bit overflow seem potentially valid
+> > to me. I don't recall how high in the ggtt the GOP now places the
+> > FB, but if it's at the very top, and there is no extra padding then
+> > we could have the FB extend all the way to the 4 GiB mark.
+> > 
+> > We also have a 32bit 'plane_config->base + plane_config->size' in
+> > both i915 and xe initial plane code, where that overflow would also
+> > hit us.
+> > 
+> >> +
+> >> +	return xe_ggtt_insert_node_at(ggtt, size, XE_PAGE_SIZE, base, base + size);
+> >> +}
+> >> +
+> >> +/**
+> >> + * xe_ggtt_insert_node - Insert a &xe_ggtt_node into the GGTT
+> >> + * @ggtt: the &xe_ggtt into which the node should be inserted.
+> >> + * @size: size of the node
+> >> + * @align: alignment constrain of the node
+> >> + *
+> >> + * Return: &xe_ggtt_node on success or a ERR_PTR on failure.
+> >> + */
+> >> +struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align)
+> >> +{
+> >> +	return xe_ggtt_insert_node_at(ggtt, size, align, 0, ~0ULL);
+> >> +}
+> >> +
+> >>  /**
+> >>   * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
+> >>   * @node: the &xe_ggtt_node
+> >> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> >> index c864cc975a695..15e62ecec2287 100644
+> >> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> >> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> >> @@ -22,6 +22,8 @@ void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_base);
+> >>  u64 xe_ggtt_start(struct xe_ggtt *ggtt);
+> >>  u64 xe_ggtt_size(struct xe_ggtt *ggtt);
+> >>  
+> >> +struct xe_ggtt_node *
+> >> +xe_ggtt_reserve_area(struct xe_ggtt *ggtt, u32 base, u32 size);
+> >>  struct xe_ggtt_node *
+> >>  xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 align);
+> >>  struct xe_ggtt_node *
+> >> -- 
+> >> 2.55.0
+> > 
 
+-- 
+Ville Syrj�l�
+Intel
