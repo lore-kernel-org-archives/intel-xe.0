@@ -2,162 +2,167 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D47606A324
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 19:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC20606A326
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 19:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=C/Z+xu/R;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=I6F4THO6
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qgf53rgm;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=jGiTzQLb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F63110E789;
-	Thu, 19 Nov 2026 19:15:01 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82B2910E590;
- Thu, 19 Nov 2026 19:14:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F04E10E0A7;
+	Thu, 19 Nov 2026 19:17:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD84010E0A7
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 19:17:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795115690; x=1826651690;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=0wNo0/ArTw1kQSeFNrxvuUycnnh+NSRnoejSHxmKKvc=;
- b=C/Z+xu/RzF3RyHcVlAQkrR9UxSnZ9H/ZVk4YpBWKD48UrSuHRXUg8npz
- NOFjOxDIy49hMIZIsLXO3DoQB+uC7h0YYiJf+3lt5iPyQIeXOdALNJxKk
- EHqnN6KMsCMSNrN3izhJYZN94xmPLBathtFydkRQaMKOa0Qy6AacNXVtP
- X7MhRTpluDOz0C/tusEt2D1P+6A0RbYmSiLy8l/JeWmqCI5ytTkkRiCx1
- hqISZgY2tsFdSf7INSM1ImPP9aMAvptmlh5QpC7hnXUvZYpUcqvARM7mp
- CIxVir+9iE5gU33MN8XwhnvnbsX2fxmG1pDcmGTUYEeF6jSnV/+004SG2 Q==;
-X-CSE-ConnectionGUID: 1kw9/rRrQtqzncJvwXB/7w==
-X-CSE-MsgGUID: HsspkRHVRfu3Z+Yxi8JGXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3896984"
+ t=1795115821; x=1826651821;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ldyD5yNPg19FO2bldRSN6jhIeFNFcyAn/Tc+TU4BMcE=;
+ b=Qgf53rgmyn60t5j0q0qqaNKenzxPByIV/a7dRisJqxCgn4+7h4cPm7l4
+ 2oXXV12rALtN/zc1pTzYrwLa0GxGnIMAdpoYR7+kSvZBkts04y4dyBs/i
+ U7e9ZOkA9iH3tRYywCe2qgDX6qncsW6PA/uAlUm+t7iUeZAjVVKMmuqS2
+ it7tokiJsJ+Y1OWSXTxxvYcdC+j0f5D7X7VaRj/s3Vi32uvWi0/MV9SSE
+ HcV4zskl9q2MGHz0+213+qsosIxrk3dYWtEwrisevQeGwX+JQSYw7Hkvk
+ u85ZuZtUilrF8SlZ4N8o/IhUaPRLL2re21j0KrYMXcmK23q48b9Di5+ml w==;
+X-CSE-ConnectionGUID: FotkVDxNSUyvvY61Oq7y9Q==
+X-CSE-MsgGUID: tajUExI1QfK4+f0timTjOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3880206"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3896984"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 11:14:50 -0800
-X-CSE-ConnectionGUID: T0ArPD/gSrmdm9Dg7IPIeQ==
-X-CSE-MsgGUID: JO87BK64QxGkfH4YwyhyfQ==
+   d="scan'208";a="3880206"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 11:17:00 -0800
+X-CSE-ConnectionGUID: rDca9UvWRaqvvjsaPw3K/A==
+X-CSE-MsgGUID: e66r//hcS+iAgk4r1cNC8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10408365"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 11:14:50 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10596808"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 11:17:00 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 11:14:49 -0800
+ 15.2.2562.56; Thu, 19 Nov 2026 11:16:59 -0800
 Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 11:14:49 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.49) by
+ 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 11:16:59 -0800
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.47) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 11:14:49 -0800
+ 15.2.2562.56; Thu, 19 Nov 2026 11:16:59 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=E2u7CmIlNeYtrn/I11E23kAq76QYpTNVkt2jHp3NXkzh9YCYbgcwB+RlYsf/znjALvmyUKGqkDdICqYnG92cLfDec6ogLRrTaNTuYyJjwSNR0MA6vISuXKZHrOnKAM2iavEt7IifrQc9BpfkBJvBAsqJQlzQ1QDhb/riK8vXlHfRox9i0EkrFNh77BsLBoXO5g4mTgF/2VFNgS0nVgV30gyxMKIkSTeGGuERa8wYG3xGHKRKK15B4aOzz4q65tjBBE2Q1G6s4Y+SncD0qSK1GEdzdrtaRSM+M62XO1h99oG9p4WlNmN6ZjUJsQEo9aycYZ05H1f43/xWgDMk+Zv4Yg==
+ b=uMbaTtTm2JZjJBekBptujPffPuQXEyoxiE6PkyPJElJ5U2OI9DO0tKXVkYtS2kr+D78O38IwXszbHAaNhKI0pZr8wFdYRNqT5qWpuaRLia+E6qPqiQ0RXcmroG1kezB9FYqIP+QBQiE7wqg9QqxSE+dDIhtq3kcujZmNfBklmmt8+Tks8O9hXya8MxLl5AszVUmb/FEfxuAuNem8rYf9Sf+aef1p3VblLeulliERyAxSLPHarC+pu8KbQjTJnEHGUQhDchoOBnq/LE9YaTki0j2CN9n1BVwfIc9PuLTnBzEI0ITg6r31uKMSm8V4P0RmzEQ8dbU+fHlX9pdwLiwvFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5D64h+tNmX8hOVStg6GVCQ84nB9MFTsSfqg6ocyADhk=;
- b=MsEh1/KYNaBO9dINRuchr9iBFa5Rham6UhU9iGEBNF2z6rFFY/ytlcvLB4C+NlSzaNylnm3EkbhF8g8AMDrkR6ZrGIQWFcgraKpNS+8ORXyQFGQlKpwPPhv9FN0M4qF40ktdMXVgw6CBLcKy8ab7bEObMWH6Kp0R6X1GEAARvq4ihCiuikfK0BlF2+6KAKhFNQ5P/izlorko1OzkyE87qB+74B0+A5LXyZuwX4aH6r8Nsrg3UE3zNdhAyBWahGXQ3D6q1qtdlEfMXpMvWaSAlTRpi+C71toZ4astgZBbhwylp/Fp6BSSFafA5grU2kWb6e+XG7npiMQvF8uaLu9Z6Q==
+ bh=ldyD5yNPg19FO2bldRSN6jhIeFNFcyAn/Tc+TU4BMcE=;
+ b=u8pSrgX6iAwmRW/xcDFqqx9lyrGvy00647nvLNEdWCwR7m5f2jFv4qS3t7Dg+ofkZUJxHk488N0KazpsRhm2+56ULLt0nc6LJg8rLTdq7iD9OOCcSVuJ2sj/afk5hA+yBPXM/De5iRHDSzjGSIQTAtnVeyRs2omZxAT1AFuUWgiXHyPwcOlCJlG2Oxhkij8EzQilM0GVDVFpJfYN1XoQtnRoMojFT54V89i3D9n6NygHleCminy71tt12fSBYeI/Y9CERn1BORs8W3TlPr/4uZMPWw7Ty+6DUMFEfkdzt93fr3BbbHGdoV7Z6TzYYvXbKAEL1c4jqVcHU7smlKxuOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5D64h+tNmX8hOVStg6GVCQ84nB9MFTsSfqg6ocyADhk=;
- b=I6F4THO6dATBQXBPxzV+aEXFRPG8NEhadwmgVBDsZYQw6i6Cn+sFqEb470VjyhFRZOmaKG9ou1R4ZD9zfYNYbrtIFZZXK9z1O2VdqAlZapcRXvSmD7AwrSyRJwgNFVm2YKoDqQ/7vcqU0ld5GINAyliVigwaI2YgcZSvDjO0/bs=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ bh=ldyD5yNPg19FO2bldRSN6jhIeFNFcyAn/Tc+TU4BMcE=;
+ b=jGiTzQLbEu0mLS8PV2KB2vZWx1847nAm26pwpdP0d0U5SiU71ufg+ANwWD8eIVGFEqldeVEC7bi2th6D8XyziaaKAyT3oKWlPaK7yvQd/cJpc9oOShMskpQGsOrlJFQs0yinnWlQDUeLAw9OP+gZ4ctofQXmkTaOgmd+1JxkSu8=
+Received: from CH0PR11MB5395.namprd11.prod.outlook.com (2603:10b6:610:ba::6)
+ by LV0PR11MB311182.namprd11.prod.outlook.com (2603:10b6:408:60d::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Thu, 19 Nov
+ 2026 19:16:56 +0000
+Received: from CH0PR11MB5395.namprd11.prod.outlook.com
+ ([fe80::2e5f:eb:b663:a490]) by CH0PR11MB5395.namprd11.prod.outlook.com
+ ([fe80::2e5f:eb:b663:a490%5]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
+ 19:16:56 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "sashiko-reviews@lists.linux.dev" <sashiko-reviews@lists.linux.dev>,
+ "Charles, Daniel" <daniel.charles@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH v6 2/4] drm/xe: Notify scheduling-state waiters per exec
+ queue
+Thread-Topic: [PATCH v6 2/4] drm/xe: Notify scheduling-state waiters per exec
+ queue
+Thread-Index: AQHdeE6Y+WtdWvoVxEGsVsJ8ejpsm7c1sN6AgAAS8bA=
+Date: Thu, 19 Nov 2026 19:16:56 +0000
+Message-ID: <CH0PR11MB5395CDC2D222AF06B26EE979E5792@CH0PR11MB5395.namprd11.prod.outlook.com>
+References: <20261119174621.1311154-1-daniel.charles@intel.com>
+ <20261119174621.1311154-3-daniel.charles@intel.com>
+ <sashiko-outbox-223756@kernel.org>
+In-Reply-To: <sashiko-outbox-223756@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by CO1PR11MB5185.namprd11.prod.outlook.com (2603:10b6:303:6e::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.10; Thu, 19 Nov
- 2026 19:14:46 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
- 19:14:46 +0000
-Date: Thu, 19 Nov 2026 11:14:41 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>, Thomas
- =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 04/33] drm/ttm: Introduce ttm_pool_alloc_iter for
- __ttm_pool_alloc()
-Message-ID: <av9KoYw5cSdTfO8x@gsse-cloud1.jf.intel.com>
-References: <20260711025619.2540575-1-matthew.brost@intel.com>
- <20260711025619.2540575-5-matthew.brost@intel.com>
- <au091GIzweGostC0@nvishwa1-desk>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <au091GIzweGostC0@nvishwa1-desk>
-X-ClientProxiedBy: BN9PR03CA0757.namprd03.prod.outlook.com
- (2603:10b6:408:13a::12) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5395:EE_|LV0PR11MB311182:EE_
+x-ms-office365-filtering-correlation-id: 91fa4c11-f36f-46a4-eeff-08df4671ad68
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|38070700021|56012099006|4143699003|11063799006|261009223027099003|261021121427099003|10067099003|261102123227099003|261026140227099003|261022105027099003|261022075727099003|261026121527099003|261028144727099003|18002099003|22082099003;
+x-microsoft-antispam-message-info: ZcYgusr9gFO9n5JnhGJ5ibth7UkmB/s6mRrRcvKXIirVcmxI47IccbJ6jpf5cCgIjwsrTglE5y0tPSisaQ8VGw4MzZp04AXj4O/kHQ2gS57O5793eoakaRgXRsp0FlqSiy4kYT38auMkLPzxlrefSSbA/7YSC5vDiKLitbAbu3lsem/mCu3IoFi9YJE0gpdBDUgt76u1tj1ohsgFWz4ZOFuk7si+gmOHdc24b5GAZLbwbVBcMhHsHOZSOB7c6EwVLQzvYw0kJldcbnAox6acsSy3egerk5L3N8bim70MZ38bMhpjd7djvSR4zxgdUxL3DbBAX1ub/NiTa3TIqLqlsUKjs1dmRgJkN8hYxPx+XhBrRx2J4Fukyw2taF4xXfp07NbQ4l0julVLCg95In5wxmOHwn5yQGd3KkalyC/hnyvUeJxc1jyqXRGeA9UQdk4T1qiCuFegSQb1CHNQfzRZE5+nKpoXY7URMUuzQnTX+H8nN8mYh+mTjV/+K96hDOiexM+lEht7h47cicqxr4SQMi6U8unCgAHGHjU46lT33S384ccStmjAHdnXzxnjapBTl9/FPirCZvw235lWTNS+kHDWRivQ85Y3b45loyGxqh7E5+oKSvE+kujWDcdYZzUWDTXdxvP/wLcwb9LmbcMvhEoTenmIz3txqfLHdjOeC6Q=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5395.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(38070700021)(56012099006)(4143699003)(11063799006)(261009223027099003)(261021121427099003)(10067099003)(261102123227099003)(261026140227099003)(261022105027099003)(261022075727099003)(261026121527099003)(261028144727099003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UzQvamI2a3dpQjZwREJVRnFyRUNxamVKVTRtaHpoN3BIeDRaTnBlQVhDaldO?=
+ =?utf-8?B?eDc5a3Zod1dob0xHMzc3NC8wNUVxcXQ2eStJYngzVWJqWFg1ZWZJWXZGZnlj?=
+ =?utf-8?B?bWtoVUZZRU9hTEgza3dmZHJwWXk3K0VPcHkvalJBSkgxMC9TT2RlbVROV0F6?=
+ =?utf-8?B?d1NHWW8yK3U4OU9qc3VRZlM3ZnlzaGxsdnNpa1ZPaDRodDc0cXB6L2Z1dXc0?=
+ =?utf-8?B?T3ZGR1duS2xCaEd5OWlmekwzUGtNcnR0dmgxZ01sbnhxUnYzR1M5RlJNbnR0?=
+ =?utf-8?B?MlIzQ21VZ0lTbDlQWkpNamlPTGovU01NSVRGOGsvckYvd3d3d2d3UURpMUZJ?=
+ =?utf-8?B?dzE3eVUxNHdKWkY4Zm9NbDY2UE9YZjdIVGlaS0ZwbWxGWFdTRDhSSUtFS0NP?=
+ =?utf-8?B?YjFEaGVYbGRENVpzZm5Sb3dubGJ5RkdEbFBITGZKRnZuYzR0VDA1MmpRQnIy?=
+ =?utf-8?B?NmE2Yk15OFM4Mk9IUVFJZmVWeWNWZmhjZGxUdzhCMkM3OWdKdG9lU0JaYmll?=
+ =?utf-8?B?NnZaZzJwVGRXSGlSemxLYzdaVkpjQ05vNFlpMnY3dE1TYWhzNFlJYnZzY3k4?=
+ =?utf-8?B?clRQdmluK2RiR1FKczNYMXBaeTJycnZOZG9welFhK3EwTEc3YXZQeWp4R3Vo?=
+ =?utf-8?B?djI2WGwrdDN6V1RDNWFrZVpsTGdLMEN6RURMTjlNNHRjQjBHemJiZDRrR3lC?=
+ =?utf-8?B?MWRwcmtrV0hqTmNvTTBBUWFhVVFtd0hEQnBKKy9UL3hWTngwdTZDai9PSlM1?=
+ =?utf-8?B?VkdDdnc5eDY3TlVzK1dEVVlQOTAyVEZBVUMrNkZDMTZWdVQ1K2RQRkx3R3hZ?=
+ =?utf-8?B?N280c3I1TFpxK1UvWmlCU1pwNy9pMEdwODRPM1hoQVBSOEVTQk4zRTRncEl1?=
+ =?utf-8?B?ZFdhdHVkY1RvN2ZlLzAzUjRCYzBBVTFhRkZrVVdQTWxKczlYQTZjK1lqUnQr?=
+ =?utf-8?B?SzErTWFCN1hOc0ErWDhKNnNlYURCT0xJMWhNQy9BcE04aHNRaHNXUkU1TDhY?=
+ =?utf-8?B?QUgxL2dOTnJRNkhGQ05VRU50Vk44UmxQeHlTbFRJaGdCeEhXZGlmYUROeWpj?=
+ =?utf-8?B?di9SNDFpUzI5azR2ZnUwRHozTlRmVzFhSlBMMnZzNWh0RzRJMlJFTFEyMHdu?=
+ =?utf-8?B?eW1XMG9FQ3lubjd2dlQ1cjV4LzRZWXNiWTF4SEY1WVhDbnlFd3FkYmFaUWt1?=
+ =?utf-8?B?SC85bnRaRjYrTHBSREhPQXNmNE8rejZwVDBUVDRTRGNrME5lYUVsWXkza0JB?=
+ =?utf-8?B?QU9acmhVUGJ5cTRVT0VQZG9ibHVBWDZaVTJhZ05OK2FVLzJYVTJwWkVlc256?=
+ =?utf-8?B?SzdCMVFTWHptTmNLdTJGTXdROElueWgyY2RKUUZuTnM2RjRzS1VmL1VyV3Bp?=
+ =?utf-8?B?RE5uc3JNMWlYSm9SNzRsYkRaYWg1QlBBWjc4SUxhTHUzUmxmY2ZBTmh5SUtq?=
+ =?utf-8?B?OHZEeExSaUtISVpwNFVXWGVkbzhOcnNpWDRoRnhiSEJpbEp6YWxXcDNBcDBt?=
+ =?utf-8?B?QlJacG9PcDlacUJtbC9hZ2M2QS8yTnZyL09IaDgvc3BOVEE3NzVyUGU2azhj?=
+ =?utf-8?B?djRLZmFkT0ExRUdQelJTR3RMYlB1QlpxZGZjK05DWmdxdjdHc3V5cC9Bck1U?=
+ =?utf-8?B?Q0lBWjFhaE5WL3FIWENQSHhLeTYreWtQTW1ZSkdRMWVUQjM1YUplMGo5Nld5?=
+ =?utf-8?B?SGNTVmo3enROYXNTWWRUbDEyVVIzUUZUQnhNVmQ4dk5KY2xMWHprYlFWdnlw?=
+ =?utf-8?B?WDZrYTFmaEdYU010Q3MxbE9OMWx0Z3Y4d09idGdVR2VVNUIxcnM3TEhjamdL?=
+ =?utf-8?B?U2VPYnAwNklmR0g2UVlKeGlHbkhYd0tEWVhONEg2NnVLZW9rWUtQaCtsSEpU?=
+ =?utf-8?B?SnJiRkJ3bTVYRDJobU0vTFhVKzNiUnBRM3Q0WnRrMTFIcFl1cGtjZDhpTisv?=
+ =?utf-8?B?eFBGNCtRc1EyMWhBUTVrNXhJdXdsQWoxVDQzS2pBVG1xb2tpN1QrMDVvQTd4?=
+ =?utf-8?B?VHlNVTJJTUtZaUNsY0ZxM00zOW5Lem92cUVWY3p0SXM4ZkhyMnZnYWNvV3Vz?=
+ =?utf-8?B?YnhxMHY2ZU9QeWRxTlVOMVV2TUJ2Q2NEMFc0MkI4bDJrcnY5M1FUQ0ZpdEJS?=
+ =?utf-8?B?QjJCbUtza3orODdSOFlNSWRzdExpNEo4cmJ0bFVMWncyeXB5ZllnZkUyVk5t?=
+ =?utf-8?B?WHVUNGQ5dElxdThPNkNRVjhrYVB3dEwwcHFJaTNLeFRnakNiYnFwK1ZBakhG?=
+ =?utf-8?B?bTBZYXpMMFlVL2NLdW1FSjJ3ODJWRzlESHJacGZUMWhpNUs2K3FwNFVlZXha?=
+ =?utf-8?B?blhIUCtQczFOOG1TWHRWbUI1V0F4QUE0cXpIRnlvS0pUV3lNNkhhQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|CO1PR11MB5185:EE_
-X-MS-Office365-Filtering-Correlation-Id: 49fe5c76-0426-4da7-ed84-08df46715fd0
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|1800799024|366016|23010399003|261022075727099003|261021123027099003|10067099003|261021121427099003|56012099006|4143699003|11063799006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261102123227099003|261009221227099003|261009223327099003|261009223027099003|261009220027099003|261009221727099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: Z0+wG/FmxQ+02HnRJkbeoUK2W4BrEOukT+cHehv/ZZCOHprOPQo6jFbgM7jjMU1l6zNhLK5EXnmhxDn5hTkEIdhnhFTXWmL0kdIco75WFAloy7bv8gbos39XoaWW8ZZffsXlVe0Abvsw7/HhtIsj1kSGakQbpElTNT7mtHn54UoJUqQ3/qNqnFfvjfeqEBiWOKy78ngUkJAm7zrxz0sz1NEia+C6L+PW5Uk1hJq2tkOKuY9yemJZRJWKgj+QQrHUWL5Sp4ZY/blPwi4qU5MR07ZUrD0ZLs5T5JrWy0DWpccGh8QnBMmMPXFoiXiMjzJNemm0iUng9R1OciHCFBpP2Q5HNFv7VfA0qPXfQzA2ohaiSi6Co9Ka3pQqcA/UG67JxhTh0lzgJJUNHTuQOWQ3W93nPxUlT1R2cdcvhESOhoNUWk60m7f4e5SWieHZTcBgYLcPcv7pPXQbK239rdbZZJEqvIC4CnHS3wpybIhn5SecJXAB7PA7i8CSlNIcGNblJL+03eVZU6ERRh73sRxvWsAhgkcFbbxY02D7gc0FonqWGxsaQPFjn1USBAtnevxID45L/EqgJiSVSDgp/+TQWwo7XFETVc+264lHMM2u9h5z/5NZw+6ROl0CxD+zx+vWD2MlpVPiuwRQmVHbJtTy8qbOA7dth7oK4qHgXxbG23M=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016)(23010399003)(261022075727099003)(261021123027099003)(10067099003)(261021121427099003)(56012099006)(4143699003)(11063799006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261102123227099003)(261009221227099003)(261009223327099003)(261009223027099003)(261009220027099003)(261009221727099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?3OIpAF0QmQe1Dqt3qPwhjeUVEGzqupfGOnN6hIkrRCWYAq5sVBvw11WpEF?=
- =?iso-8859-1?Q?67E0hWk8lGQw0Di6UgYEaRLoLc3idQxfYmaO7o4uAb6I+F/fdz/FEC7mjJ?=
- =?iso-8859-1?Q?Lhn19Kh4Avjl0DTu44USyQV5P7nFaZUV91UDS87f9cKilSueUmbiRnLqg2?=
- =?iso-8859-1?Q?jSUd4I3i3xIg8c9t2ac6qaMxVDEc+748c0tVRqy26vhAhBcAd3VUUiMI8I?=
- =?iso-8859-1?Q?Ct0/gt5pk0uvo8hwg4WGqZgIFufGqZc0lU6pAfPl2lWxUw33qTKelSTWDH?=
- =?iso-8859-1?Q?3hrWAE6UwDriSXdU8BX6PhOlLMwts4gVzf7L9JlsxNrta40YU9UIOHMe1f?=
- =?iso-8859-1?Q?1Qruxm2mfN2nIUBzltxxgPixp+O3Krkznx4Eyiy9U1qERvPEW93u9z+juZ?=
- =?iso-8859-1?Q?WbjO6VwRDEqtKvzggZEZ72QUCFjteVx3CCr6WJtecnGOjIpb6Yg73yvUec?=
- =?iso-8859-1?Q?z/0vJrAfXOk7uJOJSpKRsXpo3GoaPAViAgk0sTojZimtGc+b2WTRXhetQG?=
- =?iso-8859-1?Q?4xkne+ns0I9vwUaS0hHF0XkXOQe3dTJxiLOLUxzh6jnIRjP15+sgan1VvC?=
- =?iso-8859-1?Q?q6dcMbdjxEuSFiZszUWC2U2279Qi/Y5wzKOJtUg/anDV3qlZzA/Lv0yOyI?=
- =?iso-8859-1?Q?musIgqddhllLeIRoG6YK+PgZmKuUH0oVbtoRFQiuZ/FQ0PyKn4TXBRM7Mo?=
- =?iso-8859-1?Q?iaGlL9vYUkJdPnoQ8Uu2B6drhC9NcFC9Ib3nrbic+MLwkwz5Yg7t638hYu?=
- =?iso-8859-1?Q?4f/3mQYQ9OT1VM3d0Bc9Kg20D/gf2txeNqOJo7ItvUpwtCKw/Hv+n3xtu3?=
- =?iso-8859-1?Q?MFD275hzWyRz0Us+pkkQVTgDuXN8zuhgutXZYXcuObUZ6fcVyI1iJDO6Fa?=
- =?iso-8859-1?Q?ESXlbQjxMydTgPHY+3rebibqZMmU9INvNViul7Uz9FaQ032UjLVMx3sfxS?=
- =?iso-8859-1?Q?nq/WvM68cyKiFIWbJCR5RqyTKTdlV2FLjQp/lzNf0w1Pe4MS/LzIij9ag6?=
- =?iso-8859-1?Q?jRCnLK0n3iosD5qVzaUG48jFABXFLUzsxHOGkh9hrHFlPWZWOuGJ43NoJw?=
- =?iso-8859-1?Q?rY+Dkd4MqlCNIL3p8nD/cx933EODAMi1HTSRDFVBOzPvfZ0S+Oq2mcv1AG?=
- =?iso-8859-1?Q?9StqRyaEgUAJsm/xdPILk+zVO1Y4ugApddR5UjzxVQk7RX9mkc48207d2z?=
- =?iso-8859-1?Q?GD+aQAk3bphASMx9DXjGCBp2wOAWVYK5tG6J2KEd/yoQhzMNpZkZOeXQ67?=
- =?iso-8859-1?Q?/K9ET2WKC95pGW2mpsD40HJjlFhvqHSHPa4Q0NLLuvdzu15EAYb02pj1kP?=
- =?iso-8859-1?Q?5o5/8HJ4ucdcHLJo1pORfoZgii/xheog7pxUHirZa/A9wkE58F2EjDoW6/?=
- =?iso-8859-1?Q?S0XcDi09FMk57MN4vEXfLQY55MIyse84fjykdySLK2PAYXBPXDluwaZLP8?=
- =?iso-8859-1?Q?scVS1KBDwDL5sPDqPo242gAWhnqCcwC1OHSgMnixnF4HiRgQDaFRdBDURl?=
- =?iso-8859-1?Q?MdebrlOvWhClu3NORiInjdOoqiM0GO8Nx1ujJOmneaPR8ckg6KJGAA1Qqo?=
- =?iso-8859-1?Q?B3MSxSxNN5ThhJkwP7iUt7i+r4Cb8HtkDac8vL41K7MUioyS/XuAIJp0h6?=
- =?iso-8859-1?Q?IJTARe7/8Mz+y76NU3z0OU0Bh2J8m7S5KOc4D8u3vGxuoyFHEFOK9KSv94?=
- =?iso-8859-1?Q?HeHrjrL6TtpmWFvy5lY7zzsTkU1/IUstbrTiqMeYI4L79b4YKoo4o8k8OZ?=
- =?iso-8859-1?Q?pcsfFaQd/dO/AubpY+IA1e8vmOFUpp2VjxhIWMsyppRp08EkFnHvBdzfoa?=
- =?iso-8859-1?Q?V68ju+2LYg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: H3tLvnfUXb3EnnVBpYPQRKCtXiLhEMG4qWcLml6XtyKDCNEffN/waRoHYaegup+iuMN63TYodk9+OhCE79UCMqUiSB1tdYBnHj5VcpPxZae0q58hyPc2icBLA+EZ3TXfk3/5ETakXJVdB2EPbgWKRszEe1DorneRhgXGz6umukVG4nlkv68kR0ZeRneYYovnQbPXLsNm3hkNXy9L49RoTKElsk1kNG2JRXU56MftEk2ySHvBnMcsCZ5Zur+zUlyymEwZBIu3GyJMdH4X++7rUKTT8WvT0czoUs7BOi102dEK3YNi7rT6IrL20VZJjsZy+f5IDv59wHPtjQ3+m0WvXg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49fe5c76-0426-4da7-ed84-08df46715fd0
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-Exchange-RoutingPolicyChecked: KiLCtOqBpzbfSc5xSLl4CP25LLLyujRsR6T0bvo4yXid6zJPYBPFQAJ0Kq/qru8hdH2B+iOUoqquxwrkrLGTSaMYddiHXTArsTPMdMxS6Ewy/hp+D4XQ6y5W0BbPV0NBVUhW9LB48GgGo7NkdpokzshBq5D4tSWRXA4/KEnOyGpkA2eK8VWXuFYbaOhDnHLJUK6jG2xqW2CqCaCUB2XKxo+KmDd3qO7kcpIwcyCpNC82mFKIX0sev79wHyYrvJOsRgoR0qafycB3IYNvZr2LlBXFoFWiuLOfaE5uLffUL0la1FjbBB4yvBux9aB60PRykLRKKSIPGe3ZaqaxeD7hzw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 19:14:46.5247 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XKnHXliZPvsegmf6H/1faDEgw+5DWiB06RWfuoQpMgEizNVRMaAM1agWVhtmUOL2h/pEzcwFnk9Xnj7v+ia9gg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5185
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5395.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91fa4c11-f36f-46a4-eeff-08df4671ad68
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Nov 2026 19:16:56.3942 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yYoIttyL/pkAHIjdBmqeR2XKMKyeXhZNj0Lz10EOG/CPhlzyQWrCj2QZitgOM97MUP3i+a+YUBleokT1vaZ3HvUu2cIm52QD+geztX+/Xgs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV0PR11MB311182
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,268 +174,75 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 05, 2026 at 06:39:16PM -0800, Niranjana Vishwanathapura wrote:
-> On Fri, Jul 10, 2026 at 07:55:50PM -0700, Matthew Brost wrote:
-> > __ttm_pool_alloc() walks the page orders in a single loop whose body is
-> > about to grow several defragmentation phases (reusing old pages, a move
-> > budget, out-of-lock preallocation and fault injection). Left inline these
-> > interleave into one deeply nested block of gotos and combinatorial
-> > conditionals that is hard to follow and extend.
-> > 
-> > Factor the loop's working state into a struct ttm_pool_alloc_iter and
-> > pull the per-order page acquisition and order-fallback into small phase
-> > helpers, so the main loop reads as a short sequence of named steps. This
-> > is a pure refactor with no functional change; subsequent patches extend
-> > the iterator with their defrag phases rather than nesting more logic into
-> > the loop.
-> > 
-> > Cc: Carlos Santa <carlos.santa@intel.com>
-> > Cc: Ryan Neph <ryanneph@google.com>
-> > Cc: Christian Koenig <christian.koenig@amd.com>
-> > Cc: Huang Rui <ray.huang@amd.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Assisted-by: GitHub_Copilot:claude-opus-4.8
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > drivers/gpu/drm/ttm/ttm_pool.c | 159 ++++++++++++++++++++++-----------
-> > 1 file changed, 106 insertions(+), 53 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> > index e9175c0290d7..0ca63f5ce73c 100644
-> > --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> > @@ -791,18 +791,102 @@ static unsigned int ttm_pool_alloc_find_order(unsigned int highest,
-> > 	return min_t(unsigned int, highest, __fls(alloc->remaining_pages));
-> > }
-> > 
-> > +/**
-> > + * struct ttm_pool_alloc_iter - Working state for the __ttm_pool_alloc() loop
-> > + *
-> > + * Bundles the immutable inputs and the mutable per-order state that the
-> > + * allocation phase helpers share, so the main loop reads as a short sequence
-> > + * of named phases rather than one deeply nested block.
-> > + */
-> > +struct ttm_pool_alloc_iter {
-> > +	/* Immutable for the duration of the allocation. */
-> > +	struct ttm_pool *pool;
-> > +	struct ttm_tt *tt;
-> > +	const struct ttm_operation_ctx *ctx;
-> > +	struct ttm_pool_alloc_state *alloc;
-> > +	struct ttm_pool_tt_restore *restore;
-> > +	unsigned int beneficial_order;
-> > +	gfp_t gfp_flags;
-> > +
-> > +	/* Mutated as the loop walks the orders. */
-> > +	unsigned int order;
-> > +	enum ttm_caching page_caching;
-> > +	bool allow_pools;
-> > +	struct page *p;
-> > +};
-> > +
-> > +/*
-> > + * Acquire a single page for the current order, leaving it in @it->p (NULL on
-> > + * failure). Tries a same-order pool page, then a fresh system allocation.
-> > + */
-> > +static void ttm_pool_iter_acquire_page(struct ttm_pool_alloc_iter *it)
-> > +{
-> > +	struct ttm_pool_type *pt;
-> > +
-> > +	/* First, try to allocate a page from a pool if one exists. */
-> > +	it->p = NULL;
-> 
-> NIT...Looks bit odd to set this to NULL here and check for '!ti->p' below.
-> But I see subsequent patches add more code here, probably should be fine
-> or add a temporary comment until then.
-> 
-
-I'm not a huge fan of temporary comments and the structure does make
-more sense in subsequent patches.
-
-> > +	pt = ttm_pool_select_type(it->pool, it->page_caching, it->order);
-> > +	if (!it->p && pt && it->allow_pools)
-> > +		it->p = ttm_pool_type_take(pt, ttm_pool_nid(it->pool));
-> > +
-> > +	/*
-> > +	 * If that fails or previously failed, allocate from system. Note that
-> > +	 * this also disallows additional pool allocations using write-back
-> > +	 * cached pools of the same order.
-> > +	 */
-> > +	if (!it->p) {
-> > +		it->page_caching = ttm_cached;
-> > +		it->allow_pools = false;
-> > +		it->p = ttm_pool_alloc_page(it->pool, it->gfp_flags, it->order,
-> > +					    it->ctx->beneficial_reclaim_backoff);
-> > +	}
-> > +}
-> > +
-> > +/*
-> > + * The current order could not be satisfied. Lower it and retry, recording a
-> > + * sub-optimal backing (so the driver can later re-defrag) when we drop below
-> > + * the beneficial order.
-> > + *
-> > + * Returns 0 to retry the (lowered) order, or a negative errno.
-> > + */
-> > +static int ttm_pool_iter_lower_order(struct ttm_pool_alloc_iter *it)
-> > +{
-> > +	if (!it->order)
-> > +		return -ENOMEM;
-> > +
-> > +	/*
-> > +	 * Failing to allocate at the device's beneficial order means we are
-> > +	 * about to back this object with a sub-optimal (smaller order) set of
-> > +	 * pages. Record it so the driver can later try to defragment the object
-> > +	 * back to beneficial order.
-> > +	 */
-> > +	if (it->beneficial_order && it->order == it->beneficial_order)
-> > +		it->tt->page_flags |= TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED;
-> > +
-> > +	it->order--;
-> > +	it->page_caching = it->tt->caching;
-> > +	it->allow_pools = true;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> > 			    const struct ttm_operation_ctx *ctx,
-> > 			    struct ttm_pool_alloc_state *alloc,
-> > 			    struct ttm_pool_tt_restore *restore)
-> > {
-> > -	const unsigned int beneficial_order = ttm_pool_beneficial_order(pool);
-> > -	enum ttm_caching page_caching;
-> > +	struct ttm_pool_alloc_iter it = {
-> > +		.pool = pool,
-> > +		.tt = tt,
-> > +		.ctx = ctx,
-> > +		.alloc = alloc,
-> > +		.restore = restore,
-> > +		.beneficial_order = ttm_pool_beneficial_order(pool),
-> > +		.page_caching = tt->caching,
-> > +		.allow_pools = true,
-> > +	};
-> > 	gfp_t gfp_flags = GFP_USER;
-> > 	pgoff_t caching_divide;
-> > -	unsigned int order;
-> > -	bool allow_pools;
-> > -	struct page *p;
-> > 	int r;
-> > 
-> > 	WARN_ON(!alloc->remaining_pages || ttm_tt_is_populated(tt));
-> > @@ -819,59 +903,28 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> > 	else
-> > 		gfp_flags |= GFP_HIGHUSER;
-> > 
-> > -	page_caching = tt->caching;
-> > -	allow_pools = true;
-> > -	for (order = ttm_pool_alloc_find_order(MAX_PAGE_ORDER, alloc);
-> > +	it.gfp_flags = gfp_flags;
-> > +
-> > +	for (it.order = ttm_pool_alloc_find_order(MAX_PAGE_ORDER, alloc);
-> > 	     alloc->remaining_pages;
-> > -	     order = ttm_pool_alloc_find_order(order, alloc)) {
-> > -		struct ttm_pool_type *pt;
-> > -
-> > -		/* First, try to allocate a page from a pool if one exists. */
-> > -		p = NULL;
-> > -		pt = ttm_pool_select_type(pool, page_caching, order);
-> > -		if (pt && allow_pools)
-> > -			p = ttm_pool_type_take(pt, ttm_pool_nid(pool));
-> > -
-> > -		/*
-> > -		 * If that fails or previously failed, allocate from system.
-> > -		 * Note that this also disallows additional pool allocations using
-> > -		 * write-back cached pools of the same order. Consider removing
-> > -		 * that behaviour.
-> > -		 */
-> > -		if (!p) {
-> > -			page_caching = ttm_cached;
-> > -			allow_pools = false;
-> > -			p = ttm_pool_alloc_page(pool, gfp_flags, order,
-> > -						ctx->beneficial_reclaim_backoff);
-> > -		}
-> > -		/* If that fails, lower the order if possible and retry. */
-> > -		if (!p) {
-> > -			if (order) {
-> > -				/*
-> > -				 * Failing to allocate at the device's beneficial
-> > -				 * order means we are about to back this object
-> > -				 * with a sub-optimal (smaller order) set of
-> > -				 * pages. Record it so the driver can later try to
-> > -				 * defragment the object back to beneficial order.
-> > -				 */
-> > -				if (beneficial_order && order == beneficial_order)
-> > -					tt->page_flags |=
-> > -						TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED;
-> > -				--order;
-> > -				page_caching = tt->caching;
-> > -				allow_pools = true;
-> > -				continue;
-> > -			}
-> > -			r = -ENOMEM;
-> > -			goto error_free_all;
-> > +	     it.order = ttm_pool_alloc_find_order(it.order, alloc)) {
-> > +		/* Acquire a page (pool / system) for this order. */
-> > +		ttm_pool_iter_acquire_page(&it);
-> > +		if (!it.p) {
-> > +			r = ttm_pool_iter_lower_order(&it);
-> > +			if (r)
-> > +				goto error_free_all;
-> > +			continue;
-> > 		}
-> > -		r = ttm_pool_page_allocated(pool, order, p, page_caching, alloc,
-> > -					    restore);
-> > +
-> > +		r = ttm_pool_page_allocated(pool, it.order, it.p,
-> > +					    it.page_caching, alloc, restore);
-> 
-> Looks like iterator has a 'restore' field that gets set, but it is not used here
-> or in other places. Is that intended?
-> 
-
-It is not intended. 'restore' should be not be in the iterator as it is
-unused. Will remove.
-
-Matt
-
-> Other than above comments, the patch LGTM, though need to look into other patches
-> in this series which makes use of this iterator.
-> 
-> Niranjana
-> 
-> > 		if (r)
-> > 			goto error_free_page;
-> > 
-> > 		if (ttm_pool_restore_valid(restore)) {
-> > -			r = ttm_pool_restore_commit(restore, tt->backup, ctx, alloc);
-> > +			r = ttm_pool_restore_commit(restore, tt->backup, ctx,
-> > +						    alloc);
-> > 			if (r)
-> > 				goto error_free_all;
-> > 		}
-> > @@ -887,7 +940,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
-> > 	return 0;
-> > 
-> > error_free_page:
-> > -	ttm_pool_free_page(pool, page_caching, order, p, false);
-> > +	ttm_pool_free_page(pool, it.page_caching, it.order, it.p, false);
-> > 
-> > error_free_all:
-> > 	if (tt->restore)
-> > -- 
-> > 2.34.1
-> > 
+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEludGVsLXhlIDxpbnRlbC14ZS1ib3Vu
+Y2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIHNhc2hpa28tYm90QGtlcm5l
+bC5vcmcNClNlbnQ6IFRodXJzZGF5LCBOb3ZlbWJlciAxOSwgMjAyNiAxMDowNyBBTQ0KVG86IENo
+YXJsZXMsIERhbmllbCA8ZGFuaWVsLmNoYXJsZXNAaW50ZWwuY29tPjsgaW50ZWwteGVAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnDQpTdWJqZWN0OiBSZTogW1BBVENIIHY2IDIvNF0gZHJtL3hlOiBOb3Rp
+Znkgc2NoZWR1bGluZy1zdGF0ZSB3YWl0ZXJzIHBlciBleGVjIHF1ZXVlDQo+IA0KPiBUaGFuayB5
+b3UgZm9yIHlvdXIgY29udHJpYnV0aW9uISBTYXNoaWtvIEFJIHJldmlldyBmb3VuZCAxIHBvdGVu
+dGlhbA0KPiBpc3N1ZSB0byBjb25zaWRlcjoNCj4gLSBbSGlnaF0gZHJtL3hlOiBJUlEgZGVhZGxv
+Y2sgb24gZXhlY19xdWV1ZV9sb29rdXAgaW4NCj4gICB4ZV9ndWNfc3VibWl0X3dha2Vfc3RhdGVf
+d2FpdGVycygpDQo+IC0tDQo+IA0KPiBjb21taXQgODI1ODRkNmMwOTkxYjI1ZWY0NWJiZjE5OGQz
+NzA5NmY4OWM0ZGI4OQ0KPiBBdXRob3I6IERhbmllbCBDaGFybGVzIDxkYW5pZWwuY2hhcmxlc0Bp
+bnRlbC5jb20+DQo+IA0KPiBkcm0veGU6IE5vdGlmeSBzY2hlZHVsaW5nLXN0YXRlIHdhaXRlcnMg
+cGVyIGV4ZWMgcXVldWUNCj4gDQo+IFRoaXMgY29tbWl0IGFkZHMgYSBwZXItZXhlYy1xdWV1ZSB3
+YWl0cXVldWUgZm9yIEd1QyBzY2hlZHVsaW5nIHN0YXRlDQo+IGNoYW5nZXMgYW5kIHdha2VzIHdh
+aXRlcnMgdXBvbiBTQ0hFRF9ET05FLCBzdWJtaXNzaW9uIHN0b3AsIHdlZGdlLCBhbmQgVkYNCj4g
+bWlncmF0aW9uIHJlY292ZXJ5Lg0KPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJt
+L3hlL3hlX2d1Y19zdWJtaXQuYyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWNfc3VibWl0LmMN
+Cj4gPiBpbmRleCAxZjI0ZTI0OGFjYjk3Li40MDg3YTM4YWQzZDY2IDEwMDY0NA0KPiA+IC0tLSBh
+L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndWNfc3VibWl0LmMNCj4gPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0veGUveGVfZ3VjX3N1Ym1pdC5jDQo+ID4gQEAgLTU1OSw2ICs1NTksMzAgQEAgc3RhdGlj
+IGJvb2wgdmZfcmVjb3Zlcnkoc3RydWN0IHhlX2d1YyAqZ3VjKQ0KPiA+ICAJcmV0dXJuIHhlX2d0
+X3JlY292ZXJ5X3BlbmRpbmcoZ3VjX3RvX2d0KGd1YykpOw0KPiA+ICB9DQo+ID4gIA0KPiA+ICsv
+KioNCj4gPiArICogeGVfZ3VjX3N1Ym1pdF93YWtlX3N0YXRlX3dhaXRlcnMoKSAtIFdha2UgYWxs
+IHNjaGVkdWxpbmctc3RhdGUgd2FpdGVycw0KPiA+ICsgKiBAZ3VjOiB0aGUgJnhlX2d1Yw0KPiA+
+ICsgKg0KPiA+ICsgKiBOb3RpZnkgcGVyLXF1ZXVlIHdhaXRlcnMgd2hlbiBhIEd1Qy13aWRlIHN0
+b3Agb3IgcmVjb3ZlcnkgY2hhbmdlcyB0aGVpcg0KPiA+ICsgKiB3YWl0IGNvbmRpdGlvbnMuIE1h
+eSBiZSBjYWxsZWQgZnJvbSBpbnRlcnJ1cHQgY29udGV4dC4NCj4gPiArICovDQo+ID4gK3ZvaWQg
+eGVfZ3VjX3N1Ym1pdF93YWtlX3N0YXRlX3dhaXRlcnMoc3RydWN0IHhlX2d1YyAqZ3VjKQ0KPiA+
+ICt7DQo+ID4gKwlzdHJ1Y3QgeGFycmF5ICpsb29rdXAgPSAmZ3VjLT5zdWJtaXNzaW9uX3N0YXRl
+LmV4ZWNfcXVldWVfbG9va3VwOw0KPiA+ICsJc3RydWN0IHhlX2V4ZWNfcXVldWUgKnE7DQo+ID4g
+Kwl1bnNpZ25lZCBsb25nIGluZGV4LCBmbGFnczsNCj4gPiArDQo+ID4gKwlpZiAoIWd1Yy0+c3Vi
+bWlzc2lvbl9zdGF0ZS5pbml0aWFsaXplZCkNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJ
+LyogUHJldmVudCByZW1vdmFsIGFuZCBmcmVlaW5nIG9mIHF1ZXVlcyB3aGlsZSB3YWtpbmcgdGhl
+aXIgd2FpdGVycy4gKi8NCj4gPiArCXhhX2xvY2tfaXJxc2F2ZShsb29rdXAsIGZsYWdzKTsNCg0K
+U2hvdWxkbid0IHdlIGJlIHVzaW5nIG11dGV4X2xvY2soJmd1Yy0+c3VibWlzc2lvbl9zdGF0ZS5s
+b2NrKTsgaGVyZT8NCg0KQW5kIG11dGV4X3VubG9jaygmZ3VjLT5zdWJtaXNzaW9uX3N0YXRlLmxv
+Y2spOyBiZWxvdz8NCg0KVGhhdCdzIHdoYXQgd2UgdXNlIGluIG90aGVyIHBsYWNlcyB3aGVuIHRh
+cmdldGluZyB0aGUgZXhlY19xdWV1ZV9sb29rdXAgeGFycmF5Lg0KDQpBbmQgY2hhbmdpbmcgb3Zl
+ciB0byB0aGF0IHdvdWxkIHByb2JhYmx5IHJlc29sdmUgdGhlIFNhc2hpa28gcmVwb3J0IGJlbG93
+Lg0KDQotSm9uYXRoYW4gQ2F2aXR0DQoNCj4gPiArCXhhX2Zvcl9lYWNoKGxvb2t1cCwgaW5kZXgs
+IHEpDQo+ID4gKwkJaWYgKHEtPmd1Yy0+aWQgPT0gaW5kZXgpDQo+ID4gKwkJCXdha2VfdXBfYWxs
+KCZxLT5ndWMtPnN0YXRlX3dxKTsNCj4gPiArCXhhX3VubG9ja19pcnFyZXN0b3JlKGxvb2t1cCwg
+ZmxhZ3MpOw0KPiA+ICt9DQo+IA0KPiBbU2V2ZXJpdHk6IEhpZ2hdDQo+IENhbiB0YWtpbmcgZXhl
+Y19xdWV1ZV9sb29rdXAncyB4YV9sb2NrIGZyb20gaGFyZGlycSBjb250ZXh0IHNlbGYtZGVhZGxv
+Y2sNCj4gYWdhaW5zdCBwcm9jZXNzLWNvbnRleHQgbXV0YXRvcnM/DQo+IA0KPiB2Zl9zdGFydF9t
+aWdyYXRpb25fcmVjb3ZlcnkoKSBjYWxscyB4ZV9ndWNfc3VibWl0X3dha2Vfc3RhdGVfd2FpdGVy
+cygpDQo+IGZyb20gaGFyZGlycSBjb250ZXh0IHZpYSB4ZV9ndWNfaXJxX2hhbmRsZXIoKSAtPg0K
+PiB4ZV9ndWNfc3dfMF9pcnFfaGFuZGxlcigpIC0+IHhlX2d0X3NyaW92X3ZmX21pZ3JhdGVkX2V2
+ZW50X2hhbmRsZXIoKS4NCj4gSG93ZXZlciwgZXhlY19xdWV1ZV9sb29rdXAgaXMgaW5pdGlhbGl6
+ZWQgd2l0aCB4YV9pbml0KCkgd2l0aG91dA0KPiBYQV9GTEFHU19MT0NLX0lSUSwgYW5kIGFsbG9j
+X2d1Y19pZCgpLCBwdWJsaXNoX2d1Y19pZCgpLCBhbmQNCj4gX19yZWxlYXNlX2d1Y19pZCgpIG11
+dGF0ZSBpdCB1c2luZyB4YV9pbnNlcnQoKSwgeGFfc3RvcmUoKSwgYW5kDQo+IHhhX2VyYXNlKCks
+IHdoaWNoIHRha2UgeGFfbG9jayB3aXRoIGludGVycnVwdHMgZW5hYmxlZDoNCj4gDQo+IGFsbG9j
+X2d1Y19pZCgpDQo+ICAgeGFfaW5zZXJ0KCZndWMtPnN1Ym1pc3Npb25fc3RhdGUuZXhlY19xdWV1
+ZV9sb29rdXAsIC4uLikNCj4gICAgIHhhX2xvY2soLi4uKQ0KPiAgICAgPGhhcmRpcnE+DQo+ICAg
+ICAgIHhlX2d1Y19pcnFfaGFuZGxlcigpDQo+ICAgICAgICAgLi4uDQo+ICAgICAgICAgICB2Zl9z
+dGFydF9taWdyYXRpb25fcmVjb3ZlcnkoKQ0KPiAgICAgICAgICAgICB4ZV9ndWNfc3VibWl0X3dh
+a2Vfc3RhdGVfd2FpdGVycygpDQo+ICAgICAgICAgICAgICAgeGFfbG9ja19pcnFzYXZlKGxvb2t1
+cCwgZmxhZ3MpICA8LS0gc3BpbnMgZm9yZXZlcg0KPiANCj4gSW5pdGlhbGl6aW5nIGV4ZWNfcXVl
+dWVfbG9va3VwIHdpdGggeGFfaW5pdF9mbGFncyguLi4sIFhBX0ZMQUdTX0xPQ0tfSVJRKQ0KPiBh
+bmQgdXNpbmcgdGhlIF9pcnEgdmFyaWFudHMgZm9yIHhhX2luc2VydCgpLCB4YV9zdG9yZSgpLCBh
+bmQgeGFfZXJhc2UoKQ0KPiB3b3VsZCBhdm9pZCB0aGlzIGxvY2sgaW52ZXJzaW9uLg0KPiANCj4g
+LS0gDQo+IFNhc2hpa28gQUkgcmV2aWV3IMK3IGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNl
+dC8yMDI2MTExOTE3NDYyMS4xMzExMTU0LTEtZGFuaWVsLmNoYXJsZXNAaW50ZWwuY29tP3BhcnQ9
+Mg0KPiANCg==
