@@ -2,165 +2,94 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50C58606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 05:20:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D98C8606E31D
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 05:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=L1S6aBR8;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=JIAji6fz
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=tZNGbQMb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 109D310E169;
-	Thu, 19 Nov 2026 05:19:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30FFE10E169
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 05:19:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795065587; x=1826601587;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=PXyePKGN6I2GSVx9lcEsZlA5Qd815vM0NfXD9RQQQYU=;
- b=L1S6aBR8r2Mn0LHF4ZOGPhgGAVWtIcl4Bl9vS2ctKPo1+f282CJ4mmsf
- qzOZXneyjTFMnHs4O6ID0HO9B/tWKmhiQ7XqMXqsPqSC7k6ewbwMtJrEj
- yX1mBIlN/weWptFvubYXwo1pHwAhPOCe3QRnN0r49t6FwBAnmSe+O9Nqk
- DakoHSihcIPEhfBZjpJqCqCbPIyiFB0rqxJ48d2EuRrk6pKooQ+fDMcgr
- d+IF9DjX/X5liO+ZYYaHoxdQUoWB24FspWv3vpgd9a4qd5zupH1rkhN1b
- /cm2QElITo32cKzC+lQLmCzaI27P04zIGxwsSlDbw7ffwxOaJZUgUGZ8C w==;
-X-CSE-ConnectionGUID: A1YsgX7QTEuDtlwO1Kdovg==
-X-CSE-MsgGUID: 6/tLL6VQR4mI1Hf5G4VdTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3981885"
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="3981885"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 21:19:46 -0800
-X-CSE-ConnectionGUID: fQdgNo7AQ26hf6mI1LEvEA==
-X-CSE-MsgGUID: ql3HtIkJSe2Os/s3+WESWA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10334012"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Nov 2026 21:19:46 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 18 Nov 2026 21:19:45 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Wed, 18 Nov 2026 21:19:45 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.39) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Wed, 18 Nov 2026 21:19:45 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nQsuXnWVBBCic7u8WDSm/p2dlW/04uSgRaTO1KTM6cJRXutYqT1qCLdDg9vIcG9f3v5AcPJI4x6bAiJvEiXc12MNu+voCJaBWusKpKAZHKMXABdN89fgNJvC79+cbCi+d9qINWzgJNgL00VO7jq1OHZb5kxQ+VBPziaLoQ3+qrfRow2Xng4RuuTwiqEf28GtBWO96cNv+8r3tce6yAenkHnOEu5qiXybxUINVTA+q+NuasOQfkEshOSic7J9MFX0tZf+Re5pZkQIUZ2rf6Uy6/PT2QaCdK3OyS9L8P1KOuE6Iex2g0O0mmcuFcRr/C85Ig820KZsc5wE5DVTXBGSdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YMkl/yTVbBwf5TlXhjXorCc9igMPKvBxQsCxAE71C5s=;
- b=c/CX7W0vY90arBg80kOnkCcoRd3e9FpchXlPunmkuXPBSpDoBmMd8pOdUpW3xV0XmXiPEg56Lqv8xuFwcWax+WlyZJQ2odZNcG+2L7M4EPKdo3FlVtvEbijN/0deSblETILOkI4oH6iHPI1+5CGEHll8xb/x78d3cyGB43NjcX3F5+PYxL+z2ecOqdgab8uJHnWMsYuYvYFSPHWeOtIbMBHJbitknNEAvdtpJG03pgePqrMsnl2Ez7Jgg5qep1y8O4l+3xbh8Dcj3zI7gewbMUlpmBUunIy/li87ZLv64jZIh0QY8OtsSTqI4Abkhx5aa6iEQIeXoEzbKCy6vxCffg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YMkl/yTVbBwf5TlXhjXorCc9igMPKvBxQsCxAE71C5s=;
- b=JIAji6fzDIp+9z+U9FzEnL5+Cwb1mKqzVAe66aL7PqQwwHG1nVDkVMJTjI3rimzhRkZFmSQergIizeL7tPGvxaCJ/XEX/gfXCVGnhYqx4wEOY55WYzgIgRZBk7L6fMuzt3jD5yXbPpeMUlS0Abu9tzCFW6ah7XZEkniDpjOe9cA=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS3PR11MB088214.namprd11.prod.outlook.com (2603:10b6:8:43e::10)
- by BL1PR11MB6002.namprd11.prod.outlook.com (2603:10b6:208:386::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Thu, 19 Nov
- 2026 05:19:42 +0000
-Received: from DS3PR11MB088214.namprd11.prod.outlook.com
- ([fe80::ca0:ae4:8e4a:85f3]) by DS3PR11MB088214.namprd11.prod.outlook.com
- ([fe80::ca0:ae4:8e4a:85f3%4]) with mapi id 15.21.0615.013; Thu, 19 Nov 2026
- 05:19:41 +0000
-Message-ID: <e37f5893-7967-4087-9d80-b2d3e45c1fae@intel.com>
-Date: Thu, 19 Nov 2026 10:49:35 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/survivability: Fix infinite loop in aux info
- traversal
-To: "Tauro, Riana" <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
- <mallesh.koujalagi@intel.com>
-References: <20261118185015.3164387-2-sk.anirban@intel.com>
- <4abcbc50-5014-4e1a-a22c-4ab9fac32a57@intel.com>
-Content-Language: en-US
-From: "Anirban, Sk" <sk.anirban@intel.com>
-In-Reply-To: <4abcbc50-5014-4e1a-a22c-4ab9fac32a57@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0264.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1f1::15) To DS3PR11MB088214.namprd11.prod.outlook.com
- (2603:10b6:8:43e::10)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC1C810EC81;
+	Thu, 19 Nov 2026 05:35:38 +0000 (UTC)
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A46F410E4BC;
+ Thu, 19 Nov 2026 05:35:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender
+ :Reply-To:Content-Type:Content-ID:Content-Description;
+ bh=z46ZwabXBcpTEJRysA4syBAZyQggGPY6SIVcMl/gSzA=; b=tZNGbQMbkEBB3qnsfmrI0ak97e
+ GXxh5zYLcHrA7zzJrOQPdhV8uybDVtFAWYTrP+dt/z9kZiD41YJ2wTmXVlB8OYrmzf5wEwT37Km6a
+ bsmU2r2a+szwKja0pzLZGHDqbW+LwePYyxWY28VlKJW4IkKj5u6oq7VCuB7i2yoEQ6coDe9GcyFby
+ gmUkrTGRPw16swI5ikzHGUIbD/DQdgrEEfISwS/y2TJ9bAeOWAGvRZM46laKYkr4+h5q8QUSFOd1e
+ FNUYp/NsoT++jUBOGEPDm/c59sWmUx3tgkmaRELHsSyXx62CAagtXJ2Elyvg7quNk77tut/ToOd3p
+ hQQjF0qQ==;
+Received: from [50.53.43.113] (helo=bombadil.infradead.org)
+ by bombadil.infradead.org with esmtpsa (Exim 4.100.1 #2 (Red Hat Linux))
+ id 1xTunq-0000000Aufu-1tOB; Thu, 19 Nov 2026 05:35:22 +0000
+From: Randy Dunlap <rdunlap@infradead.org>
+To: linux-kernel@vger.kernel.org
+Cc: Randy Dunlap <rdunlap@infradead.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, linux-doc@vger.kernel.org,
+ David Hildenbrand <david@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Jason Gunthorpe <jgg@nvidia.com>, Leon Romanovsky <leonro@nvidia.com>,
+ linux-mm@kvack.org, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-sound@vger.kernel.org,
+ Jens Axboe <axboe@kernel.dk>, linux-block@vger.kernel.org,
+ Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+ linux-bluetooth@vger.kernel.org,
+ Willem de Bruijn <willemdebruijn.kernel@gmail.com>,
+ Jason Wang <jasowangio@gmail.com>, David Heidelberg <david@ixit.cz>,
+ oe-linux-nfc@lists.linux.dev, Chas Williams <3chas3@gmail.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, netdev@vger.kernel.org,
+ Helge Deller <deller@gmx.de>, linux-fbdev@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, MPT-FusionLinux.pdl@broadcom.com,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <mkp@kernel.org>, linux-scsi@vger.kernel.org,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Zhihao Cheng <chengzhihao1@huawei.com>, linux-mtd@lists.infradead.org,
+ Neill Kapron <nkapron@google.com>, Andrey Konovalov <andreyknvl@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
+ Juergen Gross <jgross@suse.com>,
+ Stefano Stabellini <sstabellini@kernel.org>,
+ xen-devel@lists.xenproject.org, Hans de Goede <hansg@kernel.org>,
+ Arnd Bergmann <arnd@arndb.de>, "Michael S. Tsirkin" <mst@redhat.com>,
+ =?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
+ Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, kvm@vger.kernel.org,
+ virtualization@lists.linux.dev, Jan Kara <jack@suse.cz>,
+ linux-fsdevel@vger.kernel.org, "Theodore Ts'o" <tytso@mit.edu>,
+ linux-ext4@vger.kernel.org, Mike Marshall <hubcap@omnibond.com>,
+ devel@lists.orangefs.org, Paulo Alcantara <pc@manguebit.org>,
+ Namjae Jeon <linkinjeon@kernel.org>, linux-cifs@vger.kernel.org,
+ Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
+ linux-f2fs-devel@lists.sourceforge.net,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Tzung-Bi Shih <tzungbi@kernel.org>, Benson Leung <bleung@chromium.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 01/12] docs: ioctl-number: update MM entries
+Date: Wed, 18 Nov 2026 21:35:02 -0800
+Message-ID: <20261119053514.255348-2-rdunlap@infradead.org>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <20261119053514.255348-1-rdunlap@infradead.org>
+References: <20261119053514.255348-1-rdunlap@infradead.org>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS3PR11MB088214:EE_|BL1PR11MB6002:EE_
-X-MS-Office365-Filtering-Correlation-Id: c426d4e8-98d1-40ce-c1aa-08df45fcb72e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|22082099003|18002099003|261009223027099003|4143699003|56012099006|11063799006|261102123227099003|261028144727099003|261026140227099003|261021121427099003|261022105027099003|261021123027099003|261022075727099003|10067099003;
-X-Microsoft-Antispam-Message-Info: tzynoEBPVvK+p3troC4O4Eqir91Xe8B8T0CjgvJxWajTvvLglhIc6jMBaQyUDfd84mDitum41RrGskphUPvvFzRRQf54wZGsh06IBC59AP6nQ+LTu9C+UVw1ytZtqk8hrCfMGpAevWKS7IdZMeo03EMzJk6XIoj4mVleTWJ5JvXZwDApruZUnRchFiJ+pOiiHgSNzDisSyFwQKWBgUs3v5sekz3o3F16v+4AfaRWjeXduRn/sn1+KSf/M5lz+cMmYrPJOT9GCG/qhfjppAFOlNAF0nlTan+JLD7exxX0XMcmzZz/cxFKF4eTAuPyIZHZJm/W1zkd415K+qNvbofsYKUsVpChJ/fvb2Sqt2BK2OqjAKc9coHCFQgx/bjbwKrsRrAA75RaBaUXHYF0Zp0wCxdFCA4AD//hAcIVUixt0qoIupco2NWU7NyLmLh2FawM9xt0mm1HLhMeY93f1Kg8GNw61X7HtE/LUy/vV7dRtqIjkCaiJa2oo2CpiN6VbWgcLNhZmzCdDfr7TkbTLFqaL8f4q4FxEyo5AbVufzZu3CKtxS78o6lv8Ny3ou7JEQK3roIB2jNoh6IybsmIdpqA+JhWgzl8UEHUbQKOt0sAzNRii41I7kLu1eTUTdzWRWGtQrjqD/QDdFhAPRU3rQwla4rL6cGdKFtEkpkIKlJK5x0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS3PR11MB088214.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(22082099003)(18002099003)(261009223027099003)(4143699003)(56012099006)(11063799006)(261102123227099003)(261028144727099003)(261026140227099003)(261021121427099003)(261022105027099003)(261021123027099003)(261022075727099003)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VS9Hb1RvSW1sUm5PT1k4ZWpnUWF0YlJYdCtJQURXTkh2K0hNb1Qwdmt4UmZO?=
- =?utf-8?B?b3pWRzNKR25ZenlsT1NrdHd1S0g0YXFYQWo4NUVJK0FiUnpsK3hUb0RFbUkz?=
- =?utf-8?B?NjZaZHU4Mk9nRFl0MnQ4V09vd2ZMazFJbW90bE1LT0VuaDRNMWhoOUp3bXNy?=
- =?utf-8?B?Ui9PTVJ6M01GUUNIc2U5VlFqSk0yM3Vwd1hXNEFOZzAyL05jS2RUOWVoUk5Q?=
- =?utf-8?B?SkF4ZEdVODdJeDlzTjhHV3BodnliZERTbFZQL3FXcEo1Rm5PTEJKT3JDUGY1?=
- =?utf-8?B?QTFza3kvd28yM1RscDhGYi8rZTg2LzJsTTRyS2RaVVpXb284NTVjTEF0T1Ba?=
- =?utf-8?B?ZDcraTVHV0ZYKzRuWXJkZXRZd1FmYVB0Q2xTcWZYTnpiZWVTUmJNSWxJVDdo?=
- =?utf-8?B?UmNnTXQvOWJCTG1Makg2cGNWZHpjYUhWYkNORWdRb1V0VDh5d3FubENmQk95?=
- =?utf-8?B?NldCVTRTQ1diY3RwYlZReUdNS3MzZkdwUWRnaURnNVpYQ1VaaExvbXJ6N1V5?=
- =?utf-8?B?dUVvMVBJWlBqcmVxRk9LQ2dTRjlFeDY2OHJUTU5NYURTSmF2Z0NKWUgwbGJ0?=
- =?utf-8?B?cktKTWVmL0hkZHN4UDRxamljT0FUTUJYWlV5QzlOcmw4TDNyOWRvL3Brc2cz?=
- =?utf-8?B?RkFMRmpjM1UreUZnY0lJS3pSQldib1oxR1QzQU56cVFIU2REOVZONTBWNlVN?=
- =?utf-8?B?THRFNE83aXRjQnFxY0ZCQkE5TlpLKzVNZzBpRnUwb0ZqdTByUG5TMEhXU25J?=
- =?utf-8?B?ZmZzTExOZkQ1OXRhaVh5azg4dk5tR0JXUXNFZlAvTGl2Smt5ckNxbW1SZzBJ?=
- =?utf-8?B?bkI5OXFvL1VGbzNyWXV2UE5oa0VUVW9xQ01CaTdJK3F3TnUrWlV1d0c4V1dT?=
- =?utf-8?B?OUhpSU1WSjRQUnhSL3VzQWE3NFVLZ0JQVUhvWURMV0k1MnZpWVFRczFDei9U?=
- =?utf-8?B?L2YwU0tQZE5yOFlkTVk4STZ5UlJ4VWVETzM5TzUrRXg3d1VhWkRRbDE4U3RY?=
- =?utf-8?B?UE9jT1hRaFNjdjYzSkRRbDdOMlJiQ2NYYVFScnd5d1NpN2xkNGdkNDh2R05j?=
- =?utf-8?B?WC8xWjBzNWppUHk1OTRqV21XR0ZwR0Z1VGtwdGkxcitEeXQ2N2tKNk1YR2Q0?=
- =?utf-8?B?QXZKL3FLdGg1NXBpVTNKQlA4TGlwSEFLWDY1QTFSR2xaYngxZGxWaUROZ1RW?=
- =?utf-8?B?YW43UnRpMHJsdUpzN0dsUUVNYzM3b3ZmZWZ4OGh4NW90MGczL0ZsY29iNTdP?=
- =?utf-8?B?SGF6eUVTZDBLOGtoUU1FTWJGYitIMWFTQnFNc0xHcXd3ME5WbU1DZmkrMkdi?=
- =?utf-8?B?NjV6S1NudFhqVndIaE1tVlc3aWpKcDc1anVjdWVOMVBLcDVZbWtlMzhOczgr?=
- =?utf-8?B?TDdBc0Y1eFFvVUhBWkJyMjU3N1RKZEFWWVZOdHhMVm1iN1dUa2tJR1FnRm1m?=
- =?utf-8?B?QVlpU0dOWk54czVHYkN6aGNmczBBUFRSRGdHWDZIQldKWFR1M0FRRTBSME5R?=
- =?utf-8?B?VUlmYXhqcE83bHBsUENlMnc3VU9DTG9kb0xOR2lDN1R2c2w1cktsd0FMcmt5?=
- =?utf-8?B?NlF2ZjlvNGhPbE5FS2xxSG1hVGNHay9QcW1QMVNxL1JHblU4K3RJY3hqcmlj?=
- =?utf-8?B?djJ6a3FBaE5wSUF0Nkl3Z0NjQ2VERzd0QlUxR0ovQWU0akFlNDJ0bU5MUUVt?=
- =?utf-8?B?S0piMm03T0NRSkwrMEdWcVNxUVMwN2NsUklDVWJzcWpvdHNYZUZ1WXZmZzhl?=
- =?utf-8?B?VXk4cStacG8zbjRrZEpKS2dUaEpJWWQ2VnpsamRFcTZtcVF3U3VSUjN6a1Y0?=
- =?utf-8?B?d0trR3RNdmF0UVJrQjliR24xSnFkWjRKbnZHVHlvaStnM2lXbmRqVUI2SnBa?=
- =?utf-8?B?WGZlczY5Rk9pTUhrZEVhVG02M2pESmZhWjgxZGdic1M3YlZvVzlPenFsdUVo?=
- =?utf-8?B?Ly8xUzlGVmVTMGRvdDVZSE5aUzl4OUdMMjZ1NmF2UzhlYmhibGZOZ0xuZDB4?=
- =?utf-8?B?UUtrYVRnbzNQSjNBY09rMHhNcVpjZEdmRGRWQzIrREQ2MGF0NVRDUmovU1h3?=
- =?utf-8?B?enJPdmFuZVd5QnVTTVEyVkM0OG1kSFdjSUR5anl3S2tSaGZWOGxRZ2FZYzhL?=
- =?utf-8?B?RlRCM3F4ajBPd1Z0NmIzYVcxR3J0NmpSZUFKZ2pQU2Jwa01Qd0tobTVaRitx?=
- =?utf-8?B?UDBPSnBCQ1ZmcmZ1QWVFNXBlL3Nhb3M0OFgyTk5VUWlzS3NHVEdJUWhYY2lP?=
- =?utf-8?B?SHBpZDVaZUhzczVraWJSUi9XcUh3TkJmbTNrMnBva3dZRHhCUmlhQ3lTY2ZS?=
- =?utf-8?B?WjVYbDFZVVpSTk9SYkdia2w4NVREMFZ0MlZBMDRFTkRJMlFScU5RQT09?=
-X-Exchange-RoutingPolicyChecked: 0585TUXyy6eAQl4ngsI3sH2ZoTTkj4mV/PJ+B0waRBFfCWuUC+kCwqgcB7BD5Vmuj2t5/LPRwqfyJE4cHV9xlfZyul07ElEJfEn59dvBKiY0oaLtVa2TKu98wonoA5oZEWGNS5XaU62Ftd+24ck/DSi4lJKJKiR6PaHBPaZAXNEmK2W3ac5cqrxNUlLEz36ltFYEzV3T5zM9F22E74NL+KKOHjrDfFOB84i652iOXR/Nb4g3+NWliBLYJqCJ/kujLpqYhH6YxmHQJg/ZMHokutSRlDch2jiMfdly4WLKrcRlXTzc9GpNeWYK8aIUpvSpGkB1lvnHH34eV/yGRwwi1Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c426d4e8-98d1-40ce-c1aa-08df45fcb72e
-X-MS-Exchange-CrossTenant-AuthSource: DS3PR11MB088214.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Nov 2026 05:19:41.8423 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3asS3WihfOo3jM3AGha/vkZHzCxwCInp7D/gR6ZJYhPhK1BHXFO0DdS0taoARZajOn5y6/5dZVGp8rPN3AK1BQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6002
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,59 +100,52 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-16.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi,
+Add ioctl number entries for test_hmm_uapi and gup_test.
 
-On 19-11-2026 10:42, Tauro, Riana wrote:
->
-> On 19-11-2026 00:20, Sk Anirban wrote:
->> Stop traversing the aux info linked list when an entry references
->> itself, preventing an endless loop and soft lockup during probe.
->>
->> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_survivability_mode.c | 8 +++++++-
->>   1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c 
->> b/drivers/gpu/drm/xe/xe_survivability_mode.c
->> index 91a0680e449b..34d39e68ff36 100644
->> --- a/drivers/gpu/drm/xe/xe_survivability_mode.c
->> +++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
->> @@ -172,8 +172,14 @@ static void populate_survivability_info(struct 
->> xe_device *xe)
->>       if (reg_value & AUXINFO_SUPPORT) {
->>           for (id = REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
->>                id >= AUX_INFO0 && id < MAX_SCRATCH_REG;
->> -             id =  REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id]))
->> +             id =  REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id])) {
->>               set_survivability_info(mmio, info, id);
->> +            if (REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id]) == 
->> id) {
->
-> Thanks for fixing this. you can add the fixes tag
-> How about bitmask ? If there is a bug in fw where 3->5 ->3. We would 
-> be stuck in loop again.
+Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
+---
+v2: no change
 
-sure, I will fix this.
+[Since having multiple maintainers trying to merge these would
+cause some conflicts, it would be more manageable for Jon to
+take all of these through the docs-next tree.]
 
-Thanks,
-Anirban
+Cc: Jonathan Corbet <corbet@lwn.net>
+Cc: Shuah Khan <skhan@linuxfoundation.org>
+Cc: linux-doc@vger.kernel.org
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Jason Gunthorpe <jgg@nvidia.com>
+Cc: Leon Romanovsky <leonro@nvidia.com>
+Cc: linux-mm@kvack.org
 
->
->
->> +                xe_warn(xe, "survivability: %s points to itself, 
->> stopping aux info walk\n",
->> +                    reg_map[id]);
->> +                break;
->> +            }
->> +        }
->>       }
->>   }
+ Documentation/userspace-api/ioctl/ioctl-number.rst |    4 ++++
+ 1 file changed, 4 insertions(+)
+
+--- linux-next-20261111.orig/Documentation/userspace-api/ioctl/ioctl-number.rst
++++ linux-next-20261111/Documentation/userspace-api/ioctl/ioctl-number.rst
+@@ -147,6 +147,8 @@ Code  Seq#    Include File
+ 'G'   00-0F  xen/gntalloc.h, xen/gntdev.h                              conflict!
+ 'H'   00-7F  linux/hiddev.h                                            conflict!
+ 'H'   00-0F  linux/hidraw.h                                            conflict!
++'H'   00-0F  lib/test_hmm_uapi.h                                       conflict!
++                                                                       <mailto:linux-mm@kvack.org>
+ 'H'   01     linux/mei.h                                               conflict!
+ 'H'   02     linux/mei.h                                               conflict!
+ 'H'   03     linux/mei.h                                               conflict!
+@@ -252,6 +254,8 @@ Code  Seq#    Include File
+ 'f'   81-8F  linux/fsverity.h
+ 'g'   00-0F  linux/usb/gadgetfs.h
+ 'g'   20-2F  linux/usb/g_printer.h
++'g'   01-0F  mm/gup_test.h                                             conflict!
++                                                                       <mailto:linux-mm@kvack.org>
+ 'h'   00-7F                                                            conflict! Charon filesystem
+                                                                        <mailto:zapman@interlan.net>
+ 'h'   00-1F  linux/hpet.h                                              conflict!
