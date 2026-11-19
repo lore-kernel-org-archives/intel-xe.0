@@ -2,28 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 641B4606A320
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0990B606A324
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 10:48:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=oDTAK6hL
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB11510E595;
-	Thu, 19 Nov 2026 10:47:38 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C3110E595;
- Thu, 19 Nov 2026 10:47:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3229439630076251052=="
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/nvl-p=3A_Add_Wa=5F14?=
- =?utf-8?q?028564128_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Nov 2026 10:47:37 -0000
-Message-ID: <179508525727.50513.13395703105725265642@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261119075242.3292552-2-tejas.upadhyay@intel.com>
-In-Reply-To: <20261119075242.3292552-2-tejas.upadhyay@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A605410E595;
+	Thu, 19 Nov 2026 10:47:57 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E670210E595
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 10:47:51 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 969F74662F;
+ Thu, 19 Nov 2026 10:47:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 506D11F000C4;
+ Thu, 19 Nov 2026 10:47:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795085271;
+ bh=H1v0nqci8q/GxDriGPoJCaLF3Md9rnPgS9Fb3UYkmPU=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=oDTAK6hLyd1c6jh60oAgnGQWz3hd2u/NDOjz95qBaspd+4NhUc/mgG99CVwqQ1VDo
+ jvIBumecZLbND6Xql0L+xwkETNG394v4hYl5w+EC1z9eyZ3w3f5w7OXslE2Q9ACzTN
+ 2tjIT0vvNOpDeudY9zhoTUm8BF9Dah1f6Sxs88akWHV6gVwh8KX5oqNtPZfSruiC4Z
+ 8adlz2YlARQQL4GnFTA7YXClUvUWswdaChvG2QfSvAW9p5FZbnnhcae/2Hdj7NjnCc
+ ZaRR7M4PA61I6AkOLBQJHL1A9t2nNBLOoZfptwx33oBQudVdx7Q8uqJDzfBQI8MOAs
+ t1MXUoaHFDTrA==
+Message-ID: <sashiko-outbox-222985@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/xe/hwmon: Expose powerX_cap_max
+To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119104029.3066660-1-karthik.poosa@intel.com>
+References: <20261119104029.3066660-1-karthik.poosa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 10:47:50 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +45,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---===============3229439630076251052==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found no new issues
+in this patch, but noticed 1 related pre-existing issue it does not
+introduce:
+- [High] drm/xe/hwmon: power limit clamped to 0 in
+  xe_hwmon_power_max_write() [1]
+--
 
-== Series Details ==
+commit 26f9457c44502cd969a84eaf5b2ee961f51b7a3e
+Author: Karthik Poosa <karthik.poosa@intel.com>
 
-Series: drm/xe/nvl-p: Add Wa_14028564128 (rev2)
-URL   : https://patchwork.freedesktop.org/series/178936/
-State : success
+drm/xe/hwmon: Expose powerX_cap_max
 
-== Summary ==
+This commit adds a read-only power<i>_cap_max sysfs attribute on platforms
+with mailbox power limits to report the default PL2 (burst) power limit
+set by firmware at boot.
 
-CI Bug Log - changes from xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291_BAT -> xe-pw-178936v2_BAT
-====================================================
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index defe8aaca7c11..8e0d295aabc88 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+[ ... ]
+> @@ -1423,6 +1424,8 @@ xe_hwmon_power_is_visible(struct xe_hwmon *hwmon, u=
+32 attr, int channel)
+>  	struct xe_mmio *mmio =3D xe_root_tile_mmio(hwmon->xe);
+> =20
+>  	switch (attr) {
+> +	case hwmon_power_cap_max:
+> +		return hwmon->pl2_on_boot[channel] ? 0444 : 0;
 
-Summary
--------
+[Severity: High]
+This problem wasn't introduced by this patch, but can a pcode read failure
+during probe cause xe_hwmon_power_max_write() to clamp user power limits
+to 0 [1]?
 
-  **SUCCESS**
+If reading the initial power limits in xe_hwmon_get_preregistration_info()
+fails, pl1_on_boot[] and pl2_on_boot[] remain zero while hwmon registration
+still proceeds:
 
-  No regressions found.
+drivers/gpu/drm/xe/xe_hwmon.c:xe_hwmon_get_preregistration_info() {
+	if (hwmon->xe->info.has_mbx_power_limits) {
+		if (xe_hwmon_pcode_read_power_limit(hwmon, PL1_HWMON_ATTR, CHANNEL_CARD,
+						    &hwmon->pl1_on_boot[CHANNEL_CARD]) |
+		    ...
+		    xe_hwmon_pcode_read_power_limit(hwmon, PL2_HWMON_ATTR, CHANNEL_PKG,
+						    &hwmon->pl2_on_boot[CHANNEL_PKG])) {
+			drm_warn(&hwmon->xe->drm,
+				 "Failed to read power limits, check GPU firmware !\n");
+		} else {
+}
 
-  
+If the subsequent pcode read in xe_hwmon_power_is_visible() succeeds, the
+writable powerX_max and powerX_cap attributes are exposed, and any value
+userspace writes is clamped to the zeroed pl1_on_boot[] or pl2_on_boot[]
+entry in xe_hwmon_power_max_write(), programming a 0W power limit into
+firmware and severely throttling the GPU.
 
-Participating hosts (15 -> 15)
-------------------------------
+[1] https://sashiko.dev/#/bug/linux-9f11cfb5-f9c5-490e-879e-791ecaae33e5
 
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291 -> xe-pw-178936v2
-
-  IGT_9198: 9198
-  xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291: 2bdca9b1f8638ef27955d61c149bc6fac856d291
-  xe-pw-178936v2: 178936v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178936v2/index.html
-
---===============3229439630076251052==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/nvl-p: Add Wa_14028564128 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178936/">https://patchwork.freedesktop.org/series/178936/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178936v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178936v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291_BAT -&gt; xe-pw-178936v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291 -&gt; xe-pw-178936v2</li>
-</ul>
-<p>IGT_9198: 9198<br />
-  xe-6185-2bdca9b1f8638ef27955d61c149bc6fac856d291: 2bdca9b1f8638ef27955d61c149bc6fac856d291<br />
-  xe-pw-178936v2: 178936v2</p>
-
-</body>
-</html>
-
---===============3229439630076251052==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119104029.3066=
+660-1-karthik.poosa@intel.com?part=3D1
