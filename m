@@ -2,52 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F18606A324
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0742606A325
 	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 11:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=SF5Jo6XH
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dMu92WDA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB0F1122D1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75CA41122D6;
 	Thu, 19 Nov 2026 11:19:34 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C06BD1122BB
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 11:19:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 697B41122B9
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 11:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795087167; x=1826623167;
+ t=1795087169; x=1826623169;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=DCBhOjJlAj7E2W+M7r0gi+L4tX9lPC0LMcO7VBvKIeE=;
- b=SF5Jo6XHpM9p2KPmdudwJFVKNGSOSA2cq3mFD1GcGUUczNPfLB8plsx4
- YV9uIcc14If9rlBdtqlFsykdDCzIlvR5YPOPTCKg59tk8D6caVVohSsPp
- DOkMJPlztB4Td/mmO9r0XeS4v1dDY7n27W2PlguqOYdiRC+CswifgICOB
- Oz5hCX9tsryWxfNznK2dig8MAIvG4u3CeUEzeb2V6uEosjGfcvVlAhIVb
- GKnlnqllhNBzKjgW2qwAXCKWK0Gsy/5ecqc7OnO7Jx0I1iPlqjVmTaJwX
- Ai4EINFJ2JLiNK04041stHezhz7SO1c3SRbWrAunalGl9G+EhYd12Y9+m w==;
-X-CSE-ConnectionGUID: Q49A8+eeTPe6ZE9l25Dz4Q==
-X-CSE-MsgGUID: /ALpRb9zQNWZ3EArcN3b/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3828770"
+ bh=3LPHhFdqem+nQtwfSLco5ZnVUoP0Ia81S0rTTm3ezQs=;
+ b=dMu92WDAqkz7u/j7/lYi3NmrRzMc0PgxobmiJl5yclYXHCul/KPjtFvK
+ 3ZBVVUlrKQUwH3VAv/KBvYCZuN177pqamIC7bntXXqhnFysV89JGudmKm
+ byJYZkQ7mm8Kt7AV05I2I7Fce0rOO4e8kIHMuUJisKa9KvR0TUXurexLM
+ pfrc35hTeCH43JJNSUddF1OWHsfBDTSH2vSNmilCBVbgAuGfoHDcnhVes
+ HzV/kNMMKTNoRHWSNkH4ex6NB9WUCiFTCetywLsz+9gUsGmv/1XWjHC/4
+ Eh/aTAPKMirlEsRchtwxYrxjdusvCgLN+tyJTe8UUKvCxyrToqMsWh6hR Q==;
+X-CSE-ConnectionGUID: IZEUIlgcRzyvE5gP1GbawA==
+X-CSE-MsgGUID: 5v8GbaO+SAuyOMfCXLGm6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3828773"
 X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="3828770"
+   d="scan'208";a="3828773"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 03:19:27 -0800
-X-CSE-ConnectionGUID: ll8JxUPPTxK3Hbv5Q3PIWg==
-X-CSE-MsgGUID: MzJfm79BT9mcNSWrNAxliw==
+ 19 Nov 2026 03:19:29 -0800
+X-CSE-ConnectionGUID: 26jDR3TmRIinmQ85wt70bg==
+X-CSE-MsgGUID: PgJfXctfSIO5r7WBkna+ug==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10402263"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10402269"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO [192.168.0.182])
  ([10.245.245.108])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 03:19:25 -0800
+ 19 Nov 2026 03:19:27 -0800
 From: Matthew Auld <matthew.auld@intel.com>
-Date: Thu, 19 Nov 2026 11:14:32 +0000
-Subject: [PATCH 1/5] drm/xe/vm: restore userptr invalidations on VMA op unwind
+Date: Thu, 19 Nov 2026 11:14:33 +0000
+Subject: [PATCH 2/5] drm/xe: Requeue the rebind worker instead of retrying
+ in-line on -EAGAIN
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261119-userptr-repin-v1-1-af2e327833a9@intel.com>
+Message-Id: <20261119-userptr-repin-v1-2-af2e327833a9@intel.com>
 References: <20261119-userptr-repin-v1-0-af2e327833a9@intel.com>
 In-Reply-To: <20261119-userptr-repin-v1-0-af2e327833a9@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>, 
@@ -73,126 +74,158 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When xe_vma_op_commit() commits DRM_GPUVA_OP_UNMAP or
-DRM_GPUVA_OP_REMAP, prep_vma_destroy() sets XE_VMA_DESTROYED while the
-old VMA's GPU page tables remain live. If a subsequent step fails and
-unwinds (for example splitting a userptr VMA where new_vma() fails, or a
-later op in an array of binds failing), a concurrent MMU notifier
-invalidation is lost on non-fault-mode VMs:
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-  CPU0 (VM_BIND / MADVISE)            CPU1 (MMU notifier)
-  ------------------------            -------------------
-  down_write(&vm->lock)
-  xe_vma_op_commit()
-    prep_vma_destroy(vma)
-      flags |= XE_VMA_DESTROYED
-  ...
-  /* later step fails */
-                                      xe_vma_userptr_invalidate_start()
-                                        down_write(&notifier_lock)
-                                        mmu_interval_set_seq()
-                                        /* XE_VMA_DESTROYED set: skips
-                                         * vm->userptr.invalidated
-                                         */
-                                        drm_gpusvm_unmap_pages()
-                                        up_write(&notifier_lock)
-  xe_vma_op_unwind()
-    flags &= ~XE_VMA_DESTROYED
-    xe_vm_insert_vma(vm, vma)
-  up_write(&vm->lock)
+When the preempt rebind worker needs to retry, it currently jumps back
+and keeps holding vm->lock in write mode across the retry. Only VFs
+with migration support drop the lock and requeue the worker.
 
-Once vm->lock is dropped, the VMA remains in the VM with live GPU PTEs
-pointing at unmapped pages, while neither exec nor the rebind worker
-knows to repin and rebind it.
+Holding the vm lock across retries needlessly blocks other users of the
+lock and other work on the ordered workqueue, and makes the retry unfit
+for conditions that may last for a while, like repeatedly invalidated
+userptrs.
 
-Add unprep_vma_destroy() to check xe_vma_userptr_check_repin() while
-clearing XE_VMA_DESTROYED under the notifier lock and queue invalidated
-non-fault-mode userptr VMAs onto vm->userptr.invalidated.
+Always drop the vm lock and requeue the worker on -EAGAIN. This also
+fixes a leak of the preempt fences allocated in the failed attempt on
+the existing VF path.
 
-Fixes: b06d47be7c83 ("drm/xe: Port Xe to GPUVA")
+The userptr invalidation injection state that forces one retry per
+rebind sequence was a local variable that would be reset by a requeue.
+Move it to the vm.
+
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.12+
 ---
- drivers/gpu/drm/xe/xe_vm.c | 35 ++++++++++++++++++++++++-----------
- 1 file changed, 24 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 59 ++++++++++++++++++++++++++--------------
+ drivers/gpu/drm/xe/xe_vm_types.h |  8 ++++++
+ 2 files changed, 46 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dd855876f571..75be5e5329bd 100644
+index 75be5e5329bd..ff8d355728fc 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -44,6 +44,7 @@
- #include "xe_tile.h"
- #include "xe_tlb_inval.h"
- #include "xe_trace_bo.h"
-+#include "xe_userptr.h"
- #include "xe_vm_madvise.h"
- #include "xe_wa.h"
- 
-@@ -2401,6 +2402,26 @@ static void prep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
- 		xe_vm_remove_vma(vm, vma);
+@@ -542,6 +542,31 @@ void xe_vm_resume_rebind_worker(struct xe_vm *vm)
+ 	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
  }
  
-+static void unprep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
-+			       bool post_commit)
++#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
++/*
++ * Force one retry per rebind sequence. The sequence spans requeues of the
++ * worker, so the state must live in the vm.
++ */
++static bool xe_vm_rebind_worker_inject_retry(struct xe_vm *vm)
 +{
-+	xe_svm_notifier_lock(vm);
-+	vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-+	if (IS_ENABLED(CONFIG_DRM_GPUSVM) && !xe_vm_in_fault_mode(vm) &&
-+	    xe_vma_is_userptr(vma) &&
-+	    xe_vma_userptr_check_repin(to_userptr_vma(vma))) {
-+		struct xe_userptr_vma *uvma = to_userptr_vma(vma);
-+
-+		spin_lock(&vm->userptr.invalidated_lock);
-+		list_move_tail(&uvma->userptr.invalidate_link,
-+			       &vm->userptr.invalidated);
-+		spin_unlock(&vm->userptr.invalidated_lock);
-+	}
-+	xe_svm_notifier_unlock(vm);
-+	if (post_commit)
-+		xe_vm_insert_vma(vm, vma);
++	return !vm->preempt.inval_inject_tries++;
 +}
 +
- #undef ULL
- #define ULL	unsigned long long
++static void xe_vm_rebind_worker_reset_inject(struct xe_vm *vm)
++{
++	vm->preempt.inval_inject_tries = 0;
++}
++#else
++static bool xe_vm_rebind_worker_inject_retry(struct xe_vm *vm)
++{
++	return false;
++}
++
++static void xe_vm_rebind_worker_reset_inject(struct xe_vm *vm)
++{
++}
++#endif
++
+ static void preempt_rebind_work_func(struct work_struct *w)
+ {
+ 	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
+@@ -551,7 +576,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	LIST_HEAD(preempt_fences);
+ 	int err = 0;
+ 	long wait;
+-	int __maybe_unused tries = 0;
  
-@@ -3093,13 +3114,8 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+ 	trace_xe_vm_rebind_worker_enter(vm);
+@@ -564,7 +588,6 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 		return;
+ 	}
  
- 		xe_vm_assert_write_mode_or_garbage_collector(vm);
+-retry:
+ 	if (!try_wait_for_completion(&vm->xe->pm_block) && vm_suspend_rebind_worker(vm)) {
+ 		up_write(&vm->lock);
+ 		/* We don't actually block but don't make progress. */
+@@ -614,20 +637,14 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 		goto out_unlock;
+ 	}
  
--		if (vma) {
--			xe_svm_notifier_lock(vm);
--			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
--			xe_svm_notifier_unlock(vm);
--			if (post_commit)
--				xe_vm_insert_vma(vm, vma);
+-#define retry_required(__tries, __vm) \
+-	(IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT) ? \
+-	(!(__tries)++ || __xe_vm_userptr_needs_repin(__vm)) : \
+-	__xe_vm_userptr_needs_repin(__vm))
+-
+ 	xe_svm_notifier_lock(vm);
+-	if (retry_required(tries, vm)) {
++	if (xe_vm_rebind_worker_inject_retry(vm) ||
++	    __xe_vm_userptr_needs_repin(vm)) {
+ 		xe_svm_notifier_unlock(vm);
+ 		err = -EAGAIN;
+ 		goto out_unlock;
+ 	}
+ 
+-#undef retry_required
+-
+ 	xe_vm_bump_lru(vm, &exec);
+ 
+ 	/* Point of no return. */
+@@ -642,20 +659,20 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 		trace_xe_vm_rebind_worker_retry(vm);
+ 
+ 		/*
+-		 * We can't block in workers on a VF which supports migration
+-		 * given this can block the VF post-migration workers from
+-		 * getting scheduled.
++		 * Drop all locks and requeue rather than retrying in-line.
++		 * This avoids blocking other work items, such as VF
++		 * post-migration workers, and lets other users of the vm
++		 * lock make progress between attempts.
+ 		 */
+-		if (IS_SRIOV_VF(vm->xe) &&
+-		    xe_sriov_vf_migration_supported(vm->xe)) {
+-			up_write(&vm->lock);
+-			xe_vm_queue_rebind_worker(vm);
+-			return;
 -		}
-+		if (vma)
-+			unprep_vma_destroy(vm, vma, post_commit);
- 		break;
+-
+-		goto retry;
++		up_write(&vm->lock);
++		free_preempt_fences(&preempt_fences);
++		xe_vm_queue_rebind_worker(vm);
++		trace_xe_vm_rebind_worker_exit(vm);
++		return;
  	}
- 	case DRM_GPUVA_OP_REMAP:
-@@ -3117,9 +3133,6 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 			xe_vma_destroy_unlocked(op->remap.next);
- 		}
- 		if (vma) {
--			xe_svm_notifier_lock(vm);
--			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
--			xe_svm_notifier_unlock(vm);
- 			if (post_commit) {
- 				/*
- 				 * Restore the old va range, in case of the
-@@ -3131,8 +3144,8 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 					op->remap.old_start;
- 				op->base.remap.unmap->va->va.range =
- 					op->remap.old_range;
--				xe_vm_insert_vma(vm, vma);
- 			}
-+			unprep_vma_destroy(vm, vma, post_commit);
- 		}
- 		break;
- 	}
+ 
++	xe_vm_rebind_worker_reset_inject(vm);
++
+ 	if (err) {
+ 		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
+ 		xe_vm_kill(vm, true);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index fb9305124679..756cf2dbee8a 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -350,6 +350,14 @@ struct xe_vm {
+ 		 * kicked on resume.
+ 		 */
+ 		struct list_head pm_activate_link;
++#if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
++		/**
++		 * @inval_inject_tries: Number of rebind attempts in the
++		 * current rebind sequence. Used to force a retry for testing.
++		 * Protected by @lock.
++		 */
++		unsigned int inval_inject_tries;
++#endif
+ 	} preempt;
+ 
+ 	/** @exec_queues: Manages list of exec queues attached to this VM, protected by lock. */
 
 -- 
 2.56.1
