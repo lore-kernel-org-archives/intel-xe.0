@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D41606A326
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:55:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 063FB606A324
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 15:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hOwa5P4w
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IXrVGGN/
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C639112621;
-	Thu, 19 Nov 2026 15:55:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8282112611;
+	Thu, 19 Nov 2026 15:55:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC3B1112611
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 15:55:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0DA112615
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 15:54:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795103704; x=1826639704;
+ t=1795103700; x=1826639700;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=ezlzVcHtVeoHglV01p3bjkxy2KglS2VRWAzc2hftpZw=;
- b=hOwa5P4w8pHQjIks4O8y0QwEEsmGRCas2/x64ljDiWMjm8NXsCtrrZ7/
- IdiFh0DNopJJOkXXycjAUFvP4zG+l6Kj/lMe3FYIhQHb+D6dDK1nsjtIR
- Et0ZwBbzWjiywvUGEFpDMWmWGLXh144/93zefuV0jiXRkbeYQOWc6qPQw
- pZIuSdeYzwPX0jcZcOGG5PvuVIN/pmjUJtOGEN+QzHoyLDYzI6w79Gn/j
- dis0pt3usROZ9VDiEWewn/h/zZBYBiE4XE055WuHn2PJ/0jpbLW2dpfyU
- 5pr+kqw+bt0jQCDF9ce6NxZUmElec/fIpRkPL58wCnlAuD9nr573/dnGc A==;
-X-CSE-ConnectionGUID: 3j2TaMnvQQOzgZs2LBbC/A==
-X-CSE-MsgGUID: DFjMUvhYTGGfgW/ORaJ9eA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3848972"
+ bh=rayEZ0+oT/Iyk+FY8Hj0Rn8qFu76Ec9MdIYQCC7fDsI=;
+ b=IXrVGGN/QVtjPpJX0zlMeJgno0Zo1jErcLERT+qqTIQHyf81ZoZXZ58j
+ Xze/6r+Xocgezvry05dYxNdTF5mi5OKGuwyWoprjWsDHih1eUqJp5IhbF
+ BefbYnRB/gCuFldNppM2EZGu8HIRAr9+cnYUWqRUn8OvRU0OOrXX32oM/
+ yXc+l1fhDDmoIlVaLFbOCQWKjSNgOtw3SE8Yz0WLzN3kR2TCF3cjRQ0pA
+ DL47C3KafbyGZ/0EvaSmBloLB8Xqo4q/l7iAALEO7QeWuYTl0UXiQbTRi
+ qvYlIk9BO1ZOhk71udCSs18afewUtj36xQO/yKsdkS0KWFGoOc7QGsKhQ w==;
+X-CSE-ConnectionGUID: dMF3X7T4SdWKaGVErfzhjg==
+X-CSE-MsgGUID: J+b4tYhjSdy+TgQkhmdeRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3848962"
 X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="3848972"
+   d="scan'208";a="3848962"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 07:54:52 -0800
-X-CSE-ConnectionGUID: guHX3vWCS7iz5BzWPO3YcQ==
-X-CSE-MsgGUID: 67C6HzaVT7WRoF8MoFbDlg==
+X-CSE-ConnectionGUID: VNfohx3MSY2GSVHKRAe8SA==
+X-CSE-MsgGUID: ltHLArEkQSSID6m/SdF86g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10263401"
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10263391"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 07:54:51 -0800
@@ -46,9 +46,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v19 07/19] drm/xe/vsec: Add DOC text for VSEC
-Date: Thu, 19 Nov 2026 07:54:45 -0800
-Message-ID: <20261119155438.40762-28-michael.j.ruhl@intel.com>
+Subject: [PATCH v19 05/19] drm/xe/vsec: Correct locking order
+Date: Thu, 19 Nov 2026 07:54:43 -0800
+Message-ID: <20261119155438.40762-26-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261119155438.40762-21-michael.j.ruhl@intel.com>
 References: <20261119155438.40762-21-michael.j.ruhl@intel.com>
@@ -73,88 +73,43 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the necessary files and text to use the DOC system.
+Xe locking order is power state first, and then local locks.
+
+Reorder locking for correct usage.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- Documentation/gpu/xe/index.rst   |  1 +
- Documentation/gpu/xe/xe_vsec.rst | 14 ++++++++++++++
- drivers/gpu/drm/xe/xe_vsec.c     | 24 ++++++++++++++++++++++++
- 3 files changed, 39 insertions(+)
- create mode 100644 Documentation/gpu/xe/xe_vsec.rst
+ drivers/gpu/drm/xe/xe_vsec.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/gpu/xe/index.rst b/Documentation/gpu/xe/index.rst
-index 497a0a4b12f6..de829aecf8f1 100644
---- a/Documentation/gpu/xe/index.rst
-+++ b/Documentation/gpu/xe/index.rst
-@@ -37,3 +37,4 @@ The display, or :ref:`drm-kms`, support for drm/xe is provided by
-    xe_gt_stats
-    xe_sigid
-    xe_pci_error
-+   xe_vsec
-diff --git a/Documentation/gpu/xe/xe_vsec.rst b/Documentation/gpu/xe/xe_vsec.rst
-new file mode 100644
-index 000000000000..1a87548489ea
---- /dev/null
-+++ b/Documentation/gpu/xe/xe_vsec.rst
-@@ -0,0 +1,14 @@
-+.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+=====
-+VSEC
-+=====
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
-+   :doc: VSEC
-+
-+Internal API
-+============
-+
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_vsec.c
-+   :internal:
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 38081dacd307..082b25b017db 100644
+index 178f22db4046..d93c042cf25b 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -19,6 +19,17 @@
+@@ -157,16 +157,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
  
- #include "regs/xe_pmt.h"
+ 	telem_addr += offset + user_offset;
  
-+/**
-+ * DOC: VSEC
-+ *
-+ * Some GPUs support the PMT feature.  For those that do, this API provides
-+ * probe, discovery and usage (control and access) for GPUs that have PMT.
-+ *
-+ * PMT is usually accessed through a PCI function.  However, that is not always
-+ * available, so the PMT intel_vsec_register() function can be used to set up
-+ * PMT usage.
-+ */
+-	guard(mutex)(&xe->pmt.lock);
+-
+ 	/* indicate that we are not at an appropriate power level */
+ 	if (!xe_pm_runtime_get_if_active(xe))
+ 		return -ENODATA;
+ 
+-	/* set SoC re-mapper index register based on GUID memory region */
+-	xe->soc_remapper.set_telem_region(xe, mem_region);
++	scoped_guard(mutex, &xe->pmt.lock) {
++		/* set SoC re-mapper index register based on GUID memory region */
++		xe->soc_remapper.set_telem_region(xe, mem_region);
 +
- /* PMT GUID value for BMG devices.  NOTE: this is NOT a PCI id */
- #define BMG_DEVICE_ID 0xE2F8
++		memcpy_fromio(data, telem_addr, count);
++	}
  
-@@ -140,6 +151,19 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	return 0;
- }
+-	memcpy_fromio(data, telem_addr, count);
+ 	xe_pm_runtime_put(xe);
  
-+/**
-+ * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a buffer
-+ * @dev: valid Xe device
-+ * @guid: PMT GUID (from the PMT discovery struct)
-+ * @data: buffer to place data in
-+ * @user_offset: a user offset relative to the beginning of the data to read
-+ * @count: bytes to read
-+ *
-+ * Return:
-+ * * -ENODATA for incorrect power state
-+ * * -EINVAL for unsupported PMT feature
-+ * * count   number of bytes read on success
-+ */
- int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset,
- 		      u32 count)
- {
+ 	return count;
 -- 
 2.43.0
 
