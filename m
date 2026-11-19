@@ -2,60 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C38606A325
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:04:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07FFB606A332
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=H+cXYkSY
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Aha9u9i1
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A651C10E5A6;
-	Thu, 19 Nov 2026 23:04:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8CA810E169
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 23:04:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795129475; x=1826665475;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5sweu/QhYcAhji6O54aAn40L448mNQ4qC4Qwv3LEb1c=;
- b=H+cXYkSYI2/yRnv2sL6/Un873OSWtGNLRyBIhemrRiz6MwrHjhvfc4QY
- eMuV0LejXDOlmNlWnIC0JF3JwYFWZcimTEmGpilJEhCBZa8a2aLD6ttpV
- x9LjmpIUns6HoCnI0DZYL0i6mcsIBt2K1BZgz+kOpzNuX5avf2S1OqO99
- wuN8tXdhj1cGNZofEIF0kpzS1BBcA6dLkChZE7ymBb+9hm3EH8fK4FaJo
- EvJVIY+7L6wnc0O20R65UGwa6KEaQx11gFfRjOsmMz6kSS63bgHg+2Jyw
- uHlsS0MO9VnU4wqEOzQrcA/dvRjzLWyW8T/LWl7ISrdtwIehOjBVaCXWO A==;
-X-CSE-ConnectionGUID: JG4ImDNuS+izD6SPq5Ehtg==
-X-CSE-MsgGUID: f1Lywi2BSLammdvGnaPh7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4079661"
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
-   d="scan'208";a="4079661"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 15:04:33 -0800
-X-CSE-ConnectionGUID: KrOridvRRrq58nNgavQAog==
-X-CSE-MsgGUID: S7DZY0m8QJiauwpr6fG6Jg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="12534855"
-Received: from dceraolo-desk1.fm.intel.com (HELO dceraolo-desk1)
- ([10.121.64.151])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 15:04:32 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v5 1/2] drm/xe/wopcm: Use the size from HW when excluding the
- wopcm range from GGTT
-Date: Thu, 19 Nov 2026 23:04:22 +0000
-Message-ID: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.53.0
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF7AC10E0F8;
+	Thu, 19 Nov 2026 23:15:09 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2F3C10E0F8
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 23:15:02 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id A2E0B442DA;
+ Thu, 19 Nov 2026 23:15:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DB6D1F000C6;
+ Thu, 19 Nov 2026 23:15:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795130102;
+ bh=XsUiVXSu4vAUQuJ1hLTJS+MQcBwz6kAYDkXNwb0gVwc=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=Aha9u9i1zAzqM6A8p6Sy023V7UGLMq4A2Z4qnt+Siq26TxS22eKtsvEuTBYJgq0Up
+ WcSNLwyGRpT2IuCOgcmN8vgM7DD+KUi2smBjxlpvd3DTyXOO+xcl/y7lbfoboayoPL
+ NJLSXQFHnBlooX0H5rSeVD0mwLEzB2UNywRwOWR7K8JiOT+PE7ZBqBHc0fIYPL+NlE
+ HPVF+s/t6EuffQuHjzlsWiDE7k54NTvZ0rTZv+48jE+Q765q41r7M/8Ir7oF+QSc1V
+ xKWxAZmC8I7FYw7kb5z8rGxkEL3wYI8wBiZ+5cUyKjE4DKbigSUm1Ad9JtbDO7y3TK
+ D/e6A6hkWl+8g==
+Message-ID: <sashiko-outbox-224176@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v5 2/2] drm/xe/wopcm: Simplify GuC WOPCM programming
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261119230423.322057-4-daniele.ceraolospurio@intel.com>
+References: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
+ <20261119230423.322057-4-daniele.ceraolospurio@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Thu, 19 Nov 2026 23:15:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,401 +47,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-The WOPCM size is available in HW (we read it during the stolen memory
-init), so when excluding the WOPCM range from the base of GGTT we can
-use the HW value instead of a hardcoded one (which needs to be updated
-any time the config changes on newer HW). This value is not available to
-VFs, but the only use VF has for it is to make sure that the PF has done
-its programming correctly, so we can just trust PF and drop the checks.
-Since the WOPCM is a per-tile value, we can store its size in the tile
-structure and re-use it for both GGTT and stolen memory setup.
-We also have a kunit that uses the wopcm size, but as a static kunit it
-doesn't actually require a real value but just a non-zero one for
-testing, so we can use the already defined GGTT_TEST_START.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Medium] drm/xe: u32 underflow of guc_wopcm_size in uc_program_wopcm()
+--
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
-v2: drop wopcm size usage from VF
-v3: move guc_ggtt assert from next patch to this one (Sashiko), rebase
-on SRIOV updates, add kernel-doc for new functions.
-v4: fix kunit
-v5: fix ggtt boundary assert (Sashiko)
----
- drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c |  4 +-
- drivers/gpu/drm/xe/xe_device.c           |  4 ++
- drivers/gpu/drm/xe/xe_ggtt.c             | 19 +++-----
- drivers/gpu/drm/xe/xe_guc.c              | 11 +++--
- drivers/gpu/drm/xe/xe_tile.c             | 61 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tile.h             |  3 ++
- drivers/gpu/drm/xe/xe_tile_types.h       |  3 ++
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c   | 53 +++++++++-----------
- 8 files changed, 107 insertions(+), 51 deletions(-)
+commit 2876ad005940248a7d3945230ac1cf31aa3198e3
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c b/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
-index 25471317d781..202b48b0c984 100644
---- a/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c
-@@ -12,9 +12,7 @@
- 
- static u64 ggtt_test_accessible_size(struct kunit *test)
- {
--	struct xe_tile *tile = xe_device_get_root_tile(test->priv);
--
--	return GUC_GGTT_TOP - xe_wopcm_size(tile_to_xe(tile));
-+	return GUC_GGTT_TOP - GGTT_TEST_START;
- }
- 
- static void ggtt_test_fini(void *data)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 6911c2ac39f8..93cd91fb620d 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -934,6 +934,10 @@ int xe_device_probe(struct xe_device *xe)
- 	override_has_cached_pt(xe);
- 
- 	for_each_tile(tile, xe, id) {
-+		err = xe_tile_wopcm_init(tile);
-+		if (err)
-+			return err;
-+
- 		err = xe_ggtt_init_early(tile->mem.ggtt);
- 		if (err)
- 			return err;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 44480fad2767..86fc3d186fc8 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -30,11 +30,11 @@
- #include "xe_pm.h"
- #include "xe_res_cursor.h"
- #include "xe_sriov.h"
-+#include "xe_tile.h"
- #include "xe_tile_printk.h"
- #include "xe_tile_sriov_vf.h"
- #include "xe_tlb_inval.h"
- #include "xe_wa.h"
--#include "xe_wopcm.h"
- 
- /**
-  * DOC: Global Graphics Translation Table (GGTT)
-@@ -414,7 +414,7 @@ static int ggtt_probe(struct xe_ggtt *ggtt, u64 *start, u64 *size)
- 		return -ENOMEM;
- 	}
- 
--	*start = xe_wopcm_size(xe);
-+	*start = xe_tile_wopcm_size(ggtt->tile);
- 	*size = (gsm_size / 8) * (u64)XE_PAGE_SIZE - *start;
- 
- 	return 0;
-@@ -422,13 +422,11 @@ static int ggtt_probe(struct xe_ggtt *ggtt, u64 *start, u64 *size)
- 
- static int ggtt_get_range_from_guc(struct xe_ggtt *ggtt, u64 *start, u64 *size)
- {
--	struct xe_device *xe = tile_to_xe(ggtt->tile);
--	u64 wopcm = xe_wopcm_size(xe);
--
- 	*start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
- 	*size = xe_tile_sriov_vf_ggtt(ggtt->tile);
- 
--	if (*start < wopcm || *start + *size > GUC_GGTT_TOP) {
-+	/* We can't check start against WOPCM as VF doesn't have access to the WOPCM size */
-+	if (*start + *size > GUC_GGTT_TOP) {
- 		xe_log_err_fatal(ggtt->tile, GGTT, -ERANGE,
- 				 "Invalid GGTT configuration: %#llx-%#llx\n",
- 				 *start, *start + *size - 1);
-@@ -734,11 +732,6 @@ static void xe_ggtt_invalidate_engine(struct xe_ggtt *ggtt)
- 	ggtt_invalidate_gt_engine_tlb(ggtt->tile->media_gt);
- }
- 
--static inline u64 xe_ggtt_bottom(struct xe_ggtt *ggtt)
--{
--	return xe_wopcm_size(tile_to_xe(ggtt->tile));
--}
--
- /**
-  * xe_ggtt_shift_nodes() - Shift GGTT nodes to adjust for a change in usable address range.
-  * @ggtt: the &xe_ggtt struct instance
-@@ -750,13 +743,13 @@ static inline u64 xe_ggtt_bottom(struct xe_ggtt *ggtt)
-  * This function may be called multiple times during recovery, but if
-  * @new_start is unchanged from the current base, it's a noop.
-  *
-- * @new_start should be a value between the GGTT bottom and #GUC_GGTT_TOP.
-+ * @new_start should be a value between the WOPCM size and #GUC_GGTT_TOP. VFs
-+ * don't have access to the WOPCM size so we can't test against that.
-  */
- void xe_ggtt_shift_nodes(struct xe_ggtt *ggtt, u64 new_start)
- {
- 	guard(mutex)(&ggtt->lock);
- 
--	xe_tile_assert(ggtt->tile, new_start >= xe_ggtt_bottom(ggtt));
- 	xe_tile_assert(ggtt->tile, new_start + ggtt->size <= GUC_GGTT_TOP);
- #ifdef CONFIG_PCI_IOV
- 	xe_tile_assert(ggtt->tile, ggtt->shareable_size == 0);
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index c4fb34e64cd6..e7e818897bf5 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -47,15 +47,16 @@
- #include "xe_sleep.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf_migration.h"
-+#include "xe_tile.h"
- #include "xe_uc.h"
- #include "xe_uc_fw.h"
- #include "xe_wa.h"
--#include "xe_wopcm.h"
- 
- static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
- 			    struct xe_bo *bo)
- {
--	struct xe_device *xe = guc_to_xe(guc);
-+	struct xe_tile *tile = gt_to_tile(guc_to_gt(guc));
-+	struct xe_device *xe = tile_to_xe(tile);
- 	u32 addr;
- 
- 	/*
-@@ -64,10 +65,12 @@ static u32 guc_bo_ggtt_addr(struct xe_guc *guc,
- 	 * might be different for each tile. So, just always ask for the address
- 	 * on the target GuC.
- 	 */
--	addr = __xe_bo_ggtt_addr(bo, gt_to_tile(guc_to_gt(guc))->id);
-+	addr = __xe_bo_ggtt_addr(bo, tile->id);
-+
-+	if (!IS_SRIOV_VF(xe))
-+		xe_assert(xe, addr >= xe_tile_wopcm_size(tile));
- 
- 	/* GuC addresses above GUC_GGTT_TOP don't map through the GTT */
--	xe_assert(xe, addr >= xe_wopcm_size(guc_to_xe(guc)));
- 	xe_assert(xe, addr < GUC_GGTT_TOP);
- 	xe_assert(xe, xe_bo_size(bo) <= GUC_GGTT_TOP - addr);
- 
-diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-index 810dfd98d830..014b5efdb152 100644
---- a/drivers/gpu/drm/xe/xe_tile.c
-+++ b/drivers/gpu/drm/xe/xe_tile.c
-@@ -13,15 +13,18 @@
- #include "xe_ggtt.h"
- #include "xe_memirq.h"
- #include "xe_migrate.h"
-+#include "xe_mmio.h"
- #include "xe_pcode.h"
- #include "xe_sa.h"
- #include "xe_svm.h"
- #include "xe_tile.h"
-+#include "xe_tile_printk.h"
- #include "xe_tile_sysfs.h"
- #include "xe_ttm_vram_mgr.h"
- #include "xe_vram.h"
- #include "xe_vram_types.h"
- #include "xe_wa.h"
-+#include "regs/xe_regs.h"
- 
- /**
-  * DOC: Multi-tile Design
-@@ -225,6 +228,64 @@ void xe_tile_migrate_wait(struct xe_tile *tile)
- 	xe_migrate_wait(tile->migrate);
- }
- 
-+/**
-+ * xe_tile_wopcm_init() - cache the WOPCM size for the tile.
-+ * @tile: The tile for which to cache the WOPCM size.
-+ *
-+ * This function reads the WOPCM size from the hardware and caches it in the tile
-+ * structure. It does not perform any memory allocations. The cached value can
-+ * be retrieved later using xe_tile_wopcm_size().
-+ * This function can't be called on VFs since VFs don't have access to the
-+ * register holding the WOPCM size.
-+ *
-+ * Returns: 0 on success, negative error code on error.
-+ */
-+int xe_tile_wopcm_init(struct xe_tile *tile)
-+{
-+	u32 wopcm_size;
-+	u64 val;
-+
-+	if (IS_SRIOV_VF(tile_to_xe(tile)))
-+		return 0;
-+
-+	val = xe_mmio_read64_2x32(&tile->mmio, STOLEN_RESERVED);
-+	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
-+
-+	switch (val) {
-+	case 0x5 ... 0x6:
-+		val--;
-+		fallthrough;
-+	case 0x0 ... 0x3:
-+		wopcm_size = (1U << val) * SZ_1M;
-+		break;
-+	default:
-+		WARN(1, "Missing case wopcm_size=%llx\n", val);
-+		return -EIO;
-+	}
-+
-+	tile->mem.wopcm_size = wopcm_size;
-+
-+	xe_tile_info(tile, "WOPCM size: %uKB\n", wopcm_size / 1024);
-+	return 0;
-+}
-+
-+/**
-+ * xe_tile_wopcm_size() - get the WOPCM size for the tile.
-+ * @tile: The tile for which to get the WOPCM size.
-+ *
-+ * This function returns the cached WOPCM size for the tile. This function must
-+ * be called after xe_tile_wopcm_init() has been called for the tile.
-+ * This function can't be called on VFs since VFs don't have access to the
-+ * register holding the WOPCM size.
-+ *
-+ * Returns: The cached WOPCM size in bytes.
-+ */
-+u32 xe_tile_wopcm_size(struct xe_tile *tile)
-+{
-+	xe_assert(tile_to_xe(tile), tile->mem.wopcm_size != 0);
-+	return tile->mem.wopcm_size;
-+}
-+
- #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
- /**
-  * xe_tile_local_pagemap() - Return a pointer to the tile's local drm_pagemap if any
-diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-index a2a2c0e936b8..5ae9f6753f96 100644
---- a/drivers/gpu/drm/xe/xe_tile.h
-+++ b/drivers/gpu/drm/xe/xe_tile.h
-@@ -19,6 +19,9 @@ int xe_tile_alloc_vram(struct xe_tile *tile);
- 
- void xe_tile_migrate_wait(struct xe_tile *tile);
- 
-+int xe_tile_wopcm_init(struct xe_tile *tile);
-+u32 xe_tile_wopcm_size(struct xe_tile *tile);
-+
- static inline bool xe_tile_is_root(struct xe_tile *tile)
- {
- 	return tile->id == 0;
-diff --git a/drivers/gpu/drm/xe/xe_tile_types.h b/drivers/gpu/drm/xe/xe_tile_types.h
-index 3dc011f111a4..dea17282501c 100644
---- a/drivers/gpu/drm/xe/xe_tile_types.h
-+++ b/drivers/gpu/drm/xe/xe_tile_types.h
-@@ -84,6 +84,9 @@ struct xe_tile {
- 		/** @mem.ggtt: Global graphics translation table */
- 		struct xe_ggtt *ggtt;
- 
-+		/** @mem.wopcm_size: Size of the WOPCM for this tile */
-+		u32 wopcm_size;
-+
- 		/**
- 		 * @mem.kernel_bb_pool: Pool from which batchbuffers are allocated.
- 		 *
-diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-index 60f39efb02d0..5983b6c0ac3f 100644
---- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
-@@ -20,6 +20,7 @@
- #include "xe_gt_printk.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
-+#include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_vram.h"
- #include "xe_wa.h"
-@@ -38,34 +39,12 @@ bool xe_ttm_stolen_cpu_access_needs_ggtt(struct xe_device *xe)
- 	return GRAPHICS_VERx100(xe) < 1270 && !IS_DGFX(xe);
- }
- 
--static u32 get_wopcm_size(struct xe_device *xe)
--{
--	u32 wopcm_size;
--	u64 val;
--
--	val = xe_mmio_read64_2x32(xe_root_tile_mmio(xe), STOLEN_RESERVED);
--	val = REG_FIELD_GET64(WOPCM_SIZE_MASK, val);
--
--	switch (val) {
--	case 0x5 ... 0x6:
--		val--;
--		fallthrough;
--	case 0x0 ... 0x3:
--		wopcm_size = (1U << val) * SZ_1M;
--		break;
--	default:
--		WARN(1, "Missing case wopcm_size=%llx\n", val);
--		wopcm_size = 0;
--	}
--
--	return wopcm_size;
--}
--
- static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
--	struct xe_vram_region *tile_vram = xe_device_get_root_tile(xe)->mem.vram;
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-+	struct xe_vram_region *tile_vram = root_tile->mem.vram;
- 	resource_size_t tile_io_start = xe_vram_region_io_start(tile_vram);
--	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	struct xe_mmio *mmio = &root_tile->mmio;
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
- 	u64 stolen_size, wopcm_size;
- 	u64 tile_offset;
-@@ -79,8 +58,14 @@ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *m
- 	if (drm_WARN_ON(&xe->drm, tile_size < mgr->stolen_base))
- 		return 0;
- 
--	/* Carve out the top of DSM as it contains the reserved WOPCM region */
--	wopcm_size = get_wopcm_size(xe);
-+	/*
-+	 * Carve out the top of DSM as it contains the reserved WOPCM region.
-+	 * Note that the WOPCM region is per-tile, but the code below only looks
-+	 * at the root tile values for both stolen and WOPCM; this works because
-+	 * on PVC there is no driver-usable stolen, so stolen_size is 0 for
-+	 * both tiles, but if that changes we'll need to rework this.
-+	 */
-+	wopcm_size = xe_tile_wopcm_size(root_tile);
- 	if (drm_WARN_ON(&xe->drm, !wopcm_size))
- 		return 0;
- 
-@@ -105,11 +90,12 @@ static u64 detect_lmembar_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *m
- static u32 detect_lmembar_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
- {
- 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
--	struct xe_gt *media_gt = xe_device_get_root_tile(xe)->media_gt;
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-+	struct xe_gt *media_gt = root_tile->media_gt;
- 	u32 stolen_size, wopcm_size;
- 	u32 ggc, gms;
- 
--	ggc = xe_mmio_read32(xe_root_tile_mmio(xe), GGC);
-+	ggc = xe_mmio_read32(&root_tile->mmio, GGC);
- 
- 	/*
- 	 * Check GGMS: it should be fixed 0x3 (8MB), which corresponds to the
-@@ -141,8 +127,13 @@ static u32 detect_lmembar_integrated(struct xe_device *xe, struct xe_ttm_stolen_
- 		return 0;
- 	}
- 
--	/* Carve out the top of DSM as it contains the reserved WOPCM region */
--	wopcm_size = get_wopcm_size(xe);
-+	/*
-+	 * Carve out the top of DSM as it contains the reserved WOPCM region. We
-+	 * assume only the root tile is present, so we don't need to worry about
-+	 * the WOPCM size for the remote tiles.
-+	 */
-+	xe_assert(xe, xe->info.tile_count == 1);
-+	wopcm_size = xe_tile_wopcm_size(root_tile);
- 	if (drm_WARN_ON(&xe->drm, !wopcm_size))
- 		return 0;
- 
--- 
-2.53.0
+drm/xe/wopcm: Simplify GuC WOPCM programming
 
+This commit removes the separate WOPCM module and layout checks, moving
+GuC WOPCM register programming into xe_uc.c.
+
+> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+> index b32ba504041c5..ff13f6e6ccb66 100644
+> --- a/drivers/gpu/drm/xe/xe_uc.c
+> +++ b/drivers/gpu/drm/xe/xe_uc.c
+
+[ ... ]
+
+> @@ -52,6 +55,126 @@ int xe_uc_init_noalloc(struct xe_uc *uc)
+>  	return ret;
+>  }
+> =20
+> +static bool __wopcm_regs_locked(struct xe_gt *gt,
+> +				u32 *guc_wopcm_base, u32 *guc_wopcm_size)
+> +{
+> +	u32 reg_base =3D xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET);
+> +	u32 reg_size =3D xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE);
+> +
+> +	if (!(reg_size & GUC_WOPCM_SIZE_LOCKED) ||
+> +	    !(reg_base & GUC_WOPCM_OFFSET_VALID))
+> +		return false;
+> +
+> +	*guc_wopcm_base =3D reg_base & GUC_WOPCM_OFFSET_MASK;
+> +	*guc_wopcm_size =3D reg_size & GUC_WOPCM_SIZE_MASK;
+> +	return true;
+> +}
+> +
+> +static int __wopcm_init_regs(struct xe_gt *gt, u32 base, u32 size)
+> +{
+> +	u32 huc_agent =3D xe_uc_fw_is_available(&gt->uc.huc.fw) ? HUC_LOADING_A=
+GENT_GUC : 0;
+> +	u32 mask;
+> +	int err;
+> +
+> +	xe_gt_assert(gt, !(base & ~GUC_WOPCM_OFFSET_MASK));
+> +	xe_gt_assert(gt, !(size & ~GUC_WOPCM_SIZE_MASK));
+> +
+> +	mask =3D GUC_WOPCM_SIZE_MASK | GUC_WOPCM_SIZE_LOCKED;
+> +	err =3D xe_mmio_write32_and_verify(&gt->mmio, GUC_WOPCM_SIZE, size, mas=
+k,
+> +					 size | GUC_WOPCM_SIZE_LOCKED);
+> +	if (err)
+> +		goto err_out;
+> +
+> +	mask =3D GUC_WOPCM_OFFSET_MASK | GUC_WOPCM_OFFSET_VALID | huc_agent;
+> +	err =3D xe_mmio_write32_and_verify(&gt->mmio, DMA_GUC_WOPCM_OFFSET,
+> +					 base | huc_agent, mask,
+> +					 base | huc_agent |
+> +					 GUC_WOPCM_OFFSET_VALID);
+> +	if (err)
+> +		goto err_out;
+> +
+> +	xe_gt_dbg(gt, "Programmed GuC WOPCM [b=3D%uK, s=3D%uK]\n", base / SZ_1K=
+, size / SZ_1K);
+> +
+> +	return 0;
+> +
+> +err_out:
+> +	xe_gt_notice(gt, "Failed to init uC WOPCM registers to [b=3D%uK, s=3D%u=
+K]!\n",
+> +		     base / SZ_1K, size / SZ_1K);
+> +	xe_gt_notice(gt, "%s(%#x)=3D%#x\n", "DMA_GUC_WOPCM_OFFSET",
+> +		     DMA_GUC_WOPCM_OFFSET.addr,
+> +		     xe_mmio_read32(&gt->mmio, DMA_GUC_WOPCM_OFFSET));
+> +	xe_gt_notice(gt, "%s(%#x)=3D%#x\n", "GUC_WOPCM_SIZE",
+> +		     GUC_WOPCM_SIZE.addr,
+> +		     xe_mmio_read32(&gt->mmio, GUC_WOPCM_SIZE));
+> +
+> +	return err;
+> +}
+> +
+> +static int uc_program_wopcm(struct xe_uc *uc)
+> +{
+> +	struct xe_gt *gt =3D uc_to_gt(uc);
+> +	struct xe_tile *tile =3D gt_to_tile(gt);
+> +	u32 huc_fw_size =3D xe_uc_fw_get_upload_size(&gt->uc.huc.fw);
+> +	u32 wopcm_size =3D xe_tile_wopcm_size(tile);
+> +	u32 guc_wopcm_base;
+> +	u32 guc_wopcm_size;
+> +	bool locked;
+
+[ ... ]
+
+> +	/*
+> +	 * On legacy HW (pre-PVC) where the driver is responsible for
+> +	 * programming the WOPCM registers, the WOPCM is divided into three
+> +	 * regions, in order from bottom to top:
+> +	 * 1 - The HuC region, which contains the HuC firmware + a 16KB reserved
+> +	 *     section.
+> +	 * 2 - The GuC region, which contains the GuC firmware + a reserved
+> +	 *     section for GuC's usage.
+> +	 * 3 - A reserved region for HW contexts, which is 36KB in size.
+> +	 *
+> +	 * To keep the math simple, we remove the HW context region from the
+> +	 * WOPCM size, calculate the size of region 1 and then leave the
+> +	 * remaining area for region 2. The official binaries are guaranteed to
+> +	 * fit in the WOPCM, so the math below can only go wrong if a user is
+> +	 * manipulating the blobs. In such a scenario, we'll catch the error at
+> +	 * FW load time, so no need to double verify it here.
+> +	 */
+> +	wopcm_size -=3D (SZ_32K + SZ_4K);
+> +
+> +	guc_wopcm_base =3D huc_fw_size + SZ_16K;
+> +	guc_wopcm_base =3D ALIGN(guc_wopcm_base, 1UL << GUC_WOPCM_OFFSET_SHIFT);
+> +
+> +	guc_wopcm_size =3D wopcm_size - guc_wopcm_base; /* already 4KB aligned =
+*/
+> +
+> +	return __wopcm_init_regs(gt, guc_wopcm_base, guc_wopcm_size);
+> +}
+
+[Severity: Medium]
+Can guc_wopcm_size underflow u32 here when a modified or oversized HuC
+firmware blob is supplied?
+
+Firmware header parsing in parse_headers() only checks that ucode_size and
+rsa_size fit within the loaded file, not within the tile's WOPCM size.  If
+guc_wopcm_base exceeds wopcm_size (or equals it), wopcm_size -
+guc_wopcm_base wraps around (or becomes 0) while remaining 4KB-aligned, so
+it passes the GUC_WOPCM_SIZE_MASK check in __wopcm_init_regs() and locks
+the write-once GUC_WOPCM_SIZE and DMA_GUC_WOPCM_OFFSET hardware registers
+with corrupt values before firmware load runs.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119230423.3220=
+57-3-daniele.ceraolospurio@intel.com?part=3D2
