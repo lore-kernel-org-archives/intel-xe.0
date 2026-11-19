@@ -2,28 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98090606A324
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 12:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7581606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 12:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VD2b17et
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B49711235F;
-	Thu, 19 Nov 2026 12:26:25 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F37FB11235F;
- Thu, 19 Nov 2026 12:26:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8736236654317504052=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BA4410E85A;
+	Thu, 19 Nov 2026 12:34:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FEB110E85A
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 12:34:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795091662; x=1826627662;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=yltaX6yXNE4h38xbl2hab8aTBvQ0qDbhzEiWe/+nX7Q=;
+ b=VD2b17etNPBjO3bGOdR/cWTHT1e1fh8BI+VNtVTy+HtY/cEHLpL7YIm1
+ aZo7Z805nyUcmLkzOtcpHi48N3q6k823W+QGgkHX6wN1wGrVimKiMBi97
+ 2mjjwrL1cV56LOX3eeVSE+DZNofJe7irfpKAy8Z6NwMDCQ09mCf+0Vywm
+ fK1aIz3TfAN5O2OZKg4QuVBjXqEedZqRlVEC1sVuu9ZPuwVLMRFSM3Oav
+ hS34sS6Exhsrxb6QTQ0iV4xH9dOL63jZ9esUMONTDBRSaultYr3uB19C1
+ VUUl7sIfWwbFx+mJJQ10Gk5Qr0PQuHvZcZjwAuyMW4xIz2wqxQ/FEkS8x w==;
+X-CSE-ConnectionGUID: qi0yiuJkTfS6tnuLyiYMtQ==
+X-CSE-MsgGUID: zKM+qC0lRAm3mpE5Qo59Dg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3965034"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
+   d="scan'208";a="3965034"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 04:34:21 -0800
+X-CSE-ConnectionGUID: NUGO1OvIR9iWG/mlj+Yz8g==
+X-CSE-MsgGUID: QEiWO1O0Rb+OSWNLpjzSLw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="12163069"
+Received: from gkczarna.igk.intel.com ([10.211.131.163])
+ by fmviesa012.fm.intel.com with ESMTP; 19 Nov 2026 04:34:20 -0800
+From: Tomasz Lis <tomasz.lis@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
+ Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v4 0/2] drm/xe/vf: New approach for post-migration LRC fixups
+Date: Thu, 19 Nov 2026 13:35:12 +0100
+Message-ID: <20261119123514.1658712-1-tomasz.lis@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Protect_drm=5Fras_against_u?=
- =?utf-8?q?nplugged_or_wedged_device_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Nov 2026 12:26:23 -0000
-Message-ID: <179509118399.51087.1189009205923261154@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261119102344.2053821-1-raag.jadav@intel.com>
-In-Reply-To: <20261119102344.2053821-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,110 +60,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============8736236654317504052==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The current approach to LRC recovery requires caution from developers
+when modifying any LRC-related code. More flexible solution may allow
+to avoid future troubles.
 
-== Series Details ==
+The current code also includes LRC creation repeat which looks a bit
+suspicious - it was developed without detailed knowledge of which
+part of LRC creation requires a repeat. Now after extensive debug we
+know that the repeat is only required for BO mapping, and actually
+all BOs should be protected, not only the ones storing LRCs.
 
-Series: Protect drm_ras against unplugged or wedged device (rev3)
-URL   : https://patchwork.freedesktop.org/series/178946/
-State : success
+This fixes a very rare bug where BO would be incorrectly created
+during migration resulting in CAT error generated by GPU. Chances
+of triggering this error were well below 0.1%.
 
-== Summary ==
+v2: A rebase after 6 months, with adjustments to current source.
+v3: Re-adding a check carelessly removed in v2, fixed handling
+   GGTT start/end, fixed issue with signals.
+v4: Several fixes to error paths (mutex creation, and prolonged
+   migration recovery while BO mapping). Altered BO insertion
+   to not repeat placement in GGTT upon migration, only repeat
+   the mapping.
 
-CI Bug Log - changes from xe-6186-84508686117ca3be5756049acdf15e3e47fd2683_BAT -> xe-pw-178946v3_BAT
-====================================================
+Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 
-Summary
--------
+Tomasz Lis (2):
+  drm/xe/vf: Late fixups of LRCs after VF migration
+  drm/xe: After VF migration, repeat BO mapping in progress
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/xe_exec_queue.c        | 63 +++++++++++++----------
+ drivers/gpu/drm/xe/xe_exec_queue.h        |  2 +-
+ drivers/gpu/drm/xe/xe_ggtt.c              | 54 ++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 18 ++++---
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 +
+ drivers/gpu/drm/xe/xe_guc_submit.c        | 35 +++----------
+ drivers/gpu/drm/xe/xe_guc_submit.h        |  2 -
+ drivers/gpu/drm/xe/xe_memirq.c            | 10 +++-
+ 8 files changed, 109 insertions(+), 77 deletions(-)
 
-  No regressions found.
+-- 
+2.43.0
 
-  
-
-Participating hosts (15 -> 14)
-------------------------------
-
-  Missing    (1): bat-nvls-2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-6186-84508686117ca3be5756049acdf15e3e47fd2683 -> xe-pw-178946v3
-
-  IGT_9198: 9198
-  xe-6186-84508686117ca3be5756049acdf15e3e47fd2683: 84508686117ca3be5756049acdf15e3e47fd2683
-  xe-pw-178946v3: 178946v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178946v3/index.html
-
---===============8736236654317504052==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Protect drm_ras against unplugged or wedged device (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178946/">https://patchwork.freedesktop.org/series/178946/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178946v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178946v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6186-84508686117ca3be5756049acdf15e3e47fd2683_BAT -&gt; xe-pw-178946v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 14)</h2>
-<p>Missing    (1): bat-nvls-2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6186-84508686117ca3be5756049acdf15e3e47fd2683 -&gt; xe-pw-178946v3</li>
-</ul>
-<p>IGT_9198: 9198<br />
-  xe-6186-84508686117ca3be5756049acdf15e3e47fd2683: 84508686117ca3be5756049acdf15e3e47fd2683<br />
-  xe-pw-178946v3: 178946v3</p>
-
-</body>
-</html>
-
---===============8736236654317504052==--
