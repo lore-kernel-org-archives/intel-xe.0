@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E331606A339
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 00:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5116606A320
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 00:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kpo7hu3I
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=INcVaSEV
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5592010ECAC;
-	Thu, 19 Nov 2026 00:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62A2610E173;
+	Thu, 19 Nov 2026 00:29:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 472B010E173
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 00:29:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8664B10E173
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Nov 2026 00:29:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795048141; x=1826584141;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=V7BX6IKu+KQFdSRCB0PCnYzxwcuuV+OhI7rlR+Vm/r0=;
- b=kpo7hu3ISdeqOSjfHkA8CDB5Y9UqNrkT1nEMpxDAEdIMBXRwuhGJR1ZH
- Ay4Yqea642nuqXlrwguo8wX4S72K9s0FqsZDCJ6z0At1z+M4BUuIzNtUL
- reI7X/arwXAu6Rdd+6Qd9+HtZ7MRzTv/JlH6PlldJ66AcXSShEABAsvZY
- JtLYweY06yMP3wUiOQIUcapqpOKFQk9GrGwz9zfKxpeLuFUXUQgrym5g2
- CBjZYbDpL8akwXyUFI0ahkNz3tK3odrU9tpQbbBijdoAwIy9gjSI4e8JQ
- Wi0zyCtZAyqDRorJG/poY36aFm5pgCrgwu07czKrs7VIboVB8D7eZSC3h Q==;
-X-CSE-ConnectionGUID: 8VDH0ZLkTWa3rMHq3lpDHQ==
-X-CSE-MsgGUID: UJe0NtdIQq2hF4tDV2z/Dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3876661"
+ t=1795048146; x=1826584146;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=arj3h3gpuaRo4/y13B/JzGmSls1WbHsIcSiFclNEG1k=;
+ b=INcVaSEVBbc/9jO6Yn9JvvqTkZXV2bpK4iGaLcsvA16tQE+3f8GJJIXh
+ cRgJqMJ8YUyCJaDFGZkbjkPJSLt2sjFm2fQyXH9pZgGS+JQEXDIR5+5YU
+ YkpW8uKWRXqfMRGKouznaI3ws7uZpS3qHuX8Xu7tMesC3vFcb4eKxX57/
+ t3t6Ar7sQeyYPO6Flu27jUvPfK10A8K6rPXDaEzKVyF4FJDFhkZCALdw+
+ eCe5v3svjpzN7EyeW8lkgIoNWhwHw1C0UWsEHufl1ZsDATu/v9/dHBrHc
+ s9BlMefNTZ82RcIW12paC7ntG+j/yFdr/5PiW/EAQq8cWg4fz3mIZ62dC g==;
+X-CSE-ConnectionGUID: iFV5luzURhmEevEDg/V29g==
+X-CSE-MsgGUID: w0wGaVxvRMqRi8frJwvtBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11970"; a="3876663"
 X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; 
-   d="scan'208";a="3876661"
+   d="scan'208";a="3876663"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Nov 2026 16:29:01 -0800
-X-CSE-ConnectionGUID: wJS+p9NLTPGGtCj4o+ZVoA==
-X-CSE-MsgGUID: BnEURYmkTGOEdCpkpjbk3A==
+X-CSE-ConnectionGUID: 6Jx8QvfkSF+x8NVpHJiVRw==
+X-CSE-MsgGUID: ddKZCMicTUeZsTv+gZyfHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10081543"
+X-IronPort-AV: E=Sophos;i="6.27,220,1787036400"; d="scan'208";a="10081549"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Nov 2026 16:29:01 -0800
@@ -43,10 +43,13 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
  harish.chegondi@intel.com
 Cc: matthew.brost@intel.com
-Subject: [PATCH v8 0/8] Cleanup OA stream on PCI unbind/remove
-Date: Wed, 18 Nov 2026 16:27:38 -0800
-Message-ID: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v8 2/8] drm/xe/oa: Use the drm device address_space for the OA
+ stream fd
+Date: Wed, 18 Nov 2026 16:27:40 -0800
+Message-ID: <20261119002737.3899877-12-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
+References: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -67,33 +70,131 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When an OA stream FD is open, removing the PCI device due to PCIe errors
-or doing an unbind causes a NPD and system reboots. While OA registers a
-fini handler with devm, the handler does not take into account active OA
-connections.
+anon_inode_getfd() hands back a file whose f_mapping points at the
+address_space of the kernel-wide singleton anon_inode_inode, shared by
+every other anon_inode_getfd()/anon_inode_getfile() user in the system.
+Any code that needs to invalidate userspace mappings of the OA buffer
+via that mapping (e.g. unmap_mapping_range()) would end up operating on
+an address_space it doesn't own, with the potential to affect unrelated
+mappings.
 
-Add code to quiesce OA connection on PCI remove/unbind.
+Keep the anon inode singleton and only point the file's f_mapping at the
+drm device's address_space (drm.anon_inode->i_mapping), same as drm_file
+does for drm fds. f_mapping must be set before the fd is visible to
+userspace, so reserve the fd with get_unused_fd_flags(), create the file
+with anon_inode_getfile() and install it with fd_install() after setting
+f_mapping.
 
-v2 - v8: Sashiko Comments and other refactor
+To keep the OA buffer mmaps of different streams apart from each other
+and from GEM mmaps in that shared address_space, reserve a GEM fake
+offset for the OA buffer with drm_gem_create_mmap_offset(), and move
+the vma to that offset in xe_oa_mmap() by setting vm_pgoff, the same
+way drm_gem_prime_mmap() does. f_op->mmap runs before the vma is linked
+into the address_space, so the vma is tracked at the OA buffer's own
+range, and drm_vma_node_unmap() on the OA buffer only zaps mappings of
+that buffer. The TTM fault handler already subtracts the fake offset
+from vm_pgoff, so faults resolve to the right pages unchanged.
+
+drm_dev_unplug() now also zaps OA buffer mmaps along with all other
+mmaps of the drm device.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_oa.c | 41 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 40 insertions(+), 1 deletion(-)
 
-Umesh Nerlige Ramappa (8):
-  drm/xe/oa: Ignore a HW tail pointer outside the OA buffer
-  drm/xe/oa: Use the drm device address_space for the OA stream fd
-  drm/xe/oa: Wait for in-flight OA batches before stream HW teardown
-  drm/xe: Reject vm_ops->access on BO mappings of an unplugged device
-  drm/xe/oa: Fence OA ioctls and mmap against device unplug and wedging
-  drm/xe/oa: Take the runtime PM reference in xe_oa_destroy_locked()
-  drm/xe/oa: Free the OA buffer and the stream after the stream destroy
-  drm/xe/oa: Quiesce OA streams on driver unbind and PCI reset
-
- drivers/gpu/drm/xe/xe_bo.c          |  15 +-
- drivers/gpu/drm/xe/xe_oa.c          | 289 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_oa_types.h    |   3 +
- drivers/gpu/drm/xe/xe_observation.c |  20 +-
- 4 files changed, 289 insertions(+), 38 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index fdd2d11ce4e7..d574b0ecf39b 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -917,6 +917,7 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+ 		XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(stream->oa->xe)) :
+ 		XE_BO_FLAG_SYSTEM;
+ 	struct xe_bo *bo;
++	int ret;
+ 
+ 	bo = xe_bo_create_pin_map_novm(stream->oa->xe, stream->gt->tile,
+ 				       size, ttm_bo_type_kernel,
+@@ -924,6 +925,17 @@ static int xe_oa_alloc_oa_buffer(struct xe_oa_stream *stream, size_t size)
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
++	/*
++	 * Reserve a range for the OA buffer in the drm device's address_space, so that its
++	 * userspace mmaps don't overlap with those of GEM BOs or other OA buffers and can be
++	 * unmapped on their own. Not granted to any drm_file, so not mmap'able via drm fds.
++	 */
++	ret = drm_gem_create_mmap_offset(&bo->ttm.base);
++	if (ret) {
++		xe_bo_unpin_map_no_vm(bo);
++		return ret;
++	}
++
+ 	/*
+ 	 * ttm_bo_type_kernel BOs are not zeroed on allocation, so the buffer can
+ 	 * hold stale data from previously freed pages. Since the OA buffer is
+@@ -1731,6 +1743,15 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
+ 		return ret;
+ 	}
+ 
++	/*
++	 * Userspace always maps the OA buffer at offset 0, the mapping is moved to the OA
++	 * buffer's own range in the drm device's address_space below
++	 */
++	if (vma->vm_pgoff) {
++		drm_dbg(&stream->oa->xe->drm, "Wrong mmap offset, must be 0\n");
++		return -EINVAL;
++	}
++
+ 	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
+ 	if (vma->vm_end - vma->vm_start != xe_bo_size(bo)) {
+ 		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
+@@ -1748,6 +1769,8 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
+ 	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
+ 		     VM_MAYWRITE | VM_MAYEXEC);
+ 
++	vma->vm_pgoff = drm_vma_node_start(&bo->ttm.base.vma_node);
++
+ 	return drm_gem_mmap_obj(&bo->ttm.base, xe_bo_size(bo), vma);
+ }
+ 
+@@ -1878,6 +1901,7 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+ {
+ 	struct xe_oa_stream *stream;
+ 	struct drm_syncobj *ufence_syncobj;
++	struct file *file;
+ 	int stream_fd;
+ 	int ret;
+ 
+@@ -1919,12 +1943,27 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+ 			goto err_destroy;
+ 	}
+ 
+-	stream_fd = anon_inode_getfd("[xe_oa]", &xe_oa_fops, stream, 0);
++	stream_fd = get_unused_fd_flags(0);
+ 	if (stream_fd < 0) {
+ 		ret = stream_fd;
+ 		goto err_disable;
+ 	}
+ 
++	file = anon_inode_getfile("[xe_oa]", &xe_oa_fops, stream, 0);
++	if (IS_ERR(file)) {
++		ret = PTR_ERR(file);
++		put_unused_fd(stream_fd);
++		goto err_disable;
++	}
++
++	/*
++	 * Don't use the address_space of the anon inode singleton, which is shared with
++	 * unrelated anon files. Use the drm device's address_space instead, same as drm fds.
++	 * OA buffer mmaps live at the OA buffer's own fake offset range there.
++	 */
++	file->f_mapping = oa->xe->drm.anon_inode->i_mapping;
++	fd_install(stream_fd, file);
++
+ 	if (stream->sample)
+ 		xe_reg_whitelist_oa_regs(stream->gt);
+ 
 -- 
 2.55.0
 
