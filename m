@@ -2,74 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BE8606A609
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 16:41:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QTTxjt7B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8929606A32A
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 17:06:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 094B510E074;
-	Fri, 20 Nov 2026 16:41:52 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 01FDA112B8B;
- Fri, 20 Nov 2026 16:41:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795192906; x=1826728906;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Mt37fmIUELj0xI9G800lQNgzenR8tQzCZwNS3sQls6s=;
- b=QTTxjt7Bn70kAaH3QBpJgl1Dr5vtXilZO7jNDhEPPTNsnghTwJG21lPM
- Et9dKaYxxWbcZnAgbTFgCs5OFqY/hxSqnOFhePgUOQ0whRjL0WesKFWDK
- HFMjRgWT6IVriI9/Ztj/GHfEhq7p+9xsB+vFoC/m9wruUDFB6z55nsmDe
- KPSOMTYIPaMezrXcKoMAS7bcvXebmPXt5gaToaN9jGrYZ3SSu04u6aLXm
- E+DD94s/DNAnqzStkQdOBCoBt0fUI0prcPziYsOj9bk1CGQ8ol0oPN2Ge
- sPXWutwj5HlegjO9qImjR3Z02AoxQE7cPi2pY0T1IsPH1xypbRz04uX+q A==;
-X-CSE-ConnectionGUID: 8P90kWWLSHWPQAoKZkkXsA==
-X-CSE-MsgGUID: A22u1h1BTzquax9w5wqTZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="3957333"
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="3957333"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 08:41:46 -0800
-X-CSE-ConnectionGUID: eqDDr+zvTM+bRtypcysw+w==
-X-CSE-MsgGUID: 01oe9egoQMy1BFDCeS6wYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="11087115"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.66])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 08:41:41 -0800
-Date: Fri, 20 Nov 2026 18:41:37 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Mario Limonciello <mario.limonciello@amd.com>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Javier Martinez Canillas <javierm@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Mario Limonciello <superm1@kernel.org>,
- Xaver Hugl <xaver.hugl@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
-Message-ID: <awB4Qe83u0l0XPKA@intel.com>
-References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
- <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DA46112AB3;
+	Fri, 20 Nov 2026 17:06:45 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFE99112AB3;
+ Fri, 20 Nov 2026 17:06:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3344220308352949541=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/1?=
+ =?utf-8?q?=5D_drm/xe/guc=3A_Scale_suspend_wait_timeout_with_preempt_timeout?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Nov 2026 17:06:43 -0000
+Message-ID: <179519440377.61153.8114365557831014943@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261120160826.2045426-2-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20261120160826.2045426-2-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,88 +33,335 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello wrote:
-> Panel brightness is a property of a display, and thus of a DRM
-> connector. Add an atomic per-connector LUMINANCE range property so
-> compositors can manage relative panel luminance together with the rest
-> of the display state.
-> 
-> Keep the core backend-agnostic. Drivers create the property with their
-> hardware range and implement connector helper callbacks to set luminance
-> or disable panel emission. The atomic helpers sequence those callbacks
-> around pipeline enable and disable, including luminance-only commits.
-> The panel is left lit when the pipeline enters self refresh, and the
-> luminance is only reprogrammed when it changes or a modeset enables the
-> pipeline.
-> 
-> The stored property value is independent of display power. A commit made
-> while the connector is inactive is retained and applied on the next
-> enable; disabling the pipeline does not overwrite it.
-> 
-> LUMINANCE values are relative, driver-defined levels rather than
-> absolute luminance in cd/m^2. The interface supports emissive panels as
-> well as panels with a separate backlight.
-> 
-> Keep the interface behind a default-off DRM_LUMINANCE option. Migrated
-> drivers retain their legacy backlight class ABI unless the new interface
-> is explicitly selected, allowing the DRM UAPI and legacy compatibility
-> policy to remain separate.
-> 
-> Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-> Signed-off-by: Mario Limonciello <mario.limonciello@amd.com>
-> ---
-> v11:
->  * Don't call .disable_luminance when the CRTC enters self refresh (Sashiko)
->  * Only call .set_luminance when the luminance changes or on a modeset
->    that isn't a self refresh exit (Leo Li, Sashiko)
->  * Fix the .set_luminance self refresh documentation
-> v10:
->  * Add tag
-> ---
->  drivers/gpu/drm/Kconfig                    | 14 +++++
->  drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++++++++++++++++++++++++-
->  drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
->  drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
->  drivers/gpu/drm/drm_connector.c            | 57 +++++++++++++++++
->  drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++++
->  include/drm/drm_atomic_helper.h            |  3 +
->  include/drm/drm_connector.h                | 16 +++++
->  include/drm/drm_modeset_helper_vtables.h   | 28 +++++++++
->  9 files changed, 255 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> index 61111d50b1c65..1bbe2c2d7c76f 100644
-> --- a/drivers/gpu/drm/Kconfig
-> +++ b/drivers/gpu/drm/Kconfig
-> @@ -33,6 +33,20 @@ endmenu
->  
->  if DRM
->  
-> +config DRM_LUMINANCE
-> +	bool "DRM connector luminance support"
-> +	help
-> +	  Expose relative luminance as an atomic DRM connector property. Values
-> +	  are driver-defined levels rather than absolute luminance in cd/m^2.
-> +	  Drivers provide connector helper callbacks to program their hardware;
-> +	  the DRM core does not depend on a particular backend.
-> +
-> +	  Drivers migrated to this interface will use it instead of registering
-> +	  a legacy backlight class device. Leave this disabled to preserve the
-> +	  de-facto userspace ABI in /sys/class/backlight.
+--===============3344220308352949541==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I don't think this will fly if it breaks the backlight class interface.
-No one can actually enable this outside of some niche embedded use
-cases where backwards compatibility is not an issue. I think what
-you need is a generic backlight class implementation on top of this.
+== Series Details ==
 
--- 
-Ville Syrjälä
-Intel
+Series: series starting with [1/1] drm/xe/guc: Scale suspend wait timeout with preempt timeout
+URL   : https://patchwork.freedesktop.org/series/179228/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-6196-24bfa0098b29748ef02332bb0c50700859cf09c9_BAT -> xe-pw-179228v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 15)
+------------------------------
+
+  Additional (2): bat-adlp-7 bat-bmg-3 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-179228v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adlp-7:         NOTRUN -> [SKIP][1] ([Intel XE#8265])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
+
+  * igt@xe_ccs@block-copy-compressed:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#455] / [Intel XE#488] / [Intel XE#5607]) +1 other test skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_ccs@block-copy-compressed.html
+
+  * igt@xe_compute_preempt@compute-preempt:
+    - bat-adlp-7:         NOTRUN -> [SKIP][3] ([Intel XE#6360]) +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_compute_preempt@compute-preempt.html
+
+  * igt@xe_evict@evict-beng-small:
+    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#261] / [Intel XE#5564] / [Intel XE#688]) +9 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
+
+  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
+    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#5563] / [Intel XE#688]) +1 other test skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+
+  * igt@xe_exec_balancer@twice-cm-virtual-userptr:
+    - bat-adlp-7:         NOTRUN -> [SKIP][6] ([Intel XE#7482]) +17 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_balancer@twice-cm-virtual-userptr.html
+
+  * igt@xe_exec_fault_mode@twice-rebind-prefetch:
+    - bat-adlp-7:         NOTRUN -> [SKIP][7] ([Intel XE#288] / [Intel XE#5561]) +33 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-rebind-prefetch.html
+
+  * igt@xe_exec_mix_modes@exec-spinner-interrupted-dma-fence:
+    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#8376]) +3 other tests skip
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_mix_modes@exec-spinner-interrupted-dma-fence.html
+
+  * igt@xe_exec_multi_queue@priority:
+    - bat-adlp-7:         NOTRUN -> [SKIP][9] ([Intel XE#8364] / [Intel XE#8377]) +13 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_multi_queue@priority.html
+
+  * igt@xe_exec_system_allocator@eu-fault-2m-range-device-host:
+    - bat-adlp-7:         NOTRUN -> [SKIP][10] ([Intel XE#4915]) +11 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html
+
+  * igt@xe_live_ktest@xe_bo:
+    - bat-adlp-7:         NOTRUN -> [SKIP][11] ([Intel XE#2229] / [Intel XE#455]) +2 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_live_ktest@xe_bo.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
+    - bat-adlp-7:         NOTRUN -> [SKIP][12] ([Intel XE#9657])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-adlp-7:         NOTRUN -> [SKIP][13] ([Intel XE#2229] / [Intel XE#5488])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-7:         NOTRUN -> [SKIP][14] ([Intel XE#1008] / [Intel XE#5591])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-auto:
+    - bat-adlp-7:         NOTRUN -> [SKIP][15] ([Intel XE#8434])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-auto.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-7:         NOTRUN -> [SKIP][16] ([Intel XE#977])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-adlp-7:         NOTRUN -> [SKIP][17] ([Intel XE#2838] / [Intel XE#979])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-adlp-7:         NOTRUN -> [SKIP][18] ([Intel XE#979])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-xelpg.html
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][19] ([Intel XE#6566]) +3 other tests skip
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#455]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/455
+  [Intel XE#488]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/488
+  [Intel XE#4915]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4915
+  [Intel XE#5488]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488
+  [Intel XE#5561]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561
+  [Intel XE#5563]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5563
+  [Intel XE#5564]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564
+  [Intel XE#5591]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5591
+  [Intel XE#5607]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5607
+  [Intel XE#6360]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6360
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
+  [Intel XE#8265]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265
+  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
+  [Intel XE#8376]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8376
+  [Intel XE#8377]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377
+  [Intel XE#8434]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8434
+  [Intel XE#9657]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+
+
+Build changes
+-------------
+
+  * Linux: xe-6196-24bfa0098b29748ef02332bb0c50700859cf09c9 -> xe-pw-179228v1
+
+  IGT_9200: 9200
+  xe-6196-24bfa0098b29748ef02332bb0c50700859cf09c9: 24bfa0098b29748ef02332bb0c50700859cf09c9
+  xe-pw-179228v1: 179228v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/index.html
+
+--===============3344220308352949541==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/xe/guc: Scale suspend wait timeout with preempt timeout</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179228/">https://patchwork.freedesktop.org/series/179228/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6196-24bfa0098b29748ef02332bb0c50700859cf09c9_BAT -&gt; xe-pw-179228v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 15)</h2>
+<p>Additional (2): bat-adlp-7 bat-bmg-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-179228v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8265">Intel XE#8265</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_ccs@block-copy-compressed:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_ccs@block-copy-compressed.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/488">Intel XE#488</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5607">Intel XE#5607</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_compute_preempt@compute-preempt:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_compute_preempt@compute-preempt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6360">Intel XE#6360</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564">Intel XE#5564</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5563">Intel XE#5563</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_balancer@twice-cm-virtual-userptr:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_balancer@twice-cm-virtual-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-rebind-prefetch:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-rebind-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561">Intel XE#5561</a>) +33 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_mix_modes@exec-spinner-interrupted-dma-fence:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_mix_modes@exec-spinner-interrupted-dma-fence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8376">Intel XE#8376</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_multi_queue@priority:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_multi_queue@priority.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8377">Intel XE#8377</a>) +13 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@eu-fault-2m-range-device-host:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_exec_system_allocator@eu-fault-2m-range-device-host.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4915">Intel XE#4915</a>) +11 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_live_ktest@xe_bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/455">Intel XE#455</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657">Intel XE#9657</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488">Intel XE#5488</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5591">Intel XE#5591</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-auto:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-auto.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8434">Intel XE#8434</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-adlp-7/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179228v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6196-24bfa0098b29748ef02332bb0c50700859cf09c9 -&gt; xe-pw-179228v1</li>
+</ul>
+<p>IGT_9200: 9200<br />
+  xe-6196-24bfa0098b29748ef02332bb0c50700859cf09c9: 24bfa0098b29748ef02332bb0c50700859cf09c9<br />
+  xe-pw-179228v1: 179228v1</p>
+
+</body>
+</html>
+
+--===============3344220308352949541==--
