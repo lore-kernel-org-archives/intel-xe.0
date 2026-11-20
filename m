@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C796F606A32A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BEEE60A260B
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 20:56:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=czxEOuIZ
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XBvLZhvZ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5DA10E5D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06075112D21;
 	Fri, 20 Nov 2026 20:56:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9CA510E310
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 20:56:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 175EE10E492
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 20:56:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795208173; x=1826744173;
+ t=1795208177; x=1826744177;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=2E8J9ewhxz8k9ZKvBIUs1uorRqNr2ScS/zC9vMYDdrY=;
- b=czxEOuIZSgx5V71uuKn4JtFFAAR7ZJfeRHtWRU1rN88b+2J3mknN9+Ir
- CxusH/9d4XjEhJOIsb1YzoZMJmxKreOzyyphVJKMMgoSen4mUOjchTdmK
- eurCpfdmy4LU8b+pZ3vIyg7k70iVVHZvJFTUXOvBMeZCDS+2qBVSSz8k6
- EXNq6xjcTtyeqh5w6yIA93P1UKSXL3a/mTdTeSjGcEJEXiVSQK4RnMTrU
- Mouye6lKsQ3VxZ7vh3fRyIooWBxpZNMvJ5wISWEMrIPtb7GgtbBvwZNRv
- sD0zNw0wUcc+zwPAs8Jv+1sL47xw1/6e3YejFz3tEt1IN1jVnOEL/Xcr/ w==;
-X-CSE-ConnectionGUID: i7gWGManQMK10jYTuRBCEg==
-X-CSE-MsgGUID: 2AEIk2GvRJim4m+WQ2quAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4136404"
+ bh=NOHOd62rM2YffZCVbd0bVmaCokG1ibq/N2INmQVMSfE=;
+ b=XBvLZhvZlvCJrRkA/p2TyU1bs/jSAQL+on9tNCvz6nuHucdCoAJkAJFW
+ hqMP7AufRlxcwO7B3OCElCQmbAabV5N8yNeS1yfNI6zAzPZYCswesvgFr
+ lr54GYUbhtAdpKFXtabu3OWQNyIqSDc1oCYqyQqJIKxBQYCX0GsLXgqR+
+ mIN7Bb8nxxShuL1UJjrmW0hzR44HQntfTDQa2MjaqiVrFILwqgGXZfgRj
+ xkUs5OMx+W1O9gWH+zoJ6e4tVymH3TzuWTHDyqQCsLk3upXVSGjaDxa6Q
+ QBJblnjU0Bu4tQCMZ4QrVX8oTAjrQvLDk5xWJXlkmEPmQNYqI7cboJXOc Q==;
+X-CSE-ConnectionGUID: lqjB0kXPTd2ScYGeh11gLw==
+X-CSE-MsgGUID: l4hrDPO3QGOlAeIw0d+eag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4136420"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4136404"
+   d="scan'208";a="4136420"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Nov 2026 12:55:51 -0800
-X-CSE-ConnectionGUID: De8I3dxJTA6Dj9j1xdQpEQ==
-X-CSE-MsgGUID: LDav50p0TY2yMMVKkUH7tQ==
+X-CSE-ConnectionGUID: ohwnjgpFR9OmYFgr6sxkGA==
+X-CSE-MsgGUID: Bk/QzYDvTumTOM+6KyIW+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="10908728"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="10908736"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 12:55:48 -0800
+ 20 Nov 2026 12:55:49 -0800
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -46,15 +46,14 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v21 13/19] drm/xe/vsec: Crescent Island PMT decode
-Date: Fri, 20 Nov 2026 12:55:53 -0800
-Message-ID: <20261120205540.1220643-34-michael.j.ruhl@intel.com>
+Subject: [PATCH v21 16/19] drm/xe/vsec: Add PMT GUID internal access
+Date: Fri, 20 Nov 2026 12:55:56 -0800
+Message-ID: <20261120205540.1220643-37-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261120205540.1220643-21-michael.j.ruhl@intel.com>
 References: <20261120205540.1220643-21-michael.j.ruhl@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,165 +73,184 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Crescent Island (CRI) has different index and offset values for
-accessing the PMT data area.
+Xe accesses the PMT infrastructure directly. The current usage is
+supported ONLY by BMG devices.
 
-Update the decode path to support the CRI device.
+CRI has further requirements for access.
 
-Update the data read callback so to support the CRI usage.
+Add the platform id to the GUID register define and use that for the
+register access.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Add an API to allow access the GUID based on the platform.
+
+Reviewed-by: Karthik Poosa <karthik.poosa@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 100 +++++++++++++++++++++++++++++++----
- 1 file changed, 90 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_pmt.h     |  4 +-
+ drivers/gpu/drm/xe/xe_debugfs.c      |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_hwmon.c        |  2 +-
+ drivers/gpu/drm/xe/xe_pcode.c        |  2 +-
+ drivers/gpu/drm/xe/xe_vsec.c         | 59 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vsec.h         |  1 +
+ 7 files changed, 68 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_pmt.h b/drivers/gpu/drm/xe/regs/xe_pmt.h
+index 2f6658395587..fb5b5a8648ba 100644
+--- a/drivers/gpu/drm/xe/regs/xe_pmt.h
++++ b/drivers/gpu/drm/xe/regs/xe_pmt.h
+@@ -10,7 +10,7 @@
+ #define BMG_PMT_BASE_OFFSET		0xDB000
+ #define BMG_DISCOVERY_OFFSET		(SOC_BASE + BMG_PMT_BASE_OFFSET)
+ 
+-#define PUNIT_TELEMETRY_GUID		XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
++#define BMG_PUNIT_TELEMETRY_GUID	XE_REG(BMG_DISCOVERY_OFFSET + 0x4)
+ #define BMG_ENERGY_STATUS_PMT_OFFSET	(0x30)
+ #define	ENERGY_PKG			REG_GENMASK64(31, 0)
+ #define	ENERGY_CARD			REG_GENMASK64(63, 32)
+@@ -24,6 +24,8 @@
+ /* for CRI discovery and telemetry are in an indexed window */
+ #define CRI_PMT_OFFSET			(SOC_BASE + XE_PMT_BASE_OFFSET)
+ 
++#define CRI_PUNIT_TELEMETRY_GUID	XE_REG(CRI_PMT_OFFSET + 0x4)
++
+ #define BMG_MODS_RESIDENCY_OFFSET		(0x4D0)
+ #define BMG_G2_RESIDENCY_OFFSET		(0x530)
+ #define BMG_G6_RESIDENCY_OFFSET		(0x538)
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 1a74a7106462..342182d5ecda 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -156,7 +156,7 @@ static void read_residency_counter(struct xe_device *xe, struct xe_mmio *mmio,
+ 	int ret;
+ 
+ 	ret = xe_pmt_telem_read(xe->drm.dev,
+-				xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
++				xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID),
+ 				&residency, offset, sizeof(residency));
+ 	if (ret != sizeof(residency)) {
+ 		drm_warn(&xe->drm, "%s counter failed to read, ret %d\n", name, ret);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index d1bdd3a872a8..be6feaff4baa 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -492,6 +492,8 @@ struct xe_device {
+ 		struct delayed_work work;
+ 		/** @pmt.retry_count: late-bind probe retry */
+ 		u32 retry_count;
++		/** @pmt.punit_guid_cache: cache of the PUNIT GUID */
++		u32 punit_guid_cache;
+ 	} pmt;
+ 
+ 	/** @soc_remapper: SoC remapper object */
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 9cbb65891aa4..55ff56a39599 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -605,7 +605,7 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, int channel, long *energy)
+ 		u64 pmt_val;
+ 
+ 		ret = xe_pmt_telem_read(hwmon->xe->drm.dev,
+-					xe_mmio_read32(mmio, PUNIT_TELEMETRY_GUID),
++					xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID),
+ 					&pmt_val, BMG_ENERGY_STATUS_PMT_OFFSET,	sizeof(pmt_val));
+ 		if (ret != sizeof(pmt_val)) {
+ 			drm_warn(&hwmon->xe->drm, "energy read from pmt failed, ret %d\n", ret);
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 266deecbb100..8c901e54f384 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -369,7 +369,7 @@ int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *version)
+ 	guard(xe_pm_runtime)(xe);
+ 
+ 	ret = xe_pmt_telem_read(xe->drm.dev,
+-				xe_mmio_read32(xe_root_tile_mmio(xe), PUNIT_TELEMETRY_GUID),
++				xe_mmio_read32(xe_root_tile_mmio(xe), BMG_PUNIT_TELEMETRY_GUID),
+ 				(u64 *)version, PUNIT_VERSION_OFFSET, sizeof(*version));
+ 	if (ret != sizeof(*version)) {
+ 		xe_warn(xe, "pcode version read from PMT failed, ret %pe\n", ERR_PTR(ret));
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 4ecc2d9f3f38..a814d7151eea 100644
+index 26ed4e85614f..851d02d6ed25 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -120,19 +120,25 @@ static struct intel_vsec_platform_info xe_vsec_info[] = {
- /*
-  * The GUID will have the following bits to decode:
-  *   [0:3]   - {Telemetry space iteration number (0,1,..)}
-- *   [4:7]   - Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
-+ *   [4:7]   - BMG Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
-+ *   [4:5]   - CRI Segment (SEGMENT_INDEPENDENT-0, Client-1, Server-2)
-+ *   [6:7]   - CRI Instance
-  *   [8:11]  - SOC_SKU
-  *   [12:27] – Device ID – changes for each down bin SKU’s
-  *   [28:29] - Capability Type (Crashlog-0, Telemetry Aggregator-1, Watcher-2)
-  *   [30:31] - Record-ID (0-PUNIT, 1-OOBMSM_0, 2-OOBMSM_1)
-  */
- #define GUID_TELEM_ITERATION	GENMASK(3, 0)
--#define GUID_SEGMENT		GENMASK(7, 4)
- #define GUID_SOC_SKU		GENMASK(11, 8)
- #define GUID_DEVICE_ID		GENMASK(27, 12)
- #define GUID_CAP_TYPE		GENMASK(29, 28)
- #define GUID_RECORD_ID		GENMASK(31, 30)
- 
-+#define BMG_GUID_SEGMENT	GENMASK(7, 4)
-+
-+#define CRI_GUID_SEGMENT	GENMASK(5, 4)
-+#define CRI_GUID_INSTANCE	GENMASK(7, 6)
-+
- #define BMG_IDX_TELEM_PUNIT		0x00
- #define BMG_IDX_TELEM_OOBMSM		0x01
- #define BMG_IDX_CRASHLOG_PUNIT		0x02
-@@ -143,6 +149,18 @@ static struct intel_vsec_platform_info xe_vsec_info[] = {
- #define BMG_OOBMSM_0_WATCHER_OFFSET	0x18D8
- #define BMG_OOBMSM_1_TELEMETRY_OFFSET	0x1000
- 
-+#define CRI_IDX_TELEM_DISCOVERY		0x00
-+#define CRI_IDX_TELEM_PUNIT		0x01
-+#define CRI_IDX_TELEM_OOBMSM		0x02
-+#define CRI_IDX_CRASHLOG_PUNIT		0x03
-+#define CRI_IDX_WATCHER_OOBMSM		0x03  /* PUNIT and OOBMSM share this index */
-+#define CRI_IDX_CRASHLOG_OOBMSM		0x04
-+
-+#define CRI_PUNIT_WATCHER_OFFSET		0x08A0
-+#define CRI_OOBMSM_WATCHER_OFFSET		0x0CF8
-+#define CRI_OOBMSM_GFSP_TELEMETRY_OFFSET	0x1600
-+#define CRI_PUNIT_CRASHLOG_OFFSET		0x0E60
-+
- enum record_id {
- 	PUNIT,
- 	OOBMSM_0,
-@@ -155,17 +173,10 @@ enum capability {
- 	WATCHER,
- };
- 
--static int xe_guid_decode(u32 guid, int *index, u32 *offset)
-+static int bmg_guid_decode(u32 guid, int *index, u32 *offset)
- {
- 	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
- 	u32 cap_type  = FIELD_GET(GUID_CAP_TYPE, guid);
--	u32 device_id = FIELD_GET(GUID_DEVICE_ID, guid);
--
--	if (device_id != BMG_DEVICE_ID)
--		return -ENODEV;
--
--	if (cap_type > WATCHER)
--		return -EINVAL;
- 
- 	*offset = 0;
- 
-@@ -201,6 +212,75 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	return 0;
+@@ -639,6 +639,65 @@ static void cri_late_bind_probe(struct xe_device *xe)
+ 	intel_vsec_register(dev, info);
  }
  
-+static int cri_guid_decode(u32 guid, int *index, u32 *offset)
++/**
++ * xe_vsec_get_guid - Get and cache the PUNIT guid value
++ * @xe: valid xe device
++ * @guid: returned guid
++ *
++ * Return:
++ * * -ENODATA device is not active
++ * * -EINVAL unsupported platform
++ * * 0 success
++ */
++int xe_vsec_get_guid(struct xe_device *xe, u32 *guid)
 +{
-+	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
-+	u32 cap_type  = FIELD_GET(GUID_CAP_TYPE, guid);
-+	u32 instance  = FIELD_GET(CRI_GUID_INSTANCE, guid);
++	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
++	int ret = 0;
 +
-+	*offset = 0;
++	xe_assert(xe, !IS_SRIOV_VF(xe));
 +
-+	if (cap_type == CRASHLOG) {
-+		if (record_id == PUNIT) {
-+			*index = CRI_IDX_CRASHLOG_PUNIT;
-+			*offset = CRI_PUNIT_CRASHLOG_OFFSET;
-+		} else {
-+			*index = CRI_IDX_CRASHLOG_OOBMSM;
-+		}
-+		return 0;
++	if (!xe_pm_runtime_get_if_active(xe))
++		return -ENODATA;
++
++	mutex_lock(&xe->pmt.lock);
++
++	if (xe->pmt.punit_guid_cache) {
++		*guid = xe->pmt.punit_guid_cache;
++		goto unlock;
 +	}
 +
-+	switch (record_id) {
-+	case PUNIT:
-+		*index = CRI_IDX_TELEM_PUNIT;
-+		if (cap_type == WATCHER)
-+			*offset = CRI_PUNIT_WATCHER_OFFSET;
++	switch (xe->info.platform) {
++	case XE_BATTLEMAGE:
++		*guid = xe_mmio_read32(mmio, BMG_PUNIT_TELEMETRY_GUID);
 +		break;
 +
-+	case OOBMSM_0:
-+		*index = CRI_IDX_TELEM_OOBMSM;
-+		switch (instance) {
-+		case 0:
-+			if (cap_type == WATCHER) {
-+				*index = CRI_IDX_WATCHER_OOBMSM;
-+				*offset = CRI_OOBMSM_WATCHER_OFFSET;
-+			}
-+			break;
-+
-+		case 1:
-+			if (cap_type == TELEMETRY)
-+				*offset = CRI_OOBMSM_GFSP_TELEMETRY_OFFSET;
-+			break;
-+
-+		default:
-+			return -EINVAL;
-+		}
++	case XE_CRESCENTISLAND:
++		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
++		*guid = xe_mmio_read32(mmio, CRI_PUNIT_TELEMETRY_GUID);
 +		break;
 +
 +	default:
-+		return -EINVAL;
++		*guid = 0;
++		drm_err(&xe->drm, "Unsupported platform: %u\n", xe->info.platform);
++		ret = -EINVAL;
++		goto unlock;
 +	}
 +
-+	return 0;
-+}
++	/* the GUID is static, read once and cache for all requests */
++	if (*guid) {
++		xe->pmt.punit_guid_cache = *guid;
++	} else {
++		drm_err(&xe->drm, "Invalid GUID: 0x%x\n", *guid);
++		ret = -EINVAL;
++	}
 +
-+static int xe_guid_decode(u32 guid, int *index, u32 *offset)
-+{
-+	u32 cap_type  = FIELD_GET(GUID_CAP_TYPE, guid);
-+	u32 device_id = FIELD_GET(GUID_DEVICE_ID, guid);
++unlock:
++	mutex_unlock(&xe->pmt.lock);
++	xe_pm_runtime_put(xe);
 +
-+	if (cap_type > WATCHER)
-+		return -EINVAL;
-+
-+	if (device_id == BMG_DEVICE_ID)
-+		return bmg_guid_decode(guid, index, offset);
-+
-+	if (device_id == CRI_DEVICE_ID)
-+		return cri_guid_decode(guid, index, offset);
-+
-+	return -ENODEV;
++	return ret;
 +}
 +
  /**
-  * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a buffer
-  * @dev: valid Xe device
+  * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
+  * interface
+diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
+index e925dba4158b..88e6f6a9e4dd 100644
+--- a/drivers/gpu/drm/xe/xe_vsec.h
++++ b/drivers/gpu/drm/xe/xe_vsec.h
+@@ -11,6 +11,7 @@ struct xe_device;
+ 
+ void xe_vsec_init(struct xe_device *xe);
+ void xe_vsec_remove(struct xe_device *xe);
++int xe_vsec_get_guid(struct xe_device *xe, u32 *guid);
+ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset, u32 count);
+ 
+ #endif
 -- 
 2.43.0
 
