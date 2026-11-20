@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D54C606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712F7606A325
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IhpQFCKi
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cl0NAJJI
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0684610FFC2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1597D112096;
 	Fri, 20 Nov 2026 05:47:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D61010FFC2
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 05:47:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7587010FF2B
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 05:47:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795153651; x=1826689651;
+ t=1795153648; x=1826689648;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bI+BXm1rQD+Ef/I/Ou779GtBd0On0MyzfHoGTHs4NYM=;
- b=IhpQFCKij5VjBG19LGXwrgrR4/ejdWu5oILJfkoanujg1A7mCWNq0Wf0
- 0UYwyak+f5AQg6jifuABnoZNXZWWTJzUjgAPv7+d3oID0OWL364ot6Sy+
- r/UFw4x3NaKQtdEcuSODKBuszPLb9QfCBangk9moBRCu2yHS0x2Lqhl4m
- glpY4LKbP8M8dZc27Md/2KNvy/5Z2ug+wPlVGdZOkNbSaFcaVJIge3NGJ
- /XuVj+B6kfqmFJMaUUnjABTd80USSohHL0kojetNCcbTr99Thke2gveeo
- WSBqQYeUxTZ757BCXHv9ct/xbrzJixgymz6wIZXgwG42xFFqbMFrEf/tQ w==;
-X-CSE-ConnectionGUID: Q+g8Nk/xTOmD8xiWbcLlqg==
-X-CSE-MsgGUID: qkN36O0mQJi20fWJ2HY5PQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4018530"
+ bh=RqBLCYTPKOhh6aFKxyeBauLDaVTwRCXSpq8isnePYMs=;
+ b=cl0NAJJI2beLvVPlcaLYKibTnOGcO7QjsK6V3Rlab8EgPnfjvL7RHynt
+ tk/804BYkzSqNhsX41qpPj57cotzQA4kzr1UjxFsydNVg0uEAzLWc1hnb
+ 0MmWM9evyvYu+d9ivYoj9IvzceU9tHuGR8DBMJ2GyBU7QSu6/srETsVV9
+ yV2Q89xsm7m1MebxMeM6+nKSd9F/9ReClFYViu3XqExjdiiHN1/ZZhbSy
+ 9sg8NJc7gdrUmLmobDn2rPZe6IbXaOKfXBO8nwe5byQIdmQm8cB3TGYJs
+ P/I4Xv7XwQi0VYXKcNtlPeQH18lkfESpO/R1TAFZ9Gj4SnYDheg9XxuFo g==;
+X-CSE-ConnectionGUID: 3dnootsHTsS+34W5rtreUQ==
+X-CSE-MsgGUID: 5q8Cxb2DSBq9dNpADKGNxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4018529"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="4018530"
+   d="scan'208";a="4018529"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 21:47:17 -0800
-X-CSE-ConnectionGUID: JiAfAcxyS4CIvsNwu/yXnA==
-X-CSE-MsgGUID: SHCHXy89TVqN/az2e+zKHQ==
+X-CSE-ConnectionGUID: 9BSY0NvlSV6V+gthD/CdSw==
+X-CSE-MsgGUID: u1nST+rFSayQwZ+2zrylWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10617145"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10617142"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 21:47:16 -0800
@@ -44,9 +44,9 @@ To:
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 09/16] drm/xe: Stop assuming the root tile has a primary GT
-Date: Fri, 20 Nov 2026 05:47:20 +0000
-Message-ID: <20261120054712.377573-27-stuart.summers@intel.com>
+Subject: [PATCH 08/16] drm/xe: Guard per-tile primary GT accesses
+Date: Fri, 20 Nov 2026 05:47:19 +0000
+Message-ID: <20261120054712.377573-26-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261120054712.377573-18-stuart.summers@intel.com>
 References: <20261120054712.377573-18-stuart.summers@intel.com>
@@ -70,144 +70,63 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A handful of device level consumers reach for xe_root_mmio_gt() to get at
-state that merely happens to be hung off a GT - the GuC firmware version,
-GT stats counters and the default OA unit - and dereference it without a
-NULL check.  None of them touch MMIO, so none of them actually need the
-primary GT; they just need some GT.
-
-Add xe_device_any_gt(), which falls back to the root tile's media GT, and
-use it in those places.  For OA, walk the GTs instead so the default unit
-is the first one that exists, which keeps it OA unit 0 as the uapi
-promises.
+A tile's primary GT is now optional, just like its media GT already was.
+The TLB invalidation and memory interrupt paths walk both GTs of a tile
+but only test the media one for presence, so they would dereference NULL
+on a device whose graphics IP is absent.  Mirror the existing media
+checks for the primary GT.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h    | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_oa.c        | 24 ++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_pagefault.c |  4 ++--
- drivers/gpu/drm/xe/xe_query.c     |  3 ++-
- drivers/gpu/drm/xe/xe_vm.c        |  2 +-
- 5 files changed, 43 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_memirq.c    |  3 ++-
+ drivers/gpu/drm/xe/xe_tlb_inval.c | 20 +++++++++++---------
+ 2 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index b8b24216ee6a..8d6324a296c6 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -111,6 +111,22 @@ static inline struct xe_gt *xe_root_mmio_gt(struct xe_device *xe)
- 	return xe_device_get_root_tile(xe)->primary_gt;
- }
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index 3433518cc095..0ef3df10ac49 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
+@@ -578,7 +578,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
  
-+/*
-+ * Provide a GT structure for device level state that happens to be hung off a
-+ * GT but is not specific to one, such as GuC firmware versions or OA units.
-+ * Unlike xe_root_mmio_gt(), this never returns NULL: the root tile always has
-+ * at least one GT, even when the graphics IP is absent.  It must not be used
-+ * for MMIO, since the media GT needs GSI offset translation.
-+ *
-+ * Returns the primary GT of the root tile, or its media GT if there is none.
-+ */
-+static inline struct xe_gt *xe_device_any_gt(struct xe_device *xe)
-+{
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	return tile->primary_gt ?: tile->media_gt;
-+}
-+
- static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
- {
- 	return &xe->tiles[0].mmio;
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 664fc4e4741f..580e3d0cbb6e 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -2041,6 +2041,23 @@ static int xe_oa_assign_hwe(struct xe_oa *oa, struct xe_oa_open_param *param)
- 	return ret;
- }
+ 	/* GuC and media GuC (if present) must be checked separately */
  
-+/*
-+ * OA unit IDs are handed out in GT iteration order, so the first unit of the
-+ * first GT that has one is OA unit 0. The primary GT may be absent, in which
-+ * case unit 0 lives on the media GT.
-+ */
-+static struct xe_oa_unit *xe_oa_first_unit(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	u8 id;
-+
-+	for_each_gt(gt, xe, id)
-+		if (gt->oa.num_oa_units)
-+			return &gt->oa.oa_unit[0];
-+
-+	return NULL;
-+}
-+
- /**
-  * xe_oa_stream_open_ioctl - Opens an OA stream
-  * @dev: @drm_device
-@@ -2073,8 +2090,11 @@ int xe_oa_stream_open_ioctl(struct drm_device *dev, u64 data, struct drm_file *f
- 		return ret;
- 
- 	/* If not provided, OA unit defaults to OA unit 0 as per uapi */
--	if (!param.oa_unit)
--		param.oa_unit = &xe_root_mmio_gt(oa->xe)->oa.oa_unit[0];
-+	if (!param.oa_unit) {
-+		param.oa_unit = xe_oa_first_unit(oa->xe);
-+		if (XE_IOCTL_DBG(xe, !param.oa_unit))
-+			return -ENODEV;
-+	}
- 
- 	if (param.exec_queue_id > 0) {
- 		/* An exec_queue is only needed for OAR/OAC functionality on OAG */
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 98cce0f12b12..e1058d52abd9 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -547,7 +547,7 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+-	if (memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
++	if (tile->primary_gt &&
++	    memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
+ 		map = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
+ 					    XE_MEMIRQ_VECTOR_OFFSET(0, ilog2(INTR_GUC)));
+ 		memirq_dispatch_guc(memirq, &map, &tile->primary_gt->uc.guc);
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index 1fd39434dc0e..6ef7860c7ff3 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -624,15 +624,17 @@ int xe_tlb_inval_range_tilemask_submit(struct xe_device *xe, u32 asid,
+ 		if (!(tile_mask & BIT(id)))
  			continue;
  
- 		if (cache_start != XE_PAGEFAULT_CACHE_START_INVALID) {
--			xe_gt_stats_incr(xe_root_mmio_gt(xe),
-+			xe_gt_stats_incr(xe_device_any_gt(xe),
- 					 XE_GT_STATS_ID_PARALLEL_PAGEFAULT_COUNT,
- 					 1);
- 			break;
-@@ -759,7 +759,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- 	}
- #undef USM_QUEUE_MAX_RUNTIME_MS
+-		xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
+-					&fence[fence_id], true);
+-
+-		err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
+-					 &fence[fence_id], start, end,
+-					 asid, NULL);
+-		if (err)
+-			goto wait;
+-		++fence_id;
++		if (tile->primary_gt) {
++			xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
++						&fence[fence_id], true);
++
++			err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
++						 &fence[fence_id], start, end,
++						 asid, NULL);
++			if (err)
++				goto wait;
++			++fence_id;
++		}
  
--	xe_gt_stats_incr(xe_root_mmio_gt(xe), XE_GT_STATS_ID_PAGEFAULT_US,
-+	xe_gt_stats_incr(xe_device_any_gt(xe), XE_GT_STATS_ID_PAGEFAULT_US,
- 			 xe_gt_stats_ktime_us_delta(start));
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 9cc35fc83954..de9346c1ba61 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -592,7 +592,8 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
- 
- 	switch (resp.uc_type) {
- 	case XE_QUERY_UC_TYPE_GUC_SUBMISSION: {
--		struct xe_guc *guc = &xe->tiles[0].primary_gt->uc.guc;
-+		struct xe_gt *gt = xe_device_any_gt(xe);
-+		struct xe_guc *guc = &gt->uc.guc;
- 
- 		version = &guc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
- 		break;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index dd855876f571..fe7fa2ed36da 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1706,7 +1706,7 @@ static void xe_vm_init_prove_locking(struct xe_device *xe, struct xe_vm *vm)
- 	fs_reclaim_release(GFP_KERNEL);
- 
- 	down_read(&vm->exec_queues.lock);
--	might_lock(&xe_root_mmio_gt(xe)->uc.guc.ct.lock);
-+	might_lock(&xe_device_any_gt(xe)->uc.guc.ct.lock);
- 	up_read(&vm->exec_queues.lock);
- }
- 
+ 		if (!tile->media_gt)
+ 			continue;
 -- 
 2.43.0
 
