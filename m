@@ -2,164 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 175D1606A694
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 23:03:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16ED606A6A0
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 23:04:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=S3xoStW2;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=V6mluXfd
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=D9uCEe/6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8C3D10E0E3;
-	Fri, 20 Nov 2026 23:03:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7078112D8C
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 23:03:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795215796; x=1826751796;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=2wDPNB7edGb45y9TQOa2iAVv2Ejb+Or8JFzw+XsgYcw=;
- b=S3xoStW25+t+vSmpwWXvPSP31Ij0CmTFoQWuJDcw4bmmZ0Y5CnTX2yrF
- Kcz2CFuyNlNPKtWGYlhQX17FVJguAA6PQdjIkO9mMOarFAbeasAStn3Sx
- H+GhjqMsUPWCqn086u1syrSOlCDvs6FI2pNOi4bLMsk/6qfxybqX0/siQ
- 44e/AgOL1EEPEVvRPkgU2tBNC7bMPHoCaMpHPZbmllD1zVCeXCfjnUWWG
- b2B5Ot5susq4dL9ekUnK1t6lhSmL6Ju/1E1viuAm9L26bSD7UIN+Gh/j4
- Dk++nwsqml6acOcIAxQEVMpl7GEDD5iKAand6GekKMfUQ305tNZAqLbfV g==;
-X-CSE-ConnectionGUID: O/cZUthVTz6gbk8zLSz4Cg==
-X-CSE-MsgGUID: 8azFhdcmTe6AZMkn5L5SeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4096725"
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4096725"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 15:03:11 -0800
-X-CSE-ConnectionGUID: /ekaU01USZiHlLeMkwfy7Q==
-X-CSE-MsgGUID: RQHa85TwRzO5BAeRweXKhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="11129903"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 15:03:10 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 20 Nov 2026 15:03:09 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Fri, 20 Nov 2026 15:03:09 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.5) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Fri, 20 Nov 2026 15:03:09 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RXWfQh+OmMYu5X8611uTzX3BbNiV17z83nBBzswpb3IBkpsqr6mR6FywKc4Y3vWA7GfD3s7XiO9ykgwzqhNbrGPM3tOvsm1kMxBc1rEX4i2E8J/t+Yy8xmmpZZ99e/aZt4J2QZZ793Vhh8Ht4udDr5iabOaoMa8v3U0aX2RUsSmEtCbvgNSJNhwel6ZAn6D+qiZTkj7BaN7Bj+rxXanG9uuVzLRNSVboY3kRhItPLmxIhgWVwLMTpocxIZMh79aDzvNnBOI2w/55Xa8MGsOOHr/atVV+XrZ/KRAn3R+1V3H2fE96AmG7olbebMC4OmrIlsbcxYvC+JnwOkRVhkS3TA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OBeCL6osgejT00krGzxGSTfCgzmb0reGFlLKk4su7Pk=;
- b=WlUi8COAWsChOzXM1mJbsqugftAI8U4hbw/qgtHVy9KWrdk9tDX4SgGsv3Dn5CA+9LrOufjUcM5j0RCI9pqdrjaPTeNIzHfcid5dUjRwcFOHAjyrgF/pfiRWt96rxu+pE/Af13NaoMkUFC4i+aAf5sbwVcYTDIAuDMFF33RhazIdfaSEp6ZNK1B+Ye9PzWGsp0KuLus610LC608v/qdZybsaQEjRQJTHvqkoEdL1z6b4HNVjS6ovR1Vz1m3NTiVyS13+Dv4fEkWPoy875si8PBDUl9/Oaq/DmZEPu0rWinl75NaS0+MejYfYudn3MprIUHmsb6+XlcLECH+6XABCcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=OBeCL6osgejT00krGzxGSTfCgzmb0reGFlLKk4su7Pk=;
- b=V6mluXfd8p4UxCcM47yKyorUp7WogtSqCpQ1nAtaOr4XXl2MrtWkcaSV8ezj+7b/8AgNaffLfw1LNj+Ks11T1Y558lkp7qLx+Ww9QGKbaqbDjgFOTmV2BeH5ZBygr7RnkIa+4Q8xDj94VWLXQ4yEz89PI55gOPadwJmPOELMYyE=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by IA1PR11MB7198.namprd11.prod.outlook.com (2603:10b6:208:419::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Fri, 20 Nov
- 2026 23:03:00 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057%6]) with mapi id 15.21.0615.012; Fri, 20 Nov 2026
- 23:02:53 +0000
-Date: Fri, 20 Nov 2026 15:02:51 -0800
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: <sashiko-reviews@lists.linux.dev>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v8 2/8] drm/xe/oa: Use the drm device address_space for
- the OA stream fd
-Message-ID: <awDRmw5tB5CwLMZV@soc-5CG1426VCC.clients.intel.com>
-References: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
- <20261119002737.3899877-12-umesh.nerlige.ramappa@intel.com>
- <sashiko-outbox-222249@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <sashiko-outbox-222249@kernel.org>
-X-ClientProxiedBy: MW4PR03CA0359.namprd03.prod.outlook.com
- (2603:10b6:303:dc::34) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|IA1PR11MB7198:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78c8a590-9e7a-46dd-d1db-08df475a685d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|261021121427099003|11063799006|4143699003|261026121527099003|56012099006|261009223027099003|261022105027099003|261026140227099003|261102123227099003|261022075727099003|261028144727099003|10067099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: 2Ed71uY5pwYwa4USs72cUrodrfNDxihyjtF0T+298VGFQKD+cZTj0L4p69z1up8sd6FcBRfgpZCiR0q7g+GXMfXkrmGP6efCWei9Jbm/om1D4Z6/bLLLVBGaCJASUzRBFybnWcxvV3q6RpAJxYiOA3Vjn3Ca9GR5gDPzVaV+fdO+u/hYTcgVLf0pQ+TCFHJqnCMSODLRpNSekYXY5ISUBSxwKr+OZLGvENaPqcs53m/ACUcVqq5iLFFyMxxvTX0guyKc20wt6E8TUJMB98p4fJrt+rCiA93wjasFAvnZyh/81BPQN0sS9wBcLPrIJUbV2eOZCYy0LH3eS+aKgl5hK4FoaA6WpWnpYGa6KBg4r5S8RFK6Y9y822cUJA62k1MQnyg2SjC81BmPsDjDx3wf+2f572jklDBHBgUBGP/W9LP6soeUkgISjMdp72bE/LX/cHAd53QrT0F+nK0WJMEvORyTjvsUpSIWqDyN7w2SPqPI4yg2IQjsIKrMMPu0P7MPr8TpazwGRlhnuOw4ruBLYSPaedrUJQsUWocVL5vWRpPRZT5FnwQ6jOSw2qJlgszGj2dkgM4NRTnjHL/mVYmyLD+zxHyBt78L9SH0wSxFYvo=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(261021121427099003)(11063799006)(4143699003)(261026121527099003)(56012099006)(261009223027099003)(261022105027099003)(261026140227099003)(261102123227099003)(261022075727099003)(261028144727099003)(10067099003)(22082099003)(18002099003)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?S2VmV2xmSzlSUG12Zk0ybTh6ZXppakVFNUEwVlc1clhab1cySkJ0N2l5VkNq?=
- =?utf-8?B?alVzVnBzVEZ0WVhQaHk3ZlVzRE5sYmFCakxScyt2ek8yMXJIQjYyMWhDbHJD?=
- =?utf-8?B?WHdnNDVudmFHUFlhd3FKb1hzSUM3WnlNNHRBNWxSWFZyRjBIaXpta0JTRHdY?=
- =?utf-8?B?UFFubitPVTBXNjdDdUFEaU9kWTBWZzlWMEhuMy85c2pjREkzUHM1MlhRSGp6?=
- =?utf-8?B?Rk16dW12MWg3V2V2TXJaNTc5dzNPOEtKWTZiVUpib3pHRzlhL3lERFZxRFFV?=
- =?utf-8?B?blV4cTdqQVlBZ00zQWFOcElDR3ZLTVkxTmkvbmRrVjFmejd6SXF4Y3JWdkIw?=
- =?utf-8?B?WFVJV1pyUGNPRk5rTGpnOVVWVTAzWCtobU10WEhrejlhSXI2dktJVVQ2TEsz?=
- =?utf-8?B?bG1jRzZTVE9PYVl5VHdIclJmVGZmZU9pRGxPOUgrNW1NeURLZ0R4OWtSL2FW?=
- =?utf-8?B?aEh5UEpuZ0FTT3Boa2wyM0ZSK0NXWFVOckpVQkZvZ0RTN0d0SmpISG5CK0VS?=
- =?utf-8?B?amVkV0F0OTJXOUlvc3RRRTNtWkVkeEE4eWVjT05LMUp1cDZGT0FhQXByNHlE?=
- =?utf-8?B?VWlxb0ZIUDRQUDZjRzA5dHZURlFVZVY1VU5Nck8wbXdqWTJmT3RoWnR0eXA0?=
- =?utf-8?B?MkhTOU01OHNDR01jcmFaZCsxS2VxdlRMdG4xUm4zQ3pTL2NYem8vTzZsMDl4?=
- =?utf-8?B?MDk5cWlxZk0wM25WN3BaVllzdlhreWJ0REJISktlZjZLY3kxRURqMGlDbVdI?=
- =?utf-8?B?YXRKYlJQeWVkU05vQ1JBT0RWVjF2bE5ncXNQWGJvZW9UUUxoWW1sZHh3bUF2?=
- =?utf-8?B?WThQWjcvQ1lKNjNSMDJVU3BQamtzWVlrMnAxQ1B0UDgvL0o1TjNzMDJGR0hs?=
- =?utf-8?B?RjVpSjFJK3J1UGNaZVRwVFNuZHQ5ZllhQ0c2cE5ISC92Ync5V05xbWwzakxi?=
- =?utf-8?B?ZjFPeUl2TThvYjB4dFlBMXhZWTFENXVUWmFRV3QvYlU4TmRrakkzbEE2RkF2?=
- =?utf-8?B?U1BIQWhlVG40ZzlLQlBPa2kxNkpDL3k2TjlaRlZ1enE2TVYvZjUwY3EvT2kr?=
- =?utf-8?B?RytIditGQUR6R2RyRzlpNmlzRWZXbFNOcDZ3SnhmOG5RdDZYVzBKdkpIR1lB?=
- =?utf-8?B?Y21GT1hMZUtIdUI0dFFFd3JGc05nZGRsaHNDd0YyY1M5bFIwMjdwSzVOMTgw?=
- =?utf-8?B?NXY5ZlZBa0UwUzAxd3dRQlVncDRhRC9nOXRkRmZKZTk3UmU2VzdPazFyZjQz?=
- =?utf-8?B?QTR4UU5YT3FNbFA5aG54ZHFOY3FYYWc5d0pQaTc2cTVIMWxDZHY5THZGWnBV?=
- =?utf-8?B?Y2V0SURNb3ZROHpYSjcva0hrMEZQQWI0V3VwYlJvWUdDekdPdi96SnZWRkpx?=
- =?utf-8?B?U1hJVHhxelRYNWs1ZW80S3JHTk9hMXA2RVd0eWxPYUdFL1NyUTgzWjhwM01I?=
- =?utf-8?B?MUVuVE9CK0FyRHVkR3RXUlI4MGZIakVPUVgzM2dCQWdEL3VYczVCT2VVRUJE?=
- =?utf-8?B?TUY4cmFoTjVzVTN0M1ArRkVxQVA0b2U4ODRrRUo1Mklac3N3eVYxdnlaWEpO?=
- =?utf-8?B?VlJLTnF1S2V3VkNJOTV0WVZNR1hVWk9ibDV3MjZucEJJalQxUzJvd29OZG9C?=
- =?utf-8?B?Z3p4QXFxMnM2d0JQWWt2QmFsOXEyeU81eEloL2lYMDBsMGduSHlDalJqSGNL?=
- =?utf-8?B?cUlpd2poK0FYdFVCdFBXQUFTS1BRREZDWk1NTUFnZHpEL3B2UTMrTTZtTGJ2?=
- =?utf-8?B?WWovek1zUUFTbHBUbW41ZFhOTElJQXlDaWRYamVtOVMzcUFFajVJb2JyZWFh?=
- =?utf-8?B?VWF3Q2tncFdNMHptY21qT3dvWGt1U05NdXc4Z2kxSVVra1dBOW1SSWpTNE9E?=
- =?utf-8?B?UmxjbWNQZGNsNVRLcExpUGNKSHIzWU1wdThlL3JTVy9LRGMrS0svR2pvRVAx?=
- =?utf-8?B?WS8zT3dac2p5V0U5L1kvZmljRUp2NXliRjdpZ3Z1MG9BRmdKZTNid1pkN1Fn?=
- =?utf-8?B?ZlRIYWxza3VaOGpLUkszQjlXVjlURTYvOGNBMnRqQlJTS3BtVUJGWE1XTkN4?=
- =?utf-8?B?RnFYTWxoZ2psQWhwNWplR1g2aWJqM2piYjRTV0wydTFmbDl1YnR5ZUI5VEo5?=
- =?utf-8?B?RjRacU50YXM4QlB6bDBIVEhESjVBdHF3L0poS2QyKzQvTUZEZ2o4ZWRsVkhV?=
- =?utf-8?B?b2tWcDJSUTJRQmZBZmJOYmFzRkJXVHhvWkxCY04rdm5BMTZPZ0E4a3VOTWp5?=
- =?utf-8?B?d3FhTXBwTUdDa0ZFaDdlQXF3Qk5Wb3l6bUdRQnVYWk9WTjVLejFOdzhiVDZm?=
- =?utf-8?B?N1l5VklHbDEvbUF2ZWV3VkNLUEM4K1NMLzJBekNWRSt4Y29pbmg1TCs2WjNy?=
- =?utf-8?Q?LYkHDwpNxJSoE72w=3D?=
-X-Exchange-RoutingPolicyChecked: E1SID/wKds1s1zH06RAlKGaPjSEkHdwgP5kggfmaMtaHio57TPdLrBQ/OEQC31WFasoAGYY1RNT3FIQVr14JuP12rhZnsbI3+W7VjEy56JZc3NtNobl9c5Ly/IYJ/tjL3F0YuynCuHXKGH/dSlh7qz5AzLmkd20xkN7URk/m/+gMMl64tAkpe3D4IR8BkBDn9SIuf+exqAWcFI7sQuFOV4xaPndblpMsrN0882a3Ocijb3DDgLvzZyFkfEfXKI6DDDCLRD02Mba+JfZMh7mUBWUuvvI+5iWz3W7AYB57dCZY8dDn3IEDMSIilcCmY3N0gxEprhKjdMcrHqqzV8WtPQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78c8a590-9e7a-46dd-d1db-08df475a685d
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 23:02:53.5027 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bxXCxbsdrKQF09YxoR0tza6bTsjWXcKamgt1Vu65vUjpfxxJZiMtfJwIBl9cx0Um5d0ToIdCulHv+Q4bjK2hOTjmoGh+bsFimYqE6U17dwQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7198
-X-OriginatorOrg: intel.com
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8277011293E;
+	Fri, 20 Nov 2026 23:04:49 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E9959112D53
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 23:04:42 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id A82FD42B8B;
+ Fri, 20 Nov 2026 23:04:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31D171F000CA;
+ Fri, 20 Nov 2026 23:04:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795215882;
+ bh=JsqXGhefxNj/sT/1b3EYszTe5niUf/xB14S+mfbLRTo=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=D9uCEe/6o5k5dKCwbeVw/QQUJCaAnztkW3JSrmv4bvW/nlLpRdi97Q0KYY8m1Rc1u
+ fXNZnNR37U2NHGpz1xG9L9xu43+V2TmxdQySnKLJXgjaz+8V1pAeLzIz3s3vr35mTl
+ OuxMqmX2TGY2eJiajpI9Y2pv3v9k+n4BJE5HhUzI/l+Ife3KVL8u5SmYCHRTXLAj47
+ ptsYuk37fgQbaSr9Ahu4kc5IIjSZN5B2yQtNy1MHHpiEXXy0YCMZKKUG9QEW8GOYbU
+ UZglR7Grv8DrwLPaEILPUP8830hWSxzonfdKv5scA4NzpR10oMfFA1tAu4cbF1pcEH
+ nzfLwEwcjq16Q==
+Message-ID: <sashiko-outbox-226330@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v6 2/2] drm/xe: Add sysfs to disable RPe
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261120225325.1460380-4-vinay.belgaumkar@intel.com>
+References: <20261120225325.1460380-3-vinay.belgaumkar@intel.com>
+ <20261120225325.1460380-4-vinay.belgaumkar@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 20 Nov 2026 23:04:41 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,76 +47,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On Thu, Nov 19, 2026 at 12:39:26AM +0000, sashiko-bot@kernel.org wrote:
->Thank you for your contribution! Sashiko AI review found 1 potential
->issue to consider:
->- [Low] drm/xe/oa: missing Fixes trailer for OA buffer mmap
->  address_space fix
->--
->
->commit 578317c3691785f24541d656435be9897f349165
->Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->
->> drm/xe/oa: Use the drm device address_space for the OA stream fd
->>
->> anon_inode_getfd() hands back a file whose f_mapping points at the
->> address_space of the kernel-wide singleton anon_inode_inode, shared by
->> every other anon_inode_getfd()/anon_inode_getfile() user in the system.
->> Any code that needs to invalidate userspace mappings of the OA buffer
->> via that mapping (e.g. unmap_mapping_range()) would end up operating on
->> an address_space it doesn't own, with the potential to affect unrelated
->> mappings.
->>
->> Keep the anon inode singleton and only point the file's f_mapping at the
->> drm device's address_space (drm.anon_inode->i_mapping), same as drm_file
->> does for drm fds. f_mapping must be set before the fd is visible to
->> userspace, so reserve the fd with get_unused_fd_flags(), create the file
->> with anon_inode_getfile() and install it with fd_install() after setting
->> f_mapping.
->>
->> To keep the OA buffer mmaps of different streams apart from each other
->> and from GEM mmaps in that shared address_space, reserve a GEM fake
->> offset for the OA buffer with drm_gem_create_mmap_offset(), and move
->> the vma to that offset in xe_oa_mmap() by setting vm_pgoff, the same
->> way drm_gem_prime_mmap() does. f_op->mmap runs before the vma is linked
->> into the address_space, so the vma is tracked at the OA buffer's own
->> range, and drm_vma_node_unmap() on the OA buffer only zaps mappings of
->> that buffer. The TTM fault handler already subtracts the fake offset
->> from vm_pgoff, so faults resolve to the right pages unchanged.
->>
->> drm_dev_unplug() now also zaps OA buffer mmaps along with all other
->> mmaps of the drm device.
->>
->> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->
->[Severity: Low]
->Without setting file->f_mapping to oa->xe->drm.anon_inode->i_mapping and
->assigning a per-BO fake offset in vma->vm_pgoff, splitting an OA buffer
->VMA triggers WARN_ON(bo->bdev->dev_mapping != vma->vm_file->f_mapping) in
->ttm_bo_vm_open(), non-zero mmap offsets miscalculate page_offset in
->ttm_bo_vm_fault_reserved(), and drm_vma_node_unmap() and drm_dev_unplug()
->fail to unmap OA buffer mappings.
->
->Should this include Fixes tags for the commits that introduced OA buffer
->mmap and switched it to drm_gem_mmap_obj()?
->
->  Fixes: 392bf22238ff ("drm/xe/oa/uapi: OA buffer mmap")
-maybe not this one
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Medium] drm/xe: xe_guc_pc_get_min_freq_locked() ignores use_rpe
+  during MERT cap
+--
 
->  Fixes: 41255b2f1e03 ("drm/xe/oa: Use drm_gem_mmap_obj for OA buffer mmap")
-This one applies and I will add it in the next rev.
+commit 88335a79a8611de6a26a511f88173660a4613fa6
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 
-Thanks,
-Umesh
+drm/xe: Add sysfs to disable RPe
 
->
->-- 
->Sashiko AI review · https://sashiko.dev/#/patchset/20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com?part=2
+This commit adds a use_rpe sysfs attribute to control SLPC efficient
+frequency elevation and disables RPe before stashing the minimum frequency
+in pc_set_mert_freq_cap().
+
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_p=
+c.c
+> index 7cbdb7985843d..2d4ae5bb48761 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+
+[ ... ]
+
+> @@ -1103,12 +1120,23 @@ void xe_guc_pc_remove_flush_freq_limit(struct xe_=
+guc_pc *pc)
+>  static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
+>  {
+>  	int ret;
+> +	u32 mert_freq_cap;
+> =20
+>  	if (!XE_GT_WA(pc_to_gt(pc), 22019338487))
+>  		return 0;
+> =20
+>  	guard(mutex)(&pc->freq_lock);
+> =20
+> +	/*
+> +	 * Disable the RPe floor so the min queried below reflects the real
+> +	 * underlying minimum (RPn or user_requested_min) instead of a value
+> +	 * GuC may have elevated to RPe. This stays disabled until
+> +	 * xe_guc_pc_restore_stashed_freq() reinstates it.
+> +	 */
+> +	ret =3D pc_set_ignore_eff_freq(pc, 1);
+> +	if (ret)
+> +		return ret;
+> +
+>  	/*
+>  	 * Get updated min/max and stash them.
+>  	 */
+
+[Severity: Medium]
+Does xe_guc_pc_get_min_freq_locked() report the un-elevated minimum
+frequency instead of RPe while pc->mert_freq_cap_active and pc->use_rpe are
+both true?
+
+Because pc_set_mert_freq_cap() now disables RPe before querying
+pc->stashed_min_freq, and pc_set_min_freq() no longer disables RPe when a
+frequency below RPe is requested, both pc->stashed_min_freq and
+pc->user_requested_min can be below RPe while pc->use_rpe is true.  During
+the MERT cap window, xe_guc_pc_get_min_freq_locked() returns that raw
+value:
+
+drivers/gpu/drm/xe/xe_guc_pc.c:xe_guc_pc_get_min_freq_locked() {
+    ...
+	/* In the middle of a temporary freq cap, return stashed value */
+	if (XE_GT_WA(pc_to_gt(pc), 22019338487) && pc->mert_freq_cap_active) {
+		*freq =3D pc->user_requested_min ?: pc->stashed_min_freq;
+		return 0;
+	}
+    ...
+}
+
+Reading min_freq via sysfs while the cap is active therefore returns the
+un-elevated minimum (such as RPn) and then jumps back up to RPe once
+xe_guc_pc_restore_stashed_freq() restores ignore_eff_freq and clears
+pc->mert_freq_cap_active.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120225325.1460=
+380-3-vinay.belgaumkar@intel.com?part=3D2
