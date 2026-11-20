@@ -2,43 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A534606A516
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 06:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A6E3606A533
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 06:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=F3d+5BGz
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ULObJIM1
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1EDA711253F;
-	Fri, 20 Nov 2026 06:10:10 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C39A112545
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 06:10:04 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id DC6D144212;
- Fri, 20 Nov 2026 06:10:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A34351F000CA;
- Fri, 20 Nov 2026 06:10:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795155003;
- bh=fkUMOrky/2QCkWRhibUvnfMwsLtWHlHnzfbW3hdTsp8=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=F3d+5BGzIZvGUZABNJO1orKEuK9I4LV6hV4jsqf0DYYmK5dauw6q4sh5lpLa+PM6H
- bVlV0BDpgM9/J3c6lR+PFG8rT8znfSSi03+nCXgStQSw7TdnNjWFJEcoqe3hFU12Of
- R1PoUUecXG/GT5XuRLKdVqAqhzKdAPmqzM9nFkvycEvFUXFWMK/s6rPolCHUnx3pLH
- WjOAuwq6GjGiRXof/OUZf5fHhcIVUNbIwCWfa7Bm3no7MTUVkAu5z+7ZVx3D2UNc+P
- mCo7lktbCBu3MmIv7+S1NduafxAIcSxIGY152iZwYkuzphApoocBo12pu+ASo+Tx1q
- qXUm+PHp4iq7A==
-Message-ID: <sashiko-outbox-224538@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 11/16] drm/xe: Run page table updates on the media GT
- when there is no primary
-To: "Stuart Summers" <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120054712.377573-29-stuart.summers@intel.com>
-References: <20261120054712.377573-18-stuart.summers@intel.com>
- <20261120054712.377573-29-stuart.summers@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 06:10:03 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33AF611253D;
+	Fri, 20 Nov 2026 06:10:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 032BA11253F
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 06:10:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795155002; x=1826691002;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=wG+E6WRKLe8vcfgI2jH82GScU/amGzzsq1y/pBTfNzs=;
+ b=ULObJIM1BIJKFDvadA/T9/utaBoFOMw0fNSlHQQu8dtC1pBLWUZfzyoM
+ UCM0lwNU1Ml+89N0Wbzrf7rM2pbikGtkibdrJ5qg7tbqEBfYhTNv6zmI9
+ ZtNq+W3qYatFdUl/UBTxRPfTL+k8GGknv+1JgiisK0NomGxQzGAGFDr6S
+ lh3FajI+TCOmOxAsoT0tp7FG21sj6WBXkXtmiu2LBrFT755rEuYDgS4k3
+ WqBFvraZnaBbqwX3YpSH01mCvZpz79EReDxh2DSzsGp7OdMzwzbcL7jWP
+ DfxScsLVq0PAE3dZGnCR39FEiyAKPZlHsQgnif0WlQBAhK2ZhZAKEVahh w==;
+X-CSE-ConnectionGUID: 4emI4FLMRrSvMqRkmplW5w==
+X-CSE-MsgGUID: 2Hu5mScjTY+YZYaPjE2VpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4107790"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
+   d="scan'208";a="4107790"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 22:10:00 -0800
+X-CSE-ConnectionGUID: Vmj3A2fcRcCoRjX6nr7mKA==
+X-CSE-MsgGUID: /qHVjwm5RKyvAKVmeaGlAw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10518003"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 22:09:56 -0800
+Date: Fri, 20 Nov 2026 07:09:53 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, daniele.ceraolospurio@intel.com,
+ riana.tauro@intel.com, mallesh.koujalagi@intel.com,
+ aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
+ arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
+ nitin.r.gote@intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v8 2/3] drm/xe/xe_ras: Add support to retrieve info queue
+ data
+Message-ID: <av_kMXB9gFzFQm0l@black.igk.intel.com>
+References: <20261120043303.107183-5-badal.nilawar@intel.com>
+ <20261120043303.107183-7-badal.nilawar@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261120043303.107183-7-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,177 +67,415 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issues to consider:
-- [Medium] drm/xe: xe_gt_flr_prepare() and xe_gt_reinit() skip
-  media-only tile migration
-- [Medium] drm/xe: NULL dereference of usm.bb_pool in
-  xe_migrate_prepare_vm()
-- [Medium] drm/xe: silent no-op blit copy and clear on media-only tiles
-  in xe_migrate
---
+On Fri, Nov 20, 2026 at 10:03:05AM +0530, Badal Nilawar wrote:
+> Retrieve the RAS info queue data, in multiple chunks, and assemble it into
+> a flat buffer.
+> 
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+> ---
+> v6:
+>   - Replace destination buffer checks with xe_assert() (Raag)
+>   - Extract get_first_chunk() and get_remaining_chunks() helpers (Raag)
+> v7:
+>   - Move RAS has_info_queue check from CPER to RAS (Raag)
+>   - Also check that the reported total size is consistent across all chunks
+>   - Limit info queue fetches to 2x XE_SYSCTRL_FLOOD_LIMIT (Raag)
+> v8:
+>   - Align info queue logs with existing messages (Raag)
+>   - Assert buffer bounds on each iteration and simplify the loop (Raag)
+>   - Use min_t() for chunk-size and returned-size calculations (Raag)
+>   - Assert has_info_queue and return early when the first chunk fills
+>     the buffer (Raag)
+>   - Check for an incomplete drain on loop exit (Raag)
+> ---
+>  drivers/gpu/drm/xe/xe_ras.c                   | 186 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_ras.h                   |   5 +
+>  drivers/gpu/drm/xe/xe_ras_types.h             |  91 ++++++++-
+>  drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |   2 +
+>  4 files changed, 282 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> index e8984c966876..46542852e055 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_ras.c
+> @@ -1123,6 +1123,192 @@ int xe_ras_set_threshold(struct xe_device *xe, u8 severity, u8 component, u32 th
+>  	return 0;
+>  }
+>  
+> +static int get_info_queue(struct xe_device *xe,
+> +			  struct xe_ras_get_info_queue_request *request,
+> +			  struct xe_ras_get_info_queue_response *response)
+> +{
+> +	struct xe_sysctrl_mailbox_command command = {0};
+> +	const struct xe_ras_info_queue_header *hdr;
+> +	size_t rlen;
+> +	int ret;
+> +
+> +	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_GET_INFO_QUEUE,
+> +				  request, sizeof(*request), response, sizeof(*response));
+> +
+> +	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+> +	if (ret) {
+> +		xe_err(xe, "sysctrl: failed to get info queue %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	if (rlen != sizeof(*response)) {
+> +		xe_err(xe, "sysctrl: unexpected get info queue response length %zu (expected %zu)\n",
+> +		       rlen, sizeof(*response));
+> +		return -EIO;
+> +	}
+> +
+> +	ret = ras_status_to_errno(response->status);
+> +	if (ret) {
+> +		xe_err(xe, "sysctrl: get info queue command failed with status %#x\n",
+> +		       response->status);
+> +		return ret;
+> +	}
+> +
+> +	hdr = &response->qdata_resp.header;
+> +	xe_dbg(xe, "[RAS]: get info queue: total=%u offset=%u size=%u flags=%#x num_headers=%u\n",
+> +	       hdr->total_size, hdr->chunk_offset, hdr->chunk_size, hdr->flags, hdr->num_headers);
+> +
+> +	return 0;
+> +}
+> +
+> +static bool chunk_is_valid(const struct xe_ras_info_queue_header *hdr,
+> +			   u32 expected_offset, u32 total_size, u32 dest_size)
+> +{
+> +	u32 end;
+> +
+> +	return hdr->total_size == total_size && total_size &&
 
-commit e4d0026f61d092e34250b892e47f82036445a7f5
-Author: Stuart Summers <stuart.summers@intel.com>
+I know it doesn't matter too much but we should rather check if
+hdr->total_size exists, as it comes from info queue response header
+and not first header.
 
-drm/xe: Run page table updates on the media GT when there is no primary
+> +	       hdr->chunk_offset == expected_offset &&
+> +	       hdr->chunk_size && hdr->chunk_size <= XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE &&
+> +	       !check_add_overflow(hdr->chunk_offset, hdr->chunk_size, &end) &&
+> +	       end <= min_t(u32, total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) &&
+> +	       end <= dest_size;
+> +}
+> +
+> +static u32 get_first_chunk(struct xe_device *xe,
+> +			   const struct xe_ras_get_counter_response *counter_resp,
+> +			   u8 *dest_buf, u32 dest_size, u32 *flags)
+> +{
+> +	const struct xe_ras_info_queue_header *hdr = &counter_resp->first.header;
+> +
+> +	if (!chunk_is_valid(hdr, 0, hdr->total_size, dest_size)) {
+> +		xe_warn(xe, "[RAS]: invalid first info queue chunk (total=%u offset=%u size=%u, expected offset=0)\n",
+> +			hdr->total_size, hdr->chunk_offset, hdr->chunk_size);
+> +		return 0;
+> +	}
+> +
+> +	memcpy(dest_buf, counter_resp->first.data, hdr->chunk_size);
+> +	*flags = hdr->flags;
+> +
+> +	return hdr->chunk_size;
+> +}
+> +
+> +static u32 get_remaining_chunks(struct xe_device *xe,
+> +				const struct xe_ras_get_counter_response *counter_resp,
+> +				u8 *dest_buf, u32 dest_size, u32 offset, u32 flags)
+> +{
 
-This commit introduces xe_tile_pt_gt() and xe_tile_pt_class() so that tile
-migration and bind exec queues fall back to the media GT and a video
-decode engine when a tile has no primary GT.
+u32 total_size = counter_resp->first.header.total_size;
 
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index fe71cb011d3a0..327e4985d8586 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> +	u32 requests_left = XE_SYSCTRL_FLOOD_LIMIT * 2;
+> +	int ret;
+> +
+> +	while (flags & XE_RAS_INFO_QUEUE_FLAG_MORE_DATA) {
+> +		struct xe_ras_info_queue_data_request *qdata_req;
+> +		struct xe_ras_get_info_queue_response response = {};
+> +		struct xe_ras_get_info_queue_request request = {};
+> +		struct xe_ras_info_queue_header *hdr;
+> +
+> +		xe_assert(xe, offset < dest_size);
+> +
+> +		qdata_req = &request.qdata_req;
+> +		qdata_req->offset = offset;
+> +		qdata_req->size = min_t(u32, XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE, dest_size - offset);
+> +		qdata_req->session_id = counter_resp->counter;
+> +
+> +		ret = get_info_queue(xe, &request, &response);
+> +		if (ret) {
+> +			xe_err(xe, "[RAS]: info queue drain aborted: fetch at offset=%u, ret = %d\n",
+> +			       offset, ret);
+> +			return offset;
+> +		}
+> +
+> +		hdr = &response.qdata_resp.header;
+> +
+> +		if (!chunk_is_valid(hdr, offset, counter_resp->first.header.total_size,
+> +				    dest_size)) {
 
-[ ... ]
+Re-use total_size and avoid ugly wrapping.
 
-> @@ -657,10 +658,12 @@ static int gt_init_with_all_forcewake(struct xe_gt =
-*gt)
->  		}
->  	}
-> =20
-> -	if (xe_gt_is_main_type(gt)) {
-> -		struct xe_tile *tile =3D gt_to_tile(gt);
-> -
-> -		err =3D xe_migrate_init(tile->migrate);
-> +	/*
-> +	 * Normally the migration context runs on the primary GT, but a tile
-> +	 * with no graphics IP has only its media GT to run it on.
-> +	 */
-> +	if (gt =3D=3D xe_tile_pt_gt(gt_to_tile(gt))) {
-> +		err =3D xe_migrate_init(gt_to_tile(gt)->migrate);
->  		if (err)
->  			return err;
->  	}
+> +			xe_warn(xe, "[RAS]: invalid info queue chunk (total=%u offset=%u size=%u, expected offset=%u)\n",
+> +				hdr->total_size, hdr->chunk_offset, hdr->chunk_size, offset);
+> +			return offset;
+> +		}
+> +
+> +		memcpy(dest_buf + offset, response.qdata_resp.data, hdr->chunk_size);
+> +		offset += hdr->chunk_size;
+> +		flags = hdr->flags;
+> +
+> +		if (!--requests_left) {
+> +			xe_warn(xe, "[RAS]: info queue flooding, aborted at offset=%u\n", offset);
+> +			break;
+> +		}
+> +	}
+> +
+> +	if (offset != dest_size) {
+> +		xe_warn(xe, "[RAS]: info queue drain incomplete, missed %u size\n",
+> +			dest_size - offset);
+> +		return offset;
 
-[Severity: Medium]
-Should xe_gt_flr_prepare() and xe_gt_reinit() also check
-gt =3D=3D xe_tile_pt_gt(gt_to_tile(gt)) instead of xe_gt_is_main_type(gt)?
+I just realized min_t() will take care of the return below, so xe_warn()
+is sufficient here.
 
-On a tile with no primary GT, xe_migrate_init() now sets up tile->migrate
-on the media GT, where xe_gt_is_main_type(gt) is false.  Across a PCIe
-FLR, xe_uc_flr_prepare() tears down the media GT's GuC queues (including
-tile->migrate->q), while xe_gt_flr_prepare() and xe_gt_reinit() skip
-xe_migrate_flr_prepare() and xe_migrate_reinit(), leaving the migration VM
-page tables and queue uninitialized after resume.
+> +	}
+> +
+> +	return min_t(u32, offset, counter_resp->first.header.total_size);
 
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index d7a8d8ecffe63..8fc3e5d500a2b 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+Re-use total_size.
 
-[ ... ]
-
-> @@ -485,7 +486,7 @@ static void xe_migrate_prepare_vm(struct xe_tile *til=
-e, struct xe_migrate *m,
->  		if (xe->info.has_usm) {
->  			xe_tile_assert(tile, xe_bo_size(batch) =3D=3D SZ_1M);
-> =20
-> -			batch =3D tile->primary_gt->usm.bb_pool->bo;
-> +			batch =3D xe_tile_pt_gt(tile)->usm.bb_pool->bo;
->  			m->usm_batch_base_ofs =3D m->batch_base_ofs + SZ_1M;
->  			xe_tile_assert(tile, xe_bo_size(batch) =3D=3D SZ_512K);
-> =20
-> @@ -506,7 +507,7 @@ static void xe_migrate_prepare_vm(struct xe_tile *til=
-e, struct xe_migrate *m,
->  		m->batch_base_ofs =3D xe_migrate_vram_ofs(xe, batch_addr, false);
-> =20
->  		if (xe->info.has_usm) {
-> -			batch =3D tile->primary_gt->usm.bb_pool->bo;
-> +			batch =3D xe_tile_pt_gt(tile)->usm.bb_pool->bo;
->  			batch_addr =3D xe_bo_addr(batch, 0, XE_PAGE_SIZE);
->  			m->usm_batch_base_ofs =3D xe_migrate_vram_ofs(xe, batch_addr, false);
->  		}
-
-[Severity: Medium]
-Can xe_tile_pt_gt(tile)->usm.bb_pool be NULL here when tile->primary_gt is
-NULL and xe->info.has_usm is set (for example, with gt_types_allowed=3Dmedia
-in configfs on an Xe2+ platform)?
-
-gt_init_with_all_forcewake() only allocates gt->usm.bb_pool when
-xe_gt_is_main_type(gt) is true, so tile->media_gt->usm.bb_pool is NULL and
-xe_migrate_prepare_vm() dereferences a NULL pointer.  Even if bb_pool were
-allocated on xe_tile_pt_gt(tile), media GTs have no copy engines, so
-gt->usm.paging_hwe0 is also NULL and the xe->info.has_usm paths in
-xe_migrate_init() and xe_exec_queue_create_bind() will fail with -EINVAL
-instead of falling back to xe_tile_pt_class(tile).
-
-[ ... ]
-
-> @@ -1276,7 +1277,7 @@ static struct dma_fence *__xe_migrate_copy(struct x=
-e_migrate *m,
->  					   bool copy_only_ccs,
->  					   bool is_vram_resolve)
+> +}
+> +
+> +/**
+> + * xe_ras_get_info_queue_size() - Get the total size of the RAS info queue
+> + * @xe: xe device
+> + * @response: Counter response carrying the first info queue chunk
+> + *
+> + * Return: Info queue size in bytes, capped at the supported maximum, or zero
+> + * if no usable info queue is present.
+> + */
+> +u32 xe_ras_get_info_queue_size(struct xe_device *xe,
+> +			       const struct xe_ras_get_counter_response *response)
+> +{
+> +	u32 total_size;
+> +
+> +	if (!response->has_info_queue)
+> +		return 0;
+> +
+> +	total_size = response->first.header.total_size;
+> +	if (!total_size) {
+> +		xe_warn(xe, "[RAS]: info queue reports zero size\n");
+> +		return 0;
+> +	}
+> +
+> +	if (total_size > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE) {
+> +		xe_warn(xe, "[RAS]: info queue size %u exceeds max size %u, truncating\n",
+> +			total_size, XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE);
+> +		total_size = XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE;
+> +	}
+> +	return total_size;
+> +}
+> +
+> +/**
+> + * xe_ras_drain_info_queue() - Drain the full RAS info queue into a flat buffer
+> + * @xe: xe device
+> + * @response: counter response carrying the first embedded chunk
+> + * @dest_buf: destination buffer supplied by the caller
+> + * @dest_size: size of @dest_buf in bytes
+> + *
+> + * Copies the first chunk already embedded in @response, then loops
+> + * issuing GET_INFO_QUEUE to fetch any remaining chunks until the queue
+> + * signals no more data or a transport/bounds error is encountered.  On
+> + * transport or bounds errors the function stops and returns whatever has
+> + * been assembled so far.
+> + *
+> + * Returns: Number of valid bytes written into @dest_buf.
+> + */
+> +u32 xe_ras_drain_info_queue(struct xe_device *xe,
+> +			    const struct xe_ras_get_counter_response *response,
+> +			    u8 *dest_buf, u32 dest_size)
+> +{
+> +	u32 flags, offset;
+> +
+> +	xe_assert(xe, response->has_info_queue);
+> +	xe_assert(xe, dest_buf);
+> +	xe_assert(xe, dest_size);
+> +
+> +	offset = get_first_chunk(xe, response, dest_buf, dest_size, &flags);
+> +	if (!offset || offset == dest_size)
+> +		return offset;
+> +
+> +	return get_remaining_chunks(xe, response, dest_buf, dest_size, offset, flags);
+> +}
+> +
+>  static ssize_t gpu_health_show(struct device *dev, struct device_attribute *attr, char *buf)
 >  {
-> -	struct xe_gt *gt =3D m->tile->primary_gt;
-> +	struct xe_gt *gt =3D xe_tile_pt_gt(m->tile);
->  	struct xe_device *xe =3D gt_to_xe(gt);
->  	struct dma_fence *fence =3D NULL;
->  	u64 size =3D xe_bo_size(src_bo);
+>  	struct xe_ras_get_health_response response = {0};
+> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> index f7b587ac84e3..607b18aab88a 100644
+> --- a/drivers/gpu/drm/xe/xe_ras.h
+> +++ b/drivers/gpu/drm/xe/xe_ras.h
+> @@ -25,7 +25,12 @@ bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
+>  u32 xe_ras_get_max_pages(struct xe_device *xe);
+>  int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
+>  				struct xe_ras_get_counter_response *response);
+> +u32 xe_ras_get_info_queue_size(struct xe_device *xe,
+> +			       const struct xe_ras_get_counter_response *response);
+>  bool xe_ras_is_aer_internal_error(struct xe_device *xe);
+>  void xe_ras_set_aer_internal_error(struct xe_device *xe);
+>  
+> +u32 xe_ras_drain_info_queue(struct xe_device *xe,
+> +			    const struct xe_ras_get_counter_response *response,
+> +			    u8 *dest_buf, u32 dest_size);
 
-[ ... ]
+Group all the info queue helpers and make sure to not leave any
+stray churn here.
 
-> @@ -1992,7 +1993,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrat=
-e *m,
->  	bool clear_vram =3D is_devmem(bo, dst);
->  	bool clear_bo_data =3D XE_MIGRATE_CLEAR_FLAG_BO_DATA & clear_flags;
->  	bool clear_ccs =3D XE_MIGRATE_CLEAR_FLAG_CCS_DATA & clear_flags;
-> -	struct xe_gt *gt =3D m->tile->primary_gt;
-> +	struct xe_gt *gt =3D xe_tile_pt_gt(m->tile);
->  	struct xe_device *xe =3D gt_to_xe(gt);
->  	bool clear_only_system_ccs =3D false;
->  	struct dma_fence *fence =3D NULL;
-> @@ -2357,7 +2358,7 @@ static struct dma_fence *xe_migrate_vram(struct xe_=
-migrate *m,
->  					 struct dma_fence *deps,
->  					 const enum xe_migrate_copy_dir dir)
->  {
-> -	struct xe_gt *gt =3D m->tile->primary_gt;
-> +	struct xe_gt *gt =3D xe_tile_pt_gt(m->tile);
->  	struct xe_device *xe =3D gt_to_xe(gt);
->  	bool use_usm_batch =3D xe->info.has_usm;
->  	struct dma_fence *fence =3D NULL;
+Raag
 
-[Severity: Medium]
-When m->q is created on XE_ENGINE_CLASS_VIDEO_DECODE, do these blit copy
-and clear paths silently succeed without copying or clearing memory?
-
-A migration job puts the PTE updates in job->ptrs[0].batch_addr and the
-blitter commands in job->ptrs[1].batch_addr, but the video decode ring
-ops only emit job->ptrs[0]:
-
-drivers/gpu/drm/xe/xe_ring_ops.c:emit_job_gen12_video() {
-	for (i =3D 0; i < job->q->width; ++i)
-		__emit_job_gen12_video(job, job->q->lrc[i],
-				       job->ptrs[i].batch_addr,
-				       &job->ptrs[i].head,
-				       xe_sched_job_lrc_seqno(job));
-}
-
-With q->width =3D=3D 1, the engine executes only the PTE batch and signals =
-the
-job fence without running the copy or clear batch.  Later in the series,
-commit "drm/xe: Fall back to CPU copies when the tile cannot blit" adds
-xe_migrate_can_blit() checks to TTM moves, but other callers remain
-unguarded: xe_ttm_access_memory() still calls xe_migrate_access_memory()
--> xe_migrate_vram() when len >=3D SZ_16K (silently dropping ptrace or
-/proc/<pid>/mem reads and writes on VRAM BOs), and xe_vram_memtest() calls
-xe_migrate_clear() and fails probe with -EIO when CONFIG_DRM_XE_DEBUG_MEM
-is enabled.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120054712.3775=
-73-18-stuart.summers@intel.com?part=3D11
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> index 0ff5803d495b..1a03de84074c 100644
+> --- a/drivers/gpu/drm/xe/xe_ras_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> @@ -19,6 +19,10 @@
+>  #define XE_RAS_MEMORY_POISON			BIT(2)
+>  #define XE_RAS_MEMORY_DATA_PARITY		BIT(5)
+>  
+> +#define XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE	200
+> +#define XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE	5120
+> +#define XE_RAS_INFO_QUEUE_FLAG_MORE_DATA	0x02
+> +
+>  /**
+>   * enum xe_ras_page_action - Page offline actions for page offline request
+>   *
+> @@ -110,6 +114,83 @@ struct xe_ras_threshold_crossed {
+>  	struct xe_ras_error_class counters[XE_RAS_NUM_COUNTERS];
+>  } __packed;
+>  
+> +/**
+> + * struct xe_ras_info_queue_header - Metadata for large info queue data transfers
+> + *
+> + * Provides chunk metadata for commands that support extended info queue
+> + * functionality. Used when the total data exceeds a single mailbox response.
+> + */
+> +struct xe_ras_info_queue_header {
+> +	/** @total_size: Total size of the complete info queue data in bytes */
+> +	u32 total_size;
+> +	/** @chunk_offset: Offset of this chunk within the total data in bytes */
+> +	u32 chunk_offset;
+> +	/** @chunk_size: Size of the data in this chunk in bytes */
+> +	u32 chunk_size;
+> +	/** @reserved0: Reserved for future use */
+> +	u32 reserved0;
+> +	/** @flags: Info queue control flags (XE_RAS_INFO_QUEUE_FLAG_*) */
+> +	u32 flags:8;
+> +	/** @reserved1: Reserved for future use */
+> +	u32 reserved1:4;
+> +	/** @num_headers: Number of detailed counter headers at start of the data */
+> +	u32 num_headers:5;
+> +	/** @reserved2: Reserved for future use */
+> +	u32 reserved2:15;
+> +	/** @reserved3: Reserved for future use */
+> +	u32 reserved3;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_info_queue_data_request - Request for a specific chunk of info queue data
+> + *
+> + * Allows the driver to request continuation of large info queue transfers
+> + * by specifying an offset and size within the full data set.
+> + */
+> +struct xe_ras_info_queue_data_request {
+> +	/** @offset: Byte offset of the requested data chunk */
+> +	u32 offset;
+> +	/** @size: Maximum size of the requested chunk in bytes */
+> +	u32 size;
+> +	/** @session_id: Session ID to correlate multi-chunk transfers */
+> +	struct xe_ras_error_class session_id;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved;
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_info_queue_data_response - Generic response for commands with info queues
+> + *
+> + * Standard response format for any command that returns an info queue
+> + * payload. May be embedded in a command-specific response structure.
+> + */
+> +struct xe_ras_info_queue_data_response {
+> +	/** @header: Info queue metadata for this chunk */
+> +	struct xe_ras_info_queue_header header;
+> +	/** @data: Info queue data for this chunk */
+> +	u8 data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_get_info_queue_request - Request for XE_SYSCTRL_CMD_GET_INFO_QUEUE
+> + */
+> +struct xe_ras_get_info_queue_request {
+> +	/** @qdata_req: Info queue request parameters */
+> +	struct xe_ras_info_queue_data_request qdata_req;
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved[16];
+> +} __packed;
+> +
+> +/**
+> + * struct xe_ras_get_info_queue_response - Response for XE_SYSCTRL_CMD_GET_INFO_QUEUE
+> + */
+> +struct xe_ras_get_info_queue_response {
+> +	/** @status: Status of the retrieval operation */
+> +	u32 status;
+> +	/** @qdata_resp: Info queue data chunk */
+> +	struct xe_ras_info_queue_data_response qdata_resp;
+> +} __packed;
+> +
+>  /**
+>   * struct xe_ras_get_counter_request - Request structure for get counter
+>   */
+> @@ -132,8 +213,14 @@ struct xe_ras_get_counter_response {
+>  	u64 timestamp;
+>  	/** @threshold: Threshold value for the counter */
+>  	u32 threshold;
+> -	/** @reserved: Reserved  */
+> -	u32 reserved[57];
+> +	/** @reserved: Reserved for future use */
+> +	u32 reserved:9;
+> +	/** @has_info_queue: Set if info queue is available */
+> +	u32 has_info_queue:1;
+> +	/** @reserved1: Reserved for future use */
+> +	u32 reserved1:22;
+> +	/** @first: First info queue chunk, if @has_info_queue is set */
+> +	struct xe_ras_info_queue_data_response first;
+>  } __packed;
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> index cdacceebca06..50b1d9abaf1f 100644
+> --- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+> @@ -37,6 +37,7 @@ enum xe_sysctrl_group {
+>   * @XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE: Retrieve list of offlined queued pages from firmware
+>   * @XE_SYSCTRL_CMD_GET_HEALTH: Retrieve gpu health
+>   * @XE_SYSCTRL_CMD_SET_HEALTH: Set gpu health
+> + * @XE_SYSCTRL_CMD_GET_INFO_QUEUE: Retrieve a chunk of info queue data
+>   */
+>  enum xe_sysctrl_gfsp_cmd {
+>  	XE_SYSCTRL_CMD_GET_SOC_ERROR		= 0x01,
+> @@ -50,6 +51,7 @@ enum xe_sysctrl_gfsp_cmd {
+>  	XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE	= 0x0A,
+>  	XE_SYSCTRL_CMD_GET_HEALTH		= 0x0B,
+>  	XE_SYSCTRL_CMD_SET_HEALTH		= 0x0C,
+> +	XE_SYSCTRL_CMD_GET_INFO_QUEUE		= 0x0D,
+>  };
+>  
+>  /**
+> -- 
+> 2.56.0
+> 
