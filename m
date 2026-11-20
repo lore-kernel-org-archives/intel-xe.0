@@ -2,42 +2,29 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A85F60A2616
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=AgyEscN5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADB6460A2604
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:32:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF0F3112851;
-	Fri, 20 Nov 2026 02:30:20 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3327B112851
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 02:30:14 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 4BFEB60F48;
- Fri, 20 Nov 2026 02:30:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D067A1F000C4;
- Fri, 20 Nov 2026 02:30:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795141813;
- bh=CmBOtwUa9WCDBAAdftyiHm/8zc11FEJb6K2uh/nN4io=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=AgyEscN5Dz6kr/t+5j0THgMgvQe1IrOpMv21vb4WM3vOtRMAoPq1K8GEp9JYIvDZ6
- oiTgdWlGyZETffYHjp4TSIIQ64iyBdnsZwO+fMq5Yh3lZ1SDkwLVZoJYTHUQCSRG2q
- z5uhmtpQzwrWl2cKrtdS3VV2b3FWIai0XUhPk4IB66jihdYpTnNaMiR5i5DuP52p7R
- 40SwWEI99/4AKdM3shoG5dGgGfLEFvkPBwNOXJ1x/jhkh8MH0tg42wVTSeyAz3XmIA
- o0Hq4pffu/hWHhbOQiA9BXPOT+suzV3YbLAO8Z/sKtOb5OnOKTRRpho49B3rBBoB0Q
- TKrNnZ4NG6k+w==
-Message-ID: <sashiko-outbox-224365@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v20 08/19] drm/xe/vsec: Support possible hotplug exit
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120021929.473553-29-michael.j.ruhl@intel.com>
-References: <20261120021929.473553-21-michael.j.ruhl@intel.com>
- <20261120021929.473553-29-michael.j.ruhl@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 02:30:12 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CD8110E490;
+	Fri, 20 Nov 2026 02:32:08 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDB6210E490;
+ Fri, 20 Nov 2026 02:32:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5Bv?=
+ =?utf-8?q?5=2C1/2=5D_drm/xe/wopcm=3A_Use_the_size_from_HW_when_excluding_th?=
+ =?utf-8?q?e_wopcm_range_from_GGTT?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Nov 2026 02:32:07 -0000
+Message-ID: <179514192790.56098.11720258499919446502@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,76 +34,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/xe/vsec: xe_pmt_telem_read() returns count instead of
-  -ENODEV on hotplug
---
+== Series Details ==
 
-commit 1b48141a6517afa4b3ba9a47a80f8aa9db62a6e9
-Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Series: series starting with [v5,1/2] drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT
+URL   : https://patchwork.freedesktop.org/series/179146/
+State : warning
 
-drm/xe/vsec: Support possible hotplug exit
+== Summary ==
 
-This commit adds drm_dev_enter() and drm_dev_exit() around the device
-access in xe_pmt_telem_read() to guard against hotplug removal.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3903bc0ce7672cd344ece69f09209aba37fa6731
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Thu Nov 19 23:04:23 2026 +0000
 
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 082b25b017db6..6a28e58959be9 100644
-> --- a/drivers/gpu/drm/xe/xe_vsec.c
-> +++ b/drivers/gpu/drm/xe/xe_vsec.c
-[ ... ]
-> @@ -159,7 +161,12 @@ static int xe_guid_decode(u32 guid, int *index, u32 =
-*offset)
->   * @user_offset: a user offset relative to the beginning of the data to =
-read
->   * @count: bytes to read
->   *
-> + * This is a callback API.  I.e this can be accessed external to the XE =
-driver
-> + * (PMT driver scope).  Because of this, DRM hotplug needs to be verified
-> + * (drm_dev_enter()).
-> + *
->   * Return:
-> + * * -ENODEV device is not available (hotplug)
->   * * -ENODATA for incorrect power state
->   * * -EINVAL for unsupported PMT feature
->   * * count   number of bytes read on success
-> @@ -172,13 +179,19 @@ int xe_pmt_telem_read(struct device *dev, u32 guid,=
- u64 *data, loff_t user_offse
->  	u32 cap_type =3D FIELD_GET(GUID_CAP_TYPE, guid);
->  	u32 mem_region;
->  	u32 offset;
-> -	int ret;
-> +	int ret =3D 0;
-> +	int idx;
-> =20
->  	xe_assert(xe, !IS_SRIOV_VF(xe));
-> =20
-> +	if (!drm_dev_enter(&xe->drm, &idx)) {
-> +		memset(data, 0, count);
-> +		return count;
-> +	}
+    drm/xe/wopcm: Simplify GuC WOPCM programming
+    
+    Starting from PVC, the GuC WOPCM registers are programmed by BIOS/IFWI,
+    which is a trusted entity, so we don't really need to double-check the
+    programmed values; therefore, if we find the WOPCM registers already
+    locked we can just return early and keep going.
+    For legacy platform (which are not officially supported by the Xe
+    driver), we still need to do the math ourselves.
+    By switching to use the WOPCM size from the HW instead of using a
+    hardcoded value, we make it impossible for the programming to end up
+    incorrect when using the official binaries (because those are sized so
+    that they're guaranteed to fit), so in this case we can drop the layout
+    check as well. If a malicious user is using modified binaries, we'll
+    still catch the error and fail at either parse or load time.
+    
+    Given these simplifications and the fact that the only user left for this
+    is the uC code, we can move the code in the xe_uc.c file. As part of
+    this, the wopcm re-programming post-reset/resume has been moved from
+    do_gt_restart to xe_uc_load_hw.
+    The documentation has also been dropped, both because it's wrong for
+    platforms officially supported by the Xe driver (the WOPCM is now shared
+    by root and media GTs and the GSC FW is also stored there) and because we
+    don't use the layout anymore so we don't really care.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 9bf864cd53c8e7651a038b9be01b2b0dfc67b420 drm-intel
+caa12b7cdd23 drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT
+3903bc0ce767 drm/xe/wopcm: Simplify GuC WOPCM programming
+-:321: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#321: 
+deleted file mode 100644
 
-[Severity: Medium]
-Should this return -ENODEV instead of zeroing data and returning count when
-drm_dev_enter() fails, as documented in the Return section above?
+total: 0 errors, 1 warnings, 0 checks, 240 lines checked
 
-Returning count reports a successful read of all zeroes, so callers such as
-xe_hwmon_energy_get() that check ret !=3D sizeof(pmt_val) treat the zeroed
-buffer as a valid hardware reading and underflow the 32-bit unsigned delta
-(reg_val - ei->reg_val_prev) when updating ei->accum_energy.
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120021929.4735=
-53-21-michael.j.ruhl@intel.com?part=3D8
