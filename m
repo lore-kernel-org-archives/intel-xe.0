@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEC9606A325
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29790606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:47:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lYVKZApM
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bA8eCNzN
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA35710FF7A;
-	Fri, 20 Nov 2026 05:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBBC510EDE2;
+	Fri, 20 Nov 2026 05:47:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C04A10EDE2
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 05:47:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6BB10EDE2
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 05:47:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795153637; x=1826689637;
+ t=1795153643; x=1826689643;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9qW5V1yJbEpY7MqcbcGoU7bd7Xxuzy15mn69IYCJHlI=;
- b=lYVKZApMXlm1fXrxi+vy18H5KO/f/dZb2JE11P2CwIeJ1W1eTMwC8kzk
- UiXu2BUjeWa5CwK57jtD6sb5xckVRT0IxKPUJmXtjk11mkTP7IAARB/vH
- RExLMAu0TgcUnmndDpiu1szbZuM6KF0jdOFNKny4z8mdVhJ4hVfoELkP9
- NPFM6y8cfH4X74D65dVfJJDnT1ToDBXkBk5/k8G3zy3s4UQHILKLP2/RD
- lPJZ3a8VO7jZrw7WTIPwNaQTTs5UH+c3ylOsjsBJ3qoAKqtwReP0rm0qJ
- pHPo2M34RiJUT/7suWCJCr8fo8Q1M4Pj68AreFlgsfiLLD3xIO/3A4Gm4 A==;
-X-CSE-ConnectionGUID: D/unCN+DRFWHzk6hJbxpcw==
-X-CSE-MsgGUID: /IurJBn/TD6pXM7fHwFFWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4018522"
+ bh=ni0rLpgHYhBx5lpGYP/Nc/zjpUiOemwZg0ReO0pSq/4=;
+ b=bA8eCNzNtbvra5dhIx9X2k2hTbE/kX3aaNghiq8PWUjMsc/yaLVvj2Uq
+ Qdu5uD1gC0FlmDZecE6P0eMW1zRs+i/MAamkuqP+8fed/DgC3g1Lf31qR
+ Dob0M6CFyxn6pKhyAxXaO995XT34NO47r3ETwyO8ZvSJY/+IGBsHuHQ5r
+ KqPLQyYDTww8/jvwBqvQMoaa+6D6j6AyojztuiRp6MgTMaug+Sa3G9+ok
+ D70cOIJu4J+Lu2ajkchdwxo6/a3a6E9hU+X/9T+YnhBELU9TzRsMJ5Haz
+ wBWx0tviPtOZTQuZavgUEnBkP0n2q/dHZVbModqR/Te4zPYi3NEPnhwuQ g==;
+X-CSE-ConnectionGUID: DxZ6KrPVTeSnLmwDvXhjGg==
+X-CSE-MsgGUID: /bw046rKQ6qUwmOqzlCbmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4018526"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="4018522"
+   d="scan'208";a="4018526"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 21:47:15 -0800
-X-CSE-ConnectionGUID: LzEn6bE3QTWLUq90ox666w==
-X-CSE-MsgGUID: NXc3+CBNSJe1cx+FyqIdeg==
+ 19 Nov 2026 21:47:16 -0800
+X-CSE-ConnectionGUID: VuizW875S9adbH4cM9jl3g==
+X-CSE-MsgGUID: hwkStBx0RFu4+KwGtuRDqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10617117"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10617132"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 21:47:15 -0800
+ 19 Nov 2026 21:47:16 -0800
 From: Stuart Summers <stuart.summers@intel.com>
 To: 
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 01/16] drm/xe/sysctrl: Use preallocated mailbox staging buffers
-Date: Fri, 20 Nov 2026 05:47:12 +0000
-Message-ID: <20261120054712.377573-19-stuart.summers@intel.com>
+Subject: [PATCH 05/16] drm/xe: Detect each GMD_ID IP in a loop
+Date: Fri, 20 Nov 2026 05:47:16 +0000
+Message-ID: <20261120054712.377573-23-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261120054712.377573-18-stuart.summers@intel.com>
 References: <20261120054712.377573-18-stuart.summers@intel.com>
@@ -70,163 +70,114 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Every mailbox command stages its request and response through a buffer
-allocated with GFP_KERNEL. Both are bounded by the maximum mailbox
-message size and the command mutex already serialises every sender, so
-embed them in struct xe_sysctrl and drop the per-command allocation.
+handle_gmdid() open coded the graphics and media detection twice, with
+the two copies subtly disagreeing: a missing media IP was tolerated,
+while graphics reporting version 0 was reported as an unknown version.
 
-This removes the only failure mode from sysctrl_prepare_command(), so
-return the command size directly, and allows commands to be sent from
-contexts where a GFP_KERNEL allocation is not possible - such as the
-runtime resume path, which gains a sender later in this series.
+Describe the per IP differences in a small table and walk it, so both
+IPs are detected the same way and an absent IP of either kind simply
+leaves its descriptor NULL. Deciding whether the resulting combination
+is usable is left to the caller, which is unchanged in still demanding
+a graphics IP.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 56 +++++++++----------------
- drivers/gpu/drm/xe/xe_sysctrl_types.h   | 11 +++++
- 2 files changed, 31 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 70 ++++++++++++++++++++++---------------
+ 1 file changed, 42 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index f1a231dfec1e..2af73c62d32d 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -6,7 +6,6 @@
- #include <linux/bitfield.h>
- #include <linux/cleanup.h>
- #include <linux/minmax.h>
--#include <linux/slab.h>
- #include <linux/sprintf.h>
- #include <linux/string.h>
- 
-@@ -103,36 +102,27 @@ static void sysctrl_clear_response(struct xe_sysctrl *sc)
- 	xe_mmio_rmw32(sc->mmio, SYSCTRL_MB_CTRL, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, 0);
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 7a5c4939a0ac..1fce1c993a2c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -708,9 +708,21 @@ static const struct xe_ip *find_media_ip(unsigned int verx100)
+ 	return NULL;
  }
  
--static int sysctrl_prepare_command(struct xe_device *xe,
--				   u8 group_id, u8 command,
--				   const void *data_in, size_t data_in_len,
--				   u8 **mbox_cmd, size_t *cmd_size)
-+static size_t sysctrl_prepare_command(struct xe_sysctrl *sc,
-+				      u8 group_id, u8 command,
-+				      const void *data_in, size_t data_in_len)
++static const struct xe_gmdid_desc {
++	const char *name;
++	const struct xe_ip *(*find_ip)(unsigned int verx100);
++} gmdid_descs[] = {
++	[GMDID_GRAPHICS] = { "graphics", find_graphics_ip },
++	[GMDID_MEDIA] = { "media", find_media_ip },
++};
++
+ /*
+  * Read IP version from hardware and select graphics/media IP descriptors
+  * based on the result.
++ *
++ * Each IP is detected independently and any of them may legitimately be fused
++ * off or otherwise absent, in which case its descriptor is left NULL.  Deciding
++ * whether the resulting combination is usable is up to the caller.
+  */
+ static int handle_gmdid(struct xe_device *xe,
+ 			const struct xe_ip **graphics_ip,
+@@ -718,36 +730,38 @@ static int handle_gmdid(struct xe_device *xe,
+ 			u32 *graphics_revid,
+ 			u32 *media_revid)
  {
- 	struct xe_sysctrl_mailbox_msg_hdr *hdr;
--	size_t size;
--	u8 *buffer;
-+	struct xe_device *xe = sc_to_xe(sc);
-+
-+	lockdep_assert_held(&sc->cmd_lock);
- 
- 	xe_assert(xe, command <= SYSCTRL_HDR_COMMAND_MAX);
- 
- 	xe_assert(xe, data_in_len <= XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr));
- 
--	size = sizeof(*hdr) + data_in_len;
+-	u32 ver;
+-	int ret;
 -
--	buffer = kmalloc(size, GFP_KERNEL);
--	if (!buffer)
--		return -ENOMEM;
+-	*graphics_ip = NULL;
+-	*media_ip = NULL;
 -
--	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)buffer;
-+	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)sc->cmd_buf;
- 	hdr->data = REG_FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
- 		    REG_FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command);
- 
- 	if (data_in && data_in_len)
--		memcpy(buffer + sizeof(*hdr), data_in, data_in_len);
--
--	*mbox_cmd = buffer;
--	*cmd_size = size;
-+		memcpy(sc->cmd_buf + sizeof(*hdr), data_in, data_in_len);
- 
--	return 0;
-+	return sizeof(*hdr) + data_in_len;
- }
- 
- static int sysctrl_send_frames(struct xe_sysctrl *sc,
-@@ -231,14 +221,17 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
- 	struct xe_sysctrl_mailbox_msg_hdr *hdr;
- 	struct xe_device *xe = sc_to_xe(sc);
- 	size_t remain = sizeof(*hdr) + data_out_len;
--	u8 *buffer __free(kfree) = kzalloc(remain, GFP_KERNEL);
-+	u8 *buffer = sc->resp_buf;
- 	size_t frame_size;
- 	bool done = false;
- 	int ret = 0;
- 	u8 *out;
- 
--	if (!buffer)
--		return -ENOMEM;
-+	lockdep_assert_held(&sc->cmd_lock);
-+
-+	xe_assert(xe, data_out_len <= XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr));
-+
-+	memset(buffer, 0, remain);
- 
- 	out = buffer;
- 	while (!done && remain) {
-@@ -360,8 +353,7 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
- {
- 	struct xe_device *xe = sc_to_xe(sc);
- 	u8 group_id, command_code;
--	u8 *mbox_cmd = NULL;
--	size_t cmd_size = 0;
-+	size_t cmd_size;
- 	unsigned int timeout_ms;
- 	int ret;
- 
-@@ -380,25 +372,17 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
- 
- 	might_sleep();
- 
--	ret = sysctrl_prepare_command(xe, group_id, command_code,
--				      cmd->data_in, cmd->data_in_len,
--				      &mbox_cmd, &cmd_size);
--	if (ret) {
--		xe_log_err(xe, SYSCTRL, ret, "Failed to prepare command %#x.%#x\n",
--			   group_id, command_code);
+-	ret = read_gmdid(xe, GMDID_GRAPHICS, &ver, graphics_revid);
+-	if (ret)
 -		return ret;
+-
+-	*graphics_ip = find_graphics_ip(ver);
+-	if (!*graphics_ip) {
+-		xe_log_err(xe, REGS, -EINVAL,
+-			   "Hardware reports unknown graphics version %u.%02u\n",
+-			   ver / 100, ver % 100);
 -	}
 -
- 	guard(mutex)(&sc->cmd_lock);
- 
--	ret = sysctrl_send_command(sc, mbox_cmd, cmd_size,
-+	cmd_size = sysctrl_prepare_command(sc, group_id, command_code,
-+					   cmd->data_in, cmd->data_in_len);
+-	ret = read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
+-	if (ret)
+-		return ret;
++	const struct xe_ip **ips[] = {
++		[GMDID_GRAPHICS] = graphics_ip,
++		[GMDID_MEDIA] = media_ip,
++	};
++	u32 *revids[] = {
++		[GMDID_GRAPHICS] = graphics_revid,
++		[GMDID_MEDIA] = media_revid,
++	};
 +
-+	ret = sysctrl_send_command(sc, sc->cmd_buf, cmd_size,
- 				   cmd->data_out, cmd->data_out_len, rdata_len,
- 				   timeout_ms);
- 	if (ret)
- 		xe_log_err(xe, SYSCTRL, ret, "Mailbox command failed to send %#x.%#x\n",
- 			   group_id, command_code);
- 
--	kfree(mbox_cmd);
--
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-index f12455f2886d..605bdc62e0bf 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -58,6 +58,17 @@ struct xe_sysctrl {
- 	/** @cmd_lock: Mutex protecting mailbox command operations */
- 	struct mutex cmd_lock;
- 
-+	/**
-+	 * @cmd_buf: Request staging buffer, sized to the maximum mailbox
-+	 * message. Preallocated because commands are sent from the runtime
-+	 * resume path, which may be entered from reclaim. Protected by
-+	 * @cmd_lock.
-+	 */
-+	u8 cmd_buf[XE_SYSCTRL_MB_MAX_MESSAGE_SIZE];
++	for (enum xe_gmdid_type type = 0; type < ARRAY_SIZE(gmdid_descs); type++) {
++		const struct xe_gmdid_desc *desc = &gmdid_descs[type];
++		u32 ver;
++		int ret;
 +
-+	/** @resp_buf: Response staging buffer, see @cmd_buf */
-+	u8 resp_buf[XE_SYSCTRL_MB_MAX_MESSAGE_SIZE];
++		*ips[type] = NULL;
++		*revids[type] = 0;
 +
- 	/** @work: Pending events worker */
- 	struct work_struct work;
++		ret = read_gmdid(xe, type, &ver, revids[type]);
++		if (ret)
++			return ret;
  
+-	/* Media may legitimately be fused off / not present */
+-	if (ver == 0)
+-		return 0;
++		/* The IP may legitimately be fused off / not present */
++		if (!ver) {
++			*revids[type] = 0;
++			continue;
++		}
+ 
+-	*media_ip = find_media_ip(ver);
+-	if (!*media_ip) {
+-		xe_log_err(xe, REGS, -EINVAL,
+-			   "Hardware reports unknown media version %u.%02u\n",
+-			   ver / 100, ver % 100);
++		*ips[type] = desc->find_ip(ver);
++		if (!*ips[type])
++			xe_log_err(xe, REGS, -EINVAL,
++				   "Hardware reports unknown %s version %u.%02u\n",
++				   desc->name, ver / 100, ver % 100);
+ 	}
+ 
+ 	return 0;
 -- 
 2.43.0
 
