@@ -2,28 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4AE606A325
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 00:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A2E9606A339
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 00:15:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IPanwss6
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44FA01127ED;
-	Fri, 20 Nov 2026 00:15:21 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 239BE1127ED;
- Fri, 20 Nov 2026 00:15:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6531831818863651910=="
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/color=3A_Program_t?=
- =?utf-8?q?he_3D_LUT_on_the_plane=27s_own_pipe_with_joiner?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Nov 2026 00:15:20 -0000
-Message-ID: <179513372013.55722.449998604712909681@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261119165925.683691-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20261119165925.683691-1-chaitanya.kumar.borah@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA6C112811;
+	Fri, 20 Nov 2026 00:15:33 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47DE8112811
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 00:15:27 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 16F3A416CA;
+ Fri, 20 Nov 2026 00:15:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D072C1F000C4;
+ Fri, 20 Nov 2026 00:15:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795133727;
+ bh=NfjYNSal55eO57UM6JiZVsSETiNjrBcx+yL94392ZRM=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=IPanwss6sjoB7e2/8zqGKxbKzVR6J4ayWGkQF+OFZajUG+Tx75T6skVHC1okQLpHv
+ vp3D3VYmW8iDAU6duFqyUUaq9J4nKIz8WUODiAiVyQZUh7qWKSmRX6tbwEb1pqd672
+ uu4iiCrIprLCF8GGpmJw+FzmxSmq+RjQUyvxx8m9K3kdUrPvzhWaU80R4pb204ItEm
+ M5GMmw73+xY23fVudhI0gnIepeJiO6TmteY0FOeYbhpNPLHE/YeTlZ6J/o7S0rpR5u
+ LsalwkUPFUU1Xf6LlMLPRFzLSuQIaFHml1zDiz8mAeeOSjPdO8UP0arBtuEFMHJqpf
+ 1UFEpjYQrDpDQ==
+Message-ID: <sashiko-outbox-224261@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH] drm/xe: Serialize migrate ULLS enter against a pending
+ exit
+To: fei.yang@intel.com, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261120001054.3901642-1-fei.yang@intel.com>
+References: <20261120001054.3901642-1-fei.yang@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 20 Nov 2026 00:15:26 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,285 +46,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
---===============6531831818863651910==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/xe: missing Fixes trailer for xe_migrate_ulls_exit() race
+  fix
+--
 
-== Series Details ==
+commit ec3c80079d880e245d587b5f95313394facd8925
+Author: Fei Yang <fei.yang@intel.com>
 
-Series: drm/i915/color: Program the 3D LUT on the plane's own pipe with joiner
-URL   : https://patchwork.freedesktop.org/series/179121/
-State : success
+> drm/xe: Serialize migrate ULLS enter against a pending exit
+>
+> xe_migrate_ulls_exit() clears ulls.enabled as soon as the ULLS_EXIT job is
+> pushed, and drops job_mutex without waiting for it. A page fault arriving
+> in that window finds ULLS disabled and pushes a ULLS_ENTER job while the
+> previous ULLS chain is still executing.
+>
+> ULLS_ENTER is not chained, so submit_exec_queue() publishes its ring tail
+> with xe_lrc_set_ring_tail(). That only updates the saved tail in the
+> context image, which is what a context restore loads RING_TAIL from. It is
+> therefore correct for a context that is off the hardware - but the context
+> only leaves the hardware once the exit job has retired.
+>
+> Submitted before then, that write races the postamble of the job preceding
+> the exit job. The postamble publishes the same saved tail, and RING_TAIL,
+> at the end of the exit job. If it lands after the CPU's write the tail is
+> rewound behind the enter job, which the command streamer never executes.
+> Its fence never signals, so job_cnt never drops, xe_exec_queue_is_idle()
+> stays false and the exit worker re-arms itself forever while the context
+> sits parked on the engine.
+>
+> Wait for the exit job's fence in the exit worker before dropping
+> job_mutex. xe_migrate_ulls_enter() takes job_mutex to submit, so it is
+> serialized behind the exit job retiring. The exit job carries no batch
+> and is only pushed once the queue is idle, so the wait is short and
+> depends on nothing else on the queue.
+>
+> Assisted-by: LLM
+> Signed-off-by: Fei Yang <fei.yang@intel.com>
 
-== Summary ==
+[Severity: Low]
+This fixes a race in xe_migrate_ulls_exit() that can hang the migration
+queue.  Should this include:
 
-CI Bug Log - changes from xe-6193-5e1f7086abf6664123216020e4afb75a2512292e_BAT -> xe-pw-179121v1_BAT
-====================================================
+  Fixes: 8ab0d5ca31ca ("drm/xe: Add ULLS migration job support to migration=
+ layer")
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 15)
-------------------------------
-
-  Additional (1): bat-wcl-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-179121v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@eof:
-    - bat-wcl-2:          NOTRUN -> [SKIP][1] ([Intel XE#7241]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@fbdev@eof.html
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-wcl-2:          NOTRUN -> [SKIP][2] ([Intel XE#7245])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-wcl-2:          NOTRUN -> [SKIP][3] ([Intel XE#7240]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-wcl-2:          NOTRUN -> [SKIP][4] ([Intel XE#7246])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-wcl-2:          NOTRUN -> [SKIP][5] ([Intel XE#7237]) +13 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_psr@psr-sprite-plane-onoff:
-    - bat-wcl-2:          NOTRUN -> [SKIP][6] ([Intel XE#2850]) +2 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_psr@psr-sprite-plane-onoff.html
-
-  * igt@xe_evict@evict-small-multi-vm:
-    - bat-wcl-2:          NOTRUN -> [SKIP][7] ([Intel XE#7238]) +11 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_evict@evict-small-multi-vm.html
-
-  * igt@xe_exec_balancer@twice-virtual-userptr-rebind:
-    - bat-wcl-2:          NOTRUN -> [SKIP][8] ([Intel XE#7482]) +17 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html
-
-  * igt@xe_exec_multi_queue@many-queues-userptr-invalidate:
-    - bat-wcl-2:          NOTRUN -> [SKIP][9] ([Intel XE#8364]) +13 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html
-
-  * igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:
-    - bat-wcl-2:          NOTRUN -> [SKIP][10] ([Intel XE#7239]) +2 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:
-    - bat-wcl-2:          NOTRUN -> [SKIP][11] ([Intel XE#9657])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html
-
-  * igt@xe_mmap@vram:
-    - bat-wcl-2:          NOTRUN -> [SKIP][12] ([Intel XE#7243])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_mmap@vram.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-wcl-2:          NOTRUN -> [SKIP][13] ([Intel XE#7247] / [Intel XE#7590])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelp:
-    - bat-wcl-2:          NOTRUN -> [SKIP][14] ([Intel XE#7242] / [Intel XE#7590])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_pat@pat-index-xelp.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-wcl-2:          NOTRUN -> [SKIP][15] ([Intel XE#7248] / [Intel XE#7590])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-  [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
-  [Intel XE#7237]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7237
-  [Intel XE#7238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238
-  [Intel XE#7239]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7239
-  [Intel XE#7240]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7240
-  [Intel XE#7241]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7241
-  [Intel XE#7242]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7242
-  [Intel XE#7243]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7243
-  [Intel XE#7245]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7245
-  [Intel XE#7246]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7246
-  [Intel XE#7247]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7247
-  [Intel XE#7248]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7248
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7590]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590
-  [Intel XE#8364]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364
-  [Intel XE#9657]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657
-
-
-Build changes
--------------
-
-  * Linux: xe-6193-5e1f7086abf6664123216020e4afb75a2512292e -> xe-pw-179121v1
-
-  IGT_9199: f28241ac1ad57574315e7bd31b174294cca2f29c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-6193-5e1f7086abf6664123216020e4afb75a2512292e: 5e1f7086abf6664123216020e4afb75a2512292e
-  xe-pw-179121v1: 179121v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/index.html
-
---===============6531831818863651910==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/color: Program the 3D LUT on the plane&#x27;s own pipe with joiner</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179121/">https://patchwork.freedesktop.org/series/179121/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6193-5e1f7086abf6664123216020e4afb75a2512292e_BAT -&gt; xe-pw-179121v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 15)</h2>
-<p>Additional (1): bat-wcl-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-179121v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@eof:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7241">Intel XE#7241</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7245">Intel XE#7245</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_flip@basic-flip-vs-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7240">Intel XE#7240</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7246">Intel XE#7246</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7237">Intel XE#7237</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850">Intel XE#2850</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-multi-vm:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_evict@evict-small-multi-vm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) +11 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-virtual-userptr-rebind:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_exec_balancer@twice-virtual-userptr-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-queues-userptr-invalidate:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_exec_multi_queue@many-queues-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/8364">Intel XE#8364</a>) +13 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_live_ktest@xe_bo@xe_bo_evict_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7239">Intel XE#7239</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_live_ktest@xe_migrate@xe_migrate_access_memory_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9657">Intel XE#9657</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7243">Intel XE#7243</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7247">Intel XE#7247</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelp:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7242">Intel XE#7242</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179121v1/bat-wcl-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7248">Intel XE#7248</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7590">Intel XE#7590</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6193-5e1f7086abf6664123216020e4afb75a2512292e -&gt; xe-pw-179121v1</li>
-</ul>
-<p>IGT_9199: f28241ac1ad57574315e7bd31b174294cca2f29c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-6193-5e1f7086abf6664123216020e4afb75a2512292e: 5e1f7086abf6664123216020e4afb75a2512292e<br />
-  xe-pw-179121v1: 179121v1</p>
-
-</body>
-</html>
-
---===============6531831818863651910==--
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120001054.3901=
+642-1-fei.yang@intel.com?part=3D1
