@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76B66606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F41A606A326
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:24:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CGGVEPnD
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RVqDb6Mc
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35B35112AC1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B9CB112AD4;
 	Fri, 20 Nov 2026 14:24:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1785112AD2;
- Fri, 20 Nov 2026 14:24:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66A88112AD5;
+ Fri, 20 Nov 2026 14:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795184643; x=1826720643;
+ t=1795184645; x=1826720645;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9icv39Ld2p2FOPqPxt2dwhMptlsFpiluzOwozHIKETA=;
- b=CGGVEPnDkzS25Hwx/33DskBTWvg80bQKhS9VHtgiaEy1WVywsfwzITyo
- IWE9+uJ40QA/Vf4xZwjzf0gdVO8s4dDGIvOfGVEpRT07Ux4lc7we2c46e
- 6qT2ZXAUtZEwfDF39KMtnsbi1P8mGhqaNuCRvlbM3XxXjmo+ubUZOj4WL
- Z0wLZqjur66LS3xF0dF6sR5JtCxak1YUKx3oFndwSLcOGWry3RLvN/0vm
- OHr5dlfRw6SqAJndiEhS6+k1y+uo4+mgNss05uPEGVRdhTzHAVxKHV09u
- ZLLgcPiEDOSd1xdVez0uCGVc8Me51hhUugEuzbMxuTGNDM+CpmyJS7617 Q==;
-X-CSE-ConnectionGUID: 07Af3tL5S8i4uC0pqWUehw==
-X-CSE-MsgGUID: MwIiXTbUS8qZWLMqkOVm4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4091015"
+ bh=P8nXi0tjlc7kZqugwW4KyDiv35B4+qlnOxBuwSS8s1s=;
+ b=RVqDb6McsmPycY/FC4/IGhaSNkV0wPE56K6UgohJ1jVAyyz8UpGL3yJ7
+ qMutwNNsU1xRYO6dTJ4WvPJwJIvcM7GvVRu45h8TRdMdsx57iSbG5m3HJ
+ maro/y1tBtIoo/AUNC2C3F9n8wIRM9uO0HdnxCvny4bVr/vKajg3zhPrV
+ iLC0VOJaWtosYs2HIRtCsxqeL39xCxAScqkQgj9Zb8fhzq8loXvP41Foh
+ UTKza2rPPYWhxjocYrc62jBq1ieG0NanRJmB+1GXoWKQn1NYxEeUecHw7
+ jH3FZ8jskEALNjtxr+Kcn5WF2VFLX7olrv5sVxAWhvPoAvylzZLdgnnL6 w==;
+X-CSE-ConnectionGUID: zhZjrxrTQD++zRX7cK9ujg==
+X-CSE-MsgGUID: cLbO3jFpSOqBq3C88falXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4091022"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4091015"
+   d="scan'208";a="4091022"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:23:44 -0800
-X-CSE-ConnectionGUID: RuSFjz5lSameVnBbT+Po5w==
-X-CSE-MsgGUID: bkLo1fx5RayjxTjR4U2qAQ==
+ 20 Nov 2026 06:23:48 -0800
+X-CSE-ConnectionGUID: 2jFMqVqzTwm5ZggFVWTuGA==
+X-CSE-MsgGUID: wQRcD0eQQGu/OHWkVpOwrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12422050"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12422058"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:23:43 -0800
+ 20 Nov 2026 06:23:46 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: alexander.kaplan@sms-medipool.de,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 21/29] drm/i915/dp: Allow PCON DSC modes through the FRL bw
- check
-Date: Fri, 20 Nov 2026 19:37:21 +0530
-Message-ID: <20261120140729.466177-22-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 23/29] drm/i915/dp: Limit the DP link bpp for DSC pass-through
+ to the FRL bandwidth
+Date: Fri, 20 Nov 2026 19:37:23 +0530
+Message-ID: <20261120140729.466177-24-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
@@ -67,162 +67,114 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The FRL bandwidth check rejects every mode whose uncompressed bandwidth
-exceeds the FRL rate, even though an HDMI 2.1 PCON can decode a DSC 1.1
-stream and encode DSC 1.2a for the HDMI sink. High bandwidth modes (e.g.
-4k120, 8k60) get pruned for such PCONs, although the PCON and the sink
-can carry them.
+When the PCON passes a DSC 1.2a stream through, the HDMI sink gets the
+compressed stream of the source as is. The compressed bpp of the DP
+stream therefore also has to fit the HDMI FRL link, which is not
+checked when computing the DP link.
 
-Accept such a mode if the HDMI link can carry it compressed, and the DP
-stream can be compressed too: the PCON can't encode an uncompressed
-stream. Do the same when selecting the bpc, but only in the pass that
-compresses the DP stream, and only if no bpc fits the HDMI link
-uncompressed, so that the HDMI link stays uncompressed whenever it can.
+If the uncompressed stream doesn't fit the FRL link, limit the maximum
+link bpp of the DSC pass to what the FRL link can carry. Fail the
+limits computation if this leaves no valid bpp.
 
-This takes care of the FIXME in the FRL bandwidth check.
+This applies to an HDMI 2.1 sink that supports DSC 1.2 behind a PCON
+that advertises pass-through support, so add a helper for that
+capability. Modes that need DSC on the HDMI link are not accepted for
+a DSC 1.2a source yet, so there is no change in behavior.
+
+The function returns bool like the other functions computing the link
+config limits, true if the limits are valid. It cannot fail yet, the
+following changes add more limits for which it can return false.
 
 Assisted-by: LLM
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 59 ++++++++++++++++++++++---
- 1 file changed, 53 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 55 +++++++++++++++++++++++--
+ 1 file changed, 51 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7d3b5f35c206..2d5587ec923c 100644
+index 9e69035a99eb..9d662b5f7b47 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1226,7 +1226,6 @@ intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
- 	/* check for MAX FRL BW for both PCON and HDMI2.1 sink */
- 	max_frl_bw = intel_dp_hdmi_frl_payload_bw(intel_dp, false);
+@@ -1248,6 +1248,16 @@ static bool intel_dp_pcon_can_encode_dsc(struct intel_dp *intel_dp)
+ 		drm_dp_pcon_enc_is_dsc_1_2(intel_dp->pcon_dsc_dpcd);
+ }
  
--	/* #FIXME check bandwidth with DSC if both PCON and HDMI sink support DSC */
- 	if (target_bw > max_frl_bw)
- 		return MODE_CLOCK_HIGH;
- 
-@@ -1303,6 +1302,23 @@ intel_dp_pcon_dsc_enc_compute(struct intel_dp *intel_dp,
++static bool intel_dp_pcon_can_passthrough_dsc(struct intel_dp *intel_dp)
++{
++	struct intel_connector *connector = intel_dp->attached_connector;
++
++	return intel_dp_is_hdmi_2_1_sink(intel_dp) &&
++		connector->base.display_info.hdmi.dsc_cap.v_1p2 &&
++		(connector->dp.dsc_dpcd[DP_DSC_SUPPORT - DP_DSC_SUPPORT] &
++		 DP_DSC_PASSTHROUGH_IS_SUPPORTED);
++}
++
+ /*
+  * Compute the PCON DSC encoder parameters for the stream sent to the HDMI
+  * sink, which is in @sink_format. @enc can be NULL to only check feasibility.
+@@ -2987,6 +2997,39 @@ intel_dp_compute_m_n_ratio_limits(struct intel_dp *intel_dp,
  	return true;
  }
  
 +/*
-+ * Whether the PCON can compress a stream that doesn't fit the HDMI FRL link
-+ * uncompressed. The DP stream has to be compressed for that as well.
++ * The stream of a PCON passing DSC through is not recompressed, so it has to
++ * fit the HDMI FRL link as is. Limit the compressed bpp of the DP stream.
++ *
++ * This applies only if the HDMI link needs DSC and the DP stream is a DSC 1.2a
++ * stream, as passing it through is the only PCON operation possible then.
 + */
 +static bool
-+intel_dp_hdmi_dsc_possible(struct intel_dp *intel_dp,
-+			   const struct drm_display_mode *mode, int pixel_clock,
-+			   int bpc, enum intel_output_format sink_format)
++intel_dp_pcon_dsc_compute_passthrough_limits(struct intel_dp *intel_dp,
++					     const struct intel_crtc_state *crtc_state,
++					     struct link_config_limits *limits)
 +{
 +	struct intel_connector *connector = intel_dp->attached_connector;
++	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
 +
-+	return intel_dp_pcon_sink_support_frl(intel_dp) &&
-+		intel_dp_dsc_stream_version_minor(connector) < 2 &&
-+		intel_dp_pcon_dsc_enc_compute(intel_dp, mode, pixel_clock, bpc,
-+					      sink_format, NULL);
++	if (!intel_dp_pcon_sink_support_frl(intel_dp) ||
++	    !intel_dp_pcon_can_passthrough_dsc(intel_dp) ||
++	    intel_dp_dsc_stream_version_minor(connector) < 2 ||
++	    crtc_state->output_format != crtc_state->sink_format)
++		return true;
++
++	if (intel_dp_frl_bw_valid(intel_dp, adjusted_mode->crtc_clock,
++				  limits->pipe.max_bpp / 3, crtc_state->sink_format,
++				  true) == MODE_OK)
++		return true;
++
++	limits->link.max_bpp_x16 =
++		min(limits->link.max_bpp_x16,
++		    intel_dp_hdmi_frl_payload_bw(intel_dp, true) * 16 / adjusted_mode->crtc_clock);
++
++	return true;
 +}
 +
- static enum drm_mode_status
- intel_dp_hdmi_bw_valid(struct intel_dp *intel_dp,
- 		       int target_clock, int bpc,
-@@ -1326,12 +1342,22 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
- {
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	int bpc = 8; /* Assume 8bpc for the DP++/HDMI/DVI TMDS/FRL bw check */
-+	enum drm_mode_status status;
+ bool
+ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 			       struct drm_connector_state *conn_state,
+@@ -3110,10 +3153,14 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+ 	if (!intel_dp_test_compute_config(connector, crtc_state, limits))
+ 		return false;
  
- 	if (intel_dp->dfp.max_dotclock &&
- 	    target_clock > intel_dp->dfp.max_dotclock)
- 		return MODE_CLOCK_HIGH;
- 
--	return intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_format, true);
-+	status = intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_format, true);
-+	if (status != MODE_CLOCK_HIGH)
-+		return status;
+-	return intel_dp_compute_config_link_bpp_limits(connector,
+-						       crtc_state,
+-						       dsc,
+-						       limits);
++	if (!intel_dp_compute_config_link_bpp_limits(connector, crtc_state, dsc, limits))
++		return false;
 +
-+	/* The PCON may be able to compress the stream for the HDMI link */
-+	if (intel_dp_has_dsc(connector) &&
-+	    intel_dp_hdmi_dsc_possible(intel_dp, mode, target_clock, bpc, sink_format))
-+		return MODE_OK;
++	if (dsc && respect_downstream_limits &&
++	    !intel_dp_pcon_dsc_compute_passthrough_limits(intel_dp, crtc_state, limits))
++		return false;
 +
-+	return status;
++	return limits->link.min_bpp_x16 <= limits->link.max_bpp_x16;
  }
  
- static enum drm_mode_status
-@@ -1836,9 +1862,11 @@ bool intel_dp_supports_dsc(struct intel_dp *intel_dp,
- 
- static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
- 				     const struct intel_crtc_state *crtc_state,
--				     int bpc, bool respect_downstream_limits)
-+				     int bpc, bool respect_downstream_limits,
-+				     bool dsc)
- {
- 	int clock = crtc_state->hw.adjusted_mode.crtc_clock;
-+	int max_bpc;
- 
- 	/*
- 	 * Current bpc could already be below 8bpc due to
-@@ -1855,6 +1883,8 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
- 	if (!respect_downstream_limits)
- 		bpc = 8;
- 
-+	max_bpc = bpc;
-+
- 	for (; bpc >= 8; bpc -= 2) {
- 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
- 					    intel_dp_has_hdmi_sink(intel_dp)) &&
-@@ -1863,12 +1893,27 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
- 			return bpc;
- 	}
- 
-+	/*
-+	 * No bpc fits the HDMI link uncompressed. If the DP stream is compressed
-+	 * the PCON may be able to compress the stream for the HDMI link as well.
-+	 */
-+	if (!dsc || !respect_downstream_limits)
-+		return -EINVAL;
-+
-+	for (bpc = max_bpc; bpc >= 8; bpc -= 2) {
-+		if (intel_hdmi_bpc_possible(crtc_state, bpc,
-+					    intel_dp_has_hdmi_sink(intel_dp)) &&
-+		    intel_dp_hdmi_dsc_possible(intel_dp, &crtc_state->hw.adjusted_mode,
-+					       clock, bpc, crtc_state->sink_format))
-+			return bpc;
-+	}
-+
- 	return -EINVAL;
- }
- 
- static int intel_dp_max_bpp(struct intel_dp *intel_dp,
- 			    const struct intel_crtc_state *crtc_state,
--			    bool respect_downstream_limits)
-+			    bool respect_downstream_limits, bool dsc)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_connector *connector = intel_dp->attached_connector;
-@@ -1883,7 +1928,8 @@ static int intel_dp_max_bpp(struct intel_dp *intel_dp,
- 		int max_hdmi_bpc;
- 
- 		max_hdmi_bpc = intel_dp_hdmi_compute_bpc(intel_dp, crtc_state, bpc,
--							 respect_downstream_limits);
-+							 respect_downstream_limits,
-+							 dsc);
- 		if (max_hdmi_bpc < 0)
- 			return 0;
- 
-@@ -2970,7 +3016,8 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
- 		limits->pipe.max_bpp = min(crtc_state->max_pipe_bpp, 24);
- 	} else {
- 		limits->pipe.max_bpp = intel_dp_max_bpp(intel_dp, crtc_state,
--							respect_downstream_limits);
-+							respect_downstream_limits,
-+							dsc);
- 	}
- 
- 	if (!dsc && intel_dp_in_hdr_mode(conn_state)) {
+ int intel_dp_config_required_rate(const struct intel_crtc_state *crtc_state)
 -- 
 2.50.1
 
