@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA57606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B517606A335
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:48:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RnWzdaGY
+	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H4G1hPJh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A883112B19;
-	Fri, 20 Nov 2026 14:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2798410E90B;
+	Fri, 20 Nov 2026 14:48:08 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B54BF10E160;
- Fri, 20 Nov 2026 14:46:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 646C410E90B;
+ Fri, 20 Nov 2026 14:48:02 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6F69D455A5;
- Fri, 20 Nov 2026 14:46:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D501F000C6;
- Fri, 20 Nov 2026 14:46:11 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 3EAB446573;
+ Fri, 20 Nov 2026 14:48:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D54001F000E6;
+ Fri, 20 Nov 2026 14:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795185971;
- bh=7eSwegV5Sw19WDLMFzjXAAtMre8Kh00E5DCHAkmyk6g=;
+ s=k20260515; t=1795186082;
+ bh=rRL3Yb8R8cvyj6a8IQ5KNE4eRQ/QbuxUDIcY9AWCIo8=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=RnWzdaGYnuRkkUarN0+uDlX+98VAhW1uuGx8qAY6lNyLmghbuTK1D1QWtjCb+ePuv
- MSkqE5jEvVtytE+vGJZr6w8p92tuutG+aMGKobcoO3Y2KTVjV7SR3uFgHAT29psB1Y
- 8S+DnfGO2b5nYw+VtNWm4BeWNqgx982gFVyJ9BxzAdxBFtOmI5N1l5ymAWWMWTx+Kv
- BdNXnk+8Wl6k3YaeVxl61lqYwrMQva0MAE84bdp2Si/lUh8eOXJ78W0M4HI7Mc2JD2
- IkF7d4VoYpkcHm0IB3f6aX5OQxUMx7fuToqYDxhXypmZ8KxgNxcq3kXT29a/7MXJgN
- 7ivLC7bYlQGrQ==
-Message-ID: <sashiko-outbox-225407@kernel.org>
+ b=H4G1hPJhUX9egkfy+QDL60oTzEfarhD3k05YIQQMTWKnjmTAFAjGUSs7w+GVr1W30
+ /978AR96eo+sjF7zP+35InNrgGp4fdtCzH38KRXI3+9ra04FO2OOanNuXhyCmSocEQ
+ 4nSGYLr2jhkIA78/UdHy/I4NR98tLSdMtRTZ3BV1PkFm3oZS26kc7TksnjWistB0It
+ YdJ+HhJOMdmRWqk7yjT/lTkkFj8uX3eNYCzlNzM89c38fow0t5806YCjNfHFR36rFJ
+ 5mq4Qk0p/KfnNRkAl/XWV4J4vZ8dauTV5RG51/1bNwG5pdYq8cQQXngotaggHFiP1r
+ nyU2KRCDJXIiA==
+Message-ID: <sashiko-outbox-225409@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 18/29] drm/i915/dp: Retrain the PCON FRL link from the
- link check work
+Subject: Re: [PATCH 21/29] drm/i915/dp: Allow PCON DSC modes through the FRL
+ bw check
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120140729.466177-19-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20261120140729.466177-22-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
- <20261120140729.466177-19-ankit.k.nautiyal@intel.com>
+ <20261120140729.466177-22-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 14:46:11 +0000
+Date: Fri, 20 Nov 2026 14:48:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,95 +60,90 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [Medium] drm/i915/dp: unlocked state and DPCD checks in
-  intel_dp_pcon_frl_recover()
+- [Medium] drm/i915/dp: intel_dp_mode_valid_downstream() ignores mode DP
+  DSC validity
 --
 
-commit e23a19c1e92fb70f0e2a9ba0ff0a7c17fe7d9715
+commit 02c40d12d5e3bd58a7720d18f4d98e8346680fdc
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-drm/i915/dp: Retrain the PCON FRL link from the link check work
+drm/i915/dp: Allow PCON DSC modes through the FRL bw check
 
-This commit defers PCON FRL link retraining on HDMI link status changes
-from the short pulse handler to the encoder link check work, taking
-modeset locks and checking for an active stream before retraining.
+This commit updates downstream mode validation and HDMI bpc selection to
+allow modes that exceed the uncompressed HDMI FRL bandwidth when both the
+DP link and the PCON-to-HDMI FRL link can carry the stream compressed.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 05056d226fc11..3b8031cd5ef17 100644
+> index cea90ef761c3c..7b66cd82b065e 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4463,6 +4463,42 @@ void intel_dp_check_frl_training(struct intel_dp *=
-intel_dp)
->  	}
->  }
+[ ... ]
+> @@ -1318,12 +1334,22 @@ intel_dp_mode_valid_downstream(struct intel_conne=
+ctor *connector,
+>  {
+>  	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
+>  	int bpc =3D 8; /* Assume 8bpc for the DP++/HDMI/DVI TMDS/FRL bw check */
+> +	enum drm_mode_status status;
 > =20
-> +/*
-> + * Restart FRL training after the HDMI link went down while the stream is
-> + * active, or fall back to TMDS mode.
-> + */
-> +int intel_dp_pcon_frl_recover(struct intel_encoder *encoder,
-> +			      struct drm_modeset_acquire_ctx *ctx)
-> +{
-> +	struct intel_display *display =3D to_intel_display(encoder);
-> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> +	u8 pipe_mask;
-> +	int ret;
+>  	if (intel_dp->dfp.max_dotclock &&
+>  	    target_clock > intel_dp->dfp.max_dotclock)
+>  		return MODE_CLOCK_HIGH;
+> =20
+> -	return intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_format,=
+ true);
+> +	status =3D intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_for=
+mat, true);
+> +	if (status !=3D MODE_CLOCK_HIGH)
+> +		return status;
 > +
-> +	if (!(intel_dp->downstream_ports[2] & DP_PCON_SOURCE_CTL_MODE) ||
-> +	    !intel_dp_is_hdmi_2_1_sink(intel_dp) ||
-> +	    intel_dp->frl.is_trained ||
-> +	    drm_dp_pcon_hdmi_link_active(&intel_dp->aux))
-> +		return 0;
+> +	/* The PCON may be able to compress the stream for the HDMI link */
+> +	if (intel_dp_has_dsc(connector) &&
+> +	    intel_dp_hdmi_dsc_possible(intel_dp, mode, target_clock, bpc, sink_=
+format))
+> +		return MODE_OK;
 > +
-> +	/* The connection mutex may be held already by the link retraining */
-> +	ret =3D drm_modeset_lock(&display->drm->mode_config.connection_mutex, c=
-tx);
-> +	if (ret && ret !=3D -EALREADY)
-> +		return ret;
-> +
-> +	ret =3D intel_dp_get_active_pipes(intel_dp, ctx, &pipe_mask);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Without an active stream the next enable trains the link */
-> +	if (pipe_mask =3D=3D 0)
-> +		return 0;
-> +
-> +	intel_dp_check_frl_training(intel_dp);
-> +
-> +	return 0;
-> +}
+> +	return status;
+>  }
 
 [Severity: Medium]
-Should the PCON capability, frl.is_trained and
-drm_dp_pcon_hdmi_link_active() checks run after locking connection_mutex
-and calling intel_dp_get_active_pipes()?
+Can intel_dp_mode_valid_downstream() accept a mode that requires PCON DSC
+even when the DP stream itself cannot be compressed for that mode?
 
-When DP link retraining is not needed, intel_dp_retrain_link() returns
-before calling intel_dp_get_active_pipes(), so CRTC locks are not held
-and in-flight commits have not been waited on when
-intel_dp_pcon_frl_recover() starts:
+intel_dp_has_dsc() only checks static device and DPCD DSC support, whereas
+intel_dp_mode_valid_format() checks per-mode DP DSC constraints (FEC
+support, PCON branch throughput, max line width, slice count, and DSC
+dotclock overhead) in its for_each_joiner_candidate() loop:
 
-kworker (link_check_work)         modeset commit
-intel_dp_pcon_frl_recover()
-  frl.is_trained =3D=3D false
-  drm_dp_pcon_hdmi_link_active()
-    -> false
-                                  intel_dp_check_frl_training()
-                                    FRL fails -> sets TMDS mode
-                                    (frl.is_trained stays false,
-                                     HDMI link becomes active)
-  intel_dp_get_active_pipes()
-    wait_for_connector_hw_done()
-  intel_dp_check_frl_training()   <-- tears down active TMDS link
+drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_mode_valid_format() {
+    ...
+		if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc) {
+			status =3D MODE_CLOCK_HIGH;
+			continue;
+		}
 
-Running drm_dp_pcon_hdmi_link_active() before checking pipe_mask =3D=3D 0 a=
-nd
-intel_dp_is_connected() also issues DPCD AUX reads when the stream is
-disabled (sink in D3) or after the sink is unplugged, where
-intel_dp_retrain_link() returns before locking connection_mutex.
+		if (mode_rate > max_rate && !dsc) {
+			status =3D MODE_CLOCK_HIGH;
+			continue;
+		}
+    ...
+		if (!dsc)
+			dsc_slice_count =3D 0;
+    ...
+}
+
+When a mode fits uncompressed on the DP link (mode_rate <=3D max_rate, e.g.
+at the 6 bpc DP minimum or on a DP link faster than the downstream FRL
+rate) without a joiner that forces DSC, that loop succeeds even if dsc is
+false.  intel_dp_mode_valid_downstream() then sees intel_dp_has_dsc() =3D=3D
+true and returns MODE_OK, exposing a mode to userspace that later fails
+atomic check in intel_dp_compute_link_for_joined_pipes() because the PCON
+cannot encode an uncompressed DP stream into DSC.
+
+Passing whether DP DSC was valid in intel_dp_mode_valid_format() (or
+requiring dsc when downstream needs HDMI DSC) would avoid accepting modes
+that cannot be compressed on the DP link.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120140729.4661=
-77-1-ankit.k.nautiyal@intel.com?part=3D18
+77-1-ankit.k.nautiyal@intel.com?part=3D21
