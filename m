@@ -2,42 +2,164 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F7A606A697
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 23:20:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE878606A68D
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 23:47:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=e/dOV674
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IJYoGED3;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Axw7gt9P
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0BD11293E;
-	Fri, 20 Nov 2026 23:20:13 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAD4711293E
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 23:20:06 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 7B8364412D;
- Fri, 20 Nov 2026 23:20:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3849E1F000C6;
- Fri, 20 Nov 2026 23:20:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795216806;
- bh=AH1mtlft+yXP0lF+nHK9NkVbaXE+3UwhCWRBDur7V4s=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=e/dOV674NGbRDQ/31QwcLDRhp1EeVAyS2lgIsszkvU+wq9486kuWcrjnQlBHWxCAP
- gZZqE/vz6nkKwqGxbVFI1NQ1vk8B0VOFCfCZIMNtyT7VfGo1fJeMkHD1LwrC6qFdCs
- cINOwvq+8C94r+6NMKAm1Mrj7TywzZgcva3PnOH4NVJcLde2NhF1sjHp6fqSXQJP6x
- hbjHxmZCxlQ9PSo6c8o9wgcuPFnErPr0hMk6xs7IggLurGgFl4FRZxoYabwX5nTuYq
- hX4iuYovmlFkUqoQk8B2VwW61IQU9wfHwSOH/R01JZNE/GhJEO6Jfw/1pdNwb4H3kv
- ypvEEzftanunw==
-Message-ID: <sashiko-outbox-226342@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v6 1/2] drm/xe: Disallow freq changes while mert cap is
- active
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120225325.1460380-3-vinay.belgaumkar@intel.com>
-References: <20261120225325.1460380-3-vinay.belgaumkar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 23:20:05 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7DD110E078;
+	Fri, 20 Nov 2026 23:47:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C241310E078
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 23:47:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795218421; x=1826754421;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=nX73pLyqzzbTi+e/Ck+R3I6HVnuuVJzWXuzh0VUSAZA=;
+ b=IJYoGED3TnS5bPSWJsj/T0NPFpcHG31I8KFtS9SSxRaUJDsJHx/TtYfj
+ v8r7T60izbiK5R/zY4lHWWrc+Dm5JahzwXJuhL3V+iDVRwnV09/KhJ6Sm
+ Gfnz/N5RSFEe7PmaCGjFbA+A72h4BesnDhEnA51NfTdph4/EyCQSU64/s
+ zgz1ujupsAQXScxi7JNK7fl3CcpX5Q5HSGgTlmnEHzWZx4NXxmf6Iy7h5
+ IVEukmfDeA5w04p6grM+cJhpRx/vXcbwZYpIr8jbMPPAazxPLkM4USeMc
+ KSrT/9lkf4ar8q+vtCCcmfE7ZOKXA2TrQI2JZLpeYD0nUEmQc4HvDK6OD g==;
+X-CSE-ConnectionGUID: M+IMI/ONSb6Yow5xDzaxCQ==
+X-CSE-MsgGUID: uG0L2eu8SiSW7rUEvTJlsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4135994"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="4135994"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 15:47:01 -0800
+X-CSE-ConnectionGUID: 7KfUSahUQbCtAGD+2SmeGA==
+X-CSE-MsgGUID: agqld19gQTe5FV0KTsOSIg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="10825949"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 15:47:00 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Fri, 20 Nov 2026 15:46:59 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Fri, 20 Nov 2026 15:46:59 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.18) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Fri, 20 Nov 2026 15:46:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vFcobtArtUKT/pvc8wlDvWLVz16LonFNhPwexwkrPi60DIhEcvCLdwy3xchO2mk2Wr6gcAo4SwBsVqI2jIqtQu0FJeOyB1yPPAHPDSR5cefoFFLypHPK+I6H56XBluBHw2AnJFZqXZSybgqmey2qIsLVzNxuSx+pjCbsvJ9Xovz0hhVsdOaab3GWs7h9vEVH5oV0EodmYp33PYY7rU0co0QgXQsHFhIYozSDIF6CvvKx3jEALD57H2K3t9+KtjoPQ+7Ef/NHPmA2C6SVet5ROKZE8sG05jxoG8tSpVhrjQCY03A3BGF8t298+acJbRazA1EiUnJtqBnJgLUSLhrxsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=R944DWw77XEiO3RvxAJ9Fs3O7jPZjGBDQnv1TyrknnI=;
+ b=d7wx8sXyrfXc3w/o/xX+k7bwNV6cWe8QV7PL9ODVMVrP5hauoSbO4O0zE42WNhc10cVMBIM+9ayI6iT03vVz88BLYWqbQGuyHfmTFTX8ecJqhiZd4La7sL/0k2RjCnFixnXcDNMmSoNKf+qjjJHfaCAZhdDNmoNCDX38WwIis/j4hkNteO3ZTPszZFDCrvFrOVZVCeb23LS+8iSx+6AEZg13HpmqNd+kVVJr8hcXPredrQdEkMFvWE5cdfoA5XcH0R4oGN0Dra8I2JGD14Vec6SakiABMF8gM40jMlxi/D51Vex9vKKVMMeRmK7DuvsYw2xZtl65ww/W7ulUglv8Vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=R944DWw77XEiO3RvxAJ9Fs3O7jPZjGBDQnv1TyrknnI=;
+ b=Axw7gt9PmP0xEhdv2h+MYjpB+60aQEwMAzoaR5wdhmz/vDZFoHV4jJHO1TSdlocSVYy4LdqseWw80zU7G5OSWjIbChvb6ohGzdzJnkGtVqjbpfxGFgm5I8Sw5G5trzF2HQUvWhELXcVSke7A/dvy81uMqhiwBI/RCBckX04xQJg=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by CY8PR11MB6867.namprd11.prod.outlook.com (2603:10b6:930:5d::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Fri, 20 Nov
+ 2026 23:46:57 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%6]) with mapi id 15.21.0615.012; Fri, 20 Nov 2026
+ 23:46:56 +0000
+Date: Fri, 20 Nov 2026 15:46:54 -0800
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: <sashiko-reviews@lists.linux.dev>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v8 7/8] drm/xe/oa: Free the OA buffer and the stream
+ after the stream destroy
+Message-ID: <awDbrHW9fffriue7@soc-5CG1426VCC.clients.intel.com>
+References: <20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com>
+ <20261119002737.3899877-17-umesh.nerlige.ramappa@intel.com>
+ <sashiko-outbox-222265@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <sashiko-outbox-222265@kernel.org>
+X-ClientProxiedBy: MW4PR03CA0017.namprd03.prod.outlook.com
+ (2603:10b6:303:8f::22) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|CY8PR11MB6867:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3ef08ade-cf60-48d9-d16c-08df47608faf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|23010399003|4143699003|260925021311599003|261028144727099003|260925021911599003|261022105027099003|56012099006|11063799006|260925022911599003|10067099003|261009223027099003|261026140227099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: EbrA7Vlvs8HBkYEywnx5lnWLSfl+3FMm0N4XC4mxthYOATTVOdesW9UNV6ObYon+uOZdkS4KuLlzSMyW8wJaYrBg6+vHmUMbFLvCmKI6HvrogWMkgtA9NLI4llTXU7hqFpS0FvBusVOoKuem6QPSTGSIi1rBMZwTiI4X96z+hfIJWqcOf+B4Ncq5yyQ79WcFES2DrrYGsPMFw33jN2Fj/V6rgTVrkL6mnl9JeD+OicGGOzsT5VNmsPzGgDmJLHyBKl4dhQ+ttx6ae/HR4Qd1nabx8feIGtprYDftZ00uj9/19H+XHitQDQNE47SxtfNL+QHFf3xT8IBZTSNjohJe+3lKMBgvRQM3PvkNtKtNw2ONKunGSfx19m4ZkgEnq3oZS8vQEy2uDwuUDyD/hj/RBNASKdjucXNqdzy4WxOLSAw6cuNp5xlKT1UkwhmDPye4MqJi5HhzErfVa2Ahb2N08OfUaNRYpcs9lOQWaU1m3HeV3WiKreuyz8XI4zxQUbTlypsw5/xh2AO3WWS4Ne84LEDmD/xB2EnbZX52FXhdfsh2XsZ6qxNCY/JYt4CahkrGEkby4IpCb/1Nh4OF8xpid88K/2JkUl/vS77bajJX5A8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(4143699003)(260925021311599003)(261028144727099003)(260925021911599003)(261022105027099003)(56012099006)(11063799006)(260925022911599003)(10067099003)(261009223027099003)(261026140227099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TC8xdUkzZ3o5Q1NUMDdwZHdZTWsrWE4zVC9rZEg5bFBUT1F0WWZoaXhYUmRj?=
+ =?utf-8?B?NzdCL29Cckdtb09BdjFka3dDU3dZQUplMHh1UlVBNWRaWXNBTTFURTVEUHpF?=
+ =?utf-8?B?WW1QYXBHN0FYVTROUDE2dDluTG1CSm1xajFxbkxScWxGb1R6c3FyeUNYUlpF?=
+ =?utf-8?B?U0NzaWFrRXJKYWVCL0xES3pXM2dXU1R4MDdpbTMyZ3hjNzhsUi9XL3hKTHBs?=
+ =?utf-8?B?clhjSGdWdXZKWDZyVHZMVGpRQUcrSFNZOWRYSG1hMkpWQUlHMmNxYXM0SWx6?=
+ =?utf-8?B?TzIzYXpRb3RndFdiRUllTnRLdEhXbFMrMEVWZWVQdC81LzNmZjY1dzQwdC9o?=
+ =?utf-8?B?VEJRcDZUMnpZY3V1bGROdkVkNy9jeDE3M2lVOTZZejJtSjBRQnJZdy93eXRJ?=
+ =?utf-8?B?bXJZNFI0VVpNL2JtWFRhK1VsajJ3bGE5QmRxUXBtYXNrcHRJTWs2Q1ZXRUVZ?=
+ =?utf-8?B?MnpycUdPSjRWaGV5VDBYenlpeWhSbndHemt2Vng3eER1R0hCZkxZemRjcDBh?=
+ =?utf-8?B?UUtjaGRpYzVFRFR5NWZxcmo0Rm9TUTdFTDc4QTlYK0ZCYzFhaGxrUEg0dElx?=
+ =?utf-8?B?RXhDdUxPVHRsQmlqNllIcnU1MkltdDlzWWFqSjRUSTA4OFc3Z08yeVphWFNh?=
+ =?utf-8?B?d3JPRzV0U2JWUTk2Zmc5ck1Xd0J3V3B3VWtrSVE0UFBSTktTSnB6b3FGVGpD?=
+ =?utf-8?B?YUxnSzlIVFQ4ODczZ0pqSDJyZnJqVEwzVndQWjVMR0x2OW8vb2laQTM0bjll?=
+ =?utf-8?B?RDEwRGhKeHVPNEI0MmsybmVVL3ZWcHRlc2prM3B4bStzSWljUzNDYi80d2lX?=
+ =?utf-8?B?VmY4N1FSSVZEbnRCMURRYUE1ZmYyNm1ib1BwU1VDdGxVUVd2eUU0NUZ1OGVC?=
+ =?utf-8?B?WWR6WUxlaXhTK1FXTXFSdkhqVmJtdlR3K2k1UTg3Vks2Wm41QTlKQkRTdGN2?=
+ =?utf-8?B?YTZDaklPR21HRG15dEtZMWpMc0JOQWVCSEFSTWtjUUJDbWxoS216TFFmamx1?=
+ =?utf-8?B?Y0xZS1dCYkx2a042TzVQTytScGdsYVlyNHdUalVzWG9sM295QUU4MVd6ZS9k?=
+ =?utf-8?B?YzY4dXU3TkJhVFBFYVYvN2hNK3BIZ2g0U05xcXRiOC9oNDE3T1lKN3BXR3RT?=
+ =?utf-8?B?czBvUWVTVWRRRHZxZTVnSDV4akVQYm1QM2hrY2w3eDhLVnBGd05PQncyL1BR?=
+ =?utf-8?B?RXVmSnFidTRzMzlROFFOYk1qOFE1K2J2ZnFVN24vZmkrejh3WEZkS3pTUmIv?=
+ =?utf-8?B?YkJLM1d1OS8rQ0ppb2h5cm9BcFhvenFNQlBwdWlDWEZLcTFVMXlQL21BdTFF?=
+ =?utf-8?B?NldMRDF1aUxKK3RnQjZkSEJaZ1Nod0NXdlNFVnZIaUlTSHRiMFNEdmRsQWNY?=
+ =?utf-8?B?T3JQZzZnRWc0emNTK1JyS240MVBIRnduSUNGS3VMUmtDZ1F1eis1bENKTFM5?=
+ =?utf-8?B?a0l6QXF3WncvTzNFM0oyTkdGYUpFdmpwaGlFU2FEU1UxM3B1VTFPK3VIWjRM?=
+ =?utf-8?B?MHI4SHdueTMzUytoQi8vbTVPbU5hbXJqV2U4RldiT2VjRy9qQnlMYTUyNk8z?=
+ =?utf-8?B?S0l0VTJiVnNoR1hhQ28vWUlOSXFZK3hFbFN1Wkp3elR6cWlKUFp4RFN1UHJM?=
+ =?utf-8?B?YmRFU2dXbVc3OVB6b1JPQ3c1eVFXcHBIakhic1BPU3MyOVJNNXh2emVNN2Nz?=
+ =?utf-8?B?UDhFMlBma05TQUhMeGpEajlqbHFTY2d5bFh6Y1FTNExpSG1WdTgrK3YybkNX?=
+ =?utf-8?B?SmJFN0prNUE5WWFBT3UwRGs0UE5hRHpqQnljR2RQRDJRVzdUL2NrbFhONndI?=
+ =?utf-8?B?L3pFTks4aEI3amdGdDRwc2xEekp3OVZMWHZsN0RkbWVuankrS0d4eHpRUEJ6?=
+ =?utf-8?B?K2RwbW1Za05wTWJZazFlMDUvOS80bHI4UzlzZ0xodGYwRnlobG5uOWhCSUZU?=
+ =?utf-8?B?YytRRFZBSW5ZT3RPc2hJOTVwME1MU1FRSXRDOEEyL2pBYUo1WmpHWE40b3d3?=
+ =?utf-8?B?TThoNWs0RXdyWmlGdE5ZVXdkZ2x6Ny9jcVlrankrVGdNZGg5YVV5UEhBKzlQ?=
+ =?utf-8?B?S1VlWGN2Vkl5WjZmeCtIYi9jS0k3U05haG5sUjF4RmROQkg2Mm1IbnRscExw?=
+ =?utf-8?B?RUgrbWJJeFNvSEwrNkFIYkpmSzdWU3VKSzlmTWlnTU9qQkVOVXVRelZudmVM?=
+ =?utf-8?B?ZS9SeDVMejNoT2VuSzlOWkdJb1FOR29YeGVxSC96Nk5LaVJqZnRTUkpiNXdC?=
+ =?utf-8?B?MDJGNFliY0hNT3V6R0FMOFR0RmQ2TEwvOHRldUtMWHg4QzB1cUF2eUxNbVVn?=
+ =?utf-8?B?WFpKNmpEeWhpMHRFaG1sVlFwY3NLTnE1bm93ZTZ1OFE0SlU1MzVGL2tyU1BM?=
+ =?utf-8?Q?5b11Id8utvck16MI=3D?=
+X-Exchange-RoutingPolicyChecked: GTeuWzMoj/4Fg5+/QAbKWv1XPZSefqx2H8XVcjVX4ZzHKE60dzMR169R0i9weYlxbzjJUn0wR7HF8Ft45bAUp1FOb3Z4KZM6FLyUmJU6H8yvkYeKtC++QkvN9aTC3aWHEMsM+/jxNWt0ifQC0n5+gMeHYxMvJ3paFPgUvctrreFKTvhg6M9nL5ItJfPeNtGuvcNGTHZbkwcLKsISS95DWrNvQ9dlgkcroHw0RpjKpepOF0xy78eAhfND2oSYxJmIgmNmHPwxq86HtD/I8V6bCTVJ8iG6AoYgFFrIMPmtGV3ojsDERswRdmYj+G8y1/9sBqWss22t5I39LKaRYZDT3A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3ef08ade-cf60-48d9-d16c-08df47608faf
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 23:46:56.4574 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UmSgqI0paalK/fj9zglZDmNItUceR0fb8rAzu/mH1UqKxup+jxLvxA6vh5edox6bw4Jp6It+yH2U7HRdLD4TvSoMDK+9iTtpAckdg4yqIOc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6867
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,92 +169,122 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/xe: missing freq_ready and cap check in
-  xe_guc_pc_restore_stashed_freq()
---
+On Thu, Nov 19, 2026 at 12:48:10AM +0000, sashiko-bot@kernel.org wrote:
+>Thank you for your contribution! Sashiko AI review found 1 potential
+>issue to consider:
+>- [Medium] drm/xe/oa: xe_oa_free_oa_buffer() without rpm ref races with
+>  D3cold evict
+>--
+>
+>commit e0096ecf7691779fa66e916b1237581810b85b60
+>Author: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>
+>drm/xe/oa: Free the OA buffer and the stream after the stream destroy
+>
+>This commit moves freeing the OA buffer, destroying stream_lock, and
+>freeing the stream structure from xe_oa_stream_destroy() and
+>xe_oa_destroy_locked() to their callers, xe_oa_release() and the error
+>path in xe_oa_stream_open_ioctl_locked().
+>
+>> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+>> index f3eceeb34e7b6..223419347eb7b 100644
+>> --- a/drivers/gpu/drm/xe/xe_oa.c
+>> +++ b/drivers/gpu/drm/xe/xe_oa.c
+>> @@ -929,8 +929,6 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+>>
+>>  	WRITE_ONCE(u->exclusive_stream, NULL);
+>>
+>> -	mutex_destroy(&stream->stream_lock);
+>> -
+>>  	xe_oa_stream_drain(stream);
+>>
+>>  	if (stream->sample)
+>> @@ -939,8 +937,6 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
+>>  	xe_oa_disable_metric_set(stream);
+>>  	xe_exec_queue_put(stream->k_exec_q);
+>>
+>> -	xe_oa_free_oa_buffer(stream);
+>> -
+>>  	xe_force_wake_put(gt_to_fw(gt), stream->fw_ref);
+>>  	xe_pm_runtime_put(stream->oa->xe);
+>>
+>> @@ -1772,7 +1768,6 @@ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
+>>
+>>  	drm_syncobj_put(stream->ufence_syncobj);
+>>  	xe_pm_runtime_put(gt_to_xe(stream->gt));
+>> -	kfree(stream);
+>>  }
+>>
+>>  static int xe_oa_release(struct inode *inode, struct file *file)
+>> @@ -1784,6 +1779,10 @@ static int xe_oa_release(struct inode *inode, struct file *file)
+>>  	xe_oa_destroy_locked(stream);
+>>  	mutex_unlock(&gt->oa.gt_lock);
+>>
+>> +	xe_oa_free_oa_buffer(stream);
+>> +	mutex_destroy(&stream->stream_lock);
+>> +	kfree(stream);
+>> +
+>>  	/* Release the reference the OA stream kept on the driver */
+>>  	drm_dev_put(&gt_to_xe(gt)->drm);
+>>
+>> @@ -2052,6 +2051,8 @@ static int xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
+>>  		xe_oa_disable_locked(stream);
+>>  err_destroy:
+>>  	xe_oa_stream_destroy(stream);
+>> +	xe_oa_free_oa_buffer(stream);
+>> +	mutex_destroy(&stream->stream_lock);
+>>  err_free:
+>>  	kfree(stream);
+>>  err_syncobj:
+>
+>[Severity: Medium]
+>Can calling xe_oa_free_oa_buffer() after the stream's runtime PM
+>references have been dropped race with D3cold pinned-BO eviction and
+>restoration?
+>
+>stream->oa_buffer.bo is pinned with XE_BO_FLAG_GGTT, which places it on
+>xe->pinned.early.kernel_bo_present.  When D3cold is allowed,
+>xe_pm_runtime_suspend() and xe_pm_runtime_resume() walk the pinned lists
+>via xe_bo_apply_to_pinned(), which drops xe->pinned.lock before locking
+>the BO:
+>
+>CPU0                              CPU1
+>xe_oa_release()                   xe_pm_runtime_suspend()
+>  xe_oa_destroy_locked()            xe_bo_evict_all()
+>    xe_pm_runtime_put()               xe_bo_apply_to_pinned()
+>                                        spin_lock(&xe->pinned.lock)
+>                                        xe_bo_get(bo)
+>                                        list_move_tail(&bo->pinned_link, ...)
+>                                        spin_unlock(&xe->pinned.lock)
+>  xe_oa_free_oa_buffer()
+>    xe_bo_unpin_map_no_vm(bo)
+>      xe_bo_lock(bo, false)
+>      xe_bo_unpin(bo)
+>      xe_bo_unlock(bo)
+>                                        xe_bo_evict_pinned(bo)
+>                                          xe_bo_lock(bo, false)
+>                                          WARN_ON(!xe_bo_is_pinned(bo))
+>                                            <-- returns -EINVAL
+>
+>If runtime suspend finishes first and a subsequent runtime resume races
+>with xe_oa_free_oa_buffer() on platforms where mert_wa_14026633728 places
+>the OA buffer in VRAM, xe_bo_restore_pinned() also reads bo->backup_obj
+>before acquiring xe_bo_lock(bo, false), racing with xe_bo_unpin() freeing
+>bo->backup_obj.
 
-commit bca2b3b00f0a98b0fe250730e76fb17e35b55afd
-Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To resolve this, I would just drop patch 6 and let xe_oa_release free 
+the buffer under runtime pm.
 
-drm/xe: Disallow freq changes while mert cap is active
-
-This commit tracks whether the Wa_22019338487 MERT frequency cap is
-active, defers user min/max frequency changes while the cap is in force,
-and restores the cap after GSC load completes or fails.
-
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_p=
-c.c
-> index 9558d7196a51a..7cbdb7985843d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-[ ... ]
-> @@ -1112,9 +1146,13 @@ int xe_guc_pc_restore_stashed_freq(struct xe_guc_p=
-c *pc)
->  		return 0;
-> =20
->  	mutex_lock(&pc->freq_lock);
-> -	ret =3D pc_set_max_freq(pc, pc->stashed_max_freq);
-> +	/* Apply any user min/max request made while the cap was active, else t=
-he stash. */
-> +	ret =3D pc_set_max_freq(pc, pc->user_requested_max ?: pc->stashed_max_f=
-req);
-> +
-> +	if (!ret)
-> +		ret =3D pc_set_min_freq(pc, pc->user_requested_min ?: pc->stashed_min_=
-freq);
->  	if (!ret)
-> -		ret =3D pc_set_min_freq(pc, pc->stashed_min_freq);
-> +		pc->mert_freq_cap_active =3D false;
->  	mutex_unlock(&pc->freq_lock);
-> =20
->  	return ret;
-
-[Severity: Medium]
-Should xe_guc_pc_restore_stashed_freq() check pc->freq_ready and
-pc->mert_freq_cap_active under pc->freq_lock before calling
-pc_set_max_freq() and pc_set_min_freq()?
-
-If a GT reset runs while gsc_work() is in flight, xe_guc_pc_stop() clears
-both pc->freq_ready and pc->mert_freq_cap_active while GuC CT is disabled:
-
-kworker (gsc_work)                kworker (gt_reset_worker)
-gsc_upload_and_init()
-                                  do_gt_reset()
-                                  xe_uc_stop_prepare()
-                                    xe_guc_pc_stop()
-                                      mutex_lock(&pc->freq_lock)
-                                      pc->mert_freq_cap_active =3D false
-                                      pc->freq_ready =3D false
-                                      mutex_unlock(&pc->freq_lock)
-xe_gt_sanitize_freq()
-  xe_guc_pc_restore_stashed_freq()
-    mutex_lock(&pc->freq_lock)
-    pc_set_max_freq()             <-- sends SLPC H2G while PC is stopped
-
-Because xe_gsc_stop_prepare() does not flush gsc->work, gsc_work() can
-reach xe_guc_pc_restore_stashed_freq() while GuC PC is stopped, causing
-pc_action_set_param() to fail and log false xe_gt_err() messages.
-
-In addition, during normal probe, gsc_upload_and_init() sets the firmware
-status to XE_UC_FIRMWARE_TRANSFERRED before xe_huc_auth() and
-xe_gsc_proxy_start().  Because xe_uc_fw_is_loaded() returns true once the
-status is XE_UC_FIRMWARE_TRANSFERRED, both xe_device_probe() and
-gsc_work() can call xe_gt_sanitize_freq() ->
-xe_guc_pc_restore_stashed_freq(), lifting the cap early and sending
-duplicate SLPC requests if pc->mert_freq_cap_active is not checked.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120225325.1460=
-380-3-vinay.belgaumkar@intel.com?part=3D1
+Thanks,
+Umesh
+>
+>-- 
+>Sashiko AI review · https://sashiko.dev/#/patchset/20261119002737.3899877-10-umesh.nerlige.ramappa@intel.com?part=7
