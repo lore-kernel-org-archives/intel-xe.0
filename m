@@ -2,43 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F806606A325
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Nov 2026 23:53:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC2760A260E
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 00:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HY3RwoEk
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=iqUQOWuX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E80CE1127E9;
-	Thu, 19 Nov 2026 23:53:04 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D58FB10E8C4;
- Thu, 19 Nov 2026 23:52:58 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D4A1960D15;
- Thu, 19 Nov 2026 23:52:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 470F01F000C6;
- Thu, 19 Nov 2026 23:52:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795132377;
- bh=yPlEoirQwo+sW4T3/89p+lafxASWsrn1vq6yh2S649E=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=HY3RwoEkPqLTILcVt8A1mGwPBfRTuyoqG0gbtDSmQGhXPByfiBbFC87YyMGnQqhup
- JAEutZ+uuy1k3FFET97vn4gBM/A7/jSwSn7aZoiIeYdwlT43PfQGSVMtAQwpt9gKId
- WqsSfEZGmZJztnNaIYfOM8M/quCpYP2lJpcVjGuuRVbmWAHLdawyud/nqbAEl2AJv+
- Bc1YSbNRpufGIMjhzsjhBTiN8Ol/U8jspbot3aaKES+2T0XEw3T/UJxFtV8NeyxQFn
- ojJoPuHHDxF8e9dsMoFsolpWzapqLwLP0j+EzTkYCRDFSC//Tya+kTQaw5LZ74gZ3D
- eZRsP49AjdbEw==
-Message-ID: <sashiko-outbox-224220@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v12 04/12] drm/amd: add luminance property support
-To: "Mario Limonciello" <mario.limonciello@amd.com>
-Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261119-superm1-backlight-property-v12-4-89d5217d3618@amd.com>
-References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
- <20261119-superm1-backlight-property-v12-4-89d5217d3618@amd.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 19 Nov 2026 23:52:56 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1036211280C;
+	Fri, 20 Nov 2026 00:05:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0311D112808
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 00:05:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795133129; x=1826669129;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=y2X3lFm8oC5lUSfoxpq5KPcrNAYuE7FGYY/eMmLMtt0=;
+ b=iqUQOWuXlmOwEv0fdrDqQTze72bXfRuMiQhEK6S9hjPCJ1FkebuSCGH9
+ WaA+qLUlQqDNf5R6snwkkS18BCsRD96OEhAuz/WAeZ+4oXKoBQgq7bLEf
+ 5i4GFKfBaqIqP2hUVBLjNxBuEsjAVK0YBzjmT2XuQe3t1wmVOPZJ6QFz0
+ Jrks0ujUJxFyJZEiDRTMZFjK4MS6QeciBCHlbv/vT1QVqoTFVazdH8/10
+ DwX/HDh/If4FtCBTes6Pz0MhyKFN9+QF+lOHa19tZpy41UtGRNMZu8m6B
+ VjI/as3b3b+5I+mJzKGxoMg7/uEyxWCmVUtSD8pw5iMU5iKX6mMAFNX0N Q==;
+X-CSE-ConnectionGUID: NDbhD00eR1aFnPtVwUBgHg==
+X-CSE-MsgGUID: S1sVpUCbQGCuQAGysxc6TQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4032095"
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; 
+   d="scan'208";a="4032095"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 16:05:29 -0800
+X-CSE-ConnectionGUID: 5staZPMxRey6sR4PUTuHAw==
+X-CSE-MsgGUID: 4Wyk3iXaR5qzPHg4Vympyw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,221,1787036400"; d="scan'208";a="10560547"
+Received: from fyang16-desk.jf.intel.com ([10.24.81.66])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 16:05:28 -0800
+From: fei.yang@intel.com
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, stuart.summers@intel.com,
+ Fei Yang <fei.yang@intel.com>
+Subject: [PATCH] drm/xe: Serialize migrate ULLS enter against a pending exit
+Date: Thu, 19 Nov 2026 16:10:53 -0800
+Message-ID: <20261120001054.3901642-1-fei.yang@intel.com>
+X-Mailer: git-send-email 2.43.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,158 +59,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issues to consider:
-- [Medium] drm/amd/display: brightness race in
-  amdgpu_dm_atomic_commit_tail()
-- [Low] drm/amd/display: duplicate drmm_mode_config_init() in backlight
-  KUnit tests
---
+From: Fei Yang <fei.yang@intel.com>
 
-commit 846a4ea0302b706193f324593664f491fbb89bfe
-Author: Mario Limonciello <mario.limonciello@amd.com>
+xe_migrate_ulls_exit() clears ulls.enabled as soon as the ULLS_EXIT job is
+pushed, and drops job_mutex without waiting for it. A page fault arriving
+in that window finds ULLS disabled and pushes a ULLS_ENTER job while the
+previous ULLS chain is still executing.
 
-drm/amd: add luminance property support
+ULLS_ENTER is not chained, so submit_exec_queue() publishes its ring tail
+with xe_lrc_set_ring_tail(). That only updates the saved tail in the
+context image, which is what a context restore loads RING_TAIL from. It is
+therefore correct for a context that is off the hardware - but the context
+only leaves the hardware once the exit job has retired.
 
-This commit exposes the DRM LUMINANCE connector property for internal
-panels when CONFIG_DRM_LUMINANCE is enabled and updates the backlight
-KUnit fixtures.
+Submitted before then, that write races the postamble of the job preceding
+the exit job. The postamble publishes the same saved tail, and RING_TAIL,
+at the end of the exit job. If it lands after the CPU's write the tail is
+rewound behind the enter job, which the command streamer never executes.
+Its fence never signals, so job_cnt never drops, xe_exec_queue_is_idle()
+stays false and the exit worker re-arms itself forever while the context
+sits parked on the engine.
 
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/=
-gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index 56fca4e22df8d..8b5dde608266a 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-[ ... ]
-> @@ -5188,6 +5189,13 @@ static void amdgpu_dm_atomic_commit_tail(struct dr=
-m_atomic_commit *state)
->  		amdgpu_dm_commit_streams(state, dc_state);
->  	}
-> =20
-> +	/*
-> +	 * Apply connector luminance now that the streams are committed. Display
-> +	 * Core resets the panel brightness when it enables a stream, and the
-> +	 * helper reprograms LUMINANCE panels after a modeset.
-> +	 */
-> +	drm_atomic_helper_commit_luminance_enables(state);
-> +
->  	amdgpu_dm_update_hdcp(state);
-> =20
->  	/* Handle connector state changes */
-> @@ -5415,8 +5423,8 @@ static void amdgpu_dm_atomic_commit_tail(struct drm=
-_atomic_commit *state)
-> =20
->  	/* restore the backlight level */
->  	for (i =3D 0; i < dm->num_of_edps; i++) {
-> -		if (dm->backlight_dev[i] &&
-> -		    (dm->actual_brightness[i] !=3D dm->brightness[i]))
-> +		if ((dm->backlight_dev[i] || dm->luminance[i]) &&
-> +		    dm->actual_brightness[i] !=3D dm->brightness[i])
->  			amdgpu_dm_backlight_set_level(dm, i, dm->brightness[i]);
->  	}
-> =20
+Wait for the exit job's fence in the exit worker before dropping
+job_mutex. xe_migrate_ulls_enter() takes job_mutex to submit, so it is
+serialized behind the exit job retiring. The exit job carries no batch
+and is only pushed once the queue is idle, so the wait is short and
+depends on nothing else on the queue.
 
-[Severity: Medium]
-Can the unlocked retry loop at the end of amdgpu_dm_atomic_commit_tail()
-race with a concurrent luminance commit and overwrite a newer brightness
-level with a stale one?
+Assisted-by: LLM
+Signed-off-by: Fei Yang <fei.yang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_migrate.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-Fast atomic updates on disjoint CRTCs run amdgpu_dm_atomic_commit_tail()
-concurrently without taking the global dm.atomic_obj lock.  Inside
-amdgpu_dm_backlight_set_level(), dm->brightness[bl_idx] is updated before
-acquiring dm->dc_lock, while dm->actual_brightness[bl_idx] is updated only
-after releasing dm->dc_lock:
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index d7a8d8ecffe63..a8deb5fa714ca 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -188,6 +188,18 @@
+  * The PM reference is then dropped. If the queue was not idle, the worker
+  * simply re-arms itself.
+  *
++ * The worker waits for the "last" job to retire before dropping
++ * @xe_migrate.job_mutex, so a subsequent enter is serialized behind it. A
++ * "first" job is not chained, so it publishes its own ring tail with
++ * xe_lrc_set_ring_tail(), which updates the saved tail in the context image
++ * only. That is enough for a context which is off the hardware, since a
++ * context restore loads RING_TAIL from there, but the context is only off the
++ * hardware once the "last" job has retired. Submitted before then, the write
++ * races the postamble of the job preceding the "last" one, which puts that
++ * same saved tail - and RING_TAIL - at the end of the "last" job. The
++ * postamble landing second rewinds the tail behind the "first" job, which the
++ * command streamer then never executes.
++ *
+  * Job state
+  * ---------
+  *
+@@ -768,6 +780,9 @@ static void xe_migrate_ulls_exit(struct work_struct *work)
+ 	scoped_guard(mutex, &m->job_mutex) {
+ 		if (xe_exec_queue_is_idle(m->q, 1)) {
+ 			fence = __xe_migrate_job_push(m, job, ULLS_EXIT);
++
++			/* Keep enter out until the context is off the HW */
++			dma_fence_wait(fence, false);
+ 			dma_fence_put(fence);
+ 
+ 			xe_pm_runtime_put(xe);	/* Pairs with PM get in enter */
+-- 
+2.43.0
 
-CPU0 (eDP panel commit)           CPU1 (other CRTC commit)
-amdgpu_dm_atomic_commit_tail()
-  ...
-  amdgpu_dm_backlight_set_level(..., B1)
-    dm->brightness[0] =3D B1;
-    mutex_lock(&dm->dc_lock);
-                                  amdgpu_dm_atomic_commit_tail()
-                                    /* actual_brightness[0] !=3D B1 */
-                                    val =3D dm->brightness[0]; /* B1 */
-    ...
-    mutex_unlock(&dm->dc_lock);
-    dm->actual_brightness[0] =3D B1;
-
-/* next luminance commit B2 on CPU0 */
-amdgpu_dm_atomic_commit_tail()
-  ...
-  amdgpu_dm_backlight_set_level(..., B2)
-    dm->brightness[0] =3D B2;
-    ...
-    dm->actual_brightness[0] =3D B2;
-                                    amdgpu_dm_backlight_set_level(..., B1)
-                                      dm->brightness[0] =3D B1;
-                                        <-- overwrites B2 with stale B1
-
-This leaves the panel hardware brightness and dm->brightness[0] out of
-sync with connector->state->luminance.  In addition, when CPU1 runs
-amdgpu_dm_backlight_set_level() after CPU0 has already finished
-amdgpu_dm_commit_planes(), it re-asserts psr_event_hw_programming and
-replay_event_hw_programming with no subsequent plane flip to clear them,
-keeping PSR and Replay disabled until a later flip.
-
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backli=
-ght_test.c b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backligh=
-t_test.c
-> index 8fc1c2f997688..c33c121a19b25 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
-t.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/tests/amdgpu_dm_backlight_tes=
-t.c
-> @@ -37,16 +37,39 @@ static const struct drm_connector_funcs dm_backlight_=
-test_connector_funcs =3D {
-[ ... ]
->  static void setup_test_connector(struct kunit *test,
->  				 struct dm_backlight_connector_fixture *fixture,
->  				 int bl_idx, enum signal_type signal)
->  {
-> -	fixture->adev =3D kunit_kzalloc(test, sizeof(*fixture->adev), GFP_KERNE=
-L);
-> -	fixture->aconnector =3D kunit_kzalloc(test, sizeof(*fixture->aconnector=
-), GFP_KERNEL);
-> +	int ret;
-> +
-> +	fixture->adev =3D dm_kunit_alloc_adev(test);
-> +	ret =3D drmm_mode_config_init(&fixture->adev->ddev);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-[ ... ]
-> @@ -483,12 +506,17 @@ static void dm_test_register_backlight_device_succe=
-ss(struct kunit *test)
->  	struct dc_link *link =3D dm_kunit_alloc_link(test);
->  	struct drm_minor *primary;
->  	unsigned int max;
-> +	int ret;
-> +
-> +	ret =3D drmm_mode_config_init(&adev->ddev);
-> +	KUNIT_ASSERT_EQ(test, ret, 0);
-
-[Severity: Low]
-Does calling drmm_mode_config_init() in setup_test_connector() and
-dm_test_register_backlight_device_success() reinitialize mode_config a
-second time and leak the standard DRM properties?
-
-dm_kunit_alloc_adev() allocates the DRM device through
-__drm_kunit_helper_alloc_drm_device() ->
-__drm_kunit_helper_alloc_drm_device_with_driver(), which already calls
-drmm_mode_config_init() when DRIVER_MODESET is set.  Calling
-drmm_mode_config_init() again overwrites mode_config.property_list and
-mode_config.object_idr in place, leaking the standard properties allocated
-by the first call and registering a second drm_mode_config_init_release
-cleanup action.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261119-superm1-ba=
-cklight-property-v12-0-89d5217d3618@amd.com?part=3D4
