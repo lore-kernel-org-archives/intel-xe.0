@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D98E606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 117AF606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:47:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EDlQb5ZX
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LHwa63BX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3718910FD52;
-	Fri, 20 Nov 2026 05:47:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD20510F074;
+	Fri, 20 Nov 2026 05:47:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 100E410E047
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 05:47:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4328210F074
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 05:47:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795153636; x=1826689636;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+/QfDCCvbOOQP6tVZJ7zmItbNS/F/bngseVzKS+FRho=;
- b=EDlQb5ZXWEFr+bn3DoAyFgwmf9UpldAw1vbsrhVuqBhXJI0r55/nRFks
- qTZG30oUXPthB7FBbqhMKiJmjtLB+oKsYGbcaVY4ndwxLWz5gtDYo45HK
- mFRZc2YwR9GIa7yzfvfZOxcFGdZjQKKVpKkHLed7XDOM6jfJaT8402FxV
- sKNIMLcp29eHWSoxz5Ux0ECCJAKZb6TO0vEzREipz9VfahGJZiZRG+SCc
- TSxieCHuJJWAxiw2r3I+2ZDr7qYMACtRDucNczo4xn4qNStTGUaV96xsm
- 305BpMfbfQkBLCy4uQXkI2ApTrj+9IDMa88lyLwM2WNEYNlgTNjuhEXIE w==;
-X-CSE-ConnectionGUID: CK9H+SDTQ6OKxO/+JmJUxA==
-X-CSE-MsgGUID: rGbpbe+8SWCkcby0WYZROg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4018521"
+ t=1795153638; x=1826689638;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=P33Jz5/lyJKbRmi/W+ZQnoh0q8l48zM394qzTR6SD+E=;
+ b=LHwa63BXS7l0W1uiZTqYG0Ox/4heopEpopHvh5U5YyFSyDBz1PN+3fyH
+ YMSo0wsaIxzVWL0cZX6BNbOw8ceMQnpv8KuTwII1ITtQzAgpnRXkK/292
+ AyGADY2LCSn6eGPUXnM7051x545q62e5JNynz23sjT7pLGm+zz6y75NWK
+ 05xff1JbCeRPGkScIB0Si7axA2dWCIaeLnqUp/rID4DDMl2CC1I8HXnMY
+ wINwWGxEMSs350FWau3CQpjNdRb4fb2Nwe/StOEva/wZz6KT8ErOsIJZw
+ IEv8yKXAdh/nvDXzBKHeKOpa+GiutXWtJo8EVgin7aMLYzXU2+thvwTVj Q==;
+X-CSE-ConnectionGUID: ABzNcrGFTn+OPfAiWiZ4KA==
+X-CSE-MsgGUID: aWujxFqGSe6c75WFMB7Rrg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4018523"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="4018521"
+   d="scan'208";a="4018523"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 21:47:15 -0800
-X-CSE-ConnectionGUID: LbmR9XHGRB+82kgiIhjV6g==
-X-CSE-MsgGUID: MMp0PeLlQ+6RodJU+b0O0A==
+ 19 Nov 2026 21:47:16 -0800
+X-CSE-ConnectionGUID: oiYyhvfOQkm8m9qAKLkprQ==
+X-CSE-MsgGUID: NwauerQISMerPyzoPdw6qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10617114"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10617120"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 21:47:15 -0800
@@ -44,10 +44,13 @@ To:
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 00/16] Work around media 52-bit limitation on CRI
-Date: Fri, 20 Nov 2026 05:47:11 +0000
-Message-ID: <20261120054712.377573-18-stuart.summers@intel.com>
+Subject: [PATCH 02/16] drm/xe: Process device OOB workarounds during early
+ info init
+Date: Fri, 20 Nov 2026 05:47:13 +0000
+Message-ID: <20261120054712.377573-20-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261120054712.377573-18-stuart.summers@intel.com>
+References: <20261120054712.377573-18-stuart.summers@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -61,115 +64,81 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Note this is somewhat of an RFC right now to get early feedback. I'm
-planning a follow up to clean some of this up shortly.
+Device OOB workarounds only match on platform, subplatform and platform
+step, all of which are known once xe_info_init_early() has copied them
+out of the device descriptor. Processing them there instead of in
+xe_device_probe_early() makes XE_DEVICE_WA() usable for the rest of
+early probe, which runs before xe_device_probe_early().
 
-This is a combination of two series I have on the list now, [1] and [2].
-I've already gotten some feedback from Rodrigo and Sashiko on both of
-these I'm planning to incorporate. Apologies those updates didn't make
-it in to this series yet. I'm also planning on reviewing at least [1]
-separately since this likely needs more discussion anyway and isn't
-strictly related/required to the current series.
+While moving the call, check the return value of xe_wa_device_init(),
+which the old call site silently dropped.
 
-The main two patches I'm interested in getting feedback in the meantime
-are:
-  drm/xe: Add enable_media module parameter
-  drm/xe: Work around media 52-bit limitation on CRI
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c |  3 ---
+ drivers/gpu/drm/xe/xe_pci.c    | 14 ++++++++++++++
+ 2 files changed, 14 insertions(+), 3 deletions(-)
 
-The latter is the crux of the workaround here. The first sets up
-the module parameter which will be used to disable media by default.
-
-The reason to include a module parameter here is we have some customers
-who are planning many CRI devices on a single host. The request from
-those customers is to have a way to configure all of the cards on
-that host at one time rather than having to loop through each device
-separately (i.e. module parameter instead of configfs). We do already
-have a configfs that allows media to be disabled
-(gt_types_allowed = 'primary'), but this is both meant for developer
-debug, not production configuration, and it requires that per-device
-configuration.
-
-The workaround details are provided in that last patch in the series
-so I won't duplicate all of that here, but at a high level, media
-is now disabled by default and in order to maintain performance for
-compute when media is enabled on a system that supports 52-bit
-addressing, PCIe level address translation is supported, but an
-internal configuration of address translation for the media GAM
-is disabled. Again, the details of how this is done are in that last
-patch.
-
-Again, I'm not planning on merging these as-is, but just to clarify,
-[1] is attempting to separate the primary and media GT. This is mostly
-for debug but also used to refactor for that last patch. Likely in
-the repost I'll just drop this for now and review it completely
-separately, skipping this refactor unless it's deemed particularly
-interesting.
-
-[2] is adding a few fixes and refactors in preparation for the actual
-workaround so I'll be keeping these in the repost. Two of the three
-patches there have been reviewed (with some feedback) already. The
-third I'm planning to drop after feedback from Rodrigo.
-
-[1] https://patchwork.freedesktop.org/series/178247/
-[2] https://patchwork.freedesktop.org/series/177792/
-
-Stuart Summers (16):
-  drm/xe/sysctrl: Use preallocated mailbox staging buffers
-  drm/xe: Process device OOB workarounds during early info init
-  drm/xe/sysctrl: Restore the SoC remapper on every runtime resume
-  drm/xe: Add enable_media module parameter
-  drm/xe: Detect each GMD_ID IP in a loop
-  drm/xe: Tolerate a missing graphics IP in xe_info_init()
-  drm/xe: Verify IP presence against GU_CNTL
-  drm/xe: Guard per-tile primary GT accesses
-  drm/xe: Stop assuming the root tile has a primary GT
-  drm/xe: Do not claim flat CCS without a graphics IP
-  drm/xe: Run page table updates on the media GT when there is no
-    primary
-  drm/xe: Document that gt_types_allowed=media now probes
-  drm/xe: Fall back to CPU copies when the tile cannot blit
-  drm/xe: Require a fully visible VRAM BAR without a primary GT
-  drm/xe: Allow probe without a primary GT
-  drm/xe: Work around media 52-bit limitation on CRI
-
- drivers/gpu/drm/xe/regs/xe_regs.h             |   2 +
- drivers/gpu/drm/xe/xe_bo.c                    |  43 +++-
- drivers/gpu/drm/xe/xe_configfs.c              |  10 +-
- drivers/gpu/drm/xe/xe_defaults.h              |   1 +
- drivers/gpu/drm/xe/xe_device.c                |  27 +-
- drivers/gpu/drm/xe/xe_device.h                |  17 ++
- drivers/gpu/drm/xe/xe_device_types.h          |   2 +
- drivers/gpu/drm/xe/xe_device_wa_oob.rules     |   1 +
- drivers/gpu/drm/xe/xe_exec_queue.c            |   5 +-
- drivers/gpu/drm/xe/xe_gt.c                    |  11 +-
- drivers/gpu/drm/xe/xe_memirq.c                |   3 +-
- drivers/gpu/drm/xe/xe_migrate.c               |  45 +++-
- drivers/gpu/drm/xe/xe_migrate.h               |   2 +
- drivers/gpu/drm/xe/xe_module.c                |   7 +
- drivers/gpu/drm/xe/xe_module.h                |   1 +
- drivers/gpu/drm/xe/xe_oa.c                    |  24 +-
- drivers/gpu/drm/xe/xe_pagefault.c             |   4 +-
- drivers/gpu/drm/xe/xe_pci.c                   | 241 ++++++++++++++----
- drivers/gpu/drm/xe/xe_pm.c                    |  13 +-
- drivers/gpu/drm/xe/xe_query.c                 |   3 +-
- drivers/gpu/drm/xe/xe_sysctrl.c               | 191 +++++++++++++-
- drivers/gpu/drm/xe/xe_sysctrl.h               |   2 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       |  56 ++--
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  34 +++
- drivers/gpu/drm/xe/xe_sysctrl_types.h         |  17 ++
- drivers/gpu/drm/xe/xe_tile.h                  |  32 +++
- drivers/gpu/drm/xe/xe_tlb_inval.c             |  20 +-
- drivers/gpu/drm/xe/xe_vm.c                    |   2 +-
- drivers/gpu/drm/xe/xe_vram.c                  |  15 ++
- 29 files changed, 678 insertions(+), 153 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f5a581d39c96..b053a788d59c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -715,9 +715,6 @@ int xe_device_probe_early(struct xe_device *xe)
+ {
+ 	int err;
+ 
+-	xe_wa_device_init(xe);
+-	xe_wa_process_device_oob(xe);
+-
+ 	err = xe_mmio_probe_early(xe);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 619653c68f2c..fb2a5f3311c8 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -15,6 +15,8 @@
+ #include <drm/drm_drv.h>
+ #include <drm/intel/pciids.h>
+ 
++#include <generated/xe_device_wa_oob.h>
++
+ #include "display/xe_display.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+@@ -40,6 +42,7 @@
+ #include "xe_tile.h"
+ #include "xe_tile_printk.h"
+ #include "xe_wedge.h"
++#include "xe_wa.h"
+ 
+ enum toggle_d3cold {
+ 	D3COLD_DISABLE,
+@@ -795,6 +798,17 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.subplatform = subplatform_desc ?
+ 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
+ 
++	/*
++	 * Device OOB workarounds only match on platform, subplatform and
++	 * platform step, which are all known by now, so process them here and
++	 * make XE_DEVICE_WA() usable for the remainder of early probe.
++	 */
++	err = xe_wa_device_init(xe);
++	if (err)
++		return err;
++
++	xe_wa_process_device_oob(xe);
++
+ 	xe->info.dma_mask_size = desc->dma_mask_size;
+ 	xe->info.va_bits = desc->va_bits;
+ 	xe->info.vm_max_level = desc->vm_max_level;
 -- 
 2.43.0
 
