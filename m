@@ -2,52 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7EA606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:24:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30288606A325
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=j61C+B47
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O/F9v1Fc
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C391B112AC4;
-	Fri, 20 Nov 2026 14:23:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3745112ACA;
+	Fri, 20 Nov 2026 14:23:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 093B1112AC6;
- Fri, 20 Nov 2026 14:23:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1E4210E8FD;
+ Fri, 20 Nov 2026 14:23:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795184628; x=1826720628;
+ t=1795184630; x=1826720630;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=j28sLCsMav7WbnK4jgpQHx6XdQWRrSH46u3RsCeEwWA=;
- b=j61C+B47mLToOnM2nqp1u1obONaweXk8I5cDedobh/ODSFd6kQZi2eNe
- LedJnif1x+iTe9c0pVgwvvQDAIaUsp/ieIREyNMZOE6xwp1i4yz0UoMf6
- NanxYr6pLTYnQYnb3Sotv3aMK1pdrAyiMl5V578wG2T9FQ7aTKnsEPJMe
- 7YTyx07J2xL9rKTDBF97y6YNkAd7zTSaTDxf0aQwmv34FS0/WR4LAQ2FD
- E2JkvZK+j5gWymQAYGGa5gdA25zzEMg61NDL/wIp5TkScrj+A3opaaSHt
- M4qtOanxKcx6gThapnWna/JqLFbJy94zTaq9Qd6BwqHZAkc3/6LJA51ue g==;
-X-CSE-ConnectionGUID: a18dDufoRJ2SOmrFJkJGNw==
-X-CSE-MsgGUID: Bw4DbZFjT06Bd2RQlFFAzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4090972"
+ bh=k9+lh8MrQLHvNRkkxcbr46bziCRsUkFzPGYRyiCoAwY=;
+ b=O/F9v1FcNTjW5s40POvEPP4ctJZ5dOTbNFP6iMMAcnoYH9q3CQzaXuI1
+ q/azOYD5PU2pM7p9qB2nlHY56yGM4aBX5zg65sl+EC3wHqlBcR9UNHLBX
+ bYSLCVdxPPdoWXs8FRa8TJwZ9b9MY+JDFb9epy2RIFZlSHZNXf+Uh4rpG
+ gOelIsTSdwm7otqPfziH7t0G9xPEPB+QWEV3UqXDglBZRLoIWcdHLCVqz
+ F0KPc2czOqO+QT4kAd+z+5dkZkDBxrZO8rQCNsnpsaOEzfL64uvJXZDQQ
+ B/U6KmG/6AjhY5q2NzO77sfxI0oRmUfBdF0BqwL7zm24YUnlI2JN/k7OY A==;
+X-CSE-ConnectionGUID: 7eg887JoTf2h+lRqxBUgdg==
+X-CSE-MsgGUID: oeHD71yZT7+FIWliO7JzLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4090982"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4090972"
+   d="scan'208";a="4090982"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:23:31 -0800
-X-CSE-ConnectionGUID: +yYh2g8SR/yDsur/4y+z0A==
-X-CSE-MsgGUID: GsUUwVpfQT+WMDb3tkNYFA==
+ 20 Nov 2026 06:23:34 -0800
+X-CSE-ConnectionGUID: Hvjxg7n9Sha6N0yx0BHuJw==
+X-CSE-MsgGUID: RaU01/aJTf2N6DRlceqDng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12422024"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12422031"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:23:30 -0800
+ 20 Nov 2026 06:23:33 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: alexander.kaplan@sms-medipool.de,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 13/29] drm/i915/dp: Disable the PCON DSC encoder unless it is
- needed
-Date: Fri, 20 Nov 2026 19:37:13 +0530
-Message-ID: <20261120140729.466177-14-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 15/29] drm/i915/dp: Add a helper for the DSC stream version
+Date: Fri, 20 Nov 2026 19:37:15 +0530
+Message-ID: <20261120140729.466177-16-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
@@ -72,42 +71,67 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The PCON DSC encoder is only used when the PCON decodes a DSC 1.1 stream
-and encodes DSC 1.2a for the HDMI sink. Otherwise the PCON either
-decodes the stream, or passes a DSC 1.2a stream through, or there is no
-DSC at all.
+The DSC version of the stream the source sends is the lower of the
+source and sink versions. This is open coded twice. Add a helper for it,
+so that the following changes can use it as well.
 
-Currently the encoder is enabled with PPS override parameters whenever
-the PCON and the HDMI sink support DSC 1.2, even for streams that do not
-need it, and it is never disabled again.
-
-Program the encoder only for the decode and re-encode operation, and
-explicitly disable it for all the other operations.
+No functional change.
 
 Assisted-by: LLM
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e837645a6421..9f6cd726af26 100644
+index 1b61f36adaa7..14df2cebd17c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4610,6 +4610,13 @@ intel_dp_pcon_dsc_configure(struct intel_dp *intel_dp,
- 	    !hdmi_is_dsc_1_2)
- 		return;
+@@ -1984,6 +1984,15 @@ static int intel_dp_sink_dsc_version_minor(const u8 dsc_dpcd[DP_DSC_RECEIVER_CAP
+ 		DP_DSC_MINOR_SHIFT;
+ }
  
-+	if (crtc_state->pcon_config.dsc_op != INTEL_PCON_DSC_DECODE_ENCODE) {
-+		ret = drm_dp_pcon_dsc_enc_disable(&intel_dp->aux);
-+		if (ret < 0)
-+			drm_dbg_kms(display->drm, "Failed to disable pcon DSC encoder\n");
-+		return;
-+	}
++/* The DSC version of the stream the source sends: the lower of the source and sink versions */
++static int intel_dp_dsc_stream_version_minor(const struct intel_connector *connector)
++{
++	struct intel_display *display = to_intel_display(connector);
 +
- 	slice_height = intel_dp_pcon_dsc_enc_slice_height(crtc_state);
- 	if (!slice_height)
- 		return;
++	return min(intel_dp_source_dsc_version_minor(display),
++		   intel_dp_sink_dsc_version_minor(connector->dp.dsc_dpcd));
++}
++
+ static int intel_dp_get_slice_height(int vactive)
+ {
+ 	int slice_height;
+@@ -2031,9 +2040,7 @@ static int intel_dp_dsc_compute_params(const struct intel_connector *connector,
+ 	vdsc_cfg->dsc_version_major =
+ 		(connector->dp.dsc_dpcd[DP_DSC_REV - DP_DSC_SUPPORT] &
+ 		 DP_DSC_MAJOR_MASK) >> DP_DSC_MAJOR_SHIFT;
+-	vdsc_cfg->dsc_version_minor =
+-		min(intel_dp_source_dsc_version_minor(display),
+-		    intel_dp_sink_dsc_version_minor(connector->dp.dsc_dpcd));
++	vdsc_cfg->dsc_version_minor = intel_dp_dsc_stream_version_minor(connector);
+ 	if (vdsc_cfg->convert_rgb)
+ 		vdsc_cfg->convert_rgb =
+ 			connector->dp.dsc_dpcd[DP_DSC_DEC_COLOR_FORMAT_CAP - DP_DSC_SUPPORT] &
+@@ -2057,7 +2064,6 @@ static int intel_dp_dsc_compute_params(const struct intel_connector *connector,
+ static bool intel_dp_dsc_supports_format(const struct intel_connector *connector,
+ 					 enum intel_output_format output_format)
+ {
+-	struct intel_display *display = to_intel_display(connector);
+ 	u8 sink_dsc_format;
+ 
+ 	switch (output_format) {
+@@ -2068,8 +2074,7 @@ static bool intel_dp_dsc_supports_format(const struct intel_connector *connector
+ 		sink_dsc_format = DP_DSC_YCbCr444;
+ 		break;
+ 	case INTEL_OUTPUT_FORMAT_YCBCR420:
+-		if (min(intel_dp_source_dsc_version_minor(display),
+-			intel_dp_sink_dsc_version_minor(connector->dp.dsc_dpcd)) < 2)
++		if (intel_dp_dsc_stream_version_minor(connector) < 2)
+ 			return false;
+ 		sink_dsc_format = DP_DSC_YCbCr420_Native;
+ 		break;
 -- 
 2.50.1
 
