@@ -2,42 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74587606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 04:42:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HH1yYxnn
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74C7A606A336
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 04:51:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF8710EC81;
-	Fri, 20 Nov 2026 04:42:08 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F6E710E05E
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 04:42:01 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id DDD7D46466;
- Fri, 20 Nov 2026 04:42:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 985791F000D2;
- Fri, 20 Nov 2026 04:42:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795149720;
- bh=3jLYotI/2TRK/sw8TyiUpED6q6x3xgJ9s0sGDQu0H34=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=HH1yYxnnWjbFaJ5C/UWHWl2z03E841a2ZIBNWrlr/I4DPb081NxIHrgwrKoMp3dSp
- YrzwuHFodiqxKqd7e+VZG9P3/nvdDawtwNGAeW4cI4dk+z5f5P1BxcwHWFjcj2NN9s
- /iqwVG4VdXLTeXm2B6m6YdB0OuSy/yXBcuqybGnDllfUxIHl/QG/Ga4jJFe+mWdUPM
- CLWw4+gvw5Z3a/T25gzcRI2FJ+Eg1g5IGwOGXKFpGg9uUy0e6rQqOtO7+ED0sfKJ85
- VvAb24F2iqtsn8ARyk5RwPweF+wWpylEVDaGRVWQiJf8GzhDY/jjOY2526KpV2RhFf
- llHEXmL8dGy6Q==
-Message-ID: <sashiko-outbox-224467@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v8 2/3] drm/xe/xe_ras: Add support to retrieve info
- queue data
-To: "Badal Nilawar" <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120043303.107183-7-badal.nilawar@intel.com>
-References: <20261120043303.107183-5-badal.nilawar@intel.com>
- <20261120043303.107183-7-badal.nilawar@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 04:42:00 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CDFF10ECB9;
+	Fri, 20 Nov 2026 04:51:32 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D23C10E0F0;
+ Fri, 20 Nov 2026 04:51:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2846417952663162719=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Serialize_migrate?=
+ =?utf-8?q?_ULLS_enter_against_a_pending_exit_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Nov 2026 04:51:31 -0000
+Message-ID: <179515029143.56469.15214026965846278468@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261120004635.3902529-1-fei.yang@intel.com>
+In-Reply-To: <20261120004635.3902529-1-fei.yang@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,104 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/xe/ras: assertion and 0-byte fetch in
-  get_remaining_chunks() when full
---
+--===============2846417952663162719==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit 6c6fff86d117ac6d5e465e2c1c62372c93a7e520
-Author: Badal Nilawar <badal.nilawar@intel.com>
+== Series Details ==
 
-drm/xe/xe_ras: Add support to retrieve info queue data
+Series: drm/xe: Serialize migrate ULLS enter against a pending exit (rev2)
+URL   : https://patchwork.freedesktop.org/series/179157/
+State : success
 
-This commit adds helpers and mailbox structures to retrieve RAS info queue
-data in chunks and assemble it into a flat buffer.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> index e8984c966876a..46542852e0552 100644
-> --- a/drivers/gpu/drm/xe/xe_ras.c
-> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> @@ -1123,6 +1123,192 @@ int xe_ras_set_threshold(struct xe_device *xe, u8=
- severity, u8 component, u32 th
+CI Bug Log - changes from xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420_BAT -> xe-pw-179157v2_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> +static u32 get_remaining_chunks(struct xe_device *xe,
-> +				const struct xe_ras_get_counter_response *counter_resp,
-> +				u8 *dest_buf, u32 dest_size, u32 offset, u32 flags)
-> +{
-> +	u32 requests_left =3D XE_SYSCTRL_FLOOD_LIMIT * 2;
-> +	int ret;
-> +
-> +	while (flags & XE_RAS_INFO_QUEUE_FLAG_MORE_DATA) {
-> +		struct xe_ras_info_queue_data_request *qdata_req;
-> +		struct xe_ras_get_info_queue_response response =3D {};
-> +		struct xe_ras_get_info_queue_request request =3D {};
-> +		struct xe_ras_info_queue_header *hdr;
-> +
-> +		xe_assert(xe, offset < dest_size);
-> +
-> +		qdata_req =3D &request.qdata_req;
-> +		qdata_req->offset =3D offset;
-> +		qdata_req->size =3D min_t(u32, XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE, dest_=
-size - offset);
-> +		qdata_req->session_id =3D counter_resp->counter;
-> +
-> +		ret =3D get_info_queue(xe, &request, &response);
-> +		if (ret) {
-> +			xe_err(xe, "[RAS]: info queue drain aborted: fetch at offset=3D%u, re=
-t =3D %d\n",
-> +			       offset, ret);
-> +			return offset;
-> +		}
-> +
-> +		hdr =3D &response.qdata_resp.header;
-> +
-> +		if (!chunk_is_valid(hdr, offset, counter_resp->first.header.total_size,
-> +				    dest_size)) {
-> +			xe_warn(xe, "[RAS]: invalid info queue chunk (total=3D%u offset=3D%u =
-size=3D%u, expected offset=3D%u)\n",
-> +				hdr->total_size, hdr->chunk_offset, hdr->chunk_size, offset);
-> +			return offset;
-> +		}
-> +
-> +		memcpy(dest_buf + offset, response.qdata_resp.data, hdr->chunk_size);
-> +		offset +=3D hdr->chunk_size;
-> +		flags =3D hdr->flags;
-> +
-> +		if (!--requests_left) {
-> +			xe_warn(xe, "[RAS]: info queue flooding, aborted at offset=3D%u\n", o=
-ffset);
-> +			break;
-> +		}
-> +	}
+  **SUCCESS**
 
-[Severity: Medium]
-Can get_remaining_chunks() trip xe_assert(xe, offset < dest_size) and issue
-a 0-byte GET_INFO_QUEUE request when dest_buf fills up while
-XE_RAS_INFO_QUEUE_FLAG_MORE_DATA is still set?
+  No regressions found.
 
-When firmware reports total_size > XE_RAS_INFO_QUEUE_MAX_TOTAL_SIZE (5120),
-xe_ras_get_info_queue_size() truncates the buffer size to 5120 bytes.
-Filling dest_buf to 5120 bytes takes 26 chunks (the initial chunk plus 25
-requests, leaving requests_left at 7), and firmware keeps
-XE_RAS_INFO_QUEUE_FLAG_MORE_DATA set on the chunk that reaches offset =3D=3D
-dest_size because data remains beyond offset 5120.  Without a check like
-offset < dest_size in the loop condition (or breaking when offset =3D=3D
-dest_size), the next iteration asserts and sends a request with
-qdata_req->size =3D 0.
+  
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120043303.1071=
-83-5-badal.nilawar@intel.com?part=3D2
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420 -> xe-pw-179157v2
+
+  IGT_9200: 9200
+  xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420: 9bf864cd53c8e7651a038b9be01b2b0dfc67b420
+  xe-pw-179157v2: 179157v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179157v2/index.html
+
+--===============2846417952663162719==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Serialize migrate ULLS enter against a pending exit (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179157/">https://patchwork.freedesktop.org/series/179157/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179157v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179157v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420_BAT -&gt; xe-pw-179157v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420 -&gt; xe-pw-179157v2</li>
+</ul>
+<p>IGT_9200: 9200<br />
+  xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420: 9bf864cd53c8e7651a038b9be01b2b0dfc67b420<br />
+  xe-pw-179157v2: 179157v2</p>
+
+</body>
+</html>
+
+--===============2846417952663162719==--
