@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41011606A325
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 13:03:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865BC60A260B
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 13:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JwUQxLDS
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mpBv67NA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C3AD112A17;
-	Fri, 20 Nov 2026 13:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA2B112A14;
+	Fri, 20 Nov 2026 13:03:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 410C1112A3F
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 13:03:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D58FA112A17
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 13:03:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795179806; x=1826715806;
+ t=1795179810; x=1826715810;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=aHXLzlCrEPPKNqZcsCLp61SKZ+EFdNnIfTiEtUQIlcc=;
- b=JwUQxLDSz9AMvZh2jaynC07NT3xZwpjylHotNkv+4uLQjAmckyV9TJqc
- GXKGl+SeiGyo01Ra6XsE7olHkK4H6N44IUBSMNDlNMZS4WeETzBpLWxjM
- u2pJrul5Jx6VI7QijUSj950VYIw27wo6GM/7YRrHd3RCaVEvxv2Xdh2D0
- 1BLf2mH4kSt51/XIu1rbOJSSoWr3N68rTiv0Vi54Pxk1Q0vEh6M7DXUH+
- sn2Eq59LbaZbPXK9scmBp6qRoszRcRESCHRIwDgwWcu1i53k87IvRQOOk
- uuqUQ44cKU7E+sj/Fc1p3tBv1Ycy7nrROAouseIazkYcc4lWynrRnPUTk w==;
-X-CSE-ConnectionGUID: hCUW3fHhRwGF80w+B1t7ZQ==
-X-CSE-MsgGUID: Llngcm/CRiqKEu+NqJSL4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4072686"
+ bh=FxLqy8reenhAN8LERTMKP2FqbTjtdcRyXt/ux0hg/aY=;
+ b=mpBv67NAggJYt854Q3/QE3nydj6287iaf9vUaDNdbXzmtN4GJSfWmvXO
+ 8C08mfxjEajm0n59k8YONDF5qBp7aUf2y3Kps0OJTVkqG09d1+Q7fHeka
+ JS7oZc+vGbYvmaQkt/OHR2EuyPNCP2Le+ptzUa9+49CzfSsDWQvZn9gHJ
+ FkFpjZBU2WMoEUNr5TMxTHSxzLAGJkz4ptF2u5YMz2804kGazBrzYQ6/9
+ HBaY1c6tjjQ5zuYMEcKBtDCtZ/cRDskAuhRJpRBd0DVrvw01hdnSK5LWV
+ lwpVuSPVcE4jWgSas+EUExzlsCaecUhXB5CocLqRELIzkPij4ceNFuAlL w==;
+X-CSE-ConnectionGUID: Vh6gpMkOSmSCCmWgJrJ8IQ==
+X-CSE-MsgGUID: 0A5jvFchQa23Es3yRciqBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4072689"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4072686"
+   d="scan'208";a="4072689"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 05:03:26 -0800
-X-CSE-ConnectionGUID: On2yWgXkQjGcPI7fzm92sQ==
-X-CSE-MsgGUID: q9ThwEMdQGO4wYy63lMMJw==
+ 20 Nov 2026 05:03:29 -0800
+X-CSE-ConnectionGUID: mPNJESyHQXeGYosL2eCSJQ==
+X-CSE-MsgGUID: T4qjuJ8rTvOE5frQbauvTQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="10639259"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="10639269"
 Received: from slindbla-desk.ger.corp.intel.com (HELO [192.168.0.182])
  ([10.245.244.23])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 05:03:25 -0800
+ 20 Nov 2026 05:03:28 -0800
 From: Matthew Auld <matthew.auld@intel.com>
-Date: Fri, 20 Nov 2026 13:02:19 +0000
-Subject: [PATCH v2 4/6] drm/xe: Add a userptr repin timeout sysfs attribute
+Date: Fri, 20 Nov 2026 13:02:21 +0000
+Subject: [PATCH v2 6/6] drm/xe: run compute rebind worker on device NUMA node
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20261120-userptr-repin-v2-4-65e1f6e582ef@intel.com>
+Message-Id: <20261120-userptr-repin-v2-6-65e1f6e582ef@intel.com>
 References: <20261120-userptr-repin-v2-0-65e1f6e582ef@intel.com>
 In-Reply-To: <20261120-userptr-repin-v2-0-65e1f6e582ef@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>, 
@@ -73,178 +73,133 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+preempt_rebind_work_func() currently runs on xe->ordered_wq, whose
+unbound worker pool spans all NUMA nodes. On multi-socket systems, if
+the rebind worker runs on a remote socket when faulting userptr pages
+marked PROT_NONE by AutoNUMA, hmm_range_fault() invokes do_numa_page()
+using the worker's NUMA node and triggers migrate_misplaced_folio(),
+pulling pages away from the GPU's local node and causing self-inflicted
+MMU notifier invalidations.
 
-Add a per-device sysfs attribute, userptr_repin_timeout_ms, to be used
-to bound the overall time a userptr repin is retried when the CPU
-mappings keep changing during the repin. The default is 10000 ms on
-single-node systems and 30000 ms on multi-node NUMA systems, and zero
-means retry indefinitely. The value can be changed at any time and is
-read each time the timeout is checked.
+Historically, xe->ordered_wq also serialised compute VM rebinds across
+the device to avoid eviction ping-pong, which should no longer be
+necessary since commit 8f25e5abcbfb ("drm/xe: Convert existing drm_exec
+transactions for exhaustive eviction") serialises OOM eviction via
+xe_validation_ctx.
 
-v2 (Matt):
-- Reject values above INT_MAX (or reaching MAX_JIFFY_OFFSET) with
-  -EINVAL in userptr_repin_timeout_ms_store() so msecs_to_jiffies() does
-  not treat them as an infinite timeout.
-- Lower the default from 100000 ms to 10000 ms on single-node systems
-  and 30000 ms on multi-node NUMA systems (Himal).
+Move vm->preempt.rebind_work onto a dedicated WQ_UNBOUND workqueue
+queued via queue_work_node() with dev_to_node(), leaving user-fence
+signalling on xe->ordered_wq.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Co-developed-by: Matthew Auld <matthew.auld@intel.com>
+v2 (Thomas):
+ - Drop the whole 1-at-a-time ordered wq requirement for the worker.
+ - Move the rebind destroy before destroy_wq; much safer.
+
+Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       |  5 ++++
- drivers/gpu/drm/xe/xe_device.h       |  3 ++
- drivers/gpu/drm/xe/xe_device_sysfs.c | 57 ++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device_types.h |  8 +++++
- 4 files changed, 73 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c       | 7 ++++++-
+ drivers/gpu/drm/xe/xe_device_types.h | 6 +++++-
+ drivers/gpu/drm/xe/xe_vm.c           | 2 +-
+ drivers/gpu/drm/xe/xe_vm.h           | 6 +++++-
+ 4 files changed, 17 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index f5a581d39c96..f0c88d3297f9 100644
+index f0c88d3297f9..8dfc8ef9dbd7 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -8,6 +8,7 @@
- #include <linux/aperture.h>
- #include <linux/delay.h>
+@@ -10,6 +10,7 @@
  #include <linux/error-injection.h>
-+#include <linux/nodemask.h>
+ #include <linux/nodemask.h>
  #include <linux/units.h>
++#include <linux/workqueue.h>
  
  #include <drm/drm_client.h>
-@@ -439,6 +440,10 @@ struct xe_device *xe_device_create(struct pci_dev *pdev)
- 	if (err)
- 		return ERR_PTR(err);
+ #include <drm/drm_gem_ttm_helper.h>
+@@ -390,6 +391,9 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
+ 	if (xe->preempt_fence_wq)
+ 		destroy_workqueue(xe->preempt_fence_wq);
  
-+	xe->userptr_repin_timeout_ms = num_online_nodes() > 1 ?
-+		XE_USERPTR_REPIN_TIMEOUT_MS_NUMA_DEFAULT :
-+		XE_USERPTR_REPIN_TIMEOUT_MS_DEFAULT;
++	if (xe->rebind_wq)
++		destroy_workqueue(xe->rebind_wq);
 +
- 	return xe;
- }
- ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index 7a7632e2d56b..6b1e48369bdd 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -43,6 +43,9 @@ static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
- 	return container_of(ttm, struct xe_device, ttm);
- }
+ 	if (xe->ordered_wq)
+ 		destroy_workqueue(xe->ordered_wq);
  
-+#define XE_USERPTR_REPIN_TIMEOUT_MS_DEFAULT		10000
-+#define XE_USERPTR_REPIN_TIMEOUT_MS_NUMA_DEFAULT	30000
-+
- struct xe_device *xe_device_create(struct pci_dev *pdev);
- int xe_device_init_early(struct xe_device *xe);
- int xe_device_probe_early(struct xe_device *xe);
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index ff5d25dd867c..f6275e74eb31 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -4,7 +4,9 @@
-  */
+@@ -523,10 +527,11 @@ int xe_device_init_early(struct xe_device *xe)
  
- #include <linux/device.h>
-+#include <linux/jiffies.h>
- #include <linux/kobject.h>
-+#include <linux/limits.h>
- #include <linux/pci.h>
- #include <linux/sysfs.h>
- 
-@@ -38,6 +40,16 @@
-  * reclaimed by the shrinker. Higher values reduce reclaim pressure on
-  * non-purgeable buffer objects. Valid values are 1 to 64. Defaults to
-  * CONFIG_DRM_XE_SHRINKER_NON_PURGEABLE_SEEKS.
-+ *
-+ * userptr_repin_timeout_ms - Report/change the overall time, in
-+ * milliseconds, a userptr repin is retried, with all locks dropped between
-+ * the attempts, when the CPU mappings keep changing during the repin. The
-+ * time is measured from the first repin attempt after an invalidation. When
-+ * it expires the repin fails with -EBUSY. Zero means retry indefinitely.
-+ * Valid values are 0 to INT_MAX (capped by MAX_JIFFY_OFFSET). The value is
-+ * read each time the timeout is checked, so a change takes effect
-+ * immediately. Defaults to 10000 on single-node systems and 30000 on
-+ * multi-node NUMA systems.
-  */
- 
- static ssize_t
-@@ -340,6 +352,47 @@ static const struct attribute_group shrinker_attr_group = {
- 	.attrs = shrinker_attrs,
- };
- 
-+static ssize_t
-+userptr_repin_timeout_ms_show(struct device *dev,
-+			      struct device_attribute *attr, char *buf)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
-+
-+	return sysfs_emit(buf, "%u\n", READ_ONCE(xe->userptr_repin_timeout_ms));
-+}
-+
-+static ssize_t
-+userptr_repin_timeout_ms_store(struct device *dev,
-+			       struct device_attribute *attr,
-+			       const char *buf, size_t count)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(to_pci_dev(dev));
-+	u32 val;
-+	int ret;
-+
-+	ret = kstrtou32(buf, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val > INT_MAX || msecs_to_jiffies(val) >= MAX_JIFFY_OFFSET)
-+		return -EINVAL;
-+
-+	WRITE_ONCE(xe->userptr_repin_timeout_ms, val);
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR_RW(userptr_repin_timeout_ms);
-+
-+static struct attribute *userptr_attrs[] = {
-+	&dev_attr_userptr_repin_timeout_ms.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group userptr_attr_group = {
-+	.attrs = userptr_attrs,
-+};
-+
- int xe_device_sysfs_init(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
-@@ -349,6 +402,10 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 	if (ret)
- 		return ret;
- 
-+	ret = devm_device_add_group(dev, &userptr_attr_group);
-+	if (ret)
-+		return ret;
-+
- 	if (xe->d3cold.capable) {
- 		ret = devm_device_add_group(dev, &vram_attr_group);
- 		if (ret)
+ 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
+ 						       WQ_MEM_RECLAIM);
++	xe->rebind_wq = alloc_workqueue("xe-rebind-wq", WQ_UNBOUND, 0);
+ 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
+ 	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
+ 	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU | WQ_MEM_RECLAIM, 0);
+-	if (!xe->ordered_wq || !xe->unordered_wq ||
++	if (!xe->ordered_wq || !xe->unordered_wq || !xe->rebind_wq ||
+ 	    !xe->preempt_fence_wq || !xe->destroy_wq) {
+ 		/*
+ 		 * Cleanup done in xe_device_destroy via
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 8f2a31949073..fc80cd2c766e 100644
+index fc80cd2c766e..778cc1c9b39a 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -437,6 +437,14 @@ struct xe_device {
- 		u16 idx[__XE_CACHE_LEVEL_COUNT];
- 	} pat;
+@@ -7,6 +7,7 @@
+ #define _XE_DEVICE_TYPES_H_
  
-+	/**
-+	 * @userptr_repin_timeout_ms: Overall time in milliseconds a userptr
-+	 * repin is retried before failing with -EBUSY. Zero means retry
-+	 * indefinitely. Accessed with READ_ONCE() / WRITE_ONCE() and tunable
-+	 * through sysfs.
-+	 */
-+	u32 userptr_repin_timeout_ms;
+ #include <linux/pci.h>
++#include <linux/workqueue.h>
+ 
+ #include <drm/drm_device.h>
+ #include <drm/drm_file.h>
+@@ -375,7 +376,10 @@ struct xe_device {
+ 	/** @preempt_fence_wq: used to serialize preempt fences */
+ 	struct workqueue_struct *preempt_fence_wq;
+ 
+-	/** @ordered_wq: used to serialize compute mode resume */
++	/** @rebind_wq: used to run compute mode rebind work on device node */
++	struct workqueue_struct *rebind_wq;
 +
- 	/** @d3cold: Encapsulate d3cold related stuff */
- 	struct {
- 		/** @d3cold.capable: Indicates if root port is d3cold capable */
++	/** @ordered_wq: used to serialize ordered work */
+ 	struct workqueue_struct *ordered_wq;
+ 
+ 	/** @unordered_wq: used to serialize unordered work */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 0c5121361f8e..ab138d495f3f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -540,7 +540,7 @@ static bool vm_suspend_rebind_worker(struct xe_vm *vm)
+  */
+ void xe_vm_resume_rebind_worker(struct xe_vm *vm)
+ {
+-	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
++	xe_vm_queue_rebind_worker(vm);
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index b1c5f940bcc5..ed590bad892c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -6,6 +6,9 @@
+ #ifndef _XE_VM_H_
+ #define _XE_VM_H_
+ 
++#include <linux/device.h>
++#include <linux/workqueue.h>
++
+ #include "xe_assert.h"
+ #include "xe_bo_types.h"
+ #include "xe_macros.h"
+@@ -259,7 +262,8 @@ int xe_vm_validate_protected(struct xe_vm *vm);
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+-	queue_work(vm->xe->ordered_wq, &vm->preempt.rebind_work);
++	queue_work_node(dev_to_node(vm->xe->drm.dev), vm->xe->rebind_wq,
++			&vm->preempt.rebind_work);
+ }
+ 
+ /**
 
 -- 
 2.56.1
