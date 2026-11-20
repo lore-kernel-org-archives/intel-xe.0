@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09677606A330
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DA57606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=HYZuKG3D
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=RnWzdaGY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C165C10E2C6;
-	Fri, 20 Nov 2026 14:43:34 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF8F110E2C6;
- Fri, 20 Nov 2026 14:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A883112B19;
+	Fri, 20 Nov 2026 14:46:19 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B54BF10E160;
+ Fri, 20 Nov 2026 14:46:12 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id D35256205D;
- Fri, 20 Nov 2026 14:43:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3832B1F000CA;
- Fri, 20 Nov 2026 14:43:27 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6F69D455A5;
+ Fri, 20 Nov 2026 14:46:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3D501F000C6;
+ Fri, 20 Nov 2026 14:46:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795185807;
- bh=/vi6cNN7Yho3YcmkJXBOWOisNVpXDay4mrsOfdnE2sU=;
+ s=k20260515; t=1795185971;
+ bh=7eSwegV5Sw19WDLMFzjXAAtMre8Kh00E5DCHAkmyk6g=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=HYZuKG3DtjCajEINUQ8gDlMHq3en6FkiVr+s2QI93mh2NmTcahne+33yxLfYO92HS
- iEtRxnp8oTfUEJI8fbA8YFL/BrZZij/bU/gHKcpYuTUdWgVi5ROSWsSqi4QT6B/fgH
- OWth3E1H2jFqiy2orOLd1Nv5bLIhNbaFg3WjRCa8H+V7aABd0K15bPp6WROLtNKy52
- uDaRlscW5qs1KGeBueq1Mv3yVJnGhE34VDJQhtB/L3bk5ZoUtkbO5+XTg8QugqYrz0
- wjj2lS4NgvjvUByJM8GDwL4XCr+hzTGyK/uzJXVCaNm80KAFJ91X8PpeK+H0so/Xuq
- VuZAKT35M2zNg==
-Message-ID: <sashiko-outbox-225402@kernel.org>
+ b=RnWzdaGYnuRkkUarN0+uDlX+98VAhW1uuGx8qAY6lNyLmghbuTK1D1QWtjCb+ePuv
+ MSkqE5jEvVtytE+vGJZr6w8p92tuutG+aMGKobcoO3Y2KTVjV7SR3uFgHAT29psB1Y
+ 8S+DnfGO2b5nYw+VtNWm4BeWNqgx982gFVyJ9BxzAdxBFtOmI5N1l5ymAWWMWTx+Kv
+ BdNXnk+8Wl6k3YaeVxl61lqYwrMQva0MAE84bdp2Si/lUh8eOXJ78W0M4HI7Mc2JD2
+ IkF7d4VoYpkcHm0IB3f6aX5OQxUMx7fuToqYDxhXypmZ8KxgNxcq3kXT29a/7MXJgN
+ 7ivLC7bYlQGrQ==
+Message-ID: <sashiko-outbox-225407@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 20/29] drm/i915/dp: Use the FRL rate of the stream on
- the HDMI link
+Subject: Re: [PATCH 18/29] drm/i915/dp: Retrain the PCON FRL link from the
+ link check work
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120140729.466177-21-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20261120140729.466177-19-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
- <20261120140729.466177-21-ankit.k.nautiyal@intel.com>
+ <20261120140729.466177-19-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 14:43:26 +0000
+Date: Fri, 20 Nov 2026 14:46:11 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,91 +60,95 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [Medium] drm/i915/dp: FRL link not retrained down to DSC max rate on
-  DSC modeset
+- [Medium] drm/i915/dp: unlocked state and DPCD checks in
+  intel_dp_pcon_frl_recover()
 --
 
-commit cb3ec345bf9ce293b708da9d140003a687dee654
+commit e23a19c1e92fb70f0e2a9ba0ff0a7c17fe7d9715
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-drm/i915/dp: Use the FRL rate of the stream on the HDMI link
+drm/i915/dp: Retrain the PCON FRL link from the link check work
 
-This commit selects the regular max FRL rate when the HDMI link carries an
-uncompressed stream and the sink's DSC max FRL rate when the PCON encodes
-DSC for the HDMI link, storing the chosen rate in
-crtc_state->pcon_config.frl_rate_gbps.
+This commit defers PCON FRL link retraining on HDMI link status changes
+from the short pulse handler to the encoder link check work, taking
+modeset locks and checking for an active stream before retraining.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 61e59c2631ee3..cea90ef761c3c 100644
+> index 05056d226fc11..3b8031cd5ef17 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-
-[ ... ]
-
-> @@ -2930,8 +2937,8 @@ intel_dp_pcon_compute_config(struct intel_dp *intel=
-_dp,
->  	if (!intel_dp_is_hdmi_2_1_sink(intel_dp))
->  		return 0;
-> =20
-> -	crtc_state->pcon_config.frl_rate_gbps =3D
-> -		min(intel_dp->dfp.pcon_max_frl_bw, intel_dp_hdmi_sink_max_frl(intel_dp=
-));
-> +	/* The HDMI link carries an uncompressed stream, unless the PCON compre=
-sses it */
-> +	crtc_state->pcon_config.frl_rate_gbps =3D intel_dp_pcon_max_frl_rate(in=
-tel_dp, false);
-> =20
->  	if (crtc_state->dsc.compression_enable)
->  		crtc_state->pcon_config.dsc_op =3D INTEL_PCON_DSC_DECODE;
-> @@ -2959,6 +2966,7 @@ intel_dp_pcon_compute_config(struct intel_dp *intel=
-_dp,
+> @@ -4463,6 +4463,42 @@ void intel_dp_check_frl_training(struct intel_dp *=
+intel_dp)
 >  	}
-> =20
->  	crtc_state->pcon_config.dsc_op =3D INTEL_PCON_DSC_DECODE_ENCODE;
-> +	crtc_state->pcon_config.frl_rate_gbps =3D intel_dp_pcon_max_frl_rate(in=
-tel_dp, true);
-> =20
->  	return 0;
 >  }
+> =20
+> +/*
+> + * Restart FRL training after the HDMI link went down while the stream is
+> + * active, or fall back to TMDS mode.
+> + */
+> +int intel_dp_pcon_frl_recover(struct intel_encoder *encoder,
+> +			      struct drm_modeset_acquire_ctx *ctx)
+> +{
+> +	struct intel_display *display =3D to_intel_display(encoder);
+> +	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> +	u8 pipe_mask;
+> +	int ret;
+> +
+> +	if (!(intel_dp->downstream_ports[2] & DP_PCON_SOURCE_CTL_MODE) ||
+> +	    !intel_dp_is_hdmi_2_1_sink(intel_dp) ||
+> +	    intel_dp->frl.is_trained ||
+> +	    drm_dp_pcon_hdmi_link_active(&intel_dp->aux))
+> +		return 0;
+> +
+> +	/* The connection mutex may be held already by the link retraining */
+> +	ret =3D drm_modeset_lock(&display->drm->mode_config.connection_mutex, c=
+tx);
+> +	if (ret && ret !=3D -EALREADY)
+> +		return ret;
+> +
+> +	ret =3D intel_dp_get_active_pipes(intel_dp, ctx, &pipe_mask);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Without an active stream the next enable trains the link */
+> +	if (pipe_mask =3D=3D 0)
+> +		return 0;
+> +
+> +	intel_dp_check_frl_training(intel_dp);
+> +
+> +	return 0;
+> +}
 
 [Severity: Medium]
-When a sink's DSC max FRL rate is lower than its uncompressed max FRL
-rate, will switching from an uncompressed mode to a mode using
-INTEL_PCON_DSC_DECODE_ENCODE fail to retrain the FRL link down to the
-lower crtc_state->pcon_config.frl_rate_gbps?
+Should the PCON capability, frl.is_trained and
+drm_dp_pcon_hdmi_link_active() checks run after locking connection_mutex
+and calling intel_dp_get_active_pipes()?
 
-The uncompressed modeset trains the link at the higher uncompressed rate
-and records it in intel_dp->frl.trained_rate_gbps.  On a later DSC
-modeset, crtc_state->pcon_config.frl_rate_gbps is set to the lower DSC
-rate, but both intel_dp_check_frl_training() and
-intel_dp_pcon_is_frl_trained() skip retraining whenever the currently
-trained rate is greater than or equal to the requested rate:
+When DP link retraining is not needed, intel_dp_retrain_link() returns
+before calling intel_dp_get_active_pipes(), so CRTC locks are not held
+and in-flight commits have not been waited on when
+intel_dp_pcon_frl_recover() starts:
 
-drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_check_frl_training() {
-    ...
-	/* A link trained at a lower rate than the stream needs has to be retraine=
-d */
-	if (intel_dp->frl.is_trained &&
-	    intel_dp->frl.trained_rate_gbps >=3D crtc_state->pcon_config.frl_rate_=
-gbps)
-		return;
-    ...
-}
+kworker (link_check_work)         modeset commit
+intel_dp_pcon_frl_recover()
+  frl.is_trained =3D=3D false
+  drm_dp_pcon_hdmi_link_active()
+    -> false
+                                  intel_dp_check_frl_training()
+                                    FRL fails -> sets TMDS mode
+                                    (frl.is_trained stays false,
+                                     HDMI link becomes active)
+  intel_dp_get_active_pipes()
+    wait_for_connector_hw_done()
+  intel_dp_check_frl_training()   <-- tears down active TMDS link
 
-drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_pcon_is_frl_trained() {
-	if (drm_dp_pcon_hdmi_link_active(&intel_dp->aux) &&
-	    drm_dp_pcon_hdmi_link_mode(&intel_dp->aux, frl_trained_mask) =3D=3D DP=
-_PCON_HDMI_MODE_FRL &&
-	    *frl_trained_mask >=3D max_frl_bw_mask)
-		return true;
-    ...
-}
-
-As a result, the HDMI link remains at the higher uncompressed FRL rate,
-exceeding the sink's DSC max FRL rate limit and mismatching the FRL
-bandwidth used by intel_dp_pcon_dsc_enc_compute().
+Running drm_dp_pcon_hdmi_link_active() before checking pipe_mask =3D=3D 0 a=
+nd
+intel_dp_is_connected() also issues DPCD AUX reads when the stream is
+disabled (sink in D3) or after the sink is unplugged, where
+intel_dp_retrain_link() returns before locking connection_mutex.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120140729.4661=
-77-1-ankit.k.nautiyal@intel.com?part=3D20
+77-1-ankit.k.nautiyal@intel.com?part=3D18
