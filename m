@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D095D606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:11:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13BE1606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kw2DEz9s
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=N7p2JAdm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BD8410E2A1;
-	Fri, 20 Nov 2026 05:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88C2D10F05E;
+	Fri, 20 Nov 2026 05:11:41 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F259310E2A1;
- Fri, 20 Nov 2026 05:11:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F409510ECCF;
+ Fri, 20 Nov 2026 05:11:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795151490; x=1826687490;
+ t=1795151497; x=1826687497;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=m0NxPAjQH74BW0UDV8Wb1x9koxNDM+VcX0vame19Pmg=;
- b=kw2DEz9swzbioI5MJgXn+wr7IYBZGt9IXaHx7V5ab8BBqusL4nwKCjNR
- P/BhFtHYBiqIOcb7E3i8w2UrbtDIdO0jA4C6KQ/vdIfxnYkiZBTnnkGn4
- A9XJ0TC7SQiKi6wxgtbz4SuPYj+crHKghjr3PJXU8Qfk2fsi4MNY6djve
- E44Q2+bYNkLO3877OMxLC1mSr+K4bRvqoUHA6MGycf9xlh3FeH+Ihqm8t
- 9P0QpdIu1p2PznESJ3sPDXDRogBXGgOGNTwt8NstAkE5Bc9merZrJRBfz
- qhNvyoc+xD1emgn1iadCD7miJuP6gRlO1Nc1nRzw4LV53jcWsrpZARM4D Q==;
-X-CSE-ConnectionGUID: 6YQwIx8fQ1erQRZXn+Squg==
-X-CSE-MsgGUID: blr7OsqpQJKeNd7Qp1ajPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3907434"
+ bh=uefqFL6syJ7U25C4O1frL407UHxl5H7D28v6/DZbwPc=;
+ b=N7p2JAdmFJDw1VDk/X+nANpNbggPbrocYyz7/iogRS7KSnCH0DeujNYQ
+ dB91BJZKA5uknFUup+7eJ554x/Uaqtva2jMWwDR985QXx9TQy8W2GwgAS
+ TBQwjrGIYfb8KJGGQMicCrmQ0O7xzvTL9ullbOhtTHLyau1qRjGzppzV9
+ Dat/iacvkt7q3mJEhrSYEy3CumJ+zHhvaKYU+hkD8A7caHu8WL4bCSJYi
+ 9HlGrZRB+7EPpMvGOpJogTwEbUA2pAPndaR1ReVAR+adYZnPXd04TNGx6
+ hrIiaWJ4cWnz4pWNIgmQiOg7duvQxZFoVlS3fhgGdZGMRwUbKO5JdfaWF w==;
+X-CSE-ConnectionGUID: DSgktPz7RLGF7WOcUQmEIQ==
+X-CSE-MsgGUID: jdMfwGUNT/W7bsin+Q753Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3907440"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="3907434"
+   d="scan'208";a="3907440"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 21:11:29 -0800
-X-CSE-ConnectionGUID: g1fT0X7RTZyBdmSesly3Kg==
-X-CSE-MsgGUID: Tn4RGkYsT/mEJpt7H669MA==
+ 19 Nov 2026 21:11:37 -0800
+X-CSE-ConnectionGUID: POmSn1NnRsmMmQVEYBjWww==
+X-CSE-MsgGUID: qaGwO5xWQdq9RWtl4ZFcvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10607114"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10607131"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa004.fm.intel.com with ESMTP; 19 Nov 2026 21:11:26 -0800
+ by fmviesa004.fm.intel.com with ESMTP; 19 Nov 2026 21:11:34 -0800
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Fri, 20 Nov 2026 10:36:01 +0530
-Subject: [PATCH v5 02/13] drm/i915/display: Add the DP link layer symbol
- timing generator registers
+Date: Fri, 20 Nov 2026 10:36:04 +0530
+Subject: [PATCH v5 05/13] drm/dp: Add the DPCD definitions of the Rx
+ minimum Hblank
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261120-vlk-64036-dp-symbol-tg-v5-2-bf8f78b32709@intel.com>
+Message-Id: <20261120-vlk-64036-dp-symbol-tg-v5-5-bf8f78b32709@intel.com>
 References: <20261120-vlk-64036-dp-symbol-tg-v5-0-bf8f78b32709@intel.com>
 In-Reply-To: <20261120-vlk-64036-dp-symbol-tg-v5-0-bf8f78b32709@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
@@ -72,82 +72,30 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add the definitions of the registers of the DP link layer (LL) symbol
-based timing generator.
+Add the DPCD registers with which an Rx enumerates its minimum Hblank
+requirement, in link layer symbol cycles, for 8b/10b and 128b/132b.
 
-v3: change MMIO -> MMIO_TRANS2 (Suraj)
-v5: Update bspec references (Chaitanya)
-
-Bspec: 74606, 74607, 74609, 74747, 74748, 76160, 76161, 69961
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_regs.h | 38 +++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ include/drm/display/drm_dp.h | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index bbdbc27629d7104c1f80baad44e710872214d42b..1a7badeb327977916c85ce88327ec496623d787b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -879,6 +879,7 @@
- #define   TRANSCONF_DSI_PLL_LOCKED		REG_BIT(29) /* vlv & pipe A only */
- #define   TRANSCONF_FRAME_START_DELAY_MASK	REG_GENMASK(28, 27) /* pre-hsw */
- #define   TRANSCONF_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANSCONF_FRAME_START_DELAY_MASK, (x)) /* pre-hsw: 0-3 */
-+#define   TRANSCONF_DP_SYMBOL_TG_ENABLE		REG_BIT(28) /* xe3p+ */
- #define   TRANSCONF_PIPE_LOCKED			REG_BIT(25)
- #define   TRANSCONF_FORCE_BORDER			REG_BIT(25)
- #define   TRANSCONF_GAMMA_MODE_MASK_I9XX		REG_BIT(24) /* gmch */
-@@ -930,6 +931,7 @@
- #define   TRANSCONF_DITHER_TYPE_TEMP		REG_FIELD_PREP(TRANSCONF_DITHER_TYPE_MASK, 3)
- #define   TRANSCONF_PIXEL_COUNT_SCALING_MASK	REG_GENMASK(1, 0)
- #define   TRANSCONF_PIXEL_COUNT_SCALING_X4	1
-+#define   TRANSCONF_PIXEL_COUNT_SCALING_X1	3 /* xe3p+ */
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index e63c7f075f54c09d66bb1f9e97ac28db20f4f176..1e9b673d606924bbd1774e1f7590d10482829369 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -1224,6 +1224,11 @@
+ # define DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED			BIT(2) /* 2.1 */
+ # define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED				BIT(4)
  
- #define _PIPEASTAT		0x70024
- #define PIPESTAT(dev_priv, pipe)		_MMIO_PIPE2(dev_priv, pipe, _PIPEASTAT)
-@@ -2332,6 +2334,42 @@
- #define _DP_MIN_HBLANK_CTL_B			0x610ac
- #define DP_MIN_HBLANK_CTL(trans)		_MMIO_TRANS(trans, _DP_MIN_HBLANK_CTL_A, _DP_MIN_HBLANK_CTL_B)
- 
-+/* DP link layer (LL) symbol based timing generator, display version 35+ */
-+#define _TRANS_LLSYM_HACT_A			0x600dc
-+#define TRANS_LLSYM_HACT(display, trans) \
-+	_MMIO_TRANS2(display, trans, _TRANS_LLSYM_HACT_A)
-+#define   TRANS_LLSYM_HACT_MASK			REG_GENMASK(14, 0)
-+#define   TRANS_LLSYM_HACT_VAL(x)		REG_FIELD_PREP(TRANS_LLSYM_HACT_MASK, (x))
++#define DP_RX_MIN_HBLANK_8B10B				0x221a /* 2.1 */
++#define DP_RX_MIN_HBLANK_128B132B			0x221b /* 2.1 */
++# define DP_RX_MIN_HBLANK_MASK				0x0f
++# define DP_RX_MIN_HBLANK_ENABLE			BIT(4)
 +
-+#define _TRANS_LLSYM_HTOTAL_A			0x600e0
-+#define TRANS_LLSYM_HTOTAL(display, trans) \
-+	_MMIO_TRANS2(display, trans, _TRANS_LLSYM_HTOTAL_A)
-+#define   TRANS_LLSYM_HTOTAL_MASK		REG_GENMASK(14, 0)
-+#define   TRANS_LLSYM_HTOTAL_VAL(x)		REG_FIELD_PREP(TRANS_LLSYM_HTOTAL_MASK, (x))
-+
-+#define _TRANS_LLSYM_CHUNK_SIZE_A		0x600e4
-+#define TRANS_LLSYM_CHUNK_SIZE(display, trans) \
-+	_MMIO_TRANS2(display, trans, _TRANS_LLSYM_CHUNK_SIZE_A)
-+#define   TRANS_LLSYM_CHUNK_SIZE_MASK		REG_GENMASK(11, 0)
-+#define   TRANS_LLSYM_CHUNK_SIZE_VAL(x)		REG_FIELD_PREP(TRANS_LLSYM_CHUNK_SIZE_MASK, (x))
-+
-+/* Data M/N value DW0/DW1 at the base offset, DW2/DW3 in the _EXT register */
-+#define _DP_LLSYM_DATAM_A			0x60024
-+#define DP_LLSYM_DATAM(display, trans, dw) \
-+	_MMIO_TRANS2(display, trans, _DP_LLSYM_DATAM_A + (dw) * 4)
-+
-+#define _DP_LLSYM_DATAN_A			0x60038
-+#define DP_LLSYM_DATAN(display, trans, dw) \
-+	_MMIO_TRANS2(display, trans, _DP_LLSYM_DATAN_A + (dw) * 4)
-+
-+#define _DP_LLSYM_DATAM_EXT_A			0x60470
-+#define DP_LLSYM_DATAM_EXT(display, trans, dw) \
-+	_MMIO_TRANS2(display, trans, _DP_LLSYM_DATAM_EXT_A + (dw) * 4)
-+
-+#define _DP_LLSYM_DATAN_EXT_A			0x60478
-+#define DP_LLSYM_DATAN_EXT(display, trans, dw) \
-+	_MMIO_TRANS2(display, trans, _DP_LLSYM_DATAN_EXT_A + (dw) * 4)
-+
- /* SNB eDP training params */
- /* SNB A-stepping */
- #define  EDP_LINK_TRAIN_400MV_0DB_SNB_A		(0x38 << 22)
+ #define DP_128B132B_SUPPORTED_LINK_RATES       0x2215 /* 2.0 */
+ # define DP_UHBR10                             (1 << 0)
+ # define DP_UHBR20                             (1 << 1)
 
 -- 
 2.25.1
