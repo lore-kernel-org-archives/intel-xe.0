@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B517606A335
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:48:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B182606A32A
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=H4G1hPJh
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=enhTVTbT
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2798410E90B;
-	Fri, 20 Nov 2026 14:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E8EC10E90B;
+	Fri, 20 Nov 2026 14:48:30 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 646C410E90B;
- Fri, 20 Nov 2026 14:48:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415B5112AE5;
+ Fri, 20 Nov 2026 14:48:24 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 3EAB446573;
- Fri, 20 Nov 2026 14:48:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D54001F000E6;
- Fri, 20 Nov 2026 14:48:01 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 2A461412E7;
+ Fri, 20 Nov 2026 14:48:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 532841F000CA;
+ Fri, 20 Nov 2026 14:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795186082;
- bh=rRL3Yb8R8cvyj6a8IQ5KNE4eRQ/QbuxUDIcY9AWCIo8=;
+ s=k20260515; t=1795186103;
+ bh=U8ePJMeHIjONytavSquAM03LDhtIP3ucu16x1Y7QSk4=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=H4G1hPJhUX9egkfy+QDL60oTzEfarhD3k05YIQQMTWKnjmTAFAjGUSs7w+GVr1W30
- /978AR96eo+sjF7zP+35InNrgGp4fdtCzH38KRXI3+9ra04FO2OOanNuXhyCmSocEQ
- 4nSGYLr2jhkIA78/UdHy/I4NR98tLSdMtRTZ3BV1PkFm3oZS26kc7TksnjWistB0It
- YdJ+HhJOMdmRWqk7yjT/lTkkFj8uX3eNYCzlNzM89c38fow0t5806YCjNfHFR36rFJ
- 5mq4Qk0p/KfnNRkAl/XWV4J4vZ8dauTV5RG51/1bNwG5pdYq8cQQXngotaggHFiP1r
- nyU2KRCDJXIiA==
-Message-ID: <sashiko-outbox-225409@kernel.org>
+ b=enhTVTbT37xupdXqNdfvuH7X8C+G9e3rY30MXleaVypdKsTvt7wIrJuuFywOlUdj3
+ XO5NYDM64bqMmgF0BRahmMufEeoSd/pTYogtIRdgmbzcDOZCWWWVSzBLz1JgwE36Zs
+ UD1x4n2/7kVMFyMBoxqX8Vm6rHv5mnGxzldrjKm8/Zozcm+smydmUBqW+qccqCpFmk
+ 2WzvQQ/uWR7b4aQ4VmKMXUMwbA9emfhXkmJXM/Ii7tnVdRK9Ok1Zf2waFIL29uPhZ3
+ H2/HQUbxrRmlEDo5jRG34LNDbDFoFUmr+znPqcCPHNTva3Z+DGZMIxwvOD+duFKMJR
+ ydbXcIaKKK0iw==
+Message-ID: <sashiko-outbox-225410@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 21/29] drm/i915/dp: Allow PCON DSC modes through the FRL
- bw check
+Subject: Re: [PATCH 27/29] drm/i915/dp: Pick the DSC slice count for
+ pass-through within the HDMI limits
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120140729.466177-22-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20261120140729.466177-28-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
- <20261120140729.466177-22-ankit.k.nautiyal@intel.com>
+ <20261120140729.466177-28-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 14:48:01 +0000
+Date: Fri, 20 Nov 2026 14:48:22 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,90 +60,96 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [Medium] drm/i915/dp: intel_dp_mode_valid_downstream() ignores mode DP
-  DSC validity
+- [Medium] drm/i915/dp: PCON pass-through DSC slice limits ignored in TU
+  and min_hblank
 --
 
-commit 02c40d12d5e3bd58a7720d18f4d98e8346680fdc
+commit 5df55e454ef968026d14526944396c73e571eb41
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-drm/i915/dp: Allow PCON DSC modes through the FRL bw check
+drm/i915/dp: Pick the DSC slice count for pass-through within the HDMI limi=
+ts
 
-This commit updates downstream mode validation and HDMI bpc selection to
-allow modes that exceed the uncompressed HDMI FRL bandwidth when both the
-DP link and the PCON-to-HDMI FRL link can carry the stream compressed.
+This commit populates the downstream DSC slice count limits from the HDMI
+sink when passing a DSC 1.2a stream through a PCON.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index cea90ef761c3c..7b66cd82b065e 100644
+> index b4f943d6401d4..3a53d23c4587c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-[ ... ]
-> @@ -1318,12 +1334,22 @@ intel_dp_mode_valid_downstream(struct intel_conne=
-ctor *connector,
->  {
->  	struct intel_dp *intel_dp =3D intel_attached_dp(connector);
->  	int bpc =3D 8; /* Assume 8bpc for the DP++/HDMI/DVI TMDS/FRL bw check */
-> +	enum drm_mode_status status;
+> @@ -2912,7 +2912,8 @@ intel_dp_dsc_compute_pipe_bpp_limits(struct intel_c=
+onnector *connector,
 > =20
->  	if (intel_dp->dfp.max_dotclock &&
->  	    target_clock > intel_dp->dfp.max_dotclock)
->  		return MODE_CLOCK_HIGH;
+>  /*
+>   * The stream of a PCON passing DSC through is not recompressed, so it h=
+as to
+> - * fit the HDMI FRL link as is. Limit the compressed bpp of the DP strea=
+m.
+> + * fit the HDMI link and be one the HDMI sink can decode as is. Limit th=
+e DSC
+> + * parameters of the DP stream accordingly.
+>   *
+>   * This applies only if the HDMI link needs DSC and the DP stream is a D=
+SC 1.2a
+>   * stream, as passing it through is the only PCON operation possible the=
+n.
+> @@ -2936,6 +2937,13 @@ intel_dp_pcon_dsc_compute_passthrough_limits(struc=
+t intel_dp *intel_dp,
+>  				  true) =3D=3D MODE_OK)
+>  		return true;
 > =20
-> -	return intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_format,=
- true);
-> +	status =3D intel_dp_hdmi_bw_valid(intel_dp, target_clock, bpc, sink_for=
-mat, true);
-> +	if (status !=3D MODE_CLOCK_HIGH)
-> +		return status;
-> +
-> +	/* The PCON may be able to compress the stream for the HDMI link */
-> +	if (intel_dp_has_dsc(connector) &&
-> +	    intel_dp_hdmi_dsc_possible(intel_dp, mode, target_clock, bpc, sink_=
-format))
-> +		return MODE_OK;
-> +
-> +	return status;
->  }
+> +	if (!intel_dp_pcon_dsc_hdmi_slice_limits(connector, adjusted_mode,
+> +						 adjusted_mode->crtc_clock,
+> +						 crtc_state->sink_format,
+> +						 &limits->dfp_dsc.min_slices,
+> +						 &limits->dfp_dsc.max_slices))
+> +		return false;
 
 [Severity: Medium]
-Can intel_dp_mode_valid_downstream() accept a mode that requires PCON DSC
-even when the DP stream itself cannot be compressed for that mode?
+Do the TU and min_hblank calculations still ignore limits->dfp_dsc when
+the HDMI sink requires a larger minimum slice count than the DP sink?
 
-intel_dp_has_dsc() only checks static device and DPCD DSC support, whereas
-intel_dp_mode_valid_format() checks per-mode DP DSC constraints (FEC
-support, PCON branch throughput, max line width, slice count, and DSC
-dotclock overhead) in its for_each_joiner_candidate() loop:
+In intel_dp_dsc_compute_config(), intel_dp_dsc_compute_pipe_bpp() runs
+before intel_dp_dsc_get_slice_config() populates
+pipe_config->dsc.slice_config:
 
-drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_mode_valid_format() {
-    ...
-		if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc) {
-			status =3D MODE_CLOCK_HIGH;
-			continue;
+drivers/gpu/drm/i915/display/intel_dp.c:intel_dp_dsc_compute_config() {
+	if (!is_mst) {
+		ret =3D intel_dp_dsc_compute_pipe_bpp(intel_dp, pipe_config,
+						    conn_state, limits);
+		if (ret) {
+			...
+			return ret;
 		}
+	}
 
-		if (mode_rate > max_rate && !dsc) {
-			status =3D MODE_CLOCK_HIGH;
-			continue;
-		}
-    ...
-		if (!dsc)
-			dsc_slice_count =3D 0;
-    ...
+	if (!intel_dp_dsc_get_slice_config(connector, adjusted_mode->crtc_clock,
+					   adjusted_mode->crtc_hdisplay, num_joined_pipes,
+					   limits->dfp_dsc.min_slices,
+					   limits->dfp_dsc.max_slices,
+					   &pipe_config->dsc.slice_config))
+		return -EINVAL;
 }
 
-When a mode fits uncompressed on the DP link (mode_rate <=3D max_rate, e.g.
-at the 6 bpc DP minimum or on a DP link faster than the downstream FRL
-rate) without a joiner that forces DSC, that loop succeeds even if dsc is
-false.  intel_dp_mode_valid_downstream() then sees intel_dp_has_dsc() =3D=3D
-true and returns MODE_OK, exposing a mode to userspace that later fails
-atomic check in intel_dp_compute_link_for_joined_pipes() because the PCON
-cannot encode an uncompressed DP stream into DSC.
+On a UHBR link, intel_dp_dsc_compute_pipe_bpp() ->
+dsc_compute_link_config() -> intel_dp_mtp_tu_compute_config() obtains the
+slice count via intel_dp_dsc_get_slice_count(), which hardcodes
+dfp_min_slices =3D 0 and dfp_max_slices =3D INT_MAX (and on non-UHBR links,
+dsc_compute_link_config() reads
+intel_dsc_line_slice_count(&pipe_config->dsc.slice_config) while
+slice_config is still zeroed).  Later in intel_dp_compute_config(),
+intel_dp_compute_min_hblank() also calls intel_dp_dsc_get_slice_count()
+instead of using
+intel_dsc_line_slice_count(&crtc_state->dsc.slice_config).
 
-Passing whether DP DSC was valid in intel_dp_mode_valid_format() (or
-requiring dsc when downstream needs HDMI DSC) would avoid accepting modes
-that cannot be compressed on the DP link.
+As a result, symbol cycles, link M/N, TU, and min_hblank are computed for
+the unconstrained DP slice count rather than the slice count programmed in
+pipe_config->dsc.slice_config.  Computing pipe_config->dsc.slice_config
+before intel_dp_dsc_compute_pipe_bpp() and reading
+intel_dsc_line_slice_count(&crtc_state->dsc.slice_config) in the downstream
+callers would keep these calculations consistent.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120140729.4661=
-77-1-ankit.k.nautiyal@intel.com?part=3D21
+77-1-ankit.k.nautiyal@intel.com?part=3D27
