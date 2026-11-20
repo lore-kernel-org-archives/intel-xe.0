@@ -2,62 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061BD606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:18:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE943606A32C
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OMIpV8cQ
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=J6bYPTJY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC15010E1CC;
-	Fri, 20 Nov 2026 14:18:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA52112A89;
+	Fri, 20 Nov 2026 14:23:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F14710E1CC;
- Fri, 20 Nov 2026 14:18:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF06910E1C7;
+ Fri, 20 Nov 2026 14:23:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795184288; x=1826720288;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=o/w2x9UBHniyX+yZDwouzP3JahgLdC/IaIQjVfyehzE=;
- b=OMIpV8cQgKv9ur6vHUxsBvVtgSJ3Gp7kTxb1tXrTHLOnFUSnQzPrzFXg
- N6hCYhUtQ5okZZo7DuKvCbF8aAee60gTm9AywewcElEdNFfGzxqHu6Hg5
- Q5FSRdyWPUcCRigJl2P2PF0PKTEK5+m7Xp3U6kml/cx52iJ7PvNSXledV
- OlteeTFuGzR2EKA3UAFY9IjWW992qv5hARJ0G5SnZRmHouIm/iR+D8yjX
- mQbNjaeHHnHW9khI3xmLUhxjV9DAmdTqtooGVfilR5RA0RHA/SlFUsWN5
- /p+TDmEXxK3KXheA/5if6FDBaPGmUdv0ox518qiZyY+YfkMqZqUkGJWdw A==;
-X-CSE-ConnectionGUID: 1zFKOMAYS0Gbt+Q8HfJ55g==
-X-CSE-MsgGUID: Hf5MC9qFSg2/1So73QMuSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4090305"
+ t=1795184589; x=1826720589;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LGXdn3W8gZ9tio//QtCYo9HEsfrbCXmSWkqKMjvRoMg=;
+ b=J6bYPTJYbftX+EOtABq/TvkE06gx9nMJTBFiUJKhdUVNFVJX4msTpmyv
+ 7vmcylRNJ+sWk/obda3Co2yX51lHwDR1bIe1P1Oho4cyzt4L3ptc6EIbP
+ JVQw2V/RpbIWc3NZUZ2QFycuRu3i7fIpKe7NFPfDckD4tgy3hxOa+1QKU
+ r02aUjTQDS345jEnvRMby01njXCWQyO5cahC/ZQMbJkHLJbE1P2SDq7HY
+ MvCa/JQ+gQTuTA0msbqaWfj/zBRFok3uT9BjfZVRjv4RsEN1IV5fVzqjA
+ oXIsYntZtFvjx4j+nE2gi/1P7vSXBD2MuoEOa27b3L7+BYp9TmkuodFjq Q==;
+X-CSE-ConnectionGUID: BT8SOhPTQJ6ddRrwICT+Cw==
+X-CSE-MsgGUID: GRyzoWq8SFmUaNBU2p4Q3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4090883"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4090305"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+   d="scan'208";a="4090883"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:18:07 -0800
-X-CSE-ConnectionGUID: NlAUO/sbTjyj6y+QYZGLjw==
-X-CSE-MsgGUID: IrXxTF5YSB679qXuRn4BsQ==
+ 20 Nov 2026 06:23:08 -0800
+X-CSE-ConnectionGUID: lp0p1VBfSQ+tULxaNOUlIw==
+X-CSE-MsgGUID: tRN/tGqAQZi6UnzkLYJH5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12706360"
-Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.250])
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12421979"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:18:05 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: chaitanya.kumar.borah@intel.com, uma.shankar@intel.com,
- suraj.kandpal@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH v5 13/13] drm/i915/dp: Enable the DP symbol TG, with a
- debugfs knob to disable it
-In-Reply-To: <20261120-vlk-64036-dp-symbol-tg-v5-13-bf8f78b32709@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261120-vlk-64036-dp-symbol-tg-v5-0-bf8f78b32709@intel.com>
- <20261120-vlk-64036-dp-symbol-tg-v5-13-bf8f78b32709@intel.com>
-Date: Fri, 20 Nov 2026 16:18:02 +0200
-Message-ID: <1c9687d3bb57dd6e68891251c2cb546c9c71aa66@intel.com>
+ 20 Nov 2026 06:23:07 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: alexander.kaplan@sms-medipool.de,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/29] DP-HDMI PCON DSC fixes
+Date: Fri, 20 Nov 2026 19:37:00 +0530
+Message-ID: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.50.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,122 +62,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 20 Nov 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> Enable symbol TG for 8b/10b MST and 128b/132b SST/MST on the platforms
-> supporting it.
->
-> Keep a debugfs knob, enable_dp_symbol_tg, to still select the pixel based
-> timing generator, for the case of a sink having issues with the symbol
-> based one, or for debugging purpose.
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_params.h    |  6 ++++
->  drivers/gpu/drm/i915/display/intel_dp.c            | 32 ++++++++++------------
->  2 files changed, 21 insertions(+), 17 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/drivers/gpu/drm/i915/display/intel_display_params.h
-> index 5c5a1a1358c32a08a460bdb81da76c3682827ab9..503eef8cf744fbf802bcf86d25f581871fcc3f8c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> @@ -56,6 +56,12 @@ struct drm_printer;
->  	 * in intel_display_params.c on purpose. Runtime-toggle via debugfs.
->  	 */ \
->  	param(bool, enable_periodic_assdp, false, 0600) \
-> +	/*
-> +	 * Debugfs-only knob (per-device), to fall back to the pixel based DP timing
-> +	 * generator, if a sink has issues with the symbol based one. Applies to the
-> +	 * next modeset or mode validation.
-> +	 */ \
+The PCON mode_valid path currently does not fully account for the bandwidth
+limitations of the PCON <-> HDMI link. The DSC capability between the
+PCON and the HDMI sink also needs to be taken into account, which currently
+isn't. Furthermore, the compressed bpp chosen needs to fit the
+FRL configuration, which is also missing.
 
-I'm not really convinced about this at all, including the previous one
-added in commit 9ed39b7d74b4 ("drm/i915/display: Gate periodic AS SDP
-skip frames behind a debugfs knob").
+This series:
+ - reworks the HDMI DSC helpers so they can be reused across the
+   mode_valid, compute_config and FRL bandwidth check paths
+ - fixes the FRL/TMDS downstream bandwidth checks, and allows
+   PCON DSC modes through the FRL check
+ - Clamps the programmed DSC bpp to the FRL link bandwidth.
+ - Adds the PCON DSC operations (decode, decode and re-encode and
+   pass-through), and uses the FRL rate of the stream on the HDMI link.
 
-The idea here is that these match 1:1 with module parameters. Everything
-else probably should get added through the usual debugfs mechanisms.
+This series is sent as a whole to have all the solution in one place.
+It will be split in 3 series and merged in this order:
+ 1. Groundwork (patches 1-9): FRL/TMDS downstream bandwidth checks and
+    the HDMI DSC helpers. A couple of patches are still to be reviewed,
+    so these will be separated out for CI testing and merged first.
+ 2. PCON DSC operations (patches 10-21): PCON DSC state, decode and
+    decode and re-encode operations and the FRL rate of the stream.
+ 3. DSC pass-through (patches 22-29): pass-through of a DSC 1.2a stream,
+    within the limits of the HDMI sink.
 
-BR,
-Jani.
+Rev2:
+ - Rebase and address comments from Suraj.
+ - Drop drm/i915/dp: Use FRL pair check for the DFP dotclock limit as no
+   longer required.
 
+Rev3:
+ - Address Comments from Sashiko.
+ - Account for FRL encoding overhead during bw calculation.
+ - Pass pixel clock instead of using mode->crtc_clock to make it work
+   with mode-valid case.
+ - Clamp the target bpp only when it equals the pipe bpp to avoid
+   missing the case when dsc min_bpp and max_bpp are same.
 
-> +	param(bool, enable_dp_symbol_tg, true, 0600) \
->  
->  #define MEMBER(T, member, ...) T member;
->  struct intel_display_params {
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 217b5d1e082f2bb9ee15773e382c528700671584..d312b82253b89359958ac326121121c0ef225e97 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1271,13 +1271,13 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
->  }
->  
->  /*
-> - * The symbol based timing generator is to be used for 8b/10b MST and 128b/132b
-> - * SST/MST, but only once all the pieces needed for that are in place, which is
-> - * done by a later patch.
-> + * The symbol based timing generator is used for 8b/10b MST and 128b/132b
-> + * SST/MST, unless disabled by the enable_dp_symbol_tg debugfs knob.
->   */
->  bool intel_dp_use_symbol_tg(struct intel_display *display, bool is_mst, bool is_uhbr)
->  {
-> -	return false;
-> +	return HAS_DP_SYMBOL_TG(display) && display->params.enable_dp_symbol_tg &&
-> +		(is_mst || is_uhbr);
->  }
->  
->  static int
-> @@ -4004,7 +4004,7 @@ int intel_dp_compute_symbol_tg(struct intel_dp *intel_dp,
->  
->  	/* MSO is only used with 8b/10b SST, where the symbol TG isn't used */
->  	if (drm_WARN_ON(display->drm, crtc_state->splitter.enable))
-> -		return 0;
-> +		return -EINVAL;
->  
->  	ret = intel_dp_compute_dsc_slices_and_link_bpp(crtc_state, connector,
->  						       &dsc_slices, &link_bpp_x16);
-> @@ -4019,12 +4019,11 @@ int intel_dp_compute_symbol_tg(struct intel_dp *intel_dp,
->  	hblank_cycles = cycles.hblank;
->  	chunk_cycles = cycles.chunk;
->  
-> -	if (!intel_dp_symbol_tg_cycles_in_range(&cycles)) {
-> -		drm_dbg_kms(display->drm,
-> -			    "LL symbol timings out of range (hactive %d, hblank %d, chunk %d), using pixel TG\n",
-> -			    hactive_cycles, hblank_cycles, chunk_cycles);
-> -		return 0;
-> -	}
-> +	/* The link config search already checked that the timings fit. */
-> +	if (drm_WARN(display->drm, !intel_dp_symbol_tg_cycles_in_range(&cycles),
-> +		     "LL symbol timings out of range (hactive %d, hblank %d, chunk %d)\n",
-> +		     hactive_cycles, hblank_cycles, chunk_cycles))
-> +		return -EINVAL;
->  
->  	if (is_uhbr) {
->  		ch_num = 1568768;
-> @@ -4077,12 +4076,11 @@ int intel_dp_compute_symbol_tg(struct intel_dp *intel_dp,
->  				     (u64)ch_num * (ssc_num / ssc_gcd),
->  				     data_n[ssc]);
->  
-> -		if (intel_dp_cmp_u128(data_m[ssc], data_n[ssc]) > 0) {
-> -			drm_dbg_kms(display->drm,
-> -				    "LL symbol data M/N ratio exceeds 1.0 (SSC %s), using pixel TG\n",
-> -				    str_enabled_disabled(ssc));
-> -			return 0;
-> -		}
-> +		/* The link config search already checked that the stream fits. */
-> +		if (drm_WARN(display->drm, intel_dp_cmp_u128(data_m[ssc], data_n[ssc]) > 0,
-> +			     "LL symbol data M/N ratio exceeds 1.0 (SSC %s)\n",
-> +			     str_enabled_disabled(ssc)))
-> +			return -EINVAL;
->  	}
->  
->  	tg->enable = true;
+Rev4:
+ - Add the PCON DSC operations as per DP Spec: decode,
+   decode and re-encode, and pass-through for a DSC 1.2a stream.
+ - Add the PCON DSC state to crtc_state, compute the operation and the
+   PCON DSC encoder parameters in compute_config, and only program them
+   at enable. Disable the PCON DSC encoder unless it is needed.
+ - Enable DSC pass-through in the PCON, and limit the slice count and
+   the compressed bpp of the DP stream to what the HDMI sink supports.
+ - Store the FRL rate in crtc_state, use the regular or the DSC max FRL
+   rate depending on the stream on the HDMI link, and retrain the FRL
+   link from the link check work.
+ - Use link bpp instead of pipe bpp in the target_bpp clamp patch and
+   reuse intel_dp_output_format_link_bpp_x16(). (Suraj)
+
+Ankit Nautiyal (29):
+  drm/i915/hdmi: Split the intel_hdmi_dsc_get_bpp()
+  drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
+  drm/i915/dp: Add a wrapper to check frl/tmds downstream constraints
+  drm/i915/dp: Use the common downstream bw check in compute_bpc
+  drm/i915/hdmi: Expose DSC min/max bpp helpers
+  drm/i915/hdmi: Add helper to check if DSC chunksize fits the sink
+    limits
+  drm/i915/hdmi: Pass pixel clock to DSC slice helper
+  drm/i915/dp: Account for FRL 16b/18b encoding overhead
+  drm/i915/hdmi: Clamp the target_bpp only when it equals the link bpp
+  drm/i915/dp: Add PCON DSC state to crtc_state
+  drm/dp: Add a helper to disable the PCON DSC encoder
+  drm/i915/dp: Compute the PCON DSC operation
+  drm/i915/dp: Disable the PCON DSC encoder unless it is needed
+  drm/i915/dp: Clamp PCON DSC bpp to the FRL link bandwidth
+  drm/i915/dp: Add a helper for the DSC stream version
+  drm/i915/dp: Add a helper for the FRL payload bandwidth
+  drm/i915/dp: Compute the PCON DSC encoder parameters
+  drm/i915/dp: Retrain the PCON FRL link from the link check work
+  drm/i915/dp: Store the PCON FRL rate in the crtc state
+  drm/i915/dp: Use the FRL rate of the stream on the HDMI link
+  drm/i915/dp: Allow PCON DSC modes through the FRL bw check
+  drm/i915/dp: Enable DSC pass-through in the PCON
+  drm/i915/dp: Limit the DP link bpp for DSC pass-through to the FRL
+    bandwidth
+  drm/i915/dp: Select DSC pass-through in the PCON for DSC 1.2a streams
+  drm/i915/dp: Allow limiting the DSC slice count for the downstream
+    device
+  drm/i915/dp: Check the HDMI sink slice limits for DSC pass-through
+  drm/i915/dp: Pick the DSC slice count for pass-through within the HDMI
+    limits
+  drm/i915/dp: Limit the compressed bpp for pass-through to the HDMI
+    sink
+  drm/i915/dp: Accept DSC 1.2a pass-through modes in the PCON mode check
+
+ drivers/gpu/drm/display/drm_dp_helper.c       |  23 +
+ drivers/gpu/drm/i915/display/g4x_dp.c         |   2 +-
+ .../drm/i915/display/intel_crtc_state_dump.c  |  17 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +-
+ .../drm/i915/display/intel_display_types.h    |  31 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 668 ++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_dp.h       |  13 +-
+ .../drm/i915/display/intel_dp_link_training.c |   5 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     | 138 +++-
+ drivers/gpu/drm/i915/display/intel_hdmi.h     |   8 +-
+ include/drm/display/drm_dp_helper.h           |   1 +
+ 11 files changed, 731 insertions(+), 179 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.50.1
+
