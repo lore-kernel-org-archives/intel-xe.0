@@ -2,162 +2,158 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EEE4606A500
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 06:03:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1D4606A515
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 06:07:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lACX3/AD;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=EtG/+JqW
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dbaKmS4S;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=ZqBoo8IP
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66A9D10FFD2;
-	Fri, 20 Nov 2026 06:03:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F39ED10E227;
+	Fri, 20 Nov 2026 06:07:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE12210FFD2;
- Fri, 20 Nov 2026 06:03:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A453A10E0F0;
+ Fri, 20 Nov 2026 06:07:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795154587; x=1826690587;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=WP+2Mlt7DfJRuY5wkXZfwB8rCNqAbrj37loIQMHiwPA=;
- b=lACX3/ADq0aYSmbDWSaM11n39Z2wUdXbwfqUrl0AHmlmHoeNJSELAh4m
- N9ZD4ppYM1HYNcUhlI6GVMdbXFhti50dlk7DnX60l74iavSvs0cehkRXE
- 9ANIg4CuXJClELFj3kki62urAKSzusEC0fkStiibc397mwEVQSY2idSQS
- Ryo+hSwBLPJy0BXIZk8i+kZFo4MR9RAhfjghkvNOeQ8x2mVIWX28PP/LR
- sJB2ddZ1/BapEYIft67+8C1KEjY1NzqKlDdMWksxhDyRAUo0AlQNrcpqx
- MCVAxsFBgGrcYkUrlOfUelJT1s8c8tqoFimpRQXBducfjAyo8qXo/ndUU A==;
-X-CSE-ConnectionGUID: cybdwN6IRZGDr81abpTBNg==
-X-CSE-MsgGUID: sUne8oVLSqmJogXZkcDjhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3940687"
+ t=1795154826; x=1826690826;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=TAuSfpPB/h6s5ql2RpTfCK3LeFwJef58WMvZuwi1JIk=;
+ b=dbaKmS4S7E+TmHzTj2BWTriBUBB9mEhGAurF5tKsmlXqjZSMz3mHI/FQ
+ EgoztcBIeCUPsBFta2s3FgjaRsC/NN4IJVoUAFeHP8monccFzAi7rGcvP
+ 9rGOshUlNY1TfIEgGbcnq79D9yiamBAPJtKzmsLR01APNPZxb/zIZ6ve0
+ 1olhG8W0pdHDFpCqiStlNxTVojOWgL1BQ3xiFI0YCNsWH1t7zHYWYA5+7
+ WCUFe7QpaAdMqFBDHGroOP9IG3VTi6Z8oYr6wZkhamomrUktx2qFHuN4e
+ MHgzeCQaNrTyO2lUMGoaCuHxEXvi8VJosylV84kPB5tewUuTpUAQw6F1b w==;
+X-CSE-ConnectionGUID: AFju7iTgSkmVV68vXxMXNQ==
+X-CSE-MsgGUID: Gcoorb38QJ+PQXgCnhdG2w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3940991"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="3940687"
+   d="scan'208";a="3940991"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 22:03:06 -0800
-X-CSE-ConnectionGUID: feVwbzE6ThyZnQMVggXklQ==
-X-CSE-MsgGUID: YpKklO4ZRKOSdh0GScBgLg==
+ 19 Nov 2026 22:06:34 -0800
+X-CSE-ConnectionGUID: f2a5Gu/4TSu8XFYOuKpEUQ==
+X-CSE-MsgGUID: ZNOsaSOKSl6nGw9MwQNlhw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10972105"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10972850"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 22:03:05 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 19 Nov 2026 22:06:32 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 22:03:04 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.56; Thu, 19 Nov 2026 22:06:31 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 22:03:04 -0800
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.34) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.56 via Frontend Transport; Thu, 19 Nov 2026 22:06:31 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.21)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Thu, 19 Nov 2026 22:03:04 -0800
+ 15.2.2562.56; Thu, 19 Nov 2026 22:06:31 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hK09vNRdAx8mscu8U5001KjhiXkkxaNKC2OjNmKgUlwl5FPnLBexB0+HaULUaTHMwQ5LwMdmu6vpc4kAZoEAwUouJX3cu9JYuwh5mf/eCAhVs4rkpQEREhnC9kSITEHjR3BSDRB5UcUCsJMQ+z0OU39dG1UeQSjz9xOby8IXfJDt99UjHpqPBcyasBgYqbJ1b8ALt3ERYVk+Fo1jrCPGDlKe+uHspArpEYtEMyQdMV77trps3uI+6c6CIjERI3oFae643/9sTBiiyXFphUY2T7+t21sbU2xOoXJFB598yScC0q3iDuebmYPcNzMHcEbssIR+DBQk7QEsUW9Gynb9gA==
+ b=xCbteQfV2AxZpO8iJnPRP+cpGTV2UErzI3mL3a2h6illc8G2mNrxkaqJ1dThSujjsyEMjV7wYv3kBRcYRm6nwZUYQOC2hEzlCXV+DGJQfiSn6DY8WHixV2Q3lXhxAqhASCGhfuw75ZsTPd3t0yz8GL2I0L+RwkgZZbUXEfHNOouKl5f8BG29pjNZzkKZG81A4trHKVgjkJZ4NFE+ueAutih1VXyDDxGeDlXEZaHSNX0AVmwt/xLEDVgVFdZB75AmyLxObY73OmnMwJs+8D4IDt7LoYTVdkxPJIuhv5TABiVxOZ63npnbUn9yEJdH+EzhF9d83fIbf1gKA12dn1iF9w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wCDXlTskNmQePH9OIUvmWbbI0mXe+VrmDrYE2WQM1Pk=;
- b=QPhUmpkEh1tXWDariqUNgBvi0qBID95RCt5L/q0Q4JnnFGb3xPRiXaRdUfC7PeXR2qqgtqytyKLcr++bFykaAL6SqxOa3xWiJ/4gkXtOWF2vB36/LVSJBr3dQia7drbUkHebLcRerRdyHqGvvP1rQMW57cwDaN1oHMPv9fJ1occvdCH1Vj6xMqbZH+1J/bUqXtmnl25mVcjSS6scLBV1Z0jr6cnwaQMx0ovB3tCd6d9wQXwsgw1pttXioYAagHigTze8/T+00PV7WGRqRImtMoSO1ofLNYGwrnxEybBc8cucg9wCNUlu5lXCiXptLVVTdbITp3QU6gQatj7XI1nI9A==
+ bh=EOcfWagt67nmEd54MqacXlmC2HeBLfQFHSzpEyqluVw=;
+ b=Vm5x+Wwfx1A85Bu0os/hkN75PETq08DgP4nwbIAuBLq468XFIBq0sqWVvqO7AUFPc8U9ATAufH6ksy2Jkju6xBlnK/CMeRFY7R+84LJwGpm9JWNtUlnnJjAcdmDenxZB6u/Mwoa2y6jxAdDD8mAx17idmrKjnVjE9DeL9QqFKPXpp5TV/f5WVEmSs4xbn9Sq4g7/x48qvRu2aepdusLProDnZy9x5enImdQEC6pPITvP2kYjWghToXIB5bGTeWxJ+Qf4jhglWNJElHvDGC/jJdyWvsxnzspzTy+qASj8MqAPdcS5GVoZKZxgKJhyWvhBtYGX6imRWhnIeo+KNoEo8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wCDXlTskNmQePH9OIUvmWbbI0mXe+VrmDrYE2WQM1Pk=;
- b=EtG/+JqWqKp7RzqAJjY9q5rTZhUQLm6ILCdjrPRYMZkGLGwKMSNxbUlUsuQAW3inE5u2WKowlFDeiudjz793EmcFFiayRT4oOmVOkh4InzfuMSlu8XuR2k+v5z3vj0FMKnJmb5XCW5/vnd/UcOTFO6o6axAuaTGa8Vi/h/AubUM=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ bh=EOcfWagt67nmEd54MqacXlmC2HeBLfQFHSzpEyqluVw=;
+ b=ZqBoo8IPbiJ6CcJTGH1dStRyRe+1uug9Ej90kAwy6Yh383dKgNoUZ1djZEzWQEs1PPqVkju8ts5njnq0upJpJEky1U4RmirNEK9vkwjIdryMv4vHJ1G+n3ZlUvLwuN0cMOwgYQd+86wVJerqElJjKs8Zb8A+yhVsuv6Jbblp3a8=
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::5b) by IA3PR11MB9112.namprd11.prod.outlook.com
+ (2603:10b6:208:575::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.615.14; Fri, 20 Nov
+ 2026 06:06:23 +0000
+Received: from DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::19f5:13eb:df52:68ff]) by DS4PPFE901A304F.namprd11.prod.outlook.com
+ ([fe80::19f5:13eb:df52:68ff%8]) with mapi id 15.21.0615.012; Fri, 20 Nov 2026
+ 06:06:23 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Xie, Xiaolu" <xiaolu.xie@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Murthy, Arun R" <arun.r.murthy@intel.com>, "Kahola, Mika"
+ <mika.kahola@intel.com>, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, "Deak,
+ Imre" <imre.deak@intel.com>
+Subject: RE: [PATCH] drm/i915/lt_phy: Fix the main link to TX mapping
+Thread-Topic: [PATCH] drm/i915/lt_phy: Fix the main link to TX mapping
+Thread-Index: AQHdd/SSNyeH7CQpj0iM3OHgVAWH3rc2eiQQ
+Date: Fri, 20 Nov 2026 06:06:23 +0000
+Message-ID: <DS4PPFE901A304FFE20F33BBF2CAE5C4009E3782@DS4PPFE901A304F.namprd11.prod.outlook.com>
+References: <20261119070444.2106229-1-xiaolu.xie@intel.com>
+In-Reply-To: <20261119070444.2106229-1-xiaolu.xie@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by PH8PR11MB9533.namprd11.prod.outlook.com (2603:10b6:510:39f::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Fri, 20 Nov
- 2026 06:03:00 +0000
-Received: from CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
- ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0639.010; Fri, 20 Nov 2026
- 06:02:58 +0000
-Date: Thu, 19 Nov 2026 22:02:56 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>, Thomas
- =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH v3 15/33] drm/xe: Track BOs backed at a sub-optimal page
- order
-Message-ID: <av/ikBSLnX7XpIlu@gsse-cloud1.jf.intel.com>
-References: <20260711025619.2540575-1-matthew.brost@intel.com>
- <20260711025619.2540575-16-matthew.brost@intel.com>
- <au6tzuytWiqiqRUM@nvishwa1-desk>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <au6tzuytWiqiqRUM@nvishwa1-desk>
-X-ClientProxiedBy: MW4PR03CA0141.namprd03.prod.outlook.com
- (2603:10b6:303:8c::26) To CO1PR11MB4787.namprd11.prod.outlook.com
- (2603:10b6:303:95::23)
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPFE901A304F:EE_|IA3PR11MB9112:EE_
+x-ms-office365-filtering-correlation-id: 65b19f0d-d21f-4665-2fb3-08df46cc6784
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|23010399003|261022105027099003|38070700021|261026121527099003|10067099003|261026140227099003|11063799006|56012099006|261021123027099003|261022075727099003|261028144727099003|261102123227099003|261021121427099003|22082099003|18002099003|3023799007|261009223027099003;
+x-microsoft-antispam-message-info: EKDF9gcAJcwG1+wWSveFFRDUChAo1LNHWtNQC3kBGXFjsjGs9XYCke7cR4rlOKsgLuvSxN/6wRW57ZWte/UASwLFUBGE9A5sVLz6/z6FSccTDKXYWLiD93WsaIFnr3RnDx3InQl80Q+WFnK47pdaW+vz7/w3fe+Uh7g1faR8L+NjMDp+B+3P3oZT327DnQGoi5v5wIz69vLp+82TLwU3opicIzP+27HX3fRmxPKdCOic7aua9cJOw4yP5PbFSE55i4CHvqXvMPTiL3re7FL/sPxpKs8rtlT+hWQJB4wCiGSqRx8wsfniLUzL8DCpe4zA38YnwKI1dQuUibSJ4z/suBb/xZzs17iXk/uC5aaCI+3UNP1aj4WSTJM//cIaXJmln5UfuPIOj8TeYLcFWzx+E7PqMiIoqMs5sL7HqQyHp68gc12hlIRfaaGX8NsdBmSZ2TqxmXEmbpuJyJ9bpSIRNpCKv8/NMWoVUhKUcyoED7ktjyWxpID35TCqhFnbHVlPoTSwLhrcr4C9EalLN+d/mCOOT0r1P7juXAVF8/MidmyWTnRNBg4LDVcstG5AmbVtQUrX44QkmgD3Oa10okAQL4BXSi/e9xVOE5GgpHGG6Mt3s/JlKfIPXBY/qAa/PyzlK+pCe42860raYc5lNcNi5vPER0id07W6oJNb/2wHu7K3Wzaelw2ZcbCdped5vzOn7QfJlvXRioKu1OaA7bGPPwp4HTR7GaHgJ0lKlHGTN0o=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPFE901A304F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(23010399003)(261022105027099003)(38070700021)(261026121527099003)(10067099003)(261026140227099003)(11063799006)(56012099006)(261021123027099003)(261022075727099003)(261028144727099003)(261102123227099003)(261021121427099003)(22082099003)(18002099003)(3023799007)(261009223027099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?xnEiVW5UQxBLeIRuJtImCXphhU/S5TeS8THLF6MsClpWf5GI91z1oMqvF5?=
+ =?iso-8859-1?Q?tn2ENgao5YWRFuRCpa5g3I6J1Oqb6r/QRYAxhvLeUsXTSzOJU9vlEQzHrS?=
+ =?iso-8859-1?Q?6I3gJnxLHO7Kvigm7zphDVnm97VWqAy0voy4k+2evTLRk/v9miaIUinsNB?=
+ =?iso-8859-1?Q?y1pzEHrSJY7LX7kH9sdw1wxhtZnQ+WBKUJBYQy6HYrGxafjl8QZEQDZhyz?=
+ =?iso-8859-1?Q?DT6uQ3BjfSfKY+fQCIPA+ygLuRjSPbeT51qFOKNuoaDOVCFKmoZ0ktOZRq?=
+ =?iso-8859-1?Q?zh8zUxDAdJzDIPMr3UgRuI6eWghwl8Exns5+qJg5SVzU0ccaGIFxrTdL/n?=
+ =?iso-8859-1?Q?RE1Ls615yxPA+J7WAEc/IYcEr2Xc7WLJcq5/FClxQ5jNNiUA9VGkQND4v8?=
+ =?iso-8859-1?Q?sO5Jzj1pWn/5NBCs3DQmZ3z+qCSs3N3CUFC8Gk/iszaBez4FXpztfFzFs6?=
+ =?iso-8859-1?Q?wLveE0AJkNT+tAPmFS+cRZrwvt9LegQXRW/BR/cmFPAzntb6fNGXlTogdO?=
+ =?iso-8859-1?Q?7qGpdYZ3dIh4Prp5x6eamnXIPpW7+SR6oPYNsBkQm+OapbyjZhY8JMzz4d?=
+ =?iso-8859-1?Q?+cKdkyIZLksrh0ILC860d9iw4ospYZJOtO/9Kr2V9rvem9VL1SXGqaX0RU?=
+ =?iso-8859-1?Q?iLgpee8NpO11wqd66P1zTaHr08etNadI58q6nu14n/irMoYY6/6tKYYsrZ?=
+ =?iso-8859-1?Q?mpwIvM8Km5D4SLfH8AZRA3PcoETKpSOT7aEui5Czo07ldTXyaj6QzhkhSZ?=
+ =?iso-8859-1?Q?Uo6hMTzI510CcP/U3gXgzPU+LgOiYmWfhvKNB/0npha/alpEKobKcoskRy?=
+ =?iso-8859-1?Q?MoDduZxI689vvfDyE4ceszFVjYXA6Um3trLHV8DAKK4/V1TVCf6HcoE3Zk?=
+ =?iso-8859-1?Q?p63k8XfPNDdRlfgsxPhry4uoX44r2D6v+uVprmk3oTyzwNVXOw4UY6i9oO?=
+ =?iso-8859-1?Q?b05YAsODo4a4Ly9X4c10uTs1DT4HvZCO+PHAfAghufBStwe+nM85+NslLc?=
+ =?iso-8859-1?Q?HHmb2gmwgd8Mrx4x0Etr8Ng1b4YjMVjtZsfoZo8oZdaO51pJ5Pzxljd8Se?=
+ =?iso-8859-1?Q?amT9ltNGLBSKaHX6Uf+K+ilSqyj5jN1ABohWTA5RiapQ1LPk1kSYM10tS1?=
+ =?iso-8859-1?Q?lPcc+XdT1SeevG87IEhPWxTigUex3uSPWgnfzaXbSAiNtPUJzalZBLPT08?=
+ =?iso-8859-1?Q?nHBF9IaCv2uIRtrMsDAEy+PfPPnkbUdNXMGa5crfySWj02ZCYoWKb8EYPK?=
+ =?iso-8859-1?Q?flWybCG43f2Fn21og6Bcm/TBCiUmYQ6GbDuDAmFnLhfPoHDxVyP54b6iQO?=
+ =?iso-8859-1?Q?Tmt8iHxnJ/zcatPfybOU9AF0QLHBEUMEZngspqS0is4/r57MPkD7TS5eBl?=
+ =?iso-8859-1?Q?20SWIgMLKLgjjOaCF9lfQZWIAx1NmyQ0wilv3qSzNexJsj3Z6ZvFkdSioU?=
+ =?iso-8859-1?Q?aIvWJXvwwkCbvLwgL/ycEH5QMh6EM6JNayeVNM81y+Y0r3n5iIb+QUMgqF?=
+ =?iso-8859-1?Q?B2fefstGGrlrYP8bnCnN7qV2JtN3cE3erTyoDlz2xfUHIDvnl2wG6VZgv0?=
+ =?iso-8859-1?Q?rwGSs1FrQm1kxwt3y8x0ctAb00EJnFVSa9gDGaOqqEcM5kxMFIhVBinbLw?=
+ =?iso-8859-1?Q?qTewfMjeKuDa3qre87yvnZHs2VsbFAzBgx/Byb1Dkxvhy05aouMw19PEnV?=
+ =?iso-8859-1?Q?vK+yP08v5+zZNxhH/1mEI8gARyhI9bzeC4sae23za/HgIA9MLFc5mnDen+?=
+ =?iso-8859-1?Q?IuXS53wligbs9s4uYWiC6yTGymnBfd9rKUJ3tsWDHIN4uKtHiiUjFjbnOP?=
+ =?iso-8859-1?Q?uMlxcCBiVw=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|PH8PR11MB9533:EE_
-X-MS-Office365-Filtering-Correlation-Id: ab3b6a0f-765e-47c3-5854-08df46cbed7d
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|376014|366016|1800799024|23010399003|4143699003|11063799006|261009223027099003|261021121427099003|261102123227099003|56012099006|261028144727099003|261026140227099003|261022105027099003|261026121527099003|261021123027099003|10067099003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: neujXqV6YPQQfFanrxpVJc/2OxYbNLwmtscBKp4cufnTbAICCiYz8bGtgB/bE8j6KjaqToqkP5+i2W6YtfRpTU6XtEXl9G9C4F2BhrRVO+FulAGrO56HfLFMGO0Ty2VXTgeC2jC20UseBgkXf6hVNey9/sZzr8CV+jnqf5xYHjGDwyLfaG5+qVq1jSDe7/R1qGymQmect0feOSXTBo97Y9Ztpk5R+kqqIVkKkDMT+4e731m++l0FQSi3ul/E1OGwfyEgwWPfUQBUVgbBSMwTRYoFoJhbjzye3yqcbse5XJyetw/ERUWd2ruNWYif9cOhUYkrMvA9EnvrBjtdjy/rmfa4F/12i5B0m8OKsmyS8IOXhWRiqfTEKBx+ZCfmsTnSnR07EYu6sYKXjtG2fqun+VpCHXfVTDioS+/ylGTYfc7cre/p/fbOuKJLJXzdskFzHijpJPL2DYdOEWbBWlKlR0PPOZLWUnxzjthM53PlzgLh+p1olAC/Os/Pm4Fpk3oI7b3IOJeDc29Kte0igZgbRMyKUntay3kEj+cZkAv7Atr7Kicu0/Dd70hKuXgsksCOIGCwLrVWk6dVBCptKcyP2/k0tElYlrRHRQLlW6L8qH4LXjJEu4w5nqMmjp0AIx1/tCpt1pysW4Xqxvxtn0d30jWSN/73Iu79e0eHxJDao+o=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(366016)(1800799024)(23010399003)(4143699003)(11063799006)(261009223027099003)(261021121427099003)(261102123227099003)(56012099006)(261028144727099003)(261026140227099003)(261022105027099003)(261026121527099003)(261021123027099003)(10067099003)(22082099003)(18002099003)(6133799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?CUhFW3TANQxafmwZxjismCwY3NAhYt7ESRw8lnl79k6d6Tj9GLnifn41HQ?=
- =?iso-8859-1?Q?41SJlq0ZvVKGQK56pyzuaoQgWt//P7wlYjnsp0jbIONu8A2Uj5cG148KFj?=
- =?iso-8859-1?Q?CfKSJaD3NAy8tOvl6Apx1ausgf/fMGYu0tZHWfeluJ9Zh6ZF8fJwVkzcdY?=
- =?iso-8859-1?Q?J1k7MSzRXeqepMJuPZRBpw4S70QiKA3F4fxCtThtKb31sRFI/VMYyYE8mM?=
- =?iso-8859-1?Q?RD95sndKlb7xx7TUTubthoYTaAQrtEnLfIxuWfNIcgwJgVdAYF7/ISkQsm?=
- =?iso-8859-1?Q?UjrZuANCgok0bouFwrT6HW4rwa8clpZfr27hFiHwYIHzeMTas6db/hXzrM?=
- =?iso-8859-1?Q?ZsaImysjt7mHW6Xo318Jrseh7Zs3OHXowR1b26D9jQYXyc5TOIQofN2QPy?=
- =?iso-8859-1?Q?25Ip9gM8wow5e5OcG3v+hxkH4uw1xoh5vEV//GgdAjDHO41hadNi1SQJLr?=
- =?iso-8859-1?Q?OzpTQ/uwIwGsPnKu+XPMBzMVib34GYNdFvsZrOWLyfz8+BRercTbyMQwFa?=
- =?iso-8859-1?Q?jVZ3OKh0TzpcfK/obzyqmDGCxxZYHvudu0ICnPRSkSlCoGz+89QmFKLkL5?=
- =?iso-8859-1?Q?7QMvP7VdIf8mwl0mYgzMB5fho0cWZHlqZkhVSEpERGAaiXrVofKfKZ06EJ?=
- =?iso-8859-1?Q?RrCmD1PD/y91fepkNL4SfU9zco9jb+gnX43Z45AeXq8NYzGUw0qKUp4jZD?=
- =?iso-8859-1?Q?wIKp50M8YR9S3oon5Nc90cDOv5AlMVLKWToH4bWr/xeN4AGi9IaSwOZnk8?=
- =?iso-8859-1?Q?a5AdYYCokfbqOqfWIYUyS/Zb630eLXZeEGi0ek6CnGqzOeNWNlwW5F/b95?=
- =?iso-8859-1?Q?evoiiYRk1i/NF01lUuVvyWLhuOguTlejQpzVy4UcDPv4c8QTLWrc7nsagU?=
- =?iso-8859-1?Q?Jk5E2CyVdZxDDxx7NA2te46oBbJ3t85PhTFAKU5simS3Xsz/h8rVJ3P+hT?=
- =?iso-8859-1?Q?1wT+2m2x66IHd0vj6+6eoBCk1fbB1iM2ZPjJwoJMHIFJFTPsXonKpfM1D7?=
- =?iso-8859-1?Q?s1UzdSmIKtKzpvJbcXls6UtzPa1jY5A2h/lCK4NiatVy1h4LjFXX9WX1qF?=
- =?iso-8859-1?Q?DsoPaTV4CzlRfob8TUGFUzN3v/yyXoIvV7cTMVoPU4AXBGISOX3ndhpQVz?=
- =?iso-8859-1?Q?yOONUMgCCm7FxQyWXJEaMx/+8ZiueQ0mbRDeOJASEwD5w5EUdEuALg8Fjh?=
- =?iso-8859-1?Q?2dXn8SLZcMX2E81VDy4e+GTkCou9+rLtOYsa3yiZwdN+UGpcWP9c5pGAb5?=
- =?iso-8859-1?Q?QKsxzUekACsbdNhgjKsyO0WnIpM7YnJye5vE6LPnujD6YGW9XJIEdhtYId?=
- =?iso-8859-1?Q?7CB+fxcJ2kw389KQkU6/uHw4y/MlmXItMEBaxTm2vUkkKo9JOqICY0gV3Q?=
- =?iso-8859-1?Q?fXiJN+IehOgvk3gYa83TBm2eP0YoEiwCGDi+VkzRDtd9UOIQQLnzZEdTjT?=
- =?iso-8859-1?Q?1FYo00g7NMlj7ECsXsNb6wVE626D7F+MPrZxPbLFSl7G2T/XtNHAUJSrXn?=
- =?iso-8859-1?Q?h9DONnMFb1zFMs38tw9Vmty6ps38tfBhupT0zSuhIn8srsUXisVUqmOMn7?=
- =?iso-8859-1?Q?LhVzJfTqmgV58JmNwsgR2rL3qDy6M6LSVKp7+C6FHABn5UCF+cKkzFuIsc?=
- =?iso-8859-1?Q?xGQ5QB4tYrx/KegwXBSYv6KxGv6RPkJSNdLPu2HLPF4zCV4MPLkuKfjQN1?=
- =?iso-8859-1?Q?KovOOKnoDyaIQ3HYssw6KrAx8qapuEcwzoPF2Q7lQ4ypNOtBBTrikoxKW5?=
- =?iso-8859-1?Q?cYX3s4nienjuzdPh89VYM5mIbAdTb6k42+NgVWScqDG6pm8sZm8tJ3ShV+?=
- =?iso-8859-1?Q?srVG428wHuCIh0TfkbLV9KxoSRg0dQA=3D?=
-X-Exchange-RoutingPolicyChecked: YcYhQOc5Sw6CLAFJnEpVxeJ5oamyuTRR/BTas+zzL0EbGcrL+yR+62JYJVQkhSx8oWzhDkgaQ3u88b84O+ZVbqYgOETKDFQ3YiMcf6g6BygQ8IUJvmKuXeldzbZh61mL2z2ZWVsaXmNwYzYnrCLm4i09qb8nkKryfj5gef7+lqxINGwDcTSciKy7dQgWFFNrB0SxGkilgt1HVttZjES+guluw4p4DeqZFirNQvCNb+JfHbWGBGAz5ixN6/bi8o9eV8Ne9oi/3aUm9hM60L7BJaDtjudI1IK5N1Be1LMmmVduSpywcXvIsTRAPpgbrbcHr2ESw1mPtlW9qIn5scTKIA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ab3b6a0f-765e-47c3-5854-08df46cbed7d
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
+X-Exchange-RoutingPolicyChecked: PmihFwD/0vZIhFPmy331GEbAAtzJhviU53pIKy4V/k5r10HzBPOvyEm964tBw618j0h4tZsFkOA6k6JFzOtdW5FLZaa0wjgefnc++hB6yy2xGB6UF4cqNOp4gi+2aI1YA+RVMxUNbhc76CCrTDJGHAO4zRw1KQtHltUtmeCYXfBavtClnbvQl0ADIF8mjzUKbXozcE+4t9/RFhv0hJx59nk8ZQMdaOji9Am6vKHblxur0J8aEYhhpWZOeRHdbS+mmixieBrfXBEJihTMGOzp83PBZ5f9WZ2ADCl/jsHPx7gTBNvmhwrlNk+TkXgfwtUjAcFpmaoVyFeHjty0hUTA9Q==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2026 06:02:58.8042 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AiuHu8RuMyAjyHj2IGIkS8mSQBTTsfaD9qPRrxoigR9lQtltJLPz5ygOBohG9KIWMw2bW8IDnfqqLjQtMv9f1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB9533
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPFE901A304F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65b19f0d-d21f-4665-2fb3-08df46cc6784
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Nov 2026 06:06:23.3150 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: L3sccwZdrsgqxE5ezbRIPX5HEtMa8xmo6neLIl43FZwaeY6UhvM/IUzeb/qd+K7L+Oc/nUxG7Qs1ZwZRTuxnSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9112
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,367 +168,132 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 06, 2026 at 08:49:18PM -0800, Niranjana Vishwanathapura wrote:
-> On Fri, Jul 10, 2026 at 07:56:01PM -0700, Matthew Brost wrote:
-> > Add per-device tracking of BOs whose backing TT pages were allocated
-> > below the pool's beneficial order, as reported by the
-> > TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED tt page flag (read via
-> > ttm_tt_is_beneficial_order_failed()). These BOs are future candidates for
-> > a defragmentation pass that reallocates their pages at the beneficial
-> > order.
-> > 
-> > Add a mem.defrag sub-struct (lock, list, atomic count) to struct
-> > xe_device and a defrag_link to struct xe_bo, initialised at BO create
-> > and device init. Membership is updated from xe_bo_move() via
-> > xe_bo_defrag_update(): a BO is added when it is a populated, needed,
-> > non-pinned ttm_bo_type_device object flagged
-> > TTM_TT_FLAG_BENEFICIAL_ORDER_FAILED, and removed otherwise. BOs are also
-> > removed on pin, on purge, moved to dontneed, and at destroy.
-> > 
-> > Only ttm_bo_type_device BOs are tracked.
-> > 
-> > Cc: Carlos Santa <carlos.santa@intel.com>
-> > Cc: Ryan Neph <ryanneph@google.com>
-> > Cc: Christian Koenig <christian.koenig@amd.com>
-> > Cc: Huang Rui <ray.huang@amd.com>
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: linux-kernel@vger.kernel.org
-> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > Assisted-by: GitHub_Copilot:claude-opus-4.8
-> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > ---
-> > drivers/gpu/drm/xe/xe_bo.c           | 115 +++++++++++++++++++++++++++
-> > drivers/gpu/drm/xe/xe_bo.h           |   1 +
-> > drivers/gpu/drm/xe/xe_bo_types.h     |   6 ++
-> > drivers/gpu/drm/xe/xe_device.c       |   2 +
-> > drivers/gpu/drm/xe/xe_device_types.h |  19 +++++
-> > 5 files changed, 143 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index 4ee48cdc02ac..ff324caab6da 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -926,6 +926,9 @@ static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
-> > 	}
-> > }
-> > 
-> > +static void xe_bo_defrag_update(struct xe_bo *bo);
-> > +static void xe_bo_defrag_remove(struct xe_bo *bo);
-> > +
-> > /**
-> >  * xe_bo_set_purgeable_state() - Set BO purgeable state with validation
-> >  * @bo: Buffer object
-> > @@ -954,6 +957,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
-> > 
-> > 	bo->purgeable.state = new_state;
-> > 	xe_bo_set_purgeable_shrinker(bo, new_state);
-> > +	xe_bo_defrag_update(bo);
-> > }
-> > 
-> > /**
-> > @@ -1003,9 +1007,100 @@ static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct ttm_operatio
-> > 	/* Commit the state transition only once invalidation was queued */
-> > 	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_PURGED);
-> > 
-> > +	/*
-> > +	 * The backing store is gone, so the BO no longer needs defrag. Drop it
-> > +	 * from the defrag list here so the count stays accurate even for purge
-> > +	 * paths that don't pass through xe_bo_move() (e.g. swap_notify).
-> > +	 */
-> > +	xe_bo_defrag_remove(bo);
-> > +
-> > 	return 0;
-> > }
-> > 
-> > +/**
-> > + * xe_bo_defrag_init_early() - Initialize the device defrag BO tracking
-> > + * @xe: The xe device
-> > + *
-> > + * Initialize the list, lock and count used to track BOs whose backing TT
-> > + * pages were allocated at a sub-optimal order.
-> > + */
-> > +void xe_bo_defrag_init_early(struct xe_device *xe)
-> > +{
-> > +	spin_lock_init(&xe->mem.defrag.lock);
-> > +	INIT_LIST_HEAD(&xe->mem.defrag.list);
-> > +	atomic_set(&xe->mem.defrag.count, 0);
-> > +}
-> > +
-> > +static bool xe_bo_needs_defrag(struct xe_bo *bo)
-> > +{
-> > +	struct ttm_buffer_object *ttm_bo = &bo->ttm;
-> > +	struct ttm_tt *tt = ttm_bo->ttm;
-> > +
-> > +	xe_bo_assert_held(bo);
-> > +
-> > +	return ttm_bo->type == ttm_bo_type_device && tt &&
-> > +		!xe_bo_madv_is_dontneed(bo) &&
-> > +		ttm_tt_is_populated(tt) &&
-> > +		ttm_tt_is_beneficial_order_failed(tt) &&
-> > +		ttm_bo->resource && ttm_bo->resource->mem_type == XE_PL_TT &&
-> > +		!xe_bo_is_pinned(bo);
-> > +}
-> > +
-> > +static void xe_bo_defrag_add(struct xe_bo *bo)
-> > +{
-> > +	struct xe_device *xe = xe_bo_device(bo);
-> > +
-> > +	xe_bo_assert_held(bo);
-> > +	xe_assert(xe, xe_bo_needs_defrag(bo));
-> > +
-> > +	scoped_guard(spinlock, &xe->mem.defrag.lock) {
-> > +		if (list_empty(&bo->defrag_link)) {
-> > +			list_add_tail(&bo->defrag_link, &xe->mem.defrag.list);
-> > +			atomic_inc(&xe->mem.defrag.count);
-> > +		}
-> > +	}
-> > +}
-> > +
-> > +static void __xe_bo_defrag_remove(struct xe_bo *bo)
-> > +{
-> > +	struct xe_device *xe = xe_bo_device(bo);
-> > +
-> > +	guard(spinlock)(&xe->mem.defrag.lock);
-> > +	if (!list_empty(&bo->defrag_link)) {
-> > +		list_del_init(&bo->defrag_link);
-> > +		atomic_dec(&xe->mem.defrag.count);
-> > +	}
-> > +}
-> 
-> Assisted-by: LLM
-> 
+> Subject: [PATCH] drm/i915/lt_phy: Fix the main link to TX mapping
+>=20
+> Each main link (ML) is routed to a specific PHY lane and transmitter (TX)=
+. The
+> mapping depends on the connection type, on the lane reversal and, in DP-a=
+lt
+> mode, on the pin assignment, see the PHY Lane and Transmitter Usage table=
+ in
+> the LT PHY Bspec page. The driver gets it wrong in two places.
+>=20
+> The signal levels (voltage swing, pre- and post-cursor) of an ML are
+> programmed to TX (ML % 2) of PHY lane (ML / 2). This is correct only on n=
+ative
+> ports without lane reversal:
+>=20
+> - In DP-alt mode ML0 uses TX2 and ML1 uses TX1 of PHY lane 0, so the
+>   parameters of the two end up on each other's transmitter. With a
+>   single lane the only enabled TX, TX2, is not programmed at all while
+>   the unused TX1 is. Reading the PHY registers back on a DP-alt x1 link
+>   showed the cursor values on TX1 and TX2 still at its reset values.
+>=20
+> - On lane reversed native ports ML n uses TX (3 - n), but the lane
+>   reversal was not taken into account.
+>=20
+> Also, on a single lane DP-alt link with pin assignment D the driver enabl=
+es TX1,
+> whereas ML0 uses TX2 with every pin assignment.
+>=20
+> Add a helper returning the TX of a ML and use it to program the signal le=
+vels,
+> and enable TX2 for single lane DP-alt links regardless of the pin assignm=
+ent.
+> The orientation flip in DP-alt mode is handled by the FIA, so it does not=
+ need
+> to be accounted for.
+>=20
+> Fixes: 13ba213f921f ("drm/i915/ltphy: Program LT Phy Voltage Swing")
+> Fixes: a54bdcb7142d ("drm/i915/ltphy: Enable/Disable Tx after Non TBT
+> Enable sequence")
+> Bspec: 74701
+> Signed-off-by: Eriksen Xie <xiaolu.xie@intel.com>
 
-Yes.
+Please break these commits into a 2 patch patch series, one in which you
+Add changes to intel_lt_phy_enable_disable_tx and the next one which has ch=
+anges related to
+Voltage swing programming
 
-> NIT...probably worth adding a comment saying this version
-> can be called without holding bo dma-resv lock?
-> 
+Regards,
+Suraj Kandpal
 
-It should be self documenting with lockdep but can add this.
+> ---
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c | 32 ++++++++++++++-------
+>  1 file changed, 22 insertions(+), 10 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> index 86492651b0..2e2fa8fa64 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -1827,8 +1827,6 @@ intel_lt_phy_enable_disable_tx(struct
+> intel_encoder *encoder,
+>  	u8 lane_count =3D ltpll->lane_count;
+>  	bool is_dp_alt =3D
+>  		intel_tc_port_in_dp_alt_mode(dig_port);
+> -	enum intel_tc_pin_assignment tc_pin =3D
+> -		intel_tc_port_get_pin_assignment(dig_port);
+>  	u8 transmitter_mask =3D 0;
+>=20
+>  	/*
+> @@ -1841,12 +1839,8 @@ intel_lt_phy_enable_disable_tx(struct
+> intel_encoder *encoder,
+>  	switch (lane_count) {
+>  	case 1:
+>  		transmitter_mask =3D lane_reversal ? REG_BIT8(3) : REG_BIT8(0);
+> -		if (is_dp_alt) {
+> -			if (tc_pin =3D=3D INTEL_TC_PIN_ASSIGNMENT_D)
+> -				transmitter_mask =3D REG_BIT8(0);
+> -			else
+> -				transmitter_mask =3D REG_BIT8(1);
+> -		}
+> +		if (is_dp_alt)
+> +			transmitter_mask =3D REG_BIT8(1);
+>  		break;
+>  	case 2:
+>  		transmitter_mask =3D lane_reversal ? REG_GENMASK8(3, 2) :
+> REG_GENMASK8(1, 0); @@ -2116,6 +2110,23 @@ void
+> intel_lt_phy_pll_disable(struct intel_encoder *encoder)
+>  	intel_lt_phy_transaction_end(encoder, wakeref);  }
+>=20
+> +/*
+> + * Get the transmitter (lane * 2 + TX - 1) used by a main link, which
+> +is also
+> + * the lane and TX to program the voltage swing for, see "PHY Lane and
+> + * Transmitter Usage" in Bspec.
+> + */
+> +static int intel_lt_phy_ml_to_tx_idx(struct intel_encoder *encoder, int
+> +ml) {
+> +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> +	static const u8 dp_alt_tx_idx[] =3D { 1, 0, 2, 3 };
+> +
+> +	/* The FIA muxing handles the orientation flip in DP-alt mode. */
+> +	if (intel_tc_port_in_dp_alt_mode(dig_port))
+> +		return dp_alt_tx_idx[ml];
+> +
+> +	return dig_port->lane_reversal ? 3 - ml : ml; }
+> +
+>  void intel_lt_phy_set_signal_levels(struct intel_encoder *encoder,
+>  				    const struct intel_crtc_state *crtc_state)  {
+> @@ -2141,8 +2152,9 @@ void intel_lt_phy_set_signal_levels(struct
+> intel_encoder *encoder,
+>=20
+>  	for (ln =3D 0; ln < crtc_state->lane_count; ln++) {
+>  		int level =3D intel_ddi_level(encoder, crtc_state, ln);
+> -		int lane =3D ln / 2;
+> -		int tx =3D ln % 2;
+> +		int tx_idx =3D intel_lt_phy_ml_to_tx_idx(encoder, ln);
+> +		int lane =3D tx_idx / 2;
+> +		int tx =3D tx_idx % 2;
+>  		u8 lane_mask =3D lane =3D=3D 0 ? INTEL_LT_PHY_LANE0 :
+> INTEL_LT_PHY_LANE1;
+>=20
+>  		if (!(lane_mask & owned_lane_mask))
+> --
+> 2.43.0
 
-> > +
-> > +static void xe_bo_defrag_remove(struct xe_bo *bo)
-> > +{
-> > +	xe_bo_assert_held(bo);
-> > +
-> > +	if (list_empty(&bo->defrag_link))
-> > +		return;
-> > +
-> > +	__xe_bo_defrag_remove(bo);
-> > +}
-> > +
-> > +/**
-> > + * xe_bo_defrag_update() - Update defrag list membership for a BO
-> > + * @bo: The buffer object
-> > + *
-> > + * Add @bo to the device defrag list when it is a ttm_bo_type_device BO resident
-> > + * in XE_PL_TT with a populated TT whose pages were allocated at a sub-optimal
-> > + * order (ttm_tt_is_beneficial_order_failed()) and it isn't pinned. Otherwise
-> > + * ensure it is removed from the list.
-> > + */
-> > +static void xe_bo_defrag_update(struct xe_bo *bo)
-> > +{
-> > +	xe_bo_assert_held(bo);
-> > +
-> > +	if (xe_bo_needs_defrag(bo))
-> > +		xe_bo_defrag_add(bo);
-> > +	else
-> > +		xe_bo_defrag_remove(bo);
-> > +}
-> > +
-> > static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-> > 		      struct ttm_operation_ctx *ctx,
-> > 		      struct ttm_resource *new_mem,
-> > @@ -1231,6 +1326,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
-> > 		xe_tt_unmap_sg(xe, ttm_bo->ttm);
-> > 	}
-> > 
-> > +	xe_bo_defrag_update(bo);
-> > +
-> > 	return ret;
-> > }
-> > 
-> > @@ -1267,6 +1364,15 @@ static long xe_bo_shrink_purge(struct ttm_operation_ctx *ctx,
-> > 	if (lret > 0) {
-> > 		xe_ttm_tt_account_subtract(xe, bo->ttm);
-> > 		update_global_total_pages(bo->bdev, -(long)tt->num_pages);
-> > +
-> > +		/*
-> > +		 * The pages are gone, so a tracked BO no longer needs defrag.
-> > +		 * This shrinker purge path frees pages without going through
-> > +		 * xe_bo_move(), so drop any stale defrag list entry here. Ghost
-> > +		 * bos are never tracked, so guard for real xe bos.
-> > +		 */
-> > +		if (xe_bo_is_xe_bo(bo))
-> > +			xe_bo_defrag_remove(ttm_to_xe_bo(bo));
-> > 	}
-> > 
-> > 	return lret;
-> > @@ -1909,6 +2015,8 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
-> > 		list_del(&bo->vram_userfault_link);
-> > 	mutex_unlock(&xe->mem_access.vram_userfault.lock);
-> > 
-> > +	__xe_bo_defrag_remove(bo);
-> > +
-> > 	kfree(bo);
-> > }
-> > 
-> > @@ -2414,6 +2522,7 @@ struct xe_bo *xe_bo_init_locked(struct xe_device *xe, struct xe_bo *bo,
-> > 	bo->ttm.base.funcs = &xe_gem_object_funcs;
-> > 	bo->ttm.priority = XE_BO_PRIORITY_NORMAL;
-> > 	INIT_LIST_HEAD(&bo->pinned_link);
-> > +	INIT_LIST_HEAD(&bo->defrag_link);
-> > #ifdef CONFIG_PROC_FS
-> > 	INIT_LIST_HEAD(&bo->client_link);
-> > #endif
-> > @@ -3020,6 +3129,8 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec)
-> > 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-> > 		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
-> > 
-> > +	xe_bo_defrag_remove(bo);
-> > +
-> > 	/*
-> > 	 * FIXME: If we always use the reserve / unreserve functions for locking
-> > 	 * we do not need this.
-> > @@ -3078,6 +3189,8 @@ int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec)
-> > 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-> > 		xe_ttm_tt_account_subtract(xe, bo->ttm.ttm);
-> > 
-> > +	xe_bo_defrag_remove(bo);
-> > +
-> > 	/*
-> > 	 * FIXME: If we always use the reserve / unreserve functions for locking
-> > 	 * we do not need this.
-> > @@ -3113,6 +3226,7 @@ void xe_bo_unpin_external(struct xe_bo *bo)
-> > 	ttm_bo_unpin(&bo->ttm);
-> > 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-> > 		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
-> > +	xe_bo_defrag_update(bo);
-> > 
-> > 	/*
-> > 	 * FIXME: If we always use the reserve / unreserve functions for locking
-> > @@ -3145,6 +3259,7 @@ void xe_bo_unpin(struct xe_bo *bo)
-> > 	ttm_bo_unpin(&bo->ttm);
-> > 	if (bo->ttm.ttm && ttm_tt_is_populated(bo->ttm.ttm))
-> > 		xe_ttm_tt_account_add(xe, bo->ttm.ttm);
-> > +	xe_bo_defrag_update(bo);
-> > }
-> 
-> Looks like list update needs to be called from 2 other places,
-> 
-> 1. ttm_bo_populate() getting called from CPU fault path and from TTM fault
->    never calls xe_bo_defrag_update().
-
-Yes. We also need to strip out reclaim flags in CPU fault path as this a
-foreground op.
-
-> 2. In xe_bo_shrink() if ttm_bo_shrink() returns >0 value. This will inflate
->    the defrag.count value.
-> 
-
-This routes through ttm_bo_validate which ends up in xe_bo_move so I
-think this case is covered.
-
-> > 
-> > /**
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> > index 6340317f7d2e..4186cb51af87 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo.h
-> > @@ -224,6 +224,7 @@ int xe_bo_pin_external(struct xe_bo *bo, bool in_place, struct drm_exec *exec);
-> > int xe_bo_pin(struct xe_bo *bo, struct drm_exec *exec);
-> > void xe_bo_unpin_external(struct xe_bo *bo);
-> > void xe_bo_unpin(struct xe_bo *bo);
-> > +void xe_bo_defrag_init_early(struct xe_device *xe);
-> > int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict,
-> > 		   struct drm_exec *exec);
-> > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> > index fcc63ae3f455..9eea9ab380e5 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> > @@ -54,6 +54,12 @@ struct xe_bo {
-> > 	struct ttm_bo_kmap_obj kmap;
-> > 	/** @pinned_link: link to present / evicted list of pinned BO */
-> > 	struct list_head pinned_link;
-> > +	/**
-> > +	 * @defrag_link: link into @xe_device.mem.defrag.list for BOs whose
-> > +	 * backing TT pages were allocated at a sub-optimal order. Protected by
-> > +	 * @xe_device.mem.defrag.lock.
-> > +	 */
-> > +	struct list_head defrag_link;
-> > #ifdef CONFIG_PROC_FS
-> > 	/**
-> > 	 * @client: @xe_drm_client which created the bo
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > index 97cc2d185e45..bb93425a5c70 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -607,6 +607,8 @@ int xe_device_init_early(struct xe_device *xe)
-> > 	if (err)
-> > 		return err;
-> > 
-> > +	xe_bo_defrag_init_early(xe);
-> > +
-> > 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
-> > 						       WQ_MEM_RECLAIM);
-> > 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
-> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> > index 95e7cea91cbf..9e6244d8f41b 100644
-> > --- a/drivers/gpu/drm/xe/xe_device_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> > @@ -296,6 +296,25 @@ struct xe_device {
-> > 		 */
-> > 		atomic_long_t dma_mapped_pages_svm[NR_PAGE_ORDERS];
-> > #endif
-> > +		/**
-> > +		 * @mem.defrag: Tracking of BOs whose backing TT pages were
-> > +		 * allocated at a sub-optimal (smaller than beneficial) order.
-> > +		 *
-> > +		 * Such BOs are candidates for a future defragmentation pass that
-> > +		 * tries to reallocate their pages at the device's beneficial
-> > +		 * order. Only ttm_bo_type_device BOs are tracked.
-> > +		 */
-> > +		struct {
-> > +			/** @mem.defrag.lock: Protects @mem.defrag.list. */
-> > +			spinlock_t lock;
-> > +			/** @mem.defrag.list: List of struct xe_bo defrag_link. */
-> > +			struct list_head list;
-> > +			/**
-> > +			 * @mem.defrag.count: Number of BOs currently on
-> > +			 * @mem.defrag.list.
-> > +			 */
-> > +			atomic_t count;
-> 
-> NIT...Not sure if we need it to be atomic. Count is only used in patch 16 and
-> usage is approximation anyhow (doesn't guarantee anything as list lenght can
-> be changing).
-
-Right - incr / decr are protected by the spin lock along with the list.
-
-I think count might actually be able to be dropped as target has slighly
-moved - foreground just never does reclaim, thus
-XE_BO_DEFRAG_RECLAIM_BACKOFF_THRESHOLD / count isn't needed.
-
-Matt
-
-> 
-> Niranjana
-> 
-> > +		} defrag;
-> > 	} mem;
-> > 
-> > 	/** @sriov: device level virtualization data */
-> > -- 
-> > 2.34.1
-> > 
