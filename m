@@ -2,42 +2,29 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB051606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=A7T1bEsK
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9267560A383B
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 03:13:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FD1410E2CF;
-	Fri, 20 Nov 2026 02:44:37 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7832510E5E3
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 02:44:30 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 427E34592D;
- Fri, 20 Nov 2026 02:44:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0187F1F000E0;
- Fri, 20 Nov 2026 02:44:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795142670;
- bh=0sUikTHt5ZFrwVR+IQaOjxkTT9uDlzOHP0sEVq9m23Y=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=A7T1bEsKAeTCZFlar4E2x9wPkFVBP3ooY/oc4GG+NiNiUVt45gG1xFFZYVBgxTNwk
- StYg4dScRV3jqKTwNp2yGW8cCYJM+L/s5j9QQ/5CTu7GS3VbE9RD89cCEOVY9ae9e0
- pxVuZlUnyPkN47b1SpwetumJsyTQbTO1CiH0x6QOAHB/mfwmr1uPpWtAzFclu8I4jI
- 1LZ7t67f/pUJHTJG1x97a+tKa1KYtGaPG1f/qEDv+1lmLM2co5Z69YQP3NX2IlAPos
- NYmIBMnBjGpEJOK6Iour/XMMIYRYKqVmZfBXeY+5GoGuPr2b3GzUEddKiVxC5EQDNk
- 7ZnxgP0Sr0Ruw==
-Message-ID: <sashiko-outbox-224379@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v20 15/19] drm/xe/vsec: Support late bind fw information
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120021929.473553-36-michael.j.ruhl@intel.com>
-References: <20261120021929.473553-21-michael.j.ruhl@intel.com>
- <20261120021929.473553-36-michael.j.ruhl@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 02:44:29 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50A8510E05E;
+	Fri, 20 Nov 2026 03:13:30 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16DE510E05E;
+ Fri, 20 Nov 2026 03:13:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6941007804400038190=="
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv5?=
+ =?utf-8?q?=2C1/2=5D_drm/xe/wopcm=3A_Use_the_size_from_HW_when_excluding_the?=
+ =?utf-8?q?_wopcm_range_from_GGTT?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Nov 2026 03:13:29 -0000
+Message-ID: <179514440908.56258.10717643785485206990@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20261119230423.322057-3-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,81 +34,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/xe/vsec: missing runtime PM and FW wait in
-  xe_pmt_discovery_read()
---
+--===============6941007804400038190==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-commit e59bd8c1a9c29d7e8aa32d98749713101a75f4bf
-Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+== Series Details ==
 
-drm/xe/vsec: Support late bind fw information
+Series: series starting with [v5,1/2] drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT
+URL   : https://patchwork.freedesktop.org/series/179146/
+State : success
 
-This commit defers Crescent Island VSEC registration until the OOBMSM
-late-bind firmware is ready and waits for firmware readiness in the PMT
-read and write callbacks.
+== Summary ==
 
-> diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index 4c54f44d89adf..b6add588c0932 100644
-> --- a/drivers/gpu/drm/xe/xe_vsec.c
-> +++ b/drivers/gpu/drm/xe/xe_vsec.c
+CI Bug Log - changes from xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420_BAT -> xe-pw-179146v1_BAT
+====================================================
 
-[ ... ]
+Summary
+-------
 
-> @@ -465,6 +528,10 @@ static int xe_pmt_read_reg(struct device *dev, u32 g=
-uid, u32 *reg, u32 offset)
->  	disc_addr +=3D inst + offset;
-> =20
->  	xe_pm_runtime_get(xe);
-> +	if (!wait_for_fw(xe)) {
-> +		ret =3D -ENODATA;
-> +		goto runtime_exit;
-> +	}
-> =20
->  	scoped_guard(mutex, &xe->pmt.lock) {
->  		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-> @@ -472,6 +539,7 @@ static int xe_pmt_read_reg(struct device *dev, u32 gu=
-id, u32 *reg, u32 offset)
->  		*reg =3D readl(disc_addr);
->  	}
-> =20
-> +runtime_exit:
->  	xe_pm_runtime_put(xe);
-> =20
->  	drm_dev_exit(idx);
+  **SUCCESS**
 
-[Severity: Medium]
-Should xe_pmt_discovery_read() also acquire runtime PM and call
-wait_for_fw(xe) before reading discovery data from
-CRI_IDX_TELEM_DISCOVERY?
+  No regressions found.
 
-drivers/gpu/drm/xe/xe_vsec.c:xe_pmt_discovery_read() {
-	...
-	scoped_guard(mutex, &xe->pmt.lock) {
-		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-		memcpy_fromio(disc_data, disc_addr, PMT_DISC_DWORDS * sizeof(u32));
-	}
-	...
-}
+  
 
-When a PMT auxiliary driver probes or rebinds after a D3cold resume,
-pm_runtime_get_sync() on the parent device returns while
-xe_late_bind_pm_resume() is still reloading the OOBMSM firmware
-asynchronously on late_bind.wq.  pmt_get_headers() then calls
-xe_pmt_discovery_read(), which accesses the discovery window before the
-firmware is ready.
+Participating hosts (15 -> 15)
+------------------------------
 
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120021929.4735=
-53-21-michael.j.ruhl@intel.com?part=3D15
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420 -> xe-pw-179146v1
+
+  IGT_9200: 9200
+  xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420: 9bf864cd53c8e7651a038b9be01b2b0dfc67b420
+  xe-pw-179146v1: 179146v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179146v1/index.html
+
+--===============6941007804400038190==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v5,1/2] drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179146/">https://patchwork.freedesktop.org/series/179146/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179146v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179146v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420_BAT -&gt; xe-pw-179146v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420 -&gt; xe-pw-179146v1</li>
+</ul>
+<p>IGT_9200: 9200<br />
+  xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420: 9bf864cd53c8e7651a038b9be01b2b0dfc67b420<br />
+  xe-pw-179146v1: 179146v1</p>
+
+</body>
+</html>
+
+--===============6941007804400038190==--
