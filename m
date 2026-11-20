@@ -2,29 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B260B606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12142606A325
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 05:31:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A84A10E17C;
-	Fri, 20 Nov 2026 05:29:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF53110E1B3;
+	Fri, 20 Nov 2026 05:31:03 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C45A010E17C;
- Fri, 20 Nov 2026 05:29:38 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7398951349087706245=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFD9B10E1B3;
+ Fri, 20 Nov 2026 05:31:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_starting_with_=5Bv5?=
- =?utf-8?q?=2C1/2=5D_drm/xe=3A_Disallow_freq_changes_while_mert_cap_is_activ?=
- =?utf-8?q?e?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Crescent_Island_PMT_suppo?=
+ =?utf-8?q?rt_=28rev21=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Nov 2026 05:29:38 -0000
-Message-ID: <179515257879.56845.651546940684512672@9ac1b63fe3ea>
+Date: Fri, 20 Nov 2026 05:31:02 -0000
+Message-ID: <179515266277.56845.11568882600427253557@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261120021606.1360244-3-vinay.belgaumkar@intel.com>
-In-Reply-To: <20261120021606.1360244-3-vinay.belgaumkar@intel.com>
+References: <20261120021929.473553-21-michael.j.ruhl@intel.com>
+In-Reply-To: <20261120021929.473553-21-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,180 +35,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============7398951349087706245==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [v5,1/2] drm/xe: Disallow freq changes while mert cap is active
-URL   : https://patchwork.freedesktop.org/series/179160/
-State : failure
+Series: Crescent Island PMT support (rev21)
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420_BAT -> xe-pw-179160v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b0a196e88d443b8838169bbae210da0f0f1f1745
+Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Date:   Thu Nov 19 18:19:49 2026 -0800
 
-Summary
--------
+    drm/xe/vsec: Support survivability mode for CRI
+    
+    For survivability mode, CRI can only support access to the
+    PUNIT CRASHLOG PMT function.
+    
+    Create a special config to support survivability mode.
+    
+    Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
++ /mt/dim checkpatch 9bf864cd53c8e7651a038b9be01b2b0dfc67b420 drm-intel
+da3c16c0c884 platform/x86/intel/pmt: Introduce a callback for discovery data
+c5d8a566d15b platform/x86/intel/pmt: Use the pre-populated header info for crashlog
+4614781c3d56 drm/xe/vsec: VSEC requires soc-remapper
+d2430e9c276d drm/xe/vsec: Do not register BMG PMT for VF
+cae3d78f18b5 drm/xe/vsec: Correct locking order
+948dd4872588 drm/xe/vsec: Use correct pm state get
+e702dd260929 drm/xe/vsec: Add DOC text for VSEC
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
+new file mode 100644
 
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-179160v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-179160v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-179160v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_gt_freq@freq_basic_api:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] +2 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html
-    - bat-atsm-2:         [PASS][3] -> [FAIL][4] +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html
-    - bat-wcl-2:          [PASS][5] -> [FAIL][6] +1 other test fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html
-    - bat-nvls-1:         [PASS][7] -> [FAIL][8] +1 other test fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html
-    - bat-lnl-2:          [PASS][9] -> [FAIL][10] +1 other test fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html
-    - bat-nvls-2:         [PASS][11] -> [FAIL][12] +1 other test fail
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html
-    - bat-ptl-2:          [PASS][13] -> [FAIL][14] +1 other test fail
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html
-    - bat-wcl-1:          [PASS][15] -> [FAIL][16] +1 other test fail
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html
-
-  * igt@xe_gt_freq@freq_fixed_idle:
-    - bat-ptl-1:          [PASS][17] -> [FAIL][18] +1 other test fail
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html
-    - bat-lnl-1:          [PASS][19] -> [FAIL][20] +1 other test fail
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html
-
-  
+total: 0 errors, 1 warnings, 0 checks, 54 lines checked
+9b3e42c871cb drm/xe/vsec: Support possible hotplug exit
+8a1c1d214f41 drm/xe/vsec: Refactor BattleMage PMT defines
+95ef50907283 drm/xe/vsec: Update VSEC probe order
+1fcb071c0baf drm/xe/vsec: Add base_offset to allow for more flexibilty
+d83ead31a676 drm/xe/vsec: Support Crescent Island PMT
+37a6531c1d87 drm/xe/vsec: Crescent Island PMT decode
+73207f2bdb0b drm/xe/vsec: Crescent Island PMT callbacks
+d82c6e972bf7 drm/xe/vsec: Support late bind fw information
+7fc063261a6d drm/xe/vsec: Add PMT GUID internal access
+b67aa4887dec drm/xe/vsec: Update PMT internal access
+797060645947 drm/xe/vsec: Refactor platform check
+b0a196e88d44 drm/xe/vsec: Support survivability mode for CRI
 
 
-Build changes
--------------
-
-  * Linux: xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420 -> xe-pw-179160v1
-
-  IGT_9200: 9200
-  xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420: 9bf864cd53c8e7651a038b9be01b2b0dfc67b420
-  xe-pw-179160v1: 179160v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/index.html
-
---===============7398951349087706245==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v5,1/2] drm/xe: Disallow freq changes while mert cap is active</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179160/">https://patchwork.freedesktop.org/series/179160/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420_BAT -&gt; xe-pw-179160v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-179160v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-179160v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-179160v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_gt_freq@freq_basic_api:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-adlp-7/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +2 other tests fail</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-atsm-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-wcl-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-<li>bat-nvls-1:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-nvls-1/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-lnl-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-<li>bat-nvls-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-nvls-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-ptl-2/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-wcl-1/igt@xe_gt_freq@freq_basic_api.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_gt_freq@freq_fixed_idle:</p>
-<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-ptl-1/igt@xe_gt_freq@freq_fixed_idle.html">FAIL</a> +1 other test fail</li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179160v1/bat-lnl-1/igt@xe_gt_freq@freq_fixed_idle.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420 -&gt; xe-pw-179160v1</li>
-</ul>
-<p>IGT_9200: 9200<br />
-  xe-6194-9bf864cd53c8e7651a038b9be01b2b0dfc67b420: 9bf864cd53c8e7651a038b9be01b2b0dfc67b420<br />
-  xe-pw-179160v1: 179160v1</p>
-
-</body>
-</html>
-
---===============7398951349087706245==--
