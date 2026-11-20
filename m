@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3D9860A2602
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:24:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E1B606A339
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:24:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mwTNiGKr
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DX7x68X8
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67234112AF3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C588C112AF4;
 	Fri, 20 Nov 2026 14:24:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0971A112AE1;
- Fri, 20 Nov 2026 14:24:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2D85112AE2;
+ Fri, 20 Nov 2026 14:24:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795184654; x=1826720654;
+ t=1795184653; x=1826720653;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/Vvn5rkCahz/oM7P7dbAqqv2eqJaqdKm8oYCMyuVn+s=;
- b=mwTNiGKrhhoeg8URJMKOpHQ7X+B3/tM9bGxhCBIeJ/g2dc0ayr2WOfhr
- hjmxXoAIKywCPdlcc2dFv/EkwJcXuKYsGo5pYkh7LCwONZRSOJEiJgFS+
- nxJXycTOGg8udB/QRJPqfouX2mXGC4EkFAAdJTUXYJVOEHt0bMhQrY6Gk
- 1OGsxG0HbyY+/1TNT0TLGVd9U6if7ccZmVKEDiHf8B+Z1hk/ZfO0zra/D
- bEb3dhYgwpktChefduE/wmPcYBlU9fhYYgVd+0WC/Yx5a1ORHKt+wMwNU
- tqh/9igN0cYVINGaankirZMJS7KPj/pueCfuhyiy4xxQenAvLu/sA/0it g==;
-X-CSE-ConnectionGUID: o9NordvkRh2jdqjV10x6EA==
-X-CSE-MsgGUID: tMgR2WjHQ6y5hri9JvNaGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4091044"
+ bh=xCqcMG9KnXLVrGmC1A5+fy0D836q2y0laoLwVwtNITw=;
+ b=DX7x68X8O7Dy/hgxB2BVm4iqxydt0J8L7z7rvYu5amECpnkt5jNBuP6c
+ TwCKDUyxq1SwU1Kaj6kdiWE8wZcz3ZRBHPhxjDY0Ho80oQIH09xV5gfsw
+ lxbU6GrYGSzyVLTG382tuXx+0/TBnDc4aRBQAInMw5REtiU3u8A+30VyE
+ joocTsnroJd3GcSJQms8CsAF2JbOp99Is9Ss4KK9avMGuBDesGSAoWHB5
+ 20wfqvvd94y+UX8G/CJWTf0YnXLWLn+htMDzSSMVC7nqPGwa/tc5VonNd
+ sFLvbu2oc9ruPGHiGo0FzU3VFrp08vSlnS0FEpKs79dtfVJXwPSsFbe/O A==;
+X-CSE-ConnectionGUID: g3kMKsLFSZGsi+H89Mmy9g==
+X-CSE-MsgGUID: XGSJQMpNRoiXv1SRol19UQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4091040"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4091044"
+   d="scan'208";a="4091040"
 Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:23:56 -0800
-X-CSE-ConnectionGUID: OK6RElQ8QUqbo6uWT9itVg==
-X-CSE-MsgGUID: WvdK22zQTPmCxAF8jSEA7w==
+ 20 Nov 2026 06:23:54 -0800
+X-CSE-ConnectionGUID: APEkVARkQ3OcA6cZpeUFpw==
+X-CSE-MsgGUID: X5hkZ6VzT2yTNOvLZ2zgvA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12422080"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12422077"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 06:23:54 -0800
+ 20 Nov 2026 06:23:53 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: alexander.kaplan@sms-medipool.de,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 28/29] drm/i915/dp: Limit the compressed bpp for pass-through
- to the HDMI sink
-Date: Fri, 20 Nov 2026 19:37:28 +0530
-Message-ID: <20261120140729.466177-29-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 27/29] drm/i915/dp: Pick the DSC slice count for pass-through
+ within the HDMI limits
+Date: Fri, 20 Nov 2026 19:37:27 +0530
+Message-ID: <20261120140729.466177-28-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
@@ -72,69 +72,50 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The compressed bpp of a DSC stream passed through the PCON also has to
-be one the HDMI sink can decode. So far only the FRL bandwidth limited
-it, and the pass-through check rejected the mode if the bpp was outside
-the range the sink supports, or made a line exceed the chunk bytes limit
-of the sink.
+The PCON passes a DSC 1.2a stream to the HDMI sink as is, so the slice
+count of the DP stream has to be one the HDMI sink can decode. The DP
+side picks the smallest count that satisfies the DP sink only, which can
+end up outside the limits of the HDMI sink, and then the pass-through
+check rejects the mode.
 
-Limit the link bpp range to the range the sink supports, and to the
-highest bpp within the chunk bytes limit of the sink, using the same
-helper as for the PCON DSC encoder. The slice count is picked later, so
-use the minimum slice count of the HDMI sink for it. Fail the limits
-computation if no bpp fits the chunk bytes limit.
+Fill the limits of the slice count for a pass-through stream from the
+HDMI sink, so that the slice config picks a valid count. Fail the limits
+computation if the HDMI sink has no valid slice count.
 
 Assisted-by: LLM
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 25 +++++++++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2282e7e027d7..5ac687412406 100644
+index 9898e6c6266c..2282e7e027d7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3092,7 +3092,10 @@ intel_dp_pcon_dsc_compute_passthrough_limits(struct intel_dp *intel_dp,
- 					     struct link_config_limits *limits)
- {
- 	struct intel_connector *connector = intel_dp->attached_connector;
-+	const struct drm_display_info *info = &connector->base.display_info;
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-+	int bpc = limits->pipe.max_bpp / 3;
-+	int min_dsc_bpp, max_dsc_bpp, hdmi_bpp_x16, slice_width;
+@@ -3080,7 +3080,8 @@ intel_dp_compute_m_n_ratio_limits(struct intel_dp *intel_dp,
  
- 	if (!intel_dp_pcon_sink_support_frl(intel_dp) ||
- 	    !intel_dp_pcon_can_passthrough_dsc(intel_dp) ||
-@@ -3112,9 +3115,27 @@ intel_dp_pcon_dsc_compute_passthrough_limits(struct intel_dp *intel_dp,
- 						 &limits->dfp_dsc.max_slices))
- 		return false;
+ /*
+  * The stream of a PCON passing DSC through is not recompressed, so it has to
+- * fit the HDMI FRL link as is. Limit the compressed bpp of the DP stream.
++ * fit the HDMI link and be one the HDMI sink can decode as is. Limit the DSC
++ * parameters of the DP stream accordingly.
+  *
+  * This applies only if the HDMI link needs DSC and the DP stream is a DSC 1.2a
+  * stream, as passing it through is the only PCON operation possible then.
+@@ -3104,6 +3105,13 @@ intel_dp_pcon_dsc_compute_passthrough_limits(struct intel_dp *intel_dp,
+ 				  true) == MODE_OK)
+ 		return true;
  
-+	intel_hdmi_dsc_get_min_max_bpp(crtc_state->sink_format, bpc,
-+				       info->hdmi.dsc_cap.all_bpp,
-+				       &min_dsc_bpp, &max_dsc_bpp);
-+
-+	/*
-+	 * The slice count of the stream is picked later, use the minimum one
-+	 * for the highest bpp the sink supports in the range and within the
-+	 * chunk bytes limit.
-+	 */
-+	slice_width = DIV_ROUND_UP(adjusted_mode->crtc_hdisplay, limits->dfp_dsc.min_slices);
-+	hdmi_bpp_x16 = intel_hdmi_dsc_get_bpp(16, slice_width, limits->dfp_dsc.min_slices,
-+					      crtc_state->sink_format, bpc,
-+					      info->hdmi.dsc_cap.all_bpp,
-+					      info->hdmi.dsc_cap.total_chunk_kbytes * 1024, 0);
-+	if (!hdmi_bpp_x16)
++	if (!intel_dp_pcon_dsc_hdmi_slice_limits(connector, adjusted_mode,
++						 adjusted_mode->crtc_clock,
++						 crtc_state->sink_format,
++						 &limits->dfp_dsc.min_slices,
++						 &limits->dfp_dsc.max_slices))
 +		return false;
 +
-+	limits->link.min_bpp_x16 = max(limits->link.min_bpp_x16, min_dsc_bpp * 16);
  	limits->link.max_bpp_x16 =
--		min(limits->link.max_bpp_x16,
--		    intel_dp_hdmi_frl_payload_bw(intel_dp, true) * 16 / adjusted_mode->crtc_clock);
-+		min3(limits->link.max_bpp_x16, hdmi_bpp_x16,
-+		     intel_dp_hdmi_frl_payload_bw(intel_dp, true) * 16 / adjusted_mode->crtc_clock);
- 
- 	return true;
- }
+ 		min(limits->link.max_bpp_x16,
+ 		    intel_dp_hdmi_frl_payload_bw(intel_dp, true) * 16 / adjusted_mode->crtc_clock);
 -- 
 2.50.1
 
