@@ -2,42 +2,61 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A86606A331
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:38:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141A6606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:38:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DFrmKOvr
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=C9AKNIfN
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A62C710E132;
-	Fri, 20 Nov 2026 14:38:20 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F1F410E90F;
- Fri, 20 Nov 2026 14:38:15 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id C4E8E40276;
- Fri, 20 Nov 2026 14:38:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B21F1F000C6;
- Fri, 20 Nov 2026 14:38:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795185494;
- bh=n0wp+Mk73OwfCT4Ha8gekjAJ40jbifBXN4nDyowCZgk=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=DFrmKOvrNXdUTrm0sPEnh1qNPgnBud22LqRyvAASjcbDD4t4fDLp1xsXMO5fB987I
- VD5016w/064bu13epevqNyBn2bNvPwE+56Y57qM7wRl+e1QKUdRYIrHX+MGrQlIH0i
- IkGuUnC4xa8mmw9hp6m2VTkspkEB3qVn38sU8dUrDY8vHj11hwEt85DzhYAizOEwkv
- jnO6RL2cAhmTTXiUydvf9s7Y3NmrqTitFAadrhMDQPDIsf4CmwCZ76o5xU2Yuby4cl
- gEhH5MArvmsGrQ/bscrgg33/L7nagDh1GyGJQBFdTToAK4znWsSMzcNaFSxjn103lr
- X0bC8Gm4tshlQ==
-Message-ID: <sashiko-outbox-225396@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 22/29] drm/i915/dp: Enable DSC pass-through in the PCON
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120140729.466177-23-ankit.k.nautiyal@intel.com>
-References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
- <20261120140729.466177-23-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD5D810E920;
+	Fri, 20 Nov 2026 14:38:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7634E10E920;
+ Fri, 20 Nov 2026 14:38:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795185513; x=1826721513;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=2zgiYX1rxcn2bvRDsivsL0YVaICp/6jy4ymrROzCGZA=;
+ b=C9AKNIfNHBqRHDc1lP9vO1Qy5a1mn9AZcq3BdWlk1/DuezxxE3RC5F9T
+ e8yGjv3BWCjQj17Yil/jnAytzm+KBK/kyHUkWB6cT53L3BPcQJ4auQLor
+ hZRtgajTvUP5UyVksn1uhMKqI3EMA5abs2t+U/oRwCiZ7iZeyDvyvMd2/
+ oNt2FS76z4kRfe5rqDrkZpCL0Zbftm4MJ9imVUZhpbc56KQuQWWdPc/x5
+ 6BTBE+gDnZHCDXN2aUu38XFLV5Xwp7BtN+bU5NaPL9nPounTjVA/Oo/jz
+ 290XYxcwOd/0akO9wgTVKkREMudlVgr4cDmPzpAsnL8NjaPWZ0csJ4Not A==;
+X-CSE-ConnectionGUID: 1sZCjPVeQnWYmg0DibxN1g==
+X-CSE-MsgGUID: NkcYVcfJQqypvz81g6bQ3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="3954548"
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
+   d="scan'208";a="3954548"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 06:38:32 -0800
+X-CSE-ConnectionGUID: 6raTj0lDQk2PNluxPZxoyA==
+X-CSE-MsgGUID: diQIaR6FSqKSmHh7TlIlaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="10784615"
+Received: from abityuts-desk1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.250])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 06:38:31 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915: move FBC_RT_BASE register macros to
+ intel_gt_regs.h
+In-Reply-To: <av8X3kGJ99JEAT0u@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261119151644.4097956-1-jani.nikula@intel.com>
+ <20261119151644.4097956-2-jani.nikula@intel.com>
+ <av8X3kGJ99JEAT0u@intel.com>
+Date: Fri, 20 Nov 2026 16:38:27 +0200
+Message-ID: <8fbc6c44d165f967e85e7431c59efd3575e79bee@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 14:38:13 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,131 +66,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/i915/dp: stale DP_DSC_ENABLE bits in
-  intel_dp_sink_disable_decompression()
---
+On Thu, 19 Nov 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Nov 19, 2026 at 05:16:44PM +0200, Jani Nikula wrote:
+>> The FBC_RT_BASE registers are in the SVL unit, not display. Move them to
+>> intel_gt_regs.h, and reducing display includes from i915 core in the
+>> process.
+>
+> Yeah, we don't use the FBC hardware render tracking so we have no
+> need for these in the display code. I was worried we might still be
+> writing them anyway, but looks like I removed all that in
+> commit b339088d81c8 ("drm/i915: Don't write IVB_FBC_RT_BASE") and
+> commit 644398586f00 ("drm/i915/fbc: Remove the FBC_RT_BASE setup for
+> ILK/SNB")
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-commit 2433da6ae530a721973aa8e15cc125c351ed4832
-Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Thanks, pushed both to din.
 
-drm/i915/dp: Enable DSC pass-through in the PCON
-
-This commit adds helpers to enable and disable DSC pass-through in a PCON
-instead of enabling sink decompression when pcon_config.dsc_op is set to
-INTEL_PCON_DSC_PASSTHROUGH.
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index 7b66cd82b065e..5bfbcf91d7add 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3998,6 +3998,18 @@ intel_dp_sink_set_dsc_passthrough(const struct int=
-el_connector *connector,
->  			    str_enable_disable(enable));
->  }
-> =20
-> +static void
-> +intel_dp_pcon_set_dsc_passthrough(struct intel_connector *connector, boo=
-l enable)
-> +{
-> +	struct intel_display *display =3D to_intel_display(connector);
-> +
-> +	if (write_dsc_decompression_flag(connector->dp.dsc_decompression_aux,
-> +					 DP_DSC_PASSTHROUGH_EN, enable) < 0)
-> +		drm_dbg_kms(display->drm,
-> +			    "Failed to %s PCON DSC pass-through\n",
-> +			    str_enable_disable(enable));
-> +}
-> +
->  static int intel_dp_dsc_aux_ref_count(struct intel_atomic_state *state,
->  				      const struct intel_connector *connector,
->  				      bool for_get_ref)
-> @@ -4068,7 +4080,8 @@ static bool intel_dp_dsc_aux_put_ref(struct intel_a=
-tomic_state *state,
->   * sink device, whereas on MST based on each device's DSC capabilities i=
-t's
->   * either the last branch device (enabling decompression in it) or both =
-the
->   * last branch device (enabling passthrough in it) and the sink device
-> - * (enabling decompression in it).
-> + * (enabling decompression in it). A PCON passing a DSC stream through to
-> + * the HDMI sink gets passthrough enabled instead of decompression.
->   */
->  void intel_dp_sink_enable_decompression(struct intel_atomic_state *state,
->  					struct intel_connector *connector,
-> @@ -4087,6 +4100,12 @@ void intel_dp_sink_enable_decompression(struct int=
-el_atomic_state *state,
->  	if (!intel_dp_dsc_aux_get_ref(state, connector))
->  		return;
-> =20
-> +	/* A PCON passing the DSC stream through to the HDMI sink doesn't decod=
-e it */
-> +	if (new_crtc_state->pcon_config.dsc_op =3D=3D INTEL_PCON_DSC_PASSTHROUG=
-H) {
-> +		intel_dp_pcon_set_dsc_passthrough(connector, true);
-> +		return;
-> +	}
-> +
->  	intel_dp_sink_set_dsc_passthrough(connector, true);
->  	intel_dp_sink_set_dsc_decompression(connector, true);
->  }
-> @@ -4118,6 +4137,11 @@ void intel_dp_sink_disable_decompression(struct in=
-tel_atomic_state *state,
->  	if (!intel_dp_dsc_aux_put_ref(state, connector))
->  		return;
-> =20
-> +	if (old_crtc_state->pcon_config.dsc_op =3D=3D INTEL_PCON_DSC_PASSTHROUG=
-H) {
-> +		intel_dp_pcon_set_dsc_passthrough(connector, false);
-> +		return;
-> +	}
-
-[Severity: Medium]
-Can this leave DP_DSC_PASSTHROUGH_EN and DP_DECOMPRESSION_EN stale or both
-set in the PCON's DP_DSC_ENABLE register?
-
-pcon_config.dsc_op is not read out from the hardware during initial probe
-or resume:
-
-drivers/gpu/drm/i915/display/intel_display_types.h:intel_crtc_state {
-    ...
-	/*
-	 * Configuration of a DP->HDMI PCON. Only used for state computation,
-	 * not read out from the HW.
-	 */
-	struct {
-		enum intel_pcon_dsc_op dsc_op;
-    ...
-}
-
-When taking over a DSC mode where the PCON had DP_DSC_PASSTHROUGH_EN set,
-old_crtc_state->pcon_config.dsc_op is INTEL_PCON_NO_DSC during the disable
-phase of the initial modeset.  intel_dp_sink_disable_decompression() then
-calls intel_dp_sink_set_dsc_decompression(connector, false), which only
-clears DP_DECOMPRESSION_EN via write_dsc_decompression_flag(), while
-intel_dp_sink_set_dsc_passthrough(connector, false) is a no-op on SST
-because connector->mst.port is NULL.
-
-As a result, DP_DSC_PASSTHROUGH_EN stays set in the PCON for a following
-uncompressed mode, or gets combined with DP_DECOMPRESSION_EN (0x03) if the
-next mode enables PCON DSC decoding.  Likewise, because
-intel_dp_pcon_set_dsc_passthrough(connector, true) only sets
-DP_DSC_PASSTHROUGH_EN via write_dsc_decompression_flag(), any pre-existing
-DP_DECOMPRESSION_EN bit in DP_DSC_ENABLE is not cleared when enabling
-pass-through.
+>
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_fbc_regs.h | 7 -------
+>>  drivers/gpu/drm/i915/gt/intel_gt_regs.h       | 7 +++++++
+>>  drivers/gpu/drm/i915/gt/intel_workarounds.c   | 2 --
+>>  3 files changed, 7 insertions(+), 9 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_fbc_regs.h b/drivers/gpu=
+/drm/i915/display/intel_fbc_regs.h
+>> index 4178e602d7d7..3ce018ebb27c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_fbc_regs.h
+>> @@ -111,19 +111,12 @@
+>>  #define XE3_FBC_DIRTY_CTL(fbc_id)	_MMIO_PIPE((fbc_id), 0x43234, 0x43274)
+>>  #define   FBC_DIRTY_RECT_EN		REG_BIT(31)
+>>=20=20
+>> -#define ILK_FBC_RT_BASE		_MMIO(0x2128)
+>> -#define   ILK_FBC_RT_VALID	REG_BIT(0)
+>> -#define   SNB_FBC_FRONT_BUFFER	REG_BIT(1)
+>> -
+>>  #define SNB_DPFC_CTL_SA		_MMIO(0x100100)
+>>  #define   SNB_DPFC_FENCE_EN		REG_BIT(29)
+>>  #define   SNB_DPFC_FENCENO_MASK		REG_GENMASK(4, 0)
+>>  #define   SNB_DPFC_FENCENO(fence)	REG_FIELD_PREP(SNB_DPFC_FENCENO_MASK,=
+ (fence))
+>>  #define SNB_DPFC_CPU_FENCE_OFFSET	_MMIO(0x100104)
+>>=20=20
+>> -#define IVB_FBC_RT_BASE			_MMIO(0x7020)
+>> -#define IVB_FBC_RT_BASE_UPPER		_MMIO(0x7024)
+>> -
+>>  #define MSG_FBC_REND_STATE(fbc_id)	_MMIO_PIPE((fbc_id), 0x50380, 0x5038=
+4)
+>>  #define   FBC_REND_NUKE			REG_BIT(2)
+>>  #define   FBC_REND_CACHE_CLEAN		REG_BIT(1)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_gt_regs.h b/drivers/gpu/drm/i=
+915/gt/intel_gt_regs.h
+>> index 3ba9b2206b79..7b892fa50088 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> +++ b/drivers/gpu/drm/i915/gt/intel_gt_regs.h
+>> @@ -202,6 +202,10 @@
+>>  #define   CM0_DEPTH_WRITE_DISABLE		(1 << 1)
+>>  #define   CM0_RC_OP_FLUSH_DISABLE		(1 << 0)
+>>=20=20
+>> +#define ILK_FBC_RT_BASE				_MMIO(0x2128)
+>> +#define   ILK_FBC_RT_VALID			REG_BIT(0)
+>> +#define   SNB_FBC_FRONT_BUFFER			REG_BIT(1)
+>> +
+>>  #define GFX_FLSH_CNTL				_MMIO(0x2170) /* 915+ only */
+>>=20=20
+>>  /*
+>> @@ -471,6 +475,9 @@
+>>  #define   HZ_DEPTH_TEST_LE_GE_OPT_DISABLE	REG_BIT(13)
+>>  #define   BDW_HIZ_POWER_COMPILER_CLOCK_GATING_DISABLE	REG_BIT(3)
+>>=20=20
+>> +#define IVB_FBC_RT_BASE				_MMIO(0x7020)
+>> +#define IVB_FBC_RT_BASE_UPPER			_MMIO(0x7024)
+>> +
+>>  #define XEHP_CULLBIT2				MCR_REG(0x7030)
+>>=20=20
+>>  #define GEN8_L3CNTLREG				_MMIO(0x7034)
+>> diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/d=
+rm/i915/gt/intel_workarounds.c
+>> index 24ea5d8d529c..a2f00fc8589d 100644
+>> --- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> +++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+>> @@ -20,8 +20,6 @@
+>>  #include "intel_ring.h"
+>>  #include "intel_workarounds.h"
+>>=20=20
+>> -#include "display/intel_fbc_regs.h"
+>> -
+>>  /**
+>>   * DOC: Hardware workarounds
+>>   *
+>> --=20
+>> 2.47.3
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120140729.4661=
-77-1-ankit.k.nautiyal@intel.com?part=3D22
+Jani Nikula, Intel
