@@ -2,52 +2,54 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7A62606A325
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC990606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bjdL96Xd
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=k9LTzVV/
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C0B7112834;
-	Fri, 20 Nov 2026 02:16:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C857112834
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 02:16:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57D4510E1EB;
+	Fri, 20 Nov 2026 02:19:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DCDE10E1EB
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 02:19:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795140989; x=1826676989;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uy89TtOe7qfo5yI1fK3UmwWGIfJFw2jZIVFQlOaluy0=;
- b=bjdL96Xdn3igxvmjH6Q5uA1MK8XCN513d4CTkhBFJN37skY2Yyycajlc
- wAN7tXIFwajhL+FquRnQZzWMIsSQ/5lpx0MJT4RfTWK0zlP7N70ZGfTob
- wlpEUzjDBwrSdVZlj7FgH95IRFFM3282AefdQ/w4QJ5/J4cSqb1kCrjYb
- C3LgxHvbnKjwxLvtc681lO/X0pUpNNHxJ1jO7OTyecE6ceZTLppjh5HdR
- NrHx2s5p1eynYSIDrTxe434PFT/r4t5PSlB+O5r+uvHqgjVLs2X2K3CTu
- MugWLwuG9pkn6Ofb6Oh13Y6vvvi1YHTNBOa/Gwj8MKyv3SwlrgsJdezqm Q==;
-X-CSE-ConnectionGUID: 6+S33qm9QeGN+A1yxV9jjQ==
-X-CSE-MsgGUID: EsbxNWo0T6OEchwTnfK5Dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3902854"
+ t=1795141183; x=1826677183;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mlpEsfOGcSv6PJtCjdJjrGR6IbhGsKoJMsCnxc2yvlc=;
+ b=k9LTzVV/c1WYmVaLGnyDTY7abHDfr1nxhbTgP+qJ1JSvps+qUKylz9MI
+ wY22cfRVxtZpE6tzWJQ7HO8r0lFjXmzzVtc1rkaBoHO6derXkVKvidSo+
+ juy6rZt5iPdVsaQk60MT5rRVZDY1wOQqlpFfKmaQjPe4ZzdyB6c/N8lRN
+ CJ0mIrtQa/iLGtepPMO0FMJPFjb8TsyE6dR3OSmYUHLuT41q9mfwLPhiT
+ ZlqvujLMV9VGWWO0CXjfPhU19eU9ojUypvvw60imF6njb9ukMZ8hObblI
+ c+2fH8GfL/aSyFwKk5pMWgFzdPh7YL/sU0q0O1mnFzxokJTIAx6g5RL6F A==;
+X-CSE-ConnectionGUID: 7x58Re2VTC+Lj0eHheKqZg==
+X-CSE-MsgGUID: rAglOvoOShyQXzmc/scN/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3898386"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="3902854"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 18:16:28 -0800
-X-CSE-ConnectionGUID: KS8/8ZOFT8S/5qugb6Bq6Q==
-X-CSE-MsgGUID: mINnD7nWQbGHofEAjHUe4A==
+   d="scan'208";a="3898386"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 18:19:43 -0800
+X-CSE-ConnectionGUID: 3r2CmmXFRjqnrmVEcnLiow==
+X-CSE-MsgGUID: IwenkdxsT6uUJ8qFjou8Ww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10672917"
-Received: from vbelgaum-desk1.fm.intel.com ([10.121.64.203])
- by fmviesa005.fm.intel.com with ESMTP; 19 Nov 2026 18:16:28 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v5 2/2] drm/xe: Add sysfs to disable RPe
-Date: Thu, 19 Nov 2026 18:16:08 -0800
-Message-ID: <20261120021606.1360244-4-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20261120021606.1360244-3-vinay.belgaumkar@intel.com>
-References: <20261120021606.1360244-3-vinay.belgaumkar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10487083"
+Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2026 18:19:42 -0800
+From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
+ airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
+ anoop.c.vijay@intel.com, badal.nilawar@intel.com,
+ matthew.d.roper@intel.com, james.ausmus@intel.com
+Subject: [PATCH v20 00/19] Crescent Island PMT support
+Date: Thu, 19 Nov 2026 18:19:30 -0800
+Message-ID: <20261120021929.473553-21-michael.j.ruhl@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -61,277 +63,195 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When SLPC is initialized, GuC sets the GT min freq to RPe(efficient) by
-default. This frequency is desgined for optimal perf/power ratio. However,
-certain use cases may want to run at lower frequencies. This sysfs allows
-user to disable use of default RPe behavior.
+The Crescent Island (CRI) GPU supports PMT via Xe driver
+registration.
 
-Efficient frequency will now be controlled by this interface alone. Setting
-min_freq < efficient will not disable RPe. When RPe is enabled, GuC raises
-min to RPe and lowers it back when disabled.
+The CRI PMT MMIO mapping is shared for each PMT feature and it is
+necessary to set an index register value to access the correct memory
+space.
 
-Update pc_set_mert_freq_cap() to now disable RPe before stashing min freq.
-This ensures we are saving the real min freq instead of the elevated one.
+The PMT driver has a callback infrastructure to access data areas with
+driver specific access. It is does not support the PMT control access.
 
-$ cat /sys/class/drm/card0/device/tile0/gt1/freq0/use_rpe
-1
+CRI discovery/control spaces are part of the access window so a driver
+callback is necessary to allow for the correct window to be exposed.
 
-v2: Address Sashiko comments.
-v3: Disable RPe before stashing freq before mert cap (Sashiko)
-v4: Disable RPe inside pc_adjust_freq_bounds (Sashiko), make use_rpe a
-bool (Anirban)
-v5: Restore use_rpe while under pc->freq_lock(Sashiko)
+Add control path callback support to the PMT driver.
 
-Cc: Sk Anirban <sk.anirban@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_freq.c      | 35 ++++++++++++
- drivers/gpu/drm/xe/xe_guc_pc.c       | 81 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_guc_pc.h       |  1 +
- drivers/gpu/drm/xe/xe_guc_pc_types.h |  2 +
- 4 files changed, 110 insertions(+), 9 deletions(-)
+Add CRI PMT discovery information.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_freq.c b/drivers/gpu/drm/xe/xe_gt_freq.c
-index a40dd074106f..38c4f17ba99c 100644
---- a/drivers/gpu/drm/xe/xe_gt_freq.c
-+++ b/drivers/gpu/drm/xe/xe_gt_freq.c
-@@ -242,6 +242,40 @@ static ssize_t power_profile_store(struct kobject *kobj,
- }
- static struct kobj_attribute attr_power_profile = __ATTR_RW(power_profile);
- 
-+static ssize_t use_rpe_show(struct kobject *kobj,
-+			    struct kobj_attribute *attr,
-+			    char *buff)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct xe_guc_pc *pc = dev_to_pc(dev);
-+
-+	return sysfs_emit(buff, "%u\n", pc->use_rpe);
-+}
-+
-+static ssize_t use_rpe_store(struct kobject *kobj,
-+			     struct kobj_attribute *attr,
-+			     const char *buff, size_t count)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct xe_guc_pc *pc = dev_to_pc(dev);
-+	int err;
-+	u32 val;
-+
-+	err = kstrtou32(buff, 0, &val);
-+	if (err)
-+		return err;
-+
-+	if (val > 1)
-+		return -EINVAL;
-+
-+	guard(xe_pm_runtime)(dev_to_xe(dev));
-+	err = xe_guc_pc_set_use_rpe(pc, val);
-+
-+	return err ?: count;
-+}
-+
-+static struct kobj_attribute attr_use_rpe = __ATTR_RW(use_rpe);
-+
- static const struct attribute *freq_attrs[] = {
- 	&attr_act_freq.attr,
- 	&attr_cur_freq.attr,
-@@ -252,6 +286,7 @@ static const struct attribute *freq_attrs[] = {
- 	&attr_min_freq.attr,
- 	&attr_max_freq.attr,
- 	&attr_power_profile.attr,
-+	&attr_use_rpe.attr,
- 	NULL
- };
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 7e9700f16bfb..68e54e0b756d 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -344,6 +344,21 @@ static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
- 	pc_set_manual_rp_ctrl(pc, false);
- }
- 
-+static int pc_set_ignore_eff_freq(struct xe_guc_pc *pc, u32 val)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	int ret;
-+
-+	xe_device_assert_mem_access(pc_to_xe(pc));
-+
-+	ret = pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY, val);
-+	if (ret)
-+		xe_gt_err_once(gt, "Failed to set ignore_eff_freq to %u, %pe\n",
-+			       val, ERR_PTR(ret));
-+
-+	return ret;
-+}
-+
- static bool pc_freq_in_range(struct xe_guc_pc *pc, u32 freq)
- {
- 	/*
-@@ -358,13 +373,6 @@ static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
- 	if (!pc_freq_in_range(pc, freq))
- 		return -EINVAL;
- 
--	/*
--	 * GuC policy is to elevate minimum frequency to the efficient levels
--	 * Our goal is to have the admin choices respected.
--	 */
--	pc_action_set_param(pc, SLPC_PARAM_IGNORE_EFFICIENT_FREQUENCY,
--			    freq < xe_guc_pc_get_rpe_freq(pc));
--
- 	return pc_action_set_param(pc,
- 				   SLPC_PARAM_GLOBAL_MIN_GT_UNSLICE_FREQ_MHZ,
- 				   freq);
-@@ -943,6 +951,15 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
- 
- 	lockdep_assert_held(&pc->freq_lock);
- 
-+	/*
-+	 * GuC enables RPe by default during SLPC reset, regardless of
-+	 * use_rpe. Disable it so min_freq below reflects the true GT min
-+	 * freq.
-+	 */
-+	ret = pc_set_ignore_eff_freq(pc, 1);
-+	if (ret)
-+		goto out;
-+
- 	ret = pc_action_query_task_state(pc);
- 	if (ret)
- 		goto out;
-@@ -1099,12 +1116,23 @@ void xe_guc_pc_remove_flush_freq_limit(struct xe_guc_pc *pc)
- static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
- {
- 	int ret;
-+	u32 mert_freq_cap;
- 
- 	if (!XE_GT_WA(pc_to_gt(pc), 22019338487))
- 		return 0;
- 
- 	guard(mutex)(&pc->freq_lock);
- 
-+	/*
-+	 * Disable the RPe floor so the min queried below reflects the real
-+	 * underlying minimum (RPn or user_requested_min) instead of a value
-+	 * GuC may have elevated to RPe. This stays disabled until
-+	 * xe_guc_pc_restore_stashed_freq() reinstates it.
-+	 */
-+	ret = pc_set_ignore_eff_freq(pc, 1);
-+	if (ret)
-+		return ret;
-+
- 	/*
- 	 * Get updated min/max and stash them.
- 	 */
-@@ -1117,7 +1145,9 @@ static int pc_set_mert_freq_cap(struct xe_guc_pc *pc)
- 	/*
- 	 * Ensure min and max are bound by MERT_FREQ_CAP until driver loads.
- 	 */
--	ret = pc_set_min_freq(pc, min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc)));
-+	mert_freq_cap = min(xe_guc_pc_get_rpe_freq(pc), pc_max_freq_cap(pc));
-+
-+	ret = pc_set_min_freq(pc, mert_freq_cap);
- 	if (!ret)
- 		ret = pc_set_max_freq(pc, min(pc->rp0_freq, pc_max_freq_cap(pc)));
- 
-@@ -1144,9 +1174,11 @@ int xe_guc_pc_restore_stashed_freq(struct xe_guc_pc *pc)
- 	mutex_lock(&pc->freq_lock);
- 	/* Apply any user min/max request made while the cap was active, else the stash. */
- 	ret = pc_set_max_freq(pc, pc->user_requested_max ?: pc->stashed_max_freq);
--
- 	if (!ret)
- 		ret = pc_set_min_freq(pc, pc->user_requested_min ?: pc->stashed_min_freq);
-+	/* Restore ignore_eff_freq override from pc_set_mert_freq_cap(). */
-+	if (!ret)
-+		ret = pc_set_ignore_eff_freq(pc, !pc->use_rpe);
- 	if (!ret)
- 		pc->mert_freq_cap_active = false;
- 	mutex_unlock(&pc->freq_lock);
-@@ -1178,6 +1210,11 @@ static int pc_init_freqs(struct xe_guc_pc *pc)
- 
- 	pc_init_pcode_freq(pc);
- 
-+	/* Restore use_rpe */
-+	ret = pc_set_ignore_eff_freq(pc, !pc->use_rpe);
-+	if (unlikely(ret))
-+		return ret;
-+
- 	/*
- 	 * The frequencies are really ready for use only after the user
- 	 * requested ones got restored.
-@@ -1200,6 +1237,31 @@ static int pc_action_set_strategy(struct xe_guc_pc *pc, u32 val)
- 	return ret;
- }
- 
-+int xe_guc_pc_set_use_rpe(struct xe_guc_pc *pc, u32 val)
-+{
-+	int ret = 0;
-+
-+	guard(mutex)(&pc->freq_lock);
-+
-+	/* Might be in the middle of a gt reset */
-+	if (!pc->freq_ready)
-+		return -EAGAIN;
-+
-+	if (!pc->mert_freq_cap_active) {
-+		/*
-+		 * If use_rpe == 1, ignore_eff_freq = false. GuC elevates min_freq to
-+		 * RPe when enabled, and resets it back to the previously set min
-+		 * when disabled, so no explicit set_min_freq request is needed here.
-+		 */
-+		ret = pc_set_ignore_eff_freq(pc, !val);
-+	}
-+
-+	if (!ret)
-+		pc->use_rpe = val;
-+
-+	return ret;
-+}
-+
- static const char *power_profile_to_string(struct xe_guc_pc *pc)
- {
- 	switch (pc->power_profile) {
-@@ -1434,6 +1496,7 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
- 	pc->bo = bo;
- 
- 	pc->power_profile = SLPC_POWER_PROFILE_BASE;
-+	pc->use_rpe = true;
- 
- 	return devm_add_action_or_reset(xe->drm.dev, xe_guc_pc_fini_hw, pc);
- }
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
-index 1025a2b15f5f..dc52f349a6a2 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.h
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.h
-@@ -31,6 +31,7 @@ int xe_guc_pc_get_max_freq(struct xe_guc_pc *pc, u32 *freq);
- int xe_guc_pc_set_max_freq(struct xe_guc_pc *pc, u32 freq);
- int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char *buf);
- void xe_guc_pc_get_power_profile(struct xe_guc_pc *pc, char *profile);
-+int xe_guc_pc_set_use_rpe(struct xe_guc_pc *pc, u32 val);
- 
- enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
- u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-index 9a6ea2904e33..d59e7c935738 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
-@@ -37,6 +37,8 @@ struct xe_guc_pc {
- 	u32 power_profile;
- 	/** @mert_freq_cap_active: Wa_22019338487 min/max cap is currently in force */
- 	bool mert_freq_cap_active;
-+	/** @use_rpe: Toggle use of efficient frequency */
-+	bool use_rpe;
- };
- 
- #endif	/* _XE_GUC_PC_TYPES_H_ */
+Update the Xe driver to support the CRI PMT access.
+
+The crashlog access needs to be done with power enabled (telem is only
+available when the device is powered).
+
+Determine which access is requested, and do the appropriate power
+request.
+
+CRI FW is loaded at device power.  Support the late-binding API to
+wait for FW readiness. (pending sysctl patch set implements the API).
+
+v2:
+  Address AI feedback:
+  - add missing entry->cb check
+  - address SRIOV VF concerns
+  - use xe_pm_runtime_put instead of _get in error path
+
+  Address review comments:
+  - redo power/lock sequencing
+  - support device hotplug events
+
+v3:
+  - cleanup power manangement flow
+  - fixed an out of order power management locking issue
+  - add a GUID caching mechanism, for GUID read
+  - removed unused parameter (mmio)
+
+v4:
+ - address various review comments
+ - refactor crashlog to allow for return values
+ - for callback usage, decouple PMT remap of data areas
+ - use IS_SRIOV_VF() rather than expose soc-remapper internals
+ - separate locking fixes intos distinct steps
+ - refactor define update patches to seperate BMG and CRI updates
+ - separate internal GUID into separate steps
+
+v5:
+ - removed callback helpers
+ - do not return error message with sysfs
+ - fix missed return code check in trigger_store
+ - return error value not false
+ - use DEFINE_RES_MEM
+ - document when base is unused
+ - return error on invalid GUID request
+
+v6:
+ - fix enabled/disabled inversion
+ - fix missing DOC reference
+ - change memcpy_to/fromio to readl/writel for register read
+ - guid cache comment and update on valid guid
+
+v7:
+ - reordered to have BMG updates followed by CRI support
+ - separate base_offset usage for clarity
+ - added EAGAIN usage to block uninitialized use of the API
+
+v8:
+ - fix punit crashlog offset (should be 0xE60 not 0xE78)
+ - remove EAGAIN support and re-order probe steps to initialize
+   VSEC before other features use it
+
+v9:
+ - added appropriate reviewed-bys
+ - use dev_err instead of pr_err
+ - enforce defined base usage when callbacks are in plcace
+ - move SRIOV check to get_platform_info
+ - assert SRIOV for API check
+ - use scoped_guard() where possible
+ - update to use correct sysctrl helper
+
+v10:
+ - fix incorrect return type (broken in refactor, int -> bool)
+ - fix incorrectly documented error return values
+ - doc text cleanup
+
+v11:
+ - add reviewed-by
+ - fix minor checkpatch issue
+ - use xe_assert() for a consistent API check
+
+v12:
+ - add survivability mode support
+ - add reviewed-by
+
+v13:
+ - PMT patches (original commits 1 - 5) are merged upstream
+ - resubmitting XeKMD patches
+
+v14:
+ - address AI review comments
+ - init soc-remapper in survivability path
+ - reset soc-remapper index to the discovery index after access
+ - re-order read/write to eliminate need for goto
+ - check for signals in wait_for_fw
+ - add appropriate doc updates
+ - use system_freezable_wq vs system_wq
+ - cache survivability mode to avoid error path issues
+
+v15:
+ - add/correct fixes tags
+ - replace devm_add with xe_vsec_remove() to avoid error path race
+
+v16:
+ - fix xe_vsec_remove path to verify CRI usage before cleanup
+
+v17:
+ - one last AI review fix
+ - return error GUID == 0
+
+v18:
+ - use a callback to prefill discovery records
+   this corrects a locking issue during probe
+ - use the prefilled header for crashlog
+ - setting the soc-remapper index now only occurs with the lock held
+
+v19:
+ - checkpatch issue
+ - submit to the correct mailing lists
+
+v20:
+ - address review comments
+ - augment commit messages
+ - augment usage documentation
+ - STATUS_IDX to access_idx
+ - return 0 for device hot unplug
+ - fix guid error path
+
+Michael J. Ruhl (19):
+  platform/x86/intel/pmt: Introduce a callback for discovery data
+  platform/x86/intel/pmt: Use the pre-populated header info for crashlog
+  drm/xe/vsec: VSEC requires soc-remapper
+  drm/xe/vsec: Do not register BMG PMT for VF
+  drm/xe/vsec: Correct locking order
+  drm/xe/vsec: Use correct pm state get
+  drm/xe/vsec: Add DOC text for VSEC
+  drm/xe/vsec: Support possible hotplug exit
+  drm/xe/vsec: Refactor BattleMage PMT defines
+  drm/xe/vsec: Update VSEC probe order
+  drm/xe/vsec: Add base_offset to allow for more flexibilty
+  drm/xe/vsec: Support Crescent Island PMT
+  drm/xe/vsec: Crescent Island PMT decode
+  drm/xe/vsec: Crescent Island PMT callbacks
+  drm/xe/vsec: Support late bind fw information
+  drm/xe/vsec: Add PMT GUID internal access
+  drm/xe/vsec: Update PMT internal access
+  drm/xe/vsec: Refactor platform check
+  drm/xe/vsec: Support survivability mode for CRI
+
+ Documentation/gpu/xe/index.rst             |   1 +
+ Documentation/gpu/xe/xe_vsec.rst           |  14 +
+ drivers/gpu/drm/xe/regs/xe_pmt.h           |  12 +-
+ drivers/gpu/drm/xe/xe_debugfs.c            |  45 +-
+ drivers/gpu/drm/xe/xe_device.c             |   7 +-
+ drivers/gpu/drm/xe/xe_device_types.h       |  11 +
+ drivers/gpu/drm/xe/xe_hwmon.c              |  10 +-
+ drivers/gpu/drm/xe/xe_pcode.c              |  10 +-
+ drivers/gpu/drm/xe/xe_survivability_mode.c |   2 +
+ drivers/gpu/drm/xe/xe_vsec.c               | 655 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vsec.h               |   2 +
+ drivers/platform/x86/intel/pmt/class.c     |  18 +-
+ drivers/platform/x86/intel/pmt/crashlog.c  |  24 +-
+ include/linux/intel_vsec.h                 |  10 +
+ 14 files changed, 726 insertions(+), 95 deletions(-)
+ create mode 100644 Documentation/gpu/xe/xe_vsec.rst
+
 -- 
-2.53.0
+2.43.0
 
