@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F769606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:20:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDABD606A320
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 02:20:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YV2l0ZBV
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nO6S+Ub3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA7311283B;
-	Fri, 20 Nov 2026 02:20:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C54410E1EB;
+	Fri, 20 Nov 2026 02:20:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A98511284E
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 02:19:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBD6A11283E
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 02:20:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795141198; x=1826677198;
+ t=1795141201; x=1826677201;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Uaco30gcp0GNNpP7d/MBW+dVjbt1tWfO/kzeIV1MUvY=;
- b=YV2l0ZBV/OIjReQPjV+L87T3rf004o94TraOiy+njGlNYDbFe7ltrE2Y
- z2wkoIGnw05oOgzG+PZL/BsTC9f9Qb6BxQrWZUMH4Jppsw/uTRJq+gf/J
- FUQCyAQ6PfYlkg/GTcu+by1eXNdzpMpubJkMgjUXC7QXfsMi295/XvurQ
- x0BfDNuFE4IXIuLLUXruA/RAYncFJdMvgOWHjvse6dd9UaIJQKz5v0o0K
- pHggemTDOOIsf+ITCwsAVGqOy0xTOFS1IEQtw9bSeJsi1i4F33LsdGk8M
- Cqd1hmmMqvxz2OgDIbnuSzf5v1P0qGqKob/KVWDUzvnBKSPuC85SZDhkN Q==;
-X-CSE-ConnectionGUID: YdDja+4NT+C88Eioix1Lpg==
-X-CSE-MsgGUID: iAqoTe0qTwOBZafcqz9nvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3898432"
+ bh=zh02p6rjsfyI+8Y6eiu/PeTW7l/t31NzS1aRUlZ/NO0=;
+ b=nO6S+Ub3vd0Rm9ZkBhfqhNmrYmlx4q6m0TcMhDbefXjNZAVD5S8Tx3yf
+ X0/Q/zsf/xgGKnn4JS03Wgnvdxbg46kseD1CmJiBI3Coo5r/Si4PayGui
+ 0RyBDS1cGSimHt94t5qUjep856PCshajY8E1mrTSar3U6rggWVrr+RAne
+ 8CFX+C/WEw7mKPZGLsMnHA5574hz0mcDa5Dv8+WXiXht7dCxZ/S7pvjtl
+ Q2InZDRePwlzKcQc5AuvosDREhz2JwB8SKyKM1v0L3wvIy6aOTTwpnmoh
+ 48UjFA0PJoNoScJmSd4cux9KFePl92CbGY1tXvK+v8g6SJSSgBXdb8xUq A==;
+X-CSE-ConnectionGUID: XRDElM57RuuYXLZW17Bb0A==
+X-CSE-MsgGUID: waP3x/ehQS6IyoiS/nZTMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3898445"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="3898432"
+   d="scan'208";a="3898445"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Nov 2026 18:19:45 -0800
-X-CSE-ConnectionGUID: K9BiR5fhRIqM0iCk2w9xmw==
-X-CSE-MsgGUID: jHLe0QU9Rhm/mJ0HWJodkQ==
+X-CSE-ConnectionGUID: 9M3Kg+aBQ4WJE+DouFzEXA==
+X-CSE-MsgGUID: uEaa1D1dRr6ln5+TAIaH3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10487122"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10487129"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2026 18:19:44 -0800
+ 19 Nov 2026 18:19:45 -0800
 From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
 To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
@@ -46,9 +46,10 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v20 09/19] drm/xe/vsec: Refactor BattleMage PMT defines
-Date: Thu, 19 Nov 2026 18:19:39 -0800
-Message-ID: <20261120021929.473553-30-michael.j.ruhl@intel.com>
+Subject: [PATCH v20 11/19] drm/xe/vsec: Add base_offset to allow for more
+ flexibilty
+Date: Thu, 19 Nov 2026 18:19:41 -0800
+Message-ID: <20261120021929.473553-32-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261120021929.473553-21-michael.j.ruhl@intel.com>
 References: <20261120021929.473553-21-michael.j.ruhl@intel.com>
@@ -73,77 +74,75 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Rename generic defines to be BMG specific.
-Define several magic numbers.
+Current pmt_telem_read() usage is a fixed (for BMG) offset.
+In order to support other devices this must be settable.
+
+Add a base offset for more flexibility.
+Add a check to verify that it has been set before allowing
+device access.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 29 +++++++++++++++++------------
- 1 file changed, 17 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_vsec.c         | 9 ++++++++-
+ 2 files changed, 10 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 8f2a31949073..28b1669a14d8 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -485,6 +485,8 @@ struct xe_device {
+ 	struct {
+ 		/** @pmt.lock: protect access for telemetry data */
+ 		struct mutex lock;
++		/** @pmt.base_offset: device specific base offset */
++		u64 base_offset;
+ 	} pmt;
+ 
+ 	/** @soc_remapper: SoC remapper object */
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 6a28e58959be..668f76e3f6c4 100644
+index 668f76e3f6c4..bd272891caeb 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -90,10 +90,15 @@ static struct intel_vsec_platform_info xe_vsec_info[] = {
- #define GUID_CAP_TYPE		GENMASK(29, 28)
- #define GUID_RECORD_ID		GENMASK(31, 30)
- 
--#define PUNIT_TELEMETRY_OFFSET		0x0200
--#define PUNIT_WATCHER_OFFSET		0x14A0
--#define OOBMSM_0_WATCHER_OFFSET		0x18D8
--#define OOBMSM_1_TELEMETRY_OFFSET	0x1000
-+#define BMG_IDX_TELEM_PUNIT		0x00
-+#define BMG_IDX_TELEM_OOBMSM		0x01
-+#define BMG_IDX_CRASHLOG_PUNIT		0x02
-+#define BMG_IDX_CRASHLOG_OOBMSM		0x04
-+
-+#define BMG_PUNIT_TELEMETRY_OFFSET	0x0200
-+#define BMG_PUNIT_WATCHER_OFFSET	0x14A0
-+#define BMG_OOBMSM_0_WATCHER_OFFSET	0x18D8
-+#define BMG_OOBMSM_1_TELEMETRY_OFFSET	0x1000
- 
- enum record_id {
- 	PUNIT,
-@@ -122,29 +127,29 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	*offset = 0;
- 
- 	if (cap_type == CRASHLOG) {
--		*index = record_id == PUNIT ? 2 : 4;
-+		*index = record_id == PUNIT ? BMG_IDX_CRASHLOG_PUNIT : BMG_IDX_CRASHLOG_OOBMSM;
- 		return 0;
+@@ -172,6 +172,7 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+  *
+  * Return:
+  * * -ENODEV device is not available (hotplug)
++ * * -EAGAIN base_offset has not been set, so init path has not yet been done.
+  * * -ENODATA for incorrect power state
+  * * -EINVAL for unsupported PMT feature
+  * * count   number of bytes read on success
+@@ -180,8 +181,8 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		      u32 count)
+ {
+ 	struct xe_device *xe = kdev_to_xe_device(dev);
+-	void __iomem *telem_addr = xe->mmio.regs + BMG_TELEMETRY_OFFSET;
+ 	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
++	void __iomem *telem_addr = xe->mmio.regs + xe->pmt.base_offset;
+ 	u32 mem_region;
+ 	u32 offset;
+ 	int ret = 0;
+@@ -194,6 +195,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		return count;
  	}
  
- 	switch (record_id) {
- 	case PUNIT:
--		*index = 0;
-+		*index = BMG_IDX_TELEM_PUNIT;
- 		if (cap_type == TELEMETRY)
--			*offset = PUNIT_TELEMETRY_OFFSET;
-+			*offset = BMG_PUNIT_TELEMETRY_OFFSET;
- 		else
--			*offset = PUNIT_WATCHER_OFFSET;
-+			*offset = BMG_PUNIT_WATCHER_OFFSET;
- 		break;
++	if (!xe->pmt.base_offset) {
++		ret = -EAGAIN;
++		goto dev_exit;
++	}
++
+ 	ret = xe_guid_decode(guid, &mem_region, &offset);
+ 	if (ret)
+ 		goto dev_exit;
+@@ -271,6 +277,7 @@ void xe_vsec_init(struct xe_device *xe)
  
- 	case OOBMSM_0:
--		*index = 1;
-+		*index = BMG_IDX_TELEM_OOBMSM;
- 		if (cap_type == WATCHER)
--			*offset = OOBMSM_0_WATCHER_OFFSET;
-+			*offset = BMG_OOBMSM_0_WATCHER_OFFSET;
- 		break;
- 
- 	case OOBMSM_1:
--		*index = 1;
-+		*index = BMG_IDX_TELEM_OOBMSM;
- 		if (cap_type == TELEMETRY)
--			*offset = OOBMSM_1_TELEMETRY_OFFSET;
-+			*offset = BMG_OOBMSM_1_TELEMETRY_OFFSET;
+ 	switch (platform) {
+ 	case XE_VSEC_BMG:
++		xe->pmt.base_offset = BMG_TELEMETRY_OFFSET;
+ 		info->priv_data = &xe_pmt_cb;
  		break;
  	default:
- 		return -EINVAL;
 -- 
 2.43.0
 
