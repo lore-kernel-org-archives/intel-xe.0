@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F20C606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD1C7606A325
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 14:41:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Sd9JrAkO
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=JXlJMz/5
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69D3C112B02;
-	Fri, 20 Nov 2026 14:39:31 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F1B9112B05;
- Fri, 20 Nov 2026 14:39:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95276112AFE;
+	Fri, 20 Nov 2026 14:41:23 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F084112AFE;
+ Fri, 20 Nov 2026 14:41:18 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 60F0C41397;
- Fri, 20 Nov 2026 14:39:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 003D31F000D0;
- Fri, 20 Nov 2026 14:39:23 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 0A850627EA;
+ Fri, 20 Nov 2026 14:41:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8645F1F000C6;
+ Fri, 20 Nov 2026 14:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795185564;
- bh=aJTYPxw+DFk94Q0dwUStlosfud0ANDn4kwbnzjW8h04=;
+ s=k20260515; t=1795185676;
+ bh=Hf41jrP8MrmqOsLt0PjtCz3fD5Wd9Dw1HNdI7KYRk58=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=Sd9JrAkOKrzn1TUooR+pp+030D9PhOmBLi2wMUmThSYElrK2m2gTOgvWWV+ZC5hVj
- /ElZDslvSYB+UJ1OUNbPrV/CVz3tMCyl/P9o/in4OOUWRH8MbNzVJJou7w5egPZnoc
- qUUCqxJM65CNf0ub/LN7220jjhfU80ZeyQJWLFBc34gHaMXBoG4XLrLt3L+c2kbf0s
- yjnDJtX4SDSibNwEOEpBr5kWzE+I2I3QsrWKlLObCo5OoV3uBGwz8dtmxMx7ea9u/I
- ighfyP0zPrKOPfpAA2/0OKKAsy9ToFwziu9GBoz4Hqj9QUiPChIBbiLhQKGGtPhrMR
- 9DG+rOLQekPRw==
-Message-ID: <sashiko-outbox-225398@kernel.org>
+ b=JXlJMz/5v46u2Yd3N1cK8wcQhflj8ZiLu9tJ+mYNXoh9NRGq0q0PZtzhuXIu4SFRG
+ mXucNlOcXoR1NtNUmmMveD/9Eeo9oUYRGgoNUcLFKrwWqlo/St1oPme+3pfiX4kZ1N
+ Jtc8QAOTx2I/Rn4mAvcUEObQVyxs5/G6aofsUHmyWR2TG/yoQ/84IOFpGwQQxblX97
+ 4GXnI3vndDdQn+4KxQhYeZ1hjmGzSYwQ+2qp5HziwSsAHUbH+Ifl2k2vYYI1js9gDY
+ JPeEBI6DNRPl4GWxz1aeq7tYx4f2LWMbV9vKalXgNBPPwSeYuQe+XT/+E/Pk54s1ux
+ CUiAktJZ3zUOg==
+Message-ID: <sashiko-outbox-225399@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 19/29] drm/i915/dp: Store the PCON FRL rate in the crtc
- state
+Subject: Re: [PATCH 25/29] drm/i915/dp: Allow limiting the DSC slice count
+ for the downstream device
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261120140729.466177-20-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20261120140729.466177-26-ankit.k.nautiyal@intel.com>
 References: <20261120140729.466177-1-ankit.k.nautiyal@intel.com>
- <20261120140729.466177-20-ankit.k.nautiyal@intel.com>
+ <20261120140729.466177-26-ankit.k.nautiyal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 20 Nov 2026 14:39:23 +0000
+Date: Fri, 20 Nov 2026 14:41:16 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,80 +52,72 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [Medium] drm/i915/dp: stale FRL state in intel_dp_check_frl_training()
-  on TMDS fallback
+- [Medium] drm/i915/dp: DFP slice limits bypassed in UHBR TU and
+  min_hblank paths
 --
 
-commit cf2883c19255833b909ba3e6b88f843de54aa02e
+commit ebe2f0e6460b71fe1655c9706717ef4b175b371c
 Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
-drm/i915/dp: Store the PCON FRL rate in the crtc state
+drm/i915/dp: Allow limiting the DSC slice count for the downstream device
 
-This commit computes and stores the PCON FRL rate in the CRTC state and
-retrains the HDMI link if an already-trained link is below the rate
-required by the new stream.
+This commit adds minimum and maximum downstream facing port DSC slice count
+limits to struct link_config_limits and applies them when selecting a DSC
+slice configuration.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
 15/display/intel_dp.c
-> index 3b8031cd5ef17..61e59c2631ee3 100644
+> index 0ac4e26666c30..1cd5385618ddb 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
 [ ... ]
-> @@ -4433,7 +4432,8 @@ int intel_dp_pcon_set_tmds_mode(struct intel_dp *in=
-tel_dp)
->  	return 0;
->  }
+> @@ -971,7 +977,7 @@ u8 intel_dp_dsc_get_slice_count(const struct intel_co=
+nnector *connector,
 > =20
-> -void intel_dp_check_frl_training(struct intel_dp *intel_dp)
-> +void intel_dp_check_frl_training(struct intel_dp *intel_dp,
-> +				 const struct intel_crtc_state *crtc_state)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
+>  	if (!intel_dp_dsc_get_slice_config(connector,
+>  					   mode_clock, mode_hdisplay,
+> -					   num_joined_pipes, &config))
+> +					   num_joined_pipes, 0, INT_MAX, &config))
+>  		return 0;
 > =20
-> @@ -4443,11 +4443,15 @@ void intel_dp_check_frl_training(struct intel_dp =
-*intel_dp)
->  	 * -sink is HDMI2.1
->  	 */
->  	if (!(intel_dp->downstream_ports[2] & DP_PCON_SOURCE_CTL_MODE) ||
-> -	    !intel_dp_is_hdmi_2_1_sink(intel_dp) ||
-> -	    intel_dp->frl.is_trained)
-> +	    !intel_dp_is_hdmi_2_1_sink(intel_dp))
->  		return;
+>  	return intel_dsc_line_slice_count(&config);
+> @@ -2616,6 +2622,8 @@ int intel_dp_dsc_compute_config(struct intel_dp *in=
+tel_dp,
 > =20
-> -	if (intel_dp_pcon_start_frl_training(intel_dp) < 0) {
-> +	/* A link trained at a lower rate than the stream needs has to be retra=
-ined */
-> +	if (intel_dp->frl.is_trained &&
-> +	    intel_dp->frl.trained_rate_gbps >=3D crtc_state->pcon_config.frl_ra=
-te_gbps)
-> +		return;
-> +
-> +	if (intel_dp_pcon_start_frl_training(intel_dp, crtc_state) < 0) {
->  		int ret, mode;
-> =20
->  		drm_dbg(display->drm,
+>  	if (!intel_dp_dsc_get_slice_config(connector, adjusted_mode->crtc_clock,
+>  					   adjusted_mode->crtc_hdisplay, num_joined_pipes,
+> +					   limits->dfp_dsc.min_slices,
+> +					   limits->dfp_dsc.max_slices,
+>  					   &pipe_config->dsc.slice_config))
+>  		return -EINVAL;
 
 [Severity: Medium]
-Does this leave intel_dp->frl.is_trained and intel_dp->frl.trained_rate_gbps
-stale if retraining an already-trained link at a higher rate fails?
+Does passing 0 and INT_MAX in intel_dp_dsc_get_slice_count() cause UHBR link
+TU calculations and intel_dp_compute_min_hblank() to use an unconstrained
+slice count when limits->dfp_dsc restricts the downstream slice count?
 
-Previously intel_dp_pcon_start_frl_training() only ran when
-intel_dp->frl.is_trained was false.  Now it also runs when retraining to a
-higher rate, where drm_dp_pcon_frl_prepare() tears down the active FRL link
-and the failure path falls back to intel_dp_pcon_set_tmds_mode() without
-clearing intel_dp->frl.is_trained or intel_dp->frl.trained_rate_gbps.  A
-later modeset requesting a rate at or below the old trained_rate_gbps will
-then return early from intel_dp_check_frl_training() and leave the PCON in
-TMDS mode.
+Before intel_dp_dsc_compute_config() populates
+pipe_config->dsc.slice_config with limits->dfp_dsc,
+intel_dp_dsc_compute_pipe_bpp() -> dsc_compute_compressed_bpp() ->
+dsc_compute_link_config() calls intel_dp_mtp_tu_compute_config() on UHBR
+links, which queries the slice count via
+intel_dp_mst_dsc_get_slice_count() -> intel_dp_dsc_get_slice_count().
+Later, intel_dp_compute_min_hblank() also calls
+intel_dp_dsc_get_slice_count() instead of reading
+intel_dsc_line_slice_count(&crtc_state->dsc.slice_config).  When a
+downstream device requires a higher minimum (or lower maximum) slice count
+than the DP sink, DSC EOC overhead, pipe_config->dp_m_n, and
+pipe_config->min_hblank will be computed for a different slice count than
+the one programmed in pipe_config->dsc.slice_config.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261120140729.4661=
-77-1-ankit.k.nautiyal@intel.com?part=3D19
+77-1-ankit.k.nautiyal@intel.com?part=3D25
