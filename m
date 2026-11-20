@@ -2,62 +2,68 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99D5160A5BE8
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 17:21:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 523FA606A339
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 17:23:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RbNFCTPi
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cIIGtF+K
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 637E0112AD8;
-	Fri, 20 Nov 2026 17:21:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D960112AF3;
+	Fri, 20 Nov 2026 17:23:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F44B112AD8
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 17:20:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66D48112AF3;
+ Fri, 20 Nov 2026 17:23:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795195256; x=1826731256;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=p7LFtYSUAtTOjkILkaiYABX8Usx12mGPKASZOaSFhkY=;
- b=RbNFCTPisQoR0WAlh/qwhr/UERBVKKggqAb0oxYvzT1cjeI7NwyPj1+v
- raN62De+pHpX6CNCewB8a/+kNnagqZiFSJpuAMyndv5AF9+rnQSEwZAAG
- HI//yCPcgsoYJPe0KkNrxMjnTS+0cDaZWgdU+Wf6oVgfBRjFKR0+Tcc3J
- Exl5Q1ukBEmi+30R2XBF9+3+qrWFE8SSrXQlqQs56F3xiWtkfvbNdF63X
- iYX6mte9FDGHXh+crOvF3wL82gKgzIe6yAIFcxzL7ttQFUSrCMRNtLvnw
- lBhXiUZMTT7xxxR6xa9O9CINFCPE7zcs8JIBiWUyLfQB+UYbE0e8Q/zBx w==;
-X-CSE-ConnectionGUID: LU6oWX7lTm+W0lPMEC+Iag==
-X-CSE-MsgGUID: 8Vna/nnMRWqWbz/s0SG+Jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4087480"
+ t=1795195424; x=1826731424;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=DaI5IUT1/pysBtu57cpOhK7kpdG7b5THNuCJTBS3inI=;
+ b=cIIGtF+K5olJTXR7jmRL7h7IWxatY1O5DTnY0ASuGESlYZUY4njf/VXB
+ CGBCMEAqQy56jKgI+sQaJzoWTqxSa03FnHb2qNwLmhVjskWhDTMCFrNBD
+ a77l1ZqR4cLZpT9BNwdgO89P759qHC5A+7f/TqRAHfCOko+JYjsjumR+7
+ gcnRQQ+gaSbBKZCxE5fPNS1TD07hLKwJl8RP3kGQuRh2gswyPX+1CZqmT
+ DZP2/teYPYJpm+iYSN+VflpMxD1ZPQhfQjs/mLE/VJ0tp1lBXHW/Fmz80
+ 7A/MTtLBRKv0cWw82UnYFXnmj/SdcNVPg1ZWAFS+iYNir9Ubzx0BgN9Fw A==;
+X-CSE-ConnectionGUID: hLDls1hbS467TOkAsl1SFQ==
+X-CSE-MsgGUID: 4S8X5uhQQ9OZhk5uagRsmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4087886"
 X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; 
-   d="scan'208";a="4087480"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+   d="scan'208";a="4087886"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 09:20:56 -0800
-X-CSE-ConnectionGUID: 1lBsiJxgTpuv4cTMKVUXKg==
-X-CSE-MsgGUID: ex5CbWYLQ2CBGc02audZtQ==
+ 20 Nov 2026 09:23:44 -0800
+X-CSE-ConnectionGUID: nUO0y/G2S6Ka9edB9ObFNQ==
+X-CSE-MsgGUID: 1K3MmZgXTgauuVtUkXYX+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="11321499"
-Received: from slindbla-desk.ger.corp.intel.com (HELO [10.245.244.23])
- ([10.245.244.23])
+X-IronPort-AV: E=Sophos;i="6.27,223,1787036400"; d="scan'208";a="12456557"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.66])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 09:20:55 -0800
-Message-ID: <c2a0f66e-f6f0-419d-8fa2-e10339808394@intel.com>
-Date: Fri, 20 Nov 2026 17:20:53 +0000
+ 20 Nov 2026 09:23:40 -0800
+Date: Fri, 20 Nov 2026 19:23:37 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jake Steinman <j@metarealtyinc.ca>
+Cc: jouni.hogander@intel.com, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
+ rodrigo.vivi@intel.com, animesh.manna@intel.com,
+ uma.shankar@intel.com, jani.nikula@linux.intel.com
+Subject: Re: [RFC PATCH] drm/i915/psr: Send the AS SDP in PR Active while
+ vblank is enabled
+Message-ID: <awCCGeCxHToY8tsI@intel.com>
+References: <20260923041342.2146450-1-j@metarealtyinc.ca>
+ <20261006220500.3417572-1-j@metarealtyinc.ca>
+ <76935065478d9f4ab9ee42e36b541101bad34423.camel@intel.com>
+ <awBhLKnEiGt69Vr7@intel.com>
+ <20261120163416.66175-1-j@metarealtyinc.ca>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/xe/guc: Scale suspend wait timeout with preempt
- timeout
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20261120160826.2045426-2-himal.prasad.ghimiray@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20261120160826.2045426-2-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261120163416.66175-1-j@metarealtyinc.ca>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,75 +74,62 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-3.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 20/11/2026 16:08, Himal Prasad Ghimiray wrote:
-> The suspend wait uses a fixed 5s timeout, but preempt_timeout_us can be
-> set up to 10s via sysfs, causing queues to be banned while GuC is still
-> legitimately preempting. Extend the timeout by preempt_timeout_us and
-> min_run_period_ms.
+On Fri, Nov 20, 2026 at 11:34:16AM -0500, Jake Steinman wrote:
+> Hi Ville,
 > 
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_guc_submit.c | 20 ++++++++++++++++----
->   1 file changed, 16 insertions(+), 4 deletions(-)
+> On Fri, Nov 20, 2026 at 05:03:08PM +0200, Ville Syrjälä wrote:
+> > Is this some weird hardware quirk of ours? I don't see what vblank
+> > interrupts (purely an internal thing to the display engine) have to
+> > do with the external panel receiving SDPs.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 9e7c2778029c..0898ee29f460 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -2532,8 +2532,20 @@ static int guc_exec_queue_wait_suspend_done(struct xe_exec_queue *q, bool blocki
->   {
->   	struct xe_guc *guc = exec_queue_to_guc(q);
->   	struct xe_device *xe = guc_to_xe(guc);
-> +	long timeout;
->   	int ret;
->   
-> +	/*
-> +	 * The SUSPEND worker may sleep up to min_run_period_ms before disabling,
-> +	 * and GuC may then take up to preempt_timeout_us (sysfs tunable up to
-> +	 * XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX) to preempt the context. Keep the
-> +	 * historical 5s as slack on top of both.
-> +	 */
-> +	timeout = HZ * 5 +
-> +		usecs_to_jiffies(READ_ONCE(q->sched_props.preempt_timeout_us));
+> The panel doesn't care about vblank interrupts. What it needs is the AS
+> SDP while frames are being updated. With the AS SDP suspended in PR
+> Active it judders, and with it sent all the time it's smooth but
+> DC5/DC6 is blocked.
+> 
+> Vblank enable is only used as the "frames are being updated" signal.
+> Userspace holds a vblank reference while it flips, and Panel Replay
+> already holds DC_OFF for that window, so sending the AS SDP then costs
+> no DC residency. It is suspended again before DC_OFF is dropped.
 
-Does it makes sense to apply the preempt_timeout for 
-xe_exec_queue_is_multi_queue_secondary()? It sounds like in theory that 
-is more a sw thing wrt to completing the suspend/preempt? It rather 
-happens via primary?
+Vblanks being on during flips all completely accidental. Userspace
+asking for the vblank counter ahead of a flip is not mandatory.
+The temporary vblank reference that query grabs also gets dropped
+immediately, and if the flip isn't actually committed during the
+same frame as the query the vblank interrupt will also have been
+turned off by the time the flip hits the hardware.
 
-> +	if (q->vm)
-> +		timeout += msecs_to_jiffies(q->vm->preempt.min_run_period_ms);
-> +
->   	/*
->   	 * A kill does not clear suspend_pending, the queue may still be running
->   	 * on the hardware, so exec_queue_killed() is what ends the wait in that
-> @@ -2546,16 +2558,16 @@ static int guc_exec_queue_wait_suspend_done(struct xe_exec_queue *q, bool blocki
->   retry:
->   	if (blocking) {
->   		if (IS_SRIOV_VF(xe))
-> -			ret = wait_event_timeout(guc->ct.wq, WAIT_COND, HZ * 5);
-> +			ret = wait_event_timeout(guc->ct.wq, WAIT_COND, timeout);
->   		else
->   			ret = wait_event_timeout(q->guc->suspend_wait, WAIT_COND,
-> -						 HZ * 5);
-> +						 timeout);
->   	} else if (IS_SRIOV_VF(xe)) {
->   		ret = wait_event_interruptible_timeout(guc->ct.wq, WAIT_COND ||
-> -						       vf_recovery(guc), HZ * 5);
-> +						       vf_recovery(guc), timeout);
->   	} else {
->   		ret = wait_event_interruptible_timeout(q->guc->suspend_wait,
-> -						       WAIT_COND, HZ * 5);
-> +						       WAIT_COND, timeout);
->   	}
->   
->   	if (!blocking && vf_recovery(guc) && !xe_wedged(xe))
+With the DSB/flipq paths we don't hold any in-driver reference
+to the vblank, and the only reason the mmio path does so is
+because we're using the vblank interrupt for the completion. If
+we had a better interrupt for the mmio path we wouldn't need the
+vblank reference there either.
 
+We should also be looking for a way to have userspace not do the
+vblank query, or make the vblank query correct without actually
+enabling vblank interrupts. Turning on vblank interrupts requires
+us to turn the hardware on possibly earlier than necessary, which
+will waste power. Without the vblank interrupt getting enabled
+we could let the hw sleep until it actually needs to wake up for
+the actual flip. Though I don't really have an answer how to get
+an accurate vblank count for the query without turning some
+hardware on at least.
+
+> 
+> Jouni can say whether the internal confirmation explains why the panel
+> needs it. From my side I only know it's this sink (LG, OUI 00:22:b9)
+> on two Dell models.
+> 
+> Thanks,
+> Jake
+
+-- 
+Ville Syrjälä
+Intel
