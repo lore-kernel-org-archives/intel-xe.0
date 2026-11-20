@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785E7606A325
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 09:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65016606A32C
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 09:56:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=F2XrAVSj
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AyUNYLm3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3405E11286B;
-	Fri, 20 Nov 2026 09:56:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 211F7112861;
+	Fri, 20 Nov 2026 09:56:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62D44112861;
- Fri, 20 Nov 2026 09:56:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65F0111285E;
+ Fri, 20 Nov 2026 09:56:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795168563; x=1826704563;
+ t=1795168567; x=1826704567;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P2ogfKDcDzDZAGajZNcvLth4J7bBJT83aPIgKjngeTU=;
- b=F2XrAVSjFQXTNEv9X/R8uzH/BEfeVb3tQAFqaoMZMrD1wR2G0qylc095
- jSnCPbofF/n7s94MrBvXkJ7IRHHJPfbtuWjba2ZCKndtxiCNIC8ElO3Pc
- yPz0HiCGMTcn1Urr90ZtC2SWkx9tU07BZnFCI7j1iqbnJ6RrPTFgfFg9d
- WVvlEqy0S9xdauLoZSSJtJ++2QPPjoiRLSyURXWr9X+vT1OtXXRwOQ1ij
- 4yTPetrZd/8KValhI2zPhnOdye/3cmww/4CmzeKnPjtcUu6xZA3gYwVuI
- 7XZh44GvJRNNboVT12JTPE3M/cF1kQEtybbWRHKR/yFy+DYOGOo+tOw/P Q==;
-X-CSE-ConnectionGUID: 61X0nL2SR5ifOlLUPKbNMw==
-X-CSE-MsgGUID: LsU39YbpTyGxyuyZlILbuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4072518"
+ bh=7sNYqCar3YO3sq+w2e4d6JhJGA4Jgi9zqg7118pXqeo=;
+ b=AyUNYLm3Y0SrLfLTyjle2XXu5K60WO1W6Ejb+ATJqegxscJ1VbhRk5YF
+ qVNW+rbJg3gSUnd0O4uBBONNM6fmLgGQIxXO75WdqhwU1hyra9uuh2EY4
+ V8fcb3SkzGBZFX3TSXYZYsWET7RPxuie5vwvwjVM5CcBcnEJUfbE5wATN
+ Bj4CyC/uH2XqjPQZsToYiFKvkn0g9lKcyqG2KgHkRQu97V4JgDzj84zwW
+ qxSfAXfHK78ks2fk+xE/nfhmZo8i4+K47ZGXODO6NN/Q88e2rHci1N8mj
+ KuG57Krg7zQdk4zWYZoba4NDXZMx6GzGm/9Z6KSg/J9lK5ur5FCAvhyco A==;
+X-CSE-ConnectionGUID: pQMv21CkRBipZmd1QBZ6Qg==
+X-CSE-MsgGUID: 7JqgjuCZSWmxlwJhVKCoZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="4072526"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="4072518"
+   d="scan'208";a="4072526"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 01:56:03 -0800
-X-CSE-ConnectionGUID: qT2GeUoJQQOczIQFZ1GsLw==
-X-CSE-MsgGUID: Pcrd6OHtS0ySVRFeTNNn9w==
+ 20 Nov 2026 01:56:07 -0800
+X-CSE-ConnectionGUID: TCsAfbQ8RnKVwpWTUTEPXg==
+X-CSE-MsgGUID: WHBdD5jWT7WUWeUg8N42pA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10566989"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10567006"
 Received: from lpankiew-mobl.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.221])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 01:56:00 -0800
+ 20 Nov 2026 01:56:05 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Mika Kahola <mika.kahola@intel.com>, stable@vger.kernel.org
-Subject: [PATCH 1/4] drm/i915/psr: Update planes when early transport SU start
- moves
-Date: Fri, 20 Nov 2026 11:55:38 +0200
-Message-ID: <20261120095541.1325118-2-jouni.hogander@intel.com>
+Subject: [PATCH 3/4] drm/i915/psr: Don't add all enabled planes into state
+ before SU calculation
+Date: Fri, 20 Nov 2026 11:55:40 +0200
+Message-ID: <20261120095541.1325118-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20261120095541.1325118-1-jouni.hogander@intel.com>
 References: <20261120095541.1325118-1-jouni.hogander@intel.com>
@@ -75,74 +75,107 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-With early transport the plane selective fetch position is relative to
-the SU area start. Planes are updated only when their selective fetch
-area changes, so a plane keeping its area while the SU start moves is
-left with a stale position.
+Adding all enabled planes before the plane checks puts them into
+update_planes and makes their missing damage clips count as full plane
+damage, so the SU area always covers the whole area.
 
-Update planes with a selective fetch area also when the SU start moves
-and early transport is in use.
+Original resolution in commit 0d173898b111 ("drm/i915/display: Add enabled
+pipe planes into state for selective fetch") was wrong and fixing visible
+corruption with biplanar planes was fixed by using full update always.
 
-Fixes: b10c83af60cb ("drm/i915/psr: Disable linked plane sel fetch as well")
+This patch adds back logic adding enabled planes into crtc state only after
+SU area is calculated. This is safe as we have workaround for issue with
+biplanar plane in place.
+
+Fixes: 0d173898b111 ("drm/i915/display: Add enabled pipe planes into state for selective fetch")
 Cc: Mika Kahola <mika.kahola@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
+Cc: <stable@vger.kernel.org> # v5.17+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 13 +++++++++++--
- 1 file changed, 11 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_plane.c | 10 ----------
+ drivers/gpu/drm/i915/display/intel_psr.c   | 23 +++++++++++++++++++++-
+ 2 files changed, 22 insertions(+), 11 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index d23de0f34e4b6..f908eabe604bb 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -1980,16 +1980,6 @@ static int intel_add_affected_planes(struct intel_atomic_state *state)
+ 		ret = intel_joiner_add_affected_planes(state, intel_crtc_joined_pipe_mask(crtc_state));
+ 		if (ret)
+ 			return ret;
+-
+-		/*
+-		 * Add affected plane here to ensure UV and Y plane linking is
+-		 * in place if UV plane is added as a part of selective update.
+-		 */
+-		if (crtc_state->enable_psr2_sel_fetch) {
+-			ret = intel_plane_add_affected(state, crtc);
+-			if (ret)
+-				return ret;
+-		}
+ 	}
+ 
+ 	return 0;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bd16563603249..2c759f9e81fca 100644
+index 11e3189360f28..efcc5ce1bfab0 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3114,6 +3114,8 @@ static int psr2_sel_fetch_apply_su_area(struct intel_atomic_state *state,
- 					bool full_update)
- {
+@@ -51,6 +51,7 @@
+ #include "intel_dsb.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_hdmi.h"
++#include "intel_plane.h"
+ #include "intel_psr.h"
+ #include "intel_psr_regs.h"
+ #include "intel_quirks.h"
+@@ -3244,10 +3245,12 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *old_crtc_state =
+ 		intel_atomic_get_old_crtc_state(state, crtc);
  	struct intel_crtc_state *crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
-+	const struct intel_crtc_state *old_crtc_state =
-+		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_plane_state *new_plane_state, *old_plane_state;
- 	struct intel_plane *plane;
- 	struct drm_rect display_area = {
-@@ -3122,6 +3124,7 @@ static int psr2_sel_fetch_apply_su_area(struct intel_atomic_state *state,
- 		.x2 = drm_rect_width(&crtc_state->pipe_src),
- 		.y2 = drm_rect_height(&crtc_state->pipe_src),
- 	};
-+	bool et_pos_changed;
- 	int i;
++	struct intel_plane_state *new_plane_state;
+ 	struct intel_crtc *joined_crtc;
++	struct intel_plane *plane;
+ 	bool full_update = false;
+ 	u8 joined_pipes;
+-	int ret;
++	int i, ret;
  
  	/*
-@@ -3133,6 +3136,10 @@ static int psr2_sel_fetch_apply_su_area(struct intel_atomic_state *state,
- 	if (full_update)
- 		crtc_state->psr2_su_area = display_area;
+ 	 * Selective fetch is not always usable, for instance it is dropped
+@@ -3291,7 +3294,24 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	if (!full_update && !psr2_sel_fetch_merge_su_area(state, joined_pipes))
+ 		full_update = true;
  
-+	/* With early transport the plane position is relative to the SU start. */
-+	et_pos_changed = crtc_state->enable_psr2_su_region_et &&
-+		crtc_state->psr2_su_area.y1 != old_crtc_state->psr2_su_area.y1;
++	for_each_intel_crtc_in_pipe_mask(display, joined_crtc, joined_pipes) {
++		ret = intel_plane_add_affected(state, joined_crtc);
++		if (ret)
++			return ret;
++	}
 +
- 	/*
- 	 * Now that we have the pipe damaged area check if it intersect with
- 	 * every plane, if it does set the plane selective fetch area.
-@@ -3154,7 +3161,8 @@ static int psr2_sel_fetch_apply_su_area(struct intel_atomic_state *state,
- 		}
- 
- 		if (!drm_rect_equals(&old_plane_state->psr2_sel_fetch_area,
--				     sel_fetch_area))
-+				     sel_fetch_area) ||
-+		    (et_pos_changed && drm_rect_height(sel_fetch_area) > 0))
- 			crtc_state->update_planes |= BIT(plane->id);
- 
+ 	if (!full_update) {
++		for_each_new_intel_plane_in_state(state, plane, new_plane_state, i) {
++			if ((joined_pipes & BIT(plane->pipe)) == 0 ||
++			    !new_plane_state->uapi.visible)
++				continue;
++
++			if (!psr2_sel_fetch_plane_state_supported(new_plane_state)) {
++				full_update = true;
++				goto apply_su_area;
++			}
++		}
++
  		/*
-@@ -3177,7 +3185,8 @@ static int psr2_sel_fetch_apply_su_area(struct intel_atomic_state *state,
- 			linked_sel_fetch_area->y2 = sel_fetch_area->y2;
- 
- 			if (!drm_rect_equals(&linked_old_plane_state->psr2_sel_fetch_area,
--					     linked_sel_fetch_area))
-+					     linked_sel_fetch_area) ||
-+			    (et_pos_changed && drm_rect_height(linked_sel_fetch_area) > 0))
- 				crtc_state->update_planes |= BIT(linked->id);
- 		}
+ 		 * The WAs clamp the SU region that ends up in the per
+ 		 * transcoder PSR2_MAN_TRK_CTL, so they have to run on the
+@@ -3307,6 +3327,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 		psr2_sel_fetch_align_su_area(state, joined_pipes);
  	}
+ 
++apply_su_area:
+ 	for_each_intel_crtc_in_pipe_mask(display, joined_crtc, joined_pipes) {
+ 		ret = psr2_sel_fetch_apply_su_area(state, joined_crtc, full_update);
+ 		if (ret)
 -- 
 2.53.0
 
