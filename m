@@ -2,50 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1677606A320
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 12:05:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A5D606A326
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Nov 2026 12:05:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=B3rkdZo8
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=XfgI5qgI
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 958EB11299D;
-	Fri, 20 Nov 2026 12:05:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA5961129A0;
+	Fri, 20 Nov 2026 12:05:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD1AF112997
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 12:05:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A537711299D
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 12:05:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795176302; x=1826712302;
+ t=1795176309; x=1826712309;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=xqn0Za0n3yvoIbs6Wx65k/wtFXm7COJUwpxdDoOL6JU=;
- b=B3rkdZo8L21J+B88JSJQrA++h5IyXWUvNIcZoVoFlfnXXxb06BIhQjSw
- ES3AXCuh1S1+pTKCZbFn5VRbuoQXoPZbbIxMxtLIeqy790KAvtgML6FkJ
- mZ3Uf7Lp55Exd4610zgzOb9kk6faDhHj5HShYxBQtIed9PaRTvdhxnazX
- CpYAPjXh9Q4XabCe9ZTDmEzks9msDFGqsFbra1mDwK6Rj+ptuxh9XhX0m
- UPdXOe3mNR+fvk0fa1hcOHcqWB0rfSgcO39ZLS/BOcVDrWtd9tnHoasuu
- +ewUCfrqIqw/wd8bW+ZLEZHwsBQG2VJLa1xbWd6gG21AcV56lCoOzgWAI w==;
-X-CSE-ConnectionGUID: qOWMLg/sSHKXMtMXhXS0Cg==
-X-CSE-MsgGUID: v8qoj8D8QtSF/7+yPc1o6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3936325"
+ bh=H6Ez1gtIQs9Sp8Bkoat7Hc8l1qoXsnRtzEpU7XiDZqM=;
+ b=XfgI5qgIPYDaHSRYQRC8WmhUa/zP0yUlwvEdvuO9MXo3cESc3H4odJkp
+ zuH/H2NS4VfCVqlJ/8x4cXDdIK/HmiDDfSsBe1GZ/cPsJL4ZXL+VJPHhE
+ OBb9C725t+i+Doy73CzUlfeikUma2jg9HUjKd7T8nuXd7MIQdDKcK0abr
+ KPVR/zHkYOr8iCXI10GiwNmvu06AG/g70ehERPz9bELyqqFoLvkGBL6kI
+ Z1/Ra/gJ6olQ4VuF6pRMYOvFf56wGAXZlADMo5LsVt84VpCNE2beJ/VX2
+ QA2nnK9mJfRFa3rzz42uywoODR72unOF8SBkAwlRHEY+rCk1uO0FELnwB g==;
+X-CSE-ConnectionGUID: D3NUEF4KTZOAKT/ESpJhSw==
+X-CSE-MsgGUID: h8oIo9qNTp61QJZ9xYDJmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11971"; a="3936343"
 X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; 
-   d="scan'208";a="3936325"
+   d="scan'208";a="3936343"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 04:05:01 -0800
-X-CSE-ConnectionGUID: zFq95wOWTGuACz3JWoegKA==
-X-CSE-MsgGUID: vYkf+G2FTEa1UnxSljoqEQ==
+ 20 Nov 2026 04:05:09 -0800
+X-CSE-ConnectionGUID: JWEXstW/Rc2xUgLlEO3Yig==
+X-CSE-MsgGUID: 6yaz0p+GRoOeyPfHOGNf3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10674129"
+X-IronPort-AV: E=Sophos;i="6.27,222,1787036400"; d="scan'208";a="10674171"
 Received: from tilak-z690i-a-ultra-plus.iind.intel.com ([10.190.239.38])
- by fmviesa004.fm.intel.com with ESMTP; 20 Nov 2026 04:04:57 -0800
+ by fmviesa004.fm.intel.com with ESMTP; 20 Nov 2026 04:05:06 -0800
 From: tilak.tirumalesh.tangudu@intel.com
 To: tilak.tirumalesh.tangudu@intel.com, satyanarayana.k.v.p@intel.com,
  piotr.piorkowski@intel.com, jesus.narvaez@intel.com,
  daniele.ceraolospurio@intel.com, stuart.summers@intel.com,
  intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/4] drm/xe: Add has_sem64 bit to graphics/media IP descriptors
-Date: Fri, 20 Nov 2026 17:32:28 +0530
-Message-ID: <20261120120231.748267-2-tilak.tirumalesh.tangudu@intel.com>
+Subject: [PATCH 4/4] drm/xe: Use MI_SEMAPHORE_WAIT_64 in ULLS postamble where
+ supported
+Date: Fri, 20 Nov 2026 17:32:31 +0530
+Message-ID: <20261120120231.748267-5-tilak.tirumalesh.tangudu@intel.com>
 X-Mailer: git-send-email 2.46.0
 In-Reply-To: <20261120120231.748267-1-tilak.tirumalesh.tangudu@intel.com>
 References: <20261120120231.748267-1-tilak.tirumalesh.tangudu@intel.com>
@@ -71,139 +72,83 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 
-Add a has_sem64 capability bit to the graphics/media IP descriptors,
-set on every Xe3p platform that supports it. Graphics version 35.10 and
-Media version 35.00 only gain support at stepping B0, so that exception
-is applied when resolving the final gt->info.has_sem64 value.
+Use the MI_SEMAPHORE_WAIT_64 instruction in emit_ulls_postamble() on
+platforms whose GT supports it, per gt->info.has_sem64, falling back to
+the existing 32-bit MI_SEMAPHORE_WAIT path otherwise. Bump
+ULLS_JOB_SIZE_DW from 48 to 50 since the 64-bit postamble is 2 dwords
+wider and the fixed-size ULLS job slot has no headroom to spare in the
+worst case (SRIOV VF).
 
-The bit indicates whether the GT's command streamer supports the
-MI_SEMAPHORE_WAIT_64 instruction. A platform's CS must not mix
-MI_SEMAPHORE_WAIT and MI_SEMAPHORE_WAIT_64 within a context or across
-context submissions, so both the primary and media GT must agree before
-either one enables sem64; each GT allocator resolves its own has_sem64
-from its own descriptor and stepping exception, and xe_info_init()
-clears both back to false afterwards if the two disagree.
-
-v2: Only compare has_sem64 when both GTs are present (Daniele)
+v2: Drop the WA comment, document the zero upper SDD dword
 
 Assisted-by: LLM
 Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_types.h  |  2 ++
- drivers/gpu/drm/xe/xe_pci.c       | 27 +++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_pci_types.h |  2 ++
- 3 files changed, 29 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 33 +++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_ring_ops_types.h |  5 ++--
+ 2 files changed, 28 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index c00a7c171f80..cc7d6adb6aec 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -167,6 +167,8 @@ struct xe_gt {
- 		 * error reporting support
- 		 */
- 		u8 has_uncorrectable_error_reporting:1;
-+		/** @info.has_sem64: GT supports the MI_SEMAPHORE_WAIT_64 instruction */
-+		u8 has_sem64:1;
- 		/**
- 		 * @info.has_xe2_blt_instructions: GT supports Xe2-style MEM_SET
- 		 * and MEM_COPY blitter functionality.  Note that despite the
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 619653c68f2c..c2adbba1b087 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -128,6 +128,7 @@ static const struct xe_graphics_desc graphics_xe3p_lpg = {
- 	.multi_queue_engine_class_mask = BIT(XE_ENGINE_CLASS_COPY) | BIT(XE_ENGINE_CLASS_COMPUTE),
- 	.num_geometry_xecore_fuse_regs = 3,
- 	.num_compute_xecore_fuse_regs = 3,
-+	.has_sem64 = 1,
- };
- 
- static const struct xe_graphics_desc graphics_xe3p_xpc = {
-@@ -154,11 +155,20 @@ static const struct xe_media_desc media_xelpmp = {
- 	.hw_engine_mask =
- 		GENMASK(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0) |
- 		GENMASK(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0) |
--		BIT(XE_HW_ENGINE_GSCCS0)
-+		BIT(XE_HW_ENGINE_GSCCS0),
-+};
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index e64f61f1f9a7..959e2cbf0091 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -562,14 +562,31 @@ static int emit_ulls_ring_tail(struct xe_gt *gt, struct xe_lrc *lrc, u32 *dw,
+ static int emit_ulls_postamble(struct xe_gt *gt, struct xe_lrc *lrc, u32 *dw,
+ 			       int i, u32 seqno, u32 head)
+ {
+-	dw[i++] = MI_SEMAPHORE_WAIT |
+-		MI_SEMW_GGTT |
+-		MI_SEMW_POLL |
+-		MI_SEMW_COMPARE(SAD_EQ_SDD);
+-	dw[i++] = LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
+-	dw[i++] = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
+-	dw[i++] = 0;
+-	dw[i++] = 0;
++	u32 addr = xe_lrc_ulls_semaphore_ggtt_addr(lrc, seqno + 1);
 +
-+static const struct xe_media_desc media_xe3p_lpm = {
-+	.hw_engine_mask =
-+		GENMASK(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0) |
-+		GENMASK(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0) |
-+		BIT(XE_HW_ENGINE_GSCCS0),
-+	.has_sem64 = 1,
- };
++	if (gt->info.has_sem64) {
++		/* 32b compare: addr is only 4-byte aligned, slots are packed at 4-byte stride */
++		dw[i++] = MI_SEMAPHORE_WAIT_64 |
++			MI_SEMW_GGTT |
++			MI_SEMW64_32BIT_COMPARE |
++			MI_SEMW64_INHIBIT_CTX_SWITCH |
++			MI_SEMW_COMPARE(SAD_EQ_SDD);
++		dw[i++] = LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
++		dw[i++] = 0; /* upper SDD dword, ignored with 32b compare */
++		dw[i++] = addr;
++		dw[i++] = 0;
++		dw[i++] = 0;
++		dw[i++] = 0;
++	} else {
++		dw[i++] = MI_SEMAPHORE_WAIT |
++			MI_SEMW_GGTT |
++			MI_SEMW_POLL |
++			MI_SEMW_COMPARE(SAD_EQ_SDD);
++		dw[i++] = LRC_MIGRATION_ULLS_SEMAPHORE_SIGNAL;
++		dw[i++] = addr;
++		dw[i++] = 0;
++		dw[i++] = 0;
++	}
  
- static const struct xe_media_desc media_xe3p_hpm = {
- 	.has_uncorrectable_error_reporting = 1,
-+	.has_sem64 = 1,
- 	.hw_engine_mask =
- 		GENMASK(XE_HW_ENGINE_VCS7, XE_HW_ENGINE_VCS0) |
- 		GENMASK(XE_HW_ENGINE_VECS3, XE_HW_ENGINE_VECS0) |
-@@ -199,7 +209,7 @@ static const struct xe_ip media_ips[] = {
- 	{ 2000, "Xe2_LPM", &media_xelpmp },
- 	{ 3000, "Xe3_LPM", &media_xelpmp },
- 	{ 3002, "Xe3_LPM", &media_xelpmp },
--	{ 3500, "Xe3p_LPM", &media_xelpmp },
-+	{ 3500, "Xe3p_LPM", &media_xe3p_lpm },
- 	{ 3503, "Xe3p_HPM", &media_xe3p_hpm },
- };
+ 	return emit_ulls_ring_tail(gt, lrc, dw, i, head);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index ea4af321dd7c..9b6bd22d29e8 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -25,9 +25,10 @@ struct xe_sched_job;
+  * preamble (4), copy timestamp (8, its size on an SRIOV VF), start seqno
+  * store (4), arbitration off (1), batch buffer starts (2 * 3), pre-parser
+  * bracketed flush invalidate (6), seqno flush (4), user interrupt (3) and
+- * postamble (7 + 5).
++ * postamble (7 + 7, the latter being the MI_SEMAPHORE_WAIT_64 form used
++ * where supported).
+  */
+-#define ULLS_JOB_SIZE_DW 48
++#define ULLS_JOB_SIZE_DW 50
+ #define ULLS_JOB_SIZE_BYTES (ULLS_JOB_SIZE_DW * 4)
  
-@@ -904,6 +914,9 @@ static struct xe_gt *alloc_primary_gt(struct xe_tile *tile,
- 	gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
- 	gt->info.has_uncorrectable_error_reporting =
- 		graphics_desc->has_uncorrectable_error_reporting;
-+	/* excludes configs that don't support sem64 */
-+	gt->info.has_sem64 = graphics_desc->has_sem64 &&
-+		!(GRAPHICS_VERx100(xe) == 3510 && xe->info.step.graphics < STEP_B0);
- 	gt->info.multi_queue_engine_class_mask = graphics_desc->multi_queue_engine_class_mask;
- 	if (!xe_configfs_get_enable_multi_queue(to_pci_dev(xe->drm.dev))) {
- 		xe_gt_info(gt, "Multi-queue disabled via configfs\n");
-@@ -954,6 +967,9 @@ static struct xe_gt *alloc_media_gt(struct xe_tile *tile,
- 	gt->info.id = tile->id * xe->info.max_gt_per_tile + 1;
- 	gt->info.has_indirect_ring_state = media_desc->has_indirect_ring_state;
- 	gt->info.has_uncorrectable_error_reporting = media_desc->has_uncorrectable_error_reporting;
-+	/* excludes configs that don't support sem64 */
-+	gt->info.has_sem64 = media_desc->has_sem64 &&
-+		!(MEDIA_VERx100(xe) == 3500 && xe->info.step.media < STEP_B0);
- 	gt->info.engine_mask = media_desc->hw_engine_mask;
- 
- 	return gt;
-@@ -1108,6 +1124,13 @@ static int xe_info_init(struct xe_device *xe,
- 		tile->media_gt = alloc_media_gt(tile, media_desc);
- 		if (IS_ERR(tile->media_gt))
- 			return PTR_ERR(tile->media_gt);
-+
-+		/* can't mix MI_SEMAPHORE_WAIT/_64 across GTs on the same device */
-+		if (tile->primary_gt && tile->media_gt &&
-+		    !(tile->primary_gt->info.has_sem64 && tile->media_gt->info.has_sem64)) {
-+			tile->primary_gt->info.has_sem64 = false;
-+			tile->media_gt->info.has_sem64 = false;
-+		}
- 	}
- 
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 74a6cd461b21..90936f805d8f 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -84,6 +84,7 @@ struct xe_graphics_desc {
- 	u8 has_usm:1;
- 	u8 has_64bit_timestamp:1;
- 	u8 has_uncorrectable_error_reporting:1;
-+	u8 has_sem64:1;
- };
- 
- struct xe_media_desc {
-@@ -91,6 +92,7 @@ struct xe_media_desc {
- 
- 	u8 has_indirect_ring_state:1;
- 	u8 has_uncorrectable_error_reporting:1;
-+	u8 has_sem64:1;
- };
- 
- struct xe_ip {
+ /*
 -- 
 2.46.0
 
