@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84204606A695
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 02:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A359B606A32A
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 02:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=iC4jBXRL
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=gohL1yjl
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37EC310E91B;
-	Sat, 21 Nov 2026 02:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51EA210E83E;
+	Sat, 21 Nov 2026 02:02:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25DBB10E83E
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 02:01:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F19710E8B0
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 02:01:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795226515; x=1826762515;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=x2RSSfatUa00SzAb6FyxtN0gAh7xMRwz/MrAoKYfz+U=;
- b=iC4jBXRLlnr0/JPHgB+DxJnCaaWguLwGxOnQHxvHhaAd2+CIcbAU+9bW
- atG0Px6v9MRODejSari4qgBAxyMPL1Q0k+1QEaHVcNaJ+71Io3ofHe50b
- KwjryOJMqorre44C14SgnqnOpPMARyqE9OY22OUcS8jV/xozt9l+REp91
- ZlfFq7k9pywVIzW9B+8BkMWxqtcze0IyM93MtKLq8RJIPWEMMZZlrjqn1
- db/p0x5Bo4G55mFkyWqAloc/PF8xuQKX1f89WuiGbFt1KroTXMKIMFU1g
- ETIe2rFzoFp5OgJPmjJY2KBnvnLGUu6Pgx73pzr/DnWgMXf7Y5nYE1eTN Q==;
-X-CSE-ConnectionGUID: M3k9SvPWQDSfNdT9CFLN5A==
-X-CSE-MsgGUID: q3z4I1NrQ4+VzhPXGka0Qg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4118790"
+ t=1795226520; x=1826762520;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=9DzhgM4bCNvg6sxOydk1TJVA4GbXV3QxHNq5I5XTIRI=;
+ b=gohL1yjlIOnOVBB2jZJVHtrRQteULy9YYyUW9Dtio/GVe3A3X1iJQt3h
+ A3luMUtwKA54KgvPGuMoX/2zUj5TYLow1eLSpR8nupKirjWstbTWNR/dH
+ GJ6THMzcyMqjo3wFhWiL0UAW23TH+ZWWCNZr66sIz303wDj4xAwSzQrdX
+ yAfMV5j+RFhPiKs1g32YvbahoLn1OSeLi0Q92EUV8ArWEoDHT7nai0bC7
+ sErCeB7F1ci4+1LWI6Qcm8SnAHym2A1VNhH+kMKc0/AXJAAV14zPVuUXu
+ GblNUHvbsWiGU3X1s1FopksJuBa9mldNbX/G4+hF2NUJ4bauezfbePjYz A==;
+X-CSE-ConnectionGUID: zJtc6WYTSPqfSKIQSGiA9Q==
+X-CSE-MsgGUID: lpOxrn1YR4OT/V83uUyZzA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4118791"
 X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; 
-   d="scan'208";a="4118790"
+   d="scan'208";a="4118791"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Nov 2026 18:01:54 -0800
-X-CSE-ConnectionGUID: w6G7+GkWRd+Bv3M99JtH1w==
-X-CSE-MsgGUID: LTUrzK/hTcmSS51mBdZacQ==
+X-CSE-ConnectionGUID: 2g7gN8JiR0G0odOoDtRXnw==
+X-CSE-MsgGUID: DlzxP5z5SimkWqUrRKjOJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; d="scan'208";a="11182104"
+X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; d="scan'208";a="11182109"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Nov 2026 18:01:53 -0800
@@ -43,13 +43,15 @@ From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
  harish.chegondi@intel.com
 Cc: matthew.brost@intel.com
-Subject: [PATCH v9 0/7] Cleanup OA stream on PCI unbind/remove
-Date: Fri, 20 Nov 2026 18:01:46 -0800
-Message-ID: <20261121020145.147384-9-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v9 1/7] drm/xe/oa: Ignore a HW tail pointer outside the OA
+ buffer
+Date: Fri, 20 Nov 2026 18:01:47 -0800
+Message-ID: <20261121020145.147384-10-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261121020145.147384-9-umesh.nerlige.ramappa@intel.com>
+References: <20261121020145.147384-9-umesh.nerlige.ramappa@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,33 +70,49 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When an OA stream FD is open, removing the PCI device due to PCIe errors
-or doing an unbind causes a NPD and system reboots. While OA registers a
-fini handler with devm, the handler does not take into account active OA
-connections.
+A device that stopped responding, e.g. during PCI error recovery or
+after a surprise removal, returns all ones for the OA tail pointer, and
+a reset device returns 0. Subtracting the GGTT address of the OA buffer
+then leaves a tail offset way past the end of the OA buffer.
 
-Add code to quiesce OA connection on PCI remove/unbind.
+Since xe_oa_circ_diff() replaced the masked OA_TAKEN(), nothing brings
+such an offset back into the OA buffer. xe_oa_buffer_check_unlocked()
+walks backward from it, reading report ids and timestamps out of bounds
+of the OA buffer mapping, from the poll hrtimer in hardirq context and
+with the OA buffer lock held.
 
-v2 - v8: Sashiko Comments and other refactor
-v9: Incorporate comments from Sashiko and Shekhar
+Ignore a HW tail outside the OA buffer, as if no new reports landed.
 
+Fixes: cffd77865f47 ("drm/xe/oa: Enable Xe2+ overrun mode")
+Cc: stable@vger.kernel.org
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+---
+v2: Update the Fixes tag
+---
+ drivers/gpu/drm/xe/xe_oa.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Umesh Nerlige Ramappa (7):
-  drm/xe/oa: Ignore a HW tail pointer outside the OA buffer
-  drm/xe/oa: Use the drm device address_space for the OA stream fd
-  drm/xe: Reject vm_ops->access on BO mappings of an unplugged device
-  drm/xe/oa: Wait for in-flight OA batches before stream HW teardown
-  drm/xe/oa: Fence OA ioctls and mmap against device unplug and wedging
-  drm/xe/oa: Free the OA buffer and the stream after the stream destroy
-  drm/xe/oa: Quiesce OA streams on driver unbind and PCI reset
-
- drivers/gpu/drm/xe/xe_bo.c          |  15 +-
- drivers/gpu/drm/xe/xe_oa.c          | 306 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_oa_types.h    |   3 +
- drivers/gpu/drm/xe/xe_observation.c |  20 +-
- 4 files changed, 305 insertions(+), 39 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 664fc4e4741f..d99593e62ca7 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -270,6 +270,15 @@ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+ 	hw_tail = xe_oa_hw_tail_read(stream);
+ 	hw_tail -= gtt_offset;
+ 
++	/*
++	 * A device that stopped responding, or was reset, returns a tail outside the OA
++	 * buffer. Don't walk the buffer from there.
++	 */
++	if (hw_tail >= stream->oa_buffer.circ_size) {
++		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
++		return false;
++	}
++
+ 	/*
+ 	 * The tail pointer increases in 64 byte (cacheline size), not in report_size
+ 	 * increments. Also report size may not be a power of 2. Compute potential
 -- 
 2.55.0
 
