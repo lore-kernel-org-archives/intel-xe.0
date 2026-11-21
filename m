@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF6A0606A32C
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40CF606A320
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GwQvJ7DE
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DctTb1y9
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89EA710EA17;
-	Sat, 21 Nov 2026 18:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78C8C10E447;
+	Sat, 21 Nov 2026 18:23:44 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 590AE10E9DE
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C47110E447
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795285411; x=1826821411;
+ t=1795285406; x=1826821406;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ni0rLpgHYhBx5lpGYP/Nc/zjpUiOemwZg0ReO0pSq/4=;
- b=GwQvJ7DEPthM6F1DP3rkSNuI6JQnxXBiwmsVoNqahL0NvGo8B39G4+0b
- aMN1sNBFfxAf1Z2VqJaAMxOL9wBCjsnhvAECIixxDYPzSDqKujM/fZW32
- u55iE3wbCGjVeM1ympNR+YUJiY/OLnUgyggEWPty4uu64C9ldGlKDU4Hx
- lodalghg8+a4zpRt0BJ7GxU9IqcsVAl4S1QOUJwKkSPeRLWxw0JMuYHX/
- v6OtDRvZ+9qfLMqgxDtwpK9UgKFOJjvDPqpGrDHqPj2Em/dqtiGvae27c
- kVpgzwSvdvfhnAY3fyfssfdgO4LRYn9sLBVae3eaAnbYq6UshjPKstPXP A==;
-X-CSE-ConnectionGUID: bzJlxT6hR2SPpNyo3R+XpA==
-X-CSE-MsgGUID: RYSrIQgYRfeBHVbnbgmk8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034060"
+ bh=P33Jz5/lyJKbRmi/W+ZQnoh0q8l48zM394qzTR6SD+E=;
+ b=DctTb1y9UQIxa9vy9i7hQzZah2LjX4CqwM9v6GdBx6NB+8YDygaBNkzV
+ SNOayk+3XyPz6j+E6yuc2B2ilUeuPokTd04xahnaTWtgQ8y8CQS6mAFXx
+ CvE6AFsIx9uJCsAhpuBcnObKSzDgSWXHxZiyKEyv1pfQJVroH06Gt1Otk
+ CAJ/fD/cdHjISPWOcXiOiOjDKxt+wtbZJMuPIWeIYo92bk9/utnHss2sW
+ dbdIIyPsxdj6vIkfRwaZJggihKg5ryfGY8IAQvBgZdAlmYF1KSb5N5eSJ
+ oSxyaNrVeFqnNBWlXCa2o7+bblbBeZYpA1M8itP/omXLu1AXwae1cwN7x A==;
+X-CSE-ConnectionGUID: n7ADeUNSQuG3EN5t7DZ3xQ==
+X-CSE-MsgGUID: QINZlm7sQb6NUQWewkQlGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034057"
 X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; 
-   d="scan'208";a="4034060"
+   d="scan'208";a="4034057"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:20 -0800
-X-CSE-ConnectionGUID: 2dtThPl9Qs6sSJEijXaPXw==
-X-CSE-MsgGUID: rp7DYookQeG/I+fqZTsWkQ==
+X-CSE-ConnectionGUID: Y8YuhyR5S1OIEfuUuWjkWA==
+X-CSE-MsgGUID: j8KONVkbSViHjg5kG3+lIg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934416"
+X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934407"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:20 -0800
@@ -44,9 +44,10 @@ To:
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 05/17] drm/xe: Detect each GMD_ID IP in a loop
-Date: Sat, 21 Nov 2026 18:23:21 +0000
-Message-ID: <20261121182317.48981-24-stuart.summers@intel.com>
+Subject: [PATCH 02/17] drm/xe: Process device OOB workarounds during early
+ info init
+Date: Sat, 21 Nov 2026 18:23:18 +0000
+Message-ID: <20261121182317.48981-21-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261121182317.48981-19-stuart.summers@intel.com>
 References: <20261121182317.48981-19-stuart.summers@intel.com>
@@ -70,114 +71,74 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-handle_gmdid() open coded the graphics and media detection twice, with
-the two copies subtly disagreeing: a missing media IP was tolerated,
-while graphics reporting version 0 was reported as an unknown version.
+Device OOB workarounds only match on platform, subplatform and platform
+step, all of which are known once xe_info_init_early() has copied them
+out of the device descriptor. Processing them there instead of in
+xe_device_probe_early() makes XE_DEVICE_WA() usable for the rest of
+early probe, which runs before xe_device_probe_early().
 
-Describe the per IP differences in a small table and walk it, so both
-IPs are detected the same way and an absent IP of either kind simply
-leaves its descriptor NULL. Deciding whether the resulting combination
-is usable is left to the caller, which is unchanged in still demanding
-a graphics IP.
+While moving the call, check the return value of xe_wa_device_init(),
+which the old call site silently dropped.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 70 ++++++++++++++++++++++---------------
- 1 file changed, 42 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |  3 ---
+ drivers/gpu/drm/xe/xe_pci.c    | 14 ++++++++++++++
+ 2 files changed, 14 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index f5a581d39c96..b053a788d59c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -715,9 +715,6 @@ int xe_device_probe_early(struct xe_device *xe)
+ {
+ 	int err;
+ 
+-	xe_wa_device_init(xe);
+-	xe_wa_process_device_oob(xe);
+-
+ 	err = xe_mmio_probe_early(xe);
+ 	if (err)
+ 		return err;
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 7a5c4939a0ac..1fce1c993a2c 100644
+index 619653c68f2c..fb2a5f3311c8 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -708,9 +708,21 @@ static const struct xe_ip *find_media_ip(unsigned int verx100)
- 	return NULL;
- }
+@@ -15,6 +15,8 @@
+ #include <drm/drm_drv.h>
+ #include <drm/intel/pciids.h>
  
-+static const struct xe_gmdid_desc {
-+	const char *name;
-+	const struct xe_ip *(*find_ip)(unsigned int verx100);
-+} gmdid_descs[] = {
-+	[GMDID_GRAPHICS] = { "graphics", find_graphics_ip },
-+	[GMDID_MEDIA] = { "media", find_media_ip },
-+};
++#include <generated/xe_device_wa_oob.h>
 +
- /*
-  * Read IP version from hardware and select graphics/media IP descriptors
-  * based on the result.
-+ *
-+ * Each IP is detected independently and any of them may legitimately be fused
-+ * off or otherwise absent, in which case its descriptor is left NULL.  Deciding
-+ * whether the resulting combination is usable is up to the caller.
-  */
- static int handle_gmdid(struct xe_device *xe,
- 			const struct xe_ip **graphics_ip,
-@@ -718,36 +730,38 @@ static int handle_gmdid(struct xe_device *xe,
- 			u32 *graphics_revid,
- 			u32 *media_revid)
- {
--	u32 ver;
--	int ret;
--
--	*graphics_ip = NULL;
--	*media_ip = NULL;
--
--	ret = read_gmdid(xe, GMDID_GRAPHICS, &ver, graphics_revid);
--	if (ret)
--		return ret;
--
--	*graphics_ip = find_graphics_ip(ver);
--	if (!*graphics_ip) {
--		xe_log_err(xe, REGS, -EINVAL,
--			   "Hardware reports unknown graphics version %u.%02u\n",
--			   ver / 100, ver % 100);
--	}
--
--	ret = read_gmdid(xe, GMDID_MEDIA, &ver, media_revid);
--	if (ret)
--		return ret;
-+	const struct xe_ip **ips[] = {
-+		[GMDID_GRAPHICS] = graphics_ip,
-+		[GMDID_MEDIA] = media_ip,
-+	};
-+	u32 *revids[] = {
-+		[GMDID_GRAPHICS] = graphics_revid,
-+		[GMDID_MEDIA] = media_revid,
-+	};
-+
-+	for (enum xe_gmdid_type type = 0; type < ARRAY_SIZE(gmdid_descs); type++) {
-+		const struct xe_gmdid_desc *desc = &gmdid_descs[type];
-+		u32 ver;
-+		int ret;
-+
-+		*ips[type] = NULL;
-+		*revids[type] = 0;
-+
-+		ret = read_gmdid(xe, type, &ver, revids[type]);
-+		if (ret)
-+			return ret;
+ #include "display/xe_display.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+@@ -40,6 +42,7 @@
+ #include "xe_tile.h"
+ #include "xe_tile_printk.h"
+ #include "xe_wedge.h"
++#include "xe_wa.h"
  
--	/* Media may legitimately be fused off / not present */
--	if (ver == 0)
--		return 0;
-+		/* The IP may legitimately be fused off / not present */
-+		if (!ver) {
-+			*revids[type] = 0;
-+			continue;
-+		}
+ enum toggle_d3cold {
+ 	D3COLD_DISABLE,
+@@ -795,6 +798,17 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.subplatform = subplatform_desc ?
+ 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
  
--	*media_ip = find_media_ip(ver);
--	if (!*media_ip) {
--		xe_log_err(xe, REGS, -EINVAL,
--			   "Hardware reports unknown media version %u.%02u\n",
--			   ver / 100, ver % 100);
-+		*ips[type] = desc->find_ip(ver);
-+		if (!*ips[type])
-+			xe_log_err(xe, REGS, -EINVAL,
-+				   "Hardware reports unknown %s version %u.%02u\n",
-+				   desc->name, ver / 100, ver % 100);
- 	}
- 
- 	return 0;
++	/*
++	 * Device OOB workarounds only match on platform, subplatform and
++	 * platform step, which are all known by now, so process them here and
++	 * make XE_DEVICE_WA() usable for the remainder of early probe.
++	 */
++	err = xe_wa_device_init(xe);
++	if (err)
++		return err;
++
++	xe_wa_process_device_oob(xe);
++
+ 	xe->info.dma_mask_size = desc->dma_mask_size;
+ 	xe->info.va_bits = desc->va_bits;
+ 	xe->info.vm_max_level = desc->vm_max_level;
 -- 
 2.43.0
 
