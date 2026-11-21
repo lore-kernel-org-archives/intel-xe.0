@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C73D606A320
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEAB2606A32A
 	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=E+Qe8nJN
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lE/hOiR0
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56B4310EA2A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 778AC10EA26;
 	Sat, 21 Nov 2026 18:23:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75AC510E9F4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05D0210E447
  for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795285416; x=1826821416;
+ t=1795285417; x=1826821417;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RqBLCYTPKOhh6aFKxyeBauLDaVTwRCXSpq8isnePYMs=;
- b=E+Qe8nJNMU5mvE+32vPXjHYgrTEfQwDhQ1zTx1IkSt1raz5DIswCIWyZ
- RnR0YMdyPhm1XW71YYjItIFSnMXmeBY7XxdAj9ViTeepLmX8OCwHgKU+y
- PbLbJcm7cVnn7p6WjV5cTAxoNU/RK0wfTOkbP/CgxXDMgvdJorulzFRTl
- cn/qmH4M8homDciLlAJ4AXMgs2h95l/pz3bht3bsu0lZ8lmefeLRsUERC
- K9V/3wXgqEIxM9T8LBhgpBAGDznWjETFqyAll9ZqYq609blwqOSBXFwRh
- rR8MxVmiX3sIUOSgyDkc85PIQWs6p9oYvMKPsZ5E/I37Hizo62RgrsJJ9 g==;
-X-CSE-ConnectionGUID: TBSK3f2NQ0mWyavoMCUeXw==
-X-CSE-MsgGUID: 7zL9kDwSRHSWHCRRKA+VFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034063"
+ bh=7nuLYak4G2UKtW4XZ3zOKxCizaNN5rtbJuZHGw3GONo=;
+ b=lE/hOiR00GfvncYbLSq8L2ZSK54+yZxfVI4+cHFAAEdrAcGa+kZwGRE5
+ KtnuQlLAbTx3hihYUs1YQsTAf5ngZFBy/wShie92mxtCE6NIrTTOp2YIL
+ 6mKeSrdhCW+n8PRM+uxCp83229UJj4TOoS9dkwOyEChNDrJpNUE2DZiSx
+ OiaeeytEyRzRZRCwVUtDWDkARyM3DGlm0WAs82rLa+hWkMcd3cySJEocE
+ IH0k5+7ydqL/OvNLzKN04+FJ9YFIEvfryrTrhzUnifxSr/cWGFOh9CBcu
+ JEZVjsB3KcOroLgu8VnrQf/rwSamYbSufweJQE15upptKamLoyGN3oTo7 g==;
+X-CSE-ConnectionGUID: F/rLIzHuQN6Z7Z91t1PuFw==
+X-CSE-MsgGUID: DCZ/A5H3SVuhPzVKtCD8Sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034065"
 X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; 
-   d="scan'208";a="4034063"
+   d="scan'208";a="4034065"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:21 -0800
-X-CSE-ConnectionGUID: SjnDA3ogS7ywZK2bdKtrWg==
-X-CSE-MsgGUID: Rjl3SJj0RHSXZX+CA9jyFA==
+X-CSE-ConnectionGUID: 2GeyPkFtRqeEa0AMQdm1mw==
+X-CSE-MsgGUID: 9On/mt8JSyKSTZtH0P9IkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934425"
+X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934431"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:20 -0800
@@ -44,9 +44,9 @@ To:
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 08/17] drm/xe: Guard per-tile primary GT accesses
-Date: Sat, 21 Nov 2026 18:23:24 +0000
-Message-ID: <20261121182317.48981-27-stuart.summers@intel.com>
+Subject: [PATCH 10/17] drm/xe: Do not claim flat CCS without a graphics IP
+Date: Sat, 21 Nov 2026 18:23:26 +0000
+Message-ID: <20261121182317.48981-29-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261121182317.48981-19-stuart.summers@intel.com>
 References: <20261121182317.48981-19-stuart.summers@intel.com>
@@ -70,63 +70,37 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A tile's primary GT is now optional, just like its media GT already was.
-The TLB invalidation and memory interrupt paths walk both GTs of a tile
-but only test the media one for presence, so they would dereference NULL
-on a device whose graphics IP is absent.  Mirror the existing media
-checks for the primary GT.
+has_flat_ccs comes from the device descriptor rather than from the
+graphics IP, so it survives a device whose graphics IP is absent.  It is
+a graphics feature though, and probe_has_flat_ccs() reads its layout back
+through the primary GT, which is not there.
+
+Clear the flag along with the rest of the graphics feature bits.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_memirq.c    |  3 ++-
- drivers/gpu/drm/xe/xe_tlb_inval.c | 20 +++++++++++---------
- 2 files changed, 13 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_pci.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 3433518cc095..0ef3df10ac49 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -578,7 +578,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index a270d1fbce03..b8dcb224e306 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -1138,6 +1138,14 @@ static int xe_info_init(struct xe_device *xe,
+ 		xe->info.has_ctx_tlb_inval = graphics_desc->has_ctx_tlb_inval;
+ 		xe->info.has_usm = graphics_desc->has_usm;
+ 		xe->info.has_64bit_timestamp = graphics_desc->has_64bit_timestamp;
++	} else {
++		/*
++		 * Flat CCS comes from the device descriptor rather than from
++		 * the graphics IP, but it is still a graphics feature: its
++		 * layout is read back through the primary GT, which is not
++		 * there to be read.
++		 */
++		xe->info.has_flat_ccs = 0;
+ 	}
  
- 	/* GuC and media GuC (if present) must be checked separately */
- 
--	if (memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
-+	if (tile->primary_gt &&
-+	    memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
- 		map = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
- 					    XE_MEMIRQ_VECTOR_OFFSET(0, ilog2(INTR_GUC)));
- 		memirq_dispatch_guc(memirq, &map, &tile->primary_gt->uc.guc);
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index 1fd39434dc0e..6ef7860c7ff3 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -624,15 +624,17 @@ int xe_tlb_inval_range_tilemask_submit(struct xe_device *xe, u32 asid,
- 		if (!(tile_mask & BIT(id)))
- 			continue;
- 
--		xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
--					&fence[fence_id], true);
--
--		err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
--					 &fence[fence_id], start, end,
--					 asid, NULL);
--		if (err)
--			goto wait;
--		++fence_id;
-+		if (tile->primary_gt) {
-+			xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
-+						&fence[fence_id], true);
-+
-+			err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
-+						 &fence[fence_id], start, end,
-+						 asid, NULL);
-+			if (err)
-+				goto wait;
-+			++fence_id;
-+		}
- 
- 		if (!tile->media_gt)
- 			continue;
+ 	if (xe->info.platform != XE_PVC)
 -- 
 2.43.0
 
