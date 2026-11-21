@@ -2,104 +2,85 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F6F606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87D6F606A32A
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 15:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=baylibre.com header.i=@baylibre.com header.a=rsa-sha256 header.s=google header.b=l4VOhQqy
+	dkim=pass (2048-bit key) header.d=metarealtyinc.ca header.i=@metarealtyinc.ca header.a=rsa-sha256 header.s=google header.b=FfmB5qsl
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A08410EF13;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 227EC10EF14;
 	Mon, 23 Nov 2026 15:17:45 +0000 (UTC)
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
- [209.85.221.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C555A10E796
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 11:11:38 +0000 (UTC)
-Received: by mail-wr1-f53.google.com with SMTP id
- ffacd0b85a97d-498f5fa4f70so593946f8f.0
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 03:11:38 -0800 (PST)
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+ [209.85.222.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9185110E3D8
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 12:25:54 +0000 (UTC)
+Received: by mail-qk1-f177.google.com with SMTP id
+ af79cd13be357-93f269e335eso229320385a.3
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 04:25:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=baylibre.com; s=google; t=1795173097; x=1795777897;
+ d=metarealtyinc.ca; s=google; t=1795263953; x=1795868753;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=BrQVyBHIuUO7xP+jIZyBG0K3XbPFocXeq1/nJ8yUgN0=;
- b=l4VOhQqyF/Ufj5kJL/y/gi3b/LAzgZoE9EqzJEqAhyq6hTI71mPkBGHXg7oevOrK0z
- BNn270fT0rWHSfGnsKsCZ7CtbMr4yOJJkNmCtZYvNxbquHzGXqmaODZymfLHZhYPw5wk
- M+4yk9QbO3zNGAbfda/Bk/g3aNWq5QttuBBc3lXSJy7r+M/s0+LQZQ99gWS9NG2KSZlb
- sk7DcSTXVo1LI9QWxc3NaaM+/TWAgYfw6LssL01pJ3WOMlJ4VQp95a0nvwGQ1vFs5KyU
- We/uOyIJKGaJRKBrnSNcVnMXSND1hTtDj11jiUB30qhdV3DunzGhHgSx6xZowdC+bW5O
- KbKA==
+ bh=88WlhqINmeA19hZX0Kkh5qux5XPACGYh+siXk+w/DT8=;
+ b=FfmB5qslI7lR5JT53IQbM7oYgX6wqbjb1OMCNuWY+yiiVQC5gvgFJto9bxLTyu8TYv
+ ubB09+n+tUsqkLCVSm14M7rV5NWHImKHSG+8TV7JiP3MTSCFFnMfEE20Ea3As/Z/hwYU
+ phDDtEp725wISLqL6hvAn9nUIj2z/rrKU5cx5i3myC4IVoXNYR+ubnLjuiwz88C0AYm7
+ Ece8mys3aflAFLR1p2ZYlCEvR+fSBQ/pF2bOUjju/V6Pc0Mqn7hSwbB8HOTR9SPjDyUo
+ UHMLxOSIL4YlGTH2AUm85uyspDwTnQKzORVWG0AFVLaHayMWQgKZlyXSZ+knwh5kQ2uY
+ oyXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1795173097; x=1795777897;
+ d=1e100.net; s=20260707; t=1795263953; x=1795868753;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=BrQVyBHIuUO7xP+jIZyBG0K3XbPFocXeq1/nJ8yUgN0=;
- b=GjH6UDV7FmTwewNomLWQNBNjCszbuGTtAi8RD27jtTjgLaBzt76z/bUBokN2TGeYjr
- v/jf0XwaeRqU7PO4C71Xpjm+xAcgcTXic2ua9PMzQ1OyWbKRcv8WPUTM78XtejkVUiE6
- 9uuuD4suzbwmu6AZfHqjQpPE6jfbTe8iAzNq/Y15JfgYPOJJRBSFJhRuoYD8Kwacb6A6
- Y/iP7+NjFRHStjpFgH5eOvz9miT6PzjqoxqhDZGju8x6aW93MGlRPz+9K5LIZhZEXyi/
- BL9UWCIFgDpJ3dY260GCHDZPZ1dqHqVV3Vs4ubmJaq54kflou5MFmK/WnTxqfz0AZzQ5
- GE8Q==
+ bh=88WlhqINmeA19hZX0Kkh5qux5XPACGYh+siXk+w/DT8=;
+ b=yRTiprSILNXe69z3ZEzS1bIkelqNj8vtCOT+39ibZflWxIix1hnCp46r4E7kO1Uqiz
+ BNt+/BR8bFnANVkaw8HSlUa23gT+Vmnwz0bQcaxlahFzfyBFKGz1KYG600BEQUug+hm5
+ KM8uQtH6ToXJt5RJe6fLILv8eBpRQkeaDKHg0O2Pf/gt1NbJI21q/UUzyd+NuFmf4A88
+ WFIgPEXTimdkXNVXGW7HkRvhPWRDh9GridwDE41W3sUY14WjdCbkrnr5EfTlcbZkUi7Z
+ bDJ6gH1MGFyahAD5VduIO3t+i5viIOOFMiNt9h7L9GNMOKHb0to4XHpPInRlsBgsyeBK
+ q5xg==
 X-Forwarded-Encrypted: i=1;
- AL+hErEtEEl8F7y7DAF/ol0lJqSQ9lySpSbFuNdBVD7SbkG99gUAkh1zxZW2ASrBbQPokExsyFmmgHgGwQ==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z81L2kGE/TlOaZYrj/a1DUd7y9L2WfT2WS3T0ic7A0VjIn9T1RC
- VgMlFAGmjzyOulRD7+moFfHbnDHti+zCkwil1QoiXQby7o0vE3UKWTEvQUOU4vLYs+k=
-X-Gm-Gg: AYBFou0NSIpfc00FqV5Y/D2KbOVOk8PYd2IpKuyH0/dWI3ttZrHCz3HlJ/VFXMsRZiZ
- y/c14LHhzlNJBs/xF02OESpHL+do2zmO9QzXomrYNT/+B2NifINhFYjjNOG8P5+4gqRKQjVj8Kj
- J4EdYMokRpElf4vKKr8VP3rdF6IoXrw0WlYPKLdiWGkHODhY0dMRNBHUtqm4Vd1VqF1wxyHLGC+
- X8jkIkjGn03GHwBgGNfUUUgEW1HQ7fEmJo73BJNm0lESkKFbYTgq8/zdDptJFevwsBfZMO/tZsb
- XOrKiGlthW35TgHwm/tNHm2LMrBRMFCJ4iZFuqQ0qdTrYc9mLgfYQn4Fx/xe/pvzWBMi8GE3qFT
- j+EKqNA2yDvOm52SrEhW5oqXR/TBmQ+BstEt5e9I9Jjmc6Gb/GQu9t2mEHA2ucHctl7OqxT982p
- XQmNkxVoHB4NcgE/6bY930TzoKbaGvi3F3Oqu6zadcmVdiMp28eK12nuirZy89Zo6k5B1vGJQL7
- ejyn3OMsSIkCqK8m0XwLCjvlxczqj6whtsHuoUFzHdCXfxcIjHNKysxzSxoqWE7Jg0ccYgvMK0G
- L6DQtBpRE4CF8BVenB6ikZyq4Chsu9JKMt3Ai8/KLMpXMpAM71i7ncpmi8jCddKNLzbBtTAElPc
- jEYvjBx6FhpQzm7bJ
-X-Received: by 2002:a05:600c:5303:b0:4a2:1655:87db with SMTP id
- 5b1f17b1804b1-4bb88785d2fmr60593795e9.0.1795173097042; 
- Fri, 20 Nov 2026 03:11:37 -0800 (PST)
-Received: from localhost
- (p200300f65f19a904be03815e1634e776.dip0.t-ipconnect.de.
- [2003:f6:5f19:a904:be03:815e:1634:e776])
- by smtp.gmail.com with UTF8SMTPSA id
- ffacd0b85a97d-4ab6ae2dd55sm4879298f8f.30.2026.11.20.03.11.36
+ AL+hErFbzSGknWO5n2veu8GAIG2t5myZ/wGrCcYvywrm9cEnbvKHKNV+hfPM7mDSJ+pZfKhk6yMD7C5e1Q==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/Og1XA3G7miiaIVkfWlLPA/Leg6DluM9w6rnFIpknFvtPDTqIw
+ YVoll81NGhbEgfcbn+hbxnEGSMmsEk1c/tJmVKyPY6LWXL1SNNT2syyTMG7XDHqmpJ8=
+X-Gm-Gg: AZFdTZfCY9XQAn0GE36dE3CyI7ZA210dPuzhxdGz5hP3s0NXn5pW7+Xka4QfjPnODDh
+ QXUZ55T72qwMlAfZxrjnr7WXqga/tC1yINA/G+Y9hHZ5shvZWaVuhdNYWe5JAozbQk0DhBL8cCd
+ k9+kOAfutjXjzUlqXBzgjbJKNZg5oZIwlwagtwcP4vz2IPnoKyZedXHodfwCImIorDoCUVinBSc
+ suPbEljX0oaD1FnBvPh0vMY8LZaddIOVPmox397TheHXgESXHbBBjSKHYi51ZYuJezlcDqihe4a
+ hUgMyvQITSdj/jWMk6tuc5MjwdY1gKdXzUlc0OoDmg8DXilGwlL+RqywnTwdeoFquLWq2C3mOiN
+ iV6GheKeEu8pZF26NmB+W3QEaRzA6NwHEozDZsVLAjZnV5d8ORoo4opF+Jf30TXXLulZg4IJdIJ
+ I+qE7iD6XIvp04Kr+FgEyr/sZZfEQ5zN+67Ws99IA3b7JB8dV28Z8PgZq1ZJ0Fr07LtYKI5Sopv
+ aqOuYNpF2cEZgq+UlbqMLkSzOBZeRF7myX802Vmm289D1IDJ4xWQNjeqgQ7X9vFP6VxiKEsLqy9
+ 0cfr+mJ4e2UKGxljonO5eqOaEx/dsIxB6VwrRjFxJKyPZx5dGUQggGYTZOTWCo9DO5vkHsPlw/N
+ BiGHOLDTzvv8PH/qy/YHeyrZ0+NBHVXRP0+ln95D5u/dZo56kCv9u/Zf1R40VQkImm+ks0tCy41
+ 04+c/rWDc5jRZ16HiXywOPWKmnl4YSFqfshIsQlDVzFcaN+pyMHcUcAJf8HnJe55sTUshmb4gke
+ RNexXvc
+X-Received: by 2002:a05:620a:710d:b0:93e:c12c:fbc4 with SMTP id
+ af79cd13be357-949bab6939amr1001886485a.81.1795263953266; 
+ Sat, 21 Nov 2026 04:25:53 -0800 (PST)
+Received: from jake-laptop ([153.67.1.15]) by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-949bb4004e8sm407029185a.33.2026.11.21.04.25.51
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Nov 2026 03:11:36 -0800 (PST)
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Nipun Gupta <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>,
- Ioana Ciornei <ioana.ciornei@nxp.com>,
- Longfang Liu <liulongfang@huawei.com>,
- Julian Ruess <julianr@linux.ibm.com>, Ankit Agrawal <ankita@nvidia.com>,
- Brett Creeley <brett.creeley@amd.com>,
- Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
- =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- Eric Auger <eric.auger@redhat.com>
-Cc: Alex Williamson <alex@shazbot.org>, Mostafa Saleh <smostafa@google.com>,
- kvm@vger.kernel.org, qat-linux@intel.com, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 03/10] vfio: Allow untainted use of driver_override
-Date: Fri, 20 Nov 2026 12:11:04 +0100
-Message-ID: <fb0df5c89336b77a373ae0f890f63427e4adbb28.1795171088.git.u.kleine-koenig@baylibre.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1795171088.git.u.kleine-koenig@baylibre.com>
-References: <cover.1795171088.git.u.kleine-koenig@baylibre.com>
+ Sat, 21 Nov 2026 04:25:52 -0800 (PST)
+From: Jake Steinman <j@metarealtyinc.ca>
+To: jouni.hogander@intel.com,
+	ville.syrjala@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ animesh.manna@intel.com, ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
+Subject: [PATCH v2 0/4] drm/i915/psr: Send the AS SDP in PR Active while
+ frames are updating
+Date: Sat, 21 Nov 2026 07:25:46 -0500
+Message-ID: <cover.1795263689.git.j@metarealtyinc.ca>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <awCCGeCxHToY8tsI@intel.com>
+References: <awCCGeCxHToY8tsI@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8510;
- i=u.kleine-koenig@baylibre.com; h=from:subject:message-id;
- bh=dPonNBvfNN+Y+hasN6N76yOjaxrJAf2jDLwOrEk6e/k=;
- b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBrACrPnhdElrJ48htsRj41CZ+RoGPpi+e192BgN
- eO3/kW3mk+JATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCawAqzwAKCRCPgPtYfRL+
- TnjtB/9BLbv75MudDVdJQ8yRIH6+8dkN6QGQbvEfeg6obW4wlHuTcmSV0TmcUSHjkZQrML3iXQM
- oDWxhADtzWGqYWKO0YZX7gXc6lon9nCzctov+ts9qBiLvjYE3SV7cmvY5wWCfrcjRhVq0/vMutM
- pYeBSSc3jsM3D40slB3SocXaU9mypo0g8CLTogcjhX0kXLaFQNukgo5HBMShJVh25mPLrclntjO
- 3MT2SGus1yL1yjuLT752ICOBUloat7K1ow7xpM7tis/G8ywOxrVA6LlY/2x+RYTpn0XECnUl/Ss
- OPflWzM2+BqCA8nJIJ8ye7pB36UGAAVLkOp4Cv8dW16Dk+4F
-X-Developer-Key: i=u.kleine-koenig@baylibre.com; a=openpgp;
- fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 23 Nov 2026 15:17:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -112,220 +93,51 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Alex Williamson <alex@shazbot.org>
+Jouni, Ville,
 
-Driver overrides are the standard mechanism for binding vfio drivers
-to devices.  With the introduction of the support_driver_override flag
-in the core driver struct, it's now required for drivers to declare
-themselves as driver_override compatible, otherwise driver_override
-bindings will be denied or generate a kernel taint.
+v2 of the RFC, split the way Jouni asked. Following Ville's comment it no
+longer depends on vblank interrupts. A frontbuffer flush (flips, cursor
+updates, frontbuffer rendering) clears AS SDP Transmission in Active
+Disable, and a delayed work sets it again after 6 idle frames, the same
+idle time DC3CO and DC5/DC6 use.
 
-Set the support_driver_override flag on the driver struct across all
-vfio drivers.
+Tested on 7.4-rc3 on the Dell XPS 16 DA16260 (PTL, xe): Panel Replay SU
+with Early Transport stays enabled, scrolling is smooth, including after
+a lid close/open, which judders without this. DC5/DC6 is still entered
+when idle. Rebased on drm-tip and build tested there (W=1, i915 and xe).
 
-Signed-off-by: Alex Williamson <alex@shazbot.org>
-Reviewed-by: Brett Creeley <brett.creeley@amd.com>
-Reviewed-by: Mostafa Saleh <smostafa@google.com>
-Reviewed-by: Ankit Agrawal <ankita@nvidia.com>
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
----
- drivers/vfio/cdx/main.c                        | 1 +
- drivers/vfio/fsl-mc/vfio_fsl_mc.c              | 1 +
- drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c | 3 ++-
- drivers/vfio/pci/ism/main.c                    | 3 ++-
- drivers/vfio/pci/mlx5/main.c                   | 3 ++-
- drivers/vfio/pci/nvgrace-gpu/main.c            | 3 ++-
- drivers/vfio/pci/pds/pci_drv.c                 | 3 ++-
- drivers/vfio/pci/qat/main.c                    | 3 ++-
- drivers/vfio/pci/vfio_pci.c                    | 3 ++-
- drivers/vfio/pci/virtio/main.c                 | 3 ++-
- drivers/vfio/pci/xe/main.c                     | 3 ++-
- drivers/vfio/platform/vfio_amba.c              | 1 +
- drivers/vfio/platform/vfio_platform.c          | 1 +
- 13 files changed, 22 insertions(+), 9 deletions(-)
+Changes since the RFC:
+- Trigger on frame updates instead of vblank enable/disable (Ville)
+- New intel_alpm_pr_as_sdp_in_active_disable() helper (Jouni)
+- Drop pr_as_sdp_follow_vblank, do the checks in
+  compute_disable_as_sdp_when_pr_active() (Jouni)
+- Stop setting the bit in intel_alpm_configure_pr_as_sdp(), which also
+  covers the seamless VRR toggle case from the RFC (Jouni)
+- Remove the DA16260 quirk, add Fixes and stable tags (Jouni)
 
-diff --git a/drivers/vfio/cdx/main.c b/drivers/vfio/cdx/main.c
-index 28dc8c825600..fb7679bf92fd 100644
---- a/drivers/vfio/cdx/main.c
-+++ b/drivers/vfio/cdx/main.c
-@@ -358,6 +358,7 @@ static struct cdx_driver vfio_cdx_driver = {
- 	.match_id_table	= vfio_cdx_table,
- 	.driver	= {
- 		.name	= "vfio-cdx",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/fsl-mc/vfio_fsl_mc.c b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-index 15b05b8c0c90..1603f81e0257 100644
---- a/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-+++ b/drivers/vfio/fsl-mc/vfio_fsl_mc.c
-@@ -597,6 +597,7 @@ static struct fsl_mc_driver vfio_fsl_mc_driver = {
- 	.remove		= vfio_fsl_mc_remove,
- 	.driver	= {
- 		.name	= "vfio-fsl-mc",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-index c82c59246a3f..5c56aff8db01 100644
---- a/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-+++ b/drivers/vfio/pci/hisilicon/hisi_acc_vfio_pci.c
-@@ -1737,7 +1737,8 @@ static struct pci_driver hisi_acc_vfio_pci_driver = {
- 	.id_table = hisi_acc_vfio_pci_table,
- 	.probe = hisi_acc_vfio_pci_probe,
- 	.remove = hisi_acc_vfio_pci_remove,
--	.driver = { .pm = pm_ptr(&hisi_acc_vf_pm_ops) },
-+	.driver = { .pm = pm_ptr(&hisi_acc_vf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &hisi_acc_vf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/ism/main.c b/drivers/vfio/pci/ism/main.c
-index cce3bdf1f070..263b377e87c4 100644
---- a/drivers/vfio/pci/ism/main.c
-+++ b/drivers/vfio/pci/ism/main.c
-@@ -399,7 +399,8 @@ static struct pci_driver ism_vfio_pci_driver = {
- 	.id_table = ism_device_table,
- 	.probe = ism_vfio_pci_probe,
- 	.remove = ism_vfio_pci_remove,
--	.driver	= { .pm = pm_ptr(&ism_vfio_pm_ops) },
-+	.driver	= { .pm = pm_ptr(&ism_vfio_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &ism_vfio_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/mlx5/main.c b/drivers/vfio/pci/mlx5/main.c
-index 18a6d224b1fd..63c89e461be8 100644
---- a/drivers/vfio/pci/mlx5/main.c
-+++ b/drivers/vfio/pci/mlx5/main.c
-@@ -1451,7 +1451,8 @@ static struct pci_driver mlx5vf_pci_driver = {
- 	.id_table = mlx5vf_pci_table,
- 	.probe = mlx5vf_pci_probe,
- 	.remove = mlx5vf_pci_remove,
--	.driver	= { .pm = pm_ptr(&mlx5vf_pm_ops) },
-+	.driver	= { .pm = pm_ptr(&mlx5vf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &mlx5vf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/nvgrace-gpu/main.c b/drivers/vfio/pci/nvgrace-gpu/main.c
-index 5ddec340b73b..946da32c61ff 100644
---- a/drivers/vfio/pci/nvgrace-gpu/main.c
-+++ b/drivers/vfio/pci/nvgrace-gpu/main.c
-@@ -1438,7 +1438,8 @@ static struct pci_driver nvgrace_gpu_vfio_pci_driver = {
- 	.id_table = nvgrace_gpu_vfio_pci_table,
- 	.probe = nvgrace_gpu_probe,
- 	.remove = nvgrace_gpu_remove,
--	.driver = { .pm = pm_ptr(&nvgrace_gpu_pm_ops) },
-+	.driver = { .pm = pm_ptr(&nvgrace_gpu_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &nvgrace_gpu_vfio_pci_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/pds/pci_drv.c b/drivers/vfio/pci/pds/pci_drv.c
-index cf7e33d4d17b..1fcef987f1b0 100644
---- a/drivers/vfio/pci/pds/pci_drv.c
-+++ b/drivers/vfio/pci/pds/pci_drv.c
-@@ -184,7 +184,8 @@ static struct pci_driver pds_vfio_pci_driver = {
- 	.id_table = pds_vfio_pci_table,
- 	.probe = pds_vfio_pci_probe,
- 	.remove = pds_vfio_pci_remove,
--	.driver = { .pm = pm_ptr(&pds_vfio_pm_ops) },
-+	.driver = { .pm = pm_ptr(&pds_vfio_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &pds_vfio_pci_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/qat/main.c b/drivers/vfio/pci/qat/main.c
-index 69448fa57df4..8a616f9b6494 100644
---- a/drivers/vfio/pci/qat/main.c
-+++ b/drivers/vfio/pci/qat/main.c
-@@ -695,7 +695,8 @@ static struct pci_driver qat_vf_vfio_pci_driver = {
- 	.id_table = qat_vf_vfio_pci_table,
- 	.probe = qat_vf_vfio_pci_probe,
- 	.remove = qat_vf_vfio_pci_remove,
--	.driver	= { .pm = pm_ptr(&qat_vf_pm_ops) },
-+	.driver	= { .pm = pm_ptr(&qat_vf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &qat_vf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/vfio_pci.c b/drivers/vfio/pci/vfio_pci.c
-index e7c012febe91..fde2c3fc88eb 100644
---- a/drivers/vfio/pci/vfio_pci.c
-+++ b/drivers/vfio/pci/vfio_pci.c
-@@ -260,7 +260,8 @@ static struct pci_driver vfio_pci_driver = {
- 	.remove			= vfio_pci_remove,
- 	.sriov_configure	= vfio_pci_sriov_configure,
- 	.err_handler		= &vfio_pci_err_handlers,
--	.driver		= { .pm = pm_ptr(&vfio_pci_pm_ops) },
-+	.driver		= { .pm = pm_ptr(&vfio_pci_pm_ops),
-+			    .support_driver_override = true },
- 	.driver_managed_dma	= true,
- };
- 
-diff --git a/drivers/vfio/pci/virtio/main.c b/drivers/vfio/pci/virtio/main.c
-index 123ff5193812..1e02a8fd4a61 100644
---- a/drivers/vfio/pci/virtio/main.c
-+++ b/drivers/vfio/pci/virtio/main.c
-@@ -222,7 +222,8 @@ static struct pci_driver virtiovf_pci_driver = {
- 	.id_table = virtiovf_pci_table,
- 	.probe = virtiovf_pci_probe,
- 	.remove = virtiovf_pci_remove,
--	.driver = { .pm = pm_ptr(&virtiovf_pm_ops) },
-+	.driver = { .pm = pm_ptr(&virtiovf_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &virtiovf_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
-index 7dab3e024aa8..e0ab61f604de 100644
---- a/drivers/vfio/pci/xe/main.c
-+++ b/drivers/vfio/pci/xe/main.c
-@@ -592,7 +592,8 @@ static struct pci_driver xe_vfio_pci_driver = {
- 	.id_table = xe_vfio_pci_table,
- 	.probe = xe_vfio_pci_probe,
- 	.remove = xe_vfio_pci_remove,
--	.driver = { .pm = pm_ptr(&xe_vfio_pm_ops) },
-+	.driver = { .pm = pm_ptr(&xe_vfio_pm_ops),
-+		    .support_driver_override = true },
- 	.err_handler = &xe_vfio_pci_err_handlers,
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/platform/vfio_amba.c b/drivers/vfio/platform/vfio_amba.c
-index fa754f203b2d..2c87caf1b7f7 100644
---- a/drivers/vfio/platform/vfio_amba.c
-+++ b/drivers/vfio/platform/vfio_amba.c
-@@ -137,6 +137,7 @@ static struct amba_driver vfio_amba_driver = {
- 	.id_table = vfio_amba_ids,
- 	.drv = {
- 		.name = "vfio-amba",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
-diff --git a/drivers/vfio/platform/vfio_platform.c b/drivers/vfio/platform/vfio_platform.c
-index a4d3ace3e02d..93d06032cdde 100644
---- a/drivers/vfio/platform/vfio_platform.c
-+++ b/drivers/vfio/platform/vfio_platform.c
-@@ -116,6 +116,7 @@ static struct platform_driver vfio_platform_driver = {
- 	.remove		= vfio_platform_remove,
- 	.driver	= {
- 		.name	= "vfio-platform",
-+		.support_driver_override = true,
- 	},
- 	.driver_managed_dma = true,
- };
+Jake Steinman (4):
+  drm/i915/alpm: Add a helper to suspend the AS SDP in PR Active
+  drm/i915/psr: Send the AS SDP in PR Active while frames are updating
+  drm/i915/alpm: Leave AS SDP Transmission in Active Disable to PSR code
+  drm/i915/display: Remove the Panel Replay quirk for Dell XPS 16
+    DA16260
+
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 30 ++++++-
+ drivers/gpu/drm/i915/display/intel_alpm.h     |  4 +
+ .../drm/i915/display/intel_display_types.h    |  5 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 90 ++++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr.h      |  2 +
+ drivers/gpu/drm/i915/display/intel_quirks.c   |  8 --
+ 7 files changed, 126 insertions(+), 14 deletions(-)
+
 -- 
-2.56.0.rc1
+2.56.1
 
