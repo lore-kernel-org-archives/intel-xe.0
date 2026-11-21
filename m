@@ -2,60 +2,168 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B117606A33A
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 06:46:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC908606A336
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 06:49:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Kmzd9dcz
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=crz0I1Eb;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=KOJ0kUYk
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55FD210E234;
-	Sat, 21 Nov 2026 06:46:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BC4910E07D;
+	Sat, 21 Nov 2026 06:49:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D82A10E18E
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 06:46:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49FF610E07D
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 06:49:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795243564; x=1826779564;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jQB85UV5wOQYOENjefjyjjhC/i++9xCSUha12T3NYUg=;
- b=Kmzd9dczDqTEFF0WhSP3JjCErb2g6rejHjKLVDVXzBIR2B2J5GQ3EqVU
- GlN0b5Qv3s9e5UVrX99lopxwX4QI4XTlFA+g/md7t3HDHi1AWIt9elNsX
- GhM8iswm6tKQrBwJFzjfOIqA7GjQhP3VB6JYpxzjRKqn5HVaoLTBmLNK1
- yYiE4Ba/cIcoHZatqIKeE9AjgA2UbSUXUI8Y+xsRpNq6f156XPcyxGgnj
- ky0Ie3i4hG5y/owwRoYTknpD78URR+GevkTZZ/LlwkU5Cj29ZQZs5jcPY
- xYbAXcIuajSP3je8lR9JcyHi0HRFmO2ZijsMuQvYWVZQtAto/WCEBREbF Q==;
-X-CSE-ConnectionGUID: nN4mJwRtRNWldoIEQqaIvg==
-X-CSE-MsgGUID: 5IixXyoZSZiiGVqZ0isfgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4008549"
+ t=1795243743; x=1826779743;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=8oC+1sSbG1uyvWuLnBur8z7j7H7PoZPyzkUqMZ0ECP4=;
+ b=crz0I1Ebc5PGy4tXi05IT1JxxV5t85I+Ty8lx31FiHislNX0Ux2XKiu0
+ sDpzBSUJ0e/G2MApoT1CPiJN2myRDOlAXXqdl1sXr5otL5es+RACid5cH
+ jowqL7s/Y7WFNkL1ZVW7W/BPMZrrWysnm+eL19wCnO8n59hdTiEvUUc3R
+ HGd5g2YOpa8AteUqH+HZV5YOCFglf9YV0PnT2iLOSurEzNK8PR5HJc2Z7
+ xoXmMrV7q7Up5qDQGXM/02p7oDs3PmTBLu1EZouFFgZys6+753lRxefZS
+ /QF1SD2ENFXh909d9FHInuCcuYzW4aiZIV/vy8M516wz04JldjaesbR1z Q==;
+X-CSE-ConnectionGUID: lc9Dm4LMTc6Ac4Xp8wYnhg==
+X-CSE-MsgGUID: fi9eiU8eT3K0yDFzzy8MjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11972"; a="4008624"
 X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; 
-   d="scan'208";a="4008549"
+   d="scan'208";a="4008624"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 22:46:04 -0800
-X-CSE-ConnectionGUID: biNVn+7ASQ66Ss8Zre1ntQ==
-X-CSE-MsgGUID: eTxLmy90QtOGVjzTi5CfEA==
+ 20 Nov 2026 22:49:03 -0800
+X-CSE-ConnectionGUID: 1PONP22QQpe0AknYRA6pWQ==
+X-CSE-MsgGUID: ibcgxoB8THG3PgFkKw+wuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; d="scan'208";a="12869415"
-Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2026 22:46:01 -0800
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
- daniele.ceraolospurio@intel.com, raag.jadav@intel.com,
- riana.tauro@intel.com, mallesh.koujalagi@intel.com,
- aravind.iddamsetty@intel.com, himal.prasad.ghimiray@intel.com,
- arvind.yadav@intel.com, syed.abdul.muqthyar.ahmed@intel.com,
- nitin.r.gote@intel.com, matthew.d.roper@intel.com
-Subject: [PATCH v9 3/3] drm/xe/cper: Prepare Intel CPER info records
-Date: Sat, 21 Nov 2026 12:15:49 +0530
-Message-ID: <20261121064545.168470-8-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261121064545.168470-5-badal.nilawar@intel.com>
-References: <20261121064545.168470-5-badal.nilawar@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,224,1787036400"; d="scan'208";a="12869696"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Nov 2026 22:49:03 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Fri, 20 Nov 2026 22:49:02 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56 via Frontend Transport; Fri, 20 Nov 2026 22:49:02 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.52) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Fri, 20 Nov 2026 22:49:01 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=dUoTvf+cGyNubkh1QSShHPX9QFWq2D5/T5YjDPVxg8SpBchuHq9ag1m1FbvQ+YWUMEaJTsOpowr+tdBDpjgCCSMo+j/snjcUe4UbL6VDiJatNN9+XXG55GH33NH10ZUBzcUrooKJeC5Yc5PUmB9ZLdLrcXI3QGE7/v3FuPbq4CnQBB5eRmrqa9S//X0owlGrC7l9j6+f4PZf3dGCs3W1H9SBJvKD0FNjI4O0cFC0MlSyBT4UgoTM26InKZAub8CC2mww72QvX3DJ1KIWPzxPFvXZmFAVdFeeXmWqDr5EiREfm20KMBWgzAzP5YYMcQ02bLhHv0mISFhphQJiT4ll5Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qFYLDXAKptmU/7B986Gr6XyBHHeG5tdo3CterD7F++A=;
+ b=Az7isK87QM5Ew/SWxsFew05+ksboYITPcqLs8LwVO9xpJx2ny5asVL9i+aBsKazlqoQqzRTyY8M2NWxHgZn300rGK3DyLj/O7tJ/X9veRDhx5zpvQaUyNrU+fRYzFMpEU8ofxy6ICgDTzg7wje80ZWETC7mWmJV3YObTFzm6vU3wNpOvifivGDPRqGCM5BOl5qOYWl9oL/2erVOICfbYgpytg5olLsWi0X+ih8FcB3ZXnj6Dle1aRdtlvumBlWzjBpipCYaLXeNwnR9nglT6PRQKnRzdSHA+OyqSMgLuX5XvNMDpkHloezLJTr/ho2Mht5KY9TAO7th3kBcJ6JHn8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qFYLDXAKptmU/7B986Gr6XyBHHeG5tdo3CterD7F++A=;
+ b=KOJ0kUYkIdL/lDAmmLl8e7COiJIOfuU8pUUW2QNYfD34HaxfUbxPkdInLbIHibb/X4/89ZBjdfi1tMn1+6q3vMOP4Ccx+astY7NZQyftRhR6F51bdc1Ive3b71O4r6H53XbAoOX3y64zdFmY9rVSGJBObzNyuIizDCj6J/E/vf0=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
+ by IA3PR11MB9086.namprd11.prod.outlook.com (2603:10b6:208:57b::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.12; Sat, 21 Nov
+ 2026 06:48:54 +0000
+Received: from LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
+ ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0639.011; Sat, 21 Nov 2026
+ 06:48:54 +0000
+Message-ID: <42fd85c8-7e94-4def-be53-e79a281edc78@intel.com>
+Date: Sat, 21 Nov 2026 12:18:44 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/6] drm/xe/cper: Prepare CPER headers for software
+ errors
+To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
+ <matthew.brost@intel.com>
+CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
+ <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
+ <raag.jadav@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <jani.nikula@linux.intel.com>
+References: <20261119060019.2031897-8-mallesh.koujalagi@intel.com>
+ <20261119060019.2031897-10-mallesh.koujalagi@intel.com>
+Content-Language: en-US
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <20261119060019.2031897-10-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5PR01CA0132.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d5::9) To LV0PR11MB9792.namprd11.prod.outlook.com
+ (2603:10b6:408:385::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|IA3PR11MB9086:EE_
+X-MS-Office365-Filtering-Correlation-Id: b6c61a9d-f805-44fe-5257-08df479b8206
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|23010399003|376014|1800799024|10067099003|4143699003|11063799006|261022105027099003|261028144727099003|261026140227099003|261022113327099003|261021123027099003|261102123227099003|56012099006|261021121427099003|261022075727099003|261009223027099003|18002099003|22082099003|6133799003|261009221227099003;
+X-Microsoft-Antispam-Message-Info: giK7bf47yjqmfS1t66fA797loLX+syewnPSx4pqkJZmqCK7FxtTTloNO5cIGwf1aZIN751a5Ask0Chtg+0qbBCR/W+bl2Xl41Ie8pm9FIj2Bq+fjkVQeJctAI1416X+izKSBM7zLHK8UixSSFhiA0gaO/BYyJs/97lUDYdugBPwEO9+TGUGMlL/3GhjpMK63wZdEftomFjyFDbL+ZXCCdF6K8BVTVp6w6eNe95uh7/Y7/vtSHninrTKbqhLZJUIZ9vkKTasauftOWflnTn4TzC8oYadFqIbXARycpRdctxdutjJe4rG2B1ZstmICrfLHQTnUb4UPhOOKPiuKfDrtgWhC7XCrOVPEA5zsQm3iIhpYLZRETORaZ6fsH5HQHm5w3u3LC3DKQrG7RLvN2Irt4bjKjOLqdapAU+Cry50xAajpUHfNJ4eqcBf+7p3Dt0Ic2G1A8Q39OE4eANRd3S6cq2J7gKBNiwPx/EvJCmCObruL6FgOa9XjIzD4R3W3tlo7RPvQYvUivHMkePbE89od4TGlADqo90Jd1PNHLNB081e/f15Ll9iR5RQ8YsApsKhU0ZT+UJt2CnMjBVFwTaQ+fddg3o2G9DQP6F3Nku+Hyzxlns0c+ox/qktFbISs72lRRoR6gVAF4uCbh0DTm8XcT1OTwkhOz9IUfSvNo39bVIg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(23010399003)(376014)(1800799024)(10067099003)(4143699003)(11063799006)(261022105027099003)(261028144727099003)(261026140227099003)(261022113327099003)(261021123027099003)(261102123227099003)(56012099006)(261021121427099003)(261022075727099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(261009221227099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TTFjNThWVC9CaE1aVVFGdDJndzExTjR4L3oxRnZ3SS9QN2VmR3pDQ1owei9U?=
+ =?utf-8?B?ZUhuVjMzQjdUUkhWRUZQTXNCaE9EQTVzUDllUVV0Unlpd0JTaUY4RmRYbWRx?=
+ =?utf-8?B?M24wZC80d05XOUlnSjA1NEZFSTRrZWdTVWYzZGJCaDdmVWNqbDZMejVYY2FX?=
+ =?utf-8?B?Mlk2SnNxZjFHQStxbGo5SzFWVXNPam9DSHB5eWdHRTZFcmxJM0prMjh6YUcz?=
+ =?utf-8?B?ME1FSGpSKytub2pvQ0wwRTRRZmdMVk54WTVES243RVgwMkVhdzF1TGVlcWtj?=
+ =?utf-8?B?b3ZucVVrbmVCaXVtNnNQdTdlSmVPUEI4MldCY0FBRm4yTWQ1TjJVQkc3TVE3?=
+ =?utf-8?B?SUZnUFhiMGMxNGhsYWZUc3VVcWt3YmdVcXh6aXFqMG5ZcER5S1dwNWlnSkJG?=
+ =?utf-8?B?aDhIbnJZT2NMa05lVGt6SXJNeFBCOWxtaDhKUVkwa1lsblhpMVVrekx1UjlM?=
+ =?utf-8?B?WHorOTRIblB4SC8zb20yaUozQnZZRTJ4SU9waE9hYWNqVmFqQmFHR0dldHR2?=
+ =?utf-8?B?VHBXYUZiWmpVTVc0RUVNV0hydTZlTTc0RWtaSURJc3g1Q0V5OHJwLzBsdmJq?=
+ =?utf-8?B?ZFRJYkRPVmszN29XMjZzeFc4blZVcDNlY1cwZVZ2ZG4zL0t3N2c0NGtZMjZX?=
+ =?utf-8?B?eDN2amdLa1piOFpqQllQMk9OTWxDeG1oYTVtd0c3OUxxSXUwZWZ6TVVlY1kx?=
+ =?utf-8?B?eUowaXBVVnZLbERQTFRGVDErSWxnTXZIaUEzQ0NPb3FmeGxwdXp4cG1LQnl6?=
+ =?utf-8?B?c3RzUlVDSW9XL3hZSUpkMXd0MWwzSkpFUVFRWllUc0JFWmd2cFdCdjJHd2xZ?=
+ =?utf-8?B?aE1zYVN2UHZ4RG5KbzB1d1poN2R4SmVGUnJMK2JoVHd6L0E2eDJQMnRQamo2?=
+ =?utf-8?B?SHZvdzlnUHRkR0M0Q3NOR2wvSE5sd1NIWmJYTE4vOGsrQnNlaEQ0bEtIc1V5?=
+ =?utf-8?B?WWtuWVY1c1dLOExVNElsWkRuL2J6MzNPeGtuV1lZSk4xcjEydnpTb1p4bGla?=
+ =?utf-8?B?Q3cyNjFBQnhPY1ZQUmJ1aE42NGFLekRwaTgvQmYvSHZpcmpIQ21YUUlyYllF?=
+ =?utf-8?B?UFV5cTV3SkRYMER1YXNJb0dqOHY0aGlrZzh0cFJmaVdvNm83cm1JSElIOEda?=
+ =?utf-8?B?VGh4Syt2bWFMSUNnWXI5bFF2WUwyYlhLRHAzUFQrVkJlTlp2M0V6c3JYWG1W?=
+ =?utf-8?B?ZERiTHZkbDVzTW9nbENmdlNmRE9nMHowYzJVTmhkVVpmTzBJSGkwZkVLUWZ6?=
+ =?utf-8?B?R3BQc29ub2N4bXgxbTN2SDRrOGoyUWZhWE9IZzVReVV6N3ljbmRIS1hTcmRE?=
+ =?utf-8?B?bENBL25VMExHVDczYmpWaW9FaHBwdThkUk1qVm9IZmpyUUVWcG90cmk2Vm13?=
+ =?utf-8?B?WlhvVmdmN2hSYk1wTzl0YXJFZDNPSVBWK1doSUxJU3FhQWZQdUNudHdMT0N6?=
+ =?utf-8?B?TU5IL0VDSWtzUjIxV0hQcEl1TThtbVpIRVg2aHJWUU1QYWNrYUIyYzkwQkRX?=
+ =?utf-8?B?U1NpcnVLSzlzTXVMaDkxRUFxOGR4Ui9rdHdZZ2tWTzUvTEhwSStpTURUZmdy?=
+ =?utf-8?B?ZW5WLzNNdU4rTmNFbjNJQW0yZmNUZ3ZKRU1MTWJaZHptNDZKaTFhOGV3TllC?=
+ =?utf-8?B?YnVHUjZzenJ6R2YvaURZQjB3RmNlN0NaUFAwZUlaSVFSR1hLNnJJNXpRQWhy?=
+ =?utf-8?B?cVkwT0lFdXIvcndqZithaVNCWTY3TmxCWGk4a0gxS0hvbmVrbTRxcGdZeE00?=
+ =?utf-8?B?RkZuempySXFsa29CR0h3aVpiUW9KMDJsVFpieUtZVy8rbng1SVAzZ1VjQjBo?=
+ =?utf-8?B?U2h4bC9vNTlIRFBZODM4aHNIMVpCVEdCOFUyT3RLM3p0elQ4UkxSbzBSR1Qw?=
+ =?utf-8?B?U0ZLbjl2WXFFK3o0a0oyUU8wUHc2c0ZjL3UvVGtZc2xJR2lvaHhEQ0VnUkxL?=
+ =?utf-8?B?M3dOc3kvTjFoOHJaajJoMCt2M0lXcEtnMWsxeFZsTzFKZlFrb2xRL1g0MjhL?=
+ =?utf-8?B?ZkREdzROeHVnTHpzMnBFUDI3VjZaOElTSGZBOC9Yc05PSlpqOGp1aURjTjBs?=
+ =?utf-8?B?SjljMUlLMGppSmZ1cytlOVhWc3FPUVBheGgySE5sbXlSVkI0eWNHVjFENitT?=
+ =?utf-8?B?SEdsOU8zd0lmSkcyMjg4TUdreXdQUlNaRGFBUDBiR0E0aVg1RkZFMjU1ekJB?=
+ =?utf-8?B?cjNxNkRvZVF4WWtsc0FqSU9NZTBSelFDVVZPN3dFMDZaUDlSSE5hUE1KL2xC?=
+ =?utf-8?B?WndiVjg5RXdiaHpWQ01kT3NNbmhoRkpoRFAyR1VRQ2dNQ2E2NEVYNmpsOEg1?=
+ =?utf-8?B?dWFuOVVCTVZNc0drWTI3NFlIczdKc2dmMm5hY2IxSDkyU0hRWmtUUT09?=
+X-Exchange-RoutingPolicyChecked: X+YTn0dpcpfuwPitb6w+vRzLnKt4O01JDtGNIC2TWSBFALTD70FeVRMAD8jDZzCu7AbIWZeUfBzoDHI8n2Rn50ex6eGocLz9NFibbgQ2ZKYaxlV5RlH6n0Fma6JtJZ2SrWVjhRvCSx9k4fdEXCQBOoxTurG8yDZ8IR0ZnaRb7J5TWoyVTV2ziyrBJVMtUfwJp1zWmid6c6XXwBIAGI3SNriBYru3pG/27umEaQ+huSciuVLZm4XABJlGV/R9dumFUEWOpQhH3WFmi3uYJzvUeiatvKIKivRFf/EH/X6XMgboRbTnn3JzIDve1R7XLqwpQbKvVWmnNVFJ7HxReZyvqQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6c61a9d-f805-44fe-5257-08df479b8206
+X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Nov 2026 06:48:54.0020 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: A6IoXVyr/pIVwEWGoGlqupUs5vvEMlk3/dMnK4DZ1pOAsrcRa2CNayiW+JiWAXVxBX2fh42liroMGrnshDfobQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9086
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,480 +174,157 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The RAS info queue contains error logs for detail counters, or dynamic
-counter headers followed by error logs for aggregate counters.
 
-Build CPER info records from the queue data, converting each error log
-into an CPER event. For aggregate counters, group logs by their dynamic
-counter header and build one info record per header.
+On 19-11-2026 11:30, Mallesh Koujalagi wrote:
+> Add software error classification support and reuse the
+> common CPER header initialization path.
+>
+> Cc: Badal Nilawar <badal.nilawar@intel.com>
+> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+> ---
+> v2:
+> - Move union inside xe_cper_intel_hdr structure. (Badal)
+>
+> v3:
+> - Introduce structure where it's used. (Badal)
+> - Move error-class union inside cper_init_intel_hdr. (Badal)
+>
+> v4:
+> - Update commit message. (Badal)
+> - Use ktime_get_real_ns.
+> - Add BUILD_BUG_ON. (Raag)
+>
+> v5:
+> - Call timestamp near to use. (Badal)
+> ---
+>   drivers/gpu/drm/xe/xe_cper.c       | 26 ++++++++++++++++++++----
+>   drivers/gpu/drm/xe/xe_cper_types.h | 32 ++++++++++++++++++++++++++++--
+>   2 files changed, 52 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index efc49ecb86c2..4cb83896c6b5 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -14,6 +14,8 @@
+>   #include <linux/time.h>
+>   #include <linux/timekeeping.h>
+>   
+> +#include "abi/xe_log_abi.h"
+> +
+>   #include "xe_cper.h"
+>   #include "xe_cper_types.h"
+>   #include "xe_device.h"
+> @@ -92,11 +94,14 @@ static u64 cper_timestamp_now(void)
+>   	return ts;
+>   }
+>   
+> -static void cper_init_intel_hdr(struct xe_device *xe, const struct xe_ras_error_class *counter,
+> +static void cper_init_intel_hdr(struct xe_device *xe, const union xe_cper_error_class *error_class,
+>   				u64 first_timestamp, u32 sig_id, u32 error_count,
+>   				struct xe_cper_intel_hdr *ihdr)
+>   {
+> -	ihdr->counter = *counter;
+> +	BUILD_BUG_ON(sizeof(struct xe_ras_error_class) !=
+> +		     sizeof(struct xe_cper_driver_error_class));
+> +
+> +	ihdr->error_class = *error_class;
+>   	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
+>   	ihdr->sig_id = U32_MAX;
+>   
+> @@ -219,12 +224,12 @@ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigi
+>   			  const struct xe_ras_error_class *counter,
+>   			  const struct xe_ras_get_counter_response *response)
+>   {
+> +	union xe_cper_error_class error_class = { .counter = *counter };
+>   	struct xe_cper_intel_hdr ihdr = {};
+>   
+>   	xe_assert(xe, is_hw_sigid(sigid));
+>   
+> -	cper_init_intel_hdr(xe, counter, response->timestamp,
+> -			    sigid, response->value, &ihdr);
+> +	cper_init_intel_hdr(xe, &error_class, response->timestamp, sigid, response->value, &ihdr);
+>   	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
+>   }
+>   
+> @@ -249,6 +254,19 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+>   			     u32 component, u32 location, const void *data,
+>   			     struct va_format *vaf)
+>   {
+> +	union xe_cper_error_class error_class = {};
+> +	struct xe_cper_intel_hdr ihdr = {};
+> +	struct xe_cper_driver_error_class *driver = &error_class.driver;
+> +	u64 timestamp;
+> +
+> +	driver->error_type = cper_sev;
+> +	driver->error_component = component;
+> +	driver->tile = location;
+> +	if (IS_ERR(data))
+> +		driver->cause = -PTR_ERR(data);
+> +
+> +	timestamp = ktime_get_real_ns();
+> +	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, &ihdr);
+>   }
+>   
+>   /**
+> diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+> index 68e30df0440e..c9ea8b1694a9 100644
+> --- a/drivers/gpu/drm/xe/xe_cper_types.h
+> +++ b/drivers/gpu/drm/xe/xe_cper_types.h
+> @@ -45,6 +45,29 @@
+>   	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
+>   		  0x80, 0x28, 0xb9, 0xb1, 0x3e, 0x6d, 0x58, 0xb0)
+>   
+> +/**
+> + * struct xe_cper_driver_error_class - Intel GPU CPER driver-detected error classification
+> + */
+> +struct xe_cper_driver_error_class {
+> +	/** @error_type: CPER severity: CPER_SEV_* */
+> +	u8  error_type;
+> +	/** @reserved0: Reserved, must be zero */
+> +	u8  reserved0;
+> +	/** @error_component: Driver component id: CLASS[7:0].TYPE[15:8] */
+> +	u16 error_component;
+> +	/** @tile: Driver location id: TYPE[7:0].ID[15:8] ('tile' and 'GT' field region) */
+> +	u16 tile;
+> +	/** @reserved1: Reserved, must be zero */
+> +	u16 reserved1;
+> +	/** @cause: errno of the failing operation, or 0 if none */
+> +	u32 cause;
+> +};
+> +
+> +/* Same size as the counter-sourced error_class */
+> +#define XE_CPER_ERROR_CLASS_SIZE	12
+> +
+> +static_assert(sizeof(struct xe_cper_driver_error_class) == XE_CPER_ERROR_CLASS_SIZE);
+> +
+>   /**
+>    * struct xe_cper_intel_hdr - Intel-specific CPER header
+>    *
+> @@ -52,8 +75,13 @@
+>    * All multi-byte fields are little-endian.
+>    */
+>   struct xe_cper_intel_hdr {
+> -	/** @counter: Error class (severity, component, location, cause) */
+> -	struct xe_ras_error_class counter;
+> +	/** @error_class: Error classification */
+> +	union xe_cper_error_class {
+> +		/** @error_class.counter: Error class (severity, component, location, cause) */
+> +		struct xe_ras_error_class counter;
+> +		/** @error_class.driver: Driver-detected error classification */
+> +		struct xe_cper_driver_error_class driver;
+> +	} error_class;
 
-Emit a CPER record for each generated info record.
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
-v6:
-  - Reintroduce event_ prefixes
-  - %s/einfo/info/
-  - Split cper_prepare_einfo() into queue-fetch and info-array
-    construction helpers (Raag)
-  - Rename the dynamic counter header's count field to error_count (Raag)
-v7:
-  - Retain einfo for existing payload variables and length parameter
-  - Rework cper_prepare_info() to return the number of entrie and info
-    array as an output argument. (Raag)
-v8:
-  - Swap fill_info() and build_info() names (Raag)
-  - Rename the header type to xe_ras_dynamic_counter_hdr (Raag)
-  - Return the byte count from cper_get_info_queue_buffer() and provide
-    the buffer through an output argument (Raag)
-  - Move drain assertions into cper_get_info_queue_buffer() and drop the
-    emit-function context requirement (Raag)
-v9:
-  - Address naming nits (Raag)
----
- drivers/gpu/drm/xe/xe_cper.c       | 257 ++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_cper_types.h |  59 ++++++-
- drivers/gpu/drm/xe/xe_ras_types.h  |  27 +++
- 3 files changed, 335 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index dda82eb4690c..1b80b365fc73 100644
---- a/drivers/gpu/drm/xe/xe_cper.c
-+++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -89,7 +89,7 @@ static u64 cper_timestamp_now(void)
- 
- static void cper_init_intel_hdr(struct xe_device *xe, const struct xe_ras_error_class *counter,
- 				u64 first_timestamp, u32 sig_id, u32 error_count,
--				struct xe_cper_intel_hdr *ihdr)
-+				u32 einfo_size, struct xe_cper_intel_hdr *ihdr)
- {
- 	ihdr->counter = *counter;
- 	ihdr->validation_bits |= XE_CPER_VALID_LOCATION;
-@@ -106,6 +106,7 @@ static void cper_init_intel_hdr(struct xe_device *xe, const struct xe_ras_error_
- 	}
- 
- 	ihdr->error_count = error_count;
-+	ihdr->einfo_size = einfo_size;
- 
- 	strscpy(ihdr->pci_bdf, pci_name(to_pci_dev(xe->drm.dev)), sizeof(ihdr->pci_bdf));
- 	ihdr->validation_bits |= XE_CPER_VALID_PCI_BDF;
-@@ -200,6 +201,226 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
- 	kfree(rec);
- }
- 
-+static struct xe_cper_intel_info *fill_einfo(const struct xe_ras_error_class *counter,
-+					     u32 error_count, const struct xe_ras_error_log *logs,
-+					     u32 num_logs)
-+{
-+	struct xe_cper_intel_event *event;
-+	struct xe_cper_intel_info *einfo;
-+	u32 event_queue_size, i;
-+
-+	event_queue_size = num_logs * XE_CPER_INTEL_EVENT_SIZE;
-+	einfo = kzalloc_flex(*einfo, event_queue, event_queue_size);
-+	if (!einfo)
-+		return NULL;
-+
-+	einfo->error_count = error_count;
-+	einfo->event_queue_size = event_queue_size;
-+	einfo->event_queue_count = num_logs;
-+	einfo->counter = *counter;
-+
-+	event = (struct xe_cper_intel_event *)einfo->event_queue;
-+	for (i = 0; i < num_logs; i++) {
-+		event->size = sizeof_field(struct xe_ras_error_log, details);
-+		event->timestamp = logs[i].timestamp;
-+		memcpy(event->metadata, logs[i].details, sizeof(logs[i].details));
-+		event = (void *)event + XE_CPER_INTEL_EVENT_SIZE;
-+	}
-+
-+	return einfo;
-+}
-+
-+static void free_info_arr(struct xe_cper_info_entry *info_arr, u32 num_entries)
-+{
-+	u32 i;
-+
-+	for (i = 0; i < num_entries; i++)
-+		kfree(info_arr[i].einfo);
-+	kfree(info_arr);
-+}
-+
-+static bool build_info(struct xe_cper_info_entry *entry, const struct xe_ras_error_class *counter,
-+		       u32 error_count, const struct xe_ras_error_log *logs, u32 num_logs)
-+{
-+	entry->einfo = fill_einfo(counter, error_count, logs, num_logs);
-+	if (!entry->einfo)
-+		return false;
-+
-+	entry->einfo_size = struct_size(entry->einfo, event_queue, entry->einfo->event_queue_size);
-+	/* The first log is the first occurrence of the error */
-+	entry->timestamp = logs[0].timestamp;
-+	entry->hdr.counter = *counter;
-+	entry->hdr.error_count = error_count;
-+	return true;
-+}
-+
-+static u32 build_detailed_info(const struct xe_ras_error_class *counter, u32 error_count,
-+			       const struct xe_ras_error_log *logs, u32 num_logs,
-+			       struct xe_cper_info_entry *info_arr)
-+{
-+	/* All logs belong to the queried class; the error count may exceed the logs kept */
-+	if (!num_logs)
-+		return 0;
-+
-+	num_logs = min_t(u32, num_logs, XE_RAS_NUM_COUNTERS);
-+
-+	return build_info(&info_arr[0], counter, error_count, logs, num_logs) ? 1 : 0;
-+}
-+
-+static u32 build_aggregate_info(struct xe_device *xe,
-+				const struct xe_ras_dynamic_counter_hdr *hdrs,
-+				u32 num_hdrs, const struct xe_ras_error_log *logs,
-+				u32 avail_logs, struct xe_cper_info_entry *info_arr)
-+{
-+	u32 num_entries = 0;
-+
-+	for (u32 i = 0, log_offset = 0; i < num_hdrs; i++) {
-+		u32 num_logs = min_t(u32, hdrs[i].error_count, XE_RAS_NUM_COUNTERS);
-+
-+		if (num_logs > avail_logs - log_offset) {
-+			xe_warn(xe, "CPER: header[%u] claims %u logs but only %u remain\n",
-+				i, num_logs, avail_logs - log_offset);
-+			break;
-+		}
-+
-+		if (!num_logs)
-+			continue;
-+
-+		if (!build_info(&info_arr[num_entries], &hdrs[i].counter, hdrs[i].error_count,
-+				&logs[log_offset], num_logs))
-+			break;
-+
-+		log_offset += num_logs;
-+		num_entries++;
-+	}
-+
-+	return num_entries;
-+}
-+
-+static u32 cper_get_info_queue_buffer(struct xe_device *xe,
-+				      const struct xe_ras_get_counter_response *response,
-+				      u32 buf_size, u8 **raw_buf_out)
-+{
-+	u32 raw_total;
-+	u8 *raw_buf;
-+
-+	/* Draining the info queue sends sysctrl commands */
-+	might_sleep();
-+	xe_device_assert_mem_access(xe);
-+
-+	raw_buf = kzalloc_objs(*raw_buf, buf_size);
-+	if (!raw_buf)
-+		return 0;
-+
-+	raw_total = xe_ras_drain_info_queue(xe, response, raw_buf, buf_size);
-+	if (!raw_total) {
-+		kfree(raw_buf);
-+		return 0;
-+	}
-+
-+	*raw_buf_out = raw_buf;
-+	return raw_total;
-+}
-+
-+static u32 cper_build_info_arr(struct xe_device *xe,
-+			       const struct xe_ras_get_counter_response *response,
-+			       const u8 *raw_buf, u32 raw_total,
-+			       struct xe_cper_info_entry **info_arr_out)
-+{
-+	const struct xe_ras_error_log *logs;
-+	struct xe_cper_info_entry *info_arr;
-+	u32 num_headers, headers_size, avail_logs, num_entries;
-+
-+	num_headers = response->first.header.num_headers;
-+	headers_size = num_headers * sizeof(struct xe_ras_dynamic_counter_hdr);
-+	if (headers_size > raw_total) {
-+		xe_warn(xe, "CPER: aggregate headers size (%u) exceeds raw total (%u)\n",
-+			headers_size, raw_total);
-+		return 0;
-+	}
-+
-+	logs = (const struct xe_ras_error_log *)(raw_buf + headers_size);
-+	avail_logs = (raw_total - headers_size) / sizeof(*logs);
-+
-+	info_arr = kzalloc_objs(*info_arr, num_headers ?: 1);
-+	if (!info_arr)
-+		return 0;
-+
-+	if (num_headers)
-+		num_entries = build_aggregate_info(xe, (const void *)raw_buf, num_headers,
-+						   logs, avail_logs, info_arr);
-+	else
-+		num_entries = build_detailed_info(&response->counter, response->value,
-+						  logs, avail_logs, info_arr);
-+
-+	if (!num_entries) {
-+		kfree(info_arr);
-+		return 0;
-+	}
-+
-+	*info_arr_out = info_arr;
-+	return num_entries;
-+}
-+
-+/**
-+ * cper_prepare_info() - Build the CPER error info records from RAS info queue data
-+ * @xe: xe device instance
-+ * @response: counter response containing the first embedded chunk
-+ * @info_arr: output array of CPER info entries
-+ *
-+ * Assembles the complete raw info queue data from the first chunk already
-+ * embedded in @response and any additional chunks fetched via
-+ * GET_INFO_QUEUE.  Two use cases are supported based on num_headers in
-+ * the info queue header:
-+ *
-+ * Detail error counter (num_headers == 0)::
-+ *
-+ *   [xe_ras_error_log * N]
-+ *
-+ *   Returns one xe_cper_info_entry covering up to XE_RAS_NUM_COUNTERS logs.
-+ *
-+ * Aggregate error counter (num_headers > 0)::
-+ *
-+ *   [xe_ras_dynamic_counter_hdr * num_headers]
-+ *   [xe_ras_error_log * N]
-+ *
-+ *   Returns one xe_cper_info_entry per header. Each header's @counter
-+ *   identifies its error class, and @error_count gives its error count. Up to
-+ *   XE_RAS_NUM_COUNTERS xe_ras_error_log entries are associated with each
-+ *   header. The header's counter populates the entry's einfo->counter.
-+ *
-+ * Returns: Number of entries in @info_arr, or zero if no info queue is
-+ *          available or no error info could be built. The caller must free
-+ *          @info_arr with free_info_arr() when the return value is nonzero.
-+ */
-+static u32 cper_prepare_info(struct xe_device *xe,
-+			     const struct xe_ras_get_counter_response *response,
-+			     struct xe_cper_info_entry **info_arr)
-+{
-+	u32 buf_size, raw_total, num_entries;
-+	u8 *raw_buf = NULL;
-+
-+	buf_size = xe_ras_get_info_queue_size(xe, response);
-+	if (!buf_size)
-+		return 0;
-+
-+	raw_total = cper_get_info_queue_buffer(xe, response, buf_size, &raw_buf);
-+	if (!raw_total) {
-+		xe_warn(xe, "CPER: failed to build error info from info queue, emitting record without it\n");
-+		return 0;
-+	}
-+
-+	num_entries = cper_build_info_arr(xe, response, raw_buf, raw_total, info_arr);
-+
-+	kfree(raw_buf);
-+	if (!num_entries) {
-+		xe_warn(xe, "CPER: failed to build error info from info queue, emitting record without it\n");
-+		return 0;
-+	}
-+
-+	return num_entries;
-+}
-+
- /**
-  * xe_cper_emit_counter() - Emit CPER records for an already fetched error counter
-  * @xe: The &xe_device
-@@ -207,18 +428,42 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
-  * @sigid: Error signature identifier
-  * @response: Counter response returned by firmware
-  *
-- * Build and emit a CPER record from @response.
-+ * Build and emit CPER records from @response, including any info queue data.
-  */
- void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
- 			  const struct xe_ras_get_counter_response *response)
- {
--	struct xe_cper_intel_hdr ihdr = {};
-+	struct xe_cper_info_entry *info_arr = NULL, *entries;
-+	struct xe_cper_info_entry single = {};
-+	u32 num_entries, count, i;
- 
- 	xe_assert(xe, is_hw_sigid(sigid));
- 
--	cper_init_intel_hdr(xe, &response->counter, response->timestamp,
--			    sigid, response->value, &ihdr);
--	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr, NULL, 0);
-+	/* Without info queue data, emit a single record from the counter itself */
-+	single.hdr.counter = response->counter;
-+	single.hdr.error_count = response->value;
-+	single.timestamp = response->timestamp;
-+	entries = &single;
-+	count = 1;
-+
-+	num_entries = cper_prepare_info(xe, response, &info_arr);
-+	if (num_entries) {
-+		entries = info_arr;
-+		count = num_entries;
-+	}
-+
-+	for (i = 0; i < count; i++) {
-+		struct xe_cper_intel_hdr ihdr = {};
-+
-+		cper_init_intel_hdr(xe, &entries[i].hdr.counter, entries[i].timestamp,
-+				    sigid, entries[i].hdr.error_count,
-+				    entries[i].einfo_size, &ihdr);
-+
-+		cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
-+				 entries[i].einfo, entries[i].einfo_size);
-+	}
-+
-+	free_info_arr(info_arr, num_entries);
- }
- 
- static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
-index 68e30df0440e..0748b7ec9464 100644
---- a/drivers/gpu/drm/xe/xe_cper_types.h
-+++ b/drivers/gpu/drm/xe/xe_cper_types.h
-@@ -12,6 +12,11 @@
- 
- #include "xe_ras_types.h"
- 
-+/* Entries built from RAS error logs carry fixed-size details */
-+#define XE_CPER_INTEL_EVENT_SIZE \
-+	(offsetof(struct xe_cper_intel_event, metadata) + \
-+	 sizeof_field(struct xe_ras_error_log, details))
-+
- /*
-  * Validation bits definition for validation_bits in struct
-  * xe_cper_intel_hdr. When set, corresponding fields in header
-@@ -67,14 +72,50 @@ struct xe_cper_intel_hdr {
- 	/** @drv_version: Driver source version string (THIS_MODULE->srcversion) */
- 	char drv_version[25];
- 	/** @reserved: Reserved for future use, must be zero */
--	u8 reserved[261];
-+	u8 reserved[258];
-+	/** @einfo_size: Size of xe_cper_intel_info */
-+	u16 einfo_size;
-+	/** @reserved1: Reserved for future use, must be zero */
-+	u8 reserved1;
-+} __packed;
-+
-+/**
-+ * struct xe_cper_intel_info - Variable-length Intel-specific CPER error information
-+ *
-+ * Contains the counter and event queue, and is appended after
-+ * &xe_cper_intel_hdr when detailed error information is available.
-+ */
-+struct xe_cper_intel_info {
-+	/** @counter: Error class (severity, component, location, cause) */
-+	struct xe_ras_error_class counter;
-+	/** @error_count: Total number of errors recorded */
-+	u32 error_count;
-+	/** @event_queue_size: Total size of @event_queue in bytes */
-+	u32 event_queue_size;
-+	/** @event_queue_count: Number of events in @event_queue */
-+	u32 event_queue_count;
-+	/** @event_queue: Packed array of xe_cper_intel_event records */
-+	u8 event_queue[];
-+} __packed;
-+
-+/**
-+ * struct xe_cper_intel_event - Single error event in the CPER event queue
-+ */
-+struct xe_cper_intel_event {
-+	/** @size: Byte size of the @metadata payload */
-+	u32 size;
-+	/** @timestamp: &xe_ras_error_log::timestamp */
-+	u64 timestamp;
-+	/** @metadata: &xe_ras_error_log::details */
-+	u8 metadata[];
- } __packed;
- 
- /**
-  * struct xe_cper_nonstd_record - Intel GPU CPER record
-  *
-  * Contains the standard CPER record header, section descriptor, and the
-- * Intel error section header.
-+ * Intel section header. A &xe_cper_intel_info payload may be
-+ * appended dynamically.
-  */
- struct xe_cper_nonstd_record {
- 	/** @record_hdr: Standard CPER record header (UEFI Appendix N.2.1) */
-@@ -99,6 +140,20 @@ struct xe_device_guid_entry {
- 	guid_t    guid;
- };
- 
-+/**
-+ * struct xe_cper_info_entry - One CPER info payload and its source counter
-+ */
-+struct xe_cper_info_entry {
-+	/** @hdr: Error class and error count used for the CPER section header */
-+	struct xe_ras_dynamic_counter_hdr hdr;
-+	/** @einfo: Allocated info payload, NULL if none */
-+	struct xe_cper_intel_info *einfo;
-+	/** @einfo_size: Byte size of @einfo including the event queue */
-+	u32 einfo_size;
-+	/** @timestamp: Timestamp of the first occurrence of this error class */
-+	u64 timestamp;
-+};
-+
- /**
-  * struct xe_cper - Xe CPER state
-  */
-diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-index 1a03de84074c..80f5d46d2dc2 100644
---- a/drivers/gpu/drm/xe/xe_ras_types.h
-+++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -12,6 +12,8 @@
- #define XE_RAS_NUM_COUNTERS			16
- #define XE_RAS_NUM_ERROR_ARR			3
- #define XE_RAS_NUM_PAGES			25
-+#define XE_RAS_ERROR_DWORDS_MAX			16
-+
- /* Error bits in IEH global error status register */
- #define XE_RAS_SOC_IEH_PUNIT			BIT(1)
- /* Device memory error categories */
-@@ -171,6 +173,31 @@ struct xe_ras_info_queue_data_response {
- 	u8 data[XE_RAS_INFO_QUEUE_MAX_CHUNK_SIZE];
- } __packed;
- 
-+/**
-+ * struct xe_ras_dynamic_counter_hdr - Aggregate counter header entry
-+ *
-+ * When a session requests aggregate counter data, one header per matching
-+ * dynamic counter class is prepended to the queue data. The @counter field
-+ * identifies the error class, and @error_count is its error count; at most
-+ * XE_RAS_NUM_COUNTERS error log entries follow for it.
-+ */
-+struct xe_ras_dynamic_counter_hdr {
-+	/** @counter: Error class associated with this counter group */
-+	struct xe_ras_error_class counter;
-+	/** @error_count: Error count of this class */
-+	u32 error_count;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_log - Single error log entry following dynamic counter headers
-+ */
-+struct xe_ras_error_log {
-+	/** @timestamp: Timestamp when the error was recorded */
-+	u64 timestamp;
-+	/** @details: Error-specific details */
-+	u32 details[XE_RAS_ERROR_DWORDS_MAX];
-+} __packed;
-+
- /**
-  * struct xe_ras_get_info_queue_request - Request for XE_SYSCTRL_CMD_GET_INFO_QUEUE
-  */
--- 
-2.56.0
-
+>   	/** @first_timestamp: First occurrence of this error class, in ticks */
+>   	u64 first_timestamp;
+>   	/** @sig_id: Aggregated error class SIG ID; set to U32_MAX if unknown */
