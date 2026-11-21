@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04424606A320
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A96F4606A32C
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=H06uLig9
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=j3uJZeOG
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF5E110E98D;
-	Sat, 21 Nov 2026 18:23:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7564410E9EF;
+	Sat, 21 Nov 2026 18:23:34 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F71210E3B1
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6803D10E291
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795285401; x=1826821401;
+ t=1795285406; x=1826821406;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9qW5V1yJbEpY7MqcbcGoU7bd7Xxuzy15mn69IYCJHlI=;
- b=H06uLig9rgBdBmAdGr4gSv3dXnd7g7I9pTh3Ns0PSuOb1GebEvhdqEtQ
- lJFeMqJ+e3PWx+kEqD/ogv0ufJNuKSH2HDBN9g9ca1sMdEaY5sFXjklFn
- aXMKPiNN9T+OvJ734OPHpgY6FPco5tcbxp179cdWJz+mKlpdn+gib/Jok
- jqDbE9/xMH8sk9Dk9RuAQxfCdqNOAD8im3Fg13dmodvAlVHqdci9di5AV
- iOOH/LQvNVrNPT4h14naKS5cjYFncy4FQ6enFwmPMGNxXItqj/Mhs3kuU
- Rn0YuO25Np+TD9KJOsVsTAFndQtpgkACU6Zpb3j51CrclHdPMOw7lbGRU A==;
-X-CSE-ConnectionGUID: MfCFxk0/Ti2xHM8ShEHDyQ==
-X-CSE-MsgGUID: jrdewU35RWyxg74B3XZQ0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034055"
+ bh=xTuKsyn9xlVSIGhTyAIJne7mv+ne46tFE7b4p9bgiLs=;
+ b=j3uJZeOGAcl09NFsbkbqyEFKyUu/kfYUxe4fDY/WFvhhMIgssCc+ROZj
+ qpfpPqt/+0u+ro2ytcAqaKpLIaArOu7eoMLV9z6WZiCjz+ErDQZfPJG8X
+ FPJelNwtwyl0q4jlDnLb97rcFmN1OrNdO30dM4L/DBF9ajPK7k+sJK96T
+ DNT/NN4z6YXFQ+D2YTRn1vWSXTomGWPmaDK3AdXifw/aSTcaaCG0RPrco
+ C0QG+zALJnaRF4RnKW5hqn8Zr/VUTvz8HXC1bO/u2P93wVapFrSdBNyJw
+ lOwu61gDs5wVnouwi7bKZQYLIENj+UiIBOHgWPuYRWy/F8BSXItuiqGvK Q==;
+X-CSE-ConnectionGUID: TcllJ7MFSfO55/Fmhzt8TQ==
+X-CSE-MsgGUID: 8DA4hTP2Q0CtaBgV/R7Vsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034058"
 X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; 
-   d="scan'208";a="4034055"
+   d="scan'208";a="4034058"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:20 -0800
-X-CSE-ConnectionGUID: 5I+p0lDlTnKBExUstg9SqQ==
-X-CSE-MsgGUID: ytJicf7gTsi71Sirdy8Fmg==
+X-CSE-ConnectionGUID: Q4p/FsuRRw+zkaAgHW9DRg==
+X-CSE-MsgGUID: 0ZqXAL47Q9uZItBSbCCo+Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934404"
+X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934409"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:20 -0800
@@ -44,9 +44,10 @@ To:
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 01/17] drm/xe/sysctrl: Use preallocated mailbox staging buffers
-Date: Sat, 21 Nov 2026 18:23:17 +0000
-Message-ID: <20261121182317.48981-20-stuart.summers@intel.com>
+Subject: [PATCH 03/17] drm/xe/sysctrl: Restore the SoC remapper on every
+ runtime resume
+Date: Sat, 21 Nov 2026 18:23:19 +0000
+Message-ID: <20261121182317.48981-22-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261121182317.48981-19-stuart.summers@intel.com>
 References: <20261121182317.48981-19-stuart.summers@intel.com>
@@ -70,163 +71,58 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Every mailbox command stages its request and response through a buffer
-allocated with GFP_KERNEL. Both are bounded by the maximum mailbox
-message size and the command mutex already serialises every sender, so
-embed them in struct xe_sysctrl and drop the per-command allocation.
+The SoC remapper configuration is lost whenever the device loses power,
+and @d3cold.allowed only records the state xe asked the PCI core for.
+The platform can still drop power behind our back when the bridge above
+us runtime suspends, which leaves the remapper unprogrammed and any
+later System Controller access pointed at nothing.
 
-This removes the only failure mode from sysctrl_prepare_command(), so
-return the command size directly, and allows commands to be sent from
-contexts where a GFP_KERNEL allocation is not possible - such as the
-runtime resume path, which gains a sender later in this series.
+Restore it on every runtime resume instead.
 
+Fixes: 02eca6edcb32 ("drm/xe/xe_sysctrl: Add System Controller power management support")
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 56 +++++++++----------------
- drivers/gpu/drm/xe/xe_sysctrl_types.h   | 11 +++++
- 2 files changed, 31 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/xe/xe_pm.c      | 9 +++++++--
+ drivers/gpu/drm/xe/xe_sysctrl.c | 6 ++++--
+ 2 files changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index f1a231dfec1e..2af73c62d32d 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -6,7 +6,6 @@
- #include <linux/bitfield.h>
- #include <linux/cleanup.h>
- #include <linux/minmax.h>
--#include <linux/slab.h>
- #include <linux/sprintf.h>
- #include <linux/string.h>
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index f73f68bd449b..d25dbec6472e 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -654,8 +654,13 @@ int xe_pm_runtime_resume(struct xe_device *xe)
  
-@@ -103,36 +102,27 @@ static void sysctrl_clear_response(struct xe_sysctrl *sc)
- 	xe_mmio_rmw32(sc->mmio, SYSCTRL_MB_CTRL, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, 0);
- }
+ 	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
  
--static int sysctrl_prepare_command(struct xe_device *xe,
--				   u8 group_id, u8 command,
--				   const void *data_in, size_t data_in_len,
--				   u8 **mbox_cmd, size_t *cmd_size)
-+static size_t sysctrl_prepare_command(struct xe_sysctrl *sc,
-+				      u8 group_id, u8 command,
-+				      const void *data_in, size_t data_in_len)
- {
- 	struct xe_sysctrl_mailbox_msg_hdr *hdr;
--	size_t size;
--	u8 *buffer;
-+	struct xe_device *xe = sc_to_xe(sc);
-+
-+	lockdep_assert_held(&sc->cmd_lock);
- 
- 	xe_assert(xe, command <= SYSCTRL_HDR_COMMAND_MAX);
- 
- 	xe_assert(xe, data_in_len <= XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr));
- 
--	size = sizeof(*hdr) + data_in_len;
--
--	buffer = kmalloc(size, GFP_KERNEL);
--	if (!buffer)
--		return -ENOMEM;
--
--	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)buffer;
-+	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)sc->cmd_buf;
- 	hdr->data = REG_FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
- 		    REG_FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command);
- 
- 	if (data_in && data_in_len)
--		memcpy(buffer + sizeof(*hdr), data_in, data_in_len);
--
--	*mbox_cmd = buffer;
--	*cmd_size = size;
-+		memcpy(sc->cmd_buf + sizeof(*hdr), data_in, data_in_len);
- 
--	return 0;
-+	return sizeof(*hdr) + data_in_len;
- }
- 
- static int sysctrl_send_frames(struct xe_sysctrl *sc,
-@@ -231,14 +221,17 @@ static int sysctrl_receive_frames(struct xe_sysctrl *sc,
- 	struct xe_sysctrl_mailbox_msg_hdr *hdr;
- 	struct xe_device *xe = sc_to_xe(sc);
- 	size_t remain = sizeof(*hdr) + data_out_len;
--	u8 *buffer __free(kfree) = kzalloc(remain, GFP_KERNEL);
-+	u8 *buffer = sc->resp_buf;
- 	size_t frame_size;
- 	bool done = false;
- 	int ret = 0;
- 	u8 *out;
- 
--	if (!buffer)
--		return -ENOMEM;
-+	lockdep_assert_held(&sc->cmd_lock);
-+
-+	xe_assert(xe, data_out_len <= XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr));
-+
-+	memset(buffer, 0, remain);
- 
- 	out = buffer;
- 	while (!done && remain) {
-@@ -360,8 +353,7 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
- {
- 	struct xe_device *xe = sc_to_xe(sc);
- 	u8 group_id, command_code;
--	u8 *mbox_cmd = NULL;
--	size_t cmd_size = 0;
-+	size_t cmd_size;
- 	unsigned int timeout_ms;
- 	int ret;
- 
-@@ -380,25 +372,17 @@ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
- 
- 	might_sleep();
- 
--	ret = sysctrl_prepare_command(xe, group_id, command_code,
--				      cmd->data_in, cmd->data_in_len,
--				      &mbox_cmd, &cmd_size);
--	if (ret) {
--		xe_log_err(xe, SYSCTRL, ret, "Failed to prepare command %#x.%#x\n",
--			   group_id, command_code);
--		return ret;
--	}
--
- 	guard(mutex)(&sc->cmd_lock);
- 
--	ret = sysctrl_send_command(sc, mbox_cmd, cmd_size,
-+	cmd_size = sysctrl_prepare_command(sc, group_id, command_code,
-+					   cmd->data_in, cmd->data_in_len);
-+
-+	ret = sysctrl_send_command(sc, sc->cmd_buf, cmd_size,
- 				   cmd->data_out, cmd->data_out_len, rdata_len,
- 				   timeout_ms);
- 	if (ret)
- 		xe_log_err(xe, SYSCTRL, ret, "Mailbox command failed to send %#x.%#x\n",
- 			   group_id, command_code);
- 
--	kfree(mbox_cmd);
--
- 	return ret;
- }
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-index f12455f2886d..605bdc62e0bf 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -58,6 +58,17 @@ struct xe_sysctrl {
- 	/** @cmd_lock: Mutex protecting mailbox command operations */
- 	struct mutex cmd_lock;
- 
-+	/**
-+	 * @cmd_buf: Request staging buffer, sized to the maximum mailbox
-+	 * message. Preallocated because commands are sent from the runtime
-+	 * resume path, which may be entered from reclaim. Protected by
-+	 * @cmd_lock.
+-	if (xe->d3cold.allowed)
+-		xe_sysctrl_pm_resume(xe);
++	/*
++	 * Done unconditionally: @d3cold.allowed is only the state xe asked the
++	 * PCI core for, the platform can still drop power when the bridge
++	 * above us runtime suspends, taking the SoC remapper configuration
++	 * with it.
 +	 */
-+	u8 cmd_buf[XE_SYSCTRL_MB_MAX_MESSAGE_SIZE];
-+
-+	/** @resp_buf: Response staging buffer, see @cmd_buf */
-+	u8 resp_buf[XE_SYSCTRL_MB_MAX_MESSAGE_SIZE];
-+
- 	/** @work: Pending events worker */
- 	struct work_struct work;
++	xe_sysctrl_pm_resume(xe);
  
+ 	xe_display_pm_runtime_resume_early(xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+index d362e8156fca..405d339d6a7d 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+@@ -129,8 +129,10 @@ void xe_sysctrl_irq_handler(struct xe_device *xe, u32 master_ctl)
+  * xe_sysctrl_pm_resume() - System Controller resume handler
+  * @xe: xe device instance
+  *
+- * Invoked during system resume (S3/S4 to S0) and runtime resume from D3cold.
+- * Restores SoC remapper configuration.
++ * Invoked during system resume (S3/S4 to S0) and on every runtime resume.
++ * Restores SoC remapper configuration, which is lost whenever the device
++ * loses power - including when the platform drops power behind our back
++ * because the bridge above us runtime suspended.
+  */
+ void xe_sysctrl_pm_resume(struct xe_device *xe)
+ {
 -- 
 2.43.0
 
