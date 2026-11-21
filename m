@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B40CF606A320
-	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C73D606A320
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Nov 2026 18:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DctTb1y9
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=E+Qe8nJN
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78C8C10E447;
-	Sat, 21 Nov 2026 18:23:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 56B4310EA2A;
+	Sat, 21 Nov 2026 18:23:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C47110E447
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75AC510E9F4
+ for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 18:23:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795285406; x=1826821406;
+ t=1795285416; x=1826821416;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P33Jz5/lyJKbRmi/W+ZQnoh0q8l48zM394qzTR6SD+E=;
- b=DctTb1y9UQIxa9vy9i7hQzZah2LjX4CqwM9v6GdBx6NB+8YDygaBNkzV
- SNOayk+3XyPz6j+E6yuc2B2ilUeuPokTd04xahnaTWtgQ8y8CQS6mAFXx
- CvE6AFsIx9uJCsAhpuBcnObKSzDgSWXHxZiyKEyv1pfQJVroH06Gt1Otk
- CAJ/fD/cdHjISPWOcXiOiOjDKxt+wtbZJMuPIWeIYo92bk9/utnHss2sW
- dbdIIyPsxdj6vIkfRwaZJggihKg5ryfGY8IAQvBgZdAlmYF1KSb5N5eSJ
- oSxyaNrVeFqnNBWlXCa2o7+bblbBeZYpA1M8itP/omXLu1AXwae1cwN7x A==;
-X-CSE-ConnectionGUID: n7ADeUNSQuG3EN5t7DZ3xQ==
-X-CSE-MsgGUID: QINZlm7sQb6NUQWewkQlGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034057"
+ bh=RqBLCYTPKOhh6aFKxyeBauLDaVTwRCXSpq8isnePYMs=;
+ b=E+Qe8nJNMU5mvE+32vPXjHYgrTEfQwDhQ1zTx1IkSt1raz5DIswCIWyZ
+ RnR0YMdyPhm1XW71YYjItIFSnMXmeBY7XxdAj9ViTeepLmX8OCwHgKU+y
+ PbLbJcm7cVnn7p6WjV5cTAxoNU/RK0wfTOkbP/CgxXDMgvdJorulzFRTl
+ cn/qmH4M8homDciLlAJ4AXMgs2h95l/pz3bht3bsu0lZ8lmefeLRsUERC
+ K9V/3wXgqEIxM9T8LBhgpBAGDznWjETFqyAll9ZqYq609blwqOSBXFwRh
+ rR8MxVmiX3sIUOSgyDkc85PIQWs6p9oYvMKPsZ5E/I37Hizo62RgrsJJ9 g==;
+X-CSE-ConnectionGUID: TBSK3f2NQ0mWyavoMCUeXw==
+X-CSE-MsgGUID: 7zL9kDwSRHSWHCRRKA+VFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11973"; a="4034063"
 X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; 
-   d="scan'208";a="4034057"
+   d="scan'208";a="4034063"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2026 10:23:20 -0800
-X-CSE-ConnectionGUID: Y8YuhyR5S1OIEfuUuWjkWA==
-X-CSE-MsgGUID: j8KONVkbSViHjg5kG3+lIg==
+ 21 Nov 2026 10:23:21 -0800
+X-CSE-ConnectionGUID: SjnDA3ogS7ywZK2bdKtrWg==
+X-CSE-MsgGUID: Rjl3SJj0RHSXZX+CA9jyFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934407"
+X-IronPort-AV: E=Sophos;i="6.27,225,1787036400"; d="scan'208";a="10934425"
 Received: from dut4463arlhx.fm.intel.com ([10.105.10.189])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Nov 2026 10:23:20 -0800
@@ -44,10 +44,9 @@ To:
 Cc: rodrigo.vivi@intel.com, riana.tauro@intel.com, anoop.c.vijay@intel.com,
  matthew.d.roper@intel.com, fei.yang@intel.com,
  intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 02/17] drm/xe: Process device OOB workarounds during early
- info init
-Date: Sat, 21 Nov 2026 18:23:18 +0000
-Message-ID: <20261121182317.48981-21-stuart.summers@intel.com>
+Subject: [PATCH 08/17] drm/xe: Guard per-tile primary GT accesses
+Date: Sat, 21 Nov 2026 18:23:24 +0000
+Message-ID: <20261121182317.48981-27-stuart.summers@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261121182317.48981-19-stuart.summers@intel.com>
 References: <20261121182317.48981-19-stuart.summers@intel.com>
@@ -71,74 +70,63 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Device OOB workarounds only match on platform, subplatform and platform
-step, all of which are known once xe_info_init_early() has copied them
-out of the device descriptor. Processing them there instead of in
-xe_device_probe_early() makes XE_DEVICE_WA() usable for the rest of
-early probe, which runs before xe_device_probe_early().
-
-While moving the call, check the return value of xe_wa_device_init(),
-which the old call site silently dropped.
+A tile's primary GT is now optional, just like its media GT already was.
+The TLB invalidation and memory interrupt paths walk both GTs of a tile
+but only test the media one for presence, so they would dereference NULL
+on a device whose graphics IP is absent.  Mirror the existing media
+checks for the primary GT.
 
 Signed-off-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |  3 ---
- drivers/gpu/drm/xe/xe_pci.c    | 14 ++++++++++++++
- 2 files changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_memirq.c    |  3 ++-
+ drivers/gpu/drm/xe/xe_tlb_inval.c | 20 +++++++++++---------
+ 2 files changed, 13 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index f5a581d39c96..b053a788d59c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -715,9 +715,6 @@ int xe_device_probe_early(struct xe_device *xe)
- {
- 	int err;
+diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
+index 3433518cc095..0ef3df10ac49 100644
+--- a/drivers/gpu/drm/xe/xe_memirq.c
++++ b/drivers/gpu/drm/xe/xe_memirq.c
+@@ -578,7 +578,8 @@ void xe_memirq_handler(struct xe_memirq *memirq)
  
--	xe_wa_device_init(xe);
--	xe_wa_process_device_oob(xe);
+ 	/* GuC and media GuC (if present) must be checked separately */
+ 
+-	if (memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
++	if (tile->primary_gt &&
++	    memirq_received(memirq, &memirq->source, ilog2(INTR_GUC), "SRC")) {
+ 		map = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
+ 					    XE_MEMIRQ_VECTOR_OFFSET(0, ilog2(INTR_GUC)));
+ 		memirq_dispatch_guc(memirq, &map, &tile->primary_gt->uc.guc);
+diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
+index 1fd39434dc0e..6ef7860c7ff3 100644
+--- a/drivers/gpu/drm/xe/xe_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
+@@ -624,15 +624,17 @@ int xe_tlb_inval_range_tilemask_submit(struct xe_device *xe, u32 asid,
+ 		if (!(tile_mask & BIT(id)))
+ 			continue;
+ 
+-		xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
+-					&fence[fence_id], true);
 -
- 	err = xe_mmio_probe_early(xe);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 619653c68f2c..fb2a5f3311c8 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -15,6 +15,8 @@
- #include <drm/drm_drv.h>
- #include <drm/intel/pciids.h>
- 
-+#include <generated/xe_device_wa_oob.h>
+-		err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
+-					 &fence[fence_id], start, end,
+-					 asid, NULL);
+-		if (err)
+-			goto wait;
+-		++fence_id;
++		if (tile->primary_gt) {
++			xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
++						&fence[fence_id], true);
 +
- #include "display/xe_display.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_regs.h"
-@@ -40,6 +42,7 @@
- #include "xe_tile.h"
- #include "xe_tile_printk.h"
- #include "xe_wedge.h"
-+#include "xe_wa.h"
++			err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
++						 &fence[fence_id], start, end,
++						 asid, NULL);
++			if (err)
++				goto wait;
++			++fence_id;
++		}
  
- enum toggle_d3cold {
- 	D3COLD_DISABLE,
-@@ -795,6 +798,17 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.subplatform = subplatform_desc ?
- 		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
- 
-+	/*
-+	 * Device OOB workarounds only match on platform, subplatform and
-+	 * platform step, which are all known by now, so process them here and
-+	 * make XE_DEVICE_WA() usable for the remainder of early probe.
-+	 */
-+	err = xe_wa_device_init(xe);
-+	if (err)
-+		return err;
-+
-+	xe_wa_process_device_oob(xe);
-+
- 	xe->info.dma_mask_size = desc->dma_mask_size;
- 	xe->info.va_bits = desc->va_bits;
- 	xe->info.vm_max_level = desc->vm_max_level;
+ 		if (!tile->media_gt)
+ 			continue;
 -- 
 2.43.0
 
