@@ -2,89 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2ADA606A320
-	for <intel-xe@archiver.kernel.org>; Sun, 22 Nov 2026 16:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1608606A320
+	for <intel-xe@archiver.kernel.org>; Sun, 22 Nov 2026 17:14:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=infradead.org header.i=@infradead.org header.a=rsa-sha256 header.s=bombadil.20210309 header.b=If1yj84T
+	dkim=pass (1024-bit key) header.d=linux-foundation.org header.i=@linux-foundation.org header.a=rsa-sha256 header.s=korg header.b=UK5LpKdm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5875E10E5FA;
-	Sun, 22 Nov 2026 16:49:38 +0000 (UTC)
-Received: from bombadil.infradead.org (bombadil.infradead.org
- [198.137.202.133])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6805910E5D8;
- Sun, 22 Nov 2026 16:49:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
- Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
- Message-ID:Sender:Reply-To:Content-ID:Content-Description;
- bh=1n4tlVAMD1oQEfLg7AgK6BF8JkJzQIdhcOfMal/6gZY=; b=If1yj84Ty+PWC5pwN3l+urBf68
- 2hR0b/KbpLdHtCSDssJRGtWWNVVHcXXibwvo0e16Wu5PcF1GbzrF+0Nn/0orhZPZLp3AaUrOqCeE3
- M0g3/VZCXrSCWsLf3OJiUda66VgMdDR5zNN/JnYJhMr6Zloh8ZVpZL5T6FbjOGEGGG9pYSEFlPSo3
- xNjZ+pwXJ34Yaiph8LhnUvR+33XsPWSndNcZzF1mF1Y/Rg3p7J5onQ/FXu2y6sBr06vas2ATQ1cNu
- jo4l2Ca8g1GdoMwCPQY26/RHxrAwrwLjXqoQ1EhLUm39E6z3sHmGRuhzwWdrOJON3ct7fIVJwApAK
- GCbPEuHg==;
-Received: from [50.53.43.113] (helo=[192.168.254.34])
- by bombadil.infradead.org with esmtpsa (Exim 4.100.1 #2 (Red Hat Linux))
- id 1xVAkg-00000001O6v-277K; Sun, 22 Nov 2026 16:49:19 +0000
-Message-ID: <1e62d5c8-3ca7-441d-8979-f054fb815912@infradead.org>
-Date: Sun, 22 Nov 2026 08:49:16 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1723410E62C;
+	Sun, 22 Nov 2026 17:14:32 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B51810E632;
+ Sun, 22 Nov 2026 17:14:21 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id E635141913;
+ Sun, 22 Nov 2026 17:14:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7EEB51F000C4;
+ Sun, 22 Nov 2026 17:14:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=korg; t=1795367660;
+ bh=5JGbsedU74vIQ/0gQEWTkA66OhpSi5QLuKHx51jgv6o=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References;
+ b=UK5LpKdmOWL0+QIg66xeuCB/MCO3KleNEYpYNhkPYguIjSJsVEOTfFAFSYArDoe57
+ S9UVOHkKTNDRYrqblFi9Cs7MEWehlW8R2JFhx1Heql/svJVetyCbF8b2SY2y3FQoHX
+ trt7AR+PG2xFis8l1vlFBhzeunpgbz/Wn7bqWyXA=
+Date: Sun, 22 Nov 2026 09:14:19 -0800
+From: Andrew Morton <akpm@linux-foundation.org>
+To: Mika =?ISO-8859-1?Q?Penttil=E4?= <mpenttil@redhat.com>
+Cc: Aveline Noir <jm5905938@gmail.com>, airlied@gmail.com,
+ apopple@nvidia.com, balbirs@nvidia.com, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, Francois Dugast
+ <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
+ jgg@nvidia.com, jgg@ziepe.ca, leon@kernel.org, leonro@nvidia.com,
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, Lorenzo Stoakes
+ <lorenzo.stoakes@oracle.com>, Matthew Brost <matthew.brost@intel.com>,
+ mm-commits@vger.kernel.org, Patchwork <patchwork@emeril.freedesktop.org>,
+ Shuah Khan <shuah@kernel.org>, SeongJae Park <sj@kernel.org>,
+ thomas.hellstrom@linux.intel.com, Vlastimil Babka <vbabka@suse.cz>,
+ ziy@nvidia.com
+Subject: Re: [PATCH] mm/hmm: account for subpage offsets in device-private PMDs
+Message-Id: <20261122091419.f82e88761dbd12771fb6c976@linux-foundation.org>
+In-Reply-To: <af91d4a7-11ca-4f84-b8da-33ee1a585916@redhat.com>
+References: <179342234355.4.16705453209886955762@gmail.com>
+ <20261121160037.1a479f3c8b4e860bc23c106d@linux-foundation.org>
+ <36be0904-168d-4813-82ff-27ecced464e3@redhat.com>
+ <20261122015246.d8b6b98ff5a8157168156339@linux-foundation.org>
+ <179535872126.34.4789080961796247940.b4-reply@b4>
+ <af91d4a7-11ca-4f84-b8da-33ee1a585916@redhat.com>
+X-Mailer: Sylpheed 3.8.0beta1 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/12] docs: ioctl-number: update sound entries
-To: sashiko-reviews@lists.linux.dev
-Cc: Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- David Hildenbrand <david@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>, Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, linux-mm@kvack.org,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
- Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Willem de Bruijn <willemdebruijn.kernel@gmail.com>,
- Jason Wang <jasowangio@gmail.com>, David Heidelberg <david@ixit.cz>,
- Chas Williams <3chas3@gmail.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Helge Deller <deller@gmx.de>,
- dri-devel@lists.freedesktop.org, MPT-FusionLinux.pdl@broadcom.com,
- "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
- "Martin K. Petersen" <mkp@kernel.org>, linux-scsi@vger.kernel.org,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Zhihao Cheng <chengzhihao1@huawei.com>, linux-mtd@lists.infradead.org,
- Neill Kapron <nkapron@google.com>, Andrey Konovalov <andreyknvl@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, linux-usb@vger.kernel.org,
- Juergen Gross <jgross@suse.com>, Stefano Stabellini
- <sstabellini@kernel.org>, Hans de Goede <hansg@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, "Michael S. Tsirkin" <mst@redhat.com>,
- =?UTF-8?Q?Eugenio_P=C3=A9rez?= <eperezma@redhat.com>,
- Sean Christopherson <seanjc@google.com>, Paolo Bonzini
- <pbonzini@redhat.com>, kvm@vger.kernel.org, virtualization@lists.linux.dev,
- Jan Kara <jack@suse.cz>, Theodore Ts'o <tytso@mit.edu>,
- linux-ext4@vger.kernel.org, Mike Marshall <hubcap@omnibond.com>,
- devel@lists.orangefs.org, Paulo Alcantara <pc@manguebit.org>,
- Namjae Jeon <linkinjeon@kernel.org>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Chao Yu <chao@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Tzung-Bi Shih <tzungbi@kernel.org>,
- Benson Leung <bleung@chromium.org>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org, Takashi Sakamoto <o-takashi@sakamocchi.jp>
-References: <20261119053514.255348-1-rdunlap@infradead.org>
- <20261119053514.255348-3-rdunlap@infradead.org>
- <sashiko-outbox-224494@kernel.org>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <sashiko-outbox-224494@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,55 +62,206 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.1 required=3.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.5 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,NICE_REPLY_A,
+	SPF_HELO_NONE,SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Sun, 22 Nov 2026 18:41:39 +0200 Mika Penttil=E4 <mpenttil@redhat.com> wr=
+ote:
+
+>=20
+> On 11/22/26 16:45, Aveline Noir wrote:
+>=20
+> > Hi Andrew,
+> >
+> > On Sun, 22 Nov 2026 01:52:46 -0800 Andrew Morton wrote:
+> >
+> >> Store the corresponding RAM backing page instead.
+> > This avoids the oops on the first read through the second descriptor,
+> > but leaves a stale backing page pointer after CPU faultback.
+> >
+> > Since the mirror XArray entries don't take a page reference, they rely
+> > on invalidation.  When the CPU later faults the page back to RAM,
+> > dmirror_interval_invalidate() skips MMU_NOTIFY_MIGRATE for the same
+> > mdevice, and dmirror_devmem_fault_alloc_and_copy() only clears the
+> > migrating descriptor's entry before the backing folio is freed.  The
+> > second descriptor still points to that freed backing page.
+> >
+> > Reading the same page again through the second descriptor in QEMU
+> > triggers a KASAN use-after-free in dmirror_do_read(), and the read
+> > returns the stale data instead of what the CPU wrote.
+>=20
+> I think this is right, but a fairly artificial scenario: it needs two
+> descriptors open on the same test device in one test, a migration through=
+ one,
+> a read through the other, a CPU fault back, and then another read through
+> the second descriptor..
+>=20
+> The fix lets the device private page content be read without an oops
+> in the context of one fd which is an improvement.=20
+
+May as well fix it.  I'll test this updated version.
+
+Mika, please feel free to take this over, perhaps integrate it (or
+something like it) into whatever you've got going on?  Or not, let me
+know ;)
 
 
-On 11/19/26 9:36 PM, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Low] docs: ioctl-number: incomplete sequence range for
->   sound/scarlett2.h
-> --
-> 
-> commit 93a4f635ed001735e939a3dc4a2526e8af9e9bd0
-> Author: Randy Dunlap <rdunlap@infradead.org>
-> 
-> docs: ioctl-number: update sound entries
-> 
-> This commit updates the ioctl-number documentation table with additional
-> sound subsystem files and sequence number ranges.
-> 
->> diff --git a/Documentation/userspace-api/ioctl/ioctl-number.rst b/Documentation/userspace-api/ioctl/ioctl-number.rst
->> index e1d56d5cccd14..f29d2c17ca7b9 100644
->> --- a/Documentation/userspace-api/ioctl/ioctl-number.rst
->> +++ b/Documentation/userspace-api/ioctl/ioctl-number.rst
-> 
-> [ ... ]
-> 
->> @@ -204,6 +209,9 @@ Code  Seq#    Include File                                             Comments
->>  'S'   80-81  scsi/scsi_ioctl.h                                         conflict!
->>  'S'   82-FF  scsi/scsi.h                                               conflict!
->>  'S'   00-7F  sound/asequencer.h                                        conflict!
->> +'S'   20-52  sound/core/seq/seq_compat.c                               conflict!
->> +'S'   60-63  sound/scarlett2.h                                         conflict!
-> 
-> [Severity: Low]
-> Should the sequence range for sound/scarlett2.h be 60-64?
-> include/uapi/sound/scarlett2.h also defines
-> SCARLETT2_IOCTL_GET_ERASE_PROGRESS with sequence number 0x64:
-> 
-> include/uapi/sound/scarlett2.h:
-> #define SCARLETT2_IOCTL_GET_ERASE_PROGRESS \
-> 	_IOR('S', 0x64, struct scarlett2_flash_segment_erase_progress)
+From: Andrew Morton <akpm@linux-foundation.org>
+Subject: lib/test_hmm: invalidate all mirrors on device-private migration
+Date: Sun, 22 Nov 2026 08:53:12 -0800
 
-Yes. Fixed now.
+When one open of the fake HMM device migrates a folio to device-private
+memory, a second open can fault the same address into its mirror page
+table. The second mirror then stores the inaccessible device page, which
+can oops the kernel when dmirror_do_read() copies from it. Store the
+corresponding RAM backing subpage instead.
 
--- 
-~Randy
+That conversion also makes the backing page's lifetime significant to
+the second mirror. migrate_vma_setup() notifies all mirrors before CPU
+faultback, but dmirror_interval_invalidate() skips the notification for
+every open on the same device. The faulting open clears only its own
+XArray entry. The other open can read or write the backing page after
+migrate_vma_finalize() frees it. Aveline reported a KASAN use-after-free
+and stale data through the second open.
+
+Handle migration invalidation for every mirror under its mutex. This
+clears pointers before faultback can free the backing pages and waits
+for an active mirror read or write. During system-to-device migration,
+the migrating open installs new entries after migration; other opens
+refault on their next access. Remove the now redundant XArray erase
+from the faultback copy loop.
+
+Extend the PMD migration selftest to read its last device-private
+subpage through a second open, then fault it back to RAM, change it,
+and read the new value through that open. The trigger is available to
+a process permitted to open /dev/hmm_dmirror* when CONFIG_TEST_HMM is
+enabled; it does not depend on physical GPU hardware.
+
+Link: https://lore.kernel.org/r/20261122015246.d8b6b98ff5a8157168156339@lin=
+ux-foundation.org
+Link: https://lore.kernel.org/r/179535872126.34.4789080961796247940.b4-repl=
+y@b4
+Fixes: b2ef9f5a5cb3 ("mm/hmm/test: add selftest driver for HMM")
+Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
+Reported-by: Aveline Noir <jm5905938@gmail.com>
+Cc: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Leon Romanovsky <leon@kernel.org>
+Cc: Mika Penttil=E4 <mpenttil@redhat.com>
+Cc: Shuah Khan <shuah@kernel.org>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Liam R. Howlett <liam@infradead.org>
+Cc: Vlastimil Babka <vbabka@kernel.org>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: <stable@vger.kernel.org>
+
+ lib/test_hmm.c                         |   20 +++++++-----------
+ tools/testing/selftests/mm/hmm-tests.c |   25 +++++++++++++++++++++++
+ 2 files changed, 33 insertions(+), 12 deletions(-)
+
+--- a/lib/test_hmm.c~lib-test_hmm-invalidate-all-mirrors-on-device-private-=
+migration
++++ a/lib/test_hmm.c
+@@ -292,6 +292,12 @@ static int dmirror_do_fault(struct dmirr
+ 		page =3D hmm_pfn_to_page(*pfns);
+ 		WARN_ON(!page);
+=20
++		if (is_device_private_page(page)) {
++			struct folio *folio =3D page_folio(page);
++
++			page =3D BACKING_PAGE(&folio->page) +
++				folio_page_idx(folio, page);
++		}
+ 		entry =3D page;
+ 		if (*pfns & HMM_PFN_WRITE)
+ 			entry =3D xa_tag_pointer(entry, DPT_XA_TAG_WRITE);
+@@ -327,14 +333,6 @@ static bool dmirror_interval_invalidate(
+ {
+ 	struct dmirror *dmirror =3D container_of(mni, struct dmirror, notifier);
+=20
+-	/*
+-	 * Ignore invalidation callbacks for device private pages since
+-	 * the invalidation is handled as part of the migration process.
+-	 */
+-	if (range->event =3D=3D MMU_NOTIFY_MIGRATE &&
+-	    range->owner =3D=3D dmirror->mdevice)
+-		return true;
+-
+ 	if (mmu_notifier_range_blockable(range))
+ 		mutex_lock(&dmirror->mutex);
+ 	else if (!mutex_trylock(&dmirror->mutex))
+@@ -1198,7 +1196,6 @@ static vm_fault_t dmirror_devmem_fault_a
+=20
+ 			src_page =3D pfn_to_page(page_to_pfn(spage) + i);
+=20
+-			xa_erase(&dmirror->pt, addr >> PAGE_SHIFT);
+ 			addr +=3D PAGE_SIZE;
+ 			copy_highpage(dst_page, src_page);
+ 		}
+@@ -1822,9 +1819,8 @@ static vm_fault_t dmirror_devmem_fault(s
+ 	}
+ 	migrate_vma_pages(&args);
+ 	/*
+-	 * No device finalize step is needed since
+-	 * dmirror_devmem_fault_alloc_and_copy() will have already
+-	 * invalidated the device page table.
++	 * The migration notifier has invalidated all mirror page tables
++	 * before the backing pages can be freed.
+ 	 */
+ 	migrate_vma_finalize(&args);
+ err:
+--- a/tools/testing/selftests/mm/hmm-tests.c~lib-test_hmm-invalidate-all-mi=
+rrors-on-device-private-migration
++++ a/tools/testing/selftests/mm/hmm-tests.c
+@@ -2087,6 +2087,7 @@ TEST_F(hmm, migrate_anon_huge_fault)
+ 	void *old_ptr;
+ 	void *map;
+ 	int pagemap_fd;
++	int fd2 =3D -1;
+ 	int *ptr;
+ 	int ret;
+=20
+@@ -2143,12 +2144,36 @@ TEST_F(hmm, migrate_anon_huge_fault)
+ 		}
+=20
+ 		close(pagemap_fd);
++
++		/* Read a device-private subpage through another open. */
++		fd2 =3D hmm_open(variant->device_number);
++		ASSERT_GE(fd2, 0);
++		buffer->ptr =3D (char *)map + (npages - 1) * self->page_size;
++		ret =3D hmm_dmirror_cmd(fd2, HMM_DMIRROR_READ, buffer, 1);
++		buffer->ptr =3D map;
++		ASSERT_EQ(ret, 0);
++		ASSERT_EQ(buffer->cpages, 1);
++		ASSERT_EQ(*(int *)buffer->mirror,
++			  (npages - 1) * self->page_size / sizeof(int));
+ 	}
+=20
+ 	/* Fault pages back to system memory and check them. */
+ 	for (i =3D 0, ptr =3D buffer->ptr; i < size / sizeof(*ptr); ++i)
+ 		ASSERT_EQ(ptr[i], i);
+=20
++	if (fd2 >=3D 0) {
++		/* This open must not retain the freed device backing page. */
++		ptr[(npages - 1) * self->page_size / sizeof(*ptr)] =3D -1;
++		buffer->ptr =3D (char *)map + (npages - 1) * self->page_size;
++		ret =3D hmm_dmirror_cmd(fd2, HMM_DMIRROR_READ, buffer, 1);
++		buffer->ptr =3D map;
++		ASSERT_EQ(ret, 0);
++		ASSERT_EQ(buffer->cpages, 1);
++		ASSERT_EQ(buffer->faults, 1);
++		ASSERT_EQ(*(int *)buffer->mirror, -1);
++		ASSERT_EQ(close(fd2), 0);
++	}
++
+ 	buffer->ptr =3D old_ptr;
+ 	hmm_buffer_free(buffer);
+ }
+_
 
