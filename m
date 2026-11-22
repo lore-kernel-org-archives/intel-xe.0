@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7ADA606A32A
-	for <intel-xe@archiver.kernel.org>; Sun, 22 Nov 2026 15:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07BF8606A331
+	for <intel-xe@archiver.kernel.org>; Sun, 22 Nov 2026 15:30:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IjxuoTIV
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CcLBgvoB
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9086910E1D8;
-	Sun, 22 Nov 2026 15:30:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A546010E4DA;
+	Sun, 22 Nov 2026 15:30:53 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CECE10E1D8
- for <intel-xe@lists.freedesktop.org>; Sun, 22 Nov 2026 15:30:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDC1410E4DA
+ for <intel-xe@lists.freedesktop.org>; Sun, 22 Nov 2026 15:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795361441; x=1826897441;
+ t=1795361447; x=1826897447;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/u2Eps2N9wi8/X4Ntbvf6/Q7Gzg9yrhfur/Wcus211Y=;
- b=IjxuoTIV8TAUI6zXpyqKtLG4F9QLY2G2zUA5rsZYt2EJCWT9m8KPclwN
- 8X71thPSEbPJ052i2hrZ+/9XH8fO8qmhzt9sSn9TE7wdVYJM8wmrOer/6
- op84dsZ4Id9xk/3nf3f0RlbIF2qj2JRJ9eFaOm0rpx8xFv6cF2c3V3U0X
- eSQAO8BHZIPPjmrpLjKETcX5mFbWWnxoNXvzvKkwRITdqEk0buIgvwSho
- awHa5vzURoNY3cL2DG/cgNDNvnPH4xbo02f8CjDAfM2gioIQYOIxqo8hp
- qCUqxPul66lCPwIMjCq0IIN0vp0MUWC6NpBhippQRv5enrjHPu7bvHecF w==;
-X-CSE-ConnectionGUID: AM8TmLCiTfarmOsmosQMDQ==
-X-CSE-MsgGUID: Rl5BOqBRSlS9H2+Z4SdEEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4088509"
+ bh=aOihvZ5rZmPDpKNDvG8/4mKWKU86eXezlBVzl+DWfnU=;
+ b=CcLBgvoBFnUH4khCuWWCnc76UCgUMw2dgG/ayjvOI9ppvD/CtXlohqqB
+ ToWsnaYpQP78m8siRfv4kpHTCQZ6hMp+zs8gu9d22Jpoo2kZ7L+aGn5SG
+ uC05TC+c1f92AC2VlW/EAbtLkmaRawBEyJJ/H0a+5oej/0FQcXen+n+Au
+ Vwl7wfSRBSmFvdam47yuF5ybpH2C9+Jin5RlJc5f+ckdj+ll6G2x6PEXE
+ gd15u+jzn0T5elYNid9tFbtkuGTJ5Li01tznY2pOCXdRFPMn1K7QiC6FD
+ fs0immUO+oBJ9IBqZIm3HA+JzJ3HkaqjAqoHYkZ0rRhcByX7RuOpei65J g==;
+X-CSE-ConnectionGUID: CGmjgoqBQVC2jRdrE1ERyQ==
+X-CSE-MsgGUID: G9ptUfzsQM2Ut4QV7kIoDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4088511"
 X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
-   d="scan'208";a="4088509"
+   d="scan'208";a="4088511"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2026 07:30:41 -0800
-X-CSE-ConnectionGUID: W4+IUcoiT0yNATIqRj/FYA==
-X-CSE-MsgGUID: D63upnmARkOTdvBDZplFjg==
+ 22 Nov 2026 07:30:45 -0800
+X-CSE-ConnectionGUID: yCv1vyZlT3G9YIgx5QifRA==
+X-CSE-MsgGUID: YfzVTE8XSjGA2tnFbOj3hA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="13093172"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="13093184"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2026 07:30:38 -0800
+ 22 Nov 2026 07:30:42 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  badal.nilawar@intel.com, aravind.iddamsetty@linux.intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com
-Subject: [PATCH v2 1/2] drm/xe/ras: Drop SIGID logging in page offline flow
-Date: Sun, 22 Nov 2026 21:00:17 +0530
-Message-ID: <20261122153015.877434-5-riana.tauro@intel.com>
+Subject: [PATCH v2 2/2] drm/xe/ras: Drop SIGID logging for sysctrl errors
+Date: Sun, 22 Nov 2026 21:00:18 +0530
+Message-ID: <20261122153015.877434-6-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20261122153015.877434-4-riana.tauro@intel.com>
 References: <20261122153015.877434-4-riana.tauro@intel.com>
@@ -71,117 +71,84 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The page offline flow reports multiple SIGIDs for a single error,
-generating multiple CPERs. Drop the repeated SIGID logging and replace with
-xe_err or xe_dbg.
+The sysctrl mailbox layer already logs the failure with its group and
+command IDs via SIGID. Drop SIGID logging and replace with plain xe_err logs
+to avoid multiple CPERs.
 
-Fixes: 12b427cf8bb0 ("drm/xe/xe_ras: Handle page offline requests for device memory ecc errors")
-Suggested-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Fixes: 6d8ad0217f9d ("drm/xe/xe_ras: Add support to query page offline queue and list")
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
 v2: split patches
     add more detailed commit message
-    remove non-functional changes from commit
-    convert some logs to xe_dbg (Rodrigo)
+    remove non-functional changes from commit (Rodrigo)
 ---
- drivers/gpu/drm/xe/xe_ras.c | 42 ++++++++++++-------------------------
- 1 file changed, 13 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/xe/xe_ras.c | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 0fb891d00b36..07c048149da6 100644
+index 07c048149da6..f8c1d8a97fc0 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -272,13 +272,6 @@ static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
- 	request.page_address = page_address;
- 	request.action = action;
+@@ -277,21 +277,20 @@ static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
  
--	if (action == XE_RAS_PAGE_ACTION_OFFLINE)
--		xe_log_err(xe, DEVICE_MEMORY, 0, "Requesting firmware to offline page 0x%llx\n",
--			   page_address);
--	else
--		xe_log_err(xe, DEVICE_MEMORY, 0, "Requesting firmware to remove page 0x%llx from queue\n",
--			   page_address);
--
- 	xe_sysctrl_create_command(&command, XE_SYSCTRL_GROUP_GFSP, XE_SYSCTRL_CMD_PAGE_OFFLINE,
- 				  &request, sizeof(request), &response, sizeof(response));
- 
-@@ -303,12 +296,15 @@ static int send_page_offline_cmd(struct xe_device *xe, u64 page_address,
+ 	ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+ 	if (ret) {
+-		xe_log_err(xe, SYSCTRL, ret, "failed to send page offline command\n");
++		xe_err(xe, "sysctrl: failed to send page offline command %d\n", ret);
+ 		return ret;
  	}
  
- 	if (action == XE_RAS_PAGE_ACTION_OFFLINE) {
-+		xe_info(xe, "[RAS]: Page address 0x%llx offlined\n", page_address);
- 		ret = xa_err(xa_store(&state->offlined_pages,
- 				      page_address >> XE_PTE_SHIFT,
- 				      XE_RAS_PAGE_OFFLINED, GFP_KERNEL));
- 		if (ret)
--			xe_err(xe, "Failed to store offlined page 0x%llx: %d\n", page_address,
--			       ret);
-+			xe_err(xe, "[RAS]: Failed to store offlined page 0x%llx: %d\n",
-+			       page_address, ret);
-+	} else {
-+		xe_info(xe, "[RAS]: Page address 0x%llx removed from queue\n", page_address);
- 	}
- 
- 	return 0;
-@@ -322,15 +318,14 @@ static int handle_page_offline(struct xe_device *xe, u64 page_address, bool noti
- 	int ret;
- 
- 	if (!IS_ALIGNED(page_address, XE_PAGE_SIZE)) {
--		xe_log_err(xe, SYSCTRL, -EINVAL, "Unaligned physical page address: 0x%llx\n",
--			   page_address);
-+		xe_err(xe, "[RAS]: Unaligned page address: 0x%llx\n", page_address);
+ 	if (rlen != sizeof(response)) {
+-		xe_log_err(xe, SYSCTRL, -EINVAL,
+-			   "unexpected page offline response length %zu (expected %zu)\n",
+-			   rlen, sizeof(response));
++		xe_err(xe, "sysctrl: unexpected page offline response length %zu (expected %zu)\n",
++		       rlen, sizeof(response));
  		return -EINVAL;
  	}
  
- 	/* User policy set to disable page offlining */
- 	if (xe_ras_get_disable_vram_page_offline(xe)) {
- 		action = XE_RAS_PAGE_ACTION_REMOVE;
--		xe_log_err(xe, DEVICE_MEMORY, -EOPNOTSUPP, "User policy set to disable page offlining\n");
-+		xe_dbg(xe, "[RAS]: User policy set to disable page offlining\n");
- 		goto notify;
- 	}
- 
-@@ -350,34 +345,23 @@ static int handle_page_offline(struct xe_device *xe, u64 page_address, bool noti
- 	switch (ret) {
- 	case 0:
- 		action = XE_RAS_PAGE_ACTION_REMOVE;
--		xe_log_err(xe, DEVICE_MEMORY, ret,
--			   "Poison detected at physical address 0x%llx, page soft-offlined\n",
--			   page_address);
- 		break;
- 	case -EIO:
--		xe_log_err(xe, DEVICE_MEMORY, ret,
--			   "Poison detected at physical address 0x%llx, page belongs to critical BO and cannot be soft-offlined\n",
--			   page_address);
-+		xe_err(xe, "[RAS]: Page address 0x%llx belongs to critical BO\n", page_address);
+ 	ret = ras_status_to_errno(response.status);
+ 	if (ret) {
+-		xe_log_err(xe, SYSCTRL, ret, "page offline command failed with status %u\n",
+-			   response.status);
++		xe_err(xe, "sysctrl: page offline command failed with status %#x\n",
++		       response.status);
  		return ret;
- 	case -EEXIST:
-+		xe_dbg(xe, "[RAS]: Repeated error on already soft-offlined page address 0x%llx\n",
-+		       page_address);
- 		if (xa_load(&state->offlined_pages, page_address >> XE_PTE_SHIFT))
- 			action = XE_RAS_PAGE_ACTION_REMOVE;
- 		else
- 			action = XE_RAS_PAGE_ACTION_OFFLINE;
--
--		xe_log_err(xe, DEVICE_MEMORY, ret,
--			   "Double-bit ECC error detected at physical address 0x%llx, page soft-offlined\n",
--			   page_address);
- 		break;
- 	case -ENOMEM:
--		xe_log_err(xe, DEVICE_MEMORY, ret,
--			   "Poison detected at physical address 0x%llx, failed to soft-offline\n",
--			   page_address);
--		return ret;
- 	default:
--		xe_log_err(xe, DEVICE_MEMORY, ret, "Failed to handle address fault at physical address 0x%llx\n",
--			   page_address);
--		return 0;
-+		xe_err(xe, "[RAS]: Failed to offline page address 0x%llx: %d\n", page_address, ret);
-+		/* Only allocation failure is propagated, other errors are not actionable */
-+		return ret == -ENOMEM ? ret : 0;
  	}
  
-  notify:
+@@ -421,15 +420,15 @@ static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size
+ 
+ 		ret = xe_sysctrl_send_command(&xe->sc, &command, &rlen);
+ 		if (ret) {
+-			xe_log_err(xe, SYSCTRL, ret, "failed to get page offline data, cmd=%#x\n",
+-				   cmd);
++			xe_err(xe, "sysctrl: failed to get page offline data %d, cmd=%#x\n", ret,
++			       cmd);
+ 			return;
+ 		}
+ 
+ 		if (rlen != resp_size) {
+-			xe_log_err(xe, SYSCTRL, -EINVAL,
+-				   "unexpected page offline response length %zu (expected %zu), cmd=%#x\n",
+-				   rlen, resp_size, cmd);
++			xe_err(xe,
++			       "sysctrl: unexpected page offline response length %zu (expected %zu), cmd=%#x\n",
++			       rlen, resp_size, cmd);
+ 			return;
+ 		}
+ 
+@@ -459,9 +458,8 @@ static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size
+ 			total_pages = common->total_pages;
+ 
+ 		if (count > total_pages) {
+-			xe_log_err(xe, SYSCTRL, -EINVAL,
+-				   "Pages returned exceed total pages %u, returned %u, cmd=%#x\n",
+-				   total_pages, count, cmd);
++			xe_err(xe, "sysctrl: pages returned %u exceed total pages %u, cmd=%#x\n",
++			       count, total_pages, cmd);
+ 			return;
+ 		}
+ 	} while (common->additional_data);
 -- 
 2.47.1
 
