@@ -2,98 +2,92 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C0D606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44997606A33F
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 15:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=m5brb9u8
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=i9IMo6nw
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9B3C10EF0A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE10410EF18;
 	Mon, 23 Nov 2026 15:17:28 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19F6410E6E1;
- Mon, 23 Nov 2026 01:14:14 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id A90CD411F0;
- Mon, 23 Nov 2026 01:14:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6C351F000C0;
- Mon, 23 Nov 2026 01:14:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795396453;
- bh=1nAFz1rE2Zgq0kT2UJ5pKEhQqcU8lxqQXw2MrFx+Nfc=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=m5brb9u8foWKbi7SrlcdW6nE2yWIS8IEGVU5QHSZYMih+9IEkmiqaNM0lLx2EYbPE
- Ene3Ka2hJ1BAvW2vOWqYEoxo49rMX/8KuHKgTHWJQeFE3NrlIrAf3xeYL6VLmMY+/l
- ekFXnTI29+zSfV1Cj1JiY8g0iM3LpoM2wMrgHM/4k71UbfvjD94MuJKD4cUZLqKZBp
- tapIlLzsw5cg25rKFRJ3Wy6OzHRx9WFNJ4Dy/E+S8IHUzJbf1ziPCMSD/LFgujVS+y
- I6gkNfNt8+7zFmlY0xlcmT0RV+dcWLazJhMGzWNLJfBLUPxJ9MdE0Cw4N9AumibzJ+
- +Zbi9zcgZuE0w==
-Date: Mon, 23 Nov 2026 01:13:59 +0000
-From: Tzung-Bi Shih <tzungbi@kernel.org>
-To: Randy Dunlap <rdunlap@infradead.org>
-Cc: linux-kernel@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, linux-doc@vger.kernel.org,
- David Hildenbrand <david@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Jason Gunthorpe <jgg@nvidia.com>,
- Leon Romanovsky <leonro@nvidia.com>, linux-mm@kvack.org,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- linux-sound@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
- linux-block@vger.kernel.org, Marcel Holtmann <marcel@holtmann.org>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- linux-bluetooth@vger.kernel.org,
- Willem de Bruijn <willemdebruijn.kernel@gmail.com>,
- Jason Wang <jasowangio@gmail.com>, David Heidelberg <david@ixit.cz>,
- oe-linux-nfc@lists.linux.dev, Chas Williams <3chas3@gmail.com>,
- "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- netdev@vger.kernel.org, Helge Deller <deller@gmx.de>,
- linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
- MPT-FusionLinux.pdl@broadcom.com,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <mkp@kernel.org>, linux-scsi@vger.kernel.org,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Zhihao Cheng <chengzhihao1@huawei.com>,
- linux-mtd@lists.infradead.org, Neill Kapron <nkapron@google.com>,
- Andrey Konovalov <andreyknvl@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- linux-usb@vger.kernel.org, Juergen Gross <jgross@suse.com>,
- Stefano Stabellini <sstabellini@kernel.org>,
- xen-devel@lists.xenproject.org, Hans de Goede <hansg@kernel.org>,
- Arnd Bergmann <arnd@arndb.de>, "Michael S. Tsirkin" <mst@redhat.com>,
- Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
- Sean Christopherson <seanjc@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>, kvm@vger.kernel.org,
- virtualization@lists.linux.dev, Jan Kara <jack@suse.cz>,
- linux-fsdevel@vger.kernel.org, Theodore Ts'o <tytso@mit.edu>,
- linux-ext4@vger.kernel.org, Mike Marshall <hubcap@omnibond.com>,
- devel@lists.orangefs.org, Paulo Alcantara <pc@manguebit.org>,
- Namjae Jeon <linkinjeon@kernel.org>, linux-cifs@vger.kernel.org,
- Jaegeuk Kim <jaegeuk@kernel.org>, Chao Yu <chao@kernel.org>,
- linux-f2fs-devel@lists.sourceforge.net,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Benson Leung <bleung@chromium.org>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- amd-gfx@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, intel-gfx@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 11/12] docs: ioctl-number: update platform entries
-Message-ID: <awOTV4kbshpi_cxp@google.com>
-References: <20261119053514.255348-1-rdunlap@infradead.org>
- <20261119053514.255348-12-rdunlap@infradead.org>
+Received: from mail-pj2-f9.google.com (mail-pj2-f9.google.com [74.125.227.137])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A23B810E474
+ for <intel-xe@lists.freedesktop.org>; Sun, 22 Nov 2026 14:53:42 +0000 (UTC)
+Received: by mail-pj2-f9.google.com with SMTP id
+ 98e67ed59e1d1-3b196fefa1fso1310992a91.1
+ for <intel-xe@lists.freedesktop.org>; Sun, 22 Nov 2026 06:53:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20260707; t=1795359222; x=1795964022; darn=lists.freedesktop.org;
+ h=references:in-reply-to:cc:to:message-id:date:from:subject
+ :content-transfer-encoding:content-type:mime-version:from:to:cc
+ :subject:date:message-id:reply-to:content-type;
+ bh=RMgj1FiPWOfcno2Rg3daraUU1yDv6jWsUnElDClVHG0=;
+ b=i9IMo6nw22B3VZHrSw4nEZtpnSR/jofjsvbPUqiPzGjsxNXlnu4nM9hePRZQgokXcE
+ QSyHxsjE7RC3qW7YBHlwdyJHDZ0CEYpRbI9yk7IUXmV7mLvVAsTK6Nhr1kXjDGtiBQ/e
+ CqIA77EbpMsnrEGJJG9wHdDQVt5BA/X71w+cjITCgqREKKddqT/TwUYAbrnpvFu6YJnH
+ eRdOzrVwcsCgdVtcadaUjIBDs9JwIF/7+f7x4c0h7cVgUv3AnfGXCSnArG3rDDRFleLW
+ 3u4XFYmdnKg/JDZAfwy2fPZA8QAib4KRmlTykL85eGGiDb1GAzoedL6HRT7jSy1ECiFQ
+ j/Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1795359222; x=1795964022;
+ h=references:in-reply-to:cc:to:message-id:date:from:subject
+ :content-transfer-encoding:content-type:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=RMgj1FiPWOfcno2Rg3daraUU1yDv6jWsUnElDClVHG0=;
+ b=a5HvdMo3DrAnw0wDvvguZiSSLlvWOMASkDME7Oo/vLFkRAT0/m4Clpr5hULw8sD7nq
+ iwD7wnL8m+D/e7mGz8JJmmVkcYDTzZJ3e50R6P4rkAPscVrT6p5BezUsVPxitdfPVf8s
+ wm6eVp2dx/UVeUAYz/knTgplpeoV0Gl3T7R6MNHsALxn10JvTSznlhqOJIGbbWrdazTo
+ MxO9vb2jT7cZliT10oMbHfoG7cKJITALM98R42VMOaXyObgfXHGPUfWHoSLa6DtgbdW2
+ 5I3a7T7ux9Pj9T0TXB+TEtr0fzMzDDnS0N8rpcINsT7RX9WRXosZlam9q9MrGbpa0vWH
+ x5mQ==
+X-Forwarded-Encrypted: i=1;
+ AL+hErEmntMJtKTRmCit8GBpTVfopnpn2vWzV66dSxyPH/dmY3zyHUt4xu0LB4cj35+DWQHglYssY642kg==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+AQI02iXAm3c2F1V1PEJS5WPSXm39M6aQwh5dOUQ5x/E7Vu+wH
+ kfyAfX6bytMO9o5qtYtIK6uM5P3lI9gIQDHjlOsB/4+NsSEKomatOsT6
+X-Gm-Gg: AZFdTZdpOcUIUpir/jWQJCjAivDDUmd999CkGvzTusrwojpJSWkCRbwO6Y0NTwzujGl
+ 2ocNdwODnimxKQVUnkjf3SaqUu08rpTVAvYSVkngEW5P9PGSJ+d3XbG0ZbWUj7kdzaUL+xB/BaT
+ cnXOMtbXv6gHeJtX32w5zPTJ0/veuiWjQkKURBi9ngmt6ag94KOiZF1W0W3hk8elLmCFG8mpmrr
+ Mfy3Atxdy2uFZp17tX/s2Xl3CYjqmBtQIZd0ohUl6EBWvWlvXSW5q0X+FCP0LUDRUid8caXeJNt
+ k4rzKcGTqaUUXE6mkX46DjhqFwOvX+YDZSMLsa2KEW3LU5N5AvjcbwVYN4g33vzQOnQEG41nuZo
+ F1aJhZyfjVnFBA8mpdtV7Epyu0upTkKDNrDhApHrXPFpvpZrY+n778EKy6dskt5sVR2x7TzpIun
+ T5dpDU4uR81V3/jwaPdPqsHFM4GQSsZ/T0o0+Xt2Tze/JaKTmIjZCWtli2bOVflzsVmBtC7T55W
+ 0uC92C78PwkpxEfYig7R/RZps4ieCjaKLXTGH3xcLsxzO6U4yItROIUzCDky01xUZigw4x84zL/
+ /XVChUSxLXm/NVhCGD2E+GMw33t5EQDT0Y8rzgh0ojQ4P1586TkDjcX06BEreRmqyx4zdpFVOMK
+ xtWSu4Qu9QHeddk0ovRm3j0Nm/hMYOZSKK7bN4ccQ/PfKaSYqP+Hgw+BHYs3yidX7U+HVjFo=
+X-Received: by 2002:a17:90b:3d4d:b0:3ab:36c4:b502 with SMTP id
+ 98e67ed59e1d1-3b41c90329emr8542890a91.30.1795359222086; 
+ Sun, 22 Nov 2026 06:53:42 -0800 (PST)
+Received: from [10.131.38.181] (n106-71-19-159.sun21.vic.optusnet.com.au.
+ [106.71.19.159]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3b44b75f2a4sm4545959a91.2.2026.11.22.06.53.22
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 22 Nov 2026 06:53:41 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261119053514.255348-12-rdunlap@infradead.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] mm/hmm: account for subpage offsets in device-private PMDs
+From: Aveline Noir <jm5905938@gmail.com>
+Date: Mon, 23 Nov 2026 01:45:21 +1100
+Message-Id: <179535872126.34.4789080961796247940.b4-reply@b4>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: airlied@gmail.com, apopple@nvidia.com, balbirs@nvidia.com, 
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org, 
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org, 
+ jgg@nvidia.com, jgg@ziepe.ca, leon@kernel.org, leonro@nvidia.com, 
+ linux-kernel@vger.kernel.org, linux-mm@kvack.org, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Matthew Brost <matthew.brost@intel.com>, mm-commits@vger.kernel.org, 
+ =?utf-8?q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>, 
+ Patchwork <patchwork@emeril.freedesktop.org>, Shuah Khan <shuah@kernel.org>, 
+ SeongJae Park <sj@kernel.org>, thomas.hellstrom@linux.intel.com, 
+ Vlastimil Babka <vbabka@suse.cz>, ziy@nvidia.com
+In-Reply-To: <20261122015246.d8b6b98ff5a8157168156339@linux-foundation.org>
+References: <179342234355.4.16705453209886955762@gmail.com>
+ <20261121160037.1a479f3c8b4e860bc23c106d@linux-foundation.org>
+ <36be0904-168d-4813-82ff-27ecced464e3@redhat.com>
+ <20261122015246.d8b6b98ff5a8157168156339@linux-foundation.org>
+X-Mailer: b4 0.16.0
 X-Mailman-Approved-At: Mon, 23 Nov 2026 15:17:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -105,23 +99,36 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+	HEADER_FROM_DIFFERENT_DOMAINS,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 18, 2026 at 09:35:12PM -0800, Randy Dunlap wrote:
-> Update the list of platform/ files where ioctls are defined and update
-> the ranges of function numbers that are used.
-> 
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> ---
-> v2: no change
-> 
-> [Since having multiple maintainers trying to merge these would
-> cause some conflicts, it would be more manageable for Jon to
-> take all of these through the docs-next tree.]
+Hi Andrew,
 
-Acked-by: Tzung-Bi Shih <tzungbi@kernel.org> # cros_ec
+On Sun, 22 Nov 2026 01:52:46 -0800 Andrew Morton wrote:
+
+> Store the corresponding RAM backing page instead.
+
+This avoids the oops on the first read through the second descriptor,
+but leaves a stale backing page pointer after CPU faultback.
+
+Since the mirror XArray entries don't take a page reference, they rely
+on invalidation.  When the CPU later faults the page back to RAM,
+dmirror_interval_invalidate() skips MMU_NOTIFY_MIGRATE for the same
+mdevice, and dmirror_devmem_fault_alloc_and_copy() only clears the
+migrating descriptor's entry before the backing folio is freed.  The
+second descriptor still points to that freed backing page.
+
+Reading the same page again through the second descriptor in QEMU
+triggers a KASAN use-after-free in dmirror_do_read(), and the read
+returns the stale data instead of what the CPU wrote.
+
+The second descriptor's entry probably needs to be invalidated before
+the backing page is freed, and it'd be nice to cover a second read
+after faultback in the selftest too.
+
+Thanks,
+Aveline Noir
