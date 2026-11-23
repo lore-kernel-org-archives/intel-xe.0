@@ -2,153 +2,153 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F552606A31E
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 20:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05111606A31E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 20:25:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=AINhccPi;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=H6xOkW93
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=M1MtHpF8;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=boRShZJ2
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD9CC10F1BD;
-	Mon, 23 Nov 2026 20:20:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7463410F1C3
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 20:20:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7DA910EC86;
+	Mon, 23 Nov 2026 20:25:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E6210EC86
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 20:25:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795465236; x=1827001236;
+ t=1795465508; x=1827001508;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=D+JoK3dNw38+vh8Dj+LZvL9k7sDnRRFcTvkBKXYTMZw=;
- b=AINhccPiuH9NZsBEzzYiD9cfGjkXBjDGD1+aolF10KtRb9pFNtfpYB3Y
- zv+bb+nRyGEYBfoxTzA3F8mkHGCKLQyTTDZpA1vteeuFwZm1E+y6V94Q6
- 8NE7o3qsA9c79uYCTWASFQ439OMtwIoAR3TCXh5RgXDWNbp5Z1HnR27Ya
- Hai2AUuq1CbUZ5gy9s9xOk949NiD3InlHjkY/fKrp8JikvH6ht4Hw78nZ
- 8Ksguq4VjmTHMIIsIm2E52qtq3Yq3ZLqN3FpRhnkViozMJE4TCzPTIEHz
- tQLUH+h9WwUWGhYUXtXiswZVxN4k7YFZbHum34GKo6VDSqSqxpTmSdTbK Q==;
-X-CSE-ConnectionGUID: TuFTBmRVRC2U8qrni51dIg==
-X-CSE-MsgGUID: oCx+VHy3T3q0TASOUQ4qdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4301125"
+ bh=CMLKhm3MBmqlcv07mqtX+xv7N2Jw0Qb2V1gR+7N9+K0=;
+ b=M1MtHpF87kmFFU8yMd7mDwCQ9z4MRRus4QxDXUiNiHJvQy4UtLKLfqym
+ rQfL181Oz+oRgGfWuWHCYg3PrZludzAMWW2iF8ytfpGDc8Ar73spSYNjE
+ 5u/0nGWsZ4DRNN4EdQh9b6fvTPNY2bKfSdo3mnApUs8FGOITueMxOTSa7
+ Wvw/AAYxA1CD9fx5aLW4h1kewQM9kO6ZI7s07vkyP5zb51c4kawLo7q0j
+ 2fJO8KWjLmLEmxtJ17OqtLR+FbccPHR9V1blvgNVXmj7VVqNlDEBvlw2H
+ Ghivz+nQ0mzHFETW31vTjl4hF9tZVXFeXJeeS2fhK6eUw3lhWHhQGBQLM g==;
+X-CSE-ConnectionGUID: IN3OJsh0R5aGLHMsTrKQ/A==
+X-CSE-MsgGUID: qAfrvdbyRiCmmQv17HTVVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4137567"
 X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; 
-   d="scan'208";a="4301125"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 12:20:35 -0800
-X-CSE-ConnectionGUID: erbYO4FjRFiwHNYGDy+JmA==
-X-CSE-MsgGUID: +vsc29EgQ/Se0zPPo9CNSg==
+   d="scan'208";a="4137567"
+Received: from fmviesa011.fm.intel.com ([10.60.135.151])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 12:25:07 -0800
+X-CSE-ConnectionGUID: EfJoqJzuTG+SBJfdfJQNXQ==
+X-CSE-MsgGUID: HP/XaD2sR0a6KuYD8Dtjqw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11588106"
+X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="13177352"
 Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 12:20:36 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ by fmviesa011.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 12:25:07 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Mon, 23 Nov 2026 12:20:03 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.57; Mon, 23 Nov 2026 12:25:06 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Mon, 23 Nov 2026 12:20:03 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.17) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Mon, 23 Nov 2026 12:25:06 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.44) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 23 Nov 2026 12:19:53 -0800
+ 15.2.2562.56; Mon, 23 Nov 2026 12:25:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=f+jmtEwlweCd0fKLmn72IESqRy76zHl9PfRTkfMZUVesohxKg3ydHvbadEZzDOTFwv0aDGVYd/qspr7eEbmQKxr1CEXewDQ+YGysxWY5KYGsghxatU6vVflz1GqzBb8OrqeFpGKXau9g4jWmcDnL+k7vylnUDO6X2kirQG/9yDXYlaQ5pBsAm5cJbMqHV4RlSpLc3UaU1IKty0MEN7shBOZyKaExna9ueaT+jsJGDHl0xUQqhepNtvNksku4xbyY8K3YI7YurR7n47acdU9JszpsG0FRscu3Zy4/uR0815nJ3wlnBLkmUNilkfHAlf4ePXjE+dEIlsT1ihnrBNRk/g==
+ b=Jwen0Fi6xurAd2AvVKsSde1Z4Njh+yKzF1u1VbRVfvyxTkcirKSQW3dja7/qd7K9v15FxznQESBdOXJK05pKadv+fXfyWnELT7MaKNlIkF+LX0xZFFJ2JIa34l1y1QguoZWZScS7jzGwmV9bkZjufZW55jeGJQ0k0WRo+0jTT7rq1B9BeFKifAN/kPEz2M8KIBgXTcxpU5ejRpmla/qzwJaQTwRF21vzxyTSKtnE5w6LddJt6/sgCEWJIP2iRCWMvNtJdIeZPauquYRU/fqIfInnx6siUCvU8pyU22kSR3cT0jzQuETEl2JjAUuALGQfKjiZX648eq5xyNFlba+OHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=biLhxSYVSCHXlgk+ssxArfqkfPQwb0rVx7NrkjjZYxE=;
- b=VZWbXO4EjkEOZJTk0sgyZnOhl/Gkc9TE4Wjei6ucKm0N8u9gHyH3YeGR4QPwx6rRaZN2bcvrCAaKo499Od4zzANvby5V2blvZ1Bpi/DAnierlCevnfhGl1dty6io1FiReLL2+PwBbeE7+lBCcEnnwdOQNF58cLmVQQ7DmnbgnDryanG4ArrDRg1bRJH4kOHFioY/WRfIc3zAc0MGN33ZLwTIXQEhfwkFbjfY7pTMQ/GS2kq6UVUxKU8YOy32Kyov+MDN88v4FYNrn4CJhxunCXkUZvRGr1mTgf1CaO85cr7Ou9YG1N/FIAawpZdro+7JT0gkAdy1mR3ajVPXT+3w9g==
+ bh=jAFvGiDc+VS9KXOJIQWSV/S6GrA3WVqNOhJIYnwwmIE=;
+ b=OrUV+AwuO1Y5HOJdVXOc3Vy46mEnMMLcAH60AAujWbEV1lQc8wGPUDNckZxexePi01EmRvitN7shz6b4cligxwHVOruU3rMG6FCcUWEv8MLv0cPDMzljvyDQn3sE+LOes/jxUff7HbobpigzJxdyIlG2nhGTKuZaYPUB6eJsJt53Iu4rPH609pQ2VsQJIChYvgQraBWbuZpC1h8CRNBN23QL4ZsJRLlQImfS2PIaojw9jyPEeNK1er1SmhRYCxusSdQ0Qeuc+y1pu9D5T9/nx3e1jJ+55IcLG+a7dq5cnpsj7HSmi0PR2FsR7Op+NYTT7M9GRiqrOaNROHoR7Tj8Xw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=biLhxSYVSCHXlgk+ssxArfqkfPQwb0rVx7NrkjjZYxE=;
- b=H6xOkW931kpgqlMsnzth37ff6nzSKC02Ib9amcL7MGVDj3wECKvP2qyqCWHyIJQ9jMaIOh1wIjGRRwvJjclRy8QPFVK/8nquF74l6Xi7Z90NFpuv6WmCA5DNrqAnXGY7h3JxXrX3xL31L/ar4s5a6LKy5ff9asbAoeCDtKLnqDs=
+ bh=jAFvGiDc+VS9KXOJIQWSV/S6GrA3WVqNOhJIYnwwmIE=;
+ b=boRShZJ2N66tbZ4pyqSIdTtLFf032Jpnaxj0gZ0ql0K9lB+Z2+rSHBPESWtriE4hgr0iB2hOuBBdzq1QPFoNMfSiJ7CMK0UrD0CRS0xPau2+qLmgwRzIQwPsW53Wl5Bevzi0TJsbSVgvmi63KX7zEB5zUBRC9oKRkkqUAwEEF+o=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
- BY1PR11MB8056.namprd11.prod.outlook.com (2603:10b6:a03:533::9) with
+ SAWPR11MB9921.namprd11.prod.outlook.com (2603:10b6:806:54a::6) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.639.13; Mon, 23 Nov 2026 20:19:51 +0000
+ 15.21.639.14; Mon, 23 Nov 2026 20:23:51 +0000
 Received: from DS7PR11MB5990.namprd11.prod.outlook.com
  ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
  ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Mon, 23 Nov 2026
- 20:19:51 +0000
-Date: Mon, 23 Nov 2026 15:19:47 -0500
+ 20:23:50 +0000
+Date: Mon, 23 Nov 2026 15:23:46 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Sk Anirban <sk.anirban@intel.com>
 CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
  <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
  <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
  <mallesh.koujalagi@intel.com>
-Subject: Re: [PATCH 2/2] drm/xe: Add debug configfs option to force OCODE load
-Message-ID: <awSf42ue559qzavc@intel.com>
+Subject: Re: [PATCH 1/2] drm/xe: Skip OCODE late bind if already running
+Message-ID: <awSg0v1GI4tw7h7I@intel.com>
 References: <20261123183740.4002390-4-sk.anirban@intel.com>
- <20261123183740.4002390-6-sk.anirban@intel.com>
+ <20261123183740.4002390-5-sk.anirban@intel.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20261123183740.4002390-6-sk.anirban@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0228.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::23) To DS7PR11MB5990.namprd11.prod.outlook.com
+In-Reply-To: <20261123183740.4002390-5-sk.anirban@intel.com>
+X-ClientProxiedBy: SJ2PR07CA0014.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::7) To DS7PR11MB5990.namprd11.prod.outlook.com
  (2603:10b6:8:71::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|BY1PR11MB8056:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4733f42-efd6-4ff3-2c2b-08df499f20a7
+X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|SAWPR11MB9921:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3f224a89-18e7-44af-8319-08df499fafa2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|261102123227099003|261026121527099003|261026140227099003|261022115727099003|261022075727099003|261022105027099003|261028144727099003|261021121427099003|261021123027099003|4143699003|11063799006|56012099006|10067099003|261009223027099003|18002099003|22082099003|6133799003;
-X-Microsoft-Antispam-Message-Info: n8EIJOY6Vpk16SPWnkk621s7Tj6Kaep1XtjKDSPtNN23fwblwgAg1ynOEje/dZzFm2zX4pAI7loDGXJFJvQtAX6UE0ikQi4X/5ZmghfvBCSmWS1J0FxLjzKfIGksmBJR0CX/kM6K9B5ofO8CE+cQoTX8GUR251Ku/kE9NCMwlsKnpfCR8Rw8lGh6MTa8IQKyBt03cxTm3INRgPXUV2iGto7zgUYcjo0j7bmsfhnRdzJWAkJRFbeyNwC+9Zi+4OFyVbhUtYV0GKC/B+d7mWDymEIMCN4alf4Zau9/YX6OMNxYHAk/k1Chrnt+JtVlNgf8HaDppNPm5EgrDhyQdehrPl7/EwJlGcyej1GwBbxdThtdJSoyAwyEFuEfqwt7d4rtaSl+KDuIevYdhSXIvInP0EhUc9U5QFk3yke7Z6ChLWAHHsZ8KlArd5tUvGm/fGl69PhfqCJvCykrbTJVmUdSZwxvW0xf6YKebisDBUYSq3R5JanJFQap6F0Je+VMPKjhm9AYhG1DjxUOVAWe5NrNhUSwePPKrkF97AD0h9P0ILDwiNYIxHdgHMAyo+rHVxvYqlLbJ6Km06d5IIXXVRwnw5reAJb/gxu7EAi31muZgwgk37hWwUU6FiHKjZ2fCaoYB3i14I7ndew6br7ypMB+T3PTsZuSSMUhAVyOBqnbIU8=
+ ARA:13230040|23010399003|1800799024|376014|366016|261026140227099003|261102123227099003|261026121527099003|261022105027099003|261028144727099003|261021121427099003|261021123027099003|4143699003|11063799006|56012099006|10067099003|261009223027099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: vDcYw5PwQDJi8WV/Lue9BJ/JeIrC16bbmnly6F+F/gPV/8ISGK+RpBEufdKl+h+DgOvFqEg8FwqlA33kDfS2ttcgdz9jzMcF1HvMZe8bKIzXF4XIbZLX0l3YpcAYRb8oa6EJEvwWbw03XMvVgub3LM+MhHA8/wyPZMETeBaUGOxcNW7ENACyOXUbBZX2vHzfKxGKRPK6LcqcTmOgtd271BfTjau2fRFUq26gV+ZjtbBpfUN0hXUXqhPjbYgLbvf3Vr0uFwKpO11UxdbWIkScdL80GgjhATHAOvDnFR0Tx2UG+fWrnHri1s1gfbESeBFLQVRPnHWE3TSie3IdBZh01+JBB598UtIs+sSonaqm+GymbK5cPT7YpIq5qEq68+WEf8VptIuOjdz5ceYJaVeGqP1L17Lj9iXhQRlvetIEtCMv098tPoRwSc0h0VcC5McyNQI7V3GkvZQpjy4rSBNRdtkxZFr2kRIOpdLEIPE0btKFnSFyHvj+jGJOAohaTBpxYHTJfm50uX80cwKQCVKc/jj+x/HDAoB64ZkviVTR5/k0KxXXlvv9plo/Csm8I5yv+1ypCiZcdei9d3Nsy5JCua2dI6DGkDvbHeWEbxpzsAKtIth0Ek/mrg+qyHbf3hNuychaXwwZA2wmLCElIhIGavjuZAR3m66r5q0TugOsyGY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(261102123227099003)(261026121527099003)(261026140227099003)(261022115727099003)(261022075727099003)(261022105027099003)(261028144727099003)(261021121427099003)(261021123027099003)(4143699003)(11063799006)(56012099006)(10067099003)(261009223027099003)(18002099003)(22082099003)(6133799003);
+ SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(261026140227099003)(261102123227099003)(261026121527099003)(261022105027099003)(261028144727099003)(261021121427099003)(261021123027099003)(4143699003)(11063799006)(56012099006)(10067099003)(261009223027099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WtaHSkczpHJ4zBNZpl9XUED/kE6RQ/0ebV8GKkdNnaphFVhbfPKsFi9HVNq8?=
- =?us-ascii?Q?poA/6J7yDNSRCJNhMsFWGAdAYxSkf6A7O7sI4LFkrVxHjPYRJxocf1mpCznl?=
- =?us-ascii?Q?flHusmCVmGMRcAWiMnI3n27Qd1wBG2UUMtjf1kHIsPrD5bEmWzy9dlTx5Z3T?=
- =?us-ascii?Q?2beQzbeT3ZVSd5C7Bu5/Fdk4oOgfYJaGR4htVs/yjLY78x6qMk8XcIw1fTX7?=
- =?us-ascii?Q?3aTGjaB6+EGpck6pqGj9J8vFq7ZKJ7Jc8AnEaXIR8OYXErmZp8BdlPG+K5T0?=
- =?us-ascii?Q?fa5e38DAY7FPgAlr5iw3DYluSPcg8Ifc7/y/13h7Nw5O1mbi6N33IzM00Rd3?=
- =?us-ascii?Q?qHEX5lcnYoq1Re5e9ONwFetGQSqq2vp6JdN0/gAX+ZZSn5sdgXx+w2UYffHC?=
- =?us-ascii?Q?ArYjmw8+1ILytaR7MDUNLM/4WwXy/f4pybfa7+udZqYRFjHGn/YimB6bUqJF?=
- =?us-ascii?Q?Nc+JmjZ8bxv+kMvs41mOsLpGqeH7mqHkHKqZBC53UCQUACW7SBGWi34Iy0iI?=
- =?us-ascii?Q?26TPowSl76uTaRl5Z0p9kpPwa9LahCrzB2msvqqPMz7krZOyk+fO7Mvvqao0?=
- =?us-ascii?Q?Yoy2zipU5KdzSb5mDUys8DkeBI00BDHuHV+OkQSR0+FHZN12ELfNrPNMb7vC?=
- =?us-ascii?Q?IGhT5tAX4p4+8UZbvRf3bBYhpEzjqWeO3/tFlP4FmiPRdoyNZUgIggTeYNXG?=
- =?us-ascii?Q?1OVsexJ1ZHQAkw50OtUntz9wQhDmhcgPd9QLhTVLRIoU2eDchSzOWquErSye?=
- =?us-ascii?Q?4gweLBheWAafwGg+qsaw7m2Pi61Q410qRbgs0S1Bc2CLck4rqJikhwRGdKQL?=
- =?us-ascii?Q?HCwjMTC4b9Cx0Aw8+7cGEhtJZkcTUHOv9cWjnAIgTd1RZL7hqCoQkbijkkSu?=
- =?us-ascii?Q?1kl/sPW9rRlmGeP9yzS5HnNvaeDRLppkPdM5BCRlgpGk09pb7cXLkgykBE/L?=
- =?us-ascii?Q?jDmFrIzU+X8uMqH8fmPp/LFtinvdHm3gxAfvudpXXd8zQDwNINpxdQfImFij?=
- =?us-ascii?Q?0zwGI9JKUaIn7pGqpygc7M2jab7xnLEeNyjGTW2CwJy0IClfkh1pNmPCuaY0?=
- =?us-ascii?Q?BP+1iAuzBW++x+TefZ2L+AD/aMiH8VaBFlpUXH3KMr+TCSD2BwDM7zDeYXXW?=
- =?us-ascii?Q?x1RnhpfAFIVTeFzg78i8lReTUbdBT6A1fElqVYE16FTDcQNeygqhUX6+YhW2?=
- =?us-ascii?Q?GLtwq9tHen9iBm3mZbT3snkv0lDcP1uOwAps4W79tU7YGxge4IYy/577vTJL?=
- =?us-ascii?Q?SwOLYTCwEoxH3MhNAmGJ7vryWxXOrD/BNYVVbLLdFXZsan9pG3/k3GwcL7sa?=
- =?us-ascii?Q?ynsfiErvY+eReoJ1ylAKtJeQAslcsM/izMWsg+T3kkVhSrklJ/61MMB/5Lky?=
- =?us-ascii?Q?wo9Lw87v3ADm5KLSp8avA4ioozg/XHZZUpMChPAr6bq/8NH9FVOdGbHNWXl+?=
- =?us-ascii?Q?tSmRQhpv1RZdxxuWRMLIPcU1kZThTqhnPQaoBHtbfYeh/FYIhhV2r1T+s+Oq?=
- =?us-ascii?Q?0Fb9PGmvltIDKI6LCtfV6PtwY5Uj8iKHJpTnXWectKFiLm4ROElzi9x6WjJx?=
- =?us-ascii?Q?4wkcQ5IihetxFIICR2JrNFIVqC7fO0MMAuRGxAYLr6JXHAJZ9CVhuhUh1dmi?=
- =?us-ascii?Q?vSmCwwnfjXuRmEFobRpb2K4XnasSW0rvIS/YbTKOysFPgH04UUjQC2RK2L3t?=
- =?us-ascii?Q?hsWb2171Gw/xyECkoUPCrTs5P5jV92yaZxiTjy5cy5zNuJZ0lqA5EBGoQ3Ib?=
- =?us-ascii?Q?OPAwI+VVJg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: HDNLo2qsw2a5byuCPXdKsFb6chfI/l1IYL3hdRp8FZEi8YaCS9gOMbDQ8FZPeS8CCCIU0+ReyavCqnVfmcWNTF7GB4bkI3dAo/FN2HzTRpjVjcAqkgxnzJ2G3TMGrBzHdvb/mz5FiUtef5ang/PENqd0RAf+YIbKOb6HynmE392C3DJIA3/DuLXYTAFQwFDDGZFCM5y2hDbscs1zPI1G/vxh0t6//ntPwtdDAiCZh0eBcJ5uIowhxNYOemPu4XO715tdntd0kywBqwHMqfQ1PN1HwpfWKYJOld5yS3cqd34U5NlvdOiUvpEG6wO6fk2EuyyTLx6DD7R92VV39I3oWg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4733f42-efd6-4ff3-2c2b-08df499f20a7
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+ygvc6mWfjE0IeUU6Qzi+p8CXVjcW6YHXrxX6GTtEWPIVqCuVZ131aD84K2s?=
+ =?us-ascii?Q?LoSJl2khV97Vf0iLitFEl4NLCpWLrBam7wDMA8H4hYNl9lPkK4VMT5AlCVJ7?=
+ =?us-ascii?Q?28MU8DFUAgGJ0hJ9+NRmO3BLEj5HVJhQPRhAA5BNMbtpZjxLpXDIjIbO06aE?=
+ =?us-ascii?Q?QN/MnnR0xAwAClEECvHN2ygXkLoXUp0p5tYeKefSVt7QxnT8VCzJeJFLvsZz?=
+ =?us-ascii?Q?IPjWwgHEHOCcICfaXpCknmo2/qGYupOqwzcPBZWTQmKe90g4d3pRSIOIcfFK?=
+ =?us-ascii?Q?03gUXKSbM6ABldWzjw45LFLnYd5uRMk0+a0rqrn75a/lhIbI/jIsMmVtfWBf?=
+ =?us-ascii?Q?AQAf/Sfy1k0yWAeqhXEAvwQYogqRLY8FFdQ3JQRkKmQlf1DYK1nB+gzwdo4I?=
+ =?us-ascii?Q?NcUyERY7vaNk8AqCwI70WT0YnY2BDDLbn8B4K7mlQESolKZDwWklrkah0beO?=
+ =?us-ascii?Q?yOFB6y8+M3ovATWN5dojxPFCMnmQk1bpnLwMIpn0LW47ppDaPU2UaEWYGu2p?=
+ =?us-ascii?Q?jWDuab5iRxUuYO3V2LmITPjff+Y19wPy8fd70uRgJKRK9vHYH2MXcLze4Ggq?=
+ =?us-ascii?Q?38TA9Ij5JXxLfpKLaMbZh+qQHe9NHsuwYXVve0WijuInYAgm3QA6uXiBxPoh?=
+ =?us-ascii?Q?8s60+D+YRfFr+3pt2XJMftyF/3fmS51tAM2F1GVe+DpXnp4Go2GX5TAkyPFf?=
+ =?us-ascii?Q?DR8XCxq42Ht3qE3PtkBo5y5fvy5oPwPHJl1EvRCvja7kjrQZRpbEuAizB8Wj?=
+ =?us-ascii?Q?i4WDt7ZnWR2LlUGYmVWKeP9mxKCM8/FWcsuQt3agB4peKBroiQ/keXibBeBS?=
+ =?us-ascii?Q?S8jCDp80sGgIvKY9ZSoR3tvXZwYPDmqoe2G/8sUEE2cA+aV49kn6XJ40yXVp?=
+ =?us-ascii?Q?We80P0uBlMXkuO8Nwsk/iG93LpB8nW8R/mqdXwbojoygrs7YdBpM0sJtMGzd?=
+ =?us-ascii?Q?VPvgnnIdLwEOchqAap2OK0/lSoBVNTUEgnXzmkRRGUHHmrdRZbrr9hZ3ZRZt?=
+ =?us-ascii?Q?CuaRL3m1dl16eyN95/anQkUKcXsSNV8AguDoiZSWDzFxfoxidMmUu4kTwkMU?=
+ =?us-ascii?Q?cy9Hm48Kcc0FvpMX702irNIK5LCv5ar3kruCuzC4151TsVyyfZsiWoPuoIkr?=
+ =?us-ascii?Q?AOU1dG5oTZ/wZb7H/TMfl2jYMhzLCu46nyHEQtOA2Rb5s81mUC0F2FO6a7NL?=
+ =?us-ascii?Q?FnfW1oZUY96g0pGVna5TOIwMIGCW1EU5uyZb9YgxE49xx4PqGqq485j9lItd?=
+ =?us-ascii?Q?2UfeQAkZt9Hlx0NGS15JY2nvGROj8PCSatmcXpfNcb04fPlv6R/xAlIfz/2L?=
+ =?us-ascii?Q?nw5jd5aAR4ux7YGTEnRSzW4Jn9HSPQIqkVBVmUDnSpgZ6FLpgW2RLLWFn5xz?=
+ =?us-ascii?Q?lTSgqefRk0cWKney3FNTAiZ16eqTb7iMAQyP/OV8i7aQpu4Xe8vNjw6C96CG?=
+ =?us-ascii?Q?4gewLk4QeOAkX/10Kd/xq7yLNRTH9tuYkCioRyAB+BLYzr2narhVVGXCQ6e5?=
+ =?us-ascii?Q?qQxUhHJpHhxyG9TQ9bNYORsLoBuRxGiowmEjxmBqhr6nKbPzB7X4YlreAItk?=
+ =?us-ascii?Q?/8f+7GAvLVDOhTwJh0zZ2Tl8i+dzGAQMfWNwYP8frOzhW/py6KvGwvhSXwrh?=
+ =?us-ascii?Q?1tsLdqTP22R/cOZ3KIet31iAJ1XZ5YGuytKhATJu2yVH8VFWxJqKPVzntRpn?=
+ =?us-ascii?Q?gnFpRG8SBHNbK7NuOw5MzDaq/JgvEl21lNL4hlYKfvUs6iLYiC4lRQ3YH6wl?=
+ =?us-ascii?Q?biC4EvltpA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: goQVeTfX3UzzRfbQf/nOSoZ9Aane9c4e4VH8tLkTAQXoCS2ANUaNxGwD2oes7slqwKQgZUQqWGgkevw54CHmX+Hi0VTOPHcq3xL+Oo0CfdUM0S9Blen2lUK23REX86kRO0Mqvs50qDme5tlbFZTWkxiZAs/7qYcLDR64iBV5vyvh8XfJXu1GeuwkLSrFPtxT+LMwKH+JNuCXrsBTONEy5BH38MzvhziSjiGR2HjK9ieDpjmv4fhDbx0P81x3rdtx7U/BDV/u/gG78XHlbY+H89qP6CFWPwYb9ixGaMUcrCwxjA/niBCMrt358nzAh+O4P41g7r43bt8rY9qYxv2BNw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f224a89-18e7-44af-8319-08df499fafa2
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 20:19:50.9586 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 20:23:50.7425 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tPIuu+guMHyxeObeWy727XcTFYkaFEAKlI4lMY1e+W892z+8L2RAKfoc3vYV+DcxmVZSRPFx/K8jSH6nMJnupA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8056
+X-MS-Exchange-CrossTenant-UserPrincipalName: pmJbVxDtViK0/tYzwKxLAlQXEmdslQXcpklDt+4AthEaBT7cj2LICKojKykKAf/JywXXsYC+XUx6Ym7TPkv8fw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR11MB9921
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -167,254 +167,53 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 12:07:43AM +0530, Sk Anirban wrote:
-> The late-bind worker skips uploading OCODE when SysCtrl reports it is
-> already running.
-> Add a debug-only configfs attribute, ocode_force_load, under the
-> per-device xe configfs directory. When set, the late-bind worker skips
-> the "OCODE already running" check at probe and uploads the cached
-> OCODE payload.
-> 
-> The attribute must be set before binding the device:
-> 
-> 	echo 1 > /sys/kernel/config/xe/0000:03:00.0/ocode_force_load
+On Tue, Nov 24, 2026 at 12:07:42AM +0530, Sk Anirban wrote:
+> Check OCODE readiness in the late bind worker and skip the upload
+> at probe and resume when it is already initialized.
+
+We are missing a why in this commit message. Perhaps something like:
+
+OCODE stays running across driver reload and warm reset, but the
+late-bind worker uploads it again at probe and resume regardless. The
+firmware does not expect consecutive reloads, and the delay caused by
+reloading a running OCODE leads to firmware issues.
+
+Query OCODE readiness through SysCtrl in the late-bind worker and skip
+the upload when it is already initialized. If the query fails or OCODE
+is not ready, upload it as before.
+
+A newer OCODE blob is not picked up until the next power cycle; this
+will be addressed once firmware provides a reliable way to read the
+running version.
+
+then
+
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
 > 
 > Signed-off-by: Sk Anirban <sk.anirban@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_configfs.c           | 57 ++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_configfs.h           |  1 +
->  drivers/gpu/drm/xe/xe_late_bind_fw.c       | 14 ++++--
->  drivers/gpu/drm/xe/xe_late_bind_fw_types.h |  4 ++
->  4 files changed, 72 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/xe/xe_late_bind_fw.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-> index 2ddd707a6dbd..34bf8d61dacd 100644
-> --- a/drivers/gpu/drm/xe/xe_configfs.c
-> +++ b/drivers/gpu/drm/xe/xe_configfs.c
-> @@ -85,6 +85,12 @@
->   *
->   * This attribute can only be set before binding to the device.
->   *
-> + * Force OCODE load:
-> + * -----------------
-> + *
-> + * With CONFIG_DRM_XE_DEBUG enabled, force an OCODE load at probe even if
-> + * OCODE is already running. This attribute can only be set before binding.
-> + *
->   * Allowed GT types:
->   * -----------------
->   *
-> @@ -302,6 +308,7 @@ struct xe_config_group_device {
->  		struct wa_bb ctx_restore_post_bb[XE_ENGINE_CLASS_MAX];
->  		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
->  		bool survivability_mode;
-> +		bool ocode_force_load;
-
-force_ocode_load  goes better with the doc and with the other existing
-entries.
-
->  		bool enable_psmi;
->  		bool enable_multi_queue;
->  		bool disable_vram_page_offline;
-> @@ -324,6 +331,7 @@ static const struct xe_config_device device_defaults = {
->  	.engines_allowed = U64_MAX,
->  	.migrate_ulls_period_ms = 5,
->  	.survivability_mode = false,
-> +	.ocode_force_load = false,
->  	.enable_psmi = false,
->  	.enable_multi_queue = true,
->  	.disable_vram_page_offline = false,
-> @@ -429,6 +437,32 @@ static ssize_t survivability_mode_store(struct config_item *item, const char *pa
->  	return len;
->  }
->  
-> +static ssize_t ocode_force_load_show(struct config_item *item, char *page)
-> +{
-> +	struct xe_config_device *dev = to_xe_config_device(item);
-> +
-> +	return sprintf(page, "%d\n", dev->ocode_force_load);
-> +}
-> +
-> +static ssize_t ocode_force_load_store(struct config_item *item, const char *page, size_t len)
-> +{
-> +	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-> +	bool force_load;
-> +	int ret;
-> +
-> +	ret = kstrtobool(page, &force_load);
-> +	if (ret)
-> +		return ret;
-> +
-> +	guard(mutex)(&dev->lock);
-> +	if (is_bound(dev))
-> +		return -EBUSY;
-> +
-> +	dev->config.ocode_force_load = force_load;
-> +
-> +	return len;
-> +}
-> +
->  static ssize_t gt_types_allowed_show(struct config_item *item, char *page)
->  {
->  	struct xe_config_device *dev = to_xe_config_device(item);
-> @@ -946,6 +980,7 @@ CONFIGFS_ATTR(, disable_vram_page_offline);
->  CONFIGFS_ATTR(, engines_allowed);
->  CONFIGFS_ATTR(, gt_types_allowed);
->  CONFIGFS_ATTR(, survivability_mode);
-> +CONFIGFS_ATTR(, ocode_force_load);
->  
->  static struct configfs_attribute *xe_config_device_attrs[] = {
->  	&attr_ctx_restore_mid_bb,
-> @@ -957,6 +992,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
->  	&attr_engines_allowed,
->  	&attr_gt_types_allowed,
->  	&attr_survivability_mode,
-> +	&attr_ocode_force_load,
->  	NULL,
->  };
->  
-> @@ -980,6 +1016,9 @@ static bool xe_config_device_is_visible(struct config_item *item,
->  {
->  	struct xe_config_group_device *dev = to_xe_config_group_device(item);
->  
-> +	if (attr == &attr_ocode_force_load && !IS_ENABLED(CONFIG_DRM_XE_DEBUG))
-> +		return false;
-> +
->  	if (attr == &attr_survivability_mode) {
->  		if (!dev->desc->is_dgfx || dev->desc->platform < XE_BATTLEMAGE)
->  			return false;
-> @@ -1240,6 +1279,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
->  	PRI_CUSTOM_ATTR("%d", enable_psmi);
->  	PRI_CUSTOM_ATTR("%d", disable_vram_page_offline);
->  	PRI_CUSTOM_ATTR("%d", survivability_mode);
-> +	PRI_CUSTOM_ATTR("%d", ocode_force_load);
->  	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
->  
->  #undef PRI_CUSTOM_ATTR
-> @@ -1288,6 +1328,23 @@ bool xe_configfs_get_survivability_mode(struct pci_dev *pdev)
->  	return mode;
->  }
->  
-> +bool xe_configfs_get_ocode_force_load(struct pci_dev *pdev)
-> +{
-> +	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-> +	bool force_load;
-> +
-> +	if (!dev || !IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-> +		if (dev)
-> +			config_group_put(&dev->group);
-> +		return false;
-> +	}
-> +
-> +	force_load = dev->config.ocode_force_load;
-> +	config_group_put(&dev->group);
-> +
-> +	return force_load;
-> +}
-> +
->  static u64 get_gt_types_allowed(struct pci_dev *pdev)
->  {
->  	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-> index d726800de26a..0e7efdfaca23 100644
-> --- a/drivers/gpu/drm/xe/xe_configfs.h
-> +++ b/drivers/gpu/drm/xe/xe_configfs.h
-> @@ -18,6 +18,7 @@ int xe_configfs_init(void);
->  void xe_configfs_exit(void);
->  void xe_configfs_check_device(struct pci_dev *pdev);
->  bool xe_configfs_get_survivability_mode(struct pci_dev *pdev);
-> +bool xe_configfs_get_ocode_force_load(struct pci_dev *pdev);
->  bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
->  bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
->  u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
 > diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> index dfff1693bf1f..91d3d33be6e8 100644
+> index 355d7c841871..dfff1693bf1f 100644
 > --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
 > +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
-> @@ -12,6 +12,7 @@
->  #include <drm/intel/intel_lb_mei_interface.h>
->  #include <drm/drm_print.h>
+> @@ -258,6 +258,13 @@ static void xe_late_bind_work(struct work_struct *work)
 >  
-> +#include "xe_configfs.h"
->  #include "xe_device.h"
->  #include "xe_late_bind_fw.h"
->  #include "xe_pcode.h"
-> @@ -259,7 +260,9 @@ static void xe_late_bind_work(struct work_struct *work)
 >  	xe_device_assert_mem_access(xe);
 >  
->  	/* TODO: Compare the running OCODE version at probe when available. */
-> -	if (lbfw->type == INTEL_LB_TYPE_OCODE && xe_sysctrl_is_oobmsm_fw_ready(xe)) {
-> +	if (lbfw->type == INTEL_LB_TYPE_OCODE &&
-> +	    (!READ_ONCE(lbfw->probe) || !late_bind->force_ocode_load) &&
-
-let's not complicate and remove this 'probe' check.
-It is a debug only case, let's allow even on resume and move with it.
-
-The rest looks fine.
-
-> +	    xe_sysctrl_is_oobmsm_fw_ready(xe)) {
->  		drm_dbg(&xe->drm, "%s firmware already loaded, skipping\n",
->  			fw_id_to_name[lbfw->id]);
->  		goto out;
-> @@ -313,7 +316,7 @@ static void xe_late_bind_work(struct work_struct *work)
->  	xe_pm_runtime_put(xe);
->  }
->  
-> -static void xe_late_bind_fw_load(struct xe_late_bind *late_bind)
-> +static void xe_late_bind_fw_load(struct xe_late_bind *late_bind, bool probe)
->  {
->  	struct xe_device *xe = late_bind_to_xe(late_bind);
->  	struct xe_late_bind_fw *lbfw;
-> @@ -323,6 +326,7 @@ static void xe_late_bind_fw_load(struct xe_late_bind *late_bind)
->  		lbfw = &late_bind->late_bind_fw[fw_id];
->  		if (lbfw->payload) {
->  			xe_pm_runtime_get_noresume(xe);
-> +			WRITE_ONCE(lbfw->probe, probe);
->  			queue_work(late_bind->wq, &lbfw->work);
->  		}
->  	}
-> @@ -518,7 +522,7 @@ void xe_late_bind_pm_resume(struct xe_late_bind *late_bind)
->  	if (!late_bind->component_added || late_bind->disable)
->  		return;
->  
-> -	xe_late_bind_fw_load(late_bind);
-> +	xe_late_bind_fw_load(late_bind, false);
->  }
->  
->  /**
-> @@ -557,7 +561,9 @@ int xe_late_bind_init(struct xe_late_bind *late_bind)
->  	if (err)
->  		return err;
->  
-> -	xe_late_bind_fw_load(late_bind);
-> +	late_bind->force_ocode_load = xe_configfs_get_ocode_force_load(to_pci_dev(xe->drm.dev));
+> +	/* TODO: Compare the running OCODE version at probe when available. */
+> +	if (lbfw->type == INTEL_LB_TYPE_OCODE && xe_sysctrl_is_oobmsm_fw_ready(xe)) {
+> +		drm_dbg(&xe->drm, "%s firmware already loaded, skipping\n",
+> +			fw_id_to_name[lbfw->id]);
+> +		goto out;
+> +	}
 > +
-> +	xe_late_bind_fw_load(late_bind, true);
->  
->  	return 0;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-> index c7b3ffc743cf..3a9a631f20fa 100644
-> --- a/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw_types.h
-> @@ -43,6 +43,8 @@ struct xe_late_bind_fw {
->  	size_t payload_size;
->  	/** @work: worker to upload latebind blob */
->  	struct work_struct work;
-> +	/** @probe: whether the work was queued at probe */
-> +	bool probe;
->  	/** @version: late binding blob manifest version */
->  	struct gsc_version version;
->  	/** @sdk_api_version: late binding blob manifest SDK API version */
-> @@ -75,6 +77,8 @@ struct xe_late_bind {
->  	bool component_added;
->  	/** @disable: to block late binding reload during pm resume flow*/
->  	bool disable;
-> +	/** @force_ocode_load: force OCODE loading at probe */
-> +	bool force_ocode_load;
->  };
->  
->  #endif
+>  	/* we can queue this before the component is bound */
+>  	for (slept = 0; slept < LB_INIT_TIMEOUT_MS; slept += 100) {
+>  		if (late_bind->component.ops)
 > -- 
 > 2.43.0
 > 
