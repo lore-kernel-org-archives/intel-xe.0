@@ -2,28 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C5E3606A335
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 14:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29333606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 14:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EnGbGWN2
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C884D10EE3F;
-	Mon, 23 Nov 2026 14:06:10 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 069B310EE3E;
- Mon, 23 Nov 2026 14:06:10 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E701989DA9;
+	Mon, 23 Nov 2026 14:07:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC6989C5E
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 14:07:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795442824; x=1826978824;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RMpJcS+kbvuFcfZC7yTm/KRGKUOIeWCw1WCkkvM+8CE=;
+ b=EnGbGWN2gYY7XJq4vZvseQpvyplh4XcsJWuXAX+MDu4IzqkGEoMhlwLV
+ 0FQu+ThO2e97t1nlP8ui98JPSuJf7VyGv6XfgzWv+jw1GklnmYro8H9Ab
+ OURpNutKvpw8NerhAMUXg7ghjoSxyfupmcfOVXf6pmXxuSNvDmXfdQuB2
+ vVLwdrpqYgQNmreSP9lmVZ3a429RlIEUX66ZKItz2sfTp0D21uyx8nKx0
+ iOmpO2wp5YYQK1e9/hTyU//dvczpvFylsJ0teQctbD4cFpXHqqGMhyNnz
+ p+YxOWOVvVSmkcrlTHMG16QR3Q4OHKtHU76n1aUt2YP0UIp3TwcOzQLju A==;
+X-CSE-ConnectionGUID: /CzVL7e2Q+a0Ia+Kl2UfFA==
+X-CSE-MsgGUID: 8v3A7c5dTVe/d+ppwR5BZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4261506"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="4261506"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 06:07:04 -0800
+X-CSE-ConnectionGUID: JbxBmBx+QIiblRWn1g/7Fw==
+X-CSE-MsgGUID: v5ElwNZOSpWFH/WWnzmyIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11416390"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 06:07:00 -0800
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
+ mallesh.koujalagi@intel.com, soham.purkait@intel.com,
+ ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v2 0/2] Expose power1_cap_max
+Date: Mon, 23 Nov 2026 19:38:45 +0530
+Message-Id: <20261123140847.338842-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.34.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_tty=3A_vblank_waiting_out?=
- =?utf-8?q?_on_crtc_0_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 23 Nov 2026 14:06:10 -0000
-Message-ID: <179544277002.70079.1383439429752813256@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
-In-Reply-To: <20261115122441.3141883-1-michal.grzelak@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,58 +61,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-== Series Details ==
+This series adds a power<i>_cap_max attribute and improves how mailbox
+power limits are handled when a boot-time limit read fails.
 
-Series: tty: vblank waiting out on crtc 0 (rev6)
-URL   : https://patchwork.freedesktop.org/series/178607/
-State : warning
+Patch 1 adds a read-only power<i>_cap_max attribute for the card and
+package channels. It reports the PL2 limit that firmware sets at boot,
+which is the highest value userspace can write to power<i>_cap.
 
-== Summary ==
+Patch 2 always sets the mailbox power, energy and time units. Before,
+they stayed 0 if any boot-time limit read failed, so power was reported
+incorrectly. It also bases power_max/power_cap visibility on the boot
+limits. That way, an attribute whose boot read failed can no longer be
+written, which would have set a 0 limit.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-3009867cd31863246e4afc138520a7a8bd37bb11
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 937849c06c932ffeaec106dd5582ca63116b7e52
-Author: Michał Grzelak <michal.grzelak@linux.intel.com>
-Date:   Sun Nov 15 13:24:41 2026 +0100
+v1: https://patchwork.freedesktop.org/series/179047/
 
-    Revert "serial: 8250: Switch to nbcon console, take 2"
-    
-    This reverts commit d3539347022ad4eeb9dbd29c50bfca17b9d8a146.
-    
-    This revert consists of 6 additional reverts; all of them in order of
-    applying:
-    - Revert "serial: 8250: export and rename wait_for_xmitr()" [2c5942fd0300cb966339dd0366890be626b405e8]
-    - Revert "printk: fix kernel-doc name for nbcon_write_context_is_braille" [19ed235c1adcaf40f05997dfe8b96eb209effd35]
-    - Revert "braille: nbcon: Allow to use a serial console with NBCON API as Braille console" [c83e3d2912432107148cc5e288ddd153a84c0f43]
-    - Revert "serial: 8250: Change console_msr_work to IRQ_WORK_LAZY" [37aba16e7943634eb3e5e2e7e850ebb38500d935]
-    - Reapply "serial: 8250: drop lockdep annotation from serial8250_clear_IER()" [bbbb07f9fad6518090b7171dd8f5f737d8ddb63b]
-    - Revert "serial: 8250: Switch to nbcon console, take 2" [d3539347022ad4eeb9dbd29c50bfca17b9d8a146]
-    - Revert "serial: 8250_mid: wait for LSR tx empty before setting termios" [1c305d5f1daabd317a60b6a2e2ac6b1aff7e05df]
-    
-    removed 2 conflicting #include's on top.
-    
-    Signed-off-by: Michał Grzelak <michal.grzelak@linux.intel.com>
-+ /mt/dim checkpatch b8e68d05659b6fae1eb6b4883565786fbb15ef45 drm-intel
-937849c06c93 Revert "serial: 8250: Switch to nbcon console, take 2"
--:13: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#13: 
-- Revert "serial: 8250: export and rename wait_for_xmitr()" [2c5942fd0300cb966339dd0366890be626b405e8]
+v2:
+- Update KernelVersion to 7.5 in Xe hwmon documentation. (Rodrigo)
+- Add patch 2 to address review comments from Sashiko.
 
-total: 0 errors, 1 warnings, 0 checks, 737 lines checked
+Karthik Poosa (2):
+  drm/xe/hwmon: Expose powerX_cap_max
+  drm/xe/hwmon: Improve mailbox power limit init and visibility
 
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   | 24 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 21 +++++++++++-----
+ 2 files changed, 39 insertions(+), 6 deletions(-)
+
+-- 
+2.34.1
 
