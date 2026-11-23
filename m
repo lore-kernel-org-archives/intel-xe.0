@@ -2,50 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12220606A334
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 22:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8991B606A31E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 22:52:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=R9gCScUT
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bCzrJXUU
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDB3310ECAB;
-	Mon, 23 Nov 2026 22:52:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCE7910ECC9;
- Mon, 23 Nov 2026 22:52:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C6C10F271;
+	Mon, 23 Nov 2026 22:52:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E21610F25B;
+ Mon, 23 Nov 2026 22:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795474336; x=1827010336;
+ t=1795474346; x=1827010346;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ihYgNZVgXO4wg2qbHfFu+nF5smR5yq+m5x2a+u7rALo=;
- b=R9gCScUTDGX67AYn9jic4PePmD1U6c6zqp6Qo8VgK4JWNh8YlTmP7/Bx
- M7wm+R0sYQ3yf6ZzKCHJ1SrjkXOpiaDC+e22l09EAEVGASToG6F+erj9E
- MLN9B7pIxRMPpxkwdVQ8ny+PDT2s5DsoX3Bk1T4r9Kj9GQDGPaDVHYC0x
- VbWXuU3VmcI+Znpiokh/XHzSCchIy9f4S8Tjg1BgKidXedcb6jj1YB+RP
- EexgC4sWc3J7eaR8fVg4BeBf0wPbW5sLJ232WqrLg4m2c+EEt6T8WDSlN
- fh8/xlnK9Yq5shCclNZKU7/QrpuvqdOYIO6YpBjoPzjkXMseIN1Nmo9gB Q==;
-X-CSE-ConnectionGUID: lYFLPyLeSC2DsqxJ1CaDBg==
-X-CSE-MsgGUID: Sd/E7ZiSTXWfX79M6J97WQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4147464"
+ bh=EFX7MG97rQ3hU4hhqc+2Ouu7EM3TUeQMbc6f07eUex8=;
+ b=bCzrJXUUSAoapFUTy0KhGCPweAfh6g3HddQWRnOhMhIFmT0se8eW3hY/
+ 9+lL4iR6tk0qE9r8gVLJ1OamlPDemIyvSMU4oSY2MOWbqm19sp5vGrHov
+ de6gk36aAe8WjlDwLapymom0TVbsVNpaKn96iUsnBmIUCnmcm92CPocOn
+ uU0BA7HWIR08kaTPZiu8EOWpWAmMmwsgY9U4i9PSSbOQSE0+Y3hCmmD47
+ nheVJN7sW9Uu+NIuUnfFwTZSj8MkklBV0bXu+C/yMWaeFa/CV19NJdpIY
+ 1iJeeJkayJsgMasFWabPfO8AWcxGDF8V05OmpneLf2yJuxkNXLd6SLb3l g==;
+X-CSE-ConnectionGUID: LncXxRODRjKYQbzjL9EYbA==
+X-CSE-MsgGUID: 3diMWtrmSC6bHqs7GX0Xtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4184273"
 X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; 
-   d="scan'208";a="4147464"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 14:52:15 -0800
-X-CSE-ConnectionGUID: rt2SRpo6SP6zglw/BknnnQ==
-X-CSE-MsgGUID: j2AabrZiQPaBSUvOsF95zQ==
+   d="scan'208";a="4184273"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 14:52:25 -0800
+X-CSE-ConnectionGUID: kSV8p68cSESafkrOUbVimw==
+X-CSE-MsgGUID: bweVH3sPQV2SU1Q+kkX4AA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11830764"
+X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11288077"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.100])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 14:52:14 -0800
+ 23 Nov 2026 14:52:23 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 7/9] drm/i915/global_state: Store the display in the global
- object and use it
-Date: Tue, 24 Nov 2026 00:51:37 +0200
-Message-ID: <20261123225139.23087-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 9/9] drm/i915/sdvo: Add a FIXME about the
+ connector_state->state footgun
+Date: Tue, 24 Nov 2026 00:51:39 +0200
+Message-ID: <20261123225139.23087-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261123225139.23087-1-ville.syrjala@linux.intel.com>
 References: <20261123225139.23087-1-ville.syrjala@linux.intel.com>
@@ -68,81 +68,46 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-A few global state related dbuf functions are currently digging
-out the intel_display pointer via the obj_state->state footgun.
-Just store the display pointer in the global object itself
-instead. Much safer.
+The SDVO code still uses the perilous connector_state->state
+pointer in its .atomic_set_property() implementation.  In this
+we have no choice as the atomic core code doesn't pass in the
+full atomic state explicitly. That needs to be remedied, but
+in the meantime drop a FIXME into our code so that we'll remember
+to clean this up once the core atomic code has been changed.
 
-The obj_state->state pointer is only valid up to swap_state()
-after which it becomes NULL. Thus any code using it cannot be
-reused between atomic_check() and atomic_commit().
-
-intel_dbuf_enabled_slices() in particular look like something we
-might even reuse during atomic_commit(). Currently the result is
-getting cached in the dbuf_state itself, but since the function
-is pure we might at some point entertain the idea of simply
-removing the cached value and just always calling the function
-instead.
+The connector_state->state pointer is only valid up to
+swap_state() after which it becomes NULL. In this case we
+do know that it's valid, but it's still better to stop using
+it so as to not have any bad examples in the code that might
+get blindly copied around. The eventual goal should be to
+completely eliminate the danger by removing the
+foo_state->state pointers from all kms object states.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_global_state.c | 1 +
- drivers/gpu/drm/i915/display/intel_global_state.h | 1 +
- drivers/gpu/drm/i915/display/skl_watermark.c      | 4 ++--
- 3 files changed, 4 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_global_state.c b/drivers/gpu/drm/i915/display/intel_global_state.c
-index 436fbaa02831..ec9d1c9317f2 100644
---- a/drivers/gpu/drm/i915/display/intel_global_state.c
-+++ b/drivers/gpu/drm/i915/display/intel_global_state.c
-@@ -119,6 +119,7 @@ void intel_atomic_global_obj_init(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 7b97f531acbf..eded145608ce 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -2447,6 +2447,10 @@ intel_sdvo_connector_atomic_set_property(struct drm_connector *connector,
+ 		state->tv.legacy_mode = intel_sdvo_connector->tv_format_supported[val];
  
- 	kref_init(&state->ref);
- 
-+	obj->display = display;
- 	obj->state = state;
- 	obj->funcs = funcs;
- 	list_add_tail(&obj->head, &display->global.obj_list);
-diff --git a/drivers/gpu/drm/i915/display/intel_global_state.h b/drivers/gpu/drm/i915/display/intel_global_state.h
-index 9759b9339d9b..33656d74460b 100644
---- a/drivers/gpu/drm/i915/display/intel_global_state.h
-+++ b/drivers/gpu/drm/i915/display/intel_global_state.h
-@@ -23,6 +23,7 @@ struct intel_global_state_funcs {
- 
- struct intel_global_obj {
- 	struct list_head head;
-+	struct intel_display *display;
- 	struct intel_global_state *state;
- 	const struct intel_global_state_funcs *funcs;
- };
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index a5d933f7475c..b8ed1101261c 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -494,7 +494,7 @@ static void intel_crtc_dbuf_weights(const struct intel_dbuf_state *dbuf_state,
- 				    unsigned int *weight_end,
- 				    unsigned int *weight_total)
- {
--	struct intel_display *display = to_intel_display(dbuf_state->base.state->base.dev);
-+	struct intel_display *display = dbuf_state->base.obj->display;
- 	enum pipe pipe;
- 
- 	*weight_start = 0;
-@@ -2477,7 +2477,7 @@ skl_ddb_add_affected_planes(struct intel_atomic_state *state,
- 
- static u8 intel_dbuf_enabled_slices(const struct intel_dbuf_state *dbuf_state)
- {
--	struct intel_display *display = to_intel_display(dbuf_state->base.state->base.dev);
-+	struct intel_display *display = dbuf_state->base.obj->display;
- 	u8 enabled_slices;
- 	enum pipe pipe;
+ 		if (state->crtc) {
++			/*
++			 * FIXME pass in the full atomic state to .atomic_set_property()
++			 * and stop using the state->state pointer to get at it.
++			 */
+ 			struct drm_crtc_state *crtc_state =
+ 				drm_atomic_get_new_crtc_state(state->state, state->crtc);
  
 -- 
 2.56.1
