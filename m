@@ -2,59 +2,63 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0E7606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 14:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AF57606A31E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 14:13:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mtjiAsio
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=YPvWO/O0
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 439E510E78B;
-	Mon, 23 Nov 2026 14:13:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23EB610E07F
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 14:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C6B510EC1B;
+	Mon, 23 Nov 2026 14:13:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5FD110EE6F;
+ Mon, 23 Nov 2026 14:13:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795443208; x=1826979208;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Tyf2Rj39Z1yZSNBuKNJCvfcnTbsPZYJpMLe+9Ntk8Ts=;
- b=mtjiAsioR7hPh2KsSGbN7sRx7q+KePZ/aZMfxWM82mC9niefXAuWJa30
- Hn8ASpB3Tdv4nrmf6Yq6qaPTJOWUKpd79snu9NSxzgHv3VmxdwZvbI47R
- lm+UQDp24h/7iKLqJ/DZVNlBVSsfs+TXsnVyyLeiTV5uTtnlUwX1x5SMk
- 6u9tpLopy/VAtKjgZWhBNGGrBBYY0TPnAn+e4UGRymxQhKd6sfmmrFPKs
- EDpfOSZYk6CU4oZCnIdXiBJnIVZEIT/MfZDk+Hcmlflfs6bcEIUNMRO4G
- jaQ/ssh6amZVIhNuTuvynMib0Vy8mEtpXRtjXtIyBI/5DLRpY9Z/5OE61 w==;
-X-CSE-ConnectionGUID: nWGm3dSdSYmxyTfBFUdGtQ==
-X-CSE-MsgGUID: 6JZv8OkcSCqcB+v47u5EXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4137758"
+ t=1795443223; x=1826979223;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=2GKxq/k7YbhUivVWtk1SlOzSltUQBVUp9OxcC58Qnqk=;
+ b=YPvWO/O0dijMe5MZAqU9IGgdhwYNIfNaiyhtALMTbT0DQ/kbpobLyABb
+ K24knRVgO/U+EVfJBS0nCgexh4GwKOV2TA6PF11YGcYlpvg7A9+n/hqKZ
+ djdhPnephQCfOI9V90SE1Db4qN6WglvpfyIWwFK7QSz40HdW/hhnH0w0E
+ /gyNrUNuD8S1cjsU6GqsXp6bHXWywb/083trTfvIyrucT5XLUzSwuEO/L
+ SqpZAPQcdlHQb2LxF7hj22jonfDm4yzkq6t0jm+G+H3Kmp3B9wEyT99g3
+ ry7d4QkOBw1U+7pqbCDwAtzg2TGh0INWft7llty6uO6TCJU4cpyzmwiCY w==;
+X-CSE-ConnectionGUID: KcPj6jVIRU6qoKrr4+WODQ==
+X-CSE-MsgGUID: ED6r8sl7Szm5/monQEFFyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4153264"
 X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
-   d="scan'208";a="4137758"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 06:13:22 -0800
-X-CSE-ConnectionGUID: +qxxu1RgSZWtmR/pTK2xWA==
-X-CSE-MsgGUID: nVfYhigrQgy8cu06nkrfxA==
+   d="scan'208";a="4153264"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 06:13:27 -0800
+X-CSE-ConnectionGUID: GcPwZDlHRoi/fkGddv/FLw==
+X-CSE-MsgGUID: aisibYTER/uKYY8we2hrGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11258829"
-Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa007.jf.intel.com with ESMTP; 23 Nov 2026 06:13:20 -0800
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Adam Miszczak <adam.miszczak@linux.intel.com>
-Subject: [PATCH v8 3/3] drm/xe: After VF migration,
- repeat BO mapping in progress
-Date: Mon, 23 Nov 2026 15:14:15 +0100
-Message-ID: <20261123141415.2304349-4-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261123141415.2304349-1-tomasz.lis@intel.com>
-References: <20261123141415.2304349-1-tomasz.lis@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11636423"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.16])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 06:13:25 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Uma
+ Shankar <uma.shankar@intel.com>, Jonathan Cavitt
+ <jonathan.cavitt@intel.com>
+Subject: Re: [PATCH v3] drm/display: Increase DP_RECEIVER_CAP_SIZE from 15
+ to 16 bytes
+In-Reply-To: <20261105034658.18959-1-khaled.almahallawy@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261105034658.18959-1-khaled.almahallawy@intel.com>
+Date: Mon, 23 Nov 2026 16:13:23 +0200
+Message-ID: <6a0f46f19e49edcaaa9466114638d4495097721e@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,257 +69,80 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-If VF migration happens during BO mapping, it is possible
-that some PTE values were not written at the correct place.
-This can happen because GGTT range, and therefore range of
-assigned PTEs, have changed during the migration.
-Restoring VF state on PF side will ensure that any PTEs
-already set within the previous VM are moved to correct
-positions, but if VM was paused and migrated while setting
-PTEs, it will continue the loop at the old position. The
-GGTT base address is used to select which PTEs to write,
-so setting them again needs to wait until the post-migration
-recovery procedure updates the GGTT base.
+On Wed, 04 Nov 2026, Khaled Almahallawy <khaled.almahallawy@intel.com> wrot=
+e:
+> Several Link Layer tests (4.2.2.1-2, 4.2.2.7-8) fail because DPTX doesn't
+> read DPCD ADAPTER_CAP addresses (0x000F and 0x220F).
+>
+> 4.2.2.1 test states [1]:
+> "Fail1: Source DUT failed to read the DPCD Receiver Capability field
+> (DPCD:00000h:0000Fh) through AUX_CH before link training."
+>
+> 4.2.2.2 test states [1]:
+> "Fail2: Source DUT failed to read the DPCD Extended Receiver Capability
+> field (DPCD:02200h:0220Fh) through AUX_CH before link training."
+>
+> Additionally, the spec [2] states:
+> "The Source device shall respond to Hot Plug event/Hot Re-plug event by
+> first reading DPCD Link/Sink Device Status registers at DPCD 00200h
+> through 00205h =E2=80=93or=E2=80=93 DPCD 02002h through 0200Fh. If the li=
+nk is unstable
+> or lost, the Source device then reads the DPCD Receiver Capabilities
+> registers at DPCD 00000h through 0000Fh to determine the appropriate
+> information needed to train the link. The Source device shall then
+> initiate link training."
+>
+> Increasing DP_RECEIVER_CAP_SIZE by 1 byte ensures passing the test
+> conditions for these link layer tests.
+>
+> [1]: DisplayPort v2.1 Link Layer Compliance Test Specification
+> sections 4.2.2.1 & 4.2.2.2
+> [2]: DisplayPort Standard v2.1 - Sec 5.1.4 Source Device Behavior
+> upon HPD Pulse Detection
+>
+> v3: Rebase, drop deprecated test 4.2.2.9 from the commit message
+> v2: Rebase
+>
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
 
-Previously, LRC creation was repeated. This means only BOs
-that were part of exec queues were properly protected from
-VF migration. With this change, as the redo is moved to BO
-creation, all BOs are protected.
+Pushed to drm-misc-next, thanks for the patch.
 
-v2: Removed memirq safety check - looking at current memirq init,
-  no extra check should be necessary.
-v3: Re-added memirq check. Fixed multiple subtractions of
-  GGTT range bounds. Added clear of GGTT entries before retry.
-  Handled issue with signals while inserting GGTT entries.
-v4: Do not re-reserve a node after VF migration was detected,
-  just set all PTEs again. Comment on why the percieved
-  infinite loop is impossible.
-v5: Make wait for recovery non-interruptible, again. Cleanup
-  on case of a wedge, even if it doesn't matter at that point.
-v6: Remove the unnecessary cleanup on wedge, and make even
-  longer comment there instead.
+I understand this change impacts quite a few drivers across the
+subsystem, but the patch has been on the list several times across a
+long period of time, and there has been no input from anyone.
 
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-Tested-by: Adam Miszczak <adam.miszczak@linux.intel.com> (v1)
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c  | 35 ++++++-----------
- drivers/gpu/drm/xe/xe_ggtt.c        | 60 +++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c |  5 +--
- drivers/gpu/drm/xe/xe_memirq.c      | 10 ++++-
- 4 files changed, 73 insertions(+), 37 deletions(-)
+BR,
+Jani.
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 832a1a1e9c74..d92b3f278b15 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -432,34 +432,21 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	 * post-migration recovery, as the fixups for the LRC GGTT addresses
- 	 * depend on the queue being present in the backend tracking structure.
- 	 *
--	 * In addition to above, we must wait on inflight GGTT changes to avoid
--	 * writing out stale values here. Such wait provides a solid solution
--	 * (without a race) only if the function can detect migration instantly
--	 * from the moment vCPU resumes execution.
-+	 * In addition to above, we must make sure inflight GGTT changes are
-+	 * properly handled (with wait and/or repeat) to avoid writing out stale
-+	 * values here; but that is handled deeper, within BO pinning code.
- 	 */
- 	for (i = 0; i < q->width; ++i) {
--		struct xe_lrc *__lrc = NULL;
--		int marker;
--
--		do {
--			struct xe_lrc *lrc;
--
--			marker = xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
--
--			lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state, xe_lrc_ring_size(),
--					    q->msix_vec, xe_lrc_init_flags(q, exec_queue_flags));
--			if (IS_ERR(lrc)) {
--				err = PTR_ERR(lrc);
--				goto err_lrc;
--			}
--
--			xe_exec_queue_set_lrc(q, lrc, i);
-+		struct xe_lrc *lrc;
- 
--			if (__lrc)
--				xe_lrc_put(__lrc);
--			__lrc = lrc;
-+		lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state, xe_lrc_ring_size(),
-+				    q->msix_vec, xe_lrc_init_flags(q, exec_queue_flags));
-+		if (IS_ERR(lrc)) {
-+			err = PTR_ERR(lrc);
-+			goto err_lrc;
-+		}
- 
--		} while (marker != xe_vf_migration_fixups_complete_count(q->gt));
-+		xe_exec_queue_set_lrc(q, lrc, i);
- 	}
- 
- 	return 0;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 86fc3d186fc8..154b3fe29b53 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -22,6 +22,7 @@
- #include "xe_bo.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_gt_sriov_vf.h"
- #include "xe_gt_types.h"
- #include "xe_log.h"
- #include "xe_map.h"
-@@ -35,6 +36,7 @@
- #include "xe_tile_sriov_vf.h"
- #include "xe_tlb_inval.h"
- #include "xe_wa.h"
-+#include "xe_wedge.h"
- 
- /**
-  * DOC: Global Graphics Translation Table (GGTT)
-@@ -1009,7 +1011,9 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 				  u64 start, u64 end, struct drm_exec *exec)
- {
- 	u64 alignment = bo->min_align > 0 ? bo->min_align : XE_PAGE_SIZE;
-+	u64 rel_start, rel_end;
- 	u8 tile_id = ggtt->tile->id;
-+	int marker;
- 	int err;
- 
- 	if (xe_bo_is_vram(bo) && ggtt->flags & XE_GGTT_FLAGS_64K)
-@@ -1034,6 +1038,8 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 		goto out;
- 	}
- 
-+	marker = xe_gt_sriov_vf_wait_valid_ggtt(ggtt->tile->primary_gt);
-+
- 	mutex_lock(&ggtt->lock);
- 	/*
- 	 * When inheriting the initial framebuffer, the framebuffer is
-@@ -1043,24 +1049,24 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	 * remainder of GGTT, unaware that the start is reserved by WOPCM.
- 	 */
- 	if (start >= ggtt->start)
--		start -= ggtt->start;
-+		rel_start = start - ggtt->start;
- 	else
--		start = 0;
-+		rel_start = 0;
- 
- 	/* Should never happen, but since we handle start, fail graciously for end */
- 	if (end >= ggtt->start)
--		end -= ggtt->start;
-+		rel_end = end - ggtt->start;
- 	else
--		end = 0;
-+		rel_end = 0;
- 
--	end = min(end, ggtt->size);
-+	rel_end = min(rel_end, ggtt->size);
- 
--	if (end < start + xe_bo_size(bo))
-+	if (rel_end < rel_start + xe_bo_size(bo))
- 		err = -ENOSPC;
- 	else
- 		err = drm_mm_insert_node_in_range(&ggtt->mm, &bo->ggtt_node[tile_id]->base,
--						  xe_bo_size(bo), alignment, 0, start, end,
--						  ggtt_usable_insert_flags(ggtt));
-+						  xe_bo_size(bo), alignment, 0, rel_start,
-+						  rel_end, ggtt_usable_insert_flags(ggtt));
- 	if (err) {
- 		ggtt_node_fini(bo->ggtt_node[tile_id]);
- 		bo->ggtt_node[tile_id] = NULL;
-@@ -1073,6 +1079,44 @@ static int __xe_ggtt_insert_bo_at(struct xe_ggtt *ggtt, struct xe_bo *bo,
- 	}
- 	mutex_unlock(&ggtt->lock);
- 
-+	if (!err) {
-+		/*
-+		 * If VF migration happens during BO mapping, some PTE value writes may
-+		 * be ignored by HW. This can happen in case GGTT range changed; already
-+		 * set PTEs are moved by the VF restore, but xe_ggtt_map_bo() within VM
-+		 * may still loop at old position. To be sure, redo all PTE writes.
-+		 * Make this a loop as another VF migration could start immediately.
-+		 */
-+		while (marker != xe_vf_migration_fixups_complete_count(ggtt->tile->primary_gt)) {
-+			u16 cache_mode = bo->flags & XE_BO_FLAG_NEEDS_UC ?
-+					 XE_CACHE_NONE : XE_CACHE_WB;
-+			u16 pat_index = xe_cache_pat_idx(tile_to_xe(ggtt->tile), cache_mode);
-+			u64 pte = ggtt->pt_ops->pte_encode_flags(bo, pat_index);
-+
-+			marker = xe_gt_sriov_vf_wait_valid_ggtt(ggtt->tile->primary_gt);
-+			/*
-+			 * Only abort fixing the PTEs if we're wedged; if the wait timeouts,
-+			 * the cause may be that VF migration recovery was just repeated or
-+			 * prolonged, so do not treat that as bailout condition.
-+			 *
-+			 * If the VF migration was detected, we can be sure that recovery
-+			 * will start or already has started. The recovery worker assures
-+			 * on finish that this loop will exit - either by marker or by wedge.
-+			 * These conditions ensure this will not be an infinite loop.
-+			 *
-+			 * If the driver got wedged around the VF migration recovery, we have
-+			 * no reason to care for a slight chance of not fully correct GGTT
-+			 * mapping, so return with success.
-+			 */
-+			if (xe_wedged(tile_to_xe(ggtt->tile)))
-+				break;
-+
-+			mutex_lock(&ggtt->lock);
-+			xe_ggtt_map_bo(ggtt, bo->ggtt_node[tile_id], bo, pte);
-+			mutex_unlock(&ggtt->lock);
-+		}
-+	}
-+
- 	if (!err && bo->flags & XE_BO_FLAG_GGTT_INVALIDATE)
- 		xe_ggtt_invalidate(ggtt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 22e98d3ed3ee..1e0eb474c848 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -1620,9 +1620,8 @@ int xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
- 	    !xe_sriov_vf_migration_supported(gt_to_xe(gt)))
- 		return 0;
- 
--	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
--					       vf_valid_ggtt(gt),
--					       HZ * 5);
-+	ret = wait_event_timeout(gt->sriov.vf.migration.wq,
-+				 vf_valid_ggtt(gt), HZ * 5);
- 	xe_gt_WARN_ON(gt, !ret);
- 
- 	return atomic_read(&gt->sriov.vf.migration.fixups_complete_count);
-diff --git a/drivers/gpu/drm/xe/xe_memirq.c b/drivers/gpu/drm/xe/xe_memirq.c
-index 3433518cc095..e46f38f13d19 100644
---- a/drivers/gpu/drm/xe/xe_memirq.c
-+++ b/drivers/gpu/drm/xe/xe_memirq.c
-@@ -524,8 +524,14 @@ bool xe_memirq_guc_sw_int_0_irq_pending(struct xe_memirq *memirq, struct xe_guc
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	u32 offset = xe_gt_is_media_type(gt) ? ilog2(INTR_MGUC) : ilog2(INTR_GUC);
--	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
--						     XE_MEMIRQ_VECTOR_OFFSET(0, offset));
-+	struct iosys_map map;
-+
-+	/* protect for a call during driver probe */
-+	if (!iosys_map_is_set(&memirq->source))
-+		return false;
-+
-+	map = IOSYS_MAP_INIT_OFFSET(&memirq->bo->vmap,
-+				    XE_MEMIRQ_VECTOR_OFFSET(0, offset));
- 
- 	return memirq_received_noclear(memirq, &map, ilog2(GUC_INTR_SW_INT_0),
- 				       guc_name(guc));
--- 
-2.43.0
+> ---
+>  include/drm/display/drm_dp.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index e63c7f075f54..a2a7338552e1 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -1715,7 +1715,7 @@ enum drm_dp_phy {
+>  #define DP_LINK_STATUS_SIZE	   6
+>=20=20
+>  #define DP_BRANCH_OUI_HEADER_SIZE	0xc
+> -#define DP_RECEIVER_CAP_SIZE		0xf
+> +#define DP_RECEIVER_CAP_SIZE		0x10
+>  #define DP_DSC_RECEIVER_CAP_SIZE        0x10 /* DSC Capabilities 0x60 th=
+rough 0x6F */
+>  #define DP_DSC_BRANCH_CAP_SIZE		3
+>  #define EDP_PSR_RECEIVER_CAP_SIZE	2
 
+--=20
+Jani Nikula, Intel
