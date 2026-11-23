@@ -2,113 +2,122 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3EB8606A31F
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 15:17:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 851EE606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 15:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=zqfS20MT
+	dkim=fail reason="signature verification failed" (2048-bit key, unprotected) header.d=nxp.com header.i=@nxp.com header.a=rsa-sha256 header.s=selector1 header.b=efb843yh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C28410EF07;
-	Mon, 23 Nov 2026 15:17:50 +0000 (UTC)
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com
- [74.125.82.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EA7C10E10E
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Nov 2026 00:42:35 +0000 (UTC)
-Received: by mail-dy1-f179.google.com with SMTP id
- 5a478bee46e88-3863db981d4so1435102eec.0
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Nov 2026 16:42:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1795221754; x=1795826554; darn=lists.freedesktop.org;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :content-type:mime-version:references:message-id:subject:cc:to:from
- :date:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=Js5N6yiXwXXSTzZ4KgFGwIMSCZDX/tKTz1lwaDrh2ys=;
- b=zqfS20MT0914sQHBxb3s+KK25oDU0yA6OrbG+VlIKSZ3CGHeWEjrxP4cAUf6MYO62j
- C+iIVGoBn4vX0KUV9bJ7Hu5IFl10iGHrmytysTVTIgcNHuzel7YQnzxLUYuJPXQF1FJr
- s+RwEG28o9yYsdFqwACqsJ0yzmOxMMEee9CN+xeQZxeciuVY4UZb2d2HDtmRJFDLVgi7
- gyyeCdmrn5EXnVD5EhXXpTLrmdMoXWR1vAVyoIzwFIr3nbRXmPwz9A8a3SYDJifaBglX
- BTBtHzLEm/UaJ3fNkSOwAD/pFz1D2uYDixgOw3M6jUsohnOg/9xLj8pOTRoOO2BlPhen
- QFVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1795221754; x=1795826554;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :content-type:mime-version:references:message-id:subject:cc:to:from
- :date:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to:content-type;
- bh=Js5N6yiXwXXSTzZ4KgFGwIMSCZDX/tKTz1lwaDrh2ys=;
- b=v5YqxGLXqpOBdTe6XUJ534OPenC1yRKOHrtPpcA0EtFLfu5xlnxAlFneALS/AFRqE0
- Wc6H2t0UsWXuK5i6ecFS5J0gI+9ws4d3qS9rVMHiXnnr772j7aNPfDXT23O+McUAY2Xd
- ZTPWgderl5v0tMQB9/4pZXhf5gkcaTTdGhxt49Km1E0rdpDWt8PGoBuXgmi8NNuIpYBM
- CUA1m+3d+4HjRTR/v9o3YZ1SNdyFUildf9s4GQoaJ79pVJPR5NUOMeOzyk7f5rB1Mmq6
- 40dpjnucI1E8r4xjrBzuWFH0/Ol7EUU1VZ6O6KzAhbRx3k12glVtt84OYtKm2rGGqcSl
- AaqA==
-X-Forwarded-Encrypted: i=1;
- AL+hErGiYjQmvM3H4rSCg1nw9zqfbVx0ziui3tWa0sjKC0LRZQhb1uPEiLH/W9N/Y6HfztvmjLu47qi0og==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+9HiCRqMUCmSe4oeJTHVGNAUvEuxkshW5YnPhNV1VsUpLiRfeI
- dv/TlX0fZ/OlNlLmtPE5KukSDPbTriWCS/XE1zi8ImMehffv2fncDjwN
-X-Gm-Gg: AZFdTZc2NUH9U0WYDXUpq/iARnugFlDiDgfs8Rq6LlBVKEjQmvMzkUKWN2fmXcS5dLo
- 6sMryZbqD2OuQ8ZHVzKqxmDs4OtVyknHkf18NfewXzHsZ9vmVk96lkxcz3ClqBUVaek0zRUz54U
- XDZ1lwthev5VBr5WBQMEP+xqL2Qj7/JxZ9LFw8Gc0cJY744XsoNeOH12IMW+NlVr0ysSBktAUXY
- nfurZDZKzdxiuHP0fH77Dqb/7JPWpGPqB3seELxTg0tums+1Sa7SoxOCm34q72b6nJUqDI9UrRe
- JzCyTisHWR73jM7cebZvBcuJJ5mAq15luaVS3t3GaQHyhNAVrV1LXQ3Gg6mQY3jr9z3SBSRQHNz
- KZkcL/sfSUxCSccLnh3mhxXWWhBJPyU3AMQ7L6b7O3vJ2tf6rVQmQdjxPCilPb0pDrDxXkzbrZ/
- /vBK990CVG4zPfc1Y4e5+cDLpkMgt+lpSu6JW5EPb5OYt7Z4JcVel8rPz7Ns1n2PzwkY1A4NfD3
- wTnH0OusZONgn94eQ48mY/ZdXVjw6MBGFr0CBGWd5E7IR6zgJil97NxWPcQlK6j4X6N1eiEbG0Y
- jyizjuYwRjUEgyZBSA2N5x3AVo0zOudXZQ==
-X-Received: by 2002:a05:693c:4091:b0:379:4197:5eef with SMTP id
- 5a478bee46e88-3856f65b3cfmr5387027eec.8.1795221754060; 
- Fri, 20 Nov 2026 16:42:34 -0800 (PST)
-Received: from localhost ([2408:840d:6820:1a1b:6def:d896:8796:4938])
- by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-38567da4f85sm12699706eec.27.2026.11.20.16.42.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 20 Nov 2026 16:42:33 -0800 (PST)
-Date: Sat, 21 Nov 2026 08:42:28 +0800
-From: Yao Yuan <yaoyuan0329os@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A12510EF26;
+	Mon, 23 Nov 2026 15:18:10 +0000 (UTC)
+Received: from GVXPR05CU001.outbound.protection.outlook.com
+ (mail-swedencentralazon11013005.outbound.protection.outlook.com
+ [52.101.83.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 974B910EBC2
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 10:06:37 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wZ3ldnoIS9H+ek+AnM2g/JIVAYhCfjVjYswQi7gECM5RwQmGf5NiFO3e5oxsEd+HFCQXIdXZBNo6/Axwj9RGJxvbrWDF8+k3s3M6IQ6ED+cG2hGmEcS3eSztOMAgObzXXgtjGv26T5/BNa8Oam4jr3X2x9NEvh7hEPaz+Ef+jq4zX9ZicWuk3dJLrXdl34ag0VFQnmWJumYeLR4nljpWpGtXFkK7xF5ilFBmuzgKGrf6zHEe/J0xBQ0WK+nyVHHDq4GK6ZR+UF1mvx8JodnBWor55XUT3Ht6NQtuWv8IS7vreXnKNZtoNWYa655nw8t0Dm3hhVqNYuE5L6BfjB9VTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=AZxyAdPymmiT7lXa6V/TDNtHVMHpoH9QRpReAXv0gs8=;
+ b=wDQ84zOLlab4b5PNVcs2WIatB9j4YhS4wUmJA2JvQTtCGcxONU0zB99PyNXSs92Ucl+37O17osqdB5sde5Hy4qsXc7oy+y2YZgISV5Igi9BTWU2A3OYPOT5azjL7j0cXCS3wiZnMfW3NDmblZ8Y6EukUhZ55DN6fZozP/r+NfjAdJBrvitY1d96yjF710ArLG62JJndja1nl7JxEbu9QXtFEmsjh/uIRx414jRdeK8M+/NBjWqlpAg57BXbfsDNRttzSthoE7M6z0N4vnH8XjvV+apaeG1QxKBKg9Q1zNGCYQfPp02IvFqFES+r/8PdGJpfQfUHapyAEy3qsMRORSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=AZxyAdPymmiT7lXa6V/TDNtHVMHpoH9QRpReAXv0gs8=;
+ b=efb843yhX/R7X1CcxGphD2Ik8NSjt+WvcvnHjBl8J7c20v0MpcN2s0Z4rrjTYHD0US/xto8viBxg2Q6C6ym9FakPs+6t35OrLzY8OqboHGQ9RZEE/3nxj+qr4gozDNdND9YgLuChraaMm22JiV/8HeCG7le5i+SPmQnK07XdcJLvFOi9YuVMANFs4whMrIoUnXCxsnWpiSvJlmD2xvrCJCTGcdoiU0owLghvC4rdz3N2TLVmM+s1rw/DEaR5agawgZvLzVXicyMjMgNZPnT+J1kk8MsN3U3SW3MMRvs2rJKjEXsvt1mXg/sLn43G2waN7owECSE7USkGc1KAqQB6Qw==
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from MI9PR04MB019273.eurprd04.prod.outlook.com
+ (2603:10a6:290:d3::17) by BR0PR04MB476426.eurprd04.prod.outlook.com
+ (2603:10a6:2c8:48::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
+ 2026 10:06:34 +0000
+Received: from MI9PR04MB019273.eurprd04.prod.outlook.com
+ ([fe80::263c:943a:dcb0:29d8]) by MI9PR04MB019273.eurprd04.prod.outlook.com
+ ([fe80::263c:943a:dcb0:29d8%5]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
+ 10:06:34 +0000
+Date: Mon, 23 Nov 2026 12:06:29 +0200
+From: Ioana Ciornei <ioana.ciornei@nxp.com>
 To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-Cc: Yao Yuan <yaoyuan@linux.alibaba.com>, Alex Williamson <alex@shazbot.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Randy Dunlap <rdunlap@infradead.org>, "Rafael J . Wysocki" <rafael@kernel.org>,
- Danilo Krummrich <dakr@kernel.org>, Johan Hovold <johan@kernel.org>, 
- Steven Rostedt <rostedt@goodmis.org>, Masami Hiramatsu <mhiramat@kernel.org>, 
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- David Lechner <dlechner@baylibre.com>, 
- Armin Wolf <W_Armin@gmx.de>, Thierry Reding <thierry.reding@kernel.org>, 
- Mike Rapoport <rppt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
- Karl Mehltretter <kmehltretter@gmail.com>,
- "Paul E . McKenney" <paulmck@kernel.org>, 
- Borislav Petkov <bp@alien8.de>, Dapeng Mi <dapeng1.mi@linux.intel.com>, 
- Marco Elver <elver@google.com>, Ethan Nelson-Moore <enelsonmoore@gmail.com>, 
- Jeff Layton <jlayton@kernel.org>, Bradley Morgan <brads@mainlining.org>, 
- Andrew Morton <akpm@linux-foundation.org>, Petr Mladek <pmladek@suse.com>, 
- Pnina Feder <pnina.feder@mobileye.com>, Mete Durlu <meted@linux.ibm.com>, 
- Aaron Tomlin <atomlin@atomlin.com>, Rio <rioo.tsukatsukii@gmail.com>, 
- Feng Tang <feng.tang@linux.alibaba.com>, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- driver-core@lists.linux.dev, linux-trace-kernel@vger.kernel.org, 
- Mark Brown <broonie@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
- Yishai Hadas <yishaih@nvidia.com>, Longfang Liu <liulongfang@huawei.com>, 
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Nipun Gupta <nipun.gupta@amd.com>, Nikhil Agarwal <nikhil.agarwal@amd.com>, 
+ Longfang Liu <liulongfang@huawei.com>, Julian Ruess <julianr@linux.ibm.com>, 
  Ankit Agrawal <ankita@nvidia.com>, Brett Creeley <brett.creeley@amd.com>, 
  Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
  =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>, 
- Julian Ruess <julianr@linux.ibm.com>, Nipun Gupta <nipun.gupta@amd.com>, 
- Nikhil Agarwal <nikhil.agarwal@amd.com>, Eric Auger <eric.auger@redhat.com>, 
- Mostafa Saleh <smostafa@google.com>, Pranjal Shrivastava <praan@google.com>, 
- Ioana Ciornei <ioana.ciornei@nxp.com>, qat-linux@intel.com,
- virtualization@lists.linux.dev, 
- intel-xe@lists.freedesktop.org, kvm@vger.kernel.org
-Subject: Re: [PATCH] vfio: Allow untainted use of driver_override
-Message-ID: <awDok7Sm5Dgp-Ty-@sapienza>
-References: <DMYH4ED3GWDO.29DGXPK4M82VR@kernel.org>
- <20261118235645.2907908-2-alex@shazbot.org>
- <xzp5gljhburzbpol5bgnyyzwdrgpw3fj6ff3j23ein27raiidw@kti7moeuwvb5>
- <awBUG7-QzXplEiUT@monoceros>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ Eric Auger <eric.auger@redhat.com>, Alex Williamson <alex@shazbot.org>, 
+ Mostafa Saleh <smostafa@google.com>, kvm@vger.kernel.org, qat-linux@intel.com, 
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2 03/10] vfio: Allow untainted use of driver_override
+Message-ID: <iytvxymdedz4vsgdswfo5zd72anc6twtbhs7ynz7iidgrbmjk2@yle7e32l444c>
+References: <cover.1795171088.git.u.kleine-koenig@baylibre.com>
+ <fb0df5c89336b77a373ae0f890f63427e4adbb28.1795171088.git.u.kleine-koenig@baylibre.com>
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <awBUG7-QzXplEiUT@monoceros>
+In-Reply-To: <fb0df5c89336b77a373ae0f890f63427e4adbb28.1795171088.git.u.kleine-koenig@baylibre.com>
+X-ClientProxiedBy: AS4P190CA0068.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:20b:656::28) To MI9PR04MB019273.eurprd04.prod.outlook.com
+ (2603:10a6:290:d3::17)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MI9PR04MB019273:EE_|BR0PR04MB476426:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9889fbb4-8f40-41f2-002c-08df4949743f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|19092799006|376014|7416014|366016|1800799024|23010399003|22082099003|18002099003|3023799007|11063799006|56012099006|4143699003|261028144727099003|261022075727099003|261026140227099003|261022105027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: BBQDu/8coYpr1+arXFTIaefkO3lDhreFwavH0e8ValelqiPtxz3Hz8moKLgMxoZo/BnMXXidol1t3sWPSGIIz0CN1hoWcl+S5TOFB2d3pDrjHFR1EwjfcNRmVz+qVisyIOfdGT2ilPsYNVLWKEtELGpUI6VnRqZqg8GdnbV9G292rtj4Sb8FXmbHwOhLZ+1lnn3mmeTkShh3mTtk6Xyn/BCuBixspsZtwFTihK+SJQG+bOLMEbJzpQLrexVnNWKQxl5/rOT6UqpI3IAF+ly4ayQfMoTREBoE+Usjw8ADBBW2Xs9dQ+BcbXIkK9mPS2dbqXhnQRH2tf+YMoLDwdWatRc2qyjNdwmzWVawpN4/8a2xkOlUKNiEDchffpl3sAVLbFqw/G28sSok5cO0gfkzpgjLQD02fpw/XA1J17LsxOu7beZeOriuSvMpqS8XJNCTcP4Hf48/R8MsCRPVUl3hE8bwpFhIg3aM67HrcMz6NCrmQSaWCyNSyQE9VhWXHgogLkG2z24Anc+DdEKQL8EaZfOfKLWJrDHaHmCavFwqBiXxIdv/pwd5gorVqFVAaJEoDB2332RfwRiw1hIqGTsmlwevJa8f6PMi653RMfVF4PSE72ZqS+x6LHUKMoZJ0XdZq9LPRWiFOFfGEk4CMazSJ6PfLutw5CAxZZ/Y4NaHQyU=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MI9PR04MB019273.eurprd04.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(19092799006)(376014)(7416014)(366016)(1800799024)(23010399003)(22082099003)(18002099003)(3023799007)(11063799006)(56012099006)(4143699003)(261028144727099003)(261022075727099003)(261026140227099003)(261022105027099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?e9Gyr+k8hrnZ15gRoI+fIFM2qg2sDtPzypu1mqgf6J61TXVfJCSiv4YrjZ?=
+ =?iso-8859-1?Q?+7xg6hTXXgRMPM92SOpdMwpPjcqsjlMshWp0jR0jVUIPajsn8c2Xl8D8/l?=
+ =?iso-8859-1?Q?Ny70SRCo3tCrFyLlVbGmff4TFN7R5pBaxtdxmkgRr70LwUKBNQ7H170YiF?=
+ =?iso-8859-1?Q?CYWzbOJtipwbs+dX0OKEjP01fVvWJ6y74bBYrMWL+GyxzVKTfrS/79Htt8?=
+ =?iso-8859-1?Q?0H/f2PR2GVR03Q+Rn4QuRwG/Zjkd0NV5WMSjduwqS7HFcqyRRKBFtOcPjW?=
+ =?iso-8859-1?Q?OaKrUpe4tHM/J5EBJLyx/d27eSQwX0lVtxhRbSH08xVxrRRbFbQVde1367?=
+ =?iso-8859-1?Q?Dnjc7kOt+fX177XupKzLHCs81e39GKhA0ovjdjyZSd8eUqAIBX4sLoQEYG?=
+ =?iso-8859-1?Q?Fc8KGSMtLnIQiA5g7LsE0SG7Rdy4ATEqwfLaovY+Y9E8oSvDkknslqmU4K?=
+ =?iso-8859-1?Q?DopYzYEjQpfMCIp5fH0z1c+8I2pGnTJRgo16t21XKW+8yEeC1pfKzsclGt?=
+ =?iso-8859-1?Q?VAQ6Ye3yxPQF02qVfIvJSzUafPrFeK3n7ms7HvtpRi0d3e3UyN1bHUW2/k?=
+ =?iso-8859-1?Q?S/YL8OXWWvjv9RpLCYZe9kuN/N3RIZcVAkR358Rj/J3CJ3cVcCFzaWmODV?=
+ =?iso-8859-1?Q?iZ7Vk0I6ztWYDg2fGaQDHmfP1FO9qPGA2HA+rTvjkH7gteUbzQlR7bsgUW?=
+ =?iso-8859-1?Q?ypiVwU6Hm883E3nNOCMCUTdQ/DjsyIvI8CqLLtGQ4X+KJ0m/ExKilgn7EQ?=
+ =?iso-8859-1?Q?jMg0MBcN+zSIF58aoqnZLmy3I0sNn6JfvYvkOXnJ3UZYGyGGHjzSIPkKXK?=
+ =?iso-8859-1?Q?Q1fT8EV33vUtIqQs+V4WAH0Gsnc4buSaRhwvwZD8xMq+27+lZlsh3yiDp9?=
+ =?iso-8859-1?Q?jbz5brwCxceRzrtK9gicER6QSuzWhh2niWMC+pVWo/TtvGN0lmJHM/7PMX?=
+ =?iso-8859-1?Q?Y0XH8ZEgF8bbekG+dqE4ZcOOr7OQEscuEiTjwzkMDZmCNzwFCKEqCkvkX1?=
+ =?iso-8859-1?Q?wbwLF2dSmHWljf0JJV5iRHIONjdnyrUVs82JRRvfoKp6aEKCYP0HitH5ee?=
+ =?iso-8859-1?Q?IiTATI4SCThmHU0qA0HL9HDv3WRoYraEyuKZ3+ZQ+ONP7k5tpVw9w5Zj/5?=
+ =?iso-8859-1?Q?SDQZ5C/bD3WP2N6/CUv5zwZW2jcdCNpPqTUkGpWoJb4qzgXiEP5PuiytXr?=
+ =?iso-8859-1?Q?H2g8AB4tnsr4QkJK8tQ8zEaxBwxo8wFUlxRfYoDtub1Fhlmb3HifS4oXe4?=
+ =?iso-8859-1?Q?TFNSoVv5oBeHlaSe+0MUBfphjy0ExZTv6FvsDbqcN1c/no0oNw4a0a38Sw?=
+ =?iso-8859-1?Q?1IMptYmfyp5Qky0hHCUi/VfH2FamyeQgMHQUqG7wECuqAWSXPV1yQoWoUd?=
+ =?iso-8859-1?Q?kcCLmS44lCTkPjTaokLzSLLOxg8Nn2XCyMBodOJsLlwIYmflAO+OH1eBA/?=
+ =?iso-8859-1?Q?z+vy/Ya6iUZMTyh3i6HYyFy2QL1V0bQAexDAT7/wsGR58UxX7KUDkQLJgH?=
+ =?iso-8859-1?Q?oE5dMhkHkksVPFSZVXxllASeVzY/d7gndJEN4sBcS3o/0R9narteCUyzV7?=
+ =?iso-8859-1?Q?u7iNeb6G5XZl9lcfSXvaIg0EFfFbfNZQy/3yUN7YCbFkd5LjM+Odc6WHQ/?=
+ =?iso-8859-1?Q?i0hVkoEd4y8Md2gRyHW6gm4uTwT/o59S3kXRz2+gcxqkE9vCs51u3v3XHb?=
+ =?iso-8859-1?Q?j19mO0x8O4Hg9xWxqSQbPTDy2Q9skU0UcO/IGoyHw/rtAtdYvytY55EAdk?=
+ =?iso-8859-1?Q?vr6c6ukhED+dWC8e34HW1VqBLrXItUiaUXY8DOaWAlH9lZXeHZWngvJCJW?=
+ =?iso-8859-1?Q?SwLUFk1jFg=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9889fbb4-8f40-41f2-002c-08df4949743f
+X-MS-Exchange-CrossTenant-AuthSource: MI9PR04MB019273.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 10:06:34.2305 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hvXr1sv0c4zgA8rxOcYk8ULiWPA8fUAK/x+d8DqMXF9posPOXPmcH37qOVka1UYGEIfq1FxYHkwmgJAp7bo+Lw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BR0PR04MB476426
 X-Mailman-Approved-At: Mon, 23 Nov 2026 15:17:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -120,49 +129,30 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-6.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,HK_RANDOM_FROM,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-8.6 required=3.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 20, 2026 at 03:10:38PM +0100, Uwe Kleine-KÃ¶nig wrote:
-> On Fri, Nov 20, 2026 at 10:17:46AM +0800, Yao Yuan wrote:
-> > On Wed, Nov 18, 2026 at 04:56:44PM +0800, Alex Williamson wrote:
-> > > Driver overrides are the standard mechanism for binding vfio drivers
-> > > to devices.  With the introduction of the support_driver_override flag
-> > > in the core driver struct, it's now required for drivers to declare
-> > > themselves as driver_override compatible, otherwise driver_override
-> > > bindings will be denied or generate a kernel taint.
-> > >
-> >
-> > Hi Alex,
-> >
-> > > Set the support_driver_override flag on the driver struct across all
-> > > vfio drivers.
-> >
-> > LGTM.
-> >
-> > Reviewed-by: Yuan Yao <yaoyuan@linux.alibaba.com>
->
+On Fri, Nov 20, 2026 at 12:11:04PM +0100, Uwe Kleine-König wrote:
+> From: Alex Williamson <alex@shazbot.org>
+> 
+> Driver overrides are the standard mechanism for binding vfio drivers
+> to devices.  With the introduction of the support_driver_override flag
+> in the core driver struct, it's now required for drivers to declare
+> themselves as driver_override compatible, otherwise driver_override
+> bindings will be denied or generate a kernel taint.
+> 
+> Set the support_driver_override flag on the driver struct across all
+> vfio drivers.
+> 
+> Signed-off-by: Alex Williamson <alex@shazbot.org>
+> Reviewed-by: Brett Creeley <brett.creeley@amd.com>
+> Reviewed-by: Mostafa Saleh <smostafa@google.com>
+> Reviewed-by: Ankit Agrawal <ankita@nvidia.com>
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@baylibre.com>
 
-Hi Uwe,
+Reviewed-by: Ioana Ciornei <ioana.ciornei@nxp.com> # for vfio-fsl-mc
 
-> I missed your reply when I sent the next revision of this patch. I had
-
-Thanks for your reminder, no big deal to me.
-Let me follow your link to have a look on v2 there :-)
-
-> to trim the recipients of the v2 because gmail refused to send it with
-> everyone on Cc: who was emitted by get_maintainer.pl. So please see
-> https://lore.kernel.org/kvm/fb0df5c89336b77a373ae0f890f63427e4adbb28.1795171088.git.u.kleine-koenig@baylibre.com
->
-> But also note, that if v2 is picked up using `b4 am`, your Reviewed-by:
-> is considered as the patch didn't change.
-
-
->
-> Best regards
-> Uwe
