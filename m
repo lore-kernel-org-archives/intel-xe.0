@@ -2,62 +2,159 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592D1606A32C
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 09:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CFDD606A339
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 09:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=As8kJMj+
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RBVmVTQs;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=K7bKfBVc
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF30B10EBAA;
-	Mon, 23 Nov 2026 09:30:14 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D39E710EB95;
- Mon, 23 Nov 2026 09:30:08 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 77C1E401CD;
- Mon, 23 Nov 2026 09:30:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA18D1F000C6;
- Mon, 23 Nov 2026 09:30:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795426208;
- bh=t4U+ldndWXYiv8sPaqw7sW8lRoYP2EKLyk9iA28Ai0s=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=As8kJMj+D8cbkW8Y/3kujuVU1nEpni9qbmetR+F67FjFi1i4FzY669m04DvTtv34D
- UbK5WYzNqTLHFOhddaows9iinulzDzs3W1gbRicH15wJk4Sx2OfqqNeZ1ioz4qf2tq
- ov0eF2fzTnjETRuOG0oq9efrzqt6n0queknW/xs0rQkX81Nv5DPQUlAVAAHb0ki86W
- 3d/Luz4ygugGwnOK/3H/ylIIwNyMIzA4DxBn6ST57ruH06dt/80YWoS5Sr/iwD6g9g
- URV/h6w6UyBt5NKjCq+K8CAW3CtjH8Abng0oU+GOzwHDQq6tjYJfMk8m3QICP2l/2l
- t3zg+q93JTJ7A==
-Date: Mon, 23 Nov 2026 10:30:05 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Mario Limonciello <mario.limonciello@amd.com>, 
- Alex Deucher <alexander.deucher@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Javier Martinez Canillas <javierm@redhat.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, 
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
- Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- nouveau@lists.freedesktop.org
-Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
-Message-ID: <awQGSuf2UJjItcO0@houat>
-References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
- <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
- <awB4Qe83u0l0XPKA@intel.com>
- <8713bae1-9782-41d4-b09c-f14031203e88@amd.com>
- <awPvoLCDeq1YFLE_@houat> <awPzsMWZ7e0i6i54@intel.com>
- <awP0nasqAc4pAeMR@houat> <awP8hAy3Gim4eNxz@intel.com>
- <awQAlSSks2We5h2z@houat> <awQENQN5SswJRtWw@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64E4510E785;
+	Mon, 23 Nov 2026 09:46:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B481010E785
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 09:46:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795427189; x=1826963189;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=ZgmblgKNJ677/zWrwJB7ghPgujXvQZex3bfvtDw3cU4=;
+ b=RBVmVTQssqVdUA6daEeqk26NAJVIyc4BMSlu6WF/Q3/2yLmAg9bIEneI
+ NbIiT4zm0NEETrffHvhTn2Dx9Bjgz84leNkdmnPKbbc8isAAz7rUeNjRh
+ jAhRi39Ye5ICo3W40l++TQQ1d1CeA5ESOM39FuuUgUWxaoBCcjNjPh2YA
+ nX4+vFeOcQPRFv7flU8xqmZX5uswYXIxpSYX7PLv9KcPztITRCrpq9cnS
+ A9QXL+8HoZRbhaHFVUvWAWx/cIVxWRKOfktiz9pcmkIzISgtwP/syUtLk
+ /r8/O6xbzuMpWV1xQMiSFq6rDtOAwpMqkI2sJXhS1D89FsuCs0GGX1BAw w==;
+X-CSE-ConnectionGUID: 8+39unOJSSCJyG+xsHVMng==
+X-CSE-MsgGUID: JHjytQMmRcqkVrG2YDGb8w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4240223"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="4240223"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 01:46:29 -0800
+X-CSE-ConnectionGUID: Vz2hVDZZSzixfwqTottLCA==
+X-CSE-MsgGUID: KIieFphTS4ucGFkFtcsBYw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11353894"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 01:46:28 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Mon, 23 Nov 2026 01:46:27 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57 via Frontend Transport; Mon, 23 Nov 2026 01:46:27 -0800
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.53) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.56; Mon, 23 Nov 2026 01:46:27 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TUAZ9BaqOzZ35DS8UnvEFQf5rHdfEKKNC3amIFrB4cg5SuRW8sNXbxhOJOTY9Ovwq21OBUf47BPgyDkHn7cKOy/Jkvu0MgC0Smt5v+h/XO6z99ztAeLWVHdb7zF7QAYhzBqA38QmS02xjh/JdIYhd3o1233975l2Jg/So67lTC1xK1Y1tOkR893K95lhFOTtqQKjYMriBDj0k+HfqHBSTHoJ4yDF/TWP/DNH2cGeYfuRjBWzBKP9ZOXRjsUMzqVW0/Q3/ofOHJm+cFPudz2406kq65cLOWV6L00XyUOeEl6qU8PGNYtjZhOCcIkuWuxhXll4U+LUOxaVU2srZwKd+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=hpSNQkWxHrdWIWx7CT6mJQJOZXgXs4e4JAl5K0Tf+jg=;
+ b=WPDi36hm+vbVMSc8AImZTqHRSUAu3fg4B/DI0K3eAza0wwjMXp/+SahHhcR5AWkb4RUB05LWvnudPyGeheG+6/Pi4wVQoXQ1nfKeBGeHj5mwSSelvPlaGCsTjv5siCGml5wdNQunKdidqkLcdqSm9LhplCMk2IpOcUTOl632KaqgHaMJpm3z35m0UnsAFPOqGIeI3RCuFK4c9SaDMljCNO/+3s1RKQr/AszzZ5W6VNaj4Vhf5IbS5Rbk7RDAI/wkNpu9ee792mcbtPWWeYS+6qp6qDOUKXhvSC8EkfmnXdv+1Lq5b1Sce3OgfFupbvSbIYkde+Jn/HhSPCzOJBDLPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=hpSNQkWxHrdWIWx7CT6mJQJOZXgXs4e4JAl5K0Tf+jg=;
+ b=K7bKfBVc5qTGbWdsQ3HwbkNX8iOI/t5wWWbXb1nlVMSpXCe/DvvjBD6zTfEX3DniTAmEsWEYT13S74yPlNL5pmp/jiCsfiXYX1Zl7flcU+89kazp3UmjAFYmcVmTBEWrawDPDPGnJymVs3xMNGtZ2gOm2HunD2Z2OJzEf0CKll4=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
+ by SJ1PR11MB6084.namprd11.prod.outlook.com (2603:10b6:a03:489::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
+ 2026 09:46:20 +0000
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92%3]) with mapi id 15.21.0615.012; Mon, 23 Nov 2026
+ 09:46:20 +0000
+From: =?UTF-8?q?Pi=C3=B3rkowski=2C=20Piotr?= <piotr.piorkowski@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+Subject: [PATCH v1 0/2] Prepare VFs enabling for VGPU profiles
+Date: Mon, 23 Nov 2026 10:46:05 +0100
+Message-Id: <20261123094607.3300722-1-piotr.piorkowski@intel.com>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: DUZPR01CA0139.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:4bd::14) To PH8PR11MB8039.namprd11.prod.outlook.com
+ (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="krfptbljx3eyphdm"
-Content-Disposition: inline
-In-Reply-To: <awQENQN5SswJRtWw@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|SJ1PR11MB6084:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3db9145d-d22a-4f7d-d493-08df4946a09e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|23010399003|6133799003|18002099003|11063799006|56012099006|261102123227099003|261021123027099003|261021121427099003|261009223027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: Qy7JrKSuAZYEWQTt7JwKfNgahnUxK1mzid0aLGV431BXNg2JhN4R3NoShST+SBlUeTLLaFNLXSe6nkUX3a14cED5WYuZgTPpS1nNjaLAcCHzZZ/lW2z2BgnOCCsdhHSlsu27UZa5ihMLiBiLyMwfLevDGeUMI7V/Yhv4tVDUa9NrP+UGNeW8M/a776ed3+N4NHGMxVYCTq36OG6aHO+EjzRAHWQpMwlxKl8frkC2kqKBEeUIjLkThKuTUTP4kxYOUtmgBGlyUvKC65zI24KuPWWCO+ZxkA31b7LRhHQkf80YWdg+Sjkw6yskT6i17lT0I2gwsL+ydZxRdtVaUVyRfNBdcchn023AuMk7rJMRVKq5XTOVCU4mnvNz+59trREG0RmsU9fL41GTMCuEkOE3OyHqzZ/GujntTuLMYwgLM5hEiZH5ZSYwGaVZkRkbCWE2Dd17Obu8ZDhFzTIPDEWunKE2JJ0Ta/stiZJKsdbtQrF5yiFXSLrVZ7d3BAo8w02N6Xx89E7aK6LmwJxU9YP5y/y3O30tL1MA+fDz3n8f00A4BNPgR9yPG8Z6JlGrVvyvy9tgYvd7nMW2lxC7+AtMBdrDlhje1TTaERPOfNbtgZb7Ye4Jz4mGnIRKQ02TdMExYfiVJT8gjes9LNuT6/tSXyyeExRWTsVKFWVj5czW9T8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(6133799003)(18002099003)(11063799006)(56012099006)(261102123227099003)(261021123027099003)(261021121427099003)(261009223027099003)(10067099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aXVXVmxQL3pzaHlBTEgzbGdMbFBoTUwxZUZVVWE5WkU1SmFObnNnb1E5UURj?=
+ =?utf-8?B?NmZVRWxFck90WkZ0bE9EMjhoVTVIai9XQWlTWkVxajRFazJ2TEFXOFd3aGFU?=
+ =?utf-8?B?WWpRdjFLQlNLR00wazNiZWtQVXY0Qml3QUR5MnAwWTZLVDFzbEtTYkI3eFYv?=
+ =?utf-8?B?a1N0NjJFSVR0ZWUrVU5JdDNybHZycEVRN3BMd253T2VqWURKeHN1b2JheGxl?=
+ =?utf-8?B?TnNuQkh1LzMzN2V3ZUhwRmdPSUVGOTBlekRPTWN1UVhOVW9MY3lrVWwrYjJC?=
+ =?utf-8?B?NDNEUnUxU09BKzBQamhsSExFNmNDOEpVUU5FOXkyVzJaVjdGbU56TVpiclpy?=
+ =?utf-8?B?d2xSbytacDZ5UWFUem9tYzVYdmk2RjRhWG9heE80aHdRV21Wd09GN0VpcnZX?=
+ =?utf-8?B?SDJYK0JSNmlWdkFCRWNSUEZRV0ZZM2YrVkx3TWlPRExhbWpCRXhYZldLRlEz?=
+ =?utf-8?B?L2pzRVRJVEpBTlJDYmI5V0FSQnM1c3pFZEY0STVBSUtnOWVLQU5MRlE0U21U?=
+ =?utf-8?B?SVFnWHlmcXRMT3pEUDIwQVIxYWZwbzA4cVY5UlpqWW1HUFYwd250djVNZ0ZQ?=
+ =?utf-8?B?RFJ6T2hadU1WSmlDS1g5OFNGZ01RelczTDl2VElQSjErc214dFNXbUh5d0Mv?=
+ =?utf-8?B?RW1JbjQrSFdzOGlVS1FhMk5qbXljYUM1OVJjNjNGcFdIbUJRdDhhK2RFMUdY?=
+ =?utf-8?B?MlFkVzhCalJYcVMxQ2FIQi9aWVY0d084SjVCcGhMT0dEN3V2UmVyVGZaVVBP?=
+ =?utf-8?B?OHRGM29YTTJhbXd0bzM5aHVyTVJXTm56UGthYUxVQTZkVVBUbEd6ZDJ6RktF?=
+ =?utf-8?B?SEpTQU1lUmF1MTRYaFZlanRUMWllbHIzZXlNQ3BTdkR1NU5VN2dZeXVVRGd1?=
+ =?utf-8?B?MGllUERuZVdmeTlQdlY0Wm01RUlQR0EyN2lzeFlmZEIySUxKdlI3ZGNtRG9z?=
+ =?utf-8?B?UUJRWndURFNSY2dmTTJwekl0Rk96MXJwNkZ5NEcwbW9ueWJCOGwvcFBrU2ZS?=
+ =?utf-8?B?NWRRdWszMnNSR29nWk9YS3ZNU0xGTWw0MDFaeEZleGw0bGxVSjVlOWovQmhs?=
+ =?utf-8?B?cTVaL0p5TXh1S0hCVEhhMnpteEIrd045N0NpeGx0aFp1eSt3WW9mRkF6dEpa?=
+ =?utf-8?B?UWF0TjZZZFhCeDcxS0NqUzdia3VjSk5TbkIwNlBQYmVVN1VlZzhkTDZSSHRw?=
+ =?utf-8?B?eVFNWjVIR25WMUJiajNOTEJLNkFzbzBQMjlBNEVEOEpoTG1TelJ6UEk5emE1?=
+ =?utf-8?B?V3FSQ0RyODFMV244S1JnUjhIVjRJTjJ0KzdzRDJ2MVRuNER0U091aVkreWpW?=
+ =?utf-8?B?dkN0YjZKendINTZaMUthMDNkdm9VUUtLQjJQbGZCOE83dDdWNGpoNmk4blJB?=
+ =?utf-8?B?T0JNN3Y3NWxMRVRLUHlGajAxcGJGQzU4UWxaVkpLZ1IvMnZ0MWhGUzFDNm1k?=
+ =?utf-8?B?aGdGY3NlaG5Gc2U4WkdMenJjcTFCUU5ZeFFsOE5WYm13bDV1VmkybVN4UDlJ?=
+ =?utf-8?B?SGNlZ01OTWNlYk9FOUpzWVJzRHZUdjhlOFI3S3RtT3duelBPaWpQQytMY0kx?=
+ =?utf-8?B?UStLMmV4QkdCYXBycmpueVZEK0JtdmdtdW9lcDNSdWt1Z1FQR3JlbUQ3WExO?=
+ =?utf-8?B?WlBpYnhLVW1CbmpKdzNCNmh0dG1JdXY0RXExL3FmUmtFaENMMjhvWVQ1Q1Bt?=
+ =?utf-8?B?V2lkU2laUVE5bkZlMWd5UVRPd3hXYng5bjFpK01HV0FvVGY3ZlNyYVMxWHZr?=
+ =?utf-8?B?dzhiQzFIdlJOQ3R2NTNUdFZONjhjTVBZbGQxVVV6R1ZIcUpKSjFBWkpKUm9L?=
+ =?utf-8?B?bllvazFXS3lwUW5ydCtmeWdpY055bnBTMmphaUpPV1h5TGYvWnh3TFpxMU5t?=
+ =?utf-8?B?cHRTdU1qT1ZoSkFuUmVKRmlwcW9vNjNZWm00SkxUODhkNEVybG9DeHBoNHRz?=
+ =?utf-8?B?MmpRbnc1UVFVZHNtcDdrNUxBVUNzay9laEo0Nk5mT0ZmVEU2bnNTa01SMzFy?=
+ =?utf-8?B?aVVwZkZ0SVkxRmtDWnVKemNEUi8rOVlzY2JyNFpVWFkzbXJNVmE5b2J4RW9u?=
+ =?utf-8?B?Y0RvUEE2YmxuSHJXWWhicUtucVBQc0FrTUloa2xIcFZob0lRVGtuRXZPQXFK?=
+ =?utf-8?B?ZVZsUE5saXRyNGtrT2p1aHpleXJwQzU2WStpNC9YZEVVMVBrbjE0UUd1YWZp?=
+ =?utf-8?B?cHg3Vytyd3MxRjgyZHdscTUyTzd1azNMWEw4aC9mRkxab3p6MWh0NkN6QjFy?=
+ =?utf-8?B?WGVpek5RbDVvRklsNjB0cjlaV0FoL1ZpZ2gwWkx4aFMrQll3R0pybnNxR3VP?=
+ =?utf-8?B?V01ZU1doSHVWazRsSE1RYnZrQytGVWEyNWRqNnhMMGdZdFpyb2V0cldNc2dH?=
+ =?utf-8?Q?plwEFQH5E53K5mKU=3D?=
+X-Exchange-RoutingPolicyChecked: A0cnFDo6WYg+iUBusQXpc5ntNZpGdZ0ItmTR8e+HIwm0BADXRyIitMUZTkvnshdHclN5+WXE4H8Tc3OTpR9cw+B96wHZbYEH42hB5lUQX2Fce0DIrt1KjsyXj1rVcMdNZxt/v8iVGklst8f/wFtF0/86SEiBhkVtRmciKw2VKOzSCIsWOxwaW/e+yHHn4NFqwf/lptAMzpx8YIp6xuVR+lon+KPmtQWmk8f3xmvreFEQApg0mbNYm+i8C2PlbUXcXmDH9V32d4RihWzDRzLEGcAAw129WAR0s876j4magrbBbSFQNU3me3ZBzgedw1YWsBjfsYVFrx61G1n5rCaZ5Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3db9145d-d22a-4f7d-d493-08df4946a09e
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 09:46:20.2250 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: L6UaWIr34l/W3/sZRjpurxEdwRD+NIxNQrSLTL+sDexHCCSF+VTMGoPH+EZRAf+EbuIFD9FZvCa39H96fInQz/TiG47oFTtCOuixfSYzp9A=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6084
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,221 +165,26 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+From: Piotr Piórkowski <piotr.piorkowski@intel.com>
 
---krfptbljx3eyphdm
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
-MIME-Version: 1.0
+Split pf_enable_vfs() into prepare, provision and commit steps,
+so the upcoming VGPU profiles code can reuse it with its own
+provisioning step. Error handling stays the same.
 
-On Mon, Nov 23, 2026 at 11:15:33AM +0200, Ville Syrj=E4l=E4 wrote:
-> On Mon, Nov 23, 2026 at 10:03:50AM +0100, Maxime Ripard wrote:
-> > On Mon, Nov 23, 2026 at 10:42:44AM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Mon, Nov 23, 2026 at 09:10:17AM +0100, Maxime Ripard wrote:
-> > > > On Mon, Nov 23, 2026 at 10:05:04AM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > > On Mon, Nov 23, 2026 at 08:50:29AM +0100, Maxime Ripard wrote:
-> > > > > > On Fri, Nov 20, 2026 at 11:19:13AM -0600, Mario Limonciello wro=
-te:
-> > > > > > >=20
-> > > > > > >=20
-> > > > > > > On 11/20/26 10:41, Ville Syrj=E4l=E4 wrote:
-> > > > > > > > On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello=
- wrote:
-> > > > > > > > > Panel brightness is a property of a display, and thus of =
-a DRM
-> > > > > > > > > connector. Add an atomic per-connector LUMINANCE range pr=
-operty so
-> > > > > > > > > compositors can manage relative panel luminance together =
-with the rest
-> > > > > > > > > of the display state.
-> > > > > > > > >=20
-> > > > > > > > > Keep the core backend-agnostic. Drivers create the proper=
-ty with their
-> > > > > > > > > hardware range and implement connector helper callbacks t=
-o set luminance
-> > > > > > > > > or disable panel emission. The atomic helpers sequence th=
-ose callbacks
-> > > > > > > > > around pipeline enable and disable, including luminance-o=
-nly commits.
-> > > > > > > > > The panel is left lit when the pipeline enters self refre=
-sh, and the
-> > > > > > > > > luminance is only reprogrammed when it changes or a modes=
-et enables the
-> > > > > > > > > pipeline.
-> > > > > > > > >=20
-> > > > > > > > > The stored property value is independent of display power=
-=2E A commit made
-> > > > > > > > > while the connector is inactive is retained and applied o=
-n the next
-> > > > > > > > > enable; disabling the pipeline does not overwrite it.
-> > > > > > > > >=20
-> > > > > > > > > LUMINANCE values are relative, driver-defined levels rath=
-er than
-> > > > > > > > > absolute luminance in cd/m^2. The interface supports emis=
-sive panels as
-> > > > > > > > > well as panels with a separate backlight.
-> > > > > > > > >=20
-> > > > > > > > > Keep the interface behind a default-off DRM_LUMINANCE opt=
-ion. Migrated
-> > > > > > > > > drivers retain their legacy backlight class ABI unless th=
-e new interface
-> > > > > > > > > is explicitly selected, allowing the DRM UAPI and legacy =
-compatibility
-> > > > > > > > > policy to remain separate.
-> > > > > > > > >=20
-> > > > > > > > > Acked-by: Javier Martinez Canillas <javierm@redhat.com>
-> > > > > > > > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.c=
-om>
-> > > > > > > > > ---
-> > > > > > > > > v11:
-> > > > > > > > >   * Don't call .disable_luminance when the CRTC enters se=
-lf refresh (Sashiko)
-> > > > > > > > >   * Only call .set_luminance when the luminance changes o=
-r on a modeset
-> > > > > > > > >     that isn't a self refresh exit (Leo Li, Sashiko)
-> > > > > > > > >   * Fix the .set_luminance self refresh documentation
-> > > > > > > > > v10:
-> > > > > > > > >   * Add tag
-> > > > > > > > > ---
-> > > > > > > > >   drivers/gpu/drm/Kconfig                    | 14 +++++
-> > > > > > > > >   drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++=
-++++++++++++++++++++++-
-> > > > > > > > >   drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
-> > > > > > > > >   drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
-> > > > > > > > >   drivers/gpu/drm/drm_connector.c            | 57 +++++++=
-++++++++++
-> > > > > > > > >   drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++=
-++
-> > > > > > > > >   include/drm/drm_atomic_helper.h            |  3 +
-> > > > > > > > >   include/drm/drm_connector.h                | 16 +++++
-> > > > > > > > >   include/drm/drm_modeset_helper_vtables.h   | 28 +++++++=
-++
-> > > > > > > > >   9 files changed, 255 insertions(+), 1 deletion(-)
-> > > > > > > > >=20
-> > > > > > > > > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kc=
-onfig
-> > > > > > > > > index 61111d50b1c65..1bbe2c2d7c76f 100644
-> > > > > > > > > --- a/drivers/gpu/drm/Kconfig
-> > > > > > > > > +++ b/drivers/gpu/drm/Kconfig
-> > > > > > > > > @@ -33,6 +33,20 @@ endmenu
-> > > > > > > > >   if DRM
-> > > > > > > > > +config DRM_LUMINANCE
-> > > > > > > > > +	bool "DRM connector luminance support"
-> > > > > > > > > +	help
-> > > > > > > > > +	  Expose relative luminance as an atomic DRM connector =
-property. Values
-> > > > > > > > > +	  are driver-defined levels rather than absolute lumina=
-nce in cd/m^2.
-> > > > > > > > > +	  Drivers provide connector helper callbacks to program=
- their hardware;
-> > > > > > > > > +	  the DRM core does not depend on a particular backend.
-> > > > > > > > > +
-> > > > > > > > > +	  Drivers migrated to this interface will use it instea=
-d of registering
-> > > > > > > > > +	  a legacy backlight class device. Leave this disabled =
-to preserve the
-> > > > > > > > > +	  de-facto userspace ABI in /sys/class/backlight.
-> > > > > > > >=20
-> > > > > > > > I don't think this will fly if it breaks the backlight clas=
-s interface.
-> > > > > > > > No one can actually enable this outside of some niche embed=
-ded use
-> > > > > > > > cases where backwards compatibility is not an issue. I thin=
-k what
-> > > > > > > > you need is a generic backlight class implementation on top=
- of this.
-> > > > > > > >=20
-> > > > > > >=20
-> > > > > > > The idea with this was:
-> > > > > > > 1) to get the series landed
-> > > > > > > 2) let compositors merge solutions around it.
-> > > > > > > 3) Then add backwards compatibility to kernel so we can flip =
-the Kconfig
-> > > > > > > default.
-> > > > > >=20
-> > > > > > I said this a few times already, but we keep having those discu=
-ssions
-> > > > > > while the backlight sysfs handling is far from being the main p=
-oint. You
-> > > > > > should *really* consider adding support for the luminance prope=
-rty for
-> > > > > > something that isn't tied to that interface (like DDC/CI for HD=
-MI), and
-> > > > > > treat the sysfs API as a sysfs series.
-> > > > > >=20
-> > > > > > It looks like people just have conflicting opinions on this par=
-ticular
-> > > > > > part that isn't going to solve itself easily. You should not tr=
-eat this
-> > > > > > sysfs discussion as a blocker for the infrastructure work.
-> > > > >=20
-> > > > > You want to be sure backwards compatibility with the backlight
-> > > > > class is a solvable problem before you land *anything*. Otherwise
-> > > > > you might just paint yourself into a corner with no way out.
-> > > >=20
-> > > > I disagree. The luminance property is more useful than *just* for
-> > > > backlights but is also useful for HDMI, DP, and MIPI-DSI that would=
- all
-> > > > use it.
-> > >=20
-> > > DSI and eDP are all over the place when it comes how backlight
-> > > is implemented, so very much would not all use it. Some HDMI and
-> > > external DP displays might have DDC/CI support, so I'll give you
-> > > those.
-> > > =20
-> > > > If that's the corner we paint ourselves into, it's still a pretty n=
-ice
-> > > > corner.
-> > >=20
-> > > Separate APIs for different outputs on different drivers is just
-> > > a bad idea. Every userspace implementation will have to support
-> > > all of them until the end of the world.
-> >=20
-> > I agree, but then there's an easy answer: don't enable it on drivers
-> > that would expose it on both APIs. We do have a lot of drivers where
-> > there's just no backlight involved and would greatly benefit from these,
-> > and without the history of i915 or amdgpu to deal with.
->=20
-> It's not the history of the drivers you need to worry about. It's
-> the history of userspace that actually matters. All existing
-> userspace expects a working backlight class interface. And if you
-> don't care about userspace compatibility then we're very much
-> back in the "only usable in niche embedded use cases" or "only
-> usable on external displays" territories.
+Michal Wajdeczko (2):
+  drm/xe/pf: Extract VFs enabling revert helper
+  drm/xe/pf: Split VFs enabling into prepare and commit steps
 
-Depending on what your perspective is, fastboot was "only usable in
-niche i915 use cases" just like color management for amdgpu or leases
-were. Let's not be judgemental and / or dismiss others use cases.
+ drivers/gpu/drm/xe/xe_pci_sriov.c | 93 ++++++++++++++++++++-----------
+ 1 file changed, 60 insertions(+), 33 deletions(-)
 
-If some established driver like, say, vc4 that only has external
-displays can pave the way for everyone else to use them eventually, how
-is it a downside that it's only usable on external displays?
+-- 
+2.34.1
 
-And even if it's still usable by less established drivers, slow-rolling
-it into more drivers, fixing the bugs, rough edges, etc. while
-consolidating the code still has a lot of value. Just like it had for
-color management or fastboot.
-
-Maxime
-
---krfptbljx3eyphdm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCawQHnQAKCRAnX84Zoj2+
-dv/IAX9eEMFvOITWTZmbmaZRs5cttfIv53qo1lTfjicUHXYndBi+lFMhUfQkVVAu
-QasRx0cBgJfCcGl18yTL+HrxkoGnsNUdtOCnuw4m8Ib6T9gnf+Fb2mCiowaup437
-90mwIf/Gpw==
-=oDlh
------END PGP SIGNATURE-----
-
---krfptbljx3eyphdm--
