@@ -2,127 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D509606A32A
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 09:23:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 217E4606A31E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 09:26:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=amd.com header.i=@amd.com header.a=rsa-sha256 header.s=selector1 header.b=TlPADIM/
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=La0Qbody
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7A3810EB78;
-	Mon, 23 Nov 2026 09:23:35 +0000 (UTC)
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010013.outbound.protection.outlook.com
- [40.93.198.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41BF310E41A;
- Mon, 23 Nov 2026 09:23:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kokZ9Y0miZjif5eS2OEhnkPRio+1a5xdwZE3Q1Z1b+aXzu8BNbFgUtaMh3YKTJTsapVxCBrmp7CiuZjipJMecdHREAYaueoJo80loX+uf8ncCNWLrWmM7845S9jyKAB9m4BjrpT6QMoGyfPrp8VvcA+82s+0jJW3rtLWG6uiCMgebl3qpQdq64C3PfZyQur/IValFiHedqdFryJ459TPMgIwPLEQXW7Jy/CWZ1mVp55HXVcQzm52TEdYKvx5US43odvKsCqgL94FOZh9piWgLN80de+mHZ0fcpXq6V5NfiTkA0fYgnj4lekvE6E7l21kQVcr3QXAgD9fxNZouQOK6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YGWEtXj6gymSVNH2LkYikzT7wCclcEb6TtqzT3rIYgc=;
- b=SS+hKdYlaSyDda/3mK9ju78Go61fuVRfoOqla7HaN8pcLjYegXTvcgw/h7SqMQP2PltKLQ41MkQWs5kVNAiH9QssXhB0hAk95q3cB01HlNDQSZH2hwH9m4ko1v8BVCNXUWS6ineN3NQ1La6vkKSJgm7MCwlFjc0uby/kG0M8YgZYH9ZNE0ZS/JtqI6ibNfFLdu2VWp/poOLK3wpP/8neqbfyXi5SU216Rhy5mFNtkkge7sAy5a5gDluPLBFKzkF6OXBJD9TZrwvfpNmhjdQSqaay+KExrrVmkGWRRxhBlCR8zn9UWlrf6+rt9m1ZHbomRW+KQawyVlpp0sgnTcJ1MQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YGWEtXj6gymSVNH2LkYikzT7wCclcEb6TtqzT3rIYgc=;
- b=TlPADIM/fqgaiD7C8r6oke+qjOcnr1UP+3rWebfD7HGff3gyi8hHdzjZ1gpr0/3KrqNQ/nY0N5MlZqYIVczyx0PbleXMLftPyMfOo7uXao/8HL3TbB8os22PP6vby4DCX9nVV0Ya581zwJPO9d2cJQUKlsUVisM/mp2gvwhQDTs=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from CY8PR12MB7170.namprd12.prod.outlook.com (2603:10b6:930:5a::18)
- by DS0PR12MB6629.namprd12.prod.outlook.com (2603:10b6:8:d3::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Mon, 23 Nov
- 2026 09:23:22 +0000
-Received: from CY8PR12MB7170.namprd12.prod.outlook.com
- ([fe80::7565:bdd3:383a:de5f]) by CY8PR12MB7170.namprd12.prod.outlook.com
- ([fe80::7565:bdd3:383a:de5f%3]) with mapi id 15.21.0639.011; Mon, 23 Nov 2026
- 09:23:21 +0000
-Message-ID: <a574e06f-01e4-4b51-929b-49dee297a316@amd.com>
-Date: Mon, 23 Nov 2026 17:23:14 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] mm/hmm: skip NUMA balancing on protnone faults
-To: Matthew Auld <matthew.auld@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, David Hildenbrand
- <david@kernel.org>, =?UTF-8?Q?Mika_Penttil=C3=A4?= <mpenttil@redhat.com>,
- Leon Romanovsky <leon@kernel.org>, Jason Gunthorpe <jgg@ziepe.ca>,
- linux-mm@kvack.org, Huang Rui <Ray.Huang@amd.com>
-References: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
-Content-Language: en-US
-From: "Huang, Honglei" <honghuan@amd.com>
-In-Reply-To: <20261112-numa-v1-1-ad9cbca8f49a@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI3PR03CA0007.apcprd03.prod.outlook.com
- (2603:1096:4:297::18) To CY8PR12MB7170.namprd12.prod.outlook.com
- (2603:10b6:930:5a::18)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D79DC10EB82;
+	Mon, 23 Nov 2026 09:25:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D1BB10EB82;
+ Mon, 23 Nov 2026 09:25:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795425951; x=1826961951;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/lruYxMOhxSjztV+nS1l1EEJ/Zh3EcWVG4jULWKX7yQ=;
+ b=La0Qbodyp1Y3riTN8fJd2J1p4dVhLgXEsUwpHoQ0VCXfGPScrlo4MuB8
+ Vd3dPBqtQ6A8hJktbTffq2boTYAZhrmZYJ438MTVV0QQ2P9NGGS6wnZQ8
+ nOXnLFC1lXm8VdmYjBBgzUTMjLRZZDkTfcCg2skpQLFhfJpE8rvhhnQ/S
+ 2KZvpWWPzriGlrPXdC4hY/g3dXXbYwQQh5ldioY7xM0T2Efii7FVKJiwI
+ ZyQDtJRx8RRFI7/ckMPtJ837cGTrlOETUJLoc904Qb8a2TnALDmi5G/QI
+ bTxj2d+1VXcQ9RwoVr/yq06pH2cb4Pn1tRIMRRE8S5Quzpp8CY0Myo2Nr g==;
+X-CSE-ConnectionGUID: RG22SkX9R4u7Xu5eyggzRw==
+X-CSE-MsgGUID: 7WxrxaT7TSKTTFPCGYnfwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4235931"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="4235931"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 01:25:51 -0800
+X-CSE-ConnectionGUID: uBU802RTQGCcZmJAMPhGiw==
+X-CSE-MsgGUID: M3+IMeOpTmqTt0LaT2iV4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11268168"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa002.jf.intel.com with ESMTP; 23 Nov 2026 01:25:50 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>
+Subject: [PATCH v2] drm/i915/color: Program the 3D LUT on the plane's own pipe
+ with joiner
+Date: Mon, 23 Nov 2026 14:32:51 +0530
+Message-ID: <20261123090251.934904-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20261119165925.683691-1-chaitanya.kumar.borah@intel.com>
+References: <20261119165925.683691-1-chaitanya.kumar.borah@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB7170:EE_|DS0PR12MB6629:EE_
-X-MS-Office365-Filtering-Correlation-Id: 712d95a5-5971-47c3-a5b7-08df49436ab0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|23010399003|10067099003|11063799006|5023799004|56012099006|261021123027099003|261021121427099003|261009223027099003|261102123227099003|261022075727099003|261026140227099003|261022105027099003|261028144727099003|261026121527099003|22082099003|18002099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: y8JKqD/3Sbu2cuTGrcu2036mGyiiK1euTPa3wpVOlmcis+SWfgG0pXiHgp5zhWL6qV6wv2Xs8shIdH+utwy8nqTsY9icnSd+uPIQOnN1OWQ84z57kYbQcQ2n6mPwY1jy0hhA1dT7mzAKkA7nK9IMLwugwh9/FaBLHK+LcizQL+RDGJAXGgqnLdMes3eBIexXWEjM3psxbcetRD6kETKqbIA5JaYUX3drovF0OJxqTWtlErC3Eq0hTUUInQID4E8H3Z6xNT7+HkFbRxnXSMM0qB7EuqaKYMLQTIH9VwVkhZ65vSXrEiRaZxx8OOQbhIDmJ5dyQz5UhmJ2C7SOe0FQ6jDC+k814i2hswT9V/TKQP/NV2ls1uOGIjjgrSWcFpgibvmv2pic6NaTE3rHelX8p23urMmLutTG9h9iMgkB7PQET4qKuYkktcyuH4R6xfpDv/e4VImN5XCWp2kffILoVI6uZrVX1usIuOlLguuZfP6O+MXmeWIHaNawPbik7ej5wN9KnuF7IAASX8a9jpRP45bDm++5oS18oEDeeeXEFIWVCP3pWPfJDnMI11lBibjCiwR2Wk/J9kxsJjkG78iC/RjUkLDbjF0aNvAeFky+uiia7COnQQkJJdkStPk7UNmVdXE9CbqJqfOIA7QwL8oVItsNTCabScaXpcAGvv8I834=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR12MB7170.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(23010399003)(10067099003)(11063799006)(5023799004)(56012099006)(261021123027099003)(261021121427099003)(261009223027099003)(261102123227099003)(261022075727099003)(261026140227099003)(261022105027099003)(261028144727099003)(261026121527099003)(22082099003)(18002099003)(6133799003)(3023799007);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vnc0RnhtVkhyRjBMTlorOE0xYnVlSFdJQzFyZm11WkVKWU5PYUJWS2JTcEgv?=
- =?utf-8?B?QTJCVzZSQm8waGxKL0lNWUxZQkt3dG9YOTFIOGVsQjZNa1lidGlXZis3aEtU?=
- =?utf-8?B?ZjNtSUVLa3BPWW9NMy9TM255eTA1SVlPakZ4bXNTV0hEK2VFSWRQSG5uZ0t1?=
- =?utf-8?B?NEpwZ1FSVWpsUnM5QTY2UjV3Zm8zV0xKUmIxV3VQbFNJcUZvSWFZRlYzWG5C?=
- =?utf-8?B?eHJDVjd4S3Nsb0cxWHlsd1ducXI4SjE5SW9TNnJRUEdLZnlVNjNXZlk0S0VV?=
- =?utf-8?B?UENmd1JodC9kSnF3U05tN0VQLzl6UVpCTC9SY1lRU2tyMmZOQi83V1FmYXFk?=
- =?utf-8?B?eFBBM1JUajRneHBxUDVQNG5uejhOOVVHYU9uYU43ZUVPWTBPMjNBM2YySkh6?=
- =?utf-8?B?ajlMdWJUNmptQ0dKYTNuYU5tSS9ocjNYaHJsKy9pOUNrMFNjVkI1ZEpnTndM?=
- =?utf-8?B?T0dodnk5VUQwdUoyV1QzMDNhdHlZRWppOUJDM3YwRm5laXhza0VhVnhYcW96?=
- =?utf-8?B?Ny9ybFhVejBPWkxvb2xaR0N1c0NucCtMOHlweUNQeDQrdUljVkluYnhZYWEz?=
- =?utf-8?B?S2xvbTcyV3FDckloaFBjYWc2T2pNYWU4eng4ZUl2aE91c3JwRGkvK1VIN3pK?=
- =?utf-8?B?UG1rM0d2L3pmblZtTzBKU3Nva083Z0xJQndLWjJjbGRYS1lWOCttU0dFRE81?=
- =?utf-8?B?OWs4SjhtYThNMWxKMUwxWFQyQmhLRVBlQXFsYTNreXBEZVlwUHRMMk95UUNk?=
- =?utf-8?B?NmpaZ1VqdERGWkRvZi9CZldUQ0F3akczWXFHU3dWSzJpMGxpNmhmeFhxM28r?=
- =?utf-8?B?TDl3RTJQRmpWOC9LSkkzNnFlRFlYOVl0ZGg2TE9mNTNiWjJWNkFUbHR3Y0Vh?=
- =?utf-8?B?SGlKYzVyOEJneHJUd0E1cHl0ZUZkZWtLSzU1bUFYYk5mQ0pxK0FPUjdKQWhT?=
- =?utf-8?B?aDZucnZ1dmo3Zk9IUzhTVjE0a1ROMkZvRDVtSjdqa1dIM1JVR0VydmJsWjRZ?=
- =?utf-8?B?ekxkaGhvNWpjUWRiOVl2ckZmdjN6aFVjWVNyVklxNThNSG9YSTQzNjVMbDJY?=
- =?utf-8?B?OUJQeGNhYWxMR0ZSMnd4Z0Y3eW91Wit6bzBKSW14emxTak9mdDA2YWxXd2Z6?=
- =?utf-8?B?WTI1bnVvbWYrcEVCam5qVmMzd1FadWlTM0NlQlJKbzlMN0pHamlNaHhHYWNT?=
- =?utf-8?B?QS9uOXR4Q2NDWVVxblpMbXRSM0U1ZysyRjhTU2l2MWVQQkxaWThvOGVOc2Vk?=
- =?utf-8?B?Y2twOEN1SWc2S0NHV2toRkhRZUJHQjZ1R2o3dmhwMG1uOUlBaVJMc1hqTTNy?=
- =?utf-8?B?Skh3YlFpNmVMaVlMdWJ4ZnYvWHNrZTYxbHU2cHFzbE82U1RmZURUZlV3ZjE5?=
- =?utf-8?B?Y1kyVUN4WkxKaTVxbEJEM1NWZTRPRW5MZHNiaFhLVFJlS2s5eURZWUhDazdm?=
- =?utf-8?B?U0dIUFVwaUtKcmtHL2J0bzdRSHlUc0ZyakRVNEl1dVF6WndJUjdiRmRFRlJJ?=
- =?utf-8?B?VHE0ZVhmRkZxQXF0RGZlY3E2eGtoSHdjK096Y05CUzJIRUphSC9LNVN3c3dm?=
- =?utf-8?B?QXNzendsdFBzckR1L2oxcDVoREJVRTB6MWxWMElGU1RabGNxT3phaXhpSVcv?=
- =?utf-8?B?ZjBVb3JVV3NSM2pUM1ZjM0haY29WanpWV0hqTU91NjlXbkVpS0g5dUorMkVS?=
- =?utf-8?B?bExNYmJLODd6clVXSkhuZVlOaDFWRHA2cUdsQVdSeFc1TUNSRjN6elZzUUpB?=
- =?utf-8?B?TnlRYysvV3RpTnlveUNaWDVTOXF4Y1RzVkVLc25vcDc5blNtV2V6MHZUbktq?=
- =?utf-8?B?WkhQSy8xYTY5L01BbnZIdngvMkUrTExuclZMN2dYQW1Cd21OemJUY09ZdndO?=
- =?utf-8?B?YTFydHNDVkhjaEdVaUhBL205Y3FXM1MxQkQ3akRYZ3llbkdaSHJ3U2lveFpU?=
- =?utf-8?B?cWtYS1d3UGdQZ1dXdThRZDhiSXlxTk8rbzRvYlNXK2Z6bWFkRk92V3YvWmpK?=
- =?utf-8?B?Yk5vNmVLY0lnTEY1VVUyTGRaTjVVN1ZwYVFNMm4yZmU4MStoYmpCcDlXdjBj?=
- =?utf-8?B?elhYaDY4ZVVLTUJxTWgzVlhQOWluNnNxYi9ibFBJZ2ZzV0owRHBMQ29vam5h?=
- =?utf-8?B?TFJlamlaZC9hWDhaZkZ1M0F4bGV3L3ZlUXFHVWxQa3dvOExrbE5CVVRUL1Fk?=
- =?utf-8?B?OTNXOXFJUzJGS3V4OFRKYVdBOTNXblVCdEllamRMQXlKSUVVUGdwZUVWV09U?=
- =?utf-8?B?VG5OSmNUc3U1V0E1aDUwcVMvbGhRay93TForS0JvRC9aNkZYUzk3Yms3SG1D?=
- =?utf-8?Q?EbD2bRNTTUYWh4o306?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 712d95a5-5971-47c3-a5b7-08df49436ab0
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB7170.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 09:23:21.6139 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iLrcWDvIlOwc0/tbA18az5pu7MbbjfCLNlFWsUvx/lfIDFJ+kkhNy/jyz2e1XwTCRp76BQmYsNaUzWhVM1USzw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB6629
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -133,172 +64,71 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+With joiner, a secondary pipe plane gets its hw state from the primary
+pipe's plane, but its own uapi.crtc stays NULL. intel_color_load_3dlut()
+and intel_color_plane_commit_arm() take the CRTC from uapi.crtc, so they
+skip the secondary plane and its pipe's 3D LUT is never loaded or
+enabled, leaving that part of the screen without it.
 
+Use hw.crtc, the CRTC the plane is actually on. The linked Y-plane of a
+planar YUV scanout also has hw.crtc set but no 3D LUT state of its own,
+so skip it in intel_color_plane_commit_arm() to keep it from clearing
+LUT_3D_CTL.
 
-On 11/14/2026 12:25 AM, Matthew Auld wrote:
-> When automatic NUMA balancing marks a PTE or PMD as protnone
-> (PAGE_NONE), hmm_pte_need_fault() requests a fault to restore access
-> permissions, including _PAGE_RW when write access is needed.
-> 
-> Calling handle_mm_fault() from hmm_do_fault() currently triggers NUMA
-> balancing in do_numa_page() and do_huge_pmd_numa_page(). When
-> hmm_range_fault() runs from a device driver or kworker context (such as
-> a GPU SVM or userptr rebind worker), folios get migrated toward the CPU
-> node executing the remote fault.
-> 
-> Also, each folio migration invokes try_to_migrate_one() ->
-> mmu_notifier_invalidate_range_start(), which invalidates the
-> caller's mmu_interval_notifier while holding mmap_lock. That causes
-> hmm_range_fault() to abort with -EBUSY after every 2 MiB PMD and exhaust
-> its retry timeout on large buffers, which has been observed with large
-> imported Xe userptr buffers.
-> 
-> Add FAULT_FLAG_NO_NUMA and set it in hmm_do_fault() so protnone entries
-> restore PTE/PMD permissions in-place without performing NUMA balancing,
-> matching GUP's default !FOLL_HONOR_NUMA_FAULT behaviour.
-> 
+v2:
+- Correct the commit message (Sashiko)
+- Skip the linked Y-plane (Sashiko)
 
-Hi Matt,
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Matthew Schwartz <matthew.schwartz@linux.dev>
+Fixes: 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
+Matthew, the is_y_plane check is only needed to keep this patch
+regression free on its own: with hw.crtc the linked Y-plane would
+otherwise reach glk_lut_3d_commit() and clear LUT_3D_CTL. If you
+rebase your series on top of this patch, the check can be dropped in
+your patch 1 [1], since the owning-plane check there already skips
+the Y-plane, which is never PLANE_PRIMARY.
 
-We did some multi CPUs test several months ago in 4 x MI300A(4 CPUs)
-keernel 7.1 platform with same HIP workload, kernel.numa_balancing
-disabled and enabled.
+[1] https://lore.kernel.org/intel-gfx/20261118191514.2931270-2-matthew.schwartz@linux.dev/
 
-Allocated 1GB memory in the system, warm up then launch GPU kernel 
-continuously access the data, calculate the number of launched GPU 
-kernel. Result is:
+ drivers/gpu/drm/i915/display/intel_color.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-balance off: 4752 launches/s
-balance on: 3188 launches/s
-
-The launches number per sec drops about 30%+. And the notifier 
-invalidate call back calls increased extremely high.
-
-And there is one more thing:
-The current amdgpu drmsvm can specify system memory as a destination, 
-but not a specific CPU NUMA node.
-
-This has impact on some platforms like MI300A that feature unified 
-memory for CPU and GPU.  We did a test for 2GB memory accessing in node 
-0 and node 3. GPU read/write bandwidth averaged about 2.78 TB/s with 
-local pages and 103 GB/s with remote pages, it differs a lot.
-
-There is a requirement from AMD HIP to specify certain SVM memory to 
-specific NUMA nodes. But KFD also can not support NUMA fully. So the
-HIP runtime have to use linux NUMA facilities to move memory to the
-correct NUMA node, this could lead to unnecessary ram to ram migration.
-And it also can not solve VRAM to RAM evict to error NUMA node issue.
-
-Would it make sense for drm_gpusvm helpers to let a caller pass a 
-preferred NUMA node by interface? An explicit destination node for 
-migration to system memory.
-
-Regards,
-Honglei
-
-
-
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Mika Penttilä <mpenttil@redhat.com>
-> Cc: Leon Romanovsky <leon@kernel.org>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> ---
->   include/linux/mm.h       | 3 ++-
->   include/linux/mm_types.h | 3 +++
->   mm/hmm.c                 | 2 +-
->   mm/huge_memory.c         | 3 +++
->   mm/memory.c              | 3 +++
->   5 files changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/include/linux/mm.h b/include/linux/mm.h
-> index 77b5d450fe45..4b6ad3c0b591 100644
-> --- a/include/linux/mm.h
-> +++ b/include/linux/mm.h
-> @@ -717,7 +717,8 @@ static inline bool fault_flag_allow_retry_first(enum fault_flag flags)
->   	{ FAULT_FLAG_REMOTE,		"REMOTE" }, \
->   	{ FAULT_FLAG_INSTRUCTION,	"INSTRUCTION" }, \
->   	{ FAULT_FLAG_INTERRUPTIBLE,	"INTERRUPTIBLE" }, \
-> -	{ FAULT_FLAG_VMA_LOCK,		"VMA_LOCK" }
-> +	{ FAULT_FLAG_VMA_LOCK,		"VMA_LOCK" }, \
-> +	{ FAULT_FLAG_NO_NUMA,		"NO_NUMA" }
->   
->   /*
->    * vm_fault is filled by the pagefault handler and passed to the vma's
-> diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
-> index 1ed35d258d2e..2ea71c1bb170 100644
-> --- a/include/linux/mm_types.h
-> +++ b/include/linux/mm_types.h
-> @@ -1819,6 +1819,8 @@ enum tlb_flush_reason {
->    * @FAULT_FLAG_ORIG_PTE_VALID: whether the fault has vmf->orig_pte cached.
->    *                        We should only access orig_pte if this flag set.
->    * @FAULT_FLAG_VMA_LOCK: The fault is handled under VMA lock.
-> + * @FAULT_FLAG_NO_NUMA: Do not perform NUMA balancing migration or NUMA
-> + *                      task access accounting on protnone faults.
->    *
->    * About @FAULT_FLAG_ALLOW_RETRY and @FAULT_FLAG_TRIED: we can specify
->    * whether we would allow page faults to retry by specifying these two
-> @@ -1857,6 +1859,7 @@ enum fault_flag {
->   	FAULT_FLAG_UNSHARE =		1 << 10,
->   	FAULT_FLAG_ORIG_PTE_VALID =	1 << 11,
->   	FAULT_FLAG_VMA_LOCK =		1 << 12,
-> +	FAULT_FLAG_NO_NUMA =		1 << 13,
->   };
->   
->   typedef unsigned int __bitwise zap_flags_t;
-> diff --git a/mm/hmm.c b/mm/hmm.c
-> index 2f1e98c6b644..62cdeb071781 100644
-> --- a/mm/hmm.c
-> +++ b/mm/hmm.c
-> @@ -648,7 +648,7 @@ static int hmm_do_fault(struct mm_struct *mm,
->   	unsigned long addr = hmm_vma_walk->last;
->   	unsigned long end = hmm_vma_walk->end;
->   	unsigned int required_fault = hmm_vma_walk->required_fault;
-> -	unsigned int fault_flags = FAULT_FLAG_REMOTE;
-> +	unsigned int fault_flags = FAULT_FLAG_REMOTE | FAULT_FLAG_NO_NUMA;
->   	struct vm_area_struct *vma;
->   
->   	if (hmm_vma_walk->locked)
-> diff --git a/mm/huge_memory.c b/mm/huge_memory.c
-> index 0d589be136d2..ea380bf45df0 100644
-> --- a/mm/huge_memory.c
-> +++ b/mm/huge_memory.c
-> @@ -2361,6 +2361,9 @@ vm_fault_t do_huge_pmd_numa_page(struct vm_fault *vmf)
->   	if (!folio)
->   		goto out_map;
->   
-> +	if (vmf->flags & FAULT_FLAG_NO_NUMA)
-> +		goto out_map;
-> +
->   	nid = folio_nid(folio);
->   
->   	target_nid = numa_migrate_check(folio, vmf, haddr, &flags, writable,
-> diff --git a/mm/memory.c b/mm/memory.c
-> index fe72e66c9c2e..53c819a6e49a 100644
-> --- a/mm/memory.c
-> +++ b/mm/memory.c
-> @@ -6404,6 +6404,9 @@ static vm_fault_t do_numa_page(struct vm_fault *vmf)
->   	if (!folio || folio_is_zone_device(folio))
->   		goto out_map;
->   
-> +	if (vmf->flags & FAULT_FLAG_NO_NUMA)
-> +		goto out_map;
-> +
->   	nid = folio_nid(folio);
->   	nr_pages = folio_nr_pages(folio);
->   
-> 
-> ---
-> base-commit: 4318887a3efa4c53d6f083ccfd7105b809a3ac65
-> change-id: 20261112-numa-3649f4bf57c9
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 4070dc8d97d9..e5d40575aa95 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -4278,7 +4278,11 @@ void intel_color_plane_commit_arm(struct intel_dsb *dsb,
+ 				  const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+-	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
++	struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
++
++	/* The linked Y-plane has no 3D LUT state of its own */
++	if (plane_state->is_y_plane)
++		return;
+ 
+ 	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
+ 		glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
+@@ -4318,7 +4322,7 @@ intel_color_load_3dlut(struct intel_dsb *dsb,
+ 		       const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+-	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
++	struct intel_crtc *crtc = to_intel_crtc(plane_state->hw.crtc);
+ 
+ 	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
+ 		glk_load_lut_3d(dsb, crtc, plane_state->hw.lut_3d);
+-- 
+2.50.1
 
