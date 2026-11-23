@@ -2,52 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C9C606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 06:25:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D53FF606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 06:40:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KcTBupkm
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=gcrArF9+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB00710E13B;
-	Mon, 23 Nov 2026 06:25:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58EC410E2B1
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 06:24:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 924B510E17B;
+	Mon, 23 Nov 2026 06:39:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE23310E17B
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 06:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795415078; x=1826951078;
+ t=1795415988; x=1826951988;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=4rMZmIjt94b3N2lghuecqNJZk5Nlg0TeKalMMYpFYTM=;
- b=KcTBupkmubyivMwT40HHimq9f9bayOh6Hcoh8oqg77Fxu4xTQp16qEes
- gQqQtiRijTT+KoLNOe1/E4myxua92JEsqLHIAaMEYIuAMlfzjKpghT+jM
- qxXUJkV103/AiJoRAOho/r+UtuE/nkkD9FlkoDLEiwAxgmYc0aUFQj/20
- UhQBxp3keYmcVbFHGxbD5iswxaJ7qyTgggQj6HcUk6m8INByenCE8NiGQ
- bxgMTwCQaHvHEH44m/118Zl37gV+GuXdlxJNFTycT9lYtse5c/0ugaaJF
- eg8bLxvfyV0LoIGu/aoMmCsvotADIrrI9i1e0idVD4GNfopNrjFoCGdze g==;
-X-CSE-ConnectionGUID: 1FMkHBTPR3+rjGVg81X1dg==
-X-CSE-MsgGUID: VHeHYVIcSdiRpMtbRCmdgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4260577"
+ bh=YyS8DQ3ZQn90qiKVNn1UfG4cznlawLnCxkgrOAxFjp4=;
+ b=gcrArF9+EiRethBdJEInCbxXMDuu606uoW0xUrO60Mogcn/bkkfgznn/
+ ZniKR8PjCMocwH40pArWhSL3pfzdEVj/7enwBu3greEFjygls/3o5glZy
+ h/Y9BgihsB9caRMBO1ILtxd/lN3hJr1G/FehxspWjmrSuaKsodDXcjje5
+ Wkc7nt6v9MyeIER1fN4O4meO99HsjBwaXkJoV0k5ToV7Q1UTDLS/9KDBU
+ 5O9sujgzYNsQEoXYeNgucNfZeFoy9S+Wsq7p4K+ctSREL+bGea0pV3uHm
+ cyco9LkoNpRKUKxAWj/92K6y2KrL4P4Ap761NBlnJvkShoim/9ib9jXld g==;
+X-CSE-ConnectionGUID: Chg9o97vQEGD8OK/8jzehg==
+X-CSE-MsgGUID: N0vNejqoQ9CBjKrcZll5NA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4060799"
 X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
-   d="scan'208";a="4260577"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2026 22:24:33 -0800
-X-CSE-ConnectionGUID: H2UT0YdpR6C+cP7SL9l6ZQ==
-X-CSE-MsgGUID: KU219clzQqSb0/T3om9ndw==
+   d="scan'208";a="4060799"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2026 22:39:48 -0800
+X-CSE-ConnectionGUID: dskcG7AGT4usL3NeKB9h1g==
+X-CSE-MsgGUID: WD9ygtYIQhGkDD+sxsC1Pg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11632261"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11099111"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2026 22:08:37 -0800
+ 22 Nov 2026 22:39:46 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  badal.nilawar@intel.com, aravind.iddamsetty@linux.intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com
-Subject: [PATCH] drm/xe/sysctrl: Drain page offline queue on queue-full event
-Date: Mon, 23 Nov 2026 11:38:26 +0530
-Message-ID: <20261123060825.1054484-2-riana.tauro@intel.com>
+Subject: [PATCH v2] drm/xe/sysctrl: Drain page offline queue on queue-full
+ event
+Date: Mon, 23 Nov 2026 12:09:33 +0530
+Message-ID: <20261123063932.1061164-2-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
@@ -76,6 +77,8 @@ firmware can resume queueing new pages.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
+v2: rebase
+---
  drivers/gpu/drm/xe/xe_ras.c                 | 12 +++++++-----
  drivers/gpu/drm/xe/xe_ras.h                 |  1 +
  drivers/gpu/drm/xe/xe_sysctrl_event.c       | 10 ++++++++--
@@ -83,7 +86,7 @@ Signed-off-by: Riana Tauro <riana.tauro@intel.com>
  4 files changed, 19 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index 0fb891d00b36..81586c484e5d 100644
+index b35c77caeaae..4014945b47ba 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
 @@ -483,11 +483,13 @@ static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size
@@ -104,7 +107,7 @@ index 0fb891d00b36..81586c484e5d 100644
  {
  	struct xe_ras_offline_common response = {0};
  
-@@ -1342,7 +1344,7 @@ int xe_ras_init(struct xe_device *xe)
+@@ -1524,7 +1526,7 @@ int xe_ras_init(struct xe_device *xe)
  
  	/* Fetch the offline list before queue to avoid duplication */
  	get_offline_list(xe);
@@ -114,7 +117,7 @@ index 0fb891d00b36..81586c484e5d 100644
  	/*
  	 * During probe, process and log any errors detected by firmware while the driver was not
 diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-index f7b587ac84e3..14516f0d3245 100644
+index 5d41c4543c55..5d24390c8f56 100644
 --- a/drivers/gpu/drm/xe/xe_ras.h
 +++ b/drivers/gpu/drm/xe/xe_ras.h
 @@ -23,6 +23,7 @@ int xe_ras_init(struct xe_device *xe);
@@ -124,7 +127,7 @@ index f7b587ac84e3..14516f0d3245 100644
 +void xe_ras_get_offline_queue(struct xe_device *xe);
  int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
  				struct xe_ras_get_counter_response *response);
- bool xe_ras_is_aer_internal_error(struct xe_device *xe);
+ u32 xe_ras_get_info_queue_size(struct xe_device *xe,
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
 index 3239c110a66a..9afd2b231793 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
