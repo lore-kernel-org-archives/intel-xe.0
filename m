@@ -2,132 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3213A606A31A
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 05:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08C9C606A31A
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 06:25:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.a=rsa-sha256 header.s=selector2 header.b=ubRqVjdo
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KcTBupkm
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E42DD10E2E6;
-	Mon, 23 Nov 2026 05:52:30 +0000 (UTC)
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011050.outbound.protection.outlook.com [52.101.52.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E40010E17F;
- Mon, 23 Nov 2026 05:52:24 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=T1n2fGlgOtQsEszQrmh9cUR+98GLJnj71Ub3DJiThqAi7Pgh3q6SOtRgzgycJFGtJz0J0xvA6m6iYj6bQW9827z/oYbVMCXSPUjUju68sa1UeohjUoxwnqeHxMzG3dhVsz2CvpEDZyboY3RBDbcFQKPwgYrr9EZ7zIrZz3/5/r8xb371kZtSi02yqkxGbuA8o5DhimW3Xzkgjh5ALSKxAjRbdnwMPa2LWCcjq0ILAYc2SIPp1/bwaKHGUTYLZDwTBa1lp9AsSrkjU9MOZvBVIjBhf6hQqr/llUQ9m+DyXgVFhpjTSr62i56++xg0PKDsZxyNlQhB+/Y3ffvm4/TvAQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MrqRTHNK2gC+Cpux2diFWuleGl1Gko1WQhJIOUlu2bY=;
- b=j2B3dQIMNlL/wdiD6jwSTAfmC1b52Fi/+EUlgvM4Hv8ZrIB/N1xsIc2R/PiBaUOSCKJPsg+ad3m9Y668n/WBhSmHVyDrztKMk524tT6GIAmeP0JwZapItyXUDKOJYQ9iI/CmJ8VEGI+pi9V45t5ZuD/ERM+WZ4yQFWyLor5BeW5dZwyqFSMpngiOur5u+t3sxeqLjUvEr3YFskm4oTql0QwwQK18pcQDw8WhrgKuUEn3Kv0t6KlKqDxHIyweX+FrxkQckszVu0Tc9RM6EbIwCikhuWhOrYbm9NfxbIIm0IVDCOOVXpvuvwZ7d3DDtxx1nQBNDAovvGbZcBeYGqHCDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MrqRTHNK2gC+Cpux2diFWuleGl1Gko1WQhJIOUlu2bY=;
- b=ubRqVjdoo3J9fTuGm5zosNiKdgTkhWzxGnKoqcq58NfJNuri82M9ViUGt97NvIMdBswIeTCzHTefbZzvzNiYxAsQwIZB7YrZDZTvgagbvc+Z0gLR7nDO1keVZio0YAYxkxIP6oLBJi111wW/7PC38FqsWH31HFQmRMx5aQyu3w+FVWPMZjkLUnt4kgZj83/CDxCnSJawJ8qroozpSwO+MLMB1P8Ey4l9JYos8hqrwdrkoCTak2Gs3j1uWoA5eWb8/3hnUyzV3O7C7e6r+9AAXRsgXnfMUB6AVgsxTlZi0+3vpDqtpCsZq16TxTwGfBcCoJS4vg/2CU96gxexAKwJ3w==
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH3PR12MB9730.namprd12.prod.outlook.com (2603:10b6:610:253::9)
- by DS7PR12MB6238.namprd12.prod.outlook.com (2603:10b6:8:96::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
- 2026 05:52:16 +0000
-Received: from CH3PR12MB9730.namprd12.prod.outlook.com
- ([fe80::843d:c1f0:b2ed:4128]) by CH3PR12MB9730.namprd12.prod.outlook.com
- ([fe80::843d:c1f0:b2ed:4128%4]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
- 05:52:15 +0000
-Date: Mon, 23 Nov 2026 16:52:10 +1100
-From: Balbir Singh <balbirs@nvidia.com>
-To: Aveline Noir <jm5905938@gmail.com>
-Cc: jgg@nvidia.com, leonro@nvidia.com, akpm@linux-foundation.org, 
- airlied@gmail.com, apopple@nvidia.com, christian.koenig@amd.com, 
- dri-devel@lists.freedesktop.org, Francois Dugast <francois.dugast@intel.com>, 
- intel-xe@lists.freedesktop.org, jgg@ziepe.ca, leon@kernel.org,
- linux-kernel@vger.kernel.org, 
- linux-mm@kvack.org, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
- Matthew Brost <matthew.brost@intel.com>, mm-commits@vger.kernel.org,
- mpenttil@redhat.com, 
- Patchwork <patchwork@emeril.freedesktop.org>, SeongJae Park <sj@kernel.org>,
- thomas.hellstrom@linux.intel.com, 
- Vlastimil Babka <vbabka@suse.cz>, ziy@nvidia.com
-Subject: Re: [PATCH] mm/hmm: account for subpage offsets in device-private PMDs
-Message-ID: <awObsp2ugvQZ1JQV@parvat>
-References: <179342234355.4.16705453209886955762@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <179342234355.4.16705453209886955762@gmail.com>
-X-ClientProxiedBy: MEVP282CA0075.AUSP282.PROD.OUTLOOK.COM
- (2603:10c6:220:202::15) To CH3PR12MB9730.namprd12.prod.outlook.com
- (2603:10b6:610:253::9)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB00710E13B;
+	Mon, 23 Nov 2026 06:25:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58EC410E2B1
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Nov 2026 06:24:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795415078; x=1826951078;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4rMZmIjt94b3N2lghuecqNJZk5Nlg0TeKalMMYpFYTM=;
+ b=KcTBupkmubyivMwT40HHimq9f9bayOh6Hcoh8oqg77Fxu4xTQp16qEes
+ gQqQtiRijTT+KoLNOe1/E4myxua92JEsqLHIAaMEYIuAMlfzjKpghT+jM
+ qxXUJkV103/AiJoRAOho/r+UtuE/nkkD9FlkoDLEiwAxgmYc0aUFQj/20
+ UhQBxp3keYmcVbFHGxbD5iswxaJ7qyTgggQj6HcUk6m8INByenCE8NiGQ
+ bxgMTwCQaHvHEH44m/118Zl37gV+GuXdlxJNFTycT9lYtse5c/0ugaaJF
+ eg8bLxvfyV0LoIGu/aoMmCsvotADIrrI9i1e0idVD4GNfopNrjFoCGdze g==;
+X-CSE-ConnectionGUID: 1FMkHBTPR3+rjGVg81X1dg==
+X-CSE-MsgGUID: VHeHYVIcSdiRpMtbRCmdgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4260577"
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
+   d="scan'208";a="4260577"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2026 22:24:33 -0800
+X-CSE-ConnectionGUID: H2UT0YdpR6C+cP7SL9l6ZQ==
+X-CSE-MsgGUID: KU219clzQqSb0/T3om9ndw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11632261"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2026 22:08:37 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ badal.nilawar@intel.com, aravind.iddamsetty@linux.intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com
+Subject: [PATCH] drm/xe/sysctrl: Drain page offline queue on queue-full event
+Date: Mon, 23 Nov 2026 11:38:26 +0530
+Message-ID: <20261123060825.1054484-2-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH3PR12MB9730:EE_|DS7PR12MB6238:EE_
-X-MS-Office365-Filtering-Correlation-Id: de5e7853-6e43-4473-a3af-08df4925ed60
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|10070799003|1800799024|23010399003|6133799003|22082099003|18002099003|11063799006|56012099006|261028144727099003|261026121527099003|261026140227099003|261102123227099003|261022075727099003|261022105027099003|261021123027099003|261021121427099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: QpiQoDrXu5FqpZCcFbs71ZJDka7HDyCHkU/2wVusAIG45zHOdR6nNYRsThgpBjRQjED1DgiR6jo4Sqw9LEFh06v/GR5tCtKjRhZL2K0mQ7f93ER4hvMhZe1ffsf1ahVw7x2YQmfZbLT8SSqA9v3X/ys9DaUhcWs0EhA9/BZKMmLdEm8S71IAIlP+QO52uf9HFah4fma1BMxH3TYDu28TSGi03ozeKorMu5nsI+RiLqsEY0MznUnuMd9kVNfIZbi/l0UXstBTK3dlcWWO29C4JmXZLUlGF1JXi0u4RknnzVaawb7AkSkyYdIQ99xuAprRm1SLrkqTfz6D98ma/WZCyKste1kGYG4KFClOjBmrZerEhucv0GIiFhb0fQGi4qwcKIyIgOe/1i/npmqJIDmigWxODZnk/WFZlVJ91sUuRLYSq3RPJo8uqDaaJkIBxyGvtpNPTvKzkTW7qBYm6hNycBkUvmm+GnSLAuUjeYrB02zRCDFdqXjxDX14Igntq+ZpuRYxqFflGjvImSw4tNOGMmmZ+8ROC3teXSQBbpN8FhU7vt6lm9k65Bjx1qbsSgrE7L7ZzlwyIZFXOebT+tMdo1m7K7dS7yNup+DAO9N085RI75eQ83KR+WtlHAZlwWYYzj0weB2pGzaZGIvvtjjhaaXMZ/I7Yj/5wZhlwUsY9AY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH3PR12MB9730.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(10070799003)(1800799024)(23010399003)(6133799003)(22082099003)(18002099003)(11063799006)(56012099006)(261028144727099003)(261026121527099003)(261026140227099003)(261102123227099003)(261022075727099003)(261022105027099003)(261021123027099003)(261021121427099003)(261009223027099003)(10067099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aWc0UWJWMjltT016SDVxT1dVQlpZMFJxVHZQQndtU0NqckJreUNMeUFQK0FD?=
- =?utf-8?B?bHh2Mzd4RWFVUDVFQ0N1R3NUTDl5bzNBbkc3TkhDSHBKS1l1aWZpbDBuaEt5?=
- =?utf-8?B?bVZkR0JzQWJuMm5WVlVFdmZhSDFScDBod25OK2gwUEJXNzJoa2wrb2hWVWlB?=
- =?utf-8?B?MHJ6UUhyK2czd1NOVlBKM2Jobjh1UE0rV3JxTUFpekEwRWxjbis2OGlaWTE4?=
- =?utf-8?B?SllJeUJpNkdVS1RPWnltTXdHV0pOVmJ1RmxlZlRFQTF2ODZKRHV2YVNyMEty?=
- =?utf-8?B?N3VCdmRINDFpOXVKcnZFdlQ3bXk2eU9QMENrMk42K0pWaEJ3ekd4amxndDRL?=
- =?utf-8?B?T0NkMFRuVUlxL1JsblNoeHJUVkxFOEg4ZFdMU1FCRzJOalFHMjR0clpXMnZh?=
- =?utf-8?B?QVpHTjY0OEUvMEY1Rkg4bzl0OERrVFZJRTFyaDNDNmlLUU1BK0ZmT3FlMENj?=
- =?utf-8?B?QnVTMkpRQzlNbFhuQ1laaG5aVHpMeWJNbkRWR2hzK0dQSEtBN1ZQWk90MUlW?=
- =?utf-8?B?NS9xN1ZuQytYOEVkYWpoSnR0MmU5eXZnVVVwRVF3OFoybUN3THRzT29RdUtu?=
- =?utf-8?B?N1JpWTJhd1Rtc2hZUkRTb0NFZXVaQ21DcXNqK0JTVDNWVERFdzFnTTNDUXM3?=
- =?utf-8?B?Ly9ZUEFEcmlyVXFJRjZPS2kvUVljcUZUT3ArL1AyOFVhSlNzRUhuVk1Yamo0?=
- =?utf-8?B?T0lrcG54c2dORCtoTzNiSG9FMjNHV3NtOVd5cU1oQjkzQ0NDTmdnK0RQVkt2?=
- =?utf-8?B?RFhtSWs0Y3kyTmFaUHA4UVVqN2JKaHlETVhFRzRNWWovZmp2b0tDNFkvSjVP?=
- =?utf-8?B?VmxmK0tDV0lOVVhBdW16eW5JcHNjNnBlUjlBdjg2NkJpaU5rbzZXZ2d0Rm9i?=
- =?utf-8?B?c2sxNGJ6V2NkSE5xUTJuZTNUK3V0emFVQzd2L1o1b3A5Z3BaK3ZmcjZOdktW?=
- =?utf-8?B?bU4xZGZXMXo3bWh6V0FHbmVXbkxJVjJtRmRTVlhGRm9UbmZ1UGg1dUlLOG1T?=
- =?utf-8?B?cmRicmtlWTRURVVQVHlQc0NNNkU3SWdhRnVadHRvUzhmSzJuQkNRUEZJWC9I?=
- =?utf-8?B?Ykt1bWlXV1l0YmNEenhFaXpJZ2FEUE5KZ3MyZU8vaFZFS3h1UVgya3VQejBW?=
- =?utf-8?B?cEFrekJvTFdxaDlWNTBacjVsVkZOSEhSUWpSM3dOdnRlaEo3enhWWEt2akRx?=
- =?utf-8?B?UldqUFZNYlJsOTI1SGdlQUJqT0d5YmJPRGozalVhQ3hpNlRqd0trNEhPb0Fl?=
- =?utf-8?B?ODlqUm1DVjQzYTJuazJ1T2MyTmpCR1dBM2ROMmllQzdWTmZOU2s1Q0hYWnBw?=
- =?utf-8?B?dk5NWTFhWmxoR0grU0RVd2ljVyt4UG0xV2xhaGdXekVXL09qWGt1ZnBYQUxH?=
- =?utf-8?B?Q055cFhRV043NWx6SFJ6MTVpMVlZV2hCTHpmd0prNVh5cERlS01QaGg4c2c4?=
- =?utf-8?B?cE05Y0Fxc3JXUlFCdHBjcC9KT2VWdUVuK2dOSGhnVEVhMGV1Z24yUVJvR25H?=
- =?utf-8?B?b20yK2VSSGsxeDVXcmR0UGpvbURpV3l4REVpVDZndkxBbU5vL2t2WENWSGtV?=
- =?utf-8?B?WEpZRWUxLzNTMGljMU5vaG5sMFdHR2ZmeDlPZjdjRnlWd0NuTVYxbVRKQ3Rq?=
- =?utf-8?B?VHppSUZsd3JocG1BUWs1TkczdUQreEhNTjhkNDVONGllL2VSMnFlbVJ3OVZz?=
- =?utf-8?B?TVk5b3Yxcy82SjEzZkZtYkFkS0JMbXlaamVaclQvQ3Z5WTRScEJoMkw5Mk1m?=
- =?utf-8?B?dnlINmUrR3gwMEE3bHZkbC9MRm4vQmxHeGkzK3hqZiszdnk1U0ZleFdwRE9W?=
- =?utf-8?B?RUVtZ2xVdWdoUTd0N2E1K2hrekFlZm9CNHVhc3pnTytjMThySXJZQUVIWlJv?=
- =?utf-8?B?YnQ1anNuTFZxc1dtTXZheUtyb09rNlRwYWxqY01UNnBOeEwrU0llL3VYRFl2?=
- =?utf-8?B?RFFQYlNCMTF0ZFRLQWJNL3cvQlBvL0FrNHZIK1VsZWNyaWZTbHNENXpwYm00?=
- =?utf-8?B?TGFTREhWbUVHMnp3dFZtNUNPQnBYa0VyNUVqaHZqY1BORUdnNVZ1M0dvQ2c2?=
- =?utf-8?B?am1DMXRQZ3I3bTNWMUZsb3ZwUU9taWl0UjYycVRLRjlMVTJXMHlzeGxMK05v?=
- =?utf-8?B?Y1Nxcy9SMU5CTDJ2elRONHVYU1oyL29PNVluZHRIR1Z0dVBFRXR6UkxmeTRM?=
- =?utf-8?B?YjZqYW5MeDBNMFpEOWtxRXI2UGVrYjNVUG9SbUM0M1o5MGhKaWJYQ1BWVExL?=
- =?utf-8?B?YjhrSVc0N0crS0t3cG14OEJ6dnhycis2Yk9BZlRrQWI5eGlxdFQ5dmFuZFBv?=
- =?utf-8?B?UDhkaUsvVjFwMitNeUR1KzZGMEdzQUxuelFqWTFIWWdVbnhMREhIeGV2aHNQ?=
- =?utf-8?Q?k0DAw4G0agMfotAtUBfComQfgo6lWj+84VQcBy09yD/lE?=
-X-MS-Exchange-AntiSpam-MessageData-1: bMurxbR3w5vFpA==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: de5e7853-6e43-4473-a3af-08df4925ed60
-X-MS-Exchange-CrossTenant-AuthSource: CH3PR12MB9730.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Nov 2026 05:52:15.8116 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ovv1snhNfZJW7St6ni4xDtp/QbG3dmr7PBr+l/zQTvW7lNc04U3hcnf6FcyWVhccXJ2D+5gNQbZQoJCBi+4rsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB6238
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -138,51 +62,110 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Sat, Oct 31, 2026 at 03:07:58PM +1100, Aveline Noir wrote:
-> When a query starts inside a device-private PMD owned by
-> range->dev_private_owner, hmm_vma_handle_absent_pmd() still fills the PFN
-> array from the folio's first page. The returned PFNs therefore refer to
-> earlier pages rather than the requested subrange.
-> 
-> Add the query's PMD-relative page offset to the initial PFN, as the
-> present PMD path already does.
-> 
-> Fixes: 10b9feee2d0d ("mm/hmm: populate PFNs from PMD swap entry")
-> Signed-off-by: Aveline Noir <jm5905938@gmail.com>
-> 
-> ---
-> Found during a synthetic test_hmm check of device-private THP handling.
-> Tested PMD-aligned and non-aligned subranges, PMD boundaries, split
-> PTEs and fake-device data accesses with test_hmm in QEMU TCG; all
-> executed tests passed with the fix. No real GPU testing was performed.
-> ---
->  mm/hmm.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/mm/hmm.c b/mm/hmm.c
-> index 2f1e98c6b644..e89f140d3e5c 100644
-> --- a/mm/hmm.c
-> +++ b/mm/hmm.c
-> @@ -355,7 +355,8 @@ static int hmm_vma_handle_absent_pmd(struct mm_walk *walk, unsigned long start,
->  	    range->dev_private_owner) {
->  		unsigned long cpu_flags = HMM_PFN_VALID |
->  			hmm_pfn_flags_order(PMD_SHIFT - PAGE_SHIFT);
-> -		unsigned long pfn = softleaf_to_pfn(entry);
-> +		unsigned long pfn = softleaf_to_pfn(entry) +
-> +			((start & ~PMD_MASK) >> PAGE_SHIFT);
->  		unsigned long i;
->  
->  		if (softleaf_is_device_private_write(entry))
->
+The firmware raises a System Controller event when its page offline
+queue is full and cannot track further pages until the queue is read.
+Handle it by draining the queue and offlining the returned pages, so the
+firmware can resume queueing new pages.
 
-Looks good to me!
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ras.c                 | 12 +++++++-----
+ drivers/gpu/drm/xe/xe_ras.h                 |  1 +
+ drivers/gpu/drm/xe/xe_sysctrl_event.c       | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h |  4 +++-
+ 4 files changed, 19 insertions(+), 8 deletions(-)
 
-Reviewed-by: Balbir Singh <balbirs@nvidia.com>
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 0fb891d00b36..81586c484e5d 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -483,11 +483,13 @@ static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size
+ 	} while (common->additional_data);
+ }
+ 
+-/*
+- * Retrieve firmware queued pages from warm-retained SRAM during probe. Handle and soft-offline
+- * each page as required.
++/**
++ * xe_ras_get_offline_queue() - Drain page offline queue
++ * @xe: xe device instance
++ *
++ * Retrieve firmware queued pages from warm-retained SRAM and process each page as required.
+  */
+-static void get_offline_queue(struct xe_device *xe)
++void xe_ras_get_offline_queue(struct xe_device *xe)
+ {
+ 	struct xe_ras_offline_common response = {0};
+ 
+@@ -1342,7 +1344,7 @@ int xe_ras_init(struct xe_device *xe)
+ 
+ 	/* Fetch the offline list before queue to avoid duplication */
+ 	get_offline_list(xe);
+-	get_offline_queue(xe);
++	xe_ras_get_offline_queue(xe);
+ 
+ 	/*
+ 	 * During probe, process and log any errors detected by firmware while the driver was not
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index f7b587ac84e3..14516f0d3245 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -23,6 +23,7 @@ int xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
+ bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
+ u32 xe_ras_get_max_pages(struct xe_device *xe);
++void xe_ras_get_offline_queue(struct xe_device *xe);
+ int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
+ 				struct xe_ras_get_counter_response *response);
+ bool xe_ras_is_aer_internal_error(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+index 3239c110a66a..9afd2b231793 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+@@ -37,11 +37,17 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+ 			return;
+ 		}
+ 
+-		if (response->event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED)
++		switch (response->event) {
++		case XE_SYSCTRL_EVENT_THRESHOLD_CROSSED:
+ 			xe_ras_counter_threshold_crossed(xe, response);
+-		else
++			break;
++		case XE_SYSCTRL_EVENT_PAGE_OFFLINE_QUEUE_FULL:
++			xe_ras_get_offline_queue(xe);
++			break;
++		default:
+ 			xe_log_err_info(xe, SYSCTRL, -ENOPKG,
+ 					"Unexpected event %#x\n", response->event);
++		}
+ 
+ 		if (!--count) {
+ 			xe_log_err(xe, SYSCTRL, -EXFULL,
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+index 348768ca454a..03bb34e279f0 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+@@ -14,9 +14,11 @@
+  * enum xe_sysctrl_event - Events reported by System Controller
+  *
+  * @XE_SYSCTRL_EVENT_THRESHOLD_CROSSED: Error counter threshold crossed
++ * @XE_SYSCTRL_EVENT_PAGE_OFFLINE_QUEUE_FULL: Page offline queue full
+  */
+ enum xe_sysctrl_event {
+-	XE_SYSCTRL_EVENT_THRESHOLD_CROSSED	= 0x01,
++	XE_SYSCTRL_EVENT_THRESHOLD_CROSSED		= 0x01,
++	XE_SYSCTRL_EVENT_PAGE_OFFLINE_QUEUE_FULL	= 0x02,
+ };
+ 
+ /**
+-- 
+2.47.1
 
