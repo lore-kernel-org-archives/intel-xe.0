@@ -2,176 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39245606A32E
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 09:29:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592D1606A32C
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Nov 2026 09:30:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=GjoEEm+2;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=A25S4Cjg
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=As8kJMj+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 025E210E79A;
-	Mon, 23 Nov 2026 09:29:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53FF610E0F5;
- Mon, 23 Nov 2026 09:29:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795426149; x=1826962149;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=Ug0nqVo4JAV/Ds52/0IWI1ajJ0UxKkcelyv47IxxIA0=;
- b=GjoEEm+2r1DAVzvouFjZhZdBQRpL7n20Axy386dP74EC11p4mnAM/+q1
- CqET3liHajXE9JDV/tXuVODRn3NAF5ZJ0SnmJRy8QV5KxIlkYLJsAj2SD
- eICIe4rmzt+O+4jJMjeB8hVinZF1jFUmNCEy6flGZsJZY/Olpw4k5ZWHO
- T2SNSVWq+hg2377jltVwzESGmmgng7lNGGhCOghe+JMeeXRfKQ+SfYDFf
- JNtTJynFMUO0VnYmG6/SQcFXs+V4uOYbrK6y4du4XDtCf4LkOldeLzOlW
- 9k4T3tSmOBw1btnSqpHlJrRSzdnto6bv5JGm6/okBhyG6pWygzcdHGcI+ w==;
-X-CSE-ConnectionGUID: hdFf1hl2Q3Gddkx2fKtL5Q==
-X-CSE-MsgGUID: p9NY/icdT+CRbNb2Yq8BSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11974"; a="4120624"
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; 
-   d="scan'208";a="4120624"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 01:29:09 -0800
-X-CSE-ConnectionGUID: qihgskGUR/SD8PTKrYO9Aw==
-X-CSE-MsgGUID: Q9xXPlaASr2blV+m3Ce5fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,227,1787036400"; d="scan'208";a="11400417"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 01:29:08 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Mon, 23 Nov 2026 01:29:08 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Mon, 23 Nov 2026 01:29:08 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.69) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.56; Mon, 23 Nov 2026 01:29:08 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XHw5hisuj4p5FJ4Pto2cJR0Evs6NFEFzuWNwMoXoOd+f8SQ334LDElv4mXR0AR/r0/sxm4FBYY38JUaVA/rREVdmngw9R+PUleNOFc1z/a0iArWPTYoMyAy4ZgmjvX/+h57HaR2Cf7rT7s6HCQb04v04ZHjcZ+GLYY0lj8pyfVALlfB7FUYIkx7YmlkTw7ar1bffNFObvJ3wdiI8C5SejS9xOQjywzg5MIJVlnGXtS7L1tyMCRCtnK6wW9FeGuXKmyDflk2hq9y86BLRwJmloLqd8r8H4NvrunPSKYEVruvdXswSk+bhgRQFggT0tFSnNnxECB4K2z2kBRDukxPNnw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ug0nqVo4JAV/Ds52/0IWI1ajJ0UxKkcelyv47IxxIA0=;
- b=OI023CiRVmY4jBo/0oQcgnHZj80wBId6vicjDFpuBmtuozppQ9bH33r9aoELxv+PcyE3jrwGzkBMX0rgdX6J68d519NMvs5PpCbe7Ekwir3oXKgKZj7ZYYzES2k9/ps2Fl2bskx/vSfUrKIhX5i0LQ3q6VPBbjebBCC7HC7d81ndqRL2JvqGh+5vr5O4YO+KcMbhfNFax6cdQdbFZKxY0nTIG8iW2i6+wNtIRbqdMHXexTxOfIz4sHusa/rmB3w+sV427/1EVbZKerMWoqMLWfJBUpW6j5cfkUhRYczgtgGQh2USsN2rG17zAULo9LcoE9GedoTvM3EoG5u8rsXRhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ug0nqVo4JAV/Ds52/0IWI1ajJ0UxKkcelyv47IxxIA0=;
- b=A25S4Cjg8bbnFjlkiylcKdUxRtgTOKYQ9DvE3iZus9xpAa9In35UjDIu5GEujAVNm/IQP2IDfMBA9qdTfmR5h5CxJealapW9fQvqQmh6chF0Xkm6te7d7poXNk+Gtz6zRphGv5/T6Yo7S1HxV2Af9152bPbUiYj+DtJxUWSDSzw=
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- FT1PR11MB875833.namprd11.prod.outlook.com (2603:10b6:170:37::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Mon, 23 Nov
- 2026 09:29:01 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.21.0639.012; Mon, 23 Nov 2026
- 09:29:01 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "j@metarealtyinc.ca" <j@metarealtyinc.ca>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
- Rodrigo" <rodrigo.vivi@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>, 
- "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "Manna, Animesh"
- <animesh.manna@intel.com>
-Subject: Re: [RFC PATCH] drm/i915/psr: Send the AS SDP in PR Active while
- vblank is enabled
-Thread-Topic: [RFC PATCH] drm/i915/psr: Send the AS SDP in PR Active while
- vblank is enabled
-Thread-Index: AQHdVd7OB1r9KQ3+QkGsgdXDuCF/37c2+zcAgABZjACAABl2AIAADcqAgAQyYQA=
-Date: Mon, 23 Nov 2026 09:29:00 +0000
-Message-ID: <ba1ee8b0cd9bde1c1b93048a5d3a29a867dac8e1.camel@intel.com>
-References: <20260923041342.2146450-1-j@metarealtyinc.ca>
- <20261006220500.3417572-1-j@metarealtyinc.ca>
- <76935065478d9f4ab9ee42e36b541101bad34423.camel@intel.com>
- <awBhLKnEiGt69Vr7@intel.com> <20261120163416.66175-1-j@metarealtyinc.ca>
- <awCCGeCxHToY8tsI@intel.com>
-In-Reply-To: <awCCGeCxHToY8tsI@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|FT1PR11MB875833:EE_
-x-ms-office365-filtering-correlation-id: a4648453-6a5f-4b66-1473-08df4944353b
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|261026140227099003|261026121527099003|261022075727099003|261022105027099003|261028144727099003|261021123027099003|261021135927099003|261021121427099003|10067099003|261102123227099003|38070700021|11063799006|4143699003|56012099006|261009223027099003|18002099003|22082099003|6133799003;
-x-microsoft-antispam-message-info: FSkdqf7tqJ/bx80sjP7w5a3O9GBiChaubkevxFsdB3LKQfhKCdg81JXodmJeDZ93HyBYYp80ljlZBq3HqcmBtZoh2iAhatb7GWCEnU1+VsERfNQqhjmboENtLra+VpH05wD29mXDJnaOP2NaJIZcy6PLNAnN7vh25MVHY7/afYb5tIbC+Rjr/IUtu+LoUFajeBu1jIEe7z4NU/UMKZz3zd83dUmL83IKA5K0XdaZ6mUI6UfHdeIjQCYjaQTIwG4+70wQb4qvyyAz9CUWXX+vt4Nw16U5dbRf/+K6e8JAMiWDJniiRqR90RFZmz2fQIjz1URo+5DJH9uyma2vA/s+1xWPEYoWRQ5gE1VL4W5b2+KfIV0DLnotLtPrq5IKndE/yGiVRYRMCyu2PDroOFhdzc34HfBX0DQahmBGsn5rQ0hE/9ZbVOPnVT6M/ggF53pHXR6iF5c66sC+OSpFZGUErO/WKHJI9xfLevO270VuAsxbKVTF36Gh1kRyVWnK7E4A1hZSx2BBzayo8cOgQ8tXMUkc6IIFJG3D7eMTxQWkv+5uVvWwWV7wjxG/PqJoAmbOy7+XptLp+nNMpjctEPrPW2toOvmnBxX/idLHQkNO8fEp7cWhQlQqmVetgQCbH4VBbz34Ydby4T/+58XUDxFhHulD2iazj2PNXqwQe/5KQC13OiaSa4+e8f2R6POxpj5L2LNjClxR36HFChJflnTVqE821mFa0DOmS1WHVuBLTBk=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(261026140227099003)(261026121527099003)(261022075727099003)(261022105027099003)(261028144727099003)(261021123027099003)(261021135927099003)(261021121427099003)(10067099003)(261102123227099003)(38070700021)(11063799006)(4143699003)(56012099006)(261009223027099003)(18002099003)(22082099003)(6133799003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?a1FzVTlrSnprbDU2U0p5SHlIOHZEa2RVQWZhZGtYVjcycUo2bGtOTEh3Zk5z?=
- =?utf-8?B?S3RsR2E4eXdOVzZ1VGNsY0ZKUzhZTFRHcFF1ZXBkbkowQTZXWjBUbjU2eWZx?=
- =?utf-8?B?cW5Pd1BRS05tYmJXNExYcXZyVzFQK0M5Y1cwZWFjd202anJoRWlnNXBGZms4?=
- =?utf-8?B?NGIwd2xxV01zMkNCT25zWTlJYVBvL3F3aEF3dEZ6dHN1OXFYUjhNSWpGM0lx?=
- =?utf-8?B?Vmtyekx0SUNLSXpIVEtPKzIrNHVLcWp4YWRCdnBzS20vd0hKNlJ3Y1lzM1Bq?=
- =?utf-8?B?dUMzU0tTeDdCcHZCQjMrQ0cwUkk1RlVHalVMQUZXVUdUcWF2a2RlOTd5bjkz?=
- =?utf-8?B?Q2ErY2xMVzR1UDZPS2V1b1JOWmRsRmx1WUlqdnpwRURKQ1VUQ2UzT0VubXFx?=
- =?utf-8?B?SU5Wc1ZqZUtmQXE0STIzWEIvRkJXK3JGQ3gzYldCb0dmMDU1K3Y1dFduRnBp?=
- =?utf-8?B?TDB0M0RXeW1LZkJWejUvUjJmYTFQQzJiU2dZekR3dGxXWk1SeW5xMUZFcW5F?=
- =?utf-8?B?TGQ1NFNLWFlJRWp1U09YZEhqUjdsNy9kVGtaVCs5ek1iV1dSTTVXamswRjIv?=
- =?utf-8?B?M1Zlem52bmdSTStzblh1ZFJkMW8rMXg2ek10ek5pdURTN2k3YktQTmV3Wm9B?=
- =?utf-8?B?MG5INTRHWVNMaEpnRnAxb1EvTkY5RFdIWkhILzNFejRQNzhUS0RJMExhMUxK?=
- =?utf-8?B?ZE5hNDhSQWU5eXM1RXpaV243UFNCbzNyM0VVczN4UjZQZGdIcnFDeFRNWnNv?=
- =?utf-8?B?dEEyeGhYajdRUW1qaURILzdtNUdIKzM2amlaZWo1SW1kMVdqM1QzVE1WVEcr?=
- =?utf-8?B?djRrRHNaMEhrYWIxRjVrQys1b3pueTlMRzJZZExLbTlOQTBick0vY0FkWTRJ?=
- =?utf-8?B?VzZCSUxpdGdTT0RMSU9mRDU2dzREcVpVbDJTNEwxOGxZRVZjaERNSjBqSXVL?=
- =?utf-8?B?S3Q2MzR4ZEJPVnIySlF4L2FWYnFKaHBEUHNNYzBxaFc0QWQ0TUlzWFFWYzV4?=
- =?utf-8?B?b09pNVlOM3RpdkhtRE1nemx1VThkanJyQWI2ODhXMU9ZYWFPUkZxeW9pNUFk?=
- =?utf-8?B?MEFyQ2Rzd2hWSlpNSEsraW42aTNTVzErM1JrcENXWlFjaVNWemkyTDRPU3ZG?=
- =?utf-8?B?aGxuNCswM1Rrc0xzdVRLeVdOS3RhVVRkMXhndUVzQVZRdEZzbG0zU0IvN2tP?=
- =?utf-8?B?OWt4NTNHdzFoeWkxRjZ5R1R0ME9PU2hISEE4MWIyNlp2K1dKOTZMYzRwU3Q1?=
- =?utf-8?B?dXNsTXZ3S29ZMFJrWkJTV2FpdVpubmZwTmVQUmNRZ0NWeVV6RFV4aHREWEtX?=
- =?utf-8?B?TEFoVWdFa0NMNlFBUmFuOVoya2tLZ3IxU3RPQjRCZDVyL25McmVyTEJ4TGNi?=
- =?utf-8?B?YmlIMHkvc08zcUFVdmRKdlEyeHk0WGpLMXJXem1zWUJlQnFzRHRuLytFRmFD?=
- =?utf-8?B?Q1BNTnRWcFRkTXNMUlhDN0ExVmh3RllMbjVXRUFqL0ZWa2JKaHlVanNHL0pQ?=
- =?utf-8?B?cDNnRWNNNXRwK1NOMWh3NXVIUFdRWEU2MUc1Rk8wM1FlS1FWMXFaNm9sV3Ez?=
- =?utf-8?B?TnFSM3pWckdXT1VKVkJVTEtuVzN1RURQNnFNODZYckJaaHRGLzhxaG1WSTVB?=
- =?utf-8?B?Y2tLWU5mQ0NLSjNwSHBLN3JlK1hmKzR4MGt1Vyt5V0psOFhIR3Bva24za0pC?=
- =?utf-8?B?WTBLL25lemNodDQ2bWgvNmtEMHZjWm1keUp0OVcyRnhPSEpyRThRQTNTalhQ?=
- =?utf-8?B?c0ErYllFR3pvRGFCMnN4SlEvbTdabXlnY3RPTHFMREhUMUJwMnVBT25jS2JO?=
- =?utf-8?B?MUduVkdadDI5bjBiWDBjeHJ5cnZHUzhWd2xsSThISlpRdXYrU1VBWU41TVRZ?=
- =?utf-8?B?ODRWVytGYVlhcDlhb2YyaUQ5YVNUK2xDMXgwci8vVCsyVk16WGJFdlVvemZx?=
- =?utf-8?B?WHFnSVpqbExnY2IvMnNkTEUxenFlMHAxeC8wWHk4UHpkRllhZTRQa05QNEQy?=
- =?utf-8?B?OTM1MHhmZmJEWDl6V3ZZNzRmK2tTSG5lc2Nhb1Z1bWJCSHlxVW5zanU1N28v?=
- =?utf-8?B?Mld6TFNUT2l5L2FBd0ZyaWlKaDlTS0hKbUN3cGJHUmlqZy9tcjlaUVNrbFBs?=
- =?utf-8?B?NUV6ZDJqdUZiYUNRMnNWTFg1ZmM1dEkrWUo4eWcvZGhDaXMzdWc3dWxCSzNN?=
- =?utf-8?B?elN4TWsxUG9MV0NHQlVVSXNvc1ZtZDZvMVc3T0ticVRobFhYUUFMM2t4elkw?=
- =?utf-8?B?QjBvd2N0NnltUzh1N3V0T1hqRUZ3UXpRa1JOenlrcFJvMDZOTWZPS1MrSmsz?=
- =?utf-8?B?MmoxWE5kd0Q1ZUFHaFU5YkwrSDRxNFAwL3dsbUpXVENySGo1YjI3YzJFSHdt?=
- =?utf-8?Q?P53a+FnMAjLxol4U=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <B457EBCAEE19954180C7205DD04F80F2@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF30B10EBAA;
+	Mon, 23 Nov 2026 09:30:14 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D39E710EB95;
+ Mon, 23 Nov 2026 09:30:08 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 77C1E401CD;
+ Mon, 23 Nov 2026 09:30:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA18D1F000C6;
+ Mon, 23 Nov 2026 09:30:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795426208;
+ bh=t4U+ldndWXYiv8sPaqw7sW8lRoYP2EKLyk9iA28Ai0s=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=As8kJMj+D8cbkW8Y/3kujuVU1nEpni9qbmetR+F67FjFi1i4FzY669m04DvTtv34D
+ UbK5WYzNqTLHFOhddaows9iinulzDzs3W1gbRicH15wJk4Sx2OfqqNeZ1ioz4qf2tq
+ ov0eF2fzTnjETRuOG0oq9efrzqt6n0queknW/xs0rQkX81Nv5DPQUlAVAAHb0ki86W
+ 3d/Luz4ygugGwnOK/3H/ylIIwNyMIzA4DxBn6ST57ruH06dt/80YWoS5Sr/iwD6g9g
+ URV/h6w6UyBt5NKjCq+K8CAW3CtjH8Abng0oU+GOzwHDQq6tjYJfMk8m3QICP2l/2l
+ t3zg+q93JTJ7A==
+Date: Mon, 23 Nov 2026 10:30:05 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Mario Limonciello <mario.limonciello@amd.com>, 
+ Alex Deucher <alexander.deucher@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Harry Wentland <harry.wentland@amd.com>, 
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>, 
+ Mario Limonciello <superm1@kernel.org>, Xaver Hugl <xaver.hugl@gmail.com>, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org
+Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
+Message-ID: <awQGSuf2UJjItcO0@houat>
+References: <20261119-superm1-backlight-property-v12-0-89d5217d3618@amd.com>
+ <20261119-superm1-backlight-property-v12-1-89d5217d3618@amd.com>
+ <awB4Qe83u0l0XPKA@intel.com>
+ <8713bae1-9782-41d4-b09c-f14031203e88@amd.com>
+ <awPvoLCDeq1YFLE_@houat> <awPzsMWZ7e0i6i54@intel.com>
+ <awP0nasqAc4pAeMR@houat> <awP8hAy3Gim4eNxz@intel.com>
+ <awQAlSSks2We5h2z@houat> <awQENQN5SswJRtWw@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: P9Hd0JThVlPgEHPcBUE/wy90oD0l1XVJb2JdGuKyvHnXNQeGRs6H/M+BlFktkz0rrEYLWtu9/JEF32zEHUNLiXUaHi4Nl/ytqVzZQ7WAbBswgvFiHUWJeH7w3QsPr3LAh3XsamByq/hXikBgw2cDueDRpTT/OqP7b21XYtq1cjb9xIVb00IDe77OVwJ7ybQ/3LHnFhuL6kg9G1csvIuS8IyX8czUqYedfyOJYhTWUA99bA4LutvgJmkIkBhX2TERZ0nOarhVgrWzrVAwHWCk0mV+CEq2YMD4KT/JL/jUdmDwDicSuP1X8OqiWmkfv76auEBlEabnoa6esi9/Y46xVg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4648453-6a5f-4b66-1473-08df4944353b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Nov 2026 09:29:00.9414 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: c60Sih71YMfYN5zxGFLCO5DZVqLhZVmpVUbH+CQZ0tvIZOPZmg+b7APhbAo5gf12AlEBdOCaycD2QlhFoLm50lwZtEj0ZGDE2G9D2sb4UfM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: FT1PR11MB875833
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="krfptbljx3eyphdm"
+Content-Disposition: inline
+In-Reply-To: <awQENQN5SswJRtWw@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,69 +68,221 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-T24gRnJpLCAyMDI2LTExLTIwIGF0IDE5OjIzICswMjAwLCBWaWxsZSBTeXJqw6Rsw6Qgd3JvdGU6
-DQo+IE9uIEZyaSwgTm92IDIwLCAyMDI2IGF0IDExOjM0OjE2QU0gLTA1MDAsIEpha2UgU3RlaW5t
-YW4gd3JvdGU6DQo+ID4gSGkgVmlsbGUsDQo+ID4gDQo+ID4gT24gRnJpLCBOb3YgMjAsIDIwMjYg
-YXQgMDU6MDM6MDhQTSArMDIwMCwgVmlsbGUgU3lyasOkbMOkIHdyb3RlOg0KPiA+ID4gSXMgdGhp
-cyBzb21lIHdlaXJkIGhhcmR3YXJlIHF1aXJrIG9mIG91cnM/IEkgZG9uJ3Qgc2VlIHdoYXQNCj4g
-PiA+IHZibGFuaw0KPiA+ID4gaW50ZXJydXB0cyAocHVyZWx5IGFuIGludGVybmFsIHRoaW5nIHRv
-IHRoZSBkaXNwbGF5IGVuZ2luZSkgaGF2ZQ0KPiA+ID4gdG8NCj4gPiA+IGRvIHdpdGggdGhlIGV4
-dGVybmFsIHBhbmVsIHJlY2VpdmluZyBTRFBzLg0KPiA+IA0KPiA+IFRoZSBwYW5lbCBkb2Vzbid0
-IGNhcmUgYWJvdXQgdmJsYW5rIGludGVycnVwdHMuIFdoYXQgaXQgbmVlZHMgaXMNCj4gPiB0aGUg
-QVMNCj4gPiBTRFAgd2hpbGUgZnJhbWVzIGFyZSBiZWluZyB1cGRhdGVkLiBXaXRoIHRoZSBBUyBT
-RFAgc3VzcGVuZGVkIGluIFBSDQo+ID4gQWN0aXZlIGl0IGp1ZGRlcnMsIGFuZCB3aXRoIGl0IHNl
-bnQgYWxsIHRoZSB0aW1lIGl0J3Mgc21vb3RoIGJ1dA0KPiA+IERDNS9EQzYgaXMgYmxvY2tlZC4N
-Cj4gPiANCj4gPiBWYmxhbmsgZW5hYmxlIGlzIG9ubHkgdXNlZCBhcyB0aGUgImZyYW1lcyBhcmUg
-YmVpbmcgdXBkYXRlZCINCj4gPiBzaWduYWwuDQo+ID4gVXNlcnNwYWNlIGhvbGRzIGEgdmJsYW5r
-IHJlZmVyZW5jZSB3aGlsZSBpdCBmbGlwcywgYW5kIFBhbmVsIFJlcGxheQ0KPiA+IGFscmVhZHkg
-aG9sZHMgRENfT0ZGIGZvciB0aGF0IHdpbmRvdywgc28gc2VuZGluZyB0aGUgQVMgU0RQIHRoZW4N
-Cj4gPiBjb3N0cw0KPiA+IG5vIERDIHJlc2lkZW5jeS4gSXQgaXMgc3VzcGVuZGVkIGFnYWluIGJl
-Zm9yZSBEQ19PRkYgaXMgZHJvcHBlZC4NCj4gDQo+IFZibGFua3MgYmVpbmcgb24gZHVyaW5nIGZs
-aXBzIGFsbCBjb21wbGV0ZWx5IGFjY2lkZW50YWwuIFVzZXJzcGFjZQ0KPiBhc2tpbmcgZm9yIHRo
-ZSB2YmxhbmsgY291bnRlciBhaGVhZCBvZiBhIGZsaXAgaXMgbm90IG1hbmRhdG9yeS4NCj4gVGhl
-IHRlbXBvcmFyeSB2YmxhbmsgcmVmZXJlbmNlIHRoYXQgcXVlcnkgZ3JhYnMgYWxzbyBnZXRzIGRy
-b3BwZWQNCj4gaW1tZWRpYXRlbHksIGFuZCBpZiB0aGUgZmxpcCBpc24ndCBhY3R1YWxseSBjb21t
-aXR0ZWQgZHVyaW5nIHRoZQ0KPiBzYW1lIGZyYW1lIGFzIHRoZSBxdWVyeSB0aGUgdmJsYW5rIGlu
-dGVycnVwdCB3aWxsIGFsc28gaGF2ZSBiZWVuDQo+IHR1cm5lZCBvZmYgYnkgdGhlIHRpbWUgdGhl
-IGZsaXAgaGl0cyB0aGUgaGFyZHdhcmUuDQo+IA0KPiBXaXRoIHRoZSBEU0IvZmxpcHEgcGF0aHMg
-d2UgZG9uJ3QgaG9sZCBhbnkgaW4tZHJpdmVyIHJlZmVyZW5jZQ0KPiB0byB0aGUgdmJsYW5rLCBh
-bmQgdGhlIG9ubHkgcmVhc29uIHRoZSBtbWlvIHBhdGggZG9lcyBzbyBpcw0KPiBiZWNhdXNlIHdl
-J3JlIHVzaW5nIHRoZSB2YmxhbmsgaW50ZXJydXB0IGZvciB0aGUgY29tcGxldGlvbi4gSWYNCj4g
-d2UgaGFkIGEgYmV0dGVyIGludGVycnVwdCBmb3IgdGhlIG1taW8gcGF0aCB3ZSB3b3VsZG4ndCBu
-ZWVkIHRoZQ0KPiB2YmxhbmsgcmVmZXJlbmNlIHRoZXJlIGVpdGhlci4NCj4gDQo+IFdlIHNob3Vs
-ZCBhbHNvIGJlIGxvb2tpbmcgZm9yIGEgd2F5IHRvIGhhdmUgdXNlcnNwYWNlIG5vdCBkbyB0aGUN
-Cj4gdmJsYW5rIHF1ZXJ5LCBvciBtYWtlIHRoZSB2YmxhbmsgcXVlcnkgY29ycmVjdCB3aXRob3V0
-IGFjdHVhbGx5DQo+IGVuYWJsaW5nIHZibGFuayBpbnRlcnJ1cHRzLiBUdXJuaW5nIG9uIHZibGFu
-ayBpbnRlcnJ1cHRzIHJlcXVpcmVzDQo+IHVzIHRvIHR1cm4gdGhlIGhhcmR3YXJlIG9uIHBvc3Np
-Ymx5IGVhcmxpZXIgdGhhbiBuZWNlc3NhcnksIHdoaWNoDQo+IHdpbGwgd2FzdGUgcG93ZXIuIFdp
-dGhvdXQgdGhlIHZibGFuayBpbnRlcnJ1cHQgZ2V0dGluZyBlbmFibGVkDQo+IHdlIGNvdWxkIGxl
-dCB0aGUgaHcgc2xlZXAgdW50aWwgaXQgYWN0dWFsbHkgbmVlZHMgdG8gd2FrZSB1cCBmb3INCj4g
-dGhlIGFjdHVhbCBmbGlwLiBUaG91Z2ggSSBkb24ndCByZWFsbHkgaGF2ZSBhbiBhbnN3ZXIgaG93
-IHRvIGdldA0KPiBhbiBhY2N1cmF0ZSB2YmxhbmsgY291bnQgZm9yIHRoZSBxdWVyeSB3aXRob3V0
-IHR1cm5pbmcgc29tZQ0KPiBoYXJkd2FyZSBvbiBhdCBsZWFzdC4NCg0KQ3VycmVudCBpbXBsZW1l
-bnRhdGlvbiBpcyBiYXNlZCBvbiBteSB3cm9uZyBpbnRlcnByZXRhdGlvbiBvZg0KUFJfQUxQTV9D
-VExfQVNfU0RQX1RSQU5TTUlTU0lPTl9JTl9BQ1RJVkVfRElTQUJMRS4gSSB1bmRlcnN0b29kIGFj
-dGl2ZQ0KaW4gdGhpcyBjb250ZXh0IG1lYW5zIHBhbmVsIGlzIHNlbGYgcmVmcmVzaGluZyBhbmQg
-c291cmNlIHNpZGUgaXMgaW4NCnNsZWVwLiBUaGlzIGlzIG5vdCB0aGUgY2FzZS4gSXQgbWVhbnMg
-UGFuZWwgUmVwbGF5IGlzIGp1c3QgZW5hYmxlZC4gSXQNCm1heSBiZSBhbHNvIGluIGxpdmUgZnJh
-bWUgbW9kZS4NCg0KTm93IHdoZW4gdmJsYW5rIGludGVycnVwdCBpcyBlbmFibGVkIGl0IGlzIHRy
-aWdnZXJpbmcgUGFuZWwgUmVwbGF5IGV4aXQNCmFuZCBlbnRyeSB0byBsaXZlIGZyYW1lIG1vZGUu
-IElmDQpQUl9BTFBNX0NUTF9BU19TRFBfVFJBTlNNSVNTSU9OX0lOX0FDVElWRV9ESVNBQkxFIGlz
-IHNldCBBUyBTRFAgc2VuZGluZw0KaXMgbm90IGNvbnRpbnVlZC4NCg0KUHJvYmFibHkgcmUtZW5h
-YmxpbmcgQVMgU0RQIGlzIG5vdCBuZWVkZWQgb24gc2luZ2xlIHNlbGVjdGl2ZSB1cGRhdGUgb3IN
-Cm1heWJlIEhXIGlzIHNlbmRpbmcgb25lIEFTIFNEUCBhbmQgY29tbXVuaWNhdGluZyBTVSB1c2lu
-ZyB0aGF0IGluc3RlYWQNCm9mIFZTQyBTRFA/IEFueXdheXMgd2UgbmVlZCB0byBjbGVhcg0KUFJf
-QUxQTV9DVExfQVNfU0RQX1RSQU5TTUlTU0lPTl9JTl9BQ1RJVkVfRElTQUJMRSBmb3IgdGhhdCBs
-aXZlIGZyYW1lDQptb2RlIHRyaWdnZXJlZCBieSB2YmxhbmsgZW5hYmxlLg0KDQpCUiwNCkpvdW5p
-IEjDtmdhbmRlcg0KPiANCj4gPiANCj4gPiBKb3VuaSBjYW4gc2F5IHdoZXRoZXIgdGhlIGludGVy
-bmFsIGNvbmZpcm1hdGlvbiBleHBsYWlucyB3aHkgdGhlDQo+ID4gcGFuZWwNCj4gPiBuZWVkcyBp
-dC4gRnJvbSBteSBzaWRlIEkgb25seSBrbm93IGl0J3MgdGhpcyBzaW5rIChMRywgT1VJDQo+ID4g
-MDA6MjI6YjkpDQo+ID4gb24gdHdvIERlbGwgbW9kZWxzLg0KDQo+ID4gDQo+ID4gVGhhbmtzLA0K
-PiA+IEpha2UNCg==
+
+--krfptbljx3eyphdm
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v12 01/12] drm: add connector LUMINANCE property
+MIME-Version: 1.0
+
+On Mon, Nov 23, 2026 at 11:15:33AM +0200, Ville Syrj=E4l=E4 wrote:
+> On Mon, Nov 23, 2026 at 10:03:50AM +0100, Maxime Ripard wrote:
+> > On Mon, Nov 23, 2026 at 10:42:44AM +0200, Ville Syrj=E4l=E4 wrote:
+> > > On Mon, Nov 23, 2026 at 09:10:17AM +0100, Maxime Ripard wrote:
+> > > > On Mon, Nov 23, 2026 at 10:05:04AM +0200, Ville Syrj=E4l=E4 wrote:
+> > > > > On Mon, Nov 23, 2026 at 08:50:29AM +0100, Maxime Ripard wrote:
+> > > > > > On Fri, Nov 20, 2026 at 11:19:13AM -0600, Mario Limonciello wro=
+te:
+> > > > > > >=20
+> > > > > > >=20
+> > > > > > > On 11/20/26 10:41, Ville Syrj=E4l=E4 wrote:
+> > > > > > > > On Thu, Nov 19, 2026 at 05:27:28PM -0600, Mario Limonciello=
+ wrote:
+> > > > > > > > > Panel brightness is a property of a display, and thus of =
+a DRM
+> > > > > > > > > connector. Add an atomic per-connector LUMINANCE range pr=
+operty so
+> > > > > > > > > compositors can manage relative panel luminance together =
+with the rest
+> > > > > > > > > of the display state.
+> > > > > > > > >=20
+> > > > > > > > > Keep the core backend-agnostic. Drivers create the proper=
+ty with their
+> > > > > > > > > hardware range and implement connector helper callbacks t=
+o set luminance
+> > > > > > > > > or disable panel emission. The atomic helpers sequence th=
+ose callbacks
+> > > > > > > > > around pipeline enable and disable, including luminance-o=
+nly commits.
+> > > > > > > > > The panel is left lit when the pipeline enters self refre=
+sh, and the
+> > > > > > > > > luminance is only reprogrammed when it changes or a modes=
+et enables the
+> > > > > > > > > pipeline.
+> > > > > > > > >=20
+> > > > > > > > > The stored property value is independent of display power=
+=2E A commit made
+> > > > > > > > > while the connector is inactive is retained and applied o=
+n the next
+> > > > > > > > > enable; disabling the pipeline does not overwrite it.
+> > > > > > > > >=20
+> > > > > > > > > LUMINANCE values are relative, driver-defined levels rath=
+er than
+> > > > > > > > > absolute luminance in cd/m^2. The interface supports emis=
+sive panels as
+> > > > > > > > > well as panels with a separate backlight.
+> > > > > > > > >=20
+> > > > > > > > > Keep the interface behind a default-off DRM_LUMINANCE opt=
+ion. Migrated
+> > > > > > > > > drivers retain their legacy backlight class ABI unless th=
+e new interface
+> > > > > > > > > is explicitly selected, allowing the DRM UAPI and legacy =
+compatibility
+> > > > > > > > > policy to remain separate.
+> > > > > > > > >=20
+> > > > > > > > > Acked-by: Javier Martinez Canillas <javierm@redhat.com>
+> > > > > > > > > Signed-off-by: Mario Limonciello <mario.limonciello@amd.c=
+om>
+> > > > > > > > > ---
+> > > > > > > > > v11:
+> > > > > > > > >   * Don't call .disable_luminance when the CRTC enters se=
+lf refresh (Sashiko)
+> > > > > > > > >   * Only call .set_luminance when the luminance changes o=
+r on a modeset
+> > > > > > > > >     that isn't a self refresh exit (Leo Li, Sashiko)
+> > > > > > > > >   * Fix the .set_luminance self refresh documentation
+> > > > > > > > > v10:
+> > > > > > > > >   * Add tag
+> > > > > > > > > ---
+> > > > > > > > >   drivers/gpu/drm/Kconfig                    | 14 +++++
+> > > > > > > > >   drivers/gpu/drm/drm_atomic_helper.c        | 98 +++++++=
+++++++++++++++++++++++-
+> > > > > > > > >   drivers/gpu/drm/drm_atomic_state_helper.c  |  7 +++
+> > > > > > > > >   drivers/gpu/drm/drm_atomic_uapi.c          |  5 ++
+> > > > > > > > >   drivers/gpu/drm/drm_connector.c            | 57 +++++++=
+++++++++++
+> > > > > > > > >   drivers/gpu/drm/tests/drm_connector_test.c | 28 +++++++=
+++
+> > > > > > > > >   include/drm/drm_atomic_helper.h            |  3 +
+> > > > > > > > >   include/drm/drm_connector.h                | 16 +++++
+> > > > > > > > >   include/drm/drm_modeset_helper_vtables.h   | 28 +++++++=
+++
+> > > > > > > > >   9 files changed, 255 insertions(+), 1 deletion(-)
+> > > > > > > > >=20
+> > > > > > > > > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kc=
+onfig
+> > > > > > > > > index 61111d50b1c65..1bbe2c2d7c76f 100644
+> > > > > > > > > --- a/drivers/gpu/drm/Kconfig
+> > > > > > > > > +++ b/drivers/gpu/drm/Kconfig
+> > > > > > > > > @@ -33,6 +33,20 @@ endmenu
+> > > > > > > > >   if DRM
+> > > > > > > > > +config DRM_LUMINANCE
+> > > > > > > > > +	bool "DRM connector luminance support"
+> > > > > > > > > +	help
+> > > > > > > > > +	  Expose relative luminance as an atomic DRM connector =
+property. Values
+> > > > > > > > > +	  are driver-defined levels rather than absolute lumina=
+nce in cd/m^2.
+> > > > > > > > > +	  Drivers provide connector helper callbacks to program=
+ their hardware;
+> > > > > > > > > +	  the DRM core does not depend on a particular backend.
+> > > > > > > > > +
+> > > > > > > > > +	  Drivers migrated to this interface will use it instea=
+d of registering
+> > > > > > > > > +	  a legacy backlight class device. Leave this disabled =
+to preserve the
+> > > > > > > > > +	  de-facto userspace ABI in /sys/class/backlight.
+> > > > > > > >=20
+> > > > > > > > I don't think this will fly if it breaks the backlight clas=
+s interface.
+> > > > > > > > No one can actually enable this outside of some niche embed=
+ded use
+> > > > > > > > cases where backwards compatibility is not an issue. I thin=
+k what
+> > > > > > > > you need is a generic backlight class implementation on top=
+ of this.
+> > > > > > > >=20
+> > > > > > >=20
+> > > > > > > The idea with this was:
+> > > > > > > 1) to get the series landed
+> > > > > > > 2) let compositors merge solutions around it.
+> > > > > > > 3) Then add backwards compatibility to kernel so we can flip =
+the Kconfig
+> > > > > > > default.
+> > > > > >=20
+> > > > > > I said this a few times already, but we keep having those discu=
+ssions
+> > > > > > while the backlight sysfs handling is far from being the main p=
+oint. You
+> > > > > > should *really* consider adding support for the luminance prope=
+rty for
+> > > > > > something that isn't tied to that interface (like DDC/CI for HD=
+MI), and
+> > > > > > treat the sysfs API as a sysfs series.
+> > > > > >=20
+> > > > > > It looks like people just have conflicting opinions on this par=
+ticular
+> > > > > > part that isn't going to solve itself easily. You should not tr=
+eat this
+> > > > > > sysfs discussion as a blocker for the infrastructure work.
+> > > > >=20
+> > > > > You want to be sure backwards compatibility with the backlight
+> > > > > class is a solvable problem before you land *anything*. Otherwise
+> > > > > you might just paint yourself into a corner with no way out.
+> > > >=20
+> > > > I disagree. The luminance property is more useful than *just* for
+> > > > backlights but is also useful for HDMI, DP, and MIPI-DSI that would=
+ all
+> > > > use it.
+> > >=20
+> > > DSI and eDP are all over the place when it comes how backlight
+> > > is implemented, so very much would not all use it. Some HDMI and
+> > > external DP displays might have DDC/CI support, so I'll give you
+> > > those.
+> > > =20
+> > > > If that's the corner we paint ourselves into, it's still a pretty n=
+ice
+> > > > corner.
+> > >=20
+> > > Separate APIs for different outputs on different drivers is just
+> > > a bad idea. Every userspace implementation will have to support
+> > > all of them until the end of the world.
+> >=20
+> > I agree, but then there's an easy answer: don't enable it on drivers
+> > that would expose it on both APIs. We do have a lot of drivers where
+> > there's just no backlight involved and would greatly benefit from these,
+> > and without the history of i915 or amdgpu to deal with.
+>=20
+> It's not the history of the drivers you need to worry about. It's
+> the history of userspace that actually matters. All existing
+> userspace expects a working backlight class interface. And if you
+> don't care about userspace compatibility then we're very much
+> back in the "only usable in niche embedded use cases" or "only
+> usable on external displays" territories.
+
+Depending on what your perspective is, fastboot was "only usable in
+niche i915 use cases" just like color management for amdgpu or leases
+were. Let's not be judgemental and / or dismiss others use cases.
+
+If some established driver like, say, vc4 that only has external
+displays can pave the way for everyone else to use them eventually, how
+is it a downside that it's only usable on external displays?
+
+And even if it's still usable by less established drivers, slow-rolling
+it into more drivers, fixing the bugs, rough edges, etc. while
+consolidating the code still has a lot of value. Just like it had for
+color management or fastboot.
+
+Maxime
+
+--krfptbljx3eyphdm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCawQHnQAKCRAnX84Zoj2+
+dv/IAX9eEMFvOITWTZmbmaZRs5cttfIv53qo1lTfjicUHXYndBi+lFMhUfQkVVAu
+QasRx0cBgJfCcGl18yTL+HrxkoGnsNUdtOCnuw4m8Ib6T9gnf+Fb2mCiowaup437
+90mwIf/Gpw==
+=oDlh
+-----END PGP SIGNATURE-----
+
+--krfptbljx3eyphdm--
