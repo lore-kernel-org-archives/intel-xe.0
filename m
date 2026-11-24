@@ -2,69 +2,88 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3589E606A31E
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561EB606A323
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key, unprotected) header.d=ugreen.com header.i=@ugreen.com header.a=rsa-sha256 header.s=pkvm2402 header.b=WZJ6R7vB
+	dkim=pass (2048-bit key, unprotected) header.d=metarealtyinc.ca header.i=@metarealtyinc.ca header.a=rsa-sha256 header.s=google header.b=cPgiK+np
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA91710E036;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2E010E90F;
 	Wed, 25 Nov 2026 14:58:40 +0000 (UTC)
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.58.6])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0515610F6A9;
- Tue, 24 Nov 2026 14:27:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ugreen.com;
- s=pkvm2402; t=1795530401;
- bh=coJTG/whTVfBHxLprFSRP6f2ygMWlMQf4iEiFQNHtRY=;
- h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=WZJ6R7vBNDK5Naz5y+IhSoaByYZpx7LT5P0U44MfEhmljrvK1SsON9xF+a6N0l2DP
- HwwzHGORpAiWe3Zyt8jDV2MSQMJLQbkIft+cJb56HovzSQPuvsg4CK4KeKyVogJWMA
- 8zXTwoNfZDZOdf2lkQjhH59aVwdqsIz5/ej9mRoM=
-X-QQ-mid: esmtpgz13t1795530396t4815f53d
-X-QQ-Originating-IP: 66ieLmeOOVI/ny0HhYoDZWxysrU8YndeVo9adBq6nhY=
-Received: from exmail.qq.com ( [14.153.230.76])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Tue, 24 Nov 2026 22:26:30 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 17307860937345219422
-EX-QQ-RecipientCnt: 9
-From: Hanson Wang <hanson.wang@ugreen.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
- ville.syrjala@linux.intel.com, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, hanson.wang@ugreen.com
-Subject: [PATCH v2] drm/i915/display: Refresh global state after non-atomic
- sanitization
-Date: Tue, 24 Nov 2026 22:26:27 +0800
-Message-Id: <20261124142627.4082596-1-hanson.wang@ugreen.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261118033312.902366-1-hanson.wang@ugreen.com>
-References: <20261118033312.902366-1-hanson.wang@ugreen.com>
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
+ [209.85.222.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8748C10F017
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 15:36:59 +0000 (UTC)
+Received: by mail-qk1-f180.google.com with SMTP id
+ af79cd13be357-94959217274so501032685a.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 07:36:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=metarealtyinc.ca; s=google; t=1795534618; x=1796139418;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=F3fUstdnw1R9iAM56oJ0cEix/cakuApF68cHmWXsObA=;
+ b=cPgiK+np+KYAcxSCf++8QZrXRDzed8SBpyDwjlQGFR35d9+oJ+IXaAYshZaVQ6s/2w
+ qQROnhyYzDjDHkMEVgrf5tgEGBnGxktkaru3JmBlyAN0YBQvT/nXD5RXS/AES76iMHh+
+ 2vmXU7g66aXmHyx7umEgMc6burdAecsA8rmA25v/cWaR4ywBMr0AcA2qSxrGkyglzObj
+ SyUY6y14TTY26Bk52tZ6wkxWXXHWTWzXY5LICM1Z6TNMGbPtv4pUF3AY5O+qlv0TTSFf
+ WzhF/KRpFQN5kKTGVbVpblJCQMgaD6cM9HfumhZP3Nzl5rNIeU3XbpyxdjWVGIcRWZVf
+ uN5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1795534618; x=1796139418;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=F3fUstdnw1R9iAM56oJ0cEix/cakuApF68cHmWXsObA=;
+ b=vczoUKNAd57+95KvXLloX8gpYxoAUm2206ppEQ+3p6rKkEbCcKKyfjpx0Y0DkMJ95E
+ Qvn2ZDQ7Y+VoO9pgfkZuS8Ao9yH5vnvu7vLqpJ/GLACIFoOAydznZC9uYR19qG+4Qmt8
+ vg/BRq8qJ9BmHaVY/kUPA0gYeC7yysLpG20eRhE19eCnGiflBf9GYSMeRslwv3kX/U7H
+ ebvf4OKGV/vKv2nWHeDhkCTlPMYzPqDPGuvT6Pqx0JhZu1qyZE5solCZVO9NrS4jC9MJ
+ osJpQ8uCWn0IPVB5ANrgeIuYSoWZSPZ4XHS4vpIfefyZdi9tWUR6TSQqg6vzV4mOMefH
+ MRhg==
+X-Forwarded-Encrypted: i=1;
+ AL+hErHtiXdAKIyitwjgsd7sJ3MQGe2hQKcMfPX3IfSYhHmM0m8ami6kbRQZb1MzeYBjc1fZiPVzv7msGw==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z/NpfwE4sCcQfAGR0IAU9Y3+hKMXk8z80CMzaYmFgJrJAuotQGg
+ thslnUWntQQH4buYllsc/7Qo9MT3Q1TYugsO3Zj0O6GNOD8gPcn+DN1+1QI3gGIcElmaBItqkM4
+ 8juW8zcMBow==
+X-Gm-Gg: AZFdTZcPqesP6EvzjBSpwgu3UVjLKZi1vuxrrnLrkM72J9NP3KEPVYU+77qN0yiVVn7
+ cW5ukk0tpUzKdKF/Op87l2baPggwYh8YFaUdM5DGMa/fPdHeefZCHZDSJObvF6JYwH/pbxAcgbD
+ QzN/3Ctn01jWhmcoNgfK6jPntO4HnewrEhfbkZ92FQp1Ex8DB00BTOmaV6ux1Rq4c9cvkLQtdYF
+ AAa8HRkX9QunV/13rgx84EPTK/O2hOS7pcd8vx8EXitcVdU8n8lO5kUMnysvYF8Rof9roltz6kB
+ /QIYYHW4In52QZE4Q5jldQxuQ3mkIY7Z52lTcXI/fureicjsjJEuehSI2FSA5pQQmoAiPfI8/Ja
+ TCpp46rdTKBiSnqhW/rf6+k6FCXszAzZztnIIWWE9a9OQeA47wTYxeYOk9a1TixMXYZGIwhjuk9
+ +NR1HKh7drupxQmRyJfxKyVOpgAlUlOE4hEhaKY00Zv/+T3Bta0gs0Al6w4h0EqsJBB0ka2wxZ0
+ tPhNWSJlWeaLuF/dlyQ3kSnaDaIjGzShPBD5ttOHTKWABrBfIoY9xhTybqCIyIIpRGPdclLuTEr
+ ngFM0e/+CZd0ScSBN7Zk5JOVWUnXwGW9vOs8e2Ccg8R7j8NwOkjKgFrz+k1ZawXgd4fcRtsPN4C
+ qK4HqMVd5kUQ3rs4eyHdvJlJ182xSLjpLQ5jDXDporlrKOKnER3u38Kg5U0WXikLsD1h4JH1+1F
+ I3BU5qiFtoict1Ri/PbJYXBWJXhmD+1uuWrYTDUQ3O5D30HTEI0gyf9NseDaQYoTEx
+X-Received: by 2002:a05:620a:710c:b0:949:673f:72c2 with SMTP id
+ af79cd13be357-949baa0d90bmr2625315885a.53.1795534618332; 
+ Tue, 24 Nov 2026 07:36:58 -0800 (PST)
+Received: from jake-laptop ([2607:fea8:c6:a700::ec62])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-94a0175c67fsm26215985a.31.2026.11.24.07.36.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 24 Nov 2026 07:36:57 -0800 (PST)
+From: Jake Steinman <j@metarealtyinc.ca>
+To: jouni.hogander@intel.com,
+	ville.syrjala@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ animesh.manna@intel.com, ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
+Subject: [PATCH v3 1/4] drm/i915/alpm: Add a helper to suspend the AS SDP in
+ PR Active
+Date: Tue, 24 Nov 2026 10:36:52 -0500
+Message-ID: <4801e395b4ec582fd9b1bc80585c556349ffb663.1795527921.git.j@metarealtyinc.ca>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <cover.1795527921.git.j@metarealtyinc.ca>
+References: <3077ed0636a6c98e919934d2c860461f98222537.camel@intel.com>
+ <cover.1795527921.git.j@metarealtyinc.ca>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:ugreen.com:qybglogicsvrgz:qybglogicsvrgz3a-0
-X-QQ-XMAILINFO: NYbMsSpWz/dLzMJNLxuxRaXLtOI9yrqCL4fhZDqA5ksxCf9+0LfMyxD3
- whPp5gXftpixQXNH7mf0kp2f+PgmWBez3iS3hVMOW2bsNvhorjPWD3oGo1+rkmhj1gh7r0s
- Q5EY2ETny292drbmcC95EaoIAhQ41cPpfJfQ/odTy+72UmPO5RtKRtE5rQaJU+KsjURbRTb
- aEGKU6U7LwyENBwHeMRdh+/0Y8r8AC/0fhY+5wXKv0iNsCXAgaT5MlECNkMLX8vBSLP2bQz
- o9Ex/XkbAH4IqpVfrGUsLNEByJ5dVKLz9aVXrYcHjei9djnoxsDqiL9qohJ2eDMHGBVV19q
- WAGoJflrEo2ykwTDkUC5DDeW5tEfQvN8TreQzV0sgWd8wMyrv8CLDrUVrSgwuJKm5fQ1e8q
- Rm918S185igaW3nGrXcFfYw+UPx5+ZToUMFzXSH8VKkHYSRelLKT95lxpYcNWzI+Rczp9Wr
- HsbbaHYPDtS/3YSNqS0SPvc5WoPoOxeaKbN32K0E+QwJZ7UihIVPoHCPjxPEVLehIDdu6zH
- ek2f9R3nz/2YKDDdJyVNW9W3vgMqFqx2bQBcglF06a+vHZWILbN5LQJ8FxYlxLbHOQqbLf/
- x1s1IycNonbzOohae5MwemaUjut4sNWWzry9rl+t58LH+hCHohbZDMJUYJ1ps1btI93KJGo
- plr2RZgX7lb7XRN+HcSlLFBqB5Rmf5v6rKuqZ48xPHN2lOncGVlgZQzi4UrW+G4EofGVOnl
- QWA5y1TtWZlEnuJobBZ7SlRD98rgye/6gPMbU/6mpvSxW+CDTdcOUsNntR9emhJbqO9amrA
- wtGFUWZfqX5wFQ04on7RzdV2wd4T5hH/ZeqY5FsZU0fsxHBHYNe3eEHpfYQDVckKTlv93Ia
- rnC2H1LeszEARQHYX+5li0OoDoAmtK7QSXU9qH+vdSFGO3Luzkp4MmXvCiaVTQYBAvrN4Je
- j21Bz7+onv9afKADmPGZRqvWKBooomjuV4pPKaYW+tG/je272Ti3VwPtaewse2nKxmpabkS
- tJAJSJc6zOS1qn4iXZraa3HmYfmsrVDeWG4tdkGs4xdzxN+86SlcrXhgza+mU=
-X-QQ-XMRINFO: NyFYKkN4Ny6FuXrnB5Ye7Aabb3ujjtK+gg==
-X-QQ-RECHKSPAM: 0
 X-Mailman-Approved-At: Wed, 25 Nov 2026 14:58:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,166 +98,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hardware state readout accounts firmware planes in the global bandwidth
-state before sanitization. skl_dbuf_sanitize() may subsequently disable
-those planes through intel_plane_disable_noatomic(), which clears the
-CRTC-local plane data but leaves the global bandwidth entries unchanged.
-A later atomic check can see identical, already cleared old and new
-CRTC-local inputs and skip the global update. The stale data rate and
-plane count then remain part of the QGV bandwidth check.
+Add intel_alpm_pr_as_sdp_in_active_disable() to set or clear
+PR_ALPM_CTL[AS SDP Transmission in Active Disable] without touching the
+other PR_ALPM_CTL fields. PSR code uses it in the next patch to send the
+AS SDP in PR Active while frames are being updated.
 
-The issue was reproduced on an N5105 system running mainline.
-After DBUF sanitization had cleared pipe B's local plane state,
-the global bandwidth state still accounted for 196000 kB/s and
-one plane.
-
-Add intel_display_update_hw_state() to group the existing bandwidth,
-DBUF bandwidth and CDCLK state updates. Keep the initial update after
-hardware readout, and repeat it after intel_wm_sanitize(), once the
-non-atomic CRTC and plane sanitization is complete. Update DBUF bandwidth
-before CDCLK, which derives a minimum clock requirement from that state.
-
-Also refresh the global state after intel_initial_plane_config(): failure
-to reconstruct a BIOS framebuffer can disable a primary plane after the
-main sanitization sequence has finished.
-
-Reuse the existing accounting helpers so logically enabled but inactive
-CRTCs retain their memory bandwidth reservations.
-
-Fixes: 15512021eb39 ("drm/i915: Workaround broken BIOS DBUF configuration on TGL/RKL")
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://lore.kernel.org/intel-gfx/20261118033312.902366-1-hanson.wang@ugreen.com
-Signed-off-by: Hanson Wang <hanson.wang@ugreen.com>
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Jake Steinman <j@metarealtyinc.ca>
 ---
-Changes in v2:
-- Add intel_display_update_hw_state() as suggested by Ville, reusing
-  the existing BW, DBUF bandwidth and CDCLK update helpers.
-- Refresh global accounting after the complete modeset sanitization
-  sequence, including intel_wm_sanitize(), instead of adding per-CRTC
-  update helpers to intel_plane_disable_noatomic().
-- Also cover non-atomic plane disable on BIOS framebuffer takeover
-  failure in intel_initial_plane_config().
-- Preserve the initial readout update and the existing intermediate
-  CRTC-disable bookkeeping used during sanitization.
-- Add a Fixes tag for the DBUF sanitization path.
+ drivers/gpu/drm/i915/display/intel_alpm.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_alpm.h |  2 ++
+ 2 files changed, 22 insertions(+)
 
-Testing:
-- W=1 compilation of both changed C files for i915 and Xe display.
-- Strict checkpatch passed.
-- Boot-tested v2 on an affected N5105 system with HDMI connected,
-  based on 666539eecdf4 (7.4.0-rc3+). The original DBUF sanitization
-  path was reproduced, and pipe B's global accounting changed from
-  196000 kB/s and one plane to 0 kB/s and zero planes after
-  intel_wm_sanitize().
-- Post-boot inspection confirmed that pipe B contributed no bandwidth
-  or planes to the global BW and DBUF bandwidth states. Subsequent
-  QGV checks no longer included the stale contribution.
-- This was a v1-to-v2 boot test, not an unpatched-versus-patched
-  comparison.
-- The original high-bandwidth workload, HDMI hotplug, suspend/resume,
-  cold boot, enabled-but-inactive transitions and BIOS framebuffer
-  reconstruction failure were not tested with v2.
-
- .../drm/i915/display/intel_initial_plane.c    |  4 ++++
- .../drm/i915/display/intel_modeset_setup.c    | 24 ++++++++++++++++---
- .../drm/i915/display/intel_modeset_setup.h    |  1 +
- 3 files changed, 26 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-index 7427f41e4d7e..022798baf7e0 100644
---- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-@@ -15,6 +15,7 @@
- #include "intel_fb.h"
- #include "intel_frontbuffer.h"
- #include "intel_initial_plane.h"
-+#include "intel_modeset_setup.h"
- #include "intel_parent.h"
- #include "intel_plane.h"
- 
-@@ -237,4 +238,7 @@ void intel_initial_plane_config(struct intel_display *display)
- 
- 		plane_config_fini(display, plane_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index f54b29e19..24f1dce72 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -511,6 +511,26 @@ void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state)
  	}
-+
-+	/* Failure to reconstruct the BIOS framebuffer may disable a plane. */
-+	intel_display_update_hw_state(display);
  }
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 6aed88173770..bb8f3acd3595 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -14,6 +14,7 @@
- #include "i9xx_wm.h"
- #include "intel_atomic.h"
- #include "intel_bw.h"
-+#include "intel_cdclk.h"
- #include "intel_cmtg.h"
- #include "intel_color.h"
- #include "intel_crtc.h"
-@@ -37,6 +38,22 @@
- #include "intel_wm.h"
- #include "skl_watermark.h"
  
 +/**
-+ * intel_display_update_hw_state - synchronize global display accounting
-+ * @display: display instance
++ * intel_alpm_pr_as_sdp_in_active_disable - suspend or send the AS SDP in PR Active
++ * @intel_dp: Intel DP struct
++ * @disable: true to suspend the AS SDP in PR Active, false to keep sending it
 + *
-+ * Update the global state from the current CRTC and plane state during
-+ * hardware state setup, with atomic commits excluded. Call this again
-+ * after non-atomic sanitization has changed the local state.
++ * Set or clear PR_ALPM_CTL[AS SDP Transmission in Active Disable] and leave
++ * the other PR_ALPM_CTL fields as they are.
 + */
-+void intel_display_update_hw_state(struct intel_display *display)
++void intel_alpm_pr_as_sdp_in_active_disable(struct intel_dp *intel_dp,
++					    bool disable)
 +{
-+	intel_bw_update_hw_state(display);
-+	/* CDCLK requirements depend on the DBUF bandwidth state. */
-+	intel_dbuf_bw_update_hw_state(display);
-+	intel_cdclk_update_hw_state(display);
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	mutex_lock(&intel_dp->alpm.lock);
++	intel_de_rmw(display, PR_ALPM_CTL(display, intel_dp->alpm.transcoder),
++		     PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE,
++		     disable ? PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE : 0);
++	mutex_unlock(&intel_dp->alpm.lock);
 +}
 +
- static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
- 					      struct drm_modeset_acquire_ctx *ctx)
+ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			       const struct intel_crtc_state *crtc_state)
  {
-@@ -877,9 +894,7 @@ static void intel_modeset_readout_hw_state(struct intel_display *display)
- 	if (DISPLAY_VER(display) >= 9)
- 		intel_wm_get_hw_state(display);
- 
--	intel_bw_update_hw_state(display);
--	intel_dbuf_bw_update_hw_state(display);
--	intel_cdclk_update_hw_state(display);
-+	intel_display_update_hw_state(display);
- 
- 	intel_pmdemand_init_pmdemand_params(display, pmdemand_state);
- }
-@@ -995,6 +1010,9 @@ void intel_modeset_setup_hw_state(struct intel_display *display,
- 		intel_wm_get_hw_state(display);
- 	intel_wm_sanitize(display);
- 
-+	/* Sanitization may have disabled planes without an atomic commit. */
-+	intel_display_update_hw_state(display);
-+
- 	for_each_intel_crtc(display, crtc) {
- 		struct intel_crtc_state *crtc_state =
- 			to_intel_crtc_state(crtc->base.state);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.h b/drivers/gpu/drm/i915/display/intel_modeset_setup.h
-index f5e6f3ae9572..28a9165f7fca 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.h
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.h
-@@ -9,6 +9,7 @@
- struct drm_modeset_acquire_ctx;
- struct intel_display;
- 
-+void intel_display_update_hw_state(struct intel_display *display);
- void intel_modeset_setup_hw_state(struct intel_display *display,
- 				  struct drm_modeset_acquire_ctx *ctx);
- 
-
-base-commit: 666539eecdf4db623f5e3c3e55cf9f2dfad24aa4
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
+index f8f605d94..6ce583d32 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.h
++++ b/drivers/gpu/drm/i915/display/intel_alpm.h
+@@ -37,6 +37,8 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
+ bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
+ 					      const struct intel_crtc_state *crtc_state);
+ void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state);
++void intel_alpm_pr_as_sdp_in_active_disable(struct intel_dp *intel_dp,
++					    bool disable);
+ void intel_alpm_disable(struct intel_dp *intel_dp);
+ bool intel_alpm_get_error(struct intel_dp *intel_dp);
+ void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
 -- 
-2.34.1
+2.56.1
 
