@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A177606A321
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 06:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAACF606A321
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 06:17:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=A1j3vKw5
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lTJs0Nkg
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E072910E7F2;
-	Tue, 24 Nov 2026 06:17:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC29610E9CF;
+	Tue, 24 Nov 2026 06:17:13 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8A7A10E21F;
- Tue, 24 Nov 2026 06:17:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E527910E5F9;
+ Tue, 24 Nov 2026 06:17:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795501024; x=1827037024;
+ t=1795501027; x=1827037027;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/zoaSk+xZZK0aQYXQi38lotONbPXwMuncUWusQb4kE0=;
- b=A1j3vKw5qzBq35ZaDkVYUeMmGDXYU0GfW3Qg4oppz/NmGlJo1aDOO8oM
- 7+YtfnGHnXPtjAhAut8EYxqudA3Xv4Xfz5y7bAXl+C+Nq+HQUzzAWYp3X
- qkdjnkLM7JicSRBvKjfwJZtQCfY1UCeyjWqv/KttmpC/gXwCOIWBqGXVp
- jTQhy+2we762YzySSxP/eHrrdtAriRE3vKvbG0EoK8zaDRCZiynAH3wVy
- q/ERY1Xj/xwkgfcNVLcu5YHPyGMXj1ckorb2y4N7HcVpVWcJ9RkeAMPj4
- XQDoEvBfGMQV4WZmLKhRUjl6C3AXeYjHT0llrBZH6TXCWC95Fla/MLXUh Q==;
-X-CSE-ConnectionGUID: GYkYbDY7Qb2egtmSrZXTEA==
-X-CSE-MsgGUID: OhQUF9HvQ5SmsM6DLaSVDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4220055"
+ bh=mcVjhEqQhKm+eYNVdPQe9OBXhlX9dqJ8Sjj7+luDrvA=;
+ b=lTJs0NkgGJY55W7vntJLdmYmKvLXt/HOSuu24Oa5CJSjT1VPWWQEWOUf
+ nR5sgtMUxKnkXueyxQUI8uC/Qg9JqkvQzMQHZcJ7x0NCYTgtlG7jx6XgN
+ jPSE2V7PlVT7i+WcfNcUjVs1E0B05hbIZ4o3L8Ig9XgqkE/WMYrcqpBpl
+ zCwOMeLwtq2+wz9rEGgYDv5k43R8iXncH3/gW3LxF8MsL0zPl4rUS+Huf
+ u3tOyX4G6t3FgHQaFMO0+jlS7qVrtE2b4ziW5yr5YDyYZfSbzzxXPtXVB
+ 8GPsNdTTqbZ54rkHY6frPG8pwSt2/X0VzRHlLpmkQ78WnQA+Nzg/jSCB/ A==;
+X-CSE-ConnectionGUID: Jgb75XhlR9ufpQPglHE0+Q==
+X-CSE-MsgGUID: AuXs1VYrTky/q1LzxskMUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4220064"
 X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
-   d="scan'208";a="4220055"
+   d="scan'208";a="4220064"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 22:17:04 -0800
-X-CSE-ConnectionGUID: yN6RJdRdTeat7JdPn7amTw==
-X-CSE-MsgGUID: RYdJ5muNTwGop8KpsH81Ag==
+ 23 Nov 2026 22:17:07 -0800
+X-CSE-ConnectionGUID: 2ohkL0eiRNSyZ+9cE82lGA==
+X-CSE-MsgGUID: vs08pZb4TCyBQEjVMN0KpQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11264137"
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11264147"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa008.jf.intel.com with ESMTP; 23 Nov 2026 22:17:01 -0800
+ by orviesa008.jf.intel.com with ESMTP; 23 Nov 2026 22:17:04 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: Natalie Vock <natalie.vock@gmx.de>,
  Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
@@ -49,10 +49,10 @@ Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC v2 05/11] drm/amdgpu: Use ttm_operation_ctx numa_info instead of
- per-partition pools
-Date: Tue, 24 Nov 2026 11:51:29 +0530
-Message-ID: <20261124062123.2431244-18-himal.prasad.ghimiray@intel.com>
+Subject: [RFC v2 06/11] drm/ttm/pool: Drop the nid argument from
+ ttm_pool_init()
+Date: Tue, 24 Nov 2026 11:51:30 +0530
+Message-ID: <20261124062123.2431244-19-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261124062123.2431244-13-himal.prasad.ghimiray@intel.com>
 References: <20261124062123.2431244-13-himal.prasad.ghimiray@intel.com>
@@ -77,179 +77,148 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On APUs with memory partitions amdgpu creates one TTM pool per
-partition, only to get pages from the partition's NUMA node. With the
-node now selectable per allocation through ttm_operation_ctx, drop the
-extra pools and allocate from the device pool, setting numa_info to
-TTM_NUMA_POLICY_PREFERRED with the partition's node on a local ctx copy.
-
-The device pool keeps per-node page caches and per-node limits, so
-pages are still cached and trimmed per node. No functional change
-intended.
+With the node selectable per allocation through ttm_operation_ctx and
+amdgpu converted, no caller picks a node per pool anymore. Remove the
+nid argument and derive the pool's default node from the device, as
+ttm_device_init() already did, so there is a single way to choose a
+node.
 
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 78 ++++++-------------------
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h |  1 -
- 2 files changed, 19 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/ttm/tests/ttm_pool_test.c | 10 +++++-----
+ drivers/gpu/drm/ttm/ttm_device.c          |  9 ++-------
+ drivers/gpu/drm/ttm/ttm_pool.c            |  9 +++++----
+ include/drm/ttm/ttm_pool.h                |  4 ++--
+ 4 files changed, 14 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index 0f86777250fc..fe10409e1d5b 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -743,7 +743,7 @@ struct amdgpu_ttm_tt {
- 	struct task_struct	*usertask;
- 	uint32_t		userflags;
- 	bool			bound;
--	int32_t			pool_id;
-+	int			numa_node;
- };
+diff --git a/drivers/gpu/drm/ttm/tests/ttm_pool_test.c b/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
+index be75c8abf388..5497672173a2 100644
+--- a/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
++++ b/drivers/gpu/drm/ttm/tests/ttm_pool_test.c
+@@ -87,7 +87,7 @@ static struct ttm_pool *ttm_pool_pre_populated(struct kunit *test,
+ 	pool = kunit_kzalloc(test, sizeof(*pool), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, pool);
  
- #define ttm_to_amdgpu_ttm_tt(ptr)	container_of(ptr, struct amdgpu_ttm_tt, ttm)
-@@ -1211,10 +1211,13 @@ static struct ttm_tt *amdgpu_ttm_tt_create(struct ttm_buffer_object *bo,
- 		return NULL;
+-	ttm_pool_init(pool, devs->dev, NUMA_NO_NODE, TTM_ALLOCATION_POOL_USE_DMA_ALLOC);
++	ttm_pool_init(pool, devs->dev, TTM_ALLOCATION_POOL_USE_DMA_ALLOC);
  
- 	gtt->gobj = &bo->base;
--	if (adev->gmc.mem_partitions && abo->xcp_id >= 0)
--		gtt->pool_id = KFD_XCP_MEM_ID(adev, abo->xcp_id);
--	else
--		gtt->pool_id = abo->xcp_id;
-+	gtt->numa_node = NUMA_NO_NODE;
-+	if (adev->gmc.is_app_apu && adev->gmc.num_mem_partitions) {
-+		int mem_id = KFD_XCP_MEM_ID(adev, abo->xcp_id);
-+
-+		if (mem_id >= 0)
-+			gtt->numa_node = adev->gmc.mem_partitions[mem_id].numa.node;
-+	}
+ 	err = ttm_pool_alloc(pool, tt, &simple_ctx);
+ 	KUNIT_ASSERT_EQ(test, err, 0);
+@@ -151,7 +151,7 @@ static void ttm_pool_alloc_basic(struct kunit *test)
+ 	pool = kunit_kzalloc(test, sizeof(*pool), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, pool);
  
- 	if (abo->flags & AMDGPU_GEM_CREATE_CPU_GTT_USWC)
- 		caching = ttm_write_combined;
-@@ -1241,7 +1244,9 @@ static int amdgpu_ttm_tt_populate(struct ttm_device *bdev,
+-	ttm_pool_init(pool, devs->dev, NUMA_NO_NODE, params->alloc_flags);
++	ttm_pool_init(pool, devs->dev, params->alloc_flags);
+ 
+ 	KUNIT_ASSERT_PTR_EQ(test, pool->dev, devs->dev);
+ 	KUNIT_ASSERT_EQ(test, pool->nid, NUMA_NO_NODE);
+@@ -218,7 +218,7 @@ static void ttm_pool_alloc_basic_dma_addr(struct kunit *test)
+ 	pool = kunit_kzalloc(test, sizeof(*pool), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, pool);
+ 
+-	ttm_pool_init(pool, devs->dev, NUMA_NO_NODE, TTM_ALLOCATION_POOL_USE_DMA_ALLOC);
++	ttm_pool_init(pool, devs->dev, TTM_ALLOCATION_POOL_USE_DMA_ALLOC);
+ 
+ 	err = ttm_pool_alloc(pool, tt, &simple_ctx);
+ 	KUNIT_ASSERT_EQ(test, err, 0);
+@@ -348,7 +348,7 @@ static void ttm_pool_free_dma_alloc(struct kunit *test)
+ 	pool = kunit_kzalloc(test, sizeof(*pool), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, pool);
+ 
+-	ttm_pool_init(pool, devs->dev, NUMA_NO_NODE, TTM_ALLOCATION_POOL_USE_DMA_ALLOC);
++	ttm_pool_init(pool, devs->dev, TTM_ALLOCATION_POOL_USE_DMA_ALLOC);
+ 	ttm_pool_alloc(pool, tt, &simple_ctx);
+ 
+ 	pt = &pool->caching[caching].orders[order];
+@@ -378,7 +378,7 @@ static void ttm_pool_free_no_dma_alloc(struct kunit *test)
+ 	pool = kunit_kzalloc(test, sizeof(*pool), GFP_KERNEL);
+ 	KUNIT_ASSERT_NOT_NULL(test, pool);
+ 
+-	ttm_pool_init(pool, devs->dev, NUMA_NO_NODE, 0);
++	ttm_pool_init(pool, devs->dev, 0);
+ 	ttm_pool_alloc(pool, tt, &simple_ctx);
+ 
+ 	ttm_pool_free(pool, tt);
+diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
+index d3bfb9a696a7..4ba07254f5fd 100644
+--- a/drivers/gpu/drm/ttm/ttm_device.c
++++ b/drivers/gpu/drm/ttm/ttm_device.c
+@@ -208,7 +208,7 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
+ 		    unsigned int alloc_flags)
  {
- 	struct amdgpu_device *adev = amdgpu_ttm_adev(bdev);
- 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
--	struct ttm_pool *pool;
-+	/* ctx is shared by every BO of the operation; set the node locally */
-+	struct ttm_operation_ctx node_ctx = *ctx;
-+	nodemask_t preferred;
- 	pgoff_t i;
- 	int ret;
+ 	struct ttm_global *glob = &ttm_glob;
+-	int ret, nid;
++	int ret;
  
-@@ -1256,11 +1261,13 @@ static int amdgpu_ttm_tt_populate(struct ttm_device *bdev,
- 	if (ttm->page_flags & TTM_TT_FLAG_EXTERNAL)
- 		return 0;
+ 	if (WARN_ON(vma_manager == NULL))
+ 		return -EINVAL;
+@@ -229,12 +229,7 @@ int ttm_device_init(struct ttm_device *bdev, const struct ttm_device_funcs *func
  
--	if (adev->mman.ttm_pools && gtt->pool_id >= 0)
--		pool = &adev->mman.ttm_pools[gtt->pool_id];
+ 	ttm_sys_man_init(bdev);
+ 
+-	if (dev)
+-		nid = dev_to_node(dev);
 -	else
--		pool = &adev->mman.bdev.pool;
--	ret = ttm_pool_alloc(pool, ttm, ctx);
-+	if (gtt->numa_node != NUMA_NO_NODE) {
-+		nodes_clear(preferred);
-+		node_set(gtt->numa_node, preferred);
-+		node_ctx.numa_info.policy = TTM_NUMA_POLICY_PREFERRED;
-+		node_ctx.numa_info.nodes = &preferred;
-+	}
-+	ret = ttm_pool_alloc(&adev->mman.bdev.pool, ttm, &node_ctx);
- 	if (ret)
- 		return ret;
+-		nid = NUMA_NO_NODE;
+-
+-	ttm_pool_init(&bdev->pool, dev, nid, alloc_flags);
++	ttm_pool_init(&bdev->pool, dev, alloc_flags);
  
-@@ -1281,7 +1288,6 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
+ 	bdev->vma_manager = vma_manager;
+ 	spin_lock_init(&bdev->lru_lock);
+diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+index 4ab37af0f1ba..4262e4b6fb64 100644
+--- a/drivers/gpu/drm/ttm/ttm_pool.c
++++ b/drivers/gpu/drm/ttm/ttm_pool.c
+@@ -1414,20 +1414,21 @@ long ttm_pool_backup(struct ttm_pool *pool, struct ttm_tt *tt,
+  *
+  * @pool: the pool to initialize
+  * @dev: device for DMA allocations and mappings
+- * @nid: NUMA node to use for allocations
+  * @alloc_flags: TTM_ALLOCATION_POOL_* flags
+  *
+- * Initialize the pool and its pool types.
++ * Initialize the pool and its pool types. The pool allocates on @dev's NUMA
++ * node unless the caller selects one per allocation through
++ * &ttm_operation_ctx.numa_info.
+  */
+ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+-		   int nid, unsigned int alloc_flags)
++		   unsigned int alloc_flags)
  {
- 	struct amdgpu_ttm_tt *gtt = ttm_to_amdgpu_ttm_tt(ttm);
- 	struct amdgpu_device *adev;
--	struct ttm_pool *pool;
- 	pgoff_t i;
+ 	unsigned int i, j;
  
- 	amdgpu_ttm_backend_unbind(bdev, ttm);
-@@ -1301,12 +1307,7 @@ static void amdgpu_ttm_tt_unpopulate(struct ttm_device *bdev,
+ 	WARN_ON(!dev && ttm_pool_uses_dma_alloc(pool));
  
- 	adev = amdgpu_ttm_adev(bdev);
+ 	pool->dev = dev;
+-	pool->nid = nid;
++	pool->nid = dev ? dev_to_node(dev) : NUMA_NO_NODE;
+ 	pool->alloc_flags = alloc_flags;
  
--	if (adev->mman.ttm_pools && gtt->pool_id >= 0)
--		pool = &adev->mman.ttm_pools[gtt->pool_id];
--	else
--		pool = &adev->mman.bdev.pool;
--
--	return ttm_pool_free(pool, ttm);
-+	return ttm_pool_free(&adev->mman.bdev.pool, ttm);
- }
+ 	for (i = 0; i < TTM_NUM_CACHING_TYPES; ++i) {
+diff --git a/include/drm/ttm/ttm_pool.h b/include/drm/ttm/ttm_pool.h
+index 26ee592e1994..863e8f7af948 100644
+--- a/include/drm/ttm/ttm_pool.h
++++ b/include/drm/ttm/ttm_pool.h
+@@ -62,7 +62,7 @@ struct ttm_pool_type {
+  * struct ttm_pool - Pool for all caching and orders
+  *
+  * @dev: the device we allocate pages for
+- * @nid: which numa node to use
++ * @nid: default NUMA node, derived from @dev
+  * @alloc_flags: TTM_ALLOCATION_POOL_* flags
+  * @caching: pools for each caching/order
+  */
+@@ -82,7 +82,7 @@ int ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+ void ttm_pool_free(struct ttm_pool *pool, struct ttm_tt *tt);
  
- /**
-@@ -1935,40 +1936,6 @@ static void amdgpu_ttm_training_data_block_init(struct amdgpu_device *adev)
- 			ctx->c2p_train_data_offset);
- }
+ void ttm_pool_init(struct ttm_pool *pool, struct device *dev,
+-		   int nid, unsigned int alloc_flags);
++		   unsigned int alloc_flags);
+ void ttm_pool_fini(struct ttm_pool *pool);
  
--static int amdgpu_ttm_pools_init(struct amdgpu_device *adev)
--{
--	int i;
--
--	if (!adev->gmc.is_app_apu || !adev->gmc.num_mem_partitions)
--		return 0;
--
--	adev->mman.ttm_pools = kzalloc_objs(*adev->mman.ttm_pools,
--					    adev->gmc.num_mem_partitions);
--	if (!adev->mman.ttm_pools)
--		return -ENOMEM;
--
--	for (i = 0; i < adev->gmc.num_mem_partitions; i++) {
--		ttm_pool_init(&adev->mman.ttm_pools[i], adev->dev,
--			      adev->gmc.mem_partitions[i].numa.node,
--			      TTM_ALLOCATION_POOL_BENEFICIAL_ORDER(get_order(SZ_2M)));
--	}
--	return 0;
--}
--
--static void amdgpu_ttm_pools_fini(struct amdgpu_device *adev)
--{
--	int i;
--
--	if (!adev->gmc.is_app_apu || !adev->mman.ttm_pools)
--		return;
--
--	for (i = 0; i < adev->gmc.num_mem_partitions; i++)
--		ttm_pool_fini(&adev->mman.ttm_pools[i]);
--
--	kfree(adev->mman.ttm_pools);
--	adev->mman.ttm_pools = NULL;
--}
--
- /**
-  * amdgpu_ttm_alloc_mmio_remap_bo - Allocate the singleton MMIO_REMAP BO
-  * @adev: amdgpu device
-@@ -2153,11 +2120,6 @@ int amdgpu_ttm_init(struct amdgpu_device *adev)
- 		return r;
- 	}
- 
--	r = amdgpu_ttm_pools_init(adev);
--	if (r) {
--		dev_err(adev->dev, "failed to init ttm pools(%d).\n", r);
--		return r;
--	}
- 	adev->mman.initialized = true;
- 
- 	if (!adev->gmc.is_app_apu) {
-@@ -2327,8 +2289,6 @@ void amdgpu_ttm_fini(struct amdgpu_device *adev)
- 	if (!adev->mman.initialized)
- 		return;
- 
--	amdgpu_ttm_pools_fini(adev);
--
- 	amdgpu_ttm_training_reserve_vram_fini(adev);
- 	/* return the stolen vga memory back to VRAM */
- 	if (!adev->gmc.is_app_apu) {
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-index adb6cfae5052..8fc7fc86f19c 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.h
-@@ -83,7 +83,6 @@ struct amdgpu_vram_resv {
- 
- struct amdgpu_mman {
- 	struct ttm_device		bdev;
--	struct ttm_pool			*ttm_pools;
- 	bool				initialized;
- 	void __iomem			*aper_base_kaddr;
- 
+ int ttm_pool_debugfs(struct ttm_pool *pool, struct seq_file *m);
 -- 
 2.43.0
 
