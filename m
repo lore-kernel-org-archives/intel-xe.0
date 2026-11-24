@@ -2,58 +2,58 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22547606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 00:40:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94FA2606A31E
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 00:43:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hbY+iXPN
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FmRB0MQb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA0E910F2A4;
-	Tue, 24 Nov 2026 00:40:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D484210F2B8
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 00:39:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CCC110E156;
+	Tue, 24 Nov 2026 00:43:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91E9D10E156;
+ Tue, 24 Nov 2026 00:43:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795480777; x=1827016777;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=AVsyv8g1pKTDPoQKrq8p5wr4zPvowsliygXEf6Ey7/w=;
- b=hbY+iXPNXZ3spaGAS/dhG0x2o8syFr++S1bhtBPbHhFDm06SJ/h37IMm
- rbJaendojWym3m+iJ1ku12WIvhAZ3MPLdEKNWXuy57yMcV7SrFHerv8lc
- YLYubjk3nCblfGPDAv73dT0KOlNq4LZ7IzttVx/vP+DIGQRQUK5nRUUh8
- ngpvKd5Tt/ZrFmcCgjET7ChndFoM2Szd1G1iyCs+stxA4Io3n/9kxES83
- d0esMv7B18DIO+ijNfgRxV9iX8dPzIXS5D6SMeNpjBd1U23EawiM57dMS
- C/VRZWzr7xzDylatX0Uuc+wgbzWS/Sm7CKU5sWBvywZ1LLL3NbSUy7rsT g==;
-X-CSE-ConnectionGUID: RL3PKsEJSY+mqBXUVYQ8NQ==
-X-CSE-MsgGUID: 5eoP0Es+SASYl5RgpB7v+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4332915"
+ t=1795481024; x=1827017024;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pRLxCSQlJeYSDy4pkSVeZpWYHt1M+JLdVK74ZnxK9hw=;
+ b=FmRB0MQbySYg5y34RluP5HuFugzRpoa0nxBVg+Grnnflo+mDD80lhPvl
+ U3KalsJ0n6tkFJmey7eqMcUA7zQKD2V6YGP8Uy6OQ6OID2eTKLdGuaETy
+ NrVpV+UgmR69BG/lOTQCP9wxK3G/6dnB+N69sEOaLSmJr+4bt4Um3yUG3
+ jAipvhIHhf8I8uNpZ4rCJ1FosvGVVTclHnfnnwFFA91Ezs19nhTjSxvwY
+ IcsZZ3q/CDieEWUpkDpU0zHlPq9kM8DkttDYfNSjal6U8c3DcnyxeF2BN
+ QprF86m+xjeCOFXO6i+hhGDmony5GNjj/QrD8EqXyCzMD5tzVWL9D+2jD Q==;
+X-CSE-ConnectionGUID: aXZJqrxNRA2cLhFBswfCag==
+X-CSE-MsgGUID: Z+LdoKwASIK9BSmSqLY9zQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4147841"
 X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; 
-   d="scan'208";a="4332915"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 16:39:06 -0800
-X-CSE-ConnectionGUID: mgk17Z9YS9ajJrP00q2FUQ==
-X-CSE-MsgGUID: YgE7muH4TWK/UqvJ/pa8dQ==
+   d="scan'208";a="4147841"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 16:43:43 -0800
+X-CSE-ConnectionGUID: K/AfWp29QzGke9U2+JHJDw==
+X-CSE-MsgGUID: MDdZ0O6lQxW0uzyklB7Hfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11805784"
-Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
+X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11304482"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 16:39:06 -0800
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
- anoop.c.vijay@intel.com, badal.nilawar@intel.com,
- matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v22 19/19] drm/xe/vsec: Support survivability mode for CRI
-Date: Mon, 23 Nov 2026 16:39:15 -0800
-Message-ID: <20261124003856.4145635-40-michael.j.ruhl@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261124003856.4145635-21-michael.j.ruhl@intel.com>
-References: <20261124003856.4145635-21-michael.j.ruhl@intel.com>
+ 23 Nov 2026 16:43:41 -0800
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Ian Forbes <ian.forbes@broadcom.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@linux.intel.com>
+Subject: [PATCH v1 0/1] drm/ttm/tests: unblock Xe CI runs
+Date: Tue, 24 Nov 2026 01:43:11 +0100
+Message-ID: <20261124004312.3880264-1-michal.grzelak@linux.intel.com>
+X-Mailer: git-send-email 2.45.2
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,123 +65,25 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-11.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-For survivability mode, CRI can only support access to the
-PUNIT CRASHLOG PMT function.
+There is a regression blocking xe's CI execution. This patch tries to
+fix it.
 
-Create a special config to support survivability mode.
+BR,
+Michał
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_vsec.c         | 34 +++++++++++++++++++++++++++-
- 2 files changed, 35 insertions(+), 1 deletion(-)
+Michał Grzelak (1):
+  drm/ttm/tests: do not count pages after pool's teardown
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index be6feaff4baa..ae5426717eb4 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -494,6 +494,8 @@ struct xe_device {
- 		u32 retry_count;
- 		/** @pmt.punit_guid_cache: cache of the PUNIT GUID */
- 		u32 punit_guid_cache;
-+		/** @pmt.survivability_mode: cache of survivability mode state */
-+		bool survivability_mode;
- 	} pmt;
- 
- 	/** @soc_remapper: SoC remapper object */
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 851d02d6ed25..21bd71608fa5 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -20,6 +20,7 @@
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
- #include "xe_pm.h"
-+#include "xe_survivability_mode.h"
- #include "xe_sysctrl.h"
- #include "xe_vsec.h"
- 
-@@ -102,10 +103,26 @@ static struct intel_vsec_header *cri_capabilities[] = {
- 	NULL
- };
- 
-+static struct intel_vsec_header cri_survivability_crashlog = {
-+	.rev = 1,
-+	.length = SZ_16,
-+	.id = VSEC_ID_CRASHLOG,
-+	.num_entries = 1,
-+	.entry_size = 6,
-+	.tbir = 0,
-+	.offset = CRI_PMT_OFFSET + CRI_CRASHLOG_PUNIT_DISC_OFFSET,
-+};
-+
-+static struct intel_vsec_header *cri_survivability_capabilities[] = {
-+	&cri_survivability_crashlog,
-+	NULL
-+};
-+
- enum xe_vsec {
- 	XE_VSEC_UNKNOWN = 0,
- 	XE_VSEC_BMG,
- 	XE_VSEC_CRI,
-+	XE_VSEC_CRI_SURVIVABILITY,
- };
- 
- static struct intel_vsec_platform_info xe_vsec_info[] = {
-@@ -117,6 +134,10 @@ static struct intel_vsec_platform_info xe_vsec_info[] = {
- 		.caps = VSEC_CAP_TELEMETRY | VSEC_CAP_CRASHLOG,
- 		.headers = cri_capabilities,
- 	},
-+	[XE_VSEC_CRI_SURVIVABILITY] = {
-+		.caps = VSEC_CAP_CRASHLOG,
-+		.headers = cri_survivability_capabilities,
-+	},
- 	{ }
- };
- 
-@@ -320,7 +341,7 @@ static bool wait_for_fw(struct xe_device *xe)
- {
- 	int retries = VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
- 
--	if (xe->info.platform != XE_CRESCENTISLAND)
-+	if (xe->info.platform != XE_CRESCENTISLAND || xe->pmt.survivability_mode)
- 		return true;
- 
- 	while (retries--) {
-@@ -617,6 +638,10 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
- 	     xe->info.platform == XE_CRESCENTISLAND))
- 		return XE_VSEC_UNKNOWN;
- 
-+	if (xe_survivability_mode_is_boot_enabled(xe) &&
-+	    xe->info.platform == XE_CRESCENTISLAND)
-+		return XE_VSEC_CRI_SURVIVABILITY;
-+
- 	return vsec_platforms[xe->info.platform];
- }
- 
-@@ -738,6 +763,13 @@ void xe_vsec_init(struct xe_device *xe)
- 		}
- 		break;
- 
-+	case XE_VSEC_CRI_SURVIVABILITY:
-+		xe->pmt.base_offset = CRI_PMT_OFFSET;
-+		xe->pmt.survivability_mode = true;
-+		info->priv_data = &xe_cri_pmt_cb;
-+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+		break;
-+
- 	default:
- 		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
- 		return;
+ drivers/gpu/drm/ttm/tests/ttm_pool_test.c | 2 --
+ 1 file changed, 2 deletions(-)
+
 -- 
-2.43.0
+2.45.2
 
