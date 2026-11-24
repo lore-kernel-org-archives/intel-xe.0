@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE8D7606A323
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C530C606A321
 	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 20:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NOZUhkx8
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=a/SXjZzz
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75EDB10ECA9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C47710E85E;
 	Tue, 24 Nov 2026 20:12:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D179410E0EC
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 20:12:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2D3710E27E
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 20:12:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795551129; x=1827087129;
+ t=1795551134; x=1827087134;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aC69NfcGyyTczkC7L8pL+SqHgsLWHmi5YheOkeUHGP0=;
- b=NOZUhkx8EBz6ZuGZoZMJPA1ehwRMpyuI7dWwTvavXnFDGMRpPmcgzzj5
- jza9SBQ9BwFX2cq6+5lKB/Y8VT4OD3mvLWWgn/hCnzeVCFDmilz1yBFqX
- p57fR1O9COLWnqhLDb12Ru3Q7l26V1CyueJx8EZWpTi4wpvNg3YMzGtse
- 5VCIT0cEOGlVEx4GLCYsx6xX0CA9Yx7InnfWaQXE0bBunDb+fX59/E5Mr
- PEKLlss9j6p6/v5FbZjztBhbsXHTVmdQE3WsdVVIJCdwTw8UldH9uNF98
- m4SUx8qzOZq9XqSqzleqZIaUfWZvaaKWGax6KYbZszN77dtU92HYVne03 g==;
-X-CSE-ConnectionGUID: cHlQM7QrS+ay8dZoTYOJ8A==
-X-CSE-MsgGUID: IUqbHdt2Q22wq5oEiHupBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4305571"
+ bh=iYwMr75iq1DymgohU3LKfaBbS5qSKNhneB4SjQCLysE=;
+ b=a/SXjZzzZa7s4HKlSuDhLWUv2gXHiI9SftlGTXVOv5ivO9xETaYGkWrL
+ iFcE6+xDX7AsNRPpjBm4Ee2upOA4ErtrjCiYcv1cZmKHOjoNJXbgFwcky
+ qLfJjMjzc1z2xq6xxhbEY3/+ETF/IfqV3T/QRpQGksPe+zvzM7PKBprwA
+ QFBds32850mX/R2P4ruyBl4sPd0mclrQWTi9RPpp6qnpGti/7M0kQHySF
+ f5UAg3UnA8Upg2SHsV0bUnoPaZKuC3Y9HUPba7BI9+LDHg259I+hTiD0R
+ 7w1TUYkjlFm476B5/cdFf7uF2Eix/cWIiLPOa5HnlvOAGWV/9V5IY4Vl2 w==;
+X-CSE-ConnectionGUID: JQTGi5U1TW+DBwSieMbBSg==
+X-CSE-MsgGUID: xh1aWlD6SPKN+9hlkzhrBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4305573"
 X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
-   d="scan'208";a="4305571"
+   d="scan'208";a="4305573"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Nov 2026 12:11:58 -0800
-X-CSE-ConnectionGUID: MsQwDwDEQuSgemH4uDbqyw==
-X-CSE-MsgGUID: psRG60mqRvycoPHqsQvYHA==
+X-CSE-ConnectionGUID: Ejx/ErgZToirccaPWi4j0w==
+X-CSE-MsgGUID: bAKv3gOTT4OyuVzBFKZsww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; d="scan'208";a="12240634"
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; d="scan'208";a="12240640"
 Received: from orsosgc001.jf.intel.com ([10.54.56.63])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 12:11:58 -0800
+ 24 Nov 2026 12:11:59 -0800
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: intel-xe@lists.freedesktop.org, shekhar.chauhan@intel.com,
  harish.chegondi@intel.com
 Cc: matthew.brost@intel.com
-Subject: [PATCH v10 5/7] drm/xe/oa: Fence OA ioctls and mmap against device
- unplug and wedging
-Date: Tue, 24 Nov 2026 12:11:56 -0800
-Message-ID: <20261124201150.405479-14-umesh.nerlige.ramappa@intel.com>
+Subject: [PATCH v10 7/7] drm/xe/oa: Quiesce OA streams on driver unbind and
+ PCI reset
+Date: Tue, 24 Nov 2026 12:11:58 -0800
+Message-ID: <20261124201150.405479-16-umesh.nerlige.ramappa@intel.com>
 X-Mailer: git-send-email 2.55.0
 In-Reply-To: <20261124201150.405479-9-umesh.nerlige.ramappa@intel.com>
 References: <20261124201150.405479-9-umesh.nerlige.ramappa@intel.com>
@@ -70,248 +70,367 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-drm_ioctl() only checks for unplug on entry, so an OA ioctl that
-started before drm_dev_unplug() can still open a stream, or access
-oa->xe and the metrics idr, while the device is removed. The ioctls and
-the mmap of the OA stream fd don't go through drm_ioctl() at all, and
-neither through the wedged check of xe_drm_ioctl().
+An OA stream fd can outlive the device: after a PCI slot reset or after
+unbind. The poll hrtimer and userspace calls on the fd could then access
+MMIO and other device-bound objects that were released on remove,
+causing a NULL pointer dereference, and xe_oa_release() would tear down
+against freed objects.
 
-Run the OA ioctls of the drm fd and the ioctls and mmap of the OA stream
-fd in a drm_dev_enter() section, so that they fail with -ENODEV once the
-device is unplugged, and drm_dev_unplug() waits for the ones in flight.
-Fail the stream fd ioctls with -ECANCELED on a wedged device, like
-xe_drm_ioctl() does.
+Destroy a stream the same way whether its fd is closed or the device
+goes away: xe_oa_destroy_locked() marks the stream dead, disables it,
+restores the HW state and releases everything but the OA buffer and the
+stream struct, whether or not the HW still responds. xe_oa_fini() calls
+xe_oa_quiesce() to destroy the streams of a removed device, and
+xe_oa_release() skips the destroy of such a dead stream. Only the
+stream struct, with stream_lock and poll_wq valid, and the pinned OA
+buffer stay allocated until the fd is closed or the process owning the
+fd exits. The quiesce drops the DMA mapping of the OA buffer, which
+stays pinned past xe_bo_pinned_fini(). On a wedged device, pending OA
+batches aren't waited for, nothing in the ring runs anymore.
 
-A config without output syncs waits synchronously for its batch, while
-holding stream_lock or gt_lock and now in a drm_dev_enter() section. If
-the batch waits on an input fence that never signals, or never completes
-on a wedged device, that would block drm_dev_unplug() or the stream
-teardown. Stop waiting once the device is unplugged or wedged, and fail
-the config.
+The quiesce needs no runtime PM reference of its own: xe_oa_fini() runs
+after xe_pm_fini(), which keeps the device resumed with runtime suspend
+forbidden. xe_oa_release() doesn't take one for a stream destroyed by
+the quiesce either, so that it doesn't wake a removed device. It checks
+for that, destroys the stream and frees the OA buffer all under gt_lock,
+so that xe_oa_fini() can't run in between.
 
-When the stream is destroyed on a wedged device, don't submit the batch
-that disables the context save/restore of the OA counters either: the
-context won't run again, and on a long-running exec queue, which no TDR
-covers, the batch would never complete and keep the exec queue alive.
-
-A stream fd can still outlive the device, the following patch handles
-that.
+Once dead, OA interfaces return -ENODEV, poll reports EPOLLERR |
+EPOLLHUP, and xe_oa_release() frees the stream struct and the OA
+buffer, and drops the drm device reference.
 
 Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v8: Split out of "drm/xe/oa: Quiesce OA streams on driver unbind and PCI
-    reset", which carried these changes since v4
-v10: Don't submit the context disable batch on a wedged device (Sashiko)
+v2: Include Sashiko's comments
+v3: Fix circular lockdep issue due to scope of stream->mmap_mutex
+v4: Rely on drm_dev_unplug() to zap OA buffer mmaps and on the dummy page
+    for refaults. Drop the OA specific fault handler and mmap_mutex. Split
+    out the stream destroy refactor and the runtime PM move into separate
+    patches. DMA-unmap the OA buffer on quiesce and run the OA ioctls in a
+    drm_dev_enter() section instead of the per-GT quiesced flag. Don't
+    restore the context state on quiesce, wait for pending OA batches on
+    quiesce, don't block unplug on a synchronous OA config wait and
+    quiesce a stream released during removal (Sashiko).
+v5: Keep the OA buffer pinned until the stream fd is released instead of
+    DMA-unmapping it on quiesce, so the shrinker can't drop the last
+    reference after the device is gone (Sashiko).
+v6: Run the stream fd ioctls in a drm_dev_enter() section and reject them
+    on a wedged device. Stop the synchronous OA config wait on a wedged
+    device too. Flush the TTM workqueue before dropping the drm device
+    reference on release of an unplugged device (Sashiko).
+v7: Return -ENODEV rather than -ECANCELED from stream fd ioctls once the
+    device is unplugged, also when it is wedged. Fail the synchronous OA
+    config wait when it is cut short. DMA-unmap the OA buffer on quiesce,
+    as xe_bo_pinned_fini() can race with its release. Fix the
+    xe_oa_quiesce() comment (Sashiko).
+v8: Destroy a stream the same way on close and on quiesce, whether or
+    not the device is wedged or still responds, all HW waits are
+    bounded. This also restores preemption and the context state on
+    quiesce. Drop the release time drm_dev_enter() section, gt_lock
+    already serializes release against the quiesce. Replace the stream
+    destroy split with a patch that only moves freeing the OA buffer and
+    the stream to the callers. Split out the ioctl and mmap
+    unplug/wedged fencing and the synchronous config wait into a
+    separate patch. Drop the runtime PM move, xe_oa_release() keeps the
+    runtime PM reference across freeing the OA buffer, so that unpinning
+    it can't race with the pinned BO eviction of a D3cold runtime
+    suspend (Sashiko).
+v9: DMA-unmap the OA buffer on quiesce only, not on every stream destroy,
+    so that a pinned OA buffer is never left without its DMA mapping
+    across a suspend/resume. Don't wait for OA batches on a wedged
+    device. Drain the OA batches in the stream init error path too
+    (Sashiko).
+v10: Check for a dead stream, take the runtime PM reference and free the
+     OA buffer all under gt_lock in xe_oa_release(). Move not submitting
+     the context disable batch on a wedged device into the previous
+     fencing patch (Sashiko).
 ---
- drivers/gpu/drm/xe/xe_oa.c          | 80 +++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_observation.c | 20 +++++++-
- 2 files changed, 81 insertions(+), 19 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c       | 136 ++++++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_oa_types.h |   3 +
+ 2 files changed, 128 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 7241cf18b325..9ce96cac3bf6 100644
+index d37724e28016..2b88f3fa210d 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -43,6 +43,7 @@
- #include "xe_sriov.h"
- #include "xe_sync.h"
- #include "xe_wa.h"
-+#include "xe_wedge.h"
+@@ -261,13 +261,18 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
  
- #define DEFAULT_POLL_FREQUENCY_HZ 200
- #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
-@@ -895,9 +896,10 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+ static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+ {
+-	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+-	u32 tail, hw_tail, partial_report_size, available;
++	u32 gtt_offset, tail, hw_tail, partial_report_size, available;
+ 	int report_size = stream->oa_buffer.format->size;
+ 	unsigned long flags;
  
- 	/*
- 	 * disable the context save/restore or OAR counters, and wait for that batch like for
--	 * the ones before it
-+	 * the ones before it. Not on a wedged device, the context won't run again, and the
-+	 * batch might never complete on a long-running exec queue, which no TDR covers.
- 	 */
--	if (stream->exec_q) {
-+	if (stream->exec_q && !xe_wedged(stream->oa->xe)) {
- 		xe_oa_configure_oa_context(stream, false);
- 		xe_oa_stream_drain(stream);
- 	}
-@@ -1082,6 +1084,7 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
- 	struct xe_oa_fence *ofence;
- 	int i, err, num_signal = 0;
- 	struct dma_fence *fence;
-+	int ret = 0;
+ 	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
  
- 	ofence = kzalloc_obj(*ofence);
- 	if (!ofence) {
-@@ -1125,12 +1128,28 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
- 	if (err == -ENOENT)
- 		xe_oa_config_cb(fence, &ofence->cb);
++	if (stream->dead) {
++		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
++		return false;
++	}
++
++	gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+ 	hw_tail = xe_oa_hw_tail_read(stream);
+ 	hw_tail -= gtt_offset;
  
--	/* If nothing needs to be signaled we wait synchronously */
-+	/*
-+	 * If nothing needs to be signaled we wait synchronously unless the device
-+	 * is unplugged/wedged.
-+	 */
- 	if (!num_signal) {
--		dma_fence_wait(&ofence->base, false);
-+		while (!dma_fence_wait_timeout(&ofence->base, false, HZ / 10)) {
-+			if (drm_dev_is_unplugged(&gt_to_xe(stream->gt)->drm)) {
-+				ret = -ENODEV;
-+				break;
-+			}
-+			if (xe_wedged(gt_to_xe(stream->gt))) {
-+				ret = -ECANCELED;
-+				break;
-+			}
-+		}
- 		dma_fence_put(&ofence->base);
- 	}
+@@ -328,6 +333,9 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
+ 	struct xe_oa_stream *stream =
+ 		container_of(hrtimer, typeof(*stream), poll_check_timer);
  
-+	/* The callers clean up the syncs on error */
++	if (READ_ONCE(stream->dead))
++		return HRTIMER_NORESTART;
++
+ 	if (xe_oa_buffer_check_unlocked(stream))
+ 		wake_up(&stream->poll_wq);
+ 
+@@ -539,12 +547,19 @@ static void xe_oa_disable(struct xe_oa_stream *stream)
+ 
+ static int xe_oa_wait_unlocked(struct xe_oa_stream *stream)
+ {
++	int ret;
++
+ 	/* We might wait indefinitely if periodic sampling is not enabled */
+ 	if (!stream->periodic)
+ 		return -EINVAL;
+ 
+-	return wait_event_interruptible(stream->poll_wq,
+-					xe_oa_buffer_check_unlocked(stream));
++	ret = wait_event_interruptible(stream->poll_wq,
++				       READ_ONCE(stream->dead) ||
++				       xe_oa_buffer_check_unlocked(stream));
 +	if (ret)
 +		return ret;
 +
- 	/* Done with syncs */
- 	for (i = 0; i < stream->num_syncs; i++)
- 		xe_sync_entry_cleanup(&stream->syncs[i]);
-@@ -1722,11 +1741,20 @@ static long xe_oa_ioctl(struct file *file,
- 			unsigned long arg)
- {
- 	struct xe_oa_stream *stream = file->private_data;
--	long ret;
-+	struct xe_device *xe = gt_to_xe(stream->gt);
-+	long ret = -ECANCELED;
-+	int idx;
++	return READ_ONCE(stream->dead) ? -ENODEV : 0;
+ }
  
--	mutex_lock(&stream->stream_lock);
--	ret = xe_oa_ioctl_locked(stream, cmd, arg);
--	mutex_unlock(&stream->stream_lock);
-+	if (!drm_dev_enter(&xe->drm, &idx))
+ #define OASTATUS_RELEVANT_BITS (OASTATUS_MMIO_TRG_Q_FULL | OASTATUS_COUNTER_OVERFLOW | \
+@@ -573,6 +588,9 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+ 	size_t offset = 0;
+ 	int ret;
+ 
++	if (READ_ONCE(stream->dead))
 +		return -ENODEV;
 +
-+	if (!xe_wedged(xe)) {
-+		mutex_lock(&stream->stream_lock);
-+		ret = xe_oa_ioctl_locked(stream, cmd, arg);
-+		mutex_unlock(&stream->stream_lock);
-+	}
-+
-+	drm_dev_exit(idx);
+ 	if (!stream->sample)
+ 		return -EINVAL;
  
- 	return ret;
- }
-@@ -1765,27 +1793,41 @@ static int xe_oa_release(struct inode *inode, struct file *file)
- static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
- {
- 	struct xe_oa_stream *stream = file->private_data;
-+	struct xe_device *xe = gt_to_xe(stream->gt);
- 	int ret = xe_observation_paranoid_check();
--	struct xe_bo *bo = stream->oa_buffer.bo;
-+	struct xe_bo *bo;
-+	int idx;
+@@ -583,13 +601,14 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+ 				return ret;
  
- 	if (ret) {
--		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
-+		drm_dbg(&xe->drm, "Insufficient privilege to map OA buffer\n");
- 		return ret;
+ 			mutex_lock(&stream->stream_lock);
+-			ret = __xe_oa_read(stream, buf, count, &offset);
++			ret = stream->dead ? -ENODEV :
++				__xe_oa_read(stream, buf, count, &offset);
+ 			mutex_unlock(&stream->stream_lock);
+ 		} while (!offset && !ret);
+ 	} else {
+ 		xe_oa_buffer_check_unlocked(stream);
+ 		mutex_lock(&stream->stream_lock);
+-		ret = __xe_oa_read(stream, buf, count, &offset);
++		ret = stream->dead ? -ENODEV : __xe_oa_read(stream, buf, count, &offset);
+ 		mutex_unlock(&stream->stream_lock);
  	}
  
-+	/*
-+	 * drm_dev_unplug() zaps the OA buffer mmaps and waits for this section to finish, so
-+	 * no mmap of the OA buffer can be set up after that. Can't use stream_lock here, it is
-+	 * held across user copies which fault on mmap_lock, held by the caller.
-+	 */
-+	if (!drm_dev_enter(&xe->drm, &idx))
+@@ -616,6 +635,9 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+ 
+ 	poll_wait(file, &stream->poll_wq, wait);
+ 
++	if (stream->dead)
++		return EPOLLERR | EPOLLHUP;
++
+ 	/*
+ 	 * We don't explicitly check whether there's something to read here since this
+ 	 * path may be hot depending on what else userspace is polling, or on the timeout
+@@ -865,7 +887,9 @@ static void xe_oa_stream_drain(struct xe_oa_stream *stream)
+ 	struct xe_exec_queue *q = stream->exec_q ?: stream->k_exec_q;
+ 	long timeout;
+ 
+-	if (!stream->last_fence || dma_fence_is_signaled(stream->last_fence))
++	/* Nothing in the ring runs anymore on a wedged device */
++	if (xe_wedged(stream->oa->xe) || !stream->last_fence ||
++	    dma_fence_is_signaled(stream->last_fence))
+ 		return;
+ 
+ 	/*
+@@ -1716,6 +1740,9 @@ static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
+ 			       unsigned int cmd,
+ 			       unsigned long arg)
+ {
++	if (stream->dead)
 +		return -ENODEV;
++
+ 	switch (cmd) {
+ 	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
+ 		return xe_oa_enable_locked(stream);
+@@ -1755,33 +1782,69 @@ static long xe_oa_ioctl(struct file *file,
+ 	return ret;
+ }
+ 
++/*
++ * Disable the stream, restore the HW state and release everything but the OA buffer and the
++ * stream struct, the same whether the stream fd is closed or the device goes away, and
++ * whether or not the HW still responds: all HW waits are bounded. Afterwards the stream is
++ * dead and any further read, poll, mmap or ioctl on the stream fd fails with -ENODEV.
++ */
+ static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
+ {
++	unsigned long flags;
++
++	mutex_lock(&stream->stream_lock);
++
++	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
++	WRITE_ONCE(stream->dead, true);
++	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
++
+ 	if (stream->enabled)
+ 		xe_oa_disable_locked(stream);
+ 
++	wake_up_all(&stream->poll_wq);
++
+ 	xe_oa_stream_destroy(stream);
+ 
+ 	if (stream->exec_q)
+ 		xe_exec_queue_put(stream->exec_q);
+ 
+ 	drm_syncobj_put(stream->ufence_syncobj);
++	mutex_unlock(&stream->stream_lock);
+ }
+ 
+ static int xe_oa_release(struct inode *inode, struct file *file)
+ {
+ 	struct xe_oa_stream *stream = file->private_data;
+ 	struct xe_gt *gt = stream->gt;
++	bool rpm;
+ 
+-	xe_pm_runtime_get(gt_to_xe(gt));
++	/*
++	 * gt_lock serializes against xe_oa_fini(), which destroys the stream on device removal.
++	 * Unless it did, the device stays bound while this holds gt_lock, so take a runtime PM
++	 * reference only then, and don't wake a removed device. Free the OA buffer under gt_lock
++	 * too, so that it is unpinned before xe_oa_fini() and xe_bo_pinned_fini() can run.
++	 */
+ 	mutex_lock(&gt->oa.gt_lock);
+-	xe_oa_destroy_locked(stream);
+-	mutex_unlock(&gt->oa.gt_lock);
++	rpm = !stream->dead;
++	if (rpm) {
++		xe_pm_runtime_get(gt_to_xe(gt));
++		xe_oa_destroy_locked(stream);
++	}
+ 
+ 	xe_oa_free_oa_buffer(stream);
+ 	mutex_destroy(&stream->stream_lock);
+ 	kfree(stream);
+-	xe_pm_runtime_put(gt_to_xe(gt));
++	if (rpm)
++		xe_pm_runtime_put(gt_to_xe(gt));
++	mutex_unlock(&gt->oa.gt_lock);
++
++	/*
++	 * Freeing the OA buffer may defer the BO destroy to the TTM workqueue. Once the device
++	 * is unplugged, this may be the last reference on the drm device, so let the destroy
++	 * finish before drm_dev_put() releases the GGTT.
++	 */
++	if (drm_dev_is_unplugged(&gt_to_xe(gt)->drm))
++		flush_workqueue(gt_to_xe(gt)->ttm.wq);
+ 
+ 	/* Release the reference the OA stream kept on the driver */
+ 	drm_dev_put(&gt_to_xe(gt)->drm);
+@@ -1810,6 +1873,11 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
+ 	if (!drm_dev_enter(&xe->drm, &idx))
+ 		return -ENODEV;
+ 
++	if (READ_ONCE(stream->dead)) {
++		ret = -ENODEV;
++		goto exit;
++	}
 +
  	/*
  	 * Userspace always maps the OA buffer at offset 0, the mapping is moved to the OA
  	 * buffer's own range in the drm device's address_space below
- 	 */
- 	if (vma->vm_pgoff) {
--		drm_dbg(&stream->oa->xe->drm, "Wrong mmap offset, must be 0\n");
--		return -EINVAL;
-+		drm_dbg(&xe->drm, "Wrong mmap offset, must be 0\n");
-+		ret = -EINVAL;
-+		goto exit;
- 	}
+@@ -1958,6 +2026,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+ 	return 0;
  
-+	bo = stream->oa_buffer.bo;
-+
- 	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
- 	if (vma->vm_end - vma->vm_start != xe_bo_size(bo)) {
--		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
--		return -EINVAL;
-+		drm_dbg(&xe->drm, "Wrong mmap size, must be OA buffer size\n");
-+		ret = -EINVAL;
-+		goto exit;
- 	}
- 
- 	/*
-@@ -1793,15 +1835,19 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
- 	 * VM_MAYSHARE, don't copy the vma on fork
- 	 */
- 	if (vma->vm_flags & (VM_WRITE | VM_EXEC | VM_SHARED | VM_MAYSHARE)) {
--		drm_dbg(&stream->oa->xe->drm, "mmap must be read only\n");
--		return -EINVAL;
-+		drm_dbg(&xe->drm, "mmap must be read only\n");
-+		ret = -EINVAL;
-+		goto exit;
- 	}
- 	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
- 		     VM_MAYWRITE | VM_MAYEXEC);
- 
- 	vma->vm_pgoff = drm_vma_node_start(&bo->ttm.base.vma_node);
- 
--	return drm_gem_mmap_obj(&bo->ttm.base, xe_bo_size(bo), vma);
-+	ret = drm_gem_mmap_obj(&bo->ttm.base, xe_bo_size(bo), vma);
-+exit:
-+	drm_dev_exit(idx);
-+	return ret;
+ err_put_k_exec_q:
++	xe_oa_stream_drain(stream);
+ 	xe_oa_disable_metric_set(stream);
+ 	xe_exec_queue_put(stream->k_exec_q);
+ err_free_oa_buf:
+@@ -2674,6 +2743,49 @@ static void xe_oa_unregister(void *arg)
+ 	oa->metrics_kobj = NULL;
  }
  
- static const struct file_operations xe_oa_fops = {
-diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
-index 39e05b9131a7..9e23ade51dc1 100644
---- a/drivers/gpu/drm/xe/xe_observation.c
-+++ b/drivers/gpu/drm/xe/xe_observation.c
-@@ -7,6 +7,7 @@
- #include <linux/perf_event.h>
- #include <linux/sysctl.h>
- 
-+#include <drm/drm_drv.h>
- #include <uapi/drm/xe_drm.h>
- 
- #include "xe_eu_stall.h"
-@@ -35,8 +36,8 @@ int xe_observation_paranoid_check(void)
- 	return perf_allow_cpu();
- }
- 
--static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
--		       struct drm_file *file)
-+static int __xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
-+			 struct drm_file *file)
- {
- 	switch (arg->observation_op) {
- 	case DRM_XE_OBSERVATION_OP_STREAM_OPEN:
-@@ -50,6 +51,21 @@ static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *
- 	}
- }
- 
-+static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
-+		       struct drm_file *file)
++static void xe_oa_quiesce_gt(struct xe_gt *gt)
 +{
-+	int idx, ret;
++	int i;
 +
-+	/* Hold off drm_dev_unplug() while the OA ioctls run */
-+	if (!drm_dev_enter(dev, &idx))
-+		return -ENODEV;
++	mutex_lock(&gt->oa.gt_lock);
++	for (i = 0; i < gt->oa.num_oa_units; i++) {
++		struct xe_oa_stream *stream = gt->oa.oa_unit[i].exclusive_stream;
 +
-+	ret = __xe_oa_ioctl(dev, arg, file);
++		if (!stream)
++			continue;
 +
-+	drm_dev_exit(idx);
-+	return ret;
++		xe_oa_destroy_locked(stream);
++
++		/*
++		 * The OA buffer stays pinned until the stream fd is released, an mmap may still
++		 * hold a reference on it. Drop its DMA mapping now: the fd may be released, and
++		 * the BO unpinned, while xe_bo_pinned_fini() DMA-unmaps it without the BO lock.
++		 */
++		xe_bo_dma_unmap_pinned(stream->oa_buffer.bo);
++	}
++	mutex_unlock(&gt->oa.gt_lock);
 +}
 +
- static int xe_eu_stall_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
- 			     struct drm_file *file)
- {
++/**
++ * xe_oa_quiesce - Disable all active OA streams on driver unbind or PCI slot reset
++ * @xe: @xe_device
++ *
++ * Destroys every active stream like closing its fd would, see xe_oa_destroy_locked().
++ * Only the stream struct and the pinned OA buffer stay allocated until userspace closes
++ * the fd, at which point xe_oa_release() frees them.
++ */
++static void xe_oa_quiesce(struct xe_device *xe)
++{
++	struct xe_gt *gt;
++	u8 id;
++
++	if (!xe->oa.xe)
++		return;
++
++	for_each_gt(gt, xe, id)
++		xe_oa_quiesce_gt(gt);
++}
++
+ /**
+  * xe_oa_register - Xe OA registration
+  * @xe: @xe_device
+@@ -2985,6 +3097,8 @@ static void xe_oa_fini(void *arg)
+ 	if (!oa->xe)
+ 		return;
+ 
++	xe_oa_quiesce(xe);
++
+ 	idr_for_each(&oa->metrics_idr, destroy_config, oa);
+ 	idr_destroy(&oa->metrics_idr);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+index e876e9be92ba..e60a90bae1c6 100644
+--- a/drivers/gpu/drm/xe/xe_oa_types.h
++++ b/drivers/gpu/drm/xe/xe_oa_types.h
+@@ -214,6 +214,9 @@ struct xe_oa_stream {
+ 	/** @enabled: Whether the stream is currently enabled */
+ 	bool enabled;
+ 
++	/** @dead: Gate HW access when device is wedged or going away */
++	bool dead;
++
+ 	/** @oa_config: OA configuration used by the stream */
+ 	struct xe_oa_config *oa_config;
+ 
 -- 
 2.55.0
 
