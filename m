@@ -2,154 +2,155 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E4A606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 19:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CD4606A31E
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 19:54:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Q+T3olnA;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=jA9U2Czd
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KW7VnF1x;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=mvnRdQp3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1813A10E590;
-	Tue, 24 Nov 2026 19:48:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE0A10E590
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 19:48:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0B6F10E1BB;
+	Tue, 24 Nov 2026 19:54:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9448B10E649;
+ Tue, 24 Nov 2026 19:54:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795549688; x=1827085688;
+ t=1795550043; x=1827086043;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=Sp2lyD7eLKgbdotU4LG2wUvrDg8x1YvJjfWhIrPhRxc=;
- b=Q+T3olnAIW0qRXmV3TArmsSi/Jjaky/iiXCEd58vHh1WFsMYA/iKaxL1
- I26RIBTCkUBqaoo9o4WFZYWHq8Xh0Sk4JBB3dSzR3SmjMPBKxxJ1y+xFu
- xmExULjshGLvegEdeNQak4bjsI/+bcsVOy1uvY9cIji8uC7UxCiKFgn08
- 8MXiadmXnfVYaxOcQkaeXLVoATqsQ4lWO/ntg3gYGsPJpr1ynxGxt881L
- vOXR5gkAlxP49ekbZ543RCAbICYusSiHoyyKh/fNxSaccaFaeul/IG8ki
- j8SOIIi/lVo9cDILppZKFD6DPGYPWo9cMbboDIzsimRXJE1qPK1IMoeOp A==;
-X-CSE-ConnectionGUID: djCZvV4IRi+MKiOqcK0PEg==
-X-CSE-MsgGUID: OJTguZh7QvGzLL6Dfb/Gow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4307903"
+ bh=Kwik0w0eXMSfYIZIoH1KgnXl+Ksuj58cWAIg2/zwN3U=;
+ b=KW7VnF1x/XMYyGAjrsfdsAaRbX7eM8K/RN/Ofct5KO1pcnDkgQLpZwZN
+ Ker3TsUThJCdrDlnQTwvInmBww30n68jT0LIgvo1gS5SOYsnOd6gq/km4
+ 7HX1Hne1VASin2IaszsPxAKt00F55sueKb+YbR/YBMO5CKKMmt1KBzA+t
+ n05VZT6wrnfBYHbqhoCh6mEX6eA3Rdt6pxxrEQSpCSVb5EsCdIF7jDdzF
+ /Dflnv85+OmgIyFUfB3mKeMRwbz6hBVtBBp/C34Qgsuk3Cv70sx1JlgRT
+ TSXz1GpYQVJcdf1QQ1Mq2HxKKqcEsql4Nnn/ZFJ7mEM/DXHPByyfklE7W Q==;
+X-CSE-ConnectionGUID: AE3vDdwjTaGa2znxz3EThA==
+X-CSE-MsgGUID: mmfoo32GQGqC4huaaRa+dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4292540"
 X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
-   d="scan'208";a="4307903"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 11:48:08 -0800
-X-CSE-ConnectionGUID: bujVfdqtTUO/LYet5vjPnA==
-X-CSE-MsgGUID: WrAgSd8TT5+BBFaCKn4U2A==
+   d="scan'208";a="4292540"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2026 11:54:03 -0800
+X-CSE-ConnectionGUID: Rye4YY/YSY2Lrk2xrTJ+ew==
+X-CSE-MsgGUID: ufonSIkCRfSHguEv86IRTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; d="scan'208";a="11753113"
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; d="scan'208";a="11998141"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 11:48:07 -0800
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2026 11:54:03 -0800
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Tue, 24 Nov 2026 11:48:06 -0800
+ 15.2.2562.57; Tue, 24 Nov 2026 11:54:02 -0800
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Tue, 24 Nov 2026 11:48:06 -0800
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.71) by
+ 15.2.2562.57 via Frontend Transport; Tue, 24 Nov 2026 11:54:02 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.7) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Tue, 24 Nov 2026 11:48:06 -0800
+ 15.2.2562.57; Tue, 24 Nov 2026 11:54:01 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HQuGRqvqAOElRSSFL8xwnmPAnuLBnbvGuMrg3cYaJUSKy2WxpnqWAZs/ELryr+UjQOGfjFPFAlADSq7hRoKsVFy8eB8ag/eUTmxRHnyah9/fc3qpiM/y63OYNaqerWimz3l/VooP9XQYqMKACe7PZTBcUabNl1lc8+MIcMiSohtWkvgbGRek/B9v9OvbTgvmHdusx3VZEvnQUVdnYeEZVPmvsNIxQr0kLlfXEfTohJdjAHYjAhEJh042rXUwwNvVBnEqq8uAwAexSjxqRV1dO86Zg1a6xwm6n1ugQGfbA7aKRcZ0MwbsO+iwOmDq1jnoIItW6tQVlNmY2k7DTMzYng==
+ b=XJBGU4eFThkeoIQKaBjOAiu+5Ob9Y4DaZ6Q1eLRk67Yj5v0DzOlX38GOlyqeOQDR1LQsUs2y9i2qTq0DCzpNewwj89OaJJcCHkMd0juN2DlcQpYIyb7K5opjPwEd2d/V6gcQA+7r7wZssAJIBW0CW+6zUsQsV28PPIrX8Z6t3K5CE22xTuysckdKMcvdeDjsiAXpXbmeL4pCYW/oXNcRHes2o2sIkGZcFnOaFlU4GPDiaW8Dkw46PVQ0PIb0yW2mAoiKlifmAxXLNFVUiFJ/CYwky5TWlKNn7dxKx9kLzpYtqW/TjOzhrgzO7kOtjlswe5O4awj3SLfPIJCXnTETZw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Bs/FPjVIW4ABSGUWX5PapiBM+WoaOguD2Ti+QUxb4N8=;
- b=QQi7Xk6dmyy9iBn1/TgtVEtSvuCWyqUr3lk1i4GhJD91w5HKtMVhrvoZtwAc+NJUaZzfWePS6FX9zd7v4fa3MABBnnEabxHx6euXYm9RMYpFMmCa/vjd0m6B6N8nNOJoNjgd5JYigEU7jsb9fzt+DHbAoBKW5PxNmAfVivWZlvo6qUpupsRwXeESqnzg0wKhVA6mXcF8T0IdYchMMd8iE7ear0Cbtie3R1heIqTGvvttPASUyiMaHOhsVZ1Xbpbjpe0NZHMftxR2PKCl0A8mo1pDUqG6Iy0PmKiRYkVF4yBHg0KLxKWAtIvxmCCEB71OsT9mkqqWBFweHvbT2WFJXQ==
+ bh=j+cIPJSUB5F4Kstwt+e9jnlQ2A7vRsKRCNLYPj2HF4k=;
+ b=tbwod+627L7ugS2J2Nvva4i3B2HOwvHib2Srwxg1bl1cLBPEK+YEKWIQCZFFjYM7VE5YdBBwUnu3NdeVkP9sjFXnXTFmkqemSKN0KdVflEfV8Y1egZWhK1AaUUq6XuEGM5QLurJSBQUtodrqfIo7w58WVlC1/9QeacVD7FKo1/EGFDFeYC+73J7sexblqSeuOJ/6Yl7vAyPfPxgHsHuI/ZgttNg6njAnp2gt+3JrkNdFRDHqRlsDICJ+yp736tH2WrrMH51KMI5d6GpsM0kQ3ONJ65u5u0pa1YggRcr0ZUO0z8C9U3MckuNiWYeHvGXTZ7tdachk7rJ01crBpnbA/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bs/FPjVIW4ABSGUWX5PapiBM+WoaOguD2Ti+QUxb4N8=;
- b=jA9U2CzdPXYb1RPOa9QGli2ZOqbRferLco3eMjxpxibUF/5Gyy4wlgQ1oy9gcyMiFeq2mKU9I3xRZ+aweAwKMGM+xrtf/4qMINGHcIkxMZJMHzqai7A7Q2gtWYLqNv9OE8abVIwF1Ub34JHkT1nWCk+STljCrrUH/wOuaJxJ32U=
+ bh=j+cIPJSUB5F4Kstwt+e9jnlQ2A7vRsKRCNLYPj2HF4k=;
+ b=mvnRdQp3W1npp+Pxp0FTRPuE1H6B/QdB/RbCzHspQsJgL9IdetBNvpWwqryuI/sCc6LRDRPbZxyTOcmVgUh35V6ji7I4BJG/JthvPP4cVZtVK0X6LPjye6CjTVIAofN9zt/sMG/rzWR1QAlRGHfzi2zuuuYH4BaFWTTDYHTOXIo=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
- by DS4PPFBA72E12AE.namprd11.prod.outlook.com (2603:10b6:f:fc02::48)
+ by DS6PR11MB989080.namprd11.prod.outlook.com (2603:10b6:8:46b::24)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Tue, 24 Nov
- 2026 19:48:04 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.4; Tue, 24 Nov
+ 2026 19:54:00 +0000
 Received: from CO1PR11MB4787.namprd11.prod.outlook.com
  ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
  ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
- 19:48:04 +0000
-Date: Tue, 24 Nov 2026 11:48:02 -0800
+ 19:53:59 +0000
+Date: Tue, 24 Nov 2026 11:53:57 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: Matthew Auld <matthew.auld@intel.com>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/3] drm/ttm, drm/xe: Drop the ttm_tt on null moves to VRAM
-Message-ID: <awXp8nbFKlXWG3vJ@gsse-cloud1.jf.intel.com>
-References: <20261107-oom-fun-v1-0-be9eb05b82ed@intel.com>
- <20261107-oom-fun-v1-3-be9eb05b82ed@intel.com>
- <avctByO+qRX9FQ+l@gsse-cloud1.jf.intel.com>
- <4cfd3d47d3029380cc4757ecdebb844658f93940.camel@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Natalie Vock <nat@pixelcluster.dev>,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>, Matthew Auld
+ <matthew.auld@intel.com>, <dri-devel@lists.freedesktop.org>,
+ <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/ttm: Destroy the ttm_tt in ttm_bo_move_null() when
+ it's no longer needed
+Message-ID: <awXrVdQKNToiLtmE@gsse-cloud1.jf.intel.com>
+References: <20261124190954.47690-1-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4cfd3d47d3029380cc4757ecdebb844658f93940.camel@linux.intel.com>
-X-ClientProxiedBy: SJ2P220CA0003.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:5da::6) To CO1PR11MB4787.namprd11.prod.outlook.com
+In-Reply-To: <20261124190954.47690-1-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR13CA0048.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::23) To CO1PR11MB4787.namprd11.prod.outlook.com
  (2603:10b6:303:95::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|DS4PPFBA72E12AE:EE_
-X-MS-Office365-Filtering-Correlation-Id: 667ddbed-4bc8-45ef-32c8-08df4a63dac9
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|DS6PR11MB989080:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5dab9e37-72ae-40f3-ddb1-08df4a64aeb0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|366016|376014|261026121527099003|261102123227099003|261026140227099003|261022105027099003|261028144727099003|261021123027099003|261021121427099003|10067099003|261102130727099003|11063799006|56012099006|4143699003|261009221227099003|261009223027099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: dT9xbP39zp9DcQlR6h1Xczqvj4m11wyxg963e0mfWNPCBPK0alamXrhpnm/O5rBJiRwlAVhmJk6Iay/i4/mzVYTbETz2VxeHECxUiGw2BIjrzvzFZ3lRCnnxSXwKk6KyI3yQ1ApBymmnQRNmTH0ehv8OnFlnwHNkj/iDbCgGX5+7JiDqGOVzNswQaiGLQ0T0WVpR8AcoMFklWp+nC7q9inQYXfvJ8uza1U4ifARyUoWFWSsLRhQXEZBFQSnpjxLXIiT690/46EuuWKEbUd52kHoZN5NZTq3FINXD1dJmVk1UM0GNSkRriuuKNr60yqAyV+msn/6Dd9p24LG2RI5EmEu6iSrcFzzVyDXQB8zqHWp80mEP5LRbG466OoFofi45gdimhe3ACZQgjZfvRAWXHYSrirurlbnAuj3rfGWb/QSuAAAcuO4jhqBhYucdzYhfEok9Mpuqp72dRHkDcFiGr8A/2DaCfxLmKi4O1vVL7u5xDkglaQMC97H8in544wiM9IhgWHc0TqCgH8MCG0rfKcGyO4ZmSnIA3juN4KTJV0YARuTErt0HY1lX0gHuNEBFLYuiRrXfA4BNRKQaeZrzC2haEXSz6+8+o/7/K4m+7ZZoHOYfzkhxnxgr3ySM1U+t+WQVC7gK6hVsL0Io7OjYib4OT6qUU3VCBDY+C9x9lmg=
+ ARA:13230040|1800799024|366016|376014|23010399003|18002099003|22082099003|11063799006|56012099006|261021130227099003|261026130827099003|261022105027099003|261022115727099003|261022113327099003|261028144727099003|261022075727099003|261026121527099003|261026140227099003|261026135527099003|261021123027099003|261009221227099003|261021121427099003|261021135927099003|261009223027099003|261021133027099003|261102130727099003|261102123227099003|10067099003;
+X-Microsoft-Antispam-Message-Info: epUloJUqnh6FJBMed3Xd0OdeAoVvs8PRJYJAnEuiZLrb/gZiSPEl7oJXnlp7BziUViBmpFEX9H2thW56nLGkSQ2swmqmzCydN2cSfgM2HrEVkkSiHDBqfS7ZTye4WiZ3hDidGAgD5XPgFFXldZ1loYBkL9467AWk5K2tSsZRxYc6iv2ANZgElJPlxfQt4OgWEZnqBr51sK6eYCi1FGfvWf9X4VCWerb7jO0fC3jPaqC2UqlMztSPfESG3fMITePa6n3HhEQwicw3NyX6k8QOj5vhzoegv4edWoemncawFV35PQVjscds4afhxILViHSTRUOj9mI8Bl7k/oMfHY2i9gUkOQ9F68WzWe+oITIJ7pA/tipNcJXhqryOnQ4NH+bAo0gClUjKrzrpqOB6kvbnXn1Zscnl8JVOY87I+AjKSxO1Zg1WVgo1xN0g9XXvMSycq88KgrEF9RnG7Jk9gNXnGtc548I+brVdMLi2Cm8mkBlLrXc7dh1ZbG86WYsw+2KWG9hOZdo25wN1gSei073cZ/+heGB8G66rW73xDYprEkFM5nnCAQz1FlhFKpu7NZyiZm5DoaXH1bns0BbbEnXp8eSqf0SA2qrwF3BGqpQDGunUtgKY+uABoFAKlJk3h0A030tu7bHur2MUoFH/+B9KzMCpu03pYqyh57KJMxVCsRA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(261026121527099003)(261102123227099003)(261026140227099003)(261022105027099003)(261028144727099003)(261021123027099003)(261021121427099003)(10067099003)(261102130727099003)(11063799006)(56012099006)(4143699003)(261009221227099003)(261009223027099003)(22082099003)(18002099003);
+ SFS:(13230040)(1800799024)(366016)(376014)(23010399003)(18002099003)(22082099003)(11063799006)(56012099006)(261021130227099003)(261026130827099003)(261022105027099003)(261022115727099003)(261022113327099003)(261028144727099003)(261022075727099003)(261026121527099003)(261026140227099003)(261026135527099003)(261021123027099003)(261009221227099003)(261021121427099003)(261021135927099003)(261009223027099003)(261021133027099003)(261102130727099003)(261102123227099003)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?5tyZF4BmMV6siK3ZwZ9M0D1hAR2cwNp1HQOS5jxZY2AQishR8AhiqulMbU?=
- =?iso-8859-1?Q?wZ3QqwwbrjcBdhRuMdsOopRQe1oUUaae7dNAJVSqCnPMN55kXz+FVgI1cX?=
- =?iso-8859-1?Q?bFo6y0vN37yjFhlgBg+aRS4RRyVDbrAHeh8BUYGRkXwep0N2MJC8w0yui5?=
- =?iso-8859-1?Q?leW9eGagbGaJ9oBZRFzRYO2/SqyjJR09ThB8Cl2LdmBaG39GW6zbWR4drL?=
- =?iso-8859-1?Q?IAZHEvnakyOZJLh3pF2A9yrPQ0fJedFkumLcFpdXDE18NH0oIGE5kQzat0?=
- =?iso-8859-1?Q?PfO99opJ+lvbz4sFIHOezvDV/mfFXind3IkQH+keJPx8sgx29xHL0gLBht?=
- =?iso-8859-1?Q?jq9WU2sYKiZFh8xWTbr4v+JfNHaQViH3lTaNLUcskNTVwOg98S7Eiir34N?=
- =?iso-8859-1?Q?vvGuSiJEwlIA16YtaouZV6puZWcN/KcSE9pDa1ZrRlnl3ApcbiQ2Wps8p9?=
- =?iso-8859-1?Q?gSb2P2yE+1+xpml5EEZhBHvi+AI4HcheoDRhKOR/oK00eD2CsF+jMLNyW5?=
- =?iso-8859-1?Q?0802WX1wsZaUanLQd5qpfw5B+/mYi10gMGtFMrodWEwa71ZbRJyvh2a6tb?=
- =?iso-8859-1?Q?DwtJQBDtTqB1GXajT3fobQzm0a9cguuGKNO6kWv75QOWSdbzNqPHS+cCVa?=
- =?iso-8859-1?Q?/qMNq7aWfDx2fkMiy9T4GourAaTOC4kbis3gMCMXS8cJArJRPg1UMSC63a?=
- =?iso-8859-1?Q?q1vJN/s9CDjhnsQybJEGTRglXs6ahKO0e5BAMFfUvr3fjvDAvlV/a7ByH2?=
- =?iso-8859-1?Q?uR1wQzWtZemD95ZIqZhdsis2R6y5zZtcf7qZfsjka7V4ipNp7iC89Y1V5C?=
- =?iso-8859-1?Q?Ug2MPEFUkEzoCAHDQy3PuNkwqMGgu6ffxEi9SklxN5IZTmXC0JU9n08ND6?=
- =?iso-8859-1?Q?ch//nVRPWZizcXRsMg5T+jgtMdR9kDj/6aD1Y7zq9DQAqeFDCVH4MiRMux?=
- =?iso-8859-1?Q?7eh9MY75qxgA3ZDHfq844ClC8XM+8LDbE8T3Sca7FhDRqoUXoP7exkyMjJ?=
- =?iso-8859-1?Q?4EKx20jSMGgCu4aIDpydoSKpPF/3Nk1/DdNyBoSXcpkMyF49aJ3ORt6oP0?=
- =?iso-8859-1?Q?msanPSYjJ6aL+4BZy8yy7b1FmDodwMGLWgyJjZI0yUe2ZoQh9C0mTE6wKr?=
- =?iso-8859-1?Q?b00yM/SqlTUURIs6fTXwy7j1vvR7oJ7nacYVSwn2lqy/czPSfLTHoBLYe7?=
- =?iso-8859-1?Q?568WzVq1rrlhNnWoJQaP1zIpospn9WVhy/qhFeONlUkPRZEejsU2CIrAgL?=
- =?iso-8859-1?Q?F7VomIH6MliDx/lWa87THbJDorjxYzeeArNcKre1CZ9AHkkuRSe6OITodp?=
- =?iso-8859-1?Q?20/tCzfJUpywxkaDZ3RlxwbAIJl3kts+LXL2OAh7ybetBufN9e4SRRnDuY?=
- =?iso-8859-1?Q?2scWvQhoHuKP6dxohp3mG6ZLNmqM0LVmEin6XYyUyr0f6pi1dNFi5khFS7?=
- =?iso-8859-1?Q?DC7yn6+24gtkQqhzrhXYMQiIsq5Q5pOksL43Wsv3bkdjKEOfy99FuThfeW?=
- =?iso-8859-1?Q?EPEJ8znrs+8SRgPKX/DeF7pG1qzcAviNBi59Y+FSqKkGoTzs6Jsgen17Od?=
- =?iso-8859-1?Q?xpxl99Vy8I+uny/8Mre621Kie+B6hntl/ETgiVNupeUsNVshUPti4El3KH?=
- =?iso-8859-1?Q?s1Rwuh96zoqpobKsDmQMu7yhD9HZvcslJDDE0GfXGb9R5sZp26oze5vlRb?=
- =?iso-8859-1?Q?5/NM/44Dq3BHQDqirFCWKIUo4RGeaZvrf7K6j3hBvsvTgvfjY+ZWVGK9S/?=
- =?iso-8859-1?Q?WfkAr7FfpTMtI4bZHmFmNH4rCQIFhlLq6iQUCGYTeZvS+ZrVliO2fCWMdt?=
- =?iso-8859-1?Q?i25ynjHebQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: ZdYAYIFFKoqGMVAk4S/V5tlJ7jO3WTA5UqNNxRWzx5QJPu6wMPeTtU4AjVpM7iqQPQxR57pe/qoUSFO2mgQQVfJW4boxEwijKn5Wl75zW9AlpKpdPWA6E2RxfOzOcq7s13c5Y3d0Dm9PzlfuzG7zANLdlbUjWeu7Sw8X6Tb5gbbt9LwzpSQC0g7DxesQ2fMqPTv2LfpHSt6xGH6HN/gMqCk9BTJcHGVytIm32t+4+f2TSA64RHuykYG/1op482sqGnTzci9Y2SXH4MwNkKtdux0iNj82dD2S5ZtBsLtPWORJz8vbgB5rhh2TCBeUScQ/FAMkQTDq7muaFZKOcT28VQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 667ddbed-4bc8-45ef-32c8-08df4a63dac9
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?+FvSkRb9n/bVdC3URF5G2e0DCOu6kKJkZJZsOgTe81v6TnLFBLPH857VJg?=
+ =?iso-8859-1?Q?N3fEx2dEjV401iuJuOv6acURA2eMhXZtbYVQ8vPP5rHmNRr8jOGELGW7ne?=
+ =?iso-8859-1?Q?sU91N4O2PR1BelUNnM59/CUayc+Gee+g7l3VWp+4JvvcM+tp7xzY3ieV/1?=
+ =?iso-8859-1?Q?2+KyLS6dZ6k4ih0dkYPIL5ChkWSVlOt7Hn6BtTNJvZQc4Aa/zP15s7jmPm?=
+ =?iso-8859-1?Q?pz4aM+38RaoU0F2fZPLxe1MUous7R/IRDUedjCOPh250XVlUWUWQc5Zp+c?=
+ =?iso-8859-1?Q?V4Q1eQ9TQeOhRXiDsOmRoxcPvIUXuq1tNcDeVGv6iRZFwhMOG2yZ8sxwDq?=
+ =?iso-8859-1?Q?eg/aYorjiFu/IvQ5VAsqThS8aQZmL2ha5Pty2syuPOSx4FzZbM/WqwuC1/?=
+ =?iso-8859-1?Q?lbPlrMOvI9cuu30Us4WSErTAUJn7s3kbvOlI9WQy2NeV98mTs/b95ueRqg?=
+ =?iso-8859-1?Q?RIEzpABSvUU8LcMmiIGs6akxKewlmzsQduHxJdFFNCcsyTI8iOXvYeK72X?=
+ =?iso-8859-1?Q?rSFZ3HPQM41csxfK5nyo0jW76C2Vt7i8o6aleO/Tq92WKIQqFRgzXqaYTj?=
+ =?iso-8859-1?Q?/fe/ywKdGE8AcF9mLZqmnpKmuq/sDkkLJr8v3moP160gro+cp95eq/vNI6?=
+ =?iso-8859-1?Q?3m7wLz8GPSBngqFEJv0Cda3nvi0LS0RFnzzauld53Mq8h9reGhRmQLolh7?=
+ =?iso-8859-1?Q?6g5kBV72ZqBLGOeqhiIpWeCf8GPwY8B24P4Xok/haznifa4HAZClWANDNZ?=
+ =?iso-8859-1?Q?BNKwT9qRA60L0AXOcInN3Pou8Iz6uVnX37N/8WImhKAcxHyGnXv9O2jytB?=
+ =?iso-8859-1?Q?dTFxR6owbYk4WBCpbOdVzrhp2dfQ0/lPrYKdBWa9BiDKhiaaJ1xQ2GPPag?=
+ =?iso-8859-1?Q?p/2PzMZ+7iArdw2Zskxd/Tf2c3ERX3OEMl8sln5n7Qyk6cordWFxOdZ283?=
+ =?iso-8859-1?Q?0jcRmrcE+01EYvz7U2fHZ1a+C92xvd8d9jYHvAJTqAiGrCohU0MAa+Lruf?=
+ =?iso-8859-1?Q?hDiQN+cpOdudTv1myQsDgduZHx3cxF20rgiB3o41fOR6Y3AzQSU0f1za9w?=
+ =?iso-8859-1?Q?hxM1Ac8kQ304mSoMHTI8E4yXJ/81D/SvihNlevS2IL9fkK5AIaetaO/wz4?=
+ =?iso-8859-1?Q?YTYPgYutWnzkFSHYQlpDTgIHLaajvSFUFS17KBelstB4fYZr9TI5j/jcsH?=
+ =?iso-8859-1?Q?YjbuIdkNLLT5eDoFcGCeHPBkBM/+jET0PTqYx92LzMr2Xq7/wHTCCv8Inc?=
+ =?iso-8859-1?Q?60vQ+tLZLF33MnTvWADP5UayX0H06c9UbjO5SFTL+qL3LPUxYfpVUNlAjq?=
+ =?iso-8859-1?Q?j3uFf7ZuQQdW4IuvWBu6ZJYb8kIUyq1BDHeoELHSKy3I/i1eZctqiMEVHW?=
+ =?iso-8859-1?Q?ACeNqEt6o7AL6KtiXexnCQ5RUU5D6XXZcEyP98ExXNi9BHMVGJndV2pp9s?=
+ =?iso-8859-1?Q?VK2K1uf6E7mJ9VhvojG5Ja54yQ9x2xF8U4A2kM2/m+yM/H5Jo8gxrvExFu?=
+ =?iso-8859-1?Q?dhNHQ+GUHoRz15hgBk5koQvjla91NV1tmTeLbmBI9/EG0nmlVau7do39mB?=
+ =?iso-8859-1?Q?WitU694M+QEKJY5J+IxSsomfL3m5nyGAKgkWM6gHNmmQJuWvErmCqurHq6?=
+ =?iso-8859-1?Q?8k1CxioQVusTfOo50B1kOSdSu+vjowWii5LM2nLh/X548azRoIggxVopu5?=
+ =?iso-8859-1?Q?ciurHgId4LyH+m9PSAdptg7wt7VBpaU4GDPwlNlYgvUttslcJiJQ3bVmsU?=
+ =?iso-8859-1?Q?JSydE/E7pGEkD52cltE2V5e5fJDHRltuHb3+F6G4CNFWG/F+QDug3OmzDh?=
+ =?iso-8859-1?Q?dKCgnk1plw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: T0lV5eXwExcON0CQ6h4xxFplybpt4mIcy9LKsorssWrY7xGiszspV7lLo7x/ET9oMKwD0F0nd/8jBdn/nhRksneMlxiJPirot/O88kaDHM9fR13GlaLsqtHaateQOLT1DILNeD+N8uBZgnU7ShVJHHi8X8oyGEaEINwGf7j+zn94bkhOEzSOk1ue9QpeQmjYjshadRR7WFYjFZ2RHKvqOHCCeA0rlSczWU3P9kKz7IgRJ7nN5DT2ODauOMvYHHtCrzL3mF6GH6ybg8urGkr6mTn8wztiKRHHv4teq4PLPFU7xcyNKIxOJf7HIOLAryjpiwhZo4becqkxMPr25TC9LQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5dab9e37-72ae-40f3-ddb1-08df4a64aeb0
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:48:04.4159 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 19:53:59.8945 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: avJ8qU2qU6fLpO89QDn6Sw0XP9yqxb8sSIimhrISHrx8P4tH6rnumwZ7/uirB8DVwAfNpEwY8BtTWnwCjJT6oA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPFBA72E12AE
+X-MS-Exchange-CrossTenant-UserPrincipalName: ocN4+yl1AU9ZuJerSkn+k3nzO8NoaiRJtb8Y8fGRfxvztaX/zwniRhBtVmBAOGAmNSsUipVVccdiHObaERIvUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS6PR11MB989080
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,172 +165,104 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, Nov 24, 2026 at 08:20:00PM +0100, Thomas Hellström wrote:
-> On Fri, 2026-11-13 at 07:30 -0800, Matthew Brost wrote:
-> > On Sat, Nov 07, 2026 at 05:26:52PM +0000, Matthew Auld wrote:
-> > > From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > 
-> > > A BO created with DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING starts in
-> > > system
-> > > placement with an unpopulated ttm_tt. Its initial move to VRAM has
-> > > no
-> > > source data and uses ttm_bo_move_null(), which unlike
-> > > ttm_bo_move_accel_cleanup() leaves bo->ttm attached. If the VRAM BO
-> > > is
-> > > later exported, ttm_bo_setup_export() populates that stale ttm_tt,
-> > > pinning unused, unshrinkable host pages equal to the BO size and
-> > > potentially exhausting host RAM.
-> > > 
-> > > Add ttm_bo_move_null_drop_tt() to destroy the ttm_tt when moving to
-> > > a
-> > > manager that doesn't use one, and use it in xe_bo_move().
-> > > 
-> > > Fixes: 91494dee1091 ("xe: populate buffers before exporting them.")
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/ttm/ttm_bo_util.c | 20 ++++++++++++++++++++
-> > >  drivers/gpu/drm/xe/xe_bo.c        |  6 +++---
-> > >  include/drm/ttm/ttm_bo.h          |  2 ++
-> > >  3 files changed, 25 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> > > b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> > > index f9458a4d5a09..0ab52be3a5f7 100644
-> > > --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
-> > > +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-> > > @@ -756,6 +756,26 @@ void ttm_bo_move_sync_cleanup(struct
-> > > ttm_buffer_object *bo,
-> > >  }
-> > >  EXPORT_SYMBOL(ttm_bo_move_sync_cleanup);
-> > >  
-> > > +/**
-> > > + * ttm_bo_move_null_drop_tt - assign memory without moving data,
-> > > dropping the TT
-> > > + * @bo: The buffer object.
-> > > + * @new_mem: The memory to be assigned.
-> > > + *
-> > > + * Like ttm_bo_move_null(), but if the memory manager of @new_mem
-> > > doesn't use
-> > > + * a struct ttm_tt, also destroy @bo's ttm_tt, mimicking what
-> > > + * ttm_bo_move_accel_cleanup() does. The caller must hold the bo's
-> > > + * reservation, and the ttm_tt must not hold data that needs to be
-> > > preserved.
-> > > + */
-> > > +void ttm_bo_move_null_drop_tt(struct ttm_buffer_object *bo,
-> > > +			      struct ttm_resource *new_mem)
-> > > +{
-> > > +	if (!ttm_manager_type(bo->bdev, new_mem->mem_type)-
-> > > >use_tt)
-> > > +		ttm_bo_tt_destroy(bo);
-> > 
-> > This is certainly right, as I have seen TT leak.
-> > 
-> > I do have question - should this just be built in ttm_bo_move_null?
-> > 
-> > IOW...
-> 
-> The problem happened only when moving a "lacks_source" bo to VRAM, and
-> I was a little afraid of other drivers regressing when moving to
-> stable.
-> 
-> But this should be safe, really. I've sent a new patch.
-> 
+On Tue, Nov 24, 2026 at 08:09:54PM +0100, Thomas Hellström wrote:
+> The xe kmd uses ttm_bo_move_null() when moving an unpopulated bo to
+> VRAM. In that case the bo may still carry a ttm_tt that was created
 
-I agree this should always be safe.
+I'm wondering if other drivers which use TTM + support VRAM (amdgpu,
+Nouveau) have a similar problem or this really just an issue in Xe.
 
-> "drm/ttm: Destroy the ttm_tt in ttm_bo_move_null() when it's no longer
-> needed."
+Either way I think this is safe and correct for any driver.
 
-Let me look.
-
-Matt
-
+> for its deferred placement, and it is left dangling on a bo whose new
+> resource doesn't use a ttm_tt.
 > 
-> /Thomas
+> Make ttm_bo_move_null() destroy the bo's ttm_tt when @new_mem is NULL
+> or its memory type manager doesn't use a ttm_tt.
 > 
+> ttm_bo_tt_destroy() is internal to TTM and not exported. Rather than
+> exporting it, move ttm_bo_move_null() out to ttm_bo_util.c and
+> export that instead.
 > 
-> > 
-> > mbrost@gsse-cloud1:xe$ grep -n ttm_bo_move_null *.c
-> > xe_bo.c:892:    ttm_bo_move_null(ttm_bo, new_res);
-> > xe_bo.c:1110:                   ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1137:           ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1146:                   ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1163:           ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1173:           ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1195:                   ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1272:                   ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1283:           ttm_bo_move_null(ttm_bo, new_mem);
-> > xe_bo.c:1340:           ttm_bo_move_null(bo, new_resource);
-> > 
-> > Why are some call sites in Xe in which use ttm_bo_move_null_drop_tt
-> > vs
-> > ttm_bo_move_null?
-> > 
-> > Matt
-> > 
-> > > +
-> > > +	ttm_bo_move_null(bo, new_mem);
-> > > +}
-> > > +EXPORT_SYMBOL(ttm_bo_move_null_drop_tt);
-> > > +
-> > >  /**
-> > >   * ttm_bo_pipeline_gutting - purge the contents of a bo
-> > >   * @bo: The buffer object
-> > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > b/drivers/gpu/drm/xe/xe_bo.c
-> > > index 0181f73ef66d..6628db44951f 100644
-> > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > @@ -1178,7 +1178,7 @@ static int xe_bo_move(struct
-> > > ttm_buffer_object *ttm_bo, bool evict,
-> > >  	}
-> > >  
-> > >  	if ((move_lacks_source && !needs_clear)) {
-> > > -		ttm_bo_move_null(ttm_bo, new_mem);
-> > > +		ttm_bo_move_null_drop_tt(ttm_bo, new_mem);
-> > >  		goto out;
-> > >  	}
-> > >  
-> > > @@ -1313,7 +1313,7 @@ static int xe_bo_move(struct
-> > > ttm_buffer_object *ttm_bo, bool evict,
-> > >  						new_mem);
-> > >  		if (ret) {
-> > >  			dma_fence_wait(fence, false);
-> > > -			ttm_bo_move_null(ttm_bo, new_mem);
-> > > +			ttm_bo_move_null_drop_tt(ttm_bo, new_mem);
-> > >  			ret = 0;
-> > >  		}
-> > >  	} else {
-> > > @@ -1324,7 +1324,7 @@ static int xe_bo_move(struct
-> > > ttm_buffer_object *ttm_bo, bool evict,
-> > >  		 */
-> > >  		dma_resv_add_fence(ttm_bo->base.resv, fence,
-> > >  				   DMA_RESV_USAGE_KERNEL);
-> > > -		ttm_bo_move_null(ttm_bo, new_mem);
-> > > +		ttm_bo_move_null_drop_tt(ttm_bo, new_mem);
-> > >  	}
-> > >  
-> > >  	/*
-> > > diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> > > index 32791c4db2a9..123ef68bd849 100644
-> > > --- a/include/drm/ttm/ttm_bo.h
-> > > +++ b/include/drm/ttm/ttm_bo.h
-> > > @@ -480,6 +480,8 @@ int ttm_bo_move_accel_cleanup(struct
-> > > ttm_buffer_object *bo,
-> > >  			      struct ttm_resource *new_mem);
-> > >  void ttm_bo_move_sync_cleanup(struct ttm_buffer_object *bo,
-> > >  			      struct ttm_resource *new_mem);
-> > > +void ttm_bo_move_null_drop_tt(struct ttm_buffer_object *bo,
-> > > +			      struct ttm_resource *new_mem);
-> > >  int ttm_bo_pipeline_gutting(struct ttm_buffer_object *bo);
-> > >  pgprot_t ttm_io_prot(struct ttm_buffer_object *bo, struct
-> > > ttm_resource *res,
-> > >  		     pgprot_t tmp);
-> > > 
-> > > -- 
-> > > 2.56.0
+> Patch and commit message was drafted using an LLM.
+> 
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: Natalie Vock <nat@pixelcluster.dev>
+> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.8+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/ttm/ttm_bo_util.c | 20 ++++++++++++++++++++
+>  include/drm/ttm/ttm_bo.h          | 15 ++-------------
+>  2 files changed, 22 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> index f9458a4d5a09..7f3459db596a 100644
+> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+> @@ -202,6 +202,26 @@ int ttm_bo_move_memcpy(struct ttm_buffer_object *bo,
+>  }
+>  EXPORT_SYMBOL(ttm_bo_move_memcpy);
+>  
+> +/**
+> + * ttm_bo_move_null() - assign memory for a buffer object.
+> + * @bo: The bo to assign the memory to.
+> + * @new_mem: The memory to be assigned, or NULL.
+> + *
+> + * Free the current resource of @bo and assign @new_mem to it. If @new_mem is
+> + * NULL or its memory type manager doesn't use a &struct ttm_tt, the bo's
+> + * &struct ttm_tt, if any, is unpopulated and destroyed.
+> + */
+> +void ttm_bo_move_null(struct ttm_buffer_object *bo,
+> +		      struct ttm_resource *new_mem)
+> +{
+> +	if (!new_mem || !ttm_manager_type(bo->bdev, new_mem->mem_type)->use_tt)
+> +		ttm_bo_tt_destroy(bo);
+> +
+> +	ttm_resource_free(bo, &bo->resource);
+> +	ttm_bo_assign_mem(bo, new_mem);
+> +}
+> +EXPORT_SYMBOL(ttm_bo_move_null);
+> +
+>  static void ttm_transfered_destroy(struct ttm_buffer_object *bo)
+>  {
+>  	struct ttm_transfer_obj *fbo;
+> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+> index 32791c4db2a9..d525e04893ed 100644
+> --- a/include/drm/ttm/ttm_bo.h
+> +++ b/include/drm/ttm/ttm_bo.h
+> @@ -356,19 +356,8 @@ static inline void ttm_bo_assign_mem(struct ttm_buffer_object *bo,
+>  	bo->resource = new_mem;
+>  }
+>  
+> -/**
+> - * ttm_bo_move_null - assign memory for a buffer object.
+> - * @bo: The bo to assign the memory to
+> - * @new_mem: The memory to be assigned.
+> - *
+> - * Assign the memory from new_mem to the memory of the buffer object bo.
+> - */
+> -static inline void ttm_bo_move_null(struct ttm_buffer_object *bo,
+> -				    struct ttm_resource *new_mem)
+> -{
+> -	ttm_resource_free(bo, &bo->resource);
+> -	ttm_bo_assign_mem(bo, new_mem);
+> -}
+> +void ttm_bo_move_null(struct ttm_buffer_object *bo,
+> +		      struct ttm_resource *new_mem);
+>  
+>  /**
+>   * ttm_bo_unreserve
+> -- 
+> 2.56.1
+> 
