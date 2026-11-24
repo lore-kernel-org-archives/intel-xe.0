@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C309F606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 00:52:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABC92606A322
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 00:55:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=j1ZMgQGa
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Ci8isPpx
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8355010E080;
-	Tue, 24 Nov 2026 00:52:01 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B9AD10E080
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 00:51:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66FC710E080;
+	Tue, 24 Nov 2026 00:54:56 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A828A10E080
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 00:54:50 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 0269D45046;
- Tue, 24 Nov 2026 00:51:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C171C1F000C6;
- Tue, 24 Nov 2026 00:51:54 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 8270C61FEE;
+ Tue, 24 Nov 2026 00:54:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C0671F000C4;
+ Tue, 24 Nov 2026 00:54:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795481514;
- bh=A+yPcHQgPmQtHQ0Ve0IbXUcyn581xGS/OoaetVcfX2c=;
+ s=k20260515; t=1795481689;
+ bh=zrjNK/ApVCV5Dlq3qitAblU7iHdAyuEjPrWqvyDD0ZU=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=j1ZMgQGaSvx/GDPz88GXSMarrz8mDWE0lMKDgCcYTFYwO/DEZybWNO/LCsiO+Ybmf
- 0krErOjWAWNTgdnI0qWsY5ODSTKMF679TZJg9DC+6RaQiVYePLBHJ12UB35L82zz5p
- O16VbBn+Q/tPJLzKiMyqORhWsltsQFXxhKdlK4M++zbP1e3Da5SZdTwyYEwBjVi65G
- /mHl/avcAhUjS7rNeix1oR9Q3hmBCtdMbcCvxYjX3CGJhznkcbjCOjRxAwDRKNrVrl
- Rcr2ARqesfcNgYORL9Yipd2A0eNQ3rwHyzfX/CFd4KmVQIDpZQCZpxzqgjm/k1LYRC
- R2Bg3+zMNhCyA==
-Message-ID: <sashiko-outbox-230317@kernel.org>
+ b=Ci8isPpx0ZozdggIGrHhmSH03tyTcXgc+WJ7uNwO3pVRwOtsf4iNzv6Qu1aKpDGfq
+ 7MQ5kIS5dBEk6MtjmaHZoRC5gsdwpuV5GC+Wk9GvYk3SAG6zDQIODxlTkMIBaanXgv
+ 2IQHByaNLEtmh1ON6alMko9SX4p47Xb9+tHjG0SEeYmcpiFSNersV0RBJY9VeI4XKD
+ 9hPghH533aYrBSxbs/jx5gwX3fOo1ScMwv7j4WDTe/hjbKjUuY3giFxg4vJm83k3IF
+ n/lPmKsKa7fp73kPpjVoJy8Is1HZaH1VuhBfKZ0ayNl908qmmbXiaRWVK7bY+8XjrA
+ 9bUa1egf46pPg==
+Message-ID: <sashiko-outbox-230321@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v22 14/19] drm/xe/vsec: Crescent Island PMT callbacks
+Subject: Re: [PATCH v22 19/19] drm/xe/vsec: Support survivability mode for CRI
 To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261124003856.4145635-35-michael.j.ruhl@intel.com>
+In-Reply-To: <20261124003856.4145635-40-michael.j.ruhl@intel.com>
 References: <20261124003856.4145635-21-michael.j.ruhl@intel.com>
- <20261124003856.4145635-35-michael.j.ruhl@intel.com>
+ <20261124003856.4145635-40-michael.j.ruhl@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 24 Nov 2026 00:51:54 +0000
+Date: Tue, 24 Nov 2026 00:54:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,63 +59,66 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [High] drm/xe/vsec: missing drm_dev_exit() on error in
+- [Medium] drm/xe/vsec: missing drm_dev_exit() on error path in
   xe_pmt_discovery_read()
 --
 
-commit 8c8761ddca798aa5d26ec62fcb0ab2b48dec6b52
+commit 38f533a6bd45b3629c4e0dbd2ca1908d30115ea3
 Author: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-drm/xe/vsec: Crescent Island PMT callbacks
+drm/xe/vsec: Support survivability mode for CRI
 
-This commit introduces PMT discovery, register read/write, and telemetry
-callbacks for Crescent Island (CRI) and registers CRI PMT functionality
-during VSEC initialization.
+This commit adds a VSEC configuration for Crescent Island in survivability
+mode, exposing only the PUNIT crashlog PMT capability.
 
 > diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-> index a814d7151eeae..188eaf13d68ff 100644
+> index 851d02d6ed250..21bd71608fa55 100644
 > --- a/drivers/gpu/drm/xe/xe_vsec.c
 > +++ b/drivers/gpu/drm/xe/xe_vsec.c
-[ ... ]
-> @@ -358,20 +364,184 @@ int xe_pmt_telem_read(struct device *dev, u32 guid=
-, u64 *data, loff_t user_offse
->  	return ret =3D=3D 0 ? count : ret;
->  }
-> =20
-> -static struct pmt_callbacks xe_pmt_cb =3D {
-[ ... ]
-> +static int xe_pmt_discovery_read(struct device *dev, unsigned long cap_i=
-d, u32 element,
-> +				 u32 *disc_data)
-> +{
-> +	struct xe_device *xe =3D kdev_to_xe_device(dev);
-> +	void __iomem *disc_addr =3D xe->mmio.regs;
-> +	struct intel_vsec_header *headers;
-> +	int ret =3D 0;
-> +	u32 offset;
-> +	int idx;
-> +
-> +	if (!drm_dev_enter(&xe->drm, &idx))
-> +		return -ENODEV;
-> +
-> +	if (!xe_pm_runtime_get_if_active(xe))
-> +		return -ENODATA;
-[ ... ]
-> +dev_exit:
-> +	xe_pm_runtime_put(xe);
-> +	drm_dev_exit(idx);
-> +
-> +	return ret;
-> +}
 
-[Severity: High]
-Does this leak the drm_unplug_srcu read lock acquired by drm_dev_enter()
-when xe_pm_runtime_get_if_active() returns false?  Returning -ENODATA
-without calling drm_dev_exit(idx) leaves the SRCU read lock held, which
-triggers a lockdep warning on return to userspace and causes any later
-drm_dev_unplug() to hang in synchronize_srcu().  Note that jumping to
-dev_exit would also call an unbalanced xe_pm_runtime_put(xe).
+[ ... ]
+
+> @@ -738,6 +763,13 @@ void xe_vsec_init(struct xe_device *xe)
+>  		}
+>  		break;
+> =20
+> +	case XE_VSEC_CRI_SURVIVABILITY:
+> +		xe->pmt.base_offset =3D CRI_PMT_OFFSET;
+> +		xe->pmt.survivability_mode =3D true;
+> +		info->priv_data =3D &xe_cri_pmt_cb;
+> +		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
+> +		break;
+> +
+>  	default:
+>  		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
+>  		return;
+
+[Severity: Medium]
+Does xe_cri_pmt_cb's .read_discovery callback, xe_pmt_discovery_read(),
+leak the drm_dev_enter() SRCU read lock when xe_pm_runtime_get_if_active()
+fails?
+
+drivers/gpu/drm/xe/xe_vsec.c:xe_pmt_discovery_read() {
+	if (!drm_dev_enter(&xe->drm, &idx))
+		return -ENODEV;
+
+	if (!xe_pm_runtime_get_if_active(xe))
+		return -ENODATA;
+    ...
+dev_exit:
+	xe_pm_runtime_put(xe);
+	drm_dev_exit(idx);
+
+	return ret;
+}
+
+If the PMT auxiliary driver probes or is rebound while the Xe device is
+runtime suspended, returning -ENODATA directly without calling
+drm_dev_exit(idx) leaves the SRCU read lock held, causing a lockdep
+warning and hanging subsequent drm_dev_unplug() calls during driver
+unbind or hot-unplug.  Note that dev_exit also calls xe_pm_runtime_put(),
+so a separate label before drm_dev_exit(idx) is needed.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261124003856.4145=
-635-21-michael.j.ruhl@intel.com?part=3D14
+635-21-michael.j.ruhl@intel.com?part=3D19
