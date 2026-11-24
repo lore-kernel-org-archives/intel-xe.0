@@ -2,84 +2,83 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561EB606A323
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AB9D606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=metarealtyinc.ca header.i=@metarealtyinc.ca header.a=rsa-sha256 header.s=google header.b=cPgiK+np
+	dkim=pass (2048-bit key) header.d=metarealtyinc.ca header.i=@metarealtyinc.ca header.a=rsa-sha256 header.s=google header.b=TIMNWBYf
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC2E010E90F;
-	Wed, 25 Nov 2026 14:58:40 +0000 (UTC)
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
- [209.85.222.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8748C10F017
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 15:36:59 +0000 (UTC)
-Received: by mail-qk1-f180.google.com with SMTP id
- af79cd13be357-94959217274so501032685a.0
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 07:36:59 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D870910FCBB;
+	Wed, 25 Nov 2026 14:58:41 +0000 (UTC)
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+ [209.85.222.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 843E410E89B
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 15:36:58 +0000 (UTC)
+Received: by mail-qk1-f173.google.com with SMTP id
+ af79cd13be357-94961d90b79so499419485a.3
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 07:36:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=metarealtyinc.ca; s=google; t=1795534618; x=1796139418;
+ d=metarealtyinc.ca; s=google; t=1795534617; x=1796139417;
  darn=lists.freedesktop.org; 
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
  :date:message-id:reply-to:content-type;
- bh=F3fUstdnw1R9iAM56oJ0cEix/cakuApF68cHmWXsObA=;
- b=cPgiK+np+KYAcxSCf++8QZrXRDzed8SBpyDwjlQGFR35d9+oJ+IXaAYshZaVQ6s/2w
- qQROnhyYzDjDHkMEVgrf5tgEGBnGxktkaru3JmBlyAN0YBQvT/nXD5RXS/AES76iMHh+
- 2vmXU7g66aXmHyx7umEgMc6burdAecsA8rmA25v/cWaR4ywBMr0AcA2qSxrGkyglzObj
- SyUY6y14TTY26Bk52tZ6wkxWXXHWTWzXY5LICM1Z6TNMGbPtv4pUF3AY5O+qlv0TTSFf
- WzhF/KRpFQN5kKTGVbVpblJCQMgaD6cM9HfumhZP3Nzl5rNIeU3XbpyxdjWVGIcRWZVf
- uN5g==
+ bh=XfcsbYjAJ0vhyPQMgTUzJ/Zehue/sf644GRkC36iL7E=;
+ b=TIMNWBYfQnKL5A/2nb6kh6ST7EQB/e9cc7ZgZGnIQdGkfJqiI8stnVwYN70Kk2wP/j
+ RXzjvgCOWp0iJx4nDu6p9AUEOGKMWDHdqajHmuZ8oawcXKxt9AnG8oy43EKYV/JGprNQ
+ dUJk48NTvxBD9GVzzOhpS3I0QA9f8PCazVW2Nl6/hBFnoWb2kYfRdlAYh6V8pxbT8GAu
+ DKZQYDGu5CzQzsuYNaBaeBLdOcU18xL8uRmK6o0/evx8ULd1bBPph2BP5QHT8Eqme32d
+ na6jbxuuCkyRDifKhGpLOW1NwjBY8Y7ZNNj/lXSbouX2yCLIpgVAhmH7OTUSIONh7BGi
+ vadg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1795534618; x=1796139418;
+ d=1e100.net; s=20260707; t=1795534617; x=1796139417;
  h=content-transfer-encoding:content-type:mime-version:references
  :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
  :content-type;
- bh=F3fUstdnw1R9iAM56oJ0cEix/cakuApF68cHmWXsObA=;
- b=vczoUKNAd57+95KvXLloX8gpYxoAUm2206ppEQ+3p6rKkEbCcKKyfjpx0Y0DkMJ95E
- Qvn2ZDQ7Y+VoO9pgfkZuS8Ao9yH5vnvu7vLqpJ/GLACIFoOAydznZC9uYR19qG+4Qmt8
- vg/BRq8qJ9BmHaVY/kUPA0gYeC7yysLpG20eRhE19eCnGiflBf9GYSMeRslwv3kX/U7H
- ebvf4OKGV/vKv2nWHeDhkCTlPMYzPqDPGuvT6Pqx0JhZu1qyZE5solCZVO9NrS4jC9MJ
- osJpQ8uCWn0IPVB5ANrgeIuYSoWZSPZ4XHS4vpIfefyZdi9tWUR6TSQqg6vzV4mOMefH
- MRhg==
+ bh=XfcsbYjAJ0vhyPQMgTUzJ/Zehue/sf644GRkC36iL7E=;
+ b=02iLr499CtW0bEtUW1QKB4VrhB23cJ5CshoN6DJNgjhPt2rmnIN1OjDEEdfzq9MXnC
+ YnP2RsV5wKcJzdqYQe32HtouYCOqOUcthjMtvhbYJS4ouq+dT9hlNyV+4E3d4x7loBL8
+ a5fjj23mvtc0pWs1i1/joxZGly5zA/eC2fnrLyDRHK7GG3v4P6pY7/OPorpiddmJ295q
+ pEHnb0AOlvlaO13+VSHj7ubQML2UGxH7c5SXXy6Yw0272zsyNkXMLLjicU8oqWiochwK
+ Kmu1vBNVy8HB7GGRFMn6kbyDHguTuABLJcFNv/ULTv3UP4hTUeHXq2IgwD2jhhf/W4U/
+ lnyA==
 X-Forwarded-Encrypted: i=1;
- AL+hErHtiXdAKIyitwjgsd7sJ3MQGe2hQKcMfPX3IfSYhHmM0m8ami6kbRQZb1MzeYBjc1fZiPVzv7msGw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z/NpfwE4sCcQfAGR0IAU9Y3+hKMXk8z80CMzaYmFgJrJAuotQGg
- thslnUWntQQH4buYllsc/7Qo9MT3Q1TYugsO3Zj0O6GNOD8gPcn+DN1+1QI3gGIcElmaBItqkM4
- 8juW8zcMBow==
-X-Gm-Gg: AZFdTZcPqesP6EvzjBSpwgu3UVjLKZi1vuxrrnLrkM72J9NP3KEPVYU+77qN0yiVVn7
- cW5ukk0tpUzKdKF/Op87l2baPggwYh8YFaUdM5DGMa/fPdHeefZCHZDSJObvF6JYwH/pbxAcgbD
- QzN/3Ctn01jWhmcoNgfK6jPntO4HnewrEhfbkZ92FQp1Ex8DB00BTOmaV6ux1Rq4c9cvkLQtdYF
- AAa8HRkX9QunV/13rgx84EPTK/O2hOS7pcd8vx8EXitcVdU8n8lO5kUMnysvYF8Rof9roltz6kB
- /QIYYHW4In52QZE4Q5jldQxuQ3mkIY7Z52lTcXI/fureicjsjJEuehSI2FSA5pQQmoAiPfI8/Ja
- TCpp46rdTKBiSnqhW/rf6+k6FCXszAzZztnIIWWE9a9OQeA47wTYxeYOk9a1TixMXYZGIwhjuk9
- +NR1HKh7drupxQmRyJfxKyVOpgAlUlOE4hEhaKY00Zv/+T3Bta0gs0Al6w4h0EqsJBB0ka2wxZ0
- tPhNWSJlWeaLuF/dlyQ3kSnaDaIjGzShPBD5ttOHTKWABrBfIoY9xhTybqCIyIIpRGPdclLuTEr
- ngFM0e/+CZd0ScSBN7Zk5JOVWUnXwGW9vOs8e2Ccg8R7j8NwOkjKgFrz+k1ZawXgd4fcRtsPN4C
- qK4HqMVd5kUQ3rs4eyHdvJlJ182xSLjpLQ5jDXDporlrKOKnER3u38Kg5U0WXikLsD1h4JH1+1F
- I3BU5qiFtoict1Ri/PbJYXBWJXhmD+1uuWrYTDUQ3O5D30HTEI0gyf9NseDaQYoTEx
-X-Received: by 2002:a05:620a:710c:b0:949:673f:72c2 with SMTP id
- af79cd13be357-949baa0d90bmr2625315885a.53.1795534618332; 
- Tue, 24 Nov 2026 07:36:58 -0800 (PST)
+ AL+hErHcd1/2ixyeC8MOKCWqbSO+TN+83vtm9P3KtRF5vyKlwx1qYQnAPizt0FpBEVDqAg+Ig3gKMkLxaw==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+jS6BgA8SNaFdcmY2AItU2TQpAJL+KUkbykiNkn6t2xOKFbTfs
+ oO6asQ4d3zktjmAFsUkdUwSIH1XnJ2zKLmMcAs6oHSg24q10ygYQM6bdLcdu9+iV9Lc=
+X-Gm-Gg: AZFdTZcouc2fiG4THwByj5WFg2rMPyszbHK1sezE67VKt4SB3kupwkFSx5iZdet7Njt
+ 5sVWyVDvV6XNk30i2saFRTe4UQ3OdIZzvS3Xj81aq/WYps13P3r/8sF8uGM3nkD3tUFg5KzQuLO
+ pCRyrXGYgHTWF+hgeP2woTeNKqcGDwbU/ab20y/MVGbdLjowMwv5JeECORZ14990uo6q32tqrLD
+ ui/B5MRNxIdf8rmUR1e+2lzfzQ7UuS+iTYlHPkTGqemmGvVzXGwQmpsiEwIdNZ8yDDPBbyCA28s
+ +yl4paNaijYTg3C1wS2c7Y+PS34sY4Wo+ZiDCTxfSGjgFaVpS3UWuDQiOXqYnQMfS6Lj1gJcnmA
+ uRZOJETO7lZSIfUfH7icoGy3/BoiLDpmtkvIh2Rpz4eyYmOJDCfWuuOqhntUpSY5Fg/ZBhFXg+j
+ l0mHBuKejhqByJaFyizJ8ZfLX/IWN7VAnIdusneDWd2sT4p/amPQjtR2Lxqc21hOGucIEHFxVl/
+ G2leeUAcoI9AmWhYqsXC7GRC8WBUCTTdq3rIj/R0egRFMjL6BobSRM8DY2hz+N0t0DNtCy0rwjm
+ /d9k/tIFAbki8WoOnW+g51wYckReD24MU9/Iud/1rhFczjiSouGs4jNag90tumadJCVI/fUuAP+
+ o3fCv5NYrRtiZacBQdzACpXcWBSEf47O+92LF3AIvIiBvpvL9CEVBYLiPf5RRKldNfcG85ZElKH
+ 5KfVjiNpjOR9DN+L09KYwfMC20yRHzjyfqhveuKjjSD+698bWUg/4gdC87NTS3xBIHYSH6vpGRp
+ 7Yy9WoDq8KwMg==
+X-Received: by 2002:a05:620a:4713:b0:93f:735:6c83 with SMTP id
+ af79cd13be357-949ba9e9b76mr2492027685a.56.1795534617177; 
+ Tue, 24 Nov 2026 07:36:57 -0800 (PST)
 Received: from jake-laptop ([2607:fea8:c6:a700::ec62])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-94a0175c67fsm26215985a.31.2026.11.24.07.36.57
+ af79cd13be357-94a0175c67fsm26215985a.31.2026.11.24.07.36.55
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Nov 2026 07:36:57 -0800 (PST)
+ Tue, 24 Nov 2026 07:36:56 -0800 (PST)
 From: Jake Steinman <j@metarealtyinc.ca>
 To: jouni.hogander@intel.com,
 	ville.syrjala@linux.intel.com
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  animesh.manna@intel.com, ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
  rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
-Subject: [PATCH v3 1/4] drm/i915/alpm: Add a helper to suspend the AS SDP in
- PR Active
-Date: Tue, 24 Nov 2026 10:36:52 -0500
-Message-ID: <4801e395b4ec582fd9b1bc80585c556349ffb663.1795527921.git.j@metarealtyinc.ca>
+Subject: [PATCH v3 0/4] drm/i915/psr: Send the AS SDP in PR Active while
+ frames are updating
+Date: Tue, 24 Nov 2026 10:36:51 -0500
+Message-ID: <cover.1795527921.git.j@metarealtyinc.ca>
 X-Mailer: git-send-email 2.56.1
-In-Reply-To: <cover.1795527921.git.j@metarealtyinc.ca>
+In-Reply-To: <3077ed0636a6c98e919934d2c860461f98222537.camel@intel.com>
 References: <3077ed0636a6c98e919934d2c860461f98222537.camel@intel.com>
- <cover.1795527921.git.j@metarealtyinc.ca>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -95,69 +94,54 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add intel_alpm_pr_as_sdp_in_active_disable() to set or clear
-PR_ALPM_CTL[AS SDP Transmission in Active Disable] without touching the
-other PR_ALPM_CTL fields. PSR code uses it in the next patch to send the
-AS SDP in PR Active while frames are being updated.
+Jouni, Ville,
 
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Jake Steinman <j@metarealtyinc.ca>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_alpm.h |  2 ++
- 2 files changed, 22 insertions(+)
+v3 with Jouni's review comments on v2 and the sashiko-bot findings.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index f54b29e19..24f1dce72 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -511,6 +511,26 @@ void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state)
- 	}
- }
- 
-+/**
-+ * intel_alpm_pr_as_sdp_in_active_disable - suspend or send the AS SDP in PR Active
-+ * @intel_dp: Intel DP struct
-+ * @disable: true to suspend the AS SDP in PR Active, false to keep sending it
-+ *
-+ * Set or clear PR_ALPM_CTL[AS SDP Transmission in Active Disable] and leave
-+ * the other PR_ALPM_CTL fields as they are.
-+ */
-+void intel_alpm_pr_as_sdp_in_active_disable(struct intel_dp *intel_dp,
-+					    bool disable)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	mutex_lock(&intel_dp->alpm.lock);
-+	intel_de_rmw(display, PR_ALPM_CTL(display, intel_dp->alpm.transcoder),
-+		     PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE,
-+		     disable ? PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE : 0);
-+	mutex_unlock(&intel_dp->alpm.lock);
-+}
-+
- static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			       const struct intel_crtc_state *crtc_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index f8f605d94..6ce583d32 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -37,6 +37,8 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
- bool intel_alpm_pr_as_sdp_skip_frames_enabled(struct intel_dp *intel_dp,
- 					      const struct intel_crtc_state *crtc_state);
- void intel_alpm_pr_as_sdp_update(const struct intel_crtc_state *crtc_state);
-+void intel_alpm_pr_as_sdp_in_active_disable(struct intel_dp *intel_dp,
-+					    bool disable);
- void intel_alpm_disable(struct intel_dp *intel_dp);
- bool intel_alpm_get_error(struct intel_dp *intel_dp);
- void intel_alpm_lobf_compute_config_late(struct intel_dp *intel_dp,
+It still uses frame updates as the trigger. Only non-flip flushes exit
+Panel Replay; for ORIGIN_FLIP intel_psr_flush() jumps to rearm, so PR
+stays enabled and does selective updates while the hook clears the bit.
+That is the path the judder is on here, and v2 has been smoother than
+the vblank version in daily use. Jouni prefers going back to vblank and
+Ville objected to it in the RFC thread, so I'll leave the trigger to the
+two of you and respin with whichever you agree on.
+
+The frame update trigger is unchanged from v2, which has run daily on
+7.4-rc3/rc4 on the Dell XPS 16 DA16260 (PTL, xe). The v3 changes are build
+tested on drm-tip (W=1, i915 and xe, each patch).
+
+Changes since v2:
+- Use intel_dp->alpm.transcoder in the helper (Jouni)
+- Compute disable_as_sdp_when_pr_active in
+  intel_psr_compute_config_late() (Jouni)
+- Don't set the bit at PR enable, start with the AS SDP sent and let the
+  idle work suspend it (Jouni)
+- Just stop setting the bit in intel_alpm_configure_pr_as_sdp() instead
+  of keeping its value (Jouni), which also fixes a stale bit (sashiko)
+- Update the latched setting on a seamless VRR toggle (sashiko)
+
+Jake Steinman (4):
+  drm/i915/alpm: Add a helper to suspend the AS SDP in PR Active
+  drm/i915/psr: Send the AS SDP in PR Active while frames are updating
+  drm/i915/alpm: Leave AS SDP Transmission in Active Disable to PSR code
+  drm/i915/display: Remove the Panel Replay quirk for Dell XPS 16
+    DA16260
+
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  44 ++++++-
+ drivers/gpu/drm/i915/display/intel_alpm.h     |   4 +
+ .../drm/i915/display/intel_display_types.h    |   5 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 120 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_psr.h      |   2 +
+ drivers/gpu/drm/i915/display/intel_quirks.c   |   8 --
+ 6 files changed, 165 insertions(+), 18 deletions(-)
+
 -- 
 2.56.1
 
