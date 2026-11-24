@@ -2,57 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C65E606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 13:38:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DED606A321
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 13:43:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=UHcLGlUv
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZZtdIdgE
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF38A10E885;
-	Tue, 24 Nov 2026 13:38:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19B4110E885;
- Tue, 24 Nov 2026 13:38:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C16210E87F;
+	Tue, 24 Nov 2026 13:43:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FA7B10E87F
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 13:43:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795527491; x=1827063491;
+ t=1795527817; x=1827063817;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=SiSzBfG7Yp8hVdiUj3rHlKcKQYc7XCRVB8xGsKOWafA=;
- b=UHcLGlUvomEspujcwGQ71LK2bCl1VN5fNx9S6Ykrgco4F8f9z0XShfD2
- wQFGf6xy2M6zUlboOEpzL6fqQiJWbVx4HqStkQuvhSaCDPdru79znp9xW
- UJlpmcQlKS9uQ5VHcty0KSGjz3mVaRIDe+KEP/QE97WsfkVEmRZrDpiQL
- C+YBsf0/KaIJVYOLC9gdut6GllNkZLgo5CqGtR6Ezz9COAslp7QJygQ+E
- FexH9zY3W6u+rPQ6hhzGWSbLPW41rBla76fAkomSugCvFSSip1ZhpTmk+
- MgkBIHJVMdXSKCXpGf+aQUwUPDGEiCNcWFzjmShAWVo3FpuRGw+P7s8LL g==;
-X-CSE-ConnectionGUID: TWnZ0b8iRYmUmITx7BRf1g==
-X-CSE-MsgGUID: cbr5jFfTQLKekTEeK+Vh2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4258972"
+ bh=yhdXt7/XlFN1XGqdpq5AsNISLo3UWN3Ne2YBcnwGTB0=;
+ b=ZZtdIdgEHSpkK24lirQLcKwDOe3tWSjafuIYdQKrNYfXMH9LmSbXyz2k
+ FQHBOrg9L2Y6qCboKPcJhwPNjI0Cp3S1Qfz/dpbhGly8F7M++tl+WrEKD
+ ayDG8rQrOsvdhWEG9w0PhdBQQU936gGQafRkXgEKRNGgCUh9p03ITWMnn
+ v9t8CiWbnCs7VP/fuF5zoigIJv7DrFb6uRPmMD9X+I0pV/7+uakQY4tQr
+ NoHYHelGh3ZHo1nTRgkAli8HQHiOnWpTTzM3UnulcNhulFoWMvcchTj6l
+ r93UGkSJc1yzjTOw2Zy00noVGkDUOq7oKtizJoKbq59eNOEeU47DREdfq A==;
+X-CSE-ConnectionGUID: GdLS5mvHQz+3lRPwyOPP1w==
+X-CSE-MsgGUID: JvGIgoI/Q/yG8/zzrTy7Qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4273840"
 X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
-   d="scan'208";a="4258972"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 05:38:09 -0800
-X-CSE-ConnectionGUID: Nsn08ChBQ2mnLhUqQ7GaEw==
-X-CSE-MsgGUID: IGt5svz4RtiF+tnkvZskwA==
+   d="scan'208";a="4273840"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2026 05:43:37 -0800
+X-CSE-ConnectionGUID: XHhL1VIIQxCuJiSfGXZi1w==
+X-CSE-MsgGUID: eooZYu5kQWSRF00fxKlVdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11756384"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.138])
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11478216"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 05:38:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/xe/compat: remove leftover
- intel_uncore_arm_unclaimed_mmio_detection()
-Date: Tue, 24 Nov 2026 15:38:04 +0200
-Message-ID: <20261124133804.1509493-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+ 24 Nov 2026 05:43:34 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ badal.nilawar@intel.com, aravind.iddamsetty@linux.intel.com,
+ raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
+ mallesh.koujalagi@intel.com, tejas.upadhyay@intel.com
+Subject: [PATCH v3] drm/xe/sysctrl: Drain page offline queue on queue-full
+ event
+Date: Tue, 24 Nov 2026 19:13:24 +0530
+Message-ID: <20261124134323.1529876-2-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,29 +70,119 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-When the unclaimed MMIO detection was moved to display, an xe compat
-inline functionw was left behind. Remove it.
+The firmware raises a System Controller event when its page offline
+queue is full and cannot track further pages until the queue is read.
+Handle it by draining the queue and offlining the returned pages, so the
+firmware can resume queueing new pages.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+Reviewed-by: Raag Jadav <raag.jadav@intel.com> (event)
+Reviewed-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h | 6 ------
- 1 file changed, 6 deletions(-)
+v2: rebase
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index 238addc1e5fc..707f7ad0378d 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -63,10 +63,4 @@ static inline void intel_uncore_write_fw(struct intel_uncore *uncore,
- 	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+v3: add event number in debug log
+---
+ drivers/gpu/drm/xe/xe_ras.c                 | 12 +++++++-----
+ drivers/gpu/drm/xe/xe_ras.h                 |  1 +
+ drivers/gpu/drm/xe/xe_sysctrl_event.c       | 13 ++++++++++---
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h |  4 +++-
+ 4 files changed, 21 insertions(+), 9 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index b35c77caeaae..4014945b47ba 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -483,11 +483,13 @@ static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size
+ 	} while (common->additional_data);
  }
  
--static inline bool
--intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
--{
--	return false;
--}
--
- #endif /* __INTEL_UNCORE_H__ */
+-/*
+- * Retrieve firmware queued pages from warm-retained SRAM during probe. Handle and soft-offline
+- * each page as required.
++/**
++ * xe_ras_get_offline_queue() - Drain page offline queue
++ * @xe: xe device instance
++ *
++ * Retrieve firmware queued pages from warm-retained SRAM and process each page as required.
+  */
+-static void get_offline_queue(struct xe_device *xe)
++void xe_ras_get_offline_queue(struct xe_device *xe)
+ {
+ 	struct xe_ras_offline_common response = {0};
+ 
+@@ -1524,7 +1526,7 @@ int xe_ras_init(struct xe_device *xe)
+ 
+ 	/* Fetch the offline list before queue to avoid duplication */
+ 	get_offline_list(xe);
+-	get_offline_queue(xe);
++	xe_ras_get_offline_queue(xe);
+ 
+ 	/*
+ 	 * During probe, process and log any errors detected by firmware while the driver was not
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index 5d41c4543c55..5d24390c8f56 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -23,6 +23,7 @@ int xe_ras_init(struct xe_device *xe);
+ enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe);
+ bool xe_ras_get_disable_vram_page_offline(struct xe_device *xe);
+ u32 xe_ras_get_max_pages(struct xe_device *xe);
++void xe_ras_get_offline_queue(struct xe_device *xe);
+ int xe_ras_get_counter_response(struct xe_device *xe, const struct xe_ras_error_class *counter,
+ 				struct xe_ras_get_counter_response *response);
+ u32 xe_ras_get_info_queue_size(struct xe_device *xe,
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+index 3239c110a66a..fed85e4fee6d 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+@@ -37,11 +37,17 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+ 			return;
+ 		}
+ 
+-		if (response->event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED)
++		switch (response->event) {
++		case XE_SYSCTRL_EVENT_THRESHOLD_CROSSED:
+ 			xe_ras_counter_threshold_crossed(xe, response);
+-		else
++			break;
++		case XE_SYSCTRL_EVENT_PAGE_OFFLINE_QUEUE_FULL:
++			xe_ras_get_offline_queue(xe);
++			break;
++		default:
+ 			xe_log_err_info(xe, SYSCTRL, -ENOPKG,
+ 					"Unexpected event %#x\n", response->event);
++		}
+ 
+ 		if (!--count) {
+ 			xe_log_err(xe, SYSCTRL, -EXFULL,
+@@ -49,7 +55,8 @@ static void get_pending_event(struct xe_sysctrl *sc, struct xe_sysctrl_mailbox_c
+ 			return;
+ 		}
+ 
+-		xe_dbg(xe, "sysctrl: %u events pending\n", response->count);
++		xe_dbg(xe, "sysctrl: %u event received, %u events pending\n", response->event,
++		       response->count);
+ 	} while (response->count);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+index 348768ca454a..03bb34e279f0 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+@@ -14,9 +14,11 @@
+  * enum xe_sysctrl_event - Events reported by System Controller
+  *
+  * @XE_SYSCTRL_EVENT_THRESHOLD_CROSSED: Error counter threshold crossed
++ * @XE_SYSCTRL_EVENT_PAGE_OFFLINE_QUEUE_FULL: Page offline queue full
+  */
+ enum xe_sysctrl_event {
+-	XE_SYSCTRL_EVENT_THRESHOLD_CROSSED	= 0x01,
++	XE_SYSCTRL_EVENT_THRESHOLD_CROSSED		= 0x01,
++	XE_SYSCTRL_EVENT_PAGE_OFFLINE_QUEUE_FULL	= 0x02,
+ };
+ 
+ /**
 -- 
-2.47.3
+2.47.1
 
