@@ -2,44 +2,44 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED26E606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 22:51:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04C35606A31E
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 22:57:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=gu91mxBf
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=i3sl42zw
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9322410ED03;
-	Tue, 24 Nov 2026 22:51:32 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1429D10F8BA;
- Tue, 24 Nov 2026 22:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A978710ED03;
+	Tue, 24 Nov 2026 22:57:01 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6775F10ED03;
+ Tue, 24 Nov 2026 22:56:55 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id D8400417FB;
- Tue, 24 Nov 2026 22:51:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3AC8B1F000CA;
- Tue, 24 Nov 2026 22:51:25 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 3FC316126F;
+ Tue, 24 Nov 2026 22:56:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 527211F000CF;
+ Tue, 24 Nov 2026 22:56:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795560685;
- bh=mxKtfVmZgakIbL5niJRDHv0XhtsyUQSXcmkt44Lzswo=;
+ s=k20260515; t=1795561009;
+ bh=KQ2hSFjiGvivYXcIljlLRnSq85SW+19ujwKjv1vdt9s=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=gu91mxBfqUZHRht9dgD75F0Q7u5WgabdldZpEdnCoi7d3atgGx7wKrl+CxRXQUrF5
- ureBH6WyNsmKyrfVbBntRdg0+cf/GV+GsSF+lGRLxffgohT+9yPOeDiu0WG6KkM0kl
- ikiwIToLTIH/qlWhTSuSymsL/UO1a7FoTV7Q1BDMnKQY/WzTb8WrC1Unz4lf2GaK03
- qEhi/72rZeZ20NIqqd6EG7BdiDFAVqo3ZMg6ZGxaajhM1fjWGRZ6j+p2/WiHtmgSfm
- jOx1vgQWQ4I9TY0815pEYq/WEaZAZsGGJIJedM4G+bUjoCchYylNHkvPdJ12itVn5I
- kvIBsSUEne5Iw==
-Message-ID: <sashiko-outbox-232161@kernel.org>
+ b=i3sl42zwh9fQTPPvkc12yB12JPeo4CpOEvf9P7NUy7TslArE3Oz0nPHSebOfB81Ap
+ g8DeFkEPN9tfDezUtmWCDZ2gFjGq74cIKQErQEZkBHA3PyBvWaHeE406djz0Gs7G0V
+ rMkdJ2l4nX8h4I70RJgISxprWoAHD6xBkm7ylVx08opnrM2fUr58B1Qa1MdixovLdn
+ LIM5QzEOuOLvyIgT48yHtadGjb4Hydi5zJiJJQ6oEhGn9fhatHSg5r9wQWvIMTKiwI
+ xoZTfqY2fz9YB2DGOjCxfpkiHNq9qzwpnpZI9A1A8huDk0moVp/MP4WE8E8KflWohS
+ QaTbqg/9OGhkA==
+Message-ID: <sashiko-outbox-232179@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 1/2] drm/edid: Introduce
- drm_edid_get_displayid_product_id()
+Subject: Re: [PATCH 2/2] drm/i915/bios: Attempt to match the VBT PnP ID
+ against DisplayID first
 To: "Ville Syrjala" <ville.syrjala@linux.intel.com>,
  dri-devel@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261124224621.6506-2-ville.syrjala@linux.intel.com>
+In-Reply-To: <20261124224621.6506-3-ville.syrjala@linux.intel.com>
 References: <20261124224621.6506-1-ville.syrjala@linux.intel.com>
- <20261124224621.6506-2-ville.syrjala@linux.intel.com>
+ <20261124224621.6506-3-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Tue, 24 Nov 2026 22:51:24 +0000
+Date: Tue, 24 Nov 2026 22:56:48 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,42 +61,85 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [Low] drm/edid: commit subject mismatches
-  drm_displayid_get_product_id()
+- [High] drm/i915/bios: false VBT match in
+  pnpid_displayid_get_panel_type()
 --
 
-commit 4452aea3cbb2a5afd7ef8a119931282a44feb4c3
+commit b621730b3ac12390341a723bfb91f30971b56f98
 Author: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-drm/edid: Introduce drm_edid_get_displayid_product_id()
+drm/i915/bios: Attempt to match the VBT PnP ID against DisplayID first
 
-This commit adds drm_displayid_get_product_id() to extract vendor and
-product identification from a DisplayID Product ID block.
+This commit attempts to match the VBT PnP ID against the DisplayID product =
+ID
+block before falling back to the base EDID vendor/product ID.
 
-> diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
-> index a2617aa34edfc..b44c26d422171 100644
-> --- a/include/drm/drm_edid.h
-> +++ b/include/drm/drm_edid.h
-
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index 7b6a6f8c3cf19..8fbabf2e8b6f8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
 [ ... ]
+> @@ -732,6 +727,48 @@ static int pnpid_get_panel_type(struct intel_display=
+ *display,
+>  	return best;
+>  }
+> =20
+> +static int pnpid_edid_get_panel_type(struct intel_display *display,
+> +				     const struct intel_bios_encoder_data *devdata,
+> +				     const struct drm_edid *drm_edid, bool use_fallback)
+> +{
+> +	struct drm_edid_product_id product_id;
+> +
+> +	if (!drm_edid)
+> +		return -1;
+> +
+> +	drm_edid_get_product_id(drm_edid, &product_id);
+> +
+> +	return pnpid_get_panel_type(display, &product_id, "EDID");
+> +}
+> +
+> +static int pnpid_displayid_get_panel_type(struct intel_display *display,
+> +					  const struct intel_bios_encoder_data *devdata,
+> +					  const struct drm_edid *drm_edid, bool use_fallback)
+> +{
+> +	struct drm_displayid_product_id displayid_id;
+> +	struct drm_edid_product_id product_id;
+> +
+> +	if (!drm_edid)
+> +		return -1;
+> +
+> +	drm_displayid_get_product_id(drm_edid, &displayid_id);
+> +
+> +	/*
+> +	 * Only the first two bytes of the OUI get
+> +	 * smashed into the old EISA/PNPID field, and
+> +	 * that gets matched against what's in the VBT.
+> +	 */
+> +	product_id.manufacturer_name =3D
+> +		cpu_to_be16((displayid_id.vendor_id[0] << 8) |
+> +			    displayid_id.vendor_id[1]);
+> +	product_id.product_code =3D displayid_id.product_code;
+> +	product_id.serial_number =3D displayid_id.serial_number;
+> +	product_id.week_of_manufacture =3D displayid_id.week_of_manufacture;
+> +	product_id.year_of_manufacture =3D displayid_id.year_of_manufacture;
+> +
+> +	return pnpid_get_panel_type(display, &product_id, "DisplayID");
+> +}
 
-> @@ -484,6 +492,8 @@ int drm_edid_connector_add_modes(struct drm_connector=
- *connector);
->  bool drm_edid_is_digital(const struct drm_edid *drm_edid);
->  void drm_edid_get_product_id(const struct drm_edid *drm_edid,
->  			     struct drm_edid_product_id *id);
-> +void drm_displayid_get_product_id(const struct drm_edid *drm_edid,
-> +				  struct drm_displayid_product_id *id);
+[Severity: High]
+Can pnpid_displayid_get_panel_type() falsely match an unpopulated VBT PnP ID
+entry when the EDID has no DisplayID Product ID block?
 
-[Severity: Low]
-The commit subject names this function drm_edid_get_displayid_product_id(),
-while the commit message body and code define drm_displayid_get_product_id(=
-).
-Also, this declaration is placed in the "Interface based on struct drm_edid"
-section of include/drm/drm_edid.h, where all other functions taking a
-const struct drm_edid * use the drm_edid_ prefix.  Should the commit subject
-and exported function name be aligned?
+drm_displayid_get_product_id() zeroes displayid_id up front and leaves it
+zero-filled if no DisplayID Product ID block is present. Passing the result=
+ing
+all-zero product_id into pnpid_get_panel_type() will match the first unused
+(all-zero) slot among the 16 entries in BDB_LFP_DATA, causing get_panel_typ=
+e()
+to select that unpopulated VBT panel index via PANEL_TYPE_PNPID_DISPLAYID
+instead of falling back to PANEL_TYPE_PNPID_EDID.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261124224621.6506=
--2-ville.syrjala@linux.intel.com?part=3D1
+-2-ville.syrjala@linux.intel.com?part=3D2
