@@ -2,76 +2,87 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 692B8606A321
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A6B0606A329
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:58:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.a=rsa-sha256 header.s=20260707 header.b=j2D4+Q+I
+	dkim=pass (2048-bit key) header.d=metarealtyinc.ca header.i=@metarealtyinc.ca header.a=rsa-sha256 header.s=google header.b=WEjOfnom
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F25510FCDA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4337810FCE0;
 	Wed, 25 Nov 2026 14:58:47 +0000 (UTC)
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com
- [74.125.82.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30D7C10E42F
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 10:59:24 +0000 (UTC)
-Received: by mail-dy1-f179.google.com with SMTP id
- 5a478bee46e88-386c4d2e2ccso2734232eec.0
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 02:59:24 -0800 (PST)
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
+ [209.85.160.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE2F10F699
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 15:37:03 +0000 (UTC)
+Received: by mail-qt1-f176.google.com with SMTP id
+ d75a77b69052e-55d03bfd477so53898731cf.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 07:37:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20260707; t=1795604363; x=1796209163; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to:content-type;
- bh=j1FGvTIUIAFBOZYmL6OiO8sZFEbEFDfPmxmvVzyQ4O4=;
- b=j2D4+Q+IDY1Pfogzgx1+CcWYbQhYRfFRS0f4LiniHxdNHPoWaoBk93wvuGBiFCBNJ0
- i/NPJyO4w6pMZP8is6/MA0aAbf3Mo+LvSuUe/q6DY/JfRR/xWF4S4UhUMGdmQfsamoK4
- 5vMA6UahyCN2Iqbd16cfCfDBH/mYwoHo9elrLTb1zBVVw4TXgc032I8HFdVIVym0xbKP
- aRBZjxUyEqM0VGEqw+dKoj4T8H1bQA8hjs/UbE7VgXNh9wZRnRF7+jH1mKfWdiiMVUAJ
- 7pvgekkTtzAJUhkMSJw43w0Ezfu/2jUCosL94lVz7ZWXjaS5b7dM/njTd9Kb3wKmT61v
- MPtw==
+ d=metarealtyinc.ca; s=google; t=1795534622; x=1796139422;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=ZfJPa8uUh2EsffvwpmDril+FeS3X90n3oLx7atj56Zs=;
+ b=WEjOfnomNHjQOjx3P/PxEqb/dlFspbhU39mLb0Lw1veC7C5O00GVQN8ve5fJkizXuw
+ mTSo/eL36JIQrspIRQ7psOJf0NtYpun8qYc2c0T2IeWaxIF/xHtG/yRYZCtObfjQGRcr
+ MvFOqql3sMsbTTtf25LK5JSUKl1X+FMe9ZD90Vg5GU6WZsVKZP3WzbfYKdXKWfBVlLQW
+ kojbm3t4edzoTWmPewVtWjlMBMR+A4qPYNjow1L20RXg5y5BvMlfSasRg+VWbGkub944
+ D1m9C/1+oQJ7GjJYWYKva8HjpisLCa2cI/wQiVUQzcJkXOqelztcOcyq1en/6QL+BRgz
+ 5G6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1795604363; x=1796209163;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to:content-type;
- bh=j1FGvTIUIAFBOZYmL6OiO8sZFEbEFDfPmxmvVzyQ4O4=;
- b=giy66oh0APlMN7sciy4ZKW0O1cNBL86wsdVJucxuVj280Srg4+NyhITKgEG+5EkDyc
- UAJwIr0sJACkDxClNzSLrLecxzDx8MZLKdwScncPbt8o6P7yWc34budb+i0dWffcZmFD
- SUpeRpXw7fogYleH8odyvlI10JMjKbNAbjzOqpBYg67FDawLPLtIu1Nt1vHwC7sr10E9
- DMeMmuHPAmYW2kh07WRQQPF/+JHOmJoZKWb4RnypWUevc6forFKmBT/2nxrM52uZ4OMW
- DOLIZLBwbjOJ+KJtzBwbZIMttlkOv/pm0StFCfr9hPqnvww+/CBeQqiPLHyS2TBToKKV
- t3QQ==
+ d=1e100.net; s=20260707; t=1795534622; x=1796139422;
+ h=content-transfer-encoding:content-type:mime-version:references
+ :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=ZfJPa8uUh2EsffvwpmDril+FeS3X90n3oLx7atj56Zs=;
+ b=OHmxCUQR9jGvkDAZghxv57nDReVC5mrGcN8ywD+CCWJNlvGSqTdJ47uuSM+VVNzv3U
+ dbUcsS2a6RycdpHB5hzQtj35tpzAxRHfMPyhAb/4kfWeTyIQTQBgIaXlE7cKDei1rFID
+ HiYWKGsLBcFhL524Hjx8gg1BqFM7suW9GRQzM/4SD9ZLpiE6MSJcF0EZKhYoECCcytvv
+ enBG5irzUljjdprN7vLncRp2TsOw5VhQ2RrsD/dkx5f+sva4l6x9zGWfvrJykYK+Fx/k
+ s8lXw4J2jhEBaGjLniBtE8AZ5moK/W6diejn/HWx6jMBShSlBWL2GkmHxZmC/B+EU2fH
+ MbZg==
 X-Forwarded-Encrypted: i=1;
- AL+hErEJdU3V9G7q2GtCzAk1aU9+aCpisIW/0jbtu8csvfCbxBHYhHuowq/VulmtRtrrT7hGwDGcOi1nNw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z94uwD6kSJFvv52hrrDVDg4rBhFREpT/ZhDlfJfTPvY25wcYRVi
- it/Ig1bj6M+tAJVN0v4byGL8jKJ2ac3a2dOjj53vPHATCdO+C+Cmi2KR
-X-Gm-Gg: AZFdTZe5lZDYf1QyaPGvMEO1zzEBA0Wy4rns4i4xRJRTWYmh/KnTvClxA5hqz3kfXi/
- 68Xn5oozy6Lb2ifvrPwSM0FY08WiCYoDVAmZahOEbLgEBif19S7p17fDB6RD8lKykYtR/lcNmir
- A8SM1HD7rm2iWNhI0UsEYWHTDjsZs1owp5fmMFdHpz64Nl/mqWhdXdCUm0r0wA3ClK03MG4QYtg
- Kh1wKFtcCy1CKX5S0ZYjFc9M2okFT6YhzwVrPDeCSoig9fvDrA0gBghOJUEOusmtRWnvlAcib+O
- sOB8n3ifpxEVWYnucT1ZDN5uone0YYXcH798rZ2UtRtsZqEu5ztFe/3ru1fShAEymT8PMADtEwR
- g6YJx6L3lrOZx9xNXQ+UMohndQNCpDUZe3V3Y9kE3RnqOrlJnuv1BGCr3OizcyaOXTGZdjzhMKN
- DGDY+eR+3ZMXFLBxTVPfU4V2xJbLPnNqawzEdPFOAcc1GJ5AmmIp+3E0AcdZO0zbH6YH8lHEYU/
- Gi9Yw9scEqFveGb2xNCpgxBJ7mPdJHO13tsKy3IPHIpJQMHzvvvUAdG8HlQunxdMtgAs9VmTn74
- A4W5tXVO5piho8UD779Ha1zxH4+WetlmHLaUfuls011pjWIY2w1lOVvLfXib0lRNQ2FsaM19Niz
- m+N/l6hnXTlFo8KrBnwQbmkKX7Mg=
-X-Received: by 2002:a05:693c:39cc:b0:386:48c1:6c5e with SMTP id
- 5a478bee46e88-38648c1719dmr15667422eec.37.1795604363311; 
- Wed, 25 Nov 2026 02:59:23 -0800 (PST)
-Received: from localhost.localdomain ([2409:40f0:12f:243a:5b38:482:e2fe:5dab])
+ AL+hErGTD2AxT5CyaW27rBCLf0bdetGZ3Ngemmpy2QdL3O5E0iGDRczR+YkF6d5AiQ4JI53/biym2nRkRA==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+AXzHta9gfxrxtlxrihIFhoLe62OdykfnOFqttrMpoSvZW20ha
+ /FqPc4hzoVFayyjuBqJQgNnc2lKl5Dk73O+tf5lcj6LLQ3VYWs/93Dzn53Jx2zbUiLA=
+X-Gm-Gg: AZFdTZcQDGXhdVCfEj79LTdTV1r9a7Jzj1SXLelTl9BSTRv1TUTJgPKfqaaKQyFORM6
+ hfPrqYahATKZ3jI7ebH16DjgBgIa8zxmdLSC2EigBI2dzKWU/7IGQFMrZKVf+G29IjyFMG8CKu5
+ Epo3f6AiaTRq8i+XVaTG3++xSnINdGTxG2BeFDH3ROf2KpewA+trBdeK8FmJmhhGDYTThY5GLwj
+ GRTMs2Sf2XpfXMcivS2MlB0+ztiAkWATM6BKnX2g9o+AlKyr+UR9/lDrUPvP19NjL9/goaFWzfs
+ /k0RRe05xJ1kx/7Cl+G1jFsIrmplDdyo/fwon3trxdIYm5OLq/ZT3WQCe613EdU0HiKaqHEHClb
+ 3C75084pTCb/l66g8cO1WX2VmFC7ZOgKgJqBkM0IMUhQniZ2NtllQPQP4gnNcsRlezrA8WfAuHE
+ 77YH3p4eUn/x94lZKSCPpZo/SwxDsEAdA8jxSW4c4HMCNKtkg2rC/LksWkbb4BFGTMrC3tPLHtw
+ oe/6fkDyO3hYv0kuPqer7mVXVsz6toYLriUdihnEPxEICNTJBCQ6P/CZ5VcNnMptTiCuvvDv0kK
+ vWxHEL9kg3XCmXLdu0rPUqjK5PR9GbrAwuP/powLKzUVwUAcIINhkPWBohl/5L14s/yIXj+QEGK
+ hH5p+rAPXwjVBTCKQDFsYYj6i3dsLQ4rCchKwDqst/NlItndnjGG8b67AMK328P6+BPf8DiTzvu
+ iPk6E2qSg2fuMM6q5K1mPrraGcOB/H2S9bq9byD/AfGhHXRCi2wXFBzqGkBnQN0DWLwGKL2F42i
+ PAHyug1px+BpQ==
+X-Received: by 2002:a05:620a:8081:b0:93b:d7a3:45cf with SMTP id
+ af79cd13be357-949ba9e882fmr2493492185a.56.1795534621955; 
+ Tue, 24 Nov 2026 07:37:01 -0800 (PST)
+Received: from jake-laptop ([2607:fea8:c6:a700::ec62])
  by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-385d2b93dd9sm60114815eec.24.2026.11.25.02.59.17
+ af79cd13be357-94a0175c67fsm26215985a.31.2026.11.24.07.37.00
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 25 Nov 2026 02:59:22 -0800 (PST)
-From: Torra Sowmya <sowmyatorra@gmail.com>
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com
-Cc: airlied@gmail.com, simona@ffwll.ch, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/xe: Remove unused userptr rebind tracepoints
-Date: Wed, 25 Nov 2026 16:28:54 +0530
-Message-ID: <20261125105854.48591-1-sowmyatorra@gmail.com>
-X-Mailer: git-send-email 2.47.3
+ Tue, 24 Nov 2026 07:37:01 -0800 (PST)
+From: Jake Steinman <j@metarealtyinc.ca>
+To: jouni.hogander@intel.com,
+	ville.syrjala@linux.intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ animesh.manna@intel.com, ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
+Subject: [PATCH v3 4/4] drm/i915/display: Remove the Panel Replay quirk for
+ Dell XPS 16 DA16260
+Date: Tue, 24 Nov 2026 10:36:55 -0500
+Message-ID: <3a76c676f2d4a1785dcaa42ebb76bc8fd9bba405.1795527921.git.j@metarealtyinc.ca>
+X-Mailer: git-send-email 2.56.1
+In-Reply-To: <cover.1795527921.git.j@metarealtyinc.ca>
+References: <3077ed0636a6c98e919934d2c860461f98222537.camel@intel.com>
+ <cover.1795527921.git.j@metarealtyinc.ca>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Wed, 25 Nov 2026 14:58:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -84,52 +95,45 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-	HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_CR_TRAILER,INCLUDES_PATCH,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The xe_vma_userptr_rebind_worker and xe_vma_userptr_rebind_exec
-events were introduced without callers. Their definitions were
-later moved to xe_trace_bo.h, but remain unused.
+Panel Replay was disabled on the Dell XPS 16 DA16260 because the panel
+judders with it. The judder comes from the AS SDP being suspended in PR
+Active, which the previous patches fix by sending it while frames are
+being updated. Panel Replay Selective Update works on this
+laptop now, so remove the quirk.
 
-Remove both definitions while retaining the shared xe_vma event
-class and the other events that use it.
-
-With the tested x86-64 configuration, size reports a reduction of
-936 bytes in xe_trace_bo.o, from 24146 to 23210 bytes: 344 bytes
-in text and 592 bytes in data.
-
-Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Torra Sowmya <sowmyatorra@gmail.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9119
+Cc: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Jake Steinman <j@metarealtyinc.ca>
 ---
- drivers/gpu/drm/xe/xe_trace_bo.h | 10 ----------
- 1 file changed, 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_quirks.c | 8 --------
+ 1 file changed, 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_trace_bo.h b/drivers/gpu/drm/xe/xe_trace_bo.h
-index 36fc7eb65882..8be08d527ea5 100644
---- a/drivers/gpu/drm/xe/xe_trace_bo.h
-+++ b/drivers/gpu/drm/xe/xe_trace_bo.h
-@@ -150,16 +150,6 @@ DEFINE_EVENT(xe_vma, xe_vma_unbind,
- 	     TP_ARGS(vma)
- );
- 
--DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_worker,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
--DEFINE_EVENT(xe_vma, xe_vma_userptr_rebind_exec,
--	     TP_PROTO(struct xe_vma *vma),
--	     TP_ARGS(vma)
--);
--
- DEFINE_EVENT(xe_vma, xe_vma_rebind_worker,
- 	     TP_PROTO(struct xe_vma *vma),
- 	     TP_ARGS(vma)
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 96eb9a40d..6070440f8 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -289,14 +289,6 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
+-	/* Dell XPS 16 DA16260 */
+-	{
+-		.device = DEVICE_ID_ANY,
+-		.subsystem_vendor = 0x1028,
+-		.subsystem_device = 0x0dba,
+-		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+-		.hook = quirk_disable_edp_panel_replay,
+-	},
+ 	/* TUXEDO InsanityBook 15 v1 */
+ 	{
+ 		.device = 0x591b,
 -- 
-2.47.3
+2.56.1
 
