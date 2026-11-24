@@ -2,58 +2,41 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE24606A31E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 05:47:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8133606A31E
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 05:53:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nqXj2vmk
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=K2GmkNeD
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F73310E3C2;
-	Tue, 24 Nov 2026 05:47:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B04F10E3C2
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 05:46:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795499216; x=1827035216;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=q9VJ6L+U8hjm1gkX6VZAAKPvzpIzuQsMuU7kzHGw92E=;
- b=nqXj2vmk1yfUoPcKkLk636+zRE8KybGxkNIryIDUmYb2JM0Plmf3ixnQ
- vJc7hLXAE4frnc/MaTet4+9nQ5USqSq+P2w/vfWSolJ+HeqtV7TBXG5fC
- pL/RC+Ydk09dOgcgmj5yIb5DZvmFJh14FPhXjhmrj2oNCfXLa9NiBWZC5
- KceMimtGyYXji/c5y2GUAh/PZgTlVyeUtXjV6WN1JM8qpp8bPJAQgvjFP
- GltN/vH7BO2DjdSBKlCVNf+NHTvN12VyvLWf8kqrf73mNl/YBp4Ujuw3r
- PZYkSIWESU4wYoXhIWuYsnSvJq/PqqCRWFEpNdz/5rIr6SYJVtq9lgzQ5 g==;
-X-CSE-ConnectionGUID: typotPJLRyy65xses8MVZw==
-X-CSE-MsgGUID: qXvoyOARR+GhtIbX8zJDMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4222665"
-X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
-   d="scan'208";a="4222665"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 21:46:56 -0800
-X-CSE-ConnectionGUID: HyPne9HmQKW66mLQDi3Lkg==
-X-CSE-MsgGUID: mnAusAUtQw2XrYti03j+7A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11354625"
-Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 21:46:53 -0800
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
- raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v4 10/10] drm/xe/hwmon: Enable fan support for CRI
-Date: Tue, 24 Nov 2026 11:18:11 +0530
-Message-Id: <20261124054811.798763-11-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20261124054811.798763-1-karthik.poosa@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5632C10E110;
+	Tue, 24 Nov 2026 05:53:31 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDA8410E110
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 05:53:25 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 72307434C1;
+ Tue, 24 Nov 2026 05:53:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A62CF1F000C0;
+ Tue, 24 Nov 2026 05:53:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795499604;
+ bh=GQBFvU/2xiVIXe9GCpD9JXBizr5mOjV3pqlse7h61DA=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=K2GmkNeD2K5P8NnXtOyezEm4LDq0bvaLVZsNCw09Tw8FBxrsKAlhf2YVo9tEvL2SQ
+ PMymw7Oxq3eYAD1kdKhd6l9ui5bXbj1pP2FEYPBc5KoKamW7IDMuNHjcBQu/yzjYJZ
+ sLfle7BA6Wzp4FFz8rWu++pVDUmU0JnQB9vxzHn9c9Wy7PNKcgBzcXivnGfCK1sbPo
+ 0ycPwyIpBJo0AOAL7qMG2IRPbjjXYxQGVl2zL76M32R5o+K3ToujWV1EYcu9p0H4PV
+ r3GLsKAMICF29omVLOJhh4iOLt9L1Q2484WnN2oyVTK7qZnZamLxAbaME7mEytCecf
+ iQVFt7LHsOX+g==
+Message-ID: <sashiko-outbox-230564@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v4 07/10] drm/xe/hwmon: Add kernel-doc for fan control
+To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
+In-Reply-To: <20261124054811.798763-8-karthik.poosa@intel.com>
 References: <20261124054811.798763-1-karthik.poosa@intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+ <20261124054811.798763-8-karthik.poosa@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Tue, 24 Nov 2026 05:53:24 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,99 +46,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-Enable fan control support for CRI device IDs 0x674E, 0x674F and
-0x6751; other CRI SKUs don't support fan control.
-Use new fan 3 speed register offset for CRI.
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/xe/hwmon: kernel-doc claims pwm writes fail when pwmN_enable
+  is 0
+--
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_pcode_regs.h |  1 +
- drivers/gpu/drm/xe/xe_hwmon.c           |  3 ++-
- drivers/gpu/drm/xe/xe_pci.c             | 23 ++++++++++++++++++++++-
- 3 files changed, 25 insertions(+), 2 deletions(-)
+commit e3f1b146650ba8a68f8904ed7422e9ec4d05d22c
+Author: Karthik Poosa <karthik.poosa@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-index d9e4847dd68e..5657b483d18f 100644
---- a/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_pcode_regs.h
-@@ -28,6 +28,7 @@
- #define BMG_PACKAGE_TEMPERATURE			XE_REG(0x138434)
- 
- #define CRI_PACKAGE_ENERGY_STATUS		XE_REG(0x138120)
-+#define CRI_FAN_3_SPEED				XE_REG(0x138174)
- #define CRI_MSU_VRAM_ENABLE			XE_REG(0x138340)
- #define CRI_PACKAGE_TEMPERATURE			XE_REG(0x138344)
- #define CRI_VRAM_TEMPERATURE			XE_REG(0x138348)
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 2f1d779e2784..8e732f54aae2 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -533,7 +533,8 @@ static struct xe_reg xe_hwmon_get_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg
- 		else if (channel == FAN_2)
- 			return BMG_FAN_2_SPEED;
- 		else if (channel == FAN_3)
--			return BMG_FAN_3_SPEED;
-+			return (xe->info.platform == XE_CRESCENTISLAND) ? CRI_FAN_3_SPEED :
-+				BMG_FAN_3_SPEED;
- 		break;
- 	default:
- 		drm_warn(&xe->drm, "Unknown xe hwmon reg id: %d\n", hwmon_reg);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index e7b844f96d40..b6c1d42fba61 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -477,6 +477,7 @@ static const struct xe_device_desc cri_desc = {
- 	.has_display = false,
- 	.has_device_uid = true,
- 	.has_drm_ras = true,
-+	.has_fan_control = true,
- 	.has_flat_ccs = false,
- 	.has_gsc_nvm = 1,
- 	.has_i2c = true,
-@@ -612,6 +613,26 @@ find_subplatform(const struct xe_device_desc *desc, u16 devid)
- 	return NULL;
- }
- 
-+/* Only these CRI device IDs support fan control. */
-+static const u16 cri_fan_control_ids[] = { 0x674E, 0x674F, 0x6751 };
-+
-+static bool xe_has_fan_control(struct xe_device *xe)
-+{
-+	int i;
-+
-+	if (!xe->desc->has_fan_control)
-+		return false;
-+
-+	if (xe->info.platform != XE_CRESCENTISLAND)
-+		return true;
-+
-+	for (i = 0; i < ARRAY_SIZE(cri_fan_control_ids); i++)
-+		if (xe->info.devid == cri_fan_control_ids[i])
-+			return true;
-+
-+	return false;
-+}
-+
- enum xe_gmdid_type {
- 	GMDID_GRAPHICS,
- 	GMDID_MEDIA
-@@ -804,7 +825,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.has_cached_pt = desc->has_cached_pt;
- 	xe->info.has_device_uid = desc->has_device_uid;
- 	xe->info.has_drm_ras = desc->has_drm_ras;
--	xe->info.has_fan_control = desc->has_fan_control;
-+	xe->info.has_fan_control = xe_has_fan_control(xe);
- 	xe->info.has_fixed_vram_channels = desc->has_fixed_vram_channels;
- 	/* runtime fusing may force flat_ccs to disabled later */
- 	xe->info.has_flat_ccs = desc->has_flat_ccs;
--- 
-2.34.1
+drm/xe/hwmon: Add kernel-doc for fan control
 
+This commit adds a kernel-doc comment describing Xe hwmon fan control,
+its firmware stock and driver user tables, and the exposed sysfs files.
+
+> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+> index 77c4d1b0ecaef..b9e2e76d73c33 100644
+> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> @@ -139,6 +139,58 @@ struct xe_hwmon_energy_info {
+>  	long accum_energy;
+>  };
+> =20
+> +/**
+> + * DOC: Xe fan control
+[ ... ]
+> + * Writes to ``pwmN``, ``pwmN_auto_pointM_temp`` and ``pwmN_auto_pointM_=
+pwm``
+> + * are accepted only while ``pwmN_enable`` is 1; otherwise they fail with
+> + * -EINVAL. Firmware stores duty cycle in percent, so PWM values read ba=
+ck
+> + * rounded to the nearest percent step. PWM values below the minimum dut=
+y cycle
+> + * reported by firmware for that fan are raised to it, except a curve po=
+int PWM
+> + * of 0, which is kept for the end marker.
+
+[Severity: Low]
+Does the driver actually reject writes to pwmN, pwmN_auto_pointM_temp
+and pwmN_auto_pointM_pwm when pwmN_enable is 0?
+
+Writing 0 (XE_FAN_PWM_FULL_SPEED) to pwmN_enable calls
+xe_hwmon_set_user_fan_pwm(..., U8_MAX, true), which sets
+fi->is_full_speed =3D true while keeping fi->pwm_enable_mode set to
+XE_FAN_PWM_MANUAL_USER_TABLE.  Because the write guards in
+xe_hwmon_set_user_fan_pwm(), xe_hwmon_pwm_auto_point_temp_store() and
+xe_hwmon_pwm_auto_point_pwm_store() only check fi->pwm_enable_mode !=3D
+XE_FAN_PWM_MANUAL_USER_TABLE and do not check fi->is_full_speed, writes
+to these attributes succeed when pwmN_enable is 0 instead of failing
+with -EINVAL.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261124054811.7987=
+63-1-karthik.poosa@intel.com?part=3D7
