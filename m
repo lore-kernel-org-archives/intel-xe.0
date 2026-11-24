@@ -2,88 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25C4606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:58:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DD71606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:58:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=metarealtyinc.ca header.i=@metarealtyinc.ca header.a=rsa-sha256 header.s=google header.b=SI1O31Iy
+	dkim=pass (2048-bit key, unprotected) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=pps01 header.b=ArQqb01A;
+	dkim=pass (2048-bit key, unprotected) header.d=columbia.edu header.i=@columbia.edu header.a=rsa-sha256 header.s=lionmail header.b=dDI9CewA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0074710FCD4;
-	Wed, 25 Nov 2026 14:58:41 +0000 (UTC)
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com
- [209.85.222.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E779610F653
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 15:37:00 +0000 (UTC)
-Received: by mail-qk1-f182.google.com with SMTP id
- af79cd13be357-945e6d9ceeaso408892885a.0
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 07:37:00 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBA8510E132;
+	Wed, 25 Nov 2026 14:58:40 +0000 (UTC)
+Received: from mx0b-00364e01.pphosted.com (mx0b-00364e01.pphosted.com
+ [148.163.139.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8213C10E281
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 19:37:15 +0000 (UTC)
+Received: from pps.filterd (m0167073.ppops.net [127.0.0.1])
+ by mx0b-00364e01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 6AOJYjPR2924286
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 14:37:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=columbia.edu; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=pps01; bh=OMjg
+ nMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=; b=ArQqb01Alvqy+ezQ3O+b
+ wFGaLKLkRPslDfTTnR/1n3YHEnzFvpSAXsSLtAema3OMBGvQTr8MjsfnQdizF1DR
+ Y35c9K1YbdbrokVp6lJBFIYVrUHqLLS3WYYBtEDDKg/6m1bODWncA+LZwiNP1MH8
+ Z3bx2LUxG6sfpmxDdUI+/kyZI7guQlRgIUWOBYQ6reZ57nqjYw3JFREOmJXGhsy0
+ 5UyyJqrfI8VjX2MlX1xqtk46jQix4pqRNZv16i1aL2PIz3aAJytU8fQlN33iF7Uo
+ xruvXaD2EFNKvtzNiOaeLj7AUiUNlwagsbKMIv+l5TRcoparlTssaELubPi31AEG
+ DQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0b-00364e01.pphosted.com (PPS) with ESMTPS id 4j5fa7h01h-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 14:37:14 -0500 (EST)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-536778a8137so87210741cf.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 11:37:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=metarealtyinc.ca; s=google; t=1795534620; x=1796139420;
+ d=columbia.edu; s=lionmail; t=1795549034; x=1796153834;
  darn=lists.freedesktop.org; 
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:from:to:cc:subject
- :date:message-id:reply-to:content-type;
- bh=sktL+iYwKlFrZn878JDfdhMoNqmZJtrMcYUSS3thb2c=;
- b=SI1O31IyGhYNeaCCx4RCM0gJCcEeQ4HsFH/SZCPALu+Ew4A00PnqDHjRTEvf2pJrsu
- l394kSjwGsOGpGf1cdgdWPI4/tnSTlAJmcKoyrq7Kgyv+906mPSoKL7ZtK7/6oiB077g
- ql41kQZZ3qNb42uHdCZAHcDmvMw0HsTZYJBFeZWGlw2fIt0weAXI3adoQj0yZRLY7cBf
- +7+d8pt6tD8s9Es2A4K6B6NuS+nakoarqPZNIee5jltlObpZxBtR0ZEbmSe/wSOO+oDn
- W29uAmAB/+14KDouaOeXwMAsXtPlDZwU6+3raai8u9ZnpNhXJvI550sHTmp37Q5TnTGs
- Cabg==
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:from:to:cc:subject:date:message-id:reply-to
+ :content-type; bh=OMjgnMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=;
+ b=dDI9CewADpfltMyOctEQPXef6qPnURtuo0OcT6SbxH3+FlE/qJUYzqIk1vx6CB7hPF
+ m6heUBxPsiywc1A4mOJnWGJwRRXEqaqBogcevklS8h/hpO3VLwG7q3GE941ZMYkFoo9i
+ XahTHRfSjvaBgI6h8sX5v34XHSjDDnj0zvhERWBJ0HHcphspAyPUoVsNvhy9yTd6ETuN
+ RM7j+08t2tuHma+g4qDjVAmbDUS1peebrC/jMUMIUPcW8QYTTw2zc8RAMZREcvdTfTd5
+ IuyZ8DVXX3Zm6RdVgJIsaAuaftrJbgRWsBdsmotXmbtpQZc14BWHCN7sfRk56hHDtw2E
+ w4lA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20260707; t=1795534620; x=1796139420;
- h=content-transfer-encoding:content-type:mime-version:references
- :in-reply-to:message-id:date:subject:cc:to:from:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
- :content-type;
- bh=sktL+iYwKlFrZn878JDfdhMoNqmZJtrMcYUSS3thb2c=;
- b=U/si98hG3/XOAXMSXWEOPizu6ShXxLkMUWEYmlVNxPcwHkbPzfpiz7E6P6uP80mSDj
- TNiWGaWwWwokZZh+WYFQXenzhWqIhdMJN7b4DSFiTMZAwmeNOKpdxJ94cn24vhvnLTTs
- Fyulj3pCAJPibcUGazxi1lOCCziajt8S55wQ6QSKxHR+qEpJXx1slTdinMK7E4TCroVL
- RGy5cbxrbzAnlAAQBjIrI+OAhs5x7nNoKRi8RINKbVB+9qrTcuTZQIcIj0uxsjzF/eys
- AqIrHzcSBTfdPdaJdsHkuPwLmkju/5Gb20Oknf8bM3sbiywMRD7FFL9NUuGOrdf36zdl
- VH6A==
+ d=1e100.net; s=20260707; t=1795549034; x=1796153834;
+ h=content-transfer-encoding:content-type:in-reply-to:from
+ :content-language:references:cc:to:subject:user-agent:mime-version
+ :date:message-id:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to:content-type;
+ bh=OMjgnMOdm5LC9Ve7tJbATj56ZsHM2zVs1s6tMJ9jz2Y=;
+ b=aiY1crWmN0eCgEFiSyyP1BiOqyyCONMkokFiDykjMv02l5Sh46asxlmar6M2XBA7Hn
+ d4qwcwvNoXyFXF8yrecF2O0RZEcaSCgJSXqRybxhyJrYEolmxBB404CwdsfMG1jqp4fm
+ 8aI1gvhM9NKpk35YvfojtPz6MPQ7uvUssg7DkoDhwiJdaAB329rDuRIwbvgjWVCyY+4T
+ lbn58u7T4dz1nqf1PU4yei8pSTgxZhbdX+OzNm60C3z/6NATTNJKigWXd3odj8c5mLwv
+ TS0uknHddxL6/G7BaGfxe5kGaElQ9ZvWG7q8Ke1K3/diLXE/bqVydLcVO65ZWksmA0Pr
+ Xtcw==
 X-Forwarded-Encrypted: i=1;
- AL+hErGOb08zb3gAy0lzQR4tTo/PrpLf+AwDQtLWFD8Cpi+xyaWu0XzCWVPaSpV+edVNAwQSF11tji33lw==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z+YRk8CW3Q2CGBJo7Z6NrFXefYcVsrrCHDbxO16aGsOsaGyozJs
- dbkK0aI6dIG6LQqHNBl+vJQbYF26N7e79Dw/AN+63j0Bj7mi6UyG1Y4rR/43b9Jc118=
-X-Gm-Gg: AZFdTZcvB5X/X+dJlwuVVreWcmZb5W2uBki0IRwMT5FbOl6nyEeXPR7E9ONKNAsWmf2
- Zl4Zcer2iMS9JjVe8mZOTLMsEMntRAXQ6D7PKAPPQm51Vs43lwKse+ulayLOl/rht/OX9mPAwol
- hRh+At5u2wTS5Ti97lS7z6LazEbZY9X18RlQ9KIM56AMCBzOeJucZ5qilh3qnaQXWd0S9P+Adwy
- /EjY0JTJed7KglGjSFK/ZS6D2+tmVKXNa4QwwwNtYnKIPSMvnZXzercaUB6fFYBS+YutUKUjCzN
- SFK5qYRlS7lVWaT2zAdBsU58CG5fGSavxjQz4ckgO+f/F/BnilNuVvKtjTyWg6k3NWXM0WgdTHS
- sp4VxD23kUtvHdZ+SoQQzje/LQltMLz+Nvdx2vqPL/XfuPP71EtK7FKxQYLhJRuCaOuu2uSHth7
- uR8iOOolQjTReuP64+w6nK4CdiTk6FIEGjlt5NUEimSLPzFwF4oIjo1DXrtrqBNEPcuF2smVtGK
- drP7sandAwRCsWhqe+9l5v16E9SSt/CtxN8AMi7uM6oEiWV7+7K6zoUJuwYH7DSZSsGiOyDRIHK
- IghF6aCXSXL0nP/ww31U5X8mIxVopMqOjd9yYMLvig992eNkfb3bDhUFZ6HSealXdsvAUvg/HnF
- lh0V2YjlF6RWEU2YuJwsWAPOHDmT1ftKgk4NLyH6/BkQ4LfxnFua5lAl463w7ppoYeokJGy3skn
- kG1t4MfZTE2xo0c8Fo63iIUtma9J+Xo1YaVEZFCQ3fnH58lY7m1G5Q9qYhFb78MPJpyC1SNgr3E
- HrU0aWgocEKYA==
-X-Received: by 2002:a05:620a:6910:b0:944:12d5:fd45 with SMTP id
- af79cd13be357-949bab2a96bmr2668296385a.70.1795534619622; 
- Tue, 24 Nov 2026 07:36:59 -0800 (PST)
-Received: from jake-laptop ([2607:fea8:c6:a700::ec62])
+ AL+hErEY61JstzsViGkCXb66zrwKzdfduu5MG4+2ApBU/hLU7tfpRwcFrsjSeri84DuEq2xvHe7SDn4m9A==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z8NB7KDZzd1W+aCxQ2RTS/7LYjTbkXlDnpkLCMhRdWzFzZdAC4/
+ 1LuYCQwLxh+D5Bj3sePTYoXGbyGiCGtM7OkjBi+IavsvmIaon75tW1GIrN1OVb9J5PwW7GLyMEE
+ YIqRhQCmA+U5oyKGR+xZdayzxH8QoFPS2PaYT8K6sbj2nHEzBTqwFFTw5drI+19kS
+X-Gm-Gg: AZFdTZcntWrgpY/qT+Pqzj7M/60vEf4h+5RYk52ZINC3rWVtUtBilovO4ykZy/WCHiQ
+ nnzhJ0lm3Vq50Q0E06F0dIEzKOfqazVBRWrC1vrexUIBS+4x676tR3Z8qjWHYQ2YMx9QGxxjgda
+ ND8cTSWFfiz+oYeKsBE33SapngYAX5q6i1IwTWeE+sttPUithT7s63Vo2wqd9cn38RN3RFe22TR
+ lvU63cSml8fiFJ2FwvnBrxz1t5iGreNDR/CQVueDa/CkkBN7+t6Oq2cRbmFGMM3bBVTYq84LaKL
+ UegRmy1GOaN9sdZ7d3GX/1s4dctjfO/R05eynDeT6AYDc0mNAWYu+e1u3USzlnAUBZuTNn3MS95
+ 3tLYINZ7tizOEpo6tzyR7fCaUunnK6/J8MaeYGIVQKpOIZNDC6ik3LL0lCAmR2TQA9w==
+X-Received: by 2002:a05:622a:313:b0:55d:1944:a2ab with SMTP id
+ d75a77b69052e-55d76a5af8dmr288718461cf.49.1795549033826; 
+ Tue, 24 Nov 2026 11:37:13 -0800 (PST)
+X-Received: by 2002:a05:622a:313:b0:55d:1944:a2ab with SMTP id
+ d75a77b69052e-55d76a5af8dmr288717631cf.49.1795549033344; 
+ Tue, 24 Nov 2026 11:37:13 -0800 (PST)
+Received: from [10.206.101.158] ([129.236.231.128])
  by smtp.gmail.com with ESMTPSA id
- af79cd13be357-94a0175c67fsm26215985a.31.2026.11.24.07.36.58
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 24 Nov 2026 07:36:59 -0800 (PST)
-From: Jake Steinman <j@metarealtyinc.ca>
-To: jouni.hogander@intel.com,
-	ville.syrjala@linux.intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- animesh.manna@intel.com, ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
- rodrigo.vivi@intel.com, jani.nikula@linux.intel.com
-Subject: [PATCH v3 2/4] drm/i915/psr: Send the AS SDP in PR Active while
- frames are updating
-Date: Tue, 24 Nov 2026 10:36:53 -0500
-Message-ID: <6c8469acdedb91f0435967f94b2a2b6aabba8711.1795527921.git.j@metarealtyinc.ca>
-X-Mailer: git-send-email 2.56.1
-In-Reply-To: <cover.1795527921.git.j@metarealtyinc.ca>
-References: <3077ed0636a6c98e919934d2c860461f98222537.camel@intel.com>
- <cover.1795527921.git.j@metarealtyinc.ca>
+ 6a1803df08f44-9213515f467sm140631006d6.41.2026.11.24.11.37.11
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 24 Nov 2026 11:37:12 -0800 (PST)
+Message-ID: <3ebb01ea-fe77-4467-a1de-7f30a91593f3@columbia.edu>
+Date: Tue, 24 Nov 2026 14:37:11 -0500
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/9] userfaultfd: assorted fixes (part 1)
+To: "David Hildenbrand (Arm)" <david@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Mike Rapoport <rppt@kernel.org>, Peter Xu <peterx@redhat.com>,
+ James Houghton <jthoughton@google.com>,
+ Andrea Arcangeli <aarcange@redhat.com>,
+ Suren Baghdasaryan <surenb@google.com>, Balbir Singh <balbirs@nvidia.com>,
+ "Liam R. Howlett" <liam@infradead.org>,
+ Lorenzo Stoakes <ljs@kernel.org>, Vlastimil Babka <vbabka@kernel.org>,
+ Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
+ Michal Hocko <mhocko@suse.com>,
+ =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+ Andrei Vagin <avagin@gmail.com>,
+ Muhammad Usama Anjum <usama.anjum@arm.com>,
+ Stephen Rothwell <sfr@canb.auug.org.au>, Arnd Bergmann <arnd@arndb.de>,
+ Zi Yan <ziy@nvidia.com>, Matthew Brost <matthew.brost@intel.com>,
+ Joshua Hahn <joshua.hahnjy@gmail.com>,
+ Byungchul Park <byungchul@sk.com>, Gregory Price <gourry@gourry.net>,
+ Ying Huang <ying.huang@linux.alibaba.com>,
+ Alistair Popple <apopple@nvidia.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Nico Pache <nico.pache@linux.dev>, Ryan Roberts <ryan.roberts@arm.com>,
+ Dev Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>,
+ Lance Yang <lance.yang@linux.dev>, Usama Arif <usama.arif@linux.dev>,
+ Kiryl Shutsemau <kas@kernel.org>, Muchun Song <muchun.song@linux.dev>,
+ Oscar Salvador <osalvador@suse.de>,
+ =?UTF-8?Q?Miko=C5=82aj_Lenczewski?= <miko.lenczewski@arm.com>
+Cc: linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, stable@vger.kernel.org,
+ Breno Leitao <leitao@debian.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+References: <20261117-uffd-state-fixes-v3-0-b617009d1a4a@columbia.edu>
+ <4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
+Content-Language: en-US
+From: Tal Zussman <tz2294@columbia.edu>
+In-Reply-To: <4f23b0bc-b89a-46c1-b8cd-853e7815b7ac@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: SuHIPlQUTc5ZW9oUt7PS5s1cvsTkFz4n
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI0MDA3NiBTYWx0ZWRfX96GaIQ+o9BFS
+ LmqSWc7vFzM8jhgjtwzTwMT09k1qQifCYSzXgkz/d7T6tQrCdqb/iwnO88NXXl0ZslJV3pF6pxu
+ oNIJak3KYoSgF62vYnftwyN0zmULd4dOfw52erFo7/FPaqHRnnYT
+X-Proofpoint-ORIG-GUID: SuHIPlQUTc5ZW9oUt7PS5s1cvsTkFz4n
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI0MDA3NiBTYWx0ZWRfX8eNaO1sox2G5
+ nRbJ4N4JW+hav5I+8BgapKQvGNHekWdxwnbupD3Gd1XB5oIKBPvAw9+RoelbvzYyQGIz8Cf42YT
+ Jho4+J+2MAGf3QDFgqAHhiztrRdtfQt0FuyP2X43CNQsslxDmPFCXnzvBajF71iAQnjGQbdYHMl
+ r6M0/YHZi+n0gPzYXMXP6n/fj8iHnONR2EwaT0QJSM3Xxzvdg0/QS2+SIzUPvApcIPpxU2kZwBK
+ N65cy08e7ozxxYknA2v0gEs9EmZV1hN3vHR7jZgP12z0N0kzkzEXil5574UMG6I5uAjdtFZnCy2
+ WJlXn0EUYfNsMLfGc6bS2FPBlldjuOgYFM9TTezxUwOJlBhNL6Kepo4t2i46nnObVAiDOoJCshw
+ D3PgCoAdJJnUlkNFBpDGjhSNPcpNPwi/Sa1rdmYetcw7zrHfcoAMe8p7rMSkfq3BZBXg3pTwTRX
+ x2WxjcwBIsVE4dj9wqA==
+X-Authority-Analysis: v=2.4 cv=NdZzRGD4 c=1 sm=1 tr=0 ts=6b05e76a cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=LNQXEAmb7IHcZyFqmLK0PA==:17
+ a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10 a=x7bEGLp0ZPQA:10 a=A0y_DWxS2BwA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=Da8U98TiO7q1upZEImrf:22 a=jHxIr1HyPKZ_Q5_91PL3:22
+ a=Z7cX3StJxvrjZLnT-lEA:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Virus-Version: vendor=nai engine=6900 definitions=11976
+ signatures=596817
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 bulkscore=10 adultscore=0 phishscore=0 clxscore=1015
+ malwarescore=0 spamscore=0 priorityscore=1501 lowpriorityscore=10
+ impostorscore=10 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2611040001
+ definitions=main-2611240076
 X-Mailman-Approved-At: Wed, 25 Nov 2026 14:58:40 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -95,227 +169,48 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
+	autolearn=no autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Sinks that support async video timing in PR get the AS SDP suspended in
-PR Active (disable_as_sdp_when_pr_active). The LG panel in the Dell XPS
-16 DA16260 (sink OUI 00:22:b9) then judders while frames are updating,
-with the source flipping at a steady 8.33 ms. Leaving the AS SDP on
-fixes it but blocks DC5/DC6.
 
-Clear PR_ALPM_CTL[AS SDP Transmission in Active Disable] on a frontbuffer
-flush (flips, cursor updates and frontbuffer rendering) and set it again
-from a delayed work once there has been no flush for 6 frames, the same
-idle time DC3CO and DC5/DC6 use.
 
-Panel Replay is enabled with the AS SDP sent, so the bit is never set
-while frames are still being updated, and the delayed work suspends it
-once idle.
+On 11/18/26 4:41 AM, David Hildenbrand (Arm) wrote:
+...
+> 
+> So, I would be picking up ...
+> 
+>> Tal Zussman (9):
+>>       userfaultfd: use anonymous memory for UFFDIO_ZEROPAGE on private file mappings
+>>       userfaultfd: refuse UFFDIO_MOVE into a non-present huge destination PMD
+>>       fs/proc/task_mmu: downgrade writable migration entries in PAGEMAP_SCAN write-protect
+>>       mm/migrate: warn on a writable migration entry with the uffd bit set
+> 
+> This
+> 
+>>       fs/proc/task_mmu: write-protect device-private THPs in PAGEMAP_SCAN
+>>       mm/huge_memory: build the moved huge zero PMD from the destination VMA
+> 
+> This
+> 
+>>       mm/mremap: resolve uffd state when the context is dropped, not during the move
+>>       mm/migrate_device: do not migrate a uffd-protected zero page
+> 
+> This
+> 
+>>       mm/userfaultfd: check the hugetlb alignment of every VMA in the pre-scan
+> 
+> 
+> After waiting a bit longer for more review. Andrew can take the rest.
+> 
+> 
 
-disable_as_sdp_when_pr_active is now computed in
-intel_psr_compute_config_late(), after the AS SDP config, and is only set
-when the AS SDP is actually sent, ALPM AUX-less is used and AS SDP skip
-frames is not.
+@Andrew, could you pick up the rest of these (everything but 4 and 8)?
+I'd like to send the next batch of uffd fixes I have on top of these.
 
-Fixes: d6a8336c5f06 ("drm/i915/alpm: Write PR_ALPM_CTL register")
-Cc: Jouni Högander <jouni.hogander@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Cc: <stable@vger.kernel.org> # v6.17+
-Signed-off-by: Jake Steinman <j@metarealtyinc.ca>
----
- .../drm/i915/display/intel_display_types.h    |  5 ++
- drivers/gpu/drm/i915/display/intel_psr.c      | 84 ++++++++++++++++++-
- 2 files changed, 85 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 90a5d2916..991d3a2fe 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1823,6 +1823,11 @@ struct intel_psr {
- 	bool dc3co_allowed;
- 	/* DC3CO disable work */
- 	struct delayed_work dc3co_work;
-+	/* AS SDP in PR Active is sent while frames are being updated */
-+	bool disable_as_sdp_when_pr_active;
-+	bool as_sdp_in_active;
-+	unsigned long as_sdp_idle_delay;
-+	struct delayed_work as_sdp_work;
- 	u16 su_w_granularity;
- 	u16 su_y_granularity;
- 	bool source_panel_replay_support;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index bd1656360..62cda4365 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1704,10 +1704,23 @@ static inline bool compute_link_off_after_as_sdp_when_pr_active(struct intel_con
- 		DP_PANEL_REPLAY_LINK_OFF_SUPPORTED_IN_PR_AFTER_ADAPTIVE_SYNC_SDP);
- }
- 
--static inline bool compute_disable_as_sdp_when_pr_active(struct intel_connector *connector)
-+static bool compute_disable_as_sdp_when_pr_active(struct intel_dp *intel_dp,
-+						  const struct intel_crtc_state *crtc_state)
- {
--	return !(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
--		 DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR);
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	const u8 *pr_dpcd = connector->dp.panel_replay_caps.dpcd;
-+
-+	if (pr_dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)] &
-+	    DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR)
-+		return false;
-+
-+	/* AS SDP skip frames needs the AS SDP to keep flowing in PR Active */
-+	if (intel_alpm_pr_as_sdp_skip_frames_enabled(intel_dp, crtc_state))
-+		return false;
-+
-+	return intel_psr_needs_alpm_aux_less(intel_dp, crtc_state) &&
-+		(crtc_state->infoframes.enable &
-+		 intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC));
- }
- 
- static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
-@@ -1745,7 +1758,6 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
- 	}
- 
- 	crtc_state->link_off_after_as_sdp_when_pr_active = compute_link_off_after_as_sdp_when_pr_active(connector);
--	crtc_state->disable_as_sdp_when_pr_active = compute_disable_as_sdp_when_pr_active(connector);
- 
- 	if (!intel_dp_is_edp(intel_dp))
- 		return true;
-@@ -2183,6 +2195,45 @@ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
- 	return true;
- }
- 
-+/*
-+ * Sinks that support async video timing in PR get the AS SDP suspended in PR
-+ * Active. Some of them then drift out of phase with the source and judder
-+ * while frames are being updated. Send the AS SDP in PR Active from the first
-+ * frame update and suspend it again once the display has been idle for
-+ * as_sdp_idle_delay. DC5/DC6 needs the same number of idle frames, so little
-+ * DC5/DC6 residency is lost.
-+ */
-+static void intel_psr_pr_as_sdp_suspend_work(struct work_struct *work)
-+{
-+	struct intel_dp *intel_dp =
-+		container_of(work, typeof(*intel_dp), psr.as_sdp_work.work);
-+
-+	mutex_lock(&intel_dp->psr.lock);
-+	if (intel_dp->psr.enabled && intel_dp->psr.as_sdp_in_active) {
-+		intel_alpm_pr_as_sdp_in_active_disable(intel_dp, true);
-+		intel_dp->psr.as_sdp_in_active = false;
-+	}
-+	mutex_unlock(&intel_dp->psr.lock);
-+}
-+
-+static void intel_psr_pr_as_sdp_flush_locked(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+
-+	lockdep_assert_held(&intel_dp->psr.lock);
-+
-+	if (!intel_dp->psr.disable_as_sdp_when_pr_active)
-+		return;
-+
-+	if (!intel_dp->psr.as_sdp_in_active) {
-+		intel_alpm_pr_as_sdp_in_active_disable(intel_dp, false);
-+		intel_dp->psr.as_sdp_in_active = true;
-+	}
-+
-+	mod_delayed_work(display->wq.unordered, &intel_dp->psr.as_sdp_work,
-+			 intel_dp->psr.as_sdp_idle_delay);
-+}
-+
- static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 				    const struct intel_crtc_state *crtc_state)
- {
-@@ -2201,6 +2252,7 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 	/* DC5/DC6 requires at least 6 idle frames */
- 	val = usecs_to_jiffies(intel_get_frame_time_us(crtc_state) * 6);
- 	intel_dp->psr.dc3co_exit_delay = val;
-+	intel_dp->psr.as_sdp_idle_delay = val;
- 	intel_dp->psr.psr2_sel_fetch_enabled = crtc_state->enable_psr2_sel_fetch;
- 	intel_dp->psr.su_region_et_enabled = crtc_state->enable_psr2_su_region_et;
- 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
-@@ -2211,6 +2263,9 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 	intel_dp->psr.io_wake_lines = crtc_state->alpm_state.io_wake_lines;
- 	intel_dp->psr.fast_wake_lines = crtc_state->alpm_state.fast_wake_lines;
- 	intel_dp->psr.entry_setup_frames = crtc_state->entry_setup_frames;
-+	intel_dp->psr.disable_as_sdp_when_pr_active =
-+		crtc_state->disable_as_sdp_when_pr_active;
-+	intel_dp->psr.as_sdp_in_active = false;
- 
- 	if (!psr_interrupt_error_check(intel_dp))
- 		return;
-@@ -2243,6 +2298,17 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 	intel_dp->psr.enabled = true;
- 	intel_dp->psr.pause_counter = 0;
- 
-+	/*
-+	 * Start with the AS SDP sent, the idle work suspends it once there has
-+	 * been no frame update for as_sdp_idle_delay.
-+	 */
-+	if (intel_dp->psr.disable_as_sdp_when_pr_active) {
-+		intel_alpm_pr_as_sdp_in_active_disable(intel_dp, false);
-+		intel_dp->psr.as_sdp_in_active = true;
-+		mod_delayed_work(display->wq.unordered, &intel_dp->psr.as_sdp_work,
-+				 intel_dp->psr.as_sdp_idle_delay);
-+	}
-+
- 	/*
- 	 * Link_ok is sticky and set here on PSR enable. We can assume link
- 	 * training is complete as we never continue to PSR enable with
-@@ -2419,6 +2485,8 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 	intel_dp->psr.pipe_mask = 0;
- 	cancel_delayed_work(&intel_dp->psr.dc3co_work);
- 	intel_dp->psr.dc3co_allowed = false;
-+	cancel_delayed_work(&intel_dp->psr.as_sdp_work);
-+	intel_dp->psr.as_sdp_in_active = false;
- }
- 
- /**
-@@ -2449,6 +2517,7 @@ void intel_psr_disable(struct intel_dp *intel_dp,
- 	mutex_unlock(&intel_dp->psr.lock);
- 	cancel_work_sync(&intel_dp->psr.work);
- 	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
-+	cancel_delayed_work_sync(&intel_dp->psr.as_sdp_work);
- }
- 
- /**
-@@ -3853,6 +3922,8 @@ void intel_psr_flush(struct intel_display *display,
- 
- 		intel_dp->psr.busy_frontbuffer_bits &= ~pipe_frontbuffer_bits;
- 
-+		intel_psr_pr_as_sdp_flush_locked(intel_dp);
-+
- 		if (intel_dp->psr.pause_counter)
- 			goto rearm;
- 
-@@ -3931,6 +4002,7 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 
- 	INIT_WORK(&intel_dp->psr.work, intel_psr_work);
- 	INIT_DELAYED_WORK(&intel_dp->psr.dc3co_work, psr2_dc3co_disable_work);
-+	INIT_DELAYED_WORK(&intel_dp->psr.as_sdp_work, intel_psr_pr_as_sdp_suspend_work);
- 	mutex_init(&intel_dp->psr.lock);
- }
- 
-@@ -4775,6 +4847,10 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
- 	}
- 
- 	intel_psr_set_non_psr_pipes(intel_dp, crtc_state);
-+
-+	crtc_state->disable_as_sdp_when_pr_active =
-+		crtc_state->has_panel_replay &&
-+		compute_disable_as_sdp_when_pr_active(intel_dp, crtc_state);
- }
- 
- int intel_psr_min_guardband(struct intel_crtc_state *crtc_state)
--- 
-2.56.1
+Thanks,
+Tal
 
