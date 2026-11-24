@@ -2,43 +2,166 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE0F6606A321
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 06:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC21E606A685
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 06:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bHrN8xQV
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PH1Cn/rj;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=eT+uiU1X
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7328210E7AC;
-	Tue, 24 Nov 2026 06:32:43 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98C4610E4BC;
- Tue, 24 Nov 2026 06:32:36 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 6193144F3A;
- Tue, 24 Nov 2026 06:32:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3F0C1F000D0;
- Tue, 24 Nov 2026 06:32:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795501956;
- bh=3adqlx3v9FkV8tbFhC5m4q+toDCeS0Uxu5ZamZZ+7X8=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bHrN8xQVRiZMd9pkjpYwZHtD2LMdxbC3619KDNsDCZ+COAgxckJjLBsJy5aEptoEg
- 2jpXbdTmhTkpPAkd3YF/TSawiomBwHZOmKz7tEcuXPx141/gUHa3fn1rZtAwQqsK6J
- JsSv0HvsG//EMq2by8TXLH5CIuEwj+L2Si71/yZL1i+gCuFdTXfN6455MGOwE3UP8w
- RJOf/Y1TB2BQhmo8l+2U9Lj62lzq2VL0dnxNq0FayRQ4F4LyAMVKbyJZl/xjZaEvL+
- agYesMHll6GYMvBRPcx9PxNusgyCfjLD4wtrplGCJ7Wlqj8iaDT+sCN42pDCS6X9KG
- zGYot8pNxu4xQ==
-Message-ID: <sashiko-outbox-230599@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [RFC v2 03/11] drm/ttm: Add TTM_NUMA_POLICY_INTERLEAVE
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-In-Reply-To: <20261124062123.2431244-16-himal.prasad.ghimiray@intel.com>
-References: <20261124062123.2431244-13-himal.prasad.ghimiray@intel.com>
- <20261124062123.2431244-16-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 24 Nov 2026 06:32:35 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82FB010ECD5;
+	Tue, 24 Nov 2026 06:45:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9539F10ECC6;
+ Tue, 24 Nov 2026 06:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795502701; x=1827038701;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=n0Kdiwj1xFWVTc/sG4eKx9IQ6ef2mC/xyF6Q3g1TvWU=;
+ b=PH1Cn/rjO/OXbQ9MgYvYwj23DqSSI4mOUvmIYj+n8Qo/q5GjjZe4lo3H
+ 4fsHo0U6RsZRCJsy3qraxevp6L/0ma8YOrx4HMR93ofuLCbrTT88KGJA0
+ 46JHs2smCOQZ1eYd057B3kUcDzPc8JssMBOWZKrQoiE+TQHe3Ol7IrayP
+ KPysM1ojbWqOO0VStGzAcP6wsPr581SXVcQ2EphqJ7737YJ4avVLzoiMG
+ c4uGQZAbGJbxL7yKzQcJL2lXGx41U+2ahVSfEnmOsJPktIr9pAAVp7xRo
+ jK9NqiMmm3njAcHg8kq0QFvX3L9NslEO1/oawMJ8S9PPP4YkdBMJd1y9p w==;
+X-CSE-ConnectionGUID: wfPdZXRHRI2795v/RoGJbg==
+X-CSE-MsgGUID: I9dVifhvSsSm1zpBNAV2AQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4309393"
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
+   d="scan'208";a="4309393"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 22:45:00 -0800
+X-CSE-ConnectionGUID: KGf9tfYpSXWaSjQi0vQZHg==
+X-CSE-MsgGUID: OrGk4s8FSN+IwFWzUqBeeg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11827461"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Nov 2026 22:45:00 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Mon, 23 Nov 2026 22:44:59 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57 via Frontend Transport; Mon, 23 Nov 2026 22:44:59 -0800
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.29) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Mon, 23 Nov 2026 22:44:59 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UBdCznHyM28LkfolVp4t2GekY0iy2snbMup0SlaJ9sBRLiPksTToEuOHPhXnxsjEQs40SYr0oSq/iGixuYvd3csShsQry+7sv2PJJsnqn8/PVgD0qJ+1JWlo62uSKX3jPddEhKysGmClMSNgfVmZA9ftXq/98fHjOPGzQFgEBcy1kZhcScNlG6jiKKQcskaYOlfjfThN6FfXplNR6uVy3E7YKX11+/YWC0WvAa3qRWEu28ae2vxbi70/6UK1S228U7JPBj8E3nXv/NWPFyHRRa/DmUj9c5xTzcyJJmZ6zD0EBFwTOyjWZDMlMGYdXq0zeu507+YGNjtX6Tm4Ep66oA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CkRGuqGGTStPa5i6T8WgmMQLPVoHlOImfYxb5hksjxA=;
+ b=nz/8hTx3Ke0ngkGZ/y4TfrY93B3I4yJc0xu4S9hXjzIVwCRBPPmXWlHFkg6WUmvePMctDIfTtRG2ZO3LjbSv0GalUUH9X4f63bzk8ESZO0ZEiw+WUrPqv/5GPAEkfYMFH0dloKdt6WPLT0RPhuLDu6mYRAPonTC5UgwSN9IkQtY9S/5s3RGPh8VhO8jwlErfZ2fWLTqXq+UVJg9F3d7dceYu1aaGQi5qZASwLVLoDiYUZo6YTlDwatGje6tmbURsdIutn4KO9PCULoK1MQdBJcnTtoNNWlwYSiJu1nc9TWjODR70vVgYhvQcgssBY58WtEo+uAomoDfSVGAwFAzWyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CkRGuqGGTStPa5i6T8WgmMQLPVoHlOImfYxb5hksjxA=;
+ b=eT+uiU1XfINZzYuTifAHvT1Ud6c/7IFj2mbfocFlySpgdRAEGoxY4g2ZgdIW043PWOqDnqqnp+LowTLeoca/Bm8C/83odCRVaix0C/X8eDNXaK5tLd3KOwpKuN/TfWGkbnxj/5Fp/JM+zJ3UaDDhJe7G+Gqf8NIIynJzajWxVuA=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from LY0PR11MB357627.namprd11.prod.outlook.com
+ (2603:10b6:404:21a::11) by DM4PR11MB8092.namprd11.prod.outlook.com
+ (2603:10b6:8:184::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 06:44:57 +0000
+Received: from LY0PR11MB357627.namprd11.prod.outlook.com
+ ([fe80::71fd:d139:945b:a71c]) by LY0PR11MB357627.namprd11.prod.outlook.com
+ ([fe80::71fd:d139:945b:a71c%5]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 06:44:57 +0000
+Message-ID: <95c758a8-669e-40e0-b8dd-f031f3ca1cdf@intel.com>
+Date: Tue, 24 Nov 2026 12:14:48 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/dip: Clear VSC_SELECT before setting it
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Eriksen Xie
+ <xiaolu.xie@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+CC: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Suraj
+ Kandpal" <suraj.kandpal@intel.com>
+References: <20261118131441.2023100-1-xiaolu.xie@intel.com>
+ <fba24224-e42f-473d-8e9d-801ba183849b@intel.com>
+Content-Language: en-GB
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+In-Reply-To: <fba24224-e42f-473d-8e9d-801ba183849b@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0095.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d4::16) To LY0PR11MB357627.namprd11.prod.outlook.com
+ (2603:10b6:404:21a::11)
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LY0PR11MB357627:EE_|DM4PR11MB8092:EE_
+X-MS-Office365-Filtering-Correlation-Id: 488fecde-d44a-4b10-a8c7-08df49f673fc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|1800799024|366016|376014|22082099003|6133799003|18002099003|261009223027099003|56012099006|4143699003|11063799006|10067099003|261102123227099003|261022075727099003|261028144727099003|261022105027099003|261026121527099003|261026140227099003|261021123027099003|261021121427099003;
+X-Microsoft-Antispam-Message-Info: /GURjHBBPL3LhsL3x9hPA5IcwmiMWnAMl9iRY607qt3amSn6fMBIqL+l/BjVUSeaLpCSWDyy9jRow3bqYCh9x/E+LPxuPXUpiuOL7W5KUnK+/TTJBtmW0k3YzJgkJeDYIYqxrtL5Og+wZ4ZqYVi/PkE2RqYNsbi0EJQw0nBAOoOA17BqJC3yomk1AGTszC3IBvHTEnA3CfN6jdmfjmdNRXEAhsmIpQgVRTjKzZxeYLfCrmRRK/W/sM7uBaQsAyAynD2H7ITmgQtWkPJeQCPr80SDme5bEGU5GkuL7xX0VaxWBd63j43Tay7v1NKsvYg9fSMAfvPh9uCA/jf6urv+xWW0tua8Lq8NeSmxZExvZwTYGjFlZHDZ4dj4Sz8nqqEA25M9RxjWFU3+xOtD7LIZ+LyNqjYZ1LbrlpZlwvd73nH3TaafEQMmH6I3lBY7nq2SDM223Dra3Wwh9oaZqJFWXDmjMwKJ94HvDW7iYOWLtiGpSE8OdyQhbPUZ9wdccoV4MNfnEvif3c4FsSXX3HCOVkKk9Jb3akUDzycRM/hklkqBhltKry4hRl77nSSKhVkduaxhsk+Tee7r98hJ70mcTb5E0dRtPXiyLPJuPVGDetA=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LY0PR11MB357627.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(1800799024)(366016)(376014)(22082099003)(6133799003)(18002099003)(261009223027099003)(56012099006)(4143699003)(11063799006)(10067099003)(261102123227099003)(261022075727099003)(261028144727099003)(261022105027099003)(261026121527099003)(261026140227099003)(261021123027099003)(261021121427099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dmV0RTNTSHN2RnBkbVZ0U3BsTGlFSWRYWC9vNUVHczMrVGxxMnBRc1pJS2pJ?=
+ =?utf-8?B?MXZvUlhIMnpUTzA3UG41cUtCMGUzcEM0Sk1IWFp5OUE4eXZYa1lJTHpzd2Nn?=
+ =?utf-8?B?bk55aVBIQ3JMSHA4enZJZHNpQ1VHcjd4NEhFWlhmNXJQU2xQc3N1aFd5L0Er?=
+ =?utf-8?B?R3ZDWFZuZEpLeGZ3K1B5c0l1OENEZlRBTGc5WWdwOHYxM1RDSHliMzJXUndH?=
+ =?utf-8?B?anNmUXZsanR0RzJUMXZIamIxQ1BDZEYrQkIzeWJHQ2tMQ0ZkeUlwVHRhOENL?=
+ =?utf-8?B?MStoWnBERWQ0UDBtOW1neit1MUNtTG1vS1Ird0hPaFhIcVVVY3gzSXA0QXMw?=
+ =?utf-8?B?eXY5Q3Y3V3A1aHh2SVFYanRraEFzaUQ2MHB2eXVTRFBEZXY3SytLWXNCUkIv?=
+ =?utf-8?B?SG9LeUIxazlrRmJlc0t2Mzk0OUJFZGJ1L1pQcDhtRFBZWjRvckM2NHVmNHVR?=
+ =?utf-8?B?QWRXc2lDdlRGbjJSMDY2V0FwMGF4bitUUEhDdlVsbFFjRzBzR0FUSUpTTG1s?=
+ =?utf-8?B?Vkk5OVBxalhVbXdoSUpSQStuWlRCZzdjNzhQWVgwZ2gzdysvcXBKQTFuN3M4?=
+ =?utf-8?B?MW1GSE14M1hyc3g1cElGUjR1NStiYjB5NW1uRjBlaWZJb0l4Z04zMmVzS0tk?=
+ =?utf-8?B?SzZsN0lxaU5vTmZWZEx6SEtQMzRuT0ZYSWxyYXFuczhxYVB6MlVMNWo1MHNL?=
+ =?utf-8?B?VnZKT1J5NmpkMkZ1aXNzb2dIck5idW13Zm5VZjd5MlVCa3hLb1JSdENJbDlQ?=
+ =?utf-8?B?bTl1cDBNNnBPOVk4N1h4NTd4N1I2K0hKOGRGVzd6MVI0U2xJVGl4UkpQNDRa?=
+ =?utf-8?B?M3pYUlFFWW1UdmtFaTF2UWdNS21LVDlGK1dKY3VBY2VZNHJOVjQ3V1VEM2I5?=
+ =?utf-8?B?aE1ZMjRISnl4RHNtMnpQRkNUTE0wVSsvU3NEUWRaQ3ZVdEZvQ2o5QXVxVHlL?=
+ =?utf-8?B?SVMwTG03ZFR0bTFHaStqazJKUDlWVTVqaXlmaEpSaEM4MW9kYVJMY3lXOENY?=
+ =?utf-8?B?Q01PbzJ6Zlp1UmJsY3BoOWJFalhKeStPNnhpY2lQVENjT1R2ZStLRnk5OXdH?=
+ =?utf-8?B?MnptckRWczNzRVhpTEdBNmVnalQ1K09HdmY1WGl5UmtWUGhER0RPYXFoVWRY?=
+ =?utf-8?B?cjA3U3FSUS9IQTVLSm5tMmF6anZ4aytVSDA3dU9wQkRYZmN6RHFLY2Z5ZENv?=
+ =?utf-8?B?azl6dFZOdFluaDFjRlVlU0Z4N0FXdTNWcXozNTRHRFFTT3d5cVhyd01MaTBj?=
+ =?utf-8?B?dUFqVDIxTy9SSlpsb282anZmMEtHdHMrYVk5Y3VXTmwyRjlJK0l6YUJ5SHZL?=
+ =?utf-8?B?blp1Y09XUEgyMDNyZXNpZnZER1M2U1B3cll0YmZJNVd2Mk5RelFiZXN1UkZP?=
+ =?utf-8?B?ekI5ZU5leHQvQjhYN2VhQU8wTlpGejZ6aDRBNTNnQTkwZzNIZURRWGJtby9W?=
+ =?utf-8?B?VEdlMVZnaEVOZjdnSHRsaEtaMmo0UjZyOUU3RXpZWUhHZUVLWnBLSEZNUVhi?=
+ =?utf-8?B?eTVIbEJUMzBUUGtyUnBKVTFUYkRUTHlVU1U1QmI0RlkwQ25DZHk5aW9Dby8z?=
+ =?utf-8?B?bUVBeWNlRkJLYWJXVjlKMXc4dUVGWnI3SmZtSmhkaVdSVklZZHgyeDFLclpj?=
+ =?utf-8?B?bFVOZXpjb1B0S1FIcVdKdWM5eWdaWEdLaUpmVVpUKzlVdjBEZTlZWGVQcTEy?=
+ =?utf-8?B?WFI0S2M4S0pXT3lBbjN2dEEzOEF5S2JRdFhpL2J0OG1pWExWZGlHYVY5ZktK?=
+ =?utf-8?B?WnF0TXljOG54SHNYSk9GTTRmZVJtT3JNd1R2REZEQkx3OXh3dE5DMWRjc2w0?=
+ =?utf-8?B?dkREK1pmNmxmRUs0amJERGxQbjdmcWVTRTJlTnhFWlNXc0xjSmVnclBuMnc1?=
+ =?utf-8?B?R01SZk9MOXVBNnUwTWhjMmNkektUZDdoVk1wZTNLZHo0VDB6RWpHNXRKMjhD?=
+ =?utf-8?B?b1ZFSGZsell0UEx5U0NXdVBBalNacjBuelhXeVVjdHp0Y0gxWkZHditPSHZF?=
+ =?utf-8?B?MEsyMUJ5VlJXRmxaZlRXZmd6bGZyY0tZYTd4UlBIZVJ4dXRpTGEzRWo4Ryth?=
+ =?utf-8?B?NHJVQWZTNGdCTE1iUnF5MGF5OWJlbisyKzY1MWt1ZUFaZ203ekdEdkpPQ1ZR?=
+ =?utf-8?B?ZGl2bFNYT3N6VGw4dEpiTXFOMVR0eGlNeS81VTlYMk9SaGRFRXF6bW5wQVpU?=
+ =?utf-8?B?YXAybTJDQmh3cGR6aHJWOVc1RnJkS3pDN29DMXRFMzl0czY0K0F4STRrU0M0?=
+ =?utf-8?B?Wll1WUNiTDkwMGpieThxV0pqVGRvUUYxMTZla09xSGdaNENqWmVVT0FJQVpn?=
+ =?utf-8?B?V0NrUjNrMnc2WmFWdE1hRjZ6WjcrenJzc0R3OXVYV0JySHRFS2trL3NmalQv?=
+ =?utf-8?Q?MVvRt2kyszvXhciE=3D?=
+X-Exchange-RoutingPolicyChecked: ht9iJ1rLmRlie5yvwW2+UhdILp3XPrqwtWWh/SMncGYQcxgjH+cEXKA2zBYqpI5a6xlKXfsAVcnd5O9asojEGe5SAkR/H9GOM9c+UwYho6wnquQ30CWRqRLlUqdfr2y54PP3Uv+9yYz6yQkmVd8qGoAKAh+PDOK/KzvWH6eVZZd+r5rxJzbS6SN6AmWuO8HH6BtBumt2VYtOSeoRLuxDRm6pH4ZSPzl8potAINo/CmYaNkwvLUNY4T/K7eVBKrXrD1SIU9joqDLL+vdoN1OYyjb485PF193Ynhp6X8WGUTocGdJgPpH08xG/9HHsbce4mkLS8C0RDuQgzyHaBHqHgg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 488fecde-d44a-4b10-a8c7-08df49f673fc
+X-MS-Exchange-CrossTenant-AuthSource: LY0PR11MB357627.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 06:44:56.9817 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: niPodwiT2Gz5mujgB04qpV0WSvJKBnVaoRozYNuHZi0hGbybEdAfYxsV83xFtKwkNj1ovNa0ZM4rfFB7eBpDh9bUdN3QVZTvcREjxAvnZzw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8092
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,169 +171,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 3 potential
-issues to consider:
-- [High] drm/ttm: broken interleave node rotation on order decrease in
-  __ttm_pool_alloc()
-- [Medium] drm/ttm: unconstrained order-0 fallback and reclaim in
-  ttm_pool_alloc_interleave()
-- [Medium] drm/ttm: cross-node pool take in
-  ttm_pool_type_take_interleave() before alloc
---
 
-commit 99e6c53830405c25271c091f8f19cad519333639
-Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-drm/ttm: Add TTM_NUMA_POLICY_INTERLEAVE
+On 11/19/2026 7:54 AM, Nautiyal, Ankit K wrote:
+> 
+> On 11/18/2026 6:44 PM, Eriksen Xie wrote:
+>> VSC_SELECT in VIDEO_DIP_CTL is a two bit field selecting whether the
+>> header and the data of the VSC SDP are generated by the hardware or
+>> taken from the DIP data registers. hsw_write_infoframe() ORs
+>> VSC_DIP_HW_DATA_SW_HEA into the value read back from the register
+>> without clearing the field first, so a different value left in it,
+>> e.g. by the firmware, isn't replaced but combined with the new one
+>> (VSC_DIP_HW_HEA_SW_DATA | VSC_DIP_HW_DATA_SW_HEA results in
+>> VSC_DIP_SW_HEA_DATA).
+>>
+>> Clear the field before setting it.
+>>
+>> Signed-off-by: Eriksen Xie <xiaolu.xie@intel.com>
+> 
+> 
+> LGTM.
+> 
+> Sashiko suggested a 'Fixes' tag, but I don't think it's needed here, as 
+> there is no known bug.
+> 
+> The driver doesn't accidentally change this bit, and any leftover state 
+> would just be from GOP/BIOS programming, which hasn't caused issues.
+> 
+> Keeping the tag off avoids unnecessary stable backport churn.
+> 
+> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> 
 
-This commit adds TTM_NUMA_POLICY_INTERLEAVE to rotate TTM page allocations
-and pool lookups across the NUMA nodes in ttm_operation_ctx.numa_info.nodes.
+pushed to drm-intel-next. Thank you for the patch and review.
 
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_poo=
-l.c
-> index 8976de3a552d1..210d443185644 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -373,6 +373,38 @@ static struct page *ttm_pool_type_take(struct ttm_po=
-ol_type *pt, int nid)
->  	return p;
->  }
-> =20
-> +/* Return the node in @nodes nearest to @from, lowest node id on ties */
-> +static int ttm_pool_nearest_node(int from, const nodemask_t *nodes)
-> +{
-> +	int n, nid =3D first_node(*nodes);
-> +
-> +	for_each_node_mask(n, *nodes) {
-> +		if (node_distance(from, n) < node_distance(from, nid))
-> +			nid =3D n;
-> +	}
-> +
-> +	return nid;
-> +}
-> +
-> +/* Take from @nid first, then from the other nodes nearest to @nid first=
- */
-> +static struct page *ttm_pool_type_take_interleave(struct ttm_pool_type *=
-pt,
-> +						  int nid, const nodemask_t *nodes)
-> +{
-> +	nodemask_t todo =3D *nodes;
-> +	struct page *p;
-> +
-> +	p =3D ttm_pool_type_take(pt, nid);
-> +	node_clear(nid, todo);
-> +	while (!p && !nodes_empty(todo)) {
-> +		int n =3D ttm_pool_nearest_node(nid, &todo);
-> +
-> +		node_clear(n, todo);
-> +		p =3D ttm_pool_type_take(pt, n);
-> +	}
-> +
-> +	return p;
-> +}
+> 
+> Regards,
+> 
+> Ankit
+> 
+>> ---
+>>
+>> This was split out of my earlier patch [1], as suggested by Ankit in the
+>> review of Chaitanya's v2 [2]. It doesn't depend on that patch and applies
+>> with or without it.
+>>
+>> There is no report of a stale VSC_SELECT value on actual hardware, the
+>> issue follows from the field being only ORed into.
+>>
+>> [1] https://patchwork.freedesktop.org/patch/763779/
+>> [2] https://lists.freedesktop.org/archives/intel-gfx/2026- 
+>> November/400881.html
+>>
+>>   drivers/gpu/drm/i915/display/intel_hdmi.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/ 
+>> drm/i915/display/intel_hdmi.c
+>> index 4ec0db8d93..14dacbb58a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+>> @@ -552,8 +552,10 @@ void hsw_write_infoframe(struct intel_encoder 
+>> *encoder,
+>>             !crtc_state->has_panel_replay && type == DP_SDP_VSC))
+>>           val |= hsw_infoframe_enable(type);
+>> -    if (type == DP_SDP_VSC)
+>> +    if (type == DP_SDP_VSC) {
+>> +        val &= ~VSC_SELECT_MASK;
+>>           val |= VSC_DIP_HW_DATA_SW_HEA;
+>> +    }
+>>       intel_de_write(display, ctl_reg, val);
+>>       intel_de_posting_read(display, ctl_reg);
 
-[Severity: Medium]
-Does ttm_pool_type_take_interleave() take cached pool pages from other nodes
-in @nodes before trying a fresh page allocation on @nid?
-
-When @nid's pool for a write-combined or uncached order is empty,
-__ttm_pool_alloc() drains pooled pages from sibling policy nodes even when
-@nid has free system memory.  Because ttm_pool_free() returns freed pages to
-the pool of page_to_nid(p), @nid's pool remains empty and interleaved WC/UC
-allocations collapse onto whichever node already had cached pool pages.
-
-[ ... ]
-
-> @@ -830,6 +873,31 @@ static struct page *ttm_pool_alloc_bind(struct ttm_p=
-ool *pool, gfp_t gfp_flags,
->  	return p;
->  }
-> =20
-> +/*
-> + * Allocate pages of size 1 << order for TTM_NUMA_POLICY_INTERLEAVE. Try=
- the
-> + * interleaved node @nid first, then the other nodes in @nodes nearest t=
-o @nid
-> + * first, as the per-node zonelist fallback of core mm does, before the =
-caller
-> + * lowers the order.
-> + */
-> +static struct page *ttm_pool_alloc_interleave(struct ttm_pool *pool,
-> +					      gfp_t gfp_flags, unsigned int order,
-> +					      int nid, const nodemask_t *nodes)
-> +{
-> +	nodemask_t todo =3D *nodes;
-> +	struct page *p;
-> +
-> +	p =3D ttm_pool_alloc_page(pool, gfp_flags, order, nid);
-> +	node_clear(nid, todo);
-> +	while (!p && !nodes_empty(todo)) {
-> +		int n =3D ttm_pool_nearest_node(nid, &todo);
-> +
-> +		node_clear(n, todo);
-> +		p =3D ttm_pool_alloc_page(pool, gfp_flags, order, n);
-> +	}
-> +
-> +	return p;
-> +}
-
-[Severity: Medium]
-Does ttm_pool_alloc_interleave() fall back outside @nodes on order-0
-allocations and stall in reclaim before trying other policy nodes?
-
-ttm_pool_alloc_page() only sets __GFP_THISNODE when order > 0.  At order 0,
-the first ttm_pool_alloc_page() call walks @nid's unfiltered fallback
-zonelist, which can allocate from a node outside @nodes before the remaining
-nodes in @todo are tried, and if all zones are exhausted the while loop
-repeats system-wide direct reclaim once for each remaining node in @todo.
-In addition, unlike ttm_pool_alloc_bind(), ttm_pool_alloc_interleave() does
-not try a non-reclaim pass across @nodes first, so a depleted @nid enters
-direct reclaim and compaction even when another node in @nodes has free
-pages of that order.
-
-[ ... ]
-
-> @@ -893,11 +961,24 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, =
-struct ttm_tt *tt,
->  	     order =3D ttm_pool_alloc_find_order(order, alloc)) {
->  		struct ttm_pool_type *pt;
-> =20
-> +		if (policy =3D=3D TTM_NUMA_POLICY_INTERLEAVE) {
-> +			unsigned int slot =3D tt->num_pages - alloc->remaining_pages;
-> +
-> +			alloc_nid =3D ttm_pool_policy_nth_node(ctx->numa_info.nodes,
-> +							     slot >> order);
-> +			take_nid =3D alloc_nid;
-> +		}
-
-[Severity: High]
-Does computing the node index as slot >> order fail to rotate across
-ctx->numa_info.nodes whenever the allocation order decreases?
-
-In __ttm_pool_alloc(), order is monotonically non-increasing, and slot is t=
-he
-sum of 1 << prev_order for all prior chunks.  Whenever a chunk has a smaller
-order than the chunks before it, every prior chunk contributed an even
-multiple of 1 << order pages to slot, so slot >> order is always even.  When
-nodes_weight(*ctx->numa_info.nodes) is even, such as a 2-node mask,
-(slot >> order) % nodes_weight(...) is always 0 on every decreased order.
-For example, a 3 MiB buffer (orders 9 and 8) or any buffer smaller than
-8 MiB whose size is not a multiple of 4 MiB places all of its chunks on the
-first policy node instead of interleaving them.  Counting allocated chunks
-with a separate counter that increments once per allocated page would rotate
-across nodes regardless of order changes.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261124062123.2431=
-244-13-himal.prasad.ghimiray@intel.com?part=3D3
