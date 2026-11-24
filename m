@@ -2,154 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82832606A32C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 21:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF2C8606A321
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 21:09:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lTHHh+BN;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=PLgeDOzL
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lWzcDFxP;
+	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Mmt+dI4y
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC4210F0D8;
-	Tue, 24 Nov 2026 21:07:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8314710E231;
- Tue, 24 Nov 2026 21:06:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EB2110E7F9;
+	Tue, 24 Nov 2026 21:08:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37FFD10E57C;
+ Tue, 24 Nov 2026 21:08:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795554412; x=1827090412;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=gkrmcCG4JJ8DgsR5UQ9S719eiyy7slTY0HfaLhcb0j0=;
- b=lTHHh+BNNt8cZtel681l0YNrPsOSKeV6zF4nma39pcdfJygNnLwULrky
- 65dJ+FGoL7+VBx+ZUOBjuyAB8v0HIRCzpmWiVEkK+9+XS+cvUJEEOAReq
- ibGN45/4UY0S3mbtsqSsFozahkZCAw6m05+jmvMQI2eKzgZgAYqxLVgqV
- DTh0MW1RdEUm9ptQGpKWSDIKILLqb0JY7ZlcCmVtvlyeGdOqs1iTkRwdT
- 3vKJ2MQEDTalSbqxkoFwj+nxmQw2NH1sfpWEV+ytgF24a7oLDzHmBPE/8
- 3hHaBSab8EHZG0zimp1wxXSsvi8fPR00sttgz1DR3PwDVlF7lqYLhYAbP Q==;
-X-CSE-ConnectionGUID: k5el0luqSiangALJsybkEQ==
-X-CSE-MsgGUID: elT+kak7Sh6F5rb2IBaguQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4386340"
+ t=1795554527; x=1827090527;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=fI6sSCexMYUBVnrvnF+PnHHgoKNQzpQCyjQml4Klmb8=;
+ b=lWzcDFxP3Mz9GK3uuzvrnUYr/rbYmLnPRd81dWCynGtWG5gzcRGZfeOv
+ tPDXJxJ/iHlDC19Yaq9ihPWF9A8d7OSzxF3PHHHv0zO8lOl0zBeIV3S/l
+ 6jDyxA5fjmpAzwCGASBLlRKMBb4MvjwB5biYjtgqMczi/3FEPa/5N7tkg
+ VVNdYJnQHNOos6WlwEC1Tqyp9tPDI+Bjier+TGwgUtw3G/YKDu2mUjStw
+ v/nMa+JyiyQmtyVST/ZncyFIS/IHgWSMErCxiEfDywhuljKJTk6pCz8ZX
+ If0LTmkayl1JyhIPQ4rVSWnBpu/f9JlrrWL2+lzc6YbUPzeVeMtc46YGS g==;
+X-CSE-ConnectionGUID: +6LfsP3+QvCSaRvOZWrYqA==
+X-CSE-MsgGUID: vVpwyp2PT+C5e8W27fcf+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4471152"
 X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; 
-   d="scan'208";a="4386340"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 13:06:48 -0800
-X-CSE-ConnectionGUID: AmfMUFgyQ8CttKQ4eFkUlQ==
-X-CSE-MsgGUID: 6eHSEvtfT6iKfEZx5nYJww==
+   d="scan'208";a="4471152"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2026 13:08:47 -0800
+X-CSE-ConnectionGUID: ppWaxRefQfKyzBbTUDnmvQ==
+X-CSE-MsgGUID: yBt76Lt6TEiKBubVGuDbPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; d="scan'208";a="11568991"
+X-IronPort-AV: E=Sophos;i="6.27,231,1787036400"; d="scan'208";a="12096264"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 12:39:28 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2026 13:08:46 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Tue, 24 Nov 2026 12:39:27 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.57; Tue, 24 Nov 2026 13:08:45 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Tue, 24 Nov 2026 12:39:27 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.28) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Tue, 24 Nov 2026 13:08:45 -0800
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.54) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Tue, 24 Nov 2026 12:39:26 -0800
+ 15.2.2562.57; Tue, 24 Nov 2026 13:08:45 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fpY2+nWUpdT3PCG1wi3BI+2HMtvg0uUVjfQCkd2N5zqWFWi8v8vcwjPZXPN7GqsAF5vtgUvQBl+ljKSsZrHFuNtmgaX6JijK4FsxTaieqXpWK6G8A/gPfR5iXtUuXhWttgiLk8AGfKv1vcml4HPJajjwGv80AB1Ha9/kQzHD4vpLLW2FMwjZyK3p2qiMMJer2297wTwPpdBUqOkCqfyrvp9jTGXCJmteCsfx0uaW7ERT7f3027IZSZhPFaq3N8svDdcHhDyG3ehA3DzAOH1bsqgU7WeOjauAN6F3B1nJCyhD2AjiYpUoHNCzNNNNXPd6Aqper1jMttLqxgwyJuO7/Q==
+ b=TAUfOB6S7h38Qd2Z2zzC5GUYjSQEDA9L96x/XmxYAQ1AtnKjBHWJQYGOIOkxpBmRQCfuxLRY/Vke+mZKqF/nCU4vgrACSbeU04QC9y5pz9z4RAGdhA6shf6v56tYH14+cyvzqdKjeOgNQikZkLKQGc0HXOnJd4lH/yEqOVOlVS2XC32JPw+GMiT0RZq57CjQUvxxiVuBoyStRyI9bpWsyR2v0kOFEGc6nuYTSxwPwIVxWKxKZmM+7j0F4CkAyKMMVZCsOZxl+uiBIJLe0n31xr0l61VLGk6vGVH1qR40zunqcvSdl/Fw5TgkpT2CdUCNa2Od4ig/MClYhxcK4XV3zw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3vgx3D4e+5d+Y2OM8B6Ygu0EB2UmlE0DKju1k/yuz2s=;
- b=fG3cB7kuAfgrFJKtzQNP7rXY2DswO1GQkFFNRO6wExU45/brJzX9bgISamS/jzbZhfSypbfFIDRVEzrcr13fXiPSYyBoVmC+toG0uofNI2i2Fu2wmYh9HB852F+A37yrxVn6mGkShwN4dPtBiOZMrpmOITPEuxnuPE6hW5jbHv0CLnS/b8V0eIqJ2B4RgshRYBDlbxMOWKW+/vzE6ZdLKfINS67QTX81Bk+J5pg7VyYYlkSB+GmYAm3lQm5M8gwVUHktKx25xuG5svjNPF1Bs3nRjfNAa6VjemRk2FXdHzrsvwVIuXE+ZDoB4WxbEm8G1YvP1RBEi4GNI6Aok3WOKg==
+ bh=M7OF+zZZX+PosgMJIEANiHWv0WtQsBwnqqyZhkdnmnY=;
+ b=TcECNv5DtcYDBEyPDxbK/MTqnXdvYI9TVre63YtEQP5WkhVfrxKtnqgSR4AWYHjhSyqWgbqeHFXoxOIL4hKlSZA8irMcH16T45jUc722/CSqgBJGFEjdQP0TIcUd0OEQy7s4xbW5OO2PgEvqhZCPGilXo+uLCKQPFmZfT3IAlyzyekyyuceL6ZTmrsnil+n600M7SaXByvpQyvi0fX+DsfHA7YQk4srfR775fowHQZmCU4G1dmUNLyA0z/z7rp/Q77DMeaHqvd8reXfU15Sp35DqZKrHOaMCtixNZERVY4gV0iPDrtTYkN9NxDwm1CxCWzq1Dpuojia/LquE/gTbGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3vgx3D4e+5d+Y2OM8B6Ygu0EB2UmlE0DKju1k/yuz2s=;
- b=PLgeDOzLrK4VI5ImkVpqfztydDyxE3DSymrFbNPS9DlvXs4RqiFAsht89OPXCAl2AGqkWoNVZL15vswyj1tYBbkmhbK86PjbNqiYUl0UPWIryINZNaPtC6tWvfU6xrzzt1TYr0irStxVypvuA6pO/zb+sy9HckY9Z6w9B9C56nc=
+ bh=M7OF+zZZX+PosgMJIEANiHWv0WtQsBwnqqyZhkdnmnY=;
+ b=Mmt+dI4y4UPOavT+2mWQ6Cm03HxjVEJ+FgAOcLuPsUkWACG787rPJLXNJdfmmZkaMPy+m+SWAeYE3Q6rVhoAPMA+QgOUiBI8XgjWGkIv4X69yaWc3BgHcwcHTNVVxhDjdFylPTvxAVuxGYcebtbQUUMZyYiK/HyyOxy2slfVEHw=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
- SJ1PR11MB6249.namprd11.prod.outlook.com (2603:10b6:a03:45a::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.5; Tue, 24 Nov
- 2026 20:38:44 +0000
-Received: from DS7PR11MB5990.namprd11.prod.outlook.com
- ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
- ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Tue, 24 Nov 2026
- 20:38:39 +0000
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <dri-devel@lists.freedesktop.org>
-CC: <intel-xe@lists.freedesktop.org>, Aravind Iddamsetty
- <aravind.iddamsetty@linux.intel.com>, Jakub Kicinski <kuba@kernel.org>,
- "Riana Tauro" <riana.tauro@intel.com>, Raag Jadav <raag.jadav@intel.com>,
- "Zack McKevitt" <zachary.mckevitt@oss.qualcomm.com>, Jeff Hugo
- <jeff.hugo@oss.qualcomm.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v4 1/2] drm/ras: Add retired-pages node type
-Date: Tue, 24 Nov 2026 15:38:35 -0500
-Message-ID: <20261124203833.3618507-5-rodrigo.vivi@intel.com>
-X-Mailer: git-send-email 2.56.0
-In-Reply-To: <20261124203833.3618507-4-rodrigo.vivi@intel.com>
-References: <20261124203833.3618507-4-rodrigo.vivi@intel.com>
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com (2603:10b6:303:95::23)
+ by MW6PR11MB8310.namprd11.prod.outlook.com (2603:10b6:303:249::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.13; Tue, 24 Nov
+ 2026 21:08:40 +0000
+Received: from CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd]) by CO1PR11MB4787.namprd11.prod.outlook.com
+ ([fe80::e7eb:a872:53d1:21fd%4]) with mapi id 15.21.0639.012; Tue, 24 Nov 2026
+ 21:08:40 +0000
+Date: Tue, 24 Nov 2026 13:08:37 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ Carlos Santa <carlos.santa@intel.com>, Ryan Neph <ryanneph@google.com>,
+ Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, <linux-kernel@vger.kernel.org>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH v3 32/33] drm/xe: Finalize defrag-IOVA moves with
+ post-copy job
+Message-ID: <awX81cww2IB7Vf8b@gsse-cloud1.jf.intel.com>
+References: <20260711025619.2540575-1-matthew.brost@intel.com>
+ <20260711025619.2540575-33-matthew.brost@intel.com>
+ <avfBNLDPLhl8_mkb@nvishwa1-desk>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0258.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::23) To DS7PR11MB5990.namprd11.prod.outlook.com
- (2603:10b6:8:71::5)
+In-Reply-To: <avfBNLDPLhl8_mkb@nvishwa1-desk>
+X-ClientProxiedBy: BYAPR05CA0040.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::44) To CO1PR11MB4787.namprd11.prod.outlook.com
+ (2603:10b6:303:95::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|SJ1PR11MB6249:EE_
-X-MS-Office365-Filtering-Correlation-Id: f224fc51-30fa-4c72-368c-08df4a6aebf8
+X-MS-TrafficTypeDiagnostic: CO1PR11MB4787:EE_|MW6PR11MB8310:EE_
+X-MS-Office365-Filtering-Correlation-Id: b9299ef3-0929-403e-e2ac-08df4a6f1d80
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|23010399003|366016|6133799003|261009223327099003|261009220027099003|261009221227099003|261009221727099003|261009223027099003|22082099003|18002099003|56012099006|11063799006|261028144727099003|261102123227099003|261026140227099003|261026121527099003|261022075727099003|261021123027099003|261021121427099003|261022105027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: rZblUHdPNWvDZhLQkDIyMtyMe5THx9ew8TWzqWR7F8B35vHjwb1NFeDtRW1pl/Y2RK/Qp+tSfOAmFZIVtNYNpl5u5AuP3b0xwPm/Yj9MwruN3sRaV/8CkCAXE5KniUITeXNUjTI0xQtoq6mj8Rg6vcqmIsdg0AO3scoO8amnKvXowdv+mmUhQAs4XH5pv0Qmbi5qF6LPYqo1tqHlRJk63V4sVzbooTxCV6qrtqiflMpV8bEJ9sEYwmIwc7hVgSnVlRrXubJjaabH0Lu0XV66mufxARtSPvsjNiFcRlJxQBWyfl9DZbDd+FGNZAXC6RzdxWsIrzs5M5J6bEEOMuAMh+1kO2rKSLx203gBm5ndjEg9nikgnNQF0SUW7qZ+SRWOS5m05XQXqb9beCqQsoBfVMPL0OPOw/xFXw3vfL7PLQlR1xgMglHQCjtdUtBPj4M5OZMh3CVlnXOzZLyBcvJ1zK+cNyFwj562qkqxySNXLpCbI8PkqqY/x+ZJVCm5hxDnQi8At52l9MKr1vYZE93Ehtav3Ck5teiQqu4Q/NNrJFXWpmA8mQAYM484cUtujGd0XMDW0Gt5iZojrUaXWTHFZFksUJSx2wvcoPko5wlXQThqTj7EBYPeXJ8g4Wa6orabVIpzvhhC5k9Tp5tCT2Q3M6hMxtMkXc0lm1aJc8KfbUQ=
+ ARA:13230040|1800799024|366016|7416014|376014|23010399003|10067099003|261102123227099003|261021121427099003|5023799004|11063799006|56012099006|4143699003|261022075727099003|261009223027099003|261026121527099003|261022105027099003|261021123027099003|261026140227099003|261028144727099003|18002099003|6133799003|22082099003;
+X-Microsoft-Antispam-Message-Info: X9yuYdPcxY43t8eRt1vGMzwUp4SbX4QgYGfXc0a0by8nDF3lVZdoYAD2adp/oInNCJyyxVKc+Joh1iE7GFdYtJWcxuwn7SfqmCALcFgbzgNfNPlQswLQuwzUWHdoFQnsUNFkcTog+tIU5KOZG/ttotEb+noi1mDMhBOb94BO6bIRGiCTIXphA6zaKpyY91Cp8xGRE0uE1FywR/87bQjmpEo7s+hEt0GZyfcYlndTLL4Qt0a+fF+3RT/5CMBuaeKV/7lX5ZXdxIzkhISdNdbCBk4U+V6czOp/x8ymcWkkiLr1Bv+KInbZRw6wg36p4Iqije9SoApCbwb+aQt5uH3Ylaf9kqM4Ov7RcqietOB3cYKLaxM7H9r4J3ZgNs1Cv7M9oNZsNjT+N6Ua2R+t4+HEVlTdBPVZzGrhQIZXemuYt3hRIgWMM60+dkx1Bp+YyipkHNtdV9lnaznp6vJbDfydTrErh3Uhv5naxQgsOFU1jOQeuEqqHZpdlBWN5ZHrsW5XJrfDi9oWgX08gd0huT/wHXVWUUsLj5b0eN6sjhVUroVK+CLs1P25/KdsdQ4T0xvea8FcoJLNqYHluTBWttNCDbATPl2IDd/SMfgzlRsEZh+ZZ3IRZn7KP2YGFcnKbsWIOgJxnbsIddbk2JGTcrbqU5YS6WeXSfpN7/y8U/WBtkM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(23010399003)(366016)(6133799003)(261009223327099003)(261009220027099003)(261009221227099003)(261009221727099003)(261009223027099003)(22082099003)(18002099003)(56012099006)(11063799006)(261028144727099003)(261102123227099003)(261026140227099003)(261026121527099003)(261022075727099003)(261021123027099003)(261021121427099003)(261022105027099003)(10067099003);
+ IPV:NLI; SFV:NSPM; H:CO1PR11MB4787.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(7416014)(376014)(23010399003)(10067099003)(261102123227099003)(261021121427099003)(5023799004)(11063799006)(56012099006)(4143699003)(261022075727099003)(261009223027099003)(261026121527099003)(261022105027099003)(261021123027099003)(261026140227099003)(261028144727099003)(18002099003)(6133799003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?F9NfXMgq0M9Z/FCPkDT+xgodpLf+xce6PML36MbOHbJxBq33BIt6X/fB2E0s?=
- =?us-ascii?Q?E4t3qqgIqJyRVxrDbtcdrpRVkXH+pTIyoJq8ke0XY5LfyefwDgGuQSH6/HI2?=
- =?us-ascii?Q?7nRW0PvFq4sbCfmGO6AYtODoQV0nMmbUWy/+0x3FCLNHubHYuvI6nEVHQr8b?=
- =?us-ascii?Q?ghGWc5iGuHX0PmWb+Eqk1WGnTfgMjc4nE+cjdol5UchlE9Nr33AFI11UoEos?=
- =?us-ascii?Q?D7r85JjIBPmBQlCNWXWZdf8+ttTbfOfgEvzCWzsQpNC4dV4AsWucdKo552is?=
- =?us-ascii?Q?Dt4RdoJY12YFZBx3VsGnnRohbkNAWy23NivmhDflE724DKtBFYBRgURZdLFS?=
- =?us-ascii?Q?oecdQC2tdpVTjzWVtVLnYddTl8kDIw5AZ9hNzrjpprAjeVqExBrTDLJis1yA?=
- =?us-ascii?Q?CdOmQLARu9j5hONkJ8DIshqpR72eI8EZvvulXVA9uu/iK/p+vM2JdcS1hXyx?=
- =?us-ascii?Q?VAa5YasVTaLvXhdl+dQXNZyi8I9LvstRUWLPUxs9TTSn95iCQZZtnV5U1UZY?=
- =?us-ascii?Q?AY6lnymumkmt0i/cD32eW9p2P3WnnpEhA5qhpfrJ+P6pCj1qzVLwU3LKODnO?=
- =?us-ascii?Q?ELDSnivU66sRedBlzsJ7OTrllWVkUkeuiaSKOQBLF/5d8jC9hr02xdrJooWb?=
- =?us-ascii?Q?Kg5Od0P3x94tKsH2SGzcp6OWp7MEVaVrXHJ9fhqEx5IaFwLwQpPr2CgLRaug?=
- =?us-ascii?Q?oFZSLx5bXzchh2DI2Fc0O+d60L6for3xLOcDdCsjjuxZZfpa22da1sHxqVl6?=
- =?us-ascii?Q?IALoaMfHwt0EfrPrsO5h+p5miro0u4IszTlle2ru0DTEgWU6r9QesPfm1jSK?=
- =?us-ascii?Q?BsuSPbbH6eH+THxE+N/wdQMK7Ft4Jud1kA5byt711cB2BNO9Y1H5IRRE8WT9?=
- =?us-ascii?Q?S/78xAQq2v7u4ZHDtRfkUAgz4IxbLOl4VRh8pSTAkbl9mC9LbZ5aoItLjlRv?=
- =?us-ascii?Q?xcWIafe6VLWMyy36ddtGwLGNM334HhGQHnv7+rbqT5hP0RQPl0aIDaVvJag6?=
- =?us-ascii?Q?BAv1mqWWahYDt43/TQczsXwI6bShIX6pILOKTtBlcI+i4BlfXcy8QHFSXo6M?=
- =?us-ascii?Q?cw5LRVMPEVvEL9sAfd8MlrisoheU1JTShwS0sHPRY1xA5S5HCHyu187VhCuQ?=
- =?us-ascii?Q?J5lC4Ey/W78cjjtbirvY9+VMwAKJpDdu/T79wk7tcaatIF0rNQlm5tccM+Uh?=
- =?us-ascii?Q?TNoPMOgQcyz6AVfih0llEHkzcrGpw9pSpZXJ+8+e3oZdIKuR1NiN/AKro8KE?=
- =?us-ascii?Q?DoWWbvuVAvfa9oshfijeiJCEQKMlW/ahu8tGgVuep+FwdiSnEwa4B4XJNJ+y?=
- =?us-ascii?Q?XqZarIH5Vtwrr1nb9yoy3SmLSLIypYl4u9G+Qa9j2FMSSIvFDwsiU9rRQZWa?=
- =?us-ascii?Q?qYU+Oq/b8rUcck0h3QFeuJUmRdLa6vcmACdwaGFU0J7eNgXlkQe5oVaFzzp9?=
- =?us-ascii?Q?pIsAhoW3g4Jlmg2i63nOIGLlFs1M7nKJtUaeoaeB/k7Wd85zv5ezBWiv+H9A?=
- =?us-ascii?Q?dBFH9tnO9SJ20aCCiMzKweBJc78mxx9YpaGoLh//HGUPY3rqIl8drVCdB4Pr?=
- =?us-ascii?Q?kvVJU5WgLDqYF7zdqlS6u5gSCvJyXKdPNIj4WhOZXQn1YsXiua8JaBUVHr+T?=
- =?us-ascii?Q?J7ydPkDUbY1ydhN5bht1mTJUhBFYzvkZoBL8Q7jsepgXuORnCyBd2RQysN/Q?=
- =?us-ascii?Q?TNW6AryBnDAAYJLUxQr9LFzDqb90U0xVTV9O8paLQo+FPeWzuwwrYJAJaXf7?=
- =?us-ascii?Q?r2Z6p2c0bg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: m1EU7hDBEyQy9fajOzDoAVPJTgC9pVjU6hF0oMyopGc9EsExrHV4tXlFRJwYgtEls+LurhmI7PoWotGF9mksga2bRV3qE21nrc2ujiWEEUcs84ksyHszYMk/sK8wCjetftIetHCrpyk/43ShjTeZTna8ee68WtKmLBEGETdjw1k5y90yAWXzMI39SATSm4j8CQuaoMuZWG4CPc9Epo/y/Wltx1BgQKI/EBGQU3oiCA7YJInPNGPfrE1NvhSdrDXXh3qSA/erovWQeP41xK2qfesYDpB3JMkZr/4bIZzX/n/EMDzW9HZN9fNf8PGkMgkJG81CHmWRNQZ1MtVLHg31BA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f224fc51-30fa-4c72-368c-08df4a6aebf8
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ic5p442mY1jszAnrQeqCfih0CWEBtCw+7YG0PZPgzHulZxKXlXxbrUUHuk?=
+ =?iso-8859-1?Q?RnuoBErx4VM/Ln2YjIlHJz/GxwnlTisflddiYKlGFsEex/TnUv6fVyzyYK?=
+ =?iso-8859-1?Q?uCigD0OXBLDnefDX4mERC49TQC6YZMLaQiN9bNUPxDAzIYbW9l0/Q45DiJ?=
+ =?iso-8859-1?Q?mr/6X+Jju2CHPC+zc79xz22X43neJfFbT7nn5tC7yHJjI/QYXtAskY/Eyj?=
+ =?iso-8859-1?Q?dnhsQ20YEtQa2BKjDFnfRFMTb9+5Aev6Ok40nC3L+HkRoUpgM/y1TGpoNE?=
+ =?iso-8859-1?Q?h4qJ2clLOzeBDC570ffLUMcnoWcSlYAO6RC42QizRN1Iw9mfqZL+N1aVm8?=
+ =?iso-8859-1?Q?HARrBhgv86WZ5voKK/Y4n2T5EuXjO2UKxCv2fNkw9CWhdKw9h8kGQ0xe71?=
+ =?iso-8859-1?Q?tL24iE30L8/Yhyt2mLjs67sO2ibwpoXlkiAj4IE/s/PttOsXM/LyeyNQRu?=
+ =?iso-8859-1?Q?qCP3ohr2QuE2pPmw0w5Ckrci69gPHLgCJoDCN1GzManpz5Tp0y4iULjCBc?=
+ =?iso-8859-1?Q?9seZJiB9QWiqQSZ1MoNWnylk9iQ7gf2hPyYQ2eXSuxi4tFpNUf5/ty2NGy?=
+ =?iso-8859-1?Q?snl/kbhNf+Nw5pTAexVOI1Nl2IxYxaovJLFn7b0EscyJ/0ynggdRaJYkux?=
+ =?iso-8859-1?Q?ss7T9s0tccB4f+qZYgcsaw9+QyfY36N0cY0lIfKuMWbd2SyPMuOgW7qLFS?=
+ =?iso-8859-1?Q?Vm2XA7IFdmlMUsBRUVLW99m1m9KxPACpTb0lP2M42HJHG1rJZIPGN6llSq?=
+ =?iso-8859-1?Q?VQfAwsU4P75xNiG3XobyqbR+igW99Z3chLTIKZvuayeaSQatx8f9SwINz/?=
+ =?iso-8859-1?Q?8NM+yBd16g4hIMBuRp5e+qjoiQZPh4yBY+gnn/rJDhlc7AIVBq3TwfXYxn?=
+ =?iso-8859-1?Q?IuwS3+1w9P1ianwCOsaG/mfBnqlOu7lVp0294ADWa+j3edrc1U94As+k8z?=
+ =?iso-8859-1?Q?kx8U8iHjicqigqYppAI2ra8Of6MuU+ndtUfgHaMIOEJqaJe9TbrYz5g7Db?=
+ =?iso-8859-1?Q?VqwyLiAPI5q98BOY7oQ5A+OUSpPHnD0IgJozCtPKyP3K6rq3LkvwfdYity?=
+ =?iso-8859-1?Q?uEGS7DUTi4kFMxjB7n+lc2ColBVTrFT2BiOCyR+yn28hZejdmJQUEkjvup?=
+ =?iso-8859-1?Q?4h7BYNZhgPIFtrLDaAC7s85do0ga2qDSKSO89jDf4KuVVXSuVaekNFNrdI?=
+ =?iso-8859-1?Q?/Vw8AU05fDF+5nafHwXlNz3d1GR8b+R1IFH+yQ6fxHo/j/yPC03a4Zt8Lb?=
+ =?iso-8859-1?Q?1qqtT/oVHuqvENRfVM+oaNCm92YB1i4jDIQ7CAYK8XLSMfY5IeCp56qSAC?=
+ =?iso-8859-1?Q?9/C94M8aFZsfaeB6QiNfE4wZKcWAdXsXrZLoqhf2Y9wVrRm+T+yAoDqXXS?=
+ =?iso-8859-1?Q?YM0jg3UAXzct8drSShWhXo3AdVIThRboU8MKDxaxRIqz0uXOBeHw8KmJKE?=
+ =?iso-8859-1?Q?3CyUKLmY+rA/eX8QH1GQ7Si617HTM3QyyDDPqyfKrb1ks8LdGQKvv31HPE?=
+ =?iso-8859-1?Q?IXmBaUYhMV5R7mIH78YTRo83Q0NTf8+JHKcBIg5mgs2wl2KXzPpXuhjY6A?=
+ =?iso-8859-1?Q?hmlDSQ352GcILQypRydkt4pcPDFi29ryOH/A3gu4pgl/r3ZmhUUelKYZRe?=
+ =?iso-8859-1?Q?8Kl8OJMT9hD7ZW9TffpR57zAtG9eWh+Uwk5U0fzdjYUW+1+k15XsJbf46Q?=
+ =?iso-8859-1?Q?EneBwEqYQJUKdTM8H3QNkoiXIO9ZGcgP7BB45dHYeBoeo6a0P+/494dmJ7?=
+ =?iso-8859-1?Q?xGv4ueLkFu2AvcPKWmaeBbKZowfncV7+06eK7hhA2hhVc5HM7RNx43fFTG?=
+ =?iso-8859-1?Q?CPTgyKUL3P9vzZF81CKg/lHORbVrYH0=3D?=
+X-Exchange-RoutingPolicyChecked: jKJTUnEVdCw4ebINgANn3n+e8dpKj7tgV2AfI233gsSmREf7dP7rBPEqhw+MU0DArePMkdHLmo4YxbnCk6ETK/QCD4XrESWH5tdQpRfOwWbqF1+schdcQR0uzTVGITTEn2ut6VNvKy5YPI16G4Rtf+lajb3d1Tl7DHgxBuqVUpWXkRN+qLGZSI15GTpNVQLPNw7Mt7L2814qhN5tUIyUSQU7Sjw9WtAATtMlsl2Dul0/BFxNIuqrEDYECn1CuxrN2a2tZ8xStLwcKr2fEj9NOo8CnFOC6Su8lVHCSgqdz031veR+pF1A/JhF0kKCLqYmglL6xy9+YGiXvYGFtqLRpA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9299ef3-0929-403e-e2ac-08df4a6f1d80
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4787.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 20:38:39.8419 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Nov 2026 21:08:40.7865 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kjRFjXAB0NoQly0mhJUBVlwcYOKDfduZAM+Ez45DGURe7f6HBxLaw+nPDyfQYsNrwEYOfCr04KMaCtvbJMMU5A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6249
+X-MS-Exchange-CrossTenant-UserPrincipalName: DHuNns0RLGte1JLfLpJPQy6qJGAQ/8OLDoZayaodOVprYasSGssK8dDsaPCfoESUChuEPqclv2jUzSw9fYeTTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8310
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -161,711 +169,560 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+On Fri, Nov 13, 2026 at 06:02:28PM -0800, Niranjana Vishwanathapura wrote:
+> On Fri, Jul 10, 2026 at 07:56:18PM -0700, Matthew Brost wrote:
+> > Wire up end-to-end defrag for IOVA-mapped BOs. A defrag move
+> > is eligible whenever the destination TT is IOVA mapped. The
+> > packed-copy step moves only changed pages; the IOVA reservation
+> > is transferred to the new backing so device-visible addresses
+> > are preserved, avoiding GPU rebind overhead.
+> > 
+> > Add xe_bo_defrag_use_iova() to select the IOVA defrag path.
+> > Add xe_bo_defrag_iova_copy() to drive the move: diff new vs
+> > stashed old TT, link changed pages packed, blit them, then
+> > queue a post-copy finalize job.
+> > 
+> > The finalize job tears down the temporary packed mapping,
+> > transfers the full old TT reservation to the new one, and
+> > relinks the copied pages at natural offsets.
+> > 
+> > Borrowed pages skip the copy and simply adopt the old
+> > reservation.
+> > 
+> > Since reservation transfer preserves device-visible addresses,
+> > xe_bo_trigger_rebind() skips drm_gpuvm_bo_evict() marking;
+> > GPU PTEs stay valid.
+> > 
+> > Cc: Carlos Santa <carlos.santa@intel.com>
+> > Cc: Ryan Neph <ryanneph@google.com>
+> > Cc: Christian Koenig <christian.koenig@amd.com>
+> > Cc: Huang Rui <ray.huang@amd.com>
+> > Cc: Matthew Auld <matthew.auld@intel.com>
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: David Airlie <airlied@gmail.com>
+> > Cc: Simona Vetter <simona@ffwll.ch>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: linux-kernel@vger.kernel.org
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Assisted-by: GitHub_Copilot:claude-opus-4.8
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > 
+> > ---
+> > 
+> > v3:
+> > - Check dma_iova_sync(), wait the copy fence before unlink on error,
+> >   and gate the fast path on old_tt->use_iova (Sashiko)
+> > ---
+> > drivers/gpu/drm/xe/xe_bo.c | 325 +++++++++++++++++++++++++++++++++++--
+> > 1 file changed, 311 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index c087f17ad6db..36290f58ccc1 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -13,6 +13,7 @@
+> > #include <drm/drm_dumb_buffers.h>
+> > #include <drm/drm_gem_ttm_helper.h>
+> > #include <drm/drm_managed.h>
+> > +#include <drm/gpu_scheduler.h>
+> > #include <drm/ttm/ttm_backup.h>
+> > #include <drm/ttm/ttm_device.h>
+> > #include <drm/ttm/ttm_placement.h>
+> > @@ -25,6 +26,7 @@
+> > #include <trace/events/gpu_mem.h>
+> > 
+> > #include "xe_device.h"
+> > +#include "xe_dep_job_types.h"
+> > #include "xe_dep_scheduler.h"
+> > #include "xe_dma_buf.h"
+> > #include "xe_drm_client.h"
+> > @@ -542,7 +544,6 @@ static void xe_tt_unaccount_iova(struct xe_device *xe,
+> >  * @xe_tt->iova_dma_pages[]. Used to (re)derive accounting that exactly matches
+> >  * the pages a tt is actually mapped with.
+> >  */
+> > -__maybe_unused
+> > static void xe_tt_account_iova_pages(struct xe_device *xe,
+> > 				     struct xe_ttm_tt *xe_tt)
+> > {
+> > @@ -567,7 +568,6 @@ static void xe_tt_unaccount_iova(struct xe_device *xe,
+> > {
+> > }
+> > 
+> > -__maybe_unused
+> > static void xe_tt_account_iova_pages(struct xe_device *xe,
+> > 				     struct xe_ttm_tt *xe_tt)
+> > {
+> > @@ -806,7 +806,6 @@ struct xe_tt_iova_copy {
+> >  * differ. Coalesce contiguous changed folios into runs and, for each run,
+> >  * invoke @fn. Returns the total number of changed pages.
+> >  */
+> > -__maybe_unused
+> > static pgoff_t xe_tt_iova_walk_changed(struct ttm_tt *new_tt,
+> > 				       struct ttm_tt *old_tt,
+> > 				       void (*fn)(pgoff_t start, pgoff_t count,
+> > @@ -855,7 +854,6 @@ struct xe_tt_iova_run_collect {
+> > };
+> > 
+> > /* Geometrically grow @arr (element size @elem) to hold at least @need slots. */
+> > -__maybe_unused
+> > static int xe_tt_iova_grow(void **arr, unsigned int *cap, unsigned int need,
+> > 			   size_t elem)
+> > {
+> > @@ -878,7 +876,6 @@ static int xe_tt_iova_grow(void **arr, unsigned int *cap, unsigned int need,
+> > 	return 0;
+> > }
+> > 
+> > -__maybe_unused
+> > static void xe_tt_iova_store_run(pgoff_t start, pgoff_t count, void *arg)
+> > {
+> > 	struct xe_tt_iova_run_collect *c = arg;
+> > @@ -933,7 +930,6 @@ static void xe_tt_iova_store_run(pgoff_t start, pgoff_t count, void *arg)
+> >  *
+> >  * Return: 0 on success, -ENOMEM on allocation failure.
+> >  */
+> > -__maybe_unused
+> > static int xe_tt_iova_copy_init(struct ttm_tt *new_tt, struct ttm_tt *old_tt,
+> > 				struct xe_tt_iova_copy *copy)
+> > {
+> > @@ -969,7 +965,6 @@ static int xe_tt_iova_copy_init(struct ttm_tt *new_tt, struct ttm_tt *old_tt,
+> >  * xe_tt_iova_copy_fini() - Release a struct xe_tt_iova_copy
+> >  * @copy: The copy description to release.
+> >  */
+> > -__maybe_unused
+> > static void xe_tt_iova_copy_fini(struct xe_tt_iova_copy *copy)
+> > {
+> > 	kfree(copy->runs);
+> > @@ -1000,7 +995,6 @@ static void xe_tt_iova_copy_fini(struct xe_tt_iova_copy *copy)
+> >  * Return: 0 on success, negative error code on failure (any partial linkage is
+> >  * unwound).
+> >  */
+> > -__maybe_unused
+> > static int xe_tt_map_iova_copy(struct xe_device *xe, struct ttm_tt *new_tt,
+> > 			       const struct xe_tt_iova_copy *copy)
+> > {
+> > @@ -1047,6 +1041,133 @@ static int xe_tt_map_iova_copy(struct xe_device *xe, struct ttm_tt *new_tt,
+> > 	return ret;
+> > }
+> > 
+> > +/**
+> > + * struct xe_iova_defrag_job - Post-copy finalize job for an IOVA defrag move.
+> > + *
+> > + * After the GPU defrag copy into the packed copy-step mapping completes, this
+> > + * dependency job runs the CPU-side IOMMU fixups at the point of no failure:
+> > + * tear down the temporary packed mapping, then per changed run unlink the old
+> > + * pages and link the new pages into the (transferred) reservation at their
+> > + * natural offset.
+> > + */
+> > +struct xe_iova_defrag_job {
+> > +	/** @dep: base generic dependency Xe job. */
+> > +	struct xe_dep_job dep;
+> > +	/** @xe: The xe device. */
+> > +	struct xe_device *xe;
+> > +	/** @new_tt: The destination tt being finalized (owns the reservation). */
+> > +	struct ttm_tt *new_tt;
+> > +	/**
+> > +	 * @copy_iova: Snapshot of the new tt's original IOVA reservation that
+> > +	 * held the temporary packed copy-step mapping. Destroyed by the job
+> > +	 * (the new tt itself adopts the old tt's reservation at job creation).
+> > +	 */
+> > +	struct dma_iova_state copy_iova;
+> > +	/** @copy_bytes: Byte length of the packed copy-step mapping. */
+> > +	size_t copy_bytes;
+> > +	/** @copy: Changed-page description; the job owns and frees @copy.runs. */
+> > +	struct xe_tt_iova_copy copy;
+> > +};
+> > +
+> > +static struct dma_fence *xe_iova_defrag_job_run(struct xe_dep_job *dep_job)
+> > +{
+> > +	struct xe_iova_defrag_job *job =
+> > +		container_of(dep_job, typeof(*job), dep);
+> > +	struct xe_device *xe = job->xe;
+> > +	struct device *dev = xe->drm.dev;
+> > +	struct xe_ttm_tt *xe_tt =
+> > +		container_of(job->new_tt, struct xe_ttm_tt, ttm);
+> > +	unsigned int r, l;
+> > +
+> > +	/*
+> > +	 * Tear down the temporary packed copy-step mapping and free its
+> > +	 * reservation. The new tt has already adopted the old tt's full
+> > +	 * reservation (transferred at job creation), so this only touches the
+> > +	 * snapshot taken before the transfer.
+> > +	 *
+> > +	 * This mapping was the GPU blit's write destination, so tear it down
+> > +	 * with attrs 0 (not DMA_ATTR_SKIP_CPU_SYNC): for non-coherent or
+> > +	 * bounced (SWIOTLB) mappings the device->CPU copy-back / cache sync of
+> > +	 * the freshly copied data happens during unlink, exactly as
+> > +	 * xe_tt_unmap_iova() does. Skipping it would silently drop the
+> > +	 * defragmented data on those configs.
+> > +	 */
+> > +	if (job->copy_bytes)
+> > +		dma_iova_destroy(dev, &job->copy_iova, job->copy_bytes,
+> > +				 DMA_BIDIRECTIONAL, 0);
+> > +	else
+> > +		dma_iova_free(dev, &job->copy_iova);
+> > +
+> > +	/*
+> > +	 * For each changed run, unlink the old pages (still linked from the
+> > +	 * adopted reservation).
+> > +	 */
+> > +	for (r = 0; r < job->copy.nr_runs; r++) {
+> > +		size_t off = (size_t)job->copy.runs[r].start << PAGE_SHIFT;
+> > +		size_t len = (size_t)job->copy.runs[r].count << PAGE_SHIFT;
+> > +
+> > +		dma_iova_unlink(dev, &xe_tt->iova, off, len,
+> > +				DMA_BIDIRECTIONAL, DMA_ATTR_SKIP_CPU_SYNC);
+> > +	}
+> > +
+> > +	/*
+> > +	 * Relink the freshly copied new pages from the snapshot captured at job
+> > +	 * creation. The destination tt's page array may have been mutated (or
+> > +	 * torn down) by TTM since then, so it is never dereferenced here.
+> > +	 * Borrowed pages are shared with the old tt and stay correctly linked
+> > +	 * for free, so the snapshot only covers the changed runs.
+> > +	 */
+> > +	for (l = 0; l < job->copy.nr_links; l++) {
+> > +		int ret = dma_iova_link(dev, &xe_tt->iova,
+> > +					job->copy.links[l].phys,
+> > +					job->copy.links[l].offset,
+> > +					job->copy.links[l].len,
+> > +					DMA_BIDIRECTIONAL,
+> > +					DMA_ATTR_SKIP_CPU_SYNC);
+> > +		/*
+> > +		 * Point of no failure: the data is already copied and the
+> > +		 * reservation ownership has been transferred. A relink failure
+> > +		 * leaves a hole in the mapping; there is no safe recovery, so
+> > +		 * just warn.
+> > +		 */
+> > +		drm_WARN_ON(&xe->drm, ret);
+> > +	}
+> > +
+> > +	/* Sync the relinked changed runs into the device's view. */
+> > +	for (r = 0; r < job->copy.nr_runs; r++) {
+> > +		size_t off = (size_t)job->copy.runs[r].start << PAGE_SHIFT;
+> > +		size_t len = (size_t)job->copy.runs[r].count << PAGE_SHIFT;
+> > +
+> > +		/*
+> > +		 * Point of no failure (as with the relink above): warn on a
+> > +		 * sync error so a stale IOMMU cache does not fail silently.
+> > +		 */
+> > +		drm_WARN_ON(&xe->drm, dma_iova_sync(dev, &xe_tt->iova, off, len));
+> > +	}
+> > +
+> > +	/*
+> > +	 * All work is synchronous CPU-side IOMMU fixup, so there is no hardware
+> > +	 * fence to wait on; returning NULL makes the scheduler signal the job's
+> > +	 * finished fence immediately.
+> > +	 */
+> > +	return NULL;
+> > +}
+> > +
+> > +static void xe_iova_defrag_job_free(struct xe_dep_job *dep_job)
+> > +{
+> > +	struct xe_iova_defrag_job *job =
+> > +		container_of(dep_job, typeof(*job), dep);
+> > +
+> > +	xe_tt_iova_copy_fini(&job->copy);
+> > +	drm_sched_job_cleanup(&job->dep.drm);
+> > +	kfree(job);
+> > +}
+> > +
+> > +static const struct xe_dep_job_ops xe_iova_defrag_job_ops = {
+> > +	.run_job = xe_iova_defrag_job_run,
+> > +	.free_job = xe_iova_defrag_job_free,
+> > +};
+> > +
+> > /*
+> >  * xe_tt_iova_transfer - Transfer a full IOVA reservation old_tt -> new_tt.
+> >  *
+> > @@ -1063,7 +1184,6 @@ static int xe_tt_map_iova_copy(struct xe_device *xe, struct ttm_tt *new_tt,
+> >  * folio walk of the new tt keeps xe->mem.dma_mapped_pages[] exact while the new
+> >  * mapping lives, rather than carrying the old tt's stale distribution.
+> >  */
+> > -__maybe_unused
+> > static void xe_tt_iova_transfer(struct xe_device *xe,
+> > 				struct xe_ttm_tt *new_tt,
+> > 				struct xe_ttm_tt *old_tt)
+> > @@ -1078,6 +1198,154 @@ static void xe_tt_iova_transfer(struct xe_device *xe,
+> > 	old_tt->use_iova = false;
+> > }
+> > 
+> > +/*
+> > + * xe_bo_defrag_iova_copy - Run an IOVA defrag move with a packed copy mapping.
+> > + *
+> > + * Only the changed (non-borrowed) pages of @new_tt are DMA mapped, packed
+> > + * contiguously into the front of its reservation, the GPU copy blits them from
+> > + * the old tt at natural offsets, and a post-copy finalize job adopts the old
+> > + * tt's full reservation and relinks the changed runs. Returns the finalize
+> > + * job's finished fence (the fence the move waits on), or an ERR_PTR on failure
+> > + * with all partial state unwound.
+> > + */
+> > +static struct dma_fence *
+> > +xe_bo_defrag_iova_copy(struct xe_device *xe, struct xe_migrate *migrate,
+> > +		       struct xe_bo *bo, struct ttm_resource *old_mem,
+> > +		       struct ttm_resource *new_mem, struct ttm_tt *old_tt,
+> > +		       bool handle_system_ccs)
+> > +{
+> > +	struct ttm_tt *new_tt = bo->ttm.ttm;
+> > +	struct xe_ttm_tt *new_xe_tt = container_of(new_tt, struct xe_ttm_tt, ttm);
+> > +	struct xe_ttm_tt *old_xe_tt = container_of(old_tt, struct xe_ttm_tt, ttm);
+> > +	struct drm_sched_entity *entity =
+> > +		xe_dep_scheduler_entity(xe->mem.defrag.iova_sched);
+> > +	struct xe_iova_defrag_job *job;
+> > +	struct dma_fence *copy_fence;
+> > +	struct dma_fence *fence;
+> > +	struct xe_tt_iova_copy copy;
+> > +	bool packed = false;
+> > +	int err;
+> > +
+> > +	xe_assert(xe, new_xe_tt->use_iova && !new_xe_tt->iova_linked);
+> > +	xe_assert(xe, old_xe_tt->use_iova && old_xe_tt->iova_linked);
+> > +
+> > +	err = xe_tt_iova_copy_init(new_tt, old_tt, &copy);
+> > +	if (err)
+> > +		return ERR_PTR(err);
+> > +
+> > +	if (copy.nr_changed) {
+> > +		err = xe_tt_map_iova_copy(xe, new_tt, &copy);
+> > +		if (err)
+> > +			goto err_copy;
+> > +		packed = true;
+> > +
+> > +		copy_fence = xe_migrate_copy_defrag_iova(migrate, bo, old_mem,
+> > +							 new_mem, old_tt,
+> > +							 copy.nr_changed,
+> > +							 handle_system_ccs);
+> > +	} else {
+> > +		copy_fence = dma_fence_get_stub();
+> > +	}
+> > +	if (IS_ERR(copy_fence)) {
+> > +		err = PTR_ERR(copy_fence);
+> > +		goto err_unmap;
+> > +	}
+> > +
+> > +	job = kzalloc(sizeof(*job), GFP_KERNEL);
+> > +	if (!job) {
+> > +		err = -ENOMEM;
+> > +		goto err_fence;
+> > +	}
+> > +
+> > +	job->dep.ops = &xe_iova_defrag_job_ops;
+> > +	job->xe = xe;
+> > +	job->new_tt = new_tt;
+> > +	job->copy_iova = new_xe_tt->iova;
+> > +	job->copy_bytes = (size_t)copy.nr_changed << PAGE_SHIFT;
+> > +	job->copy = copy;
+> > +
+> > +	err = drm_sched_job_init(&job->dep.drm, entity, 1, NULL, 0);
+> > +	if (err)
+> > +		goto err_job;
+> > +
+> > +	err = drm_sched_job_add_dependency(&job->dep.drm,
+> > +					   dma_fence_get(copy_fence));
+> > +	if (err)
+> > +		goto err_job_init;
+> > +
+> > +	/*
+> > +	 * Point of no failure: transfer the old tt's full reservation to the
+> > +	 * new tt. The finalize job (already armed below) destroys the packed
+> > +	 * copy mapping snapshot and relinks the changed runs.
+> > +	 */
+> > +	xe_tt_iova_transfer(xe, new_xe_tt, old_xe_tt);
+> 
+> Assisted-by: LLM
+> 
+> We transfer the ownership here without waiting for blit to complete.
+> Probbly we should wait for copy fence to complete?
+> 
 
-Add a retired-pages node type to drm-ras so drivers can report the
-memory pages they have taken out of service, with two operations:
+Most definitely not. This is an async pipeline, we don't block on
+anything by design - blocking anywhere would break the entire design as
+we'd miss page flips.
 
- - get-retired-pages: dump one entry per page with its address, size
-   and status (retired, pending or failed). The dump is flagged with
-   NLM_F_DUMP_INTR if the list changes while it is read.
- - get-retired-pages-info: return the maximum number of pages that can
-   be retired.
+Here once we can't fail, we update the bookkeeping of the TTs so we can
+immediately issue another async job behind this will the current one is
+in flight.
 
-v3 (Rodrigo+LLM):
- - Split the drm-ras core from the xe user.
- - Flatten the page attributes and name the node type retired-pages
-   instead of retired-resources, avoiding the over-wrapping
-   anti-pattern pointed out by Jakub: the type-specific nest and the
-   resource-type enum are gone.
- - Use uint for address, size and max-pages, no pad (Jakub).
- - Start the status enum at 1.
- - Move max-pages to its own do operation instead of a leading dump
-   entry.
- - Set NLM_F_DUMP_INTR from a driver generation counter.
- - Report unknown node IDs with NL_SET_BAD_ATTR.
- - Removed deprecated Assisted-by tag.
+> Niranjana
+> 
+> > +	memset(&copy, 0, sizeof(copy)); /* ownership moved to the job */
+> > +
+> > +	drm_sched_job_arm(&job->dep.drm);
+> > +	fence = dma_fence_get(&job->dep.drm.s_fence->finished);
+> > +	drm_sched_entity_push_job(&job->dep.drm);
+> > +
+> > +	dma_fence_put(copy_fence);
+> > +
+> > +	return fence;
+> > +
+> > +err_job_init:
+> > +	drm_sched_job_cleanup(&job->dep.drm);
+> > +err_job:
+> > +	kfree(job);
+> > +err_fence:
+> > +	/*
+> > +	 * The GPU copy into the packed destination mapping was already
+> > +	 * submitted; it must finish before we tear that mapping down below,
+> > +	 * otherwise the blit would fault or scribble on unmapped IOVA. (Reached
+> > +	 * only with a valid, submitted copy_fence; the IS_ERR(copy_fence) case
+> > +	 * jumps straight to err_unmap with no GPU work in flight.)
+> > +	 */
+> > +	if (packed)
+> > +		dma_fence_wait(copy_fence, false);
+> > +	dma_fence_put(copy_fence);
+> > +err_unmap:
+> > +	if (packed)
+> > +		dma_iova_unlink(xe->drm.dev, &new_xe_tt->iova, 0,
+> > +				(size_t)copy.nr_changed << PAGE_SHIFT,
+> > +				DMA_BIDIRECTIONAL, DMA_ATTR_SKIP_CPU_SYNC);
+> > +err_copy:
+> > +	xe_tt_iova_copy_fini(&copy);
+> > +	return ERR_PTR(err);
+> > +}
+> > +
+> > +/*
+> > + * xe_bo_defrag_use_iova - Whether a defrag move should use the packed IOVA path.
+> > + *
+> > + * Eligible when the move is a defrag (stashed old tt) and the destination tt is
+> > + * IOVA mapped. The IOVA reservation is transferred to the new backing, so the
+> > + * device-visible addresses are preserved and no GPU rebind is needed (see
+> > + * xe_bo_trigger_rebind()); this makes the path worthwhile regardless of BO
+> > + * size. A flat-CCS aux pass, if needed, is migrated packed alongside the data
+> > + * (changed pages only), so it does not disqualify the path. Otherwise the
+> > + * full-mapping defrag path is used.
+> > + */
+> > +static bool xe_bo_defrag_use_iova(struct ttm_buffer_object *ttm_bo)
+> > +{
+> > +	struct xe_ttm_tt *xe_tt, *old_xe_tt;
+> > +
+> > +	if (!ttm_bo->defrag_old_tt || !ttm_bo->ttm)
+> > +		return false;
+> > +
+> > +	xe_tt = container_of(ttm_bo->ttm, struct xe_ttm_tt, ttm);
+> > +	old_xe_tt = container_of(ttm_bo->defrag_old_tt, struct xe_ttm_tt, ttm);
+> > +
+> > +	/*
+> > +	 * Both tts must be IOVA mapped: the packed copy reads the old tt's IOVA
+> > +	 * and the finalize job transfers the old tt's reservation to the new
+> > +	 * one. use_iova is a deterministic per-device decision taken at tt
+> > +	 * creation, so for a given BO the old and new tt always agree; the
+> > +	 * explicit old-tt check guards against ever routing a sg-fallback old
+> > +	 * tt into xe_tt_iova_transfer() (which would copy an invalid iova).
+> > +	 */
+> > +	return xe_tt->use_iova && old_xe_tt->use_iova;
+> > +}
+> > +
+> > /*
+> >  * Account ttm pages against the device shrinker's shrinkable and
+> >  * purgeable counts.
+> > @@ -1357,6 +1625,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+> > 	struct drm_gem_object *obj = &bo->ttm.base;
+> > 	struct drm_gpuvm_bo *vm_bo;
+> > 	bool idle = false;
+> > +	bool defrag_iova;
+> > 	int ret = 0;
+> > 
+> > 	dma_resv_assert_held(bo->ttm.base.resv);
+> > @@ -1369,12 +1638,25 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+> > 		dma_resv_iter_end(&cursor);
+> > 	}
+> > 
+> > +	/*
+> > +	 * A defrag move that reallocates IOVA-mapped backing preserves the
+> > +	 * device-visible addresses: the IOVA reservation is transferred from
+> > +	 * the old to the new tt, so the existing GPU PTEs stay valid and the
+> > +	 * BO must not be marked evicted (the rebind paths in xe_exec_ioctl()
+> > +	 * and preempt_rebind_work_func() would otherwise needlessly rebind).
+> > +	 * Preempt fences still need to be triggered, and fault-mode / L2
+> > +	 * flush-optimized configs still need a TLB invalidation below, so only
+> > +	 * the eviction marking is skipped.
+> > +	 */
+> 
+> The commit is bit confusing compared to the code below. Eviction marking is
+> not completely skipped, it is only skipped when it is not needed. May be
+> update the comment?
+> 
 
-v4 (Rodrigo+LLM):
- - Check the dump consistency once a page message is filled (Sashiko),
-   and on the final NLMSG_DONE (local Sashiko), so NLM_F_DUMP_INTR is
-   not lost.
- - Make the error-counter operations reject other node types (Sashiko).
- - Hold a node reference in the new handlers (local Sashiko).
- - Rebase on the telemetry node type, moving the type check of its
-   handlers into drm_ras_node_get().
+I've read this a few times and it pretty clear to me.
 
-Cc: Jakub Kicinski <kuba@kernel.org>
-Cc: Riana Tauro <riana.tauro@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
-Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- Documentation/netlink/specs/drm_ras.yaml |  74 +++++++-
- drivers/gpu/drm/drm_ras.c                | 226 +++++++++++++++++++++--
- drivers/gpu/drm/drm_ras_nl.c             |  24 +++
- drivers/gpu/drm/drm_ras_nl.h             |   4 +
- include/drm/drm_ras.h                    |  49 +++++
- include/uapi/drm/drm_ras.h               |  31 +++-
- 6 files changed, 388 insertions(+), 20 deletions(-)
+Do you have different suggestion?
 
-diff --git a/Documentation/netlink/specs/drm_ras.yaml b/Documentation/netlink/specs/drm_ras.yaml
-index 0f1ceb705d3d..bc17d22e2156 100644
---- a/Documentation/netlink/specs/drm_ras.yaml
-+++ b/Documentation/netlink/specs/drm_ras.yaml
-@@ -16,16 +16,28 @@ definitions:
-     type: enum
-     name: node-type
-     value-start: 1
--    entries: [error-counter, telemetry]
-+    entries: [error-counter, telemetry, retired-pages]
-     doc: >-
-          Type of the node. The error-counter nodes expose reliability counters
--         for a hardware/software component, and telemetry nodes expose an
--         interface for reading and writing telemetry values to a device.
-+         for a hardware/software component, telemetry nodes expose an
-+         interface for reading and writing telemetry values to a device, and
-+         retired-pages nodes list the memory pages that have been taken out
-+         of service.
-   -
-     type: flags
-     name: telemetry-field-mode
-     entries: [read, write]
-     doc: Bitmask of access modes supported by a telemetry field.
-+  -
-+    type: enum
-+    name: retired-page-status
-+    value-start: 1
-+    entries: [retired, pending, failed]
-+    doc: >-
-+         Status of a retired page. retired means the page is reserved and out
-+         of service; pending means the retirement is queued but the
-+         reservation is not complete yet; failed means the reservation failed
-+         and the page may still be in use.
- 
- attribute-sets:
-   -
-@@ -140,6 +152,30 @@ attribute-sets:
-         doc: >-
-              Bitmask of access modes (read/write) supported by the
-              telemetry field.
-+  -
-+    name: retired-page-attrs
-+    attributes:
-+      -
-+        name: node-id
-+        type: u32
-+        doc: Node ID targeted by this retired pages operation.
-+      -
-+        name: address
-+        type: uint
-+        doc: Device address of the retired page.
-+      -
-+        name: size
-+        type: uint
-+        doc: Size of the retired page in bytes.
-+      -
-+        name: status
-+        type: u32
-+        doc: Retirement status of the page.
-+        enum: retired-page-status
-+      -
-+        name: max-pages
-+        type: uint
-+        doc: Maximum number of pages that can be retired on this node.
- 
- operations:
-   list:
-@@ -287,6 +323,38 @@ operations:
-             - field
-             - field-name
-             - mode
-+    -
-+      name: get-retired-pages
-+      doc: >-
-+           Retrieve the pages retired on a retired-pages node, one entry per
-+           page. The dump is flagged as interrupted if the list changes while
-+           it is being read.
-+      attribute-set: retired-page-attrs
-+      flags: [admin-perm]
-+      dump:
-+        request:
-+          attributes:
-+            - node-id
-+        reply:
-+          attributes:
-+            - node-id
-+            - address
-+            - size
-+            - status
-+    -
-+      name: get-retired-pages-info
-+      doc: >-
-+           Retrieve the retired page limits of a retired-pages node.
-+      attribute-set: retired-page-attrs
-+      flags: [admin-perm]
-+      do:
-+        request:
-+          attributes:
-+            - node-id
-+        reply:
-+          attributes:
-+            - node-id
-+            - max-pages
- 
- mcast-groups:
-   list:
-diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
-index 82fcc766b84b..b6e203448d22 100644
---- a/drivers/gpu/drm/drm_ras.c
-+++ b/drivers/gpu/drm/drm_ras.c
-@@ -69,6 +69,14 @@
-  *     Each field contains the uAPI defined enum string, its numerical value,
-  *     and its mode bitmask, which encodes read/write capabilities.
-  *
-+ * 11. GET_RETIRED_PAGES: Dump the retired pages of a given node.
-+ *     Userspace must provide Node ID.
-+ *     Returns one entry per page with its address, size and status.
-+ *
-+ * 12. GET_RETIRED_PAGES_INFO: Get the retired page limits of a given node.
-+ *     Userspace must provide Node ID.
-+ *     Returns the maximum number of pages that can be retired.
-+ *
-  * Node registration:
-  *
-  * - drm_ras_node_register(): Registers a new node and assigns
-@@ -121,6 +129,13 @@
-  *     + The driver can optionally provide a pre_doit callback, telemetry_pre(),
-  *       to enforce permissions checks on telemetry operations.
-  *
-+ * - RETIRED_PAGES:
-+ *     + The driver must implement the query_retired_page() callback, returning
-+ *       the retired page with the lowest address at or above a cursor, and
-+ *       -ENOENT when there is none.
-+ *     + The driver can implement query_retired_pages_info() to report the
-+ *       maximum number of pages that can be retired.
-+ *
-  * Netlink handlers:
-  *
-  * - drm_ras_nl_list_nodes_dumpit(): Implements the LIST_NODES
-@@ -147,6 +162,10 @@
-  * - drm_ras_nl_telemetry_list_fields_dumpit(): Implements the TELEMETRY_LIST_FIELDS
-  *   dumpit operation, enumerating all telemetry fields and their supported
-  *   access modes for a telemetry node.
-+ * - drm_ras_nl_get_retired_pages_dumpit(): Implements the GET_RETIRED_PAGES dumpit
-+ *   operation, listing the retired pages of a specific node.
-+ * - drm_ras_nl_get_retired_pages_info_doit(): Implements the GET_RETIRED_PAGES_INFO
-+ *   doit operation, fetching the retired page limits of a specific node.
-  */
- 
- static DEFINE_XARRAY_ALLOC(drm_ras_xa);
-@@ -162,6 +181,8 @@ struct drm_ras_ctx {
- 	unsigned long restart;
- 	/* Node targeted by a telemetry get/set doit */
- 	struct drm_ras_node *node;
-+	/* Which retired page address to restart the dump from */
-+	u64 cursor;
- };
- 
- static_assert(sizeof(struct drm_ras_ctx) <= NETLINK_CTX_SIZE);
-@@ -169,6 +190,7 @@ static_assert(sizeof(struct drm_ras_ctx) <= NETLINK_CTX_SIZE);
- /**
-  * drm_ras_node_get() - Look up a RAS node by ID and take a reference
-  * @node_id: ID of the node to look up
-+ * @type: Expected type of the node
-  *
-  * Looks the node up in the global xarray and, if found, takes a reference to
-  * it so that it cannot be freed while the caller is using it. The lookup and
-@@ -179,16 +201,19 @@ static_assert(sizeof(struct drm_ras_ctx) <= NETLINK_CTX_SIZE);
-  *
-  * The caller must drop the returned reference with drm_ras_node_put().
-  *
-- * Return: the referenced node, or NULL if no node with @node_id is registered.
-+ * Return: the referenced node, or NULL if no node of @type with @node_id is
-+ * registered.
-  */
--static struct drm_ras_node *drm_ras_node_get(u32 node_id)
-+static struct drm_ras_node *drm_ras_node_get(u32 node_id, enum drm_ras_node_type type)
- {
- 	struct drm_ras_node *node;
- 
- 	xa_lock(&drm_ras_xa);
- 	node = xa_load(&drm_ras_xa, node_id);
--	if (node)
-+	if (node && node->type == type)
- 		refcount_inc(&node->ref);
-+	else
-+		node = NULL;
- 	xa_unlock(&drm_ras_xa);
- 
- 	return node;
-@@ -412,7 +437,7 @@ static int doit_reply_value(struct genl_info *info, u32 node_id,
- 	u32 value;
- 	int ret;
- 
--	node = drm_ras_node_get(node_id);
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
- 	if (!node)
- 		return -ENOENT;
- 
-@@ -461,7 +486,7 @@ static int doit_reply_threshold(struct genl_info *info, u32 node_id, u32 error_i
- 	u32 threshold;
- 	int ret;
- 
--	node = drm_ras_node_get(node_id);
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
- 	if (!node)
- 		return -ENOENT;
- 
-@@ -603,7 +628,7 @@ int drm_ras_nl_get_error_counter_dumpit(struct sk_buff *skb,
- 
- 	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
- 
--	node = drm_ras_node_get(node_id);
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
- 	if (!node)
- 		return -ENOENT;
- 
-@@ -699,7 +724,7 @@ int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
- 	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
- 	error_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
- 
--	node = drm_ras_node_get(node_id);
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
- 	if (!node || !node->clear_error_counter) {
- 		drm_ras_node_put(node);
- 		return -ENOENT;
-@@ -770,7 +795,7 @@ int drm_ras_nl_set_error_threshold_doit(struct sk_buff *skb, struct genl_info *i
- 	error_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
- 	threshold = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_THRESHOLD]);
- 
--	node = drm_ras_node_get(node_id);
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
- 	if (!node)
- 		return -ENOENT;
- 
-@@ -781,6 +806,176 @@ int drm_ras_nl_set_error_threshold_doit(struct sk_buff *skb, struct genl_info *i
- 	return ret;
- }
- 
-+static struct drm_ras_node *get_retired_pages_node(const struct genl_info *info)
-+{
-+	struct nlattr *attr = info->attrs[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID];
-+	struct drm_ras_node *node;
-+
-+	node = drm_ras_node_get(nla_get_u32(attr), DRM_RAS_NODE_TYPE_RETIRED_PAGES);
-+	if (!node)
-+		NL_SET_BAD_ATTR(info->extack, attr);
-+
-+	return node;
-+}
-+
-+static int msg_put_retired_page(struct sk_buff *msg, u32 node_id,
-+				const struct drm_ras_retired_page *page)
-+{
-+	int ret;
-+
-+	ret = nla_put_u32(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID, node_id);
-+	if (ret)
-+		return ret;
-+
-+	ret = nla_put_uint(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_ADDRESS, page->address);
-+	if (ret)
-+		return ret;
-+
-+	ret = nla_put_uint(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_SIZE, page->size);
-+	if (ret)
-+		return ret;
-+
-+	return nla_put_u32(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_STATUS, page->status);
-+}
-+
-+static int dump_retired_pages(struct sk_buff *skb, struct netlink_callback *cb,
-+			      struct drm_ras_node *node)
-+{
-+	const struct genl_info *info = genl_info_dump(cb);
-+	struct drm_ras_ctx *ctx = (void *)cb->ctx;
-+	struct drm_ras_retired_page page;
-+	void *hdr;
-+	int ret;
-+
-+	for (;;) {
-+		ret = node->query_retired_page(node, ctx->cursor, &page);
-+		if (ret && ret != -ENOENT)
-+			return ret;
-+
-+		/* Never zero, so the first message is checked as well */
-+		cb->seq = page.generation + 1;
-+		if (ret == -ENOENT)
-+			return 0;
-+
-+		hdr = genlmsg_iput(skb, info);
-+		if (!hdr)
-+			return -EMSGSIZE;
-+
-+		ret = msg_put_retired_page(skb, node->id, &page);
-+		if (ret) {
-+			genlmsg_cancel(skb, hdr);
-+			return ret;
-+		}
-+
-+		genl_dump_check_consistent(cb, hdr);
-+
-+		genlmsg_end(skb, hdr);
-+		ctx->cursor = page.address + 1;
-+	}
-+}
-+
-+/**
-+ * drm_ras_nl_get_retired_pages_dumpit() - Dump the retired pages of a node
-+ * @skb: Netlink message buffer
-+ * @cb: Callback context for multi-part dumps
-+ *
-+ * Appends one message per retired page, in increasing address order. The
-+ * dump resumes from the next address after a buffer overflow, and is flagged
-+ * with %NLM_F_DUMP_INTR if the list changed between messages.
-+ *
-+ * Return: 0 if all pages fit in @skb, -EMSGSIZE if the buffer filled up
-+ *         (requires multi-part continuation), or a negative error code on
-+ *         failure.
-+ */
-+int drm_ras_nl_get_retired_pages_dumpit(struct sk_buff *skb,
-+					struct netlink_callback *cb)
-+{
-+	const struct genl_info *info = genl_info_dump(cb);
-+	struct drm_ras_node *node;
-+	int ret;
-+
-+	if (!info->attrs || GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID))
-+		return -EINVAL;
-+
-+	node = get_retired_pages_node(info);
-+	if (!node)
-+		return -ENOENT;
-+
-+	ret = dump_retired_pages(skb, cb, node);
-+	drm_ras_node_put(node);
-+
-+	return ret;
-+}
-+
-+static int doit_reply_retired_pages_info(struct genl_info *info, struct drm_ras_node *node)
-+{
-+	struct sk_buff *msg;
-+	u64 max_pages;
-+	void *hdr;
-+	int ret;
-+
-+	if (!node->query_retired_pages_info)
-+		return -EOPNOTSUPP;
-+
-+	ret = node->query_retired_pages_info(node, &max_pages);
-+	if (ret)
-+		return ret;
-+
-+	msg = genlmsg_new(NLMSG_GOODSIZE, GFP_KERNEL);
-+	if (!msg)
-+		return -ENOMEM;
-+
-+	hdr = genlmsg_iput(msg, info);
-+	if (!hdr) {
-+		ret = -EMSGSIZE;
-+		goto free_msg;
-+	}
-+
-+	ret = nla_put_u32(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID, node->id);
-+	if (ret)
-+		goto cancel_msg;
-+
-+	ret = nla_put_uint(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX_PAGES, max_pages);
-+	if (ret)
-+		goto cancel_msg;
-+
-+	genlmsg_end(msg, hdr);
-+
-+	return genlmsg_reply(msg, info);
-+
-+cancel_msg:
-+	genlmsg_cancel(msg, hdr);
-+free_msg:
-+	nlmsg_free(msg);
-+	return ret;
-+}
-+
-+/**
-+ * drm_ras_nl_get_retired_pages_info_doit() - Query the retired page limits of a node
-+ * @skb: Netlink message buffer
-+ * @info: Generic Netlink info containing attributes of the request
-+ *
-+ * Return: 0 on success, or negative errno on failure.
-+ */
-+int drm_ras_nl_get_retired_pages_info_doit(struct sk_buff *skb,
-+					   struct genl_info *info)
-+{
-+	struct drm_ras_node *node;
-+	int ret;
-+
-+	if (!info->attrs || GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID))
-+		return -EINVAL;
-+
-+	node = get_retired_pages_node(info);
-+	if (!node)
-+		return -ENOENT;
-+
-+	ret = doit_reply_retired_pages_info(info, node);
-+	drm_ras_node_put(node);
-+
-+	return ret;
-+}
-+
- /**
-  * drm_ras_nl_pre_telemetry - Look up the telemetry node and enforce permissions
-  * @ops: Generic netlink operations
-@@ -808,10 +1003,9 @@ int drm_ras_nl_pre_telemetry(const struct genl_split_ops *ops, struct sk_buff *s
- 		return -EINVAL;
- 
- 	node_id = nla_get_u32(info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
--	node = drm_ras_node_get(node_id);
--	if (!node || node->type != DRM_RAS_NODE_TYPE_TELEMETRY) {
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_TELEMETRY);
-+	if (!node) {
- 		NL_SET_BAD_ATTR(info->extack, info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
--		drm_ras_node_put(node);
- 		return -ENOENT;
- 	}
- 
-@@ -892,10 +1086,9 @@ int drm_ras_nl_telemetry_list_fields_dumpit(struct sk_buff *skb, struct netlink_
- 
- 	node_id = nla_get_u32(info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
- 
--	node = drm_ras_node_get(node_id);
--	if (!node || node->type != DRM_RAS_NODE_TYPE_TELEMETRY) {
-+	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_TELEMETRY);
-+	if (!node) {
- 		NL_SET_BAD_ATTR(info->extack, info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
--		drm_ras_node_put(node);
- 		return -ENOENT;
- 	}
- 
-@@ -1100,7 +1293,6 @@ int drm_ras_node_register(struct drm_ras_node *node)
- 	if (!node->device_name || !node->node_name)
- 		return -EINVAL;
- 
--	/* Currently, only Error Counter and Telemetry endpoints are supported */
- 	switch (node->type) {
- 	case DRM_RAS_NODE_TYPE_ERROR_COUNTER:
- 		/* Mandatory entries for Error Counter Node */
-@@ -1112,6 +1304,10 @@ int drm_ras_node_register(struct drm_ras_node *node)
- 		if (!node->telemetry_get || !node->telemetry_fields)
- 			return -EINVAL;
- 		break;
-+	case DRM_RAS_NODE_TYPE_RETIRED_PAGES:
-+		if (!node->query_retired_page)
-+			return -EINVAL;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-diff --git a/drivers/gpu/drm/drm_ras_nl.c b/drivers/gpu/drm/drm_ras_nl.c
-index 589c6445eff7..c56220205876 100644
---- a/drivers/gpu/drm/drm_ras_nl.c
-+++ b/drivers/gpu/drm/drm_ras_nl.c
-@@ -59,6 +59,16 @@ static const struct nla_policy drm_ras_telemetry_list_fields_nl_policy[DRM_RAS_A
- 	[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID] = { .type = NLA_U32, },
- };
- 
-+/* DRM_RAS_CMD_GET_RETIRED_PAGES - dump */
-+static const struct nla_policy drm_ras_get_retired_pages_nl_policy[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID + 1] = {
-+	[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID] = { .type = NLA_U32, },
-+};
-+
-+/* DRM_RAS_CMD_GET_RETIRED_PAGES_INFO - do */
-+static const struct nla_policy drm_ras_get_retired_pages_info_nl_policy[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID + 1] = {
-+	[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID] = { .type = NLA_U32, },
-+};
-+
- /* Ops table for drm_ras */
- static const struct genl_split_ops drm_ras_nl_ops[] = {
- 	{
-@@ -126,6 +136,20 @@ static const struct genl_split_ops drm_ras_nl_ops[] = {
- 		.maxattr	= DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID,
- 		.flags		= GENL_CMD_CAP_DUMP,
- 	},
-+	{
-+		.cmd		= DRM_RAS_CMD_GET_RETIRED_PAGES,
-+		.dumpit		= drm_ras_nl_get_retired_pages_dumpit,
-+		.policy		= drm_ras_get_retired_pages_nl_policy,
-+		.maxattr	= DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID,
-+		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
-+	},
-+	{
-+		.cmd		= DRM_RAS_CMD_GET_RETIRED_PAGES_INFO,
-+		.doit		= drm_ras_nl_get_retired_pages_info_doit,
-+		.policy		= drm_ras_get_retired_pages_info_nl_policy,
-+		.maxattr	= DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID,
-+		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DO,
-+	},
- };
- 
- static const struct genl_multicast_group drm_ras_nl_mcgrps[] = {
-diff --git a/drivers/gpu/drm/drm_ras_nl.h b/drivers/gpu/drm/drm_ras_nl.h
-index 7a1cba70fd50..880b0c2befe3 100644
---- a/drivers/gpu/drm/drm_ras_nl.h
-+++ b/drivers/gpu/drm/drm_ras_nl.h
-@@ -34,6 +34,10 @@ int drm_ras_nl_telemetry_get_doit(struct sk_buff *skb, struct genl_info *info);
- int drm_ras_nl_telemetry_set_doit(struct sk_buff *skb, struct genl_info *info);
- int drm_ras_nl_telemetry_list_fields_dumpit(struct sk_buff *skb,
- 					    struct netlink_callback *cb);
-+int drm_ras_nl_get_retired_pages_dumpit(struct sk_buff *skb,
-+					struct netlink_callback *cb);
-+int drm_ras_nl_get_retired_pages_info_doit(struct sk_buff *skb,
-+					   struct genl_info *info);
- 
- enum {
- 	DRM_RAS_NLGRP_ERROR_REPORT,
-diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
-index 76bdcc6f96a5..5c3900a53278 100644
---- a/include/drm/drm_ras.h
-+++ b/include/drm/drm_ras.h
-@@ -28,6 +28,23 @@ struct drm_ras_telemetry_field {
- 	u32 mode;
- };
- 
-+/**
-+ * struct drm_ras_retired_page - A retired page reported by a driver
-+ */
-+struct drm_ras_retired_page {
-+	/** @address: Device address of the page. */
-+	u64 address;
-+	/** @size: Size of the page in bytes. */
-+	u64 size;
-+	/** @status: Retirement status (enum drm_ras_retired_page_status). */
-+	enum drm_ras_retired_page_status status;
-+	/**
-+	 * @generation: Generation of the retired page list, changed by the
-+	 * driver whenever a page is added, removed or changes status.
-+	 */
-+	u32 generation;
-+};
-+
- /**
-  * struct drm_ras_node - A DRM RAS Node
-  */
-@@ -184,6 +201,38 @@ struct drm_ras_node {
- 	int (*telemetry_set)(struct drm_ras_node *ep, u64 *field, s64 *value,
- 			     s64 *status);
- 
-+	/* Retired-Pages Related Callbacks */
-+
-+	/**
-+	 * @query_retired_page:
-+	 *
-+	 * This callback is used by drm-ras to list the retired pages of a node.
-+	 * It must fill @page with the retired page that has the lowest address
-+	 * greater than or equal to @cursor. @page->generation must be set even
-+	 * when no page is found.
-+	 *
-+	 * The @query_retired_page is a mandatory callback for
-+	 * retired_pages_node.
-+	 *
-+	 * Returns: 0 on success,
-+	 *          -ENOENT when no page is at or above @cursor, which ends the
-+	 *                  list.
-+	 *          Other negative values on errors that should terminate the
-+	 *          netlink query.
-+	 */
-+	int (*query_retired_page)(struct drm_ras_node *node, u64 cursor,
-+				  struct drm_ras_retired_page *page);
-+
-+	/**
-+	 * @query_retired_pages_info:
-+	 *
-+	 * This callback is used by drm-ras to query the maximum number of pages
-+	 * that can be retired on a node.
-+	 *
-+	 * Returns: 0 on success, negative error code on failure.
-+	 */
-+	int (*query_retired_pages_info)(struct drm_ras_node *node, u64 *max_pages);
-+
- 	/** @priv: Driver private data */
- 	void *priv;
- 
-diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
-index 56e0588af5d5..e7f2da18cc4c 100644
---- a/include/uapi/drm/drm_ras.h
-+++ b/include/uapi/drm/drm_ras.h
-@@ -12,12 +12,14 @@
- 
- /*
-  * Type of the node. The error-counter nodes expose reliability counters for a
-- * hardware/software component, and telemetry nodes expose an interface for
-- * reading and writing telemetry values to a device.
-+ * hardware/software component, telemetry nodes expose an interface for reading
-+ * and writing telemetry values to a device, and retired-pages nodes list the
-+ * memory pages that have been taken out of service.
-  */
- enum drm_ras_node_type {
- 	DRM_RAS_NODE_TYPE_ERROR_COUNTER = 1,
- 	DRM_RAS_NODE_TYPE_TELEMETRY,
-+	DRM_RAS_NODE_TYPE_RETIRED_PAGES,
- };
- 
- /*
-@@ -28,6 +30,18 @@ enum drm_ras_telemetry_field_mode {
- 	DRM_RAS_TELEMETRY_FIELD_MODE_WRITE = 2,
- };
- 
-+/*
-+ * Status of a retired page. retired means the page is reserved and out of
-+ * service; pending means the retirement is queued but the reservation is not
-+ * complete yet; failed means the reservation failed and the page may still be
-+ * in use.
-+ */
-+enum drm_ras_retired_page_status {
-+	DRM_RAS_RETIRED_PAGE_STATUS_RETIRED = 1,
-+	DRM_RAS_RETIRED_PAGE_STATUS_PENDING,
-+	DRM_RAS_RETIRED_PAGE_STATUS_FAILED,
-+};
-+
- enum {
- 	DRM_RAS_A_NODE_ATTRS_NODE_ID = 1,
- 	DRM_RAS_A_NODE_ATTRS_DEVICE_NAME,
-@@ -73,6 +87,17 @@ enum {
- 	DRM_RAS_A_TELEMETRY_ATTRS_MAX = (__DRM_RAS_A_TELEMETRY_ATTRS_MAX - 1)
- };
- 
-+enum {
-+	DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID = 1,
-+	DRM_RAS_A_RETIRED_PAGE_ATTRS_ADDRESS,
-+	DRM_RAS_A_RETIRED_PAGE_ATTRS_SIZE,
-+	DRM_RAS_A_RETIRED_PAGE_ATTRS_STATUS,
-+	DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX_PAGES,
-+
-+	__DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX,
-+	DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX = (__DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX - 1)
-+};
-+
- enum {
- 	DRM_RAS_CMD_LIST_NODES = 1,
- 	DRM_RAS_CMD_GET_ERROR_COUNTER,
-@@ -83,6 +108,8 @@ enum {
- 	DRM_RAS_CMD_TELEMETRY_GET,
- 	DRM_RAS_CMD_TELEMETRY_SET,
- 	DRM_RAS_CMD_TELEMETRY_LIST_FIELDS,
-+	DRM_RAS_CMD_GET_RETIRED_PAGES,
-+	DRM_RAS_CMD_GET_RETIRED_PAGES_INFO,
- 
- 	__DRM_RAS_CMD_MAX,
- 	DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
--- 
-2.56.0
+Matt
 
+> Niranjana
+> 
+> > +	defrag_iova = xe_bo_defrag_use_iova(&bo->ttm);
+> > +
+> > 	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
+> > 		struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
+> > 		struct drm_gpuva *gpuva;
+> > 
+> > 		if (!xe_vm_in_fault_mode(vm)) {
+> > -			drm_gpuvm_bo_evict(vm_bo, true);
+> > +			if (!defrag_iova)
+> > +				drm_gpuvm_bo_evict(vm_bo, true);
+> > 			/*
+> > 			 * L2 cache may not be flushed, so ensure that is done in
+> > 			 * xe_vm_invalidate_vma() below
+> > @@ -1394,6 +1676,8 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+> > 			if (!ctx->no_wait_gpu &&
+> > 			    !xe_vm_flush_vm_bo_tlb_async(vm, bo, vm_bo))
+> > 				continue;
+> > +			else if (defrag_iova)
+> > +				drm_gpuvm_bo_evict(vm_bo, true);
+> > 		}
+> > 
+> > 		if (!idle) {
+> > @@ -2120,6 +2404,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+> > 	bool needs_clear;
+> > 	bool handle_system_ccs = (!IS_DGFX(xe) && xe_bo_needs_ccs_pages(bo) &&
+> > 				  ttm && ttm_tt_is_populated(ttm)) ? true : false;
+> > +	bool defrag_iova = xe_bo_defrag_use_iova(ttm_bo);
+> > 	int ret = 0;
+> > 
+> > 	/*
+> > @@ -2168,7 +2453,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+> > 	needs_clear = (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC) ||
+> > 		(!ttm && ttm_bo->type == ttm_bo_type_device);
+> > 
+> > -	if (new_mem->mem_type == XE_PL_TT) {
+> > +	/*
+> > +	 * For a defrag move using the packed IOVA path the destination tt is
+> > +	 * not fully mapped here; only the changed pages are mapped (packed) for
+> > +	 * the copy, and the finalize job establishes the full mapping.
+> > +	 */
+> > +	if (new_mem->mem_type == XE_PL_TT && !defrag_iova) {
+> > 		ret = xe_tt_map(xe, ttm);
+> > 		if (ret)
+> > 			goto out;
+> > @@ -2278,9 +2568,16 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+> > 
+> > 		fence = xe_migrate_clear(migrate, bo, new_mem, flags);
+> > 	} else if (ttm_bo->defrag_old_tt) {
+> > -		fence = xe_migrate_copy_defrag(migrate, bo, old_mem, new_mem,
+> > -					       ttm_bo->defrag_old_tt,
+> > -					       handle_system_ccs);
+> > +		if (defrag_iova)
+> > +			fence = xe_bo_defrag_iova_copy(xe, migrate, bo, old_mem,
+> > +						       new_mem,
+> > +						       ttm_bo->defrag_old_tt,
+> > +						       handle_system_ccs);
+> > +		else
+> > +			fence = xe_migrate_copy_defrag(migrate, bo, old_mem,
+> > +						       new_mem,
+> > +						       ttm_bo->defrag_old_tt,
+> > +						       handle_system_ccs);
+> > 	} else {
+> > 		fence = xe_migrate_copy(migrate, bo, bo, old_mem, new_mem,
+> > 					handle_system_ccs);
+> > -- 
+> > 2.34.1
+> > 
