@@ -2,53 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBE2606A33E
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 05:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A654A606A321
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 05:46:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O+QTVtnM
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=X2EicZ7F
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3718B10E7D5;
-	Tue, 24 Nov 2026 05:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 620A910E7F2;
+	Tue, 24 Nov 2026 05:46:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F26C10E3C2
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 05:46:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0F9510E21F
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 05:46:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795499190; x=1827035190;
+ t=1795499192; x=1827035192;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4vn9NWVn9AsUKcmr2qqP8aC3Pm24rhKP5hHzQ4LUrhY=;
- b=O+QTVtnM7bntbeHsuDdCClFOF2K0qU5+yutS3klpO5QwvRWDNn69AaxI
- vtCF1RwKE7ty2hznqqRNlVuR45cy/M1Chmyj2QiIJH4LPiw4Nl8CQxx9U
- ALhaLgvX0D2hS8cnwnxMnEXGtFovEI3+OZ7X30gd0oJwy5SXNypdB38+x
- cX/0YPmEL8mxMKmGXOGyvG9bUBXx1WXeag7cIEzpk0t4DrvDLwGUwyk0F
- 3Ogmk1zCzm1nS7Ork2l1hV7cX+zZFc/HWGjyNGHTvUC8HEDIEaRGLA/co
- Fj3apoHZZHVn6EJxG8QE+ERaTaLFxzz7Z99Lgc8J/tcW8MZ61C7BpeKXi w==;
-X-CSE-ConnectionGUID: LAg2q8CDTmic1UXY/r/7/Q==
-X-CSE-MsgGUID: Tj0FXIAcQFSff2jqApD5zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4222634"
+ bh=i8Qc/yxC3OiGeNhD2naa525NWk0xJQOmJzoMCTP19BM=;
+ b=X2EicZ7FeRkF0F8j9GiELEp8zo6a7MD/oeN405wNV5KNMuEtv97X9gjh
+ X0pzKTg+aH4eRe2/kNr3fVGFSlMa+i6FQWcLfQMzTE0wn1hgU9pCyYxBO
+ MGJRuOQY+xnxOs/EJ04deFfEV43+MDPOG4aUbr/lftOxbySk6P+fW789+
+ 9nLEOMaT/5AUrDIW+R6KFm1HU/k6kTE2Py6W0iGctPYKTDvLGb5v6kvHs
+ ydwixsVlbU4EsLgbjRlXhVLqeo5wMXbs0RXqOU9ls8AE9JT8N2ZXmL9L4
+ tqodiE8lN+YLYHlM035dsRgdMTx0sZCSWOYFJt5y5eiwr+oaT2L9dQvyU A==;
+X-CSE-ConnectionGUID: IAKCMOBhSCKn+UZCIP+G+w==
+X-CSE-MsgGUID: Nb5E5KPJR3S8NkS+y7mzWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4222635"
 X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; 
-   d="scan'208";a="4222634"
+   d="scan'208";a="4222635"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 21:46:29 -0800
-X-CSE-ConnectionGUID: 7OQPg2fFTtGn/RPE3yrd5A==
-X-CSE-MsgGUID: V4a5fKqAS2GYsTM7wg9H5w==
+ 23 Nov 2026 21:46:32 -0800
+X-CSE-ConnectionGUID: InymidKtTfGP5CNz6wPdmw==
+X-CSE-MsgGUID: 19liBO/ESS2Kg0LiL52QLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11354593"
+X-IronPort-AV: E=Sophos;i="6.27,230,1787036400"; d="scan'208";a="11354597"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 21:46:26 -0800
+ 23 Nov 2026 21:46:29 -0800
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v4 01/10] drm/xe/hwmon: Initialize fan-control backend and
- table cache
-Date: Tue, 24 Nov 2026 11:18:02 +0530
-Message-Id: <20261124054811.798763-2-karthik.poosa@intel.com>
+Subject: [PATCH v4 02/10] drm/xe/hwmon: Expose fanN_max
+Date: Tue, 24 Nov 2026 11:18:03 +0530
+Message-Id: <20261124054811.798763-3-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261124054811.798763-1-karthik.poosa@intel.com>
 References: <20261124054811.798763-1-karthik.poosa@intel.com>
@@ -72,311 +71,129 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Initialize Xe hwmon fan-control support by detecting enabled fans,
-reading stock fan control points and min PWM.
+Expose fan maximum RPM via fanN_max.
 
-FSC_READ_NUM_FANS returns a bitmask of enabled fans, so use it as a mask
-when exposing fanN_input.
+The value is derived from the firmware-reported maximum fan RPS and
+converted to RPM in the fan hwmon read path.
+
+Update Xe hwmon ABI documentation for fanN_max.
 
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
 
-v2:
- - Avoid user table initialization during probe. (Badal)
- - Move unused code to appropriate patches.
- - Use xe helpers for dmesg logs.
+v2: Use xe helper for dmesg logs.
 
 v3:
- - Rebase.
- - Refine a few debug log messages and comments.
- - Update xe_hwmon_read_fan_control_info() to return on any stock table
-   read failures.
- - Avoid returning when num_fans is 0 in
-   xe_hwmon_get_preregistration_info(), ensuring thermal mailbox
-   initialization is not skipped.
- - Remove XE_PCODE_FAN_CONTROL_TIMEOUT_MS which is unnecessary as default
-   timeout itself is now 10ms.
- - Use xe_pcode_read() instead of xe_pcode_read_timeout().
- - Rename fan_control_point_count to point_count in struct fan_table.
- - Resolve kernel-doc warnings.
- - Add valid check for stock table fan point count.
- - Use the fan-enable bitmap reported by FSC_READ_NUM_FANS when enumerating
-   fans. This avoids assuming contiguous fan indices and allows masks with
-   gaps to be represented correctly in the hwmon interface.
+ - Fix indentation of the max_rps struct member. (Soham)
+ - Enable fanN_max only when fanN is supported.
 
 v4:
- - Clamp unsupported fan masks and oversized stock tables instead of
-   failing initialization. (Soham)
- - On stock table read failure, mark that fan's table empty and continue
-   with the remaining fans; fan_input stays visible. (Soham)
- - Clear fan enable mask and min PWM on pcode read failure. (Soham)
- - Fix FCP_INDEX() type safety and clean up macro usage. (Soham)
- - Use xe_hwmon_pcode_read_fan_control() for fan mailbox reads. (Soham)
- - Fix kernel-doc for fan_table_type and nested fan_table members.
- - Skip min PWM read for fans without a stock table.
- - Make xe_hwmon_get_fan_enable_mask() return void.
+ - Read max RPS independent of stock table availability.
+ - Clear max RPS on pcode read failure.
 
- drivers/gpu/drm/xe/xe_hwmon.c     | 177 +++++++++++++++++++++++++++---
- drivers/gpu/drm/xe/xe_pcode_api.h |   5 +
- 2 files changed, 166 insertions(+), 16 deletions(-)
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  8 +++++++
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 21 +++++++++++++++++--
+ drivers/gpu/drm/xe/xe_pcode_api.h             |  1 +
+ 3 files changed, 28 insertions(+), 2 deletions(-)
 
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+index 0da739d9a816..1d42ea0639f7 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
+@@ -266,6 +266,14 @@ Description:	RO. Fan 3 speed in RPM.
+ 
+ 		Only supported for particular Intel Xe graphics platforms.
+ 
++What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan[1-3]_max
++Date:		November 2026
++KernelVersion:	7.5
++Contact:	intel-xe@lists.freedesktop.org
++Description:	RO. Maximum fan speed in RPM for each fan channel.
++
++		Only supported for particular Intel Xe graphics platforms.
++
+ What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap
+ Date:		May 2025
+ KernelVersion:	6.15
 diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 42c2f9129da5..2ee4f89e7bf7 100644
+index 2ee4f89e7bf7..d06f9dc8a463 100644
 --- a/drivers/gpu/drm/xe/xe_hwmon.c
 +++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -22,6 +22,7 @@
- #include "xe_pcode_api.h"
- #include "xe_sriov.h"
- #include "xe_pm.h"
-+#include "xe_printk.h"
- #include "xe_vsec.h"
- #include "regs/xe_pmt.h"
- 
-@@ -139,13 +140,53 @@ struct xe_hwmon_energy_info {
+@@ -185,6 +185,8 @@ struct xe_hwmon_fan_info {
+ 			u8 speed;
+ 		} fcp[MAX_FAN_CONTROL_POINTS];
+ 	} fan_table[FAN_TABLE_MAX];
++	/** @max_rps: maximum fan RPS */
++	u32 max_rps;
+ 	/** @min_pwm: minimum fan PWM */
+ 	u32 min_pwm;
+ };
+@@ -913,7 +915,8 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
+ 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
+ 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
+ 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
+-	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT, HWMON_F_INPUT, HWMON_F_INPUT),
++	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_MAX, HWMON_F_INPUT | HWMON_F_MAX,
++			   HWMON_F_INPUT | HWMON_F_MAX),
+ 	NULL
  };
  
- /**
-- * struct xe_hwmon_fan_info - to cache previous fan reading
-+ * enum fan_table_type - fan table types tracked per fan
-+ */
-+enum fan_table_type {
-+	/** @STOCK_FAN_TABLE: firmware-provided fan table */
-+	STOCK_FAN_TABLE,
-+	/** @USER_FAN_TABLE: user fan table written through sysfs */
-+	USER_FAN_TABLE,
-+	/** @FAN_TABLE_MAX: number of fan tables tracked per fan */
-+	FAN_TABLE_MAX,
-+};
-+
-+/* Check if a fan is enabled based on the fan_enable_mask got from FSC_READ_NUM_FANS. */
-+#define IS_FAN_ENABLED(hwmon, fan) ((hwmon)->fan_enable_mask & BIT(fan))
-+
-+/* Maximum number of fan control points supported by each fan. */
-+#define MAX_FAN_CONTROL_POINTS	10
-+
-+/* Fan control point index: bit31 selects fan table type; bits30:0 control point index. */
-+#define FCP_INDEX(table_type, point_num) (((u32)(table_type) << 31) | \
-+						((u32)(point_num) & GENMASK(30, 0)))
-+
-+/**
-+ * struct xe_hwmon_fan_info - cached fan telemetry and control state
-+ *
-+ * Each fan keeps the latest tachometer sampling state along with two fan
-+ * tables: the stock table discovered from firmware and the user table managed
-+ * by hwmon sysfs writes.
-  */
- struct xe_hwmon_fan_info {
- 	/** @reg_val_prev: previous fan reg val */
- 	u32 reg_val_prev;
- 	/** @time_prev: previous timestamp */
- 	u64 time_prev;
-+	/** @fan_table: fan control tables */
-+	struct fan_table {
-+		/** @fan_table.point_count: number of fan control points */
-+		u8 point_count;
-+		/** @fan_table.fcp: array of fan control points */
-+		struct fan_control_point {
-+			/** @fan_table.fcp.temp: temperature in degree celsius */
-+			u8 temp;
-+			/** @fan_table.fcp.speed: fan speed in percentage */
-+			u8 speed;
-+		} fcp[MAX_FAN_CONTROL_POINTS];
-+	} fan_table[FAN_TABLE_MAX];
-+	/** @min_pwm: minimum fan PWM */
-+	u32 min_pwm;
- };
+@@ -1163,7 +1166,7 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
+ 	int ret;
+ 	int err = 0;
  
- /**
-@@ -194,6 +235,8 @@ struct xe_hwmon {
- 	int scl_shift_time;
- 	/** @ei: Energy info for energyN_input */
- 	struct xe_hwmon_energy_info ei[CHANNEL_MAX];
-+	/** @fan_enable_mask: bitmask of available fans */
-+	u32 fan_enable_mask;
- 	/** @fi: Fan info for fanN_input */
- 	struct xe_hwmon_fan_info fi[FAN_MAX];
- 	/** @read_power_limit_from_pcode: pcode accepted power limits write for the channel */
-@@ -1076,17 +1119,117 @@ static int xe_hwmon_pcode_write_i1(const struct xe_hwmon *hwmon, u32 uval)
- 			      (uval & POWER_SETUP_I1_DATA_MASK));
- }
+-	/* Stock table failures leave fan_input visible; tach readout doesn't need it. */
++	/* Stock table failures leave fan_input and fan_max visible; they don't need it. */
+ 	for (fan = 0; fan < FAN_MAX; fan++) {
+ 		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
+ 		u32 stock_fcp_count = 0;
+@@ -1171,6 +1174,15 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
+ 		if (!IS_FAN_ENABLED(hwmon, fan))
+ 			continue;
  
--static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 subcmd, u32 *uval)
-+static int xe_hwmon_pcode_read_fan_control(const struct xe_hwmon *hwmon, u32 subcmd, u8 fan_num,
-+					   u32 *uval)
- {
- 	struct xe_tile *root_tile = xe_device_get_root_tile(hwmon->xe);
- 
-+	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, fan_num),
-+				     uval, NULL);
-+}
-+
-+static void xe_hwmon_get_fan_enable_mask(struct xe_hwmon *hwmon)
-+{
-+	int ret;
-+
- 	/* Platforms that don't return correct value */
--	if (hwmon->xe->info.platform == XE_DG2 && subcmd == FSC_READ_NUM_FANS) {
--		*uval = 2;
--		return 0;
-+	if (hwmon->xe->info.platform == XE_DG2) {
-+		hwmon->fan_enable_mask = GENMASK(1, 0);
-+		return;
-+	}
-+
-+	ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, 0,
-+					      &hwmon->fan_enable_mask);
-+	if (ret) {
-+		hwmon->fan_enable_mask = 0;
-+		xe_warn(hwmon->xe, "failed to read number of fans, ret=%d\n", ret);
-+		return;
- 	}
- 
--	return xe_pcode_read(root_tile, PCODE_MBOX(FAN_SPEED_CONTROL, subcmd, 0), uval, NULL);
-+	/* Check if fan mask exceeds FAN_MAX and log a warning if it does */
-+	if (hwmon->fan_enable_mask & ~GENMASK(FAN_MAX - 1, 0)) {
-+		xe_warn(hwmon->xe, "Fan enable mask exceeds %d supported fans, clamping\n",
-+			FAN_MAX);
-+		hwmon->fan_enable_mask &= GENMASK(FAN_MAX - 1, 0);
-+	}
-+
-+	xe_info(hwmon->xe, "Number of fans detected: %u\n", hweight32(hwmon->fan_enable_mask));
-+}
-+
-+static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
-+{
-+	int point;
-+	int fan;
-+	int ret;
-+	int err = 0;
-+
-+	/* Stock table failures leave fan_input visible; tach readout doesn't need it. */
-+	for (fan = 0; fan < FAN_MAX; fan++) {
-+		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
-+		u32 stock_fcp_count = 0;
-+
-+		if (!IS_FAN_ENABLED(hwmon, fan))
-+			continue;
-+
-+		ret = xe_hwmon_pcode_read_fan_control(hwmon,
-+						      FSC_READ_STOCK_FAN_CONTROL_POINTS,
-+						      fan, &stock_fcp_count);
-+		if (ret || !stock_fcp_count) {
-+			xe_warn(hwmon->xe,
-+				"fan %d stock table unavailable, ret=%d, point count=%u\n",
-+				fan, ret, ret ? 0 : stock_fcp_count);
-+			err = ret ?: -ENODATA;
-+			continue;
-+		}
-+
-+		if (stock_fcp_count > MAX_FAN_CONTROL_POINTS) {
-+			xe_warn(hwmon->xe,
-+				"fan %d stock table point count %u exceeds maximum %u, clamping\n",
-+				fan, stock_fcp_count, MAX_FAN_CONTROL_POINTS);
-+			stock_fcp_count = MAX_FAN_CONTROL_POINTS;
-+		}
-+
-+		fi->fan_table[STOCK_FAN_TABLE].point_count = stock_fcp_count;
-+		xe_dbg(hwmon->xe, "fan %d stock table point count is %u\n", fan,
-+		       fi->fan_table[STOCK_FAN_TABLE].point_count);
-+
-+		/* Cache the stock fan table for later use. */
-+		for (point = 0; point < fi->fan_table[STOCK_FAN_TABLE].point_count;
-+		     point++) {
-+			u32 fcp = FCP_INDEX(STOCK_FAN_TABLE, point);
-+
-+			ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_TABLE, fan, &fcp);
-+			if (ret) {
-+				xe_warn(hwmon->xe, "failed to read fan %d stock point %d, ret=%d\n",
-+					fan, point, ret);
-+				fi->fan_table[STOCK_FAN_TABLE].point_count = 0;
-+				err = ret;
-+				break;
-+			}
-+
-+			fi->fan_table[STOCK_FAN_TABLE].fcp[point].temp =
-+						REG_FIELD_GET(FAN_CONTROL_POINT_TEMP_MASK, fcp);
-+			fi->fan_table[STOCK_FAN_TABLE].fcp[point].speed =
-+						REG_FIELD_GET(FAN_CONTROL_POINT_SPEED_MASK, fcp);
-+			xe_dbg(hwmon->xe, "fan %d stock point %d: temp %u C, speed %u %%\n",
-+			       fan, point, fi->fan_table[STOCK_FAN_TABLE].fcp[point].temp,
-+			       fi->fan_table[STOCK_FAN_TABLE].fcp[point].speed);
-+		}
-+
-+		if (!fi->fan_table[STOCK_FAN_TABLE].point_count)
-+			continue;
-+
-+		/* Read minimum fan PWM */
-+		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_FAN_MIN_PWM, fan,
-+						      &fi->min_pwm);
++		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_MAX_FAN_RPS, fan,
++						      &fi->max_rps);
 +		if (ret) {
-+			fi->min_pwm = 0;
-+			xe_warn(hwmon->xe, "fan %d min pwm unavailable, ret=%d\n", fan, ret);
++			fi->max_rps = 0;
++			xe_warn(hwmon->xe, "failed to read fan %d max RPS, ret=%d\n", fan, ret);
 +		} else {
-+			xe_dbg(hwmon->xe, "fan %d min PWM %u\n", fan, fi->min_pwm);
++			xe_dbg(hwmon->xe, "fan %d max RPS %u\n", fan, fi->max_rps);
 +		}
-+	}
-+	return err;
- }
- 
- static int xe_hwmon_power_curr_crit_read(struct xe_hwmon *hwmon, int channel,
-@@ -1616,17 +1759,12 @@ xe_hwmon_energy_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- static umode_t
- xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- {
--	u32 uval = 0;
--
- 	if (!hwmon->xe->info.has_fan_control)
- 		return 0;
- 
++
+ 		ret = xe_hwmon_pcode_read_fan_control(hwmon,
+ 						      FSC_READ_STOCK_FAN_CONTROL_POINTS,
+ 						      fan, &stock_fcp_count);
+@@ -1765,6 +1777,8 @@ xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
  	switch (attr) {
  	case hwmon_fan_input:
--		if (xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_NUM_FANS, &uval))
--			return 0;
--
--		return channel < uval ? 0444 : 0;
-+		return IS_FAN_ENABLED(hwmon, channel) ? 0444 : 0;
+ 		return IS_FAN_ENABLED(hwmon, channel) ? 0444 : 0;
++	case hwmon_fan_max:
++		return IS_FAN_ENABLED(hwmon, channel) && hwmon->fi[channel].max_rps ? 0444 : 0;
  	default:
  		return 0;
  	}
-@@ -1859,11 +1997,18 @@ xe_hwmon_get_preregistration_info(struct xe_hwmon *hwmon)
- 		if (xe_hwmon_is_visible(hwmon, hwmon_energy, hwmon_energy_input, channel))
- 			xe_hwmon_energy_get(hwmon, channel, &energy);
- 
--	/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
--	for (channel = 0; channel < FAN_MAX; channel++)
--		if (xe_hwmon_is_visible(hwmon, hwmon_fan, hwmon_fan_input, channel))
--			xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
-+	if (hwmon->xe->info.has_fan_control) {
-+		xe_hwmon_get_fan_enable_mask(hwmon);
-+
-+		/* Initialize 'struct xe_hwmon_fan_info' with initial fan register reading. */
-+		for (channel = 0; channel < FAN_MAX; channel++)
-+			if (IS_FAN_ENABLED(hwmon, channel))
-+				xe_hwmon_fan_input_read(hwmon, channel, &fan_speed);
- 
-+		/* Fan control tables initialization */
-+		if (xe_hwmon_read_fan_control_info(hwmon))
-+			xe_warn(hwmon->xe, "Fan control tables are not available\n");
-+	}
- 	return xe_hwmon_init_temp_info(hwmon);
- }
- 
+@@ -1815,6 +1829,9 @@ xe_hwmon_fan_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
+ 	switch (attr) {
+ 	case hwmon_fan_input:
+ 		return xe_hwmon_fan_input_read(hwmon, channel, val);
++	case hwmon_fan_max:
++		*val = mul_u32_u32(hwmon->fi[channel].max_rps, 60);
++		return 0;
+ 	default:
+ 		return -EOPNOTSUPP;
+ 	}
 diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 00c4fc7d0124..0349b24a8259 100644
+index 0349b24a8259..b8132db0e399 100644
 --- a/drivers/gpu/drm/xe/xe_pcode_api.h
 +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -83,6 +83,11 @@
+@@ -82,6 +82,7 @@
+ #define     PCODE_MBOX_DOMAIN_HBM		0x2
  
  #define   FAN_SPEED_CONTROL			0x7D
++#define     FSC_READ_MAX_FAN_RPS		0x3
  #define     FSC_READ_NUM_FANS			0x4
-+#define     FSC_READ_STOCK_FAN_CONTROL_POINTS	0x5
-+#define     FSC_READ_FAN_TABLE			0x7
-+#define     FAN_CONTROL_POINT_TEMP_MASK		REG_GENMASK(7, 0)
-+#define     FAN_CONTROL_POINT_SPEED_MASK	REG_GENMASK(15, 8)
-+#define     FSC_READ_FAN_MIN_PWM		0x8
- 
- #define PCODE_SCRATCH(x)		XE_REG(0x138320 + ((x) * 4))
- /* PCODE_SCRATCH0 */
+ #define     FSC_READ_STOCK_FAN_CONTROL_POINTS	0x5
+ #define     FSC_READ_FAN_TABLE			0x7
 -- 
 2.34.1
 
