@@ -2,40 +2,40 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0990B606A322
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4400C606A31E
 	for <intel-xe@archiver.kernel.org>; Tue, 24 Nov 2026 00:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PO5ygbwK
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=mMwl0OzI
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C9B210F2B7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B784C10F2BC;
 	Tue, 24 Nov 2026 00:39:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78CE010F2B8
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 00:39:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4638310F2A3
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Nov 2026 00:39:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795480768; x=1827016768;
+ t=1795480758; x=1827016758;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=9E9nnj5zbdvzrD7iabPxZN2AiiilSXfjeTF+EOWiWeU=;
- b=PO5ygbwKtoxfeiShfqSQ+xKdFkMcIsLrIGOj/DofTwwxR52PmngZhYcG
- Oui5egvRAm2kwk4xCDRfkS3imxb9ZqXUFeH4Tzlu8s9SWf5wOh9bqN2ph
- +ZAMGQSd4aZuRNJGCIIWFyvZFhEyBljY0akshj5CHJyoWVPzIZO4/ck25
- tMaB0gdwYGoNDPS9ToikrpKm9MlpUYokmK/NsAxAdQhH9B7vivooGA42x
- i44NObd+WIAcKJQ56DGKKNTj5xGzNmYjQ5PnGSoapNEZLfuuc+Q8N9BlA
- HEWy6JjvS1lQKYHSPgcCOBne8sydTlN0t4Nji8lSITvBaRT821dDs4w2V g==;
-X-CSE-ConnectionGUID: 1tq8vPFgRCqmdbP+FLktiA==
-X-CSE-MsgGUID: y+7Slem/QeaXko/OGCs1Pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4332896"
+ bh=aSExY6XUYC0oEPjDcj/taKCl3VRcUT5EAxgzrFJNEf4=;
+ b=mMwl0OzItehPT1S50gxwhQOWLudfiDuEBZ9KCzCc+3VnEfLlqVhq0Kq1
+ 574wJ74ekuFUqQnUOegffAEUZCaykbq1N6N5ni587tOT7gjCcRS3PY95Z
+ VysDfqTVUdq4DWCecYHk4yRSzkxTNOoysc4LH6TcaNHQtYziOum/gLUC7
+ SjnRB3R2Wg80btBldbH9VKNb1RHEiIveSKxzgm+zTAR3uw/FM6vSiLh5e
+ 8/TOIUJTPGkTdLRu7kwWz9WpK6JpNRFiwfRkUVo4+qTuyhv5gBYltmhxX
+ MONLun0c/xAJrpMkSRtiZ/lVXWm0ef/EUKcRGINZ9vWqnuHKKlhA2vTSr g==;
+X-CSE-ConnectionGUID: 8Ymv6mBSTyK7HD6efzXkpQ==
+X-CSE-MsgGUID: vWQUxLn2QaqCLmK4DOXG4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11975"; a="4332860"
 X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; 
-   d="scan'208";a="4332896"
+   d="scan'208";a="4332860"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Nov 2026 16:39:06 -0800
-X-CSE-ConnectionGUID: WDP1ndSFRO6UX0mUAhjojA==
-X-CSE-MsgGUID: 9/CZct21R0CKyVpKkJTOrg==
+ 23 Nov 2026 16:39:05 -0800
+X-CSE-ConnectionGUID: Q3aZIZ3gSe20e/1sLrg2gw==
+X-CSE-MsgGUID: qGWMvlz1TbSxtd66RR3ufQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11805772"
+X-IronPort-AV: E=Sophos;i="6.27,229,1787036400"; d="scan'208";a="11805752"
 Received: from mjruhl-vm.amr.corp.intel.com ([10.11.186.166])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Nov 2026 16:39:06 -0800
@@ -46,9 +46,9 @@ To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
  airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com,
  anoop.c.vijay@intel.com, badal.nilawar@intel.com,
  matthew.d.roper@intel.com, james.ausmus@intel.com
-Subject: [PATCH v22 15/19] drm/xe/vsec: Support late bind fw information
-Date: Mon, 23 Nov 2026 16:39:11 -0800
-Message-ID: <20261124003856.4145635-36-michael.j.ruhl@intel.com>
+Subject: [PATCH v22 08/19] drm/xe/vsec: Support possible hotplug exit
+Date: Mon, 23 Nov 2026 16:39:04 -0800
+Message-ID: <20261124003856.4145635-29-michael.j.ruhl@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261124003856.4145635-21-michael.j.ruhl@intel.com>
 References: <20261124003856.4145635-21-michael.j.ruhl@intel.com>
@@ -73,301 +73,93 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-CRI FW is loaded on power on.  Because of this, access to the FW cannot
-be done until it is running.
+DRM has an API that will verify that a device is valid in the hotplug
+context.
 
-Update the XE PMT probe and access to check for late bind devices,
-verify, and wait for the appropriate FW state before probe or access.
+Verify device is valid before access in the VSEC callback API.
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       |   5 +-
- drivers/gpu/drm/xe/xe_device_types.h |   5 ++
- drivers/gpu/drm/xe/xe_vsec.c         | 122 +++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vsec.h         |   1 +
- 4 files changed, 127 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_vsec.c | 29 +++++++++++++++++++++++------
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index e9a9634744ae..614b7e376739 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1098,7 +1098,7 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	err = xe_hwmon_register(xe);
- 	if (err)
--		goto err_unregister_display;
-+		goto err_unregister_vsec;
- 
- 	err = xe_i2c_probe(xe);
- 	if (err)
-@@ -1118,6 +1118,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- err_unregister_hwmon:
- 	xe_hwmon_unregister(xe);
-+err_unregister_vsec:
-+	xe_vsec_remove(xe);
- err_unregister_display:
- 	xe_display_unregister(xe);
- 	drm_dev_unregister(&xe->drm);
-@@ -1128,6 +1130,7 @@ int xe_device_probe(struct xe_device *xe)
- void xe_device_remove(struct xe_device *xe)
- {
- 	xe_hwmon_unregister(xe);
-+	xe_vsec_remove(xe);
- 	xe_display_unregister(xe);
- 
- 	drm_dev_unplug(&xe->drm);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 28b1669a14d8..d1bdd3a872a8 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -7,6 +7,7 @@
- #define _XE_DEVICE_TYPES_H_
- 
- #include <linux/pci.h>
-+#include <linux/workqueue.h>
- 
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
-@@ -487,6 +488,10 @@ struct xe_device {
- 		struct mutex lock;
- 		/** @pmt.base_offset: device specific base offset */
- 		u64 base_offset;
-+		/** @pmt.work: support late-bind probe */
-+		struct delayed_work work;
-+		/** @pmt.retry_count: late-bind probe retry */
-+		u32 retry_count;
- 	} pmt;
- 
- 	/** @soc_remapper: SoC remapper object */
 diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index 188eaf13d68f..26ed4e85614f 100644
+index 082b25b017db..c0e06b2aeca6 100644
 --- a/drivers/gpu/drm/xe/xe_vsec.c
 +++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -3,6 +3,7 @@
- #include <linux/bitfield.h>
- #include <linux/bits.h>
- #include <linux/cleanup.h>
-+#include <linux/delay.h>
- #include <linux/errno.h>
- #include <linux/log2.h>
- #include <linux/intel_vsec.h>
-@@ -19,6 +20,7 @@
+@@ -10,6 +10,8 @@
+ #include <linux/pci.h>
+ #include <linux/types.h>
+ 
++#include <drm/drm_drv.h>
++
+ #include "xe_device.h"
+ #include "xe_device_types.h"
  #include "xe_mmio.h"
- #include "xe_platform_types.h"
- #include "xe_pm.h"
-+#include "xe_sysctrl.h"
- #include "xe_vsec.h"
+@@ -159,7 +161,12 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
+  * @user_offset: a user offset relative to the beginning of the data to read
+  * @count: bytes to read
+  *
++ * This is a callback API.  I.e this can be accessed external to the XE driver
++ * (PMT driver scope).  Because of this, DRM hotplug needs to be verified
++ * (drm_dev_enter()).
++ *
+  * Return:
++ * * -ENODEV device is not available (hotplug)
+  * * -ENODATA for incorrect power state
+  * * -EINVAL for unsupported PMT feature
+  * * count   number of bytes read on success
+@@ -172,13 +179,17 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 	u32 cap_type = FIELD_GET(GUID_CAP_TYPE, guid);
+ 	u32 mem_region;
+ 	u32 offset;
+-	int ret;
++	int ret = 0;
++	int idx;
  
- #include "regs/xe_pmt.h"
-@@ -174,6 +176,14 @@ enum capability {
- 	WATCHER,
- };
+ 	xe_assert(xe, !IS_SRIOV_VF(xe));
  
-+/*
-+ * Late bind will delay 100msec for up to 20 seconds
-+ */
-+#define VSEC_LATE_BIND_DELAY_MSEC	100
-+#define VSEC_LATE_BIND_RETRY		200
++	if (!drm_dev_enter(&xe->drm, &idx))
++		return -ENODEV;
 +
-+static void cri_late_bind_probe(struct xe_device *xe);
-+
- static int bmg_guid_decode(u32 guid, int *index, u32 *offset)
- {
- 	u32 record_id = FIELD_GET(GUID_RECORD_ID, guid);
-@@ -282,6 +292,53 @@ static int xe_guid_decode(u32 guid, int *index, u32 *offset)
- 	return -ENODEV;
- }
+ 	ret = xe_guid_decode(guid, &mem_region, &offset);
+ 	if (ret)
+-		return ret;
++		goto dev_exit;
  
-+static void cri_late_bind_probe_work(struct work_struct *work)
-+{
-+	struct xe_device *xe = container_of(work, struct xe_device, pmt.work.work);
-+
-+	if (xe_sysctrl_is_oobmsm_fw_ready(xe)) {
-+		cri_late_bind_probe(xe);
-+		xe_pm_runtime_put(xe);
-+		return;
-+	}
-+
-+	xe->pmt.retry_count++;
-+
-+	/* wait up to 20 seconds */
-+	if (xe->pmt.retry_count == VSEC_LATE_BIND_RETRY) {
-+		drm_warn(&xe->drm, "PMT probe: Late Binding failed to complete\n");
-+		xe_pm_runtime_put(xe);
-+		return;
-+	}
-+
-+	if (!queue_delayed_work(system_freezable_wq, &xe->pmt.work,
-+				msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC)))
-+		xe_pm_runtime_put(xe);
-+}
-+
-+static bool wait_for_fw(struct xe_device *xe)
-+{
-+	int retries = VSEC_LATE_BIND_RETRY;  /* wait up to 20 secs */
-+
-+	if (xe->info.platform != XE_CRESCENTISLAND)
-+		return true;
-+
-+	while (retries--) {
-+		if (xe_sysctrl_is_oobmsm_fw_ready(xe))
-+			return true;
-+
-+		msleep(VSEC_LATE_BIND_DELAY_MSEC);
-+		if (signal_pending(current)) {
-+			drm_warn(&xe->drm, "Late Binding interrupted\n");
-+			return false;
-+		}
-+	}
-+
-+	drm_warn(&xe->drm, "Late Binding failed to complete\n");
-+
-+	return false;
-+}
-+
- /**
-  * xe_pmt_telem_read - Given a device and a PMT GUID, read data into a buffer
-  * @dev: valid Xe device
-@@ -344,6 +401,11 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 		goto dev_exit;
- 	}
+ 	telem_addr += offset + user_offset;
  
-+	if (!wait_for_fw(xe)) {
-+		ret = -ENODATA;
-+		goto runtime_exit;
-+	}
-+
- 	scoped_guard(mutex, &xe->pmt.lock) {
- 		u32 device_id = FIELD_GET(GUID_DEVICE_ID, guid);
- 
-@@ -356,6 +418,7 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
- 			xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
- 	}
- 
-+runtime_exit:
- 	xe_pm_runtime_put(xe);
- 
- dev_exit:
-@@ -470,6 +533,10 @@ static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
- 	disc_addr += inst + offset;
- 
- 	xe_pm_runtime_get(xe);
-+	if (!wait_for_fw(xe)) {
-+		ret = -ENODATA;
-+		goto runtime_exit;
-+	}
- 
- 	scoped_guard(mutex, &xe->pmt.lock) {
- 		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-@@ -477,6 +544,7 @@ static int xe_pmt_read_reg(struct device *dev, u32 guid, u32 *reg, u32 offset)
- 		*reg = readl(disc_addr);
- 	}
- 
-+runtime_exit:
- 	xe_pm_runtime_put(xe);
- 
- 	drm_dev_exit(idx);
-@@ -504,6 +572,10 @@ static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
- 	disc_addr += inst + offset;
- 
- 	xe_pm_runtime_get(xe);
-+	if (!wait_for_fw(xe)) {
-+		ret = -ENODATA;
-+		goto runtime_exit;
-+	}
- 
- 	scoped_guard(mutex, &xe->pmt.lock) {
- 		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-@@ -511,6 +583,7 @@ static int xe_pmt_write_reg(struct device *dev, u32 guid, u32 reg, u32 offset)
- 		writel(reg, disc_addr);
- 	}
- 
-+runtime_exit:
- 	xe_pm_runtime_put(xe);
- 
- 	drm_dev_exit(idx);
-@@ -547,6 +620,25 @@ static enum xe_vsec get_platform_info(struct xe_device *xe)
- 	return vsec_platforms[xe->info.platform];
- }
- 
-+static void cri_late_bind_probe(struct xe_device *xe)
-+{
-+	struct intel_vsec_platform_info *info;
-+	struct device *dev = xe->drm.dev;
-+	enum xe_vsec platform;
-+
-+	platform = get_platform_info(xe);
-+	if (platform != XE_VSEC_CRI)
-+		return;
-+
-+	info = &xe_vsec_info[platform];
-+	if (!info->headers)
-+		return;
-+
-+	info->priv_data = &xe_cri_pmt_cb;
-+
-+	intel_vsec_register(dev, info);
-+}
-+
- /**
-  * xe_vsec_init - Initialize resources and add intel_vsec auxiliary
-  * interface
-@@ -575,16 +667,36 @@ void xe_vsec_init(struct xe_device *xe)
- 	case XE_VSEC_CRI:
- 		xe->pmt.base_offset = CRI_PMT_OFFSET;
- 		info->priv_data = &xe_cri_pmt_cb;
-+
-+		xe->pmt.retry_count = 0;
-+		INIT_DELAYED_WORK(&xe->pmt.work, cri_late_bind_probe_work);
-+
-+		if (!xe_sysctrl_is_oobmsm_fw_ready(xe)) {
-+			xe_pm_runtime_get_noresume(xe);
-+			queue_delayed_work(system_freezable_wq, &xe->pmt.work,
-+					   msecs_to_jiffies(VSEC_LATE_BIND_DELAY_MSEC));
-+			return;
+@@ -188,11 +199,14 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 		xe_pm_runtime_get(xe);
+ 		break;
+ 	case TELEMETRY:
+-		if (!xe_pm_runtime_get_if_active(xe))
+-			return -ENODATA;
++		if (!xe_pm_runtime_get_if_active(xe)) {
++			ret = -ENODATA;
++			goto dev_exit;
 +		}
  		break;
- 
- 	default:
--		break;
-+		drm_err(&xe->drm, "Unsupported platform: %u\n", platform);
-+		return;
+ 	case WATCHER:
+-		return -EINVAL;
++		ret = -EINVAL;
++		goto dev_exit;
  	}
  
--	/*
--	 * Register a VSEC. Cleanup is handled using device managed
--	 * resources.
--	 */
- 	intel_vsec_register(dev, info);
- }
+ 	scoped_guard(mutex, &xe->pmt.lock) {
+@@ -204,7 +218,10 @@ int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offse
+ 
+ 	xe_pm_runtime_put(xe);
+ 
+-	return count;
++dev_exit:
++	drm_dev_exit(idx);
 +
-+/**
-+ * xe_vsec_remove - cleanup any outstanding resources
-+ * @xe: valid xe instance
-+ */
-+void xe_vsec_remove(struct xe_device *xe)
-+{
-+	/* Cleanup on Crescent Isle */
-+	if (xe->info.platform == XE_CRESCENTISLAND &&
-+	    xe->pmt.base_offset == CRI_PMT_OFFSET &&
-+	    disable_delayed_work_sync(&xe->pmt.work))
-+		xe_pm_runtime_put(xe);
-+}
- MODULE_IMPORT_NS("INTEL_VSEC");
-diff --git a/drivers/gpu/drm/xe/xe_vsec.h b/drivers/gpu/drm/xe/xe_vsec.h
-index a25b4e6e681b..e925dba4158b 100644
---- a/drivers/gpu/drm/xe/xe_vsec.h
-+++ b/drivers/gpu/drm/xe/xe_vsec.h
-@@ -10,6 +10,7 @@ struct device;
- struct xe_device;
++	return ret == 0 ? count : ret;
+ }
  
- void xe_vsec_init(struct xe_device *xe);
-+void xe_vsec_remove(struct xe_device *xe);
- int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset, u32 count);
- 
- #endif
+ static struct pmt_callbacks xe_pmt_cb = {
 -- 
 2.43.0
 
