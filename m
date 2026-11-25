@@ -2,163 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C36A7606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 06:34:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70A1D606A33A
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 06:37:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nY/lvCkO;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=kWW/rG8g
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IG81e/qQ;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=DwduEmPS
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85FBF10E28C;
-	Wed, 25 Nov 2026 06:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EDB810E78D;
+	Wed, 25 Nov 2026 06:37:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C90CF10E28C
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 06:34:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C04710E78D
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 06:37:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795588468; x=1827124468;
+ t=1795588622; x=1827124622;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=74suTzvyUINkR6p/ZIP8NQguuqiNrUanAQC+zn3JofM=;
- b=nY/lvCkOzqDyMGK4pZUn0Y0LKc9Omicqd65FtDxQY7gz4SXXjo7rfPS4
- ZKwONNaqJAlgm+Hb2FeK9a0zm0kE5EIsIe9AE67d0LVngWtTwuHIvFPJU
- SW1o5RG6xVZ5CnxfKz7xhcOnqJ4C8mwzAI9xi8QHYBwTlpRXATACiwmcs
- oZkPvxV8mnhDGXKQw2yMw7EVrDh8C9N1+Kwf+nx29io65dv+p1GPkjuCH
- JXl66oYXSOh5AdPqacC5FnE8A8JzOl9p9y0FMJCf4KKqD/fGi9OQAqmyd
- zjYgy4KYwFwggxWw2yJJdrcukx5PC9L+B+ZhzOYQZIDr0Q2cz560oKFnc w==;
-X-CSE-ConnectionGUID: a82WAMOKRAWfBRMZwGPw+g==
-X-CSE-MsgGUID: RAWDVs4lTKeAPMs8Pr76Zg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4355515"
+ bh=pc4sjqcc+UPsgXQ+pNfmz9tq+hrVmmYDG88PItkA0ow=;
+ b=IG81e/qQzAtkQCrmFuNKxiF/0Sde4QXSSUss5k8EISJ2DLK+lj1x5B5e
+ yzConVIOpBp9sPwj/nVxxV56DYRN2HiLYr1TCVDYD3sUKSpvY0qWeKr8x
+ qlUSfi3AuLe7lYK9NetOErLRlc5uOwkKhr45PpAR/hGSg8Cj+rxquDa1y
+ URWB9TrD1GfppGN+4uHdJve82Xj7bQKmoihCfJ2Tt5+iIEPWi/bgMwb4B
+ EuiNeJiB/nUfUriuljN20FfXXiK0oyJEcqU0lWska9hOu/1uG80vEisJR
+ oVB4alVRVvac5JVRKshuqia+VFgB5rCLdeNe+73pkaeseYiI5EvwIaT8i g==;
+X-CSE-ConnectionGUID: d5EneCdqRdiCOEQO6ufIIA==
+X-CSE-MsgGUID: q/cj663WSfO9CdEJTVFe3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4355729"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4355515"
+   d="scan'208";a="4355729"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 22:34:28 -0800
-X-CSE-ConnectionGUID: qRQszqYjShGWeRB+V6ALWg==
-X-CSE-MsgGUID: Vfehv/oFTDOPS3cuynBXnQ==
+ 24 Nov 2026 22:37:01 -0800
+X-CSE-ConnectionGUID: eKw6081+QpG0nfifa+2nAQ==
+X-CSE-MsgGUID: ONWiDZa4S0eJSmB6hGPjzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="11791766"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="11792093"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 22:34:27 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 24 Nov 2026 22:37:01 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Tue, 24 Nov 2026 22:34:27 -0800
+ 15.2.2562.57; Tue, 24 Nov 2026 22:37:00 -0800
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Tue, 24 Nov 2026 22:34:27 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.22) by
+ 15.2.2562.57 via Frontend Transport; Tue, 24 Nov 2026 22:37:00 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.10) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Tue, 24 Nov 2026 22:34:26 -0800
+ 15.2.2562.57; Tue, 24 Nov 2026 22:37:00 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=w0ELXwoujET8uYbV9LZ4TFeLgZG4iY08v1ugu7JKwLW00ohu7uQ83CD+6O9bNM/+0/BccX0TRTfH6GR/d1OyjQX5Ku8kU4lfXvo1Va+fxvKZ2aR0H6FcRNYE0i6hlYsY8+pPcZt6GWEaZTPG6owdxgyepnpqI5ZviezLUGJelsj/0UbxjAJsNoAkgQna+FQFpXORuH2Qn2VABZalSAoEknKgm50D8ytwKEzLVu+A3Sh4ooUETQCx8TCiUFmYRILZ+i8hJ1tu2IwYvppxRt2GFxwjqRMe9170vQraAQ6vISPK4oc/Z1dA19UMW+ytp3hKMM1ZErglZMydY1C+ZhhgkA==
+ b=SG+aGHx83vSiovSifDJ4KnQg2yyDtk3Lw/pcFPOGfJPQpMKpgpo3hznd5XA/ksP3ZcN1fYdiS+hV/S0wOuS4VL7sG/l4NJTVPi5Dc23uCJHrHFcDkBdRhI+efOsycyllINsZLiYxl7KqrDIk4QgeL+Oo4KuhnShjcSRSZ6BqUBOgI/JIQRJ1TSvd6/lX7+doKEFoGMADkBwwfjLiJmKLfLvAQL+MyCX0u+58kjPh0Os0cILio1nrHPgkCdXMa3xu2zmFemhpJwM74c7zfDp5rOtFrTbIuz1GU70wEg6QbSnWBPO5G2O2i51IwaPvHl6OzbA+5vmbQp+oMfSkCV9HYw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rMkfuqLZVR6ObVgGVVlJlJ+xlHBKZFLy05tAcc6bjqo=;
- b=CI55vuaikSKpewF72ZFUgKviegRoZ1XR83P8aRard1d+x8vCkcCfjxMn6e6EYFjtwFP+1+KTD8NCUzaeyopXu6HATuTKkzKMuykQdQP3rfWx2kWWRjq+Vxc5UAR5lHy1ZCbXm+r7V5I+2ykjBE5mjK/HFuFGrThoO9ULkJj/+vUCno8tCZiHUe13UvS8xNjTnIV5GspiFSSWI3F8dsYDKw6W1Hw1ZoTiJSPC4LbntBumyByvl69NXnlHUfHyHMWz9oAMQMHs2y8QWAhLNB2eb0j+pghNGijYjWoKDdX4b3hqUg0OkcdNCaywheNVvpiaXk8xjrOZQJJYov5DJaRkuA==
+ bh=Sb6+SxL058/rRWlY7JvoqPRUOK6NSz41E2vhUjxgEjM=;
+ b=unYfTs7aJ7ohxB0mhmOS/MC+ELa/j4cyb8Rkir/tHclvuG/VlEIZTppXp+AXcROvZWjtAuInvVAQVN0G666RKR9vLgi8nTkYb3pIXIMr9Baw9vL/MVDBHtVdug6H8GhZXuOkr2zmHqLHMrN3/adcSKiPaPJtcrql5Bu+r44zpC79LxJh6PKEdom5W+uQ4glr1Oij5tucnOGyXKTCT21CYdYGsLWSHX0RnAc/zX0vUfS/2ULBdruKSbz3mcPmxtzKTvCI6gOOLhE/ocMlLvJgJAb9d0QugxsmWmzcsHNwFODcHaLm9IQnW9keuEEHi1ky1BMT0EdgtLnzEixQlj4+Mw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rMkfuqLZVR6ObVgGVVlJlJ+xlHBKZFLy05tAcc6bjqo=;
- b=kWW/rG8g4AaPrYrOrVNpZCUkTmg6AqVpKsLr5wy8evc5Cei3I4yNA8sKG1mcy1oPjPqzx85zX6hJWzZLABFo+CobaVlNbd2fRMQXLd+YLivgRHbsaceVJHINVb4ROh134f1u8Cuyt5f6vMCyoQwpsr0rDjV6tXNX7qlN5tpKqCs=
+ bh=Sb6+SxL058/rRWlY7JvoqPRUOK6NSz41E2vhUjxgEjM=;
+ b=DwduEmPS8LUIvKxpUXRcbs/kuRFd6xft3aHTwS6pJeLTEzr1pUhGvSl3elgPuoNiEe38B4eI06UHAvRTIYS/BEeLYQCYpqd3Jk3cIl48Dk1KLwAy+F+WCODwuPBhiEzxfK6Nhy9GZO0DMyas0FpHLBdiRDDccjxMcalzxx504dM=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA3PR11MB9205.namprd11.prod.outlook.com (2603:10b6:208:573::7)
  by CH3PR11MB8435.namprd11.prod.outlook.com (2603:10b6:610:169::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.14; Wed, 25 Nov
- 2026 06:34:19 +0000
+ 2026 06:36:52 +0000
 Received: from IA3PR11MB9205.namprd11.prod.outlook.com
  ([fe80::7a6a:5bf7:f1d9:dbe]) by IA3PR11MB9205.namprd11.prod.outlook.com
  ([fe80::7a6a:5bf7:f1d9:dbe%5]) with mapi id 15.21.0662.001; Wed, 25 Nov 2026
- 06:34:19 +0000
-Message-ID: <1da84796-2141-4cef-8b11-7f2c07178cad@intel.com>
-Date: Wed, 25 Nov 2026 12:04:09 +0530
+ 06:36:52 +0000
+Message-ID: <5220f1c9-9d54-4a11-84f1-26284e8730de@intel.com>
+Date: Wed, 25 Nov 2026 12:06:42 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 5/7] drm/xe/oa: Fence OA ioctls and mmap against
- device unplug and wedging
+Subject: Re: [PATCH v10 7/7] drm/xe/oa: Quiesce OA streams on driver unbind
+ and PCI reset
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>,
  <intel-xe@lists.freedesktop.org>, <harish.chegondi@intel.com>
 CC: <matthew.brost@intel.com>
 References: <20261124201150.405479-9-umesh.nerlige.ramappa@intel.com>
- <20261124201150.405479-14-umesh.nerlige.ramappa@intel.com>
+ <20261124201150.405479-16-umesh.nerlige.ramappa@intel.com>
 Content-Language: en-US
 From: Shekhar Chauhan <shekhar.chauhan@intel.com>
-In-Reply-To: <20261124201150.405479-14-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20261124201150.405479-16-umesh.nerlige.ramappa@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0293.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:21b::17) To IA3PR11MB9205.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0287.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:21b::19) To IA3PR11MB9205.namprd11.prod.outlook.com
  (2603:10b6:208:573::7)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA3PR11MB9205:EE_|CH3PR11MB8435:EE_
-X-MS-Office365-Filtering-Correlation-Id: 180c4840-5794-4d26-7301-08df4abe225f
+X-MS-Office365-Filtering-Correlation-Id: 27c5d61f-7850-4210-6614-08df4abe7d79
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|1800799024|376014|6133799003|18002099003|261009223027099003|22082099003|3023799007|4143699003|5023799004|56012099006|11063799006|261026121527099003|10067099003|261022075727099003|261102123227099003|261021121427099003|261022113327099003|261026140227099003|261028144727099003|261021123027099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: Og+oyX6z4O70y8cDU+U7/XJhnZQzdiyB+2ejdcMp+I3l/Z4gVArfVVdzMV1VqUSj0Moq0Ws3tOTCL29cNRkcUxet2hZod3BL46xIGQLbwMvUQj/LLqnNHXfutEQ1vlEjld24XH7kk7pl9PnVs5oiLZUkDT2D1sZjdWDc+1qlPGwH8it7Ypf+91kh8fcaS9W02lx9QKvjBrd9pPYpZoq9zKywCvS9KknB0Ru6c1F0ZVhZH2aBz3kIK0RU5rprlxB1h4JppFursrkedPDt9bJqFbWnXhZVMUuxwF8QEVM8c3DCsVMxAGXqe+YG9PdxpZ1u+m2pESqc+FnB2ccoLXlk9kLT15JqfoDI+4oM7og5eVLaCRNiuBNeP96DDqJydFk3I9I9qyIRtJBtR/45egxYWbQXrwh1ymC8g/vxTZZCFJ7tuZ97eoxSgeU/M8tdyx5OZ5CEcDsITR5f1zFVQt0PesKneRev9hKnycE95X9UUVeWEz6epT1o+302J18F3ZZJHVgWxl/Z3/V2sgj8VHKj6p2pP/Whn8dmptWNwnWFesdWYDwq2iTUZIdg+3SChdyadaQ2D5yrFRyHzzq2wVePvuuLPw+Yj+6by7jf9cflrBt0vsgJsnN1nEtAM6kNPdGj0hqlbVlPDsyrESWJHgGsDY72gkYPdVWJjZiqVdYn6IA=
+ ARA:13230040|23010399003|366016|1800799024|376014|6133799003|18002099003|261009223027099003|22082099003|260925022911599003|260925021911599003|4143699003|260925021311599003|5023799004|56012099006|11063799006|261026121527099003|10067099003|261022075727099003|261102123227099003|261021121427099003|261022113327099003|261026140227099003|261028144727099003|261021123027099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: 2VR+8ffaP6ciGgABBgTke5Zkw1b62m+QCwW7DEEvSvdIHSv5g6Z0JTeG4IV1EcCJuTiFD+WNxi5o/f02teaDh0QdiUhojur3jFYvAPtD7tJdrd7kyN5AQOFOyO80Tf7V/+G1nIQjoKRlkNyicZ1OGJXfwCX3usQXIlIDZWzEkF92bOQUekiiLh9gc9XMymyhsHhoY/swK9I8VdjJbAv12aNutz06SP+4AVL6KbL3mYxjjaEL4HrRnw1BSxci53DmkTakNvLkN8aRRgNeF3/y0BbcyxOdSjMNK+CINnITO6c1yZYrtmqRRfkD1MYSN/Tq8pbRciFeUK+w1l0cGGRoMUf+wF28ZlyJTnSTMLQlfbb3bV/Kj6zHU76OJ/Air/VX/fLY7p//0vaJ8inqwBdURLjf4Se8k+UPGmOUXAUPR2WlzcV0qhoKFcUu30OGJP2PGkAbMS/tEQXh5PN32jjulgM9yHJcw4o+2iqkAVPDa5oGgsgga8HsOGls8Ec4z6MqKxGr+gQ27TjJomDxegnzDTrxsDeRVjLsc8ZWjoCirMEG+N3Dam/vkqiHbBDSvUFkjxd5Y/oEWJFf70QqF9h3LO95vBdiJouBOCTo3R9kOo9NXf5+yzqaSdx+WvUqfvI8VQ4u/A/h5hJdGNOaw0HFDkcIFQCERLnkNQXL1Heky4w=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9205.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(18002099003)(261009223027099003)(22082099003)(3023799007)(4143699003)(5023799004)(56012099006)(11063799006)(261026121527099003)(10067099003)(261022075727099003)(261102123227099003)(261021121427099003)(261022113327099003)(261026140227099003)(261028144727099003)(261021123027099003)(261022105027099003);
+ SFS:(13230040)(23010399003)(366016)(1800799024)(376014)(6133799003)(18002099003)(261009223027099003)(22082099003)(260925022911599003)(260925021911599003)(4143699003)(260925021311599003)(5023799004)(56012099006)(11063799006)(261026121527099003)(10067099003)(261022075727099003)(261102123227099003)(261021121427099003)(261022113327099003)(261026140227099003)(261028144727099003)(261021123027099003)(261022105027099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MldPSFc3Q3lySkpsYTc3T09TaFF4RVdidnE1K2lNSzI1WFlENmZZRDNIbmpP?=
- =?utf-8?B?V0FaNVRreTRyRzNIMGxCYTdSQ0dmM1ZMYm9hZG14WkNUR2NKRnk5Vjl4RFdM?=
- =?utf-8?B?eTdMMW9RQm00RjkzZ0JlMzY5OXZ4Mi80cmxLcXhLOGp1amsyallzMlNPdXBD?=
- =?utf-8?B?QUJueUtXTUUwT0tBR3BwUGVHN2tQZEFuMEkxTWZWQXluaC9teTl3b2FuWnJq?=
- =?utf-8?B?K0xYVUFrc2Q1RnJvN1c0NnFETUNDcXlHOVl2MU1rZlYyd3dUOEpsK1MxcG5K?=
- =?utf-8?B?aEM0QVExbHhvRmIzT2pvUjRVS1lIbFdxTDh3OVhDQUQxZFFEcUtBVUhybHZD?=
- =?utf-8?B?SlF3MzQwdnR0MC9rS1lJTVU1Zitkekw1c3JxcHZsRjYzb1Q1S0N2MzVSWTVK?=
- =?utf-8?B?ZllES3BOUzJxNHZ0VnViWGhKN3ZlM0RDQWdKZ3R6MEsrVDVRS25adm5remkx?=
- =?utf-8?B?cDN4V1o5cWFNNGJiTGpVVE5YUGhHdE5SWWZtcFh3TFpZem1zeitRVmYvR3Fv?=
- =?utf-8?B?ZXBNRXBRWjd5TnBkMjF6RkRyVDNHVWtMbDN5dTRBZXJoM2dISTdZUHAvN2Fw?=
- =?utf-8?B?ODhSL0o0WGJBeGRnQ2I2eS9OQ2dPQWRCRjNpcDVYMzRIN1JNVXVTL2J0ZDZV?=
- =?utf-8?B?enE4d2hPZC9xQjhJNEdRSXBBOXZwQVdLSmg3aXJ5bFFWL2ZpY005S3VnWnpJ?=
- =?utf-8?B?blgweHdtdWlySC9XNXV5d0hla3BwVnF3cWo3SzIxajBEYmlYYmJ6aG5UaXlx?=
- =?utf-8?B?Vk5BYmgrTzZ2M1h3amZ0QTRXdXRHc1hoVURER2lpMUp1WTIybXAxNmU4UDEv?=
- =?utf-8?B?Mms3M1NWTDJpY0h1ZW4wUmU4cFZOSjIySll1UVhRZUZodHAya005b21UajJJ?=
- =?utf-8?B?UHFpSkdxQzVNck41cFNuWG9LVEJaejlUMEMzTTcwbEppNFRvUUMzU0tiWHYx?=
- =?utf-8?B?eFNoeXBKTnJmeENGbjBYdElzMWp0cFo4ak5OV2xrK2xYaWpNaG9IaDVKRnBa?=
- =?utf-8?B?Qm5SdGIxNldUTlRUcWxrYjhZaTA3SXhDSjNaSWgvVWx1VkYzNEk0TWJpRTBh?=
- =?utf-8?B?ZXNZQlo3YXAzRVQ2WlpkL2xjdGZuUG1vNlFzSDd0S1EwaVpJeFFSUG1RRTUv?=
- =?utf-8?B?NlF5U0ozMVZVY1lvby8wYnI3TDJjZjBid2t1NlZjK0JBSzZ0bk4xanNoUnAx?=
- =?utf-8?B?VnZ3V0hSVStlakFNekVwbFMvRkZxSTY5ZDdzQUpyNnRubjU1OXFLcmtET1lK?=
- =?utf-8?B?aUgzajdsY1VUU0p2Y1A2WTBwQVdqR284Yk5rWUpLZS9abS9XL3c5WEdMd2xz?=
- =?utf-8?B?T0w0ZVJSVHZlUm5mS1ZEa3k3V0FXeERhTnp3dUZFanllRE9yV2NXczBzMnhi?=
- =?utf-8?B?dS9IWnJGKzVQMFhpVEhUNjdRTmlKcU84OFBrL1pvVXcwS2pxR2VRRE5GblFt?=
- =?utf-8?B?a1ZTRWNmTjJhN3ZqZ0k4eXF4eFBVdi9ub3hqU2pkV1FDam9TTEk2Mlh3WGda?=
- =?utf-8?B?M3pNZ3VJZ3BhOFZlTnVtM3pMT0FINmNPdnJlY1JtTjFkNHQ5MmN3QmFHMGJx?=
- =?utf-8?B?Ukxvb2JEWkw1UGU2TElNK2tBZEd1di9lcGxVMXhsUEg4SUtURW0yZ2liQ1FG?=
- =?utf-8?B?RHNXS1orc1p4eVFnc2VSOUR1NGR4anYwUjJDTENlZXNqdndMNS8xZ2VmUXhR?=
- =?utf-8?B?L0JrdWtiZDR6VjdyRUQycTdtbE1ONkJCK1hQdlZ3MnhRekI2dTltZWZaRnNk?=
- =?utf-8?B?OExzOUhXU0RhQnNhNlNOMnIvdkkxUFRxR01ySUUrT2hhUENQR2NBc2t5NHly?=
- =?utf-8?B?MjlhL01tbEIvOEVydnZ2WHlOZktjK1MwcUlJSGVkOUVwOEcwcTFOS2U1Wmlk?=
- =?utf-8?B?dHY0WUVHVnpiMk9ZOUErcUY0S1JZampYQWlwUmtrWXNZK25yZ05mZHR5dTgx?=
- =?utf-8?B?OXRDTlc4eWUzS0hGOVFXZndiK01OK0YxNGdBNzlyempoUTNOMlIyVmNsbFBX?=
- =?utf-8?B?SWFqd3QyenBBdlZUcG5JUUpIKy9mV09QRjZqbEFSYUtGN2JJZzlSSk51dUpJ?=
- =?utf-8?B?L1ovVmpvZjBtQnBjak01S1pSMXNoUU1ueTZDbWFJZUJMeW5tWE1wZjhtMmFl?=
- =?utf-8?B?RTNPVmloR0VWRy9waHlnVmlsc3NHWEF3eVRHYm9uVFMxaVhNcUFNTDlpR0FQ?=
- =?utf-8?B?dC8rdVhGU0JPWDFQdzZZd3pOMHh1NXUzdlFZQTQvS01YdzVMYTBrVXVEdjVJ?=
- =?utf-8?B?bjJ0UFRGUTRVem80azVKejQ3UUN3MFAyUHFjUzdYMU91OGVVNHR1NXJyTnJP?=
- =?utf-8?B?Wkp6dXlXV1o2TEg0U05yWXFwMHk2K1RTckl4RzJ4K1VHMmtpb2ZYTUJnSFds?=
- =?utf-8?Q?+yUTdfCRlbnlVu6Y=3D?=
-X-Exchange-RoutingPolicyChecked: FEfGWF1A3lE8Oben/S0tUV714wahX7f4sUWW/NuQ1h3lxiFo+6JjxrbOr/QOb4tbX67ZAoaejTP/2XWvbG2Div+aQiHTv8xd9aipHtpVWrHzlYzKuw4Jv2tv0oIH2sUEp0Q+R6u88B5bfVk+mLFzq3bhYEmes2P0EDMMM8QSYF/Xktzvxmt5i+XpK6diH9b07IDwBRIMGqAL6SR/LtDhGT+5sU8eICOV2W5dylOoAyRE0up/cNldUtYNIDw0/cHygLjimTo5rbmW9mm5/LYl49VppxzaWzMWxHDOKmgQbaj02PrwKqpknQqTvyHd4F8h1OmBDtrklpSwhLh9JW60kg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 180c4840-5794-4d26-7301-08df4abe225f
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cThuNVppdldFTENUbGlOVXBaeFpxdXZpMlhPR1ZRS1ArdXBaZGQ3blRiazdO?=
+ =?utf-8?B?ekVCOHZWckRhdnhCNlRyazQyTm1LaGNoWUNDai9VTUhyS21BVksveDlVaFNN?=
+ =?utf-8?B?ZnF3RWNlVG85Ylc4WEpManQ5aWNSa0NpaC9OUDdmK3FjNFVnNkNIOGtacTJv?=
+ =?utf-8?B?a01NcUNpWHlOeWpPNVRLem5CL1hTRkZRbTdVaXFCK1pPK014a3dGV1dzN0tr?=
+ =?utf-8?B?Y1Z6Z1VLL1FObWxXSFJ3RnNhbGVvamNBbzFPaWJkd0hkRXl2c3JoZjdURDI5?=
+ =?utf-8?B?d0Zia0EzQmpxUDd2TVZsRFF3RkM5ZFI5dlhBa01RMVlCQzR3REtVM2doa3ox?=
+ =?utf-8?B?SDZhN1gvcCtSNm1pNjFQS3hXcFNKTUkyZWV4Ryt3c29CMGVybWFaY2dMMFlN?=
+ =?utf-8?B?aGVFOHl0bzY4ZnU5L25QUHd6aG9vVjJNNVFlM2ZFMEQ2SXFFdWFmQS85Qnpr?=
+ =?utf-8?B?SExlc0s0TnZlSnlQSi9BcHorSkJQQjNDdUU5L0FVRzcrNVJ1MTVYOEFwdGFW?=
+ =?utf-8?B?N01wbzV1MTJkSzl3djFJdnNsQTNqSmpQOXNEUmd2Rm1iLzM2L3JsekZKRDFa?=
+ =?utf-8?B?azZkWGFMK1RwNGNDK0NUMmp1NVBFWWxBMnlXNUYraWhJMk82NUZKNlR3WWdJ?=
+ =?utf-8?B?QUdCNnlTWDZ4QjY3d1pYcDdGcG53NVV4ZEFTZDIvbGo0d3FYbU45dUsxNzFF?=
+ =?utf-8?B?cnp6bnYwYnhLeTJaWjVUMTV4MnJTL0VDTEVPNzBFNGtCVUNpUjd5VnF5Wjg5?=
+ =?utf-8?B?aHBIODRNODAzRm1EYjIreVdKeDk0a1VHSGx3eUxEM054aGE0NjFMUjljTFBW?=
+ =?utf-8?B?SjZPZEY5aEM3YXNVNG5MQ1BUaFBQdkUxT2tnb2VxNFNhanY5OHJBcmdaUEVt?=
+ =?utf-8?B?OVl0bWVacEZLOVNwQ0tybVp1djBheW5OYlNOaGJBSzB2NXdrSTR2b0wyaXVN?=
+ =?utf-8?B?MjF5a0dLMkw3MmhTanhpRnpGMUI2LzFnVm5sVUFyaEdlMTVCd0RZQ2dyZldD?=
+ =?utf-8?B?VG9Vc25EUEZ6NDZYMTFWUENQU3c2NW1xN3pJUUpVcFJqM1pTVW03OHJIdUNJ?=
+ =?utf-8?B?c3h3Z29OS0JwRkdDSFIxRHUweVN2KytWZ2Q2bGx0U3JheE4wNDd2a0FqRzIy?=
+ =?utf-8?B?VGJ3QVFoUDFncmJ3eVNtemptNnpxTE5XUy9hdlJmUE5La3NBejRKbkIwdlRx?=
+ =?utf-8?B?R3pkVmxvNi9qUWw2RHFPTnVOc0FUdlJ3R3pSck8wU2pabnVVa05udTMydGRu?=
+ =?utf-8?B?ZC9LVnF4OG5XWkg3WWE5c0tSWmJrMVQwNStyeE85cjZNSXhPT0dQeGJ2YXRr?=
+ =?utf-8?B?K2pNd2pGTlM2NDU3QnNFWW9yL2NRSWJabk04UFU5NjZINzJEUjB0Kzh2WlYr?=
+ =?utf-8?B?VFNuZ2IzcWMySkJZVmpURmZxd2FaMS9XSmVFQU5Nek9qbU00L20zZDJSaDVR?=
+ =?utf-8?B?elBFUkxOeHE4Nnp0NFF2ZDVyQzNLbXJvYkpjamY4KzFvRHpnMFlER2hVdDEy?=
+ =?utf-8?B?MzFwV2JUZmVKUjQ2TjhtdW9sNHk5ZXNtcGVWSnhzaXZCUnU1SGxRVStGZnl3?=
+ =?utf-8?B?QWlVZzRab1hNRnFwM0wyMWZJQ1JkelYyekU4c0NEVzR1cmNIazVrS1JUMkFR?=
+ =?utf-8?B?dGxwYVMzcVJhc1ZJRGt0dGFTRWJ5ZnlpeXgxallvQmFXOUNGZHdDSTFndjNi?=
+ =?utf-8?B?M201c3JXY3poSTREZ3paclA4V3VWRStPeVIrazJSbWNsVGdlZTlmZVZvTGxI?=
+ =?utf-8?B?SjFlL3JrMmozZXA5SnBFa2NZSXZWT2w1QWEvZWJ6bkwzTldnbzVRWXZzNVNJ?=
+ =?utf-8?B?M0FIRDcvZGlwY0wwMVRSYks0emFxUXQyT2s1c0hVTWNSRmEwbS9FVlRDdHBx?=
+ =?utf-8?B?M2k0ZFAydjg5VVZRVE42bktQazNvNEswbzJxbmpHdGRjck9FZUNZRDEwdlBD?=
+ =?utf-8?B?UFo2L3h3YjQ2STJhRkFpVE9ZUXNRdjBSdm5WcjZyOC9IOGNwdGtrQkhuM2px?=
+ =?utf-8?B?U2pNR3BjMjRDNnpzM3V1aHltbU1EeTFYaUdYeS8zYkxINVBlRFhyZ2tqalpj?=
+ =?utf-8?B?S0VRSmxtTHV5bmZ0cWdBd3E0Zm9pNTFpUkE1blhqWU00aGxwSzZVMTV1emV1?=
+ =?utf-8?B?M2hxa3Bhc2dTQVRQRnp6L1c4bVFPaEVjMXVzU1NMaGFSL2dCekhYRzBQMEJQ?=
+ =?utf-8?B?SG1nakZGWnBBUWNld0ZMTENlMFFIY3JGOFlobTY1ZVlMV1NJOElRcHJYNmxl?=
+ =?utf-8?B?TUYzaFNXcmh5eERqMk1SSjhRdEhqTStNZFNVT2JYdWd6NFNrWUk1UnVnUko5?=
+ =?utf-8?B?ZER1YkpyZ3hyaFB2ajY0T0ZTWGRwcW1DWDhvaWtmUldhNHRuS09WUT09?=
+X-Exchange-RoutingPolicyChecked: DpPLrnCqnaC+6ciEx4feL0J5/W8RevxvnjaEPvTmRHsUqtvosYR4+4V/nGgp7w5v8ASWzQAwpSYkD/ykGDEM+9MGh6PEvW1bHrRQewltcJ2czCrKktu1cAoGzN88b2N9P8Mi8Y5aK7S0dSa2g0yHKhNruyF09x45Wx8lSFcUq4+Qm6XuneAu/JAIQbm2J7LZpY+To77ryrSwYt2Sjelxqg2s8VqksnIoUTy3uP0qS/EwfLIh2UVNvWxubNAWy4Ird9JK4c5dENyc+7EtfPwuLASGt5QSIJRJ/aNG7lVlyJBfgyWdDdcTvH1hWJX3niAawULbbDrmbWRuoG5WP1G1nQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 27c5d61f-7850-4210-6614-08df4abe7d79
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9205.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 06:34:19.2326 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 06:36:52.2603 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +LHxX0dXQRhVWGWBZV5AuvwoD0g2LY24/pjgAG6TXtBYOZ6PqL6tbkp2bhC/nYBz+LrsAGQJ7oVDMR/9tFATdk9/XQmjxJh2mBpTl3tQ5AU=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3SCMGQDNRJNcYJSG82LK8qL832O9vMhpmIkKxv9EDyH1P+jaUV8FzD6vLnosgnj3WOKdYdh3a82Zo+vneAryL6D+asnsNj7S7aCKX+5uHY0=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8435
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -181,257 +180,374 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 On 11/25/2026 1:41, Umesh Nerlige Ramappa wrote:
-> drm_ioctl() only checks for unplug on entry, so an OA ioctl that
-> started before drm_dev_unplug() can still open a stream, or access
-> oa->xe and the metrics idr, while the device is removed. The ioctls and
-> the mmap of the OA stream fd don't go through drm_ioctl() at all, and
-> neither through the wedged check of xe_drm_ioctl().
+> An OA stream fd can outlive the device: after a PCI slot reset or after
+> unbind. The poll hrtimer and userspace calls on the fd could then access
+> MMIO and other device-bound objects that were released on remove,
+> causing a NULL pointer dereference, and xe_oa_release() would tear down
+> against freed objects.
 >
-> Run the OA ioctls of the drm fd and the ioctls and mmap of the OA stream
-> fd in a drm_dev_enter() section, so that they fail with -ENODEV once the
-> device is unplugged, and drm_dev_unplug() waits for the ones in flight.
-> Fail the stream fd ioctls with -ECANCELED on a wedged device, like
-> xe_drm_ioctl() does.
+> Destroy a stream the same way whether its fd is closed or the device
+> goes away: xe_oa_destroy_locked() marks the stream dead, disables it,
+> restores the HW state and releases everything but the OA buffer and the
+> stream struct, whether or not the HW still responds. xe_oa_fini() calls
+> xe_oa_quiesce() to destroy the streams of a removed device, and
+> xe_oa_release() skips the destroy of such a dead stream. Only the
+> stream struct, with stream_lock and poll_wq valid, and the pinned OA
+> buffer stay allocated until the fd is closed or the process owning the
+> fd exits. The quiesce drops the DMA mapping of the OA buffer, which
+> stays pinned past xe_bo_pinned_fini(). On a wedged device, pending OA
+> batches aren't waited for, nothing in the ring runs anymore.
 >
-> A config without output syncs waits synchronously for its batch, while
-> holding stream_lock or gt_lock and now in a drm_dev_enter() section. If
-> the batch waits on an input fence that never signals, or never completes
-> on a wedged device, that would block drm_dev_unplug() or the stream
-> teardown. Stop waiting once the device is unplugged or wedged, and fail
-> the config.
+> The quiesce needs no runtime PM reference of its own: xe_oa_fini() runs
+> after xe_pm_fini(), which keeps the device resumed with runtime suspend
+> forbidden. xe_oa_release() doesn't take one for a stream destroyed by
+> the quiesce either, so that it doesn't wake a removed device. It checks
+> for that, destroys the stream and frees the OA buffer all under gt_lock,
+> so that xe_oa_fini() can't run in between.
 >
-> When the stream is destroyed on a wedged device, don't submit the batch
-> that disables the context save/restore of the OA counters either: the
-> context won't run again, and on a long-running exec queue, which no TDR
-> covers, the batch would never complete and keep the exec queue alive.
+> Once dead, OA interfaces return -ENODEV, poll reports EPOLLERR |
+> EPOLLHUP, and xe_oa_release() frees the stream struct and the OA
+> buffer, and drops the drm device reference.
 >
-> A stream fd can still outlive the device, the following patch handles
-> that.
->
-> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>'
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 
-For the comments which Sashiko has responded below, I feel similar 
-patterns in other areas of the kernel as well (check xe_drm_ioctl()), 
-also, handling jobs pushed onto an already-wedged long-running queue 
-belongs in xe_guc_submit, and not in OA, and with that, I think, it's 
-good to go.  With all that aside, it LGTM, and
+I don't think this is an OA problem to solve (the comments from Sashiko 
+below) cause this is how the teardown/flushing is happening in other 
+areas as well.  With that,
 
 Reviewed-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
 > ---
-> v8: Split out of "drm/xe/oa: Quiesce OA streams on driver unbind and PCI
->      reset", which carried these changes since v4
-> v10: Don't submit the context disable batch on a wedged device (Sashiko)
+> v2: Include Sashiko's comments
+> v3: Fix circular lockdep issue due to scope of stream->mmap_mutex
+> v4: Rely on drm_dev_unplug() to zap OA buffer mmaps and on the dummy page
+>      for refaults. Drop the OA specific fault handler and mmap_mutex. Split
+>      out the stream destroy refactor and the runtime PM move into separate
+>      patches. DMA-unmap the OA buffer on quiesce and run the OA ioctls in a
+>      drm_dev_enter() section instead of the per-GT quiesced flag. Don't
+>      restore the context state on quiesce, wait for pending OA batches on
+>      quiesce, don't block unplug on a synchronous OA config wait and
+>      quiesce a stream released during removal (Sashiko).
+> v5: Keep the OA buffer pinned until the stream fd is released instead of
+>      DMA-unmapping it on quiesce, so the shrinker can't drop the last
+>      reference after the device is gone (Sashiko).
+> v6: Run the stream fd ioctls in a drm_dev_enter() section and reject them
+>      on a wedged device. Stop the synchronous OA config wait on a wedged
+>      device too. Flush the TTM workqueue before dropping the drm device
+>      reference on release of an unplugged device (Sashiko).
+> v7: Return -ENODEV rather than -ECANCELED from stream fd ioctls once the
+>      device is unplugged, also when it is wedged. Fail the synchronous OA
+>      config wait when it is cut short. DMA-unmap the OA buffer on quiesce,
+>      as xe_bo_pinned_fini() can race with its release. Fix the
+>      xe_oa_quiesce() comment (Sashiko).
+> v8: Destroy a stream the same way on close and on quiesce, whether or
+>      not the device is wedged or still responds, all HW waits are
+>      bounded. This also restores preemption and the context state on
+>      quiesce. Drop the release time drm_dev_enter() section, gt_lock
+>      already serializes release against the quiesce. Replace the stream
+>      destroy split with a patch that only moves freeing the OA buffer and
+>      the stream to the callers. Split out the ioctl and mmap
+>      unplug/wedged fencing and the synchronous config wait into a
+>      separate patch. Drop the runtime PM move, xe_oa_release() keeps the
+>      runtime PM reference across freeing the OA buffer, so that unpinning
+>      it can't race with the pinned BO eviction of a D3cold runtime
+>      suspend (Sashiko).
+> v9: DMA-unmap the OA buffer on quiesce only, not on every stream destroy,
+>      so that a pinned OA buffer is never left without its DMA mapping
+>      across a suspend/resume. Don't wait for OA batches on a wedged
+>      device. Drain the OA batches in the stream init error path too
+>      (Sashiko).
+> v10: Check for a dead stream, take the runtime PM reference and free the
+>       OA buffer all under gt_lock in xe_oa_release(). Move not submitting
+>       the context disable batch on a wedged device into the previous
+>       fencing patch (Sashiko).
 > ---
->   drivers/gpu/drm/xe/xe_oa.c          | 80 +++++++++++++++++++++++------
->   drivers/gpu/drm/xe/xe_observation.c | 20 +++++++-
->   2 files changed, 81 insertions(+), 19 deletions(-)
+>   drivers/gpu/drm/xe/xe_oa.c       | 136 ++++++++++++++++++++++++++++---
+>   drivers/gpu/drm/xe/xe_oa_types.h |   3 +
+>   2 files changed, 128 insertions(+), 11 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> index 7241cf18b325..9ce96cac3bf6 100644
+> index d37724e28016..2b88f3fa210d 100644
 > --- a/drivers/gpu/drm/xe/xe_oa.c
 > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> @@ -43,6 +43,7 @@
->   #include "xe_sriov.h"
->   #include "xe_sync.h"
->   #include "xe_wa.h"
-> +#include "xe_wedge.h"
+> @@ -261,13 +261,18 @@ static bool mert_wa_14026633728(struct xe_oa_stream *s)
 >   
->   #define DEFAULT_POLL_FREQUENCY_HZ 200
->   #define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
-> @@ -895,9 +896,10 @@ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+>   static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
+>   {
+> -	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+> -	u32 tail, hw_tail, partial_report_size, available;
+> +	u32 gtt_offset, tail, hw_tail, partial_report_size, available;
+>   	int report_size = stream->oa_buffer.format->size;
+>   	unsigned long flags;
 >   
->   	/*
->   	 * disable the context save/restore or OAR counters, and wait for that batch like for
-> -	 * the ones before it
-> +	 * the ones before it. Not on a wedged device, the context won't run again, and the
-> +	 * batch might never complete on a long-running exec queue, which no TDR covers.
->   	 */
-> -	if (stream->exec_q) {
-> +	if (stream->exec_q && !xe_wedged(stream->oa->xe)) {
->   		xe_oa_configure_oa_context(stream, false);
->   		xe_oa_stream_drain(stream);
->   	}
-> @@ -1082,6 +1084,7 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
->   	struct xe_oa_fence *ofence;
->   	int i, err, num_signal = 0;
->   	struct dma_fence *fence;
-> +	int ret = 0;
+>   	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
 >   
->   	ofence = kzalloc_obj(*ofence);
->   	if (!ofence) {
-> @@ -1125,12 +1128,28 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
->   	if (err == -ENOENT)
->   		xe_oa_config_cb(fence, &ofence->cb);
+> +	if (stream->dead) {
+> +		spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> +		return false;
+> +	}
+> +
+> +	gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
+>   	hw_tail = xe_oa_hw_tail_read(stream);
+>   	hw_tail -= gtt_offset;
 >   
-> -	/* If nothing needs to be signaled we wait synchronously */
-> +	/*
-> +	 * If nothing needs to be signaled we wait synchronously unless the device
-> +	 * is unplugged/wedged.
-> +	 */
->   	if (!num_signal) {
-> -		dma_fence_wait(&ofence->base, false);
-> +		while (!dma_fence_wait_timeout(&ofence->base, false, HZ / 10)) {
-> +			if (drm_dev_is_unplugged(&gt_to_xe(stream->gt)->drm)) {
-> +				ret = -ENODEV;
-> +				break;
-> +			}
-> +			if (xe_wedged(gt_to_xe(stream->gt))) {
-> +				ret = -ECANCELED;
-> +				break;
-> +			}
-> +		}
->   		dma_fence_put(&ofence->base);
->   	}
+> @@ -328,6 +333,9 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
+>   	struct xe_oa_stream *stream =
+>   		container_of(hrtimer, typeof(*stream), poll_check_timer);
 >   
-> +	/* The callers clean up the syncs on error */
+> +	if (READ_ONCE(stream->dead))
+> +		return HRTIMER_NORESTART;
+> +
+>   	if (xe_oa_buffer_check_unlocked(stream))
+>   		wake_up(&stream->poll_wq);
+>   
+> @@ -539,12 +547,19 @@ static void xe_oa_disable(struct xe_oa_stream *stream)
+>   
+>   static int xe_oa_wait_unlocked(struct xe_oa_stream *stream)
+>   {
+> +	int ret;
+> +
+>   	/* We might wait indefinitely if periodic sampling is not enabled */
+>   	if (!stream->periodic)
+>   		return -EINVAL;
+>   
+> -	return wait_event_interruptible(stream->poll_wq,
+> -					xe_oa_buffer_check_unlocked(stream));
+> +	ret = wait_event_interruptible(stream->poll_wq,
+> +				       READ_ONCE(stream->dead) ||
+> +				       xe_oa_buffer_check_unlocked(stream));
 > +	if (ret)
 > +		return ret;
 > +
->   	/* Done with syncs */
->   	for (i = 0; i < stream->num_syncs; i++)
->   		xe_sync_entry_cleanup(&stream->syncs[i]);
-> @@ -1722,11 +1741,20 @@ static long xe_oa_ioctl(struct file *file,
->   			unsigned long arg)
->   {
->   	struct xe_oa_stream *stream = file->private_data;
-> -	long ret;
-> +	struct xe_device *xe = gt_to_xe(stream->gt);
-> +	long ret = -ECANCELED;
-> +	int idx;
+> +	return READ_ONCE(stream->dead) ? -ENODEV : 0;
+>   }
 >   
-> -	mutex_lock(&stream->stream_lock);
-> -	ret = xe_oa_ioctl_locked(stream, cmd, arg);
-> -	mutex_unlock(&stream->stream_lock);
-> +	if (!drm_dev_enter(&xe->drm, &idx))
+>   #define OASTATUS_RELEVANT_BITS (OASTATUS_MMIO_TRG_Q_FULL | OASTATUS_COUNTER_OVERFLOW | \
+> @@ -573,6 +588,9 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+>   	size_t offset = 0;
+>   	int ret;
+>   
+> +	if (READ_ONCE(stream->dead))
 > +		return -ENODEV;
 > +
-> +	if (!xe_wedged(xe)) {
-> +		mutex_lock(&stream->stream_lock);
-> +		ret = xe_oa_ioctl_locked(stream, cmd, arg);
-> +		mutex_unlock(&stream->stream_lock);
-> +	}
-> +
-> +	drm_dev_exit(idx);
+>   	if (!stream->sample)
+>   		return -EINVAL;
 >   
->   	return ret;
->   }
-> @@ -1765,27 +1793,41 @@ static int xe_oa_release(struct inode *inode, struct file *file)
->   static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
->   {
->   	struct xe_oa_stream *stream = file->private_data;
-> +	struct xe_device *xe = gt_to_xe(stream->gt);
->   	int ret = xe_observation_paranoid_check();
-> -	struct xe_bo *bo = stream->oa_buffer.bo;
-> +	struct xe_bo *bo;
-> +	int idx;
+> @@ -583,13 +601,14 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
+>   				return ret;
 >   
->   	if (ret) {
-> -		drm_dbg(&stream->oa->xe->drm, "Insufficient privilege to map OA buffer\n");
-> +		drm_dbg(&xe->drm, "Insufficient privilege to map OA buffer\n");
->   		return ret;
+>   			mutex_lock(&stream->stream_lock);
+> -			ret = __xe_oa_read(stream, buf, count, &offset);
+> +			ret = stream->dead ? -ENODEV :
+> +				__xe_oa_read(stream, buf, count, &offset);
+>   			mutex_unlock(&stream->stream_lock);
+>   		} while (!offset && !ret);
+>   	} else {
+>   		xe_oa_buffer_check_unlocked(stream);
+>   		mutex_lock(&stream->stream_lock);
+> -		ret = __xe_oa_read(stream, buf, count, &offset);
+> +		ret = stream->dead ? -ENODEV : __xe_oa_read(stream, buf, count, &offset);
+>   		mutex_unlock(&stream->stream_lock);
 >   	}
 >   
-> +	/*
-> +	 * drm_dev_unplug() zaps the OA buffer mmaps and waits for this section to finish, so
-> +	 * no mmap of the OA buffer can be set up after that. Can't use stream_lock here, it is
-> +	 * held across user copies which fault on mmap_lock, held by the caller.
-> +	 */
-> +	if (!drm_dev_enter(&xe->drm, &idx))
+> @@ -616,6 +635,9 @@ static __poll_t xe_oa_poll_locked(struct xe_oa_stream *stream,
+>   
+>   	poll_wait(file, &stream->poll_wq, wait);
+>   
+> +	if (stream->dead)
+> +		return EPOLLERR | EPOLLHUP;
+> +
+>   	/*
+>   	 * We don't explicitly check whether there's something to read here since this
+>   	 * path may be hot depending on what else userspace is polling, or on the timeout
+> @@ -865,7 +887,9 @@ static void xe_oa_stream_drain(struct xe_oa_stream *stream)
+>   	struct xe_exec_queue *q = stream->exec_q ?: stream->k_exec_q;
+>   	long timeout;
+>   
+> -	if (!stream->last_fence || dma_fence_is_signaled(stream->last_fence))
+> +	/* Nothing in the ring runs anymore on a wedged device */
+> +	if (xe_wedged(stream->oa->xe) || !stream->last_fence ||
+> +	    dma_fence_is_signaled(stream->last_fence))
+>   		return;
+>   
+>   	/*
+> @@ -1716,6 +1740,9 @@ static long xe_oa_ioctl_locked(struct xe_oa_stream *stream,
+>   			       unsigned int cmd,
+>   			       unsigned long arg)
+>   {
+> +	if (stream->dead)
 > +		return -ENODEV;
+> +
+>   	switch (cmd) {
+>   	case DRM_XE_OBSERVATION_IOCTL_ENABLE:
+>   		return xe_oa_enable_locked(stream);
+> @@ -1755,33 +1782,69 @@ static long xe_oa_ioctl(struct file *file,
+>   	return ret;
+>   }
+>   
+> +/*
+> + * Disable the stream, restore the HW state and release everything but the OA buffer and the
+> + * stream struct, the same whether the stream fd is closed or the device goes away, and
+> + * whether or not the HW still responds: all HW waits are bounded. Afterwards the stream is
+> + * dead and any further read, poll, mmap or ioctl on the stream fd fails with -ENODEV.
+> + */
+>   static void xe_oa_destroy_locked(struct xe_oa_stream *stream)
+>   {
+> +	unsigned long flags;
+> +
+> +	mutex_lock(&stream->stream_lock);
+> +
+> +	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
+> +	WRITE_ONCE(stream->dead, true);
+> +	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
+> +
+>   	if (stream->enabled)
+>   		xe_oa_disable_locked(stream);
+>   
+> +	wake_up_all(&stream->poll_wq);
+> +
+>   	xe_oa_stream_destroy(stream);
+>   
+>   	if (stream->exec_q)
+>   		xe_exec_queue_put(stream->exec_q);
+>   
+>   	drm_syncobj_put(stream->ufence_syncobj);
+> +	mutex_unlock(&stream->stream_lock);
+>   }
+>   
+>   static int xe_oa_release(struct inode *inode, struct file *file)
+>   {
+>   	struct xe_oa_stream *stream = file->private_data;
+>   	struct xe_gt *gt = stream->gt;
+> +	bool rpm;
+>   
+> -	xe_pm_runtime_get(gt_to_xe(gt));
+> +	/*
+> +	 * gt_lock serializes against xe_oa_fini(), which destroys the stream on device removal.
+> +	 * Unless it did, the device stays bound while this holds gt_lock, so take a runtime PM
+> +	 * reference only then, and don't wake a removed device. Free the OA buffer under gt_lock
+> +	 * too, so that it is unpinned before xe_oa_fini() and xe_bo_pinned_fini() can run.
+> +	 */
+>   	mutex_lock(&gt->oa.gt_lock);
+> -	xe_oa_destroy_locked(stream);
+> -	mutex_unlock(&gt->oa.gt_lock);
+> +	rpm = !stream->dead;
+> +	if (rpm) {
+> +		xe_pm_runtime_get(gt_to_xe(gt));
+> +		xe_oa_destroy_locked(stream);
+> +	}
+>   
+>   	xe_oa_free_oa_buffer(stream);
+>   	mutex_destroy(&stream->stream_lock);
+>   	kfree(stream);
+> -	xe_pm_runtime_put(gt_to_xe(gt));
+> +	if (rpm)
+> +		xe_pm_runtime_put(gt_to_xe(gt));
+> +	mutex_unlock(&gt->oa.gt_lock);
+> +
+> +	/*
+> +	 * Freeing the OA buffer may defer the BO destroy to the TTM workqueue. Once the device
+> +	 * is unplugged, this may be the last reference on the drm device, so let the destroy
+> +	 * finish before drm_dev_put() releases the GGTT.
+> +	 */
+> +	if (drm_dev_is_unplugged(&gt_to_xe(gt)->drm))
+> +		flush_workqueue(gt_to_xe(gt)->ttm.wq);
+>   
+>   	/* Release the reference the OA stream kept on the driver */
+>   	drm_dev_put(&gt_to_xe(gt)->drm);
+> @@ -1810,6 +1873,11 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
+>   	if (!drm_dev_enter(&xe->drm, &idx))
+>   		return -ENODEV;
+>   
+> +	if (READ_ONCE(stream->dead)) {
+> +		ret = -ENODEV;
+> +		goto exit;
+> +	}
 > +
 >   	/*
 >   	 * Userspace always maps the OA buffer at offset 0, the mapping is moved to the OA
 >   	 * buffer's own range in the drm device's address_space below
->   	 */
->   	if (vma->vm_pgoff) {
-> -		drm_dbg(&stream->oa->xe->drm, "Wrong mmap offset, must be 0\n");
-> -		return -EINVAL;
-> +		drm_dbg(&xe->drm, "Wrong mmap offset, must be 0\n");
-> +		ret = -EINVAL;
-> +		goto exit;
->   	}
+> @@ -1958,6 +2026,7 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
+>   	return 0;
 >   
-> +	bo = stream->oa_buffer.bo;
-> +
->   	/* Can mmap the entire OA buffer or nothing (no partial OA buffer mmaps) */
->   	if (vma->vm_end - vma->vm_start != xe_bo_size(bo)) {
-> -		drm_dbg(&stream->oa->xe->drm, "Wrong mmap size, must be OA buffer size\n");
-> -		return -EINVAL;
-> +		drm_dbg(&xe->drm, "Wrong mmap size, must be OA buffer size\n");
-> +		ret = -EINVAL;
-> +		goto exit;
->   	}
->   
->   	/*
-> @@ -1793,15 +1835,19 @@ static int xe_oa_mmap(struct file *file, struct vm_area_struct *vma)
->   	 * VM_MAYSHARE, don't copy the vma on fork
->   	 */
->   	if (vma->vm_flags & (VM_WRITE | VM_EXEC | VM_SHARED | VM_MAYSHARE)) {
-> -		drm_dbg(&stream->oa->xe->drm, "mmap must be read only\n");
-> -		return -EINVAL;
-> +		drm_dbg(&xe->drm, "mmap must be read only\n");
-> +		ret = -EINVAL;
-> +		goto exit;
->   	}
->   	vm_flags_mod(vma, VM_PFNMAP | VM_DONTEXPAND | VM_DONTDUMP | VM_DONTCOPY,
->   		     VM_MAYWRITE | VM_MAYEXEC);
->   
->   	vma->vm_pgoff = drm_vma_node_start(&bo->ttm.base.vma_node);
->   
-> -	return drm_gem_mmap_obj(&bo->ttm.base, xe_bo_size(bo), vma);
-> +	ret = drm_gem_mmap_obj(&bo->ttm.base, xe_bo_size(bo), vma);
-> +exit:
-> +	drm_dev_exit(idx);
-> +	return ret;
+>   err_put_k_exec_q:
+> +	xe_oa_stream_drain(stream);
+>   	xe_oa_disable_metric_set(stream);
+>   	xe_exec_queue_put(stream->k_exec_q);
+>   err_free_oa_buf:
+> @@ -2674,6 +2743,49 @@ static void xe_oa_unregister(void *arg)
+>   	oa->metrics_kobj = NULL;
 >   }
 >   
->   static const struct file_operations xe_oa_fops = {
-> diff --git a/drivers/gpu/drm/xe/xe_observation.c b/drivers/gpu/drm/xe/xe_observation.c
-> index 39e05b9131a7..9e23ade51dc1 100644
-> --- a/drivers/gpu/drm/xe/xe_observation.c
-> +++ b/drivers/gpu/drm/xe/xe_observation.c
-> @@ -7,6 +7,7 @@
->   #include <linux/perf_event.h>
->   #include <linux/sysctl.h>
->   
-> +#include <drm/drm_drv.h>
->   #include <uapi/drm/xe_drm.h>
->   
->   #include "xe_eu_stall.h"
-> @@ -35,8 +36,8 @@ int xe_observation_paranoid_check(void)
->   	return perf_allow_cpu();
->   }
->   
-> -static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
-> -		       struct drm_file *file)
-> +static int __xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
-> +			 struct drm_file *file)
->   {
->   	switch (arg->observation_op) {
->   	case DRM_XE_OBSERVATION_OP_STREAM_OPEN:
-> @@ -50,6 +51,21 @@ static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *
->   	}
->   }
->   
-> +static int xe_oa_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
-> +		       struct drm_file *file)
+> +static void xe_oa_quiesce_gt(struct xe_gt *gt)
 > +{
-> +	int idx, ret;
+> +	int i;
 > +
-> +	/* Hold off drm_dev_unplug() while the OA ioctls run */
-> +	if (!drm_dev_enter(dev, &idx))
-> +		return -ENODEV;
+> +	mutex_lock(&gt->oa.gt_lock);
+> +	for (i = 0; i < gt->oa.num_oa_units; i++) {
+> +		struct xe_oa_stream *stream = gt->oa.oa_unit[i].exclusive_stream;
 > +
-> +	ret = __xe_oa_ioctl(dev, arg, file);
+> +		if (!stream)
+> +			continue;
 > +
-> +	drm_dev_exit(idx);
-> +	return ret;
+> +		xe_oa_destroy_locked(stream);
+> +
+> +		/*
+> +		 * The OA buffer stays pinned until the stream fd is released, an mmap may still
+> +		 * hold a reference on it. Drop its DMA mapping now: the fd may be released, and
+> +		 * the BO unpinned, while xe_bo_pinned_fini() DMA-unmaps it without the BO lock.
+> +		 */
+> +		xe_bo_dma_unmap_pinned(stream->oa_buffer.bo);
+> +	}
+> +	mutex_unlock(&gt->oa.gt_lock);
 > +}
 > +
->   static int xe_eu_stall_ioctl(struct drm_device *dev, struct drm_xe_observation_param *arg,
->   			     struct drm_file *file)
->   {
+> +/**
+> + * xe_oa_quiesce - Disable all active OA streams on driver unbind or PCI slot reset
+> + * @xe: @xe_device
+> + *
+> + * Destroys every active stream like closing its fd would, see xe_oa_destroy_locked().
+> + * Only the stream struct and the pinned OA buffer stay allocated until userspace closes
+> + * the fd, at which point xe_oa_release() frees them.
+> + */
+> +static void xe_oa_quiesce(struct xe_device *xe)
+> +{
+> +	struct xe_gt *gt;
+> +	u8 id;
+> +
+> +	if (!xe->oa.xe)
+> +		return;
+> +
+> +	for_each_gt(gt, xe, id)
+> +		xe_oa_quiesce_gt(gt);
+> +}
+> +
+>   /**
+>    * xe_oa_register - Xe OA registration
+>    * @xe: @xe_device
+> @@ -2985,6 +3097,8 @@ static void xe_oa_fini(void *arg)
+>   	if (!oa->xe)
+>   		return;
+>   
+> +	xe_oa_quiesce(xe);
+> +
+>   	idr_for_each(&oa->metrics_idr, destroy_config, oa);
+>   	idr_destroy(&oa->metrics_idr);
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
+> index e876e9be92ba..e60a90bae1c6 100644
+> --- a/drivers/gpu/drm/xe/xe_oa_types.h
+> +++ b/drivers/gpu/drm/xe/xe_oa_types.h
+> @@ -214,6 +214,9 @@ struct xe_oa_stream {
+>   	/** @enabled: Whether the stream is currently enabled */
+>   	bool enabled;
+>   
+> +	/** @dead: Gate HW access when device is wedged or going away */
+> +	bool dead;
+> +
+>   	/** @oa_config: OA configuration used by the stream */
+>   	struct xe_oa_config *oa_config;
+>   
 
 -- 
 Shekhar Chauhan
