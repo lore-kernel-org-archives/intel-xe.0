@@ -2,52 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7FFB606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 10:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E33606A326
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 10:07:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=q2Uujm96
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Jw24eSZz
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CBD810E2B2;
-	Wed, 25 Nov 2026 10:04:09 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2CB410E2B2
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 10:03:58 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id D44684E41778;
- Wed, 25 Nov 2026 10:03:56 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id A0B0F60480;
- Wed, 25 Nov 2026 10:03:56 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 0FBE311E69C2F; Wed, 25 Nov 2026 11:03:54 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1795601036; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references;
- bh=sTN+qvc7xCX3cggRlBV8dqr4F6FnoJ9KcbUquUQE+pI=;
- b=q2Uujm96HZSej2CSWmINxToXXffqLO1n1b8JmM0IMTK9SCSz1AwtUC6JmpTefyIgr0FCcj
- qo9X/9s1aCG0OMTYBI3aDpLmll+U4tAVSw6Do/AaMEwCwcB+v459f+HvU7S1jHj7J5Q6H1
- RWEoG1rV5KTldSLzRc7Sk9w+tsBOlWv6vWmsZY6CdyNATdXFt7mScPt3OyZ5oey3L0NgBo
- SQOY1zZyPDO+ZyRfG6IR9pVBC3ajqIRXUjj2O4QkRcgTN7icuCmcmYl0T2rYA53mwy2ze7
- SJMqC/xNOD1+8of3R0oybSJt+hpCIzpvWGmatJYA+XoKJZ84iDAV2EwVifpWSw==
-Message-ID: <57bb208d-e220-4ae0-94bb-5e873d138f92@bootlin.com>
-Date: Wed, 25 Nov 2026 11:03:54 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30FE210E2B2;
+	Wed, 25 Nov 2026 10:07:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61BA110E2B2
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 10:07:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795601247; x=1827137247;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=S4NKs6CoM59s59fy836EcNIZwCqM1LJ+DO2hp9BMndg=;
+ b=Jw24eSZz/WjpcDdtsP9dh8j9JSxwvVcI0PWBTPc4uaxokk6v8KehkTS3
+ RVq2qJaxP9Uur0jQfVAdYR5W5AzzAEq41rGUgC4rUb4JWtUklv0/FQrCx
+ XkuubV/QRzg3yZX58UqvVprEdgd5qeBsWOKjB7Qw5m+bOV86GIxLe1jL9
+ sOSTYPYfO7mI5pg7YuiPPYmLScEzTch6fCFcO/3gvL/y1Tk8lNBHiqVSM
+ +aGu/bUxrX3af1JygfuNE3e7yECfrCb/cGkCM932rUa35ZeBg3BBUzK1m
+ xRh2HLYNi9tttHyJdpbCwkediWXzoNmywt/guaBR+QoUSncmH6ixfJjRT Q==;
+X-CSE-ConnectionGUID: anKxYH9TSGG2MixTiapS2A==
+X-CSE-MsgGUID: 8vPWUv8PRta1KYeJBckaCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4450549"
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
+   d="scan'208";a="4450549"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 02:07:26 -0800
+X-CSE-ConnectionGUID: Aj7jU2ilQLmPE302DW/67w==
+X-CSE-MsgGUID: Q3Sh143NQJqx/LUAT9iq6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12136382"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa007.fm.intel.com with ESMTP; 25 Nov 2026 02:07:22 -0800
+From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
+ matthew.brost@intel.com
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
+ vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
+ sk.anirban@intel.com, raag.jadav@intel.com,
+ aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
+ daniele.ceraolospurio@intel.com,
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Subject: [PATCH v6 0/6] drm/xe/cper: Software (driver-detected) CPER error
+ reporting
+Date: Wed, 25 Nov 2026 15:37:16 +0530
+Message-ID: <20261125100716.2151294-8-mallesh.koujalagi@intel.com>
+X-Mailer: git-send-email 2.43.0
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Linux)
-Subject: Re: [PATCH 7/8] drm/dp: Move eDP sink link rates reading helper out
- of i915
-To: sashiko-reviews@lists.linux.dev
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20261118-feat_move_i915_helper-v1-0-652177f3107a@bootlin.com>
- <20261118-feat_move_i915_helper-v1-7-652177f3107a@bootlin.com>
- <sashiko-outbox-220759@kernel.org>
-From: Kory Maincent <kory.maincent@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <sashiko-outbox-220759@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,76 +65,67 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+This series wires up CPER record generation for driver-detected
+(software) errors, i.e. the INTEL_SIGID_GPU_XE_SOFTWARE_START..
+INTEL_SIGID_BATCH SIGID range, alongside the existing RAS-counter-
+sourced (hardware) CPER path.
 
+v2:
+- Move union inside xe_cper_intel_hdr structure. (Badal)
 
-On 11/18/26 11:53, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Medium] drm/i915/dp: HBR2 quirk in intel_edp_set_sink_rates() skips
->    fallback
-> --
-> 
-> commit b3bcea937e62f9aba672f8e2782fab0f2b184dbd
-> Author: Kory Maincent <kory.maincent@bootlin.com>
-> 
-> drm/dp: Move eDP sink link rates reading helper out of i915
-> 
-> This commit moves the eDP DP_SUPPORTED_LINK_RATES reading logic from i915
-> into a generic drm_dp_read_edp_sink_rates() helper.
+v3:
+- Rebase.
+- Handle early PCI probe where xe device is null. (Sashiko)
+- Introduce structure where it's used. (Badal)
+- Move error-class union inside cper_init_intel_hdr. (Badal)
+- Handle atomic context when SIGIDs are logged. (Sashiko)
 
-...
+v4:
+- Add has_driver_cper flag. (Badal)
+- Update commit message. (Badal)
+- Use ktime_get_real_ns.
+- Add BUILD_BUG_ON. (Raag)
+- Emit complete message. (Badal/Aravind)
+- Add can_sleep bool parameter in per_record_emit. (Badal)
 
->>   
->>   	/*
->>   	 * Use DP_LINK_RATE_SET if DP_SUPPORTED_LINK_RATES are available,
->>   	 * default to DP_MAX_LINK_RATE and DP_LINK_BW_SET otherwise.
->>   	 */
->> -	if (intel_dp->num_sink_rates)
->> +	if (num_sink_rates)
->>   		intel_dp->use_rate_select = true;
->>   	else
->>   		intel_dp_set_sink_rates(intel_dp);
-> 
-> [Severity: Medium]
-> Can this leave intel_dp->num_sink_rates as 0 on platforms with
-> QUIRK_EDP_LIMIT_RATE_HBR2 if DP_SUPPORTED_LINK_RATES only lists rates
-> above 540000 kHz?
-> 
-> Previously, rates above 540000 kHz were filtered out before checking
-> intel_dp->num_sink_rates, so an empty filtered list fell back to
-> intel_dp_set_sink_rates().  Now num_sink_rates is checked before the
-> following intel_dp_rate_limit_len() call clamps intel_dp->sink_rates:
-> 
-> drivers/gpu/drm/i915/display/intel_dp.c:intel_edp_set_sink_rates() {
-> 	...
-> 	if (num_sink_rates)
-> 		intel_dp->use_rate_select = true;
-> 	else
-> 		intel_dp_set_sink_rates(intel_dp);
-> 	...
-> 	if (intel_dp->num_sink_rates && intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
-> 		intel_dp->num_sink_rates = intel_dp_rate_limit_len(intel_dp->sink_rates,
-> 								   intel_dp->num_sink_rates,
-> 								   540000);
-> }
-> 
-> When all entries in DP_SUPPORTED_LINK_RATES exceed 540000 kHz, this sets
-> intel_dp->use_rate_select to true, skips intel_dp_set_sink_rates(), and
-> then reduces intel_dp->num_sink_rates to 0, triggering drm_WARN_ON() in
-> intel_dp_get_common_rates() and breaking eDP link training.
+v5:
+- Update commit message. (Badal)
+- Handle severity with single line.
+- Call timestamp near to use. (Badal)
+- Move initialization closer to use. (Badal)
+- Warn if CPER Message allocation failed.
+- Emit CPER record header without msg if allocation failed.
+- Move gfp variable where it's used.
 
-There is indeed maybe a small case where this can happen.
-I will fix it in next version.
+v6:
+- Rebase.
+- s/record data/info data/. (Badal)
+- Pass gfp_t directly. (Badal)
+
+Mallesh Koujalagi (6):
+  drm/xe/cper: Add software CPER emission entry point
+  drm/xe/cper: Prepare CPER headers for software errors
+  drm/xe/cper: Emit software CPER records
+  drm/xe/cper: Handle CPER allocations in atomic context
+  drm/xe/log: Add software CPER information to KUnit output
+  drm/xe/log: Test software CPER emission parameters
+
+ drivers/gpu/drm/xe/tests/xe_log_kunit.c | 103 +++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_cper.c            |  72 +++++++++++++++--
+ drivers/gpu/drm/xe/xe_cper_types.h      |  39 ++++++++-
+ drivers/gpu/drm/xe/xe_device_types.h    |   2 +
+ drivers/gpu/drm/xe/xe_pci.c             |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h       |   1 +
+ drivers/gpu/drm/xe/xe_printk.h          |   3 +
+ 7 files changed, 211 insertions(+), 11 deletions(-)
 
 -- 
-Köry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+2.48.1
 
