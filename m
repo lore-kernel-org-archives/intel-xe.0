@@ -2,164 +2,154 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69120606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 19:12:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C75606A335
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 19:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BGhY7m+G;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=l0Uv+A2v
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qh1+prbx;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=PN/7kEmu
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B47810E087;
-	Wed, 25 Nov 2026 19:12:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3764510E087
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 19:12:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E60410FE23;
+	Wed, 25 Nov 2026 19:17:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F28D10FE23;
+ Wed, 25 Nov 2026 19:16:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795633928; x=1827169928;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=MQtPJf4QjIQbOE1W6NhV4MOe4IzoPE8Q1xx+G02xRi4=;
- b=BGhY7m+GonOKw8Jmcz9lesWoq1fmTX4fLH9WUAcZAyR67Q6rXvLMZX6N
- KikZdRidTlRb33et4WmzxikopiwhZldhBFlP+eE/nOJDOm55s4Kf8eXjz
- Gy+sve3i0L2gI2qOmg3Vh9RnoecEgFE+5o6jc/EVR7iWaPb4OLifd+RSZ
- hOHkHvxIwauP8ZFb8FZ4TwQlR1KK7e+VHGxfi++ePf3OmQ/aOh0+unYAr
- +0l9Vusv3mSl0jjiF0NglK/TPGPgh25nRsarjCPwWWpjI+AKV5n69EfgI
- 9+ACWqmT0Ha82BdhimvewQgekvKtWKQesypjDzQmBVSn8Oo7MdBV3VLLh g==;
-X-CSE-ConnectionGUID: FKIDpC89RxyzFGn5LHN85A==
-X-CSE-MsgGUID: yNJju4NGRnG/RwEXiU/zTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4532407"
+ t=1795634209; x=1827170209;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=D/18AUBvgYhSPC4oIUZd/2cDRcywvtscZlzsMb3/oc0=;
+ b=Qh1+prbx5iG2RVeuBnnzKWxfLu0W3cF16LtlXVhYvpn1eEiZ4xqEpwC3
+ 4eR7ECTyLYm6+UJaefL1rlRvsYcEIy+NAWMYQUI+1sKICHy3j/e9uOKEu
+ VbWB3ZIexW5/NQghWAmhetPCH4QxrNacT3zZ60dPIU1hhJNv+oL5htfBe
+ +lv2kEFOdr/VJwFK2sV+vsTwYh6NYN94NfuY7C0y7UK1Q4GZZF+qD0xND
+ jSa4cDF6jeISX8gacbynTeX+ah7Mpy52EKCc+ENGZR1xFnxEZ/H+zcPIV
+ p4h6Aeg7DhPPEPK0ul0sjjkc5qKRWxEjhQ1Adq4+BfqK9cJay7NWNHdFu w==;
+X-CSE-ConnectionGUID: ja4Lpq7UTvyRq0scBKhNNA==
+X-CSE-MsgGUID: +8TIga9gTgy+IIn5Fyk8rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4431500"
 X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; 
-   d="scan'208";a="4532407"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 10:11:07 -0800
-X-CSE-ConnectionGUID: TE8cW1GWS0il+e1xr2SQBA==
-X-CSE-MsgGUID: 0zoTn4QNQGGFLIvo9GWMYg==
+   d="scan'208";a="4431500"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 11:03:07 -0800
+X-CSE-ConnectionGUID: Ne3e/x39RRWgyCq3GbTspA==
+X-CSE-MsgGUID: 4Q/rnTaSRtqHzO7O6X0EBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; d="scan'208";a="12368850"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 10:11:07 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; d="scan'208";a="12059944"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 11:03:07 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Wed, 25 Nov 2026 10:11:07 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.57; Wed, 25 Nov 2026 11:03:06 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Wed, 25 Nov 2026 10:11:07 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.70)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Wed, 25 Nov 2026 11:03:06 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.46)
+ by edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Wed, 25 Nov 2026 10:11:06 -0800
+ 15.2.2562.57; Wed, 25 Nov 2026 11:03:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=B3GvcZeNLPZ2GX6Ke+quxppnJ+DRfW/Vyn0KJlG0C+jMqQlUD9dDxd4weIGFECcububgYg5eLqVwjgxJ/5s7g3gbc/Gkpa9ax4ufHjMbvikLtKZuP7YvU2ystZTih9ot6EDwhyZTjLQSKI34HDkIduce5dQhlYBgL3bUyH58mG/zlPoHnf9pyOtnaZJhGnQX5d9PGpQwFPkS1qD92U3HV2VJ/wcOAAzkTDoTEgJxSVsjWUQtnF0bS/pBiEvVUh6wZq3luDXYc8vtaF2zlBZqsr7gWUnBnzm2uVg8rzAKMQgpB+3oHrGsrocScFSsmGVcwd1IMdDBCFBYd5N88cc4Uw==
+ b=IQIVqZJcJXhlFstjz0vsRX3ybxhY7ryKXc1wY4/DittOryHdvsjvuxQL1MVOI5C2ICV0dKVTqW2KozHwsYsMi4tJ2OxOj12JMpOpNBfp4ddTb7/W+SkSCQU+3da24clYLf1noLvH+xFtVtvgSFhgMrnKLdhh0wFC6MwR90clA9SmOw5ReO7NXt7MdMlKKDQFNd8xNtkZRU4U03rRbgLzk3yrapCLSKMr4kzZiKPto3+IhnEGKDQFaVQEyiEnvfE6P2XEuoGheORjQoTQkw+bWB5l20A44mDjjXiob9RExKeZWrBdhjSVPR4LWKvGBdreSZObVThG+y334PmoiOfXSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4oFcOPtoZ7pzLB0+71/4pvmOW42mmt7gHCpzrHHDV+s=;
- b=IMITQu28ooT7qlxrY7mpHQ2w2aOf/7iG2T4JYSrtUP7y2jK3VM2W838NQ6PZffhMbkKwuKHvkWWfCfr0fPWKnASuuHUhwkNATp9DccnRphpd/hLdYlg3wPasBSRzPAckrX3AemmyHIXBeq48EbFTeKZj3FYJwIJZ9EroXch8tfmnZlEpNRF5qJsn9dK9LoRlVLCHu8SRXi/HT+znlv6MM2GTVVNcOTSLJeYEGBUuTNQLJef5TkZYlSzlS0BKM0BNtqvDX2CQoqJzbjWkt1CFruDn8WtgURDAeE6vh7f8f3PsIFjutEcR+/rMsUP73S3vmOdwl8e96m/nuNBOEdBdWA==
+ bh=ReuB8VXKy70ZTCdMisSBqb1m/vKl9gNUFjrk3kpjh6Y=;
+ b=B1l5tBvKUnbTikfZCMyDOLmuShfPdMTJ4hzlhqHw86DpKqNEfx0zb/vYiBOFwC3r/smjVqffox1jJypGhusmSRwpgXCGwB2B2gaLdDPiR/KfZmEkajDBbz/esooT1l8DVwT3UuzxQCxH6XzAqaR2tr4ct5CIEp7Cx4K/iHwTBfV2QaIL586tjBH5UHaZGXsGq18CMqrnqFn7Exy/DUhuliHFV98Y1hC/SCaVwYuEDAX+7sqxtkOIlW7cxJjZTvZHkSM7eJ/LLEmWlXLbyXhf4yAamyQ50P5UyXKBp/IVGWPF4bYqObUbX3FNatFADR2TIhZFqchUXi8/HWAlGA3EJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4oFcOPtoZ7pzLB0+71/4pvmOW42mmt7gHCpzrHHDV+s=;
- b=l0Uv+A2vslDlGl+HpV0tdFF/V32KVNf7hBrI/+79jELZsFhEju5se6Ope2PVyUNLbvQvBvVmrAa91oqkf5mlEdPNie8TAX/ZNeX8r9i8bZxN856St69792U9a6aaiLtiEcWFSZxRgSnYM2ldY6EWBv+0UIy+clUJlMKnDZCEzKs=
+ bh=ReuB8VXKy70ZTCdMisSBqb1m/vKl9gNUFjrk3kpjh6Y=;
+ b=PN/7kEmuY0Gj4CEDlZTQGbFljAzM+ERv0bkyhQU5pVeMUpdD4FsYJOUn29pyALvCC+m4tErcjytZdI+bNxwRKtF1qmKwX7mbMM2+OMjqCW0UEmtz8L8CM46BNiF5UGDZsrhyMuZtjXzwAzU/+JdnGGKWj2fWqfLXRbLPhSGtjWM=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS6PR11MB087165.namprd11.prod.outlook.com (2603:10b6:8:4c4::7)
- by IA1PR11MB9470.namprd11.prod.outlook.com (2603:10b6:208:5af::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Wed, 25 Nov
- 2026 18:11:05 +0000
-Received: from DS6PR11MB087165.namprd11.prod.outlook.com
- ([fe80::4223:7b03:1329:265f]) by DS6PR11MB087165.namprd11.prod.outlook.com
- ([fe80::4223:7b03:1329:265f%6]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
- 18:11:05 +0000
-Message-ID: <528732a6-54ec-4e53-ac4b-b4abb0189f40@intel.com>
-Date: Wed, 25 Nov 2026 23:40:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/ras: Handle SPI out of flash error
-To: "Nilawar, Badal" <badal.nilawar@intel.com>,
- <intel-xe@lists.freedesktop.org>, <riana.tauro@intel.com>,
- <anshuman.gupta@intel.com>, <aravind.iddamsetty@linux.intel.com>,
- <raag.jadav@intel.com>, <rodrigo.vivi@intel.com>
-References: <20261123070221.1611306-2-soham.purkait@intel.com>
- <1a0d36ce-a7aa-460d-ac8a-5a792c280193@intel.com>
-Content-Language: en-US
-From: "Purkait, Soham" <soham.purkait@intel.com>
-In-Reply-To: <1a0d36ce-a7aa-460d-ac8a-5a792c280193@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
+ SN7PR11MB8109.namprd11.prod.outlook.com (2603:10b6:806:2e0::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
+ 2026 19:03:01 +0000
+Received: from DS7PR11MB5990.namprd11.prod.outlook.com
+ ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
+ ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Wed, 25 Nov 2026
+ 19:03:01 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Aravind Iddamsetty
+ <aravind.iddamsetty@linux.intel.com>, Tejas Upadhyay
+ <tejas.upadhyay@intel.com>, Himal Prasad Ghimiray
+ <himal.prasad.ghimiray@intel.com>, Riana Tauro <riana.tauro@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v5 2/2] drm/xe: Expose retired VRAM pages via drm-ras
+Date: Wed, 25 Nov 2026 14:02:52 -0500
+Message-ID: <20261125190249.156217-6-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261125190249.156217-4-rodrigo.vivi@intel.com>
+References: <20261125190249.156217-4-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0046.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:175::12) To DS6PR11MB087165.namprd11.prod.outlook.com
- (2603:10b6:8:4c4::7)
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0075.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::20) To DS7PR11MB5990.namprd11.prod.outlook.com
+ (2603:10b6:8:71::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS6PR11MB087165:EE_|IA1PR11MB9470:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82303d53-d751-4983-ae3d-08df4b1f78b8
+X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|SN7PR11MB8109:EE_
+X-MS-Office365-Filtering-Correlation-Id: ff2bcf30-ae8a-4636-41a5-08df4b26b9c3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|23010399003|376014|18002099003|22082099003|4143699003|56012099006|11063799006|261022113327099003|261028144727099003|261022105027099003|261026140227099003|261021121427099003|261102123227099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: WQ+uI6ylL8GvG5pKsHhaegy13doacwY2EdMifKKn8XVM98gm5tsU4FXjndM5B6dfKJFybOIdE0capW79weSmC4aGnzk6jIjLC8T1QFaKLqnOO1LfQNja5e0aoLMTbdKeluoyWtFto6ZoCAXm5vQUzfAvYHOvElqXrltXKjI5EwC5m4nLyHF7LVm+g2GVhB1Ak7XhQqsKSvkIDvvTMHDOiuhyZAx9UIVuhSg9EyRe82BeTJ44bHZQeG/4DWgHbFj5hFBbXjzf37DOfzq7XG6E3b7UxVYx1kqeZ11Xo/BSgwVxPTrbF3j0ChQVlZFqAgvKotLmAhD/qLB1F1vxOtVAWF3kElD317iapnoW3d7oBEz+L1HZOUFkgHgsw6GX3GZf9nbIME6Ek+zNsYvIPTbxyEoNRxR/av6g/4+QD1oHxJYRj7GbK9lHrGpPI3mpJke2cJ8LGtAUP5gPHUIzz711mQb1Gn2XYcIaqy3jHKpjIvpPDzjmLSayZFsY8acKH8m7k25qNHK06SUVlpz79mcLy7RGF2FXe4qbz9Kuu0etJZuVpuRk2CNQs5J2iVErp+Iz5bATdHroAqR1yxWHmzt47PXR6LMzq3d1A5quTcJJpx9xlKHZ9UGLjXNeNSAGJBXbN0XdnXvgyuheM9GBkAxczMUnPO3BE6MHxdWE3vWhp5U=
+ ARA:13230040|366016|376014|23010399003|1800799024|261021121427099003|10067099003|261102123227099003|11063799006|56012099006|261022075727099003|261022105027099003|261026121527099003|261021123027099003|261026140227099003|261028144727099003|261009223327099003|261009221227099003|261009220027099003|261009221727099003|261009223027099003|22082099003|18002099003|6133799003;
+X-Microsoft-Antispam-Message-Info: 0eWQ4heHxSPah76JQHGElsMi8/2qn3Z1XTJqYocTUh9/T2mW6ajBVflSYw3IPo/GLXjDijVR8zCryoGcbbZqGkGSfnYUydPHWAW1X08k9N4ofS10ivA7o8V2BvONZg/rtrCjiQuuN3AiBqCCqfRZ40QbAjgwNlrhv1Jvu0uGPjpixPlZ2lF45o8eNiH1RMvRhZfu/0wPG9aGQKGcBFV9N6FUv4dPbaKGchs3X7LnxMDXAbXAqsxDYfvOZpsqaZhg5ZFnpWxs2M61eXC6429ms58Lvct9nobnupKPJh9Y4G4K+Z09HV8j8Eo0hOZGCobmPPLEgbna9zIfhEgLDmJgMdmX3ZNy99sms4nG4huVJVxUwUwmmwQzDZDcJ56Fc56Yjh4bsi1KJzeXuFrI2WvUqnEwKRL+2KmxTBxPrRPxCjudGJaciBV8GhrQAPiQtoDQ/FguJfyLm/IX0j0L2wFM2NislqgaS/t+V326CN5AYn2hfLn+I/Y+THtGTfLJeYRPD1wRAmFKXUm2AOglp/aMBn/SGjlaRIzf2z7xDOXwdY5kaPRAnJ/3ox6bCr01pxY+8W9nze5cSZJabqnDCe2ukitGHjWniKfalYejNd19tQxCyWxtqHtJUzwyYrgcW90/+oopNv0zjPShhixsjbDwOe2yAClXcdA5iBkuUXUthPk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS6PR11MB087165.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(261022113327099003)(261028144727099003)(261022105027099003)(261026140227099003)(261021121427099003)(261102123227099003)(261009223027099003)(10067099003);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(261021121427099003)(10067099003)(261102123227099003)(11063799006)(56012099006)(261022075727099003)(261022105027099003)(261026121527099003)(261021123027099003)(261026140227099003)(261028144727099003)(261009223327099003)(261009221227099003)(261009220027099003)(261009221727099003)(261009223027099003)(22082099003)(18002099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U25XWi9wSlNZU1JGWC9PdmJQc1ZYNkdvRkdERWh1Zlp0eVlXc0VBRjZ4aXlY?=
- =?utf-8?B?eWJUM3VtaXJhZU8wbDNrSHNIUDVhWWxJeVJvM1NPSjZya0lOYmFiYjVxTDk3?=
- =?utf-8?B?cVE4dFhEdkoxODhvVlVrOThqR042b1hNNWsvRlJQNVFJUTNraUVvak5CVlV2?=
- =?utf-8?B?aVNNNHZLbElqYlFqVzBRZExGYWNNSE1OL1F3MzZzMDVwYUNOd2RqSDNOVTFh?=
- =?utf-8?B?dElGSWJrZkhhRFk2YUN2SWFLUUxHMis3TC9tVHV1MWp0d3Y5dyszSGZrZ3dU?=
- =?utf-8?B?bFNEVG5mcDNDb2FBWFR5QXFOL0dPbVpuQ0tZQzNJWmIzTnRXSXJnNUJIUmRE?=
- =?utf-8?B?aWNKRjZQY3Z4bHNub3oyQjIrU1pQU2Q2Ym5kaWtJM29ubkVwcWo1aWpJRmdn?=
- =?utf-8?B?cE1JVENkS05BelNDUFFVZkk4a1dMdmJoK1h3NFhGSzNCeW9wYjRVNk1qd1Qr?=
- =?utf-8?B?R3hVc0dEYVNES092ZFQ1cENrc2FUMXErVEF1c2djQktVZXVoSmtZdW1DV0wz?=
- =?utf-8?B?R3ZtQ3lZakNTR2Mxb2JNUUFPME5Xb0hKS0hnYmZna2tSVVJDbGJLYmhITmli?=
- =?utf-8?B?dm9nTVR3UUMvWk1LaGtqNHpGZk85ZzFKRmtFTExBcHAzcjJYclZjVXFzd3l3?=
- =?utf-8?B?T09NRXdPL0R0Y3lRZHVkcTFuTkx3OHZrWnVlWCtWTGd1aG0wU09JalduT1R0?=
- =?utf-8?B?MUk0Q1JDTG81NHBOcU4vS1hsNFU2cEZyenloTndiUXA2cFhMZm5iYi90UnRP?=
- =?utf-8?B?WXNna3kwL3hqY2c0L0REY3ArbUtVRlZhWmFFSU1EcW9QcEFnVUFnTGdTUzZW?=
- =?utf-8?B?TW9BRWs5QXl2aVYwVXJKQTc3SXphY2VSdHdqNTAwc21LN1JTVU9hcEFNTXUw?=
- =?utf-8?B?OSt4Z0pkUjFnRFdzUjZIbVErb1g3VWZtTUI3bndEZDQzaC9mWVRZeHdrMEN4?=
- =?utf-8?B?Qm1xekJ1VUtzWFZrN2N6Z1RENFYrU255cjNiTWtxd3NrSTQ5SHVEcFlIRzFN?=
- =?utf-8?B?NGVKNGVKODZoNDZxSWRqYzZpK1VXTk9zSGoyd2JEaU9GWmRwK2VEZkVYNHgw?=
- =?utf-8?B?OXc4TGJ6U3RuT0pZQ2hpNkFFQjMvVW5DYmFjNEwvck5hR0pzYjgwaHA3dk9B?=
- =?utf-8?B?Wi9wOU5oWnZwK0Q4eHU5NEg3cytLbjVmaHd0NGVPMTkxUHZtejlxRHVtL0lE?=
- =?utf-8?B?NEZQVzFHWWpIOHRTT0o5emF3bERHWHcvcFVTN3ZJZE5id3YzZER2V1IvY0tY?=
- =?utf-8?B?YXV2Mm1YRDY2QldHdEx3cklqZXR3QVNwQjVPWEZma2haN29EcWNqVHFQTEUy?=
- =?utf-8?B?Nkt0Rmw5MklzSDVXSDhPc0p3SWhtNS91azMwKzBZSGNLQmZZOXQ1UE56a3lD?=
- =?utf-8?B?aUx4OGFvRVZ0RFR2NkhhbTMwc0xPNmRjcVFRVVpwaXZMY2JIelUyNFl3MUFV?=
- =?utf-8?B?M2xCUU95aXl0ZFJvWVBhOENCa2NZb3hrWnVjci9mN1c5RVF1Sm95YVBCVzFY?=
- =?utf-8?B?YmJSNExSTlhFSXFscGl3UWJxeEtxK3FNRHgxZDlRMkFSeVNJQVBnZFo4ZTJw?=
- =?utf-8?B?RllQTVl3U21yMUF6aTM3ZjBpN2hVTHQ1RWZBdGVNWUJEdG0vSFlzM2VGTERo?=
- =?utf-8?B?MXZ4OFIwL2pGdDcyNmtscFd2QWJCb1NBU1U0Y01XejFjRml3bGw2emQrYXZL?=
- =?utf-8?B?aHBrVkRiSnF4ZmZGY1h4NEt1U0ErWmZiLysrVXVTTWt1UmpseXc0dWdYSDR1?=
- =?utf-8?B?VktnbUJVZjdOOHJyUW5NUFhxcVpkV3BKc0ZJVkxXKytxYnF2Z0dMUVhQdGt5?=
- =?utf-8?B?QWU1VDg5eFFiTnF6Y1FUOThSQWttMUJTUUpGRmovUU5EZGFBMnJRNEdUUE0y?=
- =?utf-8?B?N0NWMlZhdUR3RUZwVVkwcHlGS2lrdWFTZTdrOGZWQVFPTWcvM0phYzk0eXBL?=
- =?utf-8?B?SUJpcGR0OTJYNjFveG1KU1JneXBHYnRYT21zMElzWElQaGJ3aXhNakdrWjlC?=
- =?utf-8?B?L0UxQUh5ZnJsWHIzb3FpNkIySmt0MjAvb1UrSHhEYlV2SlUxTXVrWWZiVUM2?=
- =?utf-8?B?QTNkTU1KZVFnN2F2VlpDSWxBbTJBR3dySE9rSDRIZFFBckQ2ZEV4UmQraTZ6?=
- =?utf-8?B?dnllN3h1YzkrckJqWXJIK0RVeXVIYzNBNUU1S0NUem4xaFRWYTJVVzR0OEZj?=
- =?utf-8?B?L1ZNWFE5UWRWU1FScnMrWklxSEdpS3hTTXVtUjNyWkVlZCtUSGNYSGxzVnNY?=
- =?utf-8?B?S1p3N3czdE91L2dmNkwwa0VJYjVETEhJYm5vWjFWeGRZeWZ5akxjekFCdXdY?=
- =?utf-8?B?T25YMjlEYkVueU1Cdndmc0xwMUtVbXVSR1pEaE1uK21MSWJQNmxPRTN0YmNk?=
- =?utf-8?Q?DhhWUM2tF538DaDU=3D?=
-X-Exchange-RoutingPolicyChecked: PEfYgDuzUfzjjGwzouojGC9wT9CMjQisONNWP4CJrjYfXidJE1mmLwiYwEMqmZh/fIH7XBhhXfEDO+XWs3Wey8Zar3hw6snZyV5CEQNn3nSKCW8mhdcimDxeIZ3NRfjsPrtcHrBewuQNM+lTacd5TScwXx0ji6PR2yyhnvcWZ/xHDaNGIf/sPPca4hsQNiWJlzNDxOXLtKxC1Jzxv5iCKNWqBkKBZhq94amMC5cJUDwHAqtpt+k8kWWQz1rDLYLw9iTNqnUxtluv13N7rOud6uH7ekGz/XCRo9KeU1i8S6NRR3wuonMZ0cBoWcFTkgw72cDjWdkKpxWTl172KhvxzA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82303d53-d751-4983-ae3d-08df4b1f78b8
-X-MS-Exchange-CrossTenant-AuthSource: DS6PR11MB087165.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MckhvwhUACmlbRyaPSdG2dzdWLUV/bn/hHHTwMsChoXre0eZ0PCXLBQ51ZDD?=
+ =?us-ascii?Q?4mWTnGmCgFuEyDVssBE4PwG5QW6wUgwf5x8+13DkvOLDsA4vlMUyd4jYaOPz?=
+ =?us-ascii?Q?AP79Ah8CU3roOERImK5WcdKQZZOcEirbZ7tWMVJvefe26bZ2nYZWpjoHuoFK?=
+ =?us-ascii?Q?BterqSHnkomHERR/CCq3yDUZcIPzxeT9t3AeRHcwO9bFp1fKlzQLPQb9IquT?=
+ =?us-ascii?Q?EdDV7RANNvAHAnX9rGLVtvxZi47PBT97COPDfVnRtgLKc9esjbwwhj76D4r9?=
+ =?us-ascii?Q?yuQqeGhUvTSUt7uhbHorNyQJo92ORdEzMq9UZWJC7kBfgnUstF4mqnQcy9mR?=
+ =?us-ascii?Q?Q5zAPYiC1/AK8xV8WeMjJi3xdvQHfPXNTqYCYzp0sX8mTnql9VnFMy1AB5TL?=
+ =?us-ascii?Q?yb46tM4ztCQXpD86pCBGuj4PP0io7sq7w7oQyg9b1ejJap7btdCSzGdsQOpj?=
+ =?us-ascii?Q?zdgIOIeM8TFqZ7Ur7wITEB2zN8z+R54wmhBvl0jo0rSYF519adKDyxBxRjbG?=
+ =?us-ascii?Q?NbOZMRk9RqcnQ85OzmD5Ciic88PFmJa4vb+YZCZuMaJD4+OiqukmimDFNEOK?=
+ =?us-ascii?Q?GI6X7TAP/LytigO3SDWTxd3Hm9Eh+9gQ2XpRXIPa3b0YMBkT6X9+9NfD8BeT?=
+ =?us-ascii?Q?10WCQnXt4Ocmpfm/RgvQNjxA0qFZtH444zERRl4esICUlCFIGNZwyyPNGQGL?=
+ =?us-ascii?Q?DvaeXFA8W+dKm+m2ocv7fL+2q2HJ0FUxjtUTwJgkv4A0ZEVcPk9cTRhx9avy?=
+ =?us-ascii?Q?e1GYfN1JkI9ycRTaDLmr5C2UU+irGR9gzicyQM+dI/2RpZfeFPTIHQMzqO7A?=
+ =?us-ascii?Q?RWSwy/EP2jWakVELNPhbLc/IU85hfsPjKorgGHFH80XV5xsfSwLJkhV8ETZL?=
+ =?us-ascii?Q?VUqvwbn9lQs0sGS+iK9PB4WbosMLuPCv1SLd2iZOs0XseA1d/dpQ06C7hczX?=
+ =?us-ascii?Q?54g+2/My9lNomuV6A5nIfFZ0X9acEl7xXqiXBSu/TSNn6biBYs3lJ3PDE4Kj?=
+ =?us-ascii?Q?2BSj19rEYafWBcKepiC0svLxWi82xSYIQPpD/W9gI+FMyb4Oa5RF2WHO8Knv?=
+ =?us-ascii?Q?NxoMxr4OrqQ1T3Qs21Tg1JJCTqp/mA24i+f2+hvkXbtyL2vag2n+qd5kXr3m?=
+ =?us-ascii?Q?XydnnOVtvbHX+Il8crm4jGbOzLOITvYGlxdvrKr4GJ+6N0n5rItDGqM9lm/E?=
+ =?us-ascii?Q?dORohL79zfLFYW+kcwyOjaRCr31y5Re0AdwhAUKwDvOKJ9XS2ejTIkw/QSzv?=
+ =?us-ascii?Q?wtnqb01BrE37Juv6KhO//jX0T434A+FqYXrqG11apBNrXatck/ZdDCMq7pdT?=
+ =?us-ascii?Q?+AxF/xUXVLmZ8S6vCTgGFWPklhkemUxF25duU8e5gGhU7jEDyreEDhTKEDHa?=
+ =?us-ascii?Q?rgvQcAbc0QC7A6PXGcWIHVV73Jhq80ot1n4prRUyOTLDgM93RNPpJrVZ5KXZ?=
+ =?us-ascii?Q?+YyyypjtYbbImQdCvL9XcRvJhkrJta5kSb3jzf+r5zccKrpy6n/ddytF1lDX?=
+ =?us-ascii?Q?RBN+mppTjvMgmoFyNQudCEt8jG+FegdLAT0BeICvMnMivYBIQZnwDym9WtIY?=
+ =?us-ascii?Q?IQhED/Xc1R2h8JPMgzqnEhEYP6/Gp+g3T1UgF5YOkBGF/QPmu0adLn1XYYqw?=
+ =?us-ascii?Q?qcnbVD8uafhcjiTw9L5z0Bley2d5w3M6C22N/zvsD/rRV+jL5aWgh+XFaNQ3?=
+ =?us-ascii?Q?Ov5hsMLzhJJXNOXpf6nP7cFxfs8JfYfsr4A7oa5/oOKBM+XymFaVm7mKqRLe?=
+ =?us-ascii?Q?28BZ+aRDDQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: C4qTY6Kc5nszXYxhgMpbgO3by6zbfj82V/MD0nc+oKBHP8nXbSrfUwkDZ8a617RnZ88HeY1ak80DKh7wGN4q6QGu8fIysC+zNB6nH+NSAdGr2STz8LnzD/NE6ZfZSfibhxMzQHzjRifEzz/2Y4VDFxui5czZ+eFXCrIEEpr+mu2oIV2yGlWAv9izT4OnYibeGgGlX+r3sgD6q/RWeJJ2Bqiq6zErIopBglBuzbd4MZ5Mvru2PW1kVAu1dMDTZi8hO1v2li5BZWcgC72uYrNO2LVtipaqBc76Hct02MgHLa3/VdpvkqD+Fl1N91KEpEnRuaC5y2Z+eDGdrff/vmYckg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: ff2bcf30-ae8a-4636-41a5-08df4b26b9c3
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 18:11:05.2422 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 19:03:00.9689 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rlr3VzTTzCfjTNQeNo9y8mVhDRiXiOY2FoJElqcMqrH8pMWN5ChnheQOpz7SBEFD+WVeOm9zQ6RajS3GICjIig==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB9470
+X-MS-Exchange-CrossTenant-UserPrincipalName: KL+oaB4dM4VyeNNBUk7a39mkKVSpF7TInQluKLsUjOmQ0n3ABjwZfu6WnUEU9bnKRr/51a/CQ+I2Nk7HJ4e2vw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8109
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,92 +161,314 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Badal,
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 
-On 25-11-2026 10:49, Nilawar, Badal wrote:
->
-> On 23-11-2026 12:32, Soham Purkait wrote:
->> Wedge the device with an unknown recovery method if Page-Offline returns
->> OUT_OF_RESOURCES, or if the offline list is full at probe.
->>
->> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_ras.c | 16 ++++++++++++++++
->>   1 file changed, 16 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index 0fb891d00b36..76441858391d 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_ras.c
->> @@ -80,6 +80,7 @@ enum xe_ras_response_status {
->>       XE_RAS_STATUS_TIMEOUT,
->>       XE_RAS_STATUS_HARDWARE_FAILURE,
->>       XE_RAS_STATUS_INSUFFICIENT_RESOURCES,
->> +    XE_RAS_STATUS_OUT_OF_RESOURCES = 0x9,
->>       XE_RAS_STATUS_MAX
->>   };
->>   @@ -226,6 +227,7 @@ static int ras_status_to_errno(u32 status)
->>       case XE_RAS_STATUS_HARDWARE_FAILURE:
->>           return -EIO;
->>       case XE_RAS_STATUS_INSUFFICIENT_RESOURCES:
->> +    case XE_RAS_STATUS_OUT_OF_RESOURCES:
->>           return -ENOSPC;
->>       default:
->>           return -EPROTO;
->> @@ -299,6 +301,11 @@ static int send_page_offline_cmd(struct 
->> xe_device *xe, u64 page_address,
->>       if (ret) {
->>           xe_log_err(xe, SYSCTRL, ret, "page offline command failed 
->> with status %u\n",
->>                  response.status);
->> +        if (response.status == XE_RAS_STATUS_OUT_OF_RESOURCES) {
->> +            xe_log_err(xe, SYSCTRL, ret,
->> +                   "No space left in SPI flash for bad pages, manual 
->> intervention required\n");
-> Why sig id SYSCTRL? Sysctrl has completed the mailbox command.
->> +            xe_wedge_declare(xe, 0);
->> +        }
->>           return ret;
->>       }
->>   @@ -504,8 +511,17 @@ static void get_offline_list(struct xe_device 
->> *xe)
->>       struct xe_ras_offline_list_response response = {0};
->>       struct xe_ras_offline_list_request request = {0};
->>   +    struct xe_ras_state *state = &xe->ras.state;
->> +
->>       process_offline_pages(xe, XE_SYSCTRL_CMD_GET_OFFLINE_LIST, 
->> &request, sizeof(request),
->>                     &response, sizeof(response), &response.common, 
->> false);
->> +
->> +    if (state->max_pages && response.common.total_pages >= 
->> state->max_pages) {
->> +        xe_log_err(xe, SYSCTRL, -ENOSPC,
->> +               "Offline list full (%u/%u), manual intervention 
->> required\n",
->> +               response.common.total_pages, state->max_pages);
-> Same as above?
->> +        xe_wedge_declare(xe, 0);
->
-> This is in probe path, shouldn't we propagate error and fail probe 
-> rather than wedge? 
+Retired VRAM pages are only visible through the vram_bad_pages debugfs
+file today. Register a drm-ras retired-pages node so userspace gets
+them, and the maximum number of pages that can be retired, through a
+stable interface.
 
-This will be used in multiple paths in future patches.
+The page lists are walked under the VRAM manager lock, and a generation
+counter on each manager lets drm-ras flag dumps that raced with a page
+being added, retired or failing its reservation.
 
-Thanks,
-Soham
->
-> Thanks,
-> Badal
->
->> +    }
->>   }
->>     static void ras_usp_aer_init(struct xe_device *xe)
+v3 (Rodrigo+LLM):
+ - Use the drm-ras retired-pages node type, which replaces the nested
+   retired-resources layout (Jakub).
+ - Walk the lists under mgr->lock instead of RCU, which they are not
+   protected by, and stop reading the buddy blocks (Sashiko).
+ - Add a generation counter for interrupted dumps.
+ - Keep the vram_bad_pages debugfs file for now.
+ - Remove deprecated Assisted-by tag.
+
+v4 (Rodrigo+LLM):
+ - Register the node at the end of xe_ras_init(), once the retired page
+   lists are fetched. That point is only reached with a system
+   controller, which replaces the XE_CRESCENTISLAND check and keeps the
+   node off VFs (local Sashiko).
+ - Report the list generation also when no page is left (local Sashiko).
+
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_drm_ras.c            | 56 +++++++++++++++++
+ drivers/gpu/drm/xe/xe_drm_ras.h            |  1 +
+ drivers/gpu/drm/xe/xe_ras.c                |  4 ++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 72 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  3 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  5 ++
+ 6 files changed, 140 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+index 86c589437a9f..5382b60bb328 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras.c
++++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+@@ -13,6 +13,7 @@
+ #include "xe_device_types.h"
+ #include "xe_drm_ras.h"
+ #include "xe_ras.h"
++#include "xe_ttm_vram_mgr.h"
+ #include "xe_wedge.h"
+ 
+ static const char * const error_components[] = DRM_XE_RAS_ERROR_COMPONENT_NAMES;
+@@ -272,6 +273,61 @@ static int register_nodes(struct xe_device *xe)
+ 	return ret;
+ }
+ 
++static int query_retired_page(struct drm_ras_node *node, u64 cursor,
++			      struct drm_ras_retired_page *page)
++{
++	return xe_ttm_vram_get_retired_page(node->priv, cursor, page);
++}
++
++static int query_retired_pages_info(struct drm_ras_node *node, u64 *max_pages)
++{
++	*max_pages = xe_ras_get_max_pages(node->priv);
++
++	return 0;
++}
++
++/**
++ * xe_drm_ras_register_retired_pages() - Register the retired VRAM pages node
++ * @xe: xe device instance
++ *
++ * Called once the retired page lists are populated.
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_drm_ras_register_retired_pages(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct drm_ras_node *node;
++	int ret;
++
++	if (!xe->info.has_drm_ras)
++		return 0;
++
++	node = drmm_kzalloc(&xe->drm, sizeof(*node), GFP_KERNEL);
++	if (!node)
++		return -ENOMEM;
++
++	node->device_name = kasprintf(GFP_KERNEL, "%04x:%02x:%02x.%d",
++				      pci_domain_nr(pdev->bus), pdev->bus->number,
++				      PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
++	if (!node->device_name)
++		return -ENOMEM;
++
++	node->node_name = "vram-retired-pages";
++	node->type = DRM_RAS_NODE_TYPE_RETIRED_PAGES;
++	node->query_retired_page = query_retired_page;
++	node->query_retired_pages_info = query_retired_pages_info;
++	node->priv = xe;
++
++	ret = drm_ras_node_register(node);
++	if (ret) {
++		cleanup_node_param(node);
++		return ret;
++	}
++
++	return drmm_add_action_or_reset(&xe->drm, cleanup_node, node);
++}
++
+ /**
+  * xe_drm_ras_event() - Report drm-ras error event to userspace
+  * @xe: xe device structure
+diff --git a/drivers/gpu/drm/xe/xe_drm_ras.h b/drivers/gpu/drm/xe/xe_drm_ras.h
+index 723229b2cffb..a6fc2255986d 100644
+--- a/drivers/gpu/drm/xe/xe_drm_ras.h
++++ b/drivers/gpu/drm/xe/xe_drm_ras.h
+@@ -13,6 +13,7 @@ struct xe_device;
+ 	for (i = 0; i < DRM_XE_RAS_ERR_SEV_MAX; i++)
+ 
+ int xe_drm_ras_init(struct xe_device *xe);
++int xe_drm_ras_register_retired_pages(struct xe_device *xe);
+ void xe_drm_ras_event(struct xe_device *xe, u32 component, u32 severity, u32 value);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+index 9b04be3405ca..8e5e2df2c9f7 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -1508,6 +1508,10 @@ int xe_ras_init(struct xe_device *xe)
+ 	get_offline_list(xe);
+ 	get_offline_queue(xe);
+ 
++	ret = xe_drm_ras_register_retired_pages(xe);
++	if (ret)
++		return ret;
++
+ 	/*
+ 	 * During probe, process and log any errors detected by firmware while the driver was not
+ 	 * loaded. Critical errors such as Punit and CSC are reported through Pcode init failure,
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 36d47de8b11b..4a7b9ea36211 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_drv.h>
+ #include <drm/drm_buddy.h>
++#include <drm/drm_ras.h>
+ #include <uapi/drm/xe_drm.h>
+ 
+ #include <drm/ttm/ttm_placement.h>
+@@ -240,13 +241,17 @@ static void xe_ttm_vram_retry_queued_pages(struct xe_ttm_vram_mgr *mgr)
+ 					    PAGE_SIZE, PAGE_SIZE, &pos->blocks,
+ 					    GPU_BUDDY_RANGE_ALLOCATION, NULL,
+ 					    &pos->used_visible_size)) {
+-			pos->status = XE_PAGE_RESERVE_FAIL;
++			if (pos->status != XE_PAGE_RESERVE_FAIL) {
++				pos->status = XE_PAGE_RESERVE_FAIL;
++				mgr->retired_gen++;
++			}
+ 			continue;
+ 		}
+ 		--mgr->n_queued_pages;
+ 		list_del(&pos->queued_link);
+ 		++mgr->n_offlined_pages;
+ 		list_add(&pos->offlined_link, &mgr->offlined_pages);
++		mgr->retired_gen++;
+ 	}
+ }
+ 
+@@ -625,6 +630,68 @@ u64 xe_ttm_vram_get_avail(struct ttm_resource_manager *man)
+ 	return avail;
+ }
+ 
++static void retired_page_update(struct drm_ras_retired_page *page, bool *found,
++				u64 cursor, u64 addr, enum drm_ras_retired_page_status status)
++{
++	if (addr < cursor || (*found && addr >= page->address))
++		return;
++
++	page->address = addr;
++	page->status = status;
++	*found = true;
++}
++
++/**
++ * xe_ttm_vram_get_retired_page - Get the next retired VRAM page
++ * @xe: xe device instance
++ * @cursor: lowest device address to consider
++ * @page: filled with the retired page that has the lowest address >= @cursor
++ *
++ * Return: 0 on success, -ENOENT if no retired page is at or above @cursor.
++ */
++int xe_ttm_vram_get_retired_page(struct xe_device *xe, u64 cursor,
++				 struct drm_ras_retired_page *page)
++{
++	struct xe_ttm_vram_offline_resource *pos;
++	struct xe_tile *tile;
++	bool found = false;
++	u32 gen = 0;
++	u8 id;
++
++	for_each_tile(tile, xe, id) {
++		struct xe_vram_region *vr = tile->mem.vram;
++		struct ttm_resource_manager *man;
++		struct xe_ttm_vram_mgr *mgr;
++
++		man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0 + id);
++		if (!man || !vr)
++			continue;
++		mgr = to_xe_ttm_vram_mgr(man);
++
++		guard(mutex)(&mgr->lock);
++
++		gen += mgr->retired_gen;
++
++		list_for_each_entry(pos, &mgr->offlined_pages, offlined_link)
++			retired_page_update(page, &found, cursor, pos->addr + vr->dpa_base,
++					    DRM_RAS_RETIRED_PAGE_STATUS_RETIRED);
++
++		list_for_each_entry(pos, &mgr->queued_pages, queued_link)
++			retired_page_update(page, &found, cursor, pos->addr + vr->dpa_base,
++					    pos->status == XE_PAGE_RESERVE_FAIL ?
++					    DRM_RAS_RETIRED_PAGE_STATUS_FAILED :
++					    DRM_RAS_RETIRED_PAGE_STATUS_PENDING);
++	}
++
++	page->generation = gen;
++	if (!found)
++		return -ENOENT;
++
++	page->size = PAGE_SIZE;
++
++	return 0;
++}
++
+ static int xe_ttm_vram_purge_page(struct xe_device *xe, struct xe_bo *bo)
+ {
+ 	u32 q_flag = DRM_XE_EXEC_QUEUE_BAN_REASON_PAGE_OFFLINE;
+@@ -825,6 +892,7 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+ 			/* Queue free(to-be-purged) pages */
+ 			++vram_mgr->n_queued_pages;
+ 			list_add(&nentry->queued_link, &vram_mgr->queued_pages);
++			vram_mgr->retired_gen++;
+ 		} else {
+ 			/* Immediately offline unoccupied pages */
+ 			/* Queue free(to-be-reserved) pages */
+@@ -839,10 +907,12 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
+ 					addr, ret);
+ 				++vram_mgr->n_queued_pages;
+ 				list_add(&nentry->queued_link, &vram_mgr->queued_pages);
++				vram_mgr->retired_gen++;
+ 				return 0;
+ 			}
+ 			++vram_mgr->n_offlined_pages;
+ 			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
++			vram_mgr->retired_gen++;
+ 			return ret;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index d77f067d197b..91147385718c 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -9,6 +9,7 @@
+ #include "xe_ttm_vram_mgr_types.h"
+ 
+ enum dma_data_direction;
++struct drm_ras_retired_page;
+ struct xe_device;
+ struct xe_tile;
+ struct xe_vram_region;
+@@ -33,6 +34,8 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
+ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, u64 addr);
+ int xe_ttm_vram_inject_fault(struct xe_device *xe);
++int xe_ttm_vram_get_retired_page(struct xe_device *xe, u64 cursor,
++				 struct drm_ras_retired_page *page);
+ 
+ static inline struct xe_ttm_vram_mgr_resource *
+ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 4a2cd27a5b61..6a49ee8b09ef 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -27,6 +27,11 @@ struct xe_ttm_vram_mgr {
+ 	struct list_head queued_pages;
+ 	/** @n_queued_pages: Number of queued pages */
+ 	u16 n_queued_pages;
++	/**
++	 * @retired_gen: Changed whenever @offlined_pages or @queued_pages
++	 * change. Protected by @lock.
++	 */
++	u32 retired_gen;
+ 	/** @visible_size: Probed size of the CPU visible portion */
+ 	u64 visible_size;
+ 	/** @visible_avail: CPU visible portion still unallocated */
+-- 
+2.56.0
+
