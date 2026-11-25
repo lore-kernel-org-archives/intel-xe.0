@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E7CA606A32A
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:02:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7094F606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=nAxtwMn2
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=qotmU3ei
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4891110FCB0;
-	Wed, 25 Nov 2026 14:02:03 +0000 (UTC)
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7CB10FC9D
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 14:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22A6810FC9F;
+	Wed, 25 Nov 2026 14:02:05 +0000 (UTC)
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B99C210FC91;
+ Wed, 25 Nov 2026 14:01:58 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 6E25F4E4177E;
- Wed, 25 Nov 2026 14:01:49 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 53646C2B9C1;
+ Wed, 25 Nov 2026 14:02:05 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 41C7960480;
- Wed, 25 Nov 2026 14:01:49 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 6EC1660480;
+ Wed, 25 Nov 2026 14:01:57 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 7A60D11E694CE; Wed, 25 Nov 2026 15:01:45 +0100 (CET)
+ with ESMTPSA id 9212B11E6938B; Wed, 25 Nov 2026 15:01:53 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1795615307; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1795615315; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=U1Tc1UKtkaTUQl+4EDhKyJMEd+b8A2Ti9UjTn/WcWYk=;
- b=nAxtwMn2na5LCqZSajpiFV0nXVhn+mpfRlz8O0ynBK1zIPsl04KaNxCoRZdOyEOAzENFZm
- MaW9+ZPy2tsovDEjTyRALn2W7c7KhOKsGRyU430+8PTrDWt2f9sDPCI10jhJg6mgN59fSL
- Me0VWH9J1aD7ByJgzXfFbR0zJKPQjvsLMysfFdnUwhDLaNXy+TgPFe72hpnSGamg5LOWP+
- 8loaX4j008s3gc15i6GKDf8S3LB9Z83iGhWqwIoXh4K8Wy7cLGzjw9ErdmWEW7W/7lOcRc
- nQahfC+ygfDgWCC+3KE0zLv7+EGAaYCZ1IrEtrDOqU6660wegHZIkLRGPLz6/Q==
+ bh=XMU2yRVG6Y3zFaEsDumfUeq0JoGBtxplJeIUOq/GC2s=;
+ b=qotmU3eiLmI/kWBlFIyS9dexmvCJX77fmeClknlXtd8jaF3Q4hqBSCnNmg2bFyBhQasYby
+ Haoau2aFrNvk58VL/tn2faGhNJ4VRRUHxQs4OR3UlGYJSuuc+/qiL33GAyLJ8kfqm+kML6
+ SMcv/KXaZhHbK8RarxBUx/YU4rfhX7eXUxZPv4MJqn4URqlZvlcfW51jCeVpHgysws7PyS
+ WYCVjIeRQa5zsvWiZCcF3kse04+11lrG9gSwB712ywG9asfPoeOiKIw+8f6lD7+UhCYwyK
+ x4uWe4eVdMcOc2rZB3zm2e/DEqHSqfpqknp75XTf6psvI7LWobZ7g//jj2xAoA==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Wed, 25 Nov 2026 15:01:08 +0100
-Subject: [PATCH v2 04/10] drm/dp: Move supported 128b/132b link rates
- helper out of i915
+Date: Wed, 25 Nov 2026 15:01:11 +0100
+Subject: [PATCH v2 07/10] drm/dp: Add
+ drm_dp_read_dpcd_supported_link_rates() helper
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-feat_move_i915_helper-v2-4-aa04d39bc415@bootlin.com>
+Message-Id: <20261125-feat_move_i915_helper-v2-7-aa04d39bc415@bootlin.com>
 References: <20261125-feat_move_i915_helper-v2-0-aa04d39bc415@bootlin.com>
 In-Reply-To: <20261125-feat_move_i915_helper-v2-0-aa04d39bc415@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -75,150 +75,181 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move the drm_dp_get_128b132b_link_rates() helper from the i915 driver
-into the generic DRM helpers. It limits the UHBR rate mask by the
-capabilities of the DP tunnel and of the LTTPRs, if any is present,
-then expands the remaining rates in ascending order.
+Add a new drm_dp_read_dpcd_supported_link_rates() helper which reads
+the DPCD DP_SUPPORTED_LINK_RATES registers and converts their values
+into link rates. Use it from the i915 eDP sink rates handling.
+
+The custom Intel eDP HBR2 limitation quirk handling stays in the driver.
 
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c | 52 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c | 25 +++-------------
- include/drm/display/drm_dp.h            |  2 ++
- include/drm/display/drm_dp_helper.h     |  4 +++
- 4 files changed, 62 insertions(+), 21 deletions(-)
+Changes in v2:
+- Fix a small possible issue (sashiko) in case of an intel quirk
+  and supported link rates exceeding 540000 kHz
+- Split the patch in 3 for readability
+---
+ drivers/gpu/drm/display/drm_dp_helper.c | 27 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.c | 72 +++++++++++++--------------------
+ include/drm/display/drm_dp_helper.h     |  3 ++
+ 3 files changed, 58 insertions(+), 44 deletions(-)
 
 diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index c92d89ecf96e4..a0afb5eff5bb4 100644
+index 30935d3ae0055..6d684b6b94d0a 100644
 --- a/drivers/gpu/drm/display/drm_dp_helper.c
 +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -4949,3 +4949,55 @@ bool drm_dprx_supports_128b132b(const struct drm_dp_tunnel *tunnel,
- 		return drm_dp_128b132b_supported(dpcd);
+@@ -4916,6 +4916,33 @@ int drm_dp_max_dprx_data_rate(int max_link_rate, int max_lanes)
  }
- EXPORT_SYMBOL_GPL(drm_dprx_supports_128b132b);
-+
+ EXPORT_SYMBOL(drm_dp_max_dprx_data_rate);
+ 
 +/**
-+ * drm_dp_get_128b132b_link_rates() - get the supported 128b/132b link rates
-+ * @lttpr_common_caps: LTTPR common capabilities
-+ * @tunnel: DP tunnel object (NULL if not supported)
-+ * @uhbr_rates: UHBR rate mask read from the DPCD
-+ *		DP_128B132B_SUPPORTED_LINK_RATES register
-+ * @link_rates: Buffer of DP_MAX_128B132B_SUPPORTED_RATES entries to store the
-+ *		resulting link rates
++ * drm_dp_read_dpcd_supported_link_rates() - read DPCD supported link rates
++ * @aux: DisplayPort AUX channel
++ * @link_rates: Buffer to store the resulting link rates supported
 + *
-+ * Limit the UHBR rate mask @uhbr_rates by the capabilities of the DP tunnel
-+ * and of the LTTPRs, if any is present, then expand the remaining rates into
-+ * @link_rates in ascending order.
++ * Attempts to read the DPCD supported link rates for @aux.
 + *
-+ * Returns: The number of link rates stored in @link_rates.
++ * Returns: The number of supported link rates, negative error code otherwise.
 + */
-+int
-+drm_dp_get_128b132b_link_rates(const u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE],
-+			       const struct drm_dp_tunnel *tunnel,
-+			       u8 uhbr_rates,
-+			       int link_rates[DP_MAX_128B132B_SUPPORTED_RATES])
++int drm_dp_read_dpcd_supported_link_rates(struct drm_dp_aux *aux,
++					  int link_rates[DP_MAX_SUPPORTED_RATES])
 +{
-+	int i = 0;
++	__le16 dpcd_link_rates[DP_MAX_SUPPORTED_RATES] = {0};
++	int ret, i;
 +
-+	if (tunnel)
-+		uhbr_rates = drm_dprx_128b132b_link_rates(tunnel, uhbr_rates);
++	ret = drm_dp_dpcd_read_data(aux, DP_SUPPORTED_LINK_RATES,
++				    dpcd_link_rates, sizeof(dpcd_link_rates));
++	if (ret < 0)
++		return ret;
 +
-+	if (lttpr_common_caps && drm_dp_lttpr_count(lttpr_common_caps) > 0) {
-+		/* We have a repeater */
-+		if (lttpr_common_caps[0] >= DP_LTTPR_REV_SUP_128B132B &&
-+		    dp_lttpr_common_cap(lttpr_common_caps,
-+					DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER) &
-+		    DP_PHY_REPEATER_128B132B_SUPPORTED) {
-+			/* Repeater supports 128b/132b, valid UHBR rates */
-+			uhbr_rates &= dp_lttpr_common_cap(lttpr_common_caps,
-+							  DP_PHY_REPEATER_128B132B_RATES);
-+		} else {
-+			/* Does not support 128b/132b */
-+			uhbr_rates = 0;
-+		}
-+	}
-+
-+	if (uhbr_rates & DP_UHBR10)
-+		link_rates[i++] = 1000000;
-+	if (uhbr_rates & DP_UHBR13_5)
-+		link_rates[i++] = 1350000;
-+	if (uhbr_rates & DP_UHBR20)
-+		link_rates[i++] = 2000000;
++	for (i = 0; i < ARRAY_SIZE(dpcd_link_rates) && dpcd_link_rates[i]; i++)
++		link_rates[i] = le16_to_cpu(dpcd_link_rates[i]) * 20;
 +
 +	return i;
 +}
-+EXPORT_SYMBOL_GPL(drm_dp_get_128b132b_link_rates);
++EXPORT_SYMBOL_GPL(drm_dp_read_dpcd_supported_link_rates);
++
+ static int drm_dprx_max_rate(const struct drm_dp_tunnel *tunnel,
+ 			     const u8 dpcd[DP_RECEIVER_CAP_SIZE])
+ {
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2ba89fee097d6..7ef06e68878d4 100644
+index 8fee2d195c944..798274a7b70ea 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -233,27 +233,10 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
+@@ -4811,6 +4811,24 @@ intel_edp_set_data_override_rates(struct intel_dp *intel_dp)
+ 	intel_dp->num_sink_rates = count;
+ }
  
- 		uhbr_rates = drm_dprx_128b132b_link_rates(intel_dp->tunnel, uhbr_rates);
++/*
++ * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
++ * even if the sink advertises support. Reject any sink rates above HBR2 on
++ * the known machines for stable output.
++ */
++static void intel_edp_limit_sink_rates_hbr2(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	if (!intel_dp->num_sink_rates ||
++	    !intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
++		return;
++
++	intel_dp->num_sink_rates = intel_dp_rate_limit_len(intel_dp->sink_rates,
++							   intel_dp->num_sink_rates,
++							   540000);
++}
++
+ static void
+ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ {
+@@ -4819,65 +4837,31 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ 	intel_dp->num_sink_rates = 0;
  
--		if (drm_dp_lttpr_count(intel_dp->lttpr_common_caps)) {
--			/* We have a repeater */
--			if (intel_dp->lttpr_common_caps[0] >= 0x20 &&
--			    intel_dp->lttpr_common_caps[DP_MAIN_LINK_CHANNEL_CODING_PHY_REPEATER -
--							DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV] &
--			    DP_PHY_REPEATER_128B132B_SUPPORTED) {
--				/* Repeater supports 128b/132b, valid UHBR rates */
--				uhbr_rates &= intel_dp->lttpr_common_caps[DP_PHY_REPEATER_128B132B_RATES -
--									  DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV];
--			} else {
--				/* Does not support 128b/132b */
--				uhbr_rates = 0;
--			}
--		}
+ 	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+-		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
+ 		int ret;
+-		int i;
+ 
+-		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
+-					    DP_SUPPORTED_LINK_RATES,
+-					    sink_rates, sizeof(sink_rates));
++		ret = drm_dp_read_dpcd_supported_link_rates(&intel_dp->aux,
++							    intel_dp->sink_rates);
+ 		if (ret < 0) {
+ 			drm_dbg_kms(display->drm,
+ 				    "Unable to read eDP supported link rates, using default rates\n");
+-			memset(sink_rates, 0, sizeof(sink_rates));
++			ret = 0;
+ 		}
+ 
+-		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+-			int rate;
 -
--		if (uhbr_rates & DP_UHBR10)
--			intel_dp->sink_rates[i++] = 1000000;
--		if (uhbr_rates & DP_UHBR13_5)
--			intel_dp->sink_rates[i++] = 1350000;
--		if (uhbr_rates & DP_UHBR20)
--			intel_dp->sink_rates[i++] = 2000000;
-+		i += drm_dp_get_128b132b_link_rates(intel_dp->lttpr_common_caps,
-+						    intel_dp->tunnel,
-+						    uhbr_rates,
-+						    &intel_dp->sink_rates[i]);
+-			/* Value read multiplied by 200kHz gives the per-lane
+-			 * link rate in kHz. The source rates are, however,
+-			 * stored in terms of LS_Clk kHz. The full conversion
+-			 * back to symbols is
+-			 * (val * 200kHz)*(8/10 ch. encoding)*(1/8 bit to Byte)
+-			 */
+-			rate = le16_to_cpu(sink_rates[i]) * 200 / 10;
+-
+-			if (rate == 0)
+-				break;
+-
+-			/*
+-			 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
+-			 * even if the sink advertises support. Reject any sink rates above HBR2 on
+-			 * the known machines for stable output.
+-			 */
+-			if (rate > 540000 &&
+-			    intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+-				break;
+-
+-			intel_dp->sink_rates[i] = rate;
+-		}
+-		intel_dp->num_sink_rates = i;
++		intel_dp->num_sink_rates = ret;
  	}
  
- 	intel_dp->num_sink_rates = i;
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index a2a7338552e13..6efacff09567c 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -1228,6 +1228,7 @@
- # define DP_UHBR10                             (1 << 0)
- # define DP_UHBR20                             (1 << 1)
- # define DP_UHBR13_5                           (1 << 2)
-+# define DP_MAX_128B132B_SUPPORTED_RATES	3
++	intel_edp_limit_sink_rates_hbr2(intel_dp);
++
+ 	/*
+ 	 * Use DP_LINK_RATE_SET if DP_SUPPORTED_LINK_RATES are available,
+ 	 * default to DP_MAX_LINK_RATE and DP_LINK_BW_SET otherwise.
+ 	 */
+-	if (intel_dp->num_sink_rates)
++	if (intel_dp->num_sink_rates) {
+ 		intel_dp->use_rate_select = true;
+-	else
++	} else {
+ 		intel_dp_set_sink_rates(intel_dp);
+-
+-	/*
+-	 * Some platforms cannot reliably drive HBR3 rates due to PHY limitations,
+-	 * even if the sink advertises support. Reject any sink rates above HBR2 on
+-	 * the known machines for stable output.
+-	 */
+-	if (intel_dp->num_sink_rates && intel_has_quirk(display, QUIRK_EDP_LIMIT_RATE_HBR2))
+-		intel_dp->num_sink_rates = intel_dp_rate_limit_len(intel_dp->sink_rates,
+-								   intel_dp->num_sink_rates,
+-								   540000);
++		intel_edp_limit_sink_rates_hbr2(intel_dp);
++	}
  
- #define DP_128B132B_TRAINING_AUX_RD_INTERVAL                    0x2216 /* 2.0 */
- # define DP_128B132B_TRAINING_AUX_RD_INTERVAL_1MS_UNIT          (1 << 7)
-@@ -1528,6 +1529,7 @@
- 
- /* LTTPR: Link Training (LT)-tunable PHY Repeaters */
- #define DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV 0xf0000 /* 1.3 */
-+#define  DP_LTTPR_REV_SUP_128B132B			    0x20
- #define DP_MAX_LINK_RATE_PHY_REPEATER			    0xf0001 /* 1.4a */
- #define DP_PHY_REPEATER_CNT				    0xf0002 /* 1.3 */
- #define DP_PHY_REPEATER_MODE				    0xf0003 /* 1.3 */
+ 	intel_edp_set_data_override_rates(intel_dp);
+ }
 diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index b67bb06f6e07e..a8c382a2c916f 100644
+index dd4c4a6ff17d1..2e018f1e59363 100644
 --- a/include/drm/display/drm_dp_helper.h
 +++ b/include/drm/display/drm_dp_helper.h
-@@ -708,6 +708,10 @@ u8 drm_dprx_128b132b_link_rates(const struct drm_dp_tunnel *tunnel,
- 				u8 uhbr_rates);
- bool drm_dprx_supports_128b132b(const struct drm_dp_tunnel *tunnel,
- 				const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
-+int drm_dp_get_128b132b_link_rates(const u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE],
-+				   const struct drm_dp_tunnel *tunnel,
-+				   u8 uhbr_rates,
-+				   int link_rates[DP_MAX_128B132B_SUPPORTED_RATES]);
+@@ -703,6 +703,9 @@ static inline int drm_dp_dpcd_write_byte(struct drm_dp_aux *aux,
+ int drm_dp_read_dpcd_caps(struct drm_dp_aux *aux,
+ 			  u8 dpcd[DP_RECEIVER_CAP_SIZE]);
  
- int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
- 				 u8 status[DP_LINK_STATUS_SIZE]);
++int drm_dp_read_dpcd_supported_link_rates(struct drm_dp_aux *aux,
++					  int link_rates[DP_MAX_SUPPORTED_RATES]);
++
+ int drm_dp_read_dpcd_sink_rates(struct drm_dp_aux *aux,
+ 				const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+ 				const u8 lttpr_common_caps[DP_LTTPR_COMMON_CAP_SIZE],
 
 -- 
 2.43.0
