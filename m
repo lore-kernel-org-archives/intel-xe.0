@@ -2,156 +2,164 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3256606A327
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 19:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69120606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 19:12:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=WgL8AKux;
-	dkim=fail reason="signature verification failed" (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Q7ibJogl
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=BGhY7m+G;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=l0Uv+A2v
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D92110FF28;
-	Wed, 25 Nov 2026 19:00:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AFD510E004;
- Wed, 25 Nov 2026 18:59:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B47810E087;
+	Wed, 25 Nov 2026 19:12:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3764510E087
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 19:12:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795633189; x=1827169189;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=EIuNTycPoRrfxJs+SIgj3OrrUWv8tkji75otvzFoKoI=;
- b=WgL8AKuxE9Qf7fBz1YeHZM8XrrHM6gbL5V5SM83BOUX0vWRKVSdhX8UX
- +Lng4P08y2DQjvvp4vNdaQQ/d03bSg1G1kTR6y4k/E73TGP6FHIEjSemH
- 0isH6BV6y4e6mRkm/I7RGT6vE+15l09WS1uj0PPVCd6CjPw6hLRAAs+Us
- f5kvPoZKLSRqrt0c14a7iCy22Gy+y17ZNSdiuQ7WK46on4FC0cz8Jtz4K
- daFMqk50MDeqNd60ML3xqfyq+vn/0lRnOyb6NZIl5K5JtlijIGHezLj2F
- vccAriPCXZpMK4K3VYYTfGofDe5i1NxvZtrkNvAi55Tu8UACNWxIsnWtT Q==;
-X-CSE-ConnectionGUID: EH21vZz3SwS70j22Uz4Xog==
-X-CSE-MsgGUID: r5+/QwvRSrWoS0fAP0Zi9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4421801"
+ t=1795633928; x=1827169928;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=MQtPJf4QjIQbOE1W6NhV4MOe4IzoPE8Q1xx+G02xRi4=;
+ b=BGhY7m+GonOKw8Jmcz9lesWoq1fmTX4fLH9WUAcZAyR67Q6rXvLMZX6N
+ KikZdRidTlRb33et4WmzxikopiwhZldhBFlP+eE/nOJDOm55s4Kf8eXjz
+ Gy+sve3i0L2gI2qOmg3Vh9RnoecEgFE+5o6jc/EVR7iWaPb4OLifd+RSZ
+ hOHkHvxIwauP8ZFb8FZ4TwQlR1KK7e+VHGxfi++ePf3OmQ/aOh0+unYAr
+ +0l9Vusv3mSl0jjiF0NglK/TPGPgh25nRsarjCPwWWpjI+AKV5n69EfgI
+ 9+ACWqmT0Ha82BdhimvewQgekvKtWKQesypjDzQmBVSn8Oo7MdBV3VLLh g==;
+X-CSE-ConnectionGUID: FKIDpC89RxyzFGn5LHN85A==
+X-CSE-MsgGUID: yNJju4NGRnG/RwEXiU/zTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4532407"
 X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; 
-   d="scan'208";a="4421801"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 10:59:49 -0800
-X-CSE-ConnectionGUID: MaYQbLoyQlCxklXHgECmiw==
-X-CSE-MsgGUID: eyd1GsLBSuCZUR+GnoyPtQ==
+   d="scan'208";a="4532407"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 10:11:07 -0800
+X-CSE-ConnectionGUID: TE8cW1GWS0il+e1xr2SQBA==
+X-CSE-MsgGUID: 0zoTn4QNQGGFLIvo9GWMYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; d="scan'208";a="11930965"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 10:59:48 -0800
+X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; d="scan'208";a="12368850"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 10:11:07 -0800
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Wed, 25 Nov 2026 10:59:48 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ 15.2.2562.57; Wed, 25 Nov 2026 10:11:07 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Wed, 25 Nov 2026 10:59:48 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.63) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Wed, 25 Nov 2026 10:11:07 -0800
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.70)
+ by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Wed, 25 Nov 2026 10:59:47 -0800
+ 15.2.2562.57; Wed, 25 Nov 2026 10:11:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=iQL9zgDslxZYu+cKpjtzIIVH2HdfByMYSIebFILco1q/14NqEqn5bpiWwHiQQIaojJzLOx1aZfaeRdhac0uV84UC3OqffwI0KXpX6HWKW+NMjpOccopnSwVYq9/GHj6FaLQSwOrB0hvKF+pYm4yc/w8GH5yzRtGHy6fXyM9DyPGUE58b2ZW2RtHmfRCmnygtWfziPvhsYVpgOZ/EpVPAiJL/Z81y/yTs4cgk1mHK7YlwtRpMfgQcMck3/PapYoFAE9CYunLyk2ttCNYqv9S3DvTIEJFqTGJINtbP1NQCUWotyp9ffXF8HkeLySu0zq03bvWzARhOZxe11AhVl2PDTg==
+ b=B3GvcZeNLPZ2GX6Ke+quxppnJ+DRfW/Vyn0KJlG0C+jMqQlUD9dDxd4weIGFECcububgYg5eLqVwjgxJ/5s7g3gbc/Gkpa9ax4ufHjMbvikLtKZuP7YvU2ystZTih9ot6EDwhyZTjLQSKI34HDkIduce5dQhlYBgL3bUyH58mG/zlPoHnf9pyOtnaZJhGnQX5d9PGpQwFPkS1qD92U3HV2VJ/wcOAAzkTDoTEgJxSVsjWUQtnF0bS/pBiEvVUh6wZq3luDXYc8vtaF2zlBZqsr7gWUnBnzm2uVg8rzAKMQgpB+3oHrGsrocScFSsmGVcwd1IMdDBCFBYd5N88cc4Uw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B6tPT7In7vkt8HASFxuLaV0Xfj3COiP+CIyIi8Quywo=;
- b=yIPkuZGsll1PcgL4efxz+snTlqoAoEyKXwUupvTpr7oDlVs6HrUYiE3XtlwMGQtTfS67haXAXcqpnOFYwEn2ktTpC6r1Z7fg59+A9Rs+xjLa86EhzMkh6yurDTS2gnpJfskKDgQEnBmdWLG3hi29lp7BpZcR5haCrxA7/9fSkSN2wSbe6spehkx8iUCC35cujiliqd7aExZC/pAUv1nX6iq0iR27ydwfAeGVFp/la7RPOKNIBLHW5vbhIFDiVfGkSiGWtQOGK5qUUwSt1Wo51a15DElH/009kGSwfxZ1riugyxwcsFcBQ/vKO1Dt1yv1mLkbMnsY3rzJzUAsRZxgeQ==
+ bh=4oFcOPtoZ7pzLB0+71/4pvmOW42mmt7gHCpzrHHDV+s=;
+ b=IMITQu28ooT7qlxrY7mpHQ2w2aOf/7iG2T4JYSrtUP7y2jK3VM2W838NQ6PZffhMbkKwuKHvkWWfCfr0fPWKnASuuHUhwkNATp9DccnRphpd/hLdYlg3wPasBSRzPAckrX3AemmyHIXBeq48EbFTeKZj3FYJwIJZ9EroXch8tfmnZlEpNRF5qJsn9dK9LoRlVLCHu8SRXi/HT+znlv6MM2GTVVNcOTSLJeYEGBUuTNQLJef5TkZYlSzlS0BKM0BNtqvDX2CQoqJzbjWkt1CFruDn8WtgURDAeE6vh7f8f3PsIFjutEcR+/rMsUP73S3vmOdwl8e96m/nuNBOEdBdWA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B6tPT7In7vkt8HASFxuLaV0Xfj3COiP+CIyIi8Quywo=;
- b=Q7ibJoglt23SB+Bxq9H9jQ2hjA164k++PWE0x3IZ3RDENxI3+dk6hsGq7haVxDm1blAxeAfNkA+k0OPa2E+qFO80IOGrhPTcQxpMg9Sogx38T5vOFXNTrZvQlDag9rgzsYWKOKYwrEz4IsPAyE+5eXT255cbRqeUaeHhzChOzxY=
+ bh=4oFcOPtoZ7pzLB0+71/4pvmOW42mmt7gHCpzrHHDV+s=;
+ b=l0Uv+A2vslDlGl+HpV0tdFF/V32KVNf7hBrI/+79jELZsFhEju5se6Ope2PVyUNLbvQvBvVmrAa91oqkf5mlEdPNie8TAX/ZNeX8r9i8bZxN856St69792U9a6aaiLtiEcWFSZxRgSnYM2ldY6EWBv+0UIy+clUJlMKnDZCEzKs=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
- PH7PR11MB8550.namprd11.prod.outlook.com (2603:10b6:510:30c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Wed, 25 Nov
- 2026 18:59:35 +0000
-Received: from DS7PR11MB5990.namprd11.prod.outlook.com
- ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
- ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Wed, 25 Nov 2026
- 18:59:35 +0000
-Date: Wed, 25 Nov 2026 13:59:32 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Tauro, Riana" <riana.tauro@intel.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>, Jakub Kicinski
- <kuba@kernel.org>, Raag Jadav <raag.jadav@intel.com>, Zack McKevitt
- <zachary.mckevitt@oss.qualcomm.com>, Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-Subject: Re: [PATCH v4 1/2] drm/ras: Add retired-pages node type
-Message-ID: <awcwFHXV25lieJic@intel.com>
-References: <20261124203833.3618507-4-rodrigo.vivi@intel.com>
- <20261124203833.3618507-5-rodrigo.vivi@intel.com>
- <90a912c9-2936-49c9-bdce-1267825f1678@intel.com>
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from DS6PR11MB087165.namprd11.prod.outlook.com (2603:10b6:8:4c4::7)
+ by IA1PR11MB9470.namprd11.prod.outlook.com (2603:10b6:208:5af::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Wed, 25 Nov
+ 2026 18:11:05 +0000
+Received: from DS6PR11MB087165.namprd11.prod.outlook.com
+ ([fe80::4223:7b03:1329:265f]) by DS6PR11MB087165.namprd11.prod.outlook.com
+ ([fe80::4223:7b03:1329:265f%6]) with mapi id 15.21.0639.012; Wed, 25 Nov 2026
+ 18:11:05 +0000
+Message-ID: <528732a6-54ec-4e53-ac4b-b4abb0189f40@intel.com>
+Date: Wed, 25 Nov 2026 23:40:56 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/ras: Handle SPI out of flash error
+To: "Nilawar, Badal" <badal.nilawar@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <riana.tauro@intel.com>,
+ <anshuman.gupta@intel.com>, <aravind.iddamsetty@linux.intel.com>,
+ <raag.jadav@intel.com>, <rodrigo.vivi@intel.com>
+References: <20261123070221.1611306-2-soham.purkait@intel.com>
+ <1a0d36ce-a7aa-460d-ac8a-5a792c280193@intel.com>
+Content-Language: en-US
+From: "Purkait, Soham" <soham.purkait@intel.com>
+In-Reply-To: <1a0d36ce-a7aa-460d-ac8a-5a792c280193@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <90a912c9-2936-49c9-bdce-1267825f1678@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0130.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::15) To DS7PR11MB5990.namprd11.prod.outlook.com
- (2603:10b6:8:71::5)
+X-ClientProxiedBy: MA5P287CA0046.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:175::12) To DS6PR11MB087165.namprd11.prod.outlook.com
+ (2603:10b6:8:4c4::7)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|PH7PR11MB8550:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2b948b8f-0933-4520-0e0d-08df4b263f6c
+X-MS-TrafficTypeDiagnostic: DS6PR11MB087165:EE_|IA1PR11MB9470:EE_
+X-MS-Office365-Filtering-Correlation-Id: 82303d53-d751-4983-ae3d-08df4b1f78b8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|23010399003|1800799024|261021121427099003|10067099003|261102123227099003|11063799006|56012099006|261022075727099003|261022113327099003|261022105027099003|261026121527099003|261021123027099003|261026140227099003|261028144727099003|261009223327099003|261009221227099003|261009220027099003|261009221727099003|261009223027099003|4143699003|22082099003|18002099003|6133799003;
-X-Microsoft-Antispam-Message-Info: paS4LGJqnOa1DJF10FWuFYf7gzN+xMpivXnMuvpum5kd13sUtsdPAX7EX3BTln4JD/YTlW5mFplMTpsAR4pcMr5E9cXTgE4mbrbTZzm9C064Jzi/xghxRNr3rCrju+sNIALzYNRyvL58mkQA3Jkm0oIA+4TBr84ljX12Dv+o3RQHynKwybdLdQvoeKjEvRrRmRYmTmie5Q9GdKa4uZiyq9mHTVUltARfT7ughIVYuwzEbhbFpXpqAHFiab0d+nKOBjJbnP5RqPde9NssoRbQKcKSHhMTXvMMgPexMD6qAiLECZN7+AclBktSK8hoXFPXUyNQGqrWMfxY0OWTq2+8IIPA7znAHLEIvuwHUrDeFDWV2ti/iXrLhryeKTrXoWbTzElkVAbhRnw4Y6h/mLCphAJGOkdfSFWk+8b9RS0eYDn5ShsGQX1Z+pT6QIokIMWdazckx2sOYVb60ew3kPqgsp4kd7X6FoX/N8Bi5oBvRgZe+rIhLYH6VI1JQJea/0GbmoAvIonYLAcuy0U7osbUXJHhSPG/FcLOA+LvmFcMMYA76ivt2FXFT5N1s6W5TJ/L2LiwmfQAbNv8eIPi+wMUjB+0RSVV+wWhMq5/u50BgBI=
+ ARA:13230040|1800799024|366016|23010399003|376014|18002099003|22082099003|4143699003|56012099006|11063799006|261022113327099003|261028144727099003|261022105027099003|261026140227099003|261021121427099003|261102123227099003|261009223027099003|10067099003;
+X-Microsoft-Antispam-Message-Info: WQ+uI6ylL8GvG5pKsHhaegy13doacwY2EdMifKKn8XVM98gm5tsU4FXjndM5B6dfKJFybOIdE0capW79weSmC4aGnzk6jIjLC8T1QFaKLqnOO1LfQNja5e0aoLMTbdKeluoyWtFto6ZoCAXm5vQUzfAvYHOvElqXrltXKjI5EwC5m4nLyHF7LVm+g2GVhB1Ak7XhQqsKSvkIDvvTMHDOiuhyZAx9UIVuhSg9EyRe82BeTJ44bHZQeG/4DWgHbFj5hFBbXjzf37DOfzq7XG6E3b7UxVYx1kqeZ11Xo/BSgwVxPTrbF3j0ChQVlZFqAgvKotLmAhD/qLB1F1vxOtVAWF3kElD317iapnoW3d7oBEz+L1HZOUFkgHgsw6GX3GZf9nbIME6Ek+zNsYvIPTbxyEoNRxR/av6g/4+QD1oHxJYRj7GbK9lHrGpPI3mpJke2cJ8LGtAUP5gPHUIzz711mQb1Gn2XYcIaqy3jHKpjIvpPDzjmLSayZFsY8acKH8m7k25qNHK06SUVlpz79mcLy7RGF2FXe4qbz9Kuu0etJZuVpuRk2CNQs5J2iVErp+Iz5bATdHroAqR1yxWHmzt47PXR6LMzq3d1A5quTcJJpx9xlKHZ9UGLjXNeNSAGJBXbN0XdnXvgyuheM9GBkAxczMUnPO3BE6MHxdWE3vWhp5U=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(23010399003)(1800799024)(261021121427099003)(10067099003)(261102123227099003)(11063799006)(56012099006)(261022075727099003)(261022113327099003)(261022105027099003)(261026121527099003)(261021123027099003)(261026140227099003)(261028144727099003)(261009223327099003)(261009221227099003)(261009220027099003)(261009221727099003)(261009223027099003)(4143699003)(22082099003)(18002099003)(6133799003);
+ IPV:NLI; SFV:NSPM; H:DS6PR11MB087165.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(261022113327099003)(261028144727099003)(261022105027099003)(261026140227099003)(261021121427099003)(261102123227099003)(261009223027099003)(10067099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?MAhQ3wpjq5yf1fIZAGeBruaKp+nAYF1m2N4jLFIE99xUmyqz7K3botQlfR?=
- =?iso-8859-1?Q?C30fSoNRnMJwN41DWS9eyJMYZK4DF7bjpyY7hkJz/J019rdzmYvG71AyXN?=
- =?iso-8859-1?Q?XL4BU8CgbZoB2dJg6VnKZ7Y8o8AI4mz8S8cSc1LcwnFlsvX6NizMoJTTrw?=
- =?iso-8859-1?Q?I2d3ol4ERbzrgcv68KcsFVxjaoWBB5P8LqTPkH7uorN4Np2BtHOGagJhok?=
- =?iso-8859-1?Q?itO0QIcT7iDlZcTKkLMk5cT0foQhyM6S/CDG0Lo/sBgT9CBi47jlrgkiJB?=
- =?iso-8859-1?Q?1ZaaTS1Fc53ZsNM3ZUcqY1xzTcy5waiEx3rHJbkVedlDxBBIojNDgkAc+3?=
- =?iso-8859-1?Q?yFEKd6gSAvdeUN1oGADz7i3lZTPMzC8o9fTI7e/HH/5clZhJrzInoJbWLt?=
- =?iso-8859-1?Q?SWW/wNau8QZWx/f0x9JwHOmpPnRwp4SEgZ3FhV3tU7NtaQHW9NVTvc0t1x?=
- =?iso-8859-1?Q?VZZ+hEvnY7W70Ka1rc4lt6rwTTZxS7sIafH/p9NKhapJIiRw79QWJvxhJx?=
- =?iso-8859-1?Q?MnrTgjxFP+6Wr/0rRe6PY/GRW3TYB/y+Rs4k1Cm5AZzZe8y97iTAFDck7C?=
- =?iso-8859-1?Q?8FCculnc8h90jmg2+7xrxX0RGNDPYDNPCgt86N6ZN2CUWoDlBVbptCuy2m?=
- =?iso-8859-1?Q?wZjFEbgR1uSO2ptWwLYd58BQNdMqvGP28sjSlZ3NDS7f/7rsgp6IHK/4pe?=
- =?iso-8859-1?Q?z+yXd5qZ9Sy2CJrhznz+ygJOZbCE9DyWrvb5s+wNP0B+9Ykw0XAomA14BS?=
- =?iso-8859-1?Q?ey6diUiSsIGdd9L8npy5nkdADnw9ACO7DJNjwNXnv7dBHllYnzmF53u4g8?=
- =?iso-8859-1?Q?Y+lvA/xB33uneiiULziGIGXXGpcpkJqZ1gPp/xHJXXfpCwWoqO8drU6JAY?=
- =?iso-8859-1?Q?ZIRnH3ToagbLt175pJrLsQB1onnBhZLPJESbJZOnZ5ZDcnjX3UB07RgNUM?=
- =?iso-8859-1?Q?gTOCQHyk/PDblhW49EVpccb1enhLXsDKw+349xVbrOGznXAfBnoP4VvrSR?=
- =?iso-8859-1?Q?Mp1WBl7eDze28W+sj5oXSv87Mz6DogCwpgV//Of8WGgnQEwa69+Y+f9lAO?=
- =?iso-8859-1?Q?2O0LdO5qnRoD8RMpOrToVehtFyFNuZVTIyMf8DNAFq7gsHw+KpeD4auUF8?=
- =?iso-8859-1?Q?IAQwDMlg5kHUaZPy2oosZQdWnaL1MW+UbM0Nm1crkYN5l1EUUycrTYgSIG?=
- =?iso-8859-1?Q?SvovYtiwzVs9lG6wQiEZVFssuzkbtZfhdIOWcmav/ExQxg9pN8H8sPcvlC?=
- =?iso-8859-1?Q?SdlzkbnNjjBuuHpHm5q+kNwR4+5o80oZ78bFdIi21TF18VKZJZC9tdvNJ+?=
- =?iso-8859-1?Q?SIKkJQIG02sXoNLcq9jQ0SlzVC7RlALFY7qbBbUdJ5uHSpcCfp6hReUc9r?=
- =?iso-8859-1?Q?FlPYwNmMkm1YnxyRRVoiFJukj+BES/qQqlnQlDLqhSfZWHpU+qo59OnOdu?=
- =?iso-8859-1?Q?e6Rh08cExtYjwoEaaDVzhNmIX4RJziySQESYA2hIrs+BNNF73vc7ezjlJJ?=
- =?iso-8859-1?Q?s38T7eORpYuxlizECJ8c5fGLSoLPApuzqSpit/QevxQ+OwbUdmFXvWzSk2?=
- =?iso-8859-1?Q?ELHOVJVzTjIsOuVUWPmhPzSBQIE5yxE48NzwROkr0hdi264w8lHubSM0zN?=
- =?iso-8859-1?Q?L93bf7EXayumKICNMPckQip5iEsM351uOXsYVLdIjwIs0bFyrQlYVmJ3T3?=
- =?iso-8859-1?Q?lqx3UyLLCn9HUbi8kEF/mecitJ4tRGlomALi5mj3+mVb/saxAwqsYmb7M8?=
- =?iso-8859-1?Q?moT67/aOHks707SPwbWfR+ntM70DTluAnqBSwwMMdqpWFq1075EiPHPkJl?=
- =?iso-8859-1?Q?QwtIsrPxlA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: jgl4gjTUK1FR3UlKl8WrASHzV61gk8fUaFyxwBsw9n8l5KpxPFI+MN3kVwF9uBsswxXJUD59ZeI06TNhnBCB2NxCwOWgGSZzXO7oJSiWX4MEBh7eY7lggvekzH3FgDyRWnjNjab653NDcSRvMi1eZnrprSS6TbBdxg/nZ8Q50S5jJKxMDuNngrqvJeb7YJm4KYPGWPYgJvdLJoAXmcQHkFpmDs7hnARIcs6Arim7eBbarYfp96AiPnyYMy2F3YVSSDG5+EPv1C1qXR6KbVk1rrqeV9Q1U3LZDgvhfc8QjG1XdqoeR/XDgVjjobenyq41EiI6dJRQ+N+Zuzv9/uZ6Ag==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b948b8f-0933-4520-0e0d-08df4b263f6c
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U25XWi9wSlNZU1JGWC9PdmJQc1ZYNkdvRkdERWh1Zlp0eVlXc0VBRjZ4aXlY?=
+ =?utf-8?B?eWJUM3VtaXJhZU8wbDNrSHNIUDVhWWxJeVJvM1NPSjZya0lOYmFiYjVxTDk3?=
+ =?utf-8?B?cVE4dFhEdkoxODhvVlVrOThqR042b1hNNWsvRlJQNVFJUTNraUVvak5CVlV2?=
+ =?utf-8?B?aVNNNHZLbElqYlFqVzBRZExGYWNNSE1OL1F3MzZzMDVwYUNOd2RqSDNOVTFh?=
+ =?utf-8?B?dElGSWJrZkhhRFk2YUN2SWFLUUxHMis3TC9tVHV1MWp0d3Y5dyszSGZrZ3dU?=
+ =?utf-8?B?bFNEVG5mcDNDb2FBWFR5QXFOL0dPbVpuQ0tZQzNJWmIzTnRXSXJnNUJIUmRE?=
+ =?utf-8?B?aWNKRjZQY3Z4bHNub3oyQjIrU1pQU2Q2Ym5kaWtJM29ubkVwcWo1aWpJRmdn?=
+ =?utf-8?B?cE1JVENkS05BelNDUFFVZkk4a1dMdmJoK1h3NFhGSzNCeW9wYjRVNk1qd1Qr?=
+ =?utf-8?B?R3hVc0dEYVNES092ZFQ1cENrc2FUMXErVEF1c2djQktVZXVoSmtZdW1DV0wz?=
+ =?utf-8?B?R3ZtQ3lZakNTR2Mxb2JNUUFPME5Xb0hKS0hnYmZna2tSVVJDbGJLYmhITmli?=
+ =?utf-8?B?dm9nTVR3UUMvWk1LaGtqNHpGZk85ZzFKRmtFTExBcHAzcjJYclZjVXFzd3l3?=
+ =?utf-8?B?T09NRXdPL0R0Y3lRZHVkcTFuTkx3OHZrWnVlWCtWTGd1aG0wU09JalduT1R0?=
+ =?utf-8?B?MUk0Q1JDTG81NHBOcU4vS1hsNFU2cEZyenloTndiUXA2cFhMZm5iYi90UnRP?=
+ =?utf-8?B?WXNna3kwL3hqY2c0L0REY3ArbUtVRlZhWmFFSU1EcW9QcEFnVUFnTGdTUzZW?=
+ =?utf-8?B?TW9BRWs5QXl2aVYwVXJKQTc3SXphY2VSdHdqNTAwc21LN1JTVU9hcEFNTXUw?=
+ =?utf-8?B?OSt4Z0pkUjFnRFdzUjZIbVErb1g3VWZtTUI3bndEZDQzaC9mWVRZeHdrMEN4?=
+ =?utf-8?B?Qm1xekJ1VUtzWFZrN2N6Z1RENFYrU255cjNiTWtxd3NrSTQ5SHVEcFlIRzFN?=
+ =?utf-8?B?NGVKNGVKODZoNDZxSWRqYzZpK1VXTk9zSGoyd2JEaU9GWmRwK2VEZkVYNHgw?=
+ =?utf-8?B?OXc4TGJ6U3RuT0pZQ2hpNkFFQjMvVW5DYmFjNEwvck5hR0pzYjgwaHA3dk9B?=
+ =?utf-8?B?Wi9wOU5oWnZwK0Q4eHU5NEg3cytLbjVmaHd0NGVPMTkxUHZtejlxRHVtL0lE?=
+ =?utf-8?B?NEZQVzFHWWpIOHRTT0o5emF3bERHWHcvcFVTN3ZJZE5id3YzZER2V1IvY0tY?=
+ =?utf-8?B?YXV2Mm1YRDY2QldHdEx3cklqZXR3QVNwQjVPWEZma2haN29EcWNqVHFQTEUy?=
+ =?utf-8?B?Nkt0Rmw5MklzSDVXSDhPc0p3SWhtNS91azMwKzBZSGNLQmZZOXQ1UE56a3lD?=
+ =?utf-8?B?aUx4OGFvRVZ0RFR2NkhhbTMwc0xPNmRjcVFRVVpwaXZMY2JIelUyNFl3MUFV?=
+ =?utf-8?B?M2xCUU95aXl0ZFJvWVBhOENCa2NZb3hrWnVjci9mN1c5RVF1Sm95YVBCVzFY?=
+ =?utf-8?B?YmJSNExSTlhFSXFscGl3UWJxeEtxK3FNRHgxZDlRMkFSeVNJQVBnZFo4ZTJw?=
+ =?utf-8?B?RllQTVl3U21yMUF6aTM3ZjBpN2hVTHQ1RWZBdGVNWUJEdG0vSFlzM2VGTERo?=
+ =?utf-8?B?MXZ4OFIwL2pGdDcyNmtscFd2QWJCb1NBU1U0Y01XejFjRml3bGw2emQrYXZL?=
+ =?utf-8?B?aHBrVkRiSnF4ZmZGY1h4NEt1U0ErWmZiLysrVXVTTWt1UmpseXc0dWdYSDR1?=
+ =?utf-8?B?VktnbUJVZjdOOHJyUW5NUFhxcVpkV3BKc0ZJVkxXKytxYnF2Z0dMUVhQdGt5?=
+ =?utf-8?B?QWU1VDg5eFFiTnF6Y1FUOThSQWttMUJTUUpGRmovUU5EZGFBMnJRNEdUUE0y?=
+ =?utf-8?B?N0NWMlZhdUR3RUZwVVkwcHlGS2lrdWFTZTdrOGZWQVFPTWcvM0phYzk0eXBL?=
+ =?utf-8?B?SUJpcGR0OTJYNjFveG1KU1JneXBHYnRYT21zMElzWElQaGJ3aXhNakdrWjlC?=
+ =?utf-8?B?L0UxQUh5ZnJsWHIzb3FpNkIySmt0MjAvb1UrSHhEYlV2SlUxTXVrWWZiVUM2?=
+ =?utf-8?B?QTNkTU1KZVFnN2F2VlpDSWxBbTJBR3dySE9rSDRIZFFBckQ2ZEV4UmQraTZ6?=
+ =?utf-8?B?dnllN3h1YzkrckJqWXJIK0RVeXVIYzNBNUU1S0NUem4xaFRWYTJVVzR0OEZj?=
+ =?utf-8?B?L1ZNWFE5UWRWU1FScnMrWklxSEdpS3hTTXVtUjNyWkVlZCtUSGNYSGxzVnNY?=
+ =?utf-8?B?S1p3N3czdE91L2dmNkwwa0VJYjVETEhJYm5vWjFWeGRZeWZ5akxjekFCdXdY?=
+ =?utf-8?B?T25YMjlEYkVueU1Cdndmc0xwMUtVbXVSR1pEaE1uK21MSWJQNmxPRTN0YmNk?=
+ =?utf-8?Q?DhhWUM2tF538DaDU=3D?=
+X-Exchange-RoutingPolicyChecked: PEfYgDuzUfzjjGwzouojGC9wT9CMjQisONNWP4CJrjYfXidJE1mmLwiYwEMqmZh/fIH7XBhhXfEDO+XWs3Wey8Zar3hw6snZyV5CEQNn3nSKCW8mhdcimDxeIZ3NRfjsPrtcHrBewuQNM+lTacd5TScwXx0ji6PR2yyhnvcWZ/xHDaNGIf/sPPca4hsQNiWJlzNDxOXLtKxC1Jzxv5iCKNWqBkKBZhq94amMC5cJUDwHAqtpt+k8kWWQz1rDLYLw9iTNqnUxtluv13N7rOud6uH7ekGz/XCRo9KeU1i8S6NRR3wuonMZ0cBoWcFTkgw72cDjWdkKpxWTl172KhvxzA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82303d53-d751-4983-ae3d-08df4b1f78b8
+X-MS-Exchange-CrossTenant-AuthSource: DS6PR11MB087165.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 18:59:35.7716 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 18:11:05.2422 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GYIYVZGfK/7HuC/bwFP7Itwq5aFEeiF8nGYl1BQfSnm2fYjMNXcoX7viEhld6mMTZcSFXqg9ldd3zxYCZqmQIw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8550
+X-MS-Exchange-CrossTenant-UserPrincipalName: rlr3VzTTzCfjTNQeNo9y8mVhDRiXiOY2FoJElqcMqrH8pMWN5ChnheQOpz7SBEFD+WVeOm9zQ6RajS3GICjIig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB9470
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -163,737 +171,92 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-20.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
-	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 04:45:38PM +0530, Tauro, Riana wrote:
-> Hi Rodrigo
-> 
-> On 25-11-2026 02:08, Rodrigo Vivi wrote:
-> > From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> > 
-> > Add a retired-pages node type to drm-ras so drivers can report the
-> > memory pages they have taken out of service, with two operations:
-> > 
-> >   - get-retired-pages: dump one entry per page with its address, size
-> >     and status (retired, pending or failed). The dump is flagged with
-> >     NLM_F_DUMP_INTR if the list changes while it is read.
-> >   - get-retired-pages-info: return the maximum number of pages that can
-> >     be retired.
-> > 
-> > v3 (Rodrigo+LLM):
-> >   - Split the drm-ras core from the xe user.
-> >   - Flatten the page attributes and name the node type retired-pages
-> >     instead of retired-resources, avoiding the over-wrapping
-> >     anti-pattern pointed out by Jakub: the type-specific nest and the
-> >     resource-type enum are gone.
-> >   - Use uint for address, size and max-pages, no pad (Jakub).
-> >   - Start the status enum at 1.
-> >   - Move max-pages to its own do operation instead of a leading dump
-> >     entry.
-> >   - Set NLM_F_DUMP_INTR from a driver generation counter.
-> >   - Report unknown node IDs with NL_SET_BAD_ATTR.
-> >   - Removed deprecated Assisted-by tag.
-> > 
-> > v4 (Rodrigo+LLM):
-> >   - Check the dump consistency once a page message is filled (Sashiko),
-> >     and on the final NLMSG_DONE (local Sashiko), so NLM_F_DUMP_INTR is
-> >     not lost.
-> >   - Make the error-counter operations reject other node types (Sashiko).
-> >   - Hold a node reference in the new handlers (local Sashiko).
-> >   - Rebase on the telemetry node type, moving the type check of its
-> >     handlers into drm_ras_node_get().
-> > 
-> > Cc: Jakub Kicinski <kuba@kernel.org>
-> > Cc: Riana Tauro <riana.tauro@intel.com>
-> > Cc: Raag Jadav <raag.jadav@intel.com>
-> > Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
-> > Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
-> > Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > ---
-> >   Documentation/netlink/specs/drm_ras.yaml |  74 +++++++-
-> >   drivers/gpu/drm/drm_ras.c                | 226 +++++++++++++++++++++--
-> >   drivers/gpu/drm/drm_ras_nl.c             |  24 +++
-> >   drivers/gpu/drm/drm_ras_nl.h             |   4 +
-> >   include/drm/drm_ras.h                    |  49 +++++
-> >   include/uapi/drm/drm_ras.h               |  31 +++-
-> >   6 files changed, 388 insertions(+), 20 deletions(-)
-> > 
-> > diff --git a/Documentation/netlink/specs/drm_ras.yaml b/Documentation/netlink/specs/drm_ras.yaml
-> > index 0f1ceb705d3d..bc17d22e2156 100644
-> > --- a/Documentation/netlink/specs/drm_ras.yaml
-> > +++ b/Documentation/netlink/specs/drm_ras.yaml
-> > @@ -16,16 +16,28 @@ definitions:
-> >       type: enum
-> >       name: node-type
-> >       value-start: 1
-> > -    entries: [error-counter, telemetry]
-> > +    entries: [error-counter, telemetry, retired-pages]
-> >       doc: >-
-> >            Type of the node. The error-counter nodes expose reliability counters
-> > -         for a hardware/software component, and telemetry nodes expose an
-> > -         interface for reading and writing telemetry values to a device.
-> > +         for a hardware/software component, telemetry nodes expose an
-> > +         interface for reading and writing telemetry values to a device, and
-> > +         retired-pages nodes list the memory pages that have been taken out
-> > +         of service.
-> 
-> 
-> I noticed the node type was changed.
-> Earlier reviews mentioned reusing the node for other resources, such as
-> fabric
-> https://patchwork.freedesktop.org/patch/749454/?series=173066&rev=1
-> Could you please help understand why this was changed? Are we not re-using
-> it?
+Hi Badal,
 
-avoiding the anti-pattern issue raised by Jakub.
+On 25-11-2026 10:49, Nilawar, Badal wrote:
+>
+> On 23-11-2026 12:32, Soham Purkait wrote:
+>> Wedge the device with an unknown recovery method if Page-Offline returns
+>> OUT_OF_RESOURCES, or if the offline list is full at probe.
+>>
+>> Signed-off-by: Soham Purkait <soham.purkait@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_ras.c | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>> index 0fb891d00b36..76441858391d 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras.c
+>> +++ b/drivers/gpu/drm/xe/xe_ras.c
+>> @@ -80,6 +80,7 @@ enum xe_ras_response_status {
+>>       XE_RAS_STATUS_TIMEOUT,
+>>       XE_RAS_STATUS_HARDWARE_FAILURE,
+>>       XE_RAS_STATUS_INSUFFICIENT_RESOURCES,
+>> +    XE_RAS_STATUS_OUT_OF_RESOURCES = 0x9,
+>>       XE_RAS_STATUS_MAX
+>>   };
+>>   @@ -226,6 +227,7 @@ static int ras_status_to_errno(u32 status)
+>>       case XE_RAS_STATUS_HARDWARE_FAILURE:
+>>           return -EIO;
+>>       case XE_RAS_STATUS_INSUFFICIENT_RESOURCES:
+>> +    case XE_RAS_STATUS_OUT_OF_RESOURCES:
+>>           return -ENOSPC;
+>>       default:
+>>           return -EPROTO;
+>> @@ -299,6 +301,11 @@ static int send_page_offline_cmd(struct 
+>> xe_device *xe, u64 page_address,
+>>       if (ret) {
+>>           xe_log_err(xe, SYSCTRL, ret, "page offline command failed 
+>> with status %u\n",
+>>                  response.status);
+>> +        if (response.status == XE_RAS_STATUS_OUT_OF_RESOURCES) {
+>> +            xe_log_err(xe, SYSCTRL, ret,
+>> +                   "No space left in SPI flash for bad pages, manual 
+>> intervention required\n");
+> Why sig id SYSCTRL? Sysctrl has completed the mailbox command.
+>> +            xe_wedge_declare(xe, 0);
+>> +        }
+>>           return ret;
+>>       }
+>>   @@ -504,8 +511,17 @@ static void get_offline_list(struct xe_device 
+>> *xe)
+>>       struct xe_ras_offline_list_response response = {0};
+>>       struct xe_ras_offline_list_request request = {0};
+>>   +    struct xe_ras_state *state = &xe->ras.state;
+>> +
+>>       process_offline_pages(xe, XE_SYSCTRL_CMD_GET_OFFLINE_LIST, 
+>> &request, sizeof(request),
+>>                     &response, sizeof(response), &response.common, 
+>> false);
+>> +
+>> +    if (state->max_pages && response.common.total_pages >= 
+>> state->max_pages) {
+>> +        xe_log_err(xe, SYSCTRL, -ENOSPC,
+>> +               "Offline list full (%u/%u), manual intervention 
+>> required\n",
+>> +               response.common.total_pages, state->max_pages);
+> Same as above?
+>> +        xe_wedge_declare(xe, 0);
+>
+> This is in probe path, shouldn't we propagate error and fail probe 
+> rather than wedge? 
 
-Reusing it needed a resource specific nest and a resource type enum,
-which is the over-wrapping Jakub pointed out. Fabric would not have
-addresses and sizes anyway, so it fits better as its own node type,
-and the node type enum can grow without breaking anything.
-
-> 
-> >     -
-> >       type: flags
-> >       name: telemetry-field-mode
-> >       entries: [read, write]
-> >       doc: Bitmask of access modes supported by a telemetry field.
-> > +  -
-> > +    type: enum
-> > +    name: retired-page-status
-> > +    value-start: 1
-> > +    entries: [retired, pending, failed]
-> > +    doc: >-
-> > +         Status of a retired page. retired means the page is reserved and out
-> > +         of service; pending means the retirement is queued but the
-> > +         reservation is not complete yet; failed means the reservation failed
-> > +         and the page may still be in use.
-> >   attribute-sets:
-> >     -
-> > @@ -140,6 +152,30 @@ attribute-sets:
-> >           doc: >-
-> >                Bitmask of access modes (read/write) supported by the
-> >                telemetry field.
-> > +  -
-> > +    name: retired-page-attrs
-> > +    attributes:
-> > +      -
-> > +        name: node-id
-> > +        type: u32
-> > +        doc: Node ID targeted by this retired pages operation.
-> > +      -
-> > +        name: address
-> > +        type: uint
-> > +        doc: Device address of the retired page.
-> > +      -
-> > +        name: size
-> > +        type: uint
-> > +        doc: Size of the retired page in bytes.
-> > +      -
-> > +        name: status
-> > +        type: u32
-> > +        doc: Retirement status of the page.
-> > +        enum: retired-page-status
-> > +      -
-> > +        name: max-pages
-> > +        type: uint
-> > +        doc: Maximum number of pages that can be retired on this node.
-> >   operations:
-> >     list:
-> > @@ -287,6 +323,38 @@ operations:
-> >               - field
-> >               - field-name
-> >               - mode
-> > +    -
-> > +      name: get-retired-pages
-> > +      doc: >-
-> > +           Retrieve the pages retired on a retired-pages node, one entry per
-> > +           page. The dump is flagged as interrupted if the list changes while
-> > +           it is being read.
-> > +      attribute-set: retired-page-attrs
-> > +      flags: [admin-perm]
-> > +      dump:
-> > +        request:
-> > +          attributes:
-> > +            - node-id
-> > +        reply:
-> > +          attributes:
-> 
-> Nit:For large number of pages, size and node-id would be repetitive
-
-v5 drops node-id from the dump entries, like the error-counter dump.
-The size stays per page, so a node can report pages of different
-sizes, if a device ever retires memory at more than one granularity.
-
-> 
-> > +            - node-id
-> > +            - address
-> > +            - size
-> > +            - status
-> > +    -
-> > +      name: get-retired-pages-info
-> 
-> max-pages since it's not generic ? Or maybe we can add size as part of info
-> since it will remain same per node.
-
-With the size per page, the info is only max-pages for now, and the
-operation can grow if more node limits come up.
-
-> 
-> > +      doc: >-
-> > +           Retrieve the retired page limits of a retired-pages node.
-> > +      attribute-set: retired-page-attrs
-> > +      flags: [admin-perm]
-> > +      do:
-> > +        request:
-> > +          attributes:
-> > +            - node-id
-> > +        reply:
-> > +          attributes:
-> > +            - node-id
-> > +            - max-pages
-> >   mcast-groups:
-> >     list:
-> > diff --git a/drivers/gpu/drm/drm_ras.c b/drivers/gpu/drm/drm_ras.c
-> > index 82fcc766b84b..b6e203448d22 100644
-> > --- a/drivers/gpu/drm/drm_ras.c
-> > +++ b/drivers/gpu/drm/drm_ras.c
-> > @@ -69,6 +69,14 @@
-> >    *     Each field contains the uAPI defined enum string, its numerical value,
-> >    *     and its mode bitmask, which encodes read/write capabilities.
-> >    *
-> > + * 11. GET_RETIRED_PAGES: Dump the retired pages of a given node.
-> > + *     Userspace must provide Node ID.
-> > + *     Returns one entry per page with its address, size and status.
-> > + *
-> > + * 12. GET_RETIRED_PAGES_INFO: Get the retired page limits of a given node.
-> > + *     Userspace must provide Node ID.
-> > + *     Returns the maximum number of pages that can be retired.
-> > + *
-> >    * Node registration:
-> >    *
-> >    * - drm_ras_node_register(): Registers a new node and assigns
-> > @@ -121,6 +129,13 @@
-> >    *     + The driver can optionally provide a pre_doit callback, telemetry_pre(),
-> >    *       to enforce permissions checks on telemetry operations.
-> >    *
-> > + * - RETIRED_PAGES:
-> > + *     + The driver must implement the query_retired_page() callback, returning
-> > + *       the retired page with the lowest address at or above a cursor, and
-> > + *       -ENOENT when there is none.
-> 
-> With many retired pages (say 10,000 or more), the dump calls into the driver
-> once per page.
-> �From a quick look, the driver walks over the list to find lowest address
-> and for such large number
-> of pages would cause a noticeable delay
-> Wouldn't it be better to take a snapshot?
-
-I'd like to get the basic support in first.
-
-Anyway, the list is limited by max-pages the firmware can track,
-so it is not an issue in practice.
-Also, if we ever have that many bad pages we have bigger problems
-than the dump time.
-
-So, the v5 that I'm about to send won't include that, but anyway the
-patch with the snapshot is ready and tested, for a follow-up:
-https://github.com/rodrigovivi/linux/commits/xe-ras-retired-pages-snapshot
+This will be used in multiple paths in future patches.
 
 Thanks,
-Rodrigo.
-
-> 
-> Thanks
-> Riana
-> 
-> > + *     + The driver can implement query_retired_pages_info() to report the
-> > + *       maximum number of pages that can be retired.
-> > + *
-> >    * Netlink handlers:
-> >    *
-> >    * - drm_ras_nl_list_nodes_dumpit(): Implements the LIST_NODES
-> > @@ -147,6 +162,10 @@
-> >    * - drm_ras_nl_telemetry_list_fields_dumpit(): Implements the TELEMETRY_LIST_FIELDS
-> >    *   dumpit operation, enumerating all telemetry fields and their supported
-> >    *   access modes for a telemetry node.
-> > + * - drm_ras_nl_get_retired_pages_dumpit(): Implements the GET_RETIRED_PAGES dumpit
-> > + *   operation, listing the retired pages of a specific node.
-> > + * - drm_ras_nl_get_retired_pages_info_doit(): Implements the GET_RETIRED_PAGES_INFO
-> > + *   doit operation, fetching the retired page limits of a specific node.
-> >    */
-> >   static DEFINE_XARRAY_ALLOC(drm_ras_xa);
-> > @@ -162,6 +181,8 @@ struct drm_ras_ctx {
-> >   	unsigned long restart;
-> >   	/* Node targeted by a telemetry get/set doit */
-> >   	struct drm_ras_node *node;
-> > +	/* Which retired page address to restart the dump from */
-> > +	u64 cursor;
-> >   };
-> >   static_assert(sizeof(struct drm_ras_ctx) <= NETLINK_CTX_SIZE);
-> > @@ -169,6 +190,7 @@ static_assert(sizeof(struct drm_ras_ctx) <= NETLINK_CTX_SIZE);
-> >   /**
-> >    * drm_ras_node_get() - Look up a RAS node by ID and take a reference
-> >    * @node_id: ID of the node to look up
-> > + * @type: Expected type of the node
-> >    *
-> >    * Looks the node up in the global xarray and, if found, takes a reference to
-> >    * it so that it cannot be freed while the caller is using it. The lookup and
-> > @@ -179,16 +201,19 @@ static_assert(sizeof(struct drm_ras_ctx) <= NETLINK_CTX_SIZE);
-> >    *
-> >    * The caller must drop the returned reference with drm_ras_node_put().
-> >    *
-> > - * Return: the referenced node, or NULL if no node with @node_id is registered.
-> > + * Return: the referenced node, or NULL if no node of @type with @node_id is
-> > + * registered.
-> >    */
-> > -static struct drm_ras_node *drm_ras_node_get(u32 node_id)
-> > +static struct drm_ras_node *drm_ras_node_get(u32 node_id, enum drm_ras_node_type type)
-> >   {
-> >   	struct drm_ras_node *node;
-> >   	xa_lock(&drm_ras_xa);
-> >   	node = xa_load(&drm_ras_xa, node_id);
-> > -	if (node)
-> > +	if (node && node->type == type)
-> >   		refcount_inc(&node->ref);
-> > +	else
-> > +		node = NULL;
-> >   	xa_unlock(&drm_ras_xa);
-> >   	return node;
-> > @@ -412,7 +437,7 @@ static int doit_reply_value(struct genl_info *info, u32 node_id,
-> >   	u32 value;
-> >   	int ret;
-> > -	node = drm_ras_node_get(node_id);
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
-> >   	if (!node)
-> >   		return -ENOENT;
-> > @@ -461,7 +486,7 @@ static int doit_reply_threshold(struct genl_info *info, u32 node_id, u32 error_i
-> >   	u32 threshold;
-> >   	int ret;
-> > -	node = drm_ras_node_get(node_id);
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
-> >   	if (!node)
-> >   		return -ENOENT;
-> > @@ -603,7 +628,7 @@ int drm_ras_nl_get_error_counter_dumpit(struct sk_buff *skb,
-> >   	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
-> > -	node = drm_ras_node_get(node_id);
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
-> >   	if (!node)
-> >   		return -ENOENT;
-> > @@ -699,7 +724,7 @@ int drm_ras_nl_clear_error_counter_doit(struct sk_buff *skb,
-> >   	node_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID]);
-> >   	error_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
-> > -	node = drm_ras_node_get(node_id);
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
-> >   	if (!node || !node->clear_error_counter) {
-> >   		drm_ras_node_put(node);
-> >   		return -ENOENT;
-> > @@ -770,7 +795,7 @@ int drm_ras_nl_set_error_threshold_doit(struct sk_buff *skb, struct genl_info *i
-> >   	error_id = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
-> >   	threshold = nla_get_u32(info->attrs[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_THRESHOLD]);
-> > -	node = drm_ras_node_get(node_id);
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_ERROR_COUNTER);
-> >   	if (!node)
-> >   		return -ENOENT;
-> > @@ -781,6 +806,176 @@ int drm_ras_nl_set_error_threshold_doit(struct sk_buff *skb, struct genl_info *i
-> >   	return ret;
-> >   }
-> > +static struct drm_ras_node *get_retired_pages_node(const struct genl_info *info)
-> > +{
-> > +	struct nlattr *attr = info->attrs[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID];
-> > +	struct drm_ras_node *node;
-> > +
-> > +	node = drm_ras_node_get(nla_get_u32(attr), DRM_RAS_NODE_TYPE_RETIRED_PAGES);
-> > +	if (!node)
-> > +		NL_SET_BAD_ATTR(info->extack, attr);
-> > +
-> > +	return node;
-> > +}
-> > +
-> > +static int msg_put_retired_page(struct sk_buff *msg, u32 node_id,
-> > +				const struct drm_ras_retired_page *page)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = nla_put_u32(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID, node_id);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = nla_put_uint(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_ADDRESS, page->address);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = nla_put_uint(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_SIZE, page->size);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return nla_put_u32(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_STATUS, page->status);
-> > +}
-> > +
-> > +static int dump_retired_pages(struct sk_buff *skb, struct netlink_callback *cb,
-> > +			      struct drm_ras_node *node)
-> > +{
-> > +	const struct genl_info *info = genl_info_dump(cb);
-> > +	struct drm_ras_ctx *ctx = (void *)cb->ctx;
-> > +	struct drm_ras_retired_page page;
-> > +	void *hdr;
-> > +	int ret;
-> > +
-> > +	for (;;) {
-> > +		ret = node->query_retired_page(node, ctx->cursor, &page);
-> > +		if (ret && ret != -ENOENT)
-> > +			return ret;
-> > +
-> > +		/* Never zero, so the first message is checked as well */
-> > +		cb->seq = page.generation + 1;
-> > +		if (ret == -ENOENT)
-> > +			return 0;
-> > +
-> > +		hdr = genlmsg_iput(skb, info);
-> > +		if (!hdr)
-> > +			return -EMSGSIZE;
-> > +
-> > +		ret = msg_put_retired_page(skb, node->id, &page);
-> > +		if (ret) {
-> > +			genlmsg_cancel(skb, hdr);
-> > +			return ret;
-> > +		}
-> > +
-> > +		genl_dump_check_consistent(cb, hdr);
-> > +
-> > +		genlmsg_end(skb, hdr);
-> > +		ctx->cursor = page.address + 1;
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * drm_ras_nl_get_retired_pages_dumpit() - Dump the retired pages of a node
-> > + * @skb: Netlink message buffer
-> > + * @cb: Callback context for multi-part dumps
-> > + *
-> > + * Appends one message per retired page, in increasing address order. The
-> > + * dump resumes from the next address after a buffer overflow, and is flagged
-> > + * with %NLM_F_DUMP_INTR if the list changed between messages.
-> > + *
-> > + * Return: 0 if all pages fit in @skb, -EMSGSIZE if the buffer filled up
-> > + *         (requires multi-part continuation), or a negative error code on
-> > + *         failure.
-> > + */
-> > +int drm_ras_nl_get_retired_pages_dumpit(struct sk_buff *skb,
-> > +					struct netlink_callback *cb)
-> > +{
-> > +	const struct genl_info *info = genl_info_dump(cb);
-> > +	struct drm_ras_node *node;
-> > +	int ret;
-> > +
-> > +	if (!info->attrs || GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID))
-> > +		return -EINVAL;
-> > +
-> > +	node = get_retired_pages_node(info);
-> > +	if (!node)
-> > +		return -ENOENT;
-> > +
-> > +	ret = dump_retired_pages(skb, cb, node);
-> > +	drm_ras_node_put(node);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int doit_reply_retired_pages_info(struct genl_info *info, struct drm_ras_node *node)
-> > +{
-> > +	struct sk_buff *msg;
-> > +	u64 max_pages;
-> > +	void *hdr;
-> > +	int ret;
-> > +
-> > +	if (!node->query_retired_pages_info)
-> > +		return -EOPNOTSUPP;
-> > +
-> > +	ret = node->query_retired_pages_info(node, &max_pages);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	msg = genlmsg_new(NLMSG_GOODSIZE, GFP_KERNEL);
-> > +	if (!msg)
-> > +		return -ENOMEM;
-> > +
-> > +	hdr = genlmsg_iput(msg, info);
-> > +	if (!hdr) {
-> > +		ret = -EMSGSIZE;
-> > +		goto free_msg;
-> > +	}
-> > +
-> > +	ret = nla_put_u32(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID, node->id);
-> > +	if (ret)
-> > +		goto cancel_msg;
-> > +
-> > +	ret = nla_put_uint(msg, DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX_PAGES, max_pages);
-> > +	if (ret)
-> > +		goto cancel_msg;
-> > +
-> > +	genlmsg_end(msg, hdr);
-> > +
-> > +	return genlmsg_reply(msg, info);
-> > +
-> > +cancel_msg:
-> > +	genlmsg_cancel(msg, hdr);
-> > +free_msg:
-> > +	nlmsg_free(msg);
-> > +	return ret;
-> > +}
-> > +
-> > +/**
-> > + * drm_ras_nl_get_retired_pages_info_doit() - Query the retired page limits of a node
-> > + * @skb: Netlink message buffer
-> > + * @info: Generic Netlink info containing attributes of the request
-> > + *
-> > + * Return: 0 on success, or negative errno on failure.
-> > + */
-> > +int drm_ras_nl_get_retired_pages_info_doit(struct sk_buff *skb,
-> > +					   struct genl_info *info)
-> > +{
-> > +	struct drm_ras_node *node;
-> > +	int ret;
-> > +
-> > +	if (!info->attrs || GENL_REQ_ATTR_CHECK(info, DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID))
-> > +		return -EINVAL;
-> > +
-> > +	node = get_retired_pages_node(info);
-> > +	if (!node)
-> > +		return -ENOENT;
-> > +
-> > +	ret = doit_reply_retired_pages_info(info, node);
-> > +	drm_ras_node_put(node);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> >   /**
-> >    * drm_ras_nl_pre_telemetry - Look up the telemetry node and enforce permissions
-> >    * @ops: Generic netlink operations
-> > @@ -808,10 +1003,9 @@ int drm_ras_nl_pre_telemetry(const struct genl_split_ops *ops, struct sk_buff *s
-> >   		return -EINVAL;
-> >   	node_id = nla_get_u32(info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
-> > -	node = drm_ras_node_get(node_id);
-> > -	if (!node || node->type != DRM_RAS_NODE_TYPE_TELEMETRY) {
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_TELEMETRY);
-> > +	if (!node) {
-> >   		NL_SET_BAD_ATTR(info->extack, info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
-> > -		drm_ras_node_put(node);
-> >   		return -ENOENT;
-> >   	}
-> > @@ -892,10 +1086,9 @@ int drm_ras_nl_telemetry_list_fields_dumpit(struct sk_buff *skb, struct netlink_
-> >   	node_id = nla_get_u32(info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
-> > -	node = drm_ras_node_get(node_id);
-> > -	if (!node || node->type != DRM_RAS_NODE_TYPE_TELEMETRY) {
-> > +	node = drm_ras_node_get(node_id, DRM_RAS_NODE_TYPE_TELEMETRY);
-> > +	if (!node) {
-> >   		NL_SET_BAD_ATTR(info->extack, info->attrs[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID]);
-> > -		drm_ras_node_put(node);
-> >   		return -ENOENT;
-> >   	}
-> > @@ -1100,7 +1293,6 @@ int drm_ras_node_register(struct drm_ras_node *node)
-> >   	if (!node->device_name || !node->node_name)
-> >   		return -EINVAL;
-> > -	/* Currently, only Error Counter and Telemetry endpoints are supported */
-> >   	switch (node->type) {
-> >   	case DRM_RAS_NODE_TYPE_ERROR_COUNTER:
-> >   		/* Mandatory entries for Error Counter Node */
-> > @@ -1112,6 +1304,10 @@ int drm_ras_node_register(struct drm_ras_node *node)
-> >   		if (!node->telemetry_get || !node->telemetry_fields)
-> >   			return -EINVAL;
-> >   		break;
-> > +	case DRM_RAS_NODE_TYPE_RETIRED_PAGES:
-> > +		if (!node->query_retired_page)
-> > +			return -EINVAL;
-> > +		break;
-> >   	default:
-> >   		return -EINVAL;
-> >   	}
-> > diff --git a/drivers/gpu/drm/drm_ras_nl.c b/drivers/gpu/drm/drm_ras_nl.c
-> > index 589c6445eff7..c56220205876 100644
-> > --- a/drivers/gpu/drm/drm_ras_nl.c
-> > +++ b/drivers/gpu/drm/drm_ras_nl.c
-> > @@ -59,6 +59,16 @@ static const struct nla_policy drm_ras_telemetry_list_fields_nl_policy[DRM_RAS_A
-> >   	[DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID] = { .type = NLA_U32, },
-> >   };
-> > +/* DRM_RAS_CMD_GET_RETIRED_PAGES - dump */
-> > +static const struct nla_policy drm_ras_get_retired_pages_nl_policy[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID + 1] = {
-> > +	[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID] = { .type = NLA_U32, },
-> > +};
-> > +
-> > +/* DRM_RAS_CMD_GET_RETIRED_PAGES_INFO - do */
-> > +static const struct nla_policy drm_ras_get_retired_pages_info_nl_policy[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID + 1] = {
-> > +	[DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID] = { .type = NLA_U32, },
-> > +};
-> > +
-> >   /* Ops table for drm_ras */
-> >   static const struct genl_split_ops drm_ras_nl_ops[] = {
-> >   	{
-> > @@ -126,6 +136,20 @@ static const struct genl_split_ops drm_ras_nl_ops[] = {
-> >   		.maxattr	= DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID,
-> >   		.flags		= GENL_CMD_CAP_DUMP,
-> >   	},
-> > +	{
-> > +		.cmd		= DRM_RAS_CMD_GET_RETIRED_PAGES,
-> > +		.dumpit		= drm_ras_nl_get_retired_pages_dumpit,
-> > +		.policy		= drm_ras_get_retired_pages_nl_policy,
-> > +		.maxattr	= DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID,
-> > +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DUMP,
-> > +	},
-> > +	{
-> > +		.cmd		= DRM_RAS_CMD_GET_RETIRED_PAGES_INFO,
-> > +		.doit		= drm_ras_nl_get_retired_pages_info_doit,
-> > +		.policy		= drm_ras_get_retired_pages_info_nl_policy,
-> > +		.maxattr	= DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID,
-> > +		.flags		= GENL_ADMIN_PERM | GENL_CMD_CAP_DO,
-> > +	},
-> >   };
-> >   static const struct genl_multicast_group drm_ras_nl_mcgrps[] = {
-> > diff --git a/drivers/gpu/drm/drm_ras_nl.h b/drivers/gpu/drm/drm_ras_nl.h
-> > index 7a1cba70fd50..880b0c2befe3 100644
-> > --- a/drivers/gpu/drm/drm_ras_nl.h
-> > +++ b/drivers/gpu/drm/drm_ras_nl.h
-> > @@ -34,6 +34,10 @@ int drm_ras_nl_telemetry_get_doit(struct sk_buff *skb, struct genl_info *info);
-> >   int drm_ras_nl_telemetry_set_doit(struct sk_buff *skb, struct genl_info *info);
-> >   int drm_ras_nl_telemetry_list_fields_dumpit(struct sk_buff *skb,
-> >   					    struct netlink_callback *cb);
-> > +int drm_ras_nl_get_retired_pages_dumpit(struct sk_buff *skb,
-> > +					struct netlink_callback *cb);
-> > +int drm_ras_nl_get_retired_pages_info_doit(struct sk_buff *skb,
-> > +					   struct genl_info *info);
-> >   enum {
-> >   	DRM_RAS_NLGRP_ERROR_REPORT,
-> > diff --git a/include/drm/drm_ras.h b/include/drm/drm_ras.h
-> > index 76bdcc6f96a5..5c3900a53278 100644
-> > --- a/include/drm/drm_ras.h
-> > +++ b/include/drm/drm_ras.h
-> > @@ -28,6 +28,23 @@ struct drm_ras_telemetry_field {
-> >   	u32 mode;
-> >   };
-> > +/**
-> > + * struct drm_ras_retired_page - A retired page reported by a driver
-> > + */
-> > +struct drm_ras_retired_page {
-> > +	/** @address: Device address of the page. */
-> > +	u64 address;
-> > +	/** @size: Size of the page in bytes. */
-> > +	u64 size;
-> > +	/** @status: Retirement status (enum drm_ras_retired_page_status). */
-> > +	enum drm_ras_retired_page_status status;
-> > +	/**
-> > +	 * @generation: Generation of the retired page list, changed by the
-> > +	 * driver whenever a page is added, removed or changes status.
-> > +	 */
-> > +	u32 generation;
-> > +};
-> > +
-> >   /**
-> >    * struct drm_ras_node - A DRM RAS Node
-> >    */
-> > @@ -184,6 +201,38 @@ struct drm_ras_node {
-> >   	int (*telemetry_set)(struct drm_ras_node *ep, u64 *field, s64 *value,
-> >   			     s64 *status);
-> > +	/* Retired-Pages Related Callbacks */
-> > +
-> > +	/**
-> > +	 * @query_retired_page:
-> > +	 *
-> > +	 * This callback is used by drm-ras to list the retired pages of a node.
-> > +	 * It must fill @page with the retired page that has the lowest address
-> > +	 * greater than or equal to @cursor. @page->generation must be set even
-> > +	 * when no page is found.
-> > +	 *
-> > +	 * The @query_retired_page is a mandatory callback for
-> > +	 * retired_pages_node.
-> > +	 *
-> > +	 * Returns: 0 on success,
-> > +	 *          -ENOENT when no page is at or above @cursor, which ends the
-> > +	 *                  list.
-> > +	 *          Other negative values on errors that should terminate the
-> > +	 *          netlink query.
-> > +	 */
-> > +	int (*query_retired_page)(struct drm_ras_node *node, u64 cursor,
-> > +				  struct drm_ras_retired_page *page);
-> > +
-> > +	/**
-> > +	 * @query_retired_pages_info:
-> > +	 *
-> > +	 * This callback is used by drm-ras to query the maximum number of pages
-> > +	 * that can be retired on a node.
-> > +	 *
-> > +	 * Returns: 0 on success, negative error code on failure.
-> > +	 */
-> > +	int (*query_retired_pages_info)(struct drm_ras_node *node, u64 *max_pages);
-> > +
-> >   	/** @priv: Driver private data */
-> >   	void *priv;
-> > diff --git a/include/uapi/drm/drm_ras.h b/include/uapi/drm/drm_ras.h
-> > index 56e0588af5d5..e7f2da18cc4c 100644
-> > --- a/include/uapi/drm/drm_ras.h
-> > +++ b/include/uapi/drm/drm_ras.h
-> > @@ -12,12 +12,14 @@
-> >   /*
-> >    * Type of the node. The error-counter nodes expose reliability counters for a
-> > - * hardware/software component, and telemetry nodes expose an interface for
-> > - * reading and writing telemetry values to a device.
-> > + * hardware/software component, telemetry nodes expose an interface for reading
-> > + * and writing telemetry values to a device, and retired-pages nodes list the
-> > + * memory pages that have been taken out of service.
-> >    */
-> >   enum drm_ras_node_type {
-> >   	DRM_RAS_NODE_TYPE_ERROR_COUNTER = 1,
-> >   	DRM_RAS_NODE_TYPE_TELEMETRY,
-> > +	DRM_RAS_NODE_TYPE_RETIRED_PAGES,
-> >   };
-> >   /*
-> > @@ -28,6 +30,18 @@ enum drm_ras_telemetry_field_mode {
-> >   	DRM_RAS_TELEMETRY_FIELD_MODE_WRITE = 2,
-> >   };
-> > +/*
-> > + * Status of a retired page. retired means the page is reserved and out of
-> > + * service; pending means the retirement is queued but the reservation is not
-> > + * complete yet; failed means the reservation failed and the page may still be
-> > + * in use.
-> > + */
-> > +enum drm_ras_retired_page_status {
-> > +	DRM_RAS_RETIRED_PAGE_STATUS_RETIRED = 1,
-> > +	DRM_RAS_RETIRED_PAGE_STATUS_PENDING,
-> > +	DRM_RAS_RETIRED_PAGE_STATUS_FAILED,
-> > +};
-> > +
-> >   enum {
-> >   	DRM_RAS_A_NODE_ATTRS_NODE_ID = 1,
-> >   	DRM_RAS_A_NODE_ATTRS_DEVICE_NAME,
-> > @@ -73,6 +87,17 @@ enum {
-> >   	DRM_RAS_A_TELEMETRY_ATTRS_MAX = (__DRM_RAS_A_TELEMETRY_ATTRS_MAX - 1)
-> >   };
-> > +enum {
-> > +	DRM_RAS_A_RETIRED_PAGE_ATTRS_NODE_ID = 1,
-> > +	DRM_RAS_A_RETIRED_PAGE_ATTRS_ADDRESS,
-> > +	DRM_RAS_A_RETIRED_PAGE_ATTRS_SIZE,
-> > +	DRM_RAS_A_RETIRED_PAGE_ATTRS_STATUS,
-> > +	DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX_PAGES,
-> > +
-> > +	__DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX,
-> > +	DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX = (__DRM_RAS_A_RETIRED_PAGE_ATTRS_MAX - 1)
-> > +};
-> > +
-> >   enum {
-> >   	DRM_RAS_CMD_LIST_NODES = 1,
-> >   	DRM_RAS_CMD_GET_ERROR_COUNTER,
-> > @@ -83,6 +108,8 @@ enum {
-> >   	DRM_RAS_CMD_TELEMETRY_GET,
-> >   	DRM_RAS_CMD_TELEMETRY_SET,
-> >   	DRM_RAS_CMD_TELEMETRY_LIST_FIELDS,
-> > +	DRM_RAS_CMD_GET_RETIRED_PAGES,
-> > +	DRM_RAS_CMD_GET_RETIRED_PAGES_INFO,
-> >   	__DRM_RAS_CMD_MAX,
-> >   	DRM_RAS_CMD_MAX = (__DRM_RAS_CMD_MAX - 1)
+Soham
+>
+> Thanks,
+> Badal
+>
+>> +    }
+>>   }
+>>     static void ras_usp_aer_init(struct xe_device *xe)
