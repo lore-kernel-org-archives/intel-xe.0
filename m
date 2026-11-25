@@ -2,56 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DA4606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 09:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CEC2606A323
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 09:55:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=DwV2eP8P
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZMR5EAXP
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF46910FA97;
-	Wed, 25 Nov 2026 09:50:32 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94B9110FA84
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 09:50:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43AAF10FA40;
+	Wed, 25 Nov 2026 09:55:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DEB710E29D;
+ Wed, 25 Nov 2026 09:55:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795600226; x=1827136226;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=siGPMQqeBJEwSvL2zSe+ia1tvwEjjeJnDayHj/twPug=;
- b=DwV2eP8PPU2aLd9AreZToFAjtrNGx/Q/E1Xldn++9J5oyDGwRQ4PKpSo
- eNTGanSxXI7EwhSkhX8xQUeMDiC0KnvttYigfSecSY6nViRUAkst3Fapx
- 6OBImXivKImlsIdig6PLREK/ooHSp+FmMX27vwW/63fOWDKqrVKYXYgRQ
- N5w6H0cctA6c2BO4XWNWE8IsADKD0Ac6PF+9UpTUfXkNpJNqSfKBgHpF2
- kJczyeCCwb02gRNqslec/d38F/jJGdg3CymhmOXk9yTuJzmyEX78eV0tc
- DT61+BtqCvnyY1mDyBiqjUNaLbXwhht2oZw/vlsK0wjmCJiDVOQcxiJ3Z g==;
-X-CSE-ConnectionGUID: rb6cQbQfRdOlKNW+O5fw4w==
-X-CSE-MsgGUID: CXch/xKvTW6csXeOjP5gag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4448657"
+ t=1795600535; x=1827136535;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=n+z4ONkDth3LAMEpm3e1qLmoHlYrXg9wa2r9okZZh3M=;
+ b=ZMR5EAXPFB8qQklQa0gym0zNcLlhmJtBgjMHjlF6R0dnGh2wHhrTQgme
+ XTAJ9P6d2Y2s2kglxdxDt961dErPMaTqJb1HL2XY8OxazoeADAPWglaQw
+ /iwUynbaqyJ17snzRqKRh1Pp2+YwHe/P5d/L935IpdJTrAa+WtZ1A4DsC
+ wjZiU+68CYrT3ea54YMLootpilQfuNrsBeLCDRyqRxWKv6ykEa12/cEOE
+ C+raeZ2uLgTK1roiUA/ieb5Z6p/FsNmok/+R2gcCsJ9nhuJ/5PbzkwPSb
+ jISQleFPcavWm7wMlyGSfxhhR7rPht4H3MEc0AnB/1JjescZTTxfA1qKK w==;
+X-CSE-ConnectionGUID: TDV3r4ISQWq+SE2UpqXPBg==
+X-CSE-MsgGUID: 1cYKbYIjQu+gKCF+6TX2dQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4475756"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4448657"
-Received: from fmviesa012.fm.intel.com ([10.60.135.152])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 01:49:19 -0800
-X-CSE-ConnectionGUID: 95AjQ1DgT3+7ArQop2NFdQ==
-X-CSE-MsgGUID: 6CKqNV0wSrGLDT9gjde6vA==
+   d="scan'208";a="4475756"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 01:55:18 -0800
+X-CSE-ConnectionGUID: dqoO2yQ/SWa5u+soZJRBYQ==
+X-CSE-MsgGUID: WiHWsMkXTsKMCFw9iN6Yow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="13493823"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="11615793"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.52])
+ ([10.245.244.52])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 01:49:12 -0800
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
- mallesh.koujalagi@intel.com, hiresh.kumar.yadav@intel.com,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v3] drm/xe/survivability: Fix infinite loop in aux info
- traversal
-Date: Wed, 25 Nov 2026 15:02:53 +0530
-Message-ID: <20261125093252.4188423-2-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.43.0
+ 25 Nov 2026 01:55:16 -0800
+Message-ID: <a4789efe-4abc-4b5f-a590-3d0d4dd27b7a@intel.com>
+Date: Wed, 25 Nov 2026 09:55:14 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/ttm: Destroy the ttm_tt in ttm_bo_move_null() when
+ it's no longer needed
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <nat@pixelcluster.dev>,
+ Arun Pravin <arunpravin.paneerselvam@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+References: <20261124190954.47690-1-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20261124190954.47690-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,45 +69,37 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-AUX info register traversal can loop indefinitely when a register
-points back to itself. Avoid revisiting registers by reading each
-register once and collecting the entries that contain data.
+On 24/11/2026 19:09, Thomas Hellström wrote:
+> The xe kmd uses ttm_bo_move_null() when moving an unpopulated bo to
+> VRAM. In that case the bo may still carry a ttm_tt that was created
+> for its deferred placement, and it is left dangling on a bo whose new
+> resource doesn't use a ttm_tt.
+> 
+> Make ttm_bo_move_null() destroy the bo's ttm_tt when @new_mem is NULL
+> or its memory type manager doesn't use a ttm_tt.
+> 
+> ttm_bo_tt_destroy() is internal to TTM and not exported. Rather than
+> exporting it, move ttm_bo_move_null() out to ttm_bo_util.c and
+> export that instead.
+> 
+> Patch and commit message was drafted using an LLM.
+> 
+> Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+> Cc: Natalie Vock <nat@pixelcluster.dev>
+> Cc: Arun Pravin <arunpravin.paneerselvam@amd.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.8+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-v2: Add fixes (Riana)
-    Modify loop (Riana)
-v3: Remove non-zero check (Riana)
-
-Fixes: 5e940312a2ac ("drm/xe: Add functions and sysfs for boot survivability")
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/xe/xe_survivability_mode.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_survivability_mode.c b/drivers/gpu/drm/xe/xe_survivability_mode.c
-index 91a0680e449b..2787ed952d2b 100644
---- a/drivers/gpu/drm/xe/xe_survivability_mode.c
-+++ b/drivers/gpu/drm/xe/xe_survivability_mode.c
-@@ -168,11 +168,9 @@ static void populate_survivability_info(struct xe_device *xe)
- 			set_survivability_info(mmio, info, POSTCODE_TRACE_OVERFLOW);
- 	}
- 
--	/* Traverse the linked list of aux info registers */
-+	/* Read all aux info registers */
- 	if (reg_value & AUXINFO_SUPPORT) {
--		for (id = REG_FIELD_GET(AUXINFO_REG_OFFSET, reg_value);
--		     id >= AUX_INFO0 && id < MAX_SCRATCH_REG;
--		     id =  REG_FIELD_GET(AUXINFO_HISTORY_OFFSET, info[id]))
-+		for (id = AUX_INFO0; id < MAX_SCRATCH_REG; id++)
- 			set_survivability_info(mmio, info, id);
- 	}
- }
--- 
-2.43.0
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
