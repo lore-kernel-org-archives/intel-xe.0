@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E7B606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 10:07:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 852CB606A321
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 10:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=TRwGX104
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KQwULW9z
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 390E510E35A;
-	Wed, 25 Nov 2026 10:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 48F1510FA8C;
+	Wed, 25 Nov 2026 10:07:44 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B81810E35A
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 10:07:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A02A710FA8C
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 10:07:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795601250; x=1827137250;
+ t=1795601258; x=1827137258;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+S8fb8ka9bbHSvV7vgh6VuxxQVk+10Fjl1DJLxGuhYs=;
- b=TRwGX104+u7Ez0JgJ36mgqQEwUqhFmg8U8vZxe2H3fTh4BaW/3IPK1WI
- 97VJj3NvcJhlmvSW6ELeQsuKs1TV1Du9wBQN03DVcJVhXsZ86aahFyP1t
- +SqRLvNxMt32tJcEY2UQ+jPBl7of0UYxgRPMV/6Mu+bpHkayPaCVviLWt
- fcyjEDcarlQ1hVLnTlS86nh+4+ru3OquSvjrd62nCTLL+DtO43fMgVGI+
- He2mYWDBWvSs+ePrB0vZRtNy01/79wREVtKBXDorIoc+8AR7t2e3sSzO0
- XGddVPwahiyo+KjvZATj7FzVnzKlDdXvBTTxNH2OmcEVhqnafql66L7xg Q==;
-X-CSE-ConnectionGUID: bHT4ZlnYSeSTBaODvnH94Q==
-X-CSE-MsgGUID: u+c5iNX+S7iIUfF9WHiYEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4450555"
+ bh=4JxL23UINJtvL1C4X3ZhquH2Q+NC1W9/mTf7Wc3hgrg=;
+ b=KQwULW9z0OWOgDXTnaSkLYvuBqGJFBV9p3tB4kM4Qx9XZqDdWUSDSabu
+ Vm2QCTr2HHbweWNbMat8q3AQ2cTj1zXYHYQtW8BuEyUDFoyt9IrP2VqJy
+ bDP4Pg+KgimVQisfznLmevQYLangukAjqYmDLR2jXdSJ+OGaynElEA0k4
+ fHXB4yTXqgD74XMiMLHc6SNEyJuk3US4k6GPZpuK5MEsrF5+ykVE3NpwS
+ E5TTTnRQxak2z8b/skcp4EKR3ntdTdr3Ke0MbmG3n3pVCurOHi9oMkBcS
+ O2D8PMinLQqkwC9VxzcKH2OOoHxY/YiPSifCFAQNh52GyuDas26qWX6Ky w==;
+X-CSE-ConnectionGUID: 1b5/oxNMRC+t98KP12z5mA==
+X-CSE-MsgGUID: HnB5KK6KRNySqzx79iswaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4450562"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4450555"
+   d="scan'208";a="4450562"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 02:07:30 -0800
-X-CSE-ConnectionGUID: SR0Tcz2sQzON5qhl4iZAcw==
-X-CSE-MsgGUID: 8dKu5bdURw66l2MQ3YMsjg==
+ 25 Nov 2026 02:07:37 -0800
+X-CSE-ConnectionGUID: VW2dsCNwT0m+u5O5B9Qw4A==
+X-CSE-MsgGUID: 1+PvSP90Se6sdJ9a0mGMTA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12136389"
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12136406"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa007.fm.intel.com with ESMTP; 25 Nov 2026 02:07:26 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 25 Nov 2026 02:07:34 -0800
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -47,9 +47,9 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
  daniele.ceraolospurio@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v6 1/6] drm/xe/cper: Add software CPER emission entry point
-Date: Wed, 25 Nov 2026 15:37:17 +0530
-Message-ID: <20261125100716.2151294-9-mallesh.koujalagi@intel.com>
+Subject: [PATCH v6 3/6] drm/xe/cper: Emit software CPER records
+Date: Wed, 25 Nov 2026 15:37:19 +0530
+Message-ID: <20261125100716.2151294-11-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261125100716.2151294-8-mallesh.koujalagi@intel.com>
 References: <20261125100716.2151294-8-mallesh.koujalagi@intel.com>
@@ -73,125 +73,74 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add a software CPER emission handler for CRI SIGIDs.
+Emit CPER records for software SIGIDs and attach the
+formatted log message as info data.
 
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
-v3:
-- Handle early PCI probe where xe device is null. (Sashiko)
-
 v4:
-- Add has_driver_cper flag. (Badal)
+- Emit complete message. (Badal/Aravind)
 
 v5:
-- Update commit message. (Badal)
-- Handle severity with single line.
+- Move initialization closer to use. (Badal)
+- Warn if CPER Message allocation failed.
+- Emit CPER record header without msg if allocation failed.
+
+v6:
+- s/record data/info data/. (Badal)
 ---
- drivers/gpu/drm/xe/xe_cper.c         | 22 +++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_device_types.h |  2 ++
- drivers/gpu/drm/xe/xe_pci.c          |  2 ++
- drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
- 4 files changed, 26 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_cper.c       | 12 +++++++++++-
+ drivers/gpu/drm/xe/xe_cper_types.h |  4 ++++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index 64bbb149e4e3..d75b867940ad 100644
+index dec2e4d004b7..9161f2b52e9b 100644
 --- a/drivers/gpu/drm/xe/xe_cper.c
 +++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -32,6 +32,11 @@ static bool is_hw_sigid(enum xe_sigid sigid)
- 	return in_range(sigid, INTEL_SIGID_GPU_XE_HARDWARE_START, INTEL_SIGID_BATCH);
+@@ -508,6 +508,12 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+ 	struct xe_cper_intel_hdr ihdr = {};
+ 	struct xe_cper_driver_error_class *driver = &error_class.driver;
+ 	u64 timestamp;
++	char *msg;
++	size_t msg_len;
++
++	msg = kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
++	if (!msg)
++		xe_warn(xe, "Failed to allocate CPER message\n");
+ 
+ 	driver->error_type = cper_sev;
+ 	driver->error_component = component;
+@@ -515,8 +521,12 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
+ 	if (IS_ERR(data))
+ 		driver->cause = -PTR_ERR(data);
+ 
++	msg_len = msg ? strlen(msg) + 1 : 0;
+ 	timestamp = ktime_get_real_ns();
+-	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, 0, &ihdr);
++
++	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, msg_len, &ihdr);
++	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len);
++	kfree(msg);
  }
  
-+static bool is_sw_sigid(enum xe_sigid sigid)
-+{
-+	return in_range(sigid, INTEL_SIGID_GPU_XE_SOFTWARE_START, INTEL_SIGID_BATCH);
-+}
-+
- /* CPER platform_id GUIDs (RFC 9562 UUIDv5) for each PCI device ID. */
- static const struct xe_device_guid_entry xe_device_guids[] = {
- 	{ 0x674C, GUID_INIT(0x9046afe5, 0x9041, 0x5124,
-@@ -491,6 +496,12 @@ static void cper_emit_hw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
- 	xe_cper_emit_counter(xe, cper_sev, sigid, &response);
- }
- 
-+static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
-+			     u32 component, u32 location, const void *data,
-+			     struct va_format *vaf)
-+{
-+}
-+
  /**
-  * xe_cper_emit() - Emit a CPER record for a SIGID log entry
-  * @xe: The &xe_device
-@@ -519,12 +530,21 @@ void xe_cper_emit(struct xe_device *xe, int cper_sev, enum xe_sigid sigid,
- 		  u32 component, u32 location, const void *data, size_t len,
- 		  struct va_format *vaf)
- {
-+	/* TODO: Handle using pdev instead of xe. */
-+	if (!xe)
-+		return;
+diff --git a/drivers/gpu/drm/xe/xe_cper_types.h b/drivers/gpu/drm/xe/xe_cper_types.h
+index dde008803c23..5cfa32c75764 100644
+--- a/drivers/gpu/drm/xe/xe_cper_types.h
++++ b/drivers/gpu/drm/xe/xe_cper_types.h
+@@ -45,6 +45,10 @@
+ 	GUID_INIT(0x4ae12aef, 0x8745, 0x5fc7, \
+ 		  0xb9, 0x96, 0x71, 0xee, 0xbb, 0x51, 0xf2, 0x23)
+ 
++#define INTEL_CPER_NOTIFY_DRV_ERROR \
++	GUID_INIT(0xcef7e934, 0x51e7, 0x535f, \
++		  0xa6, 0x78, 0x5a, 0x4c, 0xcc, 0xb6, 0x96, 0x09)
 +
- 	if (is_hw_sigid(sigid) && !IS_ERR_OR_NULL(data)) {
- 		cper_emit_hw_err(xe, cper_sev, sigid, data);
- 		return;
- 	}
- 
--	/* TODO software CPER */
-+	if (xe->info.has_driver_cper) {
-+		if (is_sw_sigid(sigid) &&
-+		    (cper_sev == CPER_SEV_RECOVERABLE || cper_sev == CPER_SEV_FATAL))
-+			cper_emit_sw_err(xe, cper_sev, sigid, component, location, data, vaf);
-+		return;
-+	}
- }
- 
- static ssize_t cper_on_query_show(struct device *dev, struct device_attribute *attr, char *buf)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index ae5426717eb4..c03a785be6c9 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -171,6 +171,8 @@ struct xe_device {
- 		u8 has_device_atomics_on_smem:1;
- 		/** @info.has_device_uid: Device supports unique 64-bit GPU SOC ID */
- 		u8 has_device_uid:1;
-+		/** @info.has_driver_cper: Device supports driver-generated CPER records */
-+		u8 has_driver_cper:1;
- 		/** @info.has_drm_ras: Device supports drm_ras (Reliability, Availability, Serviceability) */
- 		u8 has_drm_ras:1;
- 		/** @info.has_fan_control: Device supports fan control */
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index eaac0b25b948..ac04a45ab13e 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -486,6 +486,7 @@ static const struct xe_device_desc cri_desc = {
- 	.dma_mask_size = 52,
- 	.has_display = false,
- 	.has_device_uid = true,
-+	.has_driver_cper = true,
- 	.has_drm_ras = true,
- 	.has_flat_ccs = false,
- 	.has_gsc_nvm = 1,
-@@ -814,6 +815,7 @@ static int xe_info_init_early(struct xe_device *xe,
- 	xe->info.is_dgfx = desc->is_dgfx;
- 	xe->info.has_cached_pt = desc->has_cached_pt;
- 	xe->info.has_device_uid = desc->has_device_uid;
-+	xe->info.has_driver_cper = desc->has_driver_cper;
- 	xe->info.has_drm_ras = desc->has_drm_ras;
- 	xe->info.has_fan_control = desc->has_fan_control;
- 	xe->info.has_fixed_vram_channels = desc->has_fixed_vram_channels;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 90936f805d8f..177b963bfc5a 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -42,6 +42,7 @@ struct xe_device_desc {
- 	u8 has_cached_pt:1;
- 	u8 has_display:1;
- 	u8 has_device_uid:1;
-+	u8 has_driver_cper:1;
- 	u8 has_drm_ras:1;
- 	u8 has_fan_control:1;
- 	u8 has_fixed_vram_channels:1;
+ /* Section Types */
+ #define INTEL_CPER_SECTION_ACCEL_GENERIC \
+ 	GUID_INIT(0xea9d8f84, 0x4258, 0x5227, \
 -- 
 2.48.1
 
