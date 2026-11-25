@@ -2,59 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E7E606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 10:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8AE4606A321
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 10:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=E64Xny0e
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PKNDBXrd
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3CD510FAAF;
-	Wed, 25 Nov 2026 10:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEDE010E35A;
+	Wed, 25 Nov 2026 10:08:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F31EC10E2B2
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 10:07:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D886310E2B2;
+ Wed, 25 Nov 2026 10:07:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795601269; x=1827137269;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=skqfjpCURqfDVds+KnyC04eRGBC2oIqrsRyMaDbdkHM=;
- b=E64Xny0ekRO47mg4XgSWtpgqO85mGccbGtGcifxkPo6qadeDvt2XNC2S
- kM2R9TiEIIvegFmd3568E4HDbsbtkuvGZximKN7I2k5D5n3Ts1HGnrFAG
- Ns80xEVcGckRJ6RvLpJ5sZg69GLXu6GTyH87QGfkLRIRTuXsJ3j3WhJCJ
- UXnPQDxbMylKL+L3ZshPDk4YoCsYTon/FPoLoYQ7HE6oVTD6Teko/9KGo
- w4aE/Ebio7jGmrBKYsPkF2IPLGKWxPTKC+mqb3Dl5Zxmpap4Ay+Y5BaDN
- A5bAbOdGffLO5RLeunEHCpq4xLAjVs8o7FHUpspxk3qUYcu9QIDOyj26Q Q==;
-X-CSE-ConnectionGUID: VenJButpQr+Sq3Ush96y4g==
-X-CSE-MsgGUID: EliK38RkSJSKUzmWo+YyOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4450569"
+ t=1795601275; x=1827137275;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=O471qYqK7zzo3vxo3o50F807nmuwvHPPeHEMJDu7Baw=;
+ b=PKNDBXrdBQWlw/NzW80P7a7RCRWShL+28BSSVhLVQVGchqzs4TU+7xZZ
+ KpwWaBY3PXqczWoDxKIH4VKixPYCPgUSgbc1NiUPg2tnyClo7fbzXTHFu
+ aa1bqRcqzuEhu/0vC90Odf/bohTjBgdvDAHUVgSho+MAB0oC1ilI9c/0q
+ aZpUVKs3wTHKrvdPrbkEMivKsFy23MSpbhGBGSMiQJS0lyi7rCLKlAQpk
+ Iuu8KuUkXDUnVkPtC/EbZ9PlC2F2eKP4cHvEHuydPF4B+78qdOX/g9lKN
+ S8GBP9ibW1j3OEz44Bx8XyM3+HE4bwUhYUgqh6I0yVuQQoOTdFjQpMCAE w==;
+X-CSE-ConnectionGUID: 54uwslqpShyQkYSiFp3DvQ==
+X-CSE-MsgGUID: 6iPlD9jNRfmTwFZ8ytVvcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4450573"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4450569"
+   d="scan'208";a="4450573"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 02:07:49 -0800
-X-CSE-ConnectionGUID: ZOuPEefESgGM0SfDUjc1KQ==
-X-CSE-MsgGUID: BO5NAEzGQoGjQsibm8913w==
+ 25 Nov 2026 02:07:55 -0800
+X-CSE-ConnectionGUID: h3zZC9+SRE+RmXr+c6fNcA==
+X-CSE-MsgGUID: xIOI8HO/Rfe6CnKbOytYkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12136424"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa007.fm.intel.com with ESMTP; 25 Nov 2026 02:07:45 -0800
-From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
- matthew.brost@intel.com
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
- vinay.belgaumkar@intel.com, riana.tauro@intel.com, karthik.poosa@intel.com,
- sk.anirban@intel.com, raag.jadav@intel.com,
- aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
- daniele.ceraolospurio@intel.com,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v6 6/6] drm/xe/log: Test software CPER emission parameters
-Date: Wed, 25 Nov 2026 15:37:22 +0530
-Message-ID: <20261125100716.2151294-14-mallesh.koujalagi@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12136432"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 02:07:52 -0800
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, matthew.brost@intel.com,
+ himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
+ tejas.upadhyay@intel.com
+Subject: [PATCH] drm/xe/vm: Cancel pending rebind work before freeing the VM
+Date: Wed, 25 Nov 2026 15:37:44 +0530
+Message-ID: <20261125100744.1440957-1-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20261125100716.2151294-8-mallesh.koujalagi@intel.com>
-References: <20261125100716.2151294-8-mallesh.koujalagi@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,132 +63,69 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-14.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,UNWANTED_LANGUAGE_BODY,USER_AGENT_GIT autolearn=ham
-	autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add KUnit tests for software SIGIDs to verify the correct
-arguments are forwarded to the CPER emission path.
+vm_destroy_work_func() runs on xe->destroy_wq and flushes rebind work
+on xe->ordered_wq. The destroy queue has WQ_MEM_RECLAIM, but the
+ordered queue has no rescuer. The kernel warns because this wait can
+stall memory reclaim.
 
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
+The VM is already closed, so a pending rebind would return immediately.
+Use cancel_work_sync() to cancel pending work and wait for a running
+rebind to finish before freeing the VM.
+
+[  727.067318] ------------[ cut here ]------------
+[  727.067552] workqueue: WQ_MEM_RECLAIM xe-destroy-wq:vm_destroy_work_func [xe] is flushing !WQ_MEM_RECLAIM xe-ordered-wq:preempt_rebind_work_func [xe]
+[  727.067726] WARNING: kernel/workqueue.c:4043 at check_flush_dependency.part.0+0xd9/0x110, CPU#1: kworker/1:0/33641
+[  727.067876] Workqueue: xe-destroy-wq vm_destroy_work_func [xe]
+[  727.067963] Call Trace:
+[  727.067964]  <TASK>
+[  727.067967]  __flush_work+0x44b/0x660
+[  727.067970]  ? __lock_acquire+0x584/0x29c0
+[  727.067974]  ? lock_is_held_type+0xa3/0x130
+[  727.067980]  flush_work+0x28/0x40
+[  727.067982]  vm_destroy_work_func+0x1a9/0x350 [xe]
+[  727.068061]  ? lock_release+0xd0/0x2c0
+[  727.068065]  process_one_work+0x2ad/0x890
+[  727.068071]  worker_thread+0x200/0x3f0
+[  727.068074]  ? __pfx_worker_thread+0x10/0x10
+[  727.068077]  kthread+0x113/0x150
+[  727.068079]  ? __pfx_kthread+0x10/0x10
+[  727.068081]  ret_from_fork+0x3bf/0x470
+[  727.068085]  ? __pfx_kthread+0x10/0x10
+[  727.068087]  ret_from_fork_asm+0x1a/0x30
+[  727.068096]  </TASK>
+[  727.068108] ---[ end trace 0000000000000000 ]---
+
+Fixes: 61e18525023a ("drm/xe: Route deferred xe_vma/xe_vm teardown off system_dfl_wq")
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_log_kunit.c | 82 +++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_log_kunit.c b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-index 08828ecc9098..9d8966a3177f 100644
---- a/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-@@ -142,6 +142,14 @@ static void demo_dmesg(struct kunit *test)
- 	demo(test->priv);
- }
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index dd855876f571..2ba99c083db8 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2091,7 +2091,7 @@ static void vm_destroy_work_func(struct work_struct *w)
+ 	xe_assert(xe, !vm->size);
  
-+static void test_cper_null_xe(struct kunit *test)
-+{
-+	xe_cper_emit(NULL, CPER_SEV_FATAL, XE_SIGID_PROBE,
-+		     XE_LOG_COMPONENT_PROBE, XE_LOG_LOCATION_NONE,
-+		     ERR_PTR(-ENODEV), 0, NULL);
-+	KUNIT_SUCCEED(test);
-+}
-+
- static void demo_cper(struct kunit *test)
- {
- 	kunit_activate_static_stub(test, log_emit_cper, fake_emit_cper);
-@@ -149,6 +157,78 @@ static void demo_cper(struct kunit *test)
- 	demo(test->priv);
- }
+ 	if (xe_vm_in_preempt_fence_mode(vm))
+-		flush_work(&vm->preempt.rebind_work);
++		cancel_work_sync(&vm->preempt.rebind_work);
  
-+/*
-+ * Software CPER
-+ */
-+static struct {
-+	unsigned int count;
-+	int cper_sev;
-+	enum xe_sigid sigid;
-+	u32 component;
-+	u32 location;
-+	const void *data;
-+	size_t len;
-+} sw_cper_capture;
-+
-+static void capture_emit_cper(struct pci_dev *pdev, int cper_sev,
-+			      enum xe_sigid sigid, u32 component, u32 location,
-+			      const void *data, size_t len, struct va_format *vaf)
-+{
-+	sw_cper_capture.count++;
-+	sw_cper_capture.cper_sev = cper_sev;
-+	sw_cper_capture.sigid = sigid;
-+	sw_cper_capture.component = component;
-+	sw_cper_capture.location = location;
-+	sw_cper_capture.data = data;
-+	sw_cper_capture.len = len;
-+}
-+
-+static const struct sw_cper_param {
-+	int cper_sev;
-+	enum xe_sigid sigid;
-+	u32 component;
-+	int err;		/* reported as ERR_PTR when non-zero */
-+	size_t len;		/* bytes of @blob passed as data */
-+	const char *name;
-+} sw_cper_params[] = {
-+	{ CPER_SEV_FATAL, XE_SIGID_PROBE, XE_LOG_COMPONENT_PROBE,
-+	  -ENODEV, 0, "sw-fatal-errno" },
-+	{ CPER_SEV_RECOVERABLE, XE_SIGID_GT_TDR, XE_LOG_COMPONENT_GUCSUBMIT,
-+	  -ETIMEDOUT, 0, "sw-recoverable-errno" },
-+	{ CPER_SEV_CORRECTED, XE_SIGID_MEM_FAULT, XE_LOG_COMPONENT_PAGEFAULT,
-+	  0, 0, "sw-corrected" },
-+	{ CPER_SEV_INFORMATIONAL, XE_SIGID_SURVIVABILITY, XE_LOG_COMPONENT_SURVIVABILITY,
-+	  0, 0, "sw-informational" },
-+	{ CPER_SEV_FATAL, XE_SIGID_SW, XE_LOG_COMPONENT_NONE,
-+	  0, sizeof(struct xe_ras_error_class), "sw-with-error-class" },
-+};
-+
-+KUNIT_ARRAY_PARAM_DESC(sw_cper, sw_cper_params, name);
-+
-+static void test_sw_cper(struct kunit *test)
-+{
-+	const struct sw_cper_param *param = test->param_value;
-+	struct xe_device *xe = test->priv;
-+	struct pci_dev *pdev = xe_any_to_pdev(xe);
-+	const void *data = param->err ? ERR_PTR(param->err) : param->len ? blob : NULL;
-+
-+	memset(&sw_cper_capture, 0, sizeof(sw_cper_capture));
-+	kunit_activate_static_stub(test, log_emit_cper, capture_emit_cper);
-+	kunit_activate_static_stub(test, log_dmesg_vprintk, nop_dmesg_vprintk);
-+
-+	xe_log_emit(pdev, param->cper_sev, param->sigid, param->component,
-+		    XE_LOG_LOCATION_NONE, data, param->len, "testing %s\n", param->name);
-+
-+	KUNIT_ASSERT_EQ(test, sw_cper_capture.count, 1);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.cper_sev, param->cper_sev);
-+	KUNIT_EXPECT_EQ(test, (u32)sw_cper_capture.sigid, (u32)param->sigid);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.component, param->component);
-+	KUNIT_EXPECT_PTR_EQ(test, sw_cper_capture.data, data);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.len, param->len);
-+
-+	KUNIT_EXPECT_TRUE(test, is_sw_cper(sw_cper_capture.sigid));
-+}
-+
- static const char *test_fatal(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pdev_safe(xe);
-@@ -558,7 +638,9 @@ static int xe_log_test_init(struct kunit *test)
- static struct kunit_case xe_log_test_cases[] = {
- 	KUNIT_CASE(demo_cper),
- 	KUNIT_CASE(demo_dmesg),
-+	KUNIT_CASE(test_cper_null_xe),
- 	KUNIT_CASE_PARAM(test_dmesg, log_gen_params),
-+	KUNIT_CASE_PARAM(test_sw_cper, sw_cper_gen_params),
- 	KUNIT_CASE_PARAM(test_invalid, invalid_param_gen_params),
- 	{}
- };
+ 	mutex_destroy(&vm->snap_mutex);
+ 
 -- 
-2.48.1
+2.43.0
 
