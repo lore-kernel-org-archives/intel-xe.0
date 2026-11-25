@@ -2,107 +2,154 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9312606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 15:54:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1F0606A323
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 15:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=PQxfwm4H
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=OOzwawRG;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Qaxpsdeu
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8423010E91F;
-	Wed, 25 Nov 2026 15:53:58 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 123C710E912
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:53:52 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id BCD64462DE
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:53:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9839C1F000D0
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:53:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795622031;
- bh=/QyiPsXELdVcU8h8SMClaBGSEvaC+/rJrAPi6gmrO6o=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc;
- b=PQxfwm4HZ/4IqyyrMOscRAB2kuaFOJ+mjqRe77pK7wNNL/dxm6v/H5iv9tkA+8Ghc
- 6eBHSrAii4f84K/dSSppdUYZ6q80NYTG26eI8racfvJjvM3sISdvsCZKZze19cLvq3
- 1+EyHmosT/IEVYUe1o8vZHe3wQw9uMooKYd3ePSTp6OQp95659nLXZeOsv/OtVnLYd
- ft+bbBdo9XqMrpSX8Qzxg9vg7lbJLigI67Tt3AZZ6Zw0bDnaQ5el3aqqYqaDH2aLXv
- wfxAt75u0olCnHZace59c40GuFU6HGv49t6FrfoRajlrY+6Nxyv0RiCmTBHk9AkK3Y
- XdhaGwekSgKpQ==
-Received: by mail-lf1-f44.google.com with SMTP id
- 2adb3069b0e04-5c10dc41270so6343386e87.2
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 07:53:51 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AL+hErGW3hOGAqVYQBslLIY09OoLH3x37cB85PFxgBoC/v1CLr1jGYZ6DMmzC05nVBrvt/U4ZkaKOBHdog==@lists.freedesktop.org
-X-Gm-Message-State: APuU4Z9zof8l7Dy+KnvxYvfi3E/afpJAeyJL0rwYqGEu04tNySM8cU30
- faBXE4v84I3i2b4ia+Hkop2BdIOweDtJOhrhj14Vo7xbfJccOvp9mixRo56I5O1xpdMX3dCsSzb
- A6Eykix1NHSSmvjyP9KE2BZDnA93eOaQ=
-X-Received: by 2002:ac2:4e07:0:b0:5c1:4f54:a6c6 with SMTP id
- 2adb3069b0e04-5c1bc7cb0f6mr5811261e87.30.1795622030011; Wed, 25 Nov 2026
- 07:53:50 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FE5B10FD70;
+	Wed, 25 Nov 2026 15:56:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56C9810FD5D
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:56:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795622177; x=1827158177;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=CeoZSVcZm5vMYm9fQHFkO28J/e3C1w2XXOKtlcqqq9o=;
+ b=OOzwawRGI4TX1BsT4hQHl7pII/k5llRu8cANJrHrrKL5c0ReD6sO8uZ0
+ HONe+aRbzrFmByIBMYyz0QvBIriHSm/0BL2V6a8xsDk4bBm6ljReb7trq
+ KrnrMADtwyStuz3drUFsT1k9RWbTXQSHRsSb6GcggqtPlxeDOKzSNnie9
+ t86zWNe3dmc83EeLlYh/RDm3XpFxXDb+zV5xMdOG/qdeZI5SoWlE1cNvU
+ Aw5ilGZ3FpCdeIsAhKb4f2oR+vnMj7ENSfKvkldPx7d3KTRK72VllxeYo
+ +D8T3d3a1iH+NpFWiwN+t2Zmfn59aAKSgIkPawzTE8lsHu4br7burfZCX g==;
+X-CSE-ConnectionGUID: DSMKwAlCT0+U5TW4xzkNLg==
+X-CSE-MsgGUID: bfrQla6aS8eTO8GVZw/WcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4363802"
+X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; 
+   d="scan'208";a="4363802"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 07:34:24 -0800
+X-CSE-ConnectionGUID: 9ojbwfkLS9+t2X8shZq/BQ==
+X-CSE-MsgGUID: cQJBdw89Qd+EWt7TTHdatw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; d="scan'208";a="11779349"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 07:34:24 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Wed, 25 Nov 2026 07:34:23 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57 via Frontend Transport; Wed, 25 Nov 2026 07:34:23 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.50) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Wed, 25 Nov 2026 07:34:23 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NJKYExXk6UTDFsZZPJYoogv0Fk683kgICleg4AR7gFU4j33nNGMy6/AogmN+07+HypDoyPn4AkLZyO92xDVLb3WYY7NPKX3bmqRdGZBM0y5Q6FSGQI99MINUxU2BBZnlf4umluDxS+dT/k1TxIo5abvvkfKMexPPY/pPoBgc7KQVNHqqv7H5/8q1X5DoNoMj0H3Dgk7iPwQtNHiJ1MmPWuhJkWl2OwLBz7XyRY/9DzJjM/h4ZUTljgINdy69fQnwjN3snFf8UL34dgUcJGI7onRnfM7EzA6usGDr3VB3TFKYkigkp851cCr7CXj6F5327HcpV8oVbbgGwT1lMjqowQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yo1AmmzGb8FbQEjX5sZRdw53TqVBrlQ11IGp5nbSYTE=;
+ b=gxNCL1nvFpyE5QLGFZPPL19RnRpbF9otFO/IA35c9epCmztmu/VVMnqsNBWNvzqsnr4XJfeE6IM2D+GEe+xC0Idl0ydQDkmhDEUvG3XR/9l5B3i7ZuxdO0fbvHeY8bP6OfCKEpxE6YZi1wWmBL+N5f8LX6H5BtD3TAlhsapcyLJpnd8IN6qjrGcxgSzzijFg/ca+AHtc8TG42lw4fpld75MIiwnXVIljgec/7y/yXFRLQnJVeMXeWCEIpi/Kzt/2Qoag4ZZhyuj5e3DUd8lLxI+fJgXVjO7dSnOXTfldxXJvf9m3ie08o7Q7XqfiSfydZlGEeYc3mf5CkQZO7yjkNQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=yo1AmmzGb8FbQEjX5sZRdw53TqVBrlQ11IGp5nbSYTE=;
+ b=QaxpsdeubuPaM+tdhO4ZbwxkUrTZzDh+wtI49KsgBf7dTdVfmHSeLEq+chtZBneffXTZOyYjX4K9jBvMB5svGXvKvu5v0ZapTJ/rOVdumcanjXcOxlIOh9ak7COvp7bVZedQx9A/DPSPan2UKCGZz3aVnKTdcH4ToEKIbuxL6hY=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
+ SA2PR11MB5017.namprd11.prod.outlook.com (2603:10b6:806:11e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.639.10; Wed, 25 Nov
+ 2026 15:34:07 +0000
+Received: from DS7PR11MB5990.namprd11.prod.outlook.com
+ ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
+ ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Wed, 25 Nov 2026
+ 15:34:07 +0000
+Date: Wed, 25 Nov 2026 10:34:03 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Sk Anirban <sk.anirban@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <riana.tauro@intel.com>,
+ <karthik.poosa@intel.com>, <raag.jadav@intel.com>, <soham.purkait@intel.com>, 
+ <mallesh.koujalagi@intel.com>, <hiresh.kumar.yadav@intel.com>
+Subject: Re: [PATCH v2 1/2] drm/xe: Skip OCODE late bind if already running
+Message-ID: <awb_6-urPGcB868g@intel.com>
+References: <20261125125011.192907-4-sk.anirban@intel.com>
+ <20261125125011.192907-5-sk.anirban@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20261125125011.192907-5-sk.anirban@intel.com>
+X-ClientProxiedBy: BY5PR04CA0014.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::24) To DS7PR11MB5990.namprd11.prod.outlook.com
+ (2603:10b6:8:71::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-References: <20261117173738.1073856-1-Frank.Li@oss.nxp.com>
- <20261117173738.1073856-2-Frank.Li@oss.nxp.com>
- <CAPx+jO9RwkpSKwq6vq00uoXK-mcovJ2LMH7b_ByRnxOUj8nH8w@mail.gmail.com>
-In-Reply-To: <CAPx+jO9RwkpSKwq6vq00uoXK-mcovJ2LMH7b_ByRnxOUj8nH8w@mail.gmail.com>
-From: "Rafael J. Wysocki (Intel)" <rafael@kernel.org>
-Date: Wed, 25 Nov 2026 16:53:35 +0100
-X-Gmail-Original-Message-ID: <CAJZ5v0jsnLjEBxa1R4Q3hZLZKrCUW0xSE9SqLB8bd4tNAhXTAQ@mail.gmail.com>
-X-Gm-Features: Aa3M54pn_ud7xKJ4Sp9_9mJsafRFGsiuNY-zMFg468C0_97OrWEf728wG9SLJbM
-Message-ID: <CAJZ5v0jsnLjEBxa1R4Q3hZLZKrCUW0xSE9SqLB8bd4tNAhXTAQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] PM: runtime: fix stub pm_runtime_get_if_in_use()
- for !CONFIG_PM
-To: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
-Cc: Frank.Li@oss.nxp.com, "Rafael J. Wysocki" <rafael@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Heiko Stuebner <heiko@sntech.de>, 
- Ulf Hansson <ulfh@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Matthew Auld <matthew.auld@intel.com>, Hans de Goede <hansg@kernel.org>, 
- Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, 
- Peter Ujfalusi <peter.ujfalusi@linux.intel.com>,
- Mark Brown <broonie@kernel.org>, 
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
- Yong Wu <yong.wu@mediatek.com>, 
- Will Deacon <will@kernel.org>, Tomasz Figa <tfiga@chromium.org>,
- Marek Vasut <marex@denx.de>, Michael Tretter <m.tretter@pengutronix.de>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Hans Verkuil <hverkuil@kernel.org>, 
- "open list:POWER MANAGEMENT CORE" <linux-pm@vger.kernel.org>,
- open list <linux-kernel@vger.kernel.org>, 
- "moderated list:ARM/Mediatek SoC support:Keyword:mediatek"
- <linux-arm-kernel@lists.infradead.org>, 
- "moderated list:ARM/Mediatek SoC support:Keyword:mediatek"
- <linux-mediatek@lists.infradead.org>, 
- "open list:ARM/Rockchip SoC support:Keyword:b[Rr]ock[Cc]hipb"
- <linux-rockchip@lists.infradead.org>, imx@lists.linux.dev, 
- Frank Li <Frank.Li@nxp.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona@ffwll.ch>, 
- David Airlie <airlied@gmail.com>, Matthew Brost <matthew.brost@intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Alessio Belle <alessio.belle@imgtec.com>, 
- Luigi Santivetti <luigi.santivetti@imgtec.com>,
- Liam Girdwood <lgirdwood@gmail.com>, 
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
- Bard Liao <yung-chuan.liao@linux.intel.com>, 
- Kai Vehmanen <kai.vehmanen@linux.intel.com>,
- Robin Murphy <robin.murphy@arm.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Dafna Hirschfeld <dafna@fastmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Daniel Baluta <daniel.baluta@nxp.com>, 
- Vijendar Mukunda <Vijendar.Mukunda@amd.com>, dri-devel@lists.freedesktop.org, 
- imagination@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, iommu@lists.linux.dev, 
- linux-media@vger.kernel.org, linux-sound@vger.kernel.org, 
- sound-open-firmware@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|SA2PR11MB5017:EE_
+X-MS-Office365-Filtering-Correlation-Id: fa2c2d13-7a52-488c-8f82-08df4b098b2c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|376014|1800799024|261028144727099003|261021123027099003|261021121427099003|261026121527099003|261022105027099003|261026140227099003|261102123227099003|11063799006|4143699003|56012099006|10067099003|18002099003|22082099003|261009223027099003;
+X-Microsoft-Antispam-Message-Info: 3wUcgn8rPAxDRsy4AQj56VBy8zjYCOMDqkSSEkJD7LmvyiAdKa1YMh7VkjMtz0vpZpdGmDMH8CEoCVaifZt215T8c9h3pfRYJA2JiHogaytdwu+M/9Jp2czQ/Ao63pjD0urNIL0c13UBZOQ1H0AyRAFLme5DD+7js79YlGWM6u4NtCY3WvogaV1krocxDgHyjB2532AXKC8xhGGLQ18RqBUxx6IvlY7l7AQLG4EyF3xzuXAXiO1NKN1EgPX8snOOBJdmgijpDut8E8KQxZ/EIotNWGUyZXnvL6TQydioG0gycOHPxx8iuIXFlFuALKLi8+1/la22LbtbuwT+oj6sMd/B/41jck/vcpwIG4YjkAQHJv9Coao7c2rxFc8wTAAElwHZO7VvtsbokHJLhsERmyXmacpceSfAILidi3b99Pse1feD4FvNjfnQQoL0DXBDIVx3+A5WgaHNuznQti5+80gFwY49Cwx8LFSJSTfBOR8qN3i53nf0gR7VcPxk1inbsRfzuy1Xu5K4WNr7Nc2P983jv9LKGaN7wTvGl8uiO+etxiVe0ynfJjeBLhzWOYsLTevcrGA2GYFNvI3Toj9XqcdjFrWFCRQmd54nK5mftncrCSiMLWnJCZAB+BtoAK3sIcB+eqwqhHFq1fr2WrHsEyt27hCgNsVNBg0zNEHSTBk=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(261028144727099003)(261021123027099003)(261021121427099003)(261026121527099003)(261022105027099003)(261026140227099003)(261102123227099003)(11063799006)(4143699003)(56012099006)(10067099003)(18002099003)(22082099003)(261009223027099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1phVCgrWBCzU8sB76bgjCGuYHOrBmdvJzZnYYs0GPwlPHz7hvJxNE/P2M6LB?=
+ =?us-ascii?Q?YzV2bja+d25YLZNllnZfOpCREs6EZF0O1JhTx7/ig/U/Unq5S0t6rZAg38UQ?=
+ =?us-ascii?Q?ku/XjA7HqTRK6O0uWnwbCx2221zF8Qn0stVdpddge+UjzSSITriMaOxHvT3d?=
+ =?us-ascii?Q?JfLmtG+vfiGAWGUK801vjGN3UQTp/YHrpcxg2gcwo/8lBdgVqjj2+oHH04Kc?=
+ =?us-ascii?Q?B+7slkuin7dS0HN4bIC572OuD//BZiwE/IVKu5fGNuHPKVBYdJfTmzUNlhlE?=
+ =?us-ascii?Q?9oPAcFQMDY4nbkJMBHATpsdgPGiWyk348JTGOppzgUcRxRVxG59GtJzbhrOG?=
+ =?us-ascii?Q?HafqmAHF5LgICdlNLavqaerN0lBnTe3SrlzBRVsl0owy3sZ1JHEoycK3L4dy?=
+ =?us-ascii?Q?0k6s7snWwW9ffzKiOcQcsr1LPWenteznvEgusl/YIP5VrBAqEknfxSARv5go?=
+ =?us-ascii?Q?57JNK0LVIRYmCtdR5whHm3WwvuYMp9tD74oES5Y7bIAHvWuyFQJJm3Y3WBH/?=
+ =?us-ascii?Q?KMxZDce2PJiygtcCzSjyjKbqHPtDXhN1lJSagxtsp4iJTMNrTOl810ycjgx1?=
+ =?us-ascii?Q?zj6sZmQCgImL3YxNLR3usohI0KTX6FuzUzqCw0T3swYsz0kxilduihW6BzNY?=
+ =?us-ascii?Q?JusCjY9CHbXO9CfA/zi9C/tPobfz/yyUhJACsRw1px5tgoLCe1zjVcujWoGb?=
+ =?us-ascii?Q?rx/CtXaSGYD09bBkaas8qVeEne+mxpWGU+lyBW1aFdb2W4trx/er0cWUdR4b?=
+ =?us-ascii?Q?qGWpm/TiAmt3BKMAkbbcvnYqdVjw+x8rv+l1RbTqHsHZwstetQa8pyt+m2Yp?=
+ =?us-ascii?Q?XSINXnkr5O76QO/Yi+Ej0+zi3y1+qlkfm1yaPI4pOyNl+THwILcQ51fVOknM?=
+ =?us-ascii?Q?amMtgFqJtOFpEBqUMCMQITgTCJY/zi6jtRfKBGMi8UGLYy9aNZEYYGfk7ZJO?=
+ =?us-ascii?Q?cWP7MElkDGalFKKLlJ10fvfxOSjAT3qDM0aCT9ionD8HR2Ns4pa+rg1Odp0c?=
+ =?us-ascii?Q?opbi82fsfQLwV4/QGOeHC3noDsBwaeNuF3Knx8wiQOBJgh3e8SCOw8xkrMuU?=
+ =?us-ascii?Q?HUk4TyWjUuBs3jkAz7luylDTrOsQhy2pe9C6ySIUG2JhlFkIV0MpOe7bslcM?=
+ =?us-ascii?Q?tu82CEyeLu4JkuJ2Whr63d5JKsFceHxMu24Cglbaak+vNDGSKR/H61kHYfAe?=
+ =?us-ascii?Q?4tjhk6NzrMYD2EbnxtNrQM7Z2iTLjdjFVDYFEV8r/bwaoya4kYnacXsbUdWs?=
+ =?us-ascii?Q?oWpDzZg5wog2huTh9cwjQkSVDCUFaM388+afCW8lttRjb17bdAotQPpRVBmQ?=
+ =?us-ascii?Q?7ui1dyWe9LjzD9gMoCj5s34OoNfVKgvA0DlTxnk1ua/KCbjE5Bgaf5C9Gd2R?=
+ =?us-ascii?Q?qWETB4suN14nfdUDocvPetnCRniH5JQ99PGPfyi37SzOeZAlYcFefQ2jHvsK?=
+ =?us-ascii?Q?b5Vsnj3H4LWh9YXVYBwACLMmPDCxK9C4RCvbEeQaJLNiJDUsNddK4QLzsu0Y?=
+ =?us-ascii?Q?9Lz2VCmiMjqj5ebisC5KCHWL5BCdV9FItp/tg8xYwSG844Nm88BSkZkLgy83?=
+ =?us-ascii?Q?8Se2k+in9LMJZCbSWkufpCtuSL5C2SwBfNpwNbrN7ppjFc19F9tY24YX2zwj?=
+ =?us-ascii?Q?AJ0Fykr0hSF2CzG0yRljwZVBgFJjHdsFskcjXY82WiiFZWyF3Xb+7ptoG2Wt?=
+ =?us-ascii?Q?+vv+zEr/aQGf6/Zqn7GHHOk2U6A5dIDDPlfr2li18OBLD5Tudv9xIF22Qmkb?=
+ =?us-ascii?Q?T3TJiOXM3w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: CTPDCN2PGPE773m52uyGfHvC2Uu/0eZQ+AMR/TMdwBN46cOCOjCu+afzHE9YI1vtklPxAQJMqeuiwDct/928HR5jsOpLMnes4YbnBOuOXW5gIf974F4FF6Aa+zqvVe5kAFj+zLadInPaDwt8rucChdF0DYJwNleCqgDGFTBfkaNrbo+7tEReA8eZJo843VmKeT6AaUH/kRwbDJ5z5V1Rzojhz0UTFqqGDAjx4JdQH+BTYQ5ubyQCx4SeKISypHb8EPU/GsJ8v2hPVHFJC91YQjYarol9eVHZ4VjL14u6iW8unRjfGQ7xMdhZ3ZOHLcbsWw8p/Tfd7j0mtK72wmT1LQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: fa2c2d13-7a52-488c-8f82-08df4b098b2c
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Nov 2026 15:34:07.3598 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Lcrvo1OKjO2bBB527xkHJRty1uElQmBZs3MXyysFAyeXFkE1ByYfS7AsZ0RhTbTglgSpH2655vw+9yf+w1ZEKQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5017
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,163 +167,53 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Wed, Nov 25, 2026 at 4:07=E2=80=AFPM Ulf Hansson
-<ulf.hansson@oss.qualcomm.com> wrote:
->
-> On Tue, Nov 17, 2026 at 6:38=E2=80=AFPM <Frank.Li@oss.nxp.com> wrote:
-> >
-> > From: Frank Li <Frank.Li@nxp.com>
-> >
-> > The stub for pm_runtime_get_if_in_use() under !CONFIG_PM currently
-> > returns -EINVAL.  The real implementation returns:
-> >   1  - device is active and its usage counter is non-zero (bumped)
-> >   0  - device is not in use or not active (counter not bumped)
-> >  -EINVAL - runtime PM disabled for this device
-> >
-> > When CONFIG_PM is not set every device is permanently "active" and
-> > always considered "in use", so the stub must return 1, mirroring
-> > __pm_runtime_resume() which already returns 1 in the same build.
-> >
-> > Returning -EINVAL breaks callers that test the return value with
-> > comparisons other than "!=3D 0 / =3D=3D 0":
-> >
-> > drivers/gpu/drm/i915/intel_runtime_pm.c:
-> >   if (intel_runtime_pm_get_if_in_use(rpm))
-> >   which wraps to: ret =3D pm_runtime_get_if_in_use(); return ret > 0;
-> >   With -EINVAL the wrapper returns false, causing an incorrect error
-> >   path in the GT fence revocation code.
-> >
-> > drivers/gpu/drm/xe/xe_pm.c:
-> >   if (pm_runtime_get_if_in_use(xe->drm.dev) > 0)
-> >   With -EINVAL the condition is false; xe_pm_runtime_get_if_in_use()
-> >   returns false, so callers believe the device is not usable.
-> >
-> > drivers/gpu/drm/gma500/power.c:
-> >   return pm_runtime_get_if_in_use(dev) =3D=3D 1;
-> >   -EINVAL !=3D 1, so the helper always returns false when !CONFIG_PM.
-> >
-> > drivers/gpu/drm/imagination/pvr_power.c:
-> >   if (pm_runtime_get_if_in_use(...) <=3D 0)
-> >   -EINVAL <=3D 0 is true, so the driver always takes the "requeue" erro=
-r
-> >   path instead of proceeding with the active device.
-> >
-> > sound/soc/sof/debug.c:
-> >   if (pm_runtime_get_if_in_use(sdev->dev) =3D=3D 1)
-> >   -EINVAL !=3D 1, so d3_prevented is never set, corrupting exception
-> >   debug accounting.
-> >
-> > drivers/iommu/mtk_iommu.c:
-> >   if (pm_runtime_get_if_in_use(dom->plat_dev->dev) <=3D 0)
-> >   -EINVAL <=3D 0 skips the TLB flush, leaving stale IOMMU mappings.
-> >
-> > drivers/iommu/rockchip-iommu.c:
-> >   Three call sites use WARN_ON_ONCE(err < 0) or similar patterns.
-> >   -EINVAL < 0 triggers a spurious WARNING on every call.
-> >
-> > drivers/media/i2c/isl7998x.c:
-> >   if (pm_runtime_get_if_in_use(dev) <=3D 0)  (two call sites)
-> >   -EINVAL <=3D 0 causes the driver to always skip register programming
-> >   when !CONFIG_PM.
-> >
-> > drivers/media/platform/rockchip/rkisp1/rkisp1-debug.c:
-> >   if (pm_runtime_get_if_in_use(dev) <=3D 0)  (two call sites)
-> >   -EINVAL <=3D 0 prevents any debug statistics from being collected.
-> >
-> > Fixes: a436b6a19f57 ("PM / runtime: Add new helper for conditional usag=
-e count incrementation")
-> > Fixes: 3b85b7bcccf4 ("drm/xe: Fix display runtime_pm handling")
-> > Fixes: 672c473576ca ("drm/gma500: Rewrite power management code")
-> > Fixes: b30289e7fa92 ("ASoC: SOF: Fix runtime pm usage counter balance a=
-fter fw exception")
-> > Fixes: c0b57581b73b ("iommu/mediatek: Add power-domain operation")
-> > Fixes: 51ef2be546e2 ("media: i2c: isl7998x: Add driver for Intersil ISL=
-7998x")
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > Change in v3
-> > - drop tag: cbb819c363c5 ("media: rkisp1: debug: Collect input status b=
-y sampling ISP_FLAGS_SHD")
-> > selected PM at arch config
-> > - drop tag: 0f181d3cf7d9 ("iommu/rockchip: Add runtime PM support")
-> > selected PM at arch config
-> > - drop tag: 9d58aa46291d ("drm/i915: Fix the GT fence revocation runtim=
-e PM logic")
-> > guard by CONFIG_PM
-> > - drop tag 727538a4bbff ("drm/imagination: Implement power management")
-> > depend on PM
-> > `
-> > Change in v2
-> > - new patches.
-> >
-> > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> > Cc: linux-pm@vger.kernel.org
-> > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <mripard@kernel.org>
-> > Cc: "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>
-> > Cc: Simona Vetter <simona@ffwll.ch>
-> > Cc: David Airlie <airlied@gmail.com>
-> > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> > Cc: Patrik Jakobsson <patrik.r.jakobsson@gmail.com>
-> > Cc: Alessio Belle <alessio.belle@imgtec.com>
-> > Cc: Luigi Santivetti <luigi.santivetti@imgtec.com>
-> > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Cc: Jaroslav Kysela <perex@perex.cz>
-> > Cc: Takashi Iwai <tiwai@suse.com>
-> > Cc: Bard Liao <yung-chuan.liao@linux.intel.com>
-> > Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>
-> > Cc: Peter Ujfalusi <peter.ujfalusi@linux.intel.com>
-> > Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-> > Cc: Robin Murphy <robin.murphy@arm.com>
-> > Cc: Yong Wu <yong.wu@mediatek.com>
-> > Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com=
->
-> > Cc: Matthias Brugger <matthias.bgg@gmail.com>
-> > Cc: Heiko Stuebner <heiko@sntech.de>
-> > Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> > Cc: Dafna Hirschfeld <dafna@fastmail.com>
-> > Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Michael Tretter <m.tretter@pengutronix.de>
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > Cc: Will Deacon <will@kernel.org>
-> > Cc: Vijendar Mukunda <Vijendar.Mukunda@amd.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: imagination@lists.freedesktop.org
-> > Cc: intel-gfx@lists.freedesktop.org
-> > Cc: intel-xe@lists.freedesktop.org
-> > Cc: iommu@lists.linux.dev
-> > Cc: linux-arm-kernel@lists.infradead.org
-> > Cc: linux-mediatek@lists.infradead.org
-> > Cc: linux-media@vger.kernel.org
-> > Cc: linux-rockchip@lists.infradead.org
-> > Cc: linux-sound@vger.kernel.org
-> > Cc: sound-open-firmware@alsa-project.org
-> > Cc: imx@lists.linux.dev
-> > ---
-> >  include/linux/pm_runtime.h | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
-> > index de9e7518ecef2..1d983fe55a16a 100644
-> > --- a/include/linux/pm_runtime.h
-> > +++ b/include/linux/pm_runtime.h
-> > @@ -276,7 +276,7 @@ static inline int pm_schedule_suspend(struct device=
- *dev, unsigned int delay)
-> >  }
-> >  static inline int pm_runtime_get_if_in_use(struct device *dev)
-> >  {
-> > -       return -EINVAL;
-> > +       return 1;
->
-> This should be return 0, as we did not bump the usage count.
+On Wed, Nov 25, 2026 at 06:20:13PM +0530, Sk Anirban wrote:
+> OCODE keeps running across driver reloads and warm resets. Despite
+> this, the late-bind worker re-uploads it on every probe and resume.
+> The firmware is not expected to handle back-to-back reloads, and the
+> extra delay of reloading an active OCODE can lead to firmware issues.
+> 
+> Check the OCODE status through SysCtrl in the late-bind worker before
+> uploading, and skip the upload if OCODE is already initialized. If the
+> status query fails or OCODE is not ready, fall back to the existing
+> upload.
+> 
+> As a result, a newer OCODE blob is only used after the next power
+> cycle. Comparing the running version against the blob is left for
+> later, once firmware provides a reliable way to read it.
+> 
+> v2: Update commit message (Rodrigo)
 
-This is kind of moot because there is no usage counter.
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-However, the caller may always take the opportunistic "in use" path
-because there are no potential costs related to it.
+pushing both patches soon.
+
+Thank you
+
+> 
+> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_late_bind_fw.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> index 355d7c841871..dfff1693bf1f 100644
+> --- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> +++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+> @@ -258,6 +258,13 @@ static void xe_late_bind_work(struct work_struct *work)
+>  
+>  	xe_device_assert_mem_access(xe);
+>  
+> +	/* TODO: Compare the running OCODE version at probe when available. */
+> +	if (lbfw->type == INTEL_LB_TYPE_OCODE && xe_sysctrl_is_oobmsm_fw_ready(xe)) {
+> +		drm_dbg(&xe->drm, "%s firmware already loaded, skipping\n",
+> +			fw_id_to_name[lbfw->id]);
+> +		goto out;
+> +	}
+> +
+>  	/* we can queue this before the component is bound */
+>  	for (slept = 0; slept < LB_INIT_TIMEOUT_MS; slept += 100) {
+>  		if (late_bind->component.ops)
+> -- 
+> 2.43.0
+> 
