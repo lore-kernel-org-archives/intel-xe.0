@@ -2,53 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBE5606A321
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 11:47:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79158606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 11:47:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=blTH3ngT
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Fzujk9S+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7134410FBD7;
-	Wed, 25 Nov 2026 11:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27C9910FBD8;
+	Wed, 25 Nov 2026 11:47:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21DBD10FBBC;
- Wed, 25 Nov 2026 11:47:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 559DC10FBDB;
+ Wed, 25 Nov 2026 11:47:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795607224; x=1827143224;
+ t=1795607220; x=1827143220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yHdycH75seVe7ddIzgNKPNF9+gVLBLATzVDpPE6xirw=;
- b=blTH3ngTs26uvdYo5HfOBhLROODAYiCeO/fon/qqNi4XFV8/EEKvWgBO
- D7Li27EJpSN+36u27XvwN48g3pfP74+D/8C0yu87V4plAZbNXzMrj4s9c
- VJnmnp090CEE/eZtfhePOT/xfRW2SMs40bon1x0V2CF/eG2yy8jCelGZu
- tlDD+dg5JbiWZu3vnVFIzsycXTyKNuY/hPiYETCg4qo+ZkhCGocc+wpo0
- yuGwOaxc7EnZXIvl7797gGMyYk9dh5YgDs7frDVYr+fzUEWj/uS8JJc+9
- Npvo+sVuYq33KWdiEg/djqTiNhwnD00uc2AdpcNDeqa1l9XY3MP0rAxpg g==;
-X-CSE-ConnectionGUID: T+SkNnMLQb2zmk2vuZhh6g==
-X-CSE-MsgGUID: 67zC74jrQ9aU0U8wmdKr3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4358437"
+ bh=yB89ouO6u+BUlYDMNs0zOywC9oQ4Yt4LZNg08lb1wUM=;
+ b=Fzujk9S+E0MTofmZXURRIR/nHdel6NcOJYq2vDrWXunhzbC/7tOfcu7J
+ fk9P3fHkQ+irAsihZXtTPdPYpkOChWaNzwEEgNhcVr+/Pod9fXPVnBc+s
+ i5TA1obfngTWa7BXaKwzA17zrtq/hZjP1ho5sMxuQcYrgIQ1hos3oCCf6
+ gCxpm2TiM9mWjxDa50zs+UkpWkfiowAM+qByGr8XQOoBdWjQ2GiHImCN5
+ AKGiWRFl50/Zfmz6UoW9FH2CeD3A79Ofwjm8voBbcaTeDEr1QEY0e2xXA
+ SavAVnxAlAfNdiqPtz22OE8DKANdqdM6uir5LIKO8WrYWgezkx0dpqWzG w==;
+X-CSE-ConnectionGUID: L+1sDQh/SZeFmKd2OR0akg==
+X-CSE-MsgGUID: lRk4ARk1QkiN1atfy7GUGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4358431"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4358437"
+   d="scan'208";a="4358431"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 03:47:03 -0800
-X-CSE-ConnectionGUID: GW55wTYzRMmLx5kIgBgqDA==
-X-CSE-MsgGUID: cPQtKfFNT1yZ51R7iyFU1Q==
+ 25 Nov 2026 03:47:00 -0800
+X-CSE-ConnectionGUID: 3QM3PA82TUOOUDgpQv402A==
+X-CSE-MsgGUID: sjtgmA/3RD6NFUckTKqWFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12167942"
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12167918"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.40])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 03:47:03 -0800
+ 25 Nov 2026 03:46:59 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 5/6] drm/i915/display: don't be cute about printing
- enabling/disabling
-Date: Wed, 25 Nov 2026 13:46:34 +0200
-Message-ID: <b2083460376976a93772d0c06a933c27d910d157.1795607055.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com, Naladala Ramanaidu <ramanaidu.naladala@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH v2 4/6] drm/i915/gmbus: deduplicate setting force bit-banging
+Date: Wed, 25 Nov 2026 13:46:33 +0200
+Message-ID: <7093a619be58bf8c6811260e4efae0a3dbc9f6f2.1795607055.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1795607055.git.jani.nikula@intel.com>
 References: <cover.1795607055.git.jani.nikula@intel.com>
@@ -70,67 +69,91 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Convert "%sabling", enable ? "en" : "dis" patterns to use
-str_enable_disable(). The imperative is just fine here.
+The code to adjust bus->force_bit is already brittle, and it's better to
+avoid duplicating it. Abstract unlocked intel_gmbus_force_bit_unlocked()
+helper, and use it.
 
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fdi.c     | 3 +--
- drivers/gpu/drm/i915/display/intel_gmbus.c   | 5 ++---
- drivers/gpu/drm/i915/display/intel_hotplug.c | 4 ++--
- 3 files changed, 5 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 32 ++++++++++------------
+ 1 file changed, 15 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
-index c170d3104e4c..8f83762c1031 100644
---- a/drivers/gpu/drm/i915/display/intel_fdi.c
-+++ b/drivers/gpu/drm/i915/display/intel_fdi.c
-@@ -404,8 +404,7 @@ static void cpt_set_fdi_bc_bifurcation(struct intel_display *display, bool enabl
- 	if (enable)
- 		temp |= FDI_BC_BIFURCATION_SELECT;
- 
--	drm_dbg_kms(display->drm, "%sabling fdi C rx\n",
--		    enable ? "en" : "dis");
-+	drm_dbg_kms(display->drm, "%s FDI C RX\n", str_enable_disable(enable));
- 	intel_de_write(display, SOUTH_CHICKEN1, temp);
- 	intel_de_posting_read(display, SOUTH_CHICKEN1);
- }
 diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 0c3037ef0dcb..990e5cd14863 100644
+index df25a8233345..0c3037ef0dcb 100644
 --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -1023,9 +1023,8 @@ static void intel_gmbus_force_bit_unlocked(struct i2c_adapter *adapter, bool for
- 	lockdep_assert_held(&display->gmbus.mutex);
- 
- 	bus->force_bit += force_bit ? 1 : -1;
--	drm_dbg_kms(display->drm,
--		    "%sabling bit-banging on %s. force bit now %d\n",
--		    force_bit ? "en" : "dis", adapter->name,
-+	drm_dbg_kms(display->drm, "%s bit-banging on %s. force bit now %d\n",
-+		    str_enable_disable(force_bit), adapter->name,
- 		    bus->force_bit);
+@@ -1015,19 +1015,27 @@ struct i2c_adapter *intel_gmbus_get_adapter(struct intel_display *display,
+ 	return &display->gmbus.bus[pin]->adapter;
  }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
-index d095eb13dc06..09f34c9a8643 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
-@@ -1309,8 +1309,8 @@ static ssize_t i915_hpd_short_storm_ctl_write(struct file *file,
- 	else if (kstrtobool(tmp, &new_state) != 0)
- 		return -EINVAL;
+-void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit)
++static void intel_gmbus_force_bit_unlocked(struct i2c_adapter *adapter, bool force_bit)
+ {
+ 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
+ 	struct intel_display *display = bus->display;
  
--	drm_dbg_kms(display->drm, "%sabling HPD short storm detection\n",
--		    new_state ? "En" : "Dis");
-+	drm_dbg_kms(display->drm, "%s HPD short storm detection\n",
-+		    str_enable_disable(new_state));
+-	mutex_lock(&display->gmbus.mutex);
++	lockdep_assert_held(&display->gmbus.mutex);
  
- 	spin_lock_irq(&display->irq.lock);
- 	hotplug->hpd_short_storm_enabled = new_state;
+ 	bus->force_bit += force_bit ? 1 : -1;
+ 	drm_dbg_kms(display->drm,
+ 		    "%sabling bit-banging on %s. force bit now %d\n",
+ 		    force_bit ? "en" : "dis", adapter->name,
+ 		    bus->force_bit);
++}
++
++void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit)
++{
++	struct intel_gmbus *bus = to_intel_gmbus(adapter);
++	struct intel_display *display = bus->display;
+ 
++	mutex_lock(&display->gmbus.mutex);
++	intel_gmbus_force_bit_unlocked(adapter, force_bit);
+ 	mutex_unlock(&display->gmbus.mutex);
+ }
+ 
+@@ -1085,30 +1093,20 @@ static ssize_t intel_force_bit_banging_write(struct file *file,
+ 	struct i2c_adapter *adapter = m->private;
+ 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
+ 	struct intel_display *display = bus->display;
+-	bool force_bit_banging;
+-	bool changed = false;
+-	u32 force_bit = 0;
++	bool force_bit;
+ 	int ret;
+ 
+-	ret = kstrtobool_from_user(ubuf, len, &force_bit_banging);
++	ret = kstrtobool_from_user(ubuf, len, &force_bit);
+ 	if (ret)
+ 		return ret;
+ 
+ 	mutex_lock(&display->gmbus.mutex);
+-	if (force_bit_banging != bus->debugfs_force_bit) {
+-		bus->force_bit += force_bit_banging ? 1 : -1;
+-		force_bit = bus->force_bit;
+-		bus->debugfs_force_bit = force_bit_banging;
+-		changed = true;
++	if (force_bit != bus->debugfs_force_bit) {
++		intel_gmbus_force_bit_unlocked(adapter, force_bit);
++		bus->debugfs_force_bit = force_bit;
+ 	}
+ 	mutex_unlock(&display->gmbus.mutex);
+ 
+-	if (changed)
+-		drm_dbg_kms(display->drm,
+-			    "%sabling bit-banging on %s. force bit now %d\n",
+-			    force_bit_banging ? "en" : "dis",
+-			    adapter->name, force_bit);
+-
+ 	*offp += len;
+ 
+ 	return len;
 -- 
 2.47.3
 
