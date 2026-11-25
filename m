@@ -2,66 +2,183 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841E9606A327
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 15:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABE99606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 15:06:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=n5k00Qob
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.a=rsa-sha256 header.s=qcppdkim1 header.b=Nzjcr1Jv;
+	dkim=pass (2048-bit key) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.a=rsa-sha256 header.s=google header.b=XIjZySDp
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3031B10E923;
-	Wed, 25 Nov 2026 15:01:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E26C10E923
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:01:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795618908; x=1827154908;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=vLcq1rzo1lLE9x8QBOamnB9IVUAjU9f2ic6N5ufFUbk=;
- b=n5k00QobEjtWDpwAFjwM7A3GXPfsz6bUUrPWv3+TixmHpFeuPag4tr0t
- GbNv4y0KLUWJUjLdRQhE6Kwpw7T6QOwa4WCd9iOGDxlxplUTI2kZ5ruUP
- ncFk+9KTB2Lk8aLXvsJ/gB2a0PcqPIy3K4FqRZfbUE/ZR78fVng02y8ex
- +Mig0hkp0RS0eJYuD1yVTzwhEC+GJs1nA6fKgkjvIGJGbF/9vdSXUBRIe
- 3OPmWwuwIpTvGdnrmcO/oPSBeZ/XA+zHi0wOcb8sHlkuSoxlXBH0SXPsw
- jbRXplV2BJvVarKJMKHAOtP4BO4oPuyHc5fQUIkft2YEBWMbOmF9xZrDy w==;
-X-CSE-ConnectionGUID: loL+ifcnTs+nohx8SurIqQ==
-X-CSE-MsgGUID: NgNWldphQ7uo1NRkz393gA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4404557"
-X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; 
-   d="scan'208";a="4404557"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 07:01:30 -0800
-X-CSE-ConnectionGUID: L4enoAQ0Q/eF1PiIXD9OHw==
-X-CSE-MsgGUID: vNzVEu9cSVaWL2R88pbLvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,233,1787036400"; d="scan'208";a="13934603"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.52])
- ([10.245.244.52])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 07:01:28 -0800
-Message-ID: <be730ef8-77e8-4510-b624-6e14a7cbf16f@intel.com>
-Date: Wed, 25 Nov 2026 15:01:26 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A2A310FD08;
+	Wed, 25 Nov 2026 15:06:43 +0000 (UTC)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C128310FD05
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:06:32 +0000 (UTC)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 6APELxm9724351
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:06:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ F8Fmq8LWA4bhtyNOLWl2S9LNOHs1l6eqA9F+R8NUX+A=; b=Nzjcr1JvAe8O3y2M
+ nRk02gsmzckXBcRxfri+XHtkdUIEszeIzfFyQQgR/BocgtLFL+n+eCBxHRzQ6Yfq
+ qFzg8RINXEMwOvBf0/oUkncHMiBTksHiHC9BqK7fPOJQt+fer1msKMHomuVFo02M
+ HWlOZeJFWN/NORls8UyWol1U9y/9hHAW4fZgccoU7/Sbqi2bbTFG+4vjo+f4z3En
+ x0PMMHwz77Py3aOkFJX8N0yFo4LC9oqXKJIiDzifeX/5Vv+KdoJ8lIpcubq7K9D4
+ SMLEBhZdEr0PMudXVoqY9KyOzziQXsPFG/RnejlYfRIxAoE94rHnRlkzkztqvvLf
+ 0Vovvw==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com
+ [209.85.215.200])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4j5yaxrphd-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 15:06:32 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id
+ 41be03b00d2f7-cdea3a64d1bso1519697a12.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 07:06:32 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1795619192; cv=none;
+ d=google.com; s=arc-20260327;
+ b=ZLa2QJKuEG+vVANZsANm2oGKSuR0egr/sFPpxmjqoICPbiZKGiAv5gn5MgiWVG+H0a
+ vJ60gzMYEBom6rU8Au9FM1QIb7ff6yjRAPZlvTgF+ZuMy3mE8KYrEUCDEbAlosTlg6px
+ CMNaBRerDOZQ5k6aOewMf3HrcTBtrKykbTc3TATc7pgJ6OWK1Rjac7h6aE+mFbaRyXho
+ pvX0LJFAD5C62oL2mI9x8yItrplXMIOyyG/C6VvDZqe3lFQ9MrMDTFTiDiMhJTFHRKrr
+ C+AjagOw45IH2nSmpfKE5dQFpY+7AKfNDN/IQYHHpcPRb0J5iDf/shltvCZwq8ZJ9dfq
+ Hasg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20260327; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=F8Fmq8LWA4bhtyNOLWl2S9LNOHs1l6eqA9F+R8NUX+A=;
+ fh=g5CopNbtqMY8JdFRKvaUESrsVEK+eaEOKcUezz4njig=;
+ b=lcPC4KYRFaRL7owheXYG8DVmdsIF95DXtFDy8GH7ntyk++aEZ+u1H9MyYC2JUE68cc
+ 7tRIZ+fccD+QQdFRICzdwej6S9LtdhWNBVePDNEDTa/+txqF6vxVtPDPcw5DXIgnSgWm
+ eezjnnC4QqfzNmmGvW+MjMnskz/5NhMVr8Jt6rqOA36yWlUfWpUUXhdq03mphdtz3o92
+ ae1ZZXLonE+6tATJGgY9Lg4tdSeGKTCyXxL8E/dN80LHkXXZ1GRS6TYu4YWsoDpbJ4uw
+ /yWlXL5X4Jn9GuyPG6AAqj5Qcn6zRcwQLKsO2ojadqq8GbV+ZtebqmoyaZFYhFLLcMHI
+ X6fg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1795619192; x=1796223992;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:from:to:cc:subject
+ :date:message-id:reply-to:content-type;
+ bh=F8Fmq8LWA4bhtyNOLWl2S9LNOHs1l6eqA9F+R8NUX+A=;
+ b=XIjZySDpTj1seG0grK1kq7R85dpZ2nQbzTeOcC9Oq4N+wkzaWvQkVQLpGzMlSoHbdu
+ QqV69EWIEa7iLuZvB+huJ7Y/WA+VJiv1lv9oAPD8wbhSfu+S5XR3dzaYBToI3cULD9lJ
+ ZJoO95wbmhr00HXQj5hQICKnNpn+Hx/eJH1xzk0XlIqFqi8i34W27chKtLdW9DuJRf5e
+ 1Fbhes2+8tGP+nFIWyKW2wjyj5zzJ5V9+CIKMHY5FP/jHcarCAQAmZfg/7yCGO8QNZ6I
+ q7gtukRMRhf4UbfdIVlW59PuuZZvNVwbVf52fwaTUV8wwqKTEfRHHzsu/l0Qvpp8FCTu
+ tgbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1795619192; x=1796223992;
+ h=content-transfer-encoding:content-type:cc:to:subject:message-id
+ :date:from:in-reply-to:references:mime-version:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=F8Fmq8LWA4bhtyNOLWl2S9LNOHs1l6eqA9F+R8NUX+A=;
+ b=lsZtvwhyzwxrLcu81nVwP6r/QqEv6wzy0qD3lcosNKHDX8WqqoH7CHw/6go6NkRWgX
+ KazDtZ6n5BKXBIZ8U2anqGLetuIi829Tr4GOIF/Ren9rakZUmWcTFhyWd4oMjHCQkBbp
+ 96QDkFGeBl/AmmhaKDNyA6aPMy6FpILP4kron42cRqWyf75qWHvuLnCY97Q7QZOiiT7z
+ KbEocIRjYiP0gRj2IGzscYvwZVvyjNb3FMMQOn/IZ5LmpwTNXr4I+VcBDtOsoLvp8jzA
+ ssMyA738IwNYT7n1X+A0NfIOORCupFKdKEuWwIM+hcFfGHpiagunSsI3E1MMr6r2WXr9
+ cLDw==
+X-Forwarded-Encrypted: i=1;
+ AL+hErGzqbROOctHqMhCRXUbY3y2GxPIsV0IPckWgRqlcyGUB+G5hy5rQ3Hbp4je3Q55sHU6FyB7vw2CBw==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z+FifCpX2whCRKInzEG7JRxkDiOlkIfYDEhOuBdTAUqHpvBj3Zg
+ azxrp8OR45YKo/W9uxEZ0jRZCyI7yd7GFoH2aNJLs8Una6KGaVTnI9j8IeYIgmdrrxtWAqh32//
+ 3AS6WhEKFmur2IBCEQjyNsg0Vm4548IIhLs55+fYba+IaOZXYh17+OE9lAV3D4FTudW7uosbJYX
+ XMYX2sdROBjJr24uzj3FqTsLIsVwyuEpgFOzKB9YrTaNDv
+X-Gm-Gg: AZFdTZdFH1yU3mx6lKdPvRUeCyDvHSwnqyB3yDaxokx4B0whKxlWLYIObWJKPc+Lvab
+ nIvf76vffpnd8vE/GZbzxUBcdbNEwI2Py8hGV1GRv2eW8ApiM5KFxKX+IVKsz2e/uBjthiZrk0c
+ C55yZSNA4cFZrv3cCWf5FgwC9S4UVrl0OjtJaxWKAeb72k7OFTkA2ze3NxpA==
+X-Received: by 2002:a05:6300:8095:b0:3dd:a196:69e4 with SMTP id
+ adf61e73a8af0-4014d14d2d3mr16907610637.63.1795619191493; 
+ Wed, 25 Nov 2026 07:06:31 -0800 (PST)
+X-Received: by 2002:a05:6300:8095:b0:3dd:a196:69e4 with SMTP id
+ adf61e73a8af0-4014d14d2d3mr16907537637.63.1795619190966; Wed, 25 Nov 2026
+ 07:06:30 -0800 (PST)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] drm/xe: Retry when drm_gpusvm_get_pages() gives -EBUSY
-To: "Lis, Tomasz" <tomasz.lis@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+References: <20261117173738.1073856-1-Frank.Li@oss.nxp.com>
+In-Reply-To: <20261117173738.1073856-1-Frank.Li@oss.nxp.com>
+From: Ulf Hansson <ulf.hansson@oss.qualcomm.com>
+Date: Wed, 25 Nov 2026 16:06:19 +0100
+X-Gm-Features: Aa3M54qxdRmYOsZoBrTl4IfLXTc7pY51UNG7OdOGBQV2sjgdmvbFz8dtj3UY-KM
+Message-ID: <CAPx+jO8oqBcGCSUReJJVMjsnQg+xCv_X8LhFVaGk0NDuOqmEiw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] PM: runtime: fix stub pm_runtime_get_if_active()
+ for !CONFIG_PM
+To: Frank.Li@oss.nxp.com
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Bjorn Helgaas <bhelgaas@google.com>,
+ Jacek Lawrynowicz <jacek.lawrynowicz@linux.intel.com>,
+ Alex Elder <elder@kernel.org>, Guan-Yu Lin <guanyulin@google.com>,
+ Mathias Nyman <mathias.nyman@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Kacprowski <Andrzej.Kacprowski@intel.com>,
+ Maciej Falkowski <maciej.falkowski@linux.intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "David S. Miller" <davem@davemloft.net>, Will Deacon <will@kernel.org>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Connor Abbott <cwabbott0@gmail.com>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Hans Verkuil <hverkuil+cisco@kernel.org>,
+ Bingbu Cao <bingbu.cao@intel.com>,
+ "open list:POWER MANAGEMENT CORE" <linux-pm@vger.kernel.org>,
+ open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev,
+ Frank Li <Frank.Li@nxp.com>, Alex Elder <elder@riscstar.com>,
+ Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>,
+ Karol Wachowski <karol.wachowski@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
  Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20261124152300.2450568-1-tomasz.lis@intel.com>
- <5659b906-98d7-4004-91a0-d43a6ba47276@intel.com>
- <aba1c1d4-a06e-4550-ab4f-731b9ed894e1@intel.com>
- <5fa24326-9c35-40ac-aa84-61e0ba09c79f@intel.com>
- <7451c496-576f-461e-ad0c-f22aba4b2214@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <7451c496-576f-461e-ad0c-f22aba4b2214@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Guenter Roeck <linux@roeck-us.net>, linux-usb@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-hwmon@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-staging@lists.linux.dev, netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: z6pUWGRO_Wy5tcZnyctXHlq_xYrzfDI_
+X-Proofpoint-ORIG-GUID: z6pUWGRO_Wy5tcZnyctXHlq_xYrzfDI_
+X-Authority-Analysis: v=2.4 cv=ULpIjyfy c=1 sm=1 tr=0 ts=6b06f978 cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=IkcTkHD0fZMA:10 a=zJRp6_cAMcgA:10
+ a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22 a=u7WPNUs3qKkmUXheDGA7:22
+ a=Um2Pa8k9VHT-vaBCBUpS:22 a=8AirrxEcAAAA:8 a=ee_2aqc6AAAA:8 a=VwQbUJbxAAAA:8
+ a=ag1SF4gXAAAA:8 a=QyXUC8HyAAAA:8 a=GFqr32JmAAAA:8 a=pGLkceISAAAA:8
+ a=7CQSdrXTAAAA:8 a=tA7aZXjiAAAA:8 a=EUspDBNiAAAA:8 a=_jlGtV7tAAAA:8
+ a=1XWaLZrsAAAA:8 a=e5mUnYsNAAAA:8 a=JfrnYn6hAAAA:8 a=f3U7k-wd2kzf4Rf19YkA:9
+ a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22 a=ST-jHhOKWsTCqRlWije3:22
+ a=VOpmJXOdbJOWo2YY3GeN:22 a=Yupwre4RP9_Eg_Bd0iYG:22 a=f02Ha7HRcztGgdyUxOxW:22
+ a=a-qgeE7W1pNrGK8U0ZQC:22 a=kIIFJ0VLUOy1gFZzwZHL:22 a=nlm17XC03S6CtCLSeiRr:22
+ a=Vxmtnl_E_bksehYqCbjh:22 a=1CNFftbPRP8L7MoqJWF3:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYxMTI1MDA2MCBTYWx0ZWRfX52wb/OqbTlLt
+ Fqb1iwkM5GYoE1k8Ex1ryXYqFqXH84EgtryTV7fdBpPXdmE+XVHHcRttQFY3MDgnsHi55LYOKHW
+ 9Dg7xzwE8g4ZfJDE8Rui7EERg/niSNuXVLdGQFGO1dRb2FsurrGatb5SzqqWz3pwav/SX2YNUBd
+ 9FUGM+8AWremdgUxksWQyWz3HRMAeOOtBwspljaRTMPuXBMRsTLkKQCDOZHB3opGJQ0qx4lSjTD
+ vmlOzpRU7HPZYLbTUhk2e9xpY0ChMsM2aDNdIELr8TZqQSn7gIuafDDxaZQvqxC4CRQIPX2SETc
+ kwetU0zIC119l6gh/9CFsE0SNY+F0yRuzK28a3H8YFCX4vQFg7/05fJhSW7BUQhSt+wE0r4F5sJ
+ 9Zxdsg0sQ1ZTi0aOIppEkq4kUP86kRXPJ2ET42/vi7YQh1BUqslML0khsnjZsmVTc/7VjFWZdvy
+ IIeeJxGw51nZY4lkxlQ==
+X-Proofpoint-Spam-Info: AW1haW4tMjYxMTI1MDA2MCBTYWx0ZWRfX2OPyNTl2Hs+P
+ ul28ylVz/+UdBUrHV741X0+5rkq7k6ykahwFoNmVePWR+v1VEsONWKz/gJMD1j6pyEauX5AsmmH
+ qCh6NRmQq68m0D7OON1ZXJZjFgz6cM0=
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1176,Hydra:6.1.138,FMLib:17.12.100.49
+ definitions=2026-11-25_04,2026-11-23_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 clxscore=1011 priorityscore=1501 malwarescore=0 impostorscore=0
+ bulkscore=0 spamscore=0 suspectscore=0 adultscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2611040001 definitions=main-2611250060
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,253 +189,163 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On 25/11/2026 12:03, Lis, Tomasz wrote:
-> 
-> On 2026-11-24 18:39, Matthew Auld wrote:
->> On 24/11/2026 16:15, Lis, Tomasz wrote:
->>>
->>> On 2026-11-24 16:27, Matthew Auld wrote:
->>>> On 24/11/2026 15:23, Tomasz Lis wrote:
->>>>> drm_gpusvm_get_pages() returns -EBUSY when its HMM retry budget is
->>>>> exhausted. This can happen when the range was repeatedly invalidated
->>>>> or faulting was slow. This is transient, but the callers treat -EBUSY
->>>>> as fatal.
->>>>>
->>>>> The behavior causes sporadic fails after a VF post-migration recovery,
->>>>> if drm_gpusvm_get_pages() run in parallel with the recovery, and the
->>>>> recovery took longer than HMM_RANGE_DEFAULT_TIMEOUT (which isn't rare,
->>>>> as the kernel bound to VF is running on virtual CPU).
->>>>>
->>>>> Example signature of the issue:
->>>>>    xe 0000:00:04.0: [drm] VM worker error: -16
->>>>>    xe 0000:00:04.0: [drm] Trying to schedule after vm is closed or 
->>>>> banned
->>>>>
->>>>> Convert -EBUSY to -EAGAIN in both wrappers around 
->>>>> drm_gpusvm_get_pages(),
->>>>> through a common helper. The rebind worker, exec, the pagefault 
->>>>> loop and
->>>>> the SVM fault path already have a retry implemented on -EAGAIN.
->>>>>
->>>>> xe_vma_userptr_pin_pages() can now return -EAGAIN instead of - 
->>>>> EBUSY, so
->>>>> update the VMA creation path in xe_vm.c, which maps this error to
->>>>> -ENOMEM. Tis way the bind ioctl keeps returning the same error as 
->>>>> before.
->>>>
->>>> Do you have some more context for how you hit this?
->>> For log context:
->>>
->>> [   25.058112] xe 0000:00:04.0: [drm] VF: Tile0: GT0: readyfor 
->>> recovery after migration
->>> [   25.058330] xe 0000:00:04.0: [drm] VF: Tile0: GT0: VF migration 
->>> recovery scheduled
->>> [   25.058334] xe 0000:00:04.0: [drm] VF: Tile0: GT1: readyfor 
->>> recovery after migration
->>> [   25.058336] xe 0000:00:04.0: [drm] VF: Tile0: GT1: VF migration 
->>> recovery scheduled
->>> [   25.609533] xe 0000:00:04.0: [drm:guc_ct_change_state [xe]] Tile0: 
->>> GT0: GuC CT communication channel enabled
->>> [   25.738796] xe 0000:00:04.0: [drm] VF: Tile0: GT0: migration 
->>> recovery ended
->>> [   31.351935] xe 0000:00:04.0: [drm:guc_ct_change_state [xe]] Tile0: 
->>> GT1: GuC CT communication channel enabled
->>> [   31.386304] xe 0000:00:04.0: [drm:xe_guc_submit_unpause_prepare_vf 
->>> [xe]] Tile0: GT1: Replay JOB - guc_id=158, seqno=0
->>> [   31.386392] xe 0000:00:04.0: [drm:xe_guc_submit_unpause_prepare_vf 
->>> [xe]] Tile0: GT1: Replay JOB - guc_id=158, seqno=0
->>> [   31.390497] xe 0000:00:04.0: [drm] VM worker error: -16
->>> [   31.394348] xe 0000:00:04.0: [drm] Trying to schedule after vm is 
->>> closed or banned
->>> [   31.402756] xe 0000:00:04.0: [drm] VF: Tile0: GT1: migration 
->>> recovery ended
->>>
->>> For description:
->>> This is a rare hit when executing VM TestBench test 
->>> `vmtb@test_migration.py::TestBusyMigrationIgtExecThreads5`.
->>> The test executes `igt@xe_exec_threads@threads-bal-mixed-userptr- 
->>> invalidate` within the VM, and while that is executing, performs a 
->>> Cold Migration to a VM with different GGTT range.
->>> After PF restores the VM state, post-migration recovery starts 
->>> executing. In the failing instance I analyzed, the recovery happen to 
->>> take 6 seconds - far more than HMM_RANGE_DEFAULT_TIMEOUT.
->>> Since updates of GGTT are blocked during the recovery, timeout was 
->>> assured. In that instance, the call stack was xe_vm_userptr_pin()- 
->>> >xe_vma_userptr_pin_pages()->drm_gpusvm_get_pages().
->>>
->>>>
->>>> This looks like:
->>>> https://patchwork.freedesktop.org/series/179052/
->>>
->>> It does change the same code path, and the modification is similar, 
->>> though more complex.
->>>
->>> I believe the 179052 series will fix the issue I'm seeing, though I 
->>> think timeout should be larger that the 
->>> XE_USERPTR_REPIN_TIMEOUT_MS_DEFAULT if the current device supports VM 
->>> migration.
->>
->> Yeah, Thomas was also thinking the 10s might not be enough for some 
->> cases, but we don't have any data for non-NUMA cases, so plan was to 
->> bump as needed.
->>
->> We could just use 30s for everything? Or maybe push to 15s for non- 
->> NUMA? Or something else?
-> 
-> I think all VMs deserve 30s. So we can make the larger timeout for 
-> IS_SRIOV_VF and for NUMA. Or we can just make universal timeout of 30s, 
-> I'm good with both solutions.
-> 
->>
->> Also, not sure if we should respin that series, or do this on top 
->> instead?
-> 
-> On top. There is no need to re-review the large series just for a 
-> timeout update.
+On Tue, Nov 17, 2026 at 6:37=E2=80=AFPM <Frank.Li@oss.nxp.com> wrote:
+>
+> From: Frank Li <Frank.Li@nxp.com>
+>
+> When CONFIG_PM is not enabled, should be treated as if runtime PM were
+> enabled for the device and the runtime status is active.
+>
+> It's a subtle distinction but the previous behavior returned -EINVAL, whi=
+ch
+> means "runtime PM is disabled for the device"
+>
+> __pm_runtime_resume() returns 1 (called by pm_runtime_get()).
+> pm_runtime_get_if_active() is the try-and-get version of pm_runtime_get()=
+.
+> stub pm_runtime_active() also returns true. So pm_runtime_get_if_active()
+> should return the same value as the stub pm_runtime_get(), which is 1.
+>
+> Analysis of all callers and their behavior with old (-EINVAL) vs new (1):
+>
+> Pattern A: if (!pm_runtime_get_if_active(dev)) -- no impact
+>   Both -EINVAL and 1 are non-zero, so !ret is false in both cases.
+>   Callers: drivers/accel/ethosu/ethosu_perfmon.c,
+>            drivers/gpu/drm/msm/adreno/a6xx_gmu.c,
+>            drivers/gpu/drm/msm/msm_perfcntr.c,
+>            drivers/gpu/drm/v3d/v3d_mmu.c,
+>            drivers/gpu/drm/v3d/v3d_perfmon.c (x4),
+>            drivers/media/i2c/gc08a3.c gc05a2.c og0ve1b.c ov6211.c,
+>            drivers/media/i2c/ccs/ccs-core.c s5kjn1.c lm3560.c (x2),
+>            drivers/media/i2c/s5k3m5.c thp7312.c imx283.c ov64a40.c,
+>            drivers/media/pci/intel/ipu6/ipu6-buttress.c,
+>            sound/hda/core/device.c
+>
+> Pattern B: if (!ret) after get -- no impact
+>   Both -EINVAL and 1 are non-zero, !ret is false in both cases.
+>   drivers/gpu/drm/amd/pm/amdgpu_pm.c (comment says "allow access"
+>     in kernels without CONFIG_PM), drivers/pci/pci.c
+>
+> Pattern C: ret > 0 / ret <=3D 0 / ret !=3D 1 checks -- FIXED
+>   drivers/usb/core/offload.c: checks (!=3D 1), old -EINVAL caused
+>     -EBUSY even with !CONFIG_PM. Fixed: now returns 1, proceeds.
+>   drivers/accel/ivpu/ivpu_job.c: drm_WARN_ON(<=3D 0), old -EINVAL
+>     spuriously triggered WARN. Fixed: 1 > 0, no warn.
+>   drivers/gpu/drm/i915/intel_runtime_pm.c: checks (<=3D 0), old
+>     -EINVAL triggered error path. Fixed: 1 > 0, correct path.
+>   drivers/accel/ivpu/ivpu_sysfs.c: (> 0), old skipped freq read.
+>     Fixed: proceeds correctly without CONFIG_PM.
+>   drivers/gpu/drm/xe/xe_pm.c: wraps (> 0), all xe callers
+>     (xe_bo.c, xe_shrinker.c, xe_vsec.c, xe_ggtt.c, xe_guc_ct.c,
+>     xe_pxp.c) now correctly treat !CONFIG_PM as active.
+>   drivers/net/ipa/ipa_smp2p.c: power_on =3D (> 0), now correctly true.
+>   drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c: (> 0), now correctly
+>     executes stall register update.
+>   drivers/staging/media/ipu7/ipu7-buttress.c: active (<=3D 0) early
+>     return now skipped, correctly proceeds.
+>
+> Pattern D: explicit -EINVAL check
+>   drivers/hwmon/prom21-xhci.c: checks (> 0) then (=3D=3D -EINVAL).
+>     Old: took -EINVAL fallback. New: takes (> 0) fast path.
+>     Both succeed when CONFIG_PM is disabled; functionally equivalent.
+>   drivers/hwmon/eic7700-pvt.c: call is guarded by IS_ENABLED(CONFIG_PM),
+>     stub is never reached. No impact.
+>
+> Fixes: c0ef3df8dbaef ("PM: runtime: Simplify pm_runtime_get_if_active() u=
+sage")
+> Fixes: bd3d245b0fef5 ("usb: core: use dedicated spinlock for offload stat=
+e")
+> Fixes: 7806bad76ac39 ("accel/ivpu: Prevent runtime suspend during context=
+ abort work")
+> Fixes: 1524c28b99527 ("accel/ivpu: Show NPU frequency in sysfs")
+> Fixes: 46edb0a3eb16c ("drm/xe: Fix xe_pm_runtime_get_if_active return")
+> Fixes: a71aeff3dd0a7 ("net: ipa: kill IPA clock reference count")
+> Fixes: 70892277ca2db ("iommu/arm-smmu-qcom: Make set_stall work when the =
+device is on")
+> Fixes: 9ad65684b9285 ("media: staging/ipu7: Ignore interrupts when device=
+ is suspended")
+> Acked-by: Alex Elder <elder@riscstar.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-Series now pushed.
+Reviewed-by: Ulf Hansson <ulfh@kernel.org
 
-> 
-> After the series is merged as-is, our CI will no longer be able to pick 
-> up timeouts anyway - we get recovery time over 10s in less than 1% of 
-> runs, and the repro rate is below 10% even now.
-> 
-> -Tomasz
-> 
->>
->>>
->>> We actually cannot tell what is the limit for VF migration recovery 
->>> time due to VCPU used, but we've seen in testing rare cases where 
->>> times reached 10s.
->>>
->>> -Tomasz
->>>
->>>>
->>>>>
->>>>> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
->>>>> Cc: Matthew Auld <matthew.auld@intel.com>
->>>>> Cc: Matthew Brost <matthew.brost@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/xe/xe_svm.c     |  2 +-
->>>>>   drivers/gpu/drm/xe/xe_userptr.c | 16 ++++++++++------
->>>>>   drivers/gpu/drm/xe/xe_vm.c      |  8 ++++----
->>>>>   drivers/gpu/drm/xe/xe_vm.h      | 16 ++++++++++++++++
->>>>>   4 files changed, 31 insertions(+), 11 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
->>>>> index bc6902b5bf57..ffc624171d50 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_svm.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_svm.c
->>>>> @@ -1624,7 +1624,7 @@ int xe_svm_range_get_pages(struct xe_vm *vm, 
->>>>> struct xe_svm_range *range,
->>>>>           drm_gpusvm_range_evict(&vm->svm.gpusvm, &range->base);
->>>>>       }
->>>>>   -    return err;
->>>>> +    return xe_gpusvm_get_pages_err(err);
->>>>>   }
->>>>>     /**
->>>>> diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/ 
->>>>> xe_userptr.c
->>>>> index 9c1dac0fce6f..423c190ac68d 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_userptr.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_userptr.c
->>>>> @@ -10,6 +10,7 @@
->>>>>     #include "xe_tlb_inval.h"
->>>>>   #include "xe_trace_bo.h"
->>>>> +#include "xe_vm.h"
->>>>>     static void xe_userptr_assert_in_notifier(struct xe_vm *vm)
->>>>>   {
->>>>> @@ -84,6 +85,7 @@ int xe_vma_userptr_pin_pages(struct 
->>>>> xe_userptr_vma *uvma)
->>>>>           .device_private_page_owner = 
->>>>> xe_svm_private_page_owner(vm, false),
->>>>>           .allow_mixed = true,
->>>>>       };
->>>>> +    int err;
->>>>>         xe_vma_userptr_lockdep(uvma);
->>>>>       xe_assert(xe, xe_vma_is_userptr(vma));
->>>>> @@ -91,12 +93,14 @@ int xe_vma_userptr_pin_pages(struct 
->>>>> xe_userptr_vma *uvma)
->>>>>       if (vma->gpuva.flags & XE_VMA_DESTROYED)
->>>>>           return 0;
->>>>>   -    return drm_gpusvm_get_pages(&vm->svm.gpusvm, &uvma- 
->>>>> >userptr.pages, 1,
->>>>> -                    uvma->userptr.notifier.mm,
->>>>> -                    &uvma->userptr.notifier,
->>>>> -                    xe_vma_userptr(vma),
->>>>> -                    xe_vma_userptr(vma) + xe_vma_size(vma),
->>>>> -                    &ctx);
->>>>> +    err = drm_gpusvm_get_pages(&vm->svm.gpusvm, &uvma- 
->>>>> >userptr.pages, 1,
->>>>> +                   uvma->userptr.notifier.mm,
->>>>> +                   &uvma->userptr.notifier,
->>>>> +                   xe_vma_userptr(vma),
->>>>> +                   xe_vma_userptr(vma) + xe_vma_size(vma),
->>>>> +                   &ctx);
->>>>> +
->>>>> +    return xe_gpusvm_get_pages_err(err);
->>>>>   }
->>>>>     static struct mmu_interval_notifier_finish *
->>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->>>>> index dd855876f571..6e6937870ac6 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_vm.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
->>>>> @@ -2746,11 +2746,11 @@ static struct xe_vma *new_vma(struct xe_vm 
->>>>> *vm, struct drm_gpuva_op_map *op,
->>>>>               err = xe_vma_userptr_pin_pages(to_userptr_vma(vma));
->>>>>               /*
->>>>>                * -EBUSY has dedicated meaning that a user fence
->>>>> -             * attached to the VMA is busy, in practice
->>>>> -             * xe_vma_userptr_pin_pages can only fail with -EBUSY if
->>>>> -             * we are low on memory so convert this to -ENOMEM.
->>>>> +             * attached to the VMA is busy. xe_vma_userptr_pin_pages
->>>>> +             * reports exhausted HMM retries as -EAGAIN, which makes
->>>>> +             * no sense for the bind ioctl, so convert it to -ENOMEM.
->>>>>                */
->>>>> -            if (err == -EBUSY)
->>>>> +            if (err == -EAGAIN)
->>>>>                   err = -ENOMEM;
->>>>>           }
->>>>>       }
->>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
->>>>> index b1c5f940bcc5..ba24f2e6022e 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_vm.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_vm.h
->>>>> @@ -38,6 +38,22 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, 
->>>>> u32 flags, struct xe_file *xef)
->>>>>   struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id);
->>>>>   int xe_vma_cmp_vma_cb(const void *key, const struct rb_node *node);
->>>>>   +/**
->>>>> + * xe_gpusvm_get_pages_err() - Translate an error from 
->>>>> drm_gpusvm_get_pages()
->>>>> + * @err: error code returned by drm_gpusvm_get_pages()
->>>>> + *
->>>>> + * drm_gpusvm_get_pages() returns -EBUSY when its HMM retry budget 
->>>>> ran out,
->>>>> + * because the range was repeatedly invalidated or faulting was 
->>>>> slow. That is
->>>>> + * transient, so report -EAGAIN to let the callers retry. -EBUSY 
->>>>> would be
->>>>> + * treated as fatal, and has other meanings in the VM code.
->>>>> + *
->>>>> + * Return: @err, with -EBUSY replaced by -EAGAIN
->>>>> + */
->>>>> +static inline int xe_gpusvm_get_pages_err(int err)
->>>>> +{
->>>>> +    return err == -EBUSY ? -EAGAIN : err;
->>>>> +}
->>>>> +
->>>>>   static inline struct xe_vm *xe_vm_get(struct xe_vm *vm)
->>>>>   {
->>>>>       drm_gpuvm_get(&vm->gpuvm);
->>>>
->>
+Kind regards
+Uffe
 
+> ---
+> Change in v3
+> - fix drm/xe fixes tag hash (sashiko)
+> - drop i915 fix tag because guard by CONFIG_PM (sashiko)
+> - fix net ipa fixes tag hash (sashiko)
+> - Add c0ef3df8dbae ("PM: runtime: Simplify pm_runtime_get_if_active() usa=
+ge" (sashiko)
+>
+> Change in v2
+> - add fixes tag for patten C.
+> - add Alex Elder ack tags
+> - change subject to fix stub pm_runtime_get_if_active()
+>
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Andrzej Kacprowski <andrzej.kacprowski@linux.intel.com>
+> Cc: Karol Wachowski <karol.wachowski@linux.intel.com>
+> Cc: Oded Gabbay <ogabbay@kernel.org>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Alex Elder <elder@kernel.org>
+> Cc: Will Deacon <will@kernel.org>
+> Cc: Robin Murphy <robin.murphy@arm.com>
+> Cc: "Joerg Roedel" <joro@8bytes.org>
+> Cc: Rob Clark <robin.clark@oss.qualcomm.com>
+> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Guan-Yu Lin <guanyulin@google.com>
+> Cc: Mathias Nyman <mathias.nyman@linux.intel.com>
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-usb@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: linux-hwmon@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: iommu@lists.linux.dev
+> Cc: linux-arm-msm@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-staging@lists.linux.dev
+> Cc: netdev@vger.kernel.org
+> Cc: imx@lists.linux.dev
+> ---
+>  include/linux/pm_runtime.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/linux/pm_runtime.h b/include/linux/pm_runtime.h
+> index 64921b10ac74f..de9e7518ecef2 100644
+> --- a/include/linux/pm_runtime.h
+> +++ b/include/linux/pm_runtime.h
+> @@ -280,7 +280,7 @@ static inline int pm_runtime_get_if_in_use(struct dev=
+ice *dev)
+>  }
+>  static inline int pm_runtime_get_if_active(struct device *dev)
+>  {
+> -       return -EINVAL;
+> +       return 1;
+>  }
+>  static inline int __pm_runtime_set_status(struct device *dev,
+>                                             unsigned int status) { return=
+ 0; }
+> --
+> 2.43.0
