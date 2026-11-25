@@ -2,28 +2,98 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CF9606A338
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 12:02:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FA48606A334
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 12:03:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.a=rsa-sha256 header.s=20260707 header.b=ifB4zTbM
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B866D10FBFC;
-	Wed, 25 Nov 2026 12:02:57 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38EDD10FBFC;
- Wed, 25 Nov 2026 12:02:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1517542585795734803=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E83010FC05;
+	Wed, 25 Nov 2026 12:03:22 +0000 (UTC)
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF80810FC05
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 12:03:15 +0000 (UTC)
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-4a359c7f47bso47644775e9.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 04:03:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20260707; t=1795608194; x=1796212994;
+ darn=lists.freedesktop.org; 
+ h=content-type:cc:to:from:subject:message-id:mime-version:date:from
+ :to:cc:subject:date:message-id:reply-to:content-type;
+ bh=zmdVCyES1Z5dR10b8jDmGep4AsueZq3jndQhX7uyqEA=;
+ b=ifB4zTbMjAZ3ADAB0e2THT1Y4dJReXvAR55b12rER7qTfsDXSkrXq0fYcPwbDIVS+M
+ Htj0R2jr6JDu5/EbFQUkfcHMyvhMVYSNICUVSJ/v8UHIQRblRXWc5/2BjCH9YYHdnb/H
+ hcNdamNPE0b7L/ZT+vM9+pD37RtfyNMz7Tj81Qgjpq1TrqNLkbOys7cW6Qquqm4EzLza
+ q/9LasW5Se8fDLYJeqTATlC2GIwWMTb5pT/IBrhTow1RCBymi3nIwmjhf0rfytMEfMK4
+ SKXJTvBEu8ZyOiilIXOPsilFwOPu6cylayVkS8NjiJwwL+1YysX5J+1d0q2ASzPFYPfk
+ I4Ig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20260707; t=1795608194; x=1796212994;
+ h=content-type:cc:to:from:subject:message-id:mime-version:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to
+ :content-type;
+ bh=zmdVCyES1Z5dR10b8jDmGep4AsueZq3jndQhX7uyqEA=;
+ b=tLuo3KtcWAqglBnHCHnnCVen1m1wgWVsyiuLSJeNfAdi0rT3O7tYJntuDWS1RldtY0
+ MnJP0mi9kOJJin7yJqVsfz3kHnpiROBEMn2gJe334ihkuyvPRWjtIobvN/CHewN1ZOQk
+ UdOJmMhdYP9hJnLZK0/w9pM6dY1rSKWoWiBMlZj6nSdFhcI1vBdz8Zlf2ZBb2HtY8R4k
+ RJ2KX+Woqmst1cYK6EM3sobc9gxF3aRTM9Jz54nNi1gQfS+4Wuh1OzTQqeyQ8cWCbyIU
+ Z8DwNF8Jd7cLrSC3u2mPPgep5yx9CsByhUKa6Et0EfKgWEO5RToVg7I2Ts/L3s1FR1Ty
+ 4xSg==
+X-Forwarded-Encrypted: i=1;
+ AL+hErGejXqSGeb3XGSe23zNFK59aKPYRjGw4dEwbYMl+TmxwYV3/mpV3koFiztdDwXM0scEEh1FPc81+g==@lists.freedesktop.org
+X-Gm-Message-State: APuU4Z83KYqk/iuBAXH1Kc6mdqgP+VyvjYumcaPzV2TXwvIqifCG9nQQ
+ lKs1iqfOPA8XGWIBco14C/CZBx31gaVunD+J49G90eQOqNvSV0ziCGV7P+hd3QmT0fMefH6VrH2
+ T0kvJMbEr+n9Sr+z12w==
+X-Received: from wmfq11.prod.google.com ([2002:a05:600c:2e4b:b0:4a3:5dec:ff72])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:600c:e40b:b0:4bb:9a6c:8712 with SMTP id
+ 5b1f17b1804b1-4bb9a6c8724mr143643655e9.12.1795608194039; 
+ Wed, 25 Nov 2026 04:03:14 -0800 (PST)
+Date: Wed, 25 Nov 2026 12:03:05 +0000
 X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vm=3A_Cancel_pending?=
- =?utf-8?q?_rebind_work_before_freeing_the_VM?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Nov 2026 12:02:56 -0000
-Message-ID: <179560817622.85038.3707762875707982137@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261125100744.1440957-1-arvind.yadav@intel.com>
-In-Reply-To: <20261125100744.1440957-1-arvind.yadav@intel.com>
+Mime-Version: 1.0
+X-B4-Tracking: v=1; b=H4sIAHjOBmsC/32NQQ6CMBBFr0Jm7ZhONURceQ/DopZfaIJUWoMa0
+ rtbOYDL95L//koJ0SPRuVopYvHJh6mA3lVkBzP1YN8VJq10LSInDrFDRMevma2ZLEauDzeloRy
+ MPVLZPSKcf2/Na1t48OkZ4me7WORn/9UWYcWN1FDiGuMcLn0I/Yi9DXdqc85fo7B99rMAAAA=
+X-Change-Id: 20261118-ordered-wq-cancel-63b02e0feac4
+X-Developer-Key: i=aliceryhl@google.com; a=openpgp;
+ fpr=49F6C1FAA74960F43A5B86A1EE7A392FDE96209F
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4860; i=aliceryhl@google.com; 
+ h=from:subject:message-id;
+ bh=MEqp6I5oT2DwwWG++mrJvLdQqFqXXQNSXG2o5tVy1A4=; 
+ b=owEBbQKS/ZANAwAKAQRYvu5YxjlGAcsmYgBrBs597HHdRB4YFrPM62zg+Un1OBq5rHO+JQWi5
+ ndixzfGysqJAjMEAAEKAB0WIQSDkqKUTWQHCvFIvbIEWL7uWMY5RgUCawbOfQAKCRAEWL7uWMY5
+ RsjWD/93B2e6uccyr9nPTBtpWLMQMe79t5s8KHITEgNqBTKW5udxk2H7X1Bp5+7YH06jKqilyKO
+ /IuIQ0hXXTC2kgwqQr3rX/7QgriAet8Neg4Hv2pu92ezFhiKeTujBOolRBvbf097wkzfUz2bAph
+ vBHDETsqbE+jmTwNfZqSa1kwhVbMpkcTirDhyiBvzQ/Nitg1Qb8b+iC9LQ/dUObn//dh+7xIsEw
+ NuS263rYySpa+2kiVGVFwZA/MWwQpPeEX/I3Fh9CA5OjPvy3CFncddjQFWhMqlPCKcexnVe3EhJ
+ hyqnbR8fGRe9HTvYS4qy965R/mY29ExbeC7K+7GyXOMtBr764QvnZGJtxYmhKY/PhdBhUTuBpPU
+ 2z9msTMWyH5PSW4Gr4066nhFnk675S2eLLJH4C9FepAF5nJ7Lh7vYNSUstfwkxwYA+jCVtn+9BV
+ L0vltE8nUVTRsWOrDvClJMQO3PhmBFNAGB8ZUMJOSCulUa5/w01vqUMgf6jidSS8rm26k/v50Cl
+ 7osTn6PxAv2wFFnY85/QxpK74fssMnmT5o6jRMrO0JdH8XDs5HB0BSrArc0kn7ZGbTL4X3tbfir
+ FfReMYRlbEP9yfel5EuuITyXdQa2jdNKYCx2zoFVIZBr2l1sas5fB4jkvMyeNU7ArBH3UWejeY/
+ LU2qI2Dc7wNAO/w==
+X-Mailer: b4 0.14.3
+Message-ID: <20261125-ordered-wq-cancel-v2-1-13620a09773f@google.com>
+Subject: [PATCH v2] workqueue: fix cancel_work_sync() on ordered workqueues
+From: Alice Ryhl <aliceryhl@google.com>
+To: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: Boqun Feng <boqun@kernel.org>, Miguel Ojeda <ojeda@kernel.org>, 
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ "=?utf-8?q?Christian_K=C3=B6nig?=" <ckoenig.leichtzumerken@gmail.com>, 
+ "=?utf-8?q?Thomas_Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ "=?utf-8?q?Onur_=C3=96zkan?=" <work@onurozkan.dev>, 
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org, 
+ Alice Ryhl <aliceryhl@google.com>
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,133 +103,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-26.2 required=3.0 tests=BAYES_00,DKIMWL_WL_MED,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,T_PDS_OTHER_BAD_TLD,USER_AGENT_GIT,USER_IN_DEF_DKIM_WL
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============1517542585795734803==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+There is currently a scenario where cancel_work_sync() /
+disable_work_sync() does not wait for the work to finish execution on an
+ordered workqueue (__WQ_ORDERED). This is because ordered workqueues
+contain multiple workqueues internally (pwqs). Consider the following
+scenario:
 
-== Series Details ==
+1. @work starts executing on pwq A (pool A), the oldest and only
+   unplugged pwq in wq->pwqs.
+2. Writing a new cpumask to /sys/devices/virtual/workqueue/cpumask
+   allocates a new dfl_pwq (pwq B, backed by pool B) with
+   pwq->plugged = true and appends it to wq->pwqs behind pwq A.
+3. While @work is still executing on pool A, it is re-queued to the same
+   ordered workqueue. Unlike normal workqueues, __queue_work() skips
+   last_pool redirection on ordered workqueues so re-queued items do not
+   jump ahead of work already waiting on pwq B, so @work is placed on
+   pwq B->inactive_works and work->data is overwritten to point to
+   pwq B.
+4. cancel_work_sync() or disable_work_sync() steals @work from pwq B,
+   and try_to_grab_pending() records pwq B->pool->id (pool B) in
+   work->data.
+5. start_flush_work() only inspects the single pool recorded in
+   work->data (pool B, where @work has never executed), finds no worker
+   running @work, and returns while @work is still executing on pool A.
 
-Series: drm/xe/vm: Cancel pending rebind work before freeing the VM
-URL   : https://patchwork.freedesktop.org/series/179621/
-State : success
+Unfortunately, this scenario can lead to UAF if a driver uses
+cancel_work_sync() and then frees the work item (or resources used by
+the work item). And this happens on ordered workqueues in practice:
 
-== Summary ==
+- drm/sched: drm_sched_wqueue_stop() calling cancel_work_sync() on
+  work_run_job and work_free_job before scheduler teardown.
+- drm/xe: gt_worker_disable() calling disable_work_sync() on
+  gt->reset.worker and gt->wedge.worker.
+- drm/panthor: panthor_device_suspend() calling cancel_work_sync() on
+  ptdev->reset.work before suspending hardware.
 
-CI Bug Log - changes from xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b_BAT -> xe-pw-179621v1_BAT
-====================================================
+Thus, fix try_to_grab_pending() to record the pool of the oldest pwq in
+wq->pwqs when stealing a pending work item from an ordered workqueue, so
+start_flush_work() flushes pool A and waits for @work to finish. If
+@work is not actually executing on pool A, find_worker_executing_work()
+simply returns NULL.
 
-Summary
--------
+It is also needed for the soundness of the upcoming Rust ScopedWork
+abstraction, which binds a work item to a single workqueue and relies on
+cancel_work_sync() in Drop to guarantee that data borrowed by the work
+item is no longer accessed once drop() returns.
 
-  **SUCCESS**
+Cc: stable@vger.kernel.org
+Fixes: 58629d4871e8 ("workqueue: Always queue work items to the newest PWQ for order workqueues")
+Signed-off-by: Alice Ryhl <aliceryhl@google.com>
+---
+This came up while figuring out what to do about this sashiko review:
+https://sashiko.dev/#/patchset/20261020-rust-workqueue-v3-0-ea7c74d02068%40google.com
+---
+Changes in v2:
+- Drop patch 2 ("workqueue: doc: clarify cancel_work_sync() cross-workqueue
+  behavior"), already applied to wq/for-7.5 by Tejun Heo.
+- Use list_entry_rcu(pwq->wq->pwqs.next, ...)->pool in try_to_grab_pending()
+  without the redundant NULL check, per Tejun Heo.
+- Link to v1: https://lore.kernel.org/r/20261118-ordered-wq-cancel-v1-0-916e01f9affe@google.com
+---
+ kernel/workqueue.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
 
-  No regressions found.
+diff --git a/kernel/workqueue.c b/kernel/workqueue.c
+index af845214e78b..9566e8822686 100644
+--- a/kernel/workqueue.c
++++ b/kernel/workqueue.c
+@@ -2263,6 +2263,7 @@ static int try_to_grab_pending(struct work_struct *work, u32 cflags,
+ 	pwq = get_work_pwq(work);
+ 	if (pwq && pwq->pool == pool) {
+ 		unsigned long work_data = *work_data_bits(work);
++		struct worker_pool *offq_pool = pool;
+ 
+ 		debug_work_deactivate(work);
+ 
+@@ -2288,9 +2289,18 @@ static int try_to_grab_pending(struct work_struct *work, u32 cflags,
+ 		/*
+ 		 * work->data points to pwq iff queued. Let's point to pool. As
+ 		 * this destroys work->data needed by the next step, stash it.
++		 *
++		 * For ordered workqueues, __queue_work() skips last_pool
++		 * redirection so @pwq may be plugged while @work is still
++		 * executing on the oldest pwq after a cpumask update. Only the
++		 * oldest pwq is unplugged and can be executing @work, so record
++		 * its pool instead.
+ 		 */
+-		set_work_pool_and_keep_pending(work, pool->id,
+-					       pool_offq_flags(pool));
++		if (unlikely(pwq->wq->flags & __WQ_ORDERED))
++			offq_pool = list_entry_rcu(pwq->wq->pwqs.next, struct pool_workqueue,
++						   pwqs_node)->pool;
++		set_work_pool_and_keep_pending(work, offq_pool->id,
++					       pool_offq_flags(offq_pool));
+ 
+ 		/* must be the last step, see the function comment */
+ 		pwq_dec_nr_in_flight(pwq, work_data);
 
-  
+---
+base-commit: aebb7274476403040d582c61478df8f4a7bf9cd3
+change-id: 20261118-ordered-wq-cancel-63b02e0feac4
 
-Participating hosts (15 -> 15)
-------------------------------
+Best regards,
+-- 
+Alice Ryhl <aliceryhl@google.com>
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-179621v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9841])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9841]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841
-
-
-Build changes
--------------
-
-  * IGT: IGT_9203 -> IGT_9204
-  * Linux: xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b -> xe-pw-179621v1
-
-  IGT_9203: 9203
-  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b: ad6614dbc84cd68a4bff21a5d166f2894db7ae2b
-  xe-pw-179621v1: 179621v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/index.html
-
---===============1517542585795734803==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vm: Cancel pending rebind work before freeing the VM</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179621/">https://patchwork.freedesktop.org/series/179621/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b_BAT -&gt; xe-pw-179621v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-179621v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841">Intel XE#9841</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9203 -&gt; IGT_9204</li>
-<li>Linux: xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b -&gt; xe-pw-179621v1</li>
-</ul>
-<p>IGT_9203: 9203<br />
-  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b: ad6614dbc84cd68a4bff21a5d166f2894db7ae2b<br />
-  xe-pw-179621v1: 179621v1</p>
-
-</body>
-</html>
-
---===============1517542585795734803==--
