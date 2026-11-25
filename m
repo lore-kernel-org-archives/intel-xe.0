@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F9F606A33A
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA841606A33A
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 14:01:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.a=rsa-sha256 header.s=dkim header.b=Ljw2LehK
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB2B510FCA3;
-	Wed, 25 Nov 2026 14:01:53 +0000 (UTC)
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEE1710FC91;
- Wed, 25 Nov 2026 14:01:47 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id 52A701A17EE;
- Wed, 25 Nov 2026 14:01:46 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 2768B60480;
- Wed, 25 Nov 2026 14:01:46 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 1073511E694D7; Wed, 25 Nov 2026 15:01:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1795615301; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=653wFHNe58RDGPkNgZywAB9EUf/nkwl86zOUosYCpho=;
- b=Ljw2LehKro4jJuBWC0CszkFuO2BZz2WGmxGVA+GOo1as7gErE2FCA7X/eT65FwkOIo/QOV
- 0kSWcEo8+uX0TCPBn7dlBjijktndFYwKH0UOfhUyUTBEInMCljOEex71yFreTBCkP8kP92
- HUMZWKyxv/sZq/fi7S+nRciw3Zaf3Y8SE8gPDPngTocCIakYRXsE3oPh7PD473/l7dptkU
- /9veQtaATbvJSRmeizd4GVX2Mih2hL+zjqjN0CICGyu49JDuqf0Pf2Pqw18O0WaVukIkBj
- 5Yn+2SmungBTFPBpbrghZtI72yIh0+V/vsIoyNWHIOw1kh+9zu8xBzB6rQSjaQ==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Wed, 25 Nov 2026 15:01:07 +0100
-Subject: [PATCH v2 03/10] drm/dp: Move DPRX 128b/132b support helper out of
- i915
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47B5710FCAD;
+	Wed, 25 Nov 2026 14:01:59 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A20F210FC9C;
+ Wed, 25 Nov 2026 14:01:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8194201329787423384=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20261125-feat_move_i915_helper-v2-3-aa04d39bc415@bootlin.com>
-References: <20261125-feat_move_i915_helper-v2-0-aa04d39bc415@bootlin.com>
-In-Reply-To: <20261125-feat_move_i915_helper-v2-0-aa04d39bc415@bootlin.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>
-Cc: Louis Chauvet <louis.chauvet@bootlin.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
- Manasi Navare <navaremanasi@google.com>, 
- Drew Davenport <ddavenport@google.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Kory Maincent <kory.maincent@bootlin.com>
-X-Mailer: b4 0.16.1-dev-17221
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_workqueue=3A_fix_cancel=5Fw?=
+ =?utf-8?q?ork=5Fsync=28=29_on_ordered_workqueues?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alice Ryhl" <aliceryhl@google.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Nov 2026 14:01:57 -0000
+Message-ID: <179561531765.85728.8818040261595215628@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261125-ordered-wq-cancel-v2-1-13620a09773f@google.com>
+In-Reply-To: <20261125-ordered-wq-cancel-v2-1-13620a09773f@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,87 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Move the drm_dprx_supports_128b132b() helper from the i915 driver into
-the generic DRM helpers. It reports whether the DPRX supports 128b/132b
-channel coding, either from the DP tunnel capabilities when bandwidth
-allocation is enabled or from the DPCD receiver capabilities.
+--===============8194201329787423384==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c | 10 +---------
- include/drm/display/drm_dp_helper.h     |  2 ++
- 3 files changed, 13 insertions(+), 9 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 86260ffd57cdc..c92d89ecf96e4 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -4939,3 +4939,13 @@ u8 drm_dprx_128b132b_link_rates(const struct drm_dp_tunnel *tunnel,
- 	return drm_dp_tunnel_128b132b_dprx_rates(tunnel);
- }
- EXPORT_SYMBOL_GPL(drm_dprx_128b132b_link_rates);
-+
-+bool drm_dprx_supports_128b132b(const struct drm_dp_tunnel *tunnel,
-+				const u8 dpcd[DP_RECEIVER_CAP_SIZE])
-+{
-+	if (tunnel && drm_dp_tunnel_bw_alloc_is_enabled(tunnel))
-+		return drm_dp_tunnel_128b132b_supported(tunnel);
-+	else
-+		return drm_dp_128b132b_supported(dpcd);
-+}
-+EXPORT_SYMBOL_GPL(drm_dprx_supports_128b132b);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index e124e7dced178..2ba89fee097d6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -173,14 +173,6 @@ static void intel_dp_set_default_sink_rates(struct intel_dp *intel_dp)
- 	intel_dp->num_sink_rates = 1;
- }
- 
--static bool dprx_supports_128b132b(struct intel_dp *intel_dp)
--{
--	if (intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
--		return drm_dp_tunnel_128b132b_supported(intel_dp->tunnel);
--	else
--		return drm_dp_128b132b_supported(intel_dp->dpcd);
--}
--
- /* update sink rates from dpcd */
- static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
- {
-@@ -236,7 +228,7 @@ static void intel_dp_set_dpcd_sink_rates(struct intel_dp *intel_dp)
- 	 * Sink rates for 128b/132b. If set, sink should support all 8b/10b
- 	 * rates and 10 Gbps.
- 	 */
--	if (dprx_supports_128b132b(intel_dp)) {
-+	if (drm_dprx_supports_128b132b(intel_dp->tunnel, intel_dp->dpcd)) {
- 		BUILD_BUG_ON(ARRAY_SIZE(intel_dp->sink_rates) < ARRAY_SIZE(dp_rates) + 3);
- 
- 		uhbr_rates = drm_dprx_128b132b_link_rates(intel_dp->tunnel, uhbr_rates);
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 7985bb269fdf2..b67bb06f6e07e 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -706,6 +706,8 @@ int drm_dprx_max_rate(const struct drm_dp_tunnel *tunnel,
- 		      const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- u8 drm_dprx_128b132b_link_rates(const struct drm_dp_tunnel *tunnel,
- 				u8 uhbr_rates);
-+bool drm_dprx_supports_128b132b(const struct drm_dp_tunnel *tunnel,
-+				const u8 dpcd[DP_RECEIVER_CAP_SIZE]);
- 
- int drm_dp_dpcd_read_link_status(struct drm_dp_aux *aux,
- 				 u8 status[DP_LINK_STATUS_SIZE]);
+Series: workqueue: fix cancel_work_sync() on ordered workqueues
+URL   : https://patchwork.freedesktop.org/series/179637/
+State : success
 
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-6233-b79f6387fd1a9484448230f92502ec3c66e6c1de_BAT -> xe-pw-179637v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-6233-b79f6387fd1a9484448230f92502ec3c66e6c1de -> xe-pw-179637v1
+
+  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-6233-b79f6387fd1a9484448230f92502ec3c66e6c1de: b79f6387fd1a9484448230f92502ec3c66e6c1de
+  xe-pw-179637v1: 179637v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179637v1/index.html
+
+--===============8194201329787423384==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>workqueue: fix cancel_work_sync() on ordered workqueues</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179637/">https://patchwork.freedesktop.org/series/179637/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179637v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179637v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6233-b79f6387fd1a9484448230f92502ec3c66e6c1de_BAT -&gt; xe-pw-179637v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6233-b79f6387fd1a9484448230f92502ec3c66e6c1de -&gt; xe-pw-179637v1</li>
+</ul>
+<p>IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-6233-b79f6387fd1a9484448230f92502ec3c66e6c1de: b79f6387fd1a9484448230f92502ec3c66e6c1de<br />
+  xe-pw-179637v1: 179637v1</p>
+
+</body>
+</html>
+
+--===============8194201329787423384==--
