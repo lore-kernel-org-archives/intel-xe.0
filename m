@@ -2,52 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1C1606A31E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 05:18:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B32E606A31E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 05:18:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CsuxUAng
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Oq5oH7E5
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1748310ECC0;
-	Wed, 25 Nov 2026 05:18:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0840210ED2C;
+	Wed, 25 Nov 2026 05:18:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99D7310E7C6;
- Wed, 25 Nov 2026 05:18:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FE9510E854;
+ Wed, 25 Nov 2026 05:18:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795583890; x=1827119890;
+ t=1795583893; x=1827119893;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WMUGLpaDZMLtGc7RVhDatFhMQAt/F4+/Gr7dfvrcV0w=;
- b=CsuxUAngpPhOjzedpu+yQoMfGXU0993EvB69gPdzawc7g5tsUj8IwK1+
- +PG00ll9QEkA/H+bsKdXm/mpHf00cC0vIfjH5xM+ydaCZbaIyb4P38nYO
- dxMt+MhYScjFgScP1Hzpm/n65JK9Zo4eWop9iR9Gujy2MM3DBWL1pUWDb
- 7wQRiLvZmZoOHGblkSCmaRkXwVozw4yeSaoWaVw3dRjpWNB0a2K/sZqYh
- YjPYXlLi0KiOANTMVjhjP72wO21YuXnEAXg0E/4X40/g47EyrYgIVhxxC
- wAZ+OYePBPhzGTAnf1vUC8CMtCsuUt4IeEUi7malMNfSdYiynxYVfwYvQ Q==;
-X-CSE-ConnectionGUID: ecahkTN3QcOUrWNRCpxFBw==
-X-CSE-MsgGUID: qe6c/vdvQjOQ5GR1rCL1sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4334166"
+ bh=5dWrt5Awg+UxY+vD/9ywGyIW4VXSCmB9GDrsP7/3ziM=;
+ b=Oq5oH7E56UFFYt3qU88CaAhbOPuvWhvgc/MqPRQ9Tt5ExTBnRgkVRcGr
+ 2sK//eExyOIDriztgwXpSw/waRZLcGFQ/fGzB5DIs82F5UCZ3odYzKv4O
+ yl/YILrOpZXUfKN8gDMrRAfK+L2FImG8OjsM1+EAb+DQPYoA7g8RVY/nc
+ yuvXi28k4RvznqD6+qLoT6hL+pE5QIvXqX5JiGVSMPP1fyXarevDyHpCY
+ m2P5oW0WdPfaKSwKLkUTt958fOjWCfO+3JnHVKWi6aOufs3ilbEl8pRqT
+ xUzj1xAmUhOiPjs6kxdw+BaLs3jMgOGpv7AJ5rKP0zDsjfBDzpaslgW2y Q==;
+X-CSE-ConnectionGUID: R5apgtzkRhmK1OmQyepkIQ==
+X-CSE-MsgGUID: WIeul3aUTtWMQkV1W+BKeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4334170"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4334166"
+   d="scan'208";a="4334170"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 21:18:09 -0800
-X-CSE-ConnectionGUID: u/Z/hC4TRDGg6h12oC/pQw==
-X-CSE-MsgGUID: B6QXOTd3To2/e609MyVlMg==
+ 24 Nov 2026 21:18:13 -0800
+X-CSE-ConnectionGUID: GjjBv0BwSWivdEEVEWxJag==
+X-CSE-MsgGUID: Nbotfw10RYS41yVr1LQ0+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12092978"
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12092986"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2026 21:18:08 -0800
+ 24 Nov 2026 21:18:11 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: alexander.kaplan@sms-medipool.de,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/7] drm/i915/dp: Fix FRL BW check for HDMI2.1 DFP
-Date: Wed, 25 Nov 2026 10:32:26 +0530
-Message-ID: <20261125050231.1942380-3-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/7] drm/i915/dp: Use the common downstream bw check in
+ compute_bpc
+Date: Wed, 25 Nov 2026 10:32:28 +0530
+Message-ID: <20261125050231.1942380-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20261125050231.1942380-1-ankit.k.nautiyal@intel.com>
 References: <20261125050231.1942380-1-ankit.k.nautiyal@intel.com>
@@ -67,104 +68,36 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The FRL bandwidth check considers only the PCON's max FRL rate, ignoring
-the HDMI2.1 sink's own max FRL rate. Cap the available bandwidth by the
-minimum of the two, similar to the TMDS case.
-
-Move the check into a helper intel_dp_frl_bw_valid() so it can also be
-used in the compute_config phase in a subsequent change.
-
-The DSC case, where both the PCON and HDMI sink support DSC, is left
-as a FIXME and handled later.
-
-v2: Remove extra braces and re-format comment. (Suraj)
+Currently the FRL bandwidth check is only added for the mode_valid phase.
+Add the check in the compute_config phase also, replacing the TMDS-only
+check with the common function that checks for both TMDS and FRL.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 51 ++++++++++++++++---------
- 1 file changed, 34 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index ef164a797618..05d78763c716 100644
+index 82a4e3abf4ae..657bb56237f0 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -128,6 +128,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
- }
+@@ -1778,8 +1778,8 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+ 	for (; bpc >= 8; bpc -= 2) {
+ 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
+ 					    intel_dp_has_hdmi_sink(intel_dp)) &&
+-		    intel_dp_tmds_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
+-					      respect_downstream_limits) == MODE_OK)
++		    intel_dp_hdmi_bw_valid(intel_dp, clock, bpc, crtc_state->sink_format,
++					   respect_downstream_limits) == MODE_OK)
+ 			return bpc;
+ 	}
  
- static void intel_dp_unset_edid(struct intel_dp *intel_dp);
-+static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
- 
- /* Is link rate UHBR and thus 128b/132b? */
- bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
-@@ -1189,30 +1190,46 @@ static int frl_required_bw(int clock, int bpc,
- }
- 
- static enum drm_mode_status
--intel_dp_mode_valid_downstream(struct intel_connector *connector,
--			       const struct drm_display_mode *mode,
--			       int target_clock,
--			       enum intel_output_format sink_format)
-+intel_dp_frl_bw_valid(struct intel_dp *intel_dp, int target_clock,
-+		      int bpc, enum intel_output_format sink_format,
-+		      bool respect_downstream_limits)
- {
--	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	int target_bw;
-+	int max_frl_bw;
- 
--	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
--	if (intel_dp->dfp.pcon_max_frl_bw) {
--		int target_bw, max_frl_bw;
-+	if (!respect_downstream_limits)
-+		return MODE_OK;
- 
--		/* Assume 8bpc for the FRL bandwidth check */
--		target_bw = frl_required_bw(target_clock, 8, sink_format);
-+	target_bw = frl_required_bw(target_clock, bpc, sink_format);
- 
--		max_frl_bw = intel_dp->dfp.pcon_max_frl_bw;
-+	/* check for MAX FRL BW for both PCON and HDMI2.1 sink */
-+	max_frl_bw = min(intel_dp->dfp.pcon_max_frl_bw,
-+			 intel_dp_hdmi_sink_max_frl(intel_dp));
- 
--		/* converting bw from Gbps to Kbps*/
--		max_frl_bw = max_frl_bw * 1000000;
-+	/* converting bw from Gbps to Kbps*/
-+	max_frl_bw = max_frl_bw * 1000000;
- 
--		if (target_bw > max_frl_bw)
--			return MODE_CLOCK_HIGH;
-+	/* #FIXME check bandwidth with DSC if both PCON and HDMI sink support DSC */
-+	if (target_bw > max_frl_bw)
-+		return MODE_CLOCK_HIGH;
- 
--		return MODE_OK;
--	}
-+	return MODE_OK;
-+}
-+
-+static enum drm_mode_status
-+intel_dp_mode_valid_downstream(struct intel_connector *connector,
-+			       const struct drm_display_mode *mode,
-+			       int target_clock,
-+			       enum intel_output_format sink_format)
-+{
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+
-+	/*
-+	 * If PCON supports FRL MODE, check FRL bandwidth constraints.
-+	 * Assume 8bpc for the HDMI2.1 FRL BW check
-+	 */
-+	if (intel_dp->dfp.pcon_max_frl_bw && intel_dp_hdmi_sink_max_frl(intel_dp))
-+		return intel_dp_frl_bw_valid(intel_dp, target_clock, 8, sink_format, true);
- 
- 	if (intel_dp->dfp.max_dotclock &&
- 	    target_clock > intel_dp->dfp.max_dotclock)
 -- 
 2.50.1
 
