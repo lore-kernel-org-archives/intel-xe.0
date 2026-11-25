@@ -2,58 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30765606A323
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 11:48:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=kz4ReoG2
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17CF9606A338
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 12:02:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D903410FBDB;
-	Wed, 25 Nov 2026 11:48:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEC2E10FBDB;
- Wed, 25 Nov 2026 11:48:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795607314; x=1827143314;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=SlAJNOZ8GH42CB5OxxCuaE69BzuEFOQuIRpLzKBMgPU=;
- b=kz4ReoG2gw+/7v5dq/8sLeaqPiT/2pf+MbhGTOnTaqmoYua+FwByRs1X
- 3N8p0u4hXUJSydwRGyuXxzthfnLEUhCKiKGTJjn9yiQTFPi9Pk7x3dnUN
- ZUukRo2+D1A3r+0vCUviOG8/WBAi3jiFS7rEodInNN17ueNEAV1ARvhLJ
- Y34nmlaufamTnUE8G+Wq+7NH19/lMalrzIq65vpsyjwxOE1n7myvltk4J
- dwfW0aVIwzYRwFdg+Gvaj4KTe5PdMh44uACjKkI1UMFeY9GC9Wn/W2Qtk
- 2EKIQG1a68tvqYYtVMLdx7ZVVRPGyQitrBpEwytmgIQndi9nxK1JrTFif w==;
-X-CSE-ConnectionGUID: sNFO767gRbquoNblyFSiZQ==
-X-CSE-MsgGUID: 6B+UPrM6T32FZHBwCF8qGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4369349"
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4369349"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 03:48:33 -0800
-X-CSE-ConnectionGUID: 21w86H2gSvm1ifVn+5oXXA==
-X-CSE-MsgGUID: AUxD5cJ/QlSA9qpmwx68Fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="11864946"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.40])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 03:48:32 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: sashiko-reviews@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915/display: don't be cute about printing
- enabling/disabling
-In-Reply-To: <sashiko-outbox-231335@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261124141146.1560208-1-jani.nikula@intel.com>
- <sashiko-outbox-231335@kernel.org>
-Date: Wed, 25 Nov 2026 13:48:29 +0200
-Message-ID: <5c89a1a8b185633112990fa4201c92e8de0740c6@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B866D10FBFC;
+	Wed, 25 Nov 2026 12:02:57 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38EDD10FBFC;
+ Wed, 25 Nov 2026 12:02:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1517542585795734803=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vm=3A_Cancel_pending?=
+ =?utf-8?q?_rebind_work_before_freeing_the_VM?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Nov 2026 12:02:56 -0000
+Message-ID: <179560817622.85038.3707762875707982137@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261125100744.1440957-1-arvind.yadav@intel.com>
+In-Reply-To: <20261125100744.1440957-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,73 +33,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Tue, 24 Nov 2026, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Low] drm/i915/display: intel_force_bit_banging_write() missed in
->   %sabling cleanup
-> --
->
-> commit a6f91eb39a4003adc548629cfa79fbc4fb32b5bb
-> Author: Jani Nikula <jani.nikula@intel.com>
->
-> drm/i915/display: don't be cute about printing enabling/disabling
->
-> This commit replaces "%sabling", enable ? "en" : "dis" debug logging
-> patterns in i915 display code with str_enable_disable().
->
-> [ ... ]
->
->> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> index d43c81d362e6c..d68521588d54b 100644
->> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> @@ -1107,9 +1107,8 @@ void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit)
->>  	mutex_lock(&display->gmbus.mutex);
->>  
->>  	bus->force_bit += force_bit ? 1 : -1;
->> -	drm_dbg_kms(display->drm,
->> -		    "%sabling bit-banging on %s. force bit now %d\n",
->> -		    force_bit ? "en" : "dis", adapter->name,
->> +	drm_dbg_kms(display->drm, "%s bit-banging on %s. force bit now %d\n",
->> +		    str_enable_disable(force_bit), adapter->name,
->>  		    bus->force_bit);
->>  
->>  	mutex_unlock(&display->gmbus.mutex);
->
-> [Severity: Low]
-> Should intel_force_bit_banging_write() in this same file also be converted
-> to str_enable_disable()?  It logs the identical bit-banging message using
-> the old "%sabling" pattern:
+--===============1517542585795734803==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Gah, a dupe of that shouldn't have been added in the first place. :/
+== Series Details ==
 
-Deduplication at [1].
+Series: drm/xe/vm: Cancel pending rebind work before freeing the VM
+URL   : https://patchwork.freedesktop.org/series/179621/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b_BAT -> xe-pw-179621v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-179621v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#9841])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9841]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841
 
 
-BR,
-Jani.
+Build changes
+-------------
+
+  * IGT: IGT_9203 -> IGT_9204
+  * Linux: xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b -> xe-pw-179621v1
+
+  IGT_9203: 9203
+  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b: ad6614dbc84cd68a4bff21a5d166f2894db7ae2b
+  xe-pw-179621v1: 179621v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/index.html
+
+--===============1517542585795734803==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-[1] https://lore.kernel.org/r/cover.1795607055.git.jani.nikula@intel.com
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
->
-> drivers/gpu/drm/i915/display/intel_gmbus.c:intel_force_bit_banging_write() {
->     ...
-> 		drm_dbg_kms(display->drm,
-> 			    "%sabling bit-banging on %s. force bit now %d\n",
-> 			    force_bit_banging ? "en" : "dis",
-> 			    connector->base.ddc->name, force_bit);
->     ...
-> }
 
--- 
-Jani Nikula, Intel
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm: Cancel pending rebind work before freeing the VM</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179621/">https://patchwork.freedesktop.org/series/179621/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b_BAT -&gt; xe-pw-179621v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-179621v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179621v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841">Intel XE#9841</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_9203 -&gt; IGT_9204</li>
+<li>Linux: xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b -&gt; xe-pw-179621v1</li>
+</ul>
+<p>IGT_9203: 9203<br />
+  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-6232-ad6614dbc84cd68a4bff21a5d166f2894db7ae2b: ad6614dbc84cd68a4bff21a5d166f2894db7ae2b<br />
+  xe-pw-179621v1: 179621v1</p>
+
+</body>
+</html>
+
+--===============1517542585795734803==--
