@@ -2,53 +2,55 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C524D606A33B
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 13:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B599D606A330
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 13:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JqTEZMLK
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RJSDQyv3
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77C1710E8E2;
-	Wed, 25 Nov 2026 13:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E5210FBD8;
+	Wed, 25 Nov 2026 13:06:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F00EE10E8E2
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 13:06:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8102010FC05
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Nov 2026 13:06:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795611999; x=1827147999;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Qk3VkBoDf7fzipcOBn0QRoOHWDin7i0tgUm7Dj3j3qg=;
- b=JqTEZMLKrB1RKBZ6sXsDk4Uyj0dFtsx0WuhYZYPju0VRomuuGTmXIlB3
- mlEhtIMUyv/jdzOnC9huS5bsQepV+GT52gOxZANoiNzztU0Wln+5CXo3M
- zHRMzG2bNyVxBz9NJGB52CQi6t/XthEsvEgD7ocIqdqXUWUsq4hPjU1up
- Fd88twrY6KCFGtDlCr4ooUOpJzf078ZnrYskfVEdJ1TQ1YrnL56gHoJp3
- s2IK1Jx5cNiTOAcoH0yGjZo5aesrIpoZVpsBF2Da358yqvR/TM8sCnquX
- 4ineAKIXeUFiv3bbBlye0RsllFGEQwY4Vr3i0wgo7dHH3NA5zAqvmkg0Z A==;
-X-CSE-ConnectionGUID: wDV4PaQXTdS67V8CHZ5nkg==
-X-CSE-MsgGUID: szI1U4SaRCCpgduG8agBEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4507152"
+ t=1795612001; x=1827148001;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XvhkUBqUuu26TX1sk0FIDOr4rq+ewlp69GMnPZKQzw0=;
+ b=RJSDQyv3dawbLem7n92bGOknnacU1lP4En3a3azUyRUNcSwiAhw5HOXc
+ DNPs/1+XS05scGT4Pl4DkVnAoJF9Erg04sJcWQK2vZXLZ2OwI2ri89D5s
+ +5o9uYy9eyrNDAEYUZnQHFuXHTwV83Zo2yVGKaJty0a44YR6ZRIjUHJpT
+ ZoD/Djqm417tX8EUINE2HDruy75j5wLSEr1bRQzPmw5d6SFWCt+3s3Iju
+ q5802hNLnrYHHR9bYrK2xg85kLZ8Bq0j1QEhxtWldDRinigQ+N53k1BIx
+ HwS6Yk2zTSdJ13jKOfciakBKALvSm3646ME9GYJgu6mpJuODIZsQWFzQC g==;
+X-CSE-ConnectionGUID: X7vlIr6HQ0qFe12hmVYhcg==
+X-CSE-MsgGUID: 6IJCn195RvCmCH65Kxzy2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4507154"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4507152"
+   d="scan'208";a="4507154"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 05:06:35 -0800
-X-CSE-ConnectionGUID: m8mZUB9UTnWbbakRVqV9NA==
-X-CSE-MsgGUID: /t+HaL68TcqmlVZRmQh9Ag==
+ 25 Nov 2026 05:06:38 -0800
+X-CSE-ConnectionGUID: a1KDF3vBR1+DtKpVwB4siw==
+X-CSE-MsgGUID: qrkFKQlNTdOlUsaqKMV5Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12291885"
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12291890"
 Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 05:06:32 -0800
+ 25 Nov 2026 05:06:35 -0800
 From: Sk Anirban <sk.anirban@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
  karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
  mallesh.koujalagi@intel.com, hiresh.kumar.yadav@intel.com,
  rodrigo.vivi@intel.com, Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v2 0/2] Skip OCODE late bind if already running
-Date: Wed, 25 Nov 2026 18:20:12 +0530
-Message-ID: <20261125125011.192907-4-sk.anirban@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Skip OCODE late bind if already running
+Date: Wed, 25 Nov 2026 18:20:13 +0530
+Message-ID: <20261125125011.192907-5-sk.anirban@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20261125125011.192907-4-sk.anirban@intel.com>
+References: <20261125125011.192907-4-sk.anirban@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,10 +64,10 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
@@ -74,34 +76,40 @@ this, the late-bind worker re-uploads it on every probe and resume.
 The firmware is not expected to handle back-to-back reloads, and the
 extra delay of reloading an active OCODE can lead to firmware issues.
 
-Patch 1 adds the readiness check to the late-bind worker, so the
-SysCtrl mailbox query runs asynchronously rather than directly in
-the probe or resume path. If the query fails or OCODE is not ready,
-the payload is uploaded as before.
+Check the OCODE status through SysCtrl in the late-bind worker before
+uploading, and skip the upload if OCODE is already initialized. If the
+status query fails or OCODE is not ready, fall back to the existing
+upload.
 
-Skipping the upload whenever OCODE is ready prevents developers from
-testing a replacement OCODE blob on reprobe if the old ocode is
-still running, unless the board is power cycled. Patch 2 adds a
-debug-only configfs attribute, ocode_force_load, that bypasses the
-readiness check at probe.
+As a result, a newer OCODE blob is only used after the next power
+cycle. Comparing the running version against the blob is left for
+later, once firmware provides a reliable way to read it.
 
-Comparing the running OCODE version with the payload version is left
-for later, when firmware provides a reliable mailbox command to read
-the running version.
+v2: Update commit message (Rodrigo)
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
+Signed-off-by: Sk Anirban <sk.anirban@intel.com>
+---
+ drivers/gpu/drm/xe/xe_late_bind_fw.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Sk Anirban (2):
-  drm/xe: Skip OCODE late bind if already running
-  drm/xe: Add debug configfs option to force OCODE load
-
- drivers/gpu/drm/xe/xe_configfs.c           | 58 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h           |  1 +
- drivers/gpu/drm/xe/xe_late_bind_fw.c       | 11 ++++
- drivers/gpu/drm/xe/xe_late_bind_fw_types.h |  2 +
- 4 files changed, 72 insertions(+)
-
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+index 355d7c841871..dfff1693bf1f 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+@@ -258,6 +258,13 @@ static void xe_late_bind_work(struct work_struct *work)
+ 
+ 	xe_device_assert_mem_access(xe);
+ 
++	/* TODO: Compare the running OCODE version at probe when available. */
++	if (lbfw->type == INTEL_LB_TYPE_OCODE && xe_sysctrl_is_oobmsm_fw_ready(xe)) {
++		drm_dbg(&xe->drm, "%s firmware already loaded, skipping\n",
++			fw_id_to_name[lbfw->id]);
++		goto out;
++	}
++
+ 	/* we can queue this before the component is bound */
+ 	for (slept = 0; slept < LB_INIT_TIMEOUT_MS; slept += 100) {
+ 		if (late_bind->component.ops)
 -- 
 2.43.0
 
