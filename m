@@ -2,53 +2,53 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 444A7606A326
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 11:47:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBE5606A321
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Nov 2026 11:47:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=RsTCrQzn
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=blTH3ngT
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E912710FBD2;
-	Wed, 25 Nov 2026 11:47:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42B7C10FBCB;
- Wed, 25 Nov 2026 11:46:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7134410FBD7;
+	Wed, 25 Nov 2026 11:47:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21DBD10FBBC;
+ Wed, 25 Nov 2026 11:47:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795607213; x=1827143213;
+ t=1795607224; x=1827143224;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gdcsRTPkp8ENyTKe1tfgFB8Hp2ewM7vYeGe7DLIVTqk=;
- b=RsTCrQznm5ukU3N4iYUHAlE58vbtJFDjKGEkMy+smZlEjL6HPYK+E50g
- QxPX49sANQ00H5VTr990x/KST7Sp5tQORtIZZFV0H3mEo4V7vJuovbCoR
- EZRrulWyckw4w8kI6Z0xOskOZjnV3UiVZJepUN2tUfdT8X06TyXd+2+pN
- x5K1gEzVsBc/Flog/rs0Uc82FC31M8F2DhKh2mj/wELWyLDIotZ5KecxW
- Mjchn59NtpN/MJSOSF8NnwlrFLv0fipeCoS2GMUuK50FNoCTol78aanM8
- nNE0oi1EhBa2iDPxRQERLbw4rn7Cu3rGZ/G+berY5VTs4AgyecVGXItxg g==;
-X-CSE-ConnectionGUID: t78eRN6OSoKv85+K+mNqSg==
-X-CSE-MsgGUID: SIk/T+JKSQ+D4hZv5CDa3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4543314"
+ bh=yHdycH75seVe7ddIzgNKPNF9+gVLBLATzVDpPE6xirw=;
+ b=blTH3ngTs26uvdYo5HfOBhLROODAYiCeO/fon/qqNi4XFV8/EEKvWgBO
+ D7Li27EJpSN+36u27XvwN48g3pfP74+D/8C0yu87V4plAZbNXzMrj4s9c
+ VJnmnp090CEE/eZtfhePOT/xfRW2SMs40bon1x0V2CF/eG2yy8jCelGZu
+ tlDD+dg5JbiWZu3vnVFIzsycXTyKNuY/hPiYETCg4qo+ZkhCGocc+wpo0
+ yuGwOaxc7EnZXIvl7797gGMyYk9dh5YgDs7frDVYr+fzUEWj/uS8JJc+9
+ Npvo+sVuYq33KWdiEg/djqTiNhwnD00uc2AdpcNDeqa1l9XY3MP0rAxpg g==;
+X-CSE-ConnectionGUID: T+SkNnMLQb2zmk2vuZhh6g==
+X-CSE-MsgGUID: 67zC74jrQ9aU0U8wmdKr3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11976"; a="4358437"
 X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; 
-   d="scan'208";a="4543314"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 03:46:53 -0800
-X-CSE-ConnectionGUID: YX0CyM7lT1utkpnBdDrW5g==
-X-CSE-MsgGUID: 4B49DqFZSbuso2giXOLvjQ==
+   d="scan'208";a="4358437"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Nov 2026 03:47:03 -0800
+X-CSE-ConnectionGUID: GW55wTYzRMmLx5kIgBgqDA==
+X-CSE-MsgGUID: cPQtKfFNT1yZ51R7iyFU1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="11845493"
+X-IronPort-AV: E=Sophos;i="6.27,232,1787036400"; d="scan'208";a="12167942"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.40])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 03:46:51 -0800
+ 25 Nov 2026 03:47:03 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Naladala Ramanaidu <ramanaidu.naladala@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 3/6] drm/i915/gmbus: remove and open-code
- intel_gmbus_is_adapter()
-Date: Wed, 25 Nov 2026 13:46:32 +0200
-Message-ID: <0aa2d44a353afa5b3f06893009ed7cf67f5c9521.1795607055.git.jani.nikula@intel.com>
+Cc: jani.nikula@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v2 5/6] drm/i915/display: don't be cute about printing
+ enabling/disabling
+Date: Wed, 25 Nov 2026 13:46:34 +0200
+Message-ID: <b2083460376976a93772d0c06a933c27d910d157.1795607055.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1795607055.git.jani.nikula@intel.com>
 References: <cover.1795607055.git.jani.nikula@intel.com>
@@ -75,46 +75,62 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-intel_gmbus_is_adapter() is a single-use function based around struct
-intel_connector, which isn't really a thing in the gmbus code, and
-shouldn't be encouraged further. With the slightly confusing naming,
-it's more of a distraction than helpful. Just open-code it, as it's only
-used in one place anyway.
+Convert "%sabling", enable ? "en" : "dis" patterns to use
+str_enable_disable(). The imperative is just fine here.
 
-Cc: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_gmbus.c | 9 +--------
- 1 file changed, 1 insertion(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fdi.c     | 3 +--
+ drivers/gpu/drm/i915/display/intel_gmbus.c   | 5 ++---
+ drivers/gpu/drm/i915/display/intel_hotplug.c | 4 ++--
+ 3 files changed, 5 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_fdi.c b/drivers/gpu/drm/i915/display/intel_fdi.c
+index c170d3104e4c..8f83762c1031 100644
+--- a/drivers/gpu/drm/i915/display/intel_fdi.c
++++ b/drivers/gpu/drm/i915/display/intel_fdi.c
+@@ -404,8 +404,7 @@ static void cpt_set_fdi_bc_bifurcation(struct intel_display *display, bool enabl
+ 	if (enable)
+ 		temp |= FDI_BC_BIFURCATION_SELECT;
+ 
+-	drm_dbg_kms(display->drm, "%sabling fdi C rx\n",
+-		    enable ? "en" : "dis");
++	drm_dbg_kms(display->drm, "%s FDI C RX\n", str_enable_disable(enable));
+ 	intel_de_write(display, SOUTH_CHICKEN1, temp);
+ 	intel_de_posting_read(display, SOUTH_CHICKEN1);
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index c8f79384260d..df25a8233345 100644
+index 0c3037ef0dcb..990e5cd14863 100644
 --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -891,13 +891,6 @@ static const struct i2c_algorithm gmbus_algorithm = {
- 	.functionality	= gmbus_func
- };
+@@ -1023,9 +1023,8 @@ static void intel_gmbus_force_bit_unlocked(struct i2c_adapter *adapter, bool for
+ 	lockdep_assert_held(&display->gmbus.mutex);
  
--static bool intel_gmbus_is_adapter(struct intel_connector *connector)
--{
--	struct i2c_adapter *adapter = connector->base.ddc;
--
--	return adapter && adapter->algo == &gmbus_algorithm;
--}
--
- static void gmbus_lock_bus(struct i2c_adapter *adapter,
- 			   unsigned int flags)
- {
-@@ -1139,7 +1132,7 @@ void intel_gmbus_connector_debugfs_add(struct intel_connector *connector)
- {
- 	struct i2c_adapter *adapter = connector->base.ddc;
+ 	bus->force_bit += force_bit ? 1 : -1;
+-	drm_dbg_kms(display->drm,
+-		    "%sabling bit-banging on %s. force bit now %d\n",
+-		    force_bit ? "en" : "dis", adapter->name,
++	drm_dbg_kms(display->drm, "%s bit-banging on %s. force bit now %d\n",
++		    str_enable_disable(force_bit), adapter->name,
+ 		    bus->force_bit);
+ }
  
--	if (intel_gmbus_is_adapter(connector))
-+	if (adapter && adapter->algo == &gmbus_algorithm)
- 		debugfs_create_file("intel_force_bit_banging", 0644,
- 				    connector->base.debugfs_entry, adapter,
- 				    &intel_force_bit_banging_fops);
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug.c b/drivers/gpu/drm/i915/display/intel_hotplug.c
+index d095eb13dc06..09f34c9a8643 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug.c
++++ b/drivers/gpu/drm/i915/display/intel_hotplug.c
+@@ -1309,8 +1309,8 @@ static ssize_t i915_hpd_short_storm_ctl_write(struct file *file,
+ 	else if (kstrtobool(tmp, &new_state) != 0)
+ 		return -EINVAL;
+ 
+-	drm_dbg_kms(display->drm, "%sabling HPD short storm detection\n",
+-		    new_state ? "En" : "Dis");
++	drm_dbg_kms(display->drm, "%s HPD short storm detection\n",
++		    str_enable_disable(new_state));
+ 
+ 	spin_lock_irq(&display->irq.lock);
+ 	hotplug->hpd_short_storm_enabled = new_state;
 -- 
 2.47.3
 
