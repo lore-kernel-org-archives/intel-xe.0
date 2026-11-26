@@ -2,164 +2,164 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92CB606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 13:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E8F2606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 13:03:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=jiZyL/cn;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=JRjFcuNd
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=MXuqRTjf;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Fo1wJHQT
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8ED4210E29A;
-	Thu, 26 Nov 2026 13:02:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18DA710E0A9;
- Thu, 26 Nov 2026 13:02:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10CD10E0A9;
+	Thu, 26 Nov 2026 13:03:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EB0A10E0A9;
+ Thu, 26 Nov 2026 13:03:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795698125; x=1827234125;
+ t=1795698188; x=1827234188;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=P+XNw+Gfjdsa1sq5b6xiQNyngnmZn4dMkjxcmkX7SXE=;
- b=jiZyL/cn9iCrRPdCvs1VSqXBQWYIATGQiZMzPtbkthnMOxaNuoTPfHGu
- 9LGW5JnWX8eiJohAgK3oc/9haFOFQbCljJk55M/5ASHiQo/p7+TZeSdZs
- GMDLmh2ZbKFUV52bwehYoIEo9EyqGJLOWUndwsPQ7b3Ob3INlIZJvEFYL
- SqQsk7dDxRubxnAkEEephTOQWWc/a9sn6XbmrR8zOPjMBYdXLbE+F8mf3
- 7e9vstMs5Ziyj2nRyegVk98ujMrCrqUvW3o5O1i8Z0JM2JTiFK4LGpGg2
- MvDQxVaracq1HolZxow6vEVUovWs+KCu9/vSdkguIgwAW3HKRoU0V+T5A g==;
-X-CSE-ConnectionGUID: VKviyQfDRmmS6nucuRPHpw==
-X-CSE-MsgGUID: j31CzIfCRICuAZCviCS2vA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4693248"
+ bh=GCMqYA4soqHeZANxrOsfZNig6zS2L8i3oWWWRZpgZ7s=;
+ b=MXuqRTjfgMtT/UQOrVRWlPU308q3BxuWCuHElxE99Sk6UbzFtMq/xbfL
+ DlTrQ8QWtJiuzv/y3e2rl8k4xdYp8nGDyyTvDgNm27Rh4cKUcPGPL5yLu
+ jAznmUggvXmMDqVMvTyDIJEovkgySZSQjZZn9Wxo63uo8EqBDIfiDE9rb
+ MeVPJXx64SZublc9HHgiy0pSEaxCK5icWm/PK2uVXz234+Hktc4pvEGkU
+ vbnHXRFsplR96KGzJovHOodLlGWJXeYdkAiihcIK5Dqfq241OmY4G48A6
+ TYd0E9xUY8kWtSiZZbayfKXLUw+xqcuE2NiU1ZwSZ2CBY9TkTvYvDLBP3 A==;
+X-CSE-ConnectionGUID: DERvZLvYRjaLSMH2njmxfQ==
+X-CSE-MsgGUID: zFmFIWMcQJ6hfDrySrgydQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4503248"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4693248"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 05:02:05 -0800
-X-CSE-ConnectionGUID: s97eCv4gQSuG2xR8sKmRoQ==
-X-CSE-MsgGUID: W7FXPl3cRziPjUS0fbUG4A==
+   d="scan'208";a="4503248"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 05:03:07 -0800
+X-CSE-ConnectionGUID: 4YBKBmNKRgWYkyTnWnRxxg==
+X-CSE-MsgGUID: 2X8c1oQqQ5uNB1vUrTJbpA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12587598"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 05:02:04 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 05:02:03 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12081106"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 05:03:08 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 05:02:03 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.1) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.57; Thu, 26 Nov 2026 05:03:07 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 05:02:03 -0800
+ 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 05:03:07 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.38) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Thu, 26 Nov 2026 05:03:07 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=G8FWGp2v1PDpyOf8NUnbP4tXRMRkLNK9D7Wt79IB65lePOh/HOc/uKI2Y7BRo+H/wryJ4CJ76bNIAstOcUhA2yD2IChUfXYG1qHYk9hAZAAVmZ61ZSeZtuADMflk18Cy9z1db0fATaa51jMAIKPSAaJuACDclnca/pKTL06K1Lp3vEv7WS0xZllQd8Q7UVbn7savKpj0O583UkGBDs/tfCdMBO7Ctc2xpRMbeGbEHZJoSYVniDJ80reTp19zdCz9fAc39SNDnPDbswpQGVBm9Jbi+9u+bNSBEY/8z80V+51dpybzG1nZiUc0Rlx94Cbb1ZcA+CkMtfvivZ/hytmCGA==
+ b=DYk/bSKtr0Ova7ezd8k/SVFB+te8RByNx7PDXiiFFbAMcJrGW8ydqYu31PLJuSdaRQexPlkZ13GJbSpVYoY3AJOIFE8dJnBzx1DVstPqI2apW2hoRNyHRJvQQYovWavkF1Xip1OttUhliV5F14oa/t1HXxgs42D2pCGrNGRnORjSKGMOGSbaZpxLR6QaAp1vA0cnpBKr7FAOmpq2kRFGgDM7y8h1BeLjhFdHzGDU2yJaKy3MoPnnKC4ko6xz4zJHVTi8LZQ5ee6AVFKw/D8ToXj7hOahCdEq6TWrDedBjsOA/Oo5gFsct14eqNSM1ye7AG1Z4vyJomfX0Vqdo7UEAw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0Hpxo4ljJT585PWTU6eriER9O5KIP55wV4FAyla9/2w=;
- b=QFKb96xk4dFxAnQpnrN8CN7CdCIklltwEGVA2F6Sht+FLCtK+nOG8bLhooG3tEGtlvhpMn2X+sb3Nf5p6s35DuvNT8yqqQ8sv+XqcNJuTCwLJN8Qt4K0uA5rqX2EH7ybB/TqZuhvqpTaoUfAfMWF62AGYif1/F74hjX88w+rLtqe79ET3mxvCK3OVfQJWgZA1A88fxPwjExnPIMaJKuNiMo18poLr9vdH/ju/nvx2wAYfAt6vAMeYQiV9g1WCkqenXf0d/ZbMmfgOzFD6SsqF280eisq/xV2DVimL4WbBrR2MJsfltUrL8U+UtUAgf4PlkhyJGvUXFhL/nBDd+eUng==
+ bh=07MiaHv0Cy+VmrHHLzemC3VOVruA0VDW2MLdEylVggY=;
+ b=JcTx70ZQ081rl0XjfMvKkQuw0DfKMyAGAb7i+d/URxHrTLM6pR24YMsM1EZZLo1oImM5nDA2S0vwHoibO70Y8kpRGDPJErMiZxRo4/RAIECTXtEM1FDy2lYkKw7GOIlL2q3VjgDB1Una8xEwWHXLw7ihqJpTE4Gh2dLszRWBZPpQEekPznk2mDIRmd1Ly4TsPE987YZdyihxpMpPsDEQWrbAxP3M+6Q56jZDIU5v34S6sp+RNJU2xb2iS5j/HciU8xm0p/7EQnkrUeDqDZz/J5B8y2YvPJOMLWFv/X9fFtvmyEJYWLQ7JbqtPuTZkJQ/iXqmdXkfhZ0BfF/ztVyL4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0Hpxo4ljJT585PWTU6eriER9O5KIP55wV4FAyla9/2w=;
- b=JRjFcuNdgDCt12YO3LQ7Nat1L50R+CMOSMR+JNkhSOIHw0KbdBUtwKHWG5U22ojSpfOz5561k6TYevorWFTzHz+dVT4lZfinJDz7+8SspB8bBb5IQ6ALmAAhBNw8wZIg6J/5GPElSXSZW0KHBZENskKuLWBrrGaF9ndVvV0lGJc=
+ bh=07MiaHv0Cy+VmrHHLzemC3VOVruA0VDW2MLdEylVggY=;
+ b=Fo1wJHQTLvsr8Cb5rPFbIku/eNcxYqL+ixOPUlVu/GieBLtAHRpY8PpzHkqmQR7GS5svo2n2zCmutiadIOTvi5dHmtffIaFsheucqjJ2rgL+kcxEM6EP8olzK7cx9xMoz8VPPVZJlkUTfZbCWmlBrHtsk+h8G5kionDxWt0t6HY=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from LV2PR11MB148960.namprd11.prod.outlook.com
- (2603:10b6:408:40f::21) by PH0PR11MB4998.namprd11.prod.outlook.com
- (2603:10b6:510:32::8) with Microsoft SMTP Server (version=TLS1_2,
+ (2603:10b6:408:40f::21) by SN7PR11MB6680.namprd11.prod.outlook.com
+ (2603:10b6:806:268::10) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Thu, 26 Nov
- 2026 13:02:01 +0000
+ 2026 13:02:59 +0000
 Received: from LV2PR11MB148960.namprd11.prod.outlook.com
  ([fe80::9761:b20d:6f27:5460]) by LV2PR11MB148960.namprd11.prod.outlook.com
  ([fe80::9761:b20d:6f27:5460%5]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
- 13:02:00 +0000
-Message-ID: <3f3d63ba-d5d0-4b46-bf79-19ad3bffdb06@intel.com>
-Date: Thu, 26 Nov 2026 18:31:53 +0530
+ 13:02:59 +0000
+Message-ID: <314a02d6-bc22-47b9-8713-4dc4410bb3d2@intel.com>
+Date: Thu, 26 Nov 2026 18:32:52 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] drm/i915/gmbus: move debugfs stuff at the end of
- the file
+Subject: Re: [PATCH v2 2/6] drm/i915/gmbus: pass struct i2c_adapter to debugfs
+ functions
 To: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
  <intel-xe@lists.freedesktop.org>
 CC: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
 References: <cover.1795607055.git.jani.nikula@intel.com>
- <aea3a014dcae0666a6336c075db34914dfc8ca57.1795607055.git.jani.nikula@intel.com>
+ <b1932eb5ddd156dfe3d2dc2e3b2074c3a5b74fc4.1795607055.git.jani.nikula@intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <aea3a014dcae0666a6336c075db34914dfc8ca57.1795607055.git.jani.nikula@intel.com>
+In-Reply-To: <b1932eb5ddd156dfe3d2dc2e3b2074c3a5b74fc4.1795607055.git.jani.nikula@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0025.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:b8::13) To LV2PR11MB148960.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0PR01CA0031.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:b8::18) To LV2PR11MB148960.namprd11.prod.outlook.com
  (2603:10b6:408:40f::21)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV2PR11MB148960:EE_|PH0PR11MB4998:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b059db7-0def-4edc-91a7-08df4bbd75ad
+X-MS-TrafficTypeDiagnostic: LV2PR11MB148960:EE_|SN7PR11MB6680:EE_
+X-MS-Office365-Filtering-Correlation-Id: bd9e6321-642d-4785-347e-08df4bbd98d3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|23010399003|6133799003|22082099003|18002099003|11063799006|4143699003|56012099006|261026140227099003|261028144727099003|261022075727099003|261021121427099003|261022105027099003|261022113327099003|261021123027099003|261102123227099003|261009223027099003|10067099003;
-X-Microsoft-Antispam-Message-Info: R7+uE+IZKWrdbZAshhRZc5k8Tij2P9OP4MTlGtwQyIrwi2OE8LHG8DPTGQ/zyg5kzbhKtpjhJYgqecBmlnbTPQX+i42ULoevROs8yAbs0wWZSdeS/5obE+7vXWQ32GKb4SA3x/GOfpj2ywe/r4wyOg6uV5m10YLVyHLk5PQF32uxMgbKWAZjcMqcwvq++kChCtIA97MczAXL1YHMDk7GbKDqu3h8jljUx5Jm/UXsD0SCfvwI654HX8pdfJMuH5xG86F/oHiw/6KtGQe9ZdEi1y3FCq3SgVB0XJ3czfCPdE+rXM9D9CleNB3hYNXB404QCF1loVl9f1fdJ8AJwP+kxPZULyMBRjTvN4R7TR4kQ2n2lXypIY87qssbwaaN5lb611jUZhUtBya5n7gvTj5rEIQGzIheZMWv11jHpzAOhNWKiIVCNWnJXcVxcfNlx2oDoxmW/gO39A+OFYR1u5OIzMDYP2iXv8E9JgUMQWYuEMjjzw7adKawBzt5L7CWXihxfLBeh9JRK2kXwKI3QV7hZrSncyJw4feZI01sRwAD7LJrlBWPisGNchwiVbdxYqZKVNJipKPXpeTlaWm11E1RgUtTfFVhRU/geI3AZ+26bTWGW5Dv0FBk2p21yYD5bstuIk3dAfjeVc0oGv4LRvjF5J17Desej2R7RwgVg+MoGZs=
+ ARA:13230040|23010399003|376014|366016|1800799024|4143699003|6133799003|261009223027099003|22082099003|18002099003|10067099003|11063799006|261102123227099003|261022105027099003|261022113327099003|261022075727099003|261028144727099003|261026140227099003|56012099006|261021123027099003|261021121427099003;
+X-Microsoft-Antispam-Message-Info: MtAsoDVH+Z4dKvY3nX1zJsYBB0soULj/t+5vCnnlMDStxbodFquTzRytRqUxaMSlaO80BiJW3Wsh3fxoKabl4NozJ+KCHCTu9qMlWV5Mt21AdSEkwDi17B7Elsj1zc8BL1ioK6BhTxLXC9Awbz/MNcT8PPj43Fvl7u89NPFvLw6JKF0rO67diHmoekxZnMjyeZ9UFOBLJiX85/u8Gd0PKKwGykg6CKcPd2lWOkTiWIrOVbhbAcHmmN7cxRDZdttaBF+9o5eisB9FfsY9rnMXxPS54aUXUOSmMtmOJWUE/pOl05TqTwh3ilp9n+h8HN3x/tsGSruoM7OUs3qqZAk0cqKfKmp0Tbk3FjYJFpP6weGwxcbHW8Czl4TfeIX/l2QBQTGCh8o5o3bGouRVUZfgYp7CRoFl6APLw7hLUv8ipkdN6hxY+xqk25HT5A8Z/dy3IL2xCD0moCgdbtT/i041uGjbKEBUSuLYg2zZdWXrbCcO2n0EWUL9ypfXQ4Mq+K11AFnomSl73cYw7vexc9uRZqWrjB0zhTL/EPKTDIPy/sPCDzDHjAm8TMPZJaXJYdjKlk8JR6JxOXxzDktJi25QOXQUDwBH4uLlydhKrfkaRk8mYgKPwmettjqCV0IS8vEt5EgC9U0mreU1JuhERQX6Ywy9OlV4R53HfBCo0O3tmn0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:LV2PR11MB148960.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(23010399003)(6133799003)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006)(261026140227099003)(261028144727099003)(261022075727099003)(261021121427099003)(261022105027099003)(261022113327099003)(261021123027099003)(261102123227099003)(261009223027099003)(10067099003);
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(4143699003)(6133799003)(261009223027099003)(22082099003)(18002099003)(10067099003)(11063799006)(261102123227099003)(261022105027099003)(261022113327099003)(261022075727099003)(261028144727099003)(261026140227099003)(56012099006)(261021123027099003)(261021121427099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWI2Ym8xeGpOT1B0ZFYrRjd5WTJ3bnM0UG9Kais5OXdlZ1VxbS94SEE0K0FX?=
- =?utf-8?B?dm41OXVVZEg0dUozaCt5TzZyY1pabVdMdVJnVlliZTVMTUYxSjlYWlJYbnhj?=
- =?utf-8?B?cnBGeHR6Z3czcEVEM2FMbWI3ZmpqVlcyZFVUV3NTY3RpcERsQTEzWWx3cGl3?=
- =?utf-8?B?RDZrME5HcWdkKzZ3dTdId0tjZWdoV2tQT2tNTG5DZkVhNXRkNXZYd1JRcEVp?=
- =?utf-8?B?RkZTZURXV096ZTgydFFhK3lJK0xjVGcxTEpaYXpFM1FlQlpJSFltUlZCbDlE?=
- =?utf-8?B?MnJpU1E3Zno4eDVoRUNFSWNjUWpNNk9pMnp1NjBVa3VScENmOXkwalJMbkVO?=
- =?utf-8?B?RE1vNGl0MkxoNVArTEhTQzVWUlRrTkZJKzdYd0tEM3pvb1hmdjRHaFc4VGcz?=
- =?utf-8?B?Z1JvRnF3QWJqTERjUklsaE90eWxoMnJQNytrcTk5dFROQ3U1NFFJYVEyQ05o?=
- =?utf-8?B?YnZKREFKai9NWWJGVkFpWUZjOUZzR1BMbVR3VG5kaXZycFRTM1hvdUZjcUs3?=
- =?utf-8?B?cGRjclVkUXZMVFpPZWc4Z2ltQXFncFhud2Z0OUNpN2NYNXhXNng4SmN0a1Mz?=
- =?utf-8?B?WERpOG0rVVZyRGlhNkViUUJxbHJMWWFYUVZtaFpObHlGbUpZMkVHc3hKZVVB?=
- =?utf-8?B?SnJnemFSOW0vbFZNT0dneFQxS3EzN3dqSWN6ZnRLTjdpU0pDQzJycERST0py?=
- =?utf-8?B?d3JITzltcDg3VlNxMjhKUSt6MXVKZ1YrSUorSUFPWnh5aUFHdXpmeVdMaU8z?=
- =?utf-8?B?Nm1raTVqM3RHbnh1VVIwOHp0dENMaWpWWjZVdzFqSnlrSmYrUUpoYWJ4VWRE?=
- =?utf-8?B?TEVKSk1VL2tGUm1Ga0phZTgzVkx3dk11RjB6RHlqZVRGM2RzT3YyZ2Z5WUdJ?=
- =?utf-8?B?L0xMNmVwK3dCVjN0di9iUGI1M1V3UWwyMG5oVXI1Vzd0Y0F3TlgwSmhhMzZx?=
- =?utf-8?B?eCtqUjZwY2hkRWlxUGdpQUVrelRkOEhVQkZVdmpXOERSQjAydXN1elBxS1oy?=
- =?utf-8?B?NkJxdFRlRGtpeHNJcDIyUzNKWmhia2svWW9Ga1FyTzV1WXFnTkZXN2wxUkRx?=
- =?utf-8?B?UW51L3JPd2ZVaTN0cDAxTGMwRHNleWxIMnpEdnphZktLenpTK0FSVFFob1Nw?=
- =?utf-8?B?ZjF5T0NUQTBFQzNJVHQxLzdMSytQYzViUm1PemF5UnlaMUcxdHZId0U2L29W?=
- =?utf-8?B?QUhYYk9oQzBHNjd0eVFnQlZtMEUvcFFsZW4wM3dlMXFYelBWdFF5SGhKdVY1?=
- =?utf-8?B?amVmeWlDaWgvRWJzMU1IamFKY3FmRk9iN1NnakdZclpWdU9ENUNjci8yUmhR?=
- =?utf-8?B?aktNRnhrNXJmUjVVc3JqQ2Z3TjFzQjRORFNqL1ZqYkRCOGJYcExxY0syTnh6?=
- =?utf-8?B?OERhWmxXNGIwUWNlczJXREswcGpQdWlEbVdyd1VWd0g5TkdlM3VuSHp6dW9r?=
- =?utf-8?B?dmJjZ3JTZ2JtNithbTF1cUN5NTF6WmtoeCt3bTJEdFNmTUl6QUFVSTVJdnBK?=
- =?utf-8?B?dGtCblFRVVBTbFNHemUxMnhnS3ViSlBzdG15OVNaRVBIVUVrWUtPMXNNbkpq?=
- =?utf-8?B?enpZMW01cFdIc2ptMGN0eXp2WlhtL3ZkQnBjUjlxc0RuWklFL1JGRzhpMlZm?=
- =?utf-8?B?c0RPY3FPejVGQmRnbGhSYStGQXg1QlV5eWVHWElmYWR4Nm03V2x1THlEVmR6?=
- =?utf-8?B?cDFYR1JSY0VyMG1IaTBSTytYWTZPQ3dqY3FQYVFBLzVYMWFJQW1IVVE4WXZw?=
- =?utf-8?B?WC95U04xbW5JYmhhNFR3d3loUWhzdDZITW5YazlIM1BBQ3N1VHJnVXhJWmdx?=
- =?utf-8?B?L2RCbS9nMlNYM3FqL1Y3V0p6NlpQTlNreld2ZnBzeFF5bzhKUHAzWHFsWGZk?=
- =?utf-8?B?VER6RlhNZTVsbmZzQmw0ZzB4MlpGeEdoZlgrL1JqWmpCS2hOdis0M290dEpi?=
- =?utf-8?B?d3gzcHkxN0M5SU5ZYmovMjBOSlhlRHlicVZJdVJ6b2xIMVhKeG9lVVNVbklK?=
- =?utf-8?B?ZjVRNUhqOFo2Vk1IK1g2UXFMT2hEWHN1dHR1N2NLMnZJNkhVaGZKMktLbkZL?=
- =?utf-8?B?eWNxdVA1SU1KQUdGcE5INjN4dFlLbkIwcE4xejZUVk9KVXRqMXJHMzNLZCsz?=
- =?utf-8?B?aENmOElWZEY5aUpnUEp5TGgyZk1qSDNGM3gyYVBhbk5JYkp6d1p3VUllMGVF?=
- =?utf-8?B?OFlwY2ZVbS9veFYxbTdHQXdIb203V2tOb0hpdjMzc3I4aVJCZ0I1dW9MelNm?=
- =?utf-8?B?S3RwU0ttSnJBeWd4RXVHeVF4MGxQZjZGZmhBVG54YmUvaFliOVUyM3A0dVF4?=
- =?utf-8?B?MTBYWENFeE9UcWZnMllDcEpPK3Q4eS81LzhoYzIvM2YyK3BiSWg2VTFpNFp0?=
- =?utf-8?Q?+tzSO8iK+bBrGm4Q=3D?=
-X-Exchange-RoutingPolicyChecked: TU22z3DGLd/qVnDxDpCUXH5+AddREnUUqvr3gjA7nd4B3iEk++4Ee6JMLDln92RiJ2WDZdGs3wArlMa3Ci1GrWqR0dY5o+t+dwzHl4r9hIVdoXRX5B0GkNSHDnjH2oUd8btBUcYU36WL5zGboWaecKQErKGK+2AZymwVZT0a36QUYmhAbe8s1pnrmIG2Ws0j30Z4a8fJbJwu8SBxF7/9Mw0ej+yPVoqLb1f5bwIXp6OSgXdSe57Vj54L/aTrMald63GTorYns7yNhy1dXgFT8hHoY4n96dWQErXJwm7YOfyjGwC5Rp0zX8LKL7xjYFfUxqJ5bfKDCdcSCMU7lhMz/Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b059db7-0def-4edc-91a7-08df4bbd75ad
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L2x5cURCK3BjSStWTndaK2JYalNrRW1XRWxyL0N1bDJnUm9RWFRHRU9pYm1B?=
+ =?utf-8?B?ZVl1RXZmYnkyUU1WbUEwQWVsK2llTE01V2gzS2h6Ly8vQXkvRzd2S3ZlbThN?=
+ =?utf-8?B?VDBwWXhpR2x5eUlxdXVYRkplWFNnb25sQTBSOHdGU29RUjdQZzVQVlc2Nkc1?=
+ =?utf-8?B?TUhiZHdXVUxGR09ienN1U1NMRUJTVWtnaWNIc2NUUGtkc3RzZFR0VXppVjlW?=
+ =?utf-8?B?OWcrL1NHbGtkbnVyWjB5SmdhbjZnM1ljMXQwajBjZEdWVWxDSWtyejVTTkZp?=
+ =?utf-8?B?N012N2E0VHRsbTZPRjd1Z0lDN2d1bFNQZjZuazlvdWV6b1M1Y2hvTGloczhY?=
+ =?utf-8?B?b2I1elpBY1I2cVJmL0g4bGdDUVhualJrZEs0UTJlQklCOEJ0cWtWWlBwRjZ5?=
+ =?utf-8?B?ZkFSREx5dUp0QzNXcXJPWm5jb1NNQk5abElkcVNmNHBlR1o5c0QyT1hLeHJa?=
+ =?utf-8?B?c1d5WjBlNHBsL1luU2RNWGM5N0FIOHR4bk9WRVRsUFZKbUlkVWF0M1l5VGtW?=
+ =?utf-8?B?Wm9yemVDUks5SUlnTWQrSGFXWWVralA0UGpEVzllT0FWNHV5S2JOQUw2cmlE?=
+ =?utf-8?B?T2FuS0d2bnJCcGFUV0xVVlNWd1lxWUwxSDUvZUJaNmsrek1tcnlXSVJ0T3hN?=
+ =?utf-8?B?TGJLMnJhNngwS003UUlJS21DVFFTWVA5SERJVnU3Tlk2SGhCVVZUSFFjTHh0?=
+ =?utf-8?B?T0NNQlhiK0RObVlHOHlpbFp3bGdxQ3huQk04a0o5MDh4enNITklMeXVabG9X?=
+ =?utf-8?B?OU85a09KVjQ3MzJSVFBMNTlhRlFHWkRZbmxkNllTSnVYNVRXbklvaWdYbVYw?=
+ =?utf-8?B?NHRFeWpiNjBNQTZhWEVCZ2lzQ1VhS2ZXV3BEUVB3MXBYbkZyWnozNUJScVRi?=
+ =?utf-8?B?YkhMMjlBcDlYU25mV3lENk92Q1hqcGluTHBpdlk1TFR5SXNTaVVvL1B6bUVY?=
+ =?utf-8?B?NFdBOFdXMzlwTDlSOXFEYkFXWTBwS1BLLzlYTzQvbG1FZHBubWowYmNXQXB2?=
+ =?utf-8?B?VCt6UHUxNllCWEthVUU5bVNEOHVOcFBmbDBJdVl4blloeXM1a2tzdzNuL2pL?=
+ =?utf-8?B?MTJZZFpSZ3YxdzA5cTJ0ZTJqVU80aGJMRGZ5emFrZUtzOVE1VGpvdDQ4Vk9Z?=
+ =?utf-8?B?czZIRGpOMDF0Y1U3YUpUWlM0ZU1MWGcwZlpLZ2xIOWZtVU5XdGpSR210d25v?=
+ =?utf-8?B?WXBicFJoQkZBN2tGWThTeDM2TmxKWE10ZXV6NVRyVSsxTlZ1VEJHdHpFTkRH?=
+ =?utf-8?B?aEwydXFGTFl6QTJ2eUY0Z1VkeXhPaXl3alBEZnU5bU44NU1ReEIwV2l0L2tF?=
+ =?utf-8?B?alJpV3gxOGQwWEcwME0xVG9kRnE4VVJLQXFwMzJLYUlFY3NIRTkxb3R5RFR0?=
+ =?utf-8?B?ZzYxVnVCdW9INGxWZjA2d1YrY2hGdGU3Z3pPR2pBL2V1UHZvZTlWTkRYUy9u?=
+ =?utf-8?B?Q2FnK0doTWdQWE04dXJVRGNpQXhJTWNGbld5c0pLRW1qNjdBcTZ1Mk9KSzVO?=
+ =?utf-8?B?OGg0aGVCR2N6Q1hGOU85YkxKU0EvbkRoeUhXWVhiNW9vQXU1Tkh4eXI3M1Rq?=
+ =?utf-8?B?NTMrVWMzOWkwbzMvNFVrZFF5a3U5NFlyTEt4V0tENkYzVFdqM2dTdVRLRVd4?=
+ =?utf-8?B?dHRvbW9tODBNTHJpczZQMDdSZXFYcGpGNVBOMWI5RVMvUmhtaTRET3pWT0Fh?=
+ =?utf-8?B?Y1htc3pQUGR0RnF1OGdIQTdlWnVSUGtBWTJxRC9TY1ZiV1BUdFBzSUFxbW85?=
+ =?utf-8?B?U1E3VXhCUStYVmtwRzJVdnh2ZGp0RTBkNURiSWhac1VCU2ZHTkNzeEFSeFND?=
+ =?utf-8?B?SkFHNWRFRzFmd3NHUGtmMW5hOThzN0ovSmt5TjZvSnRraStwclNkY0VjZUtq?=
+ =?utf-8?B?Yy91MmpvZE5Cd2d0UllnL1RkSlZURE5GcklLUEx6aXpMbmN6ai9DVmNmT0xC?=
+ =?utf-8?B?TVVwWDIrcElQZElGb1htQm1Ec0NwTm1Ia3NpV1JLSU80MWFnMjVoUEdhVDRS?=
+ =?utf-8?B?cUtoU1BrRmUwcDAvclMrM0liZldEa3VtVWZ4Vjl5VHZ6UGFSeW5TTkg4bUhM?=
+ =?utf-8?B?NGZXQ2xCajJmNHlsN3c2UUhocjlvNndkMDVFQzB1bUFKRDc1UDArbVYyTjhO?=
+ =?utf-8?B?OUp2YmNyR3pHZmttdXFxaDR3WnhYZTZ6K3psZjJ3bnBuSXJnNnkvcVMzS1c1?=
+ =?utf-8?B?OUJLOVNBMXdKbVlBcFdaMm5KcGRJQ0NWTEI5ME8xRmhjZ1hlYXJzcTFEV0ZF?=
+ =?utf-8?B?bFRWenQ4Zm9wNHM5akZjdGp2cTRNTko1MzJqbmo1WHJtdHhjQng0ZXZSNWVy?=
+ =?utf-8?B?TlplTnZLK2UzOVptenJibmlmQjlhU1ZTblpuTDRVc1RxQVN1U0tEYUphOUda?=
+ =?utf-8?Q?7LKT6c8N6eMEhBB8=3D?=
+X-Exchange-RoutingPolicyChecked: POG6+42ztgqUMJneqBJQxdi0ItycoMS8wzaFJOrewP2dpewLk/0MTIxgYe14CVsnikaq3KV+mHt9lrvEgKRt+0Mq7KUFtMvjtn++W1yex7PU/9okHFz9thvKXBMbX5AxS/P0r+Y3x1PKyLPfqA5ZydDu9PE6BIVF3D7KFQGess9hC/XKoSZiVEgxrWibxR+B3qJmb8T5DREn5TBtg49QFZxJ304oLfRY3bEVOVcw57wf/28kl+cVm/p9nItRh5YNNKsRXjiMnefEDIgk/uTj//hUZhlWH52FMfA+n1g+uzjQq53EV6qUKAGBQtqtjtBeCzbe/u3+vIA6RIWL87+qBA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd9e6321-642d-4785-347e-08df4bbd98d3
 X-MS-Exchange-CrossTenant-AuthSource: LV2PR11MB148960.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 13:02:00.8190 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 13:02:59.5318 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nYXVg1xsqRbSb2Fei38jVZ2kIWwxb9X1iOQ9JPUynK38StCQUXUEMGImxUv0XFOaV8/9e4zWRx+aj/+prZVUN20UII7GuzqjYU+MrPdS1pE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4998
+X-MS-Exchange-CrossTenant-UserPrincipalName: EMKRn1Y4G0ra2NSJuat3viGkgUSjQANNDkinM+X74uGR9dwdGAtPHA/6jyOw5vMTyrg5F9WiLbMMtXCEHBfVNKLqzFDXlBbTYGal1iuh8Ag=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6680
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -181,190 +181,69 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 
 On 11/25/2026 5:16 PM, Jani Nikula wrote:
-> Basically everywhere the debugfs scaffolding is at the end of the file,
-> as it invariably uses functions that come first. Follow suit in gmbus.
+> Throughout the gmbus implementation, struct intel_connector usage isn't
+> really a thing, and the conversions flow naturally from struct
+> i2c_adapter to other types. Using struct intel_connector is a
+> hindrance. Pass struct i2c_adapter to debugfs functions instead, letting
+> us use to_intel_gmbus().
 >
 > Cc: Naladala Ramanaidu <ramanaidu.naladala@intel.com>
 > Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Should've spotted this while reviewing the original series.
-
-Change LGTM
-
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 
 > ---
->   drivers/gpu/drm/i915/display/intel_gmbus.c | 154 ++++++++++-----------
->   1 file changed, 77 insertions(+), 77 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_gmbus.c | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> index d43c81d362e6..70784e7dae2a 100644
+> index 70784e7dae2a..c8f79384260d 100644
 > --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 > +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-> @@ -898,83 +898,6 @@ static bool intel_gmbus_is_adapter(struct intel_connector *connector)
->   	return adapter && adapter->algo == &gmbus_algorithm;
->   }
+> @@ -1070,9 +1070,8 @@ void intel_gmbus_irq_handler(struct intel_display *display)
 >   
-> -static int intel_force_bit_banging_show(struct seq_file *m, void *data)
-> -{
+>   static int intel_force_bit_banging_show(struct seq_file *m, void *data)
+>   {
 > -	struct intel_connector *connector = m->private;
 > -	struct intel_gmbus *bus = container_of(connector->base.ddc,
 > -					       struct intel_gmbus, adapter);
-> -	struct intel_display *display = bus->display;
-> -	bool force_bit_banging;
-> -
-> -	mutex_lock(&display->gmbus.mutex);
-> -	force_bit_banging = bus->debugfs_force_bit;
-> -	mutex_unlock(&display->gmbus.mutex);
-> -
-> -	seq_printf(m, "%u\n", force_bit_banging);
-> -
-> -	return 0;
-> -}
-> -
-> -static ssize_t intel_force_bit_banging_write(struct file *file,
-> -					     const char __user *ubuf,
-> -					     size_t len, loff_t *offp)
-> -{
-> -	struct seq_file *m = file->private_data;
+> +	struct i2c_adapter *adapter = m->private;
+> +	struct intel_gmbus *bus = to_intel_gmbus(adapter);
+>   	struct intel_display *display = bus->display;
+>   	bool force_bit_banging;
+>   
+> @@ -1090,9 +1089,8 @@ static ssize_t intel_force_bit_banging_write(struct file *file,
+>   					     size_t len, loff_t *offp)
+>   {
+>   	struct seq_file *m = file->private_data;
 > -	struct intel_connector *connector = m->private;
 > -	struct intel_gmbus *bus = container_of(connector->base.ddc,
 > -					       struct intel_gmbus, adapter);
-> -	struct intel_display *display = bus->display;
-> -	bool force_bit_banging;
-> -	bool changed = false;
-> -	u32 force_bit = 0;
-> -	int ret;
-> -
-> -	ret = kstrtobool_from_user(ubuf, len, &force_bit_banging);
-> -	if (ret)
-> -		return ret;
-> -
-> -	mutex_lock(&display->gmbus.mutex);
-> -	if (force_bit_banging != bus->debugfs_force_bit) {
-> -		bus->force_bit += force_bit_banging ? 1 : -1;
-> -		force_bit = bus->force_bit;
-> -		bus->debugfs_force_bit = force_bit_banging;
-> -		changed = true;
-> -	}
-> -	mutex_unlock(&display->gmbus.mutex);
-> -
-> -	if (changed)
-> -		drm_dbg_kms(display->drm,
-> -			    "%sabling bit-banging on %s. force bit now %d\n",
-> -			    force_bit_banging ? "en" : "dis",
+> +	struct i2c_adapter *adapter = m->private;
+> +	struct intel_gmbus *bus = to_intel_gmbus(adapter);
+>   	struct intel_display *display = bus->display;
+>   	bool force_bit_banging;
+>   	bool changed = false;
+> @@ -1116,7 +1114,7 @@ static ssize_t intel_force_bit_banging_write(struct file *file,
+>   		drm_dbg_kms(display->drm,
+>   			    "%sabling bit-banging on %s. force bit now %d\n",
+>   			    force_bit_banging ? "en" : "dis",
 > -			    connector->base.ddc->name, force_bit);
-> -
-> -	*offp += len;
-> -
-> -	return len;
-> -}
-> -
-> -static int intel_force_bit_banging_open(struct inode *inode, struct file *file)
-> -{
-> -	return single_open(file, intel_force_bit_banging_show, inode->i_private);
-> -}
-> -
-> -static const struct file_operations intel_force_bit_banging_fops = {
-> -	.owner = THIS_MODULE,
-> -	.open = intel_force_bit_banging_open,
-> -	.read = seq_read,
-> -	.llseek = seq_lseek,
-> -	.release = single_release,
-> -	.write = intel_force_bit_banging_write,
-> -};
-> -
-> -void intel_gmbus_connector_debugfs_add(struct intel_connector *connector)
-> -{
-> -	if (intel_gmbus_is_adapter(connector))
-> -		debugfs_create_file("intel_force_bit_banging", 0644,
+> +			    adapter->name, force_bit);
+>   
+>   	*offp += len;
+>   
+> @@ -1139,8 +1137,10 @@ static const struct file_operations intel_force_bit_banging_fops = {
+>   
+>   void intel_gmbus_connector_debugfs_add(struct intel_connector *connector)
+>   {
+> +	struct i2c_adapter *adapter = connector->base.ddc;
+> +
+>   	if (intel_gmbus_is_adapter(connector))
+>   		debugfs_create_file("intel_force_bit_banging", 0644,
 > -				    connector->base.debugfs_entry, connector,
-> -				    &intel_force_bit_banging_fops);
-> -}
-> -
->   static void gmbus_lock_bus(struct i2c_adapter *adapter,
->   			   unsigned int flags)
->   {
-> @@ -1144,3 +1067,80 @@ void intel_gmbus_irq_handler(struct intel_display *display)
->   {
->   	wake_up_all(&display->gmbus.wait_queue);
+> +				    connector->base.debugfs_entry, adapter,
+>   				    &intel_force_bit_banging_fops);
 >   }
-> +
-> +static int intel_force_bit_banging_show(struct seq_file *m, void *data)
-> +{
-> +	struct intel_connector *connector = m->private;
-> +	struct intel_gmbus *bus = container_of(connector->base.ddc,
-> +					       struct intel_gmbus, adapter);
-> +	struct intel_display *display = bus->display;
-> +	bool force_bit_banging;
-> +
-> +	mutex_lock(&display->gmbus.mutex);
-> +	force_bit_banging = bus->debugfs_force_bit;
-> +	mutex_unlock(&display->gmbus.mutex);
-> +
-> +	seq_printf(m, "%u\n", force_bit_banging);
-> +
-> +	return 0;
-> +}
-> +
-> +static ssize_t intel_force_bit_banging_write(struct file *file,
-> +					     const char __user *ubuf,
-> +					     size_t len, loff_t *offp)
-> +{
-> +	struct seq_file *m = file->private_data;
-> +	struct intel_connector *connector = m->private;
-> +	struct intel_gmbus *bus = container_of(connector->base.ddc,
-> +					       struct intel_gmbus, adapter);
-> +	struct intel_display *display = bus->display;
-> +	bool force_bit_banging;
-> +	bool changed = false;
-> +	u32 force_bit = 0;
-> +	int ret;
-> +
-> +	ret = kstrtobool_from_user(ubuf, len, &force_bit_banging);
-> +	if (ret)
-> +		return ret;
-> +
-> +	mutex_lock(&display->gmbus.mutex);
-> +	if (force_bit_banging != bus->debugfs_force_bit) {
-> +		bus->force_bit += force_bit_banging ? 1 : -1;
-> +		force_bit = bus->force_bit;
-> +		bus->debugfs_force_bit = force_bit_banging;
-> +		changed = true;
-> +	}
-> +	mutex_unlock(&display->gmbus.mutex);
-> +
-> +	if (changed)
-> +		drm_dbg_kms(display->drm,
-> +			    "%sabling bit-banging on %s. force bit now %d\n",
-> +			    force_bit_banging ? "en" : "dis",
-> +			    connector->base.ddc->name, force_bit);
-> +
-> +	*offp += len;
-> +
-> +	return len;
-> +}
-> +
-> +static int intel_force_bit_banging_open(struct inode *inode, struct file *file)
-> +{
-> +	return single_open(file, intel_force_bit_banging_show, inode->i_private);
-> +}
-> +
-> +static const struct file_operations intel_force_bit_banging_fops = {
-> +	.owner = THIS_MODULE,
-> +	.open = intel_force_bit_banging_open,
-> +	.read = seq_read,
-> +	.llseek = seq_lseek,
-> +	.release = single_release,
-> +	.write = intel_force_bit_banging_write,
-> +};
-> +
-> +void intel_gmbus_connector_debugfs_add(struct intel_connector *connector)
-> +{
-> +	if (intel_gmbus_is_adapter(connector))
-> +		debugfs_create_file("intel_force_bit_banging", 0644,
-> +				    connector->base.debugfs_entry, connector,
-> +				    &intel_force_bit_banging_fops);
-> +}
