@@ -2,28 +2,60 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544EE606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 14:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAE0C606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 14:10:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=C3Zemlo5
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03D3310E9D8;
-	Thu, 26 Nov 2026 14:08:08 +0000 (UTC)
-Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A699610E9AE;
- Thu, 26 Nov 2026 14:08:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82CD910E9AE;
+	Thu, 26 Nov 2026 14:10:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12E1610E9AE;
+ Thu, 26 Nov 2026 14:10:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795702201; x=1827238201;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=CfojkDmzfVf1IAAAG8GvMbO3+44orj1p84MmF7wtqy0=;
+ b=C3Zemlo5zKYOUkrf7SUSxpWIyHYHYJCAgpbYADKjm6ajMCE0y08K9EN2
+ EHG9w6eETY7xZ7uJT9uX2lPchcXU7hoC2HrbCk0HTTLxMtDRR+oSvCUnQ
+ AcS7SXGmHEL5vBdEzPYKyRXb/c18mOPSDsnNqwD5ysKQ9ODVXUsKovN2c
+ 89QV+8jSYB4rMha1cjEmlqvn1iODjQzGMqJdDvcE2Ohta1vbdD0eC1ocZ
+ CUFbbc4YKV5yvWAEr52jw9O7KqWnHMj/gIaUAZzPQlP6roBQ0i9aj5tN5
+ 7n4VhifX02ms3UXKgQpB8FRyTucdHzeAAeRYfcSyHQb1j8scoPsCifRkZ A==;
+X-CSE-ConnectionGUID: 3cERKQ0MTxGRzDvrlyuW6w==
+X-CSE-MsgGUID: uYta5KycS5+pgSK0mMq84w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4522036"
+X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
+   d="scan'208";a="4522036"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 06:10:00 -0800
+X-CSE-ConnectionGUID: 3knpX4rqTt2JJD8W4/T5JQ==
+X-CSE-MsgGUID: Og2YUN7ARpmaTAev9TByGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12221749"
+Received: from ncintean-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.235])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 06:10:00 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/compat: remove leftover
+ intel_uncore_arm_unclaimed_mmio_detection()
+In-Reply-To: <paa4pkftdmgke2oqxa44gcjt5n4iowy4keqlmzws6yduu5g6dq@grxks4zi65zt>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261124133804.1509493-1-jani.nikula@intel.com>
+ <paa4pkftdmgke2oqxa44gcjt5n4iowy4keqlmzws6yduu5g6dq@grxks4zi65zt>
+Date: Thu, 26 Nov 2026 16:09:56 +0200
+Message-ID: <7cf43261183a04010bf04fdfd9b9353449b92b73@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/ddi=5Fmgr=3A_Add?=
- =?utf-8?q?_support_for_dynamic_DDI_allocation?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Imre Deak" <imre.deak@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Nov 2026 14:08:07 -0000
-Message-ID: <179570208767.93576.8369627672914617202@9ac1b63fe3ea>
-X-Patchwork-Hint: ignore
-References: <20261126100755.1252635-1-imre.deak@intel.com>
-In-Reply-To: <20261126100755.1252635-1-imre.deak@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -33,106 +65,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-== Series Details ==
+On Tue, 24 Nov 2026, Micha=C5=82 Grzelak <michal.grzelak@linux.intel.com> w=
+rote:
+> On Tue, Nov 24, 2026 at 03:38:04PM GMT, Jani Nikula wrote:
+>> When the unclaimed MMIO detection was moved to display, an xe compat
+>> inline functionw was left behind. Remove it.
+>
+> nit: *function
+>
+> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@linux.intel.com>
 
-Series: drm/i915/ddi_mgr: Add support for dynamic DDI allocation
-URL   : https://patchwork.freedesktop.org/series/179738/
-State : warning
+Gah, forgot to fix the typo while pushing. *facepalm*
 
-== Summary ==
+Thanks for the review.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-3009867cd31863246e4afc138520a7a8bd37bb11
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit fe4ed4a5d9206747219118303838c1f3600bfa3d
-Author: Imre Deak <imre.deak@intel.com>
-Date:   Thu Nov 26 12:07:53 2026 +0200
+>
+> BR,
+> Micha=C5=82
+>
+>>=20
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h | 6 ------
+>>  1 file changed, 6 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/dri=
+vers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+>> index 238addc1e5fc..707f7ad0378d 100644
+>> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+>> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+>> @@ -63,10 +63,4 @@ static inline void intel_uncore_write_fw(struct intel=
+_uncore *uncore,
+>>  	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+>>  }
+>>=20=20
+>> -static inline bool
+>> -intel_uncore_arm_unclaimed_mmio_detection(struct intel_uncore *uncore)
+>> -{
+>> -	return false;
+>> -}
+>> -
+>>  #endif /* __INTEL_UNCORE_H__ */
+>> --=20
+>> 2.47.3
+>>=20
 
-    drm/i915/ddi_mgr: Enable dynamic DDI allocation at load
-    
-    Initialize and enable the DDI manager before GMBUS and output setup so
-    legacy DDI allocations and HPD source mappings are ready when adapters
-    and encoders are created. Reconfigure the DDI assignments and encoder
-    mappings during system resume.
-    
-    For now, this enables only static legacy DDI allocation. Legacy DDIs are
-    inherited from BIOS or allocated only during driver loading and system
-    resume, and these assignments remain unchanged during runtime. Runtime
-    reallocation support will be added in a follow-up series.
-    
-    Signed-off-by: Imre Deak <imre.deak@intel.com>
-+ /mt/dim checkpatch 6dfee524c812864b095a18926620cfff58bd6e6f drm-intel
-e71ca84c00f1 drm/i915/dp: Allow rebuilding the source rate list
-1eee975839b6 drm/i915/hotplug: Set detector enable bits without a clear mask
-281d4ca38637 drm/i915/nvl+: Add support for remapping logical HPD pins to HW pins
--:58: CHECK:BRACES: braces {} should be used on all arms of this statement
-#58: FILE: drivers/gpu/drm/i915/display/intel_hotplug_irq.c:157:
-+	if (DISPLAY_VER(display) >= 35) {
-[...]
-+	} else if (DISPLAY_VER(display) >= 14)
-[...]
- 	else if (DISPLAY_VER(display) >= 11)
-[...]
-
--:74: CHECK:BRACES: braces {} should be used on all arms of this statement
-#74: FILE: drivers/gpu/drm/i915/display/intel_hotplug_irq.c:183:
-+	if (DISPLAY_VER(display) >= 35) {
-[...]
-+	} else if (INTEL_PCH_TYPE(display) >= PCH_MTL)
-[...]
- 	else if (INTEL_PCH_TYPE(display) >= PCH_DG1)
-[...]
-
--:113: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#113: FILE: drivers/gpu/drm/i915/display/intel_hotplug_irq.c:230:
-+	if (drm_WARN_ON(display->drm, pch_hw_pin != HPD_NONE &&
-+				      (pch_hw_pin < HPD_PORT_TC1 || pch_hw_pin > HPD_PORT_TC4)))
-
--:129: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#129: FILE: drivers/gpu/drm/i915/display/intel_hotplug_irq.c:610:
-+static void xe3plpd_tc_hpd_pins(struct intel_display *display,
-+			      u32 *pin_mask, u32 *long_mask,
-
--:163: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#163: FILE: drivers/gpu/drm/i915/display/intel_hotplug_irq.c:658:
-+			xe3plpd_tc_hpd_pins(display, &pin_mask, &long_mask,
-+					   tc_hotplug_trigger, dig_hotplug_reg);
-
-total: 0 errors, 0 warnings, 5 checks, 201 lines checked
-ffebfbb5fa4e drm/xe/display: Distinguish failed system suspend recovery
-e898bd015a8b drm/i915/gmbus: Extract a helper for Type-C DDC pin mapping
-3ca1cfc34a3b drm/i915/ddi_mgr: Add support for dynamic DDI allocation
--:78: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#78: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 895 lines checked
-b4232a4a251f drm/i915/gmbus: Extract adapter creation and destruction
-53fab5d23e66 drm/i915/gmbus: Add stable DDC adapters for the DDI pool
-9e73c2d7cbc2 drm/i915/ddi_mgr: Register encoders with dynamic DDI support
-6559d1a5b27f drm/i915/ddi_mgr: Keep AUX access consistent with DDI pool routes
-5ad9baee5fe7 drm/i915/ddi_mgr: Verify and restore DDI allocations after runtime resume
-0776c075f2fb drm/i915/ddi_mgr: Handle DDI pool system suspend and resume
--:65: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#65: FILE: drivers/gpu/drm/i915/display/intel_ddi_mgr.c:866:
-+	intel_tc_port_set_legacy(dig_port, mgr->enabled &&
-+				route->mode == INTEL_DDI_ROUTE_LEGACY);
-
-total: 0 errors, 0 warnings, 1 checks, 177 lines checked
-fe4ed4a5d920 drm/i915/ddi_mgr: Enable dynamic DDI allocation at load
-
-
+--=20
+Jani Nikula, Intel
