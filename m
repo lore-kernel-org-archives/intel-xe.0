@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB12606A321
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38A55606A31E
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:46:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=LQAj59+f
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HVLySK4o
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C690410E296;
-	Thu, 26 Nov 2026 10:46:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED55A10E2B6;
+	Thu, 26 Nov 2026 10:46:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC11B10E3DB
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 10:46:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 78F2410E1F9
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 10:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795689967; x=1827225967;
+ t=1795689971; x=1827225971;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W2uU0EwPo2vOVDcHOli7eRyqIVUiU9tNY78jQBdxOio=;
- b=LQAj59+foPR2wdqVegwg6KcU7HphjirapzFB00J9nO1R0DlIEb27PX2Z
- zON9aQto7y2koqzbnOA8b2eQ8pRKI9I/anuMFlWUKjZJCZg8hUbW18Aa4
- VyvMJflCZEzBlFyxcESKrzCzPjX92T/xmzUOPCjQ4IsCuhsP1y9ou1R2K
- nYRGxewvff2dsJc8KEiix1cpfs2PZ8Qo1CyjHMZHJEKlzM1VbTZYqJAs9
- UMBkAZsEz9Q8CsoBxzFMwr988qhnL7ZdOkKV3/K+U+lr5h0ea+Tr1wBuk
- wJsX6NdbQVGZA0SVAZWmDxP8d2dacptbJYUIkOfE4qfaWS5EIAAd62Hck A==;
-X-CSE-ConnectionGUID: eTYtXyNYQKiSnrPcyfuTfQ==
-X-CSE-MsgGUID: dRso3KORTH+HP4mLD0pE/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4605048"
+ bh=rUrGMmi3OvEnUWTwsN11RgCidHPKvaGsPTwsXIomzQY=;
+ b=HVLySK4o8RT5IxB6U69CUelFfaknpFr7hXElyvUDjLQSNLchrsr5pjDA
+ r4S6stnYRM/tZqf7zwINtRAMhUPop2HF1IPmJijrBczEymxaCo+Id0ra7
+ fpj4VKKc0Exyof+IgvCitjoGOjUth8oQkGKhhTXvLa7ssodAjUE8++gTn
+ sf/Fk2UfQim5aTYjUo5ZxTpz2ucbJjypdCIfjQHuFej29Rrd5TRODKdIJ
+ EJo42Xs8jrtu7QLTtU04eBxL2l9lmm9++50qhARQiddAQiQWjoDPXm26B
+ bgsZgunESbs/M/5gQCjUB/rH636B+hNh2KSGWx0meh6lQ3IWcsVTJcNez g==;
+X-CSE-ConnectionGUID: QngYexEAQfOktAyLP9DXXg==
+X-CSE-MsgGUID: QgxRcMAoTh+xCaTRaY657A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4605055"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4605048"
+   d="scan'208";a="4605055"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 02:46:07 -0800
-X-CSE-ConnectionGUID: /3tYaTp4Q3ibvjw1OVySPQ==
-X-CSE-MsgGUID: sI3fTLaHQxCXcBTLvzbQqQ==
+ 26 Nov 2026 02:46:11 -0800
+X-CSE-ConnectionGUID: 1hZBzQ4eQB6srRrclPWC5w==
+X-CSE-MsgGUID: BedXQBk4SlKTzak6gZP0ng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12744899"
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12744917"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 02:46:05 -0800
+ 26 Nov 2026 02:46:09 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: himal.prasad.ghimiray@intel.com, matthew.brost@intel.com,
  arvind.yadav@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V3 1/3] drm/xe/vram: add decay-based reinstatement of
- soft-offlined VRAM pages
-Date: Thu, 26 Nov 2026 16:15:54 +0530
-Message-ID: <20261126104552.3890797-6-tejas.upadhyay@intel.com>
+Subject: [PATCH V3 3/3] drm/xe/vram: stop decay worker from rescheduling
+ itself forever
+Date: Thu, 26 Nov 2026 16:15:56 +0530
+Message-ID: <20261126104552.3890797-8-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20261126104552.3890797-5-tejas.upadhyay@intel.com>
 References: <20261126104552.3890797-5-tejas.upadhyay@intel.com>
@@ -71,359 +71,64 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The existing bad-page flow soft-offlines a VRAM page on the first HW
-report and promotes it to a permanent (hard) retirement on the second
-report at the same address. Once soft-offlined a page stays offline
-forever, which over-punishes transient DBE errors: a single hit caused
-by a one-off environmental disturbance keeps the page reserved until
-the next reboot / probe.
+xe_ttm_vram_decay_gc_worker() unconditionally called
+schedule_delayed_work() at its tail, so once the worker started (on
+the first SOFT-offlined page) it kept waking up forever at the decay
+period, even after every SOFT entry had long since decayed away or
+been promoted to HARD. The reservation path already re-arms the worker
+appears, so the perpetual self-reschedule serves no purpose once the
+list has nothing left to track.
 
-This change adds a per VRAM-manager decay timer so that a SOFT-offlined
-page is automatically reinstated after the configured decay window
-(default 24 hours) of no further reports at that address. HARD-offlined
-pages continue to be permanent.
-
-Also adds the xe_page_offline_mode enum (SOFT/HARD) and per-entry mode
-tracking with SOFT->HARD promotion on second hit at the same address.
-
-Configuration via configfs bad_page_decay_secs (default 86400, 0 disables).
-
-IGT coverage:
-https://patchwork.freedesktop.org/patch/765064/
-
-v3:
-- Arm decay_gc_work when a queued (previously busy) page is promoted
-  to offlined in xe_ttm_vram_retry_queued_pages(), not just on the
-  immediate-offline path (review comment).
-- Also promote queued_pages entries SOFT->HARD on a repeat fault,
-  mirroring the offlined_pages promotion (review comment).
-- Fix xe_ttm_vram_decay_gc_period() so the 60s floor clamp can never
-  push the poll period above the configured decay interval itself
-  (review comment).
+Track whether any SOFT entries remain after the sweep and only
+reschedule in that case, letting the worker go idle otherwise.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c           | 55 +++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h           |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 80 +++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h | 16 +++++
- 4 files changed, 150 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 801b22fe3c36..7133e69d790e 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -313,6 +313,7 @@ struct xe_config_group_device {
- 		bool enable_psmi;
- 		bool enable_multi_queue;
- 		bool disable_vram_page_offline;
-+		u32 bad_page_decay_secs;
- 		struct {
- 			unsigned int max_vfs;
- 			bool admin_only_pf;
-@@ -336,6 +337,7 @@ static const struct xe_config_device device_defaults = {
- 	.enable_psmi = false,
- 	.enable_multi_queue = true,
- 	.disable_vram_page_offline = false,
-+	.bad_page_decay_secs = 24 * 60 * 60,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
- 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
-@@ -737,6 +739,36 @@ static ssize_t disable_vram_page_offline_store(struct config_item *item,
- 	return len;
- }
- 
-+static ssize_t bad_page_decay_secs_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+
-+	return sprintf(page, "%u\n", dev->config.bad_page_decay_secs);
-+}
-+
-+static ssize_t bad_page_decay_secs_store(struct config_item *item,
-+					 const char *page, size_t len)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+	u32 val;
-+	int ret;
-+
-+	ret = kstrtou32(page, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (val > jiffies_to_msecs(MAX_JIFFY_OFFSET) / 1000)
-+		return -EINVAL;
-+
-+	guard(mutex)(&dev->lock);
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	dev->config.bad_page_decay_secs = val;
-+
-+	return len;
-+}
-+
- static bool wa_bb_read_advance(bool dereference, char **p,
- 			       const char *append, size_t len,
- 			       size_t *max_size)
-@@ -978,6 +1010,7 @@ CONFIGFS_ATTR(, enable_multi_queue);
- CONFIGFS_ATTR(, migrate_ulls_period_ms);
- CONFIGFS_ATTR(, enable_psmi);
- CONFIGFS_ATTR(, disable_vram_page_offline);
-+CONFIGFS_ATTR(, bad_page_decay_secs);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -990,6 +1023,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_migrate_ulls_period_ms,
- 	&attr_enable_psmi,
- 	&attr_disable_vram_page_offline,
-+	&attr_bad_page_decay_secs,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
- 	&attr_survivability_mode,
-@@ -1279,6 +1313,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 	PRI_CUSTOM_ATTR("%d", enable_multi_queue);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
- 	PRI_CUSTOM_ATTR("%d", disable_vram_page_offline);
-+	PRI_CUSTOM_ATTR("%u", bad_page_decay_secs);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
- 	PRI_CUSTOM_ATTR("%d", force_ocode_load);
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
-@@ -1485,6 +1520,26 @@ bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev)
- 	return ret;
- }
- 
-+/**
-+ * xe_configfs_get_bad_page_decay_secs - get configfs bad_page_decay_secs setting
-+ * @pdev: pci device
-+ *
-+ * Return: bad_page_decay_secs setting in configfs
-+ */
-+u32 xe_configfs_get_bad_page_decay_secs(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	u32 ret;
-+
-+	if (!dev)
-+		return device_defaults.bad_page_decay_secs;
-+
-+	ret = dev->config.bad_page_decay_secs;
-+	config_group_put(&dev->group);
-+
-+	return ret;
-+}
-+
- /**
-  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
-  * @pdev: pci device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 3f0d68bfb9c9..5dd0d1d71fd6 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -26,6 +26,7 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
- bool xe_configfs_get_enable_multi_queue(struct pci_dev *pdev);
- u32 xe_configfs_get_migrate_ulls_period_ms(struct pci_dev *pdev);
- bool xe_configfs_get_disable_vram_page_offline(struct pci_dev *pdev);
-+u32 xe_configfs_get_bad_page_decay_secs(struct pci_dev *pdev);
- u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 				       enum xe_engine_class class,
- 				       const u32 **cs);
 diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 36d47de8b11b..30c3fe00c0f3 100644
+index 5aee3e135143..0dede12799bd 100644
 --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -229,6 +229,8 @@ static void xe_ttm_vram_buddy_free(struct xe_ttm_vram_mgr *mgr,
-  *
-  * Called with @mgr->lock held.
-  */
-+static unsigned long xe_ttm_vram_decay_gc_period(struct xe_ttm_vram_mgr *mgr);
-+
- static void xe_ttm_vram_retry_queued_pages(struct xe_ttm_vram_mgr *mgr)
- {
- 	struct xe_ttm_vram_offline_resource *pos, *n;
-@@ -247,6 +249,11 @@ static void xe_ttm_vram_retry_queued_pages(struct xe_ttm_vram_mgr *mgr)
- 		list_del(&pos->queued_link);
- 		++mgr->n_offlined_pages;
- 		list_add(&pos->offlined_link, &mgr->offlined_pages);
-+
-+		if (pos->mode == XE_PAGE_OFFLINE_SOFT && mgr->decay_interval_jiffies &&
-+		    !delayed_work_pending(&mgr->decay_gc_work))
-+			schedule_delayed_work(&mgr->decay_gc_work,
-+					      xe_ttm_vram_decay_gc_period(mgr));
+@@ -383,17 +383,20 @@ static void xe_ttm_vram_decay_gc_worker(struct work_struct *work)
+ 	struct xe_device *xe = ttm_to_xe_device(mgr->manager.bdev);
+ 	unsigned long now = jiffies;
+ 	unsigned long decay;
++	bool soft_remaining = false;
+ 
+ 	mutex_lock(&mgr->lock);
+ 	decay = mgr->decay_interval_jiffies;
+ 	if (!decay)
+-		goto reschedule;
++		goto unlock;
+ 
+ 	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
+ 		if (pos->mode != XE_PAGE_OFFLINE_SOFT)
+ 			continue;
+-		if (!time_after(now, pos->last_seen + decay))
++		if (!time_after(now, pos->last_seen + decay)) {
++			soft_remaining = true;
+ 			continue;
++		}
+ 
+ 		list_del(&pos->offlined_link);
+ 		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
+@@ -404,9 +407,11 @@ static void xe_ttm_vram_decay_gc_worker(struct work_struct *work)
+ 		kfree(pos);
  	}
+ 
+-reschedule:
+-	schedule_delayed_work(&mgr->decay_gc_work,
+-			      xe_ttm_vram_decay_gc_period(mgr));
++	/* Nothing left to track; re-armed on demand when a new SOFT entry appears */
++	if (soft_remaining)
++		schedule_delayed_work(&mgr->decay_gc_work,
++				      xe_ttm_vram_decay_gc_period(mgr));
++unlock:
+ 	mutex_unlock(&mgr->lock);
  }
  
-@@ -355,6 +362,54 @@ static const struct ttm_resource_manager_func xe_ttm_vram_mgr_func = {
- 	.debug	= xe_ttm_vram_mgr_debug
- };
- 
-+static unsigned long xe_ttm_vram_decay_gc_period(struct xe_ttm_vram_mgr *mgr)
-+{
-+	unsigned long decay = mgr->decay_interval_jiffies;
-+	unsigned long period = decay / 8;
-+	unsigned long floor = msecs_to_jiffies(60 * 1000);
-+
-+	/* Never poll less often than the configured decay itself. */
-+	if (period < floor)
-+		period = min(floor, decay);
-+	return period;
-+}
-+
-+static void xe_ttm_vram_decay_gc_worker(struct work_struct *work)
-+{
-+	struct xe_ttm_vram_mgr *mgr = container_of(to_delayed_work(work),
-+						   struct xe_ttm_vram_mgr,
-+						   decay_gc_work);
-+	struct xe_ttm_vram_offline_resource *pos, *n;
-+	struct xe_device *xe = ttm_to_xe_device(mgr->manager.bdev);
-+	unsigned long now = jiffies;
-+	unsigned long decay;
-+
-+	mutex_lock(&mgr->lock);
-+	decay = mgr->decay_interval_jiffies;
-+	if (!decay)
-+		goto reschedule;
-+
-+	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-+		if (pos->mode != XE_PAGE_OFFLINE_SOFT)
-+			continue;
-+		if (!time_after(now, pos->last_seen + decay))
-+			continue;
-+
-+		list_del(&pos->offlined_link);
-+		xe_ttm_vram_buddy_free(mgr, &pos->blocks, pos->used_visible_size);
-+		--mgr->n_offlined_pages;
-+		drm_info(&xe->drm,
-+			 "decay: reinstated soft-offlined page 0x%llx\n",
-+			 pos->addr);
-+		kfree(pos);
-+	}
-+
-+reschedule:
-+	schedule_delayed_work(&mgr->decay_gc_work,
-+			      xe_ttm_vram_decay_gc_period(mgr));
-+	mutex_unlock(&mgr->lock);
-+}
-+
- static const struct dmem_cgroup_ops xe_ttm_vram_mgr_dmem_ops;
- 
- static int xe_ttm_vram_mgr_dmem_reclaim(struct dmem_cgroup_pool_state *pool,
-@@ -415,6 +470,8 @@ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
- 	struct xe_ttm_vram_mgr *mgr = arg;
- 	struct ttm_resource_manager *man = &mgr->manager;
- 
-+	cancel_delayed_work_sync(&mgr->decay_gc_work);
-+
- 	mutex_lock(&mgr->lock);
- 	xe_ttm_vram_free_bad_pages(mgr);
- 	mutex_unlock(&mgr->lock);
-@@ -438,6 +495,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 	struct ttm_resource_manager *man = &mgr->manager;
- 	struct dmem_cgroup_region *cg;
- 	const char *name;
-+	u32 decay_secs;
- 	int err;
- 
- 	man->func = &xe_ttm_vram_mgr_func;
-@@ -447,6 +505,9 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
- 		return err;
- 	INIT_LIST_HEAD(&mgr->offlined_pages);
- 	INIT_LIST_HEAD(&mgr->queued_pages);
-+	INIT_DELAYED_WORK(&mgr->decay_gc_work, xe_ttm_vram_decay_gc_worker);
-+	decay_secs = xe_configfs_get_bad_page_decay_secs(to_pci_dev(xe->drm.dev));
-+	mgr->decay_interval_jiffies = secs_to_jiffies(decay_secs);
- 	mgr->default_page_size = default_page_size;
- 	mgr->visible_size = io_size;
- 	mgr->visible_avail = io_size;
-@@ -725,13 +786,21 @@ static bool xe_ttm_vram_page_already_processed(struct xe_ttm_vram_mgr *mgr,
- 	lockdep_assert_held(&mgr->lock);
- 
- 	list_for_each_entry(pos, &mgr->offlined_pages, offlined_link) {
--		if (pos->addr == addr)
-+		if (pos->addr == addr) {
-+			if (pos->mode == XE_PAGE_OFFLINE_SOFT)
-+				pos->mode = XE_PAGE_OFFLINE_HARD;
-+			pos->last_seen = jiffies;
- 			return true;
-+		}
- 	}
- 
- 	list_for_each_entry(pos, &mgr->queued_pages, queued_link) {
--		if (pos->addr == addr)
-+		if (pos->addr == addr) {
-+			if (pos->mode == XE_PAGE_OFFLINE_SOFT)
-+				pos->mode = XE_PAGE_OFFLINE_HARD;
-+			pos->last_seen = jiffies;
- 			return true;
-+		}
- 	}
- 
- 	return false;
-@@ -804,6 +873,8 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
- 		INIT_LIST_HEAD(&nentry->blocks);
- 		nentry->status = XE_PAGE_RESERVE_PENDING;
- 		nentry->addr = addr;
-+		nentry->mode = XE_PAGE_OFFLINE_SOFT;
-+		nentry->last_seen = jiffies;
- 
- 		if (block) {
- 			pbo = xe_ttm_vram_block_owner_get(xe, block);
-@@ -843,6 +914,11 @@ static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, u64 addr,
- 			}
- 			++vram_mgr->n_offlined_pages;
- 			list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
-+			if (vram_mgr->decay_interval_jiffies &&
-+			    !delayed_work_pending(&vram_mgr->decay_gc_work)) {
-+				schedule_delayed_work(&vram_mgr->decay_gc_work,
-+						      xe_ttm_vram_decay_gc_period(vram_mgr));
-+			}
- 			return ret;
- 		}
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 4a2cd27a5b61..0a6d8f8c2aa8 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -7,8 +7,16 @@
- #define _XE_TTM_VRAM_MGR_TYPES_H_
- 
- #include <linux/gpu_buddy.h>
-+#include <linux/workqueue.h>
- #include <drm/ttm/ttm_device.h>
- 
-+#define XE_BAD_PAGE_DECAY_SECS_DEFAULT	(24 * 60 * 60)
-+
-+enum xe_page_offline_mode {
-+	XE_PAGE_OFFLINE_SOFT = 0,
-+	XE_PAGE_OFFLINE_HARD,
-+};
-+
- /**
-  * struct xe_ttm_vram_mgr - Xe TTM VRAM manager
-  *
-@@ -37,6 +45,10 @@ struct xe_ttm_vram_mgr {
- 	struct mutex lock;
- 	/** @mem_type: The TTM memory type */
- 	u32 mem_type;
-+	/** @decay_gc_work: reinstates expired soft-offlined pages */
-+	struct delayed_work decay_gc_work;
-+	/** @decay_interval_jiffies: soft-offline decay interval */
-+	unsigned long decay_interval_jiffies;
- };
- 
- /**
-@@ -79,6 +91,10 @@ struct xe_ttm_vram_offline_resource {
- 	u64 addr;
- 	/** @status: buddy reservation status */
- 	enum xe_page_reserve_status status;
-+	/** @mode: soft or hard offline mode */
-+	enum xe_page_offline_mode mode;
-+	/** @last_seen: most recent hardware report time */
-+	unsigned long last_seen;
- };
- 
- #endif
 -- 
 2.52.0
 
