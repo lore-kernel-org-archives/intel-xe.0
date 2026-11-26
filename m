@@ -2,52 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79472606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 15:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Gc4DXHdS
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE732606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 15:30:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9FD1124C8;
-	Thu, 26 Nov 2026 15:05:29 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF77A1124C8
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 15:05:23 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 84D0A429EC;
- Thu, 26 Nov 2026 15:05:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38AB81F000EE;
- Thu, 26 Nov 2026 15:05:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795705523;
- bh=YvokoAOy0a19UX4sPsknIKqr7EAtQvmA6miF4Jks09k=;
- h=Date:From:To:Cc:Subject;
- b=Gc4DXHdSsRwBXnY6NwergtTyQQBnGKfvOth1sIUoreLWYs0OnQg532RdHZZQE3Pd8
- PiU1ALzV520yASfkRKhct541c6kMUNJHx/7UG+4smgE0pg0ezm1eUNsYh5wVxLOXWW
- FR1sYckpkcOMpaWK2Cxo5rNSq6pL0jq0LGoCX3g0gAiytgWN+A7w36j7UjU34mOi17
- bAuZrO59ADsM3TEfROoRIg3L2RXfn+Nc7Zx1XFagQmaweH3qS7WOty59t7HtYlKEsL
- 0C5qxEjUR35zLdQTvg4rnkY297Tfq/486MLPYnt0RGowR2k1nkFU4Sc7M+oKzhrzE4
- qjARVPE54oBfA==
-Date: Thu, 26 Nov 2026 15:05:16 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Dave Airlie <airlied@redhat.com>,
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- Raag Jadav <raag.jadav@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: linux-next: manual merge of the drm-xe tree with the origin tree
-Message-ID: <awhKrF41vLIOFkKf@sirena.org.uk>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86364112509;
+	Thu, 26 Nov 2026 15:30:51 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9B31124F8;
+ Thu, 26 Nov 2026 15:30:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7297113441816818264=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="euPJhX6bzYrQgnGb"
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vram=3A_decay-based_?=
+ =?utf-8?q?reinstatement_of_soft-offlined_VRAM_pages_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Nov 2026 15:30:50 -0000
+Message-ID: <179570705049.94031.9802189521431610152@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261126104552.3890797-5-tejas.upadhyay@intel.com>
+In-Reply-To: <20261126104552.3890797-5-tejas.upadhyay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,182 +33,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+--===============7297113441816818264==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---euPJhX6bzYrQgnGb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+== Series Details ==
 
-Hi all,
+Series: drm/xe/vram: decay-based reinstatement of soft-offlined VRAM pages (rev2)
+URL   : https://patchwork.freedesktop.org/series/178398/
+State : success
 
-Today's linux-next merge of the drm-xe tree got a conflict in:
+== Summary ==
 
-  drivers/gpu/drm/xe/xe_device.c
+CI Bug Log - changes from xe-6241-c7a2a8c7a31d55cffae58b6551a554b65009c67a_BAT -> xe-pw-178398v2_BAT
+====================================================
 
-between commits:
+Summary
+-------
 
-  7539edbca32d6 ("drm/xe/pat: Return error from xe_pat_init_early() on unkn=
-own platform")
-  8801081e5991e ("drm/xe/gt: Use GT ordered workqueue for wedging")
-  402567ac0875b ("drm/xe: Drop xe_device_set_wedged_method()")
-  031cc955b33b0 ("drm/xe: Move xe_device_wedged_fini() registration to xe_d=
-evice_probe_early()")
-  b828d2b7326b5 ("drm/xe: Make xe_device_declare_wedged() IRQ safe")
-  72296e02b46a3 ("drm/xe/hwmon: Unregister hwmon before the device is unplu=
-gged")
+  **SUCCESS**
 
-=66rom the origin tree and commits:
+  No regressions found.
 
-  2c0f72dd1483f ("drm/xe: run compute rebind worker on device NUMA node")
-  f8bb5c0459f4d ("drm/xe: Add a userptr repin timeout sysfs attribute")
-  3b4cc31db4407 ("drm/xe/vsec: Support late bind fw information")
-  344b7ec704ee0 ("drm/xe/vsec: Update VSEC probe order")
-  6bae3d8f56944 ("drm/xe/hwmon: Unregister hwmon before the device is unplu=
-gged")
-  17615c99ccc8e ("drm/xe/wopcm: Use the size from HW when excluding the wop=
-cm range from GGTT")
-  61df0d1929e7e ("drm/xe: Add a per-client debugfs file reporting bo NUMA n=
-ode distribution")
+  
 
-=66rom the drm-xe tree.
+Participating hosts (15 -> 15)
+------------------------------
 
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
+  No changes in participating hosts
 
-diff --combined drivers/gpu/drm/xe/xe_device.c
-index 8148c66eb7da9,36693df655941..0000000000000
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@@ -8,7 -8,9 +8,9 @@@
-  #include <linux/aperture.h>
-  #include <linux/delay.h>
-  #include <linux/error-injection.h>
-+ #include <linux/nodemask.h>
-  #include <linux/units.h>
-+ #include <linux/workqueue.h>
- =20
-  #include <drm/drm_client.h>
-  #include <drm/drm_gem_ttm_helper.h>
-@@@ -127,6 -129,8 +129,8 @@@ static int xe_file_open(struct drm_devi
-  		put_task_struct(task);
-  	}
- =20
-+ 	xe_debugfs_client_add(file);
-+=20
-  	return 0;
-  }
- =20
-@@@ -387,6 -391,9 +391,9 @@@ static void xe_device_destroy(struct dr
-  	if (xe->preempt_fence_wq)
-  		destroy_workqueue(xe->preempt_fence_wq);
- =20
-+ 	if (xe->rebind_wq)
-+ 		destroy_workqueue(xe->rebind_wq);
-+=20
-  	if (xe->ordered_wq)
-  		destroy_workqueue(xe->ordered_wq);
- =20
-@@@ -437,6 -444,10 +444,10 @@@ struct xe_device *xe_device_create(stru
-  	if (err)
-  		return ERR_PTR(err);
- =20
-+ 	xe->userptr_repin_timeout_ms =3D num_online_nodes() > 1 ?
-+ 		XE_USERPTR_REPIN_TIMEOUT_MS_NUMA_DEFAULT :
-+ 		XE_USERPTR_REPIN_TIMEOUT_MS_DEFAULT;
-+=20
-  	return xe;
-  }
-  ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
-@@@ -516,10 -527,11 +527,11 @@@ int xe_device_init_early(struct xe_devi
- =20
-  	xe->preempt_fence_wq =3D alloc_ordered_workqueue("xe-preempt-fence-wq",
-  						       WQ_MEM_RECLAIM);
-+ 	xe->rebind_wq =3D alloc_workqueue("xe-rebind-wq", WQ_UNBOUND, 0);
-  	xe->ordered_wq =3D alloc_ordered_workqueue("xe-ordered-wq", 0);
-  	xe->unordered_wq =3D alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
-  	xe->destroy_wq =3D alloc_workqueue("xe-destroy-wq", WQ_PERCPU | WQ_MEM_R=
-ECLAIM, 0);
-- 	if (!xe->ordered_wq || !xe->unordered_wq ||
-+ 	if (!xe->ordered_wq || !xe->unordered_wq || !xe->rebind_wq ||
-  	    !xe->preempt_fence_wq || !xe->destroy_wq) {
-  		/*
-  		 * Cleanup done in xe_device_destroy via
-@@@ -934,6 -946,10 +946,10 @@@ int xe_device_probe(struct xe_device *x
-  	override_has_cached_pt(xe);
- =20
-  	for_each_tile(tile, xe, id) {
-+ 		err =3D xe_tile_wopcm_init(tile);
-+ 		if (err)
-+ 			return err;
-+=20
-  		err =3D xe_ggtt_init_early(tile->mem.ggtt);
-  		if (err)
-  			return err;
-@@@ -1086,18 -1102,18 +1102,18 @@@
-  	if (err)
-  		goto err_unregister_display;
- =20
-+ 	xe_vsec_init(xe);
-+=20
-  	xe_debugfs_register(xe);
- =20
-  	err =3D xe_hwmon_register(xe);
-  	if (err)
-- 		goto err_unregister_display;
-+ 		goto err_unregister_vsec;
- =20
-  	err =3D xe_i2c_probe(xe);
-  	if (err)
-  		goto err_unregister_hwmon;
- =20
-- 	xe_vsec_init(xe);
--=20
-  	err =3D xe_sriov_init_late(xe);
-  	if (err)
-  		goto err_unregister_hwmon;
-@@@ -1112,6 -1128,8 +1128,8 @@@
- =20
-  err_unregister_hwmon:
-  	xe_hwmon_unregister(xe);
-+ err_unregister_vsec:
-+ 	xe_vsec_remove(xe);
-  err_unregister_display:
-  	xe_display_unregister(xe);
-  	drm_dev_unregister(&xe->drm);
-@@@ -1122,6 -1140,7 +1140,7 @@@
-  void xe_device_remove(struct xe_device *xe)
-  {
-  	xe_hwmon_unregister(xe);
-+ 	xe_vsec_remove(xe);
-  	xe_display_unregister(xe);
- =20
-  	drm_dev_unplug(&xe->drm);
 
---euPJhX6bzYrQgnGb
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes
+-------
 
------BEGIN PGP SIGNATURE-----
+  No changes found
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmsISqsACgkQJNaLcl1U
-h9DPKgf8Dc97/sBDlroQt5qpU1AjJCB57ogqv6GJwWZdDY54WAD55YyCQlcZxj3P
-pj/o3PEmxjs7D8VbSRqw2+9BAKyTt7RbTI1F1MveWzDO3BnkbkNK6DFdU4ii/8bW
-RumJvyv08S7xBs8cTvv6vF6A66//v5jh4meyY8tOftBBlW3ibrKbkgicRGiy7BD8
-YV630hh9OAnRwcGY3kZjCs8Ok4HgzsDPw9CfUgviEaCa88vJH0otEsSAqf/o8ZWo
-Ih6IxvNiA6qq14g8KtNhSOt+lje9c+zabkEuCZ7pulWgqjkUjU0mr7GMt7sVH1kQ
-eP/1tt8Sla6O2rPSYr4Eevs8u2V69g==
-=nddl
------END PGP SIGNATURE-----
 
---euPJhX6bzYrQgnGb--
+Build changes
+-------------
+
+  * Linux: xe-6241-c7a2a8c7a31d55cffae58b6551a554b65009c67a -> xe-pw-178398v2
+
+  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-6241-c7a2a8c7a31d55cffae58b6551a554b65009c67a: c7a2a8c7a31d55cffae58b6551a554b65009c67a
+  xe-pw-178398v2: 178398v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178398v2/index.html
+
+--===============7297113441816818264==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vram: decay-based reinstatement of soft-offlined VRAM pages (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/178398/">https://patchwork.freedesktop.org/series/178398/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178398v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-178398v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6241-c7a2a8c7a31d55cffae58b6551a554b65009c67a_BAT -&gt; xe-pw-178398v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6241-c7a2a8c7a31d55cffae58b6551a554b65009c67a -&gt; xe-pw-178398v2</li>
+</ul>
+<p>IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-6241-c7a2a8c7a31d55cffae58b6551a554b65009c67a: c7a2a8c7a31d55cffae58b6551a554b65009c67a<br />
+  xe-pw-178398v2: 178398v2</p>
+
+</body>
+</html>
+
+--===============7297113441816818264==--
