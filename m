@@ -2,61 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 039D4606A326
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 09:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Zl/IwE0G
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6389606A32D
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 09:27:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F63D11218F;
-	Thu, 26 Nov 2026 09:25:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAFAE11218F
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 09:25:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795685140; x=1827221140;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=eB/VkuXvMQlN8o0SkcUmp43o1tZV0NhPIXcnHc0u+yo=;
- b=Zl/IwE0GNQOypu7X+qC4R4ljeyFvuj37EFEN5bWkV10TVfl703rA9yNT
- qEp9lEt4pv0GBUcKrisn+SGbkaYLkYpQk6I/0WRZakyjduC9n8qU2cd68
- YByoNGuFoQVGOYB9/q/cWIiWDEaSh5MLxxlIrqfi620/3vtIVqRa54maH
- usmBupzGJutbxkB3WFxcySdUGinevIWd/ktsTxzA1TdEnuHfmFpgpAjer
- 1jWk1xcNy+gfVCMcGNDnRrU3q4mSzb8dFKp72WFo5IVv5Or8FK87ERJj/
- j0jnJDxXWcYOVDiv4SaHMnvB5nCdoQ7K3z0Kj8amg1NCbbJnSpItxs7GL g==;
-X-CSE-ConnectionGUID: 7HAqMHTzTVmvJE6rEPN8sQ==
-X-CSE-MsgGUID: 0hTaKzozQDeQZYSsLhdJAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4493966"
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4493966"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 01:25:40 -0800
-X-CSE-ConnectionGUID: QeTF1NbPRRixs4XHka/BBA==
-X-CSE-MsgGUID: EOQ6QJhSTw6CsR44X99zvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12446319"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 01:25:37 -0800
-Date: Thu, 26 Nov 2026 10:25:34 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Riana Tauro <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, badal.nilawar@intel.com,
- aravind.iddamsetty@linux.intel.com,
- ravi.kishore.koppuravuri@intel.com, mallesh.koujalagi@intel.com,
- tejas.upadhyay@intel.com
-Subject: Re: [PATCH v4 3/3] drm/xe/ras: Skip offline queue processing after
- device unplug
-Message-ID: <awf7DtksUhNVbRDa@black.igk.intel.com>
-References: <20261126083516.1932195-5-riana.tauro@intel.com>
- <20261126083516.1932195-8-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 706B61121A4;
+	Thu, 26 Nov 2026 09:27:41 +0000 (UTC)
+Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0A9711219D;
+ Thu, 26 Nov 2026 09:27:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6563747818266055698=="
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20261126083516.1932195-8-riana.tauro@intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Handle_sysctrl_event_for_pa?=
+ =?utf-8?q?ge_offline_full?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tauro, Riana" <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Nov 2026 09:27:40 -0000
+Message-ID: <179568526097.91271.11480139017806427894@9ac1b63fe3ea>
+X-Patchwork-Hint: ignore
+References: <20261126083516.1932195-5-riana.tauro@intel.com>
+In-Reply-To: <20261126083516.1932195-5-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +33,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-5.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
 	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Thu, Nov 26, 2026 at 02:05:20PM +0530, Riana Tauro wrote:
-> The system controller worker can drain the offline queue at runtime.
-> During teardown, devres runs ras_fini() before sysctrl_fini(), so the
-> worker can still run after the offlined pages XArray is destroyed:
-> 
->   CPU0 (teardown)                 CPU1 (sysctrl worker)
->   ras_fini()
->     xa_destroy()
->                                   xe_ras_get_offline_queue()
->                                     ...
->                                       xa_store()
->   sysctrl_fini()
->     disable_work_sync()
-> 
-> Wrap xe_ras_get_offline_queue() in drm_dev_enter()/drm_dev_exit().
-> drm_dev_unplug() runs before devres teardown and waits for in-flight
-> sections, so no queue processing runs after ras_fini().
+--===============6563747818266055698==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Considering the current state of affairs, this is going to become more
-and more difficult to manage. Rather, introduce a ordered workqueue as
-part if xe_ras state and schedule both sysctrl and hw_error work on it.
+== Series Details ==
 
-Raag
+Series: Handle sysctrl event for page offline full
+URL   : https://patchwork.freedesktop.org/series/179718/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326_BAT -> xe-pw-179718v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (15 -> 15)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-179718v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-1:          [ABORT][1] ([Intel XE#9841]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179718v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#9841]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841
+
+
+Build changes
+-------------
+
+  * Linux: xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326 -> xe-pw-179718v1
+
+  IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326: 38fc48e17b82ca1d9903a982ce596280f8172326
+  xe-pw-179718v1: 179718v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179718v1/index.html
+
+--===============6563747818266055698==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Handle sysctrl event for page offline full</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179718/">https://patchwork.freedesktop.org/series/179718/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179718v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179718v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326_BAT -&gt; xe-pw-179718v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 15)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-179718v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841">Intel XE#9841</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179718v1/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326 -&gt; xe-pw-179718v1</li>
+</ul>
+<p>IGT_9204: 52e9317c945f97f29fbec75be29280fc7b00cf32 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-6239-38fc48e17b82ca1d9903a982ce596280f8172326: 38fc48e17b82ca1d9903a982ce596280f8172326<br />
+  xe-pw-179718v1: 179718v1</p>
+
+</body>
+</html>
+
+--===============6563747818266055698==--
