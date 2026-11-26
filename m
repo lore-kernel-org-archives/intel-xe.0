@@ -2,43 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173C3606A31E
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 06:43:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49FFA606A321
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 06:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=KRs06f9d
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GgZQZeo+
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE69310FF36;
-	Thu, 26 Nov 2026 06:43:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE3D610FFED;
+	Thu, 26 Nov 2026 06:44:26 +0000 (UTC)
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A6F8110FED1;
- Thu, 26 Nov 2026 06:43:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 841BE10FF7B;
+ Thu, 26 Nov 2026 06:44:20 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 7111D44DF8;
- Thu, 26 Nov 2026 06:43:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC1AB1F000C0;
- Thu, 26 Nov 2026 06:43:35 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6D34C4075E;
+ Thu, 26 Nov 2026 06:44:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A9D1F000D0;
+ Thu, 26 Nov 2026 06:44:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795675415;
- bh=TdS4tb+7ucbORVyPqEmYQ46gdISDNirRhWTQ/dwvWIQ=;
+ s=k20260515; t=1795675460;
+ bh=CQ8yEE9+jKxMjGkx1TQC+oC5Q/Qzj2e6QCy/48/w2K8=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=KRs06f9d7XNerA+qV+GvAfHaQ20lQdB8XIWoGTelG9yGEzkCeqcTy8cwwnbTT73cz
- ztpJr1NDoPudubLU5YxgwQLn0tbiRa+qHt6FLa79CEQRbCDYTf/Zos0tkqRrpUNvKO
- ausKdZrjoLF5wvzNwHXM/MDKT3raVy/kIpKdaM5Jv0/WXJUY/8bybr8pvaRWYK+HWG
- R0Klbquzn/iRSRtVDWi4eANjbKPhmko12a0cigRJXG1hDU+122ky91MmNCMpdFWOQV
- rZ3+lygM5d85yLoOGBXGIfRdzOCaF/aQNTFfIkbtyQJQB+bxEOQ9WFOk4RLD3y3DQi
- Q9qb3yCFv/lmw==
-Message-ID: <sashiko-outbox-234887@kernel.org>
+ b=GgZQZeo+AWp1Ho8HrVJMv+moJ9YYwdBwJE8Q/9xq6L/TLb+1ssQwNhHOt+Hf9GBsQ
+ cnB2SSNebTawWXTMTq6JQ587JV8BDzy3KpfyQKUpRq2sreRhdRZysCbw+bQP1vHDBa
+ AxGULWM/UerzQHfneiWup9toHAVGKiEBdj4uE6D8UwWCdejN8HlneZ/J2A5Ar2AGuK
+ 3OgrlQIDZ6YmTp+AWTZFJiwEsAjS7lJPXo8DXfD4Fr4BZjjVYwPbiHr8DOZzMejNi6
+ rtYh5jff7CUjfi7lEgRBdKJ+DkDetKnKwZ/VB5M6utVX/mxpqJr7ReUrOLaG+ECw/R
+ e8okmBNL6BMgA==
+Message-ID: <sashiko-outbox-234893@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 01/15] drm/i915/display: Rename port sync master/slave
- to primary/secondary
+Subject: Re: [PATCH 10/15] drm/i915/vrr: Split out setting the guardband
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261126063459.863698-2-suraj.kandpal@intel.com>
+In-Reply-To: <20261126063459.863698-11-suraj.kandpal@intel.com>
 References: <20261126063459.863698-1-suraj.kandpal@intel.com>
- <20261126063459.863698-2-suraj.kandpal@intel.com>
+ <20261126063459.863698-11-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 26 Nov 2026 06:43:35 +0000
+Date: Thu, 26 Nov 2026 06:44:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,94 +57,61 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found no new issues
-in this patch, but noticed 1 related pre-existing issue it does not
-introduce:
-- [High] drm/i915/display: NULL pointer dereference in
-  intel_dmc_disable_pipe() [1]
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Low] drm/i915/vrr: setter intel_vrr_guardband_val() named like a
+  value getter
 --
 
-commit 334735c1efc642c8d8a8c52554a839cfe3685f38
+commit db54f00770dd52e82e61cd7ca35d6aebd9822459
 Author: Suraj Kandpal <suraj.kandpal@intel.com>
 
-drm/i915/display: Rename port sync master/slave to primary/secondary
+drm/i915/vrr: Split out setting the guardband
 
-This commit renames the transcoder port sync state fields and helper
-functions from master/slave to primary/secondary to match BSpec
-terminology.
+This commit splits setting crtc_state->vrr.guardband and the derived
+vblank start and pipeline full values out of intel_vrr_compute_guardband()
+into a new intel_vrr_guardband_val() helper.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers=
-/gpu/drm/i915/display/intel_modeset_setup.c
-> index 6aed881737705..4c594373829ba 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-[ ... ]
-> @@ -263,34 +264,34 @@ static void intel_crtc_disable_noatomic(struct inte=
-l_crtc *crtc,
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index 47603c1412989..ad88034c23f89 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -620,22 +620,13 @@ static bool intel_vrr_use_optimized_guardband(const=
+ struct intel_crtc_state *crt
+>  	return true;
+>  }
+> =20
+> -void intel_vrr_compute_guardband(struct intel_crtc_state *crtc_state)
+> +void intel_vrr_guardband_val(struct intel_crtc_state *crtc_state, int gu=
+ardband)
 >  {
->  	struct intel_display *display =3D to_intel_display(crtc);
->  	struct intel_crtc *temp_crtc;
-> -	u16 portsync_master_mask;
-> -	u16 portsync_slaves_mask;
-> +	u16 portsync_primary_mask;
-> +	u16 portsync_secondaries_mask;
->  	u16 joiner_secondaries_mask;
+>  	struct intel_display *display =3D to_intel_display(crtc_state);
+>  	struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjusted_mod=
+e;
+>  	struct drm_display_mode *pipe_mode =3D &crtc_state->hw.pipe_mode;
+> -	int guardband;
 > =20
->  	/* TODO: Add support for MST */
-> -	get_portsync_pipes(crtc, &portsync_master_mask, &portsync_slaves_mask);
-> +	get_portsync_pipes(crtc, &portsync_primary_mask, &portsync_secondaries_=
-mask);
->  	joiner_secondaries_mask =3D get_joiner_secondary_pipes(display,
-> -							     portsync_master_mask |
-> -							     portsync_slaves_mask);
-> +							     portsync_primary_mask |
-> +							     portsync_secondaries_mask);
-> =20
->  	drm_WARN_ON(display->drm,
-> -		    portsync_master_mask & portsync_slaves_mask ||
-> -		    portsync_master_mask & joiner_secondaries_mask ||
-> -		    portsync_slaves_mask & joiner_secondaries_mask);
-> +		    portsync_primary_mask & portsync_secondaries_mask ||
-> +		    portsync_primary_mask & joiner_secondaries_mask ||
-> +		    portsync_secondaries_mask & joiner_secondaries_mask);
-> =20
->  	for_each_intel_crtc_in_pipe_mask(display, temp_crtc, joiner_secondaries=
-_mask)
->  		intel_crtc_disable_noatomic_begin(temp_crtc, ctx);
+> -	if (!intel_vrr_possible(crtc_state))
+> -		return;
+> -
+> -	if (intel_vrr_use_optimized_guardband(crtc_state))
+> -		guardband =3D intel_vrr_compute_optimized_guardband(crtc_state);
+> -	else
+> -		guardband =3D crtc_state->vrr.vmin - adjusted_mode->crtc_vdisplay;
+> -
+> -	crtc_state->vrr.guardband =3D min(guardband, intel_vrr_max_guardband(cr=
+tc_state));
+> +	crtc_state->vrr.guardband =3D guardband;
 
-[Severity: High]
-This problem wasn't introduced by this patch, but can calling
-intel_crtc_disable_noatomic_begin() on each CRTC in
-joiner_secondaries_mask cause a NULL pointer dereference in
-intel_dmc_disable_pipe() [1]?
-
-When intel_sanitize_crtc() disables an active joined CRTC during probe or
-resume, intel_crtc_disable_noatomic_begin() only adds BIT(pipe) |
-intel_crtc_joiner_secondary_pipes(crtc_state) to the temporary atomic
-state, which omits the joiner primary pipe when called on a joiner
-secondary CRTC.  Then display->modeset.funcs->crtc_disable() calls
-hsw_crtc_disable(), where for_each_pipe_crtc_modeset_disable() iterates
-over all pipes in old_crtc_state->joiner_pipes starting with the joiner
-primary:
-
-drivers/gpu/drm/i915/display/intel_display.c:hsw_crtc_disable() {
-    ...
-	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
-		const struct intel_crtc_state *old_pipe_crtc_state =3D
-			intel_atomic_get_old_crtc_state(state, pipe_crtc);
-
-		intel_dmc_disable_pipe(old_pipe_crtc_state);
-	}
-}
-
-Because the joiner primary CRTC is not in state,
-intel_atomic_get_old_crtc_state() returns NULL and
-intel_dmc_disable_pipe() dereferences crtc_state->uapi.crtc.  Calling
-hsw_crtc_disable() on the secondary CRTC also calls intel_dpll_disable()
-before the primary CRTC's encoder and transcoder have been disabled.
-
-[1] https://sashiko.dev/#/bug/linux-c6e57ac7-2e62-4987-9809-b5532eead653
+[Severity: Low]
+This isn't a bug, but across i915 display, helpers without a verb or
+ending in _val() (such as intel_vrr_vmin_vtotal() or
+skl_plane_wm_reg_val()) are side-effect-free getters that return a value,
+whereas void helpers that mutate state use a verb.  Since this sets
+crtc_state->vrr.guardband and updates derived timing fields in crtc_state,
+would a name like intel_vrr_set_guardband() be clearer?
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261126063459.8636=
-98-1-suraj.kandpal@intel.com?part=3D1
+98-1-suraj.kandpal@intel.com?part=3D10
