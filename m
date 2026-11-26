@@ -2,42 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE13E606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 06:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF0C606A326
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 07:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YvO6ckC0
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=nkz5wVfu
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F19210E175;
-	Thu, 26 Nov 2026 06:54:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1206710FFFE;
+	Thu, 26 Nov 2026 07:06:13 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B058A10E313;
- Thu, 26 Nov 2026 06:54:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3580110FFFE;
+ Thu, 26 Nov 2026 07:06:07 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 352CA6296C;
- Thu, 26 Nov 2026 06:54:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C27661F000C6;
- Thu, 26 Nov 2026 06:54:25 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 90DA4611C6;
+ Thu, 26 Nov 2026 07:06:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3A821F000C0;
+ Thu, 26 Nov 2026 07:06:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795676065;
- bh=EjSUkbws3pLGFGFMGeHW/e5vH2iummJh80EPGBRKK6s=;
+ s=k20260515; t=1795676766;
+ bh=Rq+JXzU6hYCM9M8ydH10hGJhgeSXMvMez2joqxIHbIQ=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=YvO6ckC0kkZwSuiQ1w7qiUNV8fPURgLX0aJC0xT/heFB0QVPjjapjRTbEsnfCkvWq
- oLmW4SUnjskGeeYFFi9l/3JWvXjxgD+rP6xfwBuuomZWSL7oI2iwL82nXKnY6REAs8
- piNQDCPQP3D5Yixrc5ef/zkuU3279jnvzQ90M7WWj73qJJBfyCM/t552d70iwQx6o6
- hvP3mdJLKGejVvdXtjuCHVGQGTRX0vdIwbBdYVMJbNJqNW1xn+w3V2lJXNnOyKks5O
- /ObjunOCgPgY3cOnDkMEbWX7JPMJZE23p7agKGnEhkLh9+oaYsuh8ElnHWMbqMHSQm
- BcmqjDfgiE75w==
-Message-ID: <sashiko-outbox-234916@kernel.org>
+ b=nkz5wVfugC5eOgFHZsCxC1Gs4M9lit0Q7EzUwSpp4w+uQZwhU80vzHap0WC8KfZ7n
+ PSgG1/Effri67bzmGtIbDCeYNpaJbkAaexRMauDHAOeS3qzj6jnSsf6OHlTNsu2C40
+ 0HxZJOEjrLK33mKYpgGCdNC03heyzIr3rpCyBTyWCzR0AkGPSI04z2LT1sJAB1rsKf
+ Sm/CAnXCAVQN91adlnTULhu3IxgOQxu3ABKnpZ51JpnF6JvgyQ62tPI63f9RCHvwe/
+ sA/bFmpfay6koTF7V8yNlciaPZq76MY0VqXCL/ej20BZvsTObMYwL84vwwGzy1Oz35
+ jnOnNil9Ire8w==
+Message-ID: <sashiko-outbox-234928@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 14/15] drm/i915/display: Use pipelock on PTL
+Subject: Re: [PATCH 12/15] drm/i915/dp: Apply link training fallback to the
+ whole tile group
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261126063459.863698-15-suraj.kandpal@intel.com>
+In-Reply-To: <20261126063459.863698-13-suraj.kandpal@intel.com>
 References: <20261126063459.863698-1-suraj.kandpal@intel.com>
- <20261126063459.863698-15-suraj.kandpal@intel.com>
+ <20261126063459.863698-13-suraj.kandpal@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 26 Nov 2026 06:54:25 +0000
+Date: Thu, 26 Nov 2026 07:06:05 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,50 +60,113 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 1 potential
 issue to consider:
-- [High] drm/i915/cx0: NULL dereference in intel_cx0pll_update_ssc() on
-  HDMI-only ports
+- [Medium] drm/i915/dp: unsynchronized peer link_caps access in
+  intel_dp_tile_group_fallback()
 --
 
-commit a9ddc45c910d4e151b59c9dfac29d2580fc18bce
+commit 68cc58bbaafcfb065f2593125e09f6bebc6846cc
 Author: Suraj Kandpal <suraj.kandpal@intel.com>
 
-drm/i915/display: Use pipelock on PTL
+drm/i915/dp: Apply link training fallback to the whole tile group
 
-This commit enables pipelock on display version 30 (PTL) and disables SSC in
-the CX0 PLL state for connectors where pipelock is possible.
+This commit applies the reduced link limits of a pipelock-capable tiled
+connector that fails link training to the other connectors in its tile
+group.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
-rm/i915/display/intel_cx0_phy.c
-> index d13bb3b2750a8..31324ac469655 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/driv=
+ers/gpu/drm/i915/display/intel_dp_link_training.c
+> index ac1aff6edf052..d19f8d9b2c604 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 [ ... ]
-> @@ -1992,6 +1993,10 @@ static void intel_cx0pll_update_ssc(struct intel_e=
-ncoder *encoder,
->  	if (is_dp) {
->  		if (intel_panel_use_ssc(display)) {
->  			struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+> @@ -1976,6 +1977,37 @@ int intel_dp_get_link_train_fallback_values(struct=
+ intel_dp *intel_dp,
+>  	return err;
+>  }
+> =20
+> +static void intel_dp_tile_group_fallback(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display =3D to_intel_display(intel_dp);
+> +	struct intel_connector *connector =3D intel_dp->attached_connector;
+> +	struct intel_dp_link_config max_link_limits;
+> +	struct drm_connector_list_iter conn_iter;
+> +	struct intel_connector *iter;
 > +
-> +			if (intel_pipelock_connector_possible(intel_dp->attached_connector))
-> +				return;
+> +	if (!intel_pipelock_connector_possible(connector))
+> +		return;
 > +
->  			pll_state->ssc_enabled =3D
->  				(intel_dp->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
->  		}
+> +	intel_dp_link_caps_get_max_limits(intel_dp->link.caps, &max_link_limits=
+);
+> +
+> +	drm_connector_list_iter_begin(display->drm, &conn_iter);
+> +	for_each_intel_connector_iter(iter, &conn_iter) {
+> +		struct intel_dp *iter_dp;
+> +
+> +		if (iter =3D=3D connector || !intel_pipelock_connector_possible(iter) =
+||
+> +		    iter->base.tile_group !=3D connector->base.tile_group)
+> +			continue;
+> +
+> +		iter_dp =3D intel_attached_dp(iter);
+> +
+> +		if (!intel_dp_link_caps_set_max_limits(iter_dp->link.caps, &max_link_l=
+imits))
+> +			drm_dbg_kms(display->drm,
+> +				    "[CONNECTOR:%d:%s] Can't limit link to match tile group\n",
+> +				    iter->base.base.id, iter->base.name);
+> +	}
+> +	drm_connector_list_iter_end(&conn_iter);
+> +}
 
-[Severity: High]
-Can intel_dp->attached_connector be NULL here, causing a NULL pointer
-dereference in intel_pipelock_connector_possible()?
+[Severity: Medium]
+Can walking the device-wide connector list here race with concurrent
+updates to iter_dp->link.caps on a sibling connector?
 
-For an HDMI-only DDI port (init_dp =3D=3D false in intel_ddi_init()),
-dig_port->dp.attached_connector is left NULL.  On display version 30,
-intel_cx0_pll_power_save_wa() runs during probe, resume, and reset on every
-disabled C10 PHY digital port without checking if the port initialized DP,
-and calls intel_c10pll_calc_state_from_table(..., is_dp =3D true) ->
-intel_cx0pll_update_ssc().  intel_pipelock_connector_possible() then
-unconditionally dereferences connector via to_intel_display(connector) and
-connector->base.has_tile.
+intel_dp_tile_group_fallback() runs during the atomic commit tail, which
+executes asynchronously on display->wq.modeset for nonblocking commits
+without holding mode_config.connection_mutex.  Other paths that modify a
+connector's link.caps hold connection_mutex and serialize against
+in-flight commits by calling intel_dp_flush_connector_commits(), which
+waits only on that connector's conn_state->commit->hw_done:
+
+drivers/gpu/drm/i915/display/intel_dp.c:wait_for_connector_hw_done() {
+	...
+	if (!conn_state->commit)
+		return;
+
+	drm_WARN_ON(display->drm,
+		    !wait_for_completion_timeout(&conn_state->commit->hw_done,
+						 msecs_to_jiffies(5000)));
+}
+
+If a sibling connector iter was not added to the current
+intel_atomic_state (for instance, when connector's pipe is added to a
+modeset after drm_atomic_helper_check_modeset()),
+drm_atomic_helper_setup_commit() does not bind iter->base.state->commit to
+this commit.  A concurrent hotplug or probe on iter then returns from
+intel_dp_flush_connector_commits(iter) without waiting for this commit
+tail to finish:
+
+CPU0 (display->wq.modeset)        CPU1 (probe / hotplug on iter)
+intel_atomic_commit_tail(state)
+  ...
+  intel_dp_tile_group_fallback()
+                                  lock(&connection_mutex)
+                                  intel_dp_detect(iter)
+                                    intel_dp_flush_connector_commits(iter)
+                                      /* iter->base.state->commit
+                                       * is not this commit */
+                                    intel_dp_link_caps_update(iter_dp->...)
+                                      sort_r(link_caps->configs, ...)
+    intel_dp_link_caps_set_max_limits(
+      iter_dp->link.caps, ...)
+      max_link_limits_valid()  <-- data race on configs[] / rate_lane_map[]
+
+Iterating over the connectors in the current intel_atomic_state (passed
+down from intel_dp_schedule_fallback_link_training()) would restrict this
+update to connectors whose conn_state->commit is bound to the running
+commit.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261126063459.8636=
-98-1-suraj.kandpal@intel.com?part=3D14
+98-1-suraj.kandpal@intel.com?part=3D12
