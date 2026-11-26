@@ -2,43 +2,56 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185C4606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:41:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2657C606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FXllt/Xs
+	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=VlJG0Qeh
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF471122E2;
-	Thu, 26 Nov 2026 10:41:46 +0000 (UTC)
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA8971122FA;
- Thu, 26 Nov 2026 10:41:39 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 0DC9F61F53;
- Thu, 26 Nov 2026 10:41:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B4821F000D0;
- Thu, 26 Nov 2026 10:41:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795689698;
- bh=RK45D7+e+iOcW3RnTCutIaBZLm4zHzJntoCpJ8jzTVk=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=FXllt/Xsoxah3s99erdKglb9rx96mehJXspfi4IsRHc0exsrEAvnyL4cGs+Fnjq/B
- zXmwHKGlsUm2pD/Psh4WIy3+viwxF3MSTniHS89ytZf9QBOnIBWK7wFrPz8LCutkDD
- /cBEYQr9yP1An0ddQBlRZcEB/C9bvMcwEfG8KnJDrHEpwDtzKx+au5OC1O7kHlE1cQ
- Kvo0zR7EIUry1UD3rUTbzmz34YKF9UBZsrDcMU8sFyOBvhMYBAQhR7mhqM/CGzjFyH
- oNhrHFHzrh1I+QACfyvYwmT7bFt8l3l0GC3DPZuFwEIGr5a1ETLEPNauOvKqBN65Ty
- A8ByIEAplJljA==
-Message-ID: <sashiko-outbox-235307@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 12/13] drm/i915/ddi_mgr: Handle DDI pool system suspend
- and resume
-To: "Imre Deak" <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261126100755.1252635-13-imre.deak@intel.com>
-References: <20261126100755.1252635-1-imre.deak@intel.com>
- <20261126100755.1252635-13-imre.deak@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 26 Nov 2026 10:41:38 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1DAE112275;
+	Thu, 26 Nov 2026 10:46:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B62B910E1F9
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 10:46:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795689965; x=1827225965;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=609xwgSnQOnP1dUz0D+93JB+WTaw35jYnUFx1775W+A=;
+ b=VlJG0QehGTjcoI5GkpOkjlWKBWUCN0dxLRzPOjSiEjljc2uGI5M1wZNn
+ 3VEhbjSHhpQTxpXHTIo5qlDNumEx7NovIhETYvwIEsmZTxXIi3NSeBv47
+ NeQ7qEh/LB73c0j2V3Rcr+S6w13dpDcm9rCWB0u7ky+aBk2szqUKSOHOn
+ nCYCJP5d22lnv/fcZRN6laVmz9089Od8XU3MNMgIIoHpHe7415Ly4R1Vi
+ oPQ29ZeRXTt5MBKub5XgiXylOU1PXj/JVI3ONDug1m9ernBLnRFsK3LGe
+ ryFaOkUDDpYW8aHg1PLN/CJXWFzpUh+B9f7Vxra//D+fxIIaw9l0qzFkm A==;
+X-CSE-ConnectionGUID: SPv/oP1ISGyZPmCElyXmUg==
+X-CSE-MsgGUID: tE0RDYaYSbOgkiCXorziqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4605040"
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
+   d="scan'208";a="4605040"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 02:46:05 -0800
+X-CSE-ConnectionGUID: rGkkFOVkRNCbx66SHnrDJg==
+X-CSE-MsgGUID: HzfwWVOoRwaYnRlt/1KcKA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12744884"
+Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
+ ([10.190.239.37])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 02:46:03 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: himal.prasad.ghimiray@intel.com, matthew.brost@intel.com,
+ arvind.yadav@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
+Subject: [PATCH V3 0/3] drm/xe/vram: decay-based reinstatement of
+ soft-offlined VRAM pages
+Date: Thu, 26 Nov 2026 16:15:53 +0530
+Message-ID: <20261126104552.3890797-5-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.52.0
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,127 +61,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 2 potential
-issues to consider:
-- [Medium] drm/i915/ddi_mgr: stale TC max_lane_count in
-  resume_ddi_resource()
-- [Medium] drm/i915/ddi_mgr: intel_ddi_mgr_suspend() disables DDC on
-  shutdown
---
+The existing bad-page flow soft-offlines a VRAM page on the first HW
+report and promotes it to a permanent (hard) retirement on the second
+report at the same address. Once soft-offlined, a page stays reserved
+forever, which over-punishes a single transient DBE caused by a
+one-off environmental disturbance -- the page remains unusable until
+the next reboot/probe even if it never faults again.
 
-commit bca24baba50bb2986501c95a0a336e4e761dcc14
-Author: Imre Deak <imre.deak@intel.com>
+This series adds a per-VRAM-manager decay timer so a SOFT-offlined
+page is automatically reinstated after a configurable window (default
+24h) of no further reports at that address, configurable via configfs
+(bad_page_decay_secs, 0 disables). HARD-offlined pages -- i.e. pages
+that have faulted a second time, or that are reloaded from firmware's
+non-volatile permanent list at probe -- are never eligible for decay
+and remain permanently retired, as before.
 
-drm/i915/ddi_mgr: Handle DDI pool system suspend and resume
+Patch 1 introduces the core feature. Patches 2 and 3 are fixes for two
+issues found during internal review before this series was ever
+posted:
 
-This commit adds system suspend and resume handling for the DDI pool
-manager, disabling pool DDC adapters on suspend and rebuilding legacy DDI
-routes, HPD mappings, Type-C port state, and DP source capabilities on
-resume.
+  - Patch 2 : Pages reloaded from firmware's permanent
+    list at boot were being created as SOFT instead of HARD, making
+    already-confirmed-bad memory silently eligible for reinstatement
+    once the decay window elapsed.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi_mgr.c b/drivers/gpu/d=
-rm/i915/display/intel_ddi_mgr.c
-> index 8f32e7c8dff27..a0157ff6afc04 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
-> @@ -840,6 +840,83 @@ static void update_hpd_sources(struct intel_display =
-*display)
->  	}
->  }
-> =20
-> +void intel_ddi_mgr_suspend(struct intel_display *display)
-> +{
-> +	if (!intel_ddi_mgr_is_enabled(display->ddi_mgr))
-> +		return;
-> +
-> +	intel_gmbus_ddi_pool_update(display, false);
-> +}
-> +
-> +static void resume_ddi_resource(struct intel_display *display,
-> +				struct intel_encoder *encoder,
-> +				const struct intel_ddi_route *old_route)
-> +{
-> +	struct intel_ddi_mgr *mgr =3D display->ddi_mgr;
-> +	struct intel_digital_port *dig_port;
-> +	const struct intel_ddi_route *route;
-> +
-> +	if (!encoder)
-> +		return;
-> +
-> +	route =3D &mgr->route[encoder->port - PORT_TC1];
-> +	dig_port =3D enc_to_dig_port(encoder);
-> +	encoder->devdata =3D intel_ddi_mgr_get_devdata_for_ddi(display, encoder=
-->port);
-> +	intel_tc_port_set_legacy(dig_port, mgr->enabled &&
-> +				route->mode =3D=3D INTEL_DDI_ROUTE_LEGACY);
-> +	dig_port->lane_reversal =3D intel_ddi_mgr_encoder_has_lane_reversal(enc=
-oder);
-> +
-> +	if (mgr->enabled && old_route->mode =3D=3D route->mode &&
-> +	    old_route->phy =3D=3D route->phy)
-> +		return;
-> +
-> +	intel_dp_update_source_caps(&dig_port->dp);
-> +}
+  - Patch 3 : The decay GC worker rescheduled itself
+    unconditionally, so once started it never went idle even after
+    every tracked page had decayed away or been promoted to HARD.
 
-[Severity: Medium]
-Does intel_dp_update_source_caps() rebuild dig_port->dp.link.caps using a
-stale tc->max_lane_count here?
+IGT coverage:
+https://patchwork.freedesktop.org/patch/765064/
 
-intel_ddi_mgr_resume() runs before drm_mode_config_reset() calls
-intel_ddi_encoder_reset() -> intel_tc_port_init_mode(dig_port), and
-intel_tc_port_set_legacy() only updates tc->legacy_port while tc->mode is
-TC_PORT_DISCONNECTED.  When intel_dp_update_source_caps() calls
-intel_dp_set_common_link_params() -> intel_dp_get_max_common_lane_count(),
-intel_tc_port_max_lane_count(dig_port) still returns the pre-suspend
-route's tc->max_lane_count.
+Tejas Upadhyay (3):
+  drm/xe/vram: add decay-based reinstatement of soft-offlined VRAM pages
+  drm/xe/vram: don't let firmware-confirmed permanent bad pages decay
+    back in
+  drm/xe/vram: stop decay worker from rescheduling itself forever
 
-If a pool encoder's route changes across suspend/resume between a 2-lane
-DP-alt sink and a 4-lane legacy PHY (or vice versa), link.caps is clamped
-to 2 lanes on a 4-lane route or retains 4-lane configurations on a 2-lane
-route during the resume modeset restore.
+ drivers/gpu/drm/xe/xe_configfs.c           |  55 +++++++++++
+ drivers/gpu/drm/xe/xe_configfs.h           |   1 +
+ drivers/gpu/drm/xe/xe_debugfs.c            |   2 +-
+ drivers/gpu/drm/xe/xe_ras.c                |   7 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 101 +++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |   2 +-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  16 ++++
+ 7 files changed, 175 insertions(+), 9 deletions(-)
 
-[ ... ]
+-- 
+2.52.0
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
-s/gpu/drm/i915/display/intel_display_driver.c
-> index b018608eae032..a9b03b4a1e76b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -780,6 +780,7 @@ static int __intel_display_driver_pm_suspend(struct i=
-ntel_display *display, bool
->  	intel_display_driver_suspend_access(display);
-> =20
->  	intel_encoder_suspend_all(display);
-> +	intel_ddi_mgr_suspend(display);
-> =20
->  	intel_dmc_suspend(display);
-> =20
-
-[Severity: Medium]
-When shutdown is true, does calling intel_ddi_mgr_suspend() here disable
-the pool DDC adapters before intel_display_driver_shutdown() runs
-intel_encoder_shutdown_all()?
-
-In __intel_display_driver_pm_suspend(display, true),
-drm_atomic_helper_shutdown() disables active outputs and turns off Type 2
-DP dual-mode adaptor TMDS buffers over DDC.  intel_ddi_mgr_suspend() then
-marks the pool GMBUS adapters disabled, so the subsequent
-intel_encoder_shutdown_all() -> intel_hdmi_encoder_shutdown() ->
-intel_dp_dual_mode_set_tmds_output(intel_hdmi, true) call fails in
-gmbus_xfer() with -ENXIO instead of re-enabling the TMDS output buffer for
-reboot.
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261126100755.1252=
-635-1-imre.deak@intel.com?part=3D12
