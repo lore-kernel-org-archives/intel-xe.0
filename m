@@ -2,50 +2,50 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF632606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 21:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9709606A321
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 21:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=HkfqJKHP
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=lAs8qSZa
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 855F6112725;
-	Thu, 26 Nov 2026 21:28:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AAB411271C;
- Thu, 26 Nov 2026 21:27:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB694112730;
+	Thu, 26 Nov 2026 21:28:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A31311272D;
+ Thu, 26 Nov 2026 21:28:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795728478; x=1827264478;
+ t=1795728482; x=1827264482;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3RhtFitiQVJI4pwQaHYTFTstVpVzAmuC0ZtwPMtg5W8=;
- b=HkfqJKHP65g6z3Isc7bZLnjKvQDi1/GdboWCxH8ef3in14lQZuEYGCeM
- Jk+TiFUkjBN0r2v2Ud5Lr5y1CdbEfUVMq8hQK7FcXBjc76tLkhgrhb4JM
- BpppPTEBF8PNllRJl9m/0fx5ybQ0jrDwuI4jik/fdKxpqDVEsa+/GyBfZ
- K6qI77o1kxGkhQ7u41ly4JFUTtYrUJSce9zazJrWJS7qhM2fD6Jma+rnt
- h42X2VrK2m97jEKE9pfLl1qDUfR8NV7tn78mVoeYbYrYmUUgiMSKKmsGZ
- oWPjMTWErJC3PQumggCUEIDVY/1MIbAcP3DHa5j5YhDzo+T3lupDoLVEb A==;
-X-CSE-ConnectionGUID: daVaTCHhSi66g30h2wjf3g==
-X-CSE-MsgGUID: bCfcHbdEQJKxGyyrCROJuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4531804"
+ bh=bmhEm4smvclAg7EDy2qOZ+JA+1N6/ISnTxZ0/WCWqCc=;
+ b=lAs8qSZaNOQhawWBP55lUc6ju4vGZWk+NpmRrL6Pr0l8fbzizRMqMU7j
+ Lb3h2u+5PgxzUKduUUhDMqzHOb0pIv7OtigVHUI7s7nU0KtaqF4nDxA/d
+ VAYLKpeZ83MMAzpYJb8rBI4Hfi3YK68zbSZ6Gnmrh+GEGu6emAcO95Ot/
+ c5okLOw2TWd+ycBHSFbJeJnobLh5fkZPtltxnRLjOzVQNe8+rhTYYqDOs
+ inl+GlbhtB2yoxPtawCmq1ZF1xDrS9twTP7Xo+Daor00vd7qtf55A/YLw
+ NRtXyO3NCp7/ajrBfSyf2cI4gMKZ2ouLNWYb1dDtqB5TYJs8I2RqdpYZN w==;
+X-CSE-ConnectionGUID: NaUvxGsJTouEVh++T8zgpA==
+X-CSE-MsgGUID: KI6g00y4TvyLDnTaEubD7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4537102"
 X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
-   d="scan'208";a="4531804"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 13:27:57 -0800
-X-CSE-ConnectionGUID: YZjNS9OET0alDvdZq3/wUA==
-X-CSE-MsgGUID: jMEBXWD+SL+oFyH4czajUQ==
+   d="scan'208";a="4537102"
+Received: from fmviesa012.fm.intel.com ([10.60.135.152])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 13:28:02 -0800
+X-CSE-ConnectionGUID: C0E2MCt5SIunGd9MpzHw3w==
+X-CSE-MsgGUID: wElGjv10TVeC+Lud2yOJ9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12037781"
+X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="13933852"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.221])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 13:27:56 -0800
+ 26 Nov 2026 13:28:00 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/7] drm/i915/de: Add intel_parent_mmio_regs() interface
-Date: Thu, 26 Nov 2026 23:27:26 +0200
-Message-ID: <20261126212728.9034-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 6/7] drm/xe: Nuke the compat uncore stuff
+Date: Thu, 26 Nov 2026 23:27:27 +0200
+Message-ID: <20261126212728.9034-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.56.1
 In-Reply-To: <20261126212728.9034-1-ville.syrjala@linux.intel.com>
 References: <20261126212728.9034-1-ville.syrjala@linux.intel.com>
@@ -74,138 +74,127 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Eliminate the last uncore usage (to get the pointer to the
-memory mapped registers) in intel_de.c with a new
-intel_parent_mmio_regs() interface.
+The display code no longer uses any uncore stuff, so nuke the
+compatibility layer from xe.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.c      | 8 ++------
- drivers/gpu/drm/i915/display/intel_parent.c  | 5 +++++
- drivers/gpu/drm/i915/display/intel_parent.h  | 1 +
- drivers/gpu/drm/i915/i915_driver.c           | 6 ++++++
- drivers/gpu/drm/xe/display/xe_display.c      | 8 ++++++++
- include/drm/intel/display_parent_interface.h | 3 +++
- 6 files changed, 25 insertions(+), 6 deletions(-)
+ .../drm/xe/compat-i915-headers/intel_uncore.h | 66 -------------------
+ drivers/gpu/drm/xe/display/xe_display.c       |  3 -
+ drivers/gpu/drm/xe/xe_device_types.h          | 13 ----
+ 3 files changed, 82 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index f02df9be3807..6d34a03d243a 100644
---- a/drivers/gpu/drm/i915/display/intel_de.c
-+++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -11,7 +11,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_rpm.h"
- #include "intel_display_trace.h"
--#include "intel_uncore.h"
-+#include "intel_parent.h"
- 
- static int intel_de_wait_for_register(struct intel_display *display,
- 				      intel_reg_t reg, u32 mask, u32 value,
-@@ -604,11 +604,7 @@ static bool driver_is_i915(void)
- 
- void intel_de_init(struct intel_display *display)
- {
--#ifdef I915
--	display->mmio.regs = to_intel_uncore(display->drm)->regs;
--#else
--	display->mmio.regs = __compat_uncore_to_mmio(to_intel_uncore(display->drm))->regs;
--#endif
-+	display->mmio.regs = intel_parent_mmio_regs(display);
- 
- 	spin_lock_init(&display->mmio.lock);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index ed3e21b0a927..24daf61542a1 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -451,6 +451,11 @@ bool intel_parent_has_fenced_regions(struct intel_display *display)
- 	return display->parent->has_fenced_regions && display->parent->has_fenced_regions(display->drm);
- }
- 
-+void __iomem *intel_parent_mmio_regs(struct intel_display *display)
-+{
-+	return display->parent->mmio_regs(display->drm);
-+}
-+
- void intel_parent_transient_data_flush(struct intel_display *display)
- {
- 	if (display->parent->transient_data_flush)
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 923cb6464a98..28c1196a260f 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -155,6 +155,7 @@ int intel_parent_vlv_iosf_write(struct intel_display *display, enum vlv_iosf_sb_
- /* generic */
- bool intel_parent_has_auxccs(struct intel_display *display);
- bool intel_parent_has_fenced_regions(struct intel_display *display);
-+void __iomem *intel_parent_mmio_regs(struct intel_display *display);
- void intel_parent_transient_data_flush(struct intel_display *display);
- bool intel_parent_vgpu_active(struct intel_display *display);
- void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 923b239714b7..017871b9aaa2 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -737,6 +737,11 @@ static bool has_fenced_regions(struct drm_device *drm)
- 	return intel_gt_support_legacy_fencing(to_gt(to_i915(drm)));
- }
- 
-+static void __iomem *mmio_regs(struct drm_device *drm)
-+{
-+	return to_intel_uncore(drm)->regs;
-+}
-+
- static bool vgpu_active(struct drm_device *drm)
- {
- 	return intel_vgpu_active(to_i915(drm));
-@@ -763,6 +768,7 @@ static const struct intel_display_parent_interface parent = {
- 	.fence_priority_display = fence_priority_display,
- 	.has_auxccs = has_auxccs,
- 	.has_fenced_regions = has_fenced_regions,
-+	.mmio_regs = mmio_regs,
- 	.vgpu_active = vgpu_active,
- };
- 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+deleted file mode 100644
+index 707f7ad0378d..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ /dev/null
+@@ -1,66 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2023 Intel Corporation
+- */
+-
+-#ifndef __INTEL_UNCORE_H__
+-#define __INTEL_UNCORE_H__
+-
+-#include "i915_reg_defs.h"
+-#include "xe_device.h"
+-#include "xe_device_types.h"
+-#include "xe_mmio.h"
+-
+-static inline struct intel_uncore *to_intel_uncore(struct drm_device *drm)
+-{
+-	return &to_xe_device(drm)->uncore;
+-}
+-
+-static inline struct xe_mmio *__compat_uncore_to_mmio(struct intel_uncore *uncore)
+-{
+-	struct xe_device *xe = container_of(uncore, struct xe_device, uncore);
+-
+-	return xe_root_tile_mmio(xe);
+-}
+-
+-static inline u8 intel_uncore_read8(struct intel_uncore *uncore,
+-				    i915_reg_t i915_reg)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	return xe_mmio_read8(__compat_uncore_to_mmio(uncore), reg);
+-}
+-
+-static inline void intel_uncore_write8(struct intel_uncore *uncore,
+-				       i915_reg_t i915_reg, u8 val)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	xe_mmio_write8(__compat_uncore_to_mmio(uncore), reg, val);
+-}
+-
+-static inline u16 intel_uncore_read16(struct intel_uncore *uncore,
+-				      i915_reg_t i915_reg)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	return xe_mmio_read16(__compat_uncore_to_mmio(uncore), reg);
+-}
+-
+-static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
+-				       i915_reg_t i915_reg)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	return xe_mmio_read32(__compat_uncore_to_mmio(uncore), reg);
+-}
+-
+-static inline void intel_uncore_write_fw(struct intel_uncore *uncore,
+-					 i915_reg_t i915_reg, u32 val)
+-{
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-
+-	xe_mmio_write32(__compat_uncore_to_mmio(uncore), reg, val);
+-}
+-
+-#endif /* __INTEL_UNCORE_H__ */
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 0236f69a0f88..5ace8295b498 100644
+index 5ace8295b498..6a179d0683e5 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -447,6 +447,13 @@ static bool has_auxccs(struct drm_device *drm)
- 	return xe->info.platform == XE_ALDERLAKE_P;
- }
+@@ -85,9 +85,6 @@ int xe_display_init_early(struct xe_device *xe)
+ 	if (!xe->info.probe_display)
+ 		return 0;
  
-+static void __iomem *mmio_regs(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	return xe->mmio.regs;
-+}
-+
- /*
-  * TDF (Transient-Data-Flush) is needed for Xe2+ where special L3:XD caching can
-  * be enabled through various PAT index modes. Idea is to use this caching mode
-@@ -475,6 +482,7 @@ static const struct intel_display_parent_interface parent = {
- 	.stolen = &xe_display_stolen_interface,
- 	.wa = &xe_display_wa_interface,
- 	.has_auxccs = has_auxccs,
-+	.mmio_regs = mmio_regs,
- 	.transient_data_flush = transient_data_flush,
+-	/* Fake uncore lock */
+-	spin_lock_init(&xe->uncore.lock);
+-
+ 	intel_display_driver_early_probe(display);
+ 
+ 	intel_display_device_info_runtime_init(display);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9e0d7d3d07d5..abc70c949b2c 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -649,19 +649,6 @@ struct xe_device {
+ #endif
+ 
+ 	/* private: */
+-
+-#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+-	/*
+-	 * Any fields below this point are the ones used by display.
+-	 * They are temporarily added here so xe_device can be desguised as
+-	 * drm_i915_private during build. After cleanup these should go away,
+-	 * migrating to the right sub-structs
+-	 */
+-
+-	struct intel_uncore {
+-		spinlock_t lock;
+-	} uncore;
+-#endif
  };
  
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index fd799980c941..8dbce1790821 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -314,6 +314,9 @@ struct intel_display_parent_interface {
- 		/** @has_fenced_regions: Support legacy fencing? Optional. */
- 		bool (*has_fenced_regions)(struct drm_device *drm);
- 
-+		/** @mmio_regs: Return the pointer to the memory mapped registers. */
-+		void __iomem *(*mmio_regs)(struct drm_device *drm);
-+
- 		/** @transient_data_flush: Transient data flush. Optional. */
- 		void (*transient_data_flush)(struct drm_device *drm);
- 
+ /**
 -- 
 2.56.1
 
