@@ -2,57 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D9B0606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 12:31:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03B60606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 12:34:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=A0jUfUaI
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=JnQi0oS7;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=Ap7ZyKDH
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E103910E848;
-	Thu, 26 Nov 2026 12:31:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B64A310E848;
- Thu, 26 Nov 2026 12:31:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B032310E848;
+	Thu, 26 Nov 2026 12:33:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BD8010E848
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 12:33:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795696298; x=1827232298;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lInL89k25kZNrw/imYXUtYpBn4wkBN/+yzPzKUHA/ZA=;
- b=A0jUfUaIGDifr5O6SvLcE3Fi71BHpDO7XjJsOeEJYhtx1F51BbZPVyxY
- Jw1Dm/ERNd9DaQ0AmJFT5SWsljrbM3QR40A1oipGNqnc13zLTaRVnkRAr
- RV4qxRxfwv2Og3WOZXGB4TM+WOoxmk6Y0bxPUPK58AEsVYGINSYLQ22Rx
- JWF2oOR28s2OXjZkg+MN0bTnvfuk3RI26yJuD6aKj+qQfija6x5CG6BsQ
- MmD/zFZ2JbDOlreobX0NZYcov8GMMBNO69nlZdmopCr5DFd5DgeDNrXRq
- Y64qeCYIpF7nmmfr2EWBdP2sZ+fM/TdAtoE2WfsTtJai/a9ROH992Be7g w==;
-X-CSE-ConnectionGUID: ImhWPKeAR36X1+wGuLveXg==
-X-CSE-MsgGUID: pnv97iBoSvuZHC6N6WCwgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4654415"
+ t=1795696427; x=1827232427;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=0HGKV99rGzNO80NENNfEoFiuf07WjMDtAG+XCh8Kr9k=;
+ b=JnQi0oS73Og2x6qj3+ZhhCwv9Msm1KOHY17V4mFzbLYtlpT+YhtBBcfz
+ 7hSS7u7zc0rJguUB0EqB8+Sl1KLDliUT/MoCgwIk5LLV6H92zf/zW5+xP
+ slifWswQQU+YmmRZVsPvIIxqvfI721ViiQZh8EfpN3Q8pM7aAtjbz3DzU
+ ShU8Hx3LR9sEXaRrv8sPoMvXKBexBvypTFtU5xT8wzsiXwtt0urqv4GP+
+ hiV+fC00moLtKolcmgIzifUQBn+lVec9WQfy3JOj+TNirMBvxphxewL8X
+ xadxtrbV20+ThO23MvGFhwgKDtioZ/kjxdzt5YOP9zrNV9slcjMO08ih7 A==;
+X-CSE-ConnectionGUID: yxEeRABmTJKRUcEVYkrfuw==
+X-CSE-MsgGUID: Ii9f+bunTw+hc1fxBOOl6A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4531361"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4654415"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 04:31:38 -0800
-X-CSE-ConnectionGUID: /pzLCWrGQbuCFYw8/S6k1Q==
-X-CSE-MsgGUID: SIdv3J2hRbKxBeEM8Q6u7Q==
+   d="scan'208";a="4531361"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 04:33:46 -0800
+X-CSE-ConnectionGUID: b3l1SQWESRuW9i/fBERBFg==
+X-CSE-MsgGUID: XRjqkoJdRHmE3lLYXsZ5tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12077487"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.221])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 04:31:37 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/i915: Remove the HSW+ PIPEDSL==0 hack
-Date: Thu, 26 Nov 2026 14:31:32 +0200
-Message-ID: <20261126123132.9589-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.56.1
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12389813"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 04:33:45 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Thu, 26 Nov 2026 04:33:45 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 04:33:45 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.67) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Thu, 26 Nov 2026 04:33:45 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HIa3ATONhREIJtaTb2YtT7/EEERiiGediVW2iwYepGyV9eghpOMqDC+efzhduMvOao3i70GaaCBhaczPtwm9ggMg9clhKK63jW4f6KDYTTa34Mx9AYBWdZsQCBXio8aFwXD1MT6Geyz7fJ/qHY+wjb+Xawbxg4IpIlx7Q0AWKX0FVqdGagR83yLuODGYvmP0BDlHRpaP6cHxMkvYkmjSFY+KhEGcRYFERc4nwQzRaTf3Ml0qavzEhtGc9mCMMy7PZ4JYaRDLeSMaiKa9hwfzBW5gEpngUsndWNh2kbwptGiF8xmpZaBnid1GMpy4XYgrzLKVjmX5xp8zFYWcbGbonw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6Tcv6Bqfwh+BpActVGnldm0HSQAS2/qCJeQWXJXM+r4=;
+ b=ZPh5S/siqnOa+5iixa7GDP296hkAFHT3y+R20o6pcCD30oBbyl9HyIf7kaxsw7+BfZVZdQ53SIydFV8iCaQoULzV4UfVzGTQofgIMqatJTmk3T+44RpUr3E3rabBYpitbd4sJc2uuufbNIxbkLtVF6yl3BL04ShsJHFNLfGnulYWOYI7mpLnYjl/RxinL7IuU5VvPsCMhXb4JeskCfYbmKAG31lAncRx0Jievmzv9Nbd6C0xQZMBP3er1wzLenr6+rugmLSiO7bB+RCwS58z5tJQlPdn5TRaQH2cEy25LOwjbUe2LG3KW7Tg/aGSJU2A7aoeacUO/+JmrrBGuwOxOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Tcv6Bqfwh+BpActVGnldm0HSQAS2/qCJeQWXJXM+r4=;
+ b=Ap7ZyKDHpL0KfjsQmwWH4vk7vXQzuvbTqX+eQqENu+8WNlPSgtIwIo7/XYMDlQzZEeEVQBAysc1cK3qwVkLAiXjyoHPWzqUMaQTKsTSNO8KQcM/KmFQLBVCGXB54PTtK4fVK9hldVksts8ibKNMqdyJhgBkiasozvQ41Xm75NZo=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from FT1PR11MB960200.namprd11.prod.outlook.com
+ (2603:10b6:170:25::23) by DS0PR11MB6517.namprd11.prod.outlook.com
+ (2603:10b6:8:d3::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.6; Thu, 26 Nov
+ 2026 12:33:38 +0000
+Received: from FT1PR11MB960200.namprd11.prod.outlook.com
+ ([fe80::cfb1:f811:62bb:fa65]) by FT1PR11MB960200.namprd11.prod.outlook.com
+ ([fe80::cfb1:f811:62bb:fa65%5]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
+ 12:33:37 +0000
+Message-ID: <d646756e-eeb0-49d0-b42f-9b0991f052e3@intel.com>
+Date: Thu, 26 Nov 2026 18:03:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 07/10] drm/xe/hwmon: Add kernel-doc for fan control
+To: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
+References: <20261124054811.798763-1-karthik.poosa@intel.com>
+ <20261124054811.798763-8-karthik.poosa@intel.com>
+ <sashiko-outbox-230564@kernel.org>
+Content-Language: en-US
+From: "Poosa, Karthik" <karthik.poosa@intel.com>
+In-Reply-To: <sashiko-outbox-230564@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA0PR01CA0118.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:11d::10) To FT1PR11MB960200.namprd11.prod.outlook.com
+ (2603:10b6:170:25::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: FT1PR11MB960200:EE_|DS0PR11MB6517:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a854363-5743-4e56-3f31-08df4bb97e8d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|366016|23010399003|376014|10067099003|11063799006|56012099006|261026140227099003|261026121527099003|261022105027099003|261028144727099003|261022075727099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003|4143699003|6133799003;
+X-Microsoft-Antispam-Message-Info: W6Hfo21wileUAtN45c1W2v3Jn2uvpBPAzzThcG8Q/ZDOtI89EIWfEF9kDxiB1KqvcV5t8jdIwhoRvCz7AKtfgCyOOEN8rp4kr2j8rZSs+PUxDaHjtg4XVk5SS+o12FVSh8NM+lRCDwVbKXJyldG5oAwWwUZTJCAGVo9yQUrfDbWUT+nxQutckieb1yPIbejXZt1maXpGLFuPP3EZzlYnj7aspq6ThnY9mQeGBpmsz4ipmXSNEqtMaJA4JPG5p1l6M5jeBL8nGaJvnE+TmflJ5jMpJsi1FnNypP/356ojubB4zbqIYhfA6D8Xh4oTnGVs7qM7nj5x+NYVOwuvSvynnVzcBq6nww+TCdAmo0ipUo+vFNopB2JTXUgsU62ooRTFJ7X9JeV0C0qVguAX8+5+K/6q5rFo8xn98oHbCPw5IJlPEqQXPL9vQnAXmeK8OJVs+icQvsGZTJkRNut5W9fGQQttQ5LPZPz7LQU3mE75I421KWEGB3q+BvM8QK5XqL01jUaEvuk3ggFIV/IRP8nVXqCoCu57yYJBNhae7m8GKxtRTdAEK2u7+ZZyyFv3hJDvXoq/XCAdQ7ZA4D5yvuDEUuIIow+cd0PiSUBxPZsW0VfnbgeT/+r0E3/fADMGuz8RM5XyKp1Hm+A0NemWfGMRef9yf3GV2yu41TYDhSl5/Jg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:FT1PR11MB960200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(23010399003)(376014)(10067099003)(11063799006)(56012099006)(261026140227099003)(261026121527099003)(261022105027099003)(261028144727099003)(261022075727099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(4143699003)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVM5UEYwWXFtQzV4cUhMZk9TampFY3BmRmhaaWRBTjdZQkVDOTV6QlNYY2Q5?=
+ =?utf-8?B?N1R2azV4TTVhbEh3bTFuclB0R0x3azkxUzdJZFU4ajV3emxRRUIvZmpJUVh0?=
+ =?utf-8?B?OFZmbW4vYk03MUpmeVNNckp5NVd6Q2tkNHI0TUxLMjRaVE1rMERhcEh5NThS?=
+ =?utf-8?B?dlNqaktPNDdvSURtVlNFbHNxU3ZUcnN4QnNOU0ZueXlnZHpGTHBLM2RONGU2?=
+ =?utf-8?B?L3RlUFh4UDRwcXdEWEJ2SytrOHFXREQvaEthMzhYTkphUUJEMXdKbzBKQlE3?=
+ =?utf-8?B?b1NMdVFiKzI5ejhjeTZjWjgzUHpwTmp1YTAvOFRJaXdqWGZOK0pWMDBRRWJN?=
+ =?utf-8?B?U0VlRjExMjYvZDJpb3doZTVCWmlidTdNTmVJK3k2RGU5NnhCcC92T0tUUGN4?=
+ =?utf-8?B?ZlVkbDdULzgra01ITkovYU9FRFhWcmxFMkJYREdVbFZoQjdseURqWTRjZzEz?=
+ =?utf-8?B?RnRIOG5IdlErNDNWekhjL0NlL2NYNUN4bTJIakMza1hVUjZxcDNHcFlPaW5p?=
+ =?utf-8?B?c3FRWUgzYjBNZjB2akEwcTlQSXloUjdHUytTUUE4Nkl2d1Y4ajhkRGdTd25k?=
+ =?utf-8?B?TkxGUWdRaW1heTB6ZjhaQkJFeWhpK3RGaUtxWmgvRTMzUUg1RExCSThNREZR?=
+ =?utf-8?B?dzlIT054MmtjUGMydTBFNGpCUFkrQWlzR3VIS3cyZTgxTVB1UmRjeXhDeWlL?=
+ =?utf-8?B?dkxMOEZRU0hDYW01MHJmbXlURkZEVTZsWVdvS2hJOHdOYWV2L0xKWWNhWmxQ?=
+ =?utf-8?B?OTdUd1ZvdENzcjdsYUlMWHFLZ0szODBrcnZETVJGWlVZSVhQYlNyMkFmeVZy?=
+ =?utf-8?B?dlJOWTcwdkFDS2pyRkhNUXV1MFFhbEQvbzQveDBRQlpMbXgwU2E2OHpjZGZj?=
+ =?utf-8?B?TVh6Z21scnMwaUR6OWlpcHUzVjcxQUZaYjN0R0w0KytXb3lVamxhZTFhbGpx?=
+ =?utf-8?B?M2NJNFErV1B3eWdFN2tyRy9OUlZyTEdqSVRsZmxSZ2FRODVmY1F5QitiNlBp?=
+ =?utf-8?B?OFQ5MXV3NlhkTjJKUFArdStqamY0aDV0bmlzLzZTOGFNdHdycm1OalRwSDN0?=
+ =?utf-8?B?UlZyenk5VVNxdTdZL2w0TElPNWVHRVpVcUtQQkZxVnRyRGpNQVV5M1VyS3F3?=
+ =?utf-8?B?SWRCOUw4THJoMWtPaWphSUM2WktLUXVqVFJUVUUwNzJqV2NzSWxkdWYrSEY5?=
+ =?utf-8?B?VVcrM1FUNVRWTlgxQXdHUHRWUGJtUURhVHFuZFA3amdreENXbTBkSDVSUWZj?=
+ =?utf-8?B?SitwaklsMGVXaTd0UmIvdWhpeG1EakFVd0prSTc1eXJxM1I0UkVZOENvdndy?=
+ =?utf-8?B?VFFqVmcwZjRlUFVldHJRMWcvRFEyNE56UU1mbmZBem9tdm9LMnVHU3BCZEtv?=
+ =?utf-8?B?TW45OGYrTGx3TVpBRWNLZ01mZXNvaWNmb3hZU1lMZmxhZ1BJdytyZTdjMlIw?=
+ =?utf-8?B?Skk1TGtqVUFsaCtPcnBDZFRyeVkwWkx2c01SaHN2R1JuRzYwZEN4N09sL2tR?=
+ =?utf-8?B?U201bjNJT0xOb3J0anVkWjR3dHJyMmprZmtQcHdvck8rZXVXUUM5NjJ1UFJR?=
+ =?utf-8?B?RXZkcHBrQTBwV2ZtdHlodjEzR0pIVG9VOER2bjlMeDJuQUZramxSSGhSK0lq?=
+ =?utf-8?B?VjdhVU55Z3JFdmdIZUFsTEMyVWJqS25EL0llLzd3YXVxNVREOGZ5L21mL0o4?=
+ =?utf-8?B?VEdFcjdTNThvbGd4NXc1S0tuc25ucFVVdkREYVYrY0lPY04waTVsSE1GYjd2?=
+ =?utf-8?B?K3lpUDJ2clgwWU9XWTRrcmxJYW01czNhS2ttTGErWS8vYnNiVGk2YnVrQ1oy?=
+ =?utf-8?B?Vy9xQ2kvNDE1dTJPeitHK3NvM1RwczErTTFXemxFWThjS1ViTCtlUkhWdXdI?=
+ =?utf-8?B?SVpUWjJ5ZWYrTEFNSVd4V3JYMTcyY004bWJUc0plYXhPUThVdHM0Tk1VUEc5?=
+ =?utf-8?B?Q0Fkc3cvTHFjTmZxelFNbGRKMHlOMUk3NDZRSWIwcVljSXB1UlYrMVJJdUgz?=
+ =?utf-8?B?ZHlzdmJ4RUpKL0xmeGY3dnFJMGFIZDF1ZmVXOHNZaENiWkVyYTZkZWFEbStB?=
+ =?utf-8?B?L0FKWTdZVWE0LzRFdHNmdzVKQU1pM0J3SzdpbmtFTWlQU3NxZGhRMFhRZ0Vm?=
+ =?utf-8?B?QjBuZUc3Qzc5TVVOSXVPaHBwdWxsbGdGUXd3Z1hpQkVLKzNuRGpVeWc3WEw0?=
+ =?utf-8?B?aEl6d20rR0syL3diYURwdGRwUEo5a0Z1Nk50SFlCbkNBUEVZdDFGUjNoUW5m?=
+ =?utf-8?B?d2cxNENPNE1UVFdJLzhQTUdVbVFwQWU1U1ppL1QrYmh3YlJMeVZ4RkoweFRN?=
+ =?utf-8?B?UHR2VjVla0FEaVErOWJXUmRoZmQ3OWJlWm5ZZXlwbWV2eXpwbERtZz09?=
+X-Exchange-RoutingPolicyChecked: SqTCamGucnC0CI93FlkfxqVEd3PYBVEHRQ+eoU+MslP3mk3PT6dM97AIlGFPd208d4Ltdqr2Y++DjjDMKVG4bToZuWoj/rXrXw1yezH/g8QLRu8+gi2rGbRGKno45d42GPP1nKv+tBfKYU+eFWhbnCK6it1FFqnqgs0JKshZelKPfiQzuixXjQbUlL+OdbaseLDS+7bncR2s2y2Cof52P2ssXWLRE0Q7oqqLA2xK2KV6XegbUhmWywmcGAF2ZJcrCjZw4F70of7qiKlkiMirNwJIWxthJJK6y3HJD0phSXEPHDci7XqbQzPPjXupom8+2Q8aEAtf/d7n6mDmJOPfMw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a854363-5743-4e56-3f31-08df4bb97e8d
+X-MS-Exchange-CrossTenant-AuthSource: FT1PR11MB960200.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 12:33:37.7447 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: PxUJPQ977Gt5S8uQ3eiO1V0tedgP6YJA14wgNwdG7bLZAodkET8OF6op5H+T2rcfOzkxxBtTHr2vVOnxI8DpkA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6517
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,90 +168,60 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Remove the ugly "wait until PIPEDSL reads non zero" hack from
-__intel_get_crtc_scanline(), added in
-commit 41b578fb0e8b ("drm/i915: workaround bad DSL readout v3") and
-commit b291681926a1 ("drm/i915: Extend DSL readout fix to BDW
-and SKL.").
-
-I'm 90% sure this was just PSR deep sleep (the symptoms match),
-and no one actually understood PSR at the time. Unfortunately
-no one felt the need to leave any useful logs in the bug
-(https://bugs.freedesktop.org/show_bug.cgi?id=91579) either
-so a bit hard to confirm :/
-
-The proper fix for vblank evasion vs. PSR happened only a few years
-later with
-commit a608987970b9 ("drm/i915: Wait for PSR exit before checking
-for vblank evasion")
-
-Removing the retry loop does mean that we may in fact read a
-semi-bogus zero a bit more often from the register when PSR
-hasn't been waited on (eg. in tracepoints). But the ~100usec
-timeout did not in any way guarantee that PSR exit was done
-by the time we return from __intel_get_crtc_scanline(), so
-getting the semi-bogus zero was always a possibility. This
-is something to bare in mind when inspecting trace logs and
-whatnot.
-
-Another approach I was thinking was to just do a pair of reads,
-separated by a wait of a few scanlines, and then maybe return
-something like vblank_start-1 if the two reads both come out
-as zeroes. But that would still be a lie as we have no idea
-how long until the timing generator starts up again, and I'm
-not sure that lie is any better than the other.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_vblank.c | 26 ---------------------
- 1 file changed, 26 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 114ff43381b5..616710bd05b0 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -247,32 +247,6 @@ static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
- 
- 	position = intel_de_read_fw(display, PIPEDSL(display, pipe)) & PIPEDSL_LINE_MASK;
- 
--	/*
--	 * On HSW, the DSL reg (0x70000) appears to return 0 if we
--	 * read it just before the start of vblank.  So try it again
--	 * so we don't accidentally end up spanning a vblank frame
--	 * increment, causing the pipe_update_end() code to squak at us.
--	 *
--	 * The nature of this problem means we can't simply check the ISR
--	 * bit and return the vblank start value; nor can we use the scanline
--	 * debug register in the transcoder as it appears to have the same
--	 * problem.  We may need to extend this to include other platforms,
--	 * but so far testing only shows the problem on HSW.
--	 */
--	if (HAS_DDI(display) && !position) {
--		int i, temp;
--
--		for (i = 0; i < 100; i++) {
--			udelay(1);
--			temp = intel_de_read_fw(display,
--						PIPEDSL(display, pipe)) & PIPEDSL_LINE_MASK;
--			if (temp != position) {
--				position = temp;
--				break;
--			}
--		}
--	}
--
- 	/*
- 	 * See update_scanline_offset() for the details on the
- 	 * scanline_offset adjustment.
--- 
-2.56.1
-
+On 24-11-2026 11:23, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue to consider:
+> - [Low] drm/xe/hwmon: kernel-doc claims pwm writes fail when pwmN_enable
+>    is 0
+> --
+>
+> commit e3f1b146650ba8a68f8904ed7422e9ec4d05d22c
+> Author: Karthik Poosa <karthik.poosa@intel.com>
+>
+> drm/xe/hwmon: Add kernel-doc for fan control
+>
+> This commit adds a kernel-doc comment describing Xe hwmon fan control,
+> its firmware stock and driver user tables, and the exposed sysfs files.
+>
+>> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+>> index 77c4d1b0ecaef..b9e2e76d73c33 100644
+>> --- a/drivers/gpu/drm/xe/xe_hwmon.c
+>> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+>> @@ -139,6 +139,58 @@ struct xe_hwmon_energy_info {
+>>   	long accum_energy;
+>>   };
+>>   
+>> +/**
+>> + * DOC: Xe fan control
+> [ ... ]
+>> + * Writes to ``pwmN``, ``pwmN_auto_pointM_temp`` and ``pwmN_auto_pointM_pwm``
+>> + * are accepted only while ``pwmN_enable`` is 1; otherwise they fail with
+>> + * -EINVAL. Firmware stores duty cycle in percent, so PWM values read back
+>> + * rounded to the nearest percent step. PWM values below the minimum duty cycle
+>> + * reported by firmware for that fan are raised to it, except a curve point PWM
+>> + * of 0, which is kept for the end marker.
+> [Severity: Low]
+> Does the driver actually reject writes to pwmN, pwmN_auto_pointM_temp
+> and pwmN_auto_pointM_pwm when pwmN_enable is 0?
+yes, those write shall be rejected
+>
+> Writing 0 (XE_FAN_PWM_FULL_SPEED) to pwmN_enable calls
+> xe_hwmon_set_user_fan_pwm(..., U8_MAX, true), which sets
+> fi->is_full_speed = true while keeping fi->pwm_enable_mode set to
+> XE_FAN_PWM_MANUAL_USER_TABLE.  Because the write guards in
+> xe_hwmon_set_user_fan_pwm(), xe_hwmon_pwm_auto_point_temp_store() and
+> xe_hwmon_pwm_auto_point_pwm_store() only check fi->pwm_enable_mode !=
+> XE_FAN_PWM_MANUAL_USER_TABLE and do not check fi->is_full_speed, writes
+> to these attributes succeed when pwmN_enable is 0 instead of failing
+> with -EINVAL.
+this shall be addressed
+>
