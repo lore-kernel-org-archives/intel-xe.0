@@ -2,163 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6531E606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 08:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96B79606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 08:58:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=WF5Yuu9w;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=H1cs1sSS
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PT+vSf+V
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FEB01121E6;
-	Thu, 26 Nov 2026 08:53:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70EA21121EB
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 08:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E4FF10E2FD;
+	Thu, 26 Nov 2026 08:58:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F0CE10E2FD;
+ Thu, 26 Nov 2026 08:58:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795683208; x=1827219208;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=uO1o3Bb80+jY0zSMI8UoaDdTDaH9WW58c78uL80avqw=;
- b=WF5Yuu9wF9S9KJ6NNEhhepKhAM+9Xjr3XrGvQyP/H+q55H2qcAazVEtg
- zUzAmDhVkNdyjCiIaZKnPedjKL6wjTAIKZHMQdiwp1RsENCrq+PivYeQH
- FwL+7/lqeJQOvzTaY3ZvHT/r5yKR/MV3zS/iZ2WTFJu09lXZ2flRHwPdz
- CMU9Ayg0a3BsYMxxIEaevBG3eboqzDITbJU5WAVJq8gjVe94BvmqB/O4C
- VU7LDk0H64ITJJfD7nnYDnp7PS9LvfybRfbPpcF/DrSNZTXg7i9utWQ6l
- Uq49zZve37byV6bJ6J+l/HQjfUPLdieHwV7fRQP4qG++bz57WxtZvBlbn Q==;
-X-CSE-ConnectionGUID: fdTwBN6GS3Wu+IanaKcrGA==
-X-CSE-MsgGUID: KKsNzgonSpamWJ3EtRnGdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4494372"
+ t=1795683501; x=1827219501;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=Hbv+sCDzCE7wuC09VZwCiWaJttjMm0jnvkJbvqxU/FE=;
+ b=PT+vSf+V33qtaOZE7yASsjAYIBcleQT/fSx4Hg+bviJZrzkSDuKWiyoS
+ omcsqK0WyCHsJPMZScaGxCbdMc744Q9vy1aJ3deGhuWliqv86deOYuV1t
+ CeRj35bpR0y1wKbny+Tp8Ty8ZW7JGPo/BgD23mItXwec3aT1BydRjgGW1
+ fwHAcNhCkfnaTaSsY4J1zOykttzxHPkjsaeD3NxKXpSmb5FJRJ8bTp38J
+ YV3syx8sM2G5oc5exFcXGf/bLSq1EXG1Q9DJ6MrSiWwY9zn4BbM9LMd5x
+ jfM/52U+VIitLoQvzrcBRxXWRMSuRK7GYA7/D2sqA7RaX1XTcLQ4uPQIT A==;
+X-CSE-ConnectionGUID: Z17UuluESuyh+P5E1Tjo2w==
+X-CSE-MsgGUID: 0g51FnoUQaiKEL284WMuwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4602605"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4494372"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 00:50:23 -0800
-X-CSE-ConnectionGUID: UMpRgrAYRNCagEhY1xYRqQ==
-X-CSE-MsgGUID: vmR69gSJQcyh+N2darj/VA==
+   d="scan'208";a="4602605"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 00:52:29 -0800
+X-CSE-ConnectionGUID: CKA+94yaSbKu1YslSP0VdQ==
+X-CSE-MsgGUID: yGXwk3VtRLCCo7hctPvMow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="11990949"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 00:49:58 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 00:49:57 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 00:49:57 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.21) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 00:49:57 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hkvpVCcS17imYLzeDpEejpmw40keafPJ1OJbnZtNMj74JuPlELFNu7P5DjIj/lci4SnfzvNoI/AbXJsXaXjwAwx6tIgWj1hEaG0T6rCNTUS1LvL+8FdABTxPJ56vWtSPCq5dNhLprjf8aPPZAICVhxRcxsCLd0PH1qwleODwAP8/tcj0WAWjBpeGtPGyI2MqECMsgJb/Vqq6lHj10Nnc9tJAhpYhtc0U/MvWYEj9f0Isst8WO+C3FmaSv6+RpohlwxVbAF9jkk+9AEzzo+r4ldIzvRwwLwya7PyFixIf/CAMzAXN5dwbIS6ZYVdIBPL+bjBNhMNw1zpo2tmKCPLAyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xghdiA9hCuD9EbG+hlsCIaPnDbp+TkloR8SDg9rkwBQ=;
- b=BA/uVzRMV92Xi4DlpIQiyjqCk/+zP7B3YXWB75v0s6AYjfx7uHav4zwjtGKrVr8p0Sge4jXvT6FC+sGnZE4tvlYW583XC6ZTneeg8dR6FJ+6WL+wO5g9BQeAqMMQF1yLBeb9LFNyUn0X6kft4PPFL30qZiBM0vLTY6obq0y3nQheZjLacZnAnEfO5x2hPaqP9IT61+jvY25uJwpO6XDZO9fJ3DJp2bMzVlrRAbYK4DXsx/Y0ehQ33QJKtjDbJYip/e8SM0DxexHClD5jW+LhJJEV6dPpMAOm1J9Fa4BZZ9H59Emjr7w9wzEPbUUXBnXL1uBYIuBF9me+UDToRAzKeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xghdiA9hCuD9EbG+hlsCIaPnDbp+TkloR8SDg9rkwBQ=;
- b=H1cs1sSSTTMbu/7MEQvTbc6zGNI3KkY6+BN6/DuV+2ze7USeFSigD1c/Qkt25/jXLDxI+IceFovijTXFSNzdzCyPxxru15MoTjp15J/cYxSW+ozicy7D4+25lGFxBdNcOwX/6XC7GIebmmyvaptOeSB1ScF4gxwz8OfKcMMtN1s=
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SA3PR11MB396485.namprd11.prod.outlook.com (2603:10b6:806:52e::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Thu, 26 Nov
- 2026 08:49:51 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
- 08:49:50 +0000
-Message-ID: <a901fe19-7ad1-4c61-acc3-11a59e4af653@intel.com>
-Date: Thu, 26 Nov 2026 14:19:43 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] drm/xe/ras: Skip offline queue processing after
- device unplug
-To: <sashiko-reviews@lists.linux.dev>, <intel-xe@lists.freedesktop.org>
-References: <20261126083516.1932195-5-riana.tauro@intel.com>
- <20261126083516.1932195-8-riana.tauro@intel.com>
- <sashiko-outbox-235054@kernel.org>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <sashiko-outbox-235054@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0282.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:21d::7) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12005036"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.174])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 00:52:27 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
+ chaitanya.kumar.borah@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH 08/15] drm/i915/pipelock: Keep SSC, PSR and CMRR off on
+ pipelock tiles
+In-Reply-To: <20261126063459.863698-9-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261126063459.863698-1-suraj.kandpal@intel.com>
+ <20261126063459.863698-9-suraj.kandpal@intel.com>
+Date: Thu, 26 Nov 2026 10:52:23 +0200
+Message-ID: <aba5a709dd47920e45389b62aa08212f96e605e8@intel.com>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA3PR11MB396485:EE_
-X-MS-Office365-Filtering-Correlation-Id: 676f802c-5393-4284-9a7f-08df4b9a3b81
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|4143699003|261009223027099003|22082099003|18002099003|10067099003|11063799006|5023799004|56012099006|261102123227099003|261026121527099003|261026140227099003|261028144727099003|261021121427099003|261022105027099003|261022075727099003;
-X-Microsoft-Antispam-Message-Info: jfg5jfcPEkcgp4QhcwGh2Ng+w9OQsjWahzA9iRhxIEDDApo/aes0UnQ6Md5jOf3/CkgcCaDL4eDoonKr8locauYJqETW7WF71ycoZjNOtkSRPM71YY2m7hLnPjcANJGoupp8Prhm9/hTPZKKRS4P5PLyA9sXDrv0aJrYt/sFfGOdf8oOPYXY6MiUgbD+0SAicAw7kaIAzZ5A4tC7F8/v8eQY3XAEcUXt7Gz/K5J6luZKVduF1euZ6U5PdAisfft+O5KXSLDMOW0i2x20LNhIY9ZfHo06w+uOTSd21zz0fOv0VOTKhl08ipMcKxR7n634bt2R2PQmDb61HpQYTyt/mOl0wtKoPSiBDmngUbbDm0v7r/eCeVqKRuldiS0WxK8DsF3eMZVsnzJ48iEZ6/rJMBWcMp0lNyD2R13CqUk/XqVIgBWi4nw85K+JzA+Q1/JuuozamGzBAE8PAq86Qy+4CC6pSEXXwq7P2s3KtSCIs7+SIrxyjI90rPi6hWyfdWVpe+EhxqOe6YVTYaeAgvqEQEhPhJIHTvQ2d2zYO5OPIHMfaq81QV51SNASEm7fUoXaksZreeKsnIxm0NH6CnBqUufqvFIco326cd3ixM0m7XP/n7o2I0JW0ix2HLsZ0C7s4jZb3kw1wRqjBz3k+QEuiIDTIOdbF82ookTPxiOWVkw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(4143699003)(261009223027099003)(22082099003)(18002099003)(10067099003)(11063799006)(5023799004)(56012099006)(261102123227099003)(261026121527099003)(261026140227099003)(261028144727099003)(261021121427099003)(261022105027099003)(261022075727099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUc1QW9FNCs0UFZxazM0KytUNFkrd2ZtNWZYdkNwQ29SWkF0a3NFS1F1TEZV?=
- =?utf-8?B?Wm5NTG40N3lpTys5Z3hMWGJFT2ZsQ2RDQ1BBK0duTysrdW1USEF1T2hGM0xD?=
- =?utf-8?B?Yk5lUDFKTzdXZkJ1WGpGMHU3a1FFeHVneXNJZ3IzaFk3c1ZkWWpDOEVaenJV?=
- =?utf-8?B?Z1RIYXY1T2FkdThYSGFsMU96OE1lOXE4ekx3NW9FSkdZcEw5bit0cit6UTdM?=
- =?utf-8?B?Z3ZHNkNaS3UzMWVVSHAxeHZrRHZRMlRqajlnV2VDNy92L1BCNzFaZWhHaEhX?=
- =?utf-8?B?dVNRczNoTnRWckY5NDRJVHQ1MHlwOW8rOWw0YzFLKzhvTjNLcStOZWFEOXJL?=
- =?utf-8?B?MHVFNHVEdWZyeGp4VUlCa3h2cGNxSnhmbEh1VXhvRnVSTi9KSnNDRGhtUDJ6?=
- =?utf-8?B?MWlRQ1NGZFBzQndOSHZnblNtcER5MzUvc3p4QkxOTHo1UExRTzduN1lvSmNI?=
- =?utf-8?B?OEN2WGlURXVMajkzUk5ONlNBVnJGUWpscm5jdzNBZlVhK09CQkZ0L252VXlL?=
- =?utf-8?B?cTdpc20vZHlGSGZjYWxUcGlvVDF1VXdZVUVQaW8ycndvM3YvT05oVHd3aUJU?=
- =?utf-8?B?V0JrQkFsK08wOUFYZHdvTkF0S3lXdERZSHd5VFdqV25HNm1HSmJacGdmeHhO?=
- =?utf-8?B?RjVmbkV0eU5RZkQ3K2FxYmV6allkbHlzZTFhU1JkaEkyVHVhNnF6Q3NpT3J5?=
- =?utf-8?B?QW5LR2NLa3I5Z2JKRS9KMUVIQWszZ0cvRC8yNmRBVmltb2xXK3lnY2tlWTV3?=
- =?utf-8?B?MGN1N3JKODUzbFMvaHluMWsvRENqZHVaL2lzT0lZOWNrMWptSHNTbkNMNFdL?=
- =?utf-8?B?cnhkK1VwZEYrSTcxNUtlanh6OHg3ajVCVmZSZW9IY2tqNHdBYWRUaTg0MGl3?=
- =?utf-8?B?bklrZjA2MmhFd2xsaGhreVJ0cFl2WS8zNk83aGNNTHFvYnZkbUR4Wk5NcXZ2?=
- =?utf-8?B?ZExaK2o2SGRxYXRRWU1FZjBJR3BONkE0OVZoekNicWNzb3crczd1Vzkxck5u?=
- =?utf-8?B?ZHhNUW1TZVY1b3orS1FPZEQyV2lBYnlzckV1RnhiREtXNUtnaUFUZ3d3Tzdo?=
- =?utf-8?B?SFBKSmZNaTZ3a2g4aTRyclFOU0YvdEZqNWZEUUVTbmMrU2U1cWVmN2NtbkJO?=
- =?utf-8?B?VDVkRmlGNk14U25Cc1p0ZGs0K3ZZMmVkNTVUVzQybHdPV3pKR0dJNzVLQ1Qv?=
- =?utf-8?B?cGFtS2NyY2t0aWVjVzlIM2VFdERRSUlQc2VnanRpenBNb1dUUzdFR09Uc3dl?=
- =?utf-8?B?V3ZwUWg4TjJXSXhFM2hvTkhSYk9zNDlkTVRSdk5KUzJDelNtdzR3RTVjZXBs?=
- =?utf-8?B?SVBkdVJMbXdraHJRTVNNc0ZIVEVFak5NeTFnZFNVT09JMWYxRVYzd29JWjJ2?=
- =?utf-8?B?ODdmNDFSNEVDZG1Gbkdxd0pSWlJyN0FBd0JHWkpYcktRYnV2SkNzYWd0M29C?=
- =?utf-8?B?K21oL0pxU0F2RFBPV2tvVEl4NG9tUkRzcjdEemtiNFlmSUluclRwT2VDSjEy?=
- =?utf-8?B?NjRObEpVQ0FtUlJ3NXdmVWJVcThGSU9Vc0d6MEZQU3o0SHk0VEppcWJVZEdi?=
- =?utf-8?B?bStRQ0tES0hOMm9oRlJPWlBhdU1iandsL09CVkszYUVmSlQwSmNsZXZ1bTBj?=
- =?utf-8?B?RFAwbjErcDVJWllvUGdYNHBBWlFRaFpaOUdSM0g1SW9BVmVDbFRpcWp1YmRw?=
- =?utf-8?B?SlZaaXoyMm15TkxDaG1vaVkrZ3dnTlRWUVZtWjBMZmZ2dGRBdmdXWE5RcVlj?=
- =?utf-8?B?REZCYVZPUTBZMzZwVmNvRVVDQUV5N25iMFNMbGswZFVGSEo1NlNvL2k4VDFM?=
- =?utf-8?B?Y29XdFl6ZzBrWmgzSXBzWTRzRVhmZE5TOE44N2dCaWkwL1VMbk5BbmNlaEVx?=
- =?utf-8?B?b2VmRVIwRzRMUGNHZTZHUTVLdDc2VmVCQXVqVkFFQlc4TXhDdUdKY05XT1pX?=
- =?utf-8?B?ODAzZnR1NEVHT2FxL3FKbEU3cnVDOXh0NkpreHpXb2I0Qi96R2ZJQ0p3ekl3?=
- =?utf-8?B?em9DWWJ3WVZOc1BXYTRjWGR2NDdVTUpxcng4cURnVXh3U0FLM3E5QWdOZ1NC?=
- =?utf-8?B?Q0ZORlE1OWlrM2RmOUhuVXFFNmx0T0R3M0Q0eTZ2MmExdit2L0JZUGxFVGhq?=
- =?utf-8?B?WXpISHhpc0krUGcxai9ZWHRJekk5ZWJUU3QvTVJDNmNyTHNDNHZkR29kMzhn?=
- =?utf-8?B?dU80S3lXcXU1V3hJRkc4LzVsT2JtaVlkNFlxVEpqYklBY1NDeFVNQWd6NFhH?=
- =?utf-8?B?UFVicXNMR1lvQ1hnelNjeWJEQnpTM2hsanlaUW5FVmpHY04yM1hhdGduWjhh?=
- =?utf-8?B?aVFRZHI5RVd4QzcyMGw3bGIyUTV2SXdQeGlRTU15ejY4Z3FMN21xUT09?=
-X-Exchange-RoutingPolicyChecked: bYiGiGvoyhAd76Mq3d8zn3kCvfq/pIQl+aFBddyvbr8sjQnrGZPChReUiAF2I5RsRd3xwZduOT83FTqJL2ZHPkZnlBnuw8+9goR5wUbHjLqVhXSOj87Tekh7E8FQ5q3OSyF7hEQohkxI+PxH3mZh0dhX5Acsp95nBj2GB577oJdp6YmGdAKyjuOgbh0IeBLfqQ7mkdstSfZaU8IhP3tmrtPTZJHqaRKvCOTlu/IfKBU290y6knboI/v+kt0HvIemt/HgOTXO9iTtremYRLQbjP23Fh790e9HxgALPV4YKEdnF33I3nB1my9vgAmy2Zq5lHVuSn7vxEvzt3Auz7GMDg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 676f802c-5393-4284-9a7f-08df4b9a3b81
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 08:49:50.8614 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mU05tx/ydFwuxfrEXA43maq147b3NkYx/5tQCRjIfmtDxDnNR0VZg43PGjZuGBlA8mOCyMDiVQNdVFbr8Kf2kA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB396485
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,87 +68,220 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
-	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Thu, 26 Nov 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> A few features can't be used on a pipelocked transcoder:
+>
+> - SSC, as every port has its own PLL and the PLLs have to match
+> - PSR and panel replay, which pipelock doesn't support
+> - CMRR and DC balance, which mess with the vtotal before the
+>   secondary has locked
+>
+> The PLL and these features are computed before we know which tiles end
+> up in a sync group, so keep them off for any DP SST tile on platforms
+> with pipelock. Tiled monitors don't use them in practice anyway.
+> Add intel_pipelock.[ch] for the pipelock specific code, starting with
+> the check for such connectors.
+>
+> Bspec: 73521
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c   |  4 ++++
+>  drivers/gpu/drm/i915/display/intel_pipelock.c | 17 +++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_pipelock.h | 15 +++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_psr.c      |  7 +++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.c      |  8 ++++++--
+>  drivers/gpu/drm/xe/Makefile                   |  1 +
+>  7 files changed, 51 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipelock.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_pipelock.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index ba7eecfffdca..a61642c3e71b 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -305,6 +305,7 @@ i915-y +=3D \
+>  	display/intel_pch.o \
+>  	display/intel_pch_display.o \
+>  	display/intel_pch_refclk.o \
+> +	display/intel_pipelock.o \
+>  	display/intel_plane.o \
+>  	display/intel_pmdemand.o \
+>  	display/intel_psr.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/dr=
+m/i915/display/intel_lt_phy.c
+> index 86492651b01d..35fa701eb9be 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -20,6 +20,7 @@
+>  #include "intel_lt_phy.h"
+>  #include "intel_lt_phy_regs.h"
+>  #include "intel_panel.h"
+> +#include "intel_pipelock.h"
+>  #include "intel_psr.h"
+>  #include "intel_tc.h"
+>=20=20
+> @@ -1338,6 +1339,9 @@ intel_lt_phy_pll_is_ssc_enabled(struct intel_crtc_s=
+tate *crtc_state,
+>  		if (intel_panel_use_ssc(display)) {
+>  			struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
+>=20=20
+> +			if (intel_pipelock_connector_possible(intel_dp->attached_connector))
+> +				return false;
+> +
+>  			return (intel_dp->dpcd[DP_MAX_DOWNSPREAD] & DP_MAX_DOWNSPREAD_0_5);
+>  		}
+>  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_pipelock.c b/drivers/gpu/=
+drm/i915/display/intel_pipelock.c
+> new file mode 100644
+> index 000000000000..67c643b6626c
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_pipelock.c
+> @@ -0,0 +1,17 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2026 Intel Corporation
+> + */
+> +
 
-On 26-11-2026 14:16, sashiko-bot@kernel.org wrote:
-> Thank you for your contribution! Sashiko AI review found 1 potential
-> issue to consider:
-> - [Medium] drm/xe/ras: race with ras_fini() in
->    xe_ras_get_offline_queue() on probe error
-> --
->
-> commit 34b9c8950fa648b356e8d2444006f4d6fdb7ac18
-> Author: Riana Tauro <riana.tauro@intel.com>
->
-> drm/xe/ras: Skip offline queue processing after device unplug
->
-> This commit wraps xe_ras_get_offline_queue() in drm_dev_enter() and
-> drm_dev_exit() to prevent the system controller worker from accessing the
-> offlined pages XArray after ras_fini() runs on device unplug.
->
->> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index e080cbebbdbeb..89c2385eabf7c 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_ras.c
-> [ ... ]
->> @@ -486,9 +488,16 @@ static void process_offline_pages(struct xe_device *xe, u32 cmd, void *req, size
->>   void xe_ras_get_offline_queue(struct xe_device *xe)
->>   {
->>   	struct xe_ras_offline_common response = {0};
->> +	int idx;
->> +
->> +	/* Unplug waits for this section, so nothing runs after ras_fini() */
->> +	if (!drm_dev_enter(&xe->drm, &idx))
->> +		return;
->>   
->>   	process_offline_pages(xe, XE_SYSCTRL_CMD_GET_OFFLINE_QUEUE, NULL, 0, &response,
->>   			      sizeof(response), &response, true);
->> +
->> +	drm_dev_exit(idx);
->>   }
-> [Severity: Medium]
-> Can xe_ras_get_offline_queue() still race with ras_fini() and use
-> xe->ras.state.lock and xe->ras.state.offlined_pages after they are
-> destroyed when xe_device_probe() fails?
->
-> In xe_device_probe(), xe_sysctrl_init() and xe_ras_init() register their
-> devm teardown actions in that order, and then xe_irq_install() enables
-> interrupts (including SYSCTRL_IRQ, which schedules xe->sc.work) before the
-> remaining fallible probe steps such as xe_gt_init().  If any of those
-> later steps fails, xe_device_probe() unwinds without calling
-> drm_dev_unplug() (even the err_unregister_display path only calls
-> drm_dev_unregister()), so xe->drm.unplugged remains false when devres
-> releases resources in reverse order:
->
-> CPU0 (probe error unwind)         CPU1 (kworker)
-> devres_release_all()
->    ras_fini()
->      xa_destroy(&state->offlined_pages)
->    devm_mutex_release(&state->lock)
->                                    xe_sysctrl_work()
->                                      ...
->                                        xe_ras_get_offline_queue()
->                                          drm_dev_enter() -> true
->                                          process_offline_pages()
->                                            handle_page_offline()
->                                              mutex_lock(&state->lock)
->                                              xa_store(&state->offlined_pages)
->                                                <-- use-after-destroy
+I would pretty much like to mandate that *every* file in display/ *must*
+have a DOC: comment explaining what this stuff is about, what the
+acronyms are, etc. Obviously not all the existing files have it, but all
+new ones should.
 
-This can be fixed with a different patch by unplugging drm_dev during
-such probe failure. This is applicable for all scenarios and a very 
-corner case
-and can be taken as a separate  patch
+You've basically written most of this already in the cover letter and
+the commit messages. Add a bit of pixie dust on top and you're done.
 
-Riana
+> +#include "intel_display_core.h"
+> +#include "intel_display_types.h"
+> +#include "intel_pipelock.h"
+> +
+> +bool intel_pipelock_connector_possible(const struct intel_connector *con=
+nector)
+> +{
+> +	struct intel_display *display =3D to_intel_display(connector);
+> +
+> +	return HAS_PIPELOCK(display) && connector->base.has_tile &&
+> +		connector->base.connector_type =3D=3D DRM_MODE_CONNECTOR_DisplayPort &&
+> +		!connector->mst.dp;
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_pipelock.h b/drivers/gpu/=
+drm/i915/display/intel_pipelock.h
+> new file mode 100644
+> index 000000000000..b08b10f8da34
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_pipelock.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright =C2=A9 2026 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_PIPELOCK_H__
+> +#define __INTEL_PIPELOCK_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_connector;
+> +
+> +bool intel_pipelock_connector_possible(const struct intel_connector *con=
+nector);
+> +
+> +#endif /* __INTEL_PIPELOCK_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index 438cb1502c26..a0e65b24b65a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -51,6 +51,7 @@
+>  #include "intel_dsb.h"
+>  #include "intel_frontbuffer.h"
+>  #include "intel_hdmi.h"
+> +#include "intel_pipelock.h"
+>  #include "intel_psr.h"
+>  #include "intel_psr_regs.h"
+>  #include "intel_quirks.h"
+> @@ -1897,6 +1898,12 @@ void intel_psr_compute_config(struct intel_dp *int=
+el_dp,
+>  		return;
+>  	}
+>=20=20
+> +	if (intel_pipelock_connector_possible(connector)) {
+> +		drm_dbg_kms(display->drm,
+> +			    "PSR condition failed: Tiled display with pipelock\n");
+> +		return;
+> +	}
+> +
+>  	/* Only used for state verification. */
+>  	crtc_state->panel_replay_dsc_support =3D connector->dp.panel_replay_cap=
+s.dsc_support;
+>  	crtc_state->has_panel_replay =3D _panel_replay_compute_config(crtc_stat=
+e, conn_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index e59345bd1d33..47603c141298 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -25,6 +25,7 @@
+>  #include "intel_dmc.h"
+>  #include "intel_dmc_regs.h"
+>  #include "intel_dp.h"
+> +#include "intel_pipelock.h"
+>  #include "intel_psr.h"
+>  #include "intel_vrr.h"
+>  #include "intel_vrr_regs.h"
+> @@ -483,6 +484,7 @@ intel_vrr_compute_config(struct intel_crtc_state *crt=
+c_state,
+>  	struct intel_connector *connector =3D
+>  		to_intel_connector(conn_state->connector);
+>  	struct drm_display_mode *adjusted_mode =3D &crtc_state->hw.adjusted_mod=
+e;
+> +	bool pipelock =3D intel_pipelock_connector_possible(connector);
+>  	int vmin, vmax;
+>=20=20
+>  	if (!HAS_VRR(display))
+> @@ -523,7 +525,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crt=
+c_state,
+>  		 * the fixed refresh rate path. It is generic across transcoders
+>  		 * and gated on platform support and a valid debugfs ratio.
+>  		 */
+> -		intel_vrr_cmrr_compute_config(crtc_state);
+> +		if (!pipelock)
+> +			intel_vrr_cmrr_compute_config(crtc_state);
+>  		intel_vrr_compute_fixed_rr_timings(crtc_state);
+>  	}
+>=20=20
+> @@ -536,7 +539,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crt=
+c_state,
+>  			 crtc_state->hw.adjusted_mode.crtc_vsync_end);
+>  	}
+>=20=20
+> -	intel_vrr_dc_balance_compute_config(crtc_state);
+> +	if (!pipelock)
+> +		intel_vrr_dc_balance_compute_config(crtc_state);
+>  }
+>=20=20
+>  static int
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 52f0d5dd5468..15154987d6a0 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -329,6 +329,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	i915-display/intel_parent.o \
+>  	i915-display/intel_pch.o \
+>  	i915-display/intel_pfit.o \
+> +	i915-display/intel_pipelock.o \
+>  	i915-display/intel_plane.o \
+>  	i915-display/intel_pmdemand.o \
+>  	i915-display/intel_pps.o \
 
->    sysctrl_fini()
->      disable_work_sync(&sc->work)
->
+--=20
+Jani Nikula, Intel
