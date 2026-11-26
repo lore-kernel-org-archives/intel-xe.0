@@ -2,87 +2,87 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72C7606A326
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:08:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B84606A327
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:08:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=O0bgwFwo;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=OnRkLZA5
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=CicVbTPi;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=CAQcYbiA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E15711229C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AFCD1122A0;
 	Thu, 26 Nov 2026 10:08:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64F27112285;
- Thu, 26 Nov 2026 10:08:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AA6F112286;
+ Thu, 26 Nov 2026 10:08:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1795687696; x=1827223696;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=H5G+P3ZYJl4WhEjsxB5ighSSP0UDeCadAi5u6ZHAYWE=;
- b=O0bgwFwori/QAlMTK8SxiX647wqA5sd0LFCvq9sihciIS8Xmq5961/aE
- aLDuW49+6tv6aHU0FWM3jt+dddAX21auMiT54iHac1NoB5wqGk6Vmv6UQ
- Rv0Z+nAYo7QpJnvfen9tmPABtV2JwWkVT7vyozYkRo+No6y4rgzOARv14
- wHoMtSoxcT2yONGSUyaR3IZ5DKlWR6PoBr/za6XRj5R0XimbxFwxBiUO4
- 94jiGqWI8B2f+FFTbBCMeB5PThrp/2W71knwJZY78B66tOk4eNU6yohPk
- 7GG2hSY4m+uFeEufdT2qgR5s10QNG/6q/B0ThHtu63+Pi6AKfzJcLkLx0 g==;
-X-CSE-ConnectionGUID: MNoVEmPYQzeHEVxp27RQAw==
-X-CSE-MsgGUID: ikRiZJXnTCOroEuZ2H+yBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4434793"
+ bh=H4Ay9NfDZyLe1DURGuhATE0lIe0IcY+ABjDFy8Nd2Rc=;
+ b=CicVbTPi1q0JW8wWWZf1oFMMk+YUA7W7z24G5kc84zHurkSPfGpo7pEq
+ LlE8EN1gOSWzlj+WxV0BitSJuPa4lfiyoCCf0BOKmahvota2Ax0kSPT3P
+ kHs3p1HbuXFtVQ1yF7PgGZ3kRhIw7aSkfItwXlySeE1kMXwJgM92dGXtO
+ pvJ+dt++K4v8ZPKOpIzy8lOqhi20m5qjIWFwlFSIZXIIgYAsjXeKlAciR
+ d4+n6gQ6RkN+1VzgDccODU6DcyJA1czrexsRroRTDPAh8r6gD0/xfhIAE
+ BE+oGvQ9n2ZVtdNBQ+zqAkRt1W01EhdUuLWNH/bJK8vq6c31bUbu13TQt w==;
+X-CSE-ConnectionGUID: HznjN3MGQVG64P8yIM11xw==
+X-CSE-MsgGUID: x1kOlREyTymvBi1/Szh62w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4677525"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4434793"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 02:08:14 -0800
-X-CSE-ConnectionGUID: au6nm8xSSlOfMFuU2XDIFg==
-X-CSE-MsgGUID: DovNEUcAQ+ChtScczQ5Xcw==
+   d="scan'208";a="4677525"
+Received: from fmviesa013.fm.intel.com ([10.60.135.153])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 02:08:16 -0800
+X-CSE-ConnectionGUID: knQd++NmQaKF751ImmG63A==
+X-CSE-MsgGUID: kjIa2LNtTg+iqmv6B14Ikw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12432737"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 02:08:14 -0800
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="14169308"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 02:08:15 -0800
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 02:08:13 -0800
+ 15.2.2562.57; Thu, 26 Nov 2026 02:08:15 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 02:08:13 -0800
+ 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 02:08:15 -0800
 Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.47) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 02:08:12 -0800
+ 15.2.2562.57; Thu, 26 Nov 2026 02:08:14 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AHY/PFCXLqLU/8POpBJt3t59ls4hxB76DZLtqZH4yZmHsfj+bpyncs1E1ejO4I3Y+lE2I/uHhK3RZAmPQDvXjbN5nyeGl6NszwBuKP3w8g+b7V8RuMr02+arC5hPABFpPnsC4yDuBFF6E17jCBCJeC0NPgOAxFUFlMeOZGCYBeYcO5tLzOvF19nMF3SHQALghQjvJAwdI/EJ/R1qSWrlHhiM5wcnYoU0LLtgJtYtTc8jHBqSuKy3+yBgf4E6eMI/6WJ3y8JC6m0CXDNhc7JdLBBAu5v1LFL8hKkGhcnoufQGw9r6hwcazVgNvfEfP1K9W1n0B1PfXiA4XumKxWMUxg==
+ b=o5XQQrmVBG8dO6vB4LX1KTOnXK0q1KGrUIAFAREsphxoxuPFrlWpjYhCPXYBdNifIp0p/8o9OHxdhwSzQG4vX9PygKAKYhntv2JnTCgjWzpLf8qtHVB/dcuPyadJyp7iIRbp7gFHtvna+2e8JS0LN/6u2HefUOqBphVC9uzWP2DD3AhyhThnTzkOtYKBX4cOS3m689b2QWm5KfcnqEQKwJ0924JkGkiUHuGLZ5fBRlhDOZodgqBCj+q5O/nlBpAYS7v8rM/HPNMAltP4L350LikIcpG462OCODVLh9RoHD+pgyGnOO/4uAMpNp6bSKR2MssKvmDEc9jFP9tKXD/HuA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0KaKZpFoK4PD7bWbOYWKQUr1PFOIbtDH34bBQaaQS0Q=;
- b=MBEZfsBLCUfOr4eyCUGpA8Up7QVbI5K2JN61KxsLZbI8EX8zdZ3odLpbE9zYuQfT1QrxqKieuf1FA7eCnqriFzmLnKM9sscQCodtKL8iznq+ZVwE5AMQM4t1HYripqkXcVdBVqGKLegCyeuTa+1sCsBSGJQMkp82CWsgJ0XcPqiVFwHl7JgdKfIGBARJZFPCap70s3uJvHcuEH2PZTnBIWG4Z2WCC6d63yUD099cWVkp7hHKRY2XLA5I2hzmWm0PzxnS3ccIOzApuPeliqlMlpLdCaTVcMgL47Pnb1M6th2aozcNgg/nTDlkBo3Uw1+M8w/WxNomsVqN4jMh4wdR1Q==
+ bh=ILkS3HxDrsq9Rn4mp9cFFuOA/woRI3b2ZF6g34lcTyE=;
+ b=vo+YCc5CNiZDh9xj1z7CDXSq6qj6r66Ff60oz5YBh6Snwx91LETdMCbiVOHSzGBMf4nDy0LwSjAWOsYlWry8r2cqfat5oTEkIX1FSS11wmIygFgZs/WFD8pFfVaYxFwZ1vOY/naR1KIHNd/qmPQG2bT86YqRhNOre38omJMagXaWf/qnpRaQJWFTm1UGZdA9rcHNifY/8TY+KmHvB4Y3A0nyxMtDroUydLiCDTw+jS/VOVSq9y1KGkRAe4lecjip7oprtZg8D+IVBw+kfdvSL7DzrlcHRh43fgQYAGB2gSbrmik7vYI8Be70b9Xcm9P9IZ88bk7wzcVQyzntnqMacA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0KaKZpFoK4PD7bWbOYWKQUr1PFOIbtDH34bBQaaQS0Q=;
- b=OnRkLZA5N3dyhn0bZsC4GNplVMRW0sWFaEzOGKT12wWDnHaOVE8rbVq9HsbWY+iodlB2BT37ZkvZA1ItuP6KxJwjKP9XuElRZASczKOQ/2buQpMU5n8XcQy2poFA5GLajm0KbcCKAPne8O9PJMr47QzEsOURQrCw3oV1JbuDhXU=
+ bh=ILkS3HxDrsq9Rn4mp9cFFuOA/woRI3b2ZF6g34lcTyE=;
+ b=CAQcYbiAe4UcLfY7xyryxd9tVMfVOje42Uvla2RbR60Ne1AxIaDm4YhRIZZNEHEAd7NPWbvWj3B4GchrI2RAtr4hIEVrEgQJgcz0RwCWBdXEQ0nEj6eQ8ZkE6fnAUyoY4UxJXBhMM7ribfBlvbrhx1Fvq3+eWTxicuwbSFuCAPs=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
  by CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Thu, 26 Nov
- 2026 10:08:03 +0000
+ 2026 10:08:04 +0000
 Received: from IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa%6]) with mapi id 15.21.0662.001; Thu, 26 Nov 2026
- 10:08:03 +0000
+ 10:08:04 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 02/13] drm/i915/hotplug: Set detector enable bits without a
- clear mask
-Date: Thu, 26 Nov 2026 12:07:42 +0200
-Message-ID: <20261126100755.1252635-3-imre.deak@intel.com>
+Subject: [PATCH 03/13] drm/i915/nvl+: Add support for remapping logical HPD
+ pins to HW pins
+Date: Thu, 26 Nov 2026 12:07:43 +0200
+Message-ID: <20261126100755.1252635-4-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20261126100755.1252635-1-imre.deak@intel.com>
 References: <20261126100755.1252635-1-imre.deak@intel.com>
@@ -97,56 +97,56 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|CY5PR11MB6366:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5743172c-3f11-4717-2240-08df4ba52878
+X-MS-Office365-Filtering-Correlation-Id: dd937b6a-faee-428b-d350-08df4ba52945
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|10067099003|56012099006|11063799006|261022075727099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 5+pdZLwFDp+GIOYRjlcYUv333ydfnfCksl2YNJfxxZ5S/nrTTWjsy1k8cYV+phVPVEMtR0JnOS7SoBxnf/TNvLAYYviFb3zhAvm/bUTgO0MLDsyZzFERX9ESJkzg+vzVT+kRW8/dnp9BJgccpaALD5htVEqBuKYxJgTpHLw1yqq7CK6gzllLpcPg6YEddjbY4ggtBzpnbeyyorDg1dEOLpIHjlvCo1bsfIok/I9+SaIDlt6KSQVkwqHyyx/Lfwse4mhb7ePGlpG/Xi5Px6PsbImBnm7zuMJcRr8rlDjyUvrgbMrqR8bfXrscTW4fegmlOfzudmNqiVBNOp2OO8W2q6BC/wVh47TfypGLtHNZZPkdHSAIXE1FB22p5RBDMEzi5M7zPm2Vhb1z/3lMyATARrLSPmsWy+KpwTVFUjg4vdee0rINJMag+ykMFz1oRWMpdeqaAtTp3Vn+cFy28pPsrQ4Hav1rSw/AZSO07CIP8OirZzeGnNaRMJ08LFLVRG3DgFOBiQ8xmvqfTjsbLAfceblwlz6eBnVkYllaW5HVG4UjVGct0H4UnxXhL2wkjBDZzkqUVOd7gIgb8QIPYfRHNMLOH5ULkov9EWAc7BClNpycrGS0XlFmPfGS5eg9nSL+fu+qpJOXcyyV/f1/gB/Xi3Oc+8NFbdEChPuIRgA/LqU=
+ ARA:13230040|366016|376014|1800799024|23010399003|10067099003|56012099006|11063799006|261026130827099003|261026135527099003|261026121527099003|261026140227099003|261028144727099003|261022115727099003|261022113327099003|261022105027099003|261022075727099003|261021130227099003|261021123027099003|261021121427099003|261021135927099003|261021133027099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: iYQtEdZYn4ImoeVdizJuR2mkJXZat8pjqEpzGxE02KLz+eHHj2KVKP7Nim5EIYEFgAtP0461FHOI322l+ISGDC4/hBCNVOHyBsojNsyFRpVnNAtI9V0c/7jZW+nXUk8ZKsWuec4rvwohsKIyB67HxZMGsavbpmHKKA0/stc/sAsoPWAL1U+rRpwE47vOSdCJJ9RwQYeTu/PEoztIs1YkhhRRcBfpQH//BXAxSMm0vNfXFg/i4v0bIhgshsb4cj6GN5RQO5FL3VqA6sNar8GX+3ks4T64FxEfmU7RTiPaVIUruM23BkOGHzrdXr3lalo53fMTrFn3H6h0EqF3mmPDCf0QTZOWrbgHBlWcZm2mnjUExuw3vmBIALWAqPCAbE9/bwwYZHU+OFLLkEQw11uVM/jnir8diucieJDnpA+GoDHSynE6NSYUqx0zYaO81ux8QV/Yx5KK8sMiXum33qhVQksGfFS9yiwF+rKzQ0N59QX4JracYC1LJGsKRUx9ajFOQE0742Yk7nRt70yo/AreBE/5orhC4OnpG2f1Es1my0eqmGO02PesQusZq2htWCDImdLdkmG8fshbLidAq6+VAMAR5wcU6xRmuXkAcW4/ejwfwXH1qnCtubVLwl8dmANe6CT5wXim0U6MfRQtN/z3dnGnu1RwH7BUXVXlUk3Jwkk=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(11063799006)(261022075727099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003);
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(11063799006)(261026130827099003)(261026135527099003)(261026121527099003)(261026140227099003)(261028144727099003)(261022115727099003)(261022113327099003)(261022105027099003)(261022075727099003)(261021130227099003)(261021123027099003)(261021121427099003)(261021135927099003)(261021133027099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9nY9nu93/k0TpLCAL9iGY0cqR26Z5htUIzGVBGB9Z1n+LKgk0nRDa1tOBacV?=
- =?us-ascii?Q?cNDSxs/UwlOQTPEPEewtill0vzBIqgyj4z2JQOy7FnGQ/ViZUiTL7b59zV7O?=
- =?us-ascii?Q?Bj7pKPzpsqkd8pDz6EPh5MQrieJSRRyhSb9CNOh2Q1ZD9YLbxUhjkLRLWLFV?=
- =?us-ascii?Q?NHjaxVEZZaI9PdnHMGcX8dlEVH3DfnYAaCsE5XQDm2hQPUWULpXHkGwHdxKv?=
- =?us-ascii?Q?5A00o1akELoEeVGcyis4k9hFrRVQxIU0Be/ccUl2XsETPfqmyjo6dck29M1v?=
- =?us-ascii?Q?4vYm0cz+gVGgII33Z7vkXNoqltvgWZmwBVmZ7Bj7vRbPiVMLenhLtjn1Ch29?=
- =?us-ascii?Q?9cPEGyVbj7Y9lvDqWWJXLyRCvId9WL2LLTbFRAz0CTpVQW5Bht1VBMmDaPWz?=
- =?us-ascii?Q?P4beqe8MoIzZmdzTjEeuH7DycyUCqHB7OMT9jF4+/76sP6newek9FROkt0A6?=
- =?us-ascii?Q?x5Sc9rgTWa35NB8ivHXCp42MkYO/Z40XGFCu89/u8Uo4TCCKo4DkglpSIhiV?=
- =?us-ascii?Q?GBO3GIn69RD1YmsbQ9dUE85bpTmbXF6417lYVUR2g1sL+RK/y93FKwWnXNM4?=
- =?us-ascii?Q?oZp07RhscWQVQ8SDqI8RWjycycia/tUM71N4T1VikaIiEcEsQ24z/2AFoLHU?=
- =?us-ascii?Q?f5EWWeszrEh1SZ3GkLcnGSEsqmCGIOfeM9QDL3Jq9PA8XpYcIJK4pO45R75X?=
- =?us-ascii?Q?y+bfaM5GUfgoRjXDETu+2UYjZz6b+tSzLt8xiTw9G/G9mPRowh/oO4JEK2Rl?=
- =?us-ascii?Q?HBZZTWWIzIkvj9G6GczqnrexnLWWLqy7RUMtk43yOLGAb35ypo0EIMk9IAPI?=
- =?us-ascii?Q?YUOwyA8+dAveT12GZNKQ9rfjW3DxQbX50cf1znYxctqIiXG3apjG+BVJY4jG?=
- =?us-ascii?Q?OeJALqZNLVh1PKTvBF13UI2IFDgBH5O4QU1wFnq8YurvxOj9FeMaIchWTjHm?=
- =?us-ascii?Q?dbKXbTZpHJ9ohmRzyx77xhhAeRK6ckRVsFpLP3FfDNVVIKtffHiM0KHZ3vpw?=
- =?us-ascii?Q?BfN0i8N9/lJe5vaoY40mSPptW/hGlnRTihbJVig86xDj/SRA5ApfenIsv3Uw?=
- =?us-ascii?Q?PprlNQTQJHi0v6oVU6jlHXdJYjyDI/XZMU+Q/UUdWx+PRz72HAgvK4XLup02?=
- =?us-ascii?Q?m6a5vhXbDyrv0V0ysHswIcmxVqk7uTAbuA7HanrU8jL3qfYaCmq27pksBG7c?=
- =?us-ascii?Q?1rgvazQvhJMz4DrFLgSW4GnbxwHDyHxt92Sa1Hkb7OUjP3v3t5cPwy1S6LOM?=
- =?us-ascii?Q?tf0A7BLI6vTqXgB2DKEWhilhsohZdm19pGCp3WDtt7IJ/eXQtt2/b7awN1Xa?=
- =?us-ascii?Q?p8od7YLAtDGfj9UuzPVAKVDdvZEWv/7+g56/YeLYvi6f5EPKd3dwrk/spSZ1?=
- =?us-ascii?Q?hsnRUDe1Bd7RUaOvb78UshTlUnnqC7RIP1cBtpJcv01eTmAECd83f+w+WP6I?=
- =?us-ascii?Q?s/HVeGRiWR+s9kzT4vEI6DIFGgbeJGLDTBwZm91QO7MJUDKLb4d2NjmlBKOo?=
- =?us-ascii?Q?9h0PTtxpOVoK48WWETIiLHUU9UDPgUTyP0W41s/P/cHvj9NOa3BCx0zcL7nI?=
- =?us-ascii?Q?nA1JzkNGMRdMihn0lwfYLG6G1tRn36pDT20Y4GF5nag3Hcc27ORurS47r0tH?=
- =?us-ascii?Q?MC2Op+sdh7uySTMnJ5UD9hc/Te+WBM4wu0TghbZJjd+v3EhPGTMmIVlL/rxi?=
- =?us-ascii?Q?/VKdGmNZcLQPE7y4ooBqYqxrwqaTTKs6rx5O1lh0EwejIWg8j/qcAuI7pi4Y?=
- =?us-ascii?Q?LcLgaJ4row=3D=3D?=
-X-Exchange-RoutingPolicyChecked: BBR2Wb0NywO53vEcrnjo4MBPehjF/b4ytAzauDkB0+475faLqqh/0ArSKeXixO7da2l5A6x8LO6rOVahg1twaW+786oeyzEIxEyq0tp8MHMFdAYWIH/XpipOMn+4Xq5bWmMeqoBUqY8QESxSYrcffP6/mzb/T1XVxRdFCEjohq0LktnhVCUZsc5Hx9pl7+PXvjt8mlBr/vrXhdM7nKyDbNq3Bn188XfIBdA6NQ+5c8OAX+ABaI34oXu2s+LzEIjxTWjt13AmSASaEu6TTRqn7U+dq3evqHfTKjfAWsDy/cXu6RldpNDTAhNMldT2FVR/gbu6sp/2k0txJ1Kr89i0Gg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5743172c-3f11-4717-2240-08df4ba52878
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pAyQKBuToq1JR7G6zgartYJWIX58nuuEtiveHGEkyBP2sSSet9rzJXp1BYvj?=
+ =?us-ascii?Q?KTWV+K4zFcKOu84iD9qt7mkNnCgqcT9PLh0wkiCzNNrSuvFCMIAMMOcnf8Mc?=
+ =?us-ascii?Q?L7kXxUycJnqxVnEGA4mA0OEYmcN3HMaBJp2o050SSnhUzm+wOIJ1wDd6Nck4?=
+ =?us-ascii?Q?HbC9QMa+IGChfOK6vwVcfUrN+n+HSViZfKAOqhJt27uQvlRokSeGmEfZbKtk?=
+ =?us-ascii?Q?2pik1joUMhqmQBGZrY5ej1kZNR4vPvHYNThEBUH0WZrvquiciqR/168iQBlA?=
+ =?us-ascii?Q?PVH1zf5PDwYnATLtF+7+AbP2REuwE3X3dPEc4n1r+pHWZEnjDttQVTKndrEU?=
+ =?us-ascii?Q?f0XrWVfkRb0EzbennPh/JYjdcSu4jB/W8+e3pP/XIAcBn3viKLsIaI5Fb/PW?=
+ =?us-ascii?Q?rNoIaQLUTF10dxPDtZEvccGeBO3rZjXpooJyrL/6nWx2Ph6y557236sojeBt?=
+ =?us-ascii?Q?YGk+Fd9I5S4KHkktzYQFH+Ei1vzPGbGaj8EARbODZ1LYZ2kqQDTVv1Ym5I3n?=
+ =?us-ascii?Q?ooEuWZ+PABS+b+61SzuSRP2/+gtMhOVQLGOQkJUN2256vTdA5VQNN/NVuwBS?=
+ =?us-ascii?Q?WYMy/mubZ5VaPg9Mh6gnN9FInBoG4eLmkMJw745GkBUMxqQPn3XANZlgJnIC?=
+ =?us-ascii?Q?51F61V8R4Phxq+05SwqbVwZ2O7KbWNIyVOQ0U/CXd3oXnSAUOLDpkPwyzJtF?=
+ =?us-ascii?Q?PNngdDxFWloAWq4r+xDTfB4gxdG3pcjlEEbGNyQudDmd/yJ/Wc6DYSLeBCBX?=
+ =?us-ascii?Q?9/h0mGUnBBnc/Z4r3HLuFeCv3f5OoIesICnbh6ZxJV70ND3RZPduKDuvVAGt?=
+ =?us-ascii?Q?YKgaAb1KX5RADLOyb0vkPKep8a7115Ui7vi0UYstdGE5Y3ZjOJ4fuNlZcPlS?=
+ =?us-ascii?Q?7evLadoOYbtxQtE2IYVULtKLf/Njn51cNCVdi6ZSFSDolwyWisJW4Juq8mo9?=
+ =?us-ascii?Q?4rT/zJY1pC4fSpFOcTRGXaTP60KxFlKd0CFDOHsDXPg6XoppGazV1AOmudU0?=
+ =?us-ascii?Q?ZXg5F/+3UkvnBcIUGlI0FWA3sbFSdD6IMrH7mF7ZLf/aut/bUlI8bwWes1Am?=
+ =?us-ascii?Q?PtQekxHgeTeRCbqhZz1yEz43C/T4+yvwMbewJvhKaLheT4g+D5TGeCpTI7lL?=
+ =?us-ascii?Q?WK2fwms7SMuYm4BPw3iY29zM0zYIZwx5Bxe0L4GXbL1h9rrUgDf8DOXMSKi+?=
+ =?us-ascii?Q?fTchkLp473DnYolb9P1VlN/Zs7n3mWvAKiyLLfS8UeHE/0duMVu9+tT5QVVf?=
+ =?us-ascii?Q?XgxOHHZFWqzZdKvcIP8q22k3IIz2wcPCnotuXmLtoCVLqItYSPdeOZQtkX8W?=
+ =?us-ascii?Q?SQBCEHKHZglIXhobAG4XsCB84YRVhXAMttQ8PbgUx3y1hks3TopMgqxQUZ3Y?=
+ =?us-ascii?Q?IYaps9a2lFWNO/deYAw30rxYKZ0ti+zMxRotiD0bY3+e4a5ugH+aTM8vybMR?=
+ =?us-ascii?Q?1NpJ1opo8Nyxs1wVin/2ID798g+cNqWMkngOdu61cLYLCQSrpak/I3tGyhcq?=
+ =?us-ascii?Q?2/cqgC1/fLeXgWRYFxDIiReA3AUIEn2WVnkJrVfvRivYpVVY3goyLahPPNUK?=
+ =?us-ascii?Q?ZOmuj0DHbtTeMYWkY5q5UPUlKI7mvdUTLCKoGZ2WA66ODEQIprifQnmCYlYQ?=
+ =?us-ascii?Q?vUO7WCyT0Q516IbPwa3dqcSloCAJRZ3aJZeCyG2ZUd9xWm6et123s3dV3B5b?=
+ =?us-ascii?Q?qhhHPRGsawLYvVWwR/zROU18HY7rK46+PiCTaoopEXDOaPRMg+Zw4uF04O0B?=
+ =?us-ascii?Q?ZQMjQuDfeQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: eb7mNtBbT8juRJcOmOZFdjIgB9SFPXlEYCLBSwIcTTVMgdDpBRQLynx+pkbi+rYfpKqg2nWXlyC6rYmCsmZAStmzW1n1SMW86447y5C2YE44WQysytJ49syBiI1qllTkLKSGGBK518YDyrTj/Rl05CXJ2COByhvNUjCg79O8MACa3s/c0TqXZp70q5qXQpuZHpqL375XbK7KwfaksOwH+zud9QFDVvstX9ISAuAzgtiSmnUZGrdzWd9vAeUCixpQFNz/XV5ub/Hu6veMCKGihzVJv0KSdRBNe73bHJXZgHzhz6G/42goGJTacF/nX2FGT+h8jbp5+i2UDafWj5j82Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd937b6a-faee-428b-d350-08df4ba52945
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 10:08:03.2942 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 10:08:04.6907 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zBH6Tr9NdjsGICXlAUP3R/1NbWgDZBlaxzxy2isdJBz3GPDtLhWInmMmO501Ko2mvOqVr1FykanV2z+UyLqf4A==
+X-MS-Exchange-CrossTenant-UserPrincipalName: a9SDoL4UHzeiAnH8DpmVxbvMkzQWSbbaVh1Wu/ySi/JjaNSjQqHZ7gbS3G2iAnNiWDTvBwzHSFvJu+agfSrz2Q==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6366
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -166,47 +166,249 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The MTP DDI and TC HPD detection enable fields are single bits, so set
-them without clearing them first. This simplifies a follow-up change
-that remaps an encoder's logical HPD pin to a hardware pin.
+Add support for remapping an encoder's logical HPD pin to north and PCH
+HW pins. This prepares for moving a legacy port's handling to another
+encoder, changing a TC encoder's legacy/alt mode role and its
+legacy/DP-alt/TBT-alt HPD sources.
+
+Only the legacy PCH mapping needs to select a different HW pin. North
+pins retain their identity mapping or have their source disabled.
+
+Limit support to NVL+ for now, leaving a unified approach for later.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ .../gpu/drm/i915/display/intel_display_core.h |   4 +
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  | 115 ++++++++++++++++--
+ .../gpu/drm/i915/display/intel_hotplug_irq.h  |   4 +
+ 3 files changed, 113 insertions(+), 10 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index b422d24e21b2d..72183bfee07a3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -168,6 +168,10 @@ struct intel_hotplug {
+ 	struct delayed_work hotplug_work;
+ 
+ 	const u32 *hpd, *pch_hpd;
++	/* Mutable hardware sources for stable logical pins on NVL+. */
++	u32 hpd_map[HPD_NUM_PINS], pch_hpd_map[HPD_NUM_PINS];
++	/* Logical to physical PCH pin; HPD_NONE means no south source. */
++	enum hpd_pin pch_pin_map[HPD_NUM_PINS];
+ 
+ 	struct {
+ 		unsigned long last_jiffies;
 diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index ce0c8f56106a9..81aaf38f1b130 100644
+index 81aaf38f1b130..da45eb4775707 100644
 --- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -1007,10 +1007,10 @@ static void mtp_ddi_hpd_detection_setup(struct intel_display *display)
- static void mtp_ddi_hpd_enable_detection(struct intel_encoder *encoder)
+@@ -136,6 +136,14 @@ static const u32 hpd_mtp[HPD_NUM_PINS] = {
+ static void intel_hpd_init_pins(struct intel_display *display)
  {
- 	struct intel_display *display = to_intel_display(encoder);
-+	u32 enables = mtp_ddi_hotplug_enables(encoder);
+ 	struct intel_hotplug *hpd = &display->hotplug;
++	enum hpd_pin pin;
++
++	/*
++	 * NOTE: the pin map is only used by MTL+, but for simplicity init it
++	 * for all platforms.
++	 */
++	for (pin = HPD_NONE; pin < HPD_NUM_PINS; pin++)
++		hpd->pch_pin_map[pin] = pin;
  
--	intel_de_rmw(display, SHOTPLUG_CTL_DDI,
--		     mtp_ddi_hotplug_mask(encoder->hpd_pin),
--		     mtp_ddi_hotplug_enables(encoder));
-+	/* Only set the enable bit; no clear mask is needed. */
-+	intel_de_rmw(display, SHOTPLUG_CTL_DDI, 0, enables);
+ 	if (HAS_GMCH(display)) {
+ 		if (display->platform.g4x || display->platform.valleyview ||
+@@ -146,7 +154,14 @@ static void intel_hpd_init_pins(struct intel_display *display)
+ 		return;
+ 	}
+ 
+-	if (DISPLAY_VER(display) >= 14)
++	if (DISPLAY_VER(display) >= 35) {
++		/*
++		 * The (north) HPD map is only used by NVL+.
++		 * TODO: Make the mapping logic platform independent.
++		 */
++		memcpy(hpd->hpd_map, hpd_xelpdp, sizeof(hpd->hpd_map));
++		hpd->hpd = hpd->hpd_map;
++	} else if (DISPLAY_VER(display) >= 14)
+ 		hpd->hpd = hpd_xelpdp;
+ 	else if (DISPLAY_VER(display) >= 11)
+ 		hpd->hpd = hpd_gen11;
+@@ -165,7 +180,14 @@ static void intel_hpd_init_pins(struct intel_display *display)
+ 	    (!HAS_PCH_SPLIT(display) || HAS_PCH_NOP(display)))
+ 		return;
+ 
+-	if (INTEL_PCH_TYPE(display) >= PCH_MTL)
++	if (DISPLAY_VER(display) >= 35) {
++		/*
++		 * The PCH HPD map is only used by NVL+.
++		 * TODO: Make the mapping logic platform independent.
++		 */
++		memcpy(hpd->pch_hpd_map, hpd_mtp, sizeof(hpd->pch_hpd_map));
++		hpd->pch_hpd = hpd->pch_hpd_map;
++	} else if (INTEL_PCH_TYPE(display) >= PCH_MTL)
+ 		hpd->pch_hpd = hpd_mtp;
+ 	else if (INTEL_PCH_TYPE(display) >= PCH_DG1)
+ 		hpd->pch_hpd = hpd_sde_dg1;
+@@ -181,6 +203,38 @@ static void intel_hpd_init_pins(struct intel_display *display)
+ 		MISSING_CASE(INTEL_PCH_TYPE(display));
  }
  
- static void mtp_tc_hpd_detection_setup(struct intel_display *display)
-@@ -1023,10 +1023,10 @@ static void mtp_tc_hpd_detection_setup(struct intel_display *display)
- static void mtp_tc_hpd_enable_detection(struct intel_encoder *encoder)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-+	u32 enables = mtp_tc_hotplug_enables(encoder);
- 
--	intel_de_rmw(display, SHOTPLUG_CTL_TC,
--		     mtp_tc_hotplug_mask(encoder->hpd_pin),
--		     mtp_tc_hotplug_enables(encoder));
-+	/* Only set the enable bit; no clear mask is needed. */
-+	intel_de_rmw(display, SHOTPLUG_CTL_TC, 0, enables);
++/*
++ * Remap an encoder's logical TC HPD pin to separate north and PCH HW HPD
++ * pins. The north mapping must be an identity mapping or disable the
++ * source. The PCH mapping may select any TC HW pin or disable the source.
++ * Either source is disabled by mapping it to HPD_NONE.
++ *
++ * TODO: Make the remapping generic and independent of the platform.
++ */
++void intel_hpd_set_pin_sources(struct intel_display *display, enum
++			       hpd_pin logical_pin, enum hpd_pin hw_pin,
++			       enum hpd_pin pch_hw_pin)
++{
++	struct intel_hotplug *hpd = &display->hotplug;
++
++	if (drm_WARN_ON(display->drm, DISPLAY_VER(display) < 35))
++		return;
++
++	if (drm_WARN_ON(display->drm, logical_pin < HPD_PORT_TC1 || logical_pin > HPD_PORT_TC4))
++		return;
++
++	if (drm_WARN_ON(display->drm, hw_pin != HPD_NONE && logical_pin != hw_pin))
++		return;
++
++	if (drm_WARN_ON(display->drm, pch_hw_pin != HPD_NONE &&
++				      (pch_hw_pin < HPD_PORT_TC1 || pch_hw_pin > HPD_PORT_TC4)))
++		return;
++
++	hpd->hpd_map[logical_pin] = hpd_xelpdp[hw_pin];
++	hpd->pch_pin_map[logical_pin] = pch_hw_pin;
++	hpd->pch_hpd_map[logical_pin] = hpd_mtp[pch_hw_pin];
++}
++
+ /* For display hotplug interrupt */
+ void i915_hotplug_interrupt_update_locked(struct intel_display *display,
+ 					  u32 mask, u32 bits)
+@@ -552,6 +606,28 @@ void xelpdp_pica_irq_handler(struct intel_display *display, u32 iir)
+ 			"Unexpected DE HPD/AUX interrupt 0x%08x\n", iir);
  }
  
- static void mtp_hpd_invert(struct intel_display *display)
++static void xe3plpd_tc_hpd_pins(struct intel_display *display,
++			      u32 *pin_mask, u32 *long_mask,
++			      u32 trigger, u32 hotplug_reg)
++{
++	enum hpd_pin pin;
++
++	for (pin = HPD_PORT_TC1; pin <= HPD_PORT_TC4; pin++) {
++		enum hpd_pin hw_pin = display->hotplug.pch_pin_map[pin];
++
++		if (!(display->hotplug.pch_hpd[pin] & trigger))
++			continue;
++
++		*pin_mask |= BIT(pin);
++		if (icp_tc_port_hotplug_long_detect(hw_pin, hotplug_reg))
++			*long_mask |= BIT(pin);
++	}
++
++	drm_dbg_kms(display->drm,
++		    "hotplug event received, stat 0x%08x, dig 0x%08x, pins 0x%08x, long 0x%08x\n",
++		    trigger, hotplug_reg, *pin_mask, *long_mask);
++}
++
+ void icp_irq_handler(struct intel_display *display, u32 pch_iir)
+ {
+ 	u32 ddi_hotplug_trigger = pch_iir & SDE_DDI_HOTPLUG_MASK_ICP;
+@@ -577,10 +653,14 @@ void icp_irq_handler(struct intel_display *display, u32 pch_iir)
+ 
+ 		dig_hotplug_reg = intel_de_rmw_fw(display, SHOTPLUG_CTL_TC, 0, 0);
+ 
+-		intel_get_hpd_pins(display, &pin_mask, &long_mask,
+-				   tc_hotplug_trigger, dig_hotplug_reg,
+-				   display->hotplug.pch_hpd,
+-				   icp_tc_port_hotplug_long_detect);
++		if (DISPLAY_VER(display) >= 35)
++			xe3plpd_tc_hpd_pins(display, &pin_mask, &long_mask,
++					   tc_hotplug_trigger, dig_hotplug_reg);
++		else
++			intel_get_hpd_pins(display, &pin_mask, &long_mask,
++					   tc_hotplug_trigger, dig_hotplug_reg,
++					   display->hotplug.pch_hpd,
++					   icp_tc_port_hotplug_long_detect);
+ 	}
+ 
+ 	if (pin_mask)
+@@ -994,7 +1074,10 @@ static u32 mtp_tc_hotplug_mask(enum hpd_pin hpd_pin)
+ 
+ static u32 mtp_tc_hotplug_enables(struct intel_encoder *encoder)
+ {
+-	return mtp_tc_hotplug_mask(encoder->hpd_pin);
++	struct intel_display *display = to_intel_display(encoder);
++	enum hpd_pin hw_pin = display->hotplug.pch_pin_map[encoder->hpd_pin];
++
++	return mtp_tc_hotplug_mask(hw_pin);
+ }
+ 
+ static void mtp_ddi_hpd_detection_setup(struct intel_display *display)
+@@ -1096,6 +1179,12 @@ static void _xelpdp_pica_hpd_detection_setup(struct intel_display *display,
+ 	u32 mask = XELPDP_TBT_HOTPLUG_ENABLE |
+ 		XELPDP_DP_ALT_HOTPLUG_ENABLE;
+ 
++	/*
++	 * North HPD mappings are either identity mappings or disabled, so the
++	 * logical pin passed here can also be used as the HW pin.
++	 *
++	 * TODO: Unify north and PCH HPD mapping handling.
++	 */
+ 	if (!is_xelpdp_pica_hpd_pin(hpd_pin))
+ 		return;
+ 
+@@ -1119,7 +1208,8 @@ static void xelpdp_pica_hpd_detection_setup(struct intel_display *display)
+ 	BUILD_BUG_ON(BITS_PER_TYPE(available_pins) < HPD_NUM_PINS);
+ 
+ 	for_each_intel_encoder(display->drm, encoder)
+-		available_pins |= BIT(encoder->hpd_pin);
++		if (display->hotplug.hpd[encoder->hpd_pin])
++			available_pins |= BIT(encoder->hpd_pin);
+ 
+ 	for_each_hpd_pin(pin)
+ 		_xelpdp_pica_hpd_detection_setup(display, pin, available_pins & BIT(pin));
+@@ -1127,8 +1217,13 @@ static void xelpdp_pica_hpd_detection_setup(struct intel_display *display)
+ 
+ static void xelpdp_hpd_enable_detection(struct intel_encoder *encoder)
+ {
+-	xelpdp_pica_hpd_enable_detection(encoder);
+-	mtp_hpd_enable_detection(encoder);
++	struct intel_display *display = to_intel_display(encoder);
++
++	if (display->hotplug.hpd[encoder->hpd_pin])
++		xelpdp_pica_hpd_enable_detection(encoder);
++
++	if (display->hotplug.pch_hpd[encoder->hpd_pin])
++		mtp_hpd_enable_detection(encoder);
+ }
+ 
+ static void xelpdp_hpd_irq_setup(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.h b/drivers/gpu/drm/i915/display/intel_hotplug_irq.h
+index 9063bb02a2e9a..9bfa446202b69 100644
+--- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.h
++++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.h
+@@ -8,6 +8,7 @@
+ 
+ #include <linux/types.h>
+ 
++enum hpd_pin;
+ struct intel_display;
+ struct intel_encoder;
+ 
+@@ -27,6 +28,9 @@ void i915_hotplug_interrupt_update_locked(struct intel_display *display,
+ void i915_hotplug_interrupt_update(struct intel_display *display,
+ 				   u32 mask, u32 bits);
+ 
++void intel_hpd_set_pin_sources(struct intel_display *display, enum hpd_pin logical_pin,
++			       enum hpd_pin hw_pin, enum hpd_pin pch_hw_pin);
++
+ void intel_hpd_enable_detection(struct intel_encoder *encoder);
+ void intel_hpd_irq_setup(struct intel_display *display);
+ 
 -- 
 2.49.1
 
