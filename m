@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92051606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 185C4606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:41:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=YTj4igNP
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=FXllt/Xs
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 335F410E979;
-	Thu, 26 Nov 2026 10:26:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF471122E2;
+	Thu, 26 Nov 2026 10:41:46 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E60710E97F;
- Thu, 26 Nov 2026 10:26:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA8971122FA;
+ Thu, 26 Nov 2026 10:41:39 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 1B50A62F17;
- Thu, 26 Nov 2026 10:26:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9BA21F000C6;
- Thu, 26 Nov 2026 10:26:42 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 0DC9F61F53;
+ Thu, 26 Nov 2026 10:41:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B4821F000D0;
+ Thu, 26 Nov 2026 10:41:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795688802;
- bh=dQJEUahATom/lvp1s/Wg4i1fc0bTCzcX65MNdayudFI=;
+ s=k20260515; t=1795689698;
+ bh=RK45D7+e+iOcW3RnTCutIaBZLm4zHzJntoCpJ8jzTVk=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=YTj4igNPhw1Ev+g73cQjDKjiJEWegoHZJCJ8PSVJlVBDRD9KdLLwMGsS0xDHDXDhF
- mEyeKtp1QJaXJtJDZ6nL4YErWtzerNeRkEPflonAnGWb+hrkb4z8BysTDQR/9MpzhS
- BfMAkBI3HR8yKTb98s5jtfQJXFofMBwAbqK4yA7LZeVEwxu08jHWokeyHGU4xVS+n/
- uCxETipw4yxWx88PpkmJeH52S0PRVAvH8NQzK4vqi3swlXZbAoS0jknMX3FSE/NF+t
- 8GzcBcgBZgk5tiKph4pjY1Q9k5vLo5KimvoijRS2TZ3FLHf7d8Cch6Ahi81edM3OhI
- uxP33VWHTJ19g==
-Message-ID: <sashiko-outbox-235287@kernel.org>
+ b=FXllt/Xsoxah3s99erdKglb9rx96mehJXspfi4IsRHc0exsrEAvnyL4cGs+Fnjq/B
+ zXmwHKGlsUm2pD/Psh4WIy3+viwxF3MSTniHS89ytZf9QBOnIBWK7wFrPz8LCutkDD
+ /cBEYQr9yP1An0ddQBlRZcEB/C9bvMcwEfG8KnJDrHEpwDtzKx+au5OC1O7kHlE1cQ
+ Kvo0zR7EIUry1UD3rUTbzmz34YKF9UBZsrDcMU8sFyOBvhMYBAQhR7mhqM/CGzjFyH
+ oNhrHFHzrh1I+QACfyvYwmT7bFt8l3l0GC3DPZuFwEIGr5a1ETLEPNauOvKqBN65Ty
+ A8ByIEAplJljA==
+Message-ID: <sashiko-outbox-235307@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 09/13] drm/i915/ddi_mgr: Register encoders with dynamic
- DDI support
+Subject: Re: [PATCH 12/13] drm/i915/ddi_mgr: Handle DDI pool system suspend
+ and resume
 To: "Imre Deak" <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20261126100755.1252635-10-imre.deak@intel.com>
+In-Reply-To: <20261126100755.1252635-13-imre.deak@intel.com>
 References: <20261126100755.1252635-1-imre.deak@intel.com>
- <20261126100755.1252635-10-imre.deak@intel.com>
+ <20261126100755.1252635-13-imre.deak@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 26 Nov 2026 10:26:42 +0000
+Date: Thu, 26 Nov 2026 10:41:38 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,71 +52,123 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/i915/ddi_mgr: legacy VBT assigned to alt-mode DDI in
-  intel_ddi_mgr_get_devdata_for_ddi()
+Thank you for your contribution! Sashiko AI review found 2 potential
+issues to consider:
+- [Medium] drm/i915/ddi_mgr: stale TC max_lane_count in
+  resume_ddi_resource()
+- [Medium] drm/i915/ddi_mgr: intel_ddi_mgr_suspend() disables DDC on
+  shutdown
 --
 
-commit fb0303db841fcc8f1c97a0608f7a2f40859c71f0
+commit bca24baba50bb2986501c95a0a336e4e761dcc14
 Author: Imre Deak <imre.deak@intel.com>
 
-drm/i915/ddi_mgr: Register encoders with dynamic DDI support
+drm/i915/ddi_mgr: Handle DDI pool system suspend and resume
 
-This commit registers DP and HDMI connectors for encoders in the shared
-dynamic DDI pool, selects VBT encoder data and lane reversal based on the
-assigned legacy PHY route, and rejects modesets on connectors that do not
-match the current DDI allocation.
+This commit adds system suspend and resume handling for the DDI pool
+manager, disabling pool DDC adapters on suspend and rebuilding legacy DDI
+routes, HPD mappings, Type-C port state, and DP source capabilities on
+resume.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi_mgr.c b/drivers/gpu/d=
 rm/i915/display/intel_ddi_mgr.c
-> index a4a4673dda585..58e48a61b8160 100644
+> index 8f32e7c8dff27..a0157ff6afc04 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
-[ ... ]
-> @@ -120,6 +125,72 @@ u8 intel_ddi_mgr_ddc_pin_for_ddi(struct intel_displa=
-y *display, enum port ddi)
->  	return mgr->ddc_pin[route->phy];
+> @@ -840,6 +840,83 @@ static void update_hpd_sources(struct intel_display =
+*display)
+>  	}
 >  }
 > =20
-[ ... ]
-> +const struct intel_bios_encoder_data *
-> +intel_ddi_mgr_get_devdata_for_ddi(struct intel_display *display, enum po=
-rt ddi)
+> +void intel_ddi_mgr_suspend(struct intel_display *display)
+> +{
+> +	if (!intel_ddi_mgr_is_enabled(display->ddi_mgr))
+> +		return;
+> +
+> +	intel_gmbus_ddi_pool_update(display, false);
+> +}
+> +
+> +static void resume_ddi_resource(struct intel_display *display,
+> +				struct intel_encoder *encoder,
+> +				const struct intel_ddi_route *old_route)
 > +{
 > +	struct intel_ddi_mgr *mgr =3D display->ddi_mgr;
-> +	enum port port =3D ddi;
+> +	struct intel_digital_port *dig_port;
+> +	const struct intel_ddi_route *route;
 > +
-> +	if (intel_ddi_mgr_is_enabled(mgr) && intel_ddi_mgr_is_pool_ddi(display,=
- ddi)) {
-> +		const struct intel_ddi_route *route =3D &mgr->route[ddi - PORT_TC1];
+> +	if (!encoder)
+> +		return;
 > +
-> +		if (route->mode =3D=3D INTEL_DDI_ROUTE_LEGACY)
-> +			port =3D tc_to_port(route->phy);
-> +	}
+> +	route =3D &mgr->route[encoder->port - PORT_TC1];
+> +	dig_port =3D enc_to_dig_port(encoder);
+> +	encoder->devdata =3D intel_ddi_mgr_get_devdata_for_ddi(display, encoder=
+->port);
+> +	intel_tc_port_set_legacy(dig_port, mgr->enabled &&
+> +				route->mode =3D=3D INTEL_DDI_ROUTE_LEGACY);
+> +	dig_port->lane_reversal =3D intel_ddi_mgr_encoder_has_lane_reversal(enc=
+oder);
 > +
-> +	return intel_bios_encoder_data_lookup(display, port);
+> +	if (mgr->enabled && old_route->mode =3D=3D route->mode &&
+> +	    old_route->phy =3D=3D route->phy)
+> +		return;
+> +
+> +	intel_dp_update_source_caps(&dig_port->dp);
 > +}
 
 [Severity: Medium]
-Can intel_ddi_mgr_get_devdata_for_ddi() assign a legacy PHY's VBT entry to
-an alt-mode encoder when route->mode is INTEL_DDI_ROUTE_ALT?
+Does intel_dp_update_source_caps() rebuild dig_port->dp.link.caps using a
+stale tc->max_lane_count here?
 
-If ddi corresponds to a dynamic legacy PHY in VBT (for example an
-HDMI-only legacy port where child.dp_max_lane_count is 0), falling back to
-port =3D ddi when that DDI is allocated to a DP-alt or TBT-alt sink attaches
-the legacy VBT entry to encoder->devdata.  intel_dp_max_source_lane_count()
--> intel_bios_dp_max_lane_count() then evaluates
-devdata->child.dp_max_lane_count + 1 and clamps the alt-mode DP sink on
-that DDI to 1 lane (and applies any legacy VBT link-rate cap in
-vbt_max_link_rate()).
+intel_ddi_mgr_resume() runs before drm_mode_config_reset() calls
+intel_ddi_encoder_reset() -> intel_tc_port_init_mode(dig_port), and
+intel_tc_port_set_legacy() only updates tc->legacy_port while tc->mode is
+TC_PORT_DISCONNECTED.  When intel_dp_update_source_caps() calls
+intel_dp_set_common_link_params() -> intel_dp_get_max_common_lane_count(),
+intel_tc_port_max_lane_count(dig_port) still returns the pre-suspend
+route's tc->max_lane_count.
+
+If a pool encoder's route changes across suspend/resume between a 2-lane
+DP-alt sink and a 4-lane legacy PHY (or vice versa), link.caps is clamped
+to 2 lanes on a 4-lane route or retains 4-lane configurations on a 2-lane
+route during the resume modeset restore.
+
+[ ... ]
+
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index b018608eae032..a9b03b4a1e76b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -780,6 +780,7 @@ static int __intel_display_driver_pm_suspend(struct i=
+ntel_display *display, bool
+>  	intel_display_driver_suspend_access(display);
+> =20
+>  	intel_encoder_suspend_all(display);
+> +	intel_ddi_mgr_suspend(display);
+> =20
+>  	intel_dmc_suspend(display);
+> =20
+
+[Severity: Medium]
+When shutdown is true, does calling intel_ddi_mgr_suspend() here disable
+the pool DDC adapters before intel_display_driver_shutdown() runs
+intel_encoder_shutdown_all()?
+
+In __intel_display_driver_pm_suspend(display, true),
+drm_atomic_helper_shutdown() disables active outputs and turns off Type 2
+DP dual-mode adaptor TMDS buffers over DDC.  intel_ddi_mgr_suspend() then
+marks the pool GMBUS adapters disabled, so the subsequent
+intel_encoder_shutdown_all() -> intel_hdmi_encoder_shutdown() ->
+intel_dp_dual_mode_set_tmds_output(intel_hdmi, true) call fails in
+gmbus_xfer() with -ENXIO instead of re-enabling the TMDS output buffer for
+reboot.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261126100755.1252=
-635-1-imre.deak@intel.com?part=3D9
+635-1-imre.deak@intel.com?part=3D12
