@@ -2,51 +2,51 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A12F6606A327
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 06:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20216606A31E
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 06:35:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=M6aEHF9K
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=cbm41V/e
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65CC110FDE6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8A8C10FD59;
 	Thu, 26 Nov 2026 06:35:26 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5514D10FCB6;
- Thu, 26 Nov 2026 06:35:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E44A210FC6C;
+ Thu, 26 Nov 2026 06:35:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795674919; x=1827210919;
+ t=1795674915; x=1827210915;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CE5EakEH0J4rnpd2DSOQHzY7apjK7AFkaAkEx0/62S4=;
- b=M6aEHF9Kr9HFWDSNv9RuHV0LuwKONQyIH5RbaB+yaWJe3KyLMEcr5G0C
- K/eCcIzd+8V53onDwWkxfwcNk7SpmXIZXM+cKnsVbAWajI+EzLz6ZalHC
- IxvjUbVwRLZ0xPBKcjV8ouxGgBZeuqExJRNtXyXoVRQZUXYtO8xltS505
- xghWiUCbtJQutD3n6d1xuocMt3/VYymArKwj1XrHiqd4D4/N7swiSc7f3
- mKgcX0kVAoYCaYXggfbFB/Qljipkaocj7aa996OCo7juWZeGGoaQQtq9o
- gPaWUFMVMod/KcZKQ87lWFbQp2ZTa+qXy23JQCB+2HUfU1RFMe+KaMjzk A==;
-X-CSE-ConnectionGUID: WqbXdQn7Tm2xhmImbjq5fA==
-X-CSE-MsgGUID: xJpW290NQaWqyyY83WpJRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4462657"
+ bh=td0q2Ydnk66o6m1aXqdTxlw6otwVwyPA4feZg4m141Q=;
+ b=cbm41V/eUir1VYIFBmUMrlB/E6NTMyVg2ynQAp8i+2iwpDacYn8NCLt3
+ 83hKoauAQJgFXrVp4wXJFL2aCgTt7gTr6R0M8qcLXxNXM0NXakGoVUnB4
+ rUS8SMG1veQz3ZVDLPIt9MVEzKpD7e+7qQizMeQL5YL2ajNUh+hfhwiCo
+ QGkz1hvVI0PIGaDunA170J3Z0bjB7JKaQl8RgFJhUnVyp/5j9QJYxXX0E
+ WdDymU2ZKmOkcO+LU8BnzKt30n4gpq/7RBIuulhNinm7ADjywFApiemKs
+ JRf9XBJ2stVqy9sHQm8o7UsnafEeaFQdZJWp8BGCFTZviAesRFek7/mZt g==;
+X-CSE-ConnectionGUID: O3oOllfCSUSH02/eyvPuqA==
+X-CSE-MsgGUID: zGVQq34TRcOrlnw+gdnS/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4462655"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4462657"
+   d="scan'208";a="4462655"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Nov 2026 22:35:18 -0800
-X-CSE-ConnectionGUID: sCDlbdSQQ82blXAVmYvruA==
-X-CSE-MsgGUID: JS4dSICSRo2ZIP8Fq6J/OA==
+ 25 Nov 2026 22:35:15 -0800
+X-CSE-ConnectionGUID: tYajwfS2Ru23yf5Xcfvpww==
+X-CSE-MsgGUID: DkBIEAhFSbe5v8DFwA1dwg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12346723"
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12346717"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa002.fm.intel.com with ESMTP; 25 Nov 2026 22:35:15 -0800
+ by fmviesa002.fm.intel.com with ESMTP; 25 Nov 2026 22:35:13 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
  chaitanya.kumar.borah@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 06/15] drm/i915/display: Enable the pipelock primary before
- its secondaries
-Date: Thu, 26 Nov 2026 12:04:50 +0530
-Message-Id: <20261126063459.863698-7-suraj.kandpal@intel.com>
+Subject: [PATCH 05/15] drm/i915/ddi: Don't hold the DP link in idle with
+ pipelock
+Date: Thu, 26 Nov 2026 12:04:49 +0530
+Message-Id: <20261126063459.863698-6-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261126063459.863698-1-suraj.kandpal@intel.com>
 References: <20261126063459.863698-1-suraj.kandpal@intel.com>
@@ -71,59 +71,72 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-A pipelock secondary doesn't start its timing generator until it sees
-a frame sync from the primary, and it raises no vblank interrupts
-before that. With the port sync order the secondary is enabled first,
-so the vblank wait in intel_enable_crtc() would time out.
-Enable the primary first and the secondaries after it, so they lock
-on the next frame sync and their vblank waits work as usual. The
-disable order doesn't change, secondaries still go first.
+Port sync needs all the links in the group kept in the idle pattern
+until every port is trained, and then switched to normal together.
+Pipelock has no such requirement, each port can go to normal as soon
+as it's trained. Limit the idle hold to port sync.
 
 Bspec: 73521
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 2839e2e7965c..c5d8d1178dd6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -189,6 +189,16 @@ bool intel_crtc_in_sync_group(const struct intel_crtc_state *crtc_state)
- 		intel_crtc_is_sync_secondary(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index b664d7201d6f..fe18d9737f91 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2657,6 +2657,13 @@ static void mtl_port_buf_ctl_io_selection(struct intel_encoder *encoder)
+ 		     XELPDP_PORT_BUF_IO_SELECT_TBT, val);
  }
  
-+static bool intel_display_sync_enable_late(const struct intel_crtc_state *crtc_state)
++static bool port_sync_hold_link_idle(const struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_display *display = to_intel_display(crtc_state);
 +
-+	if (HAS_PIPELOCK(display))
-+		return intel_crtc_is_sync_secondary(crtc_state);
-+
-+	return intel_crtc_is_sync_primary(crtc_state);
++	return !HAS_PIPELOCK(display) && intel_crtc_in_sync_group(crtc_state);
 +}
 +
- /*
-  * Return a bitmask of all the start indices of consecutive bitfields of size
-  * width in mask.
-@@ -7328,7 +7338,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 			continue;
+ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 				  struct intel_encoder *encoder,
+ 				  const struct intel_crtc_state *crtc_state,
+@@ -2754,7 +2761,7 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	intel_dp_start_link_train(state, intel_dp, crtc_state);
  
- 		if (intel_dp_mst_is_slave_trans(new_crtc_state) ||
--		    intel_crtc_is_sync_primary(new_crtc_state))
-+		    intel_display_sync_enable_late(new_crtc_state))
- 			continue;
+ 	/* 6.n Set DP_TP_CTL link training to Normal */
+-	if (!intel_crtc_in_sync_group(crtc_state))
++	if (!port_sync_hold_link_idle(crtc_state))
+ 		intel_dp_stop_link_train(intel_dp, crtc_state);
  
- 		modeset_pipes &= ~intel_crtc_joined_pipe_mask(new_crtc_state);
-@@ -7338,7 +7348,7 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
+ 	/* 6.o Configure and enable FEC if needed */
+@@ -2904,7 +2911,7 @@ static void tgl_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	intel_dp_start_link_train(state, intel_dp, crtc_state);
  
- 	/*
- 	 * Then we enable all remaining pipes that depend on other
--	 * pipes: MST slaves and port sync primaries
-+	 * pipes: MST slaves, port sync primaries and pipelock secondaries
- 	 */
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state) {
- 		enum pipe pipe = crtc->pipe;
+ 	/* 7.k Set DP_TP_CTL link training to Normal */
+-	if (!intel_crtc_in_sync_group(crtc_state))
++	if (!port_sync_hold_link_idle(crtc_state))
+ 		intel_dp_stop_link_train(intel_dp, crtc_state);
+ 
+ 	/* 7.l Configure and enable FEC if needed */
+@@ -2977,7 +2984,7 @@ static void hsw_ddi_pre_enable_dp(struct intel_atomic_state *state,
+ 	intel_dp_sink_set_fec_ready(intel_dp, crtc_state, true);
+ 	intel_dp_start_link_train(state, intel_dp, crtc_state);
+ 	if ((port != PORT_A || DISPLAY_VER(display) >= 9) &&
+-	    !intel_crtc_in_sync_group(crtc_state))
++	    !port_sync_hold_link_idle(crtc_state))
+ 		intel_dp_stop_link_train(intel_dp, crtc_state);
+ 
+ 	intel_ddi_enable_fec(encoder, crtc_state);
+@@ -3369,7 +3376,8 @@ static void trans_port_sync_stop_link_train(struct intel_atomic_state *state,
+ 	struct drm_connector *conn;
+ 	int i;
+ 
+-	if (!crtc_state->sync_secondaries_mask)
++	if (!port_sync_hold_link_idle(crtc_state) ||
++	    !intel_crtc_is_sync_primary(crtc_state))
+ 		return;
+ 
+ 	for_each_new_connector_in_state(&state->base, conn, conn_state, i) {
 -- 
 2.34.1
 
