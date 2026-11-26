@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 949EF606A326
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246A5606A321
 	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 17:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=X65EuXnf
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KdM1PfeX
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C38C112676;
-	Thu, 26 Nov 2026 17:51:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0E84112672;
+	Thu, 26 Nov 2026 17:51:09 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 868EC11266D;
- Thu, 26 Nov 2026 17:51:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFFC112671;
+ Thu, 26 Nov 2026 17:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795715461; x=1827251461;
+ t=1795715463; x=1827251463;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Vikq03FETXuhifjBllFiCAAEeJhR4Jhi6vEAVSjHIyI=;
- b=X65EuXnfHYtR1ST5Lyvg7FJb+x12RaC/d3IOeAVpbV95wg98ZUQto+Bb
- 9UTdSxhGz2RSI/3KGRVFnoDQqpb6bJqCmVgo6WVfZn62G1fS9Ce/KheLF
- +mLEprZZzqfIS0wiC6K494BxUjw/HF6Jj7TWlHN7d+W8LoiKXJwaT1VgT
- 6xOeoJmTuGVjc9V3Ho7fYndbt5pGQtN5il4xbAQyqQqk7hhiIdy6kV/az
- CauwNihDADmNbT3IDwslYRzBVZgEVApS+jI92sP3sLRK5SiM88kmbA0zd
- 1R8qKzu16U3gEfssBc2y6Ee5IvQOOsuVkzGSwCEZiz/F5R4NTrrkP3F0v A==;
-X-CSE-ConnectionGUID: ivyHD3u1R1+GpQoqY7WcKw==
-X-CSE-MsgGUID: SL/vEKz3QYK4AB6FiLcC2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4588372"
+ bh=/kausiAVs3rEx4cPA7qaE3DJM9UI5vSVnNv7fNrVkB8=;
+ b=KdM1PfeXCYf7xRrI9ax87bVeUqAdUch4B7BFEbwT303lv6g667dUyTpY
+ Sg1bgOSk/k/awjQTkpjcJZuh7AiSmPcrEpjkEMN+mRq5OGPF6R4gvZMqf
+ CHdTtNBxW837ZpALkD+t/XXmClLuVY4qjxH8FcbpqPDR5p4oaKD4kuMkc
+ jUYCkRrOtGESr6/Bfl95zoel/l91+fALI6bcUzUYXSBOka53lf6HZPYu0
+ Z29INCpMl5wsiJIs4mk+ZQRpl3nO969urpciMtoQsEZyh168iZxTYSPJQ
+ rUmay/fKUkJ9+5W3meQy1tYEJvAr7B8q0kjgrk4zMemhjutOFfT2I7oBX w==;
+X-CSE-ConnectionGUID: Cwo6r3woRHuwnVdC5SYZpA==
+X-CSE-MsgGUID: nicYAJSwTd2Kc38YuWuTQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4588373"
 X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
-   d="scan'208";a="4588372"
+   d="scan'208";a="4588373"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 09:51:01 -0800
-X-CSE-ConnectionGUID: 2lLmp3QLSmKRDEswN+u2QA==
-X-CSE-MsgGUID: k4ZS5xXZR4O1JqR6P4TUjw==
+ 26 Nov 2026 09:51:02 -0800
+X-CSE-ConnectionGUID: voyZcJDCTwSHCnDZNBdTsw==
+X-CSE-MsgGUID: oxYauaJBRbG4PYCvzKzupg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12558239"
+X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12558246"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 09:50:59 -0800
+ 26 Nov 2026 09:51:01 -0800
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -46,9 +46,9 @@ Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@linux.intel.com>
-Subject: [PATCH v1 1/2] drm/i915/bios: include whitespace into VBT signature
-Date: Thu, 26 Nov 2026 18:50:32 +0100
-Message-ID: <20261126175033.181407-2-michal.grzelak@linux.intel.com>
+Subject: [PATCH v1 2/2] drm/i915/bios: check if VBT#57's tables are zeroed
+Date: Thu, 26 Nov 2026 18:50:33 +0100
+Message-ID: <20261126175033.181407-3-michal.grzelak@linux.intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20261126175033.181407-1-michal.grzelak@linux.intel.com>
 References: <20261126175033.181407-1-michal.grzelak@linux.intel.com>
@@ -71,74 +71,62 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-16.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
 	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
-	version=4.0.1
+	SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-From: Michał Grzelak <michal.grzelak@intel.com>
+Turns out there are VBTs which have use_vbt_vswing enabled while
+their vswing/pre-emphasis override tables contain only zeroes instead of
+register values.
 
-Product name always starts after whitespace which is part of VBT
-signature as per spec. Extend VBT signature to contain whitespace.
+Return from parsing of Vswing/Pre-emphasis Override if tables are empty.
+By doing so do not update metadata stored in vspeo substructure.
 
-Bspec: 20119
-Cc: Jani Nikula <jani.nikula@intel.com>
+Return from buffers' allocation if vspeo metadata is missing. Use
+default vswing/pre-emphasis then because of allocation failure.
+
+Fixes: a138a81d7805 ("drm/i915/bios: de/allocate VS/PE-O buffers for each port")
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9602
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Suggested-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@linux.intel.com>
 ---
-This probably should see a Fixes: trailer but I can't find any suitable
-commit to blame since this existed for quite some time already.
+Somewhat uglier hack would be to simply reset use_vbt_vswing after
+confirming that tables are empty. However that is more tricky because
+it would require finding devdata that requests Vswing/Pre-emphasis
+Override during parse_vswing_preemphasis_override(); which sounds like
+both wrong abstraction layer and also more lines of code.
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     | 8 ++++----
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index b77d1599482a7..f20cda5ad1a33 100644
+index f20cda5ad1a33..04d07ee05e76d 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -60,7 +60,7 @@
-  * The VBT consists of a VBT Header (defined as &struct vbt_header), a BDB
-  * Header (&struct bdb_header), and a number of BIOS Data Blocks (BDB) that
-  * contain the actual configuration information. The VBT Header, and thus the
-- * VBT, begins with "$VBT" signature. The VBT Header contains the offset of the
-+ * VBT, begins with "$VBT " signature. The VBT Header contains the offset of the
-  * BDB Header. The data blocks are concatenated after the BDB Header. The data
-  * blocks have a 1-byte Block ID, 2-byte Block Size, and Block Size bytes of
-  * data. (Block 53, the MIPI Sequence Block is an exception.)
-@@ -3131,8 +3131,8 @@ static const struct bdb_header *get_bdb_header(const struct vbt_header *vbt)
- 	return _vbt + vbt->bdb_offset;
- }
+@@ -2232,6 +2232,12 @@ parse_vswing_preemph_override(struct intel_display *display)
+ 	if (!block)
+ 		return;
  
--static const char vbt_signature[] = "$VBT";
--static const int vbt_signature_len = 4;
-+static const char vbt_signature[] = "$VBT ";
-+static const int vbt_signature_len = 5;
++	/* adjust size for num_tables and num_columns fields */
++	if (mem_is_zero(block->tables, get_blocksize(block) - 2)) {
++		drm_dbg_kms(display->drm, "VBT#57 tables are zeroed\n");
++		return;
++	}
++
+ 	display->vbt.vspeo.tables = block->tables;
+ 	display->vbt.vspeo.num_tables = block->num_tables;
+ 	display->vbt.vspeo.num_columns = block->num_columns;
+@@ -2665,6 +2671,9 @@ static void allocate_vswing_preemph_override(struct intel_bios_encoder_data *dev
+ 	if (!intel_bios_encoder_requests_vspeo(devdata))
+ 		return;
  
- /**
-  * intel_bios_is_valid_vbt - does the given buffer contain a valid VBT
-@@ -3235,7 +3235,7 @@ static struct vbt_header *oprom_get_vbt(struct intel_display *display,
- 		return NULL;
- 
- 	BUILD_BUG_ON(vbt_signature_len != sizeof(vbt_signature) - 1);
--	BUILD_BUG_ON(vbt_signature_len != sizeof(u32));
-+	BUILD_BUG_ON(vbt_signature_len != sizeof(u32) + 1);
- 
- 	offset = intel_rom_find(rom, *(const u32 *)vbt_signature);
- 	if (offset < 0)
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 0dc13d080e8aa..1a393528ced91 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -85,7 +85,7 @@ struct bdb_edid_dtd {
- 
- /**
-  * struct vbt_header - VBT Header structure
-- * @signature:		VBT signature, always starts with "$VBT"
-+ * @signature:		VBT signature, always starts with "$VBT "
-  * @version:		Version of this structure
-  * @header_size:	Size of this structure
-  * @vbt_size:		Size of VBT (VBT Header, BDB Header and data blocks)
++	if (!devdata->display->vbt.vspeo.tables)
++		return;
++
+ 	vspeo = kzalloc_obj(*vspeo);
+ 	if (!vspeo)
+ 		return;
 -- 
 2.45.2
 
