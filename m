@@ -2,43 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CB6F606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 21:12:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AD46606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 21:23:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=bKUed69S
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=MHO2TvCZ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B342310E451;
-	Thu, 26 Nov 2026 21:12:39 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 630E510E430;
- Thu, 26 Nov 2026 21:12:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6016A10E440;
+	Thu, 26 Nov 2026 21:23:10 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90D0610E384;
+ Thu, 26 Nov 2026 21:23:03 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1B6C841AFB;
- Thu, 26 Nov 2026 21:12:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4C80C1F00896;
- Thu, 26 Nov 2026 21:12:32 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 997FB6022A;
+ Thu, 26 Nov 2026 21:23:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2808E1F00893;
+ Thu, 26 Nov 2026 21:23:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795727552;
- bh=MdzgDsHVnnB1m8Mwp838mv9IK/Ph/RBe6xwjyftJfjY=;
+ s=k20260515; t=1795728182;
+ bh=xA4rWx0M94ECdTTMqHI9PV7loz98QT6VdIcRLX77/ss=;
  h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=bKUed69SB56qYGIg7PqWZoqVDqZLDTVdsspepwS3GzEu4cXKl3+seRlZ8iTriVwC9
- BN07xBFQhdjdEV1wjrevd7+CET0Rb0TI5hnZeX6QG1K7gcDw8T5RG5ACsEE6btc0Jx
- 5oqByvVEe2fSkECH8fObGZw4IBaEJ5hB42r1CvXy+6mpi4XRAA+E++eZe0sQ34GCcw
- 6+Ogy8OrTMcMMnUajp0XV2IXun6j1+/NPJ74G0nGisLAT3utA8zCVui8g8f8eG8YFY
- PKCflXWKs8cTI6Vqxe6g9QoOzK0jkOlXXrhD7lhYTaRZBfqrm/BqldVxGSd0p6CIa3
- LowS8vP9udSCQ==
-Message-ID: <sashiko-outbox-236214@kernel.org>
+ b=MHO2TvCZaEk/p2nCbckOSk/bDm6VNYaxnKgOckbHfua0p03dtjRQaFI9pgC1m3R8Z
+ KyYZJTKVuW+RQwSkswkY67crQe90Tx7lp8/sigQaB4PK1HnuP9iyHD23xquLeo8X0U
+ x08evBUYisfoKDxpO3DRiaHMXR+R21DYydCRKdGtJYswCw2cKg7zwNVsYCjFg2quL6
+ qL8YkOKPiWG97fk+Xpr6H9oL24COBuWX9t8gx5oY1tWYTYVAzI3TJDul1nrOgRwjy1
+ K8LneeoU1nUz7rya0gHvD1A6C+zd3ghMoI9kqRzFxkudVgK/23Cfo1IBw2D3kAi4LR
+ B617YWNwpBVWA==
+Message-ID: <sashiko-outbox-236230@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH 4/5] drm/xe: hold video decode work and HuC queries for
- a pending DG2 HuC load
+Subject: Re: [PATCH 3/5] drm/xe/huc: load the DG2 HuC through the GSC via
+ mei_pxp
 To: "Arisa Snowbell" <arisa.snowbell@gmail.com>, intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, media-ci@linuxtv.org
-In-Reply-To: <20261126205758.49845-5-arisa.snowbell@gmail.com>
+In-Reply-To: <20261126205758.49845-4-arisa.snowbell@gmail.com>
 References: <20261126205758.49845-1-arisa.snowbell@gmail.com>
- <20261126205758.49845-5-arisa.snowbell@gmail.com>
+ <20261126205758.49845-4-arisa.snowbell@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 26 Nov 2026 21:12:31 +0000
+Date: Thu, 26 Nov 2026 21:23:01 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,151 +52,116 @@ Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
+	autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential
 issues to consider:
-- [Medium] drm/xe: race in query_uc_fw_version() during GT reset returns
-  -ENODEV
-- [Medium] drm/xe: video decode jobs miss post-reset HuC load fence in
-  xe_exec_ioctl()
+- [High] drm/xe/huc: missing flags argument to dma_fence_init() in
+  huc_mei_fence_create()
+- [Medium] drm/xe/huc: race on mei->state_lock in xe_huc_mei_start()
 --
 
-commit 5dc281ce1c152eb029eef3dac3ecc0b42e37b1fb
+commit d092793f788c438939dcaa8d822c0755ed1b7fc7
 Author: Arisa Snowbell <arisa.snowbell@gmail.com>
 
-drm/xe: hold video decode work and HuC queries for a pending DG2 HuC load
+drm/xe/huc: load the DG2 HuC through the GSC via mei_pxp
 
-This commit adds a dependency on the pending DG2 HuC MEI load fence for
-video decode jobs in xe_exec_ioctl() and waits for that fence in
-query_uc_fw_version() before reporting the HuC firmware version.
+This commit adds support for loading and authenticating the DG2 HuC
+firmware asynchronously through the GSC via the mei_pxp component.
 
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 0e6a197a8e85e..020dc78948910 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
+> diff --git a/drivers/gpu/drm/xe/xe_huc_mei.c b/drivers/gpu/drm/xe/xe_huc_=
+mei.c
+> new file mode 100644
+> index 0000000000000..595405c4abfde
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_huc_mei.c
+> @@ -0,0 +1,569 @@
+
 [ ... ]
-> @@ -334,6 +336,17 @@ int xe_exec_ioctl(struct drm_device *dev, void *data=
-, struct drm_file *file)
->  	if (err)
->  		goto err_put_job;
-> =20
-> +	/* as on i915, video decode must not run before a pending HuC load */
-> +	if (q->class =3D=3D XE_ENGINE_CLASS_VIDEO_DECODE) {
-> +		struct dma_fence *huc_load =3D xe_huc_mei_load_fence(&q->gt->uc.huc);
+
+> +/* start() runs in the reset and resume paths, which must not wait on re=
+claim */
+> +static struct dma_fence *huc_mei_fence_create(struct xe_huc_mei *mei)
+> +{
+> +	struct huc_mei_fence *fence =3D kzalloc_obj(*fence, GFP_NOWAIT | __GFP_=
+NOWARN);
 > +
-> +		if (huc_load) {
-> +			err =3D drm_sched_job_add_dependency(&job->drm, huc_load);
-> +			if (err)
-> +				goto err_put_job;
-> +		}
+> +	if (!fence)
+> +		return NULL;
+> +
+> +	spin_lock_init(&fence->lock);
+> +	dma_fence_init(&fence->base, &huc_mei_fence_ops, &fence->lock,
+> +		       mei->fence_context, atomic64_inc_return(&mei->seqno));
+> +
+> +	return &fence->base;
+> +}
+
+[Severity: High]
+Is dma_fence_init() missing its sixth argument (unsigned long flags) here?
+This fails to compile when CONFIG_DRM_XE is enabled.
+
+[ ... ]
+
+> +void xe_huc_mei_start(struct xe_huc *huc)
+> +{
+> +	struct xe_huc_mei *mei =3D &huc->mei;
+> +	struct dma_fence *load, *old;
+> +	bool wait;
+> +
+> +	if (!xe_huc_mei_is_used(huc) || !xe_uc_fw_is_loadable(&huc->fw))
+> +		return;
+> +
+> +	scoped_guard(spinlock_irqsave, &mei->state_lock)
+> +		wait =3D !mei->absent;
+> +
+> +	/* without a fence submissions just don't wait */
+> +	load =3D wait ? huc_mei_fence_create(mei) : NULL;
+> +
+> +	scoped_guard(spinlock_irqsave, &mei->state_lock) {
+> +		huc_mei_settle_locked(mei);
+> +		old =3D mei->load;
+> +		mei->state =3D wait ? XE_HUC_MEI_LOADING : XE_HUC_MEI_SETTLED;
+> +		mei->load =3D load;
 > +	}
+> +	dma_fence_put(old);
 > +
->  	if (!xe_vm_in_lr_mode(vm)) {
->  		err =3D xe_svm_notifier_lock_interruptible(vm);
->  		if (err)
+> +	if (wait)
+> +		mod_delayed_work(system_dfl_wq, &mei->deadline,
+> +				 msecs_to_jiffies(HUC_MEI_COMPONENT_TIMEOUT_MS));
+> +	huc_mei_queue(mei);
+> +}
 
 [Severity: Medium]
-Can video decode jobs still run before the post-reset HuC load finishes if
-a GT reset occurs?
+Can dropping mei->state_lock before mod_delayed_work() leave mei->deadline
+queued after the load has already settled?
 
-CPU0 (gt_reset_worker)            CPU1
-xe_uc_stop_prepare()
-  xe_huc_mei_stop()
-    huc_mei_go_down()
-      huc_mei_settle_locked()
-      mei->state =3D XE_HUC_MEI_DOWN
-      mei->load =3D NULL
-xe_uc_stop()
-do_gt_reset()
-do_gt_restart()
-                                  xe_exec_ioctl()
-                                    xe_huc_mei_load_fence() -> NULL
-                                    xe_sched_job_push(job)
-  xe_uc_load_hw()
-    xe_huc_auth()
-      xe_huc_mei_start()
-        mei->state =3D XE_HUC_MEI_LOADING
-        queue_work(..., &mei->auth)
-  xe_uc_start()
-    ...
-      guc_exec_queue_start()      <-- job runs before mei->auth finishes
+CPU0                                  CPU1
+xe_huc_mei_start()
+  lock(&mei->state_lock)
+  mei->state =3D XE_HUC_MEI_LOADING
+  unlock(&mei->state_lock)
+                                      huc_mei_auth_work()
+                                        huc_mei_load_and_auth()
+                                        lock(&mei->state_lock)
+                                        huc_mei_settle_locked()
+                                          mei->state =3D XE_HUC_MEI_SETTLED
+                                          cancel_delayed_work(&mei->deadlin=
+e)
+                                        unlock(&mei->state_lock)
+  mod_delayed_work(..., &mei->deadline, ...)  <-- re-arms cancelled work
 
-At the start of a GT reset, huc_mei_go_down() signals any pre-reset
-mei->load fence and sets mei->state to XE_HUC_MEI_DOWN until
-xe_huc_mei_start() runs at the end of xe_uc_load_hw().  During that window
-xe_huc_mei_load_fence() returns NULL, so jobs submitted in xe_exec_ioctl()
-acquire no fence dependency, and jobs already queued in q->entity or
-replayed from sched->pending_list had their pre-reset fence signaled.
-When xe_uc_start() restarts the queue schedulers immediately after
-xe_huc_mei_start(), those video decode jobs are submitted to the GuC
-before the asynchronous HuC load completes.
-
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 9cc35fc83954f..696bae5eea3b3 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-[ ... ]
-> @@ -619,6 +621,9 @@ query_uc_fw_version(struct xe_device *xe, struct drm_=
-xe_device_query *query)
->  			break;
-> =20
->  		huc =3D &media_gt->uc.huc;
-> +		ret =3D xe_huc_mei_wait(huc);
-> +		if (ret)
-> +			return ret;
->  		if (huc->fw.status =3D=3D XE_UC_FIRMWARE_RUNNING)
->  			version =3D &huc->fw.versions.found[XE_UC_FW_VER_RELEASE];
->  		break;
-
-[Severity: Medium]
-Can query_uc_fw_version() still return -ENODEV during a GT reset instead
-of waiting for the post-reset HuC load?
-
-CPU0 (gt_reset_worker)            CPU1
-xe_uc_stop_prepare()
-  xe_huc_mei_stop()
-    huc_mei_go_down()
-      huc_mei_settle_locked()
-      mei->state =3D XE_HUC_MEI_DOWN
-      mei->load =3D NULL
-...
-do_gt_restart()
-  xe_uc_sanitize_reset()
-    ...
-      huc->fw.status =3D XE_UC_FIRMWARE_LOADABLE
-                                  query_uc_fw_version()
-                                    xe_huc_mei_wait()
-                                      xe_huc_mei_load_fence() -> NULL
-                                    huc->fw.status !=3D XE_UC_FIRMWARE_RUNN=
-ING
-                                    return -ENODEV
-  xe_uc_load_hw()
-    xe_huc_auth()
-      xe_huc_mei_start()
-
-Between xe_huc_mei_stop() and xe_huc_mei_start(), mei->state is
-XE_HUC_MEI_DOWN and xe_huc_mei_load_fence() returns NULL:
-
-drivers/gpu/drm/xe/xe_huc_mei.c:xe_huc_mei_load_fence() {
-	guard(spinlock_irqsave)(&mei->state_lock);
-	if (mei->state !=3D XE_HUC_MEI_LOADING || !mei->load)
-		return NULL;
-
-	return dma_fence_get(mei->load);
-}
-
-Meanwhile xe_uc_sanitize_reset() resets huc->fw.status to
-XE_UC_FIRMWARE_LOADABLE before xe_uc_load_hw() uploads GuC firmware and
-calls xe_huc_mei_start().  A query running in that window (or woken early
-when huc_mei_go_down() signals a pre-reset load fence) returns 0 from
-xe_huc_mei_wait(), sees huc->fw.status !=3D XE_UC_FIRMWARE_RUNNING, and
-returns -ENODEV to userspace.
+Also, if mei->absent was true and huc_mei_component_bind() runs between
+the two mei->state_lock sections, huc_mei_component_bind() clears
+mei->absent =3D false while mei->state is still XE_HUC_MEI_DOWN.  Because
+ the second critical section does not re-check mei->absent, it uses the
+stale wait =3D=3D false and sets mei->state =3D XE_HUC_MEI_SETTLED with
+mei->load =3D NULL, so submissions and HuC queries will not wait for the
+pending load.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261126205758.4984=
-5-2-arisa.snowbell@gmail.com?part=3D4
+5-2-arisa.snowbell@gmail.com?part=3D3
