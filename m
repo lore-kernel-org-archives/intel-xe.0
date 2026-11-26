@@ -2,43 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE1C606A321
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 18:02:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1865B606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 18:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=GMpq+WC7
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=Wh5bYZ2D
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C596210E42D;
-	Thu, 26 Nov 2026 18:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D15A6112687;
+	Thu, 26 Nov 2026 18:04:37 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EF0C10E42D;
- Thu, 26 Nov 2026 18:01:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3A5D10E903;
+ Thu, 26 Nov 2026 18:04:31 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 9370E60CDF;
- Thu, 26 Nov 2026 18:01:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 267851F000C6;
- Thu, 26 Nov 2026 18:01:47 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 1E0A060E32;
+ Thu, 26 Nov 2026 18:04:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A056C1F000C6;
+ Thu, 26 Nov 2026 18:04:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795716107;
- bh=qh8zSATIOFzLZ6VQG8qC1AFHsulSiSH6LJvdccsK3FQ=;
+ s=k20260515; t=1795716270;
+ bh=fx+YOTtYTTwmMO8n6ahNZgUwos7BdkzKR4q6rV4vnO0=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=GMpq+WC7o9gU9MhdGQNQwdDyUqt4aB5kc74rQiSJm6hjoahlQMoTrHMQnSvTD4Suc
- 1D+IGJLSsTsZRCJ9NbKWvQQOHN96BiyJqi7v4B9bY3fPkaTi9SPvLWn1UUDFST43ia
- /BvWPDtrt1szWVTEsezzQB9OrBlx+F/kQEnYsFr40cw076Eu2TPLnoksQJHWyF4MJk
- Ca4IwtEtwG7S36oXnunOi30xoUE4uLzLWwxfTGp1KuBfYzfLqosy063IcTf1+Q/C3v
- FokNg+wk8BH++ckIm9oCRiUZQBMHL2RzfneEYhJQidW+HAIygNHued9/jneCzioIkK
- 3e0OUwAkCm+Zw==
-Message-ID: <sashiko-outbox-235986@kernel.org>
+ b=Wh5bYZ2De5YM3Fq4FbHq7SxBP/p3dWEQ+Clnd3+iVDKzyE3RqSNu9MpBAAI+17RSz
+ LFyktu4Px4+P4q9SWYjyWm8pxpnY3nA1nUvo0HQ4Ne95yeedWeaxlZxoiIBSGEewi8
+ 742D5IiLS6dJJRmIgdd/bwiEZ8+ED1oSlNK8UIAKIlKjyskIReNaZL48OFq3j2goKx
+ gKLBcCQZFf1jgFgHD0KS+chwWZTHSCYKiwbE8x+DEMMm9sViNHP9k51OZT16dsoYH6
+ Om2+tVliwx/w0dbiwvNw9U+UlTGxLFdhQOoklXz0gGBn2C+ODwar8QQgWoMgsXWi4j
+ /SJbdpcthnnug==
+Message-ID: <sashiko-outbox-235989@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v1 1/2] drm/i915/bios: include whitespace into VBT
- signature
+Subject: Re: [PATCH v1 2/2] drm/i915/bios: check if VBT#57's tables are zeroed
 To: =?utf-8?b?TWljaGHFgiBHcnplbGFr?= <michal.grzelak@linux.intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261126175033.181407-2-michal.grzelak@linux.intel.com>
+In-Reply-To: <20261126175033.181407-3-michal.grzelak@linux.intel.com>
 References: <20261126175033.181407-1-michal.grzelak@linux.intel.com>
- <20261126175033.181407-2-michal.grzelak@linux.intel.com>
+ <20261126175033.181407-3-michal.grzelak@linux.intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Thu, 26 Nov 2026 18:01:46 +0000
+Date: Thu, 26 Nov 2026 18:04:30 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,79 +59,72 @@ X-Archived-By: <archiver.kernel.org>
 
 Thank you for your contribution! Sashiko AI review found 2 potential
 issues to consider:
-- [High] drm/i915/bios: 5-byte vbt_signature breaks GVT-g VBT validation
-- [Low] drm/i915/bios: broken u32 needle BUILD_BUG_ON in oprom_get_vbt()
+- [Medium] drm/i915/bios: whole-block zero check in
+  parse_vswing_preemph_override()
+- [Medium] drm/i915/bios: u32 underflow in
+  parse_vswing_preemph_override() size check
 --
 
-commit 625db8b840b34894e85859eb7f1834474d12585a
-Author: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+commit 8d486a542cefe34b382644665b58bbe94c62cdf9
+Author: Micha=C5=82 Grzelak <michal.grzelak@linux.intel.com>
 
-drm/i915/bios: include whitespace into VBT signature
+drm/i915/bios: check if VBT#57's tables are zeroed
 
-This commit extends vbt_signature from "$VBT" to "$VBT " and updates the
-corresponding signature length and documentation comments.
+This commit skips storing VBT block 57 metadata and allocating per-port
+override buffers when the vswing/pre-emphasis override tables are zeroed.
 
 > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
 i915/display/intel_bios.c
-> index 7b6a6f8c3cf19..080a76a95136d 100644
+> index 080a76a95136d..d27fee52bc447 100644
 > --- a/drivers/gpu/drm/i915/display/intel_bios.c
 > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-
-[ ... ]
-
-> @@ -3126,8 +3126,8 @@ static const struct bdb_header *get_bdb_header(cons=
-t struct vbt_header *vbt)
->  	return _vbt + vbt->bdb_offset;
->  }
+> @@ -2227,6 +2227,12 @@ parse_vswing_preemph_override(struct intel_display=
+ *display)
+>  	if (!block)
+>  		return;
 > =20
-> -static const char vbt_signature[] =3D "$VBT";
-> -static const int vbt_signature_len =3D 4;
-> +static const char vbt_signature[] =3D "$VBT ";
-> +static const int vbt_signature_len =3D 5;
+> +	/* adjust size for num_tables and num_columns fields */
+> +	if (mem_is_zero(block->tables, get_blocksize(block) - 2)) {
+> +		drm_dbg_kms(display->drm, "VBT#57 tables are zeroed\n");
+> +		return;
+> +	}
 
-[Severity: High]
-Does requiring a trailing space in vbt_signature break VBT validation for
-Intel GVT-g guests?
+[Severity: Medium]
+Can checking the entire block->tables buffer at once still leave an
+individual port with an all-zero override table when block 57 is only
+partially populated?
 
-In drivers/gpu/drm/i915/gvt/opregion.c, virt_vbt_generation() zero-fills
-struct vbt and only populates the first four bytes of v->header.signature:
+block->tables contains multiple sub-tables indexed by PHY type and link
+rate (such as tables 0..3 in intel_bios_get_c10_vspeo() and tables 4..5 in
+intel_bios_get_c20_vspeo()).  If one sub-table in block 57 has non-zero
+entries while the sub-table selected for another port or link rate is all
+zeroes, mem_is_zero() across the whole block returns false, and
+intel_bios_get_*_vspeo() still overrides the default PHY translation table
+with zeroes and breaks link training.  Should the zero check be done on the
+selected sub-table slice (num_rows * num_columns * sizeof(u32) bytes at
+idx * num_rows * num_columns) in intel_bios_get_*_vspeo() instead?
 
-drivers/gpu/drm/i915/gvt/opregion.c:virt_vbt_generation() {
-	memset(v, 0, sizeof(struct vbt));
+[Severity: Medium]
+Can get_blocksize(block) - 2 underflow if a malformed VBT header reports a
+block size of 0 or 1?
 
-	v->header.signature[0] =3D '$';
-	v->header.signature[1] =3D 'V';
-	v->header.signature[2] =3D 'B';
-	v->header.signature[3] =3D 'T';
+init_bdb_block() allocates max(min_size, block_size) + 3 bytes for the BDB
+entry, but copies the raw 3-byte BDB header without updating the 16-bit
+size field when block_size < min_size:
+
+drivers/gpu/drm/i915/display/intel_bios.c:init_bdb_block() {
+	...
+	entry =3D kzalloc_flex(*entry, data, max(min_size, block_size) + 3);
+	...
+	memcpy(entry->data, block - 3, block_size + 3);
+	...
 }
 
-With vbt_signature_len increased to 5, intel_bios_is_valid_vbt() rejects
-the emulated OpRegion VBT on both current and existing GVT-g hosts because
-vbt->signature[4] is 0x00, forcing guests to fall back to default VBT port
-definitions.
-
->  /**
->   * intel_bios_is_valid_vbt - does the given buffer contain a valid VBT
-> @@ -3230,7 +3230,7 @@ static struct vbt_header *oprom_get_vbt(struct inte=
-l_display *display,
->  		return NULL;
-> =20
->  	BUILD_BUG_ON(vbt_signature_len !=3D sizeof(vbt_signature) - 1);
-> -	BUILD_BUG_ON(vbt_signature_len !=3D sizeof(u32));
-> +	BUILD_BUG_ON(vbt_signature_len !=3D sizeof(u32) + 1);
-> =20
->  	offset =3D intel_rom_find(rom, *(const u32 *)vbt_signature);
->  	if (offset < 0)
-
-[Severity: Low]
-Does changing this BUILD_BUG_ON to sizeof(u32) + 1 defeat the check that
-intel_rom_find() searches for the full vbt_signature?
-
-intel_rom_find() only matches a 32-bit u32 needle and returns the first
-4-byte "$VBT" match in the Option ROM without checking the fifth byte, so
-any earlier 4-byte "$VBT" sequence without a trailing space will stop the
-ROM scan and cause intel_bios_is_valid_vbt() to fail.
+get_blocksize(block) returns that raw 16-bit size as a u32, so subtracting
+2 without first checking get_blocksize(block) >=3D sizeof(*block) wraps to
+0xfffffffe or 0xffffffff and passes that length to mem_is_zero(), causing
+an out-of-bounds read past entry->data.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261126175033.1814=
-07-1-michal.grzelak@linux.intel.com?part=3D1
+07-1-michal.grzelak@linux.intel.com?part=3D2
