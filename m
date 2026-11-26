@@ -2,66 +2,166 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB04A606A321
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 13:37:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0F05606A31E
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 13:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=bRGz8uFh
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=NjNa/l88;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=DehQbSdk
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6977B10E9B3;
-	Thu, 26 Nov 2026 13:37:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950CB10E9A5;
- Thu, 26 Nov 2026 13:36:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60C5B10E9E0;
+	Thu, 26 Nov 2026 13:48:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B7E210E9E0
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 13:48:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795700219; x=1827236219;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=+j5fFMBUvF9lo3irPgTeQLRP0I0UYe+4fWHyTG1svJw=;
- b=bRGz8uFhPKaefgataEmidAZaS3zsq/KVElHv9Dk2vjWnuRK+Y+4xv+zN
- PareO6oBSPNBNqeK4VDMu4lYE9dk2R+ylQ1oewZLDr0VjsR6260/Oe2UT
- ssCDtTUy5J2ghRTAytF9YndizKWZFeM3WkUovqdrLcZA67V9wlSt9HE8u
- z7t3/AOTswSnB40lxWu5SPAPda7xls8MUJZ7eYvg6u0Vc9jWNCkUsw53T
- otvkf0rVFL3zwMwColZ7G0feZXtOIrGcFI/1tYHfu/WskkOSIWlGVFASf
- yGgahR3Z5jMofyq9T1xzR1g7kKM3+P+pa/WHuwQP18K/HOfseq+w8P/rl A==;
-X-CSE-ConnectionGUID: 6qLCApi6TTiVKTsFfsMG5A==
-X-CSE-MsgGUID: FON+4rmaR8+Y3mLAbCI+KQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4628695"
+ t=1795700928; x=1827236928;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=elVaWKNOb8cujjp7LloQTQOMWhZaOoQVRTrJgOSvWFE=;
+ b=NjNa/l88qbpr+8FvqnxUd9rqxWgksU5LIreKe872NSVvkIOYYydcBm4q
+ +uh9EnIEcN2LceKKNBNmF1Vxg0EWhp1qwdyThyaaM5Idge+ejKW+X8DPf
+ ZWzMGCm/CFblIBob4Mhtlx1FgimwhpjPC7lbWNIhrKKc4M202mHVv6o3y
+ k1uMVgbe97LGUjpMAI3Wkv6K7LS7F0+UAT2NnCjZjUwzSEtdCsUDHNYIh
+ a2FQy8ddDyezVVwXbqaq9je43TRx9bNJ1Rkf039l9HdXO0pg2mEQ/rR7L
+ v64xi8HR4+X5gaVu09bun4v+ElkUHnqNxZxROjLtDKNYPa1Fad0Wk/82s g==;
+X-CSE-ConnectionGUID: I1pSvkeYQ5GkTeeFhU0g0Q==
+X-CSE-MsgGUID: zHEiTpy9S4+BCEcphr3o1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4516794"
 X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
-   d="scan'208";a="4628695"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 05:36:59 -0800
-X-CSE-ConnectionGUID: RwVpAVG8TUWhalyfEqmZYQ==
-X-CSE-MsgGUID: dYOKlEuRR8yLDiK3xJyTXg==
+   d="scan'208";a="4516794"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 05:48:28 -0800
+X-CSE-ConnectionGUID: DHr2ZWv6Sn+S8qUTXfxesw==
+X-CSE-MsgGUID: /cmv/gWuQgecY+AMV42LPw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12179410"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO fedora)
- ([10.245.244.247])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 05:36:55 -0800
-Date: Thu, 26 Nov 2026 14:36:39 +0100
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-next
-Message-ID: <awg159ip1bk2xbn5@fedora>
+X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12319875"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 05:48:28 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Thu, 26 Nov 2026 05:48:27 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 05:48:27 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.16) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Thu, 26 Nov 2026 05:48:27 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=El3LzrmowMzvQUB0xPK3DWwYyD8emEfAAEuzcd7D8Ke/MqtchfhxU7unFl/kKMjeMCJbSkhWMj8zVEeiZ5Ap3z4ihYPzCxHeSh8qrnceHU+ZjoVcggSQfX06Npr14iYn1RIeTHS25Ks/kTNJyqLbarVMjsi7NqUyxs18/shEDYxUAPUQIuZRmaqlasRoZ9tevuZCk9vOGx0Va77J810eHRHgewURc64zYqKjT4YqJIcAOqV5ip+rv15Pj485JI14EUAtbS9E4/sx0EMQ5IGEa5zrxwXUbojIe+Yd8p7607Y6bwCmyKgfRdAl34NqIpZFVWUNOS9HQxkQMlWnuspCkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wLaUDDden2ItTs3p1TI7S/CLuFOeS+QiZq0hLA62u4I=;
+ b=pYplPS3mSnucZOuqTEWckycGWcnRgcA3bAFFRFaKgZJQYfhUh3XYJxqTZ/9stoO160PesOhcyJq1hjNiZX5YdTw9aV6jg/U+zU3SOjChwhbjh3RzsC9VR6dy2SKu+PJzO24McxKjp+9vohLLD5ynyqBJdVq3gWYrmO06elZGAY9VMD7rYGg0kNbfwpw4+8025MWQ70P5cQcocbmuFN3ym/BLjmcGC2kmh4yqAieg24pC+bk53l4P1cWKPkyOjHK8U19kW3l+KoFQzR2GIplEtpc4iLHkWRuNRM1jzb4GjcSyRdi6GF7luNSvmJKYlpeDvlO5veq5uqbuhil2iqEvTA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wLaUDDden2ItTs3p1TI7S/CLuFOeS+QiZq0hLA62u4I=;
+ b=DehQbSdkXl8tL9Kd16Ys809ThyVahMPKB0f9/nGlYHcidrhdAW3M3jutELboVnUMgKvgf8ncIpoKPhM1Z+qnTUZ2YM0nqNzYm48+d8gkmCk6ooSz3NUqC9rgN9BFAoiDvY8p8y7txASSBdFea/DXUT0VIPuv7gWn9FFcthl1Pu4=
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from FT1PR11MB960200.namprd11.prod.outlook.com
+ (2603:10b6:170:25::23) by CH8PR11MB9507.namprd11.prod.outlook.com
+ (2603:10b6:610:2bd::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.5; Thu, 26 Nov
+ 2026 13:48:18 +0000
+Received: from FT1PR11MB960200.namprd11.prod.outlook.com
+ ([fe80::cfb1:f811:62bb:fa65]) by FT1PR11MB960200.namprd11.prod.outlook.com
+ ([fe80::cfb1:f811:62bb:fa65%5]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
+ 13:48:18 +0000
+Message-ID: <81e9eb2b-3eb1-4dfb-a91c-8e7b30efad7b@intel.com>
+Date: Thu, 26 Nov 2026 19:18:08 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 03/10] drm/xe/pcode: Add ordered write batch helper
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
+ <badal.nilawar@intel.com>, <raag.jadav@intel.com>, <riana.tauro@intel.com>,
+ <sk.anirban@intel.com>, <mallesh.koujalagi@intel.com>,
+ <soham.purkait@intel.com>, <ravi.kishore.koppuravuri@intel.com>
+References: <20261124054811.798763-1-karthik.poosa@intel.com>
+ <20261124054811.798763-4-karthik.poosa@intel.com>
+ <awcpB6s_32zyhNBi@intel.com>
+Content-Language: en-US
+From: "Poosa, Karthik" <karthik.poosa@intel.com>
+In-Reply-To: <awcpB6s_32zyhNBi@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0322.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:21a::10) To FT1PR11MB960200.namprd11.prod.outlook.com
+ (2603:10b6:170:25::23)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: FT1PR11MB960200:EE_|CH8PR11MB9507:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6912b6c2-34a0-4103-b7c2-08df4bc3ed7c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|23010399003|1800799024|4143699003|261009223027099003|22082099003|18002099003|3023799007|10067099003|11063799006|56012099006|5023799004|261102123227099003|261028144727099003|261026121527099003|261026140227099003|261021121427099003|261022105027099003;
+X-Microsoft-Antispam-Message-Info: P+Q3AzuG/KbFsnC8UTKWfnv2jQFTGgzFPXWVVI364p7kwQGCNlwIADvBAmMshXM09+BTltZGjx8cy47rO7U1UiXB4i20qLsQNjN2A4RkR7ohrCddYh/EkgIi7OhRt4cq6VgS0b7Bft5teFku46lwerBxTexIZvFDp6i8yOuh2l0hOCzOncZ5PAPxFPqV2izaABDadz1f5juZCo4Okog9riikCE4AwkP1DzrNz//PxzmOBBNgl6i6yEVnCamXWaQ8gpAsXfyU7zkinuEborv3JsiZJDq7CPqW8vGFxphy3AAr6uTxKTjAbqlpJfgbCuPe0yuTJ9Eu1Ojb7X/Nwpk+BbkpZ+i0STI3IqT8CMXMlCzMQAWB/AoeGoXQcWLynFmZZ4u8BhM7qbbhevHd8uNpzSrBNjTU9PNZIGsfoOt9L+v0Ly8Gj94YksT2EXEil9hkoXQS4GP9GkIv3F2bf3XBa6aDz3adl3xPr9p0TyCj13Fuv7LLsVJ52i/o5vxYmTIUSVf0LS4xhL9+ZMIL4N0rlCmbmqLYigMQJp837GxHj8852qN44aK5oB4Muu9DEMmx56GULQdxCjG7vY3G3vYCxZn7+1k4FDLDf/bJemSIQmEV1Huk+omTnPRcjumXwtZqHyPVuS2ZiD3vc8NJH9MZsqFk1tI30QAjvuZwPneLcks=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:FT1PR11MB960200.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(4143699003)(261009223027099003)(22082099003)(18002099003)(3023799007)(10067099003)(11063799006)(56012099006)(5023799004)(261102123227099003)(261028144727099003)(261026121527099003)(261026140227099003)(261021121427099003)(261022105027099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NUNneTJET0FQVGk5Zlhmd2FUcVIwZTJ5bU5KSmw1U1U1YVFINGFVVWdtTzlB?=
+ =?utf-8?B?aEZ2UkV5Wnl4RzhBeDVHZVhRek9vWS9LdW84VFYwbUFaeTIyam02RitNK2ZW?=
+ =?utf-8?B?L2Rjc2FPbk8yQ25vbmpYSWlzblEvMy8rMno4d08rN1p2Mk1ESmVBZ1lHZFpZ?=
+ =?utf-8?B?d0Y0ams0STNMS2J4ejY1ZjhoQzVRc1dnNWRpM0JGWmpjeDd0SjZENUI1V1NP?=
+ =?utf-8?B?RzN6bSt2aDlUS3V5TmtjTTAzSXMrc1NiNVIxbmduR0c4QU1Nd2U1U2pjMUox?=
+ =?utf-8?B?SHdtQXh3V00xRWc5RDBPV2NjcFNyRGpBaDNCUk11QW9qT1E1TS9iQTZ1T1pX?=
+ =?utf-8?B?YVVKQXVidUc2WEwwQzN4NXJkNWxhS1dzSmZSZitnb1hIbmNUWlB1S3VEemYr?=
+ =?utf-8?B?VlBtektkYjRJcjVRZWxkWlZOb0pVcFdkeVR3NnVGRUdFOUJrOUc2WDJUTVox?=
+ =?utf-8?B?bUVFNzJjb0hmb2M0UUZLRFFpbjVxSnBzd0Q0azRZME1IZ1N3M1hwZDNFM0g5?=
+ =?utf-8?B?WG93UHd1ejJWMEZPc1hXUEFCTmsyWC9VZHVVcXNzV3Jtdm1jc1MvSDNpdnFM?=
+ =?utf-8?B?Q2lURnpJbDg2SzZyd1Jqa2QxOHlZNjloZ1BsQng2VWNZTkQvT3JzbFIvZkpT?=
+ =?utf-8?B?cFREWXRTRjFmVWVQTTMxTmZnRWF0eWg0ZHBJem8ycklyUkhWdGdMWk4rOEZB?=
+ =?utf-8?B?YmlJOG1Ed3E1MzVZZHZUbmVXT0lBQkZnSFhpdGlic2M1VDZ3SkRKT1h6d1lU?=
+ =?utf-8?B?eGxuK2QvVS80czErc1gyMWRNY1laQ005bWdqS2ZLVU8vQWpDSzVZb1VwSnIr?=
+ =?utf-8?B?ZnF4UkFmaVpQNWVJN3p0b2ttamtEaDZLZkpTd3JHejZLTG1MN2I2MEM5U1c4?=
+ =?utf-8?B?Mkx2QVVlR1JzUHFxYjYwRlFMYlJ6enVieEowV0pYZzY4WGpBMmQzL1l5MDBk?=
+ =?utf-8?B?NjczRU0rSUtjTnFIT3UyV2tnRU1Db3Y5SGZVeDBiQk15c3JESEdrdWNDSlZv?=
+ =?utf-8?B?SFlEZ3RXUjlrU3hxRGhMcTZWZVRhNEJoL3NqQ0ZlS3dMcm1oTWFiajIwc3l1?=
+ =?utf-8?B?eVZ1cm1sSUZka1BiVlprZDVtRE9CWW1jNU5McGh4Y2pWU0RPVUJvYUM3cWRF?=
+ =?utf-8?B?blI0cWNlL3NxUWE4cDA0azRZSEIvbWpDYXcyQ0tkbjE3aE9YWm4vMzc4enJ3?=
+ =?utf-8?B?d2t4Ull1d1UrR05zeGJaNUZ6eDE1WkRQaXhvVlNqTG1ZcGp5WnREWHNaR0g4?=
+ =?utf-8?B?dGYxYWtyelJxeFZXYlBrc3dRcFZNN1QvYWtOZzd0aHZQeUdOTjJKeWdDdmFP?=
+ =?utf-8?B?UFdxK1k4U0I5dVZZd1Nrai9qenZBVU1ZbFc5S1l2c3dhUUtpZno4eVJ4Ykhi?=
+ =?utf-8?B?eTBzQ3ppYWEwY1hibW0rSnN0K3lDYnl5djlPNHU0N2s1ZXY1Rk5TR1laRVlv?=
+ =?utf-8?B?bi9iUnQwSkZnOXhMZllHT0xONVk1RW1xeHZ4T250ejJMUTFTSUpmQUJyb2p4?=
+ =?utf-8?B?OUh3azJSUWpRd2pscnA3b04yTjhvTFNVajhJTkdvOHJUejhMUnFvamU2OWpn?=
+ =?utf-8?B?RUowNHVhZC9COWRqVTdRUFpEQSt5Z05YM290MzVNV3VQUVZEUktrbFpmMjQ4?=
+ =?utf-8?B?b0x2WWdLdnA4K0RKamFhYnFNYlQ1SUdSYzg0NjRBUnN3cS9NaHdraFJncmJw?=
+ =?utf-8?B?Mzk1VkRIaHZxYWxYK2FWZnVLRW5sdFRsSDlMWUNuMDJYQmZUY25XQnlCNGha?=
+ =?utf-8?B?S1B1dGZ4cHZqTERRVTB0TnErK1pobUROeXNyS1lLc1BEeEtBc3Y1cWcwQk1C?=
+ =?utf-8?B?VDNPaDZNakFGWkh1K0xqYmJqZkpvVmY2YVpUWWgvRVk5RDZzRGx5c2gxRzZv?=
+ =?utf-8?B?YzlhVCsxWTkySHhieFgrbW0yY2R2bStXOVNlN1IzbFh3bkFsSmpBYmdYdlJN?=
+ =?utf-8?B?MTI5N1RKTTlNK0pYRlFXcTlhQytVWm91aUFIZVhkTmpSMDVHN2VsU1dwRVlh?=
+ =?utf-8?B?TC9kUHpDTThyTzhrV2FZM1Zaa2pzc1RLb0k1TW15U2JyaE16MElScXYrUTBW?=
+ =?utf-8?B?bWMrd0t4OUlIa0x5aURWVi8wNjVHdVZyT3FzOTIxbWF2ZU5jVjhFNXRWei8z?=
+ =?utf-8?B?ZWdKY0U4YlRWYm1BazdkTTJvV1dxSVV6T041M05OcjlveW80d2hkbEc2NUZZ?=
+ =?utf-8?B?M1hkYnQ1Tk1OOWd1bHhHd2RuQlFuN3hSL09GWkJCVmwzenZCWSt3WXpMT1Vt?=
+ =?utf-8?B?MlJrNzAxNVd3SmsyQzlYZUc4Wkc4aXVTeVFlOTdVQXF5RE9HZkFrV2hldWhF?=
+ =?utf-8?B?MS9jZTE1Mkp5dm5uSENmZG10aUVjL1ByS3VKN0o2RjFMWGJlcGxUdz09?=
+X-Exchange-RoutingPolicyChecked: klRTBYiLSttOFGT68kFTyjvO4jjWcHbv/Mc9rtHohb0C0vcm10kPiRLVhBtWhR5e8R6ooTTuNzi0RJxZBi2Q94iMuV/BHOV3ni23mBxX1NSp1Z1xpXHX7dWB+aptbSrUiSNpyE42lrXTB8wBDK823pzKwhfaoZcTF/k29b6c8MhS0eVSldD+NTsu2UrPl2I7so1ZMQh8FXmzk9vnvQNx4CEt31Rd+zMukOIyxFQWZgg+LrH7fdbh3MKMrLvQlED5/mr0cexiA/KMBPYjP+2DgpPysYDGzhq6yjSeigc7pRP93WXgP1sWaBw6lynn1qJwMqboB76MxmVc1gjJBYAHbQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6912b6c2-34a0-4103-b7c2-08df4bc3ed7c
+X-MS-Exchange-CrossTenant-AuthSource: FT1PR11MB960200.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 13:48:18.7857 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TrwKGNtnDigbdx2yIPr3sQttLXDWh+rq7z5dQVYiPLiOUqPejXyWGJZkHc+ZsIeYRXvCSQv9iPKKD40MiKJ9bA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH8PR11MB9507
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,369 +172,130 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,INCLUDES_PATCH,
-	INCLUDES_PULL_REQUEST,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Hi Dave, Simona.
 
-Here's the drm-xe-next PR for -rc5. Highlights:
-
-- Crescent Island PMT support
-  19/19 patches pushed (17 drm/xe/vsec, 2 platform/x86/intel/pmt)
-  Adds Platform Monitoring Technology support for Crescent Island (CRI).
-  The PMT driver gains a callback infrastructure for driver-specific
-  discovery/control access, and the xe vsec code is reworked (probe order,
-  PM handling, locking, BMG defines) to expose CRI PMT, late bind firmware
-  information and survivability mode through it.
-  (Michael J. Ruhl)
-
-- Non-fatal repin retries and NUMA-local rebind worker
-  6/6 patches pushed
-  Userptr repins that fail with -EBUSY under changing CPU mappings are no
-  longer fatal: the rebind worker is requeued on -EAGAIN up to a configurable
-  userptr_repin_timeout_ms sysfs timeout. Also restores userptr invalidations
-  lost on VMA op unwind, frees preempt fences on VF rebind retry, and runs the
-  compute rebind worker on the device's NUMA node.
-  (Matthew Auld, Thomas Hellström)
-
-- Expose CRI memory capability limits via sysfs
-  3/3 patches pushed
-  Adds PCODE MEMORY_CONFIG mailbox definitions, renames xe_vram_freq to
-  xe_vram_config, and exposes maximum memory frequency and bandwidth as
-  read-only sysfs attributes on CRI for compute runtime capability discovery.
-  (Himal Prasad Ghimiray)
-
-- Prepare VFs enabling for VGPU profiles
-  3/3 patches pushed
-  Splits pf_enable_vfs() into prepare and commit steps with a revert helper so
-  upcoming VGPU profile code can reuse it with its own provisioning step. Also
-  restores default PF scheduling when VF enabling fails.
-  (Michal Wajdeczko, Marcin Bernatowicz)
-
-- Extend CPER records with RAS info queue data
-  3/3 patches pushed
-  Adds support for retrieving RAS info queue data from the system controller
-  and uses it to prepare Intel-specific CPER info records.
-  (Badal Nilawar)
-
-- Skip OCODE late bind if already running
-  2/2 patches pushed
-  OCODE keeps running across reloads and warm resets, so the late-bind worker
-  now skips the upload when OCODE is ready. A debug configfs option
-  (ocode_force_load) forces the load for testing replacement blobs.
-  (Sk Anirban)
-
-- drm/xe: Handle GuC semaphore instruction field check error
-  2/2 patches pushed
-  Adds a has_sem64 bit to the graphics/media IP descriptors, and uses it to opt
-  in to the GuC check of 64-bit semaphore instruction fields and handle the
-  resulting G2H error.
-  (Jesus Narvaez, Tangudu Tilak Tirumalesh)
-
-- drm/xe: Hold a fence reference while waiting for migration
-  2/2 patches pushed
-  Fixes a race between xe_migrate_wait() and migration submissions replacing
-  m->fence by holding a fence reference while waiting, and centralizes fence
-  replacement in a helper.
-  (Bommu Krishnaiah)
-
-- Drop repeated SIGID logging
-  2/2 patches pushed
-  A single page offline error previously logged multiple SIGID messages and
-  generated multiple CPERs. SIGID logging is dropped in the page offline and
-  sysctrl error paths in favor of plain xe_err()/xe_dbg().
-  (Riana Tauro)
-
-- Protect drm_ras against unplugged or wedged device
-  2/2 patches pushed
-  Fixes drm_ras counter access against an unplugged or wedged device and
-  introduces the xe_wedge_mode_is_no_reset() helper.
-  (Raag Jadav)
-
-- NVL-P PXP and GSC firmware enablement
-  2/2 patches pushed
-  Defines the GSC firmware for NVL-P and enables PXP on it.
-  (Daniele Ceraolo Spurio)
-
-- WOPCM programming cleanups
-  2/2 patches pushed
-  Simplifies GuC WOPCM programming and uses the HW-reported size when excluding
-  the WOPCM range from the GGTT.
-  (Daniele Ceraolo Spurio)
-
-
-Single patches
---------------
-
-- drm/xe/survivability: Fix infinite loop in aux info traversal (Sk Anirban)
-- drm/xe/cper: Add GUIDs for device IDs 6753-6756 (Badal Nilawar)
-- drm/xe: Serialize migrate ULLS enter against a pending exit (Fei Yang)
-- drm/xe/guc: Reset GuC before unmapping its post-hwconfig buffers (Sujaritha Sundaresan)
-- drm/xe/hwmon: Unregister hwmon before the device is unplugged (Rodrigo Vivi)
-- drm/xe/gt: Wait for context teardown between default LRC recordings (Nitin Gote)
-- drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution (Thomas Hellström)
-
-Thanks,
-Thomas
-
-The following changes since commit 72f716775dae43f2f6ea042bc97f6552f5240db7:
-
-  drm/xe/pf: Reset PF scheduling defaults on auto provisioning restore (2026-11-19 11:21:28 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-next-2026-11-26
-
-for you to fetch changes up to fc2a3dd1a3a2105f34e2f5c7a3e21f82fc0a0851:
-
-  drm/xe: Expose CRI maximum memory frequency and bandwidth in sysfs (2026-11-26 16:52:05 +0530)
-
-----------------------------------------------------------------
-Cross-subsystem Changes:
-
-- platform/x86/intel/pmt: Use the pre-populated header info for crashlog (Michael J. Ruhl)
-- platform/x86/intel/pmt: Introduce a callback for discovery data (Michael J. Ruhl)
-
-Driver Changes:
-
-- drm/xe: Expose CRI maximum memory frequency and bandwidth in sysfs (Himal Prasad Ghimiray)
-- drm/xe/vsec: Add DOC text for VSEC (Michael J. Ruhl)
-- drm/xe/wopcm: Simplify GuC WOPCM programming (Daniele Ceraolo Spurio)
-- drm/xe: Rename xe_vram_freq to xe_vram_config (Himal Prasad Ghimiray)
-- drm/xe/pcode: Add MEMORY_CONFIG mailbox definitions (Himal Prasad Ghimiray)
-- drm/xe/survivability: Fix infinite loop in aux info traversal (Sk Anirban)
-- drm/xe: Add debug configfs option to force OCODE load (Sk Anirban)
-- drm/xe: Skip OCODE late bind if already running (Sk Anirban)
-- drm/xe: run compute rebind worker on device NUMA node (Matthew Auld)
-- drm/xe/userptr: Make the repin retry loop non-fatal (Thomas Hellström)
-- drm/xe: Add a userptr repin timeout sysfs attribute (Thomas Hellström)
-- drm/xe: Requeue the rebind worker instead of retrying in-line on -EAGAIN (Thomas Hellström)
-- drm/xe/vf: Free preempt fences on rebind worker retry (Thomas Hellström)
-- drm/xe/vm: restore userptr invalidations on VMA op unwind (Matthew Auld)
-- drm/xe/pf: Split VFs enabling into prepare and commit steps (Michal Wajdeczko)
-- drm/xe/pf: Extract VFs enabling revert helper (Michal Wajdeczko)
-- drm/xe/pf: Restore default PF scheduling on failed VF enable (Marcin Bernatowicz)
-- drm/xe/guc: Handle GuC semaphore instruction field check error (Jesus Narvaez)
-- drm/xe: Add has_sem64 bit to graphics/media IP descriptors (Tangudu Tilak Tirumalesh)
-- drm/xe/vsec: Support survivability mode for CRI (Michael J. Ruhl)
-- drm/xe/vsec: Refactor platform check (Michael J. Ruhl)
-- drm/xe/vsec: Update PMT internal access (Michael J. Ruhl)
-- drm/xe/vsec: Add PMT GUID internal access (Michael J. Ruhl)
-- drm/xe/vsec: Support late bind fw information (Michael J. Ruhl)
-- drm/xe/vsec: Crescent Island PMT callbacks (Michael J. Ruhl)
-- drm/xe/vsec: Crescent Island PMT decode (Michael J. Ruhl)
-- drm/xe/vsec: Support Crescent Island PMT (Michael J. Ruhl)
-- drm/xe/vsec: Add base_offset to allow for more flexibilty (Michael J. Ruhl)
-- drm/xe/vsec: Update VSEC probe order (Michael J. Ruhl)
-- drm/xe/vsec: Refactor BattleMage PMT defines (Michael J. Ruhl)
-- drm/xe/vsec: Support possible hotplug exit (Michael J. Ruhl)
-- drm/xe/vsec: Use correct pm state get (Michael J. Ruhl)
-- drm/xe/vsec: Correct locking order (Michael J. Ruhl)
-- drm/xe/vsec: Do not register BMG PMT for VF (Michael J. Ruhl)
-- drm/xe/vsec: VSEC requires soc-remapper (Michael J. Ruhl)
-- drm/xe: Centralize migration fence updates (Bommu Krishnaiah)
-- drm/xe: Hold a fence reference while waiting for migration (Bommu Krishnaiah)
-- drm/xe/cper: Add GUIDs for device IDs 6753-6756 (Badal Nilawar)
-- drm/xe/ras: Drop SIGID logging for sysctrl errors (Riana Tauro)
-- drm/xe/ras: Drop SIGID logging in page offline flow (Riana Tauro)
-- drm/xe: Serialize migrate ULLS enter against a pending exit (Fei Yang)
-- drm/xe/wedge: Introduce xe_wedge_mode_is_no_reset() (Raag Jadav)
-- drm/xe/drm_ras: Protect against unplugged or wedged device (Raag Jadav)
-- drm/xe/cper: Prepare Intel CPER info records (Badal Nilawar)
-- drm/xe/xe_ras: Add support to retrieve info queue data (Badal Nilawar)
-- drm/xe/cper: Drop redundant counter argument (Badal Nilawar)
-- drm/xe/guc: Reset GuC before unmapping its post-hwconfig buffers (Sujaritha Sundaresan)
-- drm/xe/hwmon: Unregister hwmon before the device is unplugged (Rodrigo Vivi)
-- drm/xe/pxp: Enable PXP for NVL-P (Daniele Ceraolo Spurio)
-- drm/xe/gsc: Define GSC firmware for NVL-P (Daniele Ceraolo Spurio)
-- drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT (Daniele Ceraolo Spurio)
-- drm/xe/gt: Wait for context teardown between default LRC recordings (Nitin Gote)
-- drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution (Thomas Hellström)
-
-----------------------------------------------------------------
-Badal Nilawar (4):
-      drm/xe/cper: Drop redundant counter argument
-      drm/xe/xe_ras: Add support to retrieve info queue data
-      drm/xe/cper: Prepare Intel CPER info records
-      drm/xe/cper: Add GUIDs for device IDs 6753-6756
-
-Bommu Krishnaiah (2):
-      drm/xe: Hold a fence reference while waiting for migration
-      drm/xe: Centralize migration fence updates
-
-Daniele Ceraolo Spurio (4):
-      drm/xe/wopcm: Use the size from HW when excluding the wopcm range from GGTT
-      drm/xe/wopcm: Simplify GuC WOPCM programming
-      drm/xe/gsc: Define GSC firmware for NVL-P
-      drm/xe/pxp: Enable PXP for NVL-P
-
-Fei Yang (1):
-      drm/xe: Serialize migrate ULLS enter against a pending exit
-
-Himal Prasad Ghimiray (3):
-      drm/xe/pcode: Add MEMORY_CONFIG mailbox definitions
-      drm/xe: Rename xe_vram_freq to xe_vram_config
-      drm/xe: Expose CRI maximum memory frequency and bandwidth in sysfs
-
-Jesus Narvaez (1):
-      drm/xe/guc: Handle GuC semaphore instruction field check error
-
-Marcin Bernatowicz (1):
-      drm/xe/pf: Restore default PF scheduling on failed VF enable
-
-Matthew Auld (2):
-      drm/xe/vm: restore userptr invalidations on VMA op unwind
-      drm/xe: run compute rebind worker on device NUMA node
-
-Michael J. Ruhl (19):
-      platform/x86/intel/pmt: Introduce a callback for discovery data
-      platform/x86/intel/pmt: Use the pre-populated header info for crashlog
-      drm/xe/vsec: VSEC requires soc-remapper
-      drm/xe/vsec: Do not register BMG PMT for VF
-      drm/xe/vsec: Correct locking order
-      drm/xe/vsec: Use correct pm state get
-      drm/xe/vsec: Add DOC text for VSEC
-      drm/xe/vsec: Support possible hotplug exit
-      drm/xe/vsec: Refactor BattleMage PMT defines
-      drm/xe/vsec: Update VSEC probe order
-      drm/xe/vsec: Add base_offset to allow for more flexibilty
-      drm/xe/vsec: Support Crescent Island PMT
-      drm/xe/vsec: Crescent Island PMT decode
-      drm/xe/vsec: Crescent Island PMT callbacks
-      drm/xe/vsec: Support late bind fw information
-      drm/xe/vsec: Add PMT GUID internal access
-      drm/xe/vsec: Update PMT internal access
-      drm/xe/vsec: Refactor platform check
-      drm/xe/vsec: Support survivability mode for CRI
-
-Michal Wajdeczko (2):
-      drm/xe/pf: Extract VFs enabling revert helper
-      drm/xe/pf: Split VFs enabling into prepare and commit steps
-
-Nitin Gote (1):
-      drm/xe/gt: Wait for context teardown between default LRC recordings
-
-Raag Jadav (2):
-      drm/xe/drm_ras: Protect against unplugged or wedged device
-      drm/xe/wedge: Introduce xe_wedge_mode_is_no_reset()
-
-Riana Tauro (2):
-      drm/xe/ras: Drop SIGID logging in page offline flow
-      drm/xe/ras: Drop SIGID logging for sysctrl errors
-
-Rodrigo Vivi (1):
-      drm/xe/hwmon: Unregister hwmon before the device is unplugged
-
-Sk Anirban (3):
-      drm/xe: Skip OCODE late bind if already running
-      drm/xe: Add debug configfs option to force OCODE load
-      drm/xe/survivability: Fix infinite loop in aux info traversal
-
-Sujaritha Sundaresan (1):
-      drm/xe/guc: Reset GuC before unmapping its post-hwconfig buffers
-
-Tangudu Tilak Tirumalesh (1):
-      drm/xe: Add has_sem64 bit to graphics/media IP descriptors
-
-Thomas Hellström (5):
-      drm/xe: Add a per-client debugfs file reporting bo NUMA node distribution
-      drm/xe/vf: Free preempt fences on rebind worker retry
-      drm/xe: Requeue the rebind worker instead of retrying in-line on -EAGAIN
-      drm/xe: Add a userptr repin timeout sysfs attribute
-      drm/xe/userptr: Make the repin retry loop non-fatal
-
- .../ABI/testing/sysfs-driver-intel-xe-gpu          |  24 +
- Documentation/gpu/xe/index.rst                     |   1 +
- Documentation/gpu/xe/xe_firmware.rst               |   6 -
- Documentation/gpu/xe/xe_vsec.rst                   |  14 +
- drivers/gpu/drm/xe/Makefile                        |   5 +-
- drivers/gpu/drm/xe/abi/guc_actions_abi.h           |   1 +
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h              |  10 +
- drivers/gpu/drm/xe/regs/xe_pmt.h                   |  12 +-
- drivers/gpu/drm/xe/tests/xe_ggtt_kunit.c           |   4 +-
- drivers/gpu/drm/xe/xe_bo.c                         | 113 ++++
- drivers/gpu/drm/xe/xe_bo.h                         |   6 +
- drivers/gpu/drm/xe/xe_configfs.c                   |  58 ++
- drivers/gpu/drm/xe/xe_configfs.h                   |   1 +
- drivers/gpu/drm/xe/xe_cper.c                       | 271 ++++++++-
- drivers/gpu/drm/xe/xe_cper.h                       |   3 -
- drivers/gpu/drm/xe/xe_cper_types.h                 |  59 +-
- drivers/gpu/drm/xe/xe_debugfs.c                    | 202 ++++++-
- drivers/gpu/drm/xe/xe_debugfs.h                    |   3 +
- drivers/gpu/drm/xe/xe_device.c                     |  36 +-
- drivers/gpu/drm/xe/xe_device.h                     |   3 +
- drivers/gpu/drm/xe/xe_device_sysfs.c               |  57 ++
- drivers/gpu/drm/xe/xe_device_types.h               |  24 +-
- drivers/gpu/drm/xe/xe_drm_ras.c                    |  93 ++-
- drivers/gpu/drm/xe/xe_exec.c                       |   9 +-
- drivers/gpu/drm/xe/xe_ggtt.c                       |  19 +-
- drivers/gpu/drm/xe/xe_gt.c                         |  18 +-
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c         |   1 -
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c                |   1 -
- drivers/gpu/drm/xe/xe_gt_types.h                   |   2 +
- drivers/gpu/drm/xe/xe_guc.c                        |  63 +-
- drivers/gpu/drm/xe/xe_guc_ads.c                    |   3 +-
- drivers/gpu/drm/xe/xe_guc_capture.c                |   3 +-
- drivers/gpu/drm/xe/xe_guc_ct.c                     |   4 +
- drivers/gpu/drm/xe/xe_guc_submit.c                 |  77 ++-
- drivers/gpu/drm/xe/xe_guc_submit.h                 |   3 +
- drivers/gpu/drm/xe/xe_hwmon.c                      |  32 +-
- drivers/gpu/drm/xe/xe_hwmon.h                      |   2 +
- drivers/gpu/drm/xe/xe_late_bind_fw.c               |  11 +
- drivers/gpu/drm/xe/xe_late_bind_fw_types.h         |   2 +
- drivers/gpu/drm/xe/xe_migrate.c                    |  57 +-
- drivers/gpu/drm/xe/xe_pagefault.c                  |   4 +
- drivers/gpu/drm/xe/xe_pci.c                        |  28 +-
- drivers/gpu/drm/xe/xe_pci_error.c                  |   2 +-
- drivers/gpu/drm/xe/xe_pci_sriov.c                  |  91 ++-
- drivers/gpu/drm/xe/xe_pci_types.h                  |   2 +
- drivers/gpu/drm/xe/xe_pcode.c                      |  10 +-
- drivers/gpu/drm/xe/xe_pcode_api.h                  |   4 +
- drivers/gpu/drm/xe/xe_ras.c                        | 254 ++++++--
- drivers/gpu/drm/xe/xe_ras.h                        |   6 +-
- drivers/gpu/drm/xe/xe_ras_types.h                  | 118 +++-
- drivers/gpu/drm/xe/xe_survivability_mode.c         |   8 +-
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h      |   2 +
- drivers/gpu/drm/xe/xe_tile.c                       |  61 ++
- drivers/gpu/drm/xe/xe_tile.h                       |   3 +
- drivers/gpu/drm/xe/xe_tile_sriov_vf.c              |   1 -
- drivers/gpu/drm/xe/xe_tile_sysfs.c                 |   4 +-
- drivers/gpu/drm/xe/xe_tile_types.h                 |   3 +
- drivers/gpu/drm/xe/xe_trace.h                      |   5 +
- drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c             |  53 +-
- drivers/gpu/drm/xe/xe_uc.c                         | 131 +++-
- drivers/gpu/drm/xe/xe_uc_fw.c                      |  16 +
- drivers/gpu/drm/xe/xe_uc_types.h                   |   3 -
- drivers/gpu/drm/xe/xe_userptr.c                    |  47 +-
- drivers/gpu/drm/xe/xe_userptr.h                    |  53 ++
- drivers/gpu/drm/xe/xe_vm.c                         | 139 +++--
- drivers/gpu/drm/xe/xe_vm.h                         |   6 +-
- drivers/gpu/drm/xe/xe_vm_madvise.c                 |  23 +-
- drivers/gpu/drm/xe/xe_vm_types.h                   |   8 +
- drivers/gpu/drm/xe/xe_vram_config.c                | 217 +++++++
- drivers/gpu/drm/xe/xe_vram_config.h                |  13 +
- drivers/gpu/drm/xe/xe_vram_freq.c                  | 123 ----
- drivers/gpu/drm/xe/xe_vram_freq.h                  |  13 -
- drivers/gpu/drm/xe/xe_vsec.c                       | 666 +++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vsec.h                       |   2 +
- drivers/gpu/drm/xe/xe_wedge.c                      |   5 +-
- drivers/gpu/drm/xe/xe_wedge.h                      |   5 +
- drivers/gpu/drm/xe/xe_wopcm.c                      | 287 ---------
- drivers/gpu/drm/xe/xe_wopcm.h                      |  16 -
- drivers/gpu/drm/xe/xe_wopcm_types.h                |  26 -
- drivers/platform/x86/intel/pmt/class.c             |  18 +-
- drivers/platform/x86/intel/pmt/crashlog.c          |  24 +-
- include/linux/intel_vsec.h                         |  10 +
- 82 files changed, 2963 insertions(+), 860 deletions(-)
- create mode 100644 Documentation/gpu/xe/xe_vsec.rst
- create mode 100644 drivers/gpu/drm/xe/xe_vram_config.c
- create mode 100644 drivers/gpu/drm/xe/xe_vram_config.h
- delete mode 100644 drivers/gpu/drm/xe/xe_vram_freq.c
- delete mode 100644 drivers/gpu/drm/xe/xe_vram_freq.h
- delete mode 100644 drivers/gpu/drm/xe/xe_wopcm.c
- delete mode 100644 drivers/gpu/drm/xe/xe_wopcm.h
- delete mode 100644 drivers/gpu/drm/xe/xe_wopcm_types.h
+On 25-11-2026 23:59, Rodrigo Vivi wrote:
+> On Tue, Nov 24, 2026 at 11:18:04AM +0530, Karthik Poosa wrote:
+>> Add a pcode helper that issues an ordered sequence of mailbox writes
+>> while holding the pcode lock, so no other mailbox command can be
+>> interleaved.
+>>
+>> This will be used to write fan tables atomically with respect to other
+>> pcode users.
+> The question here is: why do you need this?
+> What are the odds of this starving and causing timeouts on other critical paths?
+>
+> The code below itself is right and I'd give my rv-b, but I'm concern
+> about the overall impact and risks, so we need a very clear and sound 'why'.
+>
+> Thanks,
+> Rodrigo.
+We added this for use cases where pcode mailbox commands have to be sent 
+without any interleaves in between.
+For fan table write this is needed, All the fan curve points of a fan 
+table, should be written without any interleaving pcode cmd in between.
+>
+>> Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+>> ---
+>>
+>> v2:
+>>   - Document partial-failure semantics and lock hold time in kernel-doc.
+>>   - Reword commit message.
+>>   - Return -EINVAL for an empty batch. (Soham)
+>>   - Log the failing batch index, mailbox, data and error. (Soham)
+>>   - Add kernel-doc for struct xe_pcode_write.
+>>
+>>   drivers/gpu/drm/xe/xe_pcode.c | 39 +++++++++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_pcode.h | 12 +++++++++++
+>>   2 files changed, 51 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+>> index 266deecbb100..ab796218e737 100644
+>> --- a/drivers/gpu/drm/xe/xe_pcode.c
+>> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+>> @@ -124,6 +124,45 @@ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout
+>>   	return err;
+>>   }
+>>   
+>> +/**
+>> + * xe_pcode_write_batch - issue pcode writes in order under the mailbox lock
+>> + * @tile: tile
+>> + * @writes: mailbox/data pairs to write
+>> + * @count: number of entries in @writes
+>> + *
+>> + * Holds the pcode lock across all writes so no other mailbox command can be
+>> + * interleaved; the lock may be held for up to @count * PCODE_DEFAULT_TIMEOUT_MS.
+>> + * Stops at the first failure; earlier writes are not reverted.
+>> + *
+>> + * Return: 0 on success, negative error code otherwise.
+>> + */
+>> +int xe_pcode_write_batch(struct xe_tile *tile, const struct xe_pcode_write *writes,
+>> +			 unsigned int count)
+>> +{
+>> +	unsigned int i;
+>> +	int err = 0;
+>> +
+>> +	if (!count)
+>> +		return -EINVAL;
+>> +
+>> +	mutex_lock(&tile->pcode.lock);
+>> +	for (i = 0; i < count; i++) {
+>> +		u32 data = writes[i].data;
+>> +
+>> +		err = pcode_mailbox_rw(tile, writes[i].mbox, &data, NULL, PCODE_DEFAULT_TIMEOUT_MS,
+>> +				       false, false);
+>> +		if (err) {
+>> +			xe_err(tile_to_xe(tile),
+>> +			       "pcode batch write %u/%u failed: mbox 0x%08x data 0x%08x, ret %pe\n",
+>> +			       i + 1, count, writes[i].mbox, writes[i].data, ERR_PTR(err));
+>> +			break;
+>> +		}
+>> +	}
+>> +	mutex_unlock(&tile->pcode.lock);
+>> +
+>> +	return err;
+>> +}
+>> +
+>>   int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0, u32 data1, int timeout)
+>>   {
+>>   	int err;
+>> diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+>> index 7e43792b0037..c601a12baba6 100644
+>> --- a/drivers/gpu/drm/xe/xe_pcode.h
+>> +++ b/drivers/gpu/drm/xe/xe_pcode.h
+>> @@ -18,6 +18,16 @@ struct xe_pcode_version {
+>>   	u32 engg;
+>>   };
+>>   
+>> +/**
+>> + * struct xe_pcode_write - single pcode mailbox write
+>> + * @mbox: mailbox command
+>> + * @data: value written to PCODE_DATA0
+>> + */
+>> +struct xe_pcode_write {
+>> +	u32 mbox;
+>> +	u32 data;
+>> +};
+>> +
+>>   #define PCODE_DEFAULT_TIMEOUT_MS	10
+>>   
+>>   int xe_pcode_init_early(struct xe_tile *tile);
+>> @@ -28,6 +38,8 @@ int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+>>   int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1);
+>>   int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
+>>   			   int timeout_ms);
+>> +int xe_pcode_write_batch(struct xe_tile *tile, const struct xe_pcode_write *writes,
+>> +			 unsigned int count);
+>>   int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
+>>   			     u32 data1, int timeout);
+>>   int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *version);
+>> -- 
+>> 2.34.1
+>>
