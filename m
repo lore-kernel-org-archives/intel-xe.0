@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6065B606A31C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 13:58:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D0F4606A31C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 13:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=hNx2K4Zn
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=D25S80+H
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1595F112440;
-	Thu, 26 Nov 2026 13:58:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C22EF112443;
+	Thu, 26 Nov 2026 13:58:17 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB56D10E9C7
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 13:57:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E16D61122C4
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 13:58:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795701479; x=1827237479;
+ t=1795701486; x=1827237486;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JnQJ8uXKuax6k01/ZpxcywSYRgS69k+wvcpReoNg6CM=;
- b=hNx2K4ZnOgp/r41IQ8SW3AaJiRoe981Hsb3G66nFUTZ0T+0TZVzJAG0W
- ofJEM99wfxopgDpUNzLzn0crOpzzVeEzkidAb4Hxd1ZfQJsuO6wuwvE9/
- MAvjQbXbT3RgnpdSglZWLBHTeEj9wqWRzdfYJuzFfHqEV4Ibf4zKtrq7Y
- MF+xaPX4o2EpHZ3NPQj5VLrFFBZ12AxT2ovRUBMWa7cZfFPxDTmcciljr
- KqsI31CMbp6qs+70V0VM2ys/wsbRq1YVQsVxYGY759ao1CDNRkcJKR1Bp
- R/CNM2KgijKzGw6hww0WKKnjYvjTwP5B7G/JOpRdo/4RNhMPaLGBytwOG A==;
-X-CSE-ConnectionGUID: w1UBI51kRWuY6FJgx+vqqg==
-X-CSE-MsgGUID: kFI41OlIRxiR1gASNhmrWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4520605"
+ bh=pT+qf1U5HyG6kR2sW4bxgClKTU9UzmabK2A3ltki6G4=;
+ b=D25S80+HaikafcZ1xhB3uLZzZBOvZdVC14jlkcxJgjVKmdIo5zhrYvl0
+ yjM10F8HmBFrz7B0Q3mTKkCt1/e3sZo83r6L3kpvG8OYJW8GHZ8ZqATbr
+ bWtclhO42Rs0SbJfv0lW6iiZzuG/w21vXyvfmEDdW5algMz+GUGc5uJ+a
+ sH5zAsGh6dX3c2A79VKUqIat+msgUizoI+hk/+/nStQGA/fkCcjMxpt2i
+ dFtT+zA3P12izf+Ky9OovmtuYkcGZ/JkrFpDEUH2RettP+jXkhfP4D2Je
+ S3QjsXKEDp8u/704Da+N7rGRk3lJ8H9MD2fCMO0JqkvKQrK9w0UPYml2L Q==;
+X-CSE-ConnectionGUID: YBsY9qHQSeqAoznAEaGYoQ==
+X-CSE-MsgGUID: 71W4nMY5QiiZZHimUN3+lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4520625"
 X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; 
-   d="scan'208";a="4520605"
+   d="scan'208";a="4520625"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 05:57:59 -0800
-X-CSE-ConnectionGUID: g4RPwlfxThKU93oTPD7pOg==
-X-CSE-MsgGUID: ZCY4gJkxRJC1S55T4IpNng==
+ 26 Nov 2026 05:58:06 -0800
+X-CSE-ConnectionGUID: JLFcsaXHQhaMtWip1jHF+g==
+X-CSE-MsgGUID: WkpkPkRgSmqxcOSCieDwOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12684407"
+X-IronPort-AV: E=Sophos;i="6.27,235,1787036400"; d="scan'208";a="12684417"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa001.fm.intel.com with ESMTP; 26 Nov 2026 05:57:56 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 26 Nov 2026 05:58:03 -0800
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
@@ -46,10 +46,10 @@ Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
  daniele.ceraolospurio@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [RFC PATCH v1 4/6] drm/xe/tests: Update log tests for atomic logging
- support
-Date: Thu, 26 Nov 2026 19:27:36 +0530
-Message-ID: <20261126135732.2169939-12-mallesh.koujalagi@intel.com>
+Subject: [RFC PATCH v1 6/6] drm/xe/guc_ct: Use atomic logging under
+ ct->fast_lock
+Date: Thu, 26 Nov 2026 19:27:38 +0530
+Message-ID: <20261126135732.2169939-14-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261126135732.2169939-8-mallesh.koujalagi@intel.com>
 References: <20261126135732.2169939-8-mallesh.koujalagi@intel.com>
@@ -73,72 +73,73 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add KUnit coverage for xe_log_err_atomic() and
-xe_log_err_fatal_atomic().
+Several error paths in GuC CT can run while ct->fast_lock is held.
+Since the lock is a spinlock, these paths execute in atomic context.
+
+Replace xe_log_err() with xe_log_err_atomic() in these paths so CPER
+records are allocated with GFP_ATOMIC instead of GFP_KERNEL.
 
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_log_kunit.c | 40 +++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_log_kunit.c b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-index bdbdec45e73d..f04ce3dd4ccf 100644
---- a/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
-@@ -229,6 +229,44 @@ static void test_sw_cper(struct kunit *test)
- 	KUNIT_EXPECT_TRUE(test, is_sw_cper(sw_cper_capture.sigid));
- }
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 121955ac4abf..9c96e94b99d0 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -889,9 +889,9 @@ static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
  
-+static void test_cper_atomic_err(struct kunit *test)
-+{
-+	struct xe_gt *gt = to_gt_safe(test->priv);
-+
-+	kunit_activate_static_stub(test, log_emit_cper_atomic, capture_emit_cper);
-+	kunit_activate_static_stub(test, log_dmesg_vprintk, nop_dmesg_vprintk);
-+	memset(&sw_cper_capture, 0, sizeof(sw_cper_capture));
-+
-+	xe_log_err_atomic(gt, PROBE, -ENODEV, "testing %d\n", 123);
-+
-+	KUNIT_ASSERT_EQ(test, sw_cper_capture.count, 1);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.cper_sev, CPER_SEV_RECOVERABLE);
-+	KUNIT_EXPECT_EQ(test, (u32)sw_cper_capture.sigid, (u32)XE_LOG_COMPONENT_PROBE_SIGID);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.component, XE_LOG_COMPONENT_PROBE);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.location, xe_log_location(gt));
-+	KUNIT_EXPECT_PTR_EQ(test, sw_cper_capture.data, ERR_PTR(-ENODEV));
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.len, 0);
-+}
-+
-+static void test_cper_atomic_err_fatal(struct kunit *test)
-+{
-+	struct xe_gt *gt = to_gt_safe(test->priv);
-+
-+	kunit_activate_static_stub(test, log_emit_cper_atomic, capture_emit_cper);
-+	kunit_activate_static_stub(test, log_dmesg_vprintk, nop_dmesg_vprintk);
-+	memset(&sw_cper_capture, 0, sizeof(sw_cper_capture));
-+
-+	xe_log_err_fatal_atomic(gt, PROBE, -EIO, "testing %d\n", 123);
-+
-+	KUNIT_ASSERT_EQ(test, sw_cper_capture.count, 1);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.cper_sev, CPER_SEV_FATAL);
-+	KUNIT_EXPECT_EQ(test, (u32)sw_cper_capture.sigid, (u32)XE_LOG_COMPONENT_PROBE_SIGID);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.component, XE_LOG_COMPONENT_PROBE);
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.location, xe_log_location(gt));
-+	KUNIT_EXPECT_PTR_EQ(test, sw_cper_capture.data, ERR_PTR(-EIO));
-+	KUNIT_EXPECT_EQ(test, sw_cper_capture.len, 0);
-+}
-+
- static const char *test_fatal(struct xe_device *xe)
- {
- 	struct pci_dev *pdev = to_pdev_safe(xe);
-@@ -641,6 +679,8 @@ static struct kunit_case xe_log_test_cases[] = {
- 	KUNIT_CASE(test_cper_null_xe),
- 	KUNIT_CASE_PARAM(test_dmesg, log_gen_params),
- 	KUNIT_CASE_PARAM(test_sw_cper, sw_cper_gen_params),
-+	KUNIT_CASE(test_cper_atomic_err),
-+	KUNIT_CASE(test_cper_atomic_err_fatal),
- 	KUNIT_CASE_PARAM(test_invalid, invalid_param_gen_params),
- 	{}
- };
+ 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_OVERFLOW);
+ 
+-			xe_log_err(ct_to_gt(ct), GUC, -EPIPE,
+-				   "CT: invalid head offset %u >= %u)\n",
+-				   h2g->info.head, h2g->info.size);
++			xe_log_err_atomic(ct_to_gt(ct), GUC, -EPIPE,
++					  "CT: invalid head offset %u >= %u)\n",
++					  h2g->info.head, h2g->info.size);
+ 			CT_DEAD(ct, h2g, H2G_HAS_ROOM);
+ 			return false;
+ 		}
+@@ -960,13 +960,13 @@ static void __g2h_release_space(struct xe_guc_ct *ct, u32 g2h_len)
+ 	bad |= !ct->g2h_outstanding;
+ 
+ 	if (bad) {
+-		xe_log_err(ct_to_gt(ct), GUC, -ETOOMANYREFS,
+-			   "CT: Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
+-			   ct->ctbs.g2h.info.space, g2h_len,
+-			   ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
+-			   ct->ctbs.g2h.info.space + g2h_len,
+-			   ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
+-			   ct->g2h_outstanding);
++		xe_log_err_atomic(ct_to_gt(ct), GUC, -ETOOMANYREFS,
++				  "CT: Invalid G2H release: %d + %d vs %d - %d -> %d vs %d, outstanding = %d!\n",
++				  ct->ctbs.g2h.info.space, g2h_len,
++				  ct->ctbs.g2h.info.size, ct->ctbs.g2h.info.resv_space,
++				  ct->ctbs.g2h.info.space + g2h_len,
++				  ct->ctbs.g2h.info.size - ct->ctbs.g2h.info.resv_space,
++				  ct->g2h_outstanding);
+ 		CT_DEAD(ct, &ct->ctbs.g2h, G2H_RELEASE);
+ 		return;
+ 	}
+@@ -1034,7 +1034,7 @@ static int ct_corrupted(struct xe_guc_ct *ct, struct guc_ctb *ctb,
+ 	va_start(va_args, msg);
+ 	vaf.fmt = msg;
+ 	vaf.va  = &va_args;
+-	xe_log_err(ct_to_gt(ct), GUC, err, "CT: %pV", &vaf);
++	xe_log_err_atomic(ct_to_gt(ct), GUC, err, "CT: %pV", &vaf);
+ 	va_end(va_args);
+ 
+ 	process_ct_dead(ct, ctb, reason_code);
+@@ -2102,7 +2102,7 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	}
+ 
+ 	if (ret) {
+-		xe_log_err(gt, GUC, ret, "CT: G2H action 0x%04x failed\n", action);
++		xe_log_err_atomic(gt, GUC, ret, "CT: G2H action 0x%04x failed\n", action);
+ 		CT_DEAD(ct, NULL, FAST_G2H);
+ 	}
+ }
 -- 
 2.48.1
 
