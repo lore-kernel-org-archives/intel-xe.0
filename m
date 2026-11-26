@@ -2,87 +2,86 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141E4606A331
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:08:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8ED66606A31E
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 10:08:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=fxLHez5w;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=aNUUTiPS
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=PngrhEwd;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=gdfzQC2C
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFB601122AD;
-	Thu, 26 Nov 2026 10:08:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5121F1122A3;
- Thu, 26 Nov 2026 10:08:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2FF0112293;
+	Thu, 26 Nov 2026 10:08:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86356112297;
+ Thu, 26 Nov 2026 10:08:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795687713; x=1827223713;
+ t=1795687706; x=1827223706;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=NxqMMYqE5nuW40tziroD2cRLF5SGacRtnUSlwo9AYsE=;
- b=fxLHez5woi3BmVfP9k1JAXo3plFoDt0Yzj/gJbGpnMY7MBxz5oORMmit
- U+7cHdSnbvZM41TlIbPlSXLyjj3NLm+1Blh0w1s5tWDRBf23yJI3nl4Sg
- Sfy7m+NNBRENGHjWhDNjz9qD2dl/Gp32nbx4Jug/FI8DFNSPDGtxaOWgv
- giUmAqMmN7Qj4YE7r/akMAnR3wMQAxAEDN1szVtoILpTnjb9mf6U61P80
- IRUsBJaVPHmYnppVhSH976bTPbRjCjMvE41QCQqrLZCnBgvbIE3FxfESl
- gkJ8Z2Ghj9fjLq42W4P69j6hBs6TXdB270DGtdiV2UmKJ9WLhast6sTkd w==;
-X-CSE-ConnectionGUID: cRG7nxxWTv6DKizegkz9LA==
-X-CSE-MsgGUID: y3bxp65fRFefItQ4hCa6mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4677553"
+ bh=JJw6LZO7BmcIlsLtK2RPIjATYXoP3eqf5rnuvFRz/V4=;
+ b=PngrhEwdvwAR5xdoXxjC8+z81LAV7/9go/CcpxuF9c/+mVbOjG9Sfn+L
+ nWqzU9tdC/siMQLEfqjRCIw6UhsbBB8ys1zL4FF8duVcbRT94Kexvyqbe
+ sD09KTEXPn1r2RoCdegJZAILU45SjDYKI2AImOSqIJKyzuucN4TESy0Po
+ L3fe34bzpZcUG7gtDSo9x2/xmkpAFyTQPK6F3hoSHtywXmexYpCDoNE0g
+ v8wZ7cIMJG2pOFhc7NqwZml5S8SzFSc3gN1H/ZIFHDLQU50asZvhrib3u
+ 2b6GDUPTPbkoiq/LLrVe5augpdRoUG2q+JXJuEHAnOvIxKbvhr2nIX1XX A==;
+X-CSE-ConnectionGUID: GCN6/lfhT/KGbkS9hMIveQ==
+X-CSE-MsgGUID: bVFfJywwSA647utZgRAKCg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4434823"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4677553"
-Received: from fmviesa013.fm.intel.com ([10.60.135.153])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 02:08:29 -0800
-X-CSE-ConnectionGUID: AHRM9/b8TpaQ4OkjaYuuKQ==
-X-CSE-MsgGUID: eb4deQTZSVGgZVX1/KdFag==
+   d="scan'208";a="4434823"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 02:08:24 -0800
+X-CSE-ConnectionGUID: twY42MXARqS9ExkUa1uZww==
+X-CSE-MsgGUID: fqyBS1x1SoeJcGqaENDz/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="14169403"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa013.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 02:08:29 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12432774"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 02:08:24 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 02:08:29 -0800
+ 15.2.2562.57; Thu, 26 Nov 2026 02:08:23 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 02:08:29 -0800
+ 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 02:08:23 -0800
 Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.47) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 02:08:28 -0800
+ 15.2.2562.57; Thu, 26 Nov 2026 02:08:23 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qOLZEwJyQC0JbhJwBEhCguZ/10ltbkDYcs8d/Z5bt2KbXgshesogBoZEEGxFnzxdtiN3SGL8gWTuUWgAwYFe0F/BLRDMp/g46YeirzrHWg2ads52zrAjyxwPlzI3GZdEuVF+JLhTHNd4D546eiOXmxbVduEEOyU5FpC2PRM5AU1NdzlLoScY/Fu6XVsUBFVzQYjT4Z0J5WPohO+TAHWqZbWVz06oAKxULuSWPTluSKIS64MO0xBhf6h2sj8tIoAQ7Wq2HBJQmNp3uZffhLEFkBzacrbLyPIoPu5xeIWFNIBERhCxyBz9zvTwFXFL/Sab++mWx/IzefsIfLa9VkR2fw==
+ b=BEUiBWKHNP08hIJgaWwzOuBh1igLPFqky/5/kB3c9UB20PkYI4HOO5aRorpxqSWiHoWogQp/KTtTLA9RsAE5tYybBR8Ql9xMRhDZ6pWBTPngQPkibPtfZsmrSjnbPEY6Q1WZDCFbz1houZuOcGis5uA1uaVXUIvc8Yw6CX5GmStBwCV3KLNI24r2D3/g4m7lafo8JR4s+AlZmc7kpBWCEeKRTJCmneWp2+PydBFpaiBheLgL5++3Hiy0yCh09Nwa7L4zJn1a7Cvq5iT0xBHY/7P02w5BcsUP8M51iRjSjT9H69Q5IdkrEn12ffEcfbvY5HuBqsUfn+Meq9JpK5vGYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8CP0n8wIBi/tGarumtkWyKEvT0aU8uCyXB7xCU1YVfk=;
- b=g/FvFgQIkPd5XSBxoOwDcS8rRE6TtOoY+PxySDhE4mBKXs6QLNzn7LO8WnkKu7OVwv7EGIFw1X5ksLoI5hhqA5Jia1epgnbBLYXF4QYew1ssDd92sDzC/yPA/H9U+BQEg05S7zJ53IN7E/6N9SLy4WUchOWg3g2wEVsKxXbHbBRD9VTprrlsXeFZbSvF7YdtU9A/O/U4HR8NHlx635J3bmthZfoh3MYUbXIMS3oX2xGczIsqUJ1iXrNA9uSblGi412IAUxtgmoRzKZV+t/E/ZNt+eEA+KdqnOPmH2kw2WB175OFShlDtte78hDegzGe5Yoa8hwpfHXx809BGLV0aCg==
+ bh=/ai+D7yVwX3shiIOydEmKj4+xhPxZI2X1miGmUC55fo=;
+ b=tdBrlVe/bnyrgkgSKGxZ7vYmhYcyU1glW4ozk6SM11Y0/u8M0BYRy9odgdXzXeVJVxyub/aa9Y6wSxglfr6O4SzVad6iIOqVGihab62odkJqJELbWGivOT3A5LBpYOc40kKbuVldhQf5q7+mZcC6IvTnO+8Q7SpAe6V44WfBOe4EhJqVqKaEmQpJtWnXuF7mTWMSmnZPvi9rMZu/G6OKanYZYKJfj3pRx1SpwhlUOUeRuXFMFXqQFdGi3lgML7RfqFfm05Ye4YrZ0A+K0suEEIC88ztxUOBamN5YNAvIpz2P0N5asFg4iDO7731e3Er/84VrlT7UmoPTEz0JMqTr1w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8CP0n8wIBi/tGarumtkWyKEvT0aU8uCyXB7xCU1YVfk=;
- b=aNUUTiPSVIMlD/L4YZuRvAi1s5tz7l7ktBCfJWsJo0fVbW4r8sZzuB3Q8CzxvKIqoh7nq8dlcyG09IATwH3Z6VLY7W5U158X7rEWqg+9XnUCaIk6IudOn3FIuFOw88jYob/lZUTPc1AHVKKN+vRb7/p+qnb7sK1NtrKm9vJF/UE=
+ bh=/ai+D7yVwX3shiIOydEmKj4+xhPxZI2X1miGmUC55fo=;
+ b=gdfzQC2CMj8AxT+KWxw/3R1E/HIrQ6kA7GHvKopUL6YxWSj4MaHMZQOtyWiruGNzUj2cZVTcKksoBNZm2D6fGohuHIRb5pDeJ8z34Y7kY9Qju8gN87kv453s/aqywkNLo1I/F3m//0SwH6jFmRJ5z7fHVOJ8gwhiITvmiRH/orc=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
  by CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Thu, 26 Nov
- 2026 10:08:17 +0000
+ 2026 10:08:11 +0000
 Received: from IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa%6]) with mapi id 15.21.0662.001; Thu, 26 Nov 2026
- 10:08:17 +0000
+ 10:08:11 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 12/13] drm/i915/ddi_mgr: Handle DDI pool system suspend and
- resume
-Date: Thu, 26 Nov 2026 12:07:52 +0200
-Message-ID: <20261126100755.1252635-13-imre.deak@intel.com>
+Subject: [PATCH 08/13] drm/i915/gmbus: Add stable DDC adapters for the DDI pool
+Date: Thu, 26 Nov 2026 12:07:48 +0200
+Message-ID: <20261126100755.1252635-9-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20261126100755.1252635-1-imre.deak@intel.com>
 References: <20261126100755.1252635-1-imre.deak@intel.com>
@@ -97,56 +96,56 @@ X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|CY5PR11MB6366:EE_
-X-MS-Office365-Filtering-Correlation-Id: d239c3a1-8e5d-4f0a-4ef7-08df4ba5309d
+X-MS-Office365-Filtering-Correlation-Id: b5f94955-bead-425e-0d4a-08df4ba52d55
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|23010399003|10067099003|56012099006|11063799006|5023799004|261026130827099003|261026135527099003|261026121527099003|261026140227099003|261028144727099003|261022115727099003|261022113327099003|261022105027099003|261022075727099003|261021130227099003|261021123027099003|261021121427099003|261021135927099003|261021133027099003|261102123227099003|261009223027099003|18002099003|22082099003|6133799003|3023799007;
-X-Microsoft-Antispam-Message-Info: Q2X8ZewU9TdOjvEGS7cLPTw9q5k63cVdr0GqbKa3W9Q7ZHiZ8uhgfIzIDrJEwvdSsO1I1FNSsA6Oc3rHx6TW2zl9Hgczbx74nydQimD+hjFsbqJjyq959g2rU/+7HF60R1B513BMj1eImR1EMElt4U5Nmw2N5FyK++78srh0mfdk4bO3M+K7KuWmVtikvuDXtS+23JZTSGhUBLLiU/XBrnRQeTY+BAeMkkjPt7jyW/aiokWTG/gfX/OHL0QzCHmsl0g/VBgFRjQOrkhUuYpSscarWdq6n9Vzy9WWWHCUIOO0tFJo6J/bTFrv1uc3CCyr5iqX7uZk16I3eUYNRLxXD7u6srVKqty48pltCB33cX+THHzAt2J4eBp260Gh+EURxFHCDpuZbFFhRQiVANtTrXSMc7Z5w/9lmE24J4MkJdegsDY980QmqF7DS84XkWnHNLNuzyerGSD0VOawd5DwitYwP7IJQ0W01dejlCmqsEvqKKtohix/KU6hT/sYqTY0Oflip5uPSg9Pc8YhOhzXVBcRHW2qL3QUCS6gT9Lwmd089jieKO472w6AWXaHpYODo2VTy0P5a5REjyXwBH81xe/SBr5PJxQaMqRSZEicYcePAvmuHGgzYQPLO8AUZvuxQUM7WHCm3LKFFWTUQist2S+1gcnhEUXJYzb/GXbw+Ko=
+ ARA:13230040|366016|376014|1800799024|23010399003|10067099003|56012099006|11063799006|261026121527099003|261026140227099003|261028144727099003|261022105027099003|261022075727099003|261021123027099003|261021121427099003|261102123227099003|261009223027099003|18002099003|22082099003|3023799007;
+X-Microsoft-Antispam-Message-Info: HaQfKT6uobW3E79S6GISihnJNM9gO9Lf54g23xIaI60kE3EzM+NWOL0ST+aXqlHTcQTQeXU9FwXVcpLTH5jqApNiDKRjiK7EwOR3X8O99rtlScNyjJaedxhlakcoH/EoPBSwxnoIMj+d6rwfAbG9wAwdcwrVzO/uscebXdvT0KV8THr+M/jPILQPjk9reQSZKiX1UmZHHXE1lH/UBi/esjwO4d6f0Ls4JOZJbZMB7XPDb/eImshNMjblD8S++9ACSoBCwV2B73+MIyUC13ba7sLCS9e1SYrXfe5u8KfcH3alHzt8aG0jTntBR0IQS8bdmsLIb6rfrLjfMyQ1svDl9f83vtUv1QDkLKkLYpHbMG/G9YjnqNhze6poxyL5dBdI/pG9SHDmPrVGS9ChAcogteudzSa6sPJRsQH0mPdkk09GRmglwg6m8tcEVtU+kTgf8nX9zi9zfPamJnVoVUhQni2BO2LV+/PPuysW4zmM9DGi2dp9hfDm1kY75kykwD5bkoeIP9VIDc4xI31NMriU/+FLfOPoPFaK8Or/649/6VlQshBP3/w93fGm2WJkHZvYIQecx4kV+jROPy6Z5xYF1ojPpFga41TfHzx7SCRi4FP3/UqiXY3T8gVBwSWM5SPC9gaDWNL65cMdY7T1qVr5d7SJ0JoWl9MqktWEaEf8jcU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(11063799006)(5023799004)(261026130827099003)(261026135527099003)(261026121527099003)(261026140227099003)(261028144727099003)(261022115727099003)(261022113327099003)(261022105027099003)(261022075727099003)(261021130227099003)(261021123027099003)(261021121427099003)(261021135927099003)(261021133027099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(6133799003)(3023799007);
+ SFS:(13230040)(366016)(376014)(1800799024)(23010399003)(10067099003)(56012099006)(11063799006)(261026121527099003)(261026140227099003)(261028144727099003)(261022105027099003)(261022075727099003)(261021123027099003)(261021121427099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(3023799007);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fRX/lOVu+pNuT7VM9FbwEWjg48CWa3iMDtkHELjruhWEuXCQHCsLW58HKjr8?=
- =?us-ascii?Q?76d4A+qgcus4QOgAMrdDCFNLFT2EC6VArocIcMJhB2Qcwqoj6Aq7sEMHUlYv?=
- =?us-ascii?Q?ahA5YQX/B8Qi6hVeQ7usd8RoV2esYV/9Xz/VTekfZHo4QtOry7mVPGB6EQzp?=
- =?us-ascii?Q?XfyQmS4PUiPEw9RIwV6PIAR2snUza6wh16UX2vVaUMWEDqrlyxHjKK5QhWFF?=
- =?us-ascii?Q?6366UvXU2AcjK1x7vJFnVlqMPgU9UsOW8qzTjmgmRB8tGRN8uTCePgurdI8d?=
- =?us-ascii?Q?yvGcyedjcmRnkklgfNGn1s9sS7FP7s41bFXFYV2hILc4e8yD8ZD5WCNgqIQR?=
- =?us-ascii?Q?e7uXN2eQS155gWxnQorpMJsGsCvN3CeirDxOdXJcjoFiVHZDiOMfygTeedfb?=
- =?us-ascii?Q?/30Kol+KZ/KnnrGVXCPxZEVz72gApHO1CbcAvtYuYZ/ni8SjDNzIahRrM8Kz?=
- =?us-ascii?Q?kbTB4BV96AtPDRlhnqEw03zjXY9c91ngdGF6bAQ8LEInxRRsp2TFmsJeV8lQ?=
- =?us-ascii?Q?HEQ15gfVGVJCK/QrApBTAfx7wR1mMckPak9khTYiOD55oRMGouG/D6cdYQK4?=
- =?us-ascii?Q?Mczwje1UNdBxo/dNyBrzKv1PoddKG/WUM1r053GjXUMpiH2meUm9e43wisar?=
- =?us-ascii?Q?YrnZndPcbS1AHfvZImpzUW5mVk+BcD8TjbdG4klhOQrVxF7HrYYp5eDhADWP?=
- =?us-ascii?Q?PPN/2BVgRCOt4WQaUq4RINd5Iju2Le/oMV+a6lYtk4C6R12TWX9a1rLNW4RF?=
- =?us-ascii?Q?5JtPxo5xI6Sv3AF/IoL/mpGL/tN1opwVCr2C7UPke8XCmnICznQ9XqQ4rlLh?=
- =?us-ascii?Q?u0N+JQMpmBNhPlmO6OqrDHHxA1h4OOhhrpaMOqv0FjXs1ludhxI0aI5Q+RtU?=
- =?us-ascii?Q?iNf2Ns2XT73MqRrwyzXdCAXzUyMAHGaKe7HFkVdwMyDL90qKb/LPsQyQxM3x?=
- =?us-ascii?Q?+Sj9e7mALwEb1fztlBcsm/fP8juhCmasUlZVaFQL2rOur7oJdt6pYrznS905?=
- =?us-ascii?Q?ZHB9xFLICORNPzSjdevNA31zfogEmMbXbpxi9d5lJBVaHODZ4wLC2ZuCsD/F?=
- =?us-ascii?Q?PHvvLvv9qeyPWYH8CQUChr+CLv9eIUWb9uMDZ1LELIPN1ZMzrw96/yf8MO3l?=
- =?us-ascii?Q?pBxV6F1411QqXErdrPktBcqf0OHrM4dStsq5EtRWp6rYoGUjx3gZ2ezDfkFz?=
- =?us-ascii?Q?AzLEKj6AckJKZwMOTQvrLQynWCdMEgHkInzHxVgVTkdmYkap4IblvvjJ/dNt?=
- =?us-ascii?Q?D995t7mMaXIku1sXA5TvgrXbW1PTOtd2HWnjLcw7mtWmeegU5Oko9aff/F7l?=
- =?us-ascii?Q?/mfZKyCcf1l2/MG8iXFSn6YLUHO/MMI3Q8nBr+W/gifuNro/e4/jFC+frveM?=
- =?us-ascii?Q?08Jad4Angbt97kcJwXBLNQa/i5R5NknrYtkmqYKQYHpA+2VBUDV/zD6IpQGI?=
- =?us-ascii?Q?fjOz7rdwLKjpPmQp0rneWlrmh4Q7aWfOb+VrH1ZbNq1YDeibdpNsu6+EkmZ/?=
- =?us-ascii?Q?fhXNOI5pNApGd6hsZpLtSMiFh8YLCuUlax7bSZID1geQzmhvWI7ECB4Fxfmd?=
- =?us-ascii?Q?wwwZ9cfHK6xtPLruT6hjqUJtb9gO3g6sI5Js1o7h/F0gISt/DlM2sjDcTn+c?=
- =?us-ascii?Q?pcWIo8Lc6CVliZ6yvygepmEq5vRd95CG7FndBkN/JlonC/xJ0f3/62k7C1GN?=
- =?us-ascii?Q?WB5CK2CdH+Z6RcM2/J7YX+XZM5hd3OCuQt2JXupSygy3uiAbN77BbHML2uLJ?=
- =?us-ascii?Q?EArZ0OrxNg=3D=3D?=
-X-Exchange-RoutingPolicyChecked: e7r8LNm9ohxt/Rdc+0elknQ38T+RdXEgHDLvxcQ35Si0q6aTHhhc3WH8WBU2Pl8Vhnl4yzBTl/d583NOfk60sU5e/qBHLW+A3AnuonUioc2XFzvv7cgxZFkG5OqEDwHkKPNDTIUilbT2Si/MMtdLmePRDOK7Hz5ti7RrSM7mhHAYo6VRS10VtSdXhwNchxAoq8BASZDSI5oKf7wTzg2wkFeMjmKFkPy0uPrvegOzXIRL+ZvGPLK1SDDsAoojbe8J1Nk9Riw0UCKWai3Y4w6Ky2M+Xihbt4/Bsqc8zW61FM3nMJo3MHduoFDtuPp04tO5V+gMP1bM3XIp1RfkCwQkeg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d239c3a1-8e5d-4f0a-4ef7-08df4ba5309d
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zzuNEE0z+whZi6sO4ZCm0e3904yk8T0i43ba24+PNiH+AJVf/L5GS/3vNbvs?=
+ =?us-ascii?Q?BsXsl9i9USLj7J1v8pWhJQRvTlNhaB5qlBHUCSr/Ca13p8s8pTfrcsJ6kvwC?=
+ =?us-ascii?Q?Ewyu2ZGxxSmJPVo86xanQTtSGrn07sO+orxJKTDyPaBHVoYyMtHpu8ZEbsrv?=
+ =?us-ascii?Q?75JX0DHY9F+wRjBLxcMBF6ZJiFxxFdf0Tn0ZqxIHu2mLE86SRBg/ehVIXl/a?=
+ =?us-ascii?Q?z+1NRBrOdpLzGG0xgNKYxMJ+OYp3NKCov8SwI3hB9dOf5Cb/CkzUanjL+gP3?=
+ =?us-ascii?Q?4pEEY0UTZqw3jaiprGnMDPa0t4EELNBixFhYpiPpN68fgdS5lshu6zvufAyX?=
+ =?us-ascii?Q?+ZUtJK9GXHCfR/nttZXgMF6blWhUXZ3sv88EXGV2OV6s7yu8NNs87WzKYJC2?=
+ =?us-ascii?Q?mOlSyYjgKuE8WTq97Sh4hLoln/zDuMmZnBd6xhDpaRUKG0sxyU/+s4uR+4cN?=
+ =?us-ascii?Q?chaWiitrz5NiuESzLjVMTlNf6rue7optEjZcDek8SjV3l9CDsA0upohzq8vq?=
+ =?us-ascii?Q?9BhECmz3maNRWCtN+LnE2OyIBMdz8O1MLsfqWxIERtG+1HlFJAG0MI6MBln+?=
+ =?us-ascii?Q?VTrTirCoJNWHub1XRGWE1QkstPhnZFd08AyLaKDhA4ihu2PgXOX/T1iZ7/qA?=
+ =?us-ascii?Q?YYjLkqwx+u1wVIH9jOqpQ0I32PN1jYzKpdZoQ+OZtHbeqTsEuJgp/7zSA7hI?=
+ =?us-ascii?Q?w4j9UEFJ7og457Ds+ryHrArTYIgymXn9r8OrY3bVlX/sjjIV2HT9w66Bk/f8?=
+ =?us-ascii?Q?1/BA+mU96WtfsIbg0C3pkRrhImNnhc34bVKrsgZW53F3Mq1NG9EJhZ2obcqX?=
+ =?us-ascii?Q?+fTwHKOZrKfBVZYKewN2+o7IfSpek+l3FhVnKokZxcgC9bFrzOmAA0lNciSS?=
+ =?us-ascii?Q?ek+4/0yi8dTAuCSJv2T8UcZQAxP6h6OdFdsqimSwUwU80cYSkNjZU0T8S1aX?=
+ =?us-ascii?Q?GS9syMjyySVsXGooYdk/5Qa7ft5xQk4qpIP6z/dtaal+C80yFGcnCIHHR6sT?=
+ =?us-ascii?Q?e/pqiHKDTNy3+dOcuQ+AZX6NOAM4piABnIfIpnBQXqezAJrEId9r4pVp0yvF?=
+ =?us-ascii?Q?Hp5+60PtThj35a9LpKN6RgJASU4BrOttfgadT4VMALaDJZGlYy220nrPkdKf?=
+ =?us-ascii?Q?QDp8SSCqE/2XHraZu340brq/gxOxOCB+4Dd0rG/C2YML+tHxufKY9ObTAgun?=
+ =?us-ascii?Q?SJXMgQQ1ZOgIT0SprmkayZJyp7aSe6utlYIfdXK2WSfQLpOhW8+WDr6DU6Nt?=
+ =?us-ascii?Q?7wlSgmq2yPFI0nWYFlBt+6OBhK7cL7k6hRko0J9YpPIQKkyrBuVnhNMImSdn?=
+ =?us-ascii?Q?1bvxYLFQAO+e+n9LNdyhhrVbRgzktmBn6LZ2yXg2JSlLrkLb/b0FTgByoe9g?=
+ =?us-ascii?Q?EfPDn7DdBbzXC8IPq99uVgARMC1VmR45AVWRbVM5IIh2H8ir/PlLDWyT0B3e?=
+ =?us-ascii?Q?dijYcuNxE5f1zuqr3qGSOQ9Esqn771DmXoBC2gVWJPFjKOhpJDrkMbi+VIQv?=
+ =?us-ascii?Q?4mwZS26Y1rZ3aSpB56zlfyrMN8dTqmV0I/YEsLa2TOZvd83gHd76pJJ8RwZe?=
+ =?us-ascii?Q?ZBLn7gThBVCc7T/L/3ArmjsLmBinu8vvVZ4bpPOFFb6IMCerUJ1mQYEvRZp0?=
+ =?us-ascii?Q?FY6qIDIrATWasC1uRus+HNF6Q3wWvDeD9TcJsE+BPDUXbbPqWVi4o82eSZuI?=
+ =?us-ascii?Q?/GynfXWyCv1YVlFxMTZFR7pgRaFPBiELQImP9AvHH7TCJrojcpDrnQIGawSy?=
+ =?us-ascii?Q?PX8iXXd6ug=3D=3D?=
+X-Exchange-RoutingPolicyChecked: h9YhQFrM6ZsOkNUHvVFmM1GfTu84Xeg6bCHT0P7cnwfDh2SlUfDkE4U0JWBWxzWJz3RvFEpLHjssEFwDnaJKbB38iRVNEhrigzU8TDXrJSYuEJtfBFTftlxpplLhlRQeCREgMzKI/WZ9YlZs/lor+Jz6NU0mQH5X2kU0sdQ7keG1F9QzZniAyxtHa0mAZsnOek3erektolgDBQkBJ6eo6NgkRGjHpUYKRxPQlH2l3RsKl8eBkE28zB2N7+IemnLGoMnGEY6XI3lIjIndif4hZ+l/VPDLD6p3cU7v5NkiNcGxLWeci3bp5d2LQzoKyHcFmvuVjaK4xB3Shlxyw4Utkg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b5f94955-bead-425e-0d4a-08df4ba52d55
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 10:08:16.9173 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 10:08:11.5117 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XCUSIGj7kI8SeRfA8h3KdovmWUyFsxX0wC4DY+gZ/IOrMYZ2Edp+Nyml9qhSPLoVN0rlwHp4F3QhziYMF+osWw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: ngnfSUGdE10Fs4Viz5spV9YacF0cK23MSswIa5j6cA6z7+RmL35PYsWTUz3qI6Ye5cHGKdQXe/KsyXKzBTSA+w==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6366
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -167,267 +166,346 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Firmware may change DDI assignments during system suspend. Rebuild the
-legacy routes on normal resume after IRQ postinstall masks HPD, and
-refresh encoder VBT data, Type-C mode and lane reversal before hardware
-readout and modeset restore. Update the logical HPD pin to HW IRQ source
-mappings while keeping each encoder's logical pin fixed, so HPD block
-counts need not be moved between pins.
+Pool encoders use the DDIs shared by dynamic legacy and DP-alt/TBT-alt
+ports; non-pool encoders do not participate in that allocation scheme.
+Pool HDMI connectors need stable adapters even when their original VBT
+entries provide no DDC pin. Add separate adapters indexed by DDI instead
+of reusing the ordinary pin-indexed adapters. This lets a non-pool
+connector use a pool DDI's default pin without competing for the same
+adapter slot.
 
-Keep legacy assignments found in hardware. When a legacy PHY needs a
-new assignment, prefer its pre-suspend DDI before identity or other free
-DDIs, keeping the same DRM connector where possible.
+Keep ordinary adapters fixed to their physical pins and usable. All
+adapters share the GMBUS mutex, including GPIO fallback and direct HDCP
+AKSV transfers, so access through aliases is serialized.
 
-Rebuild source and common link limits when a route changes, resetting
-link-training/recovery state while retaining cached sink capabilities
-for normal resume and detection.
-
-Disable pool DDC adapters during suspend and restore their routes before
-the resume modeset. On failed xe suspend recovery, preserve cached
-allocations and HPD mappings because HW HPD IRQs stayed enabled
-throughout the sequence.
-
-When restoring the pre-suspend display configuration, reject modesets
-for HDMI connectors whose encoders no longer serve HDMI-capable legacy
-PHYs, or DP connectors whose encoders now serve legacy PHYs without DP
-support. If DDI configuration fails, switch the pool encoders to ALT-only
-operation, allowing DP restores while keeping HDMI unavailable.
+Register the additional adapters with fixed DDI names. Start them
+disabled and enable an adapter only when its DDI is assigned to a legacy
+PHY with HDMI/DVI support and a valid DDC pin.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi_mgr.c  | 77 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_ddi_mgr.h  |  2 +
- .../drm/i915/display/intel_display_driver.c   |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       |  9 +++
- drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
- drivers/gpu/drm/i915/display/intel_tc.c       | 13 ++++
- drivers/gpu/drm/i915/display/intel_tc.h       |  1 +
- drivers/gpu/drm/i915/i915_driver.c            |  7 ++
- drivers/gpu/drm/xe/display/xe_display.c       |  6 ++
- 9 files changed, 117 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi_mgr.c  |  17 +++
+ drivers/gpu/drm/i915/display/intel_ddi_mgr.h  |   1 +
+ .../gpu/drm/i915/display/intel_display_core.h |   1 +
+ drivers/gpu/drm/i915/display/intel_gmbus.c    | 108 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_gmbus.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |  17 ++-
+ 6 files changed, 139 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_mgr.c b/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
-index 8f32e7c8dff27..a0157ff6afc04 100644
+index 7dc547a617990..a4a4673dda585 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_mgr.c
-@@ -840,6 +840,83 @@ static void update_hpd_sources(struct intel_display *display)
- 	}
+@@ -103,6 +103,23 @@ bool intel_ddi_mgr_pool_supports_hdmi(struct intel_display *display)
+ 	return mgr && mgr->pool_ddi_mask && mgr->has_hdmi;
  }
  
-+void intel_ddi_mgr_suspend(struct intel_display *display)
-+{
-+	if (!intel_ddi_mgr_is_enabled(display->ddi_mgr))
-+		return;
-+
-+	intel_gmbus_ddi_pool_update(display, false);
-+}
-+
-+static void resume_ddi_resource(struct intel_display *display,
-+				struct intel_encoder *encoder,
-+				const struct intel_ddi_route *old_route)
++/* Zero means that this DDI has no valid legacy DDC route. */
++u8 intel_ddi_mgr_ddc_pin_for_ddi(struct intel_display *display, enum port ddi)
 +{
 +	struct intel_ddi_mgr *mgr = display->ddi_mgr;
-+	struct intel_digital_port *dig_port;
 +	const struct intel_ddi_route *route;
 +
-+	if (!encoder)
-+		return;
++	if (!intel_ddi_mgr_is_enabled(mgr) ||
++	    !intel_ddi_mgr_is_pool_ddi(display, ddi))
++		return 0;
 +
-+	route = &mgr->route[encoder->port - PORT_TC1];
-+	dig_port = enc_to_dig_port(encoder);
-+	encoder->devdata = intel_ddi_mgr_get_devdata_for_ddi(display, encoder->port);
-+	intel_tc_port_set_legacy(dig_port, mgr->enabled &&
-+				route->mode == INTEL_DDI_ROUTE_LEGACY);
-+	dig_port->lane_reversal = intel_ddi_mgr_encoder_has_lane_reversal(encoder);
++	route = &mgr->route[ddi - PORT_TC1];
++	if (route->mode != INTEL_DDI_ROUTE_LEGACY)
++		return 0;
 +
-+	if (mgr->enabled && old_route->mode == route->mode &&
-+	    old_route->phy == route->phy)
-+		return;
-+
-+	intel_dp_update_source_caps(&dig_port->dp);
++	return mgr->ddc_pin[route->phy];
 +}
 +
-+static void resume_ddi_resources(struct intel_display *display)
-+{
-+	struct intel_ddi_mgr *mgr = display->ddi_mgr;
-+	struct intel_encoder *encoders[INTEL_DDI_MGR_NUM_PORTS] = {};
-+	struct intel_ddi_route old_route[INTEL_DDI_MGR_NUM_PORTS];
-+	struct intel_encoder *encoder;
-+	int ddi, err;
+ static const char *iom_lock_owner(u32 semaphore)
+ {
+ 	switch (semaphore & IOM_REQUESTOR_ID_MASK) {
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_mgr.h b/drivers/gpu/drm/i915/display/intel_ddi_mgr.h
+index b1793b848c238..0f84c7286dab6 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_mgr.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi_mgr.h
+@@ -14,5 +14,6 @@ void intel_ddi_mgr_init(struct intel_display *display);
+ 
+ bool intel_ddi_mgr_is_pool_ddi(struct intel_display *display, enum port ddi);
+ bool intel_ddi_mgr_pool_supports_hdmi(struct intel_display *display);
++u8 intel_ddi_mgr_ddc_pin_for_ddi(struct intel_display *display, enum port ddi);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index ec02f61a13706..eb383abeabb4e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -452,6 +452,7 @@ struct intel_display {
+ 		struct mutex mutex;
+ 
+ 		struct intel_gmbus *bus[GMBUS_NUM_PINS];
++		struct intel_gmbus *ddi_bus[I915_MAX_PORTS];
+ 
+ 		wait_queue_head_t wait_queue;
+ 	} gmbus;
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+index 8736b39e1ea62..4b395976fc8e9 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.c
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+@@ -37,6 +37,7 @@
+ #include <drm/drm_print.h>
+ #include <drm/display/drm_hdcp_helper.h>
+ 
++#include "intel_ddi_mgr.h"
+ #include "intel_de.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+@@ -52,6 +53,7 @@ struct intel_gmbus {
+ 	bool debugfs_force_bit;
+ 	u32 reg0;
+ 	intel_reg_t gpio_reg;
++	bool disabled;
+ 	struct i2c_algo_bit_data bit_algo;
+ 	struct intel_display *display;
+ };
+@@ -697,6 +699,9 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+ 	int i = 0, inc, try = 0;
+ 	int ret = 0;
+ 
++	if (bus->disabled)
++		return -ENXIO;
 +
-+	/* Only normal resume gets here, with HPD masked by IRQ postinstall. */
-+	memcpy(old_route, mgr->route, sizeof(old_route));
+ 	/* Display WA #0868: skl,bxt,kbl,cfl,glk */
+ 	if (display->platform.geminilake || display->platform.broxton)
+ 		bxt_gmbus_clock_gating(display, false);
+@@ -827,6 +832,9 @@ gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num)
+ 	struct ref_tracker *wakeref;
+ 	int ret;
+ 
++	if (bus->disabled)
++		return -ENXIO;
 +
-+	err = configure_ddi_resources(display, old_route);
-+	WRITE_ONCE(mgr->disabled_ddi_mask, 0);
-+	if (err)
-+		fallback_to_alt(mgr);
+ 	wakeref = intel_display_power_get(display, POWER_DOMAIN_GMBUS);
+ 
+ 	if (bus->force_bit) {
+@@ -1015,14 +1023,14 @@ static const struct i2c_lock_operations gmbus_lock_ops = {
+ };
+ 
+ static struct intel_gmbus *
+-intel_gmbus_create(struct intel_display *display, unsigned int pin)
++intel_gmbus_create(struct intel_display *display, unsigned int pin, enum port ddi)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
+ 	const struct gmbus_pin *gmbus_pin = get_gmbus_pin(display, pin);
+ 	struct intel_gmbus *bus;
+ 	int ret;
+ 
+-	if (!gmbus_pin)
++	if (ddi == PORT_NONE && !gmbus_pin)
+ 		return NULL;
+ 
+ 	bus = kzalloc_obj(*bus);
+@@ -1030,8 +1038,14 @@ intel_gmbus_create(struct intel_display *display, unsigned int pin)
+ 		return ERR_PTR(-ENOMEM);
+ 
+ 	bus->adapter.owner = THIS_MODULE;
+-	snprintf(bus->adapter.name, sizeof(bus->adapter.name),
+-		 "i915 gmbus %s", gmbus_pin->name);
++	if (ddi == PORT_NONE)
++		snprintf(bus->adapter.name, sizeof(bus->adapter.name),
++			 "i915 gmbus %s", gmbus_pin->name);
 +	else
-+		mgr->enabled = true;
++		snprintf(bus->adapter.name, sizeof(bus->adapter.name),
++			 "i915 gmbus DDI TC%d", ddi - PORT_TC1 + 1);
 +
-+	update_hpd_sources(display);
++	bus->disabled = ddi != PORT_NONE;
+ 	bus->adapter.dev.parent = &pdev->dev;
+ 	bus->display = display;
+ 	bus->adapter.algo = &gmbus_algorithm;
+@@ -1050,7 +1064,7 @@ intel_gmbus_create(struct intel_display *display, unsigned int pin)
+ 	if (display->platform.i830)
+ 		bus->force_bit = 1;
+ 
+-	intel_gpio_setup(bus, GPIO(display, gmbus_pin->gpio));
++	intel_gpio_setup(bus, gmbus_pin ? GPIO(display, gmbus_pin->gpio) : INTEL_REG_INVALID);
+ 
+ 	ret = i2c_add_adapter(&bus->adapter);
+ 	if (ret) {
+@@ -1071,6 +1085,80 @@ static void intel_gmbus_destroy(struct intel_gmbus *bus)
+ 	kfree(bus);
+ }
+ 
++/* Keep each pool connector's adapter fixed while changing its physical pins. */
++void intel_gmbus_ddi_pool_update(struct intel_display *display, bool enable)
++{
++	enum port ddi;
 +
-+	if (err)
-+		drm_err(display->drm, "DDIMGR: Cannot restore DDI pool: %d; using ALT mode\n", err);
++	mutex_lock(&display->gmbus.mutex);
 +
-+	for_each_intel_encoder(display->drm, encoder)
-+		if (encoder->type == INTEL_OUTPUT_DDI &&
-+		    intel_ddi_mgr_is_pool_ddi(display, encoder->port))
-+			encoders[encoder->port - PORT_TC1] = encoder;
++	for (ddi = PORT_A; ddi < I915_MAX_PORTS; ddi++) {
++		struct intel_gmbus *bus = display->gmbus.ddi_bus[ddi];
++		const struct gmbus_pin *gmbus_pin;
++		u8 pin;
 +
-+	for (ddi = 0; ddi < INTEL_DDI_MGR_NUM_PORTS; ddi++)
-+		resume_ddi_resource(display, encoders[ddi], &old_route[ddi]);
++		if (!bus)
++			continue;
++
++		bus->disabled = true;
++
++		if (!enable)
++			continue;
++
++		pin = intel_ddi_mgr_ddc_pin_for_ddi(display, ddi);
++		gmbus_pin = get_gmbus_pin(display, pin);
++		if (!gmbus_pin)
++			continue;
++
++		/* Retry hardware only when switching to different DDC pins. */
++		if (bus->reg0 != (pin | GMBUS_RATE_100KHZ))
++			bus->force_bit &= ~GMBUS_FORCE_BIT_RETRY;
++
++		bus->reg0 = pin | GMBUS_RATE_100KHZ;
++		bus->gpio_reg = GPIO(display, gmbus_pin->gpio);
++
++		bus->disabled = false;
++	}
++
++	mutex_unlock(&display->gmbus.mutex);
 +}
 +
-+void intel_ddi_mgr_resume(struct intel_display *display, bool suspend_failed)
++struct i2c_adapter *
++intel_gmbus_get_ddi_adapter(struct intel_display *display, enum port ddi)
 +{
-+	if (!display->ddi_mgr)
++	struct intel_gmbus *bus;
++
++	if (!intel_ddi_mgr_is_pool_ddi(display, ddi))
++		return NULL;
++
++	bus = display->gmbus.ddi_bus[ddi];
++
++	return bus ? &bus->adapter : NULL;
++}
++
++static void intel_gmbus_ddi_pool_setup(struct intel_display *display)
++{
++	enum port ddi;
++
++	if (!intel_ddi_mgr_pool_supports_hdmi(display))
 +		return;
 +
-+	/* Failed suspend leaves HPD IRQs enabled: preserve cached assignments. */
-+	if (!suspend_failed)
-+		resume_ddi_resources(display);
++	for (ddi = PORT_A; ddi < I915_MAX_PORTS; ddi++) {
++		struct intel_gmbus *bus;
++
++		if (!intel_ddi_mgr_is_pool_ddi(display, ddi))
++			continue;
++
++		bus = intel_gmbus_create(display, 0, ddi);
++		if (IS_ERR(bus))
++			continue;
++
++		display->gmbus.ddi_bus[ddi] = bus;
++	}
 +
 +	intel_gmbus_ddi_pool_update(display, true);
 +}
 +
- static u8 legacy_ddi_mismatch_mask(const struct intel_ddi_mgr *mgr, u32 resources)
- {
- 	u8 ddi_mask = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_mgr.h b/drivers/gpu/drm/i915/display/intel_ddi_mgr.h
-index fddd69564b84d..6ddb30e826d4c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_mgr.h
-@@ -14,6 +14,8 @@ struct intel_display;
- struct intel_encoder;
- 
- void intel_ddi_mgr_init(struct intel_display *display);
-+void intel_ddi_mgr_suspend(struct intel_display *display);
-+void intel_ddi_mgr_resume(struct intel_display *display, bool suspend_failed);
- void intel_ddi_mgr_verify_state(struct intel_display *display);
- 
- bool intel_ddi_mgr_is_pool_ddi(struct intel_display *display, enum port ddi);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index b018608eae032..a9b03b4a1e76b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -780,6 +780,7 @@ static int __intel_display_driver_pm_suspend(struct intel_display *display, bool
- 	intel_display_driver_suspend_access(display);
- 
- 	intel_encoder_suspend_all(display);
-+	intel_ddi_mgr_suspend(display);
- 
- 	intel_dmc_suspend(display);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6f03a169931eb..60f041bd62979 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -702,6 +702,15 @@ static bool intel_dp_set_common_link_params(struct intel_dp *intel_dp)
- 	return params_changed;
- }
- 
-+/* Rebuild source limits after selecting a different physical port's VBT data. */
-+void intel_dp_update_source_caps(struct intel_dp *intel_dp)
-+{
-+	intel_dp_set_source_rates(intel_dp);
-+	intel_dp->reset_link_params = true;
-+	intel_dp_set_common_link_params(intel_dp);
-+	intel_dp_reset_link_params(intel_dp);
-+}
-+
- u32 intel_dp_mode_to_fec_clock(u32 mode_clock)
- {
- 	return div_u64(mul_u32_u32(mode_clock, DP_DSC_FEC_OVERHEAD_FACTOR),
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 36cd340d809f2..072facf627eba 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -59,6 +59,7 @@ void intel_dp_connector_sync_state(struct intel_connector *connector,
- void intel_dp_set_link_params(struct intel_dp *intel_dp,
- 			      int link_rate, int lane_count);
- void intel_dp_set_source_rates(struct intel_dp *intel_dp);
-+void intel_dp_update_source_caps(struct intel_dp *intel_dp);
- int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
- 			      struct drm_modeset_acquire_ctx *ctx,
- 			      u8 *pipe_mask);
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index e01f367007424..df591966e08ef 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1595,6 +1595,19 @@ static bool tc_port_is_enabled(struct intel_tc_port *tc)
- 	       DDI_BUF_CTL_ENABLE;
- }
- 
-+void intel_tc_port_set_legacy(struct intel_digital_port *dig_port, bool legacy)
-+{
-+	struct intel_display *display = to_intel_display(dig_port);
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+
-+	mutex_lock(&tc->lock);
-+
-+	drm_WARN_ON(display->drm, tc->mode != TC_PORT_DISCONNECTED || tc->link_refcount);
-+	tc->legacy_port = legacy;
-+
-+	mutex_unlock(&tc->lock);
-+}
-+
  /**
-  * intel_tc_port_init_mode: Read out HW state and init the given port's TypeC mode
-  * @dig_port: digital port
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.h b/drivers/gpu/drm/i915/display/intel_tc.h
-index 6719aea5bd582..6d32eeb91d8da 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.h
-+++ b/drivers/gpu/drm/i915/display/intel_tc.h
-@@ -96,6 +96,7 @@ void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
- 				      int required_lanes);
+  * intel_gmbus_setup - instantiate all Intel i2c GMBuses
+  * @display: display device
+@@ -1093,7 +1181,7 @@ int intel_gmbus_setup(struct intel_display *display)
+ 	init_waitqueue_head(&display->gmbus.wait_queue);
  
- void intel_tc_port_init_mode(struct intel_digital_port *dig_port);
-+void intel_tc_port_set_legacy(struct intel_digital_port *dig_port, bool legacy);
- void intel_tc_port_sanitize_mode(struct intel_digital_port *dig_port,
- 				 const struct intel_crtc_state *crtc_state);
- void intel_tc_port_lock(struct intel_digital_port *dig_port);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 923b239714b7e..8f87ad87d45ac 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -54,6 +54,7 @@
- #include "display/i9xx_display_sr.h"
- #include "display/intel_cdclk.h"
- #include "display/intel_crtc.h"
-+#include "display/intel_ddi_mgr.h"
- #include "display/intel_display_device.h"
- #include "display/intel_display_driver.h"
- #include "display/intel_display_power.h"
-@@ -1237,6 +1238,12 @@ static int i915_drm_resume(struct drm_device *dev)
- 	 */
- 	intel_irq_resume(dev_priv);
+ 	for (pin = 0; pin < ARRAY_SIZE(display->gmbus.bus); pin++) {
+-		struct intel_gmbus *bus = intel_gmbus_create(display, pin);
++		struct intel_gmbus *bus = intel_gmbus_create(display, pin, PORT_NONE);
  
-+	/*
-+	 * TODO: Move this to display code, keeping it before
-+	 * drm_mode_config_reset().
-+	 */
-+	intel_ddi_mgr_resume(display, false);
+ 		if (IS_ERR(bus)) {
+ 			ret = PTR_ERR(bus);
+@@ -1103,6 +1191,8 @@ int intel_gmbus_setup(struct intel_display *display)
+ 		display->gmbus.bus[pin] = bus;
+ 	}
+ 
++	intel_gmbus_ddi_pool_setup(display);
 +
- 	if (intel_display_device_present(display))
- 		drm_mode_config_reset(dev);
+ 	intel_gmbus_reset(display);
  
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index b36a7cc83420d..a267dc9ed93d4 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -301,6 +301,12 @@ void xe_display_pm_resume(struct xe_device *xe, bool suspend_failed)
- 
- 	intel_dmc_resume(display);
- 
-+	/*
-+	 * TODO: Move this to display code, keeping it before
-+	 * drm_mode_config_reset().
-+	 */
-+	intel_ddi_mgr_resume(display, suspend_failed);
+ 	return 0;
+@@ -1149,6 +1239,12 @@ bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter)
+ void intel_gmbus_teardown(struct intel_display *display)
+ {
+ 	unsigned int pin;
++	enum port ddi;
 +
- 	if (intel_display_device_present(display))
- 		drm_mode_config_reset(&xe->drm);
++	for (ddi = PORT_A; ddi < I915_MAX_PORTS; ddi++) {
++		intel_gmbus_destroy(display->gmbus.ddi_bus[ddi]);
++		display->gmbus.ddi_bus[ddi] = NULL;
++	}
+ 
+ 	for (pin = 0; pin < ARRAY_SIZE(display->gmbus.bus); pin++) {
+ 		intel_gmbus_destroy(display->gmbus.bus[pin]);
+diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.h b/drivers/gpu/drm/i915/display/intel_gmbus.h
+index 6f05456388329..3c8abc06f1e01 100644
+--- a/drivers/gpu/drm/i915/display/intel_gmbus.h
++++ b/drivers/gpu/drm/i915/display/intel_gmbus.h
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
+ 
+ struct i2c_adapter;
++enum port;
+ enum tc_port;
+ struct intel_connector;
+ struct intel_display;
+@@ -44,6 +45,9 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter);
+ 
+ struct i2c_adapter *
+ intel_gmbus_get_adapter(struct intel_display *display, unsigned int pin);
++struct i2c_adapter *
++intel_gmbus_get_ddi_adapter(struct intel_display *display, enum port ddi);
++void intel_gmbus_ddi_pool_update(struct intel_display *display, bool enable);
+ void intel_gmbus_connector_debugfs_add(struct intel_connector *connector);
+ void intel_gmbus_force_bit(struct i2c_adapter *adapter, bool force_bit);
+ bool intel_gmbus_is_forced_bit(struct i2c_adapter *adapter);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 7be5eadcadf03..2622d754d8605 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -50,6 +50,7 @@
+ #include "intel_connector.h"
+ #include "intel_cx0_phy.h"
+ #include "intel_ddi.h"
++#include "intel_ddi_mgr.h"
+ #include "intel_de.h"
+ #include "intel_display_driver.h"
+ #include "intel_display_regs.h"
+@@ -3133,6 +3134,7 @@ bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+ 	struct drm_device *dev = intel_encoder->base.dev;
+ 	enum port port = intel_encoder->port;
+ 	struct cec_connector_info conn_info;
++	struct i2c_adapter *ddc;
+ 	u8 ddc_pin;
+ 
+ 	drm_dbg_kms(display->drm,
+@@ -3148,14 +3150,23 @@ bool intel_hdmi_init_connector(struct intel_digital_port *dig_port,
+ 		     intel_encoder->base.name))
+ 		return false;
+ 
+-	ddc_pin = intel_hdmi_ddc_pin(intel_encoder);
+-	if (!ddc_pin)
++	if (intel_ddi_mgr_is_pool_ddi(display, port)) {
++		ddc = intel_gmbus_get_ddi_adapter(display, port);
++	} else {
++		ddc_pin = intel_hdmi_ddc_pin(intel_encoder);
++		if (!ddc_pin)
++			return false;
++
++		ddc = intel_gmbus_get_adapter(display, ddc_pin);
++	}
++
++	if (!ddc)
+ 		return false;
+ 
+ 	drm_connector_init_with_ddc(dev, connector,
+ 				    &intel_hdmi_connector_funcs,
+ 				    DRM_MODE_CONNECTOR_HDMIA,
+-				    intel_gmbus_get_adapter(display, ddc_pin));
++				    ddc);
+ 
+ 	drm_connector_helper_add(connector, &intel_hdmi_connector_helper_funcs);
  
 -- 
 2.49.1
