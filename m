@@ -2,166 +2,162 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868C3606A31E
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 09:40:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9541E606A32C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Nov 2026 09:43:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=je38dmXT;
-	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=EynSi530
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qpjn3D2z;
+	dkim=pass (1024-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=selector1 header.b=lOG2U1TA
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1AD112259;
-	Thu, 26 Nov 2026 09:40:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C03A0112259
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 09:40:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 341A1112226;
+	Thu, 26 Nov 2026 09:43:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0872410E3A9
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Nov 2026 09:42:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795686019; x=1827222019;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=p1Ap86V+Lo9gtRIiFV0Yy5qZL6GlzdZeoeaBxSicvLQ=;
- b=je38dmXTvFDf74p8XVITHOrH8UARbiZRlWVQnIuY1d6vNVj65sTyBa5K
- k10UERTWH99AV1I6GVAURA7z2S7xC1SKe1V63w/ZTRF3GugP4Od7YdF91
- MntCnYV9oCvxB28YFqJlTvI5wQs6b8vUzEELsHINdC2Lj1+ObQovz9JyF
- qTRDKoGKOrhU19JClkgRiiJYFV62xZe8y/Mw0E4URySQk0NXwdTgR7p07
- rBOHHKE96Xjemvf4tELKL4tzvymjkrZIPOWtjJV82kN/ADcz7v+PbBWbi
- Lkp+ha8feWv8E6JdbMzg70z8kN+Mt1LfOmP0Pf9qIYQyHDM6hmaKpdML7 g==;
-X-CSE-ConnectionGUID: kz6F+3ciTm2KPFV62/YCdA==
-X-CSE-MsgGUID: sC248w1gT1Wx9kiWoiwnvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4587802"
+ t=1795686170; x=1827222170;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Sj2NFo3GDmgjRUHWD/kAYaAVBJFdhBhcuqxF3ogcQeM=;
+ b=Qpjn3D2z7eMH00S+HZiVVvG12Li3z4MGR27hvHz+xhSjT9a7QyzZF1TW
+ BXlsPX4tt2CIzulrJAYHdTKORAqun9ZuNCBpToxJ0QXh1UUHczKgKWld6
+ o3g6Bj8AxjyGYethItiIXj6Dl4VcoSaqGCNOMKt6DcSPfG2YmronIfjvQ
+ K4NfXGrTEVoioqzT7EfCea06NI7YzunAB33KDHIZ/lAzXe81G01QSHrFf
+ BW4MGrnGGvjtZbV41LaxEmFlEn3i3Mi+qjFbXlzyRUESZ4xUBIHzpnsVy
+ qors70lBYL9jEmE7oaXgqus3oJXA3iejWnZ/1RZ7IcrEJX2+teuqCFcOp g==;
+X-CSE-ConnectionGUID: xkUnP8qKQyi5GMjF8W9TfA==
+X-CSE-MsgGUID: LT7pO6ErRlSqyoHN70Dpeg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11977"; a="4578390"
 X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; 
-   d="scan'208";a="4587802"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 01:40:19 -0800
-X-CSE-ConnectionGUID: wkPrNDoJSM6gP83rtFKhWA==
-X-CSE-MsgGUID: 2QnPFKZHRuS0ciaxPRZ0nw==
+   d="scan'208";a="4578390"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 01:41:56 -0800
+X-CSE-ConnectionGUID: 4+O9utNoTPO3Cz5Plbpa0Q==
+X-CSE-MsgGUID: tgtCmPUVSfGRVluQQgVOxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12416520"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 01:40:19 -0800
+X-IronPort-AV: E=Sophos;i="6.27,234,1787036400"; d="scan'208";a="12466917"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Nov 2026 01:41:56 -0800
 Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 01:40:18 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ 15.2.2562.57; Thu, 26 Nov 2026 01:41:55 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
  FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 01:40:18 -0800
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.2) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Thu, 26 Nov 2026 01:41:55 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.71) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Thu, 26 Nov 2026 01:40:18 -0800
+ 15.2.2562.57; Thu, 26 Nov 2026 01:41:55 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rT9lv46o2N4qZBgPtCM5gdb71mNHubKetHhDOkbRNH5KFe6dsU9+qEYdHwPPE1YZ8S6OraWRV/7QrmgsBAP+R6TrFvqJTpeR9kzTq4FCQHDOyUE6iDMqsfQgAVyTGG1SP0D7y0z3wK9nsh6la4UUGJkMPbBKa0ITGeSR5B9GjaqcV5u8PFLnUscFrxy+Zj5QnOO6yYScIGhP8yW806MaFizKkvBtyJG0OoGl1eMH653mXicUZC/K3G2rJYHSIc8gRvqFPEPctFkDYLr3m6V/nZcGSaOoJZE74BQhsbGK6sit9rLPyJTZbZ8H9a492NSCoq6dSaZ0LFlv+9AEiwdH2Q==
+ b=E8b7wxx6wwNYm6wV9LvyIox9qsOobGAMIKMcYl9z4JGnYv35oLlMdu3AUWxY0bm2UnxQlYsuHXJABHB35gHGjljZbkIs+hNnzx6/GhP5p/MeFGHdKDKb7iK2UBsY8ePfPP7gpy3RiyoLNuUh98SkRRYGXEz12jlacjN99Lh/mwIaLVCP8c1wQBhVSkDku3N4PDkTElvzvFY3Of2N9W5AP/0FP7Rl5t4GeNR9FxkmjMehrSU7rE/39DP/daCJFj5VAceTh5XDVGthK5BQPnkPFICbU81HQwAt00Ww9nPywkcP5uA8Ap9fit8u4hrEdvxRqfeHaw1UHLullIqPVScyFA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pxFcSOJRUgHepkws12EPMkEUigFa8VarEI0QwH+NQpM=;
- b=MNjPauTiBogHunAaVGLZ1XTTM9WzvJHagamjLd+r+GBiWEbN0SwovBFFBJpmbs+gnCW5ZkqYVMF97OAKtPPDdHsmfHze05fMV+0qkSi+KqpueCQ+y6gbUIm68oeZHvusq68CHteVWgWCoWJcd2EpfTkH1QjBzmvVpsaJybgdriqbtWAlSaP5OlYHwRS3p7ZstlRfG9oPq120UwYzhWV94MMLHT27R9+dRcj2uYcUvtSJ6UN/Pcb20w62gDE5nQHmiACqQJihA9HldzKyUtUpghcXkMN58P0YYiOH78peNsJseX+bS083thlVmUilYkDX1Fx507dOPa+GXpNsKD0VgQ==
+ bh=bfijvICaIllIN0i4bp/qoaF+RohwyuoJG5sBEwNiqFc=;
+ b=kM+DTypqTktdEdJzuCHOfSF6FR3OxF1rbRm9heO5B+jtkx36jOogCx9KZAqcfQwnXTjCk8kSMDBCF0XishYKfu8vEU3unywbEM6+7B6/x/Yc5O5og5CFWnZqo6VvU5qUWL3q4Yq1kdpaGSUnUaSzK5KlsJDzIuud/dAPbYQ67zxfCYUe9s3YOiSCjwMN7QgC1oacW1ELqJlTlXoACNnR1iO+e2OuZei0L+twsCFxC7K6oMYU53ax1+YaoZ+9dCyobBfJS1MSR+L5EexntRkrevcKKKhmpazX4RBvkXYFOiwvzirT/zaPgYrRk+kmDK3dE86mHMa/eVNgk/YvGDBvpQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pxFcSOJRUgHepkws12EPMkEUigFa8VarEI0QwH+NQpM=;
- b=EynSi530aucu+Y3CmJkaLe8akFr+XoaFtH8245qzbsjh46KhtuloWlePoTRval4yeqnWe3saZLFyC7CW5N3SkxgOMd1s1uu8GvDs8SCttA5ofOUjuZQ/0/rG3GUFP2yvGeE6UDhdpkHQmRqcUGYsHiCjdqoripNDZTkC/fDJTek=
+ bh=bfijvICaIllIN0i4bp/qoaF+RohwyuoJG5sBEwNiqFc=;
+ b=lOG2U1TAN4kGv3/NaVA4ebsl8hAMSMzxIpIFYg9rKKc2KSSYMD2iyaszpSstTeYSZ79E4+tKqm4JNNx9+/I3s8al4kWl/+zLPSGqyzg77L31dix94htVjcyzSc3DQmSHe9GZKK+tE0Jbg7CFp+FotkvpVuAboGPdW+l2J9rJLSY=
 Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SA2PR11MB4825.namprd11.prod.outlook.com (2603:10b6:806:111::17) with
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com (2603:10b6:510:25f::18)
+ by CY5PR11MB6463.namprd11.prod.outlook.com (2603:10b6:930:31::7) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Thu, 26 Nov
- 2026 09:40:16 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%4]) with mapi id 15.21.0662.004; Thu, 26 Nov 2026
- 09:40:16 +0000
-Message-ID: <776cd78c-27d6-4f4c-b351-851b7d384a42@intel.com>
-Date: Thu, 26 Nov 2026 15:10:07 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] drm/xe/ras: Skip offline queue processing after
- device unplug
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <badal.nilawar@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <mallesh.koujalagi@intel.com>, <tejas.upadhyay@intel.com>
-References: <20261126083516.1932195-5-riana.tauro@intel.com>
- <20261126083516.1932195-8-riana.tauro@intel.com>
- <awf7DtksUhNVbRDa@black.igk.intel.com>
-Content-Language: en-US
-From: "Tauro, Riana" <riana.tauro@intel.com>
-In-Reply-To: <awf7DtksUhNVbRDa@black.igk.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0002.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:80::8) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+ 2026 09:41:53 +0000
+Received: from PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92]) by PH8PR11MB8039.namprd11.prod.outlook.com
+ ([fe80::42df:f465:90a8:df92%3]) with mapi id 15.21.0662.001; Thu, 26 Nov 2026
+ 09:41:53 +0000
+Date: Thu, 26 Nov 2026 10:41:49 +0100
+From: Piotr =?utf-8?Q?Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v4 2/7] drm/xe: Define VRAM regions and pools
+Message-ID: <20261126094149.bgphw3p44d6lud5k@intel.com>
+References: <20261116094523.2484301-1-piotr.piorkowski@intel.com>
+ <20261116094523.2484301-3-piotr.piorkowski@intel.com>
+ <ba79e8af-c172-4ae6-83cd-d6964f2af3ab@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ba79e8af-c172-4ae6-83cd-d6964f2af3ab@intel.com>
+X-ClientProxiedBy: VIUP296CA0013.AUTP296.PROD.OUTLOOK.COM
+ (2603:10a6:800:34f::14) To PH8PR11MB8039.namprd11.prod.outlook.com
+ (2603:10b6:510:25f::18)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA2PR11MB4825:EE_
-X-MS-Office365-Filtering-Correlation-Id: c113e9fa-be9c-4848-6c47-08df4ba146ca
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8039:EE_|CY5PR11MB6463:EE_
+X-MS-Office365-Filtering-Correlation-Id: c21bfa7a-2364-4840-e348-08df4ba18073
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|366016|376014|1800799024|4143699003|261009223027099003|22082099003|18002099003|10067099003|11063799006|56012099006|261028144727099003|261026121527099003|261026140227099003|261022075727099003|261022105027099003;
-X-Microsoft-Antispam-Message-Info: NPsHclz5PX5txDK1ArVvrAlTD0+4h47P9h0qLulUcEkG7jMk9zp929z9ORM8nZ/vR7UyAIKWr6yTkZdUmP4cfCMzOx/QBaGlmNlsIcXjaJwc5+cxEfDHurNJHAbyiLkSY8KWfWKEhKFJ0tkeJwsA3fRA2SaYuhIiIWdKrPKY7iHpX0DRM1GtGrRzSM0JTjRwp1igNiGSrXEmtOwKKNJc5h8fEuPQw7vWNhKf/WqgwciwV3oqzgyrfKkOS1wIYX/1fjJZ4XNVcRZkdamJDxzKXpmB39DXv/kXg/VciBnck5Y4+S2+fCoyEdLGj65bfqdinTe5EHuHsZPagHiUge+tgeP1z4QOTIFzwC8/AqMz6hQLVYYANYqglSMtMdnrCiJyvtjo29S/U71baAK2IM9bRE15qajWzqBeQOdKczUwEUe+wEPwY+M8BWQx2gAyHTX9Nhxp0SGpN+oopqUlI7aw/odtzILhLkIQuuhk8HR1yQRDet/b8eM1BWBmgeyRanh7uLJjly7wYcEymqhtCxqBuK//8Cyqg+JinSEwBtHvqLx/gFX4HQ8QPKbRwrBMrDIDUtHv939Jow4H4L/RtOqoaCR7nzSm7q9Z6fUMyn3worl+68t8QF+TGyuHTV7Fc6u5ecBKGHk9hgNYH9LD37/uuo6t1Xoe5LFAFGdG4UnUSCU=
+ ARA:13230040|376014|366016|23010399003|1800799024|10067099003|11063799006|5023799004|4143699003|56012099006|261021123027099003|261021121427099003|261009223027099003|261102123227099003|261022075727099003|261022105027099003|261026140227099003|261026121527099003|261028144727099003|18002099003|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: fkSUavTwQ1R49ktHiiDocy3YdE4pbTegyuZhRriivI7g/Hmjb4ALadGkqLpQNRansxwBF7IVOtuFo6WB3NXDoFl13WMqlf96CRoTr/vLyqLQeYoYODgXDzZP0M4TIzZWx+XkeiKosCmenyZ2z9xbFaGz/ymMWJyL2NydFufvj5avb9ucEAjCvrgJmbR3NEIlcmFMImj8fdBrQqerdfmk5mkDCP8FeQwNgAjAd1zYa02jdrBslhQGg9YPYbT9FpHAV8rmFT4unwoYxexz9ZXQqpaqem8e6BRNVPrVTBJyNPESMd6XBIYMRO6ctVNijeZHljAxXIfQYI+7WzFHOmcbrOyR6vDmhY7gNZzt61c2DwJPKzfCdhKKJtN5NLW7IXL3/nOyKljU+vXT+O2O72fS1+bPC8L5x2fYqiAZx2QWmFqDn3+5Q83bj+qmipe9v4BmKf45fwO75NEhPNjMpKcsPP5L1ar0HM2qzIg9AHTkNZPNC6wNzaoxCTe0HLvJpN/U3JGiGlnHmPPNCbYPHfRfxPNrzhlDshF0xBIbWOeT++5tE3ZzeH6OTylMeDooYdK7pHdeW4U/miDWP03kZy06OOVkfCS23UjOLCYOYcFCX0rUxU/oR638VHEGRMEDkXqFeE3wK2hNCPJtHbmHycTJ35dXHD+nXSHBptV203MCifw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(366016)(376014)(1800799024)(4143699003)(261009223027099003)(22082099003)(18002099003)(10067099003)(11063799006)(56012099006)(261028144727099003)(261026121527099003)(261026140227099003)(261022075727099003)(261022105027099003);
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8039.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(10067099003)(11063799006)(5023799004)(4143699003)(56012099006)(261021123027099003)(261021121427099003)(261009223027099003)(261102123227099003)(261022075727099003)(261022105027099003)(261026140227099003)(261026121527099003)(261028144727099003)(18002099003)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjdFYkwrTGRaaGJEckZucnpHRnJTL2w3Sk1VU1UvSTh3MDRDTG9KclhjdUlY?=
- =?utf-8?B?WWZueHhvNlRTRjFVaDBWQWVqNVlKZkVNK2J5RjNrZmc1bk0zWktDYy9qZUZQ?=
- =?utf-8?B?Q0M2ZHVyWVYzeEF0M2c5V2xFTjNWVjl1eGxrWkx1clQrTnY0RExiY0NTSzZ4?=
- =?utf-8?B?VUkrU2o5cFNoMjJIdTJvbVBGS3lZWHNKb2oyWTF0WU5HR0c4ejJUWCtlMjlH?=
- =?utf-8?B?NUxyODI0YmQ5NVRKY0prZVRiTFBGNmtkcDZ6b1V1dUFCUXV3Um1LVm1ENXdZ?=
- =?utf-8?B?by8veWNQazViMExUckRtcTVYM09ibk4xZ1JSbjlZNEc5TEdKejIwZEFXWGZj?=
- =?utf-8?B?SGhxWXREbm9YMmRrRWtYTU8wVElGOWVQQmdxOUowSmFoNStEQzVZMzEyTDAv?=
- =?utf-8?B?dDgvdEtDeUlqdHdqR2IzUFEyYTFITERhS1Y4UVNoV212RkZ0bjBOeW1KcXNr?=
- =?utf-8?B?aXhweFk0M21sZkVXdnlWTmY4eGdNUldINWRobW9IU2owM2xiMEltdm00dkhu?=
- =?utf-8?B?MkxONnRYT2wwZXJsNWllL2t2NytLQXVYNlNFdE4rZjlPRXJVank2Tk5oL0FX?=
- =?utf-8?B?M1FKOWlDN0N6K2hCMFcwcFE1VGJhNUQvNXZvYTRXdTd0TExzS3NqNGlLQjZr?=
- =?utf-8?B?cEsxRFdOa3VHcHp6TjFJeGxtOWJ2ejd0OEY5cWRWWnprcGNkb0dhQUNFOHo5?=
- =?utf-8?B?bmxVeEhzcVgyQjZLdmtoUklqZmdQbXYvdVhyQjY3Ylo5eHhPTjdrSlVsbzlZ?=
- =?utf-8?B?T3BZMlBSWmdGWVpFVEZKODBMTzBRcllWazh5V3Z1UVBaSUtZSG4zY3QyVWYv?=
- =?utf-8?B?UFFnRUN5RldrVWt3cE0rRUUwZ2JUYUtQdEhLZmxYVEZpMGNISStmS1hhRWt4?=
- =?utf-8?B?Q0lTanN5YUhlMThzN1lVQzlHNDNUbFFXUUVWdjRZYWUzeVFnWWxxM0ZZZ2ts?=
- =?utf-8?B?ejhibEpLenNXd2xEZlIrNGRPbFhsWUlFWStWV3NIRVFGSjRyUlVSaHRHdHUx?=
- =?utf-8?B?RFJ2UXJqSmxaeHRCa21DSFhUWkJ5TEdaYk1qNzRzSHVrRlN6eGd0emU4U1Jx?=
- =?utf-8?B?Ujhwa1BBakoxR2pkNkZabW93Wndlc3VVRXkzQXM4ZFNJVk1ybnZBeGx0Q3hO?=
- =?utf-8?B?UFFKd0V6OUlUazJLUE9EZU9CRzR4d2EyS0Jab05jYWJONTVaaUdMYU5ZaXRk?=
- =?utf-8?B?dVNxYnVaemk4K3UzMEZOOUk1WVVuUGhvdGpaS2k2U2dSSW8rTlovNkNSdExp?=
- =?utf-8?B?NlJMVkczK1BpaUlvRjFpdy9JVitJTmFwQjRTTzJ5VFB1SWhleGFGTXVVQW5W?=
- =?utf-8?B?dGdBU0F5djFwWlNaMFJsUTVmRGYyRmZQR1VTcXQvV0FIVDE5cytpMEh0b0Rj?=
- =?utf-8?B?VDAwZGxjbm83REFLM3NxNlUvL3NnRm53SXcvb1FiVmRIdmpDeS9VSUpXMTNZ?=
- =?utf-8?B?YmdNd1dXU2hpZm96T00vcVpSV2VnVVRvMVBSdm95bzJheXIvMU1henhlM0Z5?=
- =?utf-8?B?Y0N3NHZ2emV0SFRNR2o1RXBxZGFnMGV6K1B5SU5EUzlFYlFrQ2FUOFBaclJR?=
- =?utf-8?B?WDAvUEMrUGZWNDFuU2wzc3JuWkJMcTBvc2ZLYjZNeUYyb3hRUlJFc09jV2h0?=
- =?utf-8?B?bnRVR3dua1RmVE9kanlKWTBjbk5CVC9jME1NbU1FQUhpU2xPZzdQTzZaL2Nn?=
- =?utf-8?B?djZ6ZU1mNy9VemdnRFlmNmZhcS9SdzczSFNhT1I2aTRINm9lQlNrS0FlN0pG?=
- =?utf-8?B?U015Y3FneC9DVUQ0eEVCd0FabnVzRXgzZnZxdEJBcWVqckg5eW1GT0FNVTl6?=
- =?utf-8?B?TkVIK2Y1UnRRamRjSzRVWTFnSDRKSkd0NS9xZlRFZEh4TWg4aHVWY1hVUHpZ?=
- =?utf-8?B?RHdodUdsY3FsZDQ5blAzSENVdXNucmZNVHNPWkVKeVpQcEtvZWVhdTVtVG5D?=
- =?utf-8?B?T0xEYkpQemNDRitBYWVLcHllTVZHdXByZ3NiRHhNTVhSeUw1M3VVRHJyWFli?=
- =?utf-8?B?RmNFL1FGeElVakJTQkxJOG4ya3g4YzdXWmNTVXIza3RIZk9FczNWamZmSHdS?=
- =?utf-8?B?dGhzakJoenBsL0d1KzFRM05ORTdCU2JwNDdGRldDQzFaRWVIcVArWWczL2RS?=
- =?utf-8?B?UEhZeEsyVElZRVVkSHEwQXdYZ0FPUWFjbXU5NDlIeEdEbDRHNFZmM0tEbGEw?=
- =?utf-8?B?NWRrODJHVzJmSGUyZEh3UUY0QzhUNUdhQU02WGUzRVRpNkVuQVdVTjRVSCtE?=
- =?utf-8?B?WXBldEJ6UDRGRDlPSTFmQ2ZxZlZRamNHdnYvSFJneFM2cmk3bVJRcU1KNDlH?=
- =?utf-8?B?aEFPRXdwNnlCTVRDbHVubEdHNU9hUEtCRmdtWmhjNG01QUZWTjRGUT09?=
-X-Exchange-RoutingPolicyChecked: Rjwj5BD93G+nsPA1r1+rTT0DdO2SMB045bygtLqmFv0n7Z/OUXwr9msZ7RdinBkiu9N7tIqHDnf7ioljGXz7+VtUGnvPYT49vzupq8Od3oJ3gkypKAlCTWNLAtNIcKi2KfbWlqP2emGGpX5OBexoyVknh9teF9N09NPAcnlqemZjISR/LbcBKThuNZ5gVzwGZuwtE6DMy1uEoBslVvBhGphLr1B8LVgPXyN6JezfDgeN4FZikfaFXSGcGQoS+R3UkqVWRhUgI+zVCRlZz0lmmPxZ1NFhT6xgp2T1csWOBoVtULjeInX8K1/zZIRMEnG4WAxeIO3bAXjp1rHlDB5/nA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c113e9fa-be9c-4848-6c47-08df4ba146ca
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QlhtWTIvdDlvMFZpcStDTlA2RXBiS0NONDZwTlRIYnI3cmVZS1lBL0hYUzVS?=
+ =?utf-8?B?L0xrZGhPYVI4SFhvb3VzTCtpQyt4STQ2QkNDbVNEV2NLeHp6UDNTTmRySWY1?=
+ =?utf-8?B?NlMzVXZibUtVUS9sNXBDQlFWbGhNdlFFMWJ6MkhhQXdqUlo1eWozY3E0SFNX?=
+ =?utf-8?B?VXJIb2pnTUVUa3hDL2x3eXNUUFlhMWkzUHE0NWo1UHVRT2V2RXN1TjlwNjJD?=
+ =?utf-8?B?TTdHWm1IUDRvb1BUUEQweThoZk1aVldDbHdQNU8wNUxaakJCeThCQU13L2Rz?=
+ =?utf-8?B?N3pVc01RSlUxQ09iWGg1SzR4MFJlUjk3V0I5aTJpV3JlNG43alN3V2h4ZmxM?=
+ =?utf-8?B?b0gwcmc2dFowUG1YcVRMcVNJbWNpTDZoRTYzTCtCK2hXc1h5bUZLUWM5SXgv?=
+ =?utf-8?B?c0FVNTQ0U1pacE1KeHNJakxJc2Z6T2NRWmZtME9mT1YzT1E3ZTdhR3g4VmlJ?=
+ =?utf-8?B?S0dZZkhaUlI1VktXQUpVa0IybFhuQTNOekVvS0cxSXlmM2xwUXNEQjd1K0U1?=
+ =?utf-8?B?THp6NlRYVTNGSjk4K3g5YXYvSmlwRW5Da2l2dXU4MHk0ODBOT0RoOE5SZE9W?=
+ =?utf-8?B?cTAzY3d4TmdZZUJCYVJWMWdjRGRXZXIxK1dDNUgwU1Nyc2VHSVk5VG5rc1k1?=
+ =?utf-8?B?cFFxdjU0N1QxMUJkVkwxMkpsanpuNVZPV0VSRCt1WlI1QktzSjc3NUdzU2NB?=
+ =?utf-8?B?ZkQ2SzV4RDZoeGFETm8yZEdXbmhqSHpranNOZC9KMzRPYUJLUlFVbFFxOVc5?=
+ =?utf-8?B?Q2xuZVVZUkhYV3lTNGg5ZW1kS1Y0Q05Cdlk0VktyRmlPUi8vTjA5T1QxVkxL?=
+ =?utf-8?B?RlJ5QWI5cmZ1L2psZTcvVDc2MFRaZTgxUDdaa3hybVc2LytZTjlLSXFWL3dw?=
+ =?utf-8?B?dktDY2dXY0NxcVgrb1JnTHZVQVpUTzY1cFpBT0JXRWtudTNCVHY1K0hhM0E4?=
+ =?utf-8?B?Z1VDT2JPN2lzd1htVTVPNXlyRG82SE9TY1I3WUpkYUdtNTh3SGdhMnZocVhN?=
+ =?utf-8?B?a0JyaEl2eWJsa2RGTldvYjZvTmJhOTUvWThFaHdRcVo4NnNKMWlzS0doZTVk?=
+ =?utf-8?B?SExUWUxPczdQVjNBMHB0RDN0eUltL0FEMFlmY3NySjAxZms4Vys2REYvN1Vv?=
+ =?utf-8?B?RHpJTzlZYUhQTjUyZUZZS1VlQW94R1p3MWlEM2VFVE10NWpsb0xtTkdLVHd4?=
+ =?utf-8?B?MUZuWVFGWFpTYkV5VTJsYWdzdU1IbEdMR2RIUzltU1ovdnIrYmxNNFFNb29U?=
+ =?utf-8?B?NVZIaFVIWmViU3REQmxhVExVSDg5ZGZlWU41UW9KMjd1d0JLSmVjZ1NkZmNZ?=
+ =?utf-8?B?NUtCa25xRVFBSGNCY092TFJJSENUVUpCblZvN0UrZTJoME1zV3hCb1VnR1ZB?=
+ =?utf-8?B?MTgvcHdRWmp5OC8rdVd1OW9tOURkZGxaeXRyZ1d5VDNWTmJwbTFyN29Lc2Z5?=
+ =?utf-8?B?VzVBdkY3cWhGMDRHOWtFU1dSTVhad2hBeUg0b2hUMjRhWWt2bndPS3lmd2V2?=
+ =?utf-8?B?S0N3a1pKZFJCYVVDeGhuSEtXclI1NFFmUmZmaEo2M2I1SGxFcE1TbUZSNVhs?=
+ =?utf-8?B?VUNiRjQ1YlZJQTJOSit0U2k4aHZVNDRPVGEvZ041WlVMdGxYcllBZEt4VGl2?=
+ =?utf-8?B?bUhST3pZWjFxYXV0bC9pTHdWVWh6TVhUR0gwYWNKdUxmMTJ4NmJyNmY5RWhi?=
+ =?utf-8?B?dlJpRWllTHlpdlNwa0ZRemR5K012bTdqZ3l0c1lqNDNHdSs5WU5wbEt1WFBI?=
+ =?utf-8?B?TGx2SmN0L1hKNm1DOG96cExVcVRoNEVWZzZkUExuOTY5ODFFcDZpUGk5Q0Vh?=
+ =?utf-8?B?Z2VXL3FFKzY5b2VrZ293RVVxWjhFM3o2aFVzTjZNQWVtRTlXTXZhS0tBOURS?=
+ =?utf-8?B?a2I1ZWtEVzl6YVRobHljZldZR3NUcXBiVjZROGZURW1GcjBPR0pnU0FtZFU3?=
+ =?utf-8?B?ZXhzYUFoLzdJcnFhSWlMYTBxQXdrazdrcnRUZmJXZjBYV3lpcHF5WUs0V2hP?=
+ =?utf-8?B?WjRqZUZqd09lak0rYmtvQVAwVkRRVUNiK0Y1TDlkdlpVdmVpay83cmxUTjIz?=
+ =?utf-8?B?RHdOYWJ4ZkdmeGtBdWZiMFRza3gwZXlNR2w3c1AwSlNxWTg3S1hhRnpVeUFv?=
+ =?utf-8?B?cHNpQmcxYmE3aThHZ0dSNWswb0lrL1dvZ2hBaGxBT04yTEtDeGloMzZPMzFx?=
+ =?utf-8?B?eUQ0bjNlSTRsYkdzOUFpc1NaOXhqTHZNNi9YRWw2enZNOEdBcFJYRkxYYUZ4?=
+ =?utf-8?B?MFhabHJETkZPc0RXLzRQODg4VWZ3MnlaM2RlcTZtSjh3dXBCTnhuT2V0SXVo?=
+ =?utf-8?B?SlZpNFhUd0paVmRqNGtVOWdubzVUb2JWWEJaNW84eXlGNXJiZklpTHMxU2Zh?=
+ =?utf-8?Q?upReh9VoHRTRqUmw=3D?=
+X-Exchange-RoutingPolicyChecked: Oyz44nafsBzojhYcLpgYiROdWw2Rel+cCZuivRR+3sKgh9puQ8oGgbDSlyKL3vaEQgU1SnDoXz+1CB6XAlpuPXdS6OSbK12wM6drtfh98wd1LJuNibm/g4S/twwRoCaGBb9EM/ZBzGmcxzAe0I4X6KqpneX8RgUY6VOTqIBcVdzcvQ+ucGlQbRP9prmaA32ULkWNGc7zC1j9LJ2mPoX6VGW7zdJTWnxyfTLU6LyuZwo27LqRFKbgtk4EonkXMFx5lPbmKKOQQEgsoTZGJT3dAekC6kdztzRLQsVlv2IJBOsplNF9YI550HgYpyJfC/fm8I/PRXnC5wKMXSUfJ0r2kg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c21bfa7a-2364-4840-e348-08df4ba18073
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8039.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 09:40:16.3551 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Nov 2026 09:41:52.9449 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KOohggtEq/Aoa0PXm4fWdHHby8jOhBHOmD9caMb0V1kFunIMHZI+LXqyD90rtO+BIFj3hMLjcjJM40eG6vcRjg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4825
+X-MS-Exchange-CrossTenant-UserPrincipalName: foVHcv+ffq+bZHu/em+D7qwZve0j/lQ+wVn6ARPE+5xF07SOwrK8XDAhbOj5+dZZjtDRv/iXZ9bUi2u8moQl32JmkPHSAB9ZG/SfSDRGeus=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6463
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,39 +169,282 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-7.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,USER_AGENT_SANE_1
-	autolearn=no autolearn_force=no version=4.0.1
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+Matthew Auld <matthew.auld@intel.com> wrote on śro [2026-lis-25 17:38:07 +0000]:
+> On 16/11/2026 09:45, Piórkowski, Piotr wrote:
+> > From: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> > 
+> > Allocation paths place memory through a struct xe_vram_region, which is
+> > both the physical carrier of a VRAM range (BAR mapping, DPA range, TTM
+> > manager) and the only handle for the purpose an allocation serves. That
+> > makes it impossible to dedicate part of a region to a given purpose,
+> > e.g. to keep kernel allocations such as LRCs and page tables in a range
+> > of their own, away from VRAM that may be reachable by other agents.
+> 
+> "other agents", what is meant by that?
 
-On 26-11-2026 14:55, Raag Jadav wrote:
-> On Thu, Nov 26, 2026 at 02:05:20PM +0530, Riana Tauro wrote:
->> The system controller worker can drain the offline queue at runtime.
->> During teardown, devres runs ras_fini() before sysctrl_fini(), so the
->> worker can still run after the offlined pages XArray is destroyed:
->>
->>    CPU0 (teardown)                 CPU1 (sysctrl worker)
->>    ras_fini()
->>      xa_destroy()
->>                                    xe_ras_get_offline_queue()
->>                                      ...
->>                                        xa_store()
->>    sysctrl_fini()
->>      disable_work_sync()
->>
->> Wrap xe_ras_get_offline_queue() in drm_dev_enter()/drm_dev_exit().
->> drm_dev_unplug() runs before devres teardown and waits for in-flight
->> sections, so no queue processing runs after ras_fini().
-> Considering the current state of affairs, this is going to become more
-> and more difficult to manage. Rather, introduce a ordered workqueue as
-> part if xe_ras state and schedule both sysctrl and hw_error work on it.
+Hi,
 
-Thanks for the review. yeah makes sense. Will do that.
+That wording is too vague, sorry. "Other agents" meant other users of
+the device's VRAM whose memory must be kept separate from the PF's
+allocations. One example is SR-IOV: we want to reserve a VRAM pool
+for the VFs, with a guarantee that this pool is used by the VFs only.
+Other sub-drivers that need a separate VRAM pool fall into the same
+category.
 
-Riana
+The pool is meant as a generic mechanism for that, not something
+specific to VFs.
 
->
-> Raag
+> 
+> > 
+> > Separate the two concepts. A struct xe_vram_pool represents an allocation
+> > domain: it identifies the purpose served by a range within a VRAM region,
+> > whether that range is available for general use or dedicated to
+> > a particular purpose. A struct xe_vram_region owns the physical resources
+> > and embeds its pools as partitions, keeping pool pointers published during
+> > initialization stable when the region is later split. The region also
+> > records its binding, distinguishing a device-wide aggregate from a tile
+> > region, since both may use ID 0 for the first tile.
+> > 
+> > Signed-off-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_vram_types.h | 159 ++++++++++++++++++++++++++++-
+> >   1 file changed, 158 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_vram_types.h b/drivers/gpu/drm/xe/xe_vram_types.h
+> > index 646e3c12ae9f7..a3e421f2f32d4 100644
+> > --- a/drivers/gpu/drm/xe/xe_vram_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vram_types.h
+> > @@ -15,6 +15,142 @@
+> >   struct xe_device;
+> >   struct xe_migrate;
+> > +/**
+> > + * enum xe_vram_binding - VRAM region binding types
+> > + * @XE_VRAM_BINDING_NONE: no binding assigned, default value of a zeroed region
+> > + * @XE_VRAM_BINDING_DEVICE: device-level region aggregating all tile VRAM regions
+> > + * @XE_VRAM_BINDING_TILE: VRAM region bound to a tile
+> > + */
+> > +enum xe_vram_binding {
+> > +	XE_VRAM_BINDING_NONE = 0,
+> > +	XE_VRAM_BINDING_DEVICE,
+> > +	XE_VRAM_BINDING_TILE,
+> > +};
+> > +
+> > +/**
+> > + * enum xe_vram_pool_purpose - What a VRAM pool serves
+> > + * @XE_VRAM_POOL_GENERAL: general-purpose memory, available to userspace
+> > + * @XE_VRAM_POOL_KERNEL: kernel-only memory, never exposed to userspace
+> > + */
+> > +enum xe_vram_pool_purpose {
+> > +	XE_VRAM_POOL_GENERAL = 0,
+> > +	XE_VRAM_POOL_KERNEL,
+> > +};
+> > +
+> > +/**
+> > + * XE_VRAM_MAX_PARTITIONS - Max partitions a single VRAM region can be split into
+> > + *
+> > + * A region currently holds its default pool and at most one pool dedicated
+> > + * to another purpose. The TTM manager mirrors the partitions of a region one
+> > + * by one, so a region cannot hold more of them than the manager can back.
+> > + */
+> > +#define XE_VRAM_MAX_PARTITIONS	XE_TTM_VRAM_MGR_MAX_PARTS
+> > +
+> > +/**
+> > + * DOC: VRAM pools, regions and partitions
+> > + *
+> > + * Allocation paths place memory through a struct xe_vram_pool. A pool names
+> > + * a purpose (general-purpose, kernel-only ...) and resolves to a TTM
+> > + * placement plus the address range serving it, see xe_vram_pool_place().
+> > + * Whether that range is the whole region, or one of several partitions
+> > + * sharing a region, is a backend detail pool consumers do not need to know.
+> > + *
+> > + * A struct xe_vram_region is the physical carrier: it owns the BAR mapping,
+> > + * the DPA range and the TTM resource manager. A non-aggregate region
+> > + * initially contains one partition spanning its whole usable range. That
+> > + * partition is the region's default, general-purpose pool. It always
+> > + * occupies partitions[0].
+> > + *
+> > + * Each partition is described by a struct xe_vram_pool embedded in the
+> > + * region, so a pointer published during initialization remains valid if a
+> > + * later split changes the pool's offset and size. A split never changes a
+> > + * pool's purpose and may only happen before the region's TTM manager is
+> > + * initialized.
+> > + *
+> > + * The device aggregate described below is the only region type that has no
+> > + * manager and no partitions.
+> > + *
+> > + * The id shown below is the VRAM region instance id. For a tile region it
+> > + * is the id of the tile, which the uAPI relies on. The pair (binding, id)
+> > + * must uniquely identify a region.
+> > + *
+> > + * Partitioned region:
+> > + * A tile's VRAM region can be split so that a pool dedicated to some purpose,
+> > + * e.g. kernel-only, gets a range of its own and the default pool keeps the
+> > + * rest. The dedicated partition is carved out at the start of the region, at
+> > + * the lowest addresses, and takes the next free index. The default partition
+> > + * keeps index 0 and is moved above the dedicated range. A tile without such
+> > + * a reservation keeps one partition spanning the whole usable range::
+> > + *
+> > + *         xe_vram_region "tile0" (VRAM region id 0, binding TILE)
+> > + *         ,-------------------------------------------------------------.
+> > + *         | ttm: struct xe_ttm_vram_mgr (one manager, shared)           |
+> > + *         | .---------------------------------------------------------. |
+> > + *         | |  partitions[1]            |  partitions[0]              | |
+> > + *         | |  offset 0                 |  offset pool_size           | |
+> > + *         | |  size   pool_size         |  size   usable - pool_size  | |
+> > + *         | `---------------------------------------------------------' |
+> > + *         `-------------------------------------------------------------'
+> > + *                  ^                               ^
+> > + *                  |                               |
+> > + *             dedicated pool                  general-purpose pool
+> > + *
+> > + *         xe_vram_region "tile1" (VRAM region id 1, binding TILE)
+> > + *         ,-------------------------------------------------------------.
+> > + *         | ttm: struct xe_ttm_vram_mgr (one manager)                   |
+> > + *         | .---------------------------------------------------------. |
+> > + *         | |  partitions[0]                                          | |
+> > + *         | |  offset 0                                               | |
+> > + *         | |  size   whole usable range                              | |
+> > + *         | `---------------------------------------------------------' |
+> > + *         `-------------------------------------------------------------'
+> > + *                                     ^
+> > + *                                     |
+> > + *                            general-purpose pool
+> > + *
+> > + * Device aggregate:
+> > + * A device-level aggregate region is unrelated to the tile regions. It is
+> > + * never backed by a resource manager and has no partitions. It only
+> > + * aggregates the sizes and DPA ranges of every tile for reporting purposes.
+> > + * Nothing is ever allocated from it::
+> > + *
+> > + *         xe_vram_region "device" (VRAM region id 0, binding DEVICE)
+> > + *         ,-------------------------------------------------------------.
+> > + *         | ttm:        unused, not backed by any resource manager      |
+> > + *         | partitions: none, this region is never allocated from       |
+> > + *         | size:       total VRAM summed across all tiles              |
+> > + *         `-------------------------------------------------------------'
+> > + */
+> > +
+> > +/**
+> > + * struct xe_vram_pool - VRAM range used for a given allocation purpose
+> > + *
+> > + * VRAM allocations are placed through this frontend. It identifies an
+> > + * allocation purpose and resolves it to a TTM placement and the address
+> > + * range serving it. Whether that range is a whole region of its own - and
+> > + * thus has its own placement, mapping and address range - or one of several
+> > + * partitions of a region is a backend detail the allocation paths do not
+> > + * need to know, see xe_vram_pool_place().
+> > + *
+> > + * A pool stays valid for the lifetime of its region and its purpose is fixed
+> > + * once published.
+> > + */
+> > +struct xe_vram_pool {
+> > +	/** @region: region this pool belongs to */
+> > +	struct xe_vram_region *region;
+> > +	/**
+> > +	 * @part: TTM partition backing this pool, or NULL until the manager
+> > +	 * is initialized
+> > +	 */
+> > +	struct xe_ttm_vram_mgr_part *part;
+> > +	/** @offset: byte offset of the pool from the start of @region */
+> > +	u64 offset;
+> > +	/** @size: size of the pool in bytes */
+> > +	u64 size;
+> > +	/** @purpose: allocation purpose served by this pool */
+> > +	enum xe_vram_pool_purpose purpose;
+> > +};
+> 
+> Can this not somehow be merged with the zone? Or why does this need to be a
+> separate layer on top?
+
+I thought about it, but I would like to keep them separate.
+
+The pool says what a VRAM range is used for: its purpose and its
+range. This is what users of the memory hold, like
+tile->mem.kernel_vram or the BO placement code. The zone is internal
+allocator state (the buddy and the CPU visible accounting). It is
+about how we allocate from that range.
+
+They are also filled in by different parts of the driver. xe_vram
+sets up the pool during probe, and changes it only if the region is
+split, all before the TTM manager is initialized. The zone belongs
+to the manager and is set up only when the manager is initialized.
+With two types, it is clear which code is responsible for which
+fields.
+
+Today there is one zone per pool, but this may change. Your
+visible/non-visible idea is a good example. That split is about the
+allocator, not about the purpose, so one general-purpose pool on a
+small BAR would be backed by two zones. With separate types, this is
+mostly a change in the manager. The tile and the BO code would not
+need to change. If pool and zone were the same thing, we would need
+to split them again.
+
+Also, a pool does not have to be a slice of a region. It can also
+cover a whole VRAM region of its own, with its own placement, mapping
+and TTM manager. The user of the pool does not need to know which
+case it is.
+
+I agree that right now it looks like duplication, with counters on
+both sides and pointers in both directions. I will try to reduce this
+in v5, for example the manager will not keep its own zone count next
+to the region's partition count. I will also explain in the commit
+message and in the DOC section how pools and zones relate.
+
+Thanks,
+Piotr
+
+
+> 
+> > +
+> >   /**
+> >    * struct xe_vram_region - memory region structure
+> >    * This is used to describe a memory region in xe
+> > @@ -26,9 +162,11 @@ struct xe_vram_region {
+> >   	/**
+> >   	 * @id: VRAM region instance id
+> >   	 *
+> > -	 * The value should be unique for VRAM region.
+> > +	 * The pair (@binding, @id) must uniquely identify a VRAM region.
+> >   	 */
+> >   	u8 id;
+> > +	/** @binding: VRAM region instance binding */
+> > +	enum xe_vram_binding binding;
+> >   	/** @io_start: IO start address of this VRAM instance */
+> >   	resource_size_t io_start;
+> >   	/**
+> > @@ -57,6 +195,25 @@ struct xe_vram_region {
+> >   	 * (e.g stolen mem)
+> >   	 */
+> >   	resource_size_t actual_physical_size;
+> > +	/**
+> > +	 * @partitions: partitions this region is split into
+> > +	 *
+> > +	 * A non-aggregate region initially has @partitions[0] spanning its
+> > +	 * whole usable range. It is the region's default, general-purpose
+> > +	 * pool. An optional split may adjust its range and create another
+> > +	 * partition before the TTM resource manager is initialized.
+> > +	 *
+> > +	 * A device aggregate region has no partitions. Allocation paths do
+> > +	 * not take a region pointer, they take a &xe_vram_pool pointing into
+> > +	 * this array, see the DOC above.
+> > +	 */
+> > +	struct xe_vram_pool partitions[XE_VRAM_MAX_PARTITIONS];
+> > +	/**
+> > +	 * @num_partitions: number of valid entries in @partitions
+> > +	 *
+> > +	 * Zero for a device aggregate region.
+> > +	 */
+> > +	unsigned int num_partitions;
+> >   	/** @mapping: pointer to VRAM mappable space */
+> >   	void __iomem *mapping;
+> >   	/** @ttm: VRAM TTM manager */
+> 
+
+-- 
