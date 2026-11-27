@@ -2,44 +2,60 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D259606A330
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 13:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CB5606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 14:17:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=IMntoK9q
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QsMRee4m
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8A9010EA92;
-	Fri, 27 Nov 2026 13:55:32 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D18E010EA92;
- Fri, 27 Nov 2026 13:55:26 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 91824453E8;
- Fri, 27 Nov 2026 13:55:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6EF91F00893;
- Fri, 27 Nov 2026 13:55:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795787726;
- bh=52LQ1oncZbwdcNkgHfUPpTGjkvUqFbJEKjcQVCwNDN8=;
- h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
- b=IMntoK9qu0Oo79tXZ0YHQ3ZOZ15W24H/7wwH/PPuoVkeu+mkKWhpsiTFJMnNIYWzj
- Xi/gXoYiAUC2r9zdbFzx42bm/DQzSwotBNwbWyaDV6QAHXp6YVc61VSwl+yyY+F3XV
- 8lIELx6y3PpLpXNTfTb2Sd+N+v55ou576dVwZSax1vsW4639nMT9ZvCqWNRohjyU7J
- 7M61uoF17aTM7Bw6E0f8j1xItymI7H85GTgdWuiO4uXNhxcUNNyVfRZXNqyeVKZ6qJ
- vQ4aked2M+1NEWipdQtYiLXLV1uBbZjz7gehkbhINgKVspDKq3zCga5Br2rROovzzS
- MnPLuHXJ8bCag==
-Message-ID: <sashiko-outbox-237524@kernel.org>
-From: sashiko-bot@kernel.org
+	by gabe.freedesktop.org (Postfix) with ESMTP id 998AC112B13;
+	Fri, 27 Nov 2026 14:17:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5B6C10E3ED;
+ Fri, 27 Nov 2026 14:17:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795789047; x=1827325047;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=qt0CQ1SvtkAQ0LnetpX4R/T2bdeVCeqh/9sH90gW4l4=;
+ b=QsMRee4mMiCuscRyifbjPlXETHJS+2UpXaLtyuBXy3M+dXg3V9EaokQq
+ 4NUP5kgm/hdBPJZV+UrUnjX31YnHqlwkyMdJjaxIjLY1ylupy7bzc32wJ
+ 3N1528LDm+FhiAPwVoj9bZJGzW6L3pKyvxANEClTHerBRneLm1XcgLi32
+ QQjkBVON9OIc00z3zYzQj4UbKXPg3bfPqiH1xowLS36VUePtdRttcRh8k
+ SBshFhVm5JLvLgYZq+NWIx9sqkZAF53NiIXjpcmPTpgDEjd1OkDELSlRL
+ ibgU7nsltSVB9OBh7AY54btLr2C2HF3rKAeqfeW/PAvRP/ECv+4AbQQk3 Q==;
+X-CSE-ConnectionGUID: DJx7PgZ4TembrydTj4u4HQ==
+X-CSE-MsgGUID: sdQI5zj0QQOZkbMmOoZFmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4604288"
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
+   d="scan'208";a="4604288"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 06:17:27 -0800
+X-CSE-ConnectionGUID: tXncEY86Rx6WjJiuYy30Wg==
+X-CSE-MsgGUID: YlaUFs3GTuiLUjwF5ADF7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12430993"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.90])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 06:17:23 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Bin Luo (University of Electronic Science and Technology of China)"
+ <luob87709@gmail.com>, rodrigo.vivi@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v2] drm/i915/display: hold frontbuffer ref across
  dirtyfb fence callback
-To: =?utf-8?b?QmluIEx1byAoVW5pdmVyc2l0eSBvZiBFbGVjdHJvbmljIFNjaWVuY2Ug?=
- =?utf-8?b?YW5kIFRlY2hub2xvZ3kgb2YgQ2hpbmEp?= <luob87709@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
 In-Reply-To: <20261127133935.1461-1-luob87709@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20261127133935.1461-1-luob87709@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Date: Fri, 27 Nov 2026 13:55:25 +0000
+Date: Fri, 27 Nov 2026 16:17:21 +0200
+Message-ID: <8247d106ca535db291d2f85a3b8bea7956c6ccd8@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,51 +65,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
-	autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Low] drm/i915/display: dead intel_frontbuffer_queue_flush() and
-  flush_work
---
+On Fri, 27 Nov 2026, "Bin Luo (University of Electronic Science and Technology of China)" <luob87709@gmail.com> wrote:
+> intel_user_framebuffer_dirty() stores the raw intel_frontbuffer pointer
+> in frontbuffer_fence_cb without taking a frontbuffer reference. If the
+> framebuffer is destroyed and its owner frontbuffer reference is dropped
+> before the reservation dma_fence signals,
+> intel_user_framebuffer_fence_wake() passes a freed intel_frontbuffer
+> pointer to intel_frontbuffer_queue_flush(), causing a use-after-free.
 
-commit ef90877ebdeba58596971006e74cdcc49524595d
-Author: luob87709@gmail.com <luob87709@gmail.com>
+Please describe a real world scenario where this "if" can happen.
 
-drm/i915/display: hold frontbuffer ref across dirtyfb fence callback
+BR,
+Jani.
 
-This commit holds a frontbuffer reference across the dirtyfb dma_fence
-callback and defers the frontbuffer flush and reference release to a work
-item embedded in frontbuffer_fence_cb.
-
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index 2c63aeefaea88..1ed9f8d7efd73 100644
+>
+> Take a frontbuffer reference via intel_parent_frontbuffer_ref() before
+> registering the fence callback, and embed a work_struct in
+> frontbuffer_fence_cb so intel_user_framebuffer_fence_wake() only
+> schedules the work item and drops the fence reference in atomic
+> dma_fence signaling context. Perform intel_frontbuffer_flush(), release
+> the frontbuffer reference with intel_parent_frontbuffer_put(), and free
+> cb from process context in intel_user_framebuffer_fence_work(). This
+> avoids calling intel_parent_frontbuffer_put() in atomic context, where
+> dropping the final reference can sleep on xe or deadlock on non-irqsafe
+> locks in i915.
+>
+> Found by static code audit.
+>
+> Fixes: 1bb2af547a4b ("drm/i915: Handle dma fences in dirtyfb callback")
+> Signed-off-by: Bin Luo (University of Electronic Science and Technology of China) <luob87709@gmail.com>
+> ---
+> Changes in v2:
+> - Embed struct work_struct in frontbuffer_fence_cb and move
+>   intel_frontbuffer_flush(), intel_parent_frontbuffer_put(), and kfree(cb)
+>   into intel_user_framebuffer_fence_work() so intel_parent_frontbuffer_put()
+>   is never invoked from atomic dma_fence signaling context (fixing the
+>   sleeping-in-atomic/deadlock issue flagged on v1).
+>
+> Testing note:
+> Compile-tested on x86_64 with W=1 and KASAN for both i915
+> (drivers/gpu/drm/i915/display/intel_fb.o) and xe
+> (drivers/gpu/drm/xe/i915-display/intel_fb.o); not runtime-tested on
+> Intel display hardware.
+>
+>  drivers/gpu/drm/i915/display/intel_fb.c | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+> index 9d71f59..ee0665c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_fb.c
 > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-[ ... ]
-> @@ -2177,16 +2178,26 @@ static int intel_user_framebuffer_create_handle(s=
-truct drm_framebuffer *fb,
-> =20
+> @@ -5,6 +5,7 @@
+>  
+>  #include <linux/dma-fence.h>
+>  #include <linux/dma-resv.h>
+> +#include <linux/workqueue.h>
+>  
+>  #include <drm/drm_blend.h>
+>  #include <drm/drm_gem.h>
+> @@ -2141,16 +2142,26 @@ static int intel_user_framebuffer_create_handle(struct drm_framebuffer *fb,
+>  
 >  struct frontbuffer_fence_cb {
 >  	struct dma_fence_cb base;
 > +	struct work_struct work;
 >  	struct intel_frontbuffer *front;
 >  };
-> =20
+>  
 > +static void intel_user_framebuffer_fence_work(struct work_struct *work)
 > +{
-> +	struct frontbuffer_fence_cb *cb =3D container_of(work, typeof(*cb), wor=
-k);
-> +	struct intel_frontbuffer *front =3D cb->front;
+> +	struct frontbuffer_fence_cb *cb = container_of(work, typeof(*cb), work);
+> +	struct intel_frontbuffer *front = cb->front;
 > +
 > +	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
 > +	intel_parent_frontbuffer_put(front->display, front);
@@ -103,26 +152,30 @@ k);
 >  static void intel_user_framebuffer_fence_wake(struct dma_fence *dma,
 >  					      struct dma_fence_cb *data)
 >  {
->  	struct frontbuffer_fence_cb *cb =3D container_of(data, typeof(*cb), bas=
-e);
-> =20
+>  	struct frontbuffer_fence_cb *cb = container_of(data, typeof(*cb), base);
+>  
 > -	intel_frontbuffer_queue_flush(cb->front);
 > -	kfree(cb);
 > +	schedule_work(&cb->work);
 >  	dma_fence_put(dma);
 >  }
+>  
+> @@ -2160,6 +2171,7 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+>  					struct drm_clip_rect *clips,
+>  					unsigned int num_clips)
+>  {
+> +	struct intel_display *display = to_intel_display(fb->dev);
+>  	struct drm_gem_object *obj = intel_fb_bo(fb);
+>  	struct intel_frontbuffer *front = to_intel_frontbuffer(fb);
+>  	struct dma_fence *fence;
+> @@ -2185,6 +2197,8 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+>  	}
+>  
+>  	cb->front = front;
+> +	INIT_WORK(&cb->work, intel_user_framebuffer_fence_work);
+> +	intel_parent_frontbuffer_ref(display, front);
+>  
+>  	intel_frontbuffer_invalidate(front, ORIGIN_DIRTYFB);
 
-[Severity: Low]
-Does replacing intel_frontbuffer_queue_flush() here leave
-intel_frontbuffer_queue_flush(), intel_frontbuffer_flush_work(), and
-struct intel_frontbuffer's flush_work member unused?
-
-intel_user_framebuffer_fence_wake() was the only caller of
-intel_frontbuffer_queue_flush() in the tree, so those helpers in
-intel_frontbuffer.c and flush_work in struct intel_frontbuffer are now
-dead code (and intel_frontbuffer_queue_flush() still contains an atomic
-intel_parent_frontbuffer_put() fallback if schedule_work() returns false).
-
---=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261127133935.1461=
--1-luob87709@gmail.com?part=3D1
+-- 
+Jani Nikula, Intel
