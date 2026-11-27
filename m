@@ -2,57 +2,57 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A3B606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 16:44:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A46606A324
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 16:45:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=molgen.mpg.de header.i=@molgen.mpg.de header.a=rsa-sha256 header.s=20260906 header.b=cOoWx8+u
+	dkim=pass (2048-bit key) header.d=molgen.mpg.de header.i=@molgen.mpg.de header.a=rsa-sha256 header.s=20260906 header.b=TGdAo/MR
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9301210E696;
-	Fri, 27 Nov 2026 16:44:15 +0000 (UTC)
-X-Greylist: delayed 326 seconds by postgrey-1.36 at gabe;
- Fri, 27 Nov 2026 16:44:09 UTC
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B85B10E696;
+	Fri, 27 Nov 2026 16:45:00 +0000 (UTC)
 Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 091C510E696;
- Fri, 27 Nov 2026 16:44:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2AB210E5F6;
+ Fri, 27 Nov 2026 16:44:53 +0000 (UTC)
 Received: from abreu.molgen.mpg.de (g44.guest.molgen.mpg.de [141.14.220.44])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (No client certificate requested) (Authenticated sender: pmenzel)
- by mx.molgen.mpg.de (Postfix) with ESMTPSA id BFFC64C442F971;
- Fri, 27 Nov 2026 17:43:36 +0100 (CET)
+ by mx.molgen.mpg.de (Postfix) with ESMTPSA id 8F7DA4C442F95C;
+ Fri, 27 Nov 2026 17:38:02 +0100 (CET)
 From: Paul Menzel <pmenzel@molgen.mpg.de>
 To: Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Paul Menzel <pmenzel@molgen.mpg.de>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Paul Menzel <pmenzel@molgen.mpg.de>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Antheas Kapenekakis <lkml@antheas.dev>,
  =?UTF-8?q?Thomas=20Wei=C3=9Fschuh?= <linux@weissschuh.net>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] drm: panel-backlight-quirks: Add Dell XPS 9315 FHD+ panel
-Date: Fri, 27 Nov 2026 17:43:29 +0100
-Message-ID: <20261127164332.55148-1-pmenzel@molgen.mpg.de>
+Subject: [PATCH 1/3] drm/i915/backlight: Honor panel backlight quirk for
+ minimum brightness
+Date: Fri, 27 Nov 2026 17:37:45 +0100
+Message-ID: <20261127163752.54806-2-pmenzel@molgen.mpg.de>
 X-Mailer: git-send-email 2.55.0
+In-Reply-To: <20261127163752.54806-1-pmenzel@molgen.mpg.de>
+References: <20261127163752.54806-1-pmenzel@molgen.mpg.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=molgen.mpg.de;
- s=20260906; t=1795797817; 
+ s=20260906; t=1795797483; 
  h=from:from:subject:date:message-id:mime-version:content-type:content-transfer-encoding;
- bh=hMzITDPGY4WIMS/pDC1S3GbvxdAxOLkqpcyo/6nyvuk=; 
- b=cOoWx8+uDzW9/EcU8/MVFlacrH3b8ksGJ4igsC0+fuQjwYuJGkeW4UqxGF8W7AQDmbd4atBhJDKN
- HI11NRgKSs0yDS/xgOFSnnmE5lXV8oZ8g8vAjhsUXWC24JkzaDpTX6ZzQH/F1dRDE5vnOVwbc6bhn6
- xt6UPT/lW+lccgdeLuin5fM1YO3CNweQVK46GKbjB60JfMF/Zh2qwJ6aGsFjtR5YpidNX9hUj9Bi8Z
- cliR8MSpq5TK8GqlurItngK4c7gf4G9dGuEpB7dB1v3jvoynxhH3Z1MIeWO+3hiwWxFgbZ1QyVek+Z
- c37E/eywWMDRKuoxuKyblZD/nB7UL2Fg==
+ bh=cpuzMF203iBIm0LK/odzPtCekUJWNzPfkeHY5U9XYwI=; 
+ b=TGdAo/MRmMZPqMlaFX9rZrKB44TvbUaMxMAFEIKFQhk33XF8z8f9TDsrNNEabYo9jVl9zrCDt8rT
+ 6MtGRC0sljTxhUgNr1qy9sNOjfOh5l/rMjcTZ9eDdX+mUDTbH6e8vENsilO4+DR4f0aCunNvwsTW2u
+ RSzV17Sa2YOgrcptFNkLuMMAvf5Mhxb/T3Z8l6z3urbxlVlvZFWI0cpNxEaHZspayDRZRN69TR/dpI
+ JZj+VEOSg2Vyf5pehVpa39NxImPj+r143ITdUgDitVzgk4DFgxYC+e956v8cPZq41YaRA4qgMAvcjy
+ SKZXhyhXS44YHZycTsJyaHqXJVTSEcgQ==
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,41 +63,38 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,LOTS_OF_MONEY,MAILING_LIST_MULTI,
-	SPF_HELO_NONE,SPF_PASS,USER_AGENT_GIT autolearn=ham autolearn_force=no
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS,USER_AGENT_GIT autolearn=unavailable autolearn_force=no
 	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-The Dell XPS 9315 (BIOS 1.26.0, VBT BDB 253, panel_type 14) has the
-same problem as the XPS 13 9310: the VBT sets the backlight minimum
-level to 15/255, while the other 15 panel entries say 6/255. With GNOME
-at its lowest slider position (1 % of max_brightness) the PWM duty
-cycle is 6.8 %:
+The DRM panel backlight quirk table (drm_panel_backlight_quirks.c)
+overrides the minimum PWM brightness per system and panel, but only
+amdgpu consults it. i915 always takes the minimum from the VBT, so a
+firmware minimum that is too high cannot be corrected without patching
+the driver.
 
-    $ cat /sys/class/backlight/intel_backlight/{max_brightness,brightness}
-    96000
-    960
-    $ sudo intel_reg read 0xC8254 0xC8258    # BXT_BLC_PWM_FREQ/DUTY(0)
-                                        (0x000c8254): 0x00017700
-                                        (0x000c8258): 0x00001997
+Look up the quirk with the panel’s EDID in get_backlight_min_vbt(), and
+if it sets min_brightness, use it instead of the VBT value. Like the
+VBT field, the quirk value is on the [0..255] scale, stored plus one so
+that 0 means unset; amdgpu reads it the same way. The lookup covers all
+PWM backends, as they all get their minimum from get_backlight_min_vbt().
 
-The panel is a Sharp LQ134N1 with a different product code
-(EDID SHP 0x1548) than the one in the XPS 13 9310. Writing the duty
-cycle register directly, 6.8 % is still well readable at the lowest position,
-and even 1 % is a little brighter than wanted; the panel is usable
-down to 0.25 %.
+Select DRM_PANEL_BACKLIGHT_QUIRKS for i915 and xe, which builds the
+i915 display code as well.
 
-Add a quirk setting the minimum to 0/255 for this system and panel,
-so that GNOME’s lowest position becomes 1 %. Note that the DMI product
-name is "XPS 9315", without "13".
+Tested on hardware with GNOME 51 at its lowest brightness
+(sysfs 960/96000):
 
-Tested on the Dell XPS 9315 (BIOS 1.26.0) with v7.4-rc4 + this series:
-"[CONNECTOR:676:eDP-1] Applying panel backlight quirk, min brightness 0/255
-(VBT 15/255)", GNOME lowest position gives PWM duty 960/96000 (1 %), was
-6551 (6.8 %). The eye test values (0.25 % wanted) were set with intel_reg.
+- Dell XPS 13 9310, BIOS 3.17.0 (Sharp LQ134N1, SHP 0x14f9): v7.4-rc1 and
+  v7.4-rc4 based kernels; PWM duty 6551 -> 960 (6.8 % -> 1 %).
+- Dell XPS 9315, BIOS 1.26.0 (Sharp LQ134N1, SHP 0x1548): v7.4-rc4 + this
+  series, Debian 7.3.5 config; duty 6551 -> 960.
+
+     [CONNECTOR:676:eDP-1] Applying panel backlight quirk, min brightness 0/255 (VBT 15/255)".
 
 Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
 ---
@@ -106,29 +103,72 @@ Notes:
     
     Prepared with Claude Code (claude-opus-5-5).
 
- drivers/gpu/drm/drm_panel_backlight_quirks.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/Kconfig                   |  1 +
+ drivers/gpu/drm/i915/display/intel_backlight.c | 15 +++++++++++++++
+ drivers/gpu/drm/xe/Kconfig                     |  1 +
+ 3 files changed, 17 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_panel_backlight_quirks.c b/drivers/gpu/drm/drm_panel_backlight_quirks.c
-index 85c2ef791d116..1d959a31562e6 100644
---- a/drivers/gpu/drm/drm_panel_backlight_quirks.c
-+++ b/drivers/gpu/drm/drm_panel_backlight_quirks.c
-@@ -62,6 +62,15 @@ static const struct drm_get_panel_backlight_quirk drm_panel_min_backlight_quirks
- 		.ident.panel_id = drm_edid_encode_panel_id('S', 'H', 'P', 0x14f9),
- 		.quirk = { .min_brightness = 1, },
- 	},
-+	/* Dell XPS 9315 FHD+ panel, VBT minimum 15/255 is too bright */
-+	{
-+		.dmi_match.field = DMI_SYS_VENDOR,
-+		.dmi_match.value = "Dell Inc.",
-+		.dmi_match_other.field = DMI_PRODUCT_NAME,
-+		.dmi_match_other.value = "XPS 9315",
-+		.ident.panel_id = drm_edid_encode_panel_id('S', 'H', 'P', 0x1548),
-+		.quirk = { .min_brightness = 1, },
-+	},
- 	/* Steam Deck models */
- 	{
- 		.dmi_match.field = DMI_SYS_VENDOR,
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 71426b9c91f00..c2075a4a48b8b 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -18,6 +18,7 @@ config DRM_I915
+ 	select DRM_DISPLAY_HELPER
+ 	select DRM_KMS_HELPER
+ 	select DRM_PANEL
++	select DRM_PANEL_BACKLIGHT_QUIRKS
+ 	select DRM_MIPI_DSI
+ 	select FB_IOMEM_HELPERS if DRM_FBDEV_EMULATION
+ 	select RELAY
+diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
+index b128896cb1c2d..b0c0e7f3d6e24 100644
+--- a/drivers/gpu/drm/i915/display/intel_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_backlight.c
+@@ -10,6 +10,7 @@
+ #include <acpi/video.h>
+ 
+ #include <drm/drm_file.h>
++#include <drm/drm_panel_quirks.h>
+ #include <drm/drm_print.h>
+ #include <drm/intel/pci_config.h>
+ 
+@@ -1207,10 +1208,24 @@ static u32 get_backlight_min_vbt(struct intel_connector *connector)
+ {
+ 	struct intel_display *display = to_intel_display(connector);
+ 	struct intel_panel *panel = &connector->panel;
++	const struct drm_panel_backlight_quirk *quirk;
+ 	int min;
+ 
+ 	drm_WARN_ON(display->drm, panel->backlight.pwm_level_max == 0);
+ 
++	/* Quirk min_brightness is the minimum in [0..255] plus one, 0 = unset. */
++	quirk = drm_get_panel_backlight_quirk(IS_ERR(panel->fixed_edid) ?
++					      NULL : panel->fixed_edid);
++	if (!IS_ERR_OR_NULL(quirk) && quirk->min_brightness) {
++		min = quirk->min_brightness - 1;
++		drm_info(display->drm,
++			 "[CONNECTOR:%d:%s] Applying panel backlight quirk, min brightness %d/255 (VBT %d/255)\n",
++			 connector->base.base.id, connector->base.name,
++			 min, connector->panel.vbt.backlight.min_brightness);
++
++		return scale(min, 0, 255, 0, panel->backlight.pwm_level_max);
++	}
++
+ 	/*
+ 	 * XXX: If the vbt value is 255, it makes min equal to max, which leads
+ 	 * to problems. There are such machines out there. Either our
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 049d2f25d0e60..dab996c7d205d 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -16,6 +16,7 @@ config DRM_XE
+ 	select DRM_KMS_HELPER
+ 	select DRM_KUNIT_TEST_HELPERS if DRM_XE_KUNIT_TEST != n
+ 	select DRM_PANEL
++	select DRM_PANEL_BACKLIGHT_QUIRKS
+ 	select DRM_SUBALLOC_HELPER
+ 	select DRM_DISPLAY_DP_HELPER
+ 	select DRM_DISPLAY_DSC_HELPER
 -- 
 2.54.0
 
