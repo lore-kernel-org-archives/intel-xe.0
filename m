@@ -2,28 +2,27 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F33BB606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 06:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CB3606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 06:58:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB9C310E400;
-	Fri, 27 Nov 2026 06:58:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A46D10E40B;
+	Fri, 27 Nov 2026 06:58:44 +0000 (UTC)
 Received: from 9ac1b63fe3ea (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E69CD10E400;
- Fri, 27 Nov 2026 06:58:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7026066108515939144=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E8F010E40B;
+ Fri, 27 Nov 2026 06:58:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Sync_ti?=
- =?utf-8?q?led_displays_with_pipelock_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Process_AMC_alert?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+To: "Badal Nilawar" <badal.nilawar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Nov 2026 06:58:39 -0000
-Message-ID: <179576271993.97452.13164108395301741478@9ac1b63fe3ea>
+Date: Fri, 27 Nov 2026 06:58:41 -0000
+Message-ID: <179576272137.97449.1625797902547923208@9ac1b63fe3ea>
 X-Patchwork-Hint: ignore
-References: <20261127060924.1648295-1-suraj.kandpal@intel.com>
-In-Reply-To: <20261127060924.1648295-1-suraj.kandpal@intel.com>
+References: <20261127061333.1019047-7-badal.nilawar@intel.com>
+In-Reply-To: <20261127061333.1019047-7-badal.nilawar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,112 +34,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============7026066108515939144==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: Sync tiled displays with pipelock (rev2)
-URL   : https://patchwork.freedesktop.org/series/179688/
-State : success
+Series: Process AMC alert
+URL   : https://patchwork.freedesktop.org/series/179823/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6246-17f7eb2368b0eed1dfda22b10966fa181d9b2c83_BAT -> xe-pw-179688v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ae85be9d754030f3468ba62aa5088f5a55136f23
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Fri Nov 27 11:43:39 2026 +0530
 
-Summary
--------
+    drm/xe: Request vendor recovery for AMC firmware download alert
+    
+    AMC reports a firmware download alert when a device firmware update is
+    in progress. Request vendor-specific recovery so userspace can identify
+    the alert reason and perform the documented recovery.
+    
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
++ /mt/dim checkpatch 17f7eb2368b0eed1dfda22b10966fa181d9b2c83 drm-intel
+0b5e769ecc57 drm/xe: Request cold-reset recovery on AMC thermal trip alert
+2eda2fed21f2 drm/xe: Request cold-reset recovery on AMC OOB request alert
+92dbb7ad2851 drm/xe: Request cold-reset recovery on AMC CATERR alert
+1cd2a9f181b5 drm/xe/i2c: Expose AMC alert reason through sysfs
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (15 -> 14)
-------------------------------
-
-  Missing    (1): bat-bmg-1 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_9205 -> IGT_9206
-  * Linux: xe-6246-17f7eb2368b0eed1dfda22b10966fa181d9b2c83 -> xe-pw-179688v2
-
-  IGT_9205: 9205
-  IGT_9206: 9206
-  xe-6246-17f7eb2368b0eed1dfda22b10966fa181d9b2c83: 17f7eb2368b0eed1dfda22b10966fa181d9b2c83
-  xe-pw-179688v2: 179688v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179688v2/index.html
-
---===============7026066108515939144==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 148 lines checked
+ae85be9d7540 drm/xe: Request vendor recovery for AMC firmware download alert
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: Sync tiled displays with pipelock (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179688/">https://patchwork.freedesktop.org/series/179688/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179688v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179688v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6246-17f7eb2368b0eed1dfda22b10966fa181d9b2c83_BAT -&gt; xe-pw-179688v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 14)</h2>
-<p>Missing    (1): bat-bmg-1 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9205 -&gt; IGT_9206</li>
-<li>Linux: xe-6246-17f7eb2368b0eed1dfda22b10966fa181d9b2c83 -&gt; xe-pw-179688v2</li>
-</ul>
-<p>IGT_9205: 9205<br />
-  IGT_9206: 9206<br />
-  xe-6246-17f7eb2368b0eed1dfda22b10966fa181d9b2c83: 17f7eb2368b0eed1dfda22b10966fa181d9b2c83<br />
-  xe-pw-179688v2: 179688v2</p>
-
-</body>
-</html>
-
---===============7026066108515939144==--
