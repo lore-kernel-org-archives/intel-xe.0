@@ -2,63 +2,144 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 216FE606A31E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 18:09:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42A41606A31E
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 18:18:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=L1HG4gJm
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=ZLpx1oTa
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCA9F112CD9;
-	Fri, 27 Nov 2026 18:09:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 495F710E33D;
- Fri, 27 Nov 2026 18:08:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05FEB112CCF;
+	Fri, 27 Nov 2026 18:18:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBF4D10EADA;
+ Fri, 27 Nov 2026 18:18:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795802940; x=1827338940;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=SKXB85rFIf2IKsDhjQyt7z8ztEO0t7lCzQx9JgdShRA=;
- b=L1HG4gJmKo1eJT414VUOK6jIN8N7Hd99fvMX1XggfHXjI5M6ZP2/M3RF
- Uj63cPt5W0gdqY6WIFx1kMxA2v9+r8UVPHxCtpaBeT2gX2hbuSJ1ceklG
- NsNtsG3g3TjcnrlcUnMEligkhYOGMSydzZ/jTMwbnN2eOVQN5N7WGj1xZ
- ZKKwcdCrD3VfxMtn7MKoPZSSZt4a3VyganuTnSR7S0GZsgXp0CbHl2cbD
- qeTchul4se6KoskAZm0Sr8jX4Q9PPB+a4oWfVRAyFJ0ChI/YCsi+85iQ3
- LPRO33G+EC6Os8d0vHYMyZ59BH2ya24pJng7P8Mhn4SuxaBgtrkiiW7zl g==;
-X-CSE-ConnectionGUID: +1P5wQmATmaVPfNu4MLubw==
-X-CSE-MsgGUID: hNSZvvVJQAWdHado4gIrsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4623760"
+ t=1795803485; x=1827339485;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=rzSJPXqLon95MDa+afbfpKfQyAIGmjZ7wr34XEjSK3M=;
+ b=ZLpx1oTal71XnNJPvYPtFWJ9XrMHMU9nFcYtrQMVLNex8MrL9HMP4t/p
+ DDq2/GmlE8URKdOFDWkgtv00ecnA/1F/9fOO0Vjw7q433dyMWHJCdixug
+ MzRGFGPMW3a19Awd0R7W7DFprd/uw2gikMHCdunwVurhLYm5V7VvNVImT
+ WPm6snU5mwHZ3FGIS9LaAgU+GmjH5DW0E3BYSvJTt6WV5g/qQTxOk0onF
+ Ex3XBhTUvdtPAAbuE9USJhd9MT8o9wHVsRAaAQD81vKED6k5yGGh+s8zL
+ d7DEjHkXTvm0uB1/Q6dqjgWfvRlmwSaSY5ZdV2vHm4aV5t7nfO23xy+dK g==;
+X-CSE-ConnectionGUID: pLK3iYn/SxeVD9NjSAzCWQ==
+X-CSE-MsgGUID: kX6Cy4ZIRXi3Ey9xvHLahg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4628738"
 X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="4623760"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 10:09:00 -0800
-X-CSE-ConnectionGUID: 8uYK6rK2SaGiq9zM9ArWnQ==
-X-CSE-MsgGUID: 43EXHnHuRViCqjpNBL7K+w==
+   d="scan'208";a="4628738"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 10:18:04 -0800
+X-CSE-ConnectionGUID: FJcyBDi1Toi5QYJ75LNwwg==
+X-CSE-MsgGUID: bdSwW6/3RP6ZCCsvEnb1cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12795267"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.90])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 10:08:58 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/bios: Attempt to match the VBT PnP ID
- against DisplayID first
-In-Reply-To: <awm2FlsQeZpjZNBU@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261124224621.6506-1-ville.syrjala@linux.intel.com>
- <20261124224621.6506-3-ville.syrjala@linux.intel.com>
- <76c590b4a6156485f96ba751b2683851871842be@intel.com>
- <awm2FlsQeZpjZNBU@intel.com>
-Date: Fri, 27 Nov 2026 20:08:55 +0200
-Message-ID: <32ff6cca90355d34d5cfb59b6dd22a07cd456c29@intel.com>
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12700046"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 10:18:04 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Fri, 27 Nov 2026 10:18:03 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57 via Frontend Transport; Fri, 27 Nov 2026 10:18:03 -0800
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.19) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.57; Fri, 27 Nov 2026 10:18:03 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mzSRyEHGqOh1ii2cRgst3Ha4NE+dMwBQFuYPqCB10IoU4VQyUxvTKkdC9tggOjqxm1XjgBSOg0cnyAteRznUTCSKxXqldH5MdUmJA8J3iP9jAUp+jic3TrCBNfBt4x2k+74yTq0yyVQw4Yz12mi+06o17rRNud9xoB6SJTBGhob76/QtmeQWWyOA94a7WCgeUO0Rsywjrp6oiafX/ZuP23DIRntmBIeuJ9qBJNvh5vpaH6J+sh1YzdJVhCio47GGygES9VCgPtt06Re7yjMB0puospfFARJJzwtqg2pdLTb8o+aMgKuNaCOKRZE0CsvvZpxBL3kWCda9LbAjNthtKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/APGmzVrBAe8pUOu/23K2cOw1/jo2xZ8T26ftWAC2pc=;
+ b=OrLsUXmD2PWKcx81AX+/HRrKomC59drXCDtY70XvX7GXgiZPef7x6zBrnUchWGvJuv21Mc5LSmsvbZynGBGpX1kJvLzNyRMEurQP/fszxYC97pr+DL10Hu/B6j+j2OR4DbCzrMQD9nioUEEvU4Hi3Ufaug/dirfTmuqxND9VE3fTHcdC+j23QcnUd45OUdltdeee40m17CfoY+0zTTANUHkrfWcTAkKS9OM7Obw3sxUWTIYPorlcaG/rc+gGS7PmeeDahASXI/xZJaMSLGr/fF3MPnwAvUruedzCgkTAiOUCD+hhWcSNDnOpLNbu7CgZLQ8SLzV87J4cg2/PYUcpWw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
+ DS0PR11MB8717.namprd11.prod.outlook.com (2603:10b6:8:1ab::20) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.662.9; Fri, 27 Nov 2026 18:17:56 +0000
+Received: from DS7PR11MB5990.namprd11.prod.outlook.com
+ ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
+ ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Fri, 27 Nov 2026
+ 18:17:56 +0000
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <dri-devel@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v6 0/3] drm/xe: Expose retired VRAM pages via drm-ras
+Date: Fri, 27 Nov 2026 13:17:51 -0500
+Message-ID: <20261127181750.806528-5-rodrigo.vivi@intel.com>
+X-Mailer: git-send-email 2.56.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0041.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::16) To DS7PR11MB5990.namprd11.prod.outlook.com
+ (2603:10b6:8:71::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|DS0PR11MB8717:EE_
+X-MS-Office365-Filtering-Correlation-Id: 865aae45-46e1-4f54-06dd-08df4cb2c274
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|376014|366016|56012099006|10067099003|261022105027099003|261028144727099003|261026140227099003|261102123227099003|261026121527099003|261021123027099003|261022075727099003|261021121427099003|261009223027099003|261009221227099003|18002099003|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: k9bwmgI5P3PToXNg6amr846Okp0igN+A5L1IuGKguk7nu+sdRgqUDKo9h2P6SL3jltRYroqScoYYA76NP7dvroQlaVZ0DOtGX8t0WiKXOuYH602m1FOnswSvcEWp6iqcFY0vOvJvlb7snBgml3D6mgKN0OVUntVcfaz8dnUeFa9VWhHo7v6NaZCQkNyPqdVlzW3JDivMxdt3vjKR6aoHQbK0GA5xyu8EiLMyxmZRqcG4dF234RDgcAcjkKOuU6/pnUxG3L1IcrPgwYQasrk7jpHaeKDi6hFWELre7C4Mn1h45Tr98m1Q6mQ02ysbJZEbvmJyV5XcUV9a2CiwCqx301q3ZM53scjA4P87lJXGTkjOuIz1sN5/3cRkxakaQiga/2+UBBrilnI+YSD0uxYEAVnxJupG3M1mM92Qh2An1BSl5eVealrTJek3Zlfi38D77X5WhwJwgfkVAap0HkDk7ACY2uwGseLmB/ZhbfOV90saZjLFtyPTbhEM6lih/9SbeM974F1sb5vfXRSYkWfBstFU19oJuHEYENjtqioUdJpIxyMDOm1rOup+EllBHJMGV9CAWa1ilu8AjulRtYdBKLssjMGR/W1MDfPzpSHIOGd94NM83YnhGTDdiE32drIr
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(56012099006)(10067099003)(261022105027099003)(261028144727099003)(261026140227099003)(261102123227099003)(261026121527099003)(261021123027099003)(261022075727099003)(261021121427099003)(261009223027099003)(261009221227099003)(18002099003)(11063799006)(6133799003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?x8/xnAswyYyIpvVi3Qdi89dKGGNjUydez3R6zOW67ReiGd6/2LAMlrz0Vkde?=
+ =?us-ascii?Q?hlfYQKm69Lp+mQT+dgOlCpYr6fdQuq5VmtvSHaL8tmCeFVK29mRsbbmYBktz?=
+ =?us-ascii?Q?ld++3G0fRhjSQJ3qMgvhuNwajQb5Jcg7gRhgNRPoQpWSNzAMje+S6iTXV3/n?=
+ =?us-ascii?Q?DzrZCLwcoX+tSccQRBejlzwjJMNZOk9hygXvpf5/cOOn9zCvUYM+YcZM6RwA?=
+ =?us-ascii?Q?Wfb1gPc7kDnwUntrsHBwqND8JlAzg44t73mu91/UrsbNXyiE3cOt2lH08dSm?=
+ =?us-ascii?Q?dB9EK+0hGbBiiXDe1297aNeNkK7qo4xTN6H/SiZRh/AjFYkfaw63Vf+/xr4g?=
+ =?us-ascii?Q?SI8H9NEPsrFLTYyh+/WJzp04O8IFqHElMFI+x7CnysE5iI7kQmpUoYm7C+Sm?=
+ =?us-ascii?Q?WtffuP7rf/tD/+JvnOFMKIXFsVMY5ZRykVT+apX4sBVOUXPTrJJde1Mjx+Uq?=
+ =?us-ascii?Q?j3Gj9ToVNt0ejKofbLfWK60kFbwgRJJ2v+uu6DtQZjpcj68h0oti/KhIDlnl?=
+ =?us-ascii?Q?bSRUSh2cr+vkw3HIPNYpxiR4oA27soWlgqsD7ZCECZq40lXQcU29uBSbrG5y?=
+ =?us-ascii?Q?tcvWS3CY8VLE8WV7f4/RU9qkKLeYVdcAC8A7QNQpXVhrDWjJgswX9nBIEssb?=
+ =?us-ascii?Q?+8LYVfkSOqzn+N6Ki7aRlursQ69H3ocyGzr3leQpSIYlinq9br1dd5xVt1Nw?=
+ =?us-ascii?Q?737Qs/WPXnhv95GDmYANM9TVAJSvkcS/W9gaeOw71SR+3deQ3HACuazD6ZuG?=
+ =?us-ascii?Q?hXmOCIt2G7JPFMbDuFJfHEctZqbX0fbsYUsypgS3JfxVRypDQeTm9Y3KHDwL?=
+ =?us-ascii?Q?5f/LP6GtaliBzqoiF9j6GGMaE6bz8QtzO62IBWXpnucV7Gp7bD/GZRjkVRYZ?=
+ =?us-ascii?Q?N5kvWMSk17BbiaRVOM2SeCuaU/y/AbA/yeWBbTEoRiABmgiylFwMmXDJA7CU?=
+ =?us-ascii?Q?gyrBSEaBpgz0GPCC4Kp9W1tXtK9OCrRSWV4cwYWWDcYKNvtorDiLgnyukinR?=
+ =?us-ascii?Q?wdlCEw/FU00hgkHfZajfF6ovxn50DUzRz2zmDWRCKWBVAT1narccCabmr4F3?=
+ =?us-ascii?Q?yX4mIoGrjURwaWO+nb7f6c9FgtU/85oFnSByvySL9r0PW5oRISU68vxbsxxx?=
+ =?us-ascii?Q?ReWg5eWvI+r0H0fOtCRmQKUEnmsfpO0zSoukYP1Nebm1wmJnHkrCK3oNM4Hv?=
+ =?us-ascii?Q?9VtDwG4Kppgjj+nRxuCi5N8S0WMXlYnJ0JXBAZZZVib5b3vVyKdWfQaGQEO8?=
+ =?us-ascii?Q?3bMmdbM0tBgYAipbPyYFgBMbTc4ZIlpW+1x7+kzh5C/AO0DR1aODyg1wMqVo?=
+ =?us-ascii?Q?EsFyhRAnJlBN/2QAB4uA7qAYE02zIiO3iQZGQJmPz2P4hUz1ZLrVkjWlFXvq?=
+ =?us-ascii?Q?lmNc50ydhXimCeAbIKcnYDI30n8uS/mU6ZjVTa/+9WcjEXf2o3sph1UygeaX?=
+ =?us-ascii?Q?wJhl5gpZZYAr+SKcMDjQGMAOWdEioMuzhf2Gd4T86QFJGtKCod+qOvXrDHEX?=
+ =?us-ascii?Q?BG450R9sd0hX+1/wIdDHrVBen4jpdyMG81p0FoAEsk3YE+ftAMzeYDa1K190?=
+ =?us-ascii?Q?pAVvFEEaIWtJeiFYsXGIvJsCYv7P2vrnKoHEyMkffuSXgDCYeYp5dYYKVSQb?=
+ =?us-ascii?Q?Vid3AtTjVErOzGNv7qfkPnPs11HQIcOR609xC/LLbfDwj9PxGUkx3tOoJRzF?=
+ =?us-ascii?Q?OJog/fJ/IOqNfY6V8Qpkj3glVGpfcRU2cZhhqaQ53EB+I8PDKdesOHvenDaD?=
+ =?us-ascii?Q?11vUc7P5Bg=3D=3D?=
+X-Exchange-RoutingPolicyChecked: Ha4t0XAWkBB6L1aCbKoGeP5dGaMB7qF/8OZzvnYIZJ+b0h4rlMlxLU5eflIygr/AnSMQYsPEu7QBenK4XKOChfXfewlwwlPecq0ZiXa6MeRkhELZYasdJ1v+2t8FqOaGGzSqKeoszNRCkwDy6boLHL8CwciXtWjPxFdMLObvwVqfaBHjZG4i9/XaMcLoQZ6QH4WMiN3FKLtWU3VVuTaFFkPJ4vpIVB+glvY3NhYsmsLcylSm34F/KqsMjPB6L1CjQin+cYCaRoI59l5tHgQXqPOIy2LLZi5lgriB8P1eZ5+eZDd85zOI2N8njcqCnwN8YTorvil+AWIy/LqLal6xRQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 865aae45-46e1-4f54-06dd-08df4cb2c274
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 18:17:56.1852 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vCjc6bkQlTanucfHj/Oxg31YggWeNVXITVX5LQvjDUKjxwVvwX8pULTu70o06c63rJuKfjRlIRMwbaGtAqHLUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8717
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,246 +151,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_GIT autolearn=ham autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 27 Nov 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Nov 27, 2026 at 06:29:00PM +0200, Jani Nikula wrote:
->> On Wed, 25 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
->> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> >
->> > The Windows driver policy appears to be now to first match the
->> > VBT PnP ID against the DisplayID product ID block, and only if
->> > there is no match (not even a partial one) then attempt to
->> > match the against the EDID base block vendor/product ID.
->> > Implement the same policy.
->> >
->> > We also need to implement the same weird scheme of just smashing
->> > the first two bytes of the DisplayID three byte OUI into the
->> > old EISA/PNPID field of the EDID defined structure. That is
->> > then matched against the similar old EDID style structures in
->> > the VBT.
->> >
->> > Smoke tested with a firmware override of EDID and VBT:
->> >  [drm:get_panel_type [xe]] Panel type (VBT): 255
->> >  [drm:pnpid_get_panel_type [xe]] DisplayID manufacturer name: NRA, pro=
-duct code: 16826, serial number: 0, year of manufacture: 2014
->> >  [drm:pnpid_get_panel_type [xe]] DisplayID raw product id: ba 41 ba 41=
- 00 00 00 00 00 18
->> >  [drm:get_panel_type [xe]] Panel type (PNPID DisplayID): 3
->> >  [drm:pnpid_get_panel_type [xe]] EDID manufacturer name: SDC, product =
-code: 16826, serial number: 65441, year of manufacture: 2024
->> >  [drm:pnpid_get_panel_type [xe]] EDID raw product id: 4c 83 ba 41 a1 f=
-f 00 00 00 22
->> >  [drm:get_panel_type [xe]] Panel type (fallback): 0
->> >  [drm:get_panel_type [xe]] Selected panel type (PNPID DisplayID): 3
->> >
->> > Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8969
->> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->> > ---
->> >  drivers/gpu/drm/i915/display/intel_bios.c | 81 ++++++++++++++++++-----
->> >  1 file changed, 63 insertions(+), 18 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/d=
-rm/i915/display/intel_bios.c
->> > index b77d1599482a..5b0fc87e7673 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> > @@ -684,27 +684,22 @@ static int vbt_get_panel_type(struct intel_displ=
-ay *display,
->> >  }
->> >=20=20
->> >  static int pnpid_get_panel_type(struct intel_display *display,
->> > -				const struct intel_bios_encoder_data *devdata,
->> > -				const struct drm_edid *drm_edid, bool use_fallback)
->> > +				const struct drm_edid_product_id *product_id,
->> > +				const char *source)
->> >  {
->> >  	const struct bdb_lfp_data *data;
->> >  	const struct bdb_lfp_data_ptrs *ptrs;
->> > -	struct drm_edid_product_id product_id, product_id_nodate;
->> > +	struct drm_edid_product_id product_id_nodate;
->> >  	struct drm_printer p;
->> >  	int i, best =3D -1;
->> >=20=20
->> > -	if (!drm_edid)
->> > -		return -1;
->> > +	p =3D drm_dbg_printer(display->drm, DRM_UT_KMS, source);
->> > +	drm_edid_print_product_id(&p, product_id, true);
->>=20
->> This will now print the wrong year for DisplayID, off by 10 years.
->
-> I think in this case we actually want to print the bogus year
-> as is because that's also what's in the VBT. All we care about
-> is whether this matches something in the VBT, not whether it's
-> in any way correct data otherwise. The mangled OUI is also
-> complete nonsense outside of the VBT context.
+This is v6 of:
 
-Fair enough. Maybe copy-paste that into the commit message? Or add a
-note about it in a comment before someone goes and changes the printing.
+https://lore.kernel.org/dri-devel/20261125190249.156217-4-rodrigo.vivi@intel.com/
 
-BR,
-Jani.
+It addresses Riana's review: the type check of drm_ras_node_get() is
+now its own patch, and the snapshot for the dump is folded into
+Aravind's patches.
 
->
->>=20
->> [Unprintable words about not learning anything from Y2K.]
->>=20
->> I'm beginning to think we should have a separate struct that's not
->> __packed or serialized, which can be initialized from either EDID or
->> DisplayID. And have drm_edid_print_product_id() operate on that. But
->> maybe it's a bit too much for this now.
->>=20
->> The EDID spec says the year is mandatory. The DisplayID spec says 0x00
->> is a reserved value, but also contradicts itself by saying, "If the Year
->> of Manufacture/Model Year field is not used, the byte would be cleared
->> to all 0s."
->>=20
->> One approach is to make drm_edid_print_product_id() treat zero week and
->> year as "not specified", basically incorrectly reporting displays
->> manufactured in the year 1990. And then printing product_id_nodate
->> here. Possibly an acceptable compromise?
->>=20
->> I don't know. It's a mess.
->>=20
->> >=20=20
->> > -	drm_edid_get_product_id(drm_edid, &product_id);
->> > -
->> > -	product_id_nodate =3D product_id;
->> > +	product_id_nodate =3D *product_id;
->> >  	product_id_nodate.week_of_manufacture =3D 0;
->> >  	product_id_nodate.year_of_manufacture =3D 0;
->> >=20=20
->> > -	p =3D drm_dbg_printer(display->drm, DRM_UT_KMS, "EDID");
->> > -	drm_edid_print_product_id(&p, &product_id, true);
->> > -
->> >  	ptrs =3D bdb_find_section(display, BDB_LFP_DATA_PTRS);
->> >  	if (!ptrs)
->> >  		return -1;
->> > @@ -718,7 +713,7 @@ static int pnpid_get_panel_type(struct intel_displ=
-ay *display,
->> >  			get_lfp_pnp_id(data, ptrs, i);
->> >=20=20
->> >  		/* full match? */
->> > -		if (!memcmp(vbt_id, &product_id, sizeof(*vbt_id)))
->> > +		if (!memcmp(vbt_id, product_id, sizeof(*vbt_id)))
->> >  			return i;
->> >=20=20
->> >  		/*
->> > @@ -733,6 +728,48 @@ static int pnpid_get_panel_type(struct intel_disp=
-lay *display,
->> >  	return best;
->> >  }
->> >=20=20
->> > +static int pnpid_edid_get_panel_type(struct intel_display *display,
->> > +				     const struct intel_bios_encoder_data *devdata,
->> > +				     const struct drm_edid *drm_edid, bool use_fallback)
->> > +{
->> > +	struct drm_edid_product_id product_id;
->> > +
->> > +	if (!drm_edid)
->> > +		return -1;
->> > +
->> > +	drm_edid_get_product_id(drm_edid, &product_id);
->> > +
->> > +	return pnpid_get_panel_type(display, &product_id, "EDID");
->> > +}
->> > +
->> > +static int pnpid_displayid_get_panel_type(struct intel_display *displ=
-ay,
->> > +					  const struct intel_bios_encoder_data *devdata,
->> > +					  const struct drm_edid *drm_edid, bool use_fallback)
->> > +{
->> > +	struct drm_displayid_product_id displayid_id;
->> > +	struct drm_edid_product_id product_id;
->> > +
->> > +	if (!drm_edid)
->> > +		return -1;
->> > +
->> > +	drm_displayid_get_product_id(drm_edid, &displayid_id);
->>=20
->> Having this return a value based on whether the product id was found or
->> not would indeed be useful.
->>=20
->> > +
->> > +	/*
->> > +	 * Only the first two bytes of the OUI get
->> > +	 * smashed into the old EISA/PNPID field, and
->> > +	 * that gets matched against what's in the VBT.
->> > +	 */
->> > +	product_id.manufacturer_name =3D
->> > +		cpu_to_be16((displayid_id.vendor_id[0] << 8) |
->> > +			    displayid_id.vendor_id[1]);
->>=20
->> I'll take your word for this.
->>=20
->> Apart from the comments, everything else looks good,
->>=20
->> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
->>=20
->> > +	product_id.product_code =3D displayid_id.product_code;
->> > +	product_id.serial_number =3D displayid_id.serial_number;
->> > +	product_id.week_of_manufacture =3D displayid_id.week_of_manufacture;
->> > +	product_id.year_of_manufacture =3D displayid_id.year_of_manufacture;
->> > +
->> > +	return pnpid_get_panel_type(display, &product_id, "DisplayID");
->> > +}
->> > +
->> >  static int fallback_get_panel_type(struct intel_display *display,
->> >  				   const struct intel_bios_encoder_data *devdata,
->> >  				   const struct drm_edid *drm_edid, bool use_fallback)
->> > @@ -743,7 +780,8 @@ static int fallback_get_panel_type(struct intel_di=
-splay *display,
->> >  enum panel_type {
->> >  	PANEL_TYPE_OPREGION,
->> >  	PANEL_TYPE_VBT,
->> > -	PANEL_TYPE_PNPID,
->> > +	PANEL_TYPE_PNPID_DISPLAYID,
->> > +	PANEL_TYPE_PNPID_EDID,
->> >  	PANEL_TYPE_FALLBACK,
->> >  };
->> >=20=20
->> > @@ -766,9 +804,13 @@ static int get_panel_type(struct intel_display *d=
-isplay,
->> >  			.name =3D "VBT",
->> >  			.get_panel_type =3D vbt_get_panel_type,
->> >  		},
->> > -		[PANEL_TYPE_PNPID] =3D {
->> > -			.name =3D "PNPID",
->> > -			.get_panel_type =3D pnpid_get_panel_type,
->> > +		[PANEL_TYPE_PNPID_DISPLAYID] =3D {
->> > +			.name =3D "PNPID DisplayID",
->> > +			.get_panel_type =3D pnpid_displayid_get_panel_type,
->> > +		},
->> > +		[PANEL_TYPE_PNPID_EDID] =3D {
->> > +			.name =3D "PNPID EDID",
->> > +			.get_panel_type =3D pnpid_edid_get_panel_type,
->> >  		},
->> >  		[PANEL_TYPE_FALLBACK] =3D {
->> >  			.name =3D "fallback",
->> > @@ -792,8 +834,11 @@ static int get_panel_type(struct intel_display *d=
-isplay,
->> >  	if (is_panel_type_valid(panel_types[PANEL_TYPE_OPREGION].panel_type))
->> >  		i =3D PANEL_TYPE_OPREGION;
->> >  	else if (is_panel_type_pnp(panel_types[PANEL_TYPE_VBT].panel_type) &&
->> > -		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID].panel_type))
->> > -		i =3D PANEL_TYPE_PNPID;
->> > +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID_DISPLAYID].panel_=
-type))
->> > +		i =3D PANEL_TYPE_PNPID_DISPLAYID;
->> > +	else if (is_panel_type_pnp(panel_types[PANEL_TYPE_VBT].panel_type) &&
->> > +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID_EDID].panel_type))
->> > +		i =3D PANEL_TYPE_PNPID_EDID;
->> >  	else if (is_panel_type_valid(panel_types[PANEL_TYPE_VBT].panel_type))
->> >  		i =3D PANEL_TYPE_VBT;
->> >  	else
->>=20
->> --=20
->> Jani Nikula, Intel
+The IGT test and tools:
+https://lore.kernel.org/igt-dev/20261127181133.801215-10-rodrigo.vivi@intel.com/T/#t
 
---=20
-Jani Nikula, Intel
+Thanks,
+Rodrigo.
+
+Aravind Iddamsetty (2):
+  drm/ras: Add retired-pages node type
+  drm/xe: Expose retired VRAM pages via drm-ras
+
+Rodrigo Vivi (1):
+  drm/ras: Check the node type in node lookups
+
+ Documentation/netlink/specs/drm_ras.yaml |  78 ++++++-
+ drivers/gpu/drm/drm_ras.c                | 282 +++++++++++++++++++++--
+ drivers/gpu/drm/drm_ras_nl.c             |  26 +++
+ drivers/gpu/drm/drm_ras_nl.h             |   6 +
+ drivers/gpu/drm/xe/xe_drm_ras.c          |  78 +++++++
+ drivers/gpu/drm/xe/xe_drm_ras.h          |   1 +
+ drivers/gpu/drm/xe/xe_ras.c              |   2 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c     |  58 +++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h     |   2 +
+ include/drm/drm_ras.h                    |  68 ++++++
+ include/uapi/drm/drm_ras.h               |  34 ++-
+ 11 files changed, 611 insertions(+), 24 deletions(-)
+
+-- 
+2.56.0
+
