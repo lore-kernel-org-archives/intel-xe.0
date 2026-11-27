@@ -2,42 +2,61 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99BAB606A31E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 16:21:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D0C606A31E
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 16:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=DI3SawJ5
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nyGSkPRY
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA04112C16;
-	Fri, 27 Nov 2026 16:21:35 +0000 (UTC)
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21FAE112C14;
- Fri, 27 Nov 2026 16:21:29 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id CBCD845281;
- Fri, 27 Nov 2026 16:21:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10C981F00893;
- Fri, 27 Nov 2026 16:21:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795796488;
- bh=rbhjF7s9SiPPxTQYjum8/zTvmtTo+GVaH70WORQCObw=;
- h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=DI3SawJ5jMzAJRRWqcQgTNAMr8W/6eGOlz6F9UHqb195qen+NBAb7iodZ4X8KvKUo
- XcYG2RKZegPXwby82hJ9sFUOylJzJ+G7UNFJEGzSnxhdwZPlwps5wz2VT9ATMLu8Q0
- doOEcfQjeFK1plcZARdwxBJozd5JjWzmPQ1aub9ZMU9AqRKMZBRQX5ArBrfIW1GeI/
- UURHnR/ULQDpKxPyHTeAzOainF1FIDb1aTvwUokMDBbc14rIOPUu9w+vCel9YlqD7+
- 1O1KXTf41HAOf+Wi/DAQ4m8sZiPVZ0uMzfOs3phOWWrL4WKP4kNSeaCTT/Uw3qkOTW
- oglwudZCx5nrQ==
-Message-ID: <sashiko-outbox-237871@kernel.org>
-From: sashiko-bot@kernel.org
-Subject: Re: [PATCH] drm/i915/display: Leave the PSR frame change to the
- joiner primary
-To: "Mika Kahola" <mika.kahola@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20261127160235.3208777-1-mika.kahola@intel.com>
-References: <20261127160235.3208777-1-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC4FB10E1D8;
+	Fri, 27 Nov 2026 16:29:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E60B310E19B;
+ Fri, 27 Nov 2026 16:29:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1795796945; x=1827332945;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=8vUqsYqHXYNvIPyVuLyQr6VTY5KrYvaDNtrVhBKrUAQ=;
+ b=nyGSkPRYOp1bKdxLl4o5N2Jqae79paEIo12Aj4xkdUvckre10IvzXF52
+ F5FbL0M4pwgmVIoHPV9/bgOu94hPqIMcq98RWLt9MqmTriwWKIFkxWorB
+ hOKbRi2z5ceNt+rsB8fFtu/kBqPd47J5wpGmkybSafSEQnsH0rChZgbL7
+ lwLw+fv6DcJlYVR2A8lJzW4H+7hwPLx3+CexvdcSfMxfA0cZyag6g7MRb
+ 6quL2JrGtPmg2JMqy0z2jw5OM7hC+zKueGNXGm6oPZEE6iZc7ROMY6VE1
+ pxVlg/DTdS5euqS4Brrr1H4tDMB+XtmYtq79AgTKHzD/SpnB3ObqeuUA6 A==;
+X-CSE-ConnectionGUID: mzjDLWOkQh2BVIoPmHhUFw==
+X-CSE-MsgGUID: pH9QA18iR4KYyViX6QlEGw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4565895"
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
+   d="scan'208";a="4565895"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 08:29:05 -0800
+X-CSE-ConnectionGUID: jg/vKOpZRyOnnFZyNVYjPA==
+X-CSE-MsgGUID: 8jfKlTrXRUq3/TM9eV1kew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12216674"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.90])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 08:29:03 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915/bios: Attempt to match the VBT PnP ID
+ against DisplayID first
+In-Reply-To: <20261124224621.6506-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20261124224621.6506-1-ville.syrjala@linux.intel.com>
+ <20261124224621.6506-3-ville.syrjala@linux.intel.com>
+Date: Fri, 27 Nov 2026 18:29:00 +0200
+Message-ID: <76c590b4a6156485f96ba751b2683851871842be@intel.com>
+X-Archived-By: <archiver.kernel.org>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Fri, 27 Nov 2026 16:21:27 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,94 +66,227 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS
-	autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
+	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
-X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 1 potential
-issue to consider:
-- [Medium] drm/i915/display: unguarded intel_vrr_send_push() on joiner
-  secondary
---
+On Wed, 25 Nov 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The Windows driver policy appears to be now to first match the
+> VBT PnP ID against the DisplayID product ID block, and only if
+> there is no match (not even a partial one) then attempt to
+> match the against the EDID base block vendor/product ID.
+> Implement the same policy.
+>
+> We also need to implement the same weird scheme of just smashing
+> the first two bytes of the DisplayID three byte OUI into the
+> old EISA/PNPID field of the EDID defined structure. That is
+> then matched against the similar old EDID style structures in
+> the VBT.
+>
+> Smoke tested with a firmware override of EDID and VBT:
+>  [drm:get_panel_type [xe]] Panel type (VBT): 255
+>  [drm:pnpid_get_panel_type [xe]] DisplayID manufacturer name: NRA, produc=
+t code: 16826, serial number: 0, year of manufacture: 2014
+>  [drm:pnpid_get_panel_type [xe]] DisplayID raw product id: ba 41 ba 41 00=
+ 00 00 00 00 18
+>  [drm:get_panel_type [xe]] Panel type (PNPID DisplayID): 3
+>  [drm:pnpid_get_panel_type [xe]] EDID manufacturer name: SDC, product cod=
+e: 16826, serial number: 65441, year of manufacture: 2024
+>  [drm:pnpid_get_panel_type [xe]] EDID raw product id: 4c 83 ba 41 a1 ff 0=
+0 00 00 22
+>  [drm:get_panel_type [xe]] Panel type (fallback): 0
+>  [drm:get_panel_type [xe]] Selected panel type (PNPID DisplayID): 3
+>
+> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/8969
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bios.c | 81 ++++++++++++++++++-----
+>  1 file changed, 63 insertions(+), 18 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index b77d1599482a..5b0fc87e7673 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -684,27 +684,22 @@ static int vbt_get_panel_type(struct intel_display =
+*display,
+>  }
+>=20=20
+>  static int pnpid_get_panel_type(struct intel_display *display,
+> -				const struct intel_bios_encoder_data *devdata,
+> -				const struct drm_edid *drm_edid, bool use_fallback)
+> +				const struct drm_edid_product_id *product_id,
+> +				const char *source)
+>  {
+>  	const struct bdb_lfp_data *data;
+>  	const struct bdb_lfp_data_ptrs *ptrs;
+> -	struct drm_edid_product_id product_id, product_id_nodate;
+> +	struct drm_edid_product_id product_id_nodate;
+>  	struct drm_printer p;
+>  	int i, best =3D -1;
+>=20=20
+> -	if (!drm_edid)
+> -		return -1;
+> +	p =3D drm_dbg_printer(display->drm, DRM_UT_KMS, source);
+> +	drm_edid_print_product_id(&p, product_id, true);
 
-commit 05528a5f86f8437e1527e9f06b9d3d7e6f314404
-Author: Mika Kahola <mika.kahola@intel.com>
+This will now print the wrong year for DisplayID, off by 10 years.
 
-drm/i915/display: Leave the PSR frame change to the joiner primary
+[Unprintable words about not learning anything from Y2K.]
 
-This commit skips intel_vrr_send_push() and intel_psr_wait_for_idle_dsb()
-on a joiner secondary CRTC in intel_atomic_dsb_finish() when the joiner
-primary CRTC is part of the same atomic commit.
+I'm beginning to think we should have a separate struct that's not
+__packed or serialized, which can be initialized from either EDID or
+DisplayID. And have drm_edid_print_product_id() operate on that. But
+maybe it's a bit too much for this now.
 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index 19caae633d29f..f9d0a5972feb4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -7649,6 +7649,11 @@ static void intel_atomic_dsb_finish(struct intel_a=
-tomic_state *state,
-> =20
->  	if (new_crtc_state->commit_type =3D=3D INTEL_COMMIT_DSB &&
->  	    !intel_color_uses_chained_dsb(new_crtc_state)) {
-> +		struct intel_crtc *primary_crtc =3D intel_primary_crtc(new_crtc_state);
-> +		/* One transcoder: the joiner primary pushes and waits for PSR */
-> +		bool via_primary =3D primary_crtc !=3D crtc &&
-> +			intel_atomic_get_new_crtc_state(state, primary_crtc);
+The EDID spec says the year is mandatory. The DisplayID spec says 0x00
+is a reserved value, but also contradicts itself by saying, "If the Year
+of Manufacture/Model Year field is not used, the byte would be cleared
+to all 0s."
+
+One approach is to make drm_edid_print_product_id() treat zero week and
+year as "not specified", basically incorrectly reporting displays
+manufactured in the year 1990. And then printing product_id_nodate
+here. Possibly an acceptable compromise?
+
+I don't know. It's a mess.
+
+>=20=20
+> -	drm_edid_get_product_id(drm_edid, &product_id);
+> -
+> -	product_id_nodate =3D product_id;
+> +	product_id_nodate =3D *product_id;
+>  	product_id_nodate.week_of_manufacture =3D 0;
+>  	product_id_nodate.year_of_manufacture =3D 0;
+>=20=20
+> -	p =3D drm_dbg_printer(display->drm, DRM_UT_KMS, "EDID");
+> -	drm_edid_print_product_id(&p, &product_id, true);
+> -
+>  	ptrs =3D bdb_find_section(display, BDB_LFP_DATA_PTRS);
+>  	if (!ptrs)
+>  		return -1;
+> @@ -718,7 +713,7 @@ static int pnpid_get_panel_type(struct intel_display =
+*display,
+>  			get_lfp_pnp_id(data, ptrs, i);
+>=20=20
+>  		/* full match? */
+> -		if (!memcmp(vbt_id, &product_id, sizeof(*vbt_id)))
+> +		if (!memcmp(vbt_id, product_id, sizeof(*vbt_id)))
+>  			return i;
+>=20=20
+>  		/*
+> @@ -733,6 +728,48 @@ static int pnpid_get_panel_type(struct intel_display=
+ *display,
+>  	return best;
+>  }
+>=20=20
+> +static int pnpid_edid_get_panel_type(struct intel_display *display,
+> +				     const struct intel_bios_encoder_data *devdata,
+> +				     const struct drm_edid *drm_edid, bool use_fallback)
+> +{
+> +	struct drm_edid_product_id product_id;
 > +
->  		/*
->  		 * Dsb wait vblank may or may not skip. Let's remove it for PSR
->  		 * trans push case to ensure we are not waiting two vblanks
-> @@ -7656,7 +7661,8 @@ static void intel_atomic_dsb_finish(struct intel_at=
-omic_state *state,
->  		if (!intel_psr_use_trans_push(new_crtc_state))
->  			intel_dsb_wait_vblanks(new_crtc_state->dsb_commit, 1);
-> =20
-> -		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
-> +		if (!via_primary)
-> +			intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
-> =20
->  		/*
->  		 * Wait for idle is needed for corner case where PSR HW
-> @@ -7665,8 +7671,9 @@ static void intel_atomic_dsb_finish(struct intel_at=
-omic_state *state,
->  		 * here for both Frame Change mechanism (trans push
->  		 * and register write).
->  		 */
-> -		intel_psr_wait_for_idle_dsb(new_crtc_state->dsb_commit,
-> -					    new_crtc_state);
-> +		if (!via_primary)
-> +			intel_psr_wait_for_idle_dsb(new_crtc_state->dsb_commit,
-> +						    new_crtc_state);
+> +	if (!drm_edid)
+> +		return -1;
+> +
+> +	drm_edid_get_product_id(drm_edid, &product_id);
+> +
+> +	return pnpid_get_panel_type(display, &product_id, "EDID");
+> +}
+> +
+> +static int pnpid_displayid_get_panel_type(struct intel_display *display,
+> +					  const struct intel_bios_encoder_data *devdata,
+> +					  const struct drm_edid *drm_edid, bool use_fallback)
+> +{
+> +	struct drm_displayid_product_id displayid_id;
+> +	struct drm_edid_product_id product_id;
+> +
+> +	if (!drm_edid)
+> +		return -1;
+> +
+> +	drm_displayid_get_product_id(drm_edid, &displayid_id);
 
-[Severity: Medium]
-Should intel_crtc_is_joiner_secondary() be checked directly inside
-intel_vrr_send_push() and intel_psr_wait_for_idle_dsb() (similar to
-intel_psr2_program_trans_man_trk_ctl())?
+Having this return a value based on whether the product id was found or
+not would indeed be useful.
 
-Guarding the calls only in this branch leaves two other commit paths
-calling intel_vrr_send_push() on the joiner secondary:
+> +
+> +	/*
+> +	 * Only the first two bytes of the OUI get
+> +	 * smashed into the old EISA/PNPID field, and
+> +	 * that gets matched against what's in the VBT.
+> +	 */
+> +	product_id.manufacturer_name =3D
+> +		cpu_to_be16((displayid_id.vendor_id[0] << 8) |
+> +			    displayid_id.vendor_id[1]);
 
-1. When intel_color_uses_chained_dsb() is true (such as LUT updates on
-   DISPLAY_VER =3D=3D 20), intel_color_prepare_commit() still calls
-   intel_vrr_send_push(crtc_state->dsb_color, crtc_state) on the
-   secondary's color DSB.
-2. On INTEL_COMMIT_MMIO commits, skl_commit_modeset_enables() commits
-   pipes in reverse order, so intel_pipe_update_end() on the joiner
-   secondary calls intel_vrr_send_push(NULL, new_crtc_state) and
-   triggers the PSR frame change on the shared primary transcoder before
-   the primary CRTC has programmed PSR2_MAN_TRK_CTL or armed its planes.
+I'll take your word for this.
 
-Since intel_joiner_add_affected_crtcs() always adds all joined pipes to
-the atomic state, bailing out on intel_crtc_is_joiner_secondary() inside
-intel_vrr_send_push() and intel_psr_wait_for_idle_dsb() would cover all
-commit paths.
+Apart from the comments, everything else looks good,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> +	product_id.product_code =3D displayid_id.product_code;
+> +	product_id.serial_number =3D displayid_id.serial_number;
+> +	product_id.week_of_manufacture =3D displayid_id.week_of_manufacture;
+> +	product_id.year_of_manufacture =3D displayid_id.year_of_manufacture;
+> +
+> +	return pnpid_get_panel_type(display, &product_id, "DisplayID");
+> +}
+> +
+>  static int fallback_get_panel_type(struct intel_display *display,
+>  				   const struct intel_bios_encoder_data *devdata,
+>  				   const struct drm_edid *drm_edid, bool use_fallback)
+> @@ -743,7 +780,8 @@ static int fallback_get_panel_type(struct intel_displ=
+ay *display,
+>  enum panel_type {
+>  	PANEL_TYPE_OPREGION,
+>  	PANEL_TYPE_VBT,
+> -	PANEL_TYPE_PNPID,
+> +	PANEL_TYPE_PNPID_DISPLAYID,
+> +	PANEL_TYPE_PNPID_EDID,
+>  	PANEL_TYPE_FALLBACK,
+>  };
+>=20=20
+> @@ -766,9 +804,13 @@ static int get_panel_type(struct intel_display *disp=
+lay,
+>  			.name =3D "VBT",
+>  			.get_panel_type =3D vbt_get_panel_type,
+>  		},
+> -		[PANEL_TYPE_PNPID] =3D {
+> -			.name =3D "PNPID",
+> -			.get_panel_type =3D pnpid_get_panel_type,
+> +		[PANEL_TYPE_PNPID_DISPLAYID] =3D {
+> +			.name =3D "PNPID DisplayID",
+> +			.get_panel_type =3D pnpid_displayid_get_panel_type,
+> +		},
+> +		[PANEL_TYPE_PNPID_EDID] =3D {
+> +			.name =3D "PNPID EDID",
+> +			.get_panel_type =3D pnpid_edid_get_panel_type,
+>  		},
+>  		[PANEL_TYPE_FALLBACK] =3D {
+>  			.name =3D "fallback",
+> @@ -792,8 +834,11 @@ static int get_panel_type(struct intel_display *disp=
+lay,
+>  	if (is_panel_type_valid(panel_types[PANEL_TYPE_OPREGION].panel_type))
+>  		i =3D PANEL_TYPE_OPREGION;
+>  	else if (is_panel_type_pnp(panel_types[PANEL_TYPE_VBT].panel_type) &&
+> -		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID].panel_type))
+> -		i =3D PANEL_TYPE_PNPID;
+> +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID_DISPLAYID].panel_typ=
+e))
+> +		i =3D PANEL_TYPE_PNPID_DISPLAYID;
+> +	else if (is_panel_type_pnp(panel_types[PANEL_TYPE_VBT].panel_type) &&
+> +		 is_panel_type_valid(panel_types[PANEL_TYPE_PNPID_EDID].panel_type))
+> +		i =3D PANEL_TYPE_PNPID_EDID;
+>  	else if (is_panel_type_valid(panel_types[PANEL_TYPE_VBT].panel_type))
+>  		i =3D PANEL_TYPE_VBT;
+>  	else
 
 --=20
-Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261127160235.3208=
-777-1-mika.kahola@intel.com?part=3D1
+Jani Nikula, Intel
