@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B394606A334
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48435606A333
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 06:10:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QaUz9vGy
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Wh5y2Mtb
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0694011234C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 013E4112346;
 	Fri, 27 Nov 2026 06:10:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3398E11228E;
- Fri, 27 Nov 2026 06:10:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C853112264;
+ Fri, 27 Nov 2026 06:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795759808; x=1827295808;
+ t=1795759810; x=1827295810;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zhHCvhmfNdqEpb9wUIm9t1FgGVdoDyy0xTgfcrFGULc=;
- b=QaUz9vGyBCjJpFFF/aP0T44EO4kl/EPFW8dMN3mnwY+vX7x6RASky7ep
- O5eupnafHToZ/EijgJ2M63/Dm3wPd4UVCDBNS7IKIGLVHxePFPReXEs+D
- Ab1p3u8llc4i/ae5DSqfRB2qZWam3ttCkl7j8lV2ddr4UkAKvLq15CLG6
- 0kInDaBMoC+p3pdYZ6UEBn24solUN6UQpDJ0YQlBnFGnQdQJaJ4rpCm3R
- mNi6JZ7NuhwjSNMyD3Pt/mNgPI93nA7u9lNXa7oyAjEFFAxHcUsSNTpiL
- IAFfysOeq/c3mGmqiO0MezhgtLoWDqxLCWhU/nUelDpyFx2GcvVy1Sv4S w==;
-X-CSE-ConnectionGUID: QVRGNjhqR96kEFZPiU/XYA==
-X-CSE-MsgGUID: 74iyfbzaSG2eGaMrDayW9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4578273"
+ bh=welRAEcaUgIRsGO38TJbseCr+cXM6xTsXPSQIK+Miw4=;
+ b=Wh5y2MtbKtOxJgewQvY3j2Tk+bSlbugmimdW8q3sF7mA3QiriH+mx4Ms
+ ERAoelmfK66eko4Ximb+v9rbvCBtRmQoFw5ZWx0+SPqfbcdvTY9tL98zj
+ AcsI5RTE7VPevPPeWdlJoq2z+G/IDamVxUyHr90+TIHM48A3C7alpNFbB
+ 6Mj5uFbaFmvHiwrtFOw6rZzzw0j0Lxosu+i5ylK6pYpAZUDvVeGrNqEYA
+ YqxPo54WQdmlqSwBZmvwaiwjkfZv912c34RcpGYAypWpHiOIY8ILXioSg
+ HzhFnqdFrWMnBaQWvWd5wMJZyMVIOwdxXm38cErtYpRa9Q3QXMf/wa7jo Q==;
+X-CSE-ConnectionGUID: gL3KceeSSk2qCGWmohobgA==
+X-CSE-MsgGUID: siigqEehRxmA3ZDOk9CtFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4578275"
 X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; 
-   d="scan'208";a="4578273"
+   d="scan'208";a="4578275"
 Received: from fmviesa013.fm.intel.com ([10.60.135.153])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Nov 2026 22:10:08 -0800
-X-CSE-ConnectionGUID: 2vxcSqqSTFajo/CGx5oeEw==
-X-CSE-MsgGUID: hvMrswkPT+26U2RCg+A7wg==
+ 26 Nov 2026 22:10:10 -0800
+X-CSE-ConnectionGUID: KShQh4slQlaZ8h+6+9j4Ag==
+X-CSE-MsgGUID: sJdZ8IvBQPu49SMMWo4wCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; d="scan'208";a="14361968"
+X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; d="scan'208";a="14361973"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa013.fm.intel.com with ESMTP; 26 Nov 2026 22:10:05 -0800
+ by fmviesa013.fm.intel.com with ESMTP; 26 Nov 2026 22:10:07 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, uma.shankar@intel.com,
  chaitanya.kumar.borah@intel.com, jani.nikula@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 14/18] drm/i915/pipelock: Equalize the guardband across a
- pipelock group
-Date: Fri, 27 Nov 2026 11:39:20 +0530
-Message-Id: <20261127060924.1648295-15-suraj.kandpal@intel.com>
+Subject: [PATCH v2 15/18] drm/i915/dp: Apply link training fallback to the
+ whole tile group
+Date: Fri, 27 Nov 2026 11:39:21 +0530
+Message-Id: <20261127060924.1648295-16-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261127060924.1648295-1-suraj.kandpal@intel.com>
 References: <20261127060924.1648295-1-suraj.kandpal@intel.com>
@@ -72,136 +72,83 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Pipelock needs the same VRR guardband on all the transcoders in the
-group, as the frame sync is sent at the start of the guardband. The
-optimized guardband is computed per CRTC though, and can differ
-between tiles, for instance when their pipes don't have the same
-number of scalers. That would make us give up on syncing the tiles.
+Link training fallback only limits the link of the connector that
+failed. The next modeset then trains that tile at a lower rate than
+the others, and the tiles can no longer be pipelocked together.
 
-Instead, once the group is known, raise the guardband of each tile to
-the largest one in its group. The tiles have the same timings, so that
-guardband fits all of them. Compute the group before the DP late
-config, so that the SDP transmission lines, which are relative to the
-guardband, are computed from the final value.
+When a tile that can be pipelocked falls back, apply the same max link
+limits to the other tiles in its group, so they all retrain with the
+same link config and stay locked. Only update the tiles that are part
+of the commit, as their link caps are serialized against detect by
+waiting for this commit.
 
-Bspec: 73521
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
 v1 -> v2:
-- Check hw.enable before using cpu_transcoder (Sashiko)
-- Use transcoder_mask and intel_vrr_set_guardband() (Jani)
+- Only update the tiles in the atomic state (Sashiko)
 
- drivers/gpu/drm/i915/display/intel_ddi.c      | 12 +++-----
- drivers/gpu/drm/i915/display/intel_pipelock.c | 30 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_pipelock.h |  5 +++-
- 3 files changed, 36 insertions(+), 11 deletions(-)
+ .../drm/i915/display/intel_dp_link_training.c | 34 +++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index cbfb61737ff0..44816b701434 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4716,13 +4716,6 @@ static int intel_ddi_compute_config_late(struct intel_atomic_state *state,
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct drm_connector *connector = conn_state->connector;
- 	u16 port_sync_transcoder_mask = 0;
--	int ret = 0;
--
--	if (intel_crtc_has_dp_encoder(crtc_state))
--		ret = intel_dp_compute_config_late(encoder, crtc_state, conn_state);
--
--	if (ret)
--		return ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+index 1efc78b329a6..b1154bc94148 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+@@ -43,6 +43,7 @@
+ #include "intel_hotplug.h"
+ #include "intel_modeset_lock.h"
+ #include "intel_panel.h"
++#include "intel_pipelock.h"
+ #include "intel_psr.h"
  
- 	drm_dbg_kms(display->drm, "[ENCODER:%d:%s] [CRTC:%d:%s]\n",
- 		    encoder->base.base.id, encoder->base.name,
-@@ -4749,7 +4742,10 @@ static int intel_ddi_compute_config_late(struct intel_atomic_state *state,
- 	}
- 
- 	if (HAS_PIPELOCK(display))
--		intel_pipelock_compute_config(crtc_state);
-+		intel_pipelock_compute_config(state, crtc_state, port_sync_transcoder_mask);
-+
-+	if (intel_crtc_has_dp_encoder(crtc_state))
-+		return intel_dp_compute_config_late(encoder, crtc_state, conn_state);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_pipelock.c b/drivers/gpu/drm/i915/display/intel_pipelock.c
-index 9e70683f75a6..54bd3f73bb72 100644
---- a/drivers/gpu/drm/i915/display/intel_pipelock.c
-+++ b/drivers/gpu/drm/i915/display/intel_pipelock.c
-@@ -8,6 +8,7 @@
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_print.h>
- 
-+#include "intel_display.h"
- #include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_dp.h"
-@@ -138,14 +139,39 @@ bool intel_pipelock_compatible(const struct intel_crtc_state *crtc_state1,
- 		crtc_state1->vrr.vmin == crtc_state2->vrr.vmin &&
- 		crtc_state1->vrr.vmax == crtc_state2->vrr.vmax &&
- 		crtc_state1->vrr.flipline == crtc_state2->vrr.flipline &&
--		crtc_state1->vrr.guardband == crtc_state2->vrr.guardband &&
- 		crtc_state1->infoframes.enable == crtc_state2->infoframes.enable &&
- 		intel_dpll_compare_hw_state(display, &crtc_state1->dpll_hw_state,
- 					    &crtc_state2->dpll_hw_state);
+ /**
+@@ -1984,6 +1985,37 @@ int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 	return err;
  }
  
--void intel_pipelock_compute_config(struct intel_crtc_state *crtc_state)
-+static int pipelock_group_guardband(struct intel_atomic_state *state, u16 transcoder_mask)
- {
-+	const struct intel_crtc_state *crtc_state;
-+	struct intel_crtc *crtc;
-+	int guardband = 0;
-+
-+	for_each_new_intel_crtc_in_state(state, crtc, crtc_state) {
-+		if (crtc_state->hw.enable &&
-+		    transcoder_mask & BIT(crtc_state->cpu_transcoder))
-+			guardband = max_t(int, guardband, crtc_state->vrr.guardband);
-+	}
-+
-+	return guardband;
-+}
-+
-+void intel_pipelock_compute_config(struct intel_atomic_state *state,
-+				   struct intel_crtc_state *crtc_state,
-+				   u16 transcoder_mask)
++static void intel_dp_tile_group_fallback(struct intel_atomic_state *state,
++					 struct intel_dp *intel_dp)
 +{
-+	int guardband;
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct intel_connector *connector = intel_dp->attached_connector;
++	struct intel_digital_connector_state __maybe_unused *conn_state;
++	struct intel_dp_link_config max_link_limits;
++	struct intel_connector *iter;
++	int i;
 +
-+	if (!transcoder_mask)
++	if (!intel_pipelock_connector_possible(connector))
 +		return;
 +
-+	guardband = pipelock_group_guardband(state, transcoder_mask);
-+	if (guardband != crtc_state->vrr.guardband)
-+		intel_vrr_set_guardband(crtc_state, guardband);
++	intel_dp_link_caps_get_max_limits(intel_dp->link.caps, &max_link_limits);
 +
- 	if (crtc_state->sync_primary_transcoder == INVALID_TRANSCODER)
- 		return;
++	for_each_new_intel_connector_in_state(state, iter, conn_state, i) {
++		struct intel_dp *iter_dp;
++
++		if (iter == connector || !intel_pipelock_connector_possible(iter) ||
++		    iter->base.tile_group != connector->base.tile_group)
++			continue;
++
++		iter_dp = intel_attached_dp(iter);
++
++		if (!intel_dp_link_caps_set_max_limits(iter_dp->link.caps, &max_link_limits))
++			drm_dbg_kms(display->drm,
++				    "[CONNECTOR:%d:%s] Can't limit link to match tile group\n",
++				    iter->base.base.id, iter->base.name);
++	}
++}
++
+ static bool intel_dp_schedule_fallback_link_training(struct intel_atomic_state *state,
+ 						     struct intel_dp *intel_dp,
+ 						     const struct intel_crtc_state *crtc_state)
+@@ -2003,6 +2035,8 @@ static bool intel_dp_schedule_fallback_link_training(struct intel_atomic_state *
+ 		return false;
+ 	}
  
-diff --git a/drivers/gpu/drm/i915/display/intel_pipelock.h b/drivers/gpu/drm/i915/display/intel_pipelock.h
-index b75efa71a831..76a435d9809b 100644
---- a/drivers/gpu/drm/i915/display/intel_pipelock.h
-+++ b/drivers/gpu/drm/i915/display/intel_pipelock.h
-@@ -8,6 +8,7 @@
++	intel_dp_tile_group_fallback(state, intel_dp);
++
+ 	/* Schedule a Hotplug Uevent to userspace to start modeset */
+ 	intel_dp_queue_modeset_retry_for_link(state, encoder, crtc_state);
  
- #include <linux/types.h>
- 
-+struct intel_atomic_state;
- struct intel_connector;
- struct intel_crtc_state;
- 
-@@ -16,6 +17,8 @@ bool intel_pipelock_possible(const struct intel_crtc_state *crtc_state,
- 			     struct intel_connector *connector);
- bool intel_pipelock_compatible(const struct intel_crtc_state *crtc_state1,
- 			       const struct intel_crtc_state *crtc_state2);
--void intel_pipelock_compute_config(struct intel_crtc_state *crtc_state);
-+void intel_pipelock_compute_config(struct intel_atomic_state *state,
-+				   struct intel_crtc_state *crtc_state,
-+				   u16 transcoder_mask);
- 
- #endif /* __INTEL_PIPELOCK_H__ */
 -- 
 2.34.1
 
