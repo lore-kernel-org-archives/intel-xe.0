@@ -2,163 +2,74 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32811606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 17:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10CED606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 17:32:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=Qw2ux6to
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=nsuxdS3n
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D5D62112C61;
-	Fri, 27 Nov 2026 17:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2573010E5FF;
+	Fri, 27 Nov 2026 17:32:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D01B2112C61
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Nov 2026 17:29:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69F3E10E0B5;
+ Fri, 27 Nov 2026 17:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795800541; x=1827336541;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=SIe7aPWEf5iGzJUnLX4SB6+gp7ZMQgmzlVH3oL/VplA=;
- b=Qw2ux6tovNx0C5Dg8dHoC6EOuAmkLMxBXMxnseXV/jvmWB82fcmnIWjy
- yKbmYAUPdAhgwJv4W+a+uU5ozE+4JrPxp3hoOQl4q4Zt4t+u1mpkemMvx
- e8BGugOsB2dSnpfKPsA28GPRWhmBLPHsb3hBDdDYy4lhXGr+6THCbaZFi
- mvHHqxSus1gYFh8kFAWUr5Me1+tVIy+F8cWllPulEWjULo4sUBNTukhpJ
- Yxz9YS01AXq6DaybQZCCgCJ2tXneNgl8iACE5ECuhpL10bhOOzQPgJgj+
- /VrFMFvKllvppTbJhvLzwKlQJYHm21mJrjvU83wh7gN1WOYWyG+KzJmqw A==;
-X-CSE-ConnectionGUID: OQdvbXZURvyJJFY29INfJw==
-X-CSE-MsgGUID: 03ZcziXeQya5RWzxgUPLcg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4682203"
+ t=1795800733; x=1827336733;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=403v+N9r70LKGzybZ6rNfYzloBRGpblAUy5gn8FRqnU=;
+ b=nsuxdS3nqaHofg1V4+w9Fk3Z9TNIfuEz3kQmbcWTk8QTTGIOFO/c820p
+ 0uKI3ter1y4FcAtS20VkjQi7gnXwXc0NcBlACDuxzwlvV8r0SXIFeWzkc
+ 6BuCT2/NEJpZyqu9Vyv5Ul1/AaP9FRZTm1/xUPQOSo20TtEwWLVlhmtQO
+ CB/tDfDOsn2J0Npn6DpPnslotXIqejfFBnEZUFgEhoScCyeklP/EoNotf
+ zGOfAjAMcldLAb0E2BznNybAaFAEZ2CRPbIikho/BjSyb5fJsaVd/PaxS
+ aWkVNFzlSJBqQzQ3dDRxrEluGrNQ2VaP5loOnNNUm+cAdGcmn+Wm71yt8 w==;
+X-CSE-ConnectionGUID: GaFQkDHmRnyQkJmtDB52Vw==
+X-CSE-MsgGUID: 9K8XY3/DSeiNBnmLPEAWVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4682476"
 X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="4682203"
+   d="scan'208";a="4682476"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 09:29:00 -0800
-X-CSE-ConnectionGUID: Z+rxlW3uTZeizBPrEOgr9g==
-X-CSE-MsgGUID: SKw3ftYmR9WUQUCLkSCsnQ==
+ 27 Nov 2026 09:32:12 -0800
+X-CSE-ConnectionGUID: Qbbi1VmfRVuDKSfk2SwWsQ==
+X-CSE-MsgGUID: yccA24n1QYuShnu9zTDLqA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12352804"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 09:29:00 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Fri, 27 Nov 2026 09:28:59 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Fri, 27 Nov 2026 09:28:59 -0800
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.13) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Fri, 27 Nov 2026 09:28:59 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LPJzKDUKJqYu7lEm+vxjdX+pCuQ/o3TuaM/ctOM+6C7p4/joHmABpMe6buUqDMOUjxKLSApBHqydquJgADLB6pVceHJaM8Y7OSIaA8uUYBjw/zu9/Q3N2zqXcdnM/QyyO3HwiIFe9xPSYtYsl1eIxhG0FEyXCvFhkNgzQ06ZtHtSDSE5vAedGTMWXqk/NiEPqluy0j+ls9uZ7VD/Nx2THATilByuCYTv/R/g/+MoiWhP+ZPvqBAbkURIcDLrVJikEnly9xetTNG9jPC67kHXUvUZw+/cvrWY75pFZuuRzTsrmax6ohF4TwMIIb35VYl0IyLYh1/2VrnUO+Znzgp+4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4MAQvAx/rytZ6guuwyHQuoisPhdh8Og3vT2w4XDUtCE=;
- b=u/lR269oYbINXRLyJa/Wpn5PTo0Xsm3J2Tu9YqtYRMicSwJFykQa7AdYz3e/uBFXxDNUaICKYppzPXEEpoP7wyweXDin5+qZ+ef8MblUo5yIAy6VvIw6O531swlExIm1t9vjt1hSYPx/I7DOrt/3ckULr/z+JaUl5m4tTm231HISFSOSkJkeeH/ggKGaVT3aXQNAK+7eyzWL1iOYp2E/D0fNJAjSo2xrcgvoiiEA4Lmkd2IrRXNSYxIc4XhPD+mqEZhfQnJ8iPUzT+cyqsq08sHKrFigT7pvT5B39gxAJ//vU6zun6er68XBNLMZdUiSLo9hPKmywzYXw32Kkc3g1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: mx.microsoft.com 1; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com (2603:10b6:408:385::5)
- by MN6PR11MB8169.namprd11.prod.outlook.com (2603:10b6:208:47d::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.7; Fri, 27 Nov
- 2026 17:28:56 +0000
-Received: from LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8]) by LV0PR11MB9792.namprd11.prod.outlook.com
- ([fe80::1b1f:d9a8:ce76:e9d8%5]) with mapi id 15.21.0662.007; Fri, 27 Nov 2026
- 17:28:55 +0000
-Message-ID: <2731c1a5-f303-45a2-8d27-40e1e39c09b7@intel.com>
-Date: Fri, 27 Nov 2026 22:58:46 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/6] drm/xe/cper: Handle CPER allocations in atomic
- context
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>,
- <matthew.brost@intel.com>
-CC: <anshuman.gupta@intel.com>, <vinay.belgaumkar@intel.com>,
- <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <sk.anirban@intel.com>,
- <raag.jadav@intel.com>, <aravind.iddamsetty@linux.intel.com>,
- <jani.nikula@linux.intel.com>, <daniele.ceraolospurio@intel.com>
-References: <20261127092914.2176025-8-mallesh.koujalagi@intel.com>
- <20261127092914.2176025-12-mallesh.koujalagi@intel.com>
-Content-Language: en-US
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <20261127092914.2176025-12-mallesh.koujalagi@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0044.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:175::8) To LV0PR11MB9792.namprd11.prod.outlook.com
- (2603:10b6:408:385::5)
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12353049"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.172])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 09:32:07 -0800
+Date: Fri, 27 Nov 2026 19:32:03 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Paul Menzel <pmenzel@molgen.mpg.de>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Antheas Kapenekakis <lkml@antheas.dev>,
+ Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] drm: panel-backlight-quirks: Add Dell XPS 9315 FHD+
+ panel
+Message-ID: <awm-k5fend6t5rQw@intel.com>
+References: <20261127164332.55148-1-pmenzel@molgen.mpg.de>
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV0PR11MB9792:EE_|MN6PR11MB8169:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2dd654d-e4e6-44c4-b28d-08df4cabe9e2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|6133799003|18002099003|22082099003|4143699003|56012099006|11063799006|261022075727099003|261022105027099003|261026140227099003|261028144727099003|261009223027099003|261021121427099003|261022113327099003|261102123227099003|261021123027099003|10067099003|261026121527099003;
-X-Microsoft-Antispam-Message-Info: R82Y575ymbbo4L3eXgPCGTqoVtfUuJsfEAiEO5CfRE/Bhv9c/GGKp/+Io/D0q/iO3nqJBTq07qmcoJl5IZcqKNQaa3h3g60ypSkQEsTNsL2A3Q81EW/jnYVcmvLtizGWIR2ugtZfMPJmn3uC48R2ieQk4f4NvizO2BoZxS/d/BeTAHSbitI0oivHn6zVO1rEBQLHtOS/5xkxwkd4Jb/2g4PDnWtMLHGXHH5LuGKLu0DtAzR81Lb9vpRcTN9VNB8OH1p7coKKJt2HwJCu3vpwPF0pJy8JJWkubF7/1SuNBfPWlwEebZ3cBVrmUakXcfu9j/fsJvM9+z5/mzCjPTh03c9UR+zJBacllEnLKRj1L09kWT/9oKKqADAABVPBqN2k+zQW5Si/XdXJNnsON930QDmKWz/1vapu4pXZtaiGA2TgUjSWUnN3INOR1AEmRFPhPXxgDQE2pilh7B+Wir4V4aqAEJDMUz76xw2gKK4FKDHIQtSDUCNuYG4YO95j12hgZqFWjnYBNEGCKf1gijh5EWUpGXfXOEEkEsDNe+8i5iKXrP79rh94D3S1D/fw32Ptt8CI/uG1bhZUCPhk+t+nh395+zIvDS2UjhI9LxhaYRsOzx0ltPXg1WZXSDEGMkcsK2GcpDMIUo0ttApOw31aYBqAnDGMZs49QHlT2We1x4k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV0PR11MB9792.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(6133799003)(18002099003)(22082099003)(4143699003)(56012099006)(11063799006)(261022075727099003)(261022105027099003)(261026140227099003)(261028144727099003)(261009223027099003)(261021121427099003)(261022113327099003)(261102123227099003)(261021123027099003)(10067099003)(261026121527099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RDEyL3BQMEVubERwZ3h6Vis0OEZNeDVDc1VMak1jTXdaaTlOVmQ5L0NnaE9p?=
- =?utf-8?B?eFdrYzB4a2NvU0dLeHdvMUl0cXNGbG96YVdhTXlHdkJpVVQwNnlQaTVuUm1X?=
- =?utf-8?B?MlVQSTVZMjZEN3JweEdUb2ZNK2w0Q1R5Rm16SjRNU0NPbHFTMTJ0bWNHekxP?=
- =?utf-8?B?Q00rVndyNW5KSjhrU0c5SEpwNldFcXRCYndhRkw4eXZaOTJqZFZzNEpVMDFN?=
- =?utf-8?B?cHZBVGsxelpubnZZMThiQ1AvcXpQaytvbEVvZjQvd25jV2YzYTJ2UEd4LzRI?=
- =?utf-8?B?UG11R3FiaUZjRGxGYWZ2SHNkenVLU0QydlBDQ2FrcC9ONE1aNitDcTBKQ0Iz?=
- =?utf-8?B?OWhIMkVJa3FTeU9XdmJyVWtXUjJ5QXZBaGVjS1puZXUralRsMGg3UW9Fb1VC?=
- =?utf-8?B?N3A3M2pkM0ZwN291QlVXalZCUmdkRDkzR05TRll0WWl4ZHM5bTVOdDdmWGpU?=
- =?utf-8?B?ejd5TWtNS242UjlVSitnWUpkSmZxWGZ4bGR4WGcrcmhiWHpENlJGOE9YTHpO?=
- =?utf-8?B?TW9OYzhMajFYREQxSHFFVk44dklZeHo3c1FhNEdKV0kvMkJJOWZYQXBKc29y?=
- =?utf-8?B?SUFxTmpIa2lDTzg1NWNWOWJYcHE5WURQZ3RjRE1Fam9YS0k1RWRkd1IwWGc4?=
- =?utf-8?B?dU9jNDhVN0JmdHgybmRUeEx3U29SY3FyUjRwSlo0Yk1CMGIrVXNTUjFQaHFX?=
- =?utf-8?B?Zjh2amo1VHY0cXV4YkhvdzZRWlgyUU5FZVd2eC9jYXZQb3MxSHlnS3gxZWFl?=
- =?utf-8?B?bjJkc3RiTWFWWkZ5L1NzSGlHTW1DYlRaR1dybTF5ZTF3ZlRFd3FPcUdiUzB3?=
- =?utf-8?B?ak1NWVpsYlh5eEh5Y0xLUkRib0VIU29QMVVVRFFUSnJVSG9ORDd4dldlSVk3?=
- =?utf-8?B?bXM5MHNoTi91T1ZCenFMU2hsdnNRUk16OVR0OFFJZVhEM09xYnJxTTB0Vkdk?=
- =?utf-8?B?VGFCREdvdEh4QWlsM3EwVWlRL3pPUlpxT1RKbzJnbWtRNlFoek1EOHplRU1z?=
- =?utf-8?B?aVAxb1BYR2JnQlVEYU9nYkFTT21jY04rNEN4L3ZnS2FMUDlLek40S2srUkVl?=
- =?utf-8?B?Vy9yVExXQVRFK0lqL0p3dmFuS2VqWVI0RXlWbDExZGt5cHlXOTQ3bXhlSDBr?=
- =?utf-8?B?RFk5U0IrQjYzTGY5TWlQMjg3azJrYVFMcGpIL01FREtQa2dpOEdvY3lKQzQ2?=
- =?utf-8?B?dGRqMW0vY2Jwb2MvWlREMWQwWFJwMkUxQVhsLzVOR3Q0eGpkVmhidW8xMFhV?=
- =?utf-8?B?M2NVMmdxSmhkKzRyakZDZ0JLZXl0L0dqUGt3eGVxWXVXbWtlbExkL05zWVhM?=
- =?utf-8?B?TlRyRmUyN3pWQ1BOOGJoM0RqemlaOTVTbjJJdEljaWh4cHo0elVvOEVsTGk5?=
- =?utf-8?B?REdYcHlRaGRFTDRsM1dJaUo3dTJOTm85aCswbGFUSkhYcWZuaW45QUp2SGZr?=
- =?utf-8?B?TVdlMEM1bXozNnJCRklSUVhYSGRUOEF1Lzl2MWpQbFFSRUFibndFUHIxSElr?=
- =?utf-8?B?YWY2bWNyS2F2dFpCOURwbno3d1E3eEpmNjdmNy8wdGwxaG1jZSthbWdZU3Ro?=
- =?utf-8?B?VEo4S3JKSFpXRkUwa2FJdG9ZWkZkbXZnTm9BdXZZcnJCZWpCdW1ldHZNRnBF?=
- =?utf-8?B?QWR5NzRnVUNkSFMycXFUSUtwdHRLc2toVlllRWQrQy93OUJNSVRVSTAwNldM?=
- =?utf-8?B?dS94bDN3WXVkTXU3S2JYbmJNTzVkZ3VEVmQ4bXh3YUxDelVFNzNSeTRRY1oz?=
- =?utf-8?B?bkFpcXNiUndqMUNlSUdGNzB0dk9NeWkvUWN0Mms0RWEvdUNUcjJkemJLLzB3?=
- =?utf-8?B?Y2EwWG9zUW1JeFZialJRSGVNbnZ1d3QwT0tzRmNoVnVWRHZ1S0FROUhXdVBw?=
- =?utf-8?B?V1Y3UGUrRnpZbDlZZ3pwNjBXUUNEYk5kUkk1ckg4Ry84ZzcvM2tQYStwU3p0?=
- =?utf-8?B?YXQ4VGNaRllhV3NWczEzaEVKZ1V0M09CNGpKbnhlTnpJVXVESjFuUWxvYVBU?=
- =?utf-8?B?WTMwVXFITEgybFduQkpFNXMyV3hYdEhlSDQrZWxXK0FJR1dCVzRxc05rUEE0?=
- =?utf-8?B?Q2oyZnlCR0JmQ0Z6L095ekRnV0lkb3Y3TmZ1Y0daRlZCY2s0MHVtUlhsRmRO?=
- =?utf-8?B?MWFVR3F0OVp2eEtobnFuemVwc1JTQUpXb3dTRkp1clUrWk0vVVJPNzZyYW9X?=
- =?utf-8?B?dFNnVXo3a3lzUGpyQTNmV09uTTVOeE42YjJPZ1NJUkFaWnV0b1BVdUtxN1BQ?=
- =?utf-8?B?MU5yU3BvZnRNL01lL1hoN1k4dVg4QmlHM3RPV0c0WnN1YVdpSmFMS1lhWGZ4?=
- =?utf-8?B?RzZyait6RzltdzltT2NZMU5GQTJ3YUJNTVZxaVR5V29uNkdCSkVIQT09?=
-X-Exchange-RoutingPolicyChecked: Dui6mT8XA9ET+t6j88vZzQ/t37zRFvqdLd5gBvqTHBoR1zstOnPR7PIQYms0QoxrMuz4fJ1D7UU23otmHoAJu53FpSlWRUAPXwR0P2uUVpQL8zaPhTMV4PrbWNXSNU+1MqxxG1w9fPYwzASsA1UttXH4n7xAnAH7hiud+Xvm2RI4im14CsGlJeD+giFfkUxxWfMuaWfv1mlYrYgpaLgD8AANyK7vg8JpNZlsXczvA+M1iabeaYDr5cRL1CwloiPw8ZHp8WfR1pr6/+4j5v9Bo54nipkb8RwWr9Kq+pZ2jKakwfdgzaZi3iOynVoyJhjliRx6awXaYIUm6MY81+DR2w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2dd654d-e4e6-44c4-b28d-08df4cabe9e2
-X-MS-Exchange-CrossTenant-AuthSource: LV0PR11MB9792.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 17:28:55.8247 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: itbaLPWJE7fGKFpPlzF6kqBHH35NXU/f/iS3nxaXasSbuwsteFu4fLKxeAZZdlHxVpMBBr/qQH4fyQIL1x1zrg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8169
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20261127164332.55148-1-pmenzel@molgen.mpg.de>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,108 +80,93 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-17.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS,USER_AGENT_SANE_1 autolearn=ham autolearn_force=no
-	version=4.0.1
+X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,
+	MENTIONS_GIT_HOSTING,SPF_HELO_NONE,SPF_PASS autolearn=unavailable
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
+On Fri, Nov 27, 2026 at 05:43:29PM +0100, Paul Menzel wrote:
+> The Dell XPS 9315 (BIOS 1.26.0, VBT BDB 253, panel_type 14) has the
+> same problem as the XPS 13 9310: the VBT sets the backlight minimum
+> level to 15/255, while the other 15 panel entries say 6/255.
 
-On 27-11-2026 14:59, Mallesh Koujalagi wrote:
-> Software CPER records are emitted through xe_log_*() helpers. Those
-> helpers can be called from both sleepable and atomic contexts, such as
-> IRQ handlers or while holding spinlocks.
->
-> Software CPER record generation uses kvasprintf() and kzalloc(), which
-> cannot determine the caller's context. Using GFP_KERNEL from atomic
-> context may trigger sleeping-in-atomic warnings and potentially
-> deadlocks.
->
-> Add a GFP argument to xe_cper_emit() and introduce xe_log_*_atomic()
-> helpers. That allows sleepable callers to use GFP_KERNEL while atomic
-> callers use GFP_ATOMIC allocation flags, ensuring CPER records can be
-> emitted safely in all contexts without relying on a single GFP_NOWAIT
-> allocation policy.
->
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: Badal Nilawar <badal.nilawar@intel.com>
-> Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+I have no idea from that description to see what age machine 
+that is so hard to say what applies here, but please try
+https://lore.kernel.org/intel-gfx/20261124224621.6506-1-ville.syrjala@linux.intel.com/
+
+The other potentially relevant thing I have is
+https://github.com/vsyrjala/linux/tree/bclm_bcm_backlight_remap_2
+though I haven't checked to see how the minimum level thing
+in the VBT is supposed to be used with that, or in general
+these days. As in "what does Windows do with it?"
+
+Please file a bug for this, and attach the boot dmesg with 
+drm.debug=0xep passed to the kernel cmdline, and also attach
+copies of /sys/kernel/debug/dri/0/i915_vbt and
+/sys/class/drm/card0-eDP-1/edid
+
+> With GNOME
+> at its lowest slider position (1 % of max_brightness) the PWM duty
+> cycle is 6.8 %:
+> 
+>     $ cat /sys/class/backlight/intel_backlight/{max_brightness,brightness}
+>     96000
+>     960
+>     $ sudo intel_reg read 0xC8254 0xC8258    # BXT_BLC_PWM_FREQ/DUTY(0)
+>                                         (0x000c8254): 0x00017700
+>                                         (0x000c8258): 0x00001997
+> 
+> The panel is a Sharp LQ134N1 with a different product code
+> (EDID SHP 0x1548) than the one in the XPS 13 9310. Writing the duty
+> cycle register directly, 6.8 % is still well readable at the lowest position,
+> and even 1 % is a little brighter than wanted; the panel is usable
+> down to 0.25 %.
+> 
+> Add a quirk setting the minimum to 0/255 for this system and panel,
+> so that GNOME’s lowest position becomes 1 %. Note that the DMI product
+> name is "XPS 9315", without "13".
+> 
+> Tested on the Dell XPS 9315 (BIOS 1.26.0) with v7.4-rc4 + this series:
+> "[CONNECTOR:676:eDP-1] Applying panel backlight quirk, min brightness 0/255
+> (VBT 15/255)", GNOME lowest position gives PWM duty 960/96000 (1 %), was
+> 6551 (6.8 %). The eye test values (0.25 % wanted) were set with intel_reg.
+> 
+> Signed-off-by: Paul Menzel <pmenzel@molgen.mpg.de>
 > ---
-> v3:
-> - Handle atomic context when SIGIDs are logged. (Sashiko)
->
-> v4:
-> - Add can_sleep bool parameter in per_record_emit. (Badal)
->
-> v5:
-> - Move gfp variable where it's used.
->
-> v6:
-> - Pass gfp_t directly. (Badal)
->
-> v7:
-> - Update commit message. (Badal)
-> - Remove dropped variable from xe_cper structure.
-> - Use only GFP_NOWAIT.
-> ---
->   drivers/gpu/drm/xe/xe_cper.c | 12 +++++++-----
->   1 file changed, 7 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-> index 9161f2b52e9b..10a4085d47f0 100644
-> --- a/drivers/gpu/drm/xe/xe_cper.c
-> +++ b/drivers/gpu/drm/xe/xe_cper.c
-> @@ -183,7 +183,7 @@ static void cper_init_section_desc(struct xe_device *xe, u8 severity,
->   static void cper_record_emit(struct xe_device *xe, u8 severity,
->   			     const guid_t *notification_type,
->   			     const struct xe_cper_intel_hdr *ihdr,
-> -			     const void *einfo, u32 einfo_len)
-> +			     const void *einfo, u32 einfo_len, gfp_t gfp)
->   {
->   	struct cper_section_descriptor *sdesc;
->   	struct xe_cper_nonstd_record *rec;
-> @@ -191,7 +191,7 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
->   	u32 total_len;
->   
->   	total_len = sizeof(struct xe_cper_nonstd_record) + einfo_len;
-> -	rec = kzalloc(total_len, GFP_KERNEL);
-> +	rec = kzalloc(total_len, gfp);
->   	if (!rec)
->   		return;
->   
-> @@ -477,7 +477,7 @@ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigi
->   				    entries[i].einfo_size, &ihdr);
->   
->   		cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
-> -				 entries[i].einfo, entries[i].einfo_size);
-> +				 entries[i].einfo, entries[i].einfo_size, GFP_KERNEL);
->   	}
->   
->   	free_info_arr(info_arr, num_entries);
-> @@ -511,7 +511,8 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
->   	char *msg;
->   	size_t msg_len;
->   
-> -	msg = kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
-> +	/* TODO: Handle xe_log_* helper function for atomic context */
-> +	msg = kvasprintf(GFP_NOWAIT, vaf->fmt, *vaf->va);
->   	if (!msg)
->   		xe_warn(xe, "Failed to allocate CPER message\n");
->   
-> @@ -525,7 +526,8 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
->   	timestamp = ktime_get_real_ns();
->   
->   	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, msg_len, &ihdr);
-> -	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len);
-> +	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len,
-> +			 GFP_NOWAIT);
+> 
+> Notes:
+>     
+>     Prepared with Claude Code (claude-opus-5-5).
+> 
+>  drivers/gpu/drm/drm_panel_backlight_quirks.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_panel_backlight_quirks.c b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> index 85c2ef791d116..1d959a31562e6 100644
+> --- a/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> +++ b/drivers/gpu/drm/drm_panel_backlight_quirks.c
+> @@ -62,6 +62,15 @@ static const struct drm_get_panel_backlight_quirk drm_panel_min_backlight_quirks
+>  		.ident.panel_id = drm_edid_encode_panel_id('S', 'H', 'P', 0x14f9),
+>  		.quirk = { .min_brightness = 1, },
+>  	},
+> +	/* Dell XPS 9315 FHD+ panel, VBT minimum 15/255 is too bright */
+> +	{
+> +		.dmi_match.field = DMI_SYS_VENDOR,
+> +		.dmi_match.value = "Dell Inc.",
+> +		.dmi_match_other.field = DMI_PRODUCT_NAME,
+> +		.dmi_match_other.value = "XPS 9315",
+> +		.ident.panel_id = drm_edid_encode_panel_id('S', 'H', 'P', 0x1548),
+> +		.quirk = { .min_brightness = 1, },
+> +	},
+>  	/* Steam Deck models */
+>  	{
+>  		.dmi_match.field = DMI_SYS_VENDOR,
+> -- 
+> 2.54.0
 
-Looks good to me.
-
-Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-
->   	kfree(msg);
->   }
->   
+-- 
+Ville Syrjälä
+Intel
