@@ -2,42 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E94E606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 09:29:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D03F606A31E
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 09:29:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=afnhd1Du
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=C5cERyhi
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46D0010E5A5;
-	Fri, 27 Nov 2026 09:29:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 519B810E5AB;
+	Fri, 27 Nov 2026 09:29:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4105F10E5AB
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Nov 2026 09:29:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A908110E5A5
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Nov 2026 09:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795771778; x=1827307778;
+ t=1795771782; x=1827307782;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DQFY7PtPDYt1t1mwXck8kqm9zwXdzpfNiKlg/95jTzU=;
- b=afnhd1DuU2o3mFQLo3zA5JuLT4ykVknwlolkc1fYkQY8bNYMDfdTLksn
- A5yuqgSUNjhs/bmEs9Pyf6I6WAG/LNXnyLzCaV1g3rrapo3BTo9mxrYTL
- fgr4ahtEEyAzCAuW5P5AFvoj6EXs3judPUop5nYEN9uKCdbpEmTsl3Z5O
- R0EdsgxMdVJL6axxtGcJnJV44OunlaggwEd4G7CDW6v5euHGr7rUgfbln
- Jnu2nXoCj/qI9SWgBQbaXVneTrcTDQqLs/xhvRb55kbcrFlXZr6ocYrbC
- EONyjV0OxYIvaTRkl3hEjKySKZh3iEGV3T+uTiAV8v1qR6xKqzIqaIsGR A==;
-X-CSE-ConnectionGUID: jP/Lr0S/RaemwRJP2v0jBg==
-X-CSE-MsgGUID: MBtmt+N+Qeu6mMop/SPz0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4678867"
+ bh=1g0yUHaStur4zz9b7B6Nb08SnhDdUGVsVPnNkJdgg1A=;
+ b=C5cERyhiLZ4BdlsMu4xe/6bv2P5rEcQs9G/BAINyQJmJEBINVBRGPNC8
+ uTWRGz528XmWxekX5ZgSKl2pF6mf2S0P6AzFquH5ela2LwKDK3p+bjg1o
+ 24ZKYwYQ9WyASJpR41g7v2ZlOO41TXEx7In7Qj2W2ujn6Zf3909V8b1HN
+ rZWMazKdyuAeMF8A91mjtsZ2M6B4ccRC19EnxWMkWsnP5R1bzyBjPKWMr
+ cJzuza/kAIxtugfngq7i3O4BsB8qzcZ0JCj3ndDCFm1Ha1xdF+JSUjiWA
+ 1GaPgUF9chpQHJKuKdentfIQBxrUlxFkIA81wrUkzd6MUc3nh5hxD4T57 A==;
+X-CSE-ConnectionGUID: 15Knof4oQ++N7fOO+Gh8Pg==
+X-CSE-MsgGUID: kabrqDtjR3S5JNVgemWetQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4678868"
 X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; 
-   d="scan'208";a="4678867"
+   d="scan'208";a="4678868"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 01:29:38 -0800
-X-CSE-ConnectionGUID: VKmtKVN+QW+iOwPsZ3QPMQ==
-X-CSE-MsgGUID: Awtu+Ac2SvyEZOkh4vp+PA==
+ 27 Nov 2026 01:29:42 -0800
+X-CSE-ConnectionGUID: Sf3MVLi5TZasyeIhJCgfZA==
+X-CSE-MsgGUID: gG+GVyXYQfSZp0bFgP5QaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; d="scan'208";a="12276159"
+X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; d="scan'208";a="12276165"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa003.jf.intel.com with ESMTP; 27 Nov 2026 01:29:35 -0800
+ by orviesa003.jf.intel.com with ESMTP; 27 Nov 2026 01:29:39 -0800
 From: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 To: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  matthew.brost@intel.com
@@ -47,9 +47,10 @@ Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com,
  aravind.iddamsetty@linux.intel.com, jani.nikula@linux.intel.com,
  daniele.ceraolospurio@intel.com,
  Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: [PATCH v7 4/6] drm/xe/cper: Handle CPER allocations in atomic context
-Date: Fri, 27 Nov 2026 14:59:18 +0530
-Message-ID: <20261127092914.2176025-12-mallesh.koujalagi@intel.com>
+Subject: [PATCH v7 5/6] drm/xe/log: Add software CPER information to KUnit
+ output
+Date: Fri, 27 Nov 2026 14:59:19 +0530
+Message-ID: <20261127092914.2176025-13-mallesh.koujalagi@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20261127092914.2176025-8-mallesh.koujalagi@intel.com>
 References: <20261127092914.2176025-8-mallesh.koujalagi@intel.com>
@@ -73,94 +74,72 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Software CPER records are emitted through xe_log_*() helpers. Those
-helpers can be called from both sleepable and atomic contexts, such as
-IRQ handlers or while holding spinlocks.
+Print driver classification details for software CPER records
+in the fake CPER emitter used by KUnit tests.
 
-Software CPER record generation uses kvasprintf() and kzalloc(), which
-cannot determine the caller's context. Using GFP_KERNEL from atomic
-context may trigger sleeping-in-atomic warnings and potentially
-deadlocks.
-
-Add a GFP argument to xe_cper_emit() and introduce xe_log_*_atomic()
-helpers. That allows sleepable callers to use GFP_KERNEL while atomic
-callers use GFP_ATOMIC allocation flags, ensuring CPER records can be
-emitted safely in all contexts without relying on a single GFP_NOWAIT
-allocation policy.
-
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Badal Nilawar <badal.nilawar@intel.com>
 Signed-off-by: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
+Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
 ---
-v3:
-- Handle atomic context when SIGIDs are logged. (Sashiko)
+ drivers/gpu/drm/xe/tests/xe_log_kunit.c | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-v4:
-- Add can_sleep bool parameter in per_record_emit. (Badal)
-
-v5:
-- Move gfp variable where it's used.
-
-v6:
-- Pass gfp_t directly. (Badal)
-
-v7:
-- Update commit message. (Badal)
-- Remove dropped variable from xe_cper structure.
-- Use only GFP_NOWAIT.
----
- drivers/gpu/drm/xe/xe_cper.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
-index 9161f2b52e9b..10a4085d47f0 100644
---- a/drivers/gpu/drm/xe/xe_cper.c
-+++ b/drivers/gpu/drm/xe/xe_cper.c
-@@ -183,7 +183,7 @@ static void cper_init_section_desc(struct xe_device *xe, u8 severity,
- static void cper_record_emit(struct xe_device *xe, u8 severity,
- 			     const guid_t *notification_type,
- 			     const struct xe_cper_intel_hdr *ihdr,
--			     const void *einfo, u32 einfo_len)
-+			     const void *einfo, u32 einfo_len, gfp_t gfp)
+diff --git a/drivers/gpu/drm/xe/tests/xe_log_kunit.c b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
+index 56c36c8a08e1..08828ecc9098 100644
+--- a/drivers/gpu/drm/xe/tests/xe_log_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_log_kunit.c
+@@ -6,11 +6,14 @@
+ #include <kunit/static_stub.h>
+ #include <kunit/test.h>
+ #include <kunit/test-bug.h>
++#include <linux/minmax.h>
+ 
+ #include "tests/xe_kunit_helpers.h"
+ #include "tests/xe_pci_test.h"
++#include "xe_cper.h"
+ #include "xe_device.h"
+ #include "xe_log.h"
++#include "xe_ras_types.h"
+ 
+ static void nop_dmesg_vprintk(struct pci_dev *pdev, int cper_sev, struct va_format *vaf)
  {
- 	struct cper_section_descriptor *sdesc;
- 	struct xe_cper_nonstd_record *rec;
-@@ -191,7 +191,7 @@ static void cper_record_emit(struct xe_device *xe, u8 severity,
- 	u32 total_len;
+@@ -43,6 +46,19 @@ static const char *location_type(u32 location)
+ 	       location ? "?" : "";
+ }
  
- 	total_len = sizeof(struct xe_cper_nonstd_record) + einfo_len;
--	rec = kzalloc(total_len, GFP_KERNEL);
-+	rec = kzalloc(total_len, gfp);
- 	if (!rec)
- 		return;
++static bool is_sw_cper(enum xe_sigid sigid)
++{
++	return in_range(sigid, INTEL_SIGID_GPU_XE_SOFTWARE_START, INTEL_SIGID_BATCH);
++}
++
++static void fake_emit_sw_cper(int cper_sev, u32 component, u32 location, const void *data)
++{
++	/* mirrors xe_cper_driver_error_class: full 16-bit component/tile, unconditional */
++	pr_info("SW CPER CLASS=severity:%u component:%u tile:%u cause:%u\n",
++		cper_sev, (u16)component, (u16)location,
++		IS_ERR(data) ? (u32)-PTR_ERR(data) : 0);
++}
++
+ static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
+ 			   enum xe_sigid sigid, u32 component, u32 location,
+ 			   const void *data, size_t len, struct va_format *vaf)
+@@ -51,7 +67,8 @@ static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
+ 	int n;
  
-@@ -477,7 +477,7 @@ void xe_cper_emit_counter(struct xe_device *xe, int cper_sev, enum xe_sigid sigi
- 				    entries[i].einfo_size, &ihdr);
+ 	pr_info("\n");
+-	pr_info("CPER SEV=%u SIGID=%u\n", cper_sev, sigid);
++	pr_info("CPER SEV=%u SIGID=%u \t# %s\n", cper_sev, sigid,
++		is_sw_cper(sigid) ? "software" : "");
+ 	pr_info("CPER DEVICE=%s\n", dev_name(&pdev->dev));
+ 	if (location)
+ 		pr_info("CPER LOCATION=%#x \t# %s.%u\n",
+@@ -68,6 +85,8 @@ static void fake_emit_cper(struct pci_dev *pdev, int cper_sev,
  
- 		cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
--				 entries[i].einfo, entries[i].einfo_size);
-+				 entries[i].einfo, entries[i].einfo_size, GFP_KERNEL);
- 	}
- 
- 	free_info_arr(info_arr, num_entries);
-@@ -511,7 +511,8 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
- 	char *msg;
- 	size_t msg_len;
- 
--	msg = kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
-+	/* TODO: Handle xe_log_* helper function for atomic context */
-+	msg = kvasprintf(GFP_NOWAIT, vaf->fmt, *vaf->va);
- 	if (!msg)
- 		xe_warn(xe, "Failed to allocate CPER message\n");
- 
-@@ -525,7 +526,8 @@ static void cper_emit_sw_err(struct xe_device *xe, int cper_sev, enum xe_sigid s
- 	timestamp = ktime_get_real_ns();
- 
- 	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, msg_len, &ihdr);
--	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len);
-+	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg, msg_len,
-+			 GFP_NOWAIT);
- 	kfree(msg);
+ 	n = vscnprintf(msg, sizeof(msg), vaf->fmt, *vaf->va);
+ 	print_hex_dump(KERN_INFO, "CPER MSG=", DUMP_PREFIX_OFFSET, 16, 1, msg, n, true);
++	if (is_sw_cper(sigid))
++		fake_emit_sw_cper(cper_sev, component, location, data);
+ 	pr_info("CPER END\n");
  }
  
 -- 
