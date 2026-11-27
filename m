@@ -2,28 +2,28 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 336B9606A324
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 15:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 407B0606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 15:31:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBF6810E259;
-	Fri, 27 Nov 2026 15:28:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0161910E259;
+	Fri, 27 Nov 2026 15:31:43 +0000 (UTC)
 Received: from 8b00d9f022d5 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DA7F112BA2;
- Fri, 27 Nov 2026 15:28:18 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0036661600356707340=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5097A112BB6;
+ Fri, 27 Nov 2026 15:31:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Support_PCIe_F?=
- =?utf-8?q?LR_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/multi=5Fqueue=3A_E?=
+ =?utf-8?q?xpose_CGP_address_via_PPHWSP?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lukasz Laguna" <lukasz.laguna@intel.com>
+To: tilak.tirumalesh.tangudu@intel.com
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Nov 2026 15:28:18 -0000
-Message-ID: <179579329857.1013.15676328270013097741@8b00d9f022d5>
+Date: Fri, 27 Nov 2026 15:31:41 -0000
+Message-ID: <179579350132.1013.11653859911283162399@8b00d9f022d5>
 X-Patchwork-Hint: ignore
-References: <20261127130219.1201179-1-lukasz.laguna@intel.com>
-In-Reply-To: <20261127130219.1201179-1-lukasz.laguna@intel.com>
+References: <20261127130818.1382215-1-tilak.tirumalesh.tangudu@intel.com>
+In-Reply-To: <20261127130818.1382215-1-tilak.tirumalesh.tangudu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,131 +35,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Reply-To: intel-xe@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-1.0 required=3.0 tests=BAYES_00,HTML_MESSAGE,
-	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=no
+X-Spam-Status: No, score=-9.0 required=3.0 tests=BAYES_00,INCLUDES_CR_TRAILER,
+	MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
 	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
---===============0036661600356707340==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/vf: Support PCIe FLR (rev4)
-URL   : https://patchwork.freedesktop.org/series/179511/
-State : success
+Series: drm/xe/multi_queue: Expose CGP address via PPHWSP
+URL   : https://patchwork.freedesktop.org/series/179874/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d_BAT -> xe-pw-179511v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+3009867cd31863246e4afc138520a7a8bd37bb11
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c1cf244c776a341eaee6d815369e8f2f7c2d41e0
+Author: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
+Date:   Fri Nov 27 18:38:18 2026 +0530
 
-Summary
--------
+    drm/xe/multi_queue: Expose CGP address to debug tools via PPHWSP
+    
+    The Context Group Page (CGP) has the queues of a multi queue group and
+    their LRCAs. Store its address in the PPHWSP of the group's primary
+    queue, so debug tools can find it.
+    
+    The address is written before the group is registered with GuC and
+    rewritten after a VF migration GGTT rebase.
+    
+    v2:
+    - Use decimal PPHWSP offset, u32 address with xe_map_write32() and assert
+      a single LRC in the rebase path (Niranjana)
+    - Move the DOC note after the CGP GuC interface description (Niranjana)
+    
+    Assisted-by: LLM
+    Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
++ /mt/dim checkpatch f1804f6542ee253c4bdae15dfb8a5a5a2469adda drm-intel
+0a0dd8ef17e5 drm/xe/guc: Set CGP info only for multi queue primary
+-:13: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#13: 
+Assisted-by: LLM
 
-  **SUCCESS**
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'LLM'
+#13: 
+Assisted-by: LLM
 
-  No regressions found.
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+c1cf244c776a drm/xe/multi_queue: Expose CGP address to debug tools via PPHWSP
+-:19: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#19: 
+Assisted-by: LLM
 
-  
+-:19: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'LLM'
+#19: 
+Assisted-by: LLM
 
-Participating hosts (15 -> 15)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-179511v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-1:          [ABORT][1] ([Intel XE#9841]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179511v4/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#9841]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841
-
-
-Build changes
--------------
-
-  * IGT: IGT_9206 -> IGT_9208
-  * Linux: xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d -> xe-pw-179511v4
-
-  IGT_9206: 9206
-  IGT_9208: 9208
-  xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d: 2167aae7e27a3c224f220ce01eea87498ff3724d
-  xe-pw-179511v4: 179511v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179511v4/index.html
-
---===============0036661600356707340==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 1 errors, 1 warnings, 0 checks, 80 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Support PCIe FLR (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/179511/">https://patchwork.freedesktop.org/series/179511/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179511v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179511v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d_BAT -&gt; xe-pw-179511v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (15 -&gt; 15)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-179511v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/9841">Intel XE#9841</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-179511v4/bat-bmg-1/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_9206 -&gt; IGT_9208</li>
-<li>Linux: xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d -&gt; xe-pw-179511v4</li>
-</ul>
-<p>IGT_9206: 9206<br />
-  IGT_9208: 9208<br />
-  xe-6247-2167aae7e27a3c224f220ce01eea87498ff3724d: 2167aae7e27a3c224f220ce01eea87498ff3724d<br />
-  xe-pw-179511v4: 179511v4</p>
-
-</body>
-</html>
-
---===============0036661600356707340==--
