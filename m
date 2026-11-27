@@ -2,62 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA327606A31E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 17:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A1A606A31F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 17:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=KPS8kooM
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=U7FiTZ93
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0FE0112CA3;
-	Fri, 27 Nov 2026 17:59:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71B4E112CB3;
- Fri, 27 Nov 2026 17:59:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 298ED112CAF;
+	Fri, 27 Nov 2026 17:59:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE2410E8F2;
+ Fri, 27 Nov 2026 17:59:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795802367; x=1827338367;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=6QorhscBLaL1Q9416qZMatrzWAOK/ub/xGuVXQ0qvMk=;
- b=KPS8kooMKZkAKi1NBD1QiPehD0pwymoImz1WlZtQZS0AEOl+XeMIIqcK
- 3W1pGvFwhlPHpKvW3j8jtQzTRj5weZT6XorlXZLaPO0XOmysu5NvYenfN
- Vys38uQ54bF4A48PuttIR80+d9nX6I97C7upiP74X0nzHApHj31uWMkfJ
- 3Jm2CC9/snrSmIP1zcvpQdKO1Vlwi7bgaUyu4cMNp/5OeY3dXfr7sjVpq
- 9vKtLgxSkruoLA4jTWJTXKfGclOUQd8eC21FvKPYPWL70/Dwi1CdEHAVs
- T90zQNDzGeow84NLOm3zqnaNQhkoplJ3cPNCvigP2de+JM2O3/mvTFyjQ Q==;
-X-CSE-ConnectionGUID: Cj6a1IIrTHGoiWij3WwWMg==
-X-CSE-MsgGUID: T4XWMJfGR2SsRo2rAYhyEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4717096"
+ t=1795802371; x=1827338371;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=aeKRghG8oinlOH0XayZZovSoPQC9u0u/HP1uafHpSKw=;
+ b=U7FiTZ931tLSQqjMdSYGKdjjVQLAMkIKVO+TsWaM/aSFVdFQuKYtqAS8
+ mq1aWV6+ETOMmLUEh7htRtWFeDogiPcY8rkEgsPWl+QFq3BhulfL/f1+T
+ DNz7ykazeBGD2+OUinbM6Mbhjm5GKBxk4B66APtseEY8dOejVhFydrNDU
+ +dpaAYFBy4bVczQC5AFSlSiigsKhw2zJj8vRhYQCsKZg2HJzK/3WusjHB
+ uXFY+oUkIJPrYijpkvVkbjetirM3H2GLQtwWekefp8OJHYdUuw5FWEhzX
+ vFA4tIPnP9eowj1oPjSGldVP7Slvkn66z54+R87T0/C9jiUUOXSswKuCJ w==;
+X-CSE-ConnectionGUID: qoo4Sph5QtaBJgj53YfFxw==
+X-CSE-MsgGUID: dAc2HuKmQoapYCfV+vHBRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4783681"
 X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="4717096"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 09:59:26 -0800
-X-CSE-ConnectionGUID: cLOLiXl6T9udL87yhHhifQ==
-X-CSE-MsgGUID: FmkKLvDBTzuMmKToKYOtpA==
+   d="scan'208";a="4783681"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 09:59:31 -0800
+X-CSE-ConnectionGUID: WZERRkxISRixu2K1lJuzLA==
+X-CSE-MsgGUID: 4ez1fEcaRm6ZUJCN+Hmthw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12228731"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 09:59:26 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12734239"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 09:59:31 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Fri, 27 Nov 2026 09:59:25 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.57; Fri, 27 Nov 2026 09:59:30 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Fri, 27 Nov 2026 09:59:25 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.42) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Fri, 27 Nov 2026 09:59:30 -0800
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.66) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Fri, 27 Nov 2026 09:59:25 -0800
+ 15.2.2562.57; Fri, 27 Nov 2026 09:59:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kaOjfSSGfAD68zS2XnuU/KdFBElHoPGYGmCvoU0bls4f0fqgkJC1hAt7cWLQ21tWSikpScriWqR70EzFtPLAQOfaFNajbEnDl0Gwt8dSRk45gBi/ob5R60R9qTv1QtVhk27+ES3lXn1sm/uB79TTXhO2lCZeFnbJ1C3pQZqBSrGmshswpKvc12y+aNxLmzqTILGl86zh/EMCWOAAVgclbBmQf6KfwEZNLZL4PVdNIBOksFTEXSwuj1CUxni0y0g7+J/hYwqOts7f/HM2YEL5w4E2nEplhxonBEqxp1rAHzZsG6Dn/KjPgr2VX0cbXRRXZogkG3KQlD7rYKgsHQuSBg==
+ b=UF2FxlAXNiCMRzuz7A6f8ibEzpFeVnxOO7nZeEFwhsbpd99JnGJxC2w4KZCMNHkykkPUgQ8aTTwAWU7Yix5mhEOojlSdEwNaU5v3usAmvjZXCAY0ya3YSFqy+GJHQJxvxefFd3PNLYmV5nVfZGmKnr+qwRvE2gm6XkG4P7DC2tPSu7WfjwWT/NmlGqUhPm8aMMEuFu98ZvCTTZXMUged0bJFHdlZVhqumpKz72P93We333H6bfDBr63GK+OrdGEh0kuKNeM4R4Vg3Ylea4pdtZEmvwJzOJx7INf5t+1fhoSFOZd81PGLuRgudrd17joIy000FeEcZFATcgNiUSA5wQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=79P1nZ1kIotqeKfAHy64jZZTp1ha5VcbzLigbg35+EA=;
- b=os6UfJ56QZ1IKE7I+yXzLY2bHslS+j2sfwxi1cblQBZvfmgAy58hl6PS73IJ/7EogYjUkd8jQHDbM1BEW88j3LQLdnBCIxggyyIWDzLzVnoG1gLQlFoQuS5dXizg+etMZ06ntYh50wIrUsKsp8l8FlokkkIkUY8f7gk6R6uJUuHbWCn4aZsBHBQ1N0axvtHI7NY9v+HXtDwSGxsviDUjH6SLDRApNOP3jzznk9spyaDcNsgr5ZsmqC5Z1sFdCxd8MV/BGYjp/fHoseNQJa1jyyBv+kvEVx3tTEiSoaZf+dqzGRZ0W7qeB4aHLyKdRLTPcDCi/55ySW3qgJomOWypNw==
+ bh=EcEHB5DWcYjdaeAOVYp1NxOJkEtZ6p82HKXuifL3NOI=;
+ b=CEbGgjo2CCEAl1P1bRLFkhw4B0fOD7wXHaPH78bQyq59Rn6ybgK7Mi40QpXMDif1B0W+nlZdSrs35nsAevfAW8twxrvUsA71t75OeoTmHn6RfSGRabKgUb3rQkXjG3PUH5ySaSArBVdQcefRiDV997NviPDwkpULiDcVRZbS/ZOaz3VQ7mnSbGreFEU/D+hZ2A2XRwZ+D4vk7A02/aCX63eT8mb5x6b2HGOrPwCLDob2rxrSDbOy+0kJLpcwRyQZ3X4Kv4b4EBOxJcWqYEZF3c5fkaIWDH6RzgrHUA+q9s6T9LowoqNzQTHRDE1wA4phEgZCvRQPy/yn8WOdhE03Eg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,78 +67,81 @@ Received: from DS7PR11MB5990.namprd11.prod.outlook.com (2603:10b6:8:71::5) by
  CY8PR11MB6865.namprd11.prod.outlook.com (2603:10b6:930:5f::15) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.662.9; Fri, 27 Nov 2026 17:59:20 +0000
+ 15.21.662.9; Fri, 27 Nov 2026 17:59:28 +0000
 Received: from DS7PR11MB5990.namprd11.prod.outlook.com
  ([fe80::133c:5eed:3aec:b899]) by DS7PR11MB5990.namprd11.prod.outlook.com
  ([fe80::133c:5eed:3aec:b899%3]) with mapi id 15.21.0639.011; Fri, 27 Nov 2026
- 17:59:19 +0000
+ 17:59:27 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-CC: <dri-devel@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH i-g-t 1/9] lib/igt_drm_ras_nl: Add node and error counter
- listing
-Date: Fri, 27 Nov 2026 12:59:12 -0500
-Message-ID: <20261127175914.784751-10-rodrigo.vivi@intel.com>
+CC: <dri-devel@lists.freedesktop.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>, Jeff Hugo
+ <jeff.hugo@oss.qualcomm.com>
+Subject: [PATCH i-g-t 4/9] lib/igt_drm_ras_nl: Add telemetry helpers
+Date: Fri, 27 Nov 2026 12:59:15 -0500
+Message-ID: <20261127175914.784751-13-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.56.0
+In-Reply-To: <20261127175914.784751-10-rodrigo.vivi@intel.com>
+References: <20261127175914.784751-10-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR03CA0147.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::32) To DS7PR11MB5990.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0203.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c3::28) To DS7PR11MB5990.namprd11.prod.outlook.com
  (2603:10b6:8:71::5)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS7PR11MB5990:EE_|CY8PR11MB6865:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3d0da659-d100-4fef-4720-08df4cb0290e
+X-MS-Office365-Filtering-Correlation-Id: cb0429b1-c0b7-4ce3-c1d2-08df4cb02dcf
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|23010399003|366016|376014|56012099006|261022105027099003|261028144727099003|261026140227099003|261102123227099003|261026121527099003|261022075727099003|261021121427099003|10067099003|261009223027099003|18002099003|11063799006|6133799003;
-X-Microsoft-Antispam-Message-Info: MyAfBavoQRo+vdUuvRptuWKxTp8cuhrE9rDzuVS7U7cbyzIpMwdOq3SFKzRQMiN6IqJ6bfdf/cVbGP/MN9AXrzkunrm3/AgSyTdyNAxrcjQL0PzrQFljPJvX7vCAVFmxN/AZvffkGKK9JZEX7yo33N0eaUwdPD+JQVjpGd8NVKSUwqh9BbvvXv93315MEsymDim+XfQwLeut3jLk7sx57WM5EdxxaUx3WnTYGc5QO0EamomkHh3f5r4isMM4bZgKHKuRbeK12HY85G9ZHlKn0knUXcDXsO0fU6RYW7fc11U597GQCY4ukWvfQokUw3FnAcsb7aAkpURc75zGJeQNWTHoBFf4HrRwM1dVo55FMUxDljezWXe29HgYfWaLbk6zrNIvZMlEDrFuirdVIscZeaa+8O/jsy3xXruNKTbuojeyxTs9vVjbUEkWDWWIXG6z/Jj0MVZTJl+nhjq6IIMJSoHgwfoE+nNzHF/BIgDu/VCM7KHQVQ+z5FWedwjsa70Jur4RVqawE7RBIM3q07gElBC+c/kbVThciFVZMoJOFDfoXvvF+jWrDTr8R1SdImtUbMHr9KctXOGgVmPrrMQ99pV6U9r2x6rDo4p7XH3EJhuBHbtEokHvW3bfqd928JczyJquWGrrSOFhT4NaLACapFjJaPrmF2pF4HI61/jpnDY=
+ ARA:13230040|1800799024|23010399003|366016|376014|56012099006|261022105027099003|261028144727099003|261026140227099003|261102123227099003|261026121527099003|261021123027099003|261022075727099003|261021121427099003|10067099003|261009223027099003|18002099003|22082099003|11063799006|6133799003;
+X-Microsoft-Antispam-Message-Info: YBOGh75dSB5C+aPqC52Z1vp1bD/QwLVJROaP0MYfk5j3Cjqpn4lU93H1lUKQysBvokSzpQxbAPVFqPDIfhhtmpMW7MYUlWk7yJS+TDMtQ4rEJk+57fU4wBxOGya8PCuDPxglbGuK08fN1Kx3/eW42wE10e74TD/IzM+ilr7lBB5sfsb6omibYa8e2Lye3zajANT/3ckA2hnZuqP+oe8C7Ku4X69RG/33e4CV67dn7KJjJ5OfEGqEiyuoO3wRFiB1JIATv0WhVBEdpJ4ahU4sWcjlI1nq1PfaokFNb6JUYppOpVYWSfElL89E8itTp4JTd1PJJCRfvxZSZC/FFX9stx6zxunMWz/dMtBdTtmJ5poOy/8qGR+nwVNV1/1jJ8nQid9tsuBevDzmEyRD3ZU0Ie9Z3xFrB4/T6OwsFZrxl3MtwMGCrCkWhoGiDRB5I1X2R5J3S9NCi/1PHKEuUACUiboL58r04F8n52stpVrliQs8/ohnYtPFM2ZSkz4lk9q3HymikIBcUhIwfTjiAQzz/cVaDdSQCZVvq1m+14N7oXTVxeoG2pA0TQLZiYJjQhIBOW3RkMkF5r+uMhx5mSUfStzqi1441YIWAnbsk8v9/t70VTgandtCKH5bQosxU788t8L1eHEn3wWOLNUcyU2G6wfzX1I64TDpaDeE3wFiNi0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB5990.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(56012099006)(261022105027099003)(261028144727099003)(261026140227099003)(261102123227099003)(261026121527099003)(261022075727099003)(261021121427099003)(10067099003)(261009223027099003)(18002099003)(11063799006)(6133799003);
+ SFS:(13230040)(1800799024)(23010399003)(366016)(376014)(56012099006)(261022105027099003)(261028144727099003)(261026140227099003)(261102123227099003)(261026121527099003)(261021123027099003)(261022075727099003)(261021121427099003)(10067099003)(261009223027099003)(18002099003)(22082099003)(11063799006)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GiMLml0hqXYL9qieAO7c264zPMtiEifWuApgjWVpfggWa06bg2z4I/gDO4f/?=
- =?us-ascii?Q?Cv2dh/uObKRrj4pNKeaPTh0xnVw+aEZhrYJNterTapppRrRpW2uztWkqESNx?=
- =?us-ascii?Q?Rnst3pe9rnnGDE5Nmyrk+PydODgUkx1eAkXj/iQN0PhYyKbNuX9iJPUYkjZf?=
- =?us-ascii?Q?5gg7ANoSSeJ5Y4Pffn9ulol/ZcLPOEvSykKmsRpcNIW8mTeJ/QgqWFIqt6+g?=
- =?us-ascii?Q?H9DngTjjyJ8BrYcdby2KDK7LGUPKpaVyNf5Npr7qJFc9h3f6uOVUvW79megx?=
- =?us-ascii?Q?SPxOH7MpCuzedcnzCaRoEDbbl79y3S9tSQBfitkROp/+jJZNkqRe++IMWrVN?=
- =?us-ascii?Q?e99p58f8HgtGYk2rQn67IVKyYaOuW0ONgp8S3G7jRhJ3g9QNhcf92w+bClnf?=
- =?us-ascii?Q?CnndzwRb1BIlAcF0QUPyFnO46kSu7844p/YsqVgNThFfQWZVqY67iDadR5ue?=
- =?us-ascii?Q?3v26J06DGQuEiaIJvbYI0i2uFuT6qb1gGCGvzOH5+9nLIggElI85zTtHwfTk?=
- =?us-ascii?Q?0XoXTArYkbpKMAbjsIPwLAziCw8wpTHi0vrD6ruZtY+G9wW2zTshBIfJsiCY?=
- =?us-ascii?Q?zh9b2BhL1Uhbc+RbQozRTjv/aYmqKEAoqlG7g1rWyIzzTxdGtmtD9mGZHyCp?=
- =?us-ascii?Q?5/hLZ6eJKEOJ/vS/CEyuYdJR+cnTGzKl9qUhj+4JKq3wsoZIk9mTsOKFQG2L?=
- =?us-ascii?Q?9bOhcpaU80rANfI7L6DfB0xIu7v8v1hWKVsPxuzr9etAjoulr2lWAwSJyGQ8?=
- =?us-ascii?Q?TR3m6hECiv9nwg88ig5QwIlXsh4CTHBoj8Ibhr6tLx/16TK+IxV7TLwvqvI5?=
- =?us-ascii?Q?EWzpbVR4blPYN0/G9rVHwDOAAI1UpjUUOXwWA6LVbpRgZBZVQ0MEqcYO2w+a?=
- =?us-ascii?Q?EFeIScN07tSO32KCqySsysAs+ZSdypZ4bU+n7FMXktDd/Peo7s/s2gi7Xhts?=
- =?us-ascii?Q?9PXqa0/ojKwlf86Nxb7iNJ/MaAiHLc5o2PLWgmBK/0bJAmQnH/NQuWNId9O5?=
- =?us-ascii?Q?FySV2QyiWnpsrUNYOitHjpkRDskDRMHOIxFA0m2gezhSDL8P+e01rtSHwWv8?=
- =?us-ascii?Q?KMVY3IMVwWGajnKWGvT8IyB6p519n39BQJJbPAJQGXCfPW5ElrlwhsfgcfAe?=
- =?us-ascii?Q?JP09plGyQ0DU0xcY6PO6MNGa6akpTXekPqdToV1qeSEiTpHGS/nLsKYhF+zi?=
- =?us-ascii?Q?sVzOrXkAwmXRpPWQvhgiBTu44MgS/hRosSaTm46ZXEGuW9eZcNkd3olXBpX7?=
- =?us-ascii?Q?EWli2XssThBPrbkPp0xN3wg8Wl6mrRcgp7DVVtRhAYH1esJQlcHkg6QHFGeC?=
- =?us-ascii?Q?WJ0xxnPcxUlkZpWkFuBGizyUha7qJ6E4apJfFayBvGx2DWMzNkK/YQFtSfqJ?=
- =?us-ascii?Q?Wudkvo7n+j1F9yASc5Tbme0v24gjZeCBBbIzDV4u94dPpO196/e8MXd/8OU5?=
- =?us-ascii?Q?x5XW7fDs4M73kwJc9JQJnS89YaMUUScK0a+9Gme43WXuA4Uhfpkt3mn0fZc2?=
- =?us-ascii?Q?NK0z09+a9mzeNDNjCRGppRfweqiSINvF2/usombxfSsdaEVIy12Gzi4+wXl7?=
- =?us-ascii?Q?/06P5743NctTOqcTzg7GSWXlOivAGf4SOYcV2c+0aG6WVidckyg7wwpYf1Y7?=
- =?us-ascii?Q?Xw/ISq73BiK95phHa+HMQmsqoG1WoWkLyBxvg809xziDcAFvzeiYPIp1uDjp?=
- =?us-ascii?Q?RRBkAdoXl6qh6jgjEUAm4amHtqeYj4eQJq44qLz5Nja/GlQsQJQvQCQ6MRgu?=
- =?us-ascii?Q?3LyEDN589A=3D=3D?=
-X-Exchange-RoutingPolicyChecked: hNXr2V67uIvwKcWUEwYzqO2vuGn92Czm0eqHYAJpfGUGrpVZ0cnRFN1zPzKSchWYh4fnlSqU8nfaZIXJVxsLkvs0crZDfq+VyktXwov2ro0ZquDMGxyduximVtpEBBxBmF0qwiCGEH6uAvFGOLec5ZyGlVHbS0S494tZ0TV2FSlk3bCBT26k/ysE71fT52OYSRJpJhaYKgmnFmwQXB+rLbKbrcp3d++T8q+6OiLIAv1bCVa318u+Ea4Mumrg3VFghZsA/Q3C6JYUZlJDiuhQ+o1uI8rC/y5bjpRNIbGx2dD6ltTNIZ/pq20w++TUKABZU4nu50rAqhF2eegTWjbUUg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3d0da659-d100-4fef-4720-08df4cb0290e
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?69nlhfHRz4XzutJIJY2wX+UKFi6D16A9A8s1eWe0sb/9r1SHIRiR7jxfbbmJ?=
+ =?us-ascii?Q?Ac5fH3Ot+UJCnXqnzPlvx1Piy1aRkhGA+lFbl5gwW65jb/uOTHfqjvwi7uJI?=
+ =?us-ascii?Q?wQVLwxXI9BNAemiEKXdqXHnMpnTfAZY+GlkEuZ5D0+geSLaaGsKYPJiq7R/i?=
+ =?us-ascii?Q?Ecs4SOVJUnuyuqcjbCrgycL3no99ktH0FJ1m9ZryJs1dcpY77MRZcprPM4xq?=
+ =?us-ascii?Q?YJVYdmoCsCV1FMX22EQp4/YhbWaHjm+TGCRNqjuknMTqhOAWB4RNKBSx0ggh?=
+ =?us-ascii?Q?AcrNW8RF7mD6kk2O+HQ2O31e1BZ/GSfk76uPQmppKcZtU0XKyGMYNgvm8n+g?=
+ =?us-ascii?Q?afGBDkv8kEy8eGU4injR8f3yMJ3UCDbJoK1drC8qkB06PEVvlmo1gen0vP0k?=
+ =?us-ascii?Q?Pa4ROoz0UJGytetuNXa6Z2ZxMOp9BqbiYvo+rtrE0xtpQm8t3VLaAZ+Uxfcc?=
+ =?us-ascii?Q?ELex/1Repyh4HggnsX9q1aUVNN9lLJjFofZZ9iYlxtVhx3iqRgqYpP5GJFKi?=
+ =?us-ascii?Q?LVLQhF0KmV5OJKvTkEj6BziT0IWr7IuXxcUCo8xcnYw7PcKQyxn+/beHgeOO?=
+ =?us-ascii?Q?pWR4UfLXrlrGEJnTVGoOwo1coO9LhoaQCDb3OkjG6tzDpoN863ja5wggdVZX?=
+ =?us-ascii?Q?ElsRe3oWdssA2aBN6Lp/cvOrL7R4s1OlR6YDvH/KiJBnHIse5F0B0mXkOOZ6?=
+ =?us-ascii?Q?PbasmnJ9+VWhzqk0tviaaqq2Nn9QekejNF9quUUR7Y9HZXoPCO/uI9XKEpmg?=
+ =?us-ascii?Q?gJztdo9CmH1S56BPHOMHZRmM8ygub1pHyr/2CuK1qcyV3EHzXjK18go9+GxO?=
+ =?us-ascii?Q?rOENDAXCMJFlLjdY2QuAHbtbJUnXig52U3xtxNC7jjOwXDrT871jdj9n0sdR?=
+ =?us-ascii?Q?GqTACes6UtqIWxHUNbOwRT1MhTt3Dp36AAiBDnUprNyPBnNjC1MTOwPn2u6z?=
+ =?us-ascii?Q?OgddoMgapcM6aD4wqlyvI4HdbUxdZflW3DaBBkSO9PL4G7uS6OkqmF+PyJhG?=
+ =?us-ascii?Q?5tWdZ99x6KDlSMJmPemGaVB4qqeq3IZQoTtQwxdhW5HU7dY0xZXHaADI1/Tm?=
+ =?us-ascii?Q?HmJ0xpCby9wIVc2SXcmzj0IgrnTS8Wffq5lRMYT8XWNXfyydCoA7aD/lmkn5?=
+ =?us-ascii?Q?p6+G84OVig9NWU5GT69xr1y+DCQ4IiPYwm4werQ9rfCb13TQ5kOVL+UcTJXk?=
+ =?us-ascii?Q?JaNnPE6GfOD5cYbwqTBW5wZxS/qz/C7R+sflNNyzjh0b3u13rHZYlLO0nlay?=
+ =?us-ascii?Q?L+VgTHYV2ImwlxI2U21kY72iUwK3SO3TuDLfGmgQ6CtVhTHOc+RifFAfpzlM?=
+ =?us-ascii?Q?BnDWH3m1AxqjZfQu8KGr8wRgNMladcKUa/4OPqPqCAoKNDvXc4iFFlbI5f9z?=
+ =?us-ascii?Q?ol0QIydldimi2wUxm8wVIb0V4q6Bp3HgccptLMm0RYvChj47ghKimpnLwyAN?=
+ =?us-ascii?Q?pBEv82QuL6+vj1PQRYqB7eQaOIrucgyxyHfLlarZM4bQSRlwZB6zh/JEMPfb?=
+ =?us-ascii?Q?DvCcztO5iypa96HLFHIYIDHKPzUApihduo+yJsG87Q2yX2c6su7Mbt1o9NLE?=
+ =?us-ascii?Q?rJ7NxHPxQ/5vmtistgvVNCbgn71OYMlB4u/Oa6ECrOyRcukc/ZZ5Dm6SIY9f?=
+ =?us-ascii?Q?lC3wgNruJecONhodpTaWDoG1g2HJ+KfYbP3cnFoXEf9uNFvCI8/IUr0H6vwf?=
+ =?us-ascii?Q?JysBPtM+2f2jYqZGi9oUfWBfejSBOQ1FTZDPcyCI4qppe53A1qJEIwAXcqt0?=
+ =?us-ascii?Q?wyoU97NhZQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: EvMZyUJl/bGb5nWMTrn8k/8f/4Lew9wKog0qBAg6wwmDqLX3c3s9p88f8RuA//jr3oAreYTv5YwVq7PIlxm4PzRFUf667cH0zr/ZZgSQENryo/YkCV5MhG52Gp6D0YP6+rk9SoTn4f53H2hp0etCrFSxQttCYgwECNSUC7dIiX3kjVyGDkBCafVdVe9tTfpFFPklFmWsamU6qpnJI0fQHoY6a9Y+s/bASL2xdG+DR3Hz4VUp/uUym8EC+9HiDRozEJAGlMsT51kKuNtyLpmvzO+8O5LZLfB5LJh5JvoNh625y6hkB7OJOQqwirPLQcTmkhXx5oaVEKfPKL/tCC7foQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb0429b1-c0b7-4ce3-c1d2-08df4cb02dcf
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB5990.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 17:59:19.9128 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2026 17:59:27.8099 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sCPdKfpqSl3MREmDyHlzjHXWBx90iGAZIYH9joLPQN+AZXyfi+1ONOq/yTypoU7AHuNcRA5a+cZ43y0MNo4YFA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: wxE7/6U/YfX89tK0IqItVjyygcakjUdF89pNqnk7uXIr+8G/4OD7bP5tCqVMBTDEPumR5LVIhE7yx1uBhtdzfg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6865
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -158,271 +161,301 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Add igt_drm_ras_nl_list_nodes() and igt_drm_ras_nl_list_error_counters()
-on top of a common request helper that reads until the reply, the dump
-end or the ACK, and records whether the kernel flagged the dump as
-interrupted.
+Add igt_drm_ras_nl_list_telemetry_fields(), igt_drm_ras_nl_telemetry_get()
+and igt_drm_ras_nl_telemetry_set() for telemetry nodes. The request
+helper is split so that requests can carry more than the node ID.
 
-Enable message peeking so dump messages larger than a page are not
-truncated.
+v3:
+ - Move nla_get_sint_any() next to nla_get_uint_any() (Zack).
+ - Initialize the reply value and status before the request (Zack).
 
+Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
+Cc: Jeff Hugo <jeff.hugo@oss.qualcomm.com>
+Reviewed-by: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- lib/igt_drm_ras_nl.c | 172 +++++++++++++++++++++++++++++++++++++++++++
- lib/igt_drm_ras_nl.h |  39 ++++++++++
- 2 files changed, 211 insertions(+)
+ lib/igt_drm_ras_nl.c | 199 ++++++++++++++++++++++++++++++++++++++++---
+ lib/igt_drm_ras_nl.h |  21 +++++
+ 2 files changed, 207 insertions(+), 13 deletions(-)
 
 diff --git a/lib/igt_drm_ras_nl.c b/lib/igt_drm_ras_nl.c
-index f7ee3e373..282648f55 100644
+index 282648f55..177d2bc88 100644
 --- a/lib/igt_drm_ras_nl.c
 +++ b/lib/igt_drm_ras_nl.c
-@@ -398,6 +398,7 @@ static void reset_drm_ras_nl_context(struct igt_drm_ras_nl_context *ctx)
- 	ctx->event_received = false;
- 	ctx->family_id = -1;
- 	ctx->subscribed_grp_id = -1;
-+	ctx->dump_interrupted = false;
- }
- 
- void igt_drm_ras_nl_cleanup(struct igt_drm_ras_nl_context *ctx)
-@@ -424,6 +425,8 @@ int igt_drm_ras_nl_init(struct igt_drm_ras_nl_context *ctx)
- 	if (!ctx->sock)
- 		return -ENOMEM;
- 
-+	nl_socket_enable_msg_peek(ctx->sock);
-+
- 	if (genl_connect(ctx->sock) < 0) {
- 		igt_warn("Failed to connect to Generic Netlink\n");
- 		igt_drm_ras_nl_cleanup(ctx);
-@@ -657,3 +660,172 @@ int igt_drm_ras_nl_wait_for_error_report_event(struct igt_drm_ras_nl_context *ct
- 
+@@ -661,6 +661,17 @@ int igt_drm_ras_nl_wait_for_error_report_event(struct igt_drm_ras_nl_context *ct
  	return 0;
  }
-+
-+struct request_state {
-+	struct igt_drm_ras_nl_context *ctx;
-+	bool done;
-+	int error;
-+};
-+
-+static int request_done_cb(struct nl_msg *msg, void *arg)
+ 
++static uint64_t nla_get_uint_any(const struct nlattr *attr)
 +{
-+	struct nlmsghdr *nlh = nlmsg_hdr(msg);
-+	struct request_state *st = arg;
-+
-+	/* A dump that fails reports its errno in the NLMSG_DONE payload */
-+	if (nlh->nlmsg_type == NLMSG_DONE && nlmsg_datalen(nlh) >= sizeof(int))
-+		st->error = *(int *)nlmsg_data(nlh);
-+	st->done = true;
-+
-+	return NL_STOP;
++	return nla_len(attr) == sizeof(uint32_t) ? nla_get_u32(attr) : nla_get_u64(attr);
 +}
 +
-+static int request_error_cb(struct sockaddr_nl *nla, struct nlmsgerr *err, void *arg)
++static int64_t nla_get_sint_any(const struct nlattr *attr)
 +{
-+	struct request_state *st = arg;
-+
-+	st->error = err->error;
-+	st->done = true;
-+
-+	return NL_STOP;
++	return nla_len(attr) == sizeof(int32_t) ? (int32_t)nla_get_u32(attr) :
++						  (int64_t)nla_get_u64(attr);
 +}
 +
-+static int request_dump_intr_cb(struct nl_msg *msg, void *arg)
+ struct request_state {
+ 	struct igt_drm_ras_nl_context *ctx;
+ 	bool done;
+@@ -699,24 +710,35 @@ static int request_dump_intr_cb(struct nl_msg *msg, void *arg)
+ 	return NL_OK;
+ }
+ 
+-/* Send @cmd and feed each reply to @parse until the reply, dump or ACK completes */
+-static int request(struct igt_drm_ras_nl_context *ctx, uint8_t cmd, int flags,
+-		   int node_attr, uint32_t node_id, nl_recvmsg_msg_cb_t parse, void *arg)
++static int request_alloc(struct igt_drm_ras_nl_context *ctx, uint8_t cmd, int flags,
++			 struct nl_msg **msg)
 +{
-+	struct request_state *st = arg;
-+
-+	st->ctx->dump_interrupted = true;
-+
-+	return NL_OK;
-+}
-+
-+/* Send @cmd and feed each reply to @parse until the reply, dump or ACK completes */
-+static int request(struct igt_drm_ras_nl_context *ctx, uint8_t cmd, int flags,
-+		   int node_attr, uint32_t node_id, nl_recvmsg_msg_cb_t parse, void *arg)
-+{
-+	struct request_state st = { .ctx = ctx };
-+	struct nl_msg *msg;
-+	struct nl_cb *cb;
-+	int ret;
-+
 +	if (!ctx || !ctx->sock || ctx->family_id < 0)
 +		return -EINVAL;
 +
-+	msg = nlmsg_alloc();
-+	cb = nl_cb_alloc(NL_CB_DEFAULT);
-+	if (!msg || !cb ||
-+	    !genlmsg_put(msg, NL_AUTO_PORT, NL_AUTO_SEQ, ctx->family_id, 0,
-+			 flags | NLM_F_ACK, cmd, DRM_RAS_FAMILY_VERSION) ||
-+	    (node_attr && nla_put_u32(msg, node_attr, node_id))) {
-+		ret = -ENOMEM;
-+		goto out;
++	*msg = nlmsg_alloc();
++	if (!*msg)
++		return -ENOMEM;
++
++	if (!genlmsg_put(*msg, NL_AUTO_PORT, NL_AUTO_SEQ, ctx->family_id, 0,
++			 flags | NLM_F_ACK, cmd, DRM_RAS_FAMILY_VERSION)) {
++		nlmsg_free(*msg);
++		return -ENOMEM;
 +	}
 +
-+	nl_cb_set(cb, NL_CB_VALID, NL_CB_CUSTOM, parse, arg);
-+	nl_cb_set(cb, NL_CB_FINISH, NL_CB_CUSTOM, request_done_cb, &st);
-+	nl_cb_set(cb, NL_CB_ACK, NL_CB_CUSTOM, request_done_cb, &st);
-+	nl_cb_set(cb, NL_CB_DUMP_INTR, NL_CB_CUSTOM, request_dump_intr_cb, &st);
-+	nl_cb_err(cb, NL_CB_CUSTOM, request_error_cb, &st);
++	return 0;
++}
 +
-+	ctx->dump_interrupted = false;
-+
-+	ret = nl_send_auto(ctx->sock, msg);
-+	while (ret >= 0 && !st.done)
-+		ret = nl_recvmsgs(ctx->sock, cb);
-+
-+	ret = st.error ?: (ret < 0 ? normalize_nl_error(ret) : 0);
-+out:
-+	nlmsg_free(msg);
++/* Send @msg and feed each reply to @parse until the reply, dump or ACK completes */
++static int request_send(struct igt_drm_ras_nl_context *ctx, struct nl_msg *msg,
++			nl_recvmsg_msg_cb_t parse, void *arg)
+ {
+ 	struct request_state st = { .ctx = ctx };
+-	struct nl_msg *msg;
+ 	struct nl_cb *cb;
+ 	int ret;
+ 
+-	if (!ctx || !ctx->sock || ctx->family_id < 0)
+-		return -EINVAL;
+-
+-	msg = nlmsg_alloc();
+ 	cb = nl_cb_alloc(NL_CB_DEFAULT);
+-	if (!msg || !cb ||
+-	    !genlmsg_put(msg, NL_AUTO_PORT, NL_AUTO_SEQ, ctx->family_id, 0,
+-			 flags | NLM_F_ACK, cmd, DRM_RAS_FAMILY_VERSION) ||
+-	    (node_attr && nla_put_u32(msg, node_attr, node_id))) {
++	if (!cb) {
+ 		ret = -ENOMEM;
+ 		goto out;
+ 	}
+@@ -734,12 +756,30 @@ static int request(struct igt_drm_ras_nl_context *ctx, uint8_t cmd, int flags,
+ 		ret = nl_recvmsgs(ctx->sock, cb);
+ 
+ 	ret = st.error ?: (ret < 0 ? normalize_nl_error(ret) : 0);
 +	nl_cb_put(cb);
-+	return ret;
+ out:
+ 	nlmsg_free(msg);
+-	nl_cb_put(cb);
+ 	return ret;
+ }
+ 
++static int request(struct igt_drm_ras_nl_context *ctx, uint8_t cmd, int flags,
++		   int node_attr, uint32_t node_id, nl_recvmsg_msg_cb_t parse, void *arg)
++{
++	struct nl_msg *msg;
++	int ret;
++
++	ret = request_alloc(ctx, cmd, flags, &msg);
++	if (ret)
++		return ret;
++
++	if (node_attr && nla_put_u32(msg, node_attr, node_id)) {
++		nlmsg_free(msg);
++		return -ENOMEM;
++	}
++
++	return request_send(ctx, msg, parse, arg);
 +}
 +
-+struct node_list {
-+	igt_drm_ras_node_fn fn;
+ struct node_list {
+ 	igt_drm_ras_node_fn fn;
+ 	void *data;
+@@ -829,3 +869,136 @@ int igt_drm_ras_nl_list_error_counters(struct igt_drm_ras_nl_context *ctx, uint3
+ 	return request(ctx, DRM_RAS_CMD_GET_ERROR_COUNTER, NLM_F_DUMP,
+ 		       DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID, node_id, error_counter_cb, &list);
+ }
++
++struct telemetry_field_list {
++	igt_drm_ras_telemetry_field_fn fn;
 +	void *data;
 +};
 +
-+static int node_cb(struct nl_msg *msg, void *arg)
++static int telemetry_field_cb(struct nl_msg *msg, void *arg)
 +{
-+	struct nlattr *tb[DRM_RAS_A_NODE_ATTRS_MAX + 1];
-+	struct igt_drm_ras_node node = {};
-+	struct node_list *list = arg;
++	struct nlattr *tb[DRM_RAS_A_TELEMETRY_ATTRS_MAX + 1];
++	struct telemetry_field_list *list = arg;
++	struct igt_drm_ras_telemetry_field field = {};
 +
-+	if (genlmsg_parse(nlmsg_hdr(msg), 0, tb, DRM_RAS_A_NODE_ATTRS_MAX, NULL) ||
-+	    !tb[DRM_RAS_A_NODE_ATTRS_NODE_ID] || !tb[DRM_RAS_A_NODE_ATTRS_NODE_TYPE])
++	if (genlmsg_parse(nlmsg_hdr(msg), 0, tb, DRM_RAS_A_TELEMETRY_ATTRS_MAX, NULL) ||
++	    !tb[DRM_RAS_A_TELEMETRY_ATTRS_FIELD])
 +		return NL_SKIP;
 +
-+	node.id = nla_get_u32(tb[DRM_RAS_A_NODE_ATTRS_NODE_ID]);
-+	node.type = nla_get_u32(tb[DRM_RAS_A_NODE_ATTRS_NODE_TYPE]);
-+	if (tb[DRM_RAS_A_NODE_ATTRS_DEVICE_NAME])
-+		nla_strlcpy(node.device_name, tb[DRM_RAS_A_NODE_ATTRS_DEVICE_NAME],
-+			    sizeof(node.device_name));
-+	if (tb[DRM_RAS_A_NODE_ATTRS_NODE_NAME])
-+		nla_strlcpy(node.node_name, tb[DRM_RAS_A_NODE_ATTRS_NODE_NAME],
-+			    sizeof(node.node_name));
++	field.field = nla_get_uint_any(tb[DRM_RAS_A_TELEMETRY_ATTRS_FIELD]);
++	if (tb[DRM_RAS_A_TELEMETRY_ATTRS_FIELD_NAME])
++		nla_strlcpy(field.name, tb[DRM_RAS_A_TELEMETRY_ATTRS_FIELD_NAME],
++			    sizeof(field.name));
++	if (tb[DRM_RAS_A_TELEMETRY_ATTRS_MODE])
++		field.mode = nla_get_uint_any(tb[DRM_RAS_A_TELEMETRY_ATTRS_MODE]);
 +
-+	list->fn(&node, list->data);
++	list->fn(&field, list->data);
 +
 +	return NL_OK;
 +}
 +
 +/**
-+ * igt_drm_ras_nl_list_nodes - Call @fn for each registered DRM RAS node
++ * igt_drm_ras_nl_list_telemetry_fields - Call @fn for each telemetry field of a node
 + * @ctx: initialized DRM RAS netlink context
-+ * @fn: called once per node
++ * @node_id: telemetry node ID
++ * @fn: called once per field
 + * @data: passed to @fn
 + *
 + * Returns: 0 on success, negative errno otherwise.
 + */
-+int igt_drm_ras_nl_list_nodes(struct igt_drm_ras_nl_context *ctx,
-+			      igt_drm_ras_node_fn fn, void *data)
++int igt_drm_ras_nl_list_telemetry_fields(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
++					 igt_drm_ras_telemetry_field_fn fn, void *data)
 +{
-+	struct node_list list = { fn, data };
++	struct telemetry_field_list list = { fn, data };
 +
-+	return request(ctx, DRM_RAS_CMD_LIST_NODES, NLM_F_DUMP, 0, 0, node_cb, &list);
++	return request(ctx, DRM_RAS_CMD_TELEMETRY_LIST_FIELDS, NLM_F_DUMP,
++		       DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID, node_id, telemetry_field_cb, &list);
 +}
 +
-+struct error_counter_list {
-+	igt_drm_ras_error_counter_fn fn;
-+	void *data;
++struct telemetry_reply {
++	int64_t *value;
++	int64_t *status;
 +};
 +
-+static int error_counter_cb(struct nl_msg *msg, void *arg)
++static int telemetry_reply_cb(struct nl_msg *msg, void *arg)
 +{
-+	struct nlattr *tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX + 1];
-+	struct error_counter_list *list = arg;
-+	struct igt_drm_ras_error_counter counter = {};
++	struct nlattr *tb[DRM_RAS_A_TELEMETRY_ATTRS_MAX + 1];
++	struct telemetry_reply *reply = arg;
 +
-+	if (genlmsg_parse(nlmsg_hdr(msg), 0, tb, DRM_RAS_A_ERROR_COUNTER_ATTRS_MAX, NULL) ||
-+	    !tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID] ||
-+	    !tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_VALUE])
++	if (genlmsg_parse(nlmsg_hdr(msg), 0, tb, DRM_RAS_A_TELEMETRY_ATTRS_MAX, NULL))
 +		return NL_SKIP;
 +
-+	counter.id = nla_get_u32(tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID]);
-+	counter.value = nla_get_u32(tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_VALUE]);
-+	if (tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_NAME])
-+		nla_strlcpy(counter.name, tb[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_NAME],
-+			    sizeof(counter.name));
-+
-+	list->fn(&counter, list->data);
++	if (reply->value && tb[DRM_RAS_A_TELEMETRY_ATTRS_VALUE])
++		*reply->value = nla_get_sint_any(tb[DRM_RAS_A_TELEMETRY_ATTRS_VALUE]);
++	if (reply->status && tb[DRM_RAS_A_TELEMETRY_ATTRS_STATUS])
++		*reply->status = nla_get_sint_any(tb[DRM_RAS_A_TELEMETRY_ATTRS_STATUS]);
 +
 +	return NL_OK;
 +}
 +
-+/**
-+ * igt_drm_ras_nl_list_error_counters - Call @fn for each error counter of a node
-+ * @ctx: initialized DRM RAS netlink context
-+ * @node_id: error-counter node ID
-+ * @fn: called once per error counter
-+ * @data: passed to @fn
-+ *
-+ * Returns: 0 on success, negative errno otherwise.
-+ */
-+int igt_drm_ras_nl_list_error_counters(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
-+				       igt_drm_ras_error_counter_fn fn, void *data)
++static int telemetry_request(struct igt_drm_ras_nl_context *ctx, uint8_t cmd, uint32_t node_id,
++			     uint64_t field, const int64_t *value, struct telemetry_reply *reply)
 +{
-+	struct error_counter_list list = { fn, data };
++	struct nl_msg *msg;
++	int ret;
 +
-+	return request(ctx, DRM_RAS_CMD_GET_ERROR_COUNTER, NLM_F_DUMP,
-+		       DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID, node_id, error_counter_cb, &list);
++	if (reply->value)
++		*reply->value = 0;
++	if (reply->status)
++		*reply->status = -1;
++
++	ret = request_alloc(ctx, cmd, 0, &msg);
++	if (ret)
++		return ret;
++
++	if (nla_put_u32(msg, DRM_RAS_A_TELEMETRY_ATTRS_NODE_ID, node_id))
++		goto err;
++
++	if (nla_put_u64(msg, DRM_RAS_A_TELEMETRY_ATTRS_FIELD, field))
++		goto err;
++
++	if (value && nla_put_u64(msg, DRM_RAS_A_TELEMETRY_ATTRS_VALUE, *value))
++		goto err;
++
++	return request_send(ctx, msg, telemetry_reply_cb, reply);
++
++err:
++	nlmsg_free(msg);
++	return -ENOMEM;
++}
++
++/**
++ * igt_drm_ras_nl_telemetry_get - Read a telemetry field
++ * @ctx: initialized DRM RAS netlink context
++ * @node_id: telemetry node ID
++ * @field: telemetry field to read
++ * @value: set to the value read, only meaningful when @status is 0
++ * @status: set to the status reported by the device, -1 if not reported
++ *
++ * Returns: 0 if the read was performed, negative errno otherwise.
++ */
++int igt_drm_ras_nl_telemetry_get(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
++				 uint64_t field, int64_t *value, int64_t *status)
++{
++	struct telemetry_reply reply = { value, status };
++
++	return telemetry_request(ctx, DRM_RAS_CMD_TELEMETRY_GET, node_id, field, NULL, &reply);
++}
++
++/**
++ * igt_drm_ras_nl_telemetry_set - Write a telemetry field
++ * @ctx: initialized DRM RAS netlink context
++ * @node_id: telemetry node ID
++ * @field: telemetry field to write
++ * @value: value to write
++ * @status: set to the status reported by the device, -1 if not reported
++ *
++ * Returns: 0 if the write was performed, negative errno otherwise.
++ */
++int igt_drm_ras_nl_telemetry_set(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
++				 uint64_t field, int64_t value, int64_t *status)
++{
++	struct telemetry_reply reply = { NULL, status };
++
++	return telemetry_request(ctx, DRM_RAS_CMD_TELEMETRY_SET, node_id, field, &value, &reply);
 +}
 diff --git a/lib/igt_drm_ras_nl.h b/lib/igt_drm_ras_nl.h
-index 46d31599d..4980904f8 100644
+index 4980904f8..1b2a8f164 100644
 --- a/lib/igt_drm_ras_nl.h
 +++ b/lib/igt_drm_ras_nl.h
-@@ -62,8 +62,43 @@ struct igt_drm_ras_nl_context {
- 
- 	/** @subscribed_grp_id: Multicast group ID currently subscribed to, or -1 if none */
- 	int subscribed_grp_id;
-+
-+	/** @dump_interrupted: Set when the kernel flagged the last dump as interrupted */
-+	bool dump_interrupted;
-+};
-+
-+#define IGT_DRM_RAS_NAME_LEN 64
-+
-+/**
-+ * struct igt_drm_ras_node - DRM RAS node
-+ */
-+struct igt_drm_ras_node {
-+	/** @id: Node ID */
-+	uint32_t id;
-+	/** @type: Node type (enum drm_ras_node_type) */
-+	uint32_t type;
-+	/** @device_name: Name of the device the node belongs to */
-+	char device_name[IGT_DRM_RAS_NAME_LEN];
-+	/** @node_name: Name of the node */
-+	char node_name[IGT_DRM_RAS_NAME_LEN];
+@@ -95,9 +95,23 @@ struct igt_drm_ras_error_counter {
+ 	uint32_t value;
  };
  
 +/**
-+ * struct igt_drm_ras_error_counter - DRM RAS error counter
++ * struct igt_drm_ras_telemetry_field - DRM RAS telemetry field
 + */
-+struct igt_drm_ras_error_counter {
-+	/** @id: Error ID */
-+	uint32_t id;
-+	/** @name: Error name */
++struct igt_drm_ras_telemetry_field {
++	/** @field: Field ID, as defined by the device uAPI */
++	uint64_t field;
++	/** @name: Field name */
 +	char name[IGT_DRM_RAS_NAME_LEN];
-+	/** @value: Counter value */
-+	uint32_t value;
++	/** @mode: Supported access modes (enum drm_ras_telemetry_field_mode bits) */
++	uint64_t mode;
 +};
 +
-+typedef void (*igt_drm_ras_node_fn)(const struct igt_drm_ras_node *node, void *data);
-+typedef void (*igt_drm_ras_error_counter_fn)(const struct igt_drm_ras_error_counter *counter,
-+					     void *data);
-+
+ typedef void (*igt_drm_ras_node_fn)(const struct igt_drm_ras_node *node, void *data);
+ typedef void (*igt_drm_ras_error_counter_fn)(const struct igt_drm_ras_error_counter *counter,
+ 					     void *data);
++typedef void (*igt_drm_ras_telemetry_field_fn)(const struct igt_drm_ras_telemetry_field *field,
++					       void *data);
+ 
  void igt_drm_ras_nl_cleanup(struct igt_drm_ras_nl_context *ctx);
  int igt_drm_ras_nl_init(struct igt_drm_ras_nl_context *ctx);
- int igt_drm_ras_nl_get_error_counter(struct igt_drm_ras_nl_context *ctx);
-@@ -72,5 +107,9 @@ int igt_drm_ras_nl_set_error_threshold(struct igt_drm_ras_nl_context *ctx);
- int igt_drm_ras_nl_subscribe_error_report(struct igt_drm_ras_nl_context *ctx,
- 					  const char *notify_group_name);
- int igt_drm_ras_nl_wait_for_error_report_event(struct igt_drm_ras_nl_context *ctx, int timeout_ms);
-+int igt_drm_ras_nl_list_nodes(struct igt_drm_ras_nl_context *ctx,
-+			      igt_drm_ras_node_fn fn, void *data);
-+int igt_drm_ras_nl_list_error_counters(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
-+				       igt_drm_ras_error_counter_fn fn, void *data);
+@@ -112,4 +126,11 @@ int igt_drm_ras_nl_list_nodes(struct igt_drm_ras_nl_context *ctx,
+ int igt_drm_ras_nl_list_error_counters(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
+ 				       igt_drm_ras_error_counter_fn fn, void *data);
  
++int igt_drm_ras_nl_list_telemetry_fields(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
++					 igt_drm_ras_telemetry_field_fn fn, void *data);
++int igt_drm_ras_nl_telemetry_get(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
++				 uint64_t field, int64_t *value, int64_t *status);
++int igt_drm_ras_nl_telemetry_set(struct igt_drm_ras_nl_context *ctx, uint32_t node_id,
++				 uint64_t field, int64_t value, int64_t *status);
++
  #endif /* IGT_DRM_RAS_NL_H */
 -- 
 2.56.0
