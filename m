@@ -2,60 +2,59 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4CB5606A31C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 14:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DCE8606A331
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 14:20:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=QsMRee4m
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=A1G59ORk
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 998AC112B13;
-	Fri, 27 Nov 2026 14:17:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5B6C10E3ED;
- Fri, 27 Nov 2026 14:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCAAD10EA85;
+	Fri, 27 Nov 2026 14:20:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 946F910EA85
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Nov 2026 14:20:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795789047; x=1827325047;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=qt0CQ1SvtkAQ0LnetpX4R/T2bdeVCeqh/9sH90gW4l4=;
- b=QsMRee4mMiCuscRyifbjPlXETHJS+2UpXaLtyuBXy3M+dXg3V9EaokQq
- 4NUP5kgm/hdBPJZV+UrUnjX31YnHqlwkyMdJjaxIjLY1ylupy7bzc32wJ
- 3N1528LDm+FhiAPwVoj9bZJGzW6L3pKyvxANEClTHerBRneLm1XcgLi32
- QQjkBVON9OIc00z3zYzQj4UbKXPg3bfPqiH1xowLS36VUePtdRttcRh8k
- SBshFhVm5JLvLgYZq+NWIx9sqkZAF53NiIXjpcmPTpgDEjd1OkDELSlRL
- ibgU7nsltSVB9OBh7AY54btLr2C2HF3rKAeqfeW/PAvRP/ECv+4AbQQk3 Q==;
-X-CSE-ConnectionGUID: DJx7PgZ4TembrydTj4u4HQ==
-X-CSE-MsgGUID: sdQI5zj0QQOZkbMmOoZFmQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4604288"
+ t=1795789244; x=1827325244;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=/yMxUpRvtZvy92HNpnh1XDtY2UweGwMEP0R34X7khnw=;
+ b=A1G59ORkEVyQUFAVXvhiredl1foAk7AqMo1Bt1llIuC87BOlJjkydJMA
+ chkjc3c/qxWtyI8pf+Nyu8dqU8kLyYnq1d3Iex9HvT8mucYvVfYGMxHrs
+ /F+WoMYgtRAyxUryviQu0nh7JoXk9CRsNXD8Prko/qHFD6/jkqNFjZHzj
+ X/gwE1EJadrBRNZsBRKaxwY5Xh6h8G5joM32gyKI8gfXQSEy1E9X5Sr5n
+ y8PNvJQ8Wn8HDr5hTpkjHEEp8B4tieak7H8SS+NpCPF2Ej5PpeV99eO32
+ CGJh7Wz6w1ypM5e10cksRd5jUJYB5WksfGcME6uFOJB834H40njVV5yH1 g==;
+X-CSE-ConnectionGUID: MhpWK+bSQF+6+oU5ukLatw==
+X-CSE-MsgGUID: yVna4NhVRZCg+YghN1V59A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4701071"
 X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; 
-   d="scan'208";a="4604288"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 06:17:27 -0800
-X-CSE-ConnectionGUID: tXncEY86Rx6WjJiuYy30Wg==
-X-CSE-MsgGUID: YlaUFs3GTuiLUjwF5ADF7w==
+   d="scan'208";a="4701071"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 06:20:34 -0800
+X-CSE-ConnectionGUID: xG4raxJ0RkGSCAcAaG3TUA==
+X-CSE-MsgGUID: upFNXIBJTaukAmvEKeaPdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12430993"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.90])
+X-IronPort-AV: E=Sophos;i="6.27,237,1787036400"; d="scan'208";a="12295692"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.87])
+ ([10.245.245.87])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 06:17:23 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Bin Luo (University of Electronic Science and Technology of China)"
- <luob87709@gmail.com>, rodrigo.vivi@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] drm/i915/display: hold frontbuffer ref across
- dirtyfb fence callback
-In-Reply-To: <20261127133935.1461-1-luob87709@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20261127133935.1461-1-luob87709@gmail.com>
-Date: Fri, 27 Nov 2026 16:17:21 +0200
-Message-ID: <8247d106ca535db291d2f85a3b8bea7956c6ccd8@intel.com>
+ 27 Nov 2026 06:20:33 -0800
+Message-ID: <08d63844-2c69-4a89-8acc-b7369571ee2e@intel.com>
+Date: Fri, 27 Nov 2026 14:20:30 +0000
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 5/6] drm/xe/bb: drop per-batch prefetch padding
+To: sashiko-reviews@lists.linux.dev, intel-xe@lists.freedesktop.org
+References: <20261127-migrate-bb-optimise-v2-0-808d0d520ddb@intel.com>
+ <20261127-migrate-bb-optimise-v2-5-808d0d520ddb@intel.com>
+ <sashiko-outbox-237412@kernel.org>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <sashiko-outbox-237412@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,116 +65,122 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-13.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-	DKIM_SIGNED,DKIM_VALID,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=unavailable autolearn_force=no version=4.0.1
+X-Spam-Status: No, score=-12.3 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS,
+	USER_AGENT_SANE_1 autolearn=unavailable autolearn_force=no
+	version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, 27 Nov 2026, "Bin Luo (University of Electronic Science and Technology of China)" <luob87709@gmail.com> wrote:
-> intel_user_framebuffer_dirty() stores the raw intel_frontbuffer pointer
-> in frontbuffer_fence_cb without taking a frontbuffer reference. If the
-> framebuffer is destroyed and its owner frontbuffer reference is dropped
-> before the reservation dma_fence signals,
-> intel_user_framebuffer_fence_wake() passes a freed intel_frontbuffer
-> pointer to intel_frontbuffer_queue_flush(), causing a use-after-free.
+On 27/11/2026 12:33, sashiko-bot@kernel.org wrote:
+> Thank you for your contribution! Sashiko AI review found 1 potential
+> issue to consider:
+> - [Medium] drm/xe: batch size underestimation in pte_update_cmd_size()
+>    for non-4K pages
+> --
+> 
+> commit 8de4bf033cf5665a8ffaac384549e82ba2ea902c
+> Author: Matthew Auld <matthew.auld@intel.com>
+> 
+> drm/xe/bb: drop per-batch prefetch padding
+> 
+> This commit drops the per-batch bb_prefetch() padding from __xe_bb_new(),
+> relying on the 4K guard region at the end of the suballocation pool BO to
+> cover hardware CS prefetch.
+> 
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/9644
+> 
+>> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+>> index 6308a1dca4647..bcb3a56995a6f 100644
+>> --- a/drivers/gpu/drm/xe/xe_bb.c
+>> +++ b/drivers/gpu/drm/xe/xe_bb.c
+>> @@ -14,20 +14,6 @@
+>>   #include "xe_sched_job.h"
+>>   #include "xe_vm_types.h"
+>>   
+>> -static int bb_prefetch(struct xe_gt *gt)
+>> -{
+>> -	struct xe_device *xe = gt_to_xe(gt);
+>> -
+>> -	if (GRAPHICS_VERx100(xe) >= 1250 && xe_gt_is_main_type(gt))
+>> -		/*
+>> -		 * RCS and CCS require 1K, although other engines would be
+>> -		 * okay with 512.
+>> -		 */
+>> -		return SZ_1K;
+>> -	else
+>> -		return SZ_512;
+>> -}
+>> -
+>>   struct xe_bb *__xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm, bool intr)
+>>   {
+>>   	struct xe_tile *tile = gt_to_tile(gt);
+>> @@ -38,13 +24,13 @@ struct xe_bb *__xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm, bool intr)
+>>   		return ERR_PTR(-ENOMEM);
+>>   
+>>   	/*
+>> -	 * We need to allocate space for the requested number of dwords,
+>> -	 * one additional MI_BATCH_BUFFER_END dword, and additional buffer
+>> -	 * space to accommodate the platform-specific hardware prefetch
+>> -	 * requirements.
+>> +	 * We need to allocate space for the requested number of dwords and
+>> +	 * one additional MI_BATCH_BUFFER_END dword. Hardware CS prefetch
+>> +	 * at the end of the pool BO is covered by the SZ_4K guard region
+>> +	 * reserved by xe_sa_bo_manager_init().
+>>   	 */
+>>   	bb->bo = xe_sa_bo_new(!usm ? tile->mem.kernel_bb_pool : gt->usm.bb_pool,
+>> -			      4 * (dwords + 1) + bb_prefetch(gt), intr);
+>> +			      4 * (dwords + 1), intr);
+>>   	if (IS_ERR(bb->bo)) {
+>>   		err = PTR_ERR(bb->bo);
+>>   		goto err;
+>> @@ -129,7 +115,7 @@ __xe_bb_create_job(struct xe_exec_queue *q, struct xe_bb *bb, u64 *addr)
+>>   	if (bb->len == 0 || bb->cs[bb->len - 1] != MI_BATCH_BUFFER_END)
+>>   		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+>>   
+>> -	xe_gt_assert(q->gt, bb->len * 4 + bb_prefetch(q->gt) <= size);
+>> +	xe_gt_assert(q->gt, bb->len * 4 <= size);
+>>   
+>>   	xe_sa_bo_flush_write(bb->bo);
+> 
+> [Severity: Medium]
+> Without the trailing bb_prefetch() padding, can build_pt_update_batch_sram()
+> overflow bb->bo when PAGE_SIZE > 4K?
+> 
+> pte_update_cmd_size() sizes the batch assuming each MI_STORE_DATA_IMM
+> command writes up to MAX_PTE_PER_SDI (510) entries, whereas
+> build_pt_update_batch_sram() rounds level-0 chunks down to a multiple of
+> PAGE_SIZE / XE_PAGE_SIZE (496 entries on 64K pages, 508 on 16K pages):
+> 
+> drivers/gpu/drm/xe/xe_migrate.c:pte_update_cmd_size() {
+>      ...
+> 	num_dword = (1 + 2) * DIV_U64_ROUND_UP(entries, MAX_PTE_PER_SDI);
+> 	num_dword += entries * 2;
+>      ...
+> }
+> 
+> drivers/gpu/drm/xe/xe_migrate.c:build_pt_update_batch_sram() {
+>      ...
+> 	while (ptes) {
+> 		u32 chunk = min(MAX_PTE_PER_SDI, ptes);
+> 
+> 		if (!level)
+> 			chunk = ALIGN_DOWN(chunk, PAGE_SIZE / XE_PAGE_SIZE);
+> 
+> 		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(chunk);
+>      ...
+> }
+> 
+> When the smaller chunk size requires an extra 3-dword MI_STORE_DATA_IMM
+> header (for example, migrating 63 64K pages = 1008 4K PTEs emits 3 headers
+> instead of 2), bb->cs writes 12 bytes past the end of bb->bo, triggering
+> the xe_gt_assert() in __xe_bb_create_job() and truncating the last 3
+> dwords of the batch when xe_sa_bo_flush_write() copies drm_suballoc_size()
+> bytes to VRAM.
 
-Please describe a real world scenario where this "if" can happen.
+Indeed. It's pre-existing issue which will pop an assert, but series 
+will potentially make it much worse than just an assert that pops. Will fix.
 
-BR,
-Jani.
+> 
 
->
-> Take a frontbuffer reference via intel_parent_frontbuffer_ref() before
-> registering the fence callback, and embed a work_struct in
-> frontbuffer_fence_cb so intel_user_framebuffer_fence_wake() only
-> schedules the work item and drops the fence reference in atomic
-> dma_fence signaling context. Perform intel_frontbuffer_flush(), release
-> the frontbuffer reference with intel_parent_frontbuffer_put(), and free
-> cb from process context in intel_user_framebuffer_fence_work(). This
-> avoids calling intel_parent_frontbuffer_put() in atomic context, where
-> dropping the final reference can sleep on xe or deadlock on non-irqsafe
-> locks in i915.
->
-> Found by static code audit.
->
-> Fixes: 1bb2af547a4b ("drm/i915: Handle dma fences in dirtyfb callback")
-> Signed-off-by: Bin Luo (University of Electronic Science and Technology of China) <luob87709@gmail.com>
-> ---
-> Changes in v2:
-> - Embed struct work_struct in frontbuffer_fence_cb and move
->   intel_frontbuffer_flush(), intel_parent_frontbuffer_put(), and kfree(cb)
->   into intel_user_framebuffer_fence_work() so intel_parent_frontbuffer_put()
->   is never invoked from atomic dma_fence signaling context (fixing the
->   sleeping-in-atomic/deadlock issue flagged on v1).
->
-> Testing note:
-> Compile-tested on x86_64 with W=1 and KASAN for both i915
-> (drivers/gpu/drm/i915/display/intel_fb.o) and xe
-> (drivers/gpu/drm/xe/i915-display/intel_fb.o); not runtime-tested on
-> Intel display hardware.
->
->  drivers/gpu/drm/i915/display/intel_fb.c | 18 ++++++++++++++++--
->  1 file changed, 16 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-> index 9d71f59..ee0665c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -5,6 +5,7 @@
->  
->  #include <linux/dma-fence.h>
->  #include <linux/dma-resv.h>
-> +#include <linux/workqueue.h>
->  
->  #include <drm/drm_blend.h>
->  #include <drm/drm_gem.h>
-> @@ -2141,16 +2142,26 @@ static int intel_user_framebuffer_create_handle(struct drm_framebuffer *fb,
->  
->  struct frontbuffer_fence_cb {
->  	struct dma_fence_cb base;
-> +	struct work_struct work;
->  	struct intel_frontbuffer *front;
->  };
->  
-> +static void intel_user_framebuffer_fence_work(struct work_struct *work)
-> +{
-> +	struct frontbuffer_fence_cb *cb = container_of(work, typeof(*cb), work);
-> +	struct intel_frontbuffer *front = cb->front;
-> +
-> +	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
-> +	intel_parent_frontbuffer_put(front->display, front);
-> +	kfree(cb);
-> +}
-> +
->  static void intel_user_framebuffer_fence_wake(struct dma_fence *dma,
->  					      struct dma_fence_cb *data)
->  {
->  	struct frontbuffer_fence_cb *cb = container_of(data, typeof(*cb), base);
->  
-> -	intel_frontbuffer_queue_flush(cb->front);
-> -	kfree(cb);
-> +	schedule_work(&cb->work);
->  	dma_fence_put(dma);
->  }
->  
-> @@ -2160,6 +2171,7 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
->  					struct drm_clip_rect *clips,
->  					unsigned int num_clips)
->  {
-> +	struct intel_display *display = to_intel_display(fb->dev);
->  	struct drm_gem_object *obj = intel_fb_bo(fb);
->  	struct intel_frontbuffer *front = to_intel_frontbuffer(fb);
->  	struct dma_fence *fence;
-> @@ -2185,6 +2197,8 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
->  	}
->  
->  	cb->front = front;
-> +	INIT_WORK(&cb->work, intel_user_framebuffer_fence_work);
-> +	intel_parent_frontbuffer_ref(display, front);
->  
->  	intel_frontbuffer_invalidate(front, ORIGIN_DIRTYFB);
-
--- 
-Jani Nikula, Intel
