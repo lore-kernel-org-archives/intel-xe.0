@@ -2,60 +2,43 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99A53606A321
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 09:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8B5606A31C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Nov 2026 09:37:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=FJZUvBoL
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=R36fsFTp
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FCE410E56B;
-	Fri, 27 Nov 2026 09:36:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE4B310E563;
- Fri, 27 Nov 2026 09:36:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795772168; x=1827308168;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=NM9Kyt/rXO8OXUCxVx/GZ011XmjngpbiLnHZCtNYR/I=;
- b=FJZUvBoL8rkU3MJLcxgqwbZtsJg8NpbOyzdNBAXAT0y/AiD340dluAA6
- xVDFWP9bVXJRglm+IYjYz+4y47ZXd+rdn7n0hgHmR1EhomHTJbZVulEnb
- XKkXQ9pKuvTEHRiA4zhR/HTjVJrv2B8zt3h89EGcEZJ3VbSrShz388zAK
- jOhqZ9GFpM0zNLhJ9Bwcm02cWAkaevhNpa6NCCrfNG9Vbk4dd0Ipy6G88
- js4Vhh90f94NPempbCY0KQKm98MnMlWaOhqEUZBb/pBi5XDQ4NGetBiXC
- jBUC2diq846BZUWDrKqroij19KZ7baMrBnkxYRFWqw3hywjMtLsFlNegE w==;
-X-CSE-ConnectionGUID: Cb3Igno4QMa+0Qv93Yk/RQ==
-X-CSE-MsgGUID: Fyy8TlfGROebpwV2jhl7vw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11978"; a="4731340"
-X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; 
-   d="scan'208";a="4731340"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 01:36:07 -0800
-X-CSE-ConnectionGUID: sPDaEzIYTHGoT9TReTsRuw==
-X-CSE-MsgGUID: T/lTN//RTCWKz9q93yYMiQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,236,1787036400"; d="scan'208";a="12226555"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.90])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 01:36:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v2 6/6] drm/i915/display: use str_enable_disable() more
-In-Reply-To: <04ddae57-c6d9-445e-a18c-5a62ec5f1f4a@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1795607055.git.jani.nikula@intel.com>
- <516907662db5f4f9f3dbaeb49ac031d310f3622a.1795607055.git.jani.nikula@intel.com>
- <04ddae57-c6d9-445e-a18c-5a62ec5f1f4a@intel.com>
-Date: Fri, 27 Nov 2026 11:36:03 +0200
-Message-ID: <cf4b87f97ddc36d25da6103b6fff04dc4b2b48e8@intel.com>
-X-Archived-By: <archiver.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain
+	by gabe.freedesktop.org (Postfix) with ESMTP id 532E210E707;
+	Fri, 27 Nov 2026 09:37:48 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CB6310E698
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Nov 2026 09:37:42 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7391743644;
+ Fri, 27 Nov 2026 09:37:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E38C1F00926;
+ Fri, 27 Nov 2026 09:37:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1795772262;
+ bh=rxckmx1G2EGGogizcE1l+u3C5j4wxtZPsVD5g5Yocrk=;
+ h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
+ b=R36fsFTp+wU0/4RLzPFIFtRE7kjSIr+p/1pyXskNf6XUcD6fXRpborHnx9h8zXx7u
+ Vg9xE+UoVFEcyESo+5mielIhu0gnHQeMX/8u8pS6vyoCJ3Fj2QDbST/4CKFsXH0+UM
+ b4UTtnFxd+EFbeTiOV8kLYIJu5FyBjcZobgDdVFJU4ZvM3N1/LQQ4XWdsnrVP54ceD
+ kCH2R7KFkHO2lIjmgGyaF43lDAIZLRbhj5JN1FpkhEb1CDt3MhdDGURx7OXPbkMasZ
+ 4K6offXyLCbDANPbsNXJfjYCWzeMJUZD7lcjxpuLrymA5FZWdyz37biCFrjlzyZ+X8
+ Lf2S68mJEDlZA==
+Message-ID: <sashiko-outbox-236990@kernel.org>
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v7 4/6] drm/xe/cper: Handle CPER allocations in atomic
+ context
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20261127092914.2176025-12-mallesh.koujalagi@intel.com>
+References: <20261127092914.2176025-8-mallesh.koujalagi@intel.com>
+ <20261127092914.2176025-12-mallesh.koujalagi@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 27 Nov 2026 09:37:41 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,66 +48,100 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: sashiko-reviews@lists.linux.dev
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
-X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+X-Spam-Status: No, score=-10.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-	INCLUDES_CR_TRAILER,INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,
-	SPF_PASS autolearn=ham autolearn_force=no version=4.0.1
+	INCLUDES_PATCH,MAILING_LIST_MULTI,SPF_HELO_NONE,SPF_PASS autolearn=ham
+	autolearn_force=no version=4.0.1
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
+X-Archived-By: <archiver.kernel.org>
 
-On Thu, 26 Nov 2026, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 11/25/2026 5:16 PM, Jani Nikula wrote:
->> Convert a few places to str_enable_disable(). Improve the grammar and
->> switch to %pe errno logging while at it.
->>
->> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Thank you for your contribution! Sashiko AI review found 1 potential
+issue to consider:
+- [Medium] drm/xe/cper: commit message contradicts GFP_NOWAIT use in
+  cper_emit_sw_err()
+--
 
-Thanks for the reviews, series pushed to din.
+commit fa3585155a74f119f9e4b51f2fac71fc5b12420d
+Author: Mallesh Koujalagi <mallesh.koujalagi@intel.com>
 
-BR,
-Jani.
+drm/xe/cper: Handle CPER allocations in atomic context
 
->
->
->> ---
->>   drivers/gpu/drm/i915/display/intel_dp_hdcp.c | 4 ++--
->>   drivers/gpu/drm/i915/display/intel_hdmi.c    | 4 ++--
->>   2 files changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
->> index 566a921d18a1..33cfa32791ae 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_hdcp.c
->> @@ -756,8 +756,8 @@ intel_dp_mst_toggle_hdcp_stream_select(struct intel_connector *connector,
->>   					 hdcp->stream_transcoder, enable,
->>   					 TRANS_DDI_HDCP_SELECT);
->>   	if (ret)
->> -		drm_err(display->drm, "%s HDCP stream select failed (%d)\n",
->> -			enable ? "Enable" : "Disable", ret);
->> +		drm_err(display->drm, "HDCP stream select %s failed (%pe)\n",
->> +			str_enable_disable(enable), ERR_PTR(ret));
->>   	return ret;
->>   }
->>   
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index 667d4514c375..ff1106b70390 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -1572,8 +1572,8 @@ int intel_hdmi_hdcp_toggle_signalling(struct intel_digital_port *dig_port,
->>   					 cpu_transcoder, enable,
->>   					 TRANS_DDI_HDCP_SIGNALLING);
->>   	if (ret) {
->> -		drm_err(display->drm, "%s HDCP signalling failed (%d)\n",
->> -			enable ? "Enable" : "Disable", ret);
->> +		drm_err(display->drm, "HDCP signalling %s failed (%pe)\n",
->> +			str_enable_disable(enable), ERR_PTR(ret));
->>   		return ret;
->>   	}
->>   
+This commit adds a gfp_t parameter to cper_record_emit() and updates
+cper_emit_sw_err() to allocate software CPER messages and records with
+GFP_NOWAIT instead of GFP_KERNEL.
 
--- 
-Jani Nikula, Intel
+> diff --git a/drivers/gpu/drm/xe/xe_cper.c b/drivers/gpu/drm/xe/xe_cper.c
+> index 9161f2b52e9ba..10a4085d47f0a 100644
+> --- a/drivers/gpu/drm/xe/xe_cper.c
+> +++ b/drivers/gpu/drm/xe/xe_cper.c
+> @@ -183,7 +183,7 @@ static void cper_init_section_desc(struct xe_device *=
+xe, u8 severity,
+>  static void cper_record_emit(struct xe_device *xe, u8 severity,
+>  			     const guid_t *notification_type,
+>  			     const struct xe_cper_intel_hdr *ihdr,
+> -			     const void *einfo, u32 einfo_len)
+> +			     const void *einfo, u32 einfo_len, gfp_t gfp)
+>  {
+>  	struct cper_section_descriptor *sdesc;
+>  	struct xe_cper_nonstd_record *rec;
+> @@ -191,7 +191,7 @@ static void cper_record_emit(struct xe_device *xe, u8=
+ severity,
+>  	u32 total_len;
+> =20
+>  	total_len =3D sizeof(struct xe_cper_nonstd_record) + einfo_len;
+> -	rec =3D kzalloc(total_len, GFP_KERNEL);
+> +	rec =3D kzalloc(total_len, gfp);
+>  	if (!rec)
+>  		return;
+> =20
+> @@ -477,7 +477,7 @@ void xe_cper_emit_counter(struct xe_device *xe, int c=
+per_sev, enum xe_sigid sigi
+>  				    entries[i].einfo_size, &ihdr);
+> =20
+>  		cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_GPU_ERROR, &ihdr,
+> -				 entries[i].einfo, entries[i].einfo_size);
+> +				 entries[i].einfo, entries[i].einfo_size, GFP_KERNEL);
+>  	}
+> =20
+>  	free_info_arr(info_arr, num_entries);
+> @@ -511,7 +511,8 @@ static void cper_emit_sw_err(struct xe_device *xe, in=
+t cper_sev, enum xe_sigid s
+>  	char *msg;
+>  	size_t msg_len;
+> =20
+> -	msg =3D kvasprintf(GFP_KERNEL, vaf->fmt, *vaf->va);
+> +	/* TODO: Handle xe_log_* helper function for atomic context */
+> +	msg =3D kvasprintf(GFP_NOWAIT, vaf->fmt, *vaf->va);
+>  	if (!msg)
+>  		xe_warn(xe, "Failed to allocate CPER message\n");
+> =20
+> @@ -525,7 +526,8 @@ static void cper_emit_sw_err(struct xe_device *xe, in=
+t cper_sev, enum xe_sigid s
+>  	timestamp =3D ktime_get_real_ns();
+> =20
+>  	cper_init_intel_hdr(xe, &error_class, timestamp, sigid, 1, msg_len, &ih=
+dr);
+> -	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg=
+, msg_len);
+> +	cper_record_emit(xe, cper_sev, &INTEL_CPER_NOTIFY_DRV_ERROR, &ihdr, msg=
+, msg_len,
+> +			 GFP_NOWAIT);
+>  	kfree(msg);
+>  }
+
+[Severity: Medium]
+Does the commit message match the changes in this patch?
+
+The commit message says it adds a GFP argument to xe_cper_emit() and
+introduces xe_log_*_atomic() helpers so callers can use GFP_KERNEL or
+GFP_ATOMIC "without relying on a single GFP_NOWAIT allocation policy".
+The code instead adds the gfp_t parameter to cper_record_emit(), uses a
+single GFP_NOWAIT policy in cper_emit_sw_err(), and leaves atomic
+xe_log_*() helpers as a TODO comment.
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261127092914.2176=
+025-8-mallesh.koujalagi@intel.com?part=3D4
