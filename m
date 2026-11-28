@@ -2,62 +2,62 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B06CF606A31C
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Nov 2026 05:22:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74D6D606A31C
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Nov 2026 05:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key, unprotected) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=IVvKOomj
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=dxxbPJWn
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F0ED10E155;
-	Sat, 28 Nov 2026 05:22:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 002F210E155
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Nov 2026 05:22:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3897810E28D;
+	Sat, 28 Nov 2026 05:23:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDFE210E155
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Nov 2026 05:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795843357; x=1827379357;
+ t=1795843419; x=1827379419;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=iEBz46EuV3qBeEP+cS5uzq8Wt/h7Dy/yMY8cdDCMPOo=;
- b=IVvKOomjmUE8vKdQDyJAZAzH6SUFnwDMQASCEW9i8u1tJH9S6Slyp8YS
- sEMOemF1bCFxdWHcC2NV9NQG0m5yS3COZHQ43+7JbFLI++dmXJNfakAUD
- B3AUkRQ7d4dUKLiOyJstR3UlH9nnofCeejrhJ6DNTpq3f7iS98RwZ/0GJ
- Fc7BpO5Qjn9fbcyMRzXo2YHXkrPhy4EII2a/POUKDiUlqNq+6xN2NvsFC
- utrbb2lnYNVJiQO9q02RGJkJAbGkhWFoJMoCHLmj7HcZHEdJO0BCgi1Oy
- irzht3axdp45QKBK4RT2BBSIySp9K8TXKghrBrXFT+g+kJPyOwOuT39es A==;
-X-CSE-ConnectionGUID: FkVa3Sv9TRyAVbMLLsvvDw==
-X-CSE-MsgGUID: XL/I++5HSf2iYunxXfYuRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4747452"
+ bh=NLR0I9wuncdcN7Tr956q+RNdqdKDov6SImQZZLg19hg=;
+ b=dxxbPJWnG/3/e4H7QAh0UWGe2JqgPV3EFg42od2bAazALKRzRfbIRoIb
+ 0XFrfJ9QrI5AhfD7Epewdm2LMen4zP2/bOLnsJ5qEqMNk7QV4/CQtOtr2
+ B7RMJ/gQpiF0x2GCjb9c4uI3OU4fmYeQMaojVQY92gMAsQgFeUFNUuEME
+ 9uCSCr7LViWGFWCIYrjmvzsS/eLI0sJTMD6NRay7TCViYd0DFWktie55S
+ 0JxlqEmq//HuysqBnyxV3hAf9tT/wYnGEdgOpbFAzFEV2KM4foEnc5RAm
+ wFATw+WS1/DRo6GaQVUrpH55gBC7J4f5QeKF/dV7lURUSdfN2SB4RrbWB A==;
+X-CSE-ConnectionGUID: W8lzlFIJSTG+mRdU9pLgsg==
+X-CSE-MsgGUID: dweEv1ESS4eLp8VvQd3sqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4732242"
 X-IronPort-AV: E=Sophos;i="6.27,238,1787036400"; 
-   d="scan'208";a="4747452"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 21:22:36 -0800
-X-CSE-ConnectionGUID: DCd5CojyTBaIQZ1XbjeJlQ==
-X-CSE-MsgGUID: FgxBdgF2Q7e5WwQtWFvdwg==
+   d="scan'208";a="4732242"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 21:23:39 -0800
+X-CSE-ConnectionGUID: 3ZF8eFVWRiOwsraQOU/uGA==
+X-CSE-MsgGUID: Q0Ew4e3CQ8+P3FVUZSytDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,238,1787036400"; d="scan'208";a="12400986"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 21:22:36 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.27,238,1787036400"; d="scan'208";a="12646994"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2026 21:23:38 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Fri, 27 Nov 2026 21:22:35 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.57; Fri, 27 Nov 2026 21:23:37 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57 via Frontend Transport; Fri, 27 Nov 2026 21:22:35 -0800
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.47) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.57 via Frontend Transport; Fri, 27 Nov 2026 21:23:37 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.8) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.57; Fri, 27 Nov 2026 21:22:34 -0800
+ 15.2.2562.57; Fri, 27 Nov 2026 21:23:37 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=KeAN9AigT4qL2W0y854om2JH+bDoYf1Ah42jOcdyuLPo0/QS4N8vt+QE7AHsb99dyEUdETTPPLhgcLOVvcOeOteTJeMU6xZuxgnI/HiIUIg5hgOqU0YaI0mXl4fk0qwgZYkYbcSgB8apt3VPT4F4cpTy/RpQ/XBeRzY9aBkNvX/ujTAojwyCVYjw443f0oRYDCdtTPP7ehDUQqYVu23I4fDyyFAJ9vaDy9P28Q5fQB1TvNTlVB10lVDwXg3meGHv18ITr+fnYYsXWThFvDkEx47TlporuC67lhcLHx5SB4HPhCgkYaMlvXC0Kfwu3NsZPcyo2k9St2dgRTTs6AYX3A==
+ b=F6hFaap43LzJLqlBK4WeMFCwEzMUEW4lDrvquzm8CPHBk3VXhzydREIx+o61OHXZCxNARzDyHMlx/RHAfCsaeki8JQSklHvbr74sgAQZVlbrcWHr+v3rusI1nkBJDpdujY3TfZckd0s0bI/C+gcKndEa/O0rVN0lJoPbJhdG98dcq3auW/QMThqkgmvawBx1/AxTkpZg3XWmYQaijgV5i35KgEnhw6Bp+KME660mwPRTKDOE8Mi4brKRF92EE2glvyKp+NxmPbe1VaeWPxqCPBRhD/pcQObIdA6+GWJ/9EGPSmqwONTx2rtY3i82gWgYtcgO3tD2NJpj0ZvXbtCXJw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5VKhwriFrq+NuvMUiSjtb1QECmOWKnNAFZX9KQ8rf94=;
- b=kw+icWbn8JoCsbqQpSDqUPG+s3gxOxq2YrtwlcBIPJ9RctbAngimg/XBjU6efNasp6gIZgyvfOGtN8JEEnIXjNFhVAGexk6Ya7fjZBWKFcvtfN+sLjXNFQbGzgie7B7mtj19yyptYmPYTXDIl+HlbYiUD12Re5uXPcjGKL8mqPAdY6Mcmk6C3qNRvmqEIbEevsOsIw/nDSkQf/rDwdmAGf+XfJ6UVax4bj9q/3UQOJJAQVdTQI1Oy26l8bmg580Fptw/bbtQotz6XWkSo42wjrEeBETLQCi0r05Ta7n8AdSLfW4xaSVno3QdX295dzhmXqCzhmkXfBb9z4AOlJd6ZA==
+ bh=JEX1gI2lFSMgdk02/ChHIUx5pqaoA+ZTXhsO8OsW5gE=;
+ b=mv2Uu7llEQtyHxiKl+pAevKy8WanL7UKLVVWhxi9zCcqORdyCbutIFFpfgeMrrCdKNlriGbiFH+dvVrnoiv0adiRR7kq36dHPouumD1u5GuvED5L1qh8VMdM0pD1CDBdP9t/VEajIaJt2T44fAdLn7WchX5yuKkkFXzbD9KkmEShH1hd4+YKsj9oQqtvcEWD5DpgOlR4e6Worp1wOcqcfLBXeNTlCVc/ei3A4HLMjaY2Z7YBmaCQyZdy706yue02F2SNfqlQeRLKFOmaJ4ptTkFXrbhAE27qqmREgm7bplz5c+ahg3+NN3N7uq+B/9aKKQx47QI5xOwdbHWXxlgeyA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,79 +67,80 @@ Received: from MW3PR11MB4684.namprd11.prod.outlook.com (2603:10b6:303:5d::14)
  by DSVPR11MB9767.namprd11.prod.outlook.com (2603:10b6:8:34c::17) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.662.11; Sat, 28 Nov
- 2026 05:22:33 +0000
+ 2026 05:23:30 +0000
 Received: from MW3PR11MB4684.namprd11.prod.outlook.com
  ([fe80::2f5a:96ce:f7e4:c315]) by MW3PR11MB4684.namprd11.prod.outlook.com
  ([fe80::2f5a:96ce:f7e4:c315%7]) with mapi id 15.21.0662.007; Sat, 28 Nov 2026
- 05:22:32 +0000
-Date: Fri, 27 Nov 2026 21:22:29 -0800
+ 05:23:30 +0000
+Date: Fri, 27 Nov 2026 21:23:28 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: <tilak.tirumalesh.tangudu@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/2] drm/xe/guc: Set CGP info only for multi queue primary
-Message-ID: <awplFSKELXQvi26I@nvishwa1-desk>
+Subject: Re: [PATCH 2/2] drm/xe/multi_queue: Expose CGP address to debug
+ tools via PPHWSP
+Message-ID: <awplUF7kouShDzev@nvishwa1-desk>
 References: <20261127130818.1382215-1-tilak.tirumalesh.tangudu@intel.com>
- <20261127130818.1382215-2-tilak.tirumalesh.tangudu@intel.com>
+ <20261127130818.1382215-3-tilak.tirumalesh.tangudu@intel.com>
 Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20261127130818.1382215-2-tilak.tirumalesh.tangudu@intel.com>
-X-ClientProxiedBy: SJ0P220CA0018.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::28) To MW3PR11MB4684.namprd11.prod.outlook.com
+In-Reply-To: <20261127130818.1382215-3-tilak.tirumalesh.tangudu@intel.com>
+X-ClientProxiedBy: BY5PR16CA0005.namprd16.prod.outlook.com
+ (2603:10b6:a03:1a0::26) To MW3PR11MB4684.namprd11.prod.outlook.com
  (2603:10b6:303:5d::14)
 X-Archived-By: <archiver.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MW3PR11MB4684:EE_|DSVPR11MB9767:EE_
-X-MS-Office365-Filtering-Correlation-Id: 258923df-6634-44bb-f752-08df4d0f9a39
+X-MS-Office365-Filtering-Correlation-Id: 7b4e5be0-f5aa-4bfc-461f-08df4d0fbd5f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|10067099003|56012099006|261021123027099003|261021121427099003|261022075727099003|261102123227099003|261009223027099003|18002099003|22082099003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: Ui2QWeNikBwZQqov0FBXTpQKqpbZUI+LM51jdA0Z9pFrr9fzLgGwAjo2EscX8gkvkl3DMIj0AVOaQ3xsdw3EvKRaRsjnIU4T2g2bt3kow99R2KiYteXuatMkuZ8kfOOS36bmzdPzwhwZVV6BJ798FIQ6CgmOkQEwU3PJseHDKn5bGon0P1iaEmTXcoEo5sgNfuinepEMtb+sUoKEB8TCI/+D5fi25kgCcMQXX+pz9fzIdiRaqeFC6hwsJcZWfYTPiX7wtDvu69uANLxELEAhSMNBvdHDqZbMyL8+2iJogUNiqx20zowAp4eh2AmNNEHjr4gqcCKe1EhYOwajreV/odEob1+2WURapgHj5yyVrLS/mDaeSqk3lV3UnRGzbv7jTAsF0KPpkGlH9waDGdJB/Y92Smhv3vrLC+wCoDa9tk7jBvOmQfD1QKb7Q6uFNJ+c4lTt6q48T4++53SaHWrY0LI8/xTssZMEmt/gm7zklfxnPhgyrc3Omr1ChQy67Ywz6Mo56CJ5NwHLBfkRxzggP+oyW3NuUBEDN9TaPWGfbBG0oo0cCaMHakxrjQ6W8FxXdcGLHmjJndhGM/gFbbwaPUIQ0sX4QHvACM34IPbp7XYveGOc3hDL2UKhXGLOSFOpcLYixI6Wh4IwtyKalw9PlUs/nZ+Bgr/KgR4KehpdLGU=
+ ARA:13230040|366016|23010399003|1800799024|376014|10067099003|56012099006|261026121527099003|261021121427099003|261022075727099003|261102123227099003|261009223027099003|18002099003|22082099003|11063799006|4143699003|6133799003;
+X-Microsoft-Antispam-Message-Info: mB/CTOeK8jyGqa4mBgpTYeJ2SjytxCKyGwQMqfk/tqr8x+YQmnoPMagw7Is+GlqEMAHCxsAluUzHZ9wDQ5VQixL2k8ma7dc0mJaRUoSYgflAU2BXfcNU25kvbTLaoJHrXHQj2+KtwTc1X/qjBWbV08X1T02js1logRl6fzeaie9AQwZ93xWG5S0t+pmYIwyva30Spf5WuaW2c+3CTukaZdVeSS23Lrpz7Iqomo5TZFZI1QH4+FeefSkLzkXpdxj8lZusERcD2FzFLDhwI/OewtcAtVpJsMSCKAII/Up/I1RFPM+qH7FeGXZowxP2nwnSXRfM9LySn9uIS8MCJSFlnjQW5ck7i1G2Yt5kmVJ60L8+o8VfGORckYaMAJPMIaW5kz9GpzLgot2tOau8VjNCQNyA95dv2Q4ap68+LWGjuq6RZiv1kU/h2E1wxJBbXOzAxvMe728ZL7OAKrG5640E22byy8HzaIFMonI7E/rzeH/toLWxsIwC/zveFBJLjnY8mJXzj4ydlHinEQdI9a2euWE5qlduWAXURs0jJSFHFemoGjN3lwFzkmkd0pIz9EHophcMUnyIGVW9o1NvzRJyMQ4ZYYJrSPsnAwqMxWvIo1BLq7HZjHBfYXyhJ2Mr86Nq+u6EPXItDke0s/RvRDdHnrCFwtE72Wpsl6i2hBc31vU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW3PR11MB4684.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(10067099003)(56012099006)(261021123027099003)(261021121427099003)(261022075727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(11063799006)(4143699003);
+ SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(10067099003)(56012099006)(261026121527099003)(261021121427099003)(261022075727099003)(261102123227099003)(261009223027099003)(18002099003)(22082099003)(11063799006)(4143699003)(6133799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?l8dvqse9Be+JOx2wPwgDIdxTWUOpaQ0Fq1zF4miRZNAlTEhwTRILPK0ioslQ?=
- =?us-ascii?Q?1OkGMbcbZs/h2ic6xJFYXkVteFyWvoZY3CvA1zXsp9YrnJhFMmCmIgXVOt4U?=
- =?us-ascii?Q?c0AU4G8e/M2+wHAA3MS6vYnOHUXyRCX9B3M8EOmU70GIJPyYNwdFEyFu3XTH?=
- =?us-ascii?Q?y5hmWTYpwplX54IXvS6EOXElXUwdhpzpvxFnxKjrfsIdDnxYVnZOk8O1zMRc?=
- =?us-ascii?Q?V4jWWRFBrQsWcu8p9qpiTSLv6cjSyFWIbbnIxroZZUcQVk96HltVZkmRWCvQ?=
- =?us-ascii?Q?wwT4reVOgADxMRBxW/HoqTWZHBILEG/YWWUsQGladicfN+aGRxRYL6dnyN6C?=
- =?us-ascii?Q?3wM2YcLdDYmBGb7sn8FAkmx8jImtQK4HIG0w6Ex88iyWdZVAtAN4YO/1SxMH?=
- =?us-ascii?Q?ZGb5mmccEBeWhNqBI45UnuU/bMRKBg70nBhXuUoWauSZvFdXVoMZ8kL5LaFp?=
- =?us-ascii?Q?zvCWhzOBXh3PwtvNlSn8j0aJRhOZxV+2hmCfNIlHPT9Jgb2nvRiUwjh05dt3?=
- =?us-ascii?Q?O76mXwPBl+q9cGtf05yKa51saJ7WGD2tJbO5iqV9ciXGnVkqs8EY5Lgws+j+?=
- =?us-ascii?Q?tYOLhXLwVAG11eQzR9QhBMfkGdtlejxZ5eWCCi/J9I/NZ9+VoB0ePcU5QjOp?=
- =?us-ascii?Q?jUsllu88fnBmEko0t16TZO0WQdboeJ499jaFeVgKNFIL245ktVt/A5TJSr9P?=
- =?us-ascii?Q?AO+O8aGafQHn7JgvuRkIFN/r5BUpbW1td7gU6k+2i2iKFbTt7aLV6TetTyDg?=
- =?us-ascii?Q?/bce1fM1r4rcod+a0DEwSUNGrqLuk+XdUPH9SIu5hYZuC8RIkA4RLJHKejAD?=
- =?us-ascii?Q?xoD79XHsdHw8IuQfdsCnXb9bSt9A0ZdSUXofprvFENLCMpetMQ5QeSr+8T21?=
- =?us-ascii?Q?ZwqD0Fdhaqo911HCrOiFEPs6umPnP8BQ9PWl08zb9xYpS4aCPFouTBXa4wvW?=
- =?us-ascii?Q?7/56o3igNBvOB1nVGTBvR/k5eUyWOMpMtgvjZt73NJLzwFWRs4KScPtg9zLw?=
- =?us-ascii?Q?N1pGITUKlUgzSl6yKY/zkfpS0RXjkxAmLKlr6JY4iE0TBy46Dhh4vUs8hFjf?=
- =?us-ascii?Q?k1eVwbKa3f7ywX6EUxa/KFbg0JM7E8kVhWzKSFiy7DIlHHP+i3pvbYoH6K0U?=
- =?us-ascii?Q?/ibHBgTKLQo8V/EzwFR9PEUSq+Jv1l2oWIlCsLb31VLJQ5Sw9rdHRjYD1n0C?=
- =?us-ascii?Q?nRmLRVYvg0QpQGpcbUGceSj0EIKH/SOlHHvv/YV0GE900ILWQ04uM2img7EB?=
- =?us-ascii?Q?aLIrbhYxMXxgfwrrmTzRGvwalapKtFhRj8LXvlsHkW9DWIr+hiyGFuB/p10/?=
- =?us-ascii?Q?vqlwvkEvbU23e9ceqJM0T6sOx9hKzPJHYkWrEW4ywg9xt8yXeAZcaULIeWwb?=
- =?us-ascii?Q?IY82QU0osuMiI5Q4d5yvbHCx9G+9yvqp84kiX5ksD+BdIE4acpvRSkpdjmHI?=
- =?us-ascii?Q?earhQhcwVZLI86NcKapmus9HWziz8518bIbq3x/GuScbcAlnuCca+FWyska1?=
- =?us-ascii?Q?Rqnl90vimmvJdnWOgpzCe5llaJwRnvwJjAEOMowr80d7fOaX+ReovZKTZOOl?=
- =?us-ascii?Q?EVttzvPW5JuUrazo0tq9iTNkWTRPg8B2Fh7IjtkZJ6j903XkYhOgypI8JT37?=
- =?us-ascii?Q?1SIoCF0yAGqILze7kqD0IHDY2KF4FK3KjTWCtdr8vMIZAxzXFs6/UtDOnOL9?=
- =?us-ascii?Q?bKYnOoJb11b+eGYilwqg9v8fFvW9w+pzfAdDipTg2hi+DkRGVX2tHWxGr+ck?=
- =?us-ascii?Q?/IZUJTRVz0AkuwMISdB/SLw1qss5udV3We0aL8eSeZypDT8otn75?=
-X-Exchange-RoutingPolicyChecked: PunszRRrJ0ktAaH8S2yg1rbNE8PlWzrnjBSexrLZHAp6uzqefy90d5EACx4fQEL7GnORzTciadxst32KBoMNLU3XIDNM4U7AgQ+NxskjjyvYihRLTCAg5YfjYA6RUSbMs/4vrx4mqUTwe4phlXzdLG+OtXM6jkCP862GIczdwwzXj3VykdBKQOCndiLRxrnH8sT4kHdH7tp5Okr+4+SA/wvhsb1pORPAtJw0HEj/55dwbfF6O+3XF2cYiO/ROnl64ONGyF8ASpPAhVOO0vNVSXWnRKlJxe+Lr9Qa8zHJXZpXLZXEWh9t85wHpjpsNNqyxuKzpcVhBglsf2xi32ErWw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 258923df-6634-44bb-f752-08df4d0f9a39
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?akfzcTb6QvKO1e5WCR1oxnC0EwMgfUJsewMUwLLZHSGozzQ7xZCzmTPzEhfT?=
+ =?us-ascii?Q?719P97IyeQblBu8K25dVQfFYd43SmxQg4uQGEX8T7lZVo4QxJDbd9aa5F19S?=
+ =?us-ascii?Q?QZzUwM7oBTNrmyJqzGILyLqoaKF+cMF/T87s8w0ocBcihldwdOnywyaMu0Tj?=
+ =?us-ascii?Q?LjFzVCAj848sMGDtjjaD3pyrEqo6vDVQOVTQOQgkPtSL2PjQEqDkFUtL+2Uq?=
+ =?us-ascii?Q?Us4ocLbktYL8rnpd6WP0j2U51SHJM+c3MaVrNb7OqdmCXNpfw2jtz0Qa9r9G?=
+ =?us-ascii?Q?BQdpCmg53r5+jPOj7oIRvU8Bq2r9qiD3evm9NzPv8ah2K5EGqqzNvcLWFMvS?=
+ =?us-ascii?Q?5W2riBGdfRvED+tGzIac6ZqWUG0fAf+X6NKstoIKYIPG/PegLGBO6tBiQgLB?=
+ =?us-ascii?Q?KehldNXG/aociMWZb/DN2OACul5pPQ/gFH6ePYm5Pqwzz4HoQ6sxnPF63SXo?=
+ =?us-ascii?Q?uSv92UtzEuT30553PT7rmgc4CdqV16p7FYZOLvrjD76+8f4Adxt/BaHte7aj?=
+ =?us-ascii?Q?wXubqIj+tgx7OhgptB+R1hHcz6SbO/W/RqYRGXwB3GWTDqcZJsCuJKjsW8jC?=
+ =?us-ascii?Q?8NUaaRTiEJEjQWXaw5A0iwmWacRNTgb2Vffnt1PDStAum9KN+nqI6lRNP06D?=
+ =?us-ascii?Q?ooHUsXFxL8PAV0E0gNOajaScRFDokDLFRnyA2TDvwfuvRbQZz8E8dYsNho1h?=
+ =?us-ascii?Q?mIJERciu8pn519v52GcphCPoRw+977byRFXzSi3sLwRD1ziOarTmlcKDiVC6?=
+ =?us-ascii?Q?2Z38hJYUOrdZ/D/VpLDPmcu3oFuO+greEtoidCWYkujuoGxLX6UAG3Var/ae?=
+ =?us-ascii?Q?LeHQrMYeGXDM9IHaOSFLCVEpZZC7uM3QGDxcJKmL3b5v/6buoF/m6rDDFF1q?=
+ =?us-ascii?Q?FV5ISOsz4KAoNE9bnA/2Qav3mrHZntxKjmKDMWBkyHu56tP+XBqdv3SvoS7O?=
+ =?us-ascii?Q?95wrwfwRjGCZ1X7zXEsROmHO+GtUk08V9T4Ftl9HdJiIizXARYwnhV2mVva5?=
+ =?us-ascii?Q?RnZOFiKZg5+iXXSlY+HwyIeT6D14va2Z0JjUlgkgw0MlmvAA3farGTKJA51s?=
+ =?us-ascii?Q?RSoS2jcvfvuJryrthRjh88WITqja+DeI9QSj90wquiU1K6CgVNFMkRRog5uP?=
+ =?us-ascii?Q?BDVH0KjhXv+I6SbeCEwcz1L3pJNIiRE4dMf817ykFJoBfRefX8QFiinL8cKH?=
+ =?us-ascii?Q?N1KrI0ydQ+vtwE/51MBmfbuS+Zhk0Ho663xIEqPDBlRBV5eajqK4A5fcEHpA?=
+ =?us-ascii?Q?SvjiNimna/Cf2XvJAaR3mNQLQ38KNmg0oG/9i3IR5Kw6fiuE20r1G4iZPDJL?=
+ =?us-ascii?Q?KdvNLXcxMwZ0glQpV8ATFD/EXIbuR8wn5z7/gYG6OYhp2h7lx7pcCbwbNuyS?=
+ =?us-ascii?Q?xjJMufmKVsU5g7OgHSkAMNHlp8vXP3xPJrfIaqArz7zhFkKASXWv31/8gNQd?=
+ =?us-ascii?Q?R+qoUK1BpieEzw7QsbkRwGeMH0fMpqHg2KxfvLKIkJwc5ev6cWKmGkf7GlRj?=
+ =?us-ascii?Q?c/AGxW8040iYgkNBryjDNV8P8dx/hNJ9Vt/goG1po+7hjCrPEBvd2qyw0mL2?=
+ =?us-ascii?Q?Pwqx7LlcjjSgPHoOvDolCrc9wJ/8BQfWJm4O3ajm90YUM2212Jt11slRJpw6?=
+ =?us-ascii?Q?WZ4KEA8fOZp9jjfZzzCE7k6iK/lzuPu6DMRULEjTCCxJtofwcQGpOhs6sAM2?=
+ =?us-ascii?Q?mUw+razx2oR6I4E3ecSeq2v1mLDXYXP5brL4pXgYbt5nI8ld+4DY0no6n/aY?=
+ =?us-ascii?Q?z+Ua9PrZIxy8Uvy2dEr/pUsyBOh7F/WmO+y8q+9IVdJJeytRXNe4?=
+X-Exchange-RoutingPolicyChecked: ih6t/LkyQLKUFaCpNfyZGJMzhM6ow60e6EBB/YRbnCIU1wwOQi9VLDmYca3OOMp5HcCAUPkes8U31b/3rPi1PmTTtDTD5HBHVAOtX6+LcQh2r4wkmfE5Sc5CoGi//DgjO4Xh+UCTVVk/SKKtH2NHkcXELAAFbLrNXyZbtvEJFEOLTZJUOEhG6EK4kgPHV8fvakXT/pCO3Ds4PKqobQ9HlKGQcKINWnowBDFxhjtIm9QYSla3fIkGiPpLklogveZhgemotRS4BAwWcwsg/Hxx9pOa7fp90kJYwPRPpYzI1op6Ux5xrI/Fbgw3pXfr78+g56T+fzW9UjUUDDykEyTkCA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b4e5be0-f5aa-4bfc-461f-08df4d0fbd5f
 X-MS-Exchange-CrossTenant-AuthSource: MW3PR11MB4684.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2026 05:22:31.9479 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2026 05:23:30.7611 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ThdQ1/CmeXPgu/sf6CPHNqWq8+ricKwiMJCRZu3MhrhUxW9864nGH7GwX9/8Gk021dQpPLxXCVcrcm7/0zTNuOX3N4Y1EpIb13/PhkJlOY1/ks9Sbg79pn+rku3qsZvt
+X-MS-Exchange-CrossTenant-UserPrincipalName: pB8n6bdmkDDSBvIqRvOBdF6JMqLn6Z6M3Ach+/NTBVOe2HjKBew/dnP4MPKKFsrxyUkQtBQY5YCjosQvfpNQn8yPqvdvEJ0VuAp8rxbhVQroVBRuXjf349HyFdSSIyvd
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSVPR11MB9767
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -159,15 +160,20 @@ X-Spam-Status: No, score=-15.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-On Fri, Nov 27, 2026 at 06:38:17PM +0530, tilak.tirumalesh.tangudu@intel.com wrote:
+On Fri, Nov 27, 2026 at 06:38:18PM +0530, tilak.tirumalesh.tangudu@intel.com wrote:
 >From: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
 >
->The CGP address in the context registration info is only used when
->registering the multi queue group primary. Set it only for the primary
->queue instead of for every queue in the group.
+>The Context Group Page (CGP) has the queues of a multi queue group and
+>their LRCAs. Store its address in the PPHWSP of the group's primary
+>queue, so debug tools can find it.
+>
+>The address is written before the group is registered with GuC and
+>rewritten after a VF migration GGTT rebase.
 >
 >v2:
->- Split out from the CGP address patch (Niranjana)
+>- Use decimal PPHWSP offset, u32 address with xe_map_write32() and assert
+>  a single LRC in the rebase path (Niranjana)
+>- Move the DOC note after the CGP GuC interface description (Niranjana)
 >
 >Assisted-by: LLM
 >Signed-off-by: Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>
@@ -175,22 +181,116 @@ On Fri, Nov 27, 2026 at 06:38:17PM +0530, tilak.tirumalesh.tangudu@intel.com wro
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 
 >---
-> drivers/gpu/drm/xe/xe_guc_submit.c | 2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
+> drivers/gpu/drm/xe/xe_exec_queue.c |  7 +++++++
+> drivers/gpu/drm/xe/xe_guc_submit.c |  3 +++
+> drivers/gpu/drm/xe/xe_lrc.c        | 21 +++++++++++++++++++++
+> drivers/gpu/drm/xe/xe_lrc.h        |  1 +
+> 4 files changed, 32 insertions(+)
 >
+>diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>index ddd9e38aa80b..b1a8ef66ea47 100644
+>--- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>@@ -1926,6 +1926,13 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+>
+> 		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
+> 		xe_lrc_update_hwctx_regs_with_address(lrc);
+>+		if (xe_exec_queue_is_multi_queue_primary(q)) {
+>+			struct xe_bo *cgp_bo = q->multi_queue.group->cgp_bo;
+>+
+>+			/* Multi queue group primary always has a single LRC */
+>+			xe_assert(gt_to_xe(q->gt), !i);
+>+			xe_lrc_set_cgp_gfxaddress(lrc, xe_bo_ggtt_addr(cgp_bo));
+>+		}
+> 		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
+> 		xe_lrc_put(lrc);
+> 		if (err)
 >diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
->index da641f803e85..f84848e00eaf 100644
+>index f84848e00eaf..3b8c0e84d632 100644
 >--- a/drivers/gpu/drm/xe/xe_guc_submit.c
 >+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
->@@ -1046,7 +1046,7 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
-> 	info.flags = CONTEXT_REGISTRATION_FLAG_KMD |
-> 		FIELD_PREP(CONTEXT_REGISTRATION_FLAG_TYPE, ctx_type);
->
->-	if (xe_exec_queue_is_multi_queue(q)) {
->+	if (xe_exec_queue_is_multi_queue_primary(q)) {
-> 		struct xe_exec_queue_group *group = q->multi_queue.group;
+>@@ -778,6 +778,8 @@ struct guc_ctxt_registration_info {
+>  * The primary queue (Q0) represents the multi queue group context in GuC and
+>  * submission on any queue of the group must be through Q0 GuC interface only.
+>  *
+>+ * The CGP address is also stored in the PPHWSP of Q0, for use by debug tools.
+>+ *
+>  * As it is not required to register secondary queues with GuC, the secondary queue
+>  * context ids in the CGP are populated with Q0 context id.
+>  */
+>@@ -1051,6 +1053,7 @@ static void register_exec_queue(struct xe_exec_queue *q, int ctx_type)
 >
 > 		info.cgp_lo = xe_bo_ggtt_addr(group->cgp_bo);
+> 		info.cgp_hi = 0;
+>+		xe_lrc_set_cgp_gfxaddress(lrc, info.cgp_lo);
+> 	}
+>
+> 	if (xe_exec_queue_is_parallel(q)) {
+>diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>index 54d50b1b28eb..329e0ac571c2 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc.c
+>+++ b/drivers/gpu/drm/xe/xe_lrc.c
+>@@ -705,6 +705,7 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+>
+> #define LRC_CTX_JOB_TIMESTAMP_OFFSET 512
+> #define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
+>+#define LRC_CGP_GFXADDRESS_PPHWSP_OFFSET 1472
+> #define LRC_PARALLEL_PPHWSP_OFFSET 2048
+> #define LRC_ULLS_PPHWSP_OFFSET 2048	/* Mutually exclusive with parallel */
+>
+>@@ -764,6 +765,11 @@ static inline u32 __xe_lrc_parallel_offset(struct xe_lrc *lrc)
+> 	return xe_lrc_pphwsp_offset(lrc) + LRC_PARALLEL_PPHWSP_OFFSET;
+> }
+>
+>+static inline u32 __xe_lrc_cgp_gfxaddress_offset(struct xe_lrc *lrc)
+>+{
+>+	return xe_lrc_pphwsp_offset(lrc) + LRC_CGP_GFXADDRESS_PPHWSP_OFFSET;
+>+}
+>+
+> static inline u32 __xe_lrc_engine_id_offset(struct xe_lrc *lrc)
+> {
+> 	return xe_lrc_pphwsp_offset(lrc) + LRC_ENGINE_ID_PPHWSP_OFFSET;
+>@@ -843,6 +849,7 @@ DECL_MAP_ADDR_HELPERS(ctx_timestamp, lrc->bo)
+> DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
+> DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
+> DECL_MAP_ADDR_HELPERS(ulls, lrc->bo)
+>+DECL_MAP_ADDR_HELPERS(cgp_gfxaddress, lrc->bo)
+> DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
+> DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
+> DECL_MAP_ADDR_HELPERS(queue_timestamp, lrc->bo)
+>@@ -949,6 +956,20 @@ u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc)
+> 	return __xe_lrc_pphwsp_ggtt_addr(lrc);
+> }
+>
+>+/**
+>+ * xe_lrc_set_cgp_gfxaddress() - Store the CGP GGTT address in PPHWSP
+>+ * @lrc: LRC of the multi queue group primary
+>+ * @cgp_ggtt_addr: GGTT address of the Context Group Page
+>+ */
+>+void xe_lrc_set_cgp_gfxaddress(struct xe_lrc *lrc, u32 cgp_ggtt_addr)
+>+{
+>+	struct xe_device *xe = lrc_to_xe(lrc);
+>+	struct iosys_map map = __xe_lrc_cgp_gfxaddress_map(lrc);
+>+
+>+	xe_assert(xe, IS_ALIGNED(cgp_ggtt_addr, SZ_4K));
+>+	xe_map_write32(xe, &map, cgp_ggtt_addr);
+>+}
+>+
+> u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc)
+> {
+> 	if (!xe_lrc_has_indirect_ring_state(lrc))
+>diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+>index 840f303db97e..6338ca244b4c 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc.h
+>+++ b/drivers/gpu/drm/xe/xe_lrc.h
+>@@ -124,6 +124,7 @@ bool xe_lrc_ring_is_idle(struct xe_lrc *lrc);
+>
+> u32 xe_lrc_indirect_ring_ggtt_addr(struct xe_lrc *lrc);
+> u32 xe_lrc_ggtt_addr(struct xe_lrc *lrc);
+>+void xe_lrc_set_cgp_gfxaddress(struct xe_lrc *lrc, u32 cgp_ggtt_addr);
+> u32 *xe_lrc_regs(struct xe_lrc *lrc);
+> void xe_lrc_update_hwctx_regs_with_address(struct xe_lrc *lrc);
+> void xe_default_lrc_update_memirq_regs_with_address(struct xe_hw_engine *hwe);
 >-- 
 >2.46.0
 >
