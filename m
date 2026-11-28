@@ -2,41 +2,42 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A17C606A31C
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Nov 2026 06:10:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97843606A31C
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Nov 2026 06:12:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=fSqIPLpP
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.a=rsa-sha256 header.s=k20260515 header.b=igX+1hCj
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D93010E26F;
-	Sat, 28 Nov 2026 06:10:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6170B10E17F;
+	Sat, 28 Nov 2026 06:12:27 +0000 (UTC)
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C051E10E26F
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Nov 2026 06:10:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B048C10E17F
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Nov 2026 06:12:20 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 8EBC760E25;
- Sat, 28 Nov 2026 06:10:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 323B71F000C1;
- Sat, 28 Nov 2026 06:10:25 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id C7F0B60626;
+ Sat, 28 Nov 2026 06:12:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A73D1F00893;
+ Sat, 28 Nov 2026 06:12:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1795846225;
- bh=+lDIeOwR2QBgnLH/BeaV4T4G2hFGf4WPjarK8src5UE=;
+ s=k20260515; t=1795846339;
+ bh=HD13/o/dik+hWqaRQwXKGDlPS7cNXLisEptugEWttKs=;
  h=From:Subject:Reply-To:To:In-Reply-To:References:Date;
- b=fSqIPLpPaUNSaxsKw0grUVrXNmiaYWHSYh4SI/hJh3Hkk97MRyEh/tS3DUpIM+3A/
- qzHxIw3LHTbOZk/vdC+jmCquBTAcwqXDIfmofzyPTntTm/R3mlUo7A/4yo8ksHoRn5
- Rm7Ze6VwkenNVBdgCOjr2uuni6mKv8c7WuZ68yK4gghgmcNqcZz4QAzQYm3RfMdXxz
- Oonmaz9Ze/E2Lh1F0phLEKo2d7eFfwfQ3PvRIIMaW9Ut+qhJdi0BwpnyfrdvmG0bZn
- DP3hruLujsgtAvNwgt0C3jgs5WH+Bp1yUloRzZ4p63TyJKj9Wet18arxBU/2gwiUj9
- AwAKuRC86iaOw==
-Message-ID: <sashiko-outbox-238486@kernel.org>
+ b=igX+1hCjv61a1pd3Iy23Ah6NBW2J5GEhoDanjN3EY8clxABv4jbspT42vTR5uCkBP
+ fl+xP5oiQzYD6KYhwGtHWnz2IaVDnvndeMcKgTvDTOVTkR9Wf/3xNgyAqtvbKfl7+F
+ 0bZ8EFduDlEA6hTIpTnrDfpPaEyn1mP4M+wfFN3nRNctWkoG47C3Ur6aB5Q6wIVu20
+ dUod+jDpSp3BDgCM8kCTktVPoI9OF/qasNLnTHvyMEuTxTJprYDuzQ/SB1AawLnh2c
+ qY3K7zuNaS76raoYuNCrJl2z2udbhWoKTziAqFD6tjfkxveFgnlpsQa4Lysp5FaqUk
+ zq2AMFOCvdQjw==
+Message-ID: <sashiko-outbox-238487@kernel.org>
 From: sashiko-bot@kernel.org
-Subject: Re: [PATCH v5 06/10] drm/xe/hwmon: Enable fan curve control support
+Subject: Re: [PATCH v5 09/10] drm/xe: Expose tjmax_fan_control_enable device
+ sysfs
 To: "Karthik Poosa" <karthik.poosa@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20261128055923.3316956-7-karthik.poosa@intel.com>
+In-Reply-To: <20261128055923.3316956-10-karthik.poosa@intel.com>
 References: <20261128055923.3316956-1-karthik.poosa@intel.com>
- <20261128055923.3316956-7-karthik.poosa@intel.com>
+ <20261128055923.3316956-10-karthik.poosa@intel.com>
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Date: Sat, 28 Nov 2026 06:10:24 +0000
+Date: Sat, 28 Nov 2026 06:12:19 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,242 +57,102 @@ X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 X-Archived-By: <archiver.kernel.org>
 
-Thank you for your contribution! Sashiko AI review found 4 potential
+Thank you for your contribution! Sashiko AI review found 2 potential
 issues to consider:
-- [Medium] drm/xe/hwmon: missing stock table check in
-  xe_hwmon_curve_attributes_visible()
-- [Medium] drm/xe/hwmon: xe_hwmon_pwm_read() returns fcp[0].speed on
-  user fan curves
-- [Low] drm/xe/hwmon: missing ABI documentation update claimed in commit
-  message
-- [Low] drm/xe/hwmon: unhandled XE_FAN_PWM_UNINITIALIZED in curve show
-  callbacks
+- [Medium] drm/xe: tjmax_fan_control_enable exposed as no-op on SR-IOV
+  VFs
+- [Medium] drm/xe: uninitialized val passed to xe_pcode_read() in
+  fan_control_attr_is_visible()
 --
 
-commit 51f62604f9e213b63207cde46fb9f696d1728daf
+commit f041e7b8d44d672ec8e023036136e0162ee46779
 Author: Karthik Poosa <karthik.poosa@intel.com>
 
-drm/xe/hwmon: Enable fan curve control support
+drm/xe: Expose tjmax_fan_control_enable device sysfs
 
-This commit exposes fan curve temperature and PWM control points in hwmon
-sysfs via pwm[1-3]_auto_point[1-10]_temp and pwm[1-3]_auto_point[1-10]_pwm,
-allowing userspace to stage and commit custom fan curves to PCODE.
+This commit adds a read-write tjmax_fan_control_enable sysfs attribute
+to read and configure the firmware TjMax fan control mode via PCODE
+mailbox commands.
 
-> Update Xe hwmon ABI documentation for pwm auto point temperature
-> attributes.
->
-> v2:
->  - Use xe helpers for dmesg logs.
->  - Update kernel version in Xe hwmon documentation.
-
-[Severity: Low]
-Was the Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon update
-dropped from this patch?  The commit message says the ABI documentation is
-updated, but this commit only touches drivers/gpu/drm/xe/xe_hwmon.c and
-leaves pwm[1-3]_auto_point[1-10]_temp and pwm[1-3]_auto_point[1-10]_pwm
-undocumented.
-
-> diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-> index b6214ef933165..4d6eb6f6fbc2f 100644
-> --- a/drivers/gpu/drm/xe/xe_hwmon.c
-> +++ b/drivers/gpu/drm/xe/xe_hwmon.c
+> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe=
+_device_sysfs.c
+> index f6275e74eb317..3a4861b825485 100644
+> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
 
 [ ... ]
 
-> @@ -1389,6 +1482,312 @@ static int xe_hwmon_set_user_fan_pwm(struct xe_hw=
-mon *hwmon, u8 fan, u8 pwm, boo
->  	return 0;
->  }
-> =20
-> +#define XE_CURVE_IDX(fan, point)	(((fan) << 8) | (point))
-> +#define XE_CURVE_FAN(idx)		((u8)(((idx) >> 8) & 0xff))
-> +#define XE_CURVE_POINT(idx)		((u8)((idx) & 0xff))
-> +
-> +static int
-> +xe_hwmon_decode_curve_index(struct xe_hwmon *hwmon, u32 index, u8 *fan, =
-u8 *point)
-> +{
-> +	u8 local_fan =3D XE_CURVE_FAN(index);
-> +	u8 local_point =3D XE_CURVE_POINT(index);
-> +
-> +	if (local_fan >=3D FAN_MAX || local_point >=3D MAX_FAN_CONTROL_POINTS) {
-> +		xe_dbg(hwmon->xe, "invalid fan curve index 0x%x: fan %u point %u\n",
-> +		       index, local_fan, local_point);
-> +		return -EINVAL;
-> +	}
-> +
-> +	*fan =3D local_fan;
-> +	*point =3D local_point;
-> +
-> +	return 0;
-> +}
-> +
-> +static enum fan_table_type xe_hwmon_get_active_fan_table(struct xe_hwmon=
- *hwmon, u8 fan)
-> +{
-> +	if (hwmon->fi[fan].pwm_enable_mode =3D=3D XE_FAN_PWM_AUTO_STOCK_TABLE)
-> +		return STOCK_FAN_TABLE;
-> +	else
-> +		return USER_FAN_TABLE;
-> +}
-> +
-> +static ssize_t
-> +xe_hwmon_pwm_auto_point_temp_show(struct device *dev,
-> +				  struct device_attribute *attr, char *buf)
-> +{
-> +	struct sensor_device_attribute *sattr =3D to_sensor_dev_attr(attr);
-> +	struct xe_hwmon *hwmon =3D dev_get_drvdata(dev);
-> +	enum fan_table_type active_table;
-> +	struct xe_hwmon_fan_info *fi;
-> +	u32 point_count;
-> +	u8 point;
-> +	u8 temp;
-> +	int ret;
-> +	u8 fan;
-> +
-> +	ret =3D xe_hwmon_decode_curve_index(hwmon, sattr->index, &fan, &point);
-> +	if (ret)
-> +		return ret;
-> +
-> +	guard(mutex)(&hwmon->hwmon_lock);
-> +
-> +	fi =3D &hwmon->fi[fan];
-> +	active_table =3D xe_hwmon_get_active_fan_table(hwmon, fan);
-
-[Severity: Low]
-Should xe_hwmon_pwm_auto_point_temp_show() and
-xe_hwmon_pwm_auto_point_pwm_show() return -ENODATA when
-fi->pwm_enable_mode is XE_FAN_PWM_UNINITIALIZED, the same way
-xe_hwmon_pwm_read() does for hwmon_pwm_enable?  Right now
-xe_hwmon_get_active_fan_table() maps XE_FAN_PWM_UNINITIALIZED to
-USER_FAN_TABLE, so after a failed xe_hwmon_fan_set_auto() call the show
-callbacks report stale user-table points or 0 instead of an error.
-
-> +
-> +	point_count =3D fi->fan_table[active_table].point_count;
-> +
-> +	if (point >=3D point_count)
-> +		temp =3D 0;
-> +	else
-> +		temp =3D fi->fan_table[active_table].fcp[point].temp;
-> +	return sysfs_emit(buf, "%u\n", temp * MILLIDEGREE_PER_DEGREE);
-> +}
-> +
-> +static int xe_hwmon_update_user_fan_point(struct xe_hwmon *hwmon, u8 fan=
-, u32 point,
-> +					  bool is_temp, u8 value)
-> +{
-> +	struct xe_hwmon_fan_info *fi =3D &hwmon->fi[fan];
-> +	struct fan_table *table;
-> +	u32 point_count;
-> +	int ret;
-> +
-> +	table =3D &fi->fan_table[USER_FAN_TABLE];
-> +
-> +	if (is_temp) {
-> +		table->staged_fcp[point].temp =3D value;
-> +		table->temp_staged |=3D BIT(point);
-> +	} else {
-> +		table->staged_fcp[point].speed =3D value;
-> +		table->speed_staged |=3D BIT(point);
-> +	}
-> +
-> +	/* Wait for a complete prefix; (0, 0) ends the curve without becoming a=
- point. */
-> +	for (point_count =3D 0; point_count < MAX_FAN_CONTROL_POINTS; point_cou=
-nt++) {
-> +		if (!(table->temp_staged & BIT(point_count)) ||
-> +		    !(table->speed_staged & BIT(point_count)))
-> +			return 0;
-> +		if (!table->staged_fcp[point_count].temp &&
-> +		    !table->staged_fcp[point_count].speed)
-> +			break;
-> +	}
-> +
-> +	if (point_count < MIN_FAN_CONTROL_POINTS) {
-> +		xe_dbg(hwmon->xe, "fan %d curve needs at least %d points, got %u\n",
-> +		       fan, MIN_FAN_CONTROL_POINTS, point_count);
-> +		ret =3D -EINVAL;
-> +		goto clear_staged;
-> +	}
-> +
-> +	ret =3D xe_hwmon_commit_user_fan_table(hwmon, fan, table->staged_fcp, p=
-oint_count);
-> +	if (ret)
-> +		goto clear_staged;
-> +
-> +	/* Publish the new curve only after firmware accepts its point count. */
-> +	memcpy(table->fcp, table->staged_fcp, point_count * sizeof(table->fcp[0=
-]));
-> +	table->point_count =3D point_count;
-> +	fi->pwm_enable_mode =3D XE_FAN_PWM_MANUAL_USER_TABLE;
-> +	fi->is_full_speed =3D false;
-
-[Severity: Medium]
-When a multi-point user fan curve is committed here, does reading pwmN in
-xe_hwmon_pwm_read() return the wrong PWM value?
-
-drivers/gpu/drm/xe/xe_hwmon.c:xe_hwmon_pwm_read() {
-    ...
-		if (xe_hwmon_get_active_fan_table(hwmon, channel) =3D=3D STOCK_FAN_TABLE)=
- {
-			...
-		} else {
-			/*
-			 * pwmN writes set every user-table point to the same speed,
-			 * so the first point gives the cached manual PWM percentage.
-			 */
-			xe_dbg(hwmon->xe, "getting active pwm for fan %d from user table cache\n=
-",
-			       channel);
-			pwm =3D fi->fan_table[USER_FAN_TABLE].fcp[0].speed;
-		}
-    ...
-}
-
-For a custom curve with different speeds across temperature points,
-fcp[0].speed is only the speed at the lowest temperature point rather than
-the active PWM from PMT telemetry (on Battlemage) or interpolation across
-USER_FAN_TABLE.  Also, if xe_hwmon_commit_user_fan_table() and its
-xe_hwmon_fan_set_auto() fallback both fail, point_count is reset to 0 and
-pwm_enable_mode is set to XE_FAN_PWM_UNINITIALIZED, yet xe_hwmon_pwm_read()
-still takes this USER_FAN_TABLE branch and returns stale fcp[0].speed.
+> @@ -203,6 +206,73 @@ static const struct attribute_group late_bind_attr_g=
+roup =3D {
 
 [ ... ]
 
-> +static umode_t xe_hwmon_curve_attributes_visible(struct kobject *kobj,
-> +						 struct attribute *attr, int index)
+> +static umode_t fan_control_attr_is_visible(struct kobject *kobj,
+> +					   struct attribute *attr, int n)
 > +{
 > +	struct device *dev =3D kobj_to_dev(kobj);
-> +	struct xe_hwmon *hwmon =3D dev_get_drvdata(dev);
-> +	u32 fan =3D index / XE_CURVE_ATTRS_PER_FAN;
+> +	struct xe_device *xe =3D pdev_to_xe_device(to_pci_dev(dev));
+> +	u32 val;
+> +	int ret;
 > +
-> +	if (!hwmon->xe->info.has_fan_control || !IS_FAN_ENABLED(hwmon, fan))
-> +		return 0;
+> +	guard(xe_pm_runtime)(xe);
+> +	ret =3D xe_pcode_read(xe_device_get_root_tile(xe),
+> +			    PCODE_MBOX(FAN_SPEED_CONTROL, FSC_READ_TJMAX_FAN_CONTROL_MODE, 0),
+> +			    &val, NULL);
 > +
-> +	/* All slots must exist at registration, before the user curve has been=
- staged. */
-> +	return attr->mode;
+> +	return ret ? 0 : attr->mode;
 > +}
 
 [Severity: Medium]
-Should xe_hwmon_curve_attributes_visible() also check
-!hwmon->fi[fan].fan_table[STOCK_FAN_TABLE].point_count like
-xe_hwmon_pwm_is_visible() does?
+Should val be initialized to 0 before calling xe_pcode_read(), as in
+tjmax_fan_control_enable_show()?
 
-drivers/gpu/drm/xe/xe_hwmon.c:xe_hwmon_pwm_is_visible() {
-	if (!hwmon->xe->info.has_fan_control || !IS_FAN_ENABLED(hwmon, channel) ||
-	    !hwmon->fi[channel].fan_table[STOCK_FAN_TABLE].point_count)
-		return 0;
-    ...
+xe_pcode_read() -> pcode_mailbox_rw() -> __pcode_mailbox_rw() treats
+val0 as an in/out argument and unconditionally writes *data0 to
+PCODE_DATA0 before issuing the mailbox command:
+
+drivers/gpu/drm/xe/xe_pcode.c:__pcode_mailbox_rw() {
+	...
+	xe_mmio_write32(mmio, PCODE_DATA0, *data0);
+	xe_mmio_write32(mmio, PCODE_DATA1, data1 ? *data1 : 0);
+	xe_mmio_write32(mmio, PCODE_MAILBOX, PCODE_READY | mbox);
+	...
 }
 
-When a fan channel is enabled in fan_enable_mask (such as on DG2, or when
-reading the stock table in xe_hwmon_read_fan_control_info() fails or
-returns 0 points), pwmN and pwmN_enable are hidden and fi->pwm_enable_mode
-stays XE_FAN_PWM_UNINITIALIZED, but all 20 pwmN_auto_point* attributes are
-still exposed even though every write to them will fail with -EINVAL.
+Leaving val uninitialized writes stack garbage into PCODE_DATA0 during
+driver probe, triggering KMSAN uninit-value warnings and risking command
+rejection if firmware checks the data register.
+
+[ ... ]
+
+> @@ -428,5 +498,11 @@ int xe_device_sysfs_init(struct xe_device *xe)
+>  			return ret;
+>  	}
+> =20
+> +	if (xe->info.has_fan_control) {
+> +		ret =3D devm_device_add_group(dev, &fan_control_attr_group);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	return 0;
+>  }
+
+[Severity: Medium]
+Can fan_control_attr_group be exposed on SR-IOV VFs where PCODE access
+is disabled?
+
+On platforms with both has_fan_control and has_sriov (such as
+Battlemage), vf_update_device_info() sets xe->info.skip_pcode =3D 1 but
+leaves xe->info.has_fan_control enabled.  Because pcode_mailbox_rw()
+immediately returns 0 when skip_pcode is set,
+fan_control_attr_is_visible() sees ret =3D=3D 0 and exposes
+tjmax_fan_control_enable on VFs, where reads report a fabricated value
+and writes silently succeed as no-ops.  Guarding registration with
+!IS_SRIOV_VF(xe) (or !xe->info.skip_pcode), like
+auto_link_downgrade_attr_group and late_bind_attr_group above, would
+avoid registering it on VFs.
 
 --=20
 Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20261128055923.3316=
-956-1-karthik.poosa@intel.com?part=3D6
+956-1-karthik.poosa@intel.com?part=3D9
