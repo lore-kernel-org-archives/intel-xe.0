@@ -2,52 +2,52 @@ Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature ECDSA (prime256v1) server-digest SHA256)
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 967FD606A321
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Nov 2026 05:58:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3CD606A31C
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Nov 2026 05:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=EIsB4IR7
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.a=rsa-sha256 header.s=Intel header.b=U9poKmlQ
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E26D10E2D6;
-	Sat, 28 Nov 2026 05:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6702E10E26F;
+	Sat, 28 Nov 2026 05:58:13 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A26F910E26F
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Nov 2026 05:58:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B66D10E28D
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Nov 2026 05:58:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1795845482; x=1827381482;
+ t=1795845484; x=1827381484;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=o43is+oOvVDezvTbFVJhz/YEN3hasXm0DZMaAlJaedU=;
- b=EIsB4IR7B2nSjZbo5sqdD5z0BLi0J7mP7RRRzT+FNaUFFJ4+Ofm4UoFI
- mw8rpakVp1GTgpZDB4a10F2QQ355ej9NKvIrnGJ4rxCs/Nbu/8mIlIzXK
- Tv22Ztn+lYxdFlg0exxQBtkSrufWHm/YVCIaEsCF8zW1L2i/DyVTmUHd7
- xpmtjADpBgivbsmOGd4mOa+GWlsFLGFawQdAlOLwliUqXOHZOtOUVF62V
- gqdBm/BnECxwHFiRZi0qGBk80DGO1SYFfmL+iwVbWQoWcdW3PYyesaNL5
- fq3g5sW+qOkhklBrxiiK97BxoLkF1aUjDleRR++nTA8cnvTEUEq0ILNND A==;
-X-CSE-ConnectionGUID: Rn80peoERsCFtkuTU7Smhw==
-X-CSE-MsgGUID: 8pHecCtEQlCXmp6D/f8ewQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4754894"
+ bh=0VaW/sWH+pC6FOTVvVLujlorjqFvICEM6u3CIvUxJd4=;
+ b=U9poKmlQ0O0qJ6IFf+Cc+qJ79omjGvtSS6or80xWtM14rTvLHidb64Bc
+ HjcpGCfcBigQ7NHtoLhrujKJOl4AlRHIkczNg0UJn+tS61SrSXjsGoO9u
+ cI31VoVqVGVrHR+aCFu6t5qcbfRIry8GR+kdaxX2OPkpLUbExK4eqRitl
+ dKzeBRZ9C1DRK7etUT7ZQc1wdXhzuoVH8rUEK5keAvp02dglkTAcriTzi
+ xo2JmI70MlGCUK+Cr+B4tsIwfDGF181C14+sEGK94mVPR0H62oFDGFbwt
+ CD48uzODIYHYIQB/PhYGPgD9GaQzvh0SEoPtXOpNJdvmuQhcuFTE+ixCp g==;
+X-CSE-ConnectionGUID: kapbS78ZTw+k5LIR2SbU1w==
+X-CSE-MsgGUID: xTaLOTbbSJ6DogvntecDIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11979"; a="4754895"
 X-IronPort-AV: E=Sophos;i="6.27,238,1787036400"; 
-   d="scan'208";a="4754894"
+   d="scan'208";a="4754895"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 21:58:01 -0800
-X-CSE-ConnectionGUID: TkWBgxY3Tv2X9iCNE0kaVA==
-X-CSE-MsgGUID: su7qEw6eTf6rIkEH0WsmrQ==
+ 27 Nov 2026 21:58:04 -0800
+X-CSE-ConnectionGUID: T4t2wKVyTq6u7j9eRQ8o6A==
+X-CSE-MsgGUID: H4GEATPCTOaeu3Un0g2ECQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.27,238,1787036400"; d="scan'208";a="12304274"
+X-IronPort-AV: E=Sophos;i="6.27,238,1787036400"; d="scan'208";a="12304285"
 Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2026 21:57:59 -0800
+ 27 Nov 2026 21:58:02 -0800
 From: Karthik Poosa <karthik.poosa@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: rodrigo.vivi@intel.com, anshuman.gupta@intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, riana.tauro@intel.com, sk.anirban@intel.com,
  mallesh.koujalagi@intel.com, soham.purkait@intel.com,
  ravi.kishore.koppuravuri@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH v5 02/10] drm/xe/hwmon: Expose fanN_max
-Date: Sat, 28 Nov 2026 11:29:15 +0530
-Message-Id: <20261128055923.3316956-3-karthik.poosa@intel.com>
+Subject: [PATCH v5 03/10] drm/xe/pcode: Add ordered write batch helper
+Date: Sat, 28 Nov 2026 11:29:16 +0530
+Message-Id: <20261128055923.3316956-4-karthik.poosa@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20261128055923.3316956-1-karthik.poosa@intel.com>
 References: <20261128055923.3316956-1-karthik.poosa@intel.com>
@@ -71,118 +71,99 @@ X-Spam-Status: No, score=-18.8 required=3.0 tests=BAYES_00,DKIMWL_WL_HIGH,
 X-Spam-Checker-Version: SpamAssassin 4.0.1 (2024-03-26) on
 	aws-us-west-2-korg-listserv-alma10-1
 
-Expose fan maximum RPM via fanN_max.
+Add a pcode helper that issues an ordered sequence of mailbox writes
+while holding the pcode lock, so no other mailbox command can be
+interleaved.
 
-The value is derived from the firmware-reported maximum fan RPS and
-converted to RPM in the fan hwmon read path.
+This will be used to write fan tables atomically with respect to other
+pcode users.
 
-Update Xe hwmon ABI documentation for fanN_max.
-
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
 ---
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  8 ++++++++
- drivers/gpu/drm/xe/xe_hwmon.c                 | 20 ++++++++++++++++++-
- drivers/gpu/drm/xe/xe_pcode_api.h             |  1 +
- 3 files changed, 28 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pcode.c | 39 +++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pcode.h | 12 +++++++++++
+ 2 files changed, 51 insertions(+)
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 2bb78a503f46..9aa1cfac4f87 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -266,6 +266,14 @@ Description:	RO. Fan 3 speed in RPM.
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index fa9f45d565cb..409b9ff372e9 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -124,6 +124,45 @@ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 data, int timeout
+ 	return err;
+ }
  
- 		Only supported for particular Intel Xe graphics platforms.
- 
-+What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/fan[1-3]_max
-+Date:		November 2026
-+KernelVersion:	7.5
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RO. Maximum fan speed in RPM for each fan channel.
++/**
++ * xe_pcode_write_batch - issue pcode writes in order under the mailbox lock
++ * @tile: tile
++ * @writes: mailbox/data pairs to write
++ * @count: number of entries in @writes
++ *
++ * Holds the pcode lock across all writes so no other mailbox command can be
++ * interleaved; the lock may be held for up to @count * PCODE_DEFAULT_TIMEOUT_MS.
++ * Stops at the first failure; earlier writes are not reverted.
++ *
++ * Return: 0 on success, negative error code otherwise.
++ */
++int xe_pcode_write_batch(struct xe_tile *tile, const struct xe_pcode_write *writes,
++			 unsigned int count)
++{
++	unsigned int i;
++	int err = 0;
 +
-+		Only supported for particular Intel Xe graphics platforms.
++	if (!count)
++		return -EINVAL;
 +
- What:		/sys/bus/pci/drivers/xe/.../hwmon/hwmon<i>/power1_cap
- Date:		May 2025
- KernelVersion:	6.15
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 503f18625338..5b7f3d67a70e 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -185,6 +185,8 @@ struct xe_hwmon_fan_info {
- 			u8 speed;
- 		} fcp[MAX_FAN_CONTROL_POINTS];
- 	} fan_table[FAN_TABLE_MAX];
-+	/** @max_rps: maximum fan RPS */
-+	u32 max_rps;
- };
- 
- /**
-@@ -919,7 +921,8 @@ static const struct hwmon_channel_info * const hwmon_info[] = {
- 	HWMON_CHANNEL_INFO(curr, HWMON_C_LABEL, HWMON_C_CRIT | HWMON_C_LABEL),
- 	HWMON_CHANNEL_INFO(in, HWMON_I_INPUT | HWMON_I_LABEL, HWMON_I_INPUT | HWMON_I_LABEL),
- 	HWMON_CHANNEL_INFO(energy, HWMON_E_INPUT | HWMON_E_LABEL, HWMON_E_INPUT | HWMON_E_LABEL),
--	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT, HWMON_F_INPUT, HWMON_F_INPUT),
-+	HWMON_CHANNEL_INFO(fan, HWMON_F_INPUT | HWMON_F_MAX, HWMON_F_INPUT | HWMON_F_MAX,
-+			   HWMON_F_INPUT | HWMON_F_MAX),
- 	NULL
- };
- 
-@@ -1171,6 +1174,7 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
- 	int fan;
- 	int ret;
- 
-+	/* Stock table failures leave fan_input and fan_max visible; they don't need it. */
- 	for (fan = 0; fan < FAN_MAX; fan++) {
- 		struct fan_control_point stock_fcp[MAX_FAN_CONTROL_POINTS];
- 		struct xe_hwmon_fan_info *fi = &hwmon->fi[fan];
-@@ -1179,6 +1183,15 @@ static int xe_hwmon_read_fan_control_info(struct xe_hwmon *hwmon)
- 		if (!IS_FAN_ENABLED(hwmon, fan))
- 			continue;
- 
-+		ret = xe_hwmon_pcode_read_fan_control(hwmon, FSC_READ_MAX_FAN_RPS, fan,
-+						      &fi->max_rps);
-+		if (ret) {
-+			fi->max_rps = 0;
-+			xe_warn(hwmon->xe, "failed to read fan %d max RPS, ret=%d\n", fan, ret);
-+		} else {
-+			xe_dbg(hwmon->xe, "fan %d max RPS %u\n", fan, fi->max_rps);
++	mutex_lock(&tile->pcode.lock);
++	for (i = 0; i < count; i++) {
++		u32 data = writes[i].data;
++
++		err = pcode_mailbox_rw(tile, writes[i].mbox, &data, NULL, PCODE_DEFAULT_TIMEOUT_MS,
++				       false, false);
++		if (err) {
++			xe_err(tile_to_xe(tile),
++			       "pcode batch write %u/%u failed: mbox 0x%08x data 0x%08x, ret %pe\n",
++			       i + 1, count, writes[i].mbox, writes[i].data, ERR_PTR(err));
++			break;
 +		}
++	}
++	mutex_unlock(&tile->pcode.lock);
 +
- 		ret = xe_hwmon_pcode_read_fan_control(hwmon,
- 						      FSC_READ_STOCK_FAN_CONTROL_POINTS,
- 						      fan, &stock_fcp_count);
-@@ -1768,6 +1781,8 @@ xe_hwmon_fan_is_visible(struct xe_hwmon *hwmon, u32 attr, int channel)
- 	switch (attr) {
- 	case hwmon_fan_input:
- 		return IS_FAN_ENABLED(hwmon, channel) ? 0444 : 0;
-+	case hwmon_fan_max:
-+		return IS_FAN_ENABLED(hwmon, channel) && hwmon->fi[channel].max_rps ? 0444 : 0;
- 	default:
- 		return 0;
- 	}
-@@ -1818,6 +1833,9 @@ xe_hwmon_fan_read(struct xe_hwmon *hwmon, u32 attr, int channel, long *val)
- 	switch (attr) {
- 	case hwmon_fan_input:
- 		return xe_hwmon_fan_input_read(hwmon, channel, val);
-+	case hwmon_fan_max:
-+		*val = mul_u32_u32(hwmon->fi[channel].max_rps, 60);
-+		return 0;
- 	default:
- 		return -EOPNOTSUPP;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 387885760205..2308e5464082 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -86,6 +86,7 @@
- #define     MEMORY_CONFIG_SUBCOMMAND_READ_MAX_FREQUENCY 0x1
++	return err;
++}
++
+ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0, u32 data1, int timeout)
+ {
+ 	int err;
+diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
+index 7e43792b0037..c601a12baba6 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.h
++++ b/drivers/gpu/drm/xe/xe_pcode.h
+@@ -18,6 +18,16 @@ struct xe_pcode_version {
+ 	u32 engg;
+ };
  
- #define   FAN_SPEED_CONTROL			0x7D
-+#define     FSC_READ_MAX_FAN_RPS		0x3
- #define     FSC_READ_NUM_FANS			0x4
- #define     FSC_READ_STOCK_FAN_CONTROL_POINTS	0x5
- #define     FSC_READ_FAN_TABLE			0x7
++/**
++ * struct xe_pcode_write - single pcode mailbox write
++ * @mbox: mailbox command
++ * @data: value written to PCODE_DATA0
++ */
++struct xe_pcode_write {
++	u32 mbox;
++	u32 data;
++};
++
+ #define PCODE_DEFAULT_TIMEOUT_MS	10
+ 
+ int xe_pcode_init_early(struct xe_tile *tile);
+@@ -28,6 +38,8 @@ int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
+ int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1);
+ int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
+ 			   int timeout_ms);
++int xe_pcode_write_batch(struct xe_tile *tile, const struct xe_pcode_write *writes,
++			 unsigned int count);
+ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
+ 			     u32 data1, int timeout);
+ int xe_get_pcode_version(struct xe_device *xe, struct xe_pcode_version *version);
 -- 
 2.34.1
 
